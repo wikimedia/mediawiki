@@ -19,19 +19,27 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 			return $clock += 1000;
 		} );
 
-		$page = $this->getNonexistingTestPage();
-		$user = $this->getTestUser()->getUser();
-		$status = $this->editPage( $page, 'one' );
-		$this->assertTrue( $status->isOK() );
-		$status = $this->editPage( $page, 'two' );
-		$this->assertTrue( $status->isOK() );
-		$revisionTimestamp = wfTimestamp( TS_ISO_8601, $page->getTimestamp() );
-
 		$params = [
 			'action' => 'query',
 			'meta' => 'userinfo',
 			'uiprop' => 'latestcontrib',
 		];
+
+		$page = $this->getNonexistingTestPage();
+		$user = $this->getTestUser()->getUser();
+
+		$apiResult = $this->doApiRequest( $params, null, false, $user );
+		$this->assertArrayNotHasKey( 'continue', $apiResult[0] );
+		$this->assertArrayHasKey( 'query', $apiResult[0] );
+		$this->assertArrayHasKey( 'userinfo', $apiResult[0]['query'] );
+		$this->assertArrayNotHasKey( 'latestcontrib', $apiResult[0]['query']['userinfo'] );
+
+		$status = $this->editPage( $page, 'one' );
+		$this->assertTrue( $status->isOK() );
+		$status = $this->editPage( $page, 'two' );
+		$this->assertTrue( $status->isOK() );
+
+		$revisionTimestamp = MWTimestamp::convert( TS_ISO_8601, $page->getTimestamp() );
 
 		$apiResult = $this->doApiRequest( $params, null, false, $user );
 		$this->assertArrayNotHasKey( 'continue', $apiResult[0] );
