@@ -918,6 +918,19 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'image', 'img_media_mime', '(img_media_type, img_major_mime, img_minor_mime)' ],
 			[ 'renameIndex', 'site_identifiers', 'site_ids_site', 'si_site' ],
 			[ 'renameIndex', 'site_identifiers', 'site_ids_key', 'si_key' ],
+			[ 'changeField', 'recentchanges', 'rc_actor', 'BIGINT', '' ],
+			[ 'changeField', 'recentchanges', 'rc_comment_id', 'BIGINT', '' ],
+			[ 'changeField', 'recentchanges', 'rc_ip', 'TEXT', '' ],
+			[ 'changeField', 'recentchanges', 'rc_namespace', 'INTEGER', '' ],
+			[ 'setDefault', 'recentchanges', 'rc_title', '' ],
+			[ 'setDefault', 'recentchanges', 'rc_source', '' ],
+			[ 'setDefault', 'recentchanges', 'rc_ip', '' ],
+			[ 'setDefault', 'recentchanges', 'rc_namespace', 0 ],
+			[ 'setDefault', 'recentchanges', 'rc_cur_id', 0 ],
+			[ 'setDefault', 'recentchanges', 'rc_this_oldid', 0 ],
+			[ 'setDefault', 'recentchanges', 'rc_last_oldid', 0 ],
+			[ 'changeNullableField', 'recentchanges', 'rc_cur_id', 'NOT NULL', true ],
+			[ 'changeNullableField', 'recentchanges', 'rc_ip', 'NOT NULL', true ],
 		];
 	}
 
