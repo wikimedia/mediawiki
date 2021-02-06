@@ -15,6 +15,11 @@ class ApiWatchTest extends ApiTestCase {
 	protected function setUp(): void {
 		parent::setUp();
 
+		$this->tablesUsed = array_merge(
+			$this->tablesUsed,
+			[ 'watchlist', 'watchlist_expiry' ]
+		);
+
 		// Fake current time to be 2019-06-05T19:50:42Z
 		ConvertibleTimestamp::setFakeTime( 1559764242 );
 
