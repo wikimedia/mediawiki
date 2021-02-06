@@ -287,7 +287,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$keyInner = "inner-" . wfRandomString();
 
 		$innerHit = 0;
-		$innerFn = function () use ( &$innerHit ) {
+		$innerFn = static function () use ( &$innerHit ) {
 			++$innerHit;
 			return 42;
 		};
@@ -547,7 +547,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$key = wfRandomString();
 		$wasSet = 0;
 		$touched = null;
-		$touchedCallback = function () use ( &$touched ) {
+		$touchedCallback = static function () use ( &$touched ) {
 			return $touched;
 		};
 		$v = $cache->getWithSetCallback(
@@ -624,7 +624,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 1, $wasSet, "Value cached" );
 
 		$asycList = [];
-		$asyncHandler = function ( $callback ) use ( &$asycList ) {
+		$asyncHandler = static function ( $callback ) use ( &$asycList ) {
 			$asycList[] = $callback;
 		};
 		$cache = new NearExpiringWANObjectCache( [
@@ -712,7 +712,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$priorValue = null;
 		$priorAsOf = null;
 		$wasSet = 0;
-		$genFunc = function ( $id, $old, &$ttl, &$opts, $asOf ) use (
+		$genFunc = static function ( $id, $old, &$ttl, &$opts, $asOf ) use (
 			&$wasSet, &$priorValue, &$priorAsOf
 		) {
 			++$wasSet;
@@ -811,7 +811,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			return $wanCache->makeKey( 'test', $id );
 		};
 		$keyedIds = $cache->makeMultiKeys( $ids, $keyFunc );
-		$genFunc = function ( $id, $oldValue, &$ttl, array &$setops ) use ( &$calls ) {
+		$genFunc = static function ( $id, $oldValue, &$ttl, array &$setops ) use ( &$calls ) {
 			++$calls;
 
 			return "val-{$id}";
@@ -965,7 +965,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cKey2 = wfRandomString();
 
 		$wasSet = 0;
-		$genFunc = function ( array $ids, array &$ttls, array &$setOpts ) use (
+		$genFunc = static function ( array $ids, array &$ttls, array &$setOpts ) use (
 			&$wasSet, &$priorValue, &$priorAsOf
 		) {
 			$newValues = [];
@@ -1063,7 +1063,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			return $wanCache->makeKey( 'test', $id );
 		};
 		$keyedIds = $cache->makeMultiKeys( $ids, $keyFunc );
-		$genFunc = function ( array $ids, array &$ttls, array &$setOpts ) use ( &$calls ) {
+		$genFunc = static function ( array $ids, array &$ttls, array &$setOpts ) use ( &$calls ) {
 			$newValues = [];
 			foreach ( $ids as $id ) {
 				++$calls;
@@ -2304,7 +2304,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		list( $cache ) = $this->newWanCache();
 
 		$ids = [ 1, 2, 3, 4, 4, 5, 6, 6, 7, 7 ];
-		$keyCallback = function ( $id, WANObjectCache $cache ) {
+		$keyCallback = static function ( $id, WANObjectCache $cache ) {
 			return $cache->makeKey( 'key', $id );
 		};
 		$keyedIds = $cache->makeMultiKeys( $ids, $keyCallback );
@@ -2321,7 +2321,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( $expected, iterator_to_array( $keyedIds ) );
 
 		$ids = [ '1', '2', '3', '4', '4', '5', '6', '6', '7', '7' ];
-		$keyCallback = function ( $id, WANObjectCache $cache ) {
+		$keyCallback = static function ( $id, WANObjectCache $cache ) {
 			return $cache->makeGlobalKey( 'key', $id, 'a', $id, 'b' );
 		};
 		$keyedIds = $cache->makeMultiKeys( $ids, $keyCallback );

@@ -1693,7 +1693,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		// phpcs:ignore Generic.Files.LineLength
 		$this->assertLastSql( 'BEGIN; SAVEPOINT wikimedia_rdbms_atomic1; ROLLBACK TO SAVEPOINT wikimedia_rdbms_atomic1; COMMIT' );
 
-		$noOpCallack = function () {
+		$noOpCallack = static function () {
 		};
 
 		$this->database->doAtomicSection( __METHOD__, $noOpCallack, IDatabase::ATOMIC_CANCELABLE );
@@ -2205,7 +2205,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testNoAtomicSectionForCallback() {
 		try {
-			$this->database->onAtomicSectionCancel( function () {
+			$this->database->onAtomicSectionCancel( static function () {
 			}, __METHOD__ );
 			$this->fail( 'Expected exception not thrown' );
 		} catch ( DBUnexpectedError $ex ) {
@@ -2333,7 +2333,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	public function testTransactionStatementRollbackIgnoring() {
 		$wrapper = TestingAccessWrapper::newFromObject( $this->database );
 		$warning = [];
-		$wrapper->deprecationLogger = function ( $msg ) use ( &$warning ) {
+		$wrapper->deprecationLogger = static function ( $msg ) use ( &$warning ) {
 			$warning[] = $msg;
 		};
 

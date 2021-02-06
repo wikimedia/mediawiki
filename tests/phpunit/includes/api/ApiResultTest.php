@@ -716,7 +716,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideTransformations() {
-		$kvp = function ( $keyKey, $key, $valKey, $value ) {
+		$kvp = static function ( $keyKey, $key, $valKey, $value ) {
 			return [
 				$keyKey => $key,
 				$valKey => $value,

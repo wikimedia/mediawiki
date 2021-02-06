@@ -288,13 +288,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$checkId = null;
 
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ function (
+			'PageContentInsertComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision
 			) {
 				// types/refs checked
 			} ],
-			'PageContentSaveComplete' => [ function (
+			'PageContentSaveComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
@@ -333,13 +333,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$checkIds = [];
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ function (
+			'PageContentInsertComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision
 			) {
 				// types/refs checked
 			} ],
-			'PageContentSaveComplete' => [ function (
+			'PageContentSaveComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
@@ -393,13 +393,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$checkIds = [];
 
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ function (
+			'PageContentInsertComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision
 			) {
 				// types/refs checked
 			} ],
-			'PageContentSaveComplete' => [ function (
+			'PageContentSaveComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
@@ -747,12 +747,12 @@ hello
 		];
 
 		// see whether it makes a difference who did the base edit
-		$testsWithAdam = array_map( function ( $test ) {
+		$testsWithAdam = array_map( static function ( $test ) {
 			$test[0] = 'Adam'; // change base edit user
 			return $test;
 		}, $tests );
 
-		$testsWithBerta = array_map( function ( $test ) {
+		$testsWithBerta = array_map( static function ( $test ) {
 			$test[0] = 'Berta'; // change base edit user
 			return $test;
 		}, $tests );

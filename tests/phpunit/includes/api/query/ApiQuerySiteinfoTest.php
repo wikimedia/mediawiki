@@ -70,7 +70,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$data = $this->doQuery();
 
 		$expected = array_map(
-			function ( $code ) use ( $contLang ) {
+			static function ( $code ) use ( $contLang ) {
 				return [ 'code' => $code, 'name' => $contLang->getVariantname( $code ) ];
 			},
 			$contLang->getVariants()
@@ -135,7 +135,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testNamespaceAliases() {
 		$expected = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaceAliases();
 		$expected = array_map(
-			function ( $key, $val ) {
+			static function ( $key, $val ) {
 				return [ 'id' => $val, 'alias' => strtr( $key, '_', ' ' ) ];
 			},
 			array_keys( $expected ),
@@ -321,7 +321,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$data = $this->doQuery( 'usergroups', $numInGroup ? [ 'sinumberingroup' => '' ] : [] );
 
 		$names = array_map(
-			function ( $val ) {
+			static function ( $val ) {
 				return $val['name'];
 			},
 			$data
@@ -366,7 +366,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$this->setMwGlobals( 'wgFileExtensions', array_merge( $wgFileExtensions, [ 'png' ] ) );
 
 		$expected = array_map(
-			function ( $val ) {
+			static function ( $val ) {
 				return [ 'ext' => $val ];
 			},
 			array_unique( $wgFileExtensions )
@@ -397,13 +397,13 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		$expected = ( new ComposerInstalled( $path ) )->getInstalledDependencies();
 
 		$expected = array_filter( $expected,
-			function ( $info ) {
+			static function ( $info ) {
 				return strpos( $info['type'], 'mediawiki-' ) !== 0;
 			}
 		);
 
 		$expected = array_map(
-			function ( $name, $info ) {
+			static function ( $name, $info ) {
 				return [ 'name' => $name, 'version' => $info['version'] ];
 			},
 			array_keys( $expected ),
@@ -530,7 +530,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 			->getLanguageNames( (string)$langCode );
 
 		$expected = array_map(
-			function ( $code, $name ) {
+			static function ( $code, $name ) {
 				return [
 					'code' => $code,
 					'bcp47' => LanguageCode::bcp47( $code ),
@@ -553,7 +553,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testLanguageVariants() {
 		$expectedKeys = array_filter( LanguageConverter::$languagesWithVariants,
-			function ( $langCode ) {
+			static function ( $langCode ) {
 				$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 					->getLanguage( $langCode );
 				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
@@ -624,7 +624,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testExtensionTags() {
 		$expected = array_map(
-			function ( $tag ) {
+			static function ( $tag ) {
 				return "<$tag>";
 			},
 			MediaWikiServices::getInstance()->getParser()->getTags()
@@ -675,7 +675,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 		ksort( $expectedNames );
 
 		$actualNames = array_map(
-			function ( $val ) {
+			static function ( $val ) {
 				return $val['name'];
 			},
 			$this->doQuery( 'showhooks' )

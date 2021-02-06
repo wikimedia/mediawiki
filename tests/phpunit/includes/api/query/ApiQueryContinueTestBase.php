@@ -59,7 +59,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		$continue = [];
 		do {
 			$request = array_merge( $params, $continue );
-			uksort( $request, function ( $a, $b ) {
+			uksort( $request, static function ( $a, $b ) {
 				// put 'continue' params at the end - lazy method
 				$a = strpos( $a, 'continue' ) !== false ? 'zzz ' . $a : $a;
 				$b = strpos( $b, 'continue' ) !== false ? 'zzz ' . $b : $b;
@@ -115,14 +115,14 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 				$m = $p['title'];
 				if ( isset( $p['links'] ) ) {
 					$m .= '/[' . implode( ',', array_map(
-						function ( $v ) {
+						static function ( $v ) {
 							return $v['title'];
 						},
 						$p['links'] ) ) . ']';
 				}
 				if ( isset( $p['categories'] ) ) {
 					$m .= '/(' . implode( ',', array_map(
-						function ( $v ) {
+						static function ( $v ) {
 							return str_replace( 'Category:', '', $v['title'] );
 						},
 						$p['categories'] ) ) . ')';
@@ -132,7 +132,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		}
 		if ( isset( $q['allcategories'] ) ) {
 			$print[] = '*Cats/(' . implode( ',', array_map(
-				function ( $v ) {
+				static function ( $v ) {
 					return $v['*'];
 				},
 				$q['allcategories'] ) ) . ')';
@@ -147,7 +147,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		if ( isset( $q[$moduleName] ) ) {
 			$print[] = "*$name/[" . implode( ',',
 				array_map(
-					function ( $v ) {
+					static function ( $v ) {
 						return $v['title'];
 					},
 					$q[$moduleName] ) ) . ']';
@@ -175,7 +175,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 					if ( !is_array( $value ) ) {
 						$sort = false;
 					} elseif ( array_key_exists( 'title', $value ) ) {
-						$sort = function ( $a, $b ) {
+						$sort = static function ( $a, $b ) {
 							return strcmp( $a['title'], $b['title'] );
 						};
 					} else {

@@ -115,7 +115,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 	 * @return callable function(): MockSearchResult
 	 */
 	private function mockResultClosure( $title, $setters = [] ) {
-		return function () use ( $title, $setters ){
+		return static function () use ( $title, $setters ){
 			$result = new MockSearchResult( Title::newFromText( $title ) );
 
 			foreach ( $setters as $method => $param ) {

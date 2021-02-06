@@ -601,7 +601,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			)
 			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return implode( $sqlConj, array_map( function ( $s ) {
+				return implode( $sqlConj, array_map( static function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );
@@ -691,7 +691,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			)
 			->will( $this->returnCallback( function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
-				return implode( $sqlConj, array_map( function ( $s ) {
+				return implode( $sqlConj, array_map( static function ( $s ) {
 					return '(' . $s . ')';
 				}, $a
 				) );
@@ -2204,7 +2204,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockQueueGroup = $this->getMockJobQueueGroup();
 		$mockQueueGroup->expects( $this->once() )
 			->method( 'lazyPush' )
-			->willReturnCallback( function ( ActivityUpdateJob $job ) {
+			->willReturnCallback( static function ( ActivityUpdateJob $job ) {
 				// don't run
 			} );
 
@@ -2269,9 +2269,9 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 		$mockQueueGroup->expects( $this->any() )
 			->method( 'lazyPush' )
-			->will( $this->returnCallback( function ( ActivityUpdateJob $job ) {
+			->willReturnCallback( static function ( ActivityUpdateJob $job ) {
 				// don't run
-			} ) );
+			} );
 
 		$this->assertTrue(
 			$store->resetNotificationTimestamp(

@@ -300,7 +300,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideCleanParams() {
-		$cleanCallback = function ( $value ) {
+		$cleanCallback = static function ( $value ) {
 			return '-' . $value . '-';
 		};
 
@@ -410,7 +410,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	private static function sanitizedMessageParams( Message $message ) {
-		return array_map( function ( $p ) {
+		return array_map( static function ( $p ) {
 			return $p instanceof Message
 				? [
 					'key' => $p->getKey(),
@@ -615,7 +615,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 */
 	public function testWakeUpSanitizesCallback() {
 		$status = new Status();
-		$status->cleanCallback = function ( $value ) {
+		$status->cleanCallback = static function ( $value ) {
 			return '-' . $value . '-';
 		};
 		$status->__wakeup();

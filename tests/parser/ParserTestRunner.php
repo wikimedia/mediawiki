@@ -188,7 +188,7 @@ class ParserTestRunner {
 		global $wgParserTestFiles;
 
 		// Add core test files
-		$files = array_map( function ( $item ) {
+		$files = array_map( static function ( $item ) {
 			return __DIR__ . "/$item";
 		}, self::$coreTestFiles );
 
@@ -295,7 +295,7 @@ class ParserTestRunner {
 		$setup['wgDisableLangConversion'] = false;
 		$setup['wgDisableTitleConversion'] = false;
 		$setup['wgUsePigLatinVariant'] = false;
-		$reset = function () {
+		$reset = static function () {
 			// Reset to follow changes to $wgDisable*Conversion
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LanguageConverterFactory' );
 		};
@@ -319,7 +319,7 @@ class ParserTestRunner {
 				return $this->createRepoGroup();
 			}
 		);
-		$teardown[] = function () {
+		$teardown[] = static function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'RepoGroup' );
 		};
 
@@ -331,7 +331,7 @@ class ParserTestRunner {
 			'name' => 'nullLockManager',
 			'class' => NullLockManager::class,
 		] ];
-		$reset = function () {
+		$reset = static function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'LockManagerGroupFactory' );
 		};
 		$setup[] = $reset;
@@ -345,7 +345,7 @@ class ParserTestRunner {
 
 		// This is essential and overrides disabling of database messages in TestSetup
 		$setup['wgUseDatabaseMessages'] = true;
-		$reset = function () {
+		$reset = static function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'MessageCache' );
 		};
 		$setup[] = $reset;
@@ -362,7 +362,7 @@ class ParserTestRunner {
 		} );
 
 		$this->hideDeprecated( 'Hooks::clear' );
-		$teardown[] = function () {
+		$teardown[] = static function () {
 			Hooks::clear( 'ParserGetVariableValueTs' );
 		};
 
@@ -380,7 +380,7 @@ class ParserTestRunner {
 				return new MediaHandlerFactory( $handlers );
 			}
 		);
-		$teardown[] = function () {
+		$teardown[] = static function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'MediaHandlerFactory' );
 		};
 
@@ -392,7 +392,7 @@ class ParserTestRunner {
 		if ( isset( ObjectCache::$instances[CACHE_DB] ) ) {
 			$savedCache = ObjectCache::$instances[CACHE_DB];
 			ObjectCache::$instances[CACHE_DB] = new HashBagOStuff;
-			$teardown[] = function () use ( $savedCache ) {
+			$teardown[] = static function () use ( $savedCache ) {
 				ObjectCache::$instances[CACHE_DB] = $savedCache;
 			};
 		}
@@ -412,7 +412,7 @@ class ParserTestRunner {
 		];
 		// Changing wgExtraNamespaces invalidates caches in NamespaceInfo and any live Language
 		// object, both on setup and teardown
-		$reset = function () {
+		$reset = static function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'NamespaceInfo' );
 			MediaWikiServices::getInstance()->getContentLanguage()->resetNamespaces();
 		};
@@ -665,7 +665,7 @@ class ParserTestRunner {
 		$setup['wgInterwikiScopes'] = $GLOBAL_SCOPE;
 		$setup['wgInterwikiCache'] =
 			ClassicInterwikiLookup::buildCdbHash( $testInterwikis, $GLOBAL_SCOPE );
-		$reset = function () {
+		$reset = static function () {
 			// Reset the service in case any other tests already cached some prefixes.
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
 		};
@@ -1252,7 +1252,7 @@ class ParserTestRunner {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 		$lang->resetNamespaces();
 		$setup['wgContLang'] = $lang;
-		$setup[] = function () use ( $lang ) {
+		$setup[] = static function () use ( $lang ) {
 			MediaWikiServices::getInstance()->disableService( 'ContentLanguage' );
 			MediaWikiServices::getInstance()->redefineService(
 				'ContentLanguage',
@@ -1261,7 +1261,7 @@ class ParserTestRunner {
 				}
 			);
 		};
-		$teardown[] = function () {
+		$teardown[] = static function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentLanguage' );
 		};
 		$reset = function () {
@@ -1298,7 +1298,7 @@ class ParserTestRunner {
 		$context->setSkin( $skinFactory->makeSkin( $skin ) );
 		$context->setOutput( new OutputPage( $context ) );
 		$setup['wgOut'] = $context->getOutput();
-		$teardown[] = function () use ( $context, $oldSkin ) {
+		$teardown[] = static function () use ( $context, $oldSkin ) {
 			// Clear language conversion tables
 			$wrapper = TestingAccessWrapper::newFromObject(
 				MediaWikiServices::getInstance()->getLanguageConverterFactory()
@@ -1356,17 +1356,17 @@ class ParserTestRunner {
 			true // postgres requires that we use temporary tables
 		);
 		MediaWikiIntegrationTestCase::resetNonServiceCaches();
-		$teardown[] = function () {
+		$teardown[] = static function () {
 			MediaWikiIntegrationTestCase::teardownTestDB();
 		};
 
 		MediaWikiIntegrationTestCase::installMockMwServices();
-		$teardown[] = function () {
+		$teardown[] = static function () {
 			MediaWikiIntegrationTestCase::restoreMwServices();
 		};
 
 		// Wipe some DB query result caches on setup and teardown
-		$reset = function () {
+		$reset = static function () {
 			$services = MediaWikiServices::getInstance();
 			$services->getLinkCache()->clear();
 
@@ -1708,14 +1708,14 @@ class ParserTestRunner {
 			$setup['wgLanguageCode'] = 'en';
 			$lang = $services->getLanguageFactory()->getLanguage( 'en' );
 			$setup['wgContLang'] = $lang;
-			$setup[] = function () use ( $lang ) {
+			$setup[] = static function () use ( $lang ) {
 				$services = MediaWikiServices::getInstance();
 				$services->disableService( 'ContentLanguage' );
 				$services->redefineService( 'ContentLanguage', function () use ( $lang ) {
 					return $lang;
 				} );
 			};
-			$teardown[] = function () {
+			$teardown[] = static function () {
 				MediaWikiServices::getInstance()->resetServiceForTesting( 'ContentLanguage' );
 			};
 			$reset = function () {

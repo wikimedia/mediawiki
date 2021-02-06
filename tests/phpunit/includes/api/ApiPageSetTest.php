@@ -102,7 +102,7 @@ class ApiPageSetTest extends ApiTestCase {
 				'UTRedirectSourceA', 'UTRedirectSourceB', 'UTRedirectTarget',
 				'UTPageRedirectOne', 'UTPageRedirectTwo',
 			],
-			array_map( function ( $x ) {
+			array_map( static function ( $x ) {
 				return $x->getPrefixedText();
 			}, $pageSet->getTitles() )
 		);

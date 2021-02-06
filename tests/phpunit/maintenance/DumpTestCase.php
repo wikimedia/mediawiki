@@ -179,7 +179,7 @@ abstract class DumpTestCase extends MediaWikiLangTestCase {
 		// see <https://www.w3.org/Help/Webmaster#slowdtd>.
 		// To work around that, we keep our own copies of the relevant schema files.
 		libxml_set_external_entity_loader(
-			function ( $public, $system, $context ) {
+			static function ( $public, $system, $context ) {
 				switch ( $system ) {
 					// if more schema files are needed, add them here.
 					case 'http://www.w3.org/2001/xml.xsd':

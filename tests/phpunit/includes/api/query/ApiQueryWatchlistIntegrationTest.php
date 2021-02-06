@@ -210,7 +210,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
 		// not checking values of all keys of the actual item, so removing unwanted keys from comparison
 		$actualItemsOnlyComparedValues = array_map(
-			function ( array $item ) use ( $keysUsedInValueComparison ) {
+			static function ( array $item ) use ( $keysUsedInValueComparison ) {
 				return array_intersect_key( $item, array_flip( $keysUsedInValueComparison ) );
 			},
 			$actualItems
