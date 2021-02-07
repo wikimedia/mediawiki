@@ -274,7 +274,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				}
 			);
 
-		$lookupUser = function ( $username ) use ( $users ) {
+		$lookupUser = static function ( $username ) use ( $users ) {
 			return $users[ $username ] ?? false;
 		};
 

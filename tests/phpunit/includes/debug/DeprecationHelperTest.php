@@ -128,7 +128,7 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 
 	protected function assertErrorTriggered( callable $callback, $level, $message ) {
 		$actualLevel = $actualMessage = null;
-		set_error_handler( function ( $errorCode, $errorStr ) use ( &$actualLevel, &$actualMessage ) {
+		set_error_handler( static function ( $errorCode, $errorStr ) use ( &$actualLevel, &$actualMessage ) {
 			$actualLevel = $errorCode;
 			$actualMessage = $errorStr;
 		} );

@@ -1059,7 +1059,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			array_merge(
 				$this->preauthMocks, $this->primaryauthMocks, $this->secondaryauthMocks
 			),
-			function ( $p ) {
+			static function ( $p ) {
 				return is_callable( [ $p, 'expects' ] );
 			}
 		);
@@ -2959,7 +2959,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$req->key = $key;
 			return $req;
 		};
-		$cmpReqs = function ( $a, $b ) {
+		$cmpReqs = static function ( $a, $b ) {
 			$ret = strcmp( get_class( $a ), get_class( $b ) );
 			if ( !$ret ) {
 				$ret = strcmp( $a->key, $b->key );
@@ -3171,7 +3171,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$req->required = $required;
 			return $req;
 		};
-		$cmpReqs = function ( $a, $b ) {
+		$cmpReqs = static function ( $a, $b ) {
 			$ret = strcmp( get_class( $a ), get_class( $b ) );
 			if ( !$ret ) {
 				$ret = strcmp( $a->key, $b->key );

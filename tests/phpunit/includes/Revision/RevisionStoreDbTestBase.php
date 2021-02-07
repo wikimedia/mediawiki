@@ -206,9 +206,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 				'connLogger' => new NullLogger(),
 				'queryLogger' => new NullLogger(),
 				'replLogger' => new NullLogger(),
-				'errorLogger' => function () {
+				'errorLogger' => static function () {
 				},
-				'deprecationLogger' => function () {
+				'deprecationLogger' => static function () {
 				},
 				'type' => 'test',
 				'dbname' => $dbName,

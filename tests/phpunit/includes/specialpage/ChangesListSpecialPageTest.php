@@ -107,7 +107,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	private static function normalizeCondition( $conds ) {
 		$dbr = wfGetDB( DB_REPLICA );
 		$normalized = array_map(
-			function ( $k, $v ) use ( $dbr ) {
+			static function ( $k, $v ) use ( $dbr ) {
 				if ( is_array( $v ) ) {
 					sort( $v );
 				}
@@ -752,7 +752,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 						'description' => 'garply-description',
 					],
 				],
-				'queryCallable' => function () {
+				'queryCallable' => static function () {
 				},
 				'default' => ChangesListStringOptionsFilterGroup::NONE,
 			],

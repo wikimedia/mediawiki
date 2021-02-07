@@ -165,7 +165,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'False' => [ false ],
 			'True' => [ true ],
 			'Integer' => [ 7 ],
-			'Function' => [ function () {
+			'Function' => [ static function () {
 			} ],
 			'Float' => [ -13.402 ],
 			'Object' => [ (object)[] ],
@@ -1155,7 +1155,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	 * @covers ::scopedProfileSection
 	 */
 	public function testScopedProfileSection() : void {
-		$scopedCallback = new ScopedCallback( function () {
+		$scopedCallback = new ScopedCallback( static function () {
 		} );
 		$backend = $this->newMockFileBackend( [ 'profiler' =>
 			function ( string $section ) use ( $scopedCallback ) : ScopedCallback {

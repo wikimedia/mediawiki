@@ -144,7 +144,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 		// Contributions are returned in descending order.
 		$revIds = array_map(
-			function ( RevisionRecord $rev ) {
+			static function ( RevisionRecord $rev ) {
 				return $rev->getId();
 			},
 			$segment->getRevisions()

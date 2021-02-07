@@ -89,7 +89,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	 * @return string
 	 */
 	private function injectPageTitles( string $xmlData, array $pageTitles ) {
-		$keys = array_map( function ( $name ) {
+		$keys = array_map( static function ( $name ) {
 			return "{{{$name}_title}}";
 		}, array_keys( $pageTitles ) );
 

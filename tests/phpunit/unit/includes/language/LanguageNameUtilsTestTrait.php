@@ -132,7 +132,7 @@ trait LanguageNameUtilsTestTrait {
 
 	public static function provideIsKnownLanguageTag() {
 		$invalidBuiltInCodes = array_filter( static::provideIsValidBuiltInCode(),
-			function ( $arr ) {
+			static function ( $arr ) {
 				// If isValidBuiltInCode() returns false, we want to also, but if it returns true,
 				// we could still return false from isKnownLanguageTag(), so skip those.
 				return !$arr[1];

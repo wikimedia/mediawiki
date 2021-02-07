@@ -149,7 +149,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 	public function testLBFactoryMultiRoundCallbacks() {
 		$called = 0;
-		$countLBsFunc = function ( LBFactoryMulti $factory ) {
+		$countLBsFunc = static function ( LBFactoryMulti $factory ) {
 			$count = 0;
 			$factory->forEachLB( function () use ( &$count ) {
 				++$count;

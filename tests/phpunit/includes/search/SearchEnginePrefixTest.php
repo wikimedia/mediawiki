@@ -172,7 +172,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	public function testSearch( array $case ) {
 		$this->search->setLimitOffset( 3 );
 		$results = $this->search->defaultPrefixSearch( $case['query'] );
-		$results = array_map( function ( Title $t ) {
+		$results = array_map( static function ( Title $t ) {
 			return $t->getPrefixedText();
 		}, $results );
 
@@ -190,7 +190,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 	public function testSearchWithOffset( array $case ) {
 		$this->search->setLimitOffset( 3, 1 );
 		$results = $this->search->defaultPrefixSearch( $case['query'] );
-		$results = array_map( function ( Title $t ) {
+		$results = array_map( static function ( Title $t ) {
 			return $t->getPrefixedText();
 		}, $results );
 

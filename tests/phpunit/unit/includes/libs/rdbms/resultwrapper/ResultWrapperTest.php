@@ -42,15 +42,13 @@ class ResultWrapperTest extends PHPUnit\Framework\TestCase {
 			}
 		);
 		$db->method( 'dataSeek' )->willReturnCallback(
-			function ( ResultWrapper $res, $pos ) use ( $db ) {
+			static function ( ResultWrapper $res, $pos ) use ( $db ) {
 				// Position already set in ResultWrapper
 			}
 		);
 		$db->method( 'fetchRow' )->willReturnCallback(
 			function ( ResultWrapper $res ) use ( $db ) {
-				$row = $res::unwrap( $res )[$res->key()] ?? false;
-
-				return $row;
+				return $res::unwrap( $res )[$res->key()] ?? false;
 			}
 		);
 		$db->method( 'fetchObject' )->willReturnCallback(
