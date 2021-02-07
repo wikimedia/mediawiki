@@ -37,16 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.19
-			[ 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1.sql' ],
-			[ 'doMigrateUserOptions' ],
-			[ 'dropField', 'user', 'user_options', 'patch-drop-user_options.sql' ],
-			[ 'addField', 'archive', 'ar_sha1', 'patch-ar_sha1.sql' ],
-			[ 'addIndex', 'page', 'page_redirect_namespace_len',
-				'patch-page_redirect_namespace_len.sql' ],
-			[ 'addField', 'uploadstash', 'us_chunk_inx', 'patch-uploadstash_chunk.sql' ],
-			[ 'addfield', 'job', 'job_timestamp', 'patch-jobs-add-timestamp.sql' ],
-
 			// 1.20
 			[ 'ifFieldExists', 'revision', 'rev_user',
 				'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ],
