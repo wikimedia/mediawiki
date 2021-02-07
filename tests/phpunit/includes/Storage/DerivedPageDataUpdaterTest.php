@@ -556,7 +556,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotEmpty( $dataUpdates );
 
-		$linksUpdates = array_filter( $dataUpdates, function ( $du ) {
+		$linksUpdates = array_filter( $dataUpdates, static function ( $du ) {
 			return $du instanceof LinksUpdate;
 		} );
 		$this->assertCount( 1, $linksUpdates );
@@ -659,7 +659,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotEmpty( $dataUpdates );
 
-		$updateNames = array_map( function ( $du ) {
+		$updateNames = array_map( static function ( $du ) {
 			return isset( $du->_name ) ? $du->_name : get_class( $du );
 		}, $dataUpdates );
 

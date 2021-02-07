@@ -418,7 +418,7 @@ Deprecation message.' ]
 			'test.ordering.d' => [ 'shouldEmbed' => true, 'styles' => '.orderingD{}' ],
 			'test.ordering.e' => [ 'shouldEmbed' => false ],
 		];
-		return array_map( function ( $options ) {
+		return array_map( static function ( $options ) {
 			return self::makeModule( $options );
 		}, $modules );
 	}

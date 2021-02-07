@@ -40,7 +40,7 @@ class UnblockUserTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	private function convertErrorsArray( $arr ) {
-		return array_map( function ( $el ) {
+		return array_map( static function ( $el ) {
 			return $el[0];
 		}, $arr );
 	}

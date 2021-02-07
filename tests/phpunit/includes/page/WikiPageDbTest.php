@@ -906,7 +906,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$dataUpdates = $page->getDeletionUpdates( $page->getRevisionRecord() );
 		$this->assertNotEmpty( $dataUpdates );
 
-		$updateNames = array_map( function ( $du ) {
+		$updateNames = array_map( static function ( $du ) {
 			return isset( $du->_name ) ? $du->_name : get_class( $du );
 		}, $dataUpdates );
 

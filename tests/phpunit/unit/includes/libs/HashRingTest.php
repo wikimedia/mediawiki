@@ -214,7 +214,7 @@ class HashRingTest extends PHPUnit\Framework\TestCase {
 		$ring = new HashRing( $map, 'md5' );
 		$wrapper = \Wikimedia\TestingAccessWrapper::newFromObject( $ring );
 
-		$ketama_test = function ( $count ) use ( $wrapper ) {
+		$ketama_test = static function ( $count ) use ( $wrapper ) {
 			$baseRing = $wrapper->baseRing;
 
 			$lines = [];

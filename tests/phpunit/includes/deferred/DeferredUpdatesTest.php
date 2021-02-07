@@ -348,10 +348,10 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testTryOpportunisticExecute() {
 		$calls = [];
-		$callback1 = function () use ( &$calls ) {
+		$callback1 = static function () use ( &$calls ) {
 			$calls[] = 1;
 		};
-		$callback2 = function () use ( &$calls ) {
+		$callback2 = static function () use ( &$calls ) {
 			$calls[] = 2;
 		};
 

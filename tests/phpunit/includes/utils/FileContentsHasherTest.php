@@ -8,7 +8,7 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	public function provideSingleFile() {
-		return array_map( function ( $file ) {
+		return array_map( static function ( $file ) {
 			return [ $file, file_get_contents( $file ) ];
 		}, glob( __DIR__ . '/../../data/filecontentshasher/*.*' ) );
 	}

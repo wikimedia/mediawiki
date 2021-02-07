@@ -122,7 +122,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$EMPTY_REQUEST, [
 				'searchNs2' => 1,
 				'searchNs14' => 1,
-			] + array_fill_keys( array_map( function ( $ns ) {
+			] + array_fill_keys( array_map( static function ( $ns ) {
 				return "searchNs$ns";
 			}, $defaultNS ), 0 ),
 				'advanced', [ 2, 14 ],
@@ -224,7 +224,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		$rewrittenQuery,
 		array $resultTitles
 	) {
-		$results = array_map( function ( $title ) {
+		$results = array_map( static function ( $title ) {
 			return SearchResult::newFromTitle( $title );
 		}, $resultTitles );
 

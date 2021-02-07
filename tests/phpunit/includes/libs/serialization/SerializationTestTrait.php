@@ -190,7 +190,7 @@ trait SerializationTestTrait {
 	public function provideDeserializedTestObjects(): Generator {
 		$className = $this->getClassToTest();
 		$testCases = $this->getTestInstancesAndAssertions();
-		$testObjects = array_map( function ( $testCase ) {
+		$testObjects = array_map( static function ( $testCase ) {
 			return $testCase['instance'];
 		}, $testCases );
 		foreach ( $this->getSupportedSerializationFormats() as $serializationFormat ) {
@@ -237,7 +237,7 @@ trait SerializationTestTrait {
 	 * @return array
 	 */
 	private function getTestInstances(): array {
-		return array_map( function ( $testCase ) {
+		return array_map( static function ( $testCase ) {
 			return $testCase['instance'];
 		}, $this->getTestInstancesAndAssertions() );
 	}

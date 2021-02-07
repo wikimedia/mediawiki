@@ -53,7 +53,7 @@ class IntegerDefTest extends TypeDefTestCase {
 			] ),
 			'test', '...', []
 		);
-		$asWarn = function ( ValidationException $ex ) {
+		$asWarn = static function ( ValidationException $ex ) {
 			return [
 				'code' => $ex->getFailureMessage()->getCode(),
 				'data' => $ex->getFailureMessage()->getData(),
