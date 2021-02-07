@@ -249,7 +249,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$this->setService( 'ReadOnlyMode', $myReadOnlyMode );
-		$this->setTemporaryHook( 'MyTestHook', function ( &$n ) {
+		$this->setTemporaryHook( 'MyTestHook', static function ( &$n ) {
 			$n++;
 		}, true );
 
@@ -259,7 +259,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		// define a custom service
 		$services->defineService(
 			'_TEST_ResetService_Dummy',
-			function ( MediaWikiServices $services ) {
+			static function ( MediaWikiServices $services ) {
 				$conf = $services->getMainConfig();
 				return (object)[ 'lang' => $conf->get( 'LanguageCode' ) ];
 			}
@@ -303,7 +303,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$hookContainer = $this->getServiceContainer()->getHookContainer();
 		$name = 'MWITCT_Dummy_Hook';
 
-		$inc = function ( &$n ) {
+		$inc = static function ( &$n ) {
 			$n++;
 		};
 

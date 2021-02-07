@@ -282,7 +282,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$classWrapper = TestingAccessWrapper::newFromClass( ParserOptions::class );
 		$oldDefaults = $classWrapper->defaults;
 		$oldLazy = $classWrapper->lazyOptions;
-		$reset = new ScopedCallback( function () use ( $classWrapper, $oldDefaults, $oldLazy ) {
+		$reset = new ScopedCallback( static function () use ( $classWrapper, $oldDefaults, $oldLazy ) {
 			$classWrapper->defaults = $oldDefaults;
 			$classWrapper->lazyOptions = $oldLazy;
 		} );
@@ -300,7 +300,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 		$ctr = 0;
 		$classWrapper->defaults += [ __METHOD__ => null ];
-		$classWrapper->lazyOptions += [ __METHOD__ => function () use ( &$ctr ) {
+		$classWrapper->lazyOptions += [ __METHOD__ => static function () use ( &$ctr ) {
 			return ++$ctr;
 		} ];
 		$popt1 = ParserOptions::newCanonical( 'canonical' );
@@ -346,7 +346,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 		self::clearCache();
 
-		$this->setTemporaryHook( 'ParserOptionsRegister', function ( &$defaults, &$inCacheKey ) {
+		$this->setTemporaryHook( 'ParserOptionsRegister', static function ( &$defaults, &$inCacheKey ) {
 			$defaults += [
 				'foo' => 'foo',
 				'bar' => 'bar',
@@ -369,7 +369,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $options->getSpeculativeRevId() );
 
 		$counter = 0;
-		$options->setSpeculativeRevIdCallback( function () use( &$counter ) {
+		$options->setSpeculativeRevIdCallback( static function () use( &$counter ) {
 			return ++$counter;
 		} );
 

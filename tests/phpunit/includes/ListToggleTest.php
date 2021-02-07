@@ -30,7 +30,7 @@ class ListToggleTest extends MediaWikiIntegrationTestCase {
 		$output = $this->createMock( OutputPage::class );
 		$output->expects( $this->any() )
 			->method( 'msg' )
-			->will( $this->returnCallback( function ( $key ) {
+			->will( $this->returnCallback( static function ( $key ) {
 				return wfMessage( $key )->inLanguage( 'qqx' );
 			} ) );
 		$output->expects( $this->once() )

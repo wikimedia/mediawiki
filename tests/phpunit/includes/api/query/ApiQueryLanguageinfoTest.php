@@ -15,7 +15,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 		// register custom language names so this test is independent of CLDR
 		$this->setTemporaryHook(
 			'LanguageGetTranslatedLanguageNames',
-			function ( array &$names, $code ) {
+			static function ( array &$names, $code ) {
 				switch ( $code ) {
 					case 'en':
 						$names['sh'] = 'Serbo-Croatian';
@@ -41,13 +41,13 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 			// so we can call the constructor with the custom $microtimeFunction
 			$this->setTemporaryHook(
 				'ApiQuery::moduleManager',
-				function ( ApiModuleManager $moduleManager ) use ( $microtimeFunction ) {
+				static function ( ApiModuleManager $moduleManager ) use ( $microtimeFunction ) {
 					$moduleManager->addModule(
 						'languageinfo',
 						'meta',
 						[
 							'class' => ApiQueryLanguageinfo::class,
-							'factory' => function ( $parent, $name ) use ( $microtimeFunction ) {
+							'factory' => static function ( $parent, $name ) use ( $microtimeFunction ) {
 								$services = MediaWikiServices::getInstance();
 								return new ApiQueryLanguageinfo(
 									$parent,
@@ -122,7 +122,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 	public function testContinuationNecessary() {
 		$time = 0;
-		$microtimeFunction = function () use ( &$time ) {
+		$microtimeFunction = static function () use ( &$time ) {
 			return $time += 0.75;
 		};
 
@@ -134,7 +134,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 	public function testContinuationNotNecessary() {
 		$time = 0;
-		$microtimeFunction = function () use ( &$time ) {
+		$microtimeFunction = static function () use ( &$time ) {
 			return $time += 1.5;
 		};
 
@@ -147,7 +147,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 	public function testContinuationInAlphabeticalOrderNotParameterOrder() {
 		$time = 0;
-		$microtimeFunction = function () use ( &$time ) {
+		$microtimeFunction = static function () use ( &$time ) {
 			return $time += 0.75;
 		};
 		$params = [ 'licode' => 'en|ru|zh|de|yue' ];

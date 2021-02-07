@@ -85,7 +85,7 @@ EOF
 		$source = new ImportStringSource( $xml );
 
 		$redirect = null;
-		$callback = function ( Title $title, ForeignTitle $foreignTitle, $revCount,
+		$callback = static function ( Title $title, ForeignTitle $foreignTitle, $revCount,
 			$sRevCount, $pageInfo ) use ( &$redirect ) {
 			if ( array_key_exists( 'redirect', $pageInfo ) ) {
 				$redirect = $pageInfo['redirect'];
@@ -171,7 +171,7 @@ EOF
 		$source = new ImportStringSource( $xml );
 
 		$importNamespaces = null;
-		$callback = function ( array $siteinfo, $innerImporter ) use ( &$importNamespaces ) {
+		$callback = static function ( array $siteinfo, $innerImporter ) use ( &$importNamespaces ) {
 			$importNamespaces = $siteinfo['_namespaces'];
 		};
 

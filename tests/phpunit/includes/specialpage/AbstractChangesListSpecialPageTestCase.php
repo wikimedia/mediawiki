@@ -98,7 +98,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 			->disableOriginalConstructor()
 			->getMock();
 		$output->method( 'redirect' )->willReturnCallback(
-			function ( $url ) use ( &$redirectQuery, &$redirected ) {
+			static function ( $url ) use ( &$redirectQuery, &$redirected ) {
 				$urlParts = wfParseUrl( $url );
 				$query = $urlParts[ 'query' ] ?? '';
 				parse_str( $query, $redirectQuery );

@@ -54,17 +54,17 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$row = $this->makeRow( [
 			'content_size' => null, // to be computed
 			'content_sha1' => null, // to be computed
-			'format_name' => function () {
+			'format_name' => static function () {
 				return CONTENT_FORMAT_WIKITEXT;
 			},
 			'slot_revision_id' => '2',
 			'slot_origin' => '2',
-			'slot_content_id' => function () {
+			'slot_content_id' => static function () {
 				return null;
 			},
 		] );
 
-		$content = function () {
+		$content = static function () {
 			return new WikitextContent( 'A' );
 		};
 

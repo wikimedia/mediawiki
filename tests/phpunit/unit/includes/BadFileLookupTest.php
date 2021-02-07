@@ -52,7 +52,7 @@ WIKITEXT;
 			->will( $this->returnCallback( function ( $name ) {
 				$mockFile = $this->createMock( File::class );
 				$mockFile->expects( $this->once() )->method( 'getTitle' )
-					->will( $this->returnCallback( function () use ( $name ) {
+					->will( $this->returnCallback( static function () use ( $name ) {
 						switch ( $name ) {
 							case 'Redirect to bad.jpg':
 								return new TitleValue( NS_FILE, 'Bad.jpg' );

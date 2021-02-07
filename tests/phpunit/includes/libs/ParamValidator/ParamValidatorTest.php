@@ -126,12 +126,12 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 			->setConstructorArgs( [ $callbacks ] )
 			->setMethods( [ 'normalizeSettings' ] );
 		$mock1 = $mb->getMockForAbstractClass();
-		$mock1->method( 'normalizeSettings' )->willReturnCallback( function ( $s ) {
+		$mock1->method( 'normalizeSettings' )->willReturnCallback( static function ( $s ) {
 			$s['foo'] = 'FooBar!';
 			return $s;
 		} );
 		$mock2 = $mb->getMockForAbstractClass();
-		$mock2->method( 'normalizeSettings' )->willReturnCallback( function ( $s ) {
+		$mock2->method( 'normalizeSettings' )->willReturnCallback( static function ( $s ) {
 			$s['bar'] = 'FooBar!';
 			return $s;
 		} );
@@ -171,7 +171,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 			->setMethods( [ 'checkSettings' ] );
 		$mock1 = $mb->getMockForAbstractClass();
 		$mock1->method( 'checkSettings' )->willReturnCallback(
-			function ( string $name, $settings, array $options, array $ret ) {
+			static function ( string $name, $settings, array $options, array $ret ) {
 				$ret['allowedKeys'][] = 'XXX-test';
 				if ( isset( $settings['XXX-test'] ) ) {
 					$ret['issues']['XXX-test'] = 'XXX-test was ' . $settings['XXX-test'];
@@ -181,7 +181,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		);
 		$mock2 = $mb->getMockForAbstractClass();
 		$mock2->method( 'checkSettings' )->willReturnCallback(
-			function ( string $name, $settings, array $options, array $ret ) {
+			static function ( string $name, $settings, array $options, array $ret ) {
 				return $ret;
 			}
 		);

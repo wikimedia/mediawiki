@@ -324,7 +324,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// setNotificationTimestampsForUser not specifying a title
 		// This will try to use a DeferredUpdate; disable that
-		$mockCallback = function ( $callback ) {
+		$mockCallback = static function ( $callback ) {
 			$callback();
 		};
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
@@ -369,7 +369,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$expectedExpiry2 = $store->loadWatchedItem( $user2, $titleOld )->getExpiry();
 
 		// Duplicate associated entries. This will try to use a DeferredUpdate; disable that.
-		$mockCallback = function ( $callback ) {
+		$mockCallback = static function ( $callback ) {
 			$callback();
 		};
 		$store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );

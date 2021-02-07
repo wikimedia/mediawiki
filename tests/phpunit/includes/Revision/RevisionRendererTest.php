@@ -70,7 +70,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$mock->expects( $this->any() )
 			->method( 'equals' )
 			->willReturnCallback(
-				function ( Title $other ) use ( $mock ) {
+				static function ( Title $other ) use ( $mock ) {
 					return $mock->getArticleID() === $other->getArticleID();
 				}
 			);

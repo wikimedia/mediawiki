@@ -130,7 +130,7 @@ class DerivativeResourceLoaderContextTest extends MediaWikiIntegrationTestCase {
 		$derived = new DerivativeResourceLoaderContext( self::makeContext() );
 		$this->assertNull( $derived->getContentOverrideCallback(), 'default' );
 
-		$override = function ( Title $t ) {
+		$override = static function ( Title $t ) {
 			return null;
 		};
 		$derived->setContentOverrideCallback( $override );

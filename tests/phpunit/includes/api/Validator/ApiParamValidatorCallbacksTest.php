@@ -174,13 +174,13 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 			->setMethods( [ 'addWarning' ] )
 			->getMockForAbstractClass();
 		$module->method( 'addWarning' )->willReturnCallback(
-			function ( $msg, $code, $data ) use ( &$warnings ) {
+			static function ( $msg, $code, $data ) use ( &$warnings ) {
 				$warnings[] = [ $msg, $code, $data ];
 			}
 		);
 		$query->getModuleManager()->addModule( 'test', 'meta', [
 			'class' => get_class( $module ),
-			'factory' => function () use ( $module ) {
+			'factory' => static function () use ( $module ) {
 				return $module;
 			}
 		] );

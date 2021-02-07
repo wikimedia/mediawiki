@@ -68,7 +68,7 @@ XML;
 			null,
 			false,
 			[
-				'processing_instruction_handler' => function () use ( &$called ) {
+				'processing_instruction_handler' => static function () use ( &$called ) {
 					$called = true;
 				}
 			]

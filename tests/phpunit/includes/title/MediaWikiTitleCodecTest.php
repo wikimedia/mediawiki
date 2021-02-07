@@ -58,7 +58,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 		$genderCache->expects( $this->any() )
 			->method( 'getGenderOf' )
-			->will( $this->returnCallback( function ( $userName ) {
+			->will( $this->returnCallback( static function ( $userName ) {
 				return preg_match( '/^[^- _]+a( |_|$)/u', $userName ) ? 'female' : 'male';
 			} ) );
 
@@ -76,12 +76,12 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 
 		$iwLookup->expects( $this->any() )
 			->method( 'isValidInterwiki' )
-			->will( $this->returnCallback( function ( $prefix ) {
+			->will( $this->returnCallback( static function ( $prefix ) {
 				return $prefix === 'localtestiw' || $prefix === 'remotetestiw';
 			} ) );
 
 		$iwLookup->expects( $this->never() )
-			->method( $this->callback( function ( $name ) {
+			->method( $this->callback( static function ( $name ) {
 				return $name !== 'isValidInterwiki';
 			} ) );
 
@@ -114,17 +114,17 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 		$nsInfo = $this->createMock( NamespaceInfo::class );
 
 		$nsInfo->method( 'exists' )
-			->will( $this->returnCallback( function ( $ns ) use ( $canonicalNamespaces ) {
+			->will( $this->returnCallback( static function ( $ns ) use ( $canonicalNamespaces ) {
 				return isset( $canonicalNamespaces[$ns] );
 			} ) );
 
 		$nsInfo->method( 'getCanonicalName' )
-			->will( $this->returnCallback( function ( $ns ) use ( $canonicalNamespaces ) {
+			->will( $this->returnCallback( static function ( $ns ) use ( $canonicalNamespaces ) {
 				return $canonicalNamespaces[$ns] ?? false;
 			} ) );
 
 		$nsInfo->method( 'hasGenderDistinction' )
-			->will( $this->returnCallback( function ( $ns ) {
+			->will( $this->returnCallback( static function ( $ns ) {
 				return $ns === NS_USER || $ns === NS_USER_TALK;
 			} ) );
 

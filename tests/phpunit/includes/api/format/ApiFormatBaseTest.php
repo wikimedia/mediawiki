@@ -47,7 +47,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 			'factory' => function ( ApiMain $main, $format ) use ( $options ) {
 				$mock = $this->getMockFormatter( $main, $format );
 				$mock->expects( $this->once() )->method( 'execute' )
-					->willReturnCallback( function () use ( $mock ) {
+					->willReturnCallback( static function () use ( $mock ) {
 						$mock->printText( "Format {$mock->getFormat()}: " );
 						$mock->printText( "<b>ok</b>" );
 					} );
@@ -216,7 +216,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		] );
 
 		$printer = $this->getMockFormatter( null, 'mock' );
-		$printer->method( 'execute' )->willReturnCallback( function () use ( $printer ) {
+		$printer->method( 'execute' )->willReturnCallback( static function () use ( $printer ) {
 			$printer->printText( 'Foo' );
 		} );
 		$this->assertFalse( $printer->isDisabled() );
@@ -242,7 +242,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		] );
 
 		$printer = $this->getMockFormatter( null, 'mock', [ 'getMimeType' ] );
-		$printer->method( 'execute' )->willReturnCallback( function () use ( $printer ) {
+		$printer->method( 'execute' )->willReturnCallback( static function () use ( $printer ) {
 			$printer->printText( 'Foo' );
 		} );
 		$printer->method( 'getMimeType' )->willReturn( null );
@@ -259,7 +259,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		$this->assertNull( $response->getHeader( 'Content-Disposition' ) );
 
 		$printer = $this->getMockFormatter( null, 'mockfm', [ 'getMimeType' ] );
-		$printer->method( 'execute' )->willReturnCallback( function () use ( $printer ) {
+		$printer->method( 'execute' )->willReturnCallback( static function () use ( $printer ) {
 			$printer->printText( 'Foo' );
 		} );
 		$printer->method( 'getMimeType' )->willReturn( null );
@@ -375,14 +375,14 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 		$mm = $printer->getMain()->getModuleManager();
 		$mm->addModule( 'mockfm', 'format', [
 			'class' => ApiFormatBase::class,
-			'factory' => function () {
+			'factory' => static function () {
 				return $mock;
 			}
 		] );
 		if ( $registerNonHtml ) {
 			$mm->addModule( 'mock', 'format', [
 				'class' => ApiFormatBase::class,
-				'factory' => function () {
+				'factory' => static function () {
 					return $mock;
 				}
 			] );

@@ -349,14 +349,14 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$namespaceInfo = $this->createMock( NamespaceInfo::class );
 		$namespaceInfo->method( 'isTalk' )
 			->willReturnCallback(
-				function ( $ns ) {
+				static function ( $ns ) {
 					return ( $ns > NS_MAIN && $ns % 2 === 1 );
 				}
 			);
 		$namespaceInfo->method( 'hasSubpages' )
 			->willReturnCallback(
 				// Only matters for user pages
-				function ( $ns ) {
+				static function ( $ns ) {
 					return ( $ns === NS_USER );
 				}
 			);

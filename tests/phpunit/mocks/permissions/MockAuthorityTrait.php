@@ -111,7 +111,7 @@ trait MockAuthorityTrait {
 			$mock->method( $method )->willReturnCallback( $permissionCallback );
 		}
 		$mock->method( 'isAllowedAny' )
-			->willReturnCallback( function ( ...$permissions ) use ( $permissionCallback ) {
+			->willReturnCallback( static function ( ...$permissions ) use ( $permissionCallback ) {
 				foreach ( $permissions as $permission ) {
 					if ( $permissionCallback( $permission ) ) {
 						return true;
@@ -120,7 +120,7 @@ trait MockAuthorityTrait {
 				return false;
 			} );
 		$mock->method( 'isAllowedAll' )
-			->willReturnCallback( function ( ...$permissions ) use ( $permissionCallback ) {
+			->willReturnCallback( static function ( ...$permissions ) use ( $permissionCallback ) {
 				foreach ( $permissions as $permission ) {
 					if ( $permissionCallback( $permission ) ) {
 						return false;

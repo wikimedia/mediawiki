@@ -137,13 +137,13 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 
 		$cache->expects( $this->exactly( 2 ) )
 			->method( 'addGoodLinkObjFromRow' )
-			->willReturnCallback( function ( TitleValue $title, $row ) use ( &$good ) {
+			->willReturnCallback( static function ( TitleValue $title, $row ) use ( &$good ) {
 				$good["$title"] = $title;
 			} );
 
 		$cache->expects( $this->exactly( 2 ) )
 			->method( 'addBadLinkObj' )
-			->willReturnCallback( function ( TitleValue $title ) use ( &$bad ) {
+			->willReturnCallback( static function ( TitleValue $title ) use ( &$bad ) {
 				$bad["$title"] = $title;
 			} );
 

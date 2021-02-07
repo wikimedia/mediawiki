@@ -223,7 +223,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 			'infoFile' => MimeAnalyzer::USE_INTERNAL,
 			'typeFile' => MimeAnalyzer::USE_INTERNAL,
 			'xmlTypes' => [],
-			'initCallback' => function ( $instance ) {
+			'initCallback' => static function ( $instance ) {
 				$instance->addExtraTypes( 'fake/mime fake_extension' );
 				$instance->addExtraInfo( 'fake/mime [OFFICE]' );
 				$instance->mExtToMime[ 'no_such_extension' ] = 'fake/mime';

@@ -26,7 +26,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 		$manualLevel
 	) {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $code );
-		$factory = new LanguageConverterFactory( false, false, false, function () use ( $lang ) {
+		$factory = new LanguageConverterFactory( false, false, false, static function () use ( $lang ) {
 			return $lang;
 		} );
 		$this->assertFalse( $factory->isConversionDisabled() );
@@ -53,7 +53,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 */
 	public function testCreateFromCodeEnPigLatin() {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
-		$factory = new LanguageConverterFactory( true, false, false, function () use ( $lang ) {
+		$factory = new LanguageConverterFactory( true, false, false, static function () use ( $lang ) {
 			return $lang;
 		} );
 		$this->assertFalse( $factory->isConversionDisabled() );
@@ -87,7 +87,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			!$pigLatinDisabled,
 			$conversionDisabled,
 			$titleDisabled,
-			function () use ( $lang ) {
+			static function () use ( $lang ) {
 				return $lang;
 			}
 		);
@@ -128,7 +128,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 	 */
 	public function testDefaultContentLanguageFallback() {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
-		$factory = new LanguageConverterFactory( false, false, false, function () use ( $lang ) {
+		$factory = new LanguageConverterFactory( false, false, false, static function () use ( $lang ) {
 			return $lang;
 		} );
 		$this->assertFalse( $factory->isConversionDisabled() );

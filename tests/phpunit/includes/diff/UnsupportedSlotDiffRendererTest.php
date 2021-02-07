@@ -31,7 +31,7 @@ class UnsupportedSlotDiffRendererTest extends MediaWikiIntegrationTestCase {
 		$localizer = $this->createMock( MessageLocalizer::class );
 
 		$localizer->method( 'msg' )
-			->willReturnCallback( function ( $key, ...$params ) {
+			->willReturnCallback( static function ( $key, ...$params ) {
 				return new RawMessage( "($key)", $params );
 			} );
 

@@ -117,25 +117,25 @@ class PoolWorkArticleViewTest extends MediaWikiIntegrationTestCase {
 	public function provideMagicWords() {
 		yield 'PAGEID' => [
 			'Test {{PAGEID}} Test',
-			function ( RevisionRecord $rev ) {
+			static function ( RevisionRecord $rev ) {
 				return $rev->getPageId();
 			}
 		];
 		yield 'REVISIONID' => [
 			'Test {{REVISIONID}} Test',
-			function ( RevisionRecord $rev ) {
+			static function ( RevisionRecord $rev ) {
 				return $rev->getId();
 			}
 		];
 		yield 'REVISIONUSER' => [
 			'Test {{REVISIONUSER}} Test',
-			function ( RevisionRecord $rev ) {
+			static function ( RevisionRecord $rev ) {
 				return $rev->getUser()->getName();
 			}
 		];
 		yield 'REVISIONTIMESTAMP' => [
 			'Test {{REVISIONTIMESTAMP}} Test',
-			function ( RevisionRecord $rev ) {
+			static function ( RevisionRecord $rev ) {
 				return $rev->getTimestamp();
 			}
 		];

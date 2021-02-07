@@ -1040,7 +1040,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->expectExceptionMessage( "Can't append to pages using content model testing-nontext." );
 
 		$this->setTemporaryHook( 'ContentHandlerDefaultModelFor',
-			function ( Title $title, &$model ) use ( $name ) {
+			static function ( Title $title, &$model ) use ( $name ) {
 				if ( $title->getPrefixedText() === $name ) {
 					$model = 'testing-nontext';
 				}
@@ -1076,7 +1076,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->expectExceptionMessage( 'Content serialization failed: Could not unserialize content' );
 
 		$this->setTemporaryHook( 'ContentHandlerDefaultModelFor',
-			function ( Title $title, &$model ) use ( $name ) {
+			static function ( Title $title, &$model ) use ( $name ) {
 				if ( $title->getPrefixedText() === $name ) {
 					$model = 'testing-serialize-error';
 				}
@@ -1436,7 +1436,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
-			function ( $unused1, $unused2, Status $status ) {
+			static function ( $unused1, $unused2, Status $status ) {
 				$status->apiHookResult = [ 'msg' => 'A message for you!' ];
 				return false;
 			} );
@@ -1461,7 +1461,7 @@ class ApiEditPageTest extends ApiTestCase {
 		);
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
-			function () {
+			static function () {
 				return false;
 			}
 		);

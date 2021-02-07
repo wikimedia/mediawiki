@@ -1916,7 +1916,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			->setMethods( [ 'getMessagesFileName' ] )
 			->getMock();
 		$langNameUtils->method( 'getMessagesFileName' )->will(
-			$this->returnCallback( function ( $code ) {
+			$this->returnCallback( static function ( $code ) {
 				return __DIR__ . '/../data/messages/Messages_' . $code . '.php';
 			} )
 		);

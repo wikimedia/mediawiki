@@ -52,7 +52,7 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDefineRole() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'FOO', function ( $role ) {
+		$registry->defineRole( 'FOO', static function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 
@@ -78,12 +78,12 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDefineRoleFailsForDupe() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'foo', function ( $role ) {
+		$registry->defineRole( 'foo', static function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 
 		$this->expectException( LogicException::class );
-		$registry->defineRole( 'FOO', function ( $role ) {
+		$registry->defineRole( 'FOO', static function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 	}
@@ -143,7 +143,7 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRoleHandlerWithBadInstantiator() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'foo', function ( $role ) {
+		$registry->defineRole( 'foo', static function ( $role ) {
 			return 'Not a SlotRoleHandler instance';
 		} );
 

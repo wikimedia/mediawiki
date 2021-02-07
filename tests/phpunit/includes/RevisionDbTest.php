@@ -428,41 +428,41 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 	public function provideNewFromArchiveRow() {
 		yield [
-			function ( $f ) {
+			static function ( $f ) {
 				return $f;
 			},
 		];
 		yield [
-			function ( $f ) {
+			static function ( $f ) {
 				return $f + [ 'ar_namespace', 'ar_title' ];
 			},
 		];
 		yield [
-			function ( $f ) {
+			static function ( $f ) {
 				unset( $f['ar_text_id'] );
 				return $f;
 			},
 		];
 		yield [
-			function ( $f ) {
+			static function ( $f ) {
 				unset( $f['ar_page_id'] );
 				return $f;
 			},
 		];
 		yield [
-			function ( $f ) {
+			static function ( $f ) {
 				unset( $f['ar_parent_id'] );
 				return $f;
 			},
 		];
 		yield [
-			function ( $f ) {
+			static function ( $f ) {
 				unset( $f['ar_rev_id'] );
 				return $f;
 			},
 		];
 		yield [
-			function ( $f ) {
+			static function ( $f ) {
 				unset( $f['ar_sha1'] );
 				return $f;
 			},

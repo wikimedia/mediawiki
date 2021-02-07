@@ -54,11 +54,11 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$titleCodec->method( 'formatTitle' )
-			->willReturnCallback( function ( $namespace, $text ) {
+			->willReturnCallback( static function ( $namespace, $text ) {
 				return "ns:$namespace:" . ucfirst( $text );
 			} );
 		$titleCodec->method( 'splitTitleString' )
-			->willReturnCallback( function ( $text ) {
+			->willReturnCallback( static function ( $text ) {
 				return [
 					'interwiki' => '',
 					'fragment' => '',

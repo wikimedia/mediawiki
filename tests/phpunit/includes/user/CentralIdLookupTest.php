@@ -15,7 +15,7 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 			'wgCentralIdLookupProviders' => [
 				'local' => [ 'class' => LocalIdLookup::class ],
 				'local2' => [ 'class' => LocalIdLookup::class ],
-				'mock' => [ 'factory' => function () use ( $mock ) {
+				'mock' => [ 'factory' => static function () use ( $mock ) {
 					return $mock;
 				} ],
 				'bad' => [ 'class' => stdClass::class ],

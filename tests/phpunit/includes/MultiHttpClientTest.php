@@ -260,7 +260,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			->with(
 				$url,
 				$this->callback(
-					function ( $options ) use ( $expectedReqTimeout, $expectedConnTimeout ) {
+					static function ( $options ) use ( $expectedReqTimeout, $expectedConnTimeout ) {
 						return $options['timeout'] === $expectedReqTimeout
 							&& $options['connectTimeout'] === $expectedConnTimeout;
 					}

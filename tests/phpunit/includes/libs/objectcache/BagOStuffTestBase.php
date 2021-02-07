@@ -84,7 +84,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 
 		$calls = 0;
 		$casRace = false; // emulate a race
-		$callback = function ( BagOStuff $cache, $key, $oldVal, &$expiry ) use ( &$calls, &$casRace ) {
+		$callback = static function ( BagOStuff $cache, $key, $oldVal, &$expiry ) use ( &$calls, &$casRace ) {
 			++$calls;
 			if ( $casRace ) {
 				// Uses CAS instead?
@@ -259,7 +259,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$value = $cache->getWithSetCallback(
 			$key,
 			30,
-			function ( &$ttl ) {
+			static function ( &$ttl ) {
 				$ttl = 10;
 
 				return 'hello kitty';
@@ -387,7 +387,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		// 64 * 8 * 32768 = 16777216 bytes
 		$big = str_repeat( wfRandomString( 32 ) . '-' . wfRandomString( 32 ), 32768 );
 
-		$callback = function ( $cache, $key, $oldValue ) {
+		$callback = static function ( $cache, $key, $oldValue ) {
 			return $oldValue . '!';
 		};
 

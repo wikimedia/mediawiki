@@ -56,7 +56,7 @@ trait ActionModuleBasedHandlerTestTrait {
 
 		$module->method( 'execute' )
 			->willReturnCallback(
-				function () use ( $module, $resultData, $throwException ) {
+				static function () use ( $module, $resultData, $throwException ) {
 					if ( $throwException ) {
 						throw $throwException;
 					}

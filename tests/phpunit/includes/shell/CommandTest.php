@@ -141,7 +141,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testLogStderr() {
-		$logger = new TestLogger( true, function ( $message, $level, $context ) {
+		$logger = new TestLogger( true, static function ( $message, $level, $context ) {
 			return $level === Psr\Log\LogLevel::ERROR ? '1' : null;
 		}, true );
 		$command = $this->getPhpCommand( 'echo_args.php' );

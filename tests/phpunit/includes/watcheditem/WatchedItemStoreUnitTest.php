@@ -82,12 +82,12 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mock->expects( $this->any() )
 			->method( 'push' )
-			->will( $this->returnCallback( function ( Job $job ) {
+			->will( $this->returnCallback( static function ( Job $job ) {
 				$job->run();
 			} ) );
 		$mock->expects( $this->any() )
 			->method( 'lazyPush' )
-			->will( $this->returnCallback( function ( Job $job ) {
+			->will( $this->returnCallback( static function ( Job $job ) {
 				$job->run();
 			} ) );
 		return $mock;
@@ -103,7 +103,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mock->expects( $this->any() )
 			->method( 'makeKey' )
-			->will( $this->returnCallback( function ( ...$args ) {
+			->will( $this->returnCallback( static function ( ...$args ) {
 				return implode( ':', $args );
 			} ) );
 		return $mock;
@@ -132,7 +132,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->createMock( NamespaceInfo::class );
 		$mock->method( 'getSubjectPage' )->will( $this->returnArgument( 0 ) );
 		$mock->method( 'getTalkPage' )->will( $this->returnCallback(
-				function ( $target ) {
+				static function ( $target ) {
 					return new TitleValue( 1, $target->getDbKey() );
 				}
 			) );
@@ -542,13 +542,13 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				return "'$value'";
 			} ) );
 
 		$mockDb->expects( $this->exactly( 2 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				if ( $value === 0 ) {
 					return '20200101000000';
 				}
@@ -580,13 +580,13 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 2 * 3 + 1 ) )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				return "'$value'";
 			} ) );
 
 		$mockDb->expects( $this->exactly( 4 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				if ( $value === 0 ) {
 					return '20200101000000';
 				}
@@ -599,7 +599,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( function ( $a, $conj ) {
+			->will( $this->returnCallback( static function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
 				return implode( $sqlConj, array_map( static function ( $s ) {
 					return '(' . $s . ')';
@@ -675,12 +675,12 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 2 * 3 ) )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				return "'$value'";
 			} ) );
 		$mockDb->expects( $this->exactly( 3 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
 		$mockDb->expects( $this->any() )
@@ -689,7 +689,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( function ( $a, $conj ) {
+			->will( $this->returnCallback( static function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
 				return implode( $sqlConj, array_map( static function ( $s ) {
 					return '(' . $s . ')';
@@ -2210,10 +2210,10 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 		// We don't care if these methods actually do anything here
 		$mockRevisionLookup = $this->getMockRevisionLookup( [
-			'getRevisionByTitle' => function () {
+			'getRevisionByTitle' => static function () {
 				return null;
 			},
-			'getTimestampFromId' => function () {
+			'getTimestampFromId' => static function () {
 				return '00000000000000';
 			},
 		] );
@@ -2252,10 +2252,10 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 		// We don't care if these methods actually do anything here
 		$mockRevisionLookup = $this->getMockRevisionLookup( [
-			'getRevisionByTitle' => function () {
+			'getRevisionByTitle' => static function () {
 				return null;
 			},
-			'getTimestampFromId' => function () {
+			'getTimestampFromId' => static function () {
 				return '00000000000000';
 			},
 		] );
@@ -2321,7 +2321,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 		$mockRevisionRecord = $this->createNoOpMock( RevisionRecord::class );
 
 		$mockRevisionLookup = $this->getMockRevisionLookup( [
-			'getTimestampFromId' => function () {
+			'getTimestampFromId' => static function () {
 				return '00000000000000';
 			},
 			'getRevisionById' => function ( $id, $flags ) use ( $oldid, $mockRevisionRecord ) {
@@ -2353,7 +2353,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 						$job,
 						$title,
 						$user->getId(),
-						function ( $time ) {
+						static function ( $time ) {
 							return $time === null;
 						}
 					);
@@ -2452,7 +2452,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 						$job,
 						$title,
 						$user->getId(),
-						function ( $time ) {
+						static function ( $time ) {
 							return $time !== null && $time > '20151212010101';
 						}
 					);
@@ -2544,7 +2544,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 						$job,
 						$title,
 						$user->getId(),
-						function ( $time ) {
+						static function ( $time ) {
 							return $time === null;
 						}
 					);
@@ -2644,7 +2644,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 						$job,
 						$title,
 						$user->getId(),
-						function ( $time ) {
+						static function ( $time ) {
 							return $time === '30151212010101';
 						}
 					);
@@ -2743,7 +2743,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 						$job,
 						$title,
 						$user->getId(),
-						function ( $time ) {
+						static function ( $time ) {
 							return $time === false;
 						}
 					);
@@ -2821,7 +2821,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( true ) );
 		$mockDb->expects( $this->exactly( 1 ) )
 			->method( 'timestamp' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
 		$mockDb->expects( $this->once() )

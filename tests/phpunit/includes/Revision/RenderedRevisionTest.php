@@ -118,7 +118,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( true ) );
 		$mock->expects( $this->any() )
 			->method( 'equals' )
-			->willReturnCallback( function ( Title $other ) use ( $mock ) {
+			->willReturnCallback( static function ( Title $other ) use ( $mock ) {
 				return $mock->getPrefixedText() === $other->getPrefixedText();
 			} );
 

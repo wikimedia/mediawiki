@@ -23,7 +23,7 @@ class TestDeprecatedClass {
 			}
 		);
 		$this->deprecatePublicPropertyFallback( 'fallbackGetterOnly', '1.25',
-			function () {
+			static function () {
 				return 1;
 			}
 		);

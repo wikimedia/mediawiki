@@ -407,12 +407,12 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		];
 
 		$interwikiLookup->method( 'fetch' )
-			->willReturnCallback( function ( $interwiki ) use ( $interwikis ) {
+			->willReturnCallback( static function ( $interwiki ) use ( $interwikis ) {
 				return $interwikis[$interwiki] ?? false;
 			} );
 
 		$interwikiLookup->method( 'isValidInterwiki' )
-			->willReturnCallback( function ( $interwiki ) use ( $interwikis ) {
+			->willReturnCallback( static function ( $interwiki ) use ( $interwikis ) {
 				return isset( $interwikis[$interwiki] );
 			} );
 

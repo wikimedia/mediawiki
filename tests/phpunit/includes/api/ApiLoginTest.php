@@ -235,7 +235,7 @@ class ApiLoginTest extends ApiTestCase {
 
 		$this->mergeMwGlobalArrayValue( 'wgAuthManagerConfig', [
 			'secondaryauth' => [ [
-				'factory' => function () use ( $mockProvider ) {
+				'factory' => static function () use ( $mockProvider ) {
 					return $mockProvider;
 				},
 			] ],
@@ -346,7 +346,7 @@ class ApiLoginTest extends ApiTestCase {
 	}
 
 	public function testBotPasswordLocked() {
-		$this->setTemporaryHook( 'UserIsLocked', function ( User $unused, &$isLocked ) {
+		$this->setTemporaryHook( 'UserIsLocked', static function ( User $unused, &$isLocked ) {
 			$isLocked = true;
 			return true;
 		} );
@@ -361,7 +361,7 @@ class ApiLoginTest extends ApiTestCase {
 
 	public function testNoSameOriginSecurity() {
 		$this->setTemporaryHook( 'RequestHasSameOriginSecurity',
-			function () {
+			static function () {
 				return false;
 			}
 		);

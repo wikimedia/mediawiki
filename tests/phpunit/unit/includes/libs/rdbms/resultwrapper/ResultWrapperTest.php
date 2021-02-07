@@ -37,7 +37,7 @@ class ResultWrapperTest extends PHPUnit\Framework\TestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$db->method( 'select' )->willReturnCallback(
-			function () use ( $db, $rows ) {
+			static function () use ( $db, $rows ) {
 				return new ResultWrapper( $db, $rows );
 			}
 		);
@@ -47,19 +47,19 @@ class ResultWrapperTest extends PHPUnit\Framework\TestCase {
 			}
 		);
 		$db->method( 'fetchRow' )->willReturnCallback(
-			function ( ResultWrapper $res ) use ( $db ) {
+			static function ( ResultWrapper $res ) use ( $db ) {
 				return $res::unwrap( $res )[$res->key()] ?? false;
 			}
 		);
 		$db->method( 'fetchObject' )->willReturnCallback(
-			function ( ResultWrapper $res ) use ( $db ) {
+			static function ( ResultWrapper $res ) use ( $db ) {
 				$row = $res::unwrap( $res )[$res->key()] ?? false;
 
 				return $row ? (object)$row : false;
 			}
 		);
 		$db->method( 'numRows' )->willReturnCallback(
-			function ( ResultWrapper $res ) use ( $db ) {
+			static function ( ResultWrapper $res ) use ( $db ) {
 				return count( $res::unwrap( $res ) );
 			}
 		);

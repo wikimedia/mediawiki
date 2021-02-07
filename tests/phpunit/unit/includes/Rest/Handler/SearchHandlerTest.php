@@ -156,7 +156,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$handler = $this->newHandler( $query, $titleResults, $textResults );
 		$config = [ 'mode' => SearchHandler::FULLTEXT_MODE ];
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config, [], [], [],
-			$this->mockAnonAuthority( function ( string $permission, ?PageIdentity $target ) {
+			$this->mockAnonAuthority( static function ( string $permission, ?PageIdentity $target ) {
 				return $target && !preg_match( '/Forbidden/', $target->getDBkey() );
 			} ) );
 
@@ -381,13 +381,13 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [], [
 			'SearchResultProvideDescription' =>
-				function ( array $pageIdentities, array &$result ) {
+				static function ( array $pageIdentities, array &$result ) {
 					foreach ( $pageIdentities as $pageId => $pageIdentity ) {
 						$result[ $pageId ] = 'Description_' . $pageIdentity->getId();
 					}
 				},
 			'SearchResultProvideThumbnail' =>
-				function ( array $pageIdentities, array &$result ) {
+				static function ( array $pageIdentities, array &$result ) {
 					foreach ( $pageIdentities as $pageId => $pageIdentity ) {
 						$result[ $pageId ] = new SearchResultThumbnail(
 							'image/png',

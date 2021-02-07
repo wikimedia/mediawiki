@@ -22,7 +22,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$ranHook = 0;
 		$this->setMwGlobals( 'wgHooks', [
 			'ResourceLoaderRegisterModules' => [
-				function ( &$resourceLoader ) use ( &$ranHook ) {
+				static function ( &$resourceLoader ) use ( &$ranHook ) {
 					$ranHook++;
 				}
 			]
@@ -155,14 +155,14 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		return [
 			'factory ignored' => [ false,
 				[
-					'factory' => function () {
+					'factory' => static function () {
 						return new ResourceLoaderTestModule();
 					}
 				]
 			],
 			'factory ignored (actual FileModule)' => [ false,
 				[
-					'factory' => function () use ( $fileModuleObj ) {
+					'factory' => static function () use ( $fileModuleObj ) {
 						return $fileModuleObj;
 					}
 				]
@@ -1125,7 +1125,7 @@ END
 			] )
 			->getMock();
 		$rl->register( 'test', [
-			'factory' => function () use ( $module ) {
+			'factory' => static function () use ( $module ) {
 				return $module;
 			}
 		] );
@@ -1184,7 +1184,7 @@ END
 			] )
 			->getMock();
 		$rl->register( 'test', [
-			'factory' => function () use ( $module ) {
+			'factory' => static function () use ( $module ) {
 				return $module;
 			}
 		] );

@@ -50,7 +50,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( 'wgCommandLineMode', true );
 
 		$ran = 0;
-		DeferredUpdates::addCallableUpdate( function () use ( &$ran ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( &$ran ) {
 			$ran++;
 		} );
 		DeferredUpdates::doUpdates();
@@ -112,43 +112,43 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 			'3-2-1' => "deferred update 1 within deferred update 2 with deferred update 3;\n",
 		];
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $updates ) {
+			static function () use ( $updates ) {
 				echo $updates['1'];
 			}
 		);
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $updates ) {
+			static function () use ( $updates ) {
 				echo $updates['2'];
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $updates ) {
+					static function () use ( $updates ) {
 						echo $updates['2-1'];
 					}
 				);
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $updates ) {
+					static function () use ( $updates ) {
 						echo $updates['2-2'];
 					}
 				);
 			}
 		);
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $updates ) {
+			static function () use ( $updates ) {
 				echo $updates['3'];
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $updates ) {
+					static function () use ( $updates ) {
 						echo $updates['3-1'];
 						DeferredUpdates::addCallableUpdate(
-							function () use ( $updates ) {
+							static function () use ( $updates ) {
 								echo $updates['3-1-1'];
 							}
 						);
 					}
 				);
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $updates ) {
+					static function () use ( $updates ) {
 						echo $updates['3-2'];
 						DeferredUpdates::addCallableUpdate(
-							function () use ( $updates ) {
+							static function () use ( $updates ) {
 								echo $updates['3-2-1'];
 							}
 						);
@@ -166,13 +166,13 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$x = null;
 		$y = null;
 		DeferredUpdates::addCallableUpdate(
-			function () use ( &$x ) {
+			static function () use ( &$x ) {
 				$x = 'Sherity';
 			},
 			DeferredUpdates::PRESEND
 		);
 		DeferredUpdates::addCallableUpdate(
-			function () use ( &$y ) {
+			static function () use ( &$y ) {
 				$y = 'Marychu';
 			},
 			DeferredUpdates::POSTSEND
@@ -214,43 +214,43 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$lbFactory->commitMasterChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $updates ) {
+			static function () use ( $updates ) {
 				echo $updates['1'];
 			}
 		);
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $updates ) {
+			static function () use ( $updates ) {
 				echo $updates['2'];
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $updates ) {
+					static function () use ( $updates ) {
 						echo $updates['2-1'];
 					}
 				);
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $updates ) {
+					static function () use ( $updates ) {
 						echo $updates['2-2'];
 					}
 				);
 			}
 		);
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $updates ) {
+			static function () use ( $updates ) {
 				echo $updates['3'];
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $updates ) {
+					static function () use ( $updates ) {
 						echo $updates['3-1'];
 						DeferredUpdates::addCallableUpdate(
-							function () use ( $updates ) {
+							static function () use ( $updates ) {
 								echo $updates['3-1-1'];
 							}
 						);
 					}
 				);
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $updates ) {
+					static function () use ( $updates ) {
 						echo $updates['3-2'];
 						DeferredUpdates::addCallableUpdate(
-							function () use ( $updates ) {
+							static function () use ( $updates ) {
 								echo $updates['3-2-1'];
 							}
 						);
@@ -280,10 +280,10 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$lbFactory->commitMasterChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate(
-			function () use ( &$x, &$y ) {
+			static function () use ( &$x, &$y ) {
 				$x = true;
 				DeferredUpdates::addCallableUpdate(
-					function () use ( &$y ) {
+					static function () use ( &$y ) {
 						$y = true;
 					},
 					DeferredUpdates::PRESEND
@@ -391,7 +391,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$called = false;
 		DeferredUpdates::attemptUpdate(
 			new MWCallableUpdate(
-				function () use ( $lbFactory, $fname, &$called ) {
+				static function () use ( $lbFactory, $fname, &$called ) {
 					$lbFactory->flushReplicaSnapshots( $fname );
 					$lbFactory->commitMasterChanges( $fname );
 					$called = true;
@@ -439,7 +439,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 					$this->assertSame( 2, DeferredUpdates::getRecursiveExecutionStackDepth() );
 
 					// Add update to subqueue of in-progress top-queue job (not recursive)
-					DeferredUpdates::addCallableUpdate( function () use ( &$resSubSub ) {
+					DeferredUpdates::addCallableUpdate( static function () use ( &$resSubSub ) {
 						$resSubSub = 'b';
 					} );
 
@@ -460,7 +460,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, DeferredUpdates::pendingUpdatesCount() );
 		$this->assertSame( 0, DeferredUpdates::getRecursiveExecutionStackDepth() );
 
-		DeferredUpdates::addCallableUpdate( function () use ( &$resA ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( &$resA ) {
 			$resA = 93;
 		} );
 

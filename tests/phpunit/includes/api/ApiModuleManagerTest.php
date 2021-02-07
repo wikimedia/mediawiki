@@ -63,7 +63,7 @@ class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'action',
 				[
 					'class' => ApiLogout::class,
-					'factory' => function ( ApiMain $main, $action, ObjectFactory $objectFactory ) {
+					'factory' => static function ( ApiMain $main, $action, ObjectFactory $objectFactory ) {
 						return new ApiLogout( $main, $action );
 					},
 					'services' => [
@@ -115,7 +115,7 @@ class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 					],
 					'logout' => [
 						'class' => ApiLogout::class,
-						'factory' => function ( ApiMain $main, $action ) {
+						'factory' => static function ( ApiMain $main, $action ) {
 							return new ApiLogout( $main, $action );
 						},
 					],
@@ -150,7 +150,7 @@ class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 			],
 			'logout' => [
 				'class' => ApiLogout::class,
-				'factory' => function ( ApiMain $main, $action ) {
+				'factory' => static function ( ApiMain $main, $action ) {
 					return new ApiLogout( $main, $action );
 				},
 			],
@@ -372,7 +372,7 @@ class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 			'logout',
 			'action',
 			[
-				'factory' => function ( ApiMain $main, $action ) {
+				'factory' => static function ( ApiMain $main, $action ) {
 					return new ApiLogout( $main, $action );
 				},
 			]

@@ -94,7 +94,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( function ( $a, $conj ) {
+			->will( $this->returnCallback( static function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
 				$conds = [];
 				foreach ( $a as $k => $v ) {
@@ -111,7 +111,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 
 		$mock->expects( $this->any() )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				return "'$value'";
 			} ) );
 
@@ -121,7 +121,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 
 		$mock->expects( $this->any() )
 			->method( 'bitAnd' )
-			->willReturnCallback( function ( $a, $b ) {
+			->willReturnCallback( static function ( $a, $b ) {
 				return "($a & $b)";
 			} );
 
@@ -148,7 +148,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$mock = $this->createMock( WatchedItemStore::class );
 		$mock->expects( $this->any() )
 			->method( 'getLatestNotificationTimestamp' )
-			->will( $this->returnCallback( function ( $timestamp ) {
+			->will( $this->returnCallback( static function ( $timestamp ) {
 				return $timestamp;
 			} ) );
 		return $mock;
@@ -161,11 +161,11 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	private function getMockPermissionManager( $notAllowedAction = null ) {
 		$mock = $this->createMock( PermissionManager::class );
 		$mock->method( 'userHasRight' )
-			->will( $this->returnCallback( function ( $user, $action ) use ( $notAllowedAction ) {
+			->will( $this->returnCallback( static function ( $user, $action ) use ( $notAllowedAction ) {
 				return $action !== $notAllowedAction;
 			} ) );
 		$mock->method( 'userHasAnyRight' )
-			->will( $this->returnCallback( function ( $user, ...$actions ) use ( $notAllowedAction ) {
+			->will( $this->returnCallback( static function ( $user, ...$actions ) use ( $notAllowedAction ) {
 				return !in_array( $notAllowedAction, $actions );
 			} ) );
 		return $mock;
@@ -411,7 +411,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'array' )
 			)
-			->will( $this->returnCallback( function (
+			->will( $this->returnCallback( static function (
 				$user, $options, $db, &$tables, &$fields, &$conds, &$dbOptions, &$joinConds
 			) {
 				$tables[] = 'extension_dummy_table';
@@ -1567,7 +1567,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->any() )
 			->method( 'addQuotes' )
-			->will( $this->returnCallback( function ( $value ) {
+			->will( $this->returnCallback( static function ( $value ) {
 				return "'$value'";
 			} ) );
 		$mockDb->expects( $this->any() )
@@ -1576,7 +1576,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
 			)
-			->will( $this->returnCallback( function ( $a, $conj ) {
+			->will( $this->returnCallback( static function ( $a, $conj ) {
 				$sqlConj = $conj === LIST_AND ? ' AND ' : ' OR ';
 				return implode( $sqlConj, array_map( static function ( $s ) {
 					return '(' . $s . ')';

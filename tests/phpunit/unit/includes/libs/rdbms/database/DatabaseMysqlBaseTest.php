@@ -431,7 +431,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db->method( 'useGTIDs' )->willReturn( true );
 		$db->method( 'getServerGTIDs' )->willReturn( $gtable );
 		$db->method( 'getServerRoleStatus' )->willReturnCallback(
-			function ( $role ) use ( $rBLtable, $mBLtable ) {
+			static function ( $role ) use ( $rBLtable, $mBLtable ) {
 				if ( $role === 'SLAVE' ) {
 					return $rBLtable;
 				} elseif ( $role === 'MASTER' ) {
@@ -697,7 +697,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
-			function ( $s ) {
+			static function ( $s ) {
 				return str_replace( "'", "\\'", $s );
 			}
 		);
@@ -731,7 +731,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
-			function ( $s ) {
+			static function ( $s ) {
 				return str_replace( "'", "\\'", $s );
 			}
 		);

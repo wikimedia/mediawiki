@@ -247,11 +247,11 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 			'obResetFunc default value' => [ 'obResetFunc',
 				// I'd've thought the return type should be 'callable', but apparently protected
 				// methods aren't callable.
-				function ( FileBackend $backend ) : array {
+				static function ( FileBackend $backend ) : array {
 					return [ $backend, 'resetOutputBuffer' ];
 				} ],
 			'obResetFunc null' => [ 'obResetFunc',
-				function ( FileBackend $backend ) : array {
+				static function ( FileBackend $backend ) : array {
 					return [ $backend, 'resetOutputBuffer' ];
 				} ],
 			'obResetFunc set' => [ 'obResetFunc', 'wfSomeImaginaryFunction',

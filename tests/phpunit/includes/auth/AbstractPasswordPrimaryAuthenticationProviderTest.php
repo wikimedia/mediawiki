@@ -97,7 +97,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 					],
 				],
 				'checks' => [
-					'Check' => function () use ( &$uppCalled, &$uppStatus ) {
+					'Check' => static function () use ( &$uppCalled, &$uppStatus ) {
 						$uppCalled++;
 						return $uppStatus;
 					},

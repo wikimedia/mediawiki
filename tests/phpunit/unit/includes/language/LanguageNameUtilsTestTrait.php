@@ -202,7 +202,7 @@ trait LanguageNameUtilsTestTrait {
 	 */
 	public function testGetLanguageNames_withHook( $expected, $code, ...$otherArgs ) {
 		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
-			function ( &$names, $inLanguage ) {
+			static function ( &$names, $inLanguage ) {
 				switch ( $inLanguage ) {
 					case 'de':
 						$names = [
@@ -262,7 +262,7 @@ trait LanguageNameUtilsTestTrait {
 	 */
 	public function testGetLanguageNames_ExtraLanguageNames( $expected, $code, ...$otherArgs ) {
 		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
-			function ( &$names ) {
+			static function ( &$names ) {
 				$names['de'] = 'die deutsche Sprache';
 			}
 		);
@@ -296,7 +296,7 @@ trait LanguageNameUtilsTestTrait {
 	 */
 	public function testGetLanguageNames_parameterDefault() {
 		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
-			function ( &$names ) {
+			static function ( &$names ) {
 				$names = [ 'sqsqsqsq' => '!!?!' ];
 			}
 		);
@@ -342,7 +342,7 @@ trait LanguageNameUtilsTestTrait {
 	public function testGetLanguageNames_hookNotCalledForAutonyms() {
 		$count = 0;
 		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
-			function () use ( &$count ) {
+			static function () use ( &$count ) {
 				$count++;
 			}
 		);
@@ -366,7 +366,7 @@ trait LanguageNameUtilsTestTrait {
 	 */
 	public function testGetLanguageNames_pigLatin( $expected, ...$otherArgs ) {
 		$this->setLanguageTemporaryHook( 'LanguageGetTranslatedLanguageNames',
-			function ( &$names, $inLanguage ) {
+			static function ( &$names, $inLanguage ) {
 				switch ( $inLanguage ) {
 					case 'fr':
 						$names = [ 'en-x-piglatin' => 'latin de cochons' ];

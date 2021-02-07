@@ -83,11 +83,11 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 	 * Closure names should be distinct.
 	 */
 	public function testMemoizedClosure() {
-		$a = new MemoizedCallable( function () {
+		$a = new MemoizedCallable( static function () {
 			return 'a';
 		} );
 
-		$b = new MemoizedCallable( function () {
+		$b = new MemoizedCallable( static function () {
 			return 'b';
 		} );
 
@@ -102,7 +102,7 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 			$b->callableName
 		);
 
-		$c = new ArrayBackedMemoizedCallable( function () {
+		$c = new ArrayBackedMemoizedCallable( static function () {
 			return rand();
 		} );
 		$this->assertEquals( $c->invokeArgs(), $c->invokeArgs(), 'memoized random' );

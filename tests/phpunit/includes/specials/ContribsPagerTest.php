@@ -68,7 +68,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	 * extensions are able to insert their own revisions
 	 */
 	public function testRevisionsOnlyOption() {
-		$this->setTemporaryHook( 'ContribsPager::reallyDoQuery', function ( &$data ) {
+		$this->setTemporaryHook( 'ContribsPager::reallyDoQuery', static function ( &$data ) {
 			$fakeRow = (object)[ 'rev_timestamp' => '20200717192356' ];
 			$fakeRowWrapper = new FakeResultWrapper( [ $fakeRow ] );
 			$data[] = $fakeRowWrapper;

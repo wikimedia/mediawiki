@@ -36,17 +36,17 @@ namespace MediaWiki\HookContainer {
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 
 			// Some handlers for FooHook have been previously set
-			$reset = $hookContainer->register( 'FooHook', function () {
+			$reset = $hookContainer->register( 'FooHook', static function () {
 				return true;
 			} );
-			$reset1 = $hookContainer->register( 'FooHook', function () {
+			$reset1 = $hookContainer->register( 'FooHook', static function () {
 				return true;
 			} );
 			$handlersBeforeScopedRegister = $hookContainer->getLegacyHandlers( 'FooHook' );
 			$this->assertCount( 2, $handlersBeforeScopedRegister );
 
 			// Wipe out the 2 existing handlers and add a new scoped handler
-			$reset2 = $hookContainer->scopedRegister( 'FooHook', function () {
+			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function () {
 				return true;
 			}, true );
 			$handlersAfterScopedRegister = $hookContainer->getLegacyHandlers( 'FooHook' );
@@ -68,10 +68,10 @@ namespace MediaWiki\HookContainer {
 		public function testHookRunsWithMultipleMixedHandlerTypes() {
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 			$numHandlersExecuted = 0;
-			$reset = $hookContainer->scopedRegister( 'FooHook', function ( &$numHandlersRun ) {
+			$reset = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
 				$numHandlersRun++;
 			}, false );
-			$reset2 = $hookContainer->scopedRegister( 'FooHook', function ( &$numHandlersRun ) {
+			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
 				$numHandlersRun++;
 			}, false );
 			$handlerThree = [

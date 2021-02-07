@@ -75,7 +75,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$clock = (int)ConvertibleTimestamp::now( TS_UNIX );
-		ConvertibleTimestamp::setFakeTime( function () use ( &$clock ) {
+		ConvertibleTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return ++$clock;
 		} );
 

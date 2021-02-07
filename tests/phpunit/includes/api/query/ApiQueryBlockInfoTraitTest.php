@@ -30,16 +30,16 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 			->willReturn( MediaWikiServices::getInstance()->getPermissionManager() );
 		$mock->method( 'getUser' )
 			->willReturn( $this->getMutableTestUser()->getUser() );
-		$mock->method( 'addTables' )->willReturnCallback( function ( $v ) use ( &$data ) {
+		$mock->method( 'addTables' )->willReturnCallback( static function ( $v ) use ( &$data ) {
 			$data['tables'] = array_merge( $data['tables'] ?? [], (array)$v );
 		} );
-		$mock->method( 'addFields' )->willReturnCallback( function ( $v ) use ( &$data ) {
+		$mock->method( 'addFields' )->willReturnCallback( static function ( $v ) use ( &$data ) {
 			$data['fields'] = array_merge( $data['fields'] ?? [], (array)$v );
 		} );
-		$mock->method( 'addWhere' )->willReturnCallback( function ( $v ) use ( &$data ) {
+		$mock->method( 'addWhere' )->willReturnCallback( static function ( $v ) use ( &$data ) {
 			$data['where'] = array_merge( $data['where'] ?? [], (array)$v );
 		} );
-		$mock->method( 'addJoinConds' )->willReturnCallback( function ( $v ) use ( &$data ) {
+		$mock->method( 'addJoinConds' )->willReturnCallback( static function ( $v ) use ( &$data ) {
 			$data['joins'] = array_merge( $data['joins'] ?? [], (array)$v );
 		} );
 

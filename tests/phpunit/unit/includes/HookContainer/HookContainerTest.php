@@ -71,10 +71,10 @@ namespace MediaWiki\HookContainer {
 					'MWTestHook',
 					[ $fooObj, 'MediaWiki\HookContainer\FooClass::FooMethod' ]
 				],
-				'Closure' => [ 'MWTestHook', function () {
+				'Closure' => [ 'MWTestHook', static function () {
 					return true;
 				} ],
-				'Closure with data' => [ 'MWTestHook', function () {
+				'Closure with data' => [ 'MWTestHook', static function () {
 					return true;
 				}, [ 'data' ] ]
 			];
@@ -114,7 +114,7 @@ namespace MediaWiki\HookContainer {
 		public static function provideRunLegacyErrors() {
 			return [
 				[ 123 ],
-				[ function () {
+				[ static function () {
 					return 'string';
 				} ]
 			];
@@ -175,12 +175,12 @@ namespace MediaWiki\HookContainer {
 			$hookContainer = $this->newHookContainer();
 			$called1 = $called2 = false;
 			$reset1 = $hookContainer->scopedRegister( 'MWTestHook',
-				function () use ( &$called1 ) {
+				static function () use ( &$called1 ) {
 					$called1 = true;
 				}, false
 			);
 			$reset2 = $hookContainer->scopedRegister( 'MWTestHook',
-				function () use ( &$called2 ) {
+				static function () use ( &$called2 ) {
 					$called2 = true;
 				}, false
 			);
@@ -208,10 +208,10 @@ namespace MediaWiki\HookContainer {
 		public function testHandlersRegisteredWithScopedRegisterAndRegister() {
 			$hookContainer = $this->newHookContainer();
 			$numCalls = 0;
-			$hookContainer->register( 'MWTestHook', function () use ( &$numCalls ) {
+			$hookContainer->register( 'MWTestHook', static function () use ( &$numCalls ) {
 				$numCalls++;
 			} );
-			$reset = $hookContainer->scopedRegister( 'MWTestHook', function () use ( &$numCalls ) {
+			$reset = $hookContainer->scopedRegister( 'MWTestHook', static function () use ( &$numCalls ) {
 				$numCalls++;
 			} );
 
@@ -388,7 +388,7 @@ namespace MediaWiki\HookContainer {
 		 */
 		public function testIsRegistered() {
 			$hookContainer = $this->newHookContainer();
-			$hookContainer->register( 'FooActionComplete', function () {
+			$hookContainer->register( 'FooActionComplete', static function () {
 				return true;
 			} );
 			$isRegistered = $hookContainer->isRegistered( 'FooActionComplete' );
@@ -467,7 +467,7 @@ namespace MediaWiki\HookContainer {
 					'class' => 'FooExtension\Hooks'
 				] ] ] ]
 			);
-			$hookContainer->register( 'Increment', function ( &$count ) {
+			$hookContainer->register( 'Increment', static function ( &$count ) {
 				$count++;
 			} );
 
@@ -486,7 +486,7 @@ namespace MediaWiki\HookContainer {
 			$this->assertFalse( $hookContainer->isRegistered( 'Increment' ) );
 
 			// When adding a handler again...
-			$hookContainer->register( 'Increment', function ( &$count ) {
+			$hookContainer->register( 'Increment', static function ( &$count ) {
 				$count = 11;
 			} );
 
@@ -508,7 +508,7 @@ namespace MediaWiki\HookContainer {
 					'class' => 'FooExtension\Hooks'
 				] ] ] ]
 			);
-			$hookContainer->register( 'Increment', function ( &$count ) {
+			$hookContainer->register( 'Increment', static function ( &$count ) {
 				$count++;
 			} );
 
@@ -519,7 +519,7 @@ namespace MediaWiki\HookContainer {
 			$this->assertTrue( $hookContainer->isRegistered( 'Increment' ) );
 
 			// Adding a scoped handler, with the $replace flag set.
-			$scope1 = $hookContainer->scopedRegister( 'Increment', function ( &$count ) {
+			$scope1 = $hookContainer->scopedRegister( 'Increment', static function ( &$count ) {
 				$count -= 3;
 			}, true );
 
@@ -530,7 +530,7 @@ namespace MediaWiki\HookContainer {
 			$this->assertTrue( $hookContainer->isRegistered( 'Increment' ) );
 
 			// Adding another permanent handler should work...
-			$hookContainer->register( 'Increment', function ( &$count ) {
+			$hookContainer->register( 'Increment', static function ( &$count ) {
 				$count++;
 			} );
 
@@ -540,7 +540,7 @@ namespace MediaWiki\HookContainer {
 			$this->assertSame( -2, $count );
 
 			// Adding another scoped handler, with the $replace flag set.
-			$scope2 = $hookContainer->scopedRegister( 'Increment', function ( &$count ) {
+			$scope2 = $hookContainer->scopedRegister( 'Increment', static function ( &$count ) {
 				$count -= 10;
 			}, true );
 

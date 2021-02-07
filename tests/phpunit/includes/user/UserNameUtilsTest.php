@@ -22,7 +22,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$contentLang->method( 'ucfirst' )
-			->willReturnCallback( function ( $str ) {
+			->willReturnCallback( static function ( $str ) {
 				return ucfirst( $str );
 			} );
 		return $contentLang;
@@ -150,7 +150,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::isCreatable
 	 */
 	public function testIsCreatable() {
-		$logger = new TestLogger( true, function ( $message ) {
+		$logger = new TestLogger( true, static function ( $message ) {
 			$message = str_replace(
 				'MediaWiki\\User\\UserNameUtils::isCreatable: ',
 				'',

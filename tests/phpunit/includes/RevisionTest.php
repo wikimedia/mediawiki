@@ -213,7 +213,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 				'rev_comment_data' => null,
 				'rev_comment_cid' => null,
 			],
-			function ( RevisionTest $testCase, Revision $rev ) {
+			static function ( RevisionTest $testCase, Revision $rev ) {
 				$testCase->hideDeprecated( 'Revision::getSha1' );
 				$testCase->hideDeprecated( 'Revision::getUserText' );
 				$testCase->hideDeprecated( 'Revision::isMinor' );
@@ -250,7 +250,7 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 				'rev_comment_data' => null,
 				'rev_comment_cid' => null,
 			],
-			function ( RevisionTest $testCase, Revision $rev ) {
+			static function ( RevisionTest $testCase, Revision $rev ) {
 				$testCase->hideDeprecated( 'Revision::getUserText' );
 				$testCase->hideDeprecated( 'Revision::isMinor' );
 				$testCase->hideDeprecated( 'Revision::getParentId' );

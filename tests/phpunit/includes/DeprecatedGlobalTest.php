@@ -51,7 +51,7 @@ class DeprecatedGlobalTest extends MediaWikiIntegrationTestCase {
 		global $wgDummyLazy;
 
 		$called = false;
-		$factory = function () use ( &$called ) {
+		$factory = static function () use ( &$called ) {
 			$called = true;
 			return new HashBagOStuff();
 		};

@@ -96,13 +96,13 @@ class EnhancedChangesListTest extends MediaWikiLangTestCase {
 			return 'Hello world prefix';
 		} );
 
-		$this->setTemporaryHook( 'EnhancedChangesListModifyLineData', function (
+		$this->setTemporaryHook( 'EnhancedChangesListModifyLineData', static function (
 			$enhancedChangesList, &$data, $block, $rc, &$classes, &$attribs
 		) {
 			$data['recentChangesFlags']['minor'] = 1;
 		} );
 
-		$this->setTemporaryHook( 'EnhancedChangesListModifyBlockLineData', function (
+		$this->setTemporaryHook( 'EnhancedChangesListModifyBlockLineData', static function (
 			$enhancedChangesList, &$data, $rcObj
 		) {
 			$data['recentChangesFlags']['bot'] = 1;

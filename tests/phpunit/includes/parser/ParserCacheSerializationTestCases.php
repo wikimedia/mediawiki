@@ -98,13 +98,13 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'usedOptions' => [
 				'instance' => $cacheTimeWithUsedOptions,
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, CacheTime $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, CacheTime $object ) {
 					$testCase->assertArrayEquals( [ 'optA', 'optX' ], $object->getUsedOptions() );
 				}
 			],
 			'cacheTime' => [
 				'instance' => $cacheTimeWithTime,
-				'assertions' => function (
+				'assertions' => static function (
 					MediaWikiIntegrationTestCase $testCase, CacheTime $object
 				) use ( $cacheTimestamp ) {
 					$testCase->assertSame( $cacheTimestamp, $object->getCacheTime() );
@@ -112,7 +112,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'cacheExpiry' => [
 				'instance' => $cacheTimeWithExpiry,
-				'assertions' => function (
+				'assertions' => static function (
 					MediaWikiIntegrationTestCase $testCase, CacheTime $object
 				) use ( $cacheExpiry ) {
 					$testCase->assertSame( $cacheExpiry, $object->getCacheExpiry() );
@@ -120,7 +120,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'cacheRevisionId' => [
 				'instance' => $cacheTimeWithRevId,
-				'assertions' => function (
+				'assertions' => static function (
 					MediaWikiIntegrationTestCase $testCase, CacheTime $object
 				) use  ( $cacheRevisionId ) {
 					$testCase->assertSame( $cacheRevisionId, $object->getCacheRevisionId() );
@@ -267,7 +267,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'text' => [
 				'instance' => new ParserOutput( 'Lorem Ipsum' ),
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertTrue( $object->hasText() );
 					$testCase->assertSame( 'Lorem Ipsum', $object->getRawText() );
 					$testCase->assertSame( 'Lorem Ipsum', $object->getText() );
@@ -275,7 +275,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'usedOptions' => [
 				'instance' => $parserOutputWithUsedOptions,
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertArrayEquals( [ 'optA', 'optX' ], $object->getUsedOptions() );
 				}
 			],
@@ -370,7 +370,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'withMetadataPost1_31' => [
 				'instance' => $parserOutputWithMetadataPost1_31,
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( 'test_wrapper', $object->getWrapperDivClass() );
 					$testCase->assertSame( 4242, $object->getSpeculativePageIdUsed() );
 					$testCase->assertSame(
@@ -383,7 +383,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'withMetadataPost1_34' => [
 				'instance' => $parserOutputWithMetadataPost1_34,
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertArrayEquals( [ 'default1' ], $object->getExtraCSPDefaultSrcs() );
 					$testCase->assertArrayEquals( [ 'script1' ], $object->getExtraCSPScriptSrcs() );
 					$testCase->assertArrayEquals( [ 'style1' ], $object->getExtraCSPStyleSrcs() );
@@ -411,10 +411,10 @@ abstract class ParserCacheSerializationTestCases {
 			$jsonCodec = new JsonCodec();
 			$serializationFormats[] = [
 				'ext' => 'json',
-				'serializer' => function ( JsonSerializable $obj ) use ( $jsonCodec ) {
+				'serializer' => static function ( JsonSerializable $obj ) use ( $jsonCodec ) {
 					return $jsonCodec->serialize( $obj );
 				},
-				'deserializer' => function ( $data ) use ( $jsonCodec ) {
+				'deserializer' => static function ( $data ) use ( $jsonCodec ) {
 					return $jsonCodec->unserialize( $data );
 				}
 			];

@@ -31,7 +31,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 		);
 
 		$mockUserNameUtils->method( 'isIP' )
-			->willReturnCallback( function ( $name ) {
+			->willReturnCallback( static function ( $name ) {
 				return $name === '127.0.0.1';
 			} );
 

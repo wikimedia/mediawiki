@@ -66,7 +66,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$mock->initConnection();
 
 		$sqlDump = '';
-		$mock->method( 'query' )->willReturnCallback( function ( $sql ) use ( &$sqlDump ) {
+		$mock->method( 'query' )->willReturnCallback( static function ( $sql ) use ( &$sqlDump ) {
 			$sqlDump .= "$sql;";
 
 			return true;

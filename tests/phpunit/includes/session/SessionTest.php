@@ -23,7 +23,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
 		$backend->expects( $this->once() )->method( 'setUser' )
-			->with( $this->callback( function ( $user ) {
+			->with( $this->callback( static function ( $user ) {
 				return $user instanceof User && $user->isAnon();
 			} ) );
 		$backend->expects( $this->once() )->method( 'save' );
@@ -39,7 +39,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
 		$backend->expects( $this->once() )->method( 'setUser' )
-			->with( $this->callback( function ( $user ) {
+			->with( $this->callback( static function ( $user ) {
 				return $user instanceof User && $user->isAnon();
 			} ) );
 		$backend->expects( $this->once() )->method( 'save' );

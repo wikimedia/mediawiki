@@ -1913,7 +1913,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 		try {
 			$this->database->doAtomicSection(
 				__METHOD__,
-				function () {
+				static function () {
 					throw new RuntimeException( 'Test exception' );
 				}
 			);
