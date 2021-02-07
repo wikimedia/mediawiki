@@ -36,6 +36,7 @@ use RevisionDeleteUser;
 use Status;
 use Title;
 use User;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Handles the backend logic of blocking users
@@ -289,14 +290,15 @@ class BlockUser {
 	 *
 	 * @param string $expiry Whatever was typed into the form
 	 *
-	 * @return string|bool Timestamp or 'infinity' or false on error.
+	 * @return string|false Timestamp (format TS_MW) or 'infinity' or false on error.
 	 */
 	public static function parseExpiryInput( string $expiry ) {
 		if ( wfIsInfinity( $expiry ) ) {
 			return 'infinity';
 		}
 
-		$expiry = strtotime( $expiry );
+		// ConvertibleTimestamp::time() used so we can fake the current time in tests
+		$expiry = strtotime( $expiry, ConvertibleTimestamp::time() );
 
 		if ( $expiry < 0 || $expiry === false ) {
 			return false;
