@@ -173,15 +173,15 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
 
 		$this->assertSame( (int)$row->rev_id, $rec->getId( $wikiId ), 'getId' );
-		$this->assertSame( (int)$row->rev_page, $rec->getPageId(), 'getId' );
+		$this->assertSame( (int)$row->rev_page, $rec->getPageId( $wikiId ), 'getId' );
 		$this->assertSame( $row->rev_timestamp, $rec->getTimestamp(), 'getTimestamp' );
 		$this->assertSame( (int)$row->rev_deleted, $rec->getVisibility(), 'getVisibility' );
 		$this->assertSame( (bool)$row->rev_minor_edit, $rec->isMinor(), 'getIsMinor' );
 
 		if ( isset( $row->rev_parent_id ) ) {
-			$this->assertSame( (int)$row->rev_parent_id, $rec->getParentId(), 'getParentId' );
+			$this->assertSame( (int)$row->rev_parent_id, $rec->getParentId( $wikiId ), 'getParentId' );
 		} else {
-			$this->assertSame( 0, $rec->getParentId(), 'getParentId' );
+			$this->assertSame( 0, $rec->getParentId( $wikiId ), 'getParentId' );
 		}
 
 		if ( isset( $row->rev_len ) ) {
