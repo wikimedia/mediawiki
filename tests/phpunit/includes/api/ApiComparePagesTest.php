@@ -120,7 +120,7 @@ class ApiComparePagesTest extends ApiTestCase {
 			if ( preg_match( '/^{{REPL:(.+?)}}$/', $value, $m ) ) {
 				$value = self::$repl[$m[1]];
 			} else {
-				$value = preg_replace_callback( '/{{REPL:(.+?)}}/', function ( $m ) {
+				$value = preg_replace_callback( '/{{REPL:(.+?)}}/', static function ( $m ) {
 					return self::$repl[$m[1]] ?? $m[0];
 				}, $value );
 			}

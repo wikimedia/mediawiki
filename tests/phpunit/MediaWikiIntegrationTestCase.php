@@ -358,7 +358,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		ConfigFactory $oldFactory,
 		array $configurations
 	) {
-		return function ( MediaWikiServices $services ) use ( $oldFactory, $configurations ) {
+		return static function ( MediaWikiServices $services ) use ( $oldFactory, $configurations ) {
 			$factory = new ConfigFactory();
 
 			// clone configurations from $oldFactory that are not overwritten by $configurations
@@ -719,7 +719,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( is_callable( $service ) ) {
 			$instantiator = $service;
 		} else {
-			$instantiator = function () use ( $service ) {
+			$instantiator = static function () use ( $service ) {
 				return $service;
 			};
 		}
@@ -1828,13 +1828,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$originalTables = array_filter(
 			$originalTables,
-			function ( $pt ) use ( $unittestPrefixRegex ) {
+			static function ( $pt ) use ( $unittestPrefixRegex ) {
 				return !preg_match( $unittestPrefixRegex, $pt );
 			}
 		);
 
 		$originalTables = array_map(
-			function ( $pt ) use ( $originalPrefixRegex ) {
+			static function ( $pt ) use ( $originalPrefixRegex ) {
 				return preg_replace( $originalPrefixRegex, '', $pt );
 			},
 			$originalTables
@@ -2159,7 +2159,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function arrayWrap( array $elements ) {
 		return array_map(
-			function ( $element ) {
+			static function ( $element ) {
 				return [ $element ];
 			},
 			$elements
@@ -2257,7 +2257,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			NS_FILE, NS_CATEGORY, NS_MEDIAWIKI, NS_USER // don't mess with magic namespaces
 		] );
 
-		$talk = array_filter( $namespaces, function ( $ns ) use ( $nsInfo ) {
+		$talk = array_filter( $namespaces, static function ( $ns ) use ( $nsInfo ) {
 			return $nsInfo->isTalk( $ns );
 		} );
 

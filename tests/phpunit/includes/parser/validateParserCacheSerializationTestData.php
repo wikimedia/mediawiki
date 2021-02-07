@@ -32,13 +32,13 @@ class ValidateParserCacheSerializationTestData extends Maintenance {
 	public function execute() {
 		$this->validateSerialization(
 			CacheTime::class,
-			array_map( function ( $testCase ) {
+			array_map( static function ( $testCase ) {
 				return $testCase['instance'];
 			}, ParserCacheSerializationTestCases::getCacheTimeTestCases() )
 		);
 		$this->validateSerialization(
 			ParserOutput::class,
-			array_map( function ( $testCase ) {
+			array_map( static function ( $testCase ) {
 				return $testCase['instance'];
 			}, ParserCacheSerializationTestCases::getParserOutputTestCases() )
 		);

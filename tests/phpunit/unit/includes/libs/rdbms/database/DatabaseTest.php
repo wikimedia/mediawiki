@@ -461,9 +461,9 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$wdb->connLogger = new \Psr\Log\NullLogger();
 		$wdb->queryLogger = new \Psr\Log\NullLogger();
 		$wdb->replLogger = new \Psr\Log\NullLogger();
-		$wdb->errorLogger = function ( Throwable $e ) {
+		$wdb->errorLogger = static function ( Throwable $e ) {
 		};
-		$wdb->deprecationLogger = function ( $msg ) {
+		$wdb->deprecationLogger = static function ( $msg ) {
 		};
 		$wdb->currentDomain = DatabaseDomain::newUnspecified();
 		return $db;

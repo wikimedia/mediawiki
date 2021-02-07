@@ -342,7 +342,7 @@ class ApiBaseTest extends ApiTestCase {
 			} else {
 				$this->assertSame( $expected, $result );
 			}
-			$actualWarnings = array_map( function ( $warn ) {
+			$actualWarnings = array_map( static function ( $warn ) {
 				return $warn instanceof Message
 					? array_merge( [ $warn->getKey() ], $warn->getParams() )
 					: $warn;

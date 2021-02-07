@@ -187,7 +187,7 @@ trait MediaWikiTestCaseTrait {
 	protected function objectAssociativeSort( array &$array ) {
 		uasort(
 			$array,
-			function ( $a, $b ) {
+			static function ( $a, $b ) {
 				return serialize( $a ) <=> serialize( $b );
 			}
 		);

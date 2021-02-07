@@ -123,7 +123,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public static function provideIsSafeToCache() {
 		global $wgEnableParserLimitReporting;
 
-		$seven = function () {
+		$seven = static function () {
 			return 7;
 		};
 

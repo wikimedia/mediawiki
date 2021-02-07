@@ -70,7 +70,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 			->willReturn( null );
 
 		$bench->bench( [
-			'test' => function () {
+			'test' => static function () {
 			}
 		] );
 	}
@@ -135,7 +135,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 			} ) );
 
 		$bench->bench( [
-			'test' => function () {
+			'test' => static function () {
 			}
 		] );
 	}

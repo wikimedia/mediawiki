@@ -254,7 +254,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 
 		$factory->defineContentHandler(
 			$name3,
-			function () {
+			static function () {
 			}
 		);
 
@@ -300,7 +300,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 
 		$factory->defineContentHandler(
 			$name3,
-			function () {
+			static function () {
 			}
 		);
 
@@ -375,10 +375,10 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 
 		$factory = new ContentHandlerFactory(
 			[
-				'mock name 1' => function () {
+				'mock name 1' => static function () {
 					// return new DummyContentHandlerForTesting( 'mock 1', [ 'format 1' ] );
 				},
-				'mock name 2' => function () {
+				'mock name 2' => static function () {
 					// return new DummyContentHandlerForTesting( 'mock 0', [ 'format 0' ] );
 				},
 			],
@@ -394,7 +394,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			$factory->getAllContentFormats() );
 
 		$factory->defineContentHandler( 'some new name',
-			function () {
+			static function () {
 				// return new DummyContentHandlerForTesting( 'mock defined', [ 'format defined' ] );
 			} );
 

@@ -82,7 +82,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 			$this->rev4_1->getId() => $this->rev4_1,
 		];
 
-		$getPrefetchText = function ( $pageid, $revid, $role ) use ( $revisions ) {
+		$getPrefetchText = static function ( $pageid, $revid, $role ) use ( $revisions ) {
 			$rev = $revisions[$revid];
 			$slot = $rev->getSlot( $role );
 

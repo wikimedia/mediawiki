@@ -50,7 +50,7 @@ class ApiQueryContinue2Test extends ApiQueryContinueTestBase {
 	 */
 	public function testA() {
 		$this->mVerbose = false;
-		$mk = function ( $g, $p, $gDir ) {
+		$mk = static function ( $g, $p, $gDir ) {
 			return [
 				'generator' => 'allpages',
 				'gapprefix' => 'AQCT73462-',

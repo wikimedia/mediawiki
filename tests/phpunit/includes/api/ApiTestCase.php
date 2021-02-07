@@ -177,7 +177,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	public static function apiExceptionHasCode( ApiUsageException $ex, $code ) {
 		return (bool)array_filter(
 			self::getErrorFormatter()->arrayFromStatus( $ex->getStatusValue() ),
-			function ( $e ) use ( $code ) {
+			static function ( $e ) use ( $code ) {
 				return is_array( $e ) && $e['code'] === $code;
 			}
 		);
