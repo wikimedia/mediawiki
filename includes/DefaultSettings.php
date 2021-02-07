@@ -8854,6 +8854,27 @@ $wgShellLocale = 'C.UTF-8';
  */
 $wgShellRestrictionMethod = 'autodetect';
 
+/**
+ * Shell commands can be run on a remote server using Shellbox. To use this
+ * feature, set this to the URL, and also configure $wgShellboxSecretKey.
+ *
+ * For more information about installing Shellbox, see
+ * https://www.mediawiki.org/wiki/Shellbox
+ *
+ * @since 1.36
+ * @var string|null
+ */
+$wgShellboxUrl = null;
+
+/**
+ * The secret key for HMAC verification of Shellbox requests. Set this to
+ * a long random string.
+ *
+ * @since 1.36
+ * @var string|null
+ */
+$wgShellboxSecretKey = null;
+
 // endregion -- end Shell and process control
 
 /***************************************************************************/
