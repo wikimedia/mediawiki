@@ -69,6 +69,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -1294,6 +1295,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getSearchEngineFactory() : SearchEngineFactory {
 		return $this->getService( 'SearchEngineFactory' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return ShellboxClientFactory
+	 */
+	public function getShellboxClientFactory() : ShellboxClientFactory {
+		return $this->getService( 'ShellboxClientFactory' );
 	}
 
 	/**

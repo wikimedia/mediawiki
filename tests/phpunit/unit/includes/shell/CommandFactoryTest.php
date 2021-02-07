@@ -2,7 +2,7 @@
 
 use MediaWiki\Shell\Command;
 use MediaWiki\Shell\CommandFactory;
-use MediaWiki\Shell\FirejailCommand;
+use MediaWiki\Shell\ShellboxClientFactory;
 use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
@@ -24,28 +24,31 @@ class CommandFactoryTest extends MediaWikiUnitTestCase {
 			'walltime' => 40,
 		];
 
-		$factory = new CommandFactory( $limits, $cgroup, false );
+		$clientFactory = new class extends ShellboxClientFactory {
+			public function __construct() {
+			}
+
+			public function isEnabled() {
+				return false;
+			}
+
+			public function getClient( array $options = [] ) {
+				throw new \Exception( 'unreachable' );
+			}
+		};
+
+		$factory = new CommandFactory( $clientFactory,
+			$limits, $cgroup, false );
 		$factory->setLogger( $logger );
 		$factory->logStderr();
 		$command = $factory->create();
 		$this->assertInstanceOf( Command::class, $command );
-
 		$wrapper = TestingAccessWrapper::newFromObject( $command );
 		$this->assertSame( $logger, $wrapper->logger );
-		$this->assertSame( $cgroup, $wrapper->cgroup );
-		$this->assertSame( $limits, $wrapper->limits );
-		$this->assertTrue( $wrapper->doLogStderr );
-	}
-
-	/**
-	 * @covers MediaWiki\Shell\CommandFactory::create
-	 */
-	public function testFirejailCreate() {
-		$mock = $this->getMockBuilder( CommandFactory::class )
-			->setConstructorArgs( [ [], false, 'firejail' ] )
-			->setMethods( [ 'findFirejail' ] )
-			->getMock();
-		$mock->method( 'findFirejail' )->willReturn( '/usr/bin/firejail' );
-		$this->assertInstanceOf( FirejailCommand::class, $mock->create() );
+		$this->assertSame( $limits['filesize'] * 1024, $command->getFileSizeLimit() );
+		$this->assertSame( $limits['memory'] * 1024, $command->getMemoryLimit() );
+		$this->assertSame( $limits['time'], $command->getCpuTimeLimit() );
+		$this->assertSame( $limits['walltime'], $command->getWallTimeLimit() );
+		$this->assertTrue( $command->getLogStderr() );
 	}
 }

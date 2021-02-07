@@ -104,6 +104,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Shell\CommandFactory;
+use MediaWiki\Shell\ShellboxClientFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\BlobStoreFactory;
@@ -1219,6 +1220,14 @@ return [
 		);
 	},
 
+	'ShellboxClientFactory' => function ( MediaWikiServices $services ) : ShellboxClientFactory {
+		return new ShellboxClientFactory(
+			$services->getHttpRequestFactory(),
+			$services->getMainConfig()->get( 'ShellboxUrl' ),
+			$services->getMainConfig()->get( 'ShellboxSecretKey' )
+		);
+	},
+
 	'ShellCommandFactory' => function ( MediaWikiServices $services ) : CommandFactory {
 		$config = $services->getMainConfig();
 
@@ -1231,7 +1240,8 @@ return [
 		$cgroup = $config->get( 'ShellCgroup' );
 		$restrictionMethod = $config->get( 'ShellRestrictionMethod' );
 
-		$factory = new CommandFactory( $limits, $cgroup, $restrictionMethod );
+		$factory = new CommandFactory( $services->getShellboxClientFactory(),
+			$limits, $cgroup, $restrictionMethod );
 		$factory->setLogger( LoggerFactory::getInstance( 'exec' ) );
 		$factory->logStderr();
 
