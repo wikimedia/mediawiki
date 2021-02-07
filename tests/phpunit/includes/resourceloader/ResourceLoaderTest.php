@@ -760,7 +760,7 @@ END
 			'foo' => [ 'class' => ResourceLoaderTestModule::class ],
 			'ferry' => [
 				'factory' => function () {
-					return self::getFailFerryMock();
+					return $this->getFailFerryMock();
 				}
 			],
 			'bar' => [ 'class' => ResourceLoaderTestModule::class ],
@@ -850,7 +850,7 @@ END
 	public function testMakeModuleResponseConcat( $scripts, $expected, $debug, $message = null ) {
 		$rl = new EmptyResourceLoader();
 		$modules = array_map( function ( $script ) {
-			return self::getSimpleModuleMock( $script );
+			return $this->getSimpleModuleMock( $script );
 		}, $scripts );
 
 		$context = $this->getResourceLoaderContext(
@@ -891,9 +891,9 @@ END
 	 */
 	public function testMakeModuleResponseError() {
 		$modules = [
-			'foo' => self::getSimpleModuleMock( 'foo();' ),
-			'ferry' => self::getFailFerryMock(),
-			'bar' => self::getSimpleModuleMock( 'bar();' ),
+			'foo' => $this->getSimpleModuleMock( 'foo();' ),
+			'ferry' => $this->getFailFerryMock(),
+			'bar' => $this->getSimpleModuleMock( 'bar();' ),
 		];
 		$rl = new EmptyResourceLoader();
 		$context = $this->getResourceLoaderContext(
@@ -931,7 +931,7 @@ END
 	public function testMakeModuleResponseErrorCSS() {
 		$modules = [
 			'foo' => self::getSimpleStyleModuleMock( '.foo{}' ),
-			'ferry' => self::getFailFerryMock( 'getStyles' ),
+			'ferry' => $this->getFailFerryMock( 'getStyles' ),
 			'bar' => self::getSimpleStyleModuleMock( '.bar{}' ),
 		];
 		$rl = new EmptyResourceLoader();
@@ -972,13 +972,13 @@ END
 		$rl = new EmptyResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
 		$rl->register( [
 			'foo' => [ 'factory' => function () {
-				return self::getSimpleModuleMock( 'foo();' );
+				return $this->getSimpleModuleMock( 'foo();' );
 			} ],
 			'ferry' => [ 'factory' => function () {
-				return self::getFailFerryMock();
+				return $this->getFailFerryMock();
 			} ],
 			'bar' => [ 'factory' => function () {
-				return self::getSimpleModuleMock( 'bar();' );
+				return $this->getSimpleModuleMock( 'bar();' );
 			} ],
 		] );
 		$context = $this->getResourceLoaderContext(
