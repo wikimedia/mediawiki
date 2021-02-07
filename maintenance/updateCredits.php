@@ -74,7 +74,7 @@ $contributors = array_keys( $contributors );
 $collator = Collator::create( 'root' );
 $collator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
 $collator->sort( $contributors );
-array_walk( $contributors, function ( &$v, $k ) {
+array_walk( $contributors, static function ( &$v, $k ) {
 	$v = "* {$v}";
 } );
 

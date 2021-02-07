@@ -232,11 +232,11 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			$nsinfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 			$this->namespaces = array_filter(
 				array_keys( $nsinfo->getCanonicalNamespaces() ),
-				function ( $ns ) use ( $nsinfo ) {
+				static function ( $ns ) use ( $nsinfo ) {
 					return $nsinfo->isMovable( $ns ) && $nsinfo->isCapitalized( $ns );
 				}
 			);
-			usort( $this->namespaces, function ( $ns1, $ns2 ) use ( $nsinfo ) {
+			usort( $this->namespaces, static function ( $ns1, $ns2 ) use ( $nsinfo ) {
 				if ( $ns1 === $ns2 ) {
 					return 0;
 				}

@@ -1755,7 +1755,7 @@ abstract class Maintenance {
 	protected function parseIntList( $text ) {
 		$ids = preg_split( '/[\s,;:|]+/', $text );
 		$ids = array_map(
-			function ( $id ) {
+			static function ( $id ) {
 				return (int)$id;
 			},
 			$ids
