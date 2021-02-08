@@ -49,14 +49,14 @@ trait RevisionRecordTests {
 	public function testGetIdTriggerDeprecatedWarning() {
 		MWDebug::clearDeprecationFilters();
 		$this->expectDeprecation();
-		$this->expectDeprecationMessageMatches( '/.*getId: Expected RevisionRecord to belong to .*/' );
+		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
 		$revision->getId();
 	}
 
 	public function testGetIdDeprecated() {
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
-		$this->filterDeprecated( '/.*getId: Expected RevisionRecord to belong to .*/' );
+		$this->filterDeprecated( '/Deprecated cross-wiki access.*/' );
 		$this->assertEquals( 5, $revision->getId() );
 	}
 
@@ -68,14 +68,14 @@ trait RevisionRecordTests {
 	public function testGetPageIdTriggerDeprecatedWarning() {
 		MWDebug::clearDeprecationFilters();
 		$this->expectDeprecation();
-		$this->expectDeprecationMessageMatches( '/.*getPageId: Expected RevisionRecord to belong to .*/' );
+		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_page_id' => 17 ] );
 		$revision->getPageId();
 	}
 
 	public function testGetPageIdDeprecated() {
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_page_id' => 17 ] );
-		$this->filterDeprecated( '/.*getPageId: Expected RevisionRecord to belong to .*/' );
+		$this->filterDeprecated( '/Deprecated cross-wiki access.*/' );
 		$this->assertEquals( 17, $revision->getPageId() );
 	}
 
@@ -87,14 +87,14 @@ trait RevisionRecordTests {
 	public function testGetParentIdTriggerDeprecatedWarning() {
 		MWDebug::clearDeprecationFilters();
 		$this->expectDeprecation();
-		$this->expectDeprecationMessageMatches( '/.*getParentId: Expected RevisionRecord to belong to .*/' );
+		$this->expectDeprecationMessageMatches( '/Deprecated cross-wiki access.*/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_parent_id' => 1 ] );
 		$revision->getParentId();
 	}
 
 	public function testGetParentIdDeprecated() {
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_parent_id' => 1 ] );
-		$this->filterDeprecated( '/.*getParentId: Expected RevisionRecord to belong to .*/' );
+		$this->filterDeprecated( '/Deprecated cross-wiki access.*/' );
 		$this->assertEquals( 1, $revision->getParentId() );
 	}
 

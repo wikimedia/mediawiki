@@ -20,9 +20,9 @@
 
 namespace MediaWiki\Page;
 
+use MediaWiki\DAO\WikiAwareEntityTrait;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
-use Wikimedia\Assert\PreconditionException;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
@@ -44,6 +44,7 @@ class PageIdentityValue implements ProperPageIdentity {
 
 	/* Use JSON, but beware the note on serialization above. */
 	use NonSerializableTrait;
+	use WikiAwareEntityTrait;
 
 	/** @var int */
 	private $pageId;
@@ -65,11 +66,9 @@ class PageIdentityValue implements ProperPageIdentity {
 	 *        or self::LOCAL for the local wiki.
 	 */
 	public function __construct( int $pageId, int $namespace, string $dbKey, $wikiId ) {
-		Assert::parameterType( 'string|boolean', $wikiId, '$wikiId' );
-
-		Assert::parameter( $wikiId !== true, '$wikiId', 'must be false or a string' );
 		Assert::parameter( $pageId >= 0, '$pageId', 'must not be negative' );
 		Assert::parameter( $namespace >= 0, '$namespace', 'must not be negative' );
+		$this->assertWikiIdParam( $wikiId );
 
 		if ( $dbKey === '' ) {
 			throw new ParameterAssertionException(
@@ -102,22 +101,6 @@ class PageIdentityValue implements ProperPageIdentity {
 	 */
 	public function getWikiId() {
 		return $this->wikiId;
-	}
-
-	/**
-	 * Throws if $wikiId is not the
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *
-	 * @throws PreconditionException
-	 */
-	public function assertWiki( $wikiId ) {
-		if ( $wikiId !== $this->getWikiId() ) {
-			$expected = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
-			$actual = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
-			throw new PreconditionException( "Expected PageIdentity to belong to $expected, "
-				. "but it belongs to $actual" );
-		}
 	}
 
 	/**

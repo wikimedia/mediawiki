@@ -3,10 +3,14 @@
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\PreconditionException;
 
+/**
+ * @covers \MediaWiki\DAO\WikiAwareEntityTrait
+ * @coversDefaultClass \MediaWiki\User\UserIdentityValue
+ */
 class UserIdentityValueTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getActorId
+	 * @covers ::getActorId
 	 */
 	public function testGetActorIdLocalUIVNoParam() {
 		$id = 88888888;
@@ -16,7 +20,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getActorId
+	 * @covers ::getActorId
 	 */
 	public function testGetActorIdLocalUIVLocalParam() {
 		$id = 88888888;
@@ -26,7 +30,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getActorId
+	 * @covers ::getActorId
 	 */
 	public function testGetActorIdLocalUIVForeignParam() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -38,7 +42,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getActorId
+	 * @covers ::getActorId
 	 */
 	public function testGetActorIdForeignUIVNoParam() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -50,7 +54,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getActorId
+	 * @covers ::getActorId
 	 */
 	public function testGetActorIdForeignUIVLocalParam() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -62,7 +66,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getActorId
+	 * @covers ::getActorId
 	 */
 	public function testGetActorIdForeignUIVForeignParam() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -73,7 +77,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getUserId
+	 * @covers ::getUserId
 	 */
 	public function testGetUserIdLocalUIVNoParam() {
 		$id = 88888888;
@@ -83,7 +87,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getUserId
+	 * @covers ::getUserId
 	 */
 	public function testGetUserIdLocalUIVLocalParam() {
 		$id = 88888888;
@@ -93,7 +97,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getUserId
+	 * @covers ::getUserId
 	 */
 	public function testGetUserIdLocalUIVForeignParam() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -105,7 +109,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getUserId
+	 * @covers ::getUserId
 	 */
 	public function testGetUserIdForeignUIVNoParam() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -117,7 +121,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getUserId
+	 * @covers ::getUserId
 	 */
 	public function testGetUserIdForeignUIVLocalParam() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -129,7 +133,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getUserId
+	 * @covers ::getUserId
 	 */
 	public function testGetUserIdForeignUIVForeignParam() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -148,7 +152,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::getWikiId
+	 * @covers ::getWikiId
 	 * @dataProvider provideWikiIds
 	 * @param string|false $wikiId
 	 */
@@ -158,7 +162,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::assertWiki
+	 * @covers ::assertWiki
 	 */
 	public function testAssertWikiLocalUIV() {
 		$foreignWikiId = 'Foreign Wiki';
@@ -172,7 +176,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\User\UserIdentityValue::assertWiki
+	 * @covers ::assertWiki
 	 */
 	public function testAssertWikiForeignUIV() {
 		$foreignWikiId = 'Foreign Wiki';
