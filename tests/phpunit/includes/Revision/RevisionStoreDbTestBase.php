@@ -14,6 +14,7 @@ use JavaScriptContent;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionArchiveRecord;
@@ -785,20 +786,35 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionByTitle
+	 * @dataProvider provideRevisionByTitle
+	 *
+	 * @param callable $getTitle
 	 */
-	public function testGetRevisionByTitle() {
+	public function testGetRevisionByTitle( $getTitle ) {
 		$page = $this->getTestPage();
+		$title = $getTitle();
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
 		/** @var RevisionRecord $revRecord */
 		$revRecord = $status->value['revision-record'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$storeRecord = $store->getRevisionByTitle( $page->getTitle() );
+		$storeRecord = $store->getRevisionByTitle( $title );
 
 		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
 		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
+	}
+
+	public function provideRevisionByTitle() {
+		return [
+			[ function () {
+				return $this->getTestPage()->getTitle();
+			} ],
+			[ function () {
+				return $this->getTestPage()->getTitle()->toPageIdentity();
+			} ]
+		];
 	}
 
 	/**
@@ -875,12 +891,16 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionByTimestamp
+	 * @dataProvider provideRevisionByTimestamp
+	 *
+	 * @param callable $getTitle
 	 */
-	public function testGetRevisionByTimestamp() {
+	public function testGetRevisionByTimestamp( $getTitle ) {
 		// Make sure there is 1 second between the last revision and the rev we create...
 		// Otherwise we might not get the correct revision and the test may fail...
 		MWTimestamp::setFakeTime( '20110401090000' );
 		$page = $this->getTestPage();
+		$title = $getTitle();
 		MWTimestamp::setFakeTime( '20110401090001' );
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
@@ -889,13 +909,24 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$storeRecord = $store->getRevisionByTimestamp(
-			$page->getTitle(),
+			$title,
 			$revRecord->getTimestamp()
 		);
 
 		$this->assertSame( $revRecord->getId(), $storeRecord->getId() );
 		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
 		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
+	}
+
+	public function provideRevisionByTimestamp() {
+		return [
+			[ function () {
+				return $this->getTestPage()->getTitle();
+			} ],
+			[ function () {
+				return $this->getTestPage()->getTitle()->toPageIdentity();
+			} ]
+		];
 	}
 
 	protected function revisionRecordToRow( RevisionRecord $revRecord, $options = [ 'page', 'user', 'comment' ] ) {
@@ -1114,15 +1145,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $text, $revRecord->getContent( SlotRecord::MAIN )->serialize() );
 	}
 
-	/**
-	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRowAndSlots
-	 * @covers \MediaWiki\Revision\RevisionStore::getArchiveQueryInfo
-	 */
-	public function testNewRevisionFromArchiveRowAndSlots_getArchiveQueryInfo() {
+	private function buildRevisionStore( string $text, PageIdentity $pageIdentity ) {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$title = Title::newFromText( __METHOD__ );
-		$text = __METHOD__ . '-bä';
-		$page = WikiPage::factory( $title );
+		$page = WikiPage::factory( Title::castFromPageIdentity( $pageIdentity ) );
 		/** @var RevisionRecord $orig */
 		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
 			->value['revision-record'];
@@ -1148,9 +1173,86 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		$row = $res->fetchObject();
 		$res->free();
+		return [ $store, $row, $slotRows, $orig ];
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromArchiveRowAndSlots
+	 * @covers \MediaWiki\Revision\RevisionStore::getArchiveQueryInfo
+	 */
+	public function testNewRevisionFromArchiveRowAndSlots_getArchiveQueryInfo() {
+		$text = __METHOD__ . '-bä';
+		$title = Title::newFromText( __METHOD__ );
+		list( $store, $row, $slotRows, $orig ) = $this->buildRevisionStore( $text, $title );
 		$storeRecord = $store->newRevisionFromArchiveRowAndSlots(
 			$row,
 			iterator_to_array( $slotRows )
+		);
+		$this->assertRevisionRecordsEqual( $orig, $storeRecord );
+		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN )->serialize() );
+	}
+
+	public function provideNewRevisionFromArchiveRowAndSlotsTitles() {
+		return [
+			[ function () {
+				return Title::newFromText( 'Test_NewRevisionFromArchiveRowAndSlotsTitles' );
+			} ],
+			[ function () {
+				return Title::newFromText( 'Test_NewRevisionFromArchiveRowAndSlotsTitles' )->toPageIdentity();
+			} ]
+		];
+	}
+
+	/**
+	 * @dataProvider provideNewRevisionFromArchiveRowAndSlotsTitles
+	 *
+	 * @param callable $getPageIdentity
+	 */
+	public function testNewRevisionFromArchiveRowAndSlots_getArchiveQueryInfoWithTitle( $getPageIdentity ) {
+		$text = __METHOD__ . '-bä';
+		$page = $getPageIdentity();
+		list( $store, $row, $slotRows, $orig ) = $this->buildRevisionStore( $text, $page );
+		$storeRecord = $store->newRevisionFromArchiveRowAndSlots(
+			$row,
+			iterator_to_array( $slotRows ),
+			0,
+			$page
+		);
+
+		$this->assertRevisionRecordsEqual( $orig, $storeRecord );
+		$this->assertSame( $text, $storeRecord->getContent( SlotRecord::MAIN )->serialize() );
+	}
+
+	public function provideNewRevisionFromArchiveRowAndSlotsInArray() {
+		return [
+			[
+				[
+					'title' => Title::newFromText( 'Test_NewRevisionFromArchiveRowAndSlotsInArray' )
+				]
+			],
+			[
+				[
+					'title' => Title::newFromText( 'Test_NewRevisionFromArchiveRowAndSlotsInArray' )->toPageIdentity()
+				]
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideNewRevisionFromArchiveRowAndSlotsInArray
+	 *
+	 * @param array $array
+	 */
+	public function testNewRevisionFromArchiveRowAndSlots_getArchiveQueryInfoWithTitleInArray( $array ) {
+		$text = __METHOD__ . '-bä';
+		$page = $array[ 'title' ];
+		list( $store, $row, $slotRows, $orig ) = $this->buildRevisionStore( $text, $page );
+		$storeRecord = $store->newRevisionFromArchiveRowAndSlots(
+			$row,
+			iterator_to_array( $slotRows ),
+			0,
+			null,
+			$array
 		);
 
 		$this->assertRevisionRecordsEqual( $orig, $storeRecord );
@@ -1345,13 +1447,15 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::insertRevisionOn
+	 * @dataProvider provideInsertRevisionOn
+	 *
+	 * @param callable $getPageIdentity
 	 */
-	public function testInsertRevisionOn_archive() {
+	public function testInsertRevisionOn_archive( $getPageIdentity ) {
 		// This is a round trip test for deletion and undeletion of a
 		// revision row via the archive table.
-
+		list( $title, $pageIdentity ) = $getPageIdentity();
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$title = Title::newFromText( __METHOD__ );
 
 		$page = WikiPage::factory( $title );
 		/** @var RevisionRecord $orig */
@@ -1375,7 +1479,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$record = $store->newRevisionFromArchiveRow(
 			$row,
 			0,
-			$title,
+			$pageIdentity,
 			[ 'page_id' => $title->getArticleID() ]
 		);
 
@@ -1401,6 +1505,19 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		// can we find it directly in the database?
 		$this->assertRevisionExistsInDatabase( $restored );
+	}
+
+	public function provideInsertRevisionOn() {
+		return [
+			[ function () {
+				$pageTitle = Title::newFromText( 'Test_Insert_Revision_On' );
+				return [ $pageTitle, $pageTitle ];
+			} ],
+			[ function () {
+				$pageTitle = Title::newFromText( 'Test_Insert_Revision_On' );
+				return [ $pageTitle, $pageTitle->toPageIdentity() ];
+			} ]
+		];
 	}
 
 	/**
@@ -1719,8 +1836,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
+	 * @dataProvider provideGetKnownCurrentRevision
 	 */
-	public function testGetKnownCurrentRevision() {
+	public function testGetKnownCurrentRevision( $getPageIdentity ) {
 		$page = $this->getTestPage();
 		/** @var RevisionRecord $revRecord */
 		$revRecord = $page->doEditContent(
@@ -1730,14 +1848,23 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			false,
 			$this->getTestUser()->getUser()
 		)->value['revision-record'];
-
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$storeRecord = $store->getKnownCurrentRevision(
-			$page->getTitle(),
+			$getPageIdentity(),
 			$revRecord->getId()
 		);
-
 		$this->assertRevisionRecordsEqual( $revRecord, $storeRecord );
+	}
+
+	public function provideGetKnownCurrentRevision() {
+		return [
+			[ function () {
+				return $this->getTestPage()->getTitle();
+			} ],
+			[ function () {
+				return $this->getTestPage()->getTitle()->toPageIdentity();
+			} ]
+		];
 	}
 
 	public function provideNewMutableRevisionFromArray() {
@@ -1810,6 +1937,21 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		yield 'Basic array, with title' => [
 			[
 				'title' => Title::newFromText( 'SomeText' ),
+				'timestamp' => '20171017114835',
+				'user_text' => '111.0.1.2',
+				'user' => 0,
+				'minor_edit' => false,
+				'deleted' => 0,
+				'len' => 46,
+				'parent_id' => 1,
+				'sha1' => 'rdqbbzs3pkhihgbs8qf2q9jsvheag5z',
+				'comment' => 'Goat Comment!',
+				'content' => new WikitextContent( 'Some Content' )
+			]
+		];
+		yield 'Basic array, with title of PageIdentity type' => [
+			[
+				'title' => Title::newFromText( 'SomeText' )->toPageIdentity(),
 				'timestamp' => '20171017114835',
 				'user_text' => '111.0.1.2',
 				'user' => 0,
@@ -2256,11 +2398,28 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	public function provideNewRevisionsFromBatchOptions() {
 		yield 'No preload slots or content, single page' => [
 			[ 'comment' ],
+			function () {
+				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
+				return [ $pageTitle, $pageTitle ];
+			},
+			null,
+			[]
+		];
+		yield 'No preload slots or content, single page and with PageIdentity' => [
+			[ 'comment' ],
+			function () {
+				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
+				return [ $pageTitle, $pageTitle->toPageIdentity() ];
+			},
 			null,
 			[]
 		];
 		yield 'Preload slots and content, single page' => [
 			[ 'comment' ],
+			function () {
+				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
+				return [ $pageTitle, $pageTitle ];
+			},
 			null,
 			[
 				'slots' => [ SlotRecord::MAIN ],
@@ -2269,16 +2428,28 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Ask for no slots' => [
 			[ 'comment' ],
+			function () {
+				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
+				return [ $pageTitle, $pageTitle ];
+			},
 			null,
 			[ 'slots' => [] ]
 		];
 		yield 'No preload slots or content, multiple pages' => [
 			[ 'comment' ],
+			function () {
+				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
+				return [ $pageTitle, $pageTitle ];
+			},
 			'Other_Page',
 			[]
 		];
 		yield 'Preload slots and content, multiple pages' => [
 			[ 'comment' ],
+			function () {
+				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
+				return [ $pageTitle, $pageTitle ];
+			},
 			'Other_Page',
 			[
 				'slots' => [ SlotRecord::MAIN ],
@@ -2287,6 +2458,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Preload slots and content, multiple pages, preload page fields' => [
 			[ 'page', 'comment' ],
+			function () {
+				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
+				return [ $pageTitle, $pageTitle ];
+			},
 			'Other_Page',
 			[
 				'slots' => [ SlotRecord::MAIN ],
@@ -2299,11 +2474,13 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideNewRevisionsFromBatchOptions
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
 	 * @param array|null $queryOptions options to provide to revisionRecordToRow
+	 * @param callable $getPageIdentity
 	 * @param string|null $otherPageTitle
 	 * @param array|null $options
 	 */
 	public function testNewRevisionsFromBatch_preloadContent(
 		$queryOptions,
+		$getPageIdentity,
 		$otherPageTitle = null,
 		array $options = []
 	) {
@@ -2362,15 +2539,17 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideNewRevisionsFromBatchOptions
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionsFromBatch
 	 * @param array|null $queryOptions options to provide to revisionRecordToRow
+	 * @param callable $getPageIdentity
 	 * @param string|null $otherPageTitle
 	 * @param array|null $options
 	 */
 	public function testNewRevisionsFromBatch_archive(
 		$queryOptions,
+		$getPageIdentity,
 		$otherPageTitle = null,
 		array $options = []
 	) {
-		$title1 = Title::newFromText( __METHOD__ );
+		list( $title1, $pageIdentity ) = $getPageIdentity();
 		$text1 = __METHOD__ . '-bä';
 		$page1 = WikiPage::factory( $title1 );
 
@@ -2405,7 +2584,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$options['archive'] = true;
 		$rows = iterator_to_array( $rows );
 		$result = $store->newRevisionsFromBatch(
-			$rows, $options, 0, $otherPageTitle ? null : $title1 );
+			$rows, $options, 0, $otherPageTitle ? null : $pageIdentity );
 
 		$this->assertTrue( $result->isGood() );
 		$this->assertSame( [], $result->getErrors() );
@@ -2744,9 +2923,12 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getFirstRevision
+	 *
+	 * @dataProvider provideGetFirstRevision
+	 * @param callable $getPageIdentity
 	 */
-	public function testGetFirstRevision() {
-		$pageTitle = Title::newFromText( 'Test_Get_First_Revision' );
+	public function testGetFirstRevision( $getPageIdentity ) {
+		list( $pageTitle, $pageIdentity ) = $getPageIdentity();
 		$editStatus = $this->editPage( $pageTitle->getPrefixedDBkey(), 'First Revision' );
 		$this->assertTrue( $editStatus->isGood(), 'Sanity: must create first revision' );
 		$firstRevId = $editStatus->getValue()['revision-record']->getID();
@@ -2761,9 +2943,22 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			$firstRevId,
 			MediaWikiServices::getInstance()
 				->getRevisionStore()
-				->getFirstRevision( $pageTitle )
+				->getFirstRevision( $pageIdentity )
 				->getId()
 		);
+	}
+
+	public function provideGetFirstRevision() {
+		return [
+			[ function () {
+				$pageTitle = Title::newFromText( 'Test_Get_First_Revision' );
+				return [ $pageTitle, $pageTitle ];
+			} ],
+			[ function () {
+				$pageTitle = Title::newFromText( 'Test_Get_First_Revision' );
+				return [ $pageTitle, $pageTitle->toPageIdentity() ];
+			} ]
+		];
 	}
 
 	/**

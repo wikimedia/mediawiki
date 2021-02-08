@@ -82,6 +82,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class RevisionStore
 	implements IDBAccessObject, RevisionFactory, RevisionLookup, LoggerAwareInterface {
+
 	use LegacyArticleIdAccess;
 
 	public const ROW_CACHE_KEY = 'revision-row-1.29';
@@ -1108,20 +1109,21 @@ class RevisionStore
 	 *      IDBAccessObject::READ_LATEST: Select the data from the master
 	 *      IDBAccessObject::READ_LOCKING : Select & lock the data from the master
 	 *
-	 * @param LinkTarget $linkTarget
+	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $revId (optional)
 	 * @param int $flags Bitfield (optional)
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionByTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 ) {
+	public function getRevisionByTitle( $page, $revId = 0, $flags = 0 ) {
 		$conds = [
-			'page_namespace' => $linkTarget->getNamespace(),
-			'page_title' => $linkTarget->getDBkey()
+			'page_namespace' => $page->getNamespace(),
+			'page_title' => $page->getDBkey()
 		];
 
-		// Only resolve to a Title when operating in the context of the local wiki (T248756)
-		// TODO should not require Title in future (T206498)
-		$title = $this->wikiId === WikiAwareEntity::LOCAL ? Title::newFromLinkTarget( $linkTarget ) : null;
+		if ( $page instanceof LinkTarget ) {
+			// Only resolve LinkTarget to a Title when operating in the context of the local wiki (T248756)
+			$page = $this->wikiId === WikiAwareEntity::LOCAL ? Title::castFromLinkTarget( $page ) : null;
+		}
 
 		if ( $revId ) {
 			// Use the specified revision ID.
@@ -1130,7 +1132,7 @@ class RevisionStore
 			// Since the caller supplied a revision ID, we are pretty sure the revision is
 			// supposed to exist, so we should try hard to find it.
 			$conds['rev_id'] = $revId;
-			return $this->newRevisionFromConds( $conds, $flags, $title );
+			return $this->newRevisionFromConds( $conds, $flags, $page );
 		} else {
 			// Use a join to get the latest revision.
 			// Note that we don't use newRevisionFromConds here because we don't want to retry
@@ -1138,10 +1140,8 @@ class RevisionStore
 			// if we are quite sure the revision exists because the caller supplied a revision ID.
 			// If the page isn't found at all on a replica, it probably simply does not exist.
 			$db = $this->getDBConnectionRefForQueryFlags( $flags );
-
 			$conds[] = 'rev_id=page_latest';
-
-			return $this->loadRevisionFromConds( $db, $conds, $flags, $title );
+			return $this->loadRevisionFromConds( $db, $conds, $flags, $page );
 		}
 	}
 
@@ -1192,7 +1192,7 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::loadFromTimestamp
 	 *
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
 	 *      IDBAccessObject::READ_LATEST: Select the data from the master
@@ -1201,19 +1201,23 @@ class RevisionStore
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTimestamp(
-		LinkTarget $title,
+		$page,
 		string $timestamp,
 		int $flags = IDBAccessObject::READ_NORMAL
 	): ?RevisionRecord {
+		if ( $page instanceof LinkTarget ) {
+			// Only resolve LinkTarget to a Title when operating in the context of the local wiki (T248756)
+			$page = $this->wikiId === WikiAwareEntity::LOCAL ? Title::castFromLinkTarget( $page ) : null;
+		}
 		$db = $this->getDBConnectionRefForQueryFlags( $flags );
 		return $this->newRevisionFromConds(
 			[
 				'rev_timestamp' => $db->timestamp( $timestamp ),
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey()
+				'page_namespace' => $page->getNamespace(),
+				'page_title' => $page->getDBkey()
 			],
 			$flags,
-			Title::newFromLinkTarget( $title )
+			$page
 		);
 	}
 
@@ -1381,7 +1385,7 @@ class RevisionStore
 	 *
 	 * @param \stdClass $row
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param PageIdentity|null $page
 	 * @param array $overrides associative array with fields of $row to override. This may be
 	 *   used e.g. to force the parent revision ID or page ID. Keys in the array are fields
 	 *   names from the archive table without the 'ar_' prefix, i.e. use 'parent_id' to
@@ -1393,10 +1397,10 @@ class RevisionStore
 	public function newRevisionFromArchiveRow(
 		$row,
 		$queryFlags = 0,
-		Title $title = null,
+		PageIdentity $page = null,
 		array $overrides = []
 	) {
-		return $this->newRevisionFromArchiveRowAndSlots( $row, null, $queryFlags, $title, $overrides );
+		return $this->newRevisionFromArchiveRowAndSlots( $row, null, $queryFlags, $page, $overrides );
 	}
 
 	/**
@@ -1430,7 +1434,7 @@ class RevisionStore
 	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param PageIdentity|null $page
 	 * @param array $overrides associative array with fields of $row to override. This may be
 	 *   used e.g. to force the parent revision ID or page ID. Keys in the array are fields
 	 *   names from the archive table without the 'ar_' prefix, i.e. use 'parent_id' to
@@ -1443,7 +1447,7 @@ class RevisionStore
 		$row,
 		$slots,
 		$queryFlags = 0,
-		Title $title = null,
+		PageIdentity $page = null,
 		array $overrides = []
 	) {
 		Assert::parameterType( \stdClass::class, $row, '$row' );
@@ -1451,17 +1455,17 @@ class RevisionStore
 		// check second argument, since Revision::newFromArchiveRow had $overrides in that spot.
 		Assert::parameterType( 'integer', $queryFlags, '$queryFlags' );
 
-		if ( !$title && isset( $overrides['title'] ) ) {
-			if ( !( $overrides['title'] instanceof Title ) ) {
-				throw new MWException( 'title field override must contain a Title object.' );
+		if ( !$page && isset( $overrides['title'] ) ) {
+			if ( !( $overrides['title'] instanceof PageIdentity ) ) {
+				throw new MWException( 'title field override must contain a PageIdentity object.' );
 			}
 
-			$title = $overrides['title'];
+			$page = $overrides['title'];
 		}
 
-		if ( !isset( $title ) ) {
+		if ( !isset( $page ) ) {
 			if ( isset( $row->ar_namespace ) && isset( $row->ar_title ) ) {
-				$title = Title::makeTitle( $row->ar_namespace, $row->ar_title );
+				$page = Title::makeTitle( $row->ar_namespace, $row->ar_title );
 			} else {
 				throw new InvalidArgumentException(
 					'A Title or ar_namespace and ar_title must be given'
@@ -1482,7 +1486,7 @@ class RevisionStore
 				$this->wikiId
 			);
 		} catch ( InvalidArgumentException $ex ) {
-			wfWarn( __METHOD__ . ': ' . $title->getPrefixedDBkey() . ': ' . $ex->getMessage() );
+			wfWarn( __METHOD__ . ': ' . $page . ': ' . $ex->getMessage() );
 			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
 		}
 
@@ -1497,10 +1501,9 @@ class RevisionStore
 		$comment = $this->commentStore->getCommentLegacy( $db, 'ar_comment', $row, true );
 
 		if ( !( $slots instanceof RevisionSlots ) ) {
-			$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, $slots, $queryFlags, $title );
+			$slots = $this->newRevisionSlots( $row->ar_rev_id, $row, $slots, $queryFlags, $page );
 		}
-
-		return new RevisionArchiveRecord( $title, $user, $comment, $row, $slots, $this->wikiId );
+		return new RevisionArchiveRecord( $page, $user, $comment, $row, $slots, $this->wikiId );
 	}
 
 	/**
@@ -1688,10 +1691,10 @@ class RevisionStore
 	 *               'archive' - whether the rows where generated using getArchiveQueryInfo(),
 	 *                           rather than getQueryInfo.
 	 * @param int $queryFlags
-	 * @param Title|null $title The title to which all the revision rows belong, if there
-	 *        is such a title and the caller has it handy, so we don't have to look it up again.
+	 * @param PageIdentity|null $page The page to which all the revision rows belong, if there
+	 *        is such a page and the caller has it handy, so we don't have to look it up again.
 	 *        If this parameter is given and any of the rows has a rev_page_id that is different
-	 *        from $title->getArticleID(), an InvalidArgumentException is thrown.
+	 *        from Article Id associated with the page, an InvalidArgumentException is thrown.
 	 *
 	 * @return StatusValue a status with a RevisionRecord[] of successfully fetched revisions
 	 * 					   and an array of errors for the revisions failed to fetch.
@@ -1700,7 +1703,7 @@ class RevisionStore
 		$rows,
 		array $options = [],
 		$queryFlags = 0,
-		Title $title = null
+		PageIdentity $page = null
 	) {
 		$result = new StatusValue();
 		$archiveMode = $options['archive'] ?? false;
@@ -1726,21 +1729,21 @@ class RevisionStore
 			$row->_page_key =
 				$archiveMode ? $row->ar_namespace . ':' . $row->ar_title : $row->rev_page;
 
-			if ( $title ) {
-				if ( !$archiveMode && $row->rev_page != $title->getArticleID() ) {
+			if ( $page ) {
+				if ( !$archiveMode && $row->rev_page != $this->getArticleId( $page ) ) {
 					throw new InvalidArgumentException(
 						"Revision {$row->$revIdField} doesn't belong to page "
-							. $title->getArticleID()
+							. $this->getArticleId( $page )
 					);
 				}
 
 				if ( $archiveMode
-					&& ( $row->ar_namespace != $title->getNamespace()
-						|| $row->ar_title !== $title->getDBkey() )
+					&& ( $row->ar_namespace != $page->getNamespace()
+						|| $row->ar_title !== $page->getDBkey() )
 				) {
 					throw new InvalidArgumentException(
 						"Revision {$row->$revIdField} doesn't belong to page "
-							. $title->getPrefixedDBkey()
+							. $page
 					);
 				}
 			} elseif ( !isset( $titlesByPageKey[ $row->_page_key ] ) ) {
@@ -1767,14 +1770,14 @@ class RevisionStore
 			return $result;
 		}
 
-		// If the title is not supplied, batch-fetch Title objects.
-		if ( $title ) {
+		// If the page is not supplied, batch-fetch Title objects.
+		if ( $page ) {
 			// same logic as for $row->_page_key above
 			$pageKey = $archiveMode
-				? $title->getNamespace() . ':' . $title->getDBkey()
-				: $title->getArticleID();
+				? $page->getNamespace() . ':' . $page->getDBkey()
+				: $this->getArticleId( $page );
 
-			$titlesByPageKey[$pageKey] = $title;
+			$titlesByPageKey[$pageKey] = $page;
 		} elseif ( !empty( $pageIdsToFetchTitles ) ) {
 			// Note: when we fetch titles by ID, the page key is also the ID.
 			// We should never get here if $archiveMode is true.
@@ -2066,7 +2069,7 @@ class RevisionStore
 	 *
 	 * @param array $fields
 	 * @param int $queryFlags
-	 * @param Title|null $title
+	 * @param PageIdentity|null $page
 	 *
 	 * @return MutableRevisionRecord
 	 * @throws MWException
@@ -2075,27 +2078,27 @@ class RevisionStore
 	public function newMutableRevisionFromArray(
 		array $fields,
 		$queryFlags = 0,
-		Title $title = null
+		PageIdentity $page = null
 	) {
 		wfDeprecated( __METHOD__, '1.31' );
 
-		if ( !$title && isset( $fields['title'] ) ) {
-			if ( !( $fields['title'] instanceof Title ) ) {
+		if ( !$page && isset( $fields['title'] ) ) {
+			if ( !( $fields['title'] instanceof PageIdentity ) ) {
 				throw new MWException( 'title field must contain a Title object.' );
 			}
 
-			$title = $fields['title'];
+			$page = $fields['title'];
 		}
 
-		if ( !$title ) {
+		if ( !$page ) {
 			$pageId = $fields['page'] ?? 0;
 			$revId = $fields['id'] ?? 0;
 
-			$title = $this->getTitle( $pageId, $revId, $queryFlags );
+			$page = $this->getTitle( $pageId, $revId, $queryFlags );
 		}
 
 		if ( !isset( $fields['page'] ) ) {
-			$fields['page'] = $title->getArticleID( $queryFlags );
+			$fields['page'] = $this->getArticleId( $page );
 		}
 
 		// if we have a content object, use it to set the model and type
@@ -2131,7 +2134,7 @@ class RevisionStore
 			}
 		}
 
-		$revision = new MutableRevisionRecord( $title, $this->wikiId );
+		$revision = new MutableRevisionRecord( $page, $this->wikiId );
 
 		/** @var Content[] $slotContent */
 		if ( isset( $fields['content'] ) ) {
@@ -2145,7 +2148,7 @@ class RevisionStore
 				$model = $fields['content_model'];
 			} else {
 				$slotRoleHandler = $this->slotRoleRegistry->getRoleHandler( SlotRecord::MAIN );
-				$model = $slotRoleHandler->getDefaultModel( $title );
+				$model = $slotRoleHandler->getDefaultModel( $page );
 			}
 
 			$contentHandler = $this->contentHandlerFactory->getContentHandler( $model );
@@ -2954,16 +2957,25 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::newKnownCurrent
 	 *
-	 * @param Title $title the associated page title
+	 * @param PageIdentity $page the associated page
 	 * @param int $revId current revision of this page. Defaults to $title->getLatestRevID().
 	 *
 	 * @return RevisionRecord|bool Returns false if missing
 	 */
-	public function getKnownCurrentRevision( Title $title, $revId = 0 ) {
+	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 ) {
 		$db = $this->getDBConnectionRef( DB_REPLICA );
+		if ( !$page instanceof Title ) {
 
+			// TODO: For foreign wikis we can not cast from PageIdentityValue to Title,
+			// since getLatestRevID will fetch from local database. To be fixed with cross-wiki
+			// aware PageStore. T274067
+			$page->assertWiki( PageIdentity::LOCAL );
+			$title = Title::castFromPageIdentity( $page );
+		} else {
+			$title = $page;
+		}
 		$revIdPassed = $revId;
-		$pageId = $title->getArticleID();
+		$pageId = $this->getArticleID( $title );
 
 		if ( !$pageId ) {
 			return false;
@@ -3020,22 +3032,25 @@ class RevisionStore
 	 * Get the first revision of a given page.
 	 *
 	 * @since 1.35
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $flags
 	 * @return RevisionRecord|null
 	 */
 	public function getFirstRevision(
-		LinkTarget $title,
+		$page,
 		int $flags = IDBAccessObject::READ_NORMAL
 	): ?RevisionRecord {
-		$titleObj = Title::newFromLinkTarget( $title ); // TODO: eventually we shouldn't need a title
+		if ( $page instanceof LinkTarget ) {
+			// Only resolve LinkTarget to a Title when operating in the context of the local wiki (T248756)
+			$page = $this->wikiId === WikiAwareEntity::LOCAL ? Title::castFromLinkTarget( $page ) : null;
+		}
 		return $this->newRevisionFromConds(
 			[
-				'page_namespace' => $title->getNamespace(),
-				'page_title' => $title->getDBkey()
+				'page_namespace' => $page->getNamespace(),
+				'page_title' => $page->getDBkey()
 			],
 			$flags,
-			$titleObj,
+			$page,
 			[
 				'ORDER BY' => [ 'rev_timestamp ASC', 'rev_id ASC' ],
 				'IGNORE INDEX' => [ 'revision' => 'rev_timestamp' ], // See T159319
