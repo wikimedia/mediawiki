@@ -25,6 +25,7 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -64,6 +65,7 @@ use Wikimedia\ScopedCallback;
  */
 class User implements Authority, IDBAccessObject, UserIdentity {
 	use ProtectedHookAccessorTrait;
+	use WikiAwareEntityTrait;
 
 	/**
 	 * Number of characters required for the user_token field.
@@ -258,28 +260,10 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Returns self::LOCAL to indicate the user is associated with the local wiki.
 	 *
 	 * @since 1.36
-	 *
 	 * @return string|false
 	 */
 	public function getWikiId() {
 		return self::LOCAL;
-	}
-
-	/**
-	 * Throws if $wikiId is not the local wiki
-	 *
-	 * @since 1.36
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *
-	 * @throws PreconditionException
-	 */
-	public function assertWiki( $wikiId ) {
-		if ( $wikiId !== self::LOCAL ) {
-			throw new PreconditionException(
-				"Expected User to belong to local wiki, but it belongs to $wikiId"
-			);
-		}
 	}
 
 	/**

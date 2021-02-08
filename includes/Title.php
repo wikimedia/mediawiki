@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
@@ -44,6 +45,8 @@ use Wikimedia\Rdbms\IDatabase;
  *       and does not rely on global state or the database.
  */
 class Title implements LinkTarget, PageIdentity, IDBAccessObject {
+	use WikiAwareEntityTrait;
+
 	/** @var MapCacheLRU|null */
 	private static $titleCache = null;
 
@@ -4655,22 +4658,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function getWikiId() {
 		return self::LOCAL;
-	}
-
-	/**
-	 * Throws if $wikiId is not the
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *
-	 * @throws PreconditionException
-	 */
-	public function assertWiki( $wikiId ) {
-		if ( $wikiId !== self::LOCAL ) {
-			throw new PreconditionException(
-				"Expected this PageIdentity to belong to $wikiId, "
-				. 'but it belongs to the local wiki'
-			);
-		}
 	}
 
 	/**
