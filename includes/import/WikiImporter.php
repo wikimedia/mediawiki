@@ -390,7 +390,8 @@ class WikiImporter {
 				$revision->getTitle()->getPrefixedText(),
 				$revision->getID(),
 				$revision->getModel(),
-				$revision->getFormat() );
+				$revision->getFormat()
+			);
 
 			return false;
 		}
@@ -402,7 +403,8 @@ class WikiImporter {
 				$revision->getTitle()->getPrefixedText(),
 				$revision->getID(),
 				$revision->getModel(),
-				$revision->getFormat() );
+				$revision->getFormat()
+			);
 		}
 
 		return false;
@@ -494,8 +496,10 @@ class WikiImporter {
 	 */
 	private function siteInfoCallback( $siteInfo ) {
 		if ( isset( $this->mSiteInfoCallback ) ) {
-			return call_user_func_array( $this->mSiteInfoCallback,
-					[ $siteInfo, $this ] );
+			return call_user_func_array(
+				$this->mSiteInfoCallback,
+				[ $siteInfo, $this ]
+			);
 		} else {
 			return false;
 		}
@@ -533,8 +537,10 @@ class WikiImporter {
 	 */
 	private function revisionCallback( $revision ) {
 		if ( isset( $this->mRevisionCallback ) ) {
-			return call_user_func_array( $this->mRevisionCallback,
-					[ $revision, $this ] );
+			return call_user_func_array(
+				$this->mRevisionCallback,
+				[ $revision, $this ]
+			);
 		} else {
 			return false;
 		}
@@ -547,8 +553,10 @@ class WikiImporter {
 	 */
 	private function logItemCallback( $revision ) {
 		if ( isset( $this->mLogItemCallback ) ) {
-			return call_user_func_array( $this->mLogItemCallback,
-					[ $revision, $this ] );
+			return call_user_func_array(
+				$this->mLogItemCallback,
+				[ $revision, $this ]
+			);
 		} else {
 			return false;
 		}
@@ -696,7 +704,7 @@ class WikiImporter {
 
 		// Fields that can just be stuffed in the pageInfo object
 		$normalFields = [ 'id', 'comment', 'type', 'action', 'timestamp',
-					'logtitle', 'params' ];
+			'logtitle', 'params' ];
 
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
@@ -838,10 +846,13 @@ class WikiImporter {
 		//       If $pageInfo['_title'] is not set, then $foreignTitle is also not
 		//       set since they both come from $title above.
 		if ( array_key_exists( '_title', $pageInfo ) ) {
-			$this->pageOutCallback( $pageInfo['_title'], $foreignTitle,
-					$pageInfo['revisionCount'],
-					$pageInfo['successfulRevisionCount'],
-					$pageInfo );
+			$this->pageOutCallback(
+				$pageInfo['_title'],
+				$foreignTitle,
+				$pageInfo['revisionCount'],
+				$pageInfo['successfulRevisionCount'],
+				$pageInfo
+			);
 		}
 	}
 
@@ -962,9 +973,7 @@ class WikiImporter {
 
 		$text = $handler->importTransform( $contentInfo['text'] );
 
-		$content = $handler->unserializeContent( $text );
-
-		return $content;
+		return $handler->unserializeContent( $text );
 	}
 
 	/**
@@ -1030,7 +1039,7 @@ class WikiImporter {
 		$uploadInfo = [];
 
 		$normalFields = [ 'timestamp', 'comment', 'filename', 'text',
-					'src', 'size', 'sha1base36', 'archivename', 'rel' ];
+			'src', 'size', 'sha1base36', 'archivename', 'rel' ];
 
 		$skip = false;
 
@@ -1106,7 +1115,8 @@ class WikiImporter {
 		$revision->setSrc( $uploadInfo['src'] );
 		if ( isset( $uploadInfo['fileSrc'] ) ) {
 			$revision->setFileSrc( $uploadInfo['fileSrc'],
-				!empty( $uploadInfo['isTempSrc'] ) );
+				!empty( $uploadInfo['isTempSrc'] )
+			);
 		}
 		if ( isset( $uploadInfo['sha1base36'] ) ) {
 			$revision->setSha1Base36( $uploadInfo['sha1base36'] );
@@ -1132,12 +1142,14 @@ class WikiImporter {
 	 */
 	private function handleContributor() {
 		$this->debug( "Enter contributor handler." );
+
+		if ( $this->reader->isEmptyElement ) {
+			return [];
+		}
+
 		$fields = [ 'id', 'ip', 'username' ];
 		$info = [];
 
-		if ( $this->reader->isEmptyElement ) {
-			return $info;
-		}
 		while ( $this->reader->read() ) {
 			if ( $this->reader->nodeType == XMLReader::END_ELEMENT &&
 					$this->reader->localName == 'contributor' ) {
