@@ -298,7 +298,7 @@
 	"sort-descending": "ڕیزکردنی بەرەوە ژێر",
 	"sort-ascending": "ڕیزکردنی بەرەوە ژوور",
 	"nstab-main": "پەڕە",
-	"nstab-user": "پەڕەی بەکارھێنەر",
+	"nstab-user": "{{GENDER:$1|پەڕەی بەکارھێنەر}}",
 	"nstab-media": "پەڕەی میدیا",
 	"nstab-special": "پەڕەی تایبەت",
 	"nstab-project": "پەڕەی پرۆژە",

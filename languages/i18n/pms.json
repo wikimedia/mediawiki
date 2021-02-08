@@ -3246,7 +3246,7 @@
 	"duplicate-displaytitle": "<strong>Warning:</strong> ël tìtol ëd visualisassion «$2» a rampiassa ëd vej tìtol ëd visualisassion «$1».",
 	"restricted-displaytitle": "<strong>Avis:</strong> Ël tìtol mostrà \"$1\" a l'é stàit ignorà përchè a l'é pa equivalent al tìtol atual dla pàgina.",
 	"invalid-indicator-name": "<strong>Eror:</strong> l'atribù <code>name</code> dj'andicator dlë statù dla pàgina a peul nen esse veuid.",
-	"invalid-langconvert-attrs": "<strong>Eror:</strong> Le tichëtte dj'atribù Langconvert <code>from</code> e <code>to</code> a devo pa esse veuide e a devo conten-e dij còdes për dle variant convertìbij dla midema lenga.",
+	"invalid-langconvert-attrs": "<strong>Eror:</strong> Le tichëtte dj'atribù Langconvert <code>from</code> e <code>to</code> a devo pa esse veuide e a devo conten-e ij còdes BCP 47 për dle variant convertìbij dla midema lenga.",
 	"version": "Version",
 	"version-extensions": "Estension anstalà",
 	"version-skins": "Pel anstalà",

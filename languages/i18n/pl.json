@@ -3365,7 +3365,7 @@
 	"duplicate-displaytitle": "<strong>Uwaga:</strong> Wyświetlenie tytułu „$2” powoduje nadpisanie wcześniej wyświetlanego tytułu „$1”.",
 	"restricted-displaytitle": "<strong>Ostrzeżenie:</strong> Tytuł do wyświetlania \"$1\" został zignorowany, ponieważ nie jest odpowiednikiem aktualnego tytułu tej strony.",
 	"invalid-indicator-name": "<strong>Błąd:</strong> Atrybut stanu strony <code>name</code> nie może być pusty.",
-	"invalid-langconvert-attrs": "<strong>Błąd:</strong> Atrybuty <code>from</code> oraz <code>to</code> znacznika langconvert nie mogą być puste i muszą zawierać kody konwertowalnych wariantów tego samego języka.",
+	"invalid-langconvert-attrs": "<strong>Błąd:</strong> Atrybuty <code>from</code> oraz <code>to</code> znacznika langconvert nie mogą być puste i muszą zawierać kody BCP 47 konwertowalnych wariantów tego samego języka.",
 	"version": "Wersja oprogramowania",
 	"version-extensions": "Zainstalowane rozszerzenia",
 	"version-skins": "Zainstalowane skórki",
