@@ -2567,7 +2567,17 @@ class WANObjectCache implements
 		$func = $this->asyncHandler;
 		$func( function () use ( $key, $ttl, $callback, $opts, $cbParams ) {
 			$opts['minAsOf'] = INF;
-			$this->fetchOrRegenerate( $key, $ttl, $callback, $opts, $cbParams );
+			try {
+				$this->fetchOrRegenerate( $key, $ttl, $callback, $opts, $cbParams );
+			} catch ( Exception $e ) {
+				// Log some context for easier debugging
+				$this->logger->error( 'Async refresh failed for {key}', [
+					'key' => $key,
+					'ttl' => $ttl,
+					'exception' => $e
+				] );
+				throw $e;
+			}
 		} );
 
 		return true;
