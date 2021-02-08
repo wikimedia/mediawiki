@@ -20,7 +20,8 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\UserEditTracker;
 
 /**
  * Query module to get information about the currently logged-in user
@@ -35,11 +36,36 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 	/** @var array */
 	private $params = [];
+
 	/** @var array */
 	private $prop = [];
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/**
+	 * @var TalkPageNotificationManager
+	 */
+	private $talkPageNotificationManager;
+
+	/**
+	 * @var WatchedItemStore
+	 */
+	private $watchedItemStore;
+
+	/**
+	 * @var UserEditTracker
+	 */
+	private $userEditTracker;
+
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		TalkPageNotificationManager $talkPageNotificationManager,
+		WatchedItemStore $watchedItemStore,
+		UserEditTracker $userEditTracker
+	) {
 		parent::__construct( $query, $moduleName, 'ui' );
+		$this->talkPageNotificationManager = $talkPageNotificationManager;
+		$this->watchedItemStore = $watchedItemStore;
+		$this->userEditTracker = $userEditTracker;
 	}
 
 	public function execute() {
@@ -111,8 +137,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['hasmsg'] ) ) {
-			$vals['messages'] = MediaWikiServices::getInstance()
-				->getTalkPageNotificationManager()->userHasNewMessages( $user );
+			$vals['messages'] = $this->talkPageNotificationManager->userHasNewMessages( $user );
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {
@@ -216,8 +241,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['unreadcount'] ) ) {
-			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-			$unreadNotifications = $store->countUnreadNotifications(
+			$unreadNotifications = $this->watchedItemStore->countUnreadNotifications(
 				$user,
 				self::WL_UNREAD_LIMIT
 			);
@@ -295,19 +319,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 * @return string|null ISO 8601 timestamp of current user's last contribution or null if none
 	 */
 	protected function getLatestContributionTime() {
-		$user = $this->getUser();
-		$dbr = $this->getDB();
-
-		if ( $user->getActorId() === 0 ) {
+		$timestamp = $this->userEditTracker->getLatestEditTimestamp( $this->getUser() );
+		if ( $timestamp === false ) {
 			return null;
 		}
-		$res = $dbr->selectField( 'revision_actor_temp',
-			'MAX(revactor_timestamp)',
-			[ 'revactor_actor' => $user->getActorId() ],
-			__METHOD__
-		);
-
-		return $res ? wfTimestamp( TS_ISO_8601, $res ) : null;
+		return MWTimestamp::convert( TS_ISO_8601, $timestamp );
 	}
 
 	public function getAllowedParams() {
