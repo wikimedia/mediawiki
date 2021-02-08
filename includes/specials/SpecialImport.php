@@ -252,28 +252,15 @@ class SpecialImport extends SpecialPage {
 	private function getMappingFormPart( $sourceName ) {
 		$defaultNamespace = $this->getConfig()->get( 'ImportTargetNamespace' );
 		return [
-			// Hack: Break up the wpmapping radio group so they can be displayed
-			// alongside their addition inputs. This means the radios can't be
-			// infused.
-			'mapping-default' => [
+			'mapping' => [
 				'type' => 'radio',
 				'name' => 'wpmapping',
-				'label-message',
 				// mw-import-mapping-interwiki, mw-import-mapping-upload
 				'id' => "mw-import-mapping-$sourceName",
 				'options-messages' => [
 					'import-mapping-default' => 'default',
-				],
-				'default' => $defaultNamespace !== null ? 'namespace' : 'default'
-			],
-			'mapping-namespace' => [
-				'type' => 'radio',
-				'name' => 'wpmapping',
-				'label-message',
-				// mw-import-mapping-interwiki, mw-import-mapping-upload
-				'id' => "mw-import-mapping-$sourceName",
-				'options-messages' => [
 					'import-mapping-namespace' => 'namespace',
+					'import-mapping-subpage' => 'subpage'
 				],
 				'default' => $defaultNamespace !== null ? 'namespace' : 'default'
 			],
@@ -284,17 +271,6 @@ class SpecialImport extends SpecialPage {
 				'id' => "mw-import-namespace-$sourceName",
 				'default' => $defaultNamespace ?: '',
 				'all' => null
-			],
-			'mapping-subpage' => [
-				'type' => 'radio',
-				'name' => 'wpmapping',
-				'label-message',
-				// mw-import-mapping-interwiki, mw-import-mapping-upload
-				'id' => "mw-import-mapping-$sourceName",
-				'options-messages' => [
-					'import-mapping-subpage' => 'subpage'
-				],
-				'default' => $defaultNamespace !== null ? 'namespace' : 'default'
 			],
 			'rootpage' => [
 				'type' => 'text',
