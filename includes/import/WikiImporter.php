@@ -603,7 +603,6 @@ class WikiImporter {
 		// libxml_disable_entity_loader() to avoid local file
 		// inclusion attacks (T48932).
 		$oldDisable = libxml_disable_entity_loader( true );
-		$rethrow = null;
 		try {
 			$this->reader->read();
 
