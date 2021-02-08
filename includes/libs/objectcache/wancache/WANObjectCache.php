@@ -760,6 +760,8 @@ class WANObjectCache implements
 			);
 		}
 
+		$this->checkValueSerializability( $key, $value );
+
 		// Wrap that value with time/TTL/version metadata
 		$wrapped = $this->wrap( $value, $logicalTTL ?: $ttl, $version, $now, $walltime );
 		$storeTTL = $ttl + $staleTTL;
@@ -1638,6 +1640,28 @@ class WANObjectCache implements
 			$this->cache->changeTTL(
 				$this->makeSisterKey( $key, self::TYPE_MUTEX ),
 				$this->getCurrentTime() - 60
+			);
+		}
+	}
+
+	/**
+	 * Check for ability to serialize $value
+	 *
+	 * @param string $cacheKey
+	 * @param mixed $value
+	 */
+	private function checkValueSerializability( $cacheKey, $value ) {
+		// For now, we just try and see if serialize() will explode.
+		// In the future, we will want to warn when encountering any
+		// data that is not JSON-serializable, see T274189.
+		try {
+			serialize( $value );
+		} catch ( Exception $ex ) {
+			// Throw an exception that contains the cache key,
+			// to make it easier to find the code that supplied the offending value.
+			// This code may not be obvious from the stack trace, see T273242.
+			throw new InvalidArgumentException(
+				"Encountered unserializable value for $cacheKey: {$ex->getMessage()}", 0, $ex
 			);
 		}
 	}
