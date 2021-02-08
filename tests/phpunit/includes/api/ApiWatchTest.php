@@ -7,8 +7,6 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group API
  * @group Database
  * @group medium
- * @todo This test suite is severely broken and need a full review
- *
  * @covers ApiWatch
  */
 class ApiWatchTest extends ApiTestCase {
@@ -222,15 +220,14 @@ class ApiWatchTest extends ApiTestCase {
 		$this->assertArrayHasKey( 0, $pageInfo['revisions'] );
 		$this->assertArrayHasKey( 'rollbacktoken', $revInfo );
 
-		return [ $data, $revInfo, $contextUser ];
+		return [ $revInfo['user'], $contextUser ];
 	}
 
 	/**
 	 * @depends testGetRollbackToken
 	 */
 	public function testWatchRollback( $info ) {
-		list( $data, $revInfo, $contextUser ) = $info;
-
+		list( $revUser, $contextUser ) = $info;
 		$title = Title::makeTitle( NS_HELP, 'UTPage' );
 
 		// This (and assertTrue below) are mostly for completeness.
@@ -239,7 +236,7 @@ class ApiWatchTest extends ApiTestCase {
 		$data = $this->doApiRequest( [
 			'action' => 'rollback',
 			'title' => 'Help:UTPage',
-			'user' => $revInfo['user'],
+			'user' => $revUser,
 			'token' => $contextUser->getEditToken( 'rollback' ),
 			'watchlist' => 'watch'
 		] );
