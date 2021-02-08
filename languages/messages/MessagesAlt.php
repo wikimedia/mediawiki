@@ -15,7 +15,6 @@ $namespaceNames = [
 	NS_TALK             => 'Шӱӱжӱ',
 	NS_USER             => 'Туружаачы',
 	NS_USER_TALK        => 'Туружаачыны_шӱӱжери',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_шӱӱжери',
 	NS_FILE             => 'Файл',
 	NS_FILE_TALK        => 'Файлды_шӱӱжери',
