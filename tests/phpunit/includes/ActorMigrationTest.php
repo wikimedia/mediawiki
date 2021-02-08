@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -70,7 +71,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		return new ActorMigration(
 			$stage,
 			$mwServices->getUserFactory(),
-			$mwServices->getUserNameUtils()
+			$mwServices->getActorStoreFactory()
 		);
 	}
 
@@ -311,23 +312,15 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideGetWhere() {
-		$makeUserIdentity = function ( $id, $name, $actor ) {
-			$u = $this->createMock( UserIdentity::class );
-			$u->method( 'getId' )->willReturn( $id );
-			$u->method( 'getName' )->willReturn( $name );
-			$u->method( 'getActorId' )->willReturn( $actor );
-			return $u;
-		};
-
-		$genericUser = $makeUserIdentity( 1, 'User1', 11 );
+		$genericUser = new UserIdentityValue( 1, 'User1', 11 );
 		$complicatedUsers = [
-			$makeUserIdentity( 1, 'User1', 11 ),
-			$makeUserIdentity( 2, 'User2', 12 ),
-			$makeUserIdentity( 3, 'User3', 0 ),
-			$makeUserIdentity( 0, '192.168.12.34', 34 ),
-			$makeUserIdentity( 0, '192.168.12.35', 0 ),
+			new UserIdentityValue( 1, 'User1', 11 ),
+			new UserIdentityValue( 2, 'User2', 12 ),
+			new UserIdentityValue( 3, 'User3', 0 ),
+			new UserIdentityValue( 0, '192.168.12.34', 34 ),
+			new UserIdentityValue( 0, '192.168.12.35', 0 ),
 			// test handling of non-normalized IPv6 IP
-			$makeUserIdentity( 0, '2600:1004:b14a:5ddd:3ebe:bba4:bfba:f37e', 0 ),
+			new UserIdentityValue( 0, '2600:1004:b14a:5ddd:3ebe:bba4:bfba:f37e', 0 ),
 		];
 
 		return [
@@ -547,10 +540,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertRoundTrip( $table, $key, $pk, $usesTemp ) {
 		$u = $this->getTestUser()->getUser();
-		$user = $this->createMock( UserIdentity::class );
-		$user->method( 'getId' )->willReturn( $u->getId() );
-		$user->method( 'getName' )->willReturn( $u->getName() );
-		$user->method( 'getActorId' )->willReturn( $u->getActorId( $this->db ) );
+		$user = new UserIdentityValue( $u->getUserId(), $u->getName(), $u->getActorId( $this->db ) );
 
 		$stageNames = [
 			SCHEMA_COMPAT_OLD => 'old',
@@ -727,10 +717,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertUserIdentity( $stage ) {
 		$user = $this->getMutableTestUser()->getUser();
-		$userIdentity = $this->createMock( UserIdentity::class );
-		$userIdentity->method( 'getId' )->willReturn( $user->getId() );
-		$userIdentity->method( 'getName' )->willReturn( $user->getName() );
-		$userIdentity->method( 'getActorId' )->willReturn( 0 );
+		$userIdentity = new UserIdentityValue( $user->getUserId(), $user->getName(), 0 );
 
 		$m = $this->getMigration( $stage );
 		list( $fields, $callback ) =

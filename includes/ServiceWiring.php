@@ -114,6 +114,7 @@ use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
@@ -138,7 +139,16 @@ return [
 		return new ActorMigration(
 			SCHEMA_COMPAT_NEW,
 			$services->getUserFactory(),
-			$services->getUserNameUtils()
+			$services->getActorStoreFactory()
+		);
+	},
+
+	'ActorStoreFactory' => function ( MediaWikiServices $services ) : ActorStoreFactory {
+		return new ActorStoreFactory(
+			new ServiceOptions( ActorStoreFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getDBLoadBalancerFactory(),
+			$services->getUserNameUtils(),
+			LoggerFactory::getInstance( 'ActorStore' )
 		);
 	},
 

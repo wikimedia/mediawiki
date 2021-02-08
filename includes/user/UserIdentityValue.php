@@ -186,4 +186,18 @@ class UserIdentityValue implements UserIdentity {
 	public function isRegistered() : bool {
 		return $this->getId() != 0;
 	}
+
+	/**
+	 * Sets the actor id.
+	 *
+	 * This method is deprecated upon introduction. It only exists for transition to ActorStore,
+	 * and will be removed shortly - T274148
+	 *
+	 * @internal
+	 * @deprecated since 1.36
+	 * @param int $actorId
+	 */
+	public function setActorId( int $actorId ) {
+		$this->actor = $actorId;
+	}
 }

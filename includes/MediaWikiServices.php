@@ -77,6 +77,9 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\RevertedTagUpdateManager;
+use MediaWiki\User\ActorNormalization;
+use MediaWiki\User\ActorStore;
+use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
@@ -543,6 +546,30 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getActorMigration() : ActorMigration {
 		return $this->getService( 'ActorMigration' );
+	}
+
+	/**
+	 * @return ActorStore
+	 * @since 1.36
+	 */
+	public function getActorNormalization() : ActorNormalization {
+		return $this->getActorStoreFactory()->getActorNormalization();
+	}
+
+	/**
+	 * @return ActorStore
+	 * @since 1.36
+	 */
+	public function getActorStore() : ActorStore {
+		return $this->getActorStoreFactory()->getActorStore();
+	}
+
+	/**
+	 * @since 1.36
+	 * @return ActorStoreFactory
+	 */
+	public function getActorStoreFactory() : ActorStoreFactory {
+		return $this->getService( 'ActorStoreFactory' );
 	}
 
 	/**
