@@ -287,7 +287,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 			$provided = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
 			$stored = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
 
-			wfDeprecatedMsg( "Expected RevisionRecord to belong to $provided, "
+			wfDeprecatedMsg( __METHOD__ . ": Expected RevisionRecord to belong to $provided, "
 			. "but it belongs to $stored", '1.36' );
 			return $this->mId;
 		}
@@ -304,9 +304,18 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * MCR migration note: this replaces Revision::getParentId
 	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int|null
 	 */
-	public function getParentId() {
+	public function getParentId( $wikiId = self::LOCAL ) {
+		if ( $wikiId !== $this->getWikiId() ) {
+			$provided = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
+			$stored = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
+
+			wfDeprecatedMsg( __METHOD__ . ": Expected RevisionRecord to belong to $provided, "
+			. "but it belongs to $stored", '1.36' );
+			return $this->mParentId;
+		}
 		return $this->mParentId;
 	}
 
@@ -340,9 +349,18 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * MCR migration note: this replaces Revision::getPage
 	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int
 	 */
-	public function getPageId() {
+	public function getPageId( $wikiId = self::LOCAL ) {
+		if ( $wikiId !== $this->getWikiId() ) {
+			$provided = $wikiId === self::LOCAL ? 'the local wiki' : "'{$wikiId}'";
+			$stored = $this->getWikiId() === self::LOCAL ? 'the local wiki' : "'{$this->getWikiId()}'";
+
+			wfDeprecatedMsg( __METHOD__ . ": Expected RevisionRecord to belong to $provided, "
+			. "but it belongs to $stored", '1.36' );
+			return $this->mPageId;
+		}
 		return $this->mPageId;
 	}
 

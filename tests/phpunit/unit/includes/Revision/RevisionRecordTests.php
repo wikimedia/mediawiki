@@ -49,15 +49,53 @@ trait RevisionRecordTests {
 	public function testGetIdTriggerDeprecatedWarning() {
 		MWDebug::clearDeprecationFilters();
 		$this->expectDeprecation();
-		$this->expectDeprecationMessageMatches( '/Expected RevisionRecord to belong to .*/' );
+		$this->expectDeprecationMessageMatches( '/.*getId: Expected RevisionRecord to belong to .*/' );
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
 		$revision->getId();
 	}
 
 	public function testGetIdDeprecated() {
 		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_id' => 5 ] );
-		$this->filterDeprecated( '/Expected RevisionRecord to belong to .*/' );
+		$this->filterDeprecated( '/.*getId: Expected RevisionRecord to belong to .*/' );
 		$this->assertEquals( 5, $revision->getId() );
+	}
+
+	public function testGetPageIdSuccessful() {
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_page_id' => 17 ] );
+		$this->assertEquals( 17, $revision->getPageId( 'acmewiki' ) );
+	}
+
+	public function testGetPageIdTriggerDeprecatedWarning() {
+		MWDebug::clearDeprecationFilters();
+		$this->expectDeprecation();
+		$this->expectDeprecationMessageMatches( '/.*getPageId: Expected RevisionRecord to belong to .*/' );
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_page_id' => 17 ] );
+		$revision->getPageId();
+	}
+
+	public function testGetPageIdDeprecated() {
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_page_id' => 17 ] );
+		$this->filterDeprecated( '/.*getPageId: Expected RevisionRecord to belong to .*/' );
+		$this->assertEquals( 17, $revision->getPageId() );
+	}
+
+	public function testGetParentIdSuccessful() {
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_parent_id' => 1 ] );
+		$this->assertEquals( 1, $revision->getParentId( 'acmewiki' ) );
+	}
+
+	public function testGetParentIdTriggerDeprecatedWarning() {
+		MWDebug::clearDeprecationFilters();
+		$this->expectDeprecation();
+		$this->expectDeprecationMessageMatches( '/.*getParentId: Expected RevisionRecord to belong to .*/' );
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_parent_id' => 1 ] );
+		$revision->getParentId();
+	}
+
+	public function testGetParentIdDeprecated() {
+		$revision = $this->newRevision( [ 'wikiId' => 'acmewiki', 'rev_parent_id' => 1 ] );
+		$this->filterDeprecated( '/.*getParentId: Expected RevisionRecord to belong to .*/' );
+		$this->assertEquals( 1, $revision->getParentId() );
 	}
 
 	private function provideAudienceCheckData( $field ) {

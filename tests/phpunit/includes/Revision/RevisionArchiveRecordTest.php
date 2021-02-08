@@ -161,15 +161,15 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( (int)$row->ar_id, $rec->getArchiveId(), 'getArchiveId' );
 		$this->assertSame( (int)$row->ar_rev_id, $rec->getId( $wikiId ), 'getId' );
-		$this->assertSame( (int)$row->ar_page_id, $rec->getPageId(), 'getId' );
+		$this->assertSame( (int)$row->ar_page_id, $rec->getPageId( $wikiId ), 'getId' );
 		$this->assertSame( $row->ar_timestamp, $rec->getTimestamp(), 'getTimestamp' );
 		$this->assertSame( (int)$row->ar_deleted, $rec->getVisibility(), 'getVisibility' );
 		$this->assertSame( (bool)$row->ar_minor_edit, $rec->isMinor(), 'getIsMinor' );
 
 		if ( isset( $row->ar_parent_id ) ) {
-			$this->assertSame( (int)$row->ar_parent_id, $rec->getParentId(), 'getParentId' );
+			$this->assertSame( (int)$row->ar_parent_id, $rec->getParentId( $wikiId ), 'getParentId' );
 		} else {
-			$this->assertSame( 0, $rec->getParentId(), 'getParentId' );
+			$this->assertSame( 0, $rec->getParentId( $wikiId ), 'getParentId' );
 		}
 
 		if ( isset( $row->ar_len ) ) {

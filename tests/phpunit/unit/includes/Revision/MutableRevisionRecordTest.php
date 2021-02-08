@@ -47,8 +47,12 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 			$record->setId( $rowOverrides['rev_id'] );
 		}
 
-		if ( isset( $rowOverrides['rev_page'] ) ) {
-			$record->setPageId( $rowOverrides['rev_page'] );
+		if ( isset( $rowOverrides['rev_page_id'] ) ) {
+			$record->setPageId( $rowOverrides['rev_page_id'] );
+		}
+
+		if ( isset( $rowOverrides['rev_parent_id'] ) ) {
+			$record->setParentId( $rowOverrides['rev_parent_id'] );
 		}
 
 		$record->setContent( SlotRecord::MAIN, new DummyContentForTesting( 'Lorem Ipsum' ) );
