@@ -882,7 +882,7 @@
 	"userinvalidconfigtitle": "<strong>Atención:</strong> no existe la apariencia «$1».\nLas páginas de archivos .css, .json y .js personalizados comienzan por minúscula; p. ej., se usa «{{ns:user}}:Ejemplo/vector.css» en vez de «{{ns:user}}:Ejemplo/Vector.css».",
 	"updated": "(Actualizado)",
 	"note": "<strong>Nota:</strong>",
-	"previewnote": "<strong>Recuerda que esto no es más que una previsualización.</strong>\nAún no se han grabado tus cambios.",
+	"previewnote": "<strong>Recuerda que esto es solo una previsualización.</strong>\n¡Aún no se han publicado tus cambios!",
 	"continue-editing": "Ir al área de edición",
 	"previewconflict": "Esta previsualización muestra cómo aparecerá el texto en el área de edición superior una vez publicados los cambios.",
 	"session_fail_preview": "Lo sentimos, no hemos podido procesar tu edición debido a una pérdida de los datos de sesión.\n\nPuede que se haya cerrado tu sesión. <strong> Verifica que hayas accedido e inténtalo de nuevo</strong>.\nSi el problema persiste, prueba a [[Special:UserLogout|cerrar sesión]] y volver a acceder. Y verifica que tu navegador permita las cookies de este sitio.",

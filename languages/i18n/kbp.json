@@ -284,7 +284,7 @@
 	"loginreqlink": "kpɩtɩna",
 	"newarticletext": "Ŋtɩŋa takayɩhayʋʋ mantatɩɩwɛda yɔɔ kpayaɣ. Pʋcɔ ŋpɩzɩ ŋlɩzɩ-kʋ lɛ, ma ñɔ-tɔm aɖakaɣ ŋga kɛwɛ pɩ-tɛɛ yɔ ka-taa (Ŋpɩzɩɣ ŋcɔna [$1 sɩnaʋ takayɩhayʋʋ] yɔɔ nɛ ŋtasɩ pɩ-taa nɩʋ ɖeu). Yee piyiɣdi-ŋ nɛ ŋtalɩ cɩnɛ yɔ, tukina tʋʋzɩtʋ kʋtɔŋ \"kɩpɩsʋʋ\" yɔɔ.",
 	"noarticletext": "Tɔm natʋyʋ tatɩɩwɛta takayɩhayʋʋ kʋnɛ kʋ-yɔɔ. Ɛlɛ, ŋpɩzɩɣ ŋñɩnɩ tɔm ndʋ takayɩhatʋ lɛɛtʋ yɔɔ, n<span class=\\\"plainlinks\\\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} ñɩnɩ labɩtʋ kɩtamtʋ taa]\\nyaa [{{fullurl:{{FULLPAGENAME}}|action=edit}} lɩzɩ takayɩhayʋʋ kʋnɛ]</span>.\"",
-	"noarticletext-nopermission": "Tɔm natʋyʋ tatɩɩwɛta takayɩhayʋʋ kʋnɛ kʋ-yɔɔ.\nŊpɩzɩɣ [[Special:Search/{{PAGENAME}}ŋñɩnɩ |tɔm hɩɖɛ nɖɩ]] takayɩhatʋ lɛɛtʋ taa, ya <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} alɩwaatʋ loyisi nzɩ pɛkpɛnda yɔ sɩ-taa]</span>.\"\nTɩŋɩ Wiki yɔɔ wayɩ wayɩ ñɔɔzɩtʋ takayɩhayʋʋ kʋnɛ kʋ-yɔɔ.",
+	"noarticletext-nopermission": "Tɔm natʋyʋ tatɩɩwɛta takayɩhayʋʋ kʋnɛ kʋ-yɔɔ.\nŊpɩzɩɣ [[Special:Search/{{PAGENAME}}ŋñɩnɩ |tɔm hɩɖɛ nɖɩ]] takayɩhatʋ lɛɛtʋ taa, ya <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{FULLPAGENAMEE}}}} alɩwaatʋ loyisi nzɩ pɛkpɛnda yɔ sɩ-taa]</span>.\nTɩŋɩ Wiki yɔɔ wayɩ wayɩ ñɔɔzɩtʋ takayɩhayʋʋ kʋnɛ kʋ-yɔɔ.",
 	"editing": "$1 ñɔɔzɩtʋ",
 	"creating": "$1 lɩzɩtʋ",
 	"editingsection": "$1 ñɔɔzɩtʋ (hɔɔluʋ)",
