@@ -34,19 +34,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.16
-			[ 'addTable', 'user_properties', 'patch-user_properties.sql' ],
-			[ 'addTable', 'log_search', 'patch-log_search.sql' ],
-			[ 'ifTableNotExists', 'actor',
-				'addField', 'logging', 'log_user_text', 'patch-log_user_text.sql' ],
-			# listed separately from the previous update because 1.16 was released without this update
-			[ 'ifTableNotExists', 'actor', 'doLogUsertextPopulation' ],
-			[ 'doLogSearchPopulation' ],
-			[ 'addTable', 'l10n_cache', 'patch-l10n_cache.sql' ],
-			[ 'dropIndex', 'change_tag', 'ct_rc_id', 'patch-change_tag-indexes.sql' ],
-			[ 'addField', 'redirect', 'rd_interwiki', 'patch-rd_interwiki.sql' ],
-			[ 'sqliteSetupSearchindex' ],
-
 			// 1.17
 			[ 'addTable', 'iwlinks', 'patch-iwlinks.sql' ],
 			[ 'addIndex', 'iwlinks', 'iwl_prefix_title_from', 'patch-rename-iwl_prefix.sql' ],
