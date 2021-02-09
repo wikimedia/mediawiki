@@ -376,6 +376,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ],
 			[ 'dropFkey', 'recentchanges', 'rc_cur_id' ],
 
+			// **** T272199 MARKER ****
+
 			// 1.27
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
@@ -1526,6 +1528,9 @@ END;
 		}
 	}
 
+	/**
+	 * MW 1.17
+	 */
 	protected function checkIwlPrefix() {
 		if ( $this->db->indexExists( 'iwlinks', 'iwl_prefix', __METHOD__ ) ) {
 			$this->applyPatch(

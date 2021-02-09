@@ -34,18 +34,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.17
-			[ 'addTable', 'iwlinks', 'patch-iwlinks.sql' ],
-			[ 'addIndex', 'iwlinks', 'iwl_prefix_title_from', 'patch-rename-iwl_prefix.sql' ],
-			[ 'addField', 'updatelog', 'ul_value', 'patch-ul_value.sql' ],
-			[ 'addField', 'interwiki', 'iw_api', 'patch-iw_api_and_wikiid.sql' ],
-			[ 'dropIndex', 'iwlinks', 'iwl_prefix', 'patch-kill-iwl_prefix.sql' ],
-			[ 'addField', 'categorylinks', 'cl_collation', 'patch-categorylinks-better-collation.sql' ],
-			[ 'addTable', 'module_deps', 'patch-module_deps.sql' ],
-			[ 'dropIndex', 'archive', 'ar_page_revid', 'patch-archive_kill_ar_page_revid.sql' ],
-			[ 'addIndexIfNoneExist',
-				'archive', [ 'ar_revid', 'ar_revid_uniq' ], 'patch-archive_ar_revid.sql' ],
-
 			// 1.18
 			[ 'addIndex', 'user', 'user_email', 'patch-user_email_index.sql' ],
 			[ 'addTable', 'uploadstash', 'patch-uploadstash.sql' ],
