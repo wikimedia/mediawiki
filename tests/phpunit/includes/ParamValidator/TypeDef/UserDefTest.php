@@ -16,10 +16,8 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class UserDefTest extends TypeDefTestCase {
 
-	protected static $testClass = UserDef::class;
-
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
-		return new static::$testClass(
+		return new UserDef(
 			$callbacks,
 			MediaWikiServices::getInstance()->getUserFactory(),
 			MediaWikiServices::getInstance()->getTitleFactory(),

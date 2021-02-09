@@ -3,13 +3,16 @@
 namespace Wikimedia\ParamValidator\TypeDef;
 
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 
 /**
  * @covers Wikimedia\ParamValidator\TypeDef\PresenceBooleanDef
  */
 class PresenceBooleanDefTest extends TypeDefTestCase {
 
-	protected static $testClass = PresenceBooleanDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new PresenceBooleanDef( $callbacks, $options );
+	}
 
 	public function provideValidate() {
 		return [
