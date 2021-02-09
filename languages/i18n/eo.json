@@ -3006,7 +3006,7 @@
 	"group-sysop.js": "/* La jena Ĝavaskripto sole ŝargiĝos por administrantoj. */",
 	"group-bureaucrat.js": "/* La jena Ĝavaskripto sole ŝargiĝos por burokratoj. */",
 	"anonymous": "{{PLURAL:$1|Anonima uzanto|Anonimaj uzantoj}} de {{SITENAME}}",
-	"siteuser": "{{SITENAME}} uzanto $1",
+	"siteuser": "uzanto $1 de {{SITENAME}}",
 	"anonuser": "{{SITENAME}}-anonimulo $1",
 	"lastmodifiedatby": "Ĉi paĝo estis laste ŝanĝita je $2, $1 de $3.",
 	"othercontribs": "Bazita sur la laboro de $1.",
