@@ -364,23 +364,13 @@ a.new {
 	color: #14866d;
 }
 
-/* general info/warning box for SP */
-.mw-infobox {
-	border: 2px solid #fc3;
-	margin: 0.5em;
-	clear: left;
-	overflow: hidden;
-}
-
-.mw-infobox-left {
-	margin: 7px;
-	float: left;
-	width: 35px;
-}
-
-.mw-infobox-right {
-	margin: 0.5em 0.5em 0.5em 49px;
-}
+/**
+ * `HTML::infobox` `.mw-infobox` class.
+ *
+ * Deprecated since 1.36.
+ */
+// Deprecate on directory base to uniquely mark its status.
+@import 'deprecated/mw-infobox.less';
 
 /* Note on preview page */
 .previewnote {
