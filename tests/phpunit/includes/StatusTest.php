@@ -741,7 +741,7 @@ class StatusTest extends MediaWikiLangTestCase {
 			->getMockForAbstractClass();
 		$messageLocalizer->expects( $this->atLeastOnce() )
 			->method( 'msg' )
-			->willReturnCallback( function ( $key ) {
+			->willReturnCallback( static function ( $key ) {
 				return new RawMessage( $key );
 			} );
 		/** @var MessageLocalizer $messageLocalizer */

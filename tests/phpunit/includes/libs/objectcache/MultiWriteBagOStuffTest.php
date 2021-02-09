@@ -58,7 +58,7 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 	public function testSyncMerge() {
 		$key = 'keyA';
 		$value = 'value';
-		$func = function () use ( $value ) {
+		$func = static function () use ( $value ) {
 			return $value;
 		};
 

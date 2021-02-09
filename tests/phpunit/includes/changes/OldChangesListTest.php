@@ -123,7 +123,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 		$recentChange = $this->getEditChange();
 		$recentChange->mAttribs['ts_tags'] = 'vandalism,newbie';
 
-		$this->setTemporaryHook( 'OldChangesListRecentChangesLine', function (
+		$this->setTemporaryHook( 'OldChangesListRecentChangesLine', static function (
 			$oldChangesList, &$html, $rc, $classes, $attribs
 		) {
 			$html = $html . '/<div>Additional change line </div>/';

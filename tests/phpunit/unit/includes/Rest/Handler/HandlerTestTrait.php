@@ -57,7 +57,7 @@ trait HandlerTestTrait {
 		Authority $authority = null
 	) {
 		$formatter = $this->createMock( ITextFormatter::class );
-		$formatter->method( 'format' )->willReturnCallback( function ( MessageValue $msg ) {
+		$formatter->method( 'format' )->willReturnCallback( static function ( MessageValue $msg ) {
 			return $msg->dump();
 		} );
 
@@ -66,7 +66,7 @@ trait HandlerTestTrait {
 
 		/** @var Router|MockObject $router */
 		$router = $this->createNoOpMock( Router::class, [ 'getRouteUrl' ] );
-		$router->method( 'getRouteUrl' )->willReturnCallback( function ( $route, $path = [], $query = [] ) {
+		$router->method( 'getRouteUrl' )->willReturnCallback( static function ( $route, $path = [], $query = [] ) {
 			foreach ( $path as $param => $value ) {
 				$route = str_replace( '{' . $param . '}', urlencode( $value ), $route );
 			}

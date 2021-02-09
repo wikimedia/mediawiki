@@ -373,7 +373,7 @@ just a test"
 		$redirectTarget = null;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'InternalParseBeforeLinks' => [
-				function ( Parser $parser, $text, $stripState ) use ( &$wikitext, &$redirectTarget ) {
+				static function ( Parser $parser, $text, $stripState ) use ( &$wikitext, &$redirectTarget ) {
 					$wikitext = $text;
 					$redirectTarget = $parser->getOptions()->getRedirectTarget();
 				}

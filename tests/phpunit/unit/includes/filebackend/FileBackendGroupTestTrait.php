@@ -330,7 +330,7 @@ trait FileBackendGroupTestTrait {
 			'class' => '',
 			'lockManager' => 'fsLockManager',
 			'fileJournal' => [ 'factory' =>
-				function () use ( $mockJournal ) {
+				static function () use ( $mockJournal ) {
 					return $mockJournal;
 				}
 			],

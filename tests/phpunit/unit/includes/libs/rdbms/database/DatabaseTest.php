@@ -185,7 +185,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->clearFlag( DBO_TRX );
 		$called = false;
 		$flagSet = null;
-		$callback = function ( $trigger, IDatabase $db ) use ( &$flagSet, &$called ) {
+		$callback = static function ( $trigger, IDatabase $db ) use ( &$flagSet, &$called ) {
 			$called = true;
 			$flagSet = $db->getFlag( DBO_TRX );
 		};
@@ -208,7 +208,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$db->clearFlag( DBO_TRX );
 		$db->onTransactionCommitOrIdle(
-			function ( $trigger, IDatabase $db ) {
+			static function ( $trigger, IDatabase $db ) {
 				$db->setFlag( DBO_TRX );
 			},
 			__METHOD__
@@ -237,7 +237,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$called = false;
 		$flagSet = null;
-		$callback = function () use ( $db, &$flagSet, &$called ) {
+		$callback = static function () use ( $db, &$flagSet, &$called ) {
 			$called = true;
 			$flagSet = $db->getFlag( DBO_TRX );
 		};
@@ -268,7 +268,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$db->setFlag( DBO_TRX );
 		try {
-			$db->onTransactionCommitOrIdle( function () {
+			$db->onTransactionCommitOrIdle( static function () {
 				throw new RuntimeException( 'test' );
 			} );
 			$this->fail( "Exception not thrown" );
@@ -290,7 +290,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 
 		$called = false;
 		$db->onTransactionPreCommitOrIdle(
-			function ( IDatabase $db ) use ( &$called ) {
+			static function ( IDatabase $db ) use ( &$called ) {
 				$called = true;
 			},
 			__METHOD__
@@ -300,7 +300,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->begin( __METHOD__ );
 		$called = false;
 		$db->onTransactionPreCommitOrIdle(
-			function ( IDatabase $db ) use ( &$called ) {
+			static function ( IDatabase $db ) use ( &$called ) {
 				$called = true;
 			},
 			__METHOD__
@@ -331,7 +331,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertFalse( $lb->hasMasterChanges() );
 		$this->assertTrue( $db->getFlag( DBO_TRX ), 'DBO_TRX is set' );
 		$called = false;
-		$callback = function ( IDatabase $db ) use ( &$called ) {
+		$callback = static function ( IDatabase $db ) use ( &$called ) {
 			$called = true;
 		};
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
@@ -369,7 +369,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->clearFlag( DBO_TRX );
 		$db->begin( __METHOD__ );
 		$called = false;
-		$db->onTransactionResolution( function ( $trigger, IDatabase $db ) use ( &$called ) {
+		$db->onTransactionResolution( static function ( $trigger, IDatabase $db ) use ( &$called ) {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );
@@ -380,7 +380,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->clearFlag( DBO_TRX );
 		$db->begin( __METHOD__ );
 		$called = false;
-		$db->onTransactionResolution( function ( $trigger, IDatabase $db ) use ( &$called ) {
+		$db->onTransactionResolution( static function ( $trigger, IDatabase $db ) use ( &$called ) {
 			$called = true;
 			$db->setFlag( DBO_TRX );
 		} );
@@ -395,7 +395,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	public function testTransactionListener() {
 		$db = $this->db;
 
-		$db->setTransactionListener( 'ping', function () use ( $db, &$called ) {
+		$db->setTransactionListener( 'ping', static function () use ( $db, &$called ) {
 			$called = true;
 		} );
 

@@ -375,7 +375,7 @@ class ParserTestRunner {
 		MediaWikiServices::getInstance()->disableService( 'MediaHandlerFactory' );
 		MediaWikiServices::getInstance()->redefineService(
 			'MediaHandlerFactory',
-			function ( MediaWikiServices $services ) {
+			static function ( MediaWikiServices $services ) {
 				$handlers = $services->getMainConfig()->get( 'ParserTestMediaHandlers' );
 				return new MediaHandlerFactory( $handlers );
 			}
@@ -877,7 +877,7 @@ class ParserTestRunner {
 
 			$oldCallback = $options->getCurrentRevisionRecordCallback();
 			$options->setCurrentRevisionRecordCallback(
-				function ( Title $t, $parser = null ) use ( $title, $revRecord, $oldCallback ) {
+				static function ( Title $t, $parser = null ) use ( $title, $revRecord, $oldCallback ) {
 					if ( $t->equals( $title ) ) {
 						return $revRecord;
 					} else {
@@ -938,7 +938,7 @@ class ParserTestRunner {
 		$teardownGuard = $this->perTestSetup( $test );
 		[ $title, $options, $revId ] = $this->setupParserOptions(
 			(object)$test,
-			function ( $context, $title, $revId, $wikitext ) {
+			static function ( $context, $title, $revId, $wikitext ) {
 				return ParserOptions::newFromContext( $context );
 			}
 		);
@@ -949,12 +949,12 @@ class ParserTestRunner {
 		if ( isset( $opts['styletag'] ) ) {
 			// For testing the behavior of <style> (including those deduplicated
 			// into <link> tags), add tag hooks to allow them to be generated.
-			$parser->setHook( 'style', function ( $content, $attributes, $parser ) {
+			$parser->setHook( 'style', static function ( $content, $attributes, $parser ) {
 				$marker = Parser::MARKER_PREFIX . '-style-' . md5( $content ) . Parser::MARKER_SUFFIX;
 				$parser->mStripState->addNoWiki( $marker, $content );
 				return Html::inlineStyle( $marker, 'all', $attributes );
 			} );
-			$parser->setHook( 'link', function ( $content, $attributes, $parser ) {
+			$parser->setHook( 'link', static function ( $content, $attributes, $parser ) {
 				return Html::element( 'link', $attributes );
 			} );
 		}
@@ -1106,7 +1106,7 @@ class ParserTestRunner {
 		$teardownGuard = $this->perTestSetup( $test );
 		[ $title, $options, $revId ] = $this->setupParserOptions(
 			$test,
-			function ( $context, $title, $revId, $wikitext ) use ( $pageConfigFactory, &$pageConfig ) {
+			static function ( $context, $title, $revId, $wikitext ) use ( $pageConfigFactory, &$pageConfig ) {
 				$pageConfig = $pageConfigFactory->create(
 					$title,
 					$context->getUser(),
@@ -1256,7 +1256,7 @@ class ParserTestRunner {
 			MediaWikiServices::getInstance()->disableService( 'ContentLanguage' );
 			MediaWikiServices::getInstance()->redefineService(
 				'ContentLanguage',
-				function () use ( $lang ) {
+				static function () use ( $lang ) {
 					return $lang;
 				}
 			);
@@ -1711,7 +1711,7 @@ class ParserTestRunner {
 			$setup[] = static function () use ( $lang ) {
 				$services = MediaWikiServices::getInstance();
 				$services->disableService( 'ContentLanguage' );
-				$services->redefineService( 'ContentLanguage', function () use ( $lang ) {
+				$services->redefineService( 'ContentLanguage', static function () use ( $lang ) {
 					return $lang;
 				} );
 			};

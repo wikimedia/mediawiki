@@ -177,7 +177,7 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->editPage( $name, 'Some text' );
 
 		$this->setTemporaryHook( 'ArticleDelete',
-			function () {
+			static function () {
 				return false;
 			}
 		);

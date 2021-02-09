@@ -20,7 +20,7 @@ class SpecialContributionsTest extends SpecialPageTestBase {
 		] );
 		$this->setTemporaryHook(
 			'SpecialContributionsBeforeMainOutput',
-			function () {
+			static function () {
 				return;
 			}
 		);

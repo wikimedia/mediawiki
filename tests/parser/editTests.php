@@ -409,7 +409,7 @@ class ParserEditTests extends Maintenance {
 			return false;
 		}
 		$result = TestFileEditor::edit( $text, $deletions, $changes,
-			function ( $msg ) {
+			static function ( $msg ) {
 				print "$msg\n";
 			}
 		);

@@ -34,7 +34,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 				[ 'class' => \DummySessionProvider::class ],
 			]
 		] );
-		$this->logger = new \TestLogger( false, function ( $m ) {
+		$this->logger = new \TestLogger( false, static function ( $m ) {
 			return ( strpos( $m, 'SessionBackend ' ) === 0
 				|| strpos( $m, 'SessionManager using store ' ) === 0
 				// These were added for T264793 and behave somewhat erratically, not worth testing
@@ -52,7 +52,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function objectCacheDef( $object ) {
-		return [ 'factory' => function () use ( $object ) {
+		return [ 'factory' => static function () use ( $object ) {
 			return $object;
 		} ];
 	}
@@ -75,7 +75,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$rProp->setAccessible( true );
 		$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
 		$oldEnable = $handler->enable;
-		$reset[] = new \Wikimedia\ScopedCallback( function () use ( $handler, $oldEnable ) {
+		$reset[] = new \Wikimedia\ScopedCallback( static function () use ( $handler, $oldEnable ) {
 			if ( $handler->enable ) {
 				session_write_close();
 			}
@@ -160,11 +160,11 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider1 = $providerBuilder->getMock();
 		$provider1->expects( $this->any() )->method( 'provideSessionInfo' )
 			->with( $this->identicalTo( $request ) )
-			->will( $this->returnCallback( function ( $request ) {
+			->will( $this->returnCallback( static function ( $request ) {
 				return $request->info1;
 			} ) );
 		$provider1->expects( $this->any() )->method( 'newSessionInfo' )
-			->will( $this->returnCallback( function () use ( $idEmpty, $provider1 ) {
+			->will( $this->returnCallback( static function () use ( $idEmpty, $provider1 ) {
 				return new SessionInfo( SessionInfo::MIN_PRIORITY, [
 					'provider' => $provider1,
 					'id' => $idEmpty,
@@ -177,14 +177,14 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider1->expects( $this->any() )->method( 'describe' )
 			->will( $this->returnValue( '#1 sessions' ) );
 		$provider1->expects( $this->any() )->method( 'unpersistSession' )
-			->will( $this->returnCallback( function ( $request ) {
+			->will( $this->returnCallback( static function ( $request ) {
 				$request->unpersist1 = true;
 			} ) );
 
 		$provider2 = $providerBuilder->getMock();
 		$provider2->expects( $this->any() )->method( 'provideSessionInfo' )
 			->with( $this->identicalTo( $request ) )
-			->will( $this->returnCallback( function ( $request ) {
+			->will( $this->returnCallback( static function ( $request ) {
 				return $request->info2;
 			} ) );
 		$provider2->expects( $this->any() )->method( '__toString' )
@@ -192,7 +192,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider2->expects( $this->any() )->method( 'describe' )
 			->will( $this->returnValue( '#2 sessions' ) );
 		$provider2->expects( $this->any() )->method( 'unpersistSession' )
-			->will( $this->returnCallback( function ( $request ) {
+			->will( $this->returnCallback( static function ( $request ) {
 				$request->unpersist2 = true;
 			} ) );
 
@@ -447,10 +447,10 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider1->expects( $this->any() )->method( 'provideSessionInfo' )
 			->will( $this->returnValue( null ) );
 		$provider1->expects( $this->any() )->method( 'newSessionInfo' )
-			->with( $this->callback( function ( $id ) use ( &$expectId ) {
+			->with( $this->callback( static function ( $id ) use ( &$expectId ) {
 				return $id === $expectId;
 			} ) )
-			->will( $this->returnCallback( function () use ( &$info1 ) {
+			->will( $this->returnCallback( static function () use ( &$info1 ) {
 				return $info1;
 			} ) );
 		$provider1->expects( $this->any() )->method( '__toString' )
@@ -460,10 +460,10 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider2->expects( $this->any() )->method( 'provideSessionInfo' )
 			->will( $this->returnValue( null ) );
 		$provider2->expects( $this->any() )->method( 'newSessionInfo' )
-			->with( $this->callback( function ( $id ) use ( &$expectId ) {
+			->with( $this->callback( static function ( $id ) use ( &$expectId ) {
 				return $id === $expectId;
 			} ) )
-			->will( $this->returnCallback( function () use ( &$info2 ) {
+			->will( $this->returnCallback( static function () use ( &$info2 ) {
 				return $info2;
 			} ) );
 		$provider1->expects( $this->any() )->method( '__toString' )
@@ -942,7 +942,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'Mock' ) );
 		$provider->expects( $this->any() )->method( 'mergeMetadata' )
-			->will( $this->returnCallback( function ( $a, $b ) {
+			->will( $this->returnCallback( static function ( $a, $b ) {
 				if ( $b === [ 'Throw' ] ) {
 					throw new MetadataMergeException( 'no merge!' );
 				}
@@ -958,7 +958,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$provider2->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'Mock2' ) );
 		$provider2->expects( $this->any() )->method( 'refreshSessionInfo' )
-			->will( $this->returnCallback( function ( $info, $request, &$metadata ) {
+			->will( $this->returnCallback( static function ( $info, $request, &$metadata ) {
 				$metadata['changed'] = true;
 				return true;
 			} ) );
@@ -1541,7 +1541,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$request->setCookie( 'mwuser-sessionId', $mwuser );
 
 		$proxyLookup = $this->createMock( \ProxyLookup::class );
-		$proxyLookup->method( 'isConfiguredProxy' )->willReturnCallback( function ( $ip ) {
+		$proxyLookup->method( 'isConfiguredProxy' )->willReturnCallback( static function ( $ip ) {
 			return $ip === '11.22.33.44';
 		} );
 		$this->setService( 'ProxyLookup', $proxyLookup );

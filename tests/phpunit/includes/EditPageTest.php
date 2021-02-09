@@ -456,7 +456,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$checkIds = [];
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentSaveComplete' => [ function (
+			'PageContentSaveComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
@@ -836,7 +836,7 @@ hello
 	/** @covers EditPage */
 	public function testShouldPreventChangingContentModelWhenUserCannotChangeModelForTitle() {
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
-			function ( Title $page, $user, $action, &$result ) {
+			static function ( Title $page, $user, $action, &$result ) {
 				if ( $action === 'editcontentmodel' &&
 					 $page->getContentModel() === CONTENT_MODEL_WIKITEXT ) {
 					$result = false;
@@ -865,7 +865,7 @@ hello
 	/** @covers EditPage */
 	public function testShouldPreventChangingContentModelWhenUserCannotEditTargetTitle() {
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
-			function ( Title $page, $user, $action, &$result ) {
+			static function ( Title $page, $user, $action, &$result ) {
 				if ( $action === 'edit' && $page->getContentModel() === CONTENT_MODEL_WIKITEXT ) {
 					$result = false;
 					return false;

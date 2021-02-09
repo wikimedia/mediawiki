@@ -88,7 +88,7 @@ class ShellTest extends MediaWikiIntegrationTestCase {
 				'maintenance/foobar.php',
 				[ 'bar\'"baz' ],
 				[],
-				function ( &$script, array &$parameters ) {
+				static function ( &$script, array &$parameters ) {
 					$script = 'changed.php';
 					array_unshift( $parameters, '--wiki=somewiki' );
 				}

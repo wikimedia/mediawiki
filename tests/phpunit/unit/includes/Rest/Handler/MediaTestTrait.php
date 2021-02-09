@@ -63,7 +63,7 @@ trait MediaTestTrait {
 		$file->method( 'getTitle' )->willReturn( $title );
 		$file->method( 'exists' )->willReturn( true );
 		$file->method( 'userCan' )->willReturn( true );
-		$file->method( 'getUser' )->willReturnCallback( function ( $type ) {
+		$file->method( 'getUser' )->willReturnCallback( static function ( $type ) {
 			return $type === 'id' ? 7 : 'Alice';
 		} );
 		$file->method( 'getTimestamp' )->willReturn( '20200102030405' );
@@ -111,7 +111,7 @@ trait MediaTestTrait {
 			}
 		};
 
-		$findFiles = function ( array $inputItems ) use ( $findFile ) {
+		$findFiles = static function ( array $inputItems ) use ( $findFile ) {
 			$files = [];
 			foreach ( $inputItems as $item ) {
 				$files[] = ( $findFile )( $item['title'] );

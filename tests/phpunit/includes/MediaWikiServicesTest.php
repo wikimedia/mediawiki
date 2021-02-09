@@ -80,7 +80,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 		$newServices->defineService(
 			'Test',
-			function () use ( $service1 ) {
+			static function () use ( $service1 ) {
 				return $service1;
 			}
 		);
@@ -124,7 +124,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 		$newServices->defineService(
 			'Test',
-			function () use ( &$instantiatorReturnValues ) {
+			static function () use ( &$instantiatorReturnValues ) {
 				return array_shift( $instantiatorReturnValues );
 			}
 		);
@@ -156,7 +156,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 								[
 									'handler' => [
 										'name' => 'test',
-										'factory' => function () {
+										'factory' => static function () {
 											return new class implements MediaWikiServicesHook {
 												public function onMediaWikiServices( $services ) {
 												}
@@ -195,7 +195,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 		$newServices->redefineService(
 			'DBLoadBalancerFactory',
-			function () use ( $lbFactory ) {
+			static function () use ( $lbFactory ) {
 				return $lbFactory;
 			}
 		);
@@ -242,7 +242,7 @@ class MediaWikiServicesTest extends MediaWikiIntegrationTestCase {
 
 		$newServices->defineService(
 			'Test',
-			function () use ( &$instantiatorReturnValues ) {
+			static function () use ( &$instantiatorReturnValues ) {
 				return array_shift( $instantiatorReturnValues );
 			}
 		);

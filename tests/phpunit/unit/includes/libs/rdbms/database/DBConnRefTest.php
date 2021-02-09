@@ -43,19 +43,19 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 			->getMock();
 
 		$open = true;
-		$db->method( 'select' )->willReturnCallback( function () use ( &$open ) {
+		$db->method( 'select' )->willReturnCallback( static function () use ( &$open ) {
 			if ( !$open ) {
 				throw new LogicException( "Not open" );
 			}
 
 			return new FakeResultWrapper( [] );
 		} );
-		$db->method( 'close' )->willReturnCallback( function () use ( &$open ) {
+		$db->method( 'close' )->willReturnCallback( static function () use ( &$open ) {
 			$open = false;
 
 			return true;
 		} );
-		$db->method( 'isOpen' )->willReturnCallback( function () use ( &$open ) {
+		$db->method( 'isOpen' )->willReturnCallback( static function () use ( &$open ) {
 			return $open;
 		} );
 

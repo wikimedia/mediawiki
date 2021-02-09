@@ -460,7 +460,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$oldExpiry = $dbw->selectField( 'user', 'user_password_expires', [ 'user_name' => $cuser ] );
 
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'ResetPasswordExpiration' => [ function ( $user, &$expires ) {
+			'ResetPasswordExpiration' => [ static function ( $user, &$expires ) {
 				$expires = '30001231235959';
 			} ]
 		] );

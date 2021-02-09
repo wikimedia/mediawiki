@@ -582,7 +582,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// T46192 Do not attempt to send a real e-mail
 		$this->setTemporaryHook( 'AlternateUserMailer',
-			function () {
+			static function () {
 				return false;
 			}
 		);
@@ -1079,7 +1079,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );
 		$newServices->redefineService(
 			'DBLoadBalancerFactory',
-			function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactory ) {
+			static function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactory ) {
 				return $oldLoadBalancerFactory;
 			}
 		);
@@ -1088,7 +1088,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$newServices->resetServiceForTesting( 'HttpRequestFactory' );
 		$newServices->redefineService(
 			'HttpRequestFactory',
-			function ( MediaWikiServices $services ) {
+			static function ( MediaWikiServices $services ) {
 				return new NullHttpRequestFactory();
 			}
 		);
@@ -1139,7 +1139,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		global $wgParser, $wgContLang;
 		// We don't have to replace the parser if it wasn't unstubbed
 		if ( !( $wgParser instanceof StubObject ) ) {
-			$wgParser = new StubObject( 'wgParser', function () {
+			$wgParser = new StubObject( 'wgParser', static function () {
 				return MediaWikiServices::getInstance()->getParser();
 			} );
 		}

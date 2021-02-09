@@ -65,10 +65,10 @@ class DatabaseTestHelper extends Database {
 			'connLogger' => new NullLogger(),
 			'queryLogger' => new NullLogger(),
 			'replLogger' => new NullLogger(),
-			'errorLogger' => function ( Exception $e ) {
+			'errorLogger' => static function ( Exception $e ) {
 				wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
 			},
-			'deprecationLogger' => function ( $msg ) {
+			'deprecationLogger' => static function ( $msg ) {
 				wfWarn( $msg );
 			}
 		] );

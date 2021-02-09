@@ -197,14 +197,14 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 
 		// A job that attempts to set a cookie
 		$jobHasRun = false;
-		DeferredUpdates::addCallableUpdate( function () use ( $response, &$jobHasRun ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $response, &$jobHasRun ) {
 			$jobHasRun = true;
 			$response->setCookie( 'JobCookie', 'yes' );
 			$response->header( 'Foo: baz' );
 		} );
 
 		$hookWasRun = false;
-		$this->setTemporaryHook( 'WebResponseSetCookie', function () use ( &$hookWasRun ) {
+		$this->setTemporaryHook( 'WebResponseSetCookie', static function () use ( &$hookWasRun ) {
 			$hookWasRun = true;
 			return true;
 		} );

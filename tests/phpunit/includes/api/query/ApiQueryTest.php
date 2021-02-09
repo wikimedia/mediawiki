@@ -154,7 +154,7 @@ class ApiQueryTest extends ApiTestCase {
 		$this->insertPage( $title );
 
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
-			function ( Title $page, &$user, $action, &$result ) use ( $title ) {
+			static function ( Title $page, &$user, $action, &$result ) use ( $title ) {
 				if ( $page->equals( $title ) && $action === 'read' ) {
 					$result = false;
 					return false;

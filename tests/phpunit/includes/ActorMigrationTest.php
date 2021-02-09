@@ -30,7 +30,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			'removed' => $w->removed,
 			'specialFields' => $w->specialFields,
 		];
-		$this->resetActorMigration = new ScopedCallback( function ( $w, $data ) {
+		$this->resetActorMigration = new ScopedCallback( static function ( $w, $data ) {
 			foreach ( $data as $k => $v ) {
 				$w->$k = $v;
 			}

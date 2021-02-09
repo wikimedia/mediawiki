@@ -66,7 +66,7 @@ class PrefixSearchTest extends MediaWikiLangTestCase {
 		} else {
 			$this->setMwGlobals( 'wgHooks', [
 				'PrefixSearchBackend' => [
-					function ( $namespaces, $search, $limit, &$srchres ) use ( $results ) {
+					static function ( $namespaces, $search, $limit, &$srchres ) use ( $results ) {
 						$srchres = $results;
 						return false;
 					}

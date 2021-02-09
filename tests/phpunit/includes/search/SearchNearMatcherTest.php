@@ -104,7 +104,7 @@ class SearchNearMatcherTest extends MediaWikiIntegrationTestCase {
 			'EnableSearchContributorsByIP' => false,
 		] );
 
-		$this->setTemporaryHook( $hook, function ( $term, &$title ) {
+		$this->setTemporaryHook( $hook, static function ( $term, &$title ) {
 			if ( $term === [ 'Hook' ] || $term === 'Hook' ) {
 				$title = Title::newFromText( 'TitleFromHook' );
 				return false;

@@ -28,13 +28,13 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 
 		$mockLangNameUtils = $this->createMock( LanguageNameUtils::class );
 		$mockLangNameUtils->method( 'isValidBuiltInCode' )->will( $this->returnCallback(
-			function ( $code ) {
+			static function ( $code ) {
 				// Copy-paste, but it's only one line
 				return (bool)preg_match( '/^[a-z0-9-]{2,}$/', $code );
 			}
 		) );
 		$mockLangNameUtils->method( 'isSupportedLanguage' )->will( $this->returnCallback(
-			function ( $code ) {
+			static function ( $code ) {
 				return in_array( $code, [
 					'ar',
 					'arz',
@@ -47,7 +47,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 			}
 		) );
 		$mockLangNameUtils->method( 'getMessagesFileName' )->will( $this->returnCallback(
-			function ( $code ) {
+			static function ( $code ) {
 				global $IP;
 				$code = str_replace( '-', '_', ucfirst( $code ) );
 				return "$IP/languages/messages/Messages$code.php";
@@ -131,7 +131,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 
 		$lc = $this->getMockLocalisationCache( [
 			'LocalisationCacheRecacheFallback' => [
-				function (
+				static function (
 					LocalisationCache $lc,
 					$code,
 					array &$cache

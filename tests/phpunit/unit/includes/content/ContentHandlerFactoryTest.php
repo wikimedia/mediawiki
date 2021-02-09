@@ -16,7 +16,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$this->logger = new TestLogger( false, function ( $message, $level ) {
+		$this->logger = new TestLogger( false, static function ( $message, $level ) {
 			return $level === LogLevel::INFO ? null : $message;
 		} );
 	}
@@ -26,7 +26,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			'typical list' => [
 				[
 					'ExistClassName' => DummyContentHandlerForTesting::class,
-					'ExistCallbackWithExistClassName' => function ( $modelID ) {
+					'ExistCallbackWithExistClassName' => static function ( $modelID ) {
 						return new DummyContentHandlerForTesting( $modelID );
 					},
 				],
@@ -102,7 +102,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			$this->assertFalse( $factory->isDefinedModel( $modelID ) );
 			$contentHandler = null;
 			$hookContainer->register( 'ContentHandlerForModelID',
-				function ( $handlerSpec, &$contentHandler ) use (
+				static function ( $handlerSpec, &$contentHandler ) use (
 					$contentHandlerExpected
 				) {
 					$contentHandler = $contentHandlerExpected;
@@ -120,13 +120,13 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		return [
 			'MWException expected' => [
 				[
-					'ExistCallbackWithWrongType' => function () {
+					'ExistCallbackWithWrongType' => static function () {
 						return true;
 					},
-					'ExistCallbackWithNull' => function () {
+					'ExistCallbackWithNull' => static function () {
 						return null;
 					},
-					'ExistCallbackWithEmptyString' => function () {
+					'ExistCallbackWithEmptyString' => static function () {
 						return '';
 					},
 					'WrongClassName' => self::class,
@@ -139,7 +139,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 			'Error expected' => [
 				[
 					'WrongClassNameNotExist' => 'ClassNameNotExist',
-					'ExistCallbackWithNotExistClassName' => function () {
+					'ExistCallbackWithNotExistClassName' => static function () {
 						return ClassNameNotExist();
 					},
 					'EmptyString' => '',
@@ -264,7 +264,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 		);
 
 		$hookContainer->register( 'GetContentModels',
-			function ( &$models ) use ( $name4 ) {
+			static function ( &$models ) use ( $name4 ) {
 				$models[] = $name4;
 			} );
 		$this->assertArrayEquals(
@@ -312,7 +312,7 @@ class ContentHandlerFactoryTest extends MediaWikiUnitTestCase {
 
 		$hookContainer->register(
 			'GetContentModels',
-			function ( &$models ) use ( $name4 ) {
+			static function ( &$models ) use ( $name4 ) {
 				$models[] = $name4;
 			} );
 

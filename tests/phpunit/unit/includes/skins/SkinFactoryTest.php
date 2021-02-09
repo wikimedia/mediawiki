@@ -30,7 +30,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$factory = $this->createSkinFactory();
 		$instance = new SkinFallback();
 
-		$factory->register( 'fallback', 'Fallback', function () use ( $instance ) {
+		$factory->register( 'fallback', 'Fallback', static function () use ( $instance ) {
 			return $instance;
 		} );
 
@@ -63,7 +63,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testMakeSkinWithInvalidCallback() {
 		$factory = $this->createSkinFactory();
-		$factory->register( 'unittest', 'Unittest', function () {
+		$factory->register( 'unittest', 'Unittest', static function () {
 			// Not a Skin object
 			return true;
 		} );
@@ -76,7 +76,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testMakeSkinWithValidCallback() {
 		$factory = $this->createSkinFactory();
-		$factory->register( 'testfallback', 'TestFallback', function () {
+		$factory->register( 'testfallback', 'TestFallback', static function () {
 			return new SkinFallback();
 		} );
 
@@ -99,7 +99,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$args = [];
 		$factory = $this->createSkinFactory( $serviceContainer );
 		$factory->register( 'testfallback', 'TestFallback', [
-			'factory' => function ( $service, $options ) use ( &$args ) {
+			'factory' => static function ( $service, $options ) use ( &$args ) {
 				$args = [ $service, $options ];
 				return new SkinFallback();
 			},

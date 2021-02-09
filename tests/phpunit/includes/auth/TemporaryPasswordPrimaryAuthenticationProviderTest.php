@@ -430,7 +430,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$dbw = wfGetDB( DB_MASTER );
 		$oldHash = $dbw->selectField( 'user', 'user_newpassword', [ 'user_name' => $cuser ] );
-		$cb = new ScopedCallback( function () use ( $dbw, $cuser, $oldHash ) {
+		$cb = new ScopedCallback( static function () use ( $dbw, $cuser, $oldHash ) {
 			$dbw->update( 'user', [ 'user_newpassword' => $oldHash ], [ 'user_name' => $cuser ] );
 		} );
 

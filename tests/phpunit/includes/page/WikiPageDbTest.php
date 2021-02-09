@@ -864,7 +864,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers', [
-				$name => function () use ( $handler ){
+				$name => static function () use ( $handler ){
 					return $handler;
 				}
 			]
@@ -2633,7 +2633,7 @@ more stuff
 
 		$this->setTemporaryHook(
 			'WikiPageFactory',
-			function ( $title, &$page ) use ( &$isCalled, $expectedWikiPage ) {
+			static function ( $title, &$page ) use ( &$isCalled, $expectedWikiPage ) {
 				$page = $expectedWikiPage;
 				$isCalled = true;
 

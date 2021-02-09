@@ -151,7 +151,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotContains( 'nukeworld', $rights, 'sanity check' );
 
 		// Add a hook manipulating the rights
-		$this->setTemporaryHook( 'UserGetRights', function ( $user, &$rights ) {
+		$this->setTemporaryHook( 'UserGetRights', static function ( $user, &$rights ) {
 			$rights[] = 'nukeworld';
 			$rights = array_diff( $rights, [ 'writetest' ] );
 		} );
@@ -576,7 +576,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $this->user->checkPasswordValidity( $this->user->getName() )->isGood() );
 		$this->assertTrue( $this->user->checkPasswordValidity( $this->user->getName() )->isOK() );
 
-		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
+		$this->setTemporaryHook( 'isValidPassword', static function ( $password, &$result, $user ) {
 			$result = 'isValidPassword returned false';
 			return false;
 		} );
@@ -587,7 +587,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$this->removeTemporaryHook( 'isValidPassword' );
 
-		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
+		$this->setTemporaryHook( 'isValidPassword', static function ( $password, &$result, $user ) {
 			$result = true;
 			return true;
 		} );
@@ -598,7 +598,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$this->removeTemporaryHook( 'isValidPassword' );
 
-		$this->setTemporaryHook( 'isValidPassword', function ( $password, &$result, $user ) {
+		$this->setTemporaryHook( 'isValidPassword', static function ( $password, &$result, $user ) {
 			$result = 'isValidPassword returned true';
 			return true;
 		} );
@@ -732,7 +732,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertFalse( $user->isAnon() );
 
-		$this->setTemporaryHook( 'UserLogout', function ( &$user ) {
+		$this->setTemporaryHook( 'UserLogout', static function ( &$user ) {
 			return false;
 		} );
 		$user->logout();
@@ -1619,7 +1619,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetFirstLatestEditTimestamp() {
 		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
-		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock += 1000;
 		} );
 		try {
@@ -1802,7 +1802,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testGetDefaultOptions() {
 		$this->resetServices();
 
-		$this->setTemporaryHook( 'UserGetDefaultOptions', function ( &$defaults ) {
+		$this->setTemporaryHook( 'UserGetDefaultOptions', static function ( &$defaults ) {
 			$defaults['extraoption'] = 42;
 		} );
 
@@ -1922,7 +1922,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $user->addGroup( 'test2' ) );
 		$this->assertArrayEquals( [ 'test', 'test2' ], $user->getGroups() );
 
-		$this->setTemporaryHook( 'UserAddGroup', function ( $user, &$group, &$expiry ) {
+		$this->setTemporaryHook( 'UserAddGroup', static function ( $user, &$group, &$expiry ) {
 			return false;
 		} );
 		$this->assertFalse( $user->addGroup( 'test3' ) );
@@ -1947,7 +1947,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'A group membership that does not exist cannot be removed'
 		);
 
-		$this->setTemporaryHook( 'UserRemoveGroup', function ( $user, &$group ) {
+		$this->setTemporaryHook( 'UserRemoveGroup', static function ( $user, &$group ) {
 			return false;
 		} );
 
@@ -2114,7 +2114,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$this->removeTemporaryHook( 'UserSetEmail' );
 
-		$this->setTemporaryHook( 'UserSetEmail', function ( $user, &$email ) {
+		$this->setTemporaryHook( 'UserSetEmail', static function ( $user, &$email ) {
 			$email = 'SettingIntercepted@mediawiki.org';
 		} );
 		$user->setEmail( 'NewEmail@mediawiki.org' );
@@ -2124,7 +2124,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'Hooks can override setting email addresses'
 		);
 
-		$this->setTemporaryHook( 'UserGetEmail', function ( $user, &$email ) {
+		$this->setTemporaryHook( 'UserGetEmail', static function ( $user, &$email ) {
 			$email = 'GettingIntercepted@mediawiki.org';
 		} );
 		$this->assertSame(
@@ -2219,7 +2219,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user->saveSettings();
 
 		$this->filterDeprecated( '/UserRequiresHTTPS hook/' );
-		$this->setTemporaryHook( 'UserRequiresHTTPS', function ( $user, &$https ) use ( $hook1 ) {
+		$this->setTemporaryHook( 'UserRequiresHTTPS', static function ( $user, &$https ) use ( $hook1 ) {
 			$https = $hook1;
 			return false;
 		} );
@@ -2370,7 +2370,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Hook leaves $result false
 		$this->setTemporaryHook(
 			'PingLimiter',
-			function ( &$user, $action, &$result, $incrBy ) {
+			static function ( &$user, $action, &$result, $incrBy ) {
 				return false;
 			}
 		);
@@ -2383,7 +2383,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Hook sets $result to true
 		$this->setTemporaryHook(
 			'PingLimiter',
-			function ( &$user, $action, &$result, $incrBy ) {
+			static function ( &$user, $action, &$result, $incrBy ) {
 				$result = true;
 				return false;
 			}
@@ -2423,7 +2423,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		ObjectCache::$instances[$wgMainCacheType] = $cache;
 
 		$cache->setMockTime( $cacheTime ); // this is a reference!
-		MWTimestamp::setFakeTime( function () use ( &$appTime ) {
+		MWTimestamp::setFakeTime( static function () use ( &$appTime ) {
 			return (int)$appTime;
 		} );
 
@@ -2461,7 +2461,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		ObjectCache::$instances[$wgMainCacheType] = $cache;
 
 		$cache->setMockTime( $fakeTime ); // this is a reference!
-		MWTimestamp::setFakeTime( function () use ( &$fakeTime ) {
+		MWTimestamp::setFakeTime( static function () use ( &$fakeTime ) {
 			return (int)$fakeTime;
 		} );
 
@@ -2648,7 +2648,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Make sure time progresses between revisions.
 		// MediaWikiIntegrationTestCase automatically restores the real clock.
 		$clock = MWTimestamp::time();
-		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return ++$clock;
 		} );
 
@@ -2676,7 +2676,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$mockCentralIdLookup->method( 'centralIdFromLocalUser' )
-			->willReturnCallback( function ( User $user ) {
+			->willReturnCallback( static function ( User $user ) {
 				return $user->getId() % 100;
 			} );
 
@@ -2684,7 +2684,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'wgCentralIdLookupProvider' => 'test',
 			'wgCentralIdLookupProviders' => [
 				'test' => [
-					'factory' => function () use ( $mockCentralIdLookup ) {
+					'factory' => static function () use ( $mockCentralIdLookup ) {
 						return $mockCentralIdLookup;
 					}
 				]

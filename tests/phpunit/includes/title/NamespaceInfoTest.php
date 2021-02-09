@@ -1226,7 +1226,7 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	public function testGetValidNamespaces_misc( array $namespaces, array $expected ) {
 		// Each namespace's name is just its index
 		$this->setTemporaryHook( 'CanonicalNamespaces',
-			function ( &$canonicalNamespaces ) use ( $namespaces ) {
+			static function ( &$canonicalNamespaces ) use ( $namespaces ) {
 				$canonicalNamespaces = array_combine( $namespaces, $namespaces );
 			}
 		);

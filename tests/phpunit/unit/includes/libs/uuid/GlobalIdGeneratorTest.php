@@ -219,7 +219,7 @@ class GlobalIdGeneratorTest extends PHPUnit\Framework\TestCase {
 		$this->globalIdGenerator = new GlobalIdGenerator(
 			wfTempDir(),
 			new HashBagOStuff( [] ),
-			function ( $command ) {
+			static function ( $command ) {
 				return wfShellExec( $command );
 			}
 		);

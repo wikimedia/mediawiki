@@ -30,7 +30,7 @@ class SubmoduleDefTest extends TypeDefTestCase {
 
 		$w->mMainModule->getModuleManager()->addModule( 'testmod', 'action', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $api ) {
+			'factory' => static function () use ( $api ) {
 				return $api;
 			},
 		] );
@@ -55,25 +55,25 @@ class SubmoduleDefTest extends TypeDefTestCase {
 		$manager->addModule( 'mod2', 'test', MockApi::class );
 		$manager->addModule( 'dep', 'test', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $dep ) {
+			'factory' => static function () use ( $dep ) {
 				return $dep;
 			},
 		] );
 		$manager->addModule( 'depint', 'test', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $depint ) {
+			'factory' => static function () use ( $depint ) {
 				return $depint;
 			},
 		] );
 		$manager->addModule( 'int', 'test', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $int ) {
+			'factory' => static function () use ( $int ) {
 				return $int;
 			},
 		] );
 		$manager->addModule( 'recurse', 'test', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $api ) {
+			'factory' => static function () use ( $api ) {
 				return $api;
 			},
 		] );

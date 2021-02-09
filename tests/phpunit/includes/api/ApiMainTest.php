@@ -249,7 +249,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
 		$api->getModuleManager()->addModule( 'testmodule', 'action', [
 			'class' => get_class( $mock ),
-			'factory' => function () use ( $mock ) {
+			'factory' => static function () use ( $mock ) {
 				return $mock;
 			}
 		] );
@@ -268,7 +268,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
 		$api->getModuleManager()->addModule( 'testmodule', 'action', [
 			'class' => get_class( $mock ),
-			'factory' => function () use ( $mock ) {
+			'factory' => static function () use ( $mock ) {
 				return $mock;
 			}
 		] );
@@ -318,7 +318,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( $req );
 		$api->getModuleManager()->addModule( 'testmodule', 'action', [
 			'class' => get_class( $mock ),
-			'factory' => function () use ( $mock ) {
+			'factory' => static function () use ( $mock ) {
 				return $mock;
 			}
 		] );
@@ -530,7 +530,7 @@ class ApiMainTest extends ApiTestCase {
 			->getMockForAbstractClass();
 		$module->expects( $this->any() )
 			->method( 'getConditionalRequestData' )
-			->will( $this->returnCallback( function ( $condition ) use ( $conditions ) {
+			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
 			} ) );
 
@@ -661,7 +661,7 @@ class ApiMainTest extends ApiTestCase {
 			->getMockForAbstractClass();
 		$module->expects( $this->any() )
 			->method( 'getConditionalRequestData' )
-			->will( $this->returnCallback( function ( $condition ) use ( $conditions ) {
+			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
 			} ) );
 		$priv->mModule = $module;
@@ -767,7 +767,7 @@ class ApiMainTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'Main Page' );
 
-		$this->setTemporaryHook( 'ApiCheckCanExecute', function ( $unused1, $unused2, &$message ) {
+		$this->setTemporaryHook( 'ApiCheckCanExecute', static function ( $unused1, $unused2, &$message ) {
 			$message = 'mainpage';
 			return false;
 		} );
@@ -824,7 +824,7 @@ class ApiMainTest extends ApiTestCase {
 
 		// Hook
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'RequestHasSameOriginSecurity' => [ function () {
+			'RequestHasSameOriginSecurity' => [ static function () {
 				return false;
 			} ]
 		] );

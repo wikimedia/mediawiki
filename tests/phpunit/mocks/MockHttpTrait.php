@@ -93,7 +93,7 @@ trait MockHttpTrait {
 			'HTTPMaxConnectTimeout' => 1,
 		] );
 
-		$failCallback = function ( /* discard any arguments */ ) {
+		$failCallback = static function ( /* discard any arguments */ ) {
 			TestCase::fail( 'method should not be called' );
 		};
 
@@ -174,14 +174,14 @@ trait MockHttpTrait {
 
 		$mockHttpRequest->method( 'getResponseHeaders' )->willReturn( $headers );
 		$mockHttpRequest->method( 'getResponseHeader' )->willReturnCallback(
-			function ( $name ) use ( $headers ) {
+			static function ( $name ) use ( $headers ) {
 				return $headers[$name] ?? null;
 			}
 		);
 
 		$dataCallback = null;
 		$mockHttpRequest->method( 'setCallback' )->willReturnCallback(
-			function ( $callback ) use ( &$dataCallback ) {
+			static function ( $callback ) use ( &$dataCallback ) {
 				$dataCallback = $callback;
 			}
 		);
@@ -229,13 +229,13 @@ trait MockHttpTrait {
 		);
 
 		$mockHttpRequestMulti->method( 'run' )->willReturnCallback(
-			function ( array $req, array $opts = [] ) use ( $mockHttpRequestMulti ) {
+			static function ( array $req, array $opts = [] ) use ( $mockHttpRequestMulti ) {
 				return $mockHttpRequestMulti->runMulti( [ $req ], $opts )[0]['response'];
 			}
 		);
 
 		$mockHttpRequestMulti->method( 'runMulti' )->willReturnCallback(
-			function ( array $reqs, array $opts = [] ) use ( $responses ) {
+			static function ( array $reqs, array $opts = [] ) use ( $responses ) {
 				foreach ( $reqs as $key => &$req ) {
 					$resp = $responses[$key] ?? [ 'code' => 0, 'error' => 'unknown' ];
 

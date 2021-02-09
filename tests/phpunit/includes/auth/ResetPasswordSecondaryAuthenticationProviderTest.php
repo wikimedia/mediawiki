@@ -83,7 +83,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 				'preauth' => [],
 				'primaryauth' => [],
 				'secondaryauth' => [
-					[ 'factory' => function () use ( $provider ) {
+					[ 'factory' => static function () use ( $provider ) {
 						return $provider;
 					} ],
 				],

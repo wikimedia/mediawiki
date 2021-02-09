@@ -164,7 +164,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertEquals( $listSize, $list->count() );
 
-		$this->checkTypeChecks( function ( GenericArrayObject $list, $element ) {
+		$this->checkTypeChecks( static function ( GenericArrayObject $list, $element ) {
 			$list->append( $element );
 		} );
 	}
@@ -248,7 +248,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertEquals( count( $elements ), $list->count() );
 
-		$this->checkTypeChecks( function ( GenericArrayObject $list, $element ) {
+		$this->checkTypeChecks( static function ( GenericArrayObject $list, $element ) {
 			$list->offsetSet( mt_rand(), $element );
 		} );
 	}

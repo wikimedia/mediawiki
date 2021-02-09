@@ -729,7 +729,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			->setMethods( [ 'onSessionMetadata' ] )->getMock();
 		$mockHook->expects( $this->any() )->method( 'onSessionMetadata' )
 			->will( $this->returnCallback(
-				function ( SessionBackend $backend, array &$metadata, array $requests ) {
+				static function ( SessionBackend $backend, array &$metadata, array $requests ) {
 					$metadata['userId']++;
 				}
 			) );
@@ -857,7 +857,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );
@@ -897,7 +897,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );
@@ -933,7 +933,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );

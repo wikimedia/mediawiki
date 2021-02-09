@@ -68,7 +68,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 			'servers' => [ $this->makeServerConfig( DBO_TRX ) ],
 			'queryLogger' => MediaWiki\Logger\LoggerFactory::getInstance( 'DBQuery' ),
 			'localDomain' => new DatabaseDomain( $wgDBname, null, $this->dbPrefix() ),
-			'chronologyCallback' => function () use ( &$called ) {
+			'chronologyCallback' => static function () use ( &$called ) {
 				$called = true;
 			}
 		] );
@@ -521,25 +521,25 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$conn2 = $lb->openConnection( $lb->getWriterIndex(), '' );
 
 		$count = 0;
-		$lb->forEachOpenMasterConnection( function () use ( &$count ) {
+		$lb->forEachOpenMasterConnection( static function () use ( &$count ) {
 			++$count;
 		} );
 		$this->assertEquals( 2, $count, 'Connection handle count' );
 
 		$tlCalls = 0;
-		$lb->setTransactionListener( 'test-listener', function () use ( &$tlCalls ) {
+		$lb->setTransactionListener( 'test-listener', static function () use ( &$tlCalls ) {
 			++$tlCalls;
 		} );
 
 		$lb->beginMasterChanges( __METHOD__ );
 		$bc = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
-		$conn1->onTransactionPreCommitOrIdle( function () use ( &$bc, $conn1, $conn2 ) {
+		$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
 			$bc['a'] = 1;
-			$conn2->onTransactionPreCommitOrIdle( function () use ( &$bc, $conn1, $conn2 ) {
+			$conn2->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
 				$bc['b'] = 1;
-				$conn1->onTransactionPreCommitOrIdle( function () use ( &$bc, $conn1, $conn2 ) {
+				$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
 					$bc['c'] = 1;
-					$conn1->onTransactionPreCommitOrIdle( function () use ( &$bc, $conn1, $conn2 ) {
+					$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
 						$bc['d'] = 1;
 					} );
 				} );
@@ -557,13 +557,13 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$tlCalls = 0;
 		$lb->beginMasterChanges( __METHOD__ );
 		$ac = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
-		$conn1->onTransactionCommitOrIdle( function () use ( &$ac, $conn1, $conn2 ) {
+		$conn1->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
 			$ac['a'] = 1;
-			$conn2->onTransactionCommitOrIdle( function () use ( &$ac, $conn1, $conn2 ) {
+			$conn2->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
 				$ac['b'] = 1;
-				$conn1->onTransactionCommitOrIdle( function () use ( &$ac, $conn1, $conn2 ) {
+				$conn1->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
 					$ac['c'] = 1;
-					$conn1->onTransactionCommitOrIdle( function () use ( &$ac, $conn1, $conn2 ) {
+					$conn1->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
 						$ac['d'] = 1;
 					} );
 				} );

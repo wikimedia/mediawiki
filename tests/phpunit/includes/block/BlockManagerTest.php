@@ -79,7 +79,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$onUserGetRightsCalled = false;
 		$this->setTemporaryHook(
 			'UserGetRights',
-			function ( $user, &$rights ) use ( &$onUserGetRightsCalled ) {
+			static function ( $user, &$rights ) use ( &$onUserGetRightsCalled ) {
 				$onUserGetRightsCalled = true;
 				$rights[] = 'ipblock-exempt';
 				return true;
@@ -89,7 +89,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$onGetUserBlockIP = false;
 		$this->setTemporaryHook(
 			'GetUserBlock',
-			function ( $user, $ip, &$block ) use ( &$onGetUserBlockCalled, &$onGetUserBlockIP ) {
+			static function ( $user, $ip, &$block ) use ( &$onGetUserBlockCalled, &$onGetUserBlockIP ) {
 				$onGetUserBlockCalled = true;
 				$onGetUserBlockIP = $ip;
 				return true;

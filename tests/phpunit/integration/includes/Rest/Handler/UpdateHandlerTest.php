@@ -62,11 +62,11 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 			->getMock();
 
 		$titleCodec->method( 'formatTitle' )
-			->willReturnCallback( function ( $namespace, $text ) {
+			->willReturnCallback( static function ( $namespace, $text ) {
 				return "ns:$namespace:" . ucfirst( $text );
 			} );
 		$titleCodec->method( 'splitTitleString' )
-			->willReturnCallback( function ( $text ) {
+			->willReturnCallback( static function ( $text ) {
 				return [
 					'interwiki' => '',
 					'fragment' => '',
@@ -89,7 +89,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 				return $rev;
 			} );
 		$revisionLookup->method( 'getRevisionByTitle' )
-			->willReturnCallback( function ( $title ) {
+			->willReturnCallback( static function ( $title ) {
 				$rev = new MutableRevisionRecord( Title::castFromLinkTarget( $title ) );
 				$rev->setId( 1234 );
 				$rev->setContent( SlotRecord::MAIN, new WikitextContent( "Current content of $title" ) );

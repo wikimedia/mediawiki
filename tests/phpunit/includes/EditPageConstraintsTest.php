@@ -363,7 +363,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	) {
 		$this->setTemporaryHook(
 			'EditFilterMergedContent',
-			function ( $context, $content, $status, $summary, $user, $minorEdit )
+			static function ( $context, $content, $status, $summary, $user, $minorEdit )
 				use ( $hookReturn, $statusValue, $statusFatal )
 			{
 				if ( $statusValue !== null ) {
@@ -700,7 +700,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	public function testUserRateLimitConstraint() {
 		$this->setTemporaryHook(
 			'PingLimiter',
-			function ( $user, $action, &$result, $incrBy ) {
+			static function ( $user, $action, &$result, $incrBy ) {
 				// Always fail
 				$result = true;
 				return false;

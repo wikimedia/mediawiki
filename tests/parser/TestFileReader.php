@@ -37,7 +37,7 @@ class TestFileReader {
 		if ( isset( $options['regex'] ) ) {
 			$options['filter'] = [ 'regex' => $options['regex'] ];
 		}
-		$parsoidReader = ParsoidTestFileReader::read( $file, function ( $msg ) {
+		$parsoidReader = ParsoidTestFileReader::read( $file, static function ( $msg ) {
 			wfDeprecatedMsg( $msg, '1.35', false, false );
 		} );
 		$testFormat = intval( $parsoidReader->fileOptions['version'] ?? '1' );

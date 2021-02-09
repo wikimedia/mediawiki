@@ -283,7 +283,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 	public function testStatistics() {
 		$this->setTemporaryHook( 'APIQuerySiteInfoStatisticsInfo',
-			function ( &$data ) {
+			static function ( &$data ) {
 				$data['addedstats'] = 42;
 			}
 		);
@@ -666,7 +666,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 
 		// Make sure there's something to report on
 		$this->setTemporaryHook( 'somehook',
-			function () {
+			static function () {
 				return;
 			}
 		);

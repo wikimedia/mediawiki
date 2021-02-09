@@ -23,7 +23,7 @@ class DatabaseSqliteRdbmsTest extends PHPUnit\Framework\TestCase {
 			->getMock();
 
 		$db->expects( $this->any() )->method( 'addQuotes' )->willReturnCallback(
-			function ( $s ) {
+			static function ( $s ) {
 				return "'$s'";
 			}
 		);

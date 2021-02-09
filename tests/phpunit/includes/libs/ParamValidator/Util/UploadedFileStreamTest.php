@@ -75,7 +75,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 			->setConstructorArgs( [ $filename ] )
 			->setMethods( [ 'getContents' ] )
 			->getMock();
-		$stream->method( 'getContents' )->willReturnCallback( function () {
+		$stream->method( 'getContents' )->willReturnCallback( static function () {
 			throw new \Error( 'Bogus' );
 		} );
 		$this->assertSame( '', (string)$stream );

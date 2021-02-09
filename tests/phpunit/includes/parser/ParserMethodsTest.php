@@ -242,7 +242,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$oldRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'FAUX' ) );
 
 		$po = new ParserOptions( $frank );
-		$po->setCurrentRevisionRecordCallback( function () use ( $oldRevision ) {
+		$po->setCurrentRevisionRecordCallback( static function () use ( $oldRevision ) {
 			return $oldRevision;
 		} );
 
@@ -271,7 +271,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$po = new ParserOptions( $frank );
 		$po->setIsPreview( true );
-		$po->setCurrentRevisionRecordCallback( function () use ( $newRevision ) {
+		$po->setCurrentRevisionRecordCallback( static function () use ( $newRevision ) {
 			return $newRevision;
 		} );
 
@@ -284,7 +284,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		];
 
 		$po = new ParserOptions( $frank );
-		$po->setCurrentRevisionRecordCallback( function () use ( $newRevision ) {
+		$po->setCurrentRevisionRecordCallback( static function () use ( $newRevision ) {
 			return $newRevision;
 		} );
 
@@ -306,7 +306,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$po = new ParserOptions( $frank );
 		$po->setIsPreview( true );
-		$po->setCurrentRevisionRecordCallback( function () use ( $newRevision ) {
+		$po->setCurrentRevisionRecordCallback( static function () use ( $newRevision ) {
 			return $newRevision;
 		} );
 

@@ -24,7 +24,7 @@ class ParsoidTestFileSuite extends TestSuite {
 		parent::__construct( $name );
 		$this->ptRunner = $runner;
 		$this->ptFileName = $fileName;
-		$this->ptFileInfo = Wikimedia\Parsoid\ParserTests\TestFileReader::read( $fileName, function ( $msg ) {
+		$this->ptFileInfo = Wikimedia\Parsoid\ParserTests\TestFileReader::read( $fileName, static function ( $msg ) {
 			wfDeprecatedMsg( $msg, '1.35', false, false );
 		} );
 		$fileOptions = $this->ptFileInfo->fileOptions;

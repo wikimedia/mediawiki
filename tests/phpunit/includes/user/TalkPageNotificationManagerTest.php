@@ -142,7 +142,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $veryOldTimestamp );
 		$mockRevLookup = $this->getMockForAbstractClass( RevisionLookup::class );
 		$mockRevLookup->method( 'getPreviousRevision' )
-			->willReturnCallback( function ( RevisionRecord $rev )
+			->willReturnCallback( static function ( RevisionRecord $rev )
 				use ( $firstRev, $secondRev, $thirdRev, $mockOldRev )
 			{
 				if ( $rev === $secondRev ) {

@@ -156,7 +156,7 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 			new LocalizedHttpException( new MessageValue( 'rest-permission-denied-title' ), 403 )
 		);
 		$this->executeHandler( $handler, $request, [ 'userCan' => false ], [], [], [],
-			$this->mockAnonAuthority( function ( string $permission, ?PageIdentity $target ) {
+			$this->mockAnonAuthority( static function ( string $permission, ?PageIdentity $target ) {
 				return $target && !preg_match( '/Forbidden/', $target->getDBkey() );
 			} ) );
 	}

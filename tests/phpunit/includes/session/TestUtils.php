@@ -47,7 +47,7 @@ class TestUtils {
 			PHPSessionHandler::install( $manager );
 		}
 
-		return new \Wikimedia\ScopedCallback( function () use ( &$reset, $oldInstance ) {
+		return new \Wikimedia\ScopedCallback( static function () use ( &$reset, $oldInstance ) {
 			foreach ( $reset as &$arr ) {
 				$arr[0]->setValue( $arr[1] );
 			}

@@ -33,7 +33,7 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 					->getMock();
 
 				$message->method( 'fetchMessage' )
-					->willReturnCallback( function () use ( $message, $includeWikitext ) {
+					->willReturnCallback( static function () use ( $message, $includeWikitext ) {
 						/** @var Message $message */
 						$result = "{$message->getKey()} $1 $2";
 						if ( $includeWikitext ) {

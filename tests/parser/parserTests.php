@@ -160,7 +160,7 @@ class ParserTestsMaintenance extends Maintenance {
 			}
 			$recorder->addRecorder( new DbTestPreviewer(
 				$recorderDB,
-				function ( $name ) use ( $regex ) {
+				static function ( $name ) use ( $regex ) {
 					// Filter reports of old tests by the filter regex
 					if ( $regex === false ) {
 						return true;

@@ -70,7 +70,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		} else {
 			$this->setMwGlobals( 'wgHooks', [
 				'PrefixSearchBackend' => [
-					function ( $namespaces, $search, $limit, &$srchres ) use ( $results ) {
+					static function ( $namespaces, $search, $limit, &$srchres ) use ( $results ) {
 						$srchres = $results;
 						return false;
 					}
@@ -340,7 +340,7 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 		$search = $this->mockSearchWithResults( $case['provision'] );
 		$results = $search->completionSearch( $case['query'] );
 
-		$results = $results->map( function ( SearchSuggestion $s ) {
+		$results = $results->map( static function ( SearchSuggestion $s ) {
 			return $s->getText();
 		} );
 

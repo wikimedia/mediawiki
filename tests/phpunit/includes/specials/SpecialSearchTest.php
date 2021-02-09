@@ -420,7 +420,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			$languageConverter->expects( $this->once() )
 				->method( 'findVariantLink' )
 				->willReturnCallback(
-					function ( &$link, &$nt, $unused = false ) use ( $searchTerm, $variantTitle, $variantLink ) {
+					static function ( &$link, &$nt, $unused = false ) use ( $searchTerm, $variantTitle, $variantLink ) {
 						if ( $link === $searchTerm ) {
 							$link = $variantLink;
 							$nt = $variantTitle;

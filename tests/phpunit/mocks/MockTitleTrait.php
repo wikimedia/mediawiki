@@ -46,10 +46,10 @@ trait MockTitleTrait {
 		$title->method( 'getTouched' )->willReturn( $id ? '20200101223344' : false );
 		$title->method( 'getPageLanguage' )->willReturn( $props['language'] ?? 'qqx' );
 		$title->method( 'getRestrictions' )->willReturn( [] );
-		$title->method( 'isSamePageAs' )->willReturnCallback( function ( $other ) use ( $id ) {
+		$title->method( 'isSamePageAs' )->willReturnCallback( static function ( $other ) use ( $id ) {
 			return $other && $id === $other->getArticleId();
 		} );
-		$title->method( 'isSameLinkAs' )->willReturnCallback( function ( $other ) use ( $ns, $text ) {
+		$title->method( 'isSameLinkAs' )->willReturnCallback( static function ( $other ) use ( $ns, $text ) {
 			return $other && $text === $other->getDBkey() && $ns === $other->getNamespace();
 		} );
 

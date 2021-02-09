@@ -515,7 +515,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetPreparedEditAfterPrepareUpdate() {
 		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
-		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock++;
 		} );
 
@@ -592,7 +592,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers', [
-				$name => function () use ( $handler ){
+				$name => static function () use ( $handler ){
 					return $handler;
 				}
 			]

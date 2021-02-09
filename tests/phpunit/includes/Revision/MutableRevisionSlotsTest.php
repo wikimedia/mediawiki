@@ -147,7 +147,7 @@ class MutableRevisionSlotsTest extends RevisionSlotsTest {
 
 	public function testResetCallback() {
 		$counter = 0;
-		$callback = function () use ( &$counter ) {
+		$callback = static function () use ( &$counter ) {
 			$counter++;
 		};
 

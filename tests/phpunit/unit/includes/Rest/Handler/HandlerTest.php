@@ -150,7 +150,7 @@ class HandlerTest extends \MediaWikiUnitTestCase {
 	public function testApplyConditionalResponseHeaders() {
 		$util = $this->createNoOpMock( ConditionalHeaderUtil::class, [ 'applyResponseHeaders' ] );
 		$util->method( 'applyResponseHeaders' )->willReturnCallback(
-			function ( ResponseInterface $response ) {
+			static function ( ResponseInterface $response ) {
 				$response->setHeader( 'Testing', 'foo' );
 			}
 		);

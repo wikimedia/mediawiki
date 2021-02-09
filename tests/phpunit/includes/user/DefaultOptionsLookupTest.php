@@ -26,7 +26,7 @@ class DefaultOptionsLookupTest extends UserOptionsLookupTest {
 	 * @covers MediaWiki\User\DefaultOptionsLookup::getDefaultOptions
 	 */
 	public function testGetDefaultOptionsHook() {
-		$this->setTemporaryHook( 'UserGetDefaultOptions', function ( &$options ) {
+		$this->setTemporaryHook( 'UserGetDefaultOptions', static function ( &$options ) {
 			$options['from_hook'] = 'value_from_hook';
 		} );
 		$this->assertSame( 'value_from_hook', $this->getLookup()->getDefaultOption( 'from_hook' ) );

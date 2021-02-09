@@ -178,7 +178,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$key = "mykey-" . wfRandomString();
 
 		$hits = 0;
-		$callback = function ( $oldValue, &$ttl, &$setOpts ) use ( &$hits ) {
+		$callback = static function ( $oldValue, &$ttl, &$setOpts ) use ( &$hits ) {
 			++$hits;
 			return 42;
 		};
@@ -202,7 +202,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $mockWallClock );
 
 		$hit = 0;
-		$fn = function () use ( &$hit ) {
+		$fn = static function () use ( &$hit ) {
 			++$hit;
 			return 42;
 		};
@@ -247,7 +247,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $mockWallClock );
 
 		$hit = 0;
-		$fn = function () use ( &$hit ) {
+		$fn = static function () use ( &$hit ) {
 			++$hit;
 			return 42;
 		};
@@ -293,7 +293,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		};
 
 		$outerHit = 0;
-		$outerFn = function () use ( $keyInner, $innerFn, $cache, &$outerHit ) {
+		$outerFn = static function () use ( $keyInner, $innerFn, $cache, &$outerHit ) {
 			++$outerHit;
 			$v = $cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
 
@@ -353,7 +353,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$priorValue = null;
 		$priorAsOf = null;
 		$wasSet = 0;
-		$func = function ( $old, &$ttl, &$opts, $asOf )
+		$func = static function ( $old, &$ttl, &$opts, $asOf )
 		use ( &$wasSet, &$priorValue, &$priorAsOf, $value ) {
 			++$wasSet;
 			$priorValue = $old;
@@ -428,7 +428,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$oldValReceived = -1;
 		$oldAsOfReceived = -1;
-		$checkFunc = function ( $oldVal, &$ttl, array $setOpts, $oldAsOf )
+		$checkFunc = static function ( $oldVal, &$ttl, array $setOpts, $oldAsOf )
 		use ( &$oldValReceived, &$oldAsOfReceived, &$wasSet ) {
 			++$wasSet;
 			$oldValReceived = $oldVal;
@@ -537,7 +537,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$mockWallClock = 1549343530.2053;
 		$cache->setMockTime( $mockWallClock );
 
-		$checkFunc = function ( $oldVal, &$ttl, array $setOpts, $oldAsOf )
+		$checkFunc = static function ( $oldVal, &$ttl, array $setOpts, $oldAsOf )
 		use ( &$wasSet ) {
 			++$wasSet;
 
@@ -593,7 +593,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	public function testPreemtiveRefresh() {
 		$value = 'KatCafe';
 		$wasSet = 0;
-		$func = function ( $old, &$ttl, &$opts, $asOf ) use ( &$wasSet, &$value )
+		$func = static function ( $old, &$ttl, &$opts, $asOf ) use ( &$wasSet, &$value )
 		{
 			++$wasSet;
 			return $value;
@@ -807,7 +807,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$calls = 0;
 		$ids = [ 1, 2, 3, 4, 5, 6 ];
-		$keyFunc = function ( $id, WANObjectCache $wanCache ) {
+		$keyFunc = static function ( $id, WANObjectCache $wanCache ) {
 			return $wanCache->makeKey( 'test', $id );
 		};
 		$keyedIds = $cache->makeMultiKeys( $ids, $keyFunc );
@@ -876,7 +876,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setConstructorArgs( [
 				[
 					'cache' => $bag,
-					'asyncHandler' => function ( $callback ) use ( &$deferredCbs ) {
+					'asyncHandler' => static function ( $callback ) use ( &$deferredCbs ) {
 						$deferredCbs[] = $callback;
 					}
 				]
@@ -888,7 +888,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$wasSet = 0;
 		$keyedIds = new ArrayIterator( $idsByKey );
-		$genFunc = function ( $id, $old, &$ttl, &$opts, $asOf ) use ( &$wasSet ) {
+		$genFunc = static function ( $id, $old, &$ttl, &$opts, $asOf ) use ( &$wasSet ) {
 			++$wasSet;
 			$ttl = 20; // override with another value
 			return "@$id$";
@@ -1059,7 +1059,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$calls = 0;
 		$ids = [ 1, 2, 3, 4, 5, 6 ];
-		$keyFunc = function ( $id, WANObjectCache $wanCache ) {
+		$keyFunc = static function ( $id, WANObjectCache $wanCache ) {
 			return $wanCache->makeKey( 'test', $id );
 		};
 		$keyedIds = $cache->makeMultiKeys( $ids, $keyFunc );
@@ -1120,7 +1120,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setConstructorArgs( [
 				[
 					'cache' => $bag,
-					'asyncHandler' => function ( $callback ) use ( &$deferredCbs ) {
+					'asyncHandler' => static function ( $callback ) use ( &$deferredCbs ) {
 						$deferredCbs[] = $callback;
 					}
 				]
@@ -1132,7 +1132,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$wasSet = 0;
 		$keyedIds = new ArrayIterator( $idsByKey );
-		$genFunc = function ( array $ids, array &$ttls, array &$setOpts ) use ( &$wasSet ) {
+		$genFunc = static function ( array $ids, array &$ttls, array &$setOpts ) use ( &$wasSet ) {
 			$newValues = [];
 			foreach ( $ids as $id ) {
 				++$wasSet;
@@ -1210,7 +1210,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $mockWallClock );
 
 		$calls = 0;
-		$func = function () use ( &$calls, $value, $cache, $key ) {
+		$func = static function () use ( &$calls, $value, $cache, $key ) {
 			++$calls;
 			return $value;
 		};
@@ -1278,7 +1278,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $mockWallClock );
 
 		$calls = 0;
-		$func = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, &$mockWallClock ) {
+		$func = static function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value, &$mockWallClock ) {
 			++$calls;
 			$setOpts['since'] = $mockWallClock;
 			$mockWallClock += 10;
@@ -1320,7 +1320,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 3, $calls, 'Callback was used (mutex not acquired, not in cache)' );
 
 		$calls = 0;
-		$func2 = function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value ) {
+		$func2 = static function ( $oldValue, &$ttl, &$setOpts ) use ( &$calls, $value ) {
 			++$calls;
 			$setOpts['lag'] = 15;
 			return $value;
@@ -1360,7 +1360,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $mockWallClock );
 
 		$calls = 0;
-		$func = function () use ( &$calls, $value ) {
+		$func = static function () use ( &$calls, $value ) {
 			++$calls;
 			return $value;
 		};
@@ -1411,7 +1411,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		return [
 			[
-				function () {
+				static function () {
 					return "Saint Oliver Plunckett";
 				},
 				'Saint Oliver Plunckett'
@@ -1437,7 +1437,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->setMockTime( $mockWallClock );
 
 		$calls = 0;
-		$func = function () use ( &$calls ) {
+		$func = static function () use ( &$calls ) {
 			++$calls;
 			return 418;
 		};
@@ -1715,7 +1715,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$valueV2 = [ wfRandomString() ];
 
 		$wasSet = 0;
-		$funcV1 = function () use ( &$wasSet, $valueV1 ) {
+		$funcV1 = static function () use ( &$wasSet, $valueV1 ) {
 			++$wasSet;
 
 			return $valueV1;
@@ -1723,7 +1723,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$priorValue = false;
 		$priorAsOf = null;
-		$funcV2 = function ( $oldValue, &$ttl, $setOpts, $oldAsOf )
+		$funcV2 = static function ( $oldValue, &$ttl, $setOpts, $oldAsOf )
 		use ( &$wasSet, $valueV2, &$priorValue, &$priorAsOf ) {
 			$priorValue = $oldValue;
 			$priorAsOf = $oldAsOf;
@@ -1796,7 +1796,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$value = 'CRL-40-940';
 		$wasCalled = 0;
-		$func = function () use ( &$wasCalled, $value ) {
+		$func = static function () use ( &$wasCalled, $value ) {
 			$wasCalled++;
 
 			return $value;
@@ -2071,7 +2071,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			'region' => 'pmtpa',
 			'cluster' => 'mw-wan'
 		] );
-		$valFunc = function () {
+		$valFunc = static function () {
 			return 1;
 		};
 
@@ -2344,7 +2344,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	public function testMakeMultiKeysIntString() {
 		list( $cache ) = $this->newWanCache();
 		$ids = [ 1, 2, 3, 4, '4', 5, 6, 6, 7, '7' ];
-		$keyCallback = function ( $id, WANObjectCache $cache ) {
+		$keyCallback = static function ( $id, WANObjectCache $cache ) {
 			return $cache->makeGlobalKey( 'key', $id, 'a', $id, 'b' );
 		};
 
@@ -2372,7 +2372,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->expectException( UnexpectedValueException::class );
 		$cache->makeMultiKeys(
 			$ids,
-			function ( $id ) {
+			static function ( $id ) {
 				return "keymod:" . $id % 3;
 			}
 		);
@@ -2441,7 +2441,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	public function testCoalesceKeys( array $params, $keyNeedle ) {
 		list( $cache, $bag ) = $this->newWanCache( $params );
 		$key = wfRandomString();
-		$callback = function () {
+		$callback = static function () {
 			return 2020;
 		};
 

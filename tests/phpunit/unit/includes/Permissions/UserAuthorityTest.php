@@ -44,19 +44,19 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		);
 
 		$manager->method( 'userHasRight' )->willReturnCallback(
-			function ( $user, $permission ) use ( $permissions ) {
+			static function ( $user, $permission ) use ( $permissions ) {
 				return in_array( $permission, $permissions );
 			}
 		);
 
 		$manager->method( 'userCan' )->willReturnCallback(
-			function ( $permission, $user ) use ( $manager ) {
+			static function ( $permission, $user ) use ( $manager ) {
 				return $manager->userHasRight( $user, $permission );
 			}
 		);
 
 		$manager->method( 'getPermissionErrors' )->willReturnCallback(
-			function ( $permission, $user, $target ) use ( $manager ) {
+			static function ( $permission, $user, $target ) use ( $manager ) {
 				$errors = [];
 				if ( !$manager->userCan( $permission, $user, $target ) ) {
 					$errors[] = [ 'permissionserrors' ];

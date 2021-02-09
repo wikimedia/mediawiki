@@ -614,7 +614,7 @@ class ApiParseTest extends ApiTestCase {
 	public function testEffectiveLangLinks() {
 		$hookRan = false;
 		$this->setTemporaryHook( 'LanguageLinks',
-			function () use ( &$hookRan ) {
+			static function () use ( &$hookRan ) {
 				$hookRan = true;
 			}
 		);
@@ -701,7 +701,7 @@ class ApiParseTest extends ApiTestCase {
 
 	public function testModules() {
 		$this->setTemporaryHook( 'ParserAfterParse',
-			function ( $parser ) {
+			static function ( $parser ) {
 				$output = $parser->getOutput();
 				$output->addModules( [ 'foo', 'bar' ] );
 				$output->addModuleStyles( [ 'aaa', 'zzz' ] );

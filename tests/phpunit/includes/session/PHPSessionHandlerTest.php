@@ -74,7 +74,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$store = new TestBagOStuff();
 		// Tolerate debug message, anything else is unexpected
-		$logger = new \TestLogger( false, function ( $m ) {
+		$logger = new \TestLogger( false, static function ( $m ) {
 			return preg_match( '/^SessionManager using store/', $m ) ? null : $m;
 		} );
 		$manager = new SessionManager( [
@@ -110,7 +110,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$store = new TestBagOStuff();
-		$logger = new \TestLogger( true, function ( $m ) {
+		$logger = new \TestLogger( true, static function ( $m ) {
 			return (
 				// Discard all log events starting with expected prefix
 				preg_match( '/^SessionBackend "\{session\}" /', $m )
@@ -291,7 +291,7 @@ class PHPSessionHandlerTest extends MediaWikiIntegrationTestCase {
 		session_id( $id );
 		session_start();
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'SessionCheckInfo' => [ function ( &$reason ) {
+			'SessionCheckInfo' => [ static function ( &$reason ) {
 				$reason = 'Testing';
 				return false;
 			} ],

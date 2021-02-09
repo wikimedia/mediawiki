@@ -33,7 +33,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$mockLocalRepo = $this->createMock( LocalRepo::class );
 		$mockLocalRepo->method( 'newFile' )->will( $this->returnCallback(
-			function ( Title $title ) use ( $mockExistentFile, $mockNonexistentFile ) {
+			static function ( Title $title ) use ( $mockExistentFile, $mockNonexistentFile ) {
 				if ( in_array( $title->getPrefixedText(),
 					[ 'File:Existent.jpg', 'File:Existent2.jpg', 'File:Existent-file-no-page.jpg' ]
 				) ) {
@@ -70,7 +70,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$mockNsInfo = $this->createMock( NamespaceInfo::class );
 		$mockNsInfo->method( 'isMovable' )->will( $this->returnCallback(
-			function ( $ns ) {
+			static function ( $ns ) {
 				return $ns >= 0;
 			}
 		) );
@@ -118,7 +118,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		// Set a couple of hooks for specific pages
 		$this->setTemporaryHook( 'ContentModelCanBeUsedOn',
-			function ( $modelId, Title $title, &$ok ) {
+			static function ( $modelId, Title $title, &$ok ) {
 				if ( $title->getPrefixedText() === 'No content allowed' ) {
 					$ok = false;
 				}
@@ -126,7 +126,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->setTemporaryHook( 'TitleIsMovable',
-			function ( Title $title, &$result ) {
+			static function ( Title $title, &$result ) {
 				if ( strtolower( $title->getPrefixedText() ) === 'hooked in place' ) {
 					$result = false;
 				}
@@ -373,7 +373,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	public function testMoveAbortedByTitleMoveHook() {
 		$error = 'Preventing move operation with TitleMove hook.';
 		$this->setTemporaryHook( 'TitleMove',
-			function ( $old, $new, $user, $reason, $status ) use ( $error ) {
+			static function ( $old, $new, $user, $reason, $status ) use ( $error ) {
 				$status->fatal( $error );
 			}
 		);

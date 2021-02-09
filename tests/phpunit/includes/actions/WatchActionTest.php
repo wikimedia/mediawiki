@@ -112,7 +112,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			$testContext
 		);
 
-		Hooks::register( 'WatchArticle', function () {
+		Hooks::register( 'WatchArticle', static function () {
 			return false;
 		} );
 
@@ -173,7 +173,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$testOutput = new OutputPage( $testContext );
 		$testContext->setOutput( $testOutput );
-		$testContext->method( 'msg' )->willReturnCallback( function ( $msgKey ) {
+		$testContext->method( 'msg' )->willReturnCallback( static function ( $msgKey ) {
 			return new RawMessage( $msgKey );
 		} );
 		$watchAction = new WatchAction(
@@ -198,7 +198,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$testOutput = new OutputPage( $testContext );
 		$testContext->method( 'getOutput' )->willReturn( $testOutput );
-		$testContext->method( 'msg' )->willReturnCallback( function ( $msgKey ) {
+		$testContext->method( 'msg' )->willReturnCallback( static function ( $msgKey ) {
 			return new RawMessage( $msgKey );
 		} );
 		$talkPageTitle = Title::newFromText( 'Talk:UTTest' );
@@ -371,7 +371,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDoUnWatchUserHookAborted() {
 		$permittedUser = $this->getUser( false, null, [ 'editmywatchlist' ] );
-		Hooks::register( 'UnwatchArticle', function () {
+		Hooks::register( 'UnwatchArticle', static function () {
 			return false;
 		} );
 

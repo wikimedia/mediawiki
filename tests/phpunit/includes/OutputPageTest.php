@@ -528,18 +528,18 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					[ 'UseCdn' => true, 'CdnMaxAge' => 3599 ] ],
 			'Hook allows cache use' =>
 				[ $lastModified + 1, $lastModified, true, [],
-				function ( $op, $that ) {
+				static function ( $op, $that ) {
 					$that->setTemporaryHook( 'OutputPageCheckLastModified',
-						function ( &$modifiedTimes ) {
+						static function ( &$modifiedTimes ) {
 							$modifiedTimes = [ 1 ];
 						}
 					);
 				} ],
 			'Hooks prohibits cache use' =>
 				[ $lastModified, $lastModified, false, [],
-				function ( $op, $that ) {
+				static function ( $op, $that ) {
 					$that->setTemporaryHook( 'OutputPageCheckLastModified',
-						function ( &$modifiedTimes ) {
+						static function ( &$modifiedTimes ) {
 							$modifiedTimes = [ max( $modifiedTimes ) + 1 ];
 						}
 					);
@@ -1196,7 +1196,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$mockContLang
 				->expects( $this->any() )
 				->method( 'convertHtml' )
-				->will( $this->returnCallback( function ( $arg ) {
+				->will( $this->returnCallback( static function ( $arg ) {
 					return $arg;
 				} ) );
 
@@ -1231,7 +1231,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$op->expects( $this->any() )
 			->method( 'addCategoryLinksToLBAndGetResult' )
-			->will( $this->returnCallback( function ( array $categories ) use ( $fakeResults ) {
+			->will( $this->returnCallback( static function ( array $categories ) use ( $fakeResults ) {
 				$return = [];
 				foreach ( $categories as $category => $unused ) {
 					if ( isset( $fakeResults[$category] ) ) {
@@ -1291,7 +1291,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'Variant link' => [
 				[ 'Test' => 'Test', 'Estay' => 'Estay' ],
 				[ 'Test' => (object)[ 'page_title' => 'Test' ] ],
-				function ( &$link, &$title ) {
+				static function ( &$link, &$title ) {
 					if ( $link === 'Estay' ) {
 						$link = 'Test';
 						$title = Title::makeTitleSafe( NS_CATEGORY, $link );

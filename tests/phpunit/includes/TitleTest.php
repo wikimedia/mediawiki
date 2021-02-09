@@ -486,7 +486,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$interwikiLookup->expects( $this->any() )
 			->method( 'isValidInterwiki' )
 			->willReturnCallback(
-				function ( $prefix ) {
+				static function ( $prefix ) {
 					return $prefix == 'wiki';
 				}
 			);
@@ -1039,7 +1039,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'Interwiki' => [ Title::makeTitle( NS_MAIN, 'Test', '', 'otherwiki' ), false ],
 			'Special page' => [ 'Special:FooBar', false ],
 			'Aborted by hook' => [ 'Hooked in place', false,
-				function ( Title $title, &$result ) {
+				static function ( Title $title, &$result ) {
 					$result = false;
 				}
 			],

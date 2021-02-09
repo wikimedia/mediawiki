@@ -138,7 +138,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
-			function ( $unused1, $unused2, Status $status ) use ( $customMessage ) {
+			static function ( $unused1, $unused2, Status $status ) use ( $customMessage ) {
 				if ( $customMessage !== false ) {
 					$status->fatal( $customMessage );
 				}
@@ -190,7 +190,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->setTemporaryHook( 'ContentModelCanBeUsedOn',
-			function ( $unused1, $unused2, &$ok ) {
+			static function ( $unused1, $unused2, &$ok ) {
 				$ok = false;
 				return false;
 			}
@@ -301,40 +301,40 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			->withConsecutive(
 				[
 					$this->equalTo( 'editcontentmodel' ),
-					$this->callback( function ( User $userInMock ) use ( $user ) {
+					$this->callback( static function ( User $userInMock ) use ( $user ) {
 						return $user->equals( $userInMock );
 					} ),
-					$this->callback( function ( Title $titleInMock ) use ( $title, $currentContentModel ) {
+					$this->callback( static function ( Title $titleInMock ) use ( $title, $currentContentModel ) {
 						return $title->equals( $titleInMock ) &&
 							$titleInMock->hasContentModel( $currentContentModel );
 					} )
 				],
 				[
 					$this->equalTo( 'edit' ),
-					$this->callback( function ( User $userInMock ) use ( $user ) {
+					$this->callback( static function ( User $userInMock ) use ( $user ) {
 						return $user->equals( $userInMock );
 					} ),
-					$this->callback( function ( Title $titleInMock ) use ( $title, $currentContentModel ) {
+					$this->callback( static function ( Title $titleInMock ) use ( $title, $currentContentModel ) {
 						return $title->equals( $titleInMock ) &&
 							$titleInMock->hasContentModel( $currentContentModel );
 					} )
 				],
 				[
 					$this->equalTo( 'editcontentmodel' ),
-					$this->callback( function ( User $userInMock ) use ( $user ) {
+					$this->callback( static function ( User $userInMock ) use ( $user ) {
 						return $user->equals( $userInMock );
 					} ),
-					$this->callback( function ( Title $titleInMock ) use ( $title, $newContentModel ) {
+					$this->callback( static function ( Title $titleInMock ) use ( $title, $newContentModel ) {
 						return $title->equals( $titleInMock ) &&
 							$titleInMock->hasContentModel( $newContentModel );
 					} )
 				],
 				[
 					$this->equalTo( 'edit' ),
-					$this->callback( function ( User $userInMock ) use ( $user ) {
+					$this->callback( static function ( User $userInMock ) use ( $user ) {
 						return $user->equals( $userInMock );
 					} ),
-					$this->callback( function ( Title $titleInMock ) use ( $title, $newContentModel ) {
+					$this->callback( static function ( Title $titleInMock ) use ( $title, $newContentModel ) {
 						return $title->equals( $titleInMock ) &&
 							$titleInMock->hasContentModel( $newContentModel );
 					} )
