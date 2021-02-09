@@ -16,10 +16,8 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class NamespaceDefTest extends TypeDefTestCase {
 
-	protected static $testClass = NamespaceDef::class;
-
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
-		return new static::$testClass(
+		return new NamespaceDef(
 			$callbacks,
 			MediaWikiServices::getInstance()->getNamespaceInfo()
 		);

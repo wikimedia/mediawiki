@@ -12,7 +12,9 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class FloatDefTest extends TypeDefTestCase {
 
-	protected static $testClass = FloatDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new FloatDef( $callbacks, $options );
+	}
 
 	public function provideValidate() {
 		return [

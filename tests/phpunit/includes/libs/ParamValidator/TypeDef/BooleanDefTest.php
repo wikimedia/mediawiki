@@ -4,6 +4,7 @@ namespace Wikimedia\ParamValidator\TypeDef;
 
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
@@ -11,7 +12,9 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class BooleanDefTest extends TypeDefTestCase {
 
-	protected static $testClass = BooleanDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new BooleanDef( $callbacks, $options );
+	}
 
 	public function provideValidate() {
 		foreach ( [

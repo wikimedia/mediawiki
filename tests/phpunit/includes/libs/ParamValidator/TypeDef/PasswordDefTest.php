@@ -3,6 +3,7 @@
 namespace Wikimedia\ParamValidator\TypeDef;
 
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 
 require_once __DIR__ . '/StringDefTest.php';
 
@@ -11,7 +12,9 @@ require_once __DIR__ . '/StringDefTest.php';
  */
 class PasswordDefTest extends StringDefTest {
 
-	protected static $testClass = PasswordDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new PasswordDef( $callbacks, $options );
+	}
 
 	public function provideNormalizeSettings() {
 		return [

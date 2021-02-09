@@ -18,10 +18,8 @@ use WikitextContent;
  */
 class TitleDefTest extends TypeDefTestCase {
 
-	protected static $testClass = TitleDef::class;
-
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
-		return new static::$testClass(
+		return new TitleDef(
 			$callbacks,
 			MediaWikiServices::getInstance()->getTitleFactory()
 		);
