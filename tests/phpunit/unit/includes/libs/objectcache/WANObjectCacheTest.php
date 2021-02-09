@@ -75,31 +75,6 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertLessThanOrEqual( $t + 1, $asOf, "As-of-time in range of set() time" );
 	}
 
-	/**
-	 * @covers WANObjectCache::set()
-	 * @covers WANObjectCache::checkValueSerializability()
-	 */
-	public function testSetWithClosure() {
-		list( $cache ) = $this->newWanCache();
-
-		$cacheKey = $cache->makeKey( 'x', wfRandomString() );
-
-		$value = [
-			'foo' => (object)[
-				'bar' => function () {
-					// nothing
-				}
-			]
-		];
-
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage(
-			"Encountered unserializable value for $cacheKey: "
-			. "Serialization of 'Closure' is not allowed"
-		);
-		$cache->set( $cacheKey, $value );
-	}
-
 	public static function provideSetAndGet() {
 		return [
 			// value, ttl
