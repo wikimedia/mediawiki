@@ -326,6 +326,8 @@
 	"missingarticle-diff": "(Diff: $1, $2)",
 	"readonly_lag": "The database has been automatically locked while the replica database servers catch up to the master",
 	"nonwrite-api-promise-error": "The 'Promise-Non-Write-API-Action' HTTP header was sent but the request was to an API write module.",
+	"timeouterror": "Server timed out",
+	"timeouterror-text": "The maximum request time of $1 {{PLURAL:$1|second|seconds}} was exceeded.",
 	"internalerror": "Internal error",
 	"internalerror_info": "Internal error: $1",
 	"internalerror-fatal-exception": "Fatal exception of type \"$1\"",

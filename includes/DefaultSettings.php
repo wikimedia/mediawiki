@@ -2363,6 +2363,46 @@ $wgRevisionCacheExpiry = 86400 * 7;
 /** @name   Performance hacks and limits */
 
 /**
+ * Set a limit on server request wall clock time.
+ *
+ * If the Excimer extension is enabled, setting this will cause an exception
+ * to be thrown after the specified number of seconds. If the extension is
+ * not available, set_time_limit() will be called instead.
+ *
+ * @var int|null
+ * @since 1.36
+ */
+$wgRequestTimeLimit = null;
+
+/**
+ * The request time limit for "slow" write requests that should not be
+ * interrupted due to the risk of data corruption.
+ *
+ * The limit will only be raised. If the pre-existing time limit is larger,
+ * then this will have no effect.
+ *
+ * @since 1.26
+ */
+$wgTransactionalTimeLimit = 120;
+
+/**
+ * The maximum time critical sections are allowed to stay open. Critical
+ * sections are used to defer Excimer request timeouts. If Excimer is available
+ * and this time limit is exceeded, an exception will be thrown at the next
+ * opportunity, typically after a long-running function like a DB query returns.
+ *
+ * Critical sections may wrap long-running queries, and it's generally better
+ * for the timeout to be handled a few milliseconds later when the critical
+ * section exits, so this should be a large number.
+ *
+ * This limit is ignored in command-line mode.
+ *
+ * @var float
+ * @since 1.36
+ */
+$wgCriticalSectionTimeLimit = 180.0;
+
+/**
  * Disable database-intensive features
  */
 $wgMiserMode = false;
@@ -2402,14 +2442,6 @@ $wgMaxArticleSize = 2048;
  * raise PHP's memory limit if it's below this amount.
  */
 $wgMemoryLimit = "50M";
-
-/**
- * The minimum amount of time that MediaWiki needs for "slow" write request,
- * particularly ones with multiple non-atomic writes that *should* be as
- * transactional as possible; MediaWiki will call set_time_limit() if needed.
- * @since 1.26
- */
-$wgTransactionalTimeLimit = 120;
 
 // endregion -- end performance hacks
 
