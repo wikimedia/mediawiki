@@ -561,25 +561,7 @@ class SpecialSearch extends SpecialPage {
 		) );
 
 		$out->addHTML( '<div class="mw-search-visualclear"></div>' );
-
-		// prev/next links
-		if ( $totalRes > $this->limit || $this->offset ) {
-			// Allow matches to define the correct offset, as interleaved
-			// AB testing may require a different next page offset.
-			if ( $textMatches && $textMatches->getOffset() !== null ) {
-				$offset = $textMatches->getOffset();
-			} else {
-				$offset = $this->offset;
-			}
-
-			$prevNext = $this->buildPrevNextNavigation(
-				$offset,
-				$this->limit,
-				$this->powerSearchOptions() + [ 'search' => $term ],
-				$this->limit + $this->offset >= $totalRes
-			);
-			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevNext}</p>\n" );
-		}
+		$this->prevNextLinks( $totalRes, $textMatches, $term, $out );
 
 		// Close <div class='searchresults'>
 		$out->addHTML( "</div>" );
@@ -878,6 +860,37 @@ class SpecialSearch extends SpecialPage {
 	 */
 	public function getPrefix() {
 		return $this->mPrefix;
+	}
+
+	/**
+	 * @param null|int $totalRes
+	 * @param null|ISearchResultSet $textMatches
+	 * @param string $term
+	 * @param OutputPage $out
+	 */
+	private function prevNextLinks( ?int $totalRes, ?ISearchResultSet $textMatches, string $term,
+								   OutputPage $out ) {
+		if ( $totalRes > $this->limit || $this->offset ) {
+			// Allow matches to define the correct offset, as interleaved
+			// AB testing may require a different next page offset.
+			if ( $textMatches && $textMatches->getOffset() !== null ) {
+				$offset = $textMatches->getOffset();
+			} else {
+				$offset = $this->offset;
+			}
+
+			// use the rewritten search term for subsequent page searches
+			$newSearchTerm = $term;
+			if ( $textMatches && $textMatches->hasRewrittenQuery() ) {
+				$newSearchTerm = $textMatches->getQueryAfterRewrite();
+			}
+
+			$prevNext =
+				$this->buildPrevNextNavigation( $offset, $this->limit,
+					$this->powerSearchOptions() + [ 'search' => $newSearchTerm ],
+					$this->limit + $this->offset >= $totalRes );
+			$out->addHTML( "<p class='mw-search-pager-bottom'>{$prevNext}</p>\n" );
+		}
 	}
 
 	protected function getGroupName() {
