@@ -93,6 +93,7 @@ this is no longer recommended and the option has been removed.
 ==== New external libraries ====
 * Added pear/net_url2 2.2.2.
 * Added wikimedia/shellbox
+* Added wikimedia/request-timeout 1.0.0.
 * …
 
 ===== New development-only external libraries =====

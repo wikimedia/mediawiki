@@ -23,6 +23,7 @@ use Wikimedia\AtEase;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\DBReadOnlyError;
+use Wikimedia\RequestTimeout\RequestTimeoutException;
 
 /**
  * Class to expose exceptions to the client (API bots, users, admins using CLI scripts)
@@ -134,19 +135,12 @@ class MWExceptionRenderer {
 		global $wgOut, $wgSitename;
 
 		if ( self::useOutputPage( $e ) ) {
-			if ( $e instanceof MWException ) {
-				$wgOut->prepareErrorPage( $e->getPageTitle() );
-			} elseif ( $e instanceof DBReadOnlyError ) {
-				$wgOut->prepareErrorPage( self::msg( 'readonly', 'Database is locked' ) );
-			} elseif ( $e instanceof DBExpectedError ) {
-				$wgOut->prepareErrorPage( self::msg( 'databaseerror', 'Database error' ) );
-			} else {
-				$wgOut->prepareErrorPage( self::msg( 'internalerror', 'Internal error' ) );
-			}
+			$wgOut->prepareErrorPage( self::getExceptionTitle( $e ) );
 
 			// Show any custom GUI message before the details
-			if ( $e instanceof MessageSpecifier ) {
-				$wgOut->addHTML( Html::element( 'p', [], Message::newFromSpecifier( $e )->text() ) );
+			$customMessage = self::getCustomMessage( $e );
+			if ( $customMessage !== null ) {
+				$wgOut->addHTML( Html::element( 'p', [], $customMessage ) );
 			}
 			$wgOut->addHTML( self::getHTML( $e ) );
 
@@ -253,6 +247,49 @@ class MWExceptionRenderer {
 	private static function getShowBacktraceError( Throwable $e ) {
 		$var = '$wgShowExceptionDetails = true;';
 		return "Set $var at the bottom of LocalSettings.php to show detailed debugging information.";
+	}
+
+	/**
+	 * Get the page title to be used for a given exception.
+	 *
+	 * @param Throwable $e
+	 * @return string
+	 */
+	private static function getExceptionTitle( Throwable $e ) {
+		if ( $e instanceof MWException ) {
+			return $e->getPageTitle();
+		} elseif ( $e instanceof DBReadOnlyError ) {
+			return self::msg( 'readonly', 'Database is locked' );
+		} elseif ( $e instanceof DBExpectedError ) {
+			return self::msg( 'databaseerror', 'Database error' );
+		} elseif ( $e instanceof RequestTimeoutException ) {
+			return self::msg( 'timeouterror', 'Request timeout' );
+		} else {
+			return self::msg( 'internalerror', 'Internal error' );
+		}
+	}
+
+	/**
+	 * Extract an additional user-visible message from an exception, or null if
+	 * it has none.
+	 *
+	 * @param Throwable $e
+	 * @return string|null
+	 */
+	private static function getCustomMessage( Throwable $e ) {
+		try {
+			if ( $e instanceof MessageSpecifier ) {
+				$msg = Message::newFromSpecifier( $e );
+			} elseif ( $e instanceof RequestTimeoutException ) {
+				$msg = wfMessage( 'timeouterror-text', $e->getLimit() );
+			} else {
+				return null;
+			}
+			$text = $msg->text();
+		} catch ( Exception $e2 ) {
+			return null;
+		}
+		return $text;
 	}
 
 	/**

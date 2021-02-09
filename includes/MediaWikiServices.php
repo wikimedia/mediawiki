@@ -126,6 +126,7 @@ use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Services\SalvageableService;
 use Wikimedia\Services\ServiceContainer;
@@ -747,6 +748,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContributionsLookup() : ContributionsLookup {
 		return $this->getService( 'ContributionsLookup' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return CriticalSectionProvider
+	 */
+	public function getCriticalSectionProvider() : CriticalSectionProvider {
+		return $this->getService( 'CriticalSectionProvider' );
 	}
 
 	/**

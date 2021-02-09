@@ -131,6 +131,8 @@ use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\ObjectFactory;
+use Wikimedia\RequestTimeout\CriticalSectionProvider;
+use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Services\RecursiveServiceDependencyException;
 use Wikimedia\UUID\GlobalIdGenerator;
 
@@ -312,6 +314,12 @@ return [
 			$services->getActorMigration(),
 			$services->getNamespaceInfo()
 		);
+	},
+
+	'CriticalSectionProvider' => function ( MediaWikiServices $services ) : CriticalSectionProvider {
+		$config = $services->getMainConfig();
+		$limit = $config->get( 'CommandLineMode' ) ? INF : $config->get( 'CriticalSectionTimeLimit' );
+		return RequestTimeout::singleton()->createCriticalSectionProvider( $limit );
 	},
 
 	'CryptHKDF' => function ( MediaWikiServices $services ) : CryptHKDF {
