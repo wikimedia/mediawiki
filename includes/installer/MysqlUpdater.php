@@ -37,13 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.18
-			[ 'doUserNewTalkTimestampNotNull' ],
-			[ 'addIndex', 'user', 'user_email', 'patch-user_email_index.sql' ],
-			[ 'modifyField', 'user_properties', 'up_property', 'patch-up_property.sql' ],
-			[ 'addTable', 'uploadstash', 'patch-uploadstash.sql' ],
-			[ 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ],
-
 			// 1.19
 			[ 'addField', 'revision', 'rev_sha1', 'patch-rev_sha1.sql' ],
 			[ 'doMigrateUserOptions' ],
