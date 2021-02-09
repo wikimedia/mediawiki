@@ -660,7 +660,7 @@ class WANObjectCache implements
 	 *      Default: null
 	 *   - walltime: How long the value took to generate in seconds. Default: null
 	 * @codingStandardsIgnoreStart
-	 * @phan-param array{lag?:int,since?:int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:?string,walltime?:int|float} $opts
+	 * @phan-param array{lag?:int,since?:int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float} $opts
 	 * @codingStandardsIgnoreEnd
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
