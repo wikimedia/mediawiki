@@ -34,11 +34,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.18
-			[ 'addIndex', 'user', 'user_email', 'patch-user_email_index.sql' ],
-			[ 'addTable', 'uploadstash', 'patch-uploadstash.sql' ],
-			[ 'addTable', 'user_former_groups', 'patch-user_former_groups.sql' ],
-
 			// 1.19
 			[ 'doMigrateUserOptions' ],
 			[ 'dropField', 'user', 'user_options', 'patch-drop-user_options.sql' ],
