@@ -3,6 +3,13 @@
 namespace Wikimedia\Rdbms;
 
 class SelectQueryBuilder extends JoinGroupBase {
+
+	/** @var string sort the results in ascending order */
+	public const SORT_ASC = 'ASC';
+
+	/** @var string sort the results in descending order */
+	public const SORT_DESC = 'DESC';
+
 	/**
 	 * @var array The fields to be passed to IDatabase::select()
 	 */
@@ -21,7 +28,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	/**
 	 * @var array The options to be passed to IDatabase::select()
 	 */
-	private $options = [];
+	protected $options = [];
 
 	/**
 	 * @var int An integer used to assign automatic aliases to tables and groups
@@ -29,7 +36,7 @@ class SelectQueryBuilder extends JoinGroupBase {
 	private $nextAutoAlias = 1;
 
 	/** @var IDatabase */
-	private $db;
+	protected $db;
 
 	/**
 	 * @internal
@@ -400,8 +407,9 @@ class SelectQueryBuilder extends JoinGroupBase {
 	 * additional fields to it.
 	 *
 	 * @param string[]|string $fields The field or list of fields to order by.
-	 * @param string|null $direction ASC or DESC. If this is null then $fields
-	 *   is assumed to optionally contain ASC or DESC after each field name.
+	 * @param string|null $direction self::SORT_ASC or self::SORT_DESC.
+	 * If this is null then $fields is assumed to optionally contain ASC or DESC
+	 * after each field name.
 	 * @return $this
 	 */
 	public function orderBy( $fields, $direction = null ) {

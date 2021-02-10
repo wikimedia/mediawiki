@@ -253,6 +253,9 @@ $wgAutoloadClasses += [
 	# tests/phpunit/includes/unit/password
 	'PasswordTestCase' => "$testDir/phpunit/unit/includes/password/PasswordTestCase.php",
 
+	# tests/phpunit/integration/includes/user
+	'MediaWiki\Tests\User\ActorStoreTestBase' => "$testDir/phpunit/integration/includes/user/ActorStoreTestBase.php",
+
 	# tests/phpunit/unit/includes/Rest/Handler
 	'MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait' => "$testDir/phpunit/mocks/permissions/MockAuthorityTrait.php",
 	'MediaWiki\Tests\Rest\Handler\ActionModuleBasedHandlerTestTrait' => "$testDir/phpunit/unit/includes/Rest/Handler/ActionModuleBasedHandlerTestTrait.php",

@@ -10,96 +10,15 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiIntegrationTestCase;
-use Psr\Log\NullLogger;
 use stdClass;
 use Wikimedia\Assert\PreconditionException;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @covers \MediaWiki\User\ActorStore
  * @coversDefaultClass \MediaWiki\User\ActorStore
  * @group Database
  */
-class ActorStoreTest extends MediaWikiIntegrationTestCase {
-
-	private const IP = '2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E';
-
-	public function addDBData() {
-		$this->tablesUsed[] = 'actor';
-
-		// Registered
-		$this->assertTrue( $this->db->insert(
-			'actor',
-			[ 'actor_id' => '42', 'actor_user' => '24', 'actor_name' => 'TestUser' ],
-			__METHOD__,
-			[ 'IGNORE' ]
-		) );
-
-		// Anon
-		$this->assertTrue( $this->db->insert(
-			'actor',
-			[ 'actor_id' => '43', 'actor_user' => null, 'actor_name' => self::IP ],
-			__METHOD__,
-			[ 'IGNORE' ]
-		) );
-	}
-
-	/**
-	 * @param string|false $wikiId
-	 * @return ActorStore
-	 */
-	private function getStore( $wikiId = UserIdentity::LOCAL ) : ActorStore {
-		return $this->getServiceContainer()->getActorStoreFactory()->getActorStore( $wikiId );
-	}
-
-	/**
-	 * Execute the $callback passing it an ActorStore for $wikiId,
-	 * making sure no queries are made to local DB.
-	 * @param string|false $wikiId
-	 * @param callable $callback ( ActorStore $store, IDatababase $db )
-	 */
-	private function executeWithForeignStore( $wikiId, callable $callback ) {
-		$dbLoadBalancer = $this->getServiceContainer()->getDBLoadBalancer();
-		$dbLoadBalancer->setDomainAliases( [ $wikiId => $dbLoadBalancer->getLocalDomainID() ] );
-
-		$foreignLB = $this->getServiceContainer()
-			->getDBLoadBalancerFactory()
-			->getMainLB( $wikiId );
-		$foreignLB->setDomainAliases( [ $wikiId => $dbLoadBalancer->getLocalDomainID() ] );
-		$foreignDB = $foreignLB->getConnectionRef( DB_MASTER );
-
-		$store = new ActorStore(
-			$dbLoadBalancer,
-			$this->getServiceContainer()->getUserNameUtils(),
-			new NullLogger(),
-			$wikiId
-		);
-
-		// Redefine the DBLoadBalancer service to verify we don't attempt to resolve its IDs via wfGetDB()
-		$localLoadBalancerMock = $this->createNoOpMock( ILoadBalancer::class );
-		try {
-			$this->setService( 'DBLoadBalancer', $localLoadBalancerMock );
-			$callback( $store, $foreignDB );
-		} finally {
-			// Restore the original loadBalancer.
-			$this->setService( 'DBLoadBalancer', $dbLoadBalancer );
-		}
-	}
-
-	/**
-	 * Check whether two actors are the same in the context of $wikiId
-	 * @param UserIdentity $expected
-	 * @param UserIdentity $actor
-	 * @param string|false $wikiId
-	 */
-	private function assertSameActors( UserIdentity $expected, UserIdentity $actor, $wikiId = UserIdentity::LOCAL ) {
-		$actor->assertWiki( $wikiId );
-		$this->assertSame( $expected->getActorId( $wikiId ), $actor->getActorId( $wikiId ) );
-		$this->assertSame( $expected->getUserId( $wikiId ), $actor->getUserId( $wikiId ) );
-		$this->assertSame( $expected->getName(), $actor->getName() );
-		$this->assertSame( $expected->getWikiId(), $actor->getWikiId() );
-	}
+class ActorStoreTest extends ActorStoreTestBase {
 
 	public function provideGetActorByMethods() {
 		yield 'getActorById, registered' => [
@@ -272,7 +191,7 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers ::getUserIdentityByUserId
 	 */
-	public function testgetUserIdentityByUserIdRealUser() {
+	public function testGetUserIdentityByUserIdRealUser() {
 		$user = $this->getTestUser()->getUser();
 		$actor = $this->getStore()->getUserIdentityByUserId( $user->getUserId() );
 		$this->assertSameActors( $user, $actor );
