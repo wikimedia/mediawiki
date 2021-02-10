@@ -452,10 +452,11 @@ class ApiEditPage extends ApiBase {
 		$wgRequest = $req;
 
 		$status = $ep->attemptSave( $result );
+		$statusValue = is_int( $status->value ) ? $status->value : 0;
 		$wgRequest = $oldRequest;
 
 		$r = [];
-		switch ( $status->value ) {
+		switch ( $statusValue ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
 				if ( isset( $status->apiHookResult ) ) {
@@ -522,7 +523,7 @@ class ApiEditPage extends ApiBase {
 				if ( !$status->getErrors() ) {
 					// EditPage sometimes only sets the status code without setting
 					// any actual error messages. Supply defaults for those cases.
-					switch ( $status->value ) {
+					switch ( $statusValue ) {
 						// Currently needed
 						case EditPage::AS_IMAGE_REDIRECT_ANON:
 							$status->fatal( 'apierror-noimageredirect-anon' );
@@ -573,8 +574,8 @@ class ApiEditPage extends ApiBase {
 							$status->fatal( 'apierror-summaryrequired' );
 							break;
 						default:
-							wfWarn( __METHOD__ . ": Unknown EditPage code {$status->value} with no message" );
-							$status->fatal( 'apierror-unknownerror-editpage', $status->value );
+							wfWarn( __METHOD__ . ": Unknown EditPage code $statusValue with no message" );
+							$status->fatal( 'apierror-unknownerror-editpage', $statusValue );
 							break;
 						// @codeCoverageIgnoreEnd
 					}
