@@ -24,7 +24,7 @@ namespace MediaWiki\Revision;
 
 use IDBAccessObject;
 use MediaWiki\Linker\LinkTarget;
-use Title;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * Service for looking up page revisions.
@@ -58,12 +58,12 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * MCR migration note: this replaces Revision::newFromTitle
 	 *
-	 * @param LinkTarget $linkTarget
+	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $revId (optional)
 	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionByTitle( LinkTarget $linkTarget, $revId = 0, $flags = 0 );
+	public function getRevisionByTitle( $page, $revId = 0, $flags = 0 );
 
 	/**
 	 * Load either the current, or a specified, revision
@@ -86,7 +86,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * MCR migration note: this replaces Revision::loadFromTimestamp
 	 *
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
 	 * @param int $flags Bitfield (optional) include:
 	 *      RevisionLookup::READ_LATEST: Select the data from the master
@@ -95,7 +95,7 @@ interface RevisionLookup extends IDBAccessObject {
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionByTimestamp(
-		LinkTarget $title,
+		$page,
 		string $timestamp,
 		int $flags = RevisionLookup::READ_NORMAL
 	): ?RevisionRecord;
@@ -146,23 +146,23 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * MCR migration note: this replaces Revision::newKnownCurrent
 	 *
-	 * @param Title $title the associated page title
+	 * @param PageIdentity $page the associated page
 	 * @param int $revId current revision of this page
 	 *
 	 * @return RevisionRecord|bool Returns false if missing
 	 */
-	public function getKnownCurrentRevision( Title $title, $revId = 0 );
+	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 );
 
 	/**
 	 * Get the first revision of the page.
 	 *
 	 * @since 1.35
-	 * @param LinkTarget $title the title of the page fetch the first revision for.
+	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param int $flags bit field, see IDBAccessObject::READ_* constants.
 	 * @return RevisionRecord|null
 	 */
 	public function getFirstRevision(
-		LinkTarget $title,
+		$page,
 		int $flags = IDBAccessObject::READ_NORMAL
 	): ?RevisionRecord;
 
