@@ -89,7 +89,7 @@ abstract class MWLBFactory {
 				$options->get( 'DBmwschema' ),
 				$options->get( 'DBprefix' )
 			),
-			'profiler' => function ( $section ) {
+			'profiler' => static function ( $section ) {
 				return Profiler::instance()->scopedProfileIn( $section );
 			},
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),

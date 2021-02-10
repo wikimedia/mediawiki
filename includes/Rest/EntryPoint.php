@@ -59,7 +59,7 @@ class EntryPoint {
 			[ 'includes/Rest/coreRoutes.json' ],
 			$conf->get( 'RestAPIAdditionalRouteFiles' )
 		);
-		array_walk( $routeFiles, function ( &$val, $key ) {
+		array_walk( $routeFiles, static function ( &$val, $key ) {
 			global $IP;
 			$val = "$IP/$val";
 		} );

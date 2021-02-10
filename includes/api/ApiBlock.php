@@ -128,7 +128,7 @@ class ApiBlock extends ApiBase {
 				$pageRestrictions[] = PageRestriction::newFromTitle( $title );
 			}
 
-			$namespaceRestrictions = array_map( function ( $id ) {
+			$namespaceRestrictions = array_map( static function ( $id ) {
 				return new NamespaceRestriction( 0, $id );
 			}, (array)$params['namespacerestrictions'] );
 			$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );

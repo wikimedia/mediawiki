@@ -498,7 +498,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		$allInfo = $cache->getWithSetCallback(
 			$cache->makeGlobalKey( 'resourceloader-titleinfo', $db->getDomainID(), $hash ),
 			$cache::TTL_HOUR,
-			function ( $curVal, &$ttl, array &$setOpts ) use ( $func, $pageNames, $db, $fname ) {
+			static function ( $curVal, &$ttl, array &$setOpts ) use ( $func, $pageNames, $db, $fname ) {
 				$setOpts += Database::getCacheSetOptions( $db );
 
 				return call_user_func( $func, $db, $pageNames, $fname );

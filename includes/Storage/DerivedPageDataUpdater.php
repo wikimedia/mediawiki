@@ -1395,7 +1395,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			);
 
 			// HACK: filter out redundant and incomplete LinksUpdates
-			$legacyUpdates = array_filter( $legacyUpdates, function ( $update ) {
+			$legacyUpdates = array_filter( $legacyUpdates, static function ( $update ) {
 				return !( $update instanceof LinksUpdate );
 			} );
 
@@ -1430,7 +1430,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$legacyUpdates = $content->getDeletionUpdates( $wikiPage );
 
 			// HACK: filter out redundant and incomplete LinksDeletionUpdate
-			$legacyUpdates = array_filter( $legacyUpdates, function ( $update ) {
+			$legacyUpdates = array_filter( $legacyUpdates, static function ( $update ) {
 				return !( $update instanceof LinksDeletionUpdate );
 			} );
 

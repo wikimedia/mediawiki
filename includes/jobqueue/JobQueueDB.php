@@ -680,7 +680,7 @@ class JobQueueDB extends JobQueue {
 					__METHOD__
 				);
 				$ids = array_map(
-					function ( $o ) {
+					static function ( $o ) {
 						return $o->job_id;
 					}, iterator_to_array( $res )
 				);
@@ -716,7 +716,7 @@ class JobQueueDB extends JobQueue {
 			// the IDs first means that the UPDATE can be done by primary key (less deadlocks).
 			$res = $dbw->select( 'job', 'job_id', $conds, __METHOD__ );
 			$ids = array_map(
-				function ( $o ) {
+				static function ( $o ) {
 					return $o->job_id;
 				}, iterator_to_array( $res )
 			);
@@ -828,7 +828,7 @@ class JobQueueDB extends JobQueue {
 		$autoTrx = $db->getFlag( DBO_TRX ); // get current setting
 		$db->clearFlag( DBO_TRX ); // make each query its own transaction
 
-		return new ScopedCallback( function () use ( $db, $autoTrx ) {
+		return new ScopedCallback( static function () use ( $db, $autoTrx ) {
 			if ( $autoTrx ) {
 				$db->setFlag( DBO_TRX ); // restore old setting
 			}

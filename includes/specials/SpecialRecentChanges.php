@@ -92,7 +92,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlist-watched-label',
 					'description' => 'rcfilters-filter-watchlist-watched-description',
 					'cssClassSuffix' => 'watched',
-					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+					'isRowApplicableCallable' => static function ( $ctx, $rc ) {
 						return $rc->getAttribute( 'wl_user' );
 					}
 				],
@@ -101,7 +101,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlist-watchednew-label',
 					'description' => 'rcfilters-filter-watchlist-watchednew-description',
 					'cssClassSuffix' => 'watchednew',
-					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+					'isRowApplicableCallable' => static function ( $ctx, $rc ) {
 						return $rc->getAttribute( 'wl_user' ) &&
 							$rc->getAttribute( 'rc_timestamp' ) &&
 							$rc->getAttribute( 'wl_notificationtimestamp' ) &&
@@ -113,7 +113,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 					'label' => 'rcfilters-filter-watchlist-notwatched-label',
 					'description' => 'rcfilters-filter-watchlist-notwatched-description',
 					'cssClassSuffix' => 'notwatched',
-					'isRowApplicableCallable' => function ( $ctx, $rc ) {
+					'isRowApplicableCallable' => static function ( $ctx, $rc ) {
 						return $rc->getAttribute( 'wl_user' ) === null;
 					},
 				]
@@ -437,7 +437,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	 * @return array
 	 */
 	protected function getFeedQuery() {
-		$query = array_filter( $this->getOptions()->getAllValues(), function ( $value ) {
+		$query = array_filter( $this->getOptions()->getAllValues(), static function ( $value ) {
 			// API handles empty parameters in a different way
 			return $value !== '';
 		} );

@@ -143,7 +143,7 @@ class WebResponse {
 		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
 		global $wgUseSameSiteLegacyCookies;
 
-		$options = array_filter( $options, function ( $a ) {
+		$options = array_filter( $options, static function ( $a ) {
 			return $a !== null;
 		} ) + [
 			'prefix' => $wgCookiePrefix,

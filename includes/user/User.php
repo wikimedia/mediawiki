@@ -2332,7 +2332,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 			$cache->delete( $key, 1 ); // low tombstone/"hold-off" TTL
 		} else {
 			$lb->getConnectionRef( DB_MASTER )->onTransactionPreCommitOrIdle(
-				function () use ( $cache, $key ) {
+				static function () use ( $cache, $key ) {
 					$cache->delete( $key );
 				},
 				__METHOD__

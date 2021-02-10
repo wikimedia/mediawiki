@@ -365,7 +365,7 @@ class ActorMigration {
 
 			if ( isset( self::$tempTables[$key] ) ) {
 				$func = __METHOD__;
-				$callback = function ( $pk, array $extra ) use ( $dbw, $key, $id, $func ) {
+				$callback = static function ( $pk, array $extra ) use ( $dbw, $key, $id, $func ) {
 					$t = self::$tempTables[$key];
 					$set = [ $t['field'] => $id ];
 					foreach ( $t['extra'] as $to => $from ) {
@@ -384,12 +384,12 @@ class ActorMigration {
 				};
 			} else {
 				$ret[$actor] = $id;
-				$callback = function ( $pk, array $extra ) {
+				$callback = static function ( $pk, array $extra ) {
 				};
 			}
 		} elseif ( isset( self::$tempTables[$key] ) ) {
 			$func = __METHOD__;
-			$callback = function ( $pk, array $extra ) use ( $key, $func ) {
+			$callback = static function ( $pk, array $extra ) use ( $key, $func ) {
 				$t = self::$tempTables[$key];
 				foreach ( $t['extra'] as $to => $from ) {
 					if ( !array_key_exists( $from, $extra ) ) {
@@ -398,7 +398,7 @@ class ActorMigration {
 				}
 			};
 		} else {
-			$callback = function ( $pk, array $extra ) {
+			$callback = static function ( $pk, array $extra ) {
 			};
 		}
 		return [ $ret, $callback ];

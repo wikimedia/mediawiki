@@ -1144,7 +1144,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$expiry = $dbw->timestamp( $expiry );
 
-		$weRows = array_map( function ( $wlId ) use ( $expiry, $dbw ) {
+		$weRows = array_map( static function ( $wlId ) use ( $expiry, $dbw ) {
 			return [
 				'we_item' => $wlId,
 				'we_expiry' => $expiry
@@ -1282,7 +1282,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		// Calls DeferredUpdates::addCallableUpdate in normal operation
 		call_user_func(
 			$this->deferredUpdatesAddCallableUpdateCallback,
-			function () use ( $job ) {
+			static function () use ( $job ) {
 				$job->run();
 			}
 		);

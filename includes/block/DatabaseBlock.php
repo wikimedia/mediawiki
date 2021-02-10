@@ -527,7 +527,7 @@ class DatabaseBlock extends AbstractBlock {
 		$lines = $cache->getWithSetCallback(
 			$cache->makeKey( 'ip-autoblock', 'whitelist' ),
 			$cache::TTL_DAY,
-			function ( $curValue, &$ttl, array &$setOpts ) {
+			static function ( $curValue, &$ttl, array &$setOpts ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				return explode( "\n",
@@ -986,7 +986,7 @@ class DatabaseBlock extends AbstractBlock {
 
 		// Sort hard blocks before soft ones and secondarily sort blocks
 		// that disable account creation before those that don't.
-		usort( $blocks, function ( DatabaseBlock $a, DatabaseBlock $b ) {
+		usort( $blocks, static function ( DatabaseBlock $a, DatabaseBlock $b ) {
 			$aWeight = (int)$a->isHardblock() . (int)$a->appliesToRight( 'createaccount' );
 			$bWeight = (int)$b->isHardblock() . (int)$b->appliesToRight( 'createaccount' );
 			return strcmp( $bWeight, $aWeight ); // highest weight first
@@ -1124,7 +1124,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return self
 	 */
 	public function setRestrictions( array $restrictions ) {
-		$this->restrictions = array_filter( $restrictions, function ( $restriction ) {
+		$this->restrictions = array_filter( $restrictions, static function ( $restriction ) {
 			return $restriction instanceof Restriction;
 		} );
 

@@ -674,7 +674,7 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 }
 
 // Useful debug output
-( function () {
+( static function () {
 	global $wgCommandLineMode, $wgRequest;
 	$logger = LoggerFactory::getInstance( 'wfDebug' );
 	if ( $wgCommandLineMode ) {
@@ -792,7 +792,7 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
  * @var Parser $wgParser
  * @deprecated since 1.32, use MediaWikiServices::getInstance()->getParser() instead
  */
-$wgParser = new DeprecatedGlobal( 'wgParser', function () {
+$wgParser = new DeprecatedGlobal( 'wgParser', static function () {
 	return MediaWikiServices::getInstance()->getParser();
 }, '1.32' );
 

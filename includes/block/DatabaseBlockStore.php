@@ -123,7 +123,7 @@ class DatabaseBlockStore {
 		DeferredUpdates::addUpdate( new AutoCommitUpdate(
 			$dbw,
 			__METHOD__,
-			function ( IDatabase $dbw, $fname ) use ( $blockRestrictionStore ) {
+			static function ( IDatabase $dbw, $fname ) use ( $blockRestrictionStore ) {
 				$ids = $dbw->selectFieldValues(
 					'ipblocks',
 					'ipb_id',

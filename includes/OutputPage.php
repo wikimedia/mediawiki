@@ -1916,7 +1916,7 @@ class OutputPage extends ContextSource {
 		if ( $this->getConfig()->get( 'ImagePreconnect' ) && count( $parserOutput->getImages() ) ) {
 			$preconnect = [];
 			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
-			$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$preconnect ) {
+			$repoGroup->forEachForeignRepo( static function ( $repo ) use ( &$preconnect ) {
 				$preconnect[] = wfParseUrl( $repo->getZoneUrl( 'thumb' ) )['host'];
 			} );
 			$preconnect[] = wfParseUrl( $repoGroup->getLocalRepo()->getZoneUrl( 'thumb' ) )['host'];
@@ -3008,7 +3008,7 @@ class OutputPage extends ContextSource {
 
 			// Filter out modules handled by buildExemptModules()
 			$moduleStyles = array_filter( $moduleStyles,
-				function ( $name ) use ( $rl, $context, &$exemptGroups, &$exemptStates ) {
+				static function ( $name ) use ( $rl, $context, &$exemptGroups, &$exemptStates ) {
 					$module = $rl->getModule( $name );
 					if ( $module ) {
 						$group = $module->getGroup();

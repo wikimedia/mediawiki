@@ -410,7 +410,7 @@ class ContentSecurityPolicy {
 		// img-src unspecified they should be in default-src. Similarly,
 		// the DescriptionStylesheetUrl only needs to be in style-src
 		// (or default-src if style-src unspecified).
-		$callback = function ( $repo, &$urls ) {
+		$callback = static function ( $repo, &$urls ) {
 			$urls[] = $repo->getZoneUrl( 'public' );
 			$urls[] = $repo->getZoneUrl( 'transcoded' );
 			$urls[] = $repo->getZoneUrl( 'thumb' );

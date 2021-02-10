@@ -699,7 +699,7 @@ class RecentChange implements Taggable {
 		];
 
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $rc, $tags, $editResult ) {
+			static function () use ( $rc, $tags, $editResult ) {
 				$rc->addTags( $tags );
 				$rc->setEditResult( $editResult );
 				$rc->save();
@@ -773,7 +773,7 @@ class RecentChange implements Taggable {
 		];
 
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $rc, $tags ) {
+			static function () use ( $rc, $tags ) {
 				$rc->addTags( $tags );
 				$rc->save();
 			},

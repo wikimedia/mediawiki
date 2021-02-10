@@ -398,7 +398,7 @@ abstract class Installer {
 
 		// make sure we use the installer config as the main config
 		$configRegistry = $baseConfig->get( 'ConfigRegistry' );
-		$configRegistry['main'] = function () use ( $installerConfig ) {
+		$configRegistry['main'] = static function () use ( $installerConfig ) {
 			return $installerConfig;
 		};
 
@@ -459,12 +459,12 @@ abstract class Installer {
 
 		$serviceOverrides += [
 			// Disable interwiki lookup, to avoid database access during parses
-			'InterwikiLookup' => function () {
+			'InterwikiLookup' => static function () {
 				return new NullInterwikiLookup();
 			},
 
 			// Disable user options database fetching, only rely on default options.
-			'UserOptionsLookup' => function ( MediaWikiServices $services ) {
+			'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
 				return $services->get( '_DefaultOptionsLookup' );
 			}
 		];
@@ -1762,7 +1762,7 @@ abstract class Installer {
 	 */
 	public function restoreServices() {
 		$this->resetMediaWikiServices( null, [
-			'UserOptionsLookup' => function ( MediaWikiServices $services ) {
+			'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
 				return $services->get( 'UserOptionsManager' );
 			}
 		] );

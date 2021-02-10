@@ -115,7 +115,7 @@ class LinkFilter {
 		}
 		$host = preg_replace_callback(
 			'<[^' . $okChars . ']>',
-			function ( $m ) {
+			static function ( $m ) {
 				return rawurlencode( $m[0] );
 			},
 			strtolower( $host )
@@ -154,7 +154,7 @@ class LinkFilter {
 		// IPv4?
 		$b = '(?:0*25[0-5]|0*2[0-4][0-9]|0*1[0-9][0-9]|0*[0-9]?[0-9])';
 		if ( preg_match( "/^(?:{$b}\.){3}{$b}$|^(?:{$b}\.){1,3}\*$/", $host ) ) {
-			return 'V4.' . implode( '.', array_map( function ( $v ) {
+			return 'V4.' . implode( '.', array_map( static function ( $v ) {
 				return $v === '*' ? $v : (int)$v;
 			}, explode( '.', $host ) ) ) . '.';
 		}

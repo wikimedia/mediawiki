@@ -300,7 +300,7 @@ class DeferredUpdates {
 			self::getScopeStack()->current()->consumeMatchingUpdates(
 				self::ALL,
 				EnqueueableDataUpdate::class,
-				function ( EnqueueableDataUpdate $update ) {
+				static function ( EnqueueableDataUpdate $update ) {
 					$spec = $update->getAsJobSpecification();
 					JobQueueGroup::singleton( $spec['domain'] )->push( $spec['job'] );
 				}
@@ -525,8 +525,8 @@ class DeferredUpdates {
 		}
 
 		$connsBusy = false;
-		$lbFactory->forEachLB( function ( LoadBalancer $lb ) use ( &$connsBusy ) {
-			$lb->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( &$connsBusy ) {
+		$lbFactory->forEachLB( static function ( LoadBalancer $lb ) use ( &$connsBusy ) {
+			$lb->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( &$connsBusy ) {
 				if ( $conn->writesOrCallbacksPending() || $conn->explicitTrxActive() ) {
 					$connsBusy = true;
 				}

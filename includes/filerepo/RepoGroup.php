@@ -78,7 +78,7 @@ class RepoGroup {
 		$services = MediaWikiServices::getInstance();
 		$services->disableService( 'RepoGroup' );
 		$services->redefineService( 'RepoGroup',
-			function () use ( $instance ) {
+			static function () use ( $instance ) {
 				return $instance;
 			}
 		);

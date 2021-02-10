@@ -566,7 +566,7 @@ class RequestContext implements IContextSource, MutableContext {
 			$user = User::newFromName( $params['ip'], false );
 		}
 
-		$importSessionFunc = function ( User $user, array $params ) {
+		$importSessionFunc = static function ( User $user, array $params ) {
 			global $wgRequest, $wgUser;
 
 			$context = RequestContext::getMain();
@@ -619,7 +619,7 @@ class RequestContext implements IContextSource, MutableContext {
 
 		// Set callback to save and close the new session and reload the old one
 		return new ScopedCallback(
-			function () use ( $importSessionFunc, $oUser, $oParams, $oRequest ) {
+			static function () use ( $importSessionFunc, $oUser, $oParams, $oRequest ) {
 				global $wgRequest;
 				$importSessionFunc( $oUser, $oParams );
 				// Restore the exact previous Request object (instead of leaving FauxRequest)

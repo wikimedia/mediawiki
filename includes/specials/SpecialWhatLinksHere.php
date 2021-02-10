@@ -210,7 +210,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$conds['pagelinks']['rd_from'] = null;
 		}
 
-		$queryFunc = function ( IDatabase $dbr, $table, $fromCol ) use (
+		$queryFunc = static function ( IDatabase $dbr, $table, $fromCol ) use (
 			$conds, $target, $limit
 		) {
 			// Read an extra row as an at-end check

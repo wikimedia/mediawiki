@@ -587,7 +587,7 @@ LUA;
 			function ( $uid ) use ( $conn ) {
 				return $this->getJobFromUidInternal( $uid, $conn );
 			},
-			[ 'accept' => function ( $job ) {
+			[ 'accept' => static function ( $job ) {
 				return is_object( $job );
 			} ]
 		);

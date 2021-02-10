@@ -350,7 +350,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				curl_setopt( $ch, CURLOPT_INFILESIZE, 0 );
 			}
 			curl_setopt( $ch, CURLOPT_READFUNCTION,
-				function ( $ch, $fd, $length ) {
+				static function ( $ch, $fd, $length ) {
 					return (string)fread( $fd, $length );
 				}
 			);
@@ -378,7 +378,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
 
 		curl_setopt( $ch, CURLOPT_HEADERFUNCTION,
-			function ( $ch, $header ) use ( &$req ) {
+			static function ( $ch, $header ) use ( &$req ) {
 				if ( !empty( $req['flags']['relayResponseHeaders'] ) && trim( $header ) !== '' ) {
 					header( $header );
 				}
@@ -410,7 +410,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		// This works with both file and php://temp handles (unlike CURLOPT_FILE)
 		$hasOutputStream = isset( $req['stream'] );
 		curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
-			function ( $ch, $data ) use ( &$req, $hasOutputStream ) {
+			static function ( $ch, $data ) use ( &$req, $hasOutputStream ) {
 				if ( $hasOutputStream ) {
 					return fwrite( $req['stream'], $data );
 				} else {
@@ -496,7 +496,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$sv = $httpRequest->execute()->getStatusValue();
 
 			$respHeaders = array_map(
-				function ( $v ) {
+				static function ( $v ) {
 					return implode( ', ', $v );
 				},
 				$httpRequest->getResponseHeaders() );

@@ -15,7 +15,7 @@ class ApiQueryUserInfoTest extends ApiTestCase {
 	 */
 	public function testTimestamp() {
 		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
-		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock += 1000;
 		} );
 

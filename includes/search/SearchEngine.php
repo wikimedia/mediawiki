@@ -309,7 +309,7 @@ abstract class SearchEngine {
 		if ( $namespaces ) {
 			// Filter namespaces to only keep valid ones
 			$validNs = MediaWikiServices::getInstance()->getSearchEngineConfig()->searchableNamespaces();
-			$namespaces = array_filter( $namespaces, function ( $ns ) use( $validNs ) {
+			$namespaces = array_filter( $namespaces, static function ( $ns ) use( $validNs ) {
 				return $ns < 0 || isset( $validNs[$ns] );
 			} );
 		} else {
@@ -642,7 +642,7 @@ abstract class SearchEngine {
 	 * @return Title[]
 	 */
 	public function extractTitles( SearchSuggestionSet $completionResults ) {
-		return $completionResults->map( function ( SearchSuggestion $sugg ) {
+		return $completionResults->map( static function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle();
 		} );
 	}
@@ -662,13 +662,13 @@ abstract class SearchEngine {
 		$search = trim( $search );
 		// preload the titles with LinkBatch
 		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-		$lb = $linkBatchFactory->newLinkBatch( $suggestions->map( function ( SearchSuggestion $sugg ) {
+		$lb = $linkBatchFactory->newLinkBatch( $suggestions->map( static function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle();
 		} ) );
 		$lb->setCaller( __METHOD__ );
 		$lb->execute();
 
-		$diff = $suggestions->filter( function ( SearchSuggestion $sugg ) {
+		$diff = $suggestions->filter( static function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle()->isKnown();
 		} );
 		if ( $diff > 0 ) {
@@ -676,7 +676,7 @@ abstract class SearchEngine {
 				->updateCount( 'search.completion.missing', $diff );
 		}
 
-		$results = $suggestions->map( function ( SearchSuggestion $sugg ) {
+		$results = $suggestions->map( static function ( SearchSuggestion $sugg ) {
 			return $sugg->getSuggestedTitle()->getPrefixedText();
 		} );
 

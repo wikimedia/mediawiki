@@ -534,7 +534,7 @@ class MediaWikiServices extends ServiceContainer {
 		parent::__construct();
 
 		// Register the given Config object as the bootstrap config service.
-		$this->defineService( 'BootstrapConfig', function () use ( $config ) {
+		$this->defineService( 'BootstrapConfig', static function () use ( $config ) {
 			return $config;
 		} );
 	}

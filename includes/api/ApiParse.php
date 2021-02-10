@@ -60,7 +60,7 @@ class ApiParse extends ApiBase {
 	) {
 		$worker = new PoolCounterWorkViaCallback( 'ApiParser', $this->getPoolKey(),
 			[
-				'doWork' => function () use ( $content, $title, $revId, $popts ) {
+				'doWork' => static function () use ( $content, $title, $revId, $popts ) {
 					return $content->getParserOutput( $title, $revId, $popts );
 				},
 				'error' => function () {
@@ -79,7 +79,7 @@ class ApiParse extends ApiBase {
 	) {
 		$worker = new PoolCounterWorkViaCallback( 'ApiParser', $this->getPoolKey(),
 			[
-				'doWork' => function () use ( $page, $revId, $popts, $suppressCache ) {
+				'doWork' => static function () use ( $page, $revId, $popts, $suppressCache ) {
 					return $page->getParserOutput( $popts, $revId, $suppressCache );
 				},
 				'error' => function () {

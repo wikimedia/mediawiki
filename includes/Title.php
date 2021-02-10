@@ -2934,7 +2934,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$id = $this->getArticleID( $flags );
 		if ( $id ) {
 			$fname = __METHOD__;
-			$loadRestrictionsFromDb = function ( IDatabase $dbr ) use ( $fname, $id ) {
+			$loadRestrictionsFromDb = static function ( IDatabase $dbr ) use ( $fname, $id ) {
 				return iterator_to_array(
 					$dbr->select(
 						'page_restrictions',
@@ -2954,7 +2954,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					// Page protections always leave a new null revision
 					$cache->makeKey( 'page-restrictions', 'v1', $id, $this->getLatestRevID() ),
 					$cache::TTL_DAY,
-					function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
+					static function ( $curValue, &$ttl, array &$setOpts ) use ( $loadRestrictionsFromDb ) {
 						$dbr = wfGetDB( DB_REPLICA );
 
 						$setOpts += Database::getCacheSetOptions( $dbr );
@@ -3014,7 +3014,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
 			wfGetDB( DB_MASTER ),
 			__METHOD__,
-			function ( IDatabase $dbw, $fname ) {
+			static function ( IDatabase $dbw, $fname ) {
 				$config = MediaWikiServices::getInstance()->getMainConfig();
 				$ids = $dbw->selectFieldValues(
 					'page_restrictions',
@@ -3032,7 +3032,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		DeferredUpdates::addUpdate( new AtomicSectionUpdate(
 			wfGetDB( DB_MASTER ),
 			__METHOD__,
-			function ( IDatabase $dbw, $fname ) {
+			static function ( IDatabase $dbw, $fname ) {
 				$dbw->delete(
 					'protected_titles',
 					[ 'pt_expiry < ' . $dbw->addQuotes( $dbw->timestamp() ) ],
@@ -3902,7 +3902,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					$limit,
 					$options
 				);
-			return array_map( function ( UserIdentity $user ) {
+			return array_map( static function ( UserIdentity $user ) {
 				return $user->getName();
 			}, $users );
 		} catch ( InvalidArgumentException $e ) {

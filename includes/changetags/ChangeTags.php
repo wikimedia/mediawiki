@@ -440,7 +440,7 @@ class ChangeTags {
 			}
 			$fname = __METHOD__;
 			// T207881: update the counts at the end of the transaction
-			$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $tagsToAdd, $fname ) {
+			$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tagsToAdd, $fname ) {
 				$dbw->update(
 					'change_tag_def',
 					[ 'ctd_count = ctd_count + 1' ],
@@ -485,7 +485,7 @@ class ChangeTags {
 				$dbw->delete( 'change_tag', $conds, __METHOD__ );
 				if ( $dbw->affectedRows() ) {
 					// T207881: update the counts at the end of the transaction
-					$dbw->onTransactionPreCommitOrIdle( function () use ( $dbw, $tag, $fname ) {
+					$dbw->onTransactionPreCommitOrIdle( static function () use ( $dbw, $tag, $fname ) {
 						$dbw->update(
 							'change_tag_def',
 							[ 'ctd_count = ctd_count - 1' ],
@@ -1512,7 +1512,7 @@ class ChangeTags {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'active-tags' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				// Ask extensions which tags they consider active
@@ -1554,7 +1554,7 @@ class ChangeTags {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'valid-tags-db' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_REPLICA );
 
 				$setOpts += Database::getCacheSetOptions( $dbr );
@@ -1597,7 +1597,7 @@ class ChangeTags {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'valid-tags-hook' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $tags, $hookRunner ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				$hookRunner->onListDefinedTags( $tags );
@@ -1640,7 +1640,7 @@ class ChangeTags {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'tags-usage-statistics' ),
 			WANObjectCache::TTL_MINUTE * 5,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $fname ) {
 				$dbr = wfGetDB( DB_REPLICA );
 				$res = $dbr->select(
 					'change_tag_def',

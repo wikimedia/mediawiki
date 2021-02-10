@@ -122,7 +122,7 @@ class PageEditStash {
 			return self::ERROR_BUSY;
 		}
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$unlocker = new ScopedCallback( function () use ( $dbw, $key, $fname ) {
+		$unlocker = new ScopedCallback( static function () use ( $dbw, $key, $fname ) {
 			$dbw->unlock( $key, $fname );
 		} );
 

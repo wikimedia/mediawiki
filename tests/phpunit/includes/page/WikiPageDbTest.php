@@ -1931,7 +1931,7 @@ more stuff
 	public function provideNewFromRowSuccess() {
 		yield 'basic row' => [
 			$this->getRow(),
-			function ( WikiPage $wikiPage, self $test ) {
+			static function ( WikiPage $wikiPage, self $test ) {
 				$test->assertSame( 44, $wikiPage->getId() );
 				$test->assertSame( 76, $wikiPage->getTitle()->getLength() );
 				$test->assertTrue( $wikiPage->isRedirect() );
@@ -1954,7 +1954,7 @@ more stuff
 				'page_touched' => '2012-01-01 02:02:02',
 				'page_links_updated' => '2014-01-01 02:02:02',
 			] ),
-			function ( WikiPage $wikiPage, self $test ) {
+			static function ( WikiPage $wikiPage, self $test ) {
 				$test->assertSame( '20120101020202', $wikiPage->getTouched() );
 				$test->assertSame( '20140101020202', $wikiPage->getLinksTimestamp() );
 			}
@@ -1963,7 +1963,7 @@ more stuff
 			$this->getRow( [
 				'page_restrictions' => '',
 			] ),
-			function ( WikiPage $wikiPage, self $test ) {
+			static function ( WikiPage $wikiPage, self $test ) {
 			$test->assertSame(
 				[
 					'edit' => [],
@@ -1977,7 +1977,7 @@ more stuff
 			$this->getRow( [
 				'page_is_redirect' => '0',
 			] ),
-			function ( WikiPage $wikiPage, self $test ) {
+			static function ( WikiPage $wikiPage, self $test ) {
 				$test->assertFalse( $wikiPage->isRedirect() );
 			}
 		];

@@ -655,7 +655,7 @@ class ParamValidator {
 					'values' => $invalidValues,
 				] )
 					->plaintextParams( $name, $value )
-					->commaListParams( array_map( function ( $v ) {
+					->commaListParams( array_map( static function ( $v ) {
 						return new ScalarParam( ParamType::PLAINTEXT, $v );
 					}, $invalidValues ) )
 					->numParams( count( $invalidValues ) ),
@@ -725,7 +725,7 @@ class ParamValidator {
 		}
 
 		// Filter out nulls (strictly)
-		return array_filter( $info, function ( $v ) {
+		return array_filter( $info, static function ( $v ) {
 			return $v !== null;
 		} );
 	}

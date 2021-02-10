@@ -838,7 +838,7 @@ class SpecialBlock extends FormSpecialPage {
 				}
 			}
 			if ( isset( $data['NamespaceRestrictions'] ) && $data['NamespaceRestrictions'] !== '' ) {
-				$namespaceRestrictions = array_map( function ( $id ) {
+				$namespaceRestrictions = array_map( static function ( $id ) {
 					return new NamespaceRestriction( 0, $id );
 				}, explode( "\n", $data['NamespaceRestrictions'] ) );
 			}

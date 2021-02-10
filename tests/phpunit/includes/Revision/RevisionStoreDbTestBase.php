@@ -1197,10 +1197,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	public function provideNewRevisionFromArchiveRowAndSlotsTitles() {
 		return [
-			[ function () {
+			[ static function () {
 				return Title::newFromText( 'Test_NewRevisionFromArchiveRowAndSlotsTitles' );
 			} ],
-			[ function () {
+			[ static function () {
 				return Title::newFromText( 'Test_NewRevisionFromArchiveRowAndSlotsTitles' )->toPageIdentity();
 			} ]
 		];
@@ -1512,11 +1512,11 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	public function provideInsertRevisionOn() {
 		return [
-			[ function () {
+			[ static function () {
 				$pageTitle = Title::newFromText( 'Test_Insert_Revision_On' );
 				return [ $pageTitle, $pageTitle ];
 			} ],
-			[ function () {
+			[ static function () {
 				$pageTitle = Title::newFromText( 'Test_Insert_Revision_On' );
 				return [ $pageTitle, $pageTitle->toPageIdentity() ];
 			} ]
@@ -2401,7 +2401,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	public function provideNewRevisionsFromBatchOptions() {
 		yield 'No preload slots or content, single page' => [
 			[ 'comment' ],
-			function () {
+			static function () {
 				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
 				return [ $pageTitle, $pageTitle ];
 			},
@@ -2410,7 +2410,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 		yield 'No preload slots or content, single page and with PageIdentity' => [
 			[ 'comment' ],
-			function () {
+			static function () {
 				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
 				return [ $pageTitle, $pageTitle->toPageIdentity() ];
 			},
@@ -2419,7 +2419,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Preload slots and content, single page' => [
 			[ 'comment' ],
-			function () {
+			static function () {
 				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
 				return [ $pageTitle, $pageTitle ];
 			},
@@ -2431,7 +2431,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Ask for no slots' => [
 			[ 'comment' ],
-			function () {
+			static function () {
 				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
 				return [ $pageTitle, $pageTitle ];
 			},
@@ -2440,7 +2440,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 		yield 'No preload slots or content, multiple pages' => [
 			[ 'comment' ],
-			function () {
+			static function () {
 				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
 				return [ $pageTitle, $pageTitle ];
 			},
@@ -2449,7 +2449,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Preload slots and content, multiple pages' => [
 			[ 'comment' ],
-			function () {
+			static function () {
 				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
 				return [ $pageTitle, $pageTitle ];
 			},
@@ -2461,7 +2461,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 		yield 'Preload slots and content, multiple pages, preload page fields' => [
 			[ 'page', 'comment' ],
-			function () {
+			static function () {
 				$pageTitle = Title::newFromText( 'Test_New_Revision_From_Batch' );
 				return [ $pageTitle, $pageTitle ];
 			},
@@ -2953,11 +2953,11 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	public function provideGetFirstRevision() {
 		return [
-			[ function () {
+			[ static function () {
 				$pageTitle = Title::newFromText( 'Test_Get_First_Revision' );
 				return [ $pageTitle, $pageTitle ];
 			} ],
-			[ function () {
+			[ static function () {
 				$pageTitle = Title::newFromText( 'Test_Get_First_Revision' );
 				return [ $pageTitle, $pageTitle->toPageIdentity() ];
 			} ]
@@ -2976,10 +2976,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideInsertRevisionByAnonAssignsNewActor() {
-		yield 'User' => [ '127.1.1.0', function ( MediaWikiServices $services, string $ip ) {
+		yield 'User' => [ '127.1.1.0', static function ( MediaWikiServices $services, string $ip ) {
 			return $services->getUserFactory()->newAnonymous( $ip );
 		} ];
-		yield 'User identity, anon' => [ '127.1.1.1', function ( MediaWikiServices $services, string $ip ) {
+		yield 'User identity, anon' => [ '127.1.1.1', static function ( MediaWikiServices $services, string $ip ) {
 			return new UserIdentityValue( 0, $ip, 0 );
 		} ];
 	}

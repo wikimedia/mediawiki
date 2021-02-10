@@ -107,7 +107,7 @@ class ForeignDBRepo extends LocalRepo {
 			'tablePrefix' => $this->tablePrefix
 		];
 
-		return function ( $index ) use ( $type, $params ) {
+		return static function ( $index ) use ( $type, $params ) {
 			return Database::factory( $type, $params );
 		};
 	}

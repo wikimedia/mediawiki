@@ -212,7 +212,7 @@ class BacklinkCache {
 				$res = $this->getDB()->select(
 					$table,
 					[ 'page_id' => $fromField ],
-					array_filter( $conds, function ( $clause ) { // kind of janky
+					array_filter( $conds, static function ( $clause ) { // kind of janky
 						return !preg_match( '/(\b|=)page_id(\b|=)/', $clause );
 					} ),
 					__METHOD__,

@@ -65,7 +65,7 @@ class SlotRecord {
 	public static function newWithSuppressedContent( SlotRecord $slot ) {
 		$row = $slot->row;
 
-		return new SlotRecord( $row, function () {
+		return new SlotRecord( $row, static function () {
 			throw new SuppressedDataException( 'Content suppressed!' );
 		} );
 	}

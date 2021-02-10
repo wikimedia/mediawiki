@@ -198,7 +198,7 @@ class ProfilerXhprof extends Profiler {
 	 */
 	protected function getFunctionReport() {
 		$data = $this->getFunctionStats();
-		usort( $data, function ( $a, $b ) {
+		usort( $data, static function ( $a, $b ) {
 			return $b['real'] <=> $a['real']; // descending
 		} );
 

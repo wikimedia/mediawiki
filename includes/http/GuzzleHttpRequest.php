@@ -168,7 +168,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 		$mwCookieJar = $this->getCookieJar();
 		$stack->push( Middleware::mapRequest(
-			function ( RequestInterface $request ) use ( $mwCookieJar ) {
+			static function ( RequestInterface $request ) use ( $mwCookieJar ) {
 				$uri = $request->getUri();
 				$cookieHeader = $mwCookieJar->serializeToHttpRequest(
 					$uri->getPath() ?: '/',

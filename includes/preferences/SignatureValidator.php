@@ -289,7 +289,7 @@ class SignatureValidator {
 		[ 'type' => $type, 'params' => $params ] = $lintError;
 
 		if ( $type === 'bogus-image-options' && isset( $params['items'] ) ) {
-			$list = array_map( function ( $in ) {
+			$list = array_map( static function ( $in ) {
 				return Html::element( 'code', [], $in );
 			}, $params['items'] );
 			return implode(

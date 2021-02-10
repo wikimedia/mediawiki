@@ -157,7 +157,7 @@ abstract class AuthenticationRequest {
 	 * @return bool Whether the request data was successfully loaded
 	 */
 	public function loadFromSubmission( array $data ) {
-		$fields = array_filter( $this->getFieldInfo(), function ( $info ) {
+		$fields = array_filter( $this->getFieldInfo(), static function ( $info ) {
 			return $info['type'] !== 'null';
 		} );
 		if ( !$fields ) {
@@ -272,7 +272,7 @@ abstract class AuthenticationRequest {
 	 * @phan-return T|null
 	 */
 	public static function getRequestByClass( array $reqs, $class, $allowSubclasses = false ) {
-		$requests = array_filter( $reqs, function ( $req ) use ( $class, $allowSubclasses ) {
+		$requests = array_filter( $reqs, static function ( $req ) use ( $class, $allowSubclasses ) {
 			if ( $allowSubclasses ) {
 				return is_a( $req, $class, false );
 			} else {

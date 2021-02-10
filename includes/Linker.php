@@ -1241,7 +1241,7 @@ class Linker {
 			// zero-width assertions optional, so wrap them in a non-capturing
 			// group.
 			'!(?:(?<=(.)))?/\*\s*(.*?)\s*\*/(?:(?=(.)))?!',
-			function ( $match ) use ( $title, $local, $wikiId, &$append ) {
+			static function ( $match ) use ( $title, $local, $wikiId, &$append ) {
 				global $wgLang;
 
 				// Ensure all match positions are defined
@@ -1343,7 +1343,7 @@ class Linker {
 				\]\]
 				([^[]*) # 3. link trail (the text up until the next link)
 			/x',
-			function ( $match ) use ( $title, $local, $wikiId ) {
+			static function ( $match ) use ( $title, $local, $wikiId ) {
 				$services = MediaWikiServices::getInstance();
 
 				$medians = '(?:';

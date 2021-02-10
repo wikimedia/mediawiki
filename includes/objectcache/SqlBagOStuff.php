@@ -1170,7 +1170,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 
 			$loop = new WaitConditionLoop(
-				function () use ( $lb, $masterPos ) {
+				static function () use ( $lb, $masterPos ) {
 					return $lb->waitForAll( $masterPos, 1 );
 				},
 				$this->syncTimeout,
@@ -1197,7 +1197,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$oldSilenced = $trxProfiler->setSilenced( true );
-		return new ScopedCallback( function () use ( $trxProfiler, $oldSilenced ) {
+		return new ScopedCallback( static function () use ( $trxProfiler, $oldSilenced ) {
 			$trxProfiler->setSilenced( $oldSilenced );
 		} );
 	}

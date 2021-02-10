@@ -271,7 +271,7 @@ class HashRing implements Serializable {
 			$this->weightByLocation,
 			array_filter(
 				$this->ejectExpiryByLocation,
-				function ( $expiry ) use ( $now ) {
+				static function ( $expiry ) use ( $now ) {
 					return ( $expiry > $now );
 				}
 			)
@@ -319,7 +319,7 @@ class HashRing implements Serializable {
 			}
 		}
 		// Sort the locations into clockwise order based on the hash ring position
-		usort( $ring, function ( $a, $b ) {
+		usort( $ring, static function ( $a, $b ) {
 			if ( $a[self::KEY_POS] === $b[self::KEY_POS] ) {
 				throw new UnexpectedValueException( 'Duplicate node positions.' );
 			}
@@ -402,7 +402,7 @@ class HashRing implements Serializable {
 			// Live ring needs to be regerenated...
 			$this->ejectExpiryByLocation = array_filter(
 				$this->ejectExpiryByLocation,
-				function ( $expiry ) use ( $now ) {
+				static function ( $expiry ) use ( $now ) {
 					return ( $expiry > $now );
 				}
 			);

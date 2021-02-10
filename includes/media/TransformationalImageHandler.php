@@ -523,7 +523,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		return $cache->getWithSetCallback(
 			$cache->makeGlobalKey( 'imagemagick-version' ),
 			$cache::TTL_HOUR,
-			function () use ( $method ) {
+			static function () use ( $method ) {
 				global $wgImageMagickConvertCommand;
 
 				$cmd = Shell::escape( $wgImageMagickConvertCommand ) . ' -version';

@@ -317,7 +317,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 		list( $blobsByAddress, $errors ) = $this->fetchBlobs( $blobAddresses, $queryFlags );
 
-		$blobsByAddress = array_map( function ( $blob ) {
+		$blobsByAddress = array_map( static function ( $blob ) {
 			return $blob === false ? null : $blob;
 		}, $blobsByAddress );
 

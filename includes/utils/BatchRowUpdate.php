@@ -77,7 +77,7 @@ class BatchRowUpdate {
 		$this->reader = $reader;
 		$this->writer = $writer;
 		$this->generator = $generator;
-		$this->output = function ( $text ) {
+		$this->output = static function ( $text ) {
 		}; // nop
 	}
 

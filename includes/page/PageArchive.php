@@ -109,7 +109,7 @@ class PageArchive {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$condTitles = array_unique( array_map( function ( Title $t ) {
+		$condTitles = array_unique( array_map( static function ( Title $t ) {
 			return $t->getDBkey();
 		}, $results ) );
 		$conds = [

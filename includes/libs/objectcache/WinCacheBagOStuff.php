@@ -110,7 +110,7 @@ class WinCacheBagOStuff extends MediumSpecificBagOStuff {
 		$charsLeft = 125 - strlen( $keyspace ) - count( $components );
 
 		$components = array_map(
-			function ( $component ) use ( &$charsLeft ) {
+			static function ( $component ) use ( &$charsLeft ) {
 				// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
 				if ( $charsLeft > 33 && strlen( $component ) > $charsLeft ) {
 					$component = '#' . md5( $component );

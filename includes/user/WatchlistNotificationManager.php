@@ -192,7 +192,7 @@ class WatchlistNotificationManager {
 			// Try to update the DB post-send and only if needed...
 			$talkPageNotificationManager = $this->talkPageNotificationManager;
 			$revisionLookup = $this->revisionLookup;
-			DeferredUpdates::addCallableUpdate( function () use (
+			DeferredUpdates::addCallableUpdate( static function () use (
 				$user,
 				$oldid,
 				$talkPageNotificationManager,

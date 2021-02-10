@@ -53,7 +53,7 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 			"TEST exists '{$propName}'"
 		];
 		yield 'unset' => [
-			function () use ( $array ) {
+			static function () use ( $array ) {
 				unset( $array[ self::PROP_NAME ] );
 			},
 			"TEST unset '{$propName}'"

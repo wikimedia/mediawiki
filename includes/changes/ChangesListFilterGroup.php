@@ -354,7 +354,7 @@ abstract class ChangesListFilterGroup {
 			);
 		}
 
-		usort( $this->filters, function ( $a, $b ) {
+		usort( $this->filters, static function ( $a, $b ) {
 			return $b->getPriority() <=> $a->getPriority();
 		} );
 
@@ -402,7 +402,7 @@ abstract class ChangesListFilterGroup {
 	 */
 	public function getConflictingGroups() {
 		return array_map(
-			function ( $conflictDesc ) {
+			static function ( $conflictDesc ) {
 				return $conflictDesc[ 'groupObject' ];
 			},
 			$this->conflictingGroups
@@ -416,7 +416,7 @@ abstract class ChangesListFilterGroup {
 	 */
 	public function getConflictingFilters() {
 		return array_map(
-			function ( $conflictDesc ) {
+			static function ( $conflictDesc ) {
 				return $conflictDesc[ 'filterObject' ];
 			},
 			$this->conflictingFilters
@@ -432,7 +432,7 @@ abstract class ChangesListFilterGroup {
 	public function anySelected( FormOptions $opts ) {
 		return (bool)count( array_filter(
 			$this->getFilters(),
-			function ( ChangesListFilter $filter ) use ( $opts ) {
+			static function ( ChangesListFilter $filter ) use ( $opts ) {
 				return $filter->isSelected( $opts );
 			}
 		) );

@@ -204,7 +204,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 		$idToName = array_fill_keys( $ids, false );
 		$names = $this->lookupCentralIds( $idToName, $audience, $flags );
 		$names = array_unique( $names );
-		$names = array_filter( $names, function ( $name ) {
+		$names = array_filter( $names, static function ( $name ) {
 			return $name !== false && $name !== '';
 		} );
 
@@ -242,7 +242,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 		$nameToId = array_fill_keys( $names, false );
 		$ids = $this->lookupUserNames( $nameToId, $audience, $flags );
 		$ids = array_unique( $ids );
-		$ids = array_filter( $ids, function ( $id ) {
+		$ids = array_filter( $ids, static function ( $id ) {
 			return $id !== false;
 		} );
 

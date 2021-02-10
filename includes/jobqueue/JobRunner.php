@@ -673,7 +673,7 @@ class JobRunner implements LoggerAwareInterface {
 			// This will trigger a rollback in the main loop
 			throw new DBError( $dbwSerial, "Timed out waiting on commit queue." );
 		}
-		$unlocker = new ScopedCallback( function () use ( $dbwSerial, $fnameTrxOwner ) {
+		$unlocker = new ScopedCallback( static function () use ( $dbwSerial, $fnameTrxOwner ) {
 			$dbwSerial->unlock( 'jobrunner-serial-commit', $fnameTrxOwner );
 		} );
 

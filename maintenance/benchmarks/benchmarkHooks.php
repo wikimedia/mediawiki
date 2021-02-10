@@ -53,7 +53,7 @@ class BenchmarkHooks extends Benchmarker {
 						$wgHooks['Test'][] = [ $this, 'test' ];
 					}
 				},
-				'function' => function () {
+				'function' => static function () {
 					Hooks::run( 'Test' );
 				}
 			];

@@ -511,7 +511,7 @@ class CommentStore {
 				$t = $this->tempTables[$key];
 				$func = __METHOD__;
 				$commentId = $comment->id;
-				$callback = function ( $id ) use ( $dbw, $commentId, $t, $func ) {
+				$callback = static function ( $id ) use ( $dbw, $commentId, $t, $func ) {
 					$dbw->insert(
 						$t['table'],
 						[
@@ -598,7 +598,7 @@ class CommentStore {
 
 		list( $fields, $callback ) = $this->insertInternal( $dbw, $key, $comment, $data );
 		if ( !$callback ) {
-			$callback = function () {
+			$callback = static function () {
 				// Do nothing.
 			};
 		}

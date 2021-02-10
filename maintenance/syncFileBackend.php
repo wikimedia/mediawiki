@@ -112,7 +112,7 @@ class SyncFileBackend extends Maintenance {
 		}
 
 		// Periodically update the position file
-		$callback = function ( $pos ) use ( $startFromPosFile, $posFile, $start ) {
+		$callback = static function ( $pos ) use ( $startFromPosFile, $posFile, $start ) {
 			if ( $startFromPosFile && $pos >= $start ) { // successfully advanced
 				file_put_contents( $posFile, $pos, LOCK_EX );
 			}
