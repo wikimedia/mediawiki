@@ -784,9 +784,6 @@ class Sanitizer {
 			'__'   => '&#95;_',
 		] );
 
-		# Armor against French spaces detection (T5158)
-		$encValue = self::armorFrenchSpaces( $encValue, '&#32;' );
-
 		# Stupid hack
 		$encValue = preg_replace_callback(
 			'/((?i)' . wfUrlProtocols() . ')/',
