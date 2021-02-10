@@ -327,7 +327,7 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::newActorFromRowFields
 	 */
 	public function testNewActorFromRowFields( $wikiId, $actorId, $name, $userId, UserIdentity $expected ) {
-		$actor = $this->getStore( $wikiId )->newActorFromRowFields( $actorId, $name, $userId );
+		$actor = $this->getStore( $wikiId )->newActorFromRowFields( $userId, $name, $actorId );
 		$this->assertSameActors( $expected, $actor, $wikiId );
 	}
 
@@ -360,7 +360,7 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewActorFromRowFields_exception( $actorId, $name, $userId ) {
 		$this->expectException( InvalidArgumentException::class );
-		$this->getStore()->newActorFromRowFields( $actorId, $name, $userId );
+		$this->getStore()->newActorFromRowFields( $userId, $name, $actorId );
 	}
 
 	public function provideFindActorId() {

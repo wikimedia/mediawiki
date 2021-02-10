@@ -59,12 +59,12 @@ interface ActorNormalization extends IDBAccessObject {
 	 * deprecated and removed.
 	 *
 	 * @throws InvalidArgumentException
-	 * @param int|null $actorId
-	 * @param string|null $name
 	 * @param int|null $userId
+	 * @param string|null $name
+	 * @param int|null $actorId
 	 * @return UserIdentity
 	 */
-	public function newActorFromRowFields( $actorId, $name, $userId ): UserIdentity;
+	public function newActorFromRowFields( $userId, $name, $actorId ): UserIdentity;
 
 	/**
 	 * Find the actor_id of the given $user.
