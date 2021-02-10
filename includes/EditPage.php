@@ -2361,9 +2361,9 @@ class EditPage implements IEditObject {
 					[ 'edit-gone-missing', 'edit-conflict', 'edit-already-exists' ] )
 			) {
 				$this->isConflict = true;
+				// Destroys data doEdit() put in $status->value but who cares
+				$doEditStatus->value = self::AS_END;
 			}
-			// Destroys data doEdit() put in $status->value but who cares
-			$doEditStatus->value = self::AS_END;
 			return $doEditStatus;
 		}
 
