@@ -94,4 +94,12 @@ interface ActorNormalization extends IDBAccessObject {
 	 * @return UserIdentity|null Returns null if no actor with this $actorId exists in the database.
 	 */
 	public function getActorById( int $actorId, int $queryFlags = self::READ_NORMAL ): ?UserIdentity;
+
+	/**
+	 * In case all reasonable attempts of initializing a proper actor from the
+	 * database have failed, entities can be attributed to special 'Unknown user' actor.
+	 *
+	 * @return UserIdentity
+	 */
+	public function getUnknownActor(): UserIdentity;
 }

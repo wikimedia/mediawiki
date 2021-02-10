@@ -43,6 +43,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 			MediaWikiServices::getInstance()->getSlotRoleStore(),
 			MediaWikiServices::getInstance()->getSlotRoleRegistry(),
 			MediaWikiServices::getInstance()->getActorMigration(),
+			MediaWikiServices::getInstance()->getActorStore(),
 			$this->getMockContentHandlerFactory(),
 			MediaWikiServices::getInstance()->getHookContainer()
 		);

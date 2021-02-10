@@ -46,6 +46,7 @@ use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Message;
@@ -61,7 +62,6 @@ use RuntimeException;
 use StatusValue;
 use Title;
 use Traversable;
-use User;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
@@ -125,6 +125,9 @@ class RevisionStore
 	 */
 	private $actorMigration;
 
+	/** @var ActorStore */
+	private $actorStore;
+
 	/**
 	 * @var LoggerInterface
 	 */
@@ -168,6 +171,7 @@ class RevisionStore
 	 * @param NameTableStore $slotRoleStore
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param ActorMigration $actorMigration
+	 * @param ActorStore $actorStore
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
 	 * @param false|string $wikiId Relevant wiki id or WikiAwareEntity::LOCAL for the current one
@@ -181,6 +185,7 @@ class RevisionStore
 		NameTableStore $slotRoleStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		ActorMigration $actorMigration,
+		ActorStore $actorStore,
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
 		$wikiId = WikiAwareEntity::LOCAL
@@ -195,6 +200,7 @@ class RevisionStore
 		$this->slotRoleStore = $slotRoleStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->actorMigration = $actorMigration;
+		$this->actorStore = $actorStore;
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
 		$this->contentHandlerFactory = $contentHandlerFactory;
@@ -609,7 +615,7 @@ class RevisionStore
 		RevisionRecord $rev,
 		$revisionId
 	) {
-		if ( $user->getId() === 0 && IPUtils::isValid( $user->getName() ) ) {
+		if ( $user->getUserId( $this->wikiId ) === 0 && IPUtils::isValid( $user->getName() ) ) {
 			$ipcRow = [
 				'ipc_rev_id'        => $revisionId,
 				'ipc_rev_timestamp' => $dbw->timestamp( $rev->getTimestamp() ),
@@ -1479,21 +1485,20 @@ class RevisionStore
 		}
 
 		try {
-			$user = User::newFromAnyId(
+			$user = $this->actorStore->newActorFromRowFields(
 				$row->ar_user ?? null,
 				$row->ar_user_text ?? null,
-				$row->ar_actor ?? null,
-				$this->wikiId
+				$row->ar_actor ?? null
 			);
 		} catch ( InvalidArgumentException $ex ) {
-			wfWarn( __METHOD__ . ': ' . $page . ': ' . $ex->getMessage() );
-			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
-		}
-
-		if ( $user->getName() === '' ) {
-			// T236624: If the user name is empty, force 'Unknown user',
-			// even if the actor table has an entry for the empty user name.
-			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
+			$this->logger->warning( 'Could not load user for archive revision {rev_id}', [
+				'ar_rev_id' => $row->ar_rev_id,
+				'ar_actor' => $row->ar_actor ?? 'null',
+				'ar_user_text' => $row->ar_user_text ?? 'null',
+				'ar_user' => $row->ar_user ?? 'null',
+				'exception' => $ex
+			] );
+			$user = $this->actorStore->getUnknownActor();
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
@@ -1542,15 +1547,20 @@ class RevisionStore
 		}
 
 		try {
-			$user = User::newFromAnyId(
+			$user = $this->actorStore->newActorFromRowFields(
 				$row->rev_user ?? null,
 				$row->rev_user_text ?? null,
-				$row->rev_actor ?? null,
-				$this->wikiId
+				$row->rev_actor ?? null
 			);
 		} catch ( InvalidArgumentException $ex ) {
-			wfWarn( __METHOD__ . ': ' . $page . ': ' . $ex->getMessage() );
-			$user = new UserIdentityValue( 0, 'Unknown user', 0 );
+			$this->logger->warning( 'Could not load user for revision {rev_id}', [
+				'rev_id' => $row->rev_id,
+				'rev_actor' => $row->rev_actor ?? 'null',
+				'rev_user_text' => $row->rev_user_text ?? 'null',
+				'rev_user' => $row->rev_user ?? 'null',
+				'exception' => $ex
+			] );
+			$user = $this->actorStore->getUnknownActor();
 		}
 
 		$db = $this->getDBConnectionRefForQueryFlags( $queryFlags );
@@ -1590,11 +1600,10 @@ class RevisionStore
 					}
 					return [
 						$row->rev_deleted,
-						User::newFromAnyId(
+						$this->actorStore->newActorFromRowFields(
 							$row->rev_user ?? null,
 							$row->rev_user_text ?? null,
-							$row->rev_actor ?? null,
-							$this->wikiId
+							$row->rev_actor ?? null
 						)
 					];
 				},
@@ -2177,26 +2186,46 @@ class RevisionStore
 	) {
 		/** @var UserIdentity $user */
 		$user = null;
-
-		// If a user is passed in, use it if possible. We cannot use a user from a
-		// remote wiki with unsuppressed ids, due to issues described in T222212.
-		if ( isset( $fields['user'] ) &&
-			( $fields['user'] instanceof UserIdentity ) &&
-			( $this->wikiId === false ||
-				( !$fields['user']->getId() && !$fields['user']->getActorId() ) )
-		) {
+		if ( isset( $fields['user'] ) && ( $fields['user'] instanceof UserIdentity ) ) {
+			$fields['user']->assertWiki( $this->wikiId );
 			$user = $fields['user'];
 		} else {
-			$userID = isset( $fields['user'] ) && is_numeric( $fields['user'] ) ? $fields['user'] : null;
+			$actorID = isset( $fields['actor'] ) && is_numeric( $fields['actor'] ) ? (int)$fields['actor'] : null;
+			$userID = isset( $fields['user'] ) && is_numeric( $fields['user'] ) ? (int)$fields['user'] : null;
 			try {
-				$user = User::newFromAnyId(
+				$user = $this->actorStore->newActorFromRowFields(
 					$userID,
 					$fields['user_text'] ?? null,
-					$fields['actor'] ?? null,
-					$this->wikiId
+					$actorID
 				);
 			} catch ( InvalidArgumentException $ex ) {
 				$user = null;
+			}
+			if ( !$user && $actorID ) {
+				try {
+					$user = $this->actorStore->getActorById( $actorID );
+				} catch ( InvalidArgumentException $ex ) {
+					$user = null;
+				}
+			}
+			if ( !$user ) {
+				try {
+					$user = $this->actorStore->getUserIdentityByAnyId(
+						$userID,
+						$fields['user_text'] ?? null
+					);
+				} catch ( InvalidArgumentException $ex ) {
+					$user = null;
+				}
+			}
+			// Could not initialize the user, maybe it doesn't exist?
+			if ( isset( $fields['user_text'] ) ) {
+				$user = new UserIdentityValue(
+					$userID === null ? 0 : $userID,
+					$fields['user_text'],
+					$fields['actor'] ?? 0,
+					$this->wikiId
+				);
 			}
 		}
 
@@ -3288,7 +3317,11 @@ class RevisionStore
 
 		$actorQuery = $this->actorMigration->getJoin( 'rev_user' );
 		return array_map( function ( $row ) {
-			return new UserIdentityValue( (int)$row->rev_user, $row->rev_user_text, (int)$row->rev_actor );
+			return $this->actorStore->newActorFromRowFields(
+				$row->rev_user,
+				$row->rev_user_text,
+				$row->rev_actor
+			);
 		}, iterator_to_array( $dbr->select(
 			array_merge( [ 'revision' ], $actorQuery['tables'] ),
 			$actorQuery['fields'],
