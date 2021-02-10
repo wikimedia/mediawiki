@@ -337,6 +337,8 @@
 	"missingarticle-diff": "(разлика: $1, $2)",
 	"readonly_lag": "Базата е автоматски заклучена додека помошните опслужувачи не се усогласат",
 	"nonwrite-api-promise-error": "HTTP-заглавието „Promise-Non-Write-API-Action“ беше испратено, но барањето беше упатено кон модул за пишување на API.",
+	"timeouterror": "Одѕивното време на опслужувачот истече",
+	"timeouterror-text": "Надминато е дозволено време на барањето од $1 {{PLURAL:$1|секунда|секунди}}.",
 	"internalerror": "Внатрешна грешка",
 	"internalerror_info": "Внатрешна грешка: $1",
 	"internalerror-fatal-exception": "Кобен исклучок на типот „$1“",

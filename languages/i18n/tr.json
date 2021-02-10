@@ -426,6 +426,8 @@
 	"missingarticle-diff": "(Fark: $1, $2)",
 	"readonly_lag": "Çoğaltma veritabanı sunucuları ana verileri yakalarken veritabanı otomatik olarak kilitlendi",
 	"nonwrite-api-promise-error": "'Promise-Non-Write-API-Action' HTTP üstbilgisi gönderildi, ancak istek bir API yazma modülüne yapıldı.",
+	"timeouterror": "Sunucu zaman aşımına uğradı",
+	"timeouterror-text": "$1 saniye maksimum istek süresi aşıldı.",
 	"internalerror": "Dahili hata",
 	"internalerror_info": "Dahili hata: $1",
 	"internalerror-fatal-exception": "\"$1\" tipinde hayati istisna",

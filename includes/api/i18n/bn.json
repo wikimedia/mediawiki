@@ -40,5 +40,7 @@
 	"api-help-templatedparams-header": "টেমপ্লেট প্যারামিটারসমূহ",
 	"apierror-baddiff": "পার্থক্য পুনরুদ্ধার করা যাবে না। এক বা উভয় সংস্করণের অন্তর্ভুক্ত কোন অস্তিত্ব নেই অথবা আপনার তাদের দেখতে অনুমতি নেই।",
 	"apierror-invaliduserid": "ব্যবহারকারী আইডি <var>$1</var> বৈধ নয়।",
-	"apierror-nosuchuserid": "$1 আইডি যুক্ত কোন ব্যবহারকারী নেই।"
+	"apierror-mustbeloggedin": "$1 জন্য আপনাকে অবশ্যই প্রবেশ করতে হবে।",
+	"apierror-nosuchuserid": "$1 আইডি যুক্ত কোন ব্যবহারকারী নেই।",
+	"apierror-permissiondenied": "আপনার $1 অনুমতি নেই।"
 }

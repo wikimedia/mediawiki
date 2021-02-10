@@ -411,6 +411,8 @@
 	"missingarticle-diff": "(różnica: $1, $2)",
 	"readonly_lag": "Baza danych została automatycznie zablokowana na czas potrzebny do wykonania synchronizacji zmian między serwerem głównym i serwerami pośredniczącymi.",
 	"nonwrite-api-promise-error": "Nagłówek HTTP 'Promise-Non-Write-API-Action' został wysłany, ale zapytanie wykorzystywało moduł API, który modyfikuje dane.",
+	"timeouterror": "Serwer zbyt długo nie odpowiada",
+	"timeouterror-text": "Czas wykonywania żądania przekroczył {{PLURAL:$1|sekundę|$1 sekundy|$1 sekund}}.",
 	"internalerror": "Błąd wewnętrzny",
 	"internalerror_info": "Błąd wewnętrzny: $1",
 	"internalerror-fatal-exception": "Krytyczny wyjątek typu „$1”",
