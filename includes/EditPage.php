@@ -1712,18 +1712,20 @@ class EditPage implements IEditObject {
 	 * @return bool False, if output is done, true if rest of the form should be displayed
 	 */
 	private function handleStatus( Status $status, $resultDetails ) {
+		$statusValue = is_int( $status->value ) ? $status->value : 0;
+
 		/**
 		 * @todo FIXME: once the interface for internalAttemptSave() is made
 		 *   nicer, this should use the message in $status
 		 */
-		if ( $status->value == self::AS_SUCCESS_UPDATE
-			|| $status->value == self::AS_SUCCESS_NEW_ARTICLE
+		if ( $statusValue == self::AS_SUCCESS_UPDATE
+			|| $statusValue == self::AS_SUCCESS_NEW_ARTICLE
 		) {
 			$this->incrementResolvedConflicts();
 
 			$this->didSave = true;
 			if ( !$resultDetails['nullEdit'] ) {
-				$this->setPostEditCookie( $status->value );
+				$this->setPostEditCookie( $statusValue );
 			}
 		}
 
@@ -1734,7 +1736,7 @@ class EditPage implements IEditObject {
 		$request = $this->context->getRequest();
 		$extraQueryRedirect = $request->getVal( 'wpExtraQueryRedirect' );
 
-		switch ( $status->value ) {
+		switch ( $statusValue ) {
 			case self::AS_HOOK_ERROR_EXPECTED:
 			case self::AS_CONTENT_TOO_BIG:
 			case self::AS_ARTICLE_WAS_DELETED:
@@ -1752,7 +1754,7 @@ class EditPage implements IEditObject {
 
 			case self::AS_CANNOT_USE_CUSTOM_MODEL:
 				wfDeprecated(
-					__METHOD__ . ' with $status->value == AS_CANNOT_USE_CUSTOM_MODEL',
+					__METHOD__ . ' with $statusValue == AS_CANNOT_USE_CUSTOM_MODEL',
 					'1.35'
 				);
 				// ...and fall through to next case
@@ -1833,7 +1835,7 @@ class EditPage implements IEditObject {
 				throw new PermissionsError( 'editcontentmodel' );
 
 			default:
-				// We don't recognize $status->value. The only way that can happen
+				// We don't recognize $statusValue. The only way that can happen
 				// is if an extension hook aborted from inside ArticleSave.
 				// Render the status object into $this->hookError
 				// FIXME this sucks, we should just use the Status object throughout
