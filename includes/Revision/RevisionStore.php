@@ -419,7 +419,7 @@ class RevisionStore
 			);
 		}
 
-		$pageId = $this->failOnEmpty( $rev->getPageId(), 'rev_page field' ); // check this early
+		$pageId = $this->failOnEmpty( $rev->getPageId( $this->wikiId ), 'rev_page field' ); // check this early
 
 		$parentId = $rev->getParentId() === null
 			? $this->getPreviousRevisionId( $dbw, $rev )
@@ -449,7 +449,7 @@ class RevisionStore
 
 		// sanity checks
 		Assert::postcondition( $rev->getId( $this->wikiId ) > 0, 'revision must have an ID' );
-		Assert::postcondition( $rev->getPageId() > 0, 'revision must have a page ID' );
+		Assert::postcondition( $rev->getPageId( $this->wikiId ) > 0, 'revision must have a page ID' );
 		Assert::postcondition(
 			$rev->getComment( RevisionRecord::RAW ) !== null,
 			'revision must have a comment'
@@ -750,7 +750,7 @@ class RevisionStore
 	) {
 		// Record the edit in revisions
 		$revisionRow = [
-			'rev_page'       => $rev->getPageId(),
+			'rev_page'       => $rev->getPageId( $this->wikiId ),
 			'rev_parent_id'  => $parentId,
 			'rev_minor_edit' => $rev->isMinor() ? 1 : 0,
 			'rev_timestamp'  => $dbw->timestamp( $rev->getTimestamp() ),
@@ -2711,7 +2711,7 @@ class RevisionStore
 
 		$revisionIdValue = $rev->getId( $this->wikiId );
 
-		if ( !$revisionIdValue || !$rev->getPageId() ) {
+		if ( !$revisionIdValue || !$rev->getPageId( $this->wikiId ) ) {
 			// revision is unsaved or otherwise incomplete
 			return null;
 		}
@@ -2738,7 +2738,7 @@ class RevisionStore
 
 		$revId = $db->selectField( 'revision', 'rev_id',
 			[
-				'rev_page' => $rev->getPageId(),
+				'rev_page' => $rev->getPageId( $this->wikiId ),
 				"rev_timestamp $op $dbts OR (rev_timestamp = $dbts AND rev_id $op $revisionIdValue )"
 			],
 			__METHOD__,
@@ -2805,20 +2805,20 @@ class RevisionStore
 	private function getPreviousRevisionId( IDatabase $db, RevisionRecord $rev ) {
 		$this->checkDatabaseDomain( $db );
 
-		if ( $rev->getPageId() === null ) {
+		if ( $rev->getPageId( $this->wikiId ) === null ) {
 			return 0;
 		}
 		# Use page_latest if ID is not given
 		if ( !$rev->getId( $this->wikiId ) ) {
 			$prevId = $db->selectField(
 				'page', 'page_latest',
-				[ 'page_id' => $rev->getPageId() ],
+				[ 'page_id' => $rev->getPageId( $this->wikiId ) ],
 				__METHOD__
 			);
 		} else {
 			$prevId = $db->selectField(
 				'revision', 'rev_id',
-				[ 'rev_page' => $rev->getPageId(), 'rev_id < ' . $rev->getId( $this->wikiId ) ],
+				[ 'rev_page' => $rev->getPageId( $this->wikiId ), 'rev_id < ' . $rev->getId( $this->wikiId ) ],
 				__METHOD__,
 				[ 'ORDER BY' => 'rev_id DESC' ]
 			);
@@ -3090,7 +3090,7 @@ class RevisionStore
 			if ( $rev->getId( $this->wikiId ) === null ) {
 				throw new InvalidArgumentException( "Unsaved {$paramName} revision passed" );
 			}
-			if ( $rev->getPageId() !== $pageId ) {
+			if ( $rev->getPageId( $this->wikiId ) !== $pageId ) {
 				throw new InvalidArgumentException(
 					"Revision {$rev->getId( $this->wikiId )} doesn't belong to page {$pageId}"
 				);
