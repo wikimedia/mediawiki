@@ -25,7 +25,6 @@ namespace MediaWiki\Revision;
 use IDBAccessObject;
 use MediaWiki\Page\PageIdentity;
 use MWException;
-use Title;
 
 /**
  * Service for constructing revision objects.
@@ -48,7 +47,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 *
 	 * @param array $fields
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param Title|null $title
+	 * @param PageIdentity|null $page
 	 *
 	 * @return MutableRevisionRecord
 	 * @throws MWException
@@ -56,7 +55,7 @@ interface RevisionFactory extends IDBAccessObject {
 	public function newMutableRevisionFromArray(
 		array $fields,
 		$queryFlags = self::READ_NORMAL,
-		Title $title = null
+		PageIdentity $page = null
 	);
 
 	/**
@@ -88,7 +87,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 *        Use RevisionStore::getArchiveQueryInfo() to build a query that yields the
 	 *        required fields.
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param Title|null $title
+	 * @param PageIdentity|null $page
 	 * @param array $overrides An associative array that allows fields in $row to be overwritten.
 	 *        Keys in this array correspond to field names in $row without the "ar_" prefix, so
 	 *        $overrides['user'] will override $row->ar_user, etc.
@@ -98,7 +97,7 @@ interface RevisionFactory extends IDBAccessObject {
 	public function newRevisionFromArchiveRow(
 		$row,
 		$queryFlags = self::READ_NORMAL,
-		Title $title = null,
+		PageIdentity $page = null,
 		array $overrides = []
 	);
 
