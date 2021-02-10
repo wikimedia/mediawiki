@@ -40,6 +40,8 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class ActorStore implements UserIdentityLookup, ActorNormalization {
 
+	public const UNKNOWN_USER_NAME = 'Unknown user';
+
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -466,5 +468,21 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 				"DB connection domain '$dbDomain' does not match '$storeDomain'"
 			);
 		}
+	}
+
+	/**
+	 * In case all reasonable attempts of initializing a proper actor from the
+	 * database have failed, entities can be attributed to special 'Unknown user' actor.
+	 *
+	 * @return UserIdentity
+	 */
+	public function getUnknownActor(): UserIdentity {
+		$actor = $this->getUserIdentityByName( self::UNKNOWN_USER_NAME );
+		if ( $actor ) {
+			return $actor;
+		}
+		$actor = new UserIdentityValue( 0, self::UNKNOWN_USER_NAME, 0, $this->wikiId );
+		$this->acquireActorId( $actor );
+		return $actor;
 	}
 }

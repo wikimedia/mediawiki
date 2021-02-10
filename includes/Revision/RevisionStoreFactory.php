@@ -31,6 +31,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
+use MediaWiki\User\ActorStoreFactory;
 use Psr\Log\LoggerInterface;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
@@ -63,7 +64,8 @@ class RevisionStoreFactory {
 	private $commentStore;
 	/** @var ActorMigration */
 	private $actorMigration;
-
+	/** @var ActorStoreFactory */
+	private $actorStoreFactory;
 	/** @var NameTableStoreFactory */
 	private $nameTables;
 
@@ -84,6 +86,7 @@ class RevisionStoreFactory {
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
+	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param LoggerInterface $logger
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
@@ -96,6 +99,7 @@ class RevisionStoreFactory {
 		WANObjectCache $cache,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
+		ActorStoreFactory $actorStoreFactory,
 		LoggerInterface $logger,
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer
@@ -107,6 +111,7 @@ class RevisionStoreFactory {
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
+		$this->actorStoreFactory = $actorStoreFactory;
 		$this->logger = $logger;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookContainer = $hookContainer;
@@ -131,6 +136,7 @@ class RevisionStoreFactory {
 			$this->nameTables->getSlotRoles( $dbDomain ),
 			$this->slotRoleRegistry,
 			$this->actorMigration,
+			$this->actorStoreFactory->getActorStore( $dbDomain ),
 			$this->contentHandlerFactory,
 			$this->hookContainer,
 			$dbDomain
