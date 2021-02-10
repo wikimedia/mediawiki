@@ -122,12 +122,12 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * deprecated and removed.
 	 *
 	 * @throws InvalidArgumentException
-	 * @param int|null $actorId
-	 * @param string|null $name
 	 * @param int|null $userId
+	 * @param string|null $name
+	 * @param int|null $actorId
 	 * @return UserIdentity
 	 */
-	public function newActorFromRowFields( $actorId, $name, $userId ): UserIdentity {
+	public function newActorFromRowFields( $userId, $name, $actorId ): UserIdentity {
 		// For backwards compatibility we are quite relaxed about what to accept,
 		// but try not to create entirely insane objects. As we move more code
 		// from ActorMigration aliases to proper join with the actor table,
