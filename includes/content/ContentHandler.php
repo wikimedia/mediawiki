@@ -902,6 +902,28 @@ abstract class ContentHandler {
 			return 'contentmodelchange';
 		}
 
+		$oldImages = [];
+		if ( $oldContent ) {
+			// using main page because page title isn't known, but that context is irrelevant here
+			$oldImages = $oldContent->getParserOutput( Title::newMainPage(), null, null, false )->getImages();
+		}
+		$newImages = [];
+		if ( $newContent ) {
+			// using main page because page title isn't known, but that context is irrelevant here
+			$newImages = $newContent->getParserOutput( Title::newMainPage(), null, null, false )->getImages();
+		}
+		$addedImages = array_diff_key( $newImages, $oldImages );
+		$removedImages = array_diff_key( $oldImages, $newImages );
+		if ( $addedImages && $removedImages ) {
+			return 'change-media';
+		}
+		if ( $addedImages ) {
+			return 'add-media';
+		}
+		if ( $removedImages ) {
+			return 'remove-media';
+		}
+
 		return null;
 	}
 

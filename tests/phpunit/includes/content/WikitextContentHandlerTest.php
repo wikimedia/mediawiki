@@ -314,6 +314,35 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 				0,
 				null
 			],
+
+			[
+				'[[File:Test.jpg]]',
+				'[[File:Other.jpg]]',
+				0,
+				'mw-change-media'
+			],
+
+			[
+				'Other content',
+				'[[File:Other.jpg]]',
+				0,
+				'mw-add-media'
+			],
+
+			[
+				'[[File:Test.jpg]]',
+				'Other content',
+				0,
+				'mw-remove-media'
+			],
+
+			[
+				'[[File:Test.jpg]]',
+				'',
+				0,
+				'mw-blank'
+			],
+
 		];
 	}
 
@@ -330,6 +359,9 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			'mw-newblank' => true,
 			'mw-blank' => true,
 			'mw-replace' => true,
+			'mw-change-media' => true,
+			'mw-add-media' => true,
+			'mw-remove-media' => true,
 		] );
 		$oldContent = $old === null ? null : new WikitextContent( $old );
 		$newContent = $new === null ? null : new WikitextContent( $new );

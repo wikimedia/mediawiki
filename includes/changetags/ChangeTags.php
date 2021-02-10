@@ -84,11 +84,26 @@ class ChangeTags {
 	 * with an extra 'revertId' field containing the revision ID of the reverting edit.
 	 */
 	public const TAG_REVERTED = 'mw-reverted';
-
+	/**
+	 * The tagged edit included both additions & removals of media.
+	 */
+	public const TAG_CHANGE_MEDIA = 'mw-change-media';
+	/**
+	 * The tagged edit included additions of media.
+	 */
+	public const TAG_ADD_MEDIA = 'mw-add-media';
+	/**
+	 * The tagged edit included removals of media.
+	 */
+	public const TAG_REMOVE_MEDIA = 'mw-remove-media';
 	/**
 	 * List of tags which denote a revert of some sort. (See also TAG_REVERTED.)
 	 */
 	public const REVERT_TAGS = [ self::TAG_ROLLBACK, self::TAG_UNDO, self::TAG_MANUAL_REVERT ];
+	/**
+	 * List of tags which denote a change in media.
+	 */
+	public const MEDIA_TAGS = [ self::TAG_CHANGE_MEDIA, self::TAG_ADD_MEDIA, self::TAG_REMOVE_MEDIA ];
 
 	/**
 	 * Flag for canDeleteTag().
@@ -116,6 +131,9 @@ class ChangeTags {
 		'mw-undo',
 		'mw-manual-revert',
 		'mw-reverted',
+		'mw-change-media',
+		'mw-add-media',
+		'mw-remove-media',
 	];
 
 	/**
