@@ -1709,6 +1709,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @param string $expect 'user', 'exception', or 'null'
 	 */
 	public function testNewSystemUser( $exists, $options, $testOpts, $expect ) {
+		$this->filterDeprecated( '/User::newSystemUser options/' );
 		$origUser = null;
 		$actorId = null;
 
