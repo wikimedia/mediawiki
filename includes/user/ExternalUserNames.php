@@ -79,6 +79,7 @@ class ExternalUserNames {
 			// Protect against invalid user names from old corrupt database rows, T232451
 			if (
 				$services->getUserNameUtils()->isIP( $userName )
+				|| $services->getUserNameUtils()->isValidIPRange( $userName )
 				|| $services->getUserNameUtils()->isValid( $userName )
 			) {
 				return SpecialPage::getTitleFor( 'Contributions', $userName );

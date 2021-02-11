@@ -95,6 +95,22 @@ class LinkerTest extends MediaWikiLangTestCase {
 				'Anonymous with IPv4 and an alternative username'
 			],
 
+			# IP ranges
+			[
+				'<a href="/wiki/Special:Contributions/1.2.3.4/31" '
+					. 'class="mw-userlink mw-anonuserlink" '
+					. 'title="Special:Contributions/1.2.3.4/31"><bdi>1.2.3.4/31</bdi></a>',
+				0, '1.2.3.4/31', false,
+				'Anonymous with IPv4 range'
+			],
+			[
+				'<a href="/wiki/Special:Contributions/2001:db8::1/43" '
+					. 'class="mw-userlink mw-anonuserlink" '
+					. 'title="Special:Contributions/2001:db8::1/43"><bdi>2001:db8::1/43</bdi></a>',
+				0, '2001:db8::1/43', false,
+				'Anonymous with IPv6 range'
+			],
+
 			# External (imported) user, unknown prefix
 			[
 				'<span class="mw-userlink mw-extuserlink mw-anonuserlink"><bdi>acme&gt;Alice</bdi></span>',
