@@ -677,15 +677,14 @@ class WebRequest {
 	}
 
 	/**
-	 * Extracts the given named values into an array.
-	 * If no arguments are given, returns all input values.
+	 * Extracts the (given) named values into an array.
 	 * No transformation is performed on the values.
 	 *
+	 * @param string ...$names If no arguments are given, returns all input values
 	 * @return array
 	 */
-	public function getValues() {
-		$names = func_get_args();
-		if ( count( $names ) == 0 ) {
+	public function getValues( ...$names ) {
+		if ( $names === [] ) {
 			$names = array_keys( $this->data );
 		}
 
