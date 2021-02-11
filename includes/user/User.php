@@ -315,6 +315,15 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 		}
 	}
 
+	public function __sleep(): array {
+		return array_diff(
+			array_keys( get_object_vars( $this ) ),
+			[
+				'mThisAsAuthority' // memoization, will be recreated on demand.
+			]
+		);
+	}
+
 	/**
 	 * Test if it's safe to load this User object.
 	 *
