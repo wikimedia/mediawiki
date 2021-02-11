@@ -2721,4 +2721,16 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $user->authorizeRead( 'create', $page ) );
 		$this->assertTrue( $user->authorizeWrite( 'create', $page ) );
 	}
+
+	/**
+	 * @covers User::isAllowed
+	 * @covers User::__sleep
+	 */
+	public function testSerializationRoudTripWithAuthority() {
+		$user = $this->getTestUser()->getUser();
+		$isAllowed = $user->isAllowed( 'read' ); // Memoize the Authority
+		$unserializedUser = unserialize( serialize( $user ) );
+		$this->assertSame( $user->getUserId(), $unserializedUser->getUserId() );
+		$this->assertSame( $isAllowed, $unserializedUser->isAllowed( 'read' ) );
+	}
 }
