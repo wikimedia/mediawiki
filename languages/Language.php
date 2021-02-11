@@ -2779,7 +2779,7 @@ class Language {
 			// function to use to capitalize a single char
 			return preg_replace_callback(
 				$replaceRegexp,
-				function ( $matches ) {
+				static function ( $matches ) {
 					return mb_strtoupper( $matches[0] );
 				},
 				$str
@@ -2808,7 +2808,7 @@ class Language {
 
 			return preg_replace_callback(
 				$replaceRegexp,
-				function ( $matches ) {
+				static function ( $matches ) {
 					return mb_strtoupper( $matches[0] );
 				},
 				$str

@@ -59,7 +59,7 @@ class CleanupRemovedModules extends Maintenance {
 		$i = 1;
 		foreach ( array_chunk( $rows, $this->getBatchSize() ) as $chunk ) {
 			// WHERE ( mod=A AND skin=A ) OR ( mod=A AND skin=B) ..
-			$conds = array_map( function ( stdClass $row ) use ( $dbw ) {
+			$conds = array_map( static function ( stdClass $row ) use ( $dbw ) {
 				return $dbw->makeList( (array)$row, IDatabase::LIST_AND );
 			}, $chunk );
 			$conds = $dbw->makeList( $conds, IDatabase::LIST_OR );

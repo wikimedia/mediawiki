@@ -212,7 +212,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		if ( $needActors ) {
 			$dbw->insert(
 				'actor',
-				array_map( function ( $v ) {
+				array_map( static function ( $v ) {
 					return [
 						'actor_name' => $v,
 					];

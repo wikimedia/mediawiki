@@ -185,7 +185,7 @@ class NamespaceDupes extends Maintenance {
 		// Sort by namespace index, and if there are two with the same index,
 		// break the tie by sorting by name
 		$origSpaces = $spaces;
-		uksort( $spaces, function ( $a, $b ) use ( $origSpaces ) {
+		uksort( $spaces, static function ( $a, $b ) use ( $origSpaces ) {
 			return $origSpaces[$a] <=> $origSpaces[$b]
 				?: $a <=> $b;
 		} );
