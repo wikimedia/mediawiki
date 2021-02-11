@@ -440,6 +440,7 @@
 	"readonly_lag": "A base de dados foi bloqueada automaticamente enquanto os servidores secundários da base de dados se sincronizam com o primário",
 	"nonwrite-api-promise-error": "O cabeçalho HTTP \"Promise-Non-Write-API-Action\" foi enviado, mas a requisição era para um módulo de escrita de API.",
 	"timeouterror": "Servidor expirou",
+	"timeouterror-text": "O tempo máximo de solicitação de $1 {{PLURAL:$1|segundo foi|sengudos foram}} excedido.",
 	"internalerror": "Erro interno",
 	"internalerror_info": "Erro interno: $1",
 	"internalerror-fatal-exception": "Exceção fatal do tipo “$1”",

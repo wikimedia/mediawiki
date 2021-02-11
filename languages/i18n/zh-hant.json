@@ -2974,7 +2974,7 @@
 	"importlogpage": "匯入日誌",
 	"importlogpagetext": "管理性匯入其他wiki的頁面及編輯歷史。",
 	"import-logentry-upload-detail": "已匯入 $1 筆{{PLURAL:$1|修訂}}",
-	"import-logentry-interwiki-detail": "已從 $2 匯入 $1 筆{{PLURAL:$1|修訂}}",
+	"import-logentry-interwiki-detail": "已從$2匯入$1筆{{PLURAL:$1|修訂}}",
 	"javascripttest": "JavaScript 測試",
 	"javascripttest-qunit-intro": "請參考 mediawiki.org 的 [$1 測試說明文件]。",
 	"tooltip-pt-userpage": "{{GENDER:|您的使用者}}頁面",
