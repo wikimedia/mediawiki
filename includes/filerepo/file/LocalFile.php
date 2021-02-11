@@ -2368,7 +2368,7 @@ class LocalFile extends File {
 	 *
 	 * This method should not be used outside of LocalFile/LocalFile*Batch
 	 *
-	 * The commit and loc release will happen when no atomic sections are active, which
+	 * The commit and lock release will happen when no atomic sections are active, which
 	 * may happen immediately or at some point after calling this
 	 */
 	public function unlock() {
