@@ -349,7 +349,10 @@ class ApiResult implements ApiSerializable {
 				$value = (array)$value + [ self::META_TYPE => 'assoc' ];
 			}
 		}
-		if ( is_array( $value ) ) {
+
+		if ( is_string( $value ) ) {
+			$value = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $value );
+		} elseif ( is_array( $value ) ) {
 			// Work around https://bugs.php.net/bug.php?id=45959 by copying to a temporary
 			// (in this case, foreach gets $k === "1" but $tmp[$k] assigns as if $k === 1)
 			$tmp = [];
@@ -357,16 +360,14 @@ class ApiResult implements ApiSerializable {
 				$tmp[$k] = self::validateValue( $v );
 			}
 			$value = $tmp;
-		} elseif ( is_float( $value ) && !is_finite( $value ) ) {
-			throw new InvalidArgumentException( 'Cannot add non-finite floats to ApiResult' );
-		} elseif ( is_string( $value ) ) {
-			$value = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $value );
 		} elseif ( $value !== null && !is_scalar( $value ) ) {
 			$type = gettype( $value );
 			if ( is_resource( $value ) ) {
 				$type .= '(' . get_resource_type( $value ) . ')';
 			}
 			throw new InvalidArgumentException( "Cannot add $type to ApiResult" );
+		} elseif ( is_float( $value ) && !is_finite( $value ) ) {
+			throw new InvalidArgumentException( 'Cannot add non-finite floats to ApiResult' );
 		}
 
 		return $value;
@@ -629,7 +630,7 @@ class ApiResult implements ApiSerializable {
 		}
 		$arr[self::META_INDEXED_TAG_NAME] = $tag;
 		foreach ( $arr as $k => &$v ) {
-			if ( !self::isMetadataKey( $k ) && is_array( $v ) ) {
+			if ( is_array( $v ) && !self::isMetadataKey( $k ) ) {
 				self::setIndexedTagNameRecursive( $v, $tag );
 			}
 		}
@@ -744,7 +745,7 @@ class ApiResult implements ApiSerializable {
 	public static function setArrayTypeRecursive( array &$arr, $type, $kvpKeyName = null ) {
 		self::setArrayType( $arr, $type, $kvpKeyName );
 		foreach ( $arr as $k => &$v ) {
-			if ( !self::isMetadataKey( $k ) && is_array( $v ) ) {
+			if ( is_array( $v ) && !self::isMetadataKey( $k ) ) {
 				self::setArrayTypeRecursive( $v, $type, $kvpKeyName );
 			}
 		}
