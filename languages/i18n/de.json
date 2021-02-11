@@ -1978,7 +1978,7 @@
 	"filehist-current": "aktuell",
 	"filehist-datetime": "Version vom",
 	"filehist-thumb": "Vorschaubild",
-	"filehist-thumbtext": "Vorschaubild der Version ab $1",
+	"filehist-thumbtext": "Vorschaubild der Version vom $2, $3 Uhr",
 	"filehist-nothumb": "Kein Vorschaubild vorhanden",
 	"filehist-user": "Benutzer",
 	"filehist-dimensions": "Maße",

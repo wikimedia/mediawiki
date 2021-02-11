@@ -3030,7 +3030,7 @@
 	"importlogpage": "导入日志",
 	"importlogpagetext": "管理性导入在其他wiki上有编辑历史的页面。",
 	"import-logentry-upload-detail": "导入$1个{{PLURAL:$1|版本}}",
-	"import-logentry-interwiki-detail": "来自$2的$1个{{PLURAL:$1|版本}}已导入",
+	"import-logentry-interwiki-detail": "已从$2导入$1个{{PLURAL:$1|版本}}",
 	"javascripttest": "JavaScript测试",
 	"javascripttest-qunit-intro": "请见mediawiki.org的[$1 测试说明文件]。",
 	"tooltip-pt-userpage": "{{GENDER:|您的用户}}页",

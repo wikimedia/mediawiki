@@ -494,7 +494,7 @@
 	"readonly_lag": "La base de données a été automatiquement verrouillée pendant que les serveurs répliqués se réalignent sur le serveur principal",
 	"nonwrite-api-promise-error": "L’entête HTTP « <code>Promise-Non-Write-API-Action:</code> » a été envoyé mais la requête a été faite à un module d’écriture de l’API.",
 	"timeouterror": "Dépassement de temps du serveur",
-	"timeouterror-text": "Le temps de requête maximal de $1 {{PLURAL:$1|seconde|secondes}} a été dépassé.",
+	"timeouterror-text": "Le temps de requête maximal de $1 {{PLURAL:$1|seconde|secondes}} a été dépassé.",
 	"internalerror": "Erreur interne",
 	"internalerror_info": "Erreur interne : $1",
 	"internalerror-fatal-exception": "Erreur fatale de type « $1 »",
