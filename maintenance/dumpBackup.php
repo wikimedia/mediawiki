@@ -106,7 +106,7 @@ TEXT
 				$this->fatalError( "Unable to open file {$filename}\n" );
 			}
 			$pages = array_map( 'trim', $pages );
-			$this->pages = array_filter( $pages, function ( $x ) {
+			$this->pages = array_filter( $pages, static function ( $x ) {
 				return $x !== '';
 			} );
 		}

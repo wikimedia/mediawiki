@@ -41,13 +41,13 @@ class CodeCleanerGlobalsPass extends \Psy\CodeCleaner\CodeCleanerPass {
 
 	public function beforeTraverse( array $nodes ) {
 		$globalVars = array_diff( array_keys( $GLOBALS ), self::$superglobals );
-		$validGlobalVars = array_filter( $globalVars, function ( string $name ) {
+		$validGlobalVars = array_filter( $globalVars, static function ( string $name ) {
 			// https://www.php.net/manual/en/language.variables.basics.php
 			return preg_match( '/^[a-zA-Z_\x80-\xff][a-zA-Z0-9_\x80-\xff]*$/', $name );
 		} );
 
 		if ( $validGlobalVars ) {
-			$globalCommand = new \PhpParser\Node\Stmt\Global_( array_map( function ( string $name ) {
+			$globalCommand = new \PhpParser\Node\Stmt\Global_( array_map( static function ( string $name ) {
 				return new \PhpParser\Node\Expr\Variable( $name );
 			}, $validGlobalVars ) );
 			array_unshift( $nodes, $globalCommand );
