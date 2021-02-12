@@ -60,7 +60,7 @@ class ExtensionJsonValidationTest extends PHPUnit\Framework\TestCase {
 			// All good
 			$this->assertTrue( true );
 		} catch ( ExtensionJsonValidationError $e ) {
-			$this->assertFalse( $e->getMessage() );
+			$this->fail( $e->getMessage() );
 		}
 	}
 }
