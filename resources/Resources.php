@@ -1159,6 +1159,7 @@ return [
 		],
 	],
 	'mediawiki.action.edit' => [
+		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => [
 			'resources/src/mediawiki.action.edit/edit.js',
 			'resources/src/mediawiki.action.edit/stash.js',
