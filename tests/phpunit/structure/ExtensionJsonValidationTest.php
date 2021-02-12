@@ -43,12 +43,11 @@ class ExtensionJsonValidationTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public static function providePassesValidation() {
-		$values = [];
-		foreach ( ExtensionRegistry::getInstance()->getAllThings() as $thing ) {
-			$values[] = [ $thing['path'] ];
-		}
+		$allThings = ExtensionRegistry::getInstance()->getAllThings();
 
-		return $values;
+		foreach ( $allThings as $thing ) {
+			 yield [ $thing['path'] ];
+		}
 	}
 
 	/**
