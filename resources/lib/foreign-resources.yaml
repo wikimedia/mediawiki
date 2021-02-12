@@ -325,3 +325,14 @@ vuex:
     vuex-3.1.3/LICENSE:
     vuex-3.1.3/dist/vuex.js:
     vuex-3.1.3/dist/vuex.min.js:
+
+wvui:
+  type: tar
+  src: https://registry.npmjs.org/@wikimedia/wvui/-/wvui-0.1.0.tgz
+  integrity: sha512-jNbALEl4xkcGwguiOSNvUE7S01IL2Np8C+mKXhGax3ycVVzwNLdNkmw3Is7wWdtatgjb2dXxL2L2Jd5sllqu0g==
+
+  dest:
+    package/readme.md:
+    package/LICENSE:
+    package/dist/commonjs2/wvui.commonjs2.js:
+    package/dist/commonjs2/wvui.css:

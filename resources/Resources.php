@@ -596,6 +596,20 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
+	'wvui' => [
+		'packageFiles' => [
+			'resources/src/wvui/wvui.js',
+			'resources/lib/wvui/wvui.commonjs2.js',
+		],
+		'styles' => [
+			'resources/lib/wvui/wvui.css',
+		],
+		'dependencies' => [
+			'vue'
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+
 	/* MediaWiki */
 	'mediawiki.template' => [
 		'scripts' => 'resources/src/mediawiki.template.js',
