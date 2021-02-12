@@ -4,25 +4,23 @@
 ( function () {
 	'use strict';
 
-	/*
-	 * Toggle the watchlist-expiry dropdown's disabled state according to the
-	 * selected state of the watchthis checkbox.
-	 */
+	// Toggle the watchlist-expiry dropdown's disabled state according to the
+	// selected state of the watchthis checkbox.
 	$( function () {
-		var watchThisWidget, watchlistExpiryWidget,
-			$watchThis = $( '#wpWatchthisWidget' ),
-			$expiry = $( '#wpWatchlistExpiryWidget' );
+		var watchThisWidget, expiryWidget,
+			// The 'wpWatchthis' and 'wpWatchlistExpiry' fields come from EditPage.php.
+			watchThisNode = document.getElementById( 'wpWatchthisWidget' ),
+			expiryNode = document.getElementById( 'wpWatchlistExpiryWidget' );
 
-		if ( $watchThis.length && $expiry.length ) {
-
-			watchThisWidget = OO.ui.infuse( $watchThis );
-			watchlistExpiryWidget = OO.ui.infuse( $expiry );
+		if ( watchThisNode && expiryNode ) {
+			watchThisWidget = OO.ui.infuse( watchThisNode );
+			expiryWidget = OO.ui.infuse( expiryNode );
 			// Set initial state to match the watchthis checkbox.
-			watchlistExpiryWidget.setDisabled( !watchThisWidget.isSelected() );
+			expiryWidget.setDisabled( !watchThisWidget.isSelected() );
 
 			// Change state on every change of the watchthis checkbox.
 			watchThisWidget.on( 'change', function ( enabled ) {
-				watchlistExpiryWidget.setDisabled( !enabled );
+				expiryWidget.setDisabled( !enabled );
 			} );
 		}
 	} );
