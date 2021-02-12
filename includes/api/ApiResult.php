@@ -351,7 +351,12 @@ class ApiResult implements ApiSerializable {
 		}
 
 		if ( is_string( $value ) ) {
-			$value = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $value );
+			// Optimization: avoid querying the service locator for each value.
+			static $contentLanguage = null;
+			if ( !$contentLanguage ) {
+				$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+			}
+			$value = $contentLanguage->normalize( $value );
 		} elseif ( is_array( $value ) ) {
 			// Work around https://bugs.php.net/bug.php?id=45959 by copying to a temporary
 			// (in this case, foreach gets $k === "1" but $tmp[$k] assigns as if $k === 1)
