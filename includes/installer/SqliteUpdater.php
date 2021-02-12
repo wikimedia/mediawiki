@@ -34,13 +34,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.20
-			[ 'ifFieldExists', 'revision', 'rev_user',
-				'addIndex', 'revision', 'page_user_timestamp', 'patch-revision-user-page-index.sql' ],
-			[ 'addField', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id.sql' ],
-			[ 'addIndex', 'ipblocks', 'ipb_parent_block_id', 'patch-ipb-parent-block-id-index.sql' ],
-			[ 'dropField', 'category', 'cat_hidden', 'patch-cat_hidden.sql' ],
-
 			// 1.21
 			[ 'ifFieldExists', 'revision', 'rev_text_id',
 				'addField', 'revision', 'rev_content_format', 'patch-revision-rev_content_format.sql' ],
