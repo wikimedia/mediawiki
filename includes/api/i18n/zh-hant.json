@@ -1498,7 +1498,7 @@
 	"apihelp-json-param-utf8": "若有指定的話，將多數（並非全部）非 ASCII 字元編碼成 UTF-8，而不是以十六進位轉義序列來取代掉。預設是當 <var>formatversion</var> 不是 <kbd>1</kbd> 時。",
 	"apihelp-json-param-ascii": "若有指定，編碼所有使用十六進位跳脫序列的非 ASCII 字碼。預設當 <var>formatversion</var> 為 <kbd>1</kbd> 時。",
 	"apihelp-json-param-formatversion": "輸出格式：\n;1：向下相容格式（XML 式布林值，用於內容節點的 <samp>*</samp> 鍵、其它）。\n;2：現代格式。\n;latest：使用最新格式（目前為 <kbd>2</kbd>）可能會不帶警告作更改。",
-	"apihelp-jsonfm-summary": "使用 JSON 格式輸出資料 (使用 HTML 格式顯示)。",
+	"apihelp-jsonfm-summary": "使用 JSON 格式輸出資料（使用HTML格式顯示）。",
 	"apihelp-none-summary": "不輸出。",
 	"apihelp-php-summary": "使用序列化 PHP 格式輸出資料。",
 	"apihelp-php-param-formatversion": "輸出格式：\n;1：向下兼容格式（XML 風格布林，用於內容節點的 <samp>*</samp> 鍵、其它）。\n;2：現代格式。\n;latest：使用最新格式（目前為 <kbd>2</kbd>）可能會不帶警告作更改。",

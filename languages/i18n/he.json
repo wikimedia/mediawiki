@@ -352,6 +352,8 @@
 	"missingarticle-diff": "(השוואת הגרסאות: $1, $2)",
 	"readonly_lag": "בסיס הנתונים ננעל אוטומטית כדי לאפשר לבסיסי הנתונים המשוכפלים להתעדכן מהבסיס הראשי",
 	"nonwrite-api-promise-error": "כותרת ה־HTTP‏ 'Promise-Non-Write-API-Action' נשלחה, אבל הבקשה הייתה למודול כתיבה של API.",
+	"timeouterror": "זמן ההתחברות לשרת פג",
+	"timeouterror-text": "עברת את הגבלת זמן הבקשה המרבי של {{PLURAL:$1|שנייה אחת|$1 שניות}}.",
 	"internalerror": "שגיאה פנימית",
 	"internalerror_info": "שגיאה פנימית: $1",
 	"internalerror-fatal-exception": "שגיאה חמורה מסוג \"$1\"",
