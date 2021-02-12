@@ -1163,6 +1163,7 @@ return [
 		'scripts' => [
 			'resources/src/mediawiki.action.edit/edit.js',
 			'resources/src/mediawiki.action.edit/stash.js',
+			'resources/src/mediawiki.action.edit/watchlistExpiry.js',
 		],
 		'styles' => 'resources/src/mediawiki.action.edit/edit.css',
 		'dependencies' => [
@@ -1321,13 +1322,6 @@ return [
 			'editwarning-warning',
 			// editwarning-warning uses {{int:prefs-editing}}
 			'prefs-editing'
-		],
-	],
-	'mediawiki.action.edit.watchlistExpiry' => [
-		'targets' => [ 'desktop', 'mobile' ],
-		'scripts' => 'resources/src/mediawiki.action/mediawiki.action.edit.watchlistExpiry.js',
-		'dependencies' => [
-			'oojs-ui-core'
 		],
 	],
 	'mediawiki.action.view.filepage' => [

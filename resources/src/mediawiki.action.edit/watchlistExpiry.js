@@ -1,5 +1,5 @@
 /*
- * Javascript for the mediawiki.action.edit.watchlistExpiry module.
+ * Scripts for WatchlistExpiry on action=edit
  */
 ( function () {
 	'use strict';
