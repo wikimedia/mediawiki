@@ -390,6 +390,8 @@
 	"missingarticle-diff": "(차이: $1, $2)",
 	"readonly_lag": "대체 데이터베이스 서버가 주 서버와 동기화되고 있습니다. 그 동안 데이터베이스가 자동으로 잠겨져 있습니다.",
 	"nonwrite-api-promise-error": "'Promise-Non-Write-API-Action' HTTP 헤더가 붙어있지만 API 쓰기 모듈에 대한 요청을 했습니다.",
+	"timeouterror": "서버 시간 초과됨",
+	"timeouterror-text": "최대 요청 시간 $1{{PLURAL:$1|초}}를 초과했습니다.",
 	"internalerror": "내부 오류",
 	"internalerror_info": "내부 오류: $1",
 	"internalerror-fatal-exception": "종류 \"$1\"에서 심각한 오류",
