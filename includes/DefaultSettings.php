@@ -8709,6 +8709,8 @@ $wgAjaxLicensePreview = true;
 /**
  * Have clients send edits to be prepared when filling in edit summaries.
  * This gives the server a head start on the expensive parsing operation.
+ *
+ * @deprecated Since 1.36; disabling this feature will be removed in the next release.
  */
 $wgAjaxEditStash = true;
 

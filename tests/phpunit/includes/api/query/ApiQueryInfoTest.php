@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group API
@@ -22,6 +23,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 
 		$this->setMwGlobals( [
 			'wgWatchlistExpiry' => true,
+			'wgWatchlistExpiryMaxDuration' => '6 months',
 		] );
 	}
 
@@ -30,6 +32,9 @@ class ApiQueryInfoTest extends ApiTestCase {
 	 * @covers ::extractPageInfo
 	 */
 	public function testExecute() {
+		// Mock time for a determinstic result, without cut off from dynamic "max duration"
+		ConvertibleTimestamp::setFakeTime( '2011-01-01T00:00:00Z' );
+
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
 		$user = $this->getTestUser()->getUser();
@@ -37,10 +42,10 @@ class ApiQueryInfoTest extends ApiTestCase {
 			$title,
 			$user,
 			User::CHECK_USER_RIGHTS,
-			'30300101000000'
+			// 3 months later
+			'2011-04-01T00:00:00Z'
 		);
 		$watchItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
-		$expiry = $watchItemStore->getWatchedItem( $user, $title )->getExpiry( TS_ISO_8601 );
 
 		list( $data ) = $this->doApiRequest( [
 				'action' => 'query',
@@ -55,18 +60,18 @@ class ApiQueryInfoTest extends ApiTestCase {
 
 		$info = $data['query']['pages'][$page->getId()];
 		$this->assertSame( $page->getId(), $info['pageid'] );
-		$this->assertSame( $title->getNamespace(), $info['ns'] );
-		$this->assertSame( $title->getText(), $info['title'] );
-		$this->assertSame( $title->getContentModel(), $info['contentmodel'] );
-		$this->assertSame( $title->getPageLanguage()->getCode(), $info['pagelanguage'] );
-		$this->assertSame( $title->getPageLanguage()->getHtmlCode(), $info['pagelanguagehtmlcode'] );
-		$this->assertSame( $title->getPageLanguage()->getDir(), $info['pagelanguagedir'] );
-		$this->assertSame( wfTimestamp( TS_ISO_8601, $title->getTouched() ), $info['touched'] );
+		$this->assertSame( NS_MAIN, $info['ns'] );
+		$this->assertSame( 'Pluto', $info['title'] );
+		$this->assertSame( 'wikitext', $info['contentmodel'] );
+		$this->assertSame( 'en', $info['pagelanguage'] );
+		$this->assertSame( 'en', $info['pagelanguagehtmlcode'] );
+		$this->assertSame( 'ltr', $info['pagelanguagedir'] );
+		$this->assertSame( '2011-01-01T00:00:00Z', $info['touched'] );
 		$this->assertSame( $title->getLatestRevID(), $info['lastrevid'] );
 		$this->assertSame( $title->getLength(), $info['length'] );
-		$this->assertSame( $title->isNewPage(), $info['new'] );
-		$this->assertTrue( $info['watched'] );
-		$this->assertSame( $expiry, $info['watchlistexpiry'] );
+		$this->assertSame( true, $info['new'] );
+		$this->assertSame( true, $info['watched'] );
+		$this->assertSame( '2011-04-01T00:00:00Z', $info['watchlistexpiry'] );
 		$this->assertArrayNotHasKey( 'actions', $info );
 		$this->assertArrayNotHasKey( 'linkclasses', $info );
 	}
