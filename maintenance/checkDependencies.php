@@ -136,7 +136,7 @@ class CheckDependencies extends Maintenance {
 				// missing-phpExtension
 				// missing-ability
 				// XXX: ???
-				throw $e;
+				$this->fatalError( $e->getMessage() );
 			}
 
 			$this->addToDependencies( $dependencies, $extensions, $skins, $name, $reason, $e->getMessage() );
