@@ -37,30 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.21
-			[ 'ifFieldExists', 'revision', 'rev_text_id',
-				'addField', 'revision', 'rev_content_format', 'patch-revision-rev_content_format.sql' ],
-			[ 'ifFieldExists', 'revision', 'rev_text_id',
-				'addField', 'revision', 'rev_content_model', 'patch-revision-rev_content_model.sql' ],
-			[ 'ifFieldExists', 'archive', 'ar_text_id',
-				'addField', 'archive', 'ar_content_format', 'patch-archive-ar_content_format.sql' ],
-			[ 'ifFieldExists', 'archive', 'ar_text_id',
-				'addField', 'archive', 'ar_content_model', 'patch-archive-ar_content_model.sql' ],
-			[ 'addField', 'page', 'page_content_model', 'patch-page-page_content_model.sql' ],
-			[ 'dropField', 'site_stats', 'ss_admins', 'patch-drop-ss_admins.sql' ],
-			[ 'dropField', 'recentchanges', 'rc_moved_to_title', 'patch-rc_moved.sql' ],
-			[ 'addTable', 'sites', 'patch-sites.sql' ],
-			[ 'addField', 'filearchive', 'fa_sha1', 'patch-fa_sha1.sql' ],
-			[ 'addField', 'job', 'job_token', 'patch-job_token.sql' ],
-			[ 'addField', 'job', 'job_attempts', 'patch-job_attempts.sql' ],
-			[ 'addField', 'uploadstash', 'us_props', 'patch-uploadstash-us_props.sql' ],
-			[ 'modifyField', 'user_groups', 'ug_group', 'patch-ug_group-length-increase-255.sql' ],
-			[ 'modifyField', 'user_former_groups', 'ufg_group',
-				'patch-ufg_group-length-increase-255.sql' ],
-			[ 'addIndex', 'page_props', 'pp_propname_page',
-				'patch-page_props-propname-page-index.sql' ],
-			[ 'addIndex', 'image', 'img_media_mime', 'patch-img_media_mime-index.sql' ],
-
 			// 1.22
 			[ 'doIwlinksIndexNonUnique' ],
 			[ 'addIndex', 'iwlinks', 'iwl_prefix_from_title',
