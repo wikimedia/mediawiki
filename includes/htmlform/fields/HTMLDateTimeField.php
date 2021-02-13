@@ -33,9 +33,7 @@ class HTMLDateTimeField extends HTMLTextField {
 	public function __construct( $params ) {
 		parent::__construct( $params );
 
-		$this->mType = array_key_exists( 'type', $params )
-			? $params['type']
-			: 'datetime';
+		$this->mType = $params['type'] ?? 'datetime';
 
 		if ( !in_array( $this->mType, [ 'date', 'time', 'datetime' ] ) ) {
 			throw new InvalidArgumentException( "Invalid type '$this->mType'" );

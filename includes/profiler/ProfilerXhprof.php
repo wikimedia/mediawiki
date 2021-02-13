@@ -142,10 +142,10 @@ class ProfilerXhprof extends Profiler {
 				'calls' => $stats['ct'],
 				'real' => $stats['wt']['total'] / 1000,
 				'%real' => $stats['wt']['percent'],
-				'cpu' => isset( $stats['cpu'] ) ? $stats['cpu']['total'] / 1000 : 0,
-				'%cpu' => isset( $stats['cpu'] ) ? $stats['cpu']['percent'] : 0,
-				'memory' => isset( $stats['mu'] ) ? $stats['mu']['total'] : 0,
-				'%memory' => isset( $stats['mu'] ) ? $stats['mu']['percent'] : 0,
+				'cpu' => ( $stats['cpu']['total'] ?? 0 ) / 1000,
+				'%cpu' => $stats['cpu']['percent'] ?? 0,
+				'memory' => $stats['mu']['total'] ?? 0,
+				'%memory' => $stats['mu']['percent'] ?? 0,
 				'min_real' => $stats['wt']['min'] / 1000,
 				'max_real' => $stats['wt']['max'] / 1000
 			];

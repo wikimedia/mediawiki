@@ -488,11 +488,7 @@ class LinkHolderArray {
 				$originalCats = $output->getCategories();
 				foreach ( $originalCats as $cat => $sortkey ) {
 					// make the replacement
-					if ( array_key_exists( $cat, $varCategories ) ) {
-						$newCats[$varCategories[$cat]] = $sortkey;
-					} else {
-						$newCats[$cat] = $sortkey;
-					}
+					$newCats[$varCategories[$cat] ?? $cat] = $sortkey;
 				}
 				$output->setCategoryLinks( $newCats );
 			}

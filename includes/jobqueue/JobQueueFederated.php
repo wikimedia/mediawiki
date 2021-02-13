@@ -456,7 +456,7 @@ class JobQueueFederated extends JobQueue {
 				$sizes = $queue->doGetSiblingQueueSizes( $types );
 				if ( is_array( $sizes ) ) {
 					foreach ( $sizes as $type => $size ) {
-						$result[$type] = isset( $result[$type] ) ? $result[$type] + $size : $size;
+						$result[$type] = ( $result[$type] ?? 0 ) + $size;
 					}
 				} else {
 					return null; // not supported on all partitions; bail
