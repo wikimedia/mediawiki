@@ -134,6 +134,10 @@
 			"composer lint",
 			"composer phpcs"
 		],
+		"test-some": [
+			"composer lint",
+			"composer phpcs"
+		],
 		"phpunit": "phpunit",
 		"phpunit:unit": "phpunit --colors=always --testsuite=core:unit,extensions:unit,skins:unit",
 		"phpunit:integration": "phpunit --colors=always --testsuite=core:integration,extensions:integration,skins:integration",
