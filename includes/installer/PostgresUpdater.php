@@ -44,89 +44,6 @@ class PostgresUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
 			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
-
-			# Needed before new field
-			[ 'convertArchive2' ],
-			[ 'checkOiDeleted' ],
-
-			[ 'checkIndex', 'cl_sortkey', [
-				[ 'cl_to', 'text_ops', 'btree', 0 ],
-				[ 'cl_sortkey', 'text_ops', 'btree', 0 ],
-				[ 'cl_from', 'int4_ops', 'btree', 0 ],
-			],
-				'CREATE INDEX cl_sortkey ON "categorylinks" ' .
-					'USING "btree" ("cl_to", "cl_sortkey", "cl_from")' ],
-			[ 'checkIndex', 'iwl_prefix_title_from', [
-				[ 'iwl_prefix', 'text_ops', 'btree', 0 ],
-				[ 'iwl_title', 'text_ops', 'btree', 0 ],
-				[ 'iwl_from', 'int4_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX iwl_prefix_title_from ON "iwlinks" ' .
-				'USING "btree" ("iwl_prefix", "iwl_title", "iwl_from")' ],
-			[ 'checkIndex', 'logging_times', [
-				[ 'log_timestamp', 'timestamptz_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "logging_times" ON "logging" USING "btree" ("log_timestamp")' ],
-			[ 'dropPgIndex', 'oldimage', 'oi_name' ],
-			[ 'checkIndex', 'oi_name_archive_name', [
-				[ 'oi_name', 'text_ops', 'btree', 0 ],
-				[ 'oi_archive_name', 'text_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "oi_name_archive_name" ON "oldimage" ' .
-				'USING "btree" ("oi_name", "oi_archive_name")' ],
-			[ 'checkIndex', 'oi_name_timestamp', [
-				[ 'oi_name', 'text_ops', 'btree', 0 ],
-				[ 'oi_timestamp', 'timestamptz_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "oi_name_timestamp" ON "oldimage" ' .
-				'USING "btree" ("oi_name", "oi_timestamp")' ],
-			[ 'checkIndex', 'page_main_title', [
-				[ 'page_title', 'text_pattern_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "page_main_title" ON "page" ' .
-				'USING "btree" ("page_title" "text_pattern_ops") WHERE ("page_namespace" = 0)' ],
-			[ 'checkIndex', 'page_mediawiki_title', [
-				[ 'page_title', 'text_pattern_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "page_mediawiki_title" ON "page" ' .
-				'USING "btree" ("page_title" "text_pattern_ops") WHERE ("page_namespace" = 8)' ],
-			[ 'checkIndex', 'page_project_title', [
-				[ 'page_title', 'text_pattern_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "page_project_title" ON "page" ' .
-				'USING "btree" ("page_title" "text_pattern_ops") ' .
-				'WHERE ("page_namespace" = 4)' ],
-			[ 'checkIndex', 'page_talk_title', [
-				[ 'page_title', 'text_pattern_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "page_talk_title" ON "page" ' .
-				'USING "btree" ("page_title" "text_pattern_ops") ' .
-				'WHERE ("page_namespace" = 1)' ],
-			[ 'checkIndex', 'page_user_title', [
-				[ 'page_title', 'text_pattern_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "page_user_title" ON "page" ' .
-				'USING "btree" ("page_title" "text_pattern_ops") WHERE ' .
-				'("page_namespace" = 2)' ],
-			[ 'checkIndex', 'page_utalk_title', [
-				[ 'page_title', 'text_pattern_ops', 'btree', 0 ],
-			],
-			'CREATE INDEX "page_utalk_title" ON "page" ' .
-				'USING "btree" ("page_title" "text_pattern_ops") ' .
-				'WHERE ("page_namespace" = 3)' ],
-			[ 'checkIndex', 'ts2_page_text', [
-				[ 'textvector', 'tsvector_ops', 'gist', 0 ],
-			],
-				'CREATE INDEX "ts2_page_text" ON "text" USING "gist" ("textvector")' ],
-			[ 'checkIndex', 'ts2_page_title', [
-				[ 'titlevector', 'tsvector_ops', 'gist', 0 ],
-			],
-			'CREATE INDEX "ts2_page_title" ON "page" USING "gist" ("titlevector")' ],
-
-			[ 'checkOiNameConstraint' ],
-			[ 'checkPageDeletedTrigger' ],
-			[ 'checkRevUserFkey' ],
-			[ 'dropPgIndex', 'ipblocks', 'ipb_address' ],
 			[ 'checkIndex', 'ipb_address_unique', [
 				[ 'ipb_address', 'text_ops', 'btree', 0 ],
 				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
@@ -134,8 +51,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			],
 			'CREATE UNIQUE INDEX ipb_address_unique ' .
 				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
-
-			[ 'checkIwlPrefix' ],
 
 			# r81574
 			[ 'addInterwikiType' ],
@@ -1314,19 +1229,6 @@ END;
 				'patch-revision_rev_user_fkey.sql',
 				false,
 				"Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT"
-			);
-		}
-	}
-
-	/**
-	 * MW 1.17
-	 */
-	protected function checkIwlPrefix() {
-		if ( $this->db->indexExists( 'iwlinks', 'iwl_prefix', __METHOD__ ) ) {
-			$this->applyPatch(
-				'patch-rename-iwl_prefix.sql',
-				false,
-				"Replacing index 'iwl_prefix' with 'iwl_prefix_title_from'"
 			);
 		}
 	}
