@@ -1529,7 +1529,8 @@ class ChangeTags {
 
 	/**
 	 * Basically lists defined tags which count even if they aren't applied to anything.
-	 * It returns a union of the results of listExplicitlyDefinedTags()
+	 * It returns a union of the results of listExplicitlyDefinedTags() and
+	 * listSoftwareDefinedTags()
 	 *
 	 * @return string[] Array of strings: tags
 	 */
