@@ -1071,13 +1071,15 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doUnsignedSyncronisation() {
 		$sync = [
-			[ 'table' => 'bot_passwords', 'field' => 'bp_user' ],
-			[ 'table' => 'change_tag', 'field' => 'ct_log_id' ],
-			[ 'table' => 'change_tag', 'field' => 'ct_rev_id' ],
-			[ 'table' => 'page_restrictions', 'field' => 'pr_user' ],
-			[ 'table' => 'user_newtalk', 'field' => 'user_id' ],
-			[ 'table' => 'user_properties', 'field' => 'up_user' ],
-			[ 'table' => 'change_tag', 'field' => 'ct_rc_id' ]
+			[ 'table' => 'bot_passwords', 'field' => 'bp_user', 'file' => 'patch-bot_passwords-bp_user-unsigned.sql' ],
+			[ 'table' => 'change_tag', 'field' => 'ct_log_id', 'file' => 'patch-change_tag-ct_log_id-unsigned.sql' ],
+			[ 'table' => 'change_tag', 'field' => 'ct_rev_id', 'file' => 'patch-change_tag-ct_rev_id-unsigned.sql' ],
+			[ 'table' => 'page_restrictions', 'field' => 'pr_user',
+				'file' => 'patch-page_restrictions-pr_user-unsigned.sql' ],
+			[ 'table' => 'user_newtalk', 'field' => 'user_id', 'file' => 'patch-user_newtalk-user_id-unsigned.sql' ],
+			[ 'table' => 'user_properties', 'field' => 'up_user',
+				'file' => 'patch-user_properties-up_user-unsigned.sql' ],
+			[ 'table' => 'change_tag', 'field' => 'ct_rc_id', 'file' => 'patch-change_tag-ct_rc_id-unsigned.sql' ]
 		];
 
 		foreach ( $sync as $s ) {
@@ -1097,7 +1099,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			}
 
 			$this->applyPatch(
-				"patch-{$s['table']}-{$s['field']}-unsigned.sql",
+				$s['file'],
 				false,
 				"Making $fullName into an unsigned int"
 			);
