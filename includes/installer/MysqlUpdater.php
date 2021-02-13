@@ -37,13 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.22
-			[ 'doIwlinksIndexNonUnique' ],
-			[ 'addIndex', 'iwlinks', 'iwl_prefix_from_title',
-				'patch-iwlinks-from-title-index.sql' ],
-			[ 'addField', 'archive', 'ar_id', 'patch-archive-ar_id.sql' ],
-			[ 'addField', 'externallinks', 'el_id', 'patch-externallinks-el_id.sql' ],
-
 			// 1.23
 			[ 'addField', 'recentchanges', 'rc_source', 'patch-rc_source.sql' ],
 			[ 'ifTableNotExists', 'actor', 'addIndex', 'logging', 'log_user_text_type_time',

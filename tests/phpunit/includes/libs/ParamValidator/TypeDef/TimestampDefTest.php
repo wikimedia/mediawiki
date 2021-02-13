@@ -94,6 +94,15 @@ class TimestampDefTest extends TypeDefTestCase {
 					'test', 'bogus', []
 				),
 			],
+			// T272637
+			'Incomplete MW format' => [
+				'2014815210101',
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badtimestamp', [], 'badtimestamp' ),
+					'test', '2014815210101', []
+				),
+				$formatMW
+			],
 
 			// Formatting
 			'=> DateTime' => [ 'now', $now->timestamp, $formatDT ],
