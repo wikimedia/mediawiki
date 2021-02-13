@@ -2669,10 +2669,6 @@ class EditPage implements IEditObject {
 			$out->addModules( 'mediawiki.action.edit.editWarning' );
 		}
 
-		if ( $this->watchlistExpiryEnabled && $user->isRegistered() ) {
-			$out->addModules( 'mediawiki.action.edit.watchlistExpiry' );
-		}
-
 		# Enabled article-related sidebar, toplinks, etc.
 		$out->setArticleRelated( true );
 
