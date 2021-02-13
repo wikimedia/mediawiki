@@ -626,7 +626,7 @@ class Site implements Serializable {
 	 * @return string[]
 	 */
 	public function getAllPaths() {
-		return array_key_exists( 'paths', $this->extraData ) ? $this->extraData['paths'] : [];
+		return $this->extraData['paths'] ?? [];
 	}
 
 	/**

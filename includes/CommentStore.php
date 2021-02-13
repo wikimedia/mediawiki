@@ -148,8 +148,7 @@ class CommentStore {
 				$fields["{$key}_old"] = $key;
 			}
 
-			$tempTableStage = isset( $this->tempTables[$key] )
-				? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
+			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 			if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
 				$fields["{$key}_pk"] = $this->tempTables[$key]['joinPK'];
 			}
@@ -190,8 +189,7 @@ class CommentStore {
 			} else { // READ_BOTH or READ_NEW
 				$join = ( $this->stage & SCHEMA_COMPAT_READ_OLD ) ? 'LEFT JOIN' : 'JOIN';
 
-				$tempTableStage = isset( $this->tempTables[$key] )
-					? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
+				$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 				if ( $tempTableStage & SCHEMA_COMPAT_READ_OLD ) {
 					$t = $this->tempTables[$key];
 					$alias = "temp_$key";
@@ -267,8 +265,7 @@ class CommentStore {
 			}
 			$data = null;
 		} else {
-			$tempTableStage = isset( $this->tempTables[$key] )
-				? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
+			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 			$row2 = null;
 			if ( ( $tempTableStage & SCHEMA_COMPAT_READ_NEW ) && array_key_exists( "{$key}_id", $row ) ) {
 				if ( !$db ) {
@@ -505,8 +502,7 @@ class CommentStore {
 		}
 
 		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
-			$tempTableStage = isset( $this->tempTables[$key] )
-				? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
+			$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 			if ( $tempTableStage & SCHEMA_COMPAT_WRITE_OLD ) {
 				$t = $this->tempTables[$key];
 				$func = __METHOD__;
@@ -552,8 +548,7 @@ class CommentStore {
 			// @codeCoverageIgnoreEnd
 		}
 
-		$tempTableStage = isset( $this->tempTables[$key] )
-			? $this->tempTables[$key]['stage'] : MIGRATION_NEW;
+		$tempTableStage = $this->tempTables[$key]['stage'] ?? MIGRATION_NEW;
 		if ( $tempTableStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			throw new InvalidArgumentException( "Must use insertWithTempTable() for $key" );
 		}

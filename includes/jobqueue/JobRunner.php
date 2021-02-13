@@ -254,9 +254,7 @@ class JobRunner implements LoggerAwareInterface {
 				// Back off of certain jobs for a while (for throttling and for errors)
 				if ( $info['status'] === false && mt_rand( 0, 49 ) == 0 ) {
 					$ttw = max( $ttw, $this->getErrorBackoffTTL( $info['caught'] ) );
-					$backoffDeltas[$jType] = isset( $backoffDeltas[$jType] )
-						? $backoffDeltas[$jType] + $ttw
-						: $ttw;
+					$backoffDeltas[$jType] = ( $backoffDeltas[$jType] ?? 0 ) + $ttw;
 				}
 
 				$response['jobs'][] = [
