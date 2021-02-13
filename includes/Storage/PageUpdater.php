@@ -159,11 +159,6 @@ class PageUpdater {
 	private $usePageCreationLog = true;
 
 	/**
-	 * @var bool see $wgAjaxEditStash
-	 */
-	private $ajaxEditStash = true;
-
-	/**
 	 * @var array
 	 */
 	private $tags = [];
@@ -308,16 +303,6 @@ class PageUpdater {
 	 */
 	public function setUsePageCreationLog( $use ) {
 		$this->usePageCreationLog = $use;
-		return $this;
-	}
-
-	/**
-	 * @param bool $ajaxEditStash
-	 * @return $this
-	 * @see $wgAjaxEditStash
-	 */
-	public function setAjaxEditStash( $ajaxEditStash ) {
-		$this->ajaxEditStash = $ajaxEditStash;
 		return $this;
 	}
 
@@ -796,11 +781,7 @@ class PageUpdater {
 		$flags = $this->checkFlags( $flags );
 
 		// Avoid statsd noise and wasted cycles check the edit stash (T136678)
-		if ( ( $flags & EDIT_INTERNAL ) || ( $flags & EDIT_FORCE_BOT ) ) {
-			$useStashed = false;
-		} else {
-			$useStashed = $this->ajaxEditStash;
-		}
+		$useStashed = !( ( $flags & EDIT_INTERNAL ) || ( $flags & EDIT_FORCE_BOT ) );
 
 		// Prepare the update. This performs PST and generates the canonical ParserOutput.
 		$this->derivedDataUpdater->prepareContent(

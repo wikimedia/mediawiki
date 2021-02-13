@@ -9415,14 +9415,6 @@ $wgAjaxUploadDestCheck = true;
 $wgAjaxLicensePreview = true;
 
 /**
- * Have clients send edits to be prepared when filling in edit summaries.
- * This gives the server a head start on the expensive parsing operation.
- *
- * @deprecated Since 1.36; disabling this feature will be removed in the next release.
- */
-$wgAjaxEditStash = true;
-
-/**
  * Settings for incoming cross-site AJAX requests:
  * Newer browsers support cross-site AJAX when the target resource allows requests
  * from the origin domain by the Access-Control-Allow-Origin header.
