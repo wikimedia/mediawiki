@@ -38,7 +38,7 @@ class MysqlMaintenance extends Maintenance {
 		$this->addDescription( "Execute the MySQL client binary. " .
 			"Non-option arguments will be passed through to mysql." );
 		$this->addOption( 'write', 'Connect to the master database', false, false );
-		$this->addOption( 'group', 'Specify query group', false, false );
+		$this->addOption( 'group', 'Specify query group', false, true );
 		$this->addOption( 'host', 'Connect to a specific MySQL server', false, true );
 		$this->addOption( 'list-hosts', 'List the available DB hosts', false, false );
 		$this->addOption( 'cluster', 'Use an external cluster by name', false, true );
