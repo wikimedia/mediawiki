@@ -1160,12 +1160,14 @@ return [
 	],
 	'mediawiki.action.edit' => [
 		'targets' => [ 'desktop', 'mobile' ],
-		'scripts' => [
-			'resources/src/mediawiki.action.edit/edit.js',
-			'resources/src/mediawiki.action.edit/stash.js',
-			'resources/src/mediawiki.action.edit/watchlistExpiry.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.action.edit",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.action.edit",
+		'packageFiles' => [
+			'edit.js',
+			'stash.js',
+			'watchlistExpiry.js',
 		],
-		'styles' => 'resources/src/mediawiki.action.edit/edit.css',
+		'styles' => 'edit.css',
 		'dependencies' => [
 			'mediawiki.action.edit.styles',
 			'mediawiki.editfont.styles',
