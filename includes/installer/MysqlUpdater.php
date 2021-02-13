@@ -37,22 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.24
-			[ 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ],
-			[ 'dropField', 'recentchanges', 'rc_cur_time', 'patch-drop-rc_cur_time.sql' ],
-			[ 'addIndex', 'watchlist', 'wl_user_notificationtimestamp',
-				'patch-watchlist-user-notificationtimestamp-index.sql' ],
-			[ 'addField', 'page', 'page_lang', 'patch-page_lang.sql' ],
-			[ 'addField', 'pagelinks', 'pl_from_namespace', 'patch-pl_from_namespace.sql' ],
-			[ 'addField', 'templatelinks', 'tl_from_namespace', 'patch-tl_from_namespace.sql' ],
-			[ 'addField', 'imagelinks', 'il_from_namespace', 'patch-il_from_namespace.sql' ],
-			[ 'modifyField', 'image', 'img_major_mime',
-				'patch-img_major_mime-chemical.sql' ],
-			[ 'modifyField', 'oldimage', 'oi_major_mime',
-				'patch-oi_major_mime-chemical.sql' ],
-			[ 'modifyField', 'filearchive', 'fa_major_mime',
-				'patch-fa_major_mime-chemical.sql' ],
-
 			// 1.25
 			// note this patch covers other _comment and _description fields too
 			[ 'doExtendCommentLengths' ],

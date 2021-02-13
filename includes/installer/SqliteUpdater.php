@@ -34,16 +34,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.24
-			[ 'addField', 'page_props', 'pp_sortkey', 'patch-pp_sortkey.sql' ],
-			[ 'dropField', 'recentchanges', 'rc_cur_time', 'patch-drop-rc_cur_time.sql' ],
-			[ 'addIndex', 'watchlist', 'wl_user_notificationtimestamp',
-				'patch-watchlist-user-notificationtimestamp-index.sql' ],
-			[ 'addField', 'page', 'page_lang', 'patch-page-page_lang.sql' ],
-			[ 'addField', 'pagelinks', 'pl_from_namespace', 'patch-pl_from_namespace.sql' ],
-			[ 'addField', 'templatelinks', 'tl_from_namespace', 'patch-tl_from_namespace.sql' ],
-			[ 'addField', 'imagelinks', 'il_from_namespace', 'patch-il_from_namespace.sql' ],
-
 			// 1.25
 			[ 'dropTable', 'hitcounter' ],
 			[ 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ],
