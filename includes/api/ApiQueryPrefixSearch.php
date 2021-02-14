@@ -63,7 +63,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		}
 
 		if ( $resultPageSet ) {
-			$resultPageSet->setRedirectMergePolicy( function ( array $current, array $new ) {
+			$resultPageSet->setRedirectMergePolicy( static function ( array $current, array $new ) {
 				if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
 					$current['index'] = $new['index'];
 				}

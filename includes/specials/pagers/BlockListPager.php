@@ -283,7 +283,7 @@ class BlockListPager extends TablePager {
 				$formatted = Html::rawElement(
 					'ul',
 					[],
-					implode( '', array_map( function ( $prop ) {
+					implode( '', array_map( static function ( $prop ) {
 						return Html::rawElement(
 							'li',
 							[],

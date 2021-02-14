@@ -148,7 +148,7 @@ class RevisionSlots {
 	 * @return int
 	 */
 	public function computeSize() {
-		return array_reduce( $this->getSlots(), function ( $accu, SlotRecord $slot ) {
+		return array_reduce( $this->getSlots(), static function ( $accu, SlotRecord $slot ) {
 			return $accu + $slot->getSize();
 		}, 0 );
 	}
@@ -197,7 +197,7 @@ class RevisionSlots {
 			return SlotRecord::base36Sha1( '' );
 		}
 
-		return array_reduce( $slots, function ( $accu, SlotRecord $slot ) {
+		return array_reduce( $slots, static function ( $accu, SlotRecord $slot ) {
 			return $accu === null
 				? $slot->getSha1()
 				: SlotRecord::base36Sha1( $accu . $slot->getSha1() );
@@ -215,7 +215,7 @@ class RevisionSlots {
 	public function getOriginalSlots() {
 		return array_filter(
 			$this->getSlots(),
-			function ( SlotRecord $slot ) {
+			static function ( SlotRecord $slot ) {
 				return !$slot->isInherited();
 			}
 		);
@@ -232,7 +232,7 @@ class RevisionSlots {
 	public function getInheritedSlots() {
 		return array_filter(
 			$this->getSlots(),
-			function ( SlotRecord $slot ) {
+			static function ( SlotRecord $slot ) {
 				return $slot->isInherited();
 			}
 		);

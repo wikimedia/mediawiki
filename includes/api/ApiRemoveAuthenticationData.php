@@ -64,7 +64,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 			: [];
 		$reqs = array_filter(
 			$manager->getAuthenticationRequests( $this->authAction, $this->getUser() ),
-			function ( AuthenticationRequest $req ) use ( $params, $blacklist ) {
+			static function ( AuthenticationRequest $req ) use ( $params, $blacklist ) {
 				return $req->getUniqueId() === $params['request'] &&
 					!isset( $blacklist[get_class( $req )] );
 			}

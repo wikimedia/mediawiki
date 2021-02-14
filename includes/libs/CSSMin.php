@@ -188,7 +188,7 @@ class CSSMin {
 	 */
 	public static function serializeStringValue( $value ) {
 		$value = strtr( $value, [ "\0" => "\u{FFFD}", '\\' => '\\\\', '"' => '\\"' ] );
-		$value = preg_replace_callback( '/[\x01-\x1f\x7f]/', function ( $match ) {
+		$value = preg_replace_callback( '/[\x01-\x1f\x7f]/', static function ( $match ) {
 			return '\\' . base_convert( ord( $match[0] ), 10, 16 ) . ' ';
 		}, $value );
 		return '"' . $value . '"';
@@ -264,7 +264,7 @@ class CSSMin {
 
 		$source = preg_replace_callback(
 			$pattern,
-			function ( $match ) use ( &$comments ) {
+			static function ( $match ) use ( &$comments ) {
 				$comments[] = $match[ 0 ];
 				return self::PLACEHOLDER . ( count( $comments ) - 1 ) . 'x';
 			},
@@ -339,7 +339,7 @@ class CSSMin {
 
 		// Re-insert comments
 		$pattern = '/' . self::PLACEHOLDER . '(\d+)x/';
-		$source = preg_replace_callback( $pattern, function ( $match ) use ( &$comments ) {
+		$source = preg_replace_callback( $pattern, static function ( $match ) use ( &$comments ) {
 			return $comments[ $match[1] ];
 		}, $source );
 

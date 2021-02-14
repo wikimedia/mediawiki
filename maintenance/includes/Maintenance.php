@@ -679,7 +679,7 @@ abstract class Maintenance {
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$lbFactory->setWaitForReplicationListener(
 			__METHOD__,
-			function () use ( $stats, $config ) {
+			static function () use ( $stats, $config ) {
 				// Check config in case of JobRunner and unit tests
 				if ( $config->get( 'CommandLineMode' ) ) {
 					DeferredUpdates::tryOpportunisticExecute( 'run' );
@@ -692,7 +692,7 @@ abstract class Maintenance {
 		// to the master but mostly be writing to something else, like a file store.
 		$lbFactory->getMainLB()->setTransactionListener(
 			__METHOD__,
-			function ( $trigger ) use ( $stats, $config ) {
+			static function ( $trigger ) use ( $stats, $config ) {
 				// Check config in case of JobRunner and unit tests
 				if ( $config->get( 'CommandLineMode' ) && $trigger === IDatabase::TRIGGER_COMMIT ) {
 					DeferredUpdates::tryOpportunisticExecute( 'run' );

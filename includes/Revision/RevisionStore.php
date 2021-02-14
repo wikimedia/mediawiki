@@ -693,7 +693,7 @@ class RevisionStore
 					}
 					$fname = __METHOD__;
 					$dbw->onTransactionResolution(
-						function ( $trigger, IDatabase $dbw ) use ( $fname ) {
+						static function ( $trigger, IDatabase $dbw ) use ( $fname ) {
 							$dbw->unlock( 'fix-for-T202032', $fname );
 						},
 						__METHOD__
@@ -1808,7 +1808,7 @@ class RevisionStore
 			$result->setResult(
 				true,
 				array_map(
-					function ( $row )
+					static function ( $row )
 					use ( $queryFlags, $titlesByPageKey, $result, $newRevisionRecord, $revIdField ) {
 						try {
 							if ( !isset( $titlesByPageKey[$row->_page_key] ) ) {

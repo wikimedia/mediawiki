@@ -110,7 +110,7 @@ class SlotRoleRegistry {
 
 		$this->defineRole(
 			$role,
-			function ( $role ) use ( $model, $layout ) {
+			static function ( $role ) use ( $model, $layout ) {
 				return new SlotRoleHandler( $role, $model, $layout );
 			}
 		);

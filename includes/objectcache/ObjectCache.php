@@ -181,7 +181,7 @@ class ObjectCache {
 				}
 			} elseif ( !isset( $params['localKeyLB'] ) ) {
 				$params['localKeyLB'] = [
-					'factory' => function () {
+					'factory' => static function () {
 						return MediaWikiServices::getInstance()->getDBLoadBalancer();
 					}
 				];

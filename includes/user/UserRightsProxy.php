@@ -296,7 +296,7 @@ class UserRightsProxy {
 		$domainId = $this->db->getDomainID();
 		$userId = $this->id;
 		$this->db->onTransactionPreCommitOrIdle(
-			function () use ( $domainId, $userId ) {
+			static function () use ( $domainId, $userId ) {
 				User::purge( $domainId, $userId );
 			},
 			__METHOD__

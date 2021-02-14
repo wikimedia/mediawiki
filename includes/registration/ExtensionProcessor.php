@@ -327,7 +327,7 @@ class ExtensionProcessor implements Processor {
 		// picking the non-null if one is, or combines
 		// the two. Note that it is not possible for
 		// both inputs to be null.
-		$pick = function ( $a, $b ) {
+		$pick = static function ( $a, $b ) {
 			if ( $a === null ) {
 				return $b;
 			} elseif ( $b === null ) {
@@ -693,7 +693,7 @@ class ExtensionProcessor implements Processor {
 			foreach ( $info['config'] as $key => $data ) {
 				$value = $data['value'];
 				if ( isset( $data['path'] ) && $data['path'] ) {
-					$callback = function ( $value ) use ( $dir ) {
+					$callback = static function ( $value ) use ( $dir ) {
 						return "$dir/$value";
 					};
 					if ( is_array( $value ) ) {

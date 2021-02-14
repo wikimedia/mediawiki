@@ -365,62 +365,62 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 
 	public function provideFindActorId() {
 		yield 'anon, local' => [
-			function () {
+			static function () {
 				return new UserIdentityValue( 0, self::IP, 0 );
 			}, // $actorCallback
 			43,  // $expected
 		];
 		yield 'anon, non-canonical, local' => [
-			function () {
+			static function () {
 				return new UserIdentityValue( 0, strtolower( self::IP ), 0 );
 			}, // $actorCallback
 			43,  // $expected
 		];
 		yield 'registered, local' => [
-			function () {
+			static function () {
 				return new UserIdentityValue( 24, 'TestUser', 0 );
 			}, // $actorCallback
 			42, // $expected
 		];
 		yield 'anon, non-existent, local' => [
-			function () {
+			static function () {
 				return new UserIdentityValue( 0, '127.1.2.3', 0 );
 			},  // $actorCallback
 			null, // $expected
 		];
 		yield 'registered, non-existent, local' => [
-			function () {
+			static function () {
 				return new UserIdentityValue( 51, 'DoNotExist', 0 );
 			}, // $actorCallback
 			null, // $expected
 		];
 		yield 'anon User, local' => [
-			function ( MediaWikiServices $serviceContainer ) {
+			static function ( MediaWikiServices $serviceContainer ) {
 				return $serviceContainer->getUserFactory()->newAnonymous( self::IP );
 			}, // $actorCallback
 			43, // $expected
 		];
 		yield 'anon User, non-canonical, local' => [
-			function ( MediaWikiServices $serviceContainer ) {
+			static function ( MediaWikiServices $serviceContainer ) {
 				return $serviceContainer->getUserFactory()->newAnonymous( strtolower( self::IP ) );
 			}, // $actorCallback
 			43, // $expected
 		];
 		yield 'anon User, non-existent, local' => [
-			function ( MediaWikiServices $serviceContainer ) {
+			static function ( MediaWikiServices $serviceContainer ) {
 				return $serviceContainer->getUserFactory()->newAnonymous( '127.1.2.3' );
 			},  // $actorCallback
 			null, // $expected
 		];
 		yield 'anon, foreign' => [
-			function () {
+			static function () {
 				return new UserIdentityValue( 0, self::IP, 0, 'acmewiki' );
 			}, // $actorCallback
 			43, // $expected
 			'acmewiki', // $wikiId
 		];
 		yield 'registered, foreign' => [
-			function () {
+			static function () {
 				return new UserIdentityValue( 24, 'TestUser', 0, 'acmewiki' );
 			}, // $actorCallback
 			42, // $expected
@@ -460,13 +460,13 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideAcquireActorId() {
-		yield 'anon' => [ function () {
+		yield 'anon' => [ static function () {
 			return new UserIdentityValue( 0, '127.3.2.1', 0 );
 		} ];
-		yield 'registered' => [ function () {
+		yield 'registered' => [ static function () {
 			return new UserIdentityValue( 15, 'MyUser', 0 );
 		} ];
-		yield 'User object' => [ function ( $serviceContainer ) {
+		yield 'User object' => [ static function ( $serviceContainer ) {
 			return $serviceContainer->getUserFactory()->newAnonymous( '127.4.3.2' );
 		} ];
 	}
@@ -483,15 +483,15 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideAcquireActorId_foreign() {
-		yield 'anon' => [ function () {
+		yield 'anon' => [ static function () {
 			return new UserIdentityValue( 0, '127.3.2.1', 0, 'acmewiki' );
 		} ];
-		yield 'registered' => [ function () {
+		yield 'registered' => [ static function () {
 			return new UserIdentityValue( 15, 'MyUser', 0, 'acmewiki' );
 		} ];
 		// This is backwards-compatibility test case, this can be removed when we deprecate
 		// and drop support for passing User object with foreign DB connections.
-		yield 'User object' => [ function ( $serviceContainer ) {
+		yield 'User object' => [ static function ( $serviceContainer ) {
 			return $serviceContainer->getUserFactory()->newAnonymous( '127.4.3.2' );
 		} ];
 	}

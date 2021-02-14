@@ -243,7 +243,7 @@ class FileBackendGroup {
 				'wanCache' => $this->wanCache,
 				'srvCache' => $this->srvCache,
 				'logger' => LoggerFactory::getInstance( 'FileOperation' ),
-				'profiler' => function ( $section ) {
+				'profiler' => static function ( $section ) {
 					return Profiler::instance()->scopedProfileIn( $section );
 				}
 			],

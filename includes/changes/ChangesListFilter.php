@@ -415,7 +415,7 @@ abstract class ChangesListFilter {
 	 */
 	public function getConflictingGroups() {
 		return array_map(
-			function ( $conflictDesc ) {
+			static function ( $conflictDesc ) {
 				return $conflictDesc[ 'groupObject' ];
 			},
 			$this->conflictingGroups
@@ -429,7 +429,7 @@ abstract class ChangesListFilter {
 	 */
 	public function getConflictingFilters() {
 		return array_map(
-			function ( $conflictDesc ) {
+			static function ( $conflictDesc ) {
 				return $conflictDesc[ 'filterObject' ];
 			},
 			$this->conflictingFilters

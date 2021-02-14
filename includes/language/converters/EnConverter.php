@@ -78,13 +78,13 @@ class EnConverter extends LanguageConverter {
 		// Only process words composed of standard English alphabet, leave the rest unchanged.
 		// This skips some English words like 'naïve' or 'résumé', but we can live with that.
 		// Ignore single letters and words which aren't lowercase or uppercase-first.
-		return preg_replace_callback( '/[A-Za-z][a-z\']+/', function ( $matches ) {
+		return preg_replace_callback( '/[A-Za-z][a-z\']+/', static function ( $matches ) {
 			$word = $matches[0];
 			if ( preg_match( '/^[aeiou]/i', $word ) ) {
 				return $word . 'way';
 			}
 
-			return preg_replace_callback( '/^(s?qu|[^aeiou][^aeiouy]*)(.*)$/i', function ( $m ) {
+			return preg_replace_callback( '/^(s?qu|[^aeiou][^aeiouy]*)(.*)$/i', static function ( $m ) {
 				$ucfirst = strtoupper( $m[1][0] ) === $m[1][0];
 				if ( $ucfirst ) {
 					return ucfirst( $m[2] ) . lcfirst( $m[1] ) . 'ay';

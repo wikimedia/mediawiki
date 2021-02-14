@@ -865,7 +865,7 @@ function wfParseUrl( $url ) {
 function wfExpandIRI( $url ) {
 	return preg_replace_callback(
 		'/((?:%[89A-F][0-9A-F])+)/i',
-		function ( array $matches ) {
+		static function ( array $matches ) {
 			return urldecode( $matches[1] );
 		},
 		wfExpandUrl( $url )
@@ -1383,7 +1383,7 @@ function wfBacktrace( $raw = null ) {
 		$traceFormat = "<ul>\n%s</ul>\n";
 	}
 
-	$frames = array_map( function ( $frame ) use ( $frameFormat ) {
+	$frames = array_map( static function ( $frame ) use ( $frameFormat ) {
 		$file = !empty( $frame['file'] ) ? basename( $frame['file'] ) : '-';
 		$line = $frame['line'] ?? '-';
 		$call = $frame['function'];
@@ -2815,12 +2815,12 @@ function wfThumbIsStandard( File $file, array $params ) {
 	// Expand limits to account for multipliers
 	foreach ( $multipliers as $multiplier ) {
 		$thumbLimits = array_merge( $thumbLimits, array_map(
-			function ( $width ) use ( $multiplier ) {
+			static function ( $width ) use ( $multiplier ) {
 				return round( $width * $multiplier );
 			}, $wgThumbLimits )
 		);
 		$imageLimits = array_merge( $imageLimits, array_map(
-			function ( $pair ) use ( $multiplier ) {
+			static function ( $pair ) use ( $multiplier ) {
 				return [
 					round( $pair[0] * $multiplier ),
 					round( $pair[1] * $multiplier ),

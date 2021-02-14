@@ -71,7 +71,7 @@ class LinksDeletionUpdate extends LinksUpdate implements EnqueueableDataUpdate {
 		// spurious row in the category table.
 		if ( $title->getNamespace() === NS_CATEGORY ) {
 			// T166757: do the update after the main job DB commit
-			DeferredUpdates::addCallableUpdate( function () use ( $title ) {
+			DeferredUpdates::addCallableUpdate( static function () use ( $title ) {
 				$cat = Category::newFromName( $title->getDBkey() );
 				$cat->refreshCountsIfSmall();
 			} );

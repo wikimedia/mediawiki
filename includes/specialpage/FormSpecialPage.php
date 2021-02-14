@@ -108,7 +108,7 @@ abstract class FormSpecialPage extends SpecialPage {
 
 			// But don't treat it as a "real" submission just in case of some
 			// crazy kind of CSRF.
-			$onSubmit = function () {
+			$onSubmit = static function () {
 				return false;
 			};
 		}

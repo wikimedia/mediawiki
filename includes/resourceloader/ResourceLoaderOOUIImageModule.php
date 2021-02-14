@@ -130,7 +130,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 
 		// Expand the paths to images (since they are relative to the JSON file that defines them, not
 		// our base directory)
-		$fixPath = function ( &$path ) use ( $dataPath ) {
+		$fixPath = static function ( &$path ) use ( $dataPath ) {
 			if ( $dataPath instanceof ResourceLoaderFilePath ) {
 				$path = new ResourceLoaderFilePath(
 					dirname( $dataPath->getPath() ) . '/' . $path,
@@ -142,7 +142,7 @@ class ResourceLoaderOOUIImageModule extends ResourceLoaderImageModule {
 			}
 		};
 		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
-		array_walk( $data['images'], function ( &$value ) use ( $fixPath ) {
+		array_walk( $data['images'], static function ( &$value ) use ( $fixPath ) {
 			if ( is_string( $value['file'] ) ) {
 				$fixPath( $value['file'] );
 			} elseif ( is_array( $value['file'] ) ) {

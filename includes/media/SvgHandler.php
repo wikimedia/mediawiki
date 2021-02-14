@@ -280,7 +280,7 @@ class SvgHandler extends ImageHandler {
 		}
 		$ok = symlink( $srcPath, $lnPath );
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
+		$cleaner = new ScopedCallback( static function () use ( $tmpDir, $lnPath ) {
 			Wikimedia\suppressWarnings();
 			unlink( $lnPath );
 			rmdir( $tmpDir );

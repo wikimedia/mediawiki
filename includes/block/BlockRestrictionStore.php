@@ -299,7 +299,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function equals( array $a, array $b ) {
-		$filter = function ( $restriction ) {
+		$filter = static function ( $restriction ) {
 			return $restriction instanceof Restriction;
 		};
 
@@ -322,7 +322,7 @@ class BlockRestrictionStore {
 			return true;
 		}
 
-		$hasher = function ( $r ) {
+		$hasher = static function ( $r ) {
 			return $r->getHash();
 		};
 
@@ -371,7 +371,7 @@ class BlockRestrictionStore {
 	 * @return array
 	 */
 	private function restrictionsToRemove( array $existing, array $new ) {
-		return array_filter( $existing, function ( $e ) use ( $new ) {
+		return array_filter( $existing, static function ( $e ) use ( $new ) {
 			foreach ( $new as $restriction ) {
 				if ( !$restriction instanceof Restriction ) {
 					continue;

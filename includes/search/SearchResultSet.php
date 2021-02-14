@@ -229,7 +229,7 @@ class SearchResultSet extends BaseSearchResultSet {
 				$this->titles = [];
 			} else {
 				$this->titles = array_map(
-					function ( SearchResult $result ) {
+					static function ( SearchResult $result ) {
 						return $result->getTitle();
 					},
 					$this->extractResults() );

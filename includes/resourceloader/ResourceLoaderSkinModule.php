@@ -217,7 +217,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		}
 		$this->features = array_filter(
 			array_keys( $enabledFeatures ),
-			function ( $key ) use ( $enabledFeatures ) {
+			static function ( $key ) use ( $enabledFeatures ) {
 				return $enabledFeatures[ $key ];
 			}
 		);
@@ -352,7 +352,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		}
 
 		// Because PHP can't have floats as array keys
-		uksort( $logosPerDppx, function ( $a, $b ) {
+		uksort( $logosPerDppx, static function ( $a, $b ) {
 			$a = floatval( $a );
 			$b = floatval( $b );
 			// Sort from smallest to largest (e.g. 1x, 1.5x, 2x)

@@ -373,7 +373,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$this->mPastTheEndRow = null;
 
 		if ( $numRows ) {
-			$indexColumns = array_map( function ( $v ) {
+			$indexColumns = array_map( static function ( $v ) {
 				// Remove any table prefix from index field
 				$parts = explode( '.', $v );
 				return end( $parts );

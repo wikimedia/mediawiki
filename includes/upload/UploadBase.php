@@ -750,7 +750,7 @@ abstract class UploadBase {
 	 * @return mixed[]
 	 */
 	public static function makeWarningsSerializable( $warnings ) {
-		array_walk_recursive( $warnings, function ( &$param, $key ) {
+		array_walk_recursive( $warnings, static function ( &$param, $key ) {
 			if ( $param instanceof File ) {
 				$param = [
 					'fileName' => $param->getName(),

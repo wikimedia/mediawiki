@@ -560,7 +560,7 @@ final class SessionManager implements SessionManagerInterface {
 				return $this->loadSessionInfoFromStore( $info, $request );
 			};
 		} else {
-			$failHandler = function () {
+			$failHandler = static function () {
 				return false;
 			};
 		}

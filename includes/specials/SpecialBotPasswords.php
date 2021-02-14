@@ -147,7 +147,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$showGrants
 				),
 				'default' => array_map(
-					function ( $g ) {
+					static function ( $g ) {
 						return "grant-$g";
 					},
 					$this->botPassword->getGrants()
@@ -155,14 +155,14 @@ class SpecialBotPasswords extends FormSpecialPage {
 				'tooltips' => array_combine(
 					array_map( [ MWGrants::class, 'getGrantsLink' ], $showGrants ),
 					array_map(
-						function ( $rights ) use ( $lang ) {
+						static function ( $rights ) use ( $lang ) {
 							return $lang->semicolonList( array_map( [ User::class, 'getRightDescription' ], $rights ) );
 						},
 						array_intersect_key( MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
 					)
 				),
 				'force-options-on' => array_map(
-					function ( $g ) {
+					static function ( $g ) {
 						return "grant-$g";
 					},
 					MWGrants::getHiddenGrants()
@@ -220,7 +220,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 				'required' => true,
 				'size' => BotPassword::APPID_MAXLENGTH,
 				'maxlength' => BotPassword::APPID_MAXLENGTH,
-				'validation-callback' => function ( $v ) {
+				'validation-callback' => static function ( $v ) {
 					$v = trim( $v );
 					return $v !== '' && strlen( $v ) <= BotPassword::APPID_MAXLENGTH;
 				},

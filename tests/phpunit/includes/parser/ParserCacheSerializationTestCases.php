@@ -79,7 +79,7 @@ abstract class ParserCacheSerializationTestCases {
 		return [
 			'empty' => [
 				'instance' => new CacheTime(),
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, CacheTime $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, CacheTime $object ) {
 					$testCase->assertSame( self::FAKE_CACHE_EXPIRY, $object->getCacheExpiry() );
 					$testCase->assertNull( $object->getCacheRevisionId() );
 					$testCase->assertSame(
@@ -281,7 +281,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'extensionData' => [
 				'instance' => $parserOutputWithExtensionData,
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( self::MOCK_EXT_DATA['boolean'], $object->getExtensionData( 'boolean' ) );
 					$testCase->assertSame( self::MOCK_EXT_DATA['null'], $object->getExtensionData( 'null' ) );
 					$testCase->assertSame( self::MOCK_EXT_DATA['number'], $object->getExtensionData( 'number' ) );
@@ -292,7 +292,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'pageProperties' => [
 				'instance' => $parserOutputWithProperties,
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( self::MOCK_EXT_DATA['boolean'], $object->getProperty( 'boolean' ) );
 					// Falsy properties return false even though null was given.
 					$testCase->assertFalse( $object->getProperty( 'null' ) );
@@ -305,7 +305,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'binaryPageProperties' => [
 				'instance' => $parserOutputWithBinaryProperties,
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['empty'], $object->getProperty( 'empty' ) );
 					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['\x00'], $object->getProperty( '\x00' ) );
 					$testCase->assertSame( self::MOCK_BINARY_PROPERTIES['gzip'], $object->getProperty( 'gzip' ) );
@@ -314,7 +314,7 @@ abstract class ParserCacheSerializationTestCases {
 			],
 			'withMetadata' => [
 				'instance' => $parserOutputWithMetadata,
-				'assertions' => function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
+				'assertions' => static function ( MediaWikiIntegrationTestCase $testCase, ParserOutput $object ) {
 					$testCase->assertSame( 42, $object->getSpeculativeRevIdUsed() );
 					$testCase->assertArrayEquals( [ 'link1', 'link2' ], $object->getLanguageLinks() );
 					$testCase->assertArrayEquals( [ 'enwiki' => [

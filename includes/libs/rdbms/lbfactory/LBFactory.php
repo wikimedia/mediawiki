@@ -141,10 +141,10 @@ abstract class LBFactory implements ILBFactory {
 		foreach ( self::$loggerFields as $key ) {
 			$this->$key = $conf[$key] ?? new NullLogger();
 		}
-		$this->errorLogger = $conf['errorLogger'] ?? function ( Throwable $e ) {
+		$this->errorLogger = $conf['errorLogger'] ?? static function ( Throwable $e ) {
 			trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 		};
-		$this->deprecationLogger = $conf['deprecationLogger'] ?? function ( $msg ) {
+		$this->deprecationLogger = $conf['deprecationLogger'] ?? static function ( $msg ) {
 			trigger_error( $msg, E_USER_DEPRECATED );
 		};
 
@@ -245,7 +245,7 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	protected function forEachLBCallMethod( $methodName, array $args = [] ) {
 		$this->forEachLB(
-			function ( ILoadBalancer $loadBalancer, $methodName, array $args ) {
+			static function ( ILoadBalancer $loadBalancer, $methodName, array $args ) {
 				$loadBalancer->$methodName( ...$args );
 			},
 			[ $methodName, $args ]
@@ -371,7 +371,7 @@ abstract class LBFactory implements ILBFactory {
 	 */
 	private function logIfMultiDbTransaction() {
 		$callersByDB = [];
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$callersByDB ) {
+		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$callersByDB ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
 			$callers = $lb->pendingMasterChangeCallers();
 			if ( $callers ) {
@@ -391,7 +391,7 @@ abstract class LBFactory implements ILBFactory {
 
 	public function hasMasterChanges() {
 		$ret = false;
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$ret ) {
+		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$ret ) {
 			$ret = $ret || $lb->hasMasterChanges();
 		} );
 
@@ -400,7 +400,7 @@ abstract class LBFactory implements ILBFactory {
 
 	public function laggedReplicaUsed() {
 		$ret = false;
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$ret ) {
+		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$ret ) {
 			$ret = $ret || $lb->laggedReplicaUsed();
 		} );
 
@@ -409,7 +409,7 @@ abstract class LBFactory implements ILBFactory {
 
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
 		$ret = false;
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $age, &$ret ) {
+		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $age, &$ret ) {
 			$ret = $ret || $lb->hasOrMadeRecentMasterChanges( $age );
 		} );
 		return $ret;
@@ -437,7 +437,7 @@ abstract class LBFactory implements ILBFactory {
 		} elseif ( $opts['domain'] !== false ) {
 			$lbs[] = $this->getMainLB( $opts['domain'] );
 		} else {
-			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$lbs ) {
+			$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$lbs ) {
 				$lbs[] = $lb;
 			} );
 			if ( !$lbs ) {
@@ -597,7 +597,7 @@ abstract class LBFactory implements ILBFactory {
 		ChronologyProtector $cp, $workCallback, $mode, &$cpIndex = null
 	) {
 		// Record all the master positions needed
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $cp ) {
+		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $cp ) {
 			$cp->storeSessionReplicationPosition( $lb );
 		} );
 		// Write them to the persistent stash. Try to do something useful by running $work
@@ -611,7 +611,7 @@ abstract class LBFactory implements ILBFactory {
 		// replica DBs to catch up before responding. Even if there are several DCs, this increases
 		// the chance that the user will see their own changes immediately afterwards. As long
 		// as the sticky DC cookie applies (same domain), this is not even an issue.
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $unsavedPositions ) {
+		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $unsavedPositions ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
 			if ( isset( $unsavedPositions[$masterName] ) ) {
 				$lb->waitForAll( $unsavedPositions[$masterName] );
@@ -697,7 +697,7 @@ abstract class LBFactory implements ILBFactory {
 			$prefix
 		);
 
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( $prefix ) {
+		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $prefix ) {
 			$lb->setLocalDomainPrefix( $prefix );
 		} );
 	}
@@ -725,7 +725,7 @@ abstract class LBFactory implements ILBFactory {
 
 	public function appendShutdownCPIndexAsQuery( $url, $index ) {
 		$usedCluster = 0;
-		$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$usedCluster ) {
+		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( &$usedCluster ) {
 			$usedCluster |= $lb->hasStreamingReplicaServers();
 		} );
 

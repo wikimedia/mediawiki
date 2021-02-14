@@ -790,7 +790,7 @@ class Sanitizer {
 		# Stupid hack
 		$encValue = preg_replace_callback(
 			'/((?i)' . wfUrlProtocols() . ')/',
-			function ( $matches ) {
+			static function ( $matches ) {
 				return str_replace( ':', '&#58;', $matches[1] );
 			},
 			$encValue );
@@ -1170,7 +1170,7 @@ class Sanitizer {
 			return "&$name";
 		} elseif ( isset( HTMLData::$namedEntityTranslations[$name] ) ) {
 			// Beware: some entities expand to more than 1 codepoint
-			return preg_replace_callback( '/./Ssu', function ( $m ) {
+			return preg_replace_callback( '/./Ssu', static function ( $m ) {
 				return '&#' . UtfNormal\Utils::utf8ToCodepoint( $m[0] ) . ';';
 			}, HTMLData::$namedEntityTranslations[$name] );
 		} else {
@@ -1338,7 +1338,7 @@ class Sanitizer {
 
 		// For lookup efficiency flip each attributes array so the keys are
 		// the valid attributes.
-		$merge = function ( $a, $b, $c = [] ) {
+		$merge = static function ( $a, $b, $c = [] ) {
 			return array_merge( $a, array_flip( $b ), array_flip( $c ) );
 		};
 		$common = $merge( [], [

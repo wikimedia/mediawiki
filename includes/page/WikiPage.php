@@ -2945,7 +2945,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$logid = $logEntry->insert();
 
 			$dbw->onTransactionPreCommitOrIdle(
-				function () use ( $logEntry, $logid ) {
+				static function () use ( $logEntry, $logid ) {
 					// T58776: avoid deadlocks (especially from FileDeleteForm)
 					$logEntry->publish( $logid );
 				},
@@ -3295,7 +3295,7 @@ class WikiPage implements Page, IDBAccessObject {
 		}
 
 		$currentEditorForPublic = $current->getUser( RevisionRecord::FOR_PUBLIC );
-		$legacyCurrentCallback = function () use ( $current ) {
+		$legacyCurrentCallback = static function () use ( $current ) {
 			// Only created when needed
 			return new Revision( $current );
 		};
@@ -3527,7 +3527,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		$this->getHookRunner()->onRollbackComplete( $this, $guser, $target, $current );
 
-		$legacyTargetCallback = function () use ( $target ) {
+		$legacyTargetCallback = static function () use ( $target ) {
 			// Only create the Revision object if needed
 			return new Revision( $target );
 		};
@@ -3697,7 +3697,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 		// Purge ?action=info cache
 		$revid = $revRecord ? $revRecord->getId() : null;
-		DeferredUpdates::addCallableUpdate( function () use ( $title, $revid ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $title, $revid ) {
 			InfoAction::invalidateCache( $title, $revid );
 		} );
 
@@ -3719,7 +3719,7 @@ class WikiPage implements Page, IDBAccessObject {
 			return; // @todo: perhaps this wiki is only used as a *source* for content?
 		}
 
-		DeferredUpdates::addCallableUpdate( function () use ( $title ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $title ) {
 			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 			$cache->resetCheckKey(
 				// Do not include the namespace since there can be multiple aliases to it
@@ -3880,7 +3880,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$cat = Category::newFromName( $catName );
 			$this->getHookRunner()->onCategoryAfterPageRemoved( $cat, $this, $id );
 			// Refresh counts on categories that should be empty now (after commit, T166757)
-			DeferredUpdates::addCallableUpdate( function () use ( $cat ) {
+			DeferredUpdates::addCallableUpdate( static function () use ( $cat ) {
 				$cat->refreshCountsIfEmpty();
 			} );
 		}
@@ -3968,7 +3968,7 @@ class WikiPage implements Page, IDBAccessObject {
 
 			$slotContent = [ SlotRecord::MAIN => $rev ];
 		} else {
-			$slotContent = array_map( function ( SlotRecord $slot ) {
+			$slotContent = array_map( static function ( SlotRecord $slot ) {
 				return $slot->getContent();
 			}, $rev->getSlots()->getSlots() );
 		}
@@ -3993,7 +3993,7 @@ class WikiPage implements Page, IDBAccessObject {
 			$legacyUpdates = $content->getDeletionUpdates( $this );
 
 			// HACK: filter out redundant and incomplete LinksDeletionUpdate
-			$legacyUpdates = array_filter( $legacyUpdates, function ( $update ) {
+			$legacyUpdates = array_filter( $legacyUpdates, static function ( $update ) {
 				return !( $update instanceof LinksDeletionUpdate );
 			} );
 

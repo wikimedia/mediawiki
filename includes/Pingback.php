@@ -297,7 +297,7 @@ class Pingback {
 			// or DB_MASTER have issues, allow this to be turned off completely. (T269516)
 			return;
 		}
-		DeferredUpdates::addCallableUpdate( function () {
+		DeferredUpdates::addCallableUpdate( static function () {
 			// Avoid re-use of $config as that would hold the same object from
 			// the outer call via Setup.php, all the way here through post-send.
 			$instance = new Pingback(

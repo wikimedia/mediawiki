@@ -715,7 +715,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		$attribs = $data['attribs'];
 		unset( $data['attribs'] );
-		$attribs = array_filter( $attribs, function ( $key ) {
+		$attribs = array_filter( $attribs, static function ( $key ) {
 			return $key === 'class' || Sanitizer::isReservedDataAttribute( $key );
 		}, ARRAY_FILTER_USE_KEY );
 

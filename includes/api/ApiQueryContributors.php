@@ -58,7 +58,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$cont_page = (int)$cont[0];
-			$pages = array_filter( $pages, function ( $v ) use ( $cont_page ) {
+			$pages = array_filter( $pages, static function ( $v ) use ( $cont_page ) {
 				return $v >= $cont_page;
 			} );
 		}

@@ -127,7 +127,7 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		$relayerGroup->getRelayer( 'cdn-url-purges' )->notifyMulti(
 			'cdn-url-purges',
 			array_map(
-				function ( $url ) use ( $ts ) {
+				static function ( $url ) use ( $ts ) {
 					return [
 						'url' => $url,
 						'timestamp' => $ts,

@@ -32,7 +32,7 @@ class StringPrefixSearch extends PrefixSearch {
 	 * @return string[]
 	 */
 	protected function titles( array $titles ) {
-		return array_map( function ( Title $t ) {
+		return array_map( static function ( Title $t ) {
 			return $t->getPrefixedText();
 		}, $titles );
 	}

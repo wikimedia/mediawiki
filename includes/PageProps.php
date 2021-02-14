@@ -66,12 +66,12 @@ class PageProps {
 
 		MediaWikiServices::getInstance()->redefineService(
 			'PageProps',
-			function () use ( $store ) {
+			static function () use ( $store ) {
 				return $store;
 			}
 		);
 
-		return new ScopedCallback( function () {
+		return new ScopedCallback( static function () {
 			MediaWikiServices::getInstance()->resetServiceForTesting( 'PageProps' );
 		} );
 	}

@@ -248,7 +248,7 @@ class XmlDumpWriter {
 		if ( $row->page_is_redirect ) {
 			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->currentTitle );
 			$redirect = $this->invokeLenient(
-				function () use ( $page ) {
+				static function () use ( $page ) {
 					return $page->getRedirectTarget();
 				},
 				'Failed to get redirect target of page ' . $page->getId()
@@ -399,7 +399,7 @@ class XmlDumpWriter {
 			$out .= "      <sha1/>\n";
 		} else {
 			$sha1 = $this->invokeLenient(
-				function () use ( $rev ) {
+				static function () use ( $rev ) {
 					return $rev->getSha1();
 				},
 				'failed to determine sha1 for revision ' . $rev->getId()
@@ -413,7 +413,7 @@ class XmlDumpWriter {
 		if ( $contentMode === self::WRITE_CONTENT ) {
 			/** @var Content $content */
 			$content = $this->invokeLenient(
-				function () use ( $rev ) {
+				static function () use ( $rev ) {
 					return $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				},
 				'Failed to load main slot content of revision ' . $rev->getId()
@@ -470,7 +470,7 @@ class XmlDumpWriter {
 
 		$textAttributes = [
 			'bytes' => $this->invokeLenient(
-				function () use ( $slot ) {
+				static function () use ( $slot ) {
 					return $slot->getSize();
 				},
 				'failed to determine size for slot ' . $slot->getRole() . ' of revision '
@@ -480,7 +480,7 @@ class XmlDumpWriter {
 
 		if ( $isV11 ) {
 			$textAttributes['sha1'] = $this->invokeLenient(
-				function () use ( $slot ) {
+				static function () use ( $slot ) {
 					return $slot->getSha1();
 				},
 				'failed to determine sha1 for slot ' . $slot->getRole() . ' of revision '
@@ -490,7 +490,7 @@ class XmlDumpWriter {
 
 		if ( $contentMode === self::WRITE_CONTENT ) {
 			$content = $this->invokeLenient(
-				function () use ( $slot ) {
+				static function () use ( $slot ) {
 					return $slot->getContent();
 				},
 				'failed to load content for slot ' . $slot->getRole() . ' of revision '

@@ -638,7 +638,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			//   'getFileHashes' method tracks their content already.
 			//   It is important that the keys of the $packageFiles['files'] array
 			//   are preserved, as they do affect the module output.
-			$packageFiles['files'] = array_map( function ( $fileInfo ) {
+			$packageFiles['files'] = array_map( static function ( $fileInfo ) {
 				return $fileInfo['definitionSummary'] ?? ( $fileInfo['content'] ?? null );
 			}, $packageFiles['files'] );
 		}

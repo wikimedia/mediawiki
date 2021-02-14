@@ -310,7 +310,7 @@ class ApiParamValidator {
 				}
 
 				$keys = implode( '|', array_map(
-					function ( $key ) {
+					static function ( $key ) {
 						return preg_quote( $key, '/' );
 					},
 					array_keys( $settings[ApiBase::PARAM_TEMPLATE_VARS] )

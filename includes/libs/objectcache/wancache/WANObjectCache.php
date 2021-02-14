@@ -773,7 +773,7 @@ class WANObjectCache implements
 		} else {
 			$ok = $this->cache->merge(
 				$this->makeSisterKey( $key, self::TYPE_VALUE ),
-				function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
+				static function ( $cache, $key, $cWrapped ) use ( $wrapped ) {
 					// A string value means that it is a tombstone; do nothing in that case
 					return ( is_string( $cWrapped ) ) ? false : $wrapped;
 				},
@@ -1867,7 +1867,7 @@ class WANObjectCache implements
 		$wrapped = $this->wrap( $value, $ttl, $version, $this->getCurrentTime(), $walltime );
 		$this->cache->merge(
 			$this->makeSisterKey( $key, self::TYPE_INTERIM ),
-			function () use ( $wrapped ) {
+			static function () use ( $wrapped ) {
 				return $wrapped;
 			},
 			$ttl,
@@ -1961,7 +1961,7 @@ class WANObjectCache implements
 		// to distinguish different items. To reuse the code in getWithSetCallback(), wrap the
 		// callback with a proxy callback that has the standard getWithSetCallback() signature.
 		// This is defined only once per batch to avoid closure creation overhead.
-		$proxyCb = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf, $params ) use ( $callback ) {
+		$proxyCb = static function ( $oldValue, &$ttl, &$setOpts, $oldAsOf, $params ) use ( $callback ) {
 			return $callback( $params['id'], $oldValue, $ttl, $setOpts, $oldAsOf );
 		};
 
@@ -2080,7 +2080,7 @@ class WANObjectCache implements
 		// to distinguish different items. To reuse the code in getWithSetCallback(), wrap the
 		// callback with a proxy callback that has the standard getWithSetCallback() signature.
 		// This is defined only once per batch to avoid closure creation overhead.
-		$proxyCb = function ( $oldValue, &$ttl, &$setOpts, $oldAsOf, $params )
+		$proxyCb = static function ( $oldValue, &$ttl, &$setOpts, $oldAsOf, $params )
 			use ( $callback, $newValsById, $newTTLsById, $newSetOpts )
 		{
 			$id = $params['id'];

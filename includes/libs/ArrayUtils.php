@@ -51,7 +51,7 @@ class ArrayUtils {
 		foreach ( $array as $elt ) {
 			$hashes[$elt] = md5( $elt . $separator . $key );
 		}
-		uasort( $array, function ( $a, $b ) use ( $hashes ) {
+		uasort( $array, static function ( $a, $b ) use ( $hashes ) {
 			return strcmp( $hashes[$a], $hashes[$b] );
 		} );
 	}

@@ -785,7 +785,7 @@ class Parser {
 
 		// Add on template profiling data in human/machine readable way
 		$dataByFunc = $this->mProfiler->getFunctionStats();
-		uasort( $dataByFunc, function ( $a, $b ) {
+		uasort( $dataByFunc, static function ( $a, $b ) {
 			return $b['real'] <=> $a['real']; // descending order
 		} );
 		$profileReport = [];
@@ -2246,7 +2246,7 @@ class Parser {
 
 		# Make sure unsafe characters are encoded
 		$url = preg_replace_callback( '/[\x00-\x20"<>\[\\\\\]^`{|}\x7F-\xFF]/',
-			function ( $m ) {
+			static function ( $m ) {
 				return rawurlencode( $m[0] );
 			},
 			$url
@@ -2290,7 +2290,7 @@ class Parser {
 	}
 
 	private static function normalizeUrlComponent( $component, $unsafe ) {
-		$callback = function ( $matches ) use ( $unsafe ) {
+		$callback = static function ( $matches ) use ( $unsafe ) {
 			$char = urldecode( $matches[0] );
 			$ord = ord( $char );
 			if ( $ord > 32 && $ord < 127 && strpos( $unsafe, $char ) === false ) {
@@ -3694,7 +3694,7 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 
-		$legacyRevision = function () use ( $revRecord ) {
+		$legacyRevision = static function () use ( $revRecord ) {
 			return $revRecord ? new Revision( $revRecord ) : null;
 		};
 		$retValues = [
@@ -3789,7 +3789,7 @@ class Parser {
 				sha1( $url )
 			),
 			$this->svcOptions->get( 'TranscludeCacheExpiry' ),
-			function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
+			static function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
 				$req = MWHttpRequest::factory( $url, [], $fname );
 
 				$status = $req->execute(); // Status object

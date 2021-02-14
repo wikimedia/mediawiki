@@ -546,7 +546,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public static function getRelativePaths( array $filePaths ) {
 		global $IP;
-		return array_map( function ( $path ) use ( $IP ) {
+		return array_map( static function ( $path ) use ( $IP ) {
 			return RelPath::getRelativePath( $path, $IP );
 		}, $filePaths );
 	}
@@ -560,7 +560,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public static function expandRelativePaths( array $filePaths ) {
 		global $IP;
-		return array_map( function ( $path ) use ( $IP ) {
+		return array_map( static function ( $path ) use ( $IP ) {
 			return RelPath::joinPath( $IP, $path );
 		}, $filePaths );
 	}
@@ -974,7 +974,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 					$fileName
 				),
 				$cache::TTL_WEEK,
-				function () use ( $contents, $fileName ) {
+				static function () use ( $contents, $fileName ) {
 					$parser = new JSParser();
 					try {
 						// Ignore compiler warnings (T77169)

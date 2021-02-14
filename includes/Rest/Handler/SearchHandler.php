@@ -227,7 +227,7 @@ class SearchHandler extends Handler {
 	 * @return array[] of pageId => [ $title, null, $result ]
 	 */
 	private function buildResultFromPageInfos( array $pageInfos ): array {
-		return array_map( function ( $pageInfo ) {
+		return array_map( static function ( $pageInfo ) {
 			list( $title, $sugg, $result ) = $pageInfo;
 			return [
 				'id' => $title->getArticleID(),
@@ -276,7 +276,7 @@ class SearchHandler extends Handler {
 
 		$this->getHookRunner()->onSearchResultProvideDescription( $pageIdentities, $descriptions );
 
-		return array_map( function ( $description ) {
+		return array_map( static function ( $description ) {
 			return [ 'description' => $description ];
 		}, $descriptions );
 	}
@@ -309,7 +309,7 @@ class SearchHandler extends Handler {
 	public function execute() {
 		$searchEngine = $this->createSearchEngine();
 		$pageInfos = $this->doSearch( $searchEngine );
-		$pageIdentities = array_map( function ( $pageInfo ) {
+		$pageIdentities = array_map( static function ( $pageInfo ) {
 			list( $title ) = $pageInfo;
 			return new SearchResultPageIdentityValue(
 				$title->getArticleID(),

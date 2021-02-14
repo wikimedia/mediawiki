@@ -1016,7 +1016,7 @@ class ApiQueryInfo extends ApiQueryBase {
 				$timestamps[$row->page_namespace][$row->page_title] = (int)$revTimestamp - $age;
 			}
 			$titlesWithThresholds = array_map(
-				function ( LinkTarget $target ) use ( $timestamps ) {
+				static function ( LinkTarget $target ) use ( $timestamps ) {
 					return [
 						$target, $timestamps[$target->getNamespace()][$target->getDBkey()]
 					];
@@ -1029,7 +1029,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$titlesWithThresholds = array_merge(
 				$titlesWithThresholds,
 				array_map(
-					function ( LinkTarget $target ) {
+					static function ( LinkTarget $target ) {
 						return [ $target, null ];
 					},
 					$this->missing

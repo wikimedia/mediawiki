@@ -221,7 +221,7 @@ class ChangesListBooleanFilter extends ChangesListFilter {
 		return !$opts[ $this->getName() ] &&
 			array_filter(
 				$this->getSiblings(),
-				function ( ChangesListBooleanFilter $sibling ) use ( $opts ) {
+				static function ( ChangesListBooleanFilter $sibling ) use ( $opts ) {
 					return $opts[ $sibling->getName() ];
 				}
 			);

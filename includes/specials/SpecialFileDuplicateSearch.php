@@ -286,7 +286,7 @@ class SpecialFileDuplicateSearch extends QueryPage {
 		$searchEngine->setNamespaces( [ NS_FILE ] );
 		$result = $searchEngine->defaultPrefixSearch( $search );
 
-		return array_map( function ( Title $t ) {
+		return array_map( static function ( Title $t ) {
 			// Remove namespace in search suggestion
 			return $t->getText();
 		}, $result );

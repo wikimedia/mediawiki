@@ -402,7 +402,7 @@ abstract class DatabaseInstaller {
 		$connection = $status->value;
 
 		$this->parent->resetMediaWikiServices( null, [
-			'DBLoadBalancerFactory' => function () use ( $connection ) {
+			'DBLoadBalancerFactory' => static function () use ( $connection ) {
 				return LBFactorySingle::newFromConnection( $connection );
 			}
 		] );
