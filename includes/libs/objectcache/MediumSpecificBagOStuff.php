@@ -1085,7 +1085,7 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 					: "{$prefix}.{$op}_hit_rate";
 			} else {
 				// There is no concept of "hit" or "miss" for this operation
-				$name = "{$prefix}.{$op}_rate";
+				$name = "{$prefix}.{$op}_call_rate";
 			}
 			$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + 1;
 
