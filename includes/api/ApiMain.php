@@ -1344,7 +1344,7 @@ class ApiMain extends ApiBase {
 		}
 		if ( $ifNoneMatch && $etag !== null ) {
 			$test = substr( $etag, 0, 2 ) === 'W/' ? substr( $etag, 2 ) : $etag;
-			$match = array_map( function ( $s ) {
+			$match = array_map( static function ( $s ) {
 				return substr( $s, 0, 2 ) === 'W/' ? substr( $s, 2 ) : $s;
 			}, $ifNoneMatch );
 			$return304 = in_array( $test, $match, true );
@@ -1967,7 +1967,7 @@ class ApiMain extends ApiBase {
 			$rightMsg = $this->msg( $rightMsg['msg'], $rightMsg['params'] )->parse();
 			$help['permissions'] .= Html::rawElement( 'dd', null, $rightMsg );
 
-			$groups = array_map( function ( $group ) {
+			$groups = array_map( static function ( $group ) {
 				return $group == '*' ? 'all' : $group;
 			}, $this->getPermissionManager()->getGroupsWithPermission( $right ) );
 

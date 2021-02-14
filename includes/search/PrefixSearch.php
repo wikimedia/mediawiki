@@ -167,7 +167,7 @@ abstract class PrefixSearch {
 			$special = $spFactory->getPage( $specialTitle->getText() );
 			if ( $special ) {
 				$subpages = $special->prefixSearchSubpages( $subpageSearch, $limit, $offset );
-				return array_map( function ( $sub ) use ( $specialTitle ) {
+				return array_map( static function ( $sub ) use ( $specialTitle ) {
 					return $specialTitle->getSubpage( $sub );
 				}, $subpages );
 			} else {

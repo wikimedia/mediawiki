@@ -117,7 +117,7 @@ class MediaLinksHandler extends SimpleHandler {
 		// caching model would be necessary, if caching is ever added to this endpoint.
 		// TODO: make RepoGroup::findFiles take Authority
 		$user = User::newFromIdentity( $this->getAuthority()->getActor() );
-		$findTitles = array_map( function ( $title ) use ( $user ) {
+		$findTitles = array_map( static function ( $title ) use ( $user ) {
 			return [
 				'title' => $title,
 				'private' => $user,

@@ -252,7 +252,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				],
 			],
 			'default' => ChangesListStringOptionsFilterGroup::NONE,
-			'queryCallable' => function (
+			'queryCallable' => static function (
 				$specialPageClassName,
 				$context,
 				IDatabase $dbr,

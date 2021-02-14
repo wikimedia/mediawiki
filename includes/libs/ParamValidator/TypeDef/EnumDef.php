@@ -76,7 +76,7 @@ class EnumDef extends TypeDef {
 		$isMulti = isset( $options['values-list'] );
 		$this->failure(
 			$this->failureMessage( 'badvalue', [], $isMulti ? 'enummulti' : 'enumnotmulti' )
-				->textListParams( array_map( function ( $v ) {
+				->textListParams( array_map( static function ( $v ) {
 					return new ScalarParam( ParamType::PLAINTEXT, $v );
 				}, $values ) )
 				->numParams( count( $values ) ),

@@ -182,7 +182,7 @@ class DjVuHandler extends ImageHandler {
 		if ( $image->getSize() >= 1e7 ) { // 10MB
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $image->getName() ),
 				[
-					'doWork' => function () use ( $image ) {
+					'doWork' => static function () use ( $image ) {
 						return $image->getLocalRefPath();
 					}
 				]

@@ -379,7 +379,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			// The form should be visible on each request (inclusive requests with submitted forms), so
 			// return always false here.
 			->setSubmitCallback(
-				function () {
+				static function () {
 					return false;
 				}
 			)

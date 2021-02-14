@@ -714,7 +714,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			] );
 
 			if ( isset( $singleFieldInfo['options'] ) ) {
-				$descriptor['options'] = array_flip( array_map( function ( $message ) {
+				$descriptor['options'] = array_flip( array_map( static function ( $message ) {
 					/** @var Message $message */
 					return $message->parse();
 				}, $singleFieldInfo['options'] ) );

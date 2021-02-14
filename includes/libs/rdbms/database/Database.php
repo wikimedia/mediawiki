@@ -422,10 +422,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'connLogger' => $params['connLogger'] ?? new NullLogger(),
 				'queryLogger' => $params['queryLogger'] ?? new NullLogger(),
 				'replLogger' => $params['replLogger'] ?? new NullLogger(),
-				'errorLogger' => $params['errorLogger'] ?? function ( Throwable $e ) {
+				'errorLogger' => $params['errorLogger'] ?? static function ( Throwable $e ) {
 					trigger_error( get_class( $e ) . ': ' . $e->getMessage(), E_USER_WARNING );
 				},
-				'deprecationLogger' => $params['deprecationLogger'] ?? function ( $msg ) {
+				'deprecationLogger' => $params['deprecationLogger'] ?? static function ( $msg ) {
 					trigger_error( $msg, E_USER_DEPRECATED );
 				}
 			];
@@ -754,7 +754,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return string
 	 */
 	private function flatAtomicSectionList() {
-		return array_reduce( $this->trxAtomicLevels, function ( $accum, $v ) {
+		return array_reduce( $this->trxAtomicLevels, static function ( $accum, $v ) {
 			return $accum === null ? $v[0] : "$accum, " . $v[0];
 		} );
 	}
@@ -4046,13 +4046,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Cancel the "on commit" callbacks owned by this savepoint
 		$this->trxPostCommitOrIdleCallbacks = array_filter(
 			$this->trxPostCommitOrIdleCallbacks,
-			function ( $entry ) use ( $sectionIds ) {
+			static function ( $entry ) use ( $sectionIds ) {
 				return !in_array( $entry[2], $sectionIds, true );
 			}
 		);
 		$this->trxPreCommitOrIdleCallbacks = array_filter(
 			$this->trxPreCommitOrIdleCallbacks,
-			function ( $entry ) use ( $sectionIds ) {
+			static function ( $entry ) use ( $sectionIds ) {
 				return !in_array( $entry[2], $sectionIds, true );
 			}
 		);

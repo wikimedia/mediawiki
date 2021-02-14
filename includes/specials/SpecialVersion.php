@@ -592,7 +592,7 @@ class SpecialVersion extends SpecialPage {
 				// in their proper section
 				continue;
 			}
-			$authors = array_map( function ( $arr ) {
+			$authors = array_map( static function ( $arr ) {
 				// If a homepage is set, link to it
 				if ( isset( $arr['homepage'] ) ) {
 					return "[{$arr['homepage']} {$arr['name']}]";
@@ -653,7 +653,7 @@ class SpecialVersion extends SpecialPage {
 				)
 			);
 
-			array_walk( $tags, function ( &$value ) {
+			array_walk( $tags, static function ( &$value ) {
 				// Bidirectional isolation improves readability in RTL wikis
 				$value = Html::element(
 					'bdi',

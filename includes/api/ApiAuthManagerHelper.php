@@ -129,7 +129,7 @@ class ApiAuthManagerHelper {
 	public static function blacklistAuthenticationRequests( array $reqs, array $blacklist ) {
 		if ( $blacklist ) {
 			$blacklist = array_flip( $blacklist );
-			$reqs = array_filter( $reqs, function ( $req ) use ( $blacklist ) {
+			$reqs = array_filter( $reqs, static function ( $req ) use ( $blacklist ) {
 				return !isset( $blacklist[get_class( $req )] );
 			} );
 		}
@@ -156,7 +156,7 @@ class ApiAuthManagerHelper {
 		if ( $wantedRequests !== null ) {
 			$reqs = array_filter(
 				$reqs,
-				function ( AuthenticationRequest $req ) use ( $wantedRequests ) {
+				static function ( AuthenticationRequest $req ) use ( $wantedRequests ) {
 					return isset( $wantedRequests[$req->getUniqueId()] );
 				}
 			);
@@ -168,7 +168,7 @@ class ApiAuthManagerHelper {
 		foreach ( $reqs as $req ) {
 			$info = (array)$req->getFieldInfo();
 			$fields += $info;
-			$sensitive += array_filter( $info, function ( $opts ) {
+			$sensitive += array_filter( $info, static function ( $opts ) {
 				return !empty( $opts['sensitive'] );
 			} );
 		}
@@ -335,7 +335,7 @@ class ApiAuthManagerHelper {
 			$ret = array_intersect_key( $field, $copy );
 
 			if ( isset( $field['options'] ) ) {
-				$ret['options'] = array_map( function ( $msg ) use ( $module ) {
+				$ret['options'] = array_map( static function ( $msg ) use ( $module ) {
 					return $msg->setContext( $module )->plain();
 				}, $field['options'] );
 				ApiResult::setArrayType( $ret['options'], 'assoc' );

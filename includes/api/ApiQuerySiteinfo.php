@@ -826,7 +826,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendExtensionTags( $property ) {
 		$tags = array_map(
-			function ( $item ) {
+			static function ( $item ) {
 				return "<$item>";
 			},
 			MediaWikiServices::getInstance()->getParser()->getTags()

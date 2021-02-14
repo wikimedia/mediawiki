@@ -302,7 +302,7 @@ class LinkHolderArray {
 		# Do the thing
 		$text = preg_replace_callback(
 			'/(<!--LINK\'" .*?-->)/',
-			function ( array $matches ) use ( $replacePairs ) {
+			static function ( array $matches ) use ( $replacePairs ) {
 				return $replacePairs[$matches[1]];
 			},
 			$text
@@ -333,7 +333,7 @@ class LinkHolderArray {
 
 		$text = preg_replace_callback(
 			'/<!--IWLINK\'" (.*?)-->/',
-			function ( array $matches ) use ( $replacePairs ) {
+			static function ( array $matches ) use ( $replacePairs ) {
 				return $replacePairs[$matches[1]];
 			},
 			$text

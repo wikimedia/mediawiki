@@ -740,7 +740,7 @@ class InfoAction extends FormlessAction {
 		return $cache->getWithSetCallback(
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
-			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname, $services ) {
+			static function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname, $services ) {
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 

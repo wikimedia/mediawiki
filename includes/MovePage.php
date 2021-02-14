@@ -154,7 +154,7 @@ class MovePage {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 
-		$services = function () {
+		$services = static function () {
 			// BC hack. Use a closure so this can be unit-tested.
 			return MediaWikiServices::getInstance();
 		};

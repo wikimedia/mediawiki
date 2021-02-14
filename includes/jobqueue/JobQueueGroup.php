@@ -454,7 +454,7 @@ class JobQueueGroup {
 			$value = $cache->getWithSetCallback(
 				$cache->makeGlobalKey( 'jobqueue', 'configvalue', $this->domain, $name ),
 				$cache::TTL_DAY + mt_rand( 0, $cache::TTL_DAY ),
-				function () use ( $wiki, $name ) {
+				static function () use ( $wiki, $name ) {
 					global $wgConf;
 					// @TODO: use the full domain ID here
 					return [ 'v' => $wgConf->getConfig( $wiki, $name ) ];

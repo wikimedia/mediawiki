@@ -30,7 +30,7 @@ class RemexDriver extends TidyDriverBase {
 	}
 
 	public function tidy( $text ) {
-		$traceCallback = function ( $msg ) {
+		$traceCallback = static function ( $msg ) {
 			wfDebug( "RemexHtml: $msg" );
 		};
 

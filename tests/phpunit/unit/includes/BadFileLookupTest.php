@@ -127,7 +127,7 @@ WIKITEXT;
 	 */
 	public function testIsBadFile( $name, $title, $expected ) {
 		$bfl = new BadFileLookup(
-			function () {
+			static function () {
 				return self::BAD_FILE_LIST;
 			},
 			new EmptyBagOStuff,
@@ -146,7 +146,7 @@ WIKITEXT;
 	 */
 	public function testIsBadFile_nullRepoGroup( $name, $title, $expected ) {
 		$bfl = new BadFileLookup(
-			function () {
+			static function () {
 				return self::BAD_FILE_LIST;
 			},
 			new EmptyBagOStuff,

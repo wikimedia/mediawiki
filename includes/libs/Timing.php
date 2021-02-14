@@ -153,7 +153,7 @@ class Timing implements LoggerAwareInterface {
 	 * Sort entries in chronological order with respect to startTime.
 	 */
 	private function sortEntries() {
-		uasort( $this->entries, function ( $a, $b ) {
+		uasort( $this->entries, static function ( $a, $b ) {
 			return $a['startTime'] <=> $b['startTime'];
 		} );
 	}

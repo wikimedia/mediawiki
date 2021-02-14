@@ -84,7 +84,7 @@ class ButtonAuthenticationRequest extends AuthenticationRequest {
 	 *  exactly one matching request.
 	 */
 	public static function getRequestByName( array $reqs, $name ) {
-		$requests = array_filter( $reqs, function ( $req ) use ( $name ) {
+		$requests = array_filter( $reqs, static function ( $req ) use ( $name ) {
 			return $req instanceof ButtonAuthenticationRequest && $req->name === $name;
 		} );
 		return count( $requests ) === 1 ? reset( $requests ) : null;

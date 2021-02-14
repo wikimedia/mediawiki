@@ -506,7 +506,7 @@ class CheckStorage {
 			MediaWikiServices::getInstance()->getMainConfig()
 		);
 		$importer->setRevisionCallback( [ $this, 'importRevision' ] );
-		$importer->setNoticeCallback( function ( $msg, $params ) {
+		$importer->setNoticeCallback( static function ( $msg, $params ) {
 			echo wfMessage( $msg, $params )->text() . "\n";
 		} );
 		$importer->doImport();

@@ -454,7 +454,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 			} else {
 				// Secondary write in async mode: do not block this HTTP request
 				( $this->asyncHandler )(
-					function () use ( $cache, $method, $arg0Sig, $resSig, $args ) {
+					static function () use ( $cache, $method, $arg0Sig, $resSig, $args ) {
 						$cache->proxyCall( $method, $arg0Sig, $resSig, $args );
 					}
 				);

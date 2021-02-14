@@ -400,7 +400,7 @@ class UserrightsPage extends SpecialPage {
 		// UNLESS the user can only add this group (not remove it) and the expiry time
 		// is being brought forward (T156784)
 		$add = array_filter( $add,
-			function ( $group ) use ( $groups, $groupExpiries, $removable, $ugms ) {
+			static function ( $group ) use ( $groups, $groupExpiries, $removable, $ugms ) {
 				if ( isset( $groupExpiries[$group] ) &&
 					!in_array( $group, $removable ) &&
 					isset( $ugms[$group] ) &&

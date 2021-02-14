@@ -377,7 +377,7 @@ class WatchedItemQueryService {
 		$allFields = get_object_vars( $row );
 		$rcKeys = array_filter(
 			array_keys( $allFields ),
-			function ( $key ) {
+			static function ( $key ) {
 				return substr( $key, 0, 3 ) === 'rc_';
 			}
 		);

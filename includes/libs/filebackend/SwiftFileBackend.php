@@ -938,7 +938,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		} else {
 			// Recursive: list all dirs under $dir and its subdirs
-			$getParentDir = function ( $path ) {
+			$getParentDir = static function ( $path ) {
 				return ( strpos( $path, '/' ) !== false ) ? dirname( $path ) : false;
 			};
 

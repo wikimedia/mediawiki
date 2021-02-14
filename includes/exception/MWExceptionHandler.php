@@ -158,7 +158,7 @@ class MWExceptionHandler {
 		// Make sure we don't claim success on exit for CLI scripts (T177414)
 		if ( wfIsCLI() ) {
 			register_shutdown_function(
-				function () {
+				static function () {
 					exit( 255 );
 				}
 			);
@@ -431,9 +431,9 @@ TXT;
 	 * @return array Stacktrace with arugment values converted to data types
 	 */
 	public static function redactTrace( array $trace ) {
-		return array_map( function ( $frame ) {
+		return array_map( static function ( $frame ) {
 			if ( isset( $frame['args'] ) ) {
-				$frame['args'] = array_map( function ( $arg ) {
+				$frame['args'] = array_map( static function ( $arg ) {
 					return is_object( $arg ) ? get_class( $arg ) : gettype( $arg );
 				}, $frame['args'] );
 			}

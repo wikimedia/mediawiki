@@ -200,7 +200,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				'query', $this->getModuleName()
 			], 'p' );
 		} else {
-			$resultPageSet->setRedirectMergePolicy( function ( $current, $new ) {
+			$resultPageSet->setRedirectMergePolicy( static function ( $current, $new ) {
 				if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
 					$current['index'] = $new['index'];
 				}

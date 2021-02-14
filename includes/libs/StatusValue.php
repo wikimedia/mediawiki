@@ -187,7 +187,7 @@ class StatusValue {
 	 */
 	private function addError( array $newError ) {
 		if ( $newError[ 'message' ] instanceof MessageSpecifier ) {
-			$isEqual = function ( $existingError ) use ( $newError ) {
+			$isEqual = static function ( $existingError ) use ( $newError ) {
 				if ( $existingError['message'] instanceof MessageSpecifier ) {
 					// compare attributes of both MessageSpecifiers
 					return $newError['message'] == $existingError['message'];
@@ -197,7 +197,7 @@ class StatusValue {
 				}
 			};
 		} else {
-			$isEqual = function ( $existingError ) use ( $newError ) {
+			$isEqual = static function ( $existingError ) use ( $newError ) {
 				if ( $existingError['message'] instanceof MessageSpecifier ) {
 					return $newError['message'] === $existingError['message']->getKey() &&
 						$newError['params'] === $existingError['message']->getParams();

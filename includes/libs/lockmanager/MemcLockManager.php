@@ -309,7 +309,7 @@ class MemcLockManager extends QuorumLockManager {
 		// This reduces memcached spam, especially in the rare case where a server acquires
 		// some lock keys and dies without releasing them. Lock keys expire after a few minutes.
 		$loop = new WaitConditionLoop(
-			function () use ( $memc, $keys, &$lockedKeys ) {
+			static function () use ( $memc, $keys, &$lockedKeys ) {
 				foreach ( array_diff( $keys, $lockedKeys ) as $key ) {
 					if ( $memc->add( "$key:mutex", 1, 180 ) ) { // lock record
 						$lockedKeys[] = $key;

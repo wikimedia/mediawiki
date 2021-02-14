@@ -561,7 +561,7 @@ class FileBackendMultiWrite extends FileBackend {
 			$realOps = $this->substOpBatchPaths( $ops, $backend );
 			if ( $this->asyncWrites && !$this->hasVolatileSources( $ops ) ) {
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $backend, $realOps ) {
+					static function () use ( $backend, $realOps ) {
 						$backend->doQuickOperations( $realOps );
 					}
 				);
@@ -615,7 +615,7 @@ class FileBackendMultiWrite extends FileBackend {
 			$realParams = $this->substOpPaths( $params, $backend );
 			if ( $this->asyncWrites ) {
 				DeferredUpdates::addCallableUpdate(
-					function () use ( $backend, $method, $realParams ) {
+					static function () use ( $backend, $method, $realParams ) {
 						$backend->$method( $realParams );
 					}
 				);

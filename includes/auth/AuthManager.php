@@ -1790,7 +1790,7 @@ class AuthManager implements LoggerAwareInterface {
 		// Update user count
 		\DeferredUpdates::addUpdate( \SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 		// Watch user's userpage and talk page
-		\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+		\DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
 			$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
 		} );
 
@@ -2346,7 +2346,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 		unset( $spec );
 		// Sort according to the 'sort' field, and if they are equal, according to 'sort2'
-		usort( $specs, function ( $a, $b ) {
+		usort( $specs, static function ( $a, $b ) {
 			return $a['sort'] <=> $b['sort']
 				?: $a['sort2'] <=> $b['sort2'];
 		} );

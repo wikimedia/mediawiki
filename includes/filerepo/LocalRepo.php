@@ -266,7 +266,7 @@ class LocalRepo extends FileRepo {
 			}
 		}
 
-		$fileMatchesSearch = function ( File $file, array $search ) {
+		$fileMatchesSearch = static function ( File $file, array $search ) {
 			// Note: file name comparison done elsewhere (to handle redirects)
 
 			// Fallback to RequestContext::getMain should be replaced with a better
@@ -495,7 +495,7 @@ class LocalRepo extends FileRepo {
 	 * @return Closure
 	 */
 	protected function getDBFactory() {
-		return function ( $index ) {
+		return static function ( $index ) {
 			return wfGetDB( $index );
 		};
 	}

@@ -946,7 +946,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	protected function measureResponseTime( Timing $timing ) {
-		DeferredUpdates::addCallableUpdate( function () use ( $timing ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $timing ) {
 			$measure = $timing->measure( 'responseTime', 'requestStart', 'requestShutdown' );
 			if ( $measure !== false ) {
 				$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();

@@ -816,7 +816,7 @@ class ParserOptions {
 			if ( $revRecordCb !== [ Parser::class, 'statelessFetchRevisionRecord' ] ) {
 				// currentRevisionRecordCallback is set and not the default,
 				// convert it
-				$revCb = function ( Title $title, $parser = false ) use ( $revRecordCb ) {
+				$revCb = static function ( Title $title, $parser = false ) use ( $revRecordCb ) {
 					$revRecord = call_user_func(
 						$revRecordCb,
 						$title,
@@ -848,7 +848,7 @@ class ParserOptions {
 			$revCb = $this->getOption( 'currentRevisionCallback' );
 			if ( $revCb !== [ Parser::class, 'statelessFetchRevision' ] ) {
 				// currentRevisionCallback is set and not the default, convert it
-				$revRecordCb = function ( Title $title, $parser = null ) use ( $revCb ) {
+				$revRecordCb = static function ( Title $title, $parser = null ) use ( $revCb ) {
 					$rev = call_user_func( $revCb, $title, $parser ?? false );
 					if ( $rev ) {
 						return $rev->getRevisionRecord();
@@ -1490,7 +1490,7 @@ class ParserOptions {
 	 */
 	public function setupFakeRevision( $title, $content, $user ) {
 		$oldCallback = $this->setCurrentRevisionRecordCallback(
-			function (
+			static function (
 				$titleToCheck, $parser = null ) use ( $title, $content, $user, &$oldCallback
 			) {
 				if ( $titleToCheck->equals( $title ) ) {
@@ -1509,7 +1509,7 @@ class ParserOptions {
 
 		global $wgHooks;
 		$wgHooks['TitleExists'][] =
-			function ( $titleToCheck, &$exists ) use ( $title ) {
+			static function ( $titleToCheck, &$exists ) use ( $title ) {
 				if ( $titleToCheck->equals( $title ) ) {
 					$exists = true;
 				}
@@ -1518,7 +1518,7 @@ class ParserOptions {
 		$key = key( $wgHooks['TitleExists'] );
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$linkCache->clearBadLink( $title->getPrefixedDBkey() );
-		return new ScopedCallback( function () use ( $title, $key, $linkCache ) {
+		return new ScopedCallback( static function () use ( $title, $key, $linkCache ) {
 			global $wgHooks;
 			unset( $wgHooks['TitleExists'][$key] );
 			$linkCache->clearLink( $title );

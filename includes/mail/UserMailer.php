@@ -522,7 +522,7 @@ class UserMailer {
 		}
 		$out = "=?$charset?Q?";
 		$out .= preg_replace_callback( "/([$replace])/",
-			function ( $matches ) {
+			static function ( $matches ) {
 				return sprintf( "=%02X", ord( $matches[1] ) );
 			},
 			$string

@@ -691,7 +691,7 @@ final class SessionBackend {
 			if ( !wfReadOnly() ) {
 				// Promise that the token set here will be valid; save it at end of request
 				$user = $this->user;
-				\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+				\DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
 					$user->saveSettings();
 				} );
 			}

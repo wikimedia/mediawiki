@@ -88,7 +88,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 
 			$user = $this->getUser();
-			$findTitles = array_map( function ( $title ) use ( $user ) {
+			$findTitles = array_map( static function ( $title ) use ( $user ) {
 				return [
 					'title' => $title,
 					'private' => $user,
@@ -401,11 +401,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// Handle external callers who don't pass revdelUser
 		if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
 			$revdelUser = $opts['revdelUser'];
-			$canShowField = function ( $field ) use ( $file, $revdelUser ) {
+			$canShowField = static function ( $field ) use ( $file, $revdelUser ) {
 				return $file->userCan( $field, $revdelUser );
 			};
 		} else {
-			$canShowField = function ( $field ) use ( $file ) {
+			$canShowField = static function ( $field ) use ( $file ) {
 				return !$file->isDeleted( $field );
 			};
 		}

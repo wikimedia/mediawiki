@@ -85,7 +85,7 @@ class LinkBatch {
 		?GenderCache $genderCache = null,
 		?ILoadBalancer $loadBalancer = null
 	) {
-		$getServices = function () {
+		$getServices = static function () {
 			// BC hack. Use a closure so this can be unit-tested.
 			return MediaWikiServices::getInstance();
 		};

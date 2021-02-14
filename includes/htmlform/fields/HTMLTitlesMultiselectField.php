@@ -39,7 +39,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 
 		$titlesArray = explode( "\n", $value );
 		// Remove empty lines
-		$titlesArray = array_values( array_filter( $titlesArray, function ( $title ) {
+		$titlesArray = array_values( array_filter( $titlesArray, static function ( $title ) {
 			return trim( $title ) !== '';
 		} ) );
 		// This function is expected to return a string

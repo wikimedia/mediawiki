@@ -129,7 +129,7 @@ class ForeignDBFile extends LocalFile {
 				$touched
 			),
 			$this->repo->descriptionCacheExpiry ?: $cache::TTL_UNCACHEABLE,
-			function ( $oldValue, &$ttl, array &$setOpts ) use ( $renderUrl, $fname ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) use ( $renderUrl, $fname ) {
 				wfDebug( "Fetching shared description from $renderUrl" );
 				$res = MediaWikiServices::getInstance()->getHttpRequestFactory()->
 					get( $renderUrl, [], $fname );

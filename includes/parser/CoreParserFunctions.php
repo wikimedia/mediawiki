@@ -315,7 +315,7 @@ class CoreParserFunctions {
 		// take arguments which are not actually formatted numbers,
 		// which then trigger deprecation warnings in Language::formatNum*.
 		// Instead emit a tracking category instead to allow linting.
-		return function ( $number ) use ( $parser, $callback ) {
+		return static function ( $number ) use ( $parser, $callback ) {
 			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
 			if (
 				!is_numeric( $number ) &&
@@ -326,7 +326,7 @@ class CoreParserFunctions {
 				$parser->addTrackingCategory( 'nonnumeric-formatnum' );
 				// Don't split on NAN/INF in the legacy case since they are
 				// likely to be found embedded inside non-numeric text.
-				return preg_replace_callback( "/{$validNumberRe}/", function ( $m ) use ( $callback ) {
+				return preg_replace_callback( "/{$validNumberRe}/", static function ( $m ) use ( $callback ) {
 					return call_user_func( $callback, $m[0] );
 				}, $number );
 			}
@@ -445,7 +445,7 @@ class CoreParserFunctions {
 
 		// disallow some styles that could be used to bypass $wgRestrictDisplayTitle
 		if ( $wgRestrictDisplayTitle ) {
-			$htmlTagsCallback = function ( &$params ) {
+			$htmlTagsCallback = static function ( &$params ) {
 				$decoded = Sanitizer::decodeTagAttributes( $params );
 
 				if ( isset( $decoded['style'] ) ) {

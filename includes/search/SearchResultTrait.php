@@ -36,7 +36,7 @@ trait SearchResultTrait {
 			$this->extensionData = $extensionData;
 		} elseif ( is_array( $extensionData ) ) {
 			wfDeprecated( __METHOD__ . ' with array argument', '1.32' );
-			$this->extensionData = function () use ( $extensionData ) {
+			$this->extensionData = static function () use ( $extensionData ) {
 				return $extensionData;
 			};
 		} else {

@@ -109,7 +109,7 @@ class RebuildLocalisationCache extends Maintenance {
 			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
 			LoggerFactory::getInstance( 'localisation' ),
 			$this->hasOption( 'no-clear-message-blob-store' ) ? [] :
-				[ function () use ( $services ) {
+				[ static function () use ( $services ) {
 					MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
 				} ],
 			$services->getLanguageNameUtils(),

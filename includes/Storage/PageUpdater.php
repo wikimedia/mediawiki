@@ -804,7 +804,7 @@ class PageUpdater {
 		}
 
 		// Promote user to any groups they meet the criteria for
-		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
 			$user->addAutopromoteOnceGroups( 'onEdit' );
 			$user->addAutopromoteOnceGroups( 'onView' ); // b/c
 		} );
@@ -1135,7 +1135,7 @@ class PageUpdater {
 			$status->value['revision-record'] = $newRevisionRecord;
 
 			// Deprecated via DeprecatablePropertyArray
-			$status->value['revision'] = function () use ( $newRevisionRecord ) {
+			$status->value['revision'] = static function () use ( $newRevisionRecord ) {
 				return new Revision( $newRevisionRecord );
 			};
 		} else {
@@ -1300,7 +1300,7 @@ class PageUpdater {
 		$status->value['revision-record'] = $newRevisionRecord;
 
 		// Deprecated via DeprecatablePropertyArray
-		$status->value['revision'] = function () use ( $newRevisionRecord ) {
+		$status->value['revision'] = static function () use ( $newRevisionRecord ) {
 			return new Revision( $newRevisionRecord );
 		};
 

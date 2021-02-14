@@ -1260,7 +1260,7 @@ abstract class ApiBase extends ContextSource {
 			$min = min( $min, $row->min_id );
 			$max = max( $max, $row->max_id );
 		}
-		return array_filter( $ids, function ( $id ) use ( $min, $max ) {
+		return array_filter( $ids, static function ( $id ) use ( $min, $max ) {
 			return ( is_int( $id ) && $id >= 0 || ctype_digit( $id ) )
 				&& $id >= $min && $id <= $max;
 		} );
@@ -2058,7 +2058,7 @@ abstract class ApiBase extends ContextSource {
 				return $value;
 			}
 
-			$values = array_map( function ( $v ) {
+			$values = array_map( static function ( $v ) {
 				return '<kbd>' . wfEscapeWikiText( $v ) . '</kbd>';
 			}, $allowedValues );
 			$this->dieWithError( [

@@ -93,7 +93,7 @@ class RevisionHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 		$idGenerator = $this->createNoOpMock( GlobalIdGenerator::class, [ 'newUUIDv1' ] );
 
 		$idGenerator->method( 'newUUIDv1' )->willReturnCallback(
-			function () {
+			static function () {
 				return 'uuid' . ++self::$uuidCounter;
 			}
 		);
