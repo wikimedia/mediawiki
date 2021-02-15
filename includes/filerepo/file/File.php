@@ -1187,6 +1187,19 @@ abstract class File implements IDBAccessObject {
 					$thumb = $this->transformErrorOutput( $thumbPath, $thumbUrl, $params, $flags );
 					break;
 				}
+
+				// Check to see if local transformation is disabled.
+				if ( !$this->repo->canTransformLocally() ) {
+					$thumb = new MediaTransformError(
+						wfMessage(
+							'thumbnail_error',
+							'MediaWiki is configured to disallow local image scaling'
+						),
+						$params['width'],
+						0
+					);
+					break;
+				}
 			}
 
 			$tmpFile = $this->makeTransformTmpFile( $thumbPath );
@@ -1210,6 +1223,17 @@ abstract class File implements IDBAccessObject {
 	 */
 	public function generateAndSaveThumb( $tmpFile, $transformParams, $flags ) {
 		global $wgIgnoreImageErrors;
+
+		if ( !$this->repo->canTransformLocally() ) {
+			return new MediaTransformError(
+				wfMessage(
+					'thumbnail_error',
+					'MediaWiki is configured to disallow local image scaling'
+				),
+				$transformParams['width'],
+				0
+			);
+		}
 
 		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 

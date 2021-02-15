@@ -462,7 +462,11 @@ $wgUploadBaseUrl = '';
  * To enable remote on-demand scaling, set this to the thumbnail base URL.
  * Full thumbnail URL will be like $wgUploadStashScalerBaseUrl/e/e6/Foo.jpg/123px-Foo.jpg
  * where 'e6' are the first two characters of the MD5 hash of the file name.
- * If $wgUploadStashScalerBaseUrl is set to false, thumbs are rendered locally as needed.
+ *
+ * @deprecated since 1.36 Use thumbProxyUrl in $wgLocalFileRepo
+ *
+ * If $wgUploadStashScalerBaseUrl and thumbProxyUrl are both false, thumbs are
+ * rendered locally as needed.
  * @since 1.17
  */
 $wgUploadStashScalerBaseUrl = false;
@@ -594,6 +598,15 @@ $wgImgAuthUrlPathMap = [];
  *   - thumbScriptUrl   The URL for thumb.php (optional, not recommended)
  *   - transformVia404  Whether to skip media file transformation on parse and rely on a 404
  *                      handler instead.
+ *   - thumbProxyUrl    Optional. URL of where to proxy thumb.php requests to. This is
+ *                      also used internally for remote thumbnailing of upload stash files.
+ *                      Example: http://127.0.0.1:8888/wiki/dev/thumb/
+ *   - thumbProxySecret Optional value of the X-Swift-Secret header to use in requests to
+ *                      thumbProxyUrl
+ *   - disableLocalTransform
+ *                      If present and true, local image scaling will be disabled -- it will
+ *                      throw an exception if attempted. thumbProxyUrl must be set for this
+ *                      to work, as well as either transformVia404 (preferred) or thumbScriptUrl.
  *   - initialCapital   Equivalent to $wgCapitalLinks (or $wgCapitalLinkOverrides[NS_FILE],
  *                      determines whether filenames implicitly start with a capital letter.
  *                      The current implementation may give incorrect description page links

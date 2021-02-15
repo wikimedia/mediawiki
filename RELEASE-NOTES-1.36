@@ -40,6 +40,8 @@ this is no longer recommended and the option has been removed.
 * (T274695) $wgAjaxEditStash — This setting, to disable the edit stashing
   feature when users start writing an edit summary, has been deprecated. In
   future releases, this feature will always be enabled.
+* $wgUploadStashScalerBaseUrl was deprecated. Use thumbProxyUrl in
+  $wgLocalFileRepo instead.
 * …
 
 ==== Removed configuration ====

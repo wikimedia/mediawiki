@@ -181,7 +181,9 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 		// is part of our horrible NFS-based system, we create a file on a mount
 		// point here, but fetch the scaled file from somewhere else that
 		// happens to share it over NFS.
-		if ( $this->getConfig()->get( 'UploadStashScalerBaseUrl' ) ) {
+		if ( $file->getRepo()->getThumbProxyUrl()
+			|| $this->getConfig()->get( 'UploadStashScalerBaseUrl' )
+		) {
 			$this->outputRemoteScaledThumb( $file, $params, $flags );
 		} else {
 			$this->outputLocallyScaledThumb( $file, $params, $flags );
@@ -243,32 +245,34 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 	 * @throws MWException
 	 */
 	private function outputRemoteScaledThumb( $file, $params, $flags ) {
-		// This option probably looks something like
-		// '//upload.wikimedia.org/wikipedia/test/thumb/temp'. Do not use
-		// trailing slash.
-		$scalerBaseUrl = $this->getConfig()->get( 'UploadStashScalerBaseUrl' );
-
-		if ( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
-			// this is apparently a protocol-relative URL, which makes no sense in this context,
-			// since this is used for communication that's internal to the application.
-			// default to http.
-			$scalerBaseUrl = wfExpandUrl( $scalerBaseUrl, PROTO_CANONICAL );
-		}
-
 		// We need to use generateThumbName() instead of thumbName(), because
 		// the suffix needs to match the file name for the remote thumbnailer
 		// to work
 		$scalerThumbName = $file->generateThumbName( $file->getName(), $params );
-		$scalerThumbUrl = $scalerBaseUrl . '/' . $file->getUrlRel() .
-			'/' . rawurlencode( $scalerThumbName );
 
 		// If a thumb proxy is set up for the repo, we favor that, as that will
 		// keep the request internal
 		$thumbProxyUrl = $file->getRepo()->getThumbProxyUrl();
-
 		if ( strlen( $thumbProxyUrl ) ) {
 			$scalerThumbUrl = $thumbProxyUrl . 'temp/' . $file->getUrlRel() .
-			'/' . rawurlencode( $scalerThumbName );
+				'/' . rawurlencode( $scalerThumbName );
+			$secret = $file->getRepo()->getThumbProxySecret();
+		} else {
+			// This option probably looks something like
+			// '//upload.wikimedia.org/wikipedia/test/thumb/temp'. Do not use
+			// trailing slash.
+			$scalerBaseUrl = $this->getConfig()->get( 'UploadStashScalerBaseUrl' );
+
+			if ( preg_match( '/^\/\//', $scalerBaseUrl ) ) {
+				// this is apparently a protocol-relative URL, which makes no sense in this context,
+				// since this is used for communication that's internal to the application.
+				// default to http.
+				$scalerBaseUrl = wfExpandUrl( $scalerBaseUrl, PROTO_CANONICAL );
+			}
+
+			$scalerThumbUrl = $scalerBaseUrl . '/' . $file->getUrlRel() .
+				'/' . rawurlencode( $scalerThumbName );
+			$secret = false;
 		}
 
 		// make an http request based on wgUploadStashScalerBaseUrl to lazy-create
@@ -278,8 +282,6 @@ class SpecialUploadStash extends UnlistedSpecialPage {
 			'timeout' => 5 // T90599 attempt to time out cleanly
 		];
 		$req = $this->httpRequestFactory->create( $scalerThumbUrl, $httpOptions, __METHOD__ );
-
-		$secret = $file->getRepo()->getThumbProxySecret();
 
 		// Pass a secret key shared with the proxied service if any
 		if ( strlen( $secret ) ) {
