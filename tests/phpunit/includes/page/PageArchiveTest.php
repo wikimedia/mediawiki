@@ -166,7 +166,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'ar_user' => null,
 				'ar_user_text' => $this->ipEditor,
 				'ar_actor' => (string)$this->getServiceContainer()->getActorNormalization()
-					->acquireActorId( new UserIdentityValue( 0, $this->ipEditor, 0 ), $this->db ),
+					->acquireActorId( new UserIdentityValue( 0, $this->ipEditor ), $this->db ),
 				'ar_len' => '11',
 				'ar_deleted' => '0',
 				'ar_rev_id' => strval( $this->ipRev->getId() ),

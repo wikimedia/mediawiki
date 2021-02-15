@@ -28,7 +28,7 @@ class MWBasicRequestAuthorizerTest extends MediaWikiIntegrationTestCase {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
-		$authority = new SimpleAuthority( new UserIdentityValue( 0, 'Test user', 0 ), $userRights );
+		$authority = new SimpleAuthority( new UserIdentityValue( 0, 'Test user' ), $userRights );
 
 		global $IP;
 

@@ -456,7 +456,7 @@ trait RevisionRecordTests {
 
 		return new RevisionStoreRecord(
 			$this->makeMockTitle( 'provideHasSameContent', [ 'id' => 19 ] ),
-			new UserIdentityValue( 11, __METHOD__, 0 ),
+			new UserIdentityValue( 11, __METHOD__ ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ ),
 			(object)[
 				'rev_id' => strval( $revId ),

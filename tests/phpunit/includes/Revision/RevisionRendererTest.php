@@ -127,7 +127,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$title = $this->getMockTitle( 7, 21 );
 
 		$rev = new MutableRevisionRecord( $title );
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
@@ -164,7 +164,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setId( 21 ); // current!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
@@ -200,7 +200,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setId( 21 ); // current!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
@@ -230,7 +230,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setId( 21 ); // current!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
@@ -258,7 +258,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setId( 11 ); // old!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
@@ -295,7 +295,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setId( 11 ); // old!
 		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
@@ -320,7 +320,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setId( 11 ); // old!
 		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
@@ -360,7 +360,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$rev = new MutableRevisionRecord( $title );
 		$rev->setId( 11 ); // old!
 		$rev->setVisibility( RevisionRecord::DELETED_TEXT ); // suppressed!
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 
@@ -406,7 +406,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$title = $this->getMockTitle( 7, 21 );
 
 		$rev = new MutableRevisionRecord( $title );
-		$rev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$rev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$rev->setTimestamp( '20180101000003' );
 		$rev->setComment( CommentStoreComment::newUnsavedComment( '' ) );
 

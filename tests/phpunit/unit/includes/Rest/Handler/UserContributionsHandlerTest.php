@@ -191,7 +191,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testThatParametersAreHandledCorrectlyForUserEndpoint( $queryParams ) {
 		$username = 'Test';
-		$target = new UserIdentityValue( 7, $username, 7 );
+		$target = new UserIdentityValue( 7, $username );
 		$performer = $this->mockRegisteredUltimateAuthority();
 		$request = new RequestData( [
 			'pathParams' => [ 'user' => $target->getName() ],
@@ -218,7 +218,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( [] );
 		// UserDef transforms parameter name to ip
 		$validatedParams = [
-			'ip' => new UserIdentityValue( 0, '127.0.0.1', 0 ),
+			'ip' => new UserIdentityValue( 0, '127.0.0.1' ),
 			'limit' => self::DEFAULT_LIMIT,
 			'tag' => null,
 			'segment' => ''
@@ -234,7 +234,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$username = 'UNKNOWN';
 		$request = new RequestData( [ 'pathParams' => [ 'user' => $username ] ] );
 		$validatedParams = [
-			'user' => new UserIdentityValue( 0, $username, 0 ),
+			'user' => new UserIdentityValue( 0, $username ),
 			'limit' => self::DEFAULT_LIMIT,
 			'tag' => null,
 			'segment' => ''
@@ -252,7 +252,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 		$requestData = [ 'pathParams' => [ 'user' => $username ] ];
 		$request = new RequestData( $requestData );
 		$validatedParams = [
-			'user' => new UserIdentityValue( 0, $username, 0 ),
+			'user' => new UserIdentityValue( 0, $username ),
 			'limit' => self::DEFAULT_LIMIT,
 			'tag' => null,
 			'segment' => ''

@@ -290,7 +290,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddUserToGroupAnon() {
 		$manager = $this->getManager();
-		$anon = new UserIdentityValue( 0, 'Anon', 0 );
+		$anon = new UserIdentityValue( 0, 'Anon' );
 		$this->expectException( InvalidArgumentException::class );
 		$manager->addUserToGroup( $anon, 'test' );
 	}
@@ -341,7 +341,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetUserGroupMembershipsForAnon() {
 		$manager = $this->getManager();
-		$anon = new UserIdentityValue( 0, 'Anon', 0 );
+		$anon = new UserIdentityValue( 0, 'Anon' );
 
 		$this->assertEmpty( $manager->getUserGroupMemberships( $anon ) );
 	}
@@ -351,7 +351,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetUserFormerGroupsForAnon() {
 		$manager = $this->getManager();
-		$anon = new UserIdentityValue( 0, 'Anon', 0 );
+		$anon = new UserIdentityValue( 0, 'Anon' );
 
 		$this->assertEmpty( $manager->getUserFormerGroups( $anon ) );
 	}
@@ -440,7 +440,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRemoveUserFromGroupAnon() {
 		$manager = $this->getManager();
-		$anon = new UserIdentityValue( 0, 'Anon', 0 );
+		$anon = new UserIdentityValue( 0, 'Anon' );
 		$this->expectException( InvalidArgumentException::class );
 		$manager->removeUserFromGroup( $anon, 'test' );
 	}
@@ -995,7 +995,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddUserToAutopromoteOnceGroupsAnon() {
 		$manager = $this->getManager();
-		$anon = new UserIdentityValue( 0, 'TEST', 0 );
+		$anon = new UserIdentityValue( 0, 'TEST' );
 		$this->assertEmpty( $manager->addUserToAutopromoteOnceGroups( $anon, 'TEST' ) );
 	}
 

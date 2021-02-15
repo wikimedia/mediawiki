@@ -23,15 +23,15 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 			'Test', // $prefix
 			[ 'limit' => 100 ], // $options
 			[
-				new UserIdentityValue( 24, 'TestUser', 42 ),
-				new UserIdentityValue( 25, 'TestUser1', 44 ),
+				new UserIdentityValue( 24, 'TestUser' ),
+				new UserIdentityValue( 25, 'TestUser1' ),
 			], // $expected
 		];
 		yield 'limited' => [
 			'Test', // $prefix
 			[ 'limit' => 1 ], // $options
 			[
-				new UserIdentityValue( 24, 'TestUser', 42 ),
+				new UserIdentityValue( 24, 'TestUser' ),
 			], // $expected
 		];
 		yield 'sorted' => [
@@ -41,8 +41,8 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 				'limit' => 100,
 			], // $options
 			[
-				new UserIdentityValue( 25, 'TestUser1', 44 ),
-				new UserIdentityValue( 24, 'TestUser', 42 ),
+				new UserIdentityValue( 25, 'TestUser1' ),
+				new UserIdentityValue( 24, 'TestUser' ),
 			], // $expected
 		];
 	}
@@ -69,16 +69,16 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 			[ 24, 25 ], // ids
 			[], // $options
 			[
-				new UserIdentityValue( 24, 'TestUser', 42 ),
-				new UserIdentityValue( 25, 'TestUser1', 44 ),
+				new UserIdentityValue( 24, 'TestUser' ),
+				new UserIdentityValue( 25, 'TestUser1' ),
 			], // $expected
 		];
 		yield 'sorted' => [
 			[ 24, 25 ], // ids
 			[ 'sort' => UserSelectQueryBuilder::SORT_DESC ], // $options
 			[
-				new UserIdentityValue( 25, 'TestUser1', 44 ),
-				new UserIdentityValue( 24, 'TestUser', 42 ),
+				new UserIdentityValue( 25, 'TestUser1' ),
+				new UserIdentityValue( 24, 'TestUser' ),
 			], // $expected
 		];
 	}
@@ -106,30 +106,30 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 			[ 'TestUser', 'TestUser1' ], // $names
 			[], // $options
 			[
-				new UserIdentityValue( 24, 'TestUser', 42 ),
-				new UserIdentityValue( 25, 'TestUser1', 44 ),
+				new UserIdentityValue( 24, 'TestUser' ),
+				new UserIdentityValue( 25, 'TestUser1' ),
 			], // $expected
 		];
 		yield 'sorted' => [
 			[ 'TestUser', 'TestUser1' ], // $names
 			[ 'sort' => UserSelectQueryBuilder::SORT_DESC ], // $options
 			[
-				new UserIdentityValue( 25, 'TestUser1', 44 ),
-				new UserIdentityValue( 24, 'TestUser', 42 ),
+				new UserIdentityValue( 25, 'TestUser1' ),
+				new UserIdentityValue( 24, 'TestUser' ),
 			], // $expected
 		];
 		yield 'with IPs' => [
 			[ self::IP ], // $names
 			[], // $options
 			[
-				new UserIdentityValue( 0, self::IP, 43 ),
+				new UserIdentityValue( 0, self::IP ),
 			], // $expected
 		];
 		yield 'with IPs, normalization' => [
 			[ strtolower( self::IP ), self::IP ], // $names
 			[], // $options
 			[
-				new UserIdentityValue( 0, self::IP, 43 ),
+				new UserIdentityValue( 0, self::IP ),
 			], // $expected
 		];
 	}
@@ -157,7 +157,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 	 */
 	public function testFetchUserIdentity() {
 		$this->assertSameActors(
-			new UserIdentityValue( 24, 'TestUser', 42 ),
+			new UserIdentityValue( 24, 'TestUser' ),
 			$this->getStore()
 				->newSelectQueryBuilder()
 				->userIds( 24 )
@@ -191,7 +191,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		);
 		$this->assertCount( 1, $actors );
 		$this->assertSameActors(
-			new UserIdentityValue( 24, 'TestUser', 42 ),
+			new UserIdentityValue( 24, 'TestUser' ),
 			$actors[0]
 		);
 	}
@@ -210,7 +210,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 		);
 		$this->assertCount( 2, $actors );
 		$this->assertSameActors(
-			new UserIdentityValue( 0, self::IP, 43 ),
+			new UserIdentityValue( 0, self::IP ),
 			$actors[0]
 		);
 	}

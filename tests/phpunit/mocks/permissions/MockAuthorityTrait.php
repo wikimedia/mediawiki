@@ -19,7 +19,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockAnonUltimateAuthority(): Authority {
-		return new UltimateAuthority( new UserIdentityValue( 0, '127.0.0.1', 0 ) );
+		return new UltimateAuthority( new UserIdentityValue( 0, '127.0.0.1' ) );
 	}
 
 	/**
@@ -28,7 +28,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredUltimateAuthority(): Authority {
-		return new UltimateAuthority( new UserIdentityValue( 42, 'Petr', 24 ) );
+		return new UltimateAuthority( new UserIdentityValue( 42, 'Petr' ) );
 	}
 
 	/**
@@ -37,7 +37,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockAnonNullAuthority(): Authority {
-		return new SimpleAuthority( new UserIdentityValue( 0, '127.0.0.1', 0 ), [] );
+		return new SimpleAuthority( new UserIdentityValue( 0, '127.0.0.1' ), [] );
 	}
 
 	/**
@@ -46,7 +46,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredNullAuthority(): Authority {
-		return new SimpleAuthority( new UserIdentityValue( 42, 'Petr', 24 ), [] );
+		return new SimpleAuthority( new UserIdentityValue( 42, 'Petr' ), [] );
 	}
 
 	/**
@@ -56,7 +56,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockAnonAuthorityWithPermissions( array $permissions ): Authority {
-		return new SimpleAuthority( new UserIdentityValue( 0, '127.0.0.1', 0 ), $permissions );
+		return new SimpleAuthority( new UserIdentityValue( 0, '127.0.0.1' ), $permissions );
 	}
 
 	/**
@@ -66,7 +66,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredAuthorityWithPermissions( array $permissions ): Authority {
-		return new SimpleAuthority( new UserIdentityValue( 42, 'Petr', 24 ), $permissions );
+		return new SimpleAuthority( new UserIdentityValue( 42, 'Petr' ), $permissions );
 	}
 
 	/**
@@ -90,7 +90,7 @@ trait MockAuthorityTrait {
 	 */
 	private function mockAnonAuthorityWithoutPermissions( array $permissions ): Authority {
 		return $this->mockUserAuthorityWithoutPermissions(
-			new UserIdentityValue( 0, '127.0.0.1', 0 ),
+			new UserIdentityValue( 0, '127.0.0.1' ),
 			$permissions
 		);
 	}
@@ -102,7 +102,7 @@ trait MockAuthorityTrait {
 	 */
 	private function mockRegisteredAuthorityWithoutPermissions( array $permissions ): Authority {
 		return $this->mockUserAuthorityWithoutPermissions(
-			new UserIdentityValue( 42, 'Petr', 24 ),
+			new UserIdentityValue( 42, 'Petr' ),
 			$permissions
 		);
 	}
@@ -133,7 +133,7 @@ trait MockAuthorityTrait {
 	 */
 	private function mockAnonAuthority( callable $permissionCallback ): Authority {
 		return $this->mockAuthority(
-			new UserIdentityValue( 0, '127.0.0.1', 0 ),
+			new UserIdentityValue( 0, '127.0.0.1' ),
 			$permissionCallback
 		);
 	}
@@ -146,7 +146,7 @@ trait MockAuthorityTrait {
 	 */
 	private function mockRegisteredAuthority( callable $permissionCallback ): Authority {
 		return $this->mockAuthority(
-			new UserIdentityValue( 42, 'Petr', 24 ),
+			new UserIdentityValue( 42, 'Petr' ),
 			$permissionCallback
 		);
 	}

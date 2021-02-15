@@ -54,7 +54,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewFromIdentity() {
-		$identity = new UserIdentityValue( 98257, __METHOD__, 0 );
+		$identity = new UserIdentityValue( 98257, __METHOD__ );
 
 		$factory = $this->getUserFactory();
 		$user = $factory->newFromUserIdentity( $identity );
@@ -67,7 +67,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user, $factory->newFromUserIdentity( $identity ) );
 
 		// make sure instance caching distingushes between IDs
-		$otherIdentity = new UserIdentityValue( 33245, __METHOD__, 0 );
+		$otherIdentity = new UserIdentityValue( 33245, __METHOD__ );
 		$this->assertNotSame( $user, $factory->newFromUserIdentity( $otherIdentity ) );
 	}
 
@@ -94,7 +94,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$id = 23560;
 		$name = 'UserFactoryTest3';
 
-		$userIdentity = new UserIdentityValue( $id, $name, 0 );
+		$userIdentity = new UserIdentityValue( $id, $name );
 		$factory = $this->getUserFactory();
 
 		$user1 = $factory->newFromUserIdentity( $userIdentity );
@@ -176,7 +176,7 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\User\UserFactory::newFromAuthority
 	 */
 	public function testNewFromAuthority() {
-		$authority = new UltimateAuthority( new UserIdentityValue( 42, 'Test', 0 ) );
+		$authority = new UltimateAuthority( new UserIdentityValue( 42, 'Test' ) );
 		$user = $this->getUserFactory()->newFromAuthority( $authority );
 		$this->assertSame( 42, $user->getId() );
 		$this->assertSame( 'Test', $user->getName() );

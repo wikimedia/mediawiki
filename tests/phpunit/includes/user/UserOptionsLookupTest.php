@@ -18,7 +18,7 @@ abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
 	protected function getAnon(
 		string $name = 'anon'
 	) : UserIdentity {
-		return new UserIdentityValue( 0, $name, 0 );
+		return new UserIdentityValue( 0, $name );
 	}
 
 	abstract protected function getLookup(
