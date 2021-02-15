@@ -1058,6 +1058,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$user = User::newFromName( $ip, false );
 		$this->assertSame( 0, $user->getActorId(), 'Anonymous user has no actor ID by default' );
+		$this->filterDeprecated( '/Passing parameter of type IDatabase/' );
 		$this->assertGreaterThan( 0, $user->getActorId( $this->db ),
 			'Actor ID can be created for an anonymous user' );
 
@@ -1135,7 +1136,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		// Anon user. Can't load by only user ID when that's 0.
 		$user = User::newFromName( '192.168.12.34', false );
-		$user->getActorId( $this->db ); // Make sure an actor ID exists
+		// Make sure an actor ID exists
+		MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $user );
 
 		$test = User::newFromAnyId( null, '192.168.12.34', null );
 		$this->assertSame( $user->getId(), $test->getId() );

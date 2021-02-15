@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -220,7 +219,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcNsFilterAllContents() {
-		$namespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectNamespaces();
+		$namespaces = $this->getServiceContainer()->getNamespaceInfo()->getSubjectNamespaces();
 		$this->assertConditions(
 			[ # expected
 				'rc_namespace IN (' . $this->db->makeList( $namespaces ) . ')',
@@ -246,7 +245,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterPartialInvalid() {
 		$namespaces = array_merge(
 			[ 1 ],
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectNamespaces()
+			$this->getServiceContainer()->getNamespaceInfo()->getSubjectNamespaces()
 		);
 		sort( $namespaces );
 		$this->assertConditions(
@@ -261,11 +260,12 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHidemyselfFilter() {
+		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$user = $this->getTestUser()->getUser();
-		$user->getActorId( wfGetDB( DB_MASTER ) );
+		$actorId = $actorNormalization->acquireActorId( $user );
 		$this->assertConditions(
 			[ # expected
-				"NOT((rc_actor = {$user->getActorId()}))",
+				"NOT((rc_actor = {$actorId}))",
 			],
 			[
 				'hidemyself' => 1,
@@ -275,10 +275,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$user = User::newFromName( '10.11.12.13', false );
-		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
+		$actorId = $actorNormalization->acquireActorId( $user );
 		$this->assertConditions(
 			[ # expected
-				"NOT((rc_actor = {$user->getActorId()}))",
+				"NOT((rc_actor = {$actorId}))",
 			],
 			[
 				'hidemyself' => 1,
@@ -289,11 +289,12 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHidebyothersFilter() {
+		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$user = $this->getTestUser()->getUser();
-		$user->getActorId( wfGetDB( DB_MASTER ) );
+		$actorId = $actorNormalization->acquireActorId( $user );
 		$this->assertConditions(
 			[ # expected
-				"(rc_actor = {$user->getActorId()})",
+				"(rc_actor = {$actorId})",
 			],
 			[
 				'hidebyothers' => 1,
@@ -303,10 +304,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$user = User::newFromName( '10.11.12.13', false );
-		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
+		$actorId = $actorNormalization->acquireActorId( $user );
 		$this->assertConditions(
 			[ # expected
-				"(rc_actor = {$user->getActorId()})",
+				"(rc_actor = {$actorId})",
 			],
 			[
 				'hidebyothers' => 1,

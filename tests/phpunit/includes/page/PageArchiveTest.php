@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
 /**
@@ -88,7 +88,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		// Insert IP revision
 		$this->ipEditor = '2001:DB8:0:0:0:0:0:1';
 
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		$ipTimestamp = wfTimestamp(
 			TS_MW,
@@ -118,7 +118,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testUndeleteRevisions() {
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		// First make sure old revisions are archived
 		$dbr = wfGetDB( DB_REPLICA );
@@ -169,7 +169,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'ar_minor_edit' => '0',
 				'ar_user' => null,
 				'ar_user_text' => $this->ipEditor,
-				'ar_actor' => (string)User::newFromName( $this->ipEditor, false )->getActorId( $this->db ),
+				'ar_actor' => (string)$this->getServiceContainer()->getActorNormalization()
+					->acquireActorId( new UserIdentityValue( 0, $this->ipEditor, 0 ) ),
 				'ar_len' => '11',
 				'ar_deleted' => '0',
 				'ar_rev_id' => strval( $this->ipRev->getId() ),
@@ -237,7 +238,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	public function testListRevisions_slots() {
 		$revisions = $this->archivedPage->listRevisions();
 
-		$revisionStore = MediaWikiServices::getInstance()->getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		$slotsQuery = $revisionStore->getSlotsQueryInfo( [ 'content' ] );
 
 		foreach ( $revisions as $row ) {
