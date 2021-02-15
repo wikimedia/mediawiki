@@ -49,6 +49,7 @@ interface ILBFactory {
 	 *  - readOnlyReason: Reason the master DB is read-only if so [optional]
 	 *  - srvCache: BagOStuff object for server cache [optional]
 	 *  - cpStash: BagOStuff object for ChronologyProtector store [optional]
+	 *    See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements).
 	 *  - wanCache: WANObjectCache object [optional]
 	 *  - hostname: The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]

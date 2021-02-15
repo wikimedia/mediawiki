@@ -30,11 +30,105 @@ use Psr\Log\NullLogger;
 use Wikimedia\WaitConditionLoop;
 
 /**
- * Helper class for mitigating DB replication lag in order to provide "session consistency"
+ * Provide a given client with protection against visible database lag.
  *
- * This helps to ensure a consistent ordering of events as seen by an client
+ * ### In a nut shell
  *
- * Kind of like Hawking's [[Chronology Protection Agency]].
+ * This class tries to hide visible effects of database lag. It does this by temporarily remembering
+ * the database positions after a client makes a write, and on their next web request we will prefer
+ * non-lagged database replicas. When replica connections are establshed, we wait up to a few seconds
+ * for sufficient replication to have occurred, if they were not yet caught up to that same point.
+ *
+ * This ensures a consistent ordering of events as seen by a client. Kind of like Hawking's
+ * [Chronology Protection Agency](https://en.wikipedia.org/wiki/Chronology_protection_conjecture).
+ *
+ * ### Purpose
+ *
+ * For performance and scalability reasons, almost all data is queried from replica databases.
+ * Only queries relating to writing data, are sent to a database master. When rendering a web page
+ * with content or activity feeds on it, the very latest information may thus not yet be there.
+ * That's okay in general, but if, for example, a client recently changed their preferences or
+ * submitted new data, we do our best to make sure their next web response does reflect at least
+ * their own recent changes.
+ *
+ * ### How
+ *
+ * To explain how it works, we will look at an example lifecycle for a client.
+ *
+ * A client is browsing the site. Their web requests are generally read-only and display data from
+ * database replicas, which may be a few seconds out of date if a client elsewhere in the world
+ * recently modified that same data. If the application is run from multiple data centers, then
+ * these web requests may be served from the nearest secondary DC.
+ *
+ * A client performs a POST request, perhaps to publish an edit or change their preferences. This
+ * request is routed to the primary DC (this is the responsibility of infrastructure outside
+ * the web app). There, the data is saved to the database master, after which the database
+ * host will asynchronously replicate this to its replicas in the same and any other DCs.
+ *
+ * Toward the end of the response to this POST request, the application takes note of the database
+ * master's current "position", and save this under a "clientId" key in the ChronologyProtector
+ * store. The web response will also set two cookies that are similarly short-lived (about ten
+ * seconds): `UseDC=master` and `cpPosIndex=<clientId>`.
+ *
+ * The ten seconds window is meant to account for the time needed for the database writes to have
+ * replicated across all active database replicas, including the cross-dc latency for those
+ * further away in any secondary DCs.
+ *
+ * Future web requests from the client should fall in one of two categories:
+ *
+ * 1. Within the ten second window. Their UseDC cookie will make them return
+ *    to the primary DC where we access the ChronologyProtector store and use
+ *    the database "position" to decide which local database replica to use
+ *    and on-demand wait a split second for replication to catch up if needed.
+ * 2. After the ten second window. They will be routed to the nearest and
+ *    possibly different DC. Any local ChronologyProtector store existing there
+ *    will not be interacted with. A random database replica may be used as
+ *    the client's own writes are expected to have been applied here by now.
+ *
+ * @anchor ChronologyProtector-storage-requirements
+ *
+ * ### Storage requirements
+ *
+ * The store used by ChronologyProtector, as configured via {@link $wgChronologyProtectorStash},
+ * should meet the following requirements:
+ *
+ * - Low latencies. Nearly all web requests that involve a database connection will
+ *   unconditionally query this store first. It is expected to respond within the order
+ *   of one millisecond.
+ * - Best effort persistence, without active eviction pressure. Data stored here cannot be
+ *   obtained elsewhere or recomputed. As such, under normal operating conditions, this store
+ *   should not be full, and should not evict values before their intended expiry time ellapsed.
+ * - No replication, local consistency. Each DC may have a fully independent dc-local store
+ *   associated with ChronologyProtector (no replication across DCs is needed). Local writes
+ *   must be immediately reflected in subsequent local reads. No intra-dc read lag is allowed.
+ * - No redundancy, fast failure. Loss of data will likely be noticable and disruptive to
+ *   clients, but the data is not considered essential. Under maintenance or unprecedented load,
+ *   it is recommended to lose some data, instead of compromising other requirements such as
+ *   latency or availability for new writes. The fallback is that users may be temporary
+ *   confused as they observe their own actions as not being immediately reflected.
+ *   For example, they might change their skin or language preference but still get a one or two
+ *   page views afterward with the old settings. Or they might have published an edit and briefly
+ *   not yet see it appear in their contribution history.
+ *
+ * ### Operational requirements
+ *
+ * These are the expectations a site administrator must meet for chronology protection:
+ *
+ * - If the application is run from multiple data centers, then you must designate one of them
+ *   as the "primary DC". The primary DC is where the master database is located, from which
+ *   replication propagates to replica databases in that same DC and any other DCs.
+ *
+ * - Web requests that use the POST verb, or carry a `UseDC=master` cookie, must be routed to
+ *   the primary DC only.
+ *
+ *   An exception is requests carrying the `Promise-Non-Write-API-Action: true` header,
+ *   which use the POST verb for large read queries, but don't actually require the primary DC.
+ *
+ *   If you have legacy extensions deployed that perform queries on the master database during
+ *   GET requests, then you will have to identify a way to route any of its relevant URLs to the
+ *   primary DC as well, or to accept that their reads do not enjoy chronology protection, and
+ *   that writes may be slower (due to cross-dc latency).
+ *   See [T91820](https://phabricator.wikimedia.org/T91820) for %Wikimedia Foundation's routing.
  *
  * @internal
  */
