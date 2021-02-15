@@ -3831,7 +3831,7 @@
 	"mw-widgets-mediasearch-noresults": "কোনো ফলাফল পাওয়া যায়নি।",
 	"mw-widgets-mediasearch-results-aria-label": "মিডিয়া অনুসন্ধানের ফলাফল",
 	"mw-widgets-table-row-delete": "সারি মুছুন",
-	"mw-widgets-titleinput-description-new-page": "পাতা এখনো বিদ্যমান নয়",
+	"mw-widgets-titleinput-description-new-page": "পাতাটির অস্তিত্ব নেই",
 	"mw-widgets-titleinput-description-redirect": "$1-এ পুনঃনির্দেশিত",
 	"mw-widgets-categoryselector-add-category-placeholder": "একটি বিষয়শ্রেণী যোগ করুন...",
 	"mw-widgets-usersmultiselect-placeholder": "আরও যোগ করুন...",

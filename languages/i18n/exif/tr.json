@@ -209,7 +209,7 @@
 	"exif-compression-2": "CCITT Grup 3 1-Boyutlu Değiştirilmiş Huffman koşu uzunluğu kodlaması",
 	"exif-compression-3": "CCITT Grup 3 faks kodlaması",
 	"exif-compression-4": "CCITT Grup 4 faks kodlaması",
-	"exif-compression-6": "JPEG",
+	"exif-compression-6": "JPEG (eski)",
 	"exif-copyrighted-true": "Telif hakkılı",
 	"exif-copyrighted-false": "Telif hakkı durumu belirtilmemiş",
 	"exif-photometricinterpretation-0": "Siyah ve beyaz (Beyaz 0)",
