@@ -166,7 +166,7 @@ class RebuildLocalisationCache extends Maintenance {
 			if ( pcntl_wifexited( $status ) ) {
 			$code = pcntl_wexitstatus( $status );
 				if ( $code ) {
-					$this->output( "Pid $pid exited with staus $code !!\n" );
+					$this->output( "Pid $pid exited with status $code !!\n" );
 				}
 				// Mush all child statuses into a single value in the parent.
 				$parentStatus |= $code;
