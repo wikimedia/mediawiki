@@ -9,7 +9,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 
 	public function testIsExpired() {
-		$user = new UserIdentityValue( 7, 'MockUser', 0 );
+		$user = new UserIdentityValue( 7, 'MockUser' );
 		$target = new TitleValue( 0, 'SomeDbKey' );
 
 		$notExpired1 = new WatchedItem( $user, $target, null, '20500101000000' );
@@ -23,7 +23,7 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testgetExpiryInDays() {
-		$user = new UserIdentityValue( 7, 'MockUser', 0 );
+		$user = new UserIdentityValue( 7, 'MockUser' );
 		$target = new TitleValue( 0, 'SomeDbKey' );
 
 		// Fake current time to be 2020-05-27T00:00:00Z
@@ -56,7 +56,7 @@ class WatchedItemUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testgetExpiryInDaysText() {
-		$user = new UserIdentityValue( 7, 'MockUser', 0 );
+		$user = new UserIdentityValue( 7, 'MockUser' );
 		$target = new TitleValue( 0, 'SomeDbKey' );
 
 		$messageLocalizer = $this->createMock( MessageLocalizer::class );

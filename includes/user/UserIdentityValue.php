@@ -24,8 +24,6 @@ namespace MediaWiki\User;
 
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use Wikimedia\Assert\Assert;
-use Wikimedia\Assert\PostconditionException;
-use Wikimedia\Rdbms\IDatabase;
 
 /**
  * Value object representing a user's identity.
@@ -47,31 +45,41 @@ class UserIdentityValue implements UserIdentity {
 	 */
 	private $name;
 
-	/**
-	 * @var int
-	 */
-	private $actor;
-
 	/** @var bool|string */
 	private $wikiId;
 
 	/**
 	 * @stable to call
 	 *
+	 * @note Signature in 1.35 was: ( $id, $name, $actor ). This is still supported for
+	 *        backwards compatibility until 1.37. $actor is ignored.
+	 *
 	 * @param int $id user ID
 	 * @param string $name user name
-	 * @param int $actor actor ID
 	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
 	 */
-	public function __construct( $id, $name, $actor = 0, $wikiId = self::LOCAL ) {
+	public function __construct( $id, $name, $wikiId = self::LOCAL ) {
+		if ( is_int( $wikiId ) ) {
+			// Handle old signature: ( $id, $name, $actor, $wikiId )
+			$args = func_get_args();
+			$actor = $args[2];
+			$wikiId = $args[3] ?? self::LOCAL;
+
+			if ( $actor > 0 || $wikiId !== self::LOCAL ) {
+				// NOTE: For now, we only trigger a deprecation warning if $actor is not 0,
+				//       or a $wikiId is given.
+				//       A lot of tests construct UserIdentityValue with $actor = 0.
+				// TODO: Trigger a deprecation warning even if $actor is 0
+				wfDeprecatedMsg( 'Old constructor signature: $actor is no longer supported', '1.36' );
+			}
+		}
+
 		Assert::parameterType( 'integer', $id, '$id' );
 		Assert::parameterType( 'string', $name, '$name' );
-		Assert::parameterType( 'integer', $actor, '$actor' );
 		$this->assertWikiIdParam( $wikiId );
 
 		$this->id = $id;
 		$this->name = $name;
-		$this->actor = $actor;
 		$this->wikiId = $wikiId;
 	}
 
@@ -107,34 +115,15 @@ class UserIdentityValue implements UserIdentity {
 	}
 
 	/**
-	 * The numerical actor ID provided to the constructor or 0 if no actor ID has been assigned.
-	 *
 	 * @deprecated since 1.36, use ActorNormalization::acquireActorId instead.
 	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *        Omit if expecting the local wiki. Since 1.36.
+	 * @param string|false $wikiId
 	 *
-	 * @return int The user's actor ID. May be 0 if no actor ID has been assigned.
+	 * @return int always 0.
 	 */
 	public function getActorId( $wikiId = self::LOCAL ) : int {
-		// need to check if $wikiId is an instance of IDatabase, since for legacy reasons,
-		// some callers call this function on a UserIdentity passing an IDatabase
-		if ( $wikiId instanceof IDatabase ) {
-			wfDeprecatedMsg( 'Passing parameter of type IDatabase', '1.36' );
-			if ( $this->actor === 0 ) {
-				// Passing an IDatabase was never actually allowed on this class.
-				// We just support it to prevent hard breakage in places where callers where
-				// assuming they got a User, when they actually just have a UserIdentity.
-				// However, the caller is expecting to get back a valid actorId. Not getting one
-				// may cause data corruption.
-				throw new PostconditionException(
-					'Caller expects non-zero actor ID.'
-				);
-			}
-		} else {
-			$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
-		}
-		return $this->actor;
+		wfDeprecated( __METHOD__, '1.36' );
+		return 0;
 	}
 
 	/**
@@ -163,17 +152,4 @@ class UserIdentityValue implements UserIdentity {
 		return $this->getName();
 	}
 
-	/**
-	 * Sets the actor id.
-	 *
-	 * This method is deprecated upon introduction. It only exists for transition to ActorStore,
-	 * and will be removed shortly - T274148
-	 *
-	 * @internal
-	 * @deprecated since 1.36
-	 * @param int $actorId
-	 */
-	public function setActorId( int $actorId ) {
-		$this->actor = $actorId;
-	}
 }

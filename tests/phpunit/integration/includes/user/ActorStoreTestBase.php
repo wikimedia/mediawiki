@@ -106,7 +106,6 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 		$wikiId = UserIdentity::LOCAL
 	) {
 		$actor->assertWiki( $wikiId );
-		$this->assertSame( $expected->getActorId( $wikiId ), $actor->getActorId( $wikiId ) );
 		$this->assertSame( $expected->getId( $wikiId ), $actor->getId( $wikiId ) );
 		$this->assertSame( $expected->getName(), $actor->getName() );
 		$this->assertSame( $expected->getWikiId(), $actor->getWikiId() );

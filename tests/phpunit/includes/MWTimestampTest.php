@@ -57,7 +57,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 			'date' => $dateFormat
 		] );
 
-		$user = new UserIdentityValue( 13, 'Pamela', 0 );
+		$user = new UserIdentityValue( 13, 'Pamela' );
 
 		$tsTime = new MWTimestamp( $tsTime );
 		$currentTime = new MWTimestamp( $currentTime );
@@ -187,7 +187,7 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 			'date' => $dateFormat
 		] );
 
-		$user = new UserIdentityValue( 13, 'Pamela', 0 );
+		$user = new UserIdentityValue( 13, 'Pamela' );
 
 		$tsTime = new MWTimestamp( $tsTime );
 		$currentTime = new MWTimestamp( $currentTime );

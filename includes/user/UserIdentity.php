@@ -55,23 +55,6 @@ interface UserIdentity extends WikiAwareEntity {
 	public function getName() : string;
 
 	/**
-	 * @since 1.31
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *        Use self::LOCAL for the local wiki.
-	 *
-	 * @deprecated since 1.36, use ActorNormalization::findActorId() instead.
-	 *
-	 * @return int The user's actor ID. May be 0 if no actor ID is set.
-	 *
-	 * @note This will trigger a deprecation warning when $wikiId mismatches $this->getWikiId().
-	 *       In the future, it will throw PreconditionException.
-	 */
-	public function getActorId( $wikiId = self::LOCAL ) : int;
-
-	// TODO: we may want to (optionally?) provide a global ID, see CentralIdLookup.
-
-	/**
 	 * @since 1.32
 	 *
 	 * @param UserIdentity $user

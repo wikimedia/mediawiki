@@ -2408,7 +2408,6 @@ class RevisionStore
 				$user = new UserIdentityValue(
 					$userID === null ? 0 : $userID,
 					$fields['user_text'],
-					$fields['actor'] ?? 0,
 					$this->wikiId
 				);
 			}

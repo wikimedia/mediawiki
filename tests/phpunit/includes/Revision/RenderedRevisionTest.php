@@ -107,7 +107,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$visibility = 0,
 		array $content = null
 	) {
-		$frank = new UserIdentityValue( 9, 'Frank', 0 );
+		$frank = new UserIdentityValue( 9, 'Frank' );
 
 		if ( !$content ) {
 			$text = "";
@@ -543,7 +543,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 		$savedRev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 		$savedRev->setContent( 'aux', new WikitextContent( '[[Goats]]' ) );
 		$savedRev->setId( 23 ); // saved, new
-		$savedRev->setUser( new UserIdentityValue( 9, 'Frank', 0 ) );
+		$savedRev->setUser( new UserIdentityValue( 9, 'Frank' ) );
 		$savedRev->setTimestamp( '20180101000003' );
 
 		$rr->updateRevision( $savedRev );
