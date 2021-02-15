@@ -1598,6 +1598,7 @@
 	"namespace_association": "Կից անվանատարածք",
 	"tooltip-namespace_association": "Նշեք տվյալ անվանատարածքի հետ կապված քննարկումների անվանատարածքը նույնպես ներառելու համար։",
 	"blanknamespace": "(Հիմնական)",
+	"contributions": "Մասնակցի ներդրումներ",
 	"tool-link-contributions": "{{GENDER:$1|Մասնակցի}} ներդրում",
 	"contributions-title": "$1 մասնակցի ներդրումը",
 	"mycontris": "Ներդրում",

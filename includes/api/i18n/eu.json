@@ -60,7 +60,7 @@
 	"apihelp-edit-param-tags": "Aldatu etiketak berrikusketa eskatzeko.",
 	"apihelp-edit-param-minor": "Markatu edizio hau txikitzat",
 	"apihelp-edit-param-notminor": "Aldaketa ez-txikiak",
-	"apihelp-edit-param-bot": "Aldaketa hau errobot aldaketa bezala markatu.",
+	"apihelp-edit-param-bot": "Markatu aldaketa hau bot batek egindakotzat.",
 	"apihelp-edit-param-recreate": "Bitartean ezabatu den orrialdearen inguruko akatsak gainidaztea.",
 	"apihelp-edit-param-createonly": "Ez aldatu orria jadanik existitzen bada.",
 	"apihelp-edit-param-nocreate": "Orria ez bada existitzen akatsa bota.",

@@ -413,6 +413,7 @@
 	"missingarticle-diff": "(Wijziging: $1, $2)",
 	"readonly_lag": "De database is automatisch vergrendeld terwijl de replica databaseservers synchroniseren met de hoofdserver",
 	"nonwrite-api-promise-error": "De HTTP-header 'Promise-Non-Write-API-Action' was meegestuurd, maar het verzoek behelsde een API-schrijfverzoek.",
+	"timeouterror-text": "De maximale duur van een verzoek van $1 {{PLURAL:$1|seconde|seconden}} is overschreden.",
 	"internalerror": "Interne fout",
 	"internalerror_info": "Interne fout: $1",
 	"internalerror-fatal-exception": "Fatale fout van type \"$1\"",
