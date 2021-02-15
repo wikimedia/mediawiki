@@ -25,6 +25,7 @@
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Implements the default log formatting.
@@ -580,7 +581,7 @@ class LogFormatter {
 		$entry = $this->entry;
 		$params = $this->extractParameters();
 		$params[0] = Message::rawParam( $this->getPerformerElement() );
-		$params[1] = $this->canView( LogPage::DELETED_USER ) ? $entry->getPerformer()->getName() : '';
+		$params[1] = $this->canView( LogPage::DELETED_USER ) ? $entry->getPerformerIdentity()->getName() : '';
 		$params[2] = Message::rawParam( $this->makePageLink( $entry->getTarget() ) );
 
 		// Bad things happens if the numbers are not in correct order
@@ -706,8 +707,8 @@ class LogFormatter {
 	 */
 	public function getPerformerElement() {
 		if ( $this->canView( LogPage::DELETED_USER ) ) {
-			$performer = $this->entry->getPerformer();
-			$element = $this->makeUserLink( $performer );
+			$performerIdentity = $this->entry->getPerformerIdentity();
+			$element = $this->makeUserLink( $performerIdentity );
 			if ( $this->entry->isDeleted( LogPage::DELETED_USER ) ) {
 				$element = $this->styleRestricedElement( $element );
 			}
@@ -780,12 +781,12 @@ class LogFormatter {
 	}
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param int $toolFlags Combination of Linker::TOOL_LINKS_* flags
 	 * @return string wikitext or html
 	 * @return-taint onlysafefor_html
 	 */
-	protected function makeUserLink( User $user, $toolFlags = 0 ) {
+	protected function makeUserLink( UserIdentity $user, $toolFlags = 0 ) {
 		if ( $this->plaintext ) {
 			$element = $user->getName();
 		} else {
@@ -793,14 +794,17 @@ class LogFormatter {
 				$user->getId(),
 				$user->getName()
 			);
-
 			if ( $this->linkFlood ) {
+				$editCount = $user->isRegistered()
+					? MediaWikiServices::getInstance()->getUserEditTracker()->getUserEditCount( $user )
+					: null;
+
 				$element .= Linker::userToolLinks(
 					$user->getId(),
 					$user->getName(),
 					true, // redContribsWhenNoEdits
 					$toolFlags,
-					$user->getEditCount(),
+					$editCount,
 					// do not render parenthesises in the HTML markup (CSS will provide)
 					false
 				);

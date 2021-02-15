@@ -23,6 +23,7 @@
  * @since 1.19
  */
 
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -211,6 +212,10 @@ class DatabaseLogEntry extends LogEntryBase {
 		}
 
 		return $this->performer;
+	}
+
+	public function getPerformerIdentity(): UserIdentity {
+		return $this->getPerformer();
 	}
 
 	public function getTarget() {
