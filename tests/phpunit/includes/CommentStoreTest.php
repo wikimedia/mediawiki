@@ -3,7 +3,6 @@
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IMaintainableDatabase;
 use Wikimedia\ScopedCallback;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -36,18 +35,27 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @return CommentStore
 	 */
 	protected function makeStore( $stage ) {
-		$store = new CommentStore( MediaWikiServices::getInstance()->getContentLanguage(), $stage );
-
-		TestingAccessWrapper::newFromObject( $store )->tempTables += [ 'cs2_comment' => [
-			'table' => 'commentstore2_temp',
-			'pk' => 'cs2t_id',
-			'field' => 'cs2t_comment_id',
-			'joinPK' => 'cs2_id',
-			'stage' => MIGRATION_OLD,
-			'deprecatedIn' => null,
-		] ];
-
-		return $store;
+		$lang = MediaWikiServices::getInstance()->getContentLanguage();
+		return new class( $lang, $stage ) extends CommentStore {
+			protected const TEMP_TABLES = [
+				'rev_comment' => [
+					'table' => 'revision_comment_temp',
+					'pk' => 'revcomment_rev',
+					'field' => 'revcomment_comment_id',
+					'joinPK' => 'rev_id',
+					'stage' => MIGRATION_OLD,
+					'deprecatedIn' => null,
+				],
+				'cs2_comment' => [
+					'table' => 'commentstore2_temp',
+					'pk' => 'cs2t_id',
+					'field' => 'cs2t_comment_id',
+					'joinPK' => 'cs2_id',
+					'stage' => MIGRATION_OLD,
+					'deprecatedIn' => null,
+				],
+			];
+		};
 	}
 
 	/**
@@ -793,12 +801,15 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableDeprecated( $stage ) {
-		$store = $this->makeStore( $stage );
-		$wrap = TestingAccessWrapper::newFromObject( $store );
-		$wrap->tempTables += [ 'ipb_reason' => [
-			'stage' => MIGRATION_NEW,
-			'deprecatedIn' => '1.30',
-		] ];
+		$lang = MediaWikiServices::getInstance()->getContentLanguage();
+		$store = new class( $lang, $stage ) extends CommentStore {
+			protected const TEMP_TABLES = [
+				'ipb_reason' => [
+					'stage' => MIGRATION_NEW,
+					'deprecatedIn' => '1.30',
+				],
+			];
+		};
 
 		$this->hideDeprecated( 'CommentStore::insertWithTempTable for ipb_reason' );
 		list( $fields, $callback ) = $store->insertWithTempTable( $this->db, 'ipb_reason', 'foo' );
