@@ -3600,14 +3600,32 @@ class Parser {
 		$finalTitle = $title;
 		$deps = [];
 		$revRecord = null;
+		$contextTitle = $parser ? $parser->getTitle() : null;
 
-		# Loop to fetch the article, with up to 1 redirect
+		# Loop to fetch the article, with up to 2 redirects
 		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
-		for ( $i = 0; $i < 2 && is_object( $title ); $i++ ) {
+		for ( $i = 0; $i < 3 && is_object( $title ); $i++ ) {
 			# Give extensions a chance to select the revision instead
+			$revRecord = null; # Assume no hook
 			$id = false; # Assume current
-			Hooks::runner()->onBeforeParserFetchTemplateAndtitle(
-				$parser, $title, $skip, $id );
+			$origTitle = $title;
+			$titleChanged = false;
+			Hooks::runner()->onBeforeParserFetchTemplateRevisionRecord(
+				# The $title is a not a PageIdentity, as it may
+				# contain fragments or even represent an attempt to transclude
+				# a broken or otherwise-missing Title, which the hook may
+				# fix up.  Similarly, the $contextTitle may represent a special
+				# page or other page which "exists" as a parsing context but
+				# is not in the DB.
+				$contextTitle, $title,
+				$skip, $revRecord
+			);
+			if ( !$skip && !$revRecord ) {
+				# Deprecated legacy hook
+				Hooks::runner()->onBeforeParserFetchTemplateAndtitle(
+					$parser, $title, $skip, $id
+				);
+			}
 
 			if ( $skip ) {
 				$text = false;
@@ -3619,41 +3637,57 @@ class Parser {
 				break;
 			}
 			# Get the revision
-			# TODO rewrite using only RevisionRecord objects
-			if ( $id ) {
-				$revRecord = $revLookup->getRevisionById( $id );
-			} elseif ( $parser ) {
-				$revRecord = $parser->fetchCurrentRevisionRecordOfTitle( $title );
-			} else {
-				$revRecord = $revLookup->getRevisionByTitle( $title );
+			if ( !$revRecord ) {
+				if ( $id ) {
+					# Handle $id returned by deprecated legacy hook
+					$revRecord = $revLookup->getRevisionById( $id );
+				} elseif ( $parser ) {
+					$revRecord = $parser->fetchCurrentRevisionRecordOfTitle( $title );
+				} else {
+					$revRecord = $revLookup->getRevisionByTitle( $title );
+				}
 			}
-			$rev_id = $revRecord ? $revRecord->getId() : 0;
+			if ( $revRecord ) {
+				# Update title, as $revRecord may have been changed by hook
+				$title = Title::newFromLinkTarget(
+					$revRecord->getPageAsLinkTarget()
+				);
+				$deps[] = [
+					'title' => $title,
+					'page_id' => $revRecord->getPageId(),
+					'rev_id' => $revRecord->getId(),
+				];
+			} else {
+				$deps[] = [
+					'title' => $title,
+					'page_id' => $title->getArticleID(),
+					'rev_id' => null,
+				];
+			}
+			if ( !$title->equals( $origTitle ) ) {
+				# If we fetched a rev from a different title, register
+				# the original title too...
+				$deps[] = [
+					'title' => $origTitle,
+					'page_id' => $origTitle->getArticleID(),
+					'rev_id' => null,
+				];
+				$titleChanged = true;
+			}
 			# If there is no current revision, there is no page
-			if ( $id === false && !$revRecord ) {
+			if ( $revRecord === null || $revRecord->getId() === null ) {
 				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 				$linkCache->addBadLinkObj( $title );
 			}
-
-			$deps[] = [
-				'title' => $title,
-				'page_id' => $title->getArticleID(),
-				'rev_id' => $rev_id
-			];
 			if ( $revRecord ) {
-				$revTitle = Title::newFromLinkTarget(
-					$revRecord->getPageAsLinkTarget()
-				);
-				if ( !$title->equals( $revTitle ) ) {
-					# We fetched a rev from a different title; register it too...
-					$deps[] = [
-						'title' => $revTitle,
-						'page_id' => $revRecord->getPageId(),
-						'rev_id' => $rev_id
-					];
+				if ( $titleChanged && !$revRecord->hasSlot( SlotRecord::MAIN ) ) {
+					// We've added this (missing) title to the dependencies;
+					// give the hook another chance to redirect it to an
+					// actual page.
+					$text = false;
+					$finalTitle = $title;
+					continue;
 				}
-			}
-
-			if ( $revRecord ) {
 				$content = $revRecord->getContent( SlotRecord::MAIN );
 				$text = $content ? $content->getWikitextForTransclusion() : null;
 

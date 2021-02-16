@@ -18,6 +18,7 @@ interface ParserFetchTemplateHook {
 	 * This hook is called when the parser fetches a template.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.35, use BeforeParserFetchTemplateRevisionRecordHook
 	 *
 	 * @param Parser|bool $parser Parser object or false
 	 * @param Title $title Title object of the template to be fetched
