@@ -22,6 +22,8 @@ class EntryPoint {
 	private $router;
 	/** @var RequestContext */
 	private $context;
+	/** @var ?RequestInterface */
+	private static $mainRequest;
 
 	/**
 	 * @param IContextSource $context
@@ -70,6 +72,19 @@ class EntryPoint {
 		);
 	}
 
+	/**
+	 * @return ?RequestInterface The RequestInterface object used by this entry point.
+	 */
+	public static function getMainRequest(): ?RequestInterface {
+		if ( self::$mainRequest === null ) {
+			$conf = MediaWikiServices::getInstance()->getMainConfig();
+			self::$mainRequest = new RequestFromGlobals( [
+				'cookiePrefix' => $conf->get( 'CookiePrefix' )
+			] );
+		}
+		return self::$mainRequest;
+	}
+
 	public static function main() {
 		// URL safety checks
 		global $wgRequest;
@@ -84,9 +99,7 @@ class EntryPoint {
 		$services = MediaWikiServices::getInstance();
 		$conf = $services->getMainConfig();
 
-		$request = new RequestFromGlobals( [
-			'cookiePrefix' => $conf->get( 'CookiePrefix' )
-		] );
+		$request = self::getMainRequest();
 
 		$router = self::createRouter( $context, $request );
 
