@@ -115,6 +115,7 @@ use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\ActorNormalization;
+use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
@@ -123,6 +124,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -148,6 +150,10 @@ return [
 
 	'ActorNormalization' => static function ( MediaWikiServices $services ) : ActorNormalization {
 		return $services->getActorStoreFactory()->getActorNormalization();
+	},
+
+	'ActorStore' => static function ( MediaWikiServices $services ) : ActorStore {
+		return $services->getActorStoreFactory()->getActorStore();
 	},
 
 	'ActorStoreFactory' => static function ( MediaWikiServices $services ) : ActorStoreFactory {
@@ -1468,6 +1474,10 @@ return [
 				$services->getUserFactory()->newFromUserIdentity( $user )->invalidateCache();
 			} ]
 		);
+	},
+
+	'UserIdentityLookup' => static function ( MediaWikiServices $services ) : UserIdentityLookup {
+		return $services->getActorStoreFactory()->getUserIdentityLookup();
 	},
 
 	'UserNamePrefixSearch' => static function ( MediaWikiServices $services ) : UserNamePrefixSearch {
