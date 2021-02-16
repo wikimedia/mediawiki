@@ -30,14 +30,14 @@ use MediaWiki\User\UserIdentity;
 interface Authority {
 
 	/**
-	 * Returns the actor associated with this authority.
+	 * Returns the performer of the actions associated with this authority.
 	 *
 	 * Actions performed under this authority should generally be attributed
-	 * to the actor returned by this method.
+	 * to the user identity returned by this method.
 	 *
 	 * @return UserIdentity
 	 */
-	public function getActor(): UserIdentity;
+	public function getPerformer(): UserIdentity;
 
 	/**
 	 * Checks whether this authority has the given permission in general.

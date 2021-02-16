@@ -295,7 +295,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		if ( $authority instanceof User ) {
 			return $authority;
 		}
-		return $this->newFromUserIdentity( $authority->getActor() );
+		return $this->newFromUserIdentity( $authority->getPerformer() );
 	}
 
 }

@@ -57,7 +57,7 @@ abstract class AbstractContributionHandler extends Handler {
 	 */
 	protected function getTargetUser() {
 		if ( $this->me ) {
-			$user = $this->getAuthority()->getActor();
+			$user = $this->getAuthority()->getPerformer();
 			if ( !$user->isRegistered() ) {
 				throw new LocalizedHttpException(
 					new MessageValue( 'rest-permission-denied-anon' ), 401
