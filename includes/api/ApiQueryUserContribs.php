@@ -29,6 +29,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
+use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -117,9 +118,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
 
 		// Create an Iterator that produces the UserIdentity objects we need, depending
-		// on which of the 'userprefix', 'userids', or 'user' params was
-		// specified.
-		$this->requireOnlyOneParameter( $this->params, 'userprefix', 'userids', 'user' );
+		// on which of the 'userprefix', 'userids', 'iprange', or 'user' params
+		// was specified.
+		$this->requireOnlyOneParameter( $this->params, 'userprefix', 'userids', 'iprange', 'user' );
 		if ( isset( $this->params['userprefix'] ) ) {
 			$this->multiUserMode = true;
 			$this->orderBy = 'name';
@@ -198,6 +199,76 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				->where( $from ? [ "actor_id $from" ] : [] )
 				->fetchUserIdentities();
 			$batchSize = count( $ids );
+		} elseif ( isset( $this->params['iprange'] ) ) {
+			// Make sure it is a valid range and within the CIDR limit
+			$ipRange = $this->params['iprange'];
+			$contribsCIDRLimit = $this->getConfig()->get( 'RangeContributionsCIDRLimit' );
+			if ( IPUtils::isIPv4( $ipRange ) ) {
+				$type = 'IPv4';
+				$cidrLimit = $contribsCIDRLimit['IPv4'];
+			} elseif ( IPUtils::isIPv6( $ipRange ) ) {
+				$type = 'IPv6';
+				$cidrLimit = $contribsCIDRLimit['IPv6'];
+			} else {
+				$this->dieWithError( [ 'apierror-invalidiprange', $ipRange ], 'invalidiprange' );
+			}
+			$range = IPUtils::parseCIDR( $ipRange )[1];
+			if ( $range === false ) {
+				$this->dieWithError( [ 'apierror-invalidiprange', $ipRange ], 'invalidiprange' );
+			} elseif ( $range < $cidrLimit ) {
+				$this->dieWithError( [ 'apierror-cidrtoobroad', $type, $cidrLimit ] );
+			}
+
+			$this->multiUserMode = true;
+			$this->orderBy = 'name';
+			$fname = __METHOD__;
+
+			// Because 'iprange' might produce a huge number of ips, use a
+			// generator with batched lookup and continuation.
+			$userIter = call_user_func( function () use ( $dbSecondary, $sort, $op, $fname, $ipRange ) {
+				$fromName = false;
+				list( $start, $end ) = IPUtils::parseRange( $ipRange );
+				if ( $this->params['continue'] !== null ) {
+					$continue = explode( '|', $this->params['continue'] );
+					$this->dieContinueUsageIf( count( $continue ) != 4 );
+					$this->dieContinueUsageIf( $continue[0] !== 'name' );
+					$fromName = $continue[1];
+					$fromIPHex = IPUtils::toHex( $fromName );
+					$this->dieContinueUsageIf( $fromIPHex === false );
+					if ( $op == '<' ) {
+						$end = $fromIPHex;
+					} else {
+						$start = $fromIPHex;
+					}
+				}
+
+				$limit = 501;
+
+				do {
+					$res = $dbSecondary->select(
+						'ip_changes',
+						'ipc_hex',
+						'ipc_hex BETWEEN ' . $dbSecondary->addQuotes( $start ) .
+								' AND ' . $dbSecondary->addQuotes( $end ),
+						$fname,
+						[ 'GROUP BY' => [ "ipc_hex" ], 'ORDER BY' => "ipc_hex $sort", 'LIMIT' => $limit ]
+					);
+
+					$count = 0;
+					$fromName = false;
+					foreach ( $res as $row ) {
+						$ipAddr = IPUtils::formatHex( $row->ipc_hex );
+						if ( ++$count >= $limit ) {
+							$fromName = $ipAddr;
+							break;
+						}
+						yield User::newFromName( $ipAddr, false );
+					}
+				} while ( $fromName !== false );
+			} );
+			// Do the actual sorting client-side, because otherwise
+			// prepareQuery might try to sort by actor and confuse everything.
+			$batchSize = 1;
 		} else {
 			$names = [];
 			if ( !count( $this->params['user'] ) ) {
@@ -623,6 +694,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				ApiBase::PARAM_ISMULTI => true
 			],
 			'userprefix' => null,
+			'iprange' => null,
 			'dir' => [
 				ApiBase::PARAM_DFLT => 'older',
 				ApiBase::PARAM_TYPE => [
