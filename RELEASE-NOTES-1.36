@@ -506,6 +506,10 @@ because of Phabricator reports.
    - wfDebugMem
    - wfGetPrecompiledData
    - wfNegotiateType
+* BeforeParserFetchTemplateAndtitleHook has been deprecated; replace
+  with the new BeforeParserFetchTemplateRevisionRecord hook. (The
+  similar ParserFetchTemplateHook was deprecated in 1.35; the new hook
+  replaces both.)
 * The InterwikiLoadPrefix hook has been deprecated; it is not compatible
   with future wikitext parsers (which need to enumerate all interwiki
   prefixes).  In test cases please use $wgInterwikiCache instead.
@@ -539,6 +543,9 @@ because of Phabricator reports.
   existing code, but it only supports version 2 of the test file
   specification and may be more strict when parsing invalid input,
   including duplicate tests.
+* A new hook was added, BeforeParserFetchTemplateRevisionRecord, which
+  unifies and replaces the old BeforeParserFetchTemplateAndtitleHook and
+  ParserFetchTemplateHook.
 * The SkinLessImportPaths attribute was added, allowing skins to add a
   directory to the import path for LESS stylesheets. Skins can use this
   to provide a custom version of mediawiki.skin.variables.less, setting
