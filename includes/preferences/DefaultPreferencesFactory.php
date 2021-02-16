@@ -482,7 +482,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				],
 				$context->msg( 'prefs-user-downloaddata-info' )->text()
 			 ),
-			'help-message' => [ 'prefs-user-downloaddata-help-message', $user->getName() ],
+			'help-message' => [ 'prefs-user-downloaddata-help-message', $user->getTitleKey() ],
 			'section' => 'personal/info',
 		];
 
