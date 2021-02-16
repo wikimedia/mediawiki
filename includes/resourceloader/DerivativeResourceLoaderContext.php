@@ -144,14 +144,14 @@ class DerivativeResourceLoaderContext extends ResourceLoaderContext {
 		$this->userObj = null;
 	}
 
-	public function getDebug() : bool {
+	public function getDebug() : int {
 		if ( $this->debug === self::INHERIT_VALUE ) {
 			return $this->context->getDebug();
 		}
 		return $this->debug;
 	}
 
-	public function setDebug( bool $debug ) {
+	public function setDebug( int $debug ) {
 		$this->debug = $debug;
 		$this->hash = null;
 	}
