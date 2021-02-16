@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 class ImagePage extends Article {
 	use MediaFileTrait;
 
-	/** @var File|false */
+	/** @var File|false Only temporary false, most code can assume this is a File */
 	private $displayImg;
 
 	/** @var FileRepo */
@@ -42,7 +42,7 @@ class ImagePage extends Article {
 	/** @var bool */
 	private $fileLoaded;
 
-	/** @var bool */
+	/** @var string|false Guaranteed to be HTML, {@see File::getDescriptionText} */
 	protected $mExtraDescription = false;
 
 	/**
