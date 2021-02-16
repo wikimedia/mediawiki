@@ -2428,7 +2428,7 @@
 	"noemailtitle": "Aucune adresse de courriel",
 	"noemailtext": "Cet utilisateur n’a pas spécifié une adresse de courriel valide.",
 	"nowikiemailtext": "Cet utilisateur a choisi de ne pas recevoir de courriel de la part d’autres utilisateurs.",
-	"emailnotarget": "Nom d’utilisateur du destinataire inexistant ou invalide.",
+	"emailnotarget": "Nom d’utilisateur du destinataire inexistant ou incorrect.",
 	"emailtarget": "Entrez le nom d’utilisateur du destinataire",
 	"emailusername": "Nom d'utilisateur :",
 	"emailusernamesubmit": "Soumettre",
