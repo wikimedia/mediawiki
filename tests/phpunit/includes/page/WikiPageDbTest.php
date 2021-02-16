@@ -2,6 +2,8 @@
 
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -60,7 +62,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			/** @var WikiPage $p */
 
 			try {
-				if ( $p->exists() ) {
+				if ( $p->canExist() && $p->exists() ) {
 					$p->doDeleteArticleReal( "testing done.", $user );
 				}
 			} catch ( MWException $ex ) {
@@ -149,11 +151,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->filterDeprecated( '/Accessing WikiPage that cannot exist as a page/' );
 		$page = new WikiPage( $title );
 
+		$this->assertFalse( $page->canExist() );
 		$this->assertFalse( $page->exists() );
 		$this->assertNull( $page->getRevisionRecord() );
 
-		// NOTE: once WikiPage becomes a PageIdentity, getId() should throw!
-		$this->assertSame( 0, $page->getId() );
+		$this->expectException( RuntimeException::class );
+		$page->getId();
 	}
 
 	/**
@@ -328,7 +331,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		global $wgUser;
 
-		$page = $this->newPage( __METHOD__ );
+		// NOTE: Test that Editing also works with a fragment title!
+		$page = $this->newPage( __METHOD__ . '#Fragment' );
 		$title = $page->getTitle();
 
 		$content = ContentHandler::makeContent(
@@ -535,9 +539,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
+		$this->filterDeprecated( '/WikiPage constructed on a Title that cannot exist as a page/' );
 		try {
 			$page = $this->newPage( $title );
-			$status = $page->doUserEditContent( $content, $user1, "[[testing]] 1", EDIT_NEW );
+			$page->doUserEditContent( $content, $user1, "[[testing]] 1", EDIT_NEW );
 		} catch ( Exception $ex ) {
 			// Throwing is an acceptable way to react to an invalid title,
 			// as long as no garbage is written to the database.
@@ -1720,6 +1725,15 @@ more stuff
 		$title = Title::makeTitle( NS_CATEGORY, 'SomeCategory' );
 		$page = WikiPage::factory( $title );
 		$this->assertEquals( WikiCategoryPage::class, get_class( $page ) );
+
+		$title = Title::makeTitle( NS_MAIN, 'SomePage' );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( WikiPage::class, get_class( $page ) );
+		$this->assertSame( $page, WikiPage::factory( $page ) );
+
+		$title = new PageIdentityValue( 0, NS_MAIN, 'SomePage', PageIdentity::LOCAL );
+		$page = WikiPage::factory( $title );
+		$this->assertEquals( WikiPage::class, get_class( $page ) );
 	}
 
 	/**
