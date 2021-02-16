@@ -190,7 +190,7 @@
 	"config-admin-password-confirm": "Saisir à nouveau le mot de passe :",
 	"config-admin-help": "Entrez votre nom d’utilisateur préféré ici, par exemple « Jean Blogues ».\nC’est le nom que vous utiliserez pour vous connecter au wiki.",
 	"config-admin-name-blank": "Entrez un nom d’utilisateur administrateur.",
-	"config-admin-name-invalid": "Le nom d’utilisateur spécifié « <nowiki>$1</nowiki> » n’est pas valide.\nIndiquez un nom d’utilisateur différent.",
+	"config-admin-name-invalid": "Le nom d’utilisateur spécifié « <nowiki>$1</nowiki> » est incorrect.\nIndiquez un nom d’utilisateur différent.",
 	"config-admin-password-blank": "Entrez un mot de passe pour le compte administrateur.",
 	"config-admin-password-mismatch": "Les deux mots de passe que vous avez saisis ne correspondent pas.",
 	"config-admin-email": "Adresse de courriel :",

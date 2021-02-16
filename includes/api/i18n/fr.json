@@ -1709,7 +1709,7 @@
 	"apierror-invalidsha1hash": "Le hachage SHA1 fourni n’est pas valide.",
 	"apierror-invalidtitle": "Mauvais titre « $1 ».",
 	"apierror-invalidurlparam": "Valeur non valide pour <var>$1urlparam</var> (<kbd>$2=$3</kbd>).",
-	"apierror-invaliduser": "Nom d’utilisateur invalide « $1 ».",
+	"apierror-invaliduser": "Nom d’utilisateur « $1 » incorrect.",
 	"apierror-invaliduserid": "L’ID d’utilisateur <var>$1</var> n’est pas valide.",
 	"apierror-maxbytes": "Le paramètre <var>$1</var> ne peut excéder $2 octets{{PLURAL:$2||s}}",
 	"apierror-maxchars": "Le paramètre <var>$1</var> ne peut excéder $2 catactères{{PLURAL:$2||s}}",

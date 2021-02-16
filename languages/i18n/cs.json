@@ -360,7 +360,7 @@
 	"readonly_lag": "Databáze byla automaticky dočasně uzamčena kvůli zpoždění replikovaných databázových serverů oproti hlavnímu",
 	"nonwrite-api-promise-error": "Byla odeslána HTTP hlavička „Promise-Non-Write-API-Action“, ale požadavek směřoval na API modul pro zápis.",
 	"timeouterror": "Časový limit serveru vypršel",
-	"timeouterror-text": "Maximální požadovaný čas $1{{PLURAL:$1|second|seconds}} byl překročen.",
+	"timeouterror-text": "Byl překročen maximální požadovaný čas $1 {{PLURAL:$1|sekundy|sekund}}.",
 	"internalerror": "Vnitřní chyba",
 	"internalerror_info": "Vnitřní chyba: $1",
 	"internalerror-fatal-exception": "Kritická výjimka typu „$1“",
