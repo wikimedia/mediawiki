@@ -379,7 +379,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @covers TextContent::getDeletionUpdates
 	 */
 	public function testDeletionUpdates( $model, $text, $expectedStuff ) {
-		$page = $this->getNonexistingTestPage( __METHOD__ );
+		$page = $this->getNonexistingTestPage( get_class( $this ) . '::' . __FUNCTION__ );
 		$title = $page->getTitle();
 
 		$content = ContentHandler::makeContent( $text, $title, $model );
