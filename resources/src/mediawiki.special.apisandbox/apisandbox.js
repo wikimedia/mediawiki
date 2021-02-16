@@ -15,6 +15,7 @@
 		OptionalParamWidget = require( './OptionalParamWidget.js' ),
 		ParamLabelWidget = require( './ParamLabelWidget.js' ),
 		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
+		DateTimeParamWidget = require( './DateTimeParamWidget.js' ),
 		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
 	WidgetMethods = {
@@ -39,16 +40,6 @@
 					that.setIcon( ok ? null : 'alert' );
 					that.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				} );
-			}
-		},
-
-		dateTimeInputWidget: {
-			getValidity: function () {
-				if ( !Util.apiBool( this.paramInfo.required ) || this.getApiValue() !== '' ) {
-					return $.Deferred().resolve().promise();
-				} else {
-					return $.Deferred().reject().promise();
-				}
 			}
 		},
 
@@ -395,16 +386,11 @@
 					break;
 
 				case 'timestamp':
-					widget = new mw.widgets.datetime.DateTimeInputWidget( {
-						formatter: {
-							format: '${year|0}-${month|0}-${day|0}T${hour|0}:${minute|0}:${second|0}${zone|short}'
-						},
-						required: Util.apiBool( pi.required ),
-						clearable: false
+					widget = new DateTimeParamWidget( {
+						required: Util.apiBool( pi.required )
 					} );
 					widget.paramInfo = pi;
 					$.extend( widget, WidgetMethods.textInputWidget );
-					$.extend( widget, WidgetMethods.dateTimeInputWidget );
 					multiModeAllowed = true;
 					break;
 
