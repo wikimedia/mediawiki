@@ -34,6 +34,12 @@ class ResourceLoaderContext implements MessageLocalizer {
 	public const DEFAULT_LANG = 'qqx';
 	public const DEFAULT_SKIN = 'fallback';
 
+	/** @internal For use in ResourceLoader classes. */
+	public const DEBUG_OFF = 0;
+	/** @internal For use in ResourceLoader classes. */
+	public const DEBUG_LEGACY = 1;
+	private const DEBUG_MAIN = 2;
+
 	protected $resourceLoader;
 	protected $request;
 	protected $logger;
@@ -41,6 +47,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	// Module content vary
 	protected $skin;
 	protected $language;
+	/** @var int */
 	protected $debug;
 	protected $user;
 
@@ -77,7 +84,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 
 		// Various parameters
 		$this->user = $request->getRawVal( 'user' );
-		$this->debug = $request->getRawVal( 'debug' ) === 'true';
+		$this->debug = self::debugFromString( $request->getRawVal( 'debug' ) );
 		$this->only = $request->getRawVal( 'only' );
 		$this->version = $request->getRawVal( 'version' );
 		$this->raw = $request->getFuzzyBool( 'raw' );
@@ -98,6 +105,25 @@ class ResourceLoaderContext implements MessageLocalizer {
 			$this->skin = self::DEFAULT_SKIN;
 		}
 	}
+
+	/**
+	 * @internal For use in ResourceLoader::inDebugMode
+	 * @param string|null $debug
+	 * @return int
+	 */
+	 public static function debugFromString( ?string $debug ) : int {
+		 // The canonical way to enable debug mode is via debug=true
+		 // This continues to map to v1 until v2 is ready (T85805).
+		 if ( $debug === 'true' || $debug === '1' ) {
+			 $ret = self::DEBUG_LEGACY;
+		 } elseif ( $debug === '2' ) {
+			 $ret = self::DEBUG_MAIN;
+		 } else {
+			 $ret = self::DEBUG_OFF;
+		 }
+
+		 return $ret;
+	 }
 
 	/**
 	 * Return a dummy ResourceLoaderContext object suitable for passing into
@@ -235,7 +261,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 		return $this->userObj;
 	}
 
-	public function getDebug() : bool {
+	public function getDebug() : int {
 		return $this->debug;
 	}
 
@@ -388,8 +414,8 @@ class ResourceLoaderContext implements MessageLocalizer {
 		if ( $this->getSkin() !== self::DEFAULT_SKIN ) {
 			$reqBase['skin'] = $this->getSkin();
 		}
-		if ( $this->getDebug() ) {
-			$reqBase['debug'] = 'true';
+		if ( $this->getDebug() !== self::DEBUG_OFF ) {
+			$reqBase['debug'] = strval( $this->getDebug() );
 		}
 		return $reqBase;
 	}
