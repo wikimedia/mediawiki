@@ -58,7 +58,7 @@ class DeprecatedHooks {
 		'ParserGetVariableValueVarCache' => [ 'deprecatedVersion' => '1.35' ],
 		'ParserSectionCreate' => [ 'deprecatedVersion' => '1.35' ],
 		'PrefixSearchBackend' => [ 'deprecatedVersion' => '1.27', 'silent' => true ],
-		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36' ],
+		'ProtectionForm::buildForm' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'ResourceLoaderTestModules' => [ 'deprecatedVersion' => '1.33' ],
 		'RevisionInsertComplete' => [ 'deprecatedVersion' => '1.31' ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
