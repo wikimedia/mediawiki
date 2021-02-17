@@ -1863,7 +1863,10 @@ return [
 		'packageFiles' => [
 			'apisandbox.js',
 			'OptionalParamWidget.js',
+			'ParamLabelWidget.js',
+			'BooleanToggleSwitchParamWidget.js',
 			'UploadSelectFileParamWidget.js',
+			'UtilMixin.js',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'dependencies' => [

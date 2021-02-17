@@ -13,6 +13,8 @@
 		moduleInfoCache = {},
 		baseRequestParams,
 		OptionalParamWidget = require( './OptionalParamWidget.js' ),
+		ParamLabelWidget = require( './ParamLabelWidget.js' ),
+		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
 		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
 	WidgetMethods = {
@@ -82,21 +84,6 @@
 		passwordWidget: {
 			getApiValueForDisplay: function () {
 				return '';
-			}
-		},
-
-		toggleSwitchWidget: {
-			getApiValue: function () {
-				return this.getValue() ? 1 : undefined;
-			},
-			setApiValue: function ( v ) {
-				this.setValue( Util.apiBool( v ) );
-			},
-			// there is a parameter `shouldSuppressErrors` available, but
-			// it is not included in the function declaration because that
-			// causes eslint to complain since it is unused
-			apiCheckValid: function () {
-				return $.Deferred().resolve( true ).promise();
 			}
 		},
 
@@ -312,9 +299,8 @@
 
 			switch ( pi.type ) {
 				case 'boolean':
-					widget = new OO.ui.ToggleSwitchWidget();
+					widget = new BooleanToggleSwitchParamWidget();
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.toggleSwitchWidget );
 					pi.required = true; // Avoid wrapping in the non-required widget
 					break;
 
@@ -1333,9 +1319,7 @@
 			widget.on( 'change', this.updateTemplatedParameters, [ null ], this );
 		}
 
-		helpLabel = new OO.ui.LabelWidget( {
-			classes: [ 'oo-ui-inline-help' ]
-		} );
+		helpLabel = new ParamLabelWidget();
 
 		$tmp = Util.parseHTML( ppi.description );
 		$tmp.filter( 'dl' ).makeCollapsible( {
@@ -1344,7 +1328,7 @@
 			var $this = $( this );
 			$this.parent().prev( 'p' ).append( $this );
 		} );
-		helpLabel.$element.append( $( '<div>' ).addClass( 'description' ).append( $tmp ) );
+		helpLabel.addDescription( $tmp );
 
 		if ( ppi.info && ppi.info.length ) {
 			for ( j = 0; j < ppi.info.length; j++ ) {
@@ -1363,16 +1347,13 @@
 				break;
 
 			case 'limit':
-				helpLabel.$element.append( $( '<div>' )
-					.addClass( 'info' )
-					.append(
-						Util.parseMsg(
-							'paramvalidator-help-type-number-minmax', 1,
-							ppi.min, ppi.highmax !== undefined ? ppi.highmax : ppi.max
-						),
-						' ',
-						Util.parseMsg( 'apisandbox-param-limit' )
-					)
+				helpLabel.addInfo(
+					Util.parseMsg(
+						'paramvalidator-help-type-number-minmax', 1,
+						ppi.min, ppi.highmax !== undefined ? ppi.highmax : ppi.max
+					),
+					' ',
+					Util.parseMsg( 'apisandbox-param-limit' )
 				);
 				break;
 
@@ -1385,13 +1366,12 @@
 					tmp += 'max';
 				}
 				if ( tmp !== '' ) {
-					helpLabel.$element.append( $( '<div>' )
-						.addClass( 'info' )
-						.append( Util.parseMsg(
+					helpLabel.addInfo(
+						Util.parseMsg(
 							'paramvalidator-help-type-number-' + tmp,
 							Util.apiBool( ppi.multi ) ? 2 : 1,
 							ppi.min, ppi.max
-						) )
+						)
 					);
 				}
 				break;
@@ -1419,23 +1399,14 @@
 				);
 			}
 			if ( tmp.length ) {
-				helpLabel.$element.append( $( '<div>' )
-					.addClass( 'info' )
-					.append( Util.parseHTML( tmp.join( ' ' ) ) )
-				);
+				helpLabel.addInfo( Util.parseHTML( tmp.join( ' ' ) ) );
 			}
 		}
 		if ( 'maxbytes' in ppi ) {
-			helpLabel.$element.append( $( '<div>' )
-				.addClass( 'info' )
-				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxbytes', ppi.maxbytes ) )
-			);
+			helpLabel.addInfo( Util.parseMsg( 'paramvalidator-help-type-string-maxbytes', ppi.maxbytes ) );
 		}
 		if ( 'maxchars' in ppi ) {
-			helpLabel.$element.append( $( '<div>' )
-				.addClass( 'info' )
-				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxchars', ppi.maxchars ) )
-			);
+			helpLabel.addInfo( Util.parseMsg( 'paramvalidator-help-type-string-maxchars', ppi.maxchars ) );
 		}
 		if ( ppi.usedTemplateVars && ppi.usedTemplateVars.length ) {
 			$tmp = $();
@@ -1448,13 +1419,12 @@
 					$tmp = $tmp.add( mw.message( 'comma-separator' ).parseDom() );
 				}
 			}
-			helpLabel.$element.append( $( '<div>' )
-				.addClass( 'info' )
-				.append( Util.parseMsg(
+			helpLabel.addInfo(
+				Util.parseMsg(
 					'apisandbox-templated-parameter-reason',
 					ppi.usedTemplateVars.length,
 					$tmp
-				) )
+				)
 			);
 		}
 
