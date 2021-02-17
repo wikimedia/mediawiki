@@ -2701,7 +2701,7 @@
 	"block-reason": "原因：",
 	"block-target": "使用者名稱或 IP 位址：",
 	"unblockip": "解除封鎖使用者",
-	"unblockiptext": "使用以下表單以還原之前被封鎖的 IP 位址或使用者名稱的寫入權限。",
+	"unblockiptext": "使用以下表單以還原之前被封鎖的IP位址或使用者名稱的寫入權限。",
 	"ipusubmit": "移除此封鎖",
 	"unblocked": "[[User:$1|$1]]已被解除封鎖。",
 	"unblocked-range": "已解除封鎖 $1。",
