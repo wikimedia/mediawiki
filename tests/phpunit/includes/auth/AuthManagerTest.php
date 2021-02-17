@@ -2434,11 +2434,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( $logSubtype ?: ( $isAnon ? 'create' : 'create2' ), $entry->getSubtype() );
 		$this->assertSame(
 			$isAnon ? $user->getId() : $creator->getId(),
-			$entry->getPerformer()->getId()
+			$entry->getPerformerIdentity()->getId()
 		);
 		$this->assertSame(
 			$isAnon ? $user->getName() : $creator->getName(),
-			$entry->getPerformer()->getName()
+			$entry->getPerformerIdentity()->getName()
 		);
 		$this->assertSame( $user->getUserPage()->getFullText(), $entry->getTarget()->getFullText() );
 		$this->assertSame( [ '4::userid' => $user->getId() ], $entry->getParameters() );
@@ -2936,8 +2936,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$entry = \DatabaseLogEntry::newFromRow( reset( $rows ) );
 
 		$this->assertSame( 'autocreate', $entry->getSubtype() );
-		$this->assertSame( $user->getId(), $entry->getPerformer()->getId() );
-		$this->assertSame( $user->getName(), $entry->getPerformer()->getName() );
+		$this->assertSame( $user->getId(), $entry->getPerformerIdentity()->getId() );
+		$this->assertSame( $user->getName(), $entry->getPerformerIdentity()->getName() );
 		$this->assertSame( $user->getUserPage()->getFullText(), $entry->getTarget()->getFullText() );
 		$this->assertSame( [ '4::userid' => $user->getId() ], $entry->getParameters() );
 
