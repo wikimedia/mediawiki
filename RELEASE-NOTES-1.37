@@ -81,6 +81,8 @@ because of Phabricator reports.
    - findVariantLink()
    - mConverter
    - updateConversionTable()
+* (T273354) When an edit is prevented by an 'EditFilterMergedContent' hook
+  handler without changing the status, the edit form will now be displayed.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.

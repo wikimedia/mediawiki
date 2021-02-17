@@ -66,9 +66,9 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testFailure_goodStatus() {
 		// Code path 1: Hook returns false, but status is still good
-		// Status has no value set, falls back to AS_HOOK_ERROR
+		// Status has no value set, falls back to AS_HOOK_ERROR_EXPECTED
 		$constraint = $this->getConstraint( false );
-		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_HOOK_ERROR );
+		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_HOOK_ERROR_EXPECTED );
 	}
 
 	public function testFailure_badStatus() {

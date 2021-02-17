@@ -376,13 +376,13 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
 	public function provideTestEditFilterMergedContentHookConstraint() {
 		yield 'Hook returns false, status is good, no value set' => [
-			false, null, false, EditPage::AS_HOOK_ERROR, 'AS_HOOK_ERROR'
+			false, null, false, EditPage::AS_HOOK_ERROR_EXPECTED, 'AS_HOOK_ERROR_EXPECTED'
 		];
 		yield 'Hook returns false, status is good, value set' => [
 			false, 1234567, false, 1234567, 'custom value 1234567'
 		];
 		yield 'Hook returns false, status is not good' => [
-			false, null, true, EditPage::AS_HOOK_ERROR, 'AS_HOOK_ERROR'
+			false, null, true, EditPage::AS_HOOK_ERROR_EXPECTED, 'AS_HOOK_ERROR_EXPECTED'
 		];
 		yield 'Hook returns true, status is not ok' => [
 			true, null, true, EditPage::AS_HOOK_ERROR_EXPECTED, 'AS_HOOK_ERROR_EXPECTED'
