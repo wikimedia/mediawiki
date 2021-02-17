@@ -39,6 +39,11 @@ $( function () {
 			namespace = OO.ui.infuse( $( '#mw-import-namespace-' + name ) ),
 			rootpage = OO.ui.infuse( $( '#mw-interwiki-rootpage-' + name ) );
 
+		// HACK: Move namespace selector next to the corresponding radio input.
+		$radios.filter( '[value=namespace]' ).closest( '.oo-ui-fieldLayout' ).after(
+			namespace.$element.closest( '.oo-ui-fieldLayout' )
+		);
+
 		function onRadioChange() {
 			var value = $radios.filter( ':checked' ).val();
 			namespace.setDisabled( value !== 'namespace' );
