@@ -238,6 +238,7 @@ trait MediaWikiTestCaseTrait {
 		$msg->method( 'params' )->willReturn( $msg );
 		$msg->method( 'getParams' )->willReturn( $params );
 		$msg->method( 'rawParams' )->willReturn( $msg );
+		$msg->method( 'numParams' )->willReturn( $msg );
 		$msg->method( 'inLanguage' )->willReturn( $msg );
 		$msg->method( 'inContentLanguage' )->willReturn( $msg );
 		$msg->method( 'useDatabase' )->willReturn( $msg );
