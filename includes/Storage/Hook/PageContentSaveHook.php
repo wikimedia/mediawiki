@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Storage\Hook;
 
-// phpcs:disable Generic.Files.LineLength -- Remove this after doc review
 use CommentStoreComment;
 use Content;
 use StatusValue;
