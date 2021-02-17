@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Page\Hook;
 
-// phpcs:disable Generic.Files.LineLength -- Remove this after doc review
 use DeferrableUpdate;
 use MediaWiki\Revision\RevisionRecord;
 use Title;
