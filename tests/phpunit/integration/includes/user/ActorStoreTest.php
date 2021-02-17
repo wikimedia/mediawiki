@@ -117,6 +117,11 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 			4321231, // $argument
 			null, // $expected
 		];
+		yield 'getActorById, zero' => [
+			'getActorById', // $method
+			0, // $argument
+			null, // $expected
+		];
 		yield 'getUserIdentityByName, registered' => [
 			'getUserIdentityByName', // $method
 			'TestUser', // $argument
@@ -145,6 +150,11 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 		yield 'getUserIdentityByUserId, non-exitent' => [
 			'getUserIdentityByUserId', // $method
 			2412312, // $argument
+			null, // $expected
+		];
+		yield 'getUserIdentityByUserId, zero' => [
+			'getUserIdentityByUserId', // $method
+			0, // $argument
 			null, // $expected
 		];
 	}
@@ -223,10 +233,25 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers ::getUserIdentityByUserId
 	 */
-	public function testgetUserIdentityByUserIdRealUser() {
+	public function testGetUserIdentityByUserIdRealUser() {
 		$user = $this->getTestUser()->getUser();
 		$actor = $this->getStore()->getUserIdentityByUserId( $user->getUserId() );
 		$this->assertSameActors( $user, $actor );
+	}
+
+	public function provideGetUserIdentityByName_exception() {
+		yield 'empty' => [
+			'', // $name
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetUserIdentityByName_exception
+	 * @covers ::getUserIdentityByName
+	 */
+	public function testGetUserIdentityByName_exception( string $name ) {
+		$this->expectException( InvalidArgumentException::class );
+		$this->getStore()->getUserIdentityByName( $name );
 	}
 
 	public function provideNewActorFromRow() {
@@ -272,6 +297,9 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 		];
 		yield 'zero actor' => [
 			(object)[ 'actor_id' => null, 'actor_name' => 'TestUser', 'actor_user' => 0 ], // $row
+		];
+		yield 'empty name' => [
+			(object)[ 'actor_id' => '10', 'actor_name' => '', 'actor_user' => 15 ], // $row
 		];
 	}
 
@@ -559,6 +587,14 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAcquireActorId_existing( UserIdentityValue $actor, int $expected ) {
 		$this->assertSame( $expected, $this->getStore()->acquireActorId( $actor ) );
+	}
+
+	public function testAcquireActorId_domain_mismatch() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->getStore( 'fancywiki' )->acquireActorId(
+			new UserIdentityValue( 15, 'Test', 0, 'fancywiki' ),
+			$this->db
+		);
 	}
 
 	/**
