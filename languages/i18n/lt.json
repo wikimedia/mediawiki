@@ -719,7 +719,7 @@
 	"permissionserrorstext": "Jūs neturite teisių tai daryti dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:",
 	"permissionserrorstext-withaction": "Jūs neturite leidimo $2 dėl {{PLURAL:$1|šios priežasties|šių priežasčių}}:",
 	"contentmodelediterror": "Jūs negalite redaguoti šios versijos, nes jos turinio modelis yra <code>$1</code>, kuris skiriasi nuo dabartinio puslapio turinio modelio, kuris yra <code>$2</code>.",
-	"recreate-moveddeleted-warn": "<strong>Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo ištrintas.</strong>\n\nTurėtumėte nuspręsti, ar reikėtų toliau redaguoti šį puslapį.\nJūsų patogumui čia pateikiamas šio puslapio šalinimų ir perkėlimų sąrašas:",
+	"recreate-moveddeleted-warn": "<strong>Dėmesio: Jūs atkuriate puslapį, kuris anksčiau buvo panaikintas (ištrintas ar perkeltas).</strong>\n\nTurėtumėte nuspręsti, ar reikėtų toliau redaguoti šį puslapį.\nJūsų patogumui čia pateikiamas šio puslapio šalinimų ir perkėlimų sąrašas:",
 	"moveddeleted-notice": "Tokio puslapio nėra.\nŽemiau pateikiamas šio puslapio šalinimų, apsaugojimų, ir pervadinimų sąrašas.",
 	"moveddeleted-notice-recent": "Atsiprašome, šis puslapis buvo neseniai ištrintas (per pastarąsias 24 valandas). Žemiau pateikiama detali puslapio ištrynimo, rakinimo ir perkėlimo istorija.",
 	"log-fulllog": "Rodyti visą istoriją",
