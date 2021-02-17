@@ -1524,9 +1524,6 @@ class LocalFile extends File {
 
 		$props = $props ?: $this->repo->getFileProps( $this->getVirtualUrl() );
 		$props['description'] = $comment;
-		$props['user'] = $user->getId();
-		$props['user_text'] = $user->getName();
-		$props['actor'] = $user->getActorId( $dbw );
 		$props['timestamp'] = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
 		$this->setProps( $props );
 
@@ -1537,15 +1534,19 @@ class LocalFile extends File {
 			return Status::newFatal( 'filenotfound', $this->getRel() );
 		}
 
+		$actorNormalizaton = MediaWikiServices::getInstance()->getActorNormalization();
+
 		$dbw->startAtomic( __METHOD__ );
+
+		$actorId = $actorNormalizaton->acquireActorId( $user );
+		$this->user = $user;
 
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 		$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
-		$actorMigration = ActorMigration::newMigration();
-		$actorFields = $actorMigration->getInsertValues( $dbw, 'img_user', $user );
+		$actorFields = [ 'img_actor' => $actorId ];
 		$dbw->insert( 'image',
 			[
 				'img_name' => $this->getName(),
