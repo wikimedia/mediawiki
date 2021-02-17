@@ -24,6 +24,7 @@ namespace MediaWiki\User;
 
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\PostconditionException;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -132,7 +133,19 @@ class UserIdentityValue implements UserIdentity {
 	public function getActorId( $wikiId = self::LOCAL ) : int {
 		// need to check if $wikiId is an instance of IDatabase, since for legacy reasons,
 		// some callers call this function on a UserIdentity passing an IDatabase
-		if ( !$wikiId instanceof IDatabase ) {
+		if ( $wikiId instanceof IDatabase ) {
+			wfDeprecatedMsg( 'Passing parameter of type IDatabase', '1.36' );
+			if ( $this->actor === 0 ) {
+				// Passing an IDatabase was never actually allowed on this class.
+				// We just support it to prevent hard breakage in places where callers where
+				// assuming they got a User, when they actually just have a UserIdentity.
+				// However, the caller is expecting to get back a valid actorId. Not getting one
+				// may cause data corruption.
+				throw new PostconditionException(
+					'Caller expects non-zero actor ID.'
+				);
+			}
+		} else {
 			$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		}
 		return $this->actor;

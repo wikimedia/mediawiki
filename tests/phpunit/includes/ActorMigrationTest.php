@@ -540,7 +540,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertRoundTrip( $table, $key, $pk, $usesTemp ) {
 		$u = $this->getTestUser()->getUser();
-		$user = new UserIdentityValue( $u->getUserId(), $u->getName(), $u->getActorId( $this->db ) );
+		$actorId = $this->getServiceContainer()->getActorNormalization()->acquireActorId( $u );
+		$user = new UserIdentityValue( $u->getUserId(), $u->getName(), $actorId );
 
 		$stageNames = [
 			SCHEMA_COMPAT_OLD => 'old',

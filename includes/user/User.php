@@ -2139,16 +2139,20 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	/**
 	 * Get the user's actor ID.
 	 * @since 1.31
-	 * @param IDatabase|string|false $dbwOrWikiId Assign a new actor ID, using this DB handle,
-	 * if none exists; wiki ID, if provided, must be self::LOCAL; Usage with IDatabase is deprecated
-	 * since 1.36
+	 * @param IDatabase|string|false $dbwOrWikiId wiki ID, if provided, must be self::LOCAL
+	 *        Will assign a new actor ID if none exists and if IDatabase is passed.
+	 *        Passing IDatabase is deprecated since 1.36. Use ActorNormalization()::acquireActorId()
+	 *        instead.
 	 * @return int The actor's ID, or 0 if no actor ID exists and $dbw was null
 	 * @throws PreconditionException if $dbwOrWikiId is a string and does not match the local wiki
 	 */
 	public function getActorId( $dbwOrWikiId = self::LOCAL ) : int {
-		if ( !$dbwOrWikiId instanceof IDatabase ) {
+		if ( $dbwOrWikiId instanceof IDatabase ) {
+			wfDeprecatedMsg( 'Passing parameter of type IDatabase', '1.36' );
+		} else {
 			$this->assertWiki( $dbwOrWikiId );
 		}
+
 		if ( !$this->isItemLoaded( 'actor' ) ) {
 			$this->load();
 		}
