@@ -24,8 +24,19 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		$usersArray = array_values( array_filter( $usersArray, static function ( $username ) {
 			return trim( $username ) !== '';
 		} ) );
+
+		// Normalize usernames
+		$normalizedUsers = [];
+		foreach ( $usersArray as $user ) {
+			$canonicalUser = User::getCanonicalName( $user );
+			$normalizedUsers[] = $canonicalUser;
+		}
+
+		// Remove any duplicate usernames
+		$uniqueUsers = array_unique( $normalizedUsers );
+
 		// This function is expected to return a string
-		return implode( "\n", $usersArray );
+		return implode( "\n", $uniqueUsers );
 	}
 
 	public function validate( $value, $alldata ) {
