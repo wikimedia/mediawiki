@@ -37,15 +37,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			// 1.2
 			[ 'doInterwikiUpdate' ],
 
-			// 1.25
-			// note this patch covers other _comment and _description fields too
-			[ 'doExtendCommentLengths' ],
-
-			// 1.26
-			[ 'dropTable', 'hitcounter' ],
-			[ 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ],
-			[ 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ],
-
 			// 1.27
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],

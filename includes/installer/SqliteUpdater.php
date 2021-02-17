@@ -34,12 +34,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.25
-			[ 'dropTable', 'hitcounter' ],
-			[ 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ],
-			[ 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ],
-			[ 'modifyField', 'filearchive', 'fa_deleted_reason', 'patch-editsummary-length.sql' ],
-
 			// 1.27
 			[ 'dropTable', 'msg_resource_links' ],
 			[ 'dropTable', 'msg_resource' ],
