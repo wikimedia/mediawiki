@@ -13,6 +13,7 @@
 		moduleInfoCache = {},
 		baseRequestParams,
 		OptionalParamWidget = require( './OptionalParamWidget.js' ),
+		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
 		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
 	WidgetMethods = {
@@ -82,21 +83,6 @@
 		passwordWidget: {
 			getApiValueForDisplay: function () {
 				return '';
-			}
-		},
-
-		toggleSwitchWidget: {
-			getApiValue: function () {
-				return this.getValue() ? 1 : undefined;
-			},
-			setApiValue: function ( v ) {
-				this.setValue( Util.apiBool( v ) );
-			},
-			// there is a parameter `shouldSuppressErrors` available, but
-			// it is not included in the function declaration because that
-			// causes eslint to complain since it is unused
-			apiCheckValid: function () {
-				return $.Deferred().resolve( true ).promise();
 			}
 		},
 
@@ -312,9 +298,8 @@
 
 			switch ( pi.type ) {
 				case 'boolean':
-					widget = new OO.ui.ToggleSwitchWidget();
+					widget = new BooleanToggleSwitchParamWidget();
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.toggleSwitchWidget );
 					pi.required = true; // Avoid wrapping in the non-required widget
 					break;
 
