@@ -2,6 +2,7 @@
 
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -49,10 +50,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 			->with( DB_REPLICA )
 			->willReturn( $database );
 
-		$user = $this->createMock( UserIdentity::class );
-		$user->expects( $this->any() )
-			->method( 'getId' )
-			->willReturn( $userId );
+		$user = new UserIdentityValue( $userId, 'TestUser', 0 );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 
@@ -77,9 +75,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$loadBalancer = $this->createMock( LoadBalancer::class );
 
 		$user = $this->createMock( UserIdentity::class );
-		$user->expects( $this->once() )
-			->method( 'getId' )
-			->willReturn( $userId );
+		$user = new UserIdentityValue( $userId, 'TestUser', 0 );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 
@@ -99,10 +95,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName2 = 'MediaWiki\User\UserEditTracker::initializeUserEditCount';
 		$editCount = 17;
 
-		$user = $this->createMock( UserIdentity::class );
-		$user->expects( $this->any() )
-			->method( 'getId' )
-			->willReturn( $userId );
+		$user = new UserIdentityValue( $userId, 'TestUser', 0 );
 
 		$database1 = $this->createMock( Database::class );
 		$database1->expects( $this->once() )
@@ -188,10 +181,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName = 'MediaWiki\User\UserEditTracker::initializeUserEditCount';
 		$editCount = 341;
 
-		$user = $this->createMock( UserIdentity::class );
-		$user->expects( $this->any() )
-			->method( 'getId' )
-			->willReturn( $userId );
+		$user = new UserIdentityValue( $userId, 'TestUser', 0 );
 
 		$database1 = $this->createMock( Database::class );
 		$database1->expects( $this->once() )
@@ -260,10 +250,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName = 'MediaWiki\User\UserEditTracker::getUserEditTimestamp';
 		$actorId = 982110;
 
-		$user = $this->createMock( UserIdentity::class );
-		$user->expects( $this->once() )
-			->method( 'getId' )
-			->willReturn( 1 );
+		$user = new UserIdentityValue( 1, 'TestUser', $actorId );
 
 		$expectedSort = ( $type === 'first' ) ? 'ASC' : 'DESC';
 		$dbTime = ( $time === 'null' ) ? null : $time;
@@ -338,12 +325,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$actorMigration = $this->createMock( ActorMigration::class );
 		$loadBalancer = $this->createMock( LoadBalancer::class );
 
-		$user = $this->createMock( UserIdentity::class );
-		$user->expects( $this->exactly( 2 ) )
-			->method( 'getId' )
-			->will(
-				$this->onConsecutiveCalls( 0, 0 )
-			);
+		$user = new UserIdentityValue( 0, 'TestUser', 0 );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 
@@ -359,18 +341,9 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 
 		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 
-		$anon = $this->createMock( UserIdentity::class );
-		$anon->expects( $this->once() )
-			->method( 'isRegistered' )
-			->willReturn( false );
+		$anon = new UserIdentityValue( 0, 'TestUser', 0 );
 
-		$user = $this->createMock( UserIdentity::class );
-		$user->expects( $this->once() )
-			->method( 'isRegistered' )
-			->willReturn( true );
-		$user->expects( $this->once() )
-			->method( 'getId' )
-			->willReturn( 123 );
+		$user = new UserIdentityValue( 123, 'TestUser', 0 );
 
 		$accessible = TestingAccessWrapper::newFromObject( $tracker );
 		$accessible->userEditCountCache = [ 'u123' => 5 ];
