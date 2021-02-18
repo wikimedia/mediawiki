@@ -1173,6 +1173,8 @@
 	"prefs-help-recentchangescount": "Número máximo: 1000",
 	"prefs-help-watchlist-token2": "Esta é a senha secreta para o feed da Web com sua lista de tokens vigiados.\nQualquer pessoa que descobrir esta senha será capaz de ler sua lista, então não a compartilhe.\nSe você precisar [[Special:ResetTokens|você pode redefini-lo]].",
 	"prefs-help-tokenmanagement": "Pode ver e repor a chave secreta da sua conta que permite aceder ao feed da sua lista de páginas vigiadas. Qualquer pessoa que conheça a chave será capaz de ler a sua lista de páginas vigiadas, por isso não a partilhe.",
+	"prefs-user-downloaddata-label": "Dados da conta:",
+	"prefs-user-downloaddata-info": "Baixar os dados da minha conta deste projeto",
 	"savedprefs": "As suas preferências foram salvas.",
 	"savedrights": "Os grupos {{GENDER:$1|do usuário|da usuária}} $1 foram gravados.",
 	"timezonelegend": "Fuso horário:",
