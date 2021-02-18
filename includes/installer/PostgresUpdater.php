@@ -43,7 +43,6 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return [
-			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
 			[ 'checkIndex', 'ipb_address_unique', [
 				[ 'ipb_address', 'text_ops', 'btree', 0 ],
 				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
@@ -84,6 +83,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				'addPgField', 'watchlist', 'wl_id',
 				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('watchlist_wl_id_seq')"
 			],
+			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
 
 			// 1.28
 			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
