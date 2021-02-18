@@ -160,8 +160,53 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 		if ( $expected ) {
 			$this->assertNotNull( $actor );
 			$this->assertSameActors( $expected, $actor );
+
+			// test caching
+			$cachedActor = $this->getStore()->$method( $argument );
+			$this->assertSame( $actor, $cachedActor );
 		} else {
 			$this->assertNull( $actor );
+		}
+	}
+
+	public function provideUserIdentityValues() {
+		yield [ new UserIdentityValue( 24, 'TestUser', 42 ) ];
+		yield [ new UserIdentityValue( 0, self::IP, 43 ) ];
+	}
+
+	/**
+	 * should check that select is only called once
+	 * @dataProvider provideUserIdentityValues
+	 * @covers ::findActorId
+	 * @covers ::getActorById
+	 * @covers ::getUserIdentityByName
+	 * @covers ::getUserIdentityByUserId
+	 * @param UserIdentity $expected
+	 */
+	public function testSequentialCacheRetrieval( UserIdentity $expected ) {
+		// ensure UserIdentity is cached
+		$actorId = $this->getStore()->findActorId( $expected );
+		$this->assertSame( $expected->getActorId(), $actorId );
+
+		$cachedActorId = $this->getStore()->findActorId( $expected );
+		$this->assertSame( $actorId, $cachedActorId );
+
+		$cachedActorId = $this->getStore()->acquireActorId( $expected );
+		$this->assertSame( $actorId, $cachedActorId );
+
+		$cached = $this->getStore()->getActorById( $actorId );
+		$this->assertNotNull( $cached );
+		$this->assertSameActors( $expected, $cached );
+
+		$cached = $this->getStore()->getUserIdentityByName( $expected->getName() );
+		$this->assertNotNull( $cached );
+		$this->assertSameActors( $expected, $cached );
+
+		$userId = $expected->getUserId();
+		if ( $userId ) {
+			$cached = $this->getStore()->getUserIdentityByUserId( $userId );
+			$this->assertNotNull( $cached );
+			$this->assertSameActors( $expected, $cached );
 		}
 	}
 
@@ -197,6 +242,10 @@ class ActorStoreTest extends MediaWikiIntegrationTestCase {
 		if ( $expected ) {
 			$this->assertNotNull( $actor );
 			$this->assertSameActors( $expected, $actor );
+
+			// test caching
+			$cachedActor = $this->getStore()->getUserIdentityByAnyId( $userId, $name );
+			$this->assertSame( $actor, $cachedActor );
 		} else {
 			$this->assertNull( $actor );
 		}
