@@ -53,7 +53,7 @@ abstract class UploadBase {
 	protected $mDesiredDestName;
 	/** @var string|null */
 	protected $mDestName;
-	/** @var string|null */
+	/** @var bool|null */
 	protected $mRemoveTempFile;
 	/** @var string|null */
 	protected $mSourceType;
