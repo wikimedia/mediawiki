@@ -1002,7 +1002,7 @@
 			{ "name": "ug_group", "columns": [ "ug_group" ], "unique": false },
 			{ "name": "ug_expiry", "columns": [ "ug_expiry" ], "unique": false }
 		],
-		"pk": [ "ug_user", "ug_group"]
+		"pk": [ "ug_user", "ug_group" ]
 	},
 	{
 		"name": "querycache_info",
@@ -1604,7 +1604,7 @@
 				"name": "cl_timestamp",
 				"comment": "This isn't really used at present. Provided for an optional sorting method by approximate addition time.",
 				"type": "datetimetz",
-				"options": { "notnull": true, "PlatformOptions": {"version": true} }
+				"options": { "notnull": true, "PlatformOptions": { "version": true } }
 			},
 			{
 				"name": "cl_collation",
