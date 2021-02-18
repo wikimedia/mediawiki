@@ -288,10 +288,59 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 			'foo <link rel="foo" href="bar" /> bar',
 			'<p>foo <link rel="foo" href="bar" /> bar</p>',
 		],
+		// From the old TidyTest class
+		[
+			'<mw:editsection> should survive tidy',
+			'<mw:editsection page="foo" section="bar">foo</mw:editsection>',
+			'<mw:editsection page="foo" section="bar">foo</mw:editsection>',
+		],
+		[
+			'<editsection> should survive tidy',
+			'<editsection page="foo" section="bar">foo</editsection>',
+			'<editsection page="foo" section="bar">foo</editsection>',
+		],
+		[
+			'<mw:toc> should survive tidy',
+			'<mw:toc>foo</mw:toc>',
+			'<mw:toc>foo</mw:toc>',
+		],
+		[
+			'<link> should survive tidy',
+			'<link foo="bar"/>foo',
+			"<link foo=\"bar\" /><p>foo</p>",
+		],
+		[
+			'<meta> should survive tidy',
+			'<meta foo="bar"/>foo',
+			"<meta foo=\"bar\" /><p>foo</p>",
+		],
 	];
 
 	public function provider() {
-		return self::$remexTidyTestData;
+		$testMathML = <<<'MathML'
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+    <mrow>
+      <mi>a</mi>
+      <mo>&InvisibleTimes;</mo>
+      <msup>
+        <mi>x</mi>
+        <mn>2</mn>
+      </msup>
+      <mo>+</mo>
+      <mi>b</mi>
+      <mo>&InvisibleTimes; </mo>
+      <mi>x</mi>
+      <mo>+</mo>
+      <mi>c</mi>
+    </mrow>
+  </math>
+MathML;
+		$testMathML = Sanitizer::normalizeCharReferences( $testMathML );
+		return array_merge( self::$remexTidyTestData, [ [
+			'<math> should survive tidy',
+			$testMathML,
+			$testMathML,
+		] ] );
 	}
 
 	/**

@@ -15,8 +15,10 @@ abstract class TidyDriverBase {
 	/**
 	 * Return true if validate() can be used
 	 * @return bool
+	 * @deprecated since 1.36, always returns false
 	 */
 	public function supportsValidate() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return false;
 	}
 

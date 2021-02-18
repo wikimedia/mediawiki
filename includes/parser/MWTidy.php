@@ -38,6 +38,7 @@ class MWTidy {
 	 *                     <body> or <html> tag.
 	 * @return string Corrected HTML output
 	 * @throws MWException
+	 * @deprecated since 1.36; use MediaWikiServices::getTidy()->tidy() instead
 	 */
 	public static function tidy( $text ) {
 		return MediaWikiServices::getInstance()->getTidy()->tidy( $text );
