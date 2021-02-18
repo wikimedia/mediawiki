@@ -1356,11 +1356,19 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			return [];
 		}
 
+		$wikiPage = $this->getWikiPage();
+		$wikiPage->loadPageData( WikiPage::READ_LATEST );
+		if ( !$wikiPage->exists() ) {
+			// page deleted while defering the update
+			return [];
+		}
+
 		$output = $this->getCanonicalParserOutput();
+		$title = $wikiPage->getTitle();
 
 		// Construct a LinksUpdate for the combined canonical output.
 		$linksUpdate = new LinksUpdate(
-			$this->getTitle(),
+			$title,
 			$output,
 			$recursive
 		);
@@ -1377,7 +1385,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$handler = $content->getContentHandler();
 
 			$updates = $handler->getSecondaryDataUpdates(
-				$this->getTitle(),
+				$title,
 				$content,
 				$role,
 				$renderedRevision
@@ -1388,7 +1396,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			// NOTE: we assume that the combined output contains all relevant meta-data for
 			// all slots!
 			$legacyUpdates = $content->getSecondaryDataUpdates(
-				$this->getTitle(),
+				$title,
 				null,
 				$recursive,
 				$output
@@ -1410,7 +1418,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// rare, so perhaps this isn't worth the trouble.
 
 		// TODO: consolidate with similar logic in WikiPage::getDeletionUpdates()
-		$wikiPage = $this->getWikiPage();
 		$parentRevision = $this->getParentRevision();
 		foreach ( $this->getRemovedSlotRoles() as $role ) {
 			// HACK: we should get the content model of the removed slot from a SlotRoleHandler!
@@ -1421,7 +1428,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$handler = $content->getContentHandler();
 
 			$updates = $handler->getDeletionUpdates(
-				$this->getTitle(),
+				$title,
 				$role
 			);
 			$allUpdates = array_merge( $allUpdates, $updates );
@@ -1438,8 +1445,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		}
 
 		// TODO: hard deprecate SecondaryDataUpdates in favor of RevisionDataUpdates in 1.33!
-		$this->hookRunner->onRevisionDataUpdates(
-			$this->getTitle(), $renderedRevision, $allUpdates );
+		$this->hookRunner->onRevisionDataUpdates( $title, $renderedRevision, $allUpdates );
 
 		return $allUpdates;
 	}

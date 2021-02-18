@@ -562,6 +562,27 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertCount( 1, $linksUpdates );
 	}
 
+	public function testGetSecondaryDataUpdatesDeleted() {
+		$user = $this->getTestUser()->getUser();
+		$page = $this->getPage( __METHOD__ );
+		$this->createRevision( $page, __METHOD__ );
+
+		$mainContent1 = new WikitextContent( 'first' );
+
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( SlotRecord::MAIN, $mainContent1 );
+		$updater = $this->getDerivedPageDataUpdater( $page );
+		$updater->prepareContent( $user, $update, false );
+
+		// Test that nothing happens if the page was deleted in the meantime
+		// This can happen when started by the job queue
+		$page->doDeleteArticleReal( 'Test', $user );
+
+		$dataUpdates = $updater->getSecondaryDataUpdates();
+
+		$this->assertEmpty( $dataUpdates );
+	}
+
 	/**
 	 * @param string $name
 	 *
