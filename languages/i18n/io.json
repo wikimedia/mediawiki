@@ -2444,6 +2444,7 @@
 	"logentry-patrol-patrol-auto": "$1 automatale {{GENDER:$2|indikis}} ke la revizo $4 de la pagino $3 surveyesas",
 	"logentry-newusers-create": "La konto dil uzero $1 kreesis.",
 	"logentry-newusers-autocreate": "L'uzanto $1 {{GENDER:$2|kreesis}} automatale",
+	"logentry-protect-unprotect": "$1 {{GENDER:$2|desprotektis}} l'artiklo $3",
 	"logentry-protect-protect": "$1 protektis la pagino $3 $4",
 	"logentry-protect-modify": "$1 {{GENDER:$2|modifikis}} la nivelo di protekto por $3 $4",
 	"logentry-protect-modify-cascade": "$1 {{GENDER:$2|modifikis}} la nivelo di protekto di $3 $4 [kaskade]",
@@ -2535,5 +2536,6 @@
 	"removecredentials-submit": "Removar permisi",
 	"specialmute-label-mute-email": "Silencigez e-posti de ca {{GENDER:$1|uzero}}",
 	"mute-preferences": "Tacema preferaji",
-	"gotointerwiki-external": "Tu balde livos {{SITENAME}} por vizitar [[$2]], quo esas diferanta ret-pagino.\n\n'''[$1 irez a $1]'''"
+	"gotointerwiki-external": "Tu balde livos {{SITENAME}} por vizitar [[$2]], quo esas diferanta ret-pagino.\n\n'''[$1 irez a $1]'''",
+	"userlogout-continue": "Ka tu deziras ekirar?"
 }
