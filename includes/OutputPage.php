@@ -3395,7 +3395,7 @@ class OutputPage extends ContextSource {
 
 		// Allow extensions to add their custom variables to the mw.config map.
 		// Use the 'ResourceLoaderGetConfigVars' hook if the variable is not
-		// page-dependant but site-wide (without state).
+		// page-dependent but site-wide (without state).
 		// Alternatively, you may want to use OutputPage->addJsConfigVars() instead.
 		$this->getHookRunner()->onMakeGlobalVariablesScript( $vars, $this );
 

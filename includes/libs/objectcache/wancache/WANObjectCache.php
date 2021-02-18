@@ -944,7 +944,7 @@ class WANObjectCache implements
 	 * these verifications only after a "time-till-verify" (TTV) has passed. This is a middle
 	 * ground between using blind TTLs and using constant verification. The adaptiveTTL() method
 	 * can be used to dynamically adjust the TTV. Also, the initial TTV can make use of the
-	 * last-modified times of the dependant entities (either from the DB or the "check" keys).
+	 * last-modified times of the dependent entities (either from the DB or the "check" keys).
 	 *
 	 * Example usage:
 	 * @code
@@ -1127,7 +1127,7 @@ class WANObjectCache implements
 	 * having to inspect a "current time left" variable (e.g. $curTTL, $curTTLs), a cache
 	 * regeneration will automatically be triggered using the callback.
 	 *
-	 * The $ttl argument and "hotTTR" option (in $opts) use time-dependant randomization
+	 * The $ttl argument and "hotTTR" option (in $opts) use time-dependent randomization
 	 * to avoid stampedes. Keys that are slow to regenerate and either heavily used
 	 * or subject to explicit (unpredictable) purges, may need additional mechanisms.
 	 * The simplest way to avoid stampedes for such keys is to use 'lockTSE' (in $opts).
