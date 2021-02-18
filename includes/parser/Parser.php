@@ -36,6 +36,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Tidy\RemexDriver;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
@@ -354,6 +355,9 @@ class Parser {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var RemexDriver */
+	private $remexDriver;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -378,7 +382,8 @@ class Parser {
 		'StylePath',
 		'TranscludeCacheExpiry',
 		'PreprocessorCacheThreshold',
-		'DisableLangConversion'
+		'DisableLangConversion',
+		'TidyConfig',
 	];
 
 	/**
@@ -467,6 +472,10 @@ class Parser {
 		$this->hookContainer = $hookContainer ??
 			MediaWikiServices::getInstance()->getHookContainer();
 		$this->hookRunner = new HookRunner( $this->hookContainer );
+
+		$this->remexDriver = new RemexDriver(
+			$this->svcOptions->get( 'TidyConfig' ) ?? []
+		);
 
 		// T250444: This will eventually be inlined here and the
 		// standalone method removed.
@@ -1673,12 +1682,9 @@ class Parser {
 
 		$text = $this->mStripState->unstripGeneral( $text );
 
-		# Clean up special characters, only run once, after doBlockLevels
-		$text = Sanitizer::armorFrenchSpaces( $text );
-
 		$text = Sanitizer::normalizeCharReferences( $text );
 
-		$text = MWTidy::tidy( $text );
+		$text = $this->remexDriver->tidy( $text, [ Sanitizer::class, 'armorFrenchSpaces' ] );
 
 		if ( $isMain ) {
 			$this->hookRunner->onParserAfterTidy( $this, $text );
