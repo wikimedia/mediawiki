@@ -254,7 +254,7 @@ class SpecialImport extends SpecialPage {
 		return [
 			'mapping' => [
 				'type' => 'radio',
-				'name' => 'wpmapping',
+				'name' => 'mapping',
 				// mw-import-mapping-interwiki, mw-import-mapping-upload
 				'id' => "mw-import-mapping-$sourceName",
 				'options-messages' => [
