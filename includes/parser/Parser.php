@@ -185,9 +185,8 @@ class Parser {
 	# Cleared with clearState():
 	/**
 	 * @var ParserOutput
-	 * @deprecated since 1.35; use Parser::getOutput()
 	 */
-	public $mOutput;
+	private $mOutput;
 	private $mAutonumber;
 
 	/**
@@ -1018,6 +1017,7 @@ class Parser {
 
 	/**
 	 * @return ParserOutput
+	 * @since 1.12.2
 	 */
 	public function getOutput() {
 		return $this->mOutput;
