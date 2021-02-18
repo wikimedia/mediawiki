@@ -478,7 +478,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'default' => HTML::Element(
 				'a',
 				[
-					'href' => $this->options->get( 'ScriptPath' ) . '/api.php?action=query&meta=userinfo',
+					'href' => $this->options->get( 'ScriptPath' ) .
+						'/api.php?action=query&meta=userinfo&uiprop=*',
 				],
 				$context->msg( 'prefs-user-downloaddata-info' )->text()
 			 ),
