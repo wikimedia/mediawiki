@@ -4685,7 +4685,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			}
 		}
 
-		// Clear any commit-dependant callbacks. They might even be present
+		// Clear any commit-dependent callbacks. They might even be present
 		// only due to transaction rounds, with no SQL transaction being active
 		$this->trxPostCommitOrIdleCallbacks = [];
 		$this->trxPreCommitOrIdleCallbacks = [];

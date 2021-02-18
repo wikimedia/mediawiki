@@ -1,7 +1,5 @@
 <?php
 /**
- * Foreign file accessible through api.php requests.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,7 +23,6 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Foreign file accessible through api.php requests.
- * Very hacky and inefficient, do not use :D
  *
  * @ingroup FileAbstraction
  */
@@ -63,7 +60,7 @@ class ForeignAPIFile extends File {
 			'iiprop' => self::getProps(),
 			'prop' => 'imageinfo',
 			'iimetadataversion' => MediaHandler::getMetadataVersion(),
-			// extmetadata is language-dependant, accessing the current language here
+			// extmetadata is language-dependent, accessing the current language here
 			// would be problematic, so we just get them all
 			'iiextmetadatamultilang' => 1,
 		] );

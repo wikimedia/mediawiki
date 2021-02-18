@@ -26,7 +26,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * Database independant search index updater
+ * Database independent search index updater
  *
  * @ingroup Search
  */

@@ -1,7 +1,5 @@
 <?php
 /**
- * Foreign repository accessible through api.php requests.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,7 +22,7 @@
 use MediaWiki\Logger\LoggerFactory;
 
 /**
- * A foreign repository with a remote MediaWiki with an API thingy
+ * A foreign repository for a remote MediaWiki accessible through api.php requests.
  *
  * Example config:
  *

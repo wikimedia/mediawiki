@@ -740,7 +740,7 @@
 			 * - When a module reaches a final state, pending job callbacks for the
 			 *   module from mw.loader.using() should be called.
 			 * - When a module reaches the 'ready' state from #execute(), consider
-			 *   executing dependant modules now having their dependencies satisfied.
+			 *   executing dependent modules now having their dependencies satisfied.
 			 * - When a module reaches the 'loaded' state from mw.loader.implement,
 			 *   consider executing it, if it has no unsatisfied dependencies.
 			 *
