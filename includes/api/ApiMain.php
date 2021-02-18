@@ -1648,7 +1648,7 @@ class ApiMain extends ApiBase {
 		$request = $this->getRequest();
 
 		$logCtx = [
-			// https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/event-schemas/+/master/jsonschema/mediawiki/api/request
+			// https://gerrit.wikimedia.org/g/mediawiki/event-schemas/+/master/jsonschema/mediawiki/api/request
 			'$schema' => '/mediawiki/api/request/0.0.1',
 			'meta' => [
 				'request_id' => WebRequest::getRequestId(),
@@ -1763,6 +1763,10 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Mark parameters as sensitive
+	 *
+	 * This is called automatically for you when declaring a parameter
+	 * with ApiBase::PARAM_SENSITIVE.
+	 *
 	 * @since 1.29
 	 * @param string|string[] $params
 	 */
