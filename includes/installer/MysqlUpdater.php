@@ -987,9 +987,9 @@ class MysqlUpdater extends DatabaseUpdater {
 
 	protected function doLanguageLinksLengthSync() {
 		$sync = [
-			[ 'table' => 'l10n_cache', 'field' => 'lc_lang' ],
-			[ 'table' => 'langlinks', 'field' => 'll_lang' ],
-			[ 'table' => 'sites', 'field' => 'site_language' ],
+			[ 'table' => 'l10n_cache', 'field' => 'lc_lang', 'file' => 'patch-l10n_cache-lc_lang-35.sql' ],
+			[ 'table' => 'langlinks', 'field' => 'll_lang', 'file' => 'patch-langlinks-ll_lang-35.sql' ],
+			[ 'table' => 'sites', 'field' => 'site_language', 'file' => 'patch-sites-site_language-35.sql' ],
 		];
 
 		foreach ( $sync as $s ) {
@@ -1000,7 +1000,7 @@ class MysqlUpdater extends DatabaseUpdater {
 
 			if ( $row && $row->Type !== "varbinary(35)" ) {
 				$this->applyPatch(
-					"patch-{$s['table']}-$field-35.sql",
+					$s['file'],
 					false,
 					"Updating length of $field in $table"
 				);
