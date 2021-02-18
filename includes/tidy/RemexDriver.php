@@ -29,12 +29,11 @@ class RemexDriver extends TidyDriverBase {
 		parent::__construct( $config );
 	}
 
-	public function tidy( $text ) {
+	public function tidy( $text, callable $textProcessor = null ) {
 		$traceCallback = static function ( $msg ) {
 			wfDebug( "RemexHtml: $msg" );
 		};
-
-		$formatter = new RemexCompatFormatter;
+		$formatter = new RemexCompatFormatter( [ 'textProcessor' => $textProcessor ] );
 		if ( $this->serializerTrace ) {
 			$serializer = new SerializerWithTracer( $formatter, null, $traceCallback );
 		} else {

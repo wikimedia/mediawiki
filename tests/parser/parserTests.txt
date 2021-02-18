@@ -1754,6 +1754,23 @@ Nowiki and french spacing
 <p><span typeof="mw:Nowiki">test<span typeof="mw:DisplaySpace"> </span>: 123</span></p>
 !! end
 
+!! test
+T255007: French spacing in raw text elements
+!! options
+wgRawHtml=1
+!! wikitext
+<html>
+<script>test ; 123</script>
+<style>test : 123</style>
+</html>
+!! html/php
+<p>
+<script>test ; 123</script>
+<style>test : 123</style>
+
+</p>
+!! end
+
 ###
 ### Comments
 ###
@@ -18253,7 +18270,7 @@ Punctuation: CSS ! important (T13874; with space after)
 !! wikitext
 <div style="width:50% ! important">important</div>
 !! html
-<div style="width:50%&#32;! important">important</div>
+<div style="width:50% ! important">important</div>
 !! end
 
 !! test
@@ -22820,7 +22837,7 @@ Play a bit with r67090 and T5158
 <div style="width:50% !important">&#160;</div>
 <div style="width:50%&#160;!important">&#160;</div>
 <div style="width:50%&#160;!important">&#160;</div>
-<div style="border&#32;: solid;">&#160;</div>
+<div style="border : solid;">&#160;</div>
 !! html/parsoid
 <div style="width:50% !important" data-parsoid='{"stx":"html"}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
 <div style="width:50% !important" data-parsoid='{"stx":"html","a":{"style":"width:50% !important"},"sa":{"style":"width:50%&amp;nbsp;!important"}}'><span typeof="mw:Entity" data-parsoid='{"srcContent":" "}'> </span></div>
@@ -22860,7 +22877,7 @@ T5158: Test for French spaces in attributes
 !! wikitext
 <br style=" clear : both ; " />
 !! html/php
-<p><br style="clear&#32;: both&#32;;" />
+<p><br style="clear : both ;" />
 </p>
 !! end
 
