@@ -146,8 +146,7 @@ class Parser {
 
 	# Persistent:
 	private $mTagHooks = [];
-	/** @deprecated since 1.35; use Parser::getFunctionHooks() */
-	public $mFunctionHooks = [];
+	private $mFunctionHooks = [];
 	private $mFunctionSynonyms = [ 0 => [], 1 => [] ];
 	private $mStripList = [];
 	private $mVarCache = [];
@@ -4941,6 +4940,7 @@ class Parser {
 	 * Get all registered function hook identifiers
 	 *
 	 * @return array
+	 * @since 1.10.0
 	 */
 	public function getFunctionHooks() {
 		return array_keys( $this->mFunctionHooks );

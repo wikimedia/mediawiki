@@ -1877,7 +1877,7 @@ class ParserTestRunner {
 	public function requireFunctionHook( $name ) {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
-		if ( isset( $parser->mFunctionHooks[$name] ) ) {
+		if ( in_array( $name, $parser->getFunctionHooks(), true ) ) {
 			return true;
 		} else {
 			$this->recorder->warning( "   This test suite requires the '$name' function " .
