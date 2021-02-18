@@ -1160,6 +1160,8 @@
 	"prefs-help-recentchangescount": "Azami sayı: 1000",
 	"prefs-help-watchlist-token2": "Bu izleme listenizin gizli anahtarıdır.\nAnahtarı bilen herkes izleme listenizi görebilir, bu nedenle kimseyle paylaşmayın.\nEğer isterseniz, [[Special:ResetTokens|sıfırlayabilirsiniz]].",
 	"prefs-help-tokenmanagement": "Hesabınızın izleme listenizdeki web akışına erişebilecek gizli anahtarını görebilir ve sıfırlayabilirsiniz. Anahtarı bilen herkes izleme listenizi okuyabilecek, bu yüzden paylaşmayın.",
+	"prefs-user-downloaddata-label": "Hesap verisi:",
+	"prefs-user-downloaddata-info": "Bu projedeki hesap verilerimi indir",
 	"savedprefs": "Tercihleriniz kaydedildi.",
 	"savedrights": "{{GENDER:$1|$1}} için kullanıcı grupları kaydedildi.",
 	"timezonelegend": "Zaman dilimi:",

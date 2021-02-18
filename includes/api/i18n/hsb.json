@@ -6,5 +6,6 @@
 	},
 	"apihelp-main-param-format": "Wudawanski format",
 	"apihelp-block-param-partial": "Blokuje wužiwarja na wěstych stronach abo we wěstych mjenowych rumach a nic na cyłej webstronje.",
-	"apihelp-feedcontributions-param-toponly": "Jenož aktualne wersije pokazać."
+	"apihelp-feedcontributions-param-toponly": "Jenož aktualne wersije pokazać.",
+	"apierror-mustbeloggedin": "Dyrbiš so přizjewić, zo by {{GENDER|móhł|móhła}} $1."
 }
