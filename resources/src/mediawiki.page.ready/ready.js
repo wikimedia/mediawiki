@@ -162,6 +162,8 @@ function loadSearchModule( moduleName ) {
 	//
 	// Vue search isn't loaded through this function so we are only collecting
 	// legacy search performance metrics here.
+
+	/* eslint-disable compat/compat */
 	var shouldTestSearch = !!( moduleName === 'mediawiki.searchSuggest' &&
 		mw.config.get( 'skin' ) === 'vector' &&
 		window.performance &&
@@ -170,6 +172,7 @@ function loadSearchModule( moduleName ) {
 		performance.getEntriesByName ),
 		loadStartMark = 'mwVectorLegacySearchLoadStart',
 		loadEndMark = 'mwVectorLegacySearchLoadEnd';
+	/* eslint-enable compat/compat */
 
 	function requestSearchModule() {
 		if ( shouldTestSearch ) {

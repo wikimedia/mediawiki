@@ -691,6 +691,7 @@ Controller.prototype._doLiveUpdate = function () {
  * @private
  */
 Controller.prototype._shouldCheckForNewChanges = function () {
+	// eslint-disable-next-line compat/compat
 	return !document.hidden &&
 		!this.filtersModel.hasConflict() &&
 		!this.changesListModel.getNewChangesExist() &&
