@@ -145,8 +145,7 @@ class Parser {
 	public const TOC_END = '</mw:toc>';
 
 	# Persistent:
-	/** @deprecated since 1.35; use Parser::getTags() */
-	public $mTagHooks = [];
+	private $mTagHooks = [];
 	/** @deprecated since 1.35; use Parser::getFunctionHooks() */
 	public $mFunctionHooks = [];
 	private $mFunctionSynonyms = [ 0 => [], 1 => [] ];
@@ -5538,6 +5537,7 @@ class Parser {
 	 * Accessor
 	 *
 	 * @return array
+	 * @since before 1.11
 	 */
 	public function getTags() {
 		return array_keys( $this->mTagHooks );

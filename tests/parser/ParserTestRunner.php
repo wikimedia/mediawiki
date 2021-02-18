@@ -1859,7 +1859,7 @@ class ParserTestRunner {
 				return false;
 			}
 		}
-		if ( isset( $parser->mTagHooks[$name] ) ) {
+		if ( in_array( $name, $parser->getTags(), true ) ) {
 			return true;
 		} else {
 			$this->recorder->warning( "   Skipping this test suite because it requires the '$name' hook, " .
