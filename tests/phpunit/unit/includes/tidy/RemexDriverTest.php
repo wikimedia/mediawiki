@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Config\ServiceOptions;
+
 class RemexDriverTest extends MediaWikiUnitTestCase {
 	private static $remexTidyTestData = [
 		[
@@ -300,7 +302,12 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 	 * @covers MediaWiki\Tidy\RemexMungerData
 	 */
 	public function testTidy( $desc, $input, $expected ) {
-		$r = new MediaWiki\Tidy\RemexDriver( [] );
+		$r = new MediaWiki\Tidy\RemexDriver(
+			new ServiceOptions(
+				MediaWiki\Tidy\RemexDriver::CONSTRUCTOR_OPTIONS,
+				new HashConfig( [ 'TidyConfig' => [] ] )
+			)
+		);
 		$result = $r->tidy( $input );
 		$this->assertEquals( $expected, $result, $desc );
 	}
@@ -324,7 +331,12 @@ class RemexDriverTest extends MediaWikiUnitTestCase {
 	 * @coversNothing
 	 */
 	public function testHtml5Lib( $desc, $input ) {
-		$r = new MediaWiki\Tidy\RemexDriver( [] );
+		$r = new MediaWiki\Tidy\RemexDriver(
+			new ServiceOptions(
+				MediaWiki\Tidy\RemexDriver::CONSTRUCTOR_OPTIONS,
+				new HashConfig( [ 'TidyConfig' => [] ] )
+			)
+		);
 		$result = $r->tidy( $input );
 		$this->assertTrue( true, $desc );
 	}

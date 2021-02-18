@@ -36,7 +36,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
-use MediaWiki\Tidy\RemexDriver;
+use MediaWiki\Tidy\TidyDriverBase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
@@ -355,8 +355,8 @@ class Parser {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var RemexDriver */
-	private $remexDriver;
+	/** @var TidyDriverBase */
+	private $tidy;
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -383,7 +383,6 @@ class Parser {
 		'TranscludeCacheExpiry',
 		'PreprocessorCacheThreshold',
 		'DisableLangConversion',
-		'TidyConfig',
 	];
 
 	/**
@@ -402,6 +401,7 @@ class Parser {
 	 * @param BadFileLookup|null $badFileLookup
 	 * @param LanguageConverterFactory|null $languageConverterFactory
 	 * @param HookContainer|null $hookContainer
+	 * @param TidyDriverBase|null $tidy
 	 */
 	public function __construct(
 		$svcOptions = null,
@@ -415,7 +415,8 @@ class Parser {
 		$logger = null,
 		BadFileLookup $badFileLookup = null,
 		LanguageConverterFactory $languageConverterFactory = null,
-		HookContainer $hookContainer = null
+		HookContainer $hookContainer = null,
+		TidyDriverBase $tidy = null
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser is deprecated; use a ParserFactory
@@ -473,9 +474,8 @@ class Parser {
 			MediaWikiServices::getInstance()->getHookContainer();
 		$this->hookRunner = new HookRunner( $this->hookContainer );
 
-		$this->remexDriver = new RemexDriver(
-			$this->svcOptions->get( 'TidyConfig' ) ?? []
-		);
+		$this->tidy = $tidy ??
+			MediaWikiServices::getInstance()->getTidy();
 
 		// T250444: This will eventually be inlined here and the
 		// standalone method removed.
@@ -1682,7 +1682,7 @@ class Parser {
 
 		$text = $this->mStripState->unstripGeneral( $text );
 
-		$text = $this->remexDriver->tidy( $text, [ Sanitizer::class, 'armorFrenchSpaces' ] );
+		$text = $this->tidy->tidy( $text, [ Sanitizer::class, 'armorFrenchSpaces' ] );
 
 		if ( $isMain ) {
 			$this->hookRunner->onParserAfterTidy( $this, $text );

@@ -77,6 +77,7 @@ use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\RevertedTagUpdateManager;
+use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
@@ -1428,6 +1429,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getTempFSFileFactory() : TempFSFileFactory {
 		return $this->getService( 'TempFSFileFactory' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return TidyDriverBase
+	 */
+	public function getTidy() : TidyDriverBase {
+		return $this->getService( 'Tidy' );
 	}
 
 	/**
