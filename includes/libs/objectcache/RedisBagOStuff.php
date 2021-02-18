@@ -113,7 +113,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->logRequest( 'get', $key, $conn->getServer(), $e );
 
-		$this->updateOpStats( self::METRIC_OP_GET, [ $key ], null, [ $valueSize ] );
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ null, $valueSize ] ] );
 
 		return $result;
 	}
@@ -126,6 +126,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$ttl = $this->getExpirationAsTTL( $exptime );
 		$serialized = $this->getSerialized( $value, $key );
+		$valueSize = strlen( $serialized );
 
 		$e = null;
 		try {
@@ -141,7 +142,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->logRequest( 'set', $key, $conn->getServer(), $e );
 
-		$this->updateOpStats( self::METRIC_OP_SET, [ $key ], [ strlen( $serialized ) ] );
+		$this->updateOpStats( self::METRIC_OP_SET, [ $key => [ $valueSize, null ] ] );
 
 		return $result;
 	}
@@ -212,7 +213,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		// Preserve the order of $keys
 		$result = [];
-		$valueSizes = [];
+		$valueSizesByKey = [];
 		foreach ( $keys as $key ) {
 			if ( array_key_exists( $key, $blobsFound ) ) {
 				$blob = $blobsFound[$key];
@@ -220,13 +221,14 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 				if ( $value !== false ) {
 					$result[$key] = $value;
 				}
-				$valueSizes[] = strlen( $blob );
+				$valueSize = strlen( $blob );
 			} else {
-				$valueSizes[] = false;
+				$valueSize = false;
 			}
+			$valueSizesByKey[$key] = [ null, $valueSize ];
 		}
 
-		$this->updateOpStats( self::METRIC_OP_GET, $keys, [], $valueSizes );
+		$this->updateOpStats( self::METRIC_OP_GET, $valueSizesByKey );
 
 		return $result;
 	}
@@ -251,8 +253,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 		$ttl = $this->getExpirationAsTTL( $exptime );
 		$op = $ttl ? 'setex' : 'set';
 
-		$valueKeys = [];
-		$valueSizes = [];
+		$valueSizesByKey = [];
 		foreach ( $batches as $server => $batchKeys ) {
 			$conn = $conns[$server];
 
@@ -267,8 +268,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 					} else {
 						$conn->set( $key, $serialized );
 					}
-					$valueKeys[] = $key;
-					$valueSizes[] = strlen( $serialized );
+					$valueSizesByKey[$key] = [ strlen( $serialized ), null ];
 				}
 				$batchResult = $conn->exec();
 				if ( $batchResult === false ) {
@@ -286,7 +286,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			$this->logRequest( $op, implode( ',', $batchKeys ), $server, $e );
 		}
 
-		$this->updateOpStats( self::METRIC_OP_SET, $valueKeys, $valueSizes );
+		$this->updateOpStats( self::METRIC_OP_SET, $valueSizesByKey );
 
 		return $result;
 	}
@@ -334,7 +334,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			$this->logRequest( 'delete', implode( ',', $batchKeys ), $server, $e );
 		}
 
-		$this->updateOpStats( self::METRIC_OP_DELETE, $keys );
+		$this->updateOpStats( self::METRIC_OP_DELETE, array_values( $keys ) );
 
 		return $result;
 	}
@@ -391,7 +391,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 			$this->logRequest( $op, implode( ',', $batchKeys ), $server, $e );
 		}
 
-		$this->updateOpStats( self::METRIC_OP_CHANGE_TTL, $keys );
+		$this->updateOpStats( self::METRIC_OP_CHANGE_TTL, array_values( $keys ) );
 
 		return $result;
 	}
@@ -404,6 +404,8 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$ttl = $this->getExpirationAsTTL( $expiry );
 		$serialized = $this->getSerialized( $value, $key );
+		$valueSize = strlen( $serialized );
+
 		try {
 			$result = $conn->set(
 				$key,
@@ -417,7 +419,7 @@ class RedisBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->logRequest( 'add', $key, $conn->getServer(), $result );
 
-		$this->updateOpStats( self::METRIC_OP_ADD, [ $key ], [ strlen( $serialized ) ] );
+		$this->updateOpStats( self::METRIC_OP_ADD, [ $key => [ $valueSize, null ] ] );
 
 		return $result;
 	}
