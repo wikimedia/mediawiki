@@ -1062,43 +1062,44 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 
 	/**
 	 * @param string $op Operation name as a MediumSpecificBagOStuff::METRIC_OP_* constant
-	 * @param string[] $keys List of cache keys referenced by this operation
-	 * @param int[]|null $sSizes List of corresponding send payload sizes; null if not applicable
-	 * @param int[]|false[]|null $rSizes List of corresponding receive payload sizes,
-	 *  with "false" entries indicating that the key was not found; null if not applicable
+	 * @param array<int,string>|array<string,int[]> $keyInfo Key list, if payload sizes are not
+	 *  applicable, otherwise, map of (key => (send payload size, receive payload size)); send
+	 *  and receive sizes are null where not applicable and receive sizes are "false" for keys
+	 *  that were not found during read operations
 	 */
-	protected function updateOpStats(
-		string $op,
-		array $keys,
-		?array $sSizes = null,
-		?array $rSizes = null
-	) {
+	protected function updateOpStats( string $op, array $keyInfo ) {
 		$deltasByMetric = [];
-		foreach ( $keys as $i => $key ) {
+
+		foreach ( $keyInfo as $indexOrKey => $keyOrSizes ) {
+			if ( is_array( $keyOrSizes ) ) {
+				$key = $indexOrKey;
+				list( $sPayloadSize, $rPayloadSize ) = $keyOrSizes;
+			} else {
+				$key = $keyOrSizes;
+				$sPayloadSize = null;
+				$rPayloadSize = null;
+			}
+
 			// Metric prefix for the cache wrapper and key collection name
 			$prefix = $this->determineKeyPrefixForStats( $key );
 
-			if ( $op === self::METRIC_OP_GET && $rSizes ) {
+			if ( $op === self::METRIC_OP_GET ) {
 				// This operation was either a "hit" or "miss" for this key
-				$name = ( $rSizes[$i] === false )
-					? "{$prefix}.{$op}_miss_rate"
-					: "{$prefix}.{$op}_hit_rate";
+				$name = "{$prefix}.{$op}_" . ( $rPayloadSize === false ? 'miss_rate' : 'hit_rate' );
 			} else {
 				// There is no concept of "hit" or "miss" for this operation
 				$name = "{$prefix}.{$op}_call_rate";
 			}
 			$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + 1;
 
-			$bytesSent = ( $sSizes ? $sSizes[$i] : 0 );
-			if ( $bytesSent > 0 ) {
+			if ( $sPayloadSize > 0 ) {
 				$name = "{$prefix}.{$op}_bytes_sent";
-				$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + $bytesSent;
+				$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + $sPayloadSize;
 			}
 
-			$bytesRead = ( $rSizes ? $rSizes[$i] : 0 );
-			if ( $bytesRead > 0 ) {
+			if ( $rPayloadSize > 0 ) {
 				$name = "{$prefix}.{$op}_bytes_read";
-				$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + $bytesRead;
+				$deltasByMetric[$name] = ( $deltasByMetric[$name] ?? 0 ) + $rPayloadSize;
 			}
 		}
 
