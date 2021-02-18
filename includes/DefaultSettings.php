@@ -9727,6 +9727,15 @@ $wgRestAllowCrossOriginCookieAuth = false;
  */
 $wgParserCacheUseJson = true;
 
+/**
+ * An array of open graph tags which should be added by all skins.
+ * Accepted values are "og:title", "og:type" and "twitter:card".
+ * Since some of these fields can be provided by extensions it defaults to an empty array.
+ *
+ * @since 1.36
+ */
+$wgSkinMetaTags = [];
+
 /*
  * This file uses VisualStudio style region/endregion fold markers which are
  * recognised by PHPStorm. If modelines are enabled, the following editor

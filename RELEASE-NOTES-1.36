@@ -34,6 +34,8 @@ this is no longer recommended and the option has been removed.
   feature entirely.
 * (T244058) $wgOldRevisionParserCacheExpireTime — This setting was added to
   control caching of ParserOutput for old revisions.
+* (T157145) $wgSkinMetaTags allows configuration of skins to support meta
+  tags that enable sharing of mediawiki pages on a variety of social platforms.
 * …
 
 ==== Changed configuration ====
