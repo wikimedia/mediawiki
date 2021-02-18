@@ -35,7 +35,7 @@ $( function () {
 
 	sources.forEach( function ( name ) {
 		// Don't infuse the individual RadioSelectWidgets, broken up as a hack.
-		var $radios = $( '#mw-import-' + name + '-form input[name=wpmapping]' ),
+		var $radios = $( '#mw-import-' + name + '-form input[name=mapping]' ),
 			namespace = OO.ui.infuse( $( '#mw-import-namespace-' + name ) ),
 			rootpage = OO.ui.infuse( $( '#mw-interwiki-rootpage-' + name ) );
 
