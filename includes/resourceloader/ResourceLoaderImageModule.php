@@ -18,6 +18,7 @@
  * @file
  * @author Trevor Parscal
  */
+use Wikimedia\Minify\CSSMin;
 
 /**
  * Module for generated and embedded images.

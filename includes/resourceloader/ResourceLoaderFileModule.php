@@ -22,6 +22,7 @@
 
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Minify\CSSMin;
 
 /**
  * Module based on local JavaScript/CSS files.

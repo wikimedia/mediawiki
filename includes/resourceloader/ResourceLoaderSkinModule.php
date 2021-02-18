@@ -17,6 +17,7 @@
  *
  * @file
  */
+use Wikimedia\Minify\CSSMin;
 
 /**
  * Module for skin stylesheets.
