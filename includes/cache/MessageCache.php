@@ -1252,8 +1252,6 @@ class MessageCache implements LoggerAwareInterface {
 	public function getParser() {
 		if ( !$this->mParser ) {
 			$parser = MediaWikiServices::getInstance()->getParser();
-			# Do some initialisation so that we don't have to do it twice
-			$parser->firstCallInit();
 			# Clone it and store it
 			$this->mParser = clone $parser;
 		}

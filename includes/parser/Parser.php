@@ -158,9 +158,9 @@ class Parser {
 	public $mMarkerIndex = 0;
 	/**
 	 * @var bool Whether firstCallInit still needs to be called
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35; always false
 	 */
-	public $mFirstCall = true;
+	public $mFirstCall = false;
 
 	# Initialised by initializeVariables()
 
@@ -453,9 +453,13 @@ class Parser {
 
 		$this->tidy = $tidy;
 
-		// T250444: This will eventually be inlined here and the
-		// standalone method removed.
-		$this->firstCallInit();
+		// These steps used to be done in "::firstCallInit()"
+		// (if you're chasing a reference from some old code)
+		CoreParserFunctions::register( $this );
+		CoreTagHooks::register( $this );
+		$this->initializeVariables();
+
+		$this->hookRunner->onParserFirstCallInit( $this );
 	}
 
 	/**
@@ -496,21 +500,16 @@ class Parser {
 	}
 
 	/**
-	 * Do various kinds of initialisation on the first call of the parser
+	 * Used to do various kinds of initialisation on the first call of the
+	 * parser.
 	 * @deprecated since 1.35, this initialization is done in the constructor
 	 *  and manual calls to ::firstCallInit() have no effect.
 	 */
 	public function firstCallInit() {
-		if ( !$this->mFirstCall ) {
-			return;
-		}
-		$this->mFirstCall = false;
-
-		CoreParserFunctions::register( $this );
-		CoreTagHooks::register( $this );
-		$this->initializeVariables();
-
-		$this->hookRunner->onParserFirstCallInit( $this );
+		/*
+		 * This method should be hard-deprecated once remaining calls are
+		 * removed; it no longer does anything.
+		 */
 	}
 
 	/**
@@ -519,7 +518,6 @@ class Parser {
 	 * @internal
 	 */
 	public function clearState() {
-		$this->firstCallInit();
 		$this->resetOutput();
 		$this->mAutonumber = 0;
 		$this->mLinkHolders = new LinkHolderArray(
@@ -4946,7 +4944,6 @@ class Parser {
 	 * @return array
 	 */
 	public function getFunctionHooks() {
-		$this->firstCallInit();
 		return array_keys( $this->mFunctionHooks );
 	}
 
@@ -5543,7 +5540,6 @@ class Parser {
 	 * @return array
 	 */
 	public function getTags() {
-		$this->firstCallInit();
 		return array_keys( $this->mTagHooks );
 	}
 
@@ -5552,7 +5548,6 @@ class Parser {
 	 * @return array
 	 */
 	public function getFunctionSynonyms() {
-		$this->firstCallInit();
 		return $this->mFunctionSynonyms;
 	}
 
