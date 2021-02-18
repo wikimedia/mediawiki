@@ -1769,6 +1769,11 @@ wgRawHtml=1
 <style>test : 123</style>
 
 </p>
+!! html/parsoid
+<p><span typeof="mw:Extension/html" about="#mwt2" data-mw='{"name":"html","attrs":{},"body":{"extsrc":"\n&lt;script>test ; 123&lt;/script>\n&lt;style>test : 123&lt;/style>\n"}}'>
+</span><script about="#mwt2">test ; 123</script><span about="#mwt2">
+</span><style about="#mwt2">test : 123</style><span about="#mwt2">
+</span></p>
 !! end
 
 ###
@@ -7714,9 +7719,9 @@ Templated table cell with untemplated attributes: Common use cases
 !! wikitext
 {|
 |-
-!class="test"{{table_cell_content}} /* <th> & <td> combine */
+!class="test"{{table_cell_content}} /* th & td combine */
 |-
-|class="test"{{table_cell_content}} /* <td> & <td> combine */
+|class="test"{{table_cell_content}} /* td & td combine */
 |
 |class="test"{{table_cell_content|attr=style='color:red;'}}
 |
@@ -7726,10 +7731,10 @@ Templated table cell with untemplated attributes: Common use cases
 <table>
 
 <tbody><tr>
-<th class="test">foo /* </th><th> &amp; </th><td> combine */
-</td></tr>
+<th class="test">foo /* th &amp; td combine */
+</th></tr>
 <tr>
-<td class="test">foo /* </td><td> &amp; </td><td> combine */
+<td class="test">foo /* td &amp; td combine */
 </td>
 <td>
 </td>
@@ -7742,9 +7747,9 @@ Templated table cell with untemplated attributes: Common use cases
 !! html/parsoid
 <table>
 <tbody><tr data-parsoid='{"startTagSrc":"|-"}'>
-<th class="test" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"pi":[[]]}' data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* "]}'>foo /*</th><th data-parsoid='{"stx":"html","autoInsertedEnd":true}'> &amp; </th><td data-parsoid='{"stx":"html","autoInsertedEnd":true}'> combine */</td></tr>
+<th class="test" typeof="mw:Transclusion" about="#mwt1" data-parsoid='{"pi":[[]]}' data-mw='{"parts":["!class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* th &amp; td combine */"]}'>foo /* th &amp; td combine */</th></tr>
 <tr data-parsoid='{"startTagSrc":"|-"}'>
-<td class="test" typeof="mw:Transclusion" about="#mwt2" data-parsoid='{"pi":[[]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* "]}'>foo /*</td><td data-parsoid='{"stx":"html","autoInsertedEnd":true}'> &amp; </td><td data-parsoid='{"stx":"html","autoInsertedEnd":true}'> combine */</td>
+<td class="test" typeof="mw:Transclusion" about="#mwt2" data-parsoid='{"pi":[[]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{},"i":0}}," /* td &amp; td combine */"]}'>foo /* td &amp; td combine */</td>
 <td></td>
 <td class="test" style="color:red;" typeof="mw:Transclusion" about="#mwt3" data-parsoid='{"pi":[[{"k":"attr","named":true}]]}' data-mw='{"parts":["|class=\"test\"",{"template":{"target":{"wt":"table_cell_content","href":"./Template:Table_cell_content"},"params":{"attr":{"wt":"style=&apos;color:red;&apos;"}},"i":0}}]}'>foo</td>
 <td></td>
@@ -30020,16 +30025,6 @@ parsoid={
 === hi <span id="x">hi</span> hi ho ===
 !! wikitext/edited
 === hi <span id="x" class="y">hi</span> hi ho ===
-!! end
-
-!! test
-Ensure disambiguation links are marked properly
-!! options
-parsoid=wt2html
-!! wikitext
-[[Disambiguation]]
-!! html/parsoid
-<p><a rel="mw:WikiLink" href="./Disambiguation" title="Disambiguation" class="mw-disambig">Disambiguation</a></p>
 !! end
 
 ## Note that there's a leading \r here that's necessary for the test
