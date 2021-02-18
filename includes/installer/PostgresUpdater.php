@@ -75,12 +75,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgField', 'templatelinks', 'tl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ],
 			[ 'addPgField', 'imagelinks', 'il_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ],
 
-			// 1.25
-			[ 'dropTable', 'hitcounter' ],
-			[ 'dropField', 'site_stats', 'ss_total_views', 'patch-drop-ss_total_views.sql' ],
-			[ 'dropField', 'page', 'page_counter', 'patch-drop-page_counter.sql' ],
-			[ 'dropFkey', 'recentchanges', 'rc_cur_id' ],
-
 			// **** T272199 MARKER ****
 
 			// 1.27
