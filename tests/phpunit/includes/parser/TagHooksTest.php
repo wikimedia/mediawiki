@@ -56,8 +56,6 @@ class TagHooksTest extends MediaWikiIntegrationTestCase {
 			$this->getParserOptions()
 		);
 		$this->assertEquals( "<p>FooOneBaz\n</p>", $parserOutput->getText( [ 'unwrap' => true ] ) );
-
-		$parser->mPreprocessor = null; # Break the Parser <-> Preprocessor cycle
 	}
 
 	/**
