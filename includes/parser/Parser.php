@@ -526,6 +526,7 @@ class Parser {
 	 * parser.
 	 * @deprecated since 1.35, this initialization is done in the constructor
 	 *  and manual calls to ::firstCallInit() have no effect.
+	 * @since 1.7
 	 */
 	public function firstCallInit() {
 		/*
@@ -586,6 +587,7 @@ class Parser {
 
 	/**
 	 * Reset the ParserOutput
+	 * @since 1.34
 	 */
 	public function resetOutput() {
 		$this->mOutput = new ParserOutput;
@@ -608,6 +610,7 @@ class Parser {
 	 *  use the current timestamp.
 	 * @return ParserOutput A ParserOutput
 	 * @return-taint escaped
+	 * @since 1.10 method is public
 	 */
 	public function parse(
 		$text, PageReference $page, ParserOptions $options,
@@ -840,6 +843,7 @@ class Parser {
 	 * @param bool|PPFrame $frame The frame to use for expanding any template variables
 	 * @return string UNSAFE half-parsed HTML
 	 * @return-taint escaped
+	 * @since 1.8
 	 */
 	public function recursiveTagParse( $text, $frame = false ) {
 		$text = $this->internalParse( $text, false, $frame );
@@ -907,6 +911,7 @@ class Parser {
 	 * @param int|null $revid
 	 * @param bool|PPFrame $frame
 	 * @return mixed|string
+	 * @since 1.8
 	 */
 	public function preprocess( $text, ?PageReference $page,
 		ParserOptions $options, $revid = null, $frame = false
@@ -949,6 +954,7 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @param array $params
 	 * @return string
+	 * @since 1.17
 	 */
 	public function getPreloadText( $text, PageReference $page, ParserOptions $options, $params = [] ) {
 		$msg = new RawMessage( $text );
@@ -970,6 +976,7 @@ class Parser {
 	 * Should only be used when doing pre-save transform.
 	 *
 	 * @param UserIdentity|null $user user identity or null (to reset)
+	 * @since 1.17
 	 */
 	public function setUser( ?UserIdentity $user ) {
 		if ( $user ) {
@@ -984,12 +991,14 @@ class Parser {
 	 *
 	 * @deprecated since 1.37, use setPage() instead.
 	 * @param Title|null $t
+	 * @since 1.12
 	 */
 	public function setTitle( Title $t = null ) {
 		$this->setPage( $t );
 	}
 
 	/**
+	 * @since 1.6
 	 * @deprecated since 1.37, use getPage instead.
 	 * @return Title
 	 */
@@ -1045,6 +1054,7 @@ class Parser {
 	/**
 	 * Mutator for the output type.
 	 * @param int $ot One of the Parser::OT_… constants
+	 * @since 1.8
 	 */
 	public function setOutputType( $ot ): void {
 		$this->mOutputType = $ot;
@@ -1071,7 +1081,7 @@ class Parser {
 
 	/**
 	 * @return ParserOutput
-	 * @since 1.12.2
+	 * @since 1.14
 	 */
 	public function getOutput() {
 		return $this->mOutput;
@@ -1079,6 +1089,7 @@ class Parser {
 
 	/**
 	 * @return ParserOptions|null
+	 * @since 1.6
 	 */
 	public function getOptions() {
 		return $this->mOptions;
@@ -1107,6 +1118,7 @@ class Parser {
 
 	/**
 	 * @return int
+	 * @since 1.14
 	 */
 	public function nextLinkID() {
 		return $this->mLinkID++;
@@ -1114,6 +1126,7 @@ class Parser {
 
 	/**
 	 * @param int $id
+	 * @since 1.8
 	 */
 	public function setLinkID( $id ) {
 		$this->mLinkID = $id;
@@ -1122,6 +1135,7 @@ class Parser {
 	/**
 	 * Get a language object for use in parser functions such as {{FORMATNUM:}}
 	 * @return Language
+	 * @since 1.7
 	 */
 	public function getFunctionLang() {
 		return $this->getTargetLanguage();
@@ -1152,6 +1166,7 @@ class Parser {
 	 * ParserOptions object otherwise
 	 * @deprecated since 1.36. Use ::getUserIdentity instead.
 	 * @return User
+	 * @since 1.17
 	 */
 	public function getUser() {
 		if ( $this->mUser !== null ) {
@@ -1314,6 +1329,7 @@ class Parser {
 
 	/**
 	 * @return StripState
+	 * @since 1.34
 	 */
 	public function getStripState() {
 		return $this->mStripState;
@@ -2858,6 +2874,7 @@ class Parser {
 	 * @param string $text Wikitext
 	 * @param int $flags Bit field of Preprocessor::DOM_* constants
 	 * @return PPNode
+	 * @since 1.23 method is public
 	 */
 	public function preprocessToDom( $text, $flags = 0 ) {
 		return $this->getPreprocessor()->preprocessToObj( $text, $flags );
@@ -2882,6 +2899,7 @@ class Parser {
 	 * @param bool $argsOnly Only do argument (triple-brace) expansion, not
 	 *   double-brace expansion.
 	 * @return string
+	 * @since 1.24 method is public
 	 */
 	public function replaceVariables( $text, $frame = false, $argsOnly = false ) {
 		# Is there any text? Also, Prevent too big inclusions!
@@ -3423,6 +3441,7 @@ class Parser {
 	 * @param LinkTarget $title
 	 *
 	 * @return array
+	 * @since 1.12
 	 */
 	public function getTemplateDom( LinkTarget $title ) {
 		$cacheTitle = $title;
@@ -3537,6 +3556,7 @@ class Parser {
 	 * Fetch the unparsed text of a template and register a reference to it.
 	 * @param LinkTarget $link
 	 * @return array ( string or false, Title )
+	 * @since 1.11
 	 */
 	public function fetchTemplateAndTitle( LinkTarget $link ) {
 		// Use Title for compatibility with callbacks and return type
@@ -3582,6 +3602,7 @@ class Parser {
 	 * @param bool|Parser $parser
 	 *
 	 * @return array|DeprecatablePropertyArray
+	 * @since 1.12
 	 */
 	public static function statelessFetchTemplate( $page, $parser = false ) {
 		$title = Title::castFromLinkTarget( $page ); // for compatibility with return type
@@ -3729,6 +3750,7 @@ class Parser {
 	 * @param LinkTarget $link
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return array ( File or false, Title of file )
+	 * @since 1.18
 	 */
 	public function fetchFileAndTitle( LinkTarget $link, array $options = [] ) {
 		$file = $this->fetchFileNoRegister( $link, $options );
@@ -3904,6 +3926,7 @@ class Parser {
 	 * @throws MWException
 	 * @return string
 	 * @internal
+	 * @since 1.12
 	 */
 	public function extensionSubstitution( array $params, PPFrame $frame ) {
 		static $errorStr = '<span class="error">';
@@ -4008,6 +4031,7 @@ class Parser {
 
 	/**
 	 * @return bool False if the limit has been exceeded
+	 * @since 1.13
 	 */
 	public function incrementExpensiveFunctionCount() {
 		$this->mExpensiveFunctionCount++;
@@ -4073,6 +4097,7 @@ class Parser {
 	 * @see ParserOutput::addTrackingCategory()
 	 * @param string $msg Message key
 	 * @return bool Whether the addition was successful
+	 * @since 1.19 method is public
 	 */
 	public function addTrackingCategory( $msg ) {
 		return $this->mOutput->addTrackingCategory( $msg, $this->getTitle() );
@@ -4505,6 +4530,7 @@ class Parser {
 	 * @param ParserOptions $options Parsing options
 	 * @param bool $clearState Whether to clear the parser state first
 	 * @return string The altered wiki markup
+	 * @since 1.3
 	 */
 	public function preSaveTransform( $text, PageReference $page, UserIdentity $user,
 		ParserOptions $options, $clearState = true
@@ -4621,6 +4647,7 @@ class Parser {
 	 * @param bool|null $fancySig whether the nicknname is the complete signature
 	 *    or null to use default value
 	 * @return string
+	 * @since 1.6
 	 */
 	public function getUserSig( UserIdentity $user, $nickname = false, $fancySig = null ) {
 		$username = $user->getName();
@@ -4681,6 +4708,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string|bool An expanded string, or false if invalid.
+	 * @since 1.6
 	 */
 	public function validateSig( $text ) {
 		return Xml::isWellFormedXmlFragment( $text ) ? $text : false;
@@ -4695,6 +4723,7 @@ class Parser {
 	 * @param string $text
 	 * @param bool $parsing Whether we're cleaning (preferences save) or parsing
 	 * @return string Signature text
+	 * @since 1.6
 	 */
 	public function cleanSig( $text, $parsing = false ) {
 		if ( !$parsing ) {
@@ -4737,6 +4766,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string Signature text with /~{3,5}/ removed
+	 * @since 1.7
 	 */
 	public static function cleanSigInSig( $text ) {
 		$text = preg_replace( '/~{3,5}/', '', $text );
@@ -4752,6 +4782,7 @@ class Parser {
 	 * @param int $outputType
 	 * @param bool $clearState
 	 * @param int|null $revId
+	 * @since 1.3
 	 */
 	public function startExternalParse( ?PageReference $page, ParserOptions $options,
 		$outputType, $clearState = true, $revId = null
@@ -4786,6 +4817,7 @@ class Parser {
 	 * @param ParserOptions $options
 	 * @param ?PageReference $page The context page or null to use $wgTitle
 	 * @return string
+	 * @since 1.3
 	 */
 	public function transformMsg( $text, ParserOptions $options, ?PageReference $page = null ) {
 		static $executing = false;
@@ -4830,6 +4862,7 @@ class Parser {
 	 * @param callable $callback The callback function (and object) to use for the tag
 	 * @throws MWException
 	 * @return callable|null The old value of the mTagHooks array associated with the hook
+	 * @since 1.3
 	 */
 	public function setHook( $tag, callable $callback ) {
 		$tag = strtolower( $tag );
@@ -4847,6 +4880,7 @@ class Parser {
 
 	/**
 	 * Remove all tag hooks
+	 * @since 1.12
 	 */
 	public function clearTagHooks() {
 		$this->mTagHooks = [];
@@ -4895,6 +4929,7 @@ class Parser {
 	 *
 	 * @throws MWException
 	 * @return string|callable The old callback function for this name, if any
+	 * @since 1.6
 	 */
 	public function setFunctionHook( $id, callable $callback, $flags = 0 ) {
 		$oldVal = $this->mFunctionHooks[$id][0] ?? null;
@@ -4931,7 +4966,7 @@ class Parser {
 	 * Get all registered function hook identifiers
 	 *
 	 * @return array
-	 * @since 1.10.0
+	 * @since 1.8
 	 */
 	public function getFunctionHooks() {
 		return array_keys( $this->mFunctionHooks );
@@ -5202,6 +5237,7 @@ class Parser {
 	 * @param string $options
 	 * @param LinkHolderArray|bool $holders
 	 * @return string HTML
+	 * @since 1.5
 	 */
 	public function makeImage( LinkTarget $link, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
@@ -5531,7 +5567,7 @@ class Parser {
 	 * Accessor
 	 *
 	 * @return array
-	 * @since before 1.11
+	 * @since 1.6
 	 */
 	public function getTags() {
 		return array_keys( $this->mTagHooks );
@@ -5709,6 +5745,7 @@ class Parser {
 	 * @param string $defaultText Default to return if section is not found
 	 *
 	 * @return string Text of the requested section
+	 * @since 1.7
 	 */
 	public function getSection( $text, $sectionId, $defaultText = '' ) {
 		return $this->extractSections( $text, $sectionId, 'get', $defaultText );
@@ -5725,6 +5762,7 @@ class Parser {
 	 * @param string $newText Replacing text
 	 *
 	 * @return string Modified text
+	 * @since 1.7
 	 */
 	public function replaceSection( $oldText, $sectionId, $newText ) {
 		return $this->extractSections( $oldText, $sectionId, 'replace', $newText );
@@ -5811,6 +5849,7 @@ class Parser {
 	 *   - c) Null, meaning the parse is for preview mode and there is no revision
 	 *
 	 * @return int|null
+	 * @since 1.13
 	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;
@@ -5875,6 +5914,7 @@ class Parser {
 	 * Get the timestamp associated with the current revision, adjusted for
 	 * the default server-local timestamp
 	 * @return string TS_MW timestamp
+	 * @since 1.9
 	 */
 	public function getRevisionTimestamp() {
 		if ( $this->mRevisionTimestamp !== null ) {
@@ -5900,6 +5940,7 @@ class Parser {
 	 * Get the name of the user that edited the last revision
 	 *
 	 * @return string|null User name
+	 * @since 1.15
 	 */
 	public function getRevisionUser(): ?string {
 		if ( $this->mRevisionUser === null ) {
@@ -5923,6 +5964,7 @@ class Parser {
 	 * Get the size of the revision
 	 *
 	 * @return int|null Revision size
+	 * @since 1.22
 	 */
 	public function getRevisionSize() {
 		if ( $this->mRevisionSize === null ) {
@@ -5944,6 +5986,7 @@ class Parser {
 	 * Mutator for $mDefaultSort
 	 *
 	 * @param string $sort New value
+	 * @since 1.0
 	 */
 	public function setDefaultSort( $sort ) {
 		$this->mDefaultSort = $sort;
@@ -5959,6 +6002,7 @@ class Parser {
 	 * page name.
 	 *
 	 * @return string
+	 * @since 1.9
 	 */
 	public function getDefaultSort() {
 		if ( $this->mDefaultSort !== false ) {
@@ -5973,6 +6017,7 @@ class Parser {
 	 * Unlike getDefaultSort(), will return false if none is set
 	 *
 	 * @return string|bool
+	 * @since 1.14
 	 */
 	public function getCustomDefaultSort() {
 		return $this->mDefaultSort;
@@ -6008,6 +6053,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string Anchor (starting with '#')
+	 * @since 1.12
 	 */
 	public function guessSectionNameFromWikiText( $text ) {
 		# Strip out wikitext links(they break the anchor)
@@ -6024,6 +6070,7 @@ class Parser {
 	 *
 	 * @param string $text The section name
 	 * @return string Anchor (starting with '#')
+	 * @since 1.17
 	 */
 	public function guessLegacySectionNameFromWikiText( $text ) {
 		# Strip out wikitext links(they break the anchor)
@@ -6036,6 +6083,7 @@ class Parser {
 	 * Like guessSectionNameFromWikiText(), but takes already-stripped text as input.
 	 * @param string $text Section name (plain text)
 	 * @return string Anchor (starting with '#')
+	 * @since 1.31
 	 */
 	public static function guessSectionNameFromStrippedText( $text ) {
 		$sectionName = self::getSectionNameFromStrippedText( $text );
@@ -6075,6 +6123,7 @@ class Parser {
 	 * @param string $text Text string to be stripped of wikitext
 	 * for use in a Section anchor
 	 * @return string Filtered text string
+	 * @since 1.12
 	 */
 	public function stripSectionName( $text ) {
 		# Strip internal link markup
@@ -6153,6 +6202,7 @@ class Parser {
 	 *
 	 * @return string
 	 * @internal
+	 * @since 1.12
 	 */
 	public function markerSkipCallback( $s, callable $callback ) {
 		$i = 0;
@@ -6183,6 +6233,7 @@ class Parser {
 	 *
 	 * @param string $text
 	 * @return string
+	 * @since 1.19
 	 */
 	public function killMarkers( $text ) {
 		return $this->mStripState->killMarkers( $text );
