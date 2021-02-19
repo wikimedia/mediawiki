@@ -424,7 +424,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * Wrapper around json_encode that avoids needless escapes,
 	 * and pretty-prints in debug mode.
 	 *
-	 * @internal
+	 * @since 1.34
 	 * @param mixed $data
 	 * @return string|false JSON string, false on error
 	 */
