@@ -442,6 +442,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doFixIpbAddressUniqueIndex' ],
 			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
 			[ 'modifyField', 'sites', 'site_global_key', 'patch-sites-site_global_key.sql' ],
+			[ 'modifyField', 'iwlinks', 'iwl_prefix', 'patch-extend-iwlinks-iwl_prefix.sql' ],
 		];
 	}
 
