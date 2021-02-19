@@ -446,7 +446,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			$rows = [];
 			foreach ( $tableKeys as $key ) {
-				$serialized = $this->serialize( $data[$key] );
+				$serialized = $this->getSerialized( $data[$key], $key );
 				$rows[] = [
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $serialized ),
@@ -472,7 +472,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 			$rows = [];
 			foreach ( $tableKeys as $key ) {
-				$serialized = $this->serialize( $data[$key] );
+				$serialized = $this->getSerialized( $data[$key], $key );
 				$rows[] = [
 					'keyname' => $key,
 					'value' => $db->encodeBlob( $serialized ),
@@ -519,7 +519,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $shardIndex, $tableName ) = $this->getKeyLocation( $key );
 		$exptime = $this->getExpirationAsTimestamp( $exptime );
-		$serialized = $this->serialize( $value );
+		$serialized = $this->getSerialized( $value, $key );
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
