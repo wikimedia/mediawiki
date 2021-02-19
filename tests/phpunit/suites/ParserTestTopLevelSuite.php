@@ -124,7 +124,7 @@ class ParserTestTopLevelSuite extends TestSuite {
 			while ( isset( $testList[$parserTestClassName] ) ) {
 				// If there is a conflict, append a number.
 				$counter++;
-				$parserTestClassName = $originalClassname . '_' . $counter;
+				$parserTestClassName = $originalClassName . '_' . $counter;
 			}
 			$testList[$parserTestClassName] = true;
 
