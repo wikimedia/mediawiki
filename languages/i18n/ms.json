@@ -1065,6 +1065,8 @@
 	"prefs-help-recentchangescount": "Bilangan maksimum: 1000",
 	"prefs-help-watchlist-token2": "Ini merupakan kunci rahsia kepada suapan web senarai pantau anda.\nSesiapa sahaja yang mengetahuinya akan dapat membaca senarai pantau anda, jadi jangan mengongsikannya.\nJika perlu, [[Special:ResetTokens|anda boleh menetapkannya semula]].",
 	"prefs-help-tokenmanagement": "Anda boleh melihat dan menetapkan semula kunci rahsia untuk akaun anda yang dapat mengakses suapan Web bagi senarai pantau anda. Sesiapa sahaja yang mengetahui kunci tersebut akan dapat membaca senarai pantau anda, oleh itu jangan mengongsikannya.",
+	"prefs-user-downloaddata-label": "Data akaun:",
+	"prefs-user-downloaddata-info": "Muat turun data akaun saya dari projek ini",
 	"savedprefs": "Keutamaan anda disimpan.",
 	"savedrights": "Kumpulan pengguna {{GENDER:$1|$1}} telah disimpan.",
 	"timezonelegend": "Zon waktu:",
