@@ -958,7 +958,7 @@ class ParserTestRunner {
 			// into <link> tags), add tag hooks to allow them to be generated.
 			$parser->setHook( 'style', static function ( $content, $attributes, $parser ) {
 				$marker = Parser::MARKER_PREFIX . '-style-' . md5( $content ) . Parser::MARKER_SUFFIX;
-				$parser->mStripState->addNoWiki( $marker, $content );
+				$parser->getStripState()->addNoWiki( $marker, $content );
 				return Html::inlineStyle( $marker, 'all', $attributes );
 			} );
 			$parser->setHook( 'link', static function ( $content, $attributes, $parser ) {
