@@ -675,8 +675,6 @@ class SpecialContributions extends IncludableSpecialPage {
 			'id' => 'namespace',
 			'section' => 'contribs-top',
 		];
-		$request = $this->getRequest();
-		$nsFilters = $request->getArray( 'wpfilters' );
 		$fields['nsFilters'] = [
 			'class' => HTMLMultiSelectField::class,
 			'label' => '',
@@ -693,7 +691,6 @@ class SpecialContributions extends IncludableSpecialPage {
 				'invert' => 'nsInvert',
 				'namespace_association' => 'associated',
 			],
-			'default' => $nsFilters,
 			'section' => 'contribs-top',
 		];
 		$fields['tagfilter'] = [
