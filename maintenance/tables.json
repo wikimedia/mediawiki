@@ -667,7 +667,7 @@
 				"name": "iwl_prefix",
 				"type": "binary",
 				"comment": "Interwiki prefix code of the target",
-				"options": { "notnull": true, "length": 20, "default": "" }
+				"options": { "notnull": true, "length": 32, "default": "" }
 			},
 			{
 				"name": "iwl_title",

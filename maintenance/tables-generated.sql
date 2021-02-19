@@ -204,7 +204,7 @@ CREATE TABLE /*_*/langlinks (
 
 CREATE TABLE /*_*/iwlinks (
   iwl_from INT UNSIGNED DEFAULT 0 NOT NULL,
-  iwl_prefix VARBINARY(20) DEFAULT '' NOT NULL,
+  iwl_prefix VARBINARY(32) DEFAULT '' NOT NULL,
   iwl_title VARBINARY(255) DEFAULT '' NOT NULL,
   INDEX iwl_prefix_title_from (iwl_prefix, iwl_title, iwl_from),
   INDEX iwl_prefix_from_title (iwl_prefix, iwl_from, iwl_title),
