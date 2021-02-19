@@ -1143,6 +1143,8 @@
 	"prefs-help-recentchangescount": "Maximale aantal: 1000",
 	"prefs-help-watchlist-token2": "Dit is de geheime sleutel voor de webfeed van uw volglijst.\nIedereen die het token kent, kan uw volglijst bekijken, dus deel dit token niet.\nIndien nodig kunt u [[Special:ResetTokens|tokens opnieuw instellen]].",
 	"prefs-help-tokenmanagement": "U kunt uw geheime sleutel voor uw account bekijken en resetten. De geheime sleutel biedt toegang tot de webfeed van uw volglijst. Iedereen die het token kent, kan uw volglijst bekijken, dus deel dit token niet.",
+	"prefs-user-downloaddata-label": "Accountgegevens:",
+	"prefs-user-downloaddata-info": "Mijn accountgegevens van dit project downloaden",
 	"savedprefs": "Uw voorkeuren zijn opgeslagen.",
 	"savedrights": "De gebruikergroepen van {{GENDER:$1|$1}} zijn opgeslagen.",
 	"timezonelegend": "Tijdzone:",
