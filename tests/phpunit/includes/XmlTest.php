@@ -375,6 +375,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			[
 				'other reasons' => 'other',
+				'Empty group item' => 'Empty group item',
 				'Foo' => [
 					'Foo 1' => 'Foo 1',
 					'Example' => 'Example',
@@ -384,7 +385,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 				],
 			],
 			Xml::listDropDownOptions(
-				"* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
+				"*\n** Empty group item\n* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
 				[ 'other' => 'other reasons' ]
 			)
 		);
