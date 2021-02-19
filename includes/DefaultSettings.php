@@ -312,17 +312,50 @@ $wgFileCacheDirectory = false;
 $wgLogo = false;
 
 /**
- * The URL path to various wiki logos.
- * The `1x` logo size should be 135x135 pixels.
- * The `1.5x` 1.5x version of square logo
- * The `2x` 2x version of square logo
- * The `svg` version of square logo
+ * Specification for different versions of the wiki logo.
+ *
+ * This is an array which should have the following k/v pairs:
+ * All path values can be either absolute or relative URIs
+ *
+ * The `1x` key is a path to the 1x version of square logo (should be 135x135 pixels)
+ * The `1.5x` key is a path to the 1.5x version of square logo
+ * The `2x` key is a path to the 2x version of square logo
+ * The `svg` key is a path to the svg version of square logo
+ * The `icon` key is a path to the version of the logo without wordmark and tagline
  * The `wordmark` key should point to an array with the following fields
- *  - `src` relative or absolute path to a landscape logo
- *  - `width` defining the width of the logo in pixels.
- *  - `height` defining the height of the logo in pixels.
- * All values can be either an absolute or relative URI
- * Configuration is optional provided $wgLogo is used instead.
+ *  - `src` path to wordmark version
+ *  - `1x` path to svg wordmark version (if you want to
+ * 		   support browsers with SVG support with an SVG logo)
+ *  - `width` width of the logo in pixels
+ *  - `height` height of the logo in pixels
+ * The `tagline` key should point to an array with the following fields
+ *  - `src` path to tagline image
+ *  - `width` width of the tagline in pixels
+ *  - `height` height of the tagline in pixels
+ *
+ *
+ * @par Example:
+ * @code
+ * $wgLogos = [
+ *	  '1x' => 'path/to/1x_version.png',
+ *	  '1.5x' => 'path/to/1.5x_version.png',
+ *	  '2x' => 'path/to/2x_version.png',
+ *	  'svg' => 'path/to/svg_version.svg',
+ *	  'icon' => 'path/to/icon.png',
+ *	  'wordmark' => [
+ *	  	'src' => 'path/to/wordmark_version.png',
+ *	  	'1x' => 'path/to/wordmark_version.svg',
+ *	  	'width' => 135,
+ *	  	'height' => 20,
+ *	  ],
+ *	  'tagline' => [
+ *	  	'src' => 'path/to/tagline_version.png',
+ *	  	'width' => 135,
+ *		'height' => 15,
+ *    ]
+ * ];
+ * @endcode
+ *
  * Defaults to [ "1x" => $wgLogo ],
  *   or [ "1x" => "$wgResourceBasePath/resources/assets/wiki.png" ] if $wgLogo is not set.
  * @since 1.35
