@@ -86,7 +86,7 @@ class GenerateSchemaSql extends Maintenance {
 		$tables = $schemaBuilder->getSql();
 		if ( $tables !== [] ) {
 			// Temporary
-			$sql = $sql . implode( ";\n\n", $tables ) . ';';
+			$sql .= implode( ";\n\n", $tables ) . ';';
 			$sql = ( new SqlFormatter( new NullHighlighter() ) )->format( $sql );
 		}
 
