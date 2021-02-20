@@ -389,9 +389,9 @@ class StatusValue {
 				$out .= sprintf( "| %4d | %-25.25s | %-40.40s |\n",
 					$i,
 					$key,
-					self::flattenParams( $params )
+					$this->flattenParams( $params )
 				);
-				$i += 1;
+				$i++;
 			}
 			$out .= $hdr;
 		}
