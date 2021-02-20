@@ -82,7 +82,7 @@ class GenerateSchemaChangeSql extends Maintenance {
 
 		if ( $schemaChangeSqls !== [] ) {
 			// Temporary
-			$sql = $sql . implode( ";\n\n", $schemaChangeSqls ) . ';';
+			$sql .= implode( ";\n\n", $schemaChangeSqls ) . ';';
 			$sql = ( new SqlFormatter( new NullHighlighter() ) )->format( $sql );
 		}
 
