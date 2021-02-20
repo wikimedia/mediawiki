@@ -336,7 +336,6 @@ class LocalFile extends File {
 				}
 				$cacheVal['user'] = $this->user ? $this->user->getId() : 0;
 				$cacheVal['user_text'] = $this->user ? $this->user->getName() : '';
-				$cacheVal['actor'] = $this->user ? $this->user->getActorId() : null;
 
 				// Strip off excessive entries from the subset of fields that can become large.
 				// If the cache value gets to large it will not fit in memcached and nothing will

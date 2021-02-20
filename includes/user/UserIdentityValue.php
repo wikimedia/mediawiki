@@ -63,7 +63,7 @@ class UserIdentityValue implements UserIdentity {
 	 * @param int $actor actor ID
 	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
 	 */
-	public function __construct( $id, $name, $actor, $wikiId = self::LOCAL ) {
+	public function __construct( $id, $name, $actor = 0, $wikiId = self::LOCAL ) {
 		Assert::parameterType( 'integer', $id, '$id' );
 		Assert::parameterType( 'string', $name, '$name' );
 		Assert::parameterType( 'integer', $actor, '$actor' );
@@ -108,6 +108,8 @@ class UserIdentityValue implements UserIdentity {
 
 	/**
 	 * The numerical actor ID provided to the constructor or 0 if no actor ID has been assigned.
+	 *
+	 * @deprecated since 1.36, use ActorNormalization::acquireActorId instead.
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 *        Omit if expecting the local wiki. Since 1.36.

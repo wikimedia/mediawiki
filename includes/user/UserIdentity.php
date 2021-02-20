@@ -29,6 +29,11 @@ use MediaWiki\DAO\WikiAwareEntity;
  *
  * This represents the identity of a user in the context of page revisions and log entries.
  *
+ * @note Starting MediaWiki 1.37, UserIdentity objects should no longer expose an actor ID.
+ * The actor ID is considered a storage layer optimization and should not be exposed to
+ * and used by application logic. Storage layer code should use ActorNormalization to
+ * get an actor ID for a UserIdentity.
+ *
  * @since 1.31
  */
 interface UserIdentity extends WikiAwareEntity {
@@ -54,6 +59,8 @@ interface UserIdentity extends WikiAwareEntity {
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 *        Use self::LOCAL for the local wiki.
+	 *
+	 * @deprecated since 1.36, use ActorNormalization::findActorId() instead.
 	 *
 	 * @return int The user's actor ID. May be 0 if no actor ID is set.
 	 *

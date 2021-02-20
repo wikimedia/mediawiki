@@ -658,7 +658,7 @@ class LogEventsList extends ContextSource {
 			0,
 			$services->getLinkBatchFactory(),
 			$services->getDBLoadBalancer(),
-			$services->getActorMigration()
+			$services->getActorNormalization()
 		);
 		if ( !$useRequestParams ) {
 			# Reset vars that may have been taken from the request
