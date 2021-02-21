@@ -6339,6 +6339,7 @@ $wgGrantPermissions['editpage']['edit'] = true;
 $wgGrantPermissions['editpage']['minoredit'] = true;
 $wgGrantPermissions['editpage']['applychangetags'] = true;
 $wgGrantPermissions['editpage']['changetags'] = true;
+$wgGrantPermissions['editpage']['editcontentmodel'] = true;
 
 $wgGrantPermissions['editprotected'] = $wgGrantPermissions['editpage'];
 $wgGrantPermissions['editprotected']['editprotected'] = true;
