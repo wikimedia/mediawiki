@@ -727,11 +727,19 @@ class AuthManager implements LoggerAwareInterface {
 				'user' => $user->getName(),
 				'clientip' => $this->request->getIP(),
 			] );
-			/** @var RememberMeAuthenticationRequest $req */
-			$req = AuthenticationRequest::getRequestByClass(
-				$beginReqs, RememberMeAuthenticationRequest::class
-			);
-			$this->setSessionDataForUser( $user, $req && $req->rememberMe );
+			$rememberMeConfig = $this->config->get( 'RememberMe' );
+			if ( $rememberMeConfig === RememberMeAuthenticationRequest::ALWAYS_REMEMBER ) {
+				$rememberMe = true;
+			} elseif ( $rememberMeConfig === RememberMeAuthenticationRequest::NEVER_REMEMBER ) {
+				$rememberMe = false;
+			} else {
+				/** @var RememberMeAuthenticationRequest $req */
+				$req = AuthenticationRequest::getRequestByClass(
+					$beginReqs, RememberMeAuthenticationRequest::class
+				);
+				$rememberMe = $req && $req->rememberMe;
+			}
+			$this->setSessionDataForUser( $user, $rememberMe );
 			$ret = AuthenticationResponse::newPass( $user->getName() );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( 'AuthManager::authnState' );
@@ -2158,7 +2166,7 @@ class AuthManager implements LoggerAwareInterface {
 		// AuthManager has its own req for some actions
 		switch ( $providerAction ) {
 			case self::ACTION_LOGIN:
-				$reqs[] = new RememberMeAuthenticationRequest;
+				$reqs[] = new RememberMeAuthenticationRequest( $this->config->get( 'RememberMe' ) );
 				break;
 
 			case self::ACTION_CREATE:

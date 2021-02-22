@@ -162,6 +162,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->config->set( 'AuthManagerConfig', $config );
 		$this->config->set( 'LanguageCode', 'en' );
 		$this->config->set( 'NewUserLog', false );
+		$this->config->set( 'RememberMe', RememberMeAuthenticationRequest::CHOOSE_REMEMBER );
 	}
 
 	/**

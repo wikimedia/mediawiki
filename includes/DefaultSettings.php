@@ -5111,6 +5111,16 @@ $wgAuthManagerAutoConfig = [
 ];
 
 /**
+ * Configures RememberMe authentication request added by AuthManager. It can show a "remember
+ * me" checkbox that, when checked, will cause it to take more time for the authenticated session
+ * to expire. It can also be configured to always or to never extend the authentication session.
+ * Valid values are listed in RememberMeAuthenticationRequest::ALLOWED_FLAGS.
+ * @since 1.36
+ * @var string
+ */
+$wgRememberMe = 'choose'; // RememberMeAuthenticationRequest::CHOOSE_REMEMBER
+
+/**
  * Time frame for re-authentication.
  *
  * With only password-based authentication, you'd just ask the user to re-enter
