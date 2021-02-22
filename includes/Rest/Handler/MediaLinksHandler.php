@@ -116,7 +116,7 @@ class MediaLinksHandler extends SimpleHandler {
 		// Using "private" here means an equivalent of the Action API's "anon-public-user-private"
 		// caching model would be necessary, if caching is ever added to this endpoint.
 		// TODO: make RepoGroup::findFiles take Authority
-		$user = User::newFromIdentity( $this->getAuthority()->getActor() );
+		$user = User::newFromIdentity( $this->getAuthority()->getPerformer() );
 		$findTitles = array_map( static function ( $title ) use ( $user ) {
 			return [
 				'title' => $title,
@@ -126,7 +126,7 @@ class MediaLinksHandler extends SimpleHandler {
 
 		$files = $this->repoGroup->findFiles( $findTitles );
 		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
-			$this->getAuthority()->getActor(),
+			$this->getAuthority()->getPerformer(),
 			'imagesize'
 		);
 		$transforms = [

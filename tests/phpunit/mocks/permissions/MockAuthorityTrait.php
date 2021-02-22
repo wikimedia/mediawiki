@@ -105,7 +105,7 @@ trait MockAuthorityTrait {
 	 */
 	private function mockAuthority( UserIdentity $performer, callable $permissionCallback ): Authority {
 		$mock = $this->createMock( Authority::class );
-		$mock->method( 'getActor' )->willReturn( $performer );
+		$mock->method( 'getPerformer' )->willReturn( $performer );
 		$methods = [ 'isAllowed', 'probablyCan', 'definitelyCan', 'authorizeRead', 'authorizeWrite' ];
 		foreach ( $methods as $method ) {
 			$mock->method( $method )->willReturnCallback( $permissionCallback );
