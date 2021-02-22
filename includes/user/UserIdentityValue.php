@@ -173,6 +173,10 @@ class UserIdentityValue implements UserIdentity {
 		return $this->getId() != 0;
 	}
 
+	public function __toString(): string {
+		return $this->getName();
+	}
+
 	/**
 	 * Sets the actor id.
 	 *
