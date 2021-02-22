@@ -3504,6 +3504,8 @@
 	"special-characters-title-endash": "ఎన్ డాష్",
 	"special-characters-title-emdash": "ఎమ్ డాష్",
 	"special-characters-title-minus": "మైనస్ గుర్తు",
+	"mw-widgets-abandonedit": "భద్రపరచకుండానే దిద్దుబాటు స్థితి నుండి బయటికి పోవాలని నిశ్చయించుకున్నారా?",
+	"mw-widgets-abandonedit-discard": "చేసిన సవరణలను తోసిపుచ్చండి",
 	"mw-widgets-copytextlayout-copy": "కాపీచేయి",
 	"mw-widgets-dateinput-no-date": "ఏ తేదీనీ ఎంచుకోలేదు",
 	"mw-widgets-mediasearch-input-placeholder": "మీడియా కోసం వెతకండి",
