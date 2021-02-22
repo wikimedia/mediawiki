@@ -28,7 +28,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		// Normalize usernames
 		$normalizedUsers = [];
 		foreach ( $usersArray as $user ) {
-			$canonicalUser = User::getCanonicalName( $user );
+			$canonicalUser = User::getCanonicalName( $user, false );
 			$normalizedUsers[] = $canonicalUser;
 		}
 
