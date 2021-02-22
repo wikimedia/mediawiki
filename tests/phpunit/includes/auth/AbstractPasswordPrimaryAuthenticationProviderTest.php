@@ -128,7 +128,6 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			new \FauxRequest(),
 			$services->getMainConfig(),
 			$services->getObjectFactory(),
-			$services->getPermissionManager(),
 			$services->getHookContainer(),
 			$services->getReadOnlyMode(),
 			$services->getUserNameUtils(),

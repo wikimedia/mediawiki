@@ -164,7 +164,6 @@ return [
 			RequestContext::getMain()->getRequest(),
 			$services->getMainConfig(),
 			$services->getObjectFactory(),
-			$services->getPermissionManager(),
 			$services->getHookContainer(),
 			$services->getReadOnlyMode(),
 			$services->getUserNameUtils(),

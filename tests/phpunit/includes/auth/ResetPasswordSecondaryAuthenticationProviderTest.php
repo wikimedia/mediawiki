@@ -99,7 +99,6 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			new \FauxRequest,
 			$config,
 			$objectFactory,
-			$permManager,
 			$hookContainer,
 			$mwServices->getReadOnlyMode(),
 			$userNameUtils,
