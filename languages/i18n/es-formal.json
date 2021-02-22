@@ -9,6 +9,7 @@
 			"La Mantis",
 			"Macofe",
 			"MarcoAurelio",
+			"Rodney Araujo",
 			"Whytheonlyone",
 			"XanaG"
 		]
@@ -184,6 +185,7 @@
 	"nstab-template": "Plantilla",
 	"nstab-help": "Página de ayuda",
 	"nstab-category": "Categoría",
+	"mainpage-nstab": "Página principal",
 	"nosuchactiontext": "La acción especificada en la dirección es inválida.\nEs posible que haya escrito mal la URL o que haya seguido un enlace incorrecto. \nEsto también podría indicar un error en el software utilizado en {{SITENAME}}.",
 	"nospecialpagetext": "<strong>Ha solicitado una página especial inexistente.</strong>\n\nPuede usted ver una lista de las páginas especiales en [[Special:SpecialPages|{{int:specialpages}}]].",
 	"error": "Error",

@@ -304,7 +304,7 @@
 	"sort-ascending": "顺排",
 	"sort-initial": "首字母排序",
 	"nstab-main": "页面",
-	"nstab-user": "{{GENDER:$1|用户页面}}：",
+	"nstab-user": "{{GENDER:$1|用户页面}}",
 	"nstab-media": "媒体页面",
 	"nstab-special": "特别页面",
 	"nstab-project": "项目页面",
