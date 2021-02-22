@@ -141,6 +141,9 @@ class FileRepo {
 	/** @var string Secret key to pass as an X-Swift-Secret header to the proxied thumb service */
 	protected $thumbProxySecret;
 
+	/** @var bool Disable local image scaling */
+	protected $disableLocalTransform = false;
+
 	/** @var WANObjectCache */
 	protected $wanCache;
 
@@ -181,7 +184,7 @@ class FileRepo {
 		$optionalSettings = [
 			'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'pathDisclosureProtection', 'descriptionCacheExpiry',
-			'favicon', 'thumbProxyUrl', 'thumbProxySecret',
+			'favicon', 'thumbProxyUrl', 'thumbProxySecret', 'disableLocalTransform'
 		];
 		foreach ( $optionalSettings as $var ) {
 			if ( isset( $info[$var] ) ) {
@@ -688,6 +691,16 @@ class FileRepo {
 	 */
 	public function canTransformVia404() {
 		return $this->transformVia404;
+	}
+
+	/**
+	 * Returns true if the repository can transform files locally.
+	 *
+	 * @since 1.36
+	 * @return bool
+	 */
+	public function canTransformLocally() {
+		return !$this->disableLocalTransform;
 	}
 
 	/**
