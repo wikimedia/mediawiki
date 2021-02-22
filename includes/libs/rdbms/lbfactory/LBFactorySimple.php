@@ -75,7 +75,11 @@ class LBFactorySimple extends LBFactory {
 	}
 
 	public function newMainLB( $domain = false, $owner = null ) {
-		return $this->newLoadBalancer( $this->mainServers, $owner );
+		return $this->newLoadBalancer(
+			self::CLUSTER_MAIN_DEFAULT,
+			$this->mainServers,
+			$owner
+		);
 	}
 
 	public function getMainLB( $domain = false ) {
@@ -91,12 +95,19 @@ class LBFactorySimple extends LBFactory {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'." );
 		}
 
-		return $this->newLoadBalancer( $this->externalServersByCluster[$cluster], $owner );
+		return $this->newLoadBalancer(
+			$cluster,
+			$this->externalServersByCluster[$cluster],
+			$owner
+		);
 	}
 
 	public function getExternalLB( $cluster ) {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
-			$this->externalLBs[$cluster] = $this->newExternalLB( $cluster, $this->getOwnershipId() );
+			$this->externalLBs[$cluster] = $this->newExternalLB(
+				$cluster,
+				$this->getOwnershipId()
+			);
 		}
 
 		return $this->externalLBs[$cluster];
@@ -115,12 +126,13 @@ class LBFactorySimple extends LBFactory {
 		return $lbs;
 	}
 
-	private function newLoadBalancer( array $servers, $owner ) {
+	private function newLoadBalancer( string $clusterName, array $servers, $owner ) {
 		$lb = new LoadBalancer( array_merge(
 			$this->baseLoadBalancerParams( $owner ),
 			[
 				'servers' => $servers,
 				'loadMonitor' => $this->loadMonitorConfig,
+				'clusterName' => $clusterName
 			]
 		) );
 		$this->initLoadBalancer( $lb );
