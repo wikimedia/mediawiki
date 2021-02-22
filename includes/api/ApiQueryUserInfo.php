@@ -302,6 +302,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		return [
 			'prop' => [
 				ApiBase::PARAM_ISMULTI => true,
+				ApiBase::PARAM_ALL => true,
 				ApiBase::PARAM_TYPE => [
 					'blockinfo',
 					'hasmsg',
