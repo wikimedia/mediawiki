@@ -204,6 +204,7 @@ abstract class Skin extends ContextSource {
 	 * @param OutputPage $out
 	 */
 	public function initPage( OutputPage $out ) {
+		$skinMetaTags = $this->getConfig()->get( 'SkinMetaTags' );
 		$this->preloadExistence();
 
 		if ( $this->isResponsive() ) {
@@ -212,7 +213,19 @@ abstract class Skin extends ContextSource {
 				'width=device-width, initial-scale=1.0, ' .
 				'user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0'
 			);
+		}
 
+		$tags = [
+			'og:title' => $out->getDisplayTitle(),
+			'twitter:card' => 'summary_large_image',
+			'og:type' => 'website',
+		];
+
+		// Support sharing on platforms such as Facebook and Twitter
+		foreach ( $tags as $key => $value ) {
+			if ( in_array( $key, $skinMetaTags ) ) {
+				$out->addMeta( $key, $value );
+			}
 		}
 	}
 
