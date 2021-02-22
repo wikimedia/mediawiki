@@ -554,7 +554,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @since 1.36
 	 */
 	public function getActorNormalization() : ActorNormalization {
-		return $this->getActorStoreFactory()->getActorNormalization();
+		return $this->getService( 'ActorNormalization' );
 	}
 
 	/**

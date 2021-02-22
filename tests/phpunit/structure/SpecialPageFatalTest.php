@@ -26,14 +26,17 @@ class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 	public function provideSpecialPages() {
 		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
 		foreach ( $spf->getNames() as $name ) {
-			yield $name => [ $spf->getPage( $name ) ];
+			yield [ $name ];
 		}
 	}
 
 	/**
 	 * @dataProvider provideSpecialPages
 	 */
-	public function testSpecialPageDoesNotFatal( SpecialPage $page ) {
+	public function testSpecialPageDoesNotFatal( $name ) {
+		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
+		$page = $spf->getPage( $name );
+
 		$executor = new SpecialPageExecutor();
 		$user = User::newFromName( 'UTSysop' );
 
