@@ -2337,7 +2337,7 @@
 	"unwatchthispage": "Lopeta tarkkailu",
 	"notanarticle": "Ei ole sivu",
 	"notvisiblerev": "Versio on poistettu",
-	"watchlist-details": "Tarkkailulistallasi on {{PLURAL:$1|$1 sivu|$1 sivua}} (keskustelusivut mukaan lukien).",
+	"watchlist-details": "Tarkkailulistallasi on {{PLURAL:$1|$1 sivu|$1 sivua}} (ja niiden keskustelusivut).",
 	"watchlist-expiry-days-left": "{{PLURAL:$1|$1 päivä|$1 päivää}} jäljellä",
 	"watchlist-expiring-days-full-text": "Sivu on tarkkailulistallasi {{PLURAL:$1|seuraavien $1 päivän|$1 päivän}} ajan",
 	"watchlist-expiry-hours-left": "Muutama tunti jäljellä",

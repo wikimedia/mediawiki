@@ -3347,7 +3347,7 @@
 	"tag-mw-undo-description": "Urejanja, ki razveljavijo prejšnja urejanja z uporabo povezave za razveljavitev",
 	"tag-mw-manual-revert": "ročna vrnitev",
 	"tag-mw-manual-revert-description": "Urejanja, ki ročno povrnejo stran na točno predhodno stanje",
-	"tag-mw-reverted": "Vrnitev",
+	"tag-mw-reverted": "Vrnjeno",
 	"tag-mw-reverted-description": "Urejanja, ki so bila pozneje vrnjena z drugim urejanjem",
 	"tags-title": "Oznake",
 	"tags-intro": "Ta stran navaja oznake, s katerimi lahko programje označi urejanja, in njihov pomen.",
