@@ -114,6 +114,7 @@ use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
@@ -143,6 +144,10 @@ return [
 			$services->getUserFactory(),
 			$services->getActorStoreFactory()
 		);
+	},
+
+	'ActorNormalization' => static function ( MediaWikiServices $services ) : ActorNormalization {
+		return $services->getActorStoreFactory()->getActorNormalization();
 	},
 
 	'ActorStoreFactory' => static function ( MediaWikiServices $services ) : ActorStoreFactory {
