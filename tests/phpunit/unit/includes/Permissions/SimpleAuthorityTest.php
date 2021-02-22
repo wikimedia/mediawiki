@@ -37,7 +37,7 @@ class SimpleAuthorityTest extends MediaWikiUnitTestCase {
 		$actor = new UserIdentityValue( 12, 'Test', 17 );
 		$authority = new SimpleAuthority( $actor, [] );
 
-		$this->assertSame( $actor, $authority->getActor() );
+		$this->assertSame( $actor, $authority->getPerformer() );
 	}
 
 	public function testPermissions() {

@@ -59,7 +59,7 @@ class MediaFileHandler extends SimpleHandler {
 		if ( $this->file === null ) {
 			$title = $this->getTitle();
 			// TODO: make RepoGroup::findFile take Authority
-			$user = User::newFromIdentity( $this->getAuthority()->getActor() );
+			$user = User::newFromIdentity( $this->getAuthority()->getPerformer() );
 			$this->file =
 				$this->repoGroup->findFile( $title, [ 'private' => $user ] ) ?? false;
 		}
@@ -112,10 +112,10 @@ class MediaFileHandler extends SimpleHandler {
 	 */
 	private function getResponse( File $file ) : array {
 		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
-			$this->getAuthority()->getActor(), 'imagesize'
+			$this->getAuthority()->getPerformer(), 'imagesize'
 		);
 		list( $maxThumbWidth, $maxThumbHeight ) = self::getImageLimitsFromOption(
-			$this->getAuthority()->getActor(), 'thumbsize'
+			$this->getAuthority()->getPerformer(), 'thumbsize'
 		);
 		$transforms = [
 			'preferred' => [
@@ -129,7 +129,7 @@ class MediaFileHandler extends SimpleHandler {
 		];
 
 		// TODO: make MediaFileTrait::getFileInfo take Authority
-		$user = User::newFromIdentity( $this->getAuthority()->getActor() );
+		$user = User::newFromIdentity( $this->getAuthority()->getPerformer() );
 		return $this->getFileInfo( $file, $user, $transforms );
 	}
 
