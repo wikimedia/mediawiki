@@ -1090,6 +1090,8 @@
 	"prefs-help-recentchangescount": "Maximální počet: 1000",
 	"prefs-help-watchlist-token2": "Toto je tajný klíč k webovému kanálu vašich sledovaných stránek. Kdokoli, kdo bude tento klíč znát, bude moci váš seznam sledovaných stránek číst, takže ho nešiřte.\nPokud potřebujete, [[Special:ResetTokens|můžete ho reinicializovat]].",
 	"prefs-help-tokenmanagement": "Můžete si prohlédnout nebo reinicializovat tajný klíč k vašemu účtu, který poskytuje přístup k webovému kanálu vašeho seznamu sledovaných stránek. Kdokoli, kdo tento klíč zná, může číst váš seznam sledovaných stránek, takže ho nesdílejte.",
+	"prefs-user-downloaddata-label": "Data o účtu:",
+	"prefs-user-downloaddata-info": "Stáhnout data mého účtu z tohoto projektu",
 	"savedprefs": "Nastavení byla uložena.",
 	"savedrights": "Skupiny {{GENDER:$1|uživatele|uživatelky}} $1 byly uloženy.",
 	"timezonelegend": "Časové pásmo:",
