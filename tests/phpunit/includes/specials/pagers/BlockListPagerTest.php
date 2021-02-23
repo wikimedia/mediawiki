@@ -6,7 +6,6 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -24,9 +23,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
-
-	/** @var PermissionManager */
-	private $permissionManager;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -46,7 +42,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$services = MediaWikiServices::getInstance();
 		$this->linkBatchFactory = $services->getLinkBatchFactory();
 		$this->blockRestrictionStore = $services->getBlockRestrictionStore();
-		$this->permissionManager = $services->getPermissionManager();
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->specialPageFactory = $services->getSpecialPageFactory();
 		$this->actorMigration = $services->getActorMigration();
@@ -59,7 +54,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			[],
 			$this->linkBatchFactory,
 			$this->blockRestrictionStore,
-			$this->permissionManager,
 			$this->loadBalancer,
 			$this->specialPageFactory,
 			$this->actorMigration,

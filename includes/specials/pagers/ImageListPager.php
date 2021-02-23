@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -55,9 +54,6 @@ class ImageListPager extends TablePager {
 	/** @var LocalRepo */
 	private $localRepo;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var CommentStore */
 	private $commentStore;
 
@@ -84,7 +80,6 @@ class ImageListPager extends TablePager {
 	 * @param bool $showAll
 	 * @param LinkRenderer $linkRenderer
 	 * @param RepoGroup $repoGroup
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
@@ -98,7 +93,6 @@ class ImageListPager extends TablePager {
 		$showAll,
 		LinkRenderer $linkRenderer,
 		RepoGroup $repoGroup,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
@@ -151,7 +145,6 @@ class ImageListPager extends TablePager {
 
 		parent::__construct( $context, $linkRenderer );
 		$this->localRepo = $repoGroup->getLocalRepo();
-		$this->permissionManager = $permissionManager;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
 		$this->userCache = $userCache;
@@ -540,7 +533,7 @@ class ImageListPager extends TablePager {
 
 					// Add delete links if allowed
 					// From https://github.com/Wikia/app/pull/3859
-					if ( $this->permissionManager->userCan( 'delete', $this->getUser(), $filePage ) ) {
+					if ( $this->getAuthority()->probablyCan( 'delete', $filePage ) ) {
 						$deleteMsg = $this->msg( 'listfiles-delete' )->text();
 
 						$delete = $linkRenderer->makeKnownLink(

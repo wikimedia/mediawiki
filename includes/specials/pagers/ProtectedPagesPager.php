@@ -21,7 +21,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class ProtectedPagesPager extends TablePager {
@@ -31,9 +30,6 @@ class ProtectedPagesPager extends TablePager {
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
-
-	/** @var PermissionManager */
-	private $permissionManager;
 
 	/** @var CommentStore */
 	private $commentStore;
@@ -57,7 +53,6 @@ class ProtectedPagesPager extends TablePager {
 	 * @param bool $noredirect
 	 * @param LinkRenderer $linkRenderer
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
@@ -76,7 +71,6 @@ class ProtectedPagesPager extends TablePager {
 		$noredirect,
 		LinkRenderer $linkRenderer,
 		LinkBatchFactory $linkBatchFactory,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
@@ -95,7 +89,6 @@ class ProtectedPagesPager extends TablePager {
 		$this->cascadeonly = (bool)$cascadeonly;
 		$this->noredirect = (bool)$noredirect;
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->permissionManager = $permissionManager;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
 		$this->userCache = $userCache;
@@ -204,7 +197,7 @@ class ProtectedPagesPager extends TablePager {
 				$formatted = htmlspecialchars( $this->getLanguage()->formatExpiry(
 					$value, /* User preference timezone */true ) );
 				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
-				if ( $title && $this->permissionManager->userHasRight( $this->getUser(), 'protect' ) ) {
+				if ( $title && $this->getAuthority()->isAllowed( 'protect' ) ) {
 					$changeProtection = $linkRenderer->makeKnownLink(
 						$title,
 						$this->msg( 'protect_change' )->text(),

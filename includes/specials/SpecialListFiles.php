@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -30,9 +29,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 
 	/** @var RepoGroup */
 	private $repoGroup;
-
-	/** @var PermissionManager */
-	private $permissionManager;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -54,7 +50,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 
 	/**
 	 * @param RepoGroup $repoGroup
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
@@ -64,7 +59,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 	 */
 	public function __construct(
 		RepoGroup $repoGroup,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
@@ -74,7 +68,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 	) {
 		parent::__construct( 'Listfiles' );
 		$this->repoGroup = $repoGroup;
-		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
@@ -117,7 +110,6 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$showAll,
 			$this->getLinkRenderer(),
 			$this->repoGroup,
-			$this->permissionManager,
 			$this->loadBalancer,
 			$this->commentStore,
 			$this->actorMigration,
