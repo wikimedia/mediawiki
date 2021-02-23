@@ -2090,7 +2090,7 @@ class LoadBalancer implements ILoadBalancer {
 				'rdbms-server-readonly',
 				$this->getMasterServerName(),
 				$domain->getDatabase(),
-				$domain->getSchema()
+				(string)$domain->getSchema()
 			),
 			self::TTL_CACHE_READONLY,
 			function () use ( $domain ) {

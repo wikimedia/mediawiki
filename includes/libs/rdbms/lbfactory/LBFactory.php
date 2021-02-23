@@ -751,7 +751,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * @param string $value Possible result of LBFactory::makeCookieValueFromCPIndex()
+	 * @param string|null $value Possible result of LBFactory::makeCookieValueFromCPIndex()
 	 * @param int $minTimestamp Lowest UNIX timestamp that a non-expired value can have
 	 * @return array (index: int or null, clientId: string or null)
 	 * @since 1.32
@@ -759,7 +759,9 @@ abstract class LBFactory implements ILBFactory {
 	public static function getCPInfoFromCookieValue( $value, $minTimestamp ) {
 		static $placeholder = [ 'index' => null, 'clientId' => null ];
 
-		if ( !preg_match( '/^(\d+)@(\d+)#([0-9a-f]{32})$/', $value, $m ) ) {
+		if ( $value === null ) {
+			return $placeholder; // not set
+		} elseif ( !preg_match( '/^(\d+)@(\d+)#([0-9a-f]{32})$/', $value, $m ) ) {
 			return $placeholder; // invalid
 		}
 
