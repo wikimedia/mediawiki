@@ -416,4 +416,33 @@ class StatusValue {
 		}
 		return implode( ' ', $ret );
 	}
+
+	/**
+	 * Returns a list of status messages of the given type (or all if false)
+	 *
+	 * @note this handles RawMessage poorly
+	 *
+	 * @param string|bool $type
+	 * @return array[]
+	 */
+	protected function getStatusArray( $type = false ) {
+		$result = [];
+
+		foreach ( $this->getErrors() as $error ) {
+			if ( $type === false || $error['type'] === $type ) {
+				if ( $error['message'] instanceof MessageSpecifier ) {
+					$result[] = array_merge(
+						[ $error['message']->getKey() ],
+						$error['message']->getParams()
+					);
+				} elseif ( $error['params'] ) {
+					$result[] = array_merge( [ $error['message'] ], $error['params'] );
+				} else {
+					$result[] = [ $error['message'] ];
+				}
+			}
+		}
+
+		return $result;
+	}
 }

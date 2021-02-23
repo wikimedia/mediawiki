@@ -31,6 +31,8 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -41,6 +43,7 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
@@ -838,16 +841,16 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
-	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter
 	 * @return Content|null The content of the current revision
 	 *
 	 * @since 1.21
 	 */
-	public function getContent( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
+	public function getContent( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			return $this->mLastRevision->getContent( SlotRecord::MAIN, $audience, $user );
+			return $this->mLastRevision->getContent( SlotRecord::MAIN, $audience, $performer );
 		}
 		return null;
 	}
@@ -878,15 +881,15 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
-	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return int User ID for the user that made the last article revision
 	 */
-	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
+	public function getUser( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			$revUser = $this->mLastRevision->getUser( $audience, $user );
+			$revUser = $this->mLastRevision->getUser( $audience, $performer );
 			return $revUser ? $revUser->getId() : 0;
 		} else {
 			return -1;
@@ -899,15 +902,15 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
-	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
-	 * @return User|null
+	 * @return UserIdentity|null
 	 */
-	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
+	public function getCreator( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
 		$revRecord = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
 		if ( $revRecord ) {
-			return $revRecord->getUser( $audience, $user );
+			return $revRecord->getUser( $audience, $performer );
 		} else {
 			return null;
 		}
@@ -918,15 +921,15 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
-	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return string Username of the user that made the last article revision
 	 */
-	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
+	public function getUserText( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			$revUser = $this->mLastRevision->getUser( $audience, $user );
+			$revUser = $this->mLastRevision->getUser( $audience, $performer );
 			return $revUser ? $revUser->getName() : '';
 		} else {
 			return '';
@@ -938,16 +941,16 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *   RevisionRecord::FOR_PUBLIC       to be displayed to all users
 	 *   RevisionRecord::FOR_THIS_USER    to be displayed to the given user
 	 *   RevisionRecord::RAW              get the text regardless of permissions
-	 * @param User|null $user User object to check for, only if FOR_THIS_USER is passed
+	 * @param Authority|null $performer object to check for, only if FOR_THIS_USER is passed
 	 *   to the $audience parameter (since 1.36, if using FOR_THIS_USER and not specifying
 	 *   a user no fallback is provided and the RevisionRecord method will throw an error)
 	 * @return string|null Comment stored for the last article revision, or null if the specified
 	 *  audience does not have access to the comment.
 	 */
-	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, User $user = null ) {
+	public function getComment( $audience = RevisionRecord::FOR_PUBLIC, Authority $performer = null ) {
 		$this->loadLastEdit();
 		if ( $this->mLastRevision ) {
-			$revComment = $this->mLastRevision->getComment( $audience, $user );
+			$revComment = $this->mLastRevision->getComment( $audience, $performer );
 			return $revComment ? $revComment->text : '';
 		} else {
 			return '';
@@ -1928,7 +1931,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * have to have the exact same content as the given original revision, an additional
 	 * check is made to determine whether these edits really match. In case they don't,
 	 * $originalRevId is set to false by this method.
-	 * @param User|null $user The user doing the edit
+	 * @param Authority|null $performer The user doing the edit
 	 * @param string|null $serialFormat IGNORED.
 	 * @param array|null $tags Change tags to apply to this edit
 	 * Callers are responsible for permission checks
@@ -1957,16 +1960,16 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 */
 	public function doEditContent(
 		Content $content, $summary, $flags = 0, $originalRevId = false,
-		User $user = null, $serialFormat = null, $tags = [], $undidRevId = 0
+		Authority $performer = null, $serialFormat = null, $tags = [], $undidRevId = 0
 	) {
 		global $wgUser;
 
-		if ( !$user ) {
-			$user = $wgUser;
+		if ( !$performer ) {
+			$performer = $wgUser;
 		}
 
 		return $this->doUserEditContent(
-			$content, $user, $summary, $flags, $originalRevId, $tags, $undidRevId
+			$content, $performer, $summary, $flags, $originalRevId, $tags, $undidRevId
 		);
 	}
 
@@ -1979,7 +1982,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * apply the autopatrol right as appropriate.
 	 *
 	 * @param Content $content New content
-	 * @param User $user The user doing the edit
+	 * @param Authority $performer doing the edit
 	 * @param string|CommentStoreComment $summary Edit summary
 	 * @param int $flags Bitfield:
 	 *      EDIT_NEW
@@ -2032,7 +2035,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 */
 	public function doUserEditContent(
 		Content $content,
-		User $user,
+		Authority $performer,
 		$summary,
 		$flags = 0,
 		$originalRevId = false,
@@ -2048,8 +2051,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		// TODO: this check is here for backwards-compatibility with 1.31 behavior.
 		// Checking the minoredit right should be done in the same place the 'bot' right is
 		// checked for the EDIT_FORCE_BOT flag, which is currently in EditPage::attemptSave.
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( ( $flags & EDIT_MINOR ) && !$permissionManager->userHasRight( $user, 'minoredit' ) ) {
+		if ( ( $flags & EDIT_MINOR ) && !$performer->isAllowed( 'minoredit' ) ) {
 			$flags &= ~EDIT_MINOR;
 		}
 
@@ -2059,6 +2061,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		// NOTE: while doUserEditContent() executes, callbacks to getDerivedDataUpdater and
 		// prepareContentForEdit will generally use the DerivedPageDataUpdater that is also
 		// used by this PageUpdater. However, there is no guarantee for this.
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 		$updater = $this->newPageUpdater( $user, $slotsUpdate );
 		$updater->setContent( SlotRecord::MAIN, $content );
 
@@ -2104,9 +2107,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
 		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
 
-		if ( $needsPatrol && $permissionManager->userCan(
-			'autopatrol', $user, $this->getTitle()
-		) ) {
+		if ( $needsPatrol && $performer->authorizeWrite( 'autopatrol', $this->getTitle() ) ) {
 			$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
 		}
 
@@ -2635,7 +2636,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @param array $expiry Per restriction type expiration
 	 * @param bool $cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
-	 * @param User $user User to attribute to
+	 * @param UserIdentity $user User to attribute to
 	 * @return RevisionRecord|null Null on error
 	 */
 	public function insertNullProtectionRevision(
@@ -2644,7 +2645,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		array $expiry,
 		bool $cascade,
 		string $reason,
-		User $user
+		UserIdentity $user
 	) : ?RevisionRecord {
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -3258,7 +3259,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *    'alreadyrolled' : 'current' (rev)
 	 *    success        : 'summary' (str), 'current' (rev), 'target' (rev)
 	 *
-	 * @param User $user The user performing the rollback
+	 * @param Authority $performer doing the rollback
 	 * @param array|null $tags Change tags to apply to the rollback
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
@@ -3269,32 +3270,32 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * OutputPage::showPermissionsErrorPage().
 	 */
 	public function doRollback(
-		$fromP, $summary, $token, $bot, &$resultDetails, User $user, $tags = null
+		$fromP, $summary, $token, $bot, &$resultDetails, Authority $performer, $tags = null
 	) {
 		$this->assertProperPage();
 
 		$resultDetails = null;
 
 		// Check permissions
-		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$editErrors = $permManager->getPermissionErrors( 'edit', $user, $this->mTitle );
-		$rollbackErrors = $permManager->getPermissionErrors( 'rollback', $user, $this->mTitle );
-		$errors = array_merge( $editErrors, wfArrayDiff2( $rollbackErrors, $editErrors ) );
+		$permissionStatus = PermissionStatus::newEmpty();
+		$performer->authorizeWrite( 'edit', $this->getTitle(), $permissionStatus );
+		$performer->authorizeWrite( 'rollback', $this->getTitle(), $permissionStatus );
 
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 		if ( !$user->matchEditToken( $token, 'rollback' ) ) {
-			$errors[] = [ 'sessionfailure' ];
+			$permissionStatus->fatal( 'sessionfailure' );
 		}
 
 		if ( $user->pingLimiter( 'rollback' ) || $user->pingLimiter() ) {
-			$errors[] = [ 'actionthrottledtext' ];
+			$permissionStatus->fatal( 'actionthrottledtext' );
 		}
 
 		// If there were errors, bail out now
-		if ( !empty( $errors ) ) {
-			return $errors;
+		if ( !$permissionStatus->isGood() ) {
+			return $permissionStatus->toLegacyErrorArray();
 		}
 
-		return $this->commitRollback( $fromP, $summary, $bot, $resultDetails, $user, $tags );
+		return $this->commitRollback( $fromP, $summary, $bot, $resultDetails, $performer, $tags );
 	}
 
 	/**
@@ -3312,7 +3313,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @param string $summary Custom summary. Set to default summary if empty.
 	 * @param bool $bot If true, mark all reverted edits as bot.
 	 * @param array &$resultDetails Contains result-specific array of additional values
-	 * @param User $guser The user performing the rollback
+	 * @param Authority $performer The user performing the rollback
 	 * @param array|null $tags Change tags to apply to the rollback
 	 * Callers are responsible for permission checks
 	 * (with ChangeTags::canAddTagsAccompanyingChange)
@@ -3320,7 +3321,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @return array An array of error messages, as returned by Status::getErrorsArray()
 	 */
 	public function commitRollback( $fromP, $summary, $bot,
-		&$resultDetails, User $guser, $tags = null
+		&$resultDetails, Authority $performer, $tags = null
 	) {
 		global $wgUseRCPatrol, $wgDisableAnonTalk;
 
@@ -3332,7 +3333,8 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 
 		// Begin revision creation cycle by creating a PageUpdater.
 		// If the page is changed concurrently after grabParentRevision(), the rollback will fail.
-		$updater = $this->newPageUpdater( $guser );
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+		$updater = $this->newPageUpdater( $user );
 		$current = $updater->grabParentRevision();
 
 		if ( $current === null ) {
@@ -3435,12 +3437,11 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		// Save
 		$flags = EDIT_UPDATE | EDIT_INTERNAL;
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $permissionManager->userHasRight( $guser, 'minoredit' ) ) {
+		if ( $performer->isAllowed( 'minoredit' ) ) {
 			$flags |= EDIT_MINOR;
 		}
 
-		if ( $bot && ( $permissionManager->userHasAnyRight( $guser, 'markbotedits', 'bot' ) ) ) {
+		if ( $bot && ( $performer->isAllowedAny( 'markbotedits', 'bot' ) ) ) {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
@@ -3481,9 +3482,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		// with 1.31 behavior. Applying the 'autopatrol' right should be done in the same
 		// place the 'bot' right is handled, which is currently in EditPage::attemptSave.
 
-		if ( $wgUseRCPatrol && $permissionManager->userCan(
-			'autopatrol', $guser, $this->getTitle()
-		) ) {
+		if ( $wgUseRCPatrol && $performer->authorizeWrite( 'autopatrol', $this->getTitle() ) ) {
 			$updater->setRcPatrolStatus( RecentChange::PRC_AUTOPATROLLED );
 		}
 
@@ -3496,7 +3495,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		// Set patrolling and bot flag on the edits, which gets rollbacked.
 		// This is done even on edit failure to have patrolling in that case (T64157).
 		$set = [];
-		if ( $bot && $permissionManager->userHasRight( $guser, 'markbotedits' ) ) {
+		if ( $bot && $performer->isAllowed( 'markbotedits' ) ) {
 			// Mark all reverted edits as bot
 			$set['rc_bot'] = 1;
 		}
@@ -3548,7 +3547,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 			// If the content model changed during the rollback,
 			// make sure it gets logged to Special:Log/contentmodel
 			$log = new ManualLogEntry( 'contentmodel', 'change' );
-			$log->setPerformer( $guser );
+			$log->setPerformer( $performer->getPerformer() );
 			$log->setTarget( $this->mTitle );
 			$log->setComment( $summary );
 			$log->setParameters( [
@@ -3567,11 +3566,11 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 			// Only create the Revision objects if needed
 			$legacyCurrent = new Revision( $current );
 			$legacyTarget = new Revision( $target );
-			$this->getHookRunner()->onArticleRollbackComplete( $this, $guser,
+			$this->getHookRunner()->onArticleRollbackComplete( $this, $user,
 				$legacyTarget, $legacyCurrent );
 		}
 
-		$this->getHookRunner()->onRollbackComplete( $this, $guser, $target, $current );
+		$this->getHookRunner()->onRollbackComplete( $this, $user, $target, $current );
 
 		$legacyTargetCallback = static function () use ( $target ) {
 			// Only create the Revision object if needed
