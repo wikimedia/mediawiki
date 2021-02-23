@@ -72,7 +72,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		$this->flags = $flags;
-		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
+		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
 		if ( $linkRenderer instanceof LinkRenderer ) {
 			$this->linkRenderer = $linkRenderer;
 		}

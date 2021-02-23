@@ -87,7 +87,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->tagFilter = $tagFilter;
 		$this->getDateCond( $year, $month, $day );
 		$this->conds = $conds;
-		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
+		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
 		$services = MediaWikiServices::getInstance();
 		$this->revisionStore = $services->getRevisionStore();
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
