@@ -15,10 +15,15 @@
 	function appendToCloner( $createButton ) {
 		var $li,
 			$ul = $createButton.prev( 'ul.mw-htmlform-cloner-ul' ),
-			html = $ul.data( 'template' ).replace(
-				new RegExp( mw.util.escapeRegExp( $ul.data( 'uniqueId' ) ), 'g' ),
-				'clone' + ( ++cloneCounter )
-			);
+			cloneRegex = new RegExp( mw.util.escapeRegExp( $ul.data( 'uniqueId' ) ), 'g' ),
+			// Assume the ids that need to be made unique will start with 'ooui-php-'. See T274533
+			inputIdRegex = new RegExp( /(ooui-php-[0-9]*)/, 'gm' ),
+			html;
+
+		++cloneCounter;
+		html = $ul.data( 'template' )
+			.replace( cloneRegex, 'clone' + cloneCounter )
+			.replace( inputIdRegex, '$1-clone' + cloneCounter );
 
 		$li = $( '<li>' )
 			.addClass( 'mw-htmlform-cloner-li' )
