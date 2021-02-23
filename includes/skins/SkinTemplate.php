@@ -498,7 +498,7 @@ class SkinTemplate extends Skin {
 		# $this->getTitle() will just give Special:Badtitle, which is
 		# not especially useful as a returnto parameter. Use the title
 		# from the request instead, if there was one.
-		if ( $permissionManager->userHasRight( $this->getUser(), 'read' ) ) {
+		if ( $this->getAuthority()->isAllowed( 'read' ) ) {
 			$page = $title;
 		} else {
 			$page = Title::newFromText( $request->getVal( 'title', '' ) );
@@ -547,7 +547,7 @@ class SkinTemplate extends Skin {
 				'active' => ( $href == $pageurl )
 			];
 
-			if ( $permissionManager->userHasRight( $this->getUser(), 'viewmywatchlist' ) ) {
+			if ( $this->getAuthority()->isAllowed( 'viewmywatchlist' ) ) {
 				$href = self::makeSpecialUrl( 'Watchlist' );
 				$personal_urls['watchlist'] = [
 					'text' => $this->msg( 'mywatchlist' )->text(),
@@ -601,7 +601,7 @@ class SkinTemplate extends Skin {
 				$useCombinedLoginLink = false;
 			}
 
-			$loginlink = $permissionManager->userHasRight( $this->getUser(), 'createaccount' )
+			$loginlink = $this->getAuthority()->isAllowed( 'createaccount' )
 						 && $useCombinedLoginLink ? 'nav-login-createaccount' : 'pt-login';
 
 			$login_url = [
@@ -617,6 +617,7 @@ class SkinTemplate extends Skin {
 			];
 
 			// No need to show Talk and Contributions to anons if they can't contribute!
+			// TODO: easy way to get anon authority!
 			if ( $permissionManager->groupHasPermission( '*', 'edit' ) ) {
 				// Non interactive placeholder for anonymous users.
 				// It's unstyled by default (black color). Skin that
@@ -646,13 +647,14 @@ class SkinTemplate extends Skin {
 
 			if (
 				$authManager->canCreateAccounts()
-				&& $permissionManager->userHasRight( $this->getUser(), 'createaccount' )
+				&& $this->getAuthority()->isAllowed( 'createaccount' )
 				&& !$useCombinedLoginLink
 			) {
 				$personal_urls['createaccount'] = $createaccount_url;
 			}
 
 			if ( $authManager->canAuthenticateNow() ) {
+				// TODO: easy way to get anon authority
 				$key = $permissionManager->groupHasPermission( '*', 'read' )
 					? 'login'
 					: 'login-private';
@@ -868,7 +870,7 @@ class SkinTemplate extends Skin {
 		// parameters
 		$action = $request->getVal( 'action', 'view' );
 
-		$userCanRead = $permissionManager->quickUserCan( 'read', $user, $title );
+		$userCanRead = $this->getAuthority()->probablyCan( 'read', $title );
 
 		$preventActiveTabs = false;
 		$this->getHookRunner()->onSkinTemplatePreventOtherActiveTabs( $this, $preventActiveTabs );
@@ -941,9 +943,9 @@ class SkinTemplate extends Skin {
 				}
 
 				// Checks if user can edit the current page if it exists or create it otherwise
-				if ( $permissionManager->quickUserCan( 'edit', $user, $title ) &&
+				if ( $this->getAuthority()->probablyCan( 'edit', $title ) &&
 					 ( $title->exists() ||
-						 $permissionManager->quickUserCan( 'create', $user, $title ) )
+						 $this->getAuthority()->probablyCan( 'create', $title ) )
 				) {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
@@ -1008,7 +1010,7 @@ class SkinTemplate extends Skin {
 						'href' => $title->getLocalURL( 'action=history' ),
 					];
 
-					if ( $permissionManager->quickUserCan( 'delete', $user, $title ) ) {
+					if ( $this->getAuthority()->probablyCan( 'delete', $title ) ) {
 						$content_navigation['actions']['delete'] = [
 							'class' => ( $onPage && $action == 'delete' ) ? 'selected' : false,
 							'text' => wfMessageFallback( "$skname-action-delete", 'delete' )
@@ -1017,7 +1019,7 @@ class SkinTemplate extends Skin {
 						];
 					}
 
-					if ( $permissionManager->quickUserCan( 'move', $user, $title ) ) {
+					if ( $this->getAuthority()->probablyCan( 'move', $title ) ) {
 						$moveTitle = SpecialPage::getTitleFor( 'Movepage', $title->getPrefixedDBkey() );
 						$content_navigation['actions']['move'] = [
 							'class' => $this->getTitle()->isSpecial( 'Movepage' ) ? 'selected' : false,
@@ -1028,14 +1030,14 @@ class SkinTemplate extends Skin {
 					}
 				} else {
 					// article doesn't exist or is deleted
-					if ( $permissionManager->quickUserCan( 'deletedhistory', $user, $title ) ) {
+					if ( $this->getAuthority()->probablyCan( 'deletedhistory', $title ) ) {
 						$n = $title->getDeletedEditsCount();
 						if ( $n ) {
 							$undelTitle = SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedDBkey() );
 							// If the user can't undelete but can view deleted
 							// history show them a "View .. deleted" tab instead.
-							$msgKey = $permissionManager->quickUserCan( 'undelete',
-								$user, $title ) ? 'undelete' : 'viewdeleted';
+							$msgKey = $this->getAuthority()->probablyCan( 'undelete', $title ) ?
+								'undelete' : 'viewdeleted';
 							$content_navigation['actions']['undelete'] = [
 								'class' => $this->getTitle()->isSpecial( 'Undelete' ) ? 'selected' : false,
 								'text' => wfMessageFallback( "$skname-action-$msgKey", "{$msgKey}_short" )
@@ -1046,7 +1048,7 @@ class SkinTemplate extends Skin {
 					}
 				}
 
-				if ( $permissionManager->quickUserCan( 'protect', $user, $title ) &&
+				if ( $this->getAuthority()->probablyCan( 'protect', $title ) &&
 					 $title->getRestrictionTypes() &&
 					 $permissionManager->getNamespaceRestrictionLevels( $title->getNamespace(), $user ) !== [ '' ]
 				) {
@@ -1060,8 +1062,8 @@ class SkinTemplate extends Skin {
 				}
 
 				// Checks if the user is logged in
-				if ( $this->loggedin && $permissionManager->userHasAllRights( $user,
-						'viewmywatchlist', 'editmywatchlist' )
+				if ( $this->loggedin && $this->getAuthority()
+						->isAllowedAll( 'viewmywatchlist', 'editmywatchlist' )
 				) {
 					/**
 					 * The following actions use messages which, if made particular to
