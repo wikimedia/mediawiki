@@ -228,7 +228,7 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			'si', 'simple', 'sk', 'skr', 'skr-arab', 'sl', 'sli', 'sm', 'sma', 'sn',
 			'so', 'sq', 'sr-ec', 'sr-el', 'srn', 'ss', 'st', 'sty', 'stq', 'su', 'sv',
 			'sw', 'szl', 'szy', 'ta', 'tay', 'tcy', 'te', 'tet', 'tg-cyrl', 'tg-latn',
-			'th', 'ti', 'tk', 'tl', 'tly', 'tn', 'to', 'tpi', 'tr', 'tru', 'ts', 'tt',
+			'th', 'ti', 'tk', 'tl', 'tly-latn', 'tn', 'to', 'tpi', 'tr', 'tru', 'ts', 'tt',
 			'tt-cyrl', 'tt-latn', 'tum', 'tw', 'ty', 'tyv', 'tzm', 'udm', 'ug', 'ug-arab',
 			'ug-latn', 'uk', 'ur', 'uz-cyrl', 'uz-latn', 've', 'vec', 'vep', 'vi', 'vls',
 			'vmf', 'vo', 'vot', 'vro', 'wa', 'war', 'wo', 'wuu', 'xal', 'xh', 'xmf', 'xsy',
@@ -377,6 +377,21 @@ class LanguageConverterFactoryTest extends MediaWikiLangTestCase {
 			[], [], [], [
 				'tg' => 'bidirectional',
 				'tg-latn' => 'bidirectional'
+			]
+		];
+
+		yield 'tly' => [
+			'tly', 'TlyConverter',
+			[ 'tly', 'tly-cyrl' ],
+			[ 'tly-cyrl' => 'tly' ],
+			[],
+			[
+				'tly' => 'tly',
+				'tly-cyrl' => 'tly-cyrl'
+			],
+			[
+				'tly' => 'bidirectional',
+				'tly-cyrl' => 'bidirectional',
 			]
 		];
 

@@ -1680,6 +1680,7 @@ $wgAutoloadLocalClasses = [
 	'TitleParser' => __DIR__ . '/includes/title/TitleParser.php',
 	'TitlePrefixSearch' => __DIR__ . '/includes/search/TitlePrefixSearch.php',
 	'TitleValue' => __DIR__ . '/includes/title/TitleValue.php',
+	'TlyConverter' => __DIR__ . '/includes/language/converters/TlyConverter.php',
 	'TrackingCategories' => __DIR__ . '/includes/TrackingCategories.php',
 	'TraditionalImageGallery' => __DIR__ . '/includes/gallery/TraditionalImageGallery.php',
 	'TransactionRoundAwareUpdate' => __DIR__ . '/includes/deferred/TransactionRoundAwareUpdate.php',
