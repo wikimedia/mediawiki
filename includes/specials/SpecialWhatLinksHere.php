@@ -23,7 +23,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -47,9 +46,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
@@ -64,7 +60,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param NamespaceInfo $namespaceInfo
@@ -72,7 +67,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		LinkBatchFactory $linkBatchFactory,
-		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
 		SearchEngineFactory $searchEngineFactory,
 		NamespaceInfo $namespaceInfo
@@ -80,7 +74,6 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		parent::__construct( 'Whatlinkshere' );
 		$this->loadBalancer = $loadBalancer;
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->namespaceInfo = $namespaceInfo;
@@ -489,7 +482,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			$this->permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
+			$this->getContext()->getAuthority()->isAllowed( 'edit' ) &&
 			// check, if the content model is editable through action=edit
 			$this->contentHandlerFactory->getContentHandler( $target->getContentModel() )
 				->supportsDirectEditing()

@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Permissions\PermissionManager;
-
 /**
  * A special page that redirects to: the user for a numeric user id,
  * the file for a given filename, or the page for a given revision id.
@@ -50,22 +48,17 @@ class SpecialRedirect extends FormSpecialPage {
 	 */
 	protected $mValue;
 
-	/** @var PermissionManager */
-	private $permManager;
-
 	/** @var RepoGroup */
 	private $repoGroup;
 
 	/**
-	 * @param PermissionManager $permManager
 	 * @param RepoGroup $repoGroup
 	 */
-	public function __construct( PermissionManager $permManager, RepoGroup $repoGroup ) {
+	public function __construct( RepoGroup $repoGroup ) {
 		parent::__construct( 'Redirect' );
 		$this->mType = null;
 		$this->mValue = null;
 
-		$this->permManager = $permManager;
 		$this->repoGroup = $repoGroup;
 	}
 
@@ -96,9 +89,7 @@ class SpecialRedirect extends FormSpecialPage {
 			// Message: redirect-not-exists
 			return Status::newFatal( $this->getMessagePrefix() . '-not-exists' );
 		}
-		if ( $user->isHidden() &&
-			!$this->permManager->userHasRight( $this->getUser(), 'hideuser' )
-		) {
+		if ( $user->isHidden() && !$this->getContext()->getAuthority()->isAllowed( 'hideuser' ) ) {
 			throw new PermissionsError( null, [ 'badaccess-group0' ] );
 		}
 

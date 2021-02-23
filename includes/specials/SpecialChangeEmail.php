@@ -23,7 +23,6 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Let users change their email address.
@@ -36,17 +35,12 @@ class SpecialChangeEmail extends FormSpecialPage {
 	 */
 	private $status;
 
-	/** @var PermissionManager */
-	private $permManager;
-
 	/**
-	 * @param PermissionManager $permManager
 	 * @param AuthManager $authManager
 	 */
-	public function __construct( PermissionManager $permManager, AuthManager $authManager ) {
+	public function __construct( AuthManager $authManager ) {
 		parent::__construct( 'ChangeEmail', 'editmyprivateinfo' );
 
-		$this->permManager = $permManager;
 		$this->setAuthManager( $authManager );
 	}
 
@@ -85,7 +79,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !$this->permManager->userHasRight( $this->getUser(), 'viewmyprivateinfo' ) ) {
+		if ( !$this->getContext()->getAuthority()->isAllowed( 'viewmyprivateinfo' ) ) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 

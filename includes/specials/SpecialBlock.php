@@ -30,7 +30,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -43,10 +42,6 @@ use Wikimedia\IPUtils;
  * @ingroup SpecialPage
  */
 class SpecialBlock extends FormSpecialPage {
-	/**
-	 * @var PermissionManager
-	 */
-	private $permissionManager;
 
 	/** @var BlockUtils */
 	private $blockUtils;
@@ -84,7 +79,6 @@ class SpecialBlock extends FormSpecialPage {
 	protected $preErrors = [];
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param BlockUtils $blockUtils
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
 	 * @param BlockUserFactory $blockUserFactory
@@ -92,7 +86,6 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		BlockUtils $blockUtils,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		BlockUserFactory $blockUserFactory,
@@ -101,7 +94,6 @@ class SpecialBlock extends FormSpecialPage {
 	) {
 		parent::__construct( 'Block', 'block' );
 
-		$this->permissionManager = $permissionManager;
 		$this->blockUtils = $blockUtils;
 		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
 		$this->blockUserFactory = $blockUserFactory;
@@ -341,7 +333,7 @@ class SpecialBlock extends FormSpecialPage {
 		];
 
 		# Allow some users to hide name from block log, blocklist and listusers
-		if ( $this->permissionManager->userHasRight( $user, 'hideuser' ) ) {
+		if ( $this->getContext()->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$a['HideUser'] = [
 				'type' => 'check',
 				'label-message' => 'ipbhidename',
@@ -435,9 +427,7 @@ class SpecialBlock extends FormSpecialPage {
 
 			// If the username was hidden (ipb_deleted == 1), don't show the reason
 			// unless this user also has rights to hideuser: T37839
-			if ( !$block->getHideName() || $this->permissionManager
-					->userHasRight( $this->getUser(), 'hideuser' )
-			) {
+			if ( !$block->getHideName() || $this->getContext()->getAuthority()->isAllowed( 'hideuser' ) ) {
 				$fields['Reason']['default'] = $block->getReasonComment()->text;
 			} else {
 				$fields['Reason']['default'] = '';
@@ -603,10 +593,8 @@ class SpecialBlock extends FormSpecialPage {
 			$this->msg( 'ipb-blocklist' )->text()
 		);
 
-		$user = $this->getUser();
-
 		# Link to edit the block dropdown reasons, if applicable
-		if ( $this->permissionManager->userHasRight( $user, 'editinterface' ) ) {
+		if ( $this->getContext()->getAuthority()->isAllowed( 'editinterface' ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$this->msg( 'ipbreason-dropdown' )->inContentLanguage()->getTitle(),
 				$this->msg( 'ipb-edit-dropdown' )->text(),
@@ -640,7 +628,7 @@ class SpecialBlock extends FormSpecialPage {
 			$text .= $out;
 
 			# Add suppression block entries if allowed
-			if ( $this->permissionManager->userHasRight( $user, 'suppressionlog' ) ) {
+			if ( $this->getContext()->getAuthority()->isAllowed( 'suppressionlog' ) ) {
 				LogEventsList::showLogExtract(
 					$out,
 					'suppress',

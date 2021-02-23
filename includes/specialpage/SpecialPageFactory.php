@@ -67,7 +67,6 @@ class SpecialPageFactory {
 		'BrokenRedirects' => [
 			'class' => \SpecialBrokenRedirects::class,
 			'services' => [
-				'PermissionManager',
 				'ContentHandlerFactory',
 				'DBLoadBalancer',
 				'LinkBatchFactory',
@@ -85,7 +84,6 @@ class SpecialPageFactory {
 		'DoubleRedirects' => [
 			'class' => \SpecialDoubleRedirects::class,
 			'services' => [
-				'PermissionManager',
 				'ContentHandlerFactory',
 				'LinkBatchFactory',
 				'DBLoadBalancer',
@@ -354,7 +352,6 @@ class SpecialPageFactory {
 		'Block' => [
 			'class' => \SpecialBlock::class,
 			'services' => [
-				'PermissionManager',
 				'BlockUtils',
 				'BlockPermissionCheckerFactory',
 				'BlockUserFactory',
@@ -522,7 +519,6 @@ class SpecialPageFactory {
 			'services' => [
 				'WatchedItemStore',
 				'WatchlistNotificationManager',
-				'PermissionManager',
 				'DBLoadBalancer',
 				'UserOptionsLookup',
 			]
@@ -564,9 +560,6 @@ class SpecialPageFactory {
 		],
 		'Tags' => [
 			'class' => \SpecialTags::class,
-			'services' => [
-				'PermissionManager',
-			]
 		],
 
 		// Media reports and uploads
@@ -638,9 +631,6 @@ class SpecialPageFactory {
 		// Data and tools
 		'ApiSandbox' => [
 			'class' => \SpecialApiSandbox::class,
-			'services' => [
-				'PermissionManager',
-			],
 		],
 		'Statistics' => [
 			'class' => \SpecialStatistics::class,
@@ -775,7 +765,6 @@ class SpecialPageFactory {
 		'Export' => [
 			'class' => \SpecialExport::class,
 			'services' => [
-				'PermissionManager',
 				'DBLoadBalancer',
 			]
 		],
@@ -806,7 +795,6 @@ class SpecialPageFactory {
 			'services' => [
 				'DBLoadBalancer',
 				'LinkBatchFactory',
-				'PermissionManager',
 				'ContentHandlerFactory',
 				'SearchEngineFactory',
 				'NamespaceInfo',
@@ -824,7 +812,6 @@ class SpecialPageFactory {
 		'ExpandTemplates' => [
 			'class' => \SpecialExpandTemplates::class,
 			'services' => [
-				'PermissionManager',
 				'Parser',
 				'UserOptionsLookup',
 			],
@@ -931,7 +918,6 @@ class SpecialPageFactory {
 		'Redirect' => [
 			'class' => \SpecialRedirect::class,
 			'services' => [
-				'PermissionManager',
 				'RepoGroup'
 			]
 		],
@@ -1036,7 +1022,6 @@ class SpecialPageFactory {
 					'services' => [
 						'SearchEngineConfig',
 						'SearchEngineFactory',
-						'PermissionManager',
 						'NamespaceInfo',
 						'ContentHandlerFactory',
 						'InterwikiLookup',
@@ -1067,7 +1052,6 @@ class SpecialPageFactory {
 				$this->list['ChangeEmail'] = [
 					'class' => \SpecialChangeEmail::class,
 					'services' => [
-						'PermissionManager',
 						'AuthManager',
 					],
 				];
