@@ -615,7 +615,7 @@ class RevisionStore
 		RevisionRecord $rev,
 		$revisionId
 	) {
-		if ( $user->getUserId( $this->wikiId ) === 0 && IPUtils::isValid( $user->getName() ) ) {
+		if ( $user->getId() === 0 && IPUtils::isValid( $user->getName() ) ) {
 			$ipcRow = [
 				'ipc_rev_id'        => $revisionId,
 				'ipc_rev_timestamp' => $dbw->timestamp( $rev->getTimestamp() ),
