@@ -29,12 +29,13 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use ReadOnlyMode;
+use SpecialPage;
 use Status;
 use StatusValue;
 use User;
@@ -143,9 +144,6 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var PermissionManager */
-	private $permManager;
-
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
@@ -192,7 +190,6 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param WebRequest $request
 	 * @param Config $config
 	 * @param ObjectFactory $objectFactory
-	 * @param PermissionManager $permManager
 	 * @param HookContainer $hookContainer
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserNameUtils $userNameUtils
@@ -203,7 +200,6 @@ class AuthManager implements LoggerAwareInterface {
 		WebRequest $request,
 		Config $config,
 		ObjectFactory $objectFactory,
-		PermissionManager $permManager,
 		HookContainer $hookContainer,
 		ReadOnlyMode $readOnlyMode,
 		UserNameUtils $userNameUtils,
@@ -213,7 +209,6 @@ class AuthManager implements LoggerAwareInterface {
 		$this->request = $request;
 		$this->config = $config;
 		$this->objectFactory = $objectFactory;
-		$this->permManager = $permManager;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->setLogger( new NullLogger() );
@@ -1039,17 +1034,13 @@ class AuthManager implements LoggerAwareInterface {
 			return Status::newFatal( wfMessage( 'readonlytext', $this->readOnlyMode->getReason() ) );
 		}
 
-		$permErrors = $this->permManager->getPermissionErrors(
+		$permStatus = new PermissionStatus();
+		if ( !$creator->authorizeWrite(
 			'createaccount',
-			$creator,
-			\SpecialPage::getTitleFor( 'CreateAccount' )
-		);
-		if ( $permErrors ) {
-			$status = Status::newGood();
-			foreach ( $permErrors as $args ) {
-				$status->fatal( ...$args );
-			}
-			return $status;
+			SpecialPage::getTitleFor( 'CreateAccount' ),
+			$permStatus
+		) ) {
+			return Status::wrap( $permStatus );
 		}
 
 		$ip = $this->getRequest()->getIP();
@@ -1675,7 +1666,7 @@ class AuthManager implements LoggerAwareInterface {
 		// Is the IP user able to create accounts?
 		$anon = new User;
 		if ( $source !== self::AUTOCREATE_SOURCE_MAINT &&
-			!$this->permManager->userHasAnyRight( $anon, 'createaccount', 'autocreateaccount' )
+			!$anon->isAllowedAny( 'createaccount', 'autocreateaccount' )
 		) {
 			$this->logger->debug( __METHOD__ . ': IP lacks the ability to create or autocreate accounts', [
 				'username' => $username,

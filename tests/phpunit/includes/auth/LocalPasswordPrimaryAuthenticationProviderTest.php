@@ -3,7 +3,6 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
@@ -45,14 +44,12 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		if ( !$this->manager ) {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 			$objectFactory = new \Wikimedia\ObjectFactory( $services );
-			$permManager = $this->createNoOpMock( PermissionManager::class );
 			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 			$this->manager = new AuthManager(
 				new \FauxRequest(),
 				$config,
 				$objectFactory,
-				$permManager,
 				$hookContainer,
 				$mwServices->getReadOnlyMode(),
 				$userNameUtils,
