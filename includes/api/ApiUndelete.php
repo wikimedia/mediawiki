@@ -50,12 +50,13 @@ class ApiUndelete extends ApiBase {
 			$this->dieWithError( [ 'apierror-invalidtitle', wfEscapeWikiText( $params['title'] ) ] );
 		}
 
-		if ( !$this->getPermissionManager()->userCan( 'undelete', $this->getUser(), $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeWrite( 'undelete', $titleObj ) ) {
 			$this->dieWithError( 'permdenied-undelete' );
 		}
 
 		// Check if user can add tags
 		if ( $params['tags'] !== null ) {
+			// TODO: change to accept Authority
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );

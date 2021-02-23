@@ -147,12 +147,12 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		// This means stricter restrictions
 		if ( ( $this->fld_comment || $this->fld_parsedcomment ) &&
-			!$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' )
+			!$this->getAuthority()->isAllowed( 'deletedhistory' )
 		) {
 			$this->dieWithError( 'apierror-cantview-deleted-comment', 'permissiondenied' );
 		}
 		if ( $this->fetchContent &&
-			!$this->getPermissionManager()->userHasAnyRight( $user, 'deletedtext', 'undelete' )
+			!$this->getAuthority()->isAllowedAny( 'deletedtext', 'undelete' )
 		) {
 			$this->dieWithError( 'apierror-cantview-deleted-revision-content', 'permissiondenied' );
 		}
@@ -244,11 +244,9 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 			// Paranoia: avoid brute force searches (T19342)
-			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
+			if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
-			} elseif ( !$this->getPermissionManager()
-				->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-			) {
+			} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;

@@ -11,7 +11,6 @@ use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUser;
 use MediaWiki\Block\UnblockUserFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWikiUnitTestCase;
 use RequestContext;
 use Status;
@@ -41,7 +40,6 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		$action = 'unblock';
 		$blockPermissionCheckerFactory = $this->createMock( BlockPermissionCheckerFactory::class );
 		$unblockUserFactory = $this->createMock( UnblockUserFactory::class );
-		$permissionManager = $this->createMock( PermissionManager::class );
 		$userCache = $this->createMock( UserCache::class );
 
 		// Expose requestContext and user so that they can be further modified in the test
@@ -50,7 +48,6 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 			'action' => 'unblock',
 			'blockPermissionCheckerFactory' => $blockPermissionCheckerFactory,
 			'unblockUserFactory' => $unblockUserFactory,
-			'permissionManager' => $permissionManager,
 			'userCache' => $userCache,
 			'requestContext' => $requestContext,
 			'performer' => $performer,
@@ -69,7 +66,6 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 				$args['action'],
 				$args['blockPermissionCheckerFactory'],
 				$args['unblockUserFactory'],
-				$args['permissionManager'],
 				$args['userCache']
 			] )
 			->getMock();
@@ -128,7 +124,6 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 			$args['action'],
 			$args['blockPermissionCheckerFactory'],
 			$args['unblockUserFactory'],
-			$args['permissionManager'],
 			$args['userCache']
 		);
 		// Ensure everything was created right
@@ -171,10 +166,9 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		// Since the actual internals of that are complicated, mock it
 		$args = $this->getConstructorArgs();
 
-		$args['permissionManager']->expects( $this->once() )
-			->method( 'userHasRight' )
+		$args['performer']->expects( $this->once() )
+			->method( 'isAllowed' )
 			->with(
-				$this->equalTo( $args['performer'] ),
 				$this->equalTo( 'block' )
 			)
 			->willReturn( false );
@@ -205,7 +199,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		// If $params['userid'] is set and the usercache call returns false, there is an error
 		$args = $this->getConstructorArgs();
 
-		$args['permissionManager']->method( 'userHasRight' )->willReturn( true );
+		$args['performer']->method( 'isAllowed' )->willReturn( true );
 
 		$args['userCache']->expects( $this->once() )
 			->method( 'getProp' )
@@ -246,7 +240,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		// Next potential failure is the actual unblock call failing
 		$args = $this->getConstructorArgs();
 
-		$args['permissionManager']->method( 'userHasRight' )->willReturn( true );
+		$args['performer']->method( 'isAllowed' )->willReturn( true );
 
 		// Return true
 		$args['blockPermissionCheckerFactory'] = $this->getBlockPermissionCheckerFactory(
@@ -318,7 +312,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 			->willReturn( true );
 		$args['apiMain']->method( 'getResult' )->willReturn( $apiResult );
 
-		$args['permissionManager']->method( 'userHasRight' )->willReturn( true );
+		$args['performer']->method( 'isAllowed' )->willReturn( true );
 		$args['blockPermissionCheckerFactory'] = $this->getBlockPermissionCheckerFactory(
 			'targetNameGoesHere',
 			$args['performer'],

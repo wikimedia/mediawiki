@@ -44,6 +44,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->method( 'getOptions' )
 			->willReturn( [] );
 
+		$this->mUserMock->expects( $this->any() )
+			->method( 'isAllowedAny' )->willReturn( true );
+
 		// DefaultPreferencesFactory calls a ton of user methods, but we still want to list all of
 		// them in case bugs are caused by unexpected things returning null that shouldn't.
 		$this->mUserMock->expects( $this->never() )->method( $this->anythingBut(
@@ -51,7 +54,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'isAnon', 'getRequest', 'isLoggedIn', 'getName', 'getGroupMemberships', 'getEditCount',
 			'getRegistration', 'isAllowed', 'getRealName', 'getOption', 'getStubThreshold',
 			'getBoolOption', 'getEmail', 'getDatePreference', 'useRCPatrol', 'useNPPatrol',
-			'setOption', 'saveSettings', 'resetOptions', 'isRegistered', 'getTitleKey'
+			'setOption', 'saveSettings', 'resetOptions', 'isRegistered', 'getTitleKey',
+			'isAllowedAny'
 		) );
 
 		// Create a new context

@@ -146,7 +146,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		} elseif ( $params['rights'] ) {
 			$excludeGroups = false;
 			foreach ( $params['rights'] as $r ) {
-				$limitGroups = array_merge( $limitGroups, $this->getPermissionManager()
+				$limitGroups = array_merge( $limitGroups, $this->getGroupPermissionsLookup()
 					->getGroupsWithPermission( $r ) );
 			}
 
@@ -163,7 +163,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		} elseif ( $params['excluderights'] ) {
 			$excludeGroups = true;
 			foreach ( $params['excluderights'] as $r ) {
-				$limitGroups = array_merge( $limitGroups, $this->getPermissionManager()
+				$limitGroups = array_merge( $limitGroups, $this->getGroupPermissionsLookup()
 					->getGroupsWithPermission( $r ) );
 			}
 		}

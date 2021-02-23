@@ -38,6 +38,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$page = $this->getExistingTestPage( 'Pluto' );
 		$title = $page->getTitle();
 		$user = $this->getTestUser()->getUser();
+		RequestContext::getMain()->setUser( $user );
 		WatchAction::doWatch(
 			$title,
 			$user,
