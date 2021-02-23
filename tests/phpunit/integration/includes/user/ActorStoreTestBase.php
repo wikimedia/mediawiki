@@ -27,6 +27,14 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 			[ 'IGNORE' ]
 		) );
 
+		// Anon
+		$this->assertTrue( $this->db->insert(
+			'actor',
+			[ 'actor_id' => '43', 'actor_user' => null, 'actor_name' => self::IP ],
+			__METHOD__,
+			[ 'IGNORE' ]
+		) );
+
 		// One more registered
 		$this->assertTrue( $this->db->insert(
 			'actor',
@@ -35,10 +43,10 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 			[ 'IGNORE' ]
 		) );
 
-		// Anon
+		// External
 		$this->assertTrue( $this->db->insert(
 			'actor',
-			[ 'actor_id' => '43', 'actor_user' => null, 'actor_name' => self::IP ],
+			[ 'actor_id' => '45', 'actor_user' => null, 'actor_name' => 'acme>TestUser' ],
 			__METHOD__,
 			[ 'IGNORE' ]
 		) );
