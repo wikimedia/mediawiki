@@ -13,7 +13,6 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\User\UserNameUtils;
@@ -42,8 +41,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	protected $config;
 	/** @var ObjectFactory */
 	protected $objectFactory;
-	/** @var PermissionManager */
-	protected $permManager;
 	/** @var ReadOnlyMode */
 	protected $readOnlyMode;
 
@@ -182,9 +179,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 			$this->objectFactory = new ObjectFactory( $services );
 		}
-		if ( $regen || !$this->permManager ) {
-			$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
-		}
 		if ( $regen || !$this->readOnlyMode ) {
 			$this->readOnlyMode = MediaWikiServices::getInstance()->getReadOnlyMode();
 		}
@@ -227,7 +221,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->request,
 			$this->config,
 			$this->objectFactory,
-			$this->permManager,
 			$this->hookContainer,
 			$this->readOnlyMode,
 			$this->userNameUtils,

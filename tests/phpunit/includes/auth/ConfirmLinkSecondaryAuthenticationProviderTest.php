@@ -3,7 +3,6 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
@@ -143,7 +142,6 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$request,
 				\RequestContext::getMain()->getConfig(),
 				$mwServices->getObjectFactory(),
-				$this->createNoOpMock( PermissionManager::class ),
 				$mwServices->getHookContainer(),
 				$mwServices->getReadOnlyMode(),
 				$this->createNoOpMock( UserNameUtils::class ),
@@ -242,7 +240,6 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$services = $this->createNoOpMock( ContainerInterface::class );
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
 		$mwServices = MediaWikiServices::getInstance();
-		$permManager = $mwServices->getPermissionManager();
 		$hookContainer = $mwServices->getHookContainer();
 		$readOnlyMode = $mwServices->getReadOnlyMode();
 		$userNameUtils = $mwServices->getUserNameUtils();
@@ -250,7 +247,6 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$request,
 			$config,
 			$objectFactory,
-			$permManager,
 			$hookContainer,
 			$readOnlyMode,
 			$userNameUtils,
