@@ -1,0 +1,15 @@
+{
+	"root": true,
+	"extends": [
+		"wikimedia/client-es6",
+		"wikimedia/mediawiki",
+		"wikimedia/jsduck"
+	],
+	"rules": {
+		"compat/compat": [
+			"error",
+			"last 2 chrome versions, last 2 firefox versions, last 2 opera versions, last 2 edge versions, safari >= 14, iOS >= 14"
+		],
+		"max-len": "off"
+	}
+}

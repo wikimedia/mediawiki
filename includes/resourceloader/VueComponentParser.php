@@ -79,7 +79,6 @@ class VueComponentParser {
 		if ( isset( $nodes['style'] ) ) {
 			$this->validateAttributes( $nodes['style'], [ 'lang' ] );
 		}
-		$this->validateTemplateTag( $nodes['template'] );
 
 		$styleData = isset( $nodes['style'] ) ? $this->getStyleAndLang( $nodes['style'] ) : null;
 		$template = $this->getTemplateHtml( $html, $options['minifyTemplate'] ?? false );
@@ -144,42 +143,6 @@ class VueComponentParser {
 			}
 		} elseif ( $node->attributes->length > 0 ) {
 			throw new Exception( "<{$node->nodeName}> may not have any attributes" );
-		}
-	}
-
-	/**
-	 * Check that the <template> tag has exactly one element child.
-	 *
-	 * If the <template> tag has multiple children, or is empty, or contains (non-whitespace) text,
-	 * an exception is thrown.
-	 *
-	 * @param DOMNode $templateNode The <template> node
-	 * @throws Exception If the contents of the <template> node are invalid
-	 */
-	private function validateTemplateTag( DOMNode $templateNode ): void {
-		// Verify that the <template> tag only contains one tag, and put it in $rootTemplateNode
-		// We can't use ->childNodes->length === 1 here because whitespace shows up as text nodes,
-		// and comments are also allowed.
-		$rootTemplateNode = null;
-		foreach ( $templateNode->childNodes as $node ) {
-			if ( $node->nodeType === XML_ELEMENT_NODE ) {
-				if ( $rootTemplateNode !== null ) {
-					throw new Exception( '<template> tag may not have multiple child tags' );
-				}
-				$rootTemplateNode = $node;
-			} elseif ( $node->nodeType === XML_TEXT_NODE ) {
-				// Text nodes are allowed, as long as they only contain whitespace
-				if ( trim( $node->nodeValue ) !== '' ) {
-					throw new Exception( '<template> tag may not contain text' );
-				}
-			} elseif ( $node->nodeType !== XML_COMMENT_NODE ) {
-				// Comment nodes are allowed, anything else is not allowed
-				throw new Exception( "<template> tag may only contain element and comment nodes, " .
-					" found node of type {$node->nodeType}" );
-			}
-		}
-		if ( $rootTemplateNode === null ) {
-			throw new Exception( '<template> tag may not be empty' );
 		}
 	}
 

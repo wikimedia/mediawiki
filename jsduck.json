@@ -21,7 +21,8 @@
 		"resources/src/mediawiki.skinning",
 		"resources/src/startup/startup.js",
 		"resources/src/mediawiki.watchstar.widgets/WatchlistExpiryWidget.js",
-		"resources/src/es6-polyfills"
+		"resources/src/es6-polyfills",
+		"resources/src/vue"
 	],
 	"--": [
 		"maintenance/jsduck/external.js",
