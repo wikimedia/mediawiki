@@ -683,8 +683,10 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			$this->setService( 'WatchedItemStore', $mock );
 		}
 
-		// Note this must happen after calling $this->overrideMwServices().
-		$this->overrideUserPermissions( $user, $permissions );
+		$user->method( 'isAllowed' )
+			->willReturnCallback( function ( $action ) use ( $permissions ) {
+				return in_array( $action, $permissions );
+			} );
 
 		return $user;
 	}

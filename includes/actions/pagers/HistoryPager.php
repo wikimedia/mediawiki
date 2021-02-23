@@ -200,7 +200,6 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	protected function getStartBody() {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -226,9 +225,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				$attrs
 			) . "\n";
 
-			$user = $this->getUser();
 			$actionButtons = '';
-			if ( $permissionManager->userHasRight( $user, 'deleterevision' ) ) {
+			if ( $this->getAuthority()->isAllowed( 'deleterevision' ) ) {
 				$actionButtons .= $this->getRevisionButton(
 					'revisiondelete', 'showhideselectedversions' );
 			}
@@ -241,7 +239,7 @@ class HistoryPager extends ReverseChronologicalPager {
 					'mw-history-revisionactions' ], $actionButtons );
 			}
 
-			if ( $permissionManager->userHasRight( $user, 'deleterevision' ) || $this->showTagEditUI ) {
+			if ( $this->getAuthority()->isAllowed( 'deleterevision' ) || $this->showTagEditUI ) {
 				$this->buttons .= ( new ListToggle( $this->getOutput() ) )->getHTML();
 			}
 
@@ -339,8 +337,6 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	private function historyLine( $row, $next, $notificationtimestamp = false,
 		$dummy = false, $firstInList = false ) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
 		$revRecord = $this->revisionStore->newRevisionFromRow(
 			$row,
 			RevisionStore::READ_NORMAL,
@@ -376,7 +372,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$del = '';
 		$user = $this->getUser();
-		$canRevDelete = $permissionManager->userHasRight( $user, 'deleterevision' );
+		$canRevDelete = $this->getAuthority()->isAllowed( 'deleterevision' );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
 		$visibility = $revRecord->getVisibility();
@@ -398,7 +394,7 @@ class HistoryPager extends ReverseChronologicalPager {
 					[ 'name' => 'ids[' . $revRecord->getId() . ']' ] );
 			}
 		// User can only view deleted revisions...
-		} elseif ( $visibility && $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		} elseif ( $visibility && $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
 			if ( !RevisionRecord::userCanBitfield(
 				$visibility,
@@ -458,11 +454,8 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		# Rollback and undo links
 
-		if ( $previousRevRecord &&
-			$permissionManager->quickUserCan( 'edit', $user, $this->getTitle() )
-		) {
-			if ( $latest && $permissionManager->quickUserCan( 'rollback',
-					$user, $this->getTitle() )
+		if ( $previousRevRecord && $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
+			if ( $latest && $this->getAuthority()->probablyCan( 'rollback', $this->getTitle() )
 			) {
 				// Get a rollback link without the brackets
 				$rollbackLink = Linker::generateRollback(
