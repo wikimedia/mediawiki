@@ -38,12 +38,14 @@ use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\User\UserIdentity;
 use MWException;
 use RecentChange;
 use Revision;
@@ -87,9 +89,9 @@ class PageUpdater {
 	];
 
 	/**
-	 * @var User
+	 * @var Authority
 	 */
-	private $user;
+	private $performer;
 
 	/**
 	 * @var WikiPage
@@ -188,7 +190,7 @@ class PageUpdater {
 	private $serviceOptions;
 
 	/**
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param WikiPage $wikiPage
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
 	 * @param ILoadBalancer $loadBalancer
@@ -201,7 +203,7 @@ class PageUpdater {
 	 *        obtained from ChangeTags::getSoftwareTags()
 	 */
 	public function __construct(
-		User $user,
+		Authority $performer,
 		WikiPage $wikiPage,
 		DerivedPageDataUpdater $derivedDataUpdater,
 		ILoadBalancer $loadBalancer,
@@ -215,7 +217,7 @@ class PageUpdater {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $serviceOptions;
 
-		$this->user = $user;
+		$this->performer = $performer;
 		$this->wikiPage = $wikiPage;
 		$this->derivedDataUpdater = $derivedDataUpdater;
 
@@ -240,6 +242,15 @@ class PageUpdater {
 				]
 			)
 		);
+	}
+
+	/**
+	 * @param UserIdentity $user
+	 *
+	 * @return User
+	 */
+	private static function toLegacyUser( UserIdentity $user ) {
+		return User::newFromIdentity( $user );
 	}
 
 	/**
@@ -749,11 +760,12 @@ class PageUpdater {
 			$useStashed = $this->ajaxEditStash;
 		}
 
-		$user = $this->user;
+		$user = $this->performer->getUser();
+		$legacyUser = self::toLegacyUser( $user );
 
 		// Prepare the update. This performs PST and generates the canonical ParserOutput.
 		$this->derivedDataUpdater->prepareContent(
-			$this->user,
+			$user,
 			$this->slotsUpdate,
 			$useStashed
 		);
@@ -772,7 +784,7 @@ class PageUpdater {
 
 			// Deprecated since 1.35.
 			$allowedByHook = $this->hookRunner->onPageContentSave(
-				$this->getWikiPage(), $user, $mainContent, $summary,
+				$this->getWikiPage(), $legacyUser, $mainContent, $summary,
 				$flags & EDIT_MINOR, null, null, $flags, $hookStatus
 			);
 		}
@@ -798,15 +810,15 @@ class PageUpdater {
 		// Actually create the revision and create/update the page.
 		// Do NOT yet set $this->status!
 		if ( $flags & EDIT_UPDATE ) {
-			$status = $this->doModify( $summary, $this->user, $flags );
+			$status = $this->doModify( $summary, $user, $flags );
 		} else {
-			$status = $this->doCreate( $summary, $this->user, $flags );
+			$status = $this->doCreate( $summary, $user, $flags );
 		}
 
 		// Promote user to any groups they meet the criteria for
-		DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
-			$user->addAutopromoteOnceGroups( 'onEdit' );
-			$user->addAutopromoteOnceGroups( 'onView' ); // b/c
+		DeferredUpdates::addCallableUpdate( static function () use ( $legacyUser ) {
+			$legacyUser->addAutopromoteOnceGroups( 'onEdit' );
+			$legacyUser->addAutopromoteOnceGroups( 'onView' ); // b/c
 		} );
 
 		// NOTE: set $this->status only after all hooks have been called,
@@ -907,7 +919,7 @@ class PageUpdater {
 	 * The $status parameter is updated with any errors or warnings found by Content::prepareSave().
 	 *
 	 * @param CommentStoreComment $comment
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param int $flags
 	 * @param Status $status
 	 *
@@ -915,7 +927,7 @@ class PageUpdater {
 	 */
 	private function makeNewRevision(
 		CommentStoreComment $comment,
-		User $user,
+		UserIdentity $user,
 		$flags,
 		Status $status
 	) {
@@ -968,7 +980,8 @@ class PageUpdater {
 			// XXX: We may push this up to the "edit controller" level, see T192777.
 			// XXX: prepareSave() and isValid() could live in SlotRoleHandler
 			// XXX: PrepareSave should not take a WikiPage!
-			$prepStatus = $content->prepareSave( $wikiPage, $flags, $oldid, $user );
+			$legacyUser = self::toLegacyUser( $user );
+			$prepStatus = $content->prepareSave( $wikiPage, $flags, $oldid, $legacyUser );
 
 			// TODO: MCR: record which problem arose in which slot.
 			$status->merge( $prepStatus );
@@ -997,13 +1010,13 @@ class PageUpdater {
 
 	/**
 	 * @param CommentStoreComment $summary The edit summary
-	 * @param User $user The revision's author
+	 * @param UserIdentity $user The revision's author
 	 * @param int $flags EXIT_XXX constants
 	 *
 	 * @throws MWException
 	 * @return Status
 	 */
-	private function doModify( CommentStoreComment $summary, User $user, $flags ) {
+	private function doModify( CommentStoreComment $summary, UserIdentity $user, $flags ) {
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 
 		// Update article, but only if changed.
@@ -1050,6 +1063,8 @@ class PageUpdater {
 			$this->editResultBuilder->setOriginalRevisionId( $oldid );
 		}
 		$this->buildEditResult( $newRevisionRecord, false );
+
+		$legacyUser = self::toLegacyUser( $user );
 
 		$dbw = $this->getDBConnectionRef( DB_MASTER );
 
@@ -1100,7 +1115,7 @@ class PageUpdater {
 					$wikiPage,
 					$newLegacyRevision,
 					$editResult->getOriginalRevisionId(),
-					$user,
+					$legacyUser,
 					$tags
 				);
 			}
@@ -1112,7 +1127,7 @@ class PageUpdater {
 					$now,
 					$this->getTitle(),
 					$newRevisionRecord->isMinor(),
-					$user,
+					$legacyUser,
 					$summary->text, // TODO: pass object when that becomes possible
 					$oldid,
 					$newRevisionRecord->getTimestamp(),
@@ -1127,7 +1142,7 @@ class PageUpdater {
 				);
 			}
 
-			$user->incEditCount();
+			$legacyUser->incEditCount();
 
 			$dbw->endAtomic( __METHOD__ );
 
@@ -1177,14 +1192,14 @@ class PageUpdater {
 
 	/**
 	 * @param CommentStoreComment $summary The edit summary
-	 * @param User $user The revision's author
+	 * @param UserIdentity $user The revision's author
 	 * @param int $flags EXIT_XXX constants
 	 *
 	 * @throws DBUnexpectedError
 	 * @throws MWException
 	 * @return Status
 	 */
-	private function doCreate( CommentStoreComment $summary, User $user, $flags ) {
+	private function doCreate( CommentStoreComment $summary, UserIdentity $user, $flags ) {
 		$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
 
 		if ( !$this->derivedDataUpdater->getSlots()->hasSlot( SlotRecord::MAIN ) ) {
@@ -1246,6 +1261,8 @@ class PageUpdater {
 			$wikiPage, $newRevisionRecord, false, $user, $tags
 		);
 
+		$legacyUser = self::toLegacyUser( $user );
+
 		// Hook is deprecated since 1.35
 		if ( $this->hookContainer->isRegistered( 'NewRevisionFromEditComplete' ) ) {
 			// ONly create Revision object if needed
@@ -1254,7 +1271,7 @@ class PageUpdater {
 				$wikiPage,
 				$newLegacyRevision,
 				false,
-				$user,
+				$legacyUser,
 				$tags
 			);
 		}
@@ -1266,7 +1283,7 @@ class PageUpdater {
 				$now,
 				$this->getTitle(),
 				$newRevisionRecord->isMinor(),
-				$user,
+				$legacyUser,
 				$summary->text, // TODO: pass object when that becomes possible
 				( $flags & EDIT_FORCE_BOT ) > 0,
 				'',
@@ -1277,7 +1294,7 @@ class PageUpdater {
 			);
 		}
 
-		$user->incEditCount();
+		$legacyUser->incEditCount();
 
 		if ( $this->usePageCreationLog ) {
 			// Log the page creation
@@ -1326,7 +1343,7 @@ class PageUpdater {
 		IDatabase $dbw,
 		WikiPage $wikiPage,
 		RevisionRecord $newRevisionRecord,
-		User $user,
+		UserIdentity $user,
 		CommentStoreComment $summary,
 		$flags,
 		Status $status,
@@ -1392,17 +1409,19 @@ class PageUpdater {
 					return;
 				}
 
+				$legacyUser = self::toLegacyUser( $user );
+
 				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 				$newLegacyRevision = new Revision( $newRevisionRecord );
 				if ( $created ) {
 					// Trigger post-create hook
-					$this->hookRunner->onPageContentInsertComplete( $wikiPage, $user,
+					$this->hookRunner->onPageContentInsertComplete( $wikiPage, $legacyUser,
 						$mainContent, $summary->text, $flags & EDIT_MINOR,
 						null, null, $flags, $newLegacyRevision );
 				}
 
 				// Trigger post-save hook
-				$this->hookRunner->onPageContentSaveComplete( $wikiPage, $user, $mainContent,
+				$this->hookRunner->onPageContentSaveComplete( $wikiPage, $legacyUser, $mainContent,
 					$summary->text, $flags & EDIT_MINOR, null,
 					null, $flags, $newLegacyRevision, $status,
 					$editResult->getOriginalRevisionId(), $editResult->getUndidRevId() );

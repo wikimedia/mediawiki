@@ -1794,7 +1794,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *
 	 * @since 1.32
 	 *
-	 * @param User|null $forUser The user that will be used for, or was used for, PST.
+	 * @param UserIdentity|null $forUser The user that will be used for, or was used for, PST.
 	 * @param RevisionRecord|null $forRevision The revision created by the edit for which
 	 *        to perform updates, if the edit was already saved.
 	 * @param RevisionSlotsUpdate|null $forUpdate The new content to be saved by the edit (pre PST),
@@ -1806,7 +1806,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @return DerivedPageDataUpdater
 	 */
 	private function getDerivedDataUpdater(
-		User $forUser = null,
+		UserIdentity $forUser = null,
 		RevisionRecord $forRevision = null,
 		RevisionSlotsUpdate $forUpdate = null,
 		$forEdit = false
@@ -1855,21 +1855,21 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *
 	 * @since 1.32
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param RevisionSlotsUpdate|null $forUpdate If given, allows any cached ParserOutput
 	 *        that may already have been returned via getDerivedDataUpdater to be re-used.
 	 *
 	 * @return PageUpdater
 	 */
-	public function newPageUpdater( User $user, RevisionSlotsUpdate $forUpdate = null ) {
+	public function newPageUpdater( Authority $performer, RevisionSlotsUpdate $forUpdate = null ) {
 		$this->assertProperPage();
 
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 
 		$pageUpdater = new PageUpdater(
-			$user,
+			$performer,
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
-			$this->getDerivedDataUpdater( $user, null, $forUpdate, true ),
+			$this->getDerivedDataUpdater( $performer->getUser(), null, $forUpdate, true ),
 			$this->getDBLoadBalancer(),
 			$this->getRevisionStore(),
 			$this->getSlotRoleRegistry(),
