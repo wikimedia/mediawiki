@@ -25,7 +25,6 @@ namespace MediaWiki\User;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PostconditionException;
-use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -91,27 +90,12 @@ class UserIdentityValue implements UserIdentity {
 	/**
 	 * The numerical user ID provided to the constructor.
 	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller
 	 * @return int The user ID. May be 0 for anonymous users or for users with no local account.
 	 *
-	 * @deprecated since 1.36, use getUserId() instead
 	 */
-	public function getId() : int {
-		$this->deprecateInvalidCrossWiki( self::LOCAL, '1.36' );
-		return $this->getUserId();
-	}
-
-	/**
-	 * @since 1.36
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *        Use self::LOCAL for the local wiki.
-	 *
-	 * @return int The user id. May be 0 for anonymous users or for users with no local account.
-	 *
-	 * @throws PreconditionException if $wikiId mismatches $this->getWikiId()
-	 */
-	public function getUserId( $wikiId = self::LOCAL ) : int {
-		$this->assertWiki( $wikiId );
+	public function getId( $wikiId = self::LOCAL ) : int {
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		return $this->id;
 	}
 
