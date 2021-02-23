@@ -63,7 +63,7 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 		return $this->row->rc_log_action;
 	}
 
-	public function getPerformer() {
+	protected function getPerformerUser(): User {
 		if ( !$this->performer ) {
 			$actorId = isset( $this->row->rc_actor ) ? (int)$this->row->rc_actor : 0;
 			$userId = (int)$this->row->rc_user;

@@ -191,7 +191,7 @@ class DatabaseLogEntry extends LogEntryBase {
 		return $this->revId;
 	}
 
-	public function getPerformer() {
+	protected function getPerformerUser(): User {
 		if ( !$this->performer ) {
 			$actorId = isset( $this->row->log_actor ) ? (int)$this->row->log_actor : 0;
 			$userId = (int)$this->row->log_user;
@@ -214,8 +214,13 @@ class DatabaseLogEntry extends LogEntryBase {
 		return $this->performer;
 	}
 
+	public function getPerformer() {
+		wfDeprecated( __METHOD__, '1.36' );
+		return $this->getPerformerUser();
+	}
+
 	public function getPerformerIdentity(): UserIdentity {
-		return $this->getPerformer();
+		return $this->getPerformerUser();
 	}
 
 	public function getTarget() {

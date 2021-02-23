@@ -546,6 +546,8 @@ because of Phabricator reports.
   now implemented as an Executor option.
 * Command::restrict() is deprecated. Instead use the new separate accessors.
 * WatchedItem::getUser hard-deprecated in favor of ::getUserIdentity since 1.36
+* LogEntry::getPerformer and its implementations have been hard-deprecated in
+  favor of ::getPerformerIdentity
 * …
 
 === Other changes in 1.36 ===
