@@ -27,8 +27,11 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -626,6 +629,17 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function getPermissionManager(): PermissionManager {
 		return MediaWikiServices::getInstance()->getPermissionManager();
+	}
+
+	/**
+	 * Obtain a GroupPermissionsLookup instance that subclasses may use to access group permissions.
+	 *
+	 * @since 1.36
+	 * @return GroupPermissionsLookup
+	 * @internal
+	 */
+	protected function getGroupPermissionsLookup(): GroupPermissionsLookup {
+		return MediaWikiServices::getInstance()->getGroupPermissionsLookup();
 	}
 
 	/**
@@ -1465,18 +1479,18 @@ abstract class ApiBase extends ContextSource {
 	 * Helper function for permission-denied errors
 	 * @since 1.29
 	 * @param string|string[] $rights
-	 * @param User|null $user
+	 * @param User|null $user deprecated since 1.36
 	 * @throws ApiUsageException if the user doesn't have any of the rights.
 	 *  The error message is based on $rights[0].
 	 */
 	public function checkUserRightsAny( $rights, $user = null ) {
-		if ( !$user ) {
-			$user = $this->getUser();
+		$authority = $this->getAuthority();
+		if ( $user !== null ) {
+			wfDeprecatedMsg( __METHOD__ . ': $user parameter is deprecated', '1.36' );
+			$authority = $user;
 		}
 		$rights = (array)$rights;
-		if ( !$this->getPermissionManager()
-			->userHasAnyRight( $user, ...$rights )
-		) {
+		if ( !$authority->isAllowedAny( ...$rights ) ) {
 			$this->dieWithError( [ 'apierror-permissiondenied', $this->msg( "action-{$rights[0]}" ) ] );
 		}
 	}
@@ -1484,7 +1498,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Helper function for permission-denied errors
 	 *
-	 * @param LinkTarget $linkTarget
+	 * @param PageIdentity|LinkTarget $pageIdentity deprecated passing LinkTarget since 1.36
 	 * @param string|string[] $actions
 	 * @param array $options Additional options
 	 *   - user: (User) User to use rather than $this->getUser()
@@ -1493,28 +1507,31 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.29
 	 * @since 1.33 Changed the third parameter from $user to $options.
+	 * @since 1.36 deprecated passing LinkTarget as first parameter
 	 */
 	public function checkTitleUserPermissions(
-		LinkTarget $linkTarget,
+		$pageIdentity,
 		$actions,
 		array $options = []
 	) {
-		$user = $options['user'] ?? $this->getUser();
-
-		$errors = [];
-		foreach ( (array)$actions as $action ) {
-			$errors = array_merge(
-				$errors,
-				$this->getPermissionManager()->getPermissionErrors( $action, $user, $linkTarget )
-			);
+		if ( !$pageIdentity instanceof PageIdentity ) {
+			wfDeprecatedMsg( __METHOD__ . ': passing LinkTarget as $pageIdentity parameter is deprecated',
+				'1.36' );
+			$pageIdentity = Title::castFromLinkTarget( $pageIdentity );
 		}
-
-		if ( $errors ) {
-			if ( !empty( $options['autoblock'] ) ) {
-				$user->spreadAnyEditBlock();
+		$status = new PermissionStatus();
+		foreach ( (array)$actions as $action ) {
+			if ( $this->isWriteMode() ) {
+				$this->getAuthority()->authorizeWrite( $action, $pageIdentity, $status );
+			} else {
+				$this->getAuthority()->authorizeRead( $action, $pageIdentity, $status );
 			}
-
-			$this->dieStatus( $this->errorArrayToStatus( $errors, $user ) );
+		}
+		if ( !$status->isGood() ) {
+			if ( !empty( $options['autoblock'] ) ) {
+				$this->getUser()->spreadAnyEditBlock();
+			}
+			$this->dieStatus( $status );
 		}
 	}
 

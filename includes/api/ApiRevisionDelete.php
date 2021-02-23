@@ -91,6 +91,7 @@ class ApiRevisionDelete extends ApiBase {
 			$this->dieWithError( [ 'apierror-revdel-needtarget' ], 'needtarget' );
 		}
 
+		// TODO: replace use of PermissionManager
 		if ( $this->getPermissionManager()->isBlockedFrom( $user, $targetObj ) ) {
 			$this->dieBlocked( $user->getBlock() );
 		}

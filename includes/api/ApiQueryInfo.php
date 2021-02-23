@@ -21,9 +21,8 @@
  */
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 
 /**
  * A query module to show basic page information.
@@ -190,10 +189,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @return string|false
 	 */
 	private static function getUserToken( User $user, string $right ) {
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $user, $right )
-		) {
+		if ( !$user->isAllowed( $right ) ) {
 			return false;
 		}
 
@@ -284,9 +280,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param User $user
 	 */
 	public static function getImportToken( User $user ) {
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $user, 'import', 'importupload' ) ) {
+		if ( !$user->isAllowedAny( 'import', 'importupload' ) ) {
 			return false;
 		}
 
@@ -457,8 +451,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		$pageInfo['pagelanguagehtmlcode'] = $pageLanguage->getHtmlCode();
 		$pageInfo['pagelanguagedir'] = $pageLanguage->getDir();
 
-		$user = $this->getUser();
-
 		if ( $titleExists ) {
 			$pageInfo['touched'] = wfTimestamp( TS_ISO_8601, $this->pageTouched[$pageid] );
 			$pageInfo['lastrevid'] = (int)$this->pageLatest[$pageid];
@@ -551,9 +543,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$pageInfo['canonicalurl'] = wfExpandUrl( $title->getFullURL(), PROTO_CANONICAL );
 		}
 		if ( $this->fld_readable ) {
-			$pageInfo['readable'] = $this->getPermissionManager()->userCan(
-				'read', $user, $title
-			);
+			$pageInfo['readable'] = $this->getAuthority()->definitelyCan( 'read', $title );
 		}
 
 		if ( $this->fld_preload ) {
@@ -590,32 +580,27 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 
 			$detailLevel = $this->params['testactionsdetail'];
-			$rigor = $detailLevel === 'quick'
-				? PermissionManager::RIGOR_QUICK
-				// Not using RIGOR_SECURE here, because that results in master connection
-				: PermissionManager::RIGOR_FULL;
 			$errorFormatter = $this->getErrorFormatter();
 			if ( $errorFormatter->getFormat() === 'bc' ) {
 				// Eew, no. Use a more modern format here.
 				$errorFormatter = $errorFormatter->newWithFormat( 'plaintext' );
 			}
 
-			$user = $this->getUser();
 			$pageInfo['actions'] = [];
 			foreach ( $this->params['testactions'] as $action ) {
 				$this->countTestedActions++;
 
 				if ( $detailLevel === 'boolean' ) {
-					$pageInfo['actions'][$action] = $this->getPermissionManager()->userCan(
-						$action, $user, $title
-					);
+					$pageInfo['actions'][$action] = $this->getAuthority()->authorizeRead( $action, $title );
 				} else {
-					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $this->errorArrayToStatus(
-						$this->getPermissionManager()->getPermissionErrors(
-							$action, $user, $title, $rigor
-						),
-						$user
-					) );
+					$status = new PermissionStatus();
+					if ( $detailLevel === 'quick' ) {
+						$this->getAuthority()->probablyCan( $action, $title, $status );
+					} else {
+						$this->getAuthority()->definitelyCan( $action, $title, $status );
+					}
+					$this->addBlockInfoToStatus( $status );
+					$pageInfo['actions'][$action] = $errorFormatter->arrayFromStatus( $status );
 				}
 			}
 		}
@@ -916,7 +901,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$user = $this->getUser();
 
 		if ( $user->isAnon() || count( $this->everything ) == 0
-			|| !$this->getPermissionManager()->userHasRight( $user, 'viewmywatchlist' )
+			|| !$this->getAuthority()->isAllowed( 'viewmywatchlist' )
 		) {
 			return;
 		}
@@ -955,8 +940,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			return;
 		}
 
-		$user = $this->getUser();
-		$canUnwatchedpages = $this->getPermissionManager()->userHasRight( $user, 'unwatchedpages' );
+		$canUnwatchedpages = $this->getAuthority()->isAllowed( 'unwatchedpages' );
 		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
@@ -983,11 +967,10 @@ class ApiQueryInfo extends ApiQueryBase {
 	 */
 	private function getVisitingWatcherInfo() {
 		$config = $this->getConfig();
-		$user = $this->getUser();
 		$db = $this->getDB();
 
-		$canUnwatchedpages = $this->getPermissionManager()->userHasRight( $user, 'unwatchedpages' );
-		$unwatchedPageThreshold = $this->getConfig()->get( 'UnwatchedPageThreshold' );
+		$canUnwatchedpages = $this->getAuthority()->isAllowed( 'unwatchedpages' );
+		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
 		if ( !$canUnwatchedpages && !is_int( $unwatchedPageThreshold ) ) {
 			return;
 		}

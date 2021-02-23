@@ -77,8 +77,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	 * @return string|false
 	 */
 	public static function getRollbackToken( User $user ) {
-		if ( !MediaWikiServices::getInstance()->getPermissionManager()
-				->userHasRight( $user, 'rollback' ) ) {
+		if ( !$user->isAllowed( 'rollback' ) ) {
 			return false;
 		}
 
@@ -206,11 +205,10 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		if ( $resultPageSet === null && $this->fetchContent ) {
 			// For each page we will request, the user must have read rights for that page
 			$status = Status::newGood();
-			$user = $this->getUser();
 
 			/** @var Title $title */
 			foreach ( $pageSet->getGoodTitles() as $title ) {
-				if ( !$this->getPermissionManager()->userCan( 'read', $user, $title ) ) {
+				if ( !$this->getAuthority()->authorizeRead( 'read', $title ) ) {
 					$status->fatal( ApiMessage::create(
 						[ 'apierror-cannotviewtitle', wfEscapeWikiText( $title->getPrefixedText() ) ],
 						'accessdenied'
@@ -343,10 +341,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
 				// Paranoia: avoid brute force searches (T19342)
-				if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
+				if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 					$bitmask = RevisionRecord::DELETED_USER;
-				} elseif ( !$this->getPermissionManager()
-					->userHasAnyRight( $this->getUser(), 'suppressrevision', 'viewsuppressed' )
+				} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' )
 				) {
 					$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 				} else {

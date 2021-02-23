@@ -95,6 +95,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			$contextUser = $wgUser;
 		}
 
+		$sessionObj->setUser( $contextUser );
 		if ( $tokenType !== null ) {
 			if ( $tokenType === 'auto' ) {
 				$tokenType = ( new ApiMain() )->getModuleManager()

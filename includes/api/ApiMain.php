@@ -139,7 +139,6 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'BlockPermissionCheckerFactory',
 				'UnblockUserFactory',
-				'PermissionManager',
 				'UserCache',
 			]
 		],
@@ -1420,7 +1419,7 @@ class ApiMain extends ApiBase {
 	protected function checkExecutePermissions( $module ) {
 		$user = $this->getUser();
 		if ( $module->isReadMode() && !$this->getPermissionManager()->isEveryoneAllowed( 'read' ) &&
-			!$this->getPermissionManager()->userHasRight( $user, 'read' )
+			!$this->getAuthority()->isAllowed( 'read' )
 		) {
 			$this->dieWithError( 'apierror-readapidenied' );
 		}
@@ -1428,7 +1427,7 @@ class ApiMain extends ApiBase {
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
 				$this->dieWithError( 'apierror-noapiwrite' );
-			} elseif ( !$this->getPermissionManager()->userHasRight( $user, 'writeapi' ) ) {
+			} elseif ( !$this->getAuthority()->isAllowed( 'writeapi' ) ) {
 				$this->dieWithError( 'apierror-writeapidenied' );
 			} elseif ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
 				$this->dieWithError( 'apierror-promised-nonwrite-api' );
@@ -1438,6 +1437,7 @@ class ApiMain extends ApiBase {
 		}
 
 		// Allow extensions to stop execution for arbitrary reasons.
+		// TODO: change hook to accept Authority
 		$message = 'hookaborted';
 		if ( !$this->getHookRunner()->onApiCheckCanExecute( $module, $user, $message ) ) {
 			$this->dieWithError( $message );
@@ -1518,7 +1518,7 @@ class ApiMain extends ApiBase {
 					}
 					break;
 				case 'bot':
-					if ( !$this->getPermissionManager()->userHasRight( $user, 'bot' ) ) {
+					if ( !$this->getAuthority()->isAllowed( 'bot' ) ) {
 						$this->dieWithError( 'apierror-assertbotfailed' );
 					}
 					break;
@@ -1973,7 +1973,7 @@ class ApiMain extends ApiBase {
 
 			$groups = array_map( static function ( $group ) {
 				return $group == '*' ? 'all' : $group;
-			}, $this->getPermissionManager()->getGroupsWithPermission( $right ) );
+			}, $this->getGroupPermissionsLookup()->getGroupsWithPermission( $right ) );
 
 			$help['permissions'] .= Html::rawElement( 'dd', null,
 				$this->msg( 'api-help-permissions-granted-to' )
@@ -2104,8 +2104,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function canApiHighLimits() {
 		if ( !isset( $this->mCanApiHighLimits ) ) {
-			$this->mCanApiHighLimits = $this->getPermissionManager()
-				->userHasRight( $this->getUser(), 'apihighlimits' );
+			$this->mCanApiHighLimits = $this->getAuthority()->isAllowed( 'apihighlimits' );
 		}
 
 		return $this->mCanApiHighLimits;

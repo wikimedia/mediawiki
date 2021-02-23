@@ -215,7 +215,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 				$this->addJoinConds( [ 'user_groups' => [
 					'LEFT JOIN',
 					[
-						'ug_group' => $this->getPermissionManager()->getGroupsWithPermission( 'bot' ),
+						'ug_group' => $this->getGroupPermissionsLookup()->getGroupsWithPermission( 'bot' ),
 						'ug_user = ' . $actorQuery['fields']['img_user'],
 						'ug_expiry IS NULL OR ug_expiry >= ' . $db->addQuotes( $db->timestamp() )
 					]

@@ -223,12 +223,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		// Paranoia: avoid brute force searches (T19342)
 		if ( $params['namespace'] !== null || $title !== null || $user !== null ) {
-			if ( !$this->getPermissionManager()->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
+			if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 				$titleBits = LogPage::DELETED_ACTION;
 				$userBits = LogPage::DELETED_USER;
-			} elseif ( !$this->getPermissionManager()
-				->userHasAnyRight( $this->getUser(), 'suppressrevision', 'viewsuppressed' )
-			) {
+			} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$titleBits = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
 				$userBits = LogPage::DELETED_USER | LogPage::DELETED_RESTRICTED;
 			} else {

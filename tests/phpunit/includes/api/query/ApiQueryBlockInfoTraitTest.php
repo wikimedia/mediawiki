@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -26,9 +25,7 @@ class ApiQueryBlockInfoTraitTest extends MediaWikiIntegrationTestCase {
 
 		$mock = $this->getMockForTrait( ApiQueryBlockInfoTrait::class );
 		$mock->method( 'getDB' )->willReturn( wfGetDB( DB_REPLICA ) );
-		$mock->method( 'getPermissionManager' )
-			->willReturn( MediaWikiServices::getInstance()->getPermissionManager() );
-		$mock->method( 'getUser' )
+		$mock->method( 'getAuthority' )
 			->willReturn( $this->getMutableTestUser()->getUser() );
 		$mock->method( 'addTables' )->willReturnCallback( static function ( $v ) use ( &$data ) {
 			$data['tables'] = array_merge( $data['tables'] ?? [], (array)$v );

@@ -31,15 +31,16 @@ class ApiManageTags extends ApiBase {
 
 		// make sure the user is allowed
 		if ( $params['operation'] !== 'delete'
-			&& !$this->getPermissionManager()->userHasRight( $user, 'managechangetags' )
+			&& !$this->getAuthority()->isAllowed( 'managechangetags' )
 		) {
 			$this->dieWithError( 'tags-manage-no-permission', 'permissiondenied' );
-		} elseif ( !$this->getPermissionManager()->userHasRight( $user, 'deletechangetags' ) ) {
+		} elseif ( !$this->getAuthority()->isAllowed( 'deletechangetags' ) ) {
 			$this->dieWithError( 'tags-delete-no-permission', 'permissiondenied' );
 		}
 
 		// Check if user can add the log entry tags which were requested
 		if ( $params['tags'] ) {
+			// TODO: change to accept Authority
 			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );

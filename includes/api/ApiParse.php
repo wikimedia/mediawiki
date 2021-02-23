@@ -156,8 +156,7 @@ class ApiParse extends ApiBase {
 					$this->dieWithError( [ 'apierror-nosuchrevid', $oldid ] );
 				}
 
-				$revLinkTarget = $rev->getPageAsLinkTarget();
-				$this->checkTitleUserPermissions( $revLinkTarget, 'read' );
+				$this->checkTitleUserPermissions( $rev->getPage(), 'read' );
 
 				if ( !$rev->audienceCan(
 					RevisionRecord::DELETED_TEXT,
@@ -169,6 +168,7 @@ class ApiParse extends ApiBase {
 					);
 				}
 
+				$revLinkTarget = $rev->getPageAsLinkTarget();
 				$titleObj = Title::newFromLinkTarget( $revLinkTarget );
 				$wgTitle = $titleObj;
 				$pageObj = WikiPage::factory( $titleObj );

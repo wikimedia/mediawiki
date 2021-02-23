@@ -340,12 +340,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 		// Don't include any revisions where we're not supposed to be able to
 		// see the username.
-		$user = $this->getUser();
-		if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER;
-		} elseif ( !$this->getPermissionManager()
-			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-		) {
+		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;
@@ -413,6 +410,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
 			isset( $show['autopatrolled'] ) || isset( $show['!autopatrolled'] ) || $this->fld_patrolled
 		) {
+			$user = $this->getUser();
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}

@@ -84,9 +84,9 @@ class ApiMove extends ApiBase {
 			&& $repoGroup->findFile( $toTitle )
 		) {
 			if ( !$params['ignorewarnings'] &&
-				 $this->getPermissionManager()->userHasRight( $user, 'reupload-shared' ) ) {
+				$this->getAuthority()->isAllowed( 'reupload-shared' ) ) {
 				$this->dieWithError( 'apierror-fileexists-sharedrepo-perm' );
-			} elseif ( !$this->getPermissionManager()->userHasRight( $user, 'reupload-shared' ) ) {
+			} elseif ( !$this->getAuthority()->isAllowed( 'reupload-shared' ) ) {
 				$this->dieWithError( 'apierror-cantoverwrite-sharedfile' );
 			}
 		}
@@ -201,13 +201,14 @@ class ApiMove extends ApiBase {
 		}
 
 		$user = $this->getUser();
+		// TODO: change to accept Authority
 		$permStatus = $mp->checkPermissions( $user, $reason );
 		if ( !$permStatus->isOK() ) {
 			return $permStatus;
 		}
 
 		// Check suppressredirect permission
-		if ( !$this->getPermissionManager()->userHasRight( $user, 'suppressredirect' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
 
