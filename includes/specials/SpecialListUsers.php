@@ -26,7 +26,6 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -38,9 +37,6 @@ class SpecialListUsers extends IncludableSpecialPage {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -49,19 +45,16 @@ class SpecialListUsers extends IncludableSpecialPage {
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserGroupManager $userGroupManager
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		UserGroupManager $userGroupManager
 	) {
 		parent::__construct( 'Listusers' );
 		$this->linkBatchFactory = $linkBatchFactory;
-		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->userGroupManager = $userGroupManager;
 	}
@@ -79,7 +72,6 @@ class SpecialListUsers extends IncludableSpecialPage {
 			$this->including(),
 			$this->linkBatchFactory,
 			$this->getHookContainer(),
-			$this->permissionManager,
 			$this->loadBalancer,
 			$this->userGroupManager
 		);

@@ -26,7 +26,6 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -68,9 +67,6 @@ class UsersPager extends AlphabeticPager {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
@@ -81,7 +77,6 @@ class UsersPager extends AlphabeticPager {
 	 * another page
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param HookContainer $hookContainer
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserGroupManager $userGroupManager
 	 */
@@ -91,7 +86,6 @@ class UsersPager extends AlphabeticPager {
 		$including,
 		LinkBatchFactory $linkBatchFactory,
 		HookContainer $hookContainer,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		UserGroupManager $userGroupManager
 	) {
@@ -143,7 +137,6 @@ class UsersPager extends AlphabeticPager {
 		parent::__construct();
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->permissionManager = $permissionManager;
 		$this->userGroupManager = $userGroupManager;
 	}
 
@@ -431,7 +424,7 @@ class UsersPager extends AlphabeticPager {
 	}
 
 	protected function canSeeHideuser() {
-		return $this->permissionManager->userHasRight( $this->getUser(), 'hideuser' );
+		return $this->getAuthority()->isAllowed( 'hideuser' );
 	}
 
 	/**

@@ -141,7 +141,6 @@ class SpecialPageFactory {
 			'class' => \SpecialProtectedpages::class,
 			'services' => [
 				'LinkBatchFactory',
-				'PermissionManager',
 				'DBLoadBalancer',
 				'CommentStore',
 				'ActorMigration',
@@ -348,7 +347,6 @@ class SpecialPageFactory {
 			'class' => \SpecialActiveUsers::class,
 			'services' => [
 				'LinkBatchFactory',
-				'PermissionManager',
 				'DBLoadBalancer',
 				'UserGroupManager',
 			]
@@ -376,7 +374,6 @@ class SpecialPageFactory {
 		'BlockList' => [
 			'class' => \SpecialBlockList::class,
 			'services' => [
-				'PermissionManager',
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
 				'DBLoadBalancer',
@@ -387,7 +384,6 @@ class SpecialPageFactory {
 		'AutoblockList' => [
 			'class' => \SpecialAutoblockList::class,
 			'services' => [
-				'PermissionManager',
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
 				'DBLoadBalancer',
@@ -464,7 +460,6 @@ class SpecialPageFactory {
 			'class' => \SpecialListUsers::class,
 			'services' => [
 				'LinkBatchFactory',
-				'PermissionManager',
 				'DBLoadBalancer',
 				'UserGroupManager',
 			]
@@ -579,7 +574,6 @@ class SpecialPageFactory {
 			'class' => \SpecialListFiles::class,
 			'services' => [
 				'RepoGroup',
-				'PermissionManager',
 				'DBLoadBalancer',
 				'CommentStore',
 				'ActorMigration',

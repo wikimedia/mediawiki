@@ -23,7 +23,6 @@
 
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -33,9 +32,6 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @ingroup SpecialPage
  */
 class SpecialAutoblockList extends SpecialPage {
-
-	/** @var PermissionManager */
-	private $permManager;
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
@@ -53,7 +49,6 @@ class SpecialAutoblockList extends SpecialPage {
 	private $commentStore;
 
 	/**
-	 * @param PermissionManager $permManager
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param ILoadBalancer $loadBalancer
@@ -61,7 +56,6 @@ class SpecialAutoblockList extends SpecialPage {
 	 * @param CommentStore $commentStore
 	 */
 	public function __construct(
-		PermissionManager $permManager,
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
@@ -70,7 +64,6 @@ class SpecialAutoblockList extends SpecialPage {
 	) {
 		parent::__construct( 'AutoblockList' );
 
-		$this->permManager = $permManager;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->loadBalancer = $loadBalancer;
@@ -126,7 +119,7 @@ class SpecialAutoblockList extends SpecialPage {
 			'ipb_parent_block_id IS NOT NULL'
 		];
 		# Is the user allowed to see hidden blocks?
-		if ( !$this->permManager->userHasRight( $this->getUser(), 'hideuser' ) ) {
+		if ( !$this->getContext()->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
 		}
 
@@ -135,7 +128,6 @@ class SpecialAutoblockList extends SpecialPage {
 			$conds,
 			$this->linkBatchFactory,
 			$this->blockRestrictionStore,
-			$this->permManager,
 			$this->loadBalancer,
 			$this->getSpecialPageFactory(),
 			$this->actorMigration,

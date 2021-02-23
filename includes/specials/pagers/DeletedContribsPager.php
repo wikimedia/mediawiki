@@ -22,7 +22,6 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionFactory;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\FakeResultWrapper;
@@ -62,9 +61,6 @@ class DeletedContribsPager extends IndexPager {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var CommentStore */
 	private $commentStore;
 
@@ -80,7 +76,6 @@ class DeletedContribsPager extends IndexPager {
 	 * @param string|int $namespace
 	 * @param LinkRenderer $linkRenderer
 	 * @param HookContainer $hookContainer
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
@@ -92,7 +87,6 @@ class DeletedContribsPager extends IndexPager {
 		$namespace,
 		LinkRenderer $linkRenderer,
 		HookContainer $hookContainer,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
@@ -108,7 +102,6 @@ class DeletedContribsPager extends IndexPager {
 		$this->target = $target;
 		$this->namespace = $namespace;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->permissionManager = $permissionManager;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
 		$this->revisionFactory = $revisionFactory;
@@ -132,9 +125,9 @@ class DeletedContribsPager extends IndexPager {
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
 		$user = $this->getUser();
 		// Paranoia: avoid brute force searches (T19792)
-		if ( !$this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$conds[] = $dbr->bitAnd( 'ar_deleted', RevisionRecord::DELETED_USER ) . ' = 0';
-		} elseif ( !$this->permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$conds[] = $dbr->bitAnd( 'ar_deleted', RevisionRecord::SUPPRESSED_USER ) .
 				' != ' . RevisionRecord::SUPPRESSED_USER;
 		}
@@ -357,7 +350,7 @@ class DeletedContribsPager extends IndexPager {
 
 		$user = $this->getUser();
 
-		if ( $this->permissionManager->userHasRight( $user, 'deletedtext' ) ) {
+		if ( $this->getAuthority()->isAllowed( 'deletedtext' ) ) {
 			$last = $linkRenderer->makeKnownLink(
 				$undelete,
 				$this->messages['diff'],
@@ -375,12 +368,8 @@ class DeletedContribsPager extends IndexPager {
 		$comment = Linker::revComment( $revRecord );
 		$date = $this->getLanguage()->userTimeAndDate( $revRecord->getTimestamp(), $user );
 
-		if ( !$this->permissionManager->userHasRight( $user, 'undelete' ) ||
-			 !RevisionRecord::userCanBitfield(
-				$revRecord->getVisibility(),
-				RevisionRecord::DELETED_TEXT,
-				$user
-			)
+		if ( !$this->getAuthority()->isAllowed( 'undelete' ) ||
+			!$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 		) {
 			$link = htmlspecialchars( $date ); // unusable link
 		} else {

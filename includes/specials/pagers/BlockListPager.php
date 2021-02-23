@@ -25,7 +25,6 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Cache\LinkBatchFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
@@ -52,9 +51,6 @@ class BlockListPager extends TablePager {
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
@@ -69,7 +65,6 @@ class BlockListPager extends TablePager {
 	 * @param array $conds
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param BlockRestrictionStore $blockRestrictionStore
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param ActorMigration $actorMigration
@@ -80,7 +75,6 @@ class BlockListPager extends TablePager {
 		$conds,
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		SpecialPageFactory $specialPageFactory,
 		ActorMigration $actorMigration,
@@ -92,7 +86,6 @@ class BlockListPager extends TablePager {
 		$this->mDefaultDirection = IndexPager::DIR_DESCENDING;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
-		$this->permissionManager = $permissionManager;
 		$this->specialPageFactory = $specialPageFactory;
 		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
@@ -190,7 +183,7 @@ class BlockListPager extends TablePager {
 					$value,
 					/* User preference timezone */true
 				) );
-				if ( $this->permissionManager->userHasRight( $this->getUser(), 'block' ) ) {
+				if ( $this->getAuthority()->isAllowed( 'block' ) ) {
 					$links = [];
 					if ( $row->ipb_auto ) {
 						$links[] = $linkRenderer->makeKnownLink(
@@ -411,7 +404,7 @@ class BlockListPager extends TablePager {
 		$info['conds'][] = 'ipb_expiry > ' . $db->addQuotes( $db->timestamp() );
 
 		# Is the user allowed to see hidden blocks?
-		if ( !$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$info['conds']['ipb_deleted'] = 0;
 		}
 
