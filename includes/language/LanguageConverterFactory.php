@@ -32,6 +32,7 @@ use Language;
 use ShiConverter;
 use SrConverter;
 use TgConverter;
+use TlyConverter;
 use TrivialLanguageConverter;
 use UzConverter;
 use ZhConverter;
@@ -58,6 +59,7 @@ class LanguageConverterFactory {
 		'shi' => ShiConverter::class,
 		'sr' => SrConverter::class,
 		'tg' => TgConverter::class,
+		'tly' => TlyConverter::class,
 		'uz' => UzConverter::class,
 		'zh' => ZhConverter::class,
 	];
