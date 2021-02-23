@@ -174,6 +174,7 @@ class DatabaseTestHelper extends Database {
 	}
 
 	public function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
+		$this->server = 'localhost';
 		$this->conn = (object)[ 'test' ];
 
 		return true;
