@@ -26,6 +26,7 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\IDatabase;
 
 class LogEventsList extends ContextSource {
@@ -227,10 +228,7 @@ class LogEventsList extends ContextSource {
 		foreach ( LogPage::validTypes() as $type ) {
 			$page = new LogPage( $type );
 			$restriction = $page->getRestriction();
-			if ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), $restriction )
-			) {
+			if ( $this->getAuthority()->isAllowed( $restriction ) ) {
 				$typesByName[$type] = $page->getName()->text();
 			}
 		}
@@ -456,12 +454,11 @@ class LogEventsList extends ContextSource {
 		}
 
 		$del = '';
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Don't show useless checkbox to people who cannot hide log entries
-		if ( $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
-			$canHide = $permissionManager->userHasRight( $user, 'deletelogentry' );
-			$canViewSuppressedOnly = $permissionManager->userHasRight( $user, 'viewsuppressed' ) &&
-				!$permissionManager->userHasRight( $user, 'suppressrevision' );
+		if ( $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
+			$canHide = $this->getAuthority()->isAllowed( 'deletelogentry' );
+			$canViewSuppressedOnly = $this->getAuthority()->isAllowed( 'viewsuppressed' ) &&
+				!$this->getAuthority()->isAllowed( 'suppressrevision' );
 			$entryIsSuppressed = self::isDeleted( $row, LogPage::DELETED_RESTRICTED );
 			$canViewThisSuppressedEntry = $canViewSuppressedOnly && $entryIsSuppressed;
 			if ( $row->log_deleted || $canHide ) {
@@ -537,21 +534,16 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param int $bitfield Current field
 	 * @param int $field
-	 * @param User $user User to check
+	 * @param Authority $performer User to check
 	 * @return bool
 	 */
-	public static function userCanBitfield( $bitfield, $field, User $user ) {
+	public static function userCanBitfield( $bitfield, $field, Authority $performer ) {
 		if ( $bitfield & $field ) {
 			if ( $bitfield & LogPage::DELETED_RESTRICTED ) {
-				$permissions = [ 'suppressrevision', 'viewsuppressed' ];
+				return $performer->isAllowedAny( 'suppressrevision', 'viewsuppressed' );
 			} else {
-				$permissions = [ 'deletedhistory' ];
+				return $performer->isAllowed( 'deletedhistory' );
 			}
-			$permissionlist = implode( ', ', $permissions );
-			wfDebug( "Checking for $permissionlist due to $field match on $bitfield" );
-			return MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasAnyRight( $user, ...$permissions );
 		}
 		return true;
 	}
@@ -561,14 +553,12 @@ class LogEventsList extends ContextSource {
 	 * field of this log row, if it's marked as restricted log type.
 	 *
 	 * @param string $type
-	 * @param User $user User to check
+	 * @param Authority $performer User to check
 	 * @return bool
 	 */
-	public static function userCanViewLogType( $type, User $user ) {
+	public static function userCanViewLogType( $type, Authority $performer ) {
 		$logRestrictions = MediaWikiServices::getInstance()->getMainConfig()->get( 'LogRestrictions' );
-		if ( isset( $logRestrictions[$type] ) && !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, $logRestrictions[$type] )
+		if ( isset( $logRestrictions[$type] ) && !$performer->isAllowed( $logRestrictions[$type] )
 		) {
 			return false;
 		}
@@ -668,7 +658,6 @@ class LogEventsList extends ContextSource {
 			0,
 			$services->getLinkBatchFactory(),
 			$services->getDBLoadBalancer(),
-			$services->getPermissionManager(),
 			$services->getActorMigration()
 		);
 		if ( !$useRequestParams ) {
@@ -787,14 +776,14 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param IDatabase $db
 	 * @param string $audience Public/user
-	 * @param User|null $user User to check, required when audience isn't public
+	 * @param Authority|null $performer User to check, required when audience isn't public
 	 * @return string|bool String on success, false on failure.
 	 * @throws InvalidArgumentException
 	 */
-	public static function getExcludeClause( $db, $audience = 'public', User $user = null ) {
+	public static function getExcludeClause( $db, $audience = 'public', Authority $performer = null ) {
 		global $wgLogRestrictions;
 
-		if ( $audience != 'public' && $user === null ) {
+		if ( $audience != 'public' && $performer === null ) {
 			throw new InvalidArgumentException(
 				'A User object must be given when checking for a user audience.'
 			);
@@ -805,9 +794,7 @@ class LogEventsList extends ContextSource {
 
 		// Don't show private logs to unprivileged users
 		foreach ( $wgLogRestrictions as $logType => $right ) {
-			if ( $audience == 'public' || !MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, $right )
+			if ( $audience == 'public' || !$performer->isAllowed( $right )
 			) {
 				$hiddenLogs[] = $logType;
 			}

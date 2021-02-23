@@ -22,8 +22,6 @@
  * @since 1.25
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * This class formats block log entries.
  *
@@ -151,9 +149,7 @@ class BlockLogFormatter extends LogFormatter {
 		$linkRenderer = $this->getLinkRenderer();
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
 			|| !( $subtype === 'block' || $subtype === 'reblock' )
-			|| !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->context->getUser(), 'block' )
+			|| !$this->context->getAuthority()->isAllowed( 'block' )
 		) {
 			return '';
 		}
