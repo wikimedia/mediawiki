@@ -1,10 +1,9 @@
 version: v4
-lives:
-  in: /var/www/html
-
 variants:
   dev:
     base: docker-registry.wikimedia.org/dev/stretch-php72-fpm-apache2-blubber
+    lives:
+      in: /var/www/html
     runs:
       insecurely: true
     builder:
@@ -13,4 +12,6 @@ variants:
     copies: [local]
   production:
     base: docker-registry.wikimedia.org/php7.2-fpm
+    lives:
+      in: /srv/mediawiki
     copies: [local]
