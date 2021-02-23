@@ -219,7 +219,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return $cachedValue[0];
 		}
 
-		return $this->getActorFromConds( [ 'actor_id' => $actorId ], $queryFlags );
+		return $this->newSelectQueryBuilder( $queryFlags )
+			->caller( __METHOD__ )
+			->conds( [ 'actor_id' => $actorId ] )
+			->fetchUserIdentity();
 	}
 
 	/**
@@ -245,7 +248,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return $cachedValue[0];
 		}
 
-		return $this->getActorFromConds( [ 'actor_name' => $name ], $queryFlags );
+		return $this->newSelectQueryBuilder( $queryFlags )
+			->caller( __METHOD__ )
+			->userNames( $name )
+			->fetchUserIdentity();
 	}
 
 	/**
@@ -265,7 +271,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return $cachedValue[0];
 		}
 
-		return $this->getActorFromConds( [ 'actor_user' => $userId ], $queryFlags );
+		return $this->newSelectQueryBuilder( $queryFlags )
+			->caller( __METHOD__ )
+			->userIds( $userId )
+			->fetchUserIdentity();
 	}
 
 	/**
@@ -462,10 +471,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	/**
 	 * Returns a canonical form of user name suitable for storage.
 	 *
+	 * @internal
 	 * @param string $name
 	 * @return string|null
 	 */
-	private function normalizeUserName( string $name ): ?string {
+	public function normalizeUserName( string $name ): ?string {
 		if ( $this->userNameUtils->isIP( $name ) ) {
 			return IPUtils::sanitizeIP( $name );
 		} else {
@@ -481,27 +491,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			// fix existing DB rows - T273933
 			return $name;
 		}
-	}
-
-	/**
-	 * Queries an actor by $conds
-	 *
-	 * @param array $conds
-	 * @param int $queryFlags
-	 * @return UserIdentity|null
-	 */
-	private function getActorFromConds( array $conds, int $queryFlags = self::READ_NORMAL ): ?UserIdentity {
-		$row = $this->getDBConnectionRefForQueryFlags( $queryFlags )
-			->selectRow(
-				'actor',
-				[ 'actor_id', 'actor_name', 'actor_user' ],
-				$conds,
-				__METHOD__
-			);
-		if ( $row === false ) {
-			return null;
-		}
-		return $this->newActorFromRow( $row );
 	}
 
 	/**
@@ -551,5 +540,18 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$actor = new UserIdentityValue( 0, self::UNKNOWN_USER_NAME, 0, $this->wikiId );
 		$this->acquireActorId( $actor );
 		return $actor;
+	}
+
+	/**
+	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
+	 *
+	 * @param int $queryFlags one of IDBAccessObject constants
+	 * @return UserSelectQueryBuilder
+	 */
+	public function newSelectQueryBuilder( int $queryFlags = self::READ_NORMAL ): UserSelectQueryBuilder {
+		return new UserSelectQueryBuilder(
+			$this->getDBConnectionRefForQueryFlags( $queryFlags ),
+			$this
+		);
 	}
 }

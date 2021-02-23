@@ -72,4 +72,12 @@ interface UserIdentityLookup extends IDBAccessObject {
 		?string $name,
 		int $queryFlags = self::READ_NORMAL
 	): ?UserIdentity;
+
+	/**
+	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
+	 *
+	 * @param int $queryFlags one of IDBAccessObject constants
+	 * @return UserSelectQueryBuilder
+	 */
+	public function newSelectQueryBuilder( int $queryFlags = self::READ_NORMAL ): UserSelectQueryBuilder;
 }
