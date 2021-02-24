@@ -390,6 +390,8 @@ because of Phabricator reports.
   in public MediaWiki-related git, was removed.
 * Passing Title as a second parameter to RevisionStore::getPreviousRevision and
   getNextRevision, hard deprecated since 1.31, was prohibited.
+* (T275619) Maintenance::hasOption and Maintenance::getOption now behave as
+  documented and are not altered by previous calls to these methods.
 * The internal class FirejailCommand was removed.
 * Command::execute() now returns a Shellbox\Command\UnboxedResult instead of a
   MediaWiki\Shell\Result. Any type hints should be updated.
