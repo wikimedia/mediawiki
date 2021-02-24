@@ -622,6 +622,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'user', 'user_token', '' ],
 			[ 'setDefault', 'user', 'user_real_name', '' ],
 			[ 'dropConstraint', 'user', 'user_name', 'unique' ],
+			[ 'addField', 'objectcache', 'modtoken', 'patch-objectcache-modtoken.sql' ],
 		];
 	}
 
