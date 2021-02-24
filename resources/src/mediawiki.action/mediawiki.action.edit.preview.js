@@ -270,7 +270,7 @@
 						)
 					);
 				response.parse.parsewarnings.forEach( function ( warning ) {
-					$previewHeader.find( '.warningbox' ).append( $( '<p>' ).append( warning ) );
+					$previewHeader.find( '.warningbox' ).append( $( '<p>' ).text( warning ) );
 				} );
 
 				if ( response.parse.text ) {
