@@ -20,6 +20,8 @@ THIS IS NOT A RELEASE YET
 * Upgrade seld/jsonlint from 1.7.1 to 1.8.3 for PHP 8.0 support.
 * Upgrade doctrine/dbal from 2.10.4 to 3.0.0 for PHP 8.0 support.
 * Upgrade wikimedia/less.php from 3.0.0 to 3.1.0 for PHP 8.0 support.
+* (T275619) Maintenance::hasOption and Maintenance::getOption now behave as
+  documented and are not altered by previous calls to these methods.
 
 == MediaWiki 1.35.1 ==
 
