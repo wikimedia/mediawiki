@@ -1948,7 +1948,7 @@ more stuff
 			static function ( WikiPage $wikiPage, self $test ) {
 				$test->assertSame( 44, $wikiPage->getId() );
 				$test->assertSame( 76, $wikiPage->getTitle()->getLength() );
-				$test->assertTrue( $wikiPage->isRedirect() );
+				$test->assertTrue( $wikiPage->getPageIsRedirectField() );
 				$test->assertSame( 99, $wikiPage->getLatest() );
 				$test->assertSame( 3, $wikiPage->getTitle()->getNamespace() );
 				$test->assertSame( 'JaJaTitle', $wikiPage->getTitle()->getDBkey() );
@@ -2660,6 +2660,41 @@ more stuff
 
 		$this->assertTrue( $isCalled );
 		$this->assertSame( $expectedWikiPage, $wikiPage );
+	}
+
+	/**
+	 * This is just to confirm that WikiPage::updateRevisionOn() calls
+	 * LinkCache::addGoodLinkObj() with the correct redirect value. Failing to
+	 * do so would apparently cause Echo to inappropriately notify on redirect
+	 * creation, and there was a test for that, but that's subtle.
+	 *
+	 * @covers WikiPage
+	 */
+	public function testUpdateSetsTitleRedirectCache() {
+		// Get a title object without using the title cache
+		$title = Title::makeTitleSafe( NS_MAIN, 'A new redirect' );
+		$this->assertFalse( $title->isRedirect() );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$page = $this->newPage( $title );
+		$page->insertOn( $dbw );
+
+		$revision = new MutableRevisionRecord( $page );
+		$revision->setContent(
+			SlotRecord::MAIN,
+			new WikitextContent( '#REDIRECT [[Target]]' )
+		);
+		$revision->setTimestamp( wfTimestampNow() );
+		$revision->setComment( CommentStoreComment::newUnsavedComment( '' ) );
+		$revision->setUser( $this->getTestUser()->getUser() );
+
+		$revision = $store->insertRevisionOn( $revision, $dbw );
+
+		$page->updateRevisionOn( $dbw, $revision );
+		// Don't use the title cache again, just use the LinkCache
+		$title = Title::makeTitleSafe( NS_MAIN, 'A new redirect' );
+		$this->assertTrue( $title->isRedirect() );
 	}
 
 }

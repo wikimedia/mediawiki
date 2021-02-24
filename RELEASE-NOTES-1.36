@@ -400,6 +400,7 @@ because of Phabricator reports.
 * The internal class FirejailCommand was removed.
 * Command::execute() now returns a Shellbox\Command\UnboxedResult instead of a
   MediaWiki\Shell\Result. Any type hints should be updated.
+* WikiPage::$mIsRedirect was removed.
 * ObjectCache::detectLocalServerCache(), deprecated in 1.35, was removed.
 * …
 
