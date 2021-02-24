@@ -85,6 +85,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -550,7 +551,7 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	/**
-	 * @return ActorStore
+	 * @return ActorNormalization
 	 * @since 1.36
 	 */
 	public function getActorNormalization() : ActorNormalization {
@@ -562,7 +563,7 @@ class MediaWikiServices extends ServiceContainer {
 	 * @since 1.36
 	 */
 	public function getActorStore() : ActorStore {
-		return $this->getActorStoreFactory()->getActorStore();
+		return $this->getService( 'ActorStore' );
 	}
 
 	/**
@@ -1507,6 +1508,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getUserGroupManagerFactory() : UserGroupManagerFactory {
 		return $this->getService( 'UserGroupManagerFactory' );
+	}
+
+	/**
+	 * @since 1.36
+	 * @return UserIdentityLookup
+	 */
+	public function getUserIdentityLookup() : UserIdentityLookup {
+		return $this->getService( 'UserIdentityLookup' );
 	}
 
 	/**
