@@ -66,7 +66,7 @@ use WikiPage;
  * This allows application logic to safely perform edit conflict resolution using the parent
  * revision's content.
  *
- * @see docs/pageupdater.txt for more information.
+ * @see docs/pageupdater.md for more information.
  *
  * MCR migration note: this replaces the relevant methods in WikiPage.
  *
