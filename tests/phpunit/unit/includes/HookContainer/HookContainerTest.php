@@ -241,7 +241,7 @@ namespace MediaWiki\HookContainer {
 		 * @covers \MediaWiki\HookContainer\HookContainer::getHandlers
 		 * @dataProvider provideGetHandlers
 		 */
-		public function testGetHandlers( $hook, $handlerToRegister, $expectedReturn ) {
+		public function testGetHandlers( string $hook, ?array $handlerToRegister, array $expectedReturn ) {
 			if ( $handlerToRegister ) {
 				$hooks = [ $hook => [ $handlerToRegister ] ];
 			} else {

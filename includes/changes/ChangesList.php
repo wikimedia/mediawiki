@@ -825,7 +825,7 @@ class ChangesList extends ContextSource {
 	/**
 	 * @param string &$s
 	 * @param RecentChange &$rc
-	 * @param array &$classes
+	 * @param string[] &$classes
 	 */
 	public function insertTags( &$s, &$rc, &$classes ) {
 		if ( empty( $rc->mAttribs['ts_tags'] ) ) {
@@ -843,7 +843,7 @@ class ChangesList extends ContextSource {
 
 	/**
 	 * @param RecentChange $rc
-	 * @param array &$classes
+	 * @param string[] &$classes
 	 * @return string
 	 * @since 1.26
 	 */
