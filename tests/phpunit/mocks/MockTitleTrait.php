@@ -49,12 +49,25 @@ trait MockTitleTrait {
 		$title->method( 'getContentModel' )
 			->willReturn( $props['contentModel'] ?? CONTENT_MODEL_WIKITEXT );
 		$title->method( 'getRestrictions' )->willReturn( [] );
+		$title->method( 'canExist' )->willReturn( true );
+		$title->method( 'getWikiId' )->willReturn( Title::LOCAL );
+		if ( isset( $props['revision'] ) ) {
+			$title->method( 'getLatestRevId' )->willReturn( $props['revision'] );
+		} else {
+			$title->method( 'getLatestRevId' )->willReturn( $id === 0 ? 0 : 43 );
+		}
+		$title->method( 'getContentModel' )->willReturn( CONTENT_MODEL_WIKITEXT );
+		$title->method( 'isContentPage' )->willReturn( true );
 		$title->method( 'isSamePageAs' )->willReturnCallback( static function ( $other ) use ( $id ) {
 			return $other && $id === $other->getArticleId();
 		} );
 		$title->method( 'isSameLinkAs' )->willReturnCallback( static function ( $other ) use ( $ns, $text ) {
 			return $other && $text === $other->getDBkey() && $ns === $other->getNamespace();
 		} );
+		$title->method( 'equals' )->willReturnCallback( static function ( $other ) use ( $preText ) {
+			return $other->getPrefixedDBkey() === str_replace( ' ', '_', $preText );
+		} );
+		$title->method( '__toString' )->willReturn( "MockTitle:{$preText}" );
 
 		return $title;
 	}

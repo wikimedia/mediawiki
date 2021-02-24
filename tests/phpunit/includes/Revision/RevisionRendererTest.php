@@ -6,7 +6,6 @@ use CommentStoreComment;
 use Content;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -16,6 +15,7 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use MockTitleTrait;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -28,6 +28,7 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\RevisionRenderer
  */
 class RevisionRendererTest extends MediaWikiIntegrationTestCase {
+	use MockTitleTrait;
 
 	/**
 	 * @param int $articleId
@@ -35,50 +36,11 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	 * @return Title
 	 */
 	private function getMockTitle( $articleId, $revisionId ) {
-		/** @var Title|MockObject $mock */
-		$mock = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getNamespace' )
-			->will( $this->returnValue( NS_MAIN ) );
-		$mock->expects( $this->any() )
-			->method( 'getText' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getPrefixedText' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getDBkey' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getArticleID' )
-			->will( $this->returnValue( $articleId ) );
-		$mock->expects( $this->any() )
-			->method( 'getLatestRevId' )
-			->will( $this->returnValue( $revisionId ) );
-		$mock->expects( $this->any() )
-			->method( 'getContentModel' )
-			->will( $this->returnValue( CONTENT_MODEL_WIKITEXT ) );
-		$mock->expects( $this->any() )
-			->method( 'getPageLanguage' )
-			->will( $this->returnValue(
-				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) ) );
-		$mock->expects( $this->any() )
-			->method( 'isContentPage' )
-			->will( $this->returnValue( true ) );
-		$mock->expects( $this->any() )
-			->method( 'equals' )
-			->willReturnCallback(
-				static function ( Title $other ) use ( $mock ) {
-					return $mock->getArticleID() === $other->getArticleID();
-				}
-			);
-		$mock->expects( $this->any() )
-			->method( 'getRestrictions' )
-			->willReturn( [] );
-
-		return $mock;
+		return $this->makeMockTitle( __CLASS__, [
+			'id' => $articleId,
+			'revision' => $revisionId,
+			'language' => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
+		] );
 	}
 
 	/**

@@ -67,16 +67,6 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'Dummy' );
 		$title->resetArticleID( 17 );
 
-		// This case exists for b/c and should be deprecated.
-		yield 'all info, foreign with Title' => [
-			$title,
-			$user,
-			$comment,
-			(object)$row,
-			$slots,
-			'acmewiki'
-		];
-
 		yield 'all info, local with Title' => [
 			$title,
 			$user,
@@ -247,15 +237,6 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 
 		yield 'not a row' => [
 			new PageIdentityValue( 17, NS_MAIN, 'Dummy', 'acmewiki' ),
-			$user,
-			$comment,
-			'not a row',
-			$slots,
-			'acmewiki'
-		];
-
-		yield 'wiki mismatch' => [
-			$title,
 			$user,
 			$comment,
 			'not a row',

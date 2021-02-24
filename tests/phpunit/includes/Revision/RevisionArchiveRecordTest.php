@@ -75,16 +75,6 @@ class RevisionArchiveRecordTest extends MediaWikiIntegrationTestCase {
 			$slots,
 		];
 
-		// this case exists for b/c and should be deprecated
-		yield 'all info, foreign, with Title' => [
-			$title,
-			$user,
-			$comment,
-			(object)$row,
-			$slots,
-			'acmewiki',
-		];
-
 		$row = $protoRow;
 		$row['ar_minor_edit'] = '1';
 		$row['ar_deleted'] = strval( RevisionRecord::DELETED_USER );

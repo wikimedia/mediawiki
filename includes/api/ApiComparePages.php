@@ -98,7 +98,7 @@ class ApiComparePages extends ApiBase {
 						// (T203433) Create an empty dummy revision as the "previous".
 						// The main slot has to exist, the rest will be handled by DifferenceEngine.
 						$fromRev = new MutableRevisionRecord(
-							$title ?: Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __METHOD__ )
+							$title ?: $toRev->getPage()
 						);
 						$fromRev->setContent(
 							SlotRecord::MAIN,
@@ -456,7 +456,7 @@ class ApiComparePages extends ApiBase {
 		if ( $rev ) {
 			$newRev = MutableRevisionRecord::newFromParentRevision( $rev );
 		} else {
-			$newRev = new MutableRevisionRecord( $title ?: Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __METHOD__ ) );
+			$newRev = new MutableRevisionRecord( $title ?: Title::newMainPage() );
 		}
 		foreach ( $params["{$prefix}slots"] as $role ) {
 			$text = $params["{$prefix}text-{$role}"];

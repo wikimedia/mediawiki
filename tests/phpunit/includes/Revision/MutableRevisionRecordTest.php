@@ -32,8 +32,6 @@ class MutableRevisionRecordTest extends MediaWikiIntegrationTestCase {
 			'acmewiki',
 			PreconditionException::class
 		];
-		// This case exists for b/c and should eventually be deprecated.
-		yield 'foreign wiki, with Title' => [ $title, 'acmewiki' ];
 	}
 
 	/**
