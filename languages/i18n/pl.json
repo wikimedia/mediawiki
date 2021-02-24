@@ -1971,7 +1971,7 @@
 	"filehist-dimensions": "Wymiary",
 	"filehist-filesize": "Rozmiar pliku",
 	"filehist-comment": "Opis",
-	"imagelinks": "Wykorzystanie pliku",
+	"imagelinks": "Lokalne wykorzystanie pliku",
 	"linkstoimage": "{{PLURAL:$1|Poniższa strona korzysta|Następujące strony korzystają}} z tego pliku:",
 	"linkstoimage-more": "Z tego pliku {{PLURAL:$1|korzysta więcej niż jedna strona| korzystają więcej niż $1 strony| korzysta więcej niż $1 stron}}.\nPoniższa lista pokazuje jedynie {{PLURAL:$1|pierwszą z ich|$1 pierwsze z nich|$1 pierwszych z nich}}.\nDostępna jest również [[Special:WhatLinksHere/$2|pełna lista]].",
 	"nolinkstoimage": "Żadna strona nie korzysta z tego pliku.",
