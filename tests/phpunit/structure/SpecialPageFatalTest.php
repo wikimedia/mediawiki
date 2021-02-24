@@ -38,6 +38,9 @@ class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 	public function testSpecialPageDoesNotFatal( $name ) {
 		$spf = MediaWikiServices::getInstance()->getSpecialPageFactory();
 		$page = $spf->getPage( $name );
+		if ( !$page ) {
+			$this->markTestSkipped( "Could not create special page $name" );
+		}
 
 		$executor = new SpecialPageExecutor();
 		$authority = new UltimateAuthority( new UserIdentityValue( 0, 'UTSysop', 0 ) );
