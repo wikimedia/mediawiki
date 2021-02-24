@@ -106,7 +106,12 @@ class ApiQuery extends ApiBase {
 		'recentchanges' => ApiQueryRecentChanges::class,
 		'search' => ApiQuerySearch::class,
 		'tags' => ApiQueryTags::class,
-		'usercontribs' => ApiQueryUserContribs::class,
+		'usercontribs' => [
+			'class' => ApiQueryUserContribs::class,
+			'services' => [
+				'UserIdentityLookup',
+			],
+		],
 		'users' => ApiQueryUsers::class,
 		'watchlist' => ApiQueryWatchlist::class,
 		'watchlistraw' => ApiQueryWatchlistRaw::class,
