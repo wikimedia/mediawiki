@@ -430,8 +430,7 @@ class ChangesList extends ContextSource {
 	) {
 		$ts = $rev->getTimestamp();
 		$date = $lang->userTimeAndDate( $ts, $user );
-		if ( RevisionRecord::userCanBitfield(
-			$rev->getVisibility(),
+		if ( $rev->userCan(
 			RevisionRecord::DELETED_TEXT,
 			$user
 		) ) {

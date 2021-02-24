@@ -3302,11 +3302,7 @@ class EditPage implements IEditObject {
 				if ( $revRecord && $revRecord instanceof RevisionStoreRecord ) {
 					// Let sysop know that this will make private content public if saved
 
-					if ( !RevisionRecord::userCanBitfield(
-						$revRecord->getVisibility(),
-						RevisionRecord::DELETED_TEXT,
-						$user
-					) ) {
+					if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $user ) ) {
 						$out->addHtml(
 							Html::warningBox(
 								$out->msg( 'rev-deleted-text-permission', $this->mTitle->getPrefixedDBkey() )->parse(),
