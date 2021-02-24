@@ -2511,7 +2511,7 @@
 	"changecontentmodel-emptymodels-title": "利用可能なコンテンツモデルがありません",
 	"changecontentmodel-emptymodels-text": "[[:$1]]のコンテンツはどの型にも変換できません。",
 	"log-name-contentmodel": "コンテンツモデル変更記録",
-	"log-description-contentmodel": "このページはコンテンツモデルの変更が行われたページと規定以外のコンテンツモデルで作成されたページの一覧です。",
+	"log-description-contentmodel": "このページはコンテンツモデルの変更が行われたページと既定でないコンテンツモデルで作成されたページの一覧です。",
 	"logentry-contentmodel-new": "$1 が ページ $3 を既定でないコンテンツモデル「$5」で{{GENDER:$2|作成しました}}。",
 	"logentry-contentmodel-change": "$1 がページ $3 のコンテンツモデルを \"$4\" から \"$5\" に{{GENDER:$2|変更しました}}",
 	"logentry-contentmodel-change-revertlink": "差し戻し",
