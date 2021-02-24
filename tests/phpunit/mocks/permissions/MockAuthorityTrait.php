@@ -47,7 +47,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredNullAuthority(): Authority {
-		return new UltimateAuthority( new UserIdentityValue( 42, 'Petr', 24 ) );
+		return new SimpleAuthority( new UserIdentityValue( 42, 'Petr', 24 ), [] );
 	}
 
 	/**
