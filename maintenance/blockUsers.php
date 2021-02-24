@@ -33,8 +33,8 @@ class BlockUsers extends Maintenance {
 			"Blocks a list of usernames. Can use STDIN or the file argument.\n\n" .
 			'Note, this is probably most useful when dealing with spammers, with a ' .
 			"list you've generated with an SQL query or similar.\n\n" .
-			'All users are hard blocked, auto blocked from any current and subsequent IP ' .
-			'addresses, email disabled, unable to write to their user page and unable to ' .
+			'By default, all users are hard blocked, auto blocked from any current and subsequent ' .
+			'IP addresses, email disabled, unable to write to their user page and unable to ' .
 			'create further accounts with no expiry to this block. You can change the expiry ' .
 			'with --expiry parameter.'
 		);
@@ -77,6 +77,36 @@ class BlockUsers extends Maintenance {
 			'unblock',
 			'Should this unblock?',
 			false,
+			false
+		);
+
+		$this->addOption(
+			'allow-createaccount',
+			'Allow account creation for blocked IPs',
+			false
+		);
+
+		$this->addOption(
+			'allow-email',
+			'Allow blocked accounts to send emails',
+			false
+		);
+
+		$this->addOption(
+			'allow-talkedit',
+			'Allow blocked accounts to edit their own talk page',
+			false
+		);
+
+		$this->addOption(
+			'disable-hardblock',
+			'Don\'t block logged in accounts from a blocked IP address',
+			false
+		);
+
+		$this->addOption(
+			'disable-autoblock',
+			'Don\'t autoblock IP addresses used by the accounts',
 			false
 		);
 	}
@@ -133,11 +163,11 @@ class BlockUsers extends Maintenance {
 					$expiry,
 					$reason,
 					[
-						'isCreateAccountBlocked' => true,
-						'isEmailBlocked' => true,
-						'isUserTalkEditBlocked' => true,
-						'isHardBlock' => true,
-						'isAutoblocking' => true,
+						'isCreateAccountBlocked' => !$this->hasOption( 'allow-createaccount' ),
+						'isEmailBlocked' => !$this->hasOption( 'allow-email' ),
+						'isUserTalkEditBlocked' => !$this->hasOption( 'allow-talkedit' ),
+						'isHardBlock' => !$this->hasOption( 'disable-hardblock' ),
+						'isAutoblocking' => !$this->hasOption( 'disable-autoblock' ),
 					]
 				)->placeBlockUnsafe( $reblock );
 			}
