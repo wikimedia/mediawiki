@@ -701,7 +701,11 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 			return $path->getRemotePath();
 		}
 
-		return "{$this->remoteBasePath}/$path";
+		if ( $this->remoteBasePath === '/' ) {
+			return "/$path";
+		} else {
+			return "{$this->remoteBasePath}/$path";
+		}
 	}
 
 	/**
