@@ -17,6 +17,7 @@
  *
  * @file
  */
+use Wikimedia\Minify\CSSMin;
 
 // Per https://phabricator.wikimedia.org/T241091
 // phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation

@@ -20,6 +20,7 @@
  * @file
  * @ingroup Content
  */
+use Wikimedia\Minify\CSSMin;
 
 /**
  * Content handler for CSS pages.

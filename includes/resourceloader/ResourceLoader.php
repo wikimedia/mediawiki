@@ -29,6 +29,8 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\Minify\CSSMin;
+use Wikimedia\Minify\JavaScriptMinifier;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WrappedString;
@@ -165,8 +167,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * Available filters are:
 	 *
-	 *    - minify-js \see JavaScriptMinifier::minify
-	 *    - minify-css \see CSSMin::minify
+	 *    - minify-js
+	 *    - minify-css
 	 *
 	 * If $data is empty, only contains whitespace or the filter was unknown,
 	 * $data is returned unmodified.

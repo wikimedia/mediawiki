@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Assert\Assert;
+use Wikimedia\Minify\CSSMin;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -304,7 +305,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $this->getFlip( $context ) ) {
 				$style = CSSJanus::transform( $style, true, false );
 			}
-			$style = MemoizedCallable::call( 'CSSMin::remap',
+			$style = MemoizedCallable::call( [ CSSMin::class, 'remap' ],
 				[ $style, false, $this->getConfig()->get( 'ScriptPath' ), true ] );
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = [];
