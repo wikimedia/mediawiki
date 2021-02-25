@@ -1305,7 +1305,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			new TitleValue( 0, 'SomeDbKey' )
 		);
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
-		$this->assertSame( 1, $watchedItem->getUser()->getId() );
+		$this->assertSame( 1, $watchedItem->getUserIdentity()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
 		$this->assertSame( '20300101000000', $watchedItem->getExpiry() );
 		$this->assertSame( 0, $watchedItem->getLinkTarget()->getNamespace() );
@@ -1492,7 +1492,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			new TitleValue( 0, 'SomeDbKey' )
 		);
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
-		$this->assertSame( 1, $watchedItem->getUser()->getId() );
+		$this->assertSame( 1, $watchedItem->getUserIdentity()->getId() );
 		$this->assertEquals( 'SomeDbKey', $watchedItem->getLinkTarget()->getDBkey() );
 		$this->assertSame( '20300101000000', $watchedItem->getExpiry() );
 		$this->assertSame( 0, $watchedItem->getLinkTarget()->getNamespace() );
