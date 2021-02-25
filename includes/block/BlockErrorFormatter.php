@@ -108,7 +108,7 @@ class BlockErrorFormatter {
 	) {
 		$info = $this->getBlockErrorInfo( $block );
 
-		$info['expiry'] = $language->formatExpiry( $info['expiry'] );
+		$info['expiry'] = $language->formatExpiry( $info['expiry'], true, 'infinity', $user );
 		$info['timestamp'] = $language->userTimeAndDate( $info['timestamp'], $user );
 		$info['blockerName'] = $language->embedBidi( $info['blockerName'] );
 		$info['targetName'] = $language->embedBidi( $info['targetName'] );

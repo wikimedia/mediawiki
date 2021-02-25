@@ -4681,10 +4681,12 @@ class Language {
 	 * @param bool|int $format True to process using language functions, or TS_ constant
 	 *     to return the expiry in a given timestamp
 	 * @param string $infinity If $format is not true, use this string for infinite expiry
+	 * @param User|null $user If $format is true, use this user for date format
 	 * @return string
 	 * @since 1.18
+	 * @since 1.36 $user was added
 	 */
-	public function formatExpiry( $expiry, $format = true, $infinity = 'infinity' ) {
+	public function formatExpiry( $expiry, $format = true, $infinity = 'infinity', $user = null ) {
 		static $dbInfinity;
 		if ( $dbInfinity === null ) {
 			$dbInfinity = wfGetDB( DB_REPLICA )->getInfinity();
@@ -4695,9 +4697,12 @@ class Language {
 				? $this->getMessageFromDB( 'infiniteblock' )
 				: $infinity;
 		} else {
-			return $format === true
-				? $this->timeanddate( $expiry, /* User preference timezone */ true )
-				: wfTimestamp( $format, $expiry );
+			if ( $format === true ) {
+				return $user
+					? $this->userTimeAndDate( $expiry, $user )
+					: $this->timeanddate( $expiry, /* User preference timezone */ true );
+			}
+			return wfTimestamp( $format, $expiry );
 		}
 	}
 
