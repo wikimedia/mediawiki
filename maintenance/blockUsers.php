@@ -89,7 +89,7 @@ class BlockUsers extends Maintenance {
 		$expiry = $this->getOption( 'expiry', 'indefinite' );
 
 		$performer = null;
-		if ( $this->hasOption( 'performer' ) ) {
+		if ( $performerName ) {
 			$performer = User::newFromName( $performerName );
 		} else {
 			$performer = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
