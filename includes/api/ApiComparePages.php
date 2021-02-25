@@ -153,14 +153,10 @@ class ApiComparePages extends ApiBase {
 		// @codeCoverageIgnoreEnd
 
 		// Handle revdel
-		if ( !$fromRev->audienceCan(
-			RevisionRecord::DELETED_TEXT, RevisionRecord::FOR_THIS_USER, $this->getUser()
-		) ) {
+		if ( !$fromRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 			$this->dieWithError( [ 'apierror-missingcontent-revid', $fromRev->getId() ], 'missingcontent' );
 		}
-		if ( !$toRev->audienceCan(
-			RevisionRecord::DELETED_TEXT, RevisionRecord::FOR_THIS_USER, $this->getUser()
-		) ) {
+		if ( !$toRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 			$this->dieWithError( [ 'apierror-missingcontent-revid', $toRev->getId() ], 'missingcontent' );
 		}
 

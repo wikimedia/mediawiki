@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -572,23 +573,21 @@ class DifferenceEngine extends ContextSource {
 	 * It is the caller's responsibility to call
 	 * $this->getUserPermissionErrors or similar checks.
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @return bool
 	 */
-	public function isUserAllowedToSeeRevisions( $user ) {
+	public function isUserAllowedToSeeRevisions( Authority $performer ) {
 		$this->loadRevisionData();
 		// $this->mNewRev will only be falsy if a loading error occurred
 		// (in which case the user is allowed to see).
-		$allowed = !$this->mNewRevisionRecord || RevisionRecord::userCanBitfield(
-			$this->mNewRevisionRecord->getVisibility(),
+		$allowed = !$this->mNewRevisionRecord || $this->mNewRevisionRecord->userCan(
 			RevisionRecord::DELETED_TEXT,
-			$user
+			$performer
 		);
 		if ( $this->mOldRevisionRecord &&
-			!RevisionRecord::userCanBitfield(
-				$this->mOldRevisionRecord->getVisibility(),
+			!$this->mOldRevisionRecord->userCan(
 				RevisionRecord::DELETED_TEXT,
-				$user
+				$performer
 			)
 		) {
 			$allowed = false;
@@ -1193,20 +1192,17 @@ class DifferenceEngine extends ContextSource {
 			if ( !$this->loadRevisionData() ) {
 				return false;
 			} elseif ( $this->mOldRevisionRecord &&
-				!RevisionRecord::userCanBitfield(
-					$this->mOldRevisionRecord->getVisibility(),
+				!$this->mOldRevisionRecord->userCan(
 					RevisionRecord::DELETED_TEXT,
-					$this->getUser()
+					$this->getAuthority()
 				)
 			) {
 				return false;
 			} elseif ( $this->mNewRevisionRecord &&
-				!RevisionRecord::userCanBitfield(
-					$this->mNewRevisionRecord->getVisibility(),
+				!$this->mNewRevisionRecord->userCan(
 					RevisionRecord::DELETED_TEXT,
-					$this->getUser()
-				)
-			) {
+					$this->getAuthority()
+				) ) {
 				return false;
 			}
 			// Short-circuit
@@ -1754,13 +1750,7 @@ class DifferenceEngine extends ContextSource {
 	 * @return bool whether the user can see and edit the revision.
 	 */
 	private function userCanEdit( RevisionRecord $revRecord ) {
-		$user = $this->getUser();
-
-		if ( !RevisionRecord::userCanBitfield(
-			$revRecord->getVisibility(),
-			RevisionRecord::DELETED_TEXT,
-			$user
-		) ) {
+		if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 			return false;
 		}
 

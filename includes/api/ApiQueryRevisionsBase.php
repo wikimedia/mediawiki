@@ -219,7 +219,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	private function checkRevDel( RevisionRecord $revision, $field ) {
 		$ret = $revision->isDeleted( $field ) ? self::IS_DELETED : 0;
 		if ( $ret ) {
-			$canSee = $revision->audienceCan( $field, RevisionRecord::FOR_THIS_USER, $this->getUser() );
+			$canSee = $revision->userCan( $field, $this->getAuthority() );
 			$ret |= ( $canSee ? 0 : self::CANNOT_VIEW );
 		}
 		return $ret;

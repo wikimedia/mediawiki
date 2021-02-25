@@ -420,11 +420,7 @@ class Article implements Page {
 			}
 		}
 
-		if ( !RevisionRecord::userCanBitfield(
-			$this->mRevisionRecord->getVisibility(),
-			RevisionRecord::DELETED_TEXT,
-			$this->getContext()->getUser()
-		) ) {
+		if ( !$this->mRevisionRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getAuthority() ) ) {
 			wfDebug( __METHOD__ . " failed to retrieve content of revision " .
 				$this->mRevisionRecord->getId() );
 
@@ -1479,10 +1475,9 @@ class Article implements Page {
 				// Show link to view it if it exists and the user has permission to view it.
 				$pa = new PageArchive( $title, $this->getContext()->getConfig() );
 				$revRecord = $pa->getArchivedRevisionRecord( $oldid );
-				if ( $revRecord && $revRecord->audienceCan(
+				if ( $revRecord && $revRecord->userCan(
 					RevisionRecord::DELETED_TEXT,
-					RevisionRecord::FOR_THIS_USER,
-					$contextUser
+					$this->getContext()->getAuthority()
 				) ) {
 					$text = wfMessage(
 						'missing-revision-permission', $oldid,
@@ -1541,10 +1536,9 @@ class Article implements Page {
 		// Used in wikilinks, should not contain whitespaces
 		$titleText = $this->getTitle()->getPrefixedDBkey();
 		// If the user is not allowed to see it...
-		if ( !RevisionRecord::userCanBitfield(
-			$this->mRevisionRecord->getVisibility(),
+		if ( !$this->mRevisionRecord->userCan(
 			RevisionRecord::DELETED_TEXT,
-			$user
+			$this->getContext()->getAuthority()
 		) ) {
 			$outputPage->addHtml(
 				Html::warningBox(
