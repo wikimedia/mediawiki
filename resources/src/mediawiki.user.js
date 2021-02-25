@@ -49,12 +49,21 @@
 				// Support: IE 11
 				crypto = window.crypto || window.msCrypto;
 
-			if ( crypto && crypto.getRandomValues && typeof Uint16Array === 'function' ) {
-				// Fill an array with 5 random values, each of which is 16 bits.
+			// We first attempt to generate a set of random values using the WebCrypto API's
+			// getRandomValues method. If the WebCrypto API is not supported, the Uint16Array
+			// type does not exist, or getRandomValues fails (T263041), an exception will be
+			// thrown, which we'll catch and fall back to using Math.random.
+			try {
+				// Initialize a typed array containing 5 0-initialized 16-bit integers.
 				// Note that Uint16Array is array-like but does not implement Array.
+				// eslint-disable-next-line compat/compat
 				rnds = new Uint16Array( 5 );
+				// Overwrite the array elements with cryptographically strong random values.
+				// https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
+				// NOTE: this operation can fail internally (T263041), so the try-catch block
+				// must be preserved even after WebCrypto is supported in all Grade A browsers.
 				crypto.getRandomValues( rnds );
-			} else {
+			} catch ( e ) {
 				rnds = new Array( 5 );
 				// 0x10000 is 2^16 so the operation below will return a number
 				// between 2^16 and zero
