@@ -252,6 +252,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropDefault', 'image', 'img_timestamp' ],
 			[ 'renameIndex', 'site_identifiers', 'site_ids_key', 'si_key', false,
 				'patch-site_identifiers-rename-indexes.sql' ],
+			[ 'modifyField', 'iwlinks', 'iwl_prefix', 'patch-extend-iwlinks-iwl_prefix.sql' ],
 		];
 	}
 
