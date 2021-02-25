@@ -337,11 +337,7 @@ class SpecialMergeHistory extends SpecialPage {
 		}
 
 		# Last link
-		if ( !RevisionRecord::userCanBitfield(
-			$revRecord->getVisibility(),
-			RevisionRecord::DELETED_TEXT,
-			$user
-		) ) {
+		if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getAuthority() ) ) {
 			$last = $this->msg( 'last' )->escaped();
 		} elseif ( isset( $this->prevId[$row->rev_id] ) ) {
 			$last = $linkRenderer->makeKnownLink(

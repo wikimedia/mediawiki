@@ -73,19 +73,17 @@ class RevisionItem extends RevisionItemBase {
 
 	/** @inheritDoc */
 	public function canView() {
-		return RevisionRecord::userCanBitfield(
-			$this->getRevisionRecord()->getVisibility(),
+		return $this->getRevisionRecord()->userCan(
 			RevisionRecord::DELETED_RESTRICTED,
-			$this->context->getUser()
+			$this->context->getAuthority()
 		);
 	}
 
 	/** @inheritDoc */
 	public function canViewContent() {
-		return RevisionRecord::userCanBitfield(
-			$this->getRevisionRecord()->getVisibility(),
+		return $this->getRevisionRecord()->userCan(
 			RevisionRecord::DELETED_TEXT,
-			$this->context->getUser()
+			$this->context->getAuthority()
 		);
 	}
 

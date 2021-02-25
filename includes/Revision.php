@@ -1096,7 +1096,7 @@ class Revision implements IDBAccessObject {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		return RevisionRecord::userCanBitfield( $this->mRecord->getVisibility(), $field, $user );
+		return $this->mRecord->userCan( $field, $user );
 	}
 
 	/**

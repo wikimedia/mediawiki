@@ -21,6 +21,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\IPUtils;
 
@@ -1098,8 +1099,8 @@ class Linker {
 	 * @return string HTML fragment
 	 */
 	public static function revUserLink( $rev, $isPublic = false ) {
-		// TODO inject a user
-		$user = RequestContext::getMain()->getUser();
+		// TODO inject authority
+		$authority = RequestContext::getMain()->getAuthority();
 
 		if ( $rev instanceof Revision ) {
 			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
@@ -1110,12 +1111,8 @@ class Linker {
 
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) && $isPublic ) {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
-		} elseif ( RevisionRecord::userCanBitfield(
-			$revRecord->getVisibility(),
-			RevisionRecord::DELETED_USER,
-			$user
-		) ) {
-			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $user );
+		} elseif ( $revRecord->userCan( RevisionRecord::DELETED_USER, $authority ) ) {
+			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $authority );
 			$link = self::userLink(
 				$revUser ? $revUser->getId() : 0,
 				$revUser ? $revUser->getName() : ''
@@ -1139,8 +1136,8 @@ class Linker {
 	 * @return string HTML
 	 */
 	public static function revUserTools( $rev, $isPublic = false, $useParentheses = true ) {
-		// TODO inject a user
-		$user = RequestContext::getMain()->getUser();
+		// TODO inject authority
+		$authority = RequestContext::getMain()->getAuthority();
 
 		if ( $rev instanceof Revision ) {
 			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
@@ -1149,14 +1146,10 @@ class Linker {
 			$revRecord = $rev;
 		}
 
-		if ( RevisionRecord::userCanBitfield(
-			$revRecord->getVisibility(),
-			RevisionRecord::DELETED_USER,
-			$user
-		) &&
+		if ( $revRecord->userCan( RevisionRecord::DELETED_USER, $authority ) &&
 			( !$revRecord->isDeleted( RevisionRecord::DELETED_USER ) || !$isPublic )
 		) {
-			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $user );
+			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $authority );
 			$userId = $revUser ? $revUser->getId() : 0;
 			$userText = $revUser ? $revUser->getName() : '';
 
@@ -1604,8 +1597,8 @@ class Linker {
 	public static function revComment( $rev, $local = false, $isPublic = false,
 		$useParentheses = true
 	) {
-		// TODO inject a user
-		$user = RequestContext::getMain()->getUser();
+		// TODO inject authority
+		$authority = RequestContext::getMain()->getAuthority();
 
 		if ( $rev instanceof Revision ) {
 			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
@@ -1619,12 +1612,8 @@ class Linker {
 		}
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_COMMENT ) && $isPublic ) {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
-		} elseif ( RevisionRecord::userCanBitfield(
-			$revRecord->getVisibility(),
-			RevisionRecord::DELETED_COMMENT,
-			$user
-		) ) {
-			$comment = $revRecord->getComment( RevisionRecord::FOR_THIS_USER, $user );
+		} elseif ( $revRecord->userCan( RevisionRecord::DELETED_COMMENT, $authority ) ) {
+			$comment = $revRecord->getComment( RevisionRecord::FOR_THIS_USER, $authority );
 			$block = self::commentBlock(
 				$comment ? $comment->text : null,
 				$revRecord->getPageAsLinkTarget(),
@@ -2192,13 +2181,13 @@ class Linker {
 	 * if possible, otherwise the timestamp-based ID which may break after
 	 * undeletion.
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
 	 *    deprecated since 1.35)
 	 * @param LinkTarget $title
 	 * @return string HTML fragment
 	 */
-	public static function getRevDeleteLink( User $user, $rev, LinkTarget $title ) {
+	public static function getRevDeleteLink( Authority $performer, $rev, LinkTarget $title ) {
 		if ( $rev instanceof Revision ) {
 			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revRecord = $rev->getRevisionRecord();
@@ -2206,18 +2195,13 @@ class Linker {
 			$revRecord = $rev;
 		}
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$canHide = $permissionManager->userHasRight( $user, 'deleterevision' );
-		$canHideHistory = $permissionManager->userHasRight( $user, 'deletedhistory' );
+		$canHide = $performer->isAllowed( 'deleterevision' );
+		$canHideHistory = $performer->isAllowed( 'deletedhistory' );
 		if ( !$canHide && !( $revRecord->getVisibility() && $canHideHistory ) ) {
 			return '';
 		}
 
-		if ( !RevisionRecord::userCanBitfield(
-			$revRecord->getVisibility(),
-			RevisionRecord::DELETED_RESTRICTED,
-			$user
-		) ) {
+		if ( !$revRecord->userCan( RevisionRecord::DELETED_RESTRICTED, $performer ) ) {
 			return self::revDeleteLinkDisabled( $canHide ); // revision was hidden from sysops
 		}
 		$prefixedDbKey = MediaWikiServices::getInstance()->getTitleFormatter()->
