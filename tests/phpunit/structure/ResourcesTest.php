@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Minify\CSSMin;
 use Wikimedia\TestingAccessWrapper;
 
 /**

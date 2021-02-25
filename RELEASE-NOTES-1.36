@@ -99,7 +99,7 @@ this is no longer recommended and the option has been removed.
 * …
 
 ==== New external libraries ====
-* Added pear/net_url2 2.2.2.
+* Added wikimedia/minify 2.1.0.
 * Added wikimedia/request-timeout 1.0.0.
 * Added wikimedia/shellbox 1.0.2.
 * Added WVUI 0.1.0.

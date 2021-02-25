@@ -21,6 +21,7 @@
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
+use Wikimedia\Minify\CSSMin;
 
 /**
  * Class encapsulating an image used in a ResourceLoaderImageModule.
