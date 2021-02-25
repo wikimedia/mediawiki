@@ -759,7 +759,7 @@
 	"editpage-notsupportedcontentformat-title": "Oblika vsebine ni podprta",
 	"editpage-notsupportedcontentformat-text": "Model vsebine $2 ne podpira oblike vsebine $1.",
 	"slot-name-main": "Glavno",
-	"content-model-wikitext": "wikibesedilo",
+	"content-model-wikitext": "vikibesedilo",
 	"content-model-text": "golo besedilo",
 	"content-model-javascript": "JavaScript",
 	"content-model-css": "CSS",

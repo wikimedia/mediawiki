@@ -34,7 +34,7 @@
 			"아라"
 		]
 	},
-	"tog-underline": "Pagsasalungguhit ng kawing:",
+	"tog-underline": "Pagsasalungguhit ng link:",
 	"tog-hideminor": "Itago ang mga maliliit na pagbabago mula sa mga huling pagbabago",
 	"tog-hidepatrolled": "Itago ang mga napatrolyang pagbabago mula sa mga huling pagbabago",
 	"tog-newpageshidepatrolled": "Itago ang mga napatrolyang pahina mula talaan ng bagong pahina",
@@ -76,7 +76,7 @@
 	"tog-showhiddencats": "Ipakita ang mga nakatagong kategorya",
 	"tog-norollbackdiff": "Huwag ipakita ang pagkakaiba pagkatapos isagawa ang pagpapagulong pabalik",
 	"tog-useeditwarning": "Balaan ako kapag umalis ako sa isang pagbabagong pahinang mayroong hindi pa nasasagip na pagbabago",
-	"tog-prefershttps": "Palaging gumamit ng ligtas na koneksyon habang nakalagda",
+	"tog-prefershttps": "Palaging gumamit ng ligtas na koneksyon habang naka-login",
 	"tog-showrollbackconfirmation": "Magpakita ng pagkukumpirma kapag pinindot ang link ng pagbalik (rollback)",
 	"tog-requireemail": "Magpadala ng mga email para sa pagri-resest ng password kung binigay pareho ang adres ng email at username.",
 	"underline-always": "Palagi",
@@ -314,7 +314,7 @@
 	"nstab-user": "{{GENDER:$1|Pahina ng tagagamit}}",
 	"nstab-media": "Pahina ng midya",
 	"nstab-special": "Natatanging pahina",
-	"nstab-project": "Pahina ng proyekto",
+	"nstab-project": "Pahinang pamproyekto",
 	"nstab-image": "File",
 	"nstab-mediawiki": "Mensahe",
 	"nstab-template": "Padron",
