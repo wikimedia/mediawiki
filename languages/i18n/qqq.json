@@ -516,6 +516,7 @@
 	"sort-descending": "JavaScript message. Used by sortable table script.\n\nSee also:\n* {{msg-mw|Sort-ascending}}\n* {{msg-mw|Sort-initial}}",
 	"sort-ascending": "JavaScript message. Used by sortable table script.\n\nSee also:\n* {{msg-mw|Sort-descending}}\n* {{msg-mw|Sort-initial}}\n{{Identical|Sort ascending}}",
 	"sort-initial": "JavaScript message. Used by sortable table script.\n\nSee also:\n* {{msg-mw|Sort-ascending}}\n* {{msg-mw|Sort-descending}}",
+	"sort-rowspan-error": "JavaScript message. Shown when attempting to sort a badly formatted table. Alerts the user that they can fix this by editing the page.",
 	"nstab-main": "The name for the tab of the main namespace. Example: [[Example]]\n\nSee also:\n* {{msg-mw|Nstab-main}}\n* {{msg-mw|Accesskey-ca-nstab-main}}\n* {{msg-mw|Tooltip-ca-nstab-main}}\n{{Identical|Page}}",
 	"nstab-user": "The name for the tab of the user namespace. Example: [[User:Example]].\n\nParameters:\n* $1 - name of the user (for use in GENDER).\n\nSee also:\n* {{msg-mw|Nstab-user}}\n* {{msg-mw|Accesskey-ca-nstab-user}}\n* {{msg-mw|Tooltip-ca-nstab-user}}\n{{Identical|User page}}",
 	"nstab-media": "The name for the tab of the media namespace. Example: [[Media:Example]]\n\nSee also:\n* {{msg-mw|Nstab-media}}\n* {{msg-mw|Accesskey-ca-nstab-media}}\n* {{msg-mw|Tooltip-ca-nstab-media}}",

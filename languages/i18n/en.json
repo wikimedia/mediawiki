@@ -294,6 +294,7 @@
 	"sort-descending": "Sort descending",
 	"sort-ascending": "Sort ascending",
 	"sort-initial": "Sort initial",
+	"sort-rowspan-error": "This table has a rowspan attribute that spans more rows than the table actually has. You can fix this by editing the article.",
 	"nstab-main": "Page",
 	"nstab-user": "{{GENDER:$1|User page}}",
 	"nstab-media": "Media page",
