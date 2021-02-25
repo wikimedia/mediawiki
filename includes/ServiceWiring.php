@@ -139,6 +139,7 @@ use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\Services\RecursiveServiceDependencyException;
 use Wikimedia\UUID\GlobalIdGenerator;
 
+/** @phpcs-require-sorted-array */
 return [
 	'ActorMigration' => static function ( MediaWikiServices $services ) : ActorMigration {
 		return new ActorMigration(
