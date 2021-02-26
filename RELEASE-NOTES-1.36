@@ -545,6 +545,7 @@ because of Phabricator reports.
 * Command::cgroup() is deprecated and no longer functional. $wgShellCgroup is
   now implemented as an Executor option.
 * Command::restrict() is deprecated. Instead use the new separate accessors.
+* WatchedItem::getUser hard-deprecated in favor of ::getUserIdentity since 1.36
 * …
 
 === Other changes in 1.36 ===
