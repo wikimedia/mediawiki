@@ -1,4 +1,5 @@
-var UtilMixin = require( './UtilMixin.js' );
+var TextParamMixin = require( './TextParamMixin.js' ),
+	UtilMixin = require( './UtilMixin.js' );
 
 /**
  * A wrapper for mw.widgets.datetime.DateTimeInputWidget
@@ -18,6 +19,7 @@ function DateTimeParamWidget( config ) {
 }
 
 OO.inheritClass( DateTimeParamWidget, mw.widgets.datetime.DateTimeInputWidget );
+OO.mixinClass( DateTimeParamWidget, TextParamMixin );
 OO.mixinClass( DateTimeParamWidget, UtilMixin );
 
 /**
