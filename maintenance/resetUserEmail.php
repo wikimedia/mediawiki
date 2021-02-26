@@ -31,13 +31,14 @@ require_once __DIR__ . '/Maintenance.php';
  */
 class ResetUserEmail extends Maintenance {
 	public function __construct() {
+		parent::__construct();
+
 		$this->addDescription( "Resets a user's email" );
+
 		$this->addArg( 'user', 'Username or user ID, if starts with #' );
 		$this->addArg( 'email', 'Email to assign' );
 
 		$this->addOption( 'no-reset-password', 'Don\'t reset the user\'s password' );
-
-		parent::__construct();
 	}
 
 	public function execute() {
