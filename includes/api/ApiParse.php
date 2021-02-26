@@ -468,6 +468,13 @@ class ApiParse extends ApiBase {
 		if ( isset( $prop['parsewarnings'] ) ) {
 			$result_array['parsewarnings'] = $p_result->getWarnings();
 		}
+		if ( isset( $prop['parsewarningshtml'] ) ) {
+			$warnings = $p_result->getWarnings();
+			$warningsHtml = array_map( static function ( $warning ) {
+				return ( new RawMessage( '$1', [ $warning ] ) )->parse();
+			}, $warnings );
+			$result_array['parsewarningshtml'] = $warningsHtml;
+		}
 
 		if ( isset( $prop['displaytitle'] ) ) {
 			$result_array['displaytitle'] = $p_result->getDisplayTitle() !== false
@@ -590,7 +597,8 @@ class ApiParse extends ApiBase {
 			'modulestyles' => 'm',
 			'properties' => 'pp',
 			'limitreportdata' => 'lr',
-			'parsewarnings' => 'pw'
+			'parsewarnings' => 'pw',
+			'parsewarningshtml' => 'pw',
 		];
 		$this->setIndexedTagNames( $result_array, $result_mapping );
 		$result->addValue( null, $this->getModuleName(), $result_array );
@@ -941,6 +949,7 @@ class ApiParse extends ApiBase {
 					'limitreporthtml',
 					'parsetree',
 					'parsewarnings',
+					'parsewarningshtml',
 					'headitems',
 				],
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [

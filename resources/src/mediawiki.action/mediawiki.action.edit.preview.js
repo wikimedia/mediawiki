@@ -121,7 +121,7 @@
 			$wikiDiff.hide();
 
 			$.extend( postData, {
-				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml|parsewarnings',
+				prop: 'text|indicators|displaytitle|modules|jsconfigvars|categorieshtml|templates|langlinks|limitreporthtml|parsewarningshtml',
 				text: $textbox.textSelection( 'getContents' ),
 				pst: true,
 				preview: true,
@@ -269,8 +269,8 @@
 							)
 						)
 					);
-				response.parse.parsewarnings.forEach( function ( warning ) {
-					$previewHeader.find( '.warningbox' ).append( $( '<p>' ).text( warning ) );
+				response.parse.parsewarningshtml.forEach( function ( warning ) {
+					$previewHeader.find( '.warningbox' ).append( $( '<p>' ).append( warning ) );
 				} );
 
 				if ( response.parse.text ) {
