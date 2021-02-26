@@ -17,6 +17,7 @@
 		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
 		LimitParamWidget = require( './LimitParamWidget.js' ),
 		DateTimeParamWidget = require( './DateTimeParamWidget.js' ),
+		PasswordParamWidget = require( './PasswordParamWidget.js' ),
 		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
 	WidgetMethods = {
@@ -70,12 +71,6 @@
 				if ( v === '123ABC' ) {
 					this.fetchToken();
 				}
-			}
-		},
-
-		passwordWidget: {
-			getApiValueForDisplay: function () {
-				return '';
 			}
 		},
 
@@ -335,13 +330,10 @@
 					break;
 
 				case 'password':
-					widget = new OO.ui.TextInputWidget( {
-						type: 'password',
+					widget = new PasswordParamWidget( {
 						required: Util.apiBool( pi.required )
 					} );
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
-					$.extend( widget, WidgetMethods.passwordWidget );
 					widget.setValidation( Validators.generic );
 					multiModeAllowed = true;
 					multiModeInput = widget;

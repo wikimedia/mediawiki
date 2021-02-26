@@ -1867,6 +1867,7 @@ return [
 			'BooleanToggleSwitchParamWidget.js',
 			'DateTimeParamWidget.js',
 			'LimitParamWidget.js',
+			'PasswordParamWidget.js',
 			'UploadSelectFileParamWidget.js',
 			'TextParamMixin.js',
 			'UtilMixin.js',
