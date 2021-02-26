@@ -1408,3 +1408,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-GeoGebra
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/GlobalNewFiles"]
+	path = extensions/GlobalNewFiles
+	url = https://github.com/miraheze/GlobalNewFiles
+	branch = master
+	ignore = dirty
