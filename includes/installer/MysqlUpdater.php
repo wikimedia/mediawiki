@@ -253,6 +253,9 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'site_identifiers', 'site_ids_key', 'si_key', false,
 				'patch-site_identifiers-rename-indexes.sql' ],
 			[ 'modifyField', 'iwlinks', 'iwl_prefix', 'patch-extend-iwlinks-iwl_prefix.sql' ],
+			[ 'modifyField', 'recentchanges', 'rc_title', 'patch-recentchanges-rc_title-varbinary.sql' ],
+			[ 'dropDefault', 'recentchanges', 'rc_timestamp' ],
+			[ 'modifyField', 'recentchanges', 'rc_timestamp', 'patch-recentchanges-rc_timestamp.sql' ],
 		];
 	}
 
