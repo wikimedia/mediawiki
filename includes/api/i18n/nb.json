@@ -1552,7 +1552,7 @@
 	"api-help-param-token-webui": "Av kombatibilitetsårsaker godtas også nøkkelen som brukes i webgrensesnittet.",
 	"api-help-param-disabled-in-miser-mode": "Slått av på grunn av [[mw:Special:MyLanguage/Manual:$wgMiserMode|«miser mode»]].",
 	"api-help-param-limited-in-miser-mode": "<strong>Merk:</strong> på grunn av [[mw:Special:MyLanguage/Manual:$wgMiserMode|«miser mode»]] kan bruk av dette resultere i færre enn <var>$1limit</var> returnerte resultater før fortsettelse; i ekstreme tilfeller kan null resultater returneres.",
-	"api-help-param-direction": "Hvilken retning det skal listes opp:\n;never:List opp de eldste først. Merk: $1start må være før $1end.\n;older:List opp de nyeste først (standard). Merk: $1start må være senere enn $1end.",
+	"api-help-param-direction": "Hvilken retning det skal listes opp:\n;newer:List opp de eldste først. Merk: $1start må være før $1end.\n;older:List opp de nyeste først (standard). Merk: $1start må være senere enn $1end.",
 	"api-help-param-continue": "Når flere resultater er tilgjengelige, bruk denne for å fortsette.",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(ingen beskrivelse)</span>",
 	"api-help-examples": "{{PLURAL:$1|Eksempel|Eksempler}}:",
