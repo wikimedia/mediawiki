@@ -203,6 +203,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doFixIpbAddressUniqueIndex' ],
 			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
 			[ 'modifyField', 'sites', 'site_global_key', 'patch-sites-site_global_key.sql' ],
+			[ 'modifyField', 'iwlinks', 'iwl_prefix', 'patch-extend-iwlinks-iwl_prefix.sql' ],
 
 			// 1.36
 			[ 'modifyField', 'redirect', 'rd_title', 'patch-redirect-rd_title-varbinary.sql' ],
@@ -252,7 +253,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropDefault', 'image', 'img_timestamp' ],
 			[ 'renameIndex', 'site_identifiers', 'site_ids_key', 'si_key', false,
 				'patch-site_identifiers-rename-indexes.sql' ],
-			[ 'modifyField', 'iwlinks', 'iwl_prefix', 'patch-extend-iwlinks-iwl_prefix.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_title', 'patch-recentchanges-rc_title-varbinary.sql' ],
 			[ 'dropDefault', 'recentchanges', 'rc_timestamp' ],
 			[ 'modifyField', 'recentchanges', 'rc_timestamp', 'patch-recentchanges-rc_timestamp.sql' ],
