@@ -1,9 +1,6 @@
 <?php
 
-/**
- * @group Database
- */
-class SqlBagOStuffTest extends MediaWikiIntegrationTestCase {
+class SqlBagOStuffTest extends MediaWikiUnitTestCase {
 	public static function provideMakeKey() {
 		yield [ 'local', 'first', [ 'second', 'third' ],
 			'local:first:second:third' ];
