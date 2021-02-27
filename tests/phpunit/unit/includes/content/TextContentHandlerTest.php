@@ -3,7 +3,7 @@
 /**
  * @group ContentHandler
  */
-class TextContentHandlerTest extends MediaWikiLangTestCase {
+class TextContentHandlerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers TextContentHandler::supportsDirectEditing
 	 */
