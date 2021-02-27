@@ -742,3 +742,50 @@ CREATE INDEX img_sha1 ON /*_*/image (img_sha1);
 CREATE INDEX img_media_mime ON /*_*/image (
   img_media_type, img_major_mime, img_minor_mime
 );
+
+
+CREATE TABLE /*_*/recentchanges (
+  rc_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  rc_timestamp BLOB NOT NULL, rc_actor BIGINT UNSIGNED NOT NULL,
+  rc_namespace INTEGER DEFAULT 0 NOT NULL,
+  rc_title BLOB DEFAULT '' NOT NULL, rc_comment_id BIGINT UNSIGNED NOT NULL,
+  rc_minor SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_bot SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_new SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_cur_id INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  rc_this_oldid INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  rc_last_oldid INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  rc_type SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_source BLOB DEFAULT '' NOT NULL,
+  rc_patrolled SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_ip BLOB DEFAULT '' NOT NULL, rc_old_len INTEGER DEFAULT NULL,
+  rc_new_len INTEGER DEFAULT NULL, rc_deleted SMALLINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_logid INTEGER UNSIGNED DEFAULT 0 NOT NULL,
+  rc_log_type BLOB DEFAULT NULL, rc_log_action BLOB DEFAULT NULL,
+  rc_params BLOB DEFAULT NULL
+);
+
+CREATE INDEX rc_timestamp ON /*_*/recentchanges (rc_timestamp);
+
+CREATE INDEX rc_namespace_title_timestamp ON /*_*/recentchanges (
+  rc_namespace, rc_title, rc_timestamp
+);
+
+CREATE INDEX rc_cur_id ON /*_*/recentchanges (rc_cur_id);
+
+CREATE INDEX new_name_timestamp ON /*_*/recentchanges (
+  rc_new, rc_namespace, rc_timestamp
+);
+
+CREATE INDEX rc_ip ON /*_*/recentchanges (rc_ip);
+
+CREATE INDEX rc_ns_actor ON /*_*/recentchanges (rc_namespace, rc_actor);
+
+CREATE INDEX rc_actor ON /*_*/recentchanges (rc_actor, rc_timestamp);
+
+CREATE INDEX rc_name_type_patrolled_timestamp ON /*_*/recentchanges (
+  rc_namespace, rc_type, rc_patrolled,
+  rc_timestamp
+);
+
+CREATE INDEX rc_this_oldid ON /*_*/recentchanges (rc_this_oldid);

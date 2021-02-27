@@ -222,6 +222,7 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'image', 'img_name', 'patch-image-img_name-varbinary.sql' ],
 			[ 'renameIndex', 'site_identifiers', 'site_ids_key', 'si_key', false,
 				'patch-site_identifiers-rename-indexes.sql' ],
+			[ 'modifyField', 'recentchanges', 'rc_title', 'patch-recentchanges-rc_title-varbinary.sql' ],
 		];
 	}
 
