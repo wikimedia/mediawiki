@@ -745,7 +745,7 @@ CREATE TABLE /*_*/image (
 
 
 CREATE TABLE /*_*/recentchanges (
-  rc_id INT AUTO_INCREMENT NOT NULL,
+  rc_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
   rc_timestamp BINARY(14) NOT NULL,
   rc_actor BIGINT UNSIGNED NOT NULL,
   rc_namespace INT DEFAULT 0 NOT NULL,
