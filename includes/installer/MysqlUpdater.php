@@ -257,6 +257,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropDefault', 'recentchanges', 'rc_timestamp' ],
 			[ 'modifyField', 'recentchanges', 'rc_timestamp', 'patch-recentchanges-rc_timestamp.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_id', 'patch-recentchanges-rc_id.sql' ],
+			[ 'renameIndex', 'recentchanges', 'new_name_timestamp', 'rc_new_name_timestamp', false,
+				'patch-recentchanges-rc_new_name_timestamp.sql' ],
 		];
 	}
 
