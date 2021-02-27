@@ -3,7 +3,7 @@
 /**
  * @covers PoolCounter
  */
-class PoolCounterTest extends MediaWikiIntegrationTestCase {
+class PoolCounterTest extends MediaWikiUnitTestCase {
 	public function testConstruct() {
 		$poolCounterConfig = [
 			'class' => 'PoolCounterMock',
