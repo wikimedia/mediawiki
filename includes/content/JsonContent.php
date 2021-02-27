@@ -11,6 +11,9 @@
 /**
  * Represents the content of a JSON content.
  * @since 1.24
+ * @newable
+ * @stable to extend
+ * @ingroup Content
  */
 class JsonContent extends TextContent {
 
@@ -23,6 +26,7 @@ class JsonContent extends TextContent {
 	/**
 	 * @param string $text JSON
 	 * @param string $modelId
+	 * @stable to call
 	 */
 	public function __construct( $text, $modelId = CONTENT_MODEL_JSON ) {
 		parent::__construct( $text, $modelId );
