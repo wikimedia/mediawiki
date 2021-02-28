@@ -500,6 +500,13 @@ because of Phabricator reports.
    - convertTitle
    - updateConversionTable
    - commafy
+* The following functions from the Title class have been hard deprecated:
+   - getPreviousRevisionID
+   - getNextRevisionID
+   - getEarliestRevTime 
+* The following functions from the Title class have been removed:
+   - countRevisionsBetween
+   - getAuthorsBetween
 * The mw.language.commafy client-side method has been deprecated, to match
   the deprecation of Language::commafy.  Use mw.language.convertNumber
   instead.
