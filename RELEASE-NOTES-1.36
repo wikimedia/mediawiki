@@ -117,7 +117,7 @@ this is no longer recommended and the option has been removed.
 * Updated pear/net_smtp from 1.9.1 to 1.9.2.
 * Updated pimple/pimple from 3.3.0 to 3.3.1.
 * Updated wikimedia/cldr-plural-rule-parser from 1.0.0 to 2.0.0.
-* Updated wikimedia/composer-mergeplugin from 1.4.1 to 2.0.1.
+* Updated wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1.
 * Updated wikimedia/html-formatter from 1.0.2 to 2.0.1.
 * Updated wikimedia/ip-utils from 1.0.0 to 3.0.1.
 * Updated wikimedia/less.php from 3.0.0 to 3.1.0.
