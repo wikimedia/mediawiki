@@ -67,6 +67,15 @@ interface ActorNormalization extends IDBAccessObject {
 	public function newActorFromRowFields( $userId, $name, $actorId ): UserIdentity;
 
 	/**
+	 * Find the actor_id for the given name.
+	 *
+	 * @param string $name
+	 * @param int $queryFlags
+	 * @return int|null
+	 */
+	public function findActorIdByName( string $name, int $queryFlags = self::READ_NORMAL ): ?int;
+
+	/**
 	 * Find the actor_id of the given $user.
 	 *
 	 * @param UserIdentity $user

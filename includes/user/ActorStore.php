@@ -22,6 +22,7 @@ namespace MediaWiki\User;
 
 use CannotCreateActorException;
 use DBAccessObjectUtils;
+use ExternalUserNames;
 use InvalidArgumentException;
 use MapCacheLRU;
 use MediaWiki\DAO\WikiAwareEntity;
@@ -310,6 +311,22 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
+	 * Attach the actor ID to $user for backwards compatibility.
+	 *
+	 * @todo remove this method when no longer needed (T273974).
+	 *
+	 * @param UserIdentity $user
+	 * @param int $id
+	 */
+	private function attachActorId( UserIdentity $user, int $id ) {
+		if ( $user instanceof UserIdentityValue ) {
+			$user->setActorId( $id );
+		} elseif ( $user instanceof User ) {
+			$user->setActorId( $id );
+		}
+	}
+
+	/**
 	 * Find the actor_id of the given $user.
 	 *
 	 * @param UserIdentity $user
@@ -322,24 +339,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// on a non-local DB connection. We need to first deprecate this
 		// possibility and then throw on mismatching User object - T273972
 		// $user->assertWiki( $this->wikiId );
-		return $this->findActorIdInternal(
-			$user,
-			$this->getDBConnectionRefForQueryFlags( $queryFlags )
-		);
-	}
-
-	/**
-	 * Find actor_id of the given $user using the passed $db connection.
-	 *
-	 * @param UserIdentity $user
-	 * @param IDatabase $db
-	 * @return int|null
-	 */
-	private function findActorIdInternal( UserIdentity $user, IDatabase $db ): ?int {
-		// Note: UserIdentity::getActorId will be deprecated and removed,
-		// and this is the replacement for it. Can't call User::getActorId, cause
-		// User always thinks it's local, so we could end up fetching the ID
-		// from the wrong database.
 
 		// TODO: In the future we would be able to assume UserIdentity name is ok
 		// and will be able to skip normalization here - T273933
@@ -350,6 +349,53 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			] );
 			return null;
 		}
+
+		$id = $this->findActorIdInternal(
+			$name,
+			$this->getDBConnectionRefForQueryFlags( $queryFlags )
+		);
+
+		if ( $id ) {
+			$this->attachActorId( $user, $id );
+		}
+
+		return $id;
+	}
+
+	/**
+	 * Find the actor_id of the given $name.
+	 *
+	 * @param string $name
+	 * @param int $queryFlags
+	 * @return int|null
+	 */
+	public function findActorIdByName( $name, int $queryFlags = self::READ_NORMAL ): ?int {
+		// NOTE: $name may be user-supplied, need full normalization
+		$name = $this->normalizeUserName( $name, UserNameUtils::RIGOR_VALID );
+		if ( !$name ) {
+			return null;
+		}
+
+		$id = $this->findActorIdInternal(
+			$name,
+			$this->getDBConnectionRefForQueryFlags( $queryFlags )
+		);
+
+		return $id;
+	}
+
+	/**
+	 * Find actor_id of the given $user using the passed $db connection.
+	 *
+	 * @param string $name
+	 * @param IDatabase $db
+	 * @return int|null
+	 */
+	private function findActorIdInternal( string $name, IDatabase $db ): ?int {
+		// Note: UserIdentity::getActorId will be deprecated and removed,
+		// and this is the replacement for it. Can't call User::getActorId, cause
+		// User always thinks it's local, so we could end up fetching the ID
+		// from the wrong database.
 
 		$cachedValue = $this->actorsByName->get( $name );
 		if ( $cachedValue ) {
@@ -372,12 +418,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// to cache row
 		$this->newActorFromRow( $row );
 
-		// existing UserIdentity actor field - T273974
-		if ( $user instanceof UserIdentityValue ) {
-			$user->setActorId( $id );
-		} elseif ( $user instanceof User ) {
-			$user->setActorId( $id );
-		}
 		return $id;
 	}
 
@@ -402,9 +442,19 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// possibility and then throw on mismatching User object - T273972
 		// $user->assertWiki( $this->wikiId );
 
+		$userName = $this->normalizeUserName( $user->getName() );
+		if ( $userName === null || $userName === '' ) {
+			$userIdForErrorMessage = $user->getUserId( $user->getWikiId() );
+			throw new CannotCreateActorException(
+				'Cannot create an actor for a user with no name: ' .
+				"user_id={$userIdForErrorMessage} user_name=\"{$user->getName()}\""
+			);
+		}
+
 		// allow cache to be used, because if it is in the cache, it already has an actor ID
-		$existingActorId = $this->findActorIdInternal( $user, $dbw );
+		$existingActorId = $this->findActorIdInternal( $userName, $dbw );
 		if ( $existingActorId ) {
+			$this->attachActorId( $user, $existingActorId );
 			return $existingActorId;
 		}
 
@@ -419,13 +469,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			);
 		}
 
-		$userName = $this->normalizeUserName( $user->getName() );
-		if ( $userName === null || $userName === '' ) {
-			throw new CannotCreateActorException(
-				'Cannot create an actor for a user with no name: ' .
-				"user_id={$userId} user_name=\"{$user->getName()}\""
-			);
-		}
 		$q = [
 			'actor_user' => $userId,
 			// make sure to use normalized form of IP for anonymous users
@@ -455,15 +498,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 		// to cache row
 		$this->newActorFromRowFields( $userId, $userName, $actorId );
-
-		// TODO: this is extremely ugly, but this is temporary. UserIdentity/User is getting
-		// untied from the actor_id, so the getActorId method is being removed. Until that happens,
-		// we need to set the actor ID on the user.
-		if ( $user instanceof UserIdentityValue ) {
-			$user->setActorId( $actorId );
-		} elseif ( $user instanceof User ) {
-			$user->setActorId( $actorId );
-		}
+		$this->attachActorId( $user, $actorId );
 
 		return $actorId;
 	}
@@ -473,22 +508,21 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 *
 	 * @internal
 	 * @param string $name
+	 * @param string $rigor UserNameUtils::RIGOR_XXX
+	 *
 	 * @return string|null
 	 */
-	public function normalizeUserName( string $name ): ?string {
+	public function normalizeUserName( string $name, $rigor = UserNameUtils::RIGOR_NONE ): ?string {
 		if ( $this->userNameUtils->isIP( $name ) ) {
 			return IPUtils::sanitizeIP( $name );
-		} else {
-			// TODO: currently we can encounter non-canonicalized user names both
-			// in the input (obviously) and in the database. Some codepaths are
-			// normalizing the names, some don't (User::createNew for example).
-			// We will transition towards having guaranteed normalized user name
-			// in UserIdentity and in the database, but at this point we rely on
-			// how things used to work before - T273933
-
+		} elseif ( ExternalUserNames::isExternal( $name ) ) {
 			// TODO: ideally, we should probably canonicalize external usernames,
 			// but it was not done before, so we can not start doing it unless we
 			// fix existing DB rows - T273933
+			return $name;
+		} elseif ( $rigor !== UserNameUtils::RIGOR_NONE ) {
+			return $this->userNameUtils->getCanonical( $name, $rigor ) ?: null;
+		} else {
 			return $name;
 		}
 	}
