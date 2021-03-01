@@ -5,7 +5,7 @@
  *
  * @covers HttpError
  */
-class HttpErrorTest extends MediaWikiIntegrationTestCase {
+class HttpErrorTest extends MediaWikiUnitTestCase {
 
 	public function testIsLoggable() {
 		$httpError = new HttpError( 500, 'server error!' );
@@ -30,6 +30,13 @@ class HttpErrorTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function getHtmlProvider() {
+		// Avoid parsing logic in real Message class which includes text transformations
+		// that require MediaWikiServices
+		$content = $this->createMock( Message::class );
+		$content->method( 'escaped' )->willReturn( 'suspicious-userlogout' );
+		$header = $this->createMock( Message::class );
+		$header->method( 'escaped' )->willReturn( 'loginerror' );
+
 		return [
 			[
 				[
@@ -46,8 +53,8 @@ class HttpErrorTest extends MediaWikiIntegrationTestCase {
 					'body html' => '<body><h1>loginerror</h1>'
 					. '<p>suspicious-userlogout</p></body>'
 				],
-				new RawMessage( 'suspicious-userlogout' ),
-				new RawMessage( 'loginerror' )
+				$content,
+				$header
 			],
 			[
 				[
