@@ -121,7 +121,7 @@ class RollbackAction extends FormAction {
 			$request->getVal( 'token' ),
 			$request->getBool( 'bot' ),
 			$data,
-			$this->getUser()
+			$this->getContext()->getAuthority()
 		);
 
 		if ( in_array( [ 'actionthrottledtext' ], $errors ) ) {

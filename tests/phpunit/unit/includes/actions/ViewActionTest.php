@@ -7,13 +7,13 @@
  *
  * @author Derick N. Alangi
  */
-class ViewActionTest extends MediaWikiIntegrationTestCase {
+class ViewActionTest extends MediaWikiUnitTestCase {
 	/**
 	 * @return ViewAction
 	 */
 	private function makeViewActionClassFactory() {
-		$page = new Article( Title::newMainPage() );
-		$context = RequestContext::getMain();
+		$page = $this->createMock( Article::class );
+		$context = new RequestContext();
 		$viewAction = new ViewAction( $page, $context );
 
 		return $viewAction;

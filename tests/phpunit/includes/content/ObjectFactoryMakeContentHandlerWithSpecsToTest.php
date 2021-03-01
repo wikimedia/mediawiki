@@ -97,7 +97,6 @@ class ObjectFactoryMakeContentHandlerWithSpecsToTest extends MediaWikiIntegratio
 			],
 			'ObjectFactory with wrong specs' => [
 				[
-
 					'WrongType' => true,
 					'NullType' => null,
 					'WrongClassInstanceName' => $this,

@@ -742,3 +742,47 @@ CREATE TABLE /*_*/image (
   ),
   PRIMARY KEY(img_name)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/recentchanges (
+  rc_id INT AUTO_INCREMENT NOT NULL,
+  rc_timestamp BINARY(14) NOT NULL,
+  rc_actor BIGINT UNSIGNED NOT NULL,
+  rc_namespace INT DEFAULT 0 NOT NULL,
+  rc_title VARBINARY(255) DEFAULT '' NOT NULL,
+  rc_comment_id BIGINT UNSIGNED NOT NULL,
+  rc_minor TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_bot TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_new TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_cur_id INT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_this_oldid INT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_last_oldid INT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_type TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_source VARBINARY(16) DEFAULT '' NOT NULL,
+  rc_patrolled TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_ip VARBINARY(40) DEFAULT '' NOT NULL,
+  rc_old_len INT DEFAULT NULL,
+  rc_new_len INT DEFAULT NULL,
+  rc_deleted TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_logid INT UNSIGNED DEFAULT 0 NOT NULL,
+  rc_log_type VARBINARY(255) DEFAULT NULL,
+  rc_log_action VARBINARY(255) DEFAULT NULL,
+  rc_params BLOB DEFAULT NULL,
+  INDEX rc_timestamp (rc_timestamp),
+  INDEX rc_namespace_title_timestamp (
+    rc_namespace, rc_title, rc_timestamp
+  ),
+  INDEX rc_cur_id (rc_cur_id),
+  INDEX new_name_timestamp (
+    rc_new, rc_namespace, rc_timestamp
+  ),
+  INDEX rc_ip (rc_ip),
+  INDEX rc_ns_actor (rc_namespace, rc_actor),
+  INDEX rc_actor (rc_actor, rc_timestamp),
+  INDEX rc_name_type_patrolled_timestamp (
+    rc_namespace, rc_type, rc_patrolled,
+    rc_timestamp
+  ),
+  INDEX rc_this_oldid (rc_this_oldid),
+  PRIMARY KEY(rc_id)
+) /*$wgDBTableOptions*/;

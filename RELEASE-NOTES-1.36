@@ -101,7 +101,7 @@ this is no longer recommended and the option has been removed.
 ==== New external libraries ====
 * Added wikimedia/minify 2.1.0.
 * Added wikimedia/request-timeout 1.0.0.
-* Added wikimedia/shellbox 1.0.2.
+* Added wikimedia/shellbox 1.0.4.
 * Added WVUI 0.1.0.
 * …
 
@@ -545,6 +545,7 @@ because of Phabricator reports.
 * Command::cgroup() is deprecated and no longer functional. $wgShellCgroup is
   now implemented as an Executor option.
 * Command::restrict() is deprecated. Instead use the new separate accessors.
+* WatchedItem::getUser hard-deprecated in favor of ::getUserIdentity since 1.36
 * …
 
 === Other changes in 1.36 ===

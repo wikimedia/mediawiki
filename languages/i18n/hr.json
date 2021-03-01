@@ -1044,6 +1044,8 @@
 	"prefs-help-recentchangescount": "Najveći broj: 1000",
 	"prefs-help-watchlist-token2": "Ovo je tajni ključ prema sažetku Vašeg popisa praćenja. \nSvaki suradnik kojem je poznat, moći će čitati Vaš popis praćenih stranica. Ne dijelite ga ni s kim.\nAko je potrebno možete ga [[Special:ResetTokens|ponovo postaviti]].",
 	"prefs-help-tokenmanagement": "Možete vidjeti te ponovo zadati tajni ključ za svoj račun kojim možete pristupiti svemrežnom izvodu Vašega popisa praćenja. Svatko tko zna ključ moći će čitati Vaš popis praćenja, stoga ga nemojte dijeliti.",
+	"prefs-user-downloaddata-label": "Podatci računa:",
+	"prefs-user-downloaddata-info": "Učitaj podatke računa s ovoga projekta",
 	"savedprefs": "Vaše postavke su sačuvane.",
 	"savedrights": "Suradnička su prava {{GENDER:$1|suradnika $1|suradnice $1}} spremljena.",
 	"timezonelegend": "Vremenska zona:",

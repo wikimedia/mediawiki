@@ -1126,6 +1126,8 @@
 	"prefs-help-recentchangescount": "Maximalt antal: 1 000",
 	"prefs-help-watchlist-token2": "Detta är den hemliga nyckeln till webbflödet i din bevakningslista.\nAlla som har den kommer att kunna läsa din bevakningslista, så dela inte ut den.\nOm du behöver [[Special:ResetTokens|kan du återställa den]].",
 	"prefs-help-tokenmanagement": "Du kan se och återställa den hemliga nyckeln för ditt konto som har åtkomst till webbmatningen för din bevakningslista. Alla som vet nyckeln kan läsa din bevakningslista, så dela inte ut den.",
+	"prefs-user-downloaddata-label": "Kontodata:",
+	"prefs-user-downloaddata-info": "Ladda ned mitt kontodata från detta projekt",
 	"savedprefs": "Dina inställningar har sparats",
 	"savedrights": "Användargrupperna för {{GENDER:$1|$1}} har sparats.",
 	"timezonelegend": "Tidszon:",

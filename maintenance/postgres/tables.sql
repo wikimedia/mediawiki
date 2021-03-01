@@ -116,43 +116,6 @@ CREATE INDEX ar_actor_timestamp                ON archive (ar_actor,ar_timestamp
 CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
 
 
-CREATE SEQUENCE recentchanges_rc_id_seq;
-CREATE TABLE recentchanges (
-  rc_id              INTEGER      NOT NULL  PRIMARY KEY DEFAULT nextval('recentchanges_rc_id_seq'),
-  rc_timestamp       TIMESTAMPTZ  NOT NULL,
-  rc_actor           BIGINT       NOT NULL,
-  rc_namespace       INTEGER      NOT NULL DEFAULT 0,
-  rc_title           TEXT         NOT NULL DEFAULT '',
-  rc_comment_id      BIGINT       NOT NULL,
-  rc_minor           SMALLINT     NOT NULL  DEFAULT 0,
-  rc_bot             SMALLINT     NOT NULL  DEFAULT 0,
-  rc_new             SMALLINT     NOT NULL  DEFAULT 0,
-  rc_cur_id          INTEGER      NOT NULL  DEFAULT 0,
-  rc_this_oldid      INTEGER      NOT NULL  DEFAULT 0,
-  rc_last_oldid      INTEGER      NOT NULL  DEFAULT 0,
-  rc_type            SMALLINT     NOT NULL  DEFAULT 0,
-  rc_source          TEXT         NOT NULL  DEFAULT '',
-  rc_patrolled       SMALLINT     NOT NULL  DEFAULT 0,
-  rc_ip              TEXT         NOT NULL  DEFAULT '',
-  rc_old_len         INTEGER,
-  rc_new_len         INTEGER,
-  rc_deleted         SMALLINT     NOT NULL  DEFAULT 0,
-  rc_logid           INTEGER      NOT NULL  DEFAULT 0,
-  rc_log_type        TEXT,
-  rc_log_action      TEXT,
-  rc_params          TEXT
-);
-ALTER SEQUENCE recentchanges_rc_id_seq OWNED BY recentchanges.rc_id;
-CREATE INDEX rc_timestamp       ON recentchanges (rc_timestamp);
-CREATE INDEX rc_namespace_title_timestamp ON recentchanges (rc_namespace, rc_title, rc_timestamp);
-CREATE INDEX rc_cur_id          ON recentchanges (rc_cur_id);
-CREATE INDEX new_name_timestamp ON recentchanges (rc_new, rc_namespace, rc_timestamp);
-CREATE INDEX rc_ip              ON recentchanges (rc_ip);
-CREATE INDEX rc_ns_actor        ON recentchanges (rc_namespace, rc_actor);
-CREATE INDEX rc_actor           ON recentchanges (rc_actor, rc_timestamp);
-CREATE INDEX rc_name_type_patrolled_timestamp ON recentchanges (rc_namespace, rc_type, rc_patrolled, rc_timestamp);
-CREATE INDEX rc_this_oldid      ON recentchanges (rc_this_oldid);
-
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.
 ALTER TABLE page ADD titlevector tsvector;

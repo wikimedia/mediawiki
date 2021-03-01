@@ -389,5 +389,12 @@
 	"exif-urgency-normal": "Нормално ($1)",
 	"exif-urgency-low": "Ниско ($1)",
 	"exif-urgency-high": "Високо ($1)",
-	"exif-urgency-other": "Прилагођени приоритет ($1)"
+	"exif-urgency-other": "Прилагођени приоритет ($1)",
+	"exif-firstphotodate": "Први датум форографије",
+	"exif-lastphotodate": "Последњи датум фотографије",
+	"exif-projectiontype": "Тип пројекције",
+	"exif-usepanoramaviewer-true": "Да",
+	"exif-usepanoramaviewer-false": "Не",
+	"exif-exposurelockused-true": "Да",
+	"exif-exposurelockused-false": "Не"
 }

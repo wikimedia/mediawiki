@@ -1548,6 +1548,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 		$this->mBlockedby = -1; # Unset
 		$this->mHash = false;
 		$this->mEditCount = null;
+		$this->mThisAsAuthority = null;
 
 		if ( $wgFullyInitialised && $this->mFrom ) {
 			$services = MediaWikiServices::getInstance();

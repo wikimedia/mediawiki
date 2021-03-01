@@ -791,3 +791,56 @@ CREATE INDEX img_sha1 ON image (img_sha1);
 CREATE INDEX img_media_mime ON image (
   img_media_type, img_major_mime, img_minor_mime
 );
+
+
+CREATE TABLE recentchanges (
+  rc_id SERIAL NOT NULL,
+  rc_timestamp TIMESTAMPTZ NOT NULL,
+  rc_actor BIGINT NOT NULL,
+  rc_namespace INT DEFAULT 0 NOT NULL,
+  rc_title TEXT DEFAULT '' NOT NULL,
+  rc_comment_id BIGINT NOT NULL,
+  rc_minor SMALLINT DEFAULT 0 NOT NULL,
+  rc_bot SMALLINT DEFAULT 0 NOT NULL,
+  rc_new SMALLINT DEFAULT 0 NOT NULL,
+  rc_cur_id INT DEFAULT 0 NOT NULL,
+  rc_this_oldid INT DEFAULT 0 NOT NULL,
+  rc_last_oldid INT DEFAULT 0 NOT NULL,
+  rc_type SMALLINT DEFAULT 0 NOT NULL,
+  rc_source TEXT DEFAULT '' NOT NULL,
+  rc_patrolled SMALLINT DEFAULT 0 NOT NULL,
+  rc_ip TEXT DEFAULT '' NOT NULL,
+  rc_old_len INT DEFAULT NULL,
+  rc_new_len INT DEFAULT NULL,
+  rc_deleted SMALLINT DEFAULT 0 NOT NULL,
+  rc_logid INT DEFAULT 0 NOT NULL,
+  rc_log_type TEXT DEFAULT NULL,
+  rc_log_action TEXT DEFAULT NULL,
+  rc_params TEXT DEFAULT NULL,
+  PRIMARY KEY(rc_id)
+);
+
+CREATE INDEX rc_timestamp ON recentchanges (rc_timestamp);
+
+CREATE INDEX rc_namespace_title_timestamp ON recentchanges (
+  rc_namespace, rc_title, rc_timestamp
+);
+
+CREATE INDEX rc_cur_id ON recentchanges (rc_cur_id);
+
+CREATE INDEX new_name_timestamp ON recentchanges (
+  rc_new, rc_namespace, rc_timestamp
+);
+
+CREATE INDEX rc_ip ON recentchanges (rc_ip);
+
+CREATE INDEX rc_ns_actor ON recentchanges (rc_namespace, rc_actor);
+
+CREATE INDEX rc_actor ON recentchanges (rc_actor, rc_timestamp);
+
+CREATE INDEX rc_name_type_patrolled_timestamp ON recentchanges (
+  rc_namespace, rc_type, rc_patrolled,
+  rc_timestamp
+);
+
+CREATE INDEX rc_this_oldid ON recentchanges (rc_this_oldid);

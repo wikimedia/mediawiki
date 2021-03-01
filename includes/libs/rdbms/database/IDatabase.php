@@ -963,8 +963,8 @@ interface IDatabase {
 	 * @param string|array $options Combination map/list where each string-keyed entry maps a
 	 *   non-boolean option to the option parameters and each integer-keyed value is the
 	 *   name of a boolean option. Supported options are:
-	 *     - IGNORE: Boolean: skip insertion of rows that would cause unique key conflicts.
-	 *       IDatabase::affectedRows() can be used to determine how many rows were inserted.
+	 *     - IGNORE: Boolean: skip update of rows that would cause unique key conflicts.
+	 *       IDatabase::affectedRows() can be used to determine how many rows were updated.
 	 * @return bool Return true if no exception was thrown (deprecated since 1.33)
 	 * @throws DBError If an error occurs, {@see query}
 	 */

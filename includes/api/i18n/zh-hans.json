@@ -1252,7 +1252,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-email": "添加用户的电子邮件地址及电子邮件验证日期。",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "重复由客户端以结构化格式发送的<code>Accept-Language</code>标头。",
 	"apihelp-query+userinfo-paramvalue-prop-registrationdate": "添加用户的注册时间。",
-	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "添加用户监视列表上的未独页面计数（最高$1；如果更多则返回<samp>$2</samp>）。",
+	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "添加用户监视列表上的未读页面数量（最多$1；如有更多则返回<samp>$2</samp>）。",
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "添加中心ID并为用户附加状态。",
 	"apihelp-query+userinfo-param-attachedwiki": "与<kbd>$1prop=centralids</kbd>一起使用，表明用户是否附加于此ID定义的wiki。",
 	"apihelp-query+userinfo-example-simple": "获取有关当前用户的信息。",

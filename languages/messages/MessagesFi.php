@@ -207,7 +207,7 @@ $magicWords = [
 	'img_framed'                => [ '1', 'kehys', 'kehystetty', 'frame', 'framed', 'enframed' ],
 	'img_frameless'             => [ '1', 'kehyksetön', 'frameless' ],
 	'img_page'                  => [ '1', 'sivu=$1', 'sivu_$1', 'page=$1', 'page $1' ],
-	'img_upright'               => [ '1', 'yläoikea', 'yläoikea=$1', 'yläoikea_$1', 'upright', 'upright=$1', 'upright $1' ],
+	'img_upright'               => [ '1', 'pysty', 'pysty=$1', 'pysty_$1', 'yläoikea', 'yläoikea=$1', 'yläoikea_$1', 'upright', 'upright=$1', 'upright $1' ],
 	'img_border'                => [ '1', 'reunus', 'border' ],
 	'img_baseline'              => [ '1', 'perustaso', 'baseline' ],
 	'img_sub'                   => [ '1', 'alaindeksi', 'sub' ],

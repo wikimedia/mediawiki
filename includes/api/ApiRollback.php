@@ -82,7 +82,7 @@ class ApiRollback extends ApiBase {
 			$params['token'],
 			$params['markbot'],
 			$details,
-			$user,
+			$this->getAuthority(),
 			$params['tags']
 		);
 

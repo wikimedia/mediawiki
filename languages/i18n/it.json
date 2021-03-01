@@ -1180,6 +1180,8 @@
 	"prefs-help-recentchangescount": "Numero massimo: 1000",
 	"prefs-help-watchlist-token2": "Questa è la chiave segreta per il feed web dei tuoi osservati speciali.\nChiunque la conosce sarà in grado di leggere i tuoi osservati speciali, per cui non condividerla. Se necessario, [[Special:ResetTokens|puoi reimpostarla]].",
 	"prefs-help-tokenmanagement": "Puoi visualizzare e reimpostare la chiave segreta per la tua utenza con cui puoi accedere al feed web dei tuoi osservati speciali. Chiunque conosca la chiave sarà in grado di leggere i tuoi osservati speciali, quindi non condividerla.",
+	"prefs-user-downloaddata-label": "Dati utenza:",
+	"prefs-user-downloaddata-info": "Scarica i dati della mia utenza da questo progetto",
 	"savedprefs": "Le preferenze sono state salvate.",
 	"savedrights": "I gruppi utente di {{GENDER:$1|$1}} sono stati salvati.",
 	"timezonelegend": "Fuso orario:",

@@ -368,35 +368,6 @@ class Status extends StatusValue {
 	}
 
 	/**
-	 * Returns a list of status messages of the given type (or all if false)
-	 *
-	 * @note this handles RawMessage poorly
-	 *
-	 * @param string|bool $type
-	 * @return array[]
-	 */
-	protected function getStatusArray( $type = false ) {
-		$result = [];
-
-		foreach ( $this->getErrors() as $error ) {
-			if ( $type === false || $error['type'] === $type ) {
-				if ( $error['message'] instanceof MessageSpecifier ) {
-					$result[] = array_merge(
-						[ $error['message']->getKey() ],
-						$error['message']->getParams()
-					);
-				} elseif ( $error['params'] ) {
-					$result[] = array_merge( [ $error['message'] ], $error['params'] );
-				} else {
-					$result[] = [ $error['message'] ];
-				}
-			}
-		}
-
-		return $result;
-	}
-
-	/**
 	 * Don't save the callback when serializing, because Closures can't be
 	 * serialized and we're going to clear it in __wakeup anyway.
 	 * Don't save the localizer, because it can be pretty much anything. Restoring it is

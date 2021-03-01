@@ -1,22 +1,33 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserFactory;
+use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
 
 /**
  * @covers ApiModuleManager
- *
  * @group API
- * @group Database
  * @group medium
  */
-class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
+class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 
 	private function getModuleManager() {
-		$request = new FauxRequest();
-		$main = new ApiMain( $request );
+		// getContext is called in ApiBase::__construct
+		$apiMain = $this->createMock( ApiMain::class );
+		$apiMain->method( 'getContext' )
+			->willReturn( $this->createMock( RequestContext::class ) );
 
-		return new ApiModuleManager( $main, MediaWikiServices::getInstance()->getObjectFactory() );
+		$containerInterface = $this->createMock( ContainerInterface::class );
+		// Only needs to be able to provide the services used in the tests below, we
+		// don't need a full copy of MediaWikiServices's services. The only service
+		// actually used is a UserFactory, for demonstration purposes
+		$containerInterface->method( 'get' )
+			->with( 'UserFactory' )
+			->willReturn( $this->createMock( UserFactory::class ) );
+		return new ApiModuleManager(
+			$apiMain,
+			new ObjectFactory( $containerInterface )
+		);
 	}
 
 	public function newApiLogin( $main, $action ) {
@@ -63,11 +74,12 @@ class ApiModuleManagerTest extends MediaWikiIntegrationTestCase {
 				'action',
 				[
 					'class' => ApiLogout::class,
-					'factory' => static function ( ApiMain $main, $action, ObjectFactory $objectFactory ) {
+					'factory' => static function ( ApiMain $main, $action, UserFactory $userFactory ) {
+						// we don't actually need the UserFactory, just demonstrating
 						return new ApiLogout( $main, $action );
 					},
 					'services' => [
-						'ObjectFactory'
+						'UserFactory'
 					],
 				],
 				null,

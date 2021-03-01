@@ -40,4 +40,15 @@ class PermissionStatus extends StatusValue {
 		return new static();
 	}
 
+	/**
+	 * Returns this permission status in legacy error array format.
+	 *
+	 * @see PermissionManager::getPermissionErrors()
+	 *
+	 * @return array
+	 */
+	public function toLegacyErrorArray(): array {
+		return $this->getStatusArray();
+	}
+
 }

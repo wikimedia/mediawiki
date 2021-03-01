@@ -1865,6 +1865,7 @@ return [
 			'OptionalParamWidget.js',
 			'ParamLabelWidget.js',
 			'BooleanToggleSwitchParamWidget.js',
+			'DateTimeParamWidget.js',
 			'UploadSelectFileParamWidget.js',
 			'UtilMixin.js',
 		],

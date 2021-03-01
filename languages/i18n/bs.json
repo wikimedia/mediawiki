@@ -1018,6 +1018,8 @@
 	"recentchangescount": "Broj izmjena na nedavnim izmjenama:",
 	"prefs-help-recentchangescount": "Najveći broj: 1000",
 	"prefs-help-watchlist-token2": "Ovo je tajni ključ sažetka vašeg spiska izmjena. Ko god da ga zna, moći će ga čitati. Ne dijelite ga ni s kim. Ako je potrebno, [[Special:ResetTokens|možete ga ponovo postaviti]].",
+	"prefs-user-downloaddata-label": "Podaci o računu:",
+	"prefs-user-downloaddata-info": "Preuzmi moje podatke o računu s ovog projekta",
 	"savedprefs": "Vaše postavke su sačuvane.",
 	"savedrights": "Korisničke grupe {{GENDER:$1|korisnika|korisnice|korisnika/-ce}} $1 su sačuvane.",
 	"timezonelegend": "Vremenska zona:",

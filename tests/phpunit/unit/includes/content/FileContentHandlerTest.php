@@ -5,7 +5,7 @@
  *
  * @covers FileContentHandler
  */
-class FileContentHandlerTest extends MediaWikiLangTestCase {
+class FileContentHandlerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @var FileContentHandler
 	 */
