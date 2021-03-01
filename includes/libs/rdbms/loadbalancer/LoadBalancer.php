@@ -74,6 +74,8 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var Database[][][] Map of (pool category => server index => domain => IDatabase) */
 	private $conns;
 
+	/** @var string|null The name of the DB cluster */
+	private $clusterName;
 	/** @var array[] Map of (server index => server config array) */
 	private $servers;
 	/** @var array[] Map of (group => server index => weight) */
@@ -238,6 +240,7 @@ class LoadBalancer implements ILoadBalancer {
 			$this->$key = $params[$key] ?? new NullLogger();
 		}
 
+		$this->clusterName = $params['clusterName'] ?? null;
 		$this->hostname = $params['hostname'] ?? ( gethostname() ?: 'unknown' );
 		$this->cliMode = $params['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = $params['agent'] ?? '';
@@ -273,6 +276,17 @@ class LoadBalancer implements ILoadBalancer {
 			self::KEY_FOREIGN_INUSE_NOROUND => [],
 			self::KEY_FOREIGN_FREE_NOROUND => []
 		];
+	}
+
+	public function getClusterName() {
+		if ( $this->clusterName !== null ) {
+			$name = $this->clusterName;
+		} else {
+			// Fallback to the current master name if not specified
+			$name = $this->getServerName( $this->getWriterIndex() );
+		}
+
+		return $name;
 	}
 
 	public function getLocalDomainID() {

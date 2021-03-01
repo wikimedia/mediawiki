@@ -72,7 +72,7 @@ class ApiSetPageLanguage extends ApiBase {
 		// If change tagging was requested, check that the user is allowed to tag,
 		// and the tags are valid
 		if ( $params['tags'] ) {
-			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
 			if ( !$tagStatus->isOK() ) {
 				$this->dieStatus( $tagStatus );
 			}

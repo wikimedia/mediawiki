@@ -63,8 +63,8 @@ abstract class MWLBFactory {
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $readOnlyMode
+	 * @param BagOStuff $cpStash
 	 * @param BagOStuff $srvCache
-	 * @param BagOStuff $mainStash
 	 * @param WANObjectCache $wanCache
 	 * @return array
 	 * @internal For use with service wiring
@@ -73,8 +73,8 @@ abstract class MWLBFactory {
 		array $lbConf,
 		ServiceOptions $options,
 		ConfiguredReadOnlyMode $readOnlyMode,
+		BagOStuff $cpStash,
 		BagOStuff $srvCache,
-		BagOStuff $mainStash,
 		WANObjectCache $wanCache
 	) {
 		$options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
@@ -156,8 +156,8 @@ abstract class MWLBFactory {
 			$options->get( 'DBprefix' )
 		);
 
+		$lbConf['cpStash'] = $cpStash;
 		$lbConf['srvCache'] = $srvCache;
-		$lbConf['memStash'] = $mainStash;
 		$lbConf['wanCache'] = $wanCache;
 
 		return $lbConf;

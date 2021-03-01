@@ -56,8 +56,7 @@ class ApiUndelete extends ApiBase {
 
 		// Check if user can add tags
 		if ( $params['tags'] !== null ) {
-			// TODO: change to accept Authority
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}

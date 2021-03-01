@@ -57,6 +57,7 @@ class LoadBalancerSingle extends LoadBalancer {
 			'wanCache' => $params['wanCache'] ?? null,
 			'localDomain' => $params['localDomain'] ?? $this->db->getDomainID(),
 			'readOnlyReason' => $params['readOnlyReason'] ?? false,
+			'clusterName' => $params['clusterName'] ?? null,
 		] );
 
 		if ( isset( $params['readOnlyReason'] ) ) {

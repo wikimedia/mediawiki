@@ -40,8 +40,7 @@ class ApiManageTags extends ApiBase {
 
 		// Check if user can add the log entry tags which were requested
 		if ( $params['tags'] ) {
-			// TODO: change to accept Authority
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}

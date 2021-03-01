@@ -106,7 +106,7 @@ class ApiUserrights extends ApiBase {
 
 		// Check if user can add tags
 		if ( $tags !== null ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $pUser );
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $tags, $this->getAuthority() );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}

@@ -67,7 +67,7 @@ class ApiImport extends ApiBase {
 
 		// Check if user can add the log entry tags which were requested
 		if ( $params['tags'] ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}

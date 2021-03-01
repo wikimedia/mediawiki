@@ -129,9 +129,26 @@ interface ILoadBalancer {
 	 *  - deprecationLogger: Callback to log a deprecation warning [optional]
 	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
 	 *  - ownerId: integer ID of an LBFactory instance that manages this instance [optional]
+	 *  - clusterName: The logical name of the DB cluster [optional]
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params );
+
+	/**
+	 * Get the logical name of the database cluster
+	 *
+	 * This is useful for identifying a cluster or replicated dataset, even when:
+	 *  - The master server is sometimes swapped with another one
+	 *  - The cluster/dataset is replicated among multiple datacenters, with one "primary"
+	 *    datacenter having the writable master server and the other datacenters having a
+	 *    read-only replica in the "master" server slot
+	 *  - The dataset is replicated among multiple datacenters, via circular replication,
+	 *    with each datacenter having its own "master" server
+	 *
+	 * @return string
+	 * @since 1.36
+	 */
+	public function getClusterName();
 
 	/**
 	 * Get the local (and default) database domain ID of connection handles
