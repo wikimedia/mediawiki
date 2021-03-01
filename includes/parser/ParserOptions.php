@@ -52,9 +52,15 @@ class ParserOptions {
 
 	/**
 	 * Lazy-loaded options
+	 * @var callable[]|null
+	 */
+	private static $lazyOptions = null;
+
+	/**
+	 * Initial lazy-loaded options (before hook)
 	 * @var callable[]
 	 */
-	private static $lazyOptions = [
+	private static $initialLazyOptions = [
 		'dateformat' => [ __CLASS__, 'initDateFormat' ],
 		'speculativeRevId' => [ __CLASS__, 'initSpeculativeRevId' ],
 		'speculativePageId' => [ __CLASS__, 'initSpeculativePageId' ],
@@ -62,9 +68,15 @@ class ParserOptions {
 
 	/**
 	 * Specify options that are included in the cache key
+	 * @var array|null
+	 */
+	private static $cacheVaryingOptionsHash = null;
+
+	/**
+	 * Initial inCacheKey options (before hook)
 	 * @var array
 	 */
-	private static $inCacheKey = [
+	private static $initialCacheVaryingOptionsHash = [
 		'dateformat' => true,
 		'numberheadings' => true,
 		'thumbsize' => true,
@@ -145,9 +157,42 @@ class ParserOptions {
 	 * @param string $name Lazy load option without tracking usage
 	 */
 	private function lazyLoadOption( $name ) {
-		if ( isset( self::$lazyOptions[$name] ) && $this->options[$name] === null ) {
-			$this->options[$name] = call_user_func( self::$lazyOptions[$name], $this, $name );
+		$lazyOptions = self::getLazyOptions();
+		if ( isset( $lazyOptions[$name] ) && $this->options[$name] === null ) {
+			$this->options[$name] = call_user_func( $lazyOptions[$name], $this, $name );
 		}
+	}
+
+	/**
+	 * Get lazy-loaded options.
+	 *
+	 * This array should be initialised by the constructor. The return type
+	 * hint is used as an assertion to ensure this has happened and to coerce
+	 * the type for static analysis.
+	 *
+	 * @internal Public for testing only
+	 *
+	 * @return array
+	 */
+	public static function getLazyOptions(): array {
+		return self::$lazyOptions;
+	}
+
+	/**
+	 * Get cache varying options, with the name of the option in the key, and a
+	 * boolean in the value which indicates whether the cache is indeed varied.
+	 *
+	 * @see self::allCacheVaryingOptions()
+	 *
+	 * @return array
+	 */
+	private static function getCacheVaryingOptionsHash(): array {
+		// Trigger a call to the 'ParserOptionsRegister' hook if it hasn't
+		// already been called.
+		if ( self::$cacheVaryingOptionsHash === null ) {
+			self::getDefaults();
+		}
+		return self::$cacheVaryingOptionsHash;
 	}
 
 	/**
@@ -1159,6 +1204,19 @@ class ParserOptions {
 	}
 
 	/**
+	 * Reset static caches
+	 * @internal For testing
+	 */
+	public static function clearStaticCache() {
+		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+			throw new RuntimeException( __METHOD__ . ' is just for testing' );
+		}
+		self::$defaults = null;
+		self::$lazyOptions = null;
+		self::$cacheVaryingOptionsHash = null;
+	}
+
+	/**
 	 * Get default option values
 	 * @warning If you change the default for an existing option (unless it's
 	 *  being overridden by self::getCanonicalOverrides()), all existing parser
@@ -1198,13 +1256,16 @@ class ParserOptions {
 				'speculativePageId' => null,
 			];
 
+			self::$cacheVaryingOptionsHash = self::$initialCacheVaryingOptionsHash;
+			self::$lazyOptions = self::$initialLazyOptions;
+
 			Hooks::runner()->onParserOptionsRegister(
 				self::$defaults,
-				self::$inCacheKey,
+				self::$cacheVaryingOptionsHash,
 				self::$lazyOptions
 			);
 
-			ksort( self::$inCacheKey );
+			ksort( self::$cacheVaryingOptionsHash );
 		}
 
 		// Unit tests depend on being able to modify the globals at will
@@ -1295,16 +1356,18 @@ class ParserOptions {
 		}
 
 		// Compare most other fields
-		$fields = array_keys( get_class_vars( __CLASS__ ) );
-		$fields = array_diff( $fields, [
-			'defaults', // static
-			'lazyOptions', // static
-			'inCacheKey', // static
-			'callbacks', // static
-			'options', // Already checked above
-			'onAccessCallback', // only used for ParserOutput option tracking
-		] );
-		foreach ( $fields as $field ) {
+		foreach ( ( new ReflectionClass( $this ) )->getProperties() as $property ) {
+			$field = $property->getName();
+			if ( $property->isStatic() ) {
+				continue;
+			}
+			if ( in_array( $field, [
+				'options', // Already checked above
+				'onAccessCallback', // only used for ParserOutput option tracking
+			] ) ) {
+				continue;
+			}
+
 			if ( !is_object( $this->$field ) && $this->$field !== $other->$field ) {
 				return false;
 			}
@@ -1363,12 +1426,7 @@ class ParserOptions {
 	 * @return string[]
 	 */
 	public static function allCacheVaryingOptions() {
-		// Trigger a call to the 'ParserOptionsRegister' hook if it hasn't
-		// already been called.
-		if ( self::$defaults === null ) {
-			self::getDefaults();
-		}
-		return array_keys( array_filter( self::$inCacheKey ) );
+		return array_keys( array_filter( self::getCacheVaryingOptionsHash() ) );
 	}
 
 	/**
@@ -1410,7 +1468,8 @@ class ParserOptions {
 		$inCacheKey = self::allCacheVaryingOptions();
 
 		// Resolve any lazy options
-		$lazyOpts = array_intersect( $forOptions, $inCacheKey, array_keys( self::$lazyOptions ) );
+		$lazyOpts = array_intersect( $forOptions,
+			$inCacheKey, array_keys( self::getLazyOptions() ) );
 		foreach ( $lazyOpts as $k ) {
 			$this->lazyLoadOption( $k );
 		}
@@ -1465,9 +1524,10 @@ class ParserOptions {
 	 */
 	public function isSafeToCache( array $usedOptions = null ) {
 		$defaults = self::getCanonicalOverrides() + self::getDefaults();
+		$inCacheKey = self::getCacheVaryingOptionsHash();
 		$usedOptions = $usedOptions ?? array_keys( $this->options );
 		foreach ( $usedOptions as $option ) {
-			if ( empty( self::$inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
+			if ( empty( $inCacheKey[$option] ) && empty( self::$callbacks[$option] ) ) {
 				$v = $this->optionToString( $this->options[$option] ?? null );
 				$d = $this->optionToString( $defaults[$option] ?? null );
 				if ( $v !== $d ) {

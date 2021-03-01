@@ -2,33 +2,14 @@
 
 use MediaWiki\MediaWikiServices;
 use Wikimedia\ScopedCallback;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ParserOptions
  */
 class ParserOptionsTest extends MediaWikiLangTestCase {
 
-	private static function clearCache() {
-		$wrap = TestingAccessWrapper::newFromClass( ParserOptions::class );
-		$wrap->defaults = null;
-		$wrap->lazyOptions = [
-			'dateformat' => [ ParserOptions::class, 'initDateFormat' ],
-			'speculativeRevId' => [ ParserOptions::class, 'initSpeculativeRevId' ],
-		];
-		$wrap->inCacheKey = [
-			'dateformat' => true,
-			'numberheadings' => true,
-			'thumbsize' => true,
-			'stubthreshold' => true,
-			'printable' => true,
-			'userlang' => true,
-		];
-	}
-
 	protected function setUp() : void {
 		parent::setUp();
-		self::clearCache();
 
 		$this->setMwGlobals( [
 			'wgRenderHashAppend' => '',
@@ -40,7 +21,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	protected function tearDown() : void {
-		self::clearCache();
+		ParserOptions::clearStaticCache();
 		parent::tearDown();
 	}
 
@@ -191,11 +172,9 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public static function provideOptionsHash() {
 		$used = [ 'thumbsize', 'printable' ];
 
-		$classWrapper = TestingAccessWrapper::newFromClass( ParserOptions::class );
-		$classWrapper->getDefaults();
 		$allUsableOptions = array_diff(
-			array_keys( $classWrapper->inCacheKey ),
-			array_keys( $classWrapper->lazyOptions )
+			ParserOptions::allCacheVaryingOptions(),
+			array_keys( ParserOptions::getLazyOptions() )
 		);
 
 		return [
@@ -248,7 +227,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			}
 		);
 
-		self::clearCache();
+		ParserOptions::clearStaticCache();
 
 		$popt = ParserOptions::newCanonical( 'canonical' );
 		$popt->registerWatcher( function () {
@@ -279,14 +258,6 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testMatches() {
-		$classWrapper = TestingAccessWrapper::newFromClass( ParserOptions::class );
-		$oldDefaults = $classWrapper->defaults;
-		$oldLazy = $classWrapper->lazyOptions;
-		$reset = new ScopedCallback( static function () use ( $classWrapper, $oldDefaults, $oldLazy ) {
-			$classWrapper->defaults = $oldDefaults;
-			$classWrapper->lazyOptions = $oldLazy;
-		} );
-
 		$popt1 = ParserOptions::newCanonical( 'canonical' );
 		$popt2 = ParserOptions::newCanonical( 'canonical' );
 		$this->assertTrue( $popt1->matches( $popt2 ) );
@@ -299,15 +270,31 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->assertFalse( $popt1->matches( $popt2 ) );
 
 		$ctr = 0;
-		$classWrapper->defaults += [ __METHOD__ => null ];
-		$classWrapper->lazyOptions += [ __METHOD__ => static function () use ( &$ctr ) {
-			return ++$ctr;
-		} ];
+		$this->setTemporaryHook( 'ParserOptionsRegister',
+			function ( &$defaults, &$inCacheKey, &$lazyOptions ) use ( &$ctr ) {
+				$defaults['testMatches'] = null;
+				$lazyOptions['testMatches'] = static function () use ( &$ctr ) {
+					return ++$ctr;
+				};
+			}
+		);
+		ParserOptions::clearStaticCache();
+
 		$popt1 = ParserOptions::newCanonical( 'canonical' );
 		$popt2 = ParserOptions::newCanonical( 'canonical' );
 		$this->assertFalse( $popt1->matches( $popt2 ) );
 
 		ScopedCallback::consume( $reset );
+	}
+
+	/**
+	 * This test fails if tearDown() does not call ParserOptions::clearStaticCache(),
+	 * because the lazy option from the hook in the previous test remains active.
+	 */
+	public function testTeardownClearedCache() {
+		$popt1 = ParserOptions::newCanonical( 'canonical' );
+		$popt2 = ParserOptions::newCanonical( 'canonical' );
+		$this->assertTrue( $popt1->matches( $popt2 ) );
 	}
 
 	public function testMatchesForCacheKey() {
@@ -340,11 +327,11 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	public function testAllCacheVaryingOptions() {
 		$this->setTemporaryHook( 'ParserOptionsRegister', null );
 		$this->assertSame( [
-			'dateformat', 'numberheadings', 'printable', 'stubthreshold',
+			'dateformat', 'numberheadings', 'printable',
 			'thumbsize', 'userlang'
 		], ParserOptions::allCacheVaryingOptions() );
 
-		self::clearCache();
+		ParserOptions::clearStaticCache();
 
 		$this->setTemporaryHook( 'ParserOptionsRegister', static function ( &$defaults, &$inCacheKey ) {
 			$defaults += [
@@ -358,7 +345,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			];
 		} );
 		$this->assertSame( [
-			'dateformat', 'foo', 'numberheadings', 'printable', 'stubthreshold',
+			'dateformat', 'foo', 'numberheadings', 'printable',
 			'thumbsize', 'userlang'
 		], ParserOptions::allCacheVaryingOptions() );
 	}
