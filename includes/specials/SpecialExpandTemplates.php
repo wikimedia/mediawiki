@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
@@ -47,9 +46,6 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var int Maximum size in bytes to include. 50MB allows fixing those huge pages */
 	private const MAX_INCLUDE_SIZE = 50000000;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var Parser */
 	private $parser;
 
@@ -57,17 +53,14 @@ class SpecialExpandTemplates extends SpecialPage {
 	private $userOptionsLookup;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param Parser $parser
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		Parser $parser,
 		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( 'ExpandTemplates' );
-		$this->permissionManager = $permissionManager;
 		$this->parser = $parser;
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
@@ -291,7 +284,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			// allowed and a valid edit token is not provided (T73111). However, MediaWiki
 			// does not currently provide logged-out users with CSRF protection; in that case,
 			// do not show the preview unless anonymous editing is allowed.
-			if ( $user->isAnon() && !$this->permissionManager->userHasRight( $user, 'edit' ) ) {
+			if ( $user->isAnon() && !$this->getContext()->getAuthority()->isAllowed( 'edit' ) ) {
 				$error = [ 'expand_templates_preview_fail_html_anon' ];
 			} elseif ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ), '', $request ) ) {
 				$error = [ 'expand_templates_preview_fail_html' ];

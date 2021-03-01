@@ -20,7 +20,6 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	protected function newSpecialPage() {
 		$services = MediaWikiServices::getInstance();
 		return new SpecialBlock(
-			$services->getPermissionManager(),
 			$services->getBlockUtils(),
 			$services->getBlockPermissionCheckerFactory(),
 			$services->getBlockUserFactory(),

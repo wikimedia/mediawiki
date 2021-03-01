@@ -1103,10 +1103,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	private function showCreateAccountLink() {
 		if ( $this->isSignup() ) {
 			return true;
-		} elseif ( MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $this->getUser(), 'createaccount' )
-		) {
+		} elseif ( $this->getContext()->getAuthority()->isAllowed( 'createaccount' ) ) {
 			return true;
 		} else {
 			return false;

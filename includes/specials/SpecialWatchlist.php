@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\WatchlistNotificationManager;
 use Wikimedia\Rdbms\IDatabase;
@@ -49,9 +48,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/** @var WatchlistNotificationManager */
 	private $watchlistNotificationManager;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -64,14 +60,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param WatchlistNotificationManager $watchlistNotificationManager
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
 		WatchlistNotificationManager $watchlistNotificationManager,
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		UserOptionsLookup $userOptionsLookup
 	) {
@@ -79,7 +73,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistNotificationManager = $watchlistNotificationManager;
-		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
@@ -428,9 +421,10 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 		// Log entries with DELETED_ACTION must not show up unless the user has
 		// the necessary rights.
-		if ( !$this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		$authority = $this->getContext()->getAuthority();
+		if ( !$authority->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = LogPage::DELETED_ACTION;
-		} elseif ( !$this->permissionManager->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' ) ) {
+		} elseif ( !$authority->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;

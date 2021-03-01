@@ -208,7 +208,7 @@ class UserSelectQueryBuilderTest extends ActorStoreTestBase {
 				->anon()
 				->fetchUserIdentities()
 		);
-		$this->assertCount( 1, $actors );
+		$this->assertCount( 2, $actors );
 		$this->assertSameActors(
 			new UserIdentityValue( 0, self::IP, 43 ),
 			$actors[0]

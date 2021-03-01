@@ -10,6 +10,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserNameUtils;
 use stdClass;
 use Wikimedia\Assert\PreconditionException;
 
@@ -390,6 +391,12 @@ class ActorStoreTest extends ActorStoreTestBase {
 			}, // $actorCallback
 			null, // $expected
 		];
+		yield 'external, local' => [
+			static function () {
+				return new UserIdentityValue( 0, 'acme>TestUser', 45 );
+			}, // $actorCallback
+			45, // $expected
+		];
 		yield 'anon User, local' => [
 			static function ( MediaWikiServices $serviceContainer ) {
 				return $serviceContainer->getUserFactory()->newAnonymous( self::IP );
@@ -453,6 +460,49 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->getStore()->findActorId(
 			new UserIdentityValue( 0, self::IP, 0, 'acmewiki' )
 		);
+	}
+
+	public function provideFindActorIdByName() {
+		yield 'anon' => [
+			self::IP, // $actorCallback
+			43,  // $expected
+		];
+		yield 'anon, non-canonical' => [
+			strtolower( self::IP ), // $actorCallback
+			43,  // $expected
+		];
+		yield 'registered' => [
+			'TestUser', // $actorCallback
+			42, // $expected
+		];
+		yield 'registered, unnormalized' => [
+			'testUser', // $actorCallback
+			42, // $expected
+		];
+		yield 'external, local' => [
+			'acme>TestUser',
+			45, // $expected
+		];
+		yield 'anon, non-existent' => [
+			'127.1.2.3',  // $actorCallback
+			null, // $expected
+		];
+		yield 'registered, non-existent' => [
+			'DoNotExist', // $actorCallback
+			null, // $expected
+		];
+		yield 'invalid' => [
+			'#', // $actorCallback
+			null, // $expected
+		];
+	}
+
+	/**
+	 * @dataProvider provideFindActorIdByName
+	 * @covers ::findActorId
+	 */
+	public function testFindActorIdByName( $name, $expected ) {
+		$this->assertSame( $expected, $this->getStore()->findActorIdByName( $name ) );
 	}
 
 	public function provideAcquireActorId() {
@@ -587,4 +637,23 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->assertSame( ActorStore::UNKNOWN_USER_NAME, $unknownActor->getName() );
 		$this->assertSameActors( $unknownActor, $store->getUnknownActor() );
 	}
+
+	public function provideNormalizeUserName() {
+		yield [ strtolower( self::IP ), UserNameUtils::RIGOR_NONE, self::IP ];
+		yield [ 'acme>test', UserNameUtils::RIGOR_VALID, 'acme>test' ];
+		yield [ 'test_this', UserNameUtils::RIGOR_VALID, 'Test this' ];
+		yield [ 'foo#bar', UserNameUtils::RIGOR_VALID, null ];
+		yield [ 'foo|bar', UserNameUtils::RIGOR_VALID, null ];
+		yield [ '_', UserNameUtils::RIGOR_NONE, '_' ];
+		yield [ 'test', UserNameUtils::RIGOR_NONE, 'test' ];
+	}
+
+	/**
+	 * @dataProvider provideNormalizeUserName
+	 */
+	public function testNormalizeUserName( $name, $rigor, $expected ) {
+		$store = $this->getStore();
+		$this->assertSame( $expected, $store->normalizeUserName( $name, $rigor ) );
+	}
+
 }

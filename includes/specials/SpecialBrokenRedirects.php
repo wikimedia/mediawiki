@@ -23,7 +23,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -36,26 +35,20 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialBrokenRedirects extends QueryPage {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
 		ILoadBalancer $loadBalancer,
 		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( 'BrokenRedirects' );
-		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
@@ -155,7 +148,7 @@ class SpecialBrokenRedirects extends QueryPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			$this->permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
+			$this->getContext()->getAuthority()->isAllowed( 'edit' ) &&
 			// check, if the content model is editable through action=edit
 			$this->contentHandlerFactory->getContentHandler( $fromObj->getContentModel() )
 				->supportsDirectEditing()
@@ -172,7 +165,7 @@ class SpecialBrokenRedirects extends QueryPage {
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
-		if ( $this->permissionManager->userHasRight( $this->getUser(), 'delete' ) ) {
+		if ( $this->getContext()->getAuthority()->isAllowed( 'delete' ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
 				$this->msg( 'brokenredirects-delete' )->text(),

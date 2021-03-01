@@ -26,7 +26,6 @@
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Languages\LanguageConverterFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Search\SearchWidgets\BasicSearchResultSetWidget;
 use MediaWiki\Search\SearchWidgets\FullSearchResultWidget;
 use MediaWiki\Search\SearchWidgets\InterwikiSearchResultSetWidget;
@@ -99,9 +98,6 @@ class SpecialSearch extends SpecialPage {
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
@@ -131,7 +127,6 @@ class SpecialSearch extends SpecialPage {
 	/**
 	 * @param SearchEngineConfig $searchConfig
 	 * @param SearchEngineFactory $searchEngineFactory
-	 * @param PermissionManager $permissionManager
 	 * @param NamespaceInfo $nsInfo
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param InterwikiLookup $interwikiLookup
@@ -142,7 +137,6 @@ class SpecialSearch extends SpecialPage {
 	public function __construct(
 		SearchEngineConfig $searchConfig,
 		SearchEngineFactory $searchEngineFactory,
-		PermissionManager $permissionManager,
 		NamespaceInfo $nsInfo,
 		IContentHandlerFactory $contentHandlerFactory,
 		InterwikiLookup $interwikiLookup,
@@ -153,7 +147,6 @@ class SpecialSearch extends SpecialPage {
 		parent::__construct( 'Search' );
 		$this->searchConfig = $searchConfig;
 		$this->searchEngineFactory = $searchEngineFactory;
-		$this->permissionManager = $permissionManager;
 		$this->nsInfo = $nsInfo;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->interwikiLookup = $interwikiLookup;
@@ -600,8 +593,8 @@ class SpecialSearch extends SpecialPage {
 			} elseif (
 				$this->contentHandlerFactory->getContentHandler( $title->getContentModel() )
 					->supportsDirectEditing()
-				&& $this->permissionManager->quickUserCan( 'create', $this->getUser(), $title )
-				&& $this->permissionManager->quickUserCan( 'edit', $this->getUser(), $title )
+				&& $this->getContext()->getAuthority()->probablyCan( 'create', $title )
+				&& $this->getContext()->getAuthority()->probablyCan( 'edit', $title )
 			) {
 				$messageName = 'searchmenu-new';
 			}
