@@ -39,27 +39,41 @@ use Wikimedia\ScopedCallback;
  *
  * This interface is intended to be more or less compatible with the PHP memcached client.
  *
- * Instances of this class should be created with an intended access scope, such as:
+ * Class instances should be created with an intended access scope for the dataset, such as:
  *   - a) A single PHP thread on a server (e.g. stored in a PHP variable)
  *   - b) A single application server (e.g. stored in APC or sqlite)
  *   - c) All application servers in datacenter (e.g. stored in memcached or mysql)
  *   - d) All application servers in all datacenters (e.g. stored via mcrouter or dynomite)
  *
  * Callers should use the proper factory methods that yield BagOStuff instances. Site admins
- * should make sure the configuration for those factory methods matches their access scope.
- * BagOStuff subclasses have widely varying levels of support for replication features.
- *
- * For any given instance, methods like lock(), unlock(), merge(), and set() with WRITE_SYNC
- * should semantically operate over its entire access scope; any nodes/threads in that scope
- * should serialize appropriately when using them. Likewise, a call to get() with READ_LATEST
- * from one node in its access scope should reflect the prior changes of any other node its
- * access scope. Any get() should reflect the changes of any prior set() with WRITE_SYNC.
+ * should make sure that the configuration for those factory methods match their access scope.
+ * BagOStuff subclasses have widely varying levels of support replication features within and
+ * among datacenters.
  *
  * Subclasses should override the default "segmentationSize" field with an appropriate value.
  * The value should not be larger than what the storage backend (by default) supports. It also
  * should be roughly informed by common performance bottlenecks (e.g. values over a certain size
  * having poor scalability). The same goes for the "segmentedValueMaxSize" member, which limits
  * the maximum size and chunk count (indirectly) of values.
+ *
+ * A few notes about data consistency for BagOStuff instances:
+ *  - Read operation methods, e.g. get(), should be synchronous in the local datacenter.
+ *    When used with READ_LATEST, such operations should reflect any prior writes originating
+ *    from the local datacenter (e.g. by avoiding replica DBs or invoking quorom reads).
+ *  - Write operation methods, e.g. set(), should be synchronous in the local datacenter, with
+ *    asynchronous cross-datacenter replication. This replication can be either "best effort"
+ *    or eventually consistent. When used with WRITE_SYNC, such operations will wait until all
+ *    datacenters are updated or a timeout occurs. If the write succeeded, then any subsequent
+ *    get() operations with READ_LATEST, regardless of datacenter, should reflect the changes.
+ *  - Locking operation methods, e.g. lock(), unlock(), and getScopedLock(), should only apply
+ *    to the local datacenter.
+ *  - Any set of single-key write operation method calls originating from a single datacenter
+ *    should observe "best effort" linearizability. Any set of single-key write operations using
+ *    WRITE_SYNC, regardless of the datacenter, should observe "best effort" linearizability.
+ *    In this context, "best effort" means that consistency holds as long as connectivity is
+ *    strong, network latency is low, and there are no relevant storage server failures.
+ *    Per https://en.wikipedia.org/wiki/PACELC_theorem, the store should act as a PA/EL
+ *    distributed system for these operations.
  *
  * @stable to extend
  * @ingroup Cache

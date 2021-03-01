@@ -37,10 +37,6 @@ use MediaWiki\MediaWikiServices;
  *        A place to store lightweight data that is not canonically
  *        stored anywhere else (e.g. a "hoard" of objects).
  *
- * The former should always use strongly consistent stores, so callers don't
- * have to deal with stale reads. The latter may be eventually consistent, but
- * callers can use BagOStuff:READ_LATEST to see the latest available data.
- *
  * Primary entry points:
  *
  * - ObjectCache::getLocalServerInstance( $fallbackType )
