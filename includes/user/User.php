@@ -767,7 +767,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $name Username
 	 * @param array $options Options are:
-	 *  - validate: As for User::getCanonicalName(), default 'valid'
+	 *  - validate: As for User::getCanonicalName(), default 'valid'. Deprecated since 1.36.
 	 *  - create: Whether to create the user if it doesn't already exist, default true
 	 *  - steal: Whether to "disable" the account for normal use if it already
 	 *    exists, default false
@@ -801,6 +801,12 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 			$validation = $validate;
 		}
 
+		if ( $validation !== UserNameUtils::RIGOR_VALID ) {
+			wfDeprecatedMsg(
+				__METHOD__ . ' options["validation"] parameter must be omitted or set to "valid".',
+				'1.36'
+			);
+		}
 		$services = MediaWikiServices::getInstance();
 		$userNameUtils = $services->getUserNameUtils();
 
