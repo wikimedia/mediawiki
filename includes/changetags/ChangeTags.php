@@ -23,7 +23,9 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -590,18 +592,20 @@ class ChangeTags {
 	 * request to add a tag to a revision or log entry that the user is making.
 	 *
 	 * @param string[] $tags Tags that you are interested in applying
-	 * @param User|null $user User whose permission you wish to check, or null to
+	 * @param Authority|null $performer whose permission you wish to check, or null to
 	 * check for a generic non-blocked user with the relevant rights
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canAddTagsAccompanyingChange( array $tags, User $user = null ) {
-		if ( $user !== null ) {
-			if ( !MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $user, 'applychangetags' )
-			) {
+	public static function canAddTagsAccompanyingChange( array $tags, Authority $performer = null ) {
+		$user = null;
+		if ( $performer !== null ) {
+			if ( !$performer->isAllowed( 'applychangetags' ) ) {
 				return Status::newFatal( 'tags-apply-no-permission' );
-			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
+			}
+
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-apply-blocked', $user->getName() );
 			}
 		}
@@ -634,15 +638,15 @@ class ChangeTags {
 	 * @param int|null $log_id The log_id of the change to add the tags to
 	 * @param string $params Params to put in the ct_params field of table
 	 * 'change_tag' when adding tags
-	 * @param User $user Who to give credit for the action
+	 * @param Authority $performer Who to give credit for the action
 	 * @return Status
 	 * @since 1.25
 	 */
 	public static function addTagsAccompanyingChangeWithChecks(
-		array $tags, $rc_id, $rev_id, $log_id, $params, User $user
+		array $tags, $rc_id, $rev_id, $log_id, $params, Authority $performer
 	) {
 		// are we allowed to do this?
-		$result = self::canAddTagsAccompanyingChange( $tags, $user );
+		$result = self::canAddTagsAccompanyingChange( $tags, $performer );
 		if ( !$result->isOK() ) {
 			$result->value = null;
 			return $result;
@@ -663,21 +667,24 @@ class ChangeTags {
 	 *
 	 * @param string[] $tagsToAdd Tags that you are interested in adding
 	 * @param string[] $tagsToRemove Tags that you are interested in removing
-	 * @param User|null $user User whose permission you wish to check, or null to
+	 * @param Authority|null $performer whose permission you wish to check, or null to
 	 * check for a generic non-blocked user with the relevant rights
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canUpdateTags( array $tagsToAdd, array $tagsToRemove,
-		User $user = null
+	public static function canUpdateTags(
+		array $tagsToAdd,
+		array $tagsToRemove,
+		Authority $performer = null
 	) {
-		if ( $user !== null ) {
-			if ( !MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $user, 'changetags' )
-			) {
+		if ( $performer !== null ) {
+			if ( !$performer->isAllowed( 'changetags' ) ) {
 				return Status::newFatal( 'tags-update-no-permission' );
-			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-update-blocked', $user->getName() );
+			}
+
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
+				return Status::newFatal( 'tags-update-blocked', $performer->getPerformer()->getName() );
 			}
 		}
 
@@ -728,7 +735,7 @@ class ChangeTags {
 	 * @param string|null $params Params to put in the ct_params field of table
 	 * 'change_tag' when adding tags
 	 * @param string $reason Comment for the log
-	 * @param User $user Who to give credit for the action
+	 * @param Authority $performer who to check permissions and give credit for the action
 	 * @return Status If successful, the value of this Status object will be an
 	 * object (stdClass) with the following fields:
 	 *  - logId: the ID of the added log entry, or null if no log entry was added
@@ -738,7 +745,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	public static function updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
-		$rc_id, $rev_id, $log_id, $params, $reason, User $user
+		$rc_id, $rev_id, $log_id, $params, $reason, Authority $performer
 	) {
 		if ( $tagsToAdd === null ) {
 			$tagsToAdd = [];
@@ -756,13 +763,14 @@ class ChangeTags {
 		}
 
 		// are we allowed to do this?
-		$result = self::canUpdateTags( $tagsToAdd, $tagsToRemove, $user );
+		$result = self::canUpdateTags( $tagsToAdd, $tagsToRemove, $performer );
 		if ( !$result->isOK() ) {
 			$result->value = null;
 			return $result;
 		}
 
 		// basic rate limiting
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 		if ( $user->pingLimiter( 'changetag' ) ) {
 			return Status::newFatal( 'actionthrottledtext' );
 		}
@@ -781,7 +789,7 @@ class ChangeTags {
 
 		// log it
 		$logEntry = new ManualLogEntry( 'tag', 'update' );
-		$logEntry->setPerformer( $user );
+		$logEntry->setPerformer( $performer->getPerformer() );
 		$logEntry->setComment( $reason );
 
 		// find the appropriate target page
@@ -1075,7 +1083,7 @@ class ChangeTags {
 	 * @param string $action
 	 * @param string $tag
 	 * @param string $reason
-	 * @param User $user Who to attribute the action to
+	 * @param UserIdentity $user Who to attribute the action to
 	 * @param int|null $tagCount For deletion only, how many usages the tag had before
 	 * it was deleted.
 	 * @param array $logEntryTags Change tags to apply to the entry
@@ -1084,7 +1092,7 @@ class ChangeTags {
 	 * @since 1.25
 	 */
 	protected static function logTagManagementAction( $action, $tag, $reason,
-		User $user, $tagCount = null, array $logEntryTags = []
+		UserIdentity $user, $tagCount = null, array $logEntryTags = []
 	) {
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -1112,18 +1120,18 @@ class ChangeTags {
 	 * Is it OK to allow the user to activate this tag?
 	 *
 	 * @param string $tag Tag that you are interested in activating
-	 * @param User|null $user User whose permission you wish to check, or null if
+	 * @param Authority|null $performer whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canActivateTag( $tag, User $user = null ) {
-		if ( $user !== null ) {
-			if ( !MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $user, 'managechangetags' )
-			) {
+	public static function canActivateTag( $tag, Authority $performer = null ) {
+		if ( $performer !== null ) {
+			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
+			}
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
@@ -1154,7 +1162,7 @@ class ChangeTags {
 	 *
 	 * @param string $tag
 	 * @param string $reason
-	 * @param User $user Who to give credit for the action
+	 * @param Authority $performer who to check permissions and give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
 	 * @param array $logEntryTags Change tags to apply to the entry
 	 * that will be created in the tag management log
@@ -1162,11 +1170,11 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function activateTagWithChecks( $tag, $reason, User $user,
+	public static function activateTagWithChecks( $tag, $reason, Authority $performer,
 		$ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
-		$result = self::canActivateTag( $tag, $user );
+		$result = self::canActivateTag( $tag, $performer );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
@@ -1176,7 +1184,7 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $user,
+		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $performer->getPerformer(),
 			null, $logEntryTags );
 
 		return Status::newGood( $logId );
@@ -1186,19 +1194,19 @@ class ChangeTags {
 	 * Is it OK to allow the user to deactivate this tag?
 	 *
 	 * @param string $tag Tag that you are interested in deactivating
-	 * @param User|null $user User whose permission you wish to check, or null if
+	 * @param Authority|null $performer whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canDeactivateTag( $tag, User $user = null ) {
-		if ( $user !== null ) {
-			if ( !MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $user, 'managechangetags' )
-			) {
+	public static function canDeactivateTag( $tag, Authority $performer = null ) {
+		if ( $performer !== null ) {
+			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
+			}
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
+				return Status::newFatal( 'tags-manage-blocked', $performer->getPerformer()->getName() );
 			}
 		}
 
@@ -1219,7 +1227,7 @@ class ChangeTags {
 	 *
 	 * @param string $tag
 	 * @param string $reason
-	 * @param User $user Who to give credit for the action
+	 * @param Authority $performer who to check permissions and give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
 	 * @param array $logEntryTags Change tags to apply to the entry
 	 * that will be created in the tag management log
@@ -1227,11 +1235,11 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function deactivateTagWithChecks( $tag, $reason, User $user,
+	public static function deactivateTagWithChecks( $tag, $reason, Authority $performer,
 		$ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
-		$result = self::canDeactivateTag( $tag, $user );
+		$result = self::canDeactivateTag( $tag, $performer );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
@@ -1241,8 +1249,8 @@ class ChangeTags {
 		self::undefineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason, $user,
-			null, $logEntryTags );
+		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason,
+			$performer->getPerformer(), null, $logEntryTags );
 
 		return Status::newGood( $logId );
 	}
@@ -1285,19 +1293,20 @@ class ChangeTags {
 	 * defined using the ListDefinedTags hook without any checking.
 	 *
 	 * @param string $tag Tag that you are interested in creating
-	 * @param User|null $user User whose permission you wish to check, or null if
+	 * @param Authority|null $performer whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canCreateTag( $tag, User $user = null ) {
-		if ( $user !== null ) {
-			if ( !MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $user, 'managechangetags' )
-			) {
+	public static function canCreateTag( $tag, Authority $performer = null ) {
+		$user = null;
+		if ( $performer !== null ) {
+			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
-			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
+			}
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
+				return Status::newFatal( 'tags-manage-blocked', $performer->getPerformer()->getName() );
 			}
 		}
 
@@ -1329,7 +1338,7 @@ class ChangeTags {
 	 *
 	 * @param string $tag
 	 * @param string $reason
-	 * @param User $user Who to give credit for the action
+	 * @param Authority $performer who to check permissions and give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
 	 * @param array $logEntryTags Change tags to apply to the entry
 	 * that will be created in the tag management log
@@ -1337,11 +1346,11 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function createTagWithChecks( $tag, $reason, User $user,
+	public static function createTagWithChecks( $tag, $reason, Authority $performer,
 		$ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
-		$result = self::canCreateTag( $tag, $user );
+		$result = self::canCreateTag( $tag, $performer );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
@@ -1351,8 +1360,8 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'create', $tag, $reason, $user,
-			null, $logEntryTags );
+		$logId = self::logTagManagementAction( 'create', $tag, $reason,
+			$performer->getPerformer(), null, $logEntryTags );
 
 		return Status::newGood( $logId );
 	}
@@ -1403,7 +1412,7 @@ class ChangeTags {
 	 * Is it OK to allow the user to delete this tag?
 	 *
 	 * @param string $tag Tag that you are interested in deleting
-	 * @param User|null $user User whose permission you wish to check, or null if
+	 * @param Authority|null $performer whose permission you wish to check, or null if
 	 * you don't care (e.g. maintenance scripts)
 	 * @param int $flags Use ChangeTags::BYPASS_MAX_USAGE_CHECK to ignore whether
 	 *  there are more uses than we would normally allow to be deleted through the
@@ -1411,15 +1420,15 @@ class ChangeTags {
 	 * @return Status
 	 * @since 1.25
 	 */
-	public static function canDeleteTag( $tag, User $user = null, int $flags = 0 ) {
+	public static function canDeleteTag( $tag, Authority $performer = null, int $flags = 0 ) {
 		$tagUsage = self::tagUsageStatistics();
-
-		if ( $user !== null ) {
-			if ( !MediaWikiServices::getInstance()->getPermissionManager()
-					->userHasRight( $user, 'deletechangetags' )
-			) {
+		$user = null;
+		if ( $performer !== null ) {
+			if ( !$performer->isAllowed( 'deletechangetags' ) ) {
 				return Status::newFatal( 'tags-delete-no-permission' );
-			} elseif ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
+			}
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
+			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
 				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
 			}
 		}
@@ -1458,7 +1467,7 @@ class ChangeTags {
 	 *
 	 * @param string $tag
 	 * @param string $reason
-	 * @param User $user Who to give credit for the action
+	 * @param Authority $performer who to check permissions and give credit for the action
 	 * @param bool $ignoreWarnings Can be used for API interaction, default false
 	 * @param array $logEntryTags Change tags to apply to the entry
 	 * that will be created in the tag management log
@@ -1466,11 +1475,11 @@ class ChangeTags {
 	 * entry as its value
 	 * @since 1.25
 	 */
-	public static function deleteTagWithChecks( $tag, $reason, User $user,
+	public static function deleteTagWithChecks( $tag, $reason, Authority $performer,
 		$ignoreWarnings = false, array $logEntryTags = []
 	) {
 		// are we allowed to do this?
-		$result = self::canDeleteTag( $tag, $user );
+		$result = self::canDeleteTag( $tag, $performer );
 		if ( $ignoreWarnings ? !$result->isOK() : !$result->isGood() ) {
 			$result->value = null;
 			return $result;
@@ -1487,7 +1496,7 @@ class ChangeTags {
 		}
 
 		// log it
-		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $user,
+		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $performer->getPerformer(),
 			$hitcount, $logEntryTags );
 
 		$deleteResult->value = $logId;
@@ -1677,12 +1686,10 @@ class ChangeTags {
 	 * suddenly showed up because some abuse filter stopped defining a tag and
 	 * then suddenly disappeared when someone deleted all uses of that tag.
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @return bool
 	 */
-	public static function showTagEditingUI( User $user ) {
-		return MediaWikiServices::getInstance()->getPermissionManager()
-				   ->userHasRight( $user, 'changetags' ) &&
-			   (bool)self::listExplicitlyDefinedTags();
+	public static function showTagEditingUI( Authority $performer ) {
+		return $performer->isAllowed( 'changetags' ) && (bool)self::listExplicitlyDefinedTags();
 	}
 }

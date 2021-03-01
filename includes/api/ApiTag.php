@@ -49,7 +49,7 @@ class ApiTag extends ApiBase {
 
 		// Check if user can add tags
 		if ( $params['tags'] ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}
@@ -142,7 +142,8 @@ class ApiTag extends ApiBase {
 			( $type === 'logid' ? $id : null ),
 			null,
 			$params['reason'],
-			$this->getUser() );
+			$this->getAuthority()
+		);
 
 		if ( !$status->isOK() ) {
 			if ( $status->hasMessage( 'actionthrottledtext' ) ) {
