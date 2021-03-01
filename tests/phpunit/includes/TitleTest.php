@@ -1340,6 +1340,24 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers Title::getPreviousRevisionID
+	 * @covers MediaWiki\Revision\RevisionStore::getRelativeRevision
+	 */
+	public function testGetPreviousRevisionID_deprecated() {
+		$this->expectDeprecation();
+		Title::makeTitle( NS_MAIN, 'Foo' )->getPreviousRevisionID( 2233 );
+	}
+
+	/**
+	 * @covers Title::getNextRevisionID
+	 * @covers Title::getRelativeRevisionID
+	 */
+	public function testGetNextRevisionID_deprecated() {
+		$this->expectDeprecation();
+		Title::makeTitle( NS_MAIN, 'Foo' )->getNextRevisionID( 123456789 );
+	}
+
+	/**
 	 * @covers Title::equals
 	 * @dataProvider provideEquals
 	 */
