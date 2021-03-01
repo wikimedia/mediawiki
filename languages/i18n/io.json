@@ -1502,6 +1502,7 @@
 	"linkstoimage-redirect": "$1 (arkivo ridirektita) $2",
 	"duplicatesoffile": "La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} esas duopligo de ca arkivo ([[Special:FileDuplicateSearch/$2|plusa detali]]):",
 	"sharedupload": "Ca arkivo originis de $1 e posible esas uzata da altra projeti.",
+	"sharedupload-desc-there": "Ca arkivo esas de $1 e povas uzesar en altra projeti.\nVides la [$2 pagino pri deskripto dil arkivo] por plusa informo.",
 	"sharedupload-desc-here": "Ca arkivo jacas en $1, e povas uzesar en altra projeti.\nLa deskriptado en lua [$2 pagino di deskriptado] montresas adinfre.",
 	"sharedupload-desc-edit": "Ca arkivo venas de $1 e povas uzesar en altra projeti.\nPosible vu deziros redaktar ibe lua deskripto en [$2 lua deskripto-pagino].",
 	"sharedupload-desc-create": "Ca arkivo venas de $1 e povas uzesar en altra projeti.\nPosible vu deziros redaktar ibe lua deskripto en [$2 lua deskripto-pagino].",

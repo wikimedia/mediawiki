@@ -1295,7 +1295,7 @@
 	"deadendpages": "صفحات ما بتوصلش  لحاجه",
 	"deadendpagestext": "الصفحات دى مابتوصلش  لصفحات تانية فى {{SITENAME}}.",
 	"protectedpages": "صفحات محميه",
-	"protectedpages-filters": "فلاتر",
+	"protectedpages-filters": "فلاتر:",
 	"protectedpages-indef": "عمليات الحماية اللى مش متحددة بس",
 	"protectedpages-cascade": "الحماية المتضمنة بس",
 	"protectedpagesempty": "مافيش  صفحات محمية دلوقتى  على حسب المحددات دي.",

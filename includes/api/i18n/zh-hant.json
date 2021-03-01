@@ -1268,7 +1268,7 @@
 	"apihelp-query+userinfo-paramvalue-prop-email": "添加使用者的電子郵件地址與電子郵件驗證日期。",
 	"apihelp-query+userinfo-paramvalue-prop-acceptlang": "回響由在架構化格式客戶端所發送的 <code>Accept-Language</code> 標頭。",
 	"apihelp-query+userinfo-paramvalue-prop-registrationdate": "添加使用者的註冊日期。",
-	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "添加未讀頁面數目在使用者的監視清單（最多 $1，若有更多則回傳 <samp>$2</samp>）。",
+	"apihelp-query+userinfo-paramvalue-prop-unreadcount": "添加使用者監視清單上的未讀頁面數量（最多$1；如有更多則回傳<samp>$2</samp>）。",
 	"apihelp-query+userinfo-paramvalue-prop-centralids": "替使用者添加中心 ID 與附加狀態。",
 	"apihelp-query+userinfo-paramvalue-prop-latestcontrib": "添加使用者最新貢獻的日期。",
 	"apihelp-query+userinfo-param-attachedwiki": "以 <kbd>$1prop=centralids</kbd> 來表明使用者是否附加於由此 ID 所識別出的 wiki。",
