@@ -30,7 +30,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\ProperPageIdentity;
-use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\Rdbms\Database;
@@ -3731,6 +3730,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return int|bool Old revision ID, or false if none exists
 	 */
 	public function getPreviousRevisionID( $revId, $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return $this->getRelativeRevisionID( $revId, $flags, 'prev' );
 	}
 
@@ -3743,6 +3743,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return int|bool Next revision ID, or false if none exists
 	 */
 	public function getNextRevisionID( $revId, $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return $this->getRelativeRevisionID( $revId, $flags, 'next' );
 	}
 
@@ -3770,6 +3771,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return string|null MW timestamp
 	 */
 	public function getEarliestRevTime( $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$rev = MediaWikiServices::getInstance()
 			->getRevisionLookup()
 			->getFirstRevision( $this, $flags );
@@ -3835,82 +3837,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Get the number of revisions between the given revision.
-	 * Used for diffs and other things that really need it.
-	 *
-	 * @deprecated since 1.35 Use RevisionStore::countRevisionsBetween instead.
-	 *
-	 * @param int|Revision $old Old revision or rev ID (first before range)
-	 * @param int|Revision $new New revision or rev ID (first after range)
-	 * @param int|null $max Limit of Revisions to count, will be incremented to detect truncations
-	 * @return int Number of revisions between these revisions.
-	 */
-	public function countRevisionsBetween( $old, $new, $max = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( !( $old instanceof Revision ) ) {
-			$old = Revision::newFromTitle( $this, (int)$old );
-		}
-		if ( !( $new instanceof Revision ) ) {
-			$new = Revision::newFromTitle( $this, (int)$new );
-		}
-		if ( !$old || !$new ) {
-			return 0; // nothing to compare
-		}
-		return MediaWikiServices::getInstance()
-			->getRevisionStore()
-			->countRevisionsBetween(
-				$this->getArticleID(),
-				$old->getRevisionRecord(),
-				$new->getRevisionRecord(),
-				$max
-			);
-	}
-
-	/**
-	 * Get the authors between the given revisions or revision IDs.
-	 * Used for diffs and other things that really need it.
-	 *
-	 * @since 1.23
-	 * @deprecated since 1.35 Use RevisionStore::getAuthorsBetween instead.
-	 *
-	 * @param int|Revision $old Old revision or rev ID (first before range by default)
-	 * @param int|Revision $new New revision or rev ID (first after range by default)
-	 * @param int $limit Maximum number of authors
-	 * @param string|array $options (Optional): Single option, or an array of options:
-	 *     'include_old' Include $old in the range; $new is excluded.
-	 *     'include_new' Include $new in the range; $old is excluded.
-	 *     'include_both' Include both $old and $new in the range.
-	 *     Unknown option values are ignored.
-	 * @return array|null Names of revision authors in the range; null if not both revisions exist
-	 */
-	public function getAuthorsBetween( $old, $new, $limit, $options = [] ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( !( $old instanceof Revision ) ) {
-			$old = Revision::newFromTitle( $this, (int)$old );
-		}
-		if ( !( $new instanceof Revision ) ) {
-			$new = Revision::newFromTitle( $this, (int)$new );
-		}
-		try {
-			$users = MediaWikiServices::getInstance()
-				->getRevisionStore()
-				->getAuthorsBetween(
-					$this->getArticleID(),
-					$old->getRevisionRecord(),
-					$new->getRevisionRecord(),
-					null,
-					$limit,
-					$options
-				);
-			return array_map( static function ( UserIdentity $user ) {
-				return $user->getName();
-			}, $users );
-		} catch ( InvalidArgumentException $e ) {
-			return null; // b/c
-		}
-	}
-
-	/**
 	 * Get the number of authors between the given revisions or revision IDs.
 	 * Used for diffs and other things that really need it.
 	 *
@@ -3928,8 +3854,26 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function countAuthorsBetween( $old, $new, $limit, $options = [] ) {
 		wfDeprecated( __METHOD__, '1.35' );
-		$authors = $this->getAuthorsBetween( $old, $new, $limit, $options );
-		return $authors ? count( $authors ) : 0;
+		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+
+		if ( !( $old instanceof Revision ) ) {
+			$old = Revision::newFromTitle( $this, (int)$old );
+		}
+		if ( !( $new instanceof Revision ) ) {
+			$new = Revision::newFromTitle( $this, (int)$new );
+		}
+		if ( !$old || !$new ) {
+			return 0; // nothing to compare
+		}
+
+		return $revisionStore->countAuthorsBetween(
+			$this->getArticleID(),
+			$old->getRevisionRecord(),
+			$new->getRevisionRecord(),
+			null,
+			$limit,
+			$options
+		);
 	}
 
 	/**

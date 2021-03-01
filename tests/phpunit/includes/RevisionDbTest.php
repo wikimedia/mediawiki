@@ -698,8 +698,10 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\Revision\RevisionStore::getRelativeRevision
 	 */
 	public function testTitleGetPreviousRevisionID() {
+		$this->hideDeprecated( 'Title::getPreviousRevisionID' );
 		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
+		$this->hideDeprecated( 'WikiPage::getOldestRevision' );
 
 		$oldestId = $this->testPage->getOldestRevision()->getId();
 		$latestId = $this->testPage->getLatest();
@@ -719,6 +721,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getRelativeRevisionID
 	 */
 	public function testTitleGetPreviousRevisionID_invalid() {
+		$this->hideDeprecated( 'Title::getPreviousRevisionID' );
 		$this->assertFalse( $this->testPage->getTitle()->getPreviousRevisionID( 123456789 ) );
 	}
 
@@ -747,6 +750,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\Revision\RevisionStore::getRelativeRevision
 	 */
 	public function testTitleGetNextRevisionID() {
+		$this->hideDeprecated( 'Title::getNextRevisionID' );
 		$title = $this->testPage->getTitle();
 
 		$origId = $this->testPage->getLatest();
@@ -764,6 +768,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getRelativeRevisionID
 	 */
 	public function testTitleGetNextRevisionID_invalid() {
+		$this->hideDeprecated( 'Title::getNextRevisionID' );
 		$this->assertFalse( $this->testPage->getTitle()->getNextRevisionID( 123456789 ) );
 	}
 
