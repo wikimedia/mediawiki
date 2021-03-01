@@ -2,7 +2,6 @@
 
 use MediaWiki\Cache\GenderCache;
 use MediaWiki\Language\Language;
-use MediaWiki\Linker\LinksMigration;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\Page\CacheKeyHelper;
@@ -11,55 +10,18 @@ use MediaWiki\Page\LinkCache;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Title\Title;
-use MediaWiki\Title\TitleFormatter;
 use MediaWiki\Title\TitleValue;
 use MediaWiki\User\TempUser\TempUserDetailsLookup;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\Rdbms\IConnectionProvider;
 
 /**
+ * See also unit tests at \MediaWiki\Tests\Unit\LinkBatchTest
+ *
  * @group Database
  * @group Page
  * @covers \MediaWiki\Page\LinkBatch
  */
 class LinkBatchTest extends MediaWikiIntegrationTestCase {
-
-	public function testConstructEmptyWithServices() {
-		$batch = new LinkBatch(
-			[],
-			$this->createMock( LinkCache::class ),
-			$this->createMock( TitleFormatter::class ),
-			$this->createMock( Language::class ),
-			$this->createMock( GenderCache::class ),
-			$this->createMock( IConnectionProvider::class ),
-			$this->createMock( LinksMigration::class ),
-			$this->createNoOpMock( TempUserDetailsLookup::class ),
-			LoggerFactory::getInstance( 'LinkBatch' )
-		);
-
-		$this->assertTrue( $batch->isEmpty() );
-		$this->assertSame( 0, $batch->getSize() );
-	}
-
-	public function testConstructWithServices() {
-		$batch = new LinkBatch(
-			[
-				new TitleValue( NS_MAIN, 'Foo' ),
-				new TitleValue( NS_TALK, 'Bar' ),
-			],
-			$this->createMock( LinkCache::class ),
-			$this->createMock( TitleFormatter::class ),
-			$this->createMock( Language::class ),
-			$this->createMock( GenderCache::class ),
-			$this->createMock( IConnectionProvider::class ),
-			$this->createMock( LinksMigration::class ),
-			$this->createNoOpMock( TempUserDetailsLookup::class ),
-			LoggerFactory::getInstance( 'LinkBatch' )
-		);
-
-		$this->assertFalse( $batch->isEmpty() );
-		$this->assertSame( 2, $batch->getSize() );
-	}
 
 	/**
 	 * @param iterable<LinkTarget>|iterable<PageReference> $objects
@@ -178,69 +140,6 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		sort( $actual );
 
 		$this->assertEquals( $expected, $actual );
-	}
-
-	public function testDoGenderQueryWithEmptyLinkBatch() {
-		$batch = new LinkBatch(
-			[],
-			$this->createMock( LinkCache::class ),
-			$this->createMock( TitleFormatter::class ),
-			$this->createNoOpMock( Language::class ),
-			$this->createNoOpMock( GenderCache::class ),
-			$this->createMock( IConnectionProvider::class ),
-			$this->createMock( LinksMigration::class ),
-			$this->createNoOpMock( TempUserDetailsLookup::class ),
-			LoggerFactory::getInstance( 'LinkBatch' )
-		);
-
-		$this->assertFalse( $batch->doGenderQuery() );
-	}
-
-	public function testDoGenderQueryWithLanguageWithoutGenderDistinction() {
-		$language = $this->createMock( Language::class );
-		$language->method( 'needsGenderDistinction' )->willReturn( false );
-
-		$batch = new LinkBatch(
-			[],
-			$this->createMock( LinkCache::class ),
-			$this->createMock( TitleFormatter::class ),
-			$language,
-			$this->createNoOpMock( GenderCache::class ),
-			$this->createMock( IConnectionProvider::class ),
-			$this->createMock( LinksMigration::class ),
-			$this->createNoOpMock( TempUserDetailsLookup::class ),
-			LoggerFactory::getInstance( 'LinkBatch' )
-		);
-		$batch->addObj(
-			new TitleValue( NS_MAIN, 'Foo' )
-		);
-
-		$this->assertFalse( $batch->doGenderQuery() );
-	}
-
-	public function testDoGenderQueryWithLanguageWithGenderDistinction() {
-		$language = $this->createMock( Language::class );
-		$language->method( 'needsGenderDistinction' )->willReturn( true );
-
-		$genderCache = $this->createMock( GenderCache::class );
-		$genderCache->expects( $this->once() )->method( 'doLinkBatch' );
-
-		$batch = new LinkBatch(
-			[],
-			$this->createMock( LinkCache::class ),
-			$this->createMock( TitleFormatter::class ),
-			$language,
-			$genderCache,
-			$this->createMock( IConnectionProvider::class ),
-			$this->createMock( LinksMigration::class ),
-			$this->createNoOpMock( TempUserDetailsLookup::class ),
-			LoggerFactory::getInstance( 'LinkBatch' )
-		);
-		$batch->addObj(
-			new TitleValue( NS_MAIN, 'Foo' )
-		);
-
-		$this->assertTrue( $batch->doGenderQuery() );
 	}
 
 	public static function provideBadObjects() {
