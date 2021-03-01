@@ -26,7 +26,6 @@ class SpecialRedirectTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDispatch( $method, $type, $value, $expectedStatus ) {
 		$page = new SpecialRedirect(
-			MediaWikiServices::getInstance()->getPermissionManager(),
 			MediaWikiServices::getInstance()->getRepoGroup()
 		);
 

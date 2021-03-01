@@ -17,7 +17,6 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 		return new SpecialSearch(
 			$services->getSearchEngineConfig(),
 			$services->getSearchEngineFactory(),
-			$services->getPermissionManager(),
 			$services->getNamespaceInfo(),
 			$services->getContentHandlerFactory(),
 			$services->getInterwikiLookup(),
@@ -256,7 +255,6 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			->setConstructorArgs( [
 				$services->getSearchEngineConfig(),
 				$services->getSearchEngineFactory(),
-				$services->getPermissionManager(),
 				$services->getNamespaceInfo(),
 				$services->getContentHandlerFactory(),
 				$services->getInterwikiLookup(),
@@ -368,7 +366,6 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			->setConstructorArgs( [
 				$services->getSearchEngineConfig(),
 				$services->getSearchEngineFactory(),
-				$services->getPermissionManager(),
 				$services->getNamespaceInfo(),
 				$services->getContentHandlerFactory(),
 				$services->getInterwikiLookup(),
@@ -439,7 +436,6 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			$specialSearch = new SpecialSearch(
 				$services->getSearchEngineConfig(),
 				$mockSearchEngineFactory,
-				$services->getPermissionManager(),
 				$services->getNamespaceInfo(),
 				$services->getContentHandlerFactory(),
 				$services->getInterwikiLookup(),

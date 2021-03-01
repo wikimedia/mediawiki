@@ -22,7 +22,6 @@
  */
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -35,9 +34,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class SpecialDoubleRedirects extends QueryPage {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
@@ -48,19 +44,16 @@ class SpecialDoubleRedirects extends QueryPage {
 	private $dbr;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer
 	) {
 		parent::__construct( 'DoubleRedirects' );
-		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setDBLoadBalancer( $loadBalancer );
@@ -180,7 +173,7 @@ class SpecialDoubleRedirects extends QueryPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			$this->permissionManager->userHasRight( $this->getUser(), 'edit' ) &&
+			$this->getContext()->getAuthority()->isAllowed( 'edit' ) &&
 			// check, if the content model is editable through action=edit
 			$this->contentHandlerFactory->getContentHandler( $titleA->getContentModel() )
 				->supportsDirectEditing()

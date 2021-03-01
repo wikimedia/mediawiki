@@ -24,7 +24,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -35,22 +34,16 @@ use Wikimedia\Rdbms\ILoadBalancer;
 class SpecialExport extends SpecialPage {
 	protected $curonly, $doExport, $pageLinkDepth, $templates;
 
-	/** @var PermissionManager */
-	private $permManager;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
 	/**
-	 * @param PermissionManager $permManager
 	 * @param ILoadBalancer $loadBalancer
 	 */
 	public function __construct(
-		PermissionManager $permManager,
 		ILoadBalancer $loadBalancer
 	) {
 		parent::__construct( 'Export' );
-		$this->permManager = $permManager;
 		$this->loadBalancer = $loadBalancer;
 	}
 
@@ -343,7 +336,7 @@ class SpecialExport extends SpecialPage {
 	 * @return bool
 	 */
 	protected function userCanOverrideExportDepth() {
-		return $this->permManager->userHasRight( $this->getUser(), 'override-export-depth' );
+		return $this->getContext()->getAuthority()->isAllowed( 'override-export-depth' );
 	}
 
 	/**
@@ -412,7 +405,7 @@ class SpecialExport extends SpecialPage {
 					continue;
 				}
 
-				if ( !$this->permManager->userCan( 'read', $this->getUser(), $title ) ) {
+				if ( !$this->getContext()->getAuthority()->authorizeRead( 'read', $title ) ) {
 					// @todo Perhaps output an <error> tag or something.
 					continue;
 				}

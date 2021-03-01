@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Permissions\PermissionManager;
-
 /**
  * A special page that lists tags for edits
  *
@@ -45,15 +43,8 @@ class SpecialTags extends SpecialPage {
 	 */
 	protected $softwareActivatedTags;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/**
-	 * @param PermissionManager $permissionManager
-	 */
-	public function __construct( PermissionManager $permissionManager ) {
+	public function __construct() {
 		parent::__construct( 'Tags' );
-		$this->permissionManager = $permissionManager;
 	}
 
 	public function execute( $par ) {
@@ -85,10 +76,10 @@ class SpecialTags extends SpecialPage {
 		$out->setPageTitle( $this->msg( 'tags-title' ) );
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
-		$user = $this->getUser();
-		$userCanManage = $this->permissionManager->userHasRight( $user, 'managechangetags' );
-		$userCanDelete = $this->permissionManager->userHasRight( $user, 'deletechangetags' );
-		$userCanEditInterface = $this->permissionManager->userHasRight( $user, 'editinterface' );
+		$authority = $this->getContext()->getAuthority();
+		$userCanManage = $authority->isAllowed( 'managechangetags' );
+		$userCanDelete = $authority->isAllowed( 'deletechangetags' );
+		$userCanEditInterface = $authority->isAllowed( 'editinterface' );
 
 		// Show form to create a tag
 		if ( $userCanManage ) {
@@ -344,8 +335,8 @@ class SpecialTags extends SpecialPage {
 	}
 
 	protected function showDeleteTagForm( $tag ) {
-		$user = $this->getUser();
-		if ( !$this->permissionManager->userHasRight( $user, 'deletechangetags' ) ) {
+		$authority = $this->getContext()->getAuthority();
+		if ( !$authority->isAllowed( 'deletechangetags' ) ) {
 			throw new PermissionsError( 'deletechangetags' );
 		}
 
@@ -354,7 +345,7 @@ class SpecialTags extends SpecialPage {
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
 		// is the tag actually able to be deleted?
-		$canDeleteResult = ChangeTags::canDeleteTag( $tag, $user );
+		$canDeleteResult = ChangeTags::canDeleteTag( $tag, $authority );
 		if ( !$canDeleteResult->isGood() ) {
 			$out->wrapWikiTextAsInterface( 'error', $canDeleteResult->getWikiText() );
 			if ( !$canDeleteResult->isOK() ) {
@@ -404,8 +395,8 @@ class SpecialTags extends SpecialPage {
 	protected function showActivateDeactivateForm( $tag, $activate ) {
 		$actionStr = $activate ? 'activate' : 'deactivate';
 
-		$user = $this->getUser();
-		if ( !$this->permissionManager->userHasRight( $user, 'managechangetags' ) ) {
+		$authority = $this->getContext()->getAuthority();
+		if ( !$authority->isAllowed( 'managechangetags' ) ) {
 			throw new PermissionsError( 'managechangetags' );
 		}
 
@@ -415,8 +406,11 @@ class SpecialTags extends SpecialPage {
 		$out->addBacklinkSubtitle( $this->getPageTitle() );
 
 		// is it possible to do this?
-		$func = $activate ? 'canActivateTag' : 'canDeactivateTag';
-		$result = ChangeTags::$func( $tag, $user );
+		if ( $activate ) {
+			$result = ChangeTags::canActivateTag( $tag, $authority );
+		} else {
+			$result = ChangeTags::canDeactivateTag( $tag, $authority );
+		}
 		if ( !$result->isGood() ) {
 			$out->wrapWikiTextAsInterface( 'error', $result->getWikiText() );
 			if ( !$result->isOK() ) {
