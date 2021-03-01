@@ -1,42 +1,52 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @covers ListToggle
  */
-class ListToggleTest extends MediaWikiIntegrationTestCase {
+class ListToggleTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers ListToggle::__construct
 	 */
 	public function testConstruct() {
-		$output = $this->getMockBuilder( OutputPage::class )
-			->setMethods( null )
-			->disableOriginalConstructor()
-			->getMock();
+		$output = $this->createMock( OutputPage::class );
+		$output->expects( $this->once() )
+			->method( 'addModules' )
+			->with( 'mediawiki.checkboxtoggle' );
+		$output->expects( $this->once() )
+			->method( 'addModuleStyles' )
+			->with( 'mediawiki.checkboxtoggle.styles' );
 
-		$listToggle = new ListToggle( $output );
-
-		$this->assertInstanceOf( ListToggle::class, $listToggle );
-		$this->assertContains( 'mediawiki.checkboxtoggle', $output->getModules() );
-		$this->assertContains( 'mediawiki.checkboxtoggle.styles', $output->getModuleStyles() );
+		new ListToggle( $output );
 	}
 
 	/**
 	 * @covers ListToggle::getHTML
 	 */
 	public function testGetHTML() {
+		$language = $this->createMock( Language::class );
+		$language->method( 'commaList' )
+			->willReturnCallback( static function ( array $list ) {
+				return implode( '(comma-separator)', $list );
+			} );
+
 		$output = $this->createMock( OutputPage::class );
 		$output->expects( $this->any() )
 			->method( 'msg' )
 			->will( $this->returnCallback( static function ( $key ) {
-				return wfMessage( $key )->inLanguage( 'qqx' );
+				return new class( $key ) extends Message {
+					protected function fetchMessage() {
+						return "($this->key$*)";
+					}
+
+					protected function transformText( $string ) {
+						return $string;
+					}
+				};
 			} ) );
 		$output->expects( $this->once() )
 			->method( 'getLanguage' )
-			->will( $this->returnValue(
-				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ) ) );
+			->willReturn( $language );
 
 		$listToggle = new ListToggle( $output );
 
