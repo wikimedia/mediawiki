@@ -21,7 +21,7 @@
 /**
  * @covers DeprecatedGlobal
  */
-class DeprecatedGlobalTest extends MediaWikiIntegrationTestCase {
+class DeprecatedGlobalTest extends MediaWikiUnitTestCase {
 	private $oldErrorLevel;
 
 	protected function setUp() : void {
