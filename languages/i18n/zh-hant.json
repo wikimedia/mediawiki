@@ -429,7 +429,7 @@
 	"timeouterror-text": "超出最多 $1 {{PLURAL:$1|秒}}的請求時間。",
 	"internalerror": "內部錯誤",
 	"internalerror_info": "內部錯誤：$1",
-	"internalerror-fatal-exception": "嚴重例外類型「$1」",
+	"internalerror-fatal-exception": "嚴重異常類型「$1」",
 	"filecopyerror": "無法將檔案「$1」複製至「$2」。",
 	"filerenameerror": "無法將檔案「$1」重新命名為「$2」。",
 	"filedeleteerror": "無法刪除檔案「$1」。",

@@ -468,7 +468,7 @@
 	"timeouterror-text": "已超过最大请求时间$1秒。",
 	"internalerror": "内部错误",
 	"internalerror_info": "内部错误：$1",
-	"internalerror-fatal-exception": "类型“$1”的致命例外",
+	"internalerror-fatal-exception": "类型“$1”的致命异常",
 	"filecopyerror": "无法将文件“$1”复制到“$2”。",
 	"filerenameerror": "无法将文件“$1”重命名为“$2”。",
 	"filedeleteerror": "无法删除文件“$1”。",

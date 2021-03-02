@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Adehertogh",
 			"Desiphral",
 			"לערי ריינהארט",
 			"ⓝⓘⓙⓦⓜ",
@@ -109,7 +110,7 @@
 	"nstab-template": "Sikavno",
 	"nstab-help": "Zhutipen",
 	"nstab-category": "Shopni",
-	"mainpage-nstab": "गाहाइ बिलाइ",
+	"mainpage-nstab": "Sherutni patrin",
 	"nospecialpagetext": "Manglyas ekh [[Special:SpecialPages|uzalutni patrin]] so na arakhel pes kai {{SITENAME}}.",
 	"viewsource": "Dikh i sursa",
 	"logouttext": "'''Akana san avryal i {{SITENAME}}.'''\n\nShai te labyares {{SITENAME}} sar ekh bijanglo jeno vai shai te prinjares tut palem sar o jeno le kadale navesa vai le aver navesa.",
