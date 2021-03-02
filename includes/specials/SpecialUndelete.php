@@ -512,7 +512,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 			// Used in wikilinks, should not contain whitespaces
 			$titleText = $this->mTargetObj->getPrefixedDBkey();
-			if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getAuthority() ) ) {
+			if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 				$msg = $revRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED )
 					? [ 'rev-suppressed-text-permission', $titleText ]
 					: [ 'rev-deleted-text-permission', $titleText ];
@@ -1092,7 +1092,7 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mCanView ) {
 			$titleObj = $this->getPageTitle();
 			# Last link
-			if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getAuthority() ) ) {
+			if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 				$pageLink = htmlspecialchars( $this->getLanguage()->userTimeAndDate( $ts, $user ) );
 				$last = $this->msg( 'diff' )->escaped();
 			} elseif ( $remaining > 0 || ( $earliestLiveTime && $ts > $earliestLiveTime ) ) {
@@ -1215,7 +1215,7 @@ class SpecialUndelete extends SpecialPage {
 		$user = $this->getUser();
 		$time = $this->getLanguage()->userTimeAndDate( $ts, $user );
 
-		if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getContext()->getAuthority() ) ) {
+		if ( !$revRecord->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 			// TODO The condition cannot be true when the function is called
 			return '<span class="history-deleted">' . htmlspecialchars( $time ) . '</span>';
 		}

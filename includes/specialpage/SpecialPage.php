@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Navigation\PrevNextNavigationRenderer;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
@@ -797,6 +798,16 @@ class SpecialPage implements MessageLocalizer {
 	 */
 	public function getUser() {
 		return $this->getContext()->getUser();
+	}
+
+	/**
+	 * Shortcut to get the Authority executing this instance
+	 *
+	 * @return Authority
+	 * @since 1.36
+	 */
+	public function getAuthority(): Authority {
+		return $this->getContext()->getAuthority();
 	}
 
 	/**

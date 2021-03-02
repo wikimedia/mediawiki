@@ -79,7 +79,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !$this->getContext()->getAuthority()->isAllowed( 'viewmyprivateinfo' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'viewmyprivateinfo' ) ) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 

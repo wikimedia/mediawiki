@@ -167,7 +167,7 @@ class SpecialBlockList extends SpecialPage {
 		$conds = [];
 		$db = $this->getDB();
 		# Is the user allowed to see hidden blocks?
-		if ( !$this->getContext()->getAuthority()->isAllowed( 'hideuser' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
 		}
 

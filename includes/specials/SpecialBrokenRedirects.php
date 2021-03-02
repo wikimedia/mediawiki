@@ -148,7 +148,7 @@ class SpecialBrokenRedirects extends QueryPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			$this->getContext()->getAuthority()->isAllowed( 'edit' ) &&
+			$this->getAuthority()->isAllowed( 'edit' ) &&
 			// check, if the content model is editable through action=edit
 			$this->contentHandlerFactory->getContentHandler( $fromObj->getContentModel() )
 				->supportsDirectEditing()
@@ -165,7 +165,7 @@ class SpecialBrokenRedirects extends QueryPage {
 
 		$out = $from . $this->msg( 'word-separator' )->escaped();
 
-		if ( $this->getContext()->getAuthority()->isAllowed( 'delete' ) ) {
+		if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$fromObj,
 				$this->msg( 'brokenredirects-delete' )->text(),
