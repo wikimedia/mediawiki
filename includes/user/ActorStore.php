@@ -279,38 +279,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
-	 * TODO: remove this method
-	 * Find actor by $userId or by $name in this order.
-	 *
-	 * @note calling this method is different from instantiating a new UserIdentity
-	 * implementation since the returned actor is guaranteed to exist in the database.
-	 *
-	 * @param int|null $userId
-	 * @param string|null $name
-	 * @param int $queryFlags one of IDBAccessObject constants
-	 * @return UserIdentity|null
-	 */
-	public function getUserIdentityByAnyId(
-		?int $userId,
-		?string $name,
-		int $queryFlags = self::READ_NORMAL
-	): ?UserIdentity {
-		if ( $userId ) {
-			$fromUserId = $this->getUserIdentityByUserId( $userId, $queryFlags );
-			if ( $fromUserId ) {
-				return $fromUserId;
-			}
-		}
-		if ( $name ) {
-			$fromName = $this->getUserIdentityByName( $name, $queryFlags );
-			if ( $fromName ) {
-				return $fromName;
-			}
-		}
-		return null;
-	}
-
-	/**
 	 * Attach the actor ID to $user for backwards compatibility.
 	 *
 	 * @todo remove this method when no longer needed (T273974).

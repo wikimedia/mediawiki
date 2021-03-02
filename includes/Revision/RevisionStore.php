@@ -2210,10 +2210,18 @@ class RevisionStore
 			}
 			if ( !$user ) {
 				try {
-					$user = $this->actorStore->getUserIdentityByAnyId(
-						$userID,
-						$fields['user_text'] ?? null
-					);
+					if ( $userID ) {
+						$fromUserId = $this->actorStore->getUserIdentityByUserId( $userID );
+						if ( $fromUserId ) {
+							$user = $fromUserId;
+						} elseif ( $fields['user_text'] ?? null ) {
+							$fromName = $this->actorStore
+								->getUserIdentityByName( $fields['user_text'] ?? null );
+							if ( $fromName ) {
+								$user = $fromName;
+							}
+						}
+					}
 				} catch ( InvalidArgumentException $ex ) {
 					$user = null;
 				}
