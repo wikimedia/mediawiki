@@ -20,7 +20,8 @@
 
 use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * Tests the ContentModelChangeConstraint
@@ -31,6 +32,8 @@ use MediaWiki\Permissions\PermissionManager;
  */
 class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
+	use MockAuthorityTrait;
+	use MockTitleTrait;
 
 	public function testPass() {
 		$newContentModel = 'FooBarBaz';
@@ -49,43 +52,9 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 			->method( 'setContentModel' )
 			->with( $this->equalTo( $newContentModel ) );
 
-		$user = $this->createMock( User::class );
-
-		$permManager = $this->getMockBuilder( PermissionManager::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'userHasRight', 'userCan' ] )
-			->getMock();
-		$permManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editcontentmodel' )
-			)
-			->willReturn( true );
-		$permManager->expects( $this->exactly( 2 ) )
-			->method( 'userCan' )
-			->withConsecutive(
-				[
-					$this->equalTo( 'editcontentmodel' ),
-					$this->equalTo( $user ),
-					$this->equalTo( $title )
-				],
-				[
-					$this->equalTo( 'edit' ),
-					$this->equalTo( $user ),
-					$this->equalTo( $title )
-				]
-			)
-			->will(
-				$this->onConsecutiveCalls(
-					true,
-					true
-				)
-			);
-
+		$performer = $this->mockRegisteredAuthorityWithPermissions( [ 'edit', 'editcontentmodel' ] );
 		$constraint = new ContentModelChangeConstraint(
-			$permManager,
-			$user,
+			$performer,
 			$title,
 			$newContentModel
 		);
@@ -94,12 +63,11 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 
 	public function testNoChange() {
 		$unchangingContentModel = 'FooBarBaz';
-		$title = $this->createMock( Title::class );
-		$title->method( 'getContentModel' )->willReturn( $unchangingContentModel );
-
+		$title = $this->makeMockTitle( __METHOD__, [
+			'contentModel' => $unchangingContentModel,
+		] );
 		$constraint = new ContentModelChangeConstraint(
-			$this->createMock( PermissionManager::class ),
-			$this->createMock( User::class ),
+			$this->mockRegisteredUltimateAuthority(),
 			$title,
 			$unchangingContentModel
 		);
@@ -123,43 +91,26 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 			->method( 'setContentModel' )
 			->with( $this->equalTo( $newContentModel ) );
 
-		$user = $this->createMock( User::class );
-
-		$permManager = $this->getMockBuilder( PermissionManager::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'userHasRight', 'userCan' ] )
-			->getMock();
-		$permManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editcontentmodel' )
-			)
-			->willReturn( true );
-		$permManager->expects( $this->exactly( 2 ) )
-			->method( 'userCan' )
-			->withConsecutive(
-				[
-					$this->equalTo( 'editcontentmodel' ),
-					$this->equalTo( $user ),
-					$this->equalTo( $title )
-				],
-				[
-					$this->equalTo( 'edit' ),
-					$this->equalTo( $user ),
-					$this->equalTo( $title )
-				]
-			)
-			->will(
-				$this->onConsecutiveCalls(
-					true,
-					false // Die at the end
-				)
-			);
+		$performer = $this->mockRegisteredAuthority( function (
+			string $permission,
+			PageIdentity $page = null
+		) use ( $title ) {
+			if ( $permission === 'editcontentmodel' ) {
+				if ( $page ) {
+					$this->assertEquals( $title, $page );
+				}
+				return true;
+			}
+			if ( $permission === 'edit' ) {
+				$this->assertEquals( $title, $page );
+				return false;
+			}
+			$this->fail( "Unexpected permission check $permission" );
+			return false;
+		} );
 
 		$constraint = new ContentModelChangeConstraint(
-			$permManager,
-			$user,
+			$performer,
 			$title,
 			$newContentModel
 		);
@@ -170,27 +121,12 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testFailure_quick() {
-		$user = $this->createMock( User::class );
-
-		$title = $this->createMock( Title::class );
-		$title->expects( $this->once() )
-			->method( 'getContentModel' )
-			->willReturn( 'differentStartingContentModel' );
-		$permManager = $this->getMockBuilder( PermissionManager::class )
-			->disableOriginalConstructor()
-			->setMethods( [ 'userHasRight' ] )
-			->getMock();
-		$permManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editcontentmodel' )
-			)
-			->willReturn( false );
+		$title = $this->makeMockTitle( __METHOD__, [
+			'contentModel' => 'differentStartingContentModel',
+		] );
 
 		$constraint = new ContentModelChangeConstraint(
-			$permManager,
-			$user,
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'editcontentmodel' ] ),
 			$title,
 			'FooBarBaz'
 		);
@@ -199,5 +135,4 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 			IEditConstraint::AS_NO_CHANGE_CONTENT_MODEL
 		);
 	}
-
 }

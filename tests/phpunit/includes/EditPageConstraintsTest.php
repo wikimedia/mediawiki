@@ -39,7 +39,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	 *
 	 * @param string|Title $title The title of the page to edit
 	 * @param string|null $baseText Some text to create the page with before attempting the edit.
-	 * @param User|string|null $user The user to perform the edit as.
+	 * @param User|null $user The user to perform the edit as.
 	 * @param array $edit An array of request parameters used to define the edit to perform.
 	 *              Some well known fields are:
 	 *              * wpTextbox1: the text to submit
@@ -60,7 +60,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	protected function assertEdit(
 		$title,
 		$baseText,
-		$user,
+		?User $user,
 		array $edit,
 		$expectedCode,
 		$message
@@ -71,16 +71,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		}
 		$this->assertNotNull( $title );
 
-		if ( is_string( $user ) ) {
-			$user = User::newFromName( $user );
-
-			if ( $user->getId() === 0 ) {
-				$user->addToDatabase();
-			}
-		}
-
-		$page = WikiPage::factory( $title );
-
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
 		if ( $baseText !== null ) {
 			$content = ContentHandler::makeContent( $baseText, $title );
 			$page->doEditContent( $content, "base text for test" );
@@ -256,11 +247,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
 	/** ContentModelChangeConstraint integration */
 	public function testContentModelChangeConstraint() {
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( false );
-		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
-		$user->method( 'getId' )->willReturn( 12345 );
-
+		$user = $this->getTestUser()->getUser();
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		// Needs edit rights to pass EditRightConstraint and reach ContentModelChangeConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
@@ -294,11 +281,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$page = $this->getNonexistingTestPage( 'CreationPermissionConstraint page does not exist' );
 		$title = $page->getTitle();
 
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( false );
-		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
-		$user->method( 'getId' )->willReturn( 12345 );
-
+		$user = $this->getTestUser()->getUser();
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		// Needs edit rights to pass EditRightConstraint and reach CreationPermissionConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit' ] );
@@ -322,11 +305,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$page = $this->getNonexistingTestPage( 'DefaultTextConstraint page does not exist' );
 		$title = $page->getTitle();
 
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( false );
-		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
-		$user->method( 'getId' )->willReturn( 12345 );
-
+		$user = $this->getTestUser()->getUser();
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		// Needs edit and createpage rights to pass EditRightConstraint and CreationPermissionConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
@@ -376,11 +355,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			}
 		);
 
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( false );
-		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
-		$user->method( 'getId' )->willReturn( 12345 );
-
+		$user = $this->getTestUser()->getUser();
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		// Needs edit and createpage rights to pass EditRightConstraint and CreationPermissionConstraint
 		$permissionManager->overrideUserRightsForTesting( $user, [ 'edit', 'createpage' ] );
@@ -421,11 +396,11 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	 * @param int $expectedErrorCode
 	 */
 	public function testEditRightConstraint( $anon, $expectedErrorCode ) {
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( $anon );
-		$user->method( 'getName' )->willReturn( $anon ? '1.1.1.1' : 'NameGoesHere' );
-		$user->method( 'getId' )->willReturn( $anon ? 0 : 12345 );
-
+		if ( $anon ) {
+			$user = $this->getServiceContainer()->getUserFactory()->newAnonymous( '127.0.0.1' );
+		} else {
+			$user = $this->getTestUser()->getUser();
+		}
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		$permissionManager->overrideUserRightsForTesting( $user, [] );
 
@@ -455,10 +430,11 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 	 * @param int $expectedErrorCode
 	 */
 	public function testImageRedirectConstraint( $anon, $expectedErrorCode ) {
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( $anon );
-		$user->method( 'getName' )->willReturn( $anon ? '1.1.1.1' : 'NameGoesHere' );
-		$user->method( 'getId' )->willReturn( $anon ? 0 : 12345 );
+		if ( $anon ) {
+			$user = $this->getServiceContainer()->getUserFactory()->newAnonymous( '127.0.0.1' );
+		} else {
+			$user = $this->getTestUser()->getUser();
+		}
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		// Needs edit rights to pass EditRightConstraint and reach ImageRedirectConstraint
@@ -490,10 +466,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$page = $this->getExistingTestPage( 'MissingCommentConstraint page does exist' );
 		$title = $page->getTitle();
 
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( false );
-		$user->method( 'getName' )->willReturn( 'NameGoesHere' );
-		$user->method( 'getId' )->willReturn( 12345 );
+		$user = $this->getTestUser()->getUser();
 
 		$permissionManager = $this->getServiceContainer()->getPermissionManager();
 		// Needs edit rights to pass EditRightConstraint and reach MissingCommentConstraint

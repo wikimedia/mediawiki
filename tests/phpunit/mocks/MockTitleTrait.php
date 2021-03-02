@@ -14,6 +14,7 @@ trait MockTitleTrait {
 	 *        - id: int
 	 *        - namespace: int
 	 *        - language: Language
+	 * 		  - contentModel: string
 	 *
 	 * @return Title|MockObject
 	 */
@@ -45,6 +46,8 @@ trait MockTitleTrait {
 		$title->method( 'exists' )->willReturn( $id > 0 );
 		$title->method( 'getTouched' )->willReturn( $id ? '20200101223344' : false );
 		$title->method( 'getPageLanguage' )->willReturn( $props['language'] ?? 'qqx' );
+		$title->method( 'getContentModel' )
+			->willReturn( $props['contentModel'] ?? CONTENT_MODEL_WIKITEXT );
 		$title->method( 'getRestrictions' )->willReturn( [] );
 		$title->method( 'isSamePageAs' )->willReturnCallback( static function ( $other ) use ( $id ) {
 			return $other && $id === $other->getArticleId();
