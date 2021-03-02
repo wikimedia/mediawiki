@@ -81,43 +81,30 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $rc->getAttributes() );
 	}
 
-	/**
-	 * @covers RecentChange::parseParams
-	 */
-	public function testParseParams() {
-		$params = [
-			'root' => [
-				'A' => 1,
-				'B' => 'two'
-			]
+	public function provideParseParams() {
+		// $expected, $raw
+		yield 'extracting an array' => [
+			[
+				'root' => [
+					'A' => 1,
+					'B' => 'two'
+				]
+			],
+			'a:1:{s:4:"root";a:2:{s:1:"A";i:1;s:1:"B";s:3:"two";}}'
 		];
 
-		$this->assertParseParams(
-			$params,
-			'a:1:{s:4:"root";a:2:{s:1:"A";i:1;s:1:"B";s:3:"two";}}'
-		);
-
-		$this->assertParseParams(
-			null,
-			null
-		);
-
-		$this->assertParseParams(
-			null,
-			serialize( false )
-		);
-
-		$this->assertParseParams(
-			null,
-			'not-an-array'
-		);
+		yield 'null' => [ null, null ];
+		yield 'false' => [ null, serialize( false ) ];
+		yield 'non-array' => [ null, 'not-an-array' ];
 	}
 
 	/**
+	 * @covers RecentChange::parseParams
+	 * @dataProvider provideParseParams
 	 * @param array $expectedParseParams
 	 * @param string|null $rawRcParams
 	 */
-	protected function assertParseParams( $expectedParseParams, $rawRcParams ) {
+	public function testParseParams( $expectedParseParams, $rawRcParams ) {
 		$rc = new RecentChange;
 		$rc->setAttribs( [ 'rc_params' => $rawRcParams ] );
 
