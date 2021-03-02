@@ -350,10 +350,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return null;
 		}
 
-		$id = $this->findActorIdInternal(
-			$name,
-			$this->getDBConnectionRefForQueryFlags( $queryFlags )
-		);
+		[ $db, $options ] = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+		$id = $this->findActorIdInternal( $name, $db, $options );
 
 		if ( $id ) {
 			$this->attachActorId( $user, $id );
@@ -376,10 +374,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return null;
 		}
 
-		$id = $this->findActorIdInternal(
-			$name,
-			$this->getDBConnectionRefForQueryFlags( $queryFlags )
-		);
+		[ $db, $options ] = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+		$id = $this->findActorIdInternal( $name, $db, $options );
 
 		return $id;
 	}
@@ -389,9 +385,14 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 *
 	 * @param string $name
 	 * @param IDatabase $db
+	 * @param array $queryOptions
 	 * @return int|null
 	 */
-	private function findActorIdInternal( string $name, IDatabase $db ): ?int {
+	private function findActorIdInternal(
+		string $name,
+		IDatabase $db,
+		array $queryOptions = []
+	): ?int {
 		// Note: UserIdentity::getActorId will be deprecated and removed,
 		// and this is the replacement for it. Can't call User::getActorId, cause
 		// User always thinks it's local, so we could end up fetching the ID
@@ -406,7 +407,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			'actor',
 			[ 'actor_user', 'actor_name', 'actor_id' ],
 			[ 'actor_name' => $name ],
-			__METHOD__
+			__METHOD__,
+			$queryOptions
 		);
 
 		if ( !$row || !$row->actor_id ) {
@@ -434,7 +436,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		if ( $dbw ) {
 			$this->checkDatabaseDomain( $dbw );
 		} else {
-			$dbw = $this->getDBConnectionRef( DB_MASTER );
+			[ $dbw, ] = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
 		}
 		// TODO: we want to assert this user belongs to the correct wiki,
 		// but User objects are always local and we used to use them
@@ -469,23 +471,22 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			);
 		}
 
-		$q = [
-			'actor_user' => $userId,
-			// make sure to use normalized form of IP for anonymous users
-			'actor_name' => $userName,
-		];
-
-		$dbw->insert( 'actor', $q, __METHOD__, [ 'IGNORE' ] );
+		$dbw->insert(
+			'actor',
+			[
+				'actor_user' => $userId,
+				'actor_name' => $userName,
+			],
+			__METHOD__,
+			[ 'IGNORE' ] );
 		if ( $dbw->affectedRows() ) {
 			$actorId = (int)$dbw->insertId();
 		} else {
 			// Outdated cache?
 			// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
-			$actorId = (int)$dbw->selectField(
-				'actor',
-				'actor_id',
-				$q,
-				__METHOD__,
+			$actorId = $this->findActorIdInternal(
+				$userName,
+				$dbw,
 				[ 'LOCK IN SHARE MODE' ]
 			);
 			if ( !$actorId ) {
@@ -496,7 +497,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			}
 		}
 
-		// to cache row
+		// Cache row we've just created
 		$this->newActorFromRowFields( $userId, $userName, $actorId );
 		$this->attachActorId( $user, $actorId );
 
@@ -529,19 +530,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 	/**
 	 * @param int $queryFlags a bit field composed of READ_XXX flags
-	 * @return IDatabase
+	 * @return array [ IDatabase $db, array $options ]
 	 */
-	private function getDBConnectionRefForQueryFlags( int $queryFlags ): IDatabase {
-		list( $mode, ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
-		return $this->getDBConnectionRef( $mode );
-	}
-
-	/**
-	 * @param int $mode DB_MASTER or DB_REPLICA
-	 * @return IDatabase
-	 */
-	private function getDBConnectionRef( int $mode ): IDatabase {
-		return $this->loadBalancer->getConnectionRef( $mode, [], $this->wikiId );
+	private function getDBConnectionRefForQueryFlags( int $queryFlags ): array {
+		[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
+		return [ $this->loadBalancer->getConnectionRef( $mode, [], $this->wikiId ), $options ];
 	}
 
 	/**
@@ -583,9 +576,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @return UserSelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder( int $queryFlags = self::READ_NORMAL ): UserSelectQueryBuilder {
-		return new UserSelectQueryBuilder(
-			$this->getDBConnectionRefForQueryFlags( $queryFlags ),
-			$this
-		);
+		[ $db, $options ] = $this->getDBConnectionRefForQueryFlags( $queryFlags );
+		return ( new UserSelectQueryBuilder( $db, $this ) )->options( $options );
 	}
 }
