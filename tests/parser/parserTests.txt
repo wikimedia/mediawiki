@@ -1776,6 +1776,17 @@ wgRawHtml=1
 </span></p>
 !! end
 
+!! test
+French spacing and spans
+!! wikitext
+[[Test]] : <span>123</span>
+« Test »<span>123</span>
+!! html/php
+<p><a href="/index.php?title=Test&amp;action=edit&amp;redlink=1" class="new" title="Test (page does not exist)">Test</a>&#160;: <span>123</span>
+«&#160;Test&#160;»<span>123</span>
+</p>
+!! end
+
 ###
 ### Comments
 ###
