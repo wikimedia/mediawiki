@@ -94,7 +94,6 @@ class PHPVersionCheck {
 		 * Remember to drop irrelevant ranges when bumping $minimumVersion.
 		 */
 		$knownBad = array(
-			'T270228' => '7.4.0 - 7.4.8',
 			'CVE-2019-11048' => '7.3.0 - 7.3.18',
 		);
 
