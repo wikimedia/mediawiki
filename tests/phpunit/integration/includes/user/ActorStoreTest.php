@@ -140,47 +140,6 @@ class ActorStoreTest extends ActorStoreTestBase {
 		}
 	}
 
-	public function providegetUserIdentityByAnyId() {
-		yield 'by name' => [
-			24, // $userId
-			null, // $name
-			new UserIdentityValue( 24, 'TestUser', 42 ), // $expected
-		];
-		yield 'by user, name wrong' => [
-			24, // $userId
-			'TestUser_blblblba', // $name
-			new UserIdentityValue( 24, 'TestUser', 42 ), // $expected
-		];
-		yield 'by name, user nonexistent' => [
-			141312, // $userId
-			'TestUser', // $name
-			new UserIdentityValue( 24, 'TestUser', 42 ), // $expected
-		];
-		yield 'non-existent' => [
-			2423121, // $userId
-			'TestUser_blblblba', // $name
-			null, // $expected
-		];
-	}
-
-	/**
-	 * @dataProvider providegetUserIdentityByAnyId
-	 * @covers ::getUserIdentityByAnyId
-	 */
-	public function testgetUserIdentityByAnyId( $userId, $name, ?UserIdentity $expected ) {
-		$actor = $this->getStore()->getUserIdentityByAnyId( $userId, $name );
-		if ( $expected ) {
-			$this->assertNotNull( $actor );
-			$this->assertSameActors( $expected, $actor );
-
-			// test caching
-			$cachedActor = $this->getStore()->getUserIdentityByAnyId( $userId, $name );
-			$this->assertSame( $actor, $cachedActor );
-		} else {
-			$this->assertNull( $actor );
-		}
-	}
-
 	/**
 	 * @covers ::getActorById
 	 */

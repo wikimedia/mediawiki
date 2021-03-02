@@ -57,23 +57,6 @@ interface UserIdentityLookup extends IDBAccessObject {
 	): ?UserIdentity;
 
 	/**
-	 * Find an identity of a user by $userId or by $name in this order.
-	 *
-	 * @note calling this method is different from instantiating a new UserIdentity
-	 * implementation since the returned actor is guaranteed to exist in the database.
-	 *
-	 * @param int|null $userId
-	 * @param string|null $name
-	 * @param int $queryFlags one of IDBAccessObject constants
-	 * @return UserIdentity|null
-	 */
-	public function getUserIdentityByAnyId(
-		?int $userId,
-		?string $name,
-		int $queryFlags = self::READ_NORMAL
-	): ?UserIdentity;
-
-	/**
 	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
 	 *
 	 * @param int $queryFlags one of IDBAccessObject constants
