@@ -195,7 +195,7 @@
 	"exif-gpslatitude-s": "къилбера шоралла",
 	"exif-gpslongitude-e": "малхбалера дохалла",
 	"exif-gpslongitude-w": "малхбузера шоралла",
-	"exif-gpsaltitude-above-sealevel": "Хи хIоттарал локхалла $1 {{PLURAL:$1|метр}}",
+	"exif-gpsaltitude-above-sealevel": "ХӀордан сизал локхалла $1 {{PLURAL:$1|метр}}",
 	"exif-gpsaltitude-below-sealevel": "Хи хIоттарал локхаллин $1 {{PLURAL:$1|метр}} лахахь",
 	"exif-gpsstatus-a": "Дустар чекх даьлла дац",
 	"exif-gpsstatus-v": "Хаам дӀабала кичча ю",
