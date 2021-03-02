@@ -392,6 +392,10 @@ return [
 				$cpStash = new EmptyBagOStuff(); // T141804: handle cases like CACHE_DB
 			}
 		}
+		LoggerFactory::getInstance( 'DBReplication' )->debug(
+			'ChronologyProtector using store {class}',
+			[ 'class' => get_class( $cpStash ) ]
+		);
 
 		try {
 			$wanCache = $services->getMainWANObjectCache();
