@@ -22,7 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\Permissions\Authority;
 
 /**
  * Implements uploading from a HTTP resource.
@@ -43,19 +43,17 @@ class UploadFromUrl extends UploadBase {
 	 * user is not allowed, return the name of the user right as a string. If
 	 * the user is allowed, have the parent do further permissions checking.
 	 *
-	 * @param UserIdentity $user
+	 * @param Authority $performer
 	 *
 	 * @return bool|string
 	 */
-	public static function isAllowed( UserIdentity $user ) {
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'upload_by_url' )
+	public static function isAllowed( Authority $performer ) {
+		if ( !$performer->isAllowed( 'upload_by_url' )
 		) {
 			return 'upload_by_url';
 		}
 
-		return parent::isAllowed( $user );
+		return parent::isAllowed( $performer );
 	}
 
 	/**

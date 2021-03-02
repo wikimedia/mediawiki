@@ -23,6 +23,8 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\UserIdentity;
 
@@ -149,13 +151,12 @@ abstract class UploadBase {
 	 * identifying the missing permission.
 	 * Can be overridden by subclasses.
 	 *
-	 * @param UserIdentity $user
+	 * @param Authority $performer
 	 * @return bool|string
 	 */
-	public static function isAllowed( UserIdentity $user ) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+	public static function isAllowed( Authority $performer ) {
 		foreach ( [ 'upload', 'edit' ] as $permission ) {
-			if ( !$permissionManager->userHasRight( $user, $permission ) ) {
+			if ( !$performer->isAllowed( $permission ) ) {
 				return $permission;
 			}
 		}
@@ -625,12 +626,12 @@ abstract class UploadBase {
 	 * 'verifyPermissions', but that suggests it's checking the user, when it's
 	 * really checking the title + user combination.
 	 *
-	 * @param User $user User object to verify the permissions against
+	 * @param Authority $performer to verify the permissions against
 	 * @return array|bool An array as returned by getPermissionErrors or true
 	 *   in case the user has proper permissions.
 	 */
-	public function verifyPermissions( $user ) {
-		return $this->verifyTitlePermissions( $user );
+	public function verifyPermissions( Authority $performer ) {
+		return $this->verifyTitlePermissions( $performer );
 	}
 
 	/**
@@ -640,11 +641,11 @@ abstract class UploadBase {
 	 * isAllowed() should be called as well for generic is-user-blocked or
 	 * can-user-upload checking.
 	 *
-	 * @param User $user User object to verify the permissions against
+	 * @param Authority $performer to verify the permissions against
 	 * @return array|bool An array as returned by getPermissionErrors or true
 	 *   in case the user has proper permissions.
 	 */
-	public function verifyTitlePermissions( $user ) {
+	public function verifyTitlePermissions( Authority $performer ) {
 		/**
 		 * If the image is protected, non-sysop users won't be able
 		 * to modify it by uploading a new revision.
@@ -653,22 +654,18 @@ abstract class UploadBase {
 		if ( $nt === null ) {
 			return true;
 		}
-		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$permErrors = $permManager->getPermissionErrors( 'edit', $user, $nt );
-		$permErrorsUpload = $permManager->getPermissionErrors( 'upload', $user, $nt );
+
+		$status = PermissionStatus::newEmpty();
+		$performer->authorizeWrite( 'edit', $nt, $status );
+		$performer->authorizeWrite( 'upload', $nt, $status );
 		if ( !$nt->exists() ) {
-			$permErrorsCreate = $permManager->getPermissionErrors( 'create', $user, $nt );
-		} else {
-			$permErrorsCreate = [];
+			$performer->authorizeWrite( 'create', $nt, $status );
 		}
-		if ( $permErrors || $permErrorsUpload || $permErrorsCreate ) {
-			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsUpload, $permErrors ) );
-			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsCreate, $permErrors ) );
-
-			return $permErrors;
+		if ( !$status->isGood() ) {
+			return $status->toLegacyErrorArray();
 		}
 
-		$overwriteError = $this->checkOverwrite( $user );
+		$overwriteError = $this->checkOverwrite( $performer );
 		if ( $overwriteError !== true ) {
 			return [ $overwriteError ];
 		}
@@ -1989,16 +1986,16 @@ abstract class UploadBase {
 	 * Check if there's an overwrite conflict and, if so, if restrictions
 	 * forbid this user from performing the upload.
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 *
 	 * @return bool|array
 	 */
-	private function checkOverwrite( $user ) {
+	private function checkOverwrite( Authority $performer ) {
 		// First check whether the local file can be overwritten
 		$file = $this->getLocalFile();
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
-			if ( !self::userCanReUpload( $user, $file ) ) {
+			if ( !self::userCanReUpload( $performer, $file ) ) {
 				return [ 'fileexists-forbidden', $file->getName() ];
 			} else {
 				return true;
@@ -2011,8 +2008,7 @@ abstract class UploadBase {
 		 * RepoGroup::findFile finds a file, it exists in a shared repository.
 		 */
 		$file = $services->getRepoGroup()->findFile( $this->getTitle(), [ 'latest' => true ] );
-		if ( $file && !$services->getPermissionManager()
-				->userHasRight( $user, 'reupload-shared' )
+		if ( $file && !$performer->isAllowed( 'reupload-shared' )
 		) {
 			return [ 'fileexists-shared-forbidden', $file->getName() ];
 		}
@@ -2023,15 +2019,14 @@ abstract class UploadBase {
 	/**
 	 * Check if a user is the last uploader
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param File $img
 	 * @return bool
 	 */
-	public static function userCanReUpload( User $user, File $img ) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $permissionManager->userHasRight( $user, 'reupload' ) ) {
+	public static function userCanReUpload( Authority $performer, File $img ) {
+		if ( $performer->isAllowed( 'reupload' ) ) {
 			return true; // non-conditional
-		} elseif ( !$permissionManager->userHasRight( $user, 'reupload-own' ) ) {
+		} elseif ( !$performer->isAllowed( 'reupload-own' ) ) {
 			return false;
 		}
 
@@ -2041,7 +2036,7 @@ abstract class UploadBase {
 
 		$img->load();
 
-		return $user->getId() == $img->getUser( 'id' );
+		return $performer->getPerformer()->getId() == $img->getUser( 'id' );
 	}
 
 	/**
@@ -2302,11 +2297,11 @@ abstract class UploadBase {
 
 	/**
 	 * @param BagOStuff $store
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $statusKey
 	 * @return string
 	 */
-	private static function getUploadSessionKey( BagOStuff $store, User $user, $statusKey ) {
+	private static function getUploadSessionKey( BagOStuff $store, UserIdentity $user, $statusKey ) {
 		return $store->makeKey(
 			'uploadstatus',
 			$user->getId() ?: md5( $user->getName() ),
