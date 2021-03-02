@@ -217,20 +217,19 @@ class SpecialChangeContentModel extends FormSpecialPage {
 	}
 
 	public function onSubmit( array $data ) {
-		$user = $this->getUser();
 		$this->title = Title::newFromText( $data['pagetitle'] );
 		$page = $this->wikiPageFactory->newFromTitle( $this->title );
 
 		$changer = $this->contentModelChangeFactory->newContentModelChange(
-				$user,
+				$this->getContext()->getAuthority(),
 				$page,
 				$data['model']
 			);
 
-		$errors = $changer->checkPermissions();
-		if ( $errors ) {
+		$permissionStatus = $changer->authorizeChange();
+		if ( !$permissionStatus->isGood() ) {
 			$out = $this->getOutput();
-			$wikitext = $out->formatPermissionsErrorMessage( $errors );
+			$wikitext = $out->formatPermissionStatus( $permissionStatus );
 			// Hack to get our wikitext parsed
 			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
 		}
