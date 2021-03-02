@@ -223,6 +223,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'site_identifiers', 'site_ids_key', 'si_key', false,
 				'patch-site_identifiers-rename-indexes.sql' ],
 			[ 'modifyField', 'recentchanges', 'rc_title', 'patch-recentchanges-rc_title-varbinary.sql' ],
+			[ 'renameIndex', 'recentchanges', 'new_name_timestamp', 'rc_new_name_timestamp', false,
+				'patch-recentchanges-rc_new_name_timestamp.sql' ],
 		];
 	}
 

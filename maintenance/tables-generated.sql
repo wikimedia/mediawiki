@@ -773,7 +773,7 @@ CREATE TABLE /*_*/recentchanges (
     rc_namespace, rc_title, rc_timestamp
   ),
   INDEX rc_cur_id (rc_cur_id),
-  INDEX new_name_timestamp (
+  INDEX rc_new_name_timestamp (
     rc_new, rc_namespace, rc_timestamp
   ),
   INDEX rc_ip (rc_ip),
