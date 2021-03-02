@@ -151,13 +151,13 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			[ 'User talk:Foo/bar.css', false ],
 			[ 'User:Foo/bar.js.xxx', false ],
 			[ 'User:Foo/bar.xxx', false ],
-			[ 'MediaWiki:Foo.js', true ],
-			[ 'MediaWiki:Foo.json', true ],
-			[ 'MediaWiki:Foo.css', true ],
+			[ 'MediaWiki:Foo.js', 'javascript' ],
+			[ 'MediaWiki:Foo.json', 'json' ],
+			[ 'MediaWiki:Foo.css', 'css' ],
 			[ 'MediaWiki:Foo.JS', false ],
 			[ 'MediaWiki:Foo.JSON', false ],
 			[ 'MediaWiki:Foo.CSS', false ],
-			[ 'MediaWiki:Foo/bar.css', true ],
+			[ 'MediaWiki:Foo/bar.css', 'css' ],
 			[ 'MediaWiki:Foo.css.xxx', false ],
 			[ 'TEST-JS:Foo', false ],
 			[ 'TEST-JS:Foo.js', false ],
@@ -167,10 +167,30 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideIsSiteConfigPage
 	 * @covers Title::isSiteConfigPage
+	 * @covers Title::isSiteJsConfigPage
+	 * @covers Title::isSiteJsonConfigPage
+	 * @covers Title::isSiteCssConfigPage
 	 */
-	public function testSiteConfigPage( $title, $expectedBool ) {
+	public function testSiteConfigPage( $title, $expected ) {
 		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedBool, $title->isSiteConfigPage() );
+
+		// $expected is either false or the relevant type ('javascript', 'json', 'css')
+		$this->assertSame(
+			$expected !== false,
+			$title->isSiteConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'javascript',
+			$title->isSiteJsConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'json',
+			$title->isSiteJsonConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'css',
+			$title->isSiteCssConfigPage()
+		);
 	}
 
 	public static function provideIsUserConfigPage() {
@@ -180,11 +200,11 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			[ 'Help:Foo/bar.js', false ],
 			[ 'User:Foo', false ],
 			[ 'User:Foo.js', false ],
-			[ 'User:Foo/bar.js', true ],
+			[ 'User:Foo/bar.js', 'javascript' ],
 			[ 'User:Foo/bar.JS', false ],
-			[ 'User:Foo/bar.json', true ],
+			[ 'User:Foo/bar.json', 'json' ],
 			[ 'User:Foo/bar.JSON', false ],
-			[ 'User:Foo/bar.css', true ],
+			[ 'User:Foo/bar.css', 'css' ],
 			[ 'User:Foo/bar.CSS', false ],
 			[ 'User talk:Foo/bar.css', false ],
 			[ 'User:Foo/bar.js.xxx', false ],
@@ -204,56 +224,30 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideIsUserConfigPage
 	 * @covers Title::isUserConfigPage
-	 */
-	public function testIsUserConfigPage( $title, $expectedBool ) {
-		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedBool, $title->isUserConfigPage() );
-	}
-
-	public static function provideIsUserCssConfigPage() {
-		return [
-			[ 'Help:Foo', false ],
-			[ 'Help:Foo.css', false ],
-			[ 'User:Foo', false ],
-			[ 'User:Foo.js', false ],
-			[ 'User:Foo.json', false ],
-			[ 'User:Foo.css', false ],
-			[ 'User:Foo/bar.js', false ],
-			[ 'User:Foo/bar.json', false ],
-			[ 'User:Foo/bar.css', true ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideIsUserCssConfigPage
+	 * @covers Title::isUserJsConfigPage
+	 * @covers Title::isUserJsonConfigPage
 	 * @covers Title::isUserCssConfigPage
 	 */
-	public function testIsUserCssConfigPage( $title, $expectedBool ) {
+	public function testIsUserConfigPage( $title, $expected ) {
 		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedBool, $title->isUserCssConfigPage() );
-	}
 
-	public static function provideIsUserJsConfigPage() {
-		return [
-			[ 'Help:Foo', false ],
-			[ 'Help:Foo.css', false ],
-			[ 'User:Foo', false ],
-			[ 'User:Foo.js', false ],
-			[ 'User:Foo.json', false ],
-			[ 'User:Foo.css', false ],
-			[ 'User:Foo/bar.js', true ],
-			[ 'User:Foo/bar.json', false ],
-			[ 'User:Foo/bar.css', false ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideIsUserJsConfigPage
-	 * @covers Title::isUserJsConfigPage
-	 */
-	public function testIsUserJsConfigPage( $title, $expectedBool ) {
-		$title = Title::newFromText( $title );
-		$this->assertEquals( $expectedBool, $title->isUserJsConfigPage() );
+		// $expected is either false or the relevant type ('javascript', 'json', 'css')
+		$this->assertSame(
+			$expected !== false,
+			$title->isUserConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'javascript',
+			$title->isUserJsConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'json',
+			$title->isUserJsonConfigPage()
+		);
+		$this->assertSame(
+			$expected === 'css',
+			$title->isUserCssConfigPage()
+		);
 	}
 
 	public static function provideIsWikitextPage() {
