@@ -95,9 +95,11 @@ $maintenance->setConfig( MediaWikiServices::getInstance()->getMainConfig() );
 // Sanity-check required extensions are installed
 $maintenance->checkRequiredExtensions();
 
-// A good time when no DBs have writes pending is around lag checks.
-// This avoids having long running scripts just OOM and lose all the updates.
-$maintenance->setAgentAndTriggers();
+if ( $maintenance->getDbType() != Maintenance::DB_NONE ) {
+	// A good time when no DBs have writes pending is around lag checks.
+	// This avoids having long running scripts just OOM and lose all the updates.
+	$maintenance->setAgentAndTriggers();
+}
 
 $maintenance->validateParamsAndArgs();
 
