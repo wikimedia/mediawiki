@@ -265,7 +265,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			# information and save a click.
 			$mp = $this->movePageFactory->newMovePage( $this->oldTitle, $newTitle );
 			$status = $mp->isValidMove();
-			$status->merge( $mp->checkPermissions( $user, null ) );
+			$status->merge( $mp->probablyCanMove( $this->getAuthority() ) );
 			if ( $status->getErrors() ) {
 				$err = $status->getErrorsArray();
 			}
@@ -707,7 +707,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$mp = $this->movePageFactory->newMovePage( $ot, $nt );
 
 		# check whether the requested actions are permitted / possible
-		$userPermitted = $mp->checkPermissions( $user, $this->reason )->isOK();
+		$userPermitted = $mp->authorizeMove( $this->getAuthority(), $this->reason )->isOK();
 		if ( $ot->isTalkPage() || $nt->isTalkPage() ) {
 			$this->moveTalk = false;
 		}
@@ -715,7 +715,7 @@ class MovePageForm extends UnlistedSpecialPage {
 			$this->moveSubpages = $this->permManager->userCan( 'move-subpages', $user, $ot );
 		}
 
-		$status = $mp->moveIfAllowed( $user, $this->reason, $createRedirect );
+		$status = $mp->moveIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
 		if ( !$status->isOK() ) {
 			$this->showForm( $status->getErrorsArray(), !$userPermitted );
 			return;
@@ -855,7 +855,7 @@ class MovePageForm extends UnlistedSpecialPage {
 				$link = $linkRenderer->makeKnownLink( $newSubpage );
 				$extraOutput[] = $this->msg( 'movepage-page-exists' )->rawParams( $link )->escaped();
 			} else {
-				$status = $mp->moveIfAllowed( $user, $this->reason, $createRedirect );
+				$status = $mp->moveIfAllowed( $this->getAuthority(), $this->reason, $createRedirect );
 
 				if ( $status->isOK() ) {
 					if ( $this->fixRedirects ) {
