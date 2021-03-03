@@ -173,7 +173,7 @@ class SpecialDoubleRedirects extends QueryPage {
 		// if the page is editable, add an edit link
 		if (
 			// check user permissions
-			$this->getContext()->getAuthority()->isAllowed( 'edit' ) &&
+			$this->getAuthority()->isAllowed( 'edit' ) &&
 			// check, if the content model is editable through action=edit
 			$this->contentHandlerFactory->getContentHandler( $titleA->getContentModel() )
 				->supportsDirectEditing()

@@ -89,7 +89,7 @@ class SpecialRedirect extends FormSpecialPage {
 			// Message: redirect-not-exists
 			return Status::newFatal( $this->getMessagePrefix() . '-not-exists' );
 		}
-		if ( $user->isHidden() && !$this->getContext()->getAuthority()->isAllowed( 'hideuser' ) ) {
+		if ( $user->isHidden() && !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			throw new PermissionsError( null, [ 'badaccess-group0' ] );
 		}
 

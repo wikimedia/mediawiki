@@ -336,7 +336,7 @@ class SpecialExport extends SpecialPage {
 	 * @return bool
 	 */
 	protected function userCanOverrideExportDepth() {
-		return $this->getContext()->getAuthority()->isAllowed( 'override-export-depth' );
+		return $this->getAuthority()->isAllowed( 'override-export-depth' );
 	}
 
 	/**
@@ -405,7 +405,7 @@ class SpecialExport extends SpecialPage {
 					continue;
 				}
 
-				if ( !$this->getContext()->getAuthority()->authorizeRead( 'read', $title ) ) {
+				if ( !$this->getAuthority()->authorizeRead( 'read', $title ) ) {
 					// @todo Perhaps output an <error> tag or something.
 					continue;
 				}
