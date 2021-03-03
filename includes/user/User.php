@@ -2084,6 +2084,15 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	}
 
 	/**
+	 * @deprecated since 1.36
+	 * @param bool $wikiId
+	 * @return int
+	 */
+	public function getUserId( $wikiId = self::LOCAL ): int {
+		return $this->getId( $wikiId );
+	}
+
+	/**
 	 * Set the user and reload all fields according to a given ID
 	 * @param int $v User ID to reload
 	 */

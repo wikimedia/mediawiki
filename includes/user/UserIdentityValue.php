@@ -100,6 +100,15 @@ class UserIdentityValue implements UserIdentity {
 	}
 
 	/**
+	 * @deprecated since 1.36
+	 * @param bool $wikiId
+	 * @return int
+	 */
+	public function getUserId( $wikiId = self::LOCAL ): int {
+		return $this->getId( $wikiId );
+	}
+
+	/**
 	 * @return string The user's logical name. May be an IPv4 or IPv6 address for anonymous users.
 	 */
 	public function getName() : string {
