@@ -828,7 +828,7 @@ CREATE INDEX rc_namespace_title_timestamp ON recentchanges (
 
 CREATE INDEX rc_cur_id ON recentchanges (rc_cur_id);
 
-CREATE INDEX new_name_timestamp ON recentchanges (
+CREATE INDEX rc_new_name_timestamp ON recentchanges (
   rc_new, rc_namespace, rc_timestamp
 );
 

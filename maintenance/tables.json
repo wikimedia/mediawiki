@@ -3094,7 +3094,7 @@
 				"unique": false
 			},
 			{
-				"name": "new_name_timestamp",
+				"name": "rc_new_name_timestamp",
 				"comment": "Special:Newpages",
 				"columns": [
 					"rc_new",

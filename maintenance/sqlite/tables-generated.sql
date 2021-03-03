@@ -773,7 +773,7 @@ CREATE INDEX rc_namespace_title_timestamp ON /*_*/recentchanges (
 
 CREATE INDEX rc_cur_id ON /*_*/recentchanges (rc_cur_id);
 
-CREATE INDEX new_name_timestamp ON /*_*/recentchanges (
+CREATE INDEX rc_new_name_timestamp ON /*_*/recentchanges (
   rc_new, rc_namespace, rc_timestamp
 );
 

@@ -33,7 +33,6 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 			'revision_actor_temp',
 			'change_tag',
 			'objectcache',
-			'recentchanges'
 		];
 
 		$prefixes = [];

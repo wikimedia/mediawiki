@@ -303,7 +303,7 @@ SPARQL;
 		$it->addJoinConditions( [
 			'page' => [ 'JOIN', 'rc_cur_id = page_id' ],
 		] );
-		$this->addIndex( $it );
+		$this->addIndex( $it, $dbr );
 		return $it;
 	}
 
@@ -330,7 +330,7 @@ SPARQL;
 			// this means they were restored, thus restoring handler will pick it up.
 			'NOT EXISTS (SELECT * FROM page WHERE page_id = rc_cur_id)',
 		] );
-		$this->addIndex( $it );
+		$this->addIndex( $it, $dbr );
 		$it->setFetchColumns( [ 'rc_cur_id', 'rc_title' ] );
 		$it->setCaller( $fname );
 		return $it;
@@ -353,7 +353,7 @@ SPARQL;
 			// We will only fetch ones that have page record
 			'EXISTS (SELECT page_id FROM page WHERE page_id = rc_cur_id)',
 		] );
-		$this->addIndex( $it );
+		$this->addIndex( $it, $dbr );
 		return $it;
 	}
 
@@ -371,7 +371,7 @@ SPARQL;
 			'rc_new' => 0,
 			'rc_type' => $type,
 		] );
-		$this->addIndex( $it );
+		$this->addIndex( $it, $dbr );
 		return $it;
 	}
 
@@ -390,10 +390,15 @@ SPARQL;
 	/**
 	 * Need to force index, somehow on terbium the optimizer chooses wrong one
 	 * @param BatchRowIterator $it
+	 * @param IDatabase $dbr
 	 */
-	private function addIndex( BatchRowIterator $it ) {
+	private function addIndex( BatchRowIterator $it, IDatabase $dbr ) {
+		// T270033 'new_name_timestamp' index is being renamed
+		$indexName = $dbr->indexExists( 'recentchanges', 'rc_new_name_timestamp', __METHOD__ )
+			? 'rc_new_name_timestamp'
+			: 'new_name_timestamp';
 		$it->addOptions( [
-			'USE INDEX' => [ 'recentchanges' => 'new_name_timestamp' ]
+			'USE INDEX' => [ 'recentchanges' => $indexName ]
 		] );
 	}
 
