@@ -25,6 +25,7 @@
  * @author Fierodelveneto
  */
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
 	'redirect' => [ '0', '#VARDA', '#RINVIA', '#RINVIO', '#RIMANDO', '#REDIRECT' ],
 ];

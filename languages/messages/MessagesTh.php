@@ -150,13 +150,14 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'หน้าที่ไม่มีลิงก์ข้ามภาษา' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#เปลี่ยนทาง', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__ไม่มีสารบัญ__', '__NOTOC__' ],
-	'nogallery'                 => [ '0', '__ไม่มีแกลเลอรี่__', '__NOGALLERY__' ],
-	'noeditsection'             => [ '0', '__ไม่มีแก้เฉพาะส่วน__', '__NOEDITSECTION__' ],
 	'currentmonth'              => [ '1', 'เดือนปัจจุบัน', 'CURRENTMONTH', 'CURRENTMONTH2' ],
 	'currentmonthname'          => [ '1', 'ชื่อเดือนปัจจุบัน', 'CURRENTMONTHNAME' ],
+	'noeditsection'             => [ '0', '__ไม่มีแก้เฉพาะส่วน__', '__NOEDITSECTION__' ],
+	'nogallery'                 => [ '0', '__ไม่มีแกลเลอรี่__', '__NOGALLERY__' ],
+	'notoc'                     => [ '0', '__ไม่มีสารบัญ__', '__NOTOC__' ],
+	'redirect'                  => [ '0', '#เปลี่ยนทาง', '#REDIRECT' ],
 ];
 
 $datePreferences = [

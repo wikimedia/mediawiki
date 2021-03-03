@@ -170,14 +170,15 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'ਬਿਨਾਂ_ਇੰਟਰਵਿਕੀਆਂ_ਵਾਲੇ' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ਰੀਡਿਰੈਕਟ', '#REDIRECT' ],
-	'url_wiki'                  => [ '0', 'ਵਿਕੀ', 'WIKI' ],
 	'defaultsort_noerror'       => [ '0', 'ਗਲਤੀ_ਨਹੀਂ', 'noerror' ],
 	'pagesincategory_all'       => [ '0', 'ਸਬ', 'all' ],
+	'pagesincategory_files'     => [ '0', 'ਫ਼ਾਈਲਾਂ', 'files' ],
 	'pagesincategory_pages'     => [ '0', 'ਪੰਨੇ', 'pages' ],
 	'pagesincategory_subcats'   => [ '0', 'ਉਪਸ਼੍ਰੇਣੀਆਂ', 'subcats' ],
-	'pagesincategory_files'     => [ '0', 'ਫ਼ਾਈਲਾਂ', 'files' ],
+	'redirect'                  => [ '0', '#ਰੀਡਿਰੈਕਟ', '#REDIRECT' ],
+	'url_wiki'                  => [ '0', 'ਵਿਕੀ', 'WIKI' ],
 ];
 
 $linkTrail = '/^([ਁਂਃਅਆਇਈਉਊਏਐਓਔਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਲ਼ਵਸ਼ਸਹ਼ਾਿੀੁੂੇੈੋੌ੍ਖ਼ਗ਼ਜ਼ੜਫ਼ੰੱੲੳa-z]+)(.*)$/sDu';

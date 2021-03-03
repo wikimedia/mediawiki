@@ -193,12 +193,13 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'Ohne_Shproche_Lenks' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ÖMLEIDE_OP', '#ÖMLEIDE', '#LEIDT_ÖM_OP', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ],
-	'nogallery'                 => [ '0', '__KEIN_JALLERIE__', '__KEINE_GALERIE__', '__KEINEGALERIE__', '__NOGALLERY__' ],
-	'toc'                       => [ '0', '__ENHALLT__', '__INHALTSVERZEICHNIS__', '__TOC__' ],
-	'img_right'                 => [ '1', 'rähß', 'räts', 'rechts', 'right' ],
-	'img_left'                  => [ '1', 'links', 'lengks', 'lenks', 'left' ],
-	'language'                  => [ '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ],
 	'hiddencat'                 => [ '1', '__VERSHTOCHE_SAACHJRUPP__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ],
+	'img_left'                  => [ '1', 'links', 'lengks', 'lenks', 'left' ],
+	'img_right'                 => [ '1', 'rähß', 'räts', 'rechts', 'right' ],
+	'language'                  => [ '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ],
+	'nogallery'                 => [ '0', '__KEIN_JALLERIE__', '__KEINE_GALERIE__', '__KEINEGALERIE__', '__NOGALLERY__' ],
+	'redirect'                  => [ '0', '#ÖMLEIDE_OP', '#ÖMLEIDE', '#LEIDT_ÖM_OP', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ],
+	'toc'                       => [ '0', '__ENHALLT__', '__INHALTSVERZEICHNIS__', '__TOC__' ],
 ];

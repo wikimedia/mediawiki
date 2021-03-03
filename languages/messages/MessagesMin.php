@@ -154,9 +154,10 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'InterwikiIndakAdo' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ALIAH', '#ALIH', '#REDIRECT' ],
 	'pagesincategory_all'       => [ '0', 'sado', 'semua', 'all' ],
-	'pagesincategory_pages'     => [ '0', 'laman', 'halaman', 'pages' ],
 	'pagesincategory_files'     => [ '0', 'berkas', 'files' ],
+	'pagesincategory_pages'     => [ '0', 'laman', 'halaman', 'pages' ],
+	'redirect'                  => [ '0', '#ALIAH', '#ALIH', '#REDIRECT' ],
 ];

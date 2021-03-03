@@ -145,11 +145,12 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'আন্তঃৱিকিবিহীন' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'special'                   => [ '0', 'বিশেষ', 'special' ],
 	'hiddencat'                 => [ '1', '__গোপন_শ্ৰেণী__', '__HIDDENCAT__' ],
-	'pagesize'                  => [ '1', 'পৃষ্ঠাৰ_আকাৰ', 'PAGESIZE' ],
 	'index'                     => [ '1', '__সূচী__', '__INDEX__' ],
+	'pagesize'                  => [ '1', 'পৃষ্ঠাৰ_আকাৰ', 'PAGESIZE' ],
+	'special'                   => [ '0', 'বিশেষ', 'special' ],
 ];
 
 $digitTransformTable = [
