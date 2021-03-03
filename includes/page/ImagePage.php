@@ -601,9 +601,8 @@ EOT
 				);
 			}
 
-			if ( $wgEnableUploads && MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, 'upload' )
+			if ( $wgEnableUploads &&
+				$this->getContext()->getAuthority()->isAllowed( 'upload' )
 			) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
@@ -749,10 +748,10 @@ EOT
 			return;
 		}
 
-		$canUpload = MediaWikiServices::getInstance()->getPermissionManager()
-			->quickUserCan( 'upload', $this->getContext()->getUser(), $this->getTitle() );
+		$canUpload = $this->getContext()->getAuthority()
+			->probablyCan( 'upload', $this->getTitle() );
 		if ( $canUpload && UploadBase::userCanReUpload(
-				$this->getContext()->getUser(),
+				$this->getContext()->getAuthority(),
 				$this->getFile() )
 		) {
 			// "Upload a new version of this file" link
