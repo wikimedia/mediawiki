@@ -144,7 +144,8 @@ class UserrightsPage extends SpecialPage {
 			$this->isself = true;
 		}
 
-		$fetchedStatus = $this->fetchUser( $this->mTarget, true );
+		$fetchedStatus = $this->mTarget === null ? Status::newFatal( 'nouserspecified' ) :
+			$this->fetchUser( $this->mTarget, true );
 		if ( $fetchedStatus->isOK() ) {
 			$this->mFetchedUser = $fetchedStatus->value;
 			if ( $this->mFetchedUser instanceof User ) {
