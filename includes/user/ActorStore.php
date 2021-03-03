@@ -196,7 +196,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 */
 	private function addUserIdentityToCache( int $actorId, UserIdentity $actor ) {
 		$this->actorsByActorId->set( $actorId, [ $actor, $actorId ] );
-		$userId = $actor->getUserId( $actor->getWikiId() );
+		$userId = $actor->getId( $this->wikiId );
 		if ( $userId ) {
 			$this->actorsByUserId->set( $userId, [ $actor, $actorId ] );
 		}
@@ -414,7 +414,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 		$userName = $this->normalizeUserName( $user->getName() );
 		if ( $userName === null || $userName === '' ) {
-			$userIdForErrorMessage = $user->getUserId( $user->getWikiId() );
+			$userIdForErrorMessage = $user->getId( $this->wikiId );
 			throw new CannotCreateActorException(
 				'Cannot create an actor for a user with no name: ' .
 				"user_id={$userIdForErrorMessage} user_name=\"{$user->getName()}\""
@@ -428,10 +428,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return $existingActorId;
 		}
 
-		// TODO: Passing user's own wiki as assertion is a workaround for the fact
-		// it's still possible to encounter always LOCAL User instances
-		// for non-local DB connection. To be replaced with $this->wikiId - T273972
-		$userId = $user->getUserId( $user->getWikiId() ) ?: null;
+		$userId = $user->getId( $this->wikiId ) ?: null;
 		if ( $userId === null && $this->userNameUtils->isUsable( $user->getName() ) ) {
 			throw new CannotCreateActorException(
 				'Cannot create an actor for a usable name that is not an existing user: ' .

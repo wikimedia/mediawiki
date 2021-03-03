@@ -1080,23 +1080,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers User::getUserId
-	 */
-	public function testGetUserId() {
-		$id = '88888888';
-		$user = User::newFromId( $id );
-
-		$this->assertEquals( $id, $user->getUserId(),
-			'Can get user ID for user passing no parameter' );
-
-		$this->assertEquals( $id, $user->getUserId( User::LOCAL ),
-			'Can get user ID for user passing local wiki' );
-
-		$this->expectException( PreconditionException::class );
-		$user->getUserId( 'Foreign Wiki' );
-	}
-
-	/**
 	 * @covers User::getWikiId
 	 */
 	public function testGetWiki() {
@@ -2733,7 +2716,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 		$isAllowed = $user->isAllowed( 'read' ); // Memoize the Authority
 		$unserializedUser = unserialize( serialize( $user ) );
-		$this->assertSame( $user->getUserId(), $unserializedUser->getUserId() );
+		$this->assertSame( $user->getId(), $unserializedUser->getId() );
 		$this->assertSame( $isAllowed, $unserializedUser->isAllowed( 'read' ) );
 	}
 }

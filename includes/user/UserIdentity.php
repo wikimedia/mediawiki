@@ -23,7 +23,6 @@
 namespace MediaWiki\User;
 
 use MediaWiki\DAO\WikiAwareEntity;
-use Wikimedia\Assert\PreconditionException;
 
 /**
  * Interface for objects representing user identity.
@@ -37,23 +36,11 @@ interface UserIdentity extends WikiAwareEntity {
 	/**
 	 * @since 1.31
 	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller
 	 * @return int The user ID. May be 0 for anonymous users or for users with no local account.
 	 *
-	 * @deprecated since 1.36, use getUserId() instead
 	 */
-	public function getId() : int;
-
-	/**
-	 * @since 1.36
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *        Use self::LOCAL for the local wiki.
-	 *
-	 * @return int The user id.  May be 0 for anonymous users or for users with no local account.
-	 *
-	 * @throws PreconditionException if $wikiId mismatches $this->getWikiId()
-	 */
-	public function getUserId( $wikiId = self::LOCAL ) : int;
+	public function getId( $wikiId = self::LOCAL ) : int;
 
 	/**
 	 * @since 1.31

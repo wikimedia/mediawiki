@@ -2061,10 +2061,11 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get the user's ID.
+	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
-	 * @deprecated since 1.36, use getUserId() instead
 	 */
-	public function getId() : int {
+	public function getId( $wikiId = self::LOCAL ) : int {
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		if ( $this->mId === null && $this->mName !== null &&
 			( self::isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) )
 		) {
@@ -2080,21 +2081,6 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 		}
 
 		return (int)$this->mId;
-	}
-
-	/**
-	 * @since 1.36
-	 *
-	 * @param string|false $wikiId The wiki ID expected by the caller.
-	 *        Use self::LOCAL for the local wiki.
-	 *
-	 * @return int The user id.  May be 0 for anonymous users or for users with no local account.
-	 *
-	 * @throws PreconditionException if $wikiId mismatches $this->getWikiId()
-	 */
-	public function getUserId( $wikiId = self::LOCAL ) : int {
-		$this->assertWiki( $wikiId );
-		return $this->getId();
 	}
 
 	/**
