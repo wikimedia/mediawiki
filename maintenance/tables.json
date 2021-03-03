@@ -2846,7 +2846,7 @@
 	},
 	{
 		"name": "recentchanges",
-		"comment": "Primarily a summary table for Special:Recentchanges, this table contains some additional info on edits from the last few days, see Article::editUpdates()",
+		"comment": "Primarily a summary table for Special:RecentChanges, this table contains some additional info on edits from the last few days",
 		"columns": [
 			{
 				"name": "rc_id",
