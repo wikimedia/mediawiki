@@ -122,9 +122,11 @@ class SearchNearMatcher {
 			}
 
 			# See if it still otherwise has content is some sane sense
-			$page = $this->wikiPageFactory->newFromTitle( $title );
-			if ( $page->hasViewableContent() ) {
-				return $title;
+			if ( $title->canExist() ) {
+				$page = $this->wikiPageFactory->newFromTitle( $title );
+				if ( $page->hasViewableContent() ) {
+					return $title;
+				}
 			}
 
 			if ( !$this->hookRunner->onSearchAfterNoDirectMatch( $term, $title ) ) {
