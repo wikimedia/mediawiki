@@ -76,7 +76,7 @@ class SpecialTags extends SpecialPage {
 		$out->setPageTitle( $this->msg( 'tags-title' ) );
 		$out->wrapWikiMsg( "<div class='mw-tags-intro'>\n$1\n</div>", 'tags-intro' );
 
-		$authority = $this->getContext()->getAuthority();
+		$authority = $this->getAuthority();
 		$userCanManage = $authority->isAllowed( 'managechangetags' );
 		$userCanDelete = $authority->isAllowed( 'deletechangetags' );
 		$userCanEditInterface = $authority->isAllowed( 'editinterface' );
@@ -335,7 +335,7 @@ class SpecialTags extends SpecialPage {
 	}
 
 	protected function showDeleteTagForm( $tag ) {
-		$authority = $this->getContext()->getAuthority();
+		$authority = $this->getAuthority();
 		if ( !$authority->isAllowed( 'deletechangetags' ) ) {
 			throw new PermissionsError( 'deletechangetags' );
 		}
@@ -395,7 +395,7 @@ class SpecialTags extends SpecialPage {
 	protected function showActivateDeactivateForm( $tag, $activate ) {
 		$actionStr = $activate ? 'activate' : 'deactivate';
 
-		$authority = $this->getContext()->getAuthority();
+		$authority = $this->getAuthority();
 		if ( !$authority->isAllowed( 'managechangetags' ) ) {
 			throw new PermissionsError( 'managechangetags' );
 		}
