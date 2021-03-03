@@ -35,10 +35,10 @@ class PageArchive {
 	/** @var Title */
 	protected $title;
 
-	/** @var Status */
+	/** @var Status|null */
 	protected $fileStatus;
 
-	/** @var Status */
+	/** @var Status|null */
 	protected $revisionStatus;
 
 	/** @var Config */
@@ -77,7 +77,7 @@ class PageArchive {
 	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
 	 *
 	 * @param string $term Search term
-	 * @return IResultWrapper
+	 * @return IResultWrapper|bool
 	 */
 	public static function listPagesBySearch( $term ) {
 		$title = Title::newFromText( $term );
@@ -127,7 +127,7 @@ class PageArchive {
 	 * Returns result wrapper with (ar_namespace, ar_title, count) fields.
 	 *
 	 * @param string $prefix Title prefix
-	 * @return IResultWrapper
+	 * @return IResultWrapper|bool
 	 */
 	public static function listPagesByPrefix( $prefix ) {
 		$dbr = wfGetDB( DB_REPLICA );
@@ -177,7 +177,7 @@ class PageArchive {
 	 * List the revisions of the given page. Returns result wrapper with
 	 * various archive table fields.
 	 *
-	 * @return IResultWrapper
+	 * @return IResultWrapper|bool
 	 */
 	public function listRevisions() {
 		$revisionStore = $this->getRevisionStore();
@@ -218,7 +218,7 @@ class PageArchive {
 	 * Returns a result wrapper with various filearchive fields, or null
 	 * if not a file page.
 	 *
-	 * @return IResultWrapper
+	 * @return IResultWrapper|null
 	 * @todo Does this belong in Image for fuller encapsulation?
 	 */
 	public function listFiles() {
@@ -862,14 +862,14 @@ class PageArchive {
 	}
 
 	/**
-	 * @return Status
+	 * @return Status|null
 	 */
 	public function getFileStatus() {
 		return $this->fileStatus;
 	}
 
 	/**
-	 * @return Status
+	 * @return Status|null
 	 */
 	public function getRevisionStatus() {
 		return $this->revisionStatus;
