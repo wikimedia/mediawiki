@@ -68,6 +68,17 @@ class GlobalIdGenerator {
 	 */
 	private const FILE_PREFIX = 'mw-GlobalIdGenerator';
 
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_TIME = 'time';
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_COUNTER = 'counter';
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_SEQUENCE = 'clkSeq';
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_OFFSET = 'offset';
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_OFFSET_COUNTER = 'offsetCounter';
+
 	/**
 	 * @param string $tempDirectory A writable temporary directory
 	 * @param BagOStuff $srvCache A server-local APC-like cache instance
@@ -110,24 +121,19 @@ class GlobalIdGenerator {
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
 		$info = $this->getTimeAndDelay( 'lockFile88', 1, 1024, 1024 );
-		$info['offsetCounter'] %= 1024;
+		$info[self::CLOCK_OFFSET_COUNTER] %= 1024;
 
 		return \Wikimedia\base_convert( $this->getTimestampedID88( $info ), 2, $base );
 	}
 
 	/**
-	 * @param array $info result of GlobalIdGenerator::getTimeAndDelay(), or
-	 *  for sub classes, a sequential array like (time, offsetCounter).
+	 * @param array $info result of GlobalIdGenerator::getTimeAndDelay()
 	 * @return string 88 bits
 	 * @throws RuntimeException
 	 */
 	protected function getTimestampedID88( array $info ) {
-		if ( isset( $info['time'] ) ) {
-			$time = $info['time'];
-			$counter = $info['offsetCounter'];
-		} else {
-			list( $time, $counter ) = $info;
-		}
+		$time = $info[self::CLOCK_TIME];
+		$counter = $info[self::CLOCK_OFFSET_COUNTER];
 		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
 		// Add a 10 bit counter resulting in 56 bits total
@@ -162,25 +168,20 @@ class GlobalIdGenerator {
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
 		$info = $this->getTimeAndDelay( 'lockFile128', 16384, 1048576, 1048576 );
-		$info['offsetCounter'] %= 1048576;
+		$info[self::CLOCK_OFFSET_COUNTER] %= 1048576;
 
 		return \Wikimedia\base_convert( $this->getTimestampedID128( $info ), 2, $base );
 	}
 
 	/**
-	 * @param array $info The result of GlobalIdGenerator::getTimeAndDelay(),
-	 *  for sub classes, a seqencial array like (time, offsetCounter, clkSeq).
+	 * @param array $info The result of GlobalIdGenerator::getTimeAndDelay()
 	 * @return string 128 bits
 	 * @throws RuntimeException
 	 */
 	protected function getTimestampedID128( array $info ) {
-		if ( isset( $info['time'] ) ) {
-			$time = $info['time'];
-			$counter = $info['offsetCounter'];
-			$clkSeq = $info['clkSeq'];
-		} else {
-			list( $time, $counter, $clkSeq ) = $info;
-		}
+		$time = $info[self::CLOCK_TIME];
+		$counter = $info[self::CLOCK_OFFSET_COUNTER];
+		$clkSeq = $info[self::CLOCK_SEQUENCE];
 		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
 		// Add a 20 bit counter resulting in 66 bits total
@@ -215,8 +216,11 @@ class GlobalIdGenerator {
 	 * @return string 128 bits
 	 */
 	protected function getUUIDv1( array $info ) {
-		$clkSeq_bin = \Wikimedia\base_convert( $info['clkSeq'], 10, 2, 14 );
-		$time_bin = $this->intervalsSinceGregorianBinary( $info['time'], $info['offsetCounter'] );
+		$clkSeq_bin = \Wikimedia\base_convert( $info[self::CLOCK_SEQUENCE], 10, 2, 14 );
+		$time_bin = $this->intervalsSinceGregorianBinary(
+			$info[self::CLOCK_TIME],
+			$info[self::CLOCK_OFFSET_COUNTER]
+		);
 		// Take the 32 bits of "time low"
 		$id_bin = substr( $time_bin, 28, 32 );
 		// Add 16 bits of "time mid" resulting in 48 bits total
@@ -434,11 +438,11 @@ class GlobalIdGenerator {
 	 * @param int $counterSize The number of possible counter values
 	 * @param int $offsetSize The number of possible offset values
 	 * @return array Array with the following keys:
-	 *  - array 'time': array of seconds int and milliseconds int.
-	 *  - int 'counter'.
-	 *  - int 'clkSeq'.
-	 *  - int 'offset': .
-	 *  - int 'offsetCounter'.
+	 *  - GlobalIdGenerator::CLOCK_TIME: (integer seconds, integer milliseconds) array
+	 *  - GlobalIdGenerator::CLOCK_COUNTER: integer millisecond tie-breaking counter
+	 *  - GlobalIdGenerator::CLOCK_SEQUENCE: integer clock identifier that is local to the node
+	 *  - GlobalIdGenerator::CLOCK_OFFSET: integer offset for millisecond tie-breaking counter
+	 *  - GlobalIdGenerator::CLOCK_OFFSET_COUNTER: integer; CLOCK_COUNTER with CLOCK_OFFSET applied
 	 * @throws RuntimeException
 	 */
 	protected function getTimeAndDelay( $lockFile, $clockSeqSize, $counterSize, $offsetSize ) {
@@ -559,11 +563,11 @@ class GlobalIdGenerator {
 		$counter = $msecCounter % 1000;
 
 		return [
-			'time' => [ $sec, $msec ],
-			'counter' => $counter,
-			'clkSeq' => $clkSeq,
-			'offset' => $randOffset,
-			'offsetCounter' => $counter + $randOffset,
+			self::CLOCK_TIME     => [ $sec, $msec ],
+			self::CLOCK_COUNTER  => $counter,
+			self::CLOCK_SEQUENCE => $clkSeq,
+			self::CLOCK_OFFSET   => $randOffset,
+			self::CLOCK_OFFSET_COUNTER => $counter + $randOffset,
 		];
 	}
 
