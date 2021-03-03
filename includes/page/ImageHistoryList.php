@@ -93,9 +93,7 @@ class ImageHistoryList extends ContextSource {
 		. Xml::openElement( 'table', [ 'class' => 'wikitable filehistory' ] ) . "\n"
 		. '<tr><th></th>'
 		. ( $this->current->isLocal()
-		&& ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasAnyRight( $this->getUser(), 'delete', 'deletedhistory' ) ) ? '<th></th>' : '' )
+		&& ( $this->getAuthority()->isAllowedAny( 'delete', 'deletedhistory' ) ) ? '<th></th>' : '' )
 		. '<th>' . $this->msg( 'filehist-datetime' )->escaped() . '</th>'
 		. ( $this->showThumb ? '<th>' . $this->msg( 'filehist-thumb' )->escaped() . '</th>' : '' )
 		. '<th>' . $this->msg( 'filehist-dimensions' )->escaped() . '</th>'
@@ -120,7 +118,6 @@ class ImageHistoryList extends ContextSource {
 	public function imageHistoryLine( $iscur, $file ) {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$timestamp = wfTimestamp( TS_MW, $file->getTimestamp() );
 		// @phan-suppress-next-line PhanUndeclaredMethod
@@ -133,10 +130,10 @@ class ImageHistoryList extends ContextSource {
 		$row = $selected = '';
 
 		// Deletion link
-		if ( $local && ( $pm->userHasAnyRight( $user, 'delete', 'deletedhistory' ) ) ) {
+		if ( $local && ( $this->getAuthority()->isAllowedAny( 'delete', 'deletedhistory' ) ) ) {
 			$row .= '<td>';
 			# Link to remove from history
-			if ( $pm->userHasRight( $user, 'delete' ) ) {
+			if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
 				$q = [ 'action' => 'delete' ];
 				if ( !$iscur ) {
 					$q['oldimage'] = $img;
@@ -148,10 +145,10 @@ class ImageHistoryList extends ContextSource {
 				);
 			}
 			# Link to hide content. Don't show useless link to people who cannot hide revisions.
-			$canHide = $pm->userHasRight( $user, 'deleterevision' );
-			if ( $canHide || ( $pm->userHasRight( $user, 'deletedhistory' )
+			$canHide = $this->getAuthority()->isAllowed( 'deleterevision' );
+			if ( $canHide || ( $this->getAuthority()->isAllowed( 'deletedhistory' )
 					&& $file->getVisibility() ) ) {
-				if ( $pm->userHasRight( $user, 'delete' ) ) {
+				if ( $this->getAuthority()->isAllowed( 'delete' ) ) {
 					$row .= '<br />';
 				}
 				// If file is top revision or locked from this user, don't link
@@ -176,8 +173,8 @@ class ImageHistoryList extends ContextSource {
 		$row .= '<td>';
 		if ( $iscur ) {
 			$row .= $this->msg( 'filehist-current' )->escaped();
-		} elseif ( $local && $pm->quickUserCan( 'edit', $user, $this->title )
-			&& $pm->quickUserCan( 'upload', $user, $this->title )
+		} elseif ( $local && $this->getAuthority()->probablyCan( 'edit', $this->title )
+			&& $this->getAuthority()->probablyCan( 'upload', $this->title )
 		) {
 			if ( $file->isDeleted( File::DELETED_FILE ) ) {
 				$row .= $this->msg( 'filehist-revert' )->escaped();

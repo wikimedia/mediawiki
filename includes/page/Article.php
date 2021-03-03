@@ -26,7 +26,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -96,11 +96,6 @@ class Article implements Page {
 	protected $linkRenderer;
 
 	/**
-	 * @var PermissionManager
-	 */
-	private $permManager;
-
-	/**
 	 * @var RevisionStore
 	 */
 	private $revisionStore;
@@ -126,7 +121,6 @@ class Article implements Page {
 
 		$services = MediaWikiServices::getInstance();
 		$this->linkRenderer = $services->getLinkRenderer();
-		$this->permManager = $services->getPermissionManager();
 		$this->revisionStore = $services->getRevisionStore();
 	}
 
@@ -498,14 +492,12 @@ class Article implements Page {
 
 		$user = $this->getContext()->getUser();
 		# Another whitelist check in case getOldID() is altering the title
-		$permErrors = $this->permManager->getPermissionErrors(
-			'read',
-			$user,
-			$this->getTitle()
-		);
-		if ( count( $permErrors ) ) {
+		$permissionStatus = PermissionStatus::newEmpty();
+		if ( !$this->getContext()->getAuthority()
+			->authorizeRead( 'read', $this->getTitle(), $permissionStatus )
+		) {
 			wfDebug( __METHOD__ . ": denied on secondary read check" );
-			throw new PermissionsError( 'read', $permErrors );
+			throw new PermissionsError( 'read', $permissionStatus );
 		}
 
 		$outputPage = $this->getContext()->getOutput();
@@ -546,7 +538,7 @@ class Article implements Page {
 				)
 			);
 		} elseif ( $this->viewIsRenderAction || !$this->isCurrent() ||
-			!$this->permManager->quickUserCan( 'edit', $user, $this->getTitle() )
+			!$this->getContext()->getAuthority()->probablyCan( 'edit', $this->getTitle() )
 		) {
 			$poOptions['enableSectionEditLinks'] = false;
 		}
@@ -1185,7 +1177,7 @@ class Article implements Page {
 		$title = $this->getTitle();
 		$rc = false;
 
-		if ( !$this->permManager->quickUserCan( 'patrol', $user, $title )
+		if ( !$this->getContext()->getAuthority()->probablyCan( 'patrol', $title )
 			|| !( $wgUseRCPatrol || $wgUseNPPatrol
 				|| ( $wgUseFilePatrol && $title->inNamespace( NS_FILE ) ) )
 		) {
@@ -1312,7 +1304,7 @@ class Article implements Page {
 		}
 
 		$outputPage->preventClickjacking();
-		if ( $this->permManager->userHasRight( $user, 'writeapi' ) ) {
+		if ( $this->getContext()->getAuthority()->isAllowed( 'writeapi' ) ) {
 			$outputPage->addModules( 'mediawiki.misc-authed-curate' );
 		}
 
@@ -1373,8 +1365,7 @@ class Article implements Page {
 			$block = DatabaseBlock::newFromTarget( $user, $user );
 
 			if ( $user && $user->isRegistered() && $user->isHidden() &&
-				!$services->getPermissionManager()
-					->userHasRight( $contextUser, 'hideuser' )
+				!$this->getContext()->getAuthority()->isAllowed( 'hideuser' )
 			) {
 				// T120883 if the user is hidden and the viewer cannot see hidden
 				// users, pretend like it does not exist at all.
@@ -1465,7 +1456,6 @@ class Article implements Page {
 
 		# Show error message
 		$oldid = $this->getOldID();
-		$pm = $this->permManager;
 		if ( !$oldid && $title->getNamespace() === NS_MEDIAWIKI && $title->hasSourceText() ) {
 			$text = $this->getTitle()->getDefaultMessageText() ?? '';
 			$outputPage->addWikiTextAsContent( $text );
@@ -1488,8 +1478,8 @@ class Article implements Page {
 					$text = wfMessage( 'missing-revision', $oldid )->plain();
 				}
 
-			} elseif ( $pm->quickUserCan( 'create', $contextUser, $title ) &&
-				$pm->quickUserCan( 'edit', $contextUser, $title )
+			} elseif ( $this->getContext()->getAuthority()->probablyCan( 'create', $title ) &&
+				$this->getContext()->getAuthority()->probablyCan( 'edit', $title )
 			) {
 				$message = $isRegistered ? 'noarticletext' : 'noarticletextanon';
 				$text = wfMessage( $message )->plain();
@@ -1859,9 +1849,9 @@ class Article implements Page {
 		$request = $context->getRequest();
 
 		# Check permissions
-		$permissionErrors = $this->permManager->getPermissionErrors( 'delete', $user, $title );
-		if ( count( $permissionErrors ) ) {
-			throw new PermissionsError( 'delete', $permissionErrors );
+		$permissionStatus = PermissionStatus::newEmpty();
+		if ( !$context->getAuthority()->authorizeWrite( 'delete', $title, $permissionStatus ) ) {
+			throw new PermissionsError( 'delete', $permissionStatus );
 		}
 
 		# Read-only check...
@@ -1911,7 +1901,7 @@ class Article implements Page {
 			# Flag to hide all contents of the archived revisions
 
 			$suppress = $request->getCheck( 'wpSuppress' ) &&
-				$this->permManager->userHasRight( $user, 'suppressrevision' );
+				$context->getAuthority()->isAllowed( 'suppressrevision' );
 
 			$this->doDelete( $reason, $suppress );
 
@@ -2025,7 +2015,7 @@ class Article implements Page {
 
 		$fields = [];
 
-		$suppressAllowed = $this->permManager->userHasRight( $user, 'suppressrevision' );
+		$suppressAllowed = $this->getContext()->getAuthority()->isAllowed( 'suppressrevision' );
 		$dropDownReason = $ctx->msg( 'deletereason-dropdown' )->inContentLanguage()->text();
 		// Add additional specific reasons for suppress
 		if ( $suppressAllowed ) {
@@ -2146,7 +2136,7 @@ class Article implements Page {
 			] )
 		);
 
-		if ( $this->permManager->userHasRight( $user, 'editinterface' ) ) {
+		if ( $this->getContext()->getAuthority()->isAllowed( 'editinterface' ) ) {
 			$link = '';
 			if ( $suppressAllowed ) {
 				$link .= $this->linkRenderer->makeKnownLink(
