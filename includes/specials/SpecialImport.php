@@ -326,7 +326,8 @@ class SpecialImport extends SpecialPage {
 				'source' => [
 					'type' => 'hidden',
 					'name' => 'source',
-					'default' => 'upload'
+					'default' => 'upload',
+					'id' => '',
 				],
 			];
 
@@ -433,7 +434,8 @@ class SpecialImport extends SpecialPage {
 				'source' => [
 					'type' => 'hidden',
 					'name' => 'source',
-					'default' => 'interwiki'
+					'default' => 'interwiki',
+					'id' => '',
 				],
 			];
 			$mappingSelection = $this->getMappingFormPart( 'interwiki' );
