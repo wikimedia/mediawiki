@@ -132,7 +132,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->assertNotNull( $cached );
 		$this->assertSameActors( $expected, $cached );
 
-		$userId = $expected->getUserId();
+		$userId = $expected->getId();
 		if ( $userId ) {
 			$cached = $this->getStore()->getUserIdentityByUserId( $userId );
 			$this->assertNotNull( $cached );
@@ -163,7 +163,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testGetUserIdentityByUserIdRealUser() {
 		$user = $this->getTestUser()->getUser();
-		$actor = $this->getStore()->getUserIdentityByUserId( $user->getUserId() );
+		$actor = $this->getStore()->getUserIdentityByUserId( $user->getId() );
 		$this->assertSameActors( $user, $actor );
 	}
 
@@ -493,11 +493,6 @@ class ActorStoreTest extends ActorStoreTestBase {
 		} ];
 		yield 'registered' => [ static function () {
 			return new UserIdentityValue( 15, 'MyUser', 0, 'acmewiki' );
-		} ];
-		// This is backwards-compatibility test case, this can be removed when we deprecate
-		// and drop support for passing User object with foreign DB connections.
-		yield 'User object' => [ static function ( $serviceContainer ) {
-			return $serviceContainer->getUserFactory()->newAnonymous( '127.4.3.2' );
 		} ];
 	}
 
