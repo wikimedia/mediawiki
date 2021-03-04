@@ -1,7 +1,7 @@
 <?php
 /**
  * Take page text out of an XML dump file and perform some operation on it.
- * Used as a base class for CompareParsers and PreprocessDump.
+ * Used as a base class for CompareParsers.
  * We implement below the simple task of searching inside a dump.
  *
  * Copyright © 2011 Platonides
