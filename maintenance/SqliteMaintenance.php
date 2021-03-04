@@ -45,16 +45,6 @@ class SqliteMaintenance extends Maintenance {
 		$this->addOption( 'check-syntax', 'Check SQL file(s) for syntax errors', false, true );
 	}
 
-	/**
-	 * While we use database connection, this simple lie prevents useless --dbpass and
-	 * --dbuser options from appearing in help message for this script.
-	 *
-	 * @return int DB constant
-	 */
-	public function getDbType() {
-		return Maintenance::DB_NONE;
-	}
-
 	public function execute() {
 		// Should work even if we use a non-SQLite database
 		if ( $this->hasOption( 'check-syntax' ) ) {
