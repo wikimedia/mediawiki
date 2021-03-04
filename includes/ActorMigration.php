@@ -272,7 +272,7 @@ class ActorMigration {
 		// foreign.
 		return $this->actorStoreFactory
 			->getActorNormalization( $db->getDomainID() )
-			->findActorId( $user );
+			->findActorId( $user, $db );
 	}
 
 	/**

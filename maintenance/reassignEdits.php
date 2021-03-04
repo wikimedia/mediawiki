@@ -130,7 +130,8 @@ class ReassignEdits extends Maintenance {
 		$total = $cur + $del + $rec;
 		$this->output( "\nTotal entries to change: {$total}\n" );
 
-		$toActorId = MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $to );
+		$toActorId =
+			MediaWikiServices::getInstance()->getActorNormalization()->acquireActorId( $to, $dbw );
 		if ( !$report ) {
 			if ( $total ) {
 				# Reassign edits
