@@ -1566,7 +1566,7 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Auto-create an account, and log into that account
+	 * Auto-create an account, and optionally log into that account
 	 *
 	 * PrimaryAuthenticationProviders can invoke this method by returning a PASS from
 	 * beginPrimaryAuthentication/continuePrimaryAuthentication with the username of a
@@ -1580,9 +1580,10 @@ class AuthManager implements LoggerAwareInterface {
 	 *  - the constant self::AUTOCREATE_SOURCE_SESSION, or
 	 *  - the constant AUTOCREATE_SOURCE_MAINT.
 	 * @param bool $login Whether to also log the user in
+	 * @param bool $log Whether to generate a user creation log entry (since 1.36)
 	 * @return Status Good if user was created, Ok if user already existed, otherwise Fatal
 	 */
-	public function autoCreateUser( User $user, $source, $login = true ) {
+	public function autoCreateUser( User $user, $source, $login = true, $log = true ) {
 		if ( $source !== self::AUTOCREATE_SOURCE_SESSION &&
 			$source !== self::AUTOCREATE_SOURCE_MAINT &&
 			!$this->getAuthenticationProvider( $source ) instanceof PrimaryAuthenticationProvider
@@ -1786,7 +1787,7 @@ class AuthManager implements LoggerAwareInterface {
 		} );
 
 		// Log the creation
-		if ( $this->config->get( 'NewUserLog' ) ) {
+		if ( $this->config->get( 'NewUserLog' ) && $log ) {
 			$logEntry = new \ManualLogEntry( 'newusers', 'autocreate' );
 			$logEntry->setPerformer( $user );
 			$logEntry->setTarget( $user->getUserPage() );
