@@ -455,15 +455,17 @@ abstract class UploadBase {
 			if ( $wgVerifyMimeTypeIE ) {
 				# Check what Internet Explorer would detect
 				$fp = fopen( $this->mTempPath, 'rb' );
-				$chunk = fread( $fp, 256 );
-				fclose( $fp );
+				if ( $fp ) {
+					$chunk = fread( $fp, 256 );
+					fclose( $fp );
 
-				$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-				$extMime = $magic->getMimeTypeFromExtensionOrNull( (string)$this->mFinalExtension ) ?? '';
-				$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
-				foreach ( $ieTypes as $ieType ) {
-					if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
-						return [ 'filetype-bad-ie-mime', $ieType ];
+					$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+					$extMime = $magic->getMimeTypeFromExtensionOrNull( (string)$this->mFinalExtension ) ?? '';
+					$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
+					foreach ( $ieTypes as $ieType ) {
+						if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
+							return [ 'filetype-bad-ie-mime', $ieType ];
+						}
 					}
 				}
 			}
@@ -1345,6 +1347,9 @@ abstract class UploadBase {
 			$chunk = file_get_contents( $file );
 		} else {
 			$fp = fopen( $file, 'rb' );
+			if ( !$fp ) {
+				return false;
+			}
 			$chunk = fread( $fp, 1024 );
 			fclose( $fp );
 		}
