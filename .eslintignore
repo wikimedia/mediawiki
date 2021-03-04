@@ -14,3 +14,7 @@
 # Nested projects
 /extensions/
 /skins/
+
+# Language files written automatically by TranslateWiki
+/**/i18n/**/*.json
+!/**/i18n/**/{en,qqq}.json
