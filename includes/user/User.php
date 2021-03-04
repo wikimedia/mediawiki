@@ -4506,7 +4506,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @unstable this is a part of the Authority experiment and should not be used yet.
 	 * @return UserIdentity
 	 */
-	public function getPerformer(): UserIdentity {
+	public function getUser(): UserIdentity {
 		return $this;
 	}
 

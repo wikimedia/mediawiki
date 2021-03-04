@@ -298,7 +298,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		$authority = $this->getAuthority();
-		if ( $authority->getPerformer()->isRegistered()
+		if ( $authority->getUser()->isRegistered()
 			&& $authority->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
 			&& $this->getRelevantTitle()->canExist()
 		) {

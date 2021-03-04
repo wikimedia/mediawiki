@@ -573,7 +573,7 @@ class RecentChange implements Taggable {
 			$status->fatal( 'hookaborted' );
 		}
 		// Users without the 'autopatrol' right can't patrol their own revisions
-		if ( $performer->getPerformer()->getName() === $this->getAttribute( 'rc_user_text' ) &&
+		if ( $performer->getUser()->getName() === $this->getAttribute( 'rc_user_text' ) &&
 			!$performer->isAllowed( 'autopatrol' )
 		) {
 			$status->fatal( 'markedaspatrollederror-noautopatrol' );
@@ -588,7 +588,7 @@ class RecentChange implements Taggable {
 		// Actually set the 'patrolled' flag in RC
 		$this->reallyMarkPatrolled();
 		// Log this patrol event
-		PatrolLog::record( $this, $auto, $performer->getPerformer(), $tags );
+		PatrolLog::record( $this, $auto, $performer->getUser(), $tags );
 
 		Hooks::runner()->onMarkPatrolledComplete(
 			$this->getAttribute( 'rc_id' ), $user, false, $auto );

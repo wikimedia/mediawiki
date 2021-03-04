@@ -85,7 +85,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$actor = $this->newUser();
 		$authority = $this->newAuthority( $actor, [] );
 
-		$this->assertSame( $actor, $authority->getPerformer() );
+		$this->assertSame( $actor, $authority->getUser() );
 	}
 
 	public function testPermissions() {

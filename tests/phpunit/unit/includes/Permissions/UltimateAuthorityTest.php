@@ -37,7 +37,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 		$actor = new UserIdentityValue( 12, 'Test', 17 );
 		$authority = new UltimateAuthority( $actor );
 
-		$this->assertSame( $actor, $authority->getPerformer() );
+		$this->assertSame( $actor, $authority->getUser() );
 	}
 
 	public function testPermissions() {

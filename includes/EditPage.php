@@ -2503,7 +2503,7 @@ class EditPage implements IEditObject {
 	 */
 	protected function updateWatchlist() {
 		$performer = $this->context->getUser();
-		if ( !$performer->getPerformer()->isRegistered() ) {
+		if ( !$performer->getUser()->isRegistered() ) {
 			return;
 		}
 
