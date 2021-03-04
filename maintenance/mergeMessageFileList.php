@@ -120,6 +120,24 @@ class MergeMessageFileList extends Maintenance {
 		}
 	}
 
+	public function finalSetup() {
+		# This script commonly needs to be run before the l10n cache. But if
+		# $wgLanguageCode is not 'en', it won't be able to run because there is
+		# no l10n cache. Break the cycle by forcing $wgLanguageCode = 'en'.
+		global $wgLanguageCode;
+		$wgLanguageCode = 'en';
+		parent::finalSetup();
+	}
+
+	/**
+	 * Database access is not needed.
+	 *
+	 * @return int DB constant
+	 */
+	public function getDbType() {
+		return Maintenance::DB_NONE;
+	}
+
 	/**
 	 * @param string $fileName
 	 * @return array List of absolute extension paths
