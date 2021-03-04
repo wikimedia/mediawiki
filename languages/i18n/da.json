@@ -1235,7 +1235,7 @@
 	"right-reupload-own": "Overskrive en eksisterende fil, som er lagt op af brugeren selv",
 	"right-reupload-shared": "Lægge en lokal fil op, selvom den allerede findes centralt",
 	"right-upload_by_url": "Lægge en fil op fra en URL",
-	"right-purge": "Nulstil sidens cache for en side",
+	"right-purge": "Nulstil cache for en side",
 	"right-autoconfirmed": "Påvirkes ikke af IP-baserede hastighedsgrænser",
 	"right-bot": "Redigeringer markeres som robot",
 	"right-nominornewtalk": "Mindre ændringer på diskussionssider markerer ikke disse med nyt indhold",
