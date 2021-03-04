@@ -71,14 +71,29 @@ trait MockAuthorityTrait {
 	}
 
 	/**
+	 * Create a mock Authority for a $performer with $permissions.
+	 *
+	 * @param UserIdentity $performer
+	 * @param array $permissions
+	 * @return Authority
+	 */
+	private function mockUserAuthorityWithPermissions(
+		UserIdentity $performer,
+		array $permissions
+	): Authority {
+		return new SimpleAuthority( $performer, $permissions );
+	}
+
+	/**
 	 * Create a mock Authority for an anon user with all but $permissions
 	 * @param array $permissions
 	 * @return Authority
 	 */
 	private function mockAnonAuthorityWithoutPermissions( array $permissions ): Authority {
-		return $this->mockAnonAuthority( function ( $permission ) use ( $permissions ) {
-			return !in_array( $permission, $permissions );
-		} );
+		return $this->mockUserAuthorityWithoutPermissions(
+			new UserIdentityValue( 0, '127.0.0.1', 0 ),
+			$permissions
+		);
 	}
 
 	/**
@@ -87,9 +102,28 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredAuthorityWithoutPermissions( array $permissions ): Authority {
-		return $this->mockRegisteredAuthority( function ( $permission ) use ( $permissions ) {
-			return !in_array( $permission, $permissions );
-		} );
+		return $this->mockUserAuthorityWithoutPermissions(
+			new UserIdentityValue( 42, 'Petr', 24 ),
+			$permissions
+		);
+	}
+
+	/**
+	 * Create a mock Authority for a $user with all but $permissions
+	 * @param UserIdentity $performer
+	 * @param array $permissions
+	 * @return Authority
+	 */
+	private function mockUserAuthorityWithoutPermissions(
+		UserIdentity $performer,
+		array $permissions
+	): Authority {
+		return $this->mockAuthority(
+			$performer,
+			function ( $permission ) use ( $permissions ) {
+				return !in_array( $permission, $permissions );
+			}
+		);
 	}
 
 	/**
