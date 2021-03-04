@@ -20,7 +20,7 @@
 
 use MediaWiki\EditPage\Constraint\CreationPermissionConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * Tests the CreationPermissionConstraint
@@ -31,40 +31,24 @@ use MediaWiki\Permissions\PermissionManager;
  */
 class CreationPermissionConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
-
-	private function getPermissionManager( $user, $title, $result ) {
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userCan' )
-			->with(
-				$this->equalTo( 'create' ),
-				$this->equalTo( $user ),
-				$this->equalTo( $title )
-			)
-			->willReturn( $result );
-		return $permissionManager;
-	}
+	use MockAuthorityTrait;
+	use MockTitleTrait;
 
 	public function testPass() {
-		$user = $this->createMock( User::class );
 		$title = $this->createMock( Title::class );
-
 		$constraint = new CreationPermissionConstraint(
-			$this->getPermissionManager( $user, $title, true ),
-			$user,
-			$title
+			$this->mockRegisteredAuthorityWithPermissions( [ 'create' ] ),
+			$this->makeMockTitle( __METHOD__ )
 		);
 		$this->assertConstraintPassed( $constraint );
 	}
 
 	public function testFailure() {
-		$user = $this->createMock( User::class );
 		$title = $this->createMock( Title::class );
 
 		$constraint = new CreationPermissionConstraint(
-			$this->getPermissionManager( $user, $title, false ),
-			$user,
-			$title
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'create' ] ),
+			$this->makeMockTitle( __METHOD__ )
 		);
 		$this->assertConstraintFailed( $constraint, IEditConstraint::AS_NO_CREATE_PERMISSION );
 	}

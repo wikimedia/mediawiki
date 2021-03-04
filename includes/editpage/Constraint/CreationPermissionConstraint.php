@@ -20,10 +20,9 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use StatusValue;
 use Title;
-use User;
 
 /**
  * Verify be able to create the page in question if it is a new page
@@ -34,11 +33,8 @@ use User;
  */
 class CreationPermissionConstraint implements IEditConstraint {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var User */
-	private $user;
+	/** @var Authority */
+	private $performer;
 
 	/** @var Title */
 	private $title;
@@ -47,23 +43,20 @@ class CreationPermissionConstraint implements IEditConstraint {
 	private $result;
 
 	/**
-	 * @param PermissionManager $permissionManager
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param Title $title
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
-		User $user,
+		Authority $performer,
 		Title $title
 	) {
-		$this->permissionManager = $permissionManager;
-		$this->user = $user;
+		$this->performer = $performer;
 		$this->title = $title;
 	}
 
 	public function checkConstraint() : string {
 		// Check isn't simple enough to just repeat when getting the status
-		if ( !$this->permissionManager->userCan( 'create', $this->user, $this->title ) ) {
+		if ( !$this->performer->authorizeWrite( 'create', $this->title ) ) {
 			$this->result = self::CONSTRAINT_FAILED;
 			return self::CONSTRAINT_FAILED;
 		}

@@ -20,9 +20,8 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use StatusValue;
-use User;
 
 /**
  * Verify user permissions:
@@ -34,30 +33,24 @@ use User;
  */
 class EditRightConstraint implements IEditConstraint {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var User */
-	private $user;
+	/** @var Authority */
+	private $performer;
 
 	/** @var string|null */
 	private $result;
 
 	/**
-	 * @param PermissionManager $permissionManager
-	 * @param User $user
+	 * @param Authority $performer
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
-		User $user
+		Authority $performer
 	) {
-		$this->permissionManager = $permissionManager;
-		$this->user = $user;
+		$this->performer = $performer;
 	}
 
 	public function checkConstraint() : string {
 		// Check isn't simple enough to just repeat when getting the status
-		if ( !$this->permissionManager->userHasRight( $this->user, 'edit' ) ) {
+		if ( !$this->performer->isAllowed( 'edit' ) ) {
 			$this->result = self::CONSTRAINT_FAILED;
 			return self::CONSTRAINT_FAILED;
 		}
@@ -70,7 +63,7 @@ class EditRightConstraint implements IEditConstraint {
 		$statusValue = StatusValue::newGood();
 
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			if ( $this->user->isAnon() ) {
+			if ( !$this->performer->getPerformer()->isRegistered() ) {
 				$statusValue->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 			} else {
 				$statusValue->fatal( 'readonlytext' );
