@@ -1929,7 +1929,7 @@
 	"imagelinks": "Utilizarea fișierului",
 	"linkstoimage": "{{PLURAL:$1|Următoarea pagină folosește|Următoarele $1 pagini folosesc |Următoarele $1 de pagini folosesc}} acest fișier:",
 	"linkstoimage-more": "Mai mult de $1 {{PLURAL:$1|pagină folosește|pagini folosesc}} acest fișier.\nUrmătoarea listă arată {{PLURAL:$1|prima legătură|primele $1 legături}} către acest fișier.\nEste disponibilă o [[Special:WhatLinksHere/$2|listă completă]].",
-	"nolinkstoimage": "Nicio pagină nu utilizează această imagine.",
+	"nolinkstoimage": "Nicio pagină nu utilizează acest fișier.",
 	"morelinkstoimage": "Vedeți [[Special:WhatLinksHere/$1|mai multe legături]] către acest fișier.",
 	"linkstoimage-redirect": "$1 (redirecționare de fișier) $2",
 	"duplicatesoffile": "{{PLURAL:$1|Fișierul următor este duplicat|Următoarele $1 fișiere sunt duplicate}} ale acestui fișier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):",
