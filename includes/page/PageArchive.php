@@ -44,10 +44,7 @@ class PageArchive {
 	/** @var Config */
 	protected $config;
 
-	public function __construct( $title, Config $config = null ) {
-		if ( $title === null ) {
-			throw new MWException( __METHOD__ . ' given a null title.' );
-		}
+	public function __construct( Title $title, Config $config = null ) {
 		$this->title = $title;
 		if ( $config === null ) {
 			wfDebug( __METHOD__ . ' did not have a Config object passed to it' );
