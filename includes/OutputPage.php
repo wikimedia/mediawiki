@@ -23,6 +23,8 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
@@ -2783,9 +2785,7 @@ class OutputPage extends ContextSource {
 
 			# Don't return to a page the user can't read otherwise
 			# we'll end up in a pointless loop
-			if ( $displayReturnto && $permissionManager->userCan(
-				'read', $this->getUser(), $displayReturnto
-			) ) {
+			if ( $displayReturnto && $this->getAuthority()->probablyCan( 'read', $displayReturnto ) ) {
 				$this->returnToMain( null, $displayReturnto );
 			}
 		} else {
@@ -3368,9 +3368,9 @@ class OutputPage extends ContextSource {
 			$vars['wgUserVariant'] = $languageConverter->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
-		$vars['wgIsProbablyEditable'] = $this->userCanEditOrCreate( $user, $title );
+		$vars['wgIsProbablyEditable'] = $this->performerCanEditOrCreate( $this->getAuthority(), $title );
 		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle &&
-			$this->userCanEditOrCreate( $user, $relevantTitle );
+			$this->performerCanEditOrCreate( $this->getAuthority(), $relevantTitle );
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			// Following keys are set in $vars:
 			// wgRestrictionCreate, wgRestrictionEdit, wgRestrictionMove, wgRestrictionUpload
@@ -3380,7 +3380,7 @@ class OutputPage extends ContextSource {
 			$vars['wgIsMainPage'] = true;
 		}
 		if ( $relevantUser && ( !$relevantUser->isHidden() ||
-			$services->getPermissionManager()->userHasRight( $user, 'hideuser' ) )
+				$this->getAuthority()->isAllowed( 'hideuser' ) )
 		) {
 			// T120883 if the user is hidden and the viewer cannot see
 			// hidden users, pretend like it does not exist at all.
@@ -3467,9 +3467,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$title = $this->getTitle();
-		$errors = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'edit', $user, $title );
-		if ( count( $errors ) !== 0 ) {
+		if ( !$this->getAuthority()->probablyCan( 'edit', $title ) ) {
 			return false;
 		}
 
@@ -3477,18 +3475,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @param User $user
-	 * @param LinkTarget $title
+	 * @param Authority $performer
+	 * @param PageIdentity $page
 	 * @return bool
 	 */
-	private function userCanEditOrCreate(
-		User $user,
-		LinkTarget $title
+	private function performerCanEditOrCreate(
+		Authority $performer,
+		PageIdentity $page
 	) {
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
-		return $pm->quickUserCan( 'edit', $user, $title )
-		&& ( $this->getTitle()->exists() ||
-			 $pm->quickUserCan( 'create', $user, $title ) );
+		return $performer->probablyCan( 'edit', $page )
+		&& ( $page->exists() || $performer->probablyCan( 'create', $page ) );
 	}
 
 	/**
@@ -3553,7 +3549,7 @@ class OutputPage extends ContextSource {
 
 		# Universal edit button
 		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
-			if ( $this->userCanEditOrCreate( $this->getUser(), $this->getTitle() ) ) {
+			if ( $this->performerCanEditOrCreate( $this->getAuthority(), $this->getTitle() ) ) {
 				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
 				$tags['universal-edit-button'] = Html::element( 'link', [

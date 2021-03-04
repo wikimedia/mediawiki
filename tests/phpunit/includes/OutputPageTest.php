@@ -2,6 +2,10 @@
 
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\TestingAccessWrapper;
 
@@ -12,6 +16,8 @@ use Wikimedia\TestingAccessWrapper;
  * @group Output
  */
 class OutputPageTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
+
 	private const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	private const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
 
@@ -3138,10 +3144,128 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function provideGetJsVarsEditable() {
+		yield 'can edit and create' => [
+			'performer' => $this->mockAnonAuthorityWithPermissions( [ 'edit', 'create' ] ),
+			'expectedEditableConfig' => [
+				'wgIsProbablyEditable' => true,
+				'wgRelevantPageIsProbablyEditable' => true,
+			]
+		];
+		yield 'cannot edit or create' => [
+			'performer' => $this->mockAnonAuthorityWithoutPermissions( [ 'edit', 'create' ] ),
+			'expectedEditableConfig' => [
+				'wgIsProbablyEditable' => false,
+				'wgRelevantPageIsProbablyEditable' => false,
+			]
+		];
+		yield 'only can edit relevant title' => [
+			'performer' => $this->mockAnonAuthority( function (
+				string $permission,
+				PageIdentity $page
+			) {
+				if ( $permission === 'edit' | $permission === 'create' ) {
+					if ( $page->getDBkey() === 'RelevantTitle' ) {
+						return true;
+					}
+					return false;
+				}
+				return false;
+			} ),
+			'expectedEditableConfig' => [
+				'wgIsProbablyEditable' => false,
+				'wgRelevantPageIsProbablyEditable' => true,
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetJsVarsEditable
+	 * @covers OutputPage::performerCanEditOrCreate
+	 */
+	public function testGetJsVarsEditable( Authority $performer, array $expectedEditableConfig ) {
+		$op = $this->newInstance( [], null, null, $performer );
+		$op->getContext()->getSkin()->setRelevantTitle( Title::newFromText( 'RelevantTitle' ) );
+		$this->assertArraySubmapSame( $expectedEditableConfig, $op->getJSVars() );
+	}
+
+	/**
+	 * @param bool $registered
+	 * @param bool $matchToken
+	 * @return MockObject|User
+	 */
+	private function mockUser( bool $registered, bool $matchToken ) {
+		$user = $this->createNoOpMock( User::class, [ 'isRegistered', 'matchEditToken' ] );
+		$user->method( 'isRegistered' )->willReturn( $registered );
+		$user->method( 'matchEditToken' )->willReturn( $matchToken );
+		return $user;
+	}
+
+	public function provideUserCanPreview() {
+		yield 'all good' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
+			true
+		];
+		yield 'get request' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], false ),
+			false
+		];
+		yield 'not a submit action' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'something' ], true ),
+			false
+		];
+		yield 'anon can not' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( false, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
+			false
+		];
+		yield 'token not match' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, false ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
+			false
+		];
+		yield 'no permission' => [
+			'performer' => $this->mockUserAuthorityWithoutPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
+			false
+		];
+	}
+
+	/**
+	 * @dataProvider provideUserCanPreview
+	 * @covers OutputPage::userCanPreview
+	 */
+	public function testUserCanPreview( Authority $performer, WebRequest $request, bool $expected ) {
+		$op = $this->newInstance( [], $request, null, $performer );
+		$this->assertSame( $expected, $op->userCanPreview() );
+	}
+
 	private function newInstance(
 		array $config = [],
 		WebRequest $request = null,
-		$option = null
+		$option = null,
+		Authority $performer = null
 	) : OutputPage {
 		$context = new RequestContext();
 
@@ -3166,6 +3290,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		if ( $request ) {
 			$context->setRequest( $request );
+		}
+
+		if ( $performer ) {
+			$context->setAuthority( $performer );
 		}
 
 		return new OutputPage( $context );
