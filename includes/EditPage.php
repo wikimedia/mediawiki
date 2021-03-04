@@ -2502,8 +2502,8 @@ class EditPage implements IEditObject {
 	 * Register the change of watch status
 	 */
 	protected function updateWatchlist() {
-		$user = $this->context->getUser();
-		if ( !$user->isRegistered() ) {
+		$performer = $this->context->getUser();
+		if ( !$performer->getPerformer()->isRegistered() ) {
 			return;
 		}
 
@@ -2514,7 +2514,7 @@ class EditPage implements IEditObject {
 		// This can't run as a DeferredUpdate due to a possible race condition
 		// when the post-edit redirect happens if the pendingUpdates queue is
 		// too large to finish in time (T259564)
-		WatchAction::doWatchOrUnwatch( $watch, $title, $user, $watchlistExpiry );
+		WatchAction::doWatchOrUnwatch( $watch, $title, $performer, $watchlistExpiry );
 
 		// Add a job to purge expired watchlist items. Jobs will only be added at the rate
 		// specified by $wgWatchlistPurgeRate, which by default is every tenth edit.
