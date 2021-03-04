@@ -20,7 +20,6 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 
 /**
  * Sub class of HTMLForm that provides the form section of SpecialUpload
@@ -59,7 +58,6 @@ class UploadForm extends HTMLForm {
 	 * @param array $options
 	 * @param IContextSource|null $context
 	 * @param LinkRenderer|null $linkRenderer
-	 * @param PermissionManager|null $permissionManager
 	 * @param LocalRepo|null $localRepo
 	 * @param Language|null $contentLanguage
 	 * @param NamespaceInfo|null $nsInfo
@@ -68,7 +66,6 @@ class UploadForm extends HTMLForm {
 		array $options = [],
 		IContextSource $context = null,
 		LinkRenderer $linkRenderer = null,
-		PermissionManager $permissionManager = null,
 		LocalRepo $localRepo = null,
 		Language $contentLanguage = null,
 		NamespaceInfo $nsInfo = null
@@ -80,9 +77,6 @@ class UploadForm extends HTMLForm {
 		$services = MediaWikiServices::getInstance();
 		if ( !$linkRenderer ) {
 			$linkRenderer = $services->getLinkRenderer();
-		}
-		if ( !$permissionManager ) {
-			$permissionManager = $services->getPermissionManager();
 		}
 		if ( !$localRepo ) {
 			$localRepo = $services->getRepoGroup()->getLocalRepo();
@@ -119,7 +113,7 @@ class UploadForm extends HTMLForm {
 		parent::__construct( $descriptor, $context, 'upload' );
 
 		# Add a link to edit MediaWiki:Licenses
-		if ( $permissionManager->userHasRight( $this->getUser(), 'editinterface' ) ) {
+		if ( $this->getAuthority()->isAllowed( 'editinterface' ) ) {
 			$this->getOutput()->addModuleStyles( 'mediawiki.special' );
 			$licensesLink = $linkRenderer->makeKnownLink(
 				$this->msg( 'licenses' )->inContentLanguage()->getTitle(),

@@ -15,7 +15,6 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		$services = MediaWikiServices::getInstance();
 		return TestingAccessWrapper::newFromObject(
 			new SpecialRecentChanges(
-				$services->getPermissionManager(),
 				$services->getWatchedItemStore(),
 				$services->getMessageCache(),
 				$services->getDBLoadBalancer(),

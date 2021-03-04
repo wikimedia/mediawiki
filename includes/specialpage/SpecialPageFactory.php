@@ -421,7 +421,6 @@ class SpecialPageFactory {
 			'class' => \SpecialPreferences::class,
 			'services' => [
 				'PreferencesFactory',
-				'PermissionManager',
 				'UserOptionsManager',
 			]
 		],
@@ -470,7 +469,6 @@ class SpecialPageFactory {
 		'Userrights' => [
 			'class' => \UserrightsPage::class,
 			'services' => [
-				'PermissionManager',
 				'UserGroupManagerFactory',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
@@ -508,7 +506,6 @@ class SpecialPageFactory {
 		'Log' => [
 			'class' => \SpecialLog::class,
 			'services' => [
-				'PermissionManager',
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'ActorMigration',
@@ -540,7 +537,6 @@ class SpecialPageFactory {
 		'Recentchanges' => [
 			'class' => \SpecialRecentChanges::class,
 			'services' => [
-				'PermissionManager',
 				'WatchedItemStore',
 				'MessageCache',
 				'DBLoadBalancer',
@@ -550,7 +546,6 @@ class SpecialPageFactory {
 		'Recentchangeslinked' => [
 			'class' => \SpecialRecentChangesLinked::class,
 			'services' => [
-				'PermissionManager',
 				'WatchedItemStore',
 				'MessageCache',
 				'DBLoadBalancer',
@@ -608,7 +603,6 @@ class SpecialPageFactory {
 			'class' => \SpecialUpload::class,
 			'services' => [
 				'RepoGroup',
-				'PermissionManager',
 				'UserOptionsLookup',
 				'NamespaceInfo',
 			]
@@ -1036,7 +1030,6 @@ class SpecialPageFactory {
 				$this->list['Confirmemail'] = [
 					'class' => \SpecialConfirmEmail::class,
 					'services' => [
-						'PermissionManager',
 						'UserFactory',
 					]
 				];
@@ -1076,7 +1069,6 @@ class SpecialPageFactory {
 				$this->list['PageLanguage'] = [
 					'class' => \SpecialPageLanguage::class,
 					'services' => [
-						'PermissionManager',
 						'ContentHandlerFactory',
 						'LanguageNameUtils',
 						'DBLoadBalancer',

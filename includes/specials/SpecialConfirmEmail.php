@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserFactory;
 
 /**
@@ -34,20 +33,15 @@ use MediaWiki\User\UserFactory;
  */
 class SpecialConfirmEmail extends UnlistedSpecialPage {
 
-	/** @var PermissionManager */
-	private $permManager;
-
 	/** @var UserFactory */
 	private $userFactory;
 
 	/**
-	 * @param PermissionManager $permManager
 	 * @param UserFactory $userFactory
 	 */
-	public function __construct( PermissionManager $permManager, UserFactory $userFactory ) {
+	public function __construct( UserFactory $userFactory ) {
 		parent::__construct( 'Confirmemail', 'editmyprivateinfo' );
 
-		$this->permManager = $permManager;
 		$this->userFactory = $userFactory;
 	}
 
@@ -74,7 +68,7 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 
 		// This could also let someone check the current email address, so
 		// require both permissions.
-		if ( !$this->permManager->userHasRight( $this->getUser(), 'viewmyprivateinfo' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'viewmyprivateinfo' ) ) {
 			throw new PermissionsError( 'viewmyprivateinfo' );
 		}
 

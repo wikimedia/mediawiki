@@ -19,7 +19,6 @@ class SpecialLogTest extends SpecialPageTestBase {
 	protected function newSpecialPage() {
 		$services = MediaWikiServices::getInstance();
 		return new SpecialLog(
-			$services->getPermissionManager(),
 			$services->getLinkBatchFactory(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration()

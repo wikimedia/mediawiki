@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -42,9 +41,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	private $watchlistFilterGroupDefinition;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
@@ -58,14 +54,12 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	private $userOptionsLookup;
 
 	/**
-	 * @param PermissionManager|null $permissionManager
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param MessageCache|null $messageCache
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param UserOptionsLookup|null $userOptionsLookup
 	 */
 	public function __construct(
-		PermissionManager $permissionManager = null,
 		WatchedItemStoreInterface $watchedItemStore = null,
 		MessageCache $messageCache = null,
 		ILoadBalancer $loadBalancer = null,
@@ -74,7 +68,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		parent::__construct( 'Recentchanges', '' );
 		// This class is extended and therefor fallback to global state - T265310
 		$services = MediaWikiServices::getInstance();
-		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->messageCache = $messageCache ?? $services->getMessageCache();
 		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
@@ -230,7 +223,7 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 	private function needsWatchlistFeatures(): bool {
 		return !$this->including()
 			&& $this->getUser()->isRegistered()
-			&& $this->permissionManager->userHasRight( $this->getUser(), 'viewmywatchlist' );
+			&& $this->getAuthority()->isAllowed( 'viewmywatchlist' );
 	}
 
 	/**
