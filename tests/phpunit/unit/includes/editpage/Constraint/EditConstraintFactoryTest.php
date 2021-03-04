@@ -34,6 +34,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Logger\Spi;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Psr\Log\NullLogger;
 
 /**
@@ -44,6 +45,7 @@ use Psr\Log\NullLogger;
  * @covers \MediaWiki\EditPage\Constraint\EditConstraintFactory
  */
 class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
+	use MockAuthorityTrait;
 
 	public function testFactoryMethods() {
 		$options = new ServiceOptions(
@@ -64,6 +66,7 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 		);
 
 		$user = $this->createMock( User::class );
+		$performer = $this->mockAnonUltimateAuthority();
 		$title = $this->createMock( Title::class );
 		$context = $this->createMock( IContextSource::class );
 		$newContent = $this->createMock( Content::class );
@@ -71,11 +74,11 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 		// Actual tests
 		$this->assertInstanceOf(
 			ContentModelChangeConstraint::class,
-			$factory->newContentModelChangeConstraint( $user, $title, CONTENT_MODEL_WIKITEXT )
+			$factory->newContentModelChangeConstraint( $performer, $title, CONTENT_MODEL_WIKITEXT )
 		);
 		$this->assertInstanceOf(
 			CreationPermissionConstraint::class,
-			$factory->newCreationPermissionConstraint( $user, $title )
+			$factory->newCreationPermissionConstraint( $performer, $title )
 		);
 		$this->assertInstanceOf(
 			EditFilterMergedContentHookConstraint::class,
@@ -88,11 +91,11 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 		);
 		$this->assertInstanceOf(
 			EditRightConstraint::class,
-			$factory->newEditRightConstraint( $user )
+			$factory->newEditRightConstraint( $performer )
 		);
 		$this->assertInstanceOf(
 			ImageRedirectConstraint::class,
-			$factory->newImageRedirectConstraint( $newContent, $title, $user )
+			$factory->newImageRedirectConstraint( $newContent, $title, $performer )
 		);
 		$this->assertInstanceOf(
 			PageSizeConstraint::class,

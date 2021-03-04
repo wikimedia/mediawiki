@@ -27,6 +27,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use ReadOnlyMode;
@@ -111,36 +112,34 @@ class EditConstraintFactory {
 	}
 
 	/**
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param Title $title
 	 * @param string $newContentModel
 	 * @return ContentModelChangeConstraint
 	 */
 	public function newContentModelChangeConstraint(
-		User $user,
+		Authority $performer,
 		Title $title,
 		string $newContentModel
 	) : ContentModelChangeConstraint {
 		return new ContentModelChangeConstraint(
-			$this->permissionManager,
-			$user,
+			$performer,
 			$title,
 			$newContentModel
 		);
 	}
 
 	/**
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param Title $title
 	 * @return CreationPermissionConstraint
 	 */
 	public function newCreationPermissionConstraint(
-		User $user,
+		Authority $performer,
 		Title $title
 	) : CreationPermissionConstraint {
 		return new CreationPermissionConstraint(
-			$this->permissionManager,
-			$user,
+			$performer,
 			$title
 		);
 	}
@@ -168,32 +167,28 @@ class EditConstraintFactory {
 	}
 
 	/**
-	 * @param User $user
+	 * @param Authority $performer
 	 * @return EditRightConstraint
 	 */
-	public function newEditRightConstraint( User $user ) : EditRightConstraint {
-		return new EditRightConstraint(
-			$this->permissionManager,
-			$user
-		);
+	public function newEditRightConstraint( Authority $performer ) : EditRightConstraint {
+		return new EditRightConstraint( $performer );
 	}
 
 	/**
 	 * @param Content $newContent
 	 * @param LinkTarget $title
-	 * @param User $user
+	 * @param Authority $performer
 	 * @return ImageRedirectConstraint
 	 */
 	public function newImageRedirectConstraint(
 		Content $newContent,
 		LinkTarget $title,
-		User $user
+		Authority $performer
 	) : ImageRedirectConstraint {
 		return new ImageRedirectConstraint(
-			$this->permissionManager,
 			$newContent,
 			$title,
-			$user
+			$performer
 		);
 	}
 

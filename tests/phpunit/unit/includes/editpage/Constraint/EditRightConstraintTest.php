@@ -20,7 +20,8 @@
 
 use MediaWiki\EditPage\Constraint\EditRightConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * Tests the EditRightConstraint
@@ -31,46 +32,34 @@ use MediaWiki\Permissions\PermissionManager;
  */
 class EditRightConstraintTest extends MediaWikiUnitTestCase {
 	use EditConstraintTestTrait;
+	use MockAuthorityTrait;
 
 	public function testPass() {
-		$user = $this->createMock( User::class );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'edit' )
-			)
-			->willReturn( true );
-
-		$constraint = new EditRightConstraint( $permissionManager, $user );
+		$constraint = new EditRightConstraint(
+			$this->mockRegisteredAuthorityWithPermissions( [ 'edit' ] )
+		);
 		$this->assertConstraintPassed( $constraint );
 	}
 
 	/**
 	 * @dataProvider provideTestFailure
-	 * @param bool $isAnon
+	 * @param Authority $performer
 	 * @param int $expectedValue
 	 */
-	public function testFailure( $isAnon, $expectedValue ) {
-		$user = $this->createMock( User::class );
-		$user->method( 'isAnon' )->willReturn( $isAnon );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'edit' )
-			)
-			->willReturn( false );
-
-		$constraint = new EditRightConstraint( $permissionManager, $user );
+	public function testFailure( Authority $performer, int $expectedValue ) {
+		$constraint = new EditRightConstraint( $performer );
 		$this->assertConstraintFailed( $constraint, $expectedValue );
 	}
 
 	public function provideTestFailure() {
-		yield 'Anonymous user' => [ true, IEditConstraint::AS_READ_ONLY_PAGE_ANON ];
-		yield 'Registered user' => [ false, IEditConstraint::AS_READ_ONLY_PAGE_LOGGED ];
+		yield 'Anonymous user' => [
+			'performer' => $this->mockAnonAuthorityWithoutPermissions( [ 'edit' ] ),
+			'expectedValue' => IEditConstraint::AS_READ_ONLY_PAGE_ANON,
+		];
+		yield 'Registered user' => [
+			'performer' => $this->mockRegisteredAuthorityWithoutPermissions( [ 'edit' ] ),
+			'expectedValue' => IEditConstraint::AS_READ_ONLY_PAGE_LOGGED,
+		];
 	}
 
 }

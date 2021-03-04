@@ -20,10 +20,9 @@
 
 namespace MediaWiki\EditPage\Constraint;
 
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use StatusValue;
 use Title;
-use User;
 
 /**
  * Verify user permissions if changing content model:
@@ -36,11 +35,8 @@ use User;
  */
 class ContentModelChangeConstraint implements IEditConstraint {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
-	/** @var User */
-	private $user;
+	/** @var Authority */
+	private $performer;
 
 	/** @var Title */
 	private $title;
@@ -52,19 +48,16 @@ class ContentModelChangeConstraint implements IEditConstraint {
 	private $result;
 
 	/**
-	 * @param PermissionManager $permissionManager
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param Title $title
 	 * @param string $newContentModel
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
-		User $user,
+		Authority $performer,
 		Title $title,
 		string $newContentModel
 	) {
-		$this->permissionManager = $permissionManager;
-		$this->user = $user;
+		$this->performer = $performer;
 		$this->title = $title;
 		$this->newContentModel = $newContentModel;
 	}
@@ -76,7 +69,7 @@ class ContentModelChangeConstraint implements IEditConstraint {
 			return self::CONSTRAINT_PASSED;
 		}
 
-		if ( !$this->permissionManager->userHasRight( $this->user, 'editcontentmodel' ) ) {
+		if ( !$this->performer->isAllowed( 'editcontentmodel' ) ) {
 			$this->result = self::CONSTRAINT_FAILED;
 			return self::CONSTRAINT_FAILED;
 		}
@@ -85,15 +78,14 @@ class ContentModelChangeConstraint implements IEditConstraint {
 		$titleWithNewContentModel = clone $this->title;
 		$titleWithNewContentModel->setContentModel( $this->newContentModel );
 
-		$canEditModel = $this->permissionManager->userCan(
+		$canEditModel = $this->performer->authorizeWrite(
 			'editcontentmodel',
-			$this->user,
 			$titleWithNewContentModel
 		);
 
 		if (
 			!$canEditModel
-			|| !$this->permissionManager->userCan( 'edit', $this->user, $titleWithNewContentModel )
+			|| !$this->performer->authorizeWrite( 'edit', $titleWithNewContentModel )
 		) {
 			$this->result = self::CONSTRAINT_FAILED;
 			return self::CONSTRAINT_FAILED;

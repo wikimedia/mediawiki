@@ -22,9 +22,8 @@ namespace MediaWiki\EditPage\Constraint;
 
 use Content;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use StatusValue;
-use User;
 
 /**
  * Verify user permissions:
@@ -36,44 +35,38 @@ use User;
  */
 class ImageRedirectConstraint implements IEditConstraint {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var Content */
 	private $newContent;
 
 	/** @var LinkTarget */
 	private $title;
 
-	/** @var User */
-	private $user;
+	/** @var Authority */
+	private $performer;
 
 	/** @var string|null */
 	private $result;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param Content $newContent
 	 * @param LinkTarget $title
-	 * @param User $user
+	 * @param Authority $performer
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		Content $newContent,
 		LinkTarget $title,
-		User $user
+		Authority $performer
 	) {
-		$this->permissionManager = $permissionManager;
 		$this->newContent = $newContent;
 		$this->title = $title;
-		$this->user = $user;
+		$this->performer = $performer;
 	}
 
 	public function checkConstraint() : string {
 		// Check isn't simple enough to just repeat when getting the status
 		if ( $this->title->getNamespace() === NS_FILE &&
 			$this->newContent->isRedirect() &&
-			!$this->permissionManager->userHasRight( $this->user, 'upload' )
+			!$this->performer->isAllowed( 'upload' )
 		) {
 			$this->result = self::CONSTRAINT_FAILED;
 			return self::CONSTRAINT_FAILED;
@@ -87,9 +80,9 @@ class ImageRedirectConstraint implements IEditConstraint {
 		$statusValue = StatusValue::newGood();
 
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			$errorCode = $this->user->isAnon() ?
-				self::AS_IMAGE_REDIRECT_ANON :
-				self::AS_IMAGE_REDIRECT_LOGGED;
+			$errorCode = $this->performer->getPerformer()->isRegistered() ?
+				self::AS_IMAGE_REDIRECT_LOGGED :
+				self::AS_IMAGE_REDIRECT_ANON;
 			$statusValue->setResult( false, $errorCode );
 		}
 
