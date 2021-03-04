@@ -335,7 +335,7 @@ class ChangeTags {
 	 * 'change_tag' when adding tags
 	 * @param RecentChange|null $rc Recent change being tagged, in case the tagging accompanies
 	 * the action
-	 * @param User|null $user Tagging user, in case the tagging is subsequent to the tagged action
+	 * @param UserIdentity|null $user Tagging user, in case the tagging is subsequent to the tagged action
 	 *
 	 * @throws MWException When $rc_id, $rev_id and $log_id are all null
 	 * @return array Index 0 is an array of tags actually added, index 1 is an
@@ -346,7 +346,7 @@ class ChangeTags {
 	 */
 	public static function updateTags( $tagsToAdd, $tagsToRemove, &$rc_id = null,
 		&$rev_id = null, &$log_id = null, $params = null, RecentChange $rc = null,
-		User $user = null
+		UserIdentity $user = null
 	) {
 		$tagsToAdd = array_filter( (array)$tagsToAdd ); // Make sure we're submitting all tags...
 		$tagsToRemove = array_filter( (array)$tagsToRemove );
@@ -505,8 +505,9 @@ class ChangeTags {
 			}
 		}
 
+		$userObj = $user ? MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user ) : null;
 		Hooks::runner()->onChangeTagsAfterUpdateTags( $tagsToAdd, $tagsToRemove, $prevTags,
-			$rc_id, $rev_id, $log_id, $params, $rc, $user );
+			$rc_id, $rev_id, $log_id, $params, $rc, $userObj );
 
 		return [ $tagsToAdd, $tagsToRemove, $prevTags ];
 	}
