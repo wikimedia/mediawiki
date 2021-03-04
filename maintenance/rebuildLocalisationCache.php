@@ -57,7 +57,10 @@ class RebuildLocalisationCache extends Maintenance {
 			true
 		);
 		$this->addOption(
-			'no-clear-message-blob-store', "Don't clear the MessageBlobStore global cache" );
+			'offline',
+			'Do not perform database dependent tasks such as clearing of the MessageBlogStore ' .
+			'cache. This option may not be used with the LCStoreDB store class.'
+		);
 	}
 
 	public function finalSetup() {
@@ -98,6 +101,12 @@ class RebuildLocalisationCache extends Maintenance {
 		if ( $this->hasOption( 'store-class' ) ) {
 			$conf['storeClass'] = $this->getOption( 'store-class' );
 		}
+
+		// Use of LCStoreDB prohibits us from functioning offline
+		if ( $conf['storeClass'] == 'LCStoreDB' && $this->hasOption( 'offline' ) ) {
+			$this->fatalError( 'LCStoreDB cannot function in offline mode.' );
+		}
+
 		// XXX Copy-pasted from ServiceWiring.php. Do we need a factory for this one caller?
 		$services = MediaWikiServices::getInstance();
 		$lc = new LocalisationCacheBulkLoad(
@@ -108,7 +117,7 @@ class RebuildLocalisationCache extends Maintenance {
 			),
 			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
 			LoggerFactory::getInstance( 'localisation' ),
-			$this->hasOption( 'no-clear-message-blob-store' ) ? [] :
+			$this->hasOption( 'offline' ) ? [] :
 				[ static function () use ( $services ) {
 					MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
 				} ],
@@ -207,6 +216,19 @@ class RebuildLocalisationCache extends Maintenance {
 		}
 
 		return $numRebuilt;
+	}
+
+	/**
+	 * Database access is not required if the 'offline' option is passed.
+	 *
+	 * @return int DB constant
+	 */
+	public function getDbType() {
+		if ( $this->hasOption( 'offline' ) ) {
+			return Maintenance::DB_NONE;
+		}
+
+		return parent::getDbType();
 	}
 
 	/**
