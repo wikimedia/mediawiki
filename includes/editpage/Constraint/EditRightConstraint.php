@@ -63,7 +63,7 @@ class EditRightConstraint implements IEditConstraint {
 		$statusValue = StatusValue::newGood();
 
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			if ( !$this->performer->getPerformer()->isRegistered() ) {
+			if ( !$this->performer->getUser()->isRegistered() ) {
 				$statusValue->setResult( false, self::AS_READ_ONLY_PAGE_ANON );
 			} else {
 				$statusValue->fatal( 'readonlytext' );

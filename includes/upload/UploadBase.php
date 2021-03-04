@@ -2041,7 +2041,7 @@ abstract class UploadBase {
 
 		$img->load();
 
-		return $performer->getPerformer()->getId() == $img->getUser( 'id' );
+		return $performer->getUser()->getId() == $img->getUser( 'id' );
 	}
 
 	/**

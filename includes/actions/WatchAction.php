@@ -251,13 +251,13 @@ class WatchAction extends FormAction {
 		string $expiry = null
 	) {
 		// User must be registered, and either changing the watch state or at least the expiry.
-		if ( !$performer->getPerformer()->isRegistered() ) {
+		if ( !$performer->getUser()->isRegistered() ) {
 			return Status::newGood();
 		}
 
 		// Only run doWatch() or doUnwatch() if there's been a change in the watched status.
 		$oldWatchedItem = MediaWikiServices::getInstance()->getWatchedItemStore()
-			->getWatchedItem( $performer->getPerformer(), $title );
+			->getWatchedItem( $performer->getUser(), $title );
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
 		if ( $oldWatchedItem && $expiry !== null ) {
 			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.

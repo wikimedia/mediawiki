@@ -684,7 +684,7 @@ class ChangeTags {
 
 			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-update-blocked', $performer->getPerformer()->getName() );
+				return Status::newFatal( 'tags-update-blocked', $performer->getUser()->getName() );
 			}
 		}
 
@@ -789,7 +789,7 @@ class ChangeTags {
 
 		// log it
 		$logEntry = new ManualLogEntry( 'tag', 'update' );
-		$logEntry->setPerformer( $performer->getPerformer() );
+		$logEntry->setPerformer( $performer->getUser() );
 		$logEntry->setComment( $reason );
 
 		// find the appropriate target page
@@ -1184,7 +1184,7 @@ class ChangeTags {
 		self::defineTag( $tag );
 
 		// log it
-		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $performer->getPerformer(),
+		$logId = self::logTagManagementAction( 'activate', $tag, $reason, $performer->getUser(),
 			null, $logEntryTags );
 
 		return Status::newGood( $logId );
@@ -1206,7 +1206,7 @@ class ChangeTags {
 			}
 			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-manage-blocked', $performer->getPerformer()->getName() );
+				return Status::newFatal( 'tags-manage-blocked', $performer->getUser()->getName() );
 			}
 		}
 
@@ -1250,7 +1250,7 @@ class ChangeTags {
 
 		// log it
 		$logId = self::logTagManagementAction( 'deactivate', $tag, $reason,
-			$performer->getPerformer(), null, $logEntryTags );
+			$performer->getUser(), null, $logEntryTags );
 
 		return Status::newGood( $logId );
 	}
@@ -1306,7 +1306,7 @@ class ChangeTags {
 			}
 			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-manage-blocked', $performer->getPerformer()->getName() );
+				return Status::newFatal( 'tags-manage-blocked', $performer->getUser()->getName() );
 			}
 		}
 
@@ -1361,7 +1361,7 @@ class ChangeTags {
 
 		// log it
 		$logId = self::logTagManagementAction( 'create', $tag, $reason,
-			$performer->getPerformer(), null, $logEntryTags );
+			$performer->getUser(), null, $logEntryTags );
 
 		return Status::newGood( $logId );
 	}
@@ -1496,7 +1496,7 @@ class ChangeTags {
 		}
 
 		// log it
-		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $performer->getPerformer(),
+		$logId = self::logTagManagementAction( 'delete', $tag, $reason, $performer->getUser(),
 			$hitcount, $logEntryTags );
 
 		$deleteResult->value = $logId;

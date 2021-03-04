@@ -71,17 +71,17 @@ trait MockAuthorityTrait {
 	}
 
 	/**
-	 * Create a mock Authority for a $performer with $permissions.
+	 * Create a mock Authority for a $user with $permissions.
 	 *
-	 * @param UserIdentity $performer
+	 * @param UserIdentity $user
 	 * @param array $permissions
 	 * @return Authority
 	 */
 	private function mockUserAuthorityWithPermissions(
-		UserIdentity $performer,
+		UserIdentity $user,
 		array $permissions
 	): Authority {
-		return new SimpleAuthority( $performer, $permissions );
+		return new SimpleAuthority( $user, $permissions );
 	}
 
 	/**
@@ -110,16 +110,16 @@ trait MockAuthorityTrait {
 
 	/**
 	 * Create a mock Authority for a $user with all but $permissions
-	 * @param UserIdentity $performer
+	 * @param UserIdentity $user
 	 * @param array $permissions
 	 * @return Authority
 	 */
 	private function mockUserAuthorityWithoutPermissions(
-		UserIdentity $performer,
+		UserIdentity $user,
 		array $permissions
 	): Authority {
 		return $this->mockAuthority(
-			$performer,
+			$user,
 			function ( $permission ) use ( $permissions ) {
 				return !in_array( $permission, $permissions );
 			}
@@ -153,15 +153,15 @@ trait MockAuthorityTrait {
 	}
 
 	/**
-	 * Create mock Authority for $performer where permissions are determined by $callback.
+	 * Create mock Authority for $user where permissions are determined by $callback.
 	 *
-	 * @param UserIdentity $performer
+	 * @param UserIdentity $user
 	 * @param callable $permissionCallback ( string $permission, ?PageIdentity $page )
 	 * @return Authority
 	 */
-	private function mockAuthority( UserIdentity $performer, callable $permissionCallback ): Authority {
+	private function mockAuthority( UserIdentity $user, callable $permissionCallback ): Authority {
 		$mock = $this->createMock( Authority::class );
-		$mock->method( 'getPerformer' )->willReturn( $performer );
+		$mock->method( 'getUser' )->willReturn( $user );
 		$methods = [ 'isAllowed', 'probablyCan', 'definitelyCan', 'authorizeRead', 'authorizeWrite' ];
 		foreach ( $methods as $method ) {
 			$mock->method( $method )->willReturnCallback( $permissionCallback );
