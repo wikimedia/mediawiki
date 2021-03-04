@@ -18,3 +18,6 @@
 # Language files written automatically by TranslateWiki
 /**/i18n/**/*.json
 !/**/i18n/**/{en,qqq}.json
+
+# Default upload path
+/images/
