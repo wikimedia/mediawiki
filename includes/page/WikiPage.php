@@ -3547,7 +3547,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 			// If the content model changed during the rollback,
 			// make sure it gets logged to Special:Log/contentmodel
 			$log = new ManualLogEntry( 'contentmodel', 'change' );
-			$log->setPerformer( $performer->getPerformer() );
+			$log->setPerformer( $performer->getUser() );
 			$log->setTarget( $this->mTitle );
 			$log->setComment( $summary );
 			$log->setParameters( [

@@ -80,7 +80,7 @@ class ImageRedirectConstraint implements IEditConstraint {
 		$statusValue = StatusValue::newGood();
 
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
-			$errorCode = $this->performer->getPerformer()->isRegistered() ?
+			$errorCode = $this->performer->getUser()->isRegistered() ?
 				self::AS_IMAGE_REDIRECT_LOGGED :
 				self::AS_IMAGE_REDIRECT_ANON;
 			$statusValue->setResult( false, $errorCode );

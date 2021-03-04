@@ -37,7 +37,7 @@ interface Authority {
 	 *
 	 * @return UserIdentity
 	 */
-	public function getPerformer(): UserIdentity;
+	public function getUser(): UserIdentity;
 
 	/**
 	 * Checks whether this authority has the given permission in general.

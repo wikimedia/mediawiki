@@ -108,7 +108,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 					$this->assertSame( $target->getName(), $actualTarget->getName() );
 					$this->assertSame( $limit, $actualLimit );
 					$this->assertTrue(
-						$performer->getPerformer()->equals( $actualPerformer->getPerformer() )
+						$performer->getUser()->equals( $actualPerformer->getUser() )
 					);
 					$this->assertSame( $segment, $actualSegment );
 					$this->assertSame( $tag, $actualTag );
@@ -170,7 +170,7 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 	public function testThatParametersAreHandledCorrectlyForMeEndpoint( $queryParams ) {
 		$request = new RequestData( [ 'queryParams' => $queryParams ] );
 		$performer = $this->mockRegisteredUltimateAuthority();
-		$performingUser = $performer->getPerformer();
+		$performingUser = $performer->getUser();
 		$validatedParams = [
 			'user' => null,
 			'limit' => $queryParams['limit'] ?? self::DEFAULT_LIMIT,

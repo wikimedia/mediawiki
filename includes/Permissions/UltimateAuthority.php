@@ -48,7 +48,7 @@ class UltimateAuthority implements Authority {
 	 *
 	 * @return UserIdentity
 	 */
-	public function getPerformer(): UserIdentity {
+	public function getUser(): UserIdentity {
 		return $this->actor;
 	}
 
