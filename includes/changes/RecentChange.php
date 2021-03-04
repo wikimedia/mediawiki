@@ -21,6 +21,8 @@
  */
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
@@ -536,13 +538,13 @@ class RecentChange implements Taggable {
 	 *
 	 * NOTE: Can also return 'rcpatroldisabled', 'hookaborted' and
 	 * 'markedaspatrollederror-noautopatrol' as errors
-	 * @param User $user User object doing the action
+	 * @param Authority $performer User object doing the action
 	 * @param bool $auto For automatic patrol
 	 * @param string|string[]|null $tags Change tags to add to the patrol log entry
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return array[] Array of permissions errors, see PermissionManager::getPermissionErrors()
 	 */
-	public function doMarkPatrolled( User $user, $auto = false, $tags = null ) {
+	public function doMarkPatrolled( Authority $performer, $auto = false, $tags = null ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
 
 		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
@@ -554,34 +556,30 @@ class RecentChange implements Taggable {
 			$tags = [ $tags ];
 		}
 
-		$errors = [];
+		$status = PermissionStatus::newEmpty();
 		// If recentchanges patrol is disabled, only new pages or new file versions
 		// can be patrolled, provided the appropriate config variable is set
 		if ( !$wgUseRCPatrol && ( !$wgUseNPPatrol || $this->getAttribute( 'rc_type' ) != RC_NEW ) &&
 			( !$wgUseFilePatrol || !( $this->getAttribute( 'rc_type' ) == RC_LOG &&
 			$this->getAttribute( 'rc_log_type' ) == 'upload' ) ) ) {
-			$errors[] = [ 'rcpatroldisabled' ];
+			$status->fatal( 'rcpatroldisabled' );
 		}
 		// Automatic patrol needs "autopatrol", ordinary patrol needs "patrol"
-		$right = $auto ? 'autopatrol' : 'patrol';
-		$errors = array_merge(
-			$errors,
-			$permManager->getPermissionErrors( $right, $user, $this->getTitle() )
-		);
+		$performer->authorizeWrite( $auto ? 'autopatrol' : 'patrol', $this->getTitle(), $status );
+		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 		if ( !Hooks::runner()->onMarkPatrolled(
 			$this->getAttribute( 'rc_id' ), $user, false, $auto, $tags )
 		) {
-			$errors[] = [ 'hookaborted' ];
+			$status->fatal( 'hookaborted' );
 		}
-		// Users without the 'autopatrol' right can't patrol their
-		// own revisions
-		if ( $user->getName() === $this->getAttribute( 'rc_user_text' ) &&
-			!$permManager->userHasRight( $user, 'autopatrol' )
+		// Users without the 'autopatrol' right can't patrol their own revisions
+		if ( $performer->getPerformer()->getName() === $this->getAttribute( 'rc_user_text' ) &&
+			!$performer->isAllowed( 'autopatrol' )
 		) {
-			$errors[] = [ 'markedaspatrollederror-noautopatrol' ];
+			$status->fatal( 'markedaspatrollederror-noautopatrol' );
 		}
-		if ( $errors ) {
-			return $errors;
+		if ( !$status->isGood() ) {
+			return $status->toLegacyErrorArray();
 		}
 		// If the change was patrolled already, do nothing
 		if ( $this->getAttribute( 'rc_patrolled' ) ) {
@@ -590,7 +588,7 @@ class RecentChange implements Taggable {
 		// Actually set the 'patrolled' flag in RC
 		$this->reallyMarkPatrolled();
 		// Log this patrol event
-		PatrolLog::record( $this, $auto, $user, $tags );
+		PatrolLog::record( $this, $auto, $performer->getPerformer(), $tags );
 
 		Hooks::runner()->onMarkPatrolledComplete(
 			$this->getAttribute( 'rc_id' ), $user, false, $auto );

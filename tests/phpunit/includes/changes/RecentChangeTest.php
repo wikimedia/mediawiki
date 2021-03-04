@@ -1,11 +1,16 @@
 <?php
 
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @group Database
  */
 class RecentChangeTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
+
 	protected $title;
 	protected $target;
 	protected $user;
@@ -17,7 +22,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$this->title = Title::newFromText( 'SomeTitle' );
 		$this->target = Title::newFromText( 'TestTarget' );
-		$this->user = User::newFromName( 'UserName' );
+		$this->user = $this->getTestUser()->getUser();
 
 		$this->user_comment = '<User comment about action>';
 		$this->context = RequestContext::newExtraneousContext( $this->title );
@@ -208,5 +213,108 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertEquals( $isHidden, $rc->getParam( 'hidden-cat' ) );
+	}
+
+	private function getDummyEditRecentChange(): RecentChange {
+		return RecentChange::notifyEdit(
+			MWTimestamp::now(),
+			$this->title,
+			false,
+			$this->user,
+			$this->user_comment,
+			0,
+			MWTimestamp::now(),
+			false
+		);
+	}
+
+	public function provideDoMarkPatrolledPermissions() {
+		yield 'auto, no autopatrol' => [
+			'lackingPermissions' => [ 'autopatrol' ],
+			'auto' => true,
+			'expectedError' => 'missing-autopatrol'
+		];
+		yield 'no patrol' => [
+			'lackingPermissions' => [ 'patrol' ],
+			'auto' => false,
+			'expectedError' => 'missing-patrol'
+		];
+	}
+
+	/**
+	 * @dataProvider provideDoMarkPatrolledPermissions
+	 * @covers RecentChange::doMarkPatrolled
+	 */
+	public function testDoMarkPatrolledPermissions(
+		array $lackingPermissions,
+		bool $auto,
+		string $expectError
+	) {
+		$rc = $this->getDummyEditRecentChange();
+		$performer = $this->mockRegisteredAuthority( function (
+			string $permission,
+			PageIdentity $page,
+			PermissionStatus $status
+		) use ( $lackingPermissions ) {
+			if ( in_array( $permission, $lackingPermissions ) ) {
+				$status->fatal( "missing-$permission" );
+				return false;
+			}
+			return true;
+		} );
+		$errors = $rc->doMarkPatrolled(
+			$performer,
+			$auto
+		);
+		$this->assertContains( [ $expectError ], $errors );
+	}
+
+	/**
+	 * @covers RecentChange::doMarkPatrolled
+	 */
+	public function testDoMarkPatrolledPermissions_Hook() {
+		$rc = $this->getDummyEditRecentChange();
+		$this->setTemporaryHook( 'MarkPatrolled', function () {
+			return false;
+		} );
+		$errors = $rc->doMarkPatrolled( $this->mockRegisteredUltimateAuthority() );
+		$this->assertContains( [ 'hookaborted' ], $errors );
+	}
+
+	/**
+	 * @covers RecentChange::doMarkPatrolled
+	 */
+	public function testDoMarkPatrolledPermissions_Self() {
+		$rc = $this->getDummyEditRecentChange();
+		$errors = $rc->doMarkPatrolled(
+			$this->mockUserAuthorityWithoutPermissions( $this->user, [ 'autopatrol' ] )
+		);
+		$this->assertContains( [ 'markedaspatrollederror-noautopatrol' ], $errors );
+	}
+
+	/**
+	 * @covers RecentChange::doMarkPatrolled
+	 */
+	public function testDoMarkPatrolledPermissions_NoRcPatrol() {
+		$this->setMwGlobals( [
+			'wgUseRCPatrol' => false
+		] );
+		$rc = $this->getDummyEditRecentChange();
+		$errors = $rc->doMarkPatrolled( $this->mockRegisteredUltimateAuthority() );
+		$this->assertContains( [ 'rcpatroldisabled' ], $errors );
+	}
+
+	/**
+	 * @covers RecentChange::doMarkPatrolled
+	 */
+	public function testDoMarkPatrolled() {
+		$rc = $this->getDummyEditRecentChange();
+		$errors = $rc->doMarkPatrolled(
+			$this->mockUserAuthorityWithPermissions( $this->user, [ 'patrol', 'autopatrol' ] )
+		);
+		$this->assertEmpty( $errors );
+
+		$reloadedRC = RecentChange::newFromId( $rc->getAttribute( 'rc_id' ) );
+		$this->assertSame( '1', $reloadedRC->getAttribute( 'rc_patrolled' ) );
 	}
 }
