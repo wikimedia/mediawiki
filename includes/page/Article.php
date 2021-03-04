@@ -1905,7 +1905,7 @@ class Article implements Page {
 
 			$this->doDelete( $reason, $suppress );
 
-			WatchAction::doWatchOrUnwatch( $request->getCheck( 'wpWatch' ), $title, $user );
+			WatchAction::doWatchOrUnwatch( $request->getCheck( 'wpWatch' ), $title, $context->getAuthority() );
 
 			return;
 		}

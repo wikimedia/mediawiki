@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -150,13 +151,13 @@ trait ApiWatchlistTrait {
 	 *
 	 * @param WatchedItemStoreInterface $store
 	 * @param Title $title
-	 * @param User $user The user to get the expiry for.
+	 * @param UserIdentity $user The user to get the expiry for.
 	 * @return string|null
 	 */
 	protected function getWatchlistExpiry(
 		WatchedItemStoreInterface $store,
 		Title $title,
-		User $user
+		UserIdentity $user
 	): ?string {
 		$watchedItem = $store->getWatchedItem( $user, $title );
 
