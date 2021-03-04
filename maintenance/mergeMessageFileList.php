@@ -121,6 +121,15 @@ class MergeMessageFileList extends Maintenance {
 	}
 
 	/**
+	 * Database access is not needed.
+	 *
+	 * @return int DB constant
+	 */
+	public function getDbType() {
+		return Maintenance::DB_NONE;
+	}
+
+	/**
 	 * @param string $fileName
 	 * @return array List of absolute extension paths
 	 */
