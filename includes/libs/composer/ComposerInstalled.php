@@ -25,8 +25,11 @@ class ComposerInstalled {
 	 * @return array[]
 	 */
 	public function getInstalledDependencies() {
+		// Composer version 2 provides the list of installed packages under the 'packages' key.
+		$contents = $this->contents['packages'] ?? $this->contents;
+
 		$deps = [];
-		foreach ( $this->contents as $installed ) {
+		foreach ( $contents as $installed ) {
 			$deps[$installed['name']] = [
 				'version' => ComposerJson::normalizeVersion( $installed['version'] ),
 				'type' => $installed['type'],
