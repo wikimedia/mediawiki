@@ -981,6 +981,8 @@
 	"rcfilters-legend-heading": "<strong>ليستة الاختصارات:</strong>",
 	"rcfilters-other-review-tools": "ادوات مراجعه تانيه",
 	"rcfilters-activefilters": "الفلاتر المتنشطه",
+	"rcfilters-advancedfilters": "فلاتر متقدمه",
+	"rcfilters-quickfilters": "فلاتر متسيفه",
 	"rcfilters-savedqueries-defaultlabel": "فلاتر متسيفه",
 	"rcfilters-search-placeholder": "فلتر التغييرات (استخدم الليسته أو دور عن اسم الفلتر)",
 	"rcfilters-search-placeholder-mobile": "فلاتر",
