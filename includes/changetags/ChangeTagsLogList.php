@@ -19,6 +19,7 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -68,15 +69,15 @@ class ChangeTagsLogList extends ChangeTagsList {
 	 * @param string[] $tagsToRemove
 	 * @param string|null $params
 	 * @param string $reason
-	 * @param User $user
+	 * @param Authority $performer
 	 * @return Status
 	 */
-	public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params, $reason, $user ) {
+	public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params, $reason, Authority $performer ) {
 		$status = Status::newGood();
 		for ( $this->reset(); $this->current(); $this->next() ) {
 			$item = $this->current();
 			$status = ChangeTags::updateTagsWithChecks( $tagsToAdd, $tagsToRemove,
-				null, null, $item->getId(), $params, $reason, $user );
+				null, null, $item->getId(), $params, $reason, $performer );
 			// Should only fail on second and subsequent times if the user trips
 			// the rate limiter
 			if ( !$status->isOK() ) {

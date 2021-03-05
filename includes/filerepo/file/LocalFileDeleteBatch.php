@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Helper class for file deletion
@@ -50,18 +51,18 @@ class LocalFileDeleteBatch {
 	/** @var Status */
 	private $status;
 
-	/** @var User */
+	/** @var UserIdentity */
 	private $user;
 
 	/**
 	 * @param File $file
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $reason
 	 * @param bool $suppress
 	 */
 	public function __construct(
 		File $file,
-		User $user,
+		UserIdentity $user,
 		$reason = '',
 		$suppress = false
 	) {
