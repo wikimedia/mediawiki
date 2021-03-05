@@ -437,42 +437,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	protected function doPagelinksUpdate() {
-		if ( $this->db->tableExists( 'pagelinks', __METHOD__ ) ) {
-			$this->output( "...already have pagelinks table.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-pagelinks.sql',
-			false,
-			'Converting links and brokenlinks tables to pagelinks'
-		);
-
-		foreach (
-			MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces() as $ns => $name
-		) {
-			if ( $ns == 0 ) {
-				continue;
-			}
-
-			$this->output( "Cleaning up broken links for namespace $ns... " );
-			$this->db->update( 'pagelinks',
-				[
-					'pl_namespace' => $ns,
-					"pl_title = TRIM(LEADING {$this->db->addQuotes( "$name:" )} FROM pl_title)",
-				],
-				[
-					'pl_namespace' => 0,
-					'pl_title' . $this->db->buildLike( "$name:", $this->db->anyString() ),
-				],
-				__METHOD__
-			);
-			$this->output( "done.\n" );
-		}
-	}
-
 	protected function doUserUniqueUpdate() {
 		if ( !$this->doTable( 'user' ) ) {
 			return true;
