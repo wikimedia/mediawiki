@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 
 class RCCacheEntryFactory {
@@ -100,12 +101,12 @@ class RCCacheEntryFactory {
 
 	/**
 	 * @param RecentChange $cacheEntry
-	 * @param User $user
+	 * @param Authority $performer
 	 *
 	 * @return bool
 	 */
-	private function showDiffLinks( RecentChange $cacheEntry, User $user ) {
-		return ChangesList::userCan( $cacheEntry, RevisionRecord::DELETED_TEXT, $user );
+	private function showDiffLinks( RecentChange $cacheEntry, Authority $performer ) {
+		return ChangesList::userCan( $cacheEntry, RevisionRecord::DELETED_TEXT, $performer );
 	}
 
 	/**
