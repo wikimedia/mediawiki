@@ -437,24 +437,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	protected function doUserUniqueUpdate() {
-		if ( !$this->doTable( 'user' ) ) {
-			return true;
-		}
-
-		$duper = new UserDupes( $this->db, [ $this, 'output' ] );
-		if ( $duper->hasUniqueIndex() ) {
-			$this->output( "...already have unique user_name index.\n" );
-
-			return;
-		}
-
-		if ( !$duper->clearDupes() ) {
-			$this->output( "WARNING: This next step will probably fail due to unfixed duplicates...\n" );
-		}
-		$this->applyPatch( 'patch-user_nameindex.sql', false, "Adding unique index on user_name" );
-	}
-
 	protected function doUserGroupsUpdate() {
 		if ( !$this->doTable( 'user_groups' ) ) {
 			return true;
