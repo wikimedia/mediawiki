@@ -1413,3 +1413,7 @@
 	url = https://github.com/miraheze/GlobalNewFiles
 	branch = master
 	ignore = dirty
+[submodule "skins/HasSomeColours"]
+	path = skins/HasSomeColours
+	url = https://github.com/wikimedia/mediawiki-skins-HasSomeColours
+	branch = REL1_35
