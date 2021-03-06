@@ -61,6 +61,7 @@ $namespaceAliases = [
 	'Gambar_Pembicaraan'    => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
 	'redirect'                  => [ '0', '#PUPINAH', '#ALIH', '#REDIRECT' ],
 ];

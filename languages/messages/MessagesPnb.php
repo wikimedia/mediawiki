@@ -55,6 +55,7 @@ $namespaceAliases = [
 	'تصویر' => NS_FILE,
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
 	'redirect' => [ '0', '#مڑجوڑ', '#REDIRECT' ],
 ];

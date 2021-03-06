@@ -135,14 +135,15 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'అంతరవికీలేకుండా' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#దారిమార్పు', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__విషయసూచికవద్దు__', '__NOTOC__' ],
-	'toc'                       => [ '0', '__విషయసూచిక__', '__TOC__' ],
-	'pagename'                  => [ '1', 'పేజీపేరు', 'PAGENAME' ],
-	'img_right'                 => [ '1', 'కుడి', 'right' ],
 	'img_left'                  => [ '1', 'ఎడమ', 'left' ],
+	'img_right'                 => [ '1', 'కుడి', 'right' ],
+	'notoc'                     => [ '0', '__విషయసూచికవద్దు__', '__NOTOC__' ],
+	'pagename'                  => [ '1', 'పేజీపేరు', 'PAGENAME' ],
+	'redirect'                  => [ '0', '#దారిమార్పు', '#REDIRECT' ],
 	'special'                   => [ '0', 'ప్రత్యేక', 'special' ],
+	'toc'                       => [ '0', '__విషయసూచిక__', '__TOC__' ],
 ];
 
 $linkTrail = "/^([\u{0C01}-\u{0C6F}]+)(.*)$/sDu";

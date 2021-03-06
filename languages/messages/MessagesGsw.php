@@ -108,6 +108,7 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'Ohni_Interwiki' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
 	'displaytitle'              => [ '1', 'SYTETITEL', 'SEITENTITEL', 'DISPLAYTITLE' ],
 ];

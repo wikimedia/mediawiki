@@ -86,6 +86,7 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'İntervikisiz' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
 	'redirect'                  => [ '0', '#YÖNNENDİRMÄKLER', '#YÖNNENDİR', '#YÖNNENDİRMÄ', '#YÖNLENDİRME', '#YÖNLENDİR', '#REDIRECT' ],
 ];
