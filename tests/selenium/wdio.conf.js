@@ -22,6 +22,12 @@ function filePath( test, screenshotPath, extension ) {
  * and <https://webdriver.io/docs/options.html>.
  */
 exports.config = {
+	// ==================
+	// Automation Protocols
+	// ==================
+	// See https://webdriver.io/docs/automationProtocols/
+	automationProtocol: 'devtools',
+
 	// ======
 	// Custom conf keys for MediaWiki
 	//
@@ -35,8 +41,6 @@ exports.config = {
 	// Runner Configuration
 	// ==================
 	runner: 'local',
-	// The standalone chromedriver uses "/wd/hub".
-	path: '/wd/hub',
 
 	// ======
 	// Sauce Labs
