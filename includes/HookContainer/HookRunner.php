@@ -4234,10 +4234,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onUserCanSendEmail( $user, &$canSend ) {
+	public function onUserCanSendEmail( $user, &$hookErr ) {
 		return $this->container->run(
 			'UserCanSendEmail',
-			[ $user, &$canSend ]
+			[ $user, &$hookErr ]
 		);
 	}
 
