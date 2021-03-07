@@ -68,6 +68,39 @@ class MutableRevisionRecord extends RevisionRecord {
 	}
 
 	/**
+	 * Returns a MutableRevisionRecord which is an updated version of $revision with $slots
+	 * added.
+	 * @param RevisionRecord $revision
+	 * @param SlotRecord[] $slots
+	 * @return MutableRevisionRecord
+	 * @since 1.36
+	 */
+	public static function newUpdatedRevisionRecord(
+		RevisionRecord $revision,
+		array $slots
+	): MutableRevisionRecord {
+		$newRevisionRecord = new MutableRevisionRecord(
+			$revision->getPage(),
+			$revision->getWikiId()
+		);
+
+		$newRevisionRecord->setId( $revision->getId( $revision->getWikiId() ) );
+		$newRevisionRecord->setPageId( $revision->getPageId( $revision->getWikiId() ) );
+		$newRevisionRecord->setParentId( $revision->getParentId( $revision->getWikiId() ) );
+		$newRevisionRecord->setUser( $revision->getUser() );
+
+		foreach ( $revision->getSlots()->getSlots() as $role => $slot ) {
+			$newRevisionRecord->setSlot( $slot );
+		}
+
+		foreach ( $slots as $role => $slot ) {
+			$newRevisionRecord->setSlot( $slot );
+		}
+
+		return $newRevisionRecord;
+	}
+
+	/**
 	 * @stable to call.
 	 *
 	 * @param PageIdentity $page The page this Revision is associated with.

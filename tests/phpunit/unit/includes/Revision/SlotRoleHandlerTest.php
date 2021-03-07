@@ -42,6 +42,21 @@ class SlotRoleHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Revision\SlotRoleHandler::__construct
+	 * @covers \MediaWiki\Revision\SlotRoleHandler::isDerived
+	 */
+	public function testDerived() {
+		$handler = new SlotRoleHandler( 'foo', 'FooModel', [ 'frob' => 'niz' ] );
+		$this->assertFalse( $handler->isDerived() );
+
+		$handler = new SlotRoleHandler( 'foo', 'FooModel', [ 'frob' => 'niz' ], false );
+		$this->assertFalse( $handler->isDerived() );
+
+		$handler = new SlotRoleHandler( 'foo', 'FooModel', [ 'frob' => 'niz' ], true );
+		$this->assertTrue( $handler->isDerived() );
+	}
+
+	/**
 	 * @covers \MediaWiki\Revision\SlotRoleHandler::isAllowedModel()
 	 */
 	public function testIsAllowedModel() {

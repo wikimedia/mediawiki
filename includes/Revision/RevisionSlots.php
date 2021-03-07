@@ -142,13 +142,13 @@ class RevisionSlots {
 	/**
 	 * Computes the total nominal size of the revision's slots, in bogo-bytes.
 	 *
-	 * @warning This is potentially expensive! It may cause all slot's content to be loaded
+	 * @warning This is potentially expensive! It may cause some slots' content to be loaded
 	 * and deserialized.
 	 *
 	 * @return int
 	 */
 	public function computeSize() {
-		return array_reduce( $this->getSlots(), static function ( $accu, SlotRecord $slot ) {
+		return array_reduce( $this->getPrimarySlots(), static function ( $accu, SlotRecord $slot ) {
 			return $accu + $slot->getSize();
 		}, 0 );
 	}
@@ -184,13 +184,13 @@ class RevisionSlots {
 	 * is that slot's hash. For consistency, the combined hash of an empty set of slots
 	 * is the hash of the empty string.
 	 *
-	 * @warning This is potentially expensive! It may cause all slot's content to be loaded
+	 * @warning This is potentially expensive! It may cause some slots' content to be loaded
 	 * and deserialized, then re-serialized and hashed.
 	 *
 	 * @return string
 	 */
 	public function computeSha1() {
-		$slots = $this->getSlots();
+		$slots = $this->getPrimarySlots();
 		ksort( $slots );
 
 		if ( empty( $slots ) ) {
@@ -234,6 +234,21 @@ class RevisionSlots {
 			$this->getSlots(),
 			static function ( SlotRecord $slot ) {
 				return $slot->isInherited();
+			}
+		);
+	}
+
+	/**
+	 * Return all primary slots (those that are not derived).
+	 *
+	 * @return SlotRecord[]
+	 * @since 1.36
+	 */
+	public function getPrimarySlots() : array {
+		return array_filter(
+			$this->getSlots(),
+			static function ( SlotRecord $slot ) {
+				return !$slot->isDerived();
 			}
 		);
 	}

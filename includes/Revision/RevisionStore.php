@@ -34,6 +34,7 @@ use DBAccessObjectUtils;
 use FallbackContent;
 use IDBAccessObject;
 use InvalidArgumentException;
+use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\HookContainer\HookContainer;
@@ -45,6 +46,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
@@ -493,6 +495,98 @@ class RevisionStore
 		}
 
 		return $rev;
+	}
+
+	/**
+	 * Update derived slots in an existing revision into the database, returning the modified
+	 * slots on success.
+	 *
+	 * @param RevisionRecord $revision After this method returns, the $revision object will be
+	 *                                 obsolete in that it does not have the new slots.
+	 * @param RevisionSlotsUpdate $revisionSlotsUpdate
+	 * @param IDatabase $dbw (master connection)
+	 *
+	 * @return SlotRecord[] the new slot records.
+	 * @internal
+	 */
+	public function updateSlotsOn(
+		RevisionRecord $revision,
+		RevisionSlotsUpdate $revisionSlotsUpdate,
+		IDatabase $dbw
+	) : array {
+		$this->checkDatabaseDomain( $dbw );
+
+		// Make sure all modified and removed slots are derived slots
+		foreach ( $revisionSlotsUpdate->getModifiedRoles() as $role ) {
+			Assert::precondition(
+				$this->slotRoleRegistry->getRoleHandler( $role )->isDerived(),
+				'Trying to modify a slot that is not derived'
+			);
+		}
+		foreach ( $revisionSlotsUpdate->getRemovedRoles() as $role ) {
+			$isDerived = $this->slotRoleRegistry->getRoleHandler( $role )->isDerived();
+			Assert::precondition(
+				$isDerived,
+				'Trying to remove a slot that is not derived'
+			);
+			throw new LogicException( 'Removing derived slots is not yet implemented. See T277394.' );
+		}
+
+		/** @var SlotRecord[] $slotRecords */
+		$slotRecords = $dbw->doAtomicSection(
+			__METHOD__,
+			function ( IDatabase $dbw, $fname ) use (
+				$revision,
+				$revisionSlotsUpdate
+			) {
+				return $this->updateSlotsInternal(
+					$revision,
+					$revisionSlotsUpdate,
+					$dbw
+				);
+			}
+		);
+
+		foreach ( $slotRecords as $role => $slot ) {
+			Assert::postcondition(
+				$slot->getContent() !== null,
+				$role . ' slot must have content'
+			);
+			Assert::postcondition(
+				$slot->hasRevision(),
+				$role . ' slot must have a revision associated'
+			);
+		}
+
+		return $slotRecords;
+	}
+
+	/**
+	 * @param RevisionRecord $revision
+	 * @param RevisionSlotsUpdate $revisionSlotsUpdate
+	 * @param IDatabase $dbw
+	 * @return SlotRecord[]
+	 */
+	private function updateSlotsInternal(
+		RevisionRecord $revision,
+		RevisionSlotsUpdate $revisionSlotsUpdate,
+		IDatabase $dbw
+	) : array {
+		$page = $revision->getPage();
+		$revId = $revision->getId( $this->wikiId );
+		$blobHints = [
+			BlobStore::PAGE_HINT => $page->getId( $this->wikiId ),
+			BlobStore::REVISION_HINT => $revId,
+			BlobStore::PARENT_HINT => $revision->getParentId( $this->wikiId ),
+		];
+
+		$newSlots = [];
+		foreach ( $revisionSlotsUpdate->getModifiedRoles() as $role ) {
+			$slot = $revisionSlotsUpdate->getModifiedSlot( $role );
+			$newSlots[$role] = $this->insertSlotOn( $dbw, $revId, $slot, $page, $blobHints );
+		}
+
+		return $newSlots;
 	}
 
 	private function insertRevisionInternal(

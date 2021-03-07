@@ -135,6 +135,18 @@ class RevisionSlotsTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Revision\RevisionSlots::getSlots
+	 */
+	public function testGetNonDerivedSlots() {
+		$mainSlot = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
+		$auxSlot = SlotRecord::newDerived( 'aux', new WikitextContent( 'B' ) );
+		$slotsArray = [ $mainSlot, $auxSlot ];
+		$slots = $this->newRevisionSlots( $slotsArray );
+
+		$this->assertEquals( [ 'main' => $mainSlot ], $slots->getPrimarySlots() );
+	}
+
+	/**
 	 * @covers \MediaWiki\Revision\RevisionSlots::getInheritedSlots
 	 */
 	public function testGetInheritedSlots() {
