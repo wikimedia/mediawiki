@@ -155,7 +155,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 
 		$sysop = static::getTestSysop()->getUser();
 		$mh->merge( $sysop );
-		$this->assertEquals( $mh->getMergedRevisionCount(), 1 );
+		$this->assertSame( 1, $mh->getMergedRevisionCount() );
 	}
 
 	/**
