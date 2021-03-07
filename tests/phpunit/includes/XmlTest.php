@@ -38,26 +38,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	/**
-	 * @covers Xml::expandAttributes
-	 */
-	public function testExpandAttributes() {
-		$this->assertNull( Xml::expandAttributes( null ),
-			'Converting a null list of attributes'
-		);
-		$this->assertSame( '', Xml::expandAttributes( [] ),
-			'Converting an empty list of attributes'
-		);
-	}
-
-	/**
-	 * @covers Xml::expandAttributes
-	 */
-	public function testExpandAttributesException() {
-		$this->expectException( MWException::class );
-		Xml::expandAttributes( 'string' );
-	}
-
 	public function provideElement() {
 		// $expect, $element, $attribs, $contents
 		yield 'Opening element with no attributes' => [ '<element>', 'element', null, null ];
