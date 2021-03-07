@@ -93,6 +93,9 @@ this is no longer recommended and the option has been removed.
   BoxedCommand. A BoxedCommand object can be obtained with
   MediaWikiServices::getInstance()->getCommandFactory()->createBoxed().
   (T260330)
+* ResourceLoader modules can now mark themselves as ES6-only by setting
+  'es6' => true in their module definition. ES6-only modules will not be
+  executed in browsers that don't support ES6, such as IE11.
 * …
 
 === External library changes in 1.36 ===

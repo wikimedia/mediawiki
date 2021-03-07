@@ -448,6 +448,20 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Whether the module requires ES6 support in the client.
+	 *
+	 * If the client does not support ES6, attempting to load a module that requires ES6 will
+	 * result in an error.
+	 *
+	 * @stable to override
+	 * @since 1.36
+	 * @return bool
+	 */
+	public function requiresES6() {
+		return false;
+	}
+
+	/**
 	 * Get the indirect dependencies for this module persuant to the skin/language context
 	 *
 	 * These are only image files referenced by the module's stylesheet
