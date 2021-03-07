@@ -557,6 +557,8 @@ because of Phabricator reports.
 * WatchedItem::getUser hard-deprecated in favor of ::getUserIdentity since 1.36
 * LogEntry::getPerformer and its implementations have been hard-deprecated in
   favor of ::getPerformerIdentity
+* AuthManager::singleton(), deprecated in 1.35, is hard deprecated. Use
+  MediaWikiServices::getAuthManager() instead.
 * …
 
 === Other changes in 1.36 ===
