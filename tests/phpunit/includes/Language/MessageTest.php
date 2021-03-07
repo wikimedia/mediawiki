@@ -203,65 +203,46 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame( count( $expected ) > 1, $msg->isMultiKey() );
 	}
 
-	public function testWfMessage() {
-		$this->assertInstanceOf( Message::class, wfMessage( 'mainpage' ) );
-		$this->assertInstanceOf( Message::class, wfMessage( 'i-dont-exist-evar' ) );
+	public static function provideExampleKeys() {
+		// used for a few different tests. Parameters are $key, $exists
+		yield 'mainpage' => [ 'mainpage', true ];
+		yield 'i-dont-exist-evar' => [ 'i-dont-exist-evar', false ];
 	}
 
-	public function testNewFromKey() {
-		$this->assertInstanceOf( Message::class, Message::newFromKey( 'mainpage' ) );
-		$this->assertInstanceOf( Message::class, Message::newFromKey( 'i-dont-exist-evar' ) );
+	/** @dataProvider provideExampleKeys */
+	public function testWfMessage( $key ) {
+		$this->assertInstanceOf( Message::class, wfMessage( $key ) );
 	}
 
-	public function testWfMessageParams() {
-		$this->assertSame( 'Return to $1.', wfMessage( 'returnto' )->text() );
-		$this->assertSame( 'Return to $1.', wfMessage( 'returnto', [] )->text() );
-		$this->assertSame(
-			'Return to 1,024.',
-			wfMessage( 'returnto', Message::numParam( 1024 ) )->text()
-		);
-		$this->assertSame(
-			'Return to 1,024.',
-			wfMessage( 'returnto', [ Message::numParam( 1024 ) ] )->text()
-		);
-		$this->assertSame(
-			'You have foo (bar).',
-			wfMessage( 'new-messages', 'foo', 'bar' )->text()
-		);
-		$this->assertSame(
-			'You have foo (bar).',
-			wfMessage( 'new-messages', [ 'foo', 'bar' ] )->text()
-		);
-		$this->assertSame(
-			'You have 1,024 (bar).',
-			wfMessage(
-				'new-messages',
-				Message::numParam( 1024 ), 'bar'
-			)->text()
-		);
-		$this->assertSame(
-			'You have foo (2,048).',
-			wfMessage(
-				'new-messages',
-				'foo', Message::numParam( 2048 )
-			)->text()
-		);
-		$this->assertSame(
+	/** @dataProvider provideExampleKeys */
+	public function testNewFromKey( $key ) {
+		$this->assertInstanceOf( Message::class, Message::newFromKey( $key ) );
+	}
+
+	/** @dataProvider provideExampleKeys */
+	public function testExists( $key, $exists ) {
+		$this->assertSame( $exists, wfMessage( $key )->exists() );
+		$this->assertSame( $exists, wfMessage( $key )->params( [] )->exists() );
+		$this->assertSame( $exists, wfMessage( $key )->rawParams( 'foo', 123 )->exists() );
+	}
+
+	public static function provideWfMessageParams() {
+		yield [ 'Return to $1.', 'returnto', [] ];
+		yield [ 'Return to 1,024.', 'returnto', [ Message::numParam( 1024 ) ] ];
+		yield [ 'You have foo (bar).', 'new-messages', [ 'foo', 'bar' ] ];
+		yield [ 'You have 1,024 (bar).', 'new-messages', [ Message::numParam( 1024 ), 'bar' ] ];
+		yield [ 'You have foo (2,048).', 'new-messages', [ 'foo', Message::numParam( 2048 ) ] ];
+		yield [
 			'You have 1,024 (2,048).',
-			wfMessage(
-				'new-messages',
-				[ Message::numParam( 1024 ), Message::numParam( 2048 ) ]
-			)->text()
-		);
+			'new-messages',
+			[ Message::numParam( 1024 ), Message::numParam( 2048 ) ]
+		];
 	}
 
-	public function testExists() {
-		$this->assertTrue( wfMessage( 'mainpage' )->exists() );
-		$this->assertTrue( wfMessage( 'mainpage' )->params( [] )->exists() );
-		$this->assertTrue( wfMessage( 'mainpage' )->rawParams( 'foo', 123 )->exists() );
-		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->exists() );
-		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->params( [] )->exists() );
-		$this->assertFalse( wfMessage( 'i-dont-exist-evar' )->rawParams( 'foo', 123 )->exists() );
+	/** @dataProvider provideWfMessageParams */
+	public function testWfMessageParams( $expect, $key, $params ) {
+		$this->assertSame( $expect, wfMessage( $key, $params )->text() );
+		$this->assertSame( $expect, wfMessage( $key, ...$params )->text() );
 	}
 
 	public function testToStringKey() {
@@ -365,23 +346,15 @@ class MessageTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	public function testRawParams() {
-		$this->assertSame(
-			'(Заглавная страница)',
-			wfMessage( 'parentheses', 'Заглавная страница' )->plain()
-		);
-		$this->assertSame(
-			'(Заглавная страница $1)',
-			wfMessage( 'parentheses', 'Заглавная страница $1' )->plain()
-		);
-		$this->assertSame(
-			'(Заглавная страница)',
-			wfMessage( 'parentheses' )->rawParams( 'Заглавная страница' )->plain()
-		);
-		$this->assertSame(
-			'(Заглавная страница $1)',
-			wfMessage( 'parentheses' )->rawParams( 'Заглавная страница $1' )->plain()
-		);
+	public static function provideRawParams() {
+		yield [ '(Заглавная страница)', 'Заглавная страница' ];
+		yield [ '(Заглавная страница $1)', 'Заглавная страница $1' ];
+	}
+
+	/** @dataProvider provideRawParams */
+	public function testRawParams( $expect, $param ) {
+		$this->assertSame( $expect, wfMessage( 'parentheses', $param )->plain() );
+		$this->assertSame( $expect, wfMessage( 'parentheses' )->rawParams( $param )->plain() );
 	}
 
 	/**
@@ -717,12 +690,21 @@ class MessageTest extends MediaWikiLangTestCase {
 	}
 
 	public function testMessageAsParam() {
-		$msg = new Message( 'returnto', [
-			new Message( 'apihelp-link', [
-				'foo', new Message( 'mainpage', [],
-					$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' ) )
-			], $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' ) )
-		], $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'es' ) );
+		$languageFactory = $this->getServiceContainer()->getLanguageFactory();
+		$msg = new Message(
+			'returnto',
+			[
+				new Message(
+					'apihelp-link',
+					[
+						'foo',
+						new Message( 'mainpage', [], $languageFactory->getLanguage( 'en' ) )
+					],
+					$languageFactory->getLanguage( 'de' )
+				)
+			],
+			$languageFactory->getLanguage( 'es' )
+		);
 
 		$this->assertEquals(
 			'Volver a [[Special:ApiHelp/foo|Página principal]].',
