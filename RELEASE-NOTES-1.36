@@ -528,6 +528,8 @@ because of Phabricator reports.
 * The monolog-based logging system has dropped the Avro format. Because of this,
   the AvroFormatter class and the AvroValidator utility class have been removed
   without deprecation.
+* AbstractBlock::$mReason, deprecated in 1.34, was removed.
+  Use AbstractBlock::getReasonComment and AbstractBlock::setReason instead.
 * …
 
 === Deprecations in 1.36 ===
