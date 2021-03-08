@@ -1675,7 +1675,7 @@
 	"upload-permitted": "{{PLURAL:$2|Tip|Tipuri}} de fișiere permise: $1.",
 	"upload-preferred": "{{PLURAL:$2|Tip|Tipuri}} de fișiere preferate: $1.",
 	"upload-prohibited": "{{PLURAL:$2|Tip|Tipuri}} de fișiere interzise: $1.",
-	"uploadlogpage": "Jurnal fișiere trimise",
+	"uploadlogpage": "Jurnal încărcări",
 	"uploadlogpagetext": "Mai jos este afișată lista ultimelor fișiere trimise.\nVezi [[Special:NewFiles|galeria fișierelor noi]] pentru o mai bună vizualizare.",
 	"filename": "Nume fișier",
 	"filedesc": "Descriere fișier",

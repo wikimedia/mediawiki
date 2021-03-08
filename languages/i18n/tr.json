@@ -3130,7 +3130,7 @@
 	"pageinfo-redirects-value": "$1",
 	"pageinfo-subpages-name": "Bu sayfanın alt sayfa sayısı",
 	"pageinfo-subpages-value": "$1 ($2 yönlendirme; $3 yönlendirme olmayan)",
-	"pageinfo-firstuser": "Sayfa oluşturucu",
+	"pageinfo-firstuser": "Sayfayı oluşturan",
 	"pageinfo-firsttime": "Sayfa oluşturulma tarihi",
 	"pageinfo-lastuser": "En son düzenleyici",
 	"pageinfo-lasttime": "Son değişiklik tarihi",
