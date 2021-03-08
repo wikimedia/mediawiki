@@ -123,7 +123,9 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$out->addParserOutputContent( $pager->getBodyOutput() );
 		} else {
 			$user = $pager->getRelevantUser();
-			$this->getSkin()->setRelevantUser( $user );
+			if ( $user ) {
+				$this->getSkin()->setRelevantUser( $user );
+			}
 			$pager->getForm();
 			$out->addParserOutputContent( $pager->getFullOutput() );
 		}

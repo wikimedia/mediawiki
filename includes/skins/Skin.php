@@ -52,6 +52,10 @@ abstract class Skin extends ContextSource {
 	 */
 	protected $options = [];
 	protected $mRelevantTitle = null;
+
+	/**
+	 * @var User|null
+	 */
 	protected $mRelevantUser = null;
 
 	/**
@@ -415,7 +419,7 @@ abstract class Skin extends ContextSource {
 	 * @see self::getRelevantUser()
 	 * @param User $u
 	 */
-	public function setRelevantUser( $u ) {
+	public function setRelevantUser( User $u ) {
 		$this->mRelevantUser = $u;
 	}
 
@@ -425,31 +429,40 @@ abstract class Skin extends ContextSource {
 	 * Special:Contributions mark the user which they are relevant to so that
 	 * things like the toolbox can display the information they usually are only
 	 * able to display on a user's userpage and talkpage.
-	 * @return User
+	 *
+	 * @return User|null Null if there's no relevant user or the viewer cannot view it.
 	 */
 	public function getRelevantUser() {
-		if ( isset( $this->mRelevantUser ) ) {
-			return $this->mRelevantUser;
-		}
-		$title = $this->getRelevantTitle();
-		if ( $title->hasSubjectNamespace( NS_USER ) ) {
-			$rootUser = $title->getRootText();
-			if ( User::isIP( $rootUser ) ) {
-				$this->mRelevantUser = User::newFromName( $rootUser, false );
-			} else {
-				$user = User::newFromName( $rootUser, false );
+		if ( $this->mRelevantUser === null ) {
+			$title = $this->getRelevantTitle();
+			if ( $title->hasSubjectNamespace( NS_USER ) ) {
+				$rootUser = $title->getRootText();
+				if ( User::isIP( $rootUser ) ) {
+					$this->mRelevantUser = User::newFromName( $rootUser, false );
+				} else {
+					$user = User::newFromName( $rootUser, false );
 
-				if ( $user ) {
-					$user->load( User::READ_NORMAL );
-
-					if ( $user->isRegistered() ) {
-						$this->mRelevantUser = $user;
+					if ( $user ) {
+						$user->load( User::READ_NORMAL );
+						$this->mRelevantUser = $user->isRegistered() ? $user : null;
 					}
 				}
 			}
-			return $this->mRelevantUser;
 		}
-		return null;
+
+		$pm = MediaWikiServices::getInstance()->getPermissionManager();
+		// The relevant user should only be set if it exists. However, if it exists but is hidden,
+		// and the viewer cannot see hidden users, this exposes the fact that the user exists;
+		// pretend like the user does not exist in such cases, by setting it to null. T120883
+		if ( $this->mRelevantUser
+			&& $this->mRelevantUser->isRegistered()
+			&& $this->mRelevantUser->isHidden()
+			&& !$pm->userHasRight( $this->getUser(), 'hideuser' )
+		) {
+			return null;
+		}
+
+		return $this->mRelevantUser;
 	}
 
 	/**
