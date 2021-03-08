@@ -56,8 +56,7 @@ class MysqlMaintenance extends Maintenance {
 			try {
 				$lb = $lbf->getExternalLB( $this->getOption( 'cluster' ) );
 			} catch ( InvalidArgumentException $e ) {
-				$this->error( "Error: invalid cluster" );
-				exit( 1 );
+				$this->fatalError( 'Error: invalid cluster' );
 			}
 		} else {
 			$lb = $lbf->getMainLB( $dbName );
@@ -78,8 +77,7 @@ class MysqlMaintenance extends Maintenance {
 				}
 			}
 			if ( $index >= $serverCount ) {
-				$this->error( "Error: Host not configured: \"$host\"" );
-				exit( 1 );
+				$this->fatalError( "Error: Host not configured: \"$host\"" );
 			}
 		} elseif ( $this->hasOption( 'write' ) ) {
 			$index = $lb->getWriterIndex();
@@ -91,18 +89,15 @@ class MysqlMaintenance extends Maintenance {
 				$index = $lb->getReaderIndex( false, $dbName );
 			}
 			if ( $index === false ) {
-				$this->error( "Error: unable to get reader index" );
-				exit( 1 );
+				$this->fatalError( 'Error: unable to get reader index' );
 			}
 		}
 
 		if ( $lb->getServerType( $index ) !== 'mysql' ) {
-			$this->error( "Error: this script only works with MySQL/MariaDB" );
-			exit( 1 );
+			$this->fatalError( 'Error: this script only works with MySQL/MariaDB' );
 		}
 
-		$status = $this->runMysql( $lb->getServerInfo( $index ), $dbName );
-		exit( $status );
+		$this->runMysql( $lb->getServerInfo( $index ), $dbName );
 	}
 
 	/**
@@ -110,8 +105,6 @@ class MysqlMaintenance extends Maintenance {
 	 *
 	 * @param array $info
 	 * @param string|false $dbName The DB name, or false to use the main wiki DB
-	 *
-	 * @return int The desired exit status
 	 */
 	private function runMysql( $info, $dbName ) {
 		// Write the password to an option file to avoid disclosing it to other
@@ -175,15 +168,15 @@ class MysqlMaintenance extends Maintenance {
 		$pipes = [];
 		$proc = proc_open( Shell::escape( $args ), $desc, $pipes );
 		if ( $proc === false ) {
-			$this->error( "Unable to execute mysql" );
-			return 1;
+			$this->fatalError( 'Unable to execute mysql' );
 		}
+
 		$ret = proc_close( $proc );
 		if ( $ret === -1 ) {
-			$this->error( "proc_close() returned -1" );
-			return 1;
+			$this->fatalError( 'proc_close() returned -1' );
 		}
-		return $ret;
+
+		exit( $ret );
 	}
 }
 

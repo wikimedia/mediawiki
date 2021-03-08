@@ -313,27 +313,4 @@ class ObjectCache {
 
 		return new EmptyBagOStuff( $params );
 	}
-
-	/**
-	 * Detects which local server cache library is present and returns a configuration for it.
-	 *
-	 * @since 1.32
-	 * @deprecated since 1.35 Use MediaWikiServices::getLocalServerObjectCache() or
-	 * ObjectCache::makeLocalServerCache() instead.
-	 * @return int|string Index to cache in $wgObjectCaches
-	 */
-	public static function detectLocalServerCache() {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		if ( function_exists( 'apcu_fetch' ) ) {
-			// Make sure the APCu methods actually store anything
-			if ( PHP_SAPI !== 'cli' || ini_get( 'apc.enable_cli' ) ) {
-				return 'apcu';
-			}
-		} elseif ( function_exists( 'wincache_ucache_get' ) ) {
-			return 'wincache';
-		}
-
-		return CACHE_NONE;
-	}
 }
