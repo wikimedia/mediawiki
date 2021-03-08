@@ -79,31 +79,14 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 			'wgRestrictionLevels' => $restrictionLevels
 		] );
 
-		$builder = new TextboxBuilder();
-		$this->assertSame( $expected, $builder->getTextboxProtectionCSSClasses(
-			$this->mockProtectedTitle( $protectionModes )
-		) );
-	}
+		$title = $this->createMock( Title::class );
+		$title->method( 'getNamespace' )->willReturn( 1 );
 
-	/**
-	 * @param string[] $methodsToReturnTrue
-	 * @return Title
-	 */
-	private function mockProtectedTitle( $methodsToReturnTrue ) {
-		$title = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$title->expects( $this->any() )
-			->method( 'getNamespace' )
-			->will( $this->returnValue( 1 ) );
-
-		foreach ( $methodsToReturnTrue as $method ) {
-			$title->expects( $this->any() )
-				->method( $method )
-				->will( $this->returnValue( true ) );
+		foreach ( $protectionModes as $method ) {
+			$title->method( $method )->willReturn( true );
 		}
 
-		return $title;
+		$builder = new TextboxBuilder();
+		$this->assertSame( $expected, $builder->getTextboxProtectionCSSClasses( $title ) );
 	}
 }
