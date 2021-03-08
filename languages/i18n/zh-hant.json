@@ -962,7 +962,7 @@
 	"revdelete-no-file": "指定的檔案不存在。",
 	"revdelete-show-file-confirm": "您是否要檢視檔案 \"<nowiki>$1</nowiki>\" 已刪除的修訂於 $2 $3?",
 	"revdelete-show-file-submit": "是",
-	"revdelete-selected-text": "已選擇 [[:$2]] 中的{{PLURAL:$1|一筆|多筆}}修訂：",
+	"revdelete-selected-text": "已選擇[[:$2]]中的{{PLURAL:$1|一筆|多筆}}修訂：",
 	"revdelete-selected-file": "已選擇 [[:$2]] 中的{{PLURAL:$1|一個|多個}}檔案版本：",
 	"logdelete-selected": "已選擇{{PLURAL:$1|一筆|多筆}}日誌活動：",
 	"revdelete-text-text": "已刪除的修訂仍會出現於頁面歷史中，但內容將不開放存取。",
