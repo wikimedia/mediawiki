@@ -463,14 +463,8 @@ class ProtectionForm {
 			}
 
 			$expiryOptions[$this->mContext->msg( 'protect-othertime-op' )->text()] = 'othertime';
-			foreach ( explode( ',', $scExpiryOptions ) as $option ) {
-				if ( strpos( $option, ":" ) === false ) {
-					$show = $value = $option;
-				} else {
-					list( $show, $value ) = explode( ":", $option );
-				}
-				$expiryOptions[$show] = htmlspecialchars( $value );
-			}
+
+			$expiryOptions = array_merge( $expiryOptions, XmlSelect::parseOptionsMessage( $scExpiryOptions ) );
 
 			# Add expiry dropdown
 			$fields["wpProtectExpirySelection-$action"] = [
