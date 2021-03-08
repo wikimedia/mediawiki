@@ -18,6 +18,7 @@ use TextContent;
 use Title;
 use TitleValue;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * @covers \MediaWiki\Revision\RevisionStoreRecord
@@ -264,17 +265,6 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$row = $protoRow;
-		$row['rev_timestamp'] = 'kittens';
-
-		yield 'bad timestamp' => [
-			$title,
-			$user,
-			$comment,
-			(object)$row,
-			$slots
-		];
-
-		$row = $protoRow;
 		$row['rev_page'] = 99;
 
 		yield 'page ID mismatch' => [
@@ -317,5 +307,22 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 	) {
 		$this->expectException( InvalidArgumentException::class );
 		new RevisionStoreRecord( $page, $user, $comment, $row, $slots, $wikiId );
+	}
+
+	public function testConstructorBadTimestamp() {
+		$row = (object)[
+			'rev_id' => 42,
+			'rev_page' => 'Foobar',
+			'rev_timestamp' => 'kittens',
+		];
+		$this->expectException( TimestampException::class );
+		new RevisionStoreRecord(
+			$this->createMock( PageIdentity::class ),
+			new UserIdentityValue( 11, 'Tester', 0 ),
+			$this->createMock( CommentStoreComment::class ),
+			$row,
+			$this->createMock( RevisionSlots::class ),
+			false
+		);
 	}
 }
