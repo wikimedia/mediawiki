@@ -23,7 +23,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
@@ -37,9 +36,6 @@ class SpecialUpload extends SpecialPage {
 	/** @var LocalRepo */
 	private $localRepo;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
@@ -48,13 +44,11 @@ class SpecialUpload extends SpecialPage {
 
 	/**
 	 * @param RepoGroup|null $repoGroup
-	 * @param PermissionManager|null $permissionManager
 	 * @param UserOptionsLookup|null $userOptionsLookup
 	 * @param NamespaceInfo|null $nsInfo
 	 */
 	public function __construct(
 		RepoGroup $repoGroup = null,
-		PermissionManager $permissionManager = null,
 		UserOptionsLookup $userOptionsLookup = null,
 		NamespaceInfo $nsInfo = null
 	) {
@@ -63,7 +57,6 @@ class SpecialUpload extends SpecialPage {
 		$services = MediaWikiServices::getInstance();
 		$repoGroup = $repoGroup ?? $services->getRepoGroup();
 		$this->localRepo = $repoGroup->getLocalRepo();
-		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 	}
@@ -303,7 +296,6 @@ class SpecialUpload extends SpecialPage {
 			],
 			$context,
 			$this->getLinkRenderer(),
-			$this->permissionManager,
 			$this->localRepo,
 			$this->getContentLanguage(),
 			$this->nsInfo
@@ -358,13 +350,13 @@ class SpecialUpload extends SpecialPage {
 		// Show a subtitle link to deleted revisions (to sysops et al only)
 		if ( $title instanceof Title ) {
 			$count = $title->getDeletedEditsCount();
-			if ( $count > 0 && $this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+			if ( $count > 0 && $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 				$restorelink = $this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
 					$this->msg( 'restorelink' )->numParams( $count )->text()
 				);
 				$link = $this->msg(
-					$this->permissionManager->userHasRight( $user, 'delete' ) ? 'thisisdeleted' : 'viewdeleted'
+					$this->getAuthority()->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted'
 				)->rawParams( $restorelink )->parseAsBlock();
 				$this->getOutput()->addHTML(
 					Html::rawElement(

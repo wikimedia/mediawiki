@@ -62,7 +62,6 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 		# Do the call, should not spurt a fatal error.
 		$special = new SpecialPreferences(
 			$services->getPreferencesFactory(),
-			$services->getPermissionManager(),
 			$services->getUserOptionsManager()
 		);
 		$special->setContext( $context );

@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -47,9 +46,6 @@ class UserrightsPage extends SpecialPage {
 	protected $mFetchedUser = null;
 	protected $isself = false;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
@@ -60,13 +56,11 @@ class UserrightsPage extends SpecialPage {
 	private $userNamePrefixSearch;
 
 	/**
-	 * @param PermissionManager|null $permissionManager
 	 * @param UserGroupManagerFactory|null $userGroupManagerFactory
 	 * @param UserNameUtils|null $userNameUtils
 	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
 	 */
 	public function __construct(
-		PermissionManager $permissionManager = null,
 		UserGroupManagerFactory $userGroupManagerFactory = null,
 		UserNameUtils $userNameUtils = null,
 		UserNamePrefixSearch $userNamePrefixSearch = null
@@ -74,7 +68,6 @@ class UserrightsPage extends SpecialPage {
 		parent::__construct( 'Userrights' );
 		$services = MediaWikiServices::getInstance();
 		// This class is extended and therefore falls back to global state - T263207
-		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
 		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
 
@@ -200,7 +193,7 @@ class UserrightsPage extends SpecialPage {
 			 * (e.g. they don't have the userrights permission), then don't
 			 * allow them to change any user rights.
 			 */
-			if ( !$this->permissionManager->userHasRight( $user, 'userrights' ) ) {
+			if ( !$this->getAuthority()->isAllowed( 'userrights' ) ) {
 				$block = $user->getBlock();
 				if ( $block && $block->isSitewide() ) {
 					throw new UserBlockedError(
@@ -565,7 +558,7 @@ class UserrightsPage extends SpecialPage {
 				$dbDomain = '';
 			} else {
 				if ( $writing &&
-					!$this->permissionManager->userHasRight( $this->getUser(), 'userrights-interwiki' )
+					!$this->getAuthority()->isAllowed( 'userrights-interwiki' )
 				) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
@@ -613,7 +606,7 @@ class UserrightsPage extends SpecialPage {
 
 		if ( $user instanceof User &&
 			$user->isHidden() &&
-			!$this->permissionManager->userHasRight( $this->getUser(), 'hideuser' )
+			!$this->getAuthority()->isAllowed( 'hideuser' )
 		) {
 			// Cannot see hidden users, pretend they don't exist
 			return Status::newFatal( 'nosuchusershort', $username );

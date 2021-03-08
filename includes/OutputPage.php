@@ -25,6 +25,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
@@ -2808,8 +2809,23 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Format permission $status obtained from Authority for display.
+	 *
+	 * @param PermissionStatus $status
+	 * @param string|null $action that was denied or null if unknown
+	 * @return string
+	 */
+	public function formatPermissionStatus( PermissionStatus $status, string $action = null ): string {
+		if ( $status->isGood() ) {
+			return '';
+		}
+		return $this->formatPermissionsErrorMessage( $status->toLegacyErrorArray(), $action );
+	}
+
+	/**
 	 * Format a list of error messages
 	 *
+	 * @deprecated since 1.36. Use ::formatPermissionStatus instead
 	 * @param array $errors Array of arrays returned by PermissionManager::getPermissionErrors
 	 * @param string|null $action Action that was denied or null if unknown
 	 * @return string The wikitext error-messages, formatted into a list.

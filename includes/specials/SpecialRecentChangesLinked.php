@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -41,7 +40,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	private $searchEngineFactory;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param MessageCache $messageCache
 	 * @param ILoadBalancer $loadBalancer
@@ -49,7 +47,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		WatchedItemStoreInterface $watchedItemStore,
 		MessageCache $messageCache,
 		ILoadBalancer $loadBalancer,
@@ -57,7 +54,6 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct(
-			$permissionManager,
 			$watchedItemStore,
 			$messageCache,
 			$loadBalancer,
