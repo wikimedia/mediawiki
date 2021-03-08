@@ -43,12 +43,6 @@ interface UserIdentity extends WikiAwareEntity {
 	public function getId( $wikiId = self::LOCAL ) : int;
 
 	/**
-	 * @param bool $wikiId
-	 * @return int
-	 */
-	public function getUserId( $wikiId = self::LOCAL ) : int;
-
-	/**
 	 * @since 1.31
 	 *
 	 * @return string The user's logical name. May be an IPv4 or IPv6 address for anonymous users.
