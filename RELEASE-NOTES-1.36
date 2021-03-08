@@ -183,6 +183,7 @@ because of Phabricator reports.
 * (T263968) Added language support for Nias (nia).
 * (T264582) Added language support for Madurese (mad).
 * (T270365) Added language support for Tyap (kcg).
+* (T276745) Added language support for Wayuu (guc).
 
 === Breaking changes in 1.36 ===
 * (T249459) wfIsBadImage(), deprecated in 1.34, has been removed.
@@ -506,7 +507,7 @@ because of Phabricator reports.
 * The following functions from the Title class have been hard deprecated:
    - getPreviousRevisionID
    - getNextRevisionID
-   - getEarliestRevTime 
+   - getEarliestRevTime
 * The following functions from the Title class have been removed:
    - countRevisionsBetween
    - getAuthorsBetween
