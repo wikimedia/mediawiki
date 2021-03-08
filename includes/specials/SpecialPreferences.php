@@ -22,7 +22,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\UserOptionsManager;
 
@@ -36,27 +35,21 @@ class SpecialPreferences extends SpecialPage {
 	/** @var PreferencesFactory */
 	private $preferencesFactory;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
 
 	/**
 	 * @param PreferencesFactory|null $preferencesFactory
-	 * @param PermissionManager|null $permissionManager
 	 * @param UserOptionsManager|null $userOptionsManager
 	 */
 	public function __construct(
 		PreferencesFactory $preferencesFactory = null,
-		PermissionManager $permissionManager = null,
 		UserOptionsManager $userOptionsManager = null
 	) {
 		parent::__construct( 'Preferences' );
 		// This class is extended and therefore falls back to global state - T265924
 		$services = MediaWikiServices::getInstance();
 		$this->preferencesFactory = $preferencesFactory ?? $services->getPreferencesFactory();
-		$this->permissionManager = $permissionManager ?? $services->getPermissionManager();
 		$this->userOptionsManager = $userOptionsManager ?? $services->getUserOptionsManager();
 	}
 
@@ -141,7 +134,7 @@ class SpecialPreferences extends SpecialPage {
 	}
 
 	protected function showResetForm() {
-		if ( !$this->permissionManager->userHasRight( $this->getUser(), 'editmyoptions' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 
@@ -158,7 +151,7 @@ class SpecialPreferences extends SpecialPage {
 	}
 
 	public function submitReset( $formData ) {
-		if ( !$this->permissionManager->userHasRight( $this->getUser(), 'editmyoptions' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'editmyoptions' ) ) {
 			throw new PermissionsError( 'editmyoptions' );
 		}
 

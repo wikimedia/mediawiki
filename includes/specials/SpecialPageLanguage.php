@@ -25,7 +25,7 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -40,9 +40,6 @@ class SpecialPageLanguage extends FormSpecialPage {
 	 */
 	private $goToUrl;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
@@ -56,21 +53,18 @@ class SpecialPageLanguage extends FormSpecialPage {
 	private $searchEngineFactory;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		IContentHandlerFactory $contentHandlerFactory,
 		LanguageNameUtils $languageNameUtils,
 		ILoadBalancer $loadBalancer,
 		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( 'PageLanguage', 'pagelang' );
-		$this->permissionManager = $permissionManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->loadBalancer = $loadBalancer;
@@ -185,11 +179,9 @@ class SpecialPageLanguage extends FormSpecialPage {
 		}
 
 		// Check permissions and make sure the user has permission to edit the page
-		$errors = $this->permissionManager->getPermissionErrors( 'edit', $this->getUser(), $title );
-
-		if ( $errors ) {
-			$out = $this->getOutput();
-			$wikitext = $out->formatPermissionsErrorMessage( $errors );
+		$status = PermissionStatus::newEmpty();
+		if ( !$this->getAuthority()->authorizeWrite( 'edit', $title, $status ) ) {
+			$wikitext = $this->getOutput()->formatPermissionStatus( $status );
 			// Hack to get our wikitext parsed
 			return Status::newFatal( new RawMessage( '$1', [ $wikitext ] ) );
 		}

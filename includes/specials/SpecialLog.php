@@ -23,7 +23,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Permissions\PermissionManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -33,9 +32,6 @@ use Wikimedia\Timestamp\TimestampException;
  * @ingroup SpecialPage
  */
 class SpecialLog extends SpecialPage {
-
-	/** @var PermissionManager */
-	private $permissionManager;
 
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
@@ -47,19 +43,16 @@ class SpecialLog extends SpecialPage {
 	private $actorMigration;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ActorMigration $actorMigration
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
 		ActorMigration $actorMigration
 	) {
 		parent::__construct( 'Log' );
-		$this->permissionManager = $permissionManager;
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->loadBalancer = $loadBalancer;
 		$this->actorMigration = $actorMigration;
@@ -125,7 +118,7 @@ class SpecialLog extends SpecialPage {
 		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );
 		} elseif ( isset( $logRestrictions[$type] )
-			&& !$this->permissionManager->userHasRight( $this->getUser(), $logRestrictions[$type] )
+			&& !$this->getAuthority()->isAllowed( $logRestrictions[$type] )
 		) {
 			throw new PermissionsError( $logRestrictions[$type] );
 		}
@@ -293,9 +286,9 @@ class SpecialLog extends SpecialPage {
 	}
 
 	private function getActionButtons( $formcontents ) {
-		$user = $this->getUser();
-		$canRevDelete = $this->permissionManager->userHasAllRights( $user, 'deletedhistory', 'deletelogentry' );
-		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
+		$canRevDelete = $this->getAuthority()
+			->isAllowedAll( 'deletedhistory', 'deletelogentry' );
+		$showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
 		# If the user doesn't have the ability to delete log entries nor edit tags,
 		# don't bother showing them the button(s).
 		if ( !$canRevDelete && !$showTagEditUI ) {
