@@ -18,12 +18,6 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 	 */
 	private $testRecentChangesHelper;
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
-
-		$this->testRecentChangesHelper = new TestRecentChangesHelper();
-	}
-
 	protected function setUp() : void {
 		parent::setUp();
 
@@ -31,6 +25,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 			'wgArticlePath' => '/wiki/$1',
 		] );
 		$this->setUserLang( 'qqx' );
+		$this->testRecentChangesHelper = new TestRecentChangesHelper();
 	}
 
 	/**

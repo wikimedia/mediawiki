@@ -13,15 +13,11 @@ use MediaWiki\Revision\SlotRecord;
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
+	protected function setUp() : void {
+		parent::setUp();
 		$this->tablesUsed = array_unique(
 			array_merge( $this->tablesUsed, [ 'watchlist', 'recentchanges', 'page' ] )
 		);
-	}
-
-	protected function setUp() : void {
-		parent::setUp();
 		self::$users['ApiQueryWatchlistIntegrationTestUser'] = $this->getMutableTestUser();
 		self::$users['ApiQueryWatchlistIntegrationTestUser2'] = $this->getMutableTestUser();
 	}

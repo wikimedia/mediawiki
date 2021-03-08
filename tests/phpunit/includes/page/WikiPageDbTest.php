@@ -19,12 +19,14 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	private $pagesToDelete;
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
+	protected function setUp() : void {
+		parent::setUp();
 
+		$this->pagesToDelete = [];
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
-			[ 'page',
+			[
+				'page',
 				'revision',
 				'redirect',
 				'archive',
@@ -47,13 +49,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				'externallinks',
 				'imagelinks',
 				'templatelinks',
-				'iwlinks' ] );
-	}
-
-	protected function setUp() : void {
-		parent::setUp();
-
-		$this->pagesToDelete = [];
+				'iwlinks'
+			]
+		);
 	}
 
 	protected function tearDown() : void {

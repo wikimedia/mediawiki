@@ -25,8 +25,8 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $testPage;
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
+	protected function setUp() : void {
+		parent::setUp();
 
 		$this->tablesUsed = array_merge( $this->tablesUsed,
 			[
@@ -55,10 +55,6 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 				'iwlinks'
 			]
 		);
-	}
-
-	protected function setUp() : void {
-		parent::setUp();
 
 		$this->mergeMwGlobalArrayValue(
 			'wgExtraNamespaces',
