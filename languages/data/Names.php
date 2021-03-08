@@ -188,6 +188,7 @@ class Names {
 		'got' => '𐌲𐌿𐍄𐌹𐍃𐌺', # Gothic
 		'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 		'gsw' => 'Alemannisch', # Alemannic
+		'guc' => 'wayuunaiki', # Wayuu
 		'gu' => 'ગુજરાતી', # Gujarati
 		'gv' => 'Gaelg', # Manx
 		'ha' => 'Hausa', # Hausa
