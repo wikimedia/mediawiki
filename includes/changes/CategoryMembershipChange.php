@@ -240,6 +240,8 @@ class CategoryMembershipChange {
 		}
 
 		$username = wfMessage( 'autochange-username' )->inContentLanguage()->text();
+
+		// TODO: use User::newSystemUser
 		$user = User::newFromName( $username );
 		# User::newFromName() can return false on a badly configured wiki.
 		if ( $user && !$user->isRegistered() ) {
