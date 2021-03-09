@@ -401,6 +401,8 @@ because of Phabricator reports.
 * Command::execute() now returns a Shellbox\Command\UnboxedResult instead of a
   MediaWiki\Shell\Result. Any type hints should be updated.
 * ObjectCache::detectLocalServerCache(), deprecated in 1.35, was removed.
+* The $wgContLang variable, deprecated in 1.32, was removed. You can instead use
+  MediaWikiServices::getInstance()->getContentLanguage().
 * …
 
 === Deprecations in 1.36 ===
