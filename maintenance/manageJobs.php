@@ -34,6 +34,7 @@ class ManageJobs extends Maintenance {
 		$this->addDescription( 'Perform administrative tasks on a job queue' );
 		$this->addOption( 'type', 'Job type', true, true );
 		$this->addOption( 'action', 'Queue operation ("delete", "repush-abandoned")', true, true );
+		$this->setBatchSize( 100 );
 	}
 
 	public function execute() {
