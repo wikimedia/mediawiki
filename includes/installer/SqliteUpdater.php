@@ -228,19 +228,6 @@ class SqliteUpdater extends DatabaseUpdater {
 		];
 	}
 
-	protected function sqliteInitialIndexes() {
-		// initial-indexes.sql fails if the indexes are already present,
-		// so we perform a quick check if our database is newer.
-		if ( $this->updateRowExists( 'initial_indexes' ) ||
-			$this->db->indexExists( 'user', 'user_name', __METHOD__ )
-		) {
-			$this->output( "...have initial indexes\n" );
-
-			return;
-		}
-		$this->applyPatch( 'initial-indexes.sql', false, "Adding initial indexes" );
-	}
-
 	protected function sqliteSetupSearchindex() {
 		$module = DatabaseSqlite::getFulltextSearchModule();
 		$fts3tTable = $this->updateRowExists( 'fts3' );
