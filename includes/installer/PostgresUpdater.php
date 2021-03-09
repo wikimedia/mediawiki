@@ -65,15 +65,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			// 1.23.9
 			[ 'rebuildTextSearch' ],
 
-			// 1.24
-			[ 'addPgField', 'page_props', 'pp_sortkey', 'float NULL' ],
-			[ 'addPgIndex', 'page_props', 'pp_propname_sortkey_page',
-					'( pp_propname, pp_sortkey, pp_page ) WHERE ( pp_sortkey IS NOT NULL )' ],
-			[ 'addPgField', 'page', 'page_lang', 'TEXT default NULL' ],
-			[ 'addPgField', 'pagelinks', 'pl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgField', 'templatelinks', 'tl_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ],
-			[ 'addPgField', 'imagelinks', 'il_from_namespace', 'INTEGER NOT NULL DEFAULT 0' ],
-
 			// **** T272199 MARKER ****
 
 			// 1.28
