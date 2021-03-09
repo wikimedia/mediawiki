@@ -419,12 +419,14 @@ class TransactionProfiler implements LoggerAwareInterface {
 			return;
 		}
 
+		$max = $this->expect[$expectation][self::FLD_LIMIT];
+		$by = $this->expect[$expectation][self::FLD_FNAME];
 		$this->logger->warning(
-			"Expectation ({measure} <= {max}) by {by} not met (actual: {actual}):\n{query}\n",
+			"Expectation ($expectation <= $max) by $by not met (actual: {actual}):\n{query}\n",
 			[
 				'measure' => $expectation,
-				'max' => $this->expect[$expectation][self::FLD_LIMIT],
-				'by' => $this->expect[$expectation][self::FLD_FNAME],
+				'max' => $max,
+				'by' => $by,
 				'actual' => $actual,
 				'query' => self::queryString( $query ),
 				'exception' => new RuntimeException()
