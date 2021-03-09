@@ -35,7 +35,7 @@
 		"ext-xmlreader": "*",
 		"guzzlehttp/guzzle": "7.2.0",
 		"liuggio/statsd-php-client": "1.0.18",
-		"oojs/oojs-ui": "0.41.1",
+		"oojs/oojs-ui": "0.41.2",
 		"pear/mail": "1.4.1",
 		"pear/mail_mime": "1.10.9",
 		"pear/net_smtp": "1.9.2",
