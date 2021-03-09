@@ -466,6 +466,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$wdb->deprecationLogger = static function ( $msg ) {
 		};
 		$wdb->currentDomain = DatabaseDomain::newUnspecified();
+		$wdb->server = 'localhost';
+
 		return $db;
 	}
 
