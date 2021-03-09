@@ -695,12 +695,6 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 // Most of the config is out, some might want to run hooks here.
 Hooks::runner()->onSetupAfterCache();
 
-/**
- * @var Language $wgContLang
- * @deprecated since 1.32, use the ContentLanguage service directly
- */
-$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
-
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
 
@@ -723,6 +717,8 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		);
 	}
 
+	$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+
 	// Initialize the session
 	try {
 		$session = MediaWiki\Session\SessionManager::getGlobalSession();
@@ -731,13 +727,15 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		// sessions tied for top priority. Report this to the user.
 		$list = [];
 		foreach ( $ex->getSessionInfos() as $info ) {
-			$list[] = $info->getProvider()->describe( $wgContLang );
+			$list[] = $info->getProvider()->describe( $contLang );
 		}
-		$list = $wgContLang->listToText( $list );
+		$list = $contLang->listToText( $list );
 		throw new HttpError( 400,
-			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $wgContLang )
+			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $contLang )
 		);
 	}
+
+	unset( $contLang );
 
 	if ( $session->isPersistent() ) {
 		$wgInitialSessionId = $session->getSessionId();

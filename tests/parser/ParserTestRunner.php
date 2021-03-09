@@ -1251,7 +1251,6 @@ class ParserTestRunner {
 		// In addition the ParserFactory needs to be recreated as well.
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 		$lang->resetNamespaces();
-		$setup['wgContLang'] = $lang;
 		$setup[] = static function () use ( $lang ) {
 			MediaWikiServices::getInstance()->disableService( 'ContentLanguage' );
 			MediaWikiServices::getInstance()->redefineService(
@@ -1310,7 +1309,6 @@ class ParserTestRunner {
 
 			// Reset context to the restored globals
 			$context->setUser( $GLOBALS['wgUser'] );
-			$context->setLanguage( $GLOBALS['wgContLang'] );
 			$context->setSkin( $oldSkin );
 			$context->setOutput( $GLOBALS['wgOut'] );
 		};
@@ -1707,7 +1705,6 @@ class ParserTestRunner {
 		if ( $services->getContentLanguage()->getCode() !== 'en' ) {
 			$setup['wgLanguageCode'] = 'en';
 			$lang = $services->getLanguageFactory()->getLanguage( 'en' );
-			$setup['wgContLang'] = $lang;
 			$setup[] = static function () use ( $lang ) {
 				$services = MediaWikiServices::getInstance();
 				$services->disableService( 'ContentLanguage' );
