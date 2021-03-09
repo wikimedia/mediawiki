@@ -3773,7 +3773,7 @@
 	"feedback-thanks-title": "Teşekkürler!",
 	"feedback-useragent": "Kullanıcı temsilcisi:",
 	"searchsuggest-search": "{{SITENAME}} üzerinde ara",
-	"searchsuggest-containing": "İçeren sayfaları arayın",
+	"searchsuggest-containing": "İçeren sayfaları ara",
 	"search-match-redirect-label": "Arama yaparken tam eşleşmelere doğrudan git",
 	"search-match-redirect-help": "Bu sayfa başlığı aradıklarınızla eşleştiğinde bir sayfaya yönlendirilmek için seçin",
 	"api-clientside-error-noconnect": "Sunucuya bağlanılamadı. Çalışan bir internet bağlantınız olduğundan emin olun ve tekrar deneyin.",
