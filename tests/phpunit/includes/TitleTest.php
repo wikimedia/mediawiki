@@ -38,6 +38,68 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers Title::newFromID
+	 * @covers Title::newFromIDs
+	 * @covers Title::newFromRow
+	 */
+	public function testNewFromIds() {
+		// First id
+		$existingPage1 = $this->getExistingTestPage( 'UTest1' );
+		$existingTitle1 = $existingPage1->getTitle();
+		$existingId1 = $existingTitle1->getId();
+
+		$this->assertGreaterThan( 0, $existingId1, 'Sanity: Existing test page should have a positive id' );
+
+		$newFromId1 = Title::newFromID( $existingId1 );
+		$this->assertInstanceOf( Title::class, $newFromId1, 'newFromID returns a title for an existing id' );
+		$this->assertTrue(
+			$newFromId1->equals( $existingTitle1 ),
+			'newFromID returns the correct title'
+		);
+
+		// Second id
+		$existingPage2 = $this->getExistingTestPage( 'UTest2' );
+		$existingTitle2 = $existingPage2->getTitle();
+		$existingId2 = $existingTitle2->getId();
+
+		$this->assertGreaterThan( 0, $existingId2, 'Sanity: Existing test page should have a positive id' );
+
+		$newFromId2 = Title::newFromID( $existingId2 );
+		$this->assertInstanceOf( Title::class, $newFromId2, 'newFromID returns a title for an existing id' );
+		$this->assertTrue(
+			$newFromId2->equals( $existingTitle2 ),
+			'newFromID returns the correct title'
+		);
+
+		// newFromIDs using both
+		$titles = Title::newFromIDs( [ $existingId1, $existingId2 ] );
+		$this->assertCount( 2, $titles );
+		$this->assertTrue(
+			$titles[0]->equals( $existingTitle1 ) &&
+				$titles[1]->equals( $existingTitle2 ),
+			'newFromIDs returns an array that matches the correct titles'
+		);
+
+		// newFromIds early return for an empty array of ids
+		$this->assertSame( [], Title::newFromIDs( [] ) );
+	}
+
+	/**
+	 * @covers Title::newFromID
+	 */
+	public function testNewFromMissingId() {
+		// Testing return of null for an id that does not exist
+		$maxPageId = (int)$this->db->selectField(
+			'page',
+			'max(page_id)',
+			'',
+			__METHOD__
+		);
+		$res = Title::newFromId( $maxPageId + 1 );
+		$this->assertNull( $res, 'newFromID returns null for missing ids' );
+	}
+
+	/**
 	 * @covers Title::legalChars
 	 */
 	public function testLegalChars() {
