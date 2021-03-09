@@ -116,7 +116,6 @@ $wgAutoloadClasses += [
 	'DummySerializeErrorContentHandler' =>
 		"$testDir/phpunit/mocks/content/DummySerializeErrorContentHandler.php",
 	'ContentHandlerTest' => "$testDir/phpunit/includes/content/ContentHandlerTest.php",
-	'JavaScriptContentTest' => "$testDir/phpunit/includes/content/JavaScriptContentTest.php",
 	'ObjectFactoryMakeContentHandlerWithSpecsToTest' => "$testDir/phpunit/includes/content/ObjectFactoryMakeContentHandlerWithSpecsToTest.php",
 	'TextContentTest' => "$testDir/phpunit/includes/content/TextContentTest.php",
 	'WikitextContentTest' => "$testDir/phpunit/includes/content/WikitextContentTest.php",
