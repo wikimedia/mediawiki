@@ -34,16 +34,6 @@ class SqliteUpdater extends DatabaseUpdater {
 
 	protected function getCoreUpdateList() {
 		return [
-			// 1.27
-			[ 'dropTable', 'msg_resource_links' ],
-			[ 'dropTable', 'msg_resource' ],
-			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
-			[ 'addField', 'watchlist', 'wl_id', 'patch-watchlist-wl_id.sql' ],
-			[ 'dropIndex', 'categorylinks', 'cl_collation', 'patch-kill-cl_collation_index.sql' ],
-			[ 'addIndex', 'categorylinks', 'cl_collation_ext',
-				'patch-add-cl_collation_ext_index.sql' ],
-			[ 'doCollationUpdate' ],
-
 			// 1.28
 			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],

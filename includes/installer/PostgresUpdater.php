@@ -76,15 +76,6 @@ class PostgresUpdater extends DatabaseUpdater {
 
 			// **** T272199 MARKER ****
 
-			// 1.27
-			[ 'dropTable', 'msg_resource_links' ],
-			[ 'dropTable', 'msg_resource' ],
-			[
-				'addPgField', 'watchlist', 'wl_id',
-				"INTEGER NOT NULL PRIMARY KEY DEFAULT nextval('watchlist_wl_id_seq')"
-			],
-			[ 'addTable', 'bot_passwords', 'patch-bot_passwords.sql' ],
-
 			// 1.28
 			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'( rc_namespace, rc_type, rc_patrolled, rc_timestamp )' ],
