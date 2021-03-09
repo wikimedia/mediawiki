@@ -1094,7 +1094,7 @@
 	"prefs-help-watchlist-token2": "This is the secret key to the web feed of your watchlist.\nAnyone who knows it will be able to read your watchlist, so do not share it.\nIf you need to, [[Special:ResetTokens|you can reset it]].",
 	"prefs-help-tokenmanagement": "You can see and reset the secret key for your account that can access the Web feed of your watchlist. Anyone who knows the key will be able to read your watchlist, so do not share it.",
 	"prefs-user-downloaddata-label": "Account data:",
-	"prefs-user-downloaddata-info": "Download my account data from this project",
+	"prefs-user-downloaddata-info": "My account data from this project",
 	"prefs-user-downloaddata-help-message": "",
 	"savedprefs": "Your preferences have been saved.",
 	"savedrights": "The user groups of {{GENDER:$1|$1}} have been saved.",
