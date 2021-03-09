@@ -584,6 +584,19 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
+	 * @see JobQueue::getAllAbandonedJobs()
+	 * @return Iterator
+	 */
+	public function getAllAbandonedJobs() {
+		$dbr = $this->getReplicaDB();
+		return $this->getJobIterator( [
+			'job_cmd' => $this->getType(),
+			"job_token > ''",
+			"job_attempts >= " . intval( $this->maxTries )
+		] );
+	}
+
+	/**
 	 * @param array $conds Query conditions
 	 * @return Iterator
 	 */
