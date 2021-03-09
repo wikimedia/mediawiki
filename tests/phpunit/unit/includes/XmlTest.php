@@ -22,6 +22,7 @@
 namespace MediaWiki\Tests\Unit;
 
 use MediaWikiUnitTestCase;
+use MWException;
 use Xml;
 use XmlJsCode;
 
@@ -31,6 +32,29 @@ use XmlJsCode;
  * @group Xml
  */
 class XmlTest extends MediaWikiUnitTestCase {
+
+	/**
+	 * @covers Xml::expandAttributes
+	 */
+	public function testExpandAttributes() {
+		$this->assertNull(
+			Xml::expandAttributes( null ),
+			'Converting a null list of attributes'
+		);
+		$this->assertSame(
+			'',
+			Xml::expandAttributes( [] ),
+			'Converting an empty list of attributes'
+		);
+	}
+
+	/**
+	 * @covers Xml::expandAttributes
+	 */
+	public function testExpandAttributesException() {
+		$this->expectException( MWException::class );
+		Xml::expandAttributes( 'string' );
+	}
 
 	/**
 	 * @covers Xml::escapeTagsOnly
