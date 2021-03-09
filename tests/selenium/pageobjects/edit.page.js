@@ -6,7 +6,7 @@ class EditPage extends Page {
 	get content() { return $( '#wpTextbox1' ); }
 	get conflictingContent() { return $( '#wpTextbox2' ); }
 	get displayedContent() { return $( '#mw-content-text .mw-parser-output' ); }
-	get heading() { return $( '.firstHeading' ); }
+	get heading() { return $( '#firstHeading' ); }
 	get save() { return $( '#wpSave' ); }
 	get previewButton() { return $( '#wpPreview' ); }
 
