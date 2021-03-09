@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.41.1
+ * OOUI v0.41.2
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-01-26T22:57:01Z
+ * Date: 2021-03-09T16:32:17Z
  */
 ( function ( OO ) {
 
@@ -4490,7 +4490,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 			// call the widget itself for operations like
 			// .getValue() and setDisabled() and .focus() but
 			// having only the $input attached to the DOM
-			this.$content.append( this.input.$input );
+			this.$group.append( this.input.$input );
 		}
 	} else {
 		this.$content.append( $tabFocus );
@@ -4791,6 +4791,8 @@ OO.ui.TagMultiselectWidget.prototype.onChangeTags = function () {
 			this.input.$input.attr( 'placeholder', isUnderLimit ? this.inputPlaceholder : '' );
 			this.input.setDisabled( !isUnderLimit );
 		} else {
+			// Move input to the end of the group
+			this.$group.append( this.input.$input );
 			// Show/hide the input
 			this.input.$input.toggleClass( 'oo-ui-element-hidden', !isUnderLimit );
 		}

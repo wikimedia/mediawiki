@@ -16,5 +16,7 @@
 	"ooui-dialog-process-retry": "Кхин цӀа гӀорта",
 	"ooui-dialog-process-continue": "Кхин дӀа",
 	"ooui-selectfile-button-select": "Харжа файл",
-	"ooui-selectfile-placeholder": "Файл хаьржина яц"
+	"ooui-selectfile-placeholder": "Файл хаьржина яц",
+	"ooui-selectfile-dragdrop-placeholder": "Файл кхуза схьатакхае",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Файлаш кхуза схьатакхае"
 }
