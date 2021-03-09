@@ -108,9 +108,6 @@ class HookContainer implements SalvageableService {
 	 * then call the actual hook using the appropriate arguments.
 	 * Finally, process the return value and return/throw accordingly.
 	 *
-	 * For hooks that are not abortable through a handler's return value,
-	 * use runWithoutAbort() instead.
-	 *
 	 * @param string $hook Name of the hook
 	 * @param array $args Arguments to pass to hook handler
 	 * @param array $options options map:
