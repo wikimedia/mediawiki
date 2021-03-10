@@ -22,7 +22,6 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorStoreFactory;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
@@ -110,21 +109,16 @@ class ActorMigration {
 	/** @var int Combination of SCHEMA_COMPAT_* constants */
 	private $stage;
 
-	/** @var UserFactory */
-	private $userFactory;
-
 	/** @var ActorStoreFactory */
 	private $actorStoreFactory;
 
 	/**
 	 * @param int $stage
-	 * @param UserFactory $userFactory
 	 * @param ActorStoreFactory $actorStoreFactory
 	 * @internal
 	 */
 	public function __construct(
 		$stage,
-		UserFactory $userFactory,
 		ActorStoreFactory $actorStoreFactory
 	) {
 		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
@@ -144,7 +138,6 @@ class ActorMigration {
 		}
 
 		$this->stage = $stage;
-		$this->userFactory = $userFactory;
 		$this->actorStoreFactory = $actorStoreFactory;
 	}
 
