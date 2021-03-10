@@ -1407,7 +1407,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Begin a transcation on a DB
+	 * Begin a transaction on a DB
 	 *
 	 * This method makes it clear that begin() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->begin() called in other places.
@@ -1421,7 +1421,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Commit the transcation on a DB handle and wait for replica DBs to catch up
+	 * Commit the transaction on a DB handle and wait for replica DBs to catch up
 	 *
 	 * This method makes it clear that commit() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->commit() called in other places.
@@ -1442,7 +1442,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Rollback the transcation on a DB handle
+	 * Rollback the transaction on a DB handle
 	 *
 	 * This method makes it clear that rollback() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->rollback() called in other places.
