@@ -4053,9 +4053,9 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 		if ( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
 			return false;
 		}
-		$canSend = $this->isEmailConfirmed();
-		$this->getHookRunner()->onUserCanSendEmail( $this, $canSend );
-		return $canSend;
+		$hookErr = $this->isEmailConfirmed();
+		$this->getHookRunner()->onUserCanSendEmail( $this, $hookErr );
+		return $hookErr;
 	}
 
 	/**
