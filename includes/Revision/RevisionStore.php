@@ -2203,7 +2203,10 @@ class RevisionStore
 			}
 			if ( !$user && $actorID ) {
 				try {
-					$user = $this->actorStore->getActorById( $actorID );
+					$user = $this->actorStore->getActorById(
+						$actorID,
+						$this->getDBConnectionRefForQueryFlags( self::READ_NORMAL )
+					);
 				} catch ( InvalidArgumentException $ex ) {
 					$user = null;
 				}

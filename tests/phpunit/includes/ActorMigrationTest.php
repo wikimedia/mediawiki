@@ -32,7 +32,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$mwServices = MediaWikiServices::getInstance();
 		return new class(
 			$stage,
-			$mwServices->getUserFactory(),
 			$mwServices->getActorStoreFactory()
 		) extends ActorMigration {
 			protected const TEMP_TABLES = [
@@ -515,7 +514,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertRoundTrip( $table, $key, $pk, $usesTemp ) {
 		$u = $this->getTestUser()->getUser();
-		$actorId = $this->getServiceContainer()->getActorNormalization()->acquireActorId( $u );
+		$actorId =
+			$this->getServiceContainer()->getActorNormalization()->acquireActorId( $u, $this->db );
 		$user = new UserIdentityValue( $u->getId(), $u->getName(), $actorId );
 
 		$stageNames = [
@@ -656,7 +656,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$this->hideDeprecated( 'ActorMigration::getInsertValuesWithTempTable for am1_user' );
 		$m = new class(
 			$stage,
-			MediaWikiServices::getInstance()->getUserFactory(),
 			MediaWikiServices::getInstance()->getActorStoreFactory()
 		) extends ActorMigration {
 			protected const FORMER_TEMP_TABLES = [ 'am1_user' => '1.30' ];
@@ -673,7 +672,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	public function testInsertWithTempTableCallbackMissingFields( $stage ) {
 		$m = new class(
 			$stage,
-			MediaWikiServices::getInstance()->getUserFactory(),
 			MediaWikiServices::getInstance()->getActorStoreFactory()
 		) extends ActorMigration {
 			protected const TEMP_TABLES = [
@@ -772,7 +770,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	public function testCheckDeprecation() {
 		$m = new class(
 			SCHEMA_COMPAT_NEW,
-			MediaWikiServices::getInstance()->getUserFactory(),
 			MediaWikiServices::getInstance()->getActorStoreFactory()
 		) extends ActorMigration {
 			protected const DEPRECATED = [ 'soft' => null, 'hard' => '1.34' ];

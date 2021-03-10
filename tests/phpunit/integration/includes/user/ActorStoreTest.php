@@ -11,6 +11,7 @@ use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserSelectQueryBuilder;
 use stdClass;
 use Wikimedia\Assert\PreconditionException;
 
@@ -21,27 +22,46 @@ use Wikimedia\Assert\PreconditionException;
  */
 class ActorStoreTest extends ActorStoreTestBase {
 
-	public function provideGetActorByMethods() {
+	public function provideGetActorById() {
 		yield 'getActorById, registered' => [
-			'getActorById', // $method
 			42, // $argument
 			new UserIdentityValue( 24, 'TestUser', 42 ), // $expected
 		];
 		yield 'getActorById, anon' => [
-			'getActorById', // $method
 			43, // $argument
 			new UserIdentityValue( 0, self::IP, 43 ), // $expected
 		];
 		yield 'getActorById, non-existent' => [
-			'getActorById', // $method
 			4321231, // $argument
 			null, // $expected
 		];
 		yield 'getActorById, zero' => [
-			'getActorById', // $method
 			0, // $argument
 			null, // $expected
 		];
+	}
+
+	/**
+	 * @dataProvider provideGetActorById
+	 * @covers ::getActorById
+	 * @covers ::getUserIdentityByName
+	 * @covers ::getUserIdentityByUserId
+	 */
+	public function testGetActorById( $argument, ?UserIdentity $expected ) {
+		$actor = $this->getStore()->getActorById( $argument, $this->db );
+		if ( $expected ) {
+			$this->assertNotNull( $actor );
+			$this->assertSameActors( $expected, $actor );
+
+			// test caching
+			$cachedActor = $this->getStore()->getActorById( $argument, $this->db );
+			$this->assertSame( $actor, $cachedActor );
+		} else {
+			$this->assertNull( $actor );
+		}
+	}
+
+	public function provideGetActorByMethods() {
 		yield 'getUserIdentityByName, registered' => [
 			'getUserIdentityByName', // $method
 			'TestUser', // $argument
@@ -115,16 +135,16 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testSequentialCacheRetrieval( UserIdentity $expected ) {
 		// ensure UserIdentity is cached
-		$actorId = $this->getStore()->findActorId( $expected );
+		$actorId = $this->getStore()->findActorId( $expected, $this->db );
 		$this->assertSame( $expected->getActorId(), $actorId );
 
-		$cachedActorId = $this->getStore()->findActorId( $expected );
+		$cachedActorId = $this->getStore()->findActorId( $expected, $this->db );
 		$this->assertSame( $actorId, $cachedActorId );
 
-		$cachedActorId = $this->getStore()->acquireActorId( $expected );
+		$cachedActorId = $this->getStore()->acquireActorId( $expected, $this->db );
 		$this->assertSame( $actorId, $cachedActorId );
 
-		$cached = $this->getStore()->getActorById( $actorId );
+		$cached = $this->getStore()->getActorById( $actorId, $this->db );
 		$this->assertNotNull( $cached );
 		$this->assertSameActors( $expected, $cached );
 
@@ -145,7 +165,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testGetActorByIdRealUser() {
 		$user = $this->getTestUser()->getUser();
-		$actor = $this->getStore()->getActorById( $user->getActorId() );
+		$actor = $this->getStore()->getActorById( $user->getActorId(), $this->db );
 		$this->assertSameActors( $user, $actor );
 	}
 
@@ -400,12 +420,12 @@ class ActorStoreTest extends ActorStoreTestBase {
 			$this->executeWithForeignStore(
 				$wikiId,
 				function ( ActorStore $store ) use ( $expected, $actor ) {
-					$this->assertSame( $expected, $store->findActorId( $actor ) );
+					$this->assertSame( $expected, $store->findActorId( $actor, $this->db ) );
 					$this->assertSame( $expected ?: 0, $actor->getActorId( $actor->getWikiId() ) );
 				}
 			);
 		} else {
-			$this->assertSame( $expected, $this->getStore()->findActorId( $actor ) );
+			$this->assertSame( $expected, $this->getStore()->findActorId( $actor, $this->db ) );
 			$this->assertSame( $expected ?: 0, $actor->getActorId( $actor->getWikiId() ) );
 		}
 	}
@@ -417,7 +437,8 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->markTestSkipped();
 		$this->expectException( PreconditionException::class );
 		$this->getStore()->findActorId(
-			new UserIdentityValue( 0, self::IP, 0, 'acmewiki' )
+			new UserIdentityValue( 0, self::IP, 0, 'acmewiki' ),
+			$this->db
 		);
 	}
 
@@ -461,7 +482,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @covers ::findActorId
 	 */
 	public function testFindActorIdByName( $name, $expected ) {
-		$this->assertSame( $expected, $this->getStore()->findActorIdByName( $name ) );
+		$this->assertSame( $expected, $this->getStore()->findActorIdByName( $name, $this->db ) );
 	}
 
 	public function provideAcquireActorId() {
@@ -482,7 +503,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testAcquireActorId( callable $userCallback ) {
 		$user = $userCallback( $this->getServiceContainer() );
-		$actorId = $this->getStore()->acquireActorId( $user );
+		$actorId = $this->getStore()->acquireActorId( $user, $this->db );
 		$this->assertTrue( $actorId > 0 );
 		$this->assertSame( $actorId, $user->getActorId() );
 	}
@@ -505,7 +526,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->executeWithForeignStore(
 			'acmewiki',
 			function ( ActorStore $store ) use ( $user ) {
-				$actorId = $store->acquireActorId( $user );
+				$actorId = $store->acquireActorId( $user, $this->db );
 				$this->assertTrue( $actorId > 0 );
 				$this->assertSame( $actorId, $user->getActorId( $user->getWikiId() ) );
 			}
@@ -539,7 +560,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 */
 	public function testAcquireActorId_canNotCreate( UserIdentityValue $actor ) {
 		$this->expectException( CannotCreateActorException::class );
-		$this->getStore()->acquireActorId( $actor );
+		$this->getStore()->acquireActorId( $actor, $this->db );
 	}
 
 	public function provideAcquireActorId_existing() {
@@ -558,7 +579,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 	 * @covers ::acquireActorId
 	 */
 	public function testAcquireActorId_existing( UserIdentityValue $actor, int $expected ) {
-		$this->assertSame( $expected, $this->getStore()->acquireActorId( $actor ) );
+		$this->assertSame( $expected, $this->getStore()->acquireActorId( $actor, $this->db ) );
 	}
 
 	public function testAcquireActorId_domain_mismatch() {
@@ -576,7 +597,8 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->markTestSkipped();
 		$this->expectException( PreconditionException::class );
 		$this->getStore()->acquireActorId(
-			new UserIdentityValue( 0, self::IP, 0, 'acmewiki' )
+			new UserIdentityValue( 0, self::IP, 0, 'acmewiki' ),
+			$this->db
 		);
 	}
 
@@ -608,6 +630,18 @@ class ActorStoreTest extends ActorStoreTestBase {
 	public function testNormalizeUserName( $name, $rigor, $expected ) {
 		$store = $this->getStore();
 		$this->assertSame( $expected, $store->normalizeUserName( $name, $rigor ) );
+	}
+
+	public function testNewSelectQueryBuilderWithoutDB() {
+		$store = $this->getStore();
+		$queryBuilder = $store->newSelectQueryBuilder();
+		$this->assertInstanceOf( UserSelectQueryBuilder::class, $queryBuilder );
+	}
+
+	public function testNewSelectQueryBuilderWithDB() {
+		$store = $this->getStore();
+		$queryBuilder = $store->newSelectQueryBuilder( $this->db );
+		$this->assertInstanceOf( UserSelectQueryBuilder::class, $queryBuilder );
 	}
 
 }

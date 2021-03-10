@@ -21,7 +21,6 @@
 namespace MediaWiki\User;
 
 use CannotCreateActorException;
-use IDBAccessObject;
 use InvalidArgumentException;
 use stdClass;
 use Wikimedia\Rdbms\IDatabase;
@@ -30,7 +29,7 @@ use Wikimedia\Rdbms\IDatabase;
  * Service for dealing with the actor table.
  * @since 1.36
  */
-interface ActorNormalization extends IDBAccessObject {
+interface ActorNormalization {
 
 	/**
 	 * Instantiate a new UserIdentity object based on a $row from the actor table.
@@ -70,26 +69,32 @@ interface ActorNormalization extends IDBAccessObject {
 	 * Find the actor_id for the given name.
 	 *
 	 * @param string $name
-	 * @param int $queryFlags
+	 * @param IDatabase $db The database connection to operate on.
+	 *        The database must correspond to the wiki this ActorNormalization is bound to.
 	 * @return int|null
 	 */
-	public function findActorIdByName( string $name, int $queryFlags = self::READ_NORMAL ): ?int;
+	public function findActorIdByName( string $name, IDatabase $db ): ?int;
 
 	/**
 	 * Find the actor_id of the given $user.
 	 *
 	 * @param UserIdentity $user
-	 * @param int $queryFlags
+	 * @param IDatabase $db The database connection to operate on.
+	 *        The database must correspond to the wiki this ActorNormalization is bound to.
 	 * @return int|null
 	 */
-	public function findActorId( UserIdentity $user, int $queryFlags = self::READ_NORMAL ): ?int;
+	public function findActorId( UserIdentity $user, IDatabase $db ): ?int;
 
 	/**
 	 * Attempt to assign an actor ID to the given $user
 	 * If it is already assigned, return the existing ID.
 	 *
 	 * @param UserIdentity $user
-	 * @param IDatabase|null $dbw
+	 * @param IDatabase|null $dbw The database connection to acquire the ID from.
+	 *        The database must correspond to the wiki this ActorNormalization is bound to.
+	 *        If not given, a connection for this ActorNormalization's wiki will be created.
+	 *        Not providing a database connection triggers a deprecation warning!
+	 *        In the future, this parameter will be required.
 	 * @return int greater then 0
 	 * @throws CannotCreateActorException if no actor ID has been assigned to this $user
 	 */
@@ -99,10 +104,11 @@ interface ActorNormalization extends IDBAccessObject {
 	 * Find an actor by $id.
 	 *
 	 * @param int $actorId
-	 * @param int $queryFlags one of IDBAccessObject constants
+	 * @param IDatabase $db The database connection to operate on.
+	 *        The database must correspond to the wiki this ActorNormalization is bound to.
 	 * @return UserIdentity|null Returns null if no actor with this $actorId exists in the database.
 	 */
-	public function getActorById( int $actorId, int $queryFlags = self::READ_NORMAL ): ?UserIdentity;
+	public function getActorById( int $actorId, IDatabase $db ): ?UserIdentity;
 
 	/**
 	 * In case all reasonable attempts of initializing a proper actor from the

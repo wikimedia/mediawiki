@@ -262,7 +262,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidemyselfFilter() {
 		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$user = $this->getTestUser()->getUser();
-		$actorId = $actorNormalization->acquireActorId( $user );
+		$actorId = $actorNormalization->acquireActorId( $user, $this->db );
 		$this->assertConditions(
 			[ # expected
 				"NOT((rc_actor = {$actorId}))",
@@ -275,7 +275,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$user = User::newFromName( '10.11.12.13', false );
-		$actorId = $actorNormalization->acquireActorId( $user );
+		$actorId = $actorNormalization->acquireActorId( $user, $this->db );
 		$this->assertConditions(
 			[ # expected
 				"NOT((rc_actor = {$actorId}))",
@@ -291,7 +291,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcHidebyothersFilter() {
 		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$user = $this->getTestUser()->getUser();
-		$actorId = $actorNormalization->acquireActorId( $user );
+		$actorId = $actorNormalization->acquireActorId( $user, $this->db );
 		$this->assertConditions(
 			[ # expected
 				"(rc_actor = {$actorId})",
@@ -304,7 +304,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$user = User::newFromName( '10.11.12.13', false );
-		$actorId = $actorNormalization->acquireActorId( $user );
+		$actorId = $actorNormalization->acquireActorId( $user, $this->db );
 		$this->assertConditions(
 			[ # expected
 				"(rc_actor = {$actorId})",

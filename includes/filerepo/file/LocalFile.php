@@ -1538,7 +1538,7 @@ class LocalFile extends File {
 
 		$dbw->startAtomic( __METHOD__ );
 
-		$actorId = $actorNormalizaton->acquireActorId( $user );
+		$actorId = $actorNormalizaton->acquireActorId( $user, $dbw );
 		$this->user = $user;
 
 		# Test to see if the row exists using INSERT IGNORE
