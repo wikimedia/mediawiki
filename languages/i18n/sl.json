@@ -1055,7 +1055,7 @@
 	"prefs-help-watchlist-token2": "To je skrivni ključ do spletnega vira tvojega spiska nadzorov.\nKdor ga pozna, lahko bere tvoj spisek nadzorov, zato ključa ne deli z drugimi.\nČe želiš, [[Special:ResetTokens|ga lahko ponastaviš]].",
 	"prefs-help-tokenmanagement": "Lahko si ogledate ali ponastavite skrivni ključ vašega računa, s katerim lahko dostopate do spletnega vira svojega spiska nadzorov. Vaš spisek nadzorov lahko bere vsak, ki pozna vaš ključ, zato ga ne delite.",
 	"prefs-user-downloaddata-label": "Podatki o računu:",
-	"prefs-user-downloaddata-info": "Prenesite podatke svojega računa na tem projektu",
+	"prefs-user-downloaddata-info": "Podatki mojega računa na tem projektu",
 	"savedprefs": "Spremembe smo uspešno shranili.",
 	"savedrights": "Uporabniške skupine {{GENDER:$1|$1}} smo shranili.",
 	"timezonelegend": "Časovni pas",

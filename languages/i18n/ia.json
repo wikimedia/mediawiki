@@ -322,6 +322,8 @@
 	"missingarticle-diff": "(Diff: $1, $2)",
 	"readonly_lag": "Le base de datos ha essite automaticamente blocate durante que le servitores de base de datos secundari se synchronisa con le servitor principal.",
 	"nonwrite-api-promise-error": "Le capite HTTP 'Promise-Non-Write-API-Action' ha essite inviate, ma le requesta se ha dirigite a un modulo API de scriptura.",
+	"timeouterror": "Tempore limite excedite",
+	"timeouterror-text": "Le tempore de requesta maximal de $1 {{PLURAL:$1|secunda|secundas}} ha essite excedite.",
 	"internalerror": "Error interne",
 	"internalerror_info": "Error interne: $1",
 	"internalerror-fatal-exception": "Error irreversibile de typo \"$1\"",
