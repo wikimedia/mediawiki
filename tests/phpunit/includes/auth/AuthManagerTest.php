@@ -283,6 +283,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testSingleton() {
+		$this->hideDeprecated( 'MediaWiki\Auth\AuthManager::singleton' );
 		// Temporarily clear out the global singleton, if any, to test creating
 		// one.
 		$rProp = new \ReflectionProperty( AuthManager::class, 'instance' );
