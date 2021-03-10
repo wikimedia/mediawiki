@@ -142,7 +142,8 @@ class FindMissingActors extends Maintenance {
 			$this->fatalError( "Unknown user: '$name'" );
 		}
 
-		$actorId = $this->actorNormalization->acquireActorId( $user );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$actorId = $this->actorNormalization->acquireActorId( $user, $dbw );
 
 		if ( !$actorId ) {
 			$this->fatalError( "Failed to acquire an actor ID for user '$user'" );
