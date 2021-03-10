@@ -369,7 +369,7 @@ interface IDatabase {
 	public function getDomainID();
 
 	/**
-	 * Get the type of the DBMS (e.g. "mysql", "sqlite")
+	 * Get the RDBMS type of the server (e.g. "mysql", "sqlite")
 	 *
 	 * @return string
 	 */
@@ -1217,16 +1217,26 @@ interface IDatabase {
 	public function selectDomain( $domain );
 
 	/**
-	 * Get the current DB name
+	 * Get the current database name; null if there isn't one
+	 *
 	 * @return string|null
 	 */
 	public function getDBname();
 
 	/**
-	 * Get the server hostname or IP address
-	 * @return string
+	 * Get the hostname or IP address of the server
+	 *
+	 * @return string|null
 	 */
 	public function getServer();
+
+	/**
+	 * Get the readable name for the server
+	 *
+	 * @return string Readable server name, falling back to the hostname or IP address
+	 * @since 1.36
+	 */
+	public function getServerName();
 
 	/**
 	 * Escape and quote a raw value string for use in a SQL query

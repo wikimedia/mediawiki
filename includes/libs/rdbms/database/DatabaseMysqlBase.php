@@ -52,7 +52,11 @@ abstract class DatabaseMysqlBase extends Database {
 	protected $sslCAFile;
 	/** @var string|null */
 	protected $sslCAPath;
-	/** @var string[]|null */
+	/**
+	 * Open SSL cipher list string
+	 * @see https://www.openssl.org/docs/man1.0.2/man1/ciphers.html
+	 * @var string|null
+	 */
 	protected $sslCiphers;
 	/** @var string sql_mode value to send on connection */
 	protected $sqlMode;
@@ -116,20 +120,16 @@ abstract class DatabaseMysqlBase extends Database {
 		return 'mysql';
 	}
 
-	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
+	protected function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		$this->close( __METHOD__ );
 
 		if ( $schema !== null ) {
 			throw $this->newExceptionAfterConnectError( "Got schema '$schema'; not supported." );
 		}
 
-		$this->server = $server;
-		$this->user = $user;
-		$this->password = $password;
-
 		$this->installErrorHandler();
 		try {
-			$this->conn = $this->mysqlConnect( $this->server, $dbName );
+			$this->conn = $this->mysqlConnect( $server, $user, $password, $db );
 		} catch ( RuntimeException $e ) {
 			$this->restoreErrorHandler();
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
@@ -142,7 +142,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		try {
 			$this->currentDomain = new DatabaseDomain(
-				strlen( $dbName ) ? $dbName : null,
+				strlen( $db ) ? $db : null,
 				null,
 				$tablePrefix
 			);
@@ -216,12 +216,14 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Open a connection to a MySQL server
 	 *
-	 * @param string $realServer
-	 * @param string|null $dbName
+	 * @param string|null $server
+	 * @param string|null $user
+	 * @param string|null $password
+	 * @param string|null $db
 	 * @return mixed|null Driver connection handle
 	 * @throws DBConnectionError
 	 */
-	abstract protected function mysqlConnect( $realServer, $dbName );
+	abstract protected function mysqlConnect( $server, $user, $password, $db );
 
 	/**
 	 * @param IResultWrapper|resource $res
@@ -427,7 +429,7 @@ abstract class DatabaseMysqlBase extends Database {
 			$error = $this->mysqlError();
 		}
 		if ( $error ) {
-			$error .= ' (' . $this->server . ')';
+			$error .= ' (' . $this->getServerName() . ')';
 		}
 
 		return $error;
@@ -766,7 +768,7 @@ abstract class DatabaseMysqlBase extends Database {
 			'mysql',
 			'master-info',
 			// Using one key for all cluster replica DBs is preferable
-			$this->topologyRootMaster ?? $this->getServer()
+			$this->topologyRootMaster ?? $this->getServerName()
 		);
 		$fname = __METHOD__;
 
@@ -828,7 +830,7 @@ abstract class DatabaseMysqlBase extends Database {
 			return parent::getApproximateLagStatus();
 		}
 
-		$key = $this->srvCache->makeGlobalKey( 'mysql-lag', $this->getServer() );
+		$key = $this->srvCache->makeGlobalKey( 'mysql-lag', $this->getServerName() );
 		$approxLag = $this->srvCache->get( $key );
 		if ( !$approxLag ) {
 			$approxLag = parent::getApproximateLagStatus();
@@ -1027,7 +1029,7 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getServerId() {
 		$fname = __METHOD__;
 		return $this->srvCache->getWithSetCallback(
-			$this->srvCache->makeGlobalKey( 'mysql-server-id', $this->getServer() ),
+			$this->srvCache->makeGlobalKey( 'mysql-server-id', $this->getServerName() ),
 			self::SERVER_ID_CACHE_TTL,
 			function () use ( $fname ) {
 				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
@@ -1044,7 +1046,7 @@ abstract class DatabaseMysqlBase extends Database {
 	protected function getServerUUID() {
 		$fname = __METHOD__;
 		return $this->srvCache->getWithSetCallback(
-			$this->srvCache->makeGlobalKey( 'mysql-server-uuid', $this->getServer() ),
+			$this->srvCache->makeGlobalKey( 'mysql-server-uuid', $this->getServerName() ),
 			self::SERVER_ID_CACHE_TTL,
 			function () use ( $fname ) {
 				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
@@ -1142,7 +1144,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$fname = __METHOD__;
 
 		return $cache->getWithSetCallback(
-			$cache->makeGlobalKey( 'mysql-server-version', $this->getServer() ),
+			$cache->makeGlobalKey( 'mysql-server-version', $this->getServerName() ),
 			$cache::TTL_HOUR,
 			function () use ( $fname ) {
 				// Not using mysql_get_server_info() or similar for consistency: in the handshake,

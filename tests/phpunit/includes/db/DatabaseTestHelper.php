@@ -58,6 +58,7 @@ class DatabaseTestHelper extends Database {
 			'flags' => 0,
 			'cliMode' => true,
 			'agent' => '',
+			'serverName' => null,
 			'topologyRole' => null,
 			'topologicalMaster' => null,
 			'srvCache' => new HashBagOStuff(),
@@ -176,8 +177,7 @@ class DatabaseTestHelper extends Database {
 		return 'test';
 	}
 
-	public function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
-		$this->server = 'localhost';
+	public function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		$this->conn = (object)[ 'test' ];
 
 		return true;
