@@ -735,14 +735,14 @@ class SpecialUndelete extends SpecialPage {
 	private function diffHeader( RevisionRecord $revRecord, $prefix ) {
 		$isDeleted = !( $revRecord->getId() && $revRecord->getPageAsLinkTarget() );
 		if ( $isDeleted ) {
-			/// @todo FIXME: $rev->getTitle() is null for deleted revs...?
+			// @todo FIXME: $rev->getTitle() is null for deleted revs...?
 			$targetPage = $this->getPageTitle();
 			$targetQuery = [
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'timestamp' => wfTimestamp( TS_MW, $revRecord->getTimestamp() )
 			];
 		} else {
-			/// @todo FIXME: getId() may return non-zero for deleted revs...
+			// @todo FIXME: getId() may return non-zero for deleted revs...
 			$targetPage = $revRecord->getPageAsLinkTarget();
 			$targetQuery = [ 'oldid' => $revRecord->getId() ];
 		}

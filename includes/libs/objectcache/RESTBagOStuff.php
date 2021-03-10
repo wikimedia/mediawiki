@@ -152,7 +152,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		if ( $rcode === 200 && is_string( $rbody ) ) {
 			$value = $this->decodeBody( $rbody );
 			$valueSize = strlen( $rbody );
-			/// @FIXME: use some kind of hash or UUID header as CAS token
+			// @FIXME: use some kind of hash or UUID header as CAS token
 			if ( $getToken && $value !== false ) {
 				$casToken = $rbody;
 			}
