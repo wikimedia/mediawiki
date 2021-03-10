@@ -58,7 +58,7 @@ abstract class QueryPage extends SpecialPage {
 	protected $numRows;
 
 	/**
-	 * @var string|null
+	 * @var string|null|false
 	 */
 	protected $cachedTimestamp = null;
 
@@ -464,6 +464,28 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
+	 * Remove all cached value
+	 * This is needed when the page is no longer using the cache
+	 * @since 1.36
+	 */
+	public function deleteAllCachedData() {
+		$fname = static::class . '::' . __FUNCTION__;
+		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_MASTER );
+		$dbw->delete( 'querycache',
+			[ 'qc_type' => $this->getName() ],
+			$fname
+		);
+		$dbw->delete( 'querycachetwo',
+			[ 'qcc_type' => $this->getName() ],
+			$fname
+		);
+		$dbw->delete( 'querycache_info',
+			[ 'qci_type' => $this->getName() ],
+			$fname
+		);
+	}
+
+	/**
 	 * Run the query and return the result
 	 * @stable to override
 	 * @param int|bool $limit Numerical limit or false for no limit
@@ -584,7 +606,7 @@ abstract class QueryPage extends SpecialPage {
 	}
 
 	/**
-	 * @return string
+	 * @return string|false
 	 */
 	public function getCachedTimestamp() {
 		if ( $this->cachedTimestamp === null ) {
