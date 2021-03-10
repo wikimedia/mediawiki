@@ -220,7 +220,7 @@ abstract class JobQueue {
 	 *
 	 * If caching is used, this might return false when there are actually no jobs.
 	 * If pop() is called and returns false then it should correct the cache. Also,
-	 * calling flushCaches() first prevents this. However, this affect is typically
+	 * calling flushCaches() first prevents this. However, this effect is typically
 	 * not distinguishable from the race condition between isEmpty() and pop().
 	 *
 	 * @return bool
