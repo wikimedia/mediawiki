@@ -78,7 +78,7 @@
 				// Compute common parameters for links' hrefs
 				$form = context.config.$region.closest( 'form' );
 
-				baseHref = $form.attr( 'action' );
+				baseHref = $form.attr( 'action' ) || '';
 				baseHref += baseHref.indexOf( '?' ) > -1 ? '&' : '?';
 
 				linkParams = serializeObject( $form.serializeArray() );
