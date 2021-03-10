@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Permissions\Hook;
 
+use MessageSpecifier;
 use Title;
 use User;
 
@@ -25,7 +26,7 @@ interface GetUserPermissionsErrorsHook {
 	 * @param Title $title Title being checked against
 	 * @param User $user Current user
 	 * @param string $action Action being checked
-	 * @param string &$result User permissions error to add. If none, return true.
+	 * @param array|string|MessageSpecifier &$result User permissions error to add. If none, return true.
 	 *   For consistency, error messages should be plain text with no special coloring,
 	 *   bolding, etc. to show that they're errors; presenting them properly to the
 	 *   user as errors is done by the caller.
