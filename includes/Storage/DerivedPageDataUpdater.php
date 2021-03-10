@@ -335,6 +335,15 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->logger = new NullLogger();
 	}
 
+	/**
+	 * @param UserIdentity $user
+	 *
+	 * @return User
+	 */
+	private static function toLegacyUser( UserIdentity $user ) {
+		return User::newFromIdentity( $user );
+	}
+
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
 	}
@@ -745,14 +754,14 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @note Calling this method after prepareUpdate() has been called will cause an exception.
 	 *
-	 * @param User $user The user to act as context for pre-save transformation (PST).
+	 * @param UserIdentity $user The user to act as context for pre-save transformation (PST).
 	 *        Type hint should be reduced to UserIdentity at some point.
 	 * @param RevisionSlotsUpdate $slotsUpdate The new content of the slots to be updated
 	 *        by this edit, before PST.
 	 * @param bool $useStash Whether to use stashed ParserOutput
 	 */
 	public function prepareContent(
-		User $user,
+		UserIdentity $user,
 		RevisionSlotsUpdate $slotsUpdate,
 		$useStash = true
 	) {
@@ -789,17 +798,19 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// The edit may have already been prepared via api.php?action=stashedit
 		$stashedEdit = false;
 
+		$legacyUser = self::toLegacyUser( $user );
+
 		// TODO: MCR: allow output for all slots to be stashed.
 		if ( $useStash && $slotsUpdate->isModifiedSlot( SlotRecord::MAIN ) ) {
 			$editStash = MediaWikiServices::getInstance()->getPageEditStash();
 			$stashedEdit = $editStash->checkCache(
 				$title,
 				$slotsUpdate->getModifiedSlot( SlotRecord::MAIN )->getContent(),
-				User::newFromIdentity( $user )
+				$legacyUser
 			);
 		}
 
-		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contLang );
+		$userPopts = ParserOptions::newFromUserAndLang( $legacyUser, $this->contLang );
 		$this->hookRunner->onArticlePrepareTextForEdit( $wikiPage, $userPopts );
 
 		$this->user = $user;
@@ -842,7 +853,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				$pstSlot = SlotRecord::newUnsaved( $role, $stashedEdit->pstContent );
 			} else {
 				$content = $slot->getContent();
-				$pstContent = $content->preSaveTransform( $title, $this->user, $userPopts );
+				$legacyUser = self::toLegacyUser( $user );
+				$pstContent = $content->preSaveTransform( $title, $legacyUser, $userPopts );
 				$pstSlot = SlotRecord::newUnsaved( $role, $pstContent );
 			}
 
@@ -1467,7 +1479,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 
-		$legacyUser = User::newFromIdentity( $this->user );
+		$legacyUser = self::toLegacyUser( $this->user );
 
 		$userParserOptions = ParserOptions::newFromUser( $legacyUser );
 		// Decide whether to save the final canonical parser ouput based on the fact that
@@ -1570,6 +1582,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
+		// TODO: the permission check should be performed by the callers, see T276181.
 		if ( $this->options['changed']
 			&& $title->getNamespace() === NS_USER_TALK
 			&& $shortTitle != $legacyUser->getTitleKey()
@@ -1689,7 +1702,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 		$triggeringUser = $this->options['triggeringUser'] ?? $this->user;
 		if ( !$triggeringUser instanceof User ) {
-			$triggeringUser = User::newFromIdentity( $triggeringUser );
+			$triggeringUser = self::toLegacyUser( $triggeringUser );
 		}
 		$causeAction = $this->options['causeAction'] ?? 'unknown';
 		$causeAgent = $this->options['causeAgent'] ?? 'unknown';
