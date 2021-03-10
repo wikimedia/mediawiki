@@ -267,7 +267,7 @@ return [
 	'jquery.tablesorter' => [
 		'targets' => [ 'desktop', 'mobile' ],
 		'scripts' => 'resources/src/jquery.tablesorter/jquery.tablesorter.js',
-		'messages' => [ 'sort-descending', 'sort-ascending', 'sort-initial' ],
+		'messages' => [ 'sort-descending', 'sort-ascending', 'sort-initial', 'sort-rowspan-error' ],
 		'dependencies' => [
 			'jquery.tablesorter.styles',
 			'mediawiki.util',

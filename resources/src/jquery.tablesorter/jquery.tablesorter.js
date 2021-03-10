@@ -630,7 +630,7 @@
 	 * @param {jQuery} $table jQuery object for a <table>
 	 */
 	function explodeRowspans( $table ) {
-		var spanningRealCellIndex, rowSpan, colSpan,
+		var spanningRealCellIndex, rowSpan, colSpan, row,
 			cell, cellData, i, $tds, $clone, $nextRows,
 			rowspanCells = $table.find( '> tbody > tr > [rowspan]' ).get();
 
@@ -700,8 +700,16 @@
 			spanningRealCellIndex = cellData.realCellIndex;
 			cell.rowSpan = 1;
 			$nextRows = $( cell ).parent().nextAll();
+
 			for ( i = 0; i < rowSpan - 1; i++ ) {
-				$tds = $( $nextRows[ i ].cells ).filter( filterfunc );
+				row = $nextRows[ i ];
+				if ( !row ) {
+					// For now log to console so an editor is at least aware of the problem.
+					// Perhaps in future this could be done inside editor or via mw.notify after an edit to the page?
+					mw.log.error( mw.msg( 'sort-rowspan-error' ) );
+					break;
+				}
+				$tds = $( row.cells ).filter( filterfunc );
 				$clone = $( cell ).clone();
 				$clone.data( 'tablesorter', {
 					realCellIndex: spanningRealCellIndex,

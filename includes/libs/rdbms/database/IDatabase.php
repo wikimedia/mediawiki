@@ -1955,7 +1955,7 @@ interface IDatabase {
 	/**
 	 * Begin a transaction
 	 *
-	 * Only call this from code with outer transcation scope.
+	 * Only call this from code with outer transaction scope.
 	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
 	 * Nesting of transactions is not supported.
 	 *
@@ -1978,7 +1978,7 @@ interface IDatabase {
 	 *
 	 * If no transaction is in progress, a warning is issued.
 	 *
-	 * Only call this from code with outer transcation scope.
+	 * Only call this from code with outer transaction scope.
 	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
 	 * Nesting of transactions is not supported.
 	 *
@@ -1996,10 +1996,10 @@ interface IDatabase {
 	/**
 	 * Rollback a transaction previously started using begin()
 	 *
-	 * Only call this from code with outer transcation scope.
+	 * Only call this from code with outer transaction scope.
 	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
 	 * Nesting of transactions is not supported. If a serious unexpected error occurs,
-	 * throwing an Exception is preferrable, using a pre-installed error handler to trigger
+	 * throwing an Exception is preferable, using a pre-installed error handler to trigger
 	 * rollback (in any case, failure to issue COMMIT will cause rollback server-side).
 	 *
 	 * Query, connection, and onTransaction* callback errors will be suppressed and logged.
@@ -2189,10 +2189,10 @@ interface IDatabase {
 	/**
 	 * Acquire a named lock, flush any transaction, and return an RAII style unlocker object
 	 *
-	 * Only call this from outer transcation scope and when only one DB will be affected.
+	 * Only call this from outer transaction scope and when only one DB will be affected.
 	 * See https://www.mediawiki.org/wiki/Database_transactions for details.
 	 *
-	 * This is suitiable for transactions that need to be serialized using cooperative locks,
+	 * This is suitable for transactions that need to be serialized using cooperative locks,
 	 * where each transaction can see each others' changes. Any transaction is flushed to clear
 	 * out stale REPEATABLE-READ snapshot data. Once the returned object falls out of PHP scope,
 	 * the lock will be released unless a transaction is active. If one is active, then the lock

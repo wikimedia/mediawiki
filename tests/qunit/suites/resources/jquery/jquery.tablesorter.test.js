@@ -920,6 +920,28 @@
 		}
 	);
 
+	QUnit.test( 'Rowspan invalid value (T265503)', function ( assert ) {
+		var rowspanText = 'Row 1 col 3, Row 2 col 3, row 3 col 3 (but there is no row 3)',
+			$table = $(
+				'<table class="sortable">' +
+					'<thead>' +
+					'<tr><th>table heading 1</th><th>table heading 2</th><th>table heading 3</th></tr>' +
+					'</thead>' +
+					'<tr><td>Row 1 col 1</td><td>Row 1 col 2</td>' +
+						'<td rowspan="3">' + rowspanText + '</td>' +
+					'</tr>' +
+					'<tr><td>Row 2 col 1</td><td>Row 2 col 2</td></tr>' +
+					'</table>'
+			);
+		$table.tablesorter();
+		$table.find( '.headerSort' ).eq( 0 ).trigger( 'click' );
+		assert.strictEqual(
+			$table.find( 'tr' ).eq( 1 ).find( 'td' ).eq( 2 ).text(),
+			rowspanText,
+			'The invalid rowspan didn\'t throw an error and was setup correctly'
+		);
+	} );
+
 	QUnit.test( 'Test sort buttons not added to .sorttop row', function ( assert ) {
 		var $table = $(
 			'<table class="sortable">' +
