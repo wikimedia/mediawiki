@@ -143,7 +143,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		// Set instance vars
 		$this->getProvider();
 
-		/// @todo: Because we're currently using User, which uses the global config...
+		// @todo: Because we're currently using User, which uses the global config...
 		$this->setMwGlobals( [ 'wgPasswordExpireGrace' => 100 ] );
 
 		$this->config->set( 'PasswordExpireGrace', 100 );

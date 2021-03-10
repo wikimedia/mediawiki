@@ -456,7 +456,7 @@ if ( $wgEnableEmail ) {
  */
 $wgCanonicalNamespaceNames = NamespaceInfo::CANONICAL_NAMES;
 
-/// @todo UGLY UGLY
+// @todo UGLY UGLY
 if ( is_array( $wgExtraNamespaces ) ) {
 	$wgCanonicalNamespaceNames += $wgExtraNamespaces;
 }
