@@ -18,8 +18,9 @@ interface UserCanSendEmailHook {
 	 * @since 1.35
 	 *
 	 * @param User $user User (object) whose permission is being checked
-	 * @param bool &$canSend Set on input, can override on output
+	 * @param bool|string|array &$hookErr Out-param for the error. Passed as the parameters to
+	 *   OutputPage::showErrorPage.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onUserCanSendEmail( $user, &$canSend );
+	public function onUserCanSendEmail( $user, &$hookErr );
 }
