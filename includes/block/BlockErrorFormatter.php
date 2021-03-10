@@ -46,7 +46,7 @@ class BlockErrorFormatter {
 
 	/**
 	 * Get a block error message. Different message keys are chosen depending on the
-	 * block features. Message paramaters are formatted for the specified user and
+	 * block features. Message parameters are formatted for the specified user and
 	 * language.
 	 *
 	 * @param AbstractBlock $block
