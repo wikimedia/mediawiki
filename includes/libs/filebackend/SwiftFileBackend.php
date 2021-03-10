@@ -22,6 +22,7 @@
  * @author Russ Nelson
  */
 
+use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -137,6 +138,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		}
 		$this->http = new MultiHttpClient( $httpOptions );
+		$this->http->setLogger( $this->logger );
 
 		// Cache container information to mask latency
 		if ( isset( $config['wanCache'] ) && $config['wanCache'] instanceof WANObjectCache ) {
@@ -154,6 +156,11 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->writeUsers = $config['writeUsers'] ?? [];
 		$this->secureReadUsers = $config['secureReadUsers'] ?? [];
 		$this->secureWriteUsers = $config['secureWriteUsers'] ?? [];
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		parent::setLogger( $logger );
+		$this->http->setLogger( $logger );
 	}
 
 	public function getFeatures() {
