@@ -220,7 +220,7 @@ abstract class Skin extends ContextSource {
 		}
 
 		$tags = [
-			'og:title' => $out->getDisplayTitle(),
+			'og:title' => $out->getHTMLTitle(),
 			'twitter:card' => 'summary_large_image',
 			'og:type' => 'website',
 		];
