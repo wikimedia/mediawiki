@@ -1116,7 +1116,7 @@
 	"prefs-help-watchlist-token2": "이것은 내 주시문서 목록의 웹 피드의 비밀 키입니다.\n이 키를 알고 있는 사람은 누구든지 내 주시문서 목록을 읽을 수 있으니 이 키를 공유하지 마세요.\n필요하다면 [[Special:ResetTokens|이 키를 재설정할 수 있습니다]].",
 	"prefs-help-tokenmanagement": "주시문서 목록의 웹 피드에 접근할 수 있는 계정의 비밀 키를 확인하고 재설정할 수 있습니다. 이 키를 알고 있는 누구든지 주시문서 목록을 읽을 수 있으므로 공유하지 마십시오.",
 	"prefs-user-downloaddata-label": "계정 데이터:",
-	"prefs-user-downloaddata-info": "이 프로젝트의 내 계정 데이터 다운로드",
+	"prefs-user-downloaddata-info": "이 프로젝트의 내 계정 데이터",
 	"savedprefs": "설정을 저장했습니다.",
 	"savedrights": "{{GENDER:$1|$1}}의 사용자 그룹이 저장되었습니다.",
 	"timezonelegend": "시간대:",
