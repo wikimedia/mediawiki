@@ -186,7 +186,7 @@
 [submodule "extensions/Disambiguator"]
 	path = extensions/Disambiguator
 	url = https://github.com/wikimedia/mediawiki-extensions-Disambiguator
-	branch = master
+	branch = REL1_35
 	ignore = dirty
 [submodule "extensions/ImageMap"]
 	path = extensions/ImageMap
