@@ -1363,19 +1363,21 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getBlockedStatus
 	 */
 	public function testCompositeBlocks() {
+		$this->tablesUsed[] = 'ipblocks';
+
 		$user = $this->getMutableTestUser()->getUser();
 		$request = $user->getRequest();
 		$this->setSessionUser( $user, $request );
 
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
-		$ipBlock = new Block( [
+		$ipBlock = new DatabaseBlock( [
 			'address' => $user->getRequest()->getIP(),
 			'by' => $this->getTestSysop()->getUser(),
 			'createAccount' => true,
 		] );
 		$blockStore->insertBlock( $ipBlock );
 
-		$userBlock = new Block( [
+		$userBlock = new DatabaseBlock( [
 			'address' => $user,
 			'by' => $this->getTestSysop()->getUser(),
 			'createAccount' => false,
@@ -1387,6 +1389,30 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $block->isCreateAccountBlocked() );
 		$this->assertTrue( $block->appliesToPasswordReset() );
 		$this->assertTrue( $block->appliesToNamespace( NS_MAIN ) );
+	}
+
+	/**
+	 * @covers User::getBlock
+	 */
+	public function testUserBlock() {
+		$this->tablesUsed[] = 'ipblocks';
+
+		$user = $this->getMutableTestUser()->getUser();
+		$request = $user->getRequest();
+		$this->setSessionUser( $user, $request );
+
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$ipBlock = new DatabaseBlock( [
+			'address' => $user,
+			'by' => $this->getTestSysop()->getUser(),
+			'createAccount' => true,
+		] );
+		$blockStore->insertBlock( $ipBlock );
+
+		$block = $user->getBlock();
+		$this->assertNotNull( $block, 'getuserBlock' );
+		$this->assertNotNull( $block->getTargetUserIdentity(), 'getTargetUserIdentity()' );
+		$this->assertSame( $user->getName(), $block->getTargetUserIdentity()->getName() );
 	}
 
 	/**
@@ -1404,7 +1430,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'wgBlockAllowsUTEdit' => $options['blockAllowsUTEdit'] ?? true,
 		] );
 
-		$user = $this->user;
+		$user = $this->getMutableTestUser()->getUser();
 
 		if ( $title === self::USER_TALK_PAGE ) {
 			$title = $user->getTalkPage();
@@ -1528,7 +1554,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $blockFromAccountCreation Whether to block account creation.
 	 */
 	public function testIsBlockedFromAction( $blockFromEmail, $blockFromAccountCreation ) {
-		$user = $this->getTestUser( 'accountcreator' )->getUser();
+		$user = $this->getMutableTestUser( 'accountcreator' )->getUser();
 
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
@@ -1565,17 +1591,19 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $expected Whether the user is expected to be blocked from uploads.
 	 */
 	public function testIsBlockedFromUpload( $sitewide, $expected ) {
+		$user = $this->getMutableTestUser()->getUser();
+
 		$block = new DatabaseBlock( [
 			'expiry' => wfTimestamp( TS_MW, wfTimestamp() + ( 40 * 60 * 60 ) ),
 			'sitewide' => $sitewide,
 		] );
-		$block->setTarget( $this->user );
+		$block->setTarget( $user );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
 		try {
-			$this->assertSame( $expected, $this->user->isBlockedFromUpload() );
+			$this->assertSame( $expected, $user->isBlockedFromUpload() );
 		} finally {
 			$blockStore->deleteBlock( $block );
 		}

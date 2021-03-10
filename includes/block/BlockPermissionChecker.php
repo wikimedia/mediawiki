@@ -23,7 +23,6 @@ namespace MediaWiki\Block;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -62,26 +61,20 @@ class BlockPermissionChecker {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var UserFactory */
-	private $userFactory;
-
 	/**
 	 * @param ServiceOptions $options
 	 * @param BlockUtils $blockUtils
-	 * @param UserFactory $userFactory
 	 * @param UserIdentity|string|null $target
 	 * @param Authority $performer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		BlockUtils $blockUtils,
-		UserFactory $userFactory,
 		$target,
 		Authority $performer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->userFactory = $userFactory;
 		list( $this->target, $this->targetType ) = $blockUtils->parseBlockTarget( $target );
 		$this->performer = $performer;
 	}
@@ -120,10 +113,7 @@ class BlockPermissionChecker {
 	 * @return bool|string True when checks passed, message code for failures
 	 */
 	public function checkBlockPermissions() {
-		$performerIdentity = $this->performer->getUser();
-		$legacyUser = $this->userFactory->newFromUserIdentity( $performerIdentity );
-
-		$block = $legacyUser->getBlock();
+		$block = $this->performer->getBlock(); // TODO: pass disposition parameter
 		if ( !$block ) {
 			// User is not blocked, process as normal
 			return true;
@@ -133,6 +123,8 @@ class BlockPermissionChecker {
 			// T208965: Partially blocked admins should have full access
 			return true;
 		}
+
+		$performerIdentity = $this->performer->getUser();
 
 		if (
 			$this->target instanceof UserIdentity &&

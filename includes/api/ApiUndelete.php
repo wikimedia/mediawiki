@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\Permissions\Authority;
+
 /**
  * @ingroup API
  */
@@ -40,9 +42,9 @@ class ApiUndelete extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$user = $this->getUser();
-		$block = $user->getBlock();
+		$block = $user->getBlock( Authority::READ_LATEST );
 		if ( $block && $block->isSitewide() ) {
-			$this->dieBlocked( $user->getBlock() );
+			$this->dieBlocked( $block );
 		}
 
 		$titleObj = Title::newFromText( $params['title'] );

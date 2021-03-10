@@ -28,6 +28,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
@@ -329,19 +330,22 @@ class PermissionManager {
 	 * have a block, this will return false.
 	 *
 	 * @param User $user
-	 * @param LinkTarget $page Title to check
+	 * @param PageIdentity|LinkTarget $page Title to check
 	 * @param bool $fromReplica Whether to check the replica DB instead of the master
 	 *
 	 * @return bool
 	 */
-	public function isBlockedFrom( User $user, LinkTarget $page, $fromReplica = false ) {
+	public function isBlockedFrom( User $user, $page, $fromReplica = false ) {
 		$block = $user->getBlock( $fromReplica );
 		if ( !$block ) {
 			return false;
 		}
 
-		// TODO: remove upon further migration to LinkTarget
-		$title = Title::newFromLinkTarget( $page );
+		if ( $page instanceof PageIdentity ) {
+			$title = Title::castFromPageIdentity( $page );
+		} else {
+			$title = Title::castFromLinkTarget( $page );
+		}
 
 		$blocked = $user->isHidden();
 		if ( !$blocked ) {
@@ -721,8 +725,21 @@ class PermissionManager {
 			$errors[] = [ 'confirmedittext' ];
 		}
 
-		$useReplica = ( $rigor !== self::RIGOR_SECURE );
-		$block = $user->getBlock( $useReplica );
+		switch ( $rigor ) {
+			case self::RIGOR_SECURE:
+				$blockInfoFreshness = Authority::READ_LATEST;
+				$useReplica = false;
+				break;
+			case self::RIGOR_FULL:
+				$blockInfoFreshness = Authority::READ_NORMAL;
+				$useReplica = true;
+				break;
+			default:
+				$useReplica = true;
+				$blockInfoFreshness = Authority::READ_NORMAL;
+		}
+
+		$block = $user->getBlock( $blockInfoFreshness );
 
 		if ( $action === 'createaccount' ) {
 			$applicableBlock = null;
