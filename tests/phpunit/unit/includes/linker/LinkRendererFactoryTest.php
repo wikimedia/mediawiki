@@ -3,14 +3,13 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * @covers MediaWiki\Linker\LinkRendererFactory
  */
-class LinkRendererFactoryTest extends MediaWikiLangTestCase {
+class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @var TitleFormatter
@@ -40,12 +39,11 @@ class LinkRendererFactoryTest extends MediaWikiLangTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$services = MediaWikiServices::getInstance();
-		$this->titleFormatter = $services->getTitleFormatter();
-		$this->linkCache = $services->getLinkCache();
-		$this->nsInfo = $services->getNamespaceInfo();
-		$this->specialPageFactory = $services->getSpecialPageFactory();
-		$this->hookContainer = $services->getHookContainer();
+		$this->titleFormatter = $this->createMock( TitleFormatter::class );
+		$this->linkCache = $this->createMock( LinkCache::class );
+		$this->nsInfo = $this->createMock( NamespaceInfo::class );
+		$this->specialPageFactory = $this->createMock( SpecialPageFactory::class );
+		$this->hookContainer = $this->createMock( HookContainer::class );
 	}
 
 	public static function provideCreateFromLegacyOptions() {
