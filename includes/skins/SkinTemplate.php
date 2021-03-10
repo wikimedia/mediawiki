@@ -297,10 +297,10 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'notspecialpage', !$title->isSpecialPage() );
 
 		// Deprecated since 1.36
-		$searchLink = SpecialPage::getTitleFor( 'Search' )->getLocalURL();
+		$searchLink = $this->getSearchPageTitle()->getLocalURL();
 		$tpl->set( 'searchaction', $searchLink );
 
-		$tpl->set( 'searchtitle', SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey() );
+		$tpl->set( 'searchtitle', $this->getSearchPageTitle()->getPrefixedDBkey() );
 		$tpl->set( 'search', trim( $request->getVal( 'search' ) ) );
 		$tpl->set( 'stylepath', $config->get( 'StylePath' ) );
 		$tpl->set( 'articlepath', $config->get( 'ArticlePath' ) );

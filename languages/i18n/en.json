@@ -1094,6 +1094,7 @@
 	"prefs-setemail": "Set an email address",
 	"prefs-email": "Email options",
 	"prefs-rendering": "Appearance",
+	"prefs-searchmisc": "General",
 	"saveprefs": "Save",
 	"restoreprefs": "Restore all default settings (in all sections)",
 	"prefs-editing": "Editing",

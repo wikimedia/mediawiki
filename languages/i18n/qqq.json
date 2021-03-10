@@ -1315,6 +1315,7 @@
 	"prefs-setemail": "Used as link title in [[Special:Preferences]], if the user has not set E-mail address yet.\n\nSee also:\n* {{msg-mw|prefs-help-email-required|help}}\n* {{msg-mw|prefs-help-email|help}}\n* {{msg-mw|prefs-help-email-others|help}}\n* {{msg-mw|prefs-changeemail|link title}}",
 	"prefs-email": "Used as section name in [[Special:Preferences]].",
 	"prefs-rendering": "Title of tab in [[Special:Preferences]].\n{{Identical|Appearance}}",
+	"prefs-searchmisc": "Title of general search options section in search tab",
 	"saveprefs": "Button for saving changes in the preferences page.\n\nSee also:\n* {{msg-mw|Saveprefs}}\n* {{msg-mw|Accesskey-preferences-save}}\n* {{msg-mw|Tooltip-preferences-save}}\n{{Identical|Save}}",
 	"restoreprefs": "Used as link text in [[Special:Preferences]]. The link points to [[Special:Preferences/reset]] which shows the \"Restore all default settings\" form.\n\nAlso used as label for the Submit button in [[Special:Preferences/reset]].",
 	"prefs-editing": "Title of a tab in [[Special:Preferences]].\nWhen changing this message, please also update {{msg-mw|vector-editwarning-warning}} which references to this message.\n{{Identical|Editing}}",
