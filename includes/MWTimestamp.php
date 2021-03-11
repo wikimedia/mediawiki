@@ -21,6 +21,9 @@
  * @since 1.20
  * @author Tyler Romeo, 2012
  */
+
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -54,14 +57,14 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 * @deprecated since 1.26 Use Language::getHumanTimestamp directly
 	 *
 	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
-	 * @param User|null $user User the timestamp is being generated for
+	 * @param UserIdentity|null $user User the timestamp is being generated for
 	 *  (or null to use main context's user)
 	 * @param Language|null $lang Language to use to make the human timestamp
 	 *  (or null to use main context's language)
 	 * @return string Formatted timestamp
 	 */
 	public function getHumanTimestamp(
-		MWTimestamp $relativeTo = null, User $user = null, Language $lang = null
+		MWTimestamp $relativeTo = null, UserIdentity $user = null, Language $lang = null
 	) {
 		if ( $lang === null ) {
 			$lang = RequestContext::getMain()->getLanguage();
@@ -75,13 +78,16 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 *
 	 * @since 1.22
 	 *
-	 * @param User $user User to take preferences from
+	 * @param UserIdentity $user User to take preferences from
 	 * @return DateInterval Offset that was applied to the timestamp
 	 */
-	public function offsetForUser( User $user ) {
+	public function offsetForUser( UserIdentity $user ) {
 		global $wgLocalTZoffset;
 
-		$option = $user->getOption( 'timecorrection' );
+		$option = MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getOption( $user, 'timecorrection' );
+
 		$data = explode( '|', $option, 3 );
 
 		// First handle the case of an actual timezone being specified.
@@ -141,14 +147,14 @@ class MWTimestamp extends ConvertibleTimestamp {
 	 * the given base timestamp and this object.
 	 *
 	 * @param MWTimestamp|null $relativeTo Relative base timestamp (defaults to now)
-	 * @param User|null $user Use to use offset for
+	 * @param UserIdentity|null $user Use to use offset for
 	 * @param Language|null $lang Language to use
 	 * @param array $chosenIntervals Intervals to use to represent it
 	 * @return string Relative timestamp
 	 */
 	public function getRelativeTimestamp(
 		MWTimestamp $relativeTo = null,
-		User $user = null,
+		UserIdentity $user = null,
 		Language $lang = null,
 		array $chosenIntervals = []
 	) {
@@ -164,6 +170,8 @@ class MWTimestamp extends ConvertibleTimestamp {
 
 		$ts = '';
 		$diff = $this->diff( $relativeTo );
+
+		$user = User::newFromIdentity( $user ); // For compatibility with the hook signature
 		if ( Hooks::runner()->onGetRelativeTimestamp(
 			$ts, $diff, $this, $relativeTo, $user, $lang )
 		) {

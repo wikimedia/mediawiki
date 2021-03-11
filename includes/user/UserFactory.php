@@ -51,6 +51,9 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
+	/** @var User|null */
+	private $lastUserFromIdentity = null;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserNameUtils $userNameUtils
@@ -165,11 +168,25 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 			return $userIdentity;
 		}
 
-		return $this->newFromAnyId(
+		// Cache the $userIdentity we converted last. This avoids redundant conversion
+		// in cases where we would be converting the same UserIdentity over and over,
+		// for instance because we need to access data preferences when formatting
+		// timestamps in a listing.
+		if (
+			$this->lastUserFromIdentity
+			&& $this->lastUserFromIdentity->getId() == $userIdentity->getId()
+			&& $this->lastUserFromIdentity->getName() == $userIdentity->getName()
+		) {
+			return $this->lastUserFromIdentity;
+		}
+
+		$this->lastUserFromIdentity = $this->newFromAnyId(
 			$userIdentity->getId() === 0 ? null : $userIdentity->getId(),
 			$userIdentity->getName() === '' ? null : $userIdentity->getName(),
 			$userIdentity->getActorId() === 0 ? null : $userIdentity->getActorId()
 		);
+
+		return $this->lastUserFromIdentity;
 	}
 
 	/**

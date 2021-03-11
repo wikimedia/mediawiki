@@ -31,6 +31,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -2416,7 +2417,7 @@ class Language {
 	 * @param string $type Can be 'date', 'time' or 'both'
 	 * @param string $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param User $user User object used to get preferences for timezone and format
+	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
 	 *     - true: use user's preference
@@ -2429,7 +2430,9 @@ class Language {
 	 * @since 1.19
 	 * @return string
 	 */
-	private function internalUserTimeAndDate( $type, $ts, User $user, array $options ) {
+	private function internalUserTimeAndDate( $type, $ts, UserIdentity $user, array $options ) {
+		$user = User::newFromIdentity( $user );
+
 		$ts = wfTimestamp( TS_MW, $ts );
 		$options += [ 'timecorrection' => true, 'format' => true ];
 		if ( $options['timecorrection'] !== false ) {
@@ -2455,7 +2458,7 @@ class Language {
 	 *
 	 * @param mixed $ts Mixed: the time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param User $user User object used to get preferences for timezone and format
+	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
 	 *     - true: use user's preference
@@ -2468,7 +2471,7 @@ class Language {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function userDate( $ts, User $user, array $options = [] ) {
+	public function userDate( $ts, UserIdentity $user, array $options = [] ) {
 		return $this->internalUserTimeAndDate( 'date', $ts, $user, $options );
 	}
 
@@ -2478,7 +2481,7 @@ class Language {
 	 *
 	 * @param mixed $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param User $user User object used to get preferences for timezone and format
+	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
 	 *     - true: use user's preference
@@ -2491,7 +2494,7 @@ class Language {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function userTime( $ts, User $user, array $options = [] ) {
+	public function userTime( $ts, UserIdentity $user, array $options = [] ) {
 		return $this->internalUserTimeAndDate( 'time', $ts, $user, $options );
 	}
 
@@ -2501,7 +2504,7 @@ class Language {
 	 *
 	 * @param mixed $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param User $user User object used to get preferences for timezone and format
+	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
 	 *     - true: use user's preference
@@ -2514,7 +2517,7 @@ class Language {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function userTimeAndDate( $ts, User $user, array $options = [] ) {
+	public function userTimeAndDate( $ts, UserIdentity $user, array $options = [] ) {
 		return $this->internalUserTimeAndDate( 'both', $ts, $user, $options );
 	}
 
@@ -2529,12 +2532,12 @@ class Language {
 	 *
 	 * @param MWTimestamp $time
 	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
-	 * @param User|null $user User the timestamp is being generated for
+	 * @param UserIdentity|null $user User the timestamp is being generated for
 	 *  (or null to use main context's user)
 	 * @return string Formatted timestamp
 	 */
 	public function getHumanTimestamp(
-		MWTimestamp $time, MWTimestamp $relativeTo = null, User $user = null
+		MWTimestamp $time, MWTimestamp $relativeTo = null, UserIdentity $user = null
 	) {
 		if ( $relativeTo === null ) {
 			$relativeTo = new MWTimestamp();
@@ -2542,6 +2545,9 @@ class Language {
 		if ( $user === null ) {
 			$user = RequestContext::getMain()->getUser();
 		}
+
+		// For compatibility with the hook signature and MWTimestamp
+		$user = User::newFromIdentity( $user );
 
 		// Adjust for the user's timezone.
 		$offsetThis = $time->offsetForUser( $user );
@@ -2566,13 +2572,15 @@ class Language {
 	 * @see Language::getHumanTimestamp
 	 * @param MWTimestamp $ts Timestamp to prettify
 	 * @param MWTimestamp $relativeTo Base timestamp
-	 * @param User $user User preferences to use
+	 * @param UserIdentity $user User preferences to use
 	 * @return string Human timestamp
 	 * @since 1.26
 	 */
 	private function getHumanTimestampInternal(
-		MWTimestamp $ts, MWTimestamp $relativeTo, User $user
+		MWTimestamp $ts, MWTimestamp $relativeTo, UserIdentity $user
 	) {
+		$user = User::newFromIdentity( $user );
+
 		$diff = $ts->diff( $relativeTo );
 		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) -
 			(int)$relativeTo->timestamp->format( 'w' ) );
@@ -4140,12 +4148,12 @@ class Language {
 	 * match up with it.
 	 *
 	 * @param string $str The validated block duration in English
-	 * @param User|null $user User object to use timezone from or null for the context user
+	 * @param UserIdentity|null $user User to use timezone from or null for the context user
 	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
-	public function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
+	public function translateBlockExpiry( $str, UserIdentity $user = null, $now = 0 ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
@@ -4681,7 +4689,7 @@ class Language {
 	 * @param bool|int $format True to process using language functions, or TS_ constant
 	 *     to return the expiry in a given timestamp
 	 * @param string $infinity If $format is not true, use this string for infinite expiry
-	 * @param User|null $user If $format is true, use this user for date format
+	 * @param UserIdentity|null $user If $format is true, use this user for date format
 	 * @return string
 	 * @since 1.18
 	 * @since 1.36 $user was added
