@@ -69,15 +69,3 @@ EOT
 		);
 	}
 }
-
-class MockSearch extends SearchEngine {
-	public static $id;
-	public static $title;
-	public static $text;
-
-	public function update( $id, $title, $text ) {
-		self::$id = $id;
-		self::$title = $title;
-		self::$text = $text;
-	}
-}
