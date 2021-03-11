@@ -54,11 +54,15 @@ class SkinMustache extends SkinTemplate {
 		$out = $this->getOutput();
 		$tp = $this->getTemplateParser();
 		$template = $this->options['template'] ?? 'skin';
+		$data = $this->getTemplateData();
 
+		// T259955: OutputPage::headElement must be called last (after getTemplateData)
+		// as it calls OutputPage::getRlClient, which freezes the ResourceLoader
+		// modules queue for the current page load.
 		$html = $out->headElement( $this );
-		$html .= $tp->processTemplate( $template, $this->getTemplateData() );
-		$html .= $this->tailElement( $out );
 
+		$html .= $tp->processTemplate( $template, $data );
+		$html .= $this->tailElement( $out );
 		return $html;
 	}
 
