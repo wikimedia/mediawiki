@@ -28,7 +28,7 @@ use PHPUnit\Framework\Assert;
  *
  * @author Marius Hoch
  */
-class MediaWikiPageNameNormalizerTest extends MediaWikiIntegrationTestCase {
+class MediaWikiPageNameNormalizerTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider normalizePageTitleProvider
