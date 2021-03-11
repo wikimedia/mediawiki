@@ -20,6 +20,7 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWikiIntegrationTestCase;
+use MockTitleTrait;
 use MWCallableUpdate;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -37,6 +38,7 @@ use WikitextContent;
  * @covers \MediaWiki\Storage\DerivedPageDataUpdater
  */
 class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
+	use MockTitleTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -725,26 +727,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		return $rev;
 	}
 
-	/**
-	 * @param int $id
-	 * @return Title
-	 */
-	private function getMockTitle( $id = 23 ) {
-		$mock = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getDBkey' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getArticleID' )
-			->will( $this->returnValue( $id ) );
-
-		return $mock;
-	}
-
 	public function provideIsReusableFor() {
-		$title = $this->getMockTitle();
+		$title = $this->makeMockTitle( __CLASS__, [ 'id' => 23 ] );
 
 		$user1 = User::newFromName( 'Alice' );
 		$user2 = User::newFromName( 'Bob' );

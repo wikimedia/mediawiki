@@ -15,6 +15,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\IncompleteRevisionException;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionArchiveRecord;
@@ -33,7 +34,6 @@ use Psr\Log\NullLogger;
 use Revision;
 use TestUserRegistry;
 use Title;
-use TitleValue;
 use User;
 use WANObjectCache;
 use Wikimedia\Assert\PreconditionException;
@@ -862,7 +862,12 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			$this->setService( 'DBLoadBalancer', $localLoadBalancerMock );
 
 			$storeRecord = $store->getRevisionByTitle(
-				new TitleValue( $page->getTitle()->getNamespace(), $page->getTitle()->getDBkey() )
+				new PageIdentityValue(
+					$page->getId(),
+					$page->getTitle()->getNamespace(),
+					$page->getTitle()->getDBkey(),
+					$dbDomain
+				)
 			);
 			$this->assertSame( $revRecord->getId(), $storeRecord->getId( $dbDomain ) );
 			$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
