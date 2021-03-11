@@ -6,6 +6,7 @@ use CommentStoreComment;
 use Content;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -20,6 +21,7 @@ use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
+use TitleFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikitextContent;
@@ -101,7 +103,9 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$roleReg->defineRole( 'main', function () {
 			return new MainSlotRoleHandler(
 				[],
-				$this->createMock( IContentHandlerFactory::class )
+				$this->createMock( IContentHandlerFactory::class ),
+				$this->createMock( HookContainer::class ),
+				$this->createMock( TitleFactory::class )
 			);
 		} );
 		$roleReg->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
