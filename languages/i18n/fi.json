@@ -1111,6 +1111,8 @@
 	"prefs-help-recentchangescount": "Maksimiluku 1000",
 	"prefs-help-watchlist-token2": "Tämä on salainen avain tarkkailulistasi verkkosyötteeseen.\nKuka tahansa, joka tietää sen voi lukea tarkkailulistaasi, joten älä paljasta sitä.\nJos sinun täytyy, [[Special:ResetTokens|voit uudistaa sen]].",
 	"prefs-help-tokenmanagement": "Voit nähdä ja nollata tilisi salaisen avaimen, jota käyttämällä pääset katsomaan tarkastuslistasi verkkosyötettä. Kuka tahansa sen tietävä voi lukea tarkkailulistaasi, joten älä paljasta sitä.",
+	"prefs-user-downloaddata-label": "Tilitiedot:",
+	"prefs-user-downloaddata-info": "Tilitietoni tästä hankkeesta",
 	"savedprefs": "Asetuksesi on tallennettu.",
 	"savedrights": "Käyttäjän {{GENDER:$1|$1}} käyttäjäryhmät on tallennettu.",
 	"timezonelegend": "Aikavyöhyke:",

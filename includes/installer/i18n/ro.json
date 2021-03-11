@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Andrei Stroe",
+			"Andreyyshore",
 			"Firilacroco",
 			"Fitoschido",
 			"MSClaudiu",
@@ -39,10 +40,10 @@
 	"config-page-upgrade": "Extinde instalarea existentă",
 	"config-page-dbsettings": "Setări ale bazei de date",
 	"config-page-name": "Nume",
-	"config-page-options": "Opţiuni",
+	"config-page-options": "Opțiuni",
 	"config-page-install": "Instalare",
 	"config-page-complete": "Finalizat!",
-	"config-page-restart": "Reporneşte instalarea",
+	"config-page-restart": "Repornește instalarea",
 	"config-page-releasenotes": "Note de lansare",
 	"config-page-copying": "Copiere",
 	"config-page-upgradedoc": "Actualizare",

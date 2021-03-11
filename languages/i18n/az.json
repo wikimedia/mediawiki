@@ -1691,6 +1691,7 @@
 	"emailuser": "İstifadəçiyə e-məktub göndər",
 	"emailuser-title-target": "Bu {{GENDER:$1|istifadəçiyə}} e-məktub göndər",
 	"emailuser-title-notarget": "İstifadəçi e-maili",
+	"emailpagetext": "Aşağıdakı formu dolduraraq bu {{GENDER:$1|istifadəçiyə}} məktub göndərə bilərsiniz. [[Special:Preferences|Nizamlamalarda təyin etdiyiniz e-poçt ünvanı]] \"Göndərən\" olaraq görünəcək.",
 	"defemailsubject": "\"$1\" adlı istifadəçidən {{SITENAME}} e-məktubu",
 	"usermaildisabled": "İstifadəçi e-maili işləmir",
 	"noemailtitle": "E-məktub ünvanı yoxdur",
