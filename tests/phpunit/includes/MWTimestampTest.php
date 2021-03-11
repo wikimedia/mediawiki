@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserOptionsLookup;
+
 /**
  * Tests timestamp parsing and output.
  */
@@ -9,6 +12,32 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 
 		// Avoid 'GetHumanTimestamp' hook and others
 		$this->setMwGlobals( 'wgHooks', [] );
+	}
+
+	private function setMockUserOptions( array $options ) {
+		$defaults = $this->getServiceContainer()->getMainConfig()->get( 'DefaultUserOptions' );
+
+		$mock = $this->createNoOpMock(
+			UserOptionsLookup::class,
+			[ 'getOption', 'getIntOption', 'getDefaultOption' ]
+		);
+		$mock->method( 'getOption' )
+			->willReturnCallback( function ( $user, $name ) use ( $options, $defaults ) {
+				return $options[$name] ?? $defaults[ $name ];
+			}
+		);
+		$mock->method( 'getIntOption' )
+			->willReturnCallback( function ( $user, $name ) use ( $options, $defaults ) {
+				return $options[$name] ?? $defaults[ $name ];
+			}
+		);
+		$mock->method( 'getDefaultOption' )
+			->willReturnCallback( function ( $name ) use ( $defaults ) {
+				return $defaults[$name];
+			}
+		);
+
+		$this->setService( 'UserOptionsLookup', $mock );
 	}
 
 	/**
@@ -23,15 +52,12 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 		$expectedOutput, // The expected output
 		$desc // Description
 	) {
-		$user = $this->createMock( User::class );
-		$user->expects( $this->any() )
-			->method( 'getOption' )
-			->with( 'timecorrection' )
-			->will( $this->returnValue( $timeCorrection ) );
+		$this->setMockUserOptions( [
+			'timecorrection' => $timeCorrection,
+			'date' => $dateFormat
+		] );
 
-		$user->expects( $this->any() )
-			->method( 'getDatePreference' )
-			->will( $this->returnValue( $dateFormat ) );
+		$user = new UserIdentityValue( 13, 'Pamela', 0 );
 
 		$tsTime = new MWTimestamp( $tsTime );
 		$currentTime = new MWTimestamp( $currentTime );
@@ -156,11 +182,12 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 		$expectedOutput, // The expected output
 		$desc // Description
 	) {
-		$user = $this->createMock( User::class );
-		$user->expects( $this->any() )
-			->method( 'getOption' )
-			->with( 'timecorrection' )
-			->will( $this->returnValue( $timeCorrection ) );
+		$this->setMockUserOptions( [
+			'timecorrection' => $timeCorrection,
+			'date' => $dateFormat
+		] );
+
+		$user = new UserIdentityValue( 13, 'Pamela', 0 );
 
 		$tsTime = new MWTimestamp( $tsTime );
 		$currentTime = new MWTimestamp( $currentTime );
