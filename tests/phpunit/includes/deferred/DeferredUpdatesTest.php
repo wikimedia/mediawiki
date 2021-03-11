@@ -467,10 +467,10 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 2, DeferredUpdates::pendingUpdatesCount() );
 		$this->assertSame( 0, DeferredUpdates::getRecursiveExecutionStackDepth() );
 
-		$this->assertSame( null, $resA );
-		$this->assertSame( null, $res );
-		$this->assertSame( null, $resSub );
-		$this->assertSame( null, $resSubSub );
+		$this->assertNull( $resA );
+		$this->assertNull( $res );
+		$this->assertNull( $resSub );
+		$this->assertNull( $resSubSub );
 
 		DeferredUpdates::doUpdates();
 
