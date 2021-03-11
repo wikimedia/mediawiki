@@ -53,6 +53,24 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $id, $user->getId() );
 	}
 
+	public function testNewFromIdentity() {
+		$identity = new UserIdentityValue( 98257, __METHOD__, 0 );
+
+		$factory = $this->getUserFactory();
+		$user = $factory->newFromUserIdentity( $identity );
+
+		$this->assertInstanceOf( User::class, $user );
+		$this->assertSame( $identity->getId(), $user->getId() );
+		$this->assertSame( $identity->getName(), $user->getName() );
+
+		// make sure instance caching happens
+		$this->assertSame( $user, $factory->newFromUserIdentity( $identity ) );
+
+		// make sure instance caching distingushes between IDs
+		$otherIdentity = new UserIdentityValue( 33245, __METHOD__, 0 );
+		$this->assertNotSame( $user, $factory->newFromUserIdentity( $otherIdentity ) );
+	}
+
 	public function testNewFromActorId() {
 		$name = 'UserFactoryTest2';
 
