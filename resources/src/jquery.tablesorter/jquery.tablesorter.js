@@ -704,9 +704,11 @@
 			for ( i = 0; i < rowSpan - 1; i++ ) {
 				row = $nextRows[ i ];
 				if ( !row ) {
-					// For now log to console so an editor is at least aware of the problem.
-					// Perhaps in future this could be done inside editor or via mw.notify after an edit to the page?
-					mw.log.error( mw.msg( 'sort-rowspan-error' ) );
+					// Badly formatted HTML for table.
+					// Ignore this row, but leave a warning for someone to be able to find this.
+					// Perhaps in future this could be a wikitext linter rule, or preview warning
+					// on the edit page.
+					mw.log.warn( mw.message( 'sort-rowspan-error' ).plain() );
 					break;
 				}
 				$tds = $( row.cells ).filter( filterfunc );
