@@ -8,9 +8,8 @@
  */
 class ApiQueryAllRevisionsTest extends ApiTestCase {
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
-
+	protected function setUp() : void {
+		parent::setUp();
 		$this->tablesUsed[] = 'revision';
 	}
 

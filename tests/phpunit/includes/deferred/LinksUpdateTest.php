@@ -12,8 +12,8 @@ use Wikimedia\TestingAccessWrapper;
 class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected static $testingPageId;
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
+	protected function setUp() : void {
+		parent::setUp();
 
 		$this->tablesUsed = array_merge( $this->tablesUsed,
 			[
@@ -29,10 +29,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 				'recentchanges',
 			]
 		);
-	}
 
-	protected function setUp() : void {
-		parent::setUp();
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace(
 			'interwiki',

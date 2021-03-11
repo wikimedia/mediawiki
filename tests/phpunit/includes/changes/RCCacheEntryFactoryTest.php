@@ -22,12 +22,6 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	 */
 	private $linkRenderer;
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
-
-		$this->testRecentChangesHelper = new TestRecentChangesHelper();
-	}
-
 	protected function setUp() : void {
 		parent::setUp();
 
@@ -36,6 +30,7 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 		] );
 
 		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$this->testRecentChangesHelper = new TestRecentChangesHelper();
 	}
 
 	public function testNewFromRecentChange() {
