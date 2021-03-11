@@ -16,6 +16,7 @@ use Wikimedia\TestingAccessWrapper;
  * @author Katie Filbert < aude.wiki@gmail.com >
  */
 class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
+	use MockTitleTrait;
 
 	protected $context;
 
@@ -328,29 +329,11 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param int $id
-	 * @return Title
-	 */
-	private function getMockTitle( $id = 23 ) {
-		$mock = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getDBkey' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getArticleID' )
-			->will( $this->returnValue( $id ) );
-
-		return $mock;
-	}
-
-	/**
 	 * @param SlotRecord ...$slots
 	 * @return MutableRevisionRecord
 	 */
 	private function getRevisionRecord( ...$slots ) {
-		$title = $this->getMockTitle();
+		$title = $this->makeMockTitle( __CLASS__ );
 		$revision = new MutableRevisionRecord( $title );
 		foreach ( $slots as $slot ) {
 			$revision->setSlot( $slot );
