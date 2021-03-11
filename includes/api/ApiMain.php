@@ -209,24 +209,52 @@ class ApiMain extends ApiBase {
 		]
 	];
 
-	/**
-	 * @var ApiFormatBase
-	 */
+	/** @var ApiFormatBase */
 	private $mPrinter;
 
-	private $mModuleMgr, $mResult, $mErrorFormatter = null, $mParamValidator;
+	/** @var ApiModuleManager */
+	private $mModuleMgr;
+
+	/** @var ApiResult */
+	private $mResult;
+
+	/** @var ApiErrorFormatter */
+	private $mErrorFormatter;
+
+	/** @var ApiParamValidator */
+	private $mParamValidator;
+
 	/** @var ApiContinuationManager|null */
 	private $mContinuationManager;
+
+	/** @var string|null */
 	private $mAction;
+
+	/** @var bool */
 	private $mEnableWrite;
-	private $mInternalMode, $mCdnMaxAge;
+
+	/** @var bool */
+	private $mInternalMode;
+
+	/**
+	 * @var int
+	 * @todo Remove this, set to -1 in the constructor and never referred to again
+	 */
+	private $mCdnMaxAge;
+
 	/** @var ApiBase */
 	private $mModule;
 
+	/** @var string */
 	private $mCacheMode = 'private';
+
 	/** @var array */
 	private $mCacheControl = [];
+
+	/** @var array */
 	private $mParamsUsed = [];
+
+	/** @var array */
 	private $mParamsSensitive = [];
 
 	/** @var bool|null Cached return value from self::lacksSameOriginSecurity() */
@@ -278,8 +306,11 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		// TODO inject stuff, see T265644
+		$services = MediaWikiServices::getInstance();
 		$this->mParamValidator = new ApiParamValidator(
-			$this, MediaWikiServices::getInstance()->getObjectFactory()
+			$this,
+			$services->getObjectFactory()
 		);
 
 		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
@@ -293,7 +324,7 @@ class ApiMain extends ApiBase {
 			// for uselang=user (see T85635).
 		} else {
 			if ( $uselang === 'content' ) {
-				$uselang = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
+				$uselang = $services->getContentLanguage()->getCode();
 			}
 			$code = RequestContext::sanitizeLangCode( $uselang );
 			$derivativeContext->setLanguage( $code );
@@ -314,14 +345,16 @@ class ApiMain extends ApiBase {
 			if ( $errorLangCode === 'uselang' ) {
 				$errorLang = $this->getLanguage();
 			} elseif ( $errorLangCode === 'content' ) {
-				$errorLang = MediaWikiServices::getInstance()->getContentLanguage();
+				$errorLang = $services->getContentLanguage();
 			} else {
 				$errorLangCode = RequestContext::sanitizeLangCode( $errorLangCode );
-				$errorLang = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $errorLangCode );
+				$errorLang = $services->getLanguageFactory()->getLanguage( $errorLangCode );
 			}
 			$this->mErrorFormatter = new ApiErrorFormatter(
-				$this->mResult, $errorLang, $errorFormat, $errorsUseDB
+				$this->mResult,
+				$errorLang,
+				$errorFormat,
+				$errorsUseDB
 			);
 		} else {
 			$this->mErrorFormatter = new ApiErrorFormatter_BackCompat( $this->mResult );
@@ -330,7 +363,7 @@ class ApiMain extends ApiBase {
 
 		$this->mModuleMgr = new ApiModuleManager(
 			$this,
-			MediaWikiServices::getInstance()->getObjectFactory()
+			$services->getObjectFactory()
 		);
 		$this->mModuleMgr->addModules( self::MODULES, 'action' );
 		$this->mModuleMgr->addModules( $config->get( 'APIModules' ), 'action' );
@@ -1162,10 +1195,18 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $this->getParameter( 'responselanginfo' ) ) {
-			$result->addValue( null, 'uselang', $this->getLanguage()->getCode(),
-				ApiResult::NO_SIZE_CHECK );
-			$result->addValue( null, 'errorlang', $this->getErrorFormatter()->getLanguage()->getCode(),
-				ApiResult::NO_SIZE_CHECK );
+			$result->addValue(
+				null,
+				'uselang',
+				$this->getLanguage()->getCode(),
+				ApiResult::NO_SIZE_CHECK
+			);
+			$result->addValue(
+				null,
+				'errorlang',
+				$this->getErrorFormatter()->getLanguage()->getCode(),
+				ApiResult::NO_SIZE_CHECK
+			);
 		}
 	}
 
@@ -1195,7 +1236,8 @@ class ApiMain extends ApiBase {
 			// Probably can't happen
 			// @codeCoverageIgnoreStart
 			$this->dieWithError(
-				[ 'apierror-unknownaction', wfEscapeWikiText( $this->mAction ) ], 'unknown_action'
+				[ 'apierror-unknownaction', wfEscapeWikiText( $this->mAction ) ],
+				'unknown_action'
 			);
 			// @codeCoverageIgnoreEnd
 		}
@@ -1449,7 +1491,7 @@ class ApiMain extends ApiBase {
 	 * @param ApiBase $module An Api module
 	 */
 	protected function checkReadOnly( $module ) {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			$this->dieReadOnly();
 		}
 
