@@ -125,7 +125,7 @@ describe( 'Page', function () {
 		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\n\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
-	it( 'should be undoable', function () {
+	it.skip( 'should be undoable', function () {
 		let previousRev, undoRev;
 		browser.call( async () => {
 			// create
