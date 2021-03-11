@@ -30,12 +30,18 @@ class ComposerHookHandler {
 		if ( version_compare( PluginInterface::PLUGIN_API_VERSION, '2.0.0', '>=' ) ) {
 			foreach ( $event->getComposer()->getPluginManager()->getPlugins() as $plugin ) {
 				if ( $plugin instanceof \Wikimedia\Composer\Merge\V2\MergePlugin ) {
+					// If v2 of wikimedia/composer-merge-plugin is already installed,
+					// nothing needs doing
 					return;
 				}
+
+				// Check if v1 of wikimedia/composer-merge-plugin is still installed
+				if ( $plugin instanceof \Wikimedia\Composer\MergePlugin ) {
+					throw new \Exception( "wikimedia/composer-merge-plugin 2.x is not activated. " .
+						"Use Composer 1.x to update wikimedia/composer-merge-plugin to version " .
+						"2.x before running Composer 2.x." );
+				}
 			}
-			throw new \Exception( "composer-merge-plugin is not activated. " .
-				"Use Composer 1.x to update wikimedia/composer-merge-plugin to version " .
-				"2.x before running Composer 2.x." );
 		}
 	}
 
