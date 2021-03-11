@@ -3,6 +3,7 @@
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
@@ -22,19 +23,114 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 
 		$this->title = Title::newFromText( 'SomeTitle' );
 		$this->target = Title::newFromText( 'TestTarget' );
-		$this->user = $this->getTestUser()->getUser();
+
+		$user = $this->getTestUser()->getUser();
+		$this->user = new UserIdentityValue( $user->getId(), $user->getName(), $user->getActorId() );
 
 		$this->user_comment = '<User comment about action>';
 		$this->context = RequestContext::newExtraneousContext( $this->title );
 	}
 
+	public function provideAttribs() {
+		yield [
+			[
+				'rc_timestamp' => wfTimestamp( TS_MW ),
+				'rc_namespace' => NS_USER,
+				'rc_title' => 'Acme',
+				'rc_type' => RC_EXTERNAL,
+				'rc_source' => 'foo',
+				'rc_minor' => 0,
+				'rc_cur_id' => 77,
+				'rc_user' => 0,
+				'rc_user_text' => 'm>External User',
+				'rc_comment' => '',
+				'rc_comment_text' => '',
+				'rc_comment_data' => null,
+				'rc_this_oldid' => 70,
+				'rc_last_oldid' => 71,
+				'rc_bot' => 0,
+				'rc_ip' => '',
+				'rc_patrolled' => 0,
+				'rc_new' => 0,
+				'rc_old_len' => 80,
+				'rc_new_len' => 88,
+				'rc_deleted' => 0,
+				'rc_logid' => 0,
+				'rc_log_type' => null,
+				'rc_log_action' => '',
+				'rc_params' => '',
+			]
+		];
+
+		yield [
+			[
+				'rc_timestamp' => wfTimestamp( TS_MW ),
+				'rc_namespace' => NS_USER,
+				'rc_title' => 'Acme',
+				'rc_type' => RC_EXTERNAL,
+				'rc_source' => 'foo',
+				'rc_minor' => 0,
+				'rc_cur_id' => 77,
+				'rc_user' => 0,
+				'rc_user_text' => '192.168.0.1',
+				'rc_comment' => '',
+				'rc_comment_text' => '',
+				'rc_comment_data' => null,
+				'rc_this_oldid' => 70,
+				'rc_last_oldid' => 71,
+				'rc_bot' => 0,
+				'rc_ip' => '',
+				'rc_patrolled' => 0,
+				'rc_new' => 0,
+				'rc_old_len' => 80,
+				'rc_new_len' => 88,
+				'rc_deleted' => 0,
+				'rc_logid' => 0,
+				'rc_log_type' => null,
+				'rc_log_action' => '',
+				'rc_params' => '',
+			]
+		];
+	}
+
+	/**
+	 * @covers RecentChange::save
+	 * @covers RecentChange::newFromId
+	 * @covers RecentChange::getTitle
+	 * @covers RecentChange::getPerformerIdentity
+	 * @dataProvider provideAttribs
+	 */
+	public function testAttribs( $attribs ) {
+		$rc = new RecentChange;
+		$rc->mAttribs = $attribs;
+		$rc->mExtra = [
+			'pageStatus' => 'changed'
+		];
+		$rc->save();
+		$id = $rc->getAttribute( 'rc_id' );
+
+		$rc = RecentChange::newFromId( $id );
+
+		$actualAttribs = array_intersect_key( $rc->mAttribs, $attribs );
+		$this->assertArrayEquals( $attribs, $actualAttribs, false, true );
+
+		$user = new UserIdentityValue( $attribs['rc_user'] ?? 0, $attribs['rc_user_text'], 0 );
+		$this->assertTrue( $user->equals( $rc->getPerformerIdentity() ) );
+		$this->assertTrue( $user->equals( $rc->getPerformer() ) );
+
+		$title = Title::makeTitle( $attribs['rc_namespace'], $attribs['rc_title'] );
+		$this->assertTrue( $title->isSamePageAs( $rc->getTitle() ) );
+	}
+
 	/**
 	 * @covers RecentChange::newFromRow
 	 * @covers RecentChange::loadFromRow
+	 * @covers RecentChange::getAttributes
+	 * @covers RecentChange::getPerformerIdentity
+	 * @covers RecentChange::getPerformer
 	 */
 	public function testNewFromRow() {
 		$user = $this->getTestUser()->getUser();
-		$actorId = $user->getActorId();
 
 		$row = (object)[
 			'rc_foo' => 'AAA',
@@ -42,7 +138,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'rc_deleted' => 'bar',
 			'rc_comment_text' => 'comment',
 			'rc_comment_data' => null,
-			'rc_user' => $user->getId(),
+			'rc_user' => $user->getId(), // lookup by id
 		];
 
 		$rc = RecentChange::newFromRow( $row );
@@ -55,17 +151,18 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'rc_comment_text' => 'comment',
 			'rc_comment_data' => null,
 			'rc_user' => $user->getId(),
-			'rc_user_text' => $user->getName(),
-			'rc_actor' => $actorId,
+			'rc_user_text' => $user->getName()
 		];
 		$this->assertEquals( $expected, $rc->getAttributes() );
+		$this->assertTrue( $user->equals( $rc->getPerformerIdentity() ) );
+		$this->assertTrue( $user->equals( $rc->getPerformer() ) );
 
 		$row = (object)[
 			'rc_foo' => 'AAA',
 			'rc_timestamp' => '20150921134808',
 			'rc_deleted' => 'bar',
 			'rc_comment' => 'comment',
-			'rc_user' => $user->getId(),
+			'rc_user_text' => $user->getName(), // lookup by name
 		];
 
 		Wikimedia\suppressWarnings();
@@ -80,10 +177,96 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 			'rc_comment_text' => 'comment',
 			'rc_comment_data' => null,
 			'rc_user' => $user->getId(),
-			'rc_user_text' => $user->getName(),
-			'rc_actor' => $actorId,
+			'rc_user_text' => $user->getName()
 		];
 		$this->assertEquals( $expected, $rc->getAttributes() );
+		$this->assertEquals( $expected, $rc->getAttributes() );
+		$this->assertTrue( $user->equals( $rc->getPerformerIdentity() ) );
+		$this->assertTrue( $user->equals( $rc->getPerformer() ) );
+	}
+
+	/**
+	 * @covers RecentChange::notifyNew
+	 * @covers RecentChange::newFromId
+	 * @covers RecentChange::getAttributes
+	 * @covers RecentChange::getPerformerIdentity
+	 * @covers RecentChange::getPerformer
+	 */
+	public function testNotifyNew() {
+		$now = MWTimestamp::now();
+		$rc = RecentChange::notifyNew(
+			$now,
+			$this->title,
+			false,
+			$this->user,
+			$this->user_comment,
+			false
+		);
+
+		$expected = [
+			'rc_timestamp' => $now,
+			'rc_deleted' => 0,
+			'rc_comment_text' => $this->user_comment,
+			'rc_user' => $this->user->getId(),
+			'rc_user_text' => $this->user->getName()
+		];
+
+		$actual = array_intersect_key( $rc->getAttributes(), $expected );
+
+		$this->assertEquals( $expected, $actual );
+		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
+		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
+
+		$rc = RecentChange::newFromId( $rc->getAttribute( 'rc_id' ) );
+
+		$actual = array_intersect_key( $rc->getAttributes(), $expected );
+
+		$this->assertEquals( $expected, $actual );
+		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
+		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
+	}
+
+	/**
+	 * @covers RecentChange::notifyNew
+	 * @covers RecentChange::newFromId
+	 * @covers RecentChange::getAttributes
+	 * @covers RecentChange::getPerformerIdentity
+	 * @covers RecentChange::getPerformer
+	 */
+	public function testNotifyEdit() {
+		$now = MWTimestamp::now();
+		$rc = RecentChange::notifyEdit(
+			$now,
+			$this->title,
+			false,
+			$this->user,
+			$this->user_comment,
+			0,
+			$now,
+			false
+		);
+
+		$expected = [
+			'rc_timestamp' => $now,
+			'rc_deleted' => 0,
+			'rc_comment_text' => $this->user_comment,
+			'rc_user' => $this->user->getId(),
+			'rc_user_text' => $this->user->getName()
+		];
+
+		$actual = array_intersect_key( $rc->getAttributes(), $expected );
+
+		$this->assertEquals( $expected, $actual );
+		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
+		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
+
+		$rc = RecentChange::newFromId( $rc->getAttribute( 'rc_id' ) );
+
+		$actual = array_intersect_key( $rc->getAttributes(), $expected );
+
+		$this->assertEquals( $expected, $actual );
+		$this->assertTrue( $this->user->equals( $rc->getPerformerIdentity() ) );
+		$this->assertTrue( $this->user->equals( $rc->getPerformer() ) );
 	}
 
 	public function provideParseParams() {
