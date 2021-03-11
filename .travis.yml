@@ -44,8 +44,6 @@ addons:
 
 before_script:
   - echo 'opcache.enable_cli = 1' >> ~/.phpenv/versions/$(phpenv version-name)/etc/conf.d/travis.ini
-  # Force composer 1.x because MediaWiki/composer-merge-plugin don't support composer 2.x yet
-  - composer self-update --1
   - composer install --prefer-dist --quiet --no-interaction
   - composer mw-install:sqlite
   - echo -en "\n\nrequire_once __DIR__ . '/includes/DevelopmentSettings.php';\n" >> ./LocalSettings.php
