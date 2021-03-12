@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Revision;
+namespace MediaWiki\Tests\Unit\Revision;
 
 use Content;
 use InvalidArgumentException;
