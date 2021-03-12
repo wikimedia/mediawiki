@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.41.2
+ * OOUI v0.41.3
  * https://www.mediawiki.org/wiki/OOUI
  *
  * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2021-03-09T16:32:17Z
+ * Date: 2021-03-12T21:47:47Z
  */
 ( function ( OO ) {
 
@@ -4651,6 +4651,11 @@ OO.ui.TagMultiselectWidget.prototype.onInputFocus = function () {
  * Respond to input blur event
  */
 OO.ui.TagMultiselectWidget.prototype.onInputBlur = function () {
+	// Skip of blur was triggered by DOM re-ordering in onChangeTags
+	if ( this.changing ) {
+		return;
+	}
+
 	this.$element.removeClass( 'oo-ui-tagMultiselectWidget-focus' );
 
 	// Set the widget as invalid if there's text in the input
@@ -4774,7 +4779,10 @@ OO.ui.TagMultiselectWidget.prototype.onTagFixed = function ( item ) {
  * Respond to change event, where items were added, removed, or cleared.
  */
 OO.ui.TagMultiselectWidget.prototype.onChangeTags = function () {
-	var isUnderLimit = this.isUnderLimit();
+	var hadFocus,
+		isUnderLimit = this.isUnderLimit();
+
+	this.changing = true;
 
 	// Reset validity
 	this.toggleValid( this.checkValidity() );
@@ -4791,13 +4799,19 @@ OO.ui.TagMultiselectWidget.prototype.onChangeTags = function () {
 			this.input.$input.attr( 'placeholder', isUnderLimit ? this.inputPlaceholder : '' );
 			this.input.setDisabled( !isUnderLimit );
 		} else {
+			hadFocus = document.activeElement === this.input.$input[ 0 ];
 			// Move input to the end of the group
 			this.$group.append( this.input.$input );
 			// Show/hide the input
 			this.input.$input.toggleClass( 'oo-ui-element-hidden', !isUnderLimit );
+			if ( hadFocus && isUnderLimit ) {
+				this.input.focus();
+			}
 		}
 	}
 	this.updateIfHeightChanged();
+
+	this.changing = false;
 };
 
 /**
@@ -4811,7 +4825,7 @@ OO.ui.TagMultiselectWidget.prototype.setDisabled = function ( isDisabled ) {
 		if ( !isDisabled ) {
 			this.updateInputSize();
 		}
-		this.input.setDisabled( !!isDisabled && !this.isUnderLimit() );
+		this.input.setDisabled( !!isDisabled || !this.isUnderLimit() );
 	}
 
 	if ( this.items ) {
@@ -6284,8 +6298,11 @@ OO.ui.SearchWidget.prototype.onQueryKeydown = function ( e ) {
 			highlightedItem = this.results.findSelectedItem();
 		}
 		nextItem = this.results.findRelativeSelectableItem( highlightedItem, dir );
+		// nextItem may be null if there are no results
 		this.results.highlightItem( nextItem );
-		nextItem.scrollElementIntoView();
+		if ( nextItem ) {
+			nextItem.scrollElementIntoView();
+		}
 	}
 };
 
