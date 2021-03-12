@@ -58,6 +58,7 @@ this is no longer recommended and the option has been removed.
   They became obsolete after 1.17 overhauled the database updater, but were kept
   for backwards compatibility. The LoadExtensionSchemaUpdates hook should be
   used instead.
+* $wgEnableRestAPI - This setting, ignored since 1.35, has been removed.
 * …
 
 === New user-facing features in 1.36 ===

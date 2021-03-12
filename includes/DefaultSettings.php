@@ -8832,14 +8832,6 @@ $wgAllowedCorsHeaders = [
 ];
 
 /**
- * Enable the experimental REST API.
- *
- * @deprecated Since 1.35, defaults to true and is ignored by MediaWiki core itself.
- *             No longer functions as a setting. Will be removed in 1.36.
- */
-$wgEnableRestAPI = true;
-
-/**
  * Additional REST API Route files.
  *
  * A common usage is to enable development/experimental endpoints only on test wikis.
