@@ -23,6 +23,8 @@
  * @covers NaiveForeignTitleFactory
  *
  * @group Title
+ *
+ * TODO convert to a Unit test
  */
 class NaiveForeignTitleFactoryTest extends MediaWikiIntegrationTestCase {
 
@@ -67,7 +69,9 @@ class NaiveForeignTitleFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider basicProvider
 	 */
 	public function testBasic( $title, $ns, ForeignTitle $foreignTitle ) {
-		$factory = new NaiveForeignTitleFactory();
+		$factory = new NaiveForeignTitleFactory(
+			$this->getServiceContainer()->getContentLanguage()
+		);
 		$testTitle = $factory->createForeignTitle( $title, $ns );
 
 		$this->assertEquals( $testTitle->isNamespaceIdKnown(),
