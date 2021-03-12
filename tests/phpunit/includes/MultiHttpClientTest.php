@@ -43,8 +43,8 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			->method( 'getResponseHeaders' )
 			->willReturn( $headers );
 		$httpRequest->expects( $this->any() )
-				->method( 'getStatus' )
-				->willReturn( $statusCode );
+			->method( 'getStatus' )
+			->willReturn( $statusCode );
 		return $httpRequest;
 	}
 
@@ -71,7 +71,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			'url' => "http://example.test",
 		] );
 
-		$this->assertEquals( 200, $rcode );
+		$this->assertSame( 200, $rcode );
 	}
 
 	/**
@@ -88,8 +88,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			'url' => "http://www.example.test",
 		] );
 
-		$failure = $rcode < 200 || $rcode >= 400;
-		$this->assertTrue( $failure );
+		$this->assertSame( 0, $rcode );
 	}
 
 	/**
@@ -113,7 +112,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$responses = $this->client->runMulti( $reqs );
 		foreach ( $responses as $response ) {
 			list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $response['response'];
-			$this->assertEquals( 200, $rcode );
+			$this->assertSame( 200, $rcode );
 		}
 	}
 
@@ -139,8 +138,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$responses = $this->client->runMulti( $reqs );
 		foreach ( $responses as $response ) {
 			list( $rcode, $rdesc, /* $rhdrs */, $rbody, $rerr ) = $response['response'];
-			$failure = $rcode < 200 || $rcode >= 400;
-			$this->assertTrue( $failure );
+			$this->assertSame( 404, $rcode );
 		}
 	}
 
@@ -171,7 +169,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			'url' => 'http://example.test',
 		] );
 
-		$this->assertEquals( 200, $rcode );
+		$this->assertSame( 200, $rcode );
 		$this->assertSame( count( $headers ), count( $rhdrs ) );
 		foreach ( $headers as $name => $values ) {
 			$value = implode( ', ', $values );
@@ -276,6 +274,6 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			$runOptions
 		);
 
-		$this->assertTrue( true );
+		$this->addToAssertionCount( 1 );
 	}
 }
