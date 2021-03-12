@@ -20,7 +20,6 @@
  * @file
  * @ingroup Installer
  */
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\MySQLField;
 
 /**
@@ -442,94 +441,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		} else {
 			$this->output( "...no page_random rows needed to be set\n" );
 		}
-	}
-
-	protected function doTemplatelinksUpdate() {
-		if ( $this->db->tableExists( 'templatelinks', __METHOD__ ) ) {
-			$this->output( "...templatelinks table already exists\n" );
-
-			return;
-		}
-
-		$this->applyPatch( 'patch-templatelinks.sql', false, "Creating templatelinks table" );
-
-		$this->output( "Populating...\n" );
-		$services = MediaWikiServices::getInstance();
-		if ( $services->getDBLoadBalancer()->getServerCount() > 1 ) {
-			// Slow, replication-friendly update
-			$res = $this->db->select( 'pagelinks', [ 'pl_from', 'pl_namespace', 'pl_title' ],
-				[ 'pl_namespace' => NS_TEMPLATE ], __METHOD__ );
-			$count = 0;
-			foreach ( $res as $row ) {
-				$count = ( $count + 1 ) % 100;
-				if ( $count == 0 ) {
-					$lbFactory = $services->getDBLoadBalancerFactory();
-					$lbFactory->waitForReplication( [
-						'domain' => $lbFactory->getLocalDomainID(),
-						'timeout' => self::REPLICATION_WAIT_TIMEOUT
-					] );
-				}
-				$this->db->insert( 'templatelinks',
-					[
-						'tl_from' => $row->pl_from,
-						'tl_namespace' => $row->pl_namespace,
-						'tl_title' => $row->pl_title,
-					], __METHOD__
-				);
-			}
-		} else {
-			// Fast update
-			$this->db->insertSelect( 'templatelinks', 'pagelinks',
-				[
-					'tl_from' => 'pl_from',
-					'tl_namespace' => 'pl_namespace',
-					'tl_title' => 'pl_title'
-				], [
-					'pl_namespace' => 10
-				], __METHOD__,
-				[ 'NO_AUTO_COLUMNS' ] // There's no "tl_id" auto-increment field
-			);
-		}
-		$this->output( "Done. Please run maintenance/refreshLinks.php for a more " .
-			"thorough templatelinks update.\n" );
-	}
-
-	protected function doBacklinkingIndicesUpdate() {
-		if ( !$this->indexHasField( 'pagelinks', 'pl_namespace', 'pl_from' ) ||
-			!$this->indexHasField( 'templatelinks', 'tl_namespace', 'tl_from' ) ||
-			!$this->indexHasField( 'imagelinks', 'il_to', 'il_from' )
-		) {
-			$this->applyPatch( 'patch-backlinkindexes.sql', false, "Updating backlinking indices" );
-		}
-	}
-
-	/**
-	 * Adding page_restrictions table, obsoleting page.page_restrictions.
-	 * Migrating old restrictions to new table
-	 * -- Andrew Garrett, January 2007.
-	 */
-	protected function doRestrictionsUpdate() {
-		if ( $this->db->tableExists( 'page_restrictions', __METHOD__ ) ) {
-			$this->output( "...page_restrictions table already exists.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-page_restrictions.sql',
-			false,
-			'Creating page_restrictions table (1/2)'
-		);
-		$this->applyPatch(
-			'patch-page_restrictions_sortkey.sql',
-			false,
-			'Creating page_restrictions table (2/2)'
-		);
-		$this->output( "done.\n" );
-
-		$this->output( "Migrating old restrictions to new table...\n" );
-		$task = $this->maintenance->runChild( UpdateRestrictions::class );
-		$task->execute();
 	}
 
 	protected function doCategorylinksIndicesUpdate() {
