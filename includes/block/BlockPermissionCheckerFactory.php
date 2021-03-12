@@ -22,7 +22,8 @@
 namespace MediaWiki\Block;
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use User;
 
@@ -36,25 +37,27 @@ class BlockPermissionCheckerFactory {
 	/** @var ServiceOptions */
 	private $options;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/**
 	 * @internal only to be used by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = BlockPermissionChecker::CONSTRUCTOR_OPTIONS;
 
 	/**
+	 * @var UserFactory
+	 */
+	private $userFactory;
+
+	/**
 	 * @param ServiceOptions $options
-	 * @param PermissionManager $permissionManager
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		PermissionManager $permissionManager
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
-		$this->permissionManager = $permissionManager;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -65,11 +68,11 @@ class BlockPermissionCheckerFactory {
 	 */
 	public function newBlockPermissionChecker(
 		$target,
-		User $performer
+		Authority $performer
 	) {
 		return new BlockPermissionChecker(
 			$this->options,
-			$this->permissionManager,
+			$this->userFactory,
 			$target,
 			$performer
 		);
