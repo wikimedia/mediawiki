@@ -236,12 +236,6 @@ class ApiMain extends ApiBase {
 	/** @var bool */
 	private $mInternalMode;
 
-	/**
-	 * @var int
-	 * @todo Remove this, set to -1 in the constructor and never referred to again
-	 */
-	private $mCdnMaxAge;
-
 	/** @var ApiBase */
 	private $mModule;
 
@@ -374,8 +368,6 @@ class ApiMain extends ApiBase {
 
 		$this->mContinuationManager = null;
 		$this->mEnableWrite = $enableWrite;
-
-		$this->mCdnMaxAge = -1; // flag for executeActionWithErrorHandling()
 	}
 
 	/**
