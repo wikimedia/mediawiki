@@ -428,28 +428,6 @@ class MysqlUpdater extends DatabaseUpdater {
 	}
 
 	/**
-	 * Make sure wl_notificationtimestamp can be NULL,
-	 * and update old broken items.
-	 */
-	protected function doWatchlistNull() {
-		$info = $this->db->fieldInfo( 'watchlist', 'wl_notificationtimestamp' );
-		if ( !$info ) {
-			return;
-		}
-		if ( $info->isNullable() ) {
-			$this->output( "...wl_notificationtimestamp is already nullable.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-watchlist-null.sql',
-			false,
-			'Making wl_notificationtimestamp nullable'
-		);
-	}
-
-	/**
 	 * Set page_random field to a random value where it is equals to 0.
 	 *
 	 * @see T5946
