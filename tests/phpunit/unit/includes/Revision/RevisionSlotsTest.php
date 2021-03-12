@@ -1,16 +1,32 @@
 <?php
 
-namespace MediaWiki\Tests\Revision;
+namespace MediaWiki\Tests\Unit\Revision;
 
 use InvalidArgumentException;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\SlotRecord;
-use MediaWikiIntegrationTestCase;
+use MediaWikiUnitTestCase;
 use TextContent;
+use TextContentHandler;
 use WikitextContent;
 
-class RevisionSlotsTest extends MediaWikiIntegrationTestCase {
+class RevisionSlotsTest extends MediaWikiUnitTestCase {
+
+	/**
+	 * Creates a subclass that overrides AbstractContent::getContentHandler() and returns a
+	 * ContentHandler without the need to go through MediaWikiServices.
+	 *
+	 * @param string $text
+	 * @return TextContent
+	 */
+	protected function getTextContent( $text ) {
+		return new class( $text ) extends TextContent {
+			public function getContentHandler() {
+				return new TextContentHandler();
+			}
+		};
+	}
 
 	/**
 	 * @param SlotRecord[] $slots
@@ -187,7 +203,10 @@ class RevisionSlotsTest extends MediaWikiIntegrationTestCase {
 	public function testComputeSha1( $expected, $contentStrings ) {
 		$slotsArray = [];
 		foreach ( $contentStrings as $key => $contentString ) {
-			$slotsArray[] = SlotRecord::newUnsaved( strval( $key ), new WikitextContent( $contentString ) );
+			$slotsArray[] = SlotRecord::newUnsaved(
+				strval( $key ),
+				$this->getTextContent( $contentString )
+			);
 		}
 		$slots = $this->newRevisionSlots( $slotsArray );
 
@@ -195,11 +214,11 @@ class RevisionSlotsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideHasSameContent() {
-		$fooX = SlotRecord::newUnsaved( 'x', new TextContent( 'Foo' ) );
-		$barZ = SlotRecord::newUnsaved( 'z', new TextContent( 'Bar' ) );
-		$fooY = SlotRecord::newUnsaved( 'y', new TextContent( 'Foo' ) );
+		$fooX = SlotRecord::newUnsaved( 'x', $this->getTextContent( 'Foo' ) );
+		$barZ = SlotRecord::newUnsaved( 'z', $this->getTextContent( 'Bar' ) );
+		$fooY = SlotRecord::newUnsaved( 'y', $this->getTextContent( 'Foo' ) );
 		$barZS = SlotRecord::newSaved( 7, 7, 'xyz', $barZ );
-		$barZ2 = SlotRecord::newUnsaved( 'z', new TextContent( 'Baz' ) );
+		$barZ2 = SlotRecord::newUnsaved( 'z', $this->getTextContent( 'Baz' ) );
 
 		$a = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ ] );
 		$a2 = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ ] );
@@ -225,11 +244,11 @@ class RevisionSlotsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideGetRolesWithDifferentContent() {
-		$fooX = SlotRecord::newUnsaved( 'x', new TextContent( 'Foo' ) );
-		$barZ = SlotRecord::newUnsaved( 'z', new TextContent( 'Bar' ) );
-		$fooY = SlotRecord::newUnsaved( 'y', new TextContent( 'Foo' ) );
+		$fooX = SlotRecord::newUnsaved( 'x', $this->getTextContent( 'Foo' ) );
+		$barZ = SlotRecord::newUnsaved( 'z', $this->getTextContent( 'Bar' ) );
+		$fooY = SlotRecord::newUnsaved( 'y', $this->getTextContent( 'Foo' ) );
 		$barZS = SlotRecord::newSaved( 7, 7, 'xyz', $barZ );
-		$barZ2 = SlotRecord::newUnsaved( 'z', new TextContent( 'Baz' ) );
+		$barZ2 = SlotRecord::newUnsaved( 'z', $this->getTextContent( 'Baz' ) );
 
 		$a = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ ] );
 		$a2 = $this->newRevisionSlots( [ 'x' => $fooX, 'z' => $barZ ] );
