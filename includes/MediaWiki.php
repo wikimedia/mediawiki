@@ -1141,6 +1141,8 @@ class MediaWiki {
 	 * @deprecated Since 1.34
 	 */
 	public function triggerJobs() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		$jobRunRate = $this->config->get( 'JobRunRate' );
 		if ( $this->getTitle()->isSpecial( 'RunJobs' ) ) {
 			return; // recursion guard
