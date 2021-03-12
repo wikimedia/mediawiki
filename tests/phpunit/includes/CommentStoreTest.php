@@ -34,8 +34,14 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 * @return CommentStore
 	 */
-	protected function makeStore( $stage ) {
-		$lang = MediaWikiServices::getInstance()->getContentLanguage();
+	private function makeStore( $stage ) {
+		$lang = $this->createMock( Language::class );
+		$lang->method( 'truncateForDatabase' )->willReturnCallback( function ( $str, $len ) {
+			return strlen( $str ) > $len ? substr( $str, 0, $len - 3 ) . '...' : $str;
+		} );
+		$lang->method( 'truncateForVisual' )->willReturnCallback( function ( $str, $len ) {
+			return mb_strlen( $str ) > $len ? mb_substr( $str, 0, $len - 3 ) . '...' : $str;
+		} );
 		return new class( $lang, $stage ) extends CommentStore {
 			protected const TEMP_TABLES = [
 				'rev_comment' => [
@@ -66,7 +72,7 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	public function testConstructor( $stage, $exceptionMsg ) {
 		try {
 			$m = new CommentStore(
-				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' ),
+				$this->createMock( Language::class ),
 				$stage
 			);
 			if ( $exceptionMsg !== null ) {
