@@ -2423,10 +2423,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onLocalFilePurgeThumbnails( $file, $archiveName ) {
+	public function onLocalFilePurgeThumbnails( $file, $archiveName, $urls ) {
 		return $this->container->run(
 			'LocalFilePurgeThumbnails',
-			[ $file, $archiveName ]
+			[ $file, $archiveName, $urls ]
 		);
 	}
 
