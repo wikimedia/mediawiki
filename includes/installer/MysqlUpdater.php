@@ -443,35 +443,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	/**
-	 * Adding page_restrictions table, obsoleting page.page_restrictions.
-	 * Migrating old restrictions to new table
-	 * -- Andrew Garrett, January 2007.
-	 */
-	protected function doRestrictionsUpdate() {
-		if ( $this->db->tableExists( 'page_restrictions', __METHOD__ ) ) {
-			$this->output( "...page_restrictions table already exists.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-page_restrictions.sql',
-			false,
-			'Creating page_restrictions table (1/2)'
-		);
-		$this->applyPatch(
-			'patch-page_restrictions_sortkey.sql',
-			false,
-			'Creating page_restrictions table (2/2)'
-		);
-		$this->output( "done.\n" );
-
-		$this->output( "Migrating old restrictions to new table...\n" );
-		$task = $this->maintenance->runChild( UpdateRestrictions::class );
-		$task->execute();
-	}
-
 	protected function doCategorylinksIndicesUpdate() {
 		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
 			$this->applyPatch( 'patch-categorylinksindex.sql', false, "Updating categorylinks Indices" );
