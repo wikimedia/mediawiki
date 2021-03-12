@@ -1305,7 +1305,9 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 			function () use ( $user, $oldid ) {
 				$this->getHookRunner()->onPageViewUpdates( $this, $user );
 
-				$user->clearNotification( $this->mTitle, $oldid );
+				MediaWikiServices::getInstance()
+					->getWatchlistNotificationManager()
+					->clearTitleUserNotifications( $user, $this->mTitle, $oldid );
 			},
 			DeferredUpdates::PRESEND
 		);
