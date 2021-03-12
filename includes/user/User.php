@@ -568,6 +568,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	/**
 	 * @see UserFactory::newFromName
 	 *
+	 * @deprecated since 1.36, use a UserFactory instead
+	 *
 	 * This is slightly less efficient than newFromId(), so use newFromId() if
 	 * you have both an ID and a name handy.
 	 *
@@ -617,6 +619,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *
 	 * @see UserFactory::newFromId
 	 *
+	 * @deprecated since 1.36, use a UserFactory instead
+	 *
 	 * @param int $id Valid user ID
 	 * @return User The corresponding User object
 	 */
@@ -630,6 +634,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Static factory method for creation from a given actor ID.
 	 *
 	 * @see UserFactory::newFromActorId
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
 	 *
 	 * @since 1.31
 	 * @param int $id Valid actor ID
@@ -645,6 +651,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Returns a User object corresponding to the given UserIdentity.
 	 *
 	 * @see UserFactory::newFromUserIdentity
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
 	 *
 	 * @since 1.32
 	 *
@@ -672,6 +680,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *
 	 * @see UserFactory::newFromAnyId
 	 *
+	 * @deprecated since 1.36, use a UserFactory instead
+	 *
 	 * @since 1.31
 	 * @param int|null $userId User ID, if known
 	 * @param string|null $userName User name, if known
@@ -693,6 +703,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * If the code is invalid or has expired, returns NULL.
 	 *
 	 * @see UserFactory::newFromConfirmationCode
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
 	 *
 	 * @param string $code Confirmation code
 	 * @param int $flags User::READ_* bitfield
@@ -4120,6 +4132,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	/**
 	 * Get the timestamp of the first edit
 	 *
+	 * @deprecated since 1.36, use a UserEditTracker instead
+	 *
 	 * @return string|bool Timestamp of first edit, or false for
 	 *  non-existent/anonymous user accounts.
 	 */
@@ -4131,6 +4145,8 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get the timestamp of the latest edit
+	 *
+	 * @deprecated since 1.36, use a UserEditTracker instead
 	 *
 	 * @since 1.33
 	 * @return string|bool Timestamp of first edit, or false for
