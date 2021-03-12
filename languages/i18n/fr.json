@@ -461,7 +461,7 @@
 	"sort-descending": "Tri décroissant",
 	"sort-ascending": "Tri croissant",
 	"sort-initial": "Tri initial",
-	"sort-rowspan-error": "Cette table contient un attribut rowspan qui occupe plus de lignes que ce que contient la table. Vous pouvez corriger celle-ci en modifiant l’article.",
+	"sort-rowspan-error": "Cette page contient une table avec un attribut rowspan qui occupe plus de lignes que ce que contient réellement la table. Vous pouvez corriger celle-ci en modifiant la page.",
 	"nstab-main": "Page",
 	"nstab-user": "Page d’utilisat{{GENDER:$1|eur|rice}}",
 	"nstab-media": "Média",

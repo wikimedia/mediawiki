@@ -3815,7 +3815,7 @@
 	"log-action-filter-managetags-deactivate": "Címke deaktiválása",
 	"log-action-filter-move-move": "Átnevezés átirányítások felülírása nélkül",
 	"log-action-filter-move-move_redir": "Átnevezés átirányítások felülírásával",
-	"log-action-filter-newusers-create": "Létrehozás által anonim felhasználó által",
+	"log-action-filter-newusers-create": "Létrehozás anonim felhasználó által",
 	"log-action-filter-newusers-create2": "Létrehozás regisztrált felhasználó által",
 	"log-action-filter-newusers-autocreate": "Automatikus létrehozás",
 	"log-action-filter-newusers-byemail": "Létrehozás jelszóval, e-mail által küldve",

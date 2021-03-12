@@ -386,7 +386,7 @@
 	"sort-descending": "Absteigend sortieren",
 	"sort-ascending": "Aufsteigend sortieren",
 	"sort-initial": "Ursprüngliche Sortierung",
-	"sort-rowspan-error": "Diese Tabelle hat ein rowspan-Attribut, das sich über mehr Zeilen erstreckt, als die Tabelle tatsächlich hat. Du kannst dies beheben, indem du den Artikel bearbeitest.",
+	"sort-rowspan-error": "Diese Seite enthält eine Tabelle mit einem rowspan-Attribut, das sich über mehr Zeilen erstreckt, als die Tabelle tatsächlich hat. Du kannst dies beheben, indem du die Seite bearbeitest.",
 	"nstab-main": "Seite",
 	"nstab-user": "{{GENDER:$1|Benutzerseite|Benutzerinnenseite|Benutzerseite}}",
 	"nstab-media": "Medienseite",
