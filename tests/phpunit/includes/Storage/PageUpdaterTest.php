@@ -772,7 +772,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$rev = $updater->getNewRevision();
 		$comment = $rev->getComment( RevisionRecord::RAW );
-		$this->assertSame( '', $comment->text, 'comment text should still be lank' );
+		$this->assertSame( '', $comment->text, 'comment text should still be blank' );
 
 		// check that we don't do auto.summaries without the EDIT_AUTOSUMMARY flag
 		$updater = $page2->newPageUpdater( $authority );
