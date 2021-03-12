@@ -271,9 +271,9 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWfLocalFile() {
 		$file = wfLocalFile( "File:Some_file_that_probably_doesn't exist.png" );
-		$this->assertThat(
+		$this->assertInstanceOf(
+			LocalFile::class,
 			$file,
-			$this->isInstanceOf( LocalFile::class ),
 			'wfLocalFile() returns LocalFile for valid Titles'
 		);
 	}
