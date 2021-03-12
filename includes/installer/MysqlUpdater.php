@@ -443,15 +443,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	protected function doBacklinkingIndicesUpdate() {
-		if ( !$this->indexHasField( 'pagelinks', 'pl_namespace', 'pl_from' ) ||
-			!$this->indexHasField( 'templatelinks', 'tl_namespace', 'tl_from' ) ||
-			!$this->indexHasField( 'imagelinks', 'il_to', 'il_from' )
-		) {
-			$this->applyPatch( 'patch-backlinkindexes.sql', false, "Updating backlinking indices" );
-		}
-	}
-
 	/**
 	 * Adding page_restrictions table, obsoleting page.page_restrictions.
 	 * Migrating old restrictions to new table
