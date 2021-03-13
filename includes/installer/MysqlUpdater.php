@@ -443,12 +443,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	protected function doCategorylinksIndicesUpdate() {
-		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
-			$this->applyPatch( 'patch-categorylinksindex.sql', false, "Updating categorylinks Indices" );
-		}
-	}
-
 	protected function doCategoryPopulation() {
 		if ( $this->updateRowExists( 'populate category' ) ) {
 			$this->output( "...category table already populated.\n" );
@@ -477,15 +471,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			$task = $this->maintenance->runChild( PopulateParentId::class );
 			$task->execute();
 		}
-	}
-
-	protected function doFilearchiveIndicesUpdate() {
-		$info = $this->db->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
-		if ( !$info ) {
-			$this->applyPatch( 'patch-filearchive-user-index.sql', false, "Updating filearchive indices" );
-		}
-
-		return true;
 	}
 
 	protected function doNonUniquePlTlIl() {
