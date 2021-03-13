@@ -616,6 +616,11 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'recentchanges', 'rc_ip', 'NOT NULL', true ],
 			[ 'renameIndex', 'recentchanges', 'new_name_timestamp', 'rc_new_name_timestamp', false,
 				'patch-recentchanges-rc_new_name_timestamp.sql' ],
+			[ 'changeField', 'archive', 'ar_namespace', 'INTEGER', '' ],
+			[ 'setDefault', 'archive', 'ar_namespace', 0 ],
+			[ 'setDefault', 'archive', 'ar_title', '' ],
+			[ 'changeField', 'archive', 'ar_comment_id', 'BIGINT', '' ],
+			[ 'changeField', 'archive', 'ar_actor', 'BIGINT', '' ],
 		];
 	}
 
