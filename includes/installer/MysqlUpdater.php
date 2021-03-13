@@ -473,15 +473,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	protected function doFilearchiveIndicesUpdate() {
-		$info = $this->db->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
-		if ( !$info ) {
-			$this->applyPatch( 'patch-filearchive-user-index.sql', false, "Updating filearchive indices" );
-		}
-
-		return true;
-	}
-
 	protected function doNonUniquePlTlIl() {
 		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace', __METHOD__ );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
