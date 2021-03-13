@@ -696,8 +696,7 @@ class LinksUpdate extends DataUpdate {
 	 * include the page id from $this->mId and any property value from
 	 * $this->mProperties.
 	 *
-	 * The array returned will include the pp_sortkey field if this
-	 * is present in the database (as indicated by $wgPagePropsHaveSortkey).
+	 * The array returned will include the pp_sortkey field.
 	 * The sortkey value is currently determined by getPropertySortKeyValue().
 	 *
 	 * @note this assumes that $this->mProperties[$prop] is defined.
@@ -707,21 +706,14 @@ class LinksUpdate extends DataUpdate {
 	 * @return array
 	 */
 	private function getPagePropRowData( $prop ) {
-		global $wgPagePropsHaveSortkey;
-
 		$value = $this->mProperties[$prop];
 
-		$row = [
+		return [
 			'pp_page' => $this->mId,
 			'pp_propname' => $prop,
 			'pp_value' => $value,
+			'pp_sortkey' => $this->getPropertySortKeyValue( $value )
 		];
-
-		if ( $wgPagePropsHaveSortkey ) {
-			$row['pp_sortkey'] = $this->getPropertySortKeyValue( $value );
-		}
-
-		return $row;
 	}
 
 	/**
