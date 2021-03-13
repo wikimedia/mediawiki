@@ -443,12 +443,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		}
 	}
 
-	protected function doCategorylinksIndicesUpdate() {
-		if ( !$this->indexHasField( 'categorylinks', 'cl_sortkey', 'cl_from' ) ) {
-			$this->applyPatch( 'patch-categorylinksindex.sql', false, "Updating categorylinks Indices" );
-		}
-	}
-
 	protected function doCategoryPopulation() {
 		if ( $this->updateRowExists( 'populate category' ) ) {
 			$this->output( "...category table already populated.\n" );
