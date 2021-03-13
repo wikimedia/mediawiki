@@ -322,6 +322,8 @@ class RecentChange implements Taggable {
 	/**
 	 * Get the UserIdentity of the client that performed this change.
 	 *
+	 * @since 1.36
+	 *
 	 * @return UserIdentity
 	 */
 	public function getPerformerIdentity(): UserIdentity {
