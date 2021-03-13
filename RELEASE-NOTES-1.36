@@ -560,6 +560,9 @@ because of Phabricator reports.
   ProtectionFormAddFormFields hook instead.
 * RevisionStore::newMutableRevisionFromArray has beed hard deprecated. Instead,
   MutableRevisionRecord should be constructed directly via constructor.
+* UserIdentity::getActorId() is deprecated. The actor ID should not be exposed
+  to application logic. Storage layer code should use the ActorNormalization
+  service for normalizing and denormalizing user names.
 * Command::cgroup() is deprecated and no longer functional. $wgShellCgroup is
   now implemented as an Executor option.
 * Command::restrict() is deprecated. Instead use the new separate accessors.

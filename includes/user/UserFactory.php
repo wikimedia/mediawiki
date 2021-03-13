@@ -183,7 +183,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		$this->lastUserFromIdentity = $this->newFromAnyId(
 			$userIdentity->getId() === 0 ? null : $userIdentity->getId(),
 			$userIdentity->getName() === '' ? null : $userIdentity->getName(),
-			$userIdentity->getActorId() === 0 ? null : $userIdentity->getActorId()
+			null
 		);
 
 		return $this->lastUserFromIdentity;
@@ -207,7 +207,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	public function newFromAnyId(
 		?int $userId,
 		?string $userName,
-		?int $actorId,
+		?int $actorId = null,
 		$dbDomain = false
 	) : User {
 		// Stop-gap solution for the problem described in T222212.

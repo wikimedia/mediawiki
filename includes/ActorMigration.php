@@ -448,7 +448,10 @@ class ActorMigration {
 				// make sure to use normalized form of IP for anonymous users
 				$names[] = IPUtils::sanitizeIP( $user->getName() );
 			}
-			$actorId = $user->getActorId();
+			$actorId = $this->actorStoreFactory
+				->getActorNormalization( $db->getDomainID() )
+				->findActorId( $user, $db );
+
 			if ( $actorId ) {
 				$actors[] = $actorId;
 			}

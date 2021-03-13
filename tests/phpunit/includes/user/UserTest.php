@@ -1191,14 +1191,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
 		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
 		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
-
-		// Actor only
-		$identity = new UserIdentityValue( 0, '', $user->getActorId() );
-		$result = User::newFromIdentity( $identity );
-		$this->assertInstanceOf( User::class, $result );
-		$this->assertSame( $user->getId(), $result->getId(), 'ID' );
-		$this->assertSame( $user->getName(), $result->getName(), 'Name' );
-		$this->assertSame( $user->getActorId(), $result->getActorId(), 'Actor' );
 	}
 
 	/**
