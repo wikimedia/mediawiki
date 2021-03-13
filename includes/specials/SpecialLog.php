@@ -23,6 +23,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\User\ActorNormalization;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -39,23 +40,23 @@ class SpecialLog extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var ActorMigration */
-	private $actorMigration;
+	/** @var ActorNormalization */
+	private $actorNormalization;
 
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
-	 * @param ActorMigration $actorMigration
+	 * @param ActorNormalization $actorNormalization
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
-		ActorMigration $actorMigration
+		ActorNormalization $actorNormalization
 	) {
 		parent::__construct( 'Log' );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->loadBalancer = $loadBalancer;
-		$this->actorMigration = $actorMigration;
+		$this->actorNormalization = $actorNormalization;
 	}
 
 	public function execute( $par ) {
@@ -126,10 +127,11 @@ class SpecialLog extends SpecialPage {
 		# Handle type-specific inputs
 		$qc = [];
 		if ( $opts->getValue( 'type' ) == 'suppress' ) {
+			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 			$offenderName = $opts->getValue( 'offender' );
-			$offender = empty( $offenderName ) ? null : User::newFromName( $offenderName, false );
-			if ( $offender ) {
-				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => (string)$offender->getActorId() ];
+			$offenderId = $this->actorNormalization->findActorIdByName( $offenderName, $dbr );
+			if ( $offenderId ) {
+				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => $offenderId ];
 			}
 		} else {
 			// Allow extensions to add relations to their search types
@@ -241,7 +243,7 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'logid' ),
 			$this->linkBatchFactory,
 			$this->loadBalancer,
-			$this->actorMigration
+			$this->actorNormalization
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );

@@ -10,8 +10,11 @@ for use in production.
 == Upgrading notes for 1.36 ==
 Don't forget to always back up your database before upgrading!
 
-See the file UPGRADE for more detailed upgrade instructions, including
-important information when upgrading from versions prior to 1.11.
+See the file UPGRADE for more detailed upgrade instructions.
+
+MediaWiki 1.36 only knows how to upgrade from MediaWiki 1.27 or later. If your
+wiki is running an older version, first upgrade to MediaWiki 1.27, before then
+attempting to upgrade to 1.36.
 
 Some specific notes for MediaWiki 1.36 upgrades are below:
 * MediaWiki 1.36 now requires the PHP internationalization extension
@@ -560,6 +563,9 @@ because of Phabricator reports.
   ProtectionFormAddFormFields hook instead.
 * RevisionStore::newMutableRevisionFromArray has beed hard deprecated. Instead,
   MutableRevisionRecord should be constructed directly via constructor.
+* UserIdentity::getActorId() is deprecated. The actor ID should not be exposed
+  to application logic. Storage layer code should use the ActorNormalization
+  service for normalizing and denormalizing user names.
 * Command::cgroup() is deprecated and no longer functional. $wgShellCgroup is
   now implemented as an Executor option.
 * Command::restrict() is deprecated. Instead use the new separate accessors.

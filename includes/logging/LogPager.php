@@ -25,6 +25,7 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ActorNormalization;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -67,8 +68,8 @@ class LogPager extends ReverseChronologicalPager {
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 
-	/** @var ActorMigration */
-	private $actorMigration;
+	/** @var ActorNormalization */
+	private $actorNormalization;
 
 	/**
 	 * @param LogEventsList $list
@@ -85,14 +86,14 @@ class LogPager extends ReverseChronologicalPager {
 	 * @param int $logId Log entry ID, to limit to a single log entry.
 	 * @param LinkBatchFactory|null $linkBatchFactory
 	 * @param ILoadBalancer|null $loadBalancer
-	 * @param ActorMigration|null $actorMigration
+	 * @param ActorNormalization|null $actorNormalization
 	 */
 	public function __construct( $list, $types = [], $performer = '', $title = '',
 		$pattern = false, $conds = [], $year = false, $month = false, $day = false,
 		$tagFilter = '', $action = '', $logId = 0,
 		LinkBatchFactory $linkBatchFactory = null,
 		ILoadBalancer $loadBalancer = null,
-		ActorMigration $actorMigration = null
+		ActorNormalization $actorNormalization = null
 	) {
 		$services = MediaWikiServices::getInstance();
 		// Set database before parent constructor to avoid setting it there with wfGetDB
@@ -105,7 +106,7 @@ class LogPager extends ReverseChronologicalPager {
 
 		// Class is used directly in extensions - T266480
 		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
-		$this->actorMigration = $actorMigration ?? $services->getActorMigration();
+		$this->actorNormalization = $actorNormalization ?? $services->getActorNormalization();
 
 		$this->limitLogId( $logId ); // set before types per T269761
 		$this->limitType( $types ); // also excludes hidden types
@@ -220,18 +221,16 @@ class LogPager extends ReverseChronologicalPager {
 		if ( $name == '' ) {
 			return;
 		}
-		$usertitle = Title::makeTitleSafe( NS_USER, $name );
-		if ( $usertitle === null ) {
+
+		$actorId = $this->actorNormalization->findActorIdByName( $name, $this->mDb );
+
+		if ( !$actorId ) {
+			// Unknown user, match nothing.
+			$this->mConds[] = '1 = 0';
 			return;
 		}
-		// Normalize username first so that non-existent users used
-		// in maintenance scripts work
-		$name = $usertitle->getText();
 
-		// Assume no joins required for log_user
-		$this->mConds[] = $this->actorMigration->getWhere(
-			$this->mDb, 'log_user', User::newFromName( $name, false )
-		)['conds'];
+		$this->mConds[ 'log_actor' ] = $actorId;
 
 		$this->enforcePerformerRestrictions();
 

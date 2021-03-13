@@ -266,9 +266,9 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			'rev_comment_text' => 'whatever',
 			'rev_comment_data' => null,
 			'rev_comment_cid' => null,
-			'rev_user' => '0',
+			'rev_user' => '1',
 			'rev_user_text' => 'Editor',
-			'rev_actor' => null,
+			'rev_actor' => '11',
 			'rev_content_format' => null,
 			'rev_content_model' => null,
 		];

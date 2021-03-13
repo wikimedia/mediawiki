@@ -1,8 +1,11 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ActorStore;
+use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -267,6 +270,53 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	private const ACTORS = [
+		[ 1, 'User1', 11 ],
+		[ 2, 'User2', 12 ],
+		[ 0, '192.168.12.34', 34 ],
+	];
+
+	private static function findRow( $table, $index, $value ) {
+		foreach ( $table as $row ) {
+			if ( $row[$index] === $value ) {
+				return $row;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * @return ActorStore
+	 */
+	private function getMockActorStore() {
+		/** @var MockObject|ActorStore $mock */
+		$mock = $this->createNoOpMock( ActorStore::class, [ 'findActorId' ] );
+
+		$mock->method( 'findActorId' )
+			->willReturnCallback( function ( UserIdentity $user ) {
+				$row = self::findRow( self::ACTORS, 1, $user->getName() );
+				return $row ? $row[2] : null;
+			} );
+
+		return $mock;
+	}
+
+	/**
+	 * @return ActorStoreFactory
+	 */
+	private function getMockActorStoreFactory() {
+		$store = $this->getMockActorStore();
+
+		/** @var MockObject|ActorStoreFactory $mock */
+		$mock = $this->createNoOpMock( ActorStoreFactory::class, [ 'getActorNormalization' ] );
+
+		$mock->method( 'getActorNormalization' )
+			->willReturn( $store );
+
+		return $mock;
+	}
+
 	/**
 	 * @dataProvider provideGetWhere
 	 * @param int $stage
@@ -276,6 +326,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetWhere( $stage, $key, $users, $useId, $expect ) {
+		$this->setService( 'ActorStoreFactory', $this->getMockActorStoreFactory() );
+
 		if ( !isset( $expect['conds'] ) ) {
 			$expect['conds'] = '(' . implode( ') OR (', $expect['orconds'] ) . ')';
 		}
@@ -514,8 +566,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertRoundTrip( $table, $key, $pk, $usesTemp ) {
 		$u = $this->getTestUser()->getUser();
-		$actorId =
-			$this->getServiceContainer()->getActorNormalization()->acquireActorId( $u, $this->db );
+		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
+		$actorId = $actorNormalization->acquireActorId( $u, $this->db );
 		$user = new UserIdentityValue( $u->getId(), $u->getName(), $actorId );
 
 		$stageNames = [

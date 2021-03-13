@@ -21,7 +21,7 @@ class SpecialLogTest extends SpecialPageTestBase {
 		return new SpecialLog(
 			$services->getLinkBatchFactory(),
 			$services->getDBLoadBalancer(),
-			$services->getActorMigration()
+			$services->getActorNormalization()
 		);
 	}
 

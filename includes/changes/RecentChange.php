@@ -1239,13 +1239,7 @@ class RecentChange implements Taggable {
 		if ( $userId !== null ) {
 			if ( $userName !== null ) {
 				// NOTE: For IPs and external users, $userId will be 0.
-				// NOTE: $actorId will be removed soon, but is needed for now.
-				if ( !$actorId ) {
-					$db = wfGetDB( DB_REPLICA );
-					$actorStore->findActorIdByName( $userName, $db );
-				}
-
-				$user = new UserIdentityValue( $userId, $userName, $actorId );
+				$user = new UserIdentityValue( $userId, $userName );
 			} else {
 				$user = $actorStore->getUserIdentityByUserId( $userId );
 

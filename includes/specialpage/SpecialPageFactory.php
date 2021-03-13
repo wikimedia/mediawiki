@@ -508,7 +508,7 @@ class SpecialPageFactory {
 			'services' => [
 				'LinkBatchFactory',
 				'DBLoadBalancer',
-				'ActorMigration',
+				'ActorNormalization',
 			]
 		],
 		'Watchlist' => [
