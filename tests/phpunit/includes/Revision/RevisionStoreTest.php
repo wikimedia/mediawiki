@@ -2,12 +2,10 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -81,22 +79,6 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getMockSqlBlobStore() {
 		return $this->getMockBuilder( SqlBlobStore::class )
-			->disableOriginalConstructor()->getMock();
-	}
-
-	/**
-	 * @return MockObject|CommentStore
-	 */
-	private function getMockCommentStore() {
-		return $this->getMockBuilder( CommentStore::class )
-			->disableOriginalConstructor()->getMock();
-	}
-
-	/**
-	 * @return MockObject|SlotRoleRegistry
-	 */
-	private function getMockSlotRoleRegistry() {
-		return $this->getMockBuilder( SlotRoleRegistry::class )
 			->disableOriginalConstructor()->getMock();
 	}
 

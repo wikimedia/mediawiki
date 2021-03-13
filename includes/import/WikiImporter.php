@@ -1173,7 +1173,9 @@ class WikiImporter {
 	 */
 	private function processTitle( $text, $ns = null ) {
 		if ( $this->foreignNamespaces === null ) {
-			$foreignTitleFactory = new NaiveForeignTitleFactory();
+			$foreignTitleFactory = new NaiveForeignTitleFactory(
+				MediaWikiServices::getInstance()->getContentLanguage()
+			);
 		} else {
 			$foreignTitleFactory = new NamespaceAwareForeignTitleFactory(
 				$this->foreignNamespaces );
