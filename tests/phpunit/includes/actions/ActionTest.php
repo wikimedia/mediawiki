@@ -1,8 +1,6 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\Block\Restriction\PageRestriction;
-use MediaWiki\MediaWikiServices;
 
 /**
  * @covers Action
@@ -278,11 +276,10 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testCanExecuteRequiresUnblock() {
-		$user = $this->getTestUser()->getUser();
-		$this->overrideUserPermissions( $user, [] );
-
 		$page = $this->getExistingTestPage();
 		$action = $this->getAction( 'unblock', $page );
+
+		$user = $this->createMock( User::class );
 
 		$block = new DatabaseBlock( [
 			'address' => $user,
@@ -290,12 +287,14 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			'expiry' => 'infinity',
 			'sitewide' => false,
 		] );
-		$block->setRestrictions( [
-			new PageRestriction( 0, $page->getTitle()->getArticleID() ),
-		] );
 
-		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
-		$blockStore->insertBlock( $block );
+		$user->expects( $this->once() )
+			->method( 'isBlockedFrom' )
+			->with( $page->getTitle() )
+			->willReturn( true );
+		$user->expects( $this->once() )
+			->method( 'getBlock' )
+			->willReturn( $block );
 
 		try {
 			$action->canExecute( $user );
@@ -303,8 +302,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		} catch ( Exception $e ) {
 			$this->assertInstanceOf( UserBlockedError::class, $e );
 		}
-
-		$blockStore->deleteBlock( $block );
 	}
 
 }
