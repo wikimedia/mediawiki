@@ -9238,13 +9238,6 @@ $wgSiteTypes = [
 ];
 
 /**
- * Whether the page_props table has a pp_sortkey column. Set to false in case
- * the respective database schema change was not applied.
- * @since 1.23
- */
-$wgPagePropsHaveSortkey = true;
-
-/**
  * Secret for session storage.
  * This should be set in LocalSettings.php, otherwise $wgSecretKey will
  * be used.

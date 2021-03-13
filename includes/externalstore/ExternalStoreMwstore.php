@@ -48,11 +48,11 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 	}
 
 	/**
-	 * The URL returned is of the form of the form mwstore://backend/container/wiki/id
+	 * Fetch data from a given external store URL
 	 *
 	 * @see ExternalStoreMedium::fetchFromURL()
-	 * @param string $url
-	 * @return bool
+	 * @param string $url An external store URL in the form of mwstore://backend/container/wiki/id
+	 * @return string|bool
 	 */
 	public function fetchFromURL( $url ) {
 		$be = $this->fbGroup->backendFromPath( $url );
@@ -67,7 +67,7 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 
 	/**
 	 * Fetch data from given external store URLs.
-	 * The URL returned is of the form of the form mwstore://backend/container/wiki/id
+	 * The URLs are in the form of mwstore://backend/container/wiki/id
 	 *
 	 * @param array $urls An array of external store URLs
 	 * @return array A map from url to stored content. Failed results are not represented.
@@ -119,6 +119,9 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 		throw new MWException( __METHOD__ . ": operation failed: $status" );
 	}
 
+	/**
+	 * @inheritDoc
+	 */
 	public function isReadOnly( $backend ) {
 		if ( parent::isReadOnly( $backend ) ) {
 			return true;
@@ -126,6 +129,6 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 
 		$be = $this->fbGroup->get( $backend );
 
-		return $be ? $be->isReadOnly() : false;
+		return $be->isReadOnly();
 	}
 }
