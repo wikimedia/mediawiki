@@ -10,28 +10,31 @@
 class ApiPurgeTest extends ApiTestCase {
 
 	public function testPurgePage() {
-		// Ensure 'UTPage' existence.
 		$this->getExistingTestPage( 'UTPage' );
+		$this->getNonexistingTestPage( 'UTPage-NotFound' );
 
-		$somePage = mt_rand();
-
-		$data = $this->doApiRequest( [
+		list( $data ) = $this->doApiRequest( [
 			'action' => 'purge',
-			'titles' => 'UTPage|' . $somePage . '|%5D'
+			'titles' => 'UTPage|UTPage-NotFound|%5D'
 		] );
 
-		$purgeData = $data[0]['purge'];
-
-		$this->assertArrayHasKey( 'purge', $data[0],
-			"Must receive a 'purge' result from API" );
-
-		$this->assertCount( 3, $purgeData,
-			'Purge request for three articles should give back three '
-			. 'results; received: ' . var_export( $purgeData, true ) );
-
-		$pages = [ 'UTPage' => 'purged', $somePage => 'missing', '%5D' => 'invalid' ];
-		foreach ( $purgeData as $v ) {
-			$this->assertArrayHasKey( $pages[$v['title']], $v );
+		$resultByTitle = [];
+		foreach ( $data['purge'] as $entry ) {
+			$key = $entry['title'];
+			// Ignore localised or redundant field
+			unset( $entry['invalidreason'] );
+			unset( $entry['title'] );
+			$resultByTitle[$key] = $entry;
 		}
+
+		$this->assertEquals(
+			[
+				'UTPage' => [ 'purged' => true, 'ns' => 0 ],
+				'UTPage-NotFound' => [ 'missing' => true, 'ns' => 0 ],
+				'%5D' => [ 'invalid' => true ],
+			],
+			$resultByTitle,
+			'Result'
+		);
 	}
 }
