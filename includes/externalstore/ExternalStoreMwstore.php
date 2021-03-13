@@ -129,6 +129,6 @@ class ExternalStoreMwstore extends ExternalStoreMedium {
 
 		$be = $this->fbGroup->get( $backend );
 
-		return $be ? $be->isReadOnly() : false;
+		return $be->isReadOnly();
 	}
 }
