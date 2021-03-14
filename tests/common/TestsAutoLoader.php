@@ -225,7 +225,6 @@ $wgAutoloadClasses += [
 	'MockSearchResult' => "$testDir/phpunit/mocks/search/MockSearchResult.php",
 
 	# tests/phpunit/unit/includes
-	'BadFileLookupTest' => "$testDir/phpunit/unit/includes/BadFileLookupTest.php",
 	'Wikimedia\\Reflection\\GhostFieldTestClass' => "$testDir/phpunit/mocks/GhostFieldTestClass.php",
 
 	# tests/phpunit/unit/includes/editpage/Constraint and tests/phpunit/integration/includes/editpage/Constraint
