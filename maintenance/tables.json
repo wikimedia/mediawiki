@@ -3152,5 +3152,165 @@
 		"pk": [
 			"rc_id"
 		]
+	},
+	{
+		"name": "archive",
+		"comment": "Archive area for deleted pages and their revisions. These may be viewed (and restored) by admins through the Special:Undelete interface.",
+		"columns": [
+			{
+				"name": "ar_id",
+				"comment": "Primary key",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ar_namespace",
+				"comment": "Copied from page_namespace",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "ar_title",
+				"comment": "Copied from page_title",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "ar_comment_id",
+				"comment": "Basic revision stuff.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ar_actor",
+				"comment": "Basic revision stuff.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ar_timestamp",
+				"comment": "Basic revision stuff.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"length": 14
+				}
+			},
+			{
+				"name": "ar_minor_edit",
+				"comment": "Basic revision stuff.",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "ar_rev_id",
+				"comment": "Copied from rev_id. @since 1.5 Entries from 1.4 will be NULL here. When restoring archive rows from before 1.5, a new rev_id is created.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ar_deleted",
+				"comment": "Copied from rev_deleted. Although this may be raised during deletion. Users with the \"suppressrevision\" right may \"archive\" and \"suppress\" content in a single action. @since 1.10",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "ar_len",
+				"comment": "Copied from rev_len, length of this revision in bytes. @since 1.10",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "ar_page_id",
+				"comment": "Copied from page_id. Restoration will attempt to use this as page ID if no current page with the same name exists. Otherwise, the revisions will be restored under the current page. Can be used for manual undeletion by developers if multiple pages by the same name were archived. @since 1.11 Older entries will have NULL.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "ar_parent_id",
+				"comment": "Copied from rev_parent_id. @since 1.13",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false,
+					"default": null
+				}
+			},
+			{
+				"name": "ar_sha1",
+				"comment": "Copied from rev_sha1, SHA-1 text content hash in base-36 @since 1.19",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "ar_name_title_timestamp",
+				"comment": "Index for Special:Undelete to page through deleted revisions",
+				"columns": [
+					"ar_namespace",
+					"ar_title",
+					"ar_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "ar_actor_timestamp",
+				"comment": "Index for Special:DeletedContributions",
+				"columns": [
+					"ar_actor",
+					"ar_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "ar_revid_uniq",
+				"comment": "Index for linking archive rows with tables that normally link with revision rows, such as change_tag.",
+				"columns": [
+					"ar_rev_id"
+				],
+				"unique": true
+			}
+		],
+		"pk": [
+			"ar_id"
+		]
 	}
 ]
