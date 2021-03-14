@@ -7,6 +7,8 @@ use Wikimedia\TestingAccessWrapper;
  * Just to test one deprecated method and one line of ServiceWiring code.
  */
 class TempFSFileIntegrationTest extends MediaWikiIntegrationTestCase {
+	use TempFSFileTestTrait;
+
 	/**
 	 * @coversNothing
 	 */
@@ -17,8 +19,7 @@ class TempFSFileIntegrationTest extends MediaWikiIntegrationTestCase {
 			( TestingAccessWrapper::newFromObject( $factory ) )->tmpDirectory );
 	}
 
-	use TempFSFileTestTrait;
-
+	// For TempFSFileTestTrait
 	private function newFile() {
 		return TempFSFile::factory( 'tmp' );
 	}
