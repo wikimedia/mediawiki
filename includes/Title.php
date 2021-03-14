@@ -3208,7 +3208,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Is this an article that is a redirect page?
-	 * Uses link cache, adding it if necessary
+	 * Uses link cache, adding it if necessary.
+	 *
+	 * This is intended to provide fast access to page_is_redirect for linking.
+	 * In rare cases, there might not be a valid target in the redirect table
+	 * even though this function returns true.
+	 *
+	 * To find a redirect target, just call WikiPage::getRedirectTarget() and
+	 * check if it returns null, there's no need to call this first.
 	 *
 	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
 	 * @return bool
