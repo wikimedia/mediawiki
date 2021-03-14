@@ -34,6 +34,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * $wgLegacyJavaScriptGlobals was deprecated in 1.36.
 
 === New user-facing features in 1.37 ===
+* (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
 * Media files uploaded server side using the importImages.php maintenance
   script now have the "mw-server-side-upload" change tag.
 * …
