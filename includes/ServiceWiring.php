@@ -232,6 +232,7 @@ return [
 				BlockPermissionCheckerFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
+			$services->getBlockUtils(),
 			$services->getUserFactory()
 		);
 	},
