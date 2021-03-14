@@ -645,6 +645,11 @@ class PostgresInstaller extends DatabaseInstaller {
 		return $status;
 	}
 
+	public function createManualTables() {
+		// Already handled above. Do nothing.
+		return Status::newGood();
+	}
+
 	public function getGlobalDefaults() {
 		// The default $wgDBmwschema is null, which breaks Postgres and other DBMSes that require
 		// the use of a schema, so we need to set it here

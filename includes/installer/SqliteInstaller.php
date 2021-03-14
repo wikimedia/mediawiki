@@ -342,6 +342,11 @@ EOT;
 		return $this->setupSearchIndex( $status );
 	}
 
+	public function createManualTables() {
+		// Already handled above. Do nothing.
+		return Status::newGood();
+	}
+
 	/**
 	 * @param Status &$status
 	 * @return Status

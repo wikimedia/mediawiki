@@ -264,8 +264,7 @@ abstract class DatabaseInstaller {
 	 * @return Status
 	 */
 	public function createManualTables() {
-		// TODO: Set "archiveTableMustNotExist" to "false" when archive table is migrated to tables.json
-		return $this->stepApplySourceFile( 'getSchemaPath', 'install-manual', true );
+		return $this->stepApplySourceFile( 'getSchemaPath', 'install-manual', false );
 	}
 
 	/**

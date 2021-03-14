@@ -786,3 +786,26 @@ CREATE TABLE /*_*/recentchanges (
   INDEX rc_this_oldid (rc_this_oldid),
   PRIMARY KEY(rc_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/archive (
+  ar_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  ar_namespace INT DEFAULT 0 NOT NULL,
+  ar_title VARBINARY(255) DEFAULT '' NOT NULL,
+  ar_comment_id BIGINT UNSIGNED NOT NULL,
+  ar_actor BIGINT UNSIGNED NOT NULL,
+  ar_timestamp BINARY(14) NOT NULL,
+  ar_minor_edit TINYINT DEFAULT 0 NOT NULL,
+  ar_rev_id INT UNSIGNED NOT NULL,
+  ar_deleted TINYINT UNSIGNED DEFAULT 0 NOT NULL,
+  ar_len INT UNSIGNED DEFAULT NULL,
+  ar_page_id INT UNSIGNED DEFAULT NULL,
+  ar_parent_id INT UNSIGNED DEFAULT NULL,
+  ar_sha1 VARBINARY(32) DEFAULT '' NOT NULL,
+  INDEX ar_name_title_timestamp (
+    ar_namespace, ar_title, ar_timestamp
+  ),
+  INDEX ar_actor_timestamp (ar_actor, ar_timestamp),
+  UNIQUE INDEX ar_revid_uniq (ar_rev_id),
+  PRIMARY KEY(ar_id)
+) /*$wgDBTableOptions*/;

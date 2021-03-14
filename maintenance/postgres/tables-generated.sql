@@ -844,3 +844,29 @@ CREATE INDEX rc_name_type_patrolled_timestamp ON recentchanges (
 );
 
 CREATE INDEX rc_this_oldid ON recentchanges (rc_this_oldid);
+
+
+CREATE TABLE archive (
+  ar_id SERIAL NOT NULL,
+  ar_namespace INT DEFAULT 0 NOT NULL,
+  ar_title TEXT DEFAULT '' NOT NULL,
+  ar_comment_id BIGINT NOT NULL,
+  ar_actor BIGINT NOT NULL,
+  ar_timestamp TIMESTAMPTZ NOT NULL,
+  ar_minor_edit SMALLINT DEFAULT 0 NOT NULL,
+  ar_rev_id INT NOT NULL,
+  ar_deleted SMALLINT DEFAULT 0 NOT NULL,
+  ar_len INT DEFAULT NULL,
+  ar_page_id INT DEFAULT NULL,
+  ar_parent_id INT DEFAULT NULL,
+  ar_sha1 TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(ar_id)
+);
+
+CREATE INDEX ar_name_title_timestamp ON archive (
+  ar_namespace, ar_title, ar_timestamp
+);
+
+CREATE INDEX ar_actor_timestamp ON archive (ar_actor, ar_timestamp);
+
+CREATE UNIQUE INDEX ar_revid_uniq ON archive (ar_rev_id);
