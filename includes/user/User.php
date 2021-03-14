@@ -3248,13 +3248,15 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of the page if it's watched etc.
 	 *
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35, hard deprecated since 1.36
+	 * Use WatchlistNotificationManager::clearTitleUserNotification() instead.
 	 *
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 * @param Title &$title Title of the article to look at
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
 	public function clearNotification( &$title, $oldid = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		MediaWikiServices::getInstance()
 			->getWatchlistNotificationManager()
 			->clearTitleUserNotifications( $this, $title, $oldid );

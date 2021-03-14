@@ -574,6 +574,8 @@ because of Phabricator reports.
   favor of ::getPerformerIdentity
 * AuthManager::singleton(), deprecated in 1.35, is hard deprecated. Use
   MediaWikiServices::getAuthManager() instead.
+* User::clearNotification(), deprecated in 1.35, is hard deprecated. Use
+  WatchlistNotificationManager::clearTitleUserNotification() instead.
 * …
 
 === Other changes in 1.36 ===
