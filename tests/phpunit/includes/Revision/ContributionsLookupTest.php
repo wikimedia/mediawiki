@@ -125,19 +125,18 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @return ContributionsLookup
+	 */
+	private function getContributionsLookup() {
+		// Helper to simplify potential switch to unit tests
+		return $this->getServiceContainer()->getContributionsLookup();
+	}
+
+	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetDeltas() {
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment =
 			$contributionsLookup->getContributions( self::$testUser, 10, self::$performer );
@@ -182,16 +181,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			__METHOD__
 		);
 
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment =
 			$contributionsLookup->getContributions( $user, 10, self::$performer );
@@ -204,16 +194,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetContributionsByUserIdentity() {
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment =
 			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
@@ -230,16 +211,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$this->fail( 'ContribsPager::reallyDoQuery was not expected to be called' );
 		} );
 
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment =
 			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
@@ -252,16 +224,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetContributionsFilteredByTag() {
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$target = self::$testUser;
 
@@ -287,16 +250,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetSegmentChain() {
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment1 = $contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
 		$this->assertInstanceOf( ContributionsSegment::class, $segment1 );
@@ -371,16 +325,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideBadSegmentMarker
 	 */
 	public function testBadSegmentMarkerReturnsLatestSegment( $segment ) {
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment = $contributionsLookup->getContributions( self::$testUser, 2, self::$performer, $segment );
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
@@ -390,16 +335,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributionCount()
 	 */
 	public function testGetCountOfContributionsByUserIdentity() {
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$count = $contributionsLookup->getContributionCount( self::$testUser, self::$performer );
 		$this->assertSame( count( self::$storedRevisions ), $count );
@@ -409,16 +345,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributionCount()
 	 */
 	public function testGetCountOfContributionsByUserAndTag() {
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 		$count = $contributionsLookup->getContributionCount(
 			self::$testUser,
 			self::$performer,
@@ -431,16 +358,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$editingUser = self::$testUser;
 		$dummyUser = new UserIdentityValue( 0, 'test', 0 );
 
-		$services = MediaWikiServices::getInstance();
-		$contributionsLookup = new ContributionsLookup(
-			$services->getRevisionStore(),
-			$services->getLinkRenderer(),
-			$services->getLinkBatchFactory(),
-			$services->getHookContainer(),
-			$services->getDBLoadBalancer(),
-			$services->getActorMigration(),
-			$services->getNamespaceInfo()
-		);
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$revIds = [ self::$storedRevisions[1]->getId(), self::$storedRevisions[2]->getId() ];
 		$this->db->update(
