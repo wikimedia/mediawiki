@@ -108,6 +108,10 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 
 		// A ZIP file embedded in the middle of a .doc file is still a Word Document
 		yield 'ZIP in DOC' => [ 'zip-in-doc.doc', 'doc', 'application/msword' ];
+
+		yield 'Jpeg2000, lossless' => [ 'jpeg2000-lossless.jp2', 'jp2', 'image/jp2' ];
+
+		yield 'Jpeg2000, part 2' => [ 'jpeg2000-profile.jpf', 'jpf', 'image/jpx' ];
 	}
 
 	/**

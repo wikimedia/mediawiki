@@ -157,7 +157,8 @@ class MimeMap {
 		'image/bmp' => [ 'bmp' ],
 		'image/cgm' => [ 'cgm' ],
 		'image/ief' => [ 'ief' ],
-		'image/jp2' => [ 'j2k', 'jp2', 'jpg2' ],
+		'image/jp2' => [ 'jp2', 'j2k', 'jpg2' ],
+		'image/jpx' => [ 'jpf', 'jpx' ],
 		'image/vnd.microsoft.icon' => [ 'ico' ],
 		'image/vnd.wap.wbmp' => [ 'wbmp' ],
 		'image/webp' => [ 'webp' ],
@@ -359,6 +360,7 @@ class MimeMap {
 			'image/jpeg',
 			'image/pjpeg',
 			'image/jp2',
+			'image/jpx',
 			'image/xbm',
 			'image/tiff',
 			'image/x-icon',
@@ -501,5 +503,8 @@ class MimeMap {
 		'application/x-autocad' => 'application/acad',
 		'image/vnd.dwg' => 'application/acad',
 		'drawing/dwg' => 'application/acad',
+		'image/jpeg2000' => 'image/jp2',
+		'image/jpeg2000-image' => 'image/jp2',
+		'image/x-jpeg2000-image' => 'image/jp2',
 	];
 }
