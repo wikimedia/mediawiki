@@ -26,7 +26,6 @@ use Wikimedia\ObjectFactory;
  * @covers \MediaWiki\Rest\Router
  */
 class EntryPointTest extends \MediaWikiIntegrationTestCase {
-	private static $mockHandler;
 
 	private function createRouter( RequestInterface $request ) {
 		global $IP;
