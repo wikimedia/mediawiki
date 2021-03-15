@@ -1168,10 +1168,13 @@ class RevisionStore
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
+	 * @param PageIdentity|null $page The page the revision belongs to.
+	 *        Providing the page may improve performance.
+	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionById( $id, $flags = 0 ) {
-		return $this->newRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags );
+	public function getRevisionById( $id, $flags = 0, PageIdentity $page = null ) {
+		return $this->newRevisionFromConds( [ 'rev_id' => intval( $id ) ], $flags, $page );
 	}
 
 	/**
