@@ -148,13 +148,9 @@ You can use [Fresh][fresh] to run [Selenium in a dedicated
 container][selenium-dedicated]. Example usage:
 
 ```sh
-export MW_SERVER=http://localhost:8080
-export MW_SCRIPT_PATH=/w
-export MEDIAWIKI_USER=Admin
-export MEDIAWIKI_PASSWORD=dockerpass
 fresh-node -env -net
 npm ci
-npm run selenium
+npm run selenium-test
 ```
 
 [selenium-dedicated]: https://www.mediawiki.org/wiki/Selenium/Node.js/Target_Local_MediaWiki_(Container)
