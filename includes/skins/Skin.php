@@ -450,14 +450,13 @@ abstract class Skin extends ContextSource {
 			}
 		}
 
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 		// The relevant user should only be set if it exists. However, if it exists but is hidden,
 		// and the viewer cannot see hidden users, this exposes the fact that the user exists;
 		// pretend like the user does not exist in such cases, by setting it to null. T120883
 		if ( $this->mRelevantUser
 			&& $this->mRelevantUser->isRegistered()
 			&& $this->mRelevantUser->isHidden()
-			&& !$pm->userHasRight( $this->getUser(), 'hideuser' )
+			&& !$this->getAuthority()->isAllowed( 'hideuser' )
 		) {
 			return null;
 		}
