@@ -636,6 +636,19 @@ class MimeAnalyzer implements LoggerAwareInterface {
 			return "image/webp";
 		}
 
+		/* Look for JPEG2000 */
+		if ( strncmp( $head, "\x00\x00\x00\x0cjP\x20\x20\x0d\x0a\x87\x0a", 12 ) == 0 ) {
+			$this->logger->info( __METHOD__ . ": recognized as JPEG2000\n" );
+			// we skip 4 bytes
+			if ( strncmp( substr( $head, 16, 8 ), "ftypjp2 ", 8 ) == 0 ) {
+				$this->logger->info( __METHOD__ . ": recognized file as image/jp2\n" );
+				return 'image/jp2';
+			} elseif ( strncmp( substr( $head, 16, 8 ), "ftypjpx ", 8 ) == 0 ) {
+				$this->logger->info( __METHOD__ . ": recognized file as image/jpx\n" );
+				return 'image/jpx';
+			}
+		}
+
 		/* Look for MS Compound Binary (OLE) files */
 		if ( strncmp( $head, "\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1", 8 ) == 0 ) {
 			$this->logger->info( __METHOD__ . ': recognized MS CFB (OLE) file' );
