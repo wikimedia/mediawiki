@@ -74,6 +74,9 @@ class LogEventsList extends ContextSource {
 			$this->setContext( $context );
 		} else {
 			// Old parameters, $context should be a Skin object
+			wfDeprecatedMsg(
+				'Passing Skin object to ' . __METHOD__ . ' has been deprecated.', '1.36'
+			);
 			$this->setContext( $context->getContext() );
 		}
 
