@@ -1,45 +1,56 @@
 <?php
 
-namespace MediaWiki\Tests\Revision;
+namespace MediaWiki\Tests\Unit\Revision;
 
+use ContentHandler;
+use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Revision\MainSlotRoleHandler;
-use PHPUnit\Framework\MockObject\MockObject;
+use MediaWikiUnitTestCase;
+use MockTitleTrait;
 use Title;
+use TitleFactory;
 
 /**
  * @covers \MediaWiki\Revision\MainSlotRoleHandler
- *
- * TODO convert this to a Unit test
  */
-class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
-
-	/**
-	 * @param int $ns
-	 * @return Title|MockObject
-	 */
-	private function makeTitleObject( $ns ) {
-		/** @var Title|MockObject $title */
-		$title = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$title->method( 'getNamespace' )
-			->willReturn( $ns );
-
-		return $title;
-	}
+class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
+	use MockTitleTrait;
 
 	/**
 	 * @param string[] $namespaceContentModels
 	 * @return MainSlotRoleHandler
 	 */
 	private function getRoleHandler( array $namespaceContentModels ) {
-		$services = $this->getServiceContainer();
+		// The ContentHandlerFactory is only used for retrieving the content handler
+		// for the model in ::isAllowedModel(), so that that content handler can have
+		// ::canBeUsedOn() called. We only have tests for ::isAllowedModel() with
+		// CONTENT_MODEL_WIKITEXT and CONTENT_MODEL_TEXT, and neither TextContentHandler
+		// or WikitextContentHandler overrides the method ::canBeUsedOn(), instead using
+		// the default in ContentHandler::canBeUsedOn of returning true unless a hook
+		// says otherwise. That hook is called via ProtectedHookAccessorTrait and
+		// thus uses MediaWikiServices, which we can't have in this unit test. But, since
+		// we aren't testing anything with the hooks, we can just return a mock content
+		// handler that returns true directly
+		$contentHandler = $this->createMock( ContentHandler::class );
+		$contentHandler->method( 'canBeUsedOn' )->willReturn( true );
+		$contentHandlerFactory = $this->createMock( IContentHandlerFactory::class );
+		$contentHandlerFactory->method( 'getContentHandler' )->willReturn( $contentHandler );
+
+		// TitleFactory that for these tests is only called with Title objects, so just
+		// return them
+		$titleFactory = $this->createMock( TitleFactory::class );
+		$titleFactory->method( 'newFromLinkTarget' )
+			->with( $this->isInstanceOf( Title::class ) )
+			->will( $this->returnArgument( 0 ) );
+		$titleFactory->method( 'castFromPageIdentity' )
+			->with( $this->isInstanceOf( Title::class ) )
+			->will( $this->returnArgument( 0 ) );
+
 		return new MainSlotRoleHandler(
 			$namespaceContentModels,
-			$services->getContentHandlerFactory(),
-			$services->getHookContainer(),
-			$services->getTitleFactory()
+			$contentHandlerFactory,
+			$this->createHookContainer(),
+			$titleFactory
 		);
 	}
 
@@ -69,10 +80,16 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 		);
 
 		// For the main handler, the namespace determins the default model
-		$titleMain = $this->makeTitleObject( NS_MAIN );
+		$titleMain = $this->makeMockTitle(
+			'Article',
+			[ 'namespace' => NS_MAIN ]
+		);
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $handler->getDefaultModel( $titleMain ) );
 
-		$title100 = $this->makeTitleObject( 100 );
+		$title100 = $this->makeMockTitle(
+			'Other page',
+			[ 'namespace' => 100 ]
+		);
 		$this->assertSame( CONTENT_MODEL_TEXT, $handler->getDefaultModel( $title100 ) );
 	}
 
@@ -83,7 +100,10 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 		$handler = $this->getRoleHandler( [] );
 
 		// For the main handler, (nearly) all models are allowed
-		$title = $this->makeTitleObject( NS_MAIN );
+		$title = $this->makeMockTitle(
+			'Article',
+			[ 'namespace' => NS_MAIN ]
+		);
 		$this->assertTrue( $handler->isAllowedModel( CONTENT_MODEL_WIKITEXT, $title ) );
 		$this->assertTrue( $handler->isAllowedModel( CONTENT_MODEL_TEXT, $title ) );
 	}
