@@ -1377,10 +1377,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $this->trxLevel() && !$this->trxDoneWrites ) {
 				$this->trxDoneWrites = true;
 				$this->trxProfiler->transactionWritingIn(
-					$this->getServer(),
-					$this->getDomainID(),
-					$this->trxShortId
-				);
+					$this->server, $this->getDomainID(), $this->trxShortId );
 			}
 		}
 
@@ -1597,7 +1594,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// @note: leave trxRecurringCallbacks in place
 		if ( $this->trxDoneWrites ) {
 			$this->trxProfiler->transactionWritingOut(
-				$this->getServer(),
+				$this->server,
 				$this->getDomainID(),
 				$oldTrxShortId,
 				$this->pendingWriteQueryDuration( self::ESTIMATE_TOTAL ),
@@ -4638,7 +4635,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->trxDoneWrites ) {
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
-				$this->getServer(),
+				$this->server,
 				$this->getDomainID(),
 				$oldTrxShortId,
 				$writeTime,
@@ -4692,7 +4689,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			if ( $this->trxDoneWrites ) {
 				$this->trxProfiler->transactionWritingOut(
-					$this->getServer(),
+					$this->server,
 					$this->getDomainID(),
 					$oldTrxShortId,
 					$writeTime,
