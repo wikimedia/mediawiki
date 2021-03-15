@@ -369,7 +369,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 
 		// If this is called too early, things are likely to break.
 		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+			LoggerFactory::getInstance( 'session' )
 				->warning( 'User::loadFromSession called before the end of Setup.php', [
 					'exception' => new Exception( 'User::loadFromSession called before the end of Setup.php' ),
 				] );
@@ -1690,7 +1690,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @throws MWException
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
-		$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'ratelimit' );
+		$logger = LoggerFactory::getInstance( 'ratelimit' );
 
 		// Call the 'PingLimiter' hook
 		$result = false;
@@ -2511,7 +2511,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	public function setToken( $token = false ) {
 		$this->load();
 		if ( $this->mToken === self::INVALID_TOKEN ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+			LoggerFactory::getInstance( 'session' )
 				->debug( __METHOD__ . ": Ignoring attempt to set token for system user \"$this\"" );
 		} elseif ( !$token ) {
 			$this->mToken = MWCryptRand::generateHex( self::TOKEN_LENGTH );
@@ -3340,7 +3340,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 
 		if ( !$session->getUser()->equals( $this ) ) {
 			if ( !$session->canSetUser() ) {
-				\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+				LoggerFactory::getInstance( 'session' )
 					->warning( __METHOD__ .
 						": Cannot save user \"$this\" to a user \"{$session->getUser()}\"'s immutable session"
 					);
@@ -3377,11 +3377,11 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	public function doLogout() {
 		$session = $this->getRequest()->getSession();
 		if ( !$session->canSetUser() ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+			LoggerFactory::getInstance( 'session' )
 				->warning( __METHOD__ . ": Cannot log out of an immutable session" );
 			$error = 'immutable';
 		} elseif ( !$session->getUser()->equals( $this ) ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+			LoggerFactory::getInstance( 'session' )
 				->warning( __METHOD__ .
 					": Cannot log user \"$this\" out of a user \"{$session->getUser()}\"'s session"
 				);
@@ -3399,7 +3399,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 			ScopedCallback::consume( $delay );
 			$error = false;
 		}
-		\MediaWiki\Logger\LoggerFactory::getInstance( 'authevents' )->info( 'Logout', [
+		LoggerFactory::getInstance( 'authevents' )->info( 'Logout', [
 			'event' => 'logout',
 			'successful' => $error === false,
 			'status' => $error ?: 'success',
