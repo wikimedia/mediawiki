@@ -2539,10 +2539,11 @@ class HookRunner implements
 		);
 	}
 
-	public function onMakeGlobalVariablesScript( &$vars, $out ) {
-		return $this->container->run(
+	public function onMakeGlobalVariablesScript( &$vars, $out ) : void {
+		$this->container->run(
 			'MakeGlobalVariablesScript',
-			[ &$vars, $out ]
+			[ &$vars, $out ],
+			[ 'abortable' => false ]
 		);
 	}
 
