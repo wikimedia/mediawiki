@@ -443,7 +443,19 @@ because of Phabricator reports.
   a User object, which falls back to the global $wgUser, is now deprecated.
 * The User class, which was marked as @newable in 1.35, is no longer newable,
   meaning that it is no longer safe to manually call the constructor via
-  `new User`. Instead, use the UserFactory service.
+  `new User`. Instead, use the UserFactory service. Additionally, the
+  following static constructor methods were deprecated in favor of using the
+  UserFactory service:
+   - User::newFromName
+   - User::newFromId
+   - User::newFromActorId
+   - User::newFromIdentity
+   - User::newFromAnyId
+   - User::newFromConfirmationCode
+* The following User methods have been deprecated in favor of the new
+  UserEditTracker service:
+   - User::getFirstEditTimestamp
+   - User::getLatestEditTimestamp
 * The confusingly-named User->isLoggedIn() method has been deprecated in favour
   of the method it wraps, User->isRegistered().
 * Use of the `preprocessor=Preprocessor_DOM` option in parser test files has
