@@ -3275,22 +3275,6 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Resets all of the given user's page-change notification timestamps.
-	 * If e-notif e-mails are on, they will receive notification mails on
-	 * the next change of any watched page.
-	 *
-	 * @deprecated since 1.35
-	 *
-	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
-	 */
-	public function clearAllNotifications() {
-		wfDeprecated( __METHOD__, '1.35' );
-		MediaWikiServices::getInstance()
-			->getWatchlistNotificationManager()
-			->clearAllUserNotifications( $this );
-	}
-
-	/**
 	 * Compute experienced level based on edit count and registration date.
 	 *
 	 * @return string|false 'newcomer', 'learner', or 'experienced', false for anonymous users

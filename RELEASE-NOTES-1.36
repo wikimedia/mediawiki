@@ -421,6 +421,8 @@ because of Phabricator reports.
   instead.
 * The $wgContLang variable, deprecated in 1.32, was removed. You can instead use
   MediaWikiServices::getInstance()->getContentLanguage().
+* User::clearAllNotifications(), hard deprecated in 1.35, was removed. Use
+  WatchlistNotificationManager::clearAllUserNotifications() instead.
 * …
 
 === Deprecations in 1.36 ===
