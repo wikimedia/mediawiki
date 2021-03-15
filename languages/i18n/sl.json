@@ -291,6 +291,7 @@
 	"sort-descending": "Razvrsti padajoče",
 	"sort-ascending": "Razvrsti naraščajoče",
 	"sort-initial": "Razvrsti kot na začetku",
+	"sort-rowspan-error": "Stran vsebuje tabelo z atributom rowspan, ki obsega več vrstic kot jih tabela dejansko ima. To lahko popravite z urejanjem strani.",
 	"nstab-main": "Stran",
 	"nstab-user": "{{GENDER:$1|Uporabniška stran}}",
 	"nstab-media": "Predstavnostna stran",

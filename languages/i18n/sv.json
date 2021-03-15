@@ -362,6 +362,7 @@
 	"sort-descending": "Sortera fallande",
 	"sort-ascending": "Sortera stigande",
 	"sort-initial": "Ursprunglig sortering",
+	"sort-rowspan-error": "Denna sida innehåller en tabell med attributet rowspan som sträcker sig över fler rader än vad tabellen egentligen har. Du kan åtgärda detta genom att redigera sidan.",
 	"nstab-main": "Sida",
 	"nstab-user": "{{GENDER:$1|Användarsida}}",
 	"nstab-media": "Mediasida",

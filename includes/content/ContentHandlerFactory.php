@@ -134,7 +134,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	public function getContentModels(): array {
 		$modelsFromHook = [];
 		$this->hookRunner->onGetContentModels( $modelsFromHook );
-		$models = array_merge( // auto-registered from config and MediaServiceWiki or manual
+		$models = array_merge( // auto-registered from config and MediaWikiServices or manual
 			array_keys( $this->handlerSpecs ),
 
 			// incorrect registered and called: without HOOK_NAME_GET_CONTENT_MODELS

@@ -2176,7 +2176,7 @@
 	"listusers-creationsort": "Oluşturma tarihine göre sırala",
 	"listusers-desc": "Azalan sırada sırala",
 	"usereditcount": "$1 değişiklik",
-	"usercreated": "$1 tarihinde $2 içinde {{GENDER:$3|oluşturuldu}}.",
+	"usercreated": "$1 $2 tarihinde {{GENDER:$3|oluşturuldu}}.",
 	"newpages": "Yeni sayfalar",
 	"newpages-submit": "Göster",
 	"newpages-username": "Kullanıcı adı:",

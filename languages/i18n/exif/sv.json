@@ -375,6 +375,7 @@
 	"exif-usepanoramaviewer": "Använd panoramavisning",
 	"exif-usepanoramaviewer-true": "Ja",
 	"exif-usepanoramaviewer-false": "Nej",
+	"exif-exposurelockused": "Exponeringslås som användes",
 	"exif-exposurelockused-true": "Ja",
 	"exif-exposurelockused-false": "Nej",
 	"exif-posepitchdegrees": "Pitch (grader)",

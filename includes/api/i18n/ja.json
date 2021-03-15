@@ -1048,7 +1048,7 @@
 	"apierror-filedoesnotexist": "ファイルが存在しません。",
 	"apierror-invaliduser": "無効な利用者名「$1」。",
 	"apierror-missingparam": "パラメーター <var>$1</var> を設定してください。",
-	"apierror-mustbeloggedin": "$1にログインしている必要があります。",
+	"apierror-mustbeloggedin": "$1をするにはログインしている必要があります。",
 	"apierror-noedit": "あなたにはページを編集する権限がありません。",
 	"apierror-noimageredirect": "画像のリダイレクトを作成する権限がありません。",
 	"apierror-nosuchpageid": "ID $1 のページはありません。",
