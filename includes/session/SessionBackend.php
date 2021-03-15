@@ -26,6 +26,7 @@ namespace MediaWiki\Session;
 use CachedBagOStuff;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use User;
 use WebRequest;
@@ -759,7 +760,8 @@ final class SessionBackend {
 			'provider' => (string)$this->provider,
 			'providerMetadata' => $this->providerMetadata,
 			'userId' => $anon ? 0 : $this->user->getId(),
-			'userName' => User::isValidUserName( $this->user->getName() ) ? $this->user->getName() : null,
+			'userName' => MediaWikiServices::getInstance()->getUserNameUtils()
+				->isValid( $this->user->getName() ) ? $this->user->getName() : null,
 			'userToken' => $anon ? null : $this->user->getToken(),
 			'remember' => !$anon && $this->remember,
 			'forceHTTPS' => $this->forceHTTPS,

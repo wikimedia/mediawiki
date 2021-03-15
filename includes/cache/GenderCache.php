@@ -150,6 +150,7 @@ class GenderCache {
 	 */
 	public function doQuery( $users, $caller = '' ) {
 		$default = $this->getDefault();
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 
 		$usersToCheck = [];
 		foreach ( (array)$users as $value ) {
@@ -159,7 +160,7 @@ class GenderCache {
 				// For existing users, this value will be overwritten by the correct value
 				$this->cache[$name] = $default;
 				// query only for valid names, which can be in the database
-				if ( User::isValidUserName( $name ) ) {
+				if ( $userNameUtils->isValid( $name ) ) {
 					$usersToCheck[] = $name;
 				}
 			}
