@@ -66,6 +66,12 @@ is no longer recommended and the option has been removed.
   The former configuration variable names are deprecated, but will be used as
   the fall back if they are still set, and remain temporarily available for
   extensions which try to read them.
+* $wgWANObjectCaches - The "coalesceKeys" option was removed without
+  deprecation. A new "coalesceScheme" option takes its place, and is
+  "hash_stop" by default. If you use Dynomite, then set the new "coalesceKeys"
+  option to "hash_tag".
+* $wgWANObjectCaches - The "cluster" and "mcrouterAware" options were removed
+  without deprecation. Use "broadcastRoutingPrefix" instead.
 * …
 
 ==== Removed configuration ====
@@ -769,10 +775,6 @@ because of Phabricator reports.
   MediaWiki\Watchlist\WatchlistManager instead. Deprecated the method
   MediaWikiServices->getWatchlistNotificationManager(); use
   MediaWikiServices->getWatchlistManager() instead.
-* WANObjectCache::__construct() no longer takes the "coalesceKeys" option.
-  A new "coalesceScheme" option takes its place, and is "hash_stop" by default.
-  $wgWANObjectCaches entries that use dynomite should be updated to set the
-  new "coalesceKeys" option to "hash_tag".
 * The "ArticleEditUpdatesDeleteFromRecentchanges" hook, deprecated in 1.35, has
   been removed. Other hooks like "RecentChange_save" can be used instead.
 * …

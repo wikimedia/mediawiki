@@ -26,7 +26,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @return WANObjectCache[]|HashBagOStuff[] (WANObjectCache, BagOStuff)
 	 */
 	private function newWanCache( array $params = [] ) {
-		if ( !empty( $params['mcrouterAware'] ) ) {
+		if ( isset( $params['broadcastRoutingPrefix'] ) ) {
 			// Convert mcrouter broadcast keys to regular keys in HashBagOStuff::delete() calls
 			$bag = new McrouterHashBagOStuff();
 		} else {
@@ -1100,8 +1100,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	public static function provideCoalesceAndMcrouterSettings() {
 		return [
-			[ [ 'mcrouterAware' => false, 'coalesceScheme' => 'hash_tag' ], '{' ],
-			[ [ 'mcrouterAware' => true, 'cluster' => 'test', 'coalesceScheme' => 'hash_stop' ], '|#|' ]
+			[ [ 'coalesceScheme' => 'hash_tag' ], '{' ],
+			[ [ 'broadcastRoutingPrefix' => '/*/test/', 'coalesceScheme' => 'hash_stop' ], '|#|' ],
 		];
 	}
 
@@ -2065,9 +2065,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$localBag->expects( $this->never() )->method( 'delete' );
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
-			'mcrouterAware' => true,
-			'region' => 'pmtpa',
-			'cluster' => 'mw-wan'
+			'broadcastRoutingPrefix' => '/*/mw-wan/',
 		] );
 		$valFunc = static function () {
 			return 1;
@@ -2089,9 +2087,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'set' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
-			'mcrouterAware' => true,
-			'region' => 'pmtpa',
-			'cluster' => 'mw-wan'
+			'broadcastRoutingPrefix' => '/*/mw-wan/',
 		] );
 
 		$localBag->expects( $this->once() )->method( 'set' )
@@ -2105,9 +2101,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'set' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
-			'mcrouterAware' => true,
-			'region' => 'pmtpa',
-			'cluster' => 'mw-wan'
+			'broadcastRoutingPrefix' => '/*/mw-wan/',
 		] );
 
 		$localBag->expects( $this->once() )->method( 'set' )
@@ -2121,9 +2115,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			->setMethods( [ 'delete' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
-			'mcrouterAware' => true,
-			'region' => 'pmtpa',
-			'cluster' => 'mw-wan'
+			'broadcastRoutingPrefix' => '/*/mw-wan/',
 		] );
 
 		$localBag->expects( $this->once() )->method( 'delete' )
