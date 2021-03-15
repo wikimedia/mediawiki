@@ -1349,19 +1349,25 @@ return [
 	},
 
 	'SlotRoleRegistry' => static function ( MediaWikiServices $services ) : SlotRoleRegistry {
-		$config = $services->getMainConfig();
-		$contentHandlerFactory = $services->getContentHandlerFactory();
-
 		$registry = new SlotRoleRegistry(
 			$services->getSlotRoleStore()
 		);
 
-		$registry->defineRole( 'main', static function () use ( $config, $contentHandlerFactory ) {
-			return new MainSlotRoleHandler(
-				$config->get( 'NamespaceContentModels' ),
-				$contentHandlerFactory
-			);
-		} );
+		$config = $services->getMainConfig();
+		$contentHandlerFactory = $services->getContentHandlerFactory();
+		$hookContainer = $services->getHookContainer();
+		$titleFactory = $services->getTitleFactory();
+		$registry->defineRole(
+			'main',
+			static function () use ( $config, $contentHandlerFactory, $hookContainer, $titleFactory ) {
+				return new MainSlotRoleHandler(
+					$config->get( 'NamespaceContentModels' ),
+					$contentHandlerFactory,
+					$hookContainer,
+					$titleFactory
+				);
+			}
+		);
 
 		return $registry;
 	},

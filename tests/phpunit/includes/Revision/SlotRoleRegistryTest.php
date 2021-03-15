@@ -5,12 +5,14 @@ namespace MediaWiki\Tests\Revision;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
 use MediaWikiIntegrationTestCase;
 use Title;
+use TitleFactory;
 use Wikimedia\Assert\PostconditionException;
 
 /**
@@ -159,7 +161,9 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 		$registry->defineRole( 'main', function ( $role ) {
 			return new MainSlotRoleHandler(
 				[],
-				$this->createMock( IContentHandlerFactory::class )
+				$this->createMock( IContentHandlerFactory::class ),
+				$this->createMock( HookContainer::class ),
+				$this->createMock( TitleFactory::class )
 			);
 		} );
 
@@ -175,7 +179,9 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 		$registry->defineRole( 'main', function ( $role ) {
 			return new MainSlotRoleHandler(
 				[],
-				$this->createMock( IContentHandlerFactory::class )
+				$this->createMock( IContentHandlerFactory::class ),
+				$this->createMock( HookContainer::class ),
+				$this->createMock( TitleFactory::class )
 			);
 		} );
 		$registry->defineRoleWithModel( 'FOO', CONTENT_MODEL_TEXT );
