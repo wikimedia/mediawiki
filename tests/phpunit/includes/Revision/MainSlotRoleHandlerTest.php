@@ -2,16 +2,21 @@
 
 namespace MediaWiki\Tests\Revision;
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
 
 /**
  * @covers \MediaWiki\Revision\MainSlotRoleHandler
+ *
+ * TODO convert this to a Unit test
  */
 class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 
+	/**
+	 * @param int $ns
+	 * @return Title|MockObject
+	 */
 	private function makeTitleObject( $ns ) {
 		/** @var Title|MockObject $title */
 		$title = $this->getMockBuilder( Title::class )
@@ -25,16 +30,27 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param string[] $namespaceContentModels
+	 * @return MainSlotRoleHandler
+	 */
+	private function getRoleHandler( array $namespaceContentModels ) {
+		$services = $this->getServiceContainer();
+		return new MainSlotRoleHandler(
+			$namespaceContentModels,
+			$services->getContentHandlerFactory(),
+			$services->getHookContainer(),
+			$services->getTitleFactory()
+		);
+	}
+
+	/**
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::__construct
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getRole()
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getNameMessageKey()
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getOutputLayoutHints()
 	 */
 	public function testConstruction() {
-		$handler = new MainSlotRoleHandler(
-			[],
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
-		);
+		$handler = $this->getRoleHandler( [] );
 		$this->assertSame( 'main', $handler->getRole() );
 		$this->assertSame( 'slot-name-main', $handler->getNameMessageKey() );
 
@@ -48,9 +64,8 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getDefaultModel()
 	 */
 	public function testFetDefaultModel() {
-		$handler = new MainSlotRoleHandler(
-			[ 100 => CONTENT_MODEL_TEXT ],
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
+		$handler = $this->getRoleHandler(
+			[ 100 => CONTENT_MODEL_TEXT ]
 		);
 
 		// For the main handler, the namespace determins the default model
@@ -65,10 +80,7 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::isAllowedModel()
 	 */
 	public function testIsAllowedModel() {
-		$handler = new MainSlotRoleHandler(
-			[],
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
-		);
+		$handler = $this->getRoleHandler( [] );
 
 		// For the main handler, (nearly) all models are allowed
 		$title = $this->makeTitleObject( NS_MAIN );
@@ -80,10 +92,7 @@ class MainSlotRoleHandlerTest extends \MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::supportsArticleCount()
 	 */
 	public function testSupportsArticleCount() {
-		$handler = new MainSlotRoleHandler(
-			[],
-			MediaWikiServices::getInstance()->getContentHandlerFactory()
-		);
+		$handler = $this->getRoleHandler( [] );
 
 		$this->assertTrue( $handler->supportsArticleCount() );
 	}

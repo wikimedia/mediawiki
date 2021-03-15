@@ -143,7 +143,13 @@ class ParserCache {
 		$useJson = false
 	) {
 		if ( !$cache instanceof EmptyBagOStuff && !$cache instanceof CachedBagOStuff ) {
+			// It seems on some page views, the same entry is retreived twice from the ParserCache.
+			// This shouldn't happen but use a process-cache and log duplicate fetches to mitigate
+			// this and figure out why. (T269593)
 			$cache = new CachedBagOStuff( $cache, [
+				'logger' => $logger,
+				'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
+				'reportDupes' => true,
 				// Each ParserCache entry uses 2 keys, one for metadata and one for parser output.
 				// So, cache at most 4 different parser outputs in memory. The number was chosen ad hoc.
 				'maxKeys' => 8

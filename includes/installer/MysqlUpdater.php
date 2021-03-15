@@ -496,34 +496,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doUpdateMimeMinorField() {
-		if ( $this->updateRowExists( 'mime_minor_length' ) ) {
-			$this->output( "...*_mime_minor fields are already long enough.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-mime_minor_length.sql',
-			false,
-			'Altering all *_mime_minor fields to 100 bytes in size'
-		);
-	}
-
-	protected function doClFieldsUpdate() {
-		if ( $this->updateRowExists( 'cl_fields_update' ) ) {
-			$this->output( "...categorylinks up-to-date.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-categorylinks-better-collation2.sql',
-			false,
-			'Updating categorylinks (again)'
-		);
-	}
-
 	protected function doLanguageLinksLengthSync() {
 		$sync = [
 			[ 'table' => 'l10n_cache', 'field' => 'lc_lang', 'file' => 'patch-l10n_cache-lc_lang-35.sql' ],
@@ -563,28 +535,6 @@ class MysqlUpdater extends DatabaseUpdater {
 			'patch-ipblocks-fix-ipb_address_unique.sql',
 			false,
 			'Removing ipb_anon_only column from ipb_address_unique index'
-		);
-	}
-
-	protected function doUserNewTalkTimestampNotNull() {
-		if ( !$this->doTable( 'user_newtalk' ) ) {
-			return true;
-		}
-
-		$info = $this->db->fieldInfo( 'user_newtalk', 'user_last_timestamp' );
-		if ( $info === false ) {
-			return;
-		}
-		if ( $info->isNullable() ) {
-			$this->output( "...user_last_timestamp is already nullable.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-user-newtalk-timestamp-null.sql',
-			false,
-			'Making user_last_timestamp nullable'
 		);
 	}
 
