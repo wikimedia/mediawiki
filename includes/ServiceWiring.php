@@ -943,6 +943,8 @@ return [
 			$services->getDBLoadBalancer(),
 			LoggerFactory::getInstance( 'StashEdit' ),
 			$services->getStatsdDataFactory(),
+			$services->getUserEditTracker(),
+			$services->getUserFactory(),
 			$services->getHookContainer(),
 			defined( 'MEDIAWIKI_JOB_RUNNER' ) || $config->get( 'CommandLineMode' )
 				? PageEditStash::INITIATOR_JOB_OR_CLI
