@@ -80,8 +80,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * There are two supported ways to set up broadcasted operations:
  *
  *   - A) Set up mcrouter as the underlying cache backend, using a memcached BagOStuff class
- *        for the 'cache' parameter. The 'region' and 'cluster' parameters must be provided
- *        and 'mcrouterAware' must be set to `true`.
+ *        for the 'cache' parameter. The 'broadcastRoutingPrefix' parameter must be provided.
  *        Configure mcrouter as follows:
  *          - 1) Use Route Prefixing based on region (datacenter) and cache cluster.
  *               See https://github.com/facebook/mcrouter/wiki/Routing-Prefix and
@@ -134,12 +133,14 @@ class WANObjectCache implements
 	/** @var callable|null Function that takes a WAN cache callback and runs it later */
 	protected $asyncHandler;
 
-	/** @var bool Whether to use mcrouter key prefixing for routing */
-	protected $mcrouterAware;
-	/** @var string Physical region for mcrouter use */
-	protected $region;
-	/** @var string Cache cluster name for mcrouter use */
-	protected $cluster;
+	/**
+	 * Routing prefix for values that should be broadcasted to all data centers.
+	 *
+	 * If null, then a proxy other than mcrouter handles broadcasting or there is only one datacenter.
+	 *
+	 * @var string|null
+	 */
+	protected $broadcastRoute;
 	/** @var string|null Routing prefix for value keys that support use of an on-host tier */
 	protected $onHostRoute;
 	/** @var bool Whether to use "interim" caching while keys are tombstoned */
@@ -301,16 +302,13 @@ class WANObjectCache implements
 	 *       callback supplied by the getWithSetCallback() caller. The result will be saved
 	 *       as normal. The handler is expected to call the WAN cache callback at an opportune
 	 *       time (e.g. HTTP post-send), though generally within a few 100ms. [optional]
-	 *   - region: the current physical region. This is required when using mcrouter as the
-	 *       backing store proxy. [optional]
-	 *   - cluster: name of the cache cluster used by this WAN cache. The name must be the
-	 *       same in all datacenters; the ("region","cluster") tuple is what distinguishes
-	 *       the counterpart cache clusters among all the datacenter. The contents of
-	 *       https://github.com/facebook/mcrouter/wiki/Config-Files give background on this.
+	 *   - broadcastRoutingPrefix: a routing prefix used to broadcast "set" and "delete" operations to all
+	 *       datacenters; See also https://github.com/facebook/mcrouter/wiki/Config-Files for background
+	 *       on this.
+	 *       This prefix takes the form `/<datacenter>/<name of wan route>/` where `datacenter` should
+	 *       generally be a wildcard, to select all matching routes (e.g. the WAN cluster in all DCs)
+	 *       See also <https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup>.
 	 *       This is required when using mcrouter as the backing store proxy. [optional]
-	 *   - mcrouterAware: set as true if mcrouter is the backing store proxy and mcrouter
-	 *       is configured to interpret /<region>/<cluster>/ key prefixes as routes. This
-	 *       requires that "region" and "cluster" are both set above. [optional]
 	 *   - onHostRoutingPrefix: a routing prefix that considers a server-local cache ("on-host tier")
 	 *       for "value" keys before reading from the main cache cluster in the current data center.
 	 *       The "helper" keys will still be read from the main cache cluster. An on-host tier can help
@@ -337,9 +335,7 @@ class WANObjectCache implements
 	 */
 	public function __construct( array $params ) {
 		$this->cache = $params['cache'];
-		$this->region = $params['region'] ?? 'main';
-		$this->cluster = $params['cluster'] ?? 'wan-main';
-		$this->mcrouterAware = !empty( $params['mcrouterAware'] );
+		$this->broadcastRoute = $params['broadcastRoutingPrefix'] ?? null;
 		$this->onHostRoute = $params['onHostRoutingPrefix'] ?? null;
 		$this->epoch = $params['epoch'] ?? 0;
 		$this->secret = $params['secret'] ?? (string)$this->epoch;
@@ -2652,12 +2648,9 @@ class WANObjectCache implements
 	protected function relayVolatilePurges( array $purgeBySisterKey, int $ttl ) {
 		$purgeByRouteKey = [];
 		foreach ( $purgeBySisterKey as $sisterKey => $purge ) {
-			if ( $this->mcrouterAware ) {
-				// See https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup
-				// Wildcards select all matching routes, e.g. the WAN cluster on all DCs
-				$routeKey = $this->prependRoute( $sisterKey, "/*/{$this->cluster}/" );
+			if ( $this->broadcastRoute !== null ) {
+				$routeKey = $this->prependRoute( $sisterKey, $this->broadcastRoute );
 			} else {
-				// Some other proxy handles broadcasting or there is only one datacenter
 				$routeKey = $sisterKey;
 			}
 			$purgeByRouteKey[$routeKey] = $purge;
@@ -2682,12 +2675,9 @@ class WANObjectCache implements
 	 * @return bool Success
 	 */
 	protected function relayNonVolatilePurge( string $sisterKey ) {
-		if ( $this->mcrouterAware ) {
-			// See https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup
-			// Wildcards select all matching routes, e.g. the WAN cluster on all DCs
-			$routeKey = $this->prependRoute( $sisterKey, "/*/{$this->cluster}/" );
+		if ( $this->broadcastRoute !== null ) {
+			$routeKey = $this->prependRoute( $sisterKey, $this->broadcastRoute );
 		} else {
-			// Some other proxy handles broadcasting or there is only one datacenter
 			$routeKey = $sisterKey;
 		}
 
