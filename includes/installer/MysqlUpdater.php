@@ -538,28 +538,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doUserNewTalkTimestampNotNull() {
-		if ( !$this->doTable( 'user_newtalk' ) ) {
-			return true;
-		}
-
-		$info = $this->db->fieldInfo( 'user_newtalk', 'user_last_timestamp' );
-		if ( $info === false ) {
-			return;
-		}
-		if ( $info->isNullable() ) {
-			$this->output( "...user_last_timestamp is already nullable.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-user-newtalk-timestamp-null.sql',
-			false,
-			'Making user_last_timestamp nullable'
-		);
-	}
-
 	protected function doIwlinksIndexNonUnique() {
 		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from', __METHOD__ );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
