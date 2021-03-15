@@ -496,20 +496,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doClFieldsUpdate() {
-		if ( $this->updateRowExists( 'cl_fields_update' ) ) {
-			$this->output( "...categorylinks up-to-date.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-categorylinks-better-collation2.sql',
-			false,
-			'Updating categorylinks (again)'
-		);
-	}
-
 	protected function doLanguageLinksLengthSync() {
 		$sync = [
 			[ 'table' => 'l10n_cache', 'field' => 'lc_lang', 'file' => 'patch-l10n_cache-lc_lang-35.sql' ],
