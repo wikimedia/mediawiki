@@ -23,7 +23,6 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\ILoadBalancer;
-use Wikimedia\ScopedCallback;
 
 /**
  * Gives access to properties of a page.
@@ -44,37 +43,6 @@ class PageProps {
 
 	/** @var MapCacheLRU */
 	private $cache = null;
-
-	/**
-	 * Overrides the default instance of this class
-	 * This is intended for use while testing and will fail if MW_PHPUNIT_TEST is not defined.
-	 *
-	 * @since 1.27
-	 * @deprecated since 1.36
-	 *
-	 * @param PageProps $store
-	 *
-	 * @return ScopedCallback to reset the overridden value
-	 * @throws MWException
-	 */
-	public static function overrideInstance( PageProps $store ) {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException(
-				'Cannot override ' . __CLASS__ . 'default instance in operation.'
-			);
-		}
-
-		MediaWikiServices::getInstance()->redefineService(
-			'PageProps',
-			static function () use ( $store ) {
-				return $store;
-			}
-		);
-
-		return new ScopedCallback( static function () {
-			MediaWikiServices::getInstance()->resetServiceForTesting( 'PageProps' );
-		} );
-	}
 
 	/**
 	 * @return PageProps
