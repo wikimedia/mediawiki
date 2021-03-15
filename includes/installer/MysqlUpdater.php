@@ -496,20 +496,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doUpdateMimeMinorField() {
-		if ( $this->updateRowExists( 'mime_minor_length' ) ) {
-			$this->output( "...*_mime_minor fields are already long enough.\n" );
-
-			return;
-		}
-
-		$this->applyPatch(
-			'patch-mime_minor_length.sql',
-			false,
-			'Altering all *_mime_minor fields to 100 bytes in size'
-		);
-	}
-
 	protected function doClFieldsUpdate() {
 		if ( $this->updateRowExists( 'cl_fields_update' ) ) {
 			$this->output( "...categorylinks up-to-date.\n" );
