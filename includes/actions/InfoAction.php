@@ -91,8 +91,6 @@ class InfoAction extends FormlessAction {
 	public function onView() {
 		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 
-		$content = '';
-
 		// "Help" button
 		$this->addHelpLink( 'Page information' );
 
@@ -112,18 +110,27 @@ class InfoAction extends FormlessAction {
 			}
 		}
 
+		$content = '';
+
 		// Page header
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
 			$content .= $this->msg( 'pageinfo-header' )->parse();
 		}
 
+		// TODO we shouldn't be adding styles manually like thes
 		// Hide "This page is a member of # hidden categories" explanation
-		$content .= Html::element( 'style', [],
-			'.mw-hiddenCategoriesExplanation { display: none; }' ) . "\n";
+		$content .= Html::element(
+			'style',
+			[],
+			'.mw-hiddenCategoriesExplanation { display: none; }'
+		) . "\n";
 
 		// Hide "Templates used on this page" explanation
-		$content .= Html::element( 'style', [],
-			'.mw-templatesUsedExplanation { display: none; }' ) . "\n";
+		$content .= Html::element(
+			'style',
+			[],
+			'.mw-templatesUsedExplanation { display: none; }'
+		) . "\n";
 
 		// Get page information
 		$pageInfo = $this->pageInfo();
@@ -137,8 +144,8 @@ class InfoAction extends FormlessAction {
 			// pageinfo-header-basic, pageinfo-header-edits, pageinfo-header-restrictions,
 			// pageinfo-header-properties, pageinfo-category-info
 			$content .= $this->makeHeader(
-				$this->msg( "pageinfo-${header}" )->text(),
-				"mw-pageinfo-${header}"
+				$this->msg( "pageinfo-$header" )->text(),
+				"mw-pageinfo-$header"
 			) . "\n";
 			$table = "\n";
 			$below = "";
@@ -176,10 +183,18 @@ class InfoAction extends FormlessAction {
 	 * @return string The HTML.
 	 */
 	protected function makeHeader( $header, $canonicalId ) {
-		$spanAttribs = [ 'class' => 'mw-headline', 'id' => Sanitizer::escapeIdForAttribute( $header ) ];
-		$h2Attribs = [ 'id' => Sanitizer::escapeIdForAttribute( $canonicalId ) ];
-
-		return Html::rawElement( 'h2', $h2Attribs, Html::element( 'span', $spanAttribs, $header ) );
+		return Html::rawElement(
+			'h2',
+			[ 'id' => Sanitizer::escapeIdForAttribute( $canonicalId ) ],
+			Html::element(
+				'span',
+				[
+					'class' => 'mw-headline',
+					'id' => Sanitizer::escapeIdForAttribute( $header ),
+				],
+				$header
+			)
+		);
 	}
 
 	/**
@@ -209,8 +224,12 @@ class InfoAction extends FormlessAction {
 	 * @return string The content with the table added
 	 */
 	protected function addTable( $content, $table ) {
-		return $content . Html::rawElement( 'table', [ 'class' => 'wikitable mw-page-info' ],
-			$table );
+		return $content .
+			Html::rawElement(
+				'table',
+				[ 'class' => 'wikitable mw-page-info' ],
+				$table
+			);
 	}
 
 	/**
@@ -237,7 +256,7 @@ class InfoAction extends FormlessAction {
 
 		$pageCounts = $this->pageCounts();
 
-		$props = PageProps::getInstance()->getAllProperties( $title );
+		$props = $services->getPageProps()->getAllProperties( $title );
 		$pageProperties = $props[$id] ?? [];
 
 		// Basic information
@@ -248,7 +267,8 @@ class InfoAction extends FormlessAction {
 		$displayTitle = $pageProperties['displaytitle'] ?? $title->getPrefixedText();
 
 		$pageInfo['header-basic'][] = [
-			$this->msg( 'pageinfo-display-title' ), $displayTitle
+			$this->msg( 'pageinfo-display-title' ),
+			$displayTitle
 		];
 
 		// Is it a redirect? If so, where to?
@@ -275,7 +295,8 @@ class InfoAction extends FormlessAction {
 
 		// Page length (in bytes)
 		$pageInfo['header-basic'][] = [
-			$this->msg( 'pageinfo-length' ), $lang->formatNum( $title->getLength() )
+			$this->msg( 'pageinfo-length' ),
+			$lang->formatNum( $title->getLength() )
 		];
 
 		// Page namespace
@@ -412,7 +433,9 @@ class InfoAction extends FormlessAction {
 		// Subpages of this page, if subpages are enabled for the current NS
 		if ( $services->getNamespaceInfo()->hasSubpages( $title->getNamespace() ) ) {
 			$prefixIndex = SpecialPage::getTitleFor(
-				'Prefixindex', $title->getPrefixedText() . '/' );
+				'Prefixindex',
+				$title->getPrefixedText() . '/'
+			);
 			$pageInfo['header-basic'][] = [
 				$linkRenderer->makeLink(
 					$prefixIndex,
@@ -422,7 +445,8 @@ class InfoAction extends FormlessAction {
 					->numParams(
 						$pageCounts['subpages']['total'],
 						$pageCounts['subpages']['redirects'],
-						$pageCounts['subpages']['nonredirects'] )
+						$pageCounts['subpages']['nonredirects']
+					)
 			];
 		}
 
@@ -479,7 +503,10 @@ class InfoAction extends FormlessAction {
 
 			foreach ( $sources as $sourceTitle ) {
 				$cascadingFrom .= Html::rawElement(
-					'li', [], $linkRenderer->makeKnownLink( $sourceTitle ) );
+					'li',
+					[],
+					$linkRenderer->makeKnownLink( $sourceTitle )
+				);
 			}
 
 			$cascadingFrom = Html::rawElement( 'ul', [], $cascadingFrom );
@@ -525,8 +552,10 @@ class InfoAction extends FormlessAction {
 					break;
 			}
 			$expiry = $title->getRestrictionExpiry( $restrictionType );
-			$formattedexpiry = $this->msg( 'parentheses',
-				$lang->formatExpiry( $expiry, true, 'infinity', $user ) )->escaped();
+			$formattedexpiry = $this->msg(
+				'parentheses',
+				$lang->formatExpiry( $expiry, true, 'infinity', $user )
+			)->escaped();
 			$message .= $this->msg( 'word-separator' )->escaped() . $formattedexpiry;
 
 			// Messages: restriction-edit, restriction-move, restriction-create,
@@ -553,9 +582,7 @@ class InfoAction extends FormlessAction {
 		// Edit history
 		$pageInfo['header-edits'] = [];
 
-		$firstRev = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getFirstRevision( $this->getTitle() );
+		$firstRev = $services->getRevisionLookup()->getFirstRevision( $this->getTitle() );
 		$lastRev = $this->getWikiPage()->getRevisionRecord();
 		$linkBatchFactory = $services->getLinkBatchFactory();
 		$batch = $linkBatchFactory->newLinkBatch();
@@ -617,20 +644,24 @@ class InfoAction extends FormlessAction {
 
 		// Total number of edits
 		$pageInfo['header-edits'][] = [
-			$this->msg( 'pageinfo-edits' ), $lang->formatNum( $pageCounts['edits'] )
+			$this->msg( 'pageinfo-edits' ),
+			$lang->formatNum( $pageCounts['edits'] )
 		];
 
 		// Total number of distinct authors
 		if ( $pageCounts['authors'] > 0 ) {
 			$pageInfo['header-edits'][] = [
-				$this->msg( 'pageinfo-authors' ), $lang->formatNum( $pageCounts['authors'] )
+				$this->msg( 'pageinfo-authors' ),
+				$lang->formatNum( $pageCounts['authors'] )
 			];
 		}
 
 		// Recent number of edits (within past 30 days)
 		$pageInfo['header-edits'][] = [
-			$this->msg( 'pageinfo-recent-edits',
-				$lang->formatDuration( $config->get( 'RCMaxAge' ) ) ),
+			$this->msg(
+				'pageinfo-recent-edits',
+				$lang->formatDuration( $config->get( 'RCMaxAge' ) )
+			),
 			$lang->formatNum( $pageCounts['recent_edits'] )
 		];
 
