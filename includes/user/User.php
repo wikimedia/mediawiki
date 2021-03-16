@@ -1591,6 +1591,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @return array Array of options; typically strings, possibly booleans
 	 */
 	public static function getDefaultOptions() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getDefaultOptions();
@@ -1604,6 +1605,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @return string|null Default option value
 	 */
 	public static function getDefaultOption( $opt ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getDefaultOption( $opt );

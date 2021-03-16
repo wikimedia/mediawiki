@@ -111,7 +111,7 @@ this is no longer recommended and the option has been removed.
 * …
 
 ==== New external libraries ====
-* Added wikimedia/minify 2.1.0.
+* Added wikimedia/minify 2.2.1.
 * Added wikimedia/request-timeout 1.0.0.
 * Added wikimedia/shellbox 1.0.4.
 * Added WVUI 0.1.0.
@@ -543,6 +543,9 @@ because of Phabricator reports.
    - getPreviousRevisionID
    - getNextRevisionID
    - getEarliestRevTime
+* The following functions from the User class have been hard deprecated:
+   - getDefaultOptions
+   - getDefaultOption
 * The mw.language.commafy client-side method has been deprecated, to match
   the deprecation of Language::commafy.  Use mw.language.convertNumber
   instead.

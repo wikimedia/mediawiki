@@ -357,7 +357,8 @@ class Linker {
 				global $wgThumbLimits, $wgThumbUpright;
 
 				if ( $widthOption === null || !isset( $wgThumbLimits[$widthOption] ) ) {
-					$widthOption = User::getDefaultOption( 'thumbsize' );
+					$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+					$widthOption = $userOptionsLookup->getDefaultOption( 'thumbsize' );
 				}
 
 				// Reduce width for upright images when parameter 'upright' is used

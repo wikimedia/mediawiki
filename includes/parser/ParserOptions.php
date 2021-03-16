@@ -1231,7 +1231,10 @@ class ParserOptions {
 			$wgMaxArticleSize, $wgMaxPPNodeCount, $wgMaxTemplateDepth, $wgMaxPPExpandDepth,
 			$wgCleanSignatures, $wgExternalLinkTarget, $wgExpensiveParserFunctionLimit,
 			$wgEnableMagicLinks;
-		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+		$services = MediaWikiServices::getInstance();
+		$languageConverterFactory = $services->getLanguageConverterFactory();
+		$userOptionsLookup = $services->getUserOptionsLookup();
+		$contentLanguage = $services->getContentLanguage();
 
 		if ( self::$defaults === null ) {
 			// *UPDATE* ParserOptions::matches() if any of this changes as needed
@@ -1287,10 +1290,10 @@ class ParserOptions {
 			'magicISBNLinks' => $wgEnableMagicLinks['ISBN'],
 			'magicPMIDLinks' => $wgEnableMagicLinks['PMID'],
 			'magicRFCLinks' => $wgEnableMagicLinks['RFC'],
-			'numberheadings' => User::getDefaultOption( 'numberheadings' ),
-			'thumbsize' => User::getDefaultOption( 'thumbsize' ),
+			'numberheadings' => $userOptionsLookup->getDefaultOption( 'numberheadings' ),
+			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
 			'stubthreshold' => 0,
-			'userlang' => MediaWikiServices::getInstance()->getContentLanguage(),
+			'userlang' => $contentLanguage,
 		];
 	}
 

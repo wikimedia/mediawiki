@@ -22,6 +22,7 @@
 
 use MediaWiki\ExtensionInfo;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * A query action to return meta information about the wiki site.
@@ -29,9 +30,23 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
+	/**
+	 * @var UserOptionsLookup
+	 */
+	private $userOptionsLookup;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param UserOptionsLookup $userOptionsLookup
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		UserOptionsLookup $userOptionsLookup
+	) {
 		parent::__construct( $query, $moduleName, 'si' );
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function execute() {
@@ -863,7 +878,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendDefaultOptions( $property ) {
-		$options = User::getDefaultOptions();
+		$options = $this->userOptionsLookup->getDefaultOptions();
 		$options[ApiResult::META_BC_BOOLS] = array_keys( $options );
 		return $this->getResult()->addValue( 'query', $property, $options );
 	}
