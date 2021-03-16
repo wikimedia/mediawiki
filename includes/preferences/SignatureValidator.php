@@ -22,13 +22,13 @@ namespace MediaWiki\Preferences;
 
 use Html;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use MultiHttpClient;
 use ParserOptions;
 use ParsoidVirtualRESTService;
 use SpecialPage;
 use Title;
-use User;
 use VirtualRESTServiceClient;
 
 /**
@@ -36,14 +36,14 @@ use VirtualRESTServiceClient;
  */
 class SignatureValidator {
 
-	/** @var User */
+	/** @var UserIdentity */
 	private $user;
 	/** @var MessageLocalizer|null */
 	private $localizer;
 	/** @var ParserOptions */
 	private $popts;
 
-	public function __construct( User $user, ?MessageLocalizer $localizer, ParserOptions $popts ) {
+	public function __construct( UserIdentity $user, ?MessageLocalizer $localizer, ParserOptions $popts ) {
 		$this->user = $user;
 		$this->localizer = $localizer;
 		$this->popts = $popts;
