@@ -1389,7 +1389,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $this->options->get( 'SearchMatchRedirectPreference' ) ) {
 			$defaultPreferences['search-match-redirect'] = [
 				'type' => 'toggle',
-				'section' => 'searchoptions',
+				'section' => 'searchoptions/searchmisc',
 				'label-message' => 'search-match-redirect-label',
 				'help-message' => 'search-match-redirect-help',
 			];

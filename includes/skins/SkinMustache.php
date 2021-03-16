@@ -368,7 +368,7 @@ class SkinMustache extends SkinTemplate {
 			),
 			'html-input' => $this->makeSearchInput( [ 'id' => 'searchInput' ] ),
 			'msg-search' => $this->msg( 'search' )->text(),
-			'page-title' => SpecialPage::getTitleFor( 'Search' )->getPrefixedDBkey(),
+			'page-title' => $this->getSearchPageTitle()->getPrefixedDBkey(),
 		];
 
 		return $props;
