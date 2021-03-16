@@ -40,6 +40,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserOptionsLookup;
 use MessageLocalizer;
 use MWException;
 use MWTimestamp;
@@ -91,6 +92,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -135,6 +139,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param ILanguageConverter|null $languageConverter
 	 * @param LanguageNameUtils|null $languageNameUtils
 	 * @param HookContainer|null $hookContainer
+	 * @param UserOptionsLookup|null $userOptionsLookup
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -145,7 +150,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		PermissionManager $permissionManager,
 		ILanguageConverter $languageConverter = null,
 		LanguageNameUtils $languageNameUtils = null,
-		HookContainer $hookContainer = null
+		HookContainer $hookContainer = null,
+		UserOptionsLookup $userOptionsLookup = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -176,6 +182,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		}
 		$this->hookRunner = new HookRunner( $hookContainer );
+
+		if ( !$userOptionsLookup ) {
+			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		}
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
@@ -239,7 +250,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$disable = !$this->permissionManager->userHasRight( $user, 'editmyoptions' );
 
-		$defaultOptions = User::getDefaultOptions();
+		$defaultOptions = $this->userOptionsLookup->getDefaultOptions();
 		$userOptions = $user->getOptions();
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
 		// Add in defaults from the user

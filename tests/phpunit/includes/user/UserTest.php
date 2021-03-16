@@ -1778,6 +1778,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getDefaultOptions
 	 */
 	public function testGetDefaultOptions() {
+		$this->hideDeprecated( 'User::getDefaultOption' );
+		$this->hideDeprecated( 'User::getDefaultOptions' );
 		$this->resetServices();
 
 		$this->setTemporaryHook( 'UserGetDefaultOptions', static function ( &$defaults ) {
@@ -1790,6 +1792,22 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$extraOption = User::getDefaultOption( 'extraoption' );
 		$this->assertSame( 42, $extraOption );
+	}
+
+	/**
+	 * @covers User::getDefaultOption
+	 */
+	public function testGetDefaultOption_deprecated() {
+		$this->expectDeprecation();
+		User::getDefaultOption( 'extraoption' );
+	}
+
+	/**
+	 * @covers User::getDefaultOptions
+	 */
+	public function testGetDefaultOptions_deprecated() {
+		$this->expectDeprecation();
+		User::getDefaultOptions();
 	}
 
 	/**
