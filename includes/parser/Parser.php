@@ -552,8 +552,11 @@ class Parser {
 			$this->getHookContainer()
 		);
 		$this->mLinkID = 0;
-		$this->mRevisionObject = $this->mRevisionTimestamp =
-			$this->mRevisionId = $this->mRevisionUser = $this->mRevisionSize = null;
+		$this->mRevisionObject = null;
+		$this->mRevisionTimestamp = null;
+		$this->mRevisionId = null;
+		$this->mRevisionUser = null;
+		$this->mRevisionSize = null;
 		$this->mRevisionRecordObject = null;
 		$this->mVarCache = [];
 		$this->mUser = null;
@@ -563,7 +566,8 @@ class Parser {
 		$this->mStripState = new StripState( $this );
 
 		# Clear these on every parse, T6549
-		$this->mTplRedirCache = $this->mTplDomCache = [];
+		$this->mTplRedirCache = [];
+		$this->mTplDomCache = [];
 
 		$this->mShowToc = true;
 		$this->mForceTocPosition = false;
@@ -1725,7 +1729,10 @@ class Parser {
 					(?: [0-9]  $spdash? ){9} #  9 digits with opt. delimiters
 					[0-9Xx]                  #  check digit
 				)\b
-			)!xu", [ $this, 'magicLinkCallback' ], $text );
+			)!xu",
+			[ $this, 'magicLinkCallback' ],
+			$text
+		);
 		return $text;
 	}
 
@@ -1765,6 +1772,7 @@ class Parser {
 				$trackingCat = 'magiclink-tracking-pmid';
 				$id = $m[5];
 			} else {
+				// Should never happen
 				throw new MWException( __METHOD__ . ': unrecognised match type "' .
 					substr( $m[0], 0, 20 ) . '"' );
 			}
@@ -1869,10 +1877,14 @@ class Parser {
 		$text = $this->maybeMakeExternalImage( $url );
 		if ( $text === false ) {
 			# Not an image, make a link
-			$text = Linker::makeExternalLink( $url,
+			$text = Linker::makeExternalLink(
+				$url,
 				$this->getTargetLanguageConverter()->markNoConversion( $url ),
-				true, 'free',
-				$this->getExternalLinkAttribs( $url ), $this->getTitle() );
+				true,
+				'free',
+				$this->getExternalLinkAttribs( $url ),
+				$this->getTitle()
+			);
 			# Register it in the output object...
 			$this->mOutput->addExternalLink( $url );
 		}
@@ -2019,6 +2031,7 @@ class Parser {
 			} else {
 				$thislen = strlen( $r );
 				if ( $thislen == 2 ) {
+					// two quotes - open or close italics
 					if ( $state === 'i' ) {
 						$output .= '</i>';
 						$state = '';
@@ -2036,6 +2049,7 @@ class Parser {
 						$state .= 'i';
 					}
 				} elseif ( $thislen == 3 ) {
+					// three quotes - open or close bold
 					if ( $state === 'b' ) {
 						$output .= '</b>';
 						$state = '';
@@ -2053,6 +2067,7 @@ class Parser {
 						$state .= 'b';
 					}
 				} elseif ( $thislen == 5 ) {
+					// five quotes - open or close both separately
 					if ( $state === 'b' ) {
 						$output .= '</b><i>';
 						$state = 'i';
@@ -2251,7 +2266,8 @@ class Parser {
 		}
 
 		# Make sure unsafe characters are encoded
-		$url = preg_replace_callback( '/[\x00-\x20"<>\[\\\\\]^`{|}\x7F-\xFF]/',
+		$url = preg_replace_callback(
+			'/[\x00-\x20"<>\[\\\\\]^`{|}\x7F-\xFF]/',
 			static function ( $m ) {
 				return rawurlencode( $m[0] );
 			},
@@ -4372,8 +4388,13 @@ class Parser {
 			}
 
 			if ( $enoughToc && ( !isset( $maxTocLevel ) || $toclevel < $maxTocLevel ) ) {
-				$toc .= Linker::tocLine( $linkAnchor, $tocline,
-					$numbering, $toclevel, ( $isTemplate ? false : $sectionIndex ) );
+				$toc .= Linker::tocLine(
+					$linkAnchor,
+					$tocline,
+					$numbering,
+					$toclevel,
+					( $isTemplate ? false : $sectionIndex )
+				);
 			}
 
 			# Add the section to the section tree
@@ -4386,8 +4407,11 @@ class Parser {
 						break;
 					}
 				}
-				$byteOffset += mb_strlen( $this->mStripState->unstripBoth(
-					$frame->expand( $node, PPFrame::RECOVER_ORIG ) ) );
+				$byteOffset += mb_strlen(
+					$this->mStripState->unstripBoth(
+						$frame->expand( $node, PPFrame::RECOVER_ORIG )
+					)
+				);
 				$node = $node->getNextSibling();
 			}
 			$tocraw[] = [
@@ -4437,9 +4461,14 @@ class Parser {
 			} else {
 				$editlink = '';
 			}
-			$head[$headlineCount] = Linker::makeHeadline( $level,
-				$matches['attrib'][$headlineCount], $anchor, $headline,
-				$editlink, $fallbackAnchor );
+			$head[$headlineCount] = Linker::makeHeadline(
+				$level,
+				$matches['attrib'][$headlineCount],
+				$anchor,
+				$headline,
+				$editlink,
+				$fallbackAnchor
+			);
 
 			$headlineCount++;
 		}
@@ -5099,49 +5128,51 @@ class Parser {
 				$matches[3] = $this->recursiveTagParse( trim( $matches[3] ) );
 				// Protect LanguageConverter markup
 				$parameterMatches = StringUtils::delimiterExplode(
-					'-{', '}-', '|', $matches[3], true /* nested */
+					'-{', '}-',
+					'|',
+					$matches[3],
+					true /* nested */
 				);
 
 				foreach ( $parameterMatches as $parameterMatch ) {
 					list( $magicName, $match ) = $mwArray->matchVariableStartToEnd( $parameterMatch );
-					if ( $magicName ) {
-						$paramName = $paramMap[$magicName];
-
-						switch ( $paramName ) {
-							case 'gallery-internal-alt':
-								$alt = $this->stripAltText( $match, false );
-								break;
-							case 'gallery-internal-link':
-								$linkValue = $this->stripAltText( $match, false );
-								if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
-									// Result of LanguageConverter::markNoConversion
-									// invoked on an external link.
-									$linkValue = substr( $linkValue, 4, -2 );
-								}
-								list( $type, $target ) = $this->parseLinkParameter( $linkValue );
-								if ( $type === 'link-url' ) {
-									$link = $target;
-									$this->mOutput->addExternalLink( $target );
-								} elseif ( $type === 'link-title' ) {
-									$link = $target->getLinkURL();
-									$this->mOutput->addLink( $target );
-								}
-								break;
-							default:
-								// Must be a handler specific parameter.
-								if ( $handler->validateParam( $paramName, $match ) ) {
-									$handlerOptions[$paramName] = $match;
-								} else {
-									// Guess not, consider it as caption.
-									$this->logger->debug(
-										"$parameterMatch failed parameter validation" );
-									$label = $parameterMatch;
-								}
-						}
-
-					} else {
+					if ( !$magicName ) {
 						// Last pipe wins.
 						$label = $parameterMatch;
+						continue;
+					}
+
+					$paramName = $paramMap[$magicName];
+					switch ( $paramName ) {
+						case 'gallery-internal-alt':
+							$alt = $this->stripAltText( $match, false );
+							break;
+						case 'gallery-internal-link':
+							$linkValue = $this->stripAltText( $match, false );
+							if ( preg_match( '/^-{R|(.*)}-$/', $linkValue ) ) {
+								// Result of LanguageConverter::markNoConversion
+								// invoked on an external link.
+								$linkValue = substr( $linkValue, 4, -2 );
+							}
+							list( $type, $target ) = $this->parseLinkParameter( $linkValue );
+							if ( $type === 'link-url' ) {
+								$link = $target;
+								$this->mOutput->addExternalLink( $target );
+							} elseif ( $type === 'link-title' ) {
+								$link = $target->getLinkURL();
+								$this->mOutput->addLink( $target );
+							}
+							break;
+						default:
+							// Must be a handler specific parameter.
+							if ( $handler->validateParam( $paramName, $match ) ) {
+								$handlerOptions[$paramName] = $match;
+							} else {
+								// Guess not, consider it as caption.
+								$this->logger->debug(
+									"$parameterMatch failed parameter validation" );
+								$label = $parameterMatch;
+							}
 					}
 				}
 			}
