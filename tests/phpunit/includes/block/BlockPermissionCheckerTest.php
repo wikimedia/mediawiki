@@ -8,6 +8,8 @@ use MediaWiki\MediaWikiServices;
  * @group Database
  * @group Blocking
  * @coversDefaultClass \MediaWiki\Block\BlockPermissionChecker
+ *
+ * TODO convert to Unit tests, all dependencies are injected
  */
 class BlockPermissionCheckerTest extends MediaWikiLangTestCase {
 	/**

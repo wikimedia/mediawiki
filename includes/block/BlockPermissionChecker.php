@@ -59,24 +59,22 @@ class BlockPermissionChecker {
 		'EnableUserEmail',
 	];
 
-	/**
-	 * @var ServiceOptions
-	 */
+	/** @var ServiceOptions */
 	private $options;
 
-	/**
-	 * @var UserFactory
-	 */
+	/** @var UserFactory */
 	private $userFactory;
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param BlockUtils $blockUtils
 	 * @param UserFactory $userFactory
 	 * @param UserIdentity|string|null $target
 	 * @param Authority $performer
 	 */
 	public function __construct(
 		ServiceOptions $options,
+		BlockUtils $blockUtils,
 		UserFactory $userFactory,
 		$target,
 		Authority $performer
@@ -84,7 +82,7 @@ class BlockPermissionChecker {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->userFactory = $userFactory;
-		list( $this->target, $this->targetType ) = AbstractBlock::parseTarget( $target );
+		list( $this->target, $this->targetType ) = $blockUtils->parseBlockTarget( $target );
 		$this->performer = $performer;
 	}
 

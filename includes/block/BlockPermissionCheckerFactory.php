@@ -42,21 +42,25 @@ class BlockPermissionCheckerFactory {
 	 */
 	public const CONSTRUCTOR_OPTIONS = BlockPermissionChecker::CONSTRUCTOR_OPTIONS;
 
-	/**
-	 * @var UserFactory
-	 */
+	/** @var BlockUtils */
+	private $blockUtils;
+
+	/** @var UserFactory */
 	private $userFactory;
 
 	/**
 	 * @param ServiceOptions $options
+	 * @param BlockUtils $blockUtils
 	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
+		BlockUtils $blockUtils,
 		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->blockUtils = $blockUtils;
 		$this->userFactory = $userFactory;
 	}
 
@@ -72,6 +76,7 @@ class BlockPermissionCheckerFactory {
 	) {
 		return new BlockPermissionChecker(
 			$this->options,
+			$this->blockUtils,
 			$this->userFactory,
 			$target,
 			$performer

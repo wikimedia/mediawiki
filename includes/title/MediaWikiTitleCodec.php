@@ -22,7 +22,6 @@
  */
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use Wikimedia\IPUtils;
 
 /**
@@ -67,21 +66,16 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	 *   capitalization, etc.
 	 * @param GenderCache $genderCache The gender cache for generating gendered namespace names
 	 * @param string[]|string $localInterwikis
-	 * @param InterwikiLookup|null $interwikiLookup
-	 * @param NamespaceInfo|null $nsInfo
+	 * @param InterwikiLookup $interwikiLookup
+	 * @param NamespaceInfo $nsInfo
 	 */
-	public function __construct( Language $language, GenderCache $genderCache,
-		$localInterwikis = [], InterwikiLookup $interwikiLookup = null,
-		NamespaceInfo $nsInfo = null
+	public function __construct(
+		Language $language,
+		GenderCache $genderCache,
+		$localInterwikis,
+		InterwikiLookup $interwikiLookup,
+		NamespaceInfo $nsInfo
 	) {
-		if ( !$interwikiLookup ) {
-			wfDeprecated( __METHOD__ . ' with no InterwikiLookup argument', '1.34' );
-			$interwikiLookup = MediaWikiServices::getInstance()->getInterwikiLookup();
-		}
-		if ( !$nsInfo ) {
-			wfDeprecated( __METHOD__ . ' with no NamespaceInfo argument', '1.34' );
-			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		}
 		$this->language = $language;
 		$this->genderCache = $genderCache;
 		$this->localInterwikis = (array)$localInterwikis;
