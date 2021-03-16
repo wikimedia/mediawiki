@@ -26,7 +26,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
- * Various core parser functions, registered in Parser::firstCallInit()
+ * Various core parser functions, registered in every Parser
  * @ingroup Parser
  */
 class CoreParserFunctions {

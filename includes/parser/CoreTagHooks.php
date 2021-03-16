@@ -24,7 +24,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * Various tag hooks, registered in Parser::firstCallInit()
+ * Various tag hooks, registered in every Parser
  * @ingroup Parser
  */
 class CoreTagHooks {

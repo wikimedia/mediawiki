@@ -1849,7 +1849,6 @@ class ParserTestRunner {
 	public function requireHook( $name ) {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
-		$parser->firstCallInit(); // make sure hooks are loaded.
 		if ( preg_match( '/^[Ee]xtension:(.*)$/', $name, $matches ) ) {
 			$extName = $matches[1];
 			if ( ExtensionRegistry::getInstance()->isLoaded( $extName ) ) {
@@ -1877,8 +1876,6 @@ class ParserTestRunner {
 	 */
 	public function requireFunctionHook( $name ) {
 		$parser = MediaWikiServices::getInstance()->getParser();
-
-		$parser->firstCallInit(); // make sure hooks are loaded.
 
 		if ( isset( $parser->mFunctionHooks[$name] ) ) {
 			return true;
