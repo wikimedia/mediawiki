@@ -28,6 +28,28 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers SpecialSearch::load
+	 */
+	public function testAlternativeBackend() {
+		$this->setMwGlobals( [
+			'wgSearchTypeAlternatives' => [ 'MockSearchEngine' ],
+		] );
+
+		$ctx = new RequestContext();
+		$ctx->setRequest( new FauxRequest( [
+			'search' => 'foo',
+			'srbackend' => 'MockSearchEngine',
+		] ) );
+		$search = $this->newSpecialPage();
+		$search->setContext( $ctx );
+
+		$search->load();
+
+		# Without the parameter srbackend it would be a SearchEngineDummy
+		$this->assertInstanceOf( 'MockSearchEngine', $search->getSearchEngine() );
+	}
+
+	/**
+	 * @covers SpecialSearch::load
 	 * @covers SpecialSearch::showResults
 	 */
 	public function testValidateSortOrder() {

@@ -196,7 +196,6 @@ class SpecialSearch extends SpecialPage {
 			return;
 		}
 
-		$this->searchEngineType = $request->getVal( 'srbackend' );
 		if ( !$request->getVal( 'fulltext' ) && !$request->getCheck( 'offset' ) ) {
 			$url = $this->goResult( $term );
 			if ( $url !== null ) {
@@ -263,6 +262,8 @@ class SpecialSearch extends SpecialPage {
 		$this->loadStatus = new Status();
 
 		$request = $this->getRequest();
+		$this->searchEngineType = $request->getVal( 'srbackend' );
+
 		list( $this->limit, $this->offset ) = $request->getLimitOffsetForUser(
 			$this->getUser(),
 			20,
