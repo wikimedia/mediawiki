@@ -279,6 +279,10 @@ because of Phabricator reports.
 * GenderCache::singleton(), which was deprecated in 1.28 and hard-deprecated
   in 1.35, has been removed.
 * Sanitizer::escapeId(), deprecated in 1.30, has been removed.
+* Direct invocation of Parser::__construct() (instead of via a ParserFactory)
+  now throws an exception; support has also been removed for several
+  deprecated variants on the arguments passed to Parser::__construct.
+  Direct invocation of Parser::__construct was deprecated in 1.34.
 * Parser::setFunctionTagHook(), deprecated in 1.35, has been removed.
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
 * The ParserBeforeTidy, ParserBeforeStrip, and ParserAfterStrip hooks,
@@ -401,7 +405,7 @@ because of Phabricator reports.
   doDeleteArticleReal(), doRollback(), and doEditContent().
 * The ParserTestRunner no longer invokes the ParserTestTables hook. Instead, it
   clones all database tables before running tests, like MediaWikiIntegrationTest
-  does. If an extension was mis-using the hook to *exclude* tables from the 
+  does. If an extension was mis-using the hook to *exclude* tables from the
   clone, that will no longer occur, and tests may fail.
 * The following classes, which were only loaded for tests and had no uses found
   in public MediaWiki-related git, were removed:
@@ -595,6 +599,9 @@ because of Phabricator reports.
 * Command::cgroup() is deprecated and no longer functional. $wgShellCgroup is
   now implemented as an Executor option.
 * Command::restrict() is deprecated. Instead use the new separate accessors.
+* MWTidy::tidy() is deprecated. Use MediaWikiServices::getTidy()-tidy() instead.
+* TidyDriverBase::supportsValidate() is deprecated; it has always returned
+  false since 1.33.
 * WatchedItem::getUser hard-deprecated in favor of ::getUserIdentity since 1.36
 * LogEntry::getPerformer() and its implementations have been hard-deprecated, in
   favor of ::getPerformerIdentity().

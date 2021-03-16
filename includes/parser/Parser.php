@@ -38,7 +38,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
 
@@ -386,96 +385,73 @@ class Parser {
 	];
 
 	/**
-	 * Constructing parsers directly is deprecated! Use a ParserFactory.
+	 * Constructing parsers directly is not allowed! Use a ParserFactory.
 	 * @internal
 	 *
-	 * @param ServiceOptions|null $svcOptions
-	 * @param MagicWordFactory|null $magicWordFactory
-	 * @param Language|null $contLang Content language
-	 * @param ParserFactory|null $factory
-	 * @param string|null $urlProtocols As returned from wfUrlProtocols()
-	 * @param SpecialPageFactory|null $spFactory
-	 * @param LinkRendererFactory|null $linkRendererFactory
-	 * @param NamespaceInfo|null $nsInfo
-	 * @param LoggerInterface|null $logger
-	 * @param BadFileLookup|null $badFileLookup
-	 * @param LanguageConverterFactory|null $languageConverterFactory
-	 * @param HookContainer|null $hookContainer
-	 * @param TidyDriverBase|null $tidy
+	 * @param ServiceOptions $svcOptions
+	 * @param MagicWordFactory $magicWordFactory
+	 * @param Language $contLang Content language
+	 * @param ParserFactory $factory
+	 * @param string $urlProtocols As returned from wfUrlProtocols()
+	 * @param SpecialPageFactory $spFactory
+	 * @param LinkRendererFactory $linkRendererFactory
+	 * @param NamespaceInfo $nsInfo
+	 * @param LoggerInterface $logger
+	 * @param BadFileLookup $badFileLookup
+	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param HookContainer $hookContainer
+	 * @param TidyDriverBase $tidy
 	 */
 	public function __construct(
-		$svcOptions = null,
-		MagicWordFactory $magicWordFactory = null,
-		Language $contLang = null,
-		ParserFactory $factory = null,
-		$urlProtocols = null,
-		SpecialPageFactory $spFactory = null,
-		$linkRendererFactory = null,
-		$nsInfo = null,
-		$logger = null,
-		BadFileLookup $badFileLookup = null,
-		LanguageConverterFactory $languageConverterFactory = null,
-		HookContainer $hookContainer = null,
-		TidyDriverBase $tidy = null
+		ServiceOptions $svcOptions,
+		MagicWordFactory $magicWordFactory,
+		Language $contLang,
+		ParserFactory $factory,
+		string $urlProtocols,
+		SpecialPageFactory $spFactory,
+		LinkRendererFactory $linkRendererFactory,
+		NamespaceInfo $nsInfo,
+		LoggerInterface $logger,
+		BadFileLookup $badFileLookup,
+		LanguageConverterFactory $languageConverterFactory,
+		HookContainer $hookContainer,
+		TidyDriverBase $tidy
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
-			// Direct construction of Parser is deprecated; use a ParserFactory
-			wfDeprecated( __METHOD__, '1.34' );
+			// Direct construction of Parser was deprecated in 1.34 and
+			// removed in 1.36; use a ParserFactory instead.
+			throw new MWException( 'Direct construction of Parser not allowed' );
 		}
-		if ( !$svcOptions || is_array( $svcOptions ) ) {
-			wfDeprecated( 'old calling convention for ' . __METHOD__, '1.34' );
-			// Pre-1.34 calling convention is the first parameter is just ParserConf, the seventh is
-			// Config, and the eighth is LinkRendererFactory.
-			$this->mConf = (array)$svcOptions;
-			if ( empty( $this->mConf['class'] ) ) {
-				$this->mConf['class'] = self::class;
-			}
-			$this->svcOptions = new ServiceOptions( self::CONSTRUCTOR_OPTIONS,
-				$this->mConf, func_num_args() > 6
-					? func_get_arg( 6 ) : MediaWikiServices::getInstance()->getMainConfig()
-			);
-			$linkRendererFactory = func_num_args() > 7 ? func_get_arg( 7 ) : null;
-			$nsInfo = func_num_args() > 8 ? func_get_arg( 8 ) : null;
-		} else {
-			// New calling convention
-			$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-			// $this->mConf is public, so we'll keep the option there for
-			// compatibility until it's removed
-			$this->mConf = [
-				'class' => $svcOptions->get( 'class' ),
-			];
-			$this->svcOptions = $svcOptions;
-		}
+		$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		// $this->mConf is public, so we'll keep the option there for
+		// compatibility until it's removed
+		$this->mConf = [
+			'class' => $svcOptions->get( 'class' ),
+		];
+		$this->svcOptions = $svcOptions;
 
-		$this->mUrlProtocols = $urlProtocols ?? wfUrlProtocols();
+		$this->mUrlProtocols = $urlProtocols;
 		$this->mExtLinkBracketedRegex = '/\[(((?i)' . $this->mUrlProtocols . ')' .
 			self::EXT_LINK_ADDR .
 			self::EXT_LINK_URL_CLASS . '*)\p{Zs}*([^\]\\x00-\\x08\\x0a-\\x1F\\x{FFFD}]*?)\]/Su';
 
-		$this->magicWordFactory = $magicWordFactory ??
-			MediaWikiServices::getInstance()->getMagicWordFactory();
+		$this->magicWordFactory = $magicWordFactory;
 
-		$this->contLang = $contLang ?? MediaWikiServices::getInstance()->getContentLanguage();
+		$this->contLang = $contLang;
 
-		$this->factory = $factory ?? MediaWikiServices::getInstance()->getParserFactory();
-		$this->specialPageFactory = $spFactory ??
-			MediaWikiServices::getInstance()->getSpecialPageFactory();
-		$this->linkRendererFactory = $linkRendererFactory ??
-			MediaWikiServices::getInstance()->getLinkRendererFactory();
-		$this->nsInfo = $nsInfo ?? MediaWikiServices::getInstance()->getNamespaceInfo();
-		$this->logger = $logger ?: new NullLogger();
-		$this->badFileLookup = $badFileLookup ??
-			MediaWikiServices::getInstance()->getBadFileLookup();
+		$this->factory = $factory;
+		$this->specialPageFactory = $spFactory;
+		$this->linkRendererFactory = $linkRendererFactory;
+		$this->nsInfo = $nsInfo;
+		$this->logger = $logger;
+		$this->badFileLookup = $badFileLookup;
 
-		$this->languageConverterFactory = $languageConverterFactory ??
-			MediaWikiServices::getInstance()->getLanguageConverterFactory();
+		$this->languageConverterFactory = $languageConverterFactory;
 
-		$this->hookContainer = $hookContainer ??
-			MediaWikiServices::getInstance()->getHookContainer();
-		$this->hookRunner = new HookRunner( $this->hookContainer );
+		$this->hookContainer = $hookContainer;
+		$this->hookRunner = new HookRunner( $hookContainer );
 
-		$this->tidy = $tidy ??
-			MediaWikiServices::getInstance()->getTidy();
+		$this->tidy = $tidy;
 
 		// T250444: This will eventually be inlined here and the
 		// standalone method removed.
