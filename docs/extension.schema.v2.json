@@ -614,6 +614,11 @@
 						"type": "boolean",
 						"description": "Whether the namespace is conditional upon configuration and should not be registered (requires separate registration via a hook)",
 						"default": false
+					},
+					"movable": {
+						"type": "boolean",
+						"description": "Whether it is possible to move pages in this namespace",
+						"default": true
 					}
 				},
 				"required": ["id", "constant", "name"]
