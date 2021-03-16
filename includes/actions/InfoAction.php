@@ -90,6 +90,9 @@ class InfoAction extends FormlessAction {
 	public function onView() {
 		$content = '';
 
+		// "Help" button
+		$this->addHelpLink( 'Page information' );
+
 		// Validate revision
 		$oldid = $this->getArticle()->getOldID();
 		if ( $oldid ) {
@@ -105,9 +108,6 @@ class InfoAction extends FormlessAction {
 				return $this->msg( 'pageinfo-not-current' )->plain();
 			}
 		}
-
-		// "Help" button
-		$this->addHelpLink( 'Page information' );
 
 		// Page header
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {

@@ -4,7 +4,7 @@
  * @group Parser
  * @covers MWTidy
  */
-class TidyTest extends \MediaWikiUnitTestCase {
+class TidyTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestWrapping
@@ -37,6 +37,7 @@ class TidyTest extends \MediaWikiUnitTestCase {
     </mrow>
   </math>
 MathML;
+		$testMathML = Sanitizer::normalizeCharReferences( $testMathML );
 		return [
 			[
 				'<mw:editsection page="foo" section="bar">foo</mw:editsection>',

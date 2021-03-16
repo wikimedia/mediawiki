@@ -25,6 +25,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Tidy\TidyDriverBase;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -74,6 +75,9 @@ class ParserFactory {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var TidyDriverBase */
+	private $tidy;
+
 	/**
 	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
@@ -86,7 +90,9 @@ class ParserFactory {
 	 * @param BadFileLookup $badFileLookup
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param HookContainer $hookContainer
+	 * @param TidyDriverBase $tidy
 	 * @since 1.32
+	 * @internal
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -99,7 +105,8 @@ class ParserFactory {
 		LoggerInterface $logger,
 		BadFileLookup $badFileLookup,
 		LanguageConverterFactory $languageConverterFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		TidyDriverBase $tidy
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -116,6 +123,7 @@ class ParserFactory {
 		$this->badFileLookup = $badFileLookup;
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->hookContainer = $hookContainer;
+		$this->tidy = $tidy;
 	}
 
 	/**
@@ -139,7 +147,8 @@ class ParserFactory {
 				$this->logger,
 				$this->badFileLookup,
 				$this->languageConverterFactory,
-				$this->hookContainer
+				$this->hookContainer,
+				$this->tidy
 			);
 		} finally {
 			self::$inParserFactory--;

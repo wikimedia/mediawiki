@@ -10,23 +10,20 @@ for use in production.
 == Upgrading notes for 1.36 ==
 Don't forget to always back up your database before upgrading!
 
-See the file UPGRADE for more detailed upgrade instructions.
-
-MediaWiki 1.36 only knows how to upgrade from MediaWiki 1.27 or later. If your
-wiki is running an older version, first upgrade to MediaWiki 1.27, before then
-attempting to upgrade to 1.36.
+See the file UPGRADE for more detailed upgrade instructions, including important
+information when upgrading from versions prior to 1.11.
 
 Some specific notes for MediaWiki 1.36 upgrades are below:
-* MediaWiki 1.36 now requires the PHP internationalization extension
-  (commonly referred to as Intl, ext-intl and php-intl).
+* MediaWiki 1.36 now requires the PHP internationalization extension (commonly
+  referred to as Intl, ext-intl, or php-intl).
 * …
 
 For notes on 1.35.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.36 ===
 MediaWiki update script, maintenance/update.php, used to accept `--nopurge`
-option to prevent clearing caches stored in the database during upgrade,
-this is no longer recommended and the option has been removed.
+option to prevent clearing caches stored in the database during upgrade, this
+is no longer recommended and the option has been removed.
 …
 
 ==== New configuration ====
@@ -37,26 +34,28 @@ this is no longer recommended and the option has been removed.
   feature entirely.
 * (T244058) $wgOldRevisionParserCacheExpireTime — This setting was added to
   control caching of ParserOutput for old revisions.
-* (T265263) $wgRememberMe - This setting allows configuration of
-  RememberMeAuthenticationRequest.
-* (T157145) $wgSkinMetaTags allows configuration of skins to support meta
-  tags that enable sharing of mediawiki pages on a variety of social platforms.
+* (T265263) $wgRememberMe - This setting configures the "remember me" checkbox
+  on account log-in systems via RememberMeAuthenticationRequest.
+* (T157145) $wgSkinMetaTags – This setting allows configuration of skins to
+  support meta tags. These tags make sharing of MediaWiki pages on a variety of
+  social platforms more contentful and thus useful.
 * …
 
 ==== Changed configuration ====
 * (T274695) $wgAjaxEditStash — This setting, to disable the edit stashing
   feature when users start writing an edit summary, has been deprecated. In
   future releases, this feature will always be enabled.
-* $wgUploadStashScalerBaseUrl was deprecated. Use thumbProxyUrl in
-  $wgLocalFileRepo instead.
+* $wgUploadStashScalerBaseUrl – This setting, to enable remote on-demand media
+  scaling, was deprecated. Use the `thumbProxyUrl` setting in $wgLocalFileRepo
+  instead.
 * …
 
 ==== Removed configuration ====
 * $wgUseTwoButtonsSearchForm — This setting, deprecated in 1.35, has been
   removed.
-* $wgAllowImageMoving — This setting, deprecated in 1.35, has been removed.
-  Use group permission settings instead. For example, to prevent sysops
-  from moving files, set `$wgGroupPermissions['sysop']['movefile'] = false;`
+* $wgAllowImageMoving — This setting, deprecated in 1.35, has been removed. Use
+  group permission settings instead. For example, to prevent sysops from
+  moving files, set `$wgGroupPermissions['sysop']['movefile'] = false;`
 * $wgExtNewTables, $wgExtNewFields, $wgExtNewIndexes, $wgExtPGNewFields,
   $wgExtPGAlteredFields, $wgExtModifiedFields — These settings were removed.
   They became obsolete after 1.17 overhauled the database updater, but were kept
@@ -74,36 +73,34 @@ this is no longer recommended and the option has been removed.
 * …
 
 === New developer features in 1.36 ===
-* Parser test files can now declare a dependency on a specific extension
-  being loaded, not just on the presence of a certain extension tag hook.
-  This is a better fit for extensions like TimedMediaHandler, which affect
-  the output but don't register parser hooks.  Use `extension:Foo` in
-  the `!! hooks` section of your parser test file to declare a dependency
-  on the `Foo` extension being loaded.
-* To expose code previously present in SpecialBlock/SpecialUnblock
-  to other parts of the code, or to extensions,
-  the new BlockUser and UnblockUser command objects were added.
-  Use the BlockUserFactory and UnblockUserFactory services to create them.
-* The hook UsersPagerDoBatchLookupsHook takes now a \Wikimedia\Rdbms\IDatabase
-  instead of \Wikimedia\Rdbms\DBConnRef as first parameter
-* MediaHandlers can now customize the formatting of the metadata they emit
-  by overriding MediaHandler::formatTag( $key, $value ).  The default for
-  unknown tags is numeric formatting; non-EXIF tags which are non-numeric
-  should always use this method to specify the desired formatting.
+* Parser test files can now declare a dependency on a specific extension being
+  loaded, not just on the presence of a certain extension tag hook. This is a
+  better fit for extensions like TimedMediaHandler, which affect the output but
+  don't register parser hooks. Use `extension:Foo` in  the `!! hooks` section of
+  your parser test file to declare a dependency on the `Foo` extension being
+  loaded.
+* To expose code previously present in SpecialBlock/SpecialUnblock to other
+  parts of the code, or to extensions, the new BlockUser and UnblockUser command
+  objects were added. Use the BlockUserFactory and UnblockUserFactory services
+  to create them.
+* The hook UsersPagerDoBatchLookupsHook takes now a \Wikimedia\Rdbms\IDatabase,
+  instead of \Wikimedia\Rdbms\DBConnRef, as the first parameter.
+* MediaHandlers can now customize the formatting of the metadata they emit by
+  over-riding MediaHandler::formatTag( $key, $value ). The default for unknown
+  tags is numeric formatting; non-EXIF tags which are non-numeric should always
+  use this method to specify the desired formatting.
 * The new 'title' type can be used to validate action API and REST API inputs.
-* The new ArticleParserOptions hook allows customizing the parser options
-  used to parse wikitext for an article, based on user preferences, title,
-  etc.
-* The new 'raw' type can be used to validate action API inputs. It bypasses
-  the Unicode NFC normalization done on inputs of type 'string', so it more
-  suitable when the input is binary or may contain deprecated Unicode
-  sequences or characters (such as U+2001) that should be passed unmodified.
-* A new abstraction for running shell commands has been introduced, called
-  BoxedCommand. A BoxedCommand object can be obtained with
+* The new ArticleParserOptions hook allows customizing the parser options used
+  to parse wikitext for an article, based on user preferences, title, etc.
+* The new 'raw' type can be used to validate action API inputs. It bypasses the
+  Unicode NFC normalization done on inputs of type 'string', so it more suitable
+  when the input is binary or may contain deprecated Unicode sequences or
+  characters (such as U+2001) that should be passed unmodified.
+* (T260330) A new abstraction for running shell commands has been introduced,
+  called BoxedCommand. A BoxedCommand object can be obtained with
   MediaWikiServices::getInstance()->getCommandFactory()->createBoxed().
-  (T260330)
 * ResourceLoader modules can now mark themselves as ES6-only by setting
-  'es6' => true in their module definition. ES6-only modules will not be
+  `'es6' => true` in their module definition. ES6-only modules will not be
   executed in browsers that don't support ES6, such as IE11.
 * …
 
@@ -161,7 +158,7 @@ this is no longer recommended and the option has been removed.
 === Bug fixes in 1.36 ===
 * (T190285) ApiEditPage module used to switch 'undo' and 'undoafter' parameters,
   if it founds you reversed them (based on assumption that higher revision ID
-  indicates a later revision). The assumption is not always true and is
+  indicates a later revision). The assumption is not always true, and is
   hindering proper edit undoing in some cases, hence the logic has been removed.
   Reversing the parameters will now lead to edit conflict or undefined behavior.
 * (T263340) In history merging, pages with a content model that does not support
@@ -176,7 +173,7 @@ this is no longer recommended and the option has been removed.
   added to the watchlist when making API edits, regardless of their preferences.
   This is to reduce the size of the watchlist data in the database. To add API
   bot edits to the watchlist, explicitly set the 'watch' option.
-* ...
+* …
 
 === Action API internal changes in 1.36 ===
 * …
@@ -195,6 +192,7 @@ because of Phabricator reports.
 * (T276745) Added language support for Wayuu (guc).
 
 === Breaking changes in 1.36 ===
+* Grade C (non-JavaScript) support for Internet Explorer 8 has been dropped.
 * (T249459) wfIsBadImage(), deprecated in 1.34, has been removed.
 * (T176526) EditPage::getContextTitle() will now throw an exception if a context
   title was not set using setContextTitle(). Previously, this mis-use would only
@@ -225,7 +223,8 @@ because of Phabricator reports.
   - WebRequest::getLimitOffset
   - WikiPage::doDeleteArticle
   - WikiPage::insertProtectNullRevision
-  - All methods of the old SpecialPageFactory; the entire class was removed
+* The SpecialPageFactory class, deprecated in 1.32, has been removed. Use the
+  SpecialPageFactory service instead.
 * Multiple methods previously had optional User parameters, with fallbacks
   to the $wgUser global variable. Not passing a User to those methods was
   previously hard deprecated, and support for not passing a User has now
@@ -253,28 +252,27 @@ because of Phabricator reports.
    - APIQueryRevisionsTokens
    - APIQueryUsersTokens
    - ApiTokensGetTokenTypes
-* LogEventsList::typeAction previously accepted an optional right parameter,
-  and checked if the context user ($wgUser) had that right. Passing a right
-  was hard deprecated in 1.35, and support for passing a right has now been
-  removed.
+* LogEventsList::typeAction previously accepted an optional right parameter, and
+  checked if the context user ($wgUser) had that right. Passing a right was hard
+  deprecated in 1.35, and support for passing a right has now been removed.
 * WikiPage::doDeleteArticleReal previously accepted an optional user as its
   fifth parameter, and fell back to $wgUser if not user was provided. The
   signature changed to have the user as the second parameter, and the old
-  signature was hard deprecated in 1.35. Support for the old signature has
-  now been removed.
+  signature was hard deprecated in 1.35. Support for the old signature has now
+  been removed.
 * User::addNewUserLogEntry, deprecated since 1.27, was removed.
 * As part of refactoring the EditPage class, EditPage::setPreloadedContent,
-  which had no known callers was removed entirely. Additionally, the
-  following public methods were made private:
+  which had no known callers was removed entirely. Additionally, the following
+  public methods were made private:
   - ::extractSectionTitle
   - ::getSummaryInputWidget
   - ::noSuchSectionPage
   - ::initialiseForm
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
-* The global variable $wgMemc, deprecated since 1.35, has been removed.
-  Usage should generally be migrated to WANObjectCache, or if you really need
-  the internal object, use ObjectCache::getLocalClusterInstance instead.
+* The global variable $wgMemc, deprecated since 1.35, has been removed. Usage
+  should generally be migrated to WANObjectCache, or if you really need the
+  internal object, use ObjectCache::getLocalClusterInstance instead.
 * The preprocessDump.php maintenance script was removed.
 * CategoryFinder, which was deprecated in 1.31 and hard-deprecated in 1.35,
   has been removed.
@@ -285,9 +283,8 @@ because of Phabricator reports.
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
 * The ParserBeforeTidy, ParserBeforeStrip, and ParserAfterStrip hooks,
   deprecated in 1.35, have been removed.
-* All methods of MWTidy except for MW::tidy() have been removed.  These
-  were either @internal or deprecated in 1.35.
-* The support for IE8 has been dropped.
+* All methods of MWTidy except for MW::tidy() have been removed. These were each
+  either marked as @internal or deprecated in 1.35.
 * (T248062) Mixins `.background-image-svg()` and `.background-image-svg-quick()`
   (provided by mediawiki.mixins.less), which have been deprecated since 1.35,
   have now been removed. MediaWiki no longer supports any browser which would
@@ -301,34 +298,38 @@ because of Phabricator reports.
 * Skin::getDynamicStylesheetQuery(), deprecated in 1.32, has been removed. You
   should use action=raw&ctype=text/css directly.
 * Skin::makeI18nUrl(), deprecated in 1.35, has been removed.
-* The following User methods, deprecated and moved to BlockManager in 1.34,
-  were removed: isDnsBlacklisted, inDnsBlacklist, isLocallyBlockedProxy,
-  trackBlockWithCookie.
+* The following User methods, deprecated and moved to BlockManager in 1.34, were
+  removed:
+  - ::isDnsBlacklisted
+  - ::inDnsBlacklist
+  - ::isLocallyBlockedProxy
+  - ::trackBlockWithCookie
 * Support for v1 of the parser tests file format has been removed; it was
   deprecated in 1.35. (T174199)
-* SpecialUnblockUser::processUIUnblock() has a different return
-  value (previously, array of messages or a boolean value, now,
-  a Status object). This function was also marked as @internal and is no
-  longer safe to call it publicly.
+* SpecialUnblockUser::processUIUnblock() now returns a Status object instead of
+  an array of messages or a boolean value. This function was also marked as
+  @internal and is no longer safe to call it publicly.
 * mw.Title.getDotExtension() from the 'mediawiki.Title' module was removed
-  without deprecation. You should use mw.Title.getExtension() and prepend
-  the dot if need be.
-* Profiler::getTemplated and Profiler::setTemplated, deprecated in 1.34,
-  have been removed.
-* Removed HookContainer::getOriginalHooksForTest() without deprecation.
-  This method was introduced in 1.35 for internal use, and appears unused
-  outside of MediaWiki core.
+  without deprecation. You should use mw.Title.getExtension() and prepend the
+  dot if need be.
+* Profiler::getTemplated and Profiler::setTemplated, deprecated in 1.34, have
+  been removed.
+* Removed HookContainer::getOriginalHooksForTest() without deprecation. This
+  method was introduced in 1.35 for internal use, and appears unused outside of
+  MediaWiki core.
 * ParserCache::__construct() now requires three parameters.
 * Message->getFormat(), deprecated in 1.29, has been removed.
-* Support for passing Article to ParserCache::get, deprecated in 1.35,
-  has been removed.
+* Support for passing Article to ParserCache::get, deprecated in 1.35, has been
+  removed.
 * ParserCache::singleton(), deprecated in 1.30, has been removed.
 * DatabaseBlock::deleteIfExpired and ::fromMaster, deprecated in 1.35, have been
   removed.
-* AbstractBlock::prevents, deprecated in 1.33, has been removed.
-* AbstractBlock::shouldTrackWithCookie, deprecated in 1.34, has been removed.
-* AbstractBlock::getBlocker, ::setBlocker, and ::getBlockErrorParams,
-  deprecated in 1.35, have been removed.
+* Some deprecated AbstractBlock methods have been removed:
+  - ::prevents, deprecated in 1.33
+  - ::shouldTrackWithCookie, deprecated in 1.34
+  - ::getBlocker, deprecated in 1.35
+  - ::setBlocker, deprecated in 1.35
+  - ::getBlockErrorParams, deprecated in 1.35
 * Multiple DatabaseBlock methods dealing with cookies, deprecated in 1.34,
   have been removed:
   - ::setCookie
@@ -359,17 +360,17 @@ because of Phabricator reports.
 * The public static callback function SpecialUploadStash::tryClearStashedUploads
   has been removed. This method was for internal use only, and appears unused
   outside of MediaWiki core.
-* SpecialComparePages::showDiff() ::revOrTitle(), ::checkExistingTitle(),
-  and ::checkExistingRevision() were marked as @internal to allow for
-  breaking changes. They are no longer safe to call. The methods were
-  unused outside of MediaWiki core.
-* Special pages provided by core now using service injection via constructor.
-  When extending a special page the call to grandparent constructor
-  ("SpecialPage::__construct()") in the sub class breaks the extension special
-  page, because the fallback code in the parent constructor cannot set the
+* SpecialComparePages::showDiff() ::revOrTitle(), ::checkExistingTitle(), and
+  ::checkExistingRevision() were marked as @internal to allow for breaking
+  changes. They are no longer safe to call. The methods were unused outside of
+  MediaWiki core.
+* Each special page within core now uses service injection via it constructor.
+  When extending these special pages, a call to the grandparent constructor
+  (`SpecialPage::__construct()`) in the sub-class would now break the derived
+  special page, as the fallback code in the parent constructor cannot set the
   services as needed. Be sure to call the parent constructor when extending
-  core special pages. The extending of core special pages is not part of the
-  stable interface and should be avoided.
+  core special pages. Extending core's special pages is not part of the stable
+  interface, and should generally be avoided.
 * Language::getExtraUserToggles and ::viewPrevNext, deprecated in 1.34, have
   been removed.
 * StreamFile::send404Message and ::parseRange, deprecated in 1.34, have been
@@ -389,19 +390,19 @@ because of Phabricator reports.
 * BotPassword::save() now returns a Status object for the result rather than
   a bool.
 * The methods in CoreTagHooks have been marked @internal and type hints have
-  been added.  The methods were unused outside of MediaWiki core.
+  been added. The methods appeared to be unused outside of MediaWiki core.
 * SquidPurgeClient and SquidPurgeClientPool, deprecated since 1.35, have been
   removed.
 * Several methods on WikiPage will now throw an exception when called on a
   WikiPage instance that where constructed on a title that does not refer to a
   proper page (but rather a special page or interwiki link). The behavior was
-  previously undefined and could in some cases lead to data corruption.
-  Affected methods are: getId(), insertOn(), newPageUpdater(),
-  doUpdateRestrictions(), doDeleteArticleReal(), doRollback(), doEditContent().
-* ParserTestRunner no longer invokes the ParserTestTables hook, instead
-  cloning all database tables before running tests as MediaWikiIntegrationTest
-  does.  If an extension was misusing the hook to *exclude* tables from the
-  clone, that will no longer occur and tests may fail.
+  previously undefined and could in some cases lead to data corruption. Affected
+  methods are: getId(), insertOn(), newPageUpdater(), doUpdateRestrictions(),
+  doDeleteArticleReal(), doRollback(), and doEditContent().
+* The ParserTestRunner no longer invokes the ParserTestTables hook. Instead, it
+  clones all database tables before running tests, like MediaWikiIntegrationTest
+  does. If an extension was mis-using the hook to *exclude* tables from the 
+  clone, that will no longer occur, and tests may fail.
 * The following classes, which were only loaded for tests and had no uses found
   in public MediaWiki-related git, were removed:
    - MockWebRequest
@@ -465,8 +466,8 @@ because of Phabricator reports.
 * The confusingly-named User->isLoggedIn() method has been deprecated in favour
   of the method it wraps, User->isRegistered().
 * Use of the `preprocessor=Preprocessor_DOM` option in parser test files has
-  been deprecated.  Preprocessor_DOM was removed in 1.35.
-* ParserOptions::setTidy() has been deprecated.  It has had no effect since
+  been deprecated. Preprocessor_DOM was removed in 1.35.
+* ParserOptions::setTidy() has been deprecated. It has had no effect since
   1.35.
 * Sanitizer::escapeIdReferenceList() has been deprecated; it will eventually
   be made private to the class, as it appears to have no uses outside the
@@ -547,7 +548,7 @@ because of Phabricator reports.
    - getDefaultOptions
    - getDefaultOption
 * The mw.language.commafy client-side method has been deprecated, to match
-  the deprecation of Language::commafy.  Use mw.language.convertNumber
+  the deprecation of Language::commafy. Use mw.language.convertNumber
   instead.
 * Title::isDeleted() and Title::isDeletedQuick() have been deprecated. Please
   use Title::getDeletedEditsCount() and Title::hasDeletedEdits() instead.
@@ -571,7 +572,7 @@ because of Phabricator reports.
   replaces both.)
 * The InterwikiLoadPrefix hook has been deprecated; it is not compatible
   with future wikitext parsers (which need to enumerate all interwiki
-  prefixes).  In test cases please use $wgInterwikiCache instead.
+  prefixes). In test cases please use $wgInterwikiCache instead.
 * WikiPage instances should no longer be constructed for titles that do not
   represent editable pages (e.g. special pages). WikiPages were always
   documented to represent "MediaWiki article and history".
@@ -595,8 +596,8 @@ because of Phabricator reports.
   now implemented as an Executor option.
 * Command::restrict() is deprecated. Instead use the new separate accessors.
 * WatchedItem::getUser hard-deprecated in favor of ::getUserIdentity since 1.36
-* LogEntry::getPerformer and its implementations have been hard-deprecated in
-  favor of ::getPerformerIdentity
+* LogEntry::getPerformer() and its implementations have been hard-deprecated, in
+  favor of ::getPerformerIdentity().
 * AuthManager::singleton(), deprecated in 1.35, is hard deprecated. Use
   MediaWikiServices::getAuthManager() instead.
 * User::clearNotification(), deprecated in 1.35, is hard deprecated. Use
@@ -606,34 +607,32 @@ because of Phabricator reports.
 === Other changes in 1.36 ===
 * The 'tidy' key in ParserOptions (used in the parser cache) has been removed.
   It has had no effect since 1.35.
-* A future release of MediaWiki will make {{=}} a built-in parser function,
+* A future release of MediaWiki will make `{{=}}` a built-in parser function,
   for use when automatically escaping the `=` character in template arguments.
   A tracking category and parser warning have been added to this release when
-  {{=}} is used and it expands to something other than `=`.
-* The implementation of TestFileReader::read has been changed to use
-  Parsoid's parser test file parser.  This should be compatible with
-  existing code, but it only supports version 2 of the test file
-  specification and may be more strict when parsing invalid input,
-  including duplicate tests.
-* A new hook was added, BeforeParserFetchTemplateRevisionRecord, which
-  unifies and replaces the old BeforeParserFetchTemplateAndtitleHook and
-  ParserFetchTemplateHook.
-* The SkinLessImportPaths attribute was added, allowing skins to add a
-  directory to the import path for LESS stylesheets. Skins can use this
-  to provide a custom version of mediawiki.skin.variables.less, setting
-  skin-specific values for certain LESS variables.
-* The interaction between ContentHandler::getParserOutputForIndexing()
-  and ContentHandler::getDataForSearchIndex() has been clarified
-  (the latter should only be called with the result of the former).
-  Extensions may override getParserOutputForIndexing() to skip generating HTML,
-  which may improve indexing performance. (The default implementation
-  still generates HTML, and getDataForSearchIndex() implementations can still
-  rely on it if they do not override getParserOutputForIndexing().)
+  `{{=}}` is used and it expands to something other than `=`.
+* The implementation of TestFileReader::read has been changed to use Parsoid's
+  parser test file parser. This should be compatible with existing code, but it
+  only supports version 2 of the test file specification and may be more strict
+  when parsing invalid input, including duplicate tests.
+* BeforeParserFetchTemplateRevisionRecord, a new hook, unifies and replaces the
+  old BeforeParserFetchTemplateAndtitleHook and ParserFetchTemplateHook.
+* The SkinLessImportPaths attribute was added, allowing skins to add a directory
+  to the import path for LESS stylesheets. Skins can use this to provide a
+  custom version of mediawiki.skin.variables.less, setting skin-specific values
+  for certain LESS variables.
+* The interaction between ContentHandler::getParserOutputForIndexing() and
+  ContentHandler::getDataForSearchIndex() has been clarified (the latter should
+  only be called with the result of the former). Extensions may override
+  getParserOutputForIndexing() to skip generating HTML, which may improve
+  indexing performance. (The default implementation still generates HTML, and
+  getDataForSearchIndex() implementations can still rely on it if they do not
+  over-ride getParserOutputForIndexing().)
 * Article::fetchContentObject, ::mContentObject, ::mContentLoaded,
-  ::mRevIdFetched, deprecated since 1.32, were removed.
+  ::mRevIdFetched, all deprecated since 1.32, were removed.
 * Article::mParserOptions and ::setParserOptions were removed.
 * Article and ImagePage::getEmptyPageParserOutput, unused, were removed.
-* ParserCache default serialization format was changed from PHP serialization
+* ParserCache's default serialization format was changed from PHP serialization
   to JSON serialization. In case some installed extension do not support JSON
   yet, $wgParserCacheUseJson can be used to revert back to PHP serialization.
 * PermissionManager::groupHasPermission, ::getGroupPermissions and

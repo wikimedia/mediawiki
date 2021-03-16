@@ -40,7 +40,12 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			'a snail can sleep for three years',
 			$this->createMock( MediaWiki\Special\SpecialPageFactory::class ),
 			$this->createMock( MediaWiki\Linker\LinkRendererFactory::class ),
-			$this->createMock( NamespaceInfo::class )
+			$this->createMock( NamespaceInfo::class ),
+			new Psr\Log\NullLogger(),
+			$this->createMock( MediaWiki\BadFileLookup::class ),
+			$this->createMock( MediaWiki\Languages\LanguageConverterFactory::class ),
+			$this->createMock( MediaWiki\HookContainer\HookContainer::class ),
+			$this->createMock( MediaWiki\Tidy\TidyDriverBase::class ),
 		];
 
 		$oldArgs = [
@@ -52,7 +57,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( MediaWiki\Special\SpecialPageFactory::class )
 		];
 
-		yield 'current_args_without_namespace_info' => [
+		yield 'current_args' => [
 			$newArgs,
 		];
 
