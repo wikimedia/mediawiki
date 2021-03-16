@@ -1,16 +1,14 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Revision\SlotRenderingProvider;
 
 /**
+ * See also unit tests at \MediaWiki\Tests\Unit\WikitextContentHandlerTest
+ *
  * @group ContentHandler
  */
 class WikitextContentHandlerTest extends MediaWikiLangTestCase {
-	/**
-	 * @var ContentHandler
-	 */
+	/** @var WikitextContentHandler */
 	private $handler;
 
 	protected function setUp() : void {
@@ -18,62 +16,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 		$this->handler = MediaWikiServices::getInstance()->getContentHandlerFactory()
 			->getContentHandler( CONTENT_MODEL_WIKITEXT );
-	}
-
-	/**
-	 * @covers WikitextContentHandler::serializeContent
-	 */
-	public function testSerializeContent() {
-		$content = new WikitextContent( 'hello world' );
-
-		$this->assertEquals( 'hello world', $this->handler->serializeContent( $content ) );
-		$this->assertEquals(
-			'hello world',
-			$this->handler->serializeContent( $content, CONTENT_FORMAT_WIKITEXT )
-		);
-
-		try {
-			$this->handler->serializeContent( $content, 'dummy/foo' );
-			$this->fail( "serializeContent() should have failed on unknown format" );
-		} catch ( MWException $e ) {
-			// ok, as expected
-		}
-	}
-
-	/**
-	 * @covers WikitextContentHandler::unserializeContent
-	 */
-	public function testUnserializeContent() {
-		$content = $this->handler->unserializeContent( 'hello world' );
-		$this->assertEquals( 'hello world', $content->getText() );
-
-		$content = $this->handler->unserializeContent( 'hello world', CONTENT_FORMAT_WIKITEXT );
-		$this->assertEquals( 'hello world', $content->getText() );
-
-		try {
-			$this->handler->unserializeContent( 'hello world', 'dummy/foo' );
-			$this->fail( "unserializeContent() should have failed on unknown format" );
-		} catch ( MWException $e ) {
-			// ok, as expected
-		}
-	}
-
-	/**
-	 * @covers WikitextContentHandler::makeEmptyContent
-	 */
-	public function testMakeEmptyContent() {
-		$content = $this->handler->makeEmptyContent();
-
-		$this->assertTrue( $content->isEmpty() );
-		$this->assertSame( '', $content->getText() );
-	}
-
-	public static function dataIsSupportedFormat() {
-		return [
-			[ null, true ],
-			[ CONTENT_FORMAT_WIKITEXT, true ],
-			[ 99887766, false ],
-		];
 	}
 
 	/**
@@ -109,22 +51,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 				'#REDIRECT [[google:Bar#fragment]]'
 			],
 		];
-	}
-
-	/**
-	 * @dataProvider dataIsSupportedFormat
-	 * @covers WikitextContentHandler::isSupportedFormat
-	 */
-	public function testIsSupportedFormat( $format, $supported ) {
-		$this->assertEquals( $supported, $this->handler->isSupportedFormat( $format ) );
-	}
-
-	/**
-	 * @covers WikitextContentHandler::supportsDirectEditing
-	 */
-	public function testSupportsDirectEditing() {
-		$handler = new WikiTextContentHandler();
-		$this->assertTrue( $handler->supportsDirectEditing(), 'direct editing is supported' );
 	}
 
 	public static function dataMerge3() {
@@ -365,37 +291,6 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 		$data = $handler->getDataForSearchIndex( $page, new ParserOutput(), $mockEngine );
 		$this->assertArrayHasKey( 'file_text', $data );
 		$this->assertEquals( 'This is file content', $data['file_text'] );
-	}
-
-	/**
-	 * @covers ContentHandler::getSecondaryDataUpdates
-	 */
-	public function testGetSecondaryDataUpdates() {
-		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
-		$content = new WikitextContent( '' );
-
-		/** @var SlotRenderingProvider $srp */
-		$srp = $this->createMock( SlotRenderingProvider::class );
-
-		$handler = new WikitextContentHandler();
-		$updates = $handler->getSecondaryDataUpdates( $title, $content, SlotRecord::MAIN, $srp );
-
-		$this->assertEquals( [], $updates );
-	}
-
-	/**
-	 * @covers ContentHandler::getDeletionUpdates
-	 */
-	public function testGetDeletionUpdates() {
-		$title = Title::newFromText( 'Somefile.jpg', NS_FILE );
-		$content = new WikitextContent( '' );
-
-		$srp = $this->createMock( SlotRenderingProvider::class );
-
-		$handler = new WikitextContentHandler();
-		$updates = $handler->getDeletionUpdates( $title, SlotRecord::MAIN );
-
-		$this->assertEquals( [], $updates );
 	}
 
 }
