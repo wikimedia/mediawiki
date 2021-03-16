@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
@@ -52,17 +53,23 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var TidyDriverBase */
+	private $tidy;
+
 	/**
 	 * @param Parser $parser
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param TidyDriverBase $tidy
 	 */
 	public function __construct(
 		Parser $parser,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		TidyDriverBase $tidy
 	) {
 		parent::__construct( 'ExpandTemplates' );
 		$this->parser = $parser;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->tidy = $tidy;
 	}
 
 	/**
@@ -132,7 +139,7 @@ class SpecialExpandTemplates extends SpecialPage {
 
 			$config = $this->getConfig();
 
-			$tmp = MWTidy::tidy( $tmp );
+			$tmp = $this->tidy->tidy( $tmp );
 
 			$out->addHTML( $tmp );
 

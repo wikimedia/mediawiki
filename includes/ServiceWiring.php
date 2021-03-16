@@ -114,6 +114,8 @@ use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
+use MediaWiki\Tidy\RemexDriver;
+use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
@@ -1003,7 +1005,8 @@ return [
 			LoggerFactory::getInstance( 'Parser' ),
 			$services->getBadFileLookup(),
 			$services->getLanguageConverterFactory(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getTidy()
 		);
 	},
 
@@ -1416,6 +1419,14 @@ return [
 
 	'TempFSFileFactory' => static function ( MediaWikiServices $services ) : TempFSFileFactory {
 		return new TempFSFileFactory( $services->getMainConfig()->get( 'TmpDirectory' ) );
+	},
+
+	'Tidy' => static function ( MediaWikiServices $services ) : TidyDriverBase {
+		return new RemexDriver(
+			new ServiceOptions(
+				RemexDriver::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			)
+		);
 	},
 
 	'TitleFactory' => static function ( MediaWikiServices $services ) : TitleFactory {

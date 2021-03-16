@@ -40,14 +40,16 @@ class BenchmarkTidy extends Benchmarker {
 	}
 
 	private function benchmark( $html ) {
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
+		$tidy = $services->getTidy();
 		$times = [];
 		$innerCount = 10;
 		$outerCount = 10;
 		for ( $j = 1; $j <= $outerCount; $j++ ) {
 			$t = microtime( true );
 			for ( $i = 0; $i < $innerCount; $i++ ) {
-				MWTidy::tidy( $html );
+				$tidy->tidy( $html );
 				print $contLang->formatSize( memory_get_usage( true ) ) . "\n";
 			}
 			$t = ( ( microtime( true ) - $t ) / $innerCount ) * 1000;

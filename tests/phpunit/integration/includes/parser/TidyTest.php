@@ -4,7 +4,7 @@
  * @group Parser
  * @covers MWTidy
  */
-class TidyTest extends \MediaWikiUnitTestCase {
+class TidyTest extends \MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideTestWrapping

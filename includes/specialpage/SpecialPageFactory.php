@@ -808,6 +808,7 @@ class SpecialPageFactory {
 			'services' => [
 				'Parser',
 				'UserOptionsLookup',
+				'Tidy',
 			],
 		],
 		'ChangeContentModel' => [
