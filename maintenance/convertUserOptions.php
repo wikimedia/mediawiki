@@ -84,6 +84,7 @@ class ConvertUserOptions extends Maintenance {
 	 */
 	private function convertOptionBatch( $res, $dbw ) {
 		$id = null;
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		foreach ( $res as $row ) {
 			$this->mConversionCount++;
 			$insertRows = [];
@@ -95,7 +96,7 @@ class ConvertUserOptions extends Maintenance {
 
 				// MW < 1.16 would save even default values. Filter them out
 				// here (as in User) to avoid adding many unnecessary rows.
-				$defaultOption = User::getDefaultOption( $m[1] );
+				$defaultOption = $userOptionsLookup->getDefaultOption( $m[1] );
 				if ( $defaultOption === null || $m[2] != $defaultOption ) {
 					$insertRows[] = [
 						'up_user' => $row->user_id,

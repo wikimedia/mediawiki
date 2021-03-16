@@ -123,7 +123,12 @@ class ApiQuery extends ApiBase {
 	private const QUERY_META_MODULES = [
 		'allmessages' => ApiQueryAllMessages::class,
 		'authmanagerinfo' => ApiQueryAuthManagerInfo::class,
-		'siteinfo' => ApiQuerySiteinfo::class,
+		'siteinfo' => [
+			'class' => ApiQuerySiteinfo::class,
+			'services' => [
+				'UserOptionsLookup',
+			]
+		],
 		'userinfo' => [
 			'class' => ApiQueryUserInfo::class,
 			'services' => [

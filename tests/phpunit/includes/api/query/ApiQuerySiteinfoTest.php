@@ -652,7 +652,10 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	}
 
 	public function testDefaultOptions() {
-		$this->assertSame( User::getDefaultOptions(), $this->doQuery( 'defaultoptions' ) );
+		$this->assertSame(
+			$this->getServiceContainer()->getUserOptionsLookup()->getDefaultOptions(),
+			$this->doQuery( 'defaultoptions' )
+		);
 	}
 
 	public function testUploadDialog() {

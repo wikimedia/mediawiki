@@ -79,8 +79,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [
 			'testradio' => 'option1',
 		] );
-		// Workaround for static caching in User::getDefaultOptions()
-		$this->setContentLang( 'qqq' );
 	}
 
 	public function hookGetPreferences( $user, &$preferences ) {
