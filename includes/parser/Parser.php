@@ -145,10 +145,8 @@ class Parser {
 	public const TOC_END = '</mw:toc>';
 
 	# Persistent:
-	/** @deprecated since 1.35; use Parser::getTags() */
-	public $mTagHooks = [];
-	/** @deprecated since 1.35; use Parser::getFunctionHooks() */
-	public $mFunctionHooks = [];
+	private $mTagHooks = [];
+	private $mFunctionHooks = [];
 	private $mFunctionSynonyms = [ 0 => [], 1 => [] ];
 	private $mStripList = [];
 	private $mVarCache = [];
@@ -173,12 +171,6 @@ class Parser {
 	 * @var MagicWordArray
 	 */
 	private $mSubstWords;
-
-	/**
-	 * @deprecated since 1.34, there should be no need to use this
-	 * @var array
-	 */
-	private $mConf;
 
 	# Initialised in constructor
 	private $mExtLinkBracketedRegex, $mUrlProtocols;
@@ -361,8 +353,6 @@ class Parser {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		// Deprecated and unused; from $wgParserConf
-		'class',
 		// See documentation for the corresponding config options
 		'ArticlePath',
 		'EnableScaryTranscluding',
@@ -423,11 +413,6 @@ class Parser {
 			throw new MWException( 'Direct construction of Parser not allowed' );
 		}
 		$svcOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-		// $this->mConf is public, so we'll keep the option there for
-		// compatibility until it's removed
-		$this->mConf = [
-			'class' => $svcOptions->get( 'class' ),
-		];
 		$this->svcOptions = $svcOptions;
 
 		$this->mUrlProtocols = $urlProtocols;
@@ -4942,6 +4927,7 @@ class Parser {
 	 * Get all registered function hook identifiers
 	 *
 	 * @return array
+	 * @since 1.10.0
 	 */
 	public function getFunctionHooks() {
 		return array_keys( $this->mFunctionHooks );
@@ -5538,6 +5524,7 @@ class Parser {
 	 * Accessor
 	 *
 	 * @return array
+	 * @since before 1.11
 	 */
 	public function getTags() {
 		return array_keys( $this->mTagHooks );

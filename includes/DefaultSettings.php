@@ -4633,25 +4633,6 @@ $wgInvalidRedirectTargets = [ 'Filepath', 'Mypage', 'Mytalk', 'Redirect' ];
  */
 
 /**
- * Parser configuration. Associative array with the following members:
- *
- *  class             The class name
- *
- * The entire associative array will be passed through to the constructor as
- * the first parameter. Note that only Setup.php can use this variable --
- * the configuration will change at runtime via Parser member functions, so
- * the contents of this variable will be out-of-date. The variable can only be
- * changed during LocalSettings.php, in particular, it can't be changed during
- * an extension setup function.
- * @deprecated since 1.35.  This has been effectively a constant for a long
- *  time.  Configuring the ParserFactory service is the modern way to tweak
- *  the default parser.
- */
-$wgParserConf = [
-	'class' => Parser::class,
-];
-
-/**
  * Maximum indent level of toc.
  */
 $wgMaxTocLevel = 999;

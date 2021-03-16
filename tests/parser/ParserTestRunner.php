@@ -1859,7 +1859,7 @@ class ParserTestRunner {
 				return false;
 			}
 		}
-		if ( isset( $parser->mTagHooks[$name] ) ) {
+		if ( in_array( $name, $parser->getTags(), true ) ) {
 			return true;
 		} else {
 			$this->recorder->warning( "   Skipping this test suite because it requires the '$name' hook, " .
@@ -1877,7 +1877,7 @@ class ParserTestRunner {
 	public function requireFunctionHook( $name ) {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
-		if ( isset( $parser->mFunctionHooks[$name] ) ) {
+		if ( in_array( $name, $parser->getFunctionHooks(), true ) ) {
 			return true;
 		} else {
 			$this->recorder->warning( "   This test suite requires the '$name' function " .
