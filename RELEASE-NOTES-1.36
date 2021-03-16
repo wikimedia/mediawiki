@@ -419,6 +419,10 @@ because of Phabricator reports.
 * The PageProps class was converted to a service. PageProps::overrideInstance
   was removed, and MediaWikiServices::redefineService should be used
   instead.
+* Support for creating a MediaWikiTitleCodec object without the InterwikiLookup
+  and NamespaceInfo services, deprecated in 1.34, was removed. Note that the
+  MediaWikiTitleCodec class is not @newable or @stable to create, and should
+  be retrieved from MediaWikiServices instead.
 * The $wgContLang variable, deprecated in 1.32, was removed. You can instead use
   MediaWikiServices::getInstance()->getContentLanguage().
 * …
