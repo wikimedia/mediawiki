@@ -788,9 +788,7 @@ class ChangesList extends ContextSource {
 			/** Check for rollback permissions, disallow special pages, and only
 			 * show a link on the top-most revision
 			 */
-			if ( MediaWikiServices::getInstance()->getPermissionManager()
-				->quickUserCan( 'rollback', $this->getUser(), $title )
-			) {
+			if ( $this->getAuthority()->probablyCan( 'rollback', $title ) ) {
 				$revRecord = new MutableRevisionRecord( $title );
 				$revRecord->setId( (int)$rc->mAttribs['rc_this_oldid'] );
 				$revRecord->setVisibility( (int)$rc->mAttribs['rc_deleted'] );
