@@ -2009,7 +2009,8 @@ class Article implements Page {
 		$this->getHookRunner()->onArticleConfirmDelete( $this, $outputPage, $reason );
 
 		$user = $this->getContext()->getUser();
-		$checkWatch = $user->getBoolOption( 'watchdeletion' ) || $user->isWatched( $title );
+		$checkWatch = MediaWikiServices::getInstance()->getUserOptionsLookup()
+			->getBoolOption( $user, 'watchdeletion' ) || $user->isWatched( $title );
 
 		$outputPage->enableOOUI();
 

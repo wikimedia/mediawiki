@@ -819,7 +819,8 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			}
 
 			$out->addBodyClasses( 'mw-rcfilters-enabled' );
-			$collapsed = $this->getUser()->getBoolOption( static::$collapsedPreferenceName );
+			$collapsed = MediaWikiServices::getInstance()->getUserOptionsLookup()
+				->getBoolOption( $this->getUser(), static::$collapsedPreferenceName );
 			if ( $collapsed ) {
 				$out->addBodyClasses( 'mw-rcfilters-collapsed' );
 			}

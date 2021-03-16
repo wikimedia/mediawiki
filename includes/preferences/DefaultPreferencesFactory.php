@@ -585,7 +585,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		);
 		$signatureFieldConfig = [];
 		// Validate existing signature and show a message about it
-		if ( $user->getBoolOption( 'fancysig' ) ) {
+		if ( $services->getUserOptionsLookup()->getBoolOption( $user, 'fancysig' ) ) {
 			$validator = new SignatureValidator(
 				$user,
 				$context,

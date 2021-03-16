@@ -1881,7 +1881,9 @@ class Linker {
 			$inner = $context->msg( 'brackets' )->rawParams( $inner )->escaped();
 		}
 
-		if ( $context->getUser()->getBoolOption( 'showrollbackconfirmation' ) ) {
+		if ( MediaWikiServices::getInstance()->getUserOptionsLookup()
+			->getBoolOption( $context->getUser(), 'showrollbackconfirmation' )
+		) {
 			$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 			$stats->increment( 'rollbackconfirmation.event.load' );
 			$context->getOutput()->addModules( 'mediawiki.misc-authed-curate' );
