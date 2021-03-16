@@ -4129,6 +4129,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *  non-existent/anonymous user accounts.
 	 */
 	public function getFirstEditTimestamp() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getUserEditTracker()
 			->getFirstEditTimestamp( $this );
@@ -4144,6 +4145,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *  non-existent/anonymous user accounts.
 	 */
 	public function getLatestEditTimestamp() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getUserEditTracker()
 			->getLatestEditTimestamp( $this );
