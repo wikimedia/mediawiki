@@ -21,8 +21,8 @@
 namespace MediaWiki\EditPage\Constraint;
 
 use ChangeTags;
+use MediaWiki\Permissions\Authority;
 use StatusValue;
-use User;
 
 /**
  * Verify user can add change tags
@@ -33,8 +33,8 @@ use User;
  */
 class ChangeTagsConstraint implements IEditConstraint {
 
-	/** @var User */
-	private $user;
+	/** @var Authority */
+	private $performer;
 
 	/** @var array */
 	private $tags;
@@ -43,14 +43,14 @@ class ChangeTagsConstraint implements IEditConstraint {
 	private $result;
 
 	/**
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param string[] $tags
 	 */
 	public function __construct(
-		User $user,
+		Authority $performer,
 		array $tags
 	) {
-		$this->user = $user;
+		$this->performer = $performer;
 		$this->tags = $tags;
 	}
 
@@ -64,7 +64,7 @@ class ChangeTagsConstraint implements IEditConstraint {
 		// service as part of T245964
 		$changeTagStatus = ChangeTags::canAddTagsAccompanyingChange(
 			$this->tags,
-			$this->user
+			$this->performer
 		);
 
 		if ( $changeTagStatus->isOK() ) {

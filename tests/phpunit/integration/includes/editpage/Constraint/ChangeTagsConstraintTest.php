@@ -20,6 +20,7 @@
 
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * Tests the ChangeTagsConstraint
@@ -31,6 +32,7 @@ use MediaWiki\EditPage\Constraint\IEditConstraint;
  */
 class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 	use EditConstraintTestTrait;
+	use MockAuthorityTrait;
 
 	protected function setUp() : void {
 		parent::setUp();
@@ -38,12 +40,6 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 			$this->tablesUsed,
 			[ 'change_tag', 'change_tag_def', 'logging' ]
 		);
-		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions', [
-			'sysop' => [ 'applychangetags' => true ]
-		] );
-		$this->mergeMwGlobalArrayValue( 'wgRevokePermissions', [
-			'noapplytags' => [ 'applychangetags' => true ]
-		] );
 	}
 
 	public function testPass() {
@@ -51,7 +47,7 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::defineTag( $tagName );
 
 		$constraint = new ChangeTagsConstraint(
-			$this->getTestSysop()->getUser(),
+			$this->mockRegisteredUltimateAuthority(),
 			[ $tagName ]
 		);
 		$this->assertConstraintPassed( $constraint );
@@ -60,7 +56,7 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 	public function testNoTags() {
 		// Early return for no tags being added
 		$constraint = new ChangeTagsConstraint(
-			$this->getTestSysop()->getUser(),
+			$this->mockRegisteredUltimateAuthority(),
 			[]
 		);
 		$this->assertConstraintPassed( $constraint );
@@ -71,7 +67,7 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::defineTag( $tagName );
 
 		$constraint = new ChangeTagsConstraint(
-			$this->getTestUser( [ 'noapplytags' ] )->getUser(),
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'applychangetags' ] ),
 			[ $tagName ]
 		);
 		$this->assertConstraintFailed(
