@@ -74,7 +74,7 @@ class MainSlotRoleHandlerTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\MainSlotRoleHandler::getDefaultModel()
 	 */
-	public function testFetDefaultModel() {
+	public function testGetDefaultModel() {
 		$handler = $this->getRoleHandler(
 			[ 100 => CONTENT_MODEL_TEXT ]
 		);
