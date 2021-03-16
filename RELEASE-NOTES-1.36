@@ -287,6 +287,7 @@ because of Phabricator reports.
 * The following properties of Parser, deprecated in 1.35, have been made
   private:
   - $mTagHooks - use Parser::getTags()
+  - $mFunctionHooks - use Parser::getFunctionHooks()
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
 * The ParserBeforeTidy, ParserBeforeStrip, and ParserAfterStrip hooks,
   deprecated in 1.35, have been removed.
