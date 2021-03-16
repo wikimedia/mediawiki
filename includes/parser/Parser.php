@@ -1686,8 +1686,6 @@ class Parser {
 
 		$text = $this->mStripState->unstripGeneral( $text );
 
-		$text = Sanitizer::normalizeCharReferences( $text );
-
 		$text = $this->remexDriver->tidy( $text, [ Sanitizer::class, 'armorFrenchSpaces' ] );
 
 		if ( $isMain ) {
