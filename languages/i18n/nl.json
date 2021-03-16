@@ -381,7 +381,7 @@
 	"sort-descending": "Aflopend sorteren",
 	"sort-ascending": "Oplopend sorteren",
 	"sort-initial": "Op oorspronkelijke volgorde sorteren",
-	"sort-rowspan-error": "Deze tabel heeft een rowspan attribuut dat een waarde heeft die groter is dan het aantal rijen in de tabel. U kunt dit oplossen door het artikel te bewerken.",
+	"sort-rowspan-error": "Deze pagina bevat een tabel met een rowspan attribuut dat een waarde heeft die groter is dan het aantal rijen in de tabel. U kunt dit oplossen door de pagina te bewerken.",
 	"nstab-main": "Pagina",
 	"nstab-user": "{{GENDER:$1|Gebruikerspagina}}",
 	"nstab-media": "Mediapagina",
