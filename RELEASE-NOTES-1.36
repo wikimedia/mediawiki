@@ -291,6 +291,7 @@ because of Phabricator reports.
   private:
   - $mTagHooks - use Parser::getTags()
   - $mFunctionHooks - use Parser::getFunctionHooks()
+  - $mOutput - use Parser::getOutput()
 * The ParserBeforeTidy hook, deprecated in 1.35, has been removed.
 * The ParserBeforeTidy, ParserBeforeStrip, and ParserAfterStrip hooks,
   deprecated in 1.35, have been removed.
