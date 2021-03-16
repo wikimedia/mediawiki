@@ -182,6 +182,7 @@ class HTMLForm extends ContextSource {
 		'url' => HTMLTextField::class,
 		'title' => HTMLTitleTextField::class,
 		'user' => HTMLUserTextField::class,
+		'tagmultiselect' => HTMLTagMultiselectField::class,
 		'usersmultiselect' => HTMLUsersMultiselectField::class,
 		'titlesmultiselect' => HTMLTitlesMultiselectField::class,
 		'namespacesmultiselect' => HTMLNamespacesMultiselectField::class,

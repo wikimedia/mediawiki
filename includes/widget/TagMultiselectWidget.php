@@ -5,13 +5,13 @@ namespace MediaWiki\Widget;
 use OOUI\MultilineTextInputWidget;
 
 /**
- * Abstract base class for widgets to select multiple users, titles,
+ * Base class for widgets to select multiple users, titles,
  * namespaces, etc.
  *
  * @copyright 2017 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license MIT
  */
-abstract class TagMultiselectWidget extends \OOUI\Widget {
+class TagMultiselectWidget extends \OOUI\Widget {
 	/** @var array */
 	protected $selectedArray;
 	/** @var string|null */
@@ -22,6 +22,10 @@ abstract class TagMultiselectWidget extends \OOUI\Widget {
 	protected $input;
 	/** @var int|null */
 	protected $tagLimit;
+	/** @var bool */
+	protected $allowArbitrary;
+	/** @var string[]|null */
+	protected $allowedValues;
 
 	/**
 	 * @param array $config Configuration options
@@ -30,6 +34,8 @@ abstract class TagMultiselectWidget extends \OOUI\Widget {
 	 *   - string $config['placeholder'] Placeholder message for input
 	 *   - array $config['input'] Config options for the input widget
 	 *   - int $config['tagLimit'] Maximum number of selected items
+	 *   - bool $config['allowArbitrary'] Allow data items not present in the menu.
+	 *   - array $config['allowedValues'] Allowed items
 	 */
 	public function __construct( array $config = [] ) {
 		parent::__construct( $config );
@@ -40,6 +46,8 @@ abstract class TagMultiselectWidget extends \OOUI\Widget {
 		$this->inputPlaceholder = $config['placeholder'] ?? null;
 		$this->input = $config['input'] ?? [];
 		$this->tagLimit = $config['tagLimit'] ?? null;
+		$this->allowArbitrary = $config['allowArbitrary'] ?? false;
+		$this->allowedValues = $config['allowedValues'] ?? null;
 
 		$textarea = new MultilineTextInputWidget( array_merge( [
 			'name' => $this->inputName,
@@ -72,9 +80,18 @@ abstract class TagMultiselectWidget extends \OOUI\Widget {
 		if ( $this->tagLimit !== null ) {
 			$config['tagLimit'] = $this->tagLimit;
 		}
+		if ( $this->allowArbitrary !== null ) {
+			$config['allowArbitrary'] = $this->allowArbitrary;
+		}
+		if ( $this->allowedValues !== null ) {
+			$config['allowedValues'] = $this->allowedValues;
+		}
 
 		$config['$overlay'] = true;
 		return parent::getConfig( $config );
 	}
 
+	protected function getJavaScriptClassName() {
+		return 'mw.widgets.TagMultiselectWidget';
+	}
 }
