@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Ammarpad",
 			"DonCamillo",
 			"Em-em",
@@ -541,7 +542,7 @@
 	"blocklink": "Hanawa",
 	"unblocklink": "karɓa",
 	"change-blocklink": "Canza hanawa",
-	"contribslink": "Gudummuwa",
+	"contribslink": "gudummuwa",
 	"blocklogpage": "Rajistan hani",
 	"blocklogentry": "an hana [[$1]] da wa'adin $2 $3",
 	"unblocklogentry": "an lamunce wa $1",
