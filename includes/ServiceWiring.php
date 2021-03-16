@@ -1699,6 +1699,7 @@ return [
 			$services->getBlockUtils(),
 			$services->getDatabaseBlockStore(),
 			$services->getBlockRestrictionStore(),
+			$services->getUserFactory(),
 			LoggerFactory::getInstance( 'BlockManager' )
 		);
 	},

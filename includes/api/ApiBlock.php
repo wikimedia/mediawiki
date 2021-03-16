@@ -136,7 +136,7 @@ class ApiBlock extends ApiBase {
 
 		$status = $this->blockUserFactory->newBlockUser(
 			$target,
-			$this->getUser(),
+			$this->getAuthority(),
 			$params['expiry'],
 			$params['reason'],
 			[

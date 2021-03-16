@@ -21,8 +21,8 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
-use User;
 
 /**
  * @since 1.36
@@ -32,7 +32,7 @@ interface BlockUserFactory {
 	 * Create BlockUser
 	 *
 	 * @param string|UserIdentity $target Target of the block
-	 * @param User $performer Performer of the block
+	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
 	 * @param array $blockOptions Block options
@@ -43,7 +43,7 @@ interface BlockUserFactory {
 	 */
 	public function newBlockUser(
 		$target,
-		User $performer,
+		Authority $performer,
 		string $expiry,
 		string $reason = '',
 		array $blockOptions = [],
