@@ -1318,10 +1318,10 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 
 	/**
 	 * Do standard deferred updates after page view (existing or missing page)
-	 * @param User $user The relevant user
+	 * @param Authority $performer The viewing user
 	 * @param int $oldid Revision id being viewed; if not given or 0, latest revision is assumed
 	 */
-	public function doViewUpdates( User $user, $oldid = 0 ) {
+	public function doViewUpdates( Authority $performer, $oldid = 0 ) {
 		if ( wfReadOnly() ) {
 			return;
 		}
@@ -1329,12 +1329,16 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		// Update newtalk / watchlist notification status;
 		// Avoid outage if the master is not reachable by using a deferred updated
 		DeferredUpdates::addCallableUpdate(
-			function () use ( $user, $oldid ) {
-				$this->getHookRunner()->onPageViewUpdates( $this, $user );
+			function () use ( $performer, $oldid ) {
+				$legacyUser = MediaWikiServices::getInstance()
+					->getUserFactory()
+					->newFromAuthority( $performer );
+				$this->getHookRunner()->onPageViewUpdates( $this, $legacyUser );
 
+				// TODO: watchlist manager needs to take Authority and PageIdentity.
 				MediaWikiServices::getInstance()
 					->getWatchlistNotificationManager()
-					->clearTitleUserNotifications( $user, $this->mTitle, $oldid );
+					->clearTitleUserNotifications( $performer->getUser(), $this->mTitle, $oldid );
 			},
 			DeferredUpdates::PRESEND
 		);
@@ -2199,7 +2203,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @param Revision|RevisionRecord|null $revision
 	 *        Used with vary-revision or vary-revision-id. Passing a Revision object
 	 *        is hard deprecated since 1.35;
-	 * @param User|null $user
+	 * @param UserIdentity|null $user
 	 * @param string|null $serialFormat IGNORED
 	 * @param bool $useCache Check shared prepared edit cache
 	 *
@@ -2210,7 +2214,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	public function prepareContentForEdit(
 		Content $content,
 		$revision = null,
-		User $user = null,
+		UserIdentity $user = null,
 		$serialFormat = null,
 		$useCache = true
 	) {
@@ -2260,7 +2264,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *
 	 * @param Revision|RevisionRecord $revisionRecord since 1.35, can be a RevisionRecord
 	 *   object, and passing a Revision is hard deprecated
-	 * @param User $user User object that did the revision
+	 * @param UserIdentity $user User object that did the revision
 	 * @param array $options Array of options, following indexes are used:
 	 * - changed: bool, whether the revision changed the content (default true)
 	 * - created: bool, whether the revision created the page (default false)
@@ -2279,7 +2283,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *  - causeAgent: name of the user who caused the update. See DataUpdate::getCauseAgent().
 	 *    (string, defaults to the passed user)
 	 */
-	public function doEditUpdates( $revisionRecord, User $user, array $options = [] ) {
+	public function doEditUpdates( $revisionRecord, UserIdentity $user, array $options = [] ) {
 		if ( $revisionRecord instanceof Revision ) {
 			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
 			$revisionRecord = $revisionRecord->getRevisionRecord();
@@ -2386,14 +2390,14 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @param array $expiry Per restriction type expiration
 	 * @param int &$cascade Set to false if cascading protection isn't allowed.
 	 * @param string $reason
-	 * @param User $user The user updating the restrictions
+	 * @param UserIdentity $user The user updating the restrictions
 	 * @param string|string[]|null $tags Change tags to add to the pages and protection log entries
 	 *   ($user should be able to add the specified tags before this is called)
 	 * @return Status Status object; if action is taken, $status->value is the log_id of the
 	 *   protection log entry.
 	 */
 	public function doUpdateRestrictions( array $limit, array $expiry,
-		&$cascade, $reason, User $user, $tags = null
+		&$cascade, $reason, UserIdentity $user, $tags = null
 	) {
 		global $wgCascadingRestrictionLevels;
 
@@ -2479,7 +2483,8 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		$nullRevision = null;
 
 		if ( $id ) { // Protection of existing page
-			if ( !$this->getHookRunner()->onArticleProtect( $this, $user, $limit, $reason ) ) {
+			$legacyUser = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
+			if ( !$this->getHookRunner()->onArticleProtect( $this, $legacyUser, $limit, $reason ) ) {
 				return Status::newGood();
 			}
 
@@ -2588,10 +2593,10 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 				// Only create the Revision object if neeed
 				$nullRevision = new Revision( $nullRevisionRecord );
 				$this->getHookRunner()->onNewRevisionFromEditComplete(
-					$this, $nullRevision, $latest, $user, $tags );
+					$this, $nullRevision, $latest, $legacyUser, $tags );
 			}
 
-			$this->getHookRunner()->onArticleProtectComplete( $this, $user, $limit, $reason );
+			$this->getHookRunner()->onArticleProtectComplete( $this, $legacyUser, $limit, $reason );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
 			$cascade = false;
@@ -2840,12 +2845,12 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @since 1.36 User second parameter is required
 	 *
 	 * @param string $reason Delete reason for deletion log
-	 * @param User $deleter The deleting user
+	 * @param UserIdentity $deleter The deleting user
 	 * @param bool $suppress Suppress all revisions and log the deletion in
 	 *   the suppression log instead of the deletion log
 	 * @param bool|null $u1 Unused
 	 * @param array|string &$error Array of errors to append to
-	 * @param User|null $u2 Unused
+	 * @param mixed $u2 Unused
 	 * @param string[] $tags Tags to apply to the deletion action
 	 * @param string $logsubtype
 	 * @param bool $immediate false allows deleting over time via the job queue
@@ -2856,7 +2861,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @throws MWException
 	 */
 	public function doDeleteArticleReal(
-		$reason, User $deleter, $suppress = false, $u1 = null, &$error = '', $u2 = null,
+		$reason, UserIdentity $deleter, $suppress = false, $u1 = null, &$error = '', $u2 = null,
 		$tags = [], $logsubtype = 'delete', $immediate = false
 	) {
 		wfDebug( __METHOD__ );
@@ -2864,8 +2869,11 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 
 		$status = Status::newGood();
 
+		$legacyDeleter = MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromUserIdentity( $deleter );
 		if ( !$this->getHookRunner()->onArticleDelete(
-			$this, $deleter, $reason, $error, $status, $suppress )
+			$this, $legacyDeleter, $reason, $error, $status, $suppress )
 		) {
 			if ( $status->isOK() ) {
 				// Hook aborted but didn't set a fatal status
@@ -2887,7 +2895,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * Potentially called many times per deletion operation for pages with many revisions.
 	 * @param string $reason
 	 * @param bool $suppress
-	 * @param User $deleter
+	 * @param UserIdentity $deleter
 	 * @param string[] $tags
 	 * @param string $logsubtype
 	 * @param bool $immediate
@@ -2895,7 +2903,7 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @return Status
 	 */
 	public function doDeleteArticleBatched(
-		$reason, $suppress, User $deleter, $tags,
+		$reason, $suppress, UserIdentity $deleter, $tags,
 		$logsubtype, $immediate = false, $webRequestId = null
 	) {
 		wfDebug( __METHOD__ );
@@ -3037,9 +3045,12 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 				$deleter
 			);
 
+			$legacyDeleter = MediaWikiServices::getInstance()
+				->getUserFactory()
+				->newFromUserIdentity( $deleter );
 			$this->getHookRunner()->onArticleDeleteComplete(
 				$wikiPageBeforeDelete,
-				$deleter,
+				$legacyDeleter,
 				$reason,
 				$id,
 				$content,
@@ -3209,10 +3220,10 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $this->getRevisionRecord() may already return null when the page proper was deleted.
 	 *  Passing a Revision is deprecated since 1.35
-	 * @param User|null $user The user that caused the deletion
+	 * @param UserIdentity|null $user The user that caused the deletion
 	 */
 	public function doDeleteUpdates(
-		$id, Content $content = null, $revRecord = null, User $user = null
+		$id, Content $content = null, $revRecord = null, UserIdentity $user = null
 	) {
 		if ( $revRecord && $revRecord instanceof Revision ) {
 			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
