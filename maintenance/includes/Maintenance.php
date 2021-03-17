@@ -1433,6 +1433,16 @@ abstract class Maintenance {
 	 */
 	protected function commitTransaction( IDatabase $dbw, $fname ) {
 		$dbw->commit( $fname );
+		return $this->waitForReplication();
+	}
+
+	/**
+	 * Wait for replica DBs to catch up
+	 *
+	 * @return bool Whether the replica DB wait succeeded
+	 * @since 1.36
+	 */
+	protected function waitForReplication() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$waitSucceeded = $lbFactory->waitForReplication(
 			[ 'timeout' => 30, 'ifWritesSince' => $this->lastReplicationWait ]

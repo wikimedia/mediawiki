@@ -513,10 +513,6 @@ class FindBadBlobs extends Maintenance {
 		return $badAddress;
 	}
 
-	private function waitForReplication() {
-		return $this->lbFactory->waitForReplication();
-	}
-
 	private function handleStatus( StatusValue $status ) {
 		if ( !$status->isOK() ) {
 			$this->fatalError(
