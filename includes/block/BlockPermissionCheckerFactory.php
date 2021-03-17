@@ -25,7 +25,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
-use User;
 
 /**
  * Factory class for BlockPermissionChecker
@@ -66,7 +65,7 @@ class BlockPermissionCheckerFactory {
 
 	/**
 	 * @param UserIdentity|string|null $target Target of the validated block; may be null if unknown
-	 * @param User $performer Performer of the validated block
+	 * @param Authority $performer Performer of the validated block
 	 *
 	 * @return BlockPermissionChecker
 	 */
