@@ -538,26 +538,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doIwlinksIndexNonUnique() {
-		$info = $this->db->indexInfo( 'iwlinks', 'iwl_prefix_title_from', __METHOD__ );
-		if ( is_array( $info ) && $info[0]->Non_unique ) {
-			$this->output( "...iwl_prefix_title_from index is already non-UNIQUE.\n" );
-
-			return true;
-		}
-		if ( $this->skipSchema ) {
-			$this->output( "...skipping schema change (making iwl_prefix_title_from index non-UNIQUE).\n" );
-
-			return false;
-		}
-
-		return $this->applyPatch(
-			'patch-iwl_prefix_title_from-non-unique.sql',
-			false,
-			'Making iwl_prefix_title_from index non-UNIQUE'
-		);
-	}
-
 	protected function doUnsignedSyncronisation() {
 		$sync = [
 			[ 'table' => 'bot_passwords', 'field' => 'bp_user', 'file' => 'patch-bot_passwords-bp_user-unsigned.sql' ],
