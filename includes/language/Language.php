@@ -41,6 +41,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
+use Wikimedia\DebugInfo\DebugInfoTrait;
 use Wikimedia\RequestTimeout\TimeoutException;
 
 /**
@@ -51,6 +52,8 @@ use Wikimedia\RequestTimeout\TimeoutException;
  * @ingroup Language
  */
 class Language {
+	use DebugInfoTrait;
+
 	/**
 	 * Return all known languages in fetchLanguageName(s).
 	 * @since 1.32
@@ -100,40 +103,62 @@ class Language {
 
 	/**
 	 * @var ReplacementArray[]
+	 * @noVarDump
 	 */
 	private $transformData = [];
 
-	/** @var NamespaceInfo */
+	/**
+	 * @var NamespaceInfo
+	 * @noVarDump
+	 */
 	private $namespaceInfo;
 
-	/** @var LocalisationCache */
+	/**
+	 * @var LocalisationCache
+	 * @noVarDump
+	 */
 	private $localisationCache;
 
-	/** @var LanguageNameUtils */
+	/**
+	 * @var LanguageNameUtils
+	 * @noVarDump
+	 */
 	private $langNameUtils;
 
-	/** @var LanguageFallback */
+	/**
+	 * @var LanguageFallback
+	 * @noVarDump
+	 */
 	private $langFallback;
 
-	/** @var array[]|null */
+	/**
+	 * @var array[]|null
+	 * @noVarDump
+	 */
 	private $grammarTransformCache;
 
 	/**
 	 * @var LanguageConverterFactory
+	 * @noVarDump
 	 */
 	private $converterFactory;
 
 	/**
 	 * @var HookContainer
+	 * @noVarDump
 	 */
 	private $hookContainer;
 
 	/**
 	 * @var HookRunner
+	 * @noVarDump
 	 */
 	private $hookRunner;
 
-	/** @var Config */
+	/**
+	 * @var Config
+	 * @noVarDump
+	 */
 	private $config;
 
 	/**
