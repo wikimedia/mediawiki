@@ -21,6 +21,7 @@ use MediaWikiIntegrationTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use TitleFactory;
 use WANObjectCache;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -43,6 +44,7 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 			$this->getMockActorStoreFactory(),
 			new NullLogger(),
 			$this->getContentHandlerFactory(),
+			$this->getTitleFactory(),
 			$this->createHookContainer()
 		);
 		$this->assertTrue( true );
@@ -69,6 +71,7 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$actorStoreFactory = $this->getMockActorStoreFactory();
 		$logger = new NullLogger();
 		$contentHandlerFactory = $this->getContentHandlerFactory();
+		$titleFactory = $this->getTitleFactory();
 		$hookContainer = $this->createHookContainer();
 
 		$factory = new RevisionStoreFactory(
@@ -82,6 +85,7 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 			$actorStoreFactory,
 			$logger,
 			$contentHandlerFactory,
+			$titleFactory,
 			$hookContainer
 		);
 
@@ -165,6 +169,13 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getContentHandlerFactory(): IContentHandlerFactory {
 		return $this->createMock( IContentHandlerFactory::class );
+	}
+
+	/**
+	 * @return TitleFactory|MockObject
+	 */
+	private function getTitleFactory(): TitleFactory {
+		return $this->createMock( TitleFactory::class );
 	}
 
 	/**

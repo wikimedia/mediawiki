@@ -41,6 +41,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\LegacyArticleIdAccess;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
@@ -60,7 +61,9 @@ use RecentChange;
 use Revision;
 use RuntimeException;
 use StatusValue;
+use stdClass;
 use Title;
+use TitleFactory;
 use Traversable;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
@@ -156,8 +159,11 @@ class RevisionStore
 	private $hookRunner;
 
 	/**
-	 * @todo $blobStore should be allowed to be any BlobStore!
-	 *
+	 * @var TitleFactory
+	 */
+	private $titleFactory;
+
+	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SqlBlobStore $blobStore
 	 * @param WANObjectCache $cache A cache for caching revision rows. This can be the local
@@ -173,8 +179,12 @@ class RevisionStore
 	 * @param ActorMigration $actorMigration
 	 * @param ActorStore $actorStore
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param TitleFactory $titleFactory
 	 * @param HookContainer $hookContainer
 	 * @param false|string $wikiId Relevant wiki id or WikiAwareEntity::LOCAL for the current one
+	 *
+	 * @todo $blobStore should be allowed to be any BlobStore!
+	 *
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
@@ -187,6 +197,7 @@ class RevisionStore
 		ActorMigration $actorMigration,
 		ActorStore $actorStore,
 		IContentHandlerFactory $contentHandlerFactory,
+		TitleFactory $titleFactory,
 		HookContainer $hookContainer,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
@@ -204,6 +215,7 @@ class RevisionStore
 		$this->wikiId = $wikiId;
 		$this->logger = new NullLogger();
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
@@ -261,7 +273,9 @@ class RevisionStore
 	 *
 	 * MCR migration note: this corresponds to Revision::getTitle
 	 *
-	 * @note this method should be private, external use should be avoided!
+	 * @deprecated since 1.36, Use RevisionRecord::getPage() instead.
+	 * @note The resulting Title object will be misleading if the RevisionStore is not
+	 *        for the local wiki.
 	 *
 	 * @param int|null $pageId
 	 * @param int|null $revId
@@ -271,6 +285,26 @@ class RevisionStore
 	 * @throws RevisionAccessException
 	 */
 	public function getTitle( $pageId, $revId, $queryFlags = self::READ_NORMAL ) {
+		// TODO: Hard-deprecate this once getPage() returns a PageRecord. T195069
+		if ( $this->wikiId !== WikiAwareEntity::LOCAL ) {
+			wfDeprecatedMsg( 'Using a Title object to refer to a page on another site.', '1.36' );
+		}
+
+		$page = $this->getPage( $pageId, $revId, $queryFlags );
+		return $this->titleFactory->castFromPageIdentity( $page );
+	}
+
+	/**
+	 * Determines the page based on the available information.
+	 *
+	 * @param int|null $pageId
+	 * @param int|null $revId
+	 * @param int $queryFlags
+	 *
+	 * @return PageIdentity
+	 * @throws RevisionAccessException
+	 */
+	private function getPage( ?int $pageId, ?int $revId, int $queryFlags = self::READ_NORMAL ) {
 		if ( !$pageId && !$revId ) {
 			throw new InvalidArgumentException( '$pageId and $revId cannot both be 0 or null' );
 		}
@@ -281,16 +315,29 @@ class RevisionStore
 			$queryFlags = self::READ_NORMAL;
 		}
 
-		$canUseTitleNewFromId = ( $pageId !== null && $pageId > 0 && $this->wikiId === false );
+		$canUsePageId = ( $pageId !== null && $pageId > 0 );
 		list( $dbMode, $dbOptions ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
 
-		// Loading by ID is best, but Title::newFromID does not support that for foreign IDs.
-		if ( $canUseTitleNewFromId ) {
-			$titleFlags = ( $dbMode == DB_MASTER ? Title::READ_LATEST : 0 );
-			// TODO: better foreign title handling (introduce TitleFactory)
-			$title = Title::newFromID( $pageId, $titleFlags );
-			if ( $title ) {
-				return $title;
+		// Loading by ID is best
+		if ( $canUsePageId ) {
+			// TODO: use PageStore once we have that, return a PageRecord! T195069
+			$dbr = $this->getDBConnectionRef( $dbMode );
+			$row = $dbr->selectRow(
+				'page',
+				[
+					'page_namespace',
+					'page_title',
+					'page_id',
+					'page_latest',
+					'page_is_redirect',
+					'page_len',
+				],
+				[ 'page_id' => $pageId ],
+				__METHOD__,
+				$dbOptions
+			);
+			if ( $row ) {
+				return $this->newPageFromRow( $row );
 			}
 		}
 
@@ -298,8 +345,8 @@ class RevisionStore
 		$canUseRevId = ( $revId !== null && $revId > 0 );
 
 		if ( $canUseRevId ) {
+			// TODO: use PageStore once we have that, return a PageRecord! T195069
 			$dbr = $this->getDBConnectionRef( $dbMode );
-			// @todo: Title::getSelectFields(), or Title::getQueryInfo(), or something like that
 			$row = $dbr->selectRow(
 				[ 'revision', 'page' ],
 				[
@@ -316,14 +363,13 @@ class RevisionStore
 				[ 'page' => [ 'JOIN', 'page_id=rev_page' ] ]
 			);
 			if ( $row ) {
-				// TODO: better foreign title handling (introduce TitleFactory)
-				return Title::newFromRow( $row );
+				return $this->newPageFromRow( $row );
 			}
 		}
 
 		// If we still don't have a title, fallback to master if that wasn't already happening.
 		if ( $dbMode !== DB_MASTER ) {
-			$title = $this->getTitle( $pageId, $revId, self::READ_LATEST );
+			$title = $this->getPage( $pageId, $revId, self::READ_LATEST );
 			if ( $title ) {
 				$this->logger->info(
 					__METHOD__ . ' fell back to READ_LATEST and got a Title.',
@@ -336,6 +382,30 @@ class RevisionStore
 		throw new RevisionAccessException(
 			"Could not determine title for page ID $pageId and revision ID $revId"
 		);
+	}
+
+	/**
+	 * @param stdClass $row
+	 *
+	 * @return PageIdentity
+	 */
+	private function newPageFromRow( stdClass $row ): PageIdentity {
+		if ( $this->wikiId === WikiAwareEntity::LOCAL ) {
+			// NOTE: since there is still a lot of code that needs a full Title,
+			//       and uses Title::castFromPageIdentity() to get one, it's beneficial
+			//       to create a Title right away if we can, so we don't have to convert
+			//       over and over later on.
+			//       When there is less need to convert to Title, this special case can
+			//       be removed.
+			return $this->titleFactory->newFromRow( $row );
+		} else {
+			return new PageIdentityValue(
+				(int)$row->page_id,
+				(int)$row->page_namespace,
+				$row->page_title,
+				$this->wikiId
+			);
+		}
 	}
 
 	/**
@@ -1538,10 +1608,17 @@ class RevisionStore
 		Assert::parameterType( \stdClass::class, $row, '$row' );
 
 		if ( !$page ) {
-			$pageId = (int)( $row->rev_page ?? 0 ); // XXX: fall back to page_id?
-			$revId = (int)( $row->rev_id ?? 0 );
+			if ( isset( $row->page_id )
+				&& isset( $row->page_namespace )
+				&& isset( $row->page_title )
+			) {
+				$page = $this->newPageFromRow( $row );
+			} else {
+				$pageId = (int)( $row->rev_page ?? 0 );
+				$revId = (int)( $row->rev_id ?? 0 );
 
-			$page = $this->getTitle( $pageId, $revId, $queryFlags );
+				$page = $this->getPage( $pageId, $revId, $queryFlags );
+			}
 		} else {
 			$this->ensureRevisionRowMatchesPage( $row, $page );
 		}
@@ -2103,7 +2180,7 @@ class RevisionStore
 			$pageId = $fields['page'] ?? 0;
 			$revId = $fields['id'] ?? 0;
 
-			$page = $this->getTitle( $pageId, $revId, $queryFlags );
+			$page = $this->getPage( $pageId, $revId, $queryFlags );
 		}
 
 		if ( !isset( $fields['page'] ) ) {

@@ -1225,6 +1225,7 @@ return [
 			$services->getActorStoreFactory(),
 			LoggerFactory::getInstance( 'RevisionStore' ),
 			$services->getContentHandlerFactory(),
+			$services->getTitleFactory(),
 			$services->getHookContainer()
 		);
 
