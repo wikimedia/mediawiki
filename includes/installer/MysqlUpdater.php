@@ -597,22 +597,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doExtendCommentLengths() {
-		$table = $this->db->tableName( 'revision' );
-		$res = $this->db->query( "SHOW COLUMNS FROM $table LIKE 'rev_comment'", __METHOD__ );
-		$row = $this->db->fetchObject( $res );
-
-		if ( $row && ( $row->Type !== "varbinary(767)" || $row->Default !== "" ) ) {
-			$this->applyPatch(
-				'patch-editsummary-length.sql',
-				false,
-				'Extending edit summary lengths (and setting defaults)'
-			);
-		} else {
-			$this->output( "...comment fields are up to date.\n" );
-		}
-	}
-
 	public function getSchemaVars() {
 		global $wgDBTableOptions;
 
