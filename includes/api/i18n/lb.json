@@ -3,7 +3,8 @@
 		"authors": [
 			"Les Meloures",
 			"Macofe",
-			"Robby"
+			"Robby",
+			"Soued031"
 		]
 	},
 	"apihelp-main-param-assertuser": "Iwwerpréifen ob den aktuelle Benotzer de Benotzer mat deem Numm ass.",
@@ -162,7 +163,7 @@
 	"apihelp-query+watchlist-paramvalue-prop-timestamp": "Setzt den Zäitstempel vun der Ännerung dobäi.",
 	"apihelp-query+watchlist-paramvalue-type-external": "Extern Ännerungen.",
 	"apihelp-query+watchlist-paramvalue-type-new": "Ugeluecht Säiten.",
-	"apihelp-query+watchlistraw-param-show": "Nëmmen Elementer opzielen déi dëse Critèren entspriechen.",
+	"apihelp-query+watchlistraw-param-show": "Nëmmen Elementer opzielen déi dëse Krittären entspriechen.",
 	"apihelp-query+watchlistraw-example-simple": "Säite vum aktuelle Benotzer senger Iwwerwaachungslëscht opzielen",
 	"apihelp-revisiondelete-summary": "Versioune läschen a restauréieren.",
 	"apihelp-revisiondelete-param-reason": "Grond fir ze Läschen oder ze Restauréieren.",

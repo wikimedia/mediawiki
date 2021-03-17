@@ -1144,6 +1144,7 @@
 	"prefs-setemail": "設定電子郵件地址",
 	"prefs-email": "電子郵件選項",
 	"prefs-rendering": "外觀",
+	"prefs-searchmisc": "一般",
 	"saveprefs": "儲存",
 	"restoreprefs": "還原所有預設設定（所有項目）",
 	"prefs-editing": "編輯",
