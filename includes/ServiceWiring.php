@@ -997,7 +997,8 @@ return [
 			$services->getBadFileLookup(),
 			$services->getLanguageConverterFactory(),
 			$services->getHookContainer(),
-			$services->getTidy()
+			$services->getTidy(),
+			$services->getMainWANObjectCache()
 		);
 	},
 

@@ -175,7 +175,7 @@ class Parser {
 	# Initialised in constructor
 	private $mExtLinkBracketedRegex, $mUrlProtocols;
 
-	# Initialized in getPreprocessor()
+	# Initialized in constructor
 	/**
 	 * @var Preprocessor
 	 * @deprecated since 1.35
@@ -390,6 +390,7 @@ class Parser {
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param HookContainer $hookContainer
 	 * @param TidyDriverBase $tidy
+	 * @param WANObjectCache $wanCache
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -404,7 +405,8 @@ class Parser {
 		BadFileLookup $badFileLookup,
 		LanguageConverterFactory $languageConverterFactory,
 		HookContainer $hookContainer,
-		TidyDriverBase $tidy
+		TidyDriverBase $tidy,
+		WANObjectCache $wanCache
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
@@ -436,6 +438,15 @@ class Parser {
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		$this->tidy = $tidy;
+
+		$this->mPreprocessor = new Preprocessor_Hash(
+			$this,
+			$wanCache,
+			[
+				'cacheThreshold' => $svcOptions->get( 'PreprocessorCacheThreshold' ),
+				'disableLangConversion' => $svcOptions->get( 'DisableLangConversion' ),
+			]
+		);
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
@@ -479,6 +490,9 @@ class Parser {
 			$this->$k =& $tmp;
 			unset( $tmp );
 		}
+
+		$this->mPreprocessor = clone $this->mPreprocessor;
+		$this->mPreprocessor->resetParser( $this );
 
 		$this->hookRunner->onParserCloned( $this );
 	}
@@ -540,11 +554,6 @@ class Parser {
 		$this->mHeadings = [];
 		$this->mDoubleUnderscores = [];
 		$this->mExpensiveFunctionCount = 0;
-
-		# Fix cloning
-		if ( isset( $this->mPreprocessor ) && $this->mPreprocessor->parser !== $this ) {
-			$this->mPreprocessor = null;
-		}
 
 		$this->mProfiler = new SectionProfiler();
 
@@ -1112,17 +1121,6 @@ class Parser {
 	 * @return Preprocessor
 	 */
 	public function getPreprocessor() {
-		if ( !isset( $this->mPreprocessor ) ) {
-			$this->mPreprocessor = new Preprocessor_Hash(
-				$this,
-				MediaWikiServices::getInstance()->getMainWANObjectCache(),
-				[
-					'cacheThreshold' => $this->svcOptions->get( 'PreprocessorCacheThreshold' ),
-					'disableLangConversion' => $this->svcOptions->get( 'DisableLangConversion' )
-				]
-			);
-		}
-
 		return $this->mPreprocessor;
 	}
 

@@ -53,7 +53,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( BadFileLookup::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
 			$this->createHookContainer(),
-			$this->createNoOpMock( TidyDriverBase::class )
+			$this->createNoOpMock( TidyDriverBase::class ),
+			$this->createNoOpMock( WANObjectCache::class )
 		);
 		return $factory;
 	}
