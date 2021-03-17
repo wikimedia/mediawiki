@@ -625,6 +625,7 @@ because of Phabricator reports.
   is now allowed.
 * DatabaseBlock constructor 'byText' option was deprecated in favour of 'by'
   option, which now accepts UserIdentity. Passing user ID is deprecated.
+* Parser::getUser was deprecated. Use Parser::getUserIdentity instead.
 * …
 
 === Other changes in 1.36 ===
