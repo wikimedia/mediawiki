@@ -33,6 +33,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\User\ActorStoreFactory;
 use Psr\Log\LoggerInterface;
+use TitleFactory;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\ILBFactory;
@@ -75,6 +76,9 @@ class RevisionStoreFactory {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/** @var HookContainer */
 	private $hookContainer;
 
@@ -89,6 +93,7 @@ class RevisionStoreFactory {
 	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param LoggerInterface $logger
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param TitleFactory $titleFactory
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
@@ -102,6 +107,7 @@ class RevisionStoreFactory {
 		ActorStoreFactory $actorStoreFactory,
 		LoggerInterface $logger,
 		IContentHandlerFactory $contentHandlerFactory,
+		TitleFactory $titleFactory,
 		HookContainer $hookContainer
 	) {
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
@@ -114,6 +120,7 @@ class RevisionStoreFactory {
 		$this->actorStoreFactory = $actorStoreFactory;
 		$this->logger = $logger;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
 	}
 
@@ -138,6 +145,7 @@ class RevisionStoreFactory {
 			$this->actorMigration,
 			$this->actorStoreFactory->getActorStore( $dbDomain ),
 			$this->contentHandlerFactory,
+			$this->titleFactory,
 			$this->hookContainer,
 			$dbDomain
 		);

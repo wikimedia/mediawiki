@@ -464,6 +464,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 			$services->getActorMigration(),
 			$services->getActorStore(),
 			$services->getContentHandlerFactory(),
+			$services->getTitleFactory(),
 			$services->getHookContainer()
 		);
 
