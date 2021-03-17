@@ -3667,9 +3667,12 @@ class Parser {
 					$finalTitle = $title;
 					continue;
 				}
-				$content = $revRecord->getContent( SlotRecord::MAIN );
-				$text = $content ? $content->getWikitextForTransclusion() : null;
-
+				if ( $revRecord->hasSlot( SlotRecord::MAIN ) ) { // T276476
+					$content = $revRecord->getContent( SlotRecord::MAIN );
+					$text = $content ? $content->getWikitextForTransclusion() : null;
+				} else {
+					$text = false;
+				}
 				// Hook is hard deprecated since 1.35
 				if ( Hooks::isRegistered( 'ParserFetchTemplate' ) ) {
 					// Only create the Revision object if needed
