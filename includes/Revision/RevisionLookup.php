@@ -47,9 +47,12 @@ interface RevisionLookup extends IDBAccessObject {
 	 *
 	 * @param int $id
 	 * @param int $flags bit field, see IDBAccessObject::READ_XXX
+	 * @param PageIdentity|null $page The page the revision belongs to.
+	 *        Providing the page may improve performance.
+	 *
 	 * @return RevisionRecord|null
 	 */
-	public function getRevisionById( $id, $flags = 0 );
+	public function getRevisionById( $id, $flags = 0, PageIdentity $page = null );
 
 	/**
 	 * Load either the current, or a specified, revision

@@ -762,6 +762,34 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionById
 	 */
+	public function testGetRevisionById_crossWiki_withPage() {
+		$page = $this->getTestPage();
+		$content = new WikitextContent( __METHOD__ );
+		$status = $page->doEditContent( $content, __METHOD__ );
+		/** @var RevisionRecord $revRecord */
+		$revRecord = $status->value['revision-record'];
+		$revId = $revRecord->getId();
+
+		// Pretend the local test DB is a sister site
+		$wikiId = $this->db->getDomainID();
+		$store = MediaWikiServices::getInstance()->getRevisionStoreFactory()
+			->getRevisionStore( $wikiId );
+
+		// Construct a ProperPageIdentity with the sister site's wiki Id
+		$pageIdentity = new PageIdentityValue(
+			$page->getId(), $page->getNamespace(), $page->getDBkey(), $wikiId
+		);
+		$storeRecord = $store->getRevisionById( $revId, 0, $pageIdentity );
+
+		$this->assertSame( $wikiId, $storeRecord->getWikiId() );
+		$this->assertSame( $revId, $storeRecord->getId( $wikiId ) );
+		$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
+		$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionById
+	 */
 	public function testGetRevisionById_crossWiki() {
 		$page = $this->getTestPage();
 		$content = new WikitextContent( __METHOD__ );
