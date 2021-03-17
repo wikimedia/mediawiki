@@ -441,6 +441,7 @@ because of Phabricator reports.
   MediaWikiServices::getInstance()->getContentLanguage().
 * User::clearAllNotifications(), hard deprecated in 1.35, was removed. Use
   WatchlistNotificationManager::clearAllUserNotifications() instead.
+* DatabaseBlock::getBlocker can return any UserIdentity instance, not just User.
 * …
 
 === Deprecations in 1.36 ===
@@ -618,6 +619,10 @@ because of Phabricator reports.
   MediaWikiServices::getAuthManager() instead.
 * User::clearNotification(), deprecated in 1.35, is hard deprecated. Use
   WatchlistNotificationManager::clearTitleUserNotification() instead.
+* Passing string to DatabaseBlock::setBlocker was deprecated. Only UserIdentity
+  is now allowed.
+* DatabaseBlock constructor 'byText' option was deprecated in favour of 'by'
+  option, which now accepts UserIdentity. Passing user ID is deprecated.
 * …
 
 === Other changes in 1.36 ===
