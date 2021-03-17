@@ -340,9 +340,9 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$revisionStore = $this->createMock( RevisionStore::class );
 		$revisionStore->method( 'getRevisionById' )
 			->willReturnMap( [
-				[ 123, 0, $dummyRevision ], // oldest reverted
-				[ 125, 0, $dummyRevision ], // newest reverted
-				[ 300, 0, null ], // the revert
+				[ 123, 0, null, $dummyRevision ], // oldest reverted
+				[ 125, 0, null, $dummyRevision ], // newest reverted
+				[ 300, 0, null, null ], // the revert
 			] );
 
 		$logger = $this->getMockLogger(
@@ -407,9 +407,9 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$revisionStore = $this->createMock( RevisionStore::class );
 		$revisionStore->method( 'getRevisionById' )
 			->willReturnMap( [
-				[ 123, 0, $oldestReverted ],
-				[ 125, 0, $newestReverted ],
-				[ 300, 0, $revert ],
+				[ 123, 0, null, $oldestReverted ],
+				[ 125, 0, null, $newestReverted ],
+				[ 300, 0, null, $revert ],
 			] );
 
 		$logger = $this->getMockLogger(

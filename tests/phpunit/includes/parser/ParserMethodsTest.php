@@ -356,8 +356,8 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$revisionStore
 			->method( 'getRevisionById' )
 			->willReturnMap( [
-				[ 100, 0, $oldRevision ],
-				[ 200, 0, $currentRevision ],
+				[ 100, 0, null, $oldRevision ],
+				[ 200, 0, null, $currentRevision ],
 			] );
 
 		$this->setService( 'RevisionStore', $revisionStore );
