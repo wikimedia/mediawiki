@@ -20,7 +20,7 @@
  */
 
 use MediaWiki\Block\BlockRestrictionStore;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -60,6 +60,9 @@ class BlockListPager extends TablePager {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var BlockUtils */
+	private $blockUtils;
+
 	/**
 	 * @param SpecialPage $page
 	 * @param array $conds
@@ -69,6 +72,7 @@ class BlockListPager extends TablePager {
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param ActorMigration $actorMigration
 	 * @param CommentStore $commentStore
+	 * @param BlockUtils $blockUtils
 	 */
 	public function __construct(
 		$page,
@@ -78,7 +82,8 @@ class BlockListPager extends TablePager {
 		ILoadBalancer $loadBalancer,
 		SpecialPageFactory $specialPageFactory,
 		ActorMigration $actorMigration,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		BlockUtils $blockUtils
 	) {
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $page->getContext(), $page->getLinkRenderer() );
@@ -89,6 +94,7 @@ class BlockListPager extends TablePager {
 		$this->specialPageFactory = $specialPageFactory;
 		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
+		$this->blockUtils = $blockUtils;
 	}
 
 	protected function getFieldNames() {
@@ -156,7 +162,7 @@ class BlockListPager extends TablePager {
 				if ( $row->ipb_auto ) {
 					$formatted = $this->msg( 'autoblockid', $row->ipb_id )->parse();
 				} else {
-					list( $target, $type ) = DatabaseBlock::parseTarget( $row->ipb_address );
+					list( $target, ) = $this->blockUtils->parseBlockTarget( $row->ipb_address );
 
 					if ( is_string( $target ) ) {
 						if ( IPUtils::isValidRange( $target ) ) {

@@ -376,6 +376,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'ActorMigration',
 				'CommentStore',
+				'BlockUtils',
 			],
 		],
 		'AutoblockList' => [
@@ -386,6 +387,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'ActorMigration',
 				'CommentStore',
+				'BlockUtils'
 			],
 		],
 		'ChangePassword' => [

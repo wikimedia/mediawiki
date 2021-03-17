@@ -155,6 +155,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		return new UnblockUser(
 			$this->blockPermissionCheckerFactory,
 			$this->blockStore,
+			$this->blockUtils,
 			$this->userFactory,
 			$this->hookContainer,
 			$target,

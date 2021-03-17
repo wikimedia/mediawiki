@@ -23,6 +23,7 @@
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockUserFactory;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
@@ -57,6 +58,9 @@ class ApiBlock extends ApiBase {
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
+	/** @var BlockUtils */
+	private $blockUtils;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -65,6 +69,7 @@ class ApiBlock extends ApiBase {
 	 * @param TitleFactory $titleFactory
 	 * @param UserFactory $userFactory
 	 * @param WatchedItemStoreInterface $watchedItemStore
+	 * @param BlockUtils $blockUtils
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -73,7 +78,8 @@ class ApiBlock extends ApiBase {
 		BlockUserFactory $blockUserFactory,
 		TitleFactory $titleFactory,
 		UserFactory $userFactory,
-		WatchedItemStoreInterface $watchedItemStore
+		WatchedItemStoreInterface $watchedItemStore,
+		BlockUtils $blockUtils
 	) {
 		parent::__construct( $main, $action );
 
@@ -84,6 +90,7 @@ class ApiBlock extends ApiBase {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->blockUtils = $blockUtils;
 	}
 
 	/**
@@ -107,7 +114,7 @@ class ApiBlock extends ApiBase {
 
 			$target = $this->userFactory->newFromId( $params['userid'] );
 		}
-		list( $target, $targetType ) = AbstractBlock::parseTarget( $target );
+		list( $target, $targetType ) = $this->blockUtils->parseBlockTarget( $target );
 
 		if (
 			$params['noemail'] &&

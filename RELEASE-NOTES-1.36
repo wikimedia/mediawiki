@@ -500,8 +500,8 @@ because of Phabricator reports.
   DatabaseBlock::delete are deprecated. Use DatabaseBlockStore::insertBlock,
   DatabaseBlockStore::updateBlock, DatabaseBlockStore::purgeExpiredBlocks and
   DatabaseBlockStore::deleteBlock instead.
-* SpecialBlock::getTargetAndType is deprecated. Call AbstractBlock::parseTarget
-  directly instead.
+* SpecialBlock::getTargetAndType and AbstractBlock::parseTarget are deprecated.
+  Call BlockUtils::parseBlockTarget instead.
 * SpecialUnblock::processUnblock was deprecated - use UnblockUserFactory
   service instead.
 * Deprecated MediaWikiIntegrationtestCase::removeTemporaryHook() in favor of

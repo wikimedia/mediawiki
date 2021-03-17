@@ -281,7 +281,9 @@ class DatabaseBlock extends AbstractBlock {
 		# Be aware that the != '' check is explicit, since empty values will be
 		# passed by some callers (T31116)
 		if ( $vagueTarget != '' ) {
-			list( $target, $type ) = self::parseTarget( $vagueTarget );
+			list( $target, $type ) = MediaWikiServices::getInstance()
+				->getBlockUtils()
+				->parseBlockTarget( $vagueTarget );
 			switch ( $type ) {
 				case self::TYPE_USER:
 					# Slightly weird, but who are we to argue?
@@ -889,7 +891,9 @@ class DatabaseBlock extends AbstractBlock {
 		$vagueTarget = null,
 		$fromMaster = false
 	) {
-		list( $target, $type ) = self::parseTarget( $specificTarget );
+		list( $target, $type ) = MediaWikiServices::getInstance()
+			->getBlockUtils()
+			->parseBlockTarget( $specificTarget );
 		if ( $type == self::TYPE_ID || $type == self::TYPE_AUTO ) {
 			$block = self::newFromID( $target );
 			return $block ? [ $block ] : [];
