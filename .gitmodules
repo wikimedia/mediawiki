@@ -1418,3 +1418,8 @@
 	url = https://github.com/wikimedia/mediawiki-skins-HasSomeColours
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/VariablesLua"]
+	path = extensions/VariablesLua
+	url = https://github.com/Liquipedia/VariablesLua/
+	branch = master
+	ignore = dirty
