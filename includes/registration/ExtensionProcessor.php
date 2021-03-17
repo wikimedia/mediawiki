@@ -509,6 +509,9 @@ class ExtensionProcessor implements Processor {
 					// If it is not conditional, register it
 					$this->attributes['ExtensionNamespaces'][$id] = $ns['name'];
 				}
+				if ( isset( $ns['movable'] ) && !$ns['movable'] ) {
+					$this->attributes['ImmovableNamespaces'][] = $id;
+				}
 				if ( isset( $ns['gender'] ) ) {
 					$this->globals['wgExtraGenderNamespaces'][$id] = $ns['gender'];
 				}
@@ -527,6 +530,7 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $ns['capitallinkoverride'] ) ) {
 					$this->globals['wgCapitalLinkOverrides'][$id] = $ns['capitallinkoverride'];
 				}
+
 			}
 		}
 	}
