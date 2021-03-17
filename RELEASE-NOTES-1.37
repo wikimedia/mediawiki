@@ -232,6 +232,10 @@ because of Phabricator reports.
   post-initialization configuration.
 * FileBackendGroup::singleton() and ::destroySingletons(), deprecated since
   1.35, now emit deprecation warnings.
+* JobQueueGroup::singleton was deprecated - use
+  MediaWikiServices::getJobQueueGroup instead.
+* JobQueueGroup::destroySingletons was deprecated. JobQueueGroups are now
+  automatically destroyed after tests.
 * …
 
 === Other changes in 1.37 ===
