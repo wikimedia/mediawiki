@@ -2,8 +2,11 @@
 namespace MediaWiki\Tests\Page;
 
 use Exception;
+use IDatabase;
 use InvalidArgumentException;
+use LoadBalancer;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
@@ -12,6 +15,7 @@ use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
 use TitleValue;
 use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Rdbms\DBConnRef;
 
 /**
  * @group Database
@@ -459,6 +463,55 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $wikiId, $rec->getWikiId() );
 		$this->assertSamePage( $existingPage, $rec );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::newSelectQueryBuilder
+	 */
+	public function testNewSelectQueryBuilder_passDatabase() {
+		$pageStore = $this->getPageStore();
+
+		// Test that the provided DB connection is used.
+		$db = $this->createMock( IDatabase::class );
+		$db->expects( $this->atLeastOnce() )->method( 'selectRow' )->willReturn( false );
+
+		$pageStore->newSelectQueryBuilder( $db )
+			->fetchPageRecord();
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::newSelectQueryBuilder
+	 */
+	public function testNewSelectQueryBuilder_passFlags() {
+		$services = $this->getServiceContainer();
+
+		$serviceOptions = new ServiceOptions(
+			PageStore::CONSTRUCTOR_OPTIONS,
+			[
+				'LanguageCode' => 'qxx',
+				'PageLanguageUseDB' => true
+			]
+		);
+		// Test that the provided DB connection is used.
+		$db = $this->createMock( IDatabase::class );
+		$db->expects( $this->atLeastOnce() )->method( 'selectRow' )->willReturn( false );
+
+		// Test that the load balancer is asked for a master connection
+		$lb = $this->createMock( LoadBalancer::class );
+		$lb->expects( $this->atLeastOnce() )
+			->method( 'getConnectionRef' )
+			->with( DB_MASTER )
+			->willReturn( new DBConnRef( $lb, $db, DB_MASTER ) );
+
+		$pageStore = new PageStore(
+			$serviceOptions,
+			$lb,
+			$services->getNamespaceInfo(),
+			WikiAwareEntity::LOCAL
+		);
+
+		$pageStore->newSelectQueryBuilder( PageStore::READ_LATEST )
+			->fetchPageRecord();
 	}
 
 	/**

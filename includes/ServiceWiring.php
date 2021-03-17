@@ -89,6 +89,7 @@ use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Page\PageStore;
+use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
@@ -955,10 +956,18 @@ return [
 	},
 
 	'PageStore' => static function ( MediaWikiServices $services ) : PageStore {
-		$options = new ServiceOptions( PageStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
-		return new PageStore(
+		return $services->getPageStoreFactory()->getPageStore();
+	},
+
+	'PageStoreFactory' => static function ( MediaWikiServices $services ) : PageStoreFactory {
+		$options = new ServiceOptions(
+			PageStoreFactory::CONSTRUCTOR_OPTIONS,
+			$services->getMainConfig()
+		);
+
+		return new PageStoreFactory(
 			$options,
-			$services->getDBLoadBalancer(),
+			$services->getDBLoadBalancerFactory(),
 			$services->getNamespaceInfo()
 		);
 	},
@@ -1238,6 +1247,7 @@ return [
 			$services->getActorStoreFactory(),
 			LoggerFactory::getInstance( 'RevisionStore' ),
 			$services->getContentHandlerFactory(),
+			$services->getPageStoreFactory(),
 			$services->getTitleFactory(),
 			$services->getHookContainer()
 		);

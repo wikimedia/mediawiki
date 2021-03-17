@@ -56,6 +56,7 @@ use MediaWiki\Page\ContentModelChangeFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageStore;
+use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
@@ -1155,8 +1156,16 @@ class MediaWikiServices extends ServiceContainer {
 	 * @return PageStore
 	 * @since 1.36
 	 */
-	public function getPageStore(): PageStore {
+	public function getPageStore() : PageStore {
 		return $this->getService( 'PageStore' );
+	}
+
+	/**
+	 * @return PageStoreFactory
+	 * @since 1.36
+	 */
+	public function getPageStoreFactory() : PageStoreFactory {
+		return $this->getService( 'PageStoreFactory' );
 	}
 
 	/**
