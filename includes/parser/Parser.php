@@ -178,9 +178,8 @@ class Parser {
 	# Initialized in constructor
 	/**
 	 * @var Preprocessor
-	 * @deprecated since 1.35
 	 */
-	public $mPreprocessor;
+	private $mPreprocessor;
 
 	# Cleared with clearState():
 	/**
@@ -1119,6 +1118,7 @@ class Parser {
 	 * Get a preprocessor object
 	 *
 	 * @return Preprocessor
+	 * @since 1.12.0
 	 */
 	public function getPreprocessor() {
 		return $this->mPreprocessor;
