@@ -392,7 +392,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			// User::isIP returns true for IP address and usemod IPs like '123.123.123.xxx',
 			// but returns false for IP ranges. We don't want to suggest either of these are
 			// valid usernames which we would with the 'contributions-userdoesnotexist' message.
-			if ( !User::isIP( $userObj->getName() ) && !$userObj->isIPRange() ) {
+			if ( !User::isIP( $userObj->getName() ) && !IPUtils::isValidRange( $userObj->getName() ) ) {
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[
@@ -435,7 +435,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			if ( !$this->including() ) {
 				// For IP ranges you must give DatabaseBlock::newFromTarget the CIDR string
 				// and not a user object.
-				if ( $userObj->isIPRange() ) {
+				if ( IPUtils::isValidRange( $userObj->getName() ) ) {
 					$block = DatabaseBlock::newFromTarget( $userObj->getName(), $userObj->getName() );
 				} else {
 					$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
