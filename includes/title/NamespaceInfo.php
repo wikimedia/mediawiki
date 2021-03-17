@@ -158,7 +158,10 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isMovable( $index ) {
-		$result = $index >= NS_MAIN;
+		$extensionRegistry = ExtensionRegistry::getInstance();
+		$extNamespaces = $extensionRegistry->getAttribute( 'ImmovableNamespaces' );
+
+		$result = $index >= NS_MAIN && !in_array( $index, $extNamespaces );
 
 		/**
 		 * @since 1.20
