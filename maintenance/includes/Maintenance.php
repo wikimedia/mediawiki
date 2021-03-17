@@ -259,7 +259,8 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Checks to see if a particular option exists.
+	 * Checks to see if a particular option was set.
+	 *
 	 * @param string $name The name of the option
 	 * @return bool
 	 */
@@ -282,10 +283,7 @@ abstract class Maintenance {
 		if ( $this->hasOption( $name ) ) {
 			return $this->mOptions[$name];
 		} else {
-			// Set it so we don't have to provide the default again
-			$this->mOptions[$name] = $default;
-
-			return $this->mOptions[$name];
+			return $default;
 		}
 	}
 
