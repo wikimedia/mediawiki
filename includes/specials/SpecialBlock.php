@@ -30,6 +30,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -957,10 +958,10 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param User|string|null $target Target to block or unblock; could be a User object,
 	 *   or username/IP address, or null when the target is not known yet (e.g. when
 	 *   displaying Special:Block)
-	 * @param User $performer User doing the request
+	 * @param Authority $performer User doing the request
 	 * @return bool|string True or error message key
 	 */
-	public static function checkUnblockSelf( $target, User $performer ) {
+	public static function checkUnblockSelf( $target, Authority $performer ) {
 		return MediaWikiServices::getInstance()
 			->getBlockPermissionCheckerFactory()
 			->newBlockPermissionChecker( $target, $performer )

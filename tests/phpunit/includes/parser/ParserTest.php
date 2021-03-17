@@ -51,6 +51,8 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( MediaWiki\HookContainer\HookContainer::class ),
 			$this->createMock( MediaWiki\Tidy\TidyDriverBase::class ),
 			$this->createMock( WANObjectCache::class ),
+			$this->createMock( MediaWiki\User\UserOptionsLookup::class ),
+			$this->createMock( MediaWiki\User\UserFactory::class )
 		];
 	}
 

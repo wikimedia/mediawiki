@@ -23,8 +23,8 @@ namespace MediaWiki\Block;
 use CommentStoreComment;
 use Language;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use Message;
-use User;
 
 /**
  * A service class for getting formatted information about a block.
@@ -50,14 +50,14 @@ class BlockErrorFormatter {
 	 * language.
 	 *
 	 * @param AbstractBlock $block
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @param string $ip
 	 * @return Message
 	 */
 	public function getMessage(
 		AbstractBlock $block,
-		User $user,
+		UserIdentity $user,
 		Language $language,
 		$ip
 	) {
@@ -97,13 +97,13 @@ class BlockErrorFormatter {
 	 *
 	 * @since 1.35
 	 * @param AbstractBlock $block
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @return mixed[] See getBlockErrorInfo
 	 */
 	private function getFormattedBlockErrorInfo(
 		AbstractBlock $block,
-		User $user,
+		UserIdentity $user,
 		Language $language
 	) {
 		$info = $this->getBlockErrorInfo( $block );
@@ -182,7 +182,7 @@ class BlockErrorFormatter {
 	 * getBlockErrorMessageKey.
 	 *
 	 * @param AbstractBlock $block
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @param string $ip
 	 * @return mixed[] Params used by standard block error messages, in order:
@@ -197,7 +197,7 @@ class BlockErrorFormatter {
 	 */
 	private function getBlockErrorMessageParams(
 		AbstractBlock $block,
-		User $user,
+		UserIdentity $user,
 		Language $language,
 		$ip
 	) {

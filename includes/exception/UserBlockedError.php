@@ -20,6 +20,7 @@
 
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Show an error when the user tries to do something whilst blocked.
@@ -32,13 +33,13 @@ class UserBlockedError extends ErrorPageError {
 	/**
 	 * @stable to call
 	 * @param AbstractBlock $block
-	 * @param User|null $user
+	 * @param UserIdentity|null $user
 	 * @param Language|null $language
 	 * @param string|null $ip
 	 */
 	public function __construct(
 		AbstractBlock $block,
-		User $user = null,
+		UserIdentity $user = null,
 		Language $language = null,
 		$ip = null
 	) {

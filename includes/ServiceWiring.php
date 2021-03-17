@@ -998,7 +998,9 @@ return [
 			$services->getLanguageConverterFactory(),
 			$services->getHookContainer(),
 			$services->getTidy(),
-			$services->getMainWANObjectCache()
+			$services->getMainWANObjectCache(),
+			$services->getUserOptionsLookup(),
+			$services->getUserFactory()
 		);
 	},
 

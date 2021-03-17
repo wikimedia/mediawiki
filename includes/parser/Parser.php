@@ -37,6 +37,9 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\LoggerInterface;
 use Wikimedia\IPUtils;
 use Wikimedia\ScopedCallback;
@@ -347,6 +350,12 @@ class Parser {
 	/** @var TidyDriverBase */
 	private $tidy;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -390,6 +399,8 @@ class Parser {
 	 * @param HookContainer $hookContainer
 	 * @param TidyDriverBase $tidy
 	 * @param WANObjectCache $wanCache
+	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -405,7 +416,9 @@ class Parser {
 		LanguageConverterFactory $languageConverterFactory,
 		HookContainer $hookContainer,
 		TidyDriverBase $tidy,
-		WANObjectCache $wanCache
+		WANObjectCache $wanCache,
+		UserOptionsLookup $userOptionsLookup,
+		UserFactory $userFactory
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
@@ -446,6 +459,9 @@ class Parser {
 				'disableLangConversion' => $svcOptions->get( 'DisableLangConversion' ),
 			]
 		);
+
+		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userFactory = $userFactory;
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
@@ -944,10 +960,14 @@ class Parser {
 	 * Set the current user.
 	 * Should only be used when doing pre-save transform.
 	 *
-	 * @param User|null $user User object or null (to reset)
+	 * @param UserIdentity|null $user user identity or null (to reset)
 	 */
-	public function setUser( ?User $user ) {
-		$this->mUser = $user;
+	public function setUser( ?UserIdentity $user ) {
+		if ( $user ) {
+			$this->mUser = $this->userFactory->newFromUserIdentity( $user );
+		} else {
+			$this->mUser = $user;
+		}
 	}
 
 	/**
@@ -1104,7 +1124,7 @@ class Parser {
 	/**
 	 * Get a User object either from $this->mUser, if set, or from the
 	 * ParserOptions object otherwise
-	 *
+	 * @deprecated since 1.36. Use ::getUserIdentity instead.
 	 * @return User
 	 */
 	public function getUser() {
@@ -1112,6 +1132,14 @@ class Parser {
 			return $this->mUser;
 		}
 		return $this->mOptions->getUser();
+	}
+
+	/**
+	 * Get an identity of the user for whom the parse is being made, if set.
+	 * @return UserIdentity
+	 */
+	public function getUserIdentity(): UserIdentity {
+		return $this->getUser();
 	}
 
 	/**
@@ -4498,12 +4526,12 @@ class Parser {
 	 *
 	 * @param string $text The text to transform
 	 * @param Title $title The Title object for the current article
-	 * @param User $user The User object describing the current user
+	 * @param UserIdentity $user The User object describing the current user
 	 * @param ParserOptions $options Parsing options
 	 * @param bool $clearState Whether to clear the parser state first
 	 * @return string The altered wiki markup
 	 */
-	public function preSaveTransform( $text, Title $title, User $user,
+	public function preSaveTransform( $text, Title $title, UserIdentity $user,
 		ParserOptions $options, $clearState = true
 	) {
 		if ( $clearState ) {
@@ -4536,11 +4564,11 @@ class Parser {
 	 * Pre-save transform helper function
 	 *
 	 * @param string $text
-	 * @param User $user
+	 * @param UserIdentity $user
 	 *
 	 * @return string
 	 */
-	private function pstPass2( $text, User $user ) {
+	private function pstPass2( $text, UserIdentity $user ) {
 		# Note: This is the timestamp saved as hardcoded wikitext to the database, we use
 		# $this->contLang here in order to give everyone the same signature and use the default one
 		# rather than the one selected in each user's preferences.  (see also T14815)
@@ -4610,22 +4638,22 @@ class Parser {
 	 * Do not reuse this parser instance after calling getUserSig(),
 	 * as it may have changed.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string|false $nickname Nickname to use or false to use user's default nickname
 	 * @param bool|null $fancySig whether the nicknname is the complete signature
 	 *    or null to use default value
 	 * @return string
 	 */
-	public function getUserSig( User $user, $nickname = false, $fancySig = null ) {
+	public function getUserSig( UserIdentity $user, $nickname = false, $fancySig = null ) {
 		$username = $user->getName();
 
 		# If not given, retrieve from the user object.
 		if ( $nickname === false ) {
-			$nickname = $user->getOption( 'nickname' );
+			$nickname = $this->userOptionsLookup->getOption( $user, 'nickname' );
 		}
 
 		if ( $fancySig === null ) {
-			$fancySig = $user->getBoolOption( 'fancysig' );
+			$fancySig = $this->userOptionsLookup->getBoolOption( $user, 'fancysig' );
 		}
 
 		if ( $nickname === null || $nickname === '' ) {
@@ -4664,7 +4692,7 @@ class Parser {
 		# If we're still here, make it a link to the user page
 		$userText = wfEscapeWikiText( $username );
 		$nickText = wfEscapeWikiText( $nickname );
-		$msgName = $user->isAnon() ? 'signature-anon' : 'signature';
+		$msgName = $user->isRegistered() ? 'signature' : 'signature-anon';
 
 		return wfMessage( $msgName, $userText, $nickText )->inContentLanguage()
 			->title( $this->getTitle() )->text();
