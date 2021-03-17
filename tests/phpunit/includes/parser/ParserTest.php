@@ -50,6 +50,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( MediaWiki\Languages\LanguageConverterFactory::class ),
 			$this->createMock( MediaWiki\HookContainer\HookContainer::class ),
 			$this->createMock( MediaWiki\Tidy\TidyDriverBase::class ),
+			$this->createMock( WANObjectCache::class ),
 		];
 	}
 
@@ -72,6 +73,18 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$prop->setAccessible( true );
 			foreach ( $args as $idx => $mockTest ) {
 				if ( $prop->getValue( $parser ) === $mockTest ) {
+					unset( $args[$idx] );
+				}
+			}
+		}
+		// The WANObjectCache gets set on the Preprocessor, not the
+		// Parser.
+		$preproc = $parser->getPreprocessor();
+		$refObject = new ReflectionObject( $preproc );
+		foreach ( $refObject->getProperties() as $prop ) {
+			$prop->setAccessible( true );
+			foreach ( $args as $idx => $mockTest ) {
+				if ( $prop->getValue( $preproc ) === $mockTest ) {
 					unset( $args[$idx] );
 				}
 			}

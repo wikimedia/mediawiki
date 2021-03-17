@@ -83,6 +83,20 @@ abstract class Preprocessor {
 	}
 
 	/**
+	 * Allows resetting the internal Parser reference after Preprocessor is
+	 * cloned.
+	 *
+	 * Do not use this function in new code, since this method will be
+	 * moved once Parser cloning goes away (T250448)
+	 *
+	 * @param ?Parser $parser
+	 * @internal
+	 */
+	public function resetParser( ?Parser $parser ) {
+		$this->parser = $parser;
+	}
+
+	/**
 	 * Create a new top-level frame for expansion of a page
 	 *
 	 * @return PPFrame

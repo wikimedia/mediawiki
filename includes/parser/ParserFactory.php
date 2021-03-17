@@ -78,6 +78,9 @@ class ParserFactory {
 	/** @var TidyDriverBase */
 	private $tidy;
 
+	/** @var WANObjectCache */
+	private $wanCache;
+
 	/**
 	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
@@ -91,6 +94,7 @@ class ParserFactory {
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param HookContainer $hookContainer
 	 * @param TidyDriverBase $tidy
+	 * @param WANObjectCache $wanCache
 	 * @since 1.32
 	 * @internal
 	 */
@@ -106,7 +110,8 @@ class ParserFactory {
 		BadFileLookup $badFileLookup,
 		LanguageConverterFactory $languageConverterFactory,
 		HookContainer $hookContainer,
-		TidyDriverBase $tidy
+		TidyDriverBase $tidy,
+		WANObjectCache $wanCache
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -124,6 +129,7 @@ class ParserFactory {
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->hookContainer = $hookContainer;
 		$this->tidy = $tidy;
+		$this->wanCache = $wanCache;
 	}
 
 	/**
@@ -148,7 +154,8 @@ class ParserFactory {
 				$this->badFileLookup,
 				$this->languageConverterFactory,
 				$this->hookContainer,
-				$this->tidy
+				$this->tidy,
+				$this->wanCache
 			);
 		} finally {
 			self::$inParserFactory--;
