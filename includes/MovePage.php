@@ -25,12 +25,16 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -73,11 +77,6 @@ class MovePage {
 	protected $watchedItems;
 
 	/**
-	 * @var PermissionManager
-	 */
-	protected $permMgr;
-
-	/**
 	 * @var RepoGroup
 	 */
 	protected $repoGroup;
@@ -113,6 +112,11 @@ class MovePage {
 	private $wikiPageFactory;
 
 	/**
+	 * @var UserFactory
+	 */
+	private $userFactory;
+
+	/**
 	 * @internal For use by MovePageTest
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -128,13 +132,13 @@ class MovePage {
 	 * @param ILoadBalancer|null $loadBalancer
 	 * @param NamespaceInfo|null $nsInfo
 	 * @param WatchedItemStoreInterface|null $watchedItems
-	 * @param PermissionManager|null $permMgr
 	 * @param RepoGroup|null $repoGroup
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @param RevisionStore|null $revisionStore
 	 * @param SpamChecker|null $spamChecker
 	 * @param HookContainer|null $hookContainer
 	 * @param WikiPageFactory|null $wikiPageFactory
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		Title $oldTitle,
@@ -143,13 +147,13 @@ class MovePage {
 		ILoadBalancer $loadBalancer = null,
 		NamespaceInfo $nsInfo = null,
 		WatchedItemStoreInterface $watchedItems = null,
-		PermissionManager $permMgr = null,
 		RepoGroup $repoGroup = null,
 		IContentHandlerFactory $contentHandlerFactory = null,
 		RevisionStore $revisionStore = null,
 		SpamChecker $spamChecker = null,
 		HookContainer $hookContainer = null,
-		WikiPageFactory $wikiPageFactory = null
+		WikiPageFactory $wikiPageFactory = null,
+		UserFactory $userFactory = null
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -166,7 +170,6 @@ class MovePage {
 		$this->loadBalancer = $loadBalancer ?? $services()->getDBLoadBalancer();
 		$this->nsInfo = $nsInfo ?? $services()->getNamespaceInfo();
 		$this->watchedItems = $watchedItems ?? $services()->getWatchedItemStore();
-		$this->permMgr = $permMgr ?? $services()->getPermissionManager();
 		$this->repoGroup = $repoGroup ?? $services()->getRepoGroup();
 		$this->contentHandlerFactory =
 			$contentHandlerFactory ?? $services()->getContentHandlerFactory();
@@ -176,32 +179,26 @@ class MovePage {
 		$this->hookContainer = $hookContainer ?? $services()->getHookContainer();
 		$this->hookRunner = new HookRunner( $this->hookContainer );
 		$this->wikiPageFactory = $wikiPageFactory ?? $services()->getWikiPageFactory();
+		$this->userFactory = $userFactory ?? $services()->getUserFactory();
 	}
 
 	/**
-	 * Check if the user is allowed to perform the move.
-	 *
-	 * @param User $user
-	 * @param string|null $reason To check against summary spam regex. Set to null to skip the check,
-	 *   for instance to display errors preemptively before the user has filled in a summary.
-	 * @return Status
+	 * @param callable $authorizer ( string $action, PageIdentity $target, PermissionStatus $status )
+	 * @param Authority $performer
+	 * @param string|null $reason
+	 * @return PermissionStatus
 	 */
-	public function checkPermissions( User $user, $reason ) {
-		$status = new Status();
+	private function authorizeInternal(
+		callable $authorizer,
+		Authority $performer,
+		?string $reason
+	): PermissionStatus {
+		$status = PermissionStatus::newEmpty();
 
-		$errors = wfMergeErrorArrays(
-			$this->permMgr->getPermissionErrors( 'move', $user, $this->oldTitle ),
-			$this->permMgr->getPermissionErrors( 'edit', $user, $this->oldTitle ),
-			$this->permMgr->getPermissionErrors( 'move-target', $user, $this->newTitle ),
-			$this->permMgr->getPermissionErrors( 'edit', $user, $this->newTitle )
-		);
-
-		// Convert into a Status object
-		if ( $errors ) {
-			foreach ( $errors as $error ) {
-				$status->fatal( ...$error );
-			}
-		}
+		$authorizer( 'move', $this->oldTitle, $status );
+		$authorizer( 'edit', $this->oldTitle, $status );
+		$authorizer( 'move-target', $this->newTitle, $status );
+		$authorizer( 'edit', $this->newTitle, $status );
 
 		if ( $reason !== null && $this->spamChecker->checkSummary( $reason ) !== false ) {
 			// This is kind of lame, won't display nice
@@ -209,14 +206,83 @@ class MovePage {
 		}
 
 		$tp = $this->newTitle->getTitleProtection();
-		if ( $tp !== false && !$this->permMgr->userHasRight( $user, $tp['permission'] ) ) {
+		if ( $tp !== false && !$performer->isAllowed( $tp['permission'] ) ) {
 			$status->fatal( 'cantmove-titleprotected' );
 		}
 
+		// TODO: change hook signature to accept Authority and PermissionStatus
+		$user = $this->userFactory->newFromAuthority( $performer );
+		$status = Status::wrap( $status );
 		$this->hookRunner->onMovePageCheckPermissions(
 			$this->oldTitle, $this->newTitle, $user, $reason, $status );
+		// TODO: remove conversion code after hook signature is changed.
+		$permissionStatus = PermissionStatus::newEmpty();
+		foreach ( $status->getErrorsArray() as $error ) {
+			$permissionStatus->fatal( ...$error );
+		}
+		return $permissionStatus;
+	}
 
-		return $status;
+	/**
+	 * Check whether $performer can execute the move.
+	 *
+	 * @note this method does not guarantee full permissions check, so it should
+	 * only be used to to decide whether to show a move form. To authorize the move
+	 * action use {@link self::authorizeMove} instead.
+	 *
+	 * @param Authority $performer
+	 * @param string|null $reason
+	 * @return PermissionStatus
+	 */
+	public function probablyCanMove( Authority $performer, string $reason = null ): PermissionStatus {
+		return $this->authorizeInternal(
+			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+				return $performer->probablyCan( $action, $target, $status );
+			},
+			$performer,
+			$reason
+		);
+	}
+
+	/**
+	 * Authorize the move by $performer.
+	 *
+	 * @note this method should be used right before the actual move is performed.
+	 * To check whether a current performer has the potential to move the page,
+	 * use {@link self::probablyCanMove} instead.
+	 *
+	 * @param Authority $performer
+	 * @param string|null $reason
+	 * @return PermissionStatus
+	 */
+	public function authorizeMove( Authority $performer, string $reason = null ): PermissionStatus {
+		return $this->authorizeInternal(
+			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+				return $performer->authorizeWrite( $action, $target, $status );
+			},
+			$performer,
+			$reason
+		);
+	}
+
+	/**
+	 * Check if the user is allowed to perform the move.
+	 *
+	 * @param Authority $performer
+	 * @param string|null $reason To check against summary spam regex. Set to null to skip the check,
+	 *   for instance to display errors preemptively before the user has filled in a summary.
+	 * @deprecated since 1.36, use ::authorizeMove or ::probablyCanMove instead.
+	 * @return Status
+	 */
+	public function checkPermissions( Authority $performer, $reason ) {
+		$permissionStatus = $this->authorizeInternal(
+			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+				return $performer->definitelyCan( $action, $target, $status );
+			},
+			$performer,
+			$reason
+		);
+		return Status::wrap( $permissionStatus );
 	}
 
 	/**
@@ -384,14 +450,14 @@ class MovePage {
 	 * invalid, e.g., trying to move a special page or trying to move a page onto one that already
 	 * exists.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string|null $reason
 	 * @param bool|null $createRedirect
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return Status
 	 */
 	public function move(
-		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+		UserIdentity $user, $reason = null, $createRedirect = true, array $changeTags = []
 	) {
 		$status = $this->isValidMove();
 		if ( !$status->isOK() ) {
@@ -404,33 +470,35 @@ class MovePage {
 	/**
 	 * Same as move(), but with permissions checks.
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param string|null $reason
 	 * @param bool|null $createRedirect Ignored if user doesn't have suppressredirect permission
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return Status
 	 */
 	public function moveIfAllowed(
-		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+		Authority $performer, $reason = null, $createRedirect = true, array $changeTags = []
 	) {
 		$status = $this->isValidMove();
-		$status->merge( $this->checkPermissions( $user, $reason ) );
+		$status->merge( $this->authorizeMove( $performer, $reason ) );
 		if ( $changeTags ) {
-			$status->merge( ChangeTags::canAddTagsAccompanyingChange( $changeTags, $user ) );
+			$status->merge( ChangeTags::canAddTagsAccompanyingChange( $changeTags, $performer ) );
 		}
 
 		if ( !$status->isOK() ) {
+			// TODO: wrap block spreading into Authority side-effect?
+			$user = $this->userFactory->newFromAuthority( $performer );
 			// Auto-block user's IP if the account was "hard" blocked
 			$user->spreadAnyEditBlock();
 			return $status;
 		}
 
 		// Check suppressredirect permission
-		if ( !$this->permMgr->userHasRight( $user, 'suppressredirect' ) ) {
+		if ( !$performer->isAllowed( 'suppressredirect' ) ) {
 			$createRedirect = true;
 		}
 
-		return $this->moveUnsafe( $user, $reason, $createRedirect, $changeTags );
+		return $this->moveUnsafe( $performer->getUser(), $reason, $createRedirect, $changeTags );
 	}
 
 	/**
@@ -438,7 +506,7 @@ class MovePage {
 	 * permissions. The caller is responsible for moving the source page itself. We will still not
 	 * do moves that are inherently not allowed, nor will we move more than $wgMaximumMovedPages.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string|null $reason The reason for the move
 	 * @param bool|null $createRedirect Whether to create redirects from the old subpages to
 	 *  the new ones
@@ -448,16 +516,22 @@ class MovePage {
 	 *  move that succeeded, the "value" of the per-title status is the new page title.
 	 */
 	public function moveSubpages(
-		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+		UserIdentity $user, $reason = null, $createRedirect = true, array $changeTags = []
 	) {
-		return $this->moveSubpagesInternal( false, $user, $reason, $createRedirect, $changeTags );
+		return $this->moveSubpagesInternal(
+			function ( Title $oldSubpage, Title $newSubpage )
+			use ( $user, $reason, $createRedirect, $changeTags ) {
+				$mp = new MovePage( $oldSubpage, $newSubpage );
+				return $mp->move( $user, $reason, $createRedirect, $changeTags );
+			}
+		);
 	}
 
 	/**
 	 * Move the source page's subpages to be subpages of the target page, with user permission
 	 * checks. The caller is responsible for moving the source page itself.
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param string|null $reason The reason for the move
 	 * @param bool|null $createRedirect Whether to create redirects from the old subpages to
 	 *  the new ones. Ignored if the user doesn't have the 'suppressredirect' right.
@@ -467,31 +541,27 @@ class MovePage {
 	 *  move that succeeded, the "value" of the per-title status is the new page title.
 	 */
 	public function moveSubpagesIfAllowed(
-		User $user, $reason = null, $createRedirect = true, array $changeTags = []
+		Authority $performer, $reason = null, $createRedirect = true, array $changeTags = []
 	) {
-		return $this->moveSubpagesInternal( true, $user, $reason, $createRedirect, $changeTags );
+		if ( !$performer->authorizeWrite( 'move-subpages', $this->oldTitle ) ) {
+			return Status::newFatal( 'cant-move-subpages' );
+		}
+		return $this->moveSubpagesInternal(
+			function ( Title $oldSubpage, Title $newSubpage )
+			use ( $performer, $reason, $createRedirect, $changeTags ) {
+				$mp = new MovePage( $oldSubpage, $newSubpage );
+				return $mp->moveIfAllowed( $performer, $reason, $createRedirect, $changeTags );
+			}
+		);
 	}
 
 	/**
-	 * @param bool $checkPermissions
-	 * @param User $user
-	 * @param string $reason
-	 * @param bool $createRedirect
-	 * @param string[] $changeTags
+	 * @param callable $subpageMoveCallback
 	 * @return Status
+	 * @throws MWException
 	 */
-	private function moveSubpagesInternal(
-		$checkPermissions, User $user, $reason, $createRedirect, array $changeTags
-	) {
+	private function moveSubpagesInternal( callable $subpageMoveCallback ) {
 		global $wgMaximumMovedPages;
-
-		if ( $checkPermissions ) {
-			if ( !$this->permMgr->userCan(
-				'move-subpages', $user, $this->oldTitle )
-			) {
-				return Status::newFatal( 'cant-move-subpages' );
-			}
-		}
 
 		// Do the source and target namespaces support subpages?
 		if ( !$this->nsInfo->hasSubpages( $this->oldTitle->getNamespace() ) ) {
@@ -540,11 +610,7 @@ class MovePage {
 			// T16385: we need makeTitleSafe because the new page names may be longer than 255
 			// characters.
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
-
-			$mp = new MovePage( $oldSubpage, $newSubpage );
-			$method = $checkPermissions ? 'moveIfAllowed' : 'move';
-			/** @var Status $status */
-			$status = $mp->$method( $user, $reason, $createRedirect, $changeTags );
+			$status = $subpageMoveCallback( $oldSubpage, $newSubpage );
 			if ( $status->isOK() ) {
 				$status->setResult( true, $newSubpage->getPrefixedText() );
 			}
@@ -560,15 +626,18 @@ class MovePage {
 	/**
 	 * Moves *without* any sort of safety or sanity checks. Hooks can still fail the move, however.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $reason
 	 * @param bool $createRedirect
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return Status
 	 */
-	private function moveUnsafe( User $user, $reason, $createRedirect, array $changeTags ) {
+	private function moveUnsafe( UserIdentity $user, $reason, $createRedirect, array $changeTags ) {
 		$status = Status::newGood();
-		$this->hookRunner->onTitleMove( $this->oldTitle, $this->newTitle, $user, $reason, $status );
+
+		// TODO: make hooks accept UserIdentity
+		$userObj = $this->userFactory->newFromUserIdentity( $user );
+		$this->hookRunner->onTitleMove( $this->oldTitle, $this->newTitle, $userObj, $reason, $status );
 		if ( !$status->isOK() ) {
 			// Move was aborted by the hook
 			return $status;
@@ -577,13 +646,13 @@ class MovePage {
 		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
-		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $user );
+		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $userObj );
 
 		$pageid = $this->oldTitle->getArticleID( Title::READ_LATEST );
 		$protected = $this->oldTitle->isProtected();
 
 		// Attempt the actual move
-		$moveAttemptResult = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,
+		$moveAttemptResult = $this->moveToInternal( $userObj, $this->newTitle, $reason, $createRedirect,
 			$changeTags );
 
 		if ( $moveAttemptResult instanceof Status ) {
@@ -732,7 +801,7 @@ class MovePage {
 			$this->hookRunner->onTitleMoveCompleting(
 				$this->oldTitle,
 				$this->newTitle,
-				$user,
+				$userObj,
 				$pageid,
 				$redirid,
 				$reason,
@@ -747,7 +816,7 @@ class MovePage {
 			new AtomicSectionUpdate(
 				$dbw,
 				__METHOD__,
-				function () use ( $user, $pageid, $redirid, $reason, $nullRevision ) {
+				function () use ( $user, $userObj, $pageid, $redirid, $reason, $nullRevision ) {
 					$this->hookRunner->onPageMoveComplete(
 						$this->oldTitle,
 						$this->newTitle,
@@ -768,7 +837,7 @@ class MovePage {
 					$this->hookRunner->onTitleMoveComplete(
 						$this->oldTitle,
 						$this->newTitle,
-						$user, $pageid,
+						$userObj, $pageid,
 						$redirid,
 						$reason,
 						$nullRevisionObj
@@ -810,7 +879,7 @@ class MovePage {
 	 *
 	 * @todo This was basically directly moved from Title, it should be split into
 	 *   smaller functions
-	 * @param User $user the User doing the move
+	 * @param UserIdentity $user doing the move
 	 * @param Title &$nt The page to move to, which should be a redirect or non-existent
 	 * @param string $reason The reason for the move
 	 * @param bool $createRedirect Whether to leave a redirect at the old title. Does not check
@@ -818,9 +887,10 @@ class MovePage {
 	 * @param string[] $changeTags Change tags to apply to the entry in the move log
 	 * @return RevisionRecord|Status The revision created by the move or Status object on failure
 	 */
-	private function moveToInternal( User $user, &$nt, $reason = '', $createRedirect = true,
+	private function moveToInternal( UserIdentity $user, &$nt, $reason = '', $createRedirect = true,
 		array $changeTags = []
 	) {
+		$userObj = $this->userFactory->newFromUserIdentity( $user );
 		if ( $nt->getArticleId( Title::READ_LATEST ) ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
@@ -838,7 +908,7 @@ class MovePage {
 			$errs = [];
 			$status = $newpage->doDeleteArticleReal(
 				$overwriteMessage,
-				$user,
+				$userObj,
 				/* $suppress */ false,
 				/* unused */ null,
 				$errs,
@@ -941,7 +1011,7 @@ class MovePage {
 		 * Increment user_editcount during page moves
 		 * Moved from SpecialMovepage.php per T195550
 		 */
-		$user->incEditCount();
+		$userObj->incEditCount();
 
 		if ( !$redirectContent ) {
 			// Clean up the old title *before* reset article id - T47348
@@ -965,12 +1035,12 @@ class MovePage {
 				$newpage,
 				$nullRevisionObj,
 				$nullRevision->getParentId(),
-				$user,
+				$userObj,
 				$fakeTags
 			);
 		}
 
-		$newpage->doEditUpdates( $nullRevision, $user,
+		$newpage->doEditUpdates( $nullRevision, $userObj,
 			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
 
 		WikiPage::onArticleCreate( $nt );
@@ -1013,14 +1083,14 @@ class MovePage {
 						$redirectArticle,
 						$redirectRevisionObj,
 						false,
-						$user,
+						$userObj,
 						$fakeTags
 					);
 				}
 
 				$redirectArticle->doEditUpdates(
 					$inserted,
-					$user,
+					$userObj,
 					[ 'created' => true ]
 				);
 

@@ -24,6 +24,7 @@ use Liuggio\StatsdClient\Sender\SocketSender;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionStatus;
 use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
@@ -215,11 +216,8 @@ class MediaWiki {
 		// Check user's permissions to read this page.
 		// We have to check here to catch special pages etc.
 		// We will check again in Article::view().
-		$permErrors = $title->isSpecial( 'RunJobs' )
-			? [] // relies on HMAC key signature alone
-			: MediaWikiServices::getInstance()->getPermissionManager()
-				->getPermissionErrors( 'read', $user, $title );
-		if ( count( $permErrors ) ) {
+		$permissionStatus = PermissionStatus::newEmpty();
+		if ( !$this->context->getAuthority()->authorizeRead( 'read', $title, $permissionStatus ) ) {
 			// T34276: allowing the skin to generate output with $wgTitle or
 			// $this->context->title set to the input title would allow anonymous users to
 			// determine whether a page exists, potentially leaking private data. In fact, the
@@ -233,7 +231,7 @@ class MediaWiki {
 			$this->context->setTitle( $badTitle );
 			$wgTitle = $badTitle;
 
-			throw new PermissionsError( 'read', $permErrors );
+			throw new PermissionsError( 'read', $permissionStatus );
 		}
 
 		// Interwiki redirects

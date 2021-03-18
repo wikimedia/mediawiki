@@ -53,10 +53,7 @@ class FullSearchResultWidget implements SearchResultWidget {
 		// This is not quite safe, but better than showing excerpts from
 		// non-readable pages. Note that hiding the entry entirely would
 		// screw up paging (really?).
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$permissionManager->userCan(
-			'read', $this->specialPage->getUser(), $result->getTitle()
-		) ) {
+		if ( !$this->specialPage->getAuthority()->definitelyCan( 'read', $result->getTitle() ) ) {
 			return "<li>{$link}</li>";
 		}
 

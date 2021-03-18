@@ -29,6 +29,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserFactory;
 use MergeHistory;
 use MovePage;
 use NamespaceInfo;
@@ -78,6 +79,9 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -96,7 +100,8 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 		RevisionStore $revisionStore,
 		SpamChecker $spamChecker,
 		HookContainer $hookContainer,
-		WikiPageFactory $wikiPageFactory
+		WikiPageFactory $wikiPageFactory,
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -111,6 +116,7 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 		$this->spamChecker = $spamChecker;
 		$this->hookContainer = $hookContainer;
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -178,13 +184,13 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 			$this->loadBalancer,
 			$this->namespaceInfo,
 			$this->watchedItemStore,
-			$this->permissionManager,
 			$this->repoGroup,
 			$this->contentHandlerFactory,
 			$this->revisionStore,
 			$this->spamChecker,
 			$this->hookContainer,
-			$this->wikiPageFactory
+			$this->wikiPageFactory,
+			$this->userFactory
 		);
 	}
 }

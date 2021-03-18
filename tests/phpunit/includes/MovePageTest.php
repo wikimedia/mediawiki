@@ -4,7 +4,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageCommandFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -90,7 +89,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$mockLB,
 			$params['nsInfo'] ?? $mockNsInfo,
 			$params['wiStore'] ?? $this->createNoOpMock( WatchedItemStore::class ),
-			$params['permMgr'] ?? $this->createNoOpMock( PermissionManager::class ),
 			$params['repoGroup'] ?? $this->getMockRepoGroup(),
 			$params['contentHandlerFactory']
 				?? MediaWikiServices::getInstance()->getContentHandlerFactory()
@@ -152,7 +150,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
-			$services->getPermissionManager(),
 			$services->getRepoGroup(),
 			$services->getContentHandlerFactory()
 		);

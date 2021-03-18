@@ -49,6 +49,7 @@ trait MockTitleTrait {
 		$title->method( 'getContentModel' )
 			->willReturn( $props['contentModel'] ?? CONTENT_MODEL_WIKITEXT );
 		$title->method( 'getRestrictions' )->willReturn( [] );
+		$title->method( 'getTitleProtection' )->willReturn( false );
 		$title->method( 'canExist' )->willReturn( true );
 		$title->method( 'getWikiId' )->willReturn( Title::LOCAL );
 		if ( isset( $props['revision'] ) ) {

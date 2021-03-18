@@ -1683,7 +1683,8 @@ return [
 			$services->getRevisionStore(),
 			$services->getSpamChecker(),
 			$services->getHookContainer(),
-			$services->getWikiPageFactory()
+			$services->getWikiPageFactory(),
+			$services->getUserFactory()
 		);
 	},
 

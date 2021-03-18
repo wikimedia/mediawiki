@@ -556,8 +556,6 @@ class RecentChange implements Taggable {
 	public function doMarkPatrolled( Authority $performer, $auto = false, $tags = null ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol;
 
-		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
-
 		// Fix up $tags so that the MarkPatrolled hook below always gets an array
 		if ( $tags === null ) {
 			$tags = [];
