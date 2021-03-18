@@ -52,6 +52,11 @@ class SlotRoleHandler {
 	];
 
 	/**
+	 * @var bool
+	 */
+	private $derived;
+
+	/**
 	 * @var string
 	 */
 	private $contentModel;
@@ -65,11 +70,18 @@ class SlotRoleHandler {
 	 *        implementation of isAllowedModel(), also the only content model allowed for the
 	 *        slot. Subclasses may however handle default and allowed models differently.
 	 * @param string[] $layout Layout hints, for use by RevisionRenderer. See getOutputLayoutHints.
+	 * @param bool $derived Is this handler for a derived slot? Derived slots allow information that
+	 *        is derived from the content of a page to be stored even if it is generated
+	 *        asynchronously or updated later. Their size is not included in the revision size,
+	 *        their hash does not contribute to the revision hash, and updates are not included
+	 *        in revision history.
+	 * @since 1.36 optional $derived parameter added
 	 */
-	public function __construct( $role, $contentModel, $layout = [] ) {
+	public function __construct( $role, $contentModel, $layout = [], bool $derived = false ) {
 		$this->role = $role;
 		$this->contentModel = $contentModel;
 		$this->layout = array_merge( $this->layout, $layout );
+		$this->derived = $derived;
 	}
 
 	/**
@@ -102,6 +114,14 @@ class SlotRoleHandler {
 	 */
 	public function getOutputLayoutHints() {
 		return $this->layout;
+	}
+
+	/**
+	 * @return bool Is this a handler for a derived slot?
+	 * @since 1.36
+	 */
+	public function isDerived() : bool {
+		return $this->derived;
 	}
 
 	/**

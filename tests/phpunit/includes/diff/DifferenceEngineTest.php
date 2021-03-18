@@ -35,6 +35,17 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->setMwGlobals( [ 'wgDiffEngine' => 'php' ] );
+
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
+
+		if ( !$slotRoleRegistry->isDefinedRole( 'derivedslot' ) ) {
+			$slotRoleRegistry->defineRoleWithModel(
+				'derivedslot',
+				CONTENT_MODEL_WIKITEXT,
+				[],
+				true
+			);
+		}
 	}
 
 	/**
@@ -247,6 +258,10 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 			ContentHandler::makeContent( 'aaa', null, CONTENT_MODEL_TEXT ) );
 		$slot2 = SlotRecord::newUnsaved( 'slot',
 			ContentHandler::makeContent( 'bbb', null, CONTENT_MODEL_TEXT ) );
+		$slot3 = SlotRecord::newDerived( 'derivedslot',
+			ContentHandler::makeContent( 'aaa', null, CONTENT_MODEL_TEXT ) );
+		$slot4 = SlotRecord::newDerived( 'derivedslot',
+			ContentHandler::makeContent( 'bbb', null, CONTENT_MODEL_TEXT ) );
 
 		return [
 			'revision vs. null' => [
@@ -273,6 +288,11 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 				$this->getRevisionRecord( $main1 ),
 				$this->getRevisionRecord( $main1, $slot1 ),
 				"slotLine 1:\nLine 1:\n- +aaa",
+			],
+			'ignored difference in derived slot' => [
+				$this->getRevisionRecord( $main1, $slot3 ),
+				$this->getRevisionRecord( $main1, $slot4 ),
+				'',
 			],
 		];
 	}

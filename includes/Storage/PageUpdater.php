@@ -704,7 +704,9 @@ class PageUpdater {
 		Assert::parameterType( 'integer', $flags, '$flags' );
 
 		if ( $this->wasCommitted() ) {
-			throw new RuntimeException( 'saveRevision() has already been called on this PageUpdater!' );
+			throw new RuntimeException(
+				'saveRevision() or updateRevision() has already been called on this PageUpdater!'
+			);
 		}
 
 		// Low-level sanity check
@@ -829,6 +831,81 @@ class PageUpdater {
 		return ( $this->status && $this->status->isOK() )
 			? $this->status->value['revision-record']
 			: null;
+	}
+
+	/**
+	 * Updates derived slots of an existing article. Does not update RC. Updates all necessary
+	 * caches, optionally via the deferred update array. This does not check user permissions.
+	 * Does not do a PST.
+	 *
+	 * Use isUnchanged(), wasSuccessful() and getStatus() to determine the outcome of the
+	 * revision update.
+	 *
+	 * @param int $revId
+	 * @since 1.36
+	 */
+	public function updateRevision( int $revId = 0 ) {
+		if ( $this->wasCommitted() ) {
+			throw new RuntimeException(
+				'saveRevision() or updateRevision() has already been called on this PageUpdater!'
+			);
+		}
+
+		// Low-level sanity check
+		if ( $this->getLinkTarget()->getText() === '' ) {
+			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
+		}
+
+		$status = Status::newGood();
+		$this->checkAllRolesAllowed(
+			$this->slotsUpdate->getModifiedRoles(),
+			$status
+		);
+		$this->checkAllRolesDerived(
+			$this->slotsUpdate->getModifiedRoles(),
+			$status
+		);
+		$this->checkAllRolesDerived(
+			$this->slotsUpdate->getRemovedRoles(),
+			$status
+		);
+
+		if ( $revId === 0 ) {
+			$revision = $this->grabParentRevision();
+		} else {
+			$revision = $this->revisionStore->getRevisionById( $revId, RevisionStore::READ_LATEST );
+		}
+		if ( $revision === null ) {
+			$status->fatal( 'edit-gone-missing' );
+		}
+
+		if ( !$status->isOK() ) {
+			$this->status = $status;
+			return;
+		}
+
+		// Make sure the given content is allowed in the respective slots of this page
+		foreach ( $this->slotsUpdate->getModifiedRoles() as $role ) {
+			$slot = $this->slotsUpdate->getModifiedSlot( $role );
+			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
+
+			if ( !$roleHandler->isAllowedModel( $slot->getModel(), $this->getTitle() ) ) {
+				$contentHandler = $this->contentHandlerFactory
+					->getContentHandler( $slot->getModel() );
+				$this->status = Status::newFatal(
+					'content-not-allowed-here',
+					ContentHandler::getLocalizedName( $contentHandler->getModelID() ),
+					$this->getTitle()->getPrefixedText(),
+					wfMessage( $roleHandler->getNameMessageKey() )
+				// TODO: defer message lookup to caller
+				);
+				return;
+			}
+		}
+
+		// do we need PST?
+
+		$this->status = $this->doUpdate( $this->performer->getUser(), $revision );
 	}
 
 	/**
@@ -1009,9 +1086,71 @@ class PageUpdater {
 	}
 
 	/**
+	 * Update derived slots in an existing revision. If the revision is the current revision,
+	 * this will update page_touched and trigger secondary updates.
+	 *
+	 * We do not have sufficient information to know whether to or how to update recentchanges
+	 * here, so, as opposed to doCreate(), updating recentchanges is left as the responsibility
+	 * of the caller.
+	 *
+	 * @param UserIdentity $user
+	 * @param RevisionRecord $revision
+	 * @return Status
+	 */
+	private function doUpdate( UserIdentity $user, RevisionRecord $revision ) : Status {
+		$currentRevision = $this->grabParentRevision();
+		if ( !$currentRevision ) {
+			// Article gone missing
+			return Status::newFatal( 'edit-gone-missing' );
+		}
+
+		$dbw = $this->getDBConnectionRef( DB_MASTER );
+		$dbw->startAtomic( __METHOD__ );
+
+		$slots = $this->revisionStore->updateslotsOn( $revision, $this->slotsUpdate, $dbw );
+
+		$dbw->endAtomic( __METHOD__ );
+
+		// Return the slots and revision to the caller
+		$newRevisionRecord = MutableRevisionRecord::newUpdatedRevisionRecord( $revision, $slots );
+		$status = Status::newGood( [
+			'revision-record' => $newRevisionRecord,
+			'slots' => $slots,
+		] );
+
+		$isCurrent = $revision->getId( $this->getWikiId() ) ===
+			$currentRevision->getId( $this->getWikiId() );
+
+		if ( $isCurrent ) {
+			// Update page_touched
+			$this->getTitle()->invalidateCache( $newRevisionRecord->getTimestamp() );
+
+			$this->buildEditResult( $newRevisionRecord, false );
+
+			// Do secondary updates once the main changes have been committed...
+			$wikiPage = $this->getWikiPage(); // TODO: use for legacy hooks only!
+			DeferredUpdates::addUpdate(
+				$this->getAtomicSectionUpdate(
+					$dbw,
+					$wikiPage,
+					$newRevisionRecord,
+					$user,
+					$revision->getComment(),
+					EDIT_INTERNAL,
+					$status,
+					[ 'changed' => false, ]
+				),
+				DeferredUpdates::PRESEND
+			);
+		}
+
+		return $status;
+	}
+
+	/**
 	 * @param CommentStoreComment $summary The edit summary
 	 * @param UserIdentity $user The revision's author
-	 * @param int $flags EXIT_XXX constants
+	 * @param int $flags EDIT_XXX constants
 	 *
 	 * @throws MWException
 	 * @return Status
@@ -1193,7 +1332,7 @@ class PageUpdater {
 	/**
 	 * @param CommentStoreComment $summary The edit summary
 	 * @param UserIdentity $user The revision's author
-	 * @param int $flags EXIT_XXX constants
+	 * @param int $flags EDIT_XXX constants
 	 *
 	 * @throws DBUnexpectedError
 	 * @throws MWException
@@ -1457,6 +1596,10 @@ class PageUpdater {
 		}
 	}
 
+	/**
+	 * @param array $roles
+	 * @param Status $status
+	 */
 	private function checkAllRolesAllowed( array $roles, Status $status ) {
 		$allowedRoles = $this->getAllowedSlotRoles();
 
@@ -1470,6 +1613,30 @@ class PageUpdater {
 		}
 	}
 
+	/**
+	 * @param array $roles
+	 * @param Status $status
+	 */
+	private function checkAllRolesDerived( array $roles, Status $status ) {
+		$notDerived = array_filter(
+			$roles,
+			function ( $role ) {
+				return !$this->slotRoleRegistry->getRoleHandler( $role )->isDerived();
+			}
+		);
+		if ( $notDerived ) {
+			$status->error(
+				'edit-slots-not-derived',
+				count( $notDerived ),
+				implode( ', ', $notDerived )
+			);
+		}
+	}
+
+	/**
+	 * @param array $roles
+	 * @param Status $status
+	 */
 	private function checkNoRolesRequired( array $roles, Status $status ) {
 		$requiredRoles = $this->getRequiredSlotRoles();
 
@@ -1483,6 +1650,10 @@ class PageUpdater {
 		}
 	}
 
+	/**
+	 * @param array $roles
+	 * @param Status $status
+	 */
 	private function checkAllRequiredRoles( array $roles, Status $status ) {
 		$requiredRoles = $this->getRequiredSlotRoles();
 

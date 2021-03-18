@@ -55,6 +55,11 @@ class SlotRecord {
 	private $content;
 
 	/**
+	 * @var bool
+	 */
+	private $derived;
+
+	/**
 	 * Returns a new SlotRecord just like the given $slot, except that calling getContent()
 	 * will fail with an exception.
 	 *
@@ -71,6 +76,19 @@ class SlotRecord {
 	}
 
 	/**
+	 * Returns a SlotRecord for a derived slot.
+	 *
+	 * @param string $role
+	 * @param Content $content Initial content
+	 *
+	 * @return SlotRecord
+	 * @since 1.36
+	 */
+	public static function newDerived( string $role, Content $content ) {
+		return self::newUnsaved( $role, $content, true );
+	}
+
+	/**
 	 * Constructs a new SlotRecord from an existing SlotRecord, overriding some fields.
 	 * The slot's content cannot be overwritten.
 	 *
@@ -79,7 +97,7 @@ class SlotRecord {
 	 *
 	 * @return SlotRecord
 	 */
-	private static function newDerived( SlotRecord $slot, array $overrides = [] ) {
+	private static function newFromSlotRecord( SlotRecord $slot, array $overrides = [] ) {
 		$row = clone $slot->row;
 		$row->slot_id = null; // never copy the row ID!
 
@@ -87,7 +105,7 @@ class SlotRecord {
 			$row->$key = $value;
 		}
 
-		return new SlotRecord( $row, $slot->content );
+		return new SlotRecord( $row, $slot->content, $slot->isDerived() );
 	}
 
 	/**
@@ -109,7 +127,7 @@ class SlotRecord {
 		$slot->getAddress();
 
 		// NOTE: slot_origin and content_address are copied from $slot.
-		return self::newDerived( $slot, [
+		return self::newFromSlotRecord( $slot, [
 			'slot_revision_id' => null,
 		] );
 	}
@@ -125,10 +143,10 @@ class SlotRecord {
 	 *
 	 * @param string $role
 	 * @param Content $content
-	 *
+	 * @param bool $derived
 	 * @return SlotRecord An incomplete proto-slot object, to be used with newSaved() later.
 	 */
-	public static function newUnsaved( $role, Content $content ) {
+	public static function newUnsaved( $role, Content $content, bool $derived = false ) {
 		Assert::parameterType( 'string', $role, '$role' );
 
 		$row = [
@@ -143,7 +161,7 @@ class SlotRecord {
 			'model_name' => $content->getModel(),
 		];
 
-		return new SlotRecord( (object)$row, $content );
+		return new SlotRecord( (object)$row, $content, $derived );
 	}
 
 	/**
@@ -212,7 +230,7 @@ class SlotRecord {
 			$origin = $revisionId;
 		}
 
-		return self::newDerived( $protoSlot, [
+		return self::newFromSlotRecord( $protoSlot, [
 			'slot_revision_id' => $revisionId,
 			'slot_content_id' => $contentId,
 			'slot_origin' => $origin,
@@ -232,8 +250,13 @@ class SlotRecord {
 	 *        callbacks here, for security reasons.
 	 * @param Content|callable $content The content object associated with the slot, or a
 	 *        callback that will return that Content object, given this SlotRecord as a parameter.
+	 * @param bool $derived Is this handler for a derived slot? Derived slots allow information that
+	 *        is derived from the content of a page to be stored even if it is generated
+	 *        asynchronously or updated later. Their size is not included in the revision size,
+	 *        their hash does not contribute to the revision hash, and updates are not included
+	 *        in revision history.
 	 */
-	public function __construct( $row, $content ) {
+	public function __construct( $row, $content, bool $derived = false ) {
 		Assert::parameterType( \stdClass::class, $row, '$row' );
 		Assert::parameterType( 'Content|callable', $content, '$content' );
 
@@ -275,6 +298,7 @@ class SlotRecord {
 
 		$this->row = $row;
 		$this->content = $content;
+		$this->derived = $derived;
 	}
 
 	/**
@@ -650,6 +674,14 @@ class SlotRecord {
 		}
 
 		return true;
+	}
+
+	/**
+	 * @return bool Is this a derived slot?
+	 * @since 1.36
+	 */
+	public function isDerived() : bool {
+		return $this->derived;
 	}
 
 }
