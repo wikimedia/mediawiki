@@ -27,6 +27,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
@@ -35,7 +36,6 @@ use MovePage;
 use NamespaceInfo;
 use RepoGroup;
 use Title;
-use User;
 use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
@@ -120,22 +120,22 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 	}
 
 	/**
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param WikiPage $wikipage
 	 * @param string $newContentModel
 	 * @return ContentModelChange
 	 */
 	public function newContentModelChange(
-		User $user,
+		Authority $performer,
 		WikiPage $wikipage,
 		string $newContentModel
 	) : ContentModelChange {
 		return new ContentModelChange(
 			$this->contentHandlerFactory,
 			$this->hookContainer,
-			$this->permissionManager,
 			$this->revisionStore,
-			$user,
+			$this->userFactory,
+			$performer,
 			$wikipage,
 			$newContentModel
 		);

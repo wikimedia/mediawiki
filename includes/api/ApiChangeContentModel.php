@@ -48,22 +48,20 @@ class ApiChangeContentModel extends ApiBase {
 		if ( !$title->exists() ) {
 			$this->dieWithError( 'apierror-changecontentmodel-missingtitle' );
 		}
-		$plainTitle = Message::plaintextParam( $title->getPrefixedText() );
 
 		$newModel = $params['model'];
-		$user = $this->getUser();
 
 		$this->checkUserRightsAny( 'editcontentmodel' );
 		$changer = $this->contentModelChangeFactory->newContentModelChange(
-			$user,
+			$this->getAuthority(),
 			$wikiPage,
 			$newModel
 		);
 		// Status messages should be apierror-*
 		$changer->setMessagePrefix( 'apierror-' );
-		$errors = $changer->checkPermissions();
-		if ( $errors !== [] ) {
-			$this->dieStatus( $this->errorArrayToStatus( $errors, $user ) );
+		$permissionStatus = $changer->authorizeChange();
+		if ( !$permissionStatus->isGood() ) {
+			$this->dieStatus( $permissionStatus );
 		}
 
 		if ( $params['tags'] ) {

@@ -6,7 +6,6 @@ use CommentStoreComment;
 use Content;
 use DeferredUpdates;
 use FormatJson;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
@@ -23,6 +22,7 @@ use Title;
 use User;
 use Wikimedia\AtEase\AtEase;
 use WikiPage;
+use WikitextContent;
 
 /**
  * @covers \MediaWiki\Storage\PageUpdater
@@ -41,12 +41,21 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();
 
 		if ( !$slotRoleRegistry->isDefinedRole( 'aux' ) ) {
 			$slotRoleRegistry->defineRoleWithModel(
 				'aux',
 				CONTENT_MODEL_WIKITEXT
+			);
+		}
+
+		if ( !$slotRoleRegistry->isDefinedRole( 'derivedslot' ) ) {
+			$slotRoleRegistry->defineRoleWithModel(
+				'derivedslot',
+				CONTENT_MODEL_WIKITEXT,
+				[],
+				true
 			);
 		}
 
@@ -631,7 +640,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Storage\PageUpdater::setRcPatrolStatus()
 	 */
 	public function testSetRcPatrolStatus( $patrolled ) {
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		$user = $this->getTestUser()->getUser();
 		$authority = $this->newAuthority( $user );
@@ -723,6 +732,88 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotSame( $main1->getRevision(), $main3->getRevision() );
 		$this->assertSame( $main1->getAddress(), $main3->getAddress() );
 		$this->assertTrue( $main1->getContent()->equals( $main3->getContent() ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::setSlot()
+	 * @covers \MediaWiki\Storage\PageUpdater::updateRevision()
+	 */
+	public function testUpdatingDerivedSlot() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'one' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
+		$updater->saveRevision( $summary, EDIT_NEW );
+
+		$updater = $page->newPageUpdater( $user );
+		$content = new WikitextContent( 'A' );
+		$derived = SlotRecord::newDerived( 'derivedslot', $content );
+		$updater->setSlot( $derived );
+		$updater->updateRevision();
+
+		$status = $updater->getStatus();
+		$this->assertTrue( $status->isOK() );
+		$rev = $status->getValue()['revision-record'];
+		$slot = $rev->getSlot( 'derivedslot' );
+		$this->assertTrue( $slot->getContent()->equals( $content ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::setSlot()
+	 * @covers \MediaWiki\Storage\PageUpdater::updateRevision()
+	 */
+	public function testUpdatingDerivedSlotCurrentRevision() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'one' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
+		$rev1 = $updater->saveRevision( $summary, EDIT_NEW );
+
+		$updater = $page->newPageUpdater( $user );
+		$content = new WikitextContent( 'A' );
+		$derived = SlotRecord::newDerived( 'derivedslot', $content );
+		$updater->setSlot( $derived );
+		$updater->updateRevision( $rev1->getId( $rev1->getWikiId() ) );
+
+		$rev2 = $updater->getStatus()->getValue()['revision-record'];
+		$slot = $rev2->getSlot( 'derivedslot' );
+		$this->assertTrue( $slot->getContent()->equals( $content ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::setSlot()
+	 * @covers \MediaWiki\Storage\PageUpdater::updateRevision()
+	 */
+	public function testUpdatingDerivedSlotOldRevision() {
+		$user = $this->getTestUser()->getUser();
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'one' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Lorem ipsum' ) );
+		$rev1 = $updater->saveRevision( $summary, EDIT_NEW );
+
+		$updater = $page->newPageUpdater( $user );
+		$summary = CommentStoreComment::newUnsavedComment( 'two' );
+		$updater->setContent( SlotRecord::MAIN, new TextContent( 'Something different' ) );
+		$updater->saveRevision( $summary, EDIT_UPDATE );
+
+		$updater = $page->newPageUpdater( $user );
+		$content = new WikitextContent( 'A' );
+		$derived = SlotRecord::newDerived( 'derivedslot', $content );
+		$updater->setSlot( $derived );
+		$updater->updateRevision( $rev1->getId( $rev1->getWikiId() ) );
+
+		$rev3 = $updater->getStatus()->getValue()['revision-record'];
+		$slot = $rev3->getSlot( 'derivedslot' );
+		$this->assertTrue( $slot->getContent()->equals( $content ) );
 	}
 
 	// TODO: MCR: test adding multiple slots, inheriting parent slots, and removing slots.

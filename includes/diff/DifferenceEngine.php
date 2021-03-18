@@ -333,9 +333,9 @@ class DifferenceEngine extends ContextSource {
 			return [];
 		}
 
-		$newSlots = $this->mNewRevisionRecord->getSlots()->getSlots();
+		$newSlots = $this->mNewRevisionRecord->getPrimarySlots()->getSlots();
 		if ( $this->mOldRevisionRecord ) {
-			$oldSlots = $this->mOldRevisionRecord->getSlots()->getSlots();
+			$oldSlots = $this->mOldRevisionRecord->getPrimarySlots()->getSlots();
 		} else {
 			$oldSlots = [];
 		}

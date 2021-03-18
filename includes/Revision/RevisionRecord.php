@@ -273,6 +273,16 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	}
 
 	/**
+	 * Returns primary slots (those that are not derived).
+	 *
+	 * @return RevisionSlots
+	 * @since 1.36
+	 */
+	public function getPrimarySlots() : RevisionSlots {
+		return new RevisionSlots( $this->mSlots->getPrimarySlots() );
+	}
+
+	/**
 	 * Get revision ID. Depending on the concrete subclass, this may return null if
 	 * the revision ID is not known (e.g. because the revision does not yet exist
 	 * in the database).
