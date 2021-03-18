@@ -212,6 +212,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @return UserIdentity|null Returns null if no actor with this $actorId exists in the database.
 	 */
 	public function getActorById( int $actorId, IDatabase $db ): ?UserIdentity {
+		$this->checkDatabaseDomain( $db );
+
 		if ( !$actorId ) {
 			return null;
 		}
@@ -221,10 +223,21 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return $cachedValue[0];
 		}
 
-		return $this->newSelectQueryBuilder( $db )
+		$actor = $this->newSelectQueryBuilder( $db )
 			->caller( __METHOD__ )
 			->conds( [ 'actor_id' => $actorId ] )
 			->fetchUserIdentity();
+
+		// The actor ID mostly comes from DB, so if we can't find an actor by ID,
+		// it's most likely due to lagged replica and not cause it doesn't actually exist.
+		// Probably we just inserted it? Try master.
+		if ( !$actor ) {
+			$actor = $this->newSelectQueryBuilderForQueryFlags( self::READ_LATEST )
+				->caller( __METHOD__ )
+				->conds( [ 'actor_id' => $actorId ] )
+				->fetchUserIdentity();
+		}
+		return $actor;
 	}
 
 	/**
@@ -572,7 +585,9 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @return UserSelectQueryBuilder
 	 */
 	public function newSelectQueryBuilder( IDatabase $db = null ): UserSelectQueryBuilder {
-		if ( !$db ) {
+		if ( $db ) {
+			$this->checkDatabaseDomain( $db );
+		} else {
 			[ $db, ] = $this->getDBConnectionRefForQueryFlags( self::READ_NORMAL );
 		}
 
