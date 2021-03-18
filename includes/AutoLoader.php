@@ -85,7 +85,7 @@ class AutoLoader {
 					$relativeClass = substr( $className, $pos + 1 );
 					// Build the expected filename, and see if it exists
 					$file = self::$psr4Namespaces[$prefix] . '/' .
-						str_replace( '\\', '/', $relativeClass ) . '.php';
+						strtr( $relativeClass, '\\', '/' ) . '.php';
 					if ( file_exists( $file ) ) {
 						$filename = $file;
 						break;
@@ -103,7 +103,8 @@ class AutoLoader {
 		}
 
 		// Make an absolute path, this improves performance by avoiding some stat calls
-		if ( substr( $filename, 0, 1 ) != '/' && substr( $filename, 1, 1 ) != ':' ) {
+		// Optimisation: use string offset access instead of substr
+		if ( $filename[0] !== '/' && $filename[1] !== ':' ) {
 			global $IP;
 			$filename = "$IP/$filename";
 		}
