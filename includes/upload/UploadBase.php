@@ -47,7 +47,7 @@ use MediaWiki\User\UserIdentity;
 abstract class UploadBase {
 	use ProtectedHookAccessorTrait;
 
-	/** @var string Local file system path to the file to upload (or a local copy) */
+	/** @var string|null Local file system path to the file to upload (or a local copy) */
 	protected $mTempPath;
 	/** @var TempFSFile|null Wrapper to handle deleting the temp file */
 	protected $tempFileObj;
