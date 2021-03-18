@@ -200,11 +200,9 @@ class ApiMove extends ApiBase {
 			return $valid;
 		}
 
-		$user = $this->getUser();
-		// TODO: change to accept Authority
-		$permStatus = $mp->checkPermissions( $user, $reason );
+		$permStatus = $mp->authorizeMove( $this->getAuthority(), $reason );
 		if ( !$permStatus->isOK() ) {
-			return $permStatus;
+			return Status::wrap( $permStatus );
 		}
 
 		// Check suppressredirect permission
@@ -212,7 +210,7 @@ class ApiMove extends ApiBase {
 			$createRedirect = true;
 		}
 
-		return $mp->move( $user, $reason, $createRedirect, $changeTags );
+		return $mp->move( $this->getUser(), $reason, $createRedirect, $changeTags );
 	}
 
 	/**
@@ -228,7 +226,7 @@ class ApiMove extends ApiBase {
 
 		$mp = $this->movePageFactory->newMovePage( $fromTitle, $toTitle );
 		$result =
-			$mp->moveSubpagesIfAllowed( $this->getUser(), $reason, !$noredirect, $changeTags );
+			$mp->moveSubpagesIfAllowed( $this->getAuthority(), $reason, !$noredirect, $changeTags );
 		if ( !$result->isOK() ) {
 			// This means the whole thing failed
 			return [ 'errors' => $this->getErrorFormatter()->arrayFromStatus( $result ) ];
