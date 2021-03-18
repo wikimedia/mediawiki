@@ -142,24 +142,24 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var DatabaseDomain[] Map of (domain ID => domain instance) */
 	private $nonLocalDomainCache = [];
 
-	private static $INFO_SERVER_INDEX = 'serverIndex';
-	private static $INFO_AUTOCOMMIT_ONLY = 'autoCommitOnly';
-	private static $INFO_FORIEGN = 'foreign';
-	private static $INFO_FOREIGN_REF_COUNT = 'foreignPoolRefCount';
+	private const INFO_SERVER_INDEX = 'serverIndex';
+	private const INFO_AUTOCOMMIT_ONLY = 'autoCommitOnly';
+	private const INFO_FORIEGN = 'foreign';
+	private const INFO_FOREIGN_REF_COUNT = 'foreignPoolRefCount';
 
 	/**
-	 * @var int Default 'maxLag' when unspecified
+	 * Default 'maxLag' when unspecified
 	 * @internal Only for use within LoadBalancer/LoadMonitor
 	 */
 	public const MAX_LAG_DEFAULT = 6;
 
-	/** @var int Default 'waitTimeout' when unspecified */
-	private const MAX_WAIT_DEFAULT = 10;
-	/** @var int Seconds to cache master DB server read-only status */
-	private const TTL_CACHE_READONLY = 5;
-
-	/** @var int Warn when this many connection are held */
+	/** Warn when this many connection are held */
 	private const CONN_HELD_WARN_THRESHOLD = 10;
+
+	/** Default 'waitTimeout' when unspecified */
+	private const MAX_WAIT_DEFAULT = 10;
+	/** Seconds to cache master DB server read-only status */
+	private const TTL_CACHE_READONLY = 5;
 
 	private const KEY_LOCAL = 'local';
 	private const KEY_FOREIGN_FREE = 'foreignFree';
@@ -171,17 +171,17 @@ class LoadBalancer implements ILoadBalancer {
 
 	private const KEY_LOCAL_DOMAIN = '__local__';
 
-	/** @var string Transaction round, explicit or implicit, has not finished writing */
+	/** Transaction round, explicit or implicit, has not finished writing */
 	private const ROUND_CURSORY = 'cursory';
-	/** @var string Transaction round writes are complete and ready for pre-commit checks */
+	/** Transaction round writes are complete and ready for pre-commit checks */
 	private const ROUND_FINALIZED = 'finalized';
-	/** @var string Transaction round passed final pre-commit checks */
+	/** Transaction round passed final pre-commit checks */
 	private const ROUND_APPROVED = 'approved';
-	/** @var string Transaction round was committed and post-commit callbacks must be run */
+	/** Transaction round was committed and post-commit callbacks must be run */
 	private const ROUND_COMMIT_CALLBACKS = 'commit-callbacks';
-	/** @var string Transaction round was rolled back and post-rollback callbacks must be run */
+	/** Transaction round was rolled back and post-rollback callbacks must be run */
 	private const ROUND_ROLLBACK_CALLBACKS = 'rollback-callbacks';
-	/** @var string Transaction round encountered an error */
+	/** Transaction round encountered an error */
 	private const ROUND_ERROR = 'error';
 
 	/** @var int Idiom for getExistingReaderIndex() meaning "no index selected" */
@@ -852,7 +852,7 @@ class LoadBalancer implements ILoadBalancer {
 
 				if ( $autoCommitOnly ) {
 					// Only accept CONN_TRX_AUTOCOMMIT connections
-					if ( !$conn->getLBInfo( self::$INFO_AUTOCOMMIT_ONLY ) ) {
+					if ( !$conn->getLBInfo( self::INFO_AUTOCOMMIT_ONLY ) ) {
 						// Connection is aware of transaction rounds
 						continue;
 					}
@@ -1036,8 +1036,8 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function reuseConnection( IDatabase $conn ) {
-		$serverIndex = $conn->getLBInfo( self::$INFO_SERVER_INDEX );
-		$refCount = $conn->getLBInfo( self::$INFO_FOREIGN_REF_COUNT );
+		$serverIndex = $conn->getLBInfo( self::INFO_SERVER_INDEX );
+		$refCount = $conn->getLBInfo( self::INFO_FOREIGN_REF_COUNT );
 		if ( $serverIndex === null || $refCount === null ) {
 			return; // non-foreign connection; no domain-use tracking to update
 		} elseif ( $conn instanceof DBConnRef ) {
@@ -1055,7 +1055,7 @@ class LoadBalancer implements ILoadBalancer {
 			return; // DBConnRef handle probably survived longer than the LoadBalancer
 		}
 
-		if ( $conn->getLBInfo( self::$INFO_AUTOCOMMIT_ONLY ) ) {
+		if ( $conn->getLBInfo( self::INFO_AUTOCOMMIT_ONLY ) ) {
 			$connFreeKey = self::KEY_FOREIGN_FREE_NOROUND;
 			$connInUseKey = self::KEY_FOREIGN_INUSE_NOROUND;
 		} else {
@@ -1073,7 +1073,7 @@ class LoadBalancer implements ILoadBalancer {
 				"Connection $serverIndex/$domain mismatched; it may have already been freed" );
 		}
 
-		$existingDomainConn->setLBInfo( self::$INFO_FOREIGN_REF_COUNT, --$refCount );
+		$existingDomainConn->setLBInfo( self::INFO_FOREIGN_REF_COUNT, --$refCount );
 		if ( $refCount <= 0 ) {
 			$this->conns[$connFreeKey][$serverIndex][$domain] = $existingDomainConn;
 			unset( $this->conns[$connInUseKey][$serverIndex][$domain] );
@@ -1176,7 +1176,7 @@ class LoadBalancer implements ILoadBalancer {
 			$conn = $this->reallyOpenConnection(
 				$i,
 				$this->localDomain,
-				[ self::$INFO_AUTOCOMMIT_ONLY => $autoCommit ]
+				[ self::INFO_AUTOCOMMIT_ONLY => $autoCommit ]
 			);
 			if ( $conn->isOpen() ) {
 				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i" );
@@ -1289,9 +1289,9 @@ class LoadBalancer implements ILoadBalancer {
 				$i,
 				$domainInstance,
 				[
-					self::$INFO_AUTOCOMMIT_ONLY => $autoCommit,
-					self::$INFO_FORIEGN => true,
-					self::$INFO_FOREIGN_REF_COUNT => 0
+					self::INFO_AUTOCOMMIT_ONLY => $autoCommit,
+					self::INFO_FORIEGN => true,
+					self::INFO_FOREIGN_REF_COUNT => 0
 				]
 			);
 			if ( $conn->isOpen() ) {
@@ -1315,8 +1315,8 @@ class LoadBalancer implements ILoadBalancer {
 					"Got connection to '{$conn->getDomainID()}', but expected '$domain'" );
 			}
 			// Increment reference count
-			$refCount = $conn->getLBInfo( self::$INFO_FOREIGN_REF_COUNT );
-			$conn->setLBInfo( self::$INFO_FOREIGN_REF_COUNT, $refCount + 1 );
+			$refCount = $conn->getLBInfo( self::INFO_FOREIGN_REF_COUNT );
+			$conn->setLBInfo( self::INFO_FOREIGN_REF_COUNT, $refCount + 1 );
 		}
 
 		return $conn;
@@ -1398,7 +1398,7 @@ class LoadBalancer implements ILoadBalancer {
 			Database::NEW_UNCONNECTED
 		);
 		// Attach load balancer information to the handle
-		$conn->setLBInfo( [ self::$INFO_SERVER_INDEX => $i ] + $lbInfo );
+		$conn->setLBInfo( [ self::INFO_SERVER_INDEX => $i ] + $lbInfo );
 		// Set alternative table/index names before any queries can be issued
 		$conn->setTableAliases( $this->tableAliases );
 		$conn->setIndexAliases( $this->indexAliases );
@@ -1657,7 +1657,7 @@ class LoadBalancer implements ILoadBalancer {
 			throw new RuntimeException( 'Cannot close DBConnRef instance; it must be shareable' );
 		}
 
-		$serverIndex = $conn->getLBInfo( self::$INFO_SERVER_INDEX );
+		$serverIndex = $conn->getLBInfo( self::INFO_SERVER_INDEX );
 		if ( $serverIndex === null ) {
 			throw new RuntimeException( 'Database handle is missing server index' );
 		}
@@ -2012,7 +2012,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param Database $conn
 	 */
 	private function applyTransactionRoundFlags( Database $conn ) {
-		if ( $conn->getLBInfo( self::$INFO_AUTOCOMMIT_ONLY ) ) {
+		if ( $conn->getLBInfo( self::INFO_AUTOCOMMIT_ONLY ) ) {
 			return; // transaction rounds do not apply to these connections
 		}
 
@@ -2031,7 +2031,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @param Database $conn
 	 */
 	private function undoTransactionRoundFlags( Database $conn ) {
-		if ( $conn->getLBInfo( self::$INFO_AUTOCOMMIT_ONLY ) ) {
+		if ( $conn->getLBInfo( self::INFO_AUTOCOMMIT_ONLY ) ) {
 			return; // transaction rounds do not apply to these connections
 		}
 
@@ -2348,7 +2348,7 @@ class LoadBalancer implements ILoadBalancer {
 	public function waitForMasterPos( IDatabase $conn, $pos = false, $timeout = null ) {
 		$timeout = max( 1, $timeout ?: $this->waitTimeout );
 
-		if ( $conn->getLBInfo( self::$INFO_SERVER_INDEX ) === $this->getWriterIndex() ) {
+		if ( $conn->getLBInfo( self::INFO_SERVER_INDEX ) === $this->getWriterIndex() ) {
 			return true; // not a replica DB server
 		}
 
@@ -2428,7 +2428,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->forEachOpenConnection( static function ( IDatabase $conn ) use ( &$domainsInUse ) {
 			// Once reuseConnection() is called on a handle, its reference count goes from 1 to 0.
 			// Until then, it is still in use by the caller (explicitly or via DBConnRef scope).
-			if ( $conn->getLBInfo( self::$INFO_FOREIGN_REF_COUNT ) > 0 ) {
+			if ( $conn->getLBInfo( self::INFO_FOREIGN_REF_COUNT ) > 0 ) {
 				$domainsInUse[] = $conn->getDomainID();
 			}
 		} );
@@ -2448,7 +2448,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		// Update the prefix for all local connections...
 		$this->forEachOpenConnection( static function ( IDatabase $conn ) use ( $prefix ) {
-			if ( !$conn->getLBInfo( self::$INFO_FORIEGN ) ) {
+			if ( !$conn->getLBInfo( self::INFO_FORIEGN ) ) {
 				$conn->tablePrefix( $prefix );
 			}
 		} );
