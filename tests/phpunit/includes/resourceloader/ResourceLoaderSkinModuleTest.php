@@ -579,4 +579,38 @@ CSS
 			array_values( $actual )
 		);
 	}
+
+	public static function provideInvalidFeatures() {
+		yield 'listed unknown' => [
+			[ 'logo', 'unknown' ],
+		];
+
+		yield 'enabled unknown' => [
+			[
+				'logo' => true,
+				'toc' => false,
+				'unknown' => true,
+			],
+		];
+
+		yield 'disbled unknown' => [
+			[
+				'logo' => true,
+				'toc' => false,
+				'unknown' => false,
+			],
+		];
+	}
+
+	/**
+	 * @covers ResourceLoaderSkinModule
+	 * @dataProvider provideInvalidFeatures
+	 */
+	public function testConstructInvalidFeatures( array $features ) {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Feature 'unknown' is not recognised" );
+		$module = new ResourceLoaderSkinModule( [
+			'features' => $features,
+		] );
+	}
 }
