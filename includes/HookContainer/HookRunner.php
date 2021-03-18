@@ -241,6 +241,7 @@ class HookRunner implements
 	\MediaWiki\Hook\LonelyPagesQueryHook,
 	\MediaWiki\Hook\MagicWordwgVariableIDsHook,
 	\MediaWiki\Hook\MaintenanceRefreshLinksInitHook,
+	\MediaWiki\Hook\MaintenanceShellStartHook,
 	\MediaWiki\Hook\MaintenanceUpdateAddParamsHook,
 	\MediaWiki\Hook\MakeGlobalVariablesScriptHook,
 	\MediaWiki\Hook\ManualLogEntryBeforePublishHook,
@@ -4656,6 +4657,14 @@ class HookRunner implements
 		return $this->container->run(
 			'XmlDumpWriterWriteRevision',
 			[ $obj, &$out, $row, $text, $rev ]
+		);
+	}
+
+	public function onMaintenanceShellStart() : void {
+		$this->container->run(
+			'MaintenanceShellStart',
+			[],
+			[ 'abortable' => false ]
 		);
 	}
 }
