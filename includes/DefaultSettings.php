@@ -2704,7 +2704,7 @@ $wgEnableWANCacheReaper = false;
  * and violations of linearizability (e.g. during timeouts). Modules that can never handle these
  * kind of anamolies should use other storage mediums.
  *
- * Valid options are the keys of $wgObjectCaches, e.g. CACHE_* constants.
+ * Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
  *
  * @see BagOStuff
  * @since 1.26
@@ -2712,16 +2712,18 @@ $wgEnableWANCacheReaper = false;
 $wgMainStash = 'db-replicated';
 
 /**
- * The object store type of the ChronologyProtector position store.
+ * The object store type for the {@link Wikimedia::Rdbms::ChronologyProtector ChronologyProtector} store.
  *
  * This should be a fast storage system optimized for lightweight ephemeral data.
- * The dataset access scope should include all application servers in the local datacenter.
- * A set of single-key operations should maintain "best effort" linearizability (e.g. they
- * observe linearizability unless connectivity/latency/disk problems arise).
+ * Data stored should be readable by all application servers in the local datacenter.
  *
- * Valid options are the keys of $wgObjectCaches, e.g. CACHE_* constants.
+ * See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements)
+ * for more detailed system administrator requirements (especially for multi-dc operations).
  *
- * @see BagOStuff
+ * Valid options are the keys of {@link $wgObjectCaches}, e.g. CACHE_* constants.
+ * Defaults to {@link $wgMainCacheType} (in ServiceWiring.php).
+ *
+ * @var string|null
  * @since 1.36
  */
 $wgChronologyProtectorStash = null;
