@@ -397,23 +397,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
-	/**
-	 * Set page_random field to a random value where it is equals to 0.
-	 *
-	 * @see T5946
-	 */
-	protected function doPageRandomUpdate() {
-		$page = $this->db->tableName( 'page' );
-		$this->db->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", __METHOD__ );
-		$rows = $this->db->affectedRows();
-
-		if ( $rows ) {
-			$this->output( "Set page_random to a random value on $rows rows where it was set to 0\n" );
-		} else {
-			$this->output( "...no page_random rows needed to be set\n" );
-		}
-	}
-
 	protected function doCategoryPopulation() {
 		if ( $this->updateRowExists( 'populate category' ) ) {
 			$this->output( "...category table already populated.\n" );
