@@ -308,7 +308,6 @@ $wgAutoloadLocalClasses = [
 	'ContextSource' => __DIR__ . '/includes/context/ContextSource.php',
 	'ContribsPager' => __DIR__ . '/includes/specials/pagers/ContribsPager.php',
 	'ConvertExtensionToRegistration' => __DIR__ . '/maintenance/convertExtensionToRegistration.php',
-	'ConvertLinks' => __DIR__ . '/maintenance/convertLinks.php',
 	'ConvertUserOptions' => __DIR__ . '/maintenance/convertUserOptions.php',
 	'ConverterRule' => __DIR__ . '/includes/language/ConverterRule.php',
 	'Cookie' => __DIR__ . '/includes/libs/Cookie.php',

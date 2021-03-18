@@ -323,11 +323,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doOldLinksUpdate() {
-		$cl = $this->maintenance->runChild( ConvertLinks::class );
-		$cl->execute();
-	}
-
 	/**
 	 * Check if we need to add talk page rows to the watchlist
 	 */
