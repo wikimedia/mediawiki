@@ -582,6 +582,9 @@ class PermissionManager {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
 			$whitelisted = true;
+		} elseif ( $this->isSameSpecialPage( 'RunJobs', $title ) ) {
+			# relies on HMAC key signature alone
+			$whitelisted = true;
 		} elseif ( is_array( $whiteListRead ) && count( $whiteListRead ) ) {
 			# Time to check the whitelist
 			# Only do these checks is there's something to check against
