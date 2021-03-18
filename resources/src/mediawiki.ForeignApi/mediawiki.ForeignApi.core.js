@@ -17,7 +17,8 @@ module.exports = ( function () {
 	 *
 	 * To ensure that the user at the foreign wiki is logged in, pass the `assert: 'user'` parameter
 	 * to #get/#post (since MW 1.23): if they are not, the API request will fail. (Note that this
-	 * doesn't guarantee that it's the same user.)
+	 * doesn't guarantee that it's the same user. To assert that the user at the foreign wiki has
+	 * a specific username, pass the `assertuser` parameter with the desired username.)
 	 *
 	 * Authentication-related MediaWiki extensions may extend this class to ensure that the user
 	 * authenticated on the current wiki will be automatically authenticated on the foreign one. These
