@@ -26,8 +26,8 @@ use MediaWiki\Session\SessionProvider;
 use UnexpectedValueException;
 
 /**
- * This is an authentication request added by AuthManager to show a "remember
- * me" checkbox. When checked, it will take more time for the authenticated session to expire.
+ * This is an authentication request added by AuthManager to show a "remember me" checkbox.
+ * When checked, it will take more time for the authenticated session to expire.
  * @stable to extend
  * @ingroup Auth
  * @since 1.27
@@ -85,7 +85,10 @@ class RememberMeAuthenticationRequest extends AuthenticationRequest {
 	/** @var bool */
 	private $checkbox = false;
 
-	/** @var int How long the user will be remembered, in seconds */
+	/**
+	 * @var int|null How long the user will be remembered, in seconds.
+	 * Null means setting the $rememberMe will have no effect
+	 */
 	protected $expiration = null;
 
 	/** @var bool */

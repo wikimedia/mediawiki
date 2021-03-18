@@ -323,11 +323,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		);
 	}
 
-	protected function doOldLinksUpdate() {
-		$cl = $this->maintenance->runChild( ConvertLinks::class );
-		$cl->execute();
-	}
-
 	/**
 	 * Check if we need to add talk page rows to the watchlist
 	 */
@@ -400,49 +395,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->db->insert( 'watchlist', $rowBatch, __METHOD__, [ 'IGNORE' ] );
 
 		$this->output( "done.\n" );
-	}
-
-	protected function doNamespaceSize() {
-		$tables = [
-			'page' => 'page',
-			'archive' => 'ar',
-			'recentchanges' => 'rc',
-			'watchlist' => 'wl',
-			'querycache' => 'qc',
-			'logging' => 'log',
-		];
-		foreach ( $tables as $table => $prefix ) {
-			$field = $prefix . '_namespace';
-
-			$tablename = $this->db->tableName( $table );
-			$result = $this->db->query( "SHOW COLUMNS FROM $tablename LIKE '$field'", __METHOD__ );
-			$info = $this->db->fetchObject( $result );
-
-			if ( substr( $info->Type, 0, 3 ) == 'int' ) {
-				$this->output( "...$field is already a full int ($info->Type).\n" );
-			} else {
-				$this->output( "Promoting $field from $info->Type to int... " );
-				$this->db->query( "ALTER TABLE $tablename MODIFY $field int NOT NULL", __METHOD__ );
-				$this->output( "done.\n" );
-			}
-		}
-	}
-
-	/**
-	 * Set page_random field to a random value where it is equals to 0.
-	 *
-	 * @see T5946
-	 */
-	protected function doPageRandomUpdate() {
-		$page = $this->db->tableName( 'page' );
-		$this->db->query( "UPDATE $page SET page_random = RAND() WHERE page_random = 0", __METHOD__ );
-		$rows = $this->db->affectedRows();
-
-		if ( $rows ) {
-			$this->output( "Set page_random to a random value on $rows rows where it was set to 0\n" );
-		} else {
-			$this->output( "...no page_random rows needed to be set\n" );
-		}
 	}
 
 	protected function doCategoryPopulation() {
