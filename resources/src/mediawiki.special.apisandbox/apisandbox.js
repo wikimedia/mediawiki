@@ -15,6 +15,7 @@
 		OptionalParamWidget = require( './OptionalParamWidget.js' ),
 		ParamLabelWidget = require( './ParamLabelWidget.js' ),
 		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
+		LimitParamWidget = require( './LimitParamWidget.js' ),
 		DateTimeParamWidget = require( './DateTimeParamWidget.js' ),
 		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
@@ -362,25 +363,12 @@
 					break;
 
 				case 'limit':
-					widget = new OO.ui.TextInputWidget( {
+					widget = new LimitParamWidget( {
 						required: Util.apiBool( pi.required )
-					} );
-					widget.setValidation( function ( value ) {
-						var n, info = this.paramInfo;
-
-						if ( value === 'max' ) {
-							return true;
-						} else {
-							n = +value;
-							return !isNaN( n ) && isFinite( n ) &&
-								Math.floor( n ) === n &&
-								n >= info.min && n <= info.apiSandboxMax;
-						}
 					} );
 					pi.min = pi.min || 0;
 					pi.apiSandboxMax = ( mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max ) || pi.max;
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
 					multiModeAllowed = true;
 					multiModeInput = widget;
 					break;
@@ -390,7 +378,6 @@
 						required: Util.apiBool( pi.required )
 					} );
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
 					multiModeAllowed = true;
 					break;
 
