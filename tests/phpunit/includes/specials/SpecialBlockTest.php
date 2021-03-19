@@ -137,7 +137,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm()
 	 */
 	public function testProcessForm() {
-		$badActor = $this->getTestUser()->getUser();
+		$badActor = $this->getTestUser()->getUserIdentity();
 		$context = RequestContext::getMain();
 		$context->setUser( $this->getTestSysop()->getUser() );
 
