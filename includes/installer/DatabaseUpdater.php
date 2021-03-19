@@ -1237,17 +1237,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Migrates user options from the user table blob to user_properties
-	 */
-	protected function doMigrateUserOptions() {
-		if ( $this->db->tableExists( 'user_properties', __METHOD__ ) ) {
-			$cl = $this->maintenance->runChild( ConvertUserOptions::class, 'convertUserOptions.php' );
-			$cl->execute();
-			$this->output( "done.\n" );
-		}
-	}
-
-	/**
 	 * Rebuilds the localisation cache
 	 */
 	protected function rebuildLocalisationCache() {
