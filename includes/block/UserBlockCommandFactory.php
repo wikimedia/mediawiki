@@ -23,6 +23,8 @@ namespace MediaWiki\Block;
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use User;
@@ -48,6 +50,9 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/** @var DatabaseBlockStore */
 	private $blockStore;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -63,6 +68,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 * @param BlockUtils $blockUtils
 	 * @param DatabaseBlockStore $blockStore
 	 * @param BlockRestrictionStore $blockRestrictionStore
+	 * @param UserFactory $userFactory
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
@@ -72,6 +78,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		BlockUtils $blockUtils,
 		DatabaseBlockStore $blockStore,
 		BlockRestrictionStore $blockRestrictionStore,
+		UserFactory $userFactory,
 		LoggerInterface $logger
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -82,6 +89,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		$this->blockUtils = $blockUtils;
 		$this->blockStore = $blockStore;
 		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->userFactory = $userFactory;
 		$this->logger = $logger;
 	}
 
@@ -89,7 +97,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 * Create BlockUser
 	 *
 	 * @param string|UserIdentity $target Target of the block
-	 * @param User $performer Performer of the block
+	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
 	 * @param array $blockOptions Block options
@@ -100,7 +108,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 */
 	public function newBlockUser(
 		$target,
-		User $performer,
+		Authority $performer,
 		string $expiry,
 		string $reason = '',
 		array $blockOptions = [],
@@ -118,6 +126,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->blockUtils,
 			$this->hookContainer,
 			$this->blockStore,
+			$this->userFactory,
 			$this->logger,
 			$target,
 			$performer,
@@ -131,7 +140,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 
 	/**
 	 * @param User|string $target
-	 * @param User $performer
+	 * @param Authority $performer
 	 * @param string $reason
 	 * @param string[] $tags
 	 *
@@ -139,13 +148,14 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 */
 	public function newUnblockUser(
 		$target,
-		User $performer,
+		Authority $performer,
 		string $reason,
 		array $tags = []
 	) : UnblockUser {
 		return new UnblockUser(
 			$this->blockPermissionCheckerFactory,
 			$this->blockStore,
+			$this->userFactory,
 			$this->hookContainer,
 			$target,
 			$performer,

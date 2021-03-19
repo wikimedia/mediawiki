@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Permissions\Authority;
 use User;
 
 /**
@@ -29,7 +30,7 @@ use User;
 interface UnblockUserFactory {
 	/**
 	 * @param User|string $target
-	 * @param User $performer
+	 * @param Authority $performer
 	 * @param string $reason
 	 * @param string[] $tags
 	 *
@@ -37,7 +38,7 @@ interface UnblockUserFactory {
 	 */
 	public function newUnblockUser(
 		$target,
-		User $performer,
+		Authority $performer,
 		string $reason,
 		array $tags = []
 	) : UnblockUser;

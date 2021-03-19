@@ -87,7 +87,7 @@ class ApiUnblock extends ApiBase {
 		$status = $this->permissionCheckerFactory
 			->newBlockPermissionChecker(
 				$target,
-				$performer
+				$this->getAuthority()
 			)->checkBlockPermissions();
 		if ( $status !== true ) {
 			$this->dieWithError(
@@ -99,7 +99,7 @@ class ApiUnblock extends ApiBase {
 
 		$status = $this->unblockUserFactory->newUnblockUser(
 			$target,
-			$performer,
+			$this->getAuthority(),
 			$params['reason'],
 			$params['tags'] ?? []
 		)->unblock();

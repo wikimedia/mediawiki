@@ -29,6 +29,8 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Message;
 use Psr\Log\LoggerInterface;
@@ -63,7 +65,7 @@ class BlockUser {
 	 */
 	private $targetType;
 
-	/** @var User Performer of the block */
+	/** @var Authority Performer of the block */
 	private $performer;
 
 	/** @var ServiceOptions */
@@ -83,6 +85,9 @@ class BlockUser {
 
 	/** @var DatabaseBlockStore */
 	private $databaseBlockStore;
+
+	/** @var UserFactory */
+	private $userFactory;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -163,9 +168,10 @@ class BlockUser {
 	 * @param BlockUtils $blockUtils
 	 * @param HookContainer $hookContainer
 	 * @param DatabaseBlockStore $databaseBlockStore
+	 * @param UserFactory $userFactory
 	 * @param LoggerInterface $logger
 	 * @param string|UserIdentity $target Target of the block
-	 * @param User $performer Performer of the block
+	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
 	 * @param bool[] $blockOptions Block options
@@ -189,9 +195,10 @@ class BlockUser {
 		BlockUtils $blockUtils,
 		HookContainer $hookContainer,
 		DatabaseBlockStore $databaseBlockStore,
+		UserFactory $userFactory,
 		LoggerInterface $logger,
 		$target,
-		User $performer,
+		Authority $performer,
 		string $expiry,
 		string $reason,
 		array $blockOptions,
@@ -210,10 +217,11 @@ class BlockUser {
 		$this->blockUtils = $blockUtils;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->databaseBlockStore = $databaseBlockStore;
+		$this->userFactory = $userFactory;
 		$this->logger = $logger;
 
 		// Process block target
-		list( $this->target, $rawTargetType ) = AbstractBlock::parseTarget( $target );
+		list( $this->target, $rawTargetType ) = $this->blockUtils->parseBlockTarget( $target );
 		if ( $rawTargetType !== null ) { // Guard against invalid targets
 			$this->targetType = $rawTargetType;
 		} else {
@@ -345,7 +353,7 @@ class BlockUser {
 		$isSitewide = !$this->isPartial();
 
 		$block->setTarget( $this->target );
-		$block->setBlocker( $this->performer );
+		$block->setBlocker( $this->performer->getUser() );
 		$block->setReason( $this->reason );
 		$block->setExpiry( $this->expiryTime );
 		$block->isCreateAccountBlocked( $this->isCreateAccountBlocked );
@@ -496,7 +504,8 @@ class BlockUser {
 		$block = $this->configureBlock();
 
 		$denyReason = [ 'hookaborted' ];
-		if ( !$this->hookRunner->onBlockIp( $block, $this->performer, $denyReason ) ) {
+		$legacyUser = $this->userFactory->newFromAuthority( $this->performer );
+		if ( !$this->hookRunner->onBlockIp( $block, $legacyUser, $denyReason ) ) {
 			$status = Status::newGood();
 			foreach ( $denyReason as $key ) {
 				$status->fatal( $key );
@@ -538,7 +547,7 @@ class BlockUser {
 			RevisionDeleteUser::suppressUserName( $this->target, $this->target->getId() );
 		}
 
-		$this->hookRunner->onBlockIpComplete( $block, $this->performer, $priorBlock );
+		$this->hookRunner->onBlockIpComplete( $block, $legacyUser, $priorBlock );
 
 		// DatabaseBlock constructor sanitizes certain block options on insert
 		$this->isEmailBlocked = $block->isEmailBlocked();
@@ -625,7 +634,7 @@ class BlockUser {
 		$logEntry = new ManualLogEntry( $logType, $logAction );
 		$logEntry->setTarget( Title::makeTitle( NS_USER, $this->target ) );
 		$logEntry->setComment( $this->reason );
-		$logEntry->setPerformer( $this->performer );
+		$logEntry->setPerformer( $this->performer->getUser() );
 		$logEntry->setParameters( $this->constructLogParams() );
 		// Relate log ID to block ID (T27763)
 		$logEntry->setRelations( [ 'ipb_id' => $block->getId() ] );

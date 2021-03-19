@@ -99,7 +99,7 @@ class SpecialUnblock extends SpecialPage {
 			->setSubmitCallback( function ( array $data, HTMLForm $form ) {
 				return $this->unblockUserFactory->newUnblockUser(
 					$data['Target'],
-					$form->getContext()->getUser(),
+					$form->getContext()->getAuthority(),
 					$data['Reason'],
 					$data['Tags'] ?? []
 				)->unblock();
@@ -243,7 +243,7 @@ class SpecialUnblock extends SpecialPage {
 
 		$unblockUser = MediaWikiServices::getInstance()->getUnblockUserFactory()->newUnblockUser(
 			$data['Target'],
-			$context->getUser(),
+			$context->getAuthority(),
 			$data['Reason'],
 			$data['Tags']
 		);
