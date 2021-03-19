@@ -1229,7 +1229,7 @@
 	"linter-pager-tidy-whitespace-bug-details": "ホワイトスペース解析エラー",
 	"linter-pager-unclosed-quotes-in-heading-details": "目次から漏れた閉じられていない引用",
 	"yourgender": "表示に使用する性別",
-	"gender-unknown": "このソフトウェアがあなたに言及する際、できるだけ性別不問の言葉を使用します。",
+	"gender-unknown": "このソフトウェアがあなたに言及する際、できるだけ性別に依存しない言葉を使用します。",
 	"gender-notknown": "性別不明",
 	"gender-male": "男",
 	"gender-female": "女",

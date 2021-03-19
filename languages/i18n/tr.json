@@ -1148,6 +1148,7 @@
 	"prefs-setemail": "Bir e-posta adresini ayarlayın",
 	"prefs-email": "E-posta seçenekleri",
 	"prefs-rendering": "Görünüm",
+	"prefs-searchmisc": "Genel",
 	"saveprefs": "Kaydet",
 	"restoreprefs": "Tüm varsayılan ayarları geri yükle (tüm bölümlerde)",
 	"prefs-editing": "Sayfa yazma alanı",
