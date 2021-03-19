@@ -28,6 +28,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -74,6 +75,9 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param CommentStore $commentStore
@@ -84,6 +88,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ActorMigration $actorMigration
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
@@ -94,7 +99,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $namespaceInfo,
 		ActorMigration $actorMigration,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		UserFactory $userFactory
 	) {
 		parent::__construct( 'Newpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -106,6 +112,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->actorMigration = $actorMigration;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -235,7 +242,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->permissionManager,
 			$this->loadBalancer,
 			$this->namespaceInfo,
-			$this->actorMigration
+			$this->actorMigration,
+			$this->userFactory
 		);
 		$pager->mLimit = $this->opts->getValue( 'limit' );
 		$pager->mOffset = $this->opts->getValue( 'offset' );
@@ -581,7 +589,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->permissionManager,
 			$this->loadBalancer,
 			$this->namespaceInfo,
-			$this->actorMigration
+			$this->actorMigration,
+			$this->userFactory
 		);
 		$limit = $this->opts->getValue( 'limit' );
 		$pager->mLimit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
