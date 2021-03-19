@@ -9,6 +9,7 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Validator\JsonBodyValidator;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MWTimestamp;
 use TextContent;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -132,6 +133,26 @@ class UpdateHandler extends EditHandler {
 		}
 
 		return $params;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	protected function mapActionModuleResult( array $data ) {
+		if ( isset( $data['edit']['nochange'] ) ) {
+			// Null-edit, no new revision was created. The new revision is the same as the old.
+			// We may want to signal this more explicitly to the client in the future.
+
+			$body = $this->getValidatedBody();
+			$baseRevId = $body['latest']['id'] ?? 0;
+
+			$rev = $this->revisionLookup->getRevisionById( $baseRevId );
+
+			$data['edit']['newrevid'] = $baseRevId;
+			$data['edit']['newtimestamp'] = MWTimestamp::convert( TS_ISO_8601, $rev->getTimestamp() );
+		}
+
+		return parent::mapActionModuleResult( $data );
 	}
 
 	/**
