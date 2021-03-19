@@ -363,12 +363,12 @@ class BlockManager {
 	 * Whether the given IP is in a DNS blacklist.
 	 *
 	 * @param string $ip IP to check
-	 * @param bool $checkWhitelist Whether to check the whitelist first
+	 * @param bool $checkAllowed Whether to check $wgProxyWhitelist first
 	 * @return bool True if blacklisted.
 	 */
-	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
+	public function isDnsBlacklisted( $ip, $checkAllowed = false ) {
 		if ( !$this->options->get( 'EnableDnsBlacklist' ) ||
-			( $checkWhitelist && in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) )
+			( $checkAllowed && in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) )
 		) {
 			return false;
 		}

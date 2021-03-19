@@ -59,14 +59,14 @@ class ApiRemoveAuthenticationData extends ApiBase {
 
 		// Fetch the request. No need to load from the request, so don't use
 		// ApiAuthManagerHelper's method.
-		$blacklist = $this->authAction === AuthManager::ACTION_REMOVE
+		$remove = $this->authAction === AuthManager::ACTION_REMOVE
 			? array_flip( $this->getConfig()->get( 'RemoveCredentialsBlacklist' ) )
 			: [];
 		$reqs = array_filter(
 			$manager->getAuthenticationRequests( $this->authAction, $this->getUser() ),
-			static function ( AuthenticationRequest $req ) use ( $params, $blacklist ) {
+			static function ( AuthenticationRequest $req ) use ( $params, $remove ) {
 				return $req->getUniqueId() === $params['request'] &&
-					!isset( $blacklist[get_class( $req )] );
+					!isset( $remove[get_class( $req )] );
 			}
 		);
 		if ( count( $reqs ) !== 1 ) {

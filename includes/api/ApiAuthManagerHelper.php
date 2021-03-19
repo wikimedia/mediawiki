@@ -123,14 +123,14 @@ class ApiAuthManagerHelper {
 	/**
 	 * Filter out authentication requests by class name
 	 * @param AuthenticationRequest[] $reqs Requests to filter
-	 * @param string[] $blacklist Class names to remove
+	 * @param string[] $remove Class names to remove
 	 * @return AuthenticationRequest[]
 	 */
-	public static function blacklistAuthenticationRequests( array $reqs, array $blacklist ) {
-		if ( $blacklist ) {
-			$blacklist = array_flip( $blacklist );
-			$reqs = array_filter( $reqs, static function ( $req ) use ( $blacklist ) {
-				return !isset( $blacklist[get_class( $req )] );
+	public static function blacklistAuthenticationRequests( array $reqs, array $remove ) {
+		if ( $remove ) {
+			$remove = array_flip( $remove );
+			$reqs = array_filter( $reqs, static function ( $req ) use ( $remove ) {
+				return !isset( $remove[get_class( $req )] );
 			} );
 		}
 		return $reqs;
