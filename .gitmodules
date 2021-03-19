@@ -303,11 +303,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-MsLinks.git
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/MsCatSelect"]
-	path = extensions/MsCatSelect
-	url = https://github.com/wikimedia/mediawiki-extensions-MsCatSelect.git
-	branch = master
-	ignore = dirty
 [submodule "extensions/MultiBoilerplate"]
 	path = extensions/MultiBoilerplate
 	url = https://github.com/wikimedia/mediawiki-extensions-MultiBoilerplate
@@ -1422,4 +1417,9 @@
 	path = extensions/VariablesLua
 	url = https://github.com/Liquipedia/VariablesLua/
 	branch = master
+	ignore = dirty
+[submodule "extensions/MsCatSelect"]
+	path = extensions/MsCatSelect
+	url = https://github.com/wikimedia/mediawiki-extensions-MsCatSelect
+	branch = REL1_35
 	ignore = dirty
