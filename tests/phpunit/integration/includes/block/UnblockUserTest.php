@@ -5,23 +5,21 @@ namespace MediaWiki\Tests\Block;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWikiIntegrationTestCase;
 use User;
 
 /**
  * @group Blocking
  * @group Database
- * @coversDefaultClass UnblockUser
  */
-class UnblockUserTest extends \MediaWikiIntegrationTestCase {
-	/**
-	 * @var User
-	 */
-	private $user;
+class UnblockUserTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
 
 	/**
 	 * @var User
 	 */
-	private $performer;
+	private $user;
 
 	/**
 	 * @var UnblockUserFactory
@@ -33,7 +31,6 @@ class UnblockUserTest extends \MediaWikiIntegrationTestCase {
 
 		// Prepare users
 		$this->user = $this->getTestUser()->getUser();
-		$this->performer = $this->getTestSysop()->getUser();
 
 		// Prepare factory
 		$this->unblockUserFactory = MediaWikiServices::getInstance()->getUnblockUserFactory();
@@ -46,19 +43,20 @@ class UnblockUserTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\UnblockUser::unblock
+	 * @covers \MediaWiki\Block\UnblockUser::unblock
 	 */
 	public function testValidUnblock() {
+		$performer = $this->mockAnonUltimateAuthority();
 		$block = new DatabaseBlock( [
 			'address' => $this->user->getName(),
-			'by' => $this->performer->getId()
+			'by' => $performer->getUser()
 		] );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$this->assertInstanceOf( DatabaseBlock::class, $this->user->getBlock() );
 		$status = $this->unblockUserFactory->newUnblockUser(
 			$this->user,
-			$this->performer,
+			$performer,
 			'test'
 		)->unblock();
 		$this->assertTrue( $status->isOK() );
@@ -72,13 +70,13 @@ class UnblockUserTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Block\UnblockUser::unblockUnsafe
+	 * @covers \MediaWiki\Block\UnblockUser::unblockUnsafe
 	 */
 	public function testNotBlocked() {
 		$this->user = User::newFromName( $this->user->getName() ); // Reload the user object
 		$status = $this->unblockUserFactory->newUnblockUser(
 			$this->user,
-			$this->performer,
+			$this->mockRegisteredUltimateAuthority(),
 			'test'
 		)->unblock();
 		$this->assertFalse( $status->isOK() );

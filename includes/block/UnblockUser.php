@@ -25,6 +25,8 @@ use ChangeTags;
 use ManualLogEntry;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserFactory;
 use RevisionDeleteUser;
 use Status;
 use TitleValue;
@@ -42,6 +44,9 @@ class UnblockUser {
 	/** @var DatabaseBlockStore */
 	private $blockStore;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -54,7 +59,7 @@ class UnblockUser {
 	/** @var DatabaseBlock|null */
 	private $block;
 
-	/** @var User */
+	/** @var Authority */
 	private $performer;
 
 	/** @var string */
@@ -66,18 +71,20 @@ class UnblockUser {
 	/**
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
 	 * @param DatabaseBlockStore $blockStore
+	 * @param UserFactory $userFactory
 	 * @param HookContainer $hookContainer
 	 * @param User|string $target
-	 * @param User $performer
+	 * @param Authority $performer
 	 * @param string $reason
 	 * @param string[] $tags
 	 */
 	public function __construct(
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		DatabaseBlockStore $blockStore,
+		UserFactory $userFactory,
 		HookContainer $hookContainer,
 		$target,
-		User $performer,
+		Authority $performer,
 		string $reason,
 		array $tags = []
 	) {
@@ -88,6 +95,7 @@ class UnblockUser {
 				$performer
 			);
 		$this->blockStore = $blockStore;
+		$this->userFactory = $userFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Process params
@@ -165,7 +173,8 @@ class UnblockUser {
 		}
 
 		$denyReason = [ 'hookaborted' ];
-		if ( !$this->hookRunner->onUnblockUser( $this->block, $this->performer, $denyReason ) ) {
+		$legacyUser = $this->userFactory->newFromAuthority( $this->performer );
+		if ( !$this->hookRunner->onUnblockUser( $this->block, $legacyUser, $denyReason ) ) {
 			foreach ( $denyReason as $key ) {
 				$status->fatal( $key );
 			}
@@ -178,7 +187,7 @@ class UnblockUser {
 			return $status;
 		}
 
-		$this->hookRunner->onUnblockUserComplete( $this->block, $this->performer );
+		$this->hookRunner->onUnblockUserComplete( $this->block, $legacyUser );
 
 		// Unset _deleted fields as needed
 		if ( $this->block->getHideName() ) {
@@ -215,7 +224,7 @@ class UnblockUser {
 			$logEntry->setTarget( $page );
 		}
 		$logEntry->setComment( $this->reason );
-		$logEntry->setPerformer( $this->performer );
+		$logEntry->setPerformer( $this->performer->getUser() );
 		$logEntry->addTags( $this->tags );
 		$logEntry->setRelations( [ 'ipb_id' => $this->block->getId() ] );
 		$logId = $logEntry->insert();

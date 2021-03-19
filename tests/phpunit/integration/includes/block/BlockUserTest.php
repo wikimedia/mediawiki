@@ -1,19 +1,19 @@
 <?php
 
+use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * @group Blocking
  * @group Database
- * @coversDefaultClass BlockUser
  */
 class BlockUserTest extends MediaWikiIntegrationTestCase {
-	/** @var User */
-	private $user;
+	use MockAuthorityTrait;
 
 	/** @var User */
-	private $performer;
+	private $user;
 
 	/** @var BlockUserFactory */
 	private $blockUserFactory;
@@ -23,7 +23,6 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 
 		// Prepare users
 		$this->user = $this->getTestUser()->getUser();
-		$this->performer = $this->getTestSysop()->getUser();
 
 		// Prepare factory
 		$this->blockUserFactory = MediaWikiServices::getInstance()->getBlockUserFactory();
@@ -35,7 +34,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	public function testValidTarget() {
 		$status = $this->blockUserFactory->newBlockUser(
 			$this->user,
-			$this->performer,
+			$this->mockAnonUltimateAuthority(),
 			'infinity',
 			'test block'
 		)->placeBlock();
@@ -51,7 +50,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\BLock\BlockUser::placeBlock
+	 * @covers MediaWiki\Block\BlockUser::placeBlock
 	 */
 	public function testHideUser() {
 		$status = $this->blockUserFactory->newBlockUser(
