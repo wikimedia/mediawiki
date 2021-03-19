@@ -1582,7 +1582,8 @@ return [
 			$services->getRevisionLookup(),
 			$services->getHookContainer(),
 			$services->getLinkBatchFactory(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getTitleFactory()
 		);
 		$store->setStatsdDataFactory( $services->getStatsdDataFactory() );
 

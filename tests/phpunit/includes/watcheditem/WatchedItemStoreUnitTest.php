@@ -222,6 +222,33 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param LinkTarget|null $linkTarget
+	 * @param Title|null $title
+	 * @return MockObject|TitleFactory
+	 */
+	private function getTitleFactory( $linkTarget = null, $title = null ) {
+		// TitleFactory only needed for castFromLinkTarget - if this is called with
+		// a link target and title, the mock expects the link target and returns the title,
+		// otherwise the mock expects never to be called. If no title is provided here,
+		// we create a placeholder mock that passes the ->equals() check, and thats it
+		$titleFactory = $this->createNoOpMock( TitleFactory::class, [ 'castFromLinkTarget' ] );
+		if ( $linkTarget !== null ) {
+			if ( $title === null ) {
+				$title = $this->createMock( Title::class );
+				$title->method( 'equals' )
+					->with( $linkTarget )
+					->willReturn( true );
+			}
+			$titleFactory->method( 'castFromLinkTarget' )
+				->with( $linkTarget )
+				->willReturn( $title );
+		} else {
+			$titleFactory->expects( $this->never() )->method( 'castFromLinkTarget' );
+		}
+		return $titleFactory;
+	}
+
+	/**
 	 * @param array $mocks Associative array providing mocks to use when constructing the
 	 *   WatchedItemStore. Anything not provided will fall back to a default. Valid keys:
 	 *     * lbFactory
@@ -231,6 +258,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	 *     * readOnlyMode
 	 *     * nsInfo
 	 *     * revisionLookup
+	 *     * userFactory
+	 *     * titleFactory
 	 *     * expiryEnabled
 	 *     * maxExpiryDuration
 	 * @return WatchedItemStore
@@ -256,7 +285,8 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
 			$this->createHookContainer(),
 			$this->getMockLinkBatchFactory( $db ),
-			$mocks['userFactory'] ?? $this->getUserFactory()
+			$mocks['userFactory'] ?? $this->getUserFactory(),
+			$mocks['titleFactory'] ?? $this->getTitleFactory()
 		);
 	}
 
@@ -2195,16 +2225,20 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			[ $this->getMockUser( $user ) ]
 		);
 
+		$title = new TitleValue( 0, 'SomeDbKey' );
+		$titleFactory = $this->getTitleFactory( $title );
+
 		$store = $this->newWatchedItemStore( [
 			'db' => $mockDb,
 			'cache' => $mockCache,
-			'userFactory' => $userFactory
+			'userFactory' => $userFactory,
+			'titleFactory' => $titleFactory,
 		] );
 
 		$this->assertFalse(
 			$store->resetNotificationTimestamp(
 				$user,
-				new TitleValue( 0, 'SomeDbKey' )
+				$title
 			)
 		);
 	}
@@ -2273,12 +2307,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			[ $this->getMockUser( $user ) ]
 		);
 
+		$titleFactory = $this->getTitleFactory( $title );
+
 		$store = $this->newWatchedItemStore( [
 			'db' => $mockDb,
 			'queueGroup' => $mockQueueGroup,
 			'cache' => $mockCache,
 			'revisionLookup' => $mockRevisionLookup,
 			'userFactory' => $userFactory,
+			'titleFactory' => $titleFactory,
 		] );
 
 		$this->assertTrue(
@@ -2320,12 +2357,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			[ $this->getMockUser( $user ) ]
 		);
 
+		$titleFactory = $this->getTitleFactory( $title );
+
 		$store = $this->newWatchedItemStore( [
 			'db' => $mockDb,
 			'queueGroup' => $mockQueueGroup,
 			'cache' => $mockCache,
 			'revisionLookup' => $mockRevisionLookup,
 			'userFactory' => $userFactory,
+			'titleFactory' => $titleFactory,
 		] );
 
 		$mockQueueGroup->expects( $this->any() )
@@ -2403,12 +2443,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			[ $this->getMockUser( $user ) ]
 		);
 
+		$titleFactory = $this->getTitleFactory( $title );
+
 		$store = $this->newWatchedItemStore( [
 			'db' => $mockDb,
 			'queueGroup' => $mockQueueGroup,
 			'cache' => $mockCache,
 			'revisionLookup' => $mockRevisionLookup,
 			'userFactory' => $userFactory,
+			'titleFactory' => $titleFactory,
 		] );
 
 		$mockQueueGroup->expects( $this->any() )
@@ -2508,12 +2551,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			[ $this->getMockUser( $user ) ]
 		);
 
+		$titleFactory = $this->getTitleFactory( $title );
+
 		$store = $this->newWatchedItemStore( [
 			'db' => $mockDb,
 			'queueGroup' => $mockQueueGroup,
 			'cache' => $mockCache,
 			'revisionLookup' => $mockRevisionLookup,
 			'userFactory' => $userFactory,
+			'titleFactory' => $titleFactory,
 		] );
 
 		$mockQueueGroup->expects( $this->any() )
@@ -2605,12 +2651,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			[ $this->getMockUser( $user ) ]
 		);
 
+		$titleFactory = $this->getTitleFactory( $title );
+
 		$store = $this->newWatchedItemStore( [
 			'db' => $mockDb,
 			'queueGroup' => $mockQueueGroup,
 			'cache' => $mockCache,
 			'revisionLookup' => $mockRevisionLookup,
 			'userFactory' => $userFactory,
+			'titleFactory' => $titleFactory,
 		] );
 
 		$mockQueueGroup->expects( $this->any() )
@@ -2710,12 +2759,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			[ $this->getMockUser( $user ) ]
 		);
 
+		$titleFactory = $this->getTitleFactory( $title );
+
 		$store = $this->newWatchedItemStore( [
 			'db' => $mockDb,
 			'queueGroup' => $mockQueueGroup,
 			'cache' => $mockCache,
 			'revisionLookup' => $mockRevisionLookup,
 			'userFactory' => $userFactory,
+			'titleFactory' => $titleFactory,
 		] );
 
 		$mockQueueGroup->expects( $this->any() )
@@ -2815,12 +2867,15 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			[ $this->getMockUser( $user ) ]
 		);
 
+		$titleFactory = $this->getTitleFactory( $title );
+
 		$store = $this->newWatchedItemStore( [
 			'db' => $mockDb,
 			'queueGroup' => $mockQueueGroup,
 			'cache' => $mockCache,
 			'revisionLookup' => $mockRevisionLookup,
 			'userFactory' => $userFactory,
+			'titleFactory' => $titleFactory,
 		] );
 
 		$mockQueueGroup->expects( $this->any() )
