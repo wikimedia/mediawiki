@@ -621,6 +621,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'archive', 'ar_title', '' ],
 			[ 'changeField', 'archive', 'ar_comment_id', 'BIGINT', '' ],
 			[ 'changeField', 'archive', 'ar_actor', 'BIGINT', '' ],
+			[ 'renameIndex', 'mwuser', 'user_email_token_idx', 'user_email_token' ],
+			[ 'addPgIndex', 'mwuser', 'user_email', '(user_email)' ],
+			[ 'addPgIndex', 'mwuser', 'user_name', '(user_name)', true ],
 		];
 	}
 
