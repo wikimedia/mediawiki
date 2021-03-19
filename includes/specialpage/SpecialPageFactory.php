@@ -1067,6 +1067,7 @@ class SpecialPageFactory {
 					'class' => \SpecialMute::class,
 					'services' => [
 						'UserOptionsManager',
+						'UserFactory',
 					]
 				];
 			}

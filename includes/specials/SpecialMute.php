@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Preferences\MultiUsernameFilter;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsManager;
 
 /**
@@ -44,13 +45,21 @@ class SpecialMute extends FormSpecialPage {
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param UserOptionsManager $userOptionsManager
+	 * @param UserFactory $userFactory
 	 */
-	public function __construct( UserOptionsManager $userOptionsManager ) {
+	public function __construct(
+		UserOptionsManager $userOptionsManager,
+		UserFactory $userFactory
+	) {
 		parent::__construct( self::PAGE_NAME, '', false );
 		$this->centralIdLookup = CentralIdLookup::factory();
 		$this->userOptionsManager = $userOptionsManager;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -215,7 +224,10 @@ class SpecialMute extends FormSpecialPage {
 	 * @param string|null $username
 	 */
 	private function loadTarget( $username ) {
-		$target = User::newFromName( $username );
+		$target = null;
+		if ( $username !== null ) {
+			$target = $this->userFactory->newFromName( $username );
+		}
 		if ( !$target || !$target->getId() ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-invalid-user' );
 		} else {
