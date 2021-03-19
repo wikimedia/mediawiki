@@ -99,7 +99,7 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 				'MinimumPasswordLengthToLogin' => 6,
 				'PasswordCannotMatchUsername' => true,
 				'PasswordCannotBeSubstringInUsername' => true,
-				'PasswordCannotMatchBlacklist' => true,
+				'PasswordCannotMatchDefaults' => true,
 				'MaximalPasswordLength' => 4096,
 			],
 			$upp->getPoliciesForUser( $user )
@@ -123,7 +123,7 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 				'MinimumPasswordLengthToLogin' => 6,
 				'PasswordCannotMatchUsername' => true,
 				'PasswordCannotBeSubstringInUsername' => true,
-				'PasswordCannotMatchBlacklist' => true,
+				'PasswordCannotMatchDefaults' => true,
 				'MaximalPasswordLength' => 4096,
 			],
 			$effective
@@ -196,7 +196,7 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function testCheckUserPassword_blacklist() {
+	public function testCheckUserPassword_disallowed() {
 		$upp = $this->getUserPasswordPolicy();
 		$user = User::newFromName( 'Useruser' );
 		$user->addToDatabase();
