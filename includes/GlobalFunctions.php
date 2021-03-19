@@ -775,7 +775,7 @@ function wfUrlProtocolsWithoutProtRel() {
  * 1) Handles protocols that don't use :// (e.g., mailto: and news:, as well as
  *    protocol-relative URLs) correctly.
  * 2) Adds a "delimiter" element to the array (see (2)).
- * 3) Verifies that the protocol is on the $wgUrlProtocols whitelist.
+ * 3) Verifies that the protocol is on the $wgUrlProtocols allowed list.
  * 4) Rejects some invalid URLs that parse_url doesn't, e.g. the empty string or URLs starting with
  *    a line feed character.
  *

@@ -568,23 +568,23 @@ class PermissionManager {
 		$title = Title::newFromLinkTarget( $page );
 
 		$whiteListRead = $this->options->get( 'WhitelistRead' );
-		$whitelisted = false;
+		$allowed = false;
 		if ( $this->isEveryoneAllowed( 'read' ) ) {
 			# Shortcut for public wikis, allows skipping quite a bit of code
-			$whitelisted = true;
+			$allowed = true;
 		} elseif ( $this->userHasRight( $user, 'read' ) ) {
 			# If the user is allowed to read pages, he is allowed to read all pages
-			$whitelisted = true;
+			$allowed = true;
 		} elseif ( $this->isSameSpecialPage( 'Userlogin', $title )
 			|| $this->isSameSpecialPage( 'PasswordReset', $title )
 			|| $this->isSameSpecialPage( 'Userlogout', $title )
 		) {
 			# Always grant access to the login page.
 			# Even anons need to be able to log in.
-			$whitelisted = true;
+			$allowed = true;
 		} elseif ( $this->isSameSpecialPage( 'RunJobs', $title ) ) {
 			# relies on HMAC key signature alone
-			$whitelisted = true;
+			$allowed = true;
 		} elseif ( is_array( $whiteListRead ) && count( $whiteListRead ) ) {
 			# Time to check the whitelist
 			# Only do these checks is there's something to check against
@@ -594,12 +594,12 @@ class PermissionManager {
 			// Check for explicit whitelisting with and without underscores
 			if ( in_array( $name, $whiteListRead, true )
 				 || in_array( $dbName, $whiteListRead, true ) ) {
-				$whitelisted = true;
+				$allowed = true;
 			} elseif ( $title->getNamespace() === NS_MAIN ) {
 				# Old settings might have the title prefixed with
 				# a colon for main-namespace pages
 				if ( in_array( ':' . $name, $whiteListRead ) ) {
-					$whitelisted = true;
+					$allowed = true;
 				}
 			} elseif ( $title->isSpecialPage() ) {
 				# If it's a special page, ditch the subpage bit and check again
@@ -609,29 +609,29 @@ class PermissionManager {
 				if ( $name ) {
 					$pure = SpecialPage::getTitleFor( $name )->getPrefixedText();
 					if ( in_array( $pure, $whiteListRead, true ) ) {
-						$whitelisted = true;
+						$allowed = true;
 					}
 				}
 			}
 		}
 
 		$whitelistReadRegexp = $this->options->get( 'WhitelistReadRegexp' );
-		if ( !$whitelisted && is_array( $whitelistReadRegexp )
+		if ( !$allowed && is_array( $whitelistReadRegexp )
 			 && !empty( $whitelistReadRegexp ) ) {
 			$name = $title->getPrefixedText();
 			// Check for regex whitelisting
 			foreach ( $whitelistReadRegexp as $listItem ) {
 				if ( preg_match( $listItem, $name ) ) {
-					$whitelisted = true;
+					$allowed = true;
 					break;
 				}
 			}
 		}
 
-		if ( !$whitelisted ) {
+		if ( !$allowed ) {
 			# If the title is not whitelisted, give extensions a chance to do so...
-			$this->hookRunner->onTitleReadWhitelist( $title, $user, $whitelisted );
-			if ( !$whitelisted ) {
+			$this->hookRunner->onTitleReadWhitelist( $title, $user, $allowed );
+			if ( !$allowed ) {
 				$errors[] = $this->missingPermissionError( $action, $short );
 			}
 		}

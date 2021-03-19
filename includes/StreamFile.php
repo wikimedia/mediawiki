@@ -66,7 +66,7 @@ class StreamFile {
 	 * Determine the file type of a file based on the path
 	 *
 	 * @param string $filename Storage path or file system path
-	 * @param bool $safe Whether to do retroactive upload blacklist checks
+	 * @param bool $safe Whether to do retroactive upload prevention checks
 	 * @return null|string
 	 */
 	public static function contentTypeFromPath( $filename, $safe = true ) {
