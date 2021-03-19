@@ -117,7 +117,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			// mediastatistics-header-office, mediastatistics-header-text,
 			// mediastatistics-header-executable, mediastatistics-header-archive,
 			// mediastatistics-header-3d,
-			return $this->msg( 'mediastatistics-header-' . strtolower( $type ) )->text();
+			return $this->msg( 'mediastatistics-header-' . strtolower( $type ) )->escaped();
 		}, $this->mediaTypes );
 		$mediaTypesOptions = array_combine( $mediaTypesText, $this->mediaTypes );
 		ksort( $mediaTypesOptions );
