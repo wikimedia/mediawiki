@@ -4,10 +4,12 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
@@ -16,6 +18,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class WikiPageDbTest extends MediaWikiLangTestCase {
+	use MockAuthorityTrait;
 
 	private $pagesToDelete;
 
@@ -92,18 +95,16 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @param string|Title|WikiPage $page
 	 * @param string|Content|Content[] $content
 	 * @param int|null $model
-	 * @param User|null $user
+	 * @param Authority|null $performer
 	 *
 	 * @return WikiPage
 	 */
-	protected function createPage( $page, $content, $model = null, $user = null ) {
+	protected function createPage( $page, $content, $model = null, Authority $performer = null ) {
 		if ( is_string( $page ) || $page instanceof Title ) {
 			$page = $this->newPage( $page, $model );
 		}
 
-		if ( !$user ) {
-			$user = $this->getTestUser()->getUser();
-		}
+		$performer = $performer ?? $this->getTestUser()->getUser();
 
 		if ( is_string( $content ) ) {
 			$content = ContentHandler::makeContent( $content, $page->getTitle(), $model );
@@ -113,7 +114,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			$content = [ 'main' => $content ];
 		}
 
-		$updater = $page->newPageUpdater( $user );
+		$updater = $page->newPageUpdater( $performer );
 
 		foreach ( $content as $role => $cnt ) {
 			$updater->setContent( $role, $cnt );
@@ -161,10 +162,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::prepareContentForEdit
 	 */
 	public function testPrepareContentForEdit() {
-		$user = $this->getTestUser()->getUser();
-		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser();
+		$performer = $this->mockUserAuthorityWithPermissions(
+			$this->getTestUser()->getUserIdentity(),
+			[ 'edit' ]
+		);
+		$sysop = $this->getTestUser( [ 'sysop' ] )->getUserIdentity();
 
-		$page = $this->createPage( __METHOD__, __METHOD__, null, $user );
+		$page = $this->createPage( __METHOD__, __METHOD__, null, $performer );
 		$title = $page->getTitle();
 
 		$content = ContentHandler::makeContent(
@@ -180,7 +184,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 
-		$edit = $page->prepareContentForEdit( $content, null, $user, null, false );
+		$edit = $page->prepareContentForEdit( $content, null, $performer->getUser(), null, false );
 
 		$this->assertInstanceOf(
 			ParserOptions::class,
@@ -201,13 +205,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( null, $edit->revid, "revid field" );
 
 		// Re-using the prepared info if possible
-		$sameEdit = $page->prepareContentForEdit( $content, null, $user, null, false );
+		$sameEdit = $page->prepareContentForEdit( $content, null, $performer->getUser(), null, false );
 		$this->assertPreparedEditEquals( $edit, $sameEdit, 'equivalent PreparedEdit' );
 		$this->assertSame( $edit->pstContent, $sameEdit->pstContent, 're-use output' );
 		$this->assertSame( $edit->output, $sameEdit->output, 're-use output' );
 
 		// Not re-using the same PreparedEdit if not possible
-		$edit2 = $page->prepareContentForEdit( $content2, null, $user, null, false );
+		$edit2 = $page->prepareContentForEdit( $content2, null, $performer->getUser(), null, false );
 		$this->assertPreparedEditNotEquals( $edit, $edit2 );
 		$this->assertStringContainsString( 'At vero eos', $edit2->pstContent->serialize(), "content" );
 
@@ -230,8 +234,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
-		$user = $this->getTestUser()->getUser();
-
+		$user = $this->getTestUser()->getUserIdentity();
 		// NOTE: if site stats get out of whack and drop below 0,
 		// that causes a DB error during tear-down. So bump the
 		// numbers high enough to not drop below 0.
@@ -274,7 +277,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doEditUpdates
 	 */
 	public function testDoEditUpdates() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 
 		// NOTE: if site stats get out of whack and drop below 0,
 		// that causes a DB error during tear-down. So bump the
@@ -596,8 +599,9 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			CONTENT_MODEL_WIKITEXT
 		);
 		$id = $page->getId();
+		$user = $this->getTestSysop()->getUserIdentity();
 
-		$page->doDeleteArticleReal( "testing deletion", $this->getTestSysop()->getUser() );
+		$page->doDeleteArticleReal( "testing deletion", $user );
 
 		$this->assertFalse(
 			$page->getTitle()->getArticleID() > 0,
@@ -804,7 +808,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doDeleteUpdates
 	 */
 	public function testDoDeleteUpdates() {
-		$user = $this->getTestUser()->getUser();
+		$user = $this->getTestUser()->getUserIdentity();
 		$page = $this->createPage(
 			__METHOD__,
 			"[[original text]] foo",
@@ -2342,7 +2346,7 @@ more stuff
 		} else {
 			$page = new WikiPage( Title::newFromText( __METHOD__ . '-nonexist' ) );
 		}
-		$user = $this->getTestSysop()->getUser();
+		$user = $this->getTestSysop()->getUserIdentity();
 		$cascade = false;
 
 		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, 'aReason', $user, [] );

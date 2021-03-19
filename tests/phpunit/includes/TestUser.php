@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * Wraps the user object, so we can also retain full access to properties
@@ -161,6 +163,14 @@ class TestUser {
 	 */
 	public function getUser() {
 		return $this->user;
+	}
+
+	/**
+	 * @since 1.36
+	 * @return UserIdentity
+	 */
+	public function getUserIdentity(): UserIdentity {
+		return new UserIdentityValue( $this->user->getId(), $this->user->getName() );
 	}
 
 	/**
