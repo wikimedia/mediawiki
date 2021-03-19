@@ -175,7 +175,7 @@ class SpecialCreateAccount extends LoginSignupSpecialPage {
 		LoggerFactory::getInstance( 'authevents' )->info( 'Account creation attempt', [
 			'event' => 'accountcreation',
 			'successful' => $success,
-			'status' => $status,
+			'status' => strval( $status ),
 		] );
 	}
 }

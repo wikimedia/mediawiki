@@ -256,7 +256,7 @@ class ApiAuthManagerHelper {
 		$module = $this->module->getModuleName();
 		LoggerFactory::getInstance( 'authevents' )->info( "$module API attempt", [
 			'event' => $event,
-			'status' => $status->__toString(),
+			'status' => strval( $status ),
 			'module' => $module,
 		] );
 	}
