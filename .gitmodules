@@ -368,11 +368,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ContactPage
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/Editcount"]
-	path = extensions/Editcount
-	url = https://github.com/wikimedia/mediawiki-extensions-Editcount.git
-	branch = master
-	ignore = dirty
 [submodule "extensions/PageNotice"]
 	path = extensions/PageNotice
 	url = https://github.com/wikimedia/mediawiki-extensions-PageNotice.git
@@ -1423,3 +1418,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-MsCatSelect
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/Editcount"]
+	path = extensions/Editcount
+	url = https://github.com/wikimedia/mediawiki-extensions-Editcount
+	branch = REL1_35
