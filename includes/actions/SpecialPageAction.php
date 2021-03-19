@@ -96,7 +96,7 @@ class SpecialPageAction extends FormlessAction {
 			return null;
 		}
 
-		// map actions to (whitelisted) special pages
+		// map actions to (allowed) special pages
 		return MediaWikiServices::getInstance()->getSpecialPageFactory()->
 			getPage( self::$actionToSpecialPageMapping[$action] );
 	}
