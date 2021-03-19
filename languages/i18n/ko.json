@@ -1102,6 +1102,7 @@
 	"prefs-setemail": "이메일 주소 설정하기",
 	"prefs-email": "이메일 옵션",
 	"prefs-rendering": "보이기",
+	"prefs-searchmisc": "일반",
 	"saveprefs": "저장",
 	"restoreprefs": "모두 기본 설정으로 복구(모든 부문)",
 	"prefs-editing": "편집",
