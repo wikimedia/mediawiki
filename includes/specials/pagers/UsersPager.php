@@ -72,7 +72,7 @@ class UsersPager extends AlphabeticPager {
 
 	/**
 	 * @param IContextSource|null $context
-	 * @param array|null $par
+	 * @param string|null $par
 	 * @param bool|null $including Whether this page is being transcluded in
 	 * another page
 	 * @param LinkBatchFactory $linkBatchFactory

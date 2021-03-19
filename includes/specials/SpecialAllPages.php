@@ -70,7 +70,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	/**
 	 * Entry point : initialise variables and call subfunctions.
 	 *
-	 * @param string $par Becomes "FOO" when called like Special:Allpages/FOO (default null)
+	 * @param string|null $par Becomes "FOO" when called like Special:Allpages/FOO
 	 */
 	public function execute( $par ) {
 		$request = $this->getRequest();

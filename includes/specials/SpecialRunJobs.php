@@ -51,7 +51,7 @@ class SpecialRunJobs extends UnlistedSpecialPage {
 		return true;
 	}
 
-	public function execute( $par = '' ) {
+	public function execute( $par ) {
 		$this->getOutput()->disable();
 
 		if ( $this->readOnlyMode->isReadOnly() ) {

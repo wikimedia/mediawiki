@@ -62,7 +62,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 	/**
 	 * Entry point : initialise variables and call subfunctions.
-	 * @param string $par Becomes "FOO" when called like Special:Prefixindex/FOO (default null)
+	 * @param string|null $par Becomes "FOO" when called like Special:Prefixindex/FOO
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
