@@ -28,7 +28,9 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_password_expires     TIMESTAMPTZ NULL
 );
 ALTER SEQUENCE user_user_id_seq OWNED BY mwuser.user_id;
-CREATE INDEX user_email_token_idx ON mwuser (user_email_token);
+CREATE UNIQUE INDEX user_name ON mwuser (user_name);
+CREATE INDEX user_email_token ON mwuser (user_email_token);
+CREATE INDEX user_email ON mwuser (user_email);
 
 -- Create a dummy user to satisfy fk contraints especially with revisions
 INSERT INTO mwuser
