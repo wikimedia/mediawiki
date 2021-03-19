@@ -503,6 +503,7 @@ class SpecialPageFactory {
 				'ActorMigration',
 				'DBLoadBalancer',
 				'UserCache',
+				'UserFactory',
 			]
 		],
 		'Log' => [
