@@ -123,6 +123,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/**
 	 * @var string|null Maximum configured relative expiry.
 	 */
@@ -140,6 +143,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param HookContainer $hookContainer
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param UserFactory $userFactory
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -152,7 +156,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		RevisionLookup $revisionLookup,
 		HookContainer $hookContainer,
 		LinkBatchFactory $linkBatchFactory,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		TitleFactory $titleFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
@@ -173,6 +178,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->userFactory = $userFactory;
+		$this->titleFactory = $titleFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -1380,7 +1386,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		// Hook expects User and Title, not UserIdentity and LinkTarget
 		$userObj = $this->userFactory->newFromId( $user->getId() );
-		$titleObj = Title::castFromLinkTarget( $title );
+		$titleObj = $this->titleFactory->castFromLinkTarget( $title );
 		if ( !$this->hookRunner->onBeforeResetNotificationTimestamp(
 			$userObj, $titleObj, $force, $oldid )
 		) {
