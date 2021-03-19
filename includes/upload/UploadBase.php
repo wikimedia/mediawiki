@@ -2161,7 +2161,7 @@ abstract class UploadBase {
 	 * @return string[] List of prefixes
 	 */
 	public static function getFilenamePrefixBlacklist() {
-		$blacklist = [];
+		$list = [];
 		$message = wfMessage( 'filename-prefix-blacklist' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
 			$lines = explode( "\n", $message->plain() );
@@ -2176,11 +2176,11 @@ abstract class UploadBase {
 				if ( $comment > 0 ) {
 					$line = substr( $line, 0, $comment - 1 );
 				}
-				$blacklist[] = trim( $line );
+				$list[] = trim( $line );
 			}
 		}
 
-		return $blacklist;
+		return $list;
 	}
 
 	/**

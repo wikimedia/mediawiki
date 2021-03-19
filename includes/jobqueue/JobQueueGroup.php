@@ -230,10 +230,10 @@ class JobQueueGroup {
 	 *
 	 * @param int|string $qtype JobQueueGroup::TYPE_* constant or job type string
 	 * @param int $flags Bitfield of JobQueueGroup::USE_* constants
-	 * @param array $blacklist List of job types to ignore
+	 * @param array $ignored List of job types to ignore
 	 * @return RunnableJob|bool Returns false on failure
 	 */
-	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = [] ) {
+	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $ignored = [] ) {
 		global $wgJobClasses;
 
 		$job = false;
@@ -247,7 +247,7 @@ class JobQueueGroup {
 		}
 
 		if ( is_string( $qtype ) ) { // specific job type
-			if ( !in_array( $qtype, $blacklist ) ) {
+			if ( !in_array( $qtype, $ignored ) ) {
 				$job = $this->get( $qtype )->pop();
 			}
 		} else { // any job in the "default" jobs types
@@ -264,7 +264,7 @@ class JobQueueGroup {
 				$types = array_intersect( $types, $this->getDefaultQueueTypes() );
 			}
 
-			$types = array_diff( $types, $blacklist ); // avoid selected types
+			$types = array_diff( $types, $ignored ); // avoid selected types
 			shuffle( $types ); // avoid starvation
 
 			foreach ( $types as $type ) { // for each queue...

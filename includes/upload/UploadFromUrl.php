@@ -86,12 +86,12 @@ class UploadFromUrl extends UploadBase {
 		$valid = false;
 		foreach ( $wgCopyUploadsDomains as $domain ) {
 			// See if the domain for the upload matches this whitelisted domain
-			$whitelistedDomainPieces = explode( '.', $domain );
+			$domainPieces = explode( '.', $domain );
 			$uploadDomainPieces = explode( '.', $parsedUrl['host'] );
-			if ( count( $whitelistedDomainPieces ) === count( $uploadDomainPieces ) ) {
+			if ( count( $domainPieces ) === count( $uploadDomainPieces ) ) {
 				$valid = true;
 				// See if all the pieces match or not (excluding wildcards)
-				foreach ( $whitelistedDomainPieces as $index => $piece ) {
+				foreach ( $domainPieces as $index => $piece ) {
 					if ( $piece !== '*' && $piece !== $uploadDomainPieces[$index] ) {
 						$valid = false;
 					}
