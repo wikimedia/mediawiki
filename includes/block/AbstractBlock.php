@@ -334,10 +334,12 @@ abstract class AbstractBlock {
 	 *
 	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
 	 *
+	 * @deprecated since 1.36. Use BlockUtils service instead.
 	 * @param string|UserIdentity|null $target
 	 * @return array [ User|String|null, int|null ]
 	 */
 	public static function parseTarget( $target ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getBlockUtils()
 			->parseBlockTarget( $target );
@@ -420,7 +422,9 @@ abstract class AbstractBlock {
 	 * @param mixed $target
 	 */
 	public function setTarget( $target ) {
-		list( $this->target, $this->type ) = static::parseTarget( $target );
+		list( $this->target, $this->type ) = MediaWikiServices::getInstance()
+			->getBlockUtils()
+			->parseBlockTarget( $target );
 	}
 
 	/**

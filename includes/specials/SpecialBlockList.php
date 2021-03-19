@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\IPUtils;
@@ -55,12 +56,16 @@ class SpecialBlockList extends SpecialPage {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var BlockUtils */
+	private $blockUtils;
+
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
 		ActorMigration $actorMigration,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		BlockUtils $blockUtils
 	) {
 		parent::__construct( 'BlockList' );
 
@@ -69,6 +74,7 @@ class SpecialBlockList extends SpecialPage {
 		$this->loadBalancer = $loadBalancer;
 		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
+		$this->blockUtils = $blockUtils;
 	}
 
 	/**
@@ -172,7 +178,7 @@ class SpecialBlockList extends SpecialPage {
 		}
 
 		if ( $this->target !== '' ) {
-			list( $target, $type ) = DatabaseBlock::parseTarget( $this->target );
+			list( $target, $type ) = $this->blockUtils->parseBlockTarget( $this->target );
 
 			switch ( $type ) {
 				case DatabaseBlock::TYPE_ID:
@@ -236,7 +242,8 @@ class SpecialBlockList extends SpecialPage {
 			$this->loadBalancer,
 			$this->getSpecialPageFactory(),
 			$this->actorMigration,
-			$this->commentStore
+			$this->commentStore,
+			$this->blockUtils
 		);
 	}
 

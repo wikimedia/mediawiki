@@ -44,6 +44,9 @@ class UnblockUser {
 	/** @var DatabaseBlockStore */
 	private $blockStore;
 
+	/** @var BlockUtils */
+	private $blockUtils;
+
 	/** @var UserFactory */
 	private $userFactory;
 
@@ -71,6 +74,7 @@ class UnblockUser {
 	/**
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
 	 * @param DatabaseBlockStore $blockStore
+	 * @param BlockUtils $blockUtils
 	 * @param UserFactory $userFactory
 	 * @param HookContainer $hookContainer
 	 * @param User|string $target
@@ -81,6 +85,7 @@ class UnblockUser {
 	public function __construct(
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		DatabaseBlockStore $blockStore,
+		BlockUtils $blockUtils,
 		UserFactory $userFactory,
 		HookContainer $hookContainer,
 		$target,
@@ -95,11 +100,12 @@ class UnblockUser {
 				$performer
 			);
 		$this->blockStore = $blockStore;
+		$this->blockUtils = $blockUtils;
 		$this->userFactory = $userFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 
 		// Process params
-		list( $this->target, $this->targetType ) = AbstractBlock::parseTarget( $target );
+		list( $this->target, $this->targetType ) = $this->blockUtils->parseBlockTarget( $target );
 		if (
 			$this->targetType === AbstractBlock::TYPE_AUTO &&
 			is_numeric( $this->target )

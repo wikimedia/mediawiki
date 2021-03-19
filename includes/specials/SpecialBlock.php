@@ -149,8 +149,8 @@ class SpecialBlock extends FormSpecialPage {
 			$this->getSkin()->setRelevantUser( $this->target );
 		}
 
-		list( $this->previousTarget, /*...*/ ) =
-			DatabaseBlock::parseTarget( $request->getVal( 'wpPreviousTarget' ) );
+		list( $this->previousTarget, /*...*/ ) = $this->blockUtils
+			->parseBlockTarget( $request->getVal( 'wpPreviousTarget' ) );
 		$this->requestedHideUser = $request->getBool( 'wpHideUser' );
 	}
 
@@ -681,7 +681,7 @@ class SpecialBlock extends FormSpecialPage {
 	 */
 	public static function getTargetAndType( ?string $par, WebRequest $request = null ) {
 		if ( !$request instanceof WebRequest ) {
-			return AbstractBlock::parseTarget( $par );
+			return MediaWikiServices::getInstance()->getBlockUtils()->parseBlockTarget( $par );
 		}
 
 		$possibleTargets = [
@@ -692,7 +692,9 @@ class SpecialBlock extends FormSpecialPage {
 			$request->getVal( 'wpBlockAddress', null ),
 		];
 		foreach ( $possibleTargets as $possibleTarget ) {
-			$targetAndType = AbstractBlock::parseTarget( $possibleTarget );
+			$targetAndType = MediaWikiServices::getInstance()
+				->getBlockUtils()
+				->parseBlockTarget( $possibleTarget );
 			// If type is not null then target is valid
 			if ( $targetAndType[ 1 ] !== null ) {
 				break;
