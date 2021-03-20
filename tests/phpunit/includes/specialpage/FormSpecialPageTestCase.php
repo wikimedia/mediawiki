@@ -34,7 +34,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock' ] )
+			->onlyMethods( [ 'getBlock' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( new DatabaseBlock( [
@@ -58,7 +58,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$checkExecutePermissions = $this->getMethod( $special, 'checkExecutePermissions' );
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock' ] )
+			->onlyMethods( [ 'getBlock' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( new DatabaseBlock( [

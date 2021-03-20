@@ -65,7 +65,7 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 		}
 
 		$provider = $this->getMockBuilder( AbstractSecondaryAuthenticationProvider::class )
-			->setMethods( [ 'providerChangeAuthenticationData' ] )
+			->onlyMethods( [ 'providerChangeAuthenticationData' ] )
 			->getMockForAbstractClass();
 		$provider->expects( $this->once() )->method( 'getAuthenticationRequests' )
 			->with(

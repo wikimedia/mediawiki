@@ -58,7 +58,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'errorLogger' => null,
 				'deprecationLogger' => new NullLogger(),
 				'srvCache' => new HashBagOStuff(),
-			] ] )->setMethods( array_merge(
+			] ] )->onlyMethods( array_merge(
 				[ 'query' ],
 				$version ? [ 'getServerVersion' ] : []
 			) )->getMock();

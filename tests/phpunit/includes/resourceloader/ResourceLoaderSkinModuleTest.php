@@ -119,7 +119,7 @@ CSS
 	 */
 	public function testGetStyles( $parent, $logo, $expected ) {
 		$module = $this->getMockBuilder( ResourceLoaderSkinModule::class )
-			->setMethods( [ 'readStyleFiles', 'getConfig', 'getLogoData' ] )
+			->onlyMethods( [ 'readStyleFiles', 'getConfig', 'getLogoData' ] )
 			->disableOriginalConstructor()
 			->getMock();
 		$module->expects( $this->once() )->method( 'readStyleFiles' )
@@ -167,7 +167,7 @@ CSS
 	 */
 	public function testIsKnownEmpty() {
 		$module = $this->getMockBuilder( ResourceLoaderSkinModule::class )
-			->disableOriginalConstructor()->setMethods( null )->getMock();
+			->disableOriginalConstructor()->onlyMethods( [] )->getMock();
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
 

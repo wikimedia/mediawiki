@@ -125,7 +125,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	public function testIsKnownEmpty( $titleInfo, $group, $dependencies, $expected ) {
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getTitleInfo', 'getGroup', 'getDependencies' ] )
+			->onlyMethods( [ 'getTitleInfo', 'getGroup', 'getDependencies' ] )
 			->getMock();
 		$module->method( 'getTitleInfo' )
 			->willReturn( $this->prepareTitleInfo( $titleInfo ) );
@@ -217,7 +217,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$expected = $titleInfo;
 
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
-			->setMethods( [ 'getPages', 'getTitleInfo' ] )
+			->onlyMethods( [ 'getPages', 'getTitleInfo' ] )
 			->getMock();
 		$module->method( 'getPages' )->willReturn( $pages );
 		$module->method( 'getTitleInfo' )->willReturn( $titleInfo );
@@ -246,7 +246,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$expected = $titleInfo;
 
 		$module = $this->getMockBuilder( TestResourceLoaderWikiModule::class )
-			->setMethods( [ 'getPages' ] )
+			->onlyMethods( [ 'getPages' ] )
 			->getMock();
 		$module->method( 'getPages' )->willReturn( $pages );
 		// Can't mock static methods
@@ -343,7 +343,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 	public function testGetContent( $expected, $title, Content $contentObj = null ) {
 		$context = $this->getResourceLoaderContext( [], new EmptyResourceLoader );
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
-			->setMethods( [ 'getContentObj' ] )->getMock();
+			->onlyMethods( [ 'getContentObj' ] )->getMock();
 		$module->method( 'getContentObj' )
 			->willReturn( $contentObj );
 
@@ -374,7 +374,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		];
 
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
-			->setMethods( [ 'getPages' ] )
+			->onlyMethods( [ 'getPages' ] )
 			->getMock();
 		$module->method( 'getPages' )->willReturn( $pages );
 
@@ -411,7 +411,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			$this->getResourceLoaderContext( [], new EmptyResourceLoader )
 		);
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
-			->setMethods( [ 'getPages' ] )
+			->onlyMethods( [ 'getPages' ] )
 			->getMock();
 		$module->method( 'getPages' )
 			->willReturn( [

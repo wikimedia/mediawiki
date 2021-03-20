@@ -46,7 +46,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			) );
 
 		$repoMock = $this->getMockBuilder( LocalRepo::class )
-			->setMethods( [ 'getMasterDB' ] )
+			->onlyMethods( [ 'getMasterDB' ] )
 			->setConstructorArgs( [ [
 					'name' => 'migratefilerepolayouttest',
 					'backend' => $backend
@@ -59,7 +59,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( $dbMock ) );
 
 		$this->migratorMock = $this->getMockBuilder( MigrateFileRepoLayout::class )
-			->setMethods( [ 'getRepo' ] )->getMock();
+			->onlyMethods( [ 'getRepo' ] )->getMock();
 		$this->migratorMock
 			->expects( $this->any() )
 			->method( 'getRepo' )

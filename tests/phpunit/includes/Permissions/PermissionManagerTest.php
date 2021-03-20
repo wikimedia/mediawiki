@@ -398,7 +398,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		}
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock' ] )
+			->onlyMethods( [ 'getBlock' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( $block );
@@ -554,7 +554,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		}
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock' ] )
+			->onlyMethods( [ 'getBlock' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( $block );
@@ -678,7 +678,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		] );
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock' ] )
+			->onlyMethods( [ 'getBlock' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( new DatabaseBlock( [
@@ -906,7 +906,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		// Add a Session that limits rights. We're mocking a stdClass because the Session
 		// class is final, and thus not mockable.
 		$mock = $this->getMockBuilder( stdClass::class )
-			->setMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
+			->addMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
 			->getMock();
 		$mock->method( 'getAllowedUserRights' )->willReturn( [ 'test', 'writetest' ] );
 		$mock->method( 'getSessionId' )->willReturn(
@@ -914,7 +914,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		);
 		$session = TestUtils::getDummySession( $mock );
 		$mockRequest = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getSession' ] )
+			->onlyMethods( [ 'getSession' ] )
 			->getMock();
 		$mockRequest->method( 'getSession' )->willReturn( $session );
 		$userWrapper->mRequest = $mockRequest;
@@ -1230,7 +1230,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getEffectiveGroups' ] )
+			->onlyMethods( [ 'getEffectiveGroups' ] )
 			->getMock();
 		$user->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
 

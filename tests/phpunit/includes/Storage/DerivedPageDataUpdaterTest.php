@@ -594,7 +594,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		/** @var ContentHandler|MockObject $handler */
 		$handler = $this->getMockBuilder( TextContentHandler::class )
 			->setConstructorArgs( [ $name ] )
-			->setMethods(
+			->onlyMethods(
 				[ 'getSecondaryDataUpdates', 'getDeletionUpdates', 'unserializeContent' ]
 			)
 			->getMock();
@@ -634,7 +634,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		/** @var Content|MockObject $content */
 		$content = $this->getMockBuilder( TextContent::class )
 			->setConstructorArgs( [ $text ] )
-			->setMethods( [ 'getModel', 'getContentHandler' ] )
+			->onlyMethods( [ 'getModel', 'getContentHandler' ] )
 			->getMock();
 
 		$content->method( 'getModel' )->willReturn( $handler->getModelID() );

@@ -206,7 +206,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->setTemporaryHook( 'ParserOptionsRegister',
 			function ( &$defaults, &$inCacheKey, &$lazyOptions ) {
 				$lazyFuncs = $this->getMockBuilder( stdClass::class )
-					->setMethods( [ 'neverCalled', 'calledOnce' ] )
+					->addMethods( [ 'neverCalled', 'calledOnce' ] )
 					->getMock();
 				$lazyFuncs->expects( $this->never() )->method( 'neverCalled' );
 				$lazyFuncs->expects( $this->once() )->method( 'calledOnce' )->willReturn( 'value' );

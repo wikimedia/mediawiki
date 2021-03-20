@@ -17,7 +17,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 	public function testConstructor() {
 		$cache = new \HashBagOStuff();
 		$logger = $this->getMockBuilder( AbstractLogger::class )
-			->setMethods( [ 'log' ] )
+			->onlyMethods( [ 'log' ] )
 			->getMockForAbstractClass();
 
 		$throttler = new Throttler(
@@ -164,7 +164,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 
 	public function testExpiration() {
 		$cache = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'add' ] )->getMock();
+			->onlyMethods( [ 'add' ] )->getMock();
 		$throttler = new Throttler( [ [ 'count' => 3, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 		$throttler->setLogger( new NullLogger() );
 
@@ -186,7 +186,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 		$throttler = new Throttler( [ [ 'count' => 1, 'seconds' => 10 ] ], [ 'cache' => $cache ] );
 
 		$logger = $this->getMockBuilder( AbstractLogger::class )
-			->setMethods( [ 'log' ] )
+			->onlyMethods( [ 'log' ] )
 			->getMockForAbstractClass();
 		$logger->expects( $this->never() )->method( 'log' );
 		$throttler->setLogger( $logger );
@@ -194,7 +194,7 @@ class ThrottlerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertFalse( $result, 'should not throttle' );
 
 		$logger = $this->getMockBuilder( AbstractLogger::class )
-			->setMethods( [ 'log' ] )
+			->onlyMethods( [ 'log' ] )
 			->getMockForAbstractClass();
 		$logger->expects( $this->once() )->method( 'log' )->with( $this->anything(), $this->anything(), [
 			'throttle' => 'custom',

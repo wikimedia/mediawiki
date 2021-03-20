@@ -28,7 +28,7 @@ class ConfirmLinkAuthenticationRequestTest extends AuthenticationRequestTestCase
 		$reqs = [];
 
 		$mb = $this->getMockBuilder( AuthenticationRequest::class )
-			->setMethods( [ 'getUniqueId' ] );
+			->onlyMethods( [ 'getUniqueId' ] );
 		for ( $i = 1; $i <= 3; $i++ ) {
 			$req = $mb->getMockForAbstractClass();
 			$req->expects( $this->any() )->method( 'getUniqueId' )

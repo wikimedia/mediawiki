@@ -25,7 +25,7 @@ class FileContentHandlerTest extends MediaWikiUnitTestCase {
 			->willReturnCallback( function ( $name, $type ) {
 				$mockField =
 					$this->getMockBuilder( SearchIndexFieldDefinition::class )
-						->setMethods( [ 'getMapping' ] )
+						->onlyMethods( [ 'getMapping' ] )
 						->setConstructorArgs( [ $name, $type ] )
 						->getMock();
 				return $mockField;

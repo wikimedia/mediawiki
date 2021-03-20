@@ -836,7 +836,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		// Mock the BagOStuff to assure only one getMulti() call given process caching
 		$localBag = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'getMulti' ] )->getMock();
+			->onlyMethods( [ 'getMulti' ] )->getMock();
 		$localBag->expects( $this->exactly( 1 ) )->method( 'getMulti' )->willReturn( [
 			'WANCache:v:' . 'k1' => 'val-id1',
 			'WANCache:v:' . 'k2' => 'val-id2'
@@ -873,7 +873,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$deferredCbs = [];
 		$bag = new HashBagOStuff();
 		$cache = $this->getMockBuilder( WANObjectCache::class )
-			->setMethods( [ 'worthRefreshExpiring', 'worthRefreshPopular' ] )
+			->onlyMethods( [ 'worthRefreshExpiring', 'worthRefreshPopular' ] )
 			->setConstructorArgs( [
 				[
 					'cache' => $bag,
@@ -1115,7 +1115,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$deferredCbs = [];
 		$bag = new HashBagOStuff();
 		$cache = $this->getMockBuilder( WANObjectCache::class )
-			->setMethods( [ 'worthRefreshExpiring', 'worthRefreshPopular' ] )
+			->onlyMethods( [ 'worthRefreshExpiring', 'worthRefreshPopular' ] )
 			->setConstructorArgs( [
 				[
 					'cache' => $bag,
@@ -1983,7 +1983,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testReap_fail() {
 		$backend = $this->getMockBuilder( EmptyBagOStuff::class )
-			->setMethods( [ 'get', 'changeTTL' ] )->getMock();
+			->onlyMethods( [ 'get', 'changeTTL' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'get' )
 			->willReturn( [
 				0 => 1,
@@ -2060,7 +2060,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	public function testMcRouterSupport() {
 		$localBag = $this->getMockBuilder( EmptyBagOStuff::class )
-			->setMethods( [ 'set', 'delete' ] )->getMock();
+			->onlyMethods( [ 'set', 'delete' ] )->getMock();
 		$localBag->expects( $this->never() )->method( 'set' );
 		$localBag->expects( $this->never() )->method( 'delete' );
 		$wanCache = new WANObjectCache( [
@@ -2084,7 +2084,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	public function testMcRouterSupportBroadcastDelete() {
 		$localBag = $this->getMockBuilder( EmptyBagOStuff::class )
-			->setMethods( [ 'set' ] )->getMock();
+			->onlyMethods( [ 'set' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
 			'broadcastRoutingPrefix' => '/*/mw-wan/',
@@ -2098,7 +2098,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	public function testMcRouterSupportBroadcastTouchCK() {
 		$localBag = $this->getMockBuilder( EmptyBagOStuff::class )
-			->setMethods( [ 'set' ] )->getMock();
+			->onlyMethods( [ 'set' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
 			'broadcastRoutingPrefix' => '/*/mw-wan/',
@@ -2112,7 +2112,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	public function testMcRouterSupportBroadcastResetCK() {
 		$localBag = $this->getMockBuilder( EmptyBagOStuff::class )
-			->setMethods( [ 'delete' ] )->getMock();
+			->onlyMethods( [ 'delete' ] )->getMock();
 		$wanCache = new WANObjectCache( [
 			'cache' => $localBag,
 			'broadcastRoutingPrefix' => '/*/mw-wan/',
@@ -2218,7 +2218,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testGetQoS() {
 		$backend = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'getQoS' ] )->getMock();
+			->onlyMethods( [ 'getQoS' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'getQoS' )
 			->willReturn( BagOStuff::QOS_UNKNOWN );
 		$wanCache = new WANObjectCache( [ 'cache' => $backend ] );
@@ -2234,7 +2234,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testMakeKey() {
 		$backend = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'makeKey' ] )->getMock();
+			->onlyMethods( [ 'makeKey' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'makeKey' )
 			->willReturn( 'special' );
 
@@ -2250,7 +2250,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testMakeGlobalKey() {
 		$backend = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'makeGlobalKey' ] )->getMock();
+			->onlyMethods( [ 'makeGlobalKey' ] )->getMock();
 		$backend->expects( $this->once() )->method( 'makeGlobalKey' )
 			->willReturn( 'special' );
 

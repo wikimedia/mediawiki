@@ -226,7 +226,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 
 	private function getMockBlockForTestAppliesToRight( $applies ) {
 		$mockBlock = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'appliesToRight' ] )
+			->onlyMethods( [ 'appliesToRight' ] )
 			->getMock();
 		$mockBlock->method( 'appliesToRight' )
 			->willReturn( $applies );
@@ -281,7 +281,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$request = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getIP' ] )
+			->onlyMethods( [ 'getIP' ] )
 			->getMock();
 		$request->method( 'getIP' )
 			->willReturn( '1.2.3.4' );

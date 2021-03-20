@@ -1895,7 +1895,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 				] ),
 				$this->createHookContainer()
 			] )
-			->setMethods( [ 'getMessagesFileName' ] )
+			->onlyMethods( [ 'getMessagesFileName' ] )
 			->getMock();
 		$langNameUtils->method( 'getMessagesFileName' )->will(
 			$this->returnCallback( static function ( $code ) {

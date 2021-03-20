@@ -284,7 +284,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getUserOptionsManager(),
 				$services->getLanguageConverterFactory()
 			] )
-			->setMethods( [ 'getSearchEngine' ] )
+			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
 		$search->expects( $this->any() )
 			->method( 'getSearchEngine' )
@@ -303,7 +303,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 	protected function mockSearchEngine( SpecialSearchTestMockResultSet $results ) {
 		$mock = $this->getMockBuilder( SearchEngine::class )
-			->setMethods( [ 'searchText', 'searchTitle', 'getNearMatcher' ] )
+			->onlyMethods( [ 'searchText', 'searchTitle', 'getNearMatcher' ] )
 			->getMock();
 
 		$mock->expects( $this->any() )
@@ -312,7 +312,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 
 		$nearMatcherMock = $this->getMockBuilder( SearchNearMatcher::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getNearMatch' ] )
+			->onlyMethods( [ 'getNearMatch' ] )
 			->getMock();
 
 		$nearMatcherMock->expects( $this->any() )
@@ -395,7 +395,7 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 				$services->getUserOptionsManager(),
 				$services->getLanguageConverterFactory()
 			] )
-			->setMethods( [ 'getSearchEngine' ] )
+			->onlyMethods( [ 'getSearchEngine' ] )
 			->getMock();
 		$search->expects( $this->any() )
 			->method( 'getSearchEngine' )

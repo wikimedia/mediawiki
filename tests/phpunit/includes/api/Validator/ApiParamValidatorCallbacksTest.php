@@ -56,7 +56,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 
 		$module = $this->getMockBuilder( ApiBase::class )
 			->setConstructorArgs( [ $main, 'testmodule' ] )
-			->setMethods( [ 'handleParamNormalization' ] )
+			->onlyMethods( [ 'handleParamNormalization' ] )
 			->getMockForAbstractClass();
 		$options = [ 'module' => $module ];
 		if ( $normalized ) {
@@ -171,7 +171,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 
 		$module = $this->getMockBuilder( ApiQueryBase::class )
 			->setConstructorArgs( [ $query, 'test' ] )
-			->setMethods( [ 'addWarning' ] )
+			->onlyMethods( [ 'addWarning' ] )
 			->getMockForAbstractClass();
 		$module->method( 'addWarning' )->willReturnCallback(
 			static function ( $msg, $code, $data ) use ( &$warnings ) {
@@ -277,7 +277,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		$context = $this->apiContext->newTestContext( new FauxRequest, $this->getTestUser()->getUser() );
 		$main = $this->getMockBuilder( ApiMain::class )
 			->setConstructorArgs( [ $context ] )
-			->setMethods( [ 'canApiHighLimits' ] )
+			->onlyMethods( [ 'canApiHighLimits' ] )
 			->getMock();
 
 		$main->method( 'canApiHighLimits' )->will( $this->onConsecutiveCalls( true, false ) );

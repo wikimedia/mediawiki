@@ -275,12 +275,12 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 
 		$fileHandler = $this->getMockBuilder( FileContentHandler::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getDataForSearchIndex' ] )
+			->onlyMethods( [ 'getDataForSearchIndex' ] )
 			->getMock();
 
 		$handler = $this->getMockBuilder( WikitextContentHandler::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getFileHandler' ] )
+			->onlyMethods( [ 'getFileHandler' ] )
 			->getMock();
 
 		$handler->method( 'getFileHandler' )->will( $this->returnValue( $fileHandler ) );

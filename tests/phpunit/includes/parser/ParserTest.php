@@ -22,13 +22,13 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 		// function hooks when it is created.
 		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'get', 'getVariableIDs' ] )
+			->onlyMethods( [ 'get', 'getVariableIDs' ] )
 			->getMock();
 		$mwFactory
 			->method( 'get' )->will( $this->returnCallback( function ( $arg ) {
 				$mw = $this->getMockBuilder( MagicWord::class )
 					->disableOriginalConstructor()
-					->setMethods( [ 'getSynonyms' ] )
+					->onlyMethods( [ 'getSynonyms' ] )
 					->getMock();
 				$mw->method( 'getSynonyms' )->willReturn( [] );
 				return $mw;

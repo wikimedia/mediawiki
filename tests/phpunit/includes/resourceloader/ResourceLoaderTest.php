@@ -725,7 +725,7 @@ END
 
 	protected function getFailFerryMock( $getter = 'getScript' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->setMethods( [ $getter ] )
+			->onlyMethods( [ $getter ] )
 			->getMock();
 		$mock->method( $getter )->will( $this->throwException(
 			new Exception( 'Ferry not found' )
@@ -735,7 +735,7 @@ END
 
 	protected function getSimpleModuleMock( $script = '' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->setMethods( [ 'getScript' ] )
+			->onlyMethods( [ 'getScript' ] )
 			->getMock();
 		$mock->method( 'getScript' )->willReturn( $script );
 		return $mock;
@@ -743,7 +743,7 @@ END
 
 	protected function getSimpleStyleModuleMock( $styles = '' ) {
 		$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->setMethods( [ 'getStyles' ] )
+			->onlyMethods( [ 'getStyles' ] )
 			->getMock();
 		$mock->method( 'getStyles' )->willReturn( [ '' => $styles ] );
 		return $mock;
@@ -755,7 +755,7 @@ END
 	public function testGetCombinedVersion() {
 		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
 			// Disable log from outputErrorAndLog
-			->setMethods( [ 'outputErrorAndLog' ] )->getMock();
+			->onlyMethods( [ 'outputErrorAndLog' ] )->getMock();
 		$rl->register( [
 			'foo' => [ 'class' => ResourceLoaderTestModule::class ],
 			'ferry' => [
@@ -1030,7 +1030,7 @@ END
 	 */
 	public function testMakeModuleResponseExtraHeaders() {
 		$module = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->setMethods( [ 'getPreloadLinks' ] )->getMock();
+			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
 		$module->method( 'getPreloadLinks' )->willReturn( [
 			 'https://example.org/script.js' => [ 'as' => 'script' ],
 		] );
@@ -1061,13 +1061,13 @@ END
 	 */
 	public function testMakeModuleResponseExtraHeadersMulti() {
 		$foo = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->setMethods( [ 'getPreloadLinks' ] )->getMock();
+			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
 		$foo->method( 'getPreloadLinks' )->willReturn( [
 			 'https://example.org/script.js' => [ 'as' => 'script' ],
 		] );
 
 		$bar = $this->getMockBuilder( ResourceLoaderTestModule::class )
-			->setMethods( [ 'getPreloadLinks' ] )->getMock();
+			->onlyMethods( [ 'getPreloadLinks' ] )->getMock();
 		$bar->method( 'getPreloadLinks' )->willReturn( [
 			 '/example.png' => [ 'as' => 'image' ],
 			 '/example.jpg' => [ 'as' => 'image' ],
@@ -1097,7 +1097,7 @@ END
 	 */
 	public function testRespondEmpty() {
 		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
-			->setMethods( [
+			->onlyMethods( [
 				'tryRespondNotModified',
 				'sendResponseHeaders',
 				'measureResponseTime',
@@ -1117,7 +1117,7 @@ END
 	public function testRespondSimple() {
 		$module = new ResourceLoaderTestModule( [ 'script' => 'foo();' ] );
 		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
-			->setMethods( [
+			->onlyMethods( [
 				'measureResponseTime',
 				'tryRespondNotModified',
 				'sendResponseHeaders',
@@ -1149,7 +1149,7 @@ END
 	 */
 	public function testRespondErrorPrivate() {
 		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
-			->setMethods( [
+			->onlyMethods( [
 				'measureResponseTime',
 				'tryRespondNotModified',
 				'sendResponseHeaders',
@@ -1174,7 +1174,7 @@ END
 	public function testRespondInternalFailures() {
 		$module = new ResourceLoaderTestModule( [ 'script' => 'foo();' ] );
 		$rl = $this->getMockBuilder( EmptyResourceLoader::class )
-			->setMethods( [
+			->onlyMethods( [
 				'measureResponseTime',
 				'preloadModuleInfo',
 				'getCombinedVersion',
@@ -1210,7 +1210,7 @@ END
 	 */
 	public function testMeasureResponseTime() {
 		$stats = $this->getMockBuilder( NullStatsdDataFactory::class )
-			->setMethods( [ 'timing' ] )->getMock();
+			->onlyMethods( [ 'timing' ] )->getMock();
 		$this->setService( 'StatsdDataFactory', $stats );
 
 		$stats->expects( $this->once() )->method( 'timing' )

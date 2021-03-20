@@ -66,7 +66,7 @@ class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
 				$mockLangNameUtils,
 				$hookContainer
 			] )
-			->setMethods( [ 'getMessagesDirs' ] )
+			->onlyMethods( [ 'getMessagesDirs' ] )
 			->getMock();
 		$lc->expects( $this->any() )->method( 'getMessagesDirs' )
 			->will( $this->returnValue(

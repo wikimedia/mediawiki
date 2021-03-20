@@ -232,7 +232,7 @@ mw.loader.register([
 					'test.fail' => [
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->setMethods( [ 'getVersionHash' ] )->getMock();
+								->onlyMethods( [ 'getVersionHash' ] )->getMock();
 							$mock->method( 'getVersionHash' )->will(
 								$this->throwException( new Exception )
 							);
@@ -260,7 +260,7 @@ mw.loader.state({
 					'test.version' => [
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->setMethods( [ 'getVersionHash' ] )->getMock();
+								->onlyMethods( [ 'getVersionHash' ] )->getMock();
 							$mock->method( 'getVersionHash' )->willReturn( '12345' );
 							return $mock;
 						}
@@ -283,7 +283,7 @@ mw.loader.register([
 					'test.version' => [
 						'factory' => function () {
 							$mock = $this->getMockBuilder( ResourceLoaderTestModule::class )
-								->setMethods( [ 'getVersionHash' ] )->getMock();
+								->onlyMethods( [ 'getVersionHash' ] )->getMock();
 							$mock->method( 'getVersionHash' )->willReturn( '12345678' );
 							return $mock;
 						}

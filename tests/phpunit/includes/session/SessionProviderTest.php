@@ -64,7 +64,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$manager = new SessionManager();
 
 		$provider = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
+			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
 		$provider->expects( $this->any() )->method( 'persistsSessionId' )
 			->will( $this->returnValue( $persistId ) );
@@ -123,14 +123,14 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	public function testImmutableSessions() {
 		$provider = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
+			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
 		$provider->expects( $this->any() )->method( 'canChangeUser' )
 			->will( $this->returnValue( true ) );
 		$provider->preventSessionsForUser( 'Foo' );
 
 		$provider = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'canChangeUser', 'persistsSessionId' ] )
+			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
 		$provider->expects( $this->any() )->method( 'canChangeUser' )
 			->will( $this->returnValue( false ) );

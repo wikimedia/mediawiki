@@ -32,7 +32,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 
 		$mock = $this->getMockBuilder( ApiFormatBase::class )
 			->setConstructorArgs( [ $main, $format ] )
-			->setMethods( array_unique( array_merge( $methods, [ 'getMimeType', 'execute' ] ) ) )
+			->onlyMethods( array_unique( array_merge( $methods, [ 'getMimeType', 'execute' ] ) ) )
 			->getMock();
 		if ( !in_array( 'getMimeType', $methods, true ) ) {
 			$mock->method( 'getMimeType' )->willReturn( 'text/x-mock' );

@@ -18,7 +18,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 		$priv = TestingAccessWrapper::newFromObject( $session );
 
 		$backend = $this->getMockBuilder( DummySessionBackend::class )
-			->setMethods( [ 'canSetUser', 'setUser', 'save' ] )
+			->addMethods( [ 'canSetUser', 'setUser', 'save' ] )
 			->getMock();
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( true ) );
@@ -33,7 +33,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $backend->dirty );
 
 		$backend = $this->getMockBuilder( DummySessionBackend::class )
-			->setMethods( [ 'canSetUser', 'setUser', 'save' ] )
+			->addMethods( [ 'canSetUser', 'setUser', 'save' ] )
 			->getMock();
 		$backend->data = [];
 		$backend->expects( $this->once() )->method( 'canSetUser' )
@@ -48,7 +48,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $backend->dirty );
 
 		$backend = $this->getMockBuilder( DummySessionBackend::class )
-			->setMethods( [ 'canSetUser', 'setUser', 'save' ] )
+			->addMethods( [ 'canSetUser', 'setUser', 'save' ] )
 			->getMock();
 		$backend->expects( $this->once() )->method( 'canSetUser' )
 			->will( $this->returnValue( false ) );

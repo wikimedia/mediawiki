@@ -53,7 +53,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		return $this->getMockBuilder( FileBackend::class )
 			->setConstructorArgs( [ $config ] )
-			->setMethods( $methodsToMock )
+			->onlyMethods( $methodsToMock )
 			->getMockForAbstractClass();
 	}
 
@@ -666,7 +666,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 
 		$mockLm = $this->getMockBuilder( LockManager::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'do' . ucfirst( $method ) . 'ByType', 'doLock', 'doUnlock' ] )
+			->onlyMethods( [ 'do' . ucfirst( $method ) . 'ByType', 'doLock', 'doUnlock' ] )
 			->getMock();
 		// XXX PHPUnit can't override final methods (T231419)
 		//$mockLm->expects( $this->once() )->method( $method )
@@ -710,7 +710,7 @@ class FileBackendTest extends MediaWikiUnitTestCase {
 	) : void {
 		$mockLm = $this->getMockBuilder( LockManager::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'doLockByType', 'doUnlockByType', 'doLock', 'doUnlock' ] )
+			->onlyMethods( [ 'doLockByType', 'doUnlockByType', 'doLock', 'doUnlock' ] )
 			->getMock();
 		$mockLm->expects( $this->once() )->method( 'doLockByType' )
 			->with( $expectedPathsByType )

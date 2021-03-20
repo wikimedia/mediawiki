@@ -190,7 +190,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 				null,
 				$this->wanCache
 			] )
-			->setMethods( $methods )
+			->onlyMethods( $methods ?: [] )
 			->getMock();
 
 		return $blobStore;

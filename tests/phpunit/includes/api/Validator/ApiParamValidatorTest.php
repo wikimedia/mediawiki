@@ -147,7 +147,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 
 		$mock = $this->getMockBuilder( ParamValidator::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'checkSettings' ] )
+			->onlyMethods( [ 'checkSettings' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'checkSettings' )
 			->willReturnCallback( function ( $n, $settings, $options ) use ( $name, $module ) {
@@ -678,7 +678,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 
 		$mock = $this->getMockBuilder( ParamValidator::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getParamInfo' ] )
+			->onlyMethods( [ 'getParamInfo' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'getParamInfo' )
 		   ->with(
@@ -705,7 +705,7 @@ class ApiParamValidatorTest extends ApiTestCase {
 
 		$mock = $this->getMockBuilder( ParamValidator::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getHelpInfo' ] )
+			->onlyMethods( [ 'getHelpInfo' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'getHelpInfo' )
 		   ->with(

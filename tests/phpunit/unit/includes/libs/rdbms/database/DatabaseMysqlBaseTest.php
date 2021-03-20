@@ -40,7 +40,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testAddIdentifierQuotes( $expected, $in ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( null )
+			->onlyMethods( [] )
 			->getMock();
 
 		/** @var IDatabase $db */
@@ -103,7 +103,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	private function getMockForViews() : IMaintainableDatabase {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'fetchRow', 'query', 'getDBname' ] )
+			->onlyMethods( [ 'fetchRow', 'query', 'getDBname' ] )
 			->getMock();
 
 		$db->method( 'query' )
@@ -361,7 +361,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testPtHeartbeat( $lag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [
+			->onlyMethods( [
 				'getLagDetectionMethod', 'getHeartbeatData', 'getMasterServerInfo' ] )
 			->getMock();
 
@@ -419,7 +419,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [
+			->onlyMethods( [
 				'useGTIDs',
 				'getServerGTIDs',
 				'getServerRoleStatus',
@@ -587,7 +587,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testInsertSelectIsSafe( $insertOpts, $selectOpts, $row, $safe ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getReplicationSafetyInfo' ] )
+			->onlyMethods( [ 'getReplicationSafetyInfo' ] )
 			->getMock();
 		$db->method( 'getReplicationSafetyInfo' )->willReturn( (object)$row );
 		$dbw = TestingAccessWrapper::newFromObject( $db );
@@ -680,7 +680,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testBuildIntegerCast() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( null )
+			->onlyMethods( [] )
 			->getMock();
 
 		/** @var IDatabase $db */
@@ -694,7 +694,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testIndexAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
+			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
 			static function ( $s ) {
@@ -728,7 +728,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	public function testTableAliases() {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
+			->onlyMethods( [ 'mysqlRealEscapeString', 'dbSchema', 'tablePrefix' ] )
 			->getMock();
 		$db->method( 'mysqlRealEscapeString' )->willReturnCallback(
 			static function ( $s ) {

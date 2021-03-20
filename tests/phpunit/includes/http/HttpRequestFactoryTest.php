@@ -41,7 +41,7 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 		$expectedOptions = []
 	) {
 		$factory = $this->getMockBuilder( HttpRequestFactory::class )
-			->setMethods( [ 'create' ] )
+			->onlyMethods( [ 'create' ] )
 			->disableOriginalConstructor()
 			->getMock();
 
@@ -71,7 +71,7 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 	private function newFakeRequest( $result ) {
 		$req = $this->getMockBuilder( MWHttpRequest::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getContent', 'execute' ] )
+			->onlyMethods( [ 'getContent', 'execute' ] )
 			->getMock();
 
 		if ( $result instanceof Status ) {

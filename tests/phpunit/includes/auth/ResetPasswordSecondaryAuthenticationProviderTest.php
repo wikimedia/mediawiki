@@ -41,7 +41,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 		$reqs = [ new \stdClass ];
 
 		$mb = $this->getMockBuilder( ResetPasswordSecondaryAuthenticationProvider::class )
-			->setMethods( [ 'tryReset' ] );
+			->onlyMethods( [ 'tryReset' ] );
 
 		$methods = [
 			'beginSecondaryAuthentication' => [ $user, $reqs ],
@@ -64,7 +64,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 		$provider = $this->getMockBuilder(
 			ResetPasswordSecondaryAuthenticationProvider::class
 		)
-			->setMethods( [
+			->onlyMethods( [
 				'providerAllowsAuthenticationDataChange', 'providerChangeAuthenticationData'
 			] )
 			->getMock();
