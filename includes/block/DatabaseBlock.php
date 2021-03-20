@@ -540,28 +540,45 @@ class DatabaseBlock extends AbstractBlock {
 	}
 
 	/**
-	 * Checks whether a given IP is on the autoblock whitelist.
-	 * TODO: this probably belongs somewhere else, but not sure where...
+	 * Checks whether a given IP is on the autoblock exemption list.
+	 *
+	 * @deprecated since 1.36; use DatabaseBlock::isExemptedFromAutoblocks()
 	 *
 	 * @param string $ip The IP to check
 	 * @return bool
 	 */
 	public static function isWhitelistedFromAutoblocks( $ip ) {
-		// Try to get the autoblock_whitelist from the cache, as it's faster
+		return self::isExemptedFromAutoblocks( $ip );
+	}
+
+	/**
+	 * Checks whether a given IP is on the autoblock exemption list.
+	 * TODO: this probably belongs somewhere else, but not sure where...
+	 *
+	 * @since 1.36
+	 *
+	 * @param string $ip The IP to check
+	 * @return bool
+	 */
+	public static function isExemptedFromAutoblocks( $ip ) {
+		// Try to get the ip-autoblock_exemption from the cache, as it's faster
 		// than getting the msg raw and explode()'ing it.
 		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
 		$lines = $cache->getWithSetCallback(
-			$cache->makeKey( 'ip-autoblock', 'whitelist' ),
+			$cache->makeKey( 'ip-autoblock', 'exemption' ),
 			$cache::TTL_DAY,
 			static function ( $curValue, &$ttl, array &$setOpts ) {
 				$setOpts += Database::getCacheSetOptions( wfGetDB( DB_REPLICA ) );
 
 				return explode( "\n",
-					wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain() );
+					wfMessage( 'block-autoblock-exemptionlist' )->inContentLanguage()->plain()
+					// Temporarily still load the old Message
+					. "\n" . wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain()
+				);
 			}
 		);
 
-		wfDebug( "Checking the autoblock whitelist.." );
+		wfDebug( "Checking the autoblock exemption list.." );
 
 		foreach ( $lines as $line ) {
 			# List items only
@@ -598,8 +615,8 @@ class DatabaseBlock extends AbstractBlock {
 			return false;
 		}
 
-		# Check for presence on the autoblock whitelist.
-		if ( self::isWhitelistedFromAutoblocks( $autoblockIP ) ) {
+		# Check if autoblock exempt.
+		if ( self::isExemptedFromAutoblocks( $autoblockIP ) ) {
 			return false;
 		}
 
