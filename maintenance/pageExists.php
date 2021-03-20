@@ -39,9 +39,9 @@ class PageExists extends Maintenance {
 		$text = '';
 		$code = 0;
 		if ( $pageExists ) {
-			$text = "{$title} exists.";
+			$text = "{$title} exists.\n";
 		} else {
-			$text = "{$titleArg} doesn't exist.";
+			$text = "{$titleArg} doesn't exist.\n";
 			$code = 1;
 		}
 		$this->output( $text );
