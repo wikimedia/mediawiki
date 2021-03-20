@@ -44,6 +44,7 @@ class PHPVersionCheck {
 		'json_decode' => 'json',
 		'iconv'       => 'iconv',
 		'mime_content_type' => 'fileinfo',
+		'intl_is_failure' => 'intl',
 	);
 
 	/**
