@@ -16,6 +16,9 @@ information when upgrading from versions prior to 1.11.
 Some specific notes for MediaWiki 1.36 upgrades are below:
 * MediaWiki 1.36 now requires the PHP internationalization extension (commonly
   referred to as Intl, ext-intl, or php-intl).
+* MediaWiki:Autoblock_whitelist has been moved to
+  MediaWiki:Block-autoblock-exemptionlist. If you use this feature, please move
+  the MediaWiki:Autoblock_whitelist page.
 * …
 
 For notes on 1.35.x and older releases, see HISTORY.
@@ -630,6 +633,8 @@ because of Phabricator reports.
 * DatabaseBlock constructor 'byText' option was deprecated in favour of 'by'
   option, which now accepts UserIdentity. Passing user ID is deprecated.
 * Parser::getUser was deprecated. Use Parser::getUserIdentity instead.
+* DatabaseBlock::isWhitelistedFromAutoblocks was deprecated. Use
+  DatabaseBlock::isExemptedFromAutoblocks instead.
 * …
 
 === Other changes in 1.36 ===
