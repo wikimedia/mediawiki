@@ -261,7 +261,7 @@ class UploadForm extends HTMLForm {
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
-				$fileBlacklist = array_unique( $config->get( 'FileBlacklist' ) );
+				$prohibitedExtensions = array_unique( $config->get( 'FileBlacklist' ) );
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
 						$this->msg( 'upload-preferred' )
@@ -271,8 +271,8 @@ class UploadForm extends HTMLForm {
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
 						$this->msg( 'upload-prohibited' )
-							->params( $this->getLanguage()->commaList( $fileBlacklist ) )
-							->numParams( count( $fileBlacklist ) )
+							->params( $this->getLanguage()->commaList( $prohibitedExtensions ) )
+							->numParams( count( $prohibitedExtensions ) )
 							->parseAsBlock() .
 					"</div>\n";
 			}

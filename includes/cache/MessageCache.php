@@ -752,7 +752,7 @@ class MessageCache implements LoggerAwareInterface {
 		// Update the process cache
 		$this->cache->set( $code, $cache );
 		// Pre-emptively update the local datacenter cache so things like edit filter and
-		// blacklist changes are reflected immediately; these often use MediaWiki: pages.
+		// prevented changes are reflected immediately; these often use MediaWiki: pages.
 		// The datacenter handling replace() calls should be the same one handling edits
 		// as they require HTTP POST.
 		$this->saveToCaches( $cache, 'all', $code );

@@ -59,12 +59,11 @@ class SpecialShortPages extends QueryPage {
 
 	public function getQueryInfo() {
 		$config = $this->getConfig();
-		$blacklist = $config->get( 'ShortPagesNamespaceBlacklist' );
 		$tables = [ 'page' ];
 		$conds = [
 			'page_namespace' => array_diff(
 				$this->namespaceInfo->getContentNamespaces(),
-				$blacklist
+				$config->get( 'ShortPagesNamespaceBlacklist' )
 			),
 			'page_is_redirect' => 0
 		];

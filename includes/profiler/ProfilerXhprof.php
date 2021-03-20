@@ -38,7 +38,7 @@
  * extension can be installed via PECL or your operating system's package manager.
  *
  * To restrict the functions for which profiling data is collected, you can
- * use either a whitelist ($wgProfiler['include']) or a blacklist
+ * use either a allow list ($wgProfiler['include']) or a deny list
  * ($wgProfiler['exclude']) containing an array of function names.
  * Shell-style patterns are also accepted.
  *

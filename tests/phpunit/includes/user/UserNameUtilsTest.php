@@ -106,7 +106,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			'Looks too much like an IPv4 address (1)' => [ '300.300.300.300', false ],
 			'Looks too much like an IPv4 address (2)' => [ '302.113.311.900', false ],
 			'Reserved for usage by UseMod for cloaked logged-out users' => [ '203.0.113.xxx', false ],
-			'Blacklisted characters' => [ "\u{E000}", false ],
+			'Disallowed characters' => [ "\u{E000}", false ],
 		];
 	}
 

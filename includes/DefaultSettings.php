@@ -1069,8 +1069,8 @@ $wgFileExtensions = [ 'png', 'gif', 'jpg', 'jpeg', 'webp' ];
 
 /**
  * Files with these extensions will never be allowed as uploads.
- * An array of file extensions to blacklist. You should append to this array
- * if you want to blacklist additional files.
+ * An array of file extensions to prevent being uploaded. You should
+ * append to this array if you want to prevent additional file extensions.
  */
 $wgFileBlacklist = [
 	# HTML may contain cookie-stealing JavaScript and web bugs

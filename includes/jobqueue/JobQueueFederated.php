@@ -236,7 +236,7 @@ class JobQueueFederated extends JobQueue {
 				$this->logException( $e );
 			}
 			if ( !$ok ) {
-				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) { // blacklist
+				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) {
 					throw new JobQueueError( "Could not insert job(s), no partitions available." );
 				}
 				$jobsLeft = array_merge( $jobsLeft, $jobBatch ); // not inserted
@@ -255,7 +255,7 @@ class JobQueueFederated extends JobQueue {
 				$this->logException( $e );
 			}
 			if ( !$ok ) {
-				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) { // blacklist
+				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) {
 					throw new JobQueueError( "Could not insert job(s), no partitions available." );
 				}
 				$jobsLeft = array_merge( $jobsLeft, $jobBatch ); // not inserted

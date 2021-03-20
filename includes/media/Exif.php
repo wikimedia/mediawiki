@@ -621,7 +621,7 @@ class Exif {
 		}
 
 		if ( preg_match( "/[^\x0a\x20-\x7e]/", $in ) ) {
-			$this->debug( $in, __FUNCTION__, 'found a character not in our whitelist' );
+			$this->debug( $in, __FUNCTION__, 'found a character that is not allowed' );
 
 			return false;
 		}
