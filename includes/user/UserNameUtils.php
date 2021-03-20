@@ -210,7 +210,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * either by batch processes or by user accounts which have
 	 * already been created.
 	 *
-	 * Additional blacklisting may be added here rather than in
+	 * Additional preventions may be added here rather than in
 	 * isValidUserName() to avoid disrupting existing accounts.
 	 *
 	 * @param string $name String to match

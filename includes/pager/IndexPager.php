@@ -702,8 +702,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 	/**
 	 * Get an array of query parameters that should be put into self-links.
-	 * By default, all parameters passed in the URL are used, except for a
-	 * short blacklist.
+	 * By default, all parameters passed in the URL are used, apart from a
+	 * few exceptions.
 	 *
 	 * @stable to override
 	 *

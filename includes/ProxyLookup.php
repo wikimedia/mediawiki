@@ -72,7 +72,7 @@ class ProxyLookup {
 	/**
 	 * Checks if an IP is a trusted proxy provider.
 	 * Useful to tell if X-Forwarded-For data is possibly bogus.
-	 * CDN cache servers for the site are whitelisted.
+	 * CDN cache servers for the site are allowed.
 	 *
 	 * @param string $ip
 	 * @return bool

@@ -1101,7 +1101,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * either by batch processes or by user accounts which have
 	 * already been created.
 	 *
-	 * Additional blacklisting may be added here rather than in
+	 * Additional preventions may be added here rather than in
 	 * isValidUserName() to avoid disrupting existing accounts.
 	 *
 	 * @deprecated since 1.35, use the UserNameUtils service
