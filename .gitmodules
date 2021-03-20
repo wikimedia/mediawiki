@@ -973,11 +973,6 @@
 	url = https://github.com/Hutchy68/Purge.git
 	branch = master
 	ignore = dirty
-[submodule "extensions/3D"]
-	path = extensions/3D
-	url = https://github.com/wikimedia/mediawiki-extensions-3D.git
-	branch = master
-	ignore = dirty
 [submodule "extensions/GettingStarted"]
 	path = extensions/GettingStarted
 	url = https://github.com/wikimedia/mediawiki-extensions-GettingStarted.git
@@ -1421,5 +1416,10 @@
 [submodule "extensions/GoogleDocs4MW"]
 	path = extensions/GoogleDocs4MW
 	url = https://github.com/wikimedia/mediawiki-extensions-GoogleDocs4MW
+	branch = REL1_35
+	ignore = dirty
+[submodule "extensions/3D"]
+	path = extensions/3D
+	url = https://github.com/wikimedia/mediawiki-extensions-3D
 	branch = REL1_35
 	ignore = dirty
