@@ -51,6 +51,11 @@ is no longer recommended and the option has been removed.
 * $wgUploadStashScalerBaseUrl – This setting, to enable remote on-demand media
   scaling, was deprecated. Use the `thumbProxyUrl` setting in $wgLocalFileRepo
   instead.
+* $wgSlaveLagWarning and $wgSlaveLagCritical – These settings have been renamed,
+  to $wgDatabaseReplicaLagWarning & $wgDatabaseReplicaLagCritical respectively.
+  The former configuration variable names are deprecated, but will be used as
+  the fall back if they are still set, and remain temporarily available for
+  extensions which try to read them.
 * …
 
 ==== Removed configuration ====
