@@ -98,7 +98,7 @@ class GenerateSchemaSql extends Maintenance {
 
 			// FIXME: Also fix a lot of weird formatting issues caused by
 			// presence of partial index's WHERE clause, this should probably
-			// be done in some better way, but for now this can work temporaily
+			// be done in some better way, but for now this can work temporarily
 			$sql = str_replace(
 				[ "WHERE\n ", "\n  /*_*/\n  ", "    ", "  );", "KEY(\n  " ],
 				[ "WHERE", ' ', "  ", ');', "KEY(\n    " ],
@@ -109,12 +109,6 @@ class GenerateSchemaSql extends Maintenance {
 			// properly understand BYTEA type and works just fine with TEXT type
 			// FIXME: This should be fixed at some point (T257755)
 			$sql = str_replace( "BYTEA", 'TEXT', $sql );
-		}
-
-		if ( $platform === 'mysql' ) {
-			// Temporary
-			// Convert DOUBLE PRECISION (which is default float format in DBAL) to FLOAT
-			$sql = str_replace( "DOUBLE PRECISION", 'FLOAT', $sql );
 		}
 
 		// Until the linting issue is resolved
