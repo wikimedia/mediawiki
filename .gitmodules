@@ -463,11 +463,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Tabs
 	branch = REL1_35
 	ignore = dirty
-[submodule "extensions/RandomSelection"]
-	path = extensions/RandomSelection
-	url = https://github.com/wikimedia/mediawiki-extensions-RandomSelection.git
-	branch = master
-	ignore = dirty
 [submodule "skins/foreground"]
 	path = skins/foreground
 	url = https://github.com/thingles/foreground.git
@@ -1421,5 +1416,10 @@
 [submodule "extensions/Editcount"]
 	path = extensions/Editcount
 	url = https://github.com/wikimedia/mediawiki-extensions-Editcount
+	branch = REL1_35
+	ignore = dirty
+[submodule "extensions/RandomSelection"]
+	path = extensions/RandomSelection
+	url = https://github.com/wikimedia/mediawiki-extensions-RandomSelection
 	branch = REL1_35
 	ignore = dirty
