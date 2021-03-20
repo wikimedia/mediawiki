@@ -1179,39 +1179,6 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Populates the log_user_text field in the logging table
-	 */
-	protected function doLogUsertextPopulation() {
-		if ( !$this->updateRowExists( 'populate log_usertext' ) ) {
-			$this->output(
-				"Populating log_user_text field, printing progress markers. For large\n" .
-				"databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateLogUsertext.php.\n"
-			);
-
-			$task = $this->maintenance->runChild( PopulateLogUsertext::class );
-			$task->execute();
-			$this->output( "done.\n" );
-		}
-	}
-
-	/**
-	 * Migrate log params to new table and index for searching
-	 */
-	protected function doLogSearchPopulation() {
-		if ( !$this->updateRowExists( 'populate log_search' ) ) {
-			$this->output(
-				"Populating log_search table, printing progress markers. For large\n" .
-				"databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateLogSearch.php.\n" );
-
-			$task = $this->maintenance->runChild( PopulateLogSearch::class );
-			$task->execute();
-			$this->output( "done.\n" );
-		}
-	}
-
-	/**
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {

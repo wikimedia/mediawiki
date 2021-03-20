@@ -51,8 +51,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			'CREATE UNIQUE INDEX ipb_address_unique ' .
 				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
 
-			# r81574
-			[ 'addInterwikiType' ],
 			# end
 			[ 'tsearchFixes' ],
 
@@ -1217,10 +1215,6 @@ END;
 				"Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT"
 			);
 		}
-	}
-
-	protected function addInterwikiType() {
-		$this->applyPatch( 'patch-add_interwiki.sql', false, "Refreshing add_interwiki()" );
 	}
 
 	protected function tsearchFixes() {
