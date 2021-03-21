@@ -1595,6 +1595,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getLatestEditTimestamp
 	 */
 	public function testGetFirstLatestEditTimestamp() {
+		$this->hideDeprecated( 'User::getFirstEditTimestamp' );
+		$this->hideDeprecated( 'User::getLatestEditTimestamp' );
 		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
 		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock += 1000;
