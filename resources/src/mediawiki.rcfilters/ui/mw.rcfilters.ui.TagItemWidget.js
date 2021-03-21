@@ -94,7 +94,7 @@
 			).contents() );
 		} else {
 			this.setLabel(
-				$( '<bdi>' ).append(
+				$( '<bdi>' ).text(
 					this.itemModel.getLabel()
 				)
 			);
