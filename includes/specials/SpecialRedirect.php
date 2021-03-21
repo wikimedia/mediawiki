@@ -21,6 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\User\UserFactory;
+
 /**
  * A special page that redirects to: the user for a numeric user id,
  * the file for a given filename, or the page for a given revision id.
@@ -51,15 +53,23 @@ class SpecialRedirect extends FormSpecialPage {
 	/** @var RepoGroup */
 	private $repoGroup;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param RepoGroup $repoGroup
+	 * @param UserFactory $userFactory
 	 */
-	public function __construct( RepoGroup $repoGroup ) {
+	public function __construct(
+		RepoGroup $repoGroup,
+		UserFactory $userFactory
+	) {
 		parent::__construct( 'Redirect' );
 		$this->mType = null;
 		$this->mValue = null;
 
 		$this->repoGroup = $repoGroup;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -83,7 +93,7 @@ class SpecialRedirect extends FormSpecialPage {
 			// Message: redirect-not-numeric
 			return Status::newFatal( $this->getMessagePrefix() . '-not-numeric' );
 		}
-		$user = User::newFromId( (int)$this->mValue );
+		$user = $this->userFactory->newFromId( (int)$this->mValue );
 		$user->load(); // Make sure the id is validated by loading the user
 		if ( $user->isAnon() ) {
 			// Message: redirect-not-exists

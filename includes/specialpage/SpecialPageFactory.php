@@ -916,7 +916,8 @@ class SpecialPageFactory {
 		'Redirect' => [
 			'class' => \SpecialRedirect::class,
 			'services' => [
-				'RepoGroup'
+				'RepoGroup',
+				'UserFactory',
 			]
 		],
 		'Revisiondelete' => [
