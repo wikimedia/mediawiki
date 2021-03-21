@@ -2326,16 +2326,20 @@ $wgDBerrorLogTZ = false;
 $wgLocalDatabases = [];
 
 /**
- * If lag is higher than $wgSlaveLagWarning, show a warning in some special
- * pages (like watchlist).  If the lag is higher than $wgSlaveLagCritical,
+ * If lag is higher than $wgDatabaseReplicaLagWarning, show a warning in some special
+ * pages (like watchlist). If the lag is higher than $wgDatabaseReplicaLagCritical,
  * show a more obvious warning.
+ *
+ * @since 1.36
  */
-$wgSlaveLagWarning = 10;
+$wgDatabaseReplicaLagWarning = 10;
 
 /**
- * @see $wgSlaveLagWarning
+ * @see $wgDatabaseReplicaLagWarning
+ *
+ * @since 1.36
  */
-$wgSlaveLagCritical = 30;
+$wgDatabaseReplicaLagCritical = 30;
 
 // endregion -- End of DB settings
 

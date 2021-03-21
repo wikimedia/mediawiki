@@ -2863,17 +2863,17 @@ class OutputPage extends ContextSource {
 	/**
 	 * Show a warning about replica DB lag
 	 *
-	 * If the lag is higher than $wgSlaveLagCritical seconds,
+	 * If the lag is higher than $wgDatabaseReplicaLagCritical seconds,
 	 * then the warning is a bit more obvious. If the lag is
-	 * lower than $wgSlaveLagWarning, then no warning is shown.
+	 * lower than $wgDatabaseReplicaLagWarning, then no warning is shown.
 	 *
 	 * @param int $lag Replica lag
 	 */
 	public function showLagWarning( $lag ) {
 		$config = $this->getConfig();
-		if ( $lag >= $config->get( 'SlaveLagWarning' ) ) {
+		if ( $lag >= $config->get( 'DatabaseReplicaLagWarning' ) ) {
 			$lag = floor( $lag ); // floor to avoid nano seconds to display
-			$message = $lag < $config->get( 'SlaveLagCritical' )
+			$message = $lag < $config->get( 'DatabaseReplicaLagCritical' )
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
 			// For grep: mw-lag-warn-normal, mw-lag-warn-high

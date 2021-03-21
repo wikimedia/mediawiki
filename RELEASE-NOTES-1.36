@@ -51,6 +51,11 @@ is no longer recommended and the option has been removed.
 * $wgUploadStashScalerBaseUrl – This setting, to enable remote on-demand media
   scaling, was deprecated. Use the `thumbProxyUrl` setting in $wgLocalFileRepo
   instead.
+* $wgSlaveLagWarning and $wgSlaveLagCritical – These settings have been renamed,
+  to $wgDatabaseReplicaLagWarning & $wgDatabaseReplicaLagCritical respectively.
+  The former configuration variable names are deprecated, but will be used as
+  the fall back if they are still set, and remain temporarily available for
+  extensions which try to read them.
 * …
 
 ==== Removed configuration ====
@@ -142,9 +147,9 @@ is no longer recommended and the option has been removed.
 * Updated wikimedia/less.php from 3.0.0 to 3.1.0.
 * Updated wikimedia/object-factory from 2.1.0 to 3.0.0.
 * Updated wikimedia/remex-html from 2.2.0 to 2.2.2.
-* Updated wikimedia/xmp-reader from 0.7.0 to 0.8.0.
 * Updated wikimedia/utfnormal from 2.0.0 to 3.0.2.
 * Updated wikimedia/wait-condition-loop from 1.0.1 to 2.0.1.
+* Updated wikimedia/xmp-reader from 0.7.0 to 0.8.1.
 * …
 
 ===== Changed development-only external libraries =====

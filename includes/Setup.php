@@ -482,6 +482,37 @@ foreach ( LanguageCode::getNonstandardLanguageCodeMapping() as $code => $bcp47 )
 unset( $code ); // no global pollution; destroy reference
 unset( $bcp47 ); // no global pollution; destroy reference
 
+// Temporary backwards-compatibility reading of old replica lag settings as of MediaWiki 1.36,
+// to support sysadmins who fail to update their settings immediately:
+
+if ( isset( $wgSlaveLagWarning ) ) {
+	// If the old value is set to something other than the default, use it.
+	if ( $wgDatabaseReplicaLagWarning === 10 && $wgSlaveLagWarning !== 10 ) {
+		$wgDatabaseReplicaLagWarning = $wgSlaveLagWarning;
+		wfDeprecated(
+			'$wgSlaveLagWarning set but $wgDatabaseReplicaLagWarning unchanged; using $wgSlaveLagWarning',
+			'1.36'
+		);
+	}
+} else {
+	// Backwards-compatibility for extensions that read this value.
+	$wgSlaveLagWarning = $wgDatabaseReplicaLagWarning;
+}
+
+if ( isset( $wgSlaveLagCritical ) ) {
+	// If the old value is set to something other than the default, use it.
+	if ( $wgDatabaseReplicaLagCritical === 30 && $wgSlaveLagCritical !== 30 ) {
+		$wgDatabaseReplicaLagCritical = $wgSlaveLagCritical;
+		wfDeprecated(
+			'$wgSlaveLagCritical set but $wgDatabaseReplicaLagCritical unchanged; using $wgSlaveLagCritical',
+			'1.36'
+		);
+	}
+} else {
+	// Backwards-compatibility for extensions that read this value.
+	$wgSlaveLagCritical = $wgDatabaseReplicaLagCritical;
+}
+
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
 	Wikimedia\suppressWarnings();
 	$wgCacheEpoch = max( $wgCacheEpoch, gmdate( 'YmdHis', filemtime( "$IP/LocalSettings.php" ) ) );
