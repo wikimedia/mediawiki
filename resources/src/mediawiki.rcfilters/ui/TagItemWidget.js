@@ -94,7 +94,7 @@ TagItemWidget.prototype.updateUiBasedOnState = function () {
 		).contents() );
 	} else {
 		this.setLabel(
-			$( '<bdi>' ).append(
+			$( '<bdi>' ).text(
 				this.itemModel.getLabel()
 			)
 		);
