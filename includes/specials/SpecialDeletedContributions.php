@@ -96,7 +96,7 @@ class SpecialDeletedContributions extends SpecialPage {
 	 * Special page "deleted user contributions".
 	 * Shows a list of the deleted contributions of a user.
 	 *
-	 * @param string $par (optional) user name of the user for which to show the contributions
+	 * @param string|null $par user name of the user for which to show the contributions
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();

@@ -56,7 +56,7 @@ class SpecialMute extends FormSpecialPage {
 	/**
 	 * Entry point for special pages
 	 *
-	 * @param string $par
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		$this->addHelpLink(
@@ -212,7 +212,7 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
-	 * @param string $username
+	 * @param string|null $username
 	 */
 	private function loadTarget( $username ) {
 		$target = User::newFromName( $username );
