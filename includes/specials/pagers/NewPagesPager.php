@@ -23,6 +23,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -55,6 +56,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param SpecialNewpages $form
 	 * @param FormOptions $opts
@@ -64,6 +68,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ActorMigration $actorMigration
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		$form,
@@ -73,7 +78,8 @@ class NewPagesPager extends ReverseChronologicalPager {
 		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		NamespaceInfo $namespaceInfo,
-		ActorMigration $actorMigration
+		ActorMigration $actorMigration,
+		UserFactory $userFactory
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
@@ -85,6 +91,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->permissionManager = $permissionManager;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->actorMigration = $actorMigration;
+		$this->userFactory = $userFactory;
 	}
 
 	public function getQueryInfo() {
@@ -106,8 +113,9 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 
 		if ( $user ) {
+			$userObj = $this->userFactory->newFromName( $user->getText(), UserFactory::RIGOR_NONE );
 			$conds[] = $this->actorMigration->getWhere(
-				$this->getDatabase(), 'rc_user', User::newFromName( $user->getText(), false ), false
+				$this->getDatabase(), 'rc_user', $userObj, false
 			)['conds'];
 		} elseif ( $this->canAnonymousUsersCreatePages() && $this->opts->getValue( 'hideliu' ) ) {
 			# If anons cannot make new pages, don't "exclude logged in users"!

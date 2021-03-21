@@ -534,6 +534,7 @@ class SpecialPageFactory {
 				'NamespaceInfo',
 				'ActorMigration',
 				'UserOptionsLookup',
+				'UserFactory',
 			]
 		],
 		'Recentchanges' => [
