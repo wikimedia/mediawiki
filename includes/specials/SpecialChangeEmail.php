@@ -57,7 +57,7 @@ class SpecialChangeEmail extends FormSpecialPage {
 
 	/**
 	 * Main execution point
-	 * @param string $par
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();

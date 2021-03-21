@@ -86,7 +86,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/**
 	 * Main execution point
 	 *
-	 * @param string $subpage
+	 * @param string|null $subpage
 	 */
 	public function execute( $subpage ) {
 		// Anons don't get a watchlist

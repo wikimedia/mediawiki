@@ -503,6 +503,7 @@ class SpecialPageFactory {
 				'ActorMigration',
 				'DBLoadBalancer',
 				'UserCache',
+				'UserFactory',
 			]
 		],
 		'Log' => [
@@ -916,7 +917,8 @@ class SpecialPageFactory {
 		'Redirect' => [
 			'class' => \SpecialRedirect::class,
 			'services' => [
-				'RepoGroup'
+				'RepoGroup',
+				'UserFactory',
 			]
 		],
 		'Revisiondelete' => [

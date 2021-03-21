@@ -21,6 +21,7 @@
 
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -47,6 +48,9 @@ class NewFilesPager extends RangeChronologicalPager {
 	/** @var UserCache */
 	private $userCache;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
@@ -55,6 +59,7 @@ class NewFilesPager extends RangeChronologicalPager {
 	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserCache $userCache
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		IContextSource $context,
@@ -63,7 +68,8 @@ class NewFilesPager extends RangeChronologicalPager {
 		PermissionManager $permissionManager,
 		ActorMigration $actorMigration,
 		ILoadBalancer $loadBalancer,
-		UserCache $userCache
+		UserCache $userCache,
+		UserFactory $userFactory
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
@@ -74,6 +80,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		$this->permissionManager = $permissionManager;
 		$this->actorMigration = $actorMigration;
 		$this->userCache = $userCache;
+		$this->userFactory = $userFactory;
 		$this->setLimit( $opts->getValue( 'limit' ) );
 
 		$startTimestamp = '';
@@ -99,8 +106,9 @@ class NewFilesPager extends RangeChronologicalPager {
 
 		$user = $opts->getValue( 'user' );
 		if ( $user !== '' ) {
+			$userObj = $this->userFactory->newFromName( $user, UserFactory::RIGOR_NONE );
 			$conds[] = $this->actorMigration
-				->getWhere( $dbr, 'img_user', User::newFromName( $user, false ) )['conds'];
+				->getWhere( $dbr, 'img_user', $userObj )['conds'];
 		}
 
 		if ( !$opts->getValue( 'showbots' ) ) {

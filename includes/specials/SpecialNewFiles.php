@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 class SpecialNewFiles extends IncludableSpecialPage {
@@ -43,19 +44,24 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var UserCache */
 	private $userCache;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
 	 * @param PermissionManager $permissionManager
 	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserCache $userCache
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
 		PermissionManager $permissionManager,
 		ActorMigration $actorMigration,
 		ILoadBalancer $loadBalancer,
-		UserCache $userCache
+		UserCache $userCache,
+		UserFactory $userFactory
 	) {
 		parent::__construct( 'Newimages' );
 		$this->permissionManager = $permissionManager;
@@ -63,6 +69,7 @@ class SpecialNewFiles extends IncludableSpecialPage {
 		$this->loadBalancer = $loadBalancer;
 		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
 		$this->userCache = $userCache;
+		$this->userFactory = $userFactory;
 	}
 
 	public function execute( $par ) {
@@ -138,7 +145,8 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$this->permissionManager,
 			$this->actorMigration,
 			$this->loadBalancer,
-			$this->userCache
+			$this->userCache,
+			$this->userFactory
 		);
 
 		$out->addHTML( $pager->getBody() );

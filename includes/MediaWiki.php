@@ -1135,52 +1135,6 @@ class MediaWiki {
 	}
 
 	/**
-	 * Potentially open a socket and sent an HTTP request back to the server
-	 * to run a specified number of jobs. This registers a callback to cleanup
-	 * the socket once it's done.
-	 * @deprecated Since 1.34
-	 */
-	public function triggerJobs() {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		$jobRunRate = $this->config->get( 'JobRunRate' );
-		if ( $this->getTitle()->isSpecial( 'RunJobs' ) ) {
-			return; // recursion guard
-		} elseif ( $jobRunRate <= 0 || wfReadOnly() ) {
-			return;
-		}
-
-		if ( $jobRunRate < 1 ) {
-			$max = mt_getrandmax();
-			if ( mt_rand( 0, $max ) > $max * $jobRunRate ) {
-				return; // the higher the job run rate, the less likely we return here
-			}
-			$n = 1;
-		} else {
-			$n = intval( $jobRunRate );
-		}
-
-		$logger = LoggerFactory::getInstance( 'runJobs' );
-
-		try {
-			if ( $this->config->get( 'RunJobsAsync' ) ) {
-				// Send an HTTP request to the job RPC entry point if possible
-				$invokedWithSuccess = $this->triggerAsyncJobs( $n, $logger );
-				if ( !$invokedWithSuccess ) {
-					// Fall back to blocking on running the job(s)
-					$logger->warning( "Jobs switched to blocking; Special:RunJobs disabled" );
-					$this->triggerSyncJobs( $n );
-				}
-			} else {
-				$this->triggerSyncJobs( $n );
-			}
-		} catch ( JobQueueError $e ) {
-			// Do not make the site unavailable (T88312)
-			MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
-		}
-	}
-
-	/**
 	 * @param int $n Number of jobs to try to run
 	 */
 	private function triggerSyncJobs( $n ) {

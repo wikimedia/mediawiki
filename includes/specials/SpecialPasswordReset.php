@@ -71,7 +71,7 @@ class SpecialPasswordReset extends FormSpecialPage {
 	}
 
 	/**
-	 * @param string $par
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		$out = $this->getOutput();
