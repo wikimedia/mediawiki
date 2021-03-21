@@ -27,6 +27,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LocalisationCache;
 use MagicWordFactory;
 use MediaHandlerFactory;
+use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockErrorFormatter;
@@ -553,6 +554,14 @@ class MediaWikiServices extends ServiceContainer {
 	}
 
 	// CONVENIENCE GETTERS ////////////////////////////////////////////////////
+
+	/**
+	 * @since 1.37
+	 * @return ActionFactory
+	 */
+	public function getActionFactory(): ActionFactory {
+		return $this->getService( 'ActionFactory' );
+	}
 
 	/**
 	 * @since 1.31

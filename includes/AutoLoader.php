@@ -148,6 +148,7 @@ class AutoLoader {
 	public static function getAutoloadNamespaces() {
 		return [
 			'MediaWiki\\' => __DIR__ . '/',
+			'MediaWiki\\Actions\\' => __DIR__ . '/actions/',
 			'MediaWiki\\Api\\' => __DIR__ . '/api/',
 			'MediaWiki\\Auth\\' => __DIR__ . '/auth/',
 			'MediaWiki\\Block\\' => __DIR__ . '/block/',
