@@ -449,7 +449,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'revision_actor_temp', 'revactor_page', 'NOT NULL', true ],
 			[ 'renameIndex', 'watchlist', 'namespace_title', 'wl_namespace_title' ],
 			[ 'dropFkey', 'page_props', 'pp_page' ],
-			// Moved from the Schema SQL file to here in 1.36
+			// page_props primary key change moved from the Schema SQL file to here in 1.36
 			[ 'changePrimaryKey', 'page_props', [ 'pp_page', 'pp_propname' ], 'page_props_pk' ],
 			[ 'setDefault','job', 'job_cmd', '' ],
 			[ 'changeField', 'job', 'job_namespace', 'INTEGER', '' ],
@@ -622,6 +622,9 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'mwuser', 'user_email_token_idx', 'user_email_token' ],
 			[ 'addPgIndex', 'mwuser', 'user_email', '(user_email)' ],
 			[ 'addPgIndex', 'mwuser', 'user_name', '(user_name)', true ],
+			[ 'changeField', 'page', 'page_namespace', 'INTEGER', '' ],
+			[ 'changeNullableField', 'page', 'page_touched', 'NOT NULL', true ],
+			[ 'changeField', 'page', 'page_random', 'FLOAT', '' ],
 		];
 	}
 

@@ -214,6 +214,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'recentchanges', 'new_name_timestamp', 'rc_new_name_timestamp', false,
 				'patch-recentchanges-rc_new_name_timestamp.sql' ],
 			[ 'modifyField', 'archive', 'ar_title', 'patch-archive-ar_title-varbinary.sql' ],
+			[ 'modifyField', 'page', 'page_title', 'patch-page-page_title-varbinary.sql' ],
+
 		];
 	}
 
