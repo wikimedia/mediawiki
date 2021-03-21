@@ -1330,7 +1330,7 @@
 	"right-editmyuserjs": "Edit your own user JavaScript files",
 	"right-editmyuserjsredirect": "Edit your own user JavaScript files that are redirects",
 	"right-viewmywatchlist": "View your own watchlist",
-	"right-editmywatchlist": "Edit your own watchlist. Note some actions will still add pages even without this right.",
+	"right-editmywatchlist": "Edit your own watchlist (note that some actions will still add pages even without this right)",
 	"right-viewmyprivateinfo": "View your own private data (e.g. email address, real name)",
 	"right-editmyprivateinfo": "Edit your own private data (e.g. email address, real name)",
 	"right-editmyoptions": "Edit your own preferences",
