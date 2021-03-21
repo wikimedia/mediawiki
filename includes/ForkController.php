@@ -31,11 +31,22 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Maintenance
  */
 class ForkController {
-	protected $children = [], $childNumber = 0;
-	protected $termReceived = false;
-	protected $flags = 0, $procsToStart = 0;
+	/** @var array|null */
+	protected $children = [];
 
-	protected static $restartableSignals = [
+	/** @var int */
+	protected $childNumber = 0;
+
+	/** @var bool */
+	protected $termReceived = false;
+
+	/** @var int */
+	protected $flags = 0;
+
+	/** @var int */
+	protected $procsToStart = 0;
+
+	protected const RESTARTABLE_SIGNALS = [
 		SIGFPE,
 		SIGILL,
 		SIGSEGV,
@@ -53,6 +64,10 @@ class ForkController {
 	 */
 	private const RESTART_ON_ERROR = 1;
 
+	/**
+	 * @param int $numProcs The number of worker processes to fork
+	 * @param int $flags
+	 */
 	public function __construct( $numProcs, $flags = 0 ) {
 		if ( !wfIsCLI() ) {
 			throw new MWException( "ForkController cannot be used from the web." );
@@ -97,7 +112,7 @@ class ForkController {
 						// Restart if the signal was abnormal termination
 						// Don't restart if it was deliberately killed
 						$signal = pcntl_wtermsig( $status );
-						if ( in_array( $signal, self::$restartableSignals ) ) {
+						if ( in_array( $signal, self::RESTARTABLE_SIGNALS ) ) {
 							echo "Worker exited with signal $signal, restarting\n";
 							$this->procsToStart++;
 						}
