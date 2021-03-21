@@ -16,12 +16,11 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @author Addshore
+ * @author DannyS712
  *
  * @covers WatchedItemStore
- *
- * TODO convert this to actually be a Unit test
  */
-class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
+class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @return MockObject|IDatabase
@@ -75,9 +74,17 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * The job queue is used in three different places - two "push" calls, and a
+	 * "lazyPush" call - we don't test any of the "push" calls, so the callback
+	 * can just run the job, but we do test the "lazyPush" call, and so the test
+	 * that is using this may want to do something other than just run the job, since
+	 * for ActivityUpdateJob instances this results in using global functions, which we
+	 * cannot do in this unit test
+	 *
+	 * @param bool $mockLazyPush whether to add mock behavior for "lazyPush"
 	 * @return MockObject|JobQueueGroup
 	 */
-	private function getMockJobQueueGroup() {
+	private function getMockJobQueueGroup( $mockLazyPush = true ) {
 		$mock = $this->getMockBuilder( JobQueueGroup::class )
 			->disableOriginalConstructor()
 			->getMock();
@@ -86,11 +93,13 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->will( $this->returnCallback( static function ( Job $job ) {
 				$job->run();
 			} ) );
-		$mock->expects( $this->any() )
-			->method( 'lazyPush' )
-			->will( $this->returnCallback( static function ( Job $job ) {
-				$job->run();
-			} ) );
+		if ( $mockLazyPush ) {
+			$mock->expects( $this->any() )
+				->method( 'lazyPush' )
+				->will( $this->returnCallback( static function ( Job $job ) {
+					$job->run();
+				} ) );
+		}
 		return $mock;
 	}
 
@@ -271,7 +280,6 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			'WatchlistExpiryMaxDuration' => $mocks['maxExpiryDuration'] ?? null,
 		] );
 
-		// TODO convert to a Unit test
 		$db = $mocks['db'] ?? $this->getMockDb();
 		return new WatchedItemStore(
 			$options,
@@ -2286,7 +2294,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$mockQueueGroup = $this->getMockJobQueueGroup();
+		$mockQueueGroup = $this->getMockJobQueueGroup( false );
 		$mockQueueGroup->expects( $this->once() )
 			->method( 'lazyPush' )
 			->willReturnCallback( static function ( ActivityUpdateJob $job ) {
@@ -2341,7 +2349,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$mockQueueGroup = $this->getMockJobQueueGroup();
+		$mockQueueGroup = $this->getMockJobQueueGroup( false );
 
 		// We don't care if these methods actually do anything here
 		$mockRevisionLookup = $this->getMockRevisionLookup( [
@@ -2417,7 +2425,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'delete' )
 			->with( '0:SomeTitle:1' );
 
-		$mockQueueGroup = $this->getMockJobQueueGroup();
+		$mockQueueGroup = $this->getMockJobQueueGroup( false );
 
 		$mockRevisionRecord = $this->createNoOpMock( RevisionRecord::class );
 
@@ -2523,7 +2531,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$mockQueueGroup = $this->getMockJobQueueGroup();
+		$mockQueueGroup = $this->getMockJobQueueGroup( false );
 
 		$mockRevisionLookup = $this->getMockRevisionLookup(
 			[
@@ -2620,7 +2628,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$mockQueueGroup = $this->getMockJobQueueGroup();
+		$mockQueueGroup = $this->getMockJobQueueGroup( false );
 
 		$mockRevision = $this->createNoOpMock( RevisionRecord::class );
 		$mockNextRevision = $this->createNoOpMock( RevisionRecord::class );
@@ -2728,7 +2736,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$mockQueueGroup = $this->getMockJobQueueGroup();
+		$mockQueueGroup = $this->getMockJobQueueGroup( false );
 
 		$mockRevision = $this->createNoOpMock( RevisionRecord::class );
 		$mockNextRevision = $this->createNoOpMock( RevisionRecord::class );
@@ -2836,7 +2844,7 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 			->method( 'delete' )
 			->with( '0:SomeDbKey:1' );
 
-		$mockQueueGroup = $this->getMockJobQueueGroup();
+		$mockQueueGroup = $this->getMockJobQueueGroup( false );
 
 		$mockRevision = $this->createNoOpMock( RevisionRecord::class );
 		$mockNextRevision = $this->createNoOpMock( RevisionRecord::class );
@@ -3016,6 +3024,17 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
+		// updateNotificationTimestamp calls DeferredUpdates::addCallableUpdate
+		// in normal operation, but we want to test that update actually running, so
+		// override it
+		$mockCallback = function ( $callable, $stage, $dbw ) use ( $mockDb ) {
+			$this->assertIsCallable( $callable );
+			$this->assertSame( DeferredUpdates::POSTSEND, $stage );
+			$this->assertSame( $mockDb, $dbw );
+			( $callable )();
+		};
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
+
 		$this->assertEquals(
 			[ 2, 3 ],
 			$store->updateNotificationTimestamp(
@@ -3105,6 +3124,17 @@ class WatchedItemStoreUnitTest extends MediaWikiIntegrationTestCase {
 
 		// This will add the item to the cache
 		$store->getWatchedItem( $user, $titleValue );
+
+		// updateNotificationTimestamp calls DeferredUpdates::addCallableUpdate
+		// in normal operation, but we want to test that update actually running, so
+		// override it
+		$mockCallback = function ( $callable, $stage, $dbw ) use ( $mockDb ) {
+			$this->assertIsCallable( $callable );
+			$this->assertSame( DeferredUpdates::POSTSEND, $stage );
+			$this->assertSame( $mockDb, $dbw );
+			( $callable )();
+		};
+		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
 
 		$store->updateNotificationTimestamp(
 			new UserIdentityValue( 1, 'MockUser', 0 ),

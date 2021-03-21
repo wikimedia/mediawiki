@@ -1334,7 +1334,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		if ( $watchers ) {
 			// Update wl_notificationtimestamp for all watching users except the editor
 			$fname = __METHOD__;
-			DeferredUpdates::addCallableUpdate(
+
+			// Try to run this post-send
+			// Calls DeferredUpdates::addCallableUpdate in normal operation
+			call_user_func(
+				$this->deferredUpdatesAddCallableUpdateCallback,
 				function () use ( $timestamp, $watchers, $target, $fname ) {
 					$dbw = $this->getConnectionRef( DB_MASTER );
 					$ticket = $this->lbFactory->getEmptyTransactionTicket( $fname );
