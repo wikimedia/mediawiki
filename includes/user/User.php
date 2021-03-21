@@ -1017,11 +1017,14 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	/**
 	 * Is the user an IP range?
 	 *
-	 * @deprecated since 1.35, use the UserNameUtils service or IPUtils directly
+	 * @deprecated since 1.35, hard deprecated since 1.36
+	 * Use the UserNameUtils service or IPUtils directly
+	 *
 	 * @since 1.30
 	 * @return bool
 	 */
 	public function isIPRange() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return IPUtils::isValidRange( $this->mName );
 	}
 

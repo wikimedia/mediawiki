@@ -641,6 +641,8 @@ because of Phabricator reports.
 * Parser::getUser was deprecated. Use Parser::getUserIdentity instead.
 * DatabaseBlock::isWhitelistedFromAutoblocks was deprecated. Use
   DatabaseBlock::isExemptedFromAutoblocks instead.
+* User::isIPRange(), deprecated in 1.35, is hard deprecated.
+  Use the UserNameUtils service or IPUtils directly.
 * …
 
 === Other changes in 1.36 ===
