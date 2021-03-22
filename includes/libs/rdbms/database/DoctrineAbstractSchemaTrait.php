@@ -45,10 +45,8 @@ trait DoctrineAbstractSchemaTrait {
 			$table->setPrimaryKey( $schemaSpec['pk'] );
 		}
 
-		if ( isset( $schemaSpec['options'] )
-			&& isset( $schemaSpec['options'][0]['table_options'] )
-		) {
-			$table->addOption( 'table_options', $schemaSpec['options'][0]['table_options'] );
+		if ( isset( $schemaSpec['table_options'] ) ) {
+			$table->addOption( 'table_options', implode( ' ', $schemaSpec['table_options'] ) );
 		} else {
 			$table->addOption( 'table_options', '/*$wgDBTableOptions*/' );
 		}
