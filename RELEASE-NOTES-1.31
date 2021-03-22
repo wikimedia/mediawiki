@@ -3,6 +3,15 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.12 ===
+* (T115436) resourceloader: CSSMin::getLocalFileReferences now strips
+  anchors.
+* Updating php-parallel-lint/php-parallel-lint (0.9.2 => 1.0.0).
+* Updating mediawiki/codesniffer (19.1.0 => 19.4.0).
+* DefaultSettings.php: Update $wgPingback documentation.
+* PHPVersionCheck: The PHP Group only support PHP >= 7.3.0.
+* (T275261) Escape wikitext in the title in invalid title error messages.
+* (T277009) Allow blocked users to access Special:ResetTokens.
+* pageExist.php: Output trailing newlines.
 
 == MediaWiki 1.31.12 ==
 
