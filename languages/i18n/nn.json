@@ -3108,6 +3108,5 @@
 	"mute-preferences": "Demp brukar",
 	"revid": "versjon $1",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Passordet kan ikkje vera det same som brukarnamnet",
-	"passwordpolicies-policy-passwordcannotmatchblacklist": "Passordet kan ikkje passa med svartelista passord",
 	"userlogout-continue": "Ynskjer du å logga ut?"
 }

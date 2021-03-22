@@ -3686,7 +3686,6 @@
 	"passwordpolicies-policies": "Бэлиитикэ",
 	"passwordpolicies-policy-minimalpasswordlength": "Аһарыгыҥ кырата {{PLURAL:$1|1 бэлиэлээх|$1 бэлиэлээх}} буолуохтаах.",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Аһарык ааккын кытта сөп түбэһиэ суохтаах",
-	"passwordpolicies-policy-passwordcannotmatchblacklist": "Аһарык хара испииһэккэ баар аһарыгы кытта сөп түбэһиэ суохтаах",
 	"passwordpolicies-policy-maximalpasswordlength": "Аһарык $1 бэлиэттэн кылгас буолуохтаах",
 	"passwordpolicies-policyflag-forcechange": "киирэргэ уларытыллыахтаах",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "киирэргэ уларыт диэн эт",

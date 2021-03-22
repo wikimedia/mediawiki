@@ -3682,8 +3682,6 @@
 	"passwordpolicies-policy-minimalpasswordlength": "پاس ورڈ کم از کم $1 {{PLURAL:$1|حرف|حروف}} پر مشتمل ہو",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "لاگ ان ہونے کے لیے پاس ورڈ کی طوالت کم از کم $1 {{PLURAL:$1|حرف|حروف}} ہو",
 	"passwordpolicies-policy-passwordcannotbesubstringinusername": "پاس ورڈ صارف نام کی طرح نہیں ہو سکتا",
-	"passwordpolicies-policy-passwordcannotmatchblacklist": "پاس ورڈ سیاہ فہرست میں درج پاس ورڈ کے مشابہ نہ ہو",
-	"passwordpolicies-policy-passwordnotinlargeblacklist": "پاس ورڈ ایک لاکھ کثیر الاستعمال پاس ورڈ کی فہرست میں نہ ہو۔",
 	"passwordpolicies-policyflag-forcechange": "بوقت لاگ ان تبدیلی لازم ہے",
 	"passwordpolicies-policyflag-suggestchangeonlogin": "بوقت لاگ ان تبدیلی کی تجویز دکھائی دے گی",
 	"userlogout-continue": "کیا آپ خارج ہونا چاہتے ہیں؟",
