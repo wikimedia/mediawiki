@@ -105,28 +105,17 @@ abstract class Action implements MessageLocalizer {
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
 	 *
-	 * @param string|null $action Null is hard-deprecated since 1.35
-	 * @param Article|WikiPage|Page $article Calling with anything
-	 *  other than Article is hard-deprecated since 1.35
+	 * @param string $action
+	 * @param Article $article
 	 * @param IContextSource|null $context
 	 * @return Action|bool|null False if the action is disabled, null
 	 *     if it is not recognised
 	 */
 	final public static function factory(
-		?string $action,
-		Page $article,
+		string $action,
+		Article $article,
 		IContextSource $context = null
 	) {
-		if ( !is_string( $action ) ) {
-			wfDeprecated( __METHOD__ . ' with null $action', '1.35' );
-			return null;
-		}
-		if ( !$article instanceof Article ) {
-			wfDeprecated(
-				__METHOD__ . ' with ' . get_class( $article ),
-				'1.35'
-			);
-		}
 		$classOrCallable = self::getClass( $action, $article->getActionOverrides() );
 		if ( is_string( $classOrCallable ) ) {
 			if ( !class_exists( $classOrCallable ) ) {
