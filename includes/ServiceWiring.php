@@ -1649,6 +1649,8 @@ return [
 				$services->getMainConfig()
 			),
 			LoggerFactory::getProvider(),
+
+			// UserBlockConstraint
 			$services->getPermissionManager(),
 
 			// EditFilterMergedContentHookConstraint

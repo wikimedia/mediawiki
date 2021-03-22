@@ -25,10 +25,14 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\Constraint\AccidentalRecreationConstraint;
 use MediaWiki\EditPage\Constraint\AutoSummaryMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\ChangeTagsConstraint;
+use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
+use MediaWiki\EditPage\Constraint\CreationPermissionConstraint;
 use MediaWiki\EditPage\Constraint\DefaultTextConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintRunner;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
+use MediaWiki\EditPage\Constraint\EditRightConstraint;
 use MediaWiki\EditPage\Constraint\IEditConstraint;
+use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
 use MediaWiki\EditPage\Constraint\MissingCommentConstraint;
 use MediaWiki\EditPage\Constraint\NewSectionMissingSummaryConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
@@ -1988,10 +1992,10 @@ class EditPage implements IEditObject {
 			)
 		);
 		$constraintRunner->addConstraint(
-			$constraintFactory->newEditRightConstraint( $user )
+			new EditRightConstraint( $user )
 		);
 		$constraintRunner->addConstraint(
-			$constraintFactory->newImageRedirectConstraint(
+			new ImageRedirectConstraint(
 				$textbox_content,
 				$this->mTitle,
 				$user
@@ -2001,7 +2005,7 @@ class EditPage implements IEditObject {
 			$constraintFactory->newUserBlockConstraint( $this->mTitle, $user )
 		);
 		$constraintRunner->addConstraint(
-			$constraintFactory->newContentModelChangeConstraint(
+			new ContentModelChangeConstraint(
 				$user,
 				$this->mTitle,
 				$this->contentModel
@@ -2062,7 +2066,7 @@ class EditPage implements IEditObject {
 			$constraintRunner = new EditConstraintRunner();
 			// Late check for create permission, just in case *PARANOIA*
 			$constraintRunner->addConstraint(
-				$constraintFactory->newCreationPermissionConstraint( $user, $this->mTitle )
+				new CreationPermissionConstraint( $user, $this->mTitle )
 			);
 
 			// Don't save a new page if it's blank or if it's a MediaWiki:

@@ -19,12 +19,8 @@
  */
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\EditPage\Constraint\ContentModelChangeConstraint;
-use MediaWiki\EditPage\Constraint\CreationPermissionConstraint;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\Constraint\EditFilterMergedContentHookConstraint;
-use MediaWiki\EditPage\Constraint\EditRightConstraint;
-use MediaWiki\EditPage\Constraint\ImageRedirectConstraint;
 use MediaWiki\EditPage\Constraint\PageSizeConstraint;
 use MediaWiki\EditPage\Constraint\ReadOnlyConstraint;
 use MediaWiki\EditPage\Constraint\SimpleAntiSpamConstraint;
@@ -34,7 +30,6 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Logger\Spi;
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Psr\Log\NullLogger;
 
 /**
@@ -45,7 +40,6 @@ use Psr\Log\NullLogger;
  * @covers \MediaWiki\EditPage\Constraint\EditConstraintFactory
  */
 class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
-	use MockAuthorityTrait;
 
 	public function testFactoryMethods() {
 		$options = new ServiceOptions(
@@ -66,20 +60,11 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 		);
 
 		$user = $this->createMock( User::class );
-		$performer = $this->mockAnonUltimateAuthority();
 		$title = $this->createMock( Title::class );
 		$context = $this->createMock( IContextSource::class );
 		$newContent = $this->createMock( Content::class );
 
 		// Actual tests
-		$this->assertInstanceOf(
-			ContentModelChangeConstraint::class,
-			$factory->newContentModelChangeConstraint( $performer, $title, CONTENT_MODEL_WIKITEXT )
-		);
-		$this->assertInstanceOf(
-			CreationPermissionConstraint::class,
-			$factory->newCreationPermissionConstraint( $performer, $title )
-		);
 		$this->assertInstanceOf(
 			EditFilterMergedContentHookConstraint::class,
 			$factory->newEditFilterMergedContentHookConstraint(
@@ -88,14 +73,6 @@ class EditConstraintFactoryTest extends MediaWikiUnitTestCase {
 				'EditSummary',
 				true // $minorEdit
 			)
-		);
-		$this->assertInstanceOf(
-			EditRightConstraint::class,
-			$factory->newEditRightConstraint( $performer )
-		);
-		$this->assertInstanceOf(
-			ImageRedirectConstraint::class,
-			$factory->newImageRedirectConstraint( $newContent, $title, $performer )
 		);
 		$this->assertInstanceOf(
 			PageSizeConstraint::class,
