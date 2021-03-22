@@ -23,10 +23,8 @@
  * @covers NaiveForeignTitleFactory
  *
  * @group Title
- *
- * TODO convert to a Unit test
  */
-class NaiveForeignTitleFactoryTest extends MediaWikiIntegrationTestCase {
+class NaiveForeignTitleFactoryTest extends MediaWikiUnitTestCase {
 
 	public function basicProvider() {
 		return [
@@ -69,9 +67,23 @@ class NaiveForeignTitleFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider basicProvider
 	 */
 	public function testBasic( $title, $ns, ForeignTitle $foreignTitle ) {
-		$factory = new NaiveForeignTitleFactory(
-			$this->getServiceContainer()->getContentLanguage()
-		);
+		$contentLanguage = $this->createMock( Language::class );
+		$contentLanguage->method( 'getNsIndex' )
+			->willReturnCallback(
+				function ( $text ) {
+					$text = strtolower( $text );
+					if ( $text === '' ) {
+						return NS_MAIN;
+					}
+					$namespaces = [
+						'talk' => NS_TALK,
+						'user' => NS_USER,
+					];
+					return $namespaces[ $text ] ?? false;
+				}
+			);
+		$factory = new NaiveForeignTitleFactory( $contentLanguage );
+
 		$testTitle = $factory->createForeignTitle( $title, $ns );
 
 		$this->assertEquals( $testTitle->isNamespaceIdKnown(),
