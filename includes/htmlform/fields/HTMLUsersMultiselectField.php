@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Widget\UsersMultiselectWidget;
+use Wikimedia\IPUtils;
 
 /**
  * Implements a tag multiselect input field for user names.
@@ -28,10 +29,13 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 		// Normalize usernames
 		$normalizedUsers = [];
 		foreach ( $usersArray as $user ) {
-			$canonicalUser = User::getCanonicalName( $user, false );
+			if ( IPUtils::isIPAddress( $user ) ) {
+				$canonicalUser = IPUtils::sanitizeIP( $user );
+			} else {
+				$canonicalUser = User::getCanonicalName( $user, false );
+			}
 			$normalizedUsers[] = $canonicalUser;
 		}
-
 		// Remove any duplicate usernames
 		$uniqueUsers = array_unique( $normalizedUsers );
 
