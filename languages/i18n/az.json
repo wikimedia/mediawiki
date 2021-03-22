@@ -429,6 +429,7 @@
 	"userlogin-yourpassword-ph": "Parolunuzu daxil edin",
 	"createacct-yourpassword-ph": "Parol daxil edin",
 	"yourpasswordagain": "Parolu təkrar daxil edin:",
+	"createacct-useuniquepass": "Başqa bir veb saytda istifadə etmədiyiniz unikal bir paroldan istifadə etməyiniz tövsiyə olunur.",
 	"createacct-yourpasswordagain": "Parolu təsdiqlə",
 	"createacct-yourpasswordagain-ph": "Parolu təkrar daxil edin",
 	"userlogin-remembermypassword": "Sistemdə qal",
@@ -676,7 +677,7 @@
 	"userpage-userdoesnotexist": "\"<nowiki>$1</nowiki>\" istifadəçi adı qeydiyyata alınmayıb.\nƏgər siz bu səhifəni yaratmaq/redaktə etmək istəyirsinizsə, xahiş edirik bunu yoxlayın.",
 	"userpage-userdoesnotexist-view": "\"$1\" istifadəçi hesabı qeydiyyatda deyil",
 	"blocked-notice-logextract": "Bu istifadəçi hal-hazırda bloklanmışdır.\nBloklama qeydlərinin sonuncusu aşağıda göstərilmişdir:",
-	"clearyourcache": "<strong>Diqqət</strong> Dəyişiklikləri yadda saxladıqdan sonra etdiyiniz dəyişiklikləri görmək üçün brauzerinizin keşinin yenilənməsi lazım ola bilər.\n* <strong>Firefox / Safari:</strong> <em>Reload</em> düyməsinə basılı tutarkən <em>Shift</em> düyməsinə basın, və ya <em>Ctrl-F5</em> və ya <em>Ctrl-R</em> (Mac üçün <em>⌘-R</em> )\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> (Mac üçün <em>⌘-Shift-R</em>)\n* <strong>Internet Explorer / Edge:</strong> <em>Refresh</em> düyməsini basılı tutarkən <em>Ctrl</em> düyməsinə basın, və ya press <em>Ctrl-F5</em>\n* <strong>Opera:</strong> <em>Ctrl-F5</em>.",
+	"clearyourcache": "<strong>Diqqət</strong> Dəyişiklikləri yadda saxladıqdan sonra etdiyiniz dəyişiklikləri görmək üçün brauzerinizin keşinin yenilənməsi lazım ola bilər.\n* <strong>Firefox / Safari:</strong> <em>Reload</em> düyməsinə basılı tutarkən <em>Shift</em> düyməsinə basın, və ya <em>Ctrl-F5</em> və ya <em>Ctrl-R</em> (Mac üçün <em>⌘-R</em> )\n* <strong>Google Chrome:</strong> <em>Ctrl-Shift-R</em> (Mac üçün <em>⌘-Shift-R</em>)\n* <strong>Internet Explorer / Edge:</strong> <em>Refresh</em> düyməsini basılı tutarkən <em>Ctrl</em> düyməsinə basın, və ya sadəcə <em>Ctrl-F5</em>\n* <strong>Opera:</strong> <em>Ctrl-F5</em>.",
 	"usercssyoucanpreview": "'''İpucu:''' Qeyd etmədən əvvəl \"{{int:showpreview}}\"ə klikləyərək yeni CSSinizi yoxlayın.",
 	"userjsonyoucanpreview": "'''İpucu:''' Qeyd etməzdən əvvəl \"{{int:showpreview}}\" düyməsinə klikləyərək yeni JSON-unuzu yoxlayın.",
 	"userjsyoucanpreview": "'''İpucu:''' Qeyd etmədən əvvəl \"{{int:showpreview}}\"ə klikləyərək yeni JavaScriptinizi yoxlayın.",
@@ -2696,7 +2697,6 @@
 	"specialmute-login-required": "Susdurulmuş bildirişləri idarə etmək üçün istifadəçi hesabınıza daxil olun.",
 	"passwordpolicies-group": "Qrup",
 	"passwordpolicies-policies": "Siyasət",
-	"passwordpolicies-policy-passwordcannotmatchblacklist": "Şifrə, standart parolların müəyyən bir siyahısına uyğun gəlmir",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "Şifrə, standart parolların müəyyən bir siyahısına uyğun gəlmir",
 	"paramvalidator-help-type-user-subtype-name": "istifadəçi adı:"
 }

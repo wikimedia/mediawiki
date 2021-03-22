@@ -790,6 +790,7 @@
 	"undo-summary": "[[Special:Contributions/$2|$2]] ([[User talk:$2|చర్చ]]) యొక్క కూర్పు $1 ను రద్దుచెయ్యి",
 	"undo-summary-username-hidden": "దాచబడిన వాడుకరి చేసిన కూర్పు $1 ని వెనక్కి తిప్పండి",
 	"viewpagelogs": "ఈ పేజీకి సంబంధించిన లాగ్‌లను చూడండి",
+	"viewpagelogs-lowercase": "ఈ పేజీకి సంబంధించిన లాగ్‌లను చూడండి",
 	"nohistory": "ఈ పేజీకి మార్పుల చరిత్ర లేదు.",
 	"currentrev": "ప్రస్తుతపు సంచిక",
 	"currentrev-asof": "$1 నాటి చిట్టచివరి కూర్పు",
@@ -917,7 +918,7 @@
 	"difference-title-multipage": "\"$1\", \"$2\" పేజీల మధ్య తేడా",
 	"difference-multipage": "(పేజీల మధ్య తేడా)",
 	"lineno": "పంక్తి $1:",
-	"compareselectedversions": "ఎంచుకున్న సంచికలను పోల్చిచూడు",
+	"compareselectedversions": "ఎంపికలను పోల్చు",
 	"showhideselectedversions": "ఎంపికలను చూపు/దాచు",
 	"editundo": "రద్దుచెయ్యి",
 	"diff-empty": "(తేడా లేదు)",
@@ -3616,7 +3617,6 @@
 	"passwordpolicies-policy-minimalpasswordlength": "సంకేతపదం కనీసం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు ఉండాలి",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "లాగినవ్వాలంటే సంకేతపదం కనీసం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు ఉండాలి",
 	"passwordpolicies-policy-passwordcannotmatchusername": "సంకేతపదం, వాడుకరిపేరూ ఒకటే ఉండే వీల్లేదు.",
-	"passwordpolicies-policy-passwordcannotmatchblacklist": "సంకేతపదం నిషేధించిన సంకేతపదాలతో సరిపోలరాదు",
 	"passwordpolicies-policy-maximalpasswordlength": "సంకేతపదం $1 {{PLURAL:$1|క్యారెక్టరు|క్యారెక్టర్ల}} పొడవు కంటే తక్కువ ఉండాలి",
 	"paramvalidator-help-type-user-subtype-name": "వాడుకరి పేరు"
 }
