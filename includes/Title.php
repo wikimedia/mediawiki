@@ -481,22 +481,12 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Returns a list of fields that are to be selected for initializing Title
 	 * objects or LinkCache entries.
 	 *
+	 * @deprecated since 1.36, use PageStore::newSelectQueryBuilder() instead.
+	 *
 	 * @return array
 	 */
 	protected static function getSelectFields() {
-		global $wgPageLanguageUseDB;
-
-		$fields = [
-			'page_namespace', 'page_title', 'page_id',
-			'page_len', 'page_is_redirect', 'page_latest',
-			'page_content_model',
-		];
-
-		if ( $wgPageLanguageUseDB ) {
-			$fields[] = 'page_lang';
-		}
-
-		return $fields;
+		return MediaWikiServices::getInstance()->getPageStore()->getSelectFields();
 	}
 
 	/**
@@ -3087,21 +3077,19 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			return [];
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
-		$conds = [ 'page_namespace' => $this->mNamespace ];
-		$conds[] = 'page_title ' . $dbr->buildLike( $this->mDbkeyform . '/', $dbr->anyString() );
 		$options = [];
 		if ( $limit > -1 ) {
 			$options['LIMIT'] = $limit;
 		}
-		return TitleArray::newFromResult(
-			$dbr->select( 'page',
-				[ 'page_id', 'page_namespace', 'page_title', 'page_is_redirect' ],
-				$conds,
-				__METHOD__,
-				$options
-			)
-		);
+
+		$pageStore = MediaWikiServices::getInstance()->getPageStore();
+		$query = $pageStore->newSelectQueryBuilder()
+			->fields( $pageStore->getSelectFields() )
+			->whereTitlePrefix( $this->getNamespace(), $this->getDBkey() . '/' )
+			->options( $options )
+			->caller( __METHOD__ );
+
+		return TitleArray::newFromResult( $query->fetchResultSet() );
 	}
 
 	/**

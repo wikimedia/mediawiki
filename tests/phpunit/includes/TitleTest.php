@@ -1874,4 +1874,40 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'article'
 		);
 	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getSubpages
+	 */
+	public function testGetSubpages() {
+		$existingPage = $this->getExistingTestPage();
+		$title = $existingPage->getTitle();
+
+		$this->setMwGlobals( 'wgNamespacesWithSubpages', [ $title->getNamespace() => true ] );
+
+		$this->getExistingTestPage( $title->getSubpage( 'A' ) );
+		$this->getExistingTestPage( $title->getSubpage( 'B' ) );
+
+		$notQuiteSubpageTitle = $title->getPrefixedDBkey() . 'X'; // no slash!
+		$this->getExistingTestPage( $notQuiteSubpageTitle );
+
+		$subpages = iterator_to_array( $title->getSubpages() );
+
+		$this->assertCount( 2, $subpages );
+		$this->assertCount( 1, $title->getSubpages( 1 ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getSubpages
+	 */
+	public function testGetSubpages_disabled() {
+		$this->setMwGlobals( 'wgNamespacesWithSubpages', [] );
+
+		$existingPage = $this->getExistingTestPage();
+		$title = $existingPage->getTitle();
+
+		$this->getExistingTestPage( $title->getSubpage( 'A' ) );
+		$this->getExistingTestPage( $title->getSubpage( 'B' ) );
+
+		$this->assertEmpty( $title->getSubpages() );
+	}
 }

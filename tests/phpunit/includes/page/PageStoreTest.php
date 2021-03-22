@@ -45,6 +45,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		return new PageStore(
 			$serviceOptions,
 			$services->getDBLoadBalancer(),
+			$services->getNamespaceInfo(),
 			$wikiId
 		);
 	}
@@ -421,6 +422,86 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectException( $exception );
 		$pageStore->getPageByIdentity( $identity );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::newPageRecordFromRow
+	 * @covers \MediaWiki\Page\PageStore::getSelectFields
+	 */
+	public function testNewPageRecordFromRow() {
+		$existingPage = $this->getExistingTestPage();
+		$pageStore = $this->getPageStore();
+
+		$row = $this->db->selectRow(
+			'page',
+			$pageStore->getSelectFields(),
+			[ 'page_id' => $existingPage->getId() ]
+		);
+
+		$rec = $pageStore->newPageRecordFromRow( $row );
+		$this->assertSamePage( $existingPage, $rec );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::newSelectQueryBuilder
+	 */
+	public function testNewSelectQueryBuilder() {
+		$existingPage = $this->getExistingTestPage();
+
+		$wikiId = 'acme';
+		$this->setDomainAlias( $wikiId );
+
+		$pageStore = $this->getPageStore( [], $wikiId );
+
+		$rec = $pageStore->newSelectQueryBuilder()
+			->wherePageIds( $existingPage->getId() )
+			->fetchPageRecord();
+
+		$this->assertSame( $wikiId, $rec->getWikiId() );
+		$this->assertSamePage( $existingPage, $rec );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getSubpages
+	 */
+	public function testGetSubpages() {
+		$existingPage = $this->getExistingTestPage();
+		$title = $existingPage->getTitle();
+
+		$this->setMwGlobals( 'wgNamespacesWithSubpages', [ $title->getNamespace() => true ] );
+
+		$existingSubpageA = $this->getExistingTestPage( $title->getSubpage( 'A' ) );
+		$existingSubpageB = $this->getExistingTestPage( $title->getSubpage( 'B' ) );
+
+		$notQuiteSubpageTitle = $title->getPrefixedDBkey() . 'X'; // no slash!
+		$this->getExistingTestPage( $notQuiteSubpageTitle );
+
+		$pageStore = $this->getPageStore();
+
+		$subpages = iterator_to_array( $pageStore->getSubpages( $title, 100 ) );
+
+		$this->assertCount( 2, $subpages );
+		$this->assertTrue( $existingSubpageA->isSamePageAs( $subpages[0] ) );
+		$this->assertTrue( $existingSubpageB->isSamePageAs( $subpages[1] ) );
+
+		// make sure the limit works as well
+		$this->assertCount( 1, $pageStore->getSubpages( $title, 1 ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getSubpages
+	 */
+	public function testGetSubpages_disabled() {
+		$this->setMwGlobals( 'wgNamespacesWithSubpages', [] );
+
+		$existingPage = $this->getExistingTestPage();
+		$title = $existingPage->getTitle();
+
+		$this->getExistingTestPage( $title->getSubpage( 'A' ) );
+		$this->getExistingTestPage( $title->getSubpage( 'B' ) );
+
+		$pageStore = $this->getPageStore();
+		$this->assertEmpty( $pageStore->getSubpages( $title, 100 ) );
 	}
 
 }
