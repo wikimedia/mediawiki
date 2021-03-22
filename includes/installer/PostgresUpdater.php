@@ -54,15 +54,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			# end
 			[ 'tsearchFixes' ],
 
-			// 1.23
-			[ 'addPgField', 'recentchanges', 'rc_source', "TEXT NOT NULL DEFAULT ''" ],
-			[ 'addPgField', 'page', 'page_links_updated', "TIMESTAMPTZ NULL" ],
-			[ 'addPgField', 'mwuser', 'user_password_expires', 'TIMESTAMPTZ NULL' ],
-			[ 'changeFieldPurgeTable', 'l10n_cache', 'lc_value', 'bytea',
-				"replace(lc_value,'\','\\\\')::bytea" ],
-			// 1.23.9
-			[ 'rebuildTextSearch' ],
-
 			// **** T272199 MARKER ****
 
 			// 1.28
@@ -1229,14 +1220,5 @@ END;
 		$this->applyPatch( 'patch-ts2pagetitle.sql', false, "Refreshing ts2_page_title()" );
 
 		$this->applyPatch( 'patch-tsearch2funcs.sql', false, "Rewriting tsearch2 triggers" );
-	}
-
-	protected function rebuildTextSearch() {
-		if ( $this->updateRowExists( 'patch-textsearch_bug66650.sql' ) ) {
-			$this->output( "...T68650 already fixed or not applicable.\n" );
-			return;
-		}
-		$this->applyPatch( 'patch-textsearch_bug66650.sql', false,
-			'Rebuilding text search for T68650' );
 	}
 }
