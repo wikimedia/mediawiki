@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsManager;
 
 /**
@@ -15,7 +14,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$this->userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+		$this->userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		$this->setMwGlobals( [
 			'wgEnableUserEmailBlacklist' => true
 		] );
@@ -26,7 +25,8 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	 */
 	protected function newSpecialPage() {
 		return new SpecialMute(
-			$this->userOptionsManager
+			$this->userOptionsManager,
+			$this->getServiceContainer()->getUserFactory()
 		);
 	}
 
