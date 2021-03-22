@@ -246,6 +246,10 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'page', 'page_title', 'patch-page-page_title-varbinary.sql' ],
 			[ 'dropDefault', 'page', 'page_touched' ],
 			[ 'modifyField', 'user', 'user_name', 'patch-user_table-updates.sql' ],
+
+			// 1.37
+			[ 'renameIndex', 'revision', 'page_timestamp', 'rev_page_timestamp', false,
+				'patch-revision-rename-index.sql' ],
 		];
 	}
 
