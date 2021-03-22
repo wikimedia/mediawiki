@@ -392,7 +392,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'page_restrictions', 'pr_level', '(pr_level)' ],
 			[ 'addPgIndex', 'page_restrictions', 'pr_cascade', '(pr_cascade)' ],
 			[ 'changePrimaryKey', 'page_restrictions', [ 'pr_id' ], 'page_restrictions_pk' ] ,
-			[ 'dropPgIndex', 'page_restrictions', 'page_restrictions_pr_id_key' ],
 			[ 'changeNullableField', 'page_restrictions', 'pr_page', 'NOT NULL', true ],
 			[ 'dropFkey', 'user_groups', 'ug_user' ],
 			[ 'setDefault', 'user_groups', 'ug_user', 0 ],
@@ -592,7 +591,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'image', 'img_major_mime', 'NOT NULL', true ],
 			[ 'changeNullableField', 'image', 'img_minor_mime', 'NOT NULL', true ],
 			[ 'changeNullableField', 'image', 'img_timestamp', 'NOT NULL', true ],
-			[ 'addPgIndex', 'image', 'img_actor_timestamp', '(oi_actor, oi_timestamp)' ],
 			[ 'renameIndex', 'image', 'img_size_idx', 'img_size' ],
 			[ 'renameIndex', 'image', 'img_timestamp_idx', 'img_timestamp' ],
 			[ 'addPgIndex', 'image', 'img_actor_timestamp', '(img_actor, img_timestamp)' ],
@@ -876,7 +874,7 @@ END;
 			exit( 1 );
 		}
 
-		if ( $fi->type() === $newtype ) {
+		if ( $fi->type() === strtolower( $newtype ) ) {
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		} else {
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
