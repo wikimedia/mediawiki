@@ -1063,71 +1063,6 @@ END;
 		$this->db->query( $command, __METHOD__ );
 	}
 
-	protected function convertArchive2() {
-		if ( $this->db->tableExists( "archive2", __METHOD__ ) ) {
-			if ( $this->db->ruleExists( 'archive', 'archive_insert' ) ) {
-				$this->output( "Dropping rule 'archive_insert'\n" );
-				$this->db->query( 'DROP RULE archive_insert ON archive', __METHOD__ );
-			}
-			if ( $this->db->ruleExists( 'archive', 'archive_delete' ) ) {
-				$this->output( "Dropping rule 'archive_delete'\n" );
-				$this->db->query( 'DROP RULE archive_delete ON archive', __METHOD__ );
-			}
-			$this->applyPatch(
-				'patch-remove-archive2.sql',
-				false,
-				"Converting 'archive2' back to normal archive table"
-			);
-		} else {
-			$this->output( "...obsolete table 'archive2' does not exist\n" );
-		}
-	}
-
-	protected function checkOiDeleted() {
-		if ( $this->db->fieldInfo( 'oldimage', 'oi_deleted' )->type() !== 'smallint' ) {
-			$this->output( "Changing 'oldimage.oi_deleted' to type 'smallint'\n" );
-			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT", __METHOD__ );
-			$this->db->query(
-				"ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)", __METHOD__ );
-			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted SET DEFAULT 0", __METHOD__ );
-		} else {
-			$this->output( "...column 'oldimage.oi_deleted' is already of type 'smallint'\n" );
-		}
-	}
-
-	protected function checkOiNameConstraint() {
-		if ( $this->db->hasConstraint( "oldimage_oi_name_fkey_cascaded" ) ) {
-			$this->output( "...table 'oldimage' has correct cascading delete/update " .
-				"foreign key to image\n" );
-		} else {
-			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey" ) ) {
-				$this->db->query(
-					"ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey", __METHOD__ );
-			}
-			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey_cascade" ) ) {
-				$this->db->query(
-					"ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey_cascade", __METHOD__ );
-			}
-			$this->output( "Making foreign key on table 'oldimage' (to image) a cascade delete/update\n" );
-			$this->db->query(
-				"ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascaded " .
-				"FOREIGN KEY (oi_name) REFERENCES image(img_name) " .
-				"ON DELETE CASCADE ON UPDATE CASCADE", __METHOD__ );
-		}
-	}
-
-	protected function checkPageDeletedTrigger() {
-		if ( !$this->db->triggerExists( 'page', 'page_deleted' ) ) {
-			$this->applyPatch(
-				'patch-page_deleted.sql',
-				false,
-				"Adding function and trigger 'page_deleted' to table 'page'"
-			);
-		} else {
-			$this->output( "...table 'page' has 'page_deleted' trigger\n" );
-		}
-	}
-
 	protected function dropPgIndex( $table, $index ) {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "Dropping obsolete index '$index'\n" );
@@ -1190,19 +1125,5 @@ END;
 			" ADD PRIMARY KEY (" . implode( ',', $shouldBe ) . ');',
 			__METHOD__
 		);
-	}
-
-	protected function checkRevUserFkey() {
-		if ( !$this->db->fieldExists( 'revision', 'rev_user', __METHOD__ ) ) {
-			/* Do nothing */
-		} elseif ( $this->fkeyDeltype( 'revision_rev_user_fkey' ) == 'r' ) {
-			$this->output( "...constraint 'revision_rev_user_fkey' is ON DELETE RESTRICT\n" );
-		} else {
-			$this->applyPatch(
-				'patch-revision_rev_user_fkey.sql',
-				false,
-				"Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT"
-			);
-		}
 	}
 }
