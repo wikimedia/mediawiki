@@ -393,7 +393,10 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 			"mw-replace",
 			"mw-rollback",
 			"mw-undo",
-			"mw-manual-revert"
+			"mw-manual-revert",
+			"mw-change-media",
+			"mw-add-media",
+			"mw-remove-media",
 		];
 	}
 }
