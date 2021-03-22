@@ -3,6 +3,7 @@
 use Doctrine\DBAL\Platforms\AbstractPlatform;
 use Doctrine\DBAL\Platforms\SqlitePlatform;
 use Wikimedia\Rdbms\DoctrineSchemaBuilder;
+use Wikimedia\Rdbms\MWMySQLPlatform;
 use Wikimedia\Rdbms\MWPostgreSqlPlatform;
 
 class DoctrineSchemaBuilderTest extends \PHPUnit\Framework\TestCase {
@@ -35,10 +36,7 @@ class DoctrineSchemaBuilderTest extends \PHPUnit\Framework\TestCase {
 
 	public function provideTestGetResultAllTables() {
 		yield 'MySQL schema tables' => [
-			// T270740 - HACK
-			class_exists( Doctrine\DBAL\Platforms\MySqlPlatform::class )
-				? new Doctrine\DBAL\Platforms\MySqlPlatform()
-				: new Doctrine\DBAL\Platforms\MySQLPlatform(),
+			new MWMySQLPlatform,
 			'/data/db/mysql/tables.sql',
 		];
 
