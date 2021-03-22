@@ -811,13 +811,6 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'help-message' => 'createacct-useuniquepass',
 					'hide-if' => [ '===', 'wpCreateaccountMail', '1' ],
 				],
-				// used to create empty line to separate help msg
-				'pwordbr' => [
-					'cssclass' => 'tipBr',
-					'type' => 'info',
-					'label' => '',
-					'default' => '',
-				],
 				'domain' => [],
 				'retype' => [
 					'baseField' => 'password',
