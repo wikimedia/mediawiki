@@ -21,7 +21,7 @@
 /**
  * @covers ExtensionJsonValidator
  */
-class ExtensionJsonValidatorTest extends MediaWikiIntegrationTestCase {
+class ExtensionJsonValidatorTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideValidate
@@ -37,7 +37,7 @@ class ExtensionJsonValidatorTest extends MediaWikiIntegrationTestCase {
 			$this->expectExceptionMessage( $expected );
 		}
 
-		$dir = __DIR__ . '/../../data/registration/';
+		$dir = __DIR__ . '/../../../data/registration/';
 		$this->assertSame(
 			$expected,
 			$validator->validate( $dir . $file )
