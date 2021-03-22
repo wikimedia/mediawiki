@@ -71,7 +71,7 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 			__METHOD__
 		);
 
-		$this->assertNotNull( $rc, 'rev__id = ' . $revId );
+		$this->assertNotNull( $rc, 'rev_id = ' . $revId );
 		return $rc;
 	}
 
