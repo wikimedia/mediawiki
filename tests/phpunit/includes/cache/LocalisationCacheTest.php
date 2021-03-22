@@ -11,13 +11,6 @@ use Psr\Log\NullLogger;
  * @author Niklas Laxström
  */
 class LocalisationCacheTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
-		parent::setUp();
-		$this->setMwGlobals( [
-			'wgExtensionMessagesFiles' => [],
-			'wgHooks' => [],
-		] );
-	}
 
 	/**
 	 * @param array $hooks Hook overrides
