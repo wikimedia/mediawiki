@@ -222,6 +222,8 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithExpiry() {
+		$fakeTime = 1616432035;
+		MWTimestamp::setFakeTime( $fakeTime );
 		$res = $this->doBlock( [ 'expiry' => '1 day' ] );
 
 		$dbw = wfGetDB( DB_MASTER );
@@ -232,9 +234,7 @@ class ApiBlockTest extends ApiTestCase {
 			__METHOD__
 		);
 
-		// Allow flakiness up to one second
-		$this->assertLessThanOrEqual( 1,
-			abs( wfTimestamp( TS_UNIX, $expiry ) - ( time() + 86400 ) ) );
+		$this->assertSame( (int)wfTimestamp( TS_UNIX, $expiry ), $fakeTime + 86400 );
 	}
 
 	public function testBlockWithInvalidExpiry() {
