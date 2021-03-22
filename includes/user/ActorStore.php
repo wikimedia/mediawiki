@@ -204,6 +204,19 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
+	 * @param int $actorId
+	 * @param UserIdentity $actor
+	 */
+	private function deleteUserIdentityFromCache( int $actorId, UserIdentity $actor ) {
+		$this->actorsByActorId->clear( $actorId );
+		$userId = $actor->getId( $this->wikiId );
+		if ( $userId ) {
+			$this->actorsByUserId->clear( $userId );
+		}
+		$this->actorsByName->clear( $actor->getName() );
+	}
+
+	/**
 	 * Find an actor by $id.
 	 *
 	 * @param int $actorId
@@ -309,6 +322,21 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
+	 * Detach the actor ID from $user for backwards compatibility.
+	 *
+	 * @todo remove this method when no longer needed (T273974).
+	 *
+	 * @param UserIdentity $user
+	 */
+	private function detachActorId( UserIdentity $user ) {
+		if ( $user instanceof UserIdentityValue ) {
+			$user->setActorId( 0 );
+		} elseif ( $user instanceof User ) {
+			$user->setActorId( 0 );
+		}
+	}
+
+	/**
 	 * Find the actor_id of the given $user.
 	 *
 	 * @param UserIdentity $user
@@ -410,6 +438,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * Attempt to assign an actor ID to the given $user
 	 * If it is already assigned, return the existing ID.
 	 *
+	 * @note If called within a transaction, the returned ID might become invalid
+	 * if the transaction is rolled back, so it should not be passed outside of the
+	 * transaction context.
+	 *
 	 * @param UserIdentity $user
 	 * @param IDatabase|null $dbw The database connection to acquire the ID from.
 	 *        The database must correspond to ActorStore's wiki ID.
@@ -488,9 +520,21 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			}
 		}
 
-		// Cache row we've just created
-		$this->newActorFromRowFields( $userId, $userName, $actorId );
 		$this->attachActorId( $user, $actorId );
+
+		// Cache row we've just created
+		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
+		if ( $dbw->trxLevel() ) {
+			// If called within a transaction and it was rolled back, the cached actor ID
+			// becomes invalid, so cache needs to be invalidated as well. See T277795.
+			$dbw->onTransactionResolution(
+				function ( int $trigger ) use ( $actorId, $cachedUserIdentity, $user ) {
+					if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
+						$this->deleteUserIdentityFromCache( $actorId, $cachedUserIdentity );
+						$this->detachActorId( $user );
+					}
+				} );
+		}
 
 		return $actorId;
 	}
