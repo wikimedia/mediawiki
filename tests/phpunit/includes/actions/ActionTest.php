@@ -223,15 +223,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'view', $actionName );
 	}
 
-	/**
-	 * @covers \Action::factory
-	 */
-	public function testActionFactory_withNull_expectNull() {
-		$this->hideDeprecated( 'Action::factory with null $action' );
-		$result = Action::factory( null, $this->getPage() );
-		$this->assertNull( $result );
-	}
-
 	public function testDisabledAction_exists() {
 		$exists = Action::exists( 'disabled' );
 
