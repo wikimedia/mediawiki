@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\Tests\Block\Restriction;
+namespace MediaWiki\Tests\Unit\Block\Restriction;
 
 /**
  * @group Blocking
  */
-abstract class RestrictionTestCase extends \MediaWikiIntegrationTestCase {
+abstract class RestrictionTestCase extends \MediaWikiUnitTestCase {
 	public function testConstruct() {
 		$class = $this->getClass();
 		$restriction = new $class( 1, 2 );

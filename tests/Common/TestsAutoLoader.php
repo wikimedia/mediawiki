@@ -107,9 +107,6 @@ $wgAutoloadClasses += [
 	'MediaWiki\\Tests\\Auth\\AuthenticationRequestTestCase' =>
 		"$testDir/phpunit/includes/Auth/AuthenticationRequestTestCase.php",
 
-	# tests/phpunit/includes/Block
-	'MediaWiki\\Tests\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/includes/Block/Restriction/RestrictionTestCase.php",
-
 	# tests/phpunit/includes/RecentChanges
 	'TestRecentChangesHelper' => "$testDir/phpunit/includes/RecentChanges/TestRecentChangesHelper.php",
 	'MediaWiki\Tests\Recentchanges\ChangeTrackingUpdateSpyTrait' => "$testDir/phpunit/includes/RecentChanges/ChangeTrackingUpdateSpyTrait.php",
@@ -290,6 +287,9 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/unit/includes/Auth
 	'MediaWiki\\Tests\\Unit\\Auth\\AuthenticationProviderTestTrait' => "$testDir/phpunit/unit/includes/Auth/AuthenticationProviderTestTrait.php",
+
+	# tests/phpunit/unit/includes/Block
+	'MediaWiki\\Tests\\Unit\\Block\\Restriction\\RestrictionTestCase' => "$testDir/phpunit/unit/includes/Block/Restriction/RestrictionTestCase.php",
 
 	# tests/phpunit/unit/includes/CommentFormatter
 	'MediaWiki\\Tests\\Unit\\CommentFormatter\\CommentFormatterTestUtils' => "$testDir/phpunit/unit/includes/CommentFormatter/CommentFormatterTestUtils.php",

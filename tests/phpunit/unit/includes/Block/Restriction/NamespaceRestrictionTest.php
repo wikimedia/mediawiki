@@ -1,11 +1,11 @@
 <?php
 
-namespace MediaWiki\Tests\Block\Restriction;
+namespace MediaWiki\Tests\Unit\Block\Restriction;
 
 use MediaWiki\Block\Restriction\NamespaceRestriction;
+use MediaWiki\Title\Title;
 
 /**
- * @group Database
  * @group Blocking
  * @covers \MediaWiki\Block\Restriction\AbstractRestriction
  * @covers \MediaWiki\Block\Restriction\NamespaceRestriction
@@ -14,12 +14,15 @@ class NamespaceRestrictionTest extends RestrictionTestCase {
 
 	public function testMatches() {
 		$class = $this->getClass();
-		$page = $this->getExistingTestPage( 'Saturn' );
 		$restriction = new $class( 1, NS_MAIN );
-		$this->assertTrue( $restriction->matches( $page->getTitle() ) );
 
-		$page = $this->getExistingTestPage( 'Talk:Saturn' );
-		$this->assertFalse( $restriction->matches( $page->getTitle() ) );
+		$title = $this->createMock( Title::class );
+		$title->method( 'getNamespace' )->willReturn( NS_MAIN );
+		$this->assertTrue( $restriction->matches( $title ) );
+
+		$title = $this->createMock( Title::class );
+		$title->method( 'getNamespace' )->willReturn( NS_TALK );
+		$this->assertFalse( $restriction->matches( $title ) );
 	}
 
 	public function testGetType() {

@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Block\Restriction;
+namespace MediaWiki\Tests\Unit\Block\Restriction;
 
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Title\Title;
