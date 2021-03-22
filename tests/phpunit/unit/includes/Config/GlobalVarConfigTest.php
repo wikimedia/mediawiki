@@ -6,12 +6,20 @@ use MediaWiki\Config\GlobalVarConfig;
 /**
  * @covers \MediaWiki\Config\GlobalVarConfig
  */
-class GlobalVarConfigTest extends MediaWikiIntegrationTestCase {
+class GlobalVarConfigTest extends MediaWikiUnitTestCase {
+
+	/**
+	 * @param string $name
+	 * @param mixed $value
+	 */
+	private function setGlobal( string $name, $value ) {
+		$GLOBALS[$name] = $value;
+	}
 
 	public function testNewInstance() {
 		$config = GlobalVarConfig::newInstance();
 		$this->assertInstanceOf( GlobalVarConfig::class, $config );
-		$this->setMwGlobals( 'wgBaz', 'somevalue' );
+		$this->setGlobal( 'wgBaz', 'somevalue' );
 		// Check prefix is set to 'wg'
 		$this->assertEquals( 'somevalue', $config->get( 'Baz' ) );
 	}
@@ -21,7 +29,7 @@ class GlobalVarConfigTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testConstructor( $prefix ) {
 		$var = $prefix . 'GlobalVarConfigTest';
-		$this->setMwGlobals( $var, 'testvalue' );
+		$this->setGlobal( $var, 'testvalue' );
 		$config = new GlobalVarConfig( $prefix );
 		$this->assertInstanceOf( GlobalVarConfig::class, $config );
 		$this->assertEquals( 'testvalue', $config->get( 'GlobalVarConfigTest' ) );
@@ -38,45 +46,32 @@ class GlobalVarConfigTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testHas() {
-		$this->setMwGlobals( 'wgGlobalVarConfigTestHas', 'testvalue' );
+		$this->setGlobal( 'wgGlobalVarConfigTestHas', 'testvalue' );
 		$config = new GlobalVarConfig();
 		$this->assertTrue( $config->has( 'GlobalVarConfigTestHas' ) );
 		$this->assertFalse( $config->has( 'GlobalVarConfigTestNotHas' ) );
 	}
 
+	public function testGetForNonExistingVariable(): void {
+		$config = new GlobalVarConfig( 'wg' );
+		$this->expectException( ConfigException::class );
+		$this->expectExceptionMessage( 'GlobalVarConfig::get: undefined option:' );
+		$config->get( 'NonExistingVar' );
+	}
+
 	public static function provideGet() {
-		$set = [
-			'wgSomething' => 'default1',
-			'wgFoo' => 'default2',
-			'efVariable' => 'default3',
-			'BAR' => 'default4',
-		];
-
-		foreach ( $set as $var => $value ) {
-			$GLOBALS[$var] = $value;
-		}
-
 		return [
 			[ 'Something', 'wg', 'default1' ],
 			[ 'Foo', 'wg', 'default2' ],
 			[ 'Variable', 'ef', 'default3' ],
 			[ 'BAR', '', 'default4' ],
-			[ 'ThisGlobalWasNotSetAbove', 'wg', false ]
 		];
 	}
 
-	/**
-	 * @dataProvider provideGet
-	 * @param string $name
-	 * @param string $prefix
-	 * @param string $expected
-	 */
-	public function testGet( $name, $prefix, $expected ) {
+	/** @dataProvider provideGet */
+	public function testGet( string $name, string $prefix, string $expected ) {
+		$this->setGlobal( $prefix . $name, $expected );
 		$config = new GlobalVarConfig( $prefix );
-		if ( $expected === false ) {
-			$this->expectException( ConfigException::class );
-			$this->expectExceptionMessage( 'GlobalVarConfig::get: undefined option:' );
-		}
 		$this->assertEquals( $expected, $config->get( $name ) );
 	}
 }
