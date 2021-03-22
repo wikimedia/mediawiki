@@ -603,6 +603,37 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	/**
+	 * @covers ::acquireActorId
+	 */
+	public function testAcquireActorId_clearCacheOnRollback() {
+		$rolledBackActor = new UserIdentityValue( 0, '127.0.0.10' );
+		$store = $this->getStore();
+		$this->db->startAtomic( __METHOD__ );
+		$rolledBackActorId = $store->acquireActorId( $rolledBackActor, $this->db );
+		$this->assertTrue( $rolledBackActorId > 0 );
+		$foundActorId = $store->findActorId( $rolledBackActor, $this->db );
+		$this->assertSame( $rolledBackActorId, $foundActorId );
+		$this->db->rollback( __METHOD__ );
+
+		// Insert some other user identity using another store
+		// so that we take over the rolled back actor ID.
+		$anotherActor = new UserIdentityValue( 0, '127.0.0.11' );
+		$anotherActorId = $this->getStore()->acquireActorId( $anotherActor, $this->db );
+
+		// Make sure no actor ID associated with rolled back actor.
+		$foundActorIdAfterRollback = $store->findActorId( $rolledBackActor, $this->db );
+		$this->assertNull( $foundActorIdAfterRollback );
+
+		// Make sure we can acquire new actor ID for the rolled back actor
+		$newActorId = $store->acquireActorId( $rolledBackActor, $this->db );
+		$this->assertTrue( $newActorId > 0 );
+		$this->assertNotSame( $newActorId, $rolledBackActorId );
+
+		// Make sure we find correct actor by rolled back actor ID
+		$this->assertSameActors( $anotherActor, $store->getActorById( $anotherActorId, $this->db ) );
+	}
+
+	/**
 	 * @covers ::getUnknownActor
 	 */
 	public function testGetUnknownActor() {
