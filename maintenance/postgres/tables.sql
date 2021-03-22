@@ -61,9 +61,10 @@ CREATE TABLE revision (
   rev_sha1           TEXT         NOT NULL DEFAULT ''
 );
 ALTER SEQUENCE revision_rev_id_seq OWNED BY revision.rev_id;
-CREATE UNIQUE INDEX revision_unique ON revision (rev_page, rev_id);
-CREATE INDEX rev_timestamp_idx      ON revision (rev_timestamp);
-CREATE INDEX rev_actor_timestamp    ON revision (rev_actor,rev_timestamp,rev_id);
+CREATE UNIQUE INDEX rev_page_id ON revision (rev_page, rev_id);
+CREATE INDEX rev_timestamp      ON revision (rev_timestamp);
+CREATE INDEX rev_actor_timestamp ON revision (rev_actor,rev_timestamp,rev_id);
+CREATE INDEX rev_page_timestamp ON revision (rev_page,rev_timestamp);
 CREATE INDEX rev_page_actor_timestamp ON revision (rev_page,rev_actor,rev_timestamp);
 
 
