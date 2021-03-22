@@ -29,7 +29,10 @@ use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
@@ -58,7 +61,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  * Some fields are public only for backwards-compatibility. Use accessors.
  * In the past, this class was part of Article.php and everything was public.
  */
-class WikiPage implements Page, IDBAccessObject, PageIdentity {
+class WikiPage implements Page, IDBAccessObject, PageRecord {
 	use NonSerializableTrait;
 	use ProtectedHookAccessorTrait;
 	use WikiAwareEntityTrait;
@@ -101,6 +104,16 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	protected $mRedirectTarget = null;
 
 	/**
+	 * @var bool
+	 */
+	private $mIsNew = false;
+
+	/**
+	 * @var bool
+	 */
+	private $mIsRedirect = false;
+
+	/**
 	 * @var int|false False means "not loaded"
 	 * @todo make protected
 	 * @note for access by subclasses only
@@ -138,6 +151,11 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @var string
 	 */
 	protected $mTouched = '19700101000000';
+
+	/**
+	 * @var string|null
+	 */
+	protected $mLanguage = null;
 
 	/**
 	 * @var string
@@ -340,8 +358,11 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		$this->mPageIsRedirectField = false;
 		$this->mLastRevision = null; // Latest revision
 		$this->mTouched = '19700101000000';
+		$this->mLanguage = null;
 		$this->mLinksUpdated = '19700101000000';
 		$this->mTimestamp = '';
+		$this->mIsNew = false;
+		$this->mIsRedirect = false;
 		$this->mLatest = false;
 		// T59026: do not clear $this->derivedDataUpdater since getDerivedDataUpdater() already
 		// checks the requested rev ID and content against the cached one. For most
@@ -561,12 +582,17 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 			// Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
+			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+
 			$this->mId = intval( $data->page_id );
 			$this->mTouched = MWTimestamp::convert( TS_MW, $data->page_touched );
+			$this->mLanguage = $data->page_lang ?? $contLang->getCode();
 			$this->mLinksUpdated = $data->page_links_updated === null
 				? null
 				: MWTimestamp::convert( TS_MW, $data->page_links_updated );
 			$this->mPageIsRedirectField = (bool)$data->page_is_redirect;
+			$this->mIsNew = intval( $data->page_is_new ?? 0 );
+			$this->mIsRedirect = intval( $data->page_is_redirect ?? 0 );
 			$this->mLatest = intval( $data->page_latest );
 			// T39225: $latest may no longer match the cached latest RevisionRecord object.
 			// Double-check the ID of any cached latest RevisionRecord object for consistency.
@@ -650,7 +676,11 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	 * @return bool
 	 */
 	public function isRedirect() {
-		return $this->getRedirectTarget() !== null;
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+
+		return (bool)$this->mIsRedirect;
 	}
 
 	/**
@@ -667,6 +697,22 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 			$this->loadPageData();
 		}
 		return $this->mPageIsRedirectField;
+	}
+
+	/**
+	 * Tests if the page is new (only has one revision).
+	 * May produce false negatives for some old pages.
+	 *
+	 * @since 1.36
+	 *
+	 * @return bool
+	 */
+	public function isNew() {
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+
+		return (bool)$this->mIsNew;
 	}
 
 	/**
@@ -734,6 +780,17 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 	}
 
 	/**
+	 * @return string language code for the page
+	 */
+	public function getLanguage() {
+		if ( !$this->mDataLoaded ) {
+			$this->loadLastEdit();
+		}
+
+		return $this->mLanguage ?: MediaWikiServices::getInstance()->getContentLanguage()->getCode();
+	}
+
+	/**
 	 * Get the page_links_updated field
 	 * @return string|null Containing GMT timestamp
 	 */
@@ -746,9 +803,12 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 
 	/**
 	 * Get the page_latest field
+	 * @param bool $wikiId
 	 * @return int The rev_id of current revision
 	 */
-	public function getLatest() {
+	public function getLatest( $wikiId = self::LOCAL ) {
+		$this->assertWiki( $wikiId );
+
 		if ( !$this->mDataLoaded ) {
 			$this->loadPageData();
 		}
@@ -1454,6 +1514,8 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		$content = $revision->getContent( SlotRecord::MAIN );
 		$len = $content ? $content->getSize() : 0;
 		$rt = $content ? $content->getUltimateRedirectTarget() : null;
+		$isNew = ( $lastRevision === 0 ) ? 1 : 0;
+		$isRedirect = $rt !== null ? 1 : 0;
 
 		$conditions = [ 'page_id' => $this->getId() ];
 
@@ -1470,8 +1532,8 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		$row = [ /* SET */
 			'page_latest'        => $revId,
 			'page_touched'       => $dbw->timestamp( $revision->getTimestamp() ),
-			'page_is_new'        => ( $lastRevision === 0 ) ? 1 : 0,
-			'page_is_redirect'   => $rt !== null ? 1 : 0,
+			'page_is_new'        => $isNew,
+			'page_is_redirect'   => $isRedirect,
 			'page_len'           => $len,
 			'page_content_model' => $model,
 		];
@@ -1489,6 +1551,8 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 			$this->mRedirectTarget = null;
 			$this->mHasRedirectTarget = null;
 			$this->mPageIsRedirectField = (bool)$rt;
+			$this->mIsNew = (bool)$isNew;
+			$this->mIsRedirect = (bool)$isRedirect;
 			// Update the LinkCache.
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 			$linkCache->addGoodLinkObj(
@@ -4221,6 +4285,44 @@ class WikiPage implements Page, IDBAccessObject, PageIdentity {
 		}
 
 		return true;
+	}
+
+	/**
+	 * Returns the page represented by this WikiPage as a PageStoreRecord.
+	 * The PageRecord returned by this method is guaranteed to be immutable.
+	 *
+	 * It is preferred to use this method rather than using the WikiPage as a PageIdentity directly.
+	 * @since 1.36
+	 *
+	 * @throws PreconditionException if the page does not exist.
+	 *
+	 * @return ExistingPageRecord
+	 */
+	public function toPageRecord(): ExistingPageRecord {
+		// TODO: replace individual member fields with a PageRecord instance that is always present
+
+		if ( !$this->mDataLoaded ) {
+			$this->loadPageData();
+		}
+
+		Assert::precondition(
+			$this->exists(),
+			'This WikiPage instance does not represent an existing page: ' . $this->mTitle
+		);
+
+		return new PageStoreRecord(
+			(object)[
+				'page_id' => $this->getId(),
+				'page_namespace' => $this->mTitle->getNamespace(),
+				'page_title' => $this->mTitle->getDBkey(),
+				'page_latest' => $this->mLatest,
+				'page_is_new' => $this->mIsNew,
+				'page_is_redirect' => $this->mIsRedirect,
+				'page_touched' => $this->mTouched,
+				'page_lang' => $this->getLanguage()
+			],
+			PageIdentity::LOCAL
+		);
 	}
 
 }

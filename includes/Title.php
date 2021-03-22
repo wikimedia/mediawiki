@@ -27,8 +27,10 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ProperPageIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\PreconditionException;
@@ -4679,6 +4681,46 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$this->getNamespace(),
 			$this->getDBkey(),
 			self::LOCAL
+		);
+	}
+
+	/**
+	 * Returns the page represented by this Title as a ProperPageRecord.
+	 * The PageRecord returned by this method is guaranteed to be immutable,
+	 * the page is guaranteed to exist.
+	 *
+	 * @note For now, this method queries the database on every call.
+	 * @since 1.36
+	 *
+	 * @param int $flags Either a bitfield of class READ_* constants or GAID_FOR_UPDATE
+	 *
+	 * @return ExistingPageRecord
+	 * @throws PreconditionException if the page does not exist, or is not a proper page,
+	 *         that is, if it is a section link, interwiki link, link to a special page, or such.
+	 */
+	public function toPageRecord( $flags = 0 ): ExistingPageRecord {
+		// TODO: Cache this? Construct is more efficiently?
+
+		$this->assertProperPage();
+
+		Assert::precondition(
+			$this->exists(),
+			'This Title instance does not represent an existing page: ' . $this
+		);
+
+		return new PageStoreRecord(
+			(object)[
+				'page_id' => $this->getArticleID( $flags ),
+				'page_namespace' => $this->getNamespace(),
+				'page_title' => $this->getDBkey(),
+				'page_wiki_id' => $this->getWikiId(),
+				'page_latest' => $this->getLatestRevID( $flags ),
+				'page_is_new' => $this->isNewPage(), // no flags?
+				'page_is_redirect' => $this->isRedirect( $flags ),
+				'page_touched' => $this->getTouched(), // no flags?
+				'page_lang' => $this->getPageLanguage()->getCode(),
+			],
+			PageIdentity::LOCAL
 		);
 	}
 

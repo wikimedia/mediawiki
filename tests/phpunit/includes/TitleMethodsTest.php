@@ -475,6 +475,41 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$this->assertSame( $title->getWikiId(), $page->getWikiId() );
 	}
 
+	/**
+	 * @dataProvider provideProperPage
+	 * @covers Title::toPageRecord
+	 */
+	public function testToPageRecord( $ns, $text ) {
+		$title = Title::makeTitle( $ns, $text );
+		$wikiPage = $this->getExistingTestPage( $title );
+
+		$record = $title->toPageRecord();
+
+		$this->assertNotSame( $title, $record );
+		$this->assertNotSame( $title, $wikiPage );
+
+		$this->assertSame( $title->getId(), $record->getId() );
+		$this->assertSame( $title->getNamespace(), $record->getNamespace() );
+		$this->assertSame( $title->getDBkey(), $record->getDBkey() );
+		$this->assertSame( $title->getWikiId(), $record->getWikiId() );
+
+		$this->assertSame( $title->getLatestRevID(), $record->getLatest() );
+		$this->assertSame( MWTimestamp::convert( TS_MW, $title->getTouched() ), $record->getTouched() );
+		$this->assertSame( $title->isNewPage(), $record->isNew() );
+		$this->assertSame( $title->isRedirect(), $record->isRedirect() );
+	}
+
+	/**
+	 * @dataProvider provideImproperPage
+	 * @covers Title::toPageRecord
+	 */
+	public function testToPageRecord_fail( $ns, $text, $fragment = '', $interwiki = '' ) {
+		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
+
+		$this->expectException( PreconditionException::class );
+		$title->toPageRecord();
+	}
+
 	public function provideImproperPage() {
 		return [
 			[ NS_MAIN, '' ],
