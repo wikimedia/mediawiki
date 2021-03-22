@@ -1280,7 +1280,7 @@ abstract class ContentHandler {
 	 *
 	 * @stable to override
 	 *
-	 * @return bool Default is false, and true for TextContent and it's derivatives.
+	 * @return bool Default is false, and true for TextContent and its derivatives.
 	 */
 	public function supportsDirectEditing() {
 		return false;
