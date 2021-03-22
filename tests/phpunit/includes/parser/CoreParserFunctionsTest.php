@@ -65,12 +65,12 @@ class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideTalkpagename
+	 * @dataProvider provideSubjectpagename
 	 */
 	public function testSubjectpagename( $expected, $title ) {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
-		$this->assertSame( $expected, CoreParserFunctions::talkpagename( $parser, $title ) );
+		$this->assertSame( $expected, CoreParserFunctions::subjectpagename( $parser, $title ) );
 	}
 
 }
