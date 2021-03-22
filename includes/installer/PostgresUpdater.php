@@ -51,9 +51,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			'CREATE UNIQUE INDEX ipb_address_unique ' .
 				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
 
-			# end
-			[ 'tsearchFixes' ],
-
 			// **** T272199 MARKER ****
 
 			// 1.28
@@ -1212,13 +1209,5 @@ END;
 				"Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT"
 			);
 		}
-	}
-
-	protected function tsearchFixes() {
-		# Tweak the page_title tsearch2 trigger to filter out slashes
-		# This is create or replace, so harmless to call if not needed
-		$this->applyPatch( 'patch-ts2pagetitle.sql', false, "Refreshing ts2_page_title()" );
-
-		$this->applyPatch( 'patch-tsearch2funcs.sql', false, "Rewriting tsearch2 triggers" );
 	}
 }
