@@ -5,6 +5,8 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
 /**
@@ -15,7 +17,7 @@ use Wikimedia\IPUtils;
 class DatabaseBlockTest extends MediaWikiLangTestCase {
 
 	/**
-	 * @return User
+	 * @return UserIdentity
 	 */
 	private function getUserForBlocking() {
 		$testUser = $this->getMutableTestUser();
@@ -23,19 +25,19 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$user->addToDatabase();
 		TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 		$user->saveSettings();
-		return $user;
+		return $testUser->getUserIdentity();
 	}
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 *
 	 * @return DatabaseBlock
 	 * @throws MWException
 	 */
-	private function addBlockForUser( User $user ) {
+	private function addBlockForUser( UserIdentity $user ) {
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		// Delete the last round's block if it's still there
-		$oldBlock = DatabaseBlock::newFromTarget( $user->getName() );
+		$oldBlock = DatabaseBlock::newFromTarget( $user );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
 			$blockStore->deleteBlock( $oldBlock );
@@ -151,7 +153,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		}
 
 		// Should find the block with the narrowest range
-		$blockTarget = DatabaseBlock::newFromTarget( $this->getTestUser()->getUser(), $ip )->getTarget();
+		$blockTarget = DatabaseBlock::newFromTarget( $this->getTestUser()->getUserIdentity(), $ip )->getTarget();
 		$this->assertSame(
 			$blockTarget instanceof User ? $blockTarget->getName() : $blockTarget,
 			$expectedTarget
@@ -618,7 +620,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'sitewide' => true
 		] );
 
-		$block->setTarget( $user );
+		$block->setTarget( new UserIdentityValue( $user->getId(), $user->getName() ) );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
