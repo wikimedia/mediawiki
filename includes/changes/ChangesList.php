@@ -416,7 +416,7 @@ class ChangesList extends ContextSource {
 	 * Render the date and time of a revision in the current user language
 	 * based on whether the user is able to view this information or not.
 	 * @param RevisionRecord $rev
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param Language $lang
 	 * @param Title|null $title (optional) where Title does not match
 	 *   the Title associated with the Revision
@@ -425,16 +425,13 @@ class ChangesList extends ContextSource {
 	 */
 	public static function revDateLink(
 		RevisionRecord $rev,
-		User $user,
+		Authority $performer,
 		Language $lang,
 		$title = null
 	) {
 		$ts = $rev->getTimestamp();
-		$date = $lang->userTimeAndDate( $ts, $user );
-		if ( $rev->userCan(
-			RevisionRecord::DELETED_TEXT,
-			$user
-		) ) {
+		$date = $lang->userTimeAndDate( $ts, $performer->getUser() );
+		if ( $rev->userCan( RevisionRecord::DELETED_TEXT, $performer ) ) {
 			$link = MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
 				$title ?? $rev->getPageAsLinkTarget(),
 				$date,
