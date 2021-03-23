@@ -43,6 +43,9 @@ trait MockTitleTrait {
 		$title->method( 'getArticleID' )->willReturn( $id );
 		$title->method( 'getId' )->willReturn( $id );
 		$title->method( 'getNamespace' )->willReturn( $ns );
+		$title->method( 'getFragment' )->willReturn( $props['fragment'] ?? '' );
+		$title->method( 'hasFragment' )->willReturn( !empty( $props['fragment'] ) );
+		$title->method( 'getInterwiki' )->willReturn( $props['interwiki'] ?? '' );
 		$title->method( 'exists' )->willReturn( $id > 0 );
 		$title->method( 'getTouched' )->willReturn( $id ? '20200101223344' : false );
 		$title->method( 'getPageLanguage' )->willReturn( $props['language'] ?? 'qqx' );
@@ -50,7 +53,8 @@ trait MockTitleTrait {
 			->willReturn( $props['contentModel'] ?? CONTENT_MODEL_WIKITEXT );
 		$title->method( 'getRestrictions' )->willReturn( [] );
 		$title->method( 'getTitleProtection' )->willReturn( false );
-		$title->method( 'canExist' )->willReturn( true );
+		$title->method( 'canExist' )
+			->willReturn( $ns >= 0 && empty( $props['interwiki'] ) && $text !== '' );
 		$title->method( 'getWikiId' )->willReturn( Title::LOCAL );
 		if ( isset( $props['revision'] ) ) {
 			$title->method( 'getLatestRevId' )->willReturn( $props['revision'] );
