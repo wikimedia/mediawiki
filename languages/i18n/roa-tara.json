@@ -1222,7 +1222,7 @@
 	"right-editmyuserjson": "Cange le file tune de JSON",
 	"right-editmyuserjs": "Cange le file tune de JavaScript",
 	"right-viewmywatchlist": "'Ndruche le pàggene condrollate tune",
-	"right-editmywatchlist": "Cange le pàggene condrollate tune. Vide bbuene ca certe aziune vonne a aggiungere pàggene pure ca non ge stonne le deritte.",
+	"right-editmywatchlist": "Cange le pàggene condrollate tune (Attenziò ca certe aziune vonne a aggiungere pàggene pure ca non ge stonne le deritte)",
 	"right-viewmyprivateinfo": "'Ndruche le date private tune (p.e. indirizze email, nome vere)",
 	"right-editmyprivateinfo": "Cange le date private tune (p.e. indirizze email, nome vere)",
 	"right-editmyoptions": "Cange le preferenze tune",
