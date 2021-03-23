@@ -75,6 +75,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *     to skins like MonoBook, Vector, etc... Essentially this level is for styles that are
 	 *     common to MonoBook clones.
 	 *
+	 * "interface-message-box":
+	 *     Styles for message boxes.
+	 *
 	 * "i18n-ordered-lists":
 	 *     Styles for ordered lists elements that support mixed language content.
 	 *
@@ -87,7 +90,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * "legacy":
 	 *     For backwards compatibility a legacy feature is provided.
 	 *     New skins should not use this if they can avoid doing so.
-	 *     This feature also contains all `i18n-` prefixed features.
+	 *     This feature also contains `interface-message-box` and
+	 *     all `i18n-` prefixed features.
 	 *
 	 * "toc"
 	 *     Styling rules for the table of contents.
@@ -115,6 +119,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		],
 		'interface' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
+		],
+		'interface-message-box' => [
+			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
 		],
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
@@ -153,6 +160,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'i18n-headings' => false,
 		'i18n-ordered-lists' => false,
 		'interface' => false,
+		'interface-message-box' => false,
 		'legacy' => false,
 		'logo' => false,
 		'normalize' => false,
