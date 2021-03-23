@@ -1395,7 +1395,7 @@
 	"right-editmyuserjs": "Modifica il file JavaScript del proprio utente",
 	"right-editmyuserjsredirect": "Modifica i propri file JavaScript che sono reindirizzamenti",
 	"right-viewmywatchlist": "Visualizza i propri osservati speciali",
-	"right-editmywatchlist": "Modifica i propri osservati speciali. Da notare che alcune azioni potranno ancora aggiungere pagine anche senza questo diritto.",
+	"right-editmywatchlist": "Modifica i propri osservati speciali (da notare che alcune azioni potranno ancora aggiungere pagine anche senza questo diritto)",
 	"right-viewmyprivateinfo": "Visualizza i propri dati personali (ad esempio: indirizzo email, nome vero)",
 	"right-editmyprivateinfo": "Modifica i propri dati personali (ad esempio: indirizzo email, nome vero)",
 	"right-editmyoptions": "Modifica le proprie preferenze",
