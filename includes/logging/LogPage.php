@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Class to simplify the use of log pages.
@@ -72,8 +73,8 @@ class LogPage {
 	/** @var string Blob made of a parameters array */
 	private $params;
 
-	/** @var User The user doing the action */
-	private $doer;
+	/** @var UserIdentity The user doing the action */
+	private $performer;
 
 	/** @var Title */
 	private $target;
@@ -114,7 +115,7 @@ class LogPage {
 			'log_comment',
 			$this->comment
 		);
-		$data += ActorMigration::newMigration()->getInsertValues( $dbw, 'log_user', $this->doer );
+		$data += ActorMigration::newMigration()->getInsertValues( $dbw, 'log_user', $this->performer );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = $dbw->insertId();
 
@@ -123,7 +124,7 @@ class LogPage {
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
 
 			RecentChange::notifyLog(
-				$now, $titleObj, $this->doer, $this->getRcComment(), '',
+				$now, $titleObj, $this->performer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
 				$this->params, $newId, $this->getRcCommentIRC()
 			);
@@ -137,7 +138,7 @@ class LogPage {
 			# We send this to IRC but do not want to add it the RC table.
 			$titleObj = SpecialPage::getTitleFor( 'Log', $this->type );
 			$rc = RecentChange::newLogEntry(
-				$now, $titleObj, $this->doer, $this->getRcComment(), '',
+				$now, $titleObj, $this->performer, $this->getRcComment(), '',
 				$this->type, $this->action, $this->target, $this->comment,
 				$this->params, $newId, $this->getRcCommentIRC()
 			);
@@ -328,11 +329,12 @@ class LogPage {
 	 * @param Title $target
 	 * @param string $comment Description associated
 	 * @param array $params Parameters passed later to wfMessage function
-	 * @param int|User $doer The user doing the action, or their user id
+	 * @param int|UserIdentity $performer The user doing the action, or their user id.
+	 *   Calling with user ID is deprecated since 1.36.
 	 *
 	 * @return int The log_id of the inserted log entry
 	 */
-	public function addEntry( $action, $target, $comment, $params, $doer ) {
+	public function addEntry( $action, $target, $comment, $params, $performer ) {
 		// FIXME $params is only documented to accept an array
 		if ( !is_array( $params ) ) {
 			$params = [ $params ];
@@ -350,15 +352,15 @@ class LogPage {
 		$this->comment = $comment;
 		$this->params = self::makeParamBlob( $params );
 
-		if ( !is_object( $doer ) ) {
-			$doer = User::newFromId( $doer );
+		if ( !is_object( $performer ) ) {
+			$performer = User::newFromId( $performer );
 		}
 
-		$this->doer = $doer;
+		$this->performer = $performer;
 
 		$logEntry = new ManualLogEntry( $this->type, $action );
 		$logEntry->setTarget( $target );
-		$logEntry->setPerformer( $doer );
+		$logEntry->setPerformer( $performer );
 		$logEntry->setParameters( $params );
 		// All log entries using the LogPage to insert into the logging table
 		// are using the old logging system and therefore the legacy flag is
