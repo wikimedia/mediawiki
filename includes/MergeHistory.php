@@ -26,11 +26,15 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
@@ -67,9 +71,6 @@ class MergeHistory {
 	/** @var int Number of revisions merged (for Special:MergeHistory success message) */
 	protected $revisionsMerged;
 
-	/** @var PermissionManager */
-	private $permManager;
-
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
@@ -88,6 +89,9 @@ class MergeHistory {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * Since 1.35 dependencies are injected and not providing them is hard deprecated; use the
 	 * MergeHistoryFactory service
@@ -96,26 +100,26 @@ class MergeHistory {
 	 * @param Title $dest Page to which history will be merged
 	 * @param string|bool $timestamp Timestamp up to which history from the source will be merged
 	 * @param ILoadBalancer|null $loadBalancer
-	 * @param PermissionManager|null $permManager
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @param RevisionStore|null $revisionStore
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param SpamChecker|null $spamChecker
 	 * @param HookContainer|null $hookContainer
 	 * @param WikiPageFactory|null $wikiPageFactory
+	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		Title $source,
 		Title $dest,
 		$timestamp = false,
 		ILoadBalancer $loadBalancer = null,
-		PermissionManager $permManager = null,
 		IContentHandlerFactory $contentHandlerFactory = null,
 		RevisionStore $revisionStore = null,
 		WatchedItemStoreInterface $watchedItemStore = null,
 		SpamChecker $spamChecker = null,
 		HookContainer $hookContainer = null,
-		WikiPageFactory $wikiPageFactory = null
+		WikiPageFactory $wikiPageFactory = null,
+		UserFactory $userFactory = null
 	) {
 		if ( $loadBalancer === null ) {
 			wfDeprecatedMsg( 'Direct construction of ' . __CLASS__ .
@@ -123,13 +127,13 @@ class MergeHistory {
 			$services = MediaWikiServices::getInstance();
 
 			$loadBalancer = $services->getDBLoadBalancer();
-			$permManager = $services->getPermissionManager();
 			$contentHandlerFactory = $services->getContentHandlerFactory();
 			$revisionStore = $services->getRevisionStore();
 			$watchedItemStore = $services->getWatchedItemStore();
 			$spamChecker = $services->getSpamChecker();
 			$hookContainer = $services->getHookContainer();
 			$wikiPageFactory = $services->getWikiPageFactory();
+			$userFactory = $services->getUserFactory();
 		}
 
 		// Save the parameters
@@ -139,13 +143,13 @@ class MergeHistory {
 		// Get the database
 		$this->dbw = $loadBalancer->getConnection( DB_MASTER );
 
-		$this->permManager = $permManager;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->spamChecker = $spamChecker;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->wikiPageFactory = $wikiPageFactory;
+		$this->userFactory = $userFactory;
 
 		// Max timestamp should be min of destination page
 		$firstDestTimestamp = $this->dbw->selectField(
@@ -228,26 +232,20 @@ class MergeHistory {
 	}
 
 	/**
-	 * Check if the merge is possible
-	 * @param User $user
+	 * @param callable $authorizer ( string $action, PageIdentity $target, PermissionStatus $status )
+	 * @param Authority $performer
 	 * @param string $reason
-	 * @return Status
+	 * @return PermissionStatus
 	 */
-	public function checkPermissions( User $user, $reason ) {
-		$status = new Status();
+	private function authorizeInternal(
+		callable $authorizer,
+		Authority $performer,
+		string $reason
+	) {
+		$status = PermissionStatus::newEmpty();
 
-		// Check if user can edit both pages
-		$errors = wfMergeErrorArrays(
-			$this->permManager->getPermissionErrors( 'edit', $user, $this->source ),
-			$this->permManager->getPermissionErrors( 'edit', $user, $this->dest )
-		);
-
-		// Convert into a Status object
-		if ( $errors ) {
-			foreach ( $errors as $error ) {
-				$status->fatal( ...$error );
-			}
-		}
+		$authorizer( 'edit', $this->source, $status );
+		$authorizer( 'edit', $this->dest, $status );
 
 		// Anti-spam
 		if ( $this->spamChecker->checkSummary( $reason ) !== false ) {
@@ -256,12 +254,72 @@ class MergeHistory {
 		}
 
 		// Check mergehistory permission
-		if ( !$this->permManager->userHasRight( $user, 'mergehistory' ) ) {
+		if ( !$performer->isAllowed( 'mergehistory' ) ) {
 			// User doesn't have the right to merge histories
 			$status->fatal( 'mergehistory-fail-permission' );
 		}
-
 		return $status;
+	}
+
+	/**
+	 * Check whether $performer can execute the merge.
+	 *
+	 * @note this method does not guarantee full permissions check, so it should
+	 * only be used to to decide whether to show a merge form. To authorize the merge
+	 * action use {@link self::authorizeMerge} instead.
+	 *
+	 * @param Authority $performer
+	 * @param string|null $reason
+	 * @return PermissionStatus
+	 */
+	public function probablyCanMerge( Authority $performer, string $reason = null ): PermissionStatus {
+		return $this->authorizeInternal(
+			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+				return $performer->probablyCan( $action, $target, $status );
+			},
+			$performer,
+			$reason
+		);
+	}
+
+	/**
+	 * Authorize the merge by $performer.
+	 *
+	 * @note this method should be used right before the actual merge is performed.
+	 * To check whether a current performer has the potential to merge the history,
+	 * use {@link self::probablyCanMerge} instead.
+	 *
+	 * @param Authority $performer
+	 * @param string|null $reason
+	 * @return PermissionStatus
+	 */
+	public function authorizeMerge( Authority $performer, string $reason = null ): PermissionStatus {
+		return $this->authorizeInternal(
+			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+				return $performer->authorizeWrite( $action, $target, $status );
+			},
+			$performer,
+			$reason
+		);
+	}
+
+	/**
+	 * Check if the merge is possible
+	 * @deprecated since 1.36. Use ::authorizeMerge or ::probablyCanMerge instead.
+	 * @param Authority $performer
+	 * @param string $reason
+	 * @return Status
+	 */
+	public function checkPermissions( Authority $performer, $reason ) {
+		wfDeprecated( __METHOD__, '1.36' );
+		$permissionStatus = $this->authorizeInternal(
+			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+				return $performer->definitelyCan( $action, $target, $status );
+			},
+			$performer,
+			$reason
+		);
+		return Status::wrap( $permissionStatus );
 	}
 
 	/**
@@ -315,11 +373,11 @@ class MergeHistory {
 	 * The user may have to "undo" the redirect manually to finish the "unmerge".
 	 * Maybe this should delete redirects at the source page of merges?
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param string $reason
 	 * @return Status status of the history merge
 	 */
-	public function merge( User $user, $reason = '' ) {
+	public function merge( Authority $performer, $reason = '' ) {
 		$status = new Status();
 
 		// Check validity and permissions required for merge
@@ -327,9 +385,9 @@ class MergeHistory {
 		if ( !$validCheck->isOK() ) {
 			return $validCheck;
 		}
-		$permCheck = $this->checkPermissions( $user, $reason );
+		$permCheck = $this->authorizeMerge( $performer, $reason );
 		if ( !$permCheck->isOK() ) {
-			return $permCheck;
+			return Status::wrap( $permCheck );
 		}
 
 		$this->dbw->startAtomic( __METHOD__ );
@@ -385,7 +443,7 @@ class MergeHistory {
 				)->inContentLanguage()->text();
 			}
 
-			$this->updateSourcePage( $status, $user, $reason );
+			$this->updateSourcePage( $status, $performer->getUser(), $reason );
 
 		} else {
 			$this->source->invalidateCache();
@@ -397,7 +455,7 @@ class MergeHistory {
 
 		// Update our logs
 		$logEntry = new ManualLogEntry( 'merge', 'merge' );
-		$logEntry->setPerformer( $user );
+		$logEntry->setPerformer( $performer->getUser() );
 		$logEntry->setComment( $reason );
 		$logEntry->setTarget( $this->source );
 		$logEntry->setParameters( [
@@ -422,7 +480,7 @@ class MergeHistory {
 	 * depending on whether the content model of the page supports redirects or not.
 	 *
 	 * @param Status $status
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $reason
 	 *
 	 * @return Status
@@ -509,7 +567,8 @@ class MergeHistory {
 			// This deletion does not depend on userright but may still fails. If it
 			// fails, it will be communicated in the status reponse.
 			$reason = wfMessage( 'mergehistory-source-deleted-reason' )->inContentLanguage()->plain();
-			$deletionStatus = $newPage->doDeleteArticleReal( $reason, $user );
+			$userObj = $this->userFactory->newFromUserIdentity( $user );
+			$deletionStatus = $newPage->doDeleteArticleReal( $reason, $userObj );
 			$status->merge( $deletionStatus );
 		}
 

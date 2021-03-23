@@ -28,7 +28,6 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
 use MergeHistory;
@@ -57,9 +56,6 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
-
-	/** @var PermissionManager */
-	private $permissionManager;
 
 	/** @var RepoGroup */
 	private $repoGroup;
@@ -94,7 +90,6 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 		ILoadBalancer $loadBalancer,
 		NamespaceInfo $namespaceInfo,
 		WatchedItemStoreInterface $watchedItemStore,
-		PermissionManager $permissionManager,
 		RepoGroup $repoGroup,
 		IContentHandlerFactory $contentHandlerFactory,
 		RevisionStore $revisionStore,
@@ -109,7 +104,6 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 		$this->loadBalancer = $loadBalancer;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->watchedItemStore = $watchedItemStore;
-		$this->permissionManager = $permissionManager;
 		$this->repoGroup = $repoGroup;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
@@ -161,13 +155,13 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 			$destination,
 			$timestamp,
 			$this->loadBalancer,
-			$this->permissionManager,
 			$this->contentHandlerFactory,
 			$this->revisionStore,
 			$this->watchedItemStore,
 			$this->spamChecker,
 			$this->hookContainer,
-			$this->wikiPageFactory
+			$this->wikiPageFactory,
+			$this->userFactory
 		);
 	}
 

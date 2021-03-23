@@ -1689,7 +1689,6 @@ return [
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
-			$services->getPermissionManager(),
 			$services->getRepoGroup(),
 			$services->getContentHandlerFactory(),
 			$services->getRevisionStore(),
