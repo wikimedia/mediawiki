@@ -115,7 +115,13 @@ class WikiImporter {
 		$this->setLogItemCallback( [ $this, 'importLogItem' ] );
 		$this->setPageOutCallback( [ $this, 'finishImportPage' ] );
 
-		$this->importTitleFactory = new NaiveImportTitleFactory();
+		// TODO inject
+		$services = MediaWikiServices::getInstance();
+		$this->importTitleFactory = new NaiveImportTitleFactory(
+			$services->getContentLanguage(),
+			$services->getNamespaceInfo(),
+			$services->getTitleFactory()
+		);
 		$this->externalUserNames = new ExternalUserNames( 'imported', false );
 	}
 
@@ -285,16 +291,29 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function setTargetNamespace( $namespace ) {
+		$services = MediaWikiServices::getInstance();
 		if ( $namespace === null ) {
 			// Don't override namespaces
-			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
+			$this->setImportTitleFactory(
+				new NaiveImportTitleFactory(
+					$services->getContentLanguage(),
+					$services->getNamespaceInfo(),
+					$services->getTitleFactory()
+				)
+			);
 			return true;
 		} elseif (
 			$namespace >= 0 &&
-			MediaWikiServices::getInstance()->getNamespaceInfo()->exists( intval( $namespace ) )
+			$services->getNamespaceInfo()->exists( intval( $namespace ) )
 		) {
 			$namespace = intval( $namespace );
-			$this->setImportTitleFactory( new NamespaceImportTitleFactory( $namespace ) );
+			$this->setImportTitleFactory(
+				new NamespaceImportTitleFactory(
+					$services->getNamespaceInfo(),
+					$services->getTitleFactory(),
+					$namespace
+				)
+			);
 			return true;
 		} else {
 			return false;
@@ -308,28 +327,38 @@ class WikiImporter {
 	 */
 	public function setTargetRootPage( $rootpage ) {
 		$status = Status::newGood();
+		$services = MediaWikiServices::getInstance();
+		$nsInfo = $services->getNamespaceInfo();
 		if ( $rootpage === null ) {
 			// No rootpage
-			$this->setImportTitleFactory( new NaiveImportTitleFactory() );
+			$this->setImportTitleFactory(
+				new NaiveImportTitleFactory(
+					$services->getContentLanguage(),
+					$nsInfo,
+					$services->getTitleFactory()
+				)
+			);
 		} elseif ( $rootpage !== '' ) {
 			$rootpage = rtrim( $rootpage, '/' ); // avoid double slashes
 			$title = Title::newFromText( $rootpage );
 
 			if ( !$title || $title->isExternal() ) {
 				$status->fatal( 'import-rootpage-invalid' );
-			} elseif (
-				!MediaWikiServices::getInstance()->getNamespaceInfo()->
-				hasSubpages( $title->getNamespace() )
-			) {
+			} elseif ( !$nsInfo->hasSubpages( $title->getNamespace() ) ) {
 				$displayNSText = $title->getNamespace() === NS_MAIN
 					? wfMessage( 'blanknamespace' )->text()
-					: MediaWikiServices::getInstance()->getContentLanguage()->
-						getNsText( $title->getNamespace() );
+					: $services->getContentLanguage()->getNsText( $title->getNamespace() );
 				$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
 			} else {
 				// set namespace to 'all', so the namespace check in processTitle() can pass
 				$this->setTargetNamespace( null );
-				$this->setImportTitleFactory( new SubpageImportTitleFactory( $title ) );
+				$this->setImportTitleFactory(
+					new SubpageImportTitleFactory(
+						$nsInfo,
+						$services->getTitleFactory(),
+						$title
+					)
+				);
 			}
 		}
 		return $status;

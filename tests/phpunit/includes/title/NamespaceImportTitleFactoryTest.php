@@ -23,6 +23,8 @@
  * @covers NamespaceImportTitleFactory
  *
  * @group Title
+ *
+ * TODO convert to unit tests
  */
 class NamespaceImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 
@@ -66,7 +68,11 @@ class NamespaceImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider basicProvider
 	 */
 	public function testBasic( ForeignTitle $foreignTitle, $ns, $titleText ) {
-		$factory = new NamespaceImportTitleFactory( $ns );
+		$factory = new NamespaceImportTitleFactory(
+			$this->getServiceContainer()->getNamespaceInfo(),
+			$this->getServiceContainer()->getTitleFactory(),
+			$ns
+		);
 		$testTitle = $factory->createTitleFromForeignTitle( $foreignTitle );
 		$title = Title::newFromText( $titleText );
 
