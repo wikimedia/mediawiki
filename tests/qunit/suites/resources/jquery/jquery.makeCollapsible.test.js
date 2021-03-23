@@ -377,6 +377,24 @@
 		$clone.find( '.mw-collapsible-toggle a' ).trigger( 'click' );
 	} );
 
+	QUnit.test( 'reveal hash fragment', function ( assert ) {
+		var $collapsible = prepareCollapsible(
+				'<div class="mw-collapsible mw-collapsed">' + loremIpsum + '<div id="div,a:nth-child(even)">' + loremIpsum + '</div></div>'
+			),
+			fragment = document.getElementById( 'div,a:nth-child(even)' ),
+			done = assert.async();
+
+		assert.assertTrue( fragment.offsetParent === null, 'initial: fragment is hidden' );
+
+		$collapsible.on( 'afterExpand.mw-collapsible', function () {
+			assert.assertTrue( fragment.offsetParent !== null, 'after hash change: fragment is visible' );
+			done();
+			window.location.hash = '';
+		} );
+
+		window.location.hash = 'div,a:nth-child(even)';
+	} );
+
 	QUnit.test( 'T168689 - nested collapsible divs should keep independent state', function ( assert ) {
 		var $collapsible1 = prepareCollapsible(
 				'<div class="mw-collapsible">' + loremIpsum + '</div>'
