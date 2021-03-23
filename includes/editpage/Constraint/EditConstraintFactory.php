@@ -27,7 +27,6 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\Spi;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserIdentity;
 use ReadOnlyMode;
@@ -99,6 +98,8 @@ class EditConstraintFactory {
 		// Multiple
 		$this->options = $options;
 		$this->loggerFactory = $loggerFactory;
+
+		// UserBlockConstraint
 		$this->permissionManager = $permissionManager;
 
 		// EditFilterMergedContentHookConstraint
@@ -109,39 +110,6 @@ class EditConstraintFactory {
 
 		// SpamRegexConstraint
 		$this->spamRegexChecker = $spamRegexChecker;
-	}
-
-	/**
-	 * @param Authority $performer
-	 * @param Title $title
-	 * @param string $newContentModel
-	 * @return ContentModelChangeConstraint
-	 */
-	public function newContentModelChangeConstraint(
-		Authority $performer,
-		Title $title,
-		string $newContentModel
-	) : ContentModelChangeConstraint {
-		return new ContentModelChangeConstraint(
-			$performer,
-			$title,
-			$newContentModel
-		);
-	}
-
-	/**
-	 * @param Authority $performer
-	 * @param Title $title
-	 * @return CreationPermissionConstraint
-	 */
-	public function newCreationPermissionConstraint(
-		Authority $performer,
-		Title $title
-	) : CreationPermissionConstraint {
-		return new CreationPermissionConstraint(
-			$performer,
-			$title
-		);
 	}
 
 	/**
@@ -163,32 +131,6 @@ class EditConstraintFactory {
 			$context,
 			$summary,
 			$minorEdit
-		);
-	}
-
-	/**
-	 * @param Authority $performer
-	 * @return EditRightConstraint
-	 */
-	public function newEditRightConstraint( Authority $performer ) : EditRightConstraint {
-		return new EditRightConstraint( $performer );
-	}
-
-	/**
-	 * @param Content $newContent
-	 * @param LinkTarget $title
-	 * @param Authority $performer
-	 * @return ImageRedirectConstraint
-	 */
-	public function newImageRedirectConstraint(
-		Content $newContent,
-		LinkTarget $title,
-		Authority $performer
-	) : ImageRedirectConstraint {
-		return new ImageRedirectConstraint(
-			$newContent,
-			$title,
-			$performer
 		);
 	}
 
