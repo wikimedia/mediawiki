@@ -17,11 +17,7 @@ class MovePageFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	protected static function getExtraClassArgCount() {
-		// $to and $from - $permissionManager
-		return 1;
-	}
-
-	protected function getIgnoredParamNames() {
-		return [ 'hookContainer', 'permissionManager' ];
+		// $to and $from
+		return 2;
 	}
 }

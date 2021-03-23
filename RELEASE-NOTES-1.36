@@ -654,6 +654,8 @@ because of Phabricator reports.
   footer icons from template data requested via $this->get('footericons').
 * `box-shadow()` LESS mixin from mediawiki.mixins is deprecated due to updated
   basic browser support. Use unprefixed property `box-shadow:` instead.
+* MergeHistory::checkPermissions was deprecated. Use ::probablyCanMerge or
+  ::authorizeMerge instead.
 * …
 
 === Other changes in 1.36 ===

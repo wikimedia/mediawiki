@@ -1,11 +1,13 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * @group Database
  */
 class MergeHistoryTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
 
 	/**
 	 * Make some pages to work with
@@ -101,6 +103,8 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Test user permission checking
 	 * @covers MergeHistory::checkPermissions
+	 * @covers MergeHistory::authorizeMerge
+	 * @covers MergeHistory::probablyCanMerge
 	 */
 	public function testCheckPermissions() {
 		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
@@ -109,14 +113,32 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			Title::newFromText( 'Test2' )
 		);
 
-		// Sysop with mergehistory permission
-		$sysop = static::getTestSysop()->getUser();
-		$status = $mh->checkPermissions( $sysop, '' );
+		foreach ( [ 'authorizeMerge', 'probablyCanMerge' ] as $method ) {
+			// Sysop with mergehistory permission
+			$status = $mh->$method(
+				$this->mockRegisteredUltimateAuthority(),
+				''
+			);
+			$this->assertTrue( $status->isOK() );
+
+			$status = $mh->$method(
+				$this->mockRegisteredAuthorityWithoutPermissions( [ 'mergehistory' ] ),
+				''
+			);
+			$this->assertTrue( $status->hasMessage( 'mergehistory-fail-permission' ) );
+		}
+
+		$this->filterDeprecated( '/MergeHistory::checkPermissions/' );
+		$status = $mh->checkPermissions(
+			$this->mockRegisteredUltimateAuthority(),
+			''
+		);
 		$this->assertTrue( $status->isOK() );
 
-		// Normal user
-		$notSysop = static::getTestUser()->getUser();
-		$status = $mh->checkPermissions( $notSysop, '' );
+		$status = $mh->checkPermissions(
+			$this->mockRegisteredAuthorityWithoutPermissions( [ 'mergehistory' ] ),
+			''
+		);
 		$this->assertTrue( $status->hasMessage( 'mergehistory-fail-permission' ) );
 	}
 
@@ -219,13 +241,13 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			$destination,
 			$timestamp,
 			$services->getDBLoadBalancer(),
-			$services->getPermissionManager(),
 			$services->getContentHandlerFactory(),
 			$services->getRevisionStore(),
 			$services->getWatchedItemStore(),
 			$services->getSpamChecker(),
 			$services->getHookContainer(),
-			$services->getWikiPageFactory()
+			$services->getWikiPageFactory(),
+			$services->getUserFactory()
 		);
 		$this->assertInstanceOf(
 			MergeHistory::class,
