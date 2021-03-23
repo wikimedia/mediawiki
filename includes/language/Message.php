@@ -31,32 +31,37 @@ use MediaWiki\MediaWikiServices;
  * @see https://www.mediawiki.org/wiki/Manual:Messages_API for equivalences
  * between old and new functions.
  *
- * You should use the wfMessage() global function which acts as a wrapper for
- * the Message class. The wrapper let you pass parameters as arguments.
+ * The preferred way to create Message objects is via the msg() method of
+ * of an available RequestContext and ResourceLoaderContext object; this will
+ * ensure that the message uses the correct language. When that is not
+ * possible, the wfMessage() global function can be used, which will cause
+ * Message to get the language from the global RequestContext object. In
+ * rare circumstances when sessions are not available or not initialized,
+ * that can lead to errors.
  *
  * The most basic usage cases would be:
  *
  * @code
  *     // Initialize a Message object using the 'some_key' message key
- *     $message = wfMessage( 'some_key' );
+ *     $message = $context->msg( 'some_key' );
  *
  *     // Using two parameters those values are strings 'value1' and 'value2':
- *     $message = wfMessage( 'some_key',
+ *     $message = $context->msg( 'some_key',
  *          'value1', 'value2'
  *     );
  * @endcode
  *
  * @section message_global_fn Global function wrapper:
  *
- * Since wfMessage() returns a Message instance, you can chain its call with
- * a method. Some of them return a Message instance too so you can chain them.
- * You will find below several examples of wfMessage() usage.
+ * Since msg() returns a Message instance, you can chain its call with a method.
+ * Some of them return a Message instance too so you can chain them.
+ * You will find below several examples of msg() usage.
  *
  * Fetching a message text for interface message:
  *
  * @code
  *    $button = Xml::button(
- *         wfMessage( 'submit' )->text()
+ *         $context->msg( 'submit' )->text()
  *    );
  * @endcode
  *
@@ -64,7 +69,7 @@ use MediaWiki\MediaWikiServices;
  * use the params() method to do so:
  *
  * @code
- *     wfMessage( 'welcome-to' )
+ *     $context->msg( 'welcome-to' )
  *         ->params( $wgSitename )
  *         ->text();
  * @endcode
@@ -72,10 +77,10 @@ use MediaWiki\MediaWikiServices;
  * {{GRAMMAR}} and friends work correctly:
  *
  * @code
- *    wfMessage( 'are-friends',
+ *    $context->msg( 'are-friends',
  *        $user, $friend
  *    );
- *    wfMessage( 'bad-message' )
+ *    $context->msg( 'bad-message' )
  *         ->rawParams( '<script>...</script>' )
  *         ->escaped();
  * @endcode
@@ -99,7 +104,7 @@ use MediaWiki\MediaWikiServices;
  * Checking whether a message exists:
  *
  * @code
- *    wfMessage( 'mysterious-message' )->exists()
+ *    $context->msg( 'mysterious-message' )->exists()
  *    // returns a boolean whether the 'mysterious-message' key exist.
  * @endcode
  *
@@ -113,36 +118,6 @@ use MediaWiki\MediaWikiServices;
  * @endcode
  *
  * @note You can parse the text only in the content or interface languages
- *
- * @section message_compare_old Comparison with old wfMsg* functions:
- *
- * Use full parsing:
- *
- * @code
- *     // old style:
- *     wfMsgExt( 'key', [ 'parseinline' ], 'apple' );
- *     // new style:
- *     wfMessage( 'key', 'apple' )->parse();
- * @endcode
- *
- * Parseinline is used because it is more useful when pre-building HTML.
- * In normal use it is better to use OutputPage::(add|wrap)WikiMsg.
- *
- * Places where HTML cannot be used. {{-transformation is done.
- * @code
- *     // old style:
- *     wfMsgExt( 'key', [ 'parsemag' ], 'apple', 'pear' );
- *     // new style:
- *     wfMessage( 'key', 'apple', 'pear' )->text();
- * @endcode
- *
- * Shortcut for escaping the message. Parameters are not replaced after escaping
- * by default.
- * @code
- *     $escaped = wfMessage( 'key' )
- *          ->rawParams( 'apple' )
- *          ->escaped();
- * @endcode
  *
  * @section message_appendix Appendix:
  *
