@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -38,8 +39,8 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 			'wgLang' => $userLang,
 		] );
 
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' );
-		$lang2 = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'bug' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' );
+		$lang2 = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'bug' );
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setUser( $user );
 		$context->setLanguage( $lang );
@@ -66,7 +67,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 		// Passing 'canonical' uses an anon and $contLang, and ignores any passed $userLang
 		$popt = ParserOptions::newCanonical( 'canonical' );
-		$this->assertTrue( $popt->getUser()->isAnon() );
+		$this->assertTrue( $popt->getUserIdentity()->isAnon() );
 		$this->assertSame( $contLang, $popt->getUserLangObj() );
 		$popt = ParserOptions::newCanonical( 'canonical', $lang2 );
 		$this->assertSame( $contLang, $popt->getUserLangObj() );
@@ -299,28 +300,35 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 	public function testMatchesForCacheKey() {
 		$this->hideDeprecated( 'ParserOptions::newCanonical with no user' );
-		$cOpts = ParserOptions::newCanonical( null, 'en' );
+		$cOpts = ParserOptions::newCanonical(
+			null,
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
+		);
 
 		$uOpts = ParserOptions::newFromAnon();
 		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new User();
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new User();
-		$user->setOption( 'thumbsize', 251 );
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$this->getServiceContainer()
+			->getUserOptionsManager()
+			->setOption( $user, 'thumbsize', 251 );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new User();
-		$user->setOption( 'stubthreshold', 800 );
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$this->getServiceContainer()
+			->getUserOptionsManager()
+			->setOption( $user, 'stubthreshold', 800 );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new User();
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$uOpts = ParserOptions::newFromUserAndLang( $user,
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'zh' ) );
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' ) );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 	}
 
