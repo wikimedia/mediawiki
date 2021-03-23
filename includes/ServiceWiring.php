@@ -1702,6 +1702,7 @@ return [
 			$services->getDatabaseBlockStore(),
 			$services->getBlockRestrictionStore(),
 			$services->getUserFactory(),
+			$services->getUserEditTracker(),
 			LoggerFactory::getInstance( 'BlockManager' )
 		);
 	},
