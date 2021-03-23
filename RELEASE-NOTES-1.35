@@ -19,9 +19,58 @@ THIS IS NOT A RELEASE YET
 * Upgrade pimple/pimple from 3.3.0 to 3.3.1 for PHP 8.0 support.
 * Upgrade seld/jsonlint from 1.7.1 to 1.8.3 for PHP 8.0 support.
 * Upgrade doctrine/dbal from 2.10.4 to 3.0.0 for PHP 8.0 support.
+* (T270734) Fix display of Special:Preferences url in password reset email.
+* (T252774, T271441) resourceloader: Give SkinModule 'features' option an
+  extensible default.
+* (T271441) Unknown features shouldn't break style output.
+* (T264986) Make use of CURLMOPT_MAX_HOST_CONNECTIONS conditional on having
+  curl >= 7.30.0.
+* DefaultSettings.php: Update $wgPingback documentation.
+* Fix docs for LanguageConverter::translate.
+* (T272250) Don't rely on implicit string->int cast in comparison.
+* (T272327) Exif::isSlong: Cast input to float so PHP 8.0 abs() doesn't whine.
+* (T272328) UploadBase: Don't call MimeAnalyzer if mTempPath is null.
+* Remove nonfunctional default sampling for WANObjectCache metrics.
+* (T258851) Prevent service injection to LoadExtensionSchemaUpdates hook.
+* (T270852) Hooks: Map dash character to underscore when generating hook names.
+* (T271551, T270145) Fix fetching ipblock-exempt within
+  BlockManager::getUserBlock.
+* PHPVersionCheck: The PHP Group only support PHP >= 7.3.0.
+* (T248925) Set empty closures in DatabaseTest to fix php8 tests.
+* (T34217) rdbms: Remove outdated MySQL 4 references and fix doc URLs.
+* (T248925) Special:Contributions reports negative namespace error on PHP 8.
+* (T248925) objectcache: Fix non-numeric string check in HashBagOStuff for
+  PHP 8.
+* (T248925) Fix CacheTime::getCacheExpiry for PHP 8.
+* (T259685) Allow REST API POST handlers to opt out of mandatory sqlite locking.
+* (T91820, T259685) MWLBFactory: rename magic HTTP header for opting out of
+  sqlite write lock.
+* (T272326) Fix DeprecationHelperTest on PHP 8.
 * Upgrade wikimedia/less.php from 3.0.0 to 3.1.0 for PHP 8.0 support.
+* (T236639) OutputPage: Make $wgDebugRedirects work again.
+* (T274648) registration: Allow reusing cached metadata between wikis.
+* CdnCacheUpdate: Send full URL instead of path to Curl for purge.
+* Upgrade monolog/monolog from 1.25.3 to 2.2.0 for PHP 8.0 support.
+* FileBackend: Do not use SOCKET_ENOENT on windows.
+* (T275441) ApiQueryUserInfo: Allow all uiprops to be requested at once.
+* (T275261) Escape wikitext in the title in invalid title error messages.
+* (T275242) Extend iwlinks.iwl_prefix to VARBINARY(32) on MySQL.
+* (T246594, T270228) PHPVersionCheck: Complain about known-bad versions above
+  minimum.
+* (T275824) Upgrade wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1 for
+  Composer 2.0 support.
+* (T269293) Record all used options in metadata.
+* Allow Composer 2.0.
+* (T259872) skins: Call headElement() after getTemplateData() in SkinMustache.
+* (T277009) Allow blocked users to access Special:ResetTokens.
+* (T272412) Add "Account data" section to user preferences.
+* (T268310) Add list of thumbnail urls to LocalFilePurgeThumbnails hook.
+* (T277520) registration: Allow specifying immovable namespaces in
+  extension.json.
 * (T275619) Maintenance::hasOption and Maintenance::getOption now behave as
   documented and are not altered by previous calls to these methods.
+* (T254688) Remove page inner join from subquery in SpecialWhatLinksHere.
+* (T122124) signup: added help message for security.
 
 == MediaWiki 1.35.1 ==
 
