@@ -608,6 +608,7 @@ abstract class ApiQueryBase extends ApiBase {
 		return $this->getAuthority()->isAllowedAny(
 			'deletedhistory',
 			'deletedtext',
+			'deleterevision',
 			'suppressrevision',
 			'viewsuppressed'
 		);
