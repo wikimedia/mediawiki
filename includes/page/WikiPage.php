@@ -4318,7 +4318,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				'page_latest' => $this->mLatest,
 				'page_is_new' => $this->mIsNew,
 				'page_is_redirect' => $this->mIsRedirect,
-				'page_touched' => $this->mTouched,
+				'page_touched' => $this->getTouched(),
 				'page_lang' => $this->getLanguage()
 			],
 			PageIdentity::LOCAL
