@@ -101,23 +101,4 @@ trait MockTitleTrait {
 
 		return $titleCodec;
 	}
-
-	/**
-	 * Expected to be provided by the class, probably inherited from TestCase.
-	 *
-	 * @param string $originalClassName
-	 *
-	 * @return MockObject
-	 */
-	abstract protected function createMock( $originalClassName ): MockObject;
-
-	/**
-	 * Expected to be provided by the class, probably MediaWikiTestCaseTrait.
-	 *
-	 * @param string $type
-	 * @param string[] $allow methods to allow
-	 *
-	 * @return MockObject
-	 */
-	abstract protected function createNoOpMock( $type, $allow = [] );
 }

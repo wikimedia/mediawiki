@@ -18,7 +18,6 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Http\HttpRequestFactory;
-use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Psr\Http\Message\ResponseInterface;
@@ -31,15 +30,6 @@ use Psr\Log\NullLogger;
  * @since 1.36
  */
 trait MockHttpTrait {
-
-	/**
-	 * @see TestCase::getMockBuilder()
-	 *
-	 * @param string $className
-	 * @return MockBuilder
-	 */
-	abstract public function getMockBuilder( $className ): MockBuilder;
-
 	/**
 	 * @see MediaWikiIntegrationTestCase::setService()
 	 *

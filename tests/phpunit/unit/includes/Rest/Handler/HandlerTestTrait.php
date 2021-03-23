@@ -31,15 +31,6 @@ trait HandlerTestTrait {
 	use MockAuthorityTrait;
 
 	/**
-	 * Expected to be provided by the class, probably inherited from TestCase.
-	 *
-	 * @param string $originalClassName
-	 *
-	 * @return MockObject
-	 */
-	abstract protected function createMock( $originalClassName ): MockObject;
-
-	/**
 	 * Calls init() on the Handler, supplying a mock Router and ResponseFactory.
 	 *
 	 * @internal to the trait
