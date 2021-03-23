@@ -326,6 +326,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->hideDeprecated( 'Revision::getContent' );
 		$this->hideDeprecated( 'Revision::__construct' );
 		$this->hideDeprecated( 'Revision::getId' );
+		$this->hideDeprecated( 'Revision::getTimestamp' );
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
@@ -351,6 +352,10 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertSame( $status->value['revision']->getId(), $page->getRevision()->getId() );
 		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevision()->getSha1() );
 		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+
+		$this->assertSame( $status->value['revision']->getId(), $page->getLatest() );
+		$this->assertSame( $status->value['revision']->getTimestamp(), $page->getTimestamp() );
+		$this->assertSame( $status->value['revision']->getTimestamp(), $page->getTouched() );
 
 		$content = ContentHandler::makeContent(
 			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
@@ -2764,6 +2769,33 @@ more stuff
 		$this->assertSame( $page->getTouched(), $record->getTouched() );
 		$this->assertSame( $page->isNew(), $record->isNew() );
 		$this->assertSame( $page->isRedirect(), $record->isRedirect() );
+	}
+
+	/**
+	 * @covers WikiPage::setLastEdit
+	 * @covers WikiPage::getTouched
+	 */
+	public function testGetTouched() {
+		$page = $this->createPage( __METHOD__, 'whatever' );
+
+		$touched = $this->db->selectField( 'page', 'page_touched', [ 'page_id' => $page->getId() ] );
+		$touched = MWTimestamp::convert( TS_MW, $touched );
+
+		// Internal cache of the touched time was set after the page was created
+		$this->assertSame( $touched, $page->getTouched() );
+
+		$touched = MWTimestamp::convert( TS_MW, MWTimestamp::convert( TS_UNIX, $touched ) + 100 );
+		$page->getTitle()->invalidateCache( $touched );
+
+		// Re-load touched time
+		$page = $this->newPage( $page->getTitle() );
+		$this->assertSame( $touched, $page->getTouched() );
+
+		// Cause the latest revision to be loaded
+		$page->getRevisionRecord();
+
+		// Make sure the internal cache of the touched time was not overwritten
+		$this->assertSame( $touched, $page->getTouched() );
 	}
 
 }
