@@ -1219,6 +1219,7 @@ return [
 		],
 		'styles' => 'resources/src/mediawiki.action/mediawiki.action.edit.preview.css',
 		'dependencies' => [
+			'jquery.makeCollapsible',
 			'jquery.spinner',
 			'jquery.textSelection',
 			'mediawiki.api',

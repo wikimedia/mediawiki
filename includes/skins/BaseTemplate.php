@@ -327,6 +327,7 @@ abstract class BaseTemplate extends QuickTemplate {
 	 * @return array
 	 */
 	protected function getFooterIcons( $option = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		// Generate additional footer icons
 		$footericons = $this->get( 'footericons' );
 

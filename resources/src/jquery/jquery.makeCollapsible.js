@@ -157,6 +157,49 @@
 	}
 
 	/**
+	 * If the URL contains a hash followed by the fragment identifier of an
+	 * element inside collapsed parents, expand them all and scroll to it.
+	 *
+	 * @private
+	 */
+	function hashHandler() {
+		var fragmentId, fragment, $parents;
+
+		fragmentId = window.location.hash.slice( 1 );
+		if ( !fragmentId ) {
+			// The hash is empty
+			return;
+		}
+
+		fragment = document.getElementById( fragmentId );
+		if ( !fragment ) {
+			// The fragment doesn't exist
+			return;
+		}
+
+		$parents = $( fragment ).parents( '.mw-collapsed' );
+		if ( !$parents.length ) {
+			// The fragment is not in a collapsed element
+			return;
+		}
+
+		// Expand collapsed parents
+		$parents.each( function () {
+			var $collapsible = $( this );
+			if ( $collapsible.data( 'mw-made-collapsible' ) ) {
+				$collapsible.data( 'mw-collapsible' ).expand();
+			} else {
+				// The collapsible has not been initialized, so just prevent it
+				// from being collapsed
+				$collapsible.removeClass( 'mw-collapsed' );
+			}
+		} );
+
+		// Scroll to the fragment
+		fragment.scrollIntoView();
+	}
+
+	/**
 	 * Enable collapsible-functionality on all elements in the collection.
 	 *
 	 * - Will prevent binding twice to the same element.
@@ -356,6 +399,9 @@
 
 		} );
 
+		// Attach hash handler
+		window.addEventListener( 'hashchange', hashHandler );
+
 		/**
 		 * Fired after collapsible content has been initialized
 		 *
@@ -369,6 +415,9 @@
 
 		return this;
 	};
+
+	// Run hash handler right now in case the URL already has a hash
+	hashHandler();
 
 	/**
 	 * @class jQuery

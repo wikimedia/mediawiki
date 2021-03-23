@@ -650,6 +650,8 @@ because of Phabricator reports.
   DatabaseBlock::isExemptedFromAutoblocks instead.
 * User::isIPRange(), deprecated in 1.35, is hard deprecated.
   Use the UserNameUtils service or IPUtils directly.
+* BaseTemplate::getFooterIcons(), deprecated in 1.35, is hard deprecated. Read
+  footer icons from template data requested via $this->get('footericons').
 * …
 
 === Other changes in 1.36 ===

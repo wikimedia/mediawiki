@@ -228,7 +228,8 @@
 					}
 				}
 				if ( response.parse.limitreporthtml ) {
-					$( '.limitreport' ).html( response.parse.limitreporthtml );
+					$( '.limitreport' ).html( response.parse.limitreporthtml )
+						.find( '.mw-collapsible' ).makeCollapsible();
 				}
 				if ( response.parse.langlinks && mw.config.get( 'skin' ) === 'vector' ) {
 					newList = response.parse.langlinks.map( function ( langlink ) {
