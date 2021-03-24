@@ -143,13 +143,12 @@ class UpdateHandler extends EditHandler {
 			// Null-edit, no new revision was created. The new revision is the same as the old.
 			// We may want to signal this more explicitly to the client in the future.
 
-			$body = $this->getValidatedBody();
-			$baseRevId = $body['latest']['id'] ?? 0;
+			$title = $this->titleParser->parseTitle( $this->getValidatedParams()['title'] );
+			$currentRev = $this->revisionLookup->getRevisionByTitle( $title );
 
-			$rev = $this->revisionLookup->getRevisionById( $baseRevId );
-
-			$data['edit']['newrevid'] = $baseRevId;
-			$data['edit']['newtimestamp'] = MWTimestamp::convert( TS_ISO_8601, $rev->getTimestamp() );
+			$data['edit']['newrevid'] = $currentRev->getId();
+			$data['edit']['newtimestamp']
+				= MWTimestamp::convert( TS_ISO_8601, $currentRev->getTimestamp() );
 		}
 
 		return parent::mapActionModuleResult( $data );
