@@ -497,9 +497,6 @@ class ParserCache {
 			$metadata->getUsedOptions()
 		);
 
-		// Save the timestamp so that we don't have to load the revision row on view
-		$parserOutput->setTimestamp( $wikiPage->getTimestamp() );
-
 		$msg = "Saved in parser cache with key $parserOutputKey" .
 			" and timestamp $cacheTime" .
 			" and revision id $revId.";
