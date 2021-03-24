@@ -543,20 +543,7 @@ class MediaWiki {
 	public function run() {
 		try {
 			$this->setDBProfilingAgent();
-			try {
-				$this->main();
-			} catch ( ErrorPageError $e ) {
-				$out = $this->context->getOutput();
-				// TODO: Should ErrorPageError::report accept a OutputPage parameter?
-				$e->report( ErrorPageError::STAGE_OUTPUT );
-				$out->considerCacheSettingsFinal();
-
-				// T64091: while exceptions are convenient to bubble up GUI errors,
-				// they are not internal application faults. As with normal requests, this
-				// should commit, print the output, do deferred updates, jobs, and profiling.
-				$this->doPreOutputCommit();
-				$out->output(); // display the GUI error
-			}
+			$this->main();
 		} catch ( Exception $e ) {
 			$context = $this->context;
 			$action = $context->getRequest()->getVal( 'action', 'view' );
@@ -921,8 +908,17 @@ class MediaWiki {
 			}
 		}
 
-		// Actually do the work of the request and build up any output
-		$this->performRequest();
+		try {
+			// Actually do the work of the request and build up any output
+			$this->performRequest();
+		} catch ( ErrorPageError $e ) {
+			// TODO: Should ErrorPageError::report accept a OutputPage parameter?
+			$e->report( ErrorPageError::STAGE_OUTPUT );
+			$output->considerCacheSettingsFinal();
+			// T64091: while exceptions are convenient to bubble up GUI errors,
+			// they are not internal application faults. As with normal requests, this
+			// should commit, print the output, do deferred updates, jobs, and profiling.
+		}
 
 		// GUI-ify and stash the page output in MediaWiki::doPreOutputCommit()
 		$buffer = null;
