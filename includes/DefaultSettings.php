@@ -9166,7 +9166,7 @@ $wgRedirectOnLogin = null;
  * @par Example using C daemon from https://www.mediawiki.org/wiki/Extension:PoolCounter:
  * @code
  *   $wgPoolCounterConf = [ 'ArticleView' => [
- *     'class' => PoolCounter_Client::class,
+ *     'class' => MediaWiki\Extension\PoolCounter\Client::class,
  *     'timeout' => 15, // wait timeout in seconds
  *     'workers' => 5, // maximum number of active threads in each pool
  *     'maxqueue' => 50, // maximum number of total threads in each pool
