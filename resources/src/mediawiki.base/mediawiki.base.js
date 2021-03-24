@@ -471,6 +471,11 @@ trackCallbacks.fire( mw.trackQueue );
 mw.hook = function ( name ) {
 	return hooks[ name ] || ( hooks[ name ] = ( function () {
 		var memory, fns = [];
+		function rethrow( e ) {
+			setTimeout( function () {
+				throw e;
+			} );
+		}
 		return {
 			/**
 			 * Register a hook handler
@@ -482,7 +487,11 @@ mw.hook = function ( name ) {
 				var i = 0;
 				for ( ; i < arguments.length; i++ ) {
 					if ( memory ) {
-						arguments[ i ].apply( null, memory );
+						try {
+							arguments[ i ].apply( null, memory );
+						} catch ( e ) {
+							rethrow( e );
+						}
 					}
 					fns.push( arguments[ i ] );
 				}
@@ -513,7 +522,11 @@ mw.hook = function ( name ) {
 			fire: function () {
 				var i = 0;
 				for ( ; i < fns.length; i++ ) {
-					fns[ i ].apply( null, arguments );
+					try {
+						fns[ i ].apply( null, arguments );
+					} catch ( e ) {
+						rethrow( e );
+					}
 				}
 				memory = slice.call( arguments );
 				return this;
