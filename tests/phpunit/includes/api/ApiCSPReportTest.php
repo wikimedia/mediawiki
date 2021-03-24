@@ -7,13 +7,6 @@
  */
 class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
-		parent::setUp();
-		$this->setMwGlobals( [
-			'CSPFalsePositiveUrls' => [],
-		] );
-	}
-
 	public function testInternalReportonly() {
 		$params = [
 			'reportonly' => '1',
