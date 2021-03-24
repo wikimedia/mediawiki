@@ -1428,3 +1428,7 @@
 	url = https://gitlab.com/organicdesign/PdfBook
 	branch = master
 	ignore = dirty
+[submodule "extensions/ShortDescription"]
+	path = extensions/ShortDescription
+	url = https://github.com/StarCitizenTools/mediawiki-extensions-ShortDescription
+	branch = master
