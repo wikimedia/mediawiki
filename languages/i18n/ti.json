@@ -196,7 +196,7 @@
 	"userlogin-resetpassword-link": "መሕለፊ ቃልካ ረሲዕኻዮ?",
 	"createacct-emailrequired": "ኣድራሻ ኢመይል",
 	"createacct-emailoptional": "ኣድራሻ ኢመይል (ኣማራጽያዊ)",
-	"createacct-email-ph": "ኣድራሻ ኢመይልኻ ኣእትው",
+	"createacct-email-ph": "ኣድራሻ ኢመይልካ ኣእትው",
 	"createacct-submit": "መንነት መፍለዪኻ ፍጠር",
 	"createacct-another-submit": "መንነት መፍለዪ ፍጠር",
 	"createacct-benefit-body2": "{{PLURAL:$1|ገጽ|ገጻት}}",

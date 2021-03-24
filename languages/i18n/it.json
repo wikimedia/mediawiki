@@ -3483,6 +3483,8 @@
 	"tag-mw-manual-revert-description": "Modifiche che riportano manualmente la pagina a un preciso stato precedente",
 	"tag-mw-reverted": "Annullato",
 	"tag-mw-reverted-description": "Modifiche che sono in seguito state annullate da una modifica diversa",
+	"tag-mw-add-media-description": "Modifiche che aggiungono file multimediali",
+	"tag-mw-remove-media-description": "Modifiche che rimuovono file multimediali",
 	"tags-title": "Etichette",
 	"tags-intro": "Questa pagina elenca le etichette che il software potrebbe associare a una modifica e il loro significato.",
 	"tags-tag": "Nome dell'etichetta",
