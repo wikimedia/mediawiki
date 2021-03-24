@@ -24,10 +24,10 @@ namespace MediaWiki\Block;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
-use User;
 
 class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/**
@@ -53,6 +53,9 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var UserEditTracker */
+	private $userEditTracker;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -69,6 +72,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 * @param DatabaseBlockStore $blockStore
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param UserFactory $userFactory
+	 * @param UserEditTracker $userEditTracker
 	 * @param LoggerInterface $logger
 	 */
 	public function __construct(
@@ -79,6 +83,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		DatabaseBlockStore $blockStore,
 		BlockRestrictionStore $blockRestrictionStore,
 		UserFactory $userFactory,
+		UserEditTracker $userEditTracker,
 		LoggerInterface $logger
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -90,6 +95,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		$this->blockStore = $blockStore;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->userFactory = $userFactory;
+		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
 	}
 
@@ -127,6 +133,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->hookContainer,
 			$this->blockStore,
 			$this->userFactory,
+			$this->userEditTracker,
 			$this->logger,
 			$target,
 			$performer,
@@ -139,7 +146,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	}
 
 	/**
-	 * @param User|string $target
+	 * @param UserIdentity|string $target
 	 * @param Authority $performer
 	 * @param string $reason
 	 * @param string[] $tags

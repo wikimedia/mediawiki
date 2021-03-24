@@ -30,6 +30,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -37,7 +38,6 @@ use Psr\Log\LoggerInterface;
 use RevisionDeleteUser;
 use Status;
 use Title;
-use User;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -47,7 +47,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class BlockUser {
 	/**
-	 * @var User|string|null
+	 * @var UserIdentity|string|null
 	 *
 	 * Target of the block
 	 *
@@ -88,6 +88,9 @@ class BlockUser {
 
 	/** @var UserFactory */
 	private $userFactory;
+
+	/** @var UserEditTracker */
+	private $userEditTracker;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -169,13 +172,14 @@ class BlockUser {
 	 * @param HookContainer $hookContainer
 	 * @param DatabaseBlockStore $databaseBlockStore
 	 * @param UserFactory $userFactory
+	 * @param UserEditTracker $userEditTracker
 	 * @param LoggerInterface $logger
 	 * @param string|UserIdentity $target Target of the block
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
 	 * @param string $reason Reason of the block
 	 * @param bool[] $blockOptions Block options
-	 * 	Valid options:
+	 *    Valid options:
 	 *    - isCreateAccountBlocked      : Are acount creations prevented?
 	 *    - isEmailBlocked              : Is emailing other users prevented?
 	 *    - isHardBlock                 : Are registered users prevented from editing?
@@ -196,6 +200,7 @@ class BlockUser {
 		HookContainer $hookContainer,
 		DatabaseBlockStore $databaseBlockStore,
 		UserFactory $userFactory,
+		UserEditTracker $userEditTracker,
 		LoggerInterface $logger,
 		$target,
 		Authority $performer,
@@ -218,6 +223,7 @@ class BlockUser {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->databaseBlockStore = $databaseBlockStore;
 		$this->userFactory = $userFactory;
+		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
 
 		// Process block target
@@ -472,7 +478,7 @@ class BlockUser {
 			$hideUserContribLimit = $this->options->get( 'HideUserContribLimit' );
 			if (
 				$hideUserContribLimit !== false &&
-				$this->target->getEditCount() > $hideUserContribLimit
+				$this->userEditTracker->getUserEditCount( $this->target ) > $hideUserContribLimit
 			) {
 				return Status::newFatal( 'ipb_hide_invalid', Message::numParam( $hideUserContribLimit ) );
 			}
@@ -544,7 +550,7 @@ class BlockUser {
 		if ( $this->isHideUser ) {
 			// This should only be the case of $this->target is a user, so we can
 			// safely call ->getId()
-			RevisionDeleteUser::suppressUserName( $this->target, $this->target->getId() );
+			RevisionDeleteUser::suppressUserName( $this->target->getName(), $this->target->getId() );
 		}
 
 		$this->hookRunner->onBlockIpComplete( $block, $legacyUser, $priorBlock );
