@@ -14,6 +14,7 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
 use MockTitleTrait;
@@ -31,6 +32,7 @@ use WikitextContent;
  */
 class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	use MockTitleTrait;
+	use MockAuthorityTrait;
 
 	/**
 	 * @param int $articleId
@@ -47,22 +49,20 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param int $maxRev
-	 * @param int $linkCount
 	 *
 	 * @return IDatabase
 	 */
-	private function getMockDatabaseConnection( $maxRev = 100, $linkCount = 0 ) {
+	private function getMockDatabaseConnection( $maxRev = 100 ) {
 		/** @var IDatabase|MockObject $db */
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectField' )
 			->willReturnCallback(
-				function ( $table, $fields, $cond ) use ( $maxRev, $linkCount ) {
+				function ( $table, $fields, $cond ) use ( $maxRev ) {
 					return $this->selectFieldCallback(
 						$table,
 						$fields,
 						$cond,
-						$maxRev,
-						$linkCount
+						$maxRev
 					);
 				}
 			);
@@ -333,7 +333,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser(); // privileged!
+		$sysop = $this->mockRegisteredUltimateAuthority();
 		$rr = $renderer->getRenderedRevision( $rev, $options, $sysop );
 
 		$this->assertNotNull( $rr, 'getRenderedRevision' );
