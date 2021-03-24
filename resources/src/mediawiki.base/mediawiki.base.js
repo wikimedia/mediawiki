@@ -18,6 +18,7 @@
 
 var queue,
 	slice = Array.prototype.slice,
+	hooks = Object.create( null ),
 	mwLoaderTrack = mw.track,
 	trackCallbacks = $.Callbacks( 'memory' ),
 	trackHandlers = [];
@@ -458,20 +459,18 @@ trackCallbacks.fire( mw.trackQueue );
  *
  * @class mw.hook
  */
-mw.hook = ( function () {
-	var lists = Object.create( null );
 
-	/**
-	 * Create an instance of mw.hook.
-	 *
-	 * @method hook
-	 * @member mw
-	 * @param {string} name Name of hook.
-	 * @return {mw.hook}
-	 */
-	return function ( name ) {
-		var list = lists[ name ] || ( lists[ name ] = $.Callbacks( 'memory' ) );
-
+/**
+ * Create an instance of mw.hook.
+ *
+ * @method hook
+ * @member mw
+ * @param {string} name Name of hook.
+ * @return {mw.hook}
+ */
+mw.hook = function ( name ) {
+	return hooks[ name ] || ( hooks[ name ] = ( function () {
+		var memory, fns = [];
 		return {
 			/**
 			 * Register a hook handler
@@ -479,29 +478,49 @@ mw.hook = ( function () {
 			 * @param {...Function} handler Function to bind.
 			 * @chainable
 			 */
-			add: list.add,
-
+			add: function () {
+				var i = 0;
+				for ( ; i < arguments.length; i++ ) {
+					if ( memory ) {
+						arguments[ i ].apply( null, memory );
+					}
+					fns.push( arguments[ i ] );
+				}
+				return this;
+			},
 			/**
 			 * Unregister a hook handler
 			 *
 			 * @param {...Function} handler Function to unbind.
 			 * @chainable
 			 */
-			remove: list.remove,
-
+			remove: function () {
+				var i = 0, j;
+				for ( ; i < arguments.length; i++ ) {
+					while ( ( j = fns.indexOf( arguments[ i ] ) ) !== -1 ) {
+						fns.splice( j, 1 );
+					}
+				}
+				return this;
+			},
 			/**
-			 * Run a hook.
+			 * Call hook handlers with data.
 			 *
 			 * @param {...Mixed} data
 			 * @return {mw.hook}
 			 * @chainable
 			 */
 			fire: function () {
-				return list.fireWith.call( this, null, slice.call( arguments ) );
+				var i = 0;
+				for ( ; i < fns.length; i++ ) {
+					fns[ i ].apply( null, arguments );
+				}
+				memory = slice.call( arguments );
+				return this;
 			}
 		};
-	};
-}() );
+	}() ) );
+};
 
 /**
  * HTML construction helper functions
