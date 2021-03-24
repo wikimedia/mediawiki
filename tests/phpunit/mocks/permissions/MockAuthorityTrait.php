@@ -7,7 +7,6 @@ use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use PHPUnit\Framework\MockObject\MockObject;
 
 /**
  * Various useful Authority mocks.
@@ -186,13 +185,4 @@ trait MockAuthorityTrait {
 			} );
 		return $mock;
 	}
-
-	/**
-	 * Expected to be provided by the class, probably inherited from TestCase.
-	 *
-	 * @param string $originalClassName
-	 *
-	 * @return MockObject
-	 */
-	abstract protected function createMock( $originalClassName ): MockObject;
 }
