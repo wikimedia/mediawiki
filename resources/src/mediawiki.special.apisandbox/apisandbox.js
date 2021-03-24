@@ -68,7 +68,10 @@
 					.always( this.popPending.bind( this ) );
 			},
 			setApiValue: function ( v ) {
-				WidgetMethods.textInputWidget.setApiValue.call( this, v );
+				if ( v === undefined ) {
+					v = this.paramInfo.default;
+				}
+				this.setValue( v );
 				if ( v === '123ABC' ) {
 					this.fetchToken();
 				}
@@ -293,6 +296,27 @@
 					break;
 
 				case 'string':
+					// ApiParamInfo only sets `tokentype` when the parameter
+					// name is `token` AND the module ::needsToken() returns
+					// a truthy value; ApiBase, when the module ::needsToken()
+					// returns a truthy value, sets the `token` param to PARAM_TYPE
+					// string always, so we only need to have handling for
+					// token widgets for `string`. The token never accepts multiple
+					// values, though that doesn't appear to be enforced anywhere...
+					// and the token widget methods all assume it only a single value
+					if ( pi.tokentype ) {
+						// We probably don't need to check if its required,
+						// it always is, but whats the harm
+						widget = new OO.ui.TextInputWidget( {
+							required: Util.apiBool( pi.required )
+						} );
+						widget.paramInfo = pi;
+						$.extend( widget, WidgetMethods.textInputWidget );
+						widget.setValidation( Validators.generic );
+						$.extend( widget, WidgetMethods.tokenWidget );
+						break;
+					}
+					// intentional fall through
 				case 'user':
 				case 'expiry':
 					if ( Util.apiBool( pi.multi ) ) {
@@ -307,16 +331,9 @@
 						widget = new OO.ui.TextInputWidget( {
 							required: Util.apiBool( pi.required )
 						} );
-					}
-					if ( !Util.apiBool( pi.multi ) ) {
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.textInputWidget );
 						widget.setValidation( Validators.generic );
-					}
-					if ( pi.tokentype ) {
-						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.textInputWidget );
-						$.extend( widget, WidgetMethods.tokenWidget );
 					}
 					break;
 
