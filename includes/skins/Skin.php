@@ -2673,7 +2673,7 @@ abstract class Skin extends ContextSource {
 		return $data;
 	}
 
-	protected function getSearchPageTitle() : Title {
+	public function getSearchPageTitle() : Title {
 		return $this->searchPageTitle ?? SpecialPage::getTitleFor( 'Search' );
 	}
 
