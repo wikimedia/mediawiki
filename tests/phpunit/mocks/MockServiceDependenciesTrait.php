@@ -60,16 +60,4 @@ trait MockServiceDependenciesTrait {
 
 		$this->fail( "Unrecognized parameter type $type" );
 	}
-
-	/**
-	 * Provided by PHPUnit\Framework\Assert
-	 * @param string $message
-	 */
-	abstract protected function fail( string $message );
-
-	/**
-	 * Provided by PHPUnit\Framework\TestCase
-	 * @param string $originalClassName
-	 */
-	abstract protected function createMock( $originalClassName );
 }
