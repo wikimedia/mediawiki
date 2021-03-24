@@ -2,6 +2,7 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Parser\RevisionOutputCache;
 use Psr\Log\NullLogger;
@@ -28,7 +29,9 @@ class ParserCacheFactoryTest extends MediaWikiUnitTestCase {
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
 			new NullLogger(),
-			$options
+			$options,
+			$this->createNoOpMock( TitleFactory::class ),
+			$this->createNoOpMock( WikiPageFactory::class )
 		);
 	}
 
