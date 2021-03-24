@@ -4311,9 +4311,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					return false;
 				}
 			}
+
+			return true;
+		} elseif ( $this->getDBkey() === '' ) {
+			// relative section links are not valid redirect targets (T278367)
+			return false;
 		}
 
-		return true;
+		return $this->isValid();
 	}
 
 	/**
