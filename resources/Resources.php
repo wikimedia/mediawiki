@@ -770,12 +770,18 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.hlist' => [
+		'class' => ResourceLoaderLessVarFileModule::class,
+		'lessMessages' => [
+			'colon-separator',
+			'parentheses-start',
+			'parentheses-end',
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 		'styles' => [
 			'resources/src/mediawiki.hlist/hlist.less',
 		],
 		'skinStyles' => [
-			'default' => 'resources/src/mediawiki.hlist/default.css',
+			'default' => 'resources/src/mediawiki.hlist/default.less',
 		],
 	],
 	'mediawiki.htmlform' => [

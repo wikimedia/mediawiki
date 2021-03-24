@@ -1,0 +1,73 @@
+/*!
+ * Stylesheet for mediawiki.hlist module
+ * @author [[User:Edokter]]
+ */
+
+/* stylelint-disable selector-class-pattern */
+
+/* Generate interpuncts */
+.hlist {
+	dt:after {
+		content: '@{msg-colon-separator}';
+	}
+
+	dd,
+	li {
+		&:after {
+			/* @todo FIXME: Hard coded " .". Is there a message for this? Should there be? */
+			content: ' ·';
+			font-weight: bold;
+		}
+	}
+
+	dd,
+	dt,
+	li {
+		&:last-child:after {
+			content: none;
+		}
+
+		// Add parentheses around nested lists
+		dd,
+		dt,
+		li {
+			&:first-child:before {
+				content: '@{msg-parentheses-start}';
+				font-weight: normal;
+			}
+
+			&:last-child:after {
+				content: '@{msg-parentheses-end}';
+				font-weight: normal;
+			}
+		}
+
+		ol > li:first-child:before {
+			content: '@{msg-parentheses-start}' counter( list-item ) ' ';
+		}
+	}
+
+	// Put ordinals in front of ordered list items
+	ol {
+		counter-reset: list-item;
+
+		& > li {
+			counter-increment: list-item;
+
+			&:before {
+				content: counter( list-item ) ' ';
+			}
+		}
+	}
+}
+
+/* Support hlist styles inside *boxes */
+.errorbox .hlist,
+.successbox .hlist,
+.warningbox .hlist {
+	margin-left: 0;
+
+	& li:after {
+		margin-right: 3px;
+	}
+}
