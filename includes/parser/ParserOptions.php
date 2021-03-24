@@ -24,6 +24,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -112,7 +113,7 @@ class ParserOptions {
 
 	/**
 	 * Stored user object
-	 * @var User
+	 * @var UserIdentity
 	 * @todo Track this for caching somehow without fragmenting the cache insanely
 	 */
 	private $mUser;
@@ -694,7 +695,7 @@ class ParserOptions {
 	 * @return string
 	 */
 	private static function initDateFormat( ParserOptions $popt ) {
-		return $popt->mUser->getDatePreference();
+		return $popt->getUser()->getDatePreference();
 	}
 
 	/**
@@ -1077,21 +1078,33 @@ class ParserOptions {
 
 	/**
 	 * Current user
+	 * @deprecated since 1.36. Use ::getUserIdentity instead.
 	 * @return User
 	 */
 	public function getUser() {
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromUserIdentity( $this->mUser );
+	}
+
+	/**
+	 * Get the identity of the user for whom the parse is made.
+	 * @since 1.36
+	 * @return UserIdentity
+	 */
+	public function getUserIdentity(): UserIdentity {
 		return $this->mUser;
 	}
 
 	/**
 	 * @warning For interaction with the parser cache, use
 	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
-	 * @param User|null $user (null falls back to $wgUser and is deprecated since 1.36)
+	 * @param UserIdentity|null $user (null falls back to $wgUser and is deprecated since 1.36)
 	 * @param Language|null $lang
 	 */
 	public function __construct( $user = null, $lang = null ) {
 		if ( $user === null ) {
-			wfDeprecated( __CLASS__ . ' being created with a User object', '1.36' );
+			wfDeprecatedMsg( __CLASS__ . ' being created without a UserIdentity object', '1.36' );
 			global $wgUser;
 			if ( $wgUser === null ) {
 				$user = new User;
@@ -1125,7 +1138,7 @@ class ParserOptions {
 	 *
 	 * @warning For interaction with the parser cache, use
 	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return ParserOptions
 	 */
 	public static function newFromUser( $user ) {
@@ -1137,11 +1150,11 @@ class ParserOptions {
 	 *
 	 * @warning For interaction with the parser cache, use
 	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Language $lang
 	 * @return ParserOptions
 	 */
-	public static function newFromUserAndLang( User $user, Language $lang ) {
+	public static function newFromUserAndLang( UserIdentity $user, Language $lang ) {
 		return new ParserOptions( $user, $lang );
 	}
 
@@ -1165,11 +1178,12 @@ class ParserOptions {
 	 *
 	 * @since 1.30
 	 * @since 1.32 Added string and IContextSource as options for the first parameter
-	 * @param IContextSource|string|User|null $context
-	 *  - If an IContextSource, the options are initialized based on the source's User and Language.
+	 * @since 1.36 UserIdentity is also allowed
+	 * @param IContextSource|string|UserIdentity|null $context
+	 *  - If an IContextSource, the options are initialized based on the source's UserIdentity and Language.
 	 *  - If the string 'canonical', the options are initialized with an anonymous user and
 	 *    the content language.
-	 *  - If a User or null, the options are initialized for that User
+	 *  - If a UserIdentity or null, the options are initialized for that UserIdentity
 	 *      falls back to $wgUser if null; fallback is deprecated since 1.35
 	 *    'userlang' is taken from the $userLang parameter, defaulting to $wgLang if that is null.
 	 * @param Language|StubObject|null $userLang (see above)
@@ -1180,7 +1194,7 @@ class ParserOptions {
 			$ret = self::newFromContext( $context );
 		} elseif ( $context === 'canonical' ) {
 			$ret = self::newFromAnon();
-		} elseif ( $context instanceof User || $context === null ) {
+		} elseif ( $context instanceof UserIdentity || $context === null ) {
 			if ( $context === null ) {
 				wfDeprecated( __METHOD__ . ' with no user', '1.35' );
 
@@ -1193,7 +1207,7 @@ class ParserOptions {
 			$ret = new self( $context, $userLang );
 		} else {
 			throw new InvalidArgumentException(
-				'$context must be an IContextSource, the string "canonical", a User, or null'
+				'$context must be an IContextSource, the string "canonical", a UserIdentity, or null'
 			);
 		}
 
@@ -1317,16 +1331,19 @@ class ParserOptions {
 	/**
 	 * Get user options
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Language $lang
 	 */
-	private function initialiseFromUser( $user, $lang ) {
+	private function initialiseFromUser( UserIdentity $user, Language $lang ) {
 		$this->options = self::getDefaults();
 
 		$this->mUser = $user;
-		$this->options['numberheadings'] = $user->getOption( 'numberheadings' );
-		$this->options['thumbsize'] = $user->getOption( 'thumbsize' );
-		$this->options['stubthreshold'] = $user->getStubThreshold();
+		$services = MediaWikiServices::getInstance();
+		$optionsLookup = $services->getUserOptionsLookup();
+		$this->options['numberheadings'] = $optionsLookup->getOption( $user, 'numberheadings' );
+		$this->options['thumbsize'] = $optionsLookup->getOption( $user, 'thumbsize' );
+		$userObj = $services->getUserFactory()->newFromUserIdentity( $user );
+		$this->options['stubthreshold'] = $userObj->getStubThreshold();
 		$this->options['userlang'] = $lang;
 	}
 
@@ -1548,7 +1565,7 @@ class ParserOptions {
 	 * @since 1.25
 	 * @param Title $title
 	 * @param Content $content
-	 * @param User $user The user that the fake revision is attributed to
+	 * @param UserIdentity $user The user that the fake revision is attributed to
 	 * @return ScopedCallback to unset the hook
 	 */
 	public function setupFakeRevision( $title, $content, $user ) {
