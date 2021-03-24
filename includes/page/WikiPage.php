@@ -884,7 +884,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	private function setLastEdit( RevisionRecord $revRecord ) {
 		$this->mLastRevision = $revRecord;
+		$this->mLatest = $revRecord->getId();
 		$this->mTimestamp = $revRecord->getTimestamp();
+		$this->mTouched = max( $this->mTouched, $revRecord->getTimestamp() );
 	}
 
 	/**
@@ -1547,7 +1549,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		if ( $result ) {
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
-			$this->mLatest = $revision->getId();
 			$this->mRedirectTarget = null;
 			$this->mHasRedirectTarget = null;
 			$this->mPageIsRedirectField = (bool)$rt;
@@ -2224,7 +2225,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// TODO: this is currently redundant to what is done in updateRevisionOn.
 			// But updateRevisionOn() should move into PageStore, and then this will be needed.
 			$this->setLastEdit( $revRec );
-			$this->mLatest = $revRec->getId();
 		}
 
 		return $updater->getStatus();
