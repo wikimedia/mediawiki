@@ -1432,3 +1432,4 @@
 	path = extensions/ShortDescription
 	url = https://github.com/StarCitizenTools/mediawiki-extensions-ShortDescription
 	branch = master
+	ignore = dirty
