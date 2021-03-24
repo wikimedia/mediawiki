@@ -3428,7 +3428,7 @@
 		],
 		"indexes": [
 			{
-				"name": "name_title",
+				"name": "page_name_title",
 				"columns": [ "page_namespace", "page_title" ],
 				"comment": "The title index. Care must be taken to always specify a namespace when by title, so that the index is used. Even listing all known namespaces with IN() is better than omitting page_namespace from the WHERE clause.",
 				"unique": true

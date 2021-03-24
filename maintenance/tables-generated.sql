@@ -828,7 +828,7 @@ CREATE TABLE /*_*/page (
   page_len INT UNSIGNED NOT NULL,
   page_content_model VARBINARY(32) DEFAULT NULL,
   page_lang VARBINARY(35) DEFAULT NULL,
-  UNIQUE INDEX name_title (page_namespace, page_title),
+  UNIQUE INDEX page_name_title (page_namespace, page_title),
   INDEX page_random (page_random),
   INDEX page_len (page_len),
   INDEX page_redirect_namespace_len (

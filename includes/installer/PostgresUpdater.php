@@ -444,7 +444,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'content_models', 'model_id', 'INTEGER', '' ],
 			[ 'renameIndex', 'page', 'page_len_idx', 'page_len' ],
 			[ 'renameIndex', 'page', 'page_random_idx', 'page_random' ],
-			[ 'renameIndex', 'page', 'page_unique_name', 'name_title' ],
+			[ 'renameIndex', 'page', 'page_unique_name', 'page_name_title' ],
 			[ 'addPGIndex', 'page', 'page_redirect_namespace_len', '(page_is_redirect, page_namespace, page_len)' ],
 			[ 'dropFkey', 'categorylinks', 'cl_from' ],
 			[ 'setDefault','categorylinks', 'cl_from', 0 ],
@@ -634,6 +634,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				'CREATE INDEX rev_page_id ON revision (rev_page,rev_id)' ],
 			[ 'addTable', 'searchindex', 'patch-searchindex-table.sql' ],
 			[ 'addPgIndex', 'oldimage', 'oi_timestamp', '(oi_timestamp)' ],
+			[ 'renameIndex', 'page', 'name_title', 'page_name_title' ],
 		];
 	}
 
