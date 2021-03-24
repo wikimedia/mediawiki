@@ -15,8 +15,9 @@
 		OptionalParamWidget = require( './OptionalParamWidget.js' ),
 		ParamLabelWidget = require( './ParamLabelWidget.js' ),
 		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
-		LimitParamWidget = require( './LimitParamWidget.js' ),
 		DateTimeParamWidget = require( './DateTimeParamWidget.js' ),
+		IntegerParamWidget = require( './IntegerParamWidget.js' ),
+		LimitParamWidget = require( './LimitParamWidget.js' ),
 		PasswordParamWidget = require( './PasswordParamWidget.js' ),
 		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
@@ -340,15 +341,10 @@
 					break;
 
 				case 'integer':
-					widget = new OO.ui.NumberInputWidget( {
-						required: Util.apiBool( pi.required ),
-						isInteger: true
+					widget = new IntegerParamWidget( {
+						required: Util.apiBool( pi.required )
 					} );
-					widget.setIcon = widget.input.setIcon.bind( widget.input );
-					widget.setTitle = widget.input.setTitle.bind( widget.input );
-					widget.getValidity = widget.input.getValidity.bind( widget.input );
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
 					widget.setRange( pi.min || -Infinity, pi.max || Infinity );
 					multiModeAllowed = true;
 					multiModeInput = widget;

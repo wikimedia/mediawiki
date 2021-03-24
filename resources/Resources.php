@@ -1867,6 +1867,7 @@ return [
 			'ParamLabelWidget.js',
 			'BooleanToggleSwitchParamWidget.js',
 			'DateTimeParamWidget.js',
+			'IntegerParamWidget.js',
 			'LimitParamWidget.js',
 			'PasswordParamWidget.js',
 			'UploadSelectFileParamWidget.js',
