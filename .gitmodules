@@ -1423,3 +1423,7 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-3D
 	branch = REL1_35
 	ignore = dirty
+[submodule "extensions/PdfBook"]
+	path = extensions/PdfBook
+	url = https://gitlab.com/organicdesign/PdfBook
+	branch = master
