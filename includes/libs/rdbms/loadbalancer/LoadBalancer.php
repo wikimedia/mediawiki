@@ -1171,7 +1171,7 @@ class LoadBalancer implements ILoadBalancer {
 
 		if ( isset( $this->conns[$connKey][$i][self::KEY_LOCAL_DOMAIN] ) ) {
 			$conn = $this->conns[$connKey][$i][self::KEY_LOCAL_DOMAIN];
-			$this->connLogger->debug( __METHOD__ . ": reused a connection for $i" );
+			$this->connLogger->debug( __METHOD__ . ": reused a connection for $connKey/$i" );
 		} else {
 			$conn = $this->reallyOpenConnection(
 				$i,
@@ -1179,10 +1179,10 @@ class LoadBalancer implements ILoadBalancer {
 				[ self::INFO_AUTOCOMMIT_ONLY => $autoCommit ]
 			);
 			if ( $conn->isOpen() ) {
-				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i" );
+				$this->connLogger->debug( __METHOD__ . ": opened new connection for $connKey/$i" );
 				$this->conns[$connKey][$i][self::KEY_LOCAL_DOMAIN] = $conn;
 			} else {
-				$this->connLogger->warning( __METHOD__ . ": connection error for $i" );
+				$this->connLogger->warning( __METHOD__ . ": connection error for $connKey/$i" );
 				$this->errorConnection = $conn;
 				$conn = false;
 			}
@@ -1245,13 +1245,13 @@ class LoadBalancer implements ILoadBalancer {
 		if ( isset( $this->conns[$connInUseKey][$i][$domain] ) ) {
 			// Reuse an in-use connection for the same domain
 			$conn = $this->conns[$connInUseKey][$i][$domain];
-			$this->connLogger->debug( __METHOD__ . ": reusing connection $i/$domain" );
+			$this->connLogger->debug( __METHOD__ . ": reusing connection $connInUseKey/$i/$domain" );
 		} elseif ( isset( $this->conns[$connFreeKey][$i][$domain] ) ) {
 			// Reuse a free connection for the same domain
 			$conn = $this->conns[$connFreeKey][$i][$domain];
 			unset( $this->conns[$connFreeKey][$i][$domain] );
 			$this->conns[$connInUseKey][$i][$domain] = $conn;
-			$this->connLogger->debug( __METHOD__ . ": reusing free connection $i/$domain" );
+			$this->connLogger->debug( __METHOD__ . ": reusing free connection $connInUseKey/$i/$domain" );
 		} elseif ( !empty( $this->conns[$connFreeKey][$i] ) ) {
 			// Reuse a free connection from another domain if possible
 			foreach ( $this->conns[$connFreeKey][$i] as $oldDomain => $oldConn ) {
@@ -1297,10 +1297,10 @@ class LoadBalancer implements ILoadBalancer {
 			if ( $conn->isOpen() ) {
 				// Note that if $domain is an empty string, getDomainID() might not match it
 				$this->conns[$connInUseKey][$i][$conn->getDomainID()] = $conn;
-				$this->connLogger->debug( __METHOD__ . ": opened new connection for $i/$domain" );
+				$this->connLogger->debug( __METHOD__ . ": opened new connection for $connInUseKey/$i/$domain" );
 			} else {
 				$this->connLogger->warning(
-					__METHOD__ . ": connection error for $i/{db_domain}",
+					__METHOD__ . ": connection error for $connInUseKey/$i/{db_domain}",
 					[ 'db_domain' => $domain ]
 				);
 				$this->errorConnection = $conn;
