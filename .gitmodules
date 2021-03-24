@@ -1427,3 +1427,4 @@
 	path = extensions/PdfBook
 	url = https://gitlab.com/organicdesign/PdfBook
 	branch = master
+	ignore = dirty
