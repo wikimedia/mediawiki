@@ -27,6 +27,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use RevisionDeleteUser;
 use Status;
 use TitleValue;
@@ -53,7 +54,7 @@ class UnblockUser {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var User|string */
+	/** @var UserIdentity|string */
 	private $target;
 
 	/** @var int */
@@ -77,7 +78,7 @@ class UnblockUser {
 	 * @param BlockUtils $blockUtils
 	 * @param UserFactory $userFactory
 	 * @param HookContainer $hookContainer
-	 * @param User|string $target
+	 * @param UserIdentity|string $target
 	 * @param Authority $performer
 	 * @param string $reason
 	 * @param string[] $tags
@@ -198,7 +199,7 @@ class UnblockUser {
 		// Unset _deleted fields as needed
 		if ( $this->block->getHideName() ) {
 			// Something is deeply FUBAR if this is not a User object, but who knows?
-			$id = $this->block->getTarget() instanceof User
+			$id = $this->block->getTarget() instanceof UserIdentity
 				? $this->block->getTarget()->getId()
 				: User::idFromName( $this->block->getTarget() );
 
@@ -219,7 +220,7 @@ class UnblockUser {
 		if ( $this->block->getType() === DatabaseBlock::TYPE_AUTO ) {
 			$page = TitleValue::tryNew( NS_USER, '#' . $this->block->getId() );
 		} else {
-			$page = $this->block->getTarget() instanceof User
+			$page = $this->block->getTarget() instanceof UserIdentity
 				? $this->block->getTarget()->getUserPage()
 				: TitleValue::tryNew( NS_USER, $this->block->getTarget() );
 		}
