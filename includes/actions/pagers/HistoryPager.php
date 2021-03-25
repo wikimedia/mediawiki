@@ -680,6 +680,18 @@ class HistoryPager extends ReverseChronologicalPager {
 	}
 
 	/**
+	 * Returns whether to show the "navigation bar"
+	 *
+	 * @return bool
+	 */
+	protected function isNavigationBarShown() {
+		if ( $this->getNumRows() == 0 ) {
+			return false;
+		}
+		return parent::isNavigationBarShown();
+	}
+
+	/**
 	 * @inheritDoc
 	 */
 	public function getDefaultQuery() {
