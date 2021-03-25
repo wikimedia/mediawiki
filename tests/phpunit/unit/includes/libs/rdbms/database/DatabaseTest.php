@@ -25,7 +25,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @dataProvider provideAddQuotes
 	 * @covers Wikimedia\Rdbms\Database::factory
 	 */
 	public function testFactory() {
@@ -37,8 +36,6 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySQLi', $p, $m ) );
 		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'postgres', $p, $m ) );
 		$this->assertInstanceOf( DatabasePostgres::class, Database::factory( 'Postgres', $p, $m ) );
-
-		$x = $p + [ 'port' => 10000, 'UseWindowsAuth' => false ];
 
 		$x = $p + [ 'dbFilePath' => 'some/file.sqlite' ];
 		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
