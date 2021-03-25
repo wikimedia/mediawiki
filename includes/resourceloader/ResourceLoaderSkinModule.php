@@ -161,7 +161,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'content' => false,
 		'content-links' => false,
 		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
-		'content-parser-output' => false,
+		'content-parser-output' => true,
 		'elements' => false,
 		'i18n-all-lists-margins' => false,
 		'i18n-headings' => false,
