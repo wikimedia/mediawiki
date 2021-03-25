@@ -51,7 +51,10 @@ class SpecialTrackingCategories extends SpecialPage {
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:Categories' );
 		$this->getOutput()->allowClickjacking();
-		$this->getOutput()->addModuleStyles( 'jquery.tablesorter.styles' );
+		$this->getOutput()->addModuleStyles( [
+			'jquery.tablesorter.styles',
+			'mediawiki.pager.tablePager'
+		] );
 		$this->getOutput()->addModules( 'jquery.tablesorter' );
 		$this->getOutput()->addHTML(
 			Html::openElement( 'table', [ 'class' => 'mw-datatable sortable',

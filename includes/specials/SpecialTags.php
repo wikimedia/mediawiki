@@ -167,7 +167,10 @@ class SpecialTags extends SpecialPage {
 			}
 		}
 
-		$out->addModuleStyles( 'jquery.tablesorter.styles' );
+		$out->addModuleStyles( [
+			'jquery.tablesorter.styles',
+			'mediawiki.pager.tablePager'
+		] );
 		$out->addModules( 'jquery.tablesorter' );
 		$out->addHTML( Xml::tags(
 			'table',

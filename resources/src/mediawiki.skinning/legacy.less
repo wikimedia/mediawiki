@@ -381,34 +381,7 @@ a.new {
 	clear: both;
 }
 
-/**
- * Data table style
- *
- * Table with suddle borders
- * and row-highlighting.
- */
-.mw-datatable {
-	border: 1px solid #a2a9b1;
-	border-collapse: collapse;
-}
-
-.mw-datatable td,
-.mw-datatable th {
-	border: 1px solid #a2a9b1;
-	padding: 0.2em 0.4em;
-}
-
-.mw-datatable th {
-	background-color: #eaeeff;
-}
-
-.mw-datatable td {
-	background-color: #fff;
-}
-
-.mw-datatable tr:hover td {
-	background-color: #eaf3ff;
-}
+@import '../mediawiki.pager.tablePager/DataTable.less';
 
 .mw-ajax-loader {
 	background-image: url( images/ajax-loader.gif );
