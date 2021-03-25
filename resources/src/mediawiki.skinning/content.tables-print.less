@@ -1,0 +1,37 @@
+/* stylelint-disable selector-class-pattern */
+
+.wikitable {
+	background: #fff;
+	margin: 1em 0;
+	border: 1pt solid #aaa;
+	border-collapse: collapse;
+	font-size: 10pt;
+
+	> caption {
+		padding: 5px;
+		font-size: 10pt;
+	}
+
+	> tr > th,
+	> tr > td,
+	> * > tr > th,
+	> * > tr > td {
+		/* Important is required to override any inline styles provided by editors */
+		background: #fff !important; /* stylelint-disable-line declaration-no-important */
+		/* We need to also set color in case editors applied a light text color */
+		color: #000 !important; /* stylelint-disable-line declaration-no-important */
+		border: 1pt solid #aaa;
+		padding: 0.4em 0.6em;
+	}
+
+	> tr > th,
+	> * > tr > th {
+		text-align: center;
+	}
+}
+
+table.listing,
+table.listing td {
+	border: 1pt solid #000;
+	border-collapse: collapse;
+}

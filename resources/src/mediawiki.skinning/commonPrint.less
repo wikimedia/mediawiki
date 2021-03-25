@@ -279,50 +279,7 @@ div.thumbinner {
 	border: 1pt solid #ddd;
 }
 
-/**
- * Table rendering
- */
-/* Compare `.wikitable` in shared.css */
-.wikitable,
-.mw_metadata {
-	background: #fff;
-	margin: 1em 0;
-	border: 1pt solid #aaa;
-	border-collapse: collapse;
-	font-size: 10pt;
-}
-
-.wikitable > caption,
-.mw_metadata caption {
-	padding: 5px;
-	font-size: 10pt;
-}
-
-.wikitable > tr > th,
-.wikitable > tr > td,
-.wikitable > * > tr > th,
-.wikitable > * > tr > td,
-.mw_metadata th,
-.mw_metadata td {
-	/* Important is required to override any inline styles provided by editors */
-	background: #fff !important; /* stylelint-disable-line declaration-no-important */
-	/* We need to also set color in case editors applied a light text color */
-	color: #000 !important; /* stylelint-disable-line declaration-no-important */
-	border: 1pt solid #aaa;
-	padding: 0.4em 0.6em;
-}
-
-.wikitable > tr > th,
-.wikitable > * > tr > th,
-.mw_metadata th {
-	text-align: center;
-}
-
-table.listing,
-table.listing td {
-	border: 1pt solid #000;
-	border-collapse: collapse;
-}
+@import 'content.tables-print.less';
 
 /**
  * Categories

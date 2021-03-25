@@ -1234,6 +1234,11 @@ class RecentChange implements Taggable {
 		$actorId = isset( $actorId ) ? (int)$actorId : 0;
 
 		$actorStore = MediaWikiServices::getInstance()->getActorStore();
+		if ( $userName && $actorId ) {
+			// Likely the fields are coming from a join on actor table,
+			// so can definitely build a UserIdentityValue.
+			return $actorStore->newActorFromRowFields( $userId, $userName, $actorId );
+		}
 		if ( $userId !== null ) {
 			if ( $userName !== null ) {
 				// NOTE: For IPs and external users, $userId will be 0.
