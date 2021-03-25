@@ -54,6 +54,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *     TOC is present. This level is for skins that want to implement the entire style of even
 	 *     content area structures like the TOC themselves.
 	 *
+	 * "category-interface":
+	 *     Styles used for styling the categories in a horizontal bar at the bottom of the content.
+	 *
 	 * "content":
 	 *     The most commonly used level for skins implemented from scratch. This level includes all
 	 *     the single element styles from "elements" as well as styles for complex structures such
@@ -126,6 +129,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'interface' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
 		],
+		'interface-category' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface.category.less' ],
+		],
 		'interface-message-box' => [
 			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
 		],
@@ -167,6 +173,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'i18n-headings' => false,
 		'i18n-ordered-lists' => false,
 		'interface' => false,
+		'interface-category' => false,
 		'interface-message-box' => false,
 		'legacy' => false,
 		'logo' => false,

@@ -870,7 +870,10 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.pager.tablePager' => [
-		'styles' => 'resources/src/mediawiki.pager.tablePager/TablePager.less',
+		'styles' => [
+			'resources/src/mediawiki.pager.tablePager/TablePager.less',
+			'resources/src/mediawiki.pager.tablePager/DataTable.less',
+		],
 	],
 	'mediawiki.pulsatingdot' => [
 		'styles' => [
