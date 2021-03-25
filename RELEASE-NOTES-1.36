@@ -466,6 +466,63 @@ because of Phabricator reports.
   WatchlistNotificationManager::clearAllUserNotifications() instead.
 * DatabaseBlock::getBlocker can return any UserIdentity instance, not just User.
 * MediaWiki::triggerJobs(), deprecated in 1.34, was removed.
+* The following Article methods, deprecated in 1.35, were removed:
+  - checkFlags
+  - checkTouched
+  - clearPreparedEdit
+  - doDeleteUpdates
+  - doEditUpdates
+  - doPurge
+  - doViewUpdates
+  - exists
+  - followRedirect
+  - getAutoDeleteReason
+  - getCategories
+  - getContentHandler
+  - getContentModel
+  - getContributors
+  - getDeletionUpdates
+  - getHiddenCategories
+  - getId
+  - getLatest
+  - getLinksTimestamp
+  - getMinorEdit
+  - getOldestRevision
+  - getRedirectTarget
+  - getRedirectURL
+  - getRevision
+  - getTouched
+  - getUndoContent
+  - hasViewableContent
+  - insertOn
+  - insertRedirect
+  - insertRedirectEntry
+  - isCountable
+  - isRedirect
+  - loadFromRow
+  - loadPageData
+  - lockAndGetLatest
+  - makeParserOptions
+  - pageDataFromId
+  - pageDataFromTitle
+  - prepareContentForEdit
+  - protectDescription
+  - protectDescriptionLog
+  - replaceSectionAtRev
+  - replaceSectionContent
+  - setTimestamp
+  - shouldCheckParserCache
+  - supportsSections
+  - triggerOpportunisticLinksUpdate
+  - updateCategoryCounts
+  - updateIfNewerOn
+  - updateRedirectOn
+  - updateRevisionOn
+  - doUpdateRestrictions
+  - updateRestrictions
+  - doRollback
+  - commitRollback
+  - generateReason
 * …
 
 === Deprecations in 1.36 ===
