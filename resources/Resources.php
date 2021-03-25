@@ -1335,7 +1335,7 @@ return [
 	],
 	'mediawiki.action.view.filepage' => [
 		'styles' => [
-			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.css' =>
+			'resources/src/mediawiki.action/mediawiki.action.view.filepage.print.less' =>
 				[ 'media' => 'print' ],
 			'resources/src/mediawiki.action/mediawiki.action.view.filepage.css',
 		],
@@ -2325,7 +2325,7 @@ return [
 	'mediawiki.legacy.commonPrint' => [
 		'deprecated' => 'Use ResourceLoaderSkinModule',
 		'styles' => [
-			'resources/src/mediawiki.skinning/commonPrint.css' => [ 'media' => 'print' ]
+			'resources/src/mediawiki.skinning/commonPrint.less' => [ 'media' => 'print' ]
 		],
 	],
 	'mediawiki.legacy.protect' => [

@@ -315,35 +315,7 @@ a.new {
 	unicode-bidi: embed;
 }
 
-/**
- * wikitable class for skinning normal tables
- * keep in sync with commonPrint.css
- */
-.wikitable {
-	background-color: #f8f9fa;
-	color: #202122;
-	margin: 1em 0;
-	border: 1px solid #a2a9b1;
-	border-collapse: collapse;
-}
-
-.wikitable > tr > th,
-.wikitable > tr > td,
-.wikitable > * > tr > th,
-.wikitable > * > tr > td {
-	border: 1px solid #a2a9b1;
-	padding: 0.2em 0.4em;
-}
-
-.wikitable > tr > th,
-.wikitable > * > tr > th {
-	background-color: #eaecf0;
-	text-align: center;
-}
-
-.wikitable > caption {
-	font-weight: bold;
-}
+@import 'content.tables.less';
 
 /* Error, warning, success and neutral messages */
 .error,

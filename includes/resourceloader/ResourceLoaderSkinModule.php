@@ -72,6 +72,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * "content-parser-output":
 	 *     Styles for the mw-parser-output class.
 	 *
+	 * "content-tables":
+	 *     Styles .wikitable style tables.
+	 *
 	 * "interface":
 	 *     The highest level, this stylesheet contains extra common styles for classes like
 	 *     .firstHeading, #contentSub, et cetera which are not outputted by MediaWiki but are common
@@ -123,6 +126,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'content-parser-output' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.parser-output.less' ]
 		],
+		'content-tables' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.tables.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/content.tables-print.less' ]
+		],
 		'interface' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
 		],
@@ -134,7 +141,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		],
 		'legacy' => [
 			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
-			'print' => [ 'resources/src/mediawiki.skinning/commonPrint.css' ],
+			'print' => [ 'resources/src/mediawiki.skinning/commonPrint.less' ],
 			'screen' => [ 'resources/src/mediawiki.skinning/legacy.less' ],
 		],
 		'i18n-ordered-lists' => [
@@ -162,6 +169,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'content-links' => false,
 		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
 		'content-parser-output' => true,
+		'content-tables' => false,
 		'elements' => false,
 		'i18n-all-lists-margins' => false,
 		'i18n-headings' => false,
