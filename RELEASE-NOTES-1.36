@@ -171,6 +171,8 @@ is no longer recommended and the option has been removed.
 ==== Removed external libraries ====
 * The html5shiv library has been removed, as support for Internet Explorer 8 has
   been dropped.
+* The wikimedia/avro suggested development-only library has been removed, as the
+  support for logging in Avro format has been dropped.
 * …
 
 === Bug fixes in 1.36 ===
@@ -523,6 +525,9 @@ because of Phabricator reports.
   - doRollback
   - commitRollback
   - generateReason
+* The monolog-based logging system has dropped the Avro format. Because of this,
+  the AvroFormatter class and the AvroValidator utility class have been removed
+  without deprecation.
 * …
 
 === Deprecations in 1.36 ===
