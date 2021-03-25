@@ -4389,7 +4389,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * e.g. $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.18
-	 * @return Language
+	 * @return Language|StubUserLang
 	 */
 	public function getPageLanguage() {
 		global $wgLang, $wgLanguageCode;
@@ -4430,7 +4430,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * e.g. $wgLang (such as special pages, which are in the user language).
 	 *
 	 * @since 1.20
-	 * @return Language
+	 * @return Language|StubUserLang
 	 */
 	public function getPageViewLanguage() {
 		global $wgLang;

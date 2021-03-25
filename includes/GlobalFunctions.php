@@ -1176,7 +1176,7 @@ function wfConfiguredReadOnlyReason() {
  *                    the current user's language (as a fallback for the old parameter
  *                    functionality), or if it is true then use global object
  *                    for the wiki's content language.
- * @return Language
+ * @return Language|StubUserLang
  */
 function wfGetLangObj( $langcode = false ) {
 	# Identify which language to get or create a language object for.

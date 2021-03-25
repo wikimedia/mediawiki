@@ -1107,7 +1107,7 @@ class Parser {
 	 *
 	 * @since 1.19
 	 *
-	 * @return Language
+	 * @return Language|StubUserLang
 	 */
 	public function getTargetLanguage() {
 		$target = $this->mOptions->getTargetLanguage();
