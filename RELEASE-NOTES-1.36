@@ -722,6 +722,8 @@ because of Phabricator reports.
   basic browser support. Use unprefixed property `box-shadow:` instead.
 * MergeHistory::checkPermissions was deprecated. Use ::probablyCanMerge or
   ::authorizeMerge instead.
+* User::isValidUserName(), deprecated in 1.35, is hard deprecated.
+  Use the UserNameUtils service instead.
 * …
 
 === Other changes in 1.36 ===
