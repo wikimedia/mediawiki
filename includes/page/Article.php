@@ -25,6 +25,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
@@ -597,7 +598,7 @@ class Article implements Page {
 	/**
 	 * Determines the desired ParserOutput and passes it to $outputPage.
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param ParserOptions $parserOptions
 	 * @param int $oldid
 	 * @param OutputPage $outputPage
@@ -607,7 +608,7 @@ class Article implements Page {
 	 *              false to skip further processing.
 	 */
 	private function generateContentOutput(
-		User $user,
+		Authority $performer,
 		ParserOptions $parserOptions,
 		int $oldid,
 		OutputPage $outputPage,
@@ -635,7 +636,7 @@ class Article implements Page {
 		if ( !$this->mPage->exists() ) {
 			wfDebug( __METHOD__ . ": showing missing article" );
 			$this->showMissingArticle();
-			$this->mPage->doViewUpdates( $user );
+			$this->mPage->doViewUpdates( $performer );
 			return false; // skip all further output to OutputPage
 		}
 

@@ -1043,7 +1043,7 @@ EOT
 	 * @since 1.21
 	 * @deprecated Since 1.35 Use static function MediaFileTrait::getImageLimitsFromOption
 	 */
-	public function getImageLimitsFromOption( $user, $optionName ) {
+	public function getImageLimitsFromOption( UserIdentity $user, $optionName ) {
 		return MediaFileTrait::getImageLimitsFromOption( $user, $optionName );
 	}
 
