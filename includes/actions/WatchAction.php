@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -235,18 +236,20 @@ class WatchAction extends FormAction {
 
 	/**
 	 * Watch or unwatch a page
-	 * @since 1.22
-	 * @since 1.35 New $expiry parameter.
+	 *
 	 * @param bool $watch Whether to watch or unwatch the page
-	 * @param Title $title Page to watch/unwatch
+	 * @param PageIdentity $pageIdentity Page to watch/unwatch
 	 * @param Authority $performer who is watching/unwatching
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 *
 	 * @return Status
+	 * @since 1.35 New $expiry parameter.
+	 * @since 1.22
 	 */
 	public static function doWatchOrUnwatch(
 		$watch,
-		Title $title,
+		PageIdentity $pageIdentity,
 		Authority $performer,
 		string $expiry = null
 	) {
@@ -256,8 +259,9 @@ class WatchAction extends FormAction {
 		}
 
 		// Only run doWatch() or doUnwatch() if there's been a change in the watched status.
+		$link = TitleValue::newFromPage( $pageIdentity );
 		$oldWatchedItem = MediaWikiServices::getInstance()->getWatchedItemStore()
-			->getWatchedItem( $performer->getUser(), $title );
+			->getWatchedItem( $performer->getUser(), $link );
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
 		if ( $oldWatchedItem && $expiry !== null ) {
 			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
@@ -272,9 +276,9 @@ class WatchAction extends FormAction {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {
-				return self::doWatch( $title, $performer, User::IGNORE_USER_RIGHTS, $expiry );
+				return self::doWatch( $pageIdentity, $performer, User::IGNORE_USER_RIGHTS, $expiry );
 			} else {
-				return self::doUnwatch( $title, $performer );
+				return self::doUnwatch( $pageIdentity, $performer );
 			}
 		}
 
@@ -284,7 +288,7 @@ class WatchAction extends FormAction {
 	/**
 	 * Watch a page
 	 * @since 1.22 Returns Status, $checkRights parameter added
-	 * @param Title $title Page to watch/unwatch
+	 * @param PageIdentity $pageIdentity Page to watch/unwatch
 	 * @param Authority $performer User who is watching/unwatching
 	 * @param bool $checkRights Passed through to $user->addWatch()
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
@@ -293,7 +297,7 @@ class WatchAction extends FormAction {
 	 * @return Status
 	 */
 	public static function doWatch(
-		Title $title,
+		PageIdentity $pageIdentity,
 		Authority $performer,
 		$checkRights = User::CHECK_USER_RIGHTS,
 		?string $expiry = null
@@ -303,15 +307,16 @@ class WatchAction extends FormAction {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
-		$page = $services->getWikiPageFactory()->newFromTitle( $title );
+		$wikiPage = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
+		$title = $wikiPage->getTitle();
 
 		$status = Status::newFatal( 'hookaborted' );
 		// TODO: update hooks to take Authority
 		$user = $services->getUserFactory()->newFromAuthority( $performer );
-		if ( Hooks::runner()->onWatchArticle( $user, $page, $status, $expiry ) ) {
+		if ( Hooks::runner()->onWatchArticle( $user, $wikiPage, $status, $expiry ) ) {
 			$status = Status::newGood();
 			$user->addWatch( $title, $checkRights, $expiry );
-			Hooks::runner()->onWatchArticleComplete( $user, $page );
+			Hooks::runner()->onWatchArticleComplete( $user, $wikiPage );
 		}
 
 		return $status;
@@ -319,26 +324,29 @@ class WatchAction extends FormAction {
 
 	/**
 	 * Unwatch a page
-	 * @since 1.22 Returns Status
-	 * @param Title $title Page to watch/unwatch
+	 *
+	 * @param PageIdentity $pageIdentity Page to watch/unwatch
 	 * @param Authority $performer User who is watching/unwatching
+	 *
 	 * @return Status
+	 * @since 1.22 Returns Status
 	 */
-	public static function doUnwatch( Title $title, Authority $performer ) {
+	public static function doUnwatch( PageIdentity $pageIdentity, Authority $performer ) {
 		$services = MediaWikiServices::getInstance();
 		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
-		$page = $services->getWikiPageFactory()->newFromTitle( $title );
+		$wikiPage = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
+		$title = $wikiPage->getTitle();
 
 		$status = Status::newFatal( 'hookaborted' );
 		// TODO: update hooks to take Authority
 		$user = $services->getUserFactory()->newFromAuthority( $performer );
-		if ( Hooks::runner()->onUnwatchArticle( $user, $page, $status ) ) {
+		if ( Hooks::runner()->onUnwatchArticle( $user, $wikiPage, $status ) ) {
 			$status = Status::newGood();
 			$user->removeWatch( $title );
-			Hooks::runner()->onUnwatchArticleComplete( $user, $page );
+			Hooks::runner()->onUnwatchArticleComplete( $user, $wikiPage );
 		}
 
 		return $status;
@@ -347,13 +355,13 @@ class WatchAction extends FormAction {
 	/**
 	 * Get token to watch (or unwatch) a page for a user
 	 *
-	 * @param Title $title Title object of page to watch
+	 * @param PageIdentity $page Title object of page to watch
 	 * @param User $user User for whom the action is going to be performed
 	 * @param string $action Optionally override the action to 'unwatch'
 	 * @return string Token
 	 * @since 1.18
 	 */
-	public static function getWatchToken( Title $title, User $user, $action = 'watch' ) {
+	public static function getWatchToken( PageIdentity $page, User $user, $action = 'watch' ) {
 		if ( $action != 'unwatch' ) {
 			$action = 'watch';
 		}
