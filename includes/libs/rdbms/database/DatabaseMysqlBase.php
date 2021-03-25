@@ -1415,15 +1415,15 @@ abstract class DatabaseMysqlBase extends Database {
 
 		if ( $errno === 1205 ) { // lock wait timeout
 			// Note that this is uncached to avoid stale values of SET is used
-			$row = $this->selectRow(
-				false,
-				[ 'innodb_rollback_on_timeout' => '@@innodb_rollback_on_timeout' ],
-				[],
-				__METHOD__
+			$res = $this->query(
+				"SELECT @@innodb_rollback_on_timeout AS Value",
+				__METHOD__,
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 			);
+			$row = $res ? $res->fetchObject() : false;
 			// https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
 			// https://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html
-			return $row->innodb_rollback_on_timeout ? false : true;
+			return ( $row && !$row->Value );
 		}
 
 		// See https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
