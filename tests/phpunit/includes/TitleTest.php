@@ -787,6 +787,38 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers Title::isValidRedirectTarget
+	 * @dataProvider provideIsValidRedirectTarget
+	 * @param Title $title
+	 * @param bool $isValid
+	 */
+	public function testIsValidRedirectTarget( Title $title, $isValid ) {
+		$iwLookup = $this->createMock( InterwikiLookup::class );
+		$iwLookup->method( 'isValidInterwiki' )
+			->willReturn( true );
+
+		$this->setService(
+			'InterwikiLookup',
+			$iwLookup
+		);
+
+		$this->assertEquals( $isValid, $title->isValidRedirectTarget(), $title->getFullText() );
+	}
+
+	public static function provideIsValidRedirectTarget() {
+		return [
+			[ Title::makeTitle( NS_MAIN, '' ), false ],
+			[ Title::makeTitle( NS_MAIN, '', 'test' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Foo', 'test' ), true ],
+			[ Title::makeTitle( NS_MAIN, '<>' ), false ],
+			[ Title::makeTitle( NS_MAIN, '_' ), false ],
+			[ Title::makeTitle( NS_MAIN, 'Test', '', 'acme' ), true ],
+			[ Title::makeTitle( NS_SPECIAL, 'UserLogout' ), false ],
+			[ Title::makeTitle( NS_SPECIAL, 'RecentChanges' ), true ],
+		];
+	}
+
+	/**
 	 * @covers Title::canExist
 	 * @dataProvider provideCanExist
 	 * @param Title $title
