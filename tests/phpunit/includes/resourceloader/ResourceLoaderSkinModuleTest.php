@@ -452,6 +452,7 @@ CSS
 			],
 			[
 				[
+					'content-parser-output' => false,
 					'elements' => true,
 					'normalize' => true,
 					'toc' => false,
