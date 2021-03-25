@@ -2523,12 +2523,7 @@ class EditPage implements IEditObject {
 		// too large to finish in time (T259564)
 		WatchAction::doWatchOrUnwatch( $watch, $title, $performer, $watchlistExpiry );
 
-		// Add a job to purge expired watchlist items. Jobs will only be added at the rate
-		// specified by $wgWatchlistPurgeRate, which by default is every tenth edit.
-		if ( $this->watchlistExpiryEnabled ) {
-			$purgeRate = $this->getContext()->getConfig()->get( 'WatchlistPurgeRate' );
-			$this->watchedItemStore->enqueueWatchlistExpiryJob( $purgeRate );
-		}
+		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
 	}
 
 	/**

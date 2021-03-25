@@ -702,7 +702,10 @@ because of Phabricator reports.
 * MWTidy::tidy() is deprecated. Use MediaWikiServices::getTidy()-tidy() instead.
 * TidyDriverBase::supportsValidate() is deprecated; it has always returned
   false since 1.33.
-* WatchedItem::getUser hard-deprecated in favor of ::getUserIdentity since 1.36
+* WatchedItem::getUser hard-deprecated in favor of ::getUserIdentity.
+* WatchedItemStoreInterface::enqueueWatchlistExpiryJob was hard deprecated in
+  favor of the new method maybeEnqueueWatchlistExpiryJob that takes care of
+  relevant configuration checks.
 * LogEntry::getPerformer() and its implementations have been hard-deprecated, in
   favor of ::getPerformerIdentity().
 * AuthManager::singleton(), deprecated in 1.35, is hard deprecated. Use

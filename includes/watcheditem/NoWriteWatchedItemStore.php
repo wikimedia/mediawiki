@@ -169,6 +169,11 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	}
 
 	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void {
+		wfDeprecated( __METHOD__, '1.36' );
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
+	}
+
+	public function maybeEnqueueWatchlistExpiryJob(): void {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
