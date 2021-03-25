@@ -271,6 +271,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 *     * titleFactory
 	 *     * expiryEnabled
 	 *     * maxExpiryDuration
+	 *     * watchlistPurgeRate
 	 * @return WatchedItemStore
 	 */
 	private function newWatchedItemStore( array $mocks = [] ) : WatchedItemStore {
@@ -278,6 +279,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			'UpdateRowsPerQuery' => 1000,
 			'WatchlistExpiry' => $mocks['expiryEnabled'] ?? true,
 			'WatchlistExpiryMaxDuration' => $mocks['maxExpiryDuration'] ?? null,
+			'WatchlistPurgeRate' => $mocks['watchlistPurgeRate'] ?? 0.1,
 		] );
 
 		$db = $mocks['db'] ?? $this->getMockDb();
