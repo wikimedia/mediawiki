@@ -958,7 +958,8 @@ return [
 		$options = new ServiceOptions( PageStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig() );
 		return new PageStore(
 			$options,
-			$services->getDBLoadBalancer()
+			$services->getDBLoadBalancer(),
+			$services->getNamespaceInfo()
 		);
 	},
 
