@@ -399,8 +399,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 			/** @var Title[] $titles */
 			$titles = [];
 			foreach ( $watchedItems as $watchedItem ) {
-				$namespace = $watchedItem->getLinkTarget()->getNamespace();
-				$dbKey = $watchedItem->getLinkTarget()->getDBkey();
+				$namespace = $watchedItem->getTarget()->getNamespace();
+				$dbKey = $watchedItem->getTarget()->getDBkey();
 				$title = Title::makeTitleSafe( $namespace, $dbKey );
 
 				if ( $this->checkTitle( $title, $namespace, $dbKey )
@@ -444,8 +444,8 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$context = $this->getContext();
 
 		foreach ( $watchedItems as $watchedItem ) {
-			$namespace = $watchedItem->getLinkTarget()->getNamespace();
-			$dbKey = $watchedItem->getLinkTarget()->getDBkey();
+			$namespace = $watchedItem->getTarget()->getNamespace();
+			$dbKey = $watchedItem->getTarget()->getDBkey();
 			$lb->add( $namespace, $dbKey );
 			if ( !$this->nsInfo->isTalk( $namespace ) ) {
 				$titles[$namespace][$dbKey] = $watchedItem->getExpiryInDaysText( $context );

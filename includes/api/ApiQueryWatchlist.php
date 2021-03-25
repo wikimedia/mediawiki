@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
@@ -198,7 +199,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$usernames = [];
 			foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
 				/** @var WatchedItem $watchedItem */
-				$linkTarget = $watchedItem->getLinkTarget();
+				$linkTarget = $watchedItem->getTarget();
 				if ( $nsInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
 					$usernames[] = $linkTarget->getText();
 				}
@@ -289,7 +290,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 	private function extractOutputData( WatchedItem $watchedItem, array $recentChangeInfo ) {
 		/* Determine the title of the page that has been changed. */
-		$title = Title::newFromLinkTarget( $watchedItem->getLinkTarget() );
+		$target = $watchedItem->getTarget();
+		if ( $target instanceof LinkTarget ) {
+			$title = Title::newFromLinkTarget( $target );
+		} else {
+			$title = Title::castFromPageIdentity( $target );
+		}
 		$user = $this->getUser();
 
 		/* Our output data. */

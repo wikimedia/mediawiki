@@ -233,7 +233,7 @@ class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 		$store = $this->getWatchedItemStore();
 		$items = $store->getWatchedItemsForUser( $user );
 		foreach ( $items as $item ) {
-			$store->removeWatch( $user, $item->getLinkTarget() );
+			$store->removeWatch( $user, $item->getTarget() );
 		}
 	}
 
