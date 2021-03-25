@@ -3,9 +3,12 @@
 namespace MediaWiki\Page;
 
 use DBAccessObjectUtils;
+use EmptyIterator;
+use Iterator;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkTarget;
+use NamespaceInfo;
 use stdClass;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
@@ -17,14 +20,17 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class PageStore implements PageLookup {
 
-	/** @var string|false */
-	private $wikiId;
+	/** @var ServiceOptions */
+	private $options;
 
 	/** @var ILoadBalancer */
 	private $dbLoadBalancer;
 
-	/** @var ServiceOptions */
-	private $options;
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var string|false */
+	private $wikiId;
 
 	/**
 	 * @internal for use by service wiring
@@ -37,18 +43,21 @@ class PageStore implements PageLookup {
 	/**
 	 * @param ServiceOptions $options
 	 * @param ILoadBalancer $dbLoadBalancer
+	 * @param NamespaceInfo $namespaceInfo
 	 * @param false|string $wikiId
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ILoadBalancer $dbLoadBalancer,
+		NamespaceInfo $namespaceInfo,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
-		$this->dbLoadBalancer = $dbLoadBalancer;
-		$this->wikiId = $wikiId;
 		$this->options = $options;
+		$this->dbLoadBalancer = $dbLoadBalancer;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->wikiId = $wikiId;
 	}
 
 	/**
@@ -164,17 +173,12 @@ class PageStore implements PageLookup {
 		[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
 
 		$dbr = $this->getDBConnectionRef( $mode );
-		$queryBuilder = $this->getSelectQueryBuilder( $dbr )
+		$queryBuilder = $this->newSelectQueryBuilder( $dbr )
 			->options( $options )
 			->conds( $conds )
 			->caller( __METHOD__ );
 
-		$row = $queryBuilder->fetchRow();
-
-		if ( !$row ) {
-			return null;
-		}
-		return $this->newPageRecordFromRow( $row );
+		return $queryBuilder->fetchPageRecord();
 	}
 
 	/**
@@ -196,17 +200,12 @@ class PageStore implements PageLookup {
 	}
 
 	/**
-	 * @unstable
+	 * @internal
 	 *
-	 * @param IDatabase|null $db
-	 *
-	 * @return SelectQueryBuilder
+	 * @return string[]
 	 */
-	public function getSelectQueryBuilder( IDatabase $db = null ): SelectQueryBuilder {
-		$db = $db ?: $this->getDBConnectionRef();
-		$queryBuilder = $db->newSelectQueryBuilder();
-		$queryBuilder->table( 'page' );
-		$queryBuilder->fields( [
+	public function getSelectFields(): array {
+		$fields = [
 			'page_id',
 			'page_namespace',
 			'page_title',
@@ -217,11 +216,26 @@ class PageStore implements PageLookup {
 			'page_latest',
 			'page_len',
 			'page_content_model'
-		] );
+		];
 
 		if ( $this->options->get( 'PageLanguageUseDB' ) ) {
-			$queryBuilder->field( 'page_lang' );
+			$fields[] = 'page_lang';
 		}
+
+		return $fields;
+	}
+
+	/**
+	 * @unstable
+	 *
+	 * @param IDatabase|null $db
+	 *
+	 * @return PageSelectQueryBuilder
+	 */
+	public function newSelectQueryBuilder( IDatabase $db = null ): SelectQueryBuilder {
+		$db = $db ?: $this->getDBConnectionRef();
+
+		$queryBuilder = new PageSelectQueryBuilder( $db, $this );
 
 		return $queryBuilder;
 	}
@@ -232,6 +246,28 @@ class PageStore implements PageLookup {
 	 */
 	private function getDBConnectionRef( int $mode = DB_REPLICA ): IDatabase {
 		return $this->dbLoadBalancer->getConnectionRef( $mode, [], $this->wikiId );
+	}
+
+	/**
+	 * Get all subpages of this page.
+	 * Will return an empty list of the namespace doesn't support subpages.
+	 *
+	 * @param PageIdentity $page
+	 * @param int $limit Maximum number of subpages to fetch
+	 *
+	 * @return Iterator<ExistingPageRecord>
+	 */
+	public function getSubpages( PageIdentity $page, int $limit ): Iterator {
+		if ( !$this->namespaceInfo->hasSubpages( $page->getNamespace() ) ) {
+			return new EmptyIterator();
+		}
+
+		return $this->newSelectQueryBuilder()
+			->whereTitlePrefix( $page->getNamespace(), $page->getDBkey() . '/' )
+			->orderByTitle()
+			->options( [ 'LIMIT' => $limit ] )
+			->caller( __METHOD__ )
+			->fetchPageRecords();
 	}
 
 }
