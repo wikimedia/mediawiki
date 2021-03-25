@@ -35,12 +35,6 @@ use User;
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
 abstract class AbstractBlock {
-	/**
-	 * @deprecated since 1.34. Use getReasonComment and setReason instead.
-	 *  Internally, use $reason.
-	 */
-	protected $mReason;
-
 	/** @var CommentStoreComment */
 	protected $reason;
 
