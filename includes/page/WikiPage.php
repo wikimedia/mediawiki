@@ -1195,6 +1195,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @return bool Success
 	 */
 	public function insertRedirectEntry( Title $rt, $oldLatest = null ) {
+		if ( !$rt->isValidRedirectTarget() ) {
+			// Don't put a bad redirect into the database (T278367)
+			return false;
+		}
+
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -1273,6 +1278,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			} else {
 				return false;
 			}
+		} elseif ( !$rt->isValidRedirectTarget() ) {
+			// We somehow got a bad redirect target into the database (T278367)
+			return false;
 		}
 
 		return $rt;

@@ -1931,6 +1931,20 @@ more stuff
 		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
 	}
 
+	/**
+	 * @covers WikiPage::insertRedirectEntry
+	 */
+	public function testInsertRedirectEntry_T278367() {
+		$page = $this->createPage( Title::newFromText( __METHOD__ ), 'A' );
+		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+
+		$targetTitle = Title::newFromText( '#Frag' );
+		$ok = $page->insertRedirectEntry( $targetTitle );
+
+		$this->assertFalse( $ok );
+		$this->assertRedirectTableCountForPageId( $page->getId(), 0 );
+	}
+
 	private function getRow( array $overrides = [] ) {
 		$row = [
 			'page_id' => '44',
