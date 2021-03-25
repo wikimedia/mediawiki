@@ -93,7 +93,6 @@
 		"psy/psysh": "0.10.5",
 		"seld/jsonlint": "1.8.3",
 		"symfony/yaml": "~3.4|~5.1",
-		"wikimedia/avro": "1.9.0",
 		"wikimedia/testing-access-wrapper": "~2.0",
 		"wmde/hamcrest-html-matchers": "^0.1.0"
 	},
@@ -107,8 +106,7 @@
 		"ext-openssl": "Cryptographical functions",
 		"ext-wikidiff2": "Diff accelerator",
 		"monolog/monolog": "Flexible debug logging system",
-		"nmred/kafka-php": "Send debug log events to kafka",
-		"wikimedia/avro": "Binary serialization format used with kafka"
+		"nmred/kafka-php": "Send debug log events to kafka"
 	},
 	"autoload": {
 		"psr-0": {
