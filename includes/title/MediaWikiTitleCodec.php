@@ -22,6 +22,7 @@
  */
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use Wikimedia\IPUtils;
 
 /**
@@ -212,64 +213,99 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $title
 	 *
-	 * @return string $title->getText()
+	 * @return string
 	 */
-	public function getText( LinkTarget $title ) {
-		return $title->getText();
+	public function getText( $title ) {
+		if ( $title instanceof LinkTarget ) {
+			return $title->getText();
+		} elseif ( $title instanceof PageIdentity ) {
+			return strtr( $title->getDBKey(), '_', ' ' );
+		} else {
+			throw new InvalidArgumentException( '$title has invalid type: ' . get_class( $title ) );
+		}
 	}
 
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $title
 	 *
 	 * @return string
 	 * @suppress PhanUndeclaredProperty
 	 */
-	public function getPrefixedText( LinkTarget $title ) {
-		if ( !isset( $title->prefixedText ) ) {
-			$title->prefixedText = $this->formatTitle(
+	public function getPrefixedText( $title ) {
+		if ( $title instanceof LinkTarget ) {
+			if ( !isset( $title->prefixedText ) ) {
+				$title->prefixedText = $this->formatTitle(
+					$title->getNamespace(),
+					$title->getText(),
+					'',
+					$title->getInterwiki()
+				);
+			}
+			return $title->prefixedText;
+		} elseif ( $title instanceof PageIdentity ) {
+			$title->assertWiki( PageIdentity::LOCAL );
+			return $this->formatTitle(
 				$title->getNamespace(),
-				$title->getText(),
-				'',
-				$title->getInterwiki()
+				$this->getText( $title )
 			);
+		} else {
+			throw new InvalidArgumentException( '$title has invalid type: ' . get_class( $title ) );
 		}
-
-		return $title->prefixedText;
 	}
 
 	/**
 	 * @since 1.27
 	 * @see TitleFormatter::getPrefixedDBkey()
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target
 	 * @return string
 	 */
-	public function getPrefixedDBkey( LinkTarget $target ) {
-		return strtr( $this->formatTitle(
-			$target->getNamespace(),
-			$target->getDBkey(),
-			'',
-			$target->getInterwiki()
-		), ' ', '_' );
+	public function getPrefixedDBkey( $target ) {
+		if ( $target instanceof LinkTarget ) {
+			return strtr( $this->formatTitle(
+				$target->getNamespace(),
+				$target->getDBkey(),
+				'',
+				$target->getInterwiki()
+			), ' ', '_' );
+		} elseif ( $target instanceof PageIdentity ) {
+			$target->assertWiki( PageIdentity::LOCAL );
+			return strtr( $this->formatTitle(
+				$target->getNamespace(),
+				$target->getDBkey()
+			), ' ', '_' );
+		} else {
+			throw new InvalidArgumentException( '$title has invalid type: ' . get_class( $target ) );
+		}
 	}
 
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $title
 	 *
 	 * @return string
 	 */
-	public function getFullText( LinkTarget $title ) {
-		return $this->formatTitle(
-			$title->getNamespace(),
-			$title->getText(),
-			$title->getFragment(),
-			$title->getInterwiki()
-		);
+	public function getFullText( $title ) {
+		if ( $title instanceof LinkTarget ) {
+			return $this->formatTitle(
+				$title->getNamespace(),
+				$title->getText(),
+				$title->getFragment(),
+				$title->getInterwiki()
+			);
+		} elseif ( $title instanceof PageIdentity ) {
+			$title->assertWiki( PageIdentity::LOCAL );
+			return $this->formatTitle(
+				$title->getNamespace(),
+				$this->getText( $title )
+			);
+		} else {
+			throw new InvalidArgumentException( '$title has invalid type: ' . get_class( $title ) );
+		}
 	}
 
 	/**
