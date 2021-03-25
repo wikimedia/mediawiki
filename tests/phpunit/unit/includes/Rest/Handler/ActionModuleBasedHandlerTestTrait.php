@@ -18,19 +18,11 @@ use RequestContext;
  * or MediaWikiIntegrationTestCase.
  *
  * @package MediaWiki\Tests\Rest\Handler
+ * @method MockBuilder getMockBuilder(string $className)
  */
 trait ActionModuleBasedHandlerTestTrait {
 
 	use HandlerTestTrait;
-
-	/**
-	 * Expected to be provided by the class, probably inherited from TestCase.
-	 *
-	 * @param string $className
-	 *
-	 * @return MockBuilder
-	 */
-	abstract protected function getMockBuilder( $className ): MockBuilder;
 
 	/**
 	 * @param ApiMain $main

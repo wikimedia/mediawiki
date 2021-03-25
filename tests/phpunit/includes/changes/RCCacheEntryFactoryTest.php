@@ -135,8 +135,22 @@ class RCCacheEntryFactoryTest extends MediaWikiLangTestCase {
 	}
 
 	private function assertValidHTML( $actual ) {
-		// Throws if invalid
-		$doc = \PHPUnit\Util\Xml::load( $actual, /* isHtml */ true );
+		$this->assertNotSame( '', $actual );
+		$document = new DOMDocument;
+
+		$oldUseInternalErrors = libxml_use_internal_errors( true );
+
+		try {
+			$loaded = $document->loadHTML( $actual );
+			$message = '';
+			foreach ( libxml_get_errors() as $error ) {
+				$message .= "\n" . $error->message;
+			}
+
+			$this->assertNotFalse( $loaded, $message ?: 'Invalid for unknown reason' );
+		} finally {
+			libxml_use_internal_errors( $oldUseInternalErrors );
+		}
 	}
 
 	private function assertUserLinks( $user, $cacheEntry ) {
