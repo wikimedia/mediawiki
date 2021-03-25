@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\Database;
 
@@ -65,19 +66,19 @@ class InfoAction extends FormlessAction {
 	 * Clear the info cache for a given Title.
 	 *
 	 * @since 1.22
-	 * @param Title $title Title to clear cache for
+	 * @param PageIdentity $page Title to clear cache for
 	 * @param int|null $revid Revision id to clear
 	 */
-	public static function invalidateCache( Title $title, $revid = null ) {
+	public static function invalidateCache( PageIdentity $page, $revid = null ) {
 		$services = MediaWikiServices::getInstance();
 		if ( !$revid ) {
 			$revision = $services->getRevisionLookup()
-				->getRevisionByTitle( $title, 0, IDBAccessObject::READ_LATEST );
+				->getRevisionByTitle( $page, 0, IDBAccessObject::READ_LATEST );
 			$revid = $revision ? $revision->getId() : null;
 		}
 		if ( $revid !== null ) {
 			$cache = $services->getMainWANObjectCache();
-			$key = self::getCacheKey( $cache, $title, $revid );
+			$key = self::getCacheKey( $cache, $page, $revid );
 			$cache->delete( $key );
 		}
 	}
@@ -898,11 +899,11 @@ class InfoAction extends FormlessAction {
 
 	/**
 	 * @param WANObjectCache $cache
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param int $revId
 	 * @return string
 	 */
-	protected static function getCacheKey( WANObjectCache $cache, Title $title, $revId ) {
-		return $cache->makeKey( 'infoaction', md5( $title->getPrefixedText() ), $revId, self::VERSION );
+	protected static function getCacheKey( WANObjectCache $cache, PageIdentity $page, $revId ) {
+		return $cache->makeKey( 'infoaction', md5( (string)$page ), $revId, self::VERSION );
 	}
 }
