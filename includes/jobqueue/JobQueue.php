@@ -128,15 +128,6 @@ abstract class JobQueue {
 			throw new JobQueueError( "Invalid job queue class '$class'." );
 		}
 
-		if ( !isset( $params['idGenerator'] ) ) {
-			wfDeprecated( __METHOD__ . ' called without "idGenerator" set', '1.35' );
-			$params['idGenerator'] = new GlobalIdGenerator(
-				sys_get_temp_dir(),
-				new EmptyBagOStuff(),
-				'shell_exec'
-			);
-		}
-
 		$obj = new $class( $params );
 		if ( !( $obj instanceof self ) ) {
 			throw new JobQueueError( "Class '$class' is not a " . __CLASS__ . " class." );

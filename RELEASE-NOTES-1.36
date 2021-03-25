@@ -415,6 +415,8 @@ because of Phabricator reports.
 * ProcessCacheLRU class, deprecated in 1.32, has been removed.
 * wfForeignMemcKey(), deprecated in 1.35, has been removed.
 * LoadBalancer::safeWaitForMasterPos(), deprecated in 1.34, has been removed.
+* JobQueue::factory() now requires its `idGenerator` option. The optional
+  nature of this option was deprecated in 1.35.
 * ApiFeedRecentChanges::getFeedObject has been changed to private, and appears
   unused outside of MediaWiki core.
 * Skin::subPageSubtitle() has been changed to private method. Callers should
