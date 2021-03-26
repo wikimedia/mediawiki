@@ -765,6 +765,8 @@ because of Phabricator reports.
 * PermissionManager::groupHasPermission, ::getGroupPermissions and
   ::getGroupsWithPermission were deprecated, use GroupPermissionsLookup
   service instead.
+* WatchedItemStoreInterface now accepts PageIdentity where it accepted
+  LinkTarget, calling with LinkTarget was deprecated.
 * 'movable' attribute has been added to the 'namespaces' property of
   extension.json schema. Extensions that define namespaces can set it to
   `false` to disallow moving pages in the specified namespace. Extensions

@@ -914,8 +914,8 @@ class ApiQueryInfo extends ApiQueryBase {
 		$items = $this->watchedItemStore->loadWatchedItemsBatch( $user, $this->everything );
 
 		foreach ( $items as $item ) {
-			$nsId = $item->getLinkTarget()->getNamespace();
-			$dbKey = $item->getLinkTarget()->getDBkey();
+			$nsId = $item->getTarget()->getNamespace();
+			$dbKey = $item->getTarget()->getDBkey();
 
 			if ( $this->fld_watched ) {
 				$this->watched[$nsId][$dbKey] = true;
