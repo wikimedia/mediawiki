@@ -28,6 +28,7 @@ use MediaWiki\Block\SystemBlock;
 use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
@@ -63,7 +64,7 @@ use Wikimedia\ScopedCallback;
  *
  * @newable in 1.35 only, the constructor is @internal since 1.36
  */
-class User implements Authority, IDBAccessObject, UserIdentity {
+class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact {
 	use ProtectedHookAccessorTrait;
 	use WikiAwareEntityTrait;
 
@@ -4077,7 +4078,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 *
 	 * @return bool
 	 */
-	public function isEmailConfirmed() {
+	public function isEmailConfirmed(): bool {
 		global $wgEmailAuthentication;
 		$this->load();
 		// Avoid PHP 7.1 warning of passing $this by reference

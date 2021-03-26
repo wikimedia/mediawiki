@@ -152,6 +152,7 @@ class AutoLoader {
 			'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
 			'MediaWiki\\Logger\\' => __DIR__ . '/debug/logger/',
 			'MediaWiki\\Logger\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
+			'MediaWiki\\Mail\\' => __DIR__ . '/mail/',
 			'MediaWiki\\Page\\' => __DIR__ . '/page/',
 			'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
 			'MediaWiki\\ResourceLoader\\' => __DIR__ . '/resourceloader/',
