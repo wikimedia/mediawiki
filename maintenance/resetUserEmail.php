@@ -53,7 +53,7 @@ class ResetUserEmail extends Maintenance {
 		}
 
 		$email = $this->getArg( 1 );
-		if ( !Sanitizer::validateEmail( $email ) ) {
+		if ( $email !== '' && !Sanitizer::validateEmail( $email ) ) {
 			$this->fatalError( "Error: email '$email' is not valid\n" );
 		}
 
