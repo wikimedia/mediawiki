@@ -259,12 +259,16 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @return ParserOutput
 	 */
 	private function getSlotParserOutputUncached( Content $content, $withHtml ) {
-		return $content->getParserOutput(
+		$parserOutput = $content->getParserOutput(
 			$this->title,
 			$this->revision->getId(),
 			$this->options,
 			$withHtml
 		);
+		// Save the rev_id and timestamp so that we don't have to load the revision row on view
+		$parserOutput->setCacheRevisionId( $this->revision->getId() );
+		$parserOutput->setTimestamp( $this->revision->getTimestamp() );
+		return $parserOutput;
 	}
 
 	/**

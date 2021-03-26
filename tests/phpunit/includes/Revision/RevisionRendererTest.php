@@ -385,7 +385,12 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $rev, $rr->getRevision() );
 		$this->assertSame( $options, $rr->getOptions() );
 
-		$html = $rr->getRevisionParserOutput()->getText();
+		$parserOutput = $rr->getRevisionParserOutput();
+		// Assert parser output recorded timestamp and parsed rev_id
+		$this->assertSame( $rev->getId(), $parserOutput->getCacheRevisionId() );
+		$this->assertSame( $rev->getTimestamp(), $parserOutput->getTimestamp() );
+
+		$html = $parserOutput->getText();
 
 		// Suppressed content should be visible in raw mode
 		$this->assertStringContainsString( 'page:' . __CLASS__, $html );
