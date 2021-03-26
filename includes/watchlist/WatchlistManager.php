@@ -36,6 +36,7 @@ use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use NamespaceInfo;
 use ReadOnlyMode;
+use TitleValue;
 use WatchedItemStoreInterface;
 
 /**
@@ -324,6 +325,149 @@ class WatchlistManager {
 		return true;
 	}
 
+	/**
+	 * Check if the page is watched by the user.
+	 * @since 1.37
+	 * @param UserIdentity $userIdentity
+	 * @param PageIdentity $target
+	 * @return bool
+	 */
+	public function isWatchedIgnoringRights( UserIdentity $userIdentity, PageIdentity $target ) : bool {
+		if ( $this->isWatchable( $target ) ) {
+			return $this->watchedItemStore->isWatched( $userIdentity, $target );
+		}
+		return false;
+	}
+
+	/**
+	 * Check if the page is watched by the user and the user has permission to view their
+	 * watchlist.
+	 * @since 1.37
+	 * @param Authority $performer
+	 * @param PageIdentity $target
+	 * @return bool
+	 */
+	public function isWatched( Authority $performer, PageIdentity $target ) : bool {
+		if ( $performer->isAllowed( 'viewmywatchlist' ) ) {
+			return $this->isWatchedIgnoringRights( $performer->getUser(), $target );
+		}
+		return false;
+	}
+
+	/**
+	 * Check if the article is temporarily watched by the user.
+	 * @since 1.37
+	 * @param UserIdentity $userIdentity
+	 * @param PageIdentity $target
+	 * @return bool
+	 */
+	public function isTempWatchedIgnoringRights( UserIdentity $userIdentity, PageIdentity $target ) : bool {
+		if ( $this->isWatchable( $target ) ) {
+			return $this->watchedItemStore->isTempWatched( $userIdentity, $target );
+		}
+		return false;
+	}
+
+	/**
+	 * Check if the page is temporarily watched by the user and the user has permission to view
+	 * their watchlist.
+	 * @since 1.37
+	 * @param Authority $performer
+	 * @param PageIdentity $target
+	 * @return bool
+	 */
+	public function isTempWatched( Authority $performer, PageIdentity $target ) : bool {
+		if ( $performer->isAllowed( 'viewmywatchlist' ) ) {
+			return $this->isTempWatchedIgnoringRights( $performer->getUser(), $target );
+		}
+		return false;
+	}
+
+	/**
+	 * Watch a page.
+	 * @since 1.37
+	 * @param UserIdentity $user
+	 * @param PageIdentity $target
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 */
+	public function addWatchIgnoringRights(
+		UserIdentity $user,
+		PageIdentity $target,
+		?string $expiry = null
+	) {
+		if ( !$this->isWatchable( $target ) ) {
+			return;
+		}
+
+		$linkTarget = TitleValue::castPageToLinkTarget( $target );
+
+		$this->watchedItemStore->addWatch( $user, $this->nsInfo->getSubjectPage( $linkTarget ), $expiry );
+		if ( $this->nsInfo->canHaveTalkPage( $linkTarget ) ) {
+			$this->watchedItemStore->addWatch( $user, $this->nsInfo->getTalkPage( $linkTarget ), $expiry );
+		}
+
+		// eventually user_touched should be factored out of User and this should be replaced
+		$this->userFactory->newFromUserIdentity( $user )->invalidateCache();
+	}
+
+	/**
+	 * Watch a page if the user has permission to edit their watchlist.
+	 * @since 1.37
+	 * @param Authority $performer
+	 * @param PageIdentity $target
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 */
+	public function addWatch(
+		Authority $performer,
+		PageIdentity $target,
+		?string $expiry = null
+	) {
+		if ( $performer->isAllowed( 'editmywatchlist' ) ) {
+			$this->addWatchIgnoringRights( $this->userFactory->newFromAuthority( $performer ), $target, $expiry );
+		}
+	}
+
+	/**
+	 * Stop watching a page if the user has permission to edit their watchlist.
+	 * @since 1.37
+	 * @param UserIdentity $user
+	 * @param PageIdentity $target
+	 */
+	public function removeWatchIgnoringRights(
+		UserIdentity $user,
+		PageIdentity $target
+	) {
+		if ( !$this->isWatchable( $target ) ) {
+			return;
+		}
+
+		$linkTarget = TitleValue::castPageToLinkTarget( $target );
+
+		$this->watchedItemStore->removeWatch( $user, $this->nsInfo->getSubjectPage( $linkTarget ) );
+		if ( $this->nsInfo->canHaveTalkPage( $linkTarget ) ) {
+			$this->watchedItemStore->removeWatch( $user, $this->nsInfo->getTalkPage( $linkTarget ) );
+		}
+
+		// eventually user_touched should be factored out of User and this should be replaced
+		$this->userFactory->newFromUserIdentity( $user )->invalidateCache();
+	}
+
+	/**
+	 * Stop watching a page if the user has permission to edit their watchlist.
+	 * @since 1.37
+	 * @param Authority $performer
+	 * @param PageIdentity $target
+	 */
+	public function removeWatch(
+		Authority $performer,
+		PageIdentity $target
+	) {
+		if ( $performer->isAllowed( 'editmywatchlist' ) ) {
+			$this->removeWatchIgnoringRights( $this->userFactory->newFromAuthority( $performer ), $target );
+		}
+	}
 }
 
 /**

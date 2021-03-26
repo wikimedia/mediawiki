@@ -2063,7 +2063,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		$user->addWatch( $articleTitle, true, '2 weeks' );
 		$this->assertTrue(
-			$user->isTempWatched( $articleTitle, 'The article has been tempoarily watched' )
+			$user->isTempWatched( $articleTitle ), 'The article has been tempoarily watched'
 		);
 
 		$specialTitle = Title::makeTitle( NS_SPECIAL, 'Version' );

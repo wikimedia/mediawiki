@@ -94,6 +94,8 @@ because of Phabricator reports.
 * Deprecated passing LinkTarget to
   WatchlistManager::clearTitleUserNotifications() and
   WatchlistManager::getTitleNotificationTimestamp(). Pass PageIdentity instead.
+* Deprecated User::isWatched(), User::isTempWatched(), User::addWatch(), and
+  User::removeWatch(). Use corresponding methods in WatchlistManager instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
 
