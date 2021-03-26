@@ -30,6 +30,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ProperPageIdentity;
 use Wikimedia\Assert\Assert;
@@ -328,17 +329,33 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return Title|null
 	 */
 	public static function castFromPageIdentity( ?PageIdentity $pageIdentity ) : ?Title {
-		if ( !$pageIdentity ) {
+		return self::castFromPageReference( $pageIdentity );
+	}
+
+	/**
+	 * Return a Title for a given Reference. If $pageReference is a Title,
+	 * that Title is returned unchanged. If $pageReference is null, null
+	 * is returned.
+	 * @since 1.37
+	 *
+	 * @param PageReference|null $pageReference
+	 * @return Title|null
+	 */
+	public static function castFromPageReference( ?PageReference $pageReference ) : ?Title {
+		if ( !$pageReference ) {
 			return null;
 		}
 
-		if ( $pageIdentity instanceof Title ) {
-			return $pageIdentity;
+		if ( $pageReference instanceof Title ) {
+			return $pageReference;
 		}
 
-		$pageIdentity->assertWiki( self::LOCAL );
-		$title = self::makeTitle( $pageIdentity->getNamespace(), $pageIdentity->getDBkey() );
-		$title->resetArticleID( $pageIdentity->getId() );
+		$pageReference->assertWiki( self::LOCAL );
+		$title = self::makeTitle( $pageReference->getNamespace(), $pageReference->getDBkey() );
+
+		if ( $pageReference instanceof PageIdentity ) {
+			$title->resetArticleID( $pageReference->getId() );
+		}
 		return $title;
 	}
 
@@ -3900,25 +3917,22 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * @see PageIdentity::isSamePageAs()
+	 * @see PageReference::isSamePageAs()
 	 * @since 1.36
 	 *
-	 * @param PageIdentity $other
+	 * @param PageReference $other
 	 * @return bool
 	 */
-	public function isSamePageAs( PageIdentity $other ) {
+	public function isSamePageAs( PageReference $other ): bool {
 		// NOTE: keep in sync with PageIdentityValue::isSamePageAs()!
 
-		if ( $other->getWikiId() !== $this->getWikiId()
-			|| $other->getId() !== $this->getId() ) {
+		if ( $other->getWikiId() !== $this->getWikiId() ) {
 			return false;
 		}
 
-		if ( $this->getId() === 0 ) {
-			if ( $other->getNamespace() !== $this->getNamespace()
-				|| $other->getDBkey() !== $this->getDBkey() ) {
-				return false;
-			}
+		if ( $other->getNamespace() !== $this->getNamespace()
+			|| $other->getDBkey() !== $this->getDBkey() ) {
+			return false;
 		}
 
 		return true;

@@ -24,6 +24,7 @@ namespace MediaWiki\Tests\Unit\Page;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWikiUnitTestCase;
 use RuntimeException;
@@ -169,11 +170,11 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 
 		yield [
 			new PageStoreRecord( (object)$row, PageIdentity::LOCAL ),
-			'#7 [0:Test]'
+			'[0:Test]'
 		];
 		yield [
 			new PageStoreRecord( (object)( [ 'page_namespace' => 200 ] + $row ), 'codewiki' ),
-			'#7@codewiki [200:Test]'
+			'[200:Test]@codewiki'
 		];
 	}
 
@@ -224,7 +225,7 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideIsSamePageAs
 	 */
-	public function testIsSamePageAs( PageIdentity $a, PageIdentity $b, $expected ) {
+	public function testIsSamePageAs( PageReference $a, PageReference $b, $expected ) {
 		$this->assertSame( $expected, $a->isSamePageAs( $b ) );
 		$this->assertSame( $expected, $b->isSamePageAs( $a ) );
 	}

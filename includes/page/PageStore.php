@@ -136,29 +136,33 @@ class PageStore implements PageLookup {
 	}
 
 	/**
-	 * @param PageIdentity $page
+	 * @param PageReference $page
 	 * @param int $queryFlags
 	 *
 	 * @return ExistingPageRecord|null The page's PageRecord, or null if the page was not found.
 	 */
-	public function getPageByIdentity(
-		PageIdentity $page,
+	public function getPageByReference(
+		PageReference $page,
 		int $queryFlags = self::READ_NORMAL
 	): ?ExistingPageRecord {
-		Assert::parameter( $page->canExist(), '$page', 'Mut be a proper page' );
-
 		$page->assertWiki( $this->wikiId );
+		Assert::parameter( $page->getNamespace() >= 0, '$page', 'must not be virtual' );
 
 		if ( $page instanceof ExistingPageRecord && $queryFlags === self::READ_NORMAL ) {
 			return $page;
 		}
 
-		if ( !$page->exists() ) {
-			return null;
+		if ( $page instanceof PageIdentity ) {
+			Assert::parameter( $page->canExist(), '$page', 'Mut be a proper page' );
+
+			if ( $page->exists() ) {
+				// if we have a page ID, use it
+				$id = $page->getId( $this->wikiId );
+				return $this->getPageById( $id );
+			}
 		}
 
-		$id = $page->getId( $this->wikiId );
-		return $this->getPageById( $id );
+		return $this->getPageByName( $page->getNamespace(), $page->getDBkey() );
 	}
 
 	/**

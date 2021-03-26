@@ -22,6 +22,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 
 /**
  * Creates Title objects.
@@ -69,6 +70,16 @@ class TitleFactory {
 	 */
 	public function castFromPageIdentity( ?PageIdentity $pageIdentity ) : ?Title {
 		return Title::castFromPageIdentity( $pageIdentity );
+	}
+
+	/**
+	 * @see Title::castFromPageReference
+	 * @since 1.37
+	 * @param PageReference|null $pageReference
+	 * @return Title|null
+	 */
+	public function castFromPageReference( ?PageReference $pageReference ) : ?Title {
+		return Title::castFromPageReference( $pageReference );
 	}
 
 	/**
