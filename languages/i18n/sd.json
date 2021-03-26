@@ -265,7 +265,6 @@
 	"thisisdeleted": "$1 کي ڏسندئو يا بحاليندئو؟",
 	"viewdeleted": "$1 ڏسندئو؟",
 	"restorelink": "{{PLURAL:$1|هڪڙي ڊاٿل سنوار|$1 ڊاٿل سنوارون}}",
-	"feedlinks": "روان رسد:",
 	"site-rss-feed": "$1 آرايسايس روان رسد",
 	"site-atom-feed": "$1 اڻو روان رسد",
 	"page-rss-feed": "\"$1\" RSS رسد",

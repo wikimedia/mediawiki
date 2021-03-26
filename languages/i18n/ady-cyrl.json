@@ -250,7 +250,6 @@
 	"thisisdeleted": "Еплъ е зэкIэдзэжь $1?",
 	"viewdeleted": "Еплъ $1?",
 	"restorelink": "{{PLURAL:$1|зы еIэзэн тегъэкIыгъ|$1 еIэзэн тегъэкIыгъэхэр}}",
-	"feedlinks": "Теплъэр мифэд:",
 	"feed-invalid": "КIэтхакIэ каналым и типыр къуанчэ",
 	"feed-unavailable": "Синдикацие чэзыухэр щыIэп",
 	"site-rss-feed": "$1 RSS чэзыу",

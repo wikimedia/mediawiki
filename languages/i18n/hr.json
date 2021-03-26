@@ -310,7 +310,6 @@
 	"thisisdeleted": "Vidi ili vrati $1?",
 	"viewdeleted": "Vidi $1?",
 	"restorelink": "{{PLURAL:$1|$1 pobrisanu izmjenu|$1 pobrisane izmjene|$1 pobrisanih izmjena}}",
-	"feedlinks": "Izvor:",
 	"feed-invalid": "Tip izvora nije valjan.",
 	"feed-unavailable": "RSS izvori nisu dostupni",
 	"site-rss-feed": "$1 RSS izvor",

@@ -344,7 +344,6 @@
 	"thisisdeleted": "Lihat atau kembalikan $1?",
 	"viewdeleted": "Lihat $1?",
 	"restorelink": "{{PLURAL:$1|$1 suntingan}} yang telah dihapus",
-	"feedlinks": "Umpan:",
 	"feed-invalid": "Tipe permintaan umpan tidak tepat.",
 	"feed-unavailable": "Umpan sindikasi tidak tersedia",
 	"site-rss-feed": "Umpan RSS $1",

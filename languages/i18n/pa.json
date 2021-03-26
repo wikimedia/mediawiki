@@ -279,7 +279,6 @@
 	"thisisdeleted": "$1 ਵੇਖੋ ਜਾਂ ਮੁੜ ਸਟੋਰ ਕਰੋ",
 	"viewdeleted": "$1 ਵੇਖਣੀਆਂ ਹਨ?",
 	"restorelink": "{{PLURAL:$1|ਇਕ ਮਿਟਾਈ ਹੋਈ ਸੋਧ|$1 ਮਿਟਾਈਆਂ ਹੋਈਆਂ ਸੋਧਾਂ}}",
-	"feedlinks": "ਫੀਡ:",
 	"feed-invalid": "ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਫ਼ੀਡ ਦੀ ਗ਼ਲਤ ਕਿਸਮ",
 	"feed-unavailable": "ਸਿੰਡੀਕੇਸ਼ਨ ਫ਼ੀਡਾਂ ਉਪਲਬਧ ਨਹੀਂ",
 	"site-rss-feed": "$1 RSS ਫੀਡ",

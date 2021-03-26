@@ -311,7 +311,6 @@
 	"thisisdeleted": "Vizualizare sau recuperare $1?",
 	"viewdeleted": "Vizualizați $1?",
 	"restorelink": "{{PLURAL:$1|o modificare ștearsă|$1 modificări șterse|$1 de modificări șterse}}",
-	"feedlinks": "Întreținere:",
 	"feed-invalid": "Tip de abonament invalid",
 	"feed-unavailable": "Nu sunt disponibile fluxuri web",
 	"site-rss-feed": "$1 Abonare RSS",

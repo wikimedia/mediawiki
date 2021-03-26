@@ -273,7 +273,6 @@
 	"thisisdeleted": "A bheil thu airson $1 a shealltainn no aiseag?",
 	"viewdeleted": "A bheil thu airson $1 a shealltainn?",
 	"restorelink": "$1 {{PLURAL:$1|deasachadh|dheasachadh|deasachaidhean|deasachadh}} a chaidh a sguabadh às",
-	"feedlinks": "Inbhir:",
 	"feed-invalid": "Seòrsa mì-dhligheach de dh'fho-sgrìobhadh inbhir.",
 	"feed-unavailable": "Chan eil inbhirean co-bhanntachd ri fhaighinn",
 	"site-rss-feed": "$1 Inbhir RSS",

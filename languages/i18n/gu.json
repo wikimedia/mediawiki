@@ -294,7 +294,6 @@
 	"thisisdeleted": "જુઓ અથવા મૂળરૂપે ફેરવો $1?",
 	"viewdeleted": "$1 જોવું છે?",
 	"restorelink": "{{PLURAL:$1|એક ભુસીનાખેલો ફેરફાર|$1 ભુસીનાખેલા ફેરફારો}}",
-	"feedlinks": "ફીડ:",
 	"feed-invalid": "અયોગ્ય સબસ્ક્રીપ્સન ફીડ પ્રકાર.",
 	"feed-unavailable": " સંલગ્ન માહિતીની અપૂરાતિ મોજૂદ નથી",
 	"site-rss-feed": "$1 RSS ફીડ",

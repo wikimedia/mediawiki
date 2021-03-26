@@ -287,7 +287,6 @@
 	"thisisdeleted": "$1 চাওক বা সলনি কৰক?",
 	"viewdeleted": "$1 চাওক?",
 	"restorelink": "{{PLURAL:$1| এটা বিলুপ্ত সম্পাদনা|$1 টা বিলুপ্ত সম্পাদনা}}",
-	"feedlinks": "ফিড:",
 	"feed-invalid": "অবৈধ গ্ৰাহক ফিড প্ৰকাৰ",
 	"feed-unavailable": "চিণ্ডিকেশ্যন ফিড মজুত নাই",
 	"site-rss-feed": "$1 আৰ-এচ-এচ ফীড",

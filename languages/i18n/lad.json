@@ -246,7 +246,6 @@
 	"thisisdeleted": "Ver o restorar $1?",
 	"viewdeleted": "Desea ver $1?",
 	"restorelink": "{{PLURAL:$1|un edisyon efasada|$1 edisyones efasadas}}",
-	"feedlinks": "Kanal:",
 	"feed-invalid": "Tipo de kanal de subskripsyon es invalido.",
 	"feed-unavailable": "Kanales de subskripsyon no estan disponibles",
 	"site-rss-feed": "Fuente de RSS de $1",

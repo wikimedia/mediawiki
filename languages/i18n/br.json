@@ -285,7 +285,6 @@
 	"thisisdeleted": "Diskouez pe diziverkañ $1 ?",
 	"viewdeleted": "Gwelet $1?",
 	"restorelink": "{{PLURAL:$1|ur c'hemm diverket|$1 kemm diverket}}",
-	"feedlinks": "Lanv :",
 	"feed-invalid": "Seurt lanv direizh.",
 	"feed-unavailable": "N'haller ket implijout al lanvadoù koumanatiñ",
 	"site-rss-feed": "Lanv RSS evit $1",

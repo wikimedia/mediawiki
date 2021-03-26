@@ -348,7 +348,6 @@
 	"thisisdeleted": "$1 문서를 보거나 복구하시겠습니까?",
 	"viewdeleted": "$1 문서를 보겠습니까?",
 	"restorelink": "{{PLURAL:$1|삭제된 편집 한 개|삭제된 편집 $1개}}",
-	"feedlinks": "피드:",
 	"feed-invalid": "잘못된 구독 피드 방식입니다.",
 	"feed-unavailable": "피드 배달을 사용할 수 없습니다",
 	"site-rss-feed": "$1 RSS 피드",

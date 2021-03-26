@@ -223,7 +223,6 @@
 	"thisisdeleted": "$1 polloi vo porot hadd?",
 	"viewdeleted": "$1 polloi?",
 	"restorelink": "{{PLURAL:$1|Ek kadun udoil'lo bodol|$1 kadun udoil'le bodol}}",
-	"feedlinks": "Purvoi:",
 	"feed-invalid": "Chukichem suscribcao purvoichem prokar",
 	"site-rss-feed": "$1 RSS purvoi",
 	"site-atom-feed": "$1 Atom purvoi",

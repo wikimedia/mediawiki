@@ -226,7 +226,6 @@
 	"thisisdeleted": "Lawen o ibalik $1?",
 	"viewdeleted": "Lon ya ing $1?",
 	"restorelink": "{{PLURAL:$1|metung a edit a mebura|$1 edit a mebura}}",
-	"feedlinks": "I-feed:",
 	"feed-invalid": "E ustung uri ning subscription feed.",
 	"feed-unavailable": "Alang syndication feed king {{SITENAME}}",
 	"site-rss-feed": "RSS Feed king $1",

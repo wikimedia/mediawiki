@@ -267,7 +267,6 @@
 	"thisisdeleted": "Deleng apa mbalekna $1?",
 	"viewdeleted": "Ndeleng $1?",
 	"restorelink": "{{PLURAL:$1|siji suntingan|$1 suntingan}} sing wis dibusak",
-	"feedlinks": "Umpan:",
 	"feed-invalid": "Tipe penjalukan umpan ora bener.",
 	"feed-unavailable": "Umpan sindikasi (''syndication feeds'') ora disediakna",
 	"site-rss-feed": "$1 ''RSS Feed''",

@@ -268,7 +268,6 @@
 	"thisisdeleted": "Näytä tai palauta $1?",
 	"viewdeleted": "Näytä $1?",
 	"restorelink": "{{PLURAL:$1|yksi poisotettu mookkaus|$1 poisotettua mookkausta}}",
-	"feedlinks": "Syötheet:",
 	"feed-invalid": "Virheellinen syötetyyppi.",
 	"feed-unavailable": "Verkkosyötteet eivät ole saatavila.",
 	"site-rss-feed": "$1-RSS-syöte",

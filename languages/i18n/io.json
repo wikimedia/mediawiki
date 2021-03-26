@@ -280,7 +280,6 @@
 	"thisisdeleted": "Ka vidar o restaurar $1?",
 	"viewdeleted": "Vidar $1?",
 	"restorelink": "{{PLURAL:$1|1 redakto efacita|$1 redakti efacita}}",
-	"feedlinks": "Fonto RSS:",
 	"feed-invalid": "Tipo di fonto RSS nevalida",
 	"feed-unavailable": "Abonata publikaji ne esas disponebla",
 	"site-rss-feed": "$1 RSS Provizajo",

@@ -383,7 +383,6 @@
 	"thisisdeleted": "檢視或還原$1？",
 	"viewdeleted": "檢視 $1？",
 	"restorelink": "$1 個已刪除的編輯",
-	"feedlinks": "訂閱：",
 	"feed-invalid": "無效的訂閱 Feed 類型。",
 	"feed-unavailable": "目前未提供 RSS 或 Atom",
 	"site-rss-feed": "$1 的 RSS 來源",

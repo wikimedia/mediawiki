@@ -293,7 +293,6 @@
 	"thisisdeleted": "Endurvekja eða skoða $1?",
 	"viewdeleted": "Skoða $1?",
 	"restorelink": "$1 {{PLURAL:$1|eydd breyting|eyddar breytingar}}",
-	"feedlinks": "Streymi:",
 	"feed-invalid": "Röng tegund áskriftarstreymis.",
 	"feed-unavailable": "Streymi frá netveitum eru ekki fáanleg",
 	"site-rss-feed": "$1 RSS-streymi",

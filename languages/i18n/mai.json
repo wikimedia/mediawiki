@@ -287,7 +287,6 @@
 	"thisisdeleted": "$1 देखी वा फेरसँ आनी?",
 	"viewdeleted": "$1 के देखाबी?",
 	"restorelink": "{{PLURAL:$1|एकटा मेटाएल सम्पादन|$1 मेटाएल सम्पादनसभ}}",
-	"feedlinks": "सूचक:",
 	"feed-invalid": "अमान्य सूचक प्रकार मासुल",
 	"feed-unavailable": "अधिकृत सूचक उपलब्ध नै अछि",
 	"site-rss-feed": "$1 आर.एस.एस. सूचक",

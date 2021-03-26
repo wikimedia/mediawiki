@@ -248,7 +248,6 @@
 	"thisisdeleted": "Breathnaigh nó cuir ar ais $1?",
 	"viewdeleted": "Féach ar $1?",
 	"restorelink": "{{PLURAL:$1|athrú amháin scriosta|$1 athrú scriosta}}",
-	"feedlinks": "Fotha:",
 	"feed-invalid": "Cineál liostáil fotha neamhbhailí.",
 	"feed-unavailable": "Níl fotha sindeacáitiú ar fáil",
 	"site-rss-feed": "$1 Fotha RSS",

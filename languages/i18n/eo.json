@@ -322,7 +322,6 @@
 	"thisisdeleted": "Vidi aŭ restarigi $1?",
 	"viewdeleted": "Ĉu rigardi $1?",
 	"restorelink": "{{PLURAL:$1|unu forigitan version|$1 forigitajn versiojn}}",
-	"feedlinks": "RSS-fonto:",
 	"feed-invalid": "Nevalida tipo de fonto.",
 	"feed-unavailable": "Fontrilataj enfluoj ne estas haveblaj",
 	"site-rss-feed": "$1 RSS-fonto.",

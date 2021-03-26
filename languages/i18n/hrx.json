@@ -251,7 +251,6 @@
 	"thisisdeleted": "$1 oonsiehn orrer wiederherstelle?",
 	"viewdeleted": "$1 oonzeiche?",
 	"restorelink": "$1 {{PLURAL:$1|gelöschte Version|gelöschte Versione}}",
-	"feedlinks": "Feed (das ist en Anglizismus, für das was regäb ist, die informatione ren getun sin):",
 	"feed-invalid": "Ungülticher Feed-Abonnement-Typ.",
 	"feed-unavailable": "Es stehn ken Feeds zur Verfüchung.",
 	"site-rss-feed": "RSS-Feed für \"$1\"",

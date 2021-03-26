@@ -478,7 +478,6 @@
 	"thisisdeleted": "¿Ver o restaurar $1?",
 	"viewdeleted": "¿Quieres ver $1?",
 	"restorelink": "{{PLURAL:$1|una edición borrada|$1 ediciones borradas}}",
-	"feedlinks": "Sindicación:",
 	"feed-invalid": "La suscripción no es válida para el tipo de sindicación.",
 	"feed-unavailable": "Los canales de sindicación no están disponibles",
 	"site-rss-feed": "Suministro RSS de $1",

@@ -249,7 +249,6 @@
 	"thisisdeleted": "Quiere amostrar u restaurar $1?",
 	"viewdeleted": "Quiere amostrar $1?",
 	"restorelink": "{{PLURAL:$1|una edición borrata|$1 edicions borratas}}",
-	"feedlinks": "Sendicación como fuent de noticias:",
 	"feed-invalid": "Sendicación como fuent de noticias no conforme.",
 	"feed-unavailable": "As canals de sendicación no son disponibles.",
 	"site-rss-feed": "Canal RSS $1",

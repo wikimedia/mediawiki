@@ -281,7 +281,6 @@
 	"thisisdeleted": "Desiratz afichar o restablir $1?",
 	"viewdeleted": "Veire $1?",
 	"restorelink": "{{PLURAL:$1|una edicion escafada|$1 edicions escafadas}}",
-	"feedlinks": "Flux :",
 	"feed-invalid": "Tipe de flux invalid.",
 	"feed-unavailable": "Los fluxes de sindicacion son pas disponibles",
 	"site-rss-feed": "Flux RSS de $1",

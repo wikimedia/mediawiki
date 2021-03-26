@@ -192,7 +192,6 @@
 	"thisisdeleted": "Atan pat tuma'lo $1?",
 	"viewdeleted": "Atan $1?",
 	"restorelink": "{{PLURAL:$1|unu na tinilaika mafnas|$1 na tinilaika siha manmafnas}}",
-	"feedlinks": "Liña:",
 	"site-rss-feed": "Liña RSS $1",
 	"site-atom-feed": "Liña Atom $1",
 	"page-rss-feed": "\"$1\" i Liña RSS",

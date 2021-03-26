@@ -276,7 +276,6 @@
 	"thisisdeleted": "$1 pokazać abo wobnowić?",
 	"viewdeleted": "$1 pokazać?",
 	"restorelink": "{{PLURAL:$1|1 wušmórnjenu wersiju|$1 wušmórnjenej wersiji|$1 wušmórnjene wersije|$1 wušmórnjenych wersijow}}",
-	"feedlinks": "Kanal:",
 	"feed-invalid": "Njepłaćiwy typ kanaloweho abonementa.",
 	"feed-unavailable": "Syndikaciske kanale k dispoziciji njesteja",
 	"site-rss-feed": "$1 RSS kanal",

@@ -270,7 +270,6 @@
 	"thisisdeleted": "$1 - aanluure oder widder zeröckholle?",
 	"viewdeleted": "$1 aanzeije?",
 	"restorelink": "{{PLURAL:$1|eijn fottjeschmeße Änderong|$1 fottjeschmeße Änderonge|keij fottjeschmeße Änderonge}}",
-	"feedlinks": "Abonnomangs-Kannal (<i lang=\"en\">Feed</i>):",
 	"feed-invalid": "Esu en Zoot Abonnomang-Kannal (<i lang=\"en\">Feed</i>) jitt et nit.",
 	"feed-unavailable": "Mer han kein esu en Abonnomangs-Kannäl (<i lang=\"en\">Feeds</i>) aam Loufe.",
 	"site-rss-feed": "RSS-Abonnomang-Kannal (Feed) för de „$1“",

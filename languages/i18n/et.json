@@ -296,7 +296,6 @@
 	"thisisdeleted": "Vaata $1 või taasta?",
 	"viewdeleted": "Vaata $1?",
 	"restorelink": "{{PLURAL:$1|üht|$1}} kustutatud muudatust",
-	"feedlinks": "Voog:",
 	"feed-invalid": "Vigane vootüüp.",
 	"feed-unavailable": "Uudisvood ei ole saadaval.",
 	"site-rss-feed": "$1 (RSS-voog)",

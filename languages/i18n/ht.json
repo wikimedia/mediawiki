@@ -269,7 +269,6 @@
 	"thisisdeleted": "Ou vle wè oubyen restore $1 ?",
 	"viewdeleted": "Wè $1&nbsp;?",
 	"restorelink": "{{PLURAL:$1|yon revizion efase|$1 revizion efase yo}}",
-	"feedlinks": "Fil:",
 	"feed-invalid": "Kalite fil sa envalid.",
 	"feed-unavailable": "Fil sendikasyon yo pa disponib",
 	"site-rss-feed": "Fil RSS depi $1",

@@ -248,7 +248,6 @@
 	"thisisdeleted": "Va $1 djunedil oke djudimplekul ?",
 	"viewdeleted": "Va $1 djudisukel ?",
 	"restorelink": "{{PLURAL:$1|1|$1}} sulayan betaks",
-	"feedlinks": "Rust",
 	"feed-invalid": "Meenaf rustord.",
 	"site-rss-feed": "$1 RSS Rust",
 	"site-atom-feed": "$1 Atom Rust",

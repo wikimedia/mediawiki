@@ -312,7 +312,6 @@
 	"thisisdeleted": "$1 দেখবেন বা পুনরুদ্ধার করবেন?",
 	"viewdeleted": "$1 দেখবেন?",
 	"restorelink": "{{PLURAL:$1|একটি মুছে ফেলা সম্পাদনা|$1টি মুছে ফেলা সম্পাদনা}}",
-	"feedlinks": "ফিড:",
 	"feed-invalid": "গ্রাহক ফিডের ধরন অবৈধ।",
 	"feed-unavailable": "সিন্ডিকেশন ফিড লভ্য নয়",
 	"site-rss-feed": "$1 আরএসএস ফিড",

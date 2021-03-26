@@ -275,7 +275,7 @@
 	"underline-never": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"never underline links\", there are also options {{msg-mw|Underline-always}} and {{msg-mw|Underline-default}}.\n\n{{Gender}}\n{{Identical|Never}}",
 	"underline-default": "Used in [[Special:Preferences#mw-prefsection-rendering|Preferences]].\n\nThis option means \"underline links as in your user skin or your browser\", there are also options {{msg-mw|Underline-never}} and {{msg-mw|Underline-always}}.\n\n{{Gender}}\n{{Identical|Browser default}}",
 	"editfont-style": "Used in [[Special:Preferences]], tab Editing. {{Gender}}",
-	"editfont-monospace": "Option used in [[Special:Preferences]], tab Editing. {{Gender}}",
+	"editfont-monospace": "Option used in [[Special:Preferences]], tab Editing.",
 	"editfont-sansserif": "Option used in [[Special:Preferences]], tab Editing. {{Gender}}",
 	"editfont-serif": "Option used in [[Special:Preferences]], tab Editing. {{Gender}}",
 	"sunday": "{{doc-weekdays}}\n{{Identical|Sunday}}",

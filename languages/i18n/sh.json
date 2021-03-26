@@ -286,7 +286,6 @@
 	"thisisdeleted": "Pogledaj ili vrati $1?",
 	"viewdeleted": "Pogledaj $1?",
 	"restorelink": "{{PLURAL:$1|$1 izbrisana izmjena|$1 izbrisanih izmjena}}",
-	"feedlinks": "Fid:",
 	"feed-invalid": "Loš tip prijave na fid.",
 	"feed-unavailable": "Fidovi (izvori) nisu dostupni",
 	"site-rss-feed": "$1 RSS fid",

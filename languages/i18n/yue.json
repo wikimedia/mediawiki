@@ -299,7 +299,6 @@
 	"thisisdeleted": "睇下定係還原$1？",
 	"viewdeleted": "去睇$1？",
 	"restorelink": "$1次已剷咗嘅編輯",
-	"feedlinks": "Feed:",
 	"feed-invalid": "唔啱嘅 feed 類型。",
 	"feed-unavailable": "聯合 feeds 並無提供",
 	"site-rss-feed": "$1嘅RSS Feed",

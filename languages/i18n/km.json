@@ -277,7 +277,6 @@
 	"thisisdeleted": "មើល ឬ​ ស្ដារ $1 ឡើងវិញ?",
 	"viewdeleted": "មើល $1?",
 	"restorelink": "{{PLURAL:$1|កំណែប្រែមួយត្រូវបានលុបចោល|កំណែប្រែត្រូវបានលុបចោលចំនួន $1}}",
-	"feedlinks": "Feed​៖",
 	"feed-invalid": "ប្រភេទfeedដែលគ្មានសុពលភាព។",
 	"feed-unavailable": "បម្រែ​បម្រួល ​Syndication feeds មិន​ទាន់​មាន​នៅ​ឡើយ​ទេ",
 	"site-rss-feed": "RSS Feed នៃ $1",

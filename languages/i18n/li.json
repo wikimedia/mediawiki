@@ -278,7 +278,6 @@
 	"thisisdeleted": "$1 tuine of trökzètte?",
 	"viewdeleted": "$1 tuine?",
 	"restorelink": "{{PLURAL:$1|ein eweggesjafde versie|$1 eweggesjafde versies}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Feedtype waerd neet óngersjteund.",
 	"feed-unavailable": "Syndicatiefeeds zunt neet besjikbaar op {{SITENAME}}",
 	"site-rss-feed": "$1 RSS-feed",

@@ -194,7 +194,6 @@
 	"thisisdeleted": "Luku noso poti baka $1?",
 	"viewdeleted": "Luku $1?",
 	"restorelink": "$1 taki de ben puru",
-	"feedlinks": "Feed:",
 	"feed-invalid": "A sortu feed disi no bun dyaso",
 	"feed-unavailable": "Den Syndication feed no de na tapu {{SITENAME}}",
 	"site-rss-feed": "$1 RSS-feed",

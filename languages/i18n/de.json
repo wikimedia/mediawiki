@@ -376,7 +376,6 @@
 	"thisisdeleted": "$1 ansehen oder wiederherstellen?",
 	"viewdeleted": "$1 anzeigen?",
 	"restorelink": "$1 {{PLURAL:$1|gelöschte Version|gelöschte Versionen}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Ungültiger Feed-Abonnement-Typ.",
 	"feed-unavailable": "Es stehen keine Feeds zur Verfügung.",
 	"site-rss-feed": "RSS-Feed für „$1“",

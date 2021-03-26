@@ -178,7 +178,6 @@
 	"hidetoc": "haitim",
 	"viewdeleted": "Lukim $1?",
 	"restorelink": "{{PLURAL:$1|wanpela senis i raus pinis|$1 senis i raus pinis}}",
-	"feedlinks": "Fid:",
 	"site-rss-feed": "$1 RSS toksave",
 	"site-atom-feed": "$1 Atom fid",
 	"page-rss-feed": "\"$1\" RSS fid",

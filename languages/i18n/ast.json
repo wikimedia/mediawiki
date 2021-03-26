@@ -278,7 +278,6 @@
 	"thisisdeleted": "¿Ver o restaurar $1?",
 	"viewdeleted": "¿Ver $1?",
 	"restorelink": "{{PLURAL:$1|una edición desaniciada|$1 ediciones desaniciaes}}",
-	"feedlinks": "Canal:",
 	"feed-invalid": "Tipu inválidu de canal de suscripción.",
 	"feed-unavailable": "Les canales de sindicación nun tán disponibles",
 	"site-rss-feed": "Canal RSS de $1",

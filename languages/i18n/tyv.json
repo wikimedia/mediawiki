@@ -216,7 +216,6 @@
 	"confirmable-no": "Чок",
 	"viewdeleted": "{{grammar:accusative|$1}} көөр?",
 	"restorelink": "{{PLURAL:$1|чаңгыс казыттынган өскерилге|$1 казыттынган өскерилгелер}}",
-	"feedlinks": "Агым:",
 	"feed-invalid": "Бижидилгениң агым хевири багай-дыр.",
 	"site-rss-feed": "$1 RSS Медээ Агымы",
 	"site-atom-feed": "$1 Atom-лента",

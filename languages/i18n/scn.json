@@ -267,7 +267,6 @@
 	"thisisdeleted": "Vidi e/o riprìstina $1?",
 	"viewdeleted": "Vidi $1?",
 	"restorelink": "{{PLURAL:$1|nu canciamentu annullatu|$1 canciamenti annullati}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Mudalitati di suttascrizzioni dû feed nun vàlida.",
 	"feed-unavailable": "Nun sunnu dispunìbbili li feed",
 	"site-rss-feed": "Feed RSS di $1",

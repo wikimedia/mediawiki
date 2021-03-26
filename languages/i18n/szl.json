@@ -259,7 +259,6 @@
 	"thisisdeleted": "Pokŏzać abo stworzić zaś $1?",
 	"viewdeleted": "Uobejrzij $1",
 	"restorelink": "{{PLURAL:$1|jednã skasowanõ wersyjõ|$1 skasowane wersyje|$1 skasowanych wersyji}}",
-	"feedlinks": "Kanały:",
 	"feed-invalid": "Ńywłaściwy typ kanałů informacyjnygo.",
 	"feed-unavailable": "Kanoły informacyjne ńy sům dostympne",
 	"site-rss-feed": "Kanoł RSS {{GRAMMAR:D.lp|$1}}",

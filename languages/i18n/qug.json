@@ -205,7 +205,6 @@
 	"thisisdeleted": "$1-ta rikunallacha, kutin ruranapashcha munapanki ?",
 	"viewdeleted": "$1 pankata rikunata munapanki ?",
 	"restorelink": "{{PLURAL:$1|shuk pichashka killkayta|$1 pichashka killkaykunata}} rikuna",
-	"feedlinks": "Mikuchiy",
 	"feed-invalid": "Willaykunata mikuchik antawapak llankachinkapak, nallita akllarkapankichu.",
 	"site-rss-feed": "$1 RSS pukyu",
 	"site-atom-feed": "$1 ''Atom'' pukuy",

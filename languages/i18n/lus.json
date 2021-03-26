@@ -227,7 +227,6 @@
 	"thisisdeleted": "$1 hi en emaw, dah lêt leh emaw i duh em?",
 	"viewdeleted": "$1 i en duh em?",
 	"restorelink": "{{PLURAL:$1| vawi khat nuaibo|vawi $1 nuaibo tawh}} siamţhatna",
-	"feedlinks": "Chàwmna:",
 	"feed-invalid": "Chawmna dik lo.",
 	"feed-unavailable": "Syndication chawm-letna tih theih a ni lo",
 	"site-rss-feed": "RSS chawmna $1",

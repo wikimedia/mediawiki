@@ -294,7 +294,6 @@
 	"thisisdeleted": "Apskatīt vai atjaunot $1?",
 	"viewdeleted": "Skatīt $1?",
 	"restorelink": "$1 {{PLURAL:$1|dzēstās versijas|dzēsto versiju|dzēstās versijas}}",
-	"feedlinks": "Barotne:",
 	"feed-invalid": "Nederīgs abonētās barotnes veids.",
 	"feed-unavailable": "Sindicētās plūsmas nav pieejamas",
 	"site-rss-feed": "$1 RSS padeve",

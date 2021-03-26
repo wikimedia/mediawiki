@@ -304,7 +304,6 @@
 	"thisisdeleted": "Žiūrėti ar atkurti $1?",
 	"viewdeleted": "Rodyti $1?",
 	"restorelink": "$1 {{PLURAL:$1|ištrintą keitimą|ištrintus keitimus|ištrintų keitimų}}",
-	"feedlinks": "Šaltinis:",
 	"feed-invalid": "Neleistinas šaltinio tipas.",
 	"feed-unavailable": "Keitimų prenumeratos negalimos",
 	"site-rss-feed": "$1 RSS prenumerata",

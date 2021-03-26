@@ -255,7 +255,6 @@
 	"thisisdeleted": "$1-ta rikuy icha paqarichiy?",
 	"viewdeleted": "$1 p'anqata rikuyta munankichu?",
 	"restorelink": "{{PLURAL:$1|qullusqa hukchasqa|$1 qullusqa hukchasqa}}",
-	"feedlinks": "Mikhuchiy:",
 	"feed-invalid": "Willaykuna mikhuchina layaqa manam allinchu.",
 	"feed-unavailable": "Manam sindikasyun mikhuchinachu",
 	"site-rss-feed": "$1 RSS feed",

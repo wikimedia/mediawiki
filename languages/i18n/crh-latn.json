@@ -228,7 +228,6 @@
 	"thisisdeleted": "$1 körmege ya da keri ketirmege isteysiñizmi?",
 	"viewdeleted": "$1 kör?",
 	"restorelink": "yoq etilgen {{PLURAL:$1|1|$1}} deñiştirmesi",
-	"feedlinks": "Bu şekilde:",
 	"feed-invalid": "Abune kanalınıñ çeşiti yañlıştır.",
 	"feed-unavailable": "Sindikatsiya lentaları qullanılıp olamay.",
 	"site-rss-feed": "$1 RSS lentası",

@@ -275,7 +275,6 @@
 	"thisisdeleted": "به گند یا پچ ترین $1?",
 	"viewdeleted": "به گند $1?",
 	"restorelink": "{{PLURAL:$1|یک حذف اصلاح|$1 حذف اصلاح}}",
-	"feedlinks": "منبع",
 	"feed-invalid": "نامعتبرنوع  اشتراک منبع",
 	"feed-unavailable": "سندیکا منبع موجود نهت",
 	"site-rss-feed": "منبع $1 RSS",

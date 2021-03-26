@@ -395,7 +395,6 @@
 	"thisisdeleted": "Ver ou restaurar $1?",
 	"viewdeleted": "Ver $1?",
 	"restorelink": "{{PLURAL:$1|uma edição eliminada|$1 edições eliminadas}}",
-	"feedlinks": "''Feed'':",
 	"feed-invalid": "Tipo inválido de inscrição de ''feed''.",
 	"feed-unavailable": "Os ''feeds'' não se encontram disponíveis",
 	"site-rss-feed": "Feed RSS da $1",

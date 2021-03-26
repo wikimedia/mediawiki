@@ -246,7 +246,6 @@
 	"thisisdeleted": "Ankieken oder weerholen vun $1?",
 	"viewdeleted": "$1 ankieken?",
 	"restorelink": "{{PLURAL:$1|ene löschte Version|$1 löschte Versionen}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Ungülligen Abo-Typ.",
 	"feed-unavailable": "Dat gifft kene Feeds",
 	"site-rss-feed": "RSS-Feed för $1",

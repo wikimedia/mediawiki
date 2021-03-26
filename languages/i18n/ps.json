@@ -273,7 +273,6 @@
 	"thisisdeleted": "$1 کتل او يا بيازېرمل؟",
 	"viewdeleted": "$1 کتل؟",
 	"restorelink": "{{PLURAL:$1|يو ړنگ شوی سمون|$1 ړنگ شوي سمونونه}}",
-	"feedlinks": "کتنه:",
 	"feed-invalid": "د ناسم ګډون فیډیټ ډول.",
 	"feed-unavailable": "د سنډیکشن فیډونه شتون نلري",
 	"site-rss-feed": "$1 د آر اس اس کتنه",

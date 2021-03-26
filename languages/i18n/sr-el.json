@@ -303,7 +303,6 @@
 	"thisisdeleted": "Prikazati ili vratiti $1?",
 	"viewdeleted": "Prikazati $1?",
 	"restorelink": "{{PLURAL:$1|jednu izbrisanu izmenu|$1 izbrisane izmene|$1 izbrisanih izmena}}",
-	"feedlinks": "Fid:",
 	"feed-invalid": "Nevažeća vrsta prijave na dovod.",
 	"feed-unavailable": "Fidovi sindikacije nisu dostupni",
 	"site-rss-feed": "$1 – RSS fid",

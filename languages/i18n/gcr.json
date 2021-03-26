@@ -263,7 +263,6 @@
 	"thisisdeleted": "Ès ou lé afiché oben rèstoré $1 ?",
 	"viewdeleted": "Wè $1 ?",
 	"restorelink": "Wè {{PLURAL:$1|roun modifikasyon éfasé|$1 modifikasyon éfasé}}",
-	"feedlinks": "Flux :",
 	"feed-invalid": "Tip di flux d'abonnman pa valid.",
 	"feed-unavailable": "Fligs-ya di sendikasyon pa disponnib",
 	"site-rss-feed": "Flux RSS di $1",

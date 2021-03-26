@@ -370,7 +370,6 @@
 	"thisisdeleted": "$1 bekijken of terugplaatsen?",
 	"viewdeleted": "$1 bekijken?",
 	"restorelink": "$1 verwijderde {{PLURAL:$1|versie|versies}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Feedtype wordt niet ondersteund.",
 	"feed-unavailable": "Syndicatiefeeds zijn niet beschikbaar",
 	"site-rss-feed": "$1 RSS-feed",

@@ -191,7 +191,6 @@
 	"thisisdeleted": "$1 görmää yaki geeri getirmää isteermisiniz?",
 	"viewdeleted": "$1 gör?",
 	"restorelink": "silinmiş $1 diişmäk",
-	"feedlinks": "Beslemää:",
 	"feed-invalid": "Yannış beslemää tipi.",
 	"site-rss-feed": "$1 RSS Feed",
 	"site-atom-feed": "$1 Atom Feed",

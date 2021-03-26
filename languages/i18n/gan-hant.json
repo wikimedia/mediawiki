@@ -224,7 +224,6 @@
 	"thisisdeleted": "眵吖或還原$1？",
 	"viewdeleted": "眵吖$1?",
 	"restorelink": "$1隻拕刪吥嗰版本",
-	"feedlinks": "鎖定:",
 	"feed-invalid": "冇用嗰鎖定類型。",
 	"feed-unavailable": "同步訂閱源到{{SITENAME}}用伓正",
 	"site-rss-feed": "$1嗰RSS訊息",

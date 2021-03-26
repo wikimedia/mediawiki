@@ -292,7 +292,6 @@
 	"thisisdeleted": "Sjå eller attopprett $1?",
 	"viewdeleted": "Sjå historikk for $1?",
 	"restorelink": "{{PLURAL:$1|éin sletta versjon|$1 sletta versjonar}}",
-	"feedlinks": "Abonnementskjelde:",
 	"feed-invalid": "Ugyldig abonnementstype.",
 	"feed-unavailable": "Det er ingen kjelder til abonnement",
 	"site-rss-feed": "$1 RSS-kjelde",
