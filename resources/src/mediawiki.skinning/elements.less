@@ -6,6 +6,8 @@
  * This style sheet is used by the Monobook and Vector skins.
  */
 
+@import 'mediawiki.mixins';
+
 /* stylelint-disable selector-class-pattern */
 
 /* Links */
@@ -251,12 +253,10 @@ form {
 }
 
 textarea {
+	display: block;
+	.box-sizing( border-box );
 	width: 100%;
 	padding: 0.1em;
-	display: block;
-	-moz-box-sizing: border-box;
-	-webkit-box-sizing: border-box;
-	box-sizing: border-box;
 }
 
 /* Emulate Center */
