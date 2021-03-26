@@ -26,27 +26,29 @@ use MediaWiki\MediaWikiServices;
 /**
  * File deletion user interface
  *
+ * TODO replace uses of globals and wfMessage with using the context available in $this->out
+ *
  * @ingroup Media
  */
 class FileDeleteForm {
 
 	/** @var Title */
-	private $title = null;
+	private $title;
 
 	/** @var LocalFile */
-	private $file = null;
+	private $file;
 
 	/** @var User */
-	private $user = null;
+	private $user;
 
-	/** @var LocalFile */
+	/** @var LocalFile|null */
 	private $oldfile = null;
 
 	/** @var string */
 	private $oldimage = '';
 
 	/** @var OutputPage */
-	private $out = null;
+	private $out;
 
 	/**
 	 * @param LocalFile $file File object we're deleting
@@ -446,15 +448,15 @@ class FileDeleteForm {
 	 * @return string
 	 */
 	private function prepareMessage( $message ) {
-		global $wgLang;
 		if ( $this->oldimage ) {
+			$lang = $this->out->getLanguage();
 			# Message keys used:
 			# 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
 			return wfMessage(
 				"{$message}-old",
 				wfEscapeWikiText( $this->title->getText() ),
-				$wgLang->date( $this->getTimestamp(), true ),
-				$wgLang->time( $this->getTimestamp(), true ),
+				$lang->date( $this->getTimestamp(), true ),
+				$lang->time( $this->getTimestamp(), true ),
 				wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ), PROTO_CURRENT ) )->parseAsBlock();
 		} else {
 			return wfMessage(
