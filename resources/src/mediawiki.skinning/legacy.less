@@ -109,16 +109,6 @@ span.comment {
 	height: 22px;
 }
 
-/* Underline preference */
-
-.mw-underline-always a {
-	text-decoration: underline;
-}
-
-.mw-underline-never a {
-	text-decoration: none;
-}
-
 /**
  * rev_deleted stuff
  */
@@ -221,20 +211,6 @@ input.mw-revdelundel-hidden {
 /* red links; see T38276 */
 a.new {
 	color: #ba0000;
-}
-
-/* Plainlinks - this can be used to switch
- * off special external link styling */
-.plainlinks a.external {
-	background: none !important; /* stylelint-disable-line declaration-no-important */
-	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
-}
-
-/* External URLs should always be treated as LTR (T6330) */
-/* @noflip */ .rtl a.external.free,
-.rtl a.external.autonumber {
-	direction: ltr;
-	unicode-bidi: embed;
 }
 
 @import 'content.tables.less';
