@@ -122,7 +122,7 @@ abstract class ParserCacheSerializationTestCases {
 				'instance' => $cacheTimeWithRevId,
 				'assertions' => static function (
 					MediaWikiIntegrationTestCase $testCase, CacheTime $object
-				) use  ( $cacheRevisionId ) {
+				) use ( $cacheRevisionId ) {
 					$testCase->assertSame( $cacheRevisionId, $object->getCacheRevisionId() );
 				}
 			]
