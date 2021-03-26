@@ -28,9 +28,14 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 
 		// Normalize usernames
 		$normalizedUsers = [];
+		$listOfIps = [];
 		foreach ( $usersArray as $user ) {
 			if ( IPUtils::isIPAddress( $user ) ) {
-				$canonicalUser = IPUtils::sanitizeIP( $user );
+				$parsedIPRange = IPUtils::parseRange( $user );
+				if ( !in_array( $parsedIPRange, $listOfIps ) ) {
+					$canonicalUser = IPUtils::sanitizeRange( $user );
+					$listOfIps[] = $parsedIPRange;
+				}
 			} else {
 				$canonicalUser = User::getCanonicalName( $user, false );
 			}
