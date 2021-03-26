@@ -318,7 +318,6 @@
 	"thisisdeleted": "Se eller gjenopprett $1?",
 	"viewdeleted": "Vis $1?",
 	"restorelink": "{{PLURAL:$1|én slettet revisjon|$1 slettede revisjoner}}",
-	"feedlinks": "Mating:",
 	"feed-invalid": "Ugyldig matingstype.",
 	"feed-unavailable": "Abonnementskilder er ikke tilgjengelig",
 	"site-rss-feed": "$1 RSS-mating",

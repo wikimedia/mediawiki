@@ -316,7 +316,6 @@
 	"thisisdeleted": "$1 megtekintése vagy helyreállítása?",
 	"viewdeleted": "$1 megtekintése?",
 	"restorelink": "{{PLURAL:$1|Egy|$1}} törölt szerkesztés",
-	"feedlinks": "Hírcsatorna:",
 	"feed-invalid": "A figyelt hírcsatorna típusa érvénytelen.",
 	"feed-unavailable": "Nincs elérhető hírcsatorna",
 	"site-rss-feed": "$1 RSS-hírcsatorna",

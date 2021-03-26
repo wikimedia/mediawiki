@@ -293,7 +293,6 @@
 	"thisisdeleted": "Pogledaj ili vrati $1?",
 	"viewdeleted": "Pogledaj $1?",
 	"restorelink": "{{PLURAL:$1|jednu izbrisanu izmjenu|$1 izbrisane izmjene|$1 izbrisanih izmjena}}",
-	"feedlinks": "Fid:",
 	"feed-invalid": "Nedozvoljen tip potpisa",
 	"feed-unavailable": "RSS izvori nisu dostupni",
 	"site-rss-feed": "$1 RSS izvor",

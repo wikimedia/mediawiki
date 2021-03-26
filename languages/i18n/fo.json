@@ -263,7 +263,6 @@
 	"thisisdeleted": "Sí ella endurstovna $1?",
 	"viewdeleted": "Vís $1?",
 	"restorelink": "{{PLURAL:$1|strikaða rætting|$1 strikaðar rættingar}}",
-	"feedlinks": "Føðing:",
 	"feed-invalid": "Ógyldugt slag av haldi.",
 	"feed-unavailable": "↓ Syndikatións fóður (feeds) er ikki atkomuligt",
 	"site-rss-feed": "$1 RSS Fóðurið",

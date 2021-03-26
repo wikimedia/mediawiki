@@ -302,7 +302,6 @@
 	"thisisdeleted": "Shiko ose rikthe $1?",
 	"viewdeleted": "Do ta shikosh $1?",
 	"restorelink": "{{PLURAL:$1|një redaktim i fshirë|$1 redaktime të fshira}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Tipi i feed-it është i pavlefshëm.",
 	"feed-unavailable": "Syndication feeds nuk janë të mundshme",
 	"site-rss-feed": "$1 RSS Feed",

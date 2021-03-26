@@ -282,7 +282,6 @@
 	"thisisdeleted": "Vedè o arripiglià $1?",
 	"viewdeleted": "Vire $1?",
 	"restorelink": "{{PLURAL:$1|nu cagnamiénto scancellato|$1 cagnamiénte scancellate}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "'O tipo 'e sottoscrizione p' 'o feed nun è buono",
 	"feed-unavailable": "Nun ce stanno 'e feed sinnecaziona",
 	"site-rss-feed": "Feed 'e sinnecaziona RSS 'e $1",

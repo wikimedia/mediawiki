@@ -381,7 +381,6 @@
 	"thisisdeleted": "$1を閲覧または復元しますか?",
 	"viewdeleted": "$1を閲覧しますか?",
 	"restorelink": "{{PLURAL:$1|削除された$1編集}}",
-	"feedlinks": "フィード:",
 	"feed-invalid": "フィード形式の指定が正しくありません。",
 	"feed-unavailable": "フィードの配信は利用できません",
 	"site-rss-feed": "$1のRSSフィード",

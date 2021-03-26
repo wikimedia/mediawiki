@@ -227,7 +227,6 @@
 	"thisisdeleted": "$1 ankiekje of wier häärstaale?",
 	"viewdeleted": "$1 anwiese?",
 	"restorelink": "{{PLURAL:$1|1 läskede Beoarbaidengsfoargang|$1 läskede Beoarbaidengsfoargange}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Ungultigen Abonnement-Typ.",
 	"feed-unavailable": "Der stounde neen Feeds tou Ferföigenge.",
 	"site-rss-feed": "$1 RSS-Feed",

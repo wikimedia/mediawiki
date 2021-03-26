@@ -316,7 +316,6 @@
 	"thisisdeleted": "Prohlédnout nebo obnovit $1?",
 	"viewdeleted": "Zobrazit $1?",
 	"restorelink": "{{PLURAL:$1|smazanou editaci|$1 smazané editace|$1 smazaných editací}}",
-	"feedlinks": "Kanály:",
 	"feed-invalid": "Neplatný typ kanálu.",
 	"feed-unavailable": "Kanály nejsou dostupné",
 	"site-rss-feed": "RSS kanál {{grammar:2sg|$1}}.",

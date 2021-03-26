@@ -226,7 +226,6 @@
 	"thisisdeleted": "Vyuu ar ristuor $1?",
 	"viewdeleted": "Vyuu $1?",
 	"restorelink": "{{PLURAL:$1|wan diliitid edit|$1 diliitid edit}}",
-	"feedlinks": "Fiid:",
 	"feed-invalid": "Invalid sobskripshan fiid taip",
 	"feed-unavailable": "Sindikieshan fiid no avielobl",
 	"site-rss-feed": "$1 RSS fiid",

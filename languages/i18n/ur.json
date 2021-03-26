@@ -307,7 +307,6 @@
 	"thisisdeleted": "دیکھیں یا بحال کریں $1؟",
 	"viewdeleted": "دیکھیں $1؟",
 	"restorelink": "{{PLURAL:$1|ایک ترمیم حذف ہوچکی|$1 ترامیم حذف ہوچکیں}}",
-	"feedlinks": "خورد:",
 	"feed-invalid": "ناقص خوردی قسم.",
 	"feed-unavailable": "سندیکتی خورد دستیاب نہیں ہیں",
 	"site-rss-feed": "$1 آر.ایس.ایس فیڈ",

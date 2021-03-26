@@ -274,7 +274,6 @@
 	"thisisdeleted": "¿Kitaa o balika in $1?",
 	"viewdeleted": "¿Kitaa in $1?",
 	"restorelink": "{{PLURAL:$1|usa nga ginpara nga pagliwat|$1 ka ginpara nga mga pagliwat}}",
-	"feedlinks": "Igsulod:",
 	"feed-invalid": "Inbalido nga pagpapaabot",
 	"feed-unavailable": "Waray mga syndication feed",
 	"site-rss-feed": "$1 RSS nga feed",

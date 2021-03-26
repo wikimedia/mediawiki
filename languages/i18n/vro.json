@@ -260,7 +260,6 @@
 	"thisisdeleted": "Kaeq vai tiiq tagasi $1?",
 	"viewdeleted": "Näüdädäq $1?",
 	"restorelink": "{{PLURAL:$1|üts kistutõt muutminõ|$1 kustutõdut muutmist}}",
-	"feedlinks": "Sisseandminõ:",
 	"feed-invalid": "Viganõ sisseandminõ.",
 	"feed-unavailable": "Võrgosüütit olõ-i saiaq",
 	"site-rss-feed": "$1-RSS-söödüs",

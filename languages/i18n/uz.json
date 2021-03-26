@@ -277,7 +277,6 @@
 	"thisisdeleted": "$1ni koʻrib chiqasizmi yoki tiklaysizmi?",
 	"viewdeleted": "$1ni koʻrib chiqasizmi?",
 	"restorelink": "{{PLURAL:$1|Oʻchirilgan tahrir|$1 ta oʻchirilgan tahrirlar}}",
-	"feedlinks": "Ko'rinishida:",
 	"feed-invalid": "Obuna uchun no'tog'ri turdagi kanal",
 	"feed-unavailable": "Sindikatsiya tasmalariga yoʻlash imkoni yoʻq",
 	"site-rss-feed": "$1 — RSS-tasmasi",

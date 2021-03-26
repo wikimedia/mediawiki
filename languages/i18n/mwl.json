@@ -240,7 +240,6 @@
 	"thisisdeleted": "Ber ó restourar $1?",
 	"viewdeleted": "Ber $1?",
 	"restorelink": "{{PLURAL:$1|ua eidiçon apagada|$1 eidiçones apagadas}}",
-	"feedlinks": "Feed:",
 	"site-rss-feed": "''Feed'' RSS $1",
 	"site-atom-feed": "''Feed'' Atom $1",
 	"page-rss-feed": "''Feed'' RSS de \"$1\"",

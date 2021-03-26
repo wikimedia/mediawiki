@@ -268,7 +268,6 @@
 	"thisisdeleted": "Guna wala yeeti $1?",
 	"viewdeleted": "$1 guna?",
 	"restorelink": "{{PLURAL:$1|barmay tuusante foo|$1 barmay tuusante fooyaŋ}}",
-	"feedlinks": "Toonandiyan:",
 	"feed-invalid": "Maahantumyan toonandiyan dumi laala.",
 	"feed-unavailable": "Goykondayyan toonandiyaney ši duwandi",
 	"site-rss-feed": "$1 RSS toonandiyan",

@@ -282,7 +282,6 @@
 	"thisisdeleted": "Amîa o riprìstina $1?",
 	"viewdeleted": "Vedde $1?",
 	"restorelink": "{{PLURAL:$1|unn-a modifica scancelâ|$1 modifiche scancelæ}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Modalitæ de sottoscriçion do feed non vallida.",
 	"feed-unavailable": "No son disponibili feed",
 	"site-rss-feed": "Feed RSS de $1",

@@ -277,7 +277,6 @@
 	"thisisdeleted": "$1 देखो या वापिस लाओ?",
 	"viewdeleted": "$1 देखाओ?",
 	"restorelink": "{{PLURAL:$1|एक मेटावल|$1 मेटावल}} बदलाव",
-	"feedlinks": "फ़ीड:",
 	"feed-invalid": "गलत सब्स्क्रीप्शन फ़ीड प्रकार",
 	"feed-unavailable": "संघ फ़ीड उपलब्ध नाई है",
 	"site-rss-feed": "$1 कय आर॰एस॰एस फ़ीड",

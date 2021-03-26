@@ -282,7 +282,6 @@
 	"thisisdeleted": "Aaluege oder widerherstelle vu $1?",
 	"viewdeleted": "$1 aaluege?",
 	"restorelink": "{{PLURAL:$1|gleschti Änderig|$1 gleschti Ändrige}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Nit giltige Abonnement-Typ.",
 	"feed-unavailable": "S stehn keini Feeds z Verfiegig.",
 	"site-rss-feed": "RSS-Feed fir $1",

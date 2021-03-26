@@ -257,7 +257,6 @@
 	"thisisdeleted": "$1 фенын хъæуы, æви рацаразын ?",
 	"viewdeleted": "$1 фенын дæ фæнды?",
 	"restorelink": "{{PLURAL:$1|иу хафт ивд|$1 хафт ивды}}",
-	"feedlinks": "Лæсæн:",
 	"feed-invalid": "Рæдыд рафыссæн каналы хуыз.",
 	"feed-unavailable": "Синдикацийы лæсæнтæм бавналæн нæй",
 	"site-rss-feed": "{{grammar:genitive|$1}} RSS лæсæн",

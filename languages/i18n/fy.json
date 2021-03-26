@@ -277,7 +277,6 @@
 	"thisisdeleted": "\"$1\" lêze of werombringe?",
 	"viewdeleted": "$1 sjen litte?",
 	"restorelink": "$1 wiske {{PLURAL:$1|ferzje|ferzjes}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Feedtype wurdt net stipe.",
 	"feed-unavailable": "Syndikaasjefeeds binne net beskikber",
 	"site-rss-feed": "$1 RSS-feed",

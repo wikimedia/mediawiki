@@ -237,7 +237,6 @@
 	"thisisdeleted": "Guipal u restaural $1?",
 	"viewdeleted": "Visoreal $1?",
 	"restorelink": "{{PLURAL:$1|una eición esborrá|$1 eicionis esborrás}}",
-	"feedlinks": "Sindicación:",
 	"feed-invalid": "Suscrición nu vália.",
 	"feed-unavailable": "Los canalis de sindicación nu están disponibris",
 	"site-rss-feed": "Canal RSS $1",

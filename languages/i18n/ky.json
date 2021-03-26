@@ -258,7 +258,6 @@
 	"thisisdeleted": "$1 көрүү же калыбына келтирүү?",
 	"viewdeleted": "Көрүү $1?",
 	"restorelink": "{{PLURAL:$1|$1 өчүрүлгөн оңдоо}}",
-	"feedlinks": "Дубал:",
 	"feed-unavailable": "Синдикация лентасы жеткиликтүү эмес",
 	"site-rss-feed": "$1 RSS тилкеси",
 	"site-atom-feed": "$1 Atom агымы",

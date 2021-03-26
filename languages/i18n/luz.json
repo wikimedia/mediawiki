@@ -252,7 +252,6 @@
 	"thisisdeleted": "دیئن یا ورگردوندن $1؟",
 	"viewdeleted": "دیئن$1؟",
 	"restorelink": " {{PLURAL:$1|یه اصلاح حذف وابیه|$1 اصلاحل حذف وابیه}}",
-	"feedlinks": "تغذیه:",
 	"feed-invalid": "اشتراک  زه راه  تایپ باطله",
 	"feed-unavailable": "فید پیوند ور تیه نی",
 	"site-rss-feed": "خبرخو RSS سی $1",

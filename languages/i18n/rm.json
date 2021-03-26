@@ -238,7 +238,6 @@
 	"thisisdeleted": "Guardar u restaurar $1?",
 	"viewdeleted": "Mussa $1?",
 	"restorelink": "{{PLURAL:$1|ina modificaziun stizzada|$1 modificaziuns stizzadas}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Faus tip da feed per la subscripziun.",
 	"feed-unavailable": "Feed n'è betg disponibel",
 	"site-rss-feed": "RSS Feed da $1",

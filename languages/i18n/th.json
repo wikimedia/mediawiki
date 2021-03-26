@@ -302,7 +302,6 @@
 	"thisisdeleted": "ดูหรือกู้คืน $1 หรือไม่",
 	"viewdeleted": "ดู $1 หรือไม่",
 	"restorelink": "$1 การแก้ไขที่ถูกลบ",
-	"feedlinks": "ฟีด:",
 	"feed-invalid": "ฟีดที่สมัครไม่ถูกชนิด",
 	"feed-unavailable": "ฟีดยังใช้ไม่ได้",
 	"site-rss-feed": "ฟีดอาร์เอสเอส $1",

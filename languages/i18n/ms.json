@@ -295,7 +295,6 @@
 	"thisisdeleted": "Lihat atau pulihkan $1?",
 	"viewdeleted": "Lihat $1?",
 	"restorelink": "{{PLURAL:$1|satu|$1}} suntingan dihapuskan",
-	"feedlinks": "Suapan:",
 	"feed-invalid": "Jenis suapan langganan tidak sah.",
 	"feed-unavailable": "Tiada suapan pensindiketan",
 	"site-rss-feed": "Suapan RSS $1",

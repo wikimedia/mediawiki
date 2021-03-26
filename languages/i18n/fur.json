@@ -263,7 +263,6 @@
 	"thisisdeleted": "Vuelistu cjalâ o ripristinâ $1?",
 	"viewdeleted": "Vuelistu viodi $1?",
 	"restorelink": "{{PLURAL:$1|une modifiche eliminade|$1 modifichis eliminadis}}",
-	"feedlinks": "Canâl (feed):",
 	"feed-invalid": "Modalitât di iscrizion al feed no valide",
 	"feed-unavailable": "No son disponibîi feeds",
 	"site-rss-feed": "Canâl RSS di $1",

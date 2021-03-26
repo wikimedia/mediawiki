@@ -314,7 +314,6 @@
 	"thisisdeleted": "Xem hay phục hồi $1?",
 	"viewdeleted": "Xem $1?",
 	"restorelink": "{{PLURAL:$1|một|$1}} sửa đổi đã xóa",
-	"feedlinks": "Nguồn cấp dữ liệu:",
 	"feed-invalid": "Định dạng nguồn cấp dữ liệu không hợp lệ.",
 	"feed-unavailable": "Nguồn cấp dữ liệu không có sẵn tại đây",
 	"site-rss-feed": "Nguồn cấp RSS của $1",

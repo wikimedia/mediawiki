@@ -272,7 +272,6 @@
 	"thisisdeleted": "Vide o restora $1?",
 	"viewdeleted": "Vide $1?",
 	"restorelink": "{{PLURAL:$1|un edita sutraeda|$1 editas sutraeda}}",
-	"feedlinks": "Flue:",
 	"feed-invalid": "Tipo de flue no es valida.",
 	"feed-unavailable": "Flues no es disponable",
 	"site-rss-feed": "$1 flue RSS",

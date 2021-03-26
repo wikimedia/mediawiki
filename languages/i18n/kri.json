@@ -168,7 +168,6 @@
 	"thisisdeleted": "Luk wetin i bi naw òr tùrn am bak tu wetin i bin bi bifor $1?",
 	"viewdeleted": "Luk am $1?",
 	"restorelink": "{{PLURAL:$1|wan chenj we dèndònires|$1 chenjdèm we dèndònires}}",
-	"feedlinks": "Fid:",
 	"site-rss-feed": "$1 RSS Fid",
 	"site-atom-feed": "$1 Atom Fid",
 	"page-atom-feed": "\"$1\" Atòm fid",

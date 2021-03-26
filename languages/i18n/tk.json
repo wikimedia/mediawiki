@@ -229,7 +229,6 @@
 	"thisisdeleted": "$1 görmek ýa-da dikeltmek isleýärsiňizmi?",
 	"viewdeleted": "$1 gör?",
 	"restorelink": "{{PLURAL:$1|bir öçürilen özgerdişi|$1 öçürilen özgerdişi}}",
-	"feedlinks": "Lenta:",
 	"feed-invalid": "Nädogry ýazylyşyk kanaly görnüşi.",
 	"feed-unavailable": "Sindikasiýa lentalary elýeterli däl",
 	"site-rss-feed": "$1 RSS lentasy",

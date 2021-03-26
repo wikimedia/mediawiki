@@ -230,7 +230,6 @@
 	"thisisdeleted": "眵吖或还原$1？",
 	"viewdeleted": "眵吖$1?",
 	"restorelink": "$1只拖删吥𠮶版本",
-	"feedlinks": "锁定:",
 	"feed-invalid": "冇用𠮶锁定类型。",
 	"feed-unavailable": "同步订阅源到{{SITENAME}}用伓正",
 	"site-rss-feed": "$1𠮶RSS讯息",

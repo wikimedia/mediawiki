@@ -279,7 +279,6 @@
 	"thisisdeleted": "Vider o restaurar $1?",
 	"viewdeleted": "Vider $1?",
 	"restorelink": "{{PLURAL:$1|un modification|$1 modificationes}} delite",
-	"feedlinks": "Syndication:",
 	"feed-invalid": "Typo de syndication invalide.",
 	"feed-unavailable": "Le syndicationes non es disponibile",
 	"site-rss-feed": "Syndication RSS de $1",

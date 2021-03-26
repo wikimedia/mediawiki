@@ -254,7 +254,6 @@
 	"thisisdeleted": "Tan-awon o Ibalik ang sang una $1?",
 	"viewdeleted": "Tan-awon $1?",
 	"restorelink": "{{PLURAL:$1|isa ka ginpanas nga pag-ilis|$1 ka ginpanas nga pag-ilis}}",
-	"feedlinks": "Pakaon:",
 	"feed-invalid": "Indi amo nga sahi sang pakaon nga subskripsiyon.",
 	"feed-unavailable": "Ang mga pakaon nga sindikasyon indi mahimo pagagamiton",
 	"site-rss-feed": "$1 RSS Feed",

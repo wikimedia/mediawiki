@@ -297,7 +297,6 @@
 	"thisisdeleted": "Tingnan o ibalik ang $1?",
 	"viewdeleted": "Tingnan ang $1?",
 	"restorelink": "{{PLURAL:$1|isang binurang pagbabago|$1 binurang pagbabago}}",
-	"feedlinks": "Karga:",
 	"feed-invalid": "Hindi tanggap na uri ng serbisyo ng pagpaparating.",
 	"feed-unavailable": "Walang serbisyo mula sa sindikasyong pangpaglalathala",
 	"site-rss-feed": "Kargang RSS ng $1",

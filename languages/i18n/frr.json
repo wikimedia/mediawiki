@@ -274,7 +274,6 @@
 	"thisisdeleted": "$1 uunluke of weder iinstel",
 	"viewdeleted": "$1 uunluke?",
 	"restorelink": "$1 {{PLURAL:$1|stregen werjuun|stregen werjuunen}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Feed-abonement-typ as ferkiard.",
 	"feed-unavailable": "Diar san nian feeds.",
 	"site-rss-feed": "RSS-feed för $1",

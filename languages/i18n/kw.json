@@ -225,7 +225,6 @@
 	"thisisdeleted": "Gweles po daskor $1?",
 	"viewdeleted": "Gweles $1?",
 	"restorelink": "{{PLURAL:$1|unn janj diles|$1 chanj diles}}",
-	"feedlinks": "Feed:",
 	"site-rss-feed": "Feed RSS $1",
 	"site-atom-feed": "Feed Atom $1",
 	"page-rss-feed": "Feed RSS \"$1\"",

@@ -222,7 +222,6 @@
 	"thisisdeleted": "Ipakita o ibalik ang $1?",
 	"viewdeleted": "Ipakita ang $1?",
 	"restorelink": "{{PLURAL:$1|usa ka napapas nga pag-usab|$1 mga napapas nga pag-usab}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Dili sakto ang klase sa subscription feed",
 	"feed-unavailable": "Wala tugoti ang mga ''Syndication Feeds'' sa {{SITENAME}}",
 	"site-rss-feed": "$1 Feed sa RSS",

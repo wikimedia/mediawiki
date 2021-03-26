@@ -289,7 +289,6 @@
 	"thisisdeleted": "See or restore $1?",
 	"viewdeleted": "See $1?",
 	"restorelink": "{{PLURAL:$1|yin delytit eidit|$1 delytit eidits}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Onhebile subscreeption feed type.",
 	"feed-unavailable": "Syndication feeds arna available",
 	"site-rss-feed": "$1 RSS Feed",

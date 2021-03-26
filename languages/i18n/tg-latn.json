@@ -213,7 +213,6 @@
 	"thisisdeleted": "Namoiş jo ehjoi $1?",
 	"viewdeleted": "Namoişi $1?",
 	"restorelink": "{{PLURAL:$1|viroişi hazfşuda|$1 viroişoti hazfşudaho}}",
-	"feedlinks": "Xabarxon:",
 	"feed-invalid": "Işkol dar obunai xabarxon.",
 	"feed-unavailable": "Xabarxonho qobili istifoda nestand",
 	"site-rss-feed": "Baroi $1 RSS Xabarxon",

@@ -265,7 +265,6 @@
 	"thisisdeleted": "لوڑے  یا بحال کورے $1",
 	"viewdeleted": "لوڑے $1؟",
 	"restorelink": "{{PLURAL:$1|ای ترمیم حذف ہوی|$1 ترامیم حذف ہونی}}",
-	"feedlinks": "فیڈ",
 	"feed-invalid": "ناقص فیڈو قسم.",
 	"feed-unavailable": "سندیکٹی فیڈ دستیاب نیکی",
 	"site-rss-feed": "$1 آر.ایس.ایس فیڈ",

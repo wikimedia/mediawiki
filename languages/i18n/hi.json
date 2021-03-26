@@ -363,7 +363,6 @@
 	"thisisdeleted": "$1 देखें या वापिस लाएँ?",
 	"viewdeleted": "$1 दिखायें?",
 	"restorelink": "{{PLURAL:$1|एक हटाया हुआ|$1 हटाये हुए}} बदलाव",
-	"feedlinks": "फ़ीड:",
 	"feed-invalid": "गलत सब्स्क्रीप्शन फ़ीड प्रकार",
 	"feed-unavailable": "संघ फ़ीड उपलब्ध नहीं हैं",
 	"site-rss-feed": "$1 की आर॰एस॰एस फ़ीड",

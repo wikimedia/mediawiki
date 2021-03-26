@@ -268,7 +268,6 @@
 	"thisisdeleted": "ⴰⴷ ⵜⵙⴽⵏⴷ ⵏⵖ ⴷ ⴰⴷ ⴷ ⵜⵔⴰⵔⴷ $1?",
 	"viewdeleted": "ⵥⵕ $1?",
 	"restorelink": "{{PLURAL:$1|ⵢⴰⵏ ⵓⵙⵏⴼⵍ ⵉⵜⵜⵡⴰⴽⵙ|$1 ⵉⵙⵏⴼⵍⵏ ⵜⵜⵡⴰⴽⵙⵏ}}",
-	"feedlinks": "ⴰⵏⴳⵉ",
 	"feed-invalid": "ⴰⵏⴰⵡ ⵏ ⵓⴷⵔⵓ ⴳ ⵓⵏⴳⵉ ⵓⵔ ⵉⵙⵖⵣⵏ.",
 	"feed-unavailable": "ⴰⵙⵓⴼⵖ ⴳ ⵎⵏⵏⴰⵡ ⵉⵖⵎⵉⵙⵏ ⵏ ⵉⵏⴳⵉⵜⵏ ⵓⵔ ⵍⵍⴰⵏ",
 	"site-rss-feed": "ⴰⵏⴳⵉ ⵏ RSS ⵏ $1",

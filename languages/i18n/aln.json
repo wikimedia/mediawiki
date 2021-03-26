@@ -233,7 +233,6 @@
 	"thisisdeleted": "Shiko ose rikthe $1?",
 	"viewdeleted": "Shiko $1?",
 	"restorelink": "{{PLURAL:$1|nji redaktim i fshimë|$1 redaktime të fshime}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Lloji i abonimit të feedit âsht i gabuem.",
 	"feed-unavailable": "Feedsat Sindikal nuk pranohen",
 	"site-rss-feed": "$1 RSS Feed",

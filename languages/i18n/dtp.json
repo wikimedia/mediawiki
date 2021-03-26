@@ -242,7 +242,6 @@
 	"thisisdeleted": "Intaai toi poguli gompi $1?",
 	"viewdeleted": "Intaai $1?",
 	"restorelink": "{{PLURAL:$1|iso niditan pinugas|$1 niniditan nopinpugasan}}",
-	"feedlinks": "Papababu:",
 	"feed-invalid": "Nokosilap kakamot magaganu papababu.",
 	"feed-unavailable": "Ingaa sontinimungan papapababu",
 	"site-rss-feed": "\"$1\"  papababu RSS",

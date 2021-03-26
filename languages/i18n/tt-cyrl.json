@@ -291,7 +291,6 @@
 	"thisisdeleted": "$1 караргамы яки торгызыргамы?",
 	"viewdeleted": "$1 караргамы?",
 	"restorelink": "Бетерелгән {{PLURAL:$1|1=төзәтмәне|$1 төзәтмәне}}",
-	"feedlinks": "Тасма:",
 	"feed-invalid": "Язылу каналы тибы ялгыш",
 	"feed-unavailable": "Синдикация тасмасы ябык",
 	"site-rss-feed": "$1 — RSS тасмасы",

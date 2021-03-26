@@ -218,7 +218,6 @@
 	"thisisdeleted": "$1 bekieken of trugplekken?",
 	"viewdeleted": "$1 bekieken?",
 	"restorelink": "$1 verwiederde {{PLURAL:$1|versie|versies}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Feedtype wor nie ondersteund.",
 	"feed-unavailable": "Syndicaotiefeeds zien nie beschikbaer",
 	"site-rss-feed": "$1 RSS-feed",

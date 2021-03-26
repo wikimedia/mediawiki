@@ -269,7 +269,6 @@
 	"thisisdeleted": "Kitaen wenno ipulang $1?",
 	"viewdeleted": "Kitaen $1?",
 	"restorelink": "{{PLURAL:$1|ti maysa a naikkat a naurnos|dagiti $1 a naikkat a naurnos}}",
-	"feedlinks": "Pakan:",
 	"feed-invalid": "Imbalido a kita ti suskrision a pakan.",
 	"feed-unavailable": "Saan a magun-od dagiti sindikasion ti pakan",
 	"site-rss-feed": "Pakan ti RSS ti $1",

@@ -335,7 +335,6 @@
 	"thisisdeleted": "Voleu mostrar o restaurar $1?",
 	"viewdeleted": "Voleu mostrar $1?",
 	"restorelink": "{{PLURAL:$1|una versió suprimida|$1 versions suprimides}}",
-	"feedlinks": "Sindicació:",
 	"feed-invalid": "La subscripció no és vàlida pel tipus de sindicament.",
 	"feed-unavailable": "Els canals de sindicació no estan disponibles",
 	"site-rss-feed": "Canal RSS $1",

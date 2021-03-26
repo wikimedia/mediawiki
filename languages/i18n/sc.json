@@ -268,7 +268,6 @@
 	"thisisdeleted": "Càstiare o recuperare $1?",
 	"viewdeleted": "Vista $1?",
 	"restorelink": "{{PLURAL:$1|unu càmbiu burradu|$1 càmbios burrados}}",
-	"feedlinks": "Alimentatzione:",
 	"feed-invalid": "Tipu de canale de sutiscritzione invàlida.",
 	"feed-unavailable": "Non sunt disponìbiles feeds",
 	"site-rss-feed": "Feed Atom de $1",

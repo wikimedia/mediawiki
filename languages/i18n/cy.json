@@ -282,7 +282,6 @@
 	"thisisdeleted": "Ydych chi am ddangos, neu ddad-ddileu $1?",
 	"viewdeleted": "Gweld $1?",
 	"restorelink": "$1 {{PLURAL:$1|golygiad sydd wedi'i ddileu|golygiad sydd wedi'i ddileu|olygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu|golygiad sydd wedi'u dileu}}",
-	"feedlinks": "Porthiant:",
 	"feed-invalid": "Math annilys o borthiant ar danysgrifiad.",
 	"feed-unavailable": "Nid oes porthiant wedi ei gynghreirio ar gael",
 	"site-rss-feed": "Porthiant RSS $1",

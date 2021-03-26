@@ -273,7 +273,6 @@
 	"thisisdeleted": "عرض او استرجاع $1؟",
 	"viewdeleted": "عرض $1؟",
 	"restorelink": "{{PLURAL:$1|تعديل واحد ملغى|$1 تعديلات ملغيه}}",
-	"feedlinks": "تلقيم:",
 	"feed-invalid": "نوع اشتراك التغذية مش صح.",
 	"feed-unavailable": "التغذية مش متوفرة",
 	"site-rss-feed": "$1 RSS feed",

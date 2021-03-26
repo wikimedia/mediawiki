@@ -255,7 +255,6 @@
 	"thisisdeleted": "Sie elle djensätt $1?",
 	"viewdeleted": "Wis $1?",
 	"restorelink": "{{PLURAL:$1|en sletten øndreng|$1 sletten øndrenge}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Udjylji abonnementjstyp.",
 	"feed-unavailable": "Där ä in syndikiirengsfeeds tildjængeli",
 	"site-rss-feed": "$1 RSS-feed",

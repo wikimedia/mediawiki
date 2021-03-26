@@ -207,7 +207,6 @@
 	"thisisdeleted": "$1: ko'riw yamasa qayta tiklew?",
 	"viewdeleted": "$1 ko'riw?",
 	"restorelink": "{{PLURAL:$1|bir o'shirilgen o'zgeris|$1 o'shirilgen o'zgeris}}",
-	"feedlinks": "Jolaq:",
 	"feed-invalid": "Natuwrı jazılıw jolaqsha tu'ri.",
 	"feed-unavailable": "Tarqatılatug'ın jolaqlar joq",
 	"site-rss-feed": "$1 saytının' \"RSS\" jolag'ı",

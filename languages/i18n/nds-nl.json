@@ -268,7 +268,6 @@
 	"thisisdeleted": "Bekyken of herstellen van $1?",
 	"viewdeleted": "Bekyk $1?",
 	"restorelink": "{{PLURAL:$1|versy dee vordsmeaten is|versys dee vordsmeaten bint}}",
-	"feedlinks": "Voder:",
 	"feed-invalid": "Vodertype wördt neet understöänt.",
 	"feed-unavailable": "Syndikatyvoder is neet beskikbår",
 	"site-rss-feed": "$1 RSS-voder",

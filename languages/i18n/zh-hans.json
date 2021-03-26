@@ -420,7 +420,6 @@
 	"thisisdeleted": "查看或还原$1？",
 	"viewdeleted": "查看$1？",
 	"restorelink": "$1个已删除的编辑",
-	"feedlinks": "源：",
 	"feed-invalid": "无效的订阅feed类型。",
 	"feed-unavailable": "不提供联合feed",
 	"site-rss-feed": "$1的RSS feed",

@@ -266,7 +266,6 @@
 	"thisisdeleted": "देखीं या रिस्टोर करीं $1?",
 	"viewdeleted": "$1 देखावल जाय?",
 	"restorelink": "{{PLURAL:$1|एक ठो हटावल संपादन|$1 ठे हटावल संपादन}}",
-	"feedlinks": "फीड:",
 	"feed-invalid": "अवैध सबस्क्रिप्शन फीड प्रकार।",
 	"feed-unavailable": "सिंडिकेशन फीड उपलब्ध नइखें",
 	"site-rss-feed": "$1 आरएसएस फीड",

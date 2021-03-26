@@ -273,7 +273,6 @@
 	"thisisdeleted": "Hwæðer þu wille seon þe eft scyppan $1?",
 	"viewdeleted": "Wilt þu $1 seon?",
 	"restorelink": "{{PLURAL:$1|an forloren adihtung|$1 forlorenra adihtunga}}",
-	"feedlinks": "Ærendstream:",
 	"feed-invalid": "Ungenge underwritendlices ærendstreames gecynd.",
 	"feed-unavailable": "Frumlice ærendstreamas ne sind brucendlice",
 	"site-rss-feed": "$1 RSS ærendstream",

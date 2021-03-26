@@ -234,7 +234,6 @@
 	"thisisdeleted": "Tu aimerais mieux regarde ou rétablir $1?",
 	"viewdeleted": "Regarder $1?",
 	"restorelink": "{{PLURAL:$1|1 changement ôté|$1 changements ôtés}}",
-	"feedlinks": "Distribution RSS:",
 	"feed-invalid": "Mauvaise qualité de distribution RSS.",
 	"site-rss-feed": "Flux RSS de $1",
 	"site-atom-feed": "Flux Atom de $1",

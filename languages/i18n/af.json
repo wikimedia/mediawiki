@@ -292,7 +292,6 @@
 	"thisisdeleted": "Wys of herstel $1?",
 	"viewdeleted": "Bekyk $1?",
 	"restorelink": "{{PLURAL:$1|die geskrapte wysiging|$1 geskrapte wysigings}}",
-	"feedlinks": "Voer:",
 	"feed-invalid": "Voertipe word nie ondersteun nie.",
 	"feed-unavailable": "Sindikasievoer is nie beskikbaar",
 	"site-rss-feed": "$1 RSS-voer",

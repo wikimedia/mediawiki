@@ -261,7 +261,6 @@
 	"thisisdeleted": "БӀаргтоха е юхаметтаоттае $1?",
 	"viewdeleted": "Хьажа $1?",
 	"restorelink": "{{PLURAL:$1|1=дӀадaьккха нийсдар|$1 дӀадaьккха нийсдараш}}",
-	"feedlinks": "Укх тайпара:",
 	"site-rss-feed": "$1 — RSS-мугI",
 	"site-atom-feed": "$1 — Atom-мугI",
 	"page-rss-feed": "$1 — RSS-мугI",

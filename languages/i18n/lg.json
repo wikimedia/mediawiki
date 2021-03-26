@@ -216,7 +216,6 @@
 	"thisisdeleted": "Oyagala okulaba oba okuzzawo $1?",
 	"viewdeleted": "Oyagala okulaba $1?",
 	"restorelink": "{{PLURAL:$1|oluwandika olwagyibwawo olumu|empandika ezagyibwawo $1}}",
-	"feedlinks": "Mukutu gwa mawulire:",
 	"feed-invalid": "Ekika ky'omukutu gw'amawulire tekimanyidwa.",
 	"feed-unavailable": "Tekisobose okufunayo mikutu gya mawulire",
 	"site-rss-feed": "Mukutu ogw'amawulire ogw'ekika kya RSS ogw'oku $1",

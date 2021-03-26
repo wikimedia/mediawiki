@@ -342,7 +342,6 @@
 	"thisisdeleted": "Vis eller gendan $1?",
 	"viewdeleted": "Vis $1?",
 	"restorelink": "{{PLURAL:$1|én slettet redigering|$1 slettede redigeringer}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Ugyldig abonnementstype.",
 	"feed-unavailable": "Der er ingen syndikeringsfeeds tilgængelige",
 	"site-rss-feed": "$1 RSS-feed",

@@ -309,7 +309,6 @@
 	"thisisdeleted": "להציג או לשחזר $1?",
 	"viewdeleted": "להציג $1?",
 	"restorelink": "{{PLURAL:$1|עריכה מחוקה אחת|$1 עריכות מחוקות}}",
-	"feedlinks": "הזנה:",
 	"feed-invalid": "סוג הזנת המנוי שגוי.",
 	"feed-unavailable": "הזנות אינן זמינות",
 	"site-rss-feed": "הזנת RSS של $1",

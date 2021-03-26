@@ -258,7 +258,6 @@
 	"thisisdeleted": "$1 åschauh óder wiederherstön?",
 	"viewdeleted": "$1 åzoang?",
 	"restorelink": "$1 gléschde {{PLURAL:$1|Versión|Versiónen}}",
-	"feedlinks": "Feed:",
 	"feed-invalid": "Néd gütiger Feed-Abonnement-Typ.",
 	"feed-unavailable": "Es steengern koane Feeds zur Vafiagung.",
 	"site-rss-feed": "RSS-Feed fyr $1",

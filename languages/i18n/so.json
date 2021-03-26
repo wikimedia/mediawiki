@@ -236,7 +236,6 @@
 	"thisisdeleted": "Fiiri ama soo celi $1?",
 	"viewdeleted": "Fiiri $1?",
 	"restorelink": "{{PLURAL:$1|halxabo oo bedelkii la tirtiray|$1 bedelyadii la tirtiray}}",
-	"feedlinks": "Quudinta wararka:",
 	"feed-invalid": "Habka aad uga soo qayb gashay masaxna.",
 	"feed-unavailable": "Faallo diyaar maaha.",
 	"site-rss-feed": "$1 RSS quudiye",

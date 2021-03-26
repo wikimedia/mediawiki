@@ -113,7 +113,7 @@
 	"config-admin-password-blank": "Gitt e Passwuert fir den Adminstateur-Kont an.",
 	"config-admin-password-mismatch": "Déi zwee Passwierder Déi Dir aginn hutt stëmmen net iwwereneen.",
 	"config-admin-email": "E-Mail-Adress:",
-	"config-admin-error-user": "Interne Feeler beim uleeë vun engem Administrateur mam Numm \"<nowiki>$1</nowiki>\".",
+	"config-admin-error-user": "Interne Feeler beim Uleeë vun engem Administrateur mam Numm \"<nowiki>$1</nowiki>\".",
 	"config-admin-error-password": "Interne Feeler beim Setze vum Passwuert fir den Admin \"<nowiki>$1</nowiki>\": <pre>$2</pre>",
 	"config-admin-error-bademail": "Dir hutt eng E-Mail-Adress aginn déi net valabel ass",
 	"config-subscribe": "Sech op d'[https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Ukënnegunge vun neie Versiounen] abonnéieren.",

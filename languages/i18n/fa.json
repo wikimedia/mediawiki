@@ -346,7 +346,6 @@
 	"thisisdeleted": "نمایش یا احیای $1؟",
 	"viewdeleted": "نمایش $1؟",
 	"restorelink": "{{PLURAL:$1|یک|$1}} ویرایش حذف‌شده",
-	"feedlinks": "خبرخوان:",
 	"feed-invalid": "نوع خوراک خبرخوان مجاز نیست.",
 	"feed-unavailable": "خوراک‌های خبرخوان در دسترس نیستند",
 	"site-rss-feed": "خوراک آراس‌اس برای $1",
