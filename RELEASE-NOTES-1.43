@@ -140,6 +140,8 @@ For notes on 1.42.x and older releases, see HISTORY.
 
 * When using the 'runMaintenance' method in a LoadExtensionSchemaUpdates hook
   handler, only the script's class name is required, not its path. (T367918)
+* QueryPage::recache() (used by the updateSpecialPages.php maintenance script)
+  no longer attempts to ignore database errors. (T278543)
 * …
 
 === Action API changes in 1.43 ===
