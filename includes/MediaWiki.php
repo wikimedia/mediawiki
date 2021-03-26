@@ -839,15 +839,6 @@ class MediaWiki {
 		$timing = $this->context->getTiming();
 		$timing->mark( 'requestShutdown' );
 
-		// Perform the last synchronous operations...
-		try {
-			// Show visible profiling data if enabled (which cannot be post-send)
-			Profiler::instance()->logDataPageOutputOnly();
-		} catch ( Throwable $e ) {
-			// An error may already have been shown in run(), so just log it to be safe
-			MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
-		}
-
 		// Defer everything else if possible...
 		if ( $this->postSendStrategy === self::DEFER_FASTCGI_FINISH_REQUEST ) {
 			// Flush the output to the client, continue processing, and avoid further output
@@ -1069,6 +1060,14 @@ class MediaWiki {
 	 * @param string $content Response content, usually from OutputPage::output()
 	 */
 	private function outputResponsePayload( $content ) {
+		// Append any visible profiling data in a manner appropriate for the Content-Type
+		ob_start();
+		try {
+			Profiler::instance()->logDataPageOutputOnly();
+		} finally {
+			$content .= ob_get_clean();
+		}
+
 		// By default, usually one output buffer is active now, either the internal PHP buffer
 		// started by "output_buffering" in php.ini or the buffer started by MW_SETUP_CALLBACK.
 		// The MW_SETUP_CALLBACK buffer has an unlimited chunk size, while the internal PHP
