@@ -1628,11 +1628,11 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getHookContainer(),
-			$services->getPermissionManager(),
 			$services->getReadOnlyMode(),
 			$services->getRevisionLookup(),
 			$services->getTalkPageNotificationManager(),
-			$services->getWatchedItemStore()
+			$services->getWatchedItemStore(),
+			$services->getUserFactory()
 		);
 	},
 
