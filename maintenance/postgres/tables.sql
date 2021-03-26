@@ -36,17 +36,6 @@ CREATE INDEX user_email ON mwuser (user_email);
 INSERT INTO mwuser
   VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
 
-CREATE FUNCTION page_deleted() RETURNS TRIGGER LANGUAGE plpgsql AS
-$mw$
-BEGIN
-DELETE FROM recentchanges WHERE rc_namespace = OLD.page_namespace AND rc_title = OLD.page_title;
-RETURN NULL;
-END;
-$mw$;
-
-CREATE TRIGGER page_deleted AFTER DELETE ON page
-  FOR EACH ROW EXECUTE PROCEDURE page_deleted();
-
 CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE revision (
   rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
