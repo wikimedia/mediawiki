@@ -7576,9 +7576,6 @@ $wgUseTagFilter = true;
  * @see ChangeTags::TAG_UNDO
  * @see ChangeTags::TAG_MANUAL_REVERT
  * @see ChangeTags::TAG_REVERTED
- * @see ChangeTags::TAG_CHANGE_MEDIA
- * @see ChangeTags::TAG_ADD_MEDIA
- * @see ChangeTags::TAG_REMOVE_MEDIA
  */
 $wgSoftwareTags = [
 	'mw-contentmodelchange' => true,
@@ -7591,9 +7588,6 @@ $wgSoftwareTags = [
 	'mw-undo' => true,
 	'mw-manual-revert' => true,
 	'mw-reverted' => true,
-	'mw-change-media' => false,
-	'mw-add-media' => false,
-	'mw-remove-media' => false,
 ];
 
 /**
