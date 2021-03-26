@@ -399,36 +399,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "done.\n" );
 	}
 
-	protected function doCategoryPopulation() {
-		if ( $this->updateRowExists( 'populate category' ) ) {
-			$this->output( "...category table already populated.\n" );
-
-			return;
-		}
-
-		$this->output(
-			"Populating category table, printing progress markers. " .
-			"For large databases, you\n" .
-			"may want to hit Ctrl-C and do this manually with maintenance/\n" .
-			"populateCategory.php.\n"
-		);
-		$task = $this->maintenance->runChild( PopulateCategory::class );
-		$task->execute();
-		$this->output( "Done populating category table.\n" );
-	}
-
-	protected function doPopulateParentId() {
-		if ( !$this->updateRowExists( 'populate rev_parent_id' ) ) {
-			$this->output(
-				"Populating rev_parent_id fields, printing progress markers. For large\n" .
-				"databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateParentId.php.\n" );
-
-			$task = $this->maintenance->runChild( PopulateParentId::class );
-			$task->execute();
-		}
-	}
-
 	protected function doNonUniquePlTlIl() {
 		$info = $this->db->indexInfo( 'pagelinks', 'pl_namespace', __METHOD__ );
 		if ( is_array( $info ) && $info[0]->Non_unique ) {
