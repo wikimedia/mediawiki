@@ -17,7 +17,20 @@ class MovePageFactoryTest extends MediaWikiUnitTestCase {
 	}
 
 	protected static function getExtraClassArgCount() {
-		// $to and $from
-		return 2;
+		// $to + $from - $readOnlyMode - $titleFormatter - $actorMigration
+		return -1;
+	}
+
+	protected function getOverriddenMockValueForParam( ReflectionParameter $param ) {
+		if ( $param->getName() === 'config' ) {
+			return [ new HashConfig(
+				array_fill_keys( MovePage::CONSTRUCTOR_OPTIONS, 'test' )
+			) ];
+		}
+		return [];
+	}
+
+	protected function getIgnoredParamNames() {
+		return [ 'readOnlyMode', 'config', 'titleFormatter', 'actorMigration' ];
 	}
 }

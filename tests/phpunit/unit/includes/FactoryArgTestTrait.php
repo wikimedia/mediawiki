@@ -33,7 +33,7 @@ trait FactoryArgTestTrait {
 	 * @return string
 	 */
 	protected function getFactoryMethodName() {
-		return 'new' . $this->getInstanceClass();
+		return 'new' . ( new ReflectionClass( $this->getInstanceClass() ) )->getShortName();
 	}
 
 	/**

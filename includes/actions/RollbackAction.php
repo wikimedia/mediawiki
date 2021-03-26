@@ -114,25 +114,28 @@ class RollbackAction extends FormAction {
 			] );
 		}
 
-		$data = null;
-		$errors = $this->getWikiPage()->doRollback(
-			$from,
-			$request->getText( 'summary' ),
-			$request->getVal( 'token' ),
-			$request->getBool( 'bot' ),
-			$data,
-			$this->getContext()->getAuthority()
-		);
+		// The revision has the user suppressed, so the rollback has empty 'from',
+		// so the check above would succeed in that case.
+		if ( !$revUser ) {
+			$revUser = $rev->getUser( RevisionRecord::RAW );
+		}
 
-		if ( in_array( [ 'actionthrottledtext' ], $errors ) ) {
+		$rollbackResult = MediaWikiServices::getInstance()
+			->getRollbackPageFactory()
+			->newRollbackPage( $this->getWikiPage(), $this->getContext()->getAuthority(), $revUser )
+			->setSummary( $request->getText( 'summary' ) )
+			->markAsBot( $request->getVal( 'token' ) )
+			->rollbackIfAllowed();
+		$data = $rollbackResult->getValue();
+
+		if ( $rollbackResult->hasMessage( 'actionthrottledtext' ) ) {
 			throw new ThrottledError;
 		}
 
-		if ( $this->hasRollbackRelatedErrors( $errors ) ) {
+		if ( $rollbackResult->hasMessage( 'alreadyrolled' ) || $rollbackResult->hasMessage( 'cantrollback' ) ) {
 			$this->getOutput()->setPageTitle( $this->msg( 'rollbackfailed' ) );
-			$errArray = $errors[0];
-			$errMsg = array_shift( $errArray );
-			$this->getOutput()->addWikiMsgArray( $errMsg, $errArray );
+			$errArray = $rollbackResult->getErrors()[0];
+			$this->getOutput()->addWikiMsgArray( $errArray['message'], $errArray['params'] );
 
 			if ( isset( $data['current-revision-record'] ) ) {
 				/** @var RevisionRecord $current */
@@ -154,14 +157,14 @@ class RollbackAction extends FormAction {
 		}
 
 		# NOTE: Permission errors already handled by Action::checkExecute.
-		if ( $errors == [ [ 'readonlytext' ] ] ) {
+		if ( $rollbackResult->hasMessage( 'readonlytext' ) ) {
 			throw new ReadOnlyError;
 		}
 
 		# XXX: Would be nice if ErrorPageError could take multiple errors, and/or a status object.
 		#      Right now, we only show the first error
-		foreach ( $errors as $error ) {
-			throw new ErrorPageError( 'rollbackfailed', $error[0], array_slice( $error, 1 ) );
+		foreach ( $rollbackResult->getErrors() as $error ) {
+			throw new ErrorPageError( 'rollbackfailed', $error['message'], $error['params'] );
 		}
 
 		/** @var RevisionRecord $current */
@@ -250,12 +253,5 @@ class RollbackAction extends FormAction {
 				'default' => $this->msg( 'confirm-rollback-bottom' )->parse()
 			]
 		];
-	}
-
-	private function hasRollbackRelatedErrors( array $errors ) {
-		return isset( $errors[0][0] ) &&
-			( $errors[0][0] == 'alreadyrolled' ||
-				$errors[0][0] == 'cantrollback'
-			);
 	}
 }

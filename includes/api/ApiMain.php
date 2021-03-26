@@ -120,7 +120,12 @@ class ApiMain extends ApiBase {
 				'WatchedItemStore',
 			]
 		],
-		'rollback' => ApiRollback::class,
+		'rollback' => [
+			'class' => ApiRollback::class,
+			'services' => [
+				'RollbackPageFactory',
+			]
+		],
 		'delete' => ApiDelete::class,
 		'undelete' => ApiUndelete::class,
 		'protect' => ApiProtect::class,
