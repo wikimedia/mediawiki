@@ -220,7 +220,10 @@ class MovePageForm extends UnlistedSpecialPage {
 
 		$out = $this->getOutput();
 		$out->setPageTitle( $this->msg( 'move-page', $this->oldTitle->getPrefixedText() ) );
-		$out->addModuleStyles( 'mediawiki.special' );
+		$out->addModuleStyles( [
+			'mediawiki.special',
+			'mediawiki.interface.helpers.styles'
+		] );
 		$out->addModules( 'mediawiki.misc-authed-ooui' );
 		$this->addHelpLink( 'Help:Moving a page' );
 
