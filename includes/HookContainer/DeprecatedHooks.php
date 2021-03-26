@@ -47,6 +47,7 @@ class DeprecatedHooks {
 		'CanIPUseHTTPS' => [ 'deprecatedVersion' => '1.35' ],
 		'DiffRevisionTools' => [ 'deprecatedVersion => 1.35' ],
 		'DiffViewHeader' => [ 'deprecatedVersion' => '1.35' ],
+		'EditPageBeforeEditToolbar' => [ 'deprecatedVersion' => '1.36' ],
 		'HistoryRevisionTools' => [ 'deprecatedVersion => 1.35' ],
 		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
