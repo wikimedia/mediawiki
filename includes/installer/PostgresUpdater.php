@@ -37,22 +37,10 @@ class PostgresUpdater extends DatabaseUpdater {
 	protected $db;
 
 	/**
-	 * @todo FIXME: Postgres should use sequential updates like Mysql, Sqlite
-	 * and everybody else. It never got refactored like it should've.
 	 * @return array
 	 */
 	protected function getCoreUpdateList() {
 		return [
-			[ 'checkIndex', 'ipb_address_unique', [
-				[ 'ipb_address', 'text_ops', 'btree', 0 ],
-				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
-				[ 'ipb_auto', 'int2_ops', 'btree', 0 ],
-			],
-			'CREATE UNIQUE INDEX ipb_address_unique ' .
-				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
-
-			// **** T272199 MARKER ****
-
 			// 1.28
 			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'( rc_namespace, rc_type, rc_patrolled, rc_timestamp )' ],
@@ -304,6 +292,13 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'actor', 'actor_name', 'TEXT', '' ],
 			[ 'changeField', 'user_former_groups', 'ufg_group', 'TEXT', '' ],
 			[ 'dropFkey', 'user_former_groups', 'ufg_user' ],
+			[ 'checkIndex', 'ipb_address_unique', [
+				[ 'ipb_address', 'text_ops', 'btree', 0 ],
+				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
+				[ 'ipb_auto', 'int2_ops', 'btree', 0 ],
+			],
+				'CREATE UNIQUE INDEX ipb_address_unique ' .
+				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
 
 			// 1.36
 			[ 'setDefault', 'bot_passwords', 'bp_token', '' ],
