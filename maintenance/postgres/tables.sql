@@ -9,33 +9,6 @@
 BEGIN;
 SET client_min_messages = 'ERROR';
 
-CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
-CREATE TABLE mwuser ( -- replace reserved word 'user'
-  user_id                   INTEGER  NOT NULL  PRIMARY KEY DEFAULT nextval('user_user_id_seq'),
-  user_name                 TEXT     NOT NULL  UNIQUE,
-  user_real_name            TEXT,
-  user_password             TEXT,
-  user_newpassword          TEXT,
-  user_newpass_time         TIMESTAMPTZ,
-  user_token                TEXT,
-  user_email                TEXT,
-  user_email_token          TEXT,
-  user_email_token_expires  TIMESTAMPTZ,
-  user_email_authenticated  TIMESTAMPTZ,
-  user_touched              TIMESTAMPTZ NOT NULL,
-  user_registration         TIMESTAMPTZ,
-  user_editcount            INTEGER,
-  user_password_expires     TIMESTAMPTZ NULL
-);
-ALTER SEQUENCE user_user_id_seq OWNED BY mwuser.user_id;
-CREATE UNIQUE INDEX user_name ON mwuser (user_name);
-CREATE INDEX user_email_token ON mwuser (user_email_token);
-CREATE INDEX user_email ON mwuser (user_email);
-
--- Create a dummy user to satisfy fk contraints especially with revisions
-INSERT INTO mwuser
-  VALUES (DEFAULT,'Anonymous','',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,now(),now());
-
 CREATE SEQUENCE revision_rev_id_seq;
 CREATE TABLE revision (
   rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),

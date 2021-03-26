@@ -198,11 +198,7 @@ abstract class MWLBFactory {
 				'trxMode' => $isHttpRead ? 'DEFERRED' : 'IMMEDIATE'
 			];
 		} elseif ( $server['type'] === 'postgres' ) {
-			$server += [
-				'port' => $options->get( 'DBport' ),
-				// Work around the reserved word usage in MediaWiki schema
-				'keywordTableMap' => [ 'user' => 'mwuser' ]
-			];
+			$server += [ 'port' => $options->get( 'DBport' ) ];
 		}
 
 		if ( in_array( $server['type'], self::getDbTypesWithSchemas(), true ) ) {

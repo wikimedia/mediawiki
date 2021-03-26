@@ -834,3 +834,28 @@ CREATE TABLE /*_*/page (
   ),
   PRIMARY KEY(page_id)
 ) /*$wgDBTableOptions*/;
+
+
+CREATE TABLE /*_*/user (
+  user_id INT UNSIGNED AUTO_INCREMENT NOT NULL,
+  user_name VARBINARY(255) DEFAULT '' NOT NULL,
+  user_real_name VARBINARY(255) DEFAULT '' NOT NULL,
+  user_password TINYBLOB NOT NULL,
+  user_newpassword TINYBLOB NOT NULL,
+  user_newpass_time BINARY(14) DEFAULT NULL,
+  user_email TINYTEXT NOT NULL,
+  user_touched BINARY(14) NOT NULL,
+  user_token BINARY(32) DEFAULT '' NOT NULL,
+  user_email_authenticated BINARY(14) DEFAULT NULL,
+  user_email_token BINARY(32) DEFAULT NULL,
+  user_email_token_expires BINARY(14) DEFAULT NULL,
+  user_registration BINARY(14) DEFAULT NULL,
+  user_editcount INT DEFAULT NULL,
+  user_password_expires VARBINARY(14) DEFAULT NULL,
+  UNIQUE INDEX user_name (user_name),
+  INDEX user_email_token (user_email_token),
+  INDEX user_email (
+    user_email(50)
+  ),
+  PRIMARY KEY(user_id)
+) /*$wgDBTableOptions*/;
