@@ -518,7 +518,7 @@ class SpecialPageFactory {
 			'class' => \SpecialWatchlist::class,
 			'services' => [
 				'WatchedItemStore',
-				'WatchlistNotificationManager',
+				'WatchlistManager',
 				'DBLoadBalancer',
 				'UserOptionsLookup',
 			]

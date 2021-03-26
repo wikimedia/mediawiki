@@ -132,7 +132,7 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
-use MediaWiki\User\WatchlistNotificationManager;
+use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\DependencyStore\SqlModuleDependencyStore;
 use Wikimedia\Message\IMessageFormatterFactory;
@@ -1610,11 +1610,10 @@ return [
 		return $store;
 	},
 
-	'WatchlistNotificationManager' =>
-	static function ( MediaWikiServices $services ) : WatchlistNotificationManager {
-		return new WatchlistNotificationManager(
+	'WatchlistManager' => static function ( MediaWikiServices $services ) : WatchlistManager {
+		return new WatchlistManager(
 			new ServiceOptions(
-				WatchlistNotificationManager::CONSTRUCTOR_OPTIONS,
+				WatchlistManager::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig()
 			),
 			$services->getHookContainer(),

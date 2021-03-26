@@ -7,17 +7,17 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserIdentity;
-use MediaWiki\User\WatchlistNotificationManager;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
- * @covers \MediaWiki\User\WatchlistNotificationManager
+ * @covers \MediaWiki\Watchlist\WatchlistManager
  *
- * Cannot use the name `WatchlistNotificationManagerTest`, already used by the integration test
+ * Cannot use the name `WatchlistManagerTest`, already used by the integration test
  * @phpcs:disable MediaWiki.Files.ClassMatchesFilename
  *
  * @author DannyS712
  */
-class WatchlistNotificationManagerUnitTest extends MediaWikiUnitTestCase {
+class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 	private function getManager( array $params ) {
 		$config = $params['config'] ?? [
@@ -25,7 +25,7 @@ class WatchlistNotificationManagerUnitTest extends MediaWikiUnitTestCase {
 			'ShowUpdatedMarker' => false
 		];
 		$options = new ServiceOptions(
-			WatchlistNotificationManager::CONSTRUCTOR_OPTIONS,
+			WatchlistManager::CONSTRUCTOR_OPTIONS,
 			$config
 		);
 
@@ -53,7 +53,7 @@ class WatchlistNotificationManagerUnitTest extends MediaWikiUnitTestCase {
 		$watchedItemStore = $params['watchedItemStore'] ??
 			$this->createNoOpAbstractMock( WatchedItemStoreInterface::class );
 
-		return new WatchlistNotificationManager(
+		return new WatchlistManager(
 			$options,
 			$hookContainer,
 			$permissionManager,
