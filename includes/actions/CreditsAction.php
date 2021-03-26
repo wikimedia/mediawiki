@@ -44,6 +44,10 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML
 	 */
 	public function onView() {
+		$this->getOutput()->addModuleStyles( [
+			'mediawiki.action.styles',
+		] );
+
 		if ( $this->getWikiPage()->getId() == 0 ) {
 			$s = $this->msg( 'nocredits' )->parse();
 		} else {
