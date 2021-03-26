@@ -22,7 +22,7 @@
  */
 
 use MediaWiki\User\UserOptionsLookup;
-use MediaWiki\User\WatchlistNotificationManager;
+use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -45,8 +45,8 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
-	/** @var WatchlistNotificationManager */
-	private $watchlistNotificationManager;
+	/** @var WatchlistManager */
+	private $watchlistManager;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -59,20 +59,20 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
-	 * @param WatchlistNotificationManager $watchlistNotificationManager
+	 * @param WatchlistManager $watchlistManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		WatchedItemStoreInterface $watchedItemStore,
-		WatchlistNotificationManager $watchlistNotificationManager,
+		WatchlistManager $watchlistManager,
 		ILoadBalancer $loadBalancer,
 		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( 'Watchlist', 'viewmywatchlist' );
 
 		$this->watchedItemStore = $watchedItemStore;
-		$this->watchlistNotificationManager = $watchlistNotificationManager;
+		$this->watchlistManager = $watchlistManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
@@ -127,7 +127,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			&& $request->wasPosted()
 			&& $user->matchEditToken( $request->getVal( 'token' ) )
 		) {
-			$this->watchlistNotificationManager->clearAllUserNotifications( $user );
+			$this->watchlistManager->clearAllUserNotifications( $user );
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
 
 			return;

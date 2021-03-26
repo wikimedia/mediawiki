@@ -47,7 +47,7 @@ class SpecialWatchlistTest extends SpecialPageTestBase {
 		$services = MediaWikiServices::getInstance();
 		return new SpecialWatchlist(
 			$services->getWatchedItemStore(),
-			$services->getWatchlistNotificationManager(),
+			$services->getWatchlistManager(),
 			$services->getDBLoadBalancer(),
 			$services->getUserOptionsLookup()
 		);
