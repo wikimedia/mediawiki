@@ -42,15 +42,6 @@ exports.config = {
 	// ==================
 	runner: 'local',
 
-	// ======
-	// Sauce Labs
-	// ======
-	// See http://webdriver.io/guide/services/sauce.html
-	// and https://github.com/bermi/sauce-connect-launcher#advanced-usage
-	user: process.env.SAUCE_USERNAME,
-	key: process.env.SAUCE_ACCESS_KEY,
-	sauceConnect: true,
-
 	// ==================
 	// Test Files
 	// ==================
@@ -90,9 +81,6 @@ exports.config = {
 	baseUrl: ( process.env.MW_SERVER ) + (
 		process.env.MW_SCRIPT_PATH
 	),
-	services: [
-		...( process.env.SAUCE_ACCESS_KEY ? [ 'sauce' ] : [] )
-	],
 	// See also: https://webdriver.io/docs/frameworks.html
 	framework: 'mocha',
 	// See also: https://webdriver.io/docs/dot-reporter.html
