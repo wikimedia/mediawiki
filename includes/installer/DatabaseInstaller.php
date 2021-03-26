@@ -768,7 +768,7 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Common function for databases that don't understand the MySQLish syntax of interwiki.sql.
+	 * Common function for databases that don't understand the MySQLish syntax of interwiki.list.
 	 * @stable to override
 	 *
 	 * @return Status

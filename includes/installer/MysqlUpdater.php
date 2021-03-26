@@ -32,9 +32,6 @@ use Wikimedia\Rdbms\MySQLField;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			// 1.2; T273080
-			[ 'doInterwikiUpdate' ],
-
 			// 1.28
 			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
@@ -299,30 +296,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "...index $index on table $table has no field $field; added.\n" );
 
 		return false;
-	}
-
-	/**
-	 * Check that interwiki table exists; if it doesn't source it
-	 */
-	protected function doInterwikiUpdate() {
-		global $IP;
-
-		if ( !$this->doTable( 'interwiki' ) ) {
-			return;
-		}
-
-		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
-			$this->output( "...already have interwiki table\n" );
-
-			return;
-		}
-
-		$this->applyPatch( 'patch-interwiki.sql', false, 'Creating interwiki table' );
-		$this->applyPatch(
-			"$IP/maintenance/interwiki.sql",
-			true,
-			'Adding default interwiki definitions'
-		);
 	}
 
 	/**
