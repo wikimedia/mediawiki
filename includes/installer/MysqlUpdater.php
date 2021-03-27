@@ -74,10 +74,6 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-user_properties-fix-pk.sql' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
 			[ 'addTable', 'revision_comment_temp', 'patch-revision_comment_temp-table.sql' ],
-			// image_comment_temp is no longer needed when upgrading to MW 1.31 or newer,
-			// as it is dropped later in the update process as part of 'migrateImageCommentTemp'.
-			// File kept on disk and the updater entry here for historical purposes.
-			// [ 'addTable', 'image_comment_temp', 'patch-image_comment_temp-table.sql' ],
 			[ 'addField', 'archive', 'ar_comment_id', 'patch-archive-ar_comment_id.sql' ],
 			[ 'addField', 'filearchive', 'fa_description_id', 'patch-filearchive-fa_description_id.sql' ],
 			[ 'modifyField', 'image', 'img_description', 'patch-image-img_description-default.sql' ],
