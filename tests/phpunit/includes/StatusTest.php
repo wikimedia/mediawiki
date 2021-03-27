@@ -754,7 +754,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	public function provideDuplicates() {
 		yield [ [ 'foo', 1, 2 ], [ 'foo', 1, 2 ] ];
 		$message = new Message( 'foo', [ 1, 2 ] );
-		yield[ $message, $message ];
+		yield [ $message, $message ];
 		yield [ $message, array_merge( [ $message->getKey() ], $message->getParams() ) ];
 		yield [ array_merge( [ $message->getKey() ], $message->getParams() ), $message ];
 	}
