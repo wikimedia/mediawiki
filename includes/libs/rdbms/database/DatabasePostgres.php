@@ -31,7 +31,7 @@ use Wikimedia\WaitConditionLoop;
  * @ingroup Database
  */
 class DatabasePostgres extends Database {
-	/** @var int|null */
+	/** @var int */
 	private $port;
 	/** @var string */
 	private $coreSchema;
