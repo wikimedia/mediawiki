@@ -1293,11 +1293,6 @@
 	url = https://github.com/1f604/SimpleBlogPage.git
 	branch = master
 	ignore = dirty
-[submodule "extensions/Video"]
-	path = extensions/Video
-	url = https://github.com/wikimedia/mediawiki-extensions-Video
-	branch = REL1_35
-	ignore = dirty
 [submodule "extensions/CleanChanges"]
 	path = extensions/CleanChanges
 	url = https://github.com/wikimedia/mediawiki-extensions-CleanChanges
@@ -1431,5 +1426,10 @@
 [submodule "extensions/ShortDescription"]
 	path = extensions/ShortDescription
 	url = https://github.com/StarCitizenTools/mediawiki-extensions-ShortDescription
+	branch = master
+	ignore = dirty
+[submodule "extensions/Video"]
+	path = extensions/Video
+	url = https://github.com/wikimedia/mediawiki-extensions-Video
 	branch = master
 	ignore = dirty
