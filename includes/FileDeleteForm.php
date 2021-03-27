@@ -41,21 +41,21 @@ class FileDeleteForm {
 	/** @var User */
 	private $user;
 
+	/** @var OutputPage */
+	private $out;
+
 	/** @var LocalFile|null */
 	private $oldfile = null;
 
 	/** @var string */
 	private $oldimage = '';
 
-	/** @var OutputPage */
-	private $out;
-
 	/**
 	 * @param LocalFile $file File object we're deleting
 	 * @param User $user
 	 * @param OutputPage $out
 	 */
-	public function __construct( $file, User $user, OutputPage $out ) {
+	public function __construct( LocalFile $file, User $user, OutputPage $out ) {
 		$this->title = $file->getTitle();
 		$this->file = $file;
 		$this->user = $user;
@@ -175,7 +175,7 @@ class FileDeleteForm {
 	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason,
 		$suppress, User $user, $tags = []
-	) {
+	) : Status {
 		if ( $oldimage ) {
 			$page = null;
 			$status = $file->deleteOldFile( $oldimage, $reason, $user, $suppress );
@@ -447,7 +447,7 @@ class FileDeleteForm {
 	 * @param string $message Message base
 	 * @return string
 	 */
-	private function prepareMessage( $message ) {
+	private function prepareMessage( string $message ) {
 		if ( $this->oldimage ) {
 			$lang = $this->out->getLanguage();
 			# Message keys used:
