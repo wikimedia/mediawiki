@@ -26,8 +26,6 @@ use MediaWiki\MediaWikiServices;
 /**
  * File deletion user interface
  *
- * TODO replace uses of globals and wfMessage with using the context available in $this->out
- *
  * @ingroup Media
  */
 class FileDeleteForm {
@@ -67,8 +65,6 @@ class FileDeleteForm {
 	 * pending authentication, confirmation, etc.
 	 */
 	public function execute() {
-		global $wgRequest, $wgUploadMaintenance;
-
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$permissionErrors = $permissionManager->getPermissionErrors(
 			'delete',
@@ -83,16 +79,17 @@ class FileDeleteForm {
 			throw new ReadOnlyError;
 		}
 
-		if ( $wgUploadMaintenance ) {
+		if ( $this->out->getConfig()->get( 'UploadMaintenance' ) ) {
 			throw new ErrorPageError( 'filedelete-maintenance-title', 'filedelete-maintenance' );
 		}
 
 		$this->setHeaders();
 
-		$this->oldimage = $wgRequest->getText( 'oldimage', '' );
-		$token = $wgRequest->getText( 'wpEditToken' );
+		$request = $this->out->getRequest();
+		$this->oldimage = $request->getText( 'oldimage', '' );
+		$token = $request->getText( 'wpEditToken' );
 		# Flag to hide all contents of the archived revisions
-		$suppress = $wgRequest->getCheck( 'wpSuppress' ) &&
+		$suppress = $request->getCheck( 'wpSuppress' ) &&
 			$permissionManager->userHasRight( $this->user, 'suppressrevision' );
 
 		if ( $this->oldimage ) {
@@ -110,15 +107,15 @@ class FileDeleteForm {
 		}
 
 		// Perform the deletion if appropriate
-		if ( $wgRequest->wasPosted() && $this->user->matchEditToken( $token, $this->oldimage ) ) {
-			$deleteReasonList = $wgRequest->getText( 'wpDeleteReasonList' );
-			$deleteReason = $wgRequest->getText( 'wpReason' );
+		if ( $request->wasPosted() && $this->user->matchEditToken( $token, $this->oldimage ) ) {
+			$deleteReasonList = $request->getText( 'wpDeleteReasonList' );
+			$deleteReason = $request->getText( 'wpReason' );
 
 			if ( $deleteReasonList == 'other' ) {
 				$reason = $deleteReason;
 			} elseif ( $deleteReason != '' ) {
 				// Entry from drop down menu + additional comment
-				$reason = $deleteReasonList . wfMessage( 'colon-separator' )
+				$reason = $deleteReasonList . $this->out->msg( 'colon-separator' )
 					->inContentLanguage()->text() . $deleteReason;
 			} else {
 				$reason = $deleteReasonList;
@@ -141,14 +138,14 @@ class FileDeleteForm {
 				);
 			}
 			if ( $status->isOK() ) {
-				$this->out->setPageTitle( wfMessage( 'actioncomplete' ) );
+				$this->out->setPageTitle( $this->out->msg( 'actioncomplete' ) );
 				$this->out->addHTML( $this->prepareMessage( 'filedelete-success' ) );
 				// Return to the main page if we just deleted all versions of the
 				// file, otherwise go back to the description page
 				$this->out->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
 
 				WatchAction::doWatchOrUnwatch(
-					$wgRequest->getCheck( 'wpWatch' ),
+					$request->getCheck( 'wpWatch' ),
 					$this->title,
 					$this->user
 				);
@@ -266,7 +263,6 @@ class FileDeleteForm {
 	 * Show the confirmation form
 	 */
 	private function showForm() {
-		global $wgRequest;
 		$services = MediaWikiServices::getInstance();
 		$permissionManager = $services->getPermissionManager();
 
@@ -322,7 +318,7 @@ class FileDeleteForm {
 				'tabIndex' => 2,
 				'maxLength' => CommentStore::COMMENT_CHARACTER_LIMIT,
 				'infusable' => true,
-				'value' => $wgRequest->getText( 'wpReason' ),
+				'value' => $this->out->getRequest()->getText( 'wpReason' ),
 				'autofocus' => true,
 			] ),
 			[
@@ -453,14 +449,15 @@ class FileDeleteForm {
 			$lang = $this->out->getLanguage();
 			# Message keys used:
 			# 'filedelete-intro-old', 'filedelete-nofile-old', 'filedelete-success-old'
-			return wfMessage(
+			return $this->out->msg(
 				"{$message}-old",
 				wfEscapeWikiText( $this->title->getText() ),
 				$lang->date( $this->getTimestamp(), true ),
 				$lang->time( $this->getTimestamp(), true ),
-				wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ), PROTO_CURRENT ) )->parseAsBlock();
+				wfExpandUrl( $this->file->getArchiveUrl( $this->oldimage ), PROTO_CURRENT )
+			)->parseAsBlock();
 		} else {
-			return wfMessage(
+			return $this->out->msg(
 				$message,
 				wfEscapeWikiText( $this->title->getText() )
 			)->parseAsBlock();
@@ -471,7 +468,7 @@ class FileDeleteForm {
 	 * Set headers, titles and other bits
 	 */
 	private function setHeaders() {
-		$this->out->setPageTitle( wfMessage( 'filedelete', $this->title->getText() ) );
+		$this->out->setPageTitle( $this->out->msg( 'filedelete', $this->title->getText() ) );
 		$this->out->setRobotPolicy( 'noindex,nofollow' );
 		$this->out->addBacklinkSubtitle( $this->title );
 	}
