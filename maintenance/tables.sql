@@ -60,10 +60,10 @@ CREATE TABLE /*_*/user (
   -- conflicts. Spaces are allowed, and are _not_ converted
   -- to underscores like titles. See the User::newFromName() for
   -- the specific tests that usernames have to pass.
-  user_name varchar(255) binary NOT NULL default '',
+  user_name varbinary(255) NOT NULL default '',
 
   -- Optional 'real name' to be displayed in credit listings
-  user_real_name varchar(255) binary NOT NULL default '',
+  user_real_name varbinary(255) NOT NULL default '',
 
   -- Password hashes, see User::crypt() and User::comparePasswords()
   -- in User.php for the algorithm
@@ -94,7 +94,7 @@ CREATE TABLE /*_*/user (
   -- for the browser cache of logged-in users. Among other things, it is used
   -- to prevent pages generated for a previously logged in user from being
   -- displayed after a session expiry followed by a fresh login.
-  user_touched binary(14) NOT NULL default '',
+  user_touched binary(14) NOT NULL,
 
   -- A pseudorandomly generated value that is stored in
   -- a cookie when the "remember password" feature is

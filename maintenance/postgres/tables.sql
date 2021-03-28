@@ -22,7 +22,7 @@ CREATE TABLE mwuser ( -- replace reserved word 'user'
   user_email_token          TEXT,
   user_email_token_expires  TIMESTAMPTZ,
   user_email_authenticated  TIMESTAMPTZ,
-  user_touched              TIMESTAMPTZ,
+  user_touched              TIMESTAMPTZ NOT NULL,
   user_registration         TIMESTAMPTZ,
   user_editcount            INTEGER,
   user_password_expires     TIMESTAMPTZ NULL

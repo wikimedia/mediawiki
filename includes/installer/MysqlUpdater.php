@@ -245,6 +245,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'archive', 'ar_title', 'patch-archive-ar_title-varbinary.sql' ],
 			[ 'modifyField', 'page', 'page_title', 'patch-page-page_title-varbinary.sql' ],
 			[ 'dropDefault', 'page', 'page_touched' ],
+			[ 'modifyField', 'user', 'user_name', 'patch-user_table-updates.sql' ],
 		];
 	}
 
