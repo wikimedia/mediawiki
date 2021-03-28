@@ -267,12 +267,13 @@ class FileDeleteForm {
 	 */
 	private function showForm() {
 		global $wgRequest;
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$services = MediaWikiServices::getInstance();
+		$permissionManager = $services->getPermissionManager();
 
 		$this->out->addModules( 'mediawiki.action.delete' );
 
-		$checkWatch = $this->user->getBoolOption( 'watchdeletion' ) ||
-			$this->user->isWatched( $this->title );
+		$checkWatch = $services->getUserOptionsLookup()
+			->getBoolOption( $this->user, 'watchdeletion' ) || $this->user->isWatched( $this->title );
 
 		$this->out->enableOOUI();
 

@@ -634,7 +634,9 @@ class DifferenceEngine extends ContextSource {
 
 		$query = $this->slotDiffOptions;
 		# Carry over 'diffonly' param via navigation links
-		if ( $diffOnly != $user->getBoolOption( 'diffonly' ) ) {
+		if ( $diffOnly != MediaWikiServices::getInstance()
+			->getUserOptionsLookup()->getBoolOption( $user, 'diffonly' )
+		) {
 			$query['diffonly'] = $diffOnly;
 		}
 		# Cascade unhide param in links for easy deletion browsing

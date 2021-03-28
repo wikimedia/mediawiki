@@ -184,14 +184,16 @@ class RollbackAction extends FormAction {
 				->parseAsBlock()
 		);
 
-		if ( $user->getBoolOption( 'watchrollback' ) ) {
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+
+		if ( $userOptionsLookup->getBoolOption( $user, 'watchrollback' ) ) {
 			$user->addWatch( $this->getTitle(), User::IGNORE_USER_RIGHTS );
 		}
 
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
 		if ( !$request->getBool( 'hidediff', false ) &&
-			!$this->getUser()->getBoolOption( 'norollbackdiff' )
+			!$userOptionsLookup->getBoolOption( $this->getUser(), 'norollbackdiff' )
 		) {
 			$contentModel = $current->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
 				->getModel();
