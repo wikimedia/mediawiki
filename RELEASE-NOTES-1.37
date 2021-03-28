@@ -119,6 +119,8 @@ because of Phabricator reports.
   UserGroupManager instead.
 * The following classes, hard-deprecated since 1.36, have been removed:
   CachedAction, SpecialCachedPage, CacheHelper, ICacheHelper.
+* The hooks BeforeHttpsRedirect, CanIPUseHTTPS and UserRequiresHTTPS, deprecated
+  in 1.35, were removed.
 * The deprecated "es6-promise" alias ResourceLoader module has been removed. Use
   "es6-polyfills" directly intead.
 * AuthenticationProvider interface doesn't extend LoggerAwareInterface.
@@ -149,6 +151,7 @@ because of Phabricator reports.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
+* wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * AbstractAuthenticationProvider ::setLogger(), ::setManager(), ::setConfig(),
   ::setHookContainer() were soft deprecated. Use ::init() to inject
   dependencies or override ::postInitSetup() to do any custom

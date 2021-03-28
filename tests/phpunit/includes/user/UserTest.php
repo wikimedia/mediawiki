@@ -2214,7 +2214,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::requiresHTTPS
 	 * @dataProvider provideRequiresHTTPS
 	 */
-	public function testRequiresHTTPS( $preference, $hook1, $hook2, bool $expected ) {
+	public function testRequiresHTTPS( $preference, bool $expected ) {
 		$this->setMwGlobals( [
 			'wgSecureLogin' => true,
 			'wgForceHTTPS' => false,
@@ -2224,32 +2224,14 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user->setOption( 'prefershttps', $preference );
 		$user->saveSettings();
 
-		$this->filterDeprecated( '/UserRequiresHTTPS hook/' );
-		$this->setTemporaryHook( 'UserRequiresHTTPS', static function ( $user, &$https ) use ( $hook1 ) {
-			$https = $hook1;
-			return false;
-		} );
-		$this->filterDeprecated( '/CanIPUseHTTPS hook/' );
-		$this->setTemporaryHook( 'CanIPUseHTTPS', function ( $ip, &$canDo ) use ( $hook2 ) {
-			if ( $hook2 === 'notcalled' ) {
-				$this->fail( 'CanIPUseHTTPS hook should not have been called' );
-			}
-			$canDo = $hook2;
-			return false;
-		} );
-
 		$user = User::newFromName( $user->getName() );
-		$this->assertSame( $user->requiresHTTPS(), $expected );
+		$this->assertSame( $expected, $user->requiresHTTPS() );
 	}
 
 	public static function provideRequiresHTTPS() {
 		return [
-			'Wants, hook requires, can' => [ true, true, true, true ],
-			'Wants, hook requires, cannot' => [ true, true, false, false ],
-			'Wants, hook prohibits, not called' => [ true, false, 'notcalled', false ],
-			'Does not want, hook requires, can' => [ false, true, true, true ],
-			'Does not want, hook requires, cannot' => [ false, true, false, false ],
-			'Does not want, hook prohibits, not called' => [ false, false, 'notcalled', false ],
+			'Wants, requires' => [ true, true ],
+			'Does not want, not required' => [ false, false ],
 		];
 	}
 

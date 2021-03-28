@@ -1002,11 +1002,6 @@ class MediaWiki {
 		$oldUrl = $request->getFullRequestURL();
 		$redirUrl = preg_replace( '#^http://#', 'https://', $oldUrl );
 
-		// ATTENTION: This hook is likely to be removed soon due to overall design of the system.
-		if ( !$this->getHookRunner()->onBeforeHttpsRedirect( $this->context, $redirUrl ) ) {
-			return false;
-		}
-
 		if ( $request->wasPosted() ) {
 			// This is weird and we'd hope it almost never happens. This
 			// means that a POST came in via HTTP and policy requires us

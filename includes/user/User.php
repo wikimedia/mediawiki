@@ -2871,7 +2871,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 			return false;
 		}
 		$https = $this->getBoolOption( 'prefershttps' );
-		$this->getHookRunner()->onUserRequiresHTTPS( $this, $https );
 		if ( $https ) {
 			$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
 		}
