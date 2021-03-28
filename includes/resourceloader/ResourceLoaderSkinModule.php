@@ -143,7 +143,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
 		],
 		'elements' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/elements.less' ],
 		],
 		'legacy' => [
 			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
