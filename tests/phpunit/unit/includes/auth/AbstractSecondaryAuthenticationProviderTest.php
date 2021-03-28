@@ -1,14 +1,19 @@
 <?php
 
-namespace MediaWiki\Auth;
+namespace MediaWiki\Tests\Unit\Auth;
+
+use MediaWiki\Auth\AbstractSecondaryAuthenticationProvider;
+use MediaWiki\Auth\AuthenticationRequest;
+use MediaWiki\Auth\AuthenticationResponse;
+use MediaWiki\Auth\AuthManager;
 
 /**
  * @group AuthManager
  * @covers \MediaWiki\Auth\AbstractSecondaryAuthenticationProvider
  */
-class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase {
 	public function testAbstractSecondaryAuthenticationProvider() {
-		$user = \User::newFromName( 'UTSysop' );
+		$user = $this->createMock( \User::class );
 
 		$provider = $this->getMockForAbstractClass( AbstractSecondaryAuthenticationProvider::class );
 
