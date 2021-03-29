@@ -369,9 +369,6 @@ abstract class QueryPage extends SpecialPage {
 
 		$fname = static::class . '::recache';
 		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_MASTER );
-		if ( !$dbw ) {
-			return false;
-		}
 
 		try {
 			# Do query
