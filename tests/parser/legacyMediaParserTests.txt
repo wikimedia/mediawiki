@@ -3085,8 +3085,8 @@ Special characters in embedded file links (T29679)
 # T65642/T68749: Formatting elt fixup around images.
 # We know wt2wt will fail, but we expect selser to pass.
 # Due to the nature of our testing, wt2wt and selser tests will enter the
-# blacklist and we'll catch selser regressions based on changes to the
-# blacklist entries for selser tests.
+# banned list and we'll catch selser regressions based on changes to the
+# banned list entries for selser tests.
 !! test
 1. Treebuilder fixup of formatting elt
 !! options
