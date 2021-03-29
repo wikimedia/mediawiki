@@ -1912,6 +1912,7 @@
 	"addedwatchtext": "«[[:$1]]» og diskusjonssida hennar er lagde til i [[Special:Watchlist|overvakingslista]] di.",
 	"addedwatchtext-talk": "«[[:$1]]» og den tilknytte sida hennar er lagde til i [[Special:Watchlist|overvakingslista di]].",
 	"addedwatchtext-short": "Sida «$1» vart lagd til i overvakingslista di.",
+	"addedwatchexpiry-options-label": "Tidsperiode for overvaking:",
 	"addedwatchexpirytext": "Sida «[[:$1]]» og diskusjonssida hennar er lagde til i [[Special:Watchlist|overvakingslista]] di for $2.",
 	"addedwatchindefinitelytext": "Sida «[[:$1]]» og diskusjonssida hennar er lagde til i [[Special:Watchlist|overvakingslista]] di permanent.",
 	"removewatch": "Fjerna frå overvakingslista",

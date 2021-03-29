@@ -68,7 +68,7 @@
 	"tog-watchlisthideminor": "Sakrij manje izmjene sa spiska praćenih članaka",
 	"tog-watchlisthideliu": "Sakrij izmjene prijavljenih korisnika sa spiska praćenih članaka",
 	"tog-watchlistreloadautomatically": "Automatski osvježi spisak praćenja kad god se izmijeni filter (potreban JavaScript)",
-	"tog-watchlistunwatchlinks": "Dodaj linkove za direktno dodavanje/uklanjanje stavki sa spiska praćenja (potreban je JavaScript)",
+	"tog-watchlistunwatchlinks": "Dodaj oznake za direktno dodavanje / uklanjanje stavki ({{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}) sa spiska praćenja stranica s izmjenama (potreban je JavaScript)",
 	"tog-watchlisthideanons": "Sakrij izmjene anonimnih korisnika sa spiska praćenih članaka",
 	"tog-watchlisthidepatrolled": "Sakrij patrolirane izmjene sa spiska praćenja",
 	"tog-watchlisthidecategorization": "Sakrij kategorizaciju stranica",

@@ -3613,8 +3613,6 @@
 	"tag-mw-manual-revert-description": "ページを手動で過去の状態に戻す編集",
 	"tag-mw-reverted": "差し戻し済み",
 	"tag-mw-reverted-description": "後で別の編集により差し戻された編集",
-	"tag-mw-add-media-description": "メディアを追加する編集",
-	"tag-mw-remove-media-description": "メディアを消去する編集",
 	"tags-title": "タグ",
 	"tags-intro": "このページは、ソフトウェアが編集に対して付けるタグとその意味の一覧です。",
 	"tags-tag": "タグ名",
