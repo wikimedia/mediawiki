@@ -71,7 +71,8 @@ class PermissionManager {
 		'RevokePermissions',
 		'AvailableRights',
 		'NamespaceProtection',
-		'RestrictionLevels'
+		'RestrictionLevels',
+		'DeleteRevisionsLimit',
 	];
 
 	/** @var ServiceOptions */
@@ -1005,7 +1006,7 @@ class PermissionManager {
 		$short,
 		LinkTarget $page
 	) {
-		global $wgDeleteRevisionsLimit, $wgLang;
+		global $wgLang;
 
 		// TODO: remove & rework upon further use of LinkTarget
 		$title = Title::newFromLinkTarget( $page );
@@ -1061,10 +1062,16 @@ class PermissionManager {
 				// If protection keeps them from editing, they shouldn't be able to delete.
 				$errors[] = [ 'deleteprotected' ];
 			}
-			if ( $rigor !== self::RIGOR_QUICK && $action == 'delete' && $wgDeleteRevisionsLimit
-				 && !$this->userCan( 'bigdelete', $user, $title ) && $title->isBigDeletion()
+			if ( $rigor !== self::RIGOR_QUICK
+				&& $action == 'delete'
+				&& $this->options->get( 'DeleteRevisionsLimit' )
+				&& !$this->userCan( 'bigdelete', $user, $title )
+				&& $title->isBigDeletion()
 			) {
-				$errors[] = [ 'delete-toobig', $wgLang->formatNum( $wgDeleteRevisionsLimit ) ];
+				$errors[] = [
+					'delete-toobig',
+					$wgLang->formatNum( $this->options->get( 'DeleteRevisionsLimit' ) )
+				];
 			}
 		} elseif ( $action === 'undelete' ) {
 			if ( count( $this->getPermissionErrorsInternal( 'edit', $user, $title, $rigor, true ) ) ) {
