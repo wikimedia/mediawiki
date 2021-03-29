@@ -351,7 +351,7 @@ class LogEventsList extends ContextSource {
 	 * @return string
 	 */
 	public function beginLogEventsList() {
-		return "<ul>\n";
+		return "<ul class='mw-logevent-loglines'>\n";
 	}
 
 	/**

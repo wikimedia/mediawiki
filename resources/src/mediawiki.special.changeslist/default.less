@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 /*
  * Styling for Special:Watchlist and Special:RecentChanges
  */
@@ -43,4 +45,15 @@
    This is overridden in mw.ui.rcfilters.ChangesListWrapperWidget.less if RCFilters is enabled. */
 .mw-rcfilters-ui-highlights {
 	display: none;
+}
+
+.unpatrolled {
+	font-weight: bold;
+	color: #d33;
+}
+
+.newpage,
+.minoredit,
+.botedit {
+	font-weight: bold;
 }
