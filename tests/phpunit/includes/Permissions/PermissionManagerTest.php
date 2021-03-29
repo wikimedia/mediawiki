@@ -157,76 +157,78 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
+	 * @dataProvider provideSpecialsAndNSPermissions
 	 * @covers MediaWiki\Permissions\PermissionManager::checkSpecialsAndNSPermissions
 	 */
-	public function testSpecialsAndNSPermissions() {
+	public function testSpecialsAndNSPermissions(
+		$namespace,
+		$userPerms,
+		$namespaceProtection,
+		$expectedPermErrors,
+		$expectedUserCan
+	) {
 		$this->setUser( $this->userName );
+		$this->setTitle( $namespace );
 
-		$this->setTitle( NS_SPECIAL );
+		$this->mergeMwGlobalArrayValue( 'wgNamespaceProtection', $namespaceProtection );
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		$this->assertEquals( [ [ 'badaccess-group0' ], [ 'ns-specialprotected' ] ],
-			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title ) );
-
-		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user, 'bogus' );
-		$this->assertEquals( [],
-			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title ) );
-
-		$this->setTitle( NS_MAIN );
-		$this->overrideUserPermissions( $this->user, '' );
-		$this->assertEquals(
-			[ [ 'badaccess-group0' ] ],
-			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
-		);
-
-		$this->mergeMwGlobalArrayValue( 'wgNamespaceProtection', [
-			NS_USER => [ 'bogus' ]
-		] );
-		$this->resetServices();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$this->overrideUserPermissions( $this->user, '' );
-
-		$this->setTitle( NS_USER );
-		$this->assertEquals(
-			[ [ 'badaccess-group0' ], [ 'namespaceprotected', 'User', 'bogus' ] ],
-			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
-		);
-
-		$this->setTitle( NS_MEDIAWIKI );
-		$this->overrideUserPermissions( $this->user, 'bogus' );
-		$this->assertEquals(
-			[ [ 'protectedinterface', 'bogus' ] ],
-			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
-		);
-
-		$this->setTitle( NS_MEDIAWIKI );
-		$this->overrideUserPermissions( $this->user, 'bogus' );
-		$this->assertEquals(
-			[ [ 'protectedinterface', 'bogus' ] ],
-			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
-		);
-
-		$this->setMwGlobals( 'wgNamespaceProtection', null );
-		$this->resetServices();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$this->overrideUserPermissions( $this->user, 'bogus' );
+		$this->overrideUserPermissions( $this->user, $userPerms );
 
 		$this->assertEquals(
-			[],
+			$expectedPermErrors,
 			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
 		);
-		$this->assertTrue( $permissionManager->userCan( 'bogus', $this->user, $this->title ) );
+		$this->assertSame(
+			$expectedUserCan,
+			$permissionManager->userCan( 'bogus', $this->user, $this->title )
+		);
+	}
 
-		$this->overrideUserPermissions( $this->user, '' );
-		$this->assertEquals(
-			[ [ 'badaccess-group0' ] ],
-			$permissionManager->getPermissionErrors( 'bogus', $this->user, $this->title )
-		);
-		$this->assertFalse( $permissionManager->userCan( 'bogus', $this->user, $this->title ) );
+	public function provideSpecialsAndNSPermissions() {
+		yield [
+			'namespace' => NS_SPECIAL,
+			'user permissions' => [],
+			'namespace protection' => [],
+			'expected permission errors' => [ [ 'badaccess-group0' ], [ 'ns-specialprotected' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_MAIN,
+			'user permissions' => [ 'bogus' ],
+			'namespace protection' => [],
+			'expected permission errors' => [],
+			'user can' => true,
+		];
+		yield [
+			'namespace' => NS_MAIN,
+			'user permissions' => [],
+			'namespace protection' => [],
+			'expected permission errors' => [ [ 'badaccess-group0' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_USER,
+			'user permissions' => [],
+			'namespace protection' => [ NS_USER => [ 'bogus' ] ],
+			'expected permission errors' => [ [ 'badaccess-group0' ], [ 'namespaceprotected', 'User', 'bogus' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_MEDIAWIKI,
+			'user permissions' => [ 'bogus' ],
+			'namespace protection' => [],
+			'expected permission errors' => [ [ 'protectedinterface', 'bogus' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_MAIN,
+			'user permissions' => [ 'bogus' ],
+			'namespace protection' => [],
+			'expected permission errors' => [],
+			'user can' => true,
+		];
 	}
 
 	/**
@@ -262,91 +264,122 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @todo This test method should be split up into separate test methods and
-	 * data providers
+	 * @dataProvider provideActionPermissions
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkActionPermissions
 	 */
-	public function testActionPermissions() {
-		$this->overrideUserPermissions( $this->user, [ "createpage" ] );
-		$this->setTitle( NS_MAIN, "test page" );
+	public function testActionPermissions(
+		$namespace,
+		$titleOverrides,
+		$action,
+		$userPerms,
+		$expectedPermErrors,
+		$expectedUserCan
+	) {
+		$this->setTitle( $namespace, "test page" );
 		$this->title->mTitleProtection['permission'] = '';
 		$this->title->mTitleProtection['user'] = $this->user->getId();
 		$this->title->mTitleProtection['expiry'] = 'infinity';
 		$this->title->mTitleProtection['reason'] = 'test';
 		$this->title->mCascadeRestriction = false;
+		$this->title->mRestrictionsLoaded = true;
+
+		if ( isset( $titleOverrides['protectedPermission' ] ) ) {
+			$this->title->mTitleProtection['permission'] = $titleOverrides['protectedPermission'];
+		}
+		if ( isset( $titleOverrides['interwiki'] ) ) {
+			$this->title->mInterwiki = $titleOverrides['interwiki'];
+		}
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
-		$this->assertEquals(
-			[ [ 'titleprotected', 'Useruser', 'test' ] ],
-			$permissionManager->getPermissionErrors( 'create', $this->user, $this->title )
-		);
-		$this->assertFalse( $permissionManager->userCan( 'create', $this->user, $this->title ) );
+		$this->overrideUserPermissions( $this->user, $userPerms );
 
-		$this->title->mTitleProtection['permission'] = 'editprotected';
-		$this->overrideUserPermissions( $this->user, [ 'createpage', 'protect' ] );
 		$this->assertEquals(
-			[ [ 'titleprotected', 'Useruser', 'test' ] ],
-			$permissionManager->getPermissionErrors( 'create', $this->user, $this->title )
+			$expectedPermErrors,
+			$permissionManager->getPermissionErrors( $action, $this->user, $this->title )
 		);
-		$this->assertFalse( $permissionManager->userCan( 'create', $this->user, $this->title ) );
+		$this->assertSame(
+			$expectedUserCan,
+			$permissionManager->userCan( $action, $this->user, $this->title )
+		);
+	}
 
-		$this->overrideUserPermissions( $this->user, [ 'createpage', 'editprotected' ] );
-		$this->assertEquals(
-			[],
-			$permissionManager->getPermissionErrors( 'create', $this->user, $this->title )
-		);
-		$this->assertTrue( $permissionManager->userCan( 'create', $this->user, $this->title ) );
-
-		$this->overrideUserPermissions( $this->user, [ 'createpage' ] );
-		$this->assertEquals(
-			[ [ 'titleprotected', 'Useruser', 'test' ] ],
-			$permissionManager->getPermissionErrors( 'create', $this->user, $this->title )
-		);
-		$this->assertFalse( $permissionManager->userCan( 'create', $this->user, $this->title ) );
-
-		$this->setTitle( NS_MEDIA, "test page" );
-		$this->overrideUserPermissions( $this->user, [ "move" ] );
-		$this->assertFalse( $permissionManager->userCan( 'move', $this->user, $this->title ) );
-		$this->assertEquals(
-			[ [ 'immobile-source-namespace', 'Media' ] ],
-			$permissionManager->getPermissionErrors( 'move', $this->user, $this->title )
-		);
-
-		$this->setTitle( NS_HELP, "test page" );
-		$this->assertEquals(
-			[],
-			$permissionManager->getPermissionErrors( 'move', $this->user, $this->title )
-		);
-		$this->assertTrue( $permissionManager->userCan( 'move', $this->user, $this->title ) );
-
-		$this->title->mInterwiki = "no";
-		$this->assertEquals(
-			[ [ 'immobile-source-page' ] ],
-			$permissionManager->getPermissionErrors( 'move', $this->user, $this->title )
-		);
-		$this->assertFalse( $permissionManager->userCan( 'move', $this->user, $this->title ) );
-
-		$this->setTitle( NS_MEDIA, "test page" );
-		$this->assertFalse( $permissionManager->userCan( 'move-target', $this->user, $this->title ) );
-		$this->assertEquals(
-			[ [ 'immobile-target-namespace', 'Media' ] ],
-			$permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title )
-		);
-
-		$this->setTitle( NS_HELP, "test page" );
-		$this->assertEquals(
-			[],
-			$permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title )
-		);
-		$this->assertTrue( $permissionManager->userCan( 'move-target', $this->user, $this->title ) );
-
-		$this->title->mInterwiki = "no";
-		$this->assertEquals(
-			[ [ 'immobile-target-page' ] ],
-			$permissionManager->getPermissionErrors( 'move-target', $this->user, $this->title )
-		);
-		$this->assertFalse( $permissionManager->userCan( 'move-target', $this->user, $this->title ) );
+	public function provideActionPermissions() {
+		// title overrides can include "protectedPermission" to override
+		// $title->mTitleProtection['permission'], and "interwiki" to override
+		// $title->mInterwiki, for the few cases those are needed
+		yield [
+			'namespace' => NS_MAIN,
+			'title overrides' => [],
+			'action' => 'create',
+			'user permissions' => [ 'createpage' ],
+			'expected permission errors' => [ [ 'titleprotected', 'Useruser', 'test' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_MAIN,
+			'title overrides' => [ 'protectedPermission' => 'editprotected' ],
+			'action' => 'create',
+			'user permissions' => [ 'createpage', 'protect' ],
+			'expected permission errors' => [ [ 'titleprotected', 'Useruser', 'test' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_MAIN,
+			'title overrides' => [ 'protectedPermission' => 'editprotected' ],
+			'action' => 'create',
+			'user permissions' => [ 'createpage', 'editprotected' ],
+			'expected permission errors' => [],
+			'user can' => true,
+		];
+		yield [
+			'namespace' => NS_MEDIA,
+			'title overrides' => [],
+			'action' => 'move',
+			'user permissions' => [ 'move' ],
+			'expected permission errors' => [ [ 'immobile-source-namespace', 'Media' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_HELP,
+			'title overrides' => [],
+			'action' => 'move',
+			'user permissions' => [ 'move' ],
+			'expected permission errors' => [],
+			'user can' => true,
+		];
+		yield [
+			'namespace' => NS_HELP,
+			'title overrides' => [ 'interwiki' => 'no' ],
+			'action' => 'move',
+			'user permissions' => [ 'move' ],
+			'expected permission errors' => [ [ 'immobile-source-page' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_MEDIA,
+			'title overrides' => [],
+			'action' => 'move-target',
+			'user permissions' => [ 'move' ],
+			'expected permission errors' => [ [ 'immobile-target-namespace', 'Media' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_HELP,
+			'title overrides' => [],
+			'action' => 'move-target',
+			'user permissions' => [ 'move' ],
+			'expected permission errors' => [],
+			'user can' => true,
+		];
+		yield [
+			'namespace' => NS_HELP,
+			'title overrides' => [ 'interwiki' => 'no' ],
+			'action' => 'move-target',
+			'user permissions' => [ 'move' ],
+			'expected permission errors' => [ [ 'immobile-target-page' ] ],
+			'user can' => false,
+		];
 	}
 
 	/**
