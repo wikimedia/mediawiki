@@ -20,7 +20,6 @@
 
 // phpcs:disable Generic.Arrays.DisallowLongArraySyntax,PSR2.Classes.PropertyDeclaration,MediaWiki.Usage.DirUsage
 // phpcs:disable Squiz.Scope.MemberVarScope.Missing,Squiz.Scope.MethodScope.Missing
-// @phan-file-suppress PhanPluginDuplicateConditionalNullCoalescing
 /**
  * Check PHP Version, as well as for composer dependencies in entry points,
  * and display something vaguely comprehensible in the event of a totally
@@ -101,7 +100,6 @@ class PHPVersionCheck {
 		$versionString = "PHP $minimumVersion or higher";
 
 		// Left as a programmatic check to make it easier to update.
-		// @phan-suppress-next-line PhanRedundantCondition
 		if ( count( $knownBad ) ) {
 			$versionString .= ' (and not ' . implode( ', ', array_values( $knownBad ) ) . ')';
 
