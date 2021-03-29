@@ -1,17 +1,17 @@
 <?php
 
-namespace MediaWiki\Tests\Message;
+namespace MediaWiki\Tests\Unit\Message;
 
 use InvalidArgumentException;
 use MediaWiki\Message\Converter;
-use MediaWikiIntegrationTestCase;
+use MediaWikiUnitTestCase;
 use Message;
 use Wikimedia\Message\MessageValue;
 
 /**
  * @covers \MediaWiki\Message\Converter
  */
-class ConverterTest extends MediaWikiIntegrationTestCase {
+class ConverterTest extends MediaWikiUnitTestCase {
 
 	public function testCreateMessage() {
 		$converter = new Converter();
