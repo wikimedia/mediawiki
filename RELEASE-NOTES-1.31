@@ -12,6 +12,9 @@ THIS IS NOT A RELEASE YET
 * (T275261) Escape wikitext in the title in invalid title error messages.
 * (T277009) Allow blocked users to access Special:ResetTokens.
 * pageExist.php: Output trailing newlines.
+* (T278058) Escape rcfilters-filter-* messages on ChangesList pages.
+* (T277414) HTMLFormField: Use non namespaced class name rather than
+  static::class.
 
 == MediaWiki 1.31.12 ==
 
