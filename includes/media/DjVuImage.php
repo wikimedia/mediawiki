@@ -278,9 +278,10 @@ class DjVuImage {
 			if ( $retval == 0 ) {
 				# Strip some control characters
 				# Ignore carriage returns
-				$txt = preg_replace( "/[\013]/", "", $txt );
+				$txt = preg_replace( "/\\\\013/", "", $txt );
 				# Replace runs of OCR region separators with a single extra line break
-				$txt = preg_replace( "/[\035\037]+/", "\n", $txt );
+				$txt = preg_replace( "/(?:\\\\(035|037))+/", "\n", $txt );
+
 				$reg = <<<EOR
 					/\(page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*"
 					((?>    # Text to match is composed of atoms of either:
