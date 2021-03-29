@@ -181,7 +181,7 @@
 		this.restoreWarnings();
 		assert.strictEqual( globalConf.get( 'anotherGlobalMapChecker' ), 'Again', 'Change in window object not reflected in global Map' );
 
-		// Whitelist this global variable for QUnit's 'noglobal' mode
+		// Allow this global variable for QUnit's 'noglobal' mode
 		if ( QUnit.config.noglobals ) {
 			QUnit.config.pollution.push( 'anotherGlobalMapChecker' );
 		}
