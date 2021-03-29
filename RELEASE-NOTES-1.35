@@ -71,6 +71,14 @@ THIS IS NOT A RELEASE YET
   documented and are not altered by previous calls to these methods.
 * (T254688) Remove page inner join from subquery in SpecialWhatLinksHere.
 * (T122124) signup: added help message for security.
+* (T278058) Escape rcfilters-filter-* messages on ChangesList pages.
+* (T277414) HTMLFormField: Use non namespaced class name rather than
+  static::class.
+* (T235554) Avoid HTTP protocol errors when fastcgi_finish_request() is
+  unavailable.
+* (T268673) maintenance: Don't create SearchUpdate in rebuildtextindex.php
+  for page_namespace below 0.
+* (T246594, T270228) Mark ParserOptionsTests skipped on PHP 7.4.0-7.4.8.
 
 == MediaWiki 1.35.1 ==
 
