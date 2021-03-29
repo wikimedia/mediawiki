@@ -7,6 +7,8 @@
  * @file
  */
 
+$fallback = 'id';
+
 $namespaceNames = [
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Si_tohude',

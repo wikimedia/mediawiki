@@ -70,7 +70,8 @@ trait MockTitleTrait {
 			return $other && $text === $other->getDBkey() && $ns === $other->getNamespace();
 		} );
 		$title->method( 'equals' )->willReturnCallback( static function ( $other ) use ( $preText ) {
-			return $other->getPrefixedDBkey() === str_replace( ' ', '_', $preText );
+			return $other->getNamespace() ? 'ns' . $other->getNamespace() . ':' : '' . $other->getDBkey() ===
+				str_replace( ' ', '_', $preText );
 		} );
 		$title->method( '__toString' )->willReturn( "MockTitle:{$preText}" );
 

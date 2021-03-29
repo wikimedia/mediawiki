@@ -7,70 +7,39 @@ use MediaWiki\MediaWikiServices;
  */
 class UserEditCountInitJobTest extends MediaWikiIntegrationTestCase {
 
-	/** @var User */
-	private $user;
-
-	protected function setUp(): void {
-		parent::setUp();
-
-		$this->user = $this->getMutableTestUser()->getUser();
+	public function provideTestCases() {
+		// $startingEditCount, $setCount, $finalCount
+		yield 'Initiate count if not yet set' => [ false, 2, 2 ];
+		yield 'Update count when increasing' => [ 2, 3, 3 ];
+		yield 'Never decrease count' => [ 10, 3, 10 ];
 	}
 
-	/** @covers UserEditCountInitJob */
-	public function testShouldInitEditCountWhenNotYetSet(): void {
+	/**
+	 * @covers UserEditCountInitJob
+	 * @dataProvider provideTestCases
+	 */
+	public function testUserEditCountInitJob( $startingEditCount, $setCount, $finalCount ) {
+		$user = $this->getMutableTestUser()->getUser();
+
+		if ( $startingEditCount !== false ) {
+			MediaWikiServices::getInstance()->getDbLoadBalancer()
+				->getConnectionRef( DB_MASTER )
+				->update(
+					'user',
+					[ 'user_editcount' => $startingEditCount ], // SET
+					[ 'user_id' => $user->getId() ], // WHERE
+					__METHOD__
+				);
+		}
+
 		$job = new UserEditCountInitJob( [
-			'userId' => $this->user->getId(),
-			'editCount' => 2
+			'userId' => $user->getId(),
+			'editCount' => $setCount
 		] );
 
 		$result = $job->run();
 
 		$this->assertTrue( $result );
-		$this->assertEquals( 2, $this->user->getEditCount() );
-	}
-
-	/** @covers UserEditCountInitJob */
-	public function testShouldInitEditCountWhenGreaterThanCurrentCount(): void {
-		$this->setTestUserEditCount( 2 );
-
-		$job = new UserEditCountInitJob( [
-			'userId' => $this->user->getId(),
-			'editCount' => 3
-		] );
-
-		$result = $job->run();
-
-		$this->assertTrue( $result );
-		$this->assertEquals( 3, $this->user->getEditCount() );
-	}
-
-	/** @covers UserEditCountInitJob */
-	public function testShouldNotChangeEditCountWhenLessThanCurrentCount(): void {
-		$this->setTestUserEditCount( 10 );
-
-		$job = new UserEditCountInitJob( [
-			'userId' => $this->user->getId(),
-			'editCount' => 3
-		] );
-
-		$result = $job->run();
-
-		$this->assertTrue( $result );
-		$this->assertEquals( 10, $this->user->getEditCount() );
-	}
-
-	private function setTestUserEditCount( int $editCount ): void {
-		$services = MediaWikiServices::getInstance();
-
-		$dbw = $services->getDBLoadBalancer()->getConnectionRef( DB_MASTER );
-
-		$dbw->update(
-			'user',
-			// SET
-			[ 'user_editcount' => $editCount ],
-			// WHERE
-			[ 'user_id' => $this->user->getId() ],
-			__METHOD__
-		);
+		$this->assertEquals( $finalCount, $user->getEditCount() );
 	}
 }

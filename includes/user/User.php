@@ -1036,11 +1036,14 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * is longer than the maximum allowed username size or doesn't begin with
 	 * a capital letter.
 	 *
-	 * @deprecated since 1.35, use the UserNameUtils service
+	 * @deprecated since 1.35, hard deprecated in 1.36
+	 * Use the UserNameUtils service
+	 *
 	 * @param string $name Name to match
 	 * @return bool
 	 */
 	public static function isValidUserName( $name ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $name );
 	}
 

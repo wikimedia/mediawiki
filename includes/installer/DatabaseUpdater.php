@@ -1161,24 +1161,6 @@ abstract class DatabaseUpdater {
 	# Common updater functions
 
 	/**
-	 * Sets the number of active users in the site_stats table
-	 */
-	protected function doActiveUsersInit() {
-		$activeUsers = $this->db->selectField( 'site_stats', 'ss_active_users', '', __METHOD__ );
-		if ( $activeUsers == -1 ) {
-			$activeUsers = $this->db->selectField( 'recentchanges',
-				'COUNT( DISTINCT rc_user_text )',
-				[ 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ], __METHOD__
-			);
-			$this->db->update( 'site_stats',
-				[ 'ss_active_users' => intval( $activeUsers ) ],
-				[ 'ss_row_id' => 1 ], __METHOD__, [ 'LIMIT' => 1 ]
-			);
-		}
-		$this->output( "...ss_active_users user count set...\n" );
-	}
-
-	/**
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {

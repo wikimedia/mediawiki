@@ -37,25 +37,10 @@ class PostgresUpdater extends DatabaseUpdater {
 	protected $db;
 
 	/**
-	 * @todo FIXME: Postgres should use sequential updates like Mysql, Sqlite
-	 * and everybody else. It never got refactored like it should've.
 	 * @return array
 	 */
 	protected function getCoreUpdateList() {
 		return [
-			[ 'checkIndex', 'ipb_address_unique', [
-				[ 'ipb_address', 'text_ops', 'btree', 0 ],
-				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
-				[ 'ipb_auto', 'int2_ops', 'btree', 0 ],
-			],
-			'CREATE UNIQUE INDEX ipb_address_unique ' .
-				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
-
-			# end
-			[ 'tsearchFixes' ],
-
-			// **** T272199 MARKER ****
-
 			// 1.28
 			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'( rc_namespace, rc_type, rc_patrolled, rc_timestamp )' ],
@@ -98,10 +83,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgField', 'protected_titles', 'pt_reason_id', 'INTEGER NOT NULL DEFAULT 0' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
 			[ 'addTable', 'revision_comment_temp', 'patch-revision_comment_temp-table.sql' ],
-			// image_comment_temp is no longer needed when upgrading to MW 1.31 or newer,
-			// as it is dropped later in the update process as part of 'migrateImageCommentTemp'.
-			// File kept on disk and the updater entry here for historical purposes.
-			// [ 'addTable', 'image_comment_temp', 'patch-image_comment_temp-table.sql' ],
 
 			// This field was added in 1.31, but is put here so it can be used by 'migrateComments'
 			[ 'addPgField', 'image', 'img_description_id', 'INTEGER NOT NULL DEFAULT 0' ],
@@ -307,6 +288,13 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeField', 'actor', 'actor_name', 'TEXT', '' ],
 			[ 'changeField', 'user_former_groups', 'ufg_group', 'TEXT', '' ],
 			[ 'dropFkey', 'user_former_groups', 'ufg_user' ],
+			[ 'checkIndex', 'ipb_address_unique', [
+				[ 'ipb_address', 'text_ops', 'btree', 0 ],
+				[ 'ipb_user', 'int4_ops', 'btree', 0 ],
+				[ 'ipb_auto', 'int2_ops', 'btree', 0 ],
+			],
+				'CREATE UNIQUE INDEX ipb_address_unique ' .
+				'ON ipblocks (ipb_address,ipb_user,ipb_auto)' ],
 
 			// 1.36
 			[ 'setDefault', 'bot_passwords', 'bp_token', '' ],
@@ -617,6 +605,8 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'revision', 'revision_unique', 'rev_page_id' ],
 			[ 'renameIndex', 'revision', 'rev_timestamp_idx', 'rev_timestamp' ],
 			[ 'addPgIndex', 'revision', 'rev_page_timestamp', '(rev_page,rev_timestamp)' ],
+			[ 'changeNullableField', 'user', 'user_touched', 'NOT NULL', true ],
+
 		];
 	}
 
@@ -1069,71 +1059,6 @@ END;
 		$this->db->query( $command, __METHOD__ );
 	}
 
-	protected function convertArchive2() {
-		if ( $this->db->tableExists( "archive2", __METHOD__ ) ) {
-			if ( $this->db->ruleExists( 'archive', 'archive_insert' ) ) {
-				$this->output( "Dropping rule 'archive_insert'\n" );
-				$this->db->query( 'DROP RULE archive_insert ON archive', __METHOD__ );
-			}
-			if ( $this->db->ruleExists( 'archive', 'archive_delete' ) ) {
-				$this->output( "Dropping rule 'archive_delete'\n" );
-				$this->db->query( 'DROP RULE archive_delete ON archive', __METHOD__ );
-			}
-			$this->applyPatch(
-				'patch-remove-archive2.sql',
-				false,
-				"Converting 'archive2' back to normal archive table"
-			);
-		} else {
-			$this->output( "...obsolete table 'archive2' does not exist\n" );
-		}
-	}
-
-	protected function checkOiDeleted() {
-		if ( $this->db->fieldInfo( 'oldimage', 'oi_deleted' )->type() !== 'smallint' ) {
-			$this->output( "Changing 'oldimage.oi_deleted' to type 'smallint'\n" );
-			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted DROP DEFAULT", __METHOD__ );
-			$this->db->query(
-				"ALTER TABLE oldimage ALTER oi_deleted TYPE SMALLINT USING (oi_deleted::smallint)", __METHOD__ );
-			$this->db->query( "ALTER TABLE oldimage ALTER oi_deleted SET DEFAULT 0", __METHOD__ );
-		} else {
-			$this->output( "...column 'oldimage.oi_deleted' is already of type 'smallint'\n" );
-		}
-	}
-
-	protected function checkOiNameConstraint() {
-		if ( $this->db->hasConstraint( "oldimage_oi_name_fkey_cascaded" ) ) {
-			$this->output( "...table 'oldimage' has correct cascading delete/update " .
-				"foreign key to image\n" );
-		} else {
-			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey" ) ) {
-				$this->db->query(
-					"ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey", __METHOD__ );
-			}
-			if ( $this->db->hasConstraint( "oldimage_oi_name_fkey_cascade" ) ) {
-				$this->db->query(
-					"ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey_cascade", __METHOD__ );
-			}
-			$this->output( "Making foreign key on table 'oldimage' (to image) a cascade delete/update\n" );
-			$this->db->query(
-				"ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascaded " .
-				"FOREIGN KEY (oi_name) REFERENCES image(img_name) " .
-				"ON DELETE CASCADE ON UPDATE CASCADE", __METHOD__ );
-		}
-	}
-
-	protected function checkPageDeletedTrigger() {
-		if ( !$this->db->triggerExists( 'page', 'page_deleted' ) ) {
-			$this->applyPatch(
-				'patch-page_deleted.sql',
-				false,
-				"Adding function and trigger 'page_deleted' to table 'page'"
-			);
-		} else {
-			$this->output( "...table 'page' has 'page_deleted' trigger\n" );
-		}
-	}
-
 	protected function dropPgIndex( $table, $index ) {
 		if ( $this->db->indexExists( $table, $index, __METHOD__ ) ) {
 			$this->output( "Dropping obsolete index '$index'\n" );
@@ -1196,27 +1121,5 @@ END;
 			" ADD PRIMARY KEY (" . implode( ',', $shouldBe ) . ');',
 			__METHOD__
 		);
-	}
-
-	protected function checkRevUserFkey() {
-		if ( !$this->db->fieldExists( 'revision', 'rev_user', __METHOD__ ) ) {
-			/* Do nothing */
-		} elseif ( $this->fkeyDeltype( 'revision_rev_user_fkey' ) == 'r' ) {
-			$this->output( "...constraint 'revision_rev_user_fkey' is ON DELETE RESTRICT\n" );
-		} else {
-			$this->applyPatch(
-				'patch-revision_rev_user_fkey.sql',
-				false,
-				"Changing constraint 'revision_rev_user_fkey' to ON DELETE RESTRICT"
-			);
-		}
-	}
-
-	protected function tsearchFixes() {
-		# Tweak the page_title tsearch2 trigger to filter out slashes
-		# This is create or replace, so harmless to call if not needed
-		$this->applyPatch( 'patch-ts2pagetitle.sql', false, "Refreshing ts2_page_title()" );
-
-		$this->applyPatch( 'patch-tsearch2funcs.sql', false, "Rewriting tsearch2 triggers" );
 	}
 }

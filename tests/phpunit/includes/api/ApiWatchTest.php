@@ -70,7 +70,7 @@ class ApiWatchTest extends ApiTestCase {
 
 		// Ensure page was added to the user's watchlist, and expiry is null (not set).
 		[ $item ] = $store->getWatchedItemsForUser( $user );
-		$this->assertSame( 'UTPage', $item->getLinkTarget()->getDBkey() );
+		$this->assertSame( 'UTPage', $item->getTarget()->getDBkey() );
 		$this->assertNull( $item->getExpiry() );
 
 		// Re-watch, setting an expiry.

@@ -75,11 +75,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
 	private $lazyMasterHandle;
 
-	/** @var string Server that this instance is currently connected to */
+	/** @var string|null Server that this instance is currently connected to */
 	protected $server;
-	/** @var string User that this instance is currently connected under the name of */
+	/** @var string|null User that this instance is currently connected under the name of */
 	protected $user;
-	/** @var string Password used to establish the current connection */
+	/** @var string|null Password used to establish the current connection */
 	protected $password;
 	/** @var bool Whether this PHP instance is for a CLI script */
 	protected $cliMode;
@@ -133,7 +133,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private $trxTimestamp = null;
 	/** @var float Replication lag estimate at the time of BEGIN for the last transaction */
 	private $trxReplicaLag = null;
-	/** @var string Name of the function that start the last transaction */
+	/** @var string|null Name of the function that start the last transaction */
 	private $trxFname = null;
 	/** @var bool Whether possible write queries were done in the last transaction started */
 	private $trxDoneWrites = false;
@@ -226,7 +226,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int Maximum time to wait before retry */
 	private static $DEADLOCK_DELAY_MAX = 1500000;
 
-	/** @var int How long before it is worth doing a dummy query to test the connection */
+	/** @var float How long before it is worth doing a dummy query to test the connection */
 	private static $PING_TTL = 1.0;
 	/** @var string Dummy SQL query */
 	private static $PING_QUERY = 'SELECT 1 AS ping';
@@ -235,7 +235,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	private static $TINY_WRITE_SEC = 0.010;
 	/** @var float Consider a write slow if it took more than this many seconds */
 	private static $SLOW_WRITE_SEC = 0.500;
-	/** @var float Assume an insert of this many rows or less should be fast to replicate */
+	/** @var int Assume an insert of this many rows or less should be fast to replicate */
 	private static $SMALL_WRITE_ROWS = 100;
 
 	/** @var string[] List of DBO_* flags that can be changed after connection */

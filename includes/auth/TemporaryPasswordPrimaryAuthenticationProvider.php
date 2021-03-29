@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\MediaWikiServices;
 use SpecialPage;
 use User;
 use Wikimedia\IPUtils;
@@ -481,7 +482,9 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 				'<' . \Title::newMainPage()->getCanonicalURL() . '>',
 				round( $this->newPasswordExpiry / 86400 ) )->text();
 
-			if ( $this->allowRequiringEmail && !$user->getBoolOption( 'requireemail' ) ) {
+			if ( $this->allowRequiringEmail && !MediaWikiServices::getInstance()->getUserOptionsLookup()
+				->getBoolOption( $user, 'requireemail' )
+			) {
 				$body .= "\n\n";
 				$url = SpecialPage::getTitleFor( 'Preferences', false, 'mw-prefsection-personal-email' )
 					->getCanonicalURL();

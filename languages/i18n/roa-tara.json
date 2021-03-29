@@ -1025,6 +1025,8 @@
 	"recentchangescount": "Numere de cangiaminde da fà 'ndrucà pe default:",
 	"prefs-help-recentchangescount": "Numere massime: 1000",
 	"prefs-help-watchlist-token2": "Queste jè 'a chiave segrete a le feed d'u web de l'elenghe de le pàggene condrollate tune.\nCengate vò ccu canosce ce pò leggere l'elenghe de le pàggene condrollate tune, accussì non g'ù pò condividere.\nCe è abbesogne, [[Special:ResetTokens|'u puè azzerà]].",
+	"prefs-user-downloaddata-label": "Date d'u cunde:",
+	"prefs-user-downloaddata-info": "Le date d'u cunde mije da stu pruggette",
 	"savedprefs": "Le preferenze tue onne state aggiornete.",
 	"savedrights": "Le gruppe utinde de {{GENDER:$1|$1}} onne state reggistrate.",
 	"timezonelegend": "Orarie d'a zone:",

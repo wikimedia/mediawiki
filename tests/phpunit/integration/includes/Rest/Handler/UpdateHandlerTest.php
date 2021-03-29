@@ -410,7 +410,7 @@ class UpdateHandlerTest extends \MediaWikiLangTestCase {
 				'id' => 94542,
 				'content_model' => 'wikitext',
 				'latest' => [
-					'id' => 789123,
+					'id' => 1234, // ID of current rev, as defined in newHandler()
 					'timestamp' => '2020-01-01T01:02:03Z' // see fake RevisionStore in newHandler()
 				],
 				'license' => [

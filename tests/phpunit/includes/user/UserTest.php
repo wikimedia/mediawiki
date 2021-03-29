@@ -322,6 +322,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isValidUserName
 	 */
 	public function testIsValidUserName( $username, $result, $message ) {
+		$this->hideDeprecated( 'User::isValidUserName' );
 		$this->assertSame( $result, $this->user->isValidUserName( $username ), $message );
 	}
 
@@ -1725,7 +1726,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$globals['wgReservedUsernames'] = [ $name ];
 		}
 		$this->setMwGlobals( $globals );
-		$this->assertTrue( User::isValidUserName( $name ) );
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		$this->assertTrue( $userNameUtils->isValid( $name ) );
 		$this->assertSame( empty( $testOpts['reserved'] ), User::isUsableName( $name ) );
 
 		if ( $expect === 'exception' ) {

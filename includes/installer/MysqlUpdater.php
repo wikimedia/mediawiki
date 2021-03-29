@@ -32,9 +32,6 @@ use Wikimedia\Rdbms\MySQLField;
 class MysqlUpdater extends DatabaseUpdater {
 	protected function getCoreUpdateList() {
 		return [
-			// 1.2; T273080
-			[ 'doInterwikiUpdate' ],
-
 			// 1.28
 			[ 'addIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'patch-add-rc_name_type_patrolled_timestamp_index.sql' ],
@@ -77,10 +74,6 @@ class MysqlUpdater extends DatabaseUpdater {
 				'patch-user_properties-fix-pk.sql' ],
 			[ 'addTable', 'comment', 'patch-comment-table.sql' ],
 			[ 'addTable', 'revision_comment_temp', 'patch-revision_comment_temp-table.sql' ],
-			// image_comment_temp is no longer needed when upgrading to MW 1.31 or newer,
-			// as it is dropped later in the update process as part of 'migrateImageCommentTemp'.
-			// File kept on disk and the updater entry here for historical purposes.
-			// [ 'addTable', 'image_comment_temp', 'patch-image_comment_temp-table.sql' ],
 			[ 'addField', 'archive', 'ar_comment_id', 'patch-archive-ar_comment_id.sql' ],
 			[ 'addField', 'filearchive', 'fa_description_id', 'patch-filearchive-fa_description_id.sql' ],
 			[ 'modifyField', 'image', 'img_description', 'patch-image-img_description-default.sql' ],
@@ -252,6 +245,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'modifyField', 'archive', 'ar_title', 'patch-archive-ar_title-varbinary.sql' ],
 			[ 'modifyField', 'page', 'page_title', 'patch-page-page_title-varbinary.sql' ],
 			[ 'dropDefault', 'page', 'page_touched' ],
+			[ 'modifyField', 'user', 'user_name', 'patch-user_table-updates.sql' ],
 		];
 	}
 
@@ -299,30 +293,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->output( "...index $index on table $table has no field $field; added.\n" );
 
 		return false;
-	}
-
-	/**
-	 * Check that interwiki table exists; if it doesn't source it
-	 */
-	protected function doInterwikiUpdate() {
-		global $IP;
-
-		if ( !$this->doTable( 'interwiki' ) ) {
-			return;
-		}
-
-		if ( $this->db->tableExists( "interwiki", __METHOD__ ) ) {
-			$this->output( "...already have interwiki table\n" );
-
-			return;
-		}
-
-		$this->applyPatch( 'patch-interwiki.sql', false, 'Creating interwiki table' );
-		$this->applyPatch(
-			"$IP/maintenance/interwiki.sql",
-			true,
-			'Adding default interwiki definitions'
-		);
 	}
 
 	/**
@@ -397,36 +367,6 @@ class MysqlUpdater extends DatabaseUpdater {
 		$this->db->insert( 'watchlist', $rowBatch, __METHOD__, [ 'IGNORE' ] );
 
 		$this->output( "done.\n" );
-	}
-
-	protected function doCategoryPopulation() {
-		if ( $this->updateRowExists( 'populate category' ) ) {
-			$this->output( "...category table already populated.\n" );
-
-			return;
-		}
-
-		$this->output(
-			"Populating category table, printing progress markers. " .
-			"For large databases, you\n" .
-			"may want to hit Ctrl-C and do this manually with maintenance/\n" .
-			"populateCategory.php.\n"
-		);
-		$task = $this->maintenance->runChild( PopulateCategory::class );
-		$task->execute();
-		$this->output( "Done populating category table.\n" );
-	}
-
-	protected function doPopulateParentId() {
-		if ( !$this->updateRowExists( 'populate rev_parent_id' ) ) {
-			$this->output(
-				"Populating rev_parent_id fields, printing progress markers. For large\n" .
-				"databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateParentId.php.\n" );
-
-			$task = $this->maintenance->runChild( PopulateParentId::class );
-			$task->execute();
-		}
 	}
 
 	protected function doNonUniquePlTlIl() {

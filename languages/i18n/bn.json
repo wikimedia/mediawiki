@@ -1290,7 +1290,7 @@
 	"right-editmyuserjs": "আপনার নিজস্ব ব্যবহারকারী জাভাস্ক্রিপ্ট ফাইল সম্পাদনা করুন",
 	"right-editmyuserjsredirect": "পুনঃনির্দেশ করা এমন স্ব ব্যবহারকারী জাভাস্ক্রিপ্ট ফাইলগুলি সম্পাদনা করা",
 	"right-viewmywatchlist": "আপনার নজরতালিকা দেখুন",
-	"right-editmywatchlist": "আপনার নজরতালিকা সম্পাদনা করুন। মনে রাখবেন, এই পরিবর্তনের পরও বিভিন্ন পাতা তালিকায় যুক্ত হয়ে থেতে পারে।",
+	"right-editmywatchlist": "স্ব নজরতালিকা সম্পাদনা করা  (মনে রাখবেন, এই অধিকার ছাড়াও বিভিন্ন কারণে পাতা তালিকায় যুক্ত হতে পারে)",
 	"right-viewmyprivateinfo": "আপনার ব্যক্তিগত তথ্য দেখুন (যেমন ইমেইল ঠিকানা, আসল নাম)",
 	"right-editmyprivateinfo": "আপনার ব্যক্তিগত তথ্য সম্পাদনা করুন (যেমন ইমেইল ঠিকানা, আসল নাম)",
 	"right-editmyoptions": "আপনার পছন্দসমূহ পরিবর্তন করুন",
@@ -3536,6 +3536,7 @@
 	"diff-form-revid": "পার্থক্যের সংস্করণের আইডি",
 	"diff-form-submit": "পার্থক্য দেখান",
 	"diff-form-other-revid": "সংশোধন আইডি",
+	"diff-form-error-revid": "সাংখ্যিক সংস্করণ আইডি প্রদান করুন",
 	"permanentlink": "স্থায়ী সংযোগ",
 	"permanentlink-revid": "সংশোধন আইডি",
 	"permanentlink-submit": "এই সংশোধনে যান",
@@ -4003,6 +4004,7 @@
 	"passwordpolicies-policy-minimalpasswordlength": "পাসওয়ার্ড অবশ্যই {{PLURAL:$1|১ অক্ষরের|$1 অক্ষরের}} হতে হবে",
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "প্রবেশ করতে সক্ষম হতে পাসওয়ার্ড অবশ্যই $1 {{PLURAL:$1|অক্ষরের}} হতে হবে",
 	"passwordpolicies-policy-passwordcannotmatchusername": "পাসওয়ার্ড ব্যবহারকারী নামের মত একই হতে পারে না",
+	"passwordpolicies-policy-passwordcannotbesubstringinusername": "ব্যবহারকারী নামের একটি অংশ পাসওয়ার্ড হিসেবে দেওয়া যাবে না",
 	"passwordpolicies-policy-passwordcannotmatchdefaults": "পাসওয়ার্ডটি বিশেষ তালিকাভুক্ত পূর্বনির্ধারিত পাসওয়ার্ডের সাথে মিলতে পারবে না",
 	"passwordpolicies-policy-maximalpasswordlength": "পাসওয়ার্ড $1 {{PLURAL:$1|অক্ষরের}} চেয়ে কম দীর্ঘ হতে হবে",
 	"passwordpolicies-policy-passwordnotincommonlist": "পাসওয়ার্ড ১,০০,০০০ সর্বাধিক ব্যবহৃত পাসওয়ার্ডের তালিকায় থাকতে পারবে না।",
@@ -4016,5 +4018,7 @@
 	"paramvalidator-help-type-user-subtype-cidr": "আইপি পরিসীমা",
 	"paramvalidator-help-type-user-subtype-interwiki": "আন্তঃউইকি নাম (উদা: \"উপসর্গ>উদাহরণ নাম\")",
 	"paramvalidator-help-type-user-subtype-id": "ব্যবহারকারী আইডি (উদাঃ \"#12345\")",
-	"paramvalidator-help-type-title": "ধরন: পাতার শিরোনাম"
+	"paramvalidator-help-type-title": "ধরন: পাতার শিরোনাম",
+	"paramvalidator-help-type-title-must-exist": "শুধুমাত্র বিদ্যমান পাতাগুলি গ্রহণ করুন।",
+	"paramvalidator-help-type-title-no-must-exist": "অস্তিত্বহীন পাতাগুলি গ্রহণ করুন।"
 }

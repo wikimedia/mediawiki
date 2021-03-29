@@ -105,6 +105,12 @@ class RebuildTextIndex extends Maintenance {
 			);
 
 			foreach ( $res as $s ) {
+
+				// T268673 Prevent failure of WikiPage.php: Invalid or virtual namespace -1 given
+				if ( $s->page_namespace < 0 ) {
+					continue;
+				}
+
 				$title = Title::makeTitle( $s->page_namespace, $s->page_title );
 				try {
 					$revRecord = $revStore->newRevisionFromRow( $s );
