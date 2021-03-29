@@ -91,8 +91,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$opts->add( 'target', '' );
 		$opts->add( 'namespace', '', FormOptions::INTNULL );
 		$opts->add( 'limit', $this->getConfig()->get( 'QueryPageDefaultLimit' ) );
-		$opts->add( 'from', 0 );
-		$opts->add( 'back', 0 );
+		$opts->add( 'offset', 0 );
+		$opts->add( 'dir', 'next' );
 		$opts->add( 'hideredirs', false );
 		$opts->add( 'hidetrans', false );
 		$opts->add( 'hidelinks', false );
@@ -129,8 +129,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			0,
 			$this->target,
 			$opts->getValue( 'limit' ),
-			$opts->getValue( 'from' ),
-			$opts->getValue( 'back' )
+			$opts->getValue( 'offset' ),
+			$opts->getValue( 'dir' )
 		);
 	}
 
@@ -138,10 +138,10 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 	 * @param int $level Recursion level
 	 * @param Title $target Target title
 	 * @param int $limit Number of entries to display
-	 * @param int $from Display from this article ID (default: 0)
-	 * @param int $back Display from this article ID at backwards scrolling (default: 0)
+	 * @param int $offset Display from this article ID (default: 0)
+	 * @param string $dir
 	 */
-	private function showIndirectLinks( $level, $target, $limit, $from = 0, $back = 0 ) {
+	private function showIndirectLinks( $level, $target, $limit, $offset = 0, $dir = 'next' ) {
 		$out = $this->getOutput();
 		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
@@ -189,12 +189,21 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			$conds['imagelinks']['il_from_namespace'] = $namespaces;
 		}
 
-		if ( $from ) {
-			$conds['redirect'][] = "rd_from >= $from";
-			$conds['templatelinks'][] = "tl_from >= $from";
-			$conds['pagelinks'][] = "pl_from >= $from";
-			$conds['imagelinks'][] = "il_from >= $from";
+		if ( $offset ) {
+			if ( $dir === 'prev' ) {
+				$conds['redirect'][] = "rd_from < $offset";
+				$conds['templatelinks'][] = "tl_from < $offset";
+				$conds['pagelinks'][] = "pl_from < $offset";
+				$conds['imagelinks'][] = "il_from < $offset";
+			} else {
+				$conds['redirect'][] = "rd_from >= $offset";
+				$conds['templatelinks'][] = "tl_from >= $offset";
+				$conds['pagelinks'][] = "pl_from >= $offset";
+				$conds['imagelinks'][] = "il_from >= $offset";
+			}
 		}
+
+		$sortDirection = $dir === 'prev' ? SelectQueryBuilder::SORT_DESC : SelectQueryBuilder::SORT_ASC;
 
 		if ( $hideredirs ) {
 			// For historical reasons `pagelinks` always contains an entry for the redirect target.
@@ -204,22 +213,22 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		}
 
 		$queryFunc = static function ( IDatabase $dbr, $table, $fromCol ) use (
-			$conds, $target, $limit
+			$conds, $target, $limit, $sortDirection
 		) {
 			// Read an extra row as an at-end check
 			$queryLimit = $limit + 1;
 			$on = [
-				"rd_from = $fromCol",
+				'rd_from' => $fromCol,
 				'rd_title' => $target->getDBkey(),
+				'rd_namespace' => $target->getNamespace(),
 				'rd_interwiki = ' . $dbr->addQuotes( '' ) . ' OR rd_interwiki IS NULL'
 			];
-			$on['rd_namespace'] = $target->getNamespace();
 			// Inner LIMIT is 2X in case of stale backlinks with wrong namespaces
 			$subQuery = $dbr->newSelectQueryBuilder()
 				->table( $table )
 				->fields( [ $fromCol, 'rd_from', 'rd_fragment' ] )
 				->conds( $conds[$table] )
-				->orderBy( $fromCol )
+				->orderBy( $fromCol, $sortDirection )
 				->limit( 2 * $queryLimit )
 				->leftJoin( 'redirect', 'redirect', $on );
 
@@ -228,21 +237,22 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				->join( 'page', 'page', "$fromCol = page_id" )
 				->fields( [ 'page_id', 'page_namespace', 'page_title',
 					'rd_from', 'rd_fragment', 'page_is_redirect' ] )
-				->orderBy( 'page_id' )
+				->orderBy( 'page_id', $sortDirection )
 				->limit( $queryLimit )
 				->caller( __CLASS__ . '::showIndirectLinks' )
 				->fetchResultSet();
 		};
 
 		if ( $fetchredirs ) {
-			$rdRes = $dbr->select(
-				[ 'redirect', 'page' ],
-				[ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'rd_fragment', 'page_is_redirect' ],
-				$conds['redirect'],
-				__METHOD__,
-				[ 'ORDER BY' => 'rd_from', 'LIMIT' => $limit + 1 ],
-				[ 'page' => [ 'JOIN', 'rd_from = page_id' ] ]
-			);
+			$rdRes = $dbr->newSelectQueryBuilder()
+				->tables( [ 'redirect', 'page' ] )
+				->fields( [ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'rd_fragment', 'page_is_redirect' ] )
+				->conds( $conds['redirect'] )
+				->orderBy( 'rd_from', $sortDirection )
+				->limit( $limit + 1 )
+				->join( 'page', 'page', 'rd_from = page_id' )
+				->caller( __METHOD__ )
+				->fetchResultSet();
 		}
 
 		if ( !$hidelinks ) {
@@ -325,20 +335,17 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		ksort( $rows );
 		$rows = array_values( $rows );
 
-		$numRows = count( $rows );
-
 		// Work out the start and end IDs, for prev/next links
-		if ( $numRows > $limit ) {
-			// More rows available after these ones
-			// Get the ID from the last row in the result set
-			$nextId = $rows[$limit]->page_id;
+		if ( count( $rows ) > $limit ) {
+			// More rows available after these ones, get first undisplayed as next
+			$nextId = $rows[$limit + 1]->page_id;
 			// Remove undisplayed rows
 			$rows = array_slice( $rows, 0, $limit );
 		} else {
 			// No more rows after
 			$nextId = false;
 		}
-		$prevId = $from;
+		$prevId = $rows[0] ?? 0;
 
 		// use LinkBatch to make sure, that all required data (associated with Titles)
 		// is loaded in one query
@@ -516,11 +523,18 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		unset( $changed['target'] ); // Already in the request title
 
 		if ( $prevId != 0 ) {
-			$overrides = [ 'from' => $this->opts->getValue( 'back' ) ];
+			$overrides = [
+				'dir' => 'prev',
+				'offset' => $prevId,
+			];
 			$prev = Message::rawParam( $this->makeSelfLink( $prev, array_merge( $changed, $overrides ) ) );
 		}
+
 		if ( $nextId != 0 ) {
-			$overrides = [ 'from' => $nextId, 'back' => $prevId ];
+			$overrides = [
+				'dir' => 'next',
+				'offset' => $nextId,
+			];
 			$next = Message::rawParam( $this->makeSelfLink( $next, array_merge( $changed, $overrides ) ) );
 		}
 
@@ -528,8 +542,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$lang = $this->getLanguage();
 		foreach ( $this->limits as $limit ) {
 			$prettyLimit = $lang->formatNum( $limit );
-			$overrides = [ 'limit' => $limit ];
-			$limitLinks[] = $this->makeSelfLink( $prettyLimit, array_merge( $changed, $overrides ) );
+			$limitLinks[] = $this->makeSelfLink( $prettyLimit, array_merge( $changed, [ 'limit' => $limit ] ) );
 		}
 
 		$nums = $lang->pipeList( $limitLinks );
