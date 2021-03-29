@@ -13608,7 +13608,7 @@ parsoid=wt2html
 ###
 ### These tests won't always pass wt2wt and other modes because
 ### on serialization, the table will be output on a new line.
-### For now, we are blacklisting them, and using this to test selser.
+### For now, we are prohibiting them, and using this to test selser.
 ###
 
 !!test

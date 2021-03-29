@@ -1473,7 +1473,7 @@ class ParserTestRunner {
 			$this->db->timestamp( '20010115123500' )
 		);
 
-		# This image will be blacklisted in [[MediaWiki:Bad image list]]
+		# This image will be prohibited via the list in [[MediaWiki:Bad image list]]
 		$image = $localRepo->newFile( Title::makeTitle( NS_FILE, 'Bad.jpg' ) );
 		$image->recordUpload3(
 			'',

@@ -950,13 +950,13 @@
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-script-msg' ),
 			'&lt;script  &gt;alert( &quot;Who put this tag here?&quot; );&lt;/script&gt;',
-			'Tag outside whitelist escaped in parse mode'
+			'Tag outside list of allowed ones is escaped in parse mode'
 		);
 
 		assert.strictEqual(
 			formatText( 'jquerymsg-script-msg' ),
 			mw.messages.get( 'jquerymsg-script-msg' ),
-			'Tag outside whitelist unchanged in text mode'
+			'Tag outside list of allowed ones is unchanged in text mode'
 		);
 
 		mw.messages.set( 'jquerymsg-script-link-msg', '<script>[[Foo|bar]]</script>' );
@@ -984,7 +984,7 @@
 		assert.htmlEqual(
 			formatParse( 'jquerymsg-link-script' ),
 			'<a href="http://example.com" class="external">&lt;script&gt;alert( "jquerymsg-link-script test" );&lt;/script&gt;</a>',
-			'Non-whitelisted HTML tag in external link anchor treated as text'
+			'HTML tag not is list of allowed ones in external link anchor is treated as text'
 		);
 
 		// Intentionally not using htmlEqual for the quote tests
