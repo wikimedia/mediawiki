@@ -41,13 +41,13 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	private static $unitGlobals;
 
 	/**
-	 * Whitelist of globals to allow in MediaWikiUnitTestCase.
+	 * List of allowed globals to allow in MediaWikiUnitTestCase.
 	 *
 	 * Please, keep this list to the bare minimum.
 	 *
 	 * @return string[]
 	 */
-	private static function getGlobalsWhitelist() {
+	private static function getAllowedGlobalsList() {
 		return [
 			// The autoloader may change between bootstrap and the first test,
 			// so (lazily) capture these here instead.
@@ -77,7 +77,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 
 		self::$unitGlobals =& TestSetup::$bootstrapGlobals;
 
-		foreach ( self::getGlobalsWhitelist() as $global ) {
+		foreach ( self::getAllowedGlobalsList() as $global ) {
 			self::$unitGlobals[ $global ] =& $GLOBALS[ $global ];
 		}
 
