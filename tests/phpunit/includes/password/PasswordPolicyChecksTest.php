@@ -31,38 +31,21 @@ class PasswordPolicyChecksTest extends MediaWikiIntegrationTestCase {
 	 * Uses MediaWikiServices for the content language, so can't move to unit tests
 	 */
 	public function testCheckPasswordCannotMatchUsername() {
+		$user = $this->createMock( User::class );
+		$user->method( 'getName' )->willReturn( 'user' );
+
 		$statusOK = PasswordPolicyChecks::checkPasswordCannotMatchUsername(
 			1, // policy value
-			User::newFromName( 'user' ), // User
+			$user, // User
 			'password'  // password
 		);
 		$this->assertTrue( $statusOK->isGood(), 'Password does not match username' );
 		$statusLong = PasswordPolicyChecks::checkPasswordCannotMatchUsername(
 			1, // policy value
-			User::newFromName( 'user' ), // User
+			$user, // User
 			'user'  // password
 		);
 		$this->assertFalse( $statusLong->isGood(), 'Password matches username' );
 		$this->assertTrue( $statusLong->isOK(), 'Password matches username, not fatal' );
-	}
-
-	/**
-	 * Verify that all password policy description messages actually exist.
-	 * Messages used on Special:PasswordPolicies
-	 *
-	 * TODO is this still needed given PasswordPolicyStructureTest::testCheckMessage ?
-	 *
-	 * @coversNothing
-	 */
-	public function testPasswordPolicyDescriptionsExist() {
-		global $wgPasswordPolicy;
-
-		foreach ( array_keys( $wgPasswordPolicy['checks'] ) as $check ) {
-			$msgKey = 'passwordpolicies-policy-' . strtolower( $check );
-			$this->assertTrue(
-				wfMessage( $msgKey )->useDatabase( false )->inLanguage( 'en' )->exists(),
-				"Message '$msgKey' required by '$check' must exist"
-			);
-		}
 	}
 }
