@@ -949,6 +949,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'Interwiki link is not watchable' => [
 				Title::makeTitle( NS_MAIN, 'Kittens', '', 'acme' ), false
 			],
+			'Invalid title is not watchable' => [
+				Title::makeTitle( NS_MAIN, '<' ), false
+			]
 		];
 	}
 

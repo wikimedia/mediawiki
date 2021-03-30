@@ -906,7 +906,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$parts = $titleCodec->splitTitleString( $text, $this->mNamespace );
 
 			// Check that nothing changed!
-			// This ensures that $text was already perperly normalized.
+			// This ensures that $text was already properly normalized.
 			if ( $parts['fragment'] !== $this->mFragment
 				|| $parts['interwiki'] !== $this->mInterwiki
 				|| $parts['local_interwiki'] !== $this->mLocalInterwiki
@@ -1257,8 +1257,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function isWatchable() {
 		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		return $this->getText() !== '' && !$this->isExternal() &&
-			$nsInfo->isWatchable( $this->mNamespace );
+		return $this->canExist() && $nsInfo->isWatchable( $this->mNamespace );
 	}
 
 	/**
