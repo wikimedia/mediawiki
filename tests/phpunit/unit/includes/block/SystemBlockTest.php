@@ -6,7 +6,7 @@ use MediaWiki\Block\SystemBlock;
  * @group Blocking
  * @coversDefaultClass \MediaWiki\Block\SystemBlock
  */
-class SystemBlockTest extends MediaWikiLangTestCase {
+class SystemBlockTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers ::getSystemBlockType
 	 */
