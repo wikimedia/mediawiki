@@ -1693,7 +1693,6 @@ $wgAutoloadLocalClasses = [
 	'UnwatchAction' => __DIR__ . '/includes/actions/UnwatchAction.php',
 	'UpdateArticleCount' => __DIR__ . '/maintenance/updateArticleCount.php',
 	'UpdateCollation' => __DIR__ . '/maintenance/updateCollation.php',
-	'UpdateDoubleWidthSearch' => __DIR__ . '/maintenance/updateDoubleWidthSearch.php',
 	'UpdateExtensionJsonSchema' => __DIR__ . '/maintenance/updateExtensionJsonSchema.php',
 	'UpdateRestrictions' => __DIR__ . '/maintenance/updateRestrictions.php',
 	'UpdateSearchIndex' => __DIR__ . '/maintenance/updateSearchIndex.php',
