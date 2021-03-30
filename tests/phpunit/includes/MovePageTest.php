@@ -84,6 +84,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				$params['options'] ?? [],
 				[
 					'CategoryCollation' => 'uppercase',
+					'MaximumMovedPages' => 100,
 				]
 			),
 			$mockLB,
