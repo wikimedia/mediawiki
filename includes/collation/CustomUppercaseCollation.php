@@ -52,15 +52,20 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 	 * @note This assumes $alphabet does not contain U+F3000-U+F3FFF
 	 *
 	 * @param array $alphabet Sorted array of uppercase characters.
-	 * @param Language $lang What language for number sorting.
+	 * @param Language $digitTransformLang What language for number sorting.
+	 * @param Language $enLanguage
 	 */
-	public function __construct( array $alphabet, Language $lang ) {
+	public function __construct(
+		array $alphabet,
+		Language $digitTransformLang,
+		Language $enLanguage
+	) {
 		if ( count( $alphabet ) < 1 || count( $alphabet ) >= 4096 ) {
 			throw new UnexpectedValueException( "Alphabet must be < 4096 items" );
 		}
 		$this->firstLetters = $alphabet;
 		// For digraphs, only the first letter is capitalized in input
-		$this->alphabet = array_map( [ $lang, 'uc' ], $alphabet );
+		$this->alphabet = array_map( [ $digitTransformLang, 'uc' ], $alphabet );
 
 		$this->puaSubset = [];
 		$len = count( $alphabet );
@@ -73,7 +78,7 @@ class CustomUppercaseCollation extends NumericUppercaseCollation {
 		$lengths = array_map( 'mb_strlen', $this->alphabet );
 		array_multisort( $lengths, SORT_DESC, $this->firstLetters, $this->alphabet, $this->puaSubset );
 
-		parent::__construct( $lang );
+		parent::__construct( $digitTransformLang, $enLanguage );
 	}
 
 	private function convertToPua( $string ) {

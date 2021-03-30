@@ -20,54 +20,63 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-
 class BashkirUppercaseCollation extends CustomUppercaseCollation {
 
-	public function __construct() {
-		parent::__construct( [
-			'А',
-			'Б',
-			'В',
-			'Г',
-			'Ғ',
-			'Д',
-			'Ҙ',
-			'Е',
-			'Ё',
-			'Ж',
-			'З',
-			'И',
-			'Й',
-			'К',
-			'Ҡ',
-			'Л',
-			'М',
-			'Н',
-			'Ң',
-			'О',
-			'Ө',
-			'П',
-			'Р',
-			'С',
-			'Ҫ',
-			'Т',
-			'У',
-			'Ү',
-			'Ф',
-			'Х',
-			'Һ',
-			'Ц',
-			'Ч',
-			'Ш',
-			'Щ',
-			'Ъ',
-			'Ы',
-			'Ь',
-			'Э',
-			'Ә',
-			'Ю',
-			'Я',
-		], MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'ba' ) );
+	/**
+	 * @param Language $baLanguage Language object for Bashkir
+	 * @param Language $enLanguage Language object for English
+	 */
+	public function __construct(
+		Language $baLanguage,
+		Language $enLanguage
+	) {
+		parent::__construct(
+			[
+				'А',
+				'Б',
+				'В',
+				'Г',
+				'Ғ',
+				'Д',
+				'Ҙ',
+				'Е',
+				'Ё',
+				'Ж',
+				'З',
+				'И',
+				'Й',
+				'К',
+				'Ҡ',
+				'Л',
+				'М',
+				'Н',
+				'Ң',
+				'О',
+				'Ө',
+				'П',
+				'Р',
+				'С',
+				'Ҫ',
+				'Т',
+				'У',
+				'Ү',
+				'Ф',
+				'Х',
+				'Һ',
+				'Ц',
+				'Ч',
+				'Ш',
+				'Щ',
+				'Ъ',
+				'Ы',
+				'Ь',
+				'Э',
+				'Ә',
+				'Ю',
+				'Я',
+			],
+			$baLanguage,
+			$enLanguage
+		);
 	}
 }
