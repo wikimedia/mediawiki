@@ -396,17 +396,15 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->setServerVars( $input );
 		$this->setMwGlobals( [
 			'wgUsePrivateIPs' => $private,
-			'wgHooks' => [
-				'IsTrustedProxy' => [
-					static function ( &$ip, &$trusted ) use ( $xffList ) {
-						$trusted = $trusted || in_array( $ip, $xffList );
-						return true;
-					}
-				]
-			]
 		] );
 
-		$this->setService( 'ProxyLookup', new ProxyLookup( [], $cdn ) );
+		$hookContainer = $this->createHookContainer( [
+			'IsTrustedProxy' => static function ( &$ip, &$trusted ) use ( $xffList ) {
+				$trusted = $trusted || in_array( $ip, $xffList );
+				return true;
+			}
+		] );
+		$this->setService( 'ProxyLookup', new ProxyLookup( [], $cdn, $hookContainer ) );
 
 		$request = new WebRequest();
 		$result = $request->getIP();
@@ -590,9 +588,10 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 			'wgCdnServers' => [],
 			'wgCdnServersNoPurge' => [],
 			'wgUsePrivateIPs' => false,
-			'wgHooks' => [],
 		] );
-		$this->setService( 'ProxyLookup', new ProxyLookup( [], [] ) );
+
+		$hookContainer = $this->createHookContainer();
+		$this->setService( 'ProxyLookup', new ProxyLookup( [], [], $hookContainer ) );
 
 		$request = new WebRequest();
 		# Next call should throw an exception about lacking an IP

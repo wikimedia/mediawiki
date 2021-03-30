@@ -1097,7 +1097,8 @@ return [
 		$mainConfig = $services->getMainConfig();
 		return new ProxyLookup(
 			$mainConfig->get( 'CdnServers' ),
-			$mainConfig->get( 'CdnServersNoPurge' )
+			$mainConfig->get( 'CdnServersNoPurge' ),
+			$services->getHookContainer()
 		);
 	},
 

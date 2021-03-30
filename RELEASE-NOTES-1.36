@@ -731,6 +731,7 @@ because of Phabricator reports.
   ::authorizeMerge instead.
 * User::isValidUserName(), deprecated in 1.35, is hard deprecated.
   Use the UserNameUtils service instead.
+* The TitleArrayFromResult hook has been deprecated.
 * The EditPageBeforeEditToolbar hook has been deprecated; it has become
   defunct after the classic edit toolbar was removed. Use one of the many
   other EditPage hooks instead.

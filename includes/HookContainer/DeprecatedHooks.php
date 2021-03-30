@@ -70,6 +70,7 @@ class DeprecatedHooks {
 		'SkinTemplatePreventOtherActiveTabs' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateTabAction' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateToolboxEnd' => [ 'deprecatedVersion' => '1.35' ],
+		'TitleArrayFromResult' => [ 'deprecatedVersion' => '1.36' ],
 		'TitleMoveComplete' => [ 'deprecatedVersion' => '1.35' ],
 		'TitleMoveCompleting' => [ 'deprecatedVersion' => '1.35' ],
 		'UndeleteShowRevision' => [ 'deprecatedVersion' => '1.35' ],
