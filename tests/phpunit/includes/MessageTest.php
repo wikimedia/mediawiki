@@ -470,6 +470,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 * FIXME: This should not need database, but Language#formatExpiry does (T57912)
 	 * @covers Message::expiryParam
 	 * @covers Message::expiryParams
+	 * @covers Message::extractParam
 	 */
 	public function testExpiryParams() {
 		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
@@ -480,6 +481,57 @@ class MessageTest extends MediaWikiLangTestCase {
 			$lang->formatExpiry( $ts ),
 			$msg->inLanguage( $lang )->expiryParams( $ts )->plain(),
 			'expiryParams is handled correctly'
+		);
+	}
+
+	/**
+	 * @covers Message::dateTimeParams
+	 * @covers Message::dateTimeParam
+	 * @covers Message::extractParam
+	 */
+	public function testDateTimeParams() {
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$msg = new RawMessage( '$1' );
+
+		$ts = wfTimestampNow();
+		$this->assertSame(
+			$lang->timeanddate( $ts ),
+			$msg->inLanguage( $lang )->dateTimeParams( $ts )->plain(),
+			'dateTime is handled correctly'
+		);
+	}
+
+	/**
+	 * @covers Message::dateParams
+	 * @covers Message::dateParam
+	 * @covers Message::extractParam
+	 */
+	public function testDateParams() {
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$msg = new RawMessage( '$1' );
+
+		$ts = wfTimestampNow();
+		$this->assertSame(
+			$lang->date( $ts ),
+			$msg->inLanguage( $lang )->dateParams( $ts )->plain(),
+			'date is handled correctly'
+		);
+	}
+
+	/**
+	 * @covers Message::timeParams
+	 * @covers Message::timeParam
+	 * @covers Message::extractParam
+	 */
+	public function testTimeParams() {
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' );
+		$msg = new RawMessage( '$1' );
+
+		$ts = wfTimestampNow();
+		$this->assertSame(
+			$lang->time( $ts ),
+			$msg->inLanguage( $lang )->timeParams( $ts )->plain(),
+			'time is handled correctly'
 		);
 	}
 

@@ -140,6 +140,39 @@ class MessageValueTest extends \PHPUnit\Framework\TestCase {
 		$this->assertSame( $mv, $mv2 );
 	}
 
+	public function testDateTimeParams() {
+		$mv = new MessageValue( 'key' );
+		$ts = '1617158201';
+		$mv2 = $mv->dateTimeParams( $ts );
+		$this->assertSame( '<message key="key">' .
+			"<datetime>$ts</datetime>" .
+			'</message>',
+			$mv->dump() );
+		$this->assertSame( $mv, $mv2 );
+	}
+
+	public function testDateParams() {
+		$mv = new MessageValue( 'key' );
+		$ts = '1617158201';
+		$mv2 = $mv->dateParams( $ts );
+		$this->assertSame( '<message key="key">' .
+			"<date>$ts</date>" .
+			'</message>',
+			$mv->dump() );
+		$this->assertSame( $mv, $mv2 );
+	}
+
+	public function testTimeParams() {
+		$mv = new MessageValue( 'key' );
+		$ts = '1617158201';
+		$mv2 = $mv->timeParams( $ts );
+		$this->assertSame( '<message key="key">' .
+			"<time>$ts</time>" .
+			'</message>',
+			$mv->dump() );
+		$this->assertSame( $mv, $mv2 );
+	}
+
 	public function testSizeParams() {
 		$mv = new MessageValue( 'key' );
 		$mv2 = $mv->sizeParams( 1, 2 );
