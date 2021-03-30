@@ -30,3 +30,9 @@
 	direction: ltr;
 	unicode-bidi: embed;
 }
+
+// Hide elements that are marked as "empty" according to legacy Tidy rules,
+// except if a client script removes the `.mw-hide-empty-elt` class from the body.
+/* body */ .mw-hide-empty-elt .mw-parser-output .mw-empty-elt {
+	display: none;
+}

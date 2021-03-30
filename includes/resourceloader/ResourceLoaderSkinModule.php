@@ -55,12 +55,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *     content area structures like the TOC themselves.
 	 *
 	 * "content":
-	 *     The most commonly used level for skins implemented from scratch. This level includes all
-	 *     the single element styles from "elements" as well as styles for complex structures such
-	 *     as the TOC that are output in the content area by MediaWiki rather than the skin.
-	 *     Essentially this is the common level that lets skins leave the style of the content area
-	 *     as it is normally styled, while leaving the rest of the skin up to the skin
-	 *     implementation.
+	 *     Deprecated. Alias for "content-thumbnails".
+	 *
+	 * "content-thumbnails":
+	 *     Styles for thumbnails and floated elements.
 	 *
 	 * "content-media":
 	 *     Styles for the new media structure on wikis where $wgUseNewMediaStructure is enabled.
@@ -117,8 +115,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			// Reserves whitespace for the logo in a pseudo element.
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
-		'content' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/content.less' ],
+		'content-thumbnails' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails.less' ],
 		],
 		'content-media' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.media.less' ],
@@ -171,11 +169,11 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 	/** @var array please order alphabetically */
 	private const DEFAULT_FEATURES = [
-		'content' => false,
 		'content-links' => false,
 		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
 		'content-parser-output' => true,
 		'content-tables' => false,
+		'content-thumbnails' => false, // To be consolidated with content-media at a future date.
 		'elements' => false,
 		'i18n-all-lists-margins' => false,
 		'i18n-headings' => false,
@@ -211,6 +209,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 				'logo' => true,
 				'legacy' => true
 			];
+
+		// The `content` feature is mapped to `content-thumbnails`.
+		// FIXME: This should log a deprecated notice at a later date (proposed: 1.37 release)
+		if ( isset( $features[ 'content' ] ) ) {
+			$features[ 'content-thumbnails' ] = $features[ 'content' ];
+			unset( $features[ 'content' ] );
+		}
+
 		$enabledFeatures = [];
 		$compatibilityMode = false;
 		foreach ( $features as $key => $enabled ) {

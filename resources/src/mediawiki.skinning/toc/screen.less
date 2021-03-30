@@ -1,6 +1,99 @@
-/* This style adds a toggle button with internationalized message for the TOC. */
+/**
+ * Table of Contents
+ *
+ * Default styles for the display of table of contents in @media screen.
+ *
+ * Styles relating to i18n are inside the i18n.less file in the same subfolder.
+ * Styles for @media print are inside print.css.
+ */
 
 /* stylelint-disable selector-class-pattern */
+
+/* Table of Contents */
+.toc,
+.toccolours {
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
+	padding: 5px;
+	font-size: 95%;
+}
+
+/**
+ * We want to display the ToC element with intrinsic width in block mode. The fit-content
+ * value for width is however not supported by large groups of browsers.
+ *
+ * We use display:table. Even though it should only contain other table-* display
+ * elements, there are no known problems with using this.
+ */
+.toc {
+	display: table;
+	padding: 7px;
+
+	h2 {
+		display: inline;
+		border: 0;
+		padding: 0;
+		font-size: 100%;
+		font-weight: bold;
+	}
+
+	.toctitle {
+		text-align: center;
+	}
+
+	ul {
+		list-style-type: none;
+		list-style-image: none;
+		margin: 0.3em 0;
+		padding: 0;
+		text-align: left;
+
+		ul {
+			margin: 0 0 0 2em;
+		}
+	}
+}
+
+/* CSS for backwards-compatibility with cached page renders and creative uses in wikitext */
+table.toc {
+	border-collapse: collapse;
+
+	/* Remove additional paddings inside table-cells that are not present in <div>s */
+	td {
+		padding: 0;
+	}
+}
+
+/* Separate columns for tocnumber and toctext */
+.tocnumber,
+.toctext {
+	display: table-cell;
+	/*
+	 * Text decorations are not propagated to the contents of inline blocks and inline tables,
+	 * according to <https://www.w3.org/TR/css-text-decor-3/#line-decoration>, and 'display: table-cell'
+	 * generates an inline table when used without any parent table-rows and tables.
+	 */
+	text-decoration: inherit;
+}
+
+/* Space between the columns for tocnumber and toctext */
+.tocnumber {
+	color: #202122;
+	padding-left: 0;
+	padding-right: 0.5em;
+
+	/* @noflip */
+	.mw-content-ltr & {
+		padding-left: 0;
+		padding-right: 0.5em;
+	}
+
+	/* @noflip */
+	.mw-content-rtl & {
+		padding-left: 0.5em;
+		padding-right: 0;
+	}
+}
 
 /* When the browser supports :checked then overwrite the style="display:none" and make the */
 /* checkbox invisible on another way to allow to focus the checkbox with keyboard. */
@@ -55,3 +148,5 @@
 .toctogglecheckbox:not( :checked ) + .toctitle .toctogglelabel:after {
 	content: '@{msg-hidetoc}';
 }
+
+@import 'i18n.less';

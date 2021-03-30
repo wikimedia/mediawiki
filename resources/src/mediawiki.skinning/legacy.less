@@ -145,32 +145,7 @@ td.mw-submit {
 	white-space: nowrap;
 }
 
-/**
- * Image captions.
- *
- * This is only meant to provide the most basic of styles, visual settings shouldn't be added here.
- */
-
-/* @noflip */
-.mw-content-ltr .thumbcaption {
-	text-align: left;
-}
-
-/* @noflip */
-.mw-content-ltr .magnify {
-	float: right;
-}
-
-/* @noflip */
-.mw-content-rtl .thumbcaption {
-	text-align: right;
-}
-
-/* @noflip */
-.mw-content-rtl .magnify {
-	float: left;
-}
-
+@import 'content.thumbnails.less';
 @import 'interface.category.less';
 
 /**
@@ -273,35 +248,7 @@ a.new {
 @import 'i18n-all-lists-margins.less';
 @import 'i18n-headings.less';
 @import 'i18n-ordered-lists.less';
-
-.toc ul {
-	margin: 0.3em 0;
-}
-
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */ .mw-content-ltr .toc ul,
-.mw-content-rtl .mw-content-ltr .toc ul {
-	text-align: left;
-}
-
-/* @noflip */ .mw-content-rtl .toc ul,
-.mw-content-ltr .mw-content-rtl .toc ul {
-	text-align: right;
-}
-
-/* @noflip */ .mw-content-ltr .toc ul ul,
-.mw-content-rtl .mw-content-ltr .toc ul ul {
-	margin: 0 0 0 2em;
-}
-
-/* @noflip */ .mw-content-rtl .toc ul ul,
-.mw-content-ltr .mw-content-rtl .toc ul ul {
-	margin: 0 2em 0 0;
-}
-
-.toc .toctitle {
-	direction: ltr;
-}
+@import 'toc/i18n.less';
 
 #mw-clearyourcache,
 #mw-sitecsspreview,
@@ -316,22 +263,6 @@ a.new {
 #mw-revision-info-current,
 #mw-revision-nav {
 	direction: ltr;
-}
-
-/* Images */
-
-/* @noflip */ div.tright,
-div.floatright,
-table.floatright {
-	clear: right;
-	float: right;
-}
-
-/* @noflip */ div.tleft,
-div.floatleft,
-table.floatleft {
-	float: left;
-	clear: left;
 }
 
 /* T14205 */
