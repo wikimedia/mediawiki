@@ -41,6 +41,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			'AvailableRights' => [],
 			'NamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ],
 			'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],
+			'DeleteRevisionsLimit' => false,
 		];
 		$config = $overrideConfig + $baseConfig;
 		$specialPageFactory = $options['specialPageFactory'] ??

@@ -74,7 +74,7 @@ class MaintainableDBConnRef extends DBConnRef implements IMaintainableDatabase {
 	}
 
 	public function streamStatementEnd( &$sql, &$newLine ) {
-		return $this->__call( __FUNCTION__, func_get_args() );
+		return $this->__call( __FUNCTION__, [ &$sql, &$newLine ] );
 	}
 
 	public function duplicateTableStructure(

@@ -288,6 +288,8 @@ because of Phabricator reports.
   - ::getSummaryInputWidget
   - ::noSuchSectionPage
   - ::initialiseForm
+* EditPage::matchSpamRegex and ::matchSummarySpamRegex, deprecated in 1.35,
+  were removed. Use the SpamChecker service instead.
 * The global function `wfWaitForSlaves`, deprecated in 1.27 and hard-deprecated
   in 1.35, has been removed. Use LBFactory::waitForReplication() instead.
 * Calling Action::factory() with null as the first parameter, rather than a
