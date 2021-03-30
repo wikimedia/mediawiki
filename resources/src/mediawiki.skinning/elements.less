@@ -89,8 +89,21 @@ a.new:visited,
 	color: #b63;
 }
 
-.mw-parser-output a.external.free {
-	word-wrap: break-word;
+/* Underline preference */
+
+.mw-underline-always a {
+	text-decoration: underline;
+}
+
+.mw-underline-never a {
+	text-decoration: none;
+}
+
+/* Plainlinks - this can be used to switch
+ * off special external link styling */
+.plainlinks a.external {
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
 /* Inline Elements */
