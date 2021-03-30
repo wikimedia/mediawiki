@@ -120,7 +120,8 @@ class MovePage {
 	 * @internal For use by MovePageTest
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CategoryCollation'
+		'CategoryCollation',
+		'MaximumMovedPages',
 	];
 
 	/**
@@ -561,8 +562,6 @@ class MovePage {
 	 * @throws MWException
 	 */
 	private function moveSubpagesInternal( callable $subpageMoveCallback ) {
-		global $wgMaximumMovedPages;
-
 		// Do the source and target namespaces support subpages?
 		if ( !$this->nsInfo->hasSubpages( $this->oldTitle->getNamespace() ) ) {
 			return Status::newFatal( 'namespace-nosubpages',
@@ -576,14 +575,15 @@ class MovePage {
 		// Return a status for the overall result. Its value will be an array with per-title
 		// status for each subpage. Merge any errors from the per-title statuses into the
 		// top-level status without resetting the overall result.
+		$maximumMovedPages = $this->options->get( 'MaximumMovedPages' );
 		$topStatus = Status::newGood();
 		$perTitleStatus = [];
-		$subpages = $this->oldTitle->getSubpages( $wgMaximumMovedPages + 1 );
+		$subpages = $this->oldTitle->getSubpages( $maximumMovedPages + 1 );
 		$count = 0;
 		foreach ( $subpages as $oldSubpage ) {
 			$count++;
-			if ( $count > $wgMaximumMovedPages ) {
-				$status = Status::newFatal( 'movepage-max-pages', $wgMaximumMovedPages );
+			if ( $count > $maximumMovedPages ) {
+				$status = Status::newFatal( 'movepage-max-pages', $maximumMovedPages );
 				$perTitleStatus[$oldSubpage->getPrefixedText()] = $status;
 				$topStatus->merge( $status );
 				$topStatus->setOK( true );

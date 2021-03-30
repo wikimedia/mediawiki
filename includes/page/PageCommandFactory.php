@@ -82,7 +82,8 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'CategoryCollation'
+		'CategoryCollation',
+		'MaximumMovedPages',
 	];
 
 	public function __construct(
