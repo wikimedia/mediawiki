@@ -9,7 +9,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "TitleArrayFromResult" to register handlers implementing this interface.
  *
- * @stable to implement
  * @ingroup Hooks
  */
 interface TitleArrayFromResultHook {
@@ -18,6 +17,7 @@ interface TitleArrayFromResultHook {
 	 * database result.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.36
 	 *
 	 * @param TitleArray &$titleArray Set this to an object to override the default object returned
 	 * @param IResultWrapper $res Database result used to create the object
