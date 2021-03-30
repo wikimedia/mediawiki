@@ -71,6 +71,7 @@ THIS IS NOT A RELEASE YET
   documented and are not altered by previous calls to these methods.
 * (T254688) Remove page inner join from subquery in SpecialWhatLinksHere.
 * (T122124) signup: added help message for security.
+* (T278014) Escape mediastatistics-header-* messages on Special:NewFiles.
 * (T278058) Escape rcfilters-filter-* messages on ChangesList pages.
 * (T277414) HTMLFormField: Use non namespaced class name rather than
   static::class.
