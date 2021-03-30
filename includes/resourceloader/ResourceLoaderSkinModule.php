@@ -237,10 +237,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	) {
 		$features = $options['features'] ?? self::DEFAULT_FEATURES_ABSENT;
 		$listMode = array_keys( $features ) === range( 0, count( $features ) - 1 );
+
+		$messages = '';
 		// NOTE: Compatibility is only applied when features are provided
 		// in map-form. The list-form does not currently get these.
-		$features = $listMode ? self::applyFeaturesCompatibility( array_fill_keys( $features, true ) ) :
-			self::applyFeaturesCompatibility( $features );
+		$features = $listMode ? self::applyFeaturesCompatibility( array_fill_keys( $features, true ), $messages ) :
+			self::applyFeaturesCompatibility( $features, $messages );
 
 		foreach ( $features as $key => $enabled ) {
 			if ( !isset( self::FEATURE_FILES[$key] ) ) {
@@ -261,26 +263,34 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 				self::LESS_MESSAGES
 			);
 		}
+
+		if ( $messages !== '' ) {
+			$messages .= 'More information can be found at [[mw:Manual:ResourceLoaderSkinModule]]. ';
+			$options['deprecated'] = $messages;
+		}
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
 	}
 
 	/**
 	 * @internal
 	 * @param array $features
+	 * @param string &$messages to report deprecations
 	 * @return array
 	 */
-	protected static function applyFeaturesCompatibility( array $features ): array {
+	protected static function applyFeaturesCompatibility( array $features, &$messages = '' ): array {
 		// The `content` feature is mapped to `content-media`.
-		// FIXME: Hard-deprecate sometime during the 1.37 release.
 		if ( isset( $features[ 'content' ] ) ) {
 			$features[ 'content-media' ] = $features[ 'content' ];
 			unset( $features[ 'content' ] );
+			$messages .= '[1.37] The use of the `content` feature with ResourceLoaderSkinModule'
+				. ' is deprecated. Use `content-media` instead. ';
 		}
 
 		// The `content-thumbnails` feature is mapped to `content-media`.
-		// FIXME: Hard-deprecate sometime during the 1.37 release.
 		if ( isset( $features[ 'content-thumbnails' ] ) ) {
 			$features[ 'content-media' ] = $features[ 'content-thumbnails' ];
+			$messages .= '[1.37] The use of the `content-thumbnails` feature with ResourceLoaderSkinModule'
+				. ' is deprecated. Use `content-media` instead. ';
 			unset( $features[ 'content-thumbnails' ] );
 		}
 
@@ -288,6 +298,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		if ( isset( $features[ 'content-links' ] ) && !isset( $features[ 'content-links-external' ] ) ) {
 			// Assume the same true/false preference for both.
 			$features[ 'content-links-external' ] = $features[ 'content-links' ];
+		}
+
+		// The legacy feature is deprecated (T89981).
+		if ( isset( $features['legacy'] ) && $features['legacy'] ) {
+			$messages .= '[1.37] The use of the `legacy` feature with ResourceLoaderSkinModule is deprecated'
+				. '(T89981). ';
 		}
 
 		// The `content-links` feature was split out from `elements`.
