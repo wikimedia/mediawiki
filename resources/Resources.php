@@ -2192,10 +2192,6 @@ return [
 		'styles' => 'resources/src/mediawiki.special.search.styles.css',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
-	'mediawiki.special.undelete' => [
-		'dependencies' => 'mediawiki.misc-authed-ooui',
-		'deprecated' => 'Use mediawiki.misc-authed-ooui instead',
-	],
 	'mediawiki.special.unwatchedPages' => [
 		'scripts' => 'resources/src/mediawiki.special.unwatchedPages/unwatchedPages.js',
 		'styles' => 'resources/src/mediawiki.special.unwatchedPages/unwatchedPages.css',
