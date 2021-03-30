@@ -416,9 +416,15 @@ abstract class AbstractBlock {
 	 * @param string|UserIdentity|null $target
 	 */
 	public function setTarget( $target ) {
-		list( $this->target, $this->type ) = MediaWikiServices::getInstance()
-			->getBlockUtils()
-			->parseBlockTarget( $target );
+		// Small optimization to make this code testable, this is what would happen anyway
+		if ( $target === '' ) {
+			$this->target = null;
+			$this->type = null;
+		} else {
+			list( $this->target, $this->type ) = MediaWikiServices::getInstance()
+				->getBlockUtils()
+				->parseBlockTarget( $target );
+		}
 	}
 
 	/**
