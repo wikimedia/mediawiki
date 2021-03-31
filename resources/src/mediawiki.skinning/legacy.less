@@ -97,18 +97,6 @@ span.comment {
 	unicode-bidi: isolate;
 }
 
-/* Stop floats from intruding into edit area in previews */
-#editform,
-#toolbar,
-#wpTextbox1 {
-	clear: both;
-}
-
-/* Prevent editing textarea from jumping when toolbar is loaded */
-#toolbar {
-	height: 22px;
-}
-
 /**
  * rev_deleted stuff
  */
@@ -203,11 +191,6 @@ a.new {
 // Deprecate on directory base to uniquely mark its status.
 @import 'deprecated/mw-infobox.less';
 
-/* Note on preview page */
-.previewnote {
-	margin-bottom: 1em;
-}
-
 .visualClear {
 	clear: both;
 }
@@ -235,15 +218,6 @@ a.new {
 @import 'i18n-headings.less';
 @import 'i18n-ordered-lists.less';
 @import 'toc/i18n.less';
-
-#mw-clearyourcache,
-#mw-sitecsspreview,
-#mw-sitejspreview,
-#mw-usercsspreview,
-#mw-userjspreview {
-	direction: ltr;
-	unicode-bidi: embed;
-}
 
 /* Print footer should be hidden by default in screen. */
 .printfooter {
