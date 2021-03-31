@@ -123,11 +123,6 @@ span.history-deleted {
  * Patrol stuff
  */
 
-div.patrollink {
-	font-size: 75%;
-	text-align: right;
-}
-
 /**
  * Forms
  */
@@ -147,16 +142,7 @@ td.mw-submit {
 
 @import 'content.thumbnails.less';
 @import 'interface.category.less';
-
-/**
- * Convenience links to edit delete and protect reasons
- */
-p.mw-protect-editreasons,
-p.mw-filedelete-editreasons,
-p.mw-delete-editreasons {
-	font-size: 90%;
-	text-align: right;
-}
+@import '../mediawiki.action/styles.less';
 
 /* The auto-generated edit comments */
 .autocomment,
@@ -256,17 +242,6 @@ a.new {
 #mw-usercsspreview,
 #mw-userjspreview {
 	direction: ltr;
-	unicode-bidi: embed;
-}
-
-#mw-revision-info,
-#mw-revision-info-current,
-#mw-revision-nav {
-	direction: ltr;
-}
-
-/* T14205 */
-#mw-credits a {
 	unicode-bidi: embed;
 }
 

@@ -406,6 +406,7 @@ class ProtectionForm {
 		$fields = [];
 		if ( !$this->disabled ) {
 			$this->mOut->addModules( 'mediawiki.action.protect' );
+			$this->mOut->addModuleStyles( 'mediawiki.action.styles' );
 		}
 		$scExpiryOptions = $this->mContext->msg( 'protect-expiry-options' )->inContentLanguage()->text();
 		$levels = $this->permManager->getNamespaceRestrictionLevels(

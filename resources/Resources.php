@@ -1343,6 +1343,10 @@ return [
 			'resources/src/mediawiki.action/mediawiki.action.view.filepage.css',
 		],
 	],
+	'mediawiki.action.styles' => [
+		'targets' => [ 'desktop', 'mobile' ],
+		'styles' => 'resources/src/mediawiki.action/styles.less',
+	],
 
 	/* MediaWiki Language */
 
