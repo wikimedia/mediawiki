@@ -1,0 +1,83 @@
+/* stylelint-disable selector-class-pattern */
+
+/* @noflip */
+table.floatright,
+div.floatright,
+div.tright {
+	float: right;
+	clear: right;
+}
+
+/* @noflip */
+table.floatleft,
+div.floatleft,
+div.tleft {
+	float: left;
+	clear: left;
+}
+
+/* @noflip */
+div.tleft {
+	margin: 0.5em 1.4em 1.3em 0;
+}
+
+/* @noflip */
+div.tright {
+	margin: 0.5em 0 1.3em 1.4em;
+}
+
+/* @noflip */
+table.floatright,
+div.floatright {
+	margin: 0 0 0.5em 0.5em;
+	border: 0;
+}
+
+/* @noflip */
+table.floatleft,
+div.floatleft {
+	margin: 0 0.5em 0.5em 0;
+	border: 0;
+}
+
+div.thumb {
+	background-color: transparent;
+	width: auto;
+
+	a {
+		border-bottom: 0;
+	}
+}
+
+div.thumbinner {
+	background-color: #fff;
+	border: 0;
+	border-radius: 2px;
+	padding: 5px;
+	font-size: 10pt;
+	color: #666;
+	text-align: center;
+	/* new block formatting context,
+	 * to clear background from floating content */
+	overflow: hidden;
+	min-width: 100px;
+}
+
+.thumbcaption {
+	text-align: left;
+	line-height: 1.4;
+	padding: 3px;
+}
+
+.thumbborder {
+	border: 1pt solid #ddd;
+}
+
+.thumb {
+	/* Pagination */
+	page-break-inside: avoid;
+}
+
+.magnify {
+	display: none;
+}
