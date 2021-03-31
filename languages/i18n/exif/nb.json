@@ -373,5 +373,9 @@
 	"exif-exposurelockused": "Eksponeringslås brukt",
 	"exif-exposurelockused-true": "Ja",
 	"exif-exposurelockused-false": "Nei",
-	"exif-sourcephotoscount": "Antall kildefotografier"
+	"exif-poseheadingdegrees": "Horisontal retning (grader)",
+	"exif-posepitchdegrees": "Stampingsvinkel (grader)",
+	"exif-poserolldegrees": "Slingringsvinkel (grader)",
+	"exif-sourcephotoscount": "Antall kildefotografier",
+	"exif-stitchingsoftware": "Fletteprogramvare"
 }

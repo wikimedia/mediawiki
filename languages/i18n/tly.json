@@ -356,7 +356,7 @@
 	"last": "nav.",
 	"page_first": "iminə",
 	"page_last": "oxonə",
-	"histlegend": "Рәвојәтон выжнијеј: кон сәһифә рәвојәтон фәрғи виндеј пидәјоне нышон быжәнән ијән егәтән \"Enter\".<br />\nİzoh: '''(ısə)''' = де исәтнә рәвојәти фәрғ, '''(охо)''' = де навконә рәвојәти фәрғ, '''(qə/d)''' = qədə dəqiş.",
+	"histlegend": "Rəvoyəton vıjniyey: kon səhifə rəvoyəton fərği vindey pidəyone nışon bıjənən iyən eqətən \"Enter\".<br />\nİzoh: <strong>({{int:cur}})</strong> = de isətnə rəvoyəti fərğ, <strong>({{int:last}})</strong> = de navkonə rəvoyəti fərğ, <strong>{{int:minoreditletter}}</strong> = qədə dəqiş.",
 	"history-fieldset-title": "Ovaxtətiyon parzıniku dəvoniye",
 	"history-show-deleted": "Әнҹәх рәдд кардә быән",
 	"histfirst": "kanə",
