@@ -180,6 +180,7 @@ $magicWords = [
 	'currentversion'            => [ '1', 'TEKUĆEIZDANJE', 'TEKUĆE_IZDANJE', 'CURRENTVERSION' ],
 	'currentweek'               => [ '1', 'TRENUTNANEDELJA', 'TRENUTNA_NEDELJA', 'TEKUĆANEDELJA', 'TEKUĆA_NEDELJA', 'CURRENTWEEK' ],
 	'currentyear'               => [ '1', 'TRENUTNAGODINA', 'TEKUĆAGODINA', 'TEKUĆA_GODINA', 'CURRENTYEAR' ],
+	'defaultsort'               => [ '1', 'PODRAZUMEVANOSORTIRANJE:', 'PODRAZUMEVANIKLJUČZASORTIRANJE:', 'PODRAZMEVANOSORTIRANJEKATEGORIJE:', 'DEFAULTSORT:' ],
 	'defaultsort_noerror'       => [ '0', 'bez_greške', 'noerror' ],
 	'defaultsort_noreplace'     => [ '0', 'bez_zamene', 'noreplace' ],
 	'directionmark'             => [ '1', 'SMEROZNAKE', 'SMER   _OZNAKE', 'DIRECTIONMARK', 'DIRMARK' ],
