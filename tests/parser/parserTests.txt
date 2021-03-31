@@ -30079,3 +30079,20 @@ parsoid=wt2html
 !! html+tidy
 <div>A</div>
 !! end
+
+!! test
+aside tag in extension HTML is not p-wrapped (T278565)
+!! wikitext
+<asidetag></asidetag>This is some article content.
+!! html/php
+<aside>Some aside content</aside><p>This is some article content.</p>
+!! end
+
+!! test
+aside tag is not allowed directly in wikitext (T278565)
+!! wikitext
+<aside>This aside tag in wikitext should be escaped</aside>
+!! html
+<p>&lt;aside&gt;This aside tag in wikitext should be escaped&lt;/aside&gt;
+</p>
+!! end
