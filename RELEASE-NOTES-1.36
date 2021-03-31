@@ -333,6 +333,12 @@ because of Phabricator reports.
 * The LinkBegin and LinkEnd hooks, deprecated in 1.28, have been removed. You
   can instead use the HtmlPageLinkRendererBegin and HtmlPageLinkRendererEnd
   hooks, respectively.
+* The EmailUser hook passes its fifth param, $error, by reference, to allow
+  hook handlers to add error messages, indicate that they have sent the email
+  instead of core, etc. Setting the parameter to something other than a
+  Status object, true, false, an empty string, an array, or a MessageSpecifier,
+  object, which had been deprecated in 1.29, is no longer supported, and now
+  results in an MWException being thrown.
 * Skin::getDynamicStylesheetQuery(), deprecated in 1.32, has been removed. You
   should use action=raw&ctype=text/css directly.
 * Skin::makeI18nUrl(), deprecated in 1.35, has been removed.

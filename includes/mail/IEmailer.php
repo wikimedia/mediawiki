@@ -38,7 +38,7 @@ interface IEmailer {
 	 *
 	 * @since 1.35
 	 *
-	 * @param MailAddress[] $to Array of Recipients' emails
+	 * @param MailAddress|MailAddress[] $to Array of Recipients' emails
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
 	 * @param string $bodyText text part of body
@@ -57,7 +57,7 @@ interface IEmailer {
 	 * @return StatusValue
 	 */
 	public function send(
-		array $to,
+		$to,
 		MailAddress $from,
 		string $subject,
 		string $bodyText,
