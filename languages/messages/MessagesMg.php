@@ -14,6 +14,8 @@
  * @author לערי ריינהארט
  */
 
+$fallback = 'fr';
+
 /** @phpcs-require-sorted-array */
 $magicWords = [
 	'basepagename'              => [ '1', 'ANARANAFOTOPEJY', 'ANARAMPOTOPEJY', 'NOMBASEDEPAGE', 'BASEPAGENAME' ],
@@ -82,8 +84,6 @@ $magicWords = [
 	'talkspacee'                => [ '1', 'PEJINDRESAKAX', 'PEJYRESAKAX', 'DINIKAX', 'ESPACEDISCUSSIONX', 'TALKSPACEE' ],
 	'toc'                       => [ '0', '__LAHATRA__', '__LAHAT__', '__SOMMAIRE__', '__TDM__', '__TOC__' ],
 ];
-
-$fallback = 'fr';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Rakitra',

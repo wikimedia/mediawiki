@@ -8,4 +8,5 @@
  */
 
 $fallback = 'fa';
+
 $rtl = true;

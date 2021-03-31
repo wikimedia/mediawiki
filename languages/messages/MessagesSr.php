@@ -14,4 +14,5 @@
  */
 
 $fallback = 'sr-ec';
+
 $linkTrail = '/^([abvgdđežzijklljmnnjoprstćufhcčdžšабвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD';
