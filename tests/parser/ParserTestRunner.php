@@ -31,6 +31,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use Psr\Log\NullLogger;
 use Wikimedia\Parsoid\ParserTests\ParserHook as ParsoidParserHook;
 use Wikimedia\Parsoid\ParserTests\RawHTML as ParsoidRawHTML;
 use Wikimedia\Parsoid\ParserTests\StyleTag as ParsoidStyleTag;
@@ -377,7 +378,10 @@ class ParserTestRunner {
 			'MediaHandlerFactory',
 			static function ( MediaWikiServices $services ) {
 				$handlers = $services->getMainConfig()->get( 'ParserTestMediaHandlers' );
-				return new MediaHandlerFactory( $handlers );
+				return new MediaHandlerFactory(
+					new NullLogger(),
+					$handlers
+				);
 			}
 		);
 		$teardown[] = static function () {
