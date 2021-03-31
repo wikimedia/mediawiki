@@ -13,7 +13,6 @@
 	},
 	"devDependencies": {
 		"@wdio/cli": "6.1.12",
-		"@wdio/devtools-service": "6.4.7",
 		"@wdio/dot-reporter": "6.1.9",
 		"@wdio/junit-reporter": "6.1.9",
 		"@wdio/local-runner": "6.1.12",
