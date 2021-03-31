@@ -708,6 +708,7 @@ class Article implements Page {
 				"<div id='mw-clearyourcache' lang='$lang' dir='$dir' class='mw-content-$dir'>\n$1\n</div>",
 				'clearyourcache'
 			);
+			$outputPage->addModuleStyles( 'mediawiki.action.styles' );
 		} elseif ( !$this->getHookRunner()->onArticleRevisionViewCustom(
 			$rev,
 			$this->getTitle(),
@@ -1613,6 +1614,8 @@ class Article implements Page {
 			: 'revision-info';
 
 		$outputPage = $context->getOutput();
+		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
+
 		$revisionUser = $revisionRecord->getUser();
 		$revisionInfo = "<div id=\"mw-{$infomsg}\">" .
 			$context->msg( $infomsg, $td )
@@ -1980,6 +1983,7 @@ class Article implements Page {
 		$outputPage->addBacklinkSubtitle( $title );
 		$outputPage->setRobotPolicy( 'noindex,nofollow' );
 		$outputPage->addModules( 'mediawiki.action.delete' );
+		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
 
 		$backlinkCache = $title->getBacklinkCache();
 		if ( $backlinkCache->hasLinks( 'pagelinks' ) || $backlinkCache->hasLinks( 'templatelinks' ) ) {

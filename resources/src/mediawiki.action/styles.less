@@ -1,0 +1,40 @@
+/* stylelint-disable selector-class-pattern */
+
+/*
+ * mediawiki.action.styles
+ * Miscellaneous styles for actions that do not have a dedicated style module.
+ */
+
+/* action=credits, T14205. */
+#mw-credits a {
+	unicode-bidi: embed;
+}
+
+/* action=view, for pages containing custom CSS or JavaScript. */
+#mw-clearyourcache {
+	direction: ltr;
+	unicode-bidi: embed;
+}
+
+/* action=view, when revision patrolling is enabled. */
+div.patrollink {
+	font-size: 75%;
+	text-align: right;
+}
+
+/* action=view, when viewing individual revisions, using oldid. */
+#mw-revision-info,
+#mw-revision-info-current,
+#mw-revision-nav {
+	direction: ltr;
+}
+
+/*
+ * Convenience links to edit delete and protect reasons, for actions protect and delete.
+ */
+p.mw-protect-editreasons,
+p.mw-filedelete-editreasons,
+p.mw-delete-editreasons {
+	font-size: 90%;
+	text-align: right;
+}

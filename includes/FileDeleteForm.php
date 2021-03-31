@@ -267,6 +267,7 @@ class FileDeleteForm {
 		$permissionManager = $services->getPermissionManager();
 
 		$this->out->addModules( 'mediawiki.action.delete' );
+		$this->out->addModuleStyles( 'mediawiki.action.styles' );
 
 		$checkWatch = $services->getUserOptionsLookup()
 			->getBoolOption( $this->user, 'watchdeletion' ) || $this->user->isWatched( $this->title );
