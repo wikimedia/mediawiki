@@ -1160,7 +1160,7 @@
 	"prefs-help-watchlist-token2": "これはあなたのウォッチリスト フィードの秘密のコードです。\nこのトークンを知っている人は誰でもあなたのウォッチリストを読めてしまうため、他の人に教えないでください。\n[[Special:ResetTokens|トークンを再設定する必要がある場合はここをクリックしてください]]。",
 	"prefs-help-tokenmanagement": "あなたのアカウントでウォッチリスト フィードの秘密のコードを参照したりリセットできます。このトークンを知っている人は誰でもあなたのウォッチリストを読めてしまうため、他の人に教えないでください。",
 	"prefs-user-downloaddata-label": "アカウントデータ:",
-	"prefs-user-downloaddata-info": "自身のアカウントデータをこのプロジェクトからダウンロードする",
+	"prefs-user-downloaddata-info": "このプロジェクトに関する自分のアカウントのデータ",
 	"savedprefs": "個人設定を保存しました。",
 	"savedrights": "{{GENDER:$1|$1}}の利用者グループが保存されました。",
 	"timezonelegend": "タイムゾーン:",

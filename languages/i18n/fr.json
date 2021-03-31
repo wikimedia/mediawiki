@@ -597,7 +597,7 @@
 	"yourdomainname": "Votre domaine :",
 	"password-change-forbidden": "Vous ne pouvez pas modifier les mots de passe sur ce wiki.",
 	"externaldberror": "Soit une erreur s’est produite sur la base de données d’authentification, soit vous n’êtes pas autorisé à mettre à jour votre compte externe.",
-	"login": "Connexion",
+	"login": "Se connecter",
 	"login-security": "Vérifier votre identité",
 	"nav-login-createaccount": "Créer un compte ou se connecter",
 	"logout": "Se déconnecter",

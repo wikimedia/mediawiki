@@ -1084,7 +1084,7 @@
 	"prefs-help-watchlist-token2": "Ez a titkos kulcs a figyelőlistádhoz.\nAki ismeri, meg tudja nézni, milyen lapokat figyelsz, úgyhogy ne oszd meg másokkal.\nHa meg szeretnéd változtatni, [[Special:ResetTokens|kattints ide]].",
 	"prefs-help-tokenmanagement": "Megtekintheted és új titkos kulcsot generálhatsz, amivel a webes feedek hozzáférhetnek a figyelőlistádhoz. Bárki, aki ismeri ezt a kulcsot képes olvasni a figyelőlistád tartalmát, ezért ne oszd meg mással.",
 	"prefs-user-downloaddata-label": "Fiók adatai:",
-	"prefs-user-downloaddata-info": "Fiókom projekthez kapcsolódó adatainak letöltése",
+	"prefs-user-downloaddata-info": "Fiókom projekthez kapcsolódó adatai",
 	"savedprefs": "Az új beállításaid érvénybe léptek.",
 	"savedrights": "{{GENDER:$1|$1}} felhasználói csoportjai el lettek mentve.",
 	"timezonelegend": "Időzóna:",

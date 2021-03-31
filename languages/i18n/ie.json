@@ -644,7 +644,7 @@
 	"recentchanges-label-newpage": "Ti redaction creat un nov págine",
 	"recentchanges-label-minor": "Ti es un redaction minori",
 	"recentchanges-label-bot": "Ti redaction esset efectuat per un machine",
-	"recentchanges-label-unpatrolled": "Ti redaction ne have ancor esset verificat",
+	"recentchanges-label-unpatrolled": "Ti redaction es ancor ne verificat",
 	"recentchanges-label-plusminus": "Grandore del págine changeat per ti-ci quantitá de bytes",
 	"recentchanges-legend-heading": "<strong>Legende:</strong>",
 	"rcfilters-activefilters": "Activ filtres",
