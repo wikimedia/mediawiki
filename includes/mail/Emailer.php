@@ -41,7 +41,7 @@ class Emailer implements IEmailer {
 	 * @inheritDoc
 	 */
 	public function send(
-		array $to,
+		$to,
 		MailAddress $from,
 		string $subject,
 		string $bodyText,
