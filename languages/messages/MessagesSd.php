@@ -9,8 +9,9 @@
  * @author Aursani
  */
 
-$fallback8bitEncoding = 'windows-1256';
 $rtl = true;
+
+$fallback8bitEncoding = 'windows-1256';
 
 $namespaceNames = [
 	NS_MEDIA            => 'ذريعات',

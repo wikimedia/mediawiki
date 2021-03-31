@@ -25,12 +25,12 @@
  * @author Fierodelveneto
  */
 
+$fallback = 'it';
+
 /** @phpcs-require-sorted-array */
 $magicWords = [
 	'redirect' => [ '0', '#VARDA', '#RINVIA', '#RINVIO', '#RIMANDO', '#REDIRECT' ],
 ];
-
-$fallback = 'it';
 
 $namespaceNames = [
 	NS_MEDIA            => 'Mèdia',

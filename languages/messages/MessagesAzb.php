@@ -13,6 +13,7 @@
  */
 
 $fallback = 'fa';
+
 $rtl = true;
 
 $namespaceNames = [
