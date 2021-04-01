@@ -358,7 +358,7 @@
 	"title-invalid-utf8": "Vaš zatraženi naziv stranice sadrži nevažeći UTF-8 znak.",
 	"title-invalid-interwiki": "Traženi naslov stranice sadrži interwiki link koji ne može biti korišten u naslovima.",
 	"title-invalid-talk-namespace": "Vaš zatraženi naslov stranice se odnosi na stranicu za razgovor koja ne može postojati.",
-	"title-invalid-characters": "Vaš zatraženi naslov stranice sadrži nevažeće znakove: \"$1\".",
+	"title-invalid-characters": "Zatraženi naslov stranice sadrži nevažeće znakove: \"$1\".",
 	"title-invalid-relative": "Naslov ima relativnu putanja. Relativni naslovi stranica (./, ../) nisu važeći jer će često biti nedostupni u pregledniku korisnika.",
 	"title-invalid-magic-tilde": "Zatraženi naslov stranice sadrži nevažeći slijed magičknog znaka tilda (<nowiki>~~~</nowiki>).",
 	"title-invalid-too-long": "Zatraženi naziv stranice je predugačak. Ne smije biti duži od {{PLURAL:$1|bajta|bajtova}} u UTF-8 kodiranju.",

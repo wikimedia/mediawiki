@@ -302,5 +302,11 @@
 	"exif-iimcategory-wea": "Toetr'andro",
 	"exif-urgency-normal": "Tsotra ($1)",
 	"exif-urgency-low": "Ambany ($1)",
-	"exif-urgency-high": "Ambony ($1)"
+	"exif-urgency-high": "Ambony ($1)",
+	"exif-usepanoramaviewer-true": "Eny",
+	"exif-usepanoramaviewer-false": "Tsia",
+	"exif-exposurelockused-true": "Eny",
+	"exif-exposurelockused-false": "Tsia",
+	"exif-posepitchdegrees": "Haavo (degre)",
+	"exif-poserolldegrees": "Fitongilana (degre)"
 }

@@ -3824,6 +3824,7 @@
 	"mw-widgets-titleinput-description-redirect": "$1 문서로 넘겨주기",
 	"mw-widgets-categoryselector-add-category-placeholder": "분류 추가...",
 	"mw-widgets-usersmultiselect-placeholder": "더 추가하기...",
+	"mw-widgets-tagmultiselect-placeholder": "더 추가하기...",
 	"mw-widgets-titlesmultiselect-placeholder": "더 추가하기...",
 	"date-range-from": "시작 날짜:",
 	"date-range-to": "끝 날짜:",
