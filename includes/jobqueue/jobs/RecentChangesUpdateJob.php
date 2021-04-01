@@ -230,8 +230,6 @@ class RecentChangesUpdateJob extends Job {
 			__METHOD__
 		);
 
-		$dbw->unlock( $lockKey, __METHOD__ );
-
 		// Rotate out users that have not edited in too long (according to old data set)
 		$dbw->delete( 'querycachetwo',
 			[
@@ -240,5 +238,7 @@ class RecentChangesUpdateJob extends Job {
 			],
 			__METHOD__
 		);
+
+		$dbw->unlock( $lockKey, __METHOD__ );
 	}
 }
