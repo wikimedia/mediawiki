@@ -610,13 +610,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
 	}
 
-	private function getMockContentHander() {
-		$handler = $this->getMockBuilder( ContentHandler::class )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
-		return $handler;
-	}
-
 	public function providerGetPageViewLanguage() {
 		yield [ NS_FILE, 'sr', 'sr-ec', 'sr-ec' ];
 		yield [ NS_FILE, 'sr', 'sr', 'sr' ];
@@ -629,7 +622,9 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ContentHandler::getPageViewLanguage
 	 */
 	public function testGetPageViewLanguage( $namespace, $lang, $variant, $expected ) {
-		$contentHandler = $this->getMockContentHander();
+		$contentHandler = $this->getMockBuilder( ContentHandler::class )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
 
 		$title = Title::newFromText( "SimpleTitle", $namespace );
 
