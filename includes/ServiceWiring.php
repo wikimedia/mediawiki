@@ -1730,7 +1730,8 @@ return [
 			$services->getBlockRestrictionStore(),
 			$services->getUserFactory(),
 			$services->getUserEditTracker(),
-			LoggerFactory::getInstance( 'BlockManager' )
+			LoggerFactory::getInstance( 'BlockManager' ),
+			$services->getTitleFactory()
 		);
 	},
 

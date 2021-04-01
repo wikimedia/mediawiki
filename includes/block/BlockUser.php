@@ -22,6 +22,7 @@
 namespace MediaWiki\Block;
 
 use ChangeTags;
+use MalformedTitleException;
 use ManualLogEntry;
 use MediaWiki\Block\Restriction\AbstractRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
@@ -38,6 +39,7 @@ use Psr\Log\LoggerInterface;
 use RevisionDeleteUser;
 use Status;
 use Title;
+use TitleFactory;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -94,6 +96,9 @@ class BlockUser {
 
 	/** @var LoggerInterface */
 	private $logger;
+
+	/** @var TitleFactory */
+	private $titleFactory;
 
 	/**
 	 * @internal For use by UserBlockCommandFactory
@@ -174,6 +179,7 @@ class BlockUser {
 	 * @param UserFactory $userFactory
 	 * @param UserEditTracker $userEditTracker
 	 * @param LoggerInterface $logger
+	 * @param TitleFactory $titleFactory
 	 * @param string|UserIdentity $target Target of the block
 	 * @param Authority $performer Performer of the block
 	 * @param string $expiry Expiry of the block (timestamp or 'infinity')
@@ -202,6 +208,7 @@ class BlockUser {
 		UserFactory $userFactory,
 		UserEditTracker $userEditTracker,
 		LoggerInterface $logger,
+		TitleFactory $titleFactory,
 		$target,
 		Authority $performer,
 		string $expiry,
@@ -225,6 +232,7 @@ class BlockUser {
 		$this->userFactory = $userFactory;
 		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
+		$this->titleFactory = $titleFactory;
 
 		// Process block target
 		list( $this->target, $rawTargetType ) = $this->blockUtils->parseBlockTarget( $target );
@@ -428,6 +436,21 @@ class BlockUser {
 			if ( !$status->isOK() ) {
 				return $status;
 			}
+		}
+
+		$status = Status::newGood();
+		foreach ( $this->getPageRestrictions() as $pageRestriction ) {
+			try {
+				$title = $this->titleFactory->newFromTextThrow( $pageRestriction );
+				if ( !$title->exists() ) {
+					$status->fatal( 'cant-block-nonexistent-page', $pageRestriction );
+				}
+			} catch ( MalformedTitleException $e ) {
+				$status->fatal( $e->getMessageObject() );
+			}
+		}
+		if ( !$status->isOK() ) {
+			return $status;
 		}
 
 		return $this->placeBlockUnsafe( $reblock );
