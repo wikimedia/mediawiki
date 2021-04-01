@@ -76,6 +76,7 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.37 ===
+* JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
 * …
 
 === Other changes in 1.37 ===
