@@ -193,6 +193,30 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	public function provideGetSkinFromConfigSubpage() {
+		return [
+			[ 'User:Foo', '' ],
+			[ 'User:Foo.css', '' ],
+			[ 'User:Foo/', '' ],
+			[ 'User:Foo/bar', '' ],
+			[ 'User:Foo./bar', '' ],
+			[ 'User:Foo/bar.', 'bar' ],
+			[ 'User:Foo/bar.css', 'bar' ],
+			[ '/bar.css', '' ],
+			[ '//bar.css', 'bar' ],
+			[ '.css', '' ],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetSkinFromConfigSubpage
+	 * @covers Title::getSkinFromConfigSubpage
+	 */
+	public function testGetSkinFromConfigSubpage( $title, $expected ) {
+		$title = Title::newFromText( $title );
+		$this->assertSame( $expected, $title->getSkinFromConfigSubpage() );
+	}
+
 	public static function provideIsUserConfigPage() {
 		return [
 			[ 'Help:Foo', false ],
