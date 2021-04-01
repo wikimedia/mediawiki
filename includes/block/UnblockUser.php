@@ -197,12 +197,9 @@ class UnblockUser {
 		$this->hookRunner->onUnblockUserComplete( $this->block, $legacyUser );
 
 		// Unset _deleted fields as needed
-		if ( $this->block->getHideName() ) {
+		if ( $this->block->getHideName() && $this->block->getTarget() instanceof User ) {
 			// Something is deeply FUBAR if this is not a User object, but who knows?
-			$id = $this->block->getTarget() instanceof UserIdentity
-				? $this->block->getTarget()->getId()
-				: User::idFromName( $this->block->getTarget() );
-
+			$id = $this->block->getTarget()->getId();
 			RevisionDeleteUser::unsuppressUserName( $this->block->getTarget(), $id );
 		}
 
