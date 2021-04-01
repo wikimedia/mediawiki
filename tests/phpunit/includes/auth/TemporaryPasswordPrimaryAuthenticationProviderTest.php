@@ -691,7 +691,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$creator = \User::newFromName( 'Foo' );
 
 		$user = self::getMutableTestUser()->getUser();
-		$user->setEmail( null );
+		$user->setEmail( '' );
 
 		$req = TemporaryPasswordAuthenticationRequest::newRandom();
 		$req->username = $user->getName();

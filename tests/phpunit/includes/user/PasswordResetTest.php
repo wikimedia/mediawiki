@@ -703,7 +703,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$badUser = $this->getMockBuilder( User::class )->getMock();
 		$badUser->method( 'getName' )->willReturn( 'BadUser' );
 		$badUser->method( 'getId' )->willReturn( 5 );
-		$badUser->method( 'getEmail' )->willReturn( null );
+		$badUser->method( 'getEmail' )->willReturn( '' );
 
 		return [
 			'User1' => $user1,
