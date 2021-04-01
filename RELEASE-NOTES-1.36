@@ -741,6 +741,10 @@ because of Phabricator reports.
 * The EditPageBeforeEditToolbar hook has been deprecated; it has become
   defunct after the classic edit toolbar was removed. Use one of the many
   other EditPage hooks instead.
+* WANObjectCache::__construct() no longer takes the "coalesceKeys" option.
+  A new "coalesceScheme" option takes its place, and is "hash_stop" by default.
+  $wgWANObjectCaches entries that use dynomite should be updated to set the
+  new "coalesceKeys" option to "hash_tag".
 * …
 
 === Other changes in 1.36 ===

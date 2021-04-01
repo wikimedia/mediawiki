@@ -1099,10 +1099,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	public static function provideCoalesceAndMcrouterSettings() {
 		return [
-			[ [ 'mcrouterAware' => false, 'coalesceKeys' => false ], null ],
-			[ [ 'mcrouterAware' => false, 'coalesceKeys' => true ], '{' ],
-			[ [ 'mcrouterAware' => true, 'cluster' => 'test', 'coalesceKeys' => false ], null ],
-			[ [ 'mcrouterAware' => true, 'cluster' => 'test', 'coalesceKeys' => true ], '|#|' ]
+			[ [ 'mcrouterAware' => false, 'coalesceScheme' => 'hash_tag' ], '{' ],
+			[ [ 'mcrouterAware' => true, 'cluster' => 'test', 'coalesceScheme' => 'hash_stop' ], '|#|' ]
 		];
 	}
 
@@ -1243,23 +1241,21 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	}
 
 	private function setMutexKey( BagOStuff $bag, $key ) {
-		// Cover all formats for "coalesceKeys"/"mcrouterAware"
+		// Cover all formats for "coalesceScheme"
 		$bag->add( "WANCache:$key|#|m", 1 );
 		$bag->add( "WANCache:{" . $key . "}:m", 1 );
-		$bag->add( "WANCache:m:$key", 1 );
 	}
 
 	private function clearMutexKey( BagOStuff $bag, $key ) {
-		// Cover all formats for "coalesceKeys"/"mcrouterAware"
+		// Cover all formats for "coalesceScheme"
 		$bag->delete( "WANCache:$key|#|m" );
 		$bag->delete( "WANCache:{" . $key . "}:m" );
-		$bag->delete( "WANCache:m:$key" );
 	}
 
 	private function setCheckKey( BagOStuff $bag, $key, $time ) {
+		// Cover all formats for "coalesceScheme"
 		$bag->set( "WANCache:$key|#|t", "PURGED:$time" );
 		$bag->set( "WANCache:{" . $key . "}:t", "PURGED:$time" );
-		$bag->set( "WANCache:t:$key", "PURGED:$time" );
 	}
 
 	/**
@@ -1940,7 +1936,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$badTime = microtime( true ) - 300;
 
 		$bag->set(
-			'WANCache:v:' . $vKey1,
+			'WANCache:' . $vKey1 . '|#|v',
 			[
 				0 => 1,
 				1 => $value,
@@ -1949,7 +1945,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			]
 		);
 		$bag->set(
-			'WANCache:v:' . $vKey2,
+			'WANCache:' . $vKey2 . '|#|v',
 			[
 				0 => 1,
 				1 => $value,
@@ -1958,11 +1954,11 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			]
 		);
 		$bag->set(
-			'WANCache:t:' . $tKey1,
+			'WANCache:' . $tKey1 . '|#|t',
 			'PURGED:' . $goodTime
 		);
 		$bag->set(
-			'WANCache:t:' . $tKey2,
+			'WANCache:' . $tKey2 . '|#|t',
 			'PURGED:' . $badTime
 		);
 
@@ -2097,7 +2093,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		] );
 
 		$localBag->expects( $this->once() )->method( 'set' )
-			->with( "/*/mw-wan/" . 'WANCache:v:' . "test" );
+			->with( "/*/mw-wan/WANCache:test|#|v" );
 
 		$wanCache->delete( 'test' );
 	}
@@ -2113,7 +2109,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		] );
 
 		$localBag->expects( $this->once() )->method( 'set' )
-			->with( "/*/mw-wan/" . 'WANCache:t:' . "test" );
+			->with( "/*/mw-wan/WANCache:test|#|t" );
 
 		$wanCache->touchCheckKey( 'test' );
 	}
@@ -2129,7 +2125,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		] );
 
 		$localBag->expects( $this->once() )->method( 'delete' )
-			->with( "/*/mw-wan/" . 'WANCache:t:' . "test" );
+			->with( "/*/mw-wan/WANCache:test|#|t" );
 
 		$wanCache->resetCheckKey( 'test' );
 	}
@@ -2474,10 +2470,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		return [
 			[ 'WANCache:collection:a:b|#|v', 'collection' ],
 			[ 'WANCache:{collection:a:b}:v', 'collection' ],
-			[ 'WANCache:v:collection:a:b', 'collection' ],
 			[ 'WANCache:collection:a:b|#|t', 'internal' ],
 			[ 'WANCache:{collection:a:b}:t', 'internal' ],
-			[ 'WANCache:t:collection:a:b', 'internal' ],
 			[ 'WANCache:improper-key', 'internal' ],
 		];
 	}
