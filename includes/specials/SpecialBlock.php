@@ -209,6 +209,7 @@ class SpecialBlock extends FormSpecialPage {
 			'size' => '45',
 			'autofocus' => true,
 			'required' => true,
+			'placeholder' => $this->msg( 'block-target-placeholder' )->text(),
 			'validation-callback' => function ( $value, $alldata, $form ) {
 				$status = $this->blockUtils->validateTarget( $value );
 				if ( !$status->isOK() ) {
