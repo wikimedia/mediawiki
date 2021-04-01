@@ -97,7 +97,7 @@ class RemoveUnusedAccounts extends Maintenance {
 				$dbw->delete( 'actor', [ 'actor_id' => $del ], __METHOD__ );
 			}
 			if ( $keep ) {
-				$dbw->update( 'actor', [ 'actor_user' => 0 ], [ 'actor_id' => $keep ], __METHOD__ );
+				$dbw->update( 'actor', [ 'actor_user' => null ], [ 'actor_id' => $keep ], __METHOD__ );
 			}
 			$dbw->delete( 'user_groups', [ 'ug_user' => $delUser ], __METHOD__ );
 			$dbw->delete( 'user_former_groups', [ 'ufg_user' => $delUser ], __METHOD__ );
@@ -129,46 +129,54 @@ class RemoveUnusedAccounts extends Maintenance {
 	 * @return bool
 	 */
 	private function isInactiveAccount( $id, $actor, $master = false ) {
+		if ( $actor === null ) {
+			// There's no longer a way for a user to be active in any of
+			// these tables without having an actor ID. The only way to link
+			// to a user row is via an actor row.
+			return true;
+		}
+
 		$dbo = $this->getDB( $master ? DB_MASTER : DB_REPLICA );
 		$checks = [
-			'revision' => 'rev',
 			'archive' => 'ar',
 			'image' => 'img',
 			'oldimage' => 'oi',
 			'filearchive' => 'fa'
+			// re-add when actor migration is complete
+			// 'revision' => 'rev'
 		];
 		$count = 0;
 
-		$migration = ActorMigration::newMigration();
-
-		$user = User::newFromAnyId( $id, null, $actor );
-
 		$this->beginTransaction( $dbo, __METHOD__ );
 		foreach ( $checks as $table => $prefix ) {
-			$actorQuery = $migration->getWhere(
-				$dbo, $prefix . '_user', $user, $prefix !== 'oi' && $prefix !== 'fa'
-			);
 			$count += (int)$dbo->selectField(
-				[ $table ] + $actorQuery['tables'],
+				$table,
 				'COUNT(*)',
-				$actorQuery['conds'],
-				__METHOD__,
-				[],
-				$actorQuery['joins']
+				[ "{$prefix}_actor" => $actor ],
+				__METHOD__
 			);
 		}
 
-		$actorQuery = $migration->getWhere( $dbo, 'log_user', $user, false );
+		// Delete this special case when the actor migration is complete
+		$user = User::newFromAnyId( $id, null, $actor );
+		$actorQuery = ActorMigration::newMigration()->getWhere( $dbo, 'rev_user', $user );
 		$count += (int)$dbo->selectField(
-			[ 'logging' ] + $actorQuery['tables'],
+			[ 'revision' ] + $actorQuery['tables'],
 			'COUNT(*)',
-			[
-				$actorQuery['conds'],
-				'log_type != ' . $dbo->addQuotes( 'newusers' )
-			],
+			$actorQuery['conds'],
 			__METHOD__,
 			[],
 			$actorQuery['joins']
+		);
+
+		$count += (int)$dbo->selectField(
+			[ 'logging' ],
+			'COUNT(*)',
+			[
+				'log_actor' => $actor,
+				'log_type != ' . $dbo->addQuotes( 'newusers' )
+			],
+			__METHOD__
 		);
 
 		$this->commitTransaction( $dbo, __METHOD__ );
