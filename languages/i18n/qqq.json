@@ -548,7 +548,7 @@
 	"missingarticle-rev": "Used as <code>$2</code> in {{msg-mw|Missing-article}}\n\nPreceded by the page title.\n\n[{{canonicalurl:Translating:Tasks|oldid=371789000}} Click here] to see an example of such an error message.\n\nParameters:\n* $1 - revision# of the requested ID",
 	"missingarticle-diff": "Used as <code>$2</code> in {{msg-mw|Missing-article}}\n\nPreceded by the page title.\n\n[{{canonicalurl:Translating:Tasks|diff=372398&oldid=371789000}} Click here] to see an example of such an error message.\n\nParameters:\n* $1 - the old revision ID\n* $2 - the revision ID to build the diff with",
 	"readonly_lag": "Error message displayed when the database is locked.",
-	"nonwrite-api-promise-error": "Error message displayed when the 'Promise-Non-Write-API-Action' HTTP header is misused.",
+	"nonwrite-api-promise-error": "Error message displayed when the 'Promise-Non-Write-API-Action' HTTP header is misused.\n\nDo not translate 'Promise-Non-Write-API-Action', it refers to a name which is always in English.\n\nSee also: {{msg-mw|apierror-promised-nonwrite-api}}",
 	"timeouterror": "Used as a page title when the request runs for too long",
 	"timeouterror-text": "Error message displayed when a request runs for too long.\nParameters:\n* $1 - the configured time limit in seconds",
 	"internalerror": "{{Identical|Internal error}}",
