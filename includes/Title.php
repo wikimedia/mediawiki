@@ -1483,13 +1483,18 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @since 1.31
 	 */
 	public function getSkinFromConfigSubpage() {
-		$subpage = explode( '/', $this->mTextform );
-		$subpage = $subpage[count( $subpage ) - 1];
-		$lastdot = strrpos( $subpage, '.' );
-		if ( $lastdot === false ) {
-			return $subpage; # Never happens: only called for names ending in '.css'/'.json'/'.js'
+		$text = $this->getText();
+		$lastSlashPos = $this->findSubpageDivider( $text, -1 );
+		if ( $lastSlashPos === false ) {
+			return '';
 		}
-		return substr( $subpage, 0, $lastdot );
+
+		$lastDot = strrpos( $text, '.', $lastSlashPos );
+		if ( $lastDot === false ) {
+			return '';
+		}
+
+		return substr( $text, $lastSlashPos + 1, $lastDot - $lastSlashPos - 1 );
 	}
 
 	/**
