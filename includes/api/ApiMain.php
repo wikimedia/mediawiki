@@ -167,7 +167,13 @@ class ApiMain extends ApiBase {
 		'imagerotate' => ApiImageRotate::class,
 		'revisiondelete' => ApiRevisionDelete::class,
 		'managetags' => ApiManageTags::class,
-		'tag' => ApiTag::class,
+		'tag' => [
+			'class' => ApiTag::class,
+			'services' => [
+				'DBLoadBalancer',
+				'RevisionStore',
+			]
+		],
 		'mergehistory' => ApiMergeHistory::class,
 		'setpagelanguage' => ApiSetPageLanguage::class,
 		'changecontentmodel' => [
