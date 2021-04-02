@@ -2544,7 +2544,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Get the user's e-mail address
 	 * @return string User's email address
 	 */
-	public function getEmail() {
+	public function getEmail(): string {
 		$this->load();
 		$this->getHookRunner()->onUserGetEmail( $this, $this->mEmail );
 		return $this->mEmail;
@@ -2565,7 +2565,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Set the user's e-mail address
 	 * @param string $str New e-mail address
 	 */
-	public function setEmail( $str ) {
+	public function setEmail( string $str ) {
 		$this->load();
 		if ( $str == $this->getEmail() ) {
 			return;
@@ -2582,7 +2582,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * @param string $str New e-mail address
 	 * @return Status
 	 */
-	public function setEmailWithConfirmation( $str ) {
+	public function setEmailWithConfirmation( string $str ) {
 		global $wgEnableEmail, $wgEmailAuthentication;
 
 		if ( !$wgEnableEmail ) {
@@ -2635,7 +2635,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Get the user's real name
 	 * @return string User's real name
 	 */
-	public function getRealName() {
+	public function getRealName(): string {
 		if ( !$this->isItemLoaded( 'realname' ) ) {
 			$this->load();
 		}
@@ -2647,7 +2647,7 @@ class User implements Authority, IDBAccessObject, UserIdentity {
 	 * Set the user's real name
 	 * @param string $str New real name
 	 */
-	public function setRealName( $str ) {
+	public function setRealName( string $str ) {
 		$this->load();
 		$this->mRealName = $str;
 	}

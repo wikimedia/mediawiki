@@ -104,7 +104,7 @@ class TestUser {
 	 * @param string $email
 	 * @return bool
 	 */
-	private function setEmail( $email ) {
+	private function setEmail( string $email ) {
 		if ( $this->user->getEmail() !== $email ) {
 			$this->user->setEmail( $email );
 			return true;
