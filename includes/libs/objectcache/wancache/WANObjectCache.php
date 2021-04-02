@@ -146,8 +146,6 @@ class WANObjectCache implements
 	protected $epoch;
 	/** @var string Stable secret used for hasing long strings into key components */
 	protected $secret;
-	/** @var string|bool Whether "sister" keys should be coalesced to the same cache server */
-	protected $coalesceKeys;
 	/** @var int Scheme to use for key coalescing (Hash Tags or Hash Stops) */
 	protected $coalesceScheme;
 
@@ -313,10 +311,10 @@ class WANObjectCache implements
 	 *       requires that "region" and "cluster" are both set above. [optional]
 	 *   - epoch: lowest UNIX timestamp a value/tombstone must have to be valid. [optional]
 	 *   - secret: stable secret used for hashing long strings into key components. [optional]
-	 *   - coalesceKeys: whether to use a key scheme that encourages the backend to place any
+	 *   - coalesceScheme: which key scheme to use in order to encourage the backend to place any
 	 *       "helper" keys for a "value" key within the same cache server. This reduces network
 	 *       overhead and reduces the chance the a single downed cache server causes disruption.
-	 *       Set this to "non-global" to only apply the scheme to non-global keys. [default: false]
+	 *       Use "hash_stop" with mcrouter and "hash_tag" with dynomite. [default: "hash_stop"]
 	 *   - keyHighQps: reads/second assumed during a hypothetical cache write stampede for
 	 *       a single key. This is used to decide when the overhead of checking short-lived
 	 *       write throttling keys is worth it.
@@ -332,15 +330,14 @@ class WANObjectCache implements
 		$this->mcrouterAware = !empty( $params['mcrouterAware'] );
 		$this->epoch = $params['epoch'] ?? 0;
 		$this->secret = $params['secret'] ?? (string)$this->epoch;
-		$this->coalesceKeys = $params['coalesceKeys'] ?? false;
-		if ( !empty( $params['mcrouterAware'] ) ) {
-			// https://github.com/facebook/mcrouter/wiki/Key-syntax
-			$this->coalesceScheme = self::SCHEME_HASH_STOP;
-		} else {
+		if ( ( $params['coalesceScheme'] ?? '' ) === 'hash_tag' ) {
 			// https://redis.io/topics/cluster-spec
 			// https://github.com/twitter/twemproxy/blob/v0.4.1/notes/recommendation.md#hash-tags
 			// https://github.com/Netflix/dynomite/blob/v0.7.0/notes/recommendation.md#hash-tags
 			$this->coalesceScheme = self::SCHEME_HASH_TAG;
+		} else {
+			// https://github.com/facebook/mcrouter/wiki/Key-syntax
+			$this->coalesceScheme = self::SCHEME_HASH_STOP;
 		}
 
 		$this->keyHighQps = $params['keyHighQps'] ?? 100;
@@ -1705,16 +1702,7 @@ class WANObjectCache implements
 	 * @return string Cache key
 	 */
 	private function makeSisterKey( $baseKey, $typeChar ) {
-		if ( $this->coalesceKeys === 'non-global' ) {
-			$useColocationScheme = ( strncmp( $baseKey, "global:", 7 ) !== 0 );
-		} else {
-			$useColocationScheme = ( $this->coalesceKeys === true );
-		}
-
-		if ( !$useColocationScheme ) {
-			// Old key style: "WANCache:<character>:<base key>"
-			$fullKey = 'WANCache:' . $typeChar . ':' . $baseKey;
-		} elseif ( $this->coalesceScheme === self::SCHEME_HASH_STOP ) {
+		if ( $this->coalesceScheme === self::SCHEME_HASH_STOP ) {
 			// Key style: "WANCache:<base key>|#|<character>"
 			$fullKey = 'WANCache:' . $baseKey . '|#|' . $typeChar;
 		} else {
@@ -1738,9 +1726,6 @@ class WANObjectCache implements
 		} elseif ( substr( $sisterKey, -3 ) === '}:v' ) {
 			// Key style: "WANCache:{<base key>}:<character>"
 			$collection = substr( $sisterKey, 10, strcspn( $sisterKey, ':}', 10 ) );
-		} elseif ( substr( $sisterKey, 9, 2 ) === 'v:' ) {
-			// Old key style: "WANCache:<character>:<base key>"
-			$collection = substr( $sisterKey, 11, strcspn( $sisterKey, ':', 11 ) );
 		} else {
 			$collection = 'internal';
 		}
