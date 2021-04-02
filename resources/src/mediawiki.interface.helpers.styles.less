@@ -1,3 +1,5 @@
+/* stylelint-disable selector-class-pattern */
+
 /**
  * Helper classes used across special pages
  */
@@ -57,7 +59,6 @@
 	}
 }
 
-/* stylelint-disable-next-line selector-class-pattern */
 .comment--without-parentheses,
 .mw-changeslist-links,
 .mw-diff-bytes,
@@ -95,4 +96,15 @@
 	&:last-child:after {
 		content: '';
 	}
+}
+
+.unpatrolled {
+	font-weight: bold;
+	color: #d33;
+}
+
+.newpage,
+.minoredit,
+.botedit {
+	font-weight: bold;
 }
