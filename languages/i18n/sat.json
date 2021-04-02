@@ -24,6 +24,7 @@
 			"Srabony90",
 			"Subasmurmu",
 			"আফতাবুজ্জামান",
+			"ᱥᱟᱹᱜᱩᱱ ᱗",
 			"아라"
 		]
 	},
@@ -206,6 +207,7 @@
 	"talk": "ᱜᱟᱞᱢᱟᱨᱟᱣ",
 	"views": "ᱧᱮᱞᱚᱜᱚᱜ",
 	"toolbox": "ᱦᱟᱹᱛᱭᱟᱹᱨ",
+	"cactions": "ᱟᱨᱦᱚᱸ",
 	"tool-link-userrights": "{{GENDER:$1|ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ}} ᱜᱟᱫᱮᱞ ᱵᱚᱫᱚᱞ",
 	"tool-link-userrights-readonly": "{{GENDER:$1|ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ}} ᱜᱟᱫᱮᱞ ᱧᱮᱞ",
 	"tool-link-emailuser": "ᱤᱢᱮᱞᱟᱭᱢᱮ ᱱᱩᱭ {{GENDER:$1|ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹ}}",
@@ -1005,6 +1007,7 @@
 	"namespace_association": "ᱥᱚᱦᱚᱫᱤᱭᱟᱹ ᱨᱟᱠᱷᱟ ᱧᱩᱛᱩᱢ",
 	"tooltip-namespace_association": "ᱱᱚᱶᱟ ᱵᱟᱠᱥᱟ ᱴᱤᱠ ᱢᱮ ᱨᱚᱯᱚᱲ ᱵᱟᱝᱠᱷᱟᱱ ᱥᱟᱛᱟᱢ ᱨᱟᱠᱷᱟ ᱧᱩᱛᱩᱢ ᱵᱟᱪᱷᱚᱱ ᱟᱠᱟᱱ ᱨᱟᱠᱷᱟ ᱧᱩᱛᱩᱢ ᱥᱟᱶ ᱡᱚᱯᱚᱲᱟᱣ ᱟᱠᱟᱱᱟᱜ",
 	"blanknamespace": "(ᱢᱩᱬᱩᱛ)",
+	"contributions": "ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱹᱣᱟᱜ ᱮᱱᱮᱢ",
 	"tool-link-contributions": "{{GENDER:$1|ᱵᱮᱵᱦᱟᱨᱤᱭᱟᱹ}} ᱮᱱᱮᱢᱠᱩ",
 	"contributions-title": "$1 ᱵᱮᱵᱷᱟᱨᱤᱭᱟᱜ ᱮᱱᱮᱢᱠᱩ",
 	"mycontris": "ᱮᱱᱮᱢᱠᱩ",
