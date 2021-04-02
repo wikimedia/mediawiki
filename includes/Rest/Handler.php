@@ -66,7 +66,7 @@ abstract class Handler {
 	 * @internal
 	 */
 	final public function init( Router $router, RequestInterface $request, array $config,
-								Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer
+		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer
 	) {
 		$this->router = $router;
 		$this->request = $request;
@@ -124,9 +124,8 @@ abstract class Handler {
 		// %3B_a_%40_b_%24_c_%21_d_%2A_e_%28_f_%29_g_%2C_h_~_i_%3A
 		$replace = [ '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%7E', '%3A' ];
 		$with = [ ';', '@', '$', '!', '*', '(', ')', ',', '~', ':' ];
-		$title = str_replace( $replace, $with, $title );
 
-		return $title;
+		return str_replace( $replace, $with, $title );
 	}
 
 	/**
@@ -204,7 +203,8 @@ abstract class Handler {
 			$this->conditionalHeaderUtil->setValidators(
 				$this->getETag(),
 				$this->getLastModified(),
-				$this->hasRepresentation() );
+				$this->hasRepresentation()
+			);
 		}
 		return $this->conditionalHeaderUtil;
 	}
@@ -223,9 +223,9 @@ abstract class Handler {
 			$response = $this->getResponseFactory()->create();
 			$response->setStatus( $status );
 			return $response;
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	/**
