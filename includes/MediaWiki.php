@@ -1048,44 +1048,13 @@ class MediaWiki {
 	}
 
 	/**
-	 * Set the actual output and attempt to flush it to the client if necessary
-	 *
-	 * No PHP buffers should be active at this point
+	 * Print the actual output to the buffer (or webserver if there is none)
 	 *
 	 * @param string $content
 	 */
 	private function outputResponsePayload( $content ) {
-		if (
-			$this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH &&
-			DeferredUpdates::pendingUpdatesCount() &&
-			!headers_sent()
-		) {
-			$response = $this->context->getRequest()->response();
-			// Make the browser indicate the page as "loaded" as soon as it gets all the content
-			$response->header( 'Connection: close' );
-			// The client should not be blocked on "post-send" updates. If apache or ob_* decide
-			// that a response should be gzipped, the entire script will have to finish before
-			// any data can be sent. Disable compression if there are any post-send updates.
-			$response->header( 'Content-Encoding: identity' );
-			AtEase\AtEase::suppressWarnings();
-			ini_set( 'zlib.output_compression', 0 );
-			if ( function_exists( 'apache_setenv' ) ) {
-				apache_setenv( 'no-gzip', '1' );
-			}
-			AtEase\AtEase::restoreWarnings();
-			// Also set the Content-Length so that apache does not block waiting on PHP to finish.
-			// If OutputPage is disabled, then either there is no body (e.g. HTTP 304) and thus no
-			// Content-Length, or it was taken care of already.
-			if ( !$this->context->getOutput()->isDisabled() ) {
-				ob_start();
-				print $content;
-				$response->header( 'Content-Length: ' . ob_get_length() );
-				ob_end_flush();
-			}
-			// @TODO: this still blocks on HEAD responses and 304 responses to GETs
-		} else {
-			print $content;
-		}
+		// @TODO: respect DEFER_SET_LENGTH_AND_FLUSH
+		print $content;
 	}
 
 	/**
