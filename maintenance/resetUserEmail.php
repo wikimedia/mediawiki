@@ -52,7 +52,7 @@ class ResetUserEmail extends Maintenance {
 			$this->fatalError( "Error: user '$userName' does not exist\n" );
 		}
 
-		$email = $this->getArg( 1 );
+		$email = $this->getArg( 1, '' );
 		if ( $email !== '' && !Sanitizer::validateEmail( $email ) ) {
 			$this->fatalError( "Error: email '$email' is not valid\n" );
 		}
