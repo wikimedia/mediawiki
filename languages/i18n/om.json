@@ -519,6 +519,8 @@
 	"whatlinkshere-hidelinks": "Geessituu $1",
 	"whatlinkshere-filters": "Gingilchaawwan",
 	"ipbreason": "Sababa:",
+	"block-target": "Maqfayyadama, Argama IP, ykn giddargama IP",
+	"block-target-placeholder": "MaqFayyadamaa,1.1.1.42, ykn 1.1.1.42/16",
 	"blocklink": "ugguri",
 	"contribslink": "gumaacha",
 	"movelogpage": "Galmee oofi",

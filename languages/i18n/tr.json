@@ -2723,7 +2723,7 @@
 	"block-options": "Ek seçenekler:",
 	"block-prevent-edit": "Düzenleniyor",
 	"block-reason": "Sebep:",
-	"block-target": "Kullanıcı adı veya IP adresi:",
+	"block-target": "Kullanıcı adı, IP adresi veya IP aralığı:",
 	"unblockip": "Kullanıcının engelini kaldır",
 	"unblockiptext": "Daha önceden engellenmiş bir IP adresine ya da kullanıcı adına yazma erişimini geri vermek için aşağıdaki formu kullanın.",
 	"ipusubmit": "Bu engeli kaldır",
