@@ -67,6 +67,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Removed external libraries ====
+* The pimple/pimple development-only library has been removed.
 * …
 
 === Bug fixes in 1.37 ===
