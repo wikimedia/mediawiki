@@ -99,7 +99,7 @@ class BackupDumper extends Maintenance {
 		$this->addOption( 'output', 'Begin a filtered output stream; Specify as <type>:<file>. ' .
 			'<type>s: file, gzip, bzip2, 7zip, dbzip2', false, true, false, true );
 		$this->addOption( 'filter', 'Add a filter on an output branch. Specify as ' .
-			'<type>[:<options>]. <types>s: latest, notalk, namespace', false, true, false, true );
+			'<type>[:<options>]. <types>s: latest, notalk, namespace', false, true, 'o', true );
 		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
 			'Default: 100.', false, true );
 		$this->addOption( 'server', 'Force reading from MySQL server', false, true );
