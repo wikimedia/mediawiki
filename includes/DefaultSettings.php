@@ -5650,8 +5650,7 @@ $wgApplyIpBlocksToXff = false;
  *         'edit' => [
  *             'anon' => [ x, y ], // any and all anonymous edits (aggregate)
  *             'user' => [ x, y ], // each logged-in user
- *             // per username, across all sites (assumes names are global)
- *             'global-user' => [ x, y ],
+ *             'user-global' => [ x, y ], // per username, across all sites (assumes names are global)
  *             'newbie' => [ x, y ], // each new autoconfirmed accounts; overrides 'user'
  *             'ip' => [ x, y ], // each anon and recent account, across all sites
  *             'subnet' => [ x, y ], // ... within a /24 subnet in IPv4 or /64 in IPv6
