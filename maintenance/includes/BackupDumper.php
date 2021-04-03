@@ -129,7 +129,7 @@ abstract class BackupDumper extends Maintenance {
 		$this->addOption( 'plugin', 'Load a dump plugin class. Specify as <class>[:<file>].',
 			false, true, false, true );
 		$this->addOption( 'output', 'Begin a filtered output stream; Specify as <type>:<file>. ' .
-			'<type>s: file, gzip, bzip2, 7zip, dbzip2, lbzip2', false, true, false, true );
+			'<type>s: file, gzip, bzip2, 7zip, dbzip2, lbzip2', false, true, 'o', true );
 		$this->addOption( 'filter', 'Add a filter on an output branch. Specify as ' .
 			'<type>[:<options>]. <types>s: latest, notalk, namespace', false, true, false, true );
 		$this->addOption( 'report', 'Report position and speed after every n pages processed. ' .
