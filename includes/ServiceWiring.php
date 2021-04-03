@@ -1020,10 +1020,13 @@ return [
 		return new ParserOutputAccess(
 			$services->getParserCache(),
 			$services->getParserCacheFactory()->getRevisionOutputCache( 'rcache' ),
+			$services->getRevisionLookup(),
 			$services->getRevisionRenderer(),
 			$services->getStatsdDataFactory(),
 			$services->getDBLoadBalancerFactory(),
-			LoggerFactory::getProvider()
+			LoggerFactory::getProvider(),
+			$services->getWikiPageFactory(),
+			$services->getTitleFormatter()
 		);
 	},
 

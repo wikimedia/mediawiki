@@ -19,6 +19,8 @@
  */
 
 use MediaWiki\Logger\Spi as LoggerSpi;
+use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use Wikimedia\Rdbms\ILBFactory;
@@ -33,7 +35,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	/** @var string */
 	private $workKey;
 
-	/** @var WikiPage */
+	/** @var PageRecord */
 	private $page;
 
 	/** @var ParserCache */
@@ -42,29 +44,34 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	/** @var ILBFactory */
 	private $lbFactory;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param string $workKey
-	 * @param WikiPage $page
+	 * @param PageRecord $page
 	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param ParserCache $parserCache
 	 * @param ILBFactory $lbFactory
 	 * @param LoggerSpi $loggerSpi
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		string $workKey,
-		WikiPage $page,
+		PageRecord $page,
 		RevisionRecord $revision,
 		ParserOptions $parserOptions,
 		RevisionRenderer $revisionRenderer,
 		ParserCache $parserCache,
 		ILBFactory $lbFactory,
-		LoggerSpi $loggerSpi
+		LoggerSpi $loggerSpi,
+		WikiPageFactory $wikiPageFactory
 	) {
 		// TODO: Remove support for partially initialized RevisionRecord instances once
 		//       Article no longer uses fake revisions.
-		if ( $revision->getPageId() && $revision->getPageId() !== $page->getTitle()->getArticleID() ) {
+		if ( $revision->getPageId() && $revision->getPageId() !== $page->getId() ) {
 			throw new InvalidArgumentException( '$page parameter mismatches $revision parameter' );
 		}
 
@@ -74,6 +81,7 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 		$this->page = $page;
 		$this->parserCache = $parserCache;
 		$this->lbFactory = $lbFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
 		$this->cacheable = true;
 	}
 
@@ -95,7 +103,8 @@ class PoolWorkArticleViewCurrent extends PoolWorkArticleView {
 	 * @param ParserOutput $output
 	 */
 	protected function afterWork( ParserOutput $output ) {
-		$this->page->triggerOpportunisticLinksUpdate( $this->parserOutput );
+		$this->wikiPageFactory->newFromTitle( $this->page )
+			->triggerOpportunisticLinksUpdate( $this->parserOutput );
 	}
 
 	/**
