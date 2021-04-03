@@ -493,6 +493,7 @@ abstract class DatabaseUpdater {
 		$what = array_flip( $what );
 		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
 		if ( isset( $what['core'] ) ) {
+			$this->doCollationUpdate();
 			$this->runUpdates( $this->getCoreUpdateList(), false );
 		}
 		if ( isset( $what['extensions'] ) ) {
@@ -1165,24 +1166,22 @@ abstract class DatabaseUpdater {
 	 */
 	protected function doCollationUpdate() {
 		global $wgCategoryCollation;
-		if ( $this->db->fieldExists( 'categorylinks', 'cl_collation', __METHOD__ ) ) {
-			if ( $this->db->selectField(
+		if ( $this->db->selectField(
 				'categorylinks',
 				'COUNT(*)',
 				'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
 				__METHOD__
-				) == 0
-			) {
-				$this->output( "...collations up-to-date.\n" );
+			) == 0
+		) {
+			$this->output( "...collations up-to-date.\n" );
 
-				return;
-			}
-
-			$this->output( "Updating category collations..." );
-			$task = $this->maintenance->runChild( UpdateCollation::class );
-			$task->execute();
-			$this->output( "...done.\n" );
+			return;
 		}
+
+		$this->output( "Updating category collations..." );
+		$task = $this->maintenance->runChild( UpdateCollation::class );
+		$task->execute();
+		$this->output( "...done.\n" );
 	}
 
 	/**
