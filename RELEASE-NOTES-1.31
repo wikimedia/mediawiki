@@ -16,7 +16,7 @@ THIS IS NOT A RELEASE YET
 * (T277414) HTMLFormField: Use non namespaced class name rather than
   static::class.
 * (T268230) Use the new mediawiki logos.
-* (T271735)  Expand config-pingback-help, link to privacy policy in
+* (T271735) Expand config-pingback-help, link to privacy policy in
   config-pingback.
 * Fix documentation of user-global in $wgRateLimits.
 * BackupDumper: Add -o as shortcode for --output.
