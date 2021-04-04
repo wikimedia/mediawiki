@@ -6,7 +6,7 @@ use Wikimedia\Rdbms\DoctrineSchemaBuilder;
 use Wikimedia\Rdbms\MWMySQLPlatform;
 use Wikimedia\Rdbms\MWPostgreSqlPlatform;
 
-class DoctrineSchemaBuilderTest extends \PHPUnit\Framework\TestCase {
+class DoctrineSchemaBuilderTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideTestGetResultAllTables
@@ -16,7 +16,7 @@ class DoctrineSchemaBuilderTest extends \PHPUnit\Framework\TestCase {
 	 * @param string $expectedFile path fragment
 	 */
 	public function testGetResultAllTables( $platform, $expectedFile ) {
-		$basePath = dirname( __DIR__, 4 );
+		$basePath = dirname( __DIR__, 5 );
 		$builder = new DoctrineSchemaBuilder( $platform );
 		$json = file_get_contents( $basePath . '/data/db/tables.json' );
 		$tables = json_decode( $json, true );
