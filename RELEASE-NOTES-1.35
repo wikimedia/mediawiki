@@ -78,6 +78,11 @@ THIS IS NOT A RELEASE YET
 * (T268673) maintenance: Don't create SearchUpdate in rebuildtextindex.php
   for page_namespace below 0.
 * (T246594, T270228) Mark ParserOptionsTests skipped on PHP 7.4.0-7.4.8.
+* (T268230) Use the new mediawiki logos.
+* (T271735)  Expand config-pingback-help, link to privacy policy in
+  config-pingback.
+* Fix documentation of user-global in $wgRateLimits.
+* BackupDumper: Add -o as shortcode for --output.
 
 == MediaWiki 1.35.1 ==
 
