@@ -46,21 +46,18 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	/**
 	 * Does the API request and returns the result.
 	 *
-	 * The returned value is an array containing
-	 * - the result data (array)
-	 * - the request (WebRequest)
-	 * - the session data of the request (array)
-	 * - if $appendModule is true, the Api module $module
-	 *
 	 * @param array $params
 	 * @param array|null $session
 	 * @param bool $appendModule
 	 * @param User|null $user
 	 * @param string|null $tokenType Set to a string like 'csrf' to send an
 	 *   appropriate token
-	 *
+	 * @return array List of:
+	 * - the result data (array)
+	 * - the request (WebRequest)
+	 * - the session data of the request (array)
+	 * - if $appendModule is true, the Api module $module
 	 * @throws ApiUsageException
-	 * @return array
 	 */
 	protected function doApiRequest( array $params, array $session = null,
 		$appendModule = false, User $user = null, $tokenType = null
