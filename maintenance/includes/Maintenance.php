@@ -1056,7 +1056,7 @@ abstract class Maintenance {
 	 * Definitely show the help. Does not exit.
 	 */
 	protected function showHelp() {
-		$screenWidth = self::getTermSize()[0];
+		$screenWidth = 80; // TODO: Calculate this!
 		$tab = "    ";
 		$descWidth = $screenWidth - ( 2 * strlen( $tab ) );
 
