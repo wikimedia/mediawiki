@@ -167,6 +167,39 @@ class MessageValue {
 	}
 
 	/**
+	 * Chainable mutator which adds parameters which are a date-time timestamp (ParamType::DATETIME).
+	 *
+	 * @since 1.36
+	 * @param string ...$values Timestamp as accepted by the Wikimedia\Timestamp library.
+	 * @return $this
+	 */
+	public function dateTimeParams( ...$values ) {
+		return $this->textParamsOfType( ParamType::DATETIME, ...$values );
+	}
+
+	/**
+	 * Chainable mutator which adds parameters which are a date timestamp (ParamType::DATE).
+	 *
+	 * @since 1.36
+	 * @param string ...$values Timestamp as accepted by the Wikimedia\Timestamp library.
+	 * @return $this
+	 */
+	public function dateParams( ...$values ) {
+		return $this->textParamsOfType( ParamType::DATE, ...$values );
+	}
+
+	/**
+	 * Chainable mutator which adds parameters which are a time timestamp (ParamType::TIME).
+	 *
+	 * @since 1.36
+	 * @param string ...$values Timestamp as accepted by the Wikimedia\Timestamp library.
+	 * @return $this
+	 */
+	public function timeParams( ...$values ) {
+		return $this->textParamsOfType( ParamType::TIME, ...$values );
+	}
+
+	/**
 	 * Chainable mutator which adds parameters which are a number of bytes (ParamType::SIZE).
 	 *
 	 * @param int ...$values
