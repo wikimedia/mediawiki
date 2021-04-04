@@ -14804,6 +14804,12 @@ Template:SafeSubstTest
 {{<includeonly>safesubst:</includeonly>Includes}}
 !! endarticle
 
+!! article
+Template:SafeSubstSelfTest
+!! text
+{{safesubst:SafeSubstSelfTest}}
+!! endarticle
+
 !! test
 T24297: safesubst: works during PST
 !! options
@@ -14830,6 +14836,16 @@ subst: does not work during normal parse
 !! html
 <p>{{subst:Includes}}
 </p>
+!! end
+
+!! test
+safesubst self: does not work during normal parse - T276476
+!! options
+pst title=[[Template:SafeSubstSelfTest]]
+!! wikitext
+{{SafeSubstSelfTest}}
+!! html
+{{SafeSubstSelfTest}}
 !! end
 
 !! test
