@@ -162,7 +162,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function providerMakeCSPDirectives() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[ false, '', '' ],
 			[
@@ -262,6 +262,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 				"script-src 'unsafe-eval' blob: 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'self' https://example.com/f%3Bd; report-uri /w/api.php?action=cspreport&format=json&reportonly=1",
 			],
 		];
+		// phpcs:enable
 	}
 
 	/**
@@ -275,6 +276,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 
 		$wgAllowImageTag = $origImg;
 
+		// phpcs:ignore Generic.Files.LineLength
 		$expected = "script-src 'unsafe-eval' blob: 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json";
 		$this->assertSame( $expected, $actual );
 	}
@@ -287,9 +289,9 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 			true,
 			ContentSecurityPolicy::REPORT_ONLY_MODE
 		);
+		// phpcs:ignore Generic.Files.LineLength
 		$expected = "script-src 'unsafe-eval' blob: 'self' 'nonce-secret' 'unsafe-inline' sister-site.somewhere.com *.wikipedia.org; default-src * data: blob:; style-src * data: blob: 'unsafe-inline'; object-src 'none'; report-uri /w/api.php?action=cspreport&format=json&reportonly=1";
 		$this->assertSame( $expected, $actual );
-		// @codingStandardsIgnoreEnd Generic.Files.LineLength
 	}
 
 	/**

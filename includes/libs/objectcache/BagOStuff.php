@@ -155,9 +155,7 @@ abstract class BagOStuff implements
 	 *   - stats: IStatsdDataFactory instance. [optional]
 	 *   - logger: Psr\Log\LoggerInterface instance. [optional]
 	 * @param array $params
-	 * @codingStandardsIgnoreStart
 	 * @phan-param array{keyspace?:string,logger?:Psr\Log\LoggerInterface,asyncHandler?:callable} $params
-	 * @codingStandardsIgnoreEnd
 	 */
 	public function __construct( array $params = [] ) {
 		$this->keyspace = $params['keyspace'] ?? 'local';

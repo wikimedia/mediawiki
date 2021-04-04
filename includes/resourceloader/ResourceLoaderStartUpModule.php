@@ -123,9 +123,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *  - array 'dependencies'
 	 *  - string|null 'group'
 	 *  - string 'source'
-	 * @codingStandardsIgnoreStart
 	 * @phan-param array<string,array{version:string,dependencies:array,group:?string,source:string}> &$registryData
-	 * @codingStandardsIgnoreEnd
 	 */
 	public static function compileUnresolvedDependencies( array &$registryData ) : void {
 		foreach ( $registryData as $name => &$data ) {

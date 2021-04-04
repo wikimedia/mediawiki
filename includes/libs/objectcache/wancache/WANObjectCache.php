@@ -696,9 +696,8 @@ class WANObjectCache implements
 	 *   - version: Integer version number signifiying the format of the value.
 	 *      Default: null
 	 *   - walltime: How long the value took to generate in seconds. Default: null
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{lag?:int,since?:int,pending?:bool,lockTSE?:int,staleTTL?:int,creating?:bool,version?:int,walltime?:int|float} $opts
-	 * @codingStandardsIgnoreEnd
 	 * @note Options added in 1.28: staleTTL
 	 * @note Options added in 1.33: creating
 	 * @note Options added in 1.34: version, walltime
@@ -1397,9 +1396,8 @@ class WANObjectCache implements
 	 *      to query for dependency timestamps. The use of "pcTTL" reduces timestamp queries.
 	 *      Default: null.
 	 * @param array $cbParams Custom field/value map to pass to the callback (since 1.35)
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{checkKeys?:string[],graceTTL?:int,lockTSE?:int,busyValue?:mixed,pcTTL?:int,pcGroup?:string,version?:int,minAsOf?:float|int,hotTTR?:int,lowTTL?:int,ageNew?:int,staleTTL?:int,touchedCallback?:callable} $opts
-	 * @codingStandardsIgnoreEnd
 	 * @return mixed Value found or written to the key
 	 * @note Options added in 1.28: version, busyValue, hotTTR, ageNew, pcGroup, minAsOf
 	 * @note Options added in 1.31: staleTTL, graceTTL

@@ -1006,9 +1006,8 @@ class HTMLForm extends ContextSource {
 	 *  - attribs: (array, optional) Additional HTML attributes.
 	 *  - flags: (string|string[], optional) OOUI flags.
 	 *  - framed: (boolean=true, optional) OOUI framed attribute.
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{name:string,value:string,label-message?:string|string[]|MessageSpecifier,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool} $data
-	 * @codingStandardsIgnoreEnd
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function addButton( $data ) {
