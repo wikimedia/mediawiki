@@ -67,6 +67,7 @@
  * @author Ymar
  * @author Žekřil71pl
  * @author לערי ריינהארט
+ * @author Rail
  */
 
 $namespaceNames = [
@@ -134,13 +135,18 @@ $specialPageAliases = [
 	'Allmessages'               => [ 'Wszystkie_komunikaty' ],
 	'Allpages'                  => [ 'Wszystkie_strony' ],
 	'Ancientpages'              => [ 'Stare_strony' ],
+	'ApiSandbox'                => [ 'Środowisko_testowe_API' ],
+	'AutoblockList'             => [ 'Zablokowani_automatycznie', 'Automatycznie_zablokowani' ],
 	'Badtitle'                  => [ 'Zły_tytuł' ],
 	'Blankpage'                 => [ 'Pusta_strona' ],
 	'Block'                     => [ 'Blokuj' ],
 	'BlockList'                 => [ 'Zablokowani' ],
 	'Booksources'               => [ 'Książki' ],
+	'BotPasswords'              => [ 'Hasła_botów' ],
 	'BrokenRedirects'           => [ 'Zerwane_przekierowania' ],
 	'Categories'                => [ 'Kategorie' ],
+	'ChangeContentModel'        => [ 'Zmiana_modelu_zawartości', 'Zmień_model_zawartości' ],
+	'ChangeCredentials'         => [ 'Zmiana_poświadczeń', 'Zmień_poświadczenia' ],
 	'ChangeEmail'               => [ 'Zmień_e-mail' ],
 	'ChangePassword'            => [ 'Zmień_hasło', 'Resetuj_hasło' ],
 	'ComparePages'              => [ 'Porównywanie_stron' ],
@@ -149,6 +155,7 @@ $specialPageAliases = [
 	'CreateAccount'             => [ 'Utwórz_konto', 'Stwórz_konto' ],
 	'Deadendpages'              => [ 'Bez_linków' ],
 	'DeletedContributions'      => [ 'Usunięty_wkład' ],
+	'Diff'                      => [ 'Różnica' ],
 	'DoubleRedirects'           => [ 'Podwójne_przekierowania' ],
 	'EditWatchlist'             => [ 'Edytuj_obserwowane' ],
 	'Emailuser'                 => [ 'E-mail' ],
@@ -162,7 +169,9 @@ $specialPageAliases = [
 	'LinkSearch'                => [ 'Wyszukiwarka_linków' ],
 	'Listadmins'                => [ 'Administratorzy' ],
 	'Listbots'                  => [ 'Boty' ],
+	'ListDuplicatedFiles'       => [ 'Zduplikowane_pliki' ],
 	'Listfiles'                 => [ 'Pliki' ],
+	'ListGrants'                => [ 'Dostępy_użytkowników' ],
 	'Listgrouprights'           => [ 'Grupy_użytkowników', 'Uprawnienia_grup_użytkowników' ],
 	'Listredirects'             => [ 'Przekierowania' ],
 	'Listusers'                 => [ 'Użytkownicy' ],
@@ -170,6 +179,7 @@ $specialPageAliases = [
 	'Log'                       => [ 'Rejestr', 'Logi' ],
 	'Lonelypages'               => [ 'Porzucone_strony' ],
 	'Longpages'                 => [ 'Najdłuższe_strony' ],
+	'MediaStatistics'           => [ 'Statystyki_mediów' ],
 	'MergeHistory'              => [ 'Połącz_historie' ],
 	'MIMEsearch'                => [ 'Wyszukiwanie_MIME' ],
 	'Mostcategories'            => [ 'Najwięcej_kategorii' ],
@@ -188,6 +198,7 @@ $specialPageAliases = [
 	'Newimages'                 => [ 'Nowe_pliki' ],
 	'Newpages'                  => [ 'Nowe_strony' ],
 	'PagesWithProp'             => [ 'Strony_z_własnością' ],
+	'PasswordPolicies'          => [ 'Zasady_haseł' ],
 	'PasswordReset'             => [ 'Wyczyść_hasło' ],
 	'PermanentLink'             => [ 'Niezmienny_link' ],
 	'Preferences'               => [ 'Preferencje' ],
@@ -200,6 +211,7 @@ $specialPageAliases = [
 	'Recentchanges'             => [ 'Ostatnie_zmiany', 'OZ' ],
 	'Recentchangeslinked'       => [ 'Zmiany_w_linkowanych', 'Zmiany_w_linkujących' ],
 	'Redirect'                  => [ 'Przekieruj' ],
+	'RemoveCredentials'         => [ 'Usuwanie_poświadczeń', 'Usuń_poświadczenia' ],
 	'ResetTokens'               => [ 'Resetuj_tokeny' ],
 	'Revisiondelete'            => [ 'Usuń_wersję' ],
 	'Search'                    => [ 'Szukaj' ],
@@ -207,6 +219,7 @@ $specialPageAliases = [
 	'Specialpages'              => [ 'Strony_specjalne' ],
 	'Statistics'                => [ 'Statystyka', 'Statystyki' ],
 	'Tags'                      => [ 'Znaczniki' ],
+	'TrackingCategories'        => [ 'Kategorie_śledzące' ],
 	'Unblock'                   => [ 'Odblokuj' ],
 	'Uncategorizedcategories'   => [ 'Nieskategoryzowane_kategorie' ],
 	'Uncategorizedimages'       => [ 'Nieskategoryzowane_pliki' ],
