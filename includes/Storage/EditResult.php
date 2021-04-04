@@ -117,9 +117,8 @@ class EditResult implements JsonSerializable {
 	 * @see EditResult::jsonSerialize()
 	 *
 	 * @param array $a
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{isNew:bool,originalRevisionId:bool|int,revertMethod:int|null,newestRevertedRevId:int|null,oldestRevertedRevId:int|null,isExactRevert:bool,isNullEdit:bool,revertTags:string[],version:string} $a
-	 * @codingStandardsIgnoreEnd
 	 *
 	 * @return EditResult
 	 *
@@ -271,9 +270,8 @@ class EditResult implements JsonSerializable {
 	 * @see EditResult::newFromArray()
 	 *
 	 * @return array
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-return array{isNew:bool,originalRevisionId:bool|int,revertMethod:int|null,newestRevertedRevId:int|null,oldestRevertedRevId:int|null,isExactRevert:bool,isNullEdit:bool,revertTags:string[],version:string}
-	 * @codingStandardsIgnoreEnd
 	 *
 	 * @since 1.36
 	 */

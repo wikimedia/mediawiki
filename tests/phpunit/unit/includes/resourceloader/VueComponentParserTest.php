@@ -18,7 +18,7 @@ class VueComponentParserTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public static function provideTestParse() {
-		// @codingStandardsIgnoreStart Generic.Files.LineLength
+		// phpcs:disable Generic.Files.LineLength
 		return [
 			[
 				'<template><p>{{foo}}</p></template><script>bar</script><style>baz</style>',
@@ -328,6 +328,6 @@ class VueComponentParserTest extends PHPUnit\Framework\TestCase {
 				'Template with self-closing tag (broken)'
 			],
 		];
-		// @codingStandardsIgnoreEnd Generic.Files.LineLength
+		// phpcs:enable
 	}
 }

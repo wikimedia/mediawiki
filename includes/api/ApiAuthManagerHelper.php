@@ -317,9 +317,8 @@ class ApiAuthManagerHelper {
 	/**
 	 * Clean up a field array for output
 	 * @param array $fields
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{type:string,options:array,value:string,label:Message,help:Message,optional:bool,sensitive:bool,skippable:bool} $fields
-	 * @codingStandardsIgnoreEnd
 	 * @return array
 	 */
 	private function formatFields( array $fields ) {

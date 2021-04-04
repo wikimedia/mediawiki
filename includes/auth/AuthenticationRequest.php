@@ -259,9 +259,7 @@ abstract class AuthenticationRequest {
 	/**
 	 * Select a request by class name.
 	 *
-	 * @codingStandardsIgnoreStart
 	 * @phan-template T
-	 * @codingStandardsIgnoreEnd
 	 * @param AuthenticationRequest[] $reqs
 	 * @param string $class Class name
 	 * @phan-param class-string<T> $class
