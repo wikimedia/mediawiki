@@ -214,9 +214,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
-	 * @codingStandardsIgnoreStart
 	 * @phan-param array{connTimeout?:int,reqTimeout?:int,usePipelining?:bool,maxConnsPerHost?:int} $opts
-	 * @codingStandardsIgnoreEnd
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
 	 * @suppress PhanTypeInvalidDimOffset
@@ -310,9 +308,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 	/**
 	 * @param array &$req HTTP request map
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{url:string,proxy?:?string,query:mixed,method:string,body:string|resource,headers:string[],stream?:resource,flags:array} $req
-	 * @codingStandardsIgnoreEnd
 	 * @param array $opts
 	 *   - connTimeout : default connection timeout
 	 *   - reqTimeout : default request timeout
@@ -494,9 +491,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @todo Remove dependency on MediaWikiServices: use a separate HTTP client
 	 *  library or copy code from PhpHttpRequest
 	 * @param array $reqs Map of HTTP request arrays
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array<int,array{url:string,query:array,method:string,body:string,proxy?:?string,headers?:string[]}> $reqs
-	 * @codingStandardsIgnoreEnd
 	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request (seconds)
 	 *   - reqTimeout      : post-connection timeout per request (seconds)

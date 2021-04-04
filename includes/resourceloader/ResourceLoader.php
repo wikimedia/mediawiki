@@ -1545,9 +1545,7 @@ MESSAGE;
 	 *  - string|null: Module group (optional)
 	 *  - string|null: Name of foreign module source, or 'local' (optional)
 	 *  - string|null: Script body of a skip function (optional)
-	 * @codingStandardsIgnoreStart
 	 * @phan-param array<int,array{0:string,1:string,2?:?array,3?:?string,4?:?string,5?:?string}> $modules
-	 * @codingStandardsIgnoreEnd
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderRegisterScript(
