@@ -25,6 +25,7 @@ use IBufferingStatsdDataFactory;
 use InvalidArgumentException;
 use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Parser\RevisionOutputCache;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use ParserCache;
@@ -34,8 +35,8 @@ use PoolWorkArticleView;
 use PoolWorkArticleViewCurrent;
 use PoolWorkArticleViewOld;
 use Status;
+use TitleFormatter;
 use Wikimedia\Rdbms\ILBFactory;
-use WikiPage;
 
 /**
  * Service for getting rendered output of a given page.
@@ -92,6 +93,9 @@ class ParserOutputAccess {
 	 */
 	private $secondaryCache;
 
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
 	/** @var RevisionRenderer */
 	private $revisionRenderer;
 
@@ -104,41 +108,56 @@ class ParserOutputAccess {
 	/** @var LoggerSpi */
 	private $loggerSpi;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/**
 	 * @param ParserCache $primaryCache
 	 * @param RevisionOutputCache $secondaryCache
+	 * @param RevisionLookup $revisionLookup
 	 * @param RevisionRenderer $revisionRenderer
 	 * @param IBufferingStatsdDataFactory $statsDataFactory
 	 * @param ILBFactory $lbFactory
 	 * @param LoggerSpi $loggerSpi
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param TitleFormatter $titleFormatter
 	 */
 	public function __construct(
 		ParserCache $primaryCache,
 		RevisionOutputCache $secondaryCache,
+		RevisionLookup $revisionLookup,
 		RevisionRenderer $revisionRenderer,
 		IBufferingStatsdDataFactory $statsDataFactory,
 		ILBFactory $lbFactory,
-		LoggerSpi $loggerSpi
+		LoggerSpi $loggerSpi,
+		WikiPageFactory $wikiPageFactory,
+		TitleFormatter $titleFormatter
 	) {
 		$this->primaryCache = $primaryCache;
 		$this->secondaryCache = $secondaryCache;
+		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
 		$this->statsDataFactory = $statsDataFactory;
 		$this->lbFactory = $lbFactory;
 		$this->loggerSpi = $loggerSpi;
+		$this->wikiPageFactory = $wikiPageFactory;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**
 	 * Use a cache?
 	 *
-	 * @param WikiPage $page
+	 * @param PageRecord $page
 	 * @param ParserOptions $parserOptions ParserOptions to check
 	 * @param RevisionRecord|null $rev
 	 *
 	 * @return string One of the CACHE_XXX constants.
 	 */
 	private function shouldUseCache(
-		WikiPage $page,
+		PageRecord $page,
 		ParserOptions $parserOptions,
 		?RevisionRecord $rev
 	) {
@@ -151,11 +170,12 @@ class ParserOutputAccess {
 		// NOTE: when we allow caching of old revisions in the future,
 		//       we must not allow caching of deleted revisions.
 
-		if ( !$page->exists() || !$page->getContentHandler()->isParserCacheSupported() ) {
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
+		if ( !$page->exists() || !$wikiPage->getContentHandler()->isParserCacheSupported() ) {
 			return self::CACHE_NONE;
 		}
 
-		if ( !$rev || $rev->getId() === $page->getLatest() ) {
+		if ( !$rev || $rev->getId() === $page->getLatest( PageRecord::LOCAL ) ) {
 			// current revision
 			return self::CACHE_PRIMARY;
 		}
@@ -171,7 +191,7 @@ class ParserOutputAccess {
 	/**
 	 * Returns the rendered output for the given page if it is present in the cache.
 	 *
-	 * @param WikiPage $page
+	 * @param PageRecord $page
 	 * @param ParserOptions $parserOptions
 	 * @param RevisionRecord|null $revision
 	 * @param int $options Bitfield using the OPT_XXX constants
@@ -179,7 +199,7 @@ class ParserOutputAccess {
 	 * @return ParserOutput|null
 	 */
 	public function getCachedParserOutput(
-		WikiPage $page,
+		PageRecord $page,
 		ParserOptions $parserOptions,
 		?RevisionRecord $revision = null,
 		int $options = 0
@@ -204,7 +224,7 @@ class ParserOutputAccess {
 	 * Returns the rendered output for the given page.
 	 * Caching and concurrency control is applied.
 	 *
-	 * @param WikiPage $page
+	 * @param PageRecord $page
 	 * @param ParserOptions $parserOptions
 	 * @param RevisionRecord|null $revision
 	 * @param int $options Bitfield using the OPT_XXX constants
@@ -223,7 +243,7 @@ class ParserOutputAccess {
 	 *         - 'nopagetext' (error) The page does not exist
 	 */
 	public function getParserOutput(
-		WikiPage $page,
+		PageRecord $page,
 		ParserOptions $parserOptions,
 		?RevisionRecord $revision = null,
 		int $options = 0
@@ -245,7 +265,8 @@ class ParserOutputAccess {
 		}
 
 		if ( !$revision ) {
-			$revision = $page->getRevisionRecord();
+			$revision = $page->getLatest() ?
+				$this->revisionLookup->getRevisionById( $page->getLatest() ) : null;
 
 			if ( !$revision ) {
 				$this->statsDataFactory->increment( "ParserOutputAccess.Status.norev" );
@@ -295,14 +316,14 @@ class ParserOutputAccess {
 	}
 
 	/**
-	 * @param WikiPage $page
+	 * @param PageRecord $page
 	 * @param RevisionRecord|null $revision
 	 * @param int $options
 	 *
 	 * @return Status|null
 	 */
 	private function checkPreconditions(
-		WikiPage $page,
+		PageRecord $page,
 		?RevisionRecord $revision = null,
 		int $options = 0
 	): ?Status {
@@ -330,7 +351,7 @@ class ParserOutputAccess {
 					'missing-revision-permission',
 					$revision->getId(),
 					$revision->getTimestamp(),
-					$page->getTitle()->getPrefixedDBkey()
+					$this->titleFormatter->getPrefixedDBkey( $page )
 				);
 			}
 		}
@@ -339,15 +360,15 @@ class ParserOutputAccess {
 	}
 
 	/**
-	 * @param WikiPage $page
+	 * @param PageRecord $page
 	 * @param ParserOptions $parserOptions
-	 * @param RevisionRecord|null $revision
+	 * @param RevisionRecord $revision
 	 * @param int $options
 	 *
 	 * @return PoolWorkArticleView
 	 */
 	private function newPoolWorkArticleView(
-		WikiPage $page,
+		PageRecord $page,
 		ParserOptions $parserOptions,
 		RevisionRecord $revision,
 		int $options
@@ -376,7 +397,8 @@ class ParserOutputAccess {
 					$this->revisionRenderer,
 					$this->primaryCache,
 					$this->lbFactory,
-					$this->loggerSpi
+					$this->loggerSpi,
+					$this->wikiPageFactory
 				);
 
 			case $useCache == self::CACHE_SECONDARY:
