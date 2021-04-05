@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\User\UserIdentityValue;
+
 class MailAddressTest extends MediaWikiIntegrationTestCase {
 
 	/**
@@ -18,8 +20,8 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
 		}
 		$user = $this->createMock( User::class );
-		$user->expects( $this->any() )->method( 'getName' )->will(
-			$this->returnValue( 'UserName' )
+		$user->expects( $this->any() )->method( 'getUser' )->will(
+			$this->returnValue( new UserIdentityValue( 42, 'UserName' ) )
 		);
 		$user->expects( $this->any() )->method( 'getEmail' )->will(
 			$this->returnValue( 'foo@bar.baz' )

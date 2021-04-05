@@ -24,7 +24,10 @@
  * @author Luke Welling lwelling@wikimedia.org
  */
 
+use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserIdentity;
 
 /**
  * This module processes the email notifications when the current page is
@@ -120,7 +123,7 @@ class EmailNotification {
 	 *
 	 * May be deferred via the job queue.
 	 *
-	 * @param User $editor
+	 * @param Authority $editor
 	 * @param Title $title
 	 * @param string $timestamp
 	 * @param string $summary
@@ -131,7 +134,7 @@ class EmailNotification {
 	 * @since 1.35 returns a boolean indicating whether an email job was created.
 	 */
 	public function notifyOnPageChange(
-		$editor,
+		Authority $editor,
 		$title,
 		$timestamp,
 		$summary,
@@ -150,7 +153,7 @@ class EmailNotification {
 		$watchers = [];
 		if ( $config->get( 'EnotifWatchlist' ) || $config->get( 'ShowUpdatedMarker' ) ) {
 			$watchers = $mwServices->getWatchedItemStore()->updateNotificationTimestamp(
-				$editor,
+				$editor->getUser(),
 				$title,
 				$timestamp
 			);
@@ -165,14 +168,12 @@ class EmailNotification {
 			$sendEmail = false;
 			// Only send notification for non minor edits, unless $wgEnotifMinorEdits
 			if ( !$minorEdit ||
-				( $config->get( 'EnotifMinorEdits' ) && !$mwServices->getPermissionManager()
-					->userHasRight( $editor, 'nominornewtalk' )
-				)
+				( $config->get( 'EnotifMinorEdits' ) && !$editor->isAllowed( 'nominornewtalk' ) )
 			) {
 				$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
 				if ( $config->get( 'EnotifUserTalk' )
 					&& $isUserTalkPage
-					&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
+					&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
 				) {
 					$sendEmail = true;
 				}
@@ -183,8 +184,8 @@ class EmailNotification {
 			JobQueueGroup::singleton()->lazyPush( new EnotifNotifyJob(
 				$title,
 				[
-					'editor' => $editor->getName(),
-					'editorID' => $editor->getId(),
+					'editor' => $editor->getUser()->getName(),
+					'editorID' => $editor->getUser()->getId(),
 					'timestamp' => $timestamp,
 					'summary' => $summary,
 					'minorEdit' => $minorEdit,
@@ -204,7 +205,7 @@ class EmailNotification {
 	 * Send emails corresponding to the user $editor editing the page $title.
 	 *
 	 * @note Do not call directly. Use notifyOnPageChange so that wl_notificationtimestamp is updated.
-	 * @param User $editor
+	 * @param Authority $editor
 	 * @param Title $title
 	 * @param string $timestamp Edit timestamp
 	 * @param string $summary Edit summary
@@ -215,7 +216,7 @@ class EmailNotification {
 	 * @throws MWException
 	 */
 	public function actuallyNotifyOnPageChange(
-		$editor,
+		Authority $editor,
 		$title,
 		$timestamp,
 		$summary,
@@ -241,7 +242,7 @@ class EmailNotification {
 		$this->summary = $summary;
 		$this->minorEdit = $minorEdit;
 		$this->oldid = $oldid;
-		$this->editor = $editor;
+		$this->editor = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $editor );
 		$this->composed_common = false;
 		$this->pageStatus = $pageStatus;
 
@@ -255,13 +256,11 @@ class EmailNotification {
 		$userTalkId = false;
 
 		if ( !$minorEdit ||
-			( $config->get( 'EnotifMinorEdits' ) && !$mwServices->getPermissionManager()
-				->userHasRight( $editor, 'nominornewtalk' )
-			)
+			( $config->get( 'EnotifMinorEdits' ) && !$editor->isAllowed( 'nominornewtalk' )	)
 		) {
 			if ( $config->get( 'EnotifUserTalk' )
 				&& $isUserTalkPage
-				&& $this->canSendUserTalkEmail( $editor, $title, $minorEdit )
+				&& $this->canSendUserTalkEmail( $editor->getUser(), $title, $minorEdit )
 			) {
 				$targetUser = User::newFromName( $title->getText() );
 				$this->compose( $targetUser, self::USER_TALK, $messageCache );
@@ -290,7 +289,7 @@ class EmailNotification {
 		}
 
 		foreach ( $config->get( 'UsersNotifiedOnAllChanges' ) as $name ) {
-			if ( $editor->getName() == $name ) {
+			if ( $editor->getUser()->getName() == $name ) {
 				// No point notifying the user that actually made the change!
 				continue;
 			}
@@ -302,12 +301,12 @@ class EmailNotification {
 	}
 
 	/**
-	 * @param User $editor
+	 * @param UserIdentity $editor
 	 * @param Title $title
 	 * @param bool $minorEdit
 	 * @return bool
 	 */
-	private function canSendUserTalkEmail( $editor, $title, $minorEdit ) {
+	private function canSendUserTalkEmail( UserIdentity $editor, $title, $minorEdit ) {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		$isUserTalkPage = ( $title->getNamespace() === NS_USER_TALK );
 
@@ -393,7 +392,7 @@ class EmailNotification {
 			'';
 		$keys['$UNWATCHURL'] = $this->title->getCanonicalURL( 'action=unwatch' );
 
-		if ( $this->editor->isAnon() ) {
+		if ( !$this->editor->isRegistered() ) {
 			# real anon (user:xxx.xxx.xxx.xxx)
 			$keys['$PAGEEDITOR'] = wfMessage( 'enotif_anon_editor', $this->editor->getName() )
 				->inContentLanguage()->text();
@@ -466,11 +465,11 @@ class EmailNotification {
 	 * depending on settings.
 	 *
 	 * Call sendMails() to send any mails that were queued.
-	 * @param User $user
+	 * @param UserEmailContact $user
 	 * @param string $source
 	 * @param MessageCache $messageCache
 	 */
-	private function compose( $user, $source, MessageCache $messageCache ) {
+	private function compose( UserEmailContact $user, $source, MessageCache $messageCache ) {
 		if ( !$this->composed_common ) {
 			$this->composeCommonMailtext( $messageCache );
 		}
@@ -497,11 +496,11 @@ class EmailNotification {
 	 * Returns Status if email was sent successfully or not (Status::newGood()
 	 * or Status::newFatal() respectively).
 	 *
-	 * @param User $watchingUser
+	 * @param UserEmailContact $watchingUser
 	 * @param string $source
 	 * @return Status
 	 */
-	private function sendPersonalised( $watchingUser, $source ) {
+	private function sendPersonalised( UserEmailContact $watchingUser, $source ) {
 		// From the PHP manual:
 		//   Note: The to parameter cannot be an address in the form of
 		//   "Something <someone@example.com>". The mail command will not parse
@@ -516,7 +515,7 @@ class EmailNotification {
 		$watchingUserName = (
 			$mwServices->getMainConfig()->get( 'EnotifUseRealName' ) &&
 			$watchingUser->getRealName() !== ''
-		) ? $watchingUser->getRealName() : $watchingUser->getName();
+		) ? $watchingUser->getRealName() : $watchingUser->getUser()->getName();
 		$body = str_replace(
 			[
 				'$WATCHINGUSERNAME',
@@ -525,8 +524,8 @@ class EmailNotification {
 			],
 			[
 				$watchingUserName,
-				$contLang->userDate( $this->timestamp, $watchingUser ),
-				$contLang->userTime( $this->timestamp, $watchingUser )
+				$contLang->userDate( $this->timestamp, $watchingUser->getUser() ),
+				$contLang->userTime( $this->timestamp, $watchingUser->getUser() )
 			],
 			$this->body
 		);
