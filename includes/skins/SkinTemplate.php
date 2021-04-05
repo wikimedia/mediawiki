@@ -166,7 +166,12 @@ class SkinTemplate extends Skin {
 	 */
 	protected function wrapHTML( $title, $html ) {
 		# An ID that includes the actual body text; without categories, contentSub, ...
-		$realBodyAttribs = [ 'id' => 'mw-content-text' ];
+		$realBodyAttribs = [
+			'id' => 'mw-content-text',
+			'class' => [
+				'mw-body-content',
+			],
+		];
 
 		# Add a mw-content-ltr/rtl class to be able to style based on text
 		# direction when the content is different from the UI language (only
@@ -178,7 +183,7 @@ class SkinTemplate extends Skin {
 			$pageLang = $title->getPageViewLanguage();
 			$realBodyAttribs['lang'] = $pageLang->getHtmlCode();
 			$realBodyAttribs['dir'] = $pageLang->getDir();
-			$realBodyAttribs['class'] = 'mw-content-' . $pageLang->getDir();
+			$realBodyAttribs['class'][] = 'mw-content-' . $pageLang->getDir();
 		}
 
 		return Html::rawElement( 'div', $realBodyAttribs, $html );
