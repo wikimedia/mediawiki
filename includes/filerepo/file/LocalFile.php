@@ -23,8 +23,10 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -2031,11 +2033,11 @@ class LocalFile extends File {
 	 * @stable to override
 	 *
 	 * @param string $reason
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param bool $suppress
 	 * @return Status
 	 */
-	public function deleteFile( $reason, User $user, $suppress = false ) {
+	public function deleteFile( $reason, UserIdentity $user, $suppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
@@ -2093,12 +2095,12 @@ class LocalFile extends File {
 	 *
 	 * @param string $archiveName
 	 * @param string $reason
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param bool $suppress
 	 * @throws MWException Exception on database or file store failure
 	 * @return Status
 	 */
-	public function deleteOldFile( $archiveName, $reason, User $user, $suppress = false ) {
+	public function deleteOldFile( $archiveName, $reason, UserIdentity $user, $suppress = false ) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
 			return $this->readOnlyFatalStatus();
 		}
@@ -2218,15 +2220,15 @@ class LocalFile extends File {
 	/**
 	 * @stable to override
 	 * @param int $audience
-	 * @param User|null $user
+	 * @param Authority|null $performer
 	 * @return string
 	 */
-	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getDescription( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
 		$this->load();
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
 			return '';
 		} elseif ( $audience == self::FOR_THIS_USER
-			&& !$this->userCan( self::DELETED_COMMENT, $user )
+			&& !$this->userCan( self::DELETED_COMMENT, $performer )
 		) {
 			return '';
 		} else {

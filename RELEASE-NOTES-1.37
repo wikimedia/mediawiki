@@ -200,7 +200,11 @@ because of Phabricator reports.
 * The MediaWiki:Autoblock_whitelist block exemption control was moved in 1.36 to
   MediaWiki:Block-autoblock-exemptionlist. The backward-compatibility of reading
   the old MediaWiki:Autoblock_whitelist page has now been dropped.
-* –
+* The following overridable methods in File hierarchy has changed signatures:
+  - File::deleteFile - now accepts UserIdentity instead of User
+  - File::getDescription - now accepts Authority instead of User
+  - File::userCan - now accepts Authority instead of User
+  - LocalFile::deleteOldFile - now accepts UserIdentity instead of User
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.

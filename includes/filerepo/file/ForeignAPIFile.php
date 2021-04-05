@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 
 /**
  * Foreign file accessible through api.php requests.
@@ -256,10 +257,10 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * @param int $audience
-	 * @param User|null $user
+	 * @param Authority|null $performer
 	 * @return null|string
 	 */
-	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getDescription( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
 		return isset( $this->mInfo['comment'] ) ? strval( $this->mInfo['comment'] ) : null;
 	}
 
