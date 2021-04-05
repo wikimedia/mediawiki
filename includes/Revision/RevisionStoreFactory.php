@@ -29,6 +29,7 @@ use ActorMigration;
 use CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\User\ActorStoreFactory;
@@ -76,6 +77,9 @@ class RevisionStoreFactory {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
+	/** @var PageStoreFactory */
+	private $pageStoreFactory;
+
 	/** @var TitleFactory */
 	private $titleFactory;
 
@@ -93,6 +97,7 @@ class RevisionStoreFactory {
 	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param LoggerInterface $logger
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param PageStoreFactory $pageStoreFactory
 	 * @param TitleFactory $titleFactory
 	 * @param HookContainer $hookContainer
 	 */
@@ -107,6 +112,7 @@ class RevisionStoreFactory {
 		ActorStoreFactory $actorStoreFactory,
 		LoggerInterface $logger,
 		IContentHandlerFactory $contentHandlerFactory,
+		PageStoreFactory $pageStoreFactory,
 		TitleFactory $titleFactory,
 		HookContainer $hookContainer
 	) {
@@ -120,6 +126,7 @@ class RevisionStoreFactory {
 		$this->actorStoreFactory = $actorStoreFactory;
 		$this->logger = $logger;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->pageStoreFactory = $pageStoreFactory;
 		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
 	}
@@ -145,6 +152,7 @@ class RevisionStoreFactory {
 			$this->actorMigration,
 			$this->actorStoreFactory->getActorStore( $dbDomain ),
 			$this->contentHandlerFactory,
+			$this->pageStoreFactory->getPageStore( $dbDomain ),
 			$this->titleFactory,
 			$this->hookContainer,
 			$dbDomain

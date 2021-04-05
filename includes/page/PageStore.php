@@ -17,6 +17,8 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * @since 1.36
+ *
+ * @unstable
  */
 class PageStore implements PageLookup {
 
@@ -170,11 +172,7 @@ class PageStore implements PageLookup {
 		array $conds,
 		int $queryFlags = self::READ_NORMAL
 	): ?ExistingPageRecord {
-		[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $queryFlags );
-
-		$dbr = $this->getDBConnectionRef( $mode );
-		$queryBuilder = $this->newSelectQueryBuilder( $dbr )
-			->options( $options )
+		$queryBuilder = $this->newSelectQueryBuilder( $queryFlags )
 			->conds( $conds )
 			->caller( __METHOD__ );
 
@@ -228,14 +226,22 @@ class PageStore implements PageLookup {
 	/**
 	 * @unstable
 	 *
-	 * @param IDatabase|null $db
+	 * @param IDatabase|int|null $dbOrFlags The database connection to use, or a READ_XXX constant
+	 *        indicating what kind of database connection to use.
 	 *
 	 * @return PageSelectQueryBuilder
 	 */
-	public function newSelectQueryBuilder( IDatabase $db = null ): SelectQueryBuilder {
-		$db = $db ?: $this->getDBConnectionRef();
+	public function newSelectQueryBuilder( $dbOrFlags = self::READ_NORMAL ): SelectQueryBuilder {
+		if ( $dbOrFlags instanceof IDatabase ) {
+			$db = $dbOrFlags;
+			$options = [];
+		} else {
+			[ $mode, $options ] = DBAccessObjectUtils::getDBOptions( $dbOrFlags );
+			$db = $this->getDBConnectionRef( $mode );
+		}
 
 		$queryBuilder = new PageSelectQueryBuilder( $db, $this );
+		$queryBuilder->options( $options );
 
 		return $queryBuilder;
 	}
