@@ -71,7 +71,9 @@ class ParserOutputAccessTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getHookContainer(),
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
-			new NullLogger()
+			new NullLogger(),
+			$this->getServiceContainer()->getTitleFactory(),
+			$this->getServiceContainer()->getWikiPageFactory()
 		);
 
 		return $parserCache;

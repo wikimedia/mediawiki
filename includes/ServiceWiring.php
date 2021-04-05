@@ -986,7 +986,9 @@ return [
 			$services->getJsonCodec(),
 			$services->getStatsdDataFactory(),
 			LoggerFactory::getInstance( 'ParserCache' ),
-			$options
+			$options,
+			$services->getTitleFactory(),
+			$services->getWikiPageFactory()
 		);
 	},
 
