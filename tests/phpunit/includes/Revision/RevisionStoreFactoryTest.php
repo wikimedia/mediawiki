@@ -6,6 +6,8 @@ use ActorMigration;
 use CommentStore;
 use HashBagOStuff;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Page\PageStore;
+use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreFactory;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -44,6 +46,7 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 			$this->getMockActorStoreFactory(),
 			new NullLogger(),
 			$this->getContentHandlerFactory(),
+			$this->getPageStoreFactory(),
 			$this->getTitleFactory(),
 			$this->createHookContainer()
 		);
@@ -71,6 +74,7 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$actorStoreFactory = $this->getMockActorStoreFactory();
 		$logger = new NullLogger();
 		$contentHandlerFactory = $this->getContentHandlerFactory();
+		$pageStoreFactory = $this->getPageStoreFactory();
 		$titleFactory = $this->getTitleFactory();
 		$hookContainer = $this->createHookContainer();
 
@@ -85,6 +89,7 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 			$actorStoreFactory,
 			$logger,
 			$contentHandlerFactory,
+			$pageStoreFactory,
 			$titleFactory,
 			$hookContainer
 		);
@@ -169,6 +174,25 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getContentHandlerFactory(): IContentHandlerFactory {
 		return $this->createMock( IContentHandlerFactory::class );
+	}
+
+	/**
+	 * @return PageStore|MockObject
+	 */
+	private function getMockPageStore(): PageStore {
+		return $this->createMock( PageStore::class );
+	}
+
+	/**
+	 * @return PageStoreFactory|MockObject
+	 */
+	private function getPageStoreFactory(): PageStoreFactory {
+		$mock = $this->createMock( PageStoreFactory::class );
+
+		$mock->method( 'getPageStore' )
+			->willReturn( $this->getMockPageStore() );
+
+		return $mock;
 	}
 
 	/**
