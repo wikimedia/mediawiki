@@ -50,7 +50,7 @@ use Wikimedia\Rdbms\LBFactory;
  * WARNING: the constructor, shouldExecute(), setup(), getName() and
  * loadSettings() are called before Setup.php is run, which means most of the
  * common infrastructure, like logging or autoloading, is not available. Be
- * careful when chaning these methods or the ones called from them. Likewise,
+ * careful when changing these methods or the ones called from them. Likewise,
  * be careful with the constructor when subclassing.
  *
  * @stable for subclassing
