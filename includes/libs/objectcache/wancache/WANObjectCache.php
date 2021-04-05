@@ -164,127 +164,127 @@ class WANObjectCache implements
 	/** @var float|null */
 	private $wallClockOverride;
 
-	/** @var int Max expected seconds to pass between delete() and DB commit finishing */
+	/** Max expected seconds to pass between delete() and DB commit finishing */
 	private const MAX_COMMIT_DELAY = 3;
-	/** @var int Max expected seconds of combined lag from replication and view snapshots */
+	/** Max expected seconds of combined lag from replication and view snapshots */
 	private const MAX_READ_LAG = 7;
-	/** @var int Seconds to tombstone keys on delete() and treat as volatile after invalidation */
+	/** Seconds to tombstone keys on delete() and treat as volatile after invalidation */
 	public const HOLDOFF_TTL = self::MAX_COMMIT_DELAY + self::MAX_READ_LAG + 1;
 
-	/** @var int Consider regeneration if the key will expire within this many seconds */
+	/** Consider regeneration if the key will expire within this many seconds */
 	private const LOW_TTL = 30;
-	/** @var int Max TTL, in seconds, to store keys when a data sourced is lagged */
+	/** Max TTL, in seconds, to store keys when a data sourced is lagged */
 	public const TTL_LAGGED = 30;
 
-	/** @var int Expected time-till-refresh, in seconds, if the key is accessed once per second */
+	/** Expected time-till-refresh, in seconds, if the key is accessed once per second */
 	private const HOT_TTR = 900;
-	/** @var int Minimum key age, in seconds, for expected time-till-refresh to be considered */
+	/** Minimum key age, in seconds, for expected time-till-refresh to be considered */
 	private const AGE_NEW = 60;
 
-	/** @var int Idiom for getWithSetCallback() meaning "no cache stampede mutex" */
+	/** Idiom for getWithSetCallback() meaning "no cache stampede mutex" */
 	private const TSE_NONE = -1;
 
-	/** @var int Idiom for set()/getWithSetCallback() meaning "no post-expiration persistence" */
+	/** Idiom for set()/getWithSetCallback() meaning "no post-expiration persistence" */
 	public const STALE_TTL_NONE = 0;
-	/** @var int Idiom for set()/getWithSetCallback() meaning "no post-expiration grace period" */
+	/** Idiom for set()/getWithSetCallback() meaning "no post-expiration grace period" */
 	public const GRACE_TTL_NONE = 0;
-	/** @var int Idiom for delete()/touchCheckKey() meaning "no hold-off period" */
+	/** Idiom for delete()/touchCheckKey() meaning "no hold-off period" */
 	public const HOLDOFF_TTL_NONE = 0;
-	/** @var int Alias for HOLDOFF_TTL_NONE (b/c) (deprecated since 1.34) */
+	/** Alias for HOLDOFF_TTL_NONE (b/c) (deprecated since 1.34) */
 	public const HOLDOFF_NONE = self::HOLDOFF_TTL_NONE;
 
 	/** @var float Idiom for getWithSetCallback() meaning "no minimum required as-of timestamp" */
 	public const MIN_TIMESTAMP_NONE = 0.0;
 
-	/** @var string Default process cache name and max key count */
+	/** Default process cache name and max key count */
 	private const PC_PRIMARY = 'primary:1000';
 
 	/** Idiom for get()/getMulti() to return extra information by reference */
 	public const PASS_BY_REF = [];
 
-	/** @var int Use twemproxy-style Hash Tag key scheme (e.g. "{...}") */
+	/** Use twemproxy-style Hash Tag key scheme (e.g. "{...}") */
 	private const SCHEME_HASH_TAG = 1;
-	/** @var int Use mcrouter-style Hash Stop key scheme (e.g. "...|#|") */
+	/** Use mcrouter-style Hash Stop key scheme (e.g. "...|#|") */
 	private const SCHEME_HASH_STOP = 2;
 
-	/** @var int Seconds to keep dependency purge keys around */
-	private static $CHECK_KEY_TTL = self::TTL_YEAR;
-	/** @var int Seconds to keep interim value keys for tombstoned keys around */
-	private static $INTERIM_KEY_TTL = 1;
+	/** Seconds to keep dependency purge keys around */
+	private const CHECK_KEY_TTL = self::TTL_YEAR;
+	/** Seconds to keep interim value keys for tombstoned keys around */
+	private const INTERIM_KEY_TTL = 1;
 
-	/** @var int Seconds to keep lock keys around */
-	private static $LOCK_TTL = 10;
-	/** @var int Seconds to no-op key set() calls to avoid large blob I/O stampedes */
-	private static $COOLOFF_TTL = 1;
-	/** @var int Seconds to ramp up the chance of regeneration due to expected time-till-refresh */
-	private static $RAMPUP_TTL = 30;
+	/** Seconds to keep lock keys around */
+	private const LOCK_TTL = 10;
+	/** Seconds to no-op key set() calls to avoid large blob I/O stampedes */
+	private const COOLOFF_TTL = 1;
+	/** Seconds to ramp up the chance of regeneration due to expected time-till-refresh */
+	private const RAMPUP_TTL = 30;
 
 	/** @var float Tiny negative float to use when CTL comes up >= 0 due to clock skew */
-	private static $TINY_NEGATIVE = -0.000001;
+	private const TINY_NEGATIVE = -0.000001;
 	/** @var float Tiny positive float to use when using "minTime" to assert an inequality */
-	private static $TINY_POSTIVE = 0.000001;
+	private const TINY_POSTIVE = 0.000001;
 
-	/** @var int Min millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
-	private static $RECENT_SET_LOW_MS = 50;
-	/** @var int Max millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
-	private static $RECENT_SET_HIGH_MS = 100;
+	/** Min millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
+	private const RECENT_SET_LOW_MS = 50;
+	/** Max millisecond set() backoff during hold-off (far less than INTERIM_KEY_TTL) */
+	private const RECENT_SET_HIGH_MS = 100;
 
-	/** @var int Consider value generation slow if it takes more than this many seconds */
-	private static $GENERATION_SLOW_SEC = 3;
+	/** Consider value generation slow if it takes more than this many seconds */
+	private const GENERATION_SLOW_SEC = 3;
 
-	/** @var int Key to the tombstone entry timestamp */
-	private static $PURGE_TIME = 0;
-	/** @var int Key to the tombstone entry hold-off TTL */
-	private static $PURGE_HOLDOFF = 1;
+	/** Key to the tombstone entry timestamp */
+	private const PURGE_TIME = 0;
+	/** Key to the tombstone entry hold-off TTL */
+	private const PURGE_HOLDOFF = 1;
 
-	/** @var int Cache format version number */
-	private static $VERSION = 1;
+	/** Cache format version number */
+	private const VERSION = 1;
 
 	/** The key value component of a fetchMulti() result */
 	private const RES_VALUE = 0;
 	/** The key metadata component of a fetchMulti() result */
 	private const RES_METADATA = 1;
 
-	/** @var string Version number attribute for a key; keep value for b/c (< 1.36) */
+	/** Version number attribute for a key; keep value for b/c (< 1.36) */
 	public const KEY_VERSION = 'version';
-	/** @var string Generation timestamp attribute for a key; keep value for b/c (< 1.36) */
+	/** Generation timestamp attribute for a key; keep value for b/c (< 1.36) */
 	public const KEY_AS_OF = 'asOf';
-	/** @var string Logical TTL attribute for a key */
+	/** Logical TTL attribute for a key */
 	public const KEY_TTL = 'ttl';
-	/** @var string Remaining TTL attribute for a key; keep value for b/c (< 1.36) */
+	/** Remaining TTL attribute for a key; keep value for b/c (< 1.36) */
 	public const KEY_CUR_TTL = 'curTTL';
-	/** @var string Tomstone timestamp attribute for a key; keep value for b/c (< 1.36) */
+	/** Tomstone timestamp attribute for a key; keep value for b/c (< 1.36) */
 	public const KEY_TOMB_AS_OF = 'tombAsOf';
-	/** @var string Highest "check" key timestamp for a key; keep value for b/c (< 1.36) */
+	/** Highest "check" key timestamp for a key; keep value for b/c (< 1.36) */
 	public const KEY_CHECK_AS_OF = 'lastCKPurge';
 
-	/** @var int Key to WAN cache version number */
-	private static $FLD_FORMAT_VERSION = 0;
-	/** @var int Key to the cached value */
-	private static $FLD_VALUE = 1;
-	/** @var int Key to the original TTL */
-	private static $FLD_TTL = 2;
-	/** @var int Key to the cache timestamp */
-	private static $FLD_TIME = 3;
-	/** @var int Key to the flags bit field (reserved number) */
-	private static /** @noinspection PhpUnusedPrivateFieldInspection */ $FLD_FLAGS = 4;
-	/** @var int Key to collection cache version number */
-	private static $FLD_VALUE_VERSION = 5;
-	/** @var int Key to how long it took to generate the value */
-	private static $FLD_GENERATION_TIME = 6;
+	/** Key to WAN cache version number */
+	private const FLD_FORMAT_VERSION = 0;
+	/** Key to the cached value */
+	private const FLD_VALUE = 1;
+	/** Key to the original TTL */
+	private const FLD_TTL = 2;
+	/** Key to the cache timestamp */
+	private const FLD_TIME = 3;
+	/** Key to the flags bit field (reserved number) */
+	private const /** @noinspection PhpUnusedPrivateFieldInspection */ FLD_FLAGS = 4;
+	/** Key to collection cache version number */
+	private const FLD_VALUE_VERSION = 5;
+	/** Key to how long it took to generate the value */
+	private const FLD_GENERATION_TIME = 6;
 
-	/** @var string Single character value mutex key component */
+	/** Single character value mutex key component */
 	private const TYPE_VALUE = 'v';
-	/** @var string Single character timestamp key component */
+	/** Single character timestamp key component */
 	private const TYPE_TIMESTAMP = 't';
-	/** @var string Single character mutex key component */
+	/** Single character mutex key component */
 	private const TYPE_MUTEX = 'm';
-	/** @var string Single character interium key component */
+	/** Single character interium key component */
 	private const TYPE_INTERIM = 'i';
-	/** @var string Single character cool-off key component */
+	/** Single character cool-off key component */
 	private const TYPE_COOLOFF = 'c';
 
-	/** @var string Prefix for tombstone key values */
+	/** Prefix for tombstone key values */
 	private const PURGE_VAL_PREFIX = 'PURGED:';
 
 	/**
@@ -580,11 +580,11 @@ class WANObjectCache implements
 
 			$lastCKPurge = null; // timestamp of the highest check key
 			foreach ( $purgeValues as $purge ) {
-				$lastCKPurge = max( $purge[self::$PURGE_TIME], $lastCKPurge );
-				$safeTimestamp = $purge[self::$PURGE_TIME] + $purge[self::$PURGE_HOLDOFF];
+				$lastCKPurge = max( $purge[self::PURGE_TIME], $lastCKPurge );
+				$safeTimestamp = $purge[self::PURGE_TIME] + $purge[self::PURGE_HOLDOFF];
 				if ( $value !== false && $safeTimestamp >= $metadata[self::KEY_AS_OF] ) {
 					// How long ago this value was invalidated by *this* check key
-					$ago = min( $purge[self::$PURGE_TIME] - $now, self::$TINY_NEGATIVE );
+					$ago = min( $purge[self::PURGE_TIME] - $now, self::TINY_NEGATIVE );
 					// How long ago this value was invalidated by *any* known check key
 					$metadata[self::KEY_CUR_TTL] = min( $metadata[self::KEY_CUR_TTL], $ago );
 				}
@@ -616,7 +616,7 @@ class WANObjectCache implements
 			if ( $purge === false ) {
 				// Key is not set or malformed; regenerate
 				$newVal = $this->makePurgeValue( $now, self::HOLDOFF_TTL );
-				$this->cache->add( $timeKey, $newVal, self::$CHECK_KEY_TTL );
+				$this->cache->add( $timeKey, $newVal, self::CHECK_KEY_TTL );
 				$purge = $this->parsePurgeValue( $newVal );
 			}
 			$purgeValues[] = $purge;
@@ -998,14 +998,14 @@ class WANObjectCache implements
 		foreach ( $rawKeys as $key => $rawKey ) {
 			$purge = $this->parsePurgeValue( $rawValues[$rawKey] );
 			if ( $purge !== false ) {
-				$time = $purge[self::$PURGE_TIME];
+				$time = $purge[self::PURGE_TIME];
 			} else {
 				// Casting assures identical floats for the next getCheckKeyTime() calls
 				$now = (string)$this->getCurrentTime();
 				$this->cache->add(
 					$rawKey,
 					$this->makePurgeValue( $now, self::HOLDOFF_TTL ),
-					self::$CHECK_KEY_TTL
+					self::CHECK_KEY_TTL
 				);
 				$time = (float)$now;
 			}
@@ -1054,7 +1054,7 @@ class WANObjectCache implements
 		// Publish the purge to all datacenters
 		$ok = $this->relayPurge(
 			$this->makeSisterKey( $key, self::TYPE_TIMESTAMP ),
-			self::$CHECK_KEY_TTL,
+			self::CHECK_KEY_TTL,
 			$holdoff
 		);
 
@@ -1656,7 +1656,7 @@ class WANObjectCache implements
 		return $this->cache->add(
 			$this->makeSisterKey( $key, self::TYPE_MUTEX ),
 			1,
-			self::$LOCK_TTL
+			self::LOCK_TTL
 		);
 	}
 
@@ -1736,7 +1736,7 @@ class WANObjectCache implements
 	 * @return bool Whether the age of a volatile value is negligible
 	 */
 	private function isVolatileValueAgeNegligible( $age ) {
-		return ( $age < mt_rand( self::$RECENT_SET_LOW_MS, self::$RECENT_SET_HIGH_MS ) / 1e3 );
+		return ( $age < mt_rand( self::RECENT_SET_LOW_MS, self::RECENT_SET_HIGH_MS ) / 1e3 );
 	}
 
 	/**
@@ -1791,7 +1791,7 @@ class WANObjectCache implements
 					!$this->cache->add(
 						$this->makeSisterKey( $key, self::TYPE_COOLOFF ),
 						1,
-						self::$COOLOFF_TTL
+						self::COOLOFF_TTL
 					) &&
 					// Don't treat failures due to I/O errors as the key being in cooloff
 					$this->cache->getLastError() === BagOStuff::ERR_NONE
@@ -1828,7 +1828,7 @@ class WANObjectCache implements
 
 		$touched = $touchedCallback( $value );
 		if ( $touched !== null && $touched >= $curInfo[self::KEY_AS_OF] ) {
-			$curTTL = min( $curTTL, self::$TINY_NEGATIVE, $curInfo[self::KEY_AS_OF] - $touched );
+			$curTTL = min( $curTTL, self::TINY_NEGATIVE, $curInfo[self::KEY_AS_OF] - $touched );
 		}
 
 		return [
@@ -1884,7 +1884,7 @@ class WANObjectCache implements
 	 * @param float $walltime How long it took to generate the value in seconds
 	 */
 	private function setInterimValue( $key, $value, $ttl, $version, $walltime ) {
-		$ttl = max( self::$INTERIM_KEY_TTL, (int)$ttl );
+		$ttl = max( self::INTERIM_KEY_TTL, (int)$ttl );
 
 		$wrapped = $this->wrap( $value, $ttl, $version, $this->getCurrentTime(), $walltime );
 		$this->cache->merge(
@@ -2156,7 +2156,7 @@ class WANObjectCache implements
 	final public function reap( $key, $purgeTimestamp, &$isStale = false ) {
 		$minAsOf = $purgeTimestamp + self::HOLDOFF_TTL;
 		$wrapped = $this->cache->get( $this->makeSisterKey( $key, self::TYPE_VALUE ) );
-		if ( is_array( $wrapped ) && $wrapped[self::$FLD_TIME] < $minAsOf ) {
+		if ( is_array( $wrapped ) && $wrapped[self::FLD_TIME] < $minAsOf ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale value key '$key'." );
 			$ttlReap = self::HOLDOFF_TTL; // avoids races with tombstone creation
@@ -2189,7 +2189,7 @@ class WANObjectCache implements
 		$purge = $this->parsePurgeValue(
 			$this->cache->get( $this->makeSisterKey( $key, self::TYPE_TIMESTAMP ) )
 		);
-		if ( $purge && $purge[self::$PURGE_TIME] < $purgeTimestamp ) {
+		if ( $purge && $purge[self::PURGE_TIME] < $purgeTimestamp ) {
 			$isStale = true;
 			$this->logger->warning( "Reaping stale check key '$key'." );
 			$ok = $this->cache->changeTTL(
@@ -2710,13 +2710,13 @@ class WANObjectCache implements
 		// Lifecycle is: new, ramp-up refresh chance, full refresh chance.
 		// Note that the "expected # of refreshes" for the ramp-up time range is half
 		// of what it would be if P(refresh) was at its full value during that time range.
-		$refreshWindowSec = max( $timeTillRefresh - $ageNew - self::$RAMPUP_TTL / 2, 1 );
+		$refreshWindowSec = max( $timeTillRefresh - $ageNew - self::RAMPUP_TTL / 2, 1 );
 		// P(refresh) * (# hits in $refreshWindowSec) = (expected # of refreshes)
 		// P(refresh) * ($refreshWindowSec * $popularHitsPerSec) = 1 (by definition)
 		// P(refresh) = 1/($refreshWindowSec * $popularHitsPerSec)
 		$chance = 1 / ( $popularHitsPerSec * $refreshWindowSec );
 		// Ramp up $chance from 0 to its nominal value over RAMPUP_TTL seconds to avoid stampedes
-		$chance *= ( $timeOld <= self::$RAMPUP_TTL ) ? $timeOld / self::$RAMPUP_TTL : 1;
+		$chance *= ( $timeOld <= self::RAMPUP_TTL ) ? $timeOld / self::RAMPUP_TTL : 1;
 
 		// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 		$decision = ( mt_rand( 1, 1e9 ) <= 1e9 * $chance );
@@ -2740,7 +2740,7 @@ class WANObjectCache implements
 	 */
 	protected function isValid( $value, $asOf, $minAsOf, $purgeTime = null ) {
 		// Avoid reading any key not generated after the latest delete() or touch
-		$safeMinAsOf = max( $minAsOf, $purgeTime + self::$TINY_POSTIVE );
+		$safeMinAsOf = max( $minAsOf, $purgeTime + self::TINY_POSTIVE );
 
 		if ( $value === false ) {
 			return false;
@@ -2763,16 +2763,16 @@ class WANObjectCache implements
 		// Returns keys in ascending integer order for PHP7 array packing:
 		// https://nikic.github.io/2014/12/22/PHPs-new-hashtable-implementation.html
 		$wrapped = [
-			self::$FLD_FORMAT_VERSION => self::$VERSION,
-			self::$FLD_VALUE => $value,
-			self::$FLD_TTL => $ttl,
-			self::$FLD_TIME => $now
+			self::FLD_FORMAT_VERSION => self::VERSION,
+			self::FLD_VALUE => $value,
+			self::FLD_TTL => $ttl,
+			self::FLD_TIME => $now
 		];
 		if ( $version !== null ) {
-			$wrapped[self::$FLD_VALUE_VERSION] = $version;
+			$wrapped[self::FLD_VALUE_VERSION] = $version;
 		}
-		if ( $walltime >= self::$GENERATION_SLOW_SEC ) {
-			$wrapped[self::$FLD_GENERATION_TIME] = $walltime;
+		if ( $walltime >= self::GENERATION_SLOW_SEC ) {
+			$wrapped[self::FLD_GENERATION_TIME] = $walltime;
 		}
 
 		return $wrapped;
@@ -2797,22 +2797,22 @@ class WANObjectCache implements
 		if ( is_array( $wrapped ) ) {
 			// Entry expected to be a cached value; validate it
 			if (
-				( $wrapped[self::$FLD_FORMAT_VERSION] ?? null ) === self::$VERSION &&
-				$wrapped[self::$FLD_TIME] >= $this->epoch
+				( $wrapped[self::FLD_FORMAT_VERSION] ?? null ) === self::VERSION &&
+				$wrapped[self::FLD_TIME] >= $this->epoch
 			) {
-				if ( $wrapped[self::$FLD_TTL] > 0 ) {
+				if ( $wrapped[self::FLD_TTL] > 0 ) {
 					// Get the approximate time left on the key
-					$age = $now - $wrapped[self::$FLD_TIME];
-					$curTTL = max( $wrapped[self::$FLD_TTL] - $age, 0.0 );
+					$age = $now - $wrapped[self::FLD_TIME];
+					$curTTL = max( $wrapped[self::FLD_TTL] - $age, 0.0 );
 				} else {
 					// Key had no TTL, so the time left is unbounded
 					$curTTL = INF;
 				}
-				$value = $wrapped[self::$FLD_VALUE];
-				$info[self::KEY_VERSION] = $wrapped[self::$FLD_VALUE_VERSION] ?? null;
-				$info[self::KEY_AS_OF] = $wrapped[self::$FLD_TIME];
+				$value = $wrapped[self::FLD_VALUE];
+				$info[self::KEY_VERSION] = $wrapped[self::FLD_VALUE_VERSION] ?? null;
+				$info[self::KEY_AS_OF] = $wrapped[self::FLD_TIME];
 				$info[self::KEY_CUR_TTL] = $curTTL;
-				$info[self::KEY_TTL] = $wrapped[self::$FLD_TTL];
+				$info[self::KEY_TTL] = $wrapped[self::FLD_TTL];
 			}
 		} else {
 			// Entry expected to be a tombstone; parse it
@@ -2820,8 +2820,8 @@ class WANObjectCache implements
 			if ( $purge !== false ) {
 				// Tombstoned keys should always have a negative current $ttl
 				$info[self::KEY_CUR_TTL] =
-					min( $purge[self::$PURGE_TIME] - $now, self::$TINY_NEGATIVE );
-				$info[self::KEY_TOMB_AS_OF] = $purge[self::$PURGE_TIME];
+					min( $purge[self::PURGE_TIME] - $now, self::TINY_NEGATIVE );
+				$info[self::KEY_TOMB_AS_OF] = $purge[self::PURGE_TIME];
 			}
 		}
 
@@ -2882,8 +2882,8 @@ class WANObjectCache implements
 		}
 
 		return [
-			self::$PURGE_TIME => (float)$segments[1],
-			self::$PURGE_HOLDOFF => (int)$segments[2],
+			self::PURGE_TIME => (float)$segments[1],
+			self::PURGE_HOLDOFF => (int)$segments[2],
 		];
 	}
 
