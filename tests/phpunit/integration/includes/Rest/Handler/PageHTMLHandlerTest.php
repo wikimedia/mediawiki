@@ -82,7 +82,9 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			new JsonCodec(),
 			new NullStatsdDataFactory(),
 			new NullLogger(),
-			$parserCacheFactoryOptions
+			$parserCacheFactoryOptions,
+			$this->getServiceContainer()->getTitleFactory(),
+			$this->getServiceContainer()->getWikiPageFactory()
 		);
 
 		$handler = new PageHTMLHandler(

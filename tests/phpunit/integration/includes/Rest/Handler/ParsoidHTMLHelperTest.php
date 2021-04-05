@@ -78,7 +78,9 @@ class ParsoidHTMLHelperTest extends MediaWikiIntegrationTestCase {
 			$this->getServiceContainer()->getHookContainer(),
 			$this->getServiceContainer()->getJsonCodec(),
 			new NullStatsdDataFactory(),
-			new NullLogger()
+			new NullLogger(),
+			$this->getServiceContainer()->getTitleFactory(),
+			$this->getServiceContainer()->getWikiPageFactory()
 		);
 
 		$revisionOutputCache = new RevisionOutputCache(

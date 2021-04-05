@@ -26,8 +26,10 @@ use IBufferingStatsdDataFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Page\WikiPageFactory;
 use ParserCache;
 use Psr\Log\LoggerInterface;
+use TitleFactory;
 use WANObjectCache;
 
 /**
@@ -58,6 +60,12 @@ class ParserCacheFactory {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/** @var ParserCache[] */
 	private $parserCaches = [];
 
@@ -84,6 +92,8 @@ class ParserCacheFactory {
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
 	 * @param ServiceOptions $options
+	 * @param TitleFactory $titleFactory
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		BagOStuff $parserCacheBackend,
@@ -92,7 +102,9 @@ class ParserCacheFactory {
 		JsonCodec $jsonCodec,
 		IBufferingStatsdDataFactory $stats,
 		LoggerInterface $logger,
-		ServiceOptions $options
+		ServiceOptions $options,
+		TitleFactory $titleFactory,
+		WikiPageFactory $wikiPageFactory
 	) {
 		$this->parserCacheBackend = $parserCacheBackend;
 		$this->revisionOutputCacheBackend = $revisionOutputCacheBackend;
@@ -103,6 +115,8 @@ class ParserCacheFactory {
 
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
+		$this->titleFactory = $titleFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	/**
@@ -121,6 +135,8 @@ class ParserCacheFactory {
 				$this->jsonCodec,
 				$this->stats,
 				$this->logger,
+				$this->titleFactory,
+				$this->wikiPageFactory,
 				$this->options->get( 'ParserCacheUseJson' )
 			);
 

@@ -24,6 +24,8 @@
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheMetadata;
 use Psr\Log\LoggerInterface;
 
@@ -105,6 +107,12 @@ class ParserCache {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @note Temporary feature flag, remove before 1.36 is released.
 	 * @var bool
@@ -130,6 +138,8 @@ class ParserCache {
 	 * @param JsonCodec $jsonCodec
 	 * @param IBufferingStatsdDataFactory $stats
 	 * @param LoggerInterface $logger
+	 * @param TitleFactory $titleFactory
+	 * @param WikiPageFactory $wikiPageFactory
 	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
 	 */
 	public function __construct(
@@ -140,6 +150,8 @@ class ParserCache {
 		JsonCodec $jsonCodec,
 		IBufferingStatsdDataFactory $stats,
 		LoggerInterface $logger,
+		TitleFactory $titleFactory,
+		WikiPageFactory $wikiPageFactory,
 		$useJson = false
 	) {
 		if ( !$cache instanceof EmptyBagOStuff && !$cache instanceof CachedBagOStuff ) {
@@ -162,55 +174,61 @@ class ParserCache {
 		$this->jsonCodec = $jsonCodec;
 		$this->stats = $stats;
 		$this->logger = $logger;
+		$this->titleFactory = $titleFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
 		$this->readJson = $useJson;
 		$this->writeJson = $useJson;
 	}
 
 	/**
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @since 1.28
 	 */
-	public function deleteOptionsKey( WikiPage $wikiPage ) {
-		$this->cache->delete( $this->makeMetadataKey( $wikiPage ) );
+	public function deleteOptionsKey( PageRecord $page ) {
+		$page->assertWiki( PageRecord::LOCAL );
+		$this->cache->delete( $this->makeMetadataKey( $page ) );
 	}
 
 	/**
-	 * Provides an E-Tag suitable for the whole page. Note that $wikiPage
+	 * Provides an E-Tag suitable for the whole page. Note that $page
 	 * is just the main wikitext. The E-Tag has to be unique to the whole
 	 * page, even if the article itself is the same, so it uses the
 	 * complete set of user options. We don't want to use the preference
 	 * of a different user on a message just because it wasn't used in
-	 * $wikiPage. For example give a Chinese interface to a user with
+	 * $page. For example give a Chinese interface to a user with
 	 * English preferences. That's why we take into account *all* user
 	 * options. (r70809 CR)
 	 *
 	 * @deprecated since 1.36
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @return string
 	 */
-	public function getETag( WikiPage $wikiPage, $popts ) {
+	public function getETag( PageRecord $page, $popts ) {
 		wfDeprecated( __METHOD__, '1.36' );
-		return 'W/"' . $this->makeParserOutputKey( $wikiPage, $popts )
-			. "--" . $wikiPage->getTouched() . '"';
+		$page->assertWiki( PageRecord::LOCAL );
+		return 'W/"' . $this->makeParserOutputKey( $page, $popts )
+			. "--" . $page->getTouched() . '"';
 	}
 
 	/**
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function getDirty( WikiPage $wikiPage, $popts ) {
-		$value = $this->get( $wikiPage, $popts, true );
+	public function getDirty( PageRecord $page, $popts ) {
+		$page->assertWiki( PageRecord::LOCAL );
+		$value = $this->get( $page, $popts, true );
 		return is_object( $value ) ? $value : false;
 	}
 
 	/**
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param string $metricSuffix
 	 */
-	private function incrementStats( WikiPage $wikiPage, $metricSuffix ) {
+	private function incrementStats( PageRecord $page, $metricSuffix ) {
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
 		$contentModel = str_replace( '.', '_', $wikiPage->getContentModel() );
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
 		$this->stats->increment( "{$this->name}.{$contentModel}.{$metricSuffix}" );
@@ -228,7 +246,7 @@ class ParserCache {
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
 	 *
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @param int|bool $useOutdated One of the USE constants. For backwards
 	 *  compatibility, boolean false is treated as USE_CURRENT_ONLY and
@@ -237,8 +255,10 @@ class ParserCache {
 	 * @since 1.30 Changed $useOutdated to an int and added the non-boolean values
 	 * @deprecated 1.36 Use ::getMetadata and ::makeParserOutputKey methods instead.
 	 */
-	public function getKey( WikiPage $wikiPage, $popts, $useOutdated = self::USE_ANYTHING ) {
+	public function getKey( PageRecord $page, $popts, $useOutdated = self::USE_ANYTHING ) {
 		wfDeprecated( __METHOD__, '1.36' );
+		$page->assertWiki( PageRecord::LOCAL );
+
 		if ( is_bool( $useOutdated ) ) {
 			$useOutdated = $useOutdated ? self::USE_ANYTHING : self::USE_CURRENT_ONLY;
 		}
@@ -250,7 +270,7 @@ class ParserCache {
 			$popts = ParserOptions::newFromUser( $popts );
 		}
 
-		$metadata = $this->getMetadata( $wikiPage, $useOutdated );
+		$metadata = $this->getMetadata( $page, $useOutdated );
 		if ( !$metadata ) {
 			if ( $useOutdated < self::USE_ANYTHING ) {
 				return false;
@@ -260,7 +280,7 @@ class ParserCache {
 			$usedOptions = $metadata->getUsedOptions();
 		}
 
-		return $this->makeParserOutputKey( $wikiPage, $popts, $usedOptions );
+		return $this->makeParserOutputKey( $page, $popts, $usedOptions );
 	}
 
 	/**
@@ -271,16 +291,18 @@ class ParserCache {
 	 * is controlled via ParserOutput::recordOption() or
 	 * ParserOptions::addExtraKey().
 	 *
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param int $staleConstraint one of the self::USE_ constants
 	 * @return ParserCacheMetadata|null
 	 * @since 1.36
 	 */
 	public function getMetadata(
-		WikiPage $wikiPage,
+		PageRecord $page,
 		int $staleConstraint = self::USE_ANYTHING
 	): ?ParserCacheMetadata {
-		$pageKey = $this->makeMetadataKey( $wikiPage );
+		$page->assertWiki( PageRecord::LOCAL );
+
+		$pageKey = $this->makeMetadataKey( $page );
 		$metadata = $this->cache->get(
 			$pageKey,
 			BagOStuff::READ_VERIFIED
@@ -299,15 +321,15 @@ class ParserCache {
 		}
 
 		if ( !$metadata instanceof CacheTime ) {
-			$this->incrementStats( $wikiPage, 'miss.unserialize' );
+			$this->incrementStats( $page, 'miss.unserialize' );
 			return null;
 		}
 
-		if ( $this->checkExpired( $metadata, $wikiPage, $staleConstraint, 'metadata' ) ) {
+		if ( $this->checkExpired( $metadata, $page, $staleConstraint, 'metadata' ) ) {
 			return null;
 		}
 
-		if ( $this->checkOutdated( $metadata, $wikiPage, $staleConstraint, 'metadata' ) ) {
+		if ( $this->checkOutdated( $metadata, $page, $staleConstraint, 'metadata' ) ) {
 			return null;
 		}
 
@@ -316,11 +338,11 @@ class ParserCache {
 	}
 
 	/**
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @return string
 	 */
-	private function makeMetadataKey( WikiPage $wikiPage ): string {
-		return $this->cache->makeKey( $this->name, 'idoptions', $wikiPage->getId() );
+	private function makeMetadataKey( PageRecord $page ): string {
+		return $this->cache->makeKey( $this->name, 'idoptions', $page->getId( PageRecord::LOCAL ) );
 	}
 
 	/**
@@ -332,7 +354,7 @@ class ParserCache {
 	 * to change, thus should not be used as storage or long-term caching key.
 	 * This is intended to be used for logging or keying something transient.
 	 *
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $options
 	 * @param array|null $usedOptions Defaults to all cache verying options.
 	 * @return string
@@ -340,7 +362,7 @@ class ParserCache {
 	 * @since 1.36
 	 */
 	public function makeParserOutputKey(
-		WikiPage $wikiPage,
+		PageRecord $page,
 		ParserOptions $options,
 		array $usedOptions = null
 	): string {
@@ -348,10 +370,11 @@ class ParserCache {
 		$usedOptions = $usedOptions ?? ParserOptions::allCacheVaryingOptions();
 
 		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
-		$pageid = $wikiPage->getId();
+		$pageid = $page->getId( PageRecord::LOCAL );
 		// TODO: remove the split T263581
 		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
-		$hash = $options->optionsHash( $usedOptions, $wikiPage->getTitle() );
+		$title = $this->titleFactory->castFromPageIdentity( $page );
+		$hash = $options->optionsHash( $usedOptions, $title );
 
 		return $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
 	}
@@ -360,39 +383,46 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
 	 *
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function get( WikiPage $wikiPage, $popts, $useOutdated = false ) {
-		if ( !$wikiPage->checkTouched() ) {
+	public function get( PageRecord $page, $popts, $useOutdated = false ) {
+		$page->assertWiki( PageRecord::LOCAL );
+
+		if ( !$page->exists() ) {
+			$this->incrementStats( $page, 'miss.nonexistent' );
+			return false;
+		}
+
+		if ( $page->isRedirect() ) {
 			// It's a redirect now
-			$this->incrementStats( $wikiPage, 'miss.redirect' );
+			$this->incrementStats( $page, 'miss.redirect' );
 			return false;
 		}
 
 		$staleConstraint = $useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY;
-		$parserOutputMetadata = $this->getMetadata( $wikiPage, $staleConstraint );
+		$parserOutputMetadata = $this->getMetadata( $page, $staleConstraint );
 		if ( !$parserOutputMetadata ) {
 			return false;
 		}
 
 		if ( !$popts->isSafeToCache( $parserOutputMetadata->getUsedOptions() ) ) {
-			$this->incrementStats( $wikiPage, 'miss.unsafe' );
+			$this->incrementStats( $page, 'miss.unsafe' );
 			return false;
 		}
 
 		$parserOutputKey = $this->makeParserOutputKey(
-			$wikiPage,
+			$page,
 			$popts,
 			$parserOutputMetadata->getUsedOptions()
 		);
 
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
 		if ( $value === false ) {
-			$this->incrementStats( $wikiPage, "miss.absent" );
+			$this->incrementStats( $page, "miss.absent" );
 			$this->logger->debug( 'ParserOutput cache miss', [ 'name' => $this->name ] );
 			return false;
 		}
@@ -410,44 +440,47 @@ class ParserCache {
 		}
 
 		if ( !$value instanceof ParserOutput ) {
-			$this->incrementStats( $wikiPage, 'miss.unserialize' );
+			$this->incrementStats( $page, 'miss.unserialize' );
 			return false;
 		}
 
-		if ( $this->checkExpired( $value, $wikiPage, $staleConstraint, 'output' ) ) {
+		if ( $this->checkExpired( $value, $page, $staleConstraint, 'output' ) ) {
 			return false;
 		}
 
-		if ( $this->checkOutdated( $value, $wikiPage, $staleConstraint, 'output' ) ) {
+		if ( $this->checkOutdated( $value, $page, $staleConstraint, 'output' ) ) {
 			return false;
 		}
 
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
 		if ( $this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false ) {
-			$this->incrementStats( $wikiPage, 'miss.rejected' );
+			$this->incrementStats( $page, 'miss.rejected' );
 			$this->logger->debug( 'key valid, but rejected by RejectParserCacheValue hook handler',
 				[ 'name' => $this->name ] );
 			return false;
 		}
 
 		$this->logger->debug( 'ParserOutput cache found', [ 'name' => $this->name ] );
-		$this->incrementStats( $wikiPage, 'hit' );
+		$this->incrementStats( $page, 'hit' );
 		return $value;
 	}
 
 	/**
 	 * @param ParserOutput $parserOutput
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @param string|null $cacheTime TS_MW timestamp when the cache was generated
 	 * @param int|null $revId Revision ID that was parsed
 	 */
 	public function save(
 		ParserOutput $parserOutput,
-		WikiPage $wikiPage,
+		PageRecord $page,
 		$popts,
 		$cacheTime = null,
 		$revId = null
 	) {
+		$page->assertWiki( PageRecord::LOCAL );
+
 		if ( !$parserOutput->hasText() ) {
 			throw new InvalidArgumentException( 'Attempt to cache a ParserOutput with no text set!' );
 		}
@@ -459,7 +492,7 @@ class ParserCache {
 				'Parser options are not safe to cache and has not been saved',
 				[ 'name' => $this->name ]
 			);
-			$this->incrementStats( $wikiPage, 'save.unsafe' );
+			$this->incrementStats( $page, 'save.unsafe' );
 			return;
 		}
 
@@ -468,7 +501,7 @@ class ParserCache {
 				'Parser output was marked as uncacheable and has not been saved',
 				[ 'name' => $this->name ]
 			);
-			$this->incrementStats( $wikiPage, 'save.uncacheable' );
+			$this->incrementStats( $page, 'save.uncacheable' );
 			return;
 		}
 
@@ -477,10 +510,7 @@ class ParserCache {
 		}
 
 		$cacheTime = $cacheTime ?: wfTimestampNow();
-		if ( !$revId ) {
-			$revision = $wikiPage->getRevisionRecord();
-			$revId = $revision ? $revision->getId() : null;
-		}
+		$revId = $revId ?: $page->getLatest( PageRecord::LOCAL );
 
 		$metadata = new CacheTime;
 		$metadata->recordOptions( $parserOutput->getUsedOptions() );
@@ -492,7 +522,7 @@ class ParserCache {
 		$parserOutput->setCacheRevisionId( $revId );
 
 		$parserOutputKey = $this->makeParserOutputKey(
-			$wikiPage,
+			$page,
 			$popts,
 			$metadata->getUsedOptions()
 		);
@@ -507,7 +537,7 @@ class ParserCache {
 		}
 		$parserOutput->addCacheMessage( $msg );
 
-		$pageKey = $this->makeMetadataKey( $wikiPage );
+		$pageKey = $this->makeMetadataKey( $page );
 
 		if ( $this->writeJson ) {
 			$parserOutputData = $this->encodeAsJson( $parserOutput, $parserOutputKey );
@@ -523,7 +553,7 @@ class ParserCache {
 				'Parser output failed to serialize and was not saved',
 				[ 'name' => $this->name ]
 			);
-			$this->incrementStats( $wikiPage, 'save.nonserializable' );
+			$this->incrementStats( $page, 'save.nonserializable' );
 			return;
 		}
 
@@ -538,8 +568,8 @@ class ParserCache {
 		// ...and its pointer
 		$this->cache->set( $pageKey, $metadataData, $expire );
 
-		$this->hookRunner->onParserCacheSaveComplete(
-			$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
+		$title = $this->titleFactory->castFromPageIdentity( $page );
+		$this->hookRunner->onParserCacheSaveComplete( $this, $parserOutput, $title, $popts, $revId );
 
 		$this->logger->debug( 'Saved in parser cache', [
 			'name' => $this->name,
@@ -547,7 +577,7 @@ class ParserCache {
 			'cache_time' => $cacheTime,
 			'rev_id' => $revId
 		] );
-		$this->incrementStats( $wikiPage, 'save.success' );
+		$this->incrementStats( $page, 'save.success' );
 	}
 
 	/**
@@ -563,25 +593,25 @@ class ParserCache {
 	}
 
 	/**
-	 * Check if $entry expired for $wikiPage given the $staleConstraint
+	 * Check if $entry expired for $page given the $staleConstraint
 	 * when fetching from $cacheTier.
 	 * @param CacheTime $entry
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param int $staleConstraint One of USE_* constants.
 	 * @param string $cacheTier
 	 * @return bool
 	 */
 	private function checkExpired(
 		CacheTime $entry,
-		WikiPage $wikiPage,
+		PageRecord $page,
 		int $staleConstraint,
 		string $cacheTier
 	): bool {
-		if ( $staleConstraint < self::USE_EXPIRED && $entry->expired( $wikiPage->getTouched() ) ) {
-			$this->incrementStats( $wikiPage, "miss.expired" );
+		if ( $staleConstraint < self::USE_EXPIRED && $entry->expired( $page->getTouched() ) ) {
+			$this->incrementStats( $page, "miss.expired" );
 			$this->logger->debug( "{$cacheTier} key expired", [
 				'name' => $this->name,
-				'touched' => $wikiPage->getTouched(),
+				'touched' => $page->getTouched(),
 				'epoch' => $this->cacheEpoch,
 				'cache_time' => $entry->getCacheTime()
 			] );
@@ -591,26 +621,26 @@ class ParserCache {
 	}
 
 	/**
-	 * Check if $entry belongs to the latest revision of $wikiPage
+	 * Check if $entry belongs to the latest revision of $page
 	 * given $staleConstraint when fetched from $cacheTier.
 	 * @param CacheTime $entry
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param int $staleConstraint One of USE_* constants.
 	 * @param string $cacheTier
 	 * @return bool
 	 */
 	private function checkOutdated(
 		CacheTime $entry,
-		WikiPage $wikiPage,
+		PageRecord $page,
 		int $staleConstraint,
 		string $cacheTier
 	): bool {
-		$latestRevId = $wikiPage->getLatest();
+		$latestRevId = $page->getLatest( PageRecord::LOCAL );
 		if ( $staleConstraint < self::USE_OUTDATED && $entry->isDifferentRevision( $latestRevId ) ) {
-			$this->incrementStats( $wikiPage, "miss.revid" );
+			$this->incrementStats( $page, "miss.revid" );
 			$this->logger->debug( "{$cacheTier} key is for an old revision", [
 				'name' => $this->name,
-				'rev_id' => $wikiPage->getLatest(),
+				'rev_id' => $latestRevId,
 				'cached_rev_id' => $entry->getCacheRevisionId()
 			] );
 			return true;

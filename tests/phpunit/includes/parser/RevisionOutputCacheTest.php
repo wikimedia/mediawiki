@@ -6,8 +6,11 @@ use BagOStuff;
 use HashBagOStuff;
 use InvalidArgumentException;
 use MediaWiki\Json\JsonCodec;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Tests\Json\JsonUnserializableSuperClass;
 use MediaWikiIntegrationTestCase;
 use MWTimestamp;
@@ -24,7 +27,6 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Parser\RevisionOutputCache
- * @group Database
  * @package MediaWiki\Tests\Parser
  */
 class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
@@ -42,20 +44,20 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 
 		$this->time = time();
+		$this->cacheTime = MWTimestamp::convert( TS_MW, $this->time + 1 );
 		MWTimestamp::setFakeTime( $this->time );
-		$page = $this->getExistingTestPage( __CLASS__ );
-		$this->revision = $page->getRevisionRecord();
 
-		$this->cacheTime = MWTimestamp::convert( TS_MW, time() + 1 );
-
-		// Clean up these tables after each test
-		$this->tablesUsed = [
-			'page',
-			'revision',
-			'comment',
-			'text',
-			'content'
-		];
+		$this->revision = new MutableRevisionRecord(
+			new PageIdentityValue(
+				42,
+				NS_MAIN,
+				'Testing_Testing',
+				PageIdentity::LOCAL
+			),
+			RevisionRecord::LOCAL
+		);
+		$this->revision->setId( 24 );
+		$this->revision->setTimestamp( MWTimestamp::convert( TS_MW, $this->time ) );
 	}
 
 	protected function tearDown() : void {
