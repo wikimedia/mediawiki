@@ -3065,5 +3065,6 @@
 	"passwordpolicies-policy-minimumpasswordlengthtologin": "Пароль хила еза $1 {{PLURAL:$1|символал}} еха, декъашхочун шен агӀо караяйтархьама",
 	"passwordpolicies-policy-passwordcannotmatchusername": "Пароль декъашхочун цӀерах тера хила ца еза",
 	"passwordpolicies-policy-maximalpasswordlength": "Пароль $1 {{PLURAL:$1|символал}} йоца хила ца еза",
-	"passwordpolicies-policyflag-suggestchangeonlogin": "болхболича чекхбаккха хийцам"
+	"passwordpolicies-policyflag-suggestchangeonlogin": "болхболича чекхбаккха хийцам",
+	"userlogout-continue": "Лаьий хьуна болх дӀаберзо?"
 }

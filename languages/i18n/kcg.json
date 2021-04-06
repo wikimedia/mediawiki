@@ -403,6 +403,8 @@
 	"createacct-benefit-body1": "{{PLURAL:$1|jhyuk|njhyuk}}",
 	"createacct-benefit-body2": "{{PLURAL:$1|peji|pejí}}",
 	"createacct-benefit-body3": "{{PLURAL:$1|A̱tyunwuat a̱|Á̱nietnwuat ba̱}} nwuak mi̱ mmam nani a̱ni",
+	"badretype": "Swáng-nwuai ji nang a tyia̱ a̱ni tai njhyang bah.",
+	"usernameinprogress": "Á̱ shyia̱ di̱ khwuk a̱la̱n mat a̱lyoot a̱tyuta̱m kani. Ma̱sa̱kut fwuong.",
 	"userexists": "A̱lyoot-a̱tyuta̱m nang a tyia̱ wa ka̱n shyia̱ di̱n ta̱m.\nMa̱sa̱kut khai a̱lyoot a̱ghyang.",
 	"loginerror": "Ghyuap nwuai",
 	"createacct-error": "Ghyuap khwuk a̱la̱n",
