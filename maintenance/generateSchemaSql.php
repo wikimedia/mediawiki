@@ -92,11 +92,7 @@ class GenerateSchemaSql extends Maintenance {
 
 		// Postgres hacks
 		if ( $platform === 'postgres' ) {
-			// Remove table prefixes from Postgres schema, people should not set it
-			// but better safe than sorry.
-			$sql = str_replace( "\n/*_*/\n", ' ', $sql );
-
-			// FIXME: Also fix a lot of weird formatting issues caused by
+			// FIXME: Fix a lot of weird formatting issues caused by
 			// presence of partial index's WHERE clause, this should probably
 			// be done in some better way, but for now this can work temporarily
 			$sql = str_replace(

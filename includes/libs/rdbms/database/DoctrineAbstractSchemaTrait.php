@@ -27,8 +27,13 @@ use Doctrine\DBAL\Schema\Schema;
  * @internal
  */
 trait DoctrineAbstractSchemaTrait {
+
+	private $platform;
+
 	private function addTableToSchema( Schema $schema, array $schemaSpec ) {
-		$table = $schema->createTable( '/*_*/' . $schemaSpec['name'] );
+		$prefix = $this->platform->getName() === 'postgresql' ? '' : '/*_*/';
+
+		$table = $schema->createTable( $prefix . $schemaSpec['name'] );
 		foreach ( $schemaSpec['columns'] as $column ) {
 			$table->addColumn( $column['name'], $column['type'], $column['options'] );
 		}

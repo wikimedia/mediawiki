@@ -2,4 +2,4 @@ DROP INDEX change_tag_rc_tag_nonuniq;
 DROP INDEX change_tag_log_tag_nonuniq;
 DROP INDEX change_tag_rev_tag_nonuniq;
 DROP INDEX change_tag_tag_id;
-ALTER TABLE /*_*/change_tag DROP ct_tag;
+ALTER TABLE change_tag DROP ct_tag;
