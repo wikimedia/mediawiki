@@ -1,0 +1,72 @@
+/* stylelint-disable selector-class-pattern */
+
+.center {
+	text-align: center;
+}
+
+/* Links */
+a {
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
+
+a,
+a.external,
+a.new,
+a.stub {
+	color: inherit !important; /* stylelint-disable-line declaration-no-important */
+	text-decoration: inherit !important; /* stylelint-disable-line declaration-no-important */
+}
+
+dt {
+	font-weight: bold;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: bold;
+	/* Pagination */
+	page-break-after: avoid;
+	page-break-before: avoid;
+}
+
+p {
+	margin: 1em 0;
+	line-height: 1.2;
+	/* Pagination */
+	orphans: 3;
+	widows: 3;
+}
+
+img,
+figure {
+	/* Pagination */
+	page-break-inside: avoid;
+}
+
+img {
+	border: 0;
+	vertical-align: middle;
+}
+
+pre,
+.mw-code {
+	background: #fff;
+	color: #000;
+	border: 1pt dashed #000;
+	padding: 1em;
+	font-size: 8pt;
+	white-space: pre-wrap;
+	/* Create a new block formatting context */
+	overflow-x: hidden;
+	/* Break really long words when they overflow to the next line */
+	word-wrap: break-word;
+}
+
+ul {
+	list-style-type: square;
+}
