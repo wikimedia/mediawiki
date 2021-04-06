@@ -37,6 +37,21 @@
 // Minimum available screen width at which a device can be considered a desktop.
 @width-breakpoint-desktop: 1000px;
 
+// == Size properties beyond Box Model ==
+// These are the center point for skin sizing.
+// Note that these are recommended to be set in relative units like `em` in order to let users
+// override with own browser font size preference.
+// Font size
+@font-size-base: 1em;
+
+// Line Heights
+@line-height-base: 1.6;
+@line-height-heading: 1.3;
+// Form input labels for buttons, dropdowns, but also text input values.
+// Note that there are binary inputs in skins like Vector, that receive a different treatment
+// with name `*-input-binary`.
+@line-height-label: 1.5;
+
 // == Colors ==
 // Background Colors
 @background-color-base: #fff;
