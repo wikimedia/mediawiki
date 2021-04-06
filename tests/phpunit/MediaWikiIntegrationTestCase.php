@@ -1399,8 +1399,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected function addCoreDBData() {
 		SiteStatsInit::doPlaceholderInit();
 
-		User::resetIdByNameCache();
-
 		// Make sysop user
 		$user = static::getTestSysop()->getUser();
 
