@@ -649,17 +649,21 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCorruptMetadata() {
 		$this->hideDeprecated( 'ParserCache::getKey' );
-		$cache = $this->createParserCache( null, new HashBagOStuff() );
+		$cacheStorage = new HashBagOStuff();
+		$cache = $this->createParserCache( null, $cacheStorage );
 		$parserOutput = new ParserOutput( 'TEST_TEXT' );
 
 		$options1 = ParserOptions::newCanonical( 'canonical' );
 		$cache->save( $parserOutput, $this->page, $options1, $this->cacheTime );
 
+		// Mess up the metadata
 		$optionsKey = TestingAccessWrapper::newFromObject( $cache )->makeMetadataKey(
 			$this->page
 		);
+		$cacheStorage->set( $optionsKey, 'bad data' );
 
-		$cache->getCacheStorage()->set( $optionsKey, 'bad data' );
+		// Recreate the cache to drop in-memory cached metadata.
+		$cache = $this->createParserCache( null, $cacheStorage );
 
 		// just make sure we don't crash and burn
 		$this->assertNull( $cache->getMetadata( $this->page ) );
