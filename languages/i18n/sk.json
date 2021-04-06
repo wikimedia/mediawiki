@@ -247,7 +247,7 @@
 	"redirectedfrom": "(Presmerované z $1)",
 	"redirectpagesub": "Presmerovacia stránka",
 	"redirectto": "Presmerovať na:",
-	"lastmodifiedat": "Dátum poslednej úpravy tejto stránky: $1, $2.",
+	"lastmodifiedat": "Dátum a čas poslednej úpravy tejto stránky: $1, $2.",
 	"viewcount": "Táto stránka bola navštívená {{PLURAL:$1|raz|$1-krát|$1-krát}}.",
 	"protectedpage": "Zamknutá stránka",
 	"jumpto": "Prejsť na:",

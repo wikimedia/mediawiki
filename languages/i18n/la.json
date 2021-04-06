@@ -1691,6 +1691,7 @@
 	"searchsuggest-containing": "continens...",
 	"api-error-emptypage": "Vacuas novas paginas creare non licet.",
 	"api-error-unknownerror": "Error incognitus: \"$1\".",
+	"duration-centuries": "$1 {{PLURAL:$1|saeculum|saecula}}",
 	"expandtemplates": "Formulas resolvere",
 	"special-characters-group-latin": "Latinum",
 	"special-characters-group-latinextended": "Latinum extensum",
