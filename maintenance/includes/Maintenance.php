@@ -1132,8 +1132,11 @@ abstract class Maintenance {
 				$openChar = $info['require'] ? '<' : '[';
 				$closeChar = $info['require'] ? '>' : ']';
 				$this->output(
-					wordwrap( "$tab$openChar" . $info['name'] . "$closeChar: " .
-						$info['desc'], $descWidth, "\n$tab$tab" ) . "\n"
+					wordwrap(
+						"$tab$openChar" . $info['name'] . "$closeChar: " . $info['desc'],
+						$descWidth,
+						"\n$tab$tab"
+					) . "\n"
 				);
 			}
 			$this->output( "\n" );
@@ -1153,7 +1156,7 @@ abstract class Maintenance {
 			}
 			$this->output(
 				wordwrap(
-					"$tab--$name: " . $info['desc'],
+					"$tab--$name: " . strtr( $info['desc'], [ "\n" => "\n$tab$tab" ] ),
 					$descWidth,
 					"\n$tab$tab"
 				) . "\n"
