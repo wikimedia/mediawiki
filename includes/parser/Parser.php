@@ -258,7 +258,7 @@ class Parser {
 	private $mOutputType;   # Output type, one of the OT_xxx constants
 	/** @deprecated since 1.35 */
 	public $ot;            # Shortcut alias, see setOutputType()
-	/** @deprecated since 1.35, use Parser::getRevisionObject() */
+	/** @deprecated since 1.35, use Parser::getRevisionRecordObject() */
 	public $mRevisionObject; # The revision object of the specified revision ID
 	/** @deprecated since 1.35, use Parser::getRevisionId() */
 	public $mRevisionId;   # ID to display in {{REVISIONID}} tags
@@ -3431,29 +3431,6 @@ class Parser {
 	}
 
 	/**
-	 * Fetch the current revision of a given title. Note that the revision
-	 * (and even the title) may not exist in the database, so everything
-	 * contributing to the output of the parser should use this method
-	 * where possible, rather than getting the revisions themselves. This
-	 * method also caches its results, so using it benefits performance.
-	 *
-	 * This can return false if the callback returns false
-	 *
-	 * @deprecated since 1.35, use fetchCurrentRevisionRecordOfTitle instead
-	 * @since 1.24
-	 * @param Title $title
-	 * @return Revision|false
-	 */
-	public function fetchCurrentRevisionOfTitle( Title $title ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$revisionRecord = $this->fetchCurrentRevisionRecordOfTitle( $title );
-		if ( $revisionRecord ) {
-			return new Revision( $revisionRecord );
-		}
-		return $revisionRecord;
-	}
-
-	/**
 	 * Fetch the current revision of a given title as a RevisionRecord.
 	 * Note that the revision (and even the title) may not exist in the database,
 	 * so everything contributing to the output of the parser should use this method
@@ -3500,24 +3477,6 @@ class Parser {
 			$this->currentRevisionCache &&
 			$this->currentRevisionCache->has( $title->getPrefixedText() )
 		);
-	}
-
-	/**
-	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
-	 * without passing them on to it.
-	 *
-	 * @deprecated since 1.35, use statelessFetchRevisionRecord
-	 * @since 1.24
-	 * @param Title $title
-	 * @param Parser|bool $parser
-	 * @return Revision|bool False if missing
-	 */
-	public static function statelessFetchRevision( Title $title, $parser = false ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$revRecord = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getKnownCurrentRevision( $title );
-		return $revRecord ? new Revision( $revRecord ) : false;
 	}
 
 	/**
@@ -5839,30 +5798,6 @@ class Parser {
 	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;
-	}
-
-	/**
-	 * Get the revision object for $this->mRevisionId
-	 *
-	 * @deprecated since 1.35, use getRevisionRecordObject
-	 * @return Revision|null Either a Revision object or null
-	 * @since 1.23 (public since 1.23)
-	 */
-	public function getRevisionObject() {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		if ( $this->mRevisionObject ) {
-			return $this->mRevisionObject;
-		}
-
-		$this->mRevisionObject = null;
-
-		$revRecord = $this->getRevisionRecordObject();
-		if ( $revRecord ) {
-			$this->mRevisionObject = new Revision( $revRecord );
-		}
-
-		return $this->mRevisionObject;
 	}
 
 	/**
