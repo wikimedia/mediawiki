@@ -636,13 +636,13 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @return int
 	 */
 	private function getCacheTTL() {
-		if ( $this->cache->getQoS( WANObjectCache::ATTR_EMULATION )
-				<= WANObjectCache::QOS_EMULATION_SQL
-		) {
+		$cache = $this->cache;
+
+		if ( $cache->getQoS( $cache::ATTR_DURABILITY ) >= $cache::QOS_DURABILITY_RDBMS ) {
 			// Do not cache RDBMs blobs in...the RDBMs store
-			$ttl = WANObjectCache::TTL_UNCACHEABLE;
+			$ttl = $cache::TTL_UNCACHEABLE;
 		} else {
-			$ttl = $this->cacheExpiry ?: WANObjectCache::TTL_UNCACHEABLE;
+			$ttl = $this->cacheExpiry ?: $cache::TTL_UNCACHEABLE;
 		}
 
 		return $ttl;
