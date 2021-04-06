@@ -1,0 +1,17 @@
+/* stylelint-disable selector-class-pattern */
+
+.mw-parser-output a.external {
+	/* Expand URLs for printing */
+	&.text:after,
+	&.autonumber:after {
+		content: ' (' attr( href ) ')';
+		word-break: break-all;
+		word-wrap: break-word;
+	}
+
+	/* Expand protocol-relative URLs for printing */
+	&.text[ href^='//' ]:after,
+	&.autonumber[ href^='//' ]:after {
+		content: ' (https:' attr( href ) ')';
+	}
+}

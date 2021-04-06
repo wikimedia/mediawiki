@@ -416,7 +416,11 @@ class SpecialContributions extends IncludableSpecialPage {
 		$showForIp = IPUtils::isValid( $userObj ) ||
 			( IPUtils::isValidRange( $userObj ) && $this->getPager( $targetName )->isQueryableRange( $userObj ) );
 
-		if ( $talk && ( $userObj->isRegistered() || $showForIp ) ) {
+		// T276306. if the user is hidden and the viewer cannot see hidden, pretend that it does not exist
+		$registeredAndVisible = $userObj->isRegistered() && ( !$userObj->isHidden()
+				|| $this->permissionManager->userHasRight( $this->getUser(), 'hideuser' ) );
+
+		if ( $talk && ( $registeredAndVisible || $showForIp ) ) {
 			$tools = self::getUserLinks(
 				$this,
 				$userObj,

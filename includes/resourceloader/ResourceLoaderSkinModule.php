@@ -117,6 +117,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		],
 		'content-thumbnails' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/content.thumbnails-print.less' ],
 		],
 		'content-media' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.media.less' ],
@@ -125,7 +126,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/content.externallinks.less' ]
 		],
 		'content-parser-output' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/content.parser-output.less' ]
+			'screen' => [ 'resources/src/mediawiki.skinning/content.parser-output.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/content.parser-output-print.less' ],
 		],
 		'content-tables' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.tables.less' ],
@@ -133,15 +135,18 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		],
 		'interface' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/interface-print.less' ],
 		],
 		'interface-category' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/interface.category.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/interface.category-print.less' ],
 		],
 		'interface-message-box' => [
 			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
 		],
 		'elements' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/elements.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/elements-print.less' ],
 		],
 		'legacy' => [
 			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
