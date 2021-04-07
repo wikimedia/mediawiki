@@ -114,7 +114,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 
 		$normalizedName = $this->normalizeUserName( $row->actor_name );
-		if ( !$normalizedName ) {
+		if ( $normalizedName === null ) {
 			$this->logger->warning( 'Encountered invalid actor name in database', [
 				'user_id' => $userId,
 				'actor_id' => $actorId,
@@ -155,7 +155,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// from ActorMigration aliases to proper join with the actor table,
 		// we should use ::newActorFromRow more, and eventually deprecate this method.
 		$userId = $userId === null ? 0 : (int)$userId;
-		$name = $name ?: '';
+		$name = $name === null ? '' : $name;
 		if ( $actorId === null ) {
 			throw new InvalidArgumentException( "Actor ID is null for {$name} and {$userId}" );
 		}
@@ -164,7 +164,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 
 		$normalizedName = $this->normalizeUserName( $name );
-		if ( !$normalizedName ) {
+		if ( $normalizedName === null ) {
 			$this->logger->warning( 'Encountered invalid actor name in database', [
 				'user_id' => $userId,
 				'actor_id' => $actorId,
@@ -266,19 +266,21 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			throw new InvalidArgumentException( 'Empty string passed as actor name' );
 		}
 
-		$name = $this->normalizeUserName( $name );
-		if ( !$name ) {
-			throw new InvalidArgumentException( "Unable to normalize the provided actor name {$name}" );
+		$normalizedName = $this->normalizeUserName( $name );
+		if ( $normalizedName === null ) {
+			throw new InvalidArgumentException(
+				"Unable to normalize the provided actor name {$name}"
+			);
 		}
 
-		$cachedValue = $this->actorsByName->get( $name );
+		$cachedValue = $this->actorsByName->get( $normalizedName );
 		if ( $cachedValue ) {
 			return $cachedValue[0];
 		}
 
 		return $this->newSelectQueryBuilderForQueryFlags( $queryFlags )
 			->caller( __METHOD__ )
-			->userNames( $name )
+			->userNames( $normalizedName )
 			->fetchUserIdentity();
 	}
 
@@ -354,7 +356,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// TODO: In the future we would be able to assume UserIdentity name is ok
 		// and will be able to skip normalization here - T273933
 		$name = $this->normalizeUserName( $user->getName() );
-		if ( !$name ) {
+		if ( $name === null ) {
 			$this->logger->warning( 'Encountered a UserIdentity with invalid name', [
 				'user_name' => $user->getName()
 			] );
@@ -381,7 +383,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	public function findActorIdByName( $name, IDatabase $db ): ?int {
 		// NOTE: $name may be user-supplied, need full normalization
 		$name = $this->normalizeUserName( $name, UserNameUtils::RIGOR_VALID );
-		if ( !$name ) {
+		if ( $name === null ) {
 			return null;
 		}
 
@@ -557,9 +559,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			// fix existing DB rows - T273933
 			return $name;
 		} elseif ( $rigor !== UserNameUtils::RIGOR_NONE ) {
-			return $this->userNameUtils->getCanonical( $name, $rigor ) ?: null;
+			$normalized = $this->userNameUtils->getCanonical( $name, $rigor );
+			return $normalized === false ? null : $normalized;
 		} else {
-			return $name;
+			return $name === '' ? null : $name;
 		}
 	}
 
