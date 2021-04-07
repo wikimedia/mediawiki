@@ -177,7 +177,7 @@ trait MockAuthorityTrait {
 		$mock->method( 'isAllowedAll' )
 			->willReturnCallback( static function ( ...$permissions ) use ( $permissionCallback ) {
 				foreach ( $permissions as $permission ) {
-					if ( $permissionCallback( $permission ) ) {
+					if ( !$permissionCallback( $permission ) ) {
 						return false;
 					}
 				}
