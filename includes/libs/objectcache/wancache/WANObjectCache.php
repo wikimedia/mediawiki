@@ -615,7 +615,7 @@ class WANObjectCache implements
 				: false;
 			if ( $purge === false ) {
 				// Key is not set or malformed; regenerate
-				$newVal = $this->makePurgeValue( $now, self::HOLDOFF_TTL );
+				$newVal = $this->makeCheckKeyPurgeValue( $now, self::HOLDOFF_TTL );
 				$this->cache->add( $timeKey, $newVal, self::CHECK_KEY_TTL );
 				$purge = $this->parsePurgeValue( $newVal );
 			}
@@ -661,7 +661,7 @@ class WANObjectCache implements
 	 *     $cache->set( $key, $row, $cache::TTL_DAY, $setOpts );
 	 * @endcode
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param mixed $value
 	 * @param int $ttl Seconds to live. Special values are:
 	 *   - WANObjectCache::TTL_INDEFINITE: Cache forever (default)
@@ -871,28 +871,29 @@ class WANObjectCache implements
 	 * @endcode
 	 *
 	 * The $ttl parameter can be used when purging values that have not actually changed
-	 * recently. For example, a cleanup script to purge cache entries does not really need
-	 * a hold-off period, so it can use HOLDOFF_TTL_NONE. Likewise for user-requested purge.
+	 * recently. For example, user-requested purges or cache cleanup scripts might not need
+	 * to invoke a hold-off period on cache backfills, so they can use HOLDOFF_TTL_NONE.
+	 *
 	 * Note that $ttl limits the effective range of 'lockTSE' for getWithSetCallback().
 	 *
 	 * If called twice on the same key, then the last hold-off TTL takes precedence. For
 	 * idempotence, the $ttl should not vary for different delete() calls on the same key.
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param int $ttl Tombstone TTL; Default: WANObjectCache::HOLDOFF_TTL
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	final public function delete( $key, $ttl = self::HOLDOFF_TTL ) {
+		$valueKey = $this->makeSisterKey( $key, self::TYPE_VALUE );
+
 		if ( $ttl <= 0 ) {
-			// Publish the purge to all datacenters
-			$ok = $this->relayDelete( $this->makeSisterKey( $key, self::TYPE_VALUE ) );
+			// Erase the key from all datacenters
+			$ok = $this->relayDelete( $valueKey );
 		} else {
-			// Publish the purge to all datacenters
-			$ok = $this->relayPurge(
-				$this->makeSisterKey( $key, self::TYPE_VALUE ),
-				$ttl,
-				self::HOLDOFF_TTL_NONE
-			);
+			// The expiry of value tombstones determines the "hold-off"
+			$purgeValue = $this->makeTombstonePurgeValue( $this->getCurrentTime() );
+			// Broadcast the purge value to all datacenters
+			$ok = $this->relayPurge( $valueKey, $purgeValue, $ttl );
 		}
 
 		$kClass = $this->determineKeyClassForStats( $key );
@@ -917,7 +918,7 @@ class WANObjectCache implements
 	 *
 	 * Note that "check" keys won't collide with other regular keys.
 	 *
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @return float UNIX timestamp
 	 */
 	final public function getCheckKeyTime( $key ) {
@@ -981,7 +982,7 @@ class WANObjectCache implements
 	 * @see WANObjectCache::getCheckKeyTime()
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
-	 * @param string[] $keys
+	 * @param string[] $keys Cache keys
 	 * @return float[] Map of (key => UNIX timestamp)
 	 * @since 1.31
 	 */
@@ -1004,7 +1005,7 @@ class WANObjectCache implements
 				$now = (string)$this->getCurrentTime();
 				$this->cache->add(
 					$rawKey,
-					$this->makePurgeValue( $now, self::HOLDOFF_TTL ),
+					$this->makeCheckKeyPurgeValue( $now, self::HOLDOFF_TTL ),
 					self::CHECK_KEY_TTL
 				);
 				$time = (float)$now;
@@ -1046,7 +1047,7 @@ class WANObjectCache implements
 	 * @see WANObjectCache::getWithSetCallback()
 	 * @see WANObjectCache::resetCheckKey()
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param int $holdoff HOLDOFF_TTL or HOLDOFF_TTL_NONE constant
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
@@ -1054,8 +1055,8 @@ class WANObjectCache implements
 		// Publish the purge to all datacenters
 		$ok = $this->relayPurge(
 			$this->makeSisterKey( $key, self::TYPE_TIMESTAMP ),
-			self::CHECK_KEY_TTL,
-			$holdoff
+			$this->makeCheckKeyPurgeValue( $this->getCurrentTime(), $holdoff ),
+			self::CHECK_KEY_TTL
 		);
 
 		$kClass = $this->determineKeyClassForStats( $key );
@@ -1088,7 +1089,7 @@ class WANObjectCache implements
 	 * @see WANObjectCache::getWithSetCallback()
 	 * @see WANObjectCache::touchCheckKey()
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @return bool True if the item was purged or not found, false on failure
 	 */
 	final public function resetCheckKey( $key ) {
@@ -1453,7 +1454,7 @@ class WANObjectCache implements
 	 *
 	 * @see WANObjectCache::getWithSetCallback()
 	 *
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param int $ttl
 	 * @param callable $callback
 	 * @param array $opts
@@ -1648,7 +1649,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @return bool Success
 	 */
 	private function claimStampedeLock( $key ) {
@@ -1661,7 +1662,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param bool $hasLock
 	 */
 	private function yieldStampedeLock( $key, $hasLock ) {
@@ -1753,7 +1754,7 @@ class WANObjectCache implements
 	 * the problem is proportionate to the value size and access rate. The duration of the
 	 * problem is proportionate to value regeneration time.
 	 *
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param string $kClass
 	 * @param mixed $value The regenerated value
 	 * @param float $elapsed Seconds spent fetching, validating, and regenerating the value
@@ -1855,7 +1856,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param float $minAsOf Minimum acceptable "as of" timestamp
 	 * @return array (cached value or false, cache key metadata map)
 	 */
@@ -1877,7 +1878,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param mixed $value
 	 * @param int $ttl
 	 * @param int|null $version Value version number
@@ -2147,7 +2148,7 @@ class WANObjectCache implements
 	 * This sets stale keys' time-to-live at HOLDOFF_TTL seconds, which both avoids
 	 * broadcasting in mcrouter setups and also avoids races with new tombstones.
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param int $purgeTimestamp UNIX timestamp of purge
 	 * @param bool &$isStale Whether the key is stale
 	 * @return bool Success
@@ -2179,7 +2180,7 @@ class WANObjectCache implements
 	/**
 	 * Set a "check" key to soon expire in the local cluster if it pre-dates $purgeTimestamp
 	 *
-	 * @param string $key Cache key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param int $purgeTimestamp UNIX timestamp of purge
 	 * @param bool &$isStale Whether the key is stale
 	 * @return bool Success
@@ -2519,38 +2520,28 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * Do the actual async bus purge of a key
-	 *
-	 * This must set the key to "PURGED:<UNIX timestamp>:<holdoff>"
+	 * Broadcast an update to all datacenters setting a key to a purge value
 	 *
 	 * @param string $key Sister cache key
-	 * @param int $ttl Seconds to keep the tombstone around
-	 * @param int $holdoff HOLDOFF_* constant controlling how long to ignore sets for this key
+	 * @param string $purgeValue Result of makeTombstonePurgeValue()/makeCheckKeyPurgeValue()
+	 * @param int $ttl Seconds to keep the purge value around
 	 * @return bool Success
 	 */
-	protected function relayPurge( $key, $ttl, $holdoff ) {
+	protected function relayPurge( $key, string $purgeValue, int $ttl ) {
 		if ( $this->mcrouterAware ) {
 			// See https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup
 			// Wildcards select all matching routes, e.g. the WAN cluster on all DCs
-			$ok = $this->cache->set(
-				"/*/{$this->cluster}/{$key}",
-				$this->makePurgeValue( $this->getCurrentTime(), $holdoff ),
-				$ttl
-			);
+			$fullKey = "/*/{$this->cluster}/{$key}";
 		} else {
 			// Some other proxy handles broadcasting or there is only one datacenter
-			$ok = $this->cache->set(
-				$key,
-				$this->makePurgeValue( $this->getCurrentTime(), $holdoff ),
-				$ttl
-			);
+			$fullKey = $key;
 		}
 
-		return $ok;
+		return $this->cache->set( $fullKey, $purgeValue, $ttl );
 	}
 
 	/**
-	 * Do the actual async bus delete of a key
+	 * Broadcast an update to all datacenters removing a key entirely
 	 *
 	 * @param string $key Sister cache key
 	 * @return bool Success
@@ -2559,19 +2550,19 @@ class WANObjectCache implements
 		if ( $this->mcrouterAware ) {
 			// See https://github.com/facebook/mcrouter/wiki/Multi-cluster-broadcast-setup
 			// Wildcards select all matching routes, e.g. the WAN cluster on all DCs
-			$ok = $this->cache->delete( "/*/{$this->cluster}/{$key}" );
+			$fullKey = "/*/{$this->cluster}/{$key}";
 		} else {
 			// Some other proxy handles broadcasting or there is only one datacenter
-			$ok = $this->cache->delete( $key );
+			$fullKey = $key;
 		}
 
-		return $ok;
+		return $this->cache->delete( $fullKey );
 	}
 
 	/**
 	 * Schedule a deferred cache regeneration if possible
 	 *
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param int $ttl Seconds to live
 	 * @param callable $callback
 	 * @param array $opts
@@ -2853,8 +2844,12 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string|array|bool $value Possible string of the form "PURGED:<timestamp>:<holdoff>"
-	 * @return array|bool Array containing a UNIX timestamp (float) and holdoff period (integer),
+	 * Extract purge metadata from cached value if it is a valid purge value
+	 *
+	 * Valid purge values come from makeTombstonePurgeValue()/makeCheckKeyPurgeValue()
+	 *
+	 * @param mixed $value Cached value
+	 * @return array|bool Array containing a UNIX timestamp (float) and hold-off period (integer),
 	 *  or false if value isn't a valid purge value
 	 */
 	private function parsePurgeValue( $value ) {
@@ -2863,36 +2858,41 @@ class WANObjectCache implements
 		}
 
 		$segments = explode( ':', $value, 3 );
-		if (
-			!isset( $segments[0] ) ||
-			!isset( $segments[1] ) ||
-			"{$segments[0]}:" !== self::PURGE_VAL_PREFIX
-		) {
+		if ( isset( $segments[2] ) ) {
+			$prefix = $segments[0];
+			$timestamp = (float)$segments[1];
+			$holdoff = (int)$segments[2];
+		} elseif ( isset( $segments[1] ) ) {
+			$prefix = $segments[0];
+			$timestamp = (float)$segments[1];
+			// Value tombstones don't store hold-off TTLs
+			$holdoff = self::HOLDOFF_TTL;
+		} else {
 			return false;
 		}
 
-		if ( !isset( $segments[2] ) ) {
-			// Back-compat with old purge values without holdoff
-			$segments[2] = self::HOLDOFF_TTL;
-		}
-
-		if ( $segments[1] < $this->epoch ) {
-			// Values this old are ignored
+		if ( "{$prefix}:" !== self::PURGE_VAL_PREFIX || $timestamp < $this->epoch ) {
+			// Not a purge value or the purge value is too old
 			return false;
 		}
 
-		return [
-			self::PURGE_TIME => (float)$segments[1],
-			self::PURGE_HOLDOFF => (int)$segments[2],
-		];
+		return [ self::PURGE_TIME => $timestamp, self::PURGE_HOLDOFF => $holdoff ];
 	}
 
 	/**
-	 * @param float $timestamp
-	 * @param int $holdoff In seconds
-	 * @return string Wrapped purge value
+	 * @param float $timestamp UNIX timestamp
+	 * @return string Wrapped purge value; format is "PURGED:<timestamp>"
 	 */
-	private function makePurgeValue( $timestamp, $holdoff ) {
+	private function makeTombstonePurgeValue( $timestamp ) {
+		return self::PURGE_VAL_PREFIX . (float)$timestamp;
+	}
+
+	/**
+	 * @param float $timestamp UNIX timestamp
+	 * @param int $holdoff In seconds
+	 * @return string Wrapped purge value; format is "PURGED:<timestamp>:<holdoff>"
+	 */
+	private function makeCheckKeyPurgeValue( $timestamp, $holdoff ) {
 		return self::PURGE_VAL_PREFIX . (float)$timestamp . ':' . (int)$holdoff;
 	}
 
@@ -2913,7 +2913,7 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * @param string $key
+	 * @param string $key Cache key made from makeKey()/makeGlobalKey()
 	 * @param int $version
 	 * @return string
 	 */
