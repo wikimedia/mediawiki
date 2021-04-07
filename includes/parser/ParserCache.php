@@ -114,6 +114,14 @@ class ParserCache {
 	private $wikiPageFactory;
 
 	/**
+	 * @var BagOStuff small in-process cache to store metadata.
+	 * It's needed multiple times during the request, for example
+	 * to build a PoolWorkArticleView key, and then to fetch the
+	 * actual ParserCache entry.
+	 */
+	private $metadataProcCache;
+
+	/**
 	 * @note Temporary feature flag, remove before 1.36 is released.
 	 * @var bool
 	 */
@@ -154,19 +162,6 @@ class ParserCache {
 		WikiPageFactory $wikiPageFactory,
 		$useJson = false
 	) {
-		if ( !$cache instanceof EmptyBagOStuff && !$cache instanceof CachedBagOStuff ) {
-			// It seems on some page views, the same entry is retreived twice from the ParserCache.
-			// This shouldn't happen but use a process-cache and log duplicate fetches to mitigate
-			// this and figure out why. (T269593)
-			$cache = new CachedBagOStuff( $cache, [
-				'logger' => $logger,
-				'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
-				'reportDupes' => true,
-				// Each ParserCache entry uses 2 keys, one for metadata and one for parser output.
-				// So, cache at most 4 different parser outputs in memory. The number was chosen ad hoc.
-				'maxKeys' => 8
-			] );
-		}
 		$this->name = $name;
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
@@ -178,6 +173,7 @@ class ParserCache {
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->readJson = $useJson;
 		$this->writeJson = $useJson;
+		$this->metadataProcCache = new HashBagOStuff( [ 'maxKeys' => 2 ] );
 	}
 
 	/**
@@ -186,7 +182,9 @@ class ParserCache {
 	 */
 	public function deleteOptionsKey( PageRecord $page ) {
 		$page->assertWiki( PageRecord::LOCAL );
-		$this->cache->delete( $this->makeMetadataKey( $page ) );
+		$key = $this->makeMetadataKey( $page );
+		$this->metadataProcCache->delete( $key );
+		$this->cache->delete( $key );
 	}
 
 	/**
@@ -303,10 +301,13 @@ class ParserCache {
 		$page->assertWiki( PageRecord::LOCAL );
 
 		$pageKey = $this->makeMetadataKey( $page );
-		$metadata = $this->cache->get(
-			$pageKey,
-			BagOStuff::READ_VERIFIED
-		);
+		$metadata = $this->metadataProcCache->get( $pageKey );
+		if ( !$metadata ) {
+			$metadata = $this->cache->get(
+				$pageKey,
+				BagOStuff::READ_VERIFIED
+			);
+		}
 
 		// NOTE: If the value wasn't serialized to JSON when being stored,
 		//       we may already have a ParserOutput object here. This used
@@ -565,7 +566,9 @@ class ParserCache {
 			BagOStuff::WRITE_ALLOW_SEGMENTS
 		);
 
-		// ...and its pointer
+		// ...and its pointer to the local cache.
+		$this->metadataProcCache->set( $pageKey, $metadataData, $expire );
+		// ...and to the global cache.
 		$this->cache->set( $pageKey, $metadataData, $expire );
 
 		$title = $this->titleFactory->castFromPageIdentity( $page );
