@@ -38,7 +38,6 @@ class PageStore implements PageLookup {
 	 * @internal for use by service wiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'LanguageCode',
 		'PageLanguageUseDB',
 	];
 
@@ -187,10 +186,6 @@ class PageStore implements PageLookup {
 	 * @return ExistingPageRecord
 	 */
 	public function newPageRecordFromRow( stdClass $row ): ExistingPageRecord {
-		if ( empty( $row->page_lang ) ) {
-			$row->page_lang = $this->options->get( 'LanguageCode' );
-		}
-
 		return new PageStoreRecord(
 			$row,
 			$this->wikiId

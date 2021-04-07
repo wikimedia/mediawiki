@@ -582,11 +582,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			// Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
-			$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-
 			$this->mId = intval( $data->page_id );
 			$this->mTouched = MWTimestamp::convert( TS_MW, $data->page_touched );
-			$this->mLanguage = $data->page_lang ?? $contLang->getCode();
+			$this->mLanguage = $data->page_lang ?? null;
 			$this->mLinksUpdated = $data->page_links_updated === null
 				? null
 				: MWTimestamp::convert( TS_MW, $data->page_links_updated );
@@ -780,14 +778,14 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @return string language code for the page
+	 * @return ?string language code for the page
 	 */
 	public function getLanguage() {
 		if ( !$this->mDataLoaded ) {
 			$this->loadLastEdit();
 		}
 
-		return $this->mLanguage ?: MediaWikiServices::getInstance()->getContentLanguage()->getCode();
+		return $this->mLanguage;
 	}
 
 	/**

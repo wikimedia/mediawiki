@@ -38,7 +38,7 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 
 	public function goodConstructorProvider() {
 		return [
-			[
+			'local' => [
 				(object)[
 					'page_id' => 7,
 					'page_namespace' => NS_MAIN,
@@ -51,7 +51,7 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 				],
 				PageIdentity::LOCAL
 			],
-			[
+			'non-local' => [
 				(object)[
 					'page_id' => 3,
 					'page_namespace' => NS_USER,
@@ -63,6 +63,18 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 					'page_lang' => 'und',
 				],
 				'h2g2'
+			],
+			'no language' => [
+				(object)[
+					'page_id' => 3,
+					'page_namespace' => NS_USER,
+					'page_title' => 'Test',
+					'page_touched' => '20200909001122',
+					'page_latest' => 1717,
+					'page_is_new' => false,
+					'page_is_redirect' => false,
+				],
+				PageIdentity::LOCAL
 			]
 		];
 	}
@@ -85,7 +97,8 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $row->page_latest, $pageRecord->getLatest( $wikiId ) );
 		$this->assertSame( $row->page_is_new, $pageRecord->isNew() );
 		$this->assertSame( $row->page_is_redirect, $pageRecord->isRedirect() );
-		$this->assertSame( $row->page_lang, $pageRecord->getLanguage() );
+
+		$this->assertSame( $row->page_lang ?? null, $pageRecord->getLanguage() );
 	}
 
 	public function badConstructorProvider() {
@@ -97,6 +110,7 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 			'page_latest' => 1717,
 			'page_is_new' => true,
 			'page_is_redirect' => true,
+			'page_lang' => 'fi',
 		];
 		return [
 			'nonexisting page' => [ (object)( [ 'page_id' => 0 ] + $row ) ],
@@ -108,11 +122,11 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 			'tab in title' => [ (object)( [ 'page_title' => "Foo\tBar" ] + $row ) ],
 
 			// missing data
-			'missing touched' => [ (object)array_diff_key( $row, [ 'touched' => 'foo' ] ) ],
-			'missing latest' => [ (object)array_diff_key( $row, [ 'latest' => 'foo' ] ) ],
-			'missing is_new' => [ (object)array_diff_key( $row, [ 'is_new' => 'foo' ] ) ],
-			'missing lang' => [ (object)array_diff_key( $row, [ 'lang' => 'foo' ] ) ],
-			'missing is_redirect' => [ (object)array_diff_key( $row, [ 'is_redirect' => 'foo' ] ) ],
+			'missing touched' => [ (object)array_diff_key( $row, [ 'page_touched' => 'foo' ] ) ],
+			'missing latest' => [ (object)array_diff_key( $row, [ 'page_latest' => 'foo' ] ) ],
+			'missing is_new' => [ (object)array_diff_key( $row, [ 'page_is_new' => 'foo' ] ) ],
+			'missing is_redirect'
+				=> [ (object)array_diff_key( $row, [ 'page_is_redirect' => 'foo' ] ) ],
 		];
 	}
 

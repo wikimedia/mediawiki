@@ -287,17 +287,13 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	 * Test that we can correctly emulate the page_lang field.
 	 * @covers \MediaWiki\Page\PageStore::getPageById
 	 */
-	public function testGetPageById_emulateLanguage() {
+	public function testGetPageById_noLanguage() {
 		$existingPage = $this->getExistingTestPage();
 
-		$options = [
-			'PageLanguageUseDB' => false,
-			'LanguageCode' => 'xyz'
-		];
-		$pageStore = $this->getPageStore( $options );
+		$pageStore = $this->getPageStore();
 		$page = $pageStore->getPageById( $existingPage->getId() );
 
-		$this->assertSame( 'xyz', $page->getLanguage() );
+		$this->assertNull( $page->getLanguage() );
 	}
 
 	public function provideGetPageById_invalid() {

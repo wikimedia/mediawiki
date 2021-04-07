@@ -48,7 +48,7 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 	 * - page_is_new: whether the page is new and only has one edit
 	 * - page_is_redirect: whether the page is a redirect
 	 * - page_touched: the time at which the page was last re-parsed
-	 * - page_lang: the page's primary language (supply the content language if not known)
+	 * - page_lang: the page's primary language, if explicitly recorded.
 	 *
 	 * @param stdClass $row A row from the page table
 	 * @param string|bool $wikiId The Id of the wiki this page belongs to,
@@ -62,7 +62,6 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 		Assert::parameter( isset( $row->page_is_new ), '$row->page_is_new', 'is required' );
 		Assert::parameter( isset( $row->page_is_redirect ), '$row->page_is_redirect', 'is required' );
 		Assert::parameter( isset( $row->page_touched ), '$row->page_touched', 'is required' );
-		Assert::parameter( isset( $row->page_lang ), '$row->page_lang', 'is required' );
 
 		Assert::parameter( $row->page_id > 0, '$pageId', 'must be greater than zero (page must exist)' );
 
@@ -113,10 +112,11 @@ class PageStoreRecord extends PageIdentityValue implements ExistingPageRecord {
 	/**
 	 * Language in which the page is written.
 	 *
-	 * @return string
+	 * @return ?string
 	 */
-	public function getLanguage(): string {
-		return (string)$this->row->page_lang;
+	public function getLanguage(): ?string {
+		// field may be missing
+		return $this->row->page_lang ?? null;
 	}
 
 }
