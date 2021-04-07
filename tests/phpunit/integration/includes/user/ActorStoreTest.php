@@ -82,6 +82,11 @@ class ActorStoreTest extends ActorStoreTestBase {
 			strtolower( self::IP ), // $argument
 			new UserIdentityValue( 0, self::IP, 43 ), // $expected
 		];
+		yield 'getUserIdentityByName, user name 0' => [
+			'getUserIdentityByName', // $method
+			'0', // $argument
+			new UserIdentityValue( 26, '0', 46 ), // $expected
+		];
 		yield 'getUserIdentityByUserId, registered' => [
 			'getUserIdentityByUserId', // $method
 			24, // $argument
@@ -228,6 +233,11 @@ class ActorStoreTest extends ActorStoreTestBase {
 			(object)[ 'actor_id' => 42, 'actor_name' => 'TestUser', 'actor_user' => 24 ], // $row
 			new UserIdentityValue( 24, 'TestUser', 42, 'acmewiki' ), // $expected
 		];
+		yield 'user name 0' => [
+			UserIdentity::LOCAL, // $wikiId
+			(object)[ 'actor_id' => '46', 'actor_name' => '0', 'actor_user' => 26 ], // $row
+			new UserIdentityValue( 26, '0', 46 ), // $expected
+		];
 	}
 
 	/**
@@ -288,6 +298,13 @@ class ActorStoreTest extends ActorStoreTestBase {
 			'TestUser', // $name
 			0, // $userId
 			new UserIdentityValue( 0, 'TestUser', 42 ), // $expected
+		];
+		yield 'user name 0' => [
+			UserIdentity::LOCAL, // $wikiId
+			46, // $actorId
+			'0', // $name
+			26, // $userId
+			new UserIdentityValue( 26, '0', 46 ), // $expected
 		];
 		yield 'cross-wiki' => [
 			'acmewiki', // $wikiId
@@ -357,6 +374,12 @@ class ActorStoreTest extends ActorStoreTestBase {
 				return new UserIdentityValue( 24, 'TestUser', 0 );
 			}, // $actorCallback
 			42, // $expected
+		];
+		yield 'registered, zero user name' => [
+			static function () {
+				return new UserIdentityValue( 26, '0', 0 );
+			}, // $actorCallback
+			46, // $expected
 		];
 		yield 'anon, non-existent, local' => [
 			static function () {
@@ -458,6 +481,10 @@ class ActorStoreTest extends ActorStoreTestBase {
 		yield 'registered, unnormalized' => [
 			'testUser', // $actorCallback
 			42, // $expected
+		];
+		yield 'registered, 0 user name' => [
+			'0', // $actorCallback
+			46, // $expected
 		];
 		yield 'external, local' => [
 			'acme>TestUser',
@@ -572,6 +599,10 @@ class ActorStoreTest extends ActorStoreTestBase {
 			new UserIdentityValue( 24, 'TestUser', 42 ), // $actor
 			42, // $expected
 		];
+		yield 'registered, 0 user name' => [
+			new UserIdentityValue( 26, '0', 46 ), // $actor
+			46, // $expected
+		];
 	}
 
 	/**
@@ -653,6 +684,8 @@ class ActorStoreTest extends ActorStoreTestBase {
 		yield [ 'foo|bar', UserNameUtils::RIGOR_VALID, null ];
 		yield [ '_', UserNameUtils::RIGOR_NONE, '_' ];
 		yield [ 'test', UserNameUtils::RIGOR_NONE, 'test' ];
+		yield [ '', UserNameUtils::RIGOR_NONE, null ];
+		yield [ '0', UserNameUtils::RIGOR_NONE, '0' ];
 	}
 
 	/**
@@ -674,5 +707,4 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$queryBuilder = $store->newSelectQueryBuilder( $this->db );
 		$this->assertInstanceOf( UserSelectQueryBuilder::class, $queryBuilder );
 	}
-
 }
