@@ -106,7 +106,6 @@ class BlockLogFormatter extends LogFormatter {
 						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
 				}
 
-				// @phan-suppress-next-line SecurityCheck-XSS the restrictions contains raw params, false positive
 				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );
 			}
 		}

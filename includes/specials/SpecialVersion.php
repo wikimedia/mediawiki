@@ -620,6 +620,7 @@ class SpecialVersion extends SpecialPage {
 					)
 				)
 				. Html::element( 'td', [ 'dir' => 'auto' ], $info['version'] )
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
 				. Html::element( 'td', [ 'dir' => 'auto' ], $this->listToText( $info['licenses'] ) )
 				. Html::element( 'td', [ 'lang' => 'en', 'dir' => 'ltr' ], $info['description'] )
 				. Html::rawElement( 'td', [], $authors )
@@ -955,6 +956,7 @@ class SpecialVersion extends SpecialPage {
 			foreach ( $myWgHooks as $hook => $hooks ) {
 				$ret[] = Html::openElement( 'tr' );
 				$ret[] = Html::element( 'td', [], $hook );
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
 				$ret[] = Html::element( 'td', [], $this->listToText( $hooks ) );
 				$ret[] = Html::closeElement( 'tr' );
 			}

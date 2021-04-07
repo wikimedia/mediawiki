@@ -39,6 +39,7 @@ use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Assert\Assert;
@@ -862,41 +863,9 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 			// If it's a reserved user that had an anonymous actor created for it at
 			// some point, we need special handling.
-			if ( !$userNameUtils->isValid( $name ) || $userNameUtils->isUsable( $name ) ) {
-				// Not reserved, so just create it.
-				return self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] );
-			}
-
-			// It is reserved. Check for an anonymous actor row.
-			$dbw = $loadBalancer->getConnectionRef( DB_MASTER );
-			return $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $name ) {
-				$row = $dbw->selectRow(
-					'actor',
-					[ 'actor_id' ],
-					[ 'actor_name' => $name, 'actor_user' => null ],
-					$fname,
-					[ 'FOR UPDATE' ]
-				);
-				if ( !$row ) {
-					// No anonymous actor.
-					return self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] );
-				}
-
-				// There is an anonymous actor. Delete the actor row so we can create the user,
-				// then restore the old actor_id so as to not break existing references.
-				// @todo If MediaWiki ever starts using foreign keys for `actor`, this will break things.
-				$dbw->delete( 'actor', [ 'actor_id' => $row->actor_id ], $fname );
-				$user = self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] );
-				$dbw->update(
-					'actor',
-					[ 'actor_id' => $row->actor_id ],
-					[ 'actor_id' => $user->getActorId() ],
-					$fname
-				);
-				$user->clearInstanceCache( 'id' );
-				$user->invalidateCache();
-				return $user;
-			} );
+			return self::insertNewUser( function ( UserIdentity $actor, IDatabase $dbw ) {
+				return MediaWikiServices::getInstance()->getActorStore()->acquireSystemActorId( $actor, $dbw );
+			}, $name, [ 'token' => self::INVALID_TOKEN ] );
 		}
 
 		$user = self::newFromRow( $row );
@@ -3518,10 +3487,22 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *   - options: An associative array of non-default options.
 	 *   - token: Random authentication token. Do not set.
 	 *   - registration: Registration timestamp. Do not set.
-	 *
 	 * @return User|null User object, or null if the username already exists.
 	 */
 	public static function createNew( $name, $params = [] ) {
+		return self::insertNewUser( function ( UserIdentity $actor, IDatabase $dbw ) {
+			return MediaWikiServices::getInstance()->getActorStore()->createNewActor( $actor, $dbw );
+		}, $name, $params );
+	}
+
+	/**
+	 * See ::createNew
+	 * @param callable $insertActor ( UserIdentity $actor, IDatabase $dbw ): int actor ID,
+	 * @param string $name
+	 * @param array $params
+	 * @return User|null
+	 */
+	private static function insertNewUser( callable $insertActor, $name, $params = [] ) {
 		foreach ( [ 'password', 'newpassword', 'newpass_time', 'password_expires' ] as $field ) {
 			if ( isset( $params[$field] ) ) {
 				wfDeprecated( __METHOD__ . " with param '$field'", '1.27' );
@@ -3558,12 +3539,14 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 			$fields["user_$name"] = $value;
 		}
 
-		return $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $fields ) {
+		return $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $fields, $insertActor ) {
 			$dbw->insert( 'user', $fields, $fname, [ 'IGNORE' ] );
 			if ( $dbw->affectedRows() ) {
 				$newUser = self::newFromId( $dbw->insertId() );
 				$newUser->mName = $fields['user_name'];
-				$newUser->updateActorId( $dbw );
+				// Don't pass $this, since calling ::getId, ::getName might force ::load
+				// and this user might not be ready for the yet.
+				$newUser->mActorId = $insertActor( new UserIdentityValue( $newUser->mId, $newUser->mName ), $dbw );
 				// Load the user from master to avoid replica lag
 				$newUser->load( self::READ_LATEST );
 			} else {
@@ -3650,8 +3633,12 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 			}
 			$this->mId = $dbw->insertId();
 			self::$idCacheByName[$this->mName] = $this->mId;
-			$this->updateActorId( $dbw );
 
+			// Don't pass $this, since calling ::getId, ::getName might force ::load
+			// and this user might not be ready for the yet.
+			$this->mActorId = MediaWikiServices::getInstance()
+				->getActorNormalization()
+				->acquireActorId( new UserIdentityValue( $this->mId, $this->mName ), $dbw );
 			return Status::newGood();
 		} );
 		if ( !$status->isGood() ) {
@@ -3663,19 +3650,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
 		return Status::newGood();
-	}
-
-	/**
-	 * Update the actor ID after an insert
-	 * @param IDatabase $dbw Writable database handle
-	 */
-	private function updateActorId( IDatabase $dbw ) {
-		$dbw->insert(
-			'actor',
-			[ 'actor_user' => $this->mId, 'actor_name' => $this->mName ],
-			__METHOD__
-		);
-		$this->mActorId = (int)$dbw->insertId();
 	}
 
 	/**

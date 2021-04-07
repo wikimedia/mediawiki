@@ -1775,6 +1775,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'Stealing allowed' => [ 'user', [ 'steal' => true ], [], 'user' ],
 			'Stealing an already-system user' => [ 'system', [ 'steal' => true ], [], 'user' ],
 			'Anonymous actor (T236444)' => [ 'actor', [], [ 'reserved' => true ], 'user' ],
+			'System user (T236444), reserved' => [ 'system', [], [ 'reserved' => true ], 'user' ],
 			'Reserved but no anonymous actor' => [ 'missing', [], [ 'reserved' => true ], 'user' ],
 			'Anonymous actor but no creation' => [ 'actor', [ 'create' => false ], [], 'null' ],
 			'Anonymous actor but not reserved' => [ 'actor', [], [], 'exception' ],

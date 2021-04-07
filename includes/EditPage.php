@@ -4566,6 +4566,7 @@ class EditPage implements IEditObject {
 		$out->addHTML( '<div id="spamprotected">' );
 		$out->addWikiMsg( 'spamprotectiontext' );
 		if ( $match ) {
+			// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
 			$out->addWikiMsg( 'spamprotectionmatch', wfEscapeWikiText( $match ) );
 		}
 		$out->addHTML( '</div>' );
