@@ -4694,7 +4694,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 				'page_is_new' => $this->isNewPage(), // no flags?
 				'page_is_redirect' => $this->isRedirect( $flags ),
 				'page_touched' => $this->getTouched(), // no flags?
-				'page_lang' => $this->getPageLanguage()->getCode(),
+				'page_lang' => $this->getDbPageLanguageCode() ?: null,
 			],
 			PageIdentity::LOCAL
 		);

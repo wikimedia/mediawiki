@@ -43,7 +43,7 @@ class CheckLess extends Maintenance {
 		self::requireTestsAutoloader();
 
 		// If phpunit isn't available by autoloader try pulling it in
-		if ( !class_exists( 'PHPUnit\\Framework\\TestCase' ) ) {
+		if ( !class_exists( PHPUnit\Framework\TestCase::class ) ) {
 			require_once 'PHPUnit/Autoload.php';
 		}
 

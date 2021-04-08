@@ -62,9 +62,10 @@ interface PageRecord extends PageIdentity {
 	public function getTouched();
 
 	/**
-	 * The page's language.
+	 * The page's language, if explicitly recorded.
+	 * The effective page language needs to be determined programmatically.
 	 *
-	 * @return string
+	 * @return ?string
 	 */
 	public function getLanguage();
 }
