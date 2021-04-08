@@ -2066,7 +2066,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @covers Language::isKnownLanguageTag
 	 */
 	public function testIsKnownLanguageTag_cldr() {
-		if ( !class_exists( 'LanguageNames' ) ) {
+		if ( !class_exists( LanguageNames::class ) ) {
 			$this->markTestSkipped( 'The LanguageNames class is not available. '
 				. 'The CLDR extension is probably not installed.' );
 		}

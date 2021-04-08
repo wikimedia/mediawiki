@@ -1912,7 +1912,7 @@ MESSAGE;
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see T49564). If this is the case, throw an
 		// exception (caught by the installer) to prevent a fatal error later on.
-		if ( !class_exists( 'Less_Parser' ) ) {
+		if ( !class_exists( Less_Parser::class ) ) {
 			throw new MWException( 'MediaWiki requires the less.php parser' );
 		}
 
