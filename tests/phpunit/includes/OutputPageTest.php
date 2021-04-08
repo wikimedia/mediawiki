@@ -3,6 +3,9 @@
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -17,6 +20,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class OutputPageTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
+	use MockTitleTrait;
 
 	private const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	private const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
@@ -700,7 +704,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	public function testSetRedirectedFrom() {
 		$op = $this->newInstance();
 
-		$op->setRedirectedFrom( Title::newFromText( 'Talk:Some page' ) );
+		$op->setRedirectedFrom( new PageReferenceValue( NS_TALK, 'Some page', PageReference::LOCAL ) );
 		$this->assertSame( 'Talk:Some_page', $op->getJSVars()['wgRedirectedFrom'] );
 	}
 
@@ -797,11 +801,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			return;
 		}
 
-		$title = Title::newFromText( $titles[0] );
+		$title = $titles[0];
 		$query = $queries[0];
-
-		$this->editPage( 'Page 1', '' );
-		$this->editPage( 'Page 2', '#REDIRECT [[Page 1]]' );
 
 		$str = OutputPage::buildBacklinkSubtitle( $title, $query )->text();
 
@@ -821,12 +822,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers OutputPage::getSubtitle
 	 */
 	public function testAddBacklinkSubtitle( $titles, $queries, $contains, $notContains ) {
-		$this->editPage( 'Page 1', '' );
-		$this->editPage( 'Page 2', '#REDIRECT [[Page 1]]' );
-
 		$op = $this->newInstance();
 		foreach ( $titles as $i => $unused ) {
-			$op->addBacklinkSubtitle( Title::newFromText( $titles[$i] ), $queries[$i] );
+			$op->addBacklinkSubtitle( $titles[$i], $queries[$i] );
 		}
 
 		$str = $op->getSubtitle();
@@ -841,27 +839,50 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideBacklinkSubtitle() {
+		$page1title = $this->makeMockTitle( 'Page 1', [ 'redirect' => true ] );
+		$page1ref = new PageReferenceValue( NS_MAIN, 'Page 1', PageReference::LOCAL );
+
+		$row = [
+			'page_id' => 28,
+			'page_namespace' => NS_MAIN,
+			'page_title' => 'Page 2',
+			'page_latest' => 75,
+			'page_is_redirect' => true,
+			'page_is_new' => true,
+			'page_touched' => '20200101221133',
+			'page_lang' => 'en',
+		];
+		$page2rec = new PageStoreRecord( (object)$row, PageReference::LOCAL );
+
+		$special = new PageReferenceValue( NS_SPECIAL, 'BlankPage', PageReference::LOCAL );
+
 		return [
 			[
-				[ 'Page 1' ],
+				[ $page1title ],
 				[ [] ],
 				[ 'Page 1' ],
 				[ 'redirect', 'Page 2' ],
 			],
 			[
-				[ 'Page 2' ],
+				[ $page2rec ],
 				[ [] ],
 				[ 'redirect=no' ],
 				[ 'Page 1' ],
 			],
 			[
-				[ 'Page 1' ],
+				[ $special ],
+				[ [] ],
+				[ 'Special:BlankPage' ],
+				[ 'redirect=no' ],
+			],
+			[
+				[ $page1ref ],
 				[ [ 'action' => 'edit' ] ],
 				[ 'action=edit' ],
 				[],
 			],
 			[
-				[ 'Page 1', 'Page 2' ],
+				[ $page1ref, $page2rec ],
 				[ [], [] ],
 				[ 'Page 1', 'Page 2', "<br />\n\t\t\t\t" ],
 				[],
@@ -1637,6 +1658,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideAddWikiText() {
+		$somePageRef = new PageReferenceValue( NS_TALK, 'Some page', PageReference::LOCAL );
+
 		$tests = [
 			'addWikiTextAsInterface' => [
 				'Simple wikitext' => [
@@ -1657,11 +1680,11 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				], 'With title at start' => [
 					[ '* {{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
 					"<ul><li>Some page</li></ul>\n",
-				], 'With title at start' => [
-					[ '* {{PAGENAME}}', false, Title::newFromText( 'Talk:Some page' ), false ],
+				], 'With title not at start' => [
+					[ '* {{PAGENAME}}', false, Title::newFromText( 'Talk:Some page' ) ],
 					"<p>* Some page</p>",
 				], 'Untidy input' => [
-					[ '<b>{{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
+					[ '<b>{{PAGENAME}}', true, $somePageRef ],
 					"<p><b>Some page\n</b></p>",
 				],
 			],
@@ -1677,12 +1700,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					'<p>* <b>Not a list</b></p>',
 				], 'With title at start' => [
 					[ '* {{PAGENAME}}', true, Title::newFromText( 'Talk:Some page' ) ],
-					"<ul><li>Some page</li></ul>\n",
-				], 'With title at start' => [
-					[ '* {{PAGENAME}}', false, Title::newFromText( 'Talk:Some page' ), false ],
+					"<ul><li>Some page</li></ul>",
+				], 'With title not at start' => [
+					[ '* {{PAGENAME}}', false, Title::newFromText( 'Talk:Some page' ) ],
 					"<p>* Some page</p>",
 				], 'EditPage' => [
-					[ "<div class='mw-editintro'>{{PAGENAME}}", true, Title::newFromText( 'Talk:Some page' ) ],
+					[ "<div class='mw-editintro'>{{PAGENAME}}", true, $somePageRef ],
 					'<div class="mw-editintro">' . "Some page</div>"
 				],
 			],

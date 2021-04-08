@@ -47,6 +47,7 @@ trait MockTitleTrait {
 		$title->method( 'hasFragment' )->willReturn( !empty( $props['fragment'] ) );
 		$title->method( 'getInterwiki' )->willReturn( $props['interwiki'] ?? '' );
 		$title->method( 'exists' )->willReturn( $id > 0 );
+		$title->method( 'isRedirect' )->willReturn( $props['redirect'] ?? false );
 		$title->method( 'getTouched' )->willReturn( $id ? '20200101223344' : false );
 		$title->method( 'getPageLanguage' )->willReturn( $props['language'] ?? 'qqx' );
 		$title->method( 'getContentModel' )
