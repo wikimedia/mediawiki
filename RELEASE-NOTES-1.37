@@ -31,97 +31,27 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 === New user-facing features in 1.37 ===
-* All HTML5 named entities are now accepted in wikitext.
-* Logo of MediaWiki has changed. This changes the "Powered By MediaWiki" button.
 * …
 
 === New developer features in 1.37 ===
-* Parser test files can now declare a dependency on a specific extension being
-  loaded, not just on the presence of a certain extension tag hook. This is a
-  better fit for extensions like TimedMediaHandler, which affect the output but
-  don't register parser hooks. Use `extension:Foo` in  the `!! hooks` section of
-  your parser test file to declare a dependency on the `Foo` extension being
-  loaded.
-* To expose code previously present in SpecialBlock/SpecialUnblock to other
-  parts of the code, or to extensions, the new BlockUser and UnblockUser command
-  objects were added. Use the BlockUserFactory and UnblockUserFactory services
-  to create them.
-* The hook UsersPagerDoBatchLookupsHook takes now a \Wikimedia\Rdbms\IDatabase,
-  instead of \Wikimedia\Rdbms\DBConnRef, as the first parameter.
-* MediaHandlers can now customize the formatting of the metadata they emit by
-  over-riding MediaHandler::formatTag( $key, $value ). The default for unknown
-  tags is numeric formatting; non-EXIF tags which are non-numeric should always
-  use this method to specify the desired formatting.
-* The new 'title' type can be used to validate action API and REST API inputs.
-* The new ArticleParserOptions hook allows customizing the parser options used
-  to parse wikitext for an article, based on user preferences, title, etc.
-* The new 'raw' type can be used to validate action API inputs. It bypasses the
-  Unicode NFC normalization done on inputs of type 'string', so it more suitable
-  when the input is binary or may contain deprecated Unicode sequences or
-  characters (such as U+2001) that should be passed unmodified.
-* (T260330) A new abstraction for running shell commands has been introduced,
-  called BoxedCommand. A BoxedCommand object can be obtained with
-  MediaWikiServices::getInstance()->getCommandFactory()->createBoxed().
-* ResourceLoader modules can now mark themselves as ES6-only by setting
-  `'es6' => true` in their module definition. ES6-only modules will not be
-  executed in browsers that don't support ES6, such as IE11.
 * …
 
 === External library changes in 1.37 ===
 * …
 
 ==== New external libraries ====
-* Added wikimedia/minify 2.2.1.
-* Added wikimedia/request-timeout 1.1.0.
-* Added wikimedia/shellbox 1.0.4.
-* Added WVUI 0.1.0.
 * …
 
 ===== New development-only external libraries =====
 * …
 
 ==== Changed external libraries ====
-* Updated composer/semver from 1.5.1 to 3.2.4.
-* Updated guzzlehttp/guzzle from 6.5.4 to 7.2.0.
-* Updated jquery.client from 2.0.2 to 3.0.0.
-* Updated OOUI from 0.39.3 to 0.41.3.
-* Updated pear/mail_mime from 1.10.8 to 1.10.9.
-* Updated pear/net_smtp from 1.9.1 to 1.9.2.
-* Updated pimple/pimple from 3.3.0 to 3.3.1.
-* Updated wikimedia/at-ease from 2.0.0 to 2.1.0.
-* Updated wikimedia/cldr-plural-rule-parser from 1.0.0 to 2.0.0.
-* Updated wikimedia/common-passwords from 0.2.0 to 0.3.0.
-* Updated wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1.
-* Updated wikimedia/html-formatter from 1.0.2 to 3.0.1.
-* Updated wikimedia/ip-set from 2.1.0 to 3.0.0.
-* Updated wikimedia/ip-utils from 1.0.0 to 3.0.2.
-* Updated wikimedia/less.php from 3.0.0 to 3.1.0.
-* Updated wikimedia/object-factory from 2.1.0 to 3.0.0.
-* Updated wikimedia/php-session-serializer from 1.0.7 to 2.0.0.
-* Updated wikimedia/remex-html from 2.2.0 to 2.2.2.
-* Updated wikimedia/utfnormal from 2.0.0 to 3.0.2.
-* Updated wikimedia/wait-condition-loop from 1.0.1 to 2.0.1.
-* Updated wikimedia/xmp-reader from 0.7.0 to 0.8.1.
 * …
 
 ===== Changed development-only external libraries =====
-* Updated composer/spdx-licenses from 1.5.3 to 1.5.4.
-* Updated doctrine/dbal from 2.10.2 to 3.0.0.
-* Updated doctrine/sql-formatter from 1.1.0 to 1.1.1.
-* Updated mediawiki/mediawiki-phan-config from 0.10.2 to 0.10.6.
-* Updated monolog/monolog from 1.25.3 to 2.2.0.
-* Updated nikic/php-parser from 4.4.0 to 4.10.2.
-* Updated psy/psysh from 0.10.4 to 0.10.5.
-* Updated seld/jsonlint from 1.7.1 to 1.8.3.
-* Updated symfony/yaml from ~3.4|~4.3|~5.0.5 to ~3.4|~5.1.
-* Updated wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
 * …
 
 ==== Removed external libraries ====
-* The html5shiv library has been removed, as support for Internet Explorer 8 has
-  been dropped.
-* The wikimedia/avro suggested development-only library has been removed, as the
-  support for logging in Avro format has been dropped.
 * …
 
 === Bug fixes in 1.37 ===
@@ -141,6 +71,8 @@ because of Phabricator reports.
 * …
 
 === Breaking changes in 1.37 ===
+* WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
+  Use HOLDOFF_TTL_NONE instead.
 * …
 
 === Deprecations in 1.37 ===

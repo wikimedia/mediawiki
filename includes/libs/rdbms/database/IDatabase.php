@@ -1616,22 +1616,30 @@ interface IDatabase {
 	public function serverIsReadOnly();
 
 	/**
-	 * Run a callback as soon as the current transaction commits or rolls back
+	 * Run a callback when the current transaction commits or rolls back
 	 *
-	 * An error is thrown if no transaction is pending. Queries in the function will run in
-	 * AUTOCOMMIT mode unless there are begin() calls. Callbacks must commit any transactions
-	 * that they begin.
+	 * An error is thrown if no transaction is pending.
 	 *
-	 * This is useful for combining cooperative locks and DB transactions.
+	 * When transaction round mode (DBO_TRX) is set, the callback will run at the end
+	 * of the round, just after all peer transactions COMMIT/ROLLBACK.
 	 *
-	 * Note this is called when the whole transaction is resolved. To take action immediately
-	 * when an atomic section is cancelled, use onAtomicSectionCancel().
+	 * This IDatabase instance will start off in auto-commit mode when the callback starts.
+	 * The use of other IDatabase handles from the callback should be avoided unless they are
+	 * known to be in auto-commit mode. Callbacks that create transactions via begin() or
+	 * startAtomic() must have matching calls to commit()/endAtomic().
 	 *
-	 * @note do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
+	 * Use this method only for the following purposes:
+	 *   - (a) Release of cooperative locks on resources
+	 *   - (b) Cancellation of in-proccess deferred tasks
 	 *
 	 * The callback takes the following arguments:
-	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
+	 *   - How the current atomic section (if any) or overall transaction (otherwise) ended
+	 *     (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_ROLLBACK)
 	 *   - This IDatabase instance (since 1.32)
+	 *
+	 * Callbacks will execute in the order they were enqueued.
+	 *
+	 * @note Use onAtomicSectionCancel() to take action as soon as an atomic section is cancelled
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name
@@ -1642,7 +1650,7 @@ interface IDatabase {
 	public function onTransactionResolution( callable $callback, $fname = __METHOD__ );
 
 	/**
-	 * Run a callback as soon as there is no transaction pending
+	 * Run a callback when the current transaction commits or now if there is none
 	 *
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
 	 *
@@ -1650,25 +1658,24 @@ interface IDatabase {
 	 * of the round, just after all peer transactions COMMIT. If the transaction round
 	 * is rolled back, then the callback is cancelled.
 	 *
-	 * Queries in the function will run in AUTOCOMMIT mode unless there are begin() calls.
-	 * Callbacks must commit any transactions that they begin.
+	 * This IDatabase instance will start off in auto-commit mode when the callback starts.
+	 * The use of other IDatabase handles from the callback should be avoided unless they are
+	 * known to be in auto-commit mode. Callbacks that create transactions via begin() or
+	 * startAtomic() must have matching calls to commit()/endAtomic().
 	 *
-	 * This is useful for updates to different systems or when separate transactions are needed.
-	 * For example, one might want to enqueue jobs into a system outside the database, but only
-	 * after the database is updated so that the jobs will see the data when they actually run.
-	 * It can also be used for updates that easily suffer from lock timeouts and deadlocks,
-	 * but where atomicity is not essential.
-	 *
-	 * Avoid using IDatabase instances aside from this one in the callback, unless such instances
-	 * never have IDatabase::DBO_TRX set. This keeps callbacks from interfering with one another.
-	 *
-	 * Updates will execute in the order they were enqueued.
-	 *
-	 * @note do not assume that *other* IDatabase instances will be AUTOCOMMIT mode
+	 * Use this method only for the following purposes:
+	 *   - (a) RDBMS updates, prone to lock timeouts/deadlocks, that do not require
+	 *         atomicity with respect to the updates in the current transaction (if any)
+	 *   - (b) Purges to lightweight cache services due to RDBMS updates
+	 *   - (c) Updates to secondary DBs/stores that must only commit once the updates in
+	 *         the current transaction (if any) are committed (e.g. insert user account row
+	 *         to DB1, then, initialize corresponding LDAP account)
 	 *
 	 * The callback takes the following arguments:
 	 *   - How the transaction ended (IDatabase::TRIGGER_COMMIT or IDatabase::TRIGGER_IDLE)
 	 *   - This IDatabase instance (since 1.32)
+	 *
+	 * Callbacks will execute in the order they were enqueued.
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name
@@ -1694,19 +1701,22 @@ interface IDatabase {
 	 * If there is a transaction and it is rolled back, then the callback is cancelled.
 	 *
 	 * When transaction round mode (DBO_TRX) is set, the callback will run at the end
-	 * of the round, just before all peer transactions COMMIT. If the transaction round
+	 * of the round, just after all peer transactions COMMIT. If the transaction round
 	 * is rolled back, then the callback is cancelled.
 	 *
-	 * Callbacks must not start nor commit any transactions. If no transaction is active,
-	 * then a transaction will wrap the callback.
+	 * If there is no current transaction, one will be created to wrap the callback.
+	 * Callbacks cannot use begin()/commit() to manage transactions. The use of other
+	 * IDatabase handles from the callback should be avoided.
 	 *
-	 * This is useful for updates that easily suffer from lock timeouts and deadlocks,
-	 * but where atomicity is strongly desired for these updates and some related updates.
-	 *
-	 * Updates will execute in the order they were enqueued.
+	 * Use this method only for the following purposes:
+	 *   - a) RDBMS updates, prone to lock timeouts/deadlocks, that require atomicity
+	 *        with respect to the updates in the current transaction (if any)
+	 *   - b) Purges to lightweight cache services due to RDBMS updates
 	 *
 	 * The callback takes the one argument:
 	 *   - This IDatabase instance (since 1.32)
+	 *
+	 * Callbacks will execute in the order they were enqueued.
 	 *
 	 * @param callable $callback
 	 * @param string $fname Caller name

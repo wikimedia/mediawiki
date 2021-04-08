@@ -6,11 +6,13 @@ use Wikimedia\Rdbms\DatabaseMysqli;
 use Wikimedia\Rdbms\DatabasePostgres;
 use Wikimedia\Rdbms\DatabaseSqlite;
 use Wikimedia\Rdbms\DBReadOnlyRoleError;
+use Wikimedia\Rdbms\DBTransactionStateError;
 use Wikimedia\Rdbms\DBUnexpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactorySingle;
 use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\RequestTimeout\CriticalSectionScope;
 use Wikimedia\TestingAccessWrapper;
 
 class DatabaseTest extends PHPUnit\Framework\TestCase {
@@ -873,5 +875,44 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			__METHOD__,
 			Database::QUERY_REPLICA_ROLE
 		);
+	}
+
+	/**
+	 * @covers Database::commenceCriticalSection()
+	 * @covers Database::completeCriticalSection()
+	 */
+	public function testCriticalSectionErrorSelect() {
+		$this->expectException( DBTransactionStateError::class );
+
+		$db = TestingAccessWrapper::newFromObject( $this->db );
+		try {
+			$this->corruptDbState( $db );
+		} catch ( RuntimeException $e ) {
+			$this->assertEquals( "Unexpected error", $e->getMessage() );
+		}
+
+		$db->query( "SELECT 1", __METHOD__ );
+	}
+
+	/**
+	 * @covers Database::commenceCriticalSection()
+	 * @covers Database::completeCriticalSection()
+	 */
+	public function testCriticalSectionErrorRollback() {
+		$db = TestingAccessWrapper::newFromObject( $this->db );
+		try {
+			$this->corruptDbState( $db );
+		} catch ( RuntimeException $e ) {
+			$this->assertEquals( "Unexpected error", $e->getMessage() );
+		}
+
+		$db->rollback( __METHOD__, IDatabase::FLUSHING_ALL_PEERS );
+		$this->assertTrue( true, "No exception on ROLLBACK" );
+	}
+
+	private function corruptDbState( $db ) {
+		$cs = $db->commenceCriticalSection( __METHOD__ );
+		$this->assertInstanceOf( CriticalSectionScope::class, $cs );
+		throw new RuntimeException( "Unexpected error" );
 	}
 }

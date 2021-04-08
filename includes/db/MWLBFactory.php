@@ -25,6 +25,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\ILBFactory;
+use Wikimedia\RequestTimeout\CriticalSectionProvider;
 
 /**
  * MediaWiki-specific class for generating database load balancers
@@ -66,6 +67,7 @@ abstract class MWLBFactory {
 	 * @param BagOStuff $cpStash
 	 * @param BagOStuff $srvCache
 	 * @param WANObjectCache $wanCache
+	 * @param CriticalSectionProvider $csProvider
 	 * @return array
 	 * @internal For use with service wiring
 	 */
@@ -75,7 +77,8 @@ abstract class MWLBFactory {
 		ConfiguredReadOnlyMode $readOnlyMode,
 		BagOStuff $cpStash,
 		BagOStuff $srvCache,
-		WANObjectCache $wanCache
+		WANObjectCache $wanCache,
+		CriticalSectionProvider $csProvider
 	) {
 		$options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
 
@@ -103,6 +106,7 @@ abstract class MWLBFactory {
 			'hostname' => wfHostname(),
 			'readOnlyReason' => $readOnlyMode->getReason(),
 			'defaultGroup' => $options->get( 'DBDefaultGroup' ),
+			'criticalSectionProvider' => $csProvider
 		];
 
 		$serversCheck = [];

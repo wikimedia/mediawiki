@@ -184,7 +184,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		};
 
 		$cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
-		$cache->delete( $key, $cache::HOLDOFF_NONE ); // clear persistent cache
+		$cache->delete( $key, $cache::HOLDOFF_TTL_NONE ); // clear persistent cache
 		$cache->getWithSetCallback( $key, 100, $callback, [ 'pcTTL' => 5 ] );
 		$this->assertSame( 1, $hits, "Value process cached" );
 
@@ -195,6 +195,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers WANObjectCache::getWithSetCallback
+	 * @covers WANObjectCache::makeTombstonePurgeValue
 	 */
 	public function testProcessCacheLruAndDelete() {
 		list( $cache ) = $this->newWanCache();
@@ -304,7 +305,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
 
 		$this->assertSame( 1, $innerHit, "Inner callback value cached" );
-		$cache->delete( $keyInner, $cache::HOLDOFF_NONE );
+		$cache->delete( $keyInner, $cache::HOLDOFF_TTL_NONE );
 		$mockWallClock += 1;
 
 		$cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
@@ -320,8 +321,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertSame( 1, $outerHit, "Outer callback value cached" );
 
-		$cache->delete( $keyInner, $cache::HOLDOFF_NONE );
-		$cache->delete( $keyOuter, $cache::HOLDOFF_NONE );
+		$cache->delete( $keyInner, $cache::HOLDOFF_TTL_NONE );
+		$cache->delete( $keyOuter, $cache::HOLDOFF_TTL_NONE );
 		$mockWallClock += 1;
 		$cache->clearProcessCache();
 		$cache->getWithSetCallback( $keyOuter, 100, $outerFn );
@@ -329,7 +330,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 2, $outerHit, "Outer callback value not yet cached" );
 		$this->assertSame( 3, $innerHit, "Inner callback value not yet cached" );
 
-		$cache->delete( $keyInner, $cache::HOLDOFF_NONE );
+		$cache->delete( $keyInner, $cache::HOLDOFF_TTL_NONE );
 		$mockWallClock += 1;
 		$cache->getWithSetCallback( $keyInner, 100, $innerFn, [ 'pcTTL' => 5 ] );
 
@@ -1658,6 +1659,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::delete
 	 * @covers WANObjectCache::relayDelete
 	 * @covers WANObjectCache::relayPurge
+	 * @covers WANObjectCache::makeTombstonePurgeValue
 	 */
 	public function testDelete() {
 		list( $cache ) = $this->newWanCache();
@@ -1849,7 +1851,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::resetCheckKey
 	 * @covers WANObjectCache::getCheckKeyTime
 	 * @covers WANObjectCache::getMultiCheckKeyTime
-	 * @covers WANObjectCache::makePurgeValue
+	 * @covers WANObjectCache::makeCheckKeyPurgeValue
 	 * @covers WANObjectCache::parsePurgeValue
 	 */
 	public function testTouchKeys() {

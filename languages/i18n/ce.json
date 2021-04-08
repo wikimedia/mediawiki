@@ -2910,6 +2910,7 @@
 	"feedback-useragent": "Браузер:",
 	"searchsuggest-search": "Лахар",
 	"searchsuggest-containing": "чуьраниг…",
+	"api-clientside-error-noconnect": "Таро яц сервер тӀе хоттадала. Тешна хилла, хьан Интернет ю аьлла, тӀакха юха а хьажа.",
 	"api-clientside-error-timeout": "Хьоьжу хана серверо жоп цало.",
 	"api-error-publishfailed": "Чоьхьара гӀалат: серверна хана йолу файл Ӏалашъян цаелира.",
 	"api-error-stashfailed": "Чоьхьара гӀалат: серверна хана йолу файл Ӏалашъян цаелира.",

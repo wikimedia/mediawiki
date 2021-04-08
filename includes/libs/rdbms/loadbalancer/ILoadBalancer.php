@@ -130,6 +130,7 @@ interface ILoadBalancer {
 	 *  - roundStage: STAGE_POSTCOMMIT_* class constant; for internal use [optional]
 	 *  - ownerId: integer ID of an LBFactory instance that manages this instance [optional]
 	 *  - clusterName: The logical name of the DB cluster [optional]
+	 *  - criticalSectionProvider: CriticalSectionProvider instance [optional]
 	 * @throws InvalidArgumentException
 	 */
 	public function __construct( array $params );

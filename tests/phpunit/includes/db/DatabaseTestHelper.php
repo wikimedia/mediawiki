@@ -4,6 +4,7 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\TransactionProfiler;
+use Wikimedia\RequestTimeout\RequestTimeout;
 
 /**
  * Helper for testing the methods from the Database class
@@ -70,7 +71,9 @@ class DatabaseTestHelper extends Database {
 			},
 			'deprecationLogger' => static function ( $msg ) {
 				wfWarn( $msg );
-			}
+			},
+			'criticalSectionProvider' =>
+				RequestTimeout::singleton()->createCriticalSectionProvider( 120 )
 		] );
 
 		$this->testName = $testName;
