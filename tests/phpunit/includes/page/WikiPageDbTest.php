@@ -2017,8 +2017,7 @@ more stuff
 				'page_lang' => null,
 			] ),
 			function ( WikiPage $wikiPage, self $test ) {
-				$test->assertSame(
-					'en',
+				$test->assertNull(
 					$wikiPage->getLanguage()
 				);
 			}
