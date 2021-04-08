@@ -21,7 +21,7 @@
 		"@wdio/sync": "6.1.8",
 		"api-testing": "1.3.0",
 		"dotenv": "8.2.0",
-		"eslint-config-wikimedia": "0.19.0",
+		"eslint-config-wikimedia": "0.20.0",
 		"grunt": "1.3.0",
 		"grunt-banana-checker": "0.9.0",
 		"grunt-contrib-copy": "1.0.0",

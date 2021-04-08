@@ -247,7 +247,6 @@
 		 * @return {boolean}
 		 */
 		function hasFileAPI() {
-			// eslint-disable-next-line compat/compat
 			return window.FileReader !== undefined;
 		}
 
@@ -301,7 +300,6 @@
 		 * @param {Function} callbackBinary
 		 */
 		function fetchPreview( file, callback, callbackBinary ) {
-			// eslint-disable-next-line compat/compat
 			var reader = new FileReader();
 			if ( callbackBinary && 'readAsBinaryString' in reader ) {
 				// To fetch JPEG metadata we need a binary string; start there.
