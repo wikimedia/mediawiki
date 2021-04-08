@@ -2391,14 +2391,15 @@ class HookRunner implements
 	public function onLoadExtensionSchemaUpdates( $updater ) {
 		return $this->container->run(
 			'LoadExtensionSchemaUpdates',
-			[ $updater ]
+			[ $updater ],
+			[ 'noServices' => true ]
 		);
 	}
 
-	public function onLocalFilePurgeThumbnails( $file, $archiveName ) {
+	public function onLocalFilePurgeThumbnails( $file, $archiveName, $urls ) {
 		return $this->container->run(
 			'LocalFilePurgeThumbnails',
-			[ $file, $archiveName ]
+			[ $file, $archiveName, $urls ]
 		);
 	}
 

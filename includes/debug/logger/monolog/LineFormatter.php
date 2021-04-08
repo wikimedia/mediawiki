@@ -63,7 +63,7 @@ class LineFormatter extends MonologLineFormatter {
 	/**
 	 * @inheritDoc
 	 */
-	public function format( array $record ) {
+	public function format( array $record ): string {
 		// Drop the 'private' flag from the context
 		unset( $record['context']['private'] );
 
@@ -97,9 +97,10 @@ class LineFormatter extends MonologLineFormatter {
 	 * Convert a Throwable to a string.
 	 *
 	 * @param Throwable $e
+	 * @param int $depth
 	 * @return string
 	 */
-	protected function normalizeException( $e ) {
+	protected function normalizeException( Throwable $e, int $depth = 0 ): string {
 		// Can't use typehint. Must match Monolog\Formatter\LineFormatter::normalizeException($e)
 		return $this->normalizeExceptionArray( $this->exceptionAsArray( $e ) );
 	}

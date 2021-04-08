@@ -2051,7 +2051,7 @@ class Language {
 			if ( $num >= $pow10 ) {
 				$s .= $table[$i][(int)floor( $num / $pow10 )];
 			}
-			$num = $num % $pow10;
+			$num %= $pow10;
 		}
 		return $s;
 	}
@@ -2114,7 +2114,7 @@ class Language {
 				}
 			}
 
-			$num = $num % $pow10;
+			$num %= $pow10;
 		}
 
 		$preTransformLength = count( $letters );
@@ -3795,7 +3795,6 @@ class Language {
 			if ( $tagType == 0 && $lastCh != '/' ) {
 				$openTags[] = $tag; // tag opened (didn't close itself)
 			} elseif ( $tagType == 1 ) {
-				// @phan-suppress-next-line PhanRedundantCondition
 				if ( $openTags && $tag == $openTags[count( $openTags ) - 1] ) {
 					array_pop( $openTags ); // tag closed
 				}

@@ -129,6 +129,7 @@
 			secure: true
 		} );
 
+		assert.strictEqual( jqcookie.callCount, 2 );
 		call = jqcookie.lastCall.args;
 		assert.strictEqual( call[ 0 ], 'myPrefixfoo' );
 		assert.deepEqual( call[ 2 ], {
@@ -137,6 +138,47 @@
 			path: 'myPath',
 			secure: true
 		}, 'Options (incl. expires)' );
+	} );
+
+	QUnit.test( 'set with sameSiteLegacy', function ( assert ) {
+		var lastCall, prevCall;
+
+		mw.cookie.set( 'foo1', 'bar', {
+			prefix: 'myPrefix',
+			secure: true,
+			sameSiteLegacy: true
+		} );
+		assert.strictEqual( jqcookie.callCount, 1 );
+		assert.strictEqual( jqcookie.lastCall.args[ 0 ], 'myPrefixfoo1' );
+
+		mw.cookie.set( 'foo2', 'bar', {
+			prefix: 'myPrefix',
+			secure: true,
+			sameSite: 'foo',
+			sameSiteLegacy: true
+		} );
+		assert.strictEqual( jqcookie.callCount, 2 );
+		assert.strictEqual( jqcookie.lastCall.args[ 0 ], 'myPrefixfoo2' );
+
+		mw.cookie.set( 'foo3', 'bar', {
+			prefix: 'myPrefix',
+			secure: true,
+			sameSite: 'None',
+			sameSiteLegacy: true
+		} );
+		assert.strictEqual( jqcookie.callCount, 4 );
+		lastCall = jqcookie.lastCall;
+		prevCall = jqcookie.getCall( jqcookie.callCount - 2 );
+		assert.strictEqual( prevCall.args[ 0 ], 'myPrefixfoo3' );
+		assert.strictEqual( prevCall.args[ 1 ], 'bar' );
+		assert.strictEqual( prevCall.args[ 2 ].secure, true );
+		assert.strictEqual( prevCall.args[ 2 ].sameSite, 'None' );
+		assert.strictEqual( prevCall.args[ 2 ].sameSiteLegacy, undefined );
+		assert.strictEqual( lastCall.args[ 0 ], 'myPrefixss0-foo3' );
+		assert.strictEqual( lastCall.args[ 1 ], 'bar' );
+		assert.strictEqual( lastCall.args[ 2 ].secure, true );
+		assert.strictEqual( lastCall.args[ 2 ].sameSite, undefined );
+		assert.strictEqual( lastCall.args[ 2 ].sameSiteLegacy, undefined );
 	} );
 
 	QUnit.test( 'get( key ) - no values', function ( assert ) {
@@ -182,6 +224,20 @@
 
 		key = jqcookie.lastCall.args[ 0 ];
 		assert.strictEqual( key, 'barfoo' );
+	} );
+
+	QUnit.test( 'getCrossSite( key, prefix )', function ( assert ) {
+		jqcookie.withArgs( 'barfoo' ).returns( 'x' );
+		jqcookie.withArgs( 'barss0-foo' ).returns( 'y' );
+		assert.strictEqual( mw.cookie.getCrossSite( 'foo', 'bar', 'def' ), 'x' );
+
+		jqcookie.withArgs( 'barfoo' ).returns( null );
+		jqcookie.withArgs( 'barss0-foo' ).returns( 'z' );
+		assert.strictEqual( mw.cookie.getCrossSite( 'foo', 'bar', 'def' ), 'z' );
+
+		jqcookie.withArgs( 'barfoo' ).returns( null );
+		jqcookie.withArgs( 'barss0-foo' ).returns( null );
+		assert.strictEqual( mw.cookie.getCrossSite( 'foo', 'bar', 'def' ), 'def' );
 	} );
 
 }() );

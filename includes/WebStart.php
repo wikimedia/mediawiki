@@ -93,7 +93,7 @@ if ( isset( $_SERVER['REQUEST_METHOD'] ) && $_SERVER['REQUEST_METHOD'] === 'POST
 	ignore_user_abort( true );
 }
 
-if ( !defined( 'MW_API' ) &&
+if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) &&
 	RequestContext::getMain()->getRequest()->getHeader( 'Promise-Non-Write-API-Action' )
 ) {
 	header( 'Cache-Control: no-cache' );

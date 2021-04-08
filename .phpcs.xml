@@ -267,7 +267,7 @@
 	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
-	<arg name="extensions" value="php,php5,inc,sample"/>
+	<arg name="extensions" value="php,sample"/>
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>
 	<exclude-pattern type="relative">^skins/</exclude-pattern>
 	<exclude-pattern>LocalSettings\.php</exclude-pattern>

@@ -2529,6 +2529,7 @@ class OutputPage extends ContextSource {
 
 			$redirect = $this->mRedirect;
 			$code = $this->mRedirectCode;
+			$content = '';
 
 			if ( $this->getHookRunner()->onBeforePageRedirect( $this, $redirect, $code ) ) {
 				if ( $code == '301' || $code == '303' ) {
@@ -2545,15 +2546,21 @@ class OutputPage extends ContextSource {
 				$response->header( "Content-Type: text/html; charset=utf-8" );
 				if ( $config->get( 'DebugRedirects' ) ) {
 					$url = htmlspecialchars( $redirect );
-					print "<!DOCTYPE html>\n<html>\n<head>\n<title>Redirect</title>\n</head>\n<body>\n";
-					print "<p>Location: <a href=\"$url\">$url</a></p>\n";
-					print "</body>\n</html>\n";
+					$content = "<!DOCTYPE html>\n<html>\n<head>\n"
+						. "<title>Redirect</title>\n</head>\n<body>\n"
+						. "<p>Location: <a href=\"$url\">$url</a></p>\n"
+						. "</body>\n</html>\n";
+
+					if ( !$return ) {
+						print $content;
+					}
+
 				} else {
 					$response->header( 'Location: ' . $redirect );
 				}
 			}
 
-			return $return ? '' : null;
+			return $return ? $content : null;
 		} elseif ( $this->mStatusCode ) {
 			$response->statusHeader( $this->mStatusCode );
 		}

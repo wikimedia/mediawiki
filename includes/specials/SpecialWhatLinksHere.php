@@ -179,8 +179,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 				->conds( $conds[$table] )
 				->orderBy( $fromCol )
 				->limit( 2 * $queryLimit )
-				->leftJoin( 'redirect', 'redirect', $on )
-				->join( 'page', 'page', "$fromCol = page_id" );
+				->leftJoin( 'redirect', 'redirect', $on );
 
 			return $dbr->newSelectQueryBuilder()
 				->table( $subQuery, 'temp_backlink_range' )

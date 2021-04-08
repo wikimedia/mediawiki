@@ -116,7 +116,7 @@ class IuConverter extends LanguageConverterSpecific {
 	 * It translates text into variant
 	 *
 	 * @param string $text
-	 * @param bool $toVariant
+	 * @param string $toVariant
 	 *
 	 * @return string
 	 */

@@ -177,7 +177,7 @@ class KuConverter extends LanguageConverterSpecific {
 	 *    - ommiting roman numbers
 	 *
 	 * @param string $text
-	 * @param bool $toVariant
+	 * @param string $toVariant
 	 *
 	 * @throws MWException
 	 * @return string

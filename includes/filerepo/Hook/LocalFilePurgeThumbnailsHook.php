@@ -14,9 +14,10 @@ interface LocalFilePurgeThumbnailsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param File $file
+	 * @param File $file The File of which the thumbnails are being purged
 	 * @param string $archiveName Name of an old file version or false if it's the current one
+	 * @param array $urls Urls to be purged
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onLocalFilePurgeThumbnails( $file, $archiveName );
+	public function onLocalFilePurgeThumbnails( $file, $archiveName, $urls );
 }

@@ -108,10 +108,8 @@ abstract class LanguageConverter implements ILanguageConverter {
 		global $wgDisabledVariants;
 
 		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mUcfirst', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mConvRuleTitle', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mURLVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mUserVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mHeaderVariant', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mMaxDepth = 10', '1.35', __CLASS__ );
@@ -750,7 +748,6 @@ abstract class LanguageConverter implements ILanguageConverter {
 		$noStyle = '<style.*?>.*?<\/style>(*SKIP)(*FAIL)';
 		// phpcs:ignore Generic.Files.LineLength
 		$noHtml = '<(?:[^>=]*+(?>[^>=]*+=\s*+(?:"[^"]*"|\'[^\']*\'|[^\'">\s]*+))*+[^>=]*+>|.*+)(*SKIP)(*FAIL)';
-		// @phan-suppress-next-line PhanRedundantConditionInLoop
 		while ( $startPos < $length && $continue ) {
 			$continue = preg_match(
 				// Only match -{ outside of html.

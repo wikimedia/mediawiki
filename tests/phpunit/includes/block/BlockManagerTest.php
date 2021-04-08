@@ -59,9 +59,61 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 			),
 			$services->getPermissionManager(),
 			$logger,
-			$services->getHookContainer(),
-			$services->getUserGroupManagerFactory()->getUserGroupManager()
+			$services->getHookContainer()
 		];
+	}
+
+	/**
+	 * @covers ::getUserBlock
+	 */
+	public function testGetBlock() {
+		// Reset so that hooks are called
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$permissionManager->invalidateUsersRightsCache();
+
+		// Ensure that the `UserGetRights` hook in PermissionManager is triggerred
+		// when checking if the user has `ipblock-exempt`, so that CentralAuth can
+		// grant `ipblock-exempt` via global groups. We also assert that, since the
+		// user should have `ipblock-exempt`, that the `GetUserBlock` hook is called
+		// with `$ip` as `null` since the ip should be ignored
+		$onUserGetRightsCalled = false;
+		$this->setTemporaryHook(
+			'UserGetRights',
+			function ( $user, &$rights ) use ( &$onUserGetRightsCalled ) {
+				$onUserGetRightsCalled = true;
+				$rights[] = 'ipblock-exempt';
+				return true;
+			}
+		);
+		$onGetUserBlockCalled = false;
+		$onGetUserBlockIP = false;
+		$this->setTemporaryHook(
+			'GetUserBlock',
+			function ( $user, $ip, &$block ) use ( &$onGetUserBlockCalled, &$onGetUserBlockIP ) {
+				$onGetUserBlockCalled = true;
+				$onGetUserBlockIP = $ip;
+				return true;
+			}
+		);
+
+		$blockManager = $this->getBlockManager( [] );
+		$block = $blockManager->getUserBlock(
+			$this->user,
+			$this->createMock( WebRequest::class ),
+			false
+		);
+
+		// We don't actually care about the block, just whether or not the right hooks were called
+		$this->assertTrue( $onUserGetRightsCalled, 'Extensions should be able to grant rights' );
+		$this->assertTrue(
+			$onGetUserBlockCalled,
+			'Sanity check: HookRunner::onGetUserBlock should have been called'
+		);
+		$this->assertNull(
+			$onGetUserBlockIP,
+			'The `GetUserBlock` hook should have been called with null since the user' .
+				' was granted `ipblock-exempt` via the `UserGetRights` hook'
+		);
 	}
 
 	/**

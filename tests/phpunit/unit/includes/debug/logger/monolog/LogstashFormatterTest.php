@@ -5,13 +5,13 @@ namespace MediaWiki\Logger\Monolog;
 class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideV1
-	 * @covers MediaWiki\Logger\Monolog\LogstashFormatter::formatV1
+	 * @covers \MediaWiki\Logger\Monolog\LogstashFormatter::format
 	 * @param array $record The input record.
 	 * @param array $expected Associative array of expected keys and their values.
 	 * @param array $notExpected List of keys that should not exist.
 	 */
 	public function testV1( array $record, array $expected, array $notExpected ) {
-		$formatter = new LogstashFormatter( 'app', 'system', null, null, LogstashFormatter::V1 );
+		$formatter = new LogstashFormatter( 'app', 'system', '', '', LogstashFormatter::V1 );
 		$formatted = json_decode( $formatter->format( $record ), true );
 		foreach ( $expected as $key => $value ) {
 			$this->assertArrayHasKey( $key, $formatted );
@@ -44,10 +44,10 @@ class LogstashFormatterTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers MediaWiki\Logger\Monolog\LogstashFormatter::formatV1
+	 * @covers \MediaWiki\Logger\Monolog\LogstashFormatter::format
 	 */
 	public function testV1WithPrefix() {
-		$formatter = new LogstashFormatter( 'app', 'system', null, 'ctx_', LogstashFormatter::V1 );
+		$formatter = new LogstashFormatter( 'app', 'system', '', 'ctx_', LogstashFormatter::V1 );
 		$record = [ 'extra' => [ 'url' => 1 ], 'context' => [ 'url' => 2 ] ];
 		$formatted = json_decode( $formatter->format( $record ), true );
 		$this->assertArrayHasKey( 'url', $formatted );

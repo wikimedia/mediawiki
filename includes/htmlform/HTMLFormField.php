@@ -494,7 +494,7 @@ abstract class HTMLFormField {
 	public function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = static::class;
+		$fieldType = $this->getClassName();
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = [];
 		$rowAttributes = [];
@@ -553,7 +553,7 @@ abstract class HTMLFormField {
 	public function getDiv( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = static::class;
+		$fieldType = $this->getClassName();
 		$helptext = $this->getHelpTextHtmlDiv( $this->getHelpText() );
 		$cellAttributes = [];
 		$label = $this->getLabelHtml( $cellAttributes );
@@ -622,7 +622,7 @@ abstract class HTMLFormField {
 			$infusable = false;
 		}
 
-		$fieldType = static::class;
+		$fieldType = $this->getClassName();
 		$help = $this->getHelpText();
 		$errors = $this->getErrorsRaw( $value );
 		foreach ( $errors as &$error ) {
@@ -664,6 +664,18 @@ abstract class HTMLFormField {
 		}
 
 		return $this->getFieldLayoutOOUI( $inputField, $config );
+	}
+
+	/**
+	 * Gets the non namespaced class name
+	 *
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	protected function getClassName() {
+		$name = explode( '\\', static::class );
+		return end( $name );
 	}
 
 	/**

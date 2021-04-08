@@ -888,7 +888,7 @@ CREATE TABLE /*_*/iwlinks (
   iwl_from int unsigned NOT NULL default 0,
 
   -- Interwiki prefix code of the target
-  iwl_prefix varbinary(20) NOT NULL default '',
+  iwl_prefix varbinary(32) NOT NULL default '',
 
   -- Title of the target, including namespace
   iwl_title varchar(255) binary NOT NULL default '',

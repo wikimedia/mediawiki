@@ -533,4 +533,27 @@ class MaintenanceTest extends MaintenanceBaseTestCase {
 
 		$m2->cleanupChanneled();
 	}
+
+	public function testOptionGetters() {
+		$this->assertSame(
+			false,
+			$this->maintenance->hasOption( 'somearg' ),
+			'Non existent option not found'
+		);
+		$this->assertSame(
+			'default',
+			$this->maintenance->getOption( 'somearg', 'default' ),
+			'Non existent option falls back to default'
+		);
+		$this->assertSame(
+			false,
+			$this->maintenance->hasOption( 'somearg' ),
+			'Non existent option not found after getting'
+		);
+		$this->assertSame(
+			'newdefault',
+			$this->maintenance->getOption( 'somearg', 'newdefault' ),
+			'Non existent option falls back to a new default'
+		);
+	}
 }

@@ -1,20 +1,14 @@
 <?php
 
 class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
-
-	private $installed;
-
-	protected function setUp() : void {
-		parent::setUp();
-		$this->installed = __DIR__ . "/../../../../data/composer/installed.json";
-	}
-
 	/**
 	 * @covers ComposerInstalled::__construct
 	 * @covers ComposerInstalled::getInstalledDependencies
+	 *
+	 * @dataProvider provideInstalled
 	 */
-	public function testGetInstalledDependencies() {
-		$installed = new ComposerInstalled( $this->installed );
+	public function testGetInstalledDependencies( string $location ) {
+		$installed = new ComposerInstalled( $location );
 		$this->assertEquals( [
 		'leafo/lessphp' => [
 			'version' => '0.5.0',
@@ -481,5 +475,14 @@ class ComposerInstalledTest extends PHPUnit\Framework\TestCase {
 			'description' => 'The PHP Unit Testing framework.',
 		],
 		], $installed->getInstalledDependencies() );
+	}
+
+	public function provideInstalled() : array {
+		$root = __DIR__ . '/../../../../data/composer/';
+
+		return [
+			'Composer v1' => [ $root . '/installed.json' ],
+			'Composer v2' => [ $root . '/installed-v2.json' ]
+		];
 	}
 }

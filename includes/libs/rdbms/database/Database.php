@@ -3200,12 +3200,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * USE INDEX clause. Unlikely to be useful for anything but MySQL. This
-	 * is only needed because a) MySQL must be as efficient as possible due to
-	 * its use on Wikipedia, and b) MySQL 4.0 is kind of dumb sometimes about
-	 * which index to pick. Anyway, other databases might have different
-	 * indexes on a given table. So don't bother overriding this unless you're
-	 * MySQL.
+	 * USE INDEX clause.
+	 *
+	 * This can be used as optimisation in queries that affect tables with multiple
+	 * indexes if the database does not pick the most optimal one by default.
+	 * The "right" index might vary between database backends and versions thereof,
+	 * as such in practice this is biased toward specifically improving performance
+	 * of large wiki farms that use MySQL or MariaDB (like Wikipedia).
 	 *
 	 * @stable to override
 	 * @param string $index
@@ -3216,12 +3217,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * IGNORE INDEX clause. Unlikely to be useful for anything but MySQL. This
-	 * is only needed because a) MySQL must be as efficient as possible due to
-	 * its use on Wikipedia, and b) MySQL 4.0 is kind of dumb sometimes about
-	 * which index to pick. Anyway, other databases might have different
-	 * indexes on a given table. So don't bother overriding this unless you're
-	 * MySQL.
+	 * IGNORE INDEX clause.
+	 *
+	 * The inverse of Database::useIndexClause.
 	 *
 	 * @stable to override
 	 * @param string $index

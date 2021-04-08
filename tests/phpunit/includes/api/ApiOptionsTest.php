@@ -51,7 +51,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'isAnon', 'getRequest', 'isLoggedIn', 'getName', 'getGroupMemberships', 'getEditCount',
 			'getRegistration', 'isAllowed', 'getRealName', 'getOption', 'getStubThreshold',
 			'getBoolOption', 'getEmail', 'getDatePreference', 'useRCPatrol', 'useNPPatrol',
-			'setOption', 'saveSettings', 'resetOptions', 'isRegistered'
+			'setOption', 'saveSettings', 'resetOptions', 'isRegistered', 'getTitleKey'
 		) );
 
 		// Create a new context

@@ -20,7 +20,6 @@
 
 // phpcs:disable Generic.Arrays.DisallowLongArraySyntax,PSR2.Classes.PropertyDeclaration,MediaWiki.Usage.DirUsage
 // phpcs:disable Squiz.Scope.MemberVarScope.Missing,Squiz.Scope.MethodScope.Missing
-// @phan-file-suppress PhanPluginDuplicateConditionalNullCoalescing
 /**
  * Check PHP Version, as well as for composer dependencies in entry points,
  * and display something vaguely comprehensible in the event of a totally
@@ -33,7 +32,7 @@
  * it can be compatible with PHP 4, PHP 5 and PHP 7 (without warnings).
  */
 class PHPVersionCheck {
-	/* @var string The number of the MediaWiki version used. */
+	/** @var string The number of the MediaWiki version used. If you're updating MW_VERSION in Defines.php, you must also update this value. */
 	var $mwVersion = '1.35';
 
 	/* @var array A mapping of PHP functions to PHP extensions. */
@@ -80,21 +79,58 @@ class PHPVersionCheck {
 	function checkRequiredPHPVersion() {
 		$minimumVersion = '7.3.19';
 
-		if ( version_compare( PHP_VERSION, $minimumVersion ) < 0 ) {
-			$cliText = "Error: You might be using an older PHP version (PHP " . PHP_VERSION . ").\n"
-			. "MediaWiki $this->mwVersion needs PHP $minimumVersion or higher.\n\nCheck if you "
-			. "have a newer PHP executable with a different name.\n\n";
+		/**
+		 * This is a list of known-bad ranges of PHP versions. Syntax is like SemVer – either:
+		 *
+		 *  - '1.2.3' to prohibit a single version of PHP, or
+		 *  - '1.2.3 – 1.2.5' to block a range, inclusive.
+		 *
+		 * Whitespace will be ignored.
+		 *
+		 * The key is not shown to users; use it to prompt future developers as to why this was
+		 * chosen, ideally one or more Phabricator task references.
+		 *
+		 * Remember to drop irrelevant ranges when bumping $minimumVersion.
+		 */
+		$knownBad = array(
+		);
+
+		$passes = version_compare( PHP_VERSION, $minimumVersion, '>=' );
+
+		$versionString = "PHP $minimumVersion or higher";
+
+		// Left as a programmatic check to make it easier to update.
+		if ( count( $knownBad ) ) {
+			$versionString .= ' (and not ' . implode( ', ', array_values( $knownBad ) ) . ')';
+
+			foreach ( $knownBad as $task => $range ) {
+				// As we don't have composer at this point, we have to do our own version range checking.
+				if ( strpos( $range, '-' ) ) {
+					$passes = $passes && !(
+						version_compare( PHP_VERSION, trim( strstr( $range, '-', true ) ), '>=' )
+						&& version_compare( PHP_VERSION, trim( substr( strstr( $range, '-', false ), 1 ) ), '<' )
+					);
+				} else {
+					$passes = $passes && version_compare( PHP_VERSION, trim( $range ), '<>' );
+				}
+			}
+		}
+
+		if ( !$passes ) {
+			$cliText = "Error: You are using an unsupported PHP version (PHP " . PHP_VERSION . ").\n"
+			. "MediaWiki $this->mwVersion needs $versionString.\n\nCheck if you might have a newer "
+			. "PHP executable with a different name.\n\n";
 
 			$web = array();
-			$web['intro'] = "MediaWiki $this->mwVersion requires at least PHP version $minimumVersion; "
-				. "you are using PHP " . PHP_VERSION . ".";
+			$web['intro'] = "MediaWiki $this->mwVersion requires $versionString; you are using PHP "
+				. PHP_VERSION . ".";
 
 			$web['longTitle'] = "Supported PHP versions";
 			// phpcs:disable Generic.Files.LineLength
 			$web['longHtml'] = <<<HTML
 		<p>
 			Please consider <a href="https://www.php.net/downloads.php">upgrading your copy of PHP</a>.
-			PHP versions less than v7.2.0 are no longer supported by the PHP Group and will not receive
+			PHP versions less than v7.3.0 are no longer supported by the PHP Group and will not receive
 			security or bugfix updates.
 		</p>
 		<p>
@@ -191,7 +227,7 @@ HTML;
 		$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
 
 		header( "$protocol 500 MediaWiki configuration Error" );
-		// Don't cache error pages!  They cause no end of trouble...
+		// Don't cache error pages! They cause no end of trouble...
 		header( 'Cache-control: none' );
 		header( 'Pragma: no-cache' );
 	}

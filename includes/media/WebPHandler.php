@@ -185,7 +185,6 @@ class WebPHandler extends BitmapHandler {
 	 * Decodes a lossless chunk header
 	 * @param string $header First few bytes of the header, expected to be at least 13 bytes long
 	 * @return bool|array See WebPHandler::decodeHeader
-	 * @suppress PhanTypeInvalidLeftOperandOfIntegerOp
 	 */
 	public static function decodeLosslessChunkHeader( $header ) {
 		// Bytes 0-3 are 'VP8L'

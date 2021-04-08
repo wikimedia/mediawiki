@@ -183,6 +183,14 @@ abstract class MWLBFactory {
 			// See https://www.sqlite.org/lang_transaction.html
 			// See https://www.sqlite.org/lockingv3.html#shared_lock
 			$isHttpRead = in_array( $httpMethod, [ 'GET', 'HEAD', 'OPTIONS', 'TRACE' ] );
+			if ( MW_ENTRY_POINT === 'rest' && !$isHttpRead ) {
+				// Hack to support some re-entrant invocations using sqlite
+				// See: T259685, T91820
+				$request = \MediaWiki\Rest\EntryPoint::getMainRequest();
+				if ( $request->hasHeader( 'Promise-Non-Write-API-Action' ) ) {
+					$isHttpRead = true;
+				}
+			}
 			$server += [
 				'dbDirectory' => $options->get( 'SQLiteDataDir' ),
 				'trxMode' => $isHttpRead ? 'DEFERRED' : 'IMMEDIATE'

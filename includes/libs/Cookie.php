@@ -115,7 +115,7 @@ class Cookie {
 		// Don't allow cookies for "co.uk" or "gov.uk", etc, but allow "supermarket.uk"
 		if ( strrpos( $domain, "." ) - strlen( $domain ) == -3 ) {
 			if ( ( count( $dc ) == 2 && strlen( $dc[0] ) <= 2 )
-				|| ( count( $dc ) == 3 && strlen( $dc[0] ) == "" && strlen( $dc[1] ) <= 2 ) ) {
+				|| ( count( $dc ) == 3 && strlen( $dc[0] ) == 0 && strlen( $dc[1] ) <= 2 ) ) {
 				return false;
 			}
 			if ( ( count( $dc ) == 2 || ( count( $dc ) == 3 && $dc[0] == '' ) )

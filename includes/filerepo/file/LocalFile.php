@@ -1087,22 +1087,22 @@ class LocalFile extends File {
 	 * @param string $archiveName Name of the archived file
 	 */
 	public function purgeOldThumbnails( $archiveName ) {
-		// Get a list of old thumbnails and URLs
-		$files = $this->getThumbnails( $archiveName );
+		// Get a list of old thumbnails
+		$thumbs = $this->getThumbnails( $archiveName );
 
-		// Purge any custom thumbnail caches
-		$this->hookRunner->onLocalFilePurgeThumbnails( $this, $archiveName );
+		// Delete thumbnails from storage, and prevent the directory itself from being purged
+		$dir = array_shift( $thumbs );
+		$this->purgeThumbList( $dir, $thumbs );
 
-		// Delete thumbnails
-		$dir = array_shift( $files );
-		$this->purgeThumbList( $dir, $files );
-
-		// Purge the CDN
 		$urls = [];
-		foreach ( $files as $file ) {
-			$urls[] = $this->getArchiveThumbUrl( $archiveName, $file );
+		foreach ( $thumbs as $thumb ) {
+			$urls[] = $this->getArchiveThumbUrl( $archiveName, $thumb );
 		}
 
+		// Purge any custom thumbnail caches
+		$this->hookRunner->onLocalFilePurgeThumbnails( $this, $archiveName, $urls );
+
+		// Purge the CDN
 		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
 		$hcu->purgeUrls( $urls, $hcu::PURGE_PRESEND );
 	}
@@ -1114,28 +1114,28 @@ class LocalFile extends File {
 	 * @phan-param array{forThumbRefresh?:bool} $options
 	 */
 	public function purgeThumbnails( $options = [] ) {
-		$files = $this->getThumbnails();
+		$thumbs = $this->getThumbnails();
+
+		// Delete thumbnails from storage, and prevent the directory itself from being purged
+		$dir = array_shift( $thumbs );
+		$this->purgeThumbList( $dir, $thumbs );
+
 		// Always purge all files from CDN regardless of handler filters
 		$urls = [];
-		foreach ( $files as $file ) {
-			$urls[] = $this->getThumbUrl( $file );
+		foreach ( $thumbs as $thumb ) {
+			$urls[] = $this->getThumbUrl( $thumb );
 		}
-		array_shift( $urls ); // don't purge directory
 
-		// Give media handler a chance to filter the file purge list
+		// Give the media handler a chance to filter the file purge list
 		if ( !empty( $options['forThumbRefresh'] ) ) {
 			$handler = $this->getHandler();
 			if ( $handler ) {
-				$handler->filterThumbnailPurgeList( $files, $options );
+				$handler->filterThumbnailPurgeList( $thumbs, $options );
 			}
 		}
 
 		// Purge any custom thumbnail caches
-		$this->getHookRunner()->onLocalFilePurgeThumbnails( $this, false );
-
-		// Delete thumbnails
-		$dir = array_shift( $files );
-		$this->purgeThumbList( $dir, $files );
+		$this->getHookRunner()->onLocalFilePurgeThumbnails( $this, false, $urls );
 
 		// Purge the CDN
 		$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
@@ -1188,14 +1188,14 @@ class LocalFile extends File {
 		);
 		wfDebug( __METHOD__ . ": $fileListDebug" );
 
+		if ( $this->repo->supportsSha1URLs() ) {
+			$reference = $this->getSha1();
+		} else {
+			$reference = $this->getName();
+		}
+
 		$purgeList = [];
 		foreach ( $files as $file ) {
-			if ( $this->repo->supportsSha1URLs() ) {
-				$reference = $this->getSha1();
-			} else {
-				$reference = $this->getName();
-			}
-
 			# Check that the reference (filename or sha1) is part of the thumb name
 			# This is a basic sanity check to avoid erasing unrelated directories
 			if ( strpos( $file, $reference ) !== false

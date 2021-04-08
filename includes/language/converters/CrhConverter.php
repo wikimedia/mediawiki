@@ -184,7 +184,7 @@ class CrhConverter extends LanguageConverterSpecific {
 	 *    - omitting roman numbers
 	 *
 	 * @param string $text
-	 * @param bool $toVariant
+	 * @param string $toVariant
 	 *
 	 * @throws MWException
 	 * @return string

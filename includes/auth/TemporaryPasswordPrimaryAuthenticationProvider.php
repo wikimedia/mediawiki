@@ -484,7 +484,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			if ( $this->allowRequiringEmail && !$user->getBoolOption( 'requireemail' ) ) {
 				$body .= "\n\n";
 				$url = SpecialPage::getTitleFor( 'Preferences', false, 'mw-prefsection-personal-email' )
-					->getFullURL();
+					->getCanonicalURL();
 				$body .= wfMessage( 'passwordreset-emailtext-require-email' )
 					->inLanguage( $userLanguage )
 					->params( "<$url>" )

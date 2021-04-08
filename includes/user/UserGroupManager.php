@@ -531,7 +531,12 @@ class UserGroupManager implements IDBAccessObject {
 			case APCOND_IPINRANGE:
 				return IPUtils::isInRange( $user->getRequest()->getIP(), $cond[1] );
 			case APCOND_BLOCKED:
-				return $user->getBlock() && $user->getBlock()->isSitewide();
+				// Because checking for ipblock-exempt leads back to here (thus infinite recursion),
+				// we stop checking for ipblock-exempt via here. We do this by setting the second
+				// param to true.
+				// See T270145.
+				$block = $user->getBlock( false, true );
+				return $block && $block->isSitewide();
 			case APCOND_ISBOT:
 				// TODO: Injecting permission manager will cause a cyclic dependency. T254537
 				return in_array( 'bot', MediaWikiServices::getInstance()
