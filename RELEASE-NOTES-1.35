@@ -19,7 +19,7 @@ THIS IS NOT A RELEASE YET
 * Upgrade pimple/pimple from 3.3.0 to 3.3.1 for PHP 8.0 support.
 * Upgrade seld/jsonlint from 1.7.1 to 1.8.3 for PHP 8.0 support.
 * Upgrade doctrine/dbal from 2.10.4 to 3.0.0 for PHP 8.0 support.
-* (T270734) Fix display of Special:Preferences url in password reset email.
+* (T270734) Fix display of Special:Preferences URL in password reset email.
 * (T252774, T271441) resourceloader: Give SkinModule 'features' option an
   extensible default.
 * (T271441) Unknown features shouldn't break style output.
@@ -35,16 +35,16 @@ THIS IS NOT A RELEASE YET
 * (T270852) Hooks: Map dash character to underscore when generating hook names.
 * (T271551, T270145) Fix fetching ipblock-exempt within
   BlockManager::getUserBlock.
-* PHPVersionCheck: The PHP Group only support PHP >= 7.3.0.
-* (T248925) Set empty closures in DatabaseTest to fix php8 tests.
+* PHPVersionCheck: The PHP Group only supports PHP >= 7.3.0.
+* (T248925) Set empty closures in DatabaseTest to fix PHP 8 tests.
 * (T34217) rdbms: Remove outdated MySQL 4 references and fix doc URLs.
 * (T248925) Special:Contributions reports negative namespace error on PHP 8.
 * (T248925) objectcache: Fix non-numeric string check in HashBagOStuff for
   PHP 8.
 * (T248925) Fix CacheTime::getCacheExpiry for PHP 8.
-* (T259685) Allow REST API POST handlers to opt out of mandatory sqlite locking.
+* (T259685) Allow REST API POST handlers to opt out of mandatory SQLite locking.
 * (T91820, T259685) MWLBFactory: rename magic HTTP header for opting out of
-  sqlite write lock.
+  SQLite write lock.
 * (T272326) Fix DeprecationHelperTest on PHP 8.
 * Upgrade wikimedia/less.php from 3.0.0 to 3.1.0 for PHP 8.0 support.
 * (T236639) OutputPage: Make $wgDebugRedirects work again.
@@ -60,7 +60,7 @@ THIS IS NOT A RELEASE YET
 * (T275824) Upgrade wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1 for
   Composer 2.0 support.
 * (T269293) Record all used options in metadata.
-* Allow Composer 2.0.
+* Allow usage of Composer 2.0 to install MediaWiki's dependencies.
 * (T259872) skins: Call headElement() after getTemplateData() in SkinMustache.
 * (T277009) Allow blocked users to access Special:ResetTokens.
 * (T272412) Add "Account data" section to user preferences.
@@ -78,7 +78,7 @@ THIS IS NOT A RELEASE YET
 * (T268673) maintenance: Don't create SearchUpdate in rebuildtextindex.php
   for page_namespace below 0.
 * (T246594, T270228) Mark ParserOptionsTests skipped on PHP 7.4.0-7.4.8.
-* (T268230) Use the new mediawiki logos.
+* (T268230) Switch to new MediaWiki logo by Serhio Magpie.
 * (T271735) Expand config-pingback-help, link to privacy policy in
   config-pingback.
 * Fix documentation of user-global in $wgRateLimits.
