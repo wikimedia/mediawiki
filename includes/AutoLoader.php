@@ -20,6 +20,8 @@
  * @file
  */
 
+// NO_AUTOLOAD -- file scope code, can't load self
+
 /**
  * Locations of core classes
  * Extension classes are specified with $wgAutoloadClasses
@@ -83,7 +85,7 @@ class AutoLoader {
 					$relativeClass = substr( $className, $pos + 1 );
 					// Build the expected filename, and see if it exists
 					$file = self::$psr4Namespaces[$prefix] . '/' .
-						str_replace( '\\', '/', $relativeClass ) . '.php';
+						strtr( $relativeClass, '\\', '/' ) . '.php';
 					if ( file_exists( $file ) ) {
 						$filename = $file;
 						break;
@@ -101,7 +103,8 @@ class AutoLoader {
 		}
 
 		// Make an absolute path, this improves performance by avoiding some stat calls
-		if ( substr( $filename, 0, 1 ) != '/' && substr( $filename, 1, 1 ) != ':' ) {
+		// Optimisation: use string offset access instead of substr
+		if ( $filename[0] !== '/' && $filename[1] !== ':' ) {
 			global $IP;
 			$filename = "$IP/$filename";
 		}
@@ -142,12 +145,14 @@ class AutoLoader {
 			'MediaWiki\\Edit\\' => __DIR__ . '/edit/',
 			'MediaWiki\\EditPage\\' => __DIR__ . '/editpage/',
 			'MediaWiki\\FileBackend\\LockManager\\' => __DIR__ . '/filebackend/lockmanager/',
+			'MediaWiki\\Json\\' => __DIR__ . '/json/',
 			'MediaWiki\\Http\\' => __DIR__ . '/http/',
 			'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
 			'MediaWiki\\Interwiki\\' => __DIR__ . '/interwiki/',
 			'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
 			'MediaWiki\\Logger\\' => __DIR__ . '/debug/logger/',
 			'MediaWiki\\Logger\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
+			'MediaWiki\\Mail\\' => __DIR__ . '/mail/',
 			'MediaWiki\\Page\\' => __DIR__ . '/page/',
 			'MediaWiki\\Preferences\\' => __DIR__ . '/preferences/',
 			'MediaWiki\\ResourceLoader\\' => __DIR__ . '/resourceloader/',

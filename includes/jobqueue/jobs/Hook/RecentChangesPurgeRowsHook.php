@@ -3,6 +3,9 @@
 namespace MediaWiki\Hook;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "RecentChangesPurgeRows" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -13,7 +16,7 @@ interface RecentChangesPurgeRowsHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param array $rows Deleted rows as an array of recentchanges row objects (with up to
+	 * @param \stdClass[] $rows Deleted rows as an array of recentchanges row objects (with up to
 	 *   $wgUpdateRowsPerQuery items)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */

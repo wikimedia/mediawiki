@@ -15,9 +15,9 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public static function tearDownAfterClass() : void {
-		parent::tearDownAfterClass();
 		MWDebug::deinit();
 		Wikimedia\restoreWarnings();
+		parent::tearDownAfterClass();
 	}
 
 	/**
@@ -48,6 +48,42 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 			] ],
 			MWDebug::getLog()
 		);
+	}
+
+	/**
+	 * @covers MWDebug::detectDeprecatedOverride
+	 */
+	public function testDetectDeprecatedOverride() {
+		$baseclassInstance = new TitleValue( NS_MAIN, 'Test' );
+
+		$this->assertFalse(
+			MWDebug::detectDeprecatedOverride(
+				$baseclassInstance,
+				TitleValue::class,
+				'getNamespace',
+				MW_VERSION
+			)
+		);
+
+		// create a dummy subclass that overrides a method
+		$subclassInstance = new class ( NS_MAIN, 'Test' ) extends TitleValue {
+			public function getNamespace() {
+				// never called
+				return -100;
+			}
+		};
+
+		$this->assertTrue(
+			MWDebug::detectDeprecatedOverride(
+				$subclassInstance,
+				TitleValue::class,
+				'getNamespace',
+				MW_VERSION
+			)
+		);
+
+		// A warning should have been logged
+		$this->assertCount( 1, MWDebug::getLog() );
 	}
 
 	/**

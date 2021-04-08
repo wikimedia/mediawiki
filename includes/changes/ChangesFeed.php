@@ -22,6 +22,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Feed to Special:RecentChanges and Special:RecentChangesLinked.
@@ -65,7 +66,7 @@ class ChangesFeed {
 
 	/**
 	 * Generate the feed items given a row from the database.
-	 * @param object $rows IDatabase resource with recentchanges rows
+	 * @param IResultWrapper $rows IDatabase resource with recentchanges rows
 	 * @return array
 	 * @suppress PhanTypeInvalidDimOffset False positives in the foreach
 	 */

@@ -38,7 +38,7 @@ interface IEmailer {
 	 *
 	 * @since 1.35
 	 *
-	 * @param MailAddress[] $to Array of Recipients' emails
+	 * @param MailAddress|MailAddress[] $to Array of Recipients' emails
 	 * @param MailAddress $from Sender's email
 	 * @param string $subject Email's subject.
 	 * @param string $bodyText text part of body
@@ -48,16 +48,14 @@ interface IEmailer {
 	 *     'contentType' string default 'text/plain; charset=UTF-8'
 	 *     'headers' array Extra headers to set
 	 *
-	 * @codingStandardsIgnoreStart
 	 * @phan-param array{replyTo?:MailAddress,contentType?:string,headers?:array<string,string>} $options
-	 * @codingStandardsIgnoreEnd
 	 *
 	 * @throws MWException
 	 * @throws Exception
 	 * @return StatusValue
 	 */
 	public function send(
-		array $to,
+		$to,
 		MailAddress $from,
 		string $subject,
 		string $bodyText,

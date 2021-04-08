@@ -9,6 +9,7 @@ use ApiUsageException;
 use MediaWiki\Message\Converter as MessageConverter;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\ParamValidator\TypeDef\TagsDef;
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Message;
 use Wikimedia\Message\DataMessageValue;
@@ -60,6 +61,9 @@ class ApiParamValidator {
 			] ],
 		],
 		'password' => [ 'class' => PasswordDef::class ],
+		// Unlike 'string', the 'raw' type will not be subject to Unicode
+		// NFC normalization.
+		'raw' => [ 'class' => StringDef::class ],
 		'string' => [ 'class' => StringDef::class ],
 		'submodule' => [ 'class' => SubmoduleDef::class ],
 		'tags' => [ 'class' => TagsDef::class ],
@@ -70,7 +74,14 @@ class ApiParamValidator {
 				'defaultFormat' => TS_MW,
 			] ],
 		],
-		'user' => [ 'class' => UserDef::class ],
+		'title' => [
+			'class' => TitleDef::class,
+			'services' => [ 'TitleFactory' ],
+		],
+		'user' => [
+			'class' => UserDef::class,
+			'services' => [ 'UserFactory', 'TitleFactory', 'UserNameUtils' ]
+		],
 		'upload' => [ 'class' => UploadDef::class ],
 	];
 
@@ -299,7 +310,7 @@ class ApiParamValidator {
 				}
 
 				$keys = implode( '|', array_map(
-					function ( $key ) {
+					static function ( $key ) {
 						return preg_quote( $key, '/' );
 					},
 					array_keys( $settings[ApiBase::PARAM_TEMPLATE_VARS] )
@@ -322,7 +333,7 @@ class ApiParamValidator {
 	 * @param ValidationException $ex
 	 * @throws ApiUsageException always
 	 */
-	private function convertValidationException( ApiBase $module, ValidationException $ex ) : array {
+	private function convertValidationException( ApiBase $module, ValidationException $ex ) {
 		$mv = $ex->getFailureMessage();
 		throw ApiUsageException::newWithMessage(
 			$module,

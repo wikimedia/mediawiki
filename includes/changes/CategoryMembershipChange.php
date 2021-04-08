@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Helper class for category membership changes
@@ -153,7 +154,7 @@ class CategoryMembershipChange {
 	/**
 	 * @param string $timestamp Timestamp of the recent change to occur in TS_MW format
 	 * @param Title $categoryTitle Title of the category a page is being added to or removed from
-	 * @param User|null $user User object of the user that made the change
+	 * @param UserIdentity|null $user User object of the user that made the change
 	 * @param string $comment Change summary
 	 * @param Title $pageTitle Title of the page that is being added or removed
 	 * @param string $lastTimestamp Parent revision timestamp of this change in TS_MW format
@@ -165,7 +166,7 @@ class CategoryMembershipChange {
 	private function notifyCategorization(
 		$timestamp,
 		Title $categoryTitle,
-		?User $user,
+		?UserIdentity $user,
 		$comment,
 		Title $pageTitle,
 		$lastTimestamp,
@@ -229,24 +230,26 @@ class CategoryMembershipChange {
 	 * False will be returned if the user name specified in the
 	 * 'autochange-username' message is invalid.
 	 *
-	 * @return User|bool
+	 * @return UserIdentity|null
 	 */
-	private function getUser() {
+	private function getUser(): ?UserIdentity {
 		if ( $this->revision ) {
-			$userIdentity = $this->revision->getUser( RevisionRecord::RAW );
-			if ( $userIdentity ) {
-				return User::newFromIdentity( $userIdentity );
+			$user = $this->revision->getUser( RevisionRecord::RAW );
+			if ( $user ) {
+				return $user;
 			}
 		}
 
 		$username = wfMessage( 'autochange-username' )->inContentLanguage()->text();
+
+		// TODO: use User::newSystemUser
 		$user = User::newFromName( $username );
 		# User::newFromName() can return false on a badly configured wiki.
-		if ( $user && !$user->isLoggedIn() ) {
+		if ( $user && !$user->isRegistered() ) {
 			$user->addToDatabase();
 		}
 
-		return $user;
+		return $user ?: null;
 	}
 
 	/**

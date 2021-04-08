@@ -56,6 +56,7 @@ $namespaceAliases = [
 	'Maota'                 => NS_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'PanggunoAktip', 'Pangguno_aktip' ],
 	'Allmessages'               => [ 'PasanSistim', 'Pasan_sistim' ],
@@ -64,6 +65,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'JudulBuruak', 'Judul_indak_rancak' ],
 	'Blankpage'                 => [ 'LamanKosong', 'Laman_kosong' ],
 	'Block'                     => [ 'Sakek', 'IPkanaiSakek', 'PanggunoTasakek' ],
+	'BlockList'                 => [ 'DaptaSakek', 'Dapta_pemblokiran', 'Dapta_IP_disakek' ],
 	'Booksources'               => [ 'SumberBuku', 'Sumber_buku' ],
 	'BrokenRedirects'           => [ 'PangaliahanRusak', 'Pangaliahan_rusak' ],
 	'Categories'                => [ 'Kategori' ],
@@ -85,7 +87,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Impor' ],
 	'Invalidateemail'           => [ 'BatalSurel', 'Batalan_surel' ],
 	'JavaScriptTest'            => [ 'TesSkripJava', 'Tes_skrip_Java' ],
-	'BlockList'                 => [ 'DaptaSakek', 'Dapta_pemblokiran', 'Dapta_IP_disakek' ],
 	'LinkSearch'                => [ 'CariPautan', 'Cari_pautan' ],
 	'Listadmins'                => [ 'DaptaPanguruih', 'Dapta_panguruih' ],
 	'Listbots'                  => [ 'DaptaBot' ],
@@ -153,9 +154,10 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'InterwikiIndakAdo' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ALIAH', '#ALIH', '#REDIRECT' ],
 	'pagesincategory_all'       => [ '0', 'sado', 'semua', 'all' ],
-	'pagesincategory_pages'     => [ '0', 'laman', 'halaman', 'pages' ],
 	'pagesincategory_files'     => [ '0', 'berkas', 'files' ],
+	'pagesincategory_pages'     => [ '0', 'laman', 'halaman', 'pages' ],
+	'redirect'                  => [ '0', '#ALIAH', '#ALIH', '#REDIRECT' ],
 ];

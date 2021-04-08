@@ -62,9 +62,9 @@ class CoreMagicVariables {
 			case '!':
 				return '|';
 			case 'currentmonth':
-				return $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'm' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'm' ) );
 			case 'currentmonth1':
-				return $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'n' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'n' ) );
 			case 'currentmonthname':
 				return $pageLang->getMonthName( MWTimestamp::getInstance( $ts )->format( 'n' ) );
 			case 'currentmonthnamegen':
@@ -72,13 +72,13 @@ class CoreMagicVariables {
 			case 'currentmonthabbrev':
 				return $pageLang->getMonthAbbreviation( MWTimestamp::getInstance( $ts )->format( 'n' ) );
 			case 'currentday':
-				return $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'j' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'j' ) );
 			case 'currentday2':
-				return $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'd' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'd' ) );
 			case 'localmonth':
-				return $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'm' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'm' ) );
 			case 'localmonth1':
-				return $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'n' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
 			case 'localmonthname':
 				return $pageLang->getMonthName( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
 			case 'localmonthnamegen':
@@ -86,9 +86,9 @@ class CoreMagicVariables {
 			case 'localmonthabbrev':
 				return $pageLang->getMonthAbbreviation( MWTimestamp::getLocalInstance( $ts )->format( 'n' ) );
 			case 'localday':
-				return $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'j' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'j' ) );
 			case 'localday2':
-				return $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'd' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'd' ) );
 			case 'pagename':
 				return wfEscapeWikiText( $title->getText() );
 			case 'pagenamee':
@@ -236,11 +236,11 @@ class CoreMagicVariables {
 			case 'currentdayname':
 				return $pageLang->getWeekdayName( (int)MWTimestamp::getInstance( $ts )->format( 'w' ) + 1 );
 			case 'currentyear':
-				return $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'Y' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'Y' ) );
 			case 'currenttime':
 				return $pageLang->time( wfTimestamp( TS_MW, $ts ), false, false );
 			case 'currenthour':
-				return $pageLang->formatNum( MWTimestamp::getInstance( $ts )->format( 'H' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getInstance( $ts )->format( 'H' ) );
 			case 'currentweek':
 				// @bug T6594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding
@@ -252,7 +252,7 @@ class CoreMagicVariables {
 					(int)MWTimestamp::getLocalInstance( $ts )->format( 'w' ) + 1
 				);
 			case 'localyear':
-				return $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'Y' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'Y' ) );
 			case 'localtime':
 				return $pageLang->time(
 					MWTimestamp::getLocalInstance( $ts )->format( 'YmdHis' ),
@@ -260,7 +260,7 @@ class CoreMagicVariables {
 					false
 				);
 			case 'localhour':
-				return $pageLang->formatNum( MWTimestamp::getLocalInstance( $ts )->format( 'H' ), true );
+				return $pageLang->formatNumNoSeparators( MWTimestamp::getLocalInstance( $ts )->format( 'H' ) );
 			case 'localweek':
 				// @bug T6594 PHP5 has it zero padded, PHP4 does not, cast to
 				// int to remove the padding

@@ -6,6 +6,9 @@ use IContextSource;
 use MediaWiki\Linker\LinkRenderer;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "HistoryPageToolLinks" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -20,5 +23,5 @@ interface HistoryPageToolLinksHook {
 	 * @param string[] &$links Array of HTML strings
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onHistoryPageToolLinks( $context, $linkRenderer, &$links );
+	public function onHistoryPageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links );
 }

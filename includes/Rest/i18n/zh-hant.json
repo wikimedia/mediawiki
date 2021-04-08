@@ -11,9 +11,12 @@
 	"rest-nonexistent-title": "指定的標題「$1」不存在",
 	"rest-nonexistent-title-revision": "指定的修訂（$1）不存在指定頁面（$2）",
 	"rest-nonexistent-revision": "指定的修訂（$1）不存在",
+	"rest-nonexistent-user": "指定的使用者（$1）不存在。",
+	"rest-invalid-user": "指定的使用者名稱（$1）無效。",
 	"rest-permission-denied-anon": "不可被匿名使用者存取",
 	"rest-permission-denied-title": "使用者沒有權限來讀取標題（$1）",
 	"rest-permission-denied-revision": "使用者沒有權限來存取請求修訂（$1）",
+	"rest-resource-limit-exceeded": "資源限制超出處理請求的範圍。",
 	"rest-pagehistory-incompatible-params": "參數「older_than」與「newer_than」不可同時指定",
 	"rest-pagehistory-param-range-error": "修訂 ID 需大於 0",
 	"rest-pagehistory-timestamp-error": "指定的修訂（$1）無法取得時間戳記",
@@ -37,5 +40,6 @@
 	"rest-bad-content-model": "錯誤內容模組：$1",
 	"rest-update-cannot-create-page": "頁面「$1」已存在，因此無法建立。要更新現有的頁面，請在請求正文中「latest」鍵的結構裡提供基本修訂 ID。",
 	"rest-extraneous-csrf-token": "發現到外來的 CSRF 權杖。當使用像是 OAuth 這種可抵擋 CSRF 攻擊的驗證機制時，不可使用 CSRF 權杖。",
-	"rest-cannot-load-file": "標題「$1」的檔案無法載入。"
+	"rest-cannot-load-file": "標題「$1」的檔案無法載入。",
+	"rest-cross-origin-anon-write": "不允許匿名跨來源寫入請求"
 }

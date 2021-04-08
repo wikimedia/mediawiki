@@ -4,9 +4,11 @@
 // which makes this file importable by all less files via `@import 'mediawiki.mixins.less';`.
 //
 // The mixins included below are considered a public interface for MediaWiki extensions.
-// The signatures of parametrized mixins should be kept as stable as possible.
+// The signatures of parameterized mixins should be kept as stable as possible.
 //
 // See <http://lesscss.org/#-mixins> for more information about how to write mixins.
+
+/* stylelint-disable selector-class-pattern */
 
 .background-image( @url ) {
 	background-image: url( @url );
@@ -14,36 +16,14 @@
 
 .horizontal-gradient( @startColor: #808080, @endColor: #fff, @startPos: 0, @endPos: 100% ) {
 	background-color: average( @startColor, @endColor );
-	background-image: -webkit-gradient( linear, left top, right top, color-stop( @startPos, @startColor ), color-stop( @endPos, @endColor ) );
-	background-image: -webkit-linear-gradient( left, @startColor @startPos, @endColor @endPos );
-	background-image: -moz-linear-gradient( left, @startColor @startPos, @endColor @endPos );
+	background-image: -webkit-linear-gradient( left, @startColor @startPos, @endColor @endPos ); // Android 4.3
 	background-image: linear-gradient( to right, @startColor @startPos, @endColor @endPos );
 }
 
 .vertical-gradient( @startColor: #808080, @endColor: #fff, @startPos: 0, @endPos: 100% ) {
 	background-color: average( @startColor, @endColor );
-	background-image: -webkit-gradient( linear, right top, right bottom, color-stop( @startPos, @startColor ), color-stop( @endPos, @endColor ) );
-	background-image: -webkit-linear-gradient( top, @startColor @startPos, @endColor @endPos );
-	background-image: -moz-linear-gradient( top, @startColor @startPos, @endColor @endPos );
+	background-image: -webkit-linear-gradient( top, @startColor @startPos, @endColor @endPos ); // Android 4.3
 	background-image: linear-gradient( to bottom, @startColor @startPos, @endColor @endPos );
-}
-
-// Deprecated in MW 1.35, see T248062. To be removed in MW 1.36.
-// Use `background-image` property only with SVG without fallback instead.
-//
-// SVG support using a transparent gradient to guarantee cross-browser
-// compatibility (browsers able to understand gradient syntax support also SVG).
-// http://pauginer.tumblr.com/post/36614680636/invisible-gradient-technique
-.background-image-svg( @svg, @fallback ) {
-	background-image: url( @fallback );
-	background-image: linear-gradient( transparent, transparent ), url( @svg );
-}
-
-// Deprecated in MW 1.35, see T248047. To be removed in MW 1.36.
-// Shorthand for background-image-svg. Use if your PNG and SVG have the same name
-// and only if you cannot use ResourceLoaderImage module for some particular reason.
-.background-image-svg-quick( @url ) {
-	.background-image-svg( ~'@{url}.svg', ~'@{url}.png' );
 }
 
 .list-style-image( @url ) {
@@ -63,9 +43,13 @@
 	}
 
 	// CSS3 hyphenation
-	-webkit-hyphens: @value; // Safari 5.1+, iOS 4.3+
+	// Chrome < 55 and Android 4.0 Browser support "-webkit-hyphens: none",
+	// but not the "auto" property. It is advisable to set the @lang attribute
+	// on the HTML element to enable hyphenation support and improve accessibility.
+	// Chrome 55-87 only supports `auto` exclusively on Mac platform.
+	-webkit-hyphens: @value; // Safari 5.1+, iOS 4.2+
 	-moz-hyphens: @value;    // Firefox 6-42
-	-ms-hyphens: @value;     // IE 10-11, Edge 12+
+	-ms-hyphens: @value;     // IE 10-11, Edge 12-18
 	hyphens: @value;         // Firefox 43+, Chrome 55+, Android 62+, UC Browser 11.8+, Samsung 6.2+
 }
 
@@ -87,21 +71,18 @@
 
 .transform( @value ) {
 	-webkit-transform: @value; // Safari 3.1-8.0, iOS 3.2-8.4, Android 2.1-4.4.4
-	-moz-transform: @value; // Firefox 3.5-15
 	-ms-transform: @value; // IE 9
 	transform: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
 .transform-origin( @value ) {
 	-webkit-transform-origin: @value; // Chrome 4-35, Safari 3.1-8.0, iOS 3.2-8.4, Op 15-22, Android 2.1-4.4.4
-	-moz-transform-origin: @value; // Firefox 3.5-15
 	-ms-transform-origin: @value; // IE 9
 	transform-origin: @value; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 23+, iOS 9.2+, Android 5+
 }
 
 .transition( @value ) {
 	-webkit-transition: @value; // Safari 3.1-6.0, iOS 3.2-6.1, Android 2.1-4.3
-	-moz-transition: @value; // Firefox 4-15
 	transition: @value; // Chrome 26+, Firefox 16+, IE 10+, Safari 6.1+, Opera 12.1+, iOS 7+, Android 4.4+
 }
 
@@ -114,18 +95,16 @@
 .transition-transform( ... ) {
 	-webkit-backface-visibility: hidden; // Older Webkit browsers: Promote element to a composite layer & involve the GPU
 	-webkit-transition: -webkit-transform @arguments; // Safari 3.1-8, iOS 3.2-8.4, Android 2.1-4.4.4
-	-moz-transition: -moz-transform @arguments; // Firefox 4-15 for `-moz-transition`
 	transition: transform @arguments; // Chrome 36+, Firefox 16+, IE 10+, Safari 9+, Opera 12.1+, iOS 9.2+, Android 36+
 }
 
 .box-sizing( @value ) {
-	-webkit-box-sizing: @value; // Safari 3.1-5.0, iOS 3.2-4.3, Android 2.1-3.0
 	-moz-box-sizing: @value; // Firefox 4-28,
 	box-sizing: @value; // Chrome 10+, Firefox 29+, IE 8+, Safari 5.1+, Opera 10+, iOS 5+, Android 4+
 }
 
+// Deprecated in MW v1.36.0, use unprefixed now.
 .box-shadow( @value ) {
-	-webkit-box-shadow: @value; // Safari 3.1-5.0, iOS 3.2-4.3, Android 2.1-3.0
 	box-shadow: @value; // Chrome 10+, Firefox 4+, IE 9+, Safari 5.1+, Opera 11+, iOS 5+, Android 4+
 }
 
@@ -136,27 +115,23 @@
 }
 
 .column-width( @value ) {
-	-webkit-column-width: @value; // Chrome Any, Safari 3+, Opera 15+
-	-moz-column-width: @value; // Firefox 1.5+
-	column-width: @value; // IE 10+, Opera 11.1-12.1
+	-webkit-column-width: @value; // Chrome 4-49, Safari 3.2-8.4
+	-moz-column-width: @value; // Firefox 1.5-49
+	column-width: @value; // IE 10+, Opera 11.5+
 }
 
 .column-break-inside-avoid() {
-	-webkit-column-break-inside: avoid; // Chrome Any, Safari 3+, Opera 15+
-	page-break-inside: avoid; // Firefox 1.5+
+	-webkit-column-break-inside: avoid; // Chrome 4-49, Safari 3-8.4, Opera 15-36
+	page-break-inside: avoid; // Firefox 1.5-51
 	break-inside: avoid-column; // IE 10+, Opera 11.1-12.1
 }
 
 .flex-display( @display: flex ) {
-	display: ~'-webkit-@{display}'; // iOS 6-, Safari 3.1-6
-	display: ~'-moz-@{display}'; // Firefox 21-
 	display: ~'-ms-@{display}box'; // IE 10
 	display: @display;
 }
 
 .flex-wrap( @wrap: wrap ) {
-	-webkit-flex-wrap: @wrap; // iOS 6-, Safari 3.1-6
-	-moz-flex-wrap: @wrap; // Firefox 21-
 	-ms-flex-wrap: @wrap; // IE 10
 	flex-wrap: @wrap;
 }
@@ -209,9 +184,9 @@
 	}
 }
 
-/* stylelint-disable selector-no-vendor-prefix, at-rule-no-unknown */
+/* stylelint-disable selector-no-vendor-prefix */
 .mixin-placeholder( @rules ) {
-	// WebKit, Blink, Edge
+	// Chrome 4-56, WebKit, Blink, Edge 12-18
 	&::-webkit-input-placeholder {
 		@rules();
 	}
@@ -219,12 +194,8 @@
 	&:-ms-input-placeholder {
 		@rules();
 	}
-	// Firefox 19-
+	// Firefox 19-50
 	&::-moz-placeholder {
-		@rules();
-	}
-	// Firefox 4-18
-	&:-moz-placeholder {
 		@rules();
 	}
 	// W3C Standard Selectors Level 4
@@ -232,7 +203,7 @@
 		@rules();
 	}
 }
-/* stylelint-enable selector-no-vendor-prefix, at-rule-no-unknown */
+/* stylelint-enable selector-no-vendor-prefix */
 
 // Screen Reader Helper Mixin
 .mixin-screen-reader-text() {

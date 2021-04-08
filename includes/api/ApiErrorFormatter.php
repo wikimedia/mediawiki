@@ -269,7 +269,7 @@ class ApiErrorFormatter {
 			return [];
 		}
 
-		$result = new ApiResult( 1e6 );
+		$result = new ApiResult( 1000000 );
 		$formatter = new ApiErrorFormatter(
 			$result, $this->lang, $format ?: $this->format, $this->useDB
 		);

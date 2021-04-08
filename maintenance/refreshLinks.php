@@ -63,20 +63,23 @@ class RefreshLinks extends Maintenance {
 		$start = (int)$this->getArg( 0 ) ?: null;
 		$end = (int)$this->getOption( 'e' ) ?: null;
 		$dfnChunkSize = (int)$this->getOption( 'dfn-chunk-size', 100000 );
+
 		$ns = $this->getOption( 'namespace' );
 		if ( $ns === null ) {
 			$this->namespace = false;
 		} else {
 			$this->namespace = (int)$ns;
 		}
-		if ( ( $category = $this->getOption( 'category', false ) ) !== false ) {
+
+		if ( $this->hasOption( 'category' ) ) {
+			$category = $this->getOption( 'category' );
 			$title = Title::makeTitleSafe( NS_CATEGORY, $category );
 			if ( !$title ) {
 				$this->fatalError( "'$category' is an invalid category name!\n" );
 			}
 			$this->refreshCategory( $title );
-		} elseif ( ( $category = $this->getOption( 'tracking-category', false ) ) !== false ) {
-			$this->refreshTrackingCategory( $category );
+		} elseif ( $this->hasOption( 'tracking-category' ) ) {
+			$this->refreshTrackingCategory( $this->getOption( 'trackingcategory' ) );
 		} elseif ( !$this->hasOption( 'dfn-only' ) ) {
 			$new = $this->hasOption( 'new-only' );
 			$redir = $this->hasOption( 'redirects-only' );
@@ -216,7 +219,7 @@ class RefreshLinks extends Maintenance {
 	 * @param int $id The page ID to check
 	 */
 	private function fixRedirect( $id ) {
-		$page = WikiPage::newFromID( $id );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $id );
 		$dbw = $this->getDB( DB_MASTER );
 
 		if ( $page === null ) {
@@ -259,9 +262,10 @@ class RefreshLinks extends Maintenance {
 	 * @param int|bool $ns Only fix links if it is in this namespace
 	 */
 	public static function fixLinksFromArticle( $id, $ns = false ) {
-		$page = WikiPage::newFromID( $id );
+		$services = MediaWikiServices::getInstance();
+		$page = $services->getWikiPageFactory()->newFromID( $id );
 
-		MediaWikiServices::getInstance()->getLinkCache()->clear();
+		$services->getLinkCache()->clear();
 
 		if ( $page === null ) {
 			return;
@@ -451,7 +455,7 @@ class RefreshLinks extends Maintenance {
 		do {
 			$finalConds = $conds;
 			$timestamp = $dbr->addQuotes( $timestamp );
-			$finalConds [] =
+			$finalConds[] =
 				"(cl_timestamp > $timestamp OR (cl_timestamp = $timestamp AND cl_from > $lastId))";
 			$res = $dbr->select( [ 'page', 'categorylinks' ],
 				[ 'page_id', 'cl_timestamp' ],

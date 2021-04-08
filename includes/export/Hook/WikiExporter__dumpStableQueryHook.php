@@ -4,6 +4,9 @@ namespace MediaWiki\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "WikiExporter::dumpStableQuery" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

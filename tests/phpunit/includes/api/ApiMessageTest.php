@@ -27,33 +27,26 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ApiMessageTrait
+	 * @dataProvider provideCodeDefaults
 	 */
-	public function testCodeDefaults() {
-		$msg = new ApiMessage( 'foo' );
-		$this->assertSame( 'foo', $msg->getApiCode() );
+	public function testCodeDefaults( $msg, $expectedCode ) {
+		$apiMessage = new ApiMessage( $msg );
+		$this->assertSame( $expectedCode, $apiMessage->getApiCode() );
+	}
 
-		$msg = new ApiMessage( 'apierror-bar' );
-		$this->assertSame( 'bar', $msg->getApiCode() );
-
-		$msg = new ApiMessage( 'apiwarn-baz' );
-		$this->assertSame( 'baz', $msg->getApiCode() );
-
-		// Weird "message key"
-		$msg = new ApiMessage( "<foo> bar\nbaz" );
-		$this->assertSame( '_foo__bar_baz', $msg->getApiCode() );
-
-		// BC case
-		$msg = new ApiMessage( 'actionthrottledtext' );
-		$this->assertSame( 'ratelimited', $msg->getApiCode() );
-
-		$msg = new ApiMessage( [ 'apierror-missingparam', 'param' ] );
-		$this->assertSame( 'noparam', $msg->getApiCode() );
+	public function provideCodeDefaults() {
+		// $msg, $expectedCode
+		yield 'foo' => [ 'foo', 'foo' ];
+		yield 'apierror prefix' => [ 'apierror-bar', 'bar' ];
+		yield 'apiwarn prefix' => [ 'apiwarn-baz', 'baz' ];
+		yield 'Weird "message key"' => [ "<foo> bar\nbaz", '_foo__bar_baz' ];
+		yield 'BC string' => [ 'actionthrottledtext', 'ratelimited' ];
+		yield 'array' => [ [ 'apierror-missingparam', 'param' ], 'noparam' ];
 	}
 
 	/**
 	 * @covers ApiMessageTrait
 	 * @dataProvider provideInvalidCode
-	 * @param mixed $code
 	 */
 	public function testInvalidCode( $code ) {
 		$msg = new ApiMessage( 'foo' );

@@ -58,7 +58,7 @@ abstract class ImageQueryPage extends QueryPage {
 				$i++;
 				$namespace = $row->namespace ?? NS_FILE;
 				$title = Title::makeTitleSafe( $namespace, $row->title );
-				if ( $title instanceof Title && $title->getNamespace() == NS_FILE ) {
+				if ( $title instanceof Title && $title->getNamespace() === NS_FILE ) {
 					$gallery->add( $title, $this->getCellHtml( $row ) );
 				}
 				if ( $i === $num ) {
@@ -74,7 +74,7 @@ abstract class ImageQueryPage extends QueryPage {
 	 * @stable to override
 	 *
 	 * @param Skin $skin
-	 * @param object $result
+	 * @param stdClass $result
 	 *
 	 * @return bool|string
 	 */
@@ -87,7 +87,7 @@ abstract class ImageQueryPage extends QueryPage {
 	 *
 	 * @stable to override
 	 *
-	 * @param object $row Result row
+	 * @param stdClass $row Result row
 	 * @return string
 	 */
 	protected function getCellHtml( $row ) {

@@ -7,6 +7,9 @@ use DeferrableUpdate;
 use WikiPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "WikiPageDeletionUpdates" to register handlers implementing this interface.
+ *
  * @deprecated since 1.32 Use PageDeletionDataUpdates or override
  *   ContentHandler::getDeletionDataUpdates instead
  * @ingroup Hooks

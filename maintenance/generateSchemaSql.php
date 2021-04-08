@@ -60,13 +60,21 @@ class GenerateSchemaSql extends Maintenance {
 
 	public function execute() {
 		global $IP;
+		$platform = $this->getOption( 'type', 'mysql' );
 		$jsonPath = $this->getOption( 'json', __DIR__ . '/tables.json' );
-		$relativeJsonPath = str_replace( "$IP/", '', $jsonPath );
+		$relativeJsonPath = str_replace(
+			[ "$IP/extensions/", "$IP/" ],
+			'',
+			$jsonPath
+		);
 		$sqlPath = $this->getOption( 'sql', __DIR__ . '/tables-generated.sql' );
 		$abstractSchema = json_decode( file_get_contents( $jsonPath ), true );
-		$schemaBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaBuilder(
-			$this->getOption( 'type', 'mysql' )
-		);
+		$schemaBuilder = ( new DoctrineSchemaBuilderFactory() )->getSchemaBuilder( $platform );
+
+		if ( $abstractSchema === null ) {
+			$this->fatalError( "'$jsonPath' seems to be invalid json. Check the syntax and try again!" );
+		}
+
 		foreach ( $abstractSchema as $table ) {
 			$schemaBuilder->addTable( $table );
 		}
@@ -78,35 +86,43 @@ class GenerateSchemaSql extends Maintenance {
 		$tables = $schemaBuilder->getSql();
 		if ( $tables !== [] ) {
 			// Temporary
-			$sql = $sql . implode( ";\n\n", $tables ) . ';';
+			$sql .= implode( ";\n\n", $tables ) . ';';
 			$sql = ( new SqlFormatter( new NullHighlighter() ) )->format( $sql );
 		}
 
 		// Postgres hacks
-		if ( $this->getOption( 'type', 'mysql' ) === 'postgres' ) {
-			// Remove table prefixes from Postgres schema, people should not set it
-			// but better safe than sorry.
-			$sql = str_replace( "\n/*_*/\n", ' ', $sql );
+		if ( $platform === 'postgres' ) {
+			// FIXME: Fix a lot of weird formatting issues caused by
+			// presence of partial index's WHERE clause, this should probably
+			// be done in some better way, but for now this can work temporarily
+			$sql = str_replace(
+				[ "WHERE\n ", "\n  /*_*/\n  ", "    ", "  );", "KEY(\n  " ],
+				[ "WHERE", ' ', "  ", ');', "KEY(\n    " ],
+				$sql
+			);
 
 			// MySQL goes with varbinary for collation reasons, but postgres can't
 			// properly understand BYTEA type and works just fine with TEXT type
 			// FIXME: This should be fixed at some point (T257755)
 			$sql = str_replace( "BYTEA", 'TEXT', $sql );
 		}
+
 		// Until the linting issue is resolved
 		// https://github.com/doctrine/sql-formatter/issues/53
 		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );
-		$sql = str_replace( "; CREATE ", ";\nCREATE ", $sql );
+		$sql = str_replace( "; CREATE ", ";\n\nCREATE ", $sql );
+		$sql = str_replace( ";\n\nCREATE TABLE ", ";\n\n\nCREATE TABLE ", $sql );
 		$sql = str_replace(
 			"\n" . '/*$wgDBTableOptions*/' . ";",
-			' /*$wgDBTableOptions*/;' . "\n",
+			' /*$wgDBTableOptions*/;',
 			$sql
 		);
 		$sql = str_replace(
 			"\n" . '/*$wgDBTableOptions*/' . "\n;",
-			' /*$wgDBTableOptions*/;' . "\n",
+			' /*$wgDBTableOptions*/;',
 			$sql
 		);
+		$sql .= "\n";
 
 		file_put_contents( $sqlPath, $sql );
 	}

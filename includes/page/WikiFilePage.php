@@ -134,7 +134,7 @@ class WikiFilePage extends WikiPage {
 	}
 
 	/**
-	 * @return array|null
+	 * @return File[]|null
 	 */
 	public function getDuplicates() {
 		$this->loadFile();

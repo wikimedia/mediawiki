@@ -39,6 +39,7 @@ $namespaceAliases = [
 	'Hiruhimangraw_hiton_MediaWiki' => NS_MEDIAWIKI_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'NgatananngaPakli' ],
 	'Categories'                => [ 'Mga_kaarangay' ],

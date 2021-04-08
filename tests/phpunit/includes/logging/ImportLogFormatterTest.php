@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+
 /**
  * @covers ImportLogFormatter
  */
@@ -110,15 +112,13 @@ class ImportLogFormatterTest extends LogFormatterTestCase {
 	 */
 	public function testInterwikiLogDatabaseRows( $row, $extra ) {
 		// Setup importiw: as interwiki prefix
-		$this->setMwGlobals( 'wgHooks', [
-			'InterwikiLoadPrefix' => [
-				function ( $prefix, &$data ) {
-					if ( $prefix == 'importiw' ) {
-						$data = [ 'iw_url' => 'wikipedia' ];
-					}
-					return false;
-				}
-			]
+		$this->setMwGlobals( [
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+			   [
+				   'iw_prefix' => 'importiw',
+					'iw_url' => 'wikipedia'
+			   ],
+			] ),
 		] );
 
 		$this->doTestLogFormatter( $row, $extra );

@@ -41,14 +41,27 @@
  */
 // phpcs:ignore Squiz.Classes.ValidClassName.NotCamelCaps
 class Preprocessor_Hash extends Preprocessor {
-	public const CACHE_PREFIX = 'preprocess-hash';
-	public const CACHE_VERSION = 2;
+	/** Cache format version */
+	protected const CACHE_VERSION = 3;
+
+	/** @var int|bool Min wikitext size for which to cache DOM tree */
+	protected $cacheThreshold;
 
 	/**
+	 * @see Preprocessor::__construct()
 	 * @param Parser $parser
+	 * @param WANObjectCache|null $wanCache
+	 * @param array $options Additional options include:
+	 *   - cacheThreshold: min text size for which to cache DOMs. [Default: false]
 	 */
-	public function __construct( $parser ) {
-		$this->parser = $parser;
+	public function __construct(
+		Parser $parser,
+		WANObjectCache $wanCache = null,
+		array $options = []
+	) {
+		parent::__construct( $parser, $wanCache, $options );
+
+		$this->cacheThreshold = $options['cacheThreshold'] ?? false;
 	}
 
 	/**
@@ -90,40 +103,43 @@ class Preprocessor_Hash extends Preprocessor {
 			$list[] = new PPNode_Hash_Tree( $store, 0 );
 		}
 
-		$node = new PPNode_Hash_Array( $list );
-		return $node;
+		return new PPNode_Hash_Array( $list );
+	}
+
+	public function preprocessToObj( $text, $flags = 0 ) {
+		if ( $this->disableLangConversion ) {
+			// Language conversions are globally disabled; implicitly set flag
+			$flags |= self::DOM_LANG_CONVERSION_DISABLED;
+		}
+
+		if (
+			$this->cacheThreshold !== false &&
+			strlen( $text ) >= $this->cacheThreshold &&
+			( $flags & self::DOM_UNCACHED ) != self::DOM_UNCACHED
+		) {
+			$domTreeArray = $this->wanCache->getWithSetCallback(
+				$this->wanCache->makeKey( 'preprocess-hash', sha1( $text ), $flags ),
+				$this->wanCache::TTL_DAY,
+				function () use ( $text, $flags ) {
+					return $this->buildDomTreeArrayFromText( $text, $flags );
+				},
+				[ 'version' => self::CACHE_VERSION ]
+			);
+		} else {
+			$domTreeArray = $this->buildDomTreeArrayFromText( $text, $flags );
+		}
+
+		return new PPNode_Hash_Tree( $domTreeArray, 0 );
 	}
 
 	/**
-	 * Preprocess some wikitext and return the document tree.
-	 *
-	 * @param string $text The text to parse
-	 * @param int $flags Bitwise combination of:
-	 *    Parser::PTD_FOR_INCLUSION    Handle "<noinclude>" and "<includeonly>" as if the text is being
-	 *                                 included. Default is to assume a direct page view.
-	 *
-	 * The generated DOM tree must depend only on the input text and the flags.
-	 * The DOM tree must be the same in OT_HTML and OT_WIKI mode, to avoid a regression of T6899.
-	 *
-	 * Any flag added to the $flags parameter here, or any other parameter liable to cause a
-	 * change in the DOM tree for a given text, must be passed through the section identifier
-	 * in the section edit link and thus back to extractSections().
-	 *
-	 * @throws MWException
-	 * @return PPNode_Hash_Tree
+	 * @param string $text Wikitext
+	 * @param int $flags Bit field of Preprocessor::DOM_* flags
+	 * @return array JSON-serializable document object model array
 	 */
-	public function preprocessToObj( $text, $flags = 0 ) {
-		global $wgDisableLangConversion;
-
-		$tree = $this->cacheGetTree( $text, $flags );
-		if ( $tree !== false ) {
-			$store = json_decode( $tree );
-			if ( is_array( $store ) ) {
-				return new PPNode_Hash_Tree( $store, 0 );
-			}
-		}
-
-		$forInclusion = $flags & Parser::PTD_FOR_INCLUSION;
+	private function buildDomTreeArrayFromText( $text, $flags ) {
+		$forInclusion = ( $flags & self::DOM_FOR_INCLUSION );
+		$langConversionDisabled = ( $flags & self::DOM_LANG_CONVERSION_DISABLED );
 
 		$xmlishElements = $this->parser->getStripList();
 		$xmlishAllowMissingEndTag = [ 'includeonly', 'noinclude', 'onlyinclude' ];
@@ -150,7 +166,7 @@ class Preprocessor_Hash extends Preprocessor {
 		$stack = new PPDStack_Hash;
 
 		$searchBase = "[{<\n";
-		if ( !$wgDisableLangConversion ) {
+		if ( !$langConversionDisabled ) {
 			$searchBase .= '-';
 		}
 
@@ -179,8 +195,6 @@ class Preprocessor_Hash extends Preprocessor {
 		$fakeLineStart = true;
 
 		while ( true ) {
-			// $this->memCheck();
-
 			if ( $findOnlyinclude ) {
 				// Ignore all input up to the next <onlyinclude>
 				$startPos = strpos( $text, '<onlyinclude>', $i );
@@ -774,16 +788,7 @@ class Preprocessor_Hash extends Preprocessor {
 			}
 		}
 
-		$rootStore = [ [ 'root', $stack->rootAccum ] ];
-		$rootNode = new PPNode_Hash_Tree( $rootStore, 0 );
-
-		// Cache
-		$tree = json_encode( $rootStore, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
-		if ( $tree !== false ) {
-			$this->cacheSetTree( $text, $flags, $tree );
-		}
-
-		return $rootNode;
+		return [ [ 'root', $stack->rootAccum ] ];
 	}
 
 	private static function addLiteral( array &$accum, $text ) {

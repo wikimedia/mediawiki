@@ -250,6 +250,7 @@
 			var $table, entryTypeText, i, length, entry;
 
 			$table = $( '<table>' ).attr( 'id', 'mw-debug-console' );
+			length = this.data.log.length;
 
 			$( '<colgroup>' ).css( 'width', /* padding = */ 20 + ( 10 * /* fontSize = */ 11 ) ).appendTo( $table );
 			$( '<colgroup>' ).appendTo( $table );
@@ -268,7 +269,7 @@
 				}
 			};
 
-			for ( i = 0, length = this.data.log.length; i < length; i += 1 ) {
+			for ( i = 0; i < length; i++ ) {
 				entry = this.data.log[ i ];
 				entry.typeText = entryTypeText( entry.type );
 
@@ -298,6 +299,7 @@
 			var $table, i, length, query;
 
 			$table = $( '<table>' ).attr( 'id', 'mw-debug-querylist' );
+			length = this.data.queries.length;
 
 			$( '<tr>' )
 				.append( $( '<th>' ).attr( 'scope', 'col' ).text( '#' ).css( 'width', '4em' ) )
@@ -306,7 +308,7 @@
 				.append( $( '<th>' ).attr( 'scope', 'col' ).text( 'Call' ).css( 'width', '18em' ) )
 				.appendTo( $table );
 
-			for ( i = 0, length = this.data.queries.length; i < length; i += 1 ) {
+			for ( i = 0; i < length; i++ ) {
 				query = this.data.queries[ i ];
 
 				$( '<tr>' )
@@ -328,8 +330,9 @@
 		buildDebugLogTable: function () {
 			var $list, i, length, line;
 			$list = $( '<ul>' );
+			length = this.data.debugLog.length;
 
-			for ( i = 0, length = this.data.debugLog.length; i < length; i += 1 ) {
+			for ( i = 0; i < length; i++ ) {
 				line = this.data.debugLog[ i ];
 				$( '<li>' )
 					.html( mw.html.escape( line ).replace( /\n/g, '<br />\n' ) )
@@ -385,8 +388,9 @@
 			var $table, i, length, file;
 
 			$table = $( '<table>' );
+			length = this.data.includes.length;
 
-			for ( i = 0, length = this.data.includes.length; i < length; i += 1 ) {
+			for ( i = 0; i < length; i++ ) {
 				file = this.data.includes[ i ];
 				$( '<tr>' )
 					.append( $( '<td>' ).text( file.name ) )

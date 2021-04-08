@@ -114,8 +114,6 @@ class VersionChecker {
 	}
 
 	/**
-	 * Set PHP version.
-	 *
 	 * @param string $phpVersion Current PHP version. Must be well-formed.
 	 * @throws UnexpectedValueException
 	 */

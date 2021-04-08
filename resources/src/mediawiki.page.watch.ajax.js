@@ -85,7 +85,9 @@
 		$link
 			// The following messages can be used here:
 			// * watch
+			// * tooltip-ca-watch
 			// * watching
+			// * tooltip-ca-watching
 			// * unwatch
 			// * tooltip-ca-unwatch
 			// * tooltip-ca-unwatch-expiring
@@ -155,11 +157,11 @@
 				// Update the "Watch this page" checkbox on action=edit when the
 				// page is watched or unwatched via the tab (T14395).
 				if ( document.getElementById( 'wpWatchthisWidget' ) ) {
-					OO.ui.infuse( '#wpWatchthisWidget' ).setSelected( isWatched === true );
+					OO.ui.infuse( $( '#wpWatchthisWidget' ) ).setSelected( isWatched === true );
 
 					// Also reset expiry selection to keep it in sync
 					if ( isWatched === true && document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
-						OO.ui.infuse( '#wpWatchlistExpiryWidget' ).setValue( 'infinite' );
+						OO.ui.infuse( $( '#wpWatchlistExpiryWidget' ) ).setValue( 'infinite' );
 					}
 				}
 			} );
@@ -193,7 +195,7 @@
 
 		// Add click handler.
 		$links.on( 'click', function ( e ) {
-			var mwTitle, action, api, $link;
+			var mwTitle, action, api, $link, modulesToLoad;
 
 			mwTitle = mw.Title.newFromText( title );
 			action = mwUriGetAction( this.href );
@@ -215,20 +217,22 @@
 			updateWatchLink( $link, action, 'loading', null );
 
 			// Preload the notification module for mw.notify
-			mw.loader.load( 'mediawiki.notification' );
+			modulesToLoad = [ 'mediawiki.notification' ];
 
-			// Preload watchlist expiry widget so it runs in parallel
-			// with the api call
+			// Preload watchlist expiry widget so it runs in parallel with the api call
 			if ( isWatchlistExpiryEnabled ) {
-				mw.loader.load( 'mediawiki.watchstar.widgets' );
+				modulesToLoad.push( 'mediawiki.watchstar.widgets' );
 			}
+
+			mw.loader.load( modulesToLoad );
 
 			api = new mw.Api();
 			api[ action ]( title )
 				.done( function ( watchResponse ) {
 					var message,
 						watchlistPopup = null,
-						otherAction = action === 'watch' ? 'unwatch' : 'watch';
+						otherAction = action === 'watch' ? 'unwatch' : 'watch',
+						notifyPromise;
 
 					if ( mwTitle.isTalkPage() ) {
 						message = action === 'watch' ? 'addedwatchtext-talk' : 'removedwatchtext-talk';
@@ -244,7 +248,7 @@
 							message = mwTitle.isTalkPage() ? 'addedwatchindefinitelytext-talk' : 'addedwatchindefinitelytext';
 						}
 
-						mw.loader.using( 'mediawiki.watchstar.widgets' ).then( function ( require ) {
+						notifyPromise = mw.loader.using( 'mediawiki.watchstar.widgets' ).then( function ( require ) {
 							var WatchlistExpiryWidget = require( 'mediawiki.watchstar.widgets' );
 
 							if ( !watchlistPopup ) {
@@ -269,7 +273,6 @@
 								id: notificationId,
 								autoHideSeconds: 'short'
 							} );
-
 						} );
 					} else {
 						// The following messages can be used here:
@@ -277,15 +280,22 @@
 						// * addedwatchtext
 						// * removedwatchtext-talk
 						// * removedwatchtext
-						mw.notify( mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
-							tag: 'watch-self',
-							id: notificationId
-						} );
+						notifyPromise = mw.notify(
+							mw.message( message, mwTitle.getPrefixedText() ).parseDom(), {
+								tag: 'watch-self',
+								id: notificationId
+							}
+						);
 					}
 
-					// Set link to opposite
-					updateWatchLink( $link, otherAction );
-					callback( $link, watchResponse.watched === true );
+					// The notifications are stored as a promise and the watch link is only updated
+					// once it is resolved. Otherwise, if $wgWatchlistExpiry set, the loading of
+					// OOUI could cause a race condition and the link is updated before the popup
+					// actually is shown. See T263135
+					notifyPromise.then( function () {
+						updateWatchLink( $link, otherAction );
+						callback( $link, watchResponse.watched === true );
+					} );
 				} )
 				.fail( function ( code, data ) {
 					var $msg;

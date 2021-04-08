@@ -57,14 +57,10 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$fld_bitdepth = isset( $prop['bitdepth'] );
 		$fld_archivename = isset( $prop['archivename'] );
 
-		if ( $fld_description &&
-			!$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' )
-		) {
+		if ( $fld_description && !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$this->dieWithError( 'apierror-cantview-deleted-description', 'permissiondenied' );
 		}
-		if ( $fld_metadata &&
-			!$this->getPermissionManager()->userHasAnyRight( $user, 'deletedtext', 'undelete' )
-		) {
+		if ( $fld_metadata && !$this->getAuthority()->isAllowedAny( 'deletedtext', 'undelete' ) ) {
 			$this->dieWithError( 'apierror-cantview-deleted-metadata', 'permissiondenied' );
 		}
 
@@ -119,11 +115,9 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $sha1 ) {
 				$this->addWhereFld( 'fa_sha1', $sha1 );
 				// Paranoia: avoid brute force searches (T19342)
-				if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedtext' ) ) {
+				if ( !$this->getAuthority()->isAllowed( 'deletedtext' ) ) {
 					$bitmask = File::DELETED_FILE;
-				} elseif ( !$this->getPermissionManager()
-					->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-				) {
+				} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 					$bitmask = File::DELETED_FILE | File::DELETED_RESTRICTED;
 				} else {
 					$bitmask = 0;

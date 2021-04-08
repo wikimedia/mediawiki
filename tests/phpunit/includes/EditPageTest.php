@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Editing
@@ -37,8 +38,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage::extractSectionTitle
 	 */
 	public function testExtractSectionTitle( $section, $title ) {
-		$extracted = EditPage::extractSectionTitle( $section );
-		$this->assertEquals( $title, $extracted );
+		$this->assertEquals(
+			$title,
+			 TestingAccessWrapper::newFromClass( EditPage::class )->extractSectionTitle( $section )
+		);
 	}
 
 	public static function provideExtractSectionTitle() {
@@ -148,9 +151,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		}
 
 		if ( $user == null ) {
-			$user = $GLOBALS['wgUser'];
-		} else {
-			$this->setMwGlobals( 'wgUser', $user );
+			$user = $this->getTestUser()->getUser();
 		}
 
 		if ( !isset( $edit['wpEditToken'] ) ) {
@@ -171,9 +172,12 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$req = new FauxRequest( $edit, true ); // session ??
 
+		$context = new RequestContext();
+		$context->setRequest( $req );
+		$context->setTitle( $title );
+		$context->setUser( $user );
 		$article = new Article( $title );
-		$article->getContext()->setTitle( $title );
-		$article->getContext()->setUser( $user );
+		$article->setContext( $context );
 		$ep = new EditPage( $article );
 		$ep->setContextTitle( $title );
 		$ep->importFormData( $req );
@@ -284,13 +288,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$checkId = null;
 
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ function (
+			'PageContentInsertComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision
 			) {
 				// types/refs checked
 			} ],
-			'PageContentSaveComplete' => [ function (
+			'PageContentSaveComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
@@ -329,13 +333,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$checkIds = [];
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ function (
+			'PageContentInsertComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision
 			) {
 				// types/refs checked
 			} ],
-			'PageContentSaveComplete' => [ function (
+			'PageContentSaveComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
@@ -389,13 +393,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 		$checkIds = [];
 
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ function (
+			'PageContentInsertComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision
 			) {
 				// types/refs checked
 			} ],
-			'PageContentSaveComplete' => [ function (
+			'PageContentSaveComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
@@ -452,7 +456,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$checkIds = [];
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentSaveComplete' => [ function (
+			'PageContentSaveComplete' => [ static function (
 				WikiPage &$page, User &$user, Content $content,
 				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
 				Status &$status, $baseRevId
@@ -492,6 +496,9 @@ class EditPageTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideSectionEdit() {
+		$title = 'EditPageTest_testSectionEdit';
+		$title2 = Title::newFromText( __FUNCTION__ );
+		$title2->setContentModel( CONTENT_MODEL_CSS );
 		$text = 'Intro
 
 == one ==
@@ -519,6 +526,7 @@ hello
 
 		return [
 			[ # 0
+				$title,
 				$text,
 				'',
 				'hello',
@@ -527,6 +535,7 @@ hello
 			],
 
 			[ # 1
+				$title,
 				$text,
 				'1',
 				$sectionOne,
@@ -535,11 +544,21 @@ hello
 			],
 
 			[ # 2
+				$title,
 				$text,
 				'new',
 				'hello',
 				'new section',
 				$textWithNewSectionAdded,
+			],
+
+			[ # 3 Section edit not supported
+				$title2,
+				$text,
+				'1',
+				'hello',
+				'',
+				'',
 			],
 		];
 	}
@@ -548,16 +567,21 @@ hello
 	 * @dataProvider provideSectionEdit
 	 * @covers EditPage
 	 */
-	public function testSectionEdit( $base, $section, $text, $summary, $expected ) {
+	public function testSectionEdit( $title, $base, $section, $text, $summary, $expected ) {
 		$edit = [
 			'wpTextbox1' => $text,
 			'wpSummary' => $summary,
 			'wpSection' => $section,
 		];
 
-		$this->assertEdit( 'EditPageTest_testSectionEdit', $base, null, $edit,
-			EditPage::AS_SUCCESS_UPDATE, $expected,
-			"expected successful update of section" );
+		$msg = "expected successful update of section";
+		$result = EditPage::AS_SUCCESS_UPDATE;
+
+		if ( $title instanceof Title ) {
+			$result = null;
+			$this->expectException( ErrorPageError::class );
+		}
+		$this->assertEdit( $title, $base, null, $edit, $result, $expected, $msg );
 	}
 
 	public static function provideConflictDetection() {
@@ -723,12 +747,12 @@ hello
 		];
 
 		// see whether it makes a difference who did the base edit
-		$testsWithAdam = array_map( function ( $test ) {
+		$testsWithAdam = array_map( static function ( $test ) {
 			$test[0] = 'Adam'; // change base edit user
 			return $test;
 		}, $tests );
 
-		$testsWithBerta = array_map( function ( $test ) {
+		$testsWithBerta = array_map( static function ( $test ) {
 			$test[0] = 'Berta'; // change base edit user
 			return $test;
 		}, $tests );
@@ -792,7 +816,7 @@ hello
 	 * @covers EditPage
 	 */
 	public function testCheckDirectEditingDisallowed_forNonTextContent() {
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$edit = [
 			'wpTextbox1' => serialize( 'non-text content' ),
@@ -812,7 +836,7 @@ hello
 	/** @covers EditPage */
 	public function testShouldPreventChangingContentModelWhenUserCannotChangeModelForTitle() {
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
-			function ( Title $page, $user, $action, &$result ) {
+			static function ( Title $page, $user, $action, &$result ) {
 				if ( $action === 'editcontentmodel' &&
 					 $page->getContentModel() === CONTENT_MODEL_WIKITEXT ) {
 					$result = false;
@@ -821,7 +845,7 @@ hello
 				}
 			} );
 
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$status = $this->doEditDummyNonTextPage( [
 			'wpTextbox1' => 'some text',
@@ -841,14 +865,14 @@ hello
 	/** @covers EditPage */
 	public function testShouldPreventChangingContentModelWhenUserCannotEditTargetTitle() {
 		$this->setTemporaryHook( 'getUserPermissionsErrors',
-			function ( Title $page, $user, $action, &$result ) {
+			static function ( Title $page, $user, $action, &$result ) {
 				if ( $action === 'edit' && $page->getContentModel() === CONTENT_MODEL_WIKITEXT ) {
 					$result = false;
 					return false;
 				}
 			} );
 
-		$user = $GLOBALS['wgUser'];
+		$user = $this->getTestUser()->getUser();
 
 		$status = $this->doEditDummyNonTextPage( [
 			'wpTextbox1' => 'some text',
@@ -890,7 +914,7 @@ hello
 		$this->setMwGlobals( 'wgWatchlistExpiry', true );
 		MWTimestamp::setFakeTime( '20200505120000' );
 		$user = $this->getTestUser()->getUser();
-		$this->assertTrue( $user->isLoggedIn() );
+		$this->assertTrue( $user->isRegistered() );
 
 		// Create the EditPage.
 		$title = Title::newFromText( __METHOD__ );
@@ -948,4 +972,5 @@ hello
 			],
 		];
 	}
+
 }

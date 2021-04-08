@@ -61,10 +61,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 	/** @var string Path to an executable to be used as the diff engine. */
 	private $externalEngine;
 
-	/**
-	 * @inheritDoc
-	 * @return array
-	 */
+	/** @inheritDoc */
 	public function getExtraCacheKeys() {
 		// Tell DifferenceEngine this is a different variant from the standard wikidiff2 variant
 		return $this->engine === self::ENGINE_WIKIDIFF2_INLINE ? [
@@ -88,10 +85,16 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		return $slotDiffRenderer->getTextDiff( $oldText, $newText );
 	}
 
+	/**
+	 * @param IBufferingStatsdDataFactory $statsdDataFactory
+	 */
 	public function setStatsdDataFactory( IBufferingStatsdDataFactory $statsdDataFactory ) {
 		$this->statsdDataFactory = $statsdDataFactory;
 	}
 
+	/**
+	 * @param Language $language
+	 */
 	public function setLanguage( Language $language ) {
 		$this->language = $language;
 	}
@@ -163,7 +166,7 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 		 * @param Status $status
 		 * @throws FatalError
 		 */
-		$error = function ( $status ) {
+		$error = static function ( $status ) {
 			throw new FatalError( $status->getWikiText() );
 		};
 
@@ -227,11 +230,11 @@ class TextSlotDiffRenderer extends SlotDiffRenderer {
 
 			$tempFile1 = fopen( $tempName1, "w" );
 			if ( !$tempFile1 ) {
-				return false;
+				throw new Exception( "Could not create temporary file $tempName1 for external diffing" );
 			}
 			$tempFile2 = fopen( $tempName2, "w" );
 			if ( !$tempFile2 ) {
-				return false;
+				throw new Exception( "Could not create temporary file $tempName2 for external diffing" );
 			}
 			fwrite( $tempFile1, $oldText );
 			fwrite( $tempFile2, $newText );

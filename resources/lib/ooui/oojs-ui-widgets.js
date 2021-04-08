@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.3
+ * OOUI v0.41.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2020 OOUI Team and other contributors.
+ * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-07-10T06:31:58Z
+ * Date: 2021-03-12T21:47:47Z
  */
 ( function ( OO ) {
 
@@ -1402,11 +1402,17 @@ OO.mixinClass( OO.ui.StackLayout, OO.ui.mixin.GroupElement );
  * @fires visibleItemChange
  */
 OO.ui.StackLayout.prototype.onScroll = function () {
-	var currentRect,
-		len = this.items.length,
-		currentIndex = this.items.indexOf( this.currentItem ),
-		newIndex = currentIndex,
-		containerRect = this.$element[ 0 ].getBoundingClientRect();
+	var currentRect, currentIndex, newIndex, containerRect,
+		len = this.items.length;
+
+	if ( !this.currentItem ) {
+		// onScroll should never be triggered while there are no items, but this event is debounced.
+		return;
+	}
+
+	currentIndex = this.items.indexOf( this.currentItem );
+	newIndex = currentIndex;
+	containerRect = this.$element[ 0 ].getBoundingClientRect();
 
 	if ( !containerRect || ( !containerRect.top && !containerRect.bottom ) ) {
 		// Can't get bounding rect, possibly not attached.
@@ -3228,7 +3234,7 @@ OO.ui.ToggleSwitchWidget = function OoUiToggleSwitchWidget( config ) {
 	this.$grip.addClass( 'oo-ui-toggleSwitchWidget-grip' );
 	this.$element
 		.addClass( 'oo-ui-toggleSwitchWidget' )
-		.attr( 'role', 'checkbox' )
+		.attr( 'role', 'switch' )
 		.append( this.$glow, this.$grip );
 };
 
@@ -4365,7 +4371,7 @@ OO.ui.TagItemWidget.prototype.isValid = function () {
  *  additions. If 'tagLimit' is unset or is 0, an unlimited number of items can be
  *  added.
  * @cfg {boolean} [allowReordering=true] Allow reordering of the items
- * @cfg {Object[]|String[]} [selected] A set of selected tags. If given,
+ * @cfg {Object[]|string[]} [selected] A set of selected tags. If given,
  *  these will appear in the tag list on initialization, as long as they
  *  pass the validity tests.
  */
@@ -4484,7 +4490,7 @@ OO.ui.TagMultiselectWidget = function OoUiTagMultiselectWidget( config ) {
 			// call the widget itself for operations like
 			// .getValue() and setDisabled() and .focus() but
 			// having only the $input attached to the DOM
-			this.$content.append( this.input.$input );
+			this.$group.append( this.input.$input );
 		}
 	} else {
 		this.$content.append( $tabFocus );
@@ -4584,21 +4590,22 @@ OO.ui.TagMultiselectWidget.prototype.onInputKeyPress = function ( e ) {
 OO.ui.TagMultiselectWidget.prototype.onInputKeyDown = function ( e ) {
 	var movement, direction,
 		widget = this,
-		withMetaKey = e.metaKey || e.ctrlKey,
-		isMovementInsideInput = function ( direction ) {
-			var inputRange = widget.input.getRange(),
-				inputValue = widget.hasInput && widget.input.getValue();
+		withMetaKey = e.metaKey || e.ctrlKey;
 
-			if ( direction === 'forwards' && inputRange.to > inputValue.length - 1 ) {
-				return false;
-			}
+	function isMovementInsideInput( dir ) {
+		var inputRange = widget.input.getRange(),
+			inputValue = widget.hasInput && widget.input.getValue();
 
-			if ( direction === 'backwards' && inputRange.from <= 0 ) {
-				return false;
-			}
+		if ( dir === 'forwards' && inputRange.to > inputValue.length - 1 ) {
+			return false;
+		}
 
-			return true;
-		};
+		if ( dir === 'backwards' && inputRange.from <= 0 ) {
+			return false;
+		}
+
+		return true;
+	}
 
 	if ( !this.isDisabled() ) {
 		// 'keypress' event is not triggered for Backspace key
@@ -4644,6 +4651,11 @@ OO.ui.TagMultiselectWidget.prototype.onInputFocus = function () {
  * Respond to input blur event
  */
 OO.ui.TagMultiselectWidget.prototype.onInputBlur = function () {
+	// Skip of blur was triggered by DOM re-ordering in onChangeTags
+	if ( this.changing ) {
+		return;
+	}
+
 	this.$element.removeClass( 'oo-ui-tagMultiselectWidget-focus' );
 
 	// Set the widget as invalid if there's text in the input
@@ -4767,7 +4779,10 @@ OO.ui.TagMultiselectWidget.prototype.onTagFixed = function ( item ) {
  * Respond to change event, where items were added, removed, or cleared.
  */
 OO.ui.TagMultiselectWidget.prototype.onChangeTags = function () {
-	var isUnderLimit = this.isUnderLimit();
+	var hadFocus,
+		isUnderLimit = this.isUnderLimit();
+
+	this.changing = true;
 
 	// Reset validity
 	this.toggleValid( this.checkValidity() );
@@ -4784,11 +4799,19 @@ OO.ui.TagMultiselectWidget.prototype.onChangeTags = function () {
 			this.input.$input.attr( 'placeholder', isUnderLimit ? this.inputPlaceholder : '' );
 			this.input.setDisabled( !isUnderLimit );
 		} else {
+			hadFocus = document.activeElement === this.input.$input[ 0 ];
+			// Move input to the end of the group
+			this.$group.append( this.input.$input );
 			// Show/hide the input
 			this.input.$input.toggleClass( 'oo-ui-element-hidden', !isUnderLimit );
+			if ( hadFocus && isUnderLimit ) {
+				this.input.focus();
+			}
 		}
 	}
 	this.updateIfHeightChanged();
+
+	this.changing = false;
 };
 
 /**
@@ -4802,7 +4825,7 @@ OO.ui.TagMultiselectWidget.prototype.setDisabled = function ( isDisabled ) {
 		if ( !isDisabled ) {
 			this.updateInputSize();
 		}
-		this.input.setDisabled( !!isDisabled && !this.isUnderLimit() );
+		this.input.setDisabled( !!isDisabled || !this.isUnderLimit() );
 	}
 
 	if ( this.items ) {
@@ -5417,22 +5440,33 @@ OO.ui.PopupTagMultiselectWidget.prototype.addTagByPopupValue = function ( data, 
  * @cfg {Object[]} [options=[]] Array of menu options in the format `{ data: …, label: … }`
  */
 OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config ) {
-	var $autoCloseIgnore = $( [] );
+	var options, selected, configCopy,
+		$autoCloseIgnore = $( [] );
+
 	config = config || {};
 
 	// Ensure that any pre-selected items exist as menu options,
 	// so that they can be added as tags from #setValue
-	config.options = config.options || [];
-	config.selected = config.selected || [];
-	config.selected.forEach( function ( title ) {
-		config.options.push( {
-			data: title,
-			label: title
-		} );
-	} );
+	options = config.options || [];
+	selected = config.selected || [];
+	options = options.concat(
+		selected.map( function ( option ) {
+			if ( typeof option === 'string' ) {
+				return {
+					data: option,
+					label: option
+				};
+			}
+			return option;
+		} )
+	);
+
+	configCopy = OO.copy( config );
+	configCopy.options = options;
+	configCopy.selected = selected;
 
 	// Parent constructor
-	OO.ui.MenuTagMultiselectWidget.super.call( this, config );
+	OO.ui.MenuTagMultiselectWidget.super.call( this, configCopy );
 
 	$autoCloseIgnore = $autoCloseIgnore.add( this.$group );
 	if ( this.hasInput ) {
@@ -5457,7 +5491,7 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 		$overlay: this.$overlay,
 		disabled: this.isDisabled()
 	}, config.menu ) );
-	this.addOptions( config.options || [] );
+	this.addOptions( options );
 
 	// Events
 	this.menu.connect( this, {
@@ -5481,8 +5515,8 @@ OO.ui.MenuTagMultiselectWidget = function OoUiMenuTagMultiselectWidget( config )
 	this.menu.$focusOwner.removeAttr( 'aria-expanded' );
 	// TagMultiselectWidget already does this, but it doesn't work right because this.menu is
 	// not yet set up while the parent constructor runs, and #getAllowedValues rejects everything.
-	if ( config.selected.length > 0 ) {
-		this.setValue( config.selected );
+	if ( selected.length > 0 ) {
+		this.setValue( selected );
 	}
 };
 
@@ -5688,18 +5722,6 @@ OO.ui.MenuTagMultiselectWidget.prototype.getTagInfoFromInput = function () {
 };
 
 /**
- * Return the visible items in the menu. This is mainly used for when
- * the menu is filtering results.
- *
- * @return {OO.ui.MenuOptionWidget[]} Visible results
- */
-OO.ui.MenuTagMultiselectWidget.prototype.getMenuVisibleItems = function () {
-	return this.menu.getItems().filter( function ( menuItem ) {
-		return menuItem.isVisible();
-	} );
-};
-
-/**
  * Create the menu for this widget. This is in a separate method so that
  * child classes can override this without polluting the constructor with
  * unnecessary extra objects that will be overidden.
@@ -5712,15 +5734,23 @@ OO.ui.MenuTagMultiselectWidget.prototype.createMenuWidget = function ( menuConfi
 };
 
 /**
- * Add options to the menu
+ * Add options to the menu, ensuring that they are unique by data.
  *
  * @param {Object[]} menuOptions Object defining options
  */
 OO.ui.MenuTagMultiselectWidget.prototype.addOptions = function ( menuOptions ) {
 	var widget = this,
-		items = menuOptions.map( function ( obj ) {
-			return widget.createMenuOptionWidget( obj.data, obj.label, obj.icon );
-		} );
+		optionsData = [],
+		items = [];
+
+	menuOptions.forEach( function ( obj ) {
+		if ( optionsData.indexOf( obj.data ) === -1 ) {
+			optionsData.push( obj.data );
+			items.push(
+				widget.createMenuOptionWidget( obj.data, obj.label, obj.icon )
+			);
+		}
+	} );
 
 	this.menu.addItems( items );
 };
@@ -5793,7 +5823,7 @@ OO.ui.MenuTagMultiselectWidget.prototype.getAllowedValues = function () {
  * @cfg {boolean} [buttonOnly=false] Show only the select file button, no info field. Requires
  *  showDropTarget to be false.
  * @cfg {boolean} [showDropTarget=false] Whether to show a drop target. Requires droppable to be
- *  true. Not yet supported in multiple file mode.
+ *  true.
  * @cfg {number} [thumbnailSizeLimit=20] File size limit in MiB above which to not try and show a
  *  preview (for performance).
  */
@@ -5826,28 +5856,35 @@ OO.ui.SelectFileWidget = function OoUiSelectFileWidget( config ) {
 
 	// Properties
 	droppable = config.droppable && isSupported;
-	// TODO: Support drop target when multiple is set
-	this.showDropTarget = droppable && config.showDropTarget && !this.multiple;
+	this.showDropTarget = droppable && config.showDropTarget;
 	this.thumbnailSizeLimit = config.thumbnailSizeLimit;
 
 	// Initialization
 	if ( this.showDropTarget ) {
 		this.selectButton.setIcon( 'upload' );
-		this.$thumbnail = $( '<div>' ).addClass( 'oo-ui-selectFileWidget-thumbnail' );
-		this.setPendingElement( this.$thumbnail );
 		this.$element
 			.addClass( 'oo-ui-selectFileWidget-dropTarget' )
 			.on( {
 				click: this.onDropTargetClick.bind( this )
 			} )
 			.append(
-				this.$thumbnail,
 				this.info.$element,
 				this.selectButton.$element,
 				$( '<span>' )
 					.addClass( 'oo-ui-selectFileWidget-dropLabel' )
-					.text( OO.ui.msg( 'ooui-selectfile-dragdrop-placeholder' ) )
+					.text( OO.ui.msg(
+						this.multiple ?
+							'ooui-selectfile-dragdrop-placeholder-multiple' :
+							'ooui-selectfile-dragdrop-placeholder'
+					) )
 			);
+		if ( !this.multiple ) {
+			this.$thumbnail = $( '<div>' ).addClass( 'oo-ui-selectFileWidget-thumbnail' );
+			this.setPendingElement( this.$thumbnail );
+			this.$element
+				.addClass( 'oo-ui-selectFileWidget-withThumbnail' )
+				.prepend( this.$thumbnail );
+		}
 		this.fieldLayout.$element.remove();
 	} else if ( config.buttonOnly ) {
 		// Copy over any classes that may have been added already.
@@ -5986,19 +6023,21 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 		this.$element.removeClass( 'oo-ui-selectFileInputWidget-empty' );
 
 		if ( this.showDropTarget ) {
-			this.pushPending();
-			this.loadAndGetImageUrl( this.currentFiles[ 0 ] ).done( function ( url ) {
-				this.$thumbnail.css( 'background-image', 'url( ' + url + ' )' );
-			}.bind( this ) ).fail( function () {
-				this.$thumbnail.append(
-					new OO.ui.IconWidget( {
-						icon: 'attachment',
-						classes: [ 'oo-ui-selectFileWidget-noThumbnail-icon' ]
-					} ).$element
-				);
-			}.bind( this ) ).always( function () {
-				this.popPending();
-			}.bind( this ) );
+			if ( !this.multiple ) {
+				this.pushPending();
+				this.loadAndGetImageUrl( this.currentFiles[ 0 ] ).done( function ( url ) {
+					this.$thumbnail.css( 'background-image', 'url( ' + url + ' )' );
+				}.bind( this ) ).fail( function () {
+					this.$thumbnail.append(
+						new OO.ui.IconWidget( {
+							icon: 'attachment',
+							classes: [ 'oo-ui-selectFileWidget-noThumbnail-icon' ]
+						} ).$element
+					);
+				}.bind( this ) ).always( function () {
+					this.popPending();
+				}.bind( this ) );
+			}
 			this.$element.off( 'click' );
 		}
 	} else {
@@ -6007,9 +6046,11 @@ OO.ui.SelectFileWidget.prototype.updateUI = function () {
 			this.$element.on( {
 				click: this.onDropTargetClick.bind( this )
 			} );
-			this.$thumbnail
-				.empty()
-				.css( 'background-image', '' );
+			if ( !this.multiple ) {
+				this.$thumbnail
+					.empty()
+					.css( 'background-image', '' );
+			}
 		}
 		this.$element.addClass( 'oo-ui-selectFileInputWidget-empty' );
 	}
@@ -6257,8 +6298,11 @@ OO.ui.SearchWidget.prototype.onQueryKeydown = function ( e ) {
 			highlightedItem = this.results.findSelectedItem();
 		}
 		nextItem = this.results.findRelativeSelectableItem( highlightedItem, dir );
+		// nextItem may be null if there are no results
 		this.results.highlightItem( nextItem );
-		nextItem.scrollElementIntoView();
+		if ( nextItem ) {
+			nextItem.scrollElementIntoView();
+		}
 	}
 };
 

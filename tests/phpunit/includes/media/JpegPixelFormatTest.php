@@ -10,12 +10,9 @@ use MediaWiki\Shell\Shell;
  */
 class JpegPixelFormatTest extends MediaWikiMediaTestCase {
 
-	protected function setUp() : void {
-		parent::setUp();
-	}
-
 	/**
 	 * Mark this test as creating thumbnail files.
+	 * @inheritDoc
 	 */
 	protected function createsThumbnails() {
 		return true;

@@ -81,8 +81,8 @@ class HTMLTextAreaField extends HTMLFormField {
 		if ( $this->mPlaceholder !== '' ) {
 			$attribs['placeholder'] = $this->mPlaceholder;
 		}
-		if ( count( $classes ) ) {
-			$attribs['class'] = implode( ' ', $classes );
+		if ( $classes ) {
+			$attribs['class'] = $classes;
 		}
 
 		$allowedParams = [

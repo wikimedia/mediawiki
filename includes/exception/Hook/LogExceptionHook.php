@@ -6,6 +6,9 @@ use ErrorException;
 use Exception;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "LogException" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

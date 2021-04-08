@@ -373,7 +373,7 @@ just a test"
 		$redirectTarget = null;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'InternalParseBeforeLinks' => [
-				function ( Parser $parser, $text, $stripState ) use ( &$wikitext, &$redirectTarget ) {
+				static function ( Parser $parser, $text, $stripState ) use ( &$wikitext, &$redirectTarget ) {
 					$wikitext = $text;
 					$redirectTarget = $parser->getOptions()->getRedirectTarget();
 				}
@@ -456,7 +456,9 @@ just a test"
 
 		$content = new WikitextContent( '~~~~' );
 		$pstContent = $content->preSaveTransform(
-			$titleObj, $this->getTestUser()->getUser(), new ParserOptions()
+			$titleObj,
+			$this->getTestUser()->getUser(),
+			ParserOptions::newFromAnon()
 		);
 
 		$this->assertTrue( $pstContent->getParserOutput( $titleObj )->getFlag( 'user-signature' ) );

@@ -101,6 +101,28 @@ describe( 'PUT /page/{title}', () => {
 			checkSourceResponse( title, reqBody, sourceBody );
 		} );
 
+		it( 'should handle null-edits (unchanged content) gracefully', async () => {
+			const title = utils.title( 'Edit Test ' );
+
+			// create
+			const firstRev = await mindy.edit( title, {} );
+
+			const reqBody = {
+				token: anonToken,
+				source: firstRev.param_text,
+				comment: 'nothing at all changed',
+				latest: { id: firstRev.newrevid }
+			};
+			const resp = await client.put( `/page/${title}`, reqBody );
+			const { status: editStatus, body: editBody } = resp;
+
+			assert.equal( editStatus, 200 );
+			checkEditResponse( title, reqBody, editBody );
+
+			// No revision was created, new ID is the same as the old ID
+			assert.equal( editBody.latest.id, firstRev.newrevid );
+		} );
+
 		it( 'should automatically solve merge conflicts', async () => {
 			// XXX: this test may fail if the diff3 utility is not found on the web host
 

@@ -9,6 +9,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		parent::setUp();
 
 		$this->setMwGlobals( [
+			'wgSkinLessVariablesImportPaths' => [],
 			'wgShowExceptionDetails' => true,
 		] );
 	}
@@ -21,7 +22,7 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		$ranHook = 0;
 		$this->setMwGlobals( 'wgHooks', [
 			'ResourceLoaderRegisterModules' => [
-				function ( &$resourceLoader ) use ( &$ranHook ) {
+				static function ( &$resourceLoader ) use ( &$ranHook ) {
 					$ranHook++;
 				}
 			]
@@ -154,14 +155,14 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		return [
 			'factory ignored' => [ false,
 				[
-					'factory' => function () {
+					'factory' => static function () {
 						return new ResourceLoaderTestModule();
 					}
 				]
 			],
 			'factory ignored (actual FileModule)' => [ false,
 				[
-					'factory' => function () use ( $fileModuleObj ) {
+					'factory' => static function () use ( $fileModuleObj ) {
 						return $fileModuleObj;
 					}
 				]
@@ -282,6 +283,52 @@ class ResourceLoaderTest extends ResourceLoaderTestCase {
 		] );
 		$css = $lc->parseFile( "$basePath/module/use-import-dir.less" )->getCss();
 		$this->assertStringEqualsFile( "$basePath/module/styles.css", $css );
+	}
+
+	public static function provideMediaWikiVariablesCases() {
+		$basePath = __DIR__ . '/../../data/less';
+		return [
+			[
+				'config' => [],
+				'importPaths' => [],
+				'skin' => 'fallback',
+				'expected' => "$basePath/use-variables-default.css",
+			],
+			[
+				'config' => [
+					'wgValidSkinNames' => [
+						// Required to make ResourceLoaderContext::getSkin work
+						'example' => 'Example',
+					],
+				],
+				'importPaths' => [
+					'example' => "$basePath/testvariables/",
+				],
+				'skin' => 'example',
+				'expected' => "$basePath/use-variables-test.css",
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideMediaWikiVariablesCases
+	 * @covers ResourceLoader::getLessCompiler
+	 * @covers ResourceLoaderFileModule::compileLessFile
+	 */
+	public function testMediawikiVariablesDefault( array $config, array $importPaths, $skin, $expectedFile ) {
+		$this->setMwGlobals( $config );
+		$reset = ExtensionRegistry::getInstance()->setAttributeForTest( 'SkinLessImportPaths', $importPaths );
+		// Reset Skin::getSkinNames for ResourceLoaderContext
+		MediaWiki\MediaWikiServices::getInstance()->resetServiceForTesting( 'SkinFactory' );
+
+		$context = $this->getResourceLoaderContext( [ 'skin' => $skin ] );
+		$module = new ResourceLoaderFileModule( [
+			'localBasePath' => __DIR__ . '/../../data/less',
+			'styles' => [ 'use-variables.less' ],
+		] );
+		$module->setName( 'test.less' );
+		$styles = $module->getStyles( $context );
+		$this->assertStringEqualsFile( $expectedFile, $styles['all'] );
 	}
 
 	public static function providePackedModules() {
@@ -713,7 +760,7 @@ END
 			'foo' => [ 'class' => ResourceLoaderTestModule::class ],
 			'ferry' => [
 				'factory' => function () {
-					return self::getFailFerryMock();
+					return $this->getFailFerryMock();
 				}
 			],
 			'bar' => [ 'class' => ResourceLoaderTestModule::class ],
@@ -803,7 +850,7 @@ END
 	public function testMakeModuleResponseConcat( $scripts, $expected, $debug, $message = null ) {
 		$rl = new EmptyResourceLoader();
 		$modules = array_map( function ( $script ) {
-			return self::getSimpleModuleMock( $script );
+			return $this->getSimpleModuleMock( $script );
 		}, $scripts );
 
 		$context = $this->getResourceLoaderContext(
@@ -844,9 +891,9 @@ END
 	 */
 	public function testMakeModuleResponseError() {
 		$modules = [
-			'foo' => self::getSimpleModuleMock( 'foo();' ),
-			'ferry' => self::getFailFerryMock(),
-			'bar' => self::getSimpleModuleMock( 'bar();' ),
+			'foo' => $this->getSimpleModuleMock( 'foo();' ),
+			'ferry' => $this->getFailFerryMock(),
+			'bar' => $this->getSimpleModuleMock( 'bar();' ),
 		];
 		$rl = new EmptyResourceLoader();
 		$context = $this->getResourceLoaderContext(
@@ -884,7 +931,7 @@ END
 	public function testMakeModuleResponseErrorCSS() {
 		$modules = [
 			'foo' => self::getSimpleStyleModuleMock( '.foo{}' ),
-			'ferry' => self::getFailFerryMock( 'getStyles' ),
+			'ferry' => $this->getFailFerryMock( 'getStyles' ),
 			'bar' => self::getSimpleStyleModuleMock( '.bar{}' ),
 		];
 		$rl = new EmptyResourceLoader();
@@ -925,13 +972,13 @@ END
 		$rl = new EmptyResourceLoader( MediaWikiServices::getInstance()->getMainConfig() );
 		$rl->register( [
 			'foo' => [ 'factory' => function () {
-				return self::getSimpleModuleMock( 'foo();' );
+				return $this->getSimpleModuleMock( 'foo();' );
 			} ],
 			'ferry' => [ 'factory' => function () {
-				return self::getFailFerryMock();
+				return $this->getFailFerryMock();
 			} ],
 			'bar' => [ 'factory' => function () {
-				return self::getSimpleModuleMock( 'bar();' );
+				return $this->getSimpleModuleMock( 'bar();' );
 			} ],
 		] );
 		$context = $this->getResourceLoaderContext(
@@ -1078,7 +1125,7 @@ END
 			] )
 			->getMock();
 		$rl->register( 'test', [
-			'factory' => function () use ( $module ) {
+			'factory' => static function () use ( $module ) {
 				return $module;
 			}
 		] );
@@ -1137,7 +1184,7 @@ END
 			] )
 			->getMock();
 		$rl->register( 'test', [
-			'factory' => function () use ( $module ) {
+			'factory' => static function () use ( $module ) {
 				return $module;
 			}
 		] );

@@ -22,6 +22,10 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Special page lists all uncategorised pages in the
  * template namespace
@@ -29,8 +33,26 @@
  * @ingroup SpecialPage
  */
 class SpecialUncategorizedTemplates extends SpecialUncategorizedPages {
-	public function __construct( $name = 'Uncategorizedtemplates' ) {
-		parent::__construct( $name );
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LanguageConverterFactory $languageConverterFactory
+	 */
+	public function __construct(
+		NamespaceInfo $namespaceInfo,
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory,
+		LanguageConverterFactory $languageConverterFactory
+	) {
+		parent::__construct(
+			$namespaceInfo,
+			$loadBalancer,
+			$linkBatchFactory,
+			$languageConverterFactory
+		);
+		$this->mName = 'Uncategorizedtemplates';
 		$this->requestedNamespace = NS_TEMPLATE;
 	}
 }

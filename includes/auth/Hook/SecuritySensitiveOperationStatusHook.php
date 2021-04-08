@@ -5,6 +5,9 @@ namespace MediaWiki\Auth\Hook;
 use MediaWiki\Session\Session;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "SecuritySensitiveOperationStatus" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

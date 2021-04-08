@@ -37,7 +37,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 
 	/**
 	 * Setting this to false will deactivate the creation of a null revision as part of the upload
-	 * process logging in LocalFile::recordUpload2, see T193621
+	 * process logging in LocalFile::recordUpload3, see T193621
 	 *
 	 * @param bool $shouldCreateNullRevision
 	 */
@@ -54,6 +54,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 		return $statusValue;
 	}
 
+	/** @inheritDoc */
 	public function import( ImportableUploadRevision $importableRevision ) {
 		# Construct a file
 		$archiveName = $importableRevision->getArchiveName();
@@ -145,7 +146,7 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 	 *
 	 * @param ImportableUploadRevision $wikiRevision
 	 *
-	 * @return bool|string
+	 * @return string|false
 	 */
 	public function downloadSource( ImportableUploadRevision $wikiRevision ) {
 		if ( !$this->enableUploads ) {

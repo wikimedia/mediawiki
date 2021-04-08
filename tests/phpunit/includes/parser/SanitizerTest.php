@@ -7,11 +7,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SanitizerTest extends MediaWikiIntegrationTestCase {
 
-	protected function tearDown() : void {
-		MWTidy::destroySingleton();
-		parent::tearDown();
-	}
-
 	/**
 	 * @covers Sanitizer::removeHTMLtags
 	 * @dataProvider provideHtml5Tags
@@ -31,9 +26,6 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	/**
-	 * Provide HTML5 tags
-	 */
 	public static function provideHtml5Tags() {
 		$ESCAPED = true; # We want tag to be escaped
 		$VERBATIM = false; # We want to keep the tag
@@ -278,6 +270,7 @@ class SanitizerTest extends MediaWikiIntegrationTestCase {
 	 * @covers Sanitizer::escapeIdReferenceList
 	 */
 	public function testEscapeIdReferenceList( $referenceList, $id1, $id2 ) {
+		$this->hideDeprecated( 'Sanitizer::escapeIdReferenceList' );
 		$this->assertEquals(
 			Sanitizer::escapeIdReferenceList( $referenceList ),
 			Sanitizer::escapeIdForAttribute( $id1 )

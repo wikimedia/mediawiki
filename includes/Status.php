@@ -51,7 +51,7 @@ class Status extends StatusValue {
 	/**
 	 * Succinct helper method to wrap a StatusValue
 	 *
-	 * This is is useful when formatting StatusValue objects:
+	 * This is useful when formatting StatusValue objects:
 	 * @code
 	 *     $this->getOutput()->addHtml( Status::wrap( $sv )->getHTML() );
 	 * @endcode
@@ -295,12 +295,12 @@ class Status extends StatusValue {
 			if ( isset( $error['message'] ) && $error['message'] instanceof Message ) {
 				$msg = $error['message'];
 			} elseif ( isset( $error['message'] ) && isset( $error['params'] ) ) {
-				$msg = $this->msg( $error['message'], array_map( function ( $param ) {
+				$msg = $this->msg( $error['message'], array_map( static function ( $param ) {
 					return is_string( $param ) ? wfEscapeWikiText( $param ) : $param;
 				}, $this->cleanParams( $error['params'] ) ) );
 			} else {
 				$msgName = array_shift( $error );
-				$msg = $this->msg( $msgName, array_map( function ( $param ) {
+				$msg = $this->msg( $msgName, array_map( static function ( $param ) {
 					return is_string( $param ) ? wfEscapeWikiText( $param ) : $param;
 				}, $this->cleanParams( $error ) ) );
 			}
@@ -365,35 +365,6 @@ class Status extends StatusValue {
 	 */
 	public function getWarningsArray() {
 		return $this->getStatusArray( 'warning' );
-	}
-
-	/**
-	 * Returns a list of status messages of the given type (or all if false)
-	 *
-	 * @note this handles RawMessage poorly
-	 *
-	 * @param string|bool $type
-	 * @return array[]
-	 */
-	protected function getStatusArray( $type = false ) {
-		$result = [];
-
-		foreach ( $this->getErrors() as $error ) {
-			if ( $type === false || $error['type'] === $type ) {
-				if ( $error['message'] instanceof MessageSpecifier ) {
-					$result[] = array_merge(
-						[ $error['message']->getKey() ],
-						$error['message']->getParams()
-					);
-				} elseif ( $error['params'] ) {
-					$result[] = array_merge( [ $error['message'] ], $error['params'] );
-				} else {
-					$result[] = [ $error['message'] ];
-				}
-			}
-		}
-
-		return $result;
 	}
 
 	/**

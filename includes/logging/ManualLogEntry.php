@@ -38,6 +38,7 @@ use Wikimedia\Rdbms\IDatabase;
  *       but should be changed to use the builder pattern or the
  *       command pattern.
  * @since 1.19
+ * @see https://www.mediawiki.org/wiki/Manual:Logging_to_Special:Log
  */
 class ManualLogEntry extends LogEntryBase implements Taggable {
 	/** @var string Type of log entry */
@@ -52,7 +53,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/** @var array */
 	protected $relations = [];
 
-	/** @var User Performer of the action for the log entry */
+	/** @var UserIdentity Performer of the action for the log entry */
 	protected $performer;
 
 	/** @var Title Target title for the log entry */
@@ -85,8 +86,10 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	/**
 	 * @stable to call
 	 * @since 1.19
-	 * @param string $type
-	 * @param string $subtype
+	 * @param string $type Log type. Should match $wgLogTypes.
+	 * @param string $subtype Log subtype (action). Should match $wgLogActions or
+	 *   (together with $type) $wgLogActionsHandlers.
+	 * @note
 	 */
 	public function __construct( $type, $subtype ) {
 		$this->type = $type;
@@ -98,11 +101,18 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 *
 	 * You can pass params to the log action message by prefixing the keys with
 	 * a number and optional type, using colons to separate the fields. The
-	 * numbering should start with number 4, the first three parameters are
-	 * hardcoded for every message.
+	 * numbering should start with number 4 (matching the $4 message parameter),
+	 * the first three parameters are hardcoded for every message ($1 is a link
+	 * to the username and user talk page of the performing user, $2 is just the
+	 * username (for determining gender), $3 is a link to the target page).
+	 *
+	 * Typically, these parameters will be used in the logentry-<type>-<subtype>
+	 * message, but custom formatters, declared via $wgLogActionsHandlers, can
+	 * override that.
 	 *
 	 * If you want to store stuff that should not be available in messages, don't
-	 * prefix the array key with a number and don't use the colons.
+	 * prefix the array key with a number and don't use the colons. Parameters
+	 * which should be searchable need to be set with setRelations() instead.
 	 *
 	 * Example:
 	 *   $entry->setParameters(
@@ -113,6 +123,8 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 *
 	 * @since 1.19
 	 * @param array $parameters Associative array
+	 * @see LogFormatter::formatParameterValue for valid parameter types and
+	 *   their meanings
 	 */
 	public function setParameters( $parameters ) {
 		$this->parameters = $parameters;
@@ -136,7 +148,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @param UserIdentity $performer
 	 */
 	public function setPerformer( UserIdentity $performer ) {
-		$this->performer = User::newFromIdentity( $performer );
+		$this->performer = $performer;
 	}
 
 	/**
@@ -292,7 +304,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		}
 		$data += CommentStore::getStore()->insert( $dbw, 'log_comment', $comment );
 		$data += ActorMigration::newMigration()
-			->getInsertValues( $dbw, 'log_user', $this->getPerformer() );
+			->getInsertValues( $dbw, 'log_user', $this->getPerformerIdentity() );
 
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = $dbw->insertId();
@@ -335,9 +347,9 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 		$formatter->setContext( $context );
 
 		$logpage = SpecialPage::getTitleFor( 'Log', $this->getType() );
-		$user = $this->getPerformer();
+		$user = $this->getPerformerIdentity();
 		$ip = "";
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			// "MediaWiki default" and friends may have
 			// no IP address in their name
 			if ( IPUtils::isIPAddress( $user->getName() ) ) {
@@ -445,6 +457,14 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @return User
 	 */
 	public function getPerformer() {
+		wfDeprecated( __METHOD__, '1.36' );
+		return User::newFromIdentity( $this->performer );
+	}
+
+	/**
+	 * @return UserIdentity
+	 */
+	public function getPerformerIdentity(): UserIdentity {
 		return $this->performer;
 	}
 

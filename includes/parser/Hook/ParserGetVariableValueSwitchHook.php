@@ -6,6 +6,9 @@ use Parser;
 use PPFrame;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ParserGetVariableValueSwitch" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

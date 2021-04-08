@@ -6,6 +6,9 @@ use ApiQueryBase;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ApiQueryBaseAfterQuery" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -19,7 +22,7 @@ interface ApiQueryBaseAfterQueryHook {
 	 * @since 1.35
 	 *
 	 * @param ApiQueryBase $module Module in question
-	 * @param IResultWrapper|bool $result ResultWrapper or bool returned from the IDatabase::select()
+	 * @param IResultWrapper $result ResultWrapper
 	 * @param array &$hookData Array that was passed to the ApiQueryBaseBeforeQuery hook and
 	 *   will be passed to the ApiQueryBaseProcessRow hook, intended for inter-hook
 	 *   communication

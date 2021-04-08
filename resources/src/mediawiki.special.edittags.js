@@ -3,9 +3,7 @@
  */
 ( function () {
 	$( function () {
-		var summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
-			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
-			$wpReason = $( '#wpReason' ),
+		var $wpReason = $( '#wpReason' ),
 			$tagList = $( '#mw-edittags-tag-list' );
 
 		if ( $tagList.length ) {
@@ -26,13 +24,7 @@
 			}
 		} );
 
-		// Limit to bytes or UTF-8 codepoints, depending on MediaWiki's configuration
-		// use maxLength because it's leaving room for log entry text.
-		if ( summaryCodePointLimit ) {
-			$wpReason.codePointLimit();
-		} else if ( summaryByteLimit ) {
-			$wpReason.byteLimit();
-		}
+		$wpReason.codePointLimit( mw.config.get( 'wgCommentCodePointLimit' ) );
 	} );
 
 }() );

@@ -22,7 +22,7 @@
 abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 
 	/**
-	 * Enable to print in-depth debugging info during the test run
+	 * @var bool Enable to print in-depth debugging info during the test run
 	 */
 	protected $mVerbose = false;
 
@@ -33,7 +33,6 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 	 * @param int $expectedCount Max number of iterations
 	 * @param string $id Unit test id
 	 * @param bool $continue True to use smart continue
-	 * @return array Merged results data array
 	 */
 	protected function checkC( $expected, $params, $expectedCount, $id, $continue = true ) {
 		$result = $this->query( $params, $expectedCount, $id, $continue );
@@ -60,7 +59,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		$continue = [];
 		do {
 			$request = array_merge( $params, $continue );
-			uksort( $request, function ( $a, $b ) {
+			uksort( $request, static function ( $a, $b ) {
 				// put 'continue' params at the end - lazy method
 				$a = strpos( $a, 'continue' ) !== false ? 'zzz ' . $a : $a;
 				$b = strpos( $b, 'continue' ) !== false ? 'zzz ' . $b : $b;
@@ -116,14 +115,14 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 				$m = $p['title'];
 				if ( isset( $p['links'] ) ) {
 					$m .= '/[' . implode( ',', array_map(
-						function ( $v ) {
+						static function ( $v ) {
 							return $v['title'];
 						},
 						$p['links'] ) ) . ']';
 				}
 				if ( isset( $p['categories'] ) ) {
 					$m .= '/(' . implode( ',', array_map(
-						function ( $v ) {
+						static function ( $v ) {
 							return str_replace( 'Category:', '', $v['title'] );
 						},
 						$p['categories'] ) ) . ')';
@@ -133,22 +132,22 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 		}
 		if ( isset( $q['allcategories'] ) ) {
 			$print[] = '*Cats/(' . implode( ',', array_map(
-				function ( $v ) {
+				static function ( $v ) {
 					return $v['*'];
 				},
 				$q['allcategories'] ) ) . ')';
 		}
-		self::GetItems( $q, 'allpages', 'Pages', $print );
-		self::GetItems( $q, 'alllinks', 'Links', $print );
-		self::GetItems( $q, 'alltransclusions', 'Trnscl', $print );
+		self::getItems( $q, 'allpages', 'Pages', $print );
+		self::getItems( $q, 'alllinks', 'Links', $print );
+		self::getItems( $q, 'alltransclusions', 'Trnscl', $print );
 		print ' ' . implode( '  ', $print ) . "\n";
 	}
 
-	private static function GetItems( $q, $moduleName, $name, &$print ) {
+	private static function getItems( $q, $moduleName, $name, &$print ) {
 		if ( isset( $q[$moduleName] ) ) {
 			$print[] = "*$name/[" . implode( ',',
 				array_map(
-					function ( $v ) {
+					static function ( $v ) {
 						return $v['title'];
 					},
 					$q[$moduleName] ) ) . ']';
@@ -176,7 +175,7 @@ abstract class ApiQueryContinueTestBase extends ApiQueryTestBase {
 					if ( !is_array( $value ) ) {
 						$sort = false;
 					} elseif ( array_key_exists( 'title', $value ) ) {
-						$sort = function ( $a, $b ) {
+						$sort = static function ( $a, $b ) {
 							return strcmp( $a['title'], $b['title'] );
 						};
 					} else {

@@ -149,9 +149,9 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 	public function testLBFactoryMultiRoundCallbacks() {
 		$called = 0;
-		$countLBsFunc = function ( LBFactoryMulti $factory ) {
+		$countLBsFunc = static function ( LBFactoryMulti $factory ) {
 			$count = 0;
-			$factory->forEachLB( function () use ( &$count ) {
+			$factory->forEachLB( static function () use ( &$count ) {
 				++$count;
 			} );
 
@@ -165,7 +165,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
 		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.
 		$factory->beginMasterChanges( __METHOD__ );
-		$dbw->onTransactionPreCommitOrIdle( function () use ( $factory, &$called ) {
+		$dbw->onTransactionPreCommitOrIdle( static function () use ( $factory, &$called ) {
 			++$called;
 			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
 			// There is no s1wiki DB to select so it is not in getConnection(),
@@ -188,7 +188,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		// DBTransactionError due to transaction ROUND_* stages being mismatched.
 		$factory->beginMasterChanges( __METHOD__ );
 		$dbw->query( "SELECT 1 as t", __METHOD__ );
-		$dbw->onTransactionResolution( function () use ( $factory, &$called ) {
+		$dbw->onTransactionResolution( static function () use ( $factory, &$called ) {
 			++$called;
 			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
 			// There is no s1wiki DB to select so it is not in getConnection(),
@@ -205,7 +205,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
 		// DBTransactionError should not be thrown
 		$ran = 0;
-		$dbw->onTransactionPreCommitOrIdle( function () use ( &$ran ) {
+		$dbw->onTransactionPreCommitOrIdle( static function () use ( &$ran ) {
 			++$ran;
 		} );
 		$factory->commitAll( __METHOD__ );
@@ -278,7 +278,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb1->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb1->method( 'getAnyOpenConnection' )->willReturn( $mockDB1 );
 		$lb1->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
-				function () use ( $mockDB1 ) {
+				static function () use ( $mockDB1 ) {
 					$p = 0;
 					$p |= $mockDB1->writesOrCallbacksPending();
 					$p |= $mockDB1->lastDoneWrites();
@@ -307,7 +307,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb2->method( 'getAnyOpenConnection' )->willReturn( $mockDB2 );
 		$lb2->method( 'hasOrMadeRecentMasterChanges' )->will( $this->returnCallback(
-			function () use ( $mockDB2 ) {
+			static function () use ( $mockDB2 ) {
 				$p = 0;
 				$p |= $mockDB2->writesOrCallbacksPending();
 				$p |= $mockDB2->lastDoneWrites();
@@ -338,10 +338,10 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$cp->applySessionReplicationPosition( $lb1 );
 		$cp->applySessionReplicationPosition( $lb2 );
 		// Record positions in stash on first HTTP request end
-		$cp->storeSessionReplicationPosition( $lb1 );
-		$cp->storeSessionReplicationPosition( $lb2 );
+		$cp->stageSessionReplicationPosition( $lb1 );
+		$cp->stageSessionReplicationPosition( $lb2 );
 		$cpIndex = null;
-		$cp->shutdown( null, 'sync', $cpIndex );
+		$cp->shutdown( $cpIndex );
 
 		$this->assertSame( 1, $cpIndex, "CP write index set" );
 
@@ -381,10 +381,10 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$cp->applySessionReplicationPosition( $lb1 );
 		$cp->applySessionReplicationPosition( $lb2 );
 		// Shutdown (nothing to record)
-		$cp->storeSessionReplicationPosition( $lb1 );
-		$cp->storeSessionReplicationPosition( $lb2 );
+		$cp->stageSessionReplicationPosition( $lb1 );
+		$cp->stageSessionReplicationPosition( $lb2 );
 		$cpIndex = null;
-		$cp->shutdown( null, 'sync', $cpIndex );
+		$cp->shutdown( $cpIndex );
 
 		$this->assertNull( $cpIndex, "CP write index retained" );
 
@@ -689,7 +689,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory->redefineLocalDomain( $domain );
 
 		$n = 0;
-		$lb->forEachOpenConnection( function () use ( &$n ) {
+		$lb->forEachOpenConnection( static function () use ( &$n ) {
 			++$n;
 		} );
 		$this->assertSame( 0, $n, "Connections closed" );
@@ -809,13 +809,27 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testGetChronologyProtectorTouched() {
 		$store = new HashBagOStuff;
 		$lbFactory = $this->newLBFactoryMulti( [
-			'memStash' => $store
+			'cpStash' => $store,
+			'cliMode' => false
 		] );
 		$lbFactory->setRequestInfo( [ 'ChronologyClientId' => 'ii' ] );
-		$key = $store->makeGlobalKey( ChronologyProtector::class,
-			'mtime', 'ii', 'test-db1' );
-		$store->set( $key, 2 );
+
+		$mockWallClock = 1549343530.2053;
+		$priorTime = $mockWallClock; // reference time
+		$lbFactory->setMockTime( $mockWallClock );
+
+		$key = $store->makeGlobalKey( ChronologyProtector::class, 'ii', 'v2' );
+		$store->set(
+			$key,
+			[
+				'positions' => [],
+				'timestamps' => [ $lbFactory::CLUSTER_MAIN_DEFAULT => $priorTime ]
+			],
+			3600
+		);
+
+		$mockWallClock += 1.0;
 		$touched = $lbFactory->getChronologyProtectorTouched();
-		$this->assertEquals( 2, $touched );
+		$this->assertEquals( $priorTime, $touched );
 	}
 }

@@ -1,5 +1,8 @@
 <?php
 
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn
+// phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+
 /**
  * Test that a factory class correctly forwards all arguments to the class it constructs. This is
  * useful because sometimes a class' constructor will have more arguments added, and it's easy to
@@ -38,7 +41,7 @@ trait FactoryArgTestTrait {
 	 * $method is returned from getFactoryMethodName(), and $args is constructed by applying
 	 * getMockValueForParam() to the factory method's parameters.
 	 *
-	 * @param object $factory Factory object
+	 * @param object $factory
 	 * @return object Object created by factory
 	 */
 	protected function createInstanceFromFactory( $factory ) {
@@ -92,7 +95,7 @@ trait FactoryArgTestTrait {
 		$pos = $param->getPosition();
 
 		$type = $param->getType();
-		if ( !$type ) {
+		if ( !$type || $type->getName() === 'string' ) {
 			// Optimistically assume a string is okay
 			return "some unlikely string $pos";
 		}

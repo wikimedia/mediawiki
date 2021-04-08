@@ -7,6 +7,9 @@ use IContextSource;
 use SlotDiffRenderer;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "GetSlotDiffRenderer" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

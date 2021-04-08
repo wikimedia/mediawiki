@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
@@ -14,8 +15,7 @@ use Wikimedia\IPUtils;
 class UserFactoryTest extends MediaWikiIntegrationTestCase {
 
 	private function getUserFactory() {
-		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
-		return new UserFactory( $userNameUtils );
+		return MediaWikiServices::getInstance()->getUserFactory();
 	}
 
 	public function testNewFromName() {
@@ -53,6 +53,24 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $id, $user->getId() );
 	}
 
+	public function testNewFromIdentity() {
+		$identity = new UserIdentityValue( 98257, __METHOD__, 0 );
+
+		$factory = $this->getUserFactory();
+		$user = $factory->newFromUserIdentity( $identity );
+
+		$this->assertInstanceOf( User::class, $user );
+		$this->assertSame( $identity->getId(), $user->getId() );
+		$this->assertSame( $identity->getName(), $user->getName() );
+
+		// make sure instance caching happens
+		$this->assertSame( $user, $factory->newFromUserIdentity( $identity ) );
+
+		// make sure instance caching distingushes between IDs
+		$otherIdentity = new UserIdentityValue( 33245, __METHOD__, 0 );
+		$this->assertNotSame( $user, $factory->newFromUserIdentity( $otherIdentity ) );
+	}
+
 	public function testNewFromActorId() {
 		$name = 'UserFactoryTest2';
 
@@ -75,16 +93,14 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testNewFromUserIdentity() {
 		$id = 23560;
 		$name = 'UserFactoryTest3';
-		$actorId = 34562;
 
-		$userIdentity = new UserIdentityValue( $id, $name, $actorId );
+		$userIdentity = new UserIdentityValue( $id, $name, 0 );
 		$factory = $this->getUserFactory();
 
 		$user1 = $factory->newFromUserIdentity( $userIdentity );
 		$this->assertInstanceOf( User::class, $user1 );
 		$this->assertSame( $id, $user1->getId() );
 		$this->assertSame( $name, $user1->getName() );
-		$this->assertSame( $actorId, $user1->getActorId() );
 
 		$user2 = $factory->newFromUserIdentity( $user1 );
 		$this->assertInstanceOf( User::class, $user1 );
@@ -140,6 +156,30 @@ class UserFactoryTest extends MediaWikiIntegrationTestCase {
 			$user2,
 			'Invalid confirmation codes result in null users when reading from master'
 		);
+	}
+
+	// Copied from UserTest
+	public function testNewFromRow() {
+		// TODO: Create real tests here for loadFromRow
+		$row = (object)[];
+		$user = $this->getUserFactory()->newFromRow( $row );
+		$this->assertInstanceOf( User::class, $user, 'newFromRow returns a user object' );
+	}
+
+	public function testNewFromRow_bad() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( '$row must be an object' );
+		$this->getUserFactory()->newFromRow( [] );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserFactory::newFromAuthority
+	 */
+	public function testNewFromAuthority() {
+		$authority = new UltimateAuthority( new UserIdentityValue( 42, 'Test', 0 ) );
+		$user = $this->getUserFactory()->newFromAuthority( $authority );
+		$this->assertSame( 42, $user->getId() );
+		$this->assertSame( 'Test', $user->getName() );
 	}
 
 }

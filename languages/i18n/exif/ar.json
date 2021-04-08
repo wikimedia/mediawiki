@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Abanima",
+			"Amire80",
 			"BAB ZAA",
 			"Ciphers",
 			"Houcinee1",
@@ -213,7 +214,7 @@
 	"exif-photometricinterpretation-4": "قناع الشفافية",
 	"exif-photometricinterpretation-5": "مفصول (ربما CMYK)",
 	"exif-photometricinterpretation-6": "واي سب سر",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-8": "CIE L*a*b*‎",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (تكويد ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (تكويد ITU)",
 	"exif-photometricinterpretation-32803": "مصفوفة فلترة الألوان",

@@ -2,11 +2,7 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use GenderCache;
-use Language;
-use MediaWiki\Interwiki\InterwikiLookup;
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\RequestInterface;
@@ -15,14 +11,9 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
-use MediaWiki\User\UserIdentityValue;
-use MediaWikiTestCaseTrait;
-use MediaWikiTitleCodec;
-use NamespaceInfo;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\MockObject;
-use Title;
-use User;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory;
@@ -33,37 +24,31 @@ use Wikimedia\Services\ServiceContainer;
  * This trait is intended to be used on subclasses of MediaWikiUnitTestCase
  * or MediaWikiIntegrationTestCase.
  *
+ * @stable to use
  * @package MediaWiki\Tests\Rest\Handler
  */
 trait HandlerTestTrait {
-
-	use MediaWikiTestCaseTrait;
-
-	/** @var int */
-	private $pageIdCounter = 0;
-
-	/**
-	 * Expected to be provided by the class, probably inherited from TestCase.
-	 *
-	 * @param string $originalClassName
-	 *
-	 * @return MockObject
-	 */
-	abstract protected function createMock( $originalClassName ): MockObject;
+	use MockAuthorityTrait;
 
 	/**
 	 * Calls init() on the Handler, supplying a mock Router and ResponseFactory.
 	 *
+	 * @internal to the trait
 	 * @param Handler $handler
 	 * @param RequestInterface $request
 	 * @param array $config
 	 * @param array $hooks Hook overrides
+	 * @param Authority|null $authority
 	 */
-	private function initHandler( Handler $handler, RequestInterface $request,
-		$config = [], $hooks = []
+	private function initHandler(
+		Handler $handler,
+		RequestInterface $request,
+		$config = [],
+		$hooks = [],
+		Authority $authority = null
 	) {
 		$formatter = $this->createMock( ITextFormatter::class );
-		$formatter->method( 'format' )->willReturnCallback( function ( MessageValue $msg ) {
+		$formatter->method( 'format' )->willReturnCallback( static function ( MessageValue $msg ) {
 			return $msg->dump();
 		} );
 
@@ -72,40 +57,57 @@ trait HandlerTestTrait {
 
 		/** @var Router|MockObject $router */
 		$router = $this->createNoOpMock( Router::class, [ 'getRouteUrl' ] );
-		$router->method( 'getRouteUrl' )->willReturnCallback( function ( $route, $path = [], $query = [] ) {
+		$router->method( 'getRouteUrl' )->willReturnCallback( static function ( $route, $path = [], $query = [] ) {
 			foreach ( $path as $param => $value ) {
 				$route = str_replace( '{' . $param . '}', urlencode( $value ), $route );
 			}
 			return wfAppendQuery( 'https://wiki.example.com/rest' . $route, $query );
 		} );
 
+		$authority = $authority ?: $this->mockAnonUltimateAuthority();
 		$hookContainer = $this->createHookContainer( $hooks );
 
-		$handler->init( $router, $request, $config, $responseFactory, $hookContainer );
+		$handler->init( $router, $request, $config, $authority, $responseFactory, $hookContainer );
 	}
 
 	/**
 	 * Calls validate() on the Handler, with an appropriate Validator supplied.
 	 *
+	 * @internal to the trait
 	 * @param Handler $handler
+	 * @param null|Validator $validator
+	 * @throws HttpException
 	 */
-	private function validateHandler( Handler $handler ) {
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'userCan', 'userHasRight' ]
-		);
-		$permissionManager->method( 'userCan' )->willReturn( true );
-		$permissionManager->method( 'userHasRight' )->willReturn( true );
-
-		/** @var ServiceContainer|MockObject $serviceContainer */
-		$serviceContainer = $this->createNoOpMock( ServiceContainer::class );
-		$objectFactory = new ObjectFactory( $serviceContainer );
-
-		$user = new UserIdentityValue( 0, 'Fake User', 0 );
-		$validator =
-			new Validator( $objectFactory, $permissionManager, $handler->getRequest(), $user );
-
+	private function validateHandler(
+		Handler $handler,
+		Validator $validator = null
+	) {
+		if ( !$validator ) {
+			/** @var ServiceContainer|MockObject $serviceContainer */
+			$serviceContainer = $this->createNoOpMock( ServiceContainer::class );
+			$objectFactory = new ObjectFactory( $serviceContainer );
+			$validator = new Validator( $objectFactory, $handler->getRequest(), $handler->getAuthority() );
+		}
 		$handler->validate( $validator );
+	}
+
+	/**
+	 * Creates a mock Validator to bypass actual request query, path, and/or body param validation
+	 *
+	 * @internal to the trait
+	 * @param array $queryPathParams
+	 * @param array $bodyParams
+	 * @return Validator|MockObject
+	 */
+	private function getMockValidator( array $queryPathParams, array $bodyParams ): Validator {
+		$validator = $this->createNoOpMock( Validator::class, [ 'validateParams', 'validateBody' ] );
+		if ( $queryPathParams ) {
+			$validator->method( 'validateParams' )->willReturn( $queryPathParams );
+		}
+		if ( $bodyParams ) {
+			$validator->method( 'validateBody' )->willReturn( $bodyParams );
+		}
+		return $validator;
 	}
 
 	/**
@@ -115,17 +117,30 @@ trait HandlerTestTrait {
 	 * @param RequestInterface $request
 	 * @param array $config
 	 * @param array $hooks Hook overrides
-	 *
+	 * @param array $validatedParams Path/query params to return as already valid
+	 * @param array $validatedBody Body params to return as already valid
+	 * @param Authority|null $authority
 	 * @return ResponseInterface
 	 */
-	private function executeHandler( Handler $handler, RequestInterface $request,
-		$config = [], $hooks = []
-	) {
+	private function executeHandler(
+		Handler $handler,
+		RequestInterface $request,
+		$config = [],
+		$hooks = [],
+		$validatedParams = [],
+		$validatedBody = [],
+		Authority $authority = null
+	): ResponseInterface {
 		// supply defaults for required fields in $config
 		$config += [ 'path' => '/test' ];
 
-		$this->initHandler( $handler, $request, $config, $hooks );
-		$this->validateHandler( $handler );
+		$this->initHandler( $handler, $request, $config, $hooks, $authority );
+		$validator = null;
+		if ( $validatedParams || $validatedBody ) {
+			/** @var Validator|MockObject $validator */
+			$validator = $this->getMockValidator( $validatedParams, $validatedBody );
+		}
+		$this->validateHandler( $handler, $validator );
 
 		// Check conditional request headers
 		$earlyResponse = $handler->checkPreconditions();
@@ -152,16 +167,22 @@ trait HandlerTestTrait {
 	 * @param RequestInterface $request
 	 * @param array $config
 	 * @param array $hooks
-	 *
+	 * @param array $validatedParams
+	 * @param array $validatedBody
+	 * @param Authority|null $authority
 	 * @return array
 	 */
 	private function executeHandlerAndGetBodyData(
 		Handler $handler,
 		RequestInterface $request,
 		$config = [],
-		$hooks = []
-	) {
-		$response = $this->executeHandler( $handler, $request, $config, $hooks );
+		$hooks = [],
+		$validatedParams = [],
+		$validatedBody = [],
+		Authority $authority = null
+	): array {
+		$response = $this->executeHandler( $handler, $request, $config, $hooks,
+			$validatedParams, $validatedBody, $authority );
 
 		$this->assertTrue(
 			$response->getStatusCode() >= 200 && $response->getStatusCode() < 300,
@@ -191,7 +212,7 @@ trait HandlerTestTrait {
 		RequestInterface $request,
 		$config = [],
 		$hooks = []
-	) {
+	): HttpException {
 		try {
 			$this->executeHandler( $handler, $request, $config, $hooks );
 			Assert::fail( 'Expected a HttpException to be thrown' );
@@ -199,88 +220,4 @@ trait HandlerTestTrait {
 			return $ex;
 		}
 	}
-
-	/**
-	 * @param string $text
-	 * @param array $props Additional properties to set. Supported keys:
-	 *        - id: int
-	 *        - namespace: int
-	 *
-	 * @return Title|MockObject
-	 */
-	private function makeMockTitle( $text, array $props = [] ) {
-		$id = $props['id'] ?? ++$this->pageIdCounter;
-		$ns = $props['namespace'] ?? 0;
-		$nsName = $ns ? "ns$ns:" : '';
-
-		$preText = $text;
-		$text = preg_replace( '/^[\w ]*?:/', '', $text );
-
-		// If no namespace prefix was given, add one if needed.
-		if ( $preText == $text && $ns ) {
-			$preText = $nsName . $text;
-		}
-
-		/** @var Title|MockObject $title */
-		$title = $this->createMock( Title::class );
-
-		$title->method( 'getText' )->willReturn( str_replace( '_', ' ', $text ) );
-		$title->method( 'getDBkey' )->willReturn( str_replace( ' ', '_', $text ) );
-
-		$title->method( 'getPrefixedText' )->willReturn( str_replace( '_', ' ', $preText ) );
-		$title->method( 'getPrefixedDBkey' )->willReturn( str_replace( ' ', '_', $preText ) );
-
-		$title->method( 'getArticleID' )->willReturn( $id );
-		$title->method( 'getNamespace' )->willReturn( $props['namespace'] ?? 0 );
-		$title->method( 'exists' )->willReturn( $id > 0 );
-		$title->method( 'getTouched' )->willReturn( $id ? '20200101223344' : false );
-
-		return $title;
-	}
-
-	/**
-	 * @return PermissionManager|MockObject
-	 */
-	private function makeMockPermissionManager() {
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'userCan' ]
-		);
-		$permissionManager->method( 'userCan' )
-			->willReturnCallback( function ( $action, User $user, LinkTarget $page ) {
-				return !preg_match( '/Forbidden/', $page->getText() );
-			} );
-
-		return $permissionManager;
-	}
-
-	/**
-	 * @return MediaWikiTitleCodec
-	 */
-	private function makeMockTitleCodec() {
-		/** @var Language|MockObject $language */
-		$language = $this->createNoOpMock( Language::class, [ 'ucfirst' ] );
-		$language->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
-
-		/** @var GenderCache|MockObject $genderCache */
-		$genderCache = $this->createNoOpMock( GenderCache::class );
-
-		/** @var InterwikiLookup|MockObject $interwikiLookup */
-		$interwikiLookup = $this->createNoOpMock( InterwikiLookup::class );
-
-		/** @var NamespaceInfo|MockObject $namespaceInfo */
-		$namespaceInfo = $this->createNoOpMock( NamespaceInfo::class, [ 'isCapitalized' ] );
-		$namespaceInfo->method( 'isCapitalized' )->willReturn( true );
-
-		$titleCodec = new MediaWikiTitleCodec(
-			$language,
-			$genderCache,
-			[ 'en' ],
-			$interwikiLookup,
-			$namespaceInfo
-		);
-
-		return $titleCodec;
-	}
-
 }

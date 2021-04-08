@@ -2,10 +2,14 @@
 
 namespace MediaWiki\Permissions\Hook;
 
+use MessageSpecifier;
 use Title;
 use User;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "getUserPermissionsErrorsExpensive" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -23,7 +27,7 @@ interface GetUserPermissionsErrorsExpensiveHook {
 	 * @param Title $title Title being checked against
 	 * @param User $user Current user
 	 * @param string $action Action being checked
-	 * @param string &$result User permissions error to add. If none, return true.
+	 * @param array|string|MessageSpecifier &$result User permissions error to add. If none, return true.
 	 *   For consistency, error messages should be plain text with no special coloring,
 	 *   bolding, etc. to show that they're errors; presenting them properly to the
 	 *   user as errors is done by the caller.

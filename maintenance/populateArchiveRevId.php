@@ -121,7 +121,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 		$ok = false;
 		while ( !$ok ) {
 			try {
-				$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
+				$dbw->doAtomicSection( __METHOD__, static function ( IDatabase $dbw, $fname ) {
 					$dbw->insert( 'revision', self::$dummyRev, $fname );
 					$id = $dbw->insertId();
 					$toDelete = [ $id ];
@@ -159,7 +159,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			self::$dummyRev = self::makeDummyRevisionRow( $dbw );
 		}
 
-		$updates = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $arIds ) {
+		$updates = $dbw->doAtomicSection( __METHOD__, static function ( IDatabase $dbw, $fname ) use ( $arIds ) {
 			// Create new rev_ids by inserting dummy rows into revision and then deleting them.
 			$dbw->insert( 'revision', array_fill( 0, count( $arIds ), self::$dummyRev ), $fname );
 			$revIds = $dbw->selectFieldValues(
@@ -241,7 +241,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 
 			// Make a title and revision and insert them
 			$title = Title::newFromText( "PopulateArchiveRevId_4b05b46a81e29" );
-			$page = WikiPage::factory( $title );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 			$updater = $page->newPageUpdater(
 				User::newSystemUser( 'Maintenance script', [ 'steal' => true ] )
 			);

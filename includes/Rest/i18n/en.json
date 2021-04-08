@@ -16,6 +16,7 @@
 	"rest-permission-denied-anon": "Not accessible by anonymous user",
 	"rest-permission-denied-title": "The user does not have rights to read title ($1)",
 	"rest-permission-denied-revision": "User doesn't have access to the requested revision ($1).",
+	"rest-resource-limit-exceeded": "Resources limits exceeded processing the request.",
 	"rest-pagehistory-incompatible-params": "Parameters \"older_than\" and \"newer_than\" cannot both be specified",
 	"rest-pagehistory-param-range-error": "Revision id must be greater than 0",
 	"rest-pagehistory-timestamp-error": "Unable to retrieve timestamp for the specified revision ($1)",
@@ -30,7 +31,7 @@
 	"rest-pagehistorycount-too-many-revisions": "The specified title contains too many revisions to retrieve this count.",
 	"rest-search-error": "Error when returning search results: $1",
 	"rest-page-source-type-error": "The content type of the page source requested is unsupported",
-	"rest-no-revision" : "Unable to retrieve revision for title $1",
+	"rest-no-revision": "Unable to retrieve revision for title $1",
 	"rest-media-too-many-links": "Too many media links found on title $1 ($2 allowed)",
 	"rest-html-backend-error": "Unable to fetch Parsoid HTML",
 	"rest-bad-json-body": "Bad request body, must be a JSON object.",
@@ -39,5 +40,6 @@
 	"rest-bad-content-model": "Bad content model: $1",
 	"rest-update-cannot-create-page": "The page \"$1\" cannot be created since it already exists. To update the existing page, provide the base revision ID in the structure under \"latest\" key in the request body.",
 	"rest-extraneous-csrf-token": "Extraneous CSRF token found. CSRF tokens must not be used when using authentication mechanisms such as OAuth that are safe against CSRF attacks.",
-	"rest-cannot-load-file": "The file for title \"$1\" cannot be loaded."
+	"rest-cannot-load-file": "The file for title \"$1\" cannot be loaded.",
+	"rest-cross-origin-anon-write": "Anonymous cross-origin write requests are not allowed"
 }

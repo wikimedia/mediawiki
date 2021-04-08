@@ -1,6 +1,5 @@
 {
 	"extends": [
-		"wikimedia/server",
 		"wikimedia/mocha"
 	],
 	"rules": {

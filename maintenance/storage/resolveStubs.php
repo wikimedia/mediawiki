@@ -27,7 +27,7 @@ use MediaWiki\MediaWikiServices;
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithArgs = [ 'm' ];
 
-	require_once __DIR__ . '/../commandLine.inc';
+	require_once __DIR__ . '/../CommandLineInc.php';
 
 	resolveStubs();
 }

@@ -20,26 +20,34 @@
  * @defgroup Maintenance Maintenance
  */
 
-if ( !defined( 'MW_ENTRY_POINT' ) ) {
-	define( 'MW_ENTRY_POINT', 'cli' );
-}
-
-// Bail on old versions of PHP, or if composer has not been run yet to install
-// dependencies.
-require_once __DIR__ . '/../includes/PHPVersionCheck.php';
-wfEntryPointCheck( 'text' );
-
 /**
  * @defgroup MaintenanceArchive Maintenance archives
  * @ingroup Maintenance
  */
 
-// Define this so scripts can easily find doMaintenance.php
-define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
+if ( !defined( 'RUN_MAINTENANCE_IF_MAIN' ) ) {
+	// Define this so scripts can easily find doMaintenance.php
+	define( 'RUN_MAINTENANCE_IF_MAIN', __DIR__ . '/doMaintenance.php' );
 
-// Original name for compat, harmless
-// Support: MediaWiki < 1.31
-define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN );
+	// Original name for compat, harmless
+	// Support: MediaWiki < 1.31
+	define( 'DO_MAINTENANCE', RUN_MAINTENANCE_IF_MAIN );
+}
+
+if ( defined( 'MEDIAWIKI' ) ) {
+	// This file is included by many autoloaded class files, and so may
+	// potentially be invoked in the context of a web request or another CLI
+	// script. It's not appropriate to run the following file-scope code in
+	// such a case.
+	return;
+}
+
+define( 'MW_ENTRY_POINT', 'cli' );
+
+// Bail on old versions of PHP, or if composer has not been run yet to install
+// dependencies.
+require_once __DIR__ . '/../includes/PHPVersionCheck.php';
+wfEntryPointCheck( 'text' );
 
 /**
  * @var string|false

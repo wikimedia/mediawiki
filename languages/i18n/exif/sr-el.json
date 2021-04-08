@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kizule",
 			"Michaello",
 			"Milicevic01",
 			"Rancher",
@@ -208,7 +209,6 @@
 	"exif-photometricinterpretation-3": "Paleta",
 	"exif-photometricinterpretation-4": "Maska transparentnosti",
 	"exif-photometricinterpretation-6": "YCbCr",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-unknowndate": "Nepoznat datum",
 	"exif-orientation-1": "Normalno",
 	"exif-orientation-2": "Obrnuto po horizontali",

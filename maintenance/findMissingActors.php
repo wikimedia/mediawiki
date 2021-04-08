@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\LBFactory;
@@ -53,6 +54,11 @@ class FindMissingActors extends Maintenance {
 	 * @var LBFactory
 	 */
 	private $lbFactory;
+
+	/**
+	 * @var ActorNormalization
+	 */
+	private $actorNormalization;
 
 	private const TABLES = [
 		// 'rev_actor' => [ 'revision', 'rev_actor', 'rev_id' ], // not yet used in 1.35
@@ -89,7 +95,8 @@ class FindMissingActors extends Maintenance {
 		?UserFactory $userFactory = null,
 		?UserNameUtils $userNameUtils = null,
 		?LoadBalancer $loadBalancer = null,
-		?LBFactory $lbFactory = null
+		?LBFactory $lbFactory = null,
+		?ActorNormalization $actorNormalization = null
 	) {
 		$services = MediaWikiServices::getInstance();
 
@@ -97,6 +104,8 @@ class FindMissingActors extends Maintenance {
 		$this->userNameUtils = $userNameUtils ?? $this->userNameUtils ?? $services->getUserNameUtils();
 		$this->loadBalancer = $loadBalancer ?? $this->loadBalancer ?? $services->getDBLoadBalancer();
 		$this->lbFactory = $lbFactory ?? $this->lbFactory ?? $services->getDBLoadBalancerFactory();
+		$this->actorNormalization = $actorNormalization ?? $this->actorNormalization ??
+			$services->getActorNormalization();
 	}
 
 	/**
@@ -133,9 +142,8 @@ class FindMissingActors extends Maintenance {
 			$this->fatalError( "Unknown user: '$name'" );
 		}
 
-		// Supply write connection to assign an actor ID if needed.
 		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
-		$actorId = $user->getActorId( $dbw );
+		$actorId = $this->actorNormalization->acquireActorId( $user, $dbw );
 
 		if ( !$actorId ) {
 			$this->fatalError( "Failed to acquire an actor ID for user '$user'" );

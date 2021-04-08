@@ -76,6 +76,11 @@
 		this.renderInsertForm();
 
 		this.addPages( [
+			new OO.ui.PageLayout( 'initializing', {
+				scrollable: true,
+				padded: true,
+				content: [ new OO.ui.ProgressBarWidget( { indeterminate: true } ) ]
+			} ),
 			new OO.ui.PageLayout( 'upload', {
 				scrollable: true,
 				padded: true,
@@ -168,7 +173,7 @@
 		this.clear();
 		this.upload = this.createUpload();
 
-		this.setPage( 'upload' );
+		this.setPage( 'initializing' );
 
 		if ( this.filekey ) {
 			this.setFilekey( this.filekey );
@@ -179,6 +184,7 @@
 				// If the user can't upload anything, don't give them the option to.
 				return api.getUserInfo().then(
 					function ( userInfo ) {
+						booklet.setPage( 'upload' );
 						if ( userInfo.rights.indexOf( 'upload' ) === -1 ) {
 							if ( mw.user.isAnon() ) {
 								booklet.getPage( 'upload' ).$element.msg( 'apierror-mustbeloggedin', mw.msg( 'action-upload' ) );
@@ -189,10 +195,14 @@
 						return $.Deferred().resolve();
 					},
 					// Always resolve, never reject
-					function () { return $.Deferred().resolve(); }
+					function () {
+						booklet.setPage( 'upload' );
+						return $.Deferred().resolve();
+					}
 				);
 			},
 			function ( errorMsg ) {
+				booklet.setPage( 'upload' );
 				// eslint-disable-next-line mediawiki/msg-doc
 				booklet.getPage( 'upload' ).$element.msg( errorMsg );
 				return $.Deferred().resolve();

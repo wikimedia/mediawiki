@@ -25,6 +25,9 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Tidy\TidyDriverBase;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -61,6 +64,12 @@ class ParserFactory {
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * Track calls to Parser constructor to aid in deprecation of direct
 	 * Parser invocation.  This is temporary: it will be removed once the
@@ -74,6 +83,12 @@ class ParserFactory {
 	/** @var HookContainer */
 	private $hookContainer;
 
+	/** @var TidyDriverBase */
+	private $tidy;
+
+	/** @var WANObjectCache */
+	private $wanCache;
+
 	/**
 	 * @param ServiceOptions $svcOptions
 	 * @param MagicWordFactory $magicWordFactory
@@ -86,7 +101,12 @@ class ParserFactory {
 	 * @param BadFileLookup $badFileLookup
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 * @param HookContainer $hookContainer
+	 * @param TidyDriverBase $tidy
+	 * @param WANObjectCache $wanCache
+	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserFactory $userFactory
 	 * @since 1.32
+	 * @internal
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -99,7 +119,11 @@ class ParserFactory {
 		LoggerInterface $logger,
 		BadFileLookup $badFileLookup,
 		LanguageConverterFactory $languageConverterFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		TidyDriverBase $tidy,
+		WANObjectCache $wanCache,
+		UserOptionsLookup $userOptionsLookup,
+		UserFactory $userFactory
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -116,6 +140,10 @@ class ParserFactory {
 		$this->badFileLookup = $badFileLookup;
 		$this->languageConverterFactory = $languageConverterFactory;
 		$this->hookContainer = $hookContainer;
+		$this->tidy = $tidy;
+		$this->wanCache = $wanCache;
+		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -139,7 +167,11 @@ class ParserFactory {
 				$this->logger,
 				$this->badFileLookup,
 				$this->languageConverterFactory,
-				$this->hookContainer
+				$this->hookContainer,
+				$this->tidy,
+				$this->wanCache,
+				$this->userOptionsLookup,
+				$this->userFactory
 			);
 		} finally {
 			self::$inParserFactory--;

@@ -20,48 +20,34 @@ use MediaWiki\MediaWikiServices;
 class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	protected $mTitle = 'Page title';
 	protected $mPPNodeCount = 0;
-	/**
-	 * @var ParserOptions
-	 */
+	/** @var ParserOptions */
 	protected $mOptions;
-	/**
-	 * @var array
-	 */
-	protected $mPreprocessors;
-
-	protected static $classNames = [
-		Preprocessor_Hash::class
-	];
+	/** @var Preprocessor */
+	protected $preprocessor;
 
 	protected function setUp() : void {
 		parent::setUp();
 		$this->mOptions = ParserOptions::newFromUserAndLang( new User,
 			MediaWikiServices::getInstance()->getContentLanguage() );
 
-		$this->mPreprocessors = [];
-		foreach ( self::$classNames as $className ) {
-			$this->mPreprocessors[$className] = new $className( $this );
-		}
-	}
+		$wanCache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$parser = $this->getMockBuilder( Parser::class )
+			->disableOriginalConstructor()
+			->getMock();
+		$parser->method( 'getStripList' )->willReturn( [
+			'gallery', 'display map' /* Used by Maps, see r80025 CR */, '/foo'
+		] );
 
-	public function getStripList() {
-		return [ 'gallery', 'display map' /* Used by Maps, see r80025 CR */, '/foo' ];
-	}
-
-	protected static function addClassArg( $testCases ) {
-		$newTestCases = [];
-		foreach ( self::$classNames as $className ) {
-			foreach ( $testCases as $testCase ) {
-				array_unshift( $testCase, $className );
-				$newTestCases[] = $testCase;
-			}
-		}
-		return $newTestCases;
+		$this->preprocessor = new Preprocessor_Hash(
+			$parser,
+			$wanCache,
+			[ 'cacheThreshold' => 1000 ]
+		);
 	}
 
 	public static function provideCases() {
 		// phpcs:disable Generic.Files.LineLength
-		return self::addClassArg( [
+		return [
 			[ "Foo", "<root>Foo</root>" ],
 			[ "<!-- Foo -->", "<root><comment>&lt;!-- Foo --&gt;</comment></root>" ],
 			[ "<!-- Foo --><!-- Bar -->", "<root><comment>&lt;!-- Foo --&gt;</comment><comment>&lt;!-- Bar --&gt;</comment></root>" ],
@@ -125,7 +111,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 			[ "Foo <display map foo>Bar</display map             >Baz", "<root>Foo <ext><name>display map</name><attr> foo</attr><inner>Bar</inner><close>&lt;/display map             &gt;</close></ext>Baz</root>" ],
 			[ "Foo <gallery bar=\"baz\" />", "<root>Foo <ext><name>gallery</name><attr> bar=&quot;baz&quot; </attr></ext></root>" ],
 			[ "Foo <gallery bar=\"1\" baz=2 />", "<root>Foo <ext><name>gallery</name><attr> bar=&quot;1&quot; baz=2 </attr></ext></root>" ],
-			[ "</foo>Foo<//foo>", "<root><ext><name>/foo</name><attr></attr><inner>Foo</inner><close>&lt;//foo&gt;</close></ext></root>" ], # Worth blacklisting IMHO
+			[ "</foo>Foo<//foo>", "<root><ext><name>/foo</name><attr></attr><inner>Foo</inner><close>&lt;//foo&gt;</close></ext></root>" ], # Worth prohibiting IMHO
 			[ "{{#ifexpr: ({{{1|1}}} = 2) | Foo | Bar }}", "<root><template><title>#ifexpr: (<tplarg><title>1</title><part><name index=\"1\" /><value>1</value></part></tplarg> = 2) </title><part><name index=\"1\" /><value> Foo </value></part><part><name index=\"2\" /><value> Bar </value></part></template></root>" ],
 			[ "{{#if: {{{1|}}} | Foo | {{Bar}} }}", "<root><template><title>#if: <tplarg><title>1</title><part><name index=\"1\" /><value></value></part></tplarg> </title><part><name index=\"1\" /><value> Foo </value></part><part><name index=\"2\" /><value> <template><title>Bar</title></template> </value></part></template></root>" ],
 			[ "{{#if: {{{1|}}} | Foo | [[Bar]] }}", "<root><template><title>#if: <tplarg><title>1</title><part><name index=\"1\" /><value></value></part></tplarg> </title><part><name index=\"1\" /><value> Foo </value></part><part><name index=\"2\" /><value> [[Bar]] </value></part></template></root>" ],
@@ -147,7 +133,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 			[ "{{Foo|} Bar=", "<root>{{Foo|} Bar=</root>" ],
 			[ "{{Foo|} Bar=}}", "<root><template><title>Foo</title><part><name>} Bar</name>=<value></value></part></template></root>" ],
 			/* [ file_get_contents( __DIR__ . '/QuoteQuran.txt' ], file_get_contents( __DIR__ . '/QuoteQuranExpanded.txt' ) ], */
-		] );
+		];
 		// phpcs:enable
 	}
 
@@ -155,12 +141,11 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	 * Get XML preprocessor tree from the preprocessor (which may not be the
 	 * native XML-based one).
 	 *
-	 * @param string $className
 	 * @param string $wikiText
 	 * @return string
 	 */
-	protected function preprocessToXml( $className, $wikiText ) {
-		$preprocessor = $this->mPreprocessors[$className];
+	protected function preprocessToXml( $wikiText ) {
+		$preprocessor = $this->preprocessor;
 		if ( method_exists( $preprocessor, 'preprocessToXml' ) ) {
 			return $this->normalizeXml( $preprocessor->preprocessToXml( $wikiText ) );
 		}
@@ -191,9 +176,11 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideCases
 	 */
-	public function testPreprocessorOutput( $className, $wikiText, $expectedXml ) {
-		$this->assertEquals( $this->normalizeXml( $expectedXml ),
-			$this->preprocessToXml( $className, $wikiText ) );
+	public function testPreprocessorOutput( $wikiText, $expectedXml ) {
+		$this->assertEquals(
+			$this->normalizeXml( $expectedXml ),
+			$this->preprocessToXml( $wikiText )
+		);
 	}
 
 	/**
@@ -201,23 +188,23 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	 */
 	public static function provideFiles() {
 		// phpcs:disable Generic.Files.LineLength
-		return self::addClassArg( [
+		return [
 			[ "QuoteQuran" ], # https://en.wikipedia.org/w/index.php?title=Template:QuoteQuran/sandbox&oldid=237348988 GFDL + CC BY-SA by Striver
 			[ "Factorial" ], # https://en.wikipedia.org/w/index.php?title=Template:Factorial&oldid=98548758 GFDL + CC BY-SA by Polonium
 			[ "All_system_messages" ], # https://tl.wiktionary.org/w/index.php?title=Suleras:All_system_messages&oldid=2765 GPL text generated by MediaWiki
 			[ "Fundraising" ], # https://tl.wiktionary.org/w/index.php?title=MediaWiki:Sitenotice&oldid=5716 GFDL + CC BY-SA, copied there by Sky Harbor.
 			[ "NestedTemplates" ], # T29936
-		] );
+		];
 		// phpcs:enable
 	}
 
 	/**
 	 * @dataProvider provideFiles
 	 */
-	public function testPreprocessorOutputFiles( $className, $filename ) {
+	public function testPreprocessorOutputFiles( $filename ) {
 		$folder = __DIR__ . "/../../../parser/preprocess";
 		$wikiText = file_get_contents( "$folder/$filename.txt" );
-		$output = $this->preprocessToXml( $className, $wikiText );
+		$output = $this->preprocessToXml( $wikiText );
 
 		$expectedFilename = "$folder/$filename.expected";
 		if ( file_exists( $expectedFilename ) ) {
@@ -235,7 +222,7 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 	 */
 	public static function provideHeadings() {
 		// phpcs:disable Generic.Files.LineLength
-		return self::addClassArg( [
+		return [
 			/* These should become headings: */
 			[ "== h ==<!--c1-->", "<root><h level=\"2\" i=\"1\">== h ==<comment>&lt;!--c1--&gt;</comment></h></root>" ],
 			[ "== h == 	<!--c1-->", "<root><h level=\"2\" i=\"1\">== h == 	<comment>&lt;!--c1--&gt;</comment></h></root>" ],
@@ -272,15 +259,17 @@ class PreprocessorTest extends MediaWikiIntegrationTestCase {
 			[ "== h == x <!--c1--><!--c2--><!--c3-->  ", "<root>== h == x <comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </root>" ],
 			[ "== h ==<!--c1--> x <!--c2--><!--c3-->  ", "<root>== h ==<comment>&lt;!--c1--&gt;</comment> x <comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment>  </root>" ],
 			[ "== h ==<!--c1--><!--c2--><!--c3--> x ", "<root>== h ==<comment>&lt;!--c1--&gt;</comment><comment>&lt;!--c2--&gt;</comment><comment>&lt;!--c3--&gt;</comment> x </root>" ],
-		] );
+		];
 		// phpcs:enable
 	}
 
 	/**
 	 * @dataProvider provideHeadings
 	 */
-	public function testHeadings( $className, $wikiText, $expectedXml ) {
-		$this->assertEquals( $this->normalizeXml( $expectedXml ),
-			$this->preprocessToXml( $className, $wikiText ) );
+	public function testHeadings( $wikiText, $expectedXml ) {
+		$this->assertEquals(
+			$this->normalizeXml( $expectedXml ),
+			$this->preprocessToXml( $wikiText )
+		);
 	}
 }

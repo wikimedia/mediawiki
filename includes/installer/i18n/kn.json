@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"VASANTH S.N.",
-			"Pavanaja"
+			"Pavanaja",
+			"VASANTH S.N."
 		]
 	},
 	"config-title": "ಮೀಡಿಯಾವಿಕಿ ಆವೃತ್ತಿ $1 ರ ಅನುಸ್ಥಾಪನೆ",
@@ -21,13 +21,11 @@
 	"config-page-options": "ಆಯ್ಕೆಗಳು",
 	"config-page-install": "ಸ್ಥಾಪಿಸು",
 	"config-page-complete": "ಪೂರ್ಣ!",
-	"config-page-readme": "ನನ್ನನ್ನು ಓದಿ",
 	"config-page-copying": "ನಕಲಿಸುತ್ತಿದೆ..",
 	"config-page-upgradedoc": "ಪರಿಷ್ಕರಿಸಲ್ಪಡುತ್ತಿದೆ",
 	"config-page-existingwiki": "ಪ್ರಸ್ತುತ ವಿಕಿ",
 	"config-restart": "ಸರಿ,ಪುನಃ ಪ್ರಾರಂಭಿಸಿ",
 	"config-db-type": "ದತ್ತಾಂಶಸಂಚಯ ಮಾದರಿ:",
-	"config-db-host-oracle": "ದತ್ತಾಂಶಸಂಚಯ TNS:",
 	"config-db-wiki-settings": "ಈ ವಿಕಿಯನ್ನು ಗುರುತಿಸಿ",
 	"config-db-name": "ದತ್ತಾಂಶಸಂಚಯ ಹೆಸರು:",
 	"config-db-username": "ದತ್ತಾಂಶಸಂಚಯ ಬಳಕೆದಾರಹೆಸರು:",

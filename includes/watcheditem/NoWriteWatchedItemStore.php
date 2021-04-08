@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBReadOnlyError;
 
@@ -48,14 +49,32 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		return $this->actualStore->countWatchedItems( $user );
 	}
 
-	public function countWatchers( LinkTarget $target ) {
+	/**
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return int
+	 */
+	public function countWatchers( $target ) {
 		return $this->actualStore->countWatchers( $target );
 	}
 
-	public function countVisitingWatchers( LinkTarget $target, $threshold ) {
+	/**
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @param mixed $threshold
+	 * @return int
+	 * @throws MWException
+	 */
+	public function countVisitingWatchers( $target, $threshold ) {
 		return $this->actualStore->countVisitingWatchers( $target, $threshold );
 	}
 
+	/**
+	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
+	 * @param array $options Allowed keys:
+	 *        'minimumWatchers' => int
+	 * @return array multi dimensional like $return[$namespaceId][$titleString] = int $watchers
+	 *         All targets will be present in the result. 0 either means no watchers or the number
+	 *         of watchers was below the minimumWatchers option if passed.
+	 */
 	public function countWatchersMultiple( array $targets, array $options = [] ) {
 		return $this->actualStore->countVisitingWatchersMultiple(
 			$targets,
@@ -63,6 +82,22 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		);
 	}
 
+	/**
+	 * @param array $targetsWithVisitThresholds array of pairs (LinkTarget|PageIdentity $target,
+	 *     mixed $threshold),
+	 *        $threshold is:
+	 *        - a timestamp of the recent edit if $target exists (format accepted by wfTimestamp)
+	 *        - null if $target doesn't exist
+	 *      deprecated passing LinkTarget since 1.36
+	 * @param int|null $minimumWatchers
+	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $watchers,
+	 *         where $watchers is an int:
+	 *         - if the page exists, number of users watching who have visited the page recently
+	 *         - if the page doesn't exist, number of users that have the page on their watchlist
+	 *         - 0 means there are no visiting watchers or their number is below the
+	 *     minimumWatchers
+	 *         option (if passed).
+	 */
 	public function countVisitingWatchersMultiple(
 		array $targetsWithVisitThresholds,
 		$minimumWatchers = null
@@ -73,26 +108,63 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		);
 	}
 
-	public function getWatchedItem( UserIdentity $user, LinkTarget $target ) {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return false|WatchedItem
+	 */
+	public function getWatchedItem( UserIdentity $user, $target ) {
 		return $this->actualStore->getWatchedItem( $user, $target );
 	}
 
-	public function loadWatchedItem( UserIdentity $user, LinkTarget $target ) {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return false|WatchedItem
+	 */
+	public function loadWatchedItem( UserIdentity $user, $target ) {
 		return $this->actualStore->loadWatchedItem( $user, $target );
+	}
+
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
+	 * @return WatchedItem[]|false
+	 */
+	public function loadWatchedItemsBatch( UserIdentity $user, array $targets ) {
+		return $this->actualStore->loadWatchedItemsBatch( $user, $targets );
 	}
 
 	public function getWatchedItemsForUser( UserIdentity $user, array $options = [] ) {
 		return $this->actualStore->getWatchedItemsForUser( $user, $options );
 	}
 
-	public function isWatched( UserIdentity $user, LinkTarget $target ) {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return bool
+	 */
+	public function isWatched( UserIdentity $user, $target ) {
 		return $this->actualStore->isWatched( $user, $target );
 	}
 
-	public function isTempWatched( UserIdentity $user, LinkTarget $target ): bool {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return bool
+	 */
+	public function isTempWatched( UserIdentity $user, $target ): bool {
 		return $this->actualStore->isTempWatched( $user, $target );
 	}
 
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
+	 * @return array multi-dimensional like $return[$namespaceId][$titleString] = $timestamp,
+	 *         where $timestamp is:
+	 *         - string|null value of wl_notificationtimestamp,
+	 *         - false if $target is not watched by $user.
+	 */
 	public function getNotificationTimestampsBatch( UserIdentity $user, array $targets ) {
 		return $this->actualStore->getNotificationTimestampsBatch( $user, $targets );
 	}
@@ -101,18 +173,39 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		return $this->actualStore->countUnreadNotifications( $user, $unreadLimit );
 	}
 
-	public function duplicateAllAssociatedEntries( LinkTarget $oldTarget, LinkTarget $newTarget ) {
+	/**
+	 * @param LinkTarget|PageIdentity $oldTarget deprecated passing LinkTarget since 1.36
+	 * @param LinkTarget|PageIdentity $newTarget deprecated passing LinkTarget since 1.36
+	 */
+	public function duplicateAllAssociatedEntries( $oldTarget, $newTarget ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget ) {
+	/**
+	 * @param LinkTarget|PageIdentity $oldTarget deprecated passing LinkTarget since 1.36
+	 * @param LinkTarget|PageIdentity $newTarget deprecated passing LinkTarget since 1.36
+	 */
+	public function duplicateEntry( $oldTarget, $newTarget ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function addWatch( UserIdentity $user, LinkTarget $target, ?string $expiry = null ) {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @param string|null $expiry
+	 */
+	public function addWatch( UserIdentity $user, $target, ?string $expiry = null ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/**
+	 *
+	 * @param UserIdentity $user
+	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
+	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
+	 *   null will not create expiries, or leave them unchanged should they already exist.
+	 * @return bool success
+	 */
 	public function addWatchBatchForUser(
 		UserIdentity $user,
 		array $targets,
@@ -121,10 +214,22 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function removeWatch( UserIdentity $user, LinkTarget $target ) {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return bool|void
+	 */
+	public function removeWatch( UserIdentity $user, $target ) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/**
+	 * @param UserIdentity $user The user to set the timestamps for
+	 * @param string|null $timestamp Set the update timestamp to this value
+	 * @param LinkTarget[]|PageIdentity[] $targets List of targets to update. Default to all targets.
+	 *         deprecated passing LinkTarget[] since 1.36
+	 * @return bool success
+	 */
 	public function setNotificationTimestampsForUser(
 		UserIdentity $user,
 		$timestamp,
@@ -133,8 +238,14 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/**
+	 * @param UserIdentity $editor
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @param string $timestamp
+	 * @return int[]|void
+	 */
 	public function updateNotificationTimestamp(
-		UserIdentity $editor, LinkTarget $target, $timestamp
+		UserIdentity $editor, $target, $timestamp
 	) {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
@@ -143,9 +254,16 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.36
+	 * @param string $force
+	 * @param int $oldid
+	 * @return bool|void
+	 */
 	public function resetNotificationTimestamp(
 		UserIdentity $user,
-		LinkTarget $title,
+		$title,
 		$force = '',
 		$oldid = 0
 	) {
@@ -165,15 +283,31 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	}
 
 	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void {
+		wfDeprecated( __METHOD__, '1.36' );
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
-	public function removeWatchBatchForUser( UserIdentity $user, array $titles ) {
+	public function maybeEnqueueWatchlistExpiryJob(): void {
 		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
 	}
 
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
+	 * @return bool success
+	 */
+	public function removeWatchBatchForUser( UserIdentity $user, array $targets ) {
+		throw new DBReadOnlyError( null, self::DB_READONLY_ERROR );
+	}
+
+	/**
+	 * @param string|null $timestamp
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return bool|string|null
+	 */
 	public function getLatestNotificationTimestamp(
-		$timestamp, UserIdentity $user, LinkTarget $target
+		$timestamp, UserIdentity $user, $target
 	) {
 		return wfTimestampOrNull( TS_MW, $timestamp );
 	}

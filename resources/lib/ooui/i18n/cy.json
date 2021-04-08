@@ -23,8 +23,10 @@
 	"ooui-dialog-process-retry": "Ailgeisio",
 	"ooui-dialog-process-continue": "Parhau",
 	"ooui-selectfile-button-select": "Dewis ffeil",
+	"ooui-selectfile-button-select-multiple": "Dewisiwch ffeiliau",
 	"ooui-selectfile-not-supported": "Nid oes modd dewis ffeil",
 	"ooui-selectfile-placeholder": "Dim ffeil wedi'i dewis",
 	"ooui-selectfile-dragdrop-placeholder": "Gollwng ffeil yma",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "Gollyngwch y ffeiliau yma",
 	"ooui-field-help": "Cymorth"
 }

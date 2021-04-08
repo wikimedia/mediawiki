@@ -49,11 +49,13 @@ $namespaceAliases = [
 	'Discussioni_categoria' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Messaggi' ],
 	'Allpages'                  => [ 'Tûtte e paggine' ],
 	'Ancientpages'              => [ 'Paggine meno reçenti' ],
 	'Block'                     => [ 'Blocca' ],
+	'BlockList'                 => [ 'IP bloccæ' ],
 	'Booksources'               => [ 'RiçercaISBN' ],
 	'Categories'                => [ 'Categorîe' ],
 	'ChangePassword'            => [ 'Rimposta paròlla d\'ordine' ],
@@ -64,7 +66,6 @@ $specialPageAliases = [
 	'Export'                    => [ 'Esporta' ],
 	'Fewestrevisions'           => [ 'Paggine con meno revixoîn' ],
 	'Import'                    => [ 'Importa' ],
-	'BlockList'                 => [ 'IP bloccæ' ],
 	'Listadmins'                => [ 'Amministratoî' ],
 	'Listbots'                  => [ 'Bot' ],
 	'Listfiles'                 => [ 'Immaggini' ],

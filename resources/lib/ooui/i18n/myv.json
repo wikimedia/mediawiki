@@ -13,5 +13,6 @@
 	"ooui-dialog-process-error": "Мезе-бути аволь истя",
 	"ooui-dialog-process-retry": "Варчамс одов",
 	"ooui-dialog-process-continue": "Поладомс",
-	"ooui-selectfile-button-select": "Кочкамс файла"
+	"ooui-selectfile-button-select": "Кочкамс файла",
+	"ooui-popup-widget-close-button-aria-label": "Пекстамс"
 }

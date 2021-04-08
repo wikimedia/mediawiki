@@ -1,0 +1,27 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido",
+			"Mguix",
+			"Toniher"
+		]
+	},
+	"paramvalidator-badupload-partial": "S’ha pujat només parcialment el fitxer per a «$1».",
+	"paramvalidator-emptystring": "la cadena buida",
+	"paramvalidator-missingparam": "Cal definir el paràmetre «$1».",
+	"paramvalidator-param-deprecated": "El paràmetre «$1» és obsolet.",
+	"paramvalidator-help-default": "Per defecte: $1",
+	"paramvalidator-help-default-empty": "Per defecte: (buit)",
+	"paramvalidator-help-deprecated": "El paràmetre és obsolet.",
+	"paramvalidator-help-multi-max-simple": "El nombre màxim de valors és {{PLURAL:$1|$1}}.",
+	"paramvalidator-help-multi-all": "Per a especificar tots els valors, feu servir <kbd>$1</kbd>.",
+	"paramvalidator-help-required": "Cal aquest paràmetre.",
+	"paramvalidator-help-type-boolean": "Tipus: {{PLURAL:$1|1=booleà|2=llista de booleans}}",
+	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Cal que sigui buit|Pot ser buit o $1}}",
+	"paramvalidator-help-type-limit": "Type: enter o «max»",
+	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=El valor no ha|2=Els valors no han}} de ser més gran que $3.",
+	"paramvalidator-help-type-presenceboolean": "Tipus: booleà",
+	"paramvalidator-help-type-string-maxbytes": "No pot tenir més {{PLURAL:$1|d'$1 byte|de $1 bytes}}.",
+	"paramvalidator-help-type-string-maxchars": "No pot tenir més {{PLURAL:$1|d'$1 caràcter|de $1 caràcters}}.",
+	"paramvalidator-help-type-timestamp": "Tipus: {{PLURAL:$1|1=datació|2=llista de datacions}}"
+}

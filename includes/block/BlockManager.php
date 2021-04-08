@@ -51,8 +51,7 @@ class BlockManager {
 	private $options;
 
 	/**
-	 * @var array
-	 * @since 1.34
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'ApplyIpBlocksToXff',
@@ -218,6 +217,7 @@ class BlockManager {
 				$blocks[] = new SystemBlock( [
 					'reason' => new Message( 'sorbsreason' ),
 					'address' => $ip,
+					'anonOnly' => true,
 					'systemBlock' => 'dnsbl',
 				] );
 			}
@@ -363,12 +363,12 @@ class BlockManager {
 	 * Whether the given IP is in a DNS blacklist.
 	 *
 	 * @param string $ip IP to check
-	 * @param bool $checkWhitelist Whether to check the whitelist first
+	 * @param bool $checkAllowed Whether to check $wgProxyWhitelist first
 	 * @return bool True if blacklisted.
 	 */
-	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
+	public function isDnsBlacklisted( $ip, $checkAllowed = false ) {
 		if ( !$this->options->get( 'EnableDnsBlacklist' ) ||
-			( $checkWhitelist && in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) )
+			( $checkAllowed && in_array( $ip, $this->options->get( 'ProxyWhitelist' ) ) )
 		) {
 			return false;
 		}
@@ -380,7 +380,7 @@ class BlockManager {
 	 * Whether the given IP is in a given DNS blacklist.
 	 *
 	 * @param string $ip IP to check
-	 * @param array $bases Array of Strings: URL of the DNS blacklist
+	 * @param string[] $bases URL of the DNS blacklist
 	 * @return bool True if blacklisted.
 	 */
 	private function inDnsBlacklist( $ip, array $bases ) {
@@ -411,7 +411,12 @@ class BlockManager {
 
 				if ( $ipList ) {
 					$this->logger->info(
-						"Hostname $hostname is {$ipList[0]}, it's a proxy says $basename!"
+						'Hostname {hostname} is {ipList}, it\'s a proxy says {basename}!',
+						[
+							'hostname' => $hostname,
+							'ipList' => $ipList[0],
+							'basename' => $basename,
+						]
 					);
 					$found = true;
 					break;

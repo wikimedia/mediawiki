@@ -18,120 +18,64 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Logger\Spi as LoggerSpi;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
-use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\SlotRecord;
+use Psr\Log\LoggerInterface;
 
+/**
+ * PoolCounter protected work wrapping RenderedRevision->getRevisionParserOutput.
+ * Caching behavior may be defined by subclasses.
+ *
+ * @note No audience checks are applied.
+ *
+ * @internal
+ */
 class PoolWorkArticleView extends PoolCounterWork {
-	/** @var WikiPage */
-	private $page;
-
-	/** @var string */
-	private $cacheKey;
-
-	/** @var int */
-	private $revid;
-
-	/** @var ParserCache */
-	private $parserCache;
 
 	/** @var ParserOptions */
-	private $parserOptions;
+	protected $parserOptions;
 
 	/** @var RevisionRecord|null */
-	private $revision = null;
-
-	/** @var int */
-	private $audience;
-
-	/** @var RevisionStore */
-	private $revisionStore = null;
+	protected $revision = null;
 
 	/** @var RevisionRenderer */
-	private $renderer = null;
+	protected $renderer = null;
 
 	/** @var ParserOutput|bool */
-	private $parserOutput = false;
+	protected $parserOutput = false;
 
 	/** @var bool */
-	private $isDirty = false;
+	protected $isDirty = false;
 
 	/** @var bool */
-	private $isFast = false;
+	protected $isFast = false;
 
 	/** @var Status|bool */
-	private $error = false;
+	protected $error = false;
+
+	/** @var LoggerSpi */
+	private $loggerSpi;
 
 	/**
-	 * @param WikiPage $page
+	 * @param string $workKey
+	 * @param RevisionRecord $revision Revision to render
 	 * @param ParserOptions $parserOptions ParserOptions to use for the parse
-	 * @param int $revid ID of the revision being parsed.
-	 * @param bool $useParserCache Whether to use the parser cache.
-	 *   operation.
-	 * @param RevisionRecord|Content|string|null $revision Revision to render, or null to load it;
-	 *        may also be given as a wikitext string, or a Content object, for BC.
-	 * @param int $audience One of the RevisionRecord audience constants
+	 * @param RevisionRenderer $revisionRenderer
+	 * @param LoggerSpi $loggerSpi
 	 */
-	public function __construct( WikiPage $page, ParserOptions $parserOptions,
-		$revid, $useParserCache, $revision = null, $audience = RevisionRecord::FOR_PUBLIC
+	public function __construct(
+		string $workKey,
+		RevisionRecord $revision,
+		ParserOptions $parserOptions,
+		RevisionRenderer $revisionRenderer,
+		LoggerSpi $loggerSpi
 	) {
-		if ( is_string( $revision ) ) { // BC: very old style call
-			$revRecord = $page->getRevisionRecord();
-			$mainSlot = $revRecord->getSlot( SlotRecord::MAIN, RevisionRecord::RAW );
-			$modelId = $mainSlot->getModel();
-			$format = $mainSlot->getFormat();
-
-			if ( $format === null ) {
-				$format = MediaWikiServices::getInstance()
-					->getContentHandlerFactory()
-					->getContentHandler( $modelId )
-					->getDefaultFormat();
-			}
-
-			$revision = ContentHandler::makeContent( $revision, $page->getTitle(), $modelId, $format );
-		}
-
-		if ( $revision instanceof Content ) { // BC: old style call
-			$content = $revision;
-			$revision = new MutableRevisionRecord( $page->getTitle() );
-			$revision->setId( $revid );
-			$revision->setPageId( $page->getId() );
-			$revision->setContent( SlotRecord::MAIN, $content );
-		}
-
-		if ( $revision ) {
-			// Check that the RevisionRecord matches $revid and $page, but still allow
-			// fake RevisionRecords coming from errors or hooks in Article to be rendered.
-			if ( $revision->getId() && $revision->getId() !== $revid ) {
-				throw new InvalidArgumentException( '$revid parameter mismatches $revision parameter' );
-			}
-			if ( $revision->getPageId()
-				&& $revision->getPageId() !== $page->getTitle()->getArticleID()
-			) {
-				throw new InvalidArgumentException( '$page parameter mismatches $revision parameter' );
-			}
-		}
-
-		// TODO: DI: inject services
-		$this->renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->parserCache = MediaWikiServices::getInstance()->getParserCache();
-
-		$this->page = $page;
-		$this->revid = $revid;
-		$this->cacheable = $useParserCache;
-		$this->parserOptions = $parserOptions;
+		parent::__construct( 'ArticleView', $workKey );
 		$this->revision = $revision;
-		$this->audience = $audience;
-		$this->cacheKey = $this->parserCache->getKey( $page, $parserOptions );
-		$keyPrefix = $this->cacheKey ?: ObjectCache::getLocalClusterInstance()->makeKey(
-			'articleview', 'missingcachekey'
-		);
-
-		parent::__construct( 'ArticleView', $keyPrefix . ':revid:' . $revid );
+		$this->parserOptions = $parserOptions;
+		$this->renderer = $revisionRenderer;
+		$this->loggerSpi = $loggerSpi;
 	}
 
 	/**
@@ -174,34 +118,11 @@ class PoolWorkArticleView extends PoolCounterWork {
 	 * @return bool
 	 */
 	public function doWork() {
-		global $wgUseFileCache;
-
-		// @todo several of the methods called on $this->page are not declared in Page, but present
-		//        in WikiPage and delegated by Article.
-
-		$isCurrent = $this->revid === $this->page->getLatest();
-
-		// The current revision cannot be hidden so we can skip some checks.
-		$audience = $isCurrent ? RevisionRecord::RAW : $this->audience;
-
-		if ( $this->revision !== null ) {
-			$rev = $this->revision;
-		} elseif ( $isCurrent ) {
-			$rev = $this->page->getRevisionRecord();
-		} else {
-			$rev = $this->revisionStore->getRevisionByTitle( $this->page->getTitle(), $this->revid );
-		}
-
-		if ( !$rev ) {
-			// couldn't load
-			return false;
-		}
-
 		$renderedRevision = $this->renderer->getRenderedRevision(
-			$rev,
+			$this->revision,
 			$this->parserOptions,
 			null,
-			[ 'audience' => $audience ]
+			[ 'audience' => RevisionRecord::RAW ]
 		);
 
 		if ( !$renderedRevision ) {
@@ -219,91 +140,43 @@ class PoolWorkArticleView extends PoolCounterWork {
 		// Timing hack
 		if ( $time > 3 ) {
 			// TODO: Use Parser's logger (once it has one)
-			$logger = MediaWiki\Logger\LoggerFactory::getInstance( 'slow-parse' );
-			$logger->info( '{time} {title}', [
+			$logger = $this->getLogger( 'slow-parse' );
+			$logger->info( 'Parsing {title} was slow, took {time} seconds', [
 				'time' => number_format( $time, 2 ),
-				'title' => $this->page->getTitle()->getPrefixedDBkey(),
-				'ns' => $this->page->getTitle()->getNamespace(),
+				'title' => $this->revision->getPageAsLinkTarget()->getDBkey(),
+				'ns' => $this->revision->getPageAsLinkTarget()->getNamespace(),
 				'trigger' => 'view',
 			] );
 		}
 
-		if ( $this->cacheable && $this->parserOutput->isCacheable() && $isCurrent ) {
-			$this->parserCache->save(
-				$this->parserOutput, $this->page, $this->parserOptions, $cacheTime, $this->revid );
+		if ( $this->cacheable && $this->parserOutput->isCacheable() ) {
+			$this->saveInCache( $this->parserOutput, $cacheTime );
 		}
 
-		// Make sure file cache is not used on uncacheable content.
-		// Output that has magic words in it can still use the parser cache
-		// (if enabled), though it will generally expire sooner.
-		if ( !$this->parserOutput->isCacheable() ) {
-			$wgUseFileCache = false;
-		}
-
-		if ( $isCurrent ) {
-			$this->page->triggerOpportunisticLinksUpdate( $this->parserOutput );
-		}
+		$this->afterWork( $this->parserOutput );
 
 		return true;
 	}
 
 	/**
-	 * @return bool
+	 * Place the output in the cache from which getCachedWork() will retrieve it.
+	 * Will be called before saveInCache().
+	 *
+	 * @param ParserOutput $output
+	 * @param string $cacheTime
 	 */
-	public function getCachedWork() {
-		$this->parserOutput = $this->parserCache->get( $this->page, $this->parserOptions );
-
-		if ( $this->parserOutput === false ) {
-			wfDebug( __METHOD__ . ": parser cache miss" );
-			return false;
-		} else {
-			wfDebug( __METHOD__ . ": parser cache hit" );
-			return true;
-		}
+	protected function saveInCache( ParserOutput $output, string $cacheTime ) {
+		// noop
 	}
 
 	/**
-	 * @param bool $fast Fast stale request
-	 * @return bool
+	 * Subclasses may implement this to perform some action after the work of rendering is done.
+	 * Will be called after saveInCache().
+	 *
+	 * @param ParserOutput $output
 	 */
-	public function fallback( $fast ) {
-		$this->parserOutput = $this->parserCache->getDirty( $this->page, $this->parserOptions );
-
-		$fastMsg = '';
-		if ( $this->parserOutput && $fast ) {
-			/* Check if the stale response is from before the last write to the
-			 * DB by this user. Declining to return a stale response in this
-			 * case ensures that the user will see their own edit after page
-			 * save.
-			 *
-			 * Note that the CP touch time is the timestamp of the shutdown of
-			 * the save request, so there is a bias towards avoiding fast stale
-			 * responses of potentially several seconds.
-			 */
-			$lastWriteTime = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
-				->getChronologyProtectorTouched();
-			$cacheTime = MWTimestamp::convert( TS_UNIX, $this->parserOutput->getCacheTime() );
-			if ( $lastWriteTime && $cacheTime <= $lastWriteTime ) {
-				wfDebugLog( 'dirty', "declining to send dirty output since cache time " .
-					$cacheTime . " is before last write time $lastWriteTime" );
-				// Forget this ParserOutput -- we will request it again if
-				// necessary in slow mode. There might be a newer entry
-				// available by that time.
-				$this->parserOutput = false;
-				return false;
-			}
-			$this->isFast = true;
-			$fastMsg = 'fast ';
-		}
-
-		if ( $this->parserOutput === false ) {
-			wfDebugLog( 'dirty', 'dirty missing' );
-			return false;
-		} else {
-			wfDebugLog( 'dirty', "{$fastMsg}dirty output {$this->cacheKey}" );
-			$this->isDirty = true;
-			return true;
-		}
+	protected function afterWork( ParserOutput $output ) {
+		// noop
 	}
 
 	/**
@@ -313,5 +186,14 @@ class PoolWorkArticleView extends PoolCounterWork {
 	public function error( $status ) {
 		$this->error = $status;
 		return false;
+	}
+
+	/**
+	 * @param string $name
+	 *
+	 * @return LoggerInterface
+	 */
+	protected function getLogger( $name = 'PoolWorkArticleView' ): LoggerInterface {
+		return $this->loggerSpi->getLogger( $name );
 	}
 }

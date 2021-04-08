@@ -3,4 +3,7 @@
 	top: 0;
 	right: 0;
 	left: 0;
+	// Set this here to avoid MenuSelectWidgets winding up behind the content in some skins (Example, CologneBlue, most third-party skins)
+	// Also avoids weird layering issues in skins with fixed headers, like Timeless
+	z-index: 1;
 }

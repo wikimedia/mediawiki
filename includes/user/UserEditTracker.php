@@ -4,8 +4,10 @@ namespace MediaWiki\User;
 
 use ActorMigration;
 use InvalidArgumentException;
-use MWTimestamp;
+use JobQueueGroup;
+use UserEditCountInitJob;
 use Wikimedia\Rdbms\ILoadBalancer;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Track info about user edit counts and timings
@@ -25,6 +27,9 @@ class UserEditTracker {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
 	/**
 	 * @var array
 	 *
@@ -36,13 +41,16 @@ class UserEditTracker {
 	/**
 	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
+	 * @param JobQueueGroup $jobQueueGroup
 	 */
 	public function __construct(
 		ActorMigration $actorMigration,
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		JobQueueGroup $jobQueueGroup
 	) {
 		$this->actorMigration = $actorMigration;
 		$this->loadBalancer = $loadBalancer;
+		$this->jobQueueGroup = $jobQueueGroup;
 	}
 
 	/**
@@ -50,13 +58,11 @@ class UserEditTracker {
 	 *
 	 * @param UserIdentity $user
 	 * @return int
-	 * @throws InvalidArgumentException if the user id is invalid
+	 * @throws InvalidArgumentException If user is not registered
 	 */
 	public function getUserEditCount( UserIdentity $user ) : int {
 		if ( !$user->getId() ) {
-			throw new InvalidArgumentException(
-				__METHOD__ . ' requires Users with ids set'
-			);
+			throw new InvalidArgumentException( __METHOD__ . ' requires a user ID' );
 		}
 
 		$userId = $user->getId();
@@ -84,8 +90,7 @@ class UserEditTracker {
 	}
 
 	/**
-	 * @internal public only for use in UserEditCountUpdate
-	 *
+	 * @internal For use in UserEditCountUpdate class
 	 * @param UserIdentity $user
 	 * @return int
 	 */
@@ -102,16 +107,11 @@ class UserEditTracker {
 			$actorWhere['joins']
 		);
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
-		$dbw->update(
-			'user',
-			[ 'user_editcount' => $count ],
-			[
-				'user_id' => $user->getId(),
-				'user_editcount IS NULL OR user_editcount < ' . $count
-			],
-			__METHOD__
-		);
+		// Defer updating the edit count via a job (T259719)
+		$this->jobQueueGroup->push( new UserEditCountInitJob( [
+			'userId' => $user->getId(),
+			'editCount' => $count,
+		] ) );
 
 		return $count;
 	}
@@ -171,12 +171,11 @@ class UserEditTracker {
 			return false; // no edits
 		}
 
-		return MWTimestamp::convert( TS_MW, $time );
+		return ConvertibleTimestamp::convert( TS_MW, $time );
 	}
 
 	/**
-	 * @internal
-	 *
+	 * @internal For use by User::clearInstanceCache
 	 * @param UserIdentity $user
 	 */
 	public function clearUserEditCache( UserIdentity $user ) {

@@ -182,7 +182,7 @@ class SiteStats {
 		return $cache->getWithSetCallback(
 			$cache->makeKey( 'SiteStats', 'jobscount' ),
 			$cache::TTL_MINUTE,
-			function ( $oldValue, &$ttl, array &$setOpts ) {
+			static function ( $oldValue, &$ttl, array &$setOpts ) {
 				try{
 					$jobs = array_sum( JobQueueGroup::singleton()->getQueueSizes() );
 				} catch ( JobQueueError $e ) {
@@ -252,7 +252,7 @@ class SiteStats {
 	 *
 	 * Checks only fields which are filled by SiteStatsInit::refresh.
 	 *
-	 * @param bool|object $row
+	 * @param bool|stdClass $row
 	 * @return bool
 	 */
 	private static function isRowSane( $row ) {

@@ -27,7 +27,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-require_once __DIR__ . '/cleanupTable.inc';
+require_once __DIR__ . '/TableCleanup.php';
 
 /**
  * Maintenance script to clean up broken, unparseable upload filenames.

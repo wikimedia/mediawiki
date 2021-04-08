@@ -1,7 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"A2y4",
+			"Bonfire12",
 			"Fryed-peach",
+			"LaMagiaaa",
 			"Los688",
 			"Miya",
 			"Otokoume",
@@ -26,12 +29,15 @@
 	"ooui-dialog-message-reject": "キャンセル",
 	"ooui-dialog-process-error": "エラーが発生しました…",
 	"ooui-dialog-process-dismiss": "閉じる",
-	"ooui-dialog-process-retry": "もう一度お試しください",
+	"ooui-dialog-process-retry": "もう一度試す",
 	"ooui-dialog-process-continue": "続行",
 	"ooui-combobox-button-label": "オプションの切り替え",
 	"ooui-selectfile-button-select": "ファイルを選択",
+	"ooui-selectfile-button-select-multiple": "ファイルを選択",
 	"ooui-selectfile-not-supported": "ファイルの選択はサポートされていません",
 	"ooui-selectfile-placeholder": "ファイルが選択されていません",
 	"ooui-selectfile-dragdrop-placeholder": "ファイルをここにドロップ",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "ファイルをここにドロップしてください",
+	"ooui-popup-widget-close-button-aria-label": "閉じる",
 	"ooui-field-help": "ヘルプ"
 }

@@ -2,7 +2,7 @@
 
 use MediaWiki\Shell\Command;
 use MediaWiki\Shell\Shell;
-use Wikimedia\TestingAccessWrapper;
+use Shellbox\Shellbox;
 
 /**
  * @covers \MediaWiki\Shell\Command
@@ -16,6 +16,10 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		if ( wfIsWindows() ) {
 			$this->markTestSkipped( 'This test requires a POSIX environment.' );
 		}
+	}
+
+	private function createCommand() {
+		return new Command( Shellbox::createUnboxedExecutor() );
 	}
 
 	/**
@@ -63,7 +67,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		// The double redirection doesn't work on Windows
 		$this->requirePosix();
 
-		$command = new Command();
+		$command = $this->createCommand();
 
 		$result = $command
 			->params( 'bash', '-c', 'echo ThisIsStderr 1>&2' )
@@ -71,7 +75,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 			->execute();
 
 		$this->assertEquals( "ThisIsStderr\n", $result->getStdout() );
-		$this->assertNull( $result->getStderr() );
+		$this->assertSame( '', $result->getStderr() );
 	}
 
 	public function testOutput() {
@@ -81,7 +85,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 		);
 		$result = $command->execute();
 		$this->assertSame( 'correct stdout', $result->getStdout() );
-		$this->assertSame( null, $result->getStderr() );
+		$this->assertSame( '', $result->getStderr() );
 
 		$command = $this->getPhpCommand(
 			'stdout_stderr.php',
@@ -92,7 +96,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 			->execute();
 		$this->assertRegExp( '/correct stdout/m', $result->getStdout() );
 		$this->assertRegExp( '/correct stderr/m', $result->getStdout() );
-		$this->assertSame( null, $result->getStderr() );
+		$this->assertSame( '', $result->getStderr() );
 
 		$command = $this->getPhpCommand(
 			'stdout_stderr.php',
@@ -108,14 +112,14 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	 * Test that null values are skipped by params() and unsafeParams()
 	 */
 	public function testNullsAreSkipped() {
-		$command = TestingAccessWrapper::newFromObject( new Command );
+		$command = $this->createCommand();
 		$command->params( 'echo', 'a', null, 'b' );
 		$command->unsafeParams( 'c', null, 'd' );
 
 		if ( wfIsWindows() ) {
-			$this->assertEquals( '"echo" "a" "b" c d', $command->command );
+			$this->assertEquals( '"echo" "a" "b" c d', $command->getCommandString() );
 		} else {
-			$this->assertEquals( "'echo' 'a' 'b' c d", $command->command );
+			$this->assertEquals( "'echo' 'a' 'b' c d", $command->getCommandString() );
 		}
 	}
 
@@ -137,7 +141,7 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	}
 
 	public function testLogStderr() {
-		$logger = new TestLogger( true, function ( $message, $level, $context ) {
+		$logger = new TestLogger( true, static function ( $message, $level, $context ) {
 			return $level === Psr\Log\LogLevel::ERROR ? '1' : null;
 		}, true );
 		$command = $this->getPhpCommand( 'echo_args.php' );
@@ -182,12 +186,18 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	 * @see T257278
 	 */
 	public function testDisablingRestrictions() {
-		$command = TestingAccessWrapper::newFromObject( new Command() );
+		$command = $this->createCommand();
 		// As CommandFactory does for the firejail case:
 		$command->restrict( Shell::RESTRICT_DEFAULT );
 		// Disable restrictions
 		$command->restrict( Shell::RESTRICT_NONE );
-		$this->assertSame( 0, $command->restrictions );
+		$this->assertFalse( $command->getPrivateUserNamespace() );
+		$this->assertFalse( $command->getFirejailDefaultSeccomp() );
+		$this->assertFalse( $command->getNoNewPrivs() );
+		$this->assertFalse( $command->getPrivateDev() );
+		$this->assertFalse( $command->getDisableNetwork() );
+		$this->assertSame( [], $command->getDisabledSyscalls() );
+		$this->assertTrue( $command->getDisableSandbox() );
 	}
 
 	/**
@@ -197,13 +207,13 @@ class CommandTest extends PHPUnit\Framework\TestCase {
 	 * NOTE: the PHP test scripts are located in the sub directory
 	 * "bin".
 	 *
-	 * @param string $fileName  a file name in the "bin" sub-directory
-	 * @param array $args       an array of arguments to pass to the PHP script
+	 * @param string $fileName a file name in the "bin" sub-directory
+	 * @param array $args an array of arguments to pass to the PHP script
 	 *
-	 * @return Command  a command instance pointing to the right script
+	 * @return Command a command instance pointing to the right script
 	 */
 	private function getPhpCommand( $fileName, array $args = [] ) {
-		$command = new Command;
+		$command = new Command( Shellbox::createUnboxedExecutor() );
 		$params = [
 			PHP_BINARY,
 			__DIR__

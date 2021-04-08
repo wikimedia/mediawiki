@@ -38,7 +38,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers       MediaWiki\Preferences\TimezoneFilter::filterFromForm()
+	 * @covers MediaWiki\Preferences\TimezoneFilter::filterFromForm()
 	 * @dataProvider provideTimezoneFilter
 	 *
 	 * @param string $input
@@ -120,7 +120,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 			->getMockForAbstractClass();
 
 		$idLookup->method( 'centralIdsFromNames' )
-			->will( self::returnCallback( function ( $names ) use ( $userMapping ) {
+			->will( self::returnCallback( static function ( $names ) use ( $userMapping ) {
 				$ids = [];
 				foreach ( $names as $name ) {
 					$ids[] = $userMapping[$name] ?? null;
@@ -128,7 +128,7 @@ class FiltersTest extends \MediaWikiUnitTestCase {
 				return array_filter( $ids, 'is_numeric' );
 			} ) );
 		$idLookup->method( 'namesFromCentralIds' )
-			->will( self::returnCallback( function ( $ids ) use ( $flipped ) {
+			->will( self::returnCallback( static function ( $ids ) use ( $flipped ) {
 				$names = [];
 				foreach ( $ids as $id ) {
 					$names[] = $flipped[$id] ?? null;

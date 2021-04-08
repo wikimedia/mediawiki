@@ -4,10 +4,11 @@
  * @copyright 2011-2015 MediaWiki Widgets Team and others; see AUTHORS.txt
  * @license The MIT License (MIT); see LICENSE.txt
  */
+@import 'mediawiki.skin.variables.less';
 
 // Variables taken from OOUI's WikimediaUI theme
 @ooui-font-size-browser: 16; // assumed browser default of `16px`
-@ooui-font-size-base: 0.875em; // equals `14px` at browser default of `16px`
+@ooui-font-size-base: 0.875 / 1em; // equals `14px` at browser default of `16px`
 @ooui-unit: em;
 
 @background-color-base: #fff;
@@ -17,7 +18,7 @@
 @border-base: 1px solid #a2a9b1;
 @border-color-base--focus: #36c;
 @border-color-input--hover: #72777d;
-@border-radius-base: 2px;
+// @border-radius-base is set in mediawiki.skin.variables.less
 
 @padding-input-text: @padding-vertical-base @padding-horizontal-input-text;
 @padding-horizontal-input-text: 8px;
@@ -48,7 +49,7 @@
 }
 
 .oo-ui-transition( @value1, @value2: X, ... ) {
-	@value: ~`"@{arguments}".replace( /[\[\]]|\,\sX/g, '' )`; // stylelint-disable-line function-comma-space-after, function-whitespace-after, string-quotes, value-keyword-case
+	@value: ~`'@{arguments}'.replace( /[\[\]]|\,\sX/g, '' )`;
 	-webkit-transition: @value;
 	-moz-transition: @value;
 	transition: @value;

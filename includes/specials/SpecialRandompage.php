@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Special page to direct the user to a random page
@@ -34,10 +35,25 @@ class RandomPage extends SpecialPage {
 	protected $isRedir = false; // should the result be a redirect?
 	protected $extra = []; // Extra SQL statements
 
-	public function __construct( $name = 'Randompage' ) {
-		$this->namespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->
-			getContentNamespaces();
-		parent::__construct( $name );
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param ILoadBalancer|string|null $loadBalancer
+	 * @param NamespaceInfo|null $nsInfo
+	 */
+	public function __construct(
+		$loadBalancer = null,
+		NamespaceInfo $nsInfo = null
+	) {
+		parent::__construct( is_string( $loadBalancer ) ? $loadBalancer : 'Randompage' );
+		// This class is extended and therefor fallback to global state - T265308
+		$services = MediaWikiServices::getInstance();
+		$this->loadBalancer = $loadBalancer instanceof ILoadBalancer
+			? $loadBalancer
+			: $services->getDBLoadBalancer();
+		$nsInfo = $nsInfo ?? $services->getNamespaceInfo();
+		$this->namespaces = $nsInfo->getContentNamespaces();
 	}
 
 	public function getNamespaces() {
@@ -60,8 +76,7 @@ class RandomPage extends SpecialPage {
 		if ( is_string( $par ) ) {
 			// Testing for stringiness since we want to catch
 			// the empty string to mean main namespace only.
-			$this->setNamespace(
-				MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $par ) );
+			$this->setNamespace( $this->getContentLanguage()->getNsIndex( $par ) );
 		}
 
 		$title = $this->getRandomTitle();
@@ -87,7 +102,7 @@ class RandomPage extends SpecialPage {
 	 * @return string
 	 */
 	private function getNsList() {
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$contLang = $this->getContentLanguage();
 		$nsNames = [];
 		foreach ( $this->namespaces as $n ) {
 			if ( $n === NS_MAIN ) {
@@ -161,7 +176,7 @@ class RandomPage extends SpecialPage {
 	}
 
 	private function selectRandomPageFromDB( $randstr, $fname = __METHOD__ ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		$query = $this->getQueryInfo( $randstr );
 		$res = $dbr->select(

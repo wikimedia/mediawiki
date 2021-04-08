@@ -3,6 +3,9 @@
 namespace MediaWiki\Rest\Hook;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "SearchResultProvideDescription" to register handlers implementing this interface.
+ *
  * Called by REST SearchHandler in order to allow extensions to fill the 'description'
  * field in search results. Warning: this hook, as well as SearchResultPageIdentity interface,
  * is under development and still unstable.

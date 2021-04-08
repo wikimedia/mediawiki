@@ -25,7 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBConnectionError;
 
-require __DIR__ . '/../commandLine.inc';
+require __DIR__ . '/../CommandLineInc.php';
 
 if ( count( $args ) < 1 ) {
 	echo "Usage: php trackBlobs.php <cluster> [... <cluster>]\n";
@@ -135,7 +135,7 @@ class TrackBlobs {
 
 		$textClause = $this->getTextClause();
 		$startId = 0;
-		$endId = $dbr->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
+		$endId = (int)$dbr->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
 		$batchesDone = 0;
 		$rowsInserted = 0;
 
@@ -176,7 +176,7 @@ class TrackBlobs {
 
 			$insertBatch = [];
 			foreach ( $res as $row ) {
-				$startId = $row->rev_id;
+				$startId = (int)$row->rev_id;
 				$info = $this->interpretPointer( $row->old_text );
 				if ( !$info ) {
 					echo "Invalid DB:// URL in rev_id {$row->rev_id}\n";
@@ -225,7 +225,7 @@ class TrackBlobs {
 
 		$textClause = $this->getTextClause();
 		$startId = 0;
-		$endId = $dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
+		$endId = (int)$dbr->selectField( 'text', 'MAX(old_id)', '', __METHOD__ );
 		$rowsInserted = 0;
 		$batchesDone = 0;
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -260,7 +260,7 @@ class TrackBlobs {
 
 			$insertBatch = [];
 			foreach ( $res as $row ) {
-				$startId = $row->old_id;
+				$startId = (int)$row->old_id;
 				$info = $this->interpretPointer( $row->old_text );
 				if ( !$info ) {
 					echo "Invalid DB:// URL in old_id {$row->old_id}\n";
@@ -337,7 +337,7 @@ class TrackBlobs {
 			$startId = 0;
 			$batchesDone = 0;
 			$actualBlobs = gmp_init( 0 );
-			$endId = $extDB->selectField( $table, 'MAX(blob_id)', '', __METHOD__ );
+			$endId = (int)$extDB->selectField( $table, 'MAX(blob_id)', '', __METHOD__ );
 
 			// Build a bitmap of actual blob rows
 			while ( true ) {
@@ -354,7 +354,7 @@ class TrackBlobs {
 
 				foreach ( $res as $row ) {
 					gmp_setbit( $actualBlobs, $row->blob_id );
-					$startId = $row->blob_id;
+					$startId = (int)$row->blob_id;
 				}
 
 				++$batchesDone;

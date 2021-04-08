@@ -7,6 +7,9 @@ use UploadBase;
 use User;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "UploadVerifyUpload" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -31,7 +34,7 @@ interface UploadVerifyUploadHook {
 	 *   provide machine-readable details for the API.)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onUploadVerifyUpload( $upload, $user, $props, $comment,
+	public function onUploadVerifyUpload( UploadBase $upload, User $user, ?array $props, $comment,
 		$pageText, &$error
 	);
 }

@@ -37,7 +37,7 @@ class DeprecatedGlobal extends StubObject {
 		$this->version = $version;
 	}
 
-	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore,PSR2.Classes.PropertyDeclaration.ScopeMissing
+	// phpcs:ignore PSR2.Methods.MethodDeclaration.Underscore
 	public function _newObject() {
 		/* Put the caller offset for wfDeprecated as 6, as
 		 * that gives the function that uses this object, since:

@@ -1,4 +1,7 @@
 <?php
+
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @group Media
  * @covers MimeAnalyzer
@@ -11,6 +14,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	private $mimeAnalyzer;
 
 	protected function setUp() : void {
+		parent::setUp();
 		$this->mimeAnalyzer = new MimeAnalyzer( [
 			'infoFile' => MimeAnalyzer::USE_INTERNAL,
 			'typeFile' => MimeAnalyzer::USE_INTERNAL,
@@ -22,7 +26,6 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 				'html' => 'text/html', // application/xhtml+xml?
 			]
 		] );
-		parent::setUp();
 	}
 
 	private function doGuessMimeType( array $parameters = [] ) {
@@ -68,78 +71,58 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	/**
-	 * Test to make sure that encoder=ffmpeg2theora doesn't trigger
-	 * MEDIATYPE_VIDEO (T65584)
-	 */
-	public function testOggRecognize() {
-		$oggFile = __DIR__ . '/../../../data/media/say-test.ogg';
-		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
-		$this->assertEquals( MEDIATYPE_AUDIO, $actualType );
+	public function provideGetMediaType() {
+		// Make sure encoder=ffmpeg2theora don't trigger MEDIATYPE_VIDEO (T65584)
+		yield 'Recognize ogg' => [ 'say-test.ogg', 'application/ogg', MEDIATYPE_AUDIO ];
+
+		// Make sure Opus audio files don't trigger MEDIATYPE_MULTIMEDIA (T151352)
+		yield 'Recognize Opus' => [ 'say-test.opus', 'application/ogg', MEDIATYPE_AUDIO ];
+
+		// Make sure mp3 files are detected as audio type
+		yield 'Recognize mp3' => [ 'say-test-with-id3.mp3', null, MEDIATYPE_AUDIO ];
 	}
 
 	/**
-	 * Test to make sure that Opus audio files don't trigger
-	 * MEDIATYPE_MULTIMEDIA (bug T151352)
+	 * @dataProvider provideGetMediaType
 	 */
-	public function testOpusRecognize() {
-		$oggFile = __DIR__ . '/../../../data/media/say-test.opus';
-		$actualType = $this->mimeAnalyzer->getMediaType( $oggFile, 'application/ogg' );
-		$this->assertEquals( MEDIATYPE_AUDIO, $actualType );
+	public function testGetMediaType( $file, $mime, $expectType ) {
+		$file = __DIR__ . '/../../../data/media/' . $file;
+		$this->assertEquals(
+			$expectType,
+			$this->mimeAnalyzer->getMediaType( $file, $mime )
+		);
+	}
+
+	public function provideDoGuessMimeType() {
+		// Make sure MP3 with id3 tag is recognized
+		yield 'Recognize mp3 with id3' => [ 'say-test-with-id3.mp3', 'mp3', 'audio/mpeg' ];
+
+		// Make sure MP3 without id3 tag is recognized (MPEG-1 sample rates)
+		yield 'Recognize mp3 no id3, MPEG-1' => [ 'say-test-mpeg1.mp3', 'mp3', 'audio/mpeg' ];
+
+		// Make sure MP3 without id3 tag is recognized (MPEG-2 sample rates)
+		yield 'Recognize mp3 no id3, MPEG-2' => [ 'say-test-mpeg2.mp3', 'mp3', 'audio/mpeg' ];
+
+		// Make sure MP3 without id3 tag is recognized (MPEG-2.5 sample rates)
+		yield 'Recognize mp3 no id3, MPEG-2.5' => [ 'say-test-mpeg2.5.mp3', 'mp3', 'audio/mpeg' ];
+
+		// A ZIP file embedded in the middle of a .doc file is still a Word Document
+		yield 'ZIP in DOC' => [ 'zip-in-doc.doc', 'doc', 'application/msword' ];
+
+		yield 'Jpeg2000, lossless' => [ 'jpeg2000-lossless.jp2', 'jp2', 'image/jp2' ];
+
+		yield 'Jpeg2000, part 2' => [ 'jpeg2000-profile.jpf', 'jpf', 'image/jpx' ];
 	}
 
 	/**
-	 * Test to make sure that mp3 files are detected as audio type
+	 * @dataProvider provideDoGuessMimeType
 	 */
-	public function testMP3AsAudio() {
-		$file = __DIR__ . '/../../../data/media/say-test-with-id3.mp3';
-		$actualType = $this->mimeAnalyzer->getMediaType( $file );
-		$this->assertEquals( MEDIATYPE_AUDIO, $actualType );
-	}
-
-	/**
-	 * Test to make sure that MP3 with id3 tag is recognized
-	 */
-	public function testMP3WithID3Recognize() {
-		$file = __DIR__ . '/../../../data/media/say-test-with-id3.mp3';
-		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
-		$this->assertEquals( 'audio/mpeg', $actualType );
-	}
-
-	/**
-	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-1 sample rates)
-	 */
-	public function testMP3NoID3RecognizeMPEG1() {
-		$file = __DIR__ . '/../../../data/media/say-test-mpeg1.mp3';
-		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
-		$this->assertEquals( 'audio/mpeg', $actualType );
-	}
-
-	/**
-	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-2 sample rates)
-	 */
-	public function testMP3NoID3RecognizeMPEG2() {
-		$file = __DIR__ . '/../../../data/media/say-test-mpeg2.mp3';
-		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
-		$this->assertEquals( 'audio/mpeg', $actualType );
-	}
-
-	/**
-	 * Test to make sure that MP3 without id3 tag is recognized (MPEG-2.5 sample rates)
-	 */
-	public function testMP3NoID3RecognizeMPEG2_5() {
-		$file = __DIR__ . '/../../../data/media/say-test-mpeg2.5.mp3';
-		$actualType = $this->doGuessMimeType( [ $file, 'mp3' ] );
-		$this->assertEquals( 'audio/mpeg', $actualType );
-	}
-
-	/**
-	 * A ZIP file embedded in the middle of a .doc file is still a Word Document.
-	 */
-	public function testZipInDoc() {
-		$file = __DIR__ . '/../../../data/media/zip-in-doc.doc';
-		$actualType = $this->doGuessMimeType( [ $file, 'doc' ] );
-		$this->assertEquals( 'application/msword', $actualType );
+	public function testDoGuessMimeType( $file, $ext, $expectType ) {
+		$file = __DIR__ . '/../../../data/media/' . $file;
+		$this->assertEquals(
+			$expectType,
+			$this->doGuessMimeType( [ $file, $ext ] )
+		);
 	}
 
 	/**
@@ -216,19 +199,21 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	 * @covers MimeAnalyzer::addExtraInfo
 	 */
 	public function testAddExtraTypes() {
-		$mimeAnalyzer = new MimeAnalyzer( [
+		$mime = new MimeAnalyzer( [
 			'infoFile' => MimeAnalyzer::USE_INTERNAL,
 			'typeFile' => MimeAnalyzer::USE_INTERNAL,
 			'xmlTypes' => [],
-			'initCallback' => function ( $instance ) {
+			'initCallback' => static function ( $instance ) {
 				$instance->addExtraTypes( 'fake/mime fake_extension' );
 				$instance->addExtraInfo( 'fake/mime [OFFICE]' );
 				$instance->mExtToMime[ 'no_such_extension' ] = 'fake/mime';
 			},
 		] );
-		$this->assertSame( MEDIATYPE_OFFICE, $mimeAnalyzer->findMediaType( '.fake_extension' ) );
-		$this->assertSame(
-			'fake/mime', $mimeAnalyzer->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
+		$this->assertSame( [ 'fake/mime' ], $mime->getMimeTypesFromExtension( 'fake_extension' ) );
+		$this->assertSame( 'fake/mime', $mime->getMimeTypeFromExtensionOrNull( 'no_such_extension' ) );
+
+		$mimeAccess = TestingAccessWrapper::newFromObject( $mime );
+		$this->assertSame( MEDIATYPE_OFFICE, $mimeAccess->findMediaType( '.fake_extension' ) );
 	}
 
 	public function testGetMimeTypesFromExtension() {

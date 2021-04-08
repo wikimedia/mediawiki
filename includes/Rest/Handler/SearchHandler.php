@@ -5,20 +5,17 @@ namespace MediaWiki\Rest\Handler;
 use Config;
 use InvalidArgumentException;
 use ISearchResultSet;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Entity\SearchResultPageIdentityValue;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
-use RequestContext;
 use SearchEngine;
 use SearchEngineConfig;
 use SearchEngineFactory;
 use SearchResult;
 use SearchSuggestion;
 use Status;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -28,17 +25,11 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class SearchHandler extends Handler {
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
 
 	/** @var SearchEngineConfig */
 	private $searchEngineConfig;
-
-	/** @var User */
-	private $user;
 
 	/**
 	 * Search page body and titles.
@@ -79,22 +70,16 @@ class SearchHandler extends Handler {
 
 	/**
 	 * @param Config $config
-	 * @param PermissionManager $permissionManager
 	 * @param SearchEngineFactory $searchEngineFactory
 	 * @param SearchEngineConfig $searchEngineConfig
 	 */
 	public function __construct(
 		Config $config,
-		PermissionManager $permissionManager,
 		SearchEngineFactory $searchEngineFactory,
 		SearchEngineConfig $searchEngineConfig
 	) {
-		$this->permissionManager = $permissionManager;
 		$this->searchEngineFactory = $searchEngineFactory;
 		$this->searchEngineConfig = $searchEngineConfig;
-
-		// @todo Inject this, when there is a good way to do that, see T239753
-		$this->user = RequestContext::getMain()->getUser();
 
 		// @todo Avoid injecting the entire config, see T246377
 		$this->completionCacheExpiry = $config->get( 'SearchSuggestCacheExpiry' );
@@ -199,7 +184,7 @@ class SearchHandler extends Handler {
 			if ( $title && $title->exists() ) {
 				$pageID = $title->getArticleID();
 				if ( !isset( $pageInfos[$pageID] ) &&
-					$this->permissionManager->quickUserCan( 'read', $this->user, $title )
+					$this->getAuthority()->probablyCan( 'read', $title )
 				) {
 					$pageInfos[ $pageID ] = [ $title, $sugg, null ];
 				}
@@ -225,7 +210,7 @@ class SearchHandler extends Handler {
 				$title = $result->getTitle();
 				$pageID = $title->getArticleID();
 				if ( !isset( $pageInfos[$pageID] ) &&
-					$this->permissionManager->quickUserCan( 'read', $this->user, $title )
+					$this->getAuthority()->probablyCan( 'read', $title )
 				) {
 					$pageInfos[$pageID] = [ $title, null, $result ];
 				}
@@ -242,7 +227,7 @@ class SearchHandler extends Handler {
 	 * @return array[] of pageId => [ $title, null, $result ]
 	 */
 	private function buildResultFromPageInfos( array $pageInfos ): array {
-		return array_map( function ( $pageInfo ) {
+		return array_map( static function ( $pageInfo ) {
 			list( $title, $sugg, $result ) = $pageInfo;
 			return [
 				'id' => $title->getArticleID(),
@@ -291,7 +276,7 @@ class SearchHandler extends Handler {
 
 		$this->getHookRunner()->onSearchResultProvideDescription( $pageIdentities, $descriptions );
 
-		return array_map( function ( $description ) {
+		return array_map( static function ( $description ) {
 			return [ 'description' => $description ];
 		}, $descriptions );
 	}
@@ -324,7 +309,7 @@ class SearchHandler extends Handler {
 	public function execute() {
 		$searchEngine = $this->createSearchEngine();
 		$pageInfos = $this->doSearch( $searchEngine );
-		$pageIdentities = array_map( function ( $pageInfo ) {
+		$pageIdentities = array_map( static function ( $pageInfo ) {
 			list( $title ) = $pageInfo;
 			return new SearchResultPageIdentityValue(
 				$title->getArticleID(),

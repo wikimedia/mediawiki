@@ -4,16 +4,7 @@
 // mediawiki.ui icon specific variables
 @margin-icon: 2 * @width-icon-gutter;
 @width-icon--legacy: @size-icon + @margin-icon;
-@size-icon--large: ( @size-icon * 1.75) + @margin-icon;
-
-// Mixins
-.mixin-mw-ui-icon-bgimage( @iconSvg, @iconPng ) {
-	&.mw-ui-icon {
-		&:before {
-			.background-image-svg( @iconSvg, @iconPng );
-		}
-	}
-}
+@size-icon--large: ( @size-icon * 1.75 ) + @margin-icon;
 
 // Icons
 //
@@ -28,9 +19,9 @@
 
 .mw-ui-icon {
 	position: relative;
+	min-width: @min-size-icon;
+	min-height: @min-size-icon;
 	line-height: @size-icon;
-	min-height: @size-icon;
-	min-width: @size-icon;
 
 	// If an inline element has been marked as a mw-ui-icon element it must be inline-block
 	span& {

@@ -8,8 +8,6 @@
  *
  */
 
-# $fallback = 'ru'; // T29785
-
 $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Служебная',

@@ -164,7 +164,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertEquals( $listSize, $list->count() );
 
-		$this->checkTypeChecks( function ( GenericArrayObject $list, $element ) {
+		$this->checkTypeChecks( static function ( GenericArrayObject $list, $element ) {
 			$list->append( $element );
 		} );
 	}
@@ -248,7 +248,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 
 		$this->assertEquals( count( $elements ), $list->count() );
 
-		$this->checkTypeChecks( function ( GenericArrayObject $list, $element ) {
+		$this->checkTypeChecks( static function ( GenericArrayObject $list, $element ) {
 			$list->offsetSet( mt_rand(), $element );
 		} );
 	}
@@ -269,7 +269,7 @@ abstract class GenericArrayObjectTest extends PHPUnit\Framework\TestCase {
 		$copy = unserialize( $serialization );
 
 		$this->assertEquals( $serialization, serialize( $copy ) );
-		$this->assertEquals( count( $list ), count( $copy ) );
+		$this->assertSame( count( $list ), count( $copy ) );
 
 		$list = $list->getArrayCopy();
 		$copy = $copy->getArrayCopy();

@@ -79,17 +79,24 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 		$this->assertSame( 1, $memoized->ttl );
 	}
 
+	public static function makeA() {
+		return 'a';
+	}
+
+	public static function makeB() {
+		return 'b';
+	}
+
+	public static function makeRand() {
+		return rand();
+	}
+
 	/**
 	 * Closure names should be distinct.
 	 */
 	public function testMemoizedClosure() {
-		$a = new MemoizedCallable( function () {
-			return 'a';
-		} );
-
-		$b = new MemoizedCallable( function () {
-			return 'b';
-		} );
+		$a = new MemoizedCallable( [ self::class, 'makeA' ] );
+		$b = new MemoizedCallable( [ self::class, 'makeB' ] );
 
 		$this->assertEquals( 'a', $a->invokeArgs() );
 		$this->assertEquals( 'b', $b->invokeArgs() );
@@ -102,9 +109,7 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 			$b->callableName
 		);
 
-		$c = new ArrayBackedMemoizedCallable( function () {
-			return rand();
-		} );
+		$c = new ArrayBackedMemoizedCallable( [ self::class, 'makeRand' ] );
 		$this->assertEquals( $c->invokeArgs(), $c->invokeArgs(), 'memoized random' );
 	}
 
@@ -113,6 +118,14 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 		$this->expectExceptionMessage( "non-scalar argument" );
 		$this->expectException( InvalidArgumentException::class );
 		$memoized->invoke( (object)[] );
+	}
+
+	public function testUnnamedCallable() {
+		$this->expectExceptionMessage( 'Cannot memoize unnamed closure' );
+		$this->expectException( InvalidArgumentException::class );
+		$memoized = new MemoizedCallable( static function () {
+			return 'a';
+		} );
 	}
 
 	public function testNotCallable() {

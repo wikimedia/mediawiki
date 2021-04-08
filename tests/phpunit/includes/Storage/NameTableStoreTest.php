@@ -26,8 +26,8 @@ use Wikimedia\TestingAccessWrapper;
 class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
-		$this->tablesUsed[] = 'slot_roles';
 		parent::setUp();
+		$this->tablesUsed[] = 'slot_roles';
 	}
 
 	protected function addCoreDBData() {
@@ -47,8 +47,8 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param $db
-	 * @return MockObject|LoadBalancer
+	 * @param IDatabase $db
+	 * @return LoadBalancer
 	 */
 	private function getMockLoadBalancer( $db ) {
 		$mock = $this->getMockBuilder( LoadBalancer::class )
@@ -56,7 +56,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mock->expects( $this->any() )
 			->method( 'getConnectionRef' )
-			->willReturnCallback( function ( $i ) use ( $mock, $db ) {
+			->willReturnCallback( static function ( $i ) use ( $mock, $db ) {
 				return new MaintainableDBConnRef( $mock, $db, $i );
 			} );
 		return $mock;
@@ -190,7 +190,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		yield [
 			'X',
 			'X',
-			function ( $name ) {
+			static function ( $name ) {
 				return $name;
 			}
 		];
@@ -350,7 +350,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 			1,
 			1,
 			null,
-			function ( $insertFields ) {
+			static function ( $insertFields ) {
 				$insertFields['role_id'] = 7251;
 				return $insertFields;
 			}
@@ -388,7 +388,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 		$db = $this->getProxyDb( 2 );
 		$db->method( 'insert' )
-			->willReturnCallback( function () use ( &$insertCalls, $db ) {
+			->willReturnCallback( static function () use ( &$insertCalls, $db ) {
 				$insertCalls++;
 				switch ( $insertCalls ) {
 					case 1:
@@ -447,7 +447,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 		$quuxId = null;
 		$this->db->onTransactionResolution(
-			function () use ( $store1, &$quuxId ) {
+			static function () use ( $store1, &$quuxId ) {
 				$quuxId = $store1->acquireId( 'quux' );
 			}
 		);

@@ -67,6 +67,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected $db;
 
 	/**
+	 * Cloned database
+	 *
+	 * @var ?CloneDatabase
+	 */
+	private static $dbClone = null;
+
+	/**
 	 * @var array
 	 * @since 1.19
 	 */
@@ -128,19 +135,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	private $overriddenServices = [];
 
 	/**
-	 * @var callable[]
-	 */
-	private $originalHookHandlers = [];
-
-	/**
-	 * @var callable[]
+	 * @var array[] contains temporary hooks as a list of name/handler pairs,
+	 *      where a name/false pair indicates the hook being cleared.
 	 */
 	private $temporaryHookHandlers = [];
-
-	/**
-	 * @var \Wikimedia\ScopedCallback[]
-	 */
-	private $temporaryHookScopes = [];
 
 	/**
 	 * Table name prefix.
@@ -159,6 +157,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @stable for calling
+	 * @param string|null $name
+	 * @param array $data
+	 * @param string $dataName
 	 */
 	public function __construct( $name = null, array $data = [], $dataName = '' ) {
 		parent::__construct( $name, $data, $dataName );
@@ -232,7 +233,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @return TestUser
 	 */
 	public static function getTestSysop() {
-		return self::getTestUser( [ 'sysop', 'bureaucrat' ] );
+		return static::getTestUser( [ 'sysop', 'bureaucrat' ] );
 	}
 
 	/**
@@ -258,7 +259,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$page = WikiPage::factory( $title );
 
 		if ( !$page->exists() ) {
-			$user = self::getTestSysop()->getUser();
+			$user = static::getTestSysop()->getUser();
 			$page->doEditContent(
 				ContentHandler::makeContent( 'UTContent', $title ),
 				'UTPageSummary',
@@ -294,7 +295,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$page = WikiPage::factory( $title );
 
 		if ( $page->exists() ) {
-			$page->doDeleteArticleReal( 'Testing', $this->getTestSysop()->getUser() );
+			$page->doDeleteArticleReal( 'Testing', static::getTestSysop()->getUser() );
 		}
 
 		return $page;
@@ -357,7 +358,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		ConfigFactory $oldFactory,
 		array $configurations
 	) {
-		return function ( MediaWikiServices $services ) use ( $oldFactory, $configurations ) {
+		return static function ( MediaWikiServices $services ) use ( $oldFactory, $configurations ) {
 			$factory = new ConfigFactory();
 
 			// clone configurations from $oldFactory that are not overwritten by $configurations
@@ -400,7 +401,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			session_id( '' );
 		}
 
-		$wgRequest = new FauxRequest();
+		$wgRequest = RequestContext::getMain()->getRequest();
 		MediaWiki\Session\SessionManager::resetCache();
 	}
 
@@ -417,7 +418,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( !self::$dbSetup || $this->needsDB() ) {
 			// set up a DB connection for this test to use
 
-			self::$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
+			$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
 
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
@@ -426,7 +427,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->checkDbIsSupported();
 
 			if ( !self::$dbSetup ) {
-				$this->setupAllTestDBs();
+				self::setupAllTestDBs(
+					$this->db, $this->dbPrefix(), $useTemporaryTables
+				);
 				$this->addCoreDBData();
 			}
 
@@ -447,6 +450,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// We don't mind if we override already-overridden services during cleanup
 		$this->overriddenServices = [];
+		$this->temporaryHookHandlers = [];
 
 		if ( $needsResetDB ) {
 			$this->resetDB( $this->db, $this->tablesUsed );
@@ -544,6 +548,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->overriddenServices = [];
+		$this->temporaryHookHandlers = [];
 
 		// Cleaning up temporary files
 		foreach ( $this->tmpFiles as $fileName ) {
@@ -577,7 +582,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		// T46192 Do not attempt to send a real e-mail
 		$this->setTemporaryHook( 'AlternateUserMailer',
-			function () {
+			static function () {
 				return false;
 			}
 		);
@@ -627,8 +632,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Clear any cached test users so they don't retain references to old services
 		TestUserRegistry::clear();
 
-		// Re-enable any disabled deprecation warnings
-		MWDebug::clearLog();
 		// Restore mw globals
 		foreach ( $this->mwGlobals as $key => $value ) {
 			$GLOBALS[$key] = $value;
@@ -658,32 +661,36 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			session_write_close();
 			session_id( '' );
 		}
-		$wgRequest = new FauxRequest();
+		$wgRequest = RequestContext::getMain()->getRequest();
 		MediaWiki\Session\SessionManager::resetCache();
 		MediaWiki\Auth\AuthManager::resetCache();
 
 		// If anything faked the time, reset it
 		ConvertibleTimestamp::setFakeTime( false );
-
-		// Remove handlers set by setTemporaryHook()
-		$this->temporaryHookHandlers = [];
-		$this->temporaryHookScopes = [];
-
-		$this->restoreLegacyRegisteredHookHandlers();
+		// If anything changed the content language, we need to
+		// reset the SpecialPageFactory.
+		MediaWikiServices::getInstance()->resetServiceForTesting(
+			'SpecialPageFactory'
+		);
 	}
 
 	/**
-	 * Restore handlers that were registered if setTemporaryHook() overrides them.
-	 * @since 1.35
+	 * Gets the service container to use with integration tests.
 	 *
+	 * @return MediaWikiServices
+	 * @since 1.36
 	 */
-	private function restoreLegacyRegisteredHookHandlers() {
-		$originalHandlers = $this->localServices->getHookContainer()->getOriginalHooksForTest();
-		foreach ( $originalHandlers as $hook => $ogHandlers ) {
-			foreach ( $ogHandlers as $handler ) {
-				$this->localServices->getHookContainer()->register( $hook, $handler );
-			}
+	protected function getServiceContainer() {
+		if ( !$this->localServices ) {
+			throw new Exception( __METHOD__ . ' must be called after MediaWikiIntegrationTestCase::run()' );
 		}
+
+		if ( $this->localServices !== MediaWikiServices::getInstance() ) {
+			throw new Exception( __METHOD__ . ' may lead to inconsistencies because the '
+				. ' global MediaWikiServices instance has been replaced by test code.' );
+		}
+
+		return $this->localServices;
 	}
 
 	/**
@@ -693,7 +700,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @note This calls resetServices() in case any other services depend on the set service(s).
 	 *
 	 * @param string $name
-	 * @param object $service The service instance, or a callable that returns the service instance.
+	 * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @param object|callable $service The service instance, or a callable that returns the service instance.
 	 *
 	 * @since 1.27
 	 *
@@ -711,7 +719,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		if ( is_callable( $service ) ) {
 			$instantiator = $service;
 		} else {
-			$instantiator = function () use ( $service ) {
+			$instantiator = static function () use ( $service ) {
 				return $service;
 			};
 		}
@@ -737,6 +745,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @par Example
 	 * @code
 	 *     protected function setUp() : void {
+	 *         parent::setUp();
 	 *         $this->setMwGlobals( 'wgRestrictStuff', true );
 	 *     }
 	 *
@@ -773,6 +782,19 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		$this->resetServices();
+	}
+
+	/**
+	 * Set the global request in the two places it is stored.
+	 * @param WebRequest $request
+	 * @since 1.36
+	 */
+	protected function setRequest( $request ) {
+		global $wgRequest;
+		// It's not necessary to stash the value with setMwGlobals(), since
+		// it's reset on teardown anyway.
+		$wgRequest = $request;
+		RequestContext::getMain()->setRequest( $request );
 	}
 
 	/**
@@ -899,10 +921,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @since 1.34
 	 */
 	protected function resetServices() {
-		// Consume temporary hooks
-		$this->temporaryHookScopes = [];
-
 		// Reset but don't destroy service instances supplied via setService().
+		$oldHookContainer = $this->localServices->getHookContainer();
 		foreach ( $this->overriddenServices as $name ) {
 			$this->localServices->resetServiceForTesting( $name, false );
 		}
@@ -913,9 +933,19 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$this->localServices->resetServiceForTesting( $name, true );
 		}
 
-		// Reapply temporary hooks
-		foreach ( $this->temporaryHookHandlers as $name => $callback ) {
-			$this->setTemporaryHook( $name, $callback );
+		// If the hook container was reset, re-apply temporary hooks.
+		$newHookContainer = $this->localServices->getHookContainer();
+		if ( $newHookContainer !== $oldHookContainer ) {
+			// the same hook may be cleared and registered several times
+			foreach ( $this->temporaryHookHandlers as $tuple ) {
+				[ $name, $target ] = $tuple;
+
+				if ( !$target ) {
+					$newHookContainer->clear( $name );
+				} else {
+					$newHookContainer->register( $name, $target );
+				}
+			}
 		}
 
 		self::resetLegacyGlobals();
@@ -1049,8 +1079,17 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$newServices->resetServiceForTesting( 'DBLoadBalancerFactory' );
 		$newServices->redefineService(
 			'DBLoadBalancerFactory',
-			function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactory ) {
+			static function ( MediaWikiServices $services ) use ( $oldLoadBalancerFactory ) {
 				return $oldLoadBalancerFactory;
+			}
+		);
+
+		// Prevent real HTTP requests from tests
+		$newServices->resetServiceForTesting( 'HttpRequestFactory' );
+		$newServices->redefineService(
+			'HttpRequestFactory',
+			static function ( MediaWikiServices $services ) {
+				return new NullHttpRequestFactory();
 			}
 		);
 
@@ -1092,19 +1131,18 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Replace legacy globals like $wgParser and $wgContLang with fresh ones so they pick up any
-	 * config changes. They're deprecated, but we still support them for now.
+	 * Replace legacy global $wgParser with a fresh one so it picks up any
+	 * config changes. It's deprecated, but we still support it for now.
 	 */
 	private static function resetLegacyGlobals() {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgParser
-		global $wgParser, $wgContLang;
+		global $wgParser;
 		// We don't have to replace the parser if it wasn't unstubbed
 		if ( !( $wgParser instanceof StubObject ) ) {
-			$wgParser = new StubObject( 'wgParser', function () {
+			$wgParser = new StubObject( 'wgParser', static function () {
 				return MediaWikiServices::getInstance()->getParser();
 			} );
 		}
-		$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 	}
 
 	/**
@@ -1338,7 +1376,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Note data added by this method may be removed by resetDB() depending on
 	 * the contents of $tablesUsed.
 	 *
-	 * To add additional data between test function runs, override prepareDB().
+	 * To add additional data between test function runs, override addDBData().
 	 *
 	 * @see addDBData()
 	 * @see resetDB()
@@ -1421,6 +1459,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			JobQueueGroup::singleton()->get( $type )->delete();
 		}
 
+		if ( self::$dbClone ) {
+			self::$dbClone->destroy( true );
+			self::$dbClone = null;
+		}
+
 		// T219673: close any connections from code that failed to call reuseConnection()
 		// or is still holding onto a DBConnRef instance (e.g. in a singleton).
 		MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->closeAll();
@@ -1463,9 +1506,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 			$db->tablePrefix( $oldPrefix );
 			$tablesCloned = self::listTables( $db );
-			$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix, $oldPrefix );
-			$dbClone->useTemporaryTables( self::$useTemporaryTables );
-			$dbClone->cloneTableStructure();
+			self::$dbClone = new CloneDatabase( $db, $tablesCloned, $prefix, $oldPrefix );
+			self::$dbClone->useTemporaryTables( self::$useTemporaryTables );
+			self::$dbClone->cloneTableStructure();
 
 			$db->tablePrefix( $prefix );
 			$db->_originalTablePrefix = $oldPrefix;
@@ -1477,18 +1520,16 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		return true;
 	}
 
-	/**
-	 * Set up all test DBs
-	 */
-	public function setupAllTestDBs() {
+	public static function setupAllTestDBs( $db, ?string $testPrefix = null, ?bool $useTemporaryTables = null ) {
 		global $wgDBprefix;
 
 		self::$oldTablePrefix = $wgDBprefix;
 
-		$testPrefix = $this->dbPrefix();
+		$testPrefix = $testPrefix ?? self::getTestPrefixFor( $db );
 
 		// switch to a temporary clone of the database
-		self::setupTestDB( $this->db, $testPrefix );
+		self::$useTemporaryTables = $useTemporaryTables ?? self::$useTemporaryTables;
+		self::setupTestDB( $db, $testPrefix );
 
 		if ( self::isUsingExternalStoreDB() ) {
 			self::setupExternalStoreTestDBs( $testPrefix );
@@ -1684,6 +1725,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * Applies the schema overrides returned by getSchemaOverrides(),
 	 * after undoing any previously applied schema overrides.
 	 * Called once per test class, just before addDataOnce().
+	 * @param IMaintainableDatabase $db
 	 */
 	private function setUpSchema( IMaintainableDatabase $db ) {
 		// Undo any active overrides.
@@ -1785,13 +1827,13 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		$originalTables = array_filter(
 			$originalTables,
-			function ( $pt ) use ( $unittestPrefixRegex ) {
+			static function ( $pt ) use ( $unittestPrefixRegex ) {
 				return !preg_match( $unittestPrefixRegex, $pt );
 			}
 		);
 
 		$originalTables = array_map(
-			function ( $pt ) use ( $originalPrefixRegex ) {
+			static function ( $pt ) use ( $originalPrefixRegex ) {
 				return preg_replace( $originalPrefixRegex, '', $pt );
 			},
 			$originalTables
@@ -1818,12 +1860,12 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$originalTables = $this->listOriginalTables( $db );
 		$tables = array_intersect( $tables, $originalTables );
 
-		$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
-		$dbClone->useTemporaryTables( self::$useTemporaryTables );
-		$dbClone->cloneTableStructure();
+		self::$dbClone = new CloneDatabase( $db, $tables, $db->tablePrefix(), $db->_originalTablePrefix );
+		self::$dbClone->useTemporaryTables( self::$useTemporaryTables );
+		self::$dbClone->cloneTableStructure();
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $lb->getLocalDomainID() );
+		$lb->setTempTablesOnlyMode( self::$useTemporaryTables, $db->getDomainID() );
 	}
 
 	/**
@@ -1901,7 +1943,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	private static function isNotUnittest( $table ) {
-		return strpos( $table, self::DB_PREFIX ) !== 0;
+		return strpos( $table, self::DB_PREFIX ) !== 0 &&
+			strpos( $table, ParserTestRunner::DB_PREFIX ) !== 0;
 	}
 
 	/**
@@ -2115,7 +2158,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 */
 	protected function arrayWrap( array $elements ) {
 		return array_map(
-			function ( $element ) {
+			static function ( $element ) {
 				return [ $element ];
 			},
 			$elements
@@ -2159,27 +2202,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			if ( is_string( $k ) ) {
 				unset( $r[$k] );
 			}
-		}
-	}
-
-	/**
-	 * Asserts the type of the provided value. This can be either
-	 * in internal type such as boolean or integer, or a class or
-	 * interface the value extends or implements.
-	 *
-	 * @deprecated since 1.35 Following the PHPUnit deprecation of assertInternalType
-	 *
-	 * @param string $type
-	 * @param mixed $actual
-	 * @param string $message
-	 */
-	protected function assertType( $type, $actual, $message = '' ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( class_exists( $type ) || interface_exists( $type ) ) {
-			$this->assertInstanceOf( $type, $actual, $message );
-		} else {
-			// phpcs:ignore MediaWiki.Usage.PHPUnitDeprecatedMethods.AssertInternalTypeGeneric
-			$this->assertInternalType( $type, $actual, $message );
 		}
 	}
 
@@ -2234,7 +2256,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			NS_FILE, NS_CATEGORY, NS_MEDIAWIKI, NS_USER // don't mess with magic namespaces
 		] );
 
-		$talk = array_filter( $namespaces, function ( $ns ) use ( $nsInfo ) {
+		$talk = array_filter( $namespaces, static function ( $ns ) use ( $nsInfo ) {
 			return $nsInfo->isTalk( $ns );
 		} );
 
@@ -2318,46 +2340,53 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Create a temporary hook handler which will be reset by tearDown.
-	 * This will only replace handlers that have been registered in $wgHooks.
+	 * Registers the given hook handler for the duration of the current test case.
 	 *
 	 * @param string $hookName Hook name
 	 * @param mixed $handler Value suitable for a hook handler
 	 * @param bool $replace (optional) Default is to replace all existing handlers for the given hook.
-	 *        Set false to add to existing handler array
+	 *        Set false to add to existing handler list.
 	 * @since 1.28
 	 */
-	protected function setTemporaryHook( $hookName, $handler, $replace = false ) {
-		global $wgHooks;
-
-		// Stash and unset handlers registered through $wgHooks global
-		$this->doStashMwGlobals( [ 'wgHooks' ] );
-		if ( isset( $wgHooks[$hookName] ) ) {
-			unset( $wgHooks[$hookName] );
+	protected function setTemporaryHook( $hookName, $handler, $replace = true ) {
+		if ( $replace ) {
+			$this->clearHook( $hookName );
 		}
-		$this->temporaryHookHandlers[$hookName] = $handler;
-		$this->temporaryHookScopes[$hookName][] =
-			$this->localServices->getHookContainer()->scopedRegister( $hookName, $handler, $replace );
+		$this->localServices->getHookContainer()->register( $hookName, $handler );
+		$this->temporaryHookHandlers[] = [ $hookName, $handler ];
 	}
 
 	/**
-	 * Remove a temporary hook. Use this if you need to remove a temporary hook
-	 * before teardown.
+	 * Remove all handlers for the given hook for the duration of the current test case.
+	 *
+	 * @param string $hookName
+	 * @since 1.36
+	 */
+	protected function clearHook( $hookName ) {
+		$this->localServices->getHookContainer()->clear( $hookName );
+		$this->temporaryHookHandlers[] = [ $hookName, false ];
+	}
+
+	/**
+	 * Remove a temporary hook previously added with setTemporaryHook().
+	 *
+	 * @note This is implemented to remove ALL handlers for the given hook
+	 *       for the duration of the current test case.
+	 * @deprecated since 1.36, use clearHook() instead.
 	 *
 	 * @param string $hookName
 	 */
 	protected function removeTemporaryHook( $hookName ) {
-		$this->temporaryHookHandlers[$hookName] = [];
-		$this->temporaryHookScopes[$hookName] = [];
+		$this->clearHook( $hookName );
 	}
 
 	/**
 	 * Edits or creates a page/revision
-	 * @param string $pageName Page title
-	 * @param string $text Content of the page
+	 * @param string|Title|WikiPage $page the page to edit
+	 * @param string|Content $content the new content of the page
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
-	 * @param User|null $user If null, static::getTestSysop()->getUser() is used.
+	 * @param User|null $user If null, static::getTestUser()->getUser() is used.
 	 * @return Status Object as returned by WikiPage::doEditContent()
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
@@ -2365,8 +2394,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 *         needsDB() method.
 	 */
 	protected function editPage(
-		$pageName,
-		$text,
+		$page,
+		$content,
 		$summary = '',
 		$defaultNs = NS_MAIN,
 		User $user = null
@@ -2376,11 +2405,26 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				' method should return true. Use @group Database or $this->tablesUsed.' );
 		}
 
-		$title = Title::newFromText( $pageName, $defaultNs );
-		$page = WikiPage::factory( $title );
+		if ( $page instanceof WikiPage ) {
+			$title = $page->getTitle();
+		} elseif ( $page instanceof Title ) {
+			$title = $page;
+			$page = WikiPage::factory( $title );
+		} else {
+			$title = Title::newFromText( $page, $defaultNs );
+			$page = WikiPage::factory( $title );
+		}
+
+		if ( $user === null ) {
+			$user = static::getTestUser()->getUser();
+		}
+
+		if ( is_string( $content ) ) {
+			$content = ContentHandler::makeContent( $content, $title );
+		}
 
 		return $page->doEditContent(
-			ContentHandler::makeContent( $text, $title ),
+			$content,
 			$summary,
 			0,
 			false,

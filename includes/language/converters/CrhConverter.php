@@ -75,18 +75,44 @@ class CrhConverter extends LanguageConverterSpecific {
 	public const L_F = 'eiöüEİÖÜ';
 
 	/**
-	 * @param Language $langobj
+	 * Get Main language code.
+	 * @since 1.36
+	 *
+	 * @return string
 	 */
-	public function __construct( $langobj ) {
-		$variants = [ 'crh', 'crh-cyrl', 'crh-latn' ];
-		$variantfallbacks = [
+	public function getMainCode(): string {
+		return 'crh';
+	}
+
+	/**
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getLanguageVariants(): array {
+		return [ 'crh', 'crh-cyrl', 'crh-latn' ];
+	}
+
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantsFallbacks(): array {
+		return [
 			'crh' => 'crh-latn',
 			'crh-cyrl' => 'crh-latn',
 			'crh-latn' => 'crh-cyrl',
 		];
+	}
 
-		parent::__construct( $langobj, 'crh',
-			$variants, $variantfallbacks, [] );
+	/**
+	 * @param Language $langobj
+	 */
+	public function __construct( $langobj ) {
+		parent::__construct( $langobj );
 
 		// No point delaying this since they're in code.
 		// Waiting until loadDefaultTables() means they never get loaded
@@ -270,5 +296,4 @@ class CrhConverter extends LanguageConverterSpecific {
 				return $text;
 		}
 	}
-
 }

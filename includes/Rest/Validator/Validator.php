@@ -2,12 +2,13 @@
 
 namespace MediaWiki\Rest\Validator;
 
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\HttpException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestInterface;
-use MediaWiki\User\UserIdentity;
 use Wikimedia\ObjectFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\BooleanDef;
@@ -48,6 +49,14 @@ class Validator {
 		'timestamp' => [ 'class' => TimestampDef::class ],
 		'upload' => [ 'class' => UploadDef::class ],
 		'expiry' => [ 'class' => ExpiryDef::class ],
+		'title' => [
+			'class' => TitleDef::class,
+			'services' => [ 'TitleFactory' ],
+		],
+		'user' => [
+			'class' => UserDef::class,
+			'services' => [ 'UserFactory', 'TitleFactory', 'UserNameUtils' ]
+		],
 	];
 
 	/** @var string[] HTTP request methods that we expect never to have a payload */
@@ -67,19 +76,17 @@ class Validator {
 
 	/**
 	 * @param ObjectFactory $objectFactory
-	 * @param PermissionManager $permissionManager
 	 * @param RequestInterface $request
-	 * @param UserIdentity $user
+	 * @param Authority $authority
 	 * @internal
 	 */
 	public function __construct(
 		ObjectFactory $objectFactory,
-		PermissionManager $permissionManager,
 		RequestInterface $request,
-		UserIdentity $user
+		Authority $authority
 	) {
 		$this->paramValidator = new ParamValidator(
-			new ParamValidatorCallbacks( $permissionManager, $request, $user ),
+			new ParamValidatorCallbacks( $request, $authority ),
 			$objectFactory,
 			[
 				'typeDefs' => self::TYPE_DEFS,

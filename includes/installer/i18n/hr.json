@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bugoslav",
 			"Vrhnje"
 		]
 	},
@@ -11,16 +12,17 @@
 	"config-back": "← Povratak",
 	"config-continue": "Dalje →",
 	"config-page-language": "Jezik",
-	"config-page-welcome": "Dobrodošli na MediaWiki!",
+	"config-page-welcome": "Dobro došli na MediaWiki!",
 	"config-page-dbconnect": "Spajanje na bazu podataka",
 	"config-page-upgrade": "Ažuriranje postojeće instalacije",
 	"config-page-restart": "Ponovno pokreni instalaciju",
-	"config-page-readme": "Pročitajte više",
 	"config-page-releasenotes": "Informacije o verziji",
 	"config-page-copying": "Kopiranje",
 	"config-page-upgradedoc": "Ažuriranje",
 	"config-page-existingwiki": "Postojeći wiki",
 	"config-restart": "Da, počni iznova",
+	"config-db-install-account": "Suradnički račun za instalaciju",
+	"config-admin-error-password-invalid": "Administratorska zaporka na wikiju nije valjana: $1",
 	"mainpagetext": "'''Softver MediaWiki je uspješno instaliran.'''",
 	"mainpagedocfooter": "Pogledajte [https://meta.wikimedia.org/wiki/MediaWiki_localisation dokumentaciju o prilagodbi sučelja]\ni [https://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] za pomoć pri uporabi i podešavanju."
 }

@@ -35,6 +35,7 @@ $namespaceAliases = [
 	'Hjælp-diskussion'     => NS_HELP_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktive_Brugere' ],
 	'Allmessages'               => [ 'MediaWiki-systemmeddelelser' ],
@@ -42,6 +43,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Ældste_sider' ],
 	'Blankpage'                 => [ 'Tom_Side' ],
 	'Block'                     => [ 'Bloker_adresse' ],
+	'BlockList'                 => [ 'Blokerede_adresser' ],
 	'Booksources'               => [ 'ISBN-søgning' ],
 	'BrokenRedirects'           => [ 'Defekte_omdirigeringer' ],
 	'Categories'                => [ 'Kategorier' ],
@@ -60,7 +62,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Filsti' ],
 	'Import'                    => [ 'Importere' ],
 	'Invalidateemail'           => [ 'Ugyldiggør_e-mail' ],
-	'BlockList'                 => [ 'Blokerede_adresser' ],
 	'LinkSearch'                => [ 'Link_Søgning' ],
 	'Listadmins'                => [ 'Administratorer' ],
 	'Listbots'                  => [ 'Robotter' ],

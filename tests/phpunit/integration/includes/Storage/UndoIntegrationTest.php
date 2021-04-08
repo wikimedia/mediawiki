@@ -10,6 +10,7 @@ use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiIntegrationTestCase;
+use OutputPage;
 use RequestContext;
 use Title;
 use User;
@@ -62,7 +63,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$request->setVal( 'wpSave', '' );
 		$context->setRequest( $request );
 
-		$outputPage = $this->createMock( 'OutputPage' );
+		$outputPage = $this->createMock( OutputPage::class );
 		$context->setOutput( $outputPage );
 		$context->setUser( $this->getTestSysop()->getUser() );
 
@@ -423,6 +424,114 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 				// These two parameters are the important ones here
 				'wpUndidRevision' => $revisionIds[$undoIndex],
 				'wpUndoAfter' => $revisionIds[$undoafterIndex],
+				'wpStarttime' => wfTimestampNow(),
+				'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
+				'model' => CONTENT_MODEL_WIKITEXT,
+				'format' => CONTENT_FORMAT_WIKITEXT,
+			],
+			true
+		);
+
+		$editPage = new EditPage( $article );
+		$editPage->importFormData( $request );
+		$editPage->internalAttemptSave( $result, false );
+	}
+
+	/**
+	 * Test the case where the user undoes some edits, but applies additional changes before
+	 * saving. EditPage should detect that and not mark such an edit as a revert.
+	 */
+	public function testDirtyUndo() {
+		$revisionIds = $this->setUpPageForTesting( [
+			"line 1\n\nline 2\n\nline3",
+			"line 1\n\nvandalism\n\nline3",
+			"line 1\n\nvandalism\n\nline3 more content"
+		] );
+		$context = RequestContext::getMain();
+		$article = Article::newFromTitle( Title::newFromText( self::PAGE_NAME ), $context );
+
+		// set up a temporary hook with asserts
+		$this->setTemporaryHook(
+			'PageSaveComplete',
+			function (
+				WikiPage $wikiPage,
+				User $user,
+				string $summary,
+				int $flags,
+				RevisionStoreRecord $revisionRecord,
+				EditResult $editResult
+			) {
+				// Just ensuring that the edit was not marked as a revert should be enough
+				$this->assertFalse(
+					$editResult->isRevert(),
+					'EditResult::isRevert()'
+				);
+			}
+		);
+
+		$request = new FauxRequest(
+			[
+				// We emulate the user applying additional changes on top of the undo.
+				'wpTextbox1' => "line 1\n\nline 2\n\nline3 more content\n\neven more",
+				'wpEditToken' => $this->getTestSysop()->getUser()->getEditToken(),
+				'wpUndidRevision' => $revisionIds[1],
+				'wpUndoAfter' => $revisionIds[0],
+				'wpStarttime' => wfTimestampNow(),
+				'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
+				'model' => CONTENT_MODEL_WIKITEXT,
+				'format' => CONTENT_FORMAT_WIKITEXT,
+			],
+			true
+		);
+
+		$editPage = new EditPage( $article );
+		$editPage->importFormData( $request );
+		$editPage->internalAttemptSave( $result, false );
+	}
+
+	/**
+	 * Test whether EditPage correctly handles situations where an undo is impossible.
+	 * Ensures T262463 is fixed.
+	 */
+	public function testImpossibleUndo() {
+		$revisionIds = $this->setUpPageForTesting( [
+			"line 1\n\nline 2\n\nline3",
+			"line 1\n\nvandalism\n\nline3",
+			"line 1\n\nvandalism good content\n\nline3 more content"
+		] );
+
+		$context = RequestContext::getMain();
+		$article = Article::newFromTitle( Title::newFromText( self::PAGE_NAME ), $context );
+
+		// set up a temporary hook with asserts
+		$this->setTemporaryHook(
+			'PageSaveComplete',
+			function (
+				WikiPage $wikiPage,
+				User $user,
+				string $summary,
+				int $flags,
+				RevisionStoreRecord $revisionRecord,
+				EditResult $editResult
+			) {
+				$this->assertFalse(
+					$editResult->isRevert(),
+					'EditResult::isRevert()'
+				);
+				$this->assertTrue(
+					$editResult->isNullEdit(),
+					'EditResult::isNullEdit()'
+				);
+			}
+		);
+
+		$request = new FauxRequest(
+			[
+				// We leave the "top" content in the textbox, as the undo should have failed
+				'wpTextbox1' => "line 1\n\nvandalism good content\n\nline3 more content",
+				'wpEditToken' => $this->getTestSysop()->getUser()->getEditToken(),
+				'wpUndidRevision' => $revisionIds[1],
+				'wpUndoAfter' => $revisionIds[0],
 				'wpStarttime' => wfTimestampNow(),
 				'wpUnicodeCheck' => EditPage::UNICODE_CHECK,
 				'model' => CONTENT_MODEL_WIKITEXT,

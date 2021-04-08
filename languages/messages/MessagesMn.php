@@ -42,6 +42,7 @@ $namespaceAliases = [
 	'Зургийн_хэлэлцүүлэг' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
 	'redirect'                  => [ '0', '#ЧИГЛҮҮЛЭГ', '#REDIRECT' ],
 ];

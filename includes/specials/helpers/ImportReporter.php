@@ -58,7 +58,7 @@ class ImportReporter extends ContextSource {
 	/**
 	 * Sets change tags to apply to the import log entry and null revision.
 	 *
-	 * @param array $tags
+	 * @param string[] $tags
 	 * @since 1.29
 	 */
 	public function setChangeTags( array $tags ) {
@@ -100,7 +100,8 @@ class ImportReporter extends ContextSource {
 		}
 
 		$this->mPageCount++;
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
 		if ( $successCount > 0 ) {
 			// <bdi> prevents jumbling of the versions count
 			// in RTL wikis in case the page title is LTR
@@ -137,7 +138,7 @@ class ImportReporter extends ContextSource {
 
 			$comment = CommentStoreComment::newUnsavedComment( $detail );
 			$dbw = wfGetDB( DB_MASTER );
-			$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+			$revStore = $services->getRevisionStore();
 			$latest = $title->getLatestRevID();
 			$nullRevRecord = $revStore->newNullRevision(
 				$dbw,
@@ -151,7 +152,7 @@ class ImportReporter extends ContextSource {
 			if ( $nullRevRecord !== null ) {
 				$inserted = $revStore->insertRevisionOn( $nullRevRecord, $dbw );
 				$nullRevId = $inserted->getId();
-				$page = WikiPage::factory( $title );
+				$page = $services->getWikiPageFactory()->newFromTitle( $title );
 
 				// Update page record
 				$page->updateRevisionOn( $dbw, $inserted );

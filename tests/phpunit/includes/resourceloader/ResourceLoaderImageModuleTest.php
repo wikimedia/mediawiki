@@ -306,6 +306,7 @@ TEXT
 class ResourceLoaderImageModuleTestable extends ResourceLoaderImageModule {
 	/**
 	 * Replace with a stub to make test cases easier to write.
+	 * @inheritDoc
 	 */
 	protected function getCssDeclarations( $primary, $fallback ) : array {
 		return [ '...' ];

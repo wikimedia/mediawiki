@@ -2,12 +2,14 @@
 
 namespace MediaWiki\Storage\Hook;
 
-// phpcs:disable Generic.Files.LineLength -- Remove this after doc review
 use DeferrableUpdate;
 use MediaWiki\Revision\RenderedRevision;
 use Title;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "RevisionDataUpdates" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

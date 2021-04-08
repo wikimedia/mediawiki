@@ -15,9 +15,9 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( [
 			'wgServer' => $server,
 			'wgCanonicalServer' => $canServer,
-			'wgRequest' => new FauxRequest( [], false, null, $httpsMode ? 'https' : 'http' ),
 			'wgHttpsPort' => $httpsPort
 		] );
+		$this->setRequest( new FauxRequest( [], false, null, $httpsMode ? 'https' : 'http' ) );
 
 		$this->assertEquals( $fullUrl, wfExpandUrl( $shortUrl, $defaultProto ), $message );
 	}
@@ -42,21 +42,20 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 			'canonical' => PROTO_CANONICAL
 		];
 
-		$retval = [];
 		foreach ( $modes as $mode ) {
 			$httpsMode = $mode == 'https';
 			foreach ( $servers as $serverDesc => $server ) {
 				foreach ( $modes as $canServerMode ) {
 					$canServer = "$canServerMode://example2.com";
 					foreach ( $defaultProtos as $protoDesc => $defaultProto ) {
-						$retval[] = [
+						yield [
 							'http://example.com', 'http://example.com',
 							$defaultProto, $server, $canServer, $httpsMode, 443,
 							"Testing fully qualified http URLs (no need to expand) "
 								. "(defaultProto: $protoDesc , wgServer: $server, "
 								. "wgCanonicalServer: $canServer, current request protocol: $mode )"
 						];
-						$retval[] = [
+						yield [
 							'https://example.com', 'https://example.com',
 							$defaultProto, $server, $canServer, $httpsMode, 443,
 							"Testing fully qualified https URLs (no need to expand) "
@@ -64,7 +63,7 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 								. "wgCanonicalServer: $canServer, current request protocol: $mode )"
 						];
 						# Would be nice to support this, see fixme on wfExpandUrl()
-						$retval[] = [
+						yield [
 							"wiki/FooBar", 'wiki/FooBar',
 							$defaultProto, $server, $canServer, $httpsMode, 443,
 							"Test non-expandable relative URLs (defaultProto: $protoDesc, "
@@ -91,14 +90,14 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 							$srv = $server;
 						}
 
-						$retval[] = [
+						yield [
 							"$p//wikipedia.org", '//wikipedia.org',
 							$defaultProto, $server, $canServer, $httpsMode, 443,
 							"Test protocol-relative URL (defaultProto: $protoDesc, "
 								. "wgServer: $server, wgCanonicalServer: $canServer, "
 								. "current request protocol: $mode )"
 						];
-						$retval[] = [
+						yield [
 							"$srv/wiki/FooBar",
 							'/wiki/FooBar',
 							$defaultProto,
@@ -116,7 +115,7 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 		}
 
 		// Don't add HTTPS port to foreign URLs
-		$retval[] = [
+		yield [
 			'https://foreign.example.com/foo',
 			'https://foreign.example.com/foo',
 			PROTO_HTTPS,
@@ -126,7 +125,7 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 			111,
 			"Don't add HTTPS port to foreign URLs"
 		];
-		$retval[] = [
+		yield [
 			'https://foreign.example.com:222/foo',
 			'https://foreign.example.com:222/foo',
 			PROTO_HTTPS,
@@ -137,7 +136,7 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 			"Don't overwrite HTTPS port of foreign URLs"
 		];
 		// Do add HTTPS port to local URLs
-		$retval[] = [
+		yield [
 			'https://wiki.example.com:111/foo',
 			'/foo',
 			PROTO_HTTPS,
@@ -147,7 +146,5 @@ class WfExpandUrlTest extends MediaWikiIntegrationTestCase {
 			111,
 			"Do add HTTPS port to protocol-relative URLs"
 		];
-
-		return $retval;
 	}
 }

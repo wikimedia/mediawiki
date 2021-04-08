@@ -22,35 +22,52 @@
 
 namespace MediaWiki\User;
 
+use MediaWiki\DAO\WikiAwareEntity;
+
 /**
  * Interface for objects representing user identity.
  *
  * This represents the identity of a user in the context of page revisions and log entries.
  *
+ * @note Starting MediaWiki 1.37, UserIdentity objects should no longer expose an actor ID.
+ * The actor ID is considered a storage layer optimization and should not be exposed to
+ * and used by application logic. Storage layer code should use ActorNormalization to
+ * get an actor ID for a UserIdentity.
+ *
  * @since 1.31
  */
-interface UserIdentity {
+interface UserIdentity extends WikiAwareEntity {
 
 	/**
 	 * @since 1.31
 	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller
 	 * @return int The user ID. May be 0 for anonymous users or for users with no local account.
+	 *
 	 */
-	public function getId();
+	public function getId( $wikiId = self::LOCAL ) : int;
 
 	/**
 	 * @since 1.31
 	 *
 	 * @return string The user's logical name. May be an IPv4 or IPv6 address for anonymous users.
 	 */
-	public function getName();
+	public function getName() : string;
 
 	/**
 	 * @since 1.31
 	 *
+	 * @param string|false $wikiId The wiki ID expected by the caller.
+	 *        Use self::LOCAL for the local wiki.
+	 *
+	 * @deprecated since 1.36, use ActorNormalization::findActorId() instead.
+	 *
 	 * @return int The user's actor ID. May be 0 if no actor ID is set.
+	 *
+	 * @note This will trigger a deprecation warning when $wikiId mismatches $this->getWikiId().
+	 *       In the future, it will throw PreconditionException.
 	 */
-	public function getActorId();
+	public function getActorId( $wikiId = self::LOCAL ) : int;
 
 	// TODO: we may want to (optionally?) provide a global ID, see CentralIdLookup.
 
@@ -60,7 +77,7 @@ interface UserIdentity {
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user );
+	public function equals( UserIdentity $user ) : bool;
 
 	/**
 	 * @since 1.34
@@ -69,5 +86,5 @@ interface UserIdentity {
 	 *   anonymous or has no local account (which can happen when importing). This must be
 	 *   equivalent to getId() != 0 and is provided for code readability.
 	 */
-	public function isRegistered();
+	public function isRegistered() : bool;
 }

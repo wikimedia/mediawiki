@@ -3,7 +3,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -28,6 +28,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	 * @return LocalPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getProvider( $loginOnly = false ) {
+		$mwServices = MediaWikiServices::getInstance();
 		if ( !$this->config ) {
 			$this->config = new \HashConfig();
 		}
@@ -38,19 +39,22 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		// We need a real HookContainer since testProviderChangeAuthenticationData()
 		// modifies $wgHooks
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
+		$hookContainer = $mwServices->getHookContainer();
 
 		if ( !$this->manager ) {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 			$objectFactory = new \Wikimedia\ObjectFactory( $services );
-			$permManager = $this->createNoOpMock( PermissionManager::class );
+			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 			$this->manager = new AuthManager(
 				new \FauxRequest(),
 				$config,
 				$objectFactory,
-				$permManager,
-				$hookContainer
+				$hookContainer,
+				$mwServices->getReadOnlyMode(),
+				$userNameUtils,
+				$mwServices->getBlockManager(),
+				$mwServices->getBlockErrorFormatter()
 			);
 		}
 		$this->validity = \Status::newGood();
@@ -139,7 +143,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		// Set instance vars
 		$this->getProvider();
 
-		/// @todo: Because we're currently using User, which uses the global config...
+		// @todo: Because we're currently using User, which uses the global config...
 		$this->setMwGlobals( [ 'wgPasswordExpireGrace' => 100 ] );
 
 		$this->config->set( 'PasswordExpireGrace', 100 );
@@ -453,7 +457,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$oldExpiry = $dbw->selectField( 'user', 'user_password_expires', [ 'user_name' => $cuser ] );
 
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'ResetPasswordExpiration' => [ function ( $user, &$expires ) {
+			'ResetPasswordExpiration' => [ static function ( $user, &$expires ) {
 				$expires = '30001231235959';
 			} ]
 		] );

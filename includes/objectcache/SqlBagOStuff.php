@@ -259,28 +259,47 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
 		$casToken = null;
 
 		$blobs = $this->fetchBlobMulti( [ $key ] );
 		if ( array_key_exists( $key, $blobs ) ) {
 			$blob = $blobs[$key];
-			$value = $this->unserialize( $blob );
-
-			$casToken = ( $value !== false ) ? $blob : null;
-
-			return $value;
+			$result = $this->unserialize( $blob );
+			if ( $getToken && $blob !== false ) {
+				$casToken = $blob;
+			}
+			$valueSize = strlen( $blob );
+		} else {
+			$result = false;
+			$valueSize = false;
 		}
 
-		return false;
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ null, $valueSize ] ] );
+
+		return $result;
 	}
 
 	protected function doGetMulti( array $keys, $flags = 0 ) {
 		$values = [];
+		$valueSizeByKey = [];
 
-		$blobs = $this->fetchBlobMulti( $keys );
-		foreach ( $blobs as $key => $blob ) {
-			$values[$key] = $this->unserialize( $blob );
+		$blobsByKey = $this->fetchBlobMulti( $keys );
+		foreach ( $keys as $key ) {
+			if ( array_key_exists( $key, $blobsByKey ) ) {
+				$blob = $blobsByKey[$key];
+				$value = $this->unserialize( $blob );
+				if ( $value !== false ) {
+					$values[$key] = $value;
+				}
+				$valueSize = strlen( $blob );
+			} else {
+				$valueSize = false;
+			}
+			$valueSizeByKey[$key] = [ null, $valueSize ];
 		}
+
+		$this->updateOpStats( self::METRIC_OP_GET, $valueSizeByKey );
 
 		return $values;
 	}
@@ -423,13 +442,17 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$success = true;
 
 		if ( $op === self::$OP_ADD ) {
+			$valueSizesByKey = [];
+
 			$rows = [];
 			foreach ( $tableKeys as $key ) {
+				$serialized = $this->getSerialized( $data[$key], $key );
 				$rows[] = [
 					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $data[$key] ) ),
+					'value' => $db->encodeBlob( $serialized ),
 					'exptime' => $dbExpiry
 				];
+				$valueSizesByKey[$key] = [ strlen( $serialized ), null ];
 			}
 			$db->delete(
 				$table,
@@ -442,18 +465,28 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$db->insert( $table, $rows, __METHOD__, [ 'IGNORE' ] );
 
 			$success = ( $db->affectedRows() == count( $rows ) );
+
+			$this->updateOpStats( self::METRIC_OP_ADD, $valueSizesByKey );
 		} elseif ( $op === self::$OP_SET ) {
+			$valueSizesByKey = [];
+
 			$rows = [];
 			foreach ( $tableKeys as $key ) {
+				$serialized = $this->getSerialized( $data[$key], $key );
 				$rows[] = [
 					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $data[$key] ) ),
+					'value' => $db->encodeBlob( $serialized ),
 					'exptime' => $dbExpiry
 				];
+				$valueSizesByKey[$key] = [ strlen( $serialized ), null ];
 			}
 			$db->replace( $table, 'keyname', $rows, __METHOD__ );
+
+			$this->updateOpStats( self::METRIC_OP_SET, $valueSizesByKey );
 		} elseif ( $op === self::$OP_DELETE ) {
 			$db->delete( $table, [ 'keyname' => $tableKeys ], __METHOD__ );
+
+			$this->updateOpStats( self::METRIC_OP_DELETE, $tableKeys );
 		} elseif ( $op === self::$OP_TOUCH ) {
 			$db->update(
 				$table,
@@ -466,6 +499,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			);
 
 			$success = ( $db->affectedRows() == count( $tableKeys ) );
+
+			$this->updateOpStats( self::METRIC_OP_CHANGE_TTL, $tableKeys );
 		} else {
 			throw new InvalidArgumentException( "Invalid operation '$op'" );
 		}
@@ -484,6 +519,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
 		list( $shardIndex, $tableName ) = $this->getKeyLocation( $key );
 		$exptime = $this->getExpirationAsTimestamp( $exptime );
+		$serialized = $this->getSerialized( $value, $key );
 
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
@@ -496,7 +532,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$tableName,
 				[
 					'keyname' => $key,
-					'value' => $db->encodeBlob( $this->serialize( $value ) ),
+					'value' => $db->encodeBlob( $serialized ),
 					'exptime' => $exptime
 						? $db->timestamp( $exptime )
 						: $this->getMaxDateTime( $db )
@@ -518,6 +554,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		if ( $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ) {
 			$success = $this->waitForReplication( $shardIndex ) && $success;
 		}
+
+		$this->updateOpStats( self::METRIC_OP_CAS, [ $key => [ strlen( $serialized ), null ] ] );
 
 		return $success;
 	}
@@ -566,6 +604,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$this->handleWriteError( $e, $db, $shardIndex );
 		}
 
+		$this->updateOpStats( $step >= 0 ? self::METRIC_OP_INCR : self::METRIC_OP_DECR, [ $key ] );
+
 		return $newCount;
 	}
 
@@ -573,7 +613,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return $this->incr( $key, -$value, $flags );
 	}
 
-	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+	public function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		return $this->modifyMulti(
 			array_fill_keys( $keys, null ),
 			$exptime,
@@ -852,33 +892,33 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *
 	 * @since 1.35
 	 * @param string $keyspace
-	 * @param array $args
+	 * @param array $components
 	 * @return string
 	 */
-	public function makeKeyInternal( $keyspace, $args ) {
+	public function makeKeyInternal( $keyspace, $components ) {
 		// SQL schema for 'objectcache' specifies keys as varchar(255). From that,
 		// subtract the number of characters we need for the keyspace and for
 		// the separator character needed for each argument. To handle some
 		// custom prefixes used by thing like WANObjectCache, limit to 205.
 		$keyspace = strtr( $keyspace, ' ', '_' );
-		$charsLeft = 205 - strlen( $keyspace ) - count( $args );
-		foreach ( $args as &$arg ) {
-			$arg = strtr( $arg, [
+		$charsLeft = 205 - strlen( $keyspace ) - count( $components );
+		foreach ( $components as &$component ) {
+			$component = strtr( $component, [
 				' ' => '_', // Avoid unnecessary misses from pre-1.35 code
 				':' => '%3A',
 			] );
 
 			// 33 = 32 characters for the MD5 + 1 for the '#' prefix.
-			if ( $charsLeft > 33 && strlen( $arg ) > $charsLeft ) {
-				$arg = '#' . md5( $arg );
+			if ( $charsLeft > 33 && strlen( $component ) > $charsLeft ) {
+				$component = '#' . md5( $component );
 			}
-			$charsLeft -= strlen( $arg );
+			$charsLeft -= strlen( $component );
 		}
 
 		if ( $charsLeft < 0 ) {
-			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $args ) );
+			return $keyspace . ':BagOStuff-long-key:##' . md5( implode( ':', $components ) );
 		}
-		return $keyspace . ':' . implode( ':', $args );
+		return $keyspace . ':' . implode( ':', $components );
 	}
 
 	/**
@@ -1061,7 +1101,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				"CREATE TABLE $encTable (\n" .
 				"	keyname BLOB NOT NULL default '' PRIMARY KEY,\n" .
 				"	value BLOB,\n" .
-				"	exptime TEXT\n" .
+				"	exptime BLOB NOT NULL\n" .
 				")",
 				__METHOD__
 			);
@@ -1134,7 +1174,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			}
 
 			$loop = new WaitConditionLoop(
-				function () use ( $lb, $masterPos ) {
+				static function () use ( $lb, $masterPos ) {
 					return $lb->waitForAll( $masterPos, 1 );
 				},
 				$this->syncTimeout,
@@ -1161,7 +1201,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$oldSilenced = $trxProfiler->setSilenced( true );
-		return new ScopedCallback( function () use ( $trxProfiler, $oldSilenced ) {
+		return new ScopedCallback( static function () use ( $trxProfiler, $oldSilenced ) {
 			$trxProfiler->setSilenced( $oldSilenced );
 		} );
 	}

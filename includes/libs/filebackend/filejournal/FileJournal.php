@@ -97,7 +97,7 @@ abstract class FileJournal {
 	/**
 	 * Log changes made by a batch file operation.
 	 *
-	 * @param array $entries List of file operations (each an array of parameters) which contain:
+	 * @param array[] $entries List of file operations (each an array of parameters) which contain:
 	 *     op      : Basic operation name (create, update, delete)
 	 *     path    : The storage path of the file
 	 *     newSha1 : The final base 36 SHA-1 of the file
@@ -116,7 +116,7 @@ abstract class FileJournal {
 	/**
 	 * @see FileJournal::logChangeBatch()
 	 *
-	 * @param array $entries List of file operations (each an array of parameters)
+	 * @param array[] $entries List of file operations (each an array of parameters)
 	 * @param string $batchId UUID string that identifies the operation batch
 	 * @return StatusValue
 	 */
@@ -125,7 +125,7 @@ abstract class FileJournal {
 	/**
 	 * Get the position ID of the latest journal entry
 	 *
-	 * @return int|bool
+	 * @return int|false
 	 */
 	final public function getCurrentPosition() {
 		return $this->doGetCurrentPosition();
@@ -133,7 +133,7 @@ abstract class FileJournal {
 
 	/**
 	 * @see FileJournal::getCurrentPosition()
-	 * @return int|bool
+	 * @return int|false
 	 */
 	abstract protected function doGetCurrentPosition();
 
@@ -141,7 +141,7 @@ abstract class FileJournal {
 	 * Get the position ID of the latest journal entry at some point in time
 	 *
 	 * @param int|string $time Timestamp
-	 * @return int|bool
+	 * @return int|false
 	 */
 	final public function getPositionAtTime( $time ) {
 		return $this->doGetPositionAtTime( $time );
@@ -150,7 +150,7 @@ abstract class FileJournal {
 	/**
 	 * @see FileJournal::getPositionAtTime()
 	 * @param int|string $time Timestamp
-	 * @return int|bool
+	 * @return int|false
 	 */
 	abstract protected function doGetPositionAtTime( $time );
 
@@ -176,7 +176,7 @@ abstract class FileJournal {
 		$entries = $this->doGetChangeEntries( $start, $limit ? $limit + 1 : 0 );
 		if ( $limit && count( $entries ) > $limit ) {
 			$last = array_pop( $entries ); // remove the extra entry
-			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+			// @phan-suppress-next-line PhanTypeArraySuspiciousNullable $entries are never empty here
 			$next = $last['id']; // update for next call
 		} else {
 			$next = null; // end of list
@@ -189,7 +189,7 @@ abstract class FileJournal {
 	 * @see FileJournal::getChangeEntries()
 	 * @param int $start
 	 * @param int $limit
-	 * @return array
+	 * @return array[]
 	 */
 	abstract protected function doGetChangeEntries( $start, $limit );
 

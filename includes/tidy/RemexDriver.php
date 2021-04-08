@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tidy;
 
+use MediaWiki\Config\ServiceOptions;
 use RemexHtml\Serializer\Serializer;
 use RemexHtml\Serializer\SerializerWithTracer;
 use RemexHtml\Tokenizer\Tokenizer;
@@ -15,7 +16,22 @@ class RemexDriver extends TidyDriverBase {
 	private $mungerTrace;
 	private $pwrap;
 
-	public function __construct( array $config ) {
+	/** @internal */
+	public const CONSTRUCTOR_OPTIONS = [
+		'TidyConfig',
+	];
+
+	/**
+	 * @param ServiceOptions|array $options Passing an array is deprecated.
+	 */
+	public function __construct( $options ) {
+		if ( is_array( $options ) ) {
+			wfDeprecated( __METHOD__ . " with array argument", '1.36' );
+			$config = $options;
+		} else {
+			$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+			$config = $options->get( 'TidyConfig' );
+		}
 		$config += [
 			'treeMutationTrace' => false,
 			'serializerTrace' => false,
@@ -29,12 +45,12 @@ class RemexDriver extends TidyDriverBase {
 		parent::__construct( $config );
 	}
 
-	public function tidy( $text ) {
-		$traceCallback = function ( $msg ) {
+	/** @inheritDoc */
+	public function tidy( $text, ?callable $textProcessor = null ) {
+		$traceCallback = static function ( $msg ) {
 			wfDebug( "RemexHtml: $msg" );
 		};
-
-		$formatter = new RemexCompatFormatter;
+		$formatter = new RemexCompatFormatter( [ 'textProcessor' => $textProcessor ] );
 		if ( $this->serializerTrace ) {
 			$serializer = new SerializerWithTracer( $formatter, null, $traceCallback );
 		} else {

@@ -50,7 +50,7 @@ interface ExpirationAwareness {
 	/** @var int Loose cache time that can survive slow web requests */
 	public const TTL_PROC_LONG = 30;
 
-	/** @var int Idom for "store indefinitely" */
+	/** @var int Idiom for "store indefinitely" */
 	public const TTL_INDEFINITE = 0;
 	/** @var int Idiom for "do not store the newly generated result" */
 	public const TTL_UNCACHEABLE = -1;

@@ -365,20 +365,30 @@ class Exif {
 		$this->exifGPStoNumber( 'GPSLongitude' );
 		$this->exifGPStoNumber( 'GPSDestLongitude' );
 
-		if ( isset( $this->mFilteredExifData['GPSAltitude'] )
-			&& isset( $this->mFilteredExifData['GPSAltitudeRef'] )
-		) {
+		if ( isset( $this->mFilteredExifData['GPSAltitude'] ) ) {
 			// We know altitude data is a <num>/<denom> from the validation
 			// functions ran earlier. But multiplying such a string by -1
 			// doesn't work well, so convert.
 			list( $num, $denom ) = explode( '/', $this->mFilteredExifData['GPSAltitude'] );
 			$this->mFilteredExifData['GPSAltitude'] = $num / $denom;
 
-			if ( $this->mFilteredExifData['GPSAltitudeRef'] === "\1" ) {
-				$this->mFilteredExifData['GPSAltitude'] *= -1;
+			if ( isset( $this->mFilteredExifData['GPSAltitudeRef'] ) ) {
+				switch ( $this->mFilteredExifData['GPSAltitudeRef'] ) {
+				case "\0":
+					// Above sea level
+					break;
+				case "\1":
+					// Below sea level
+					$this->mFilteredExifData['GPSAltitude'] *= -1;
+					break;
+				default:
+					// Invalid
+					unset( $this->mFilteredExifData['GPSAltitude'] );
+					break;
+				}
 			}
-			unset( $this->mFilteredExifData['GPSAltitudeRef'] );
 		}
+		unset( $this->mFilteredExifData['GPSAltitudeRef'] );
 
 		$this->exifPropToOrd( 'FileSource' );
 		$this->exifPropToOrd( 'SceneType' );
@@ -611,7 +621,7 @@ class Exif {
 		}
 
 		if ( preg_match( "/[^\x0a\x20-\x7e]/", $in ) ) {
-			$this->debug( $in, __FUNCTION__, 'found a character not in our whitelist' );
+			$this->debug( $in, __FUNCTION__, 'found a character that is not allowed' );
 
 			return false;
 		}

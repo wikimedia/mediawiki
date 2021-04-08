@@ -39,11 +39,13 @@ class ExportProgressFilter extends DumpFilter {
 		$this->progress = $progress;
 	}
 
+	/** @inheritDoc */
 	public function writeClosePage( $string ) {
 		parent::writeClosePage( $string );
 		$this->progress->reportPage();
 	}
 
+	/** @inheritDoc */
 	public function writeRevision( $rev, $string ) {
 		parent::writeRevision( $rev, $string );
 		$this->progress->revCount();

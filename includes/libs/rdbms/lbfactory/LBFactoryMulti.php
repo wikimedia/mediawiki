@@ -24,18 +24,18 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
+use LogicException;
 use UnexpectedValueException;
 
 /**
- * A multi-database, multi-master factory for Wikimedia and similar installations.
- * Ignores the old configuration globals.
+ * A multi-database, multi-master factory for Wikimedia and similar installations
  *
  * @ingroup Database
  */
 class LBFactoryMulti extends LBFactory {
-	/** @var LoadBalancer[] Tracked main load balancer instances */
+	/** @var LoadBalancer[] Map of (section => tracked LoadBalancer) */
 	private $mainLBs = [];
-	/** @var LoadBalancer[] Tracked external load balancer instances */
+	/** @var LoadBalancer[] Map of (cluster => tracked LoadBalancer) */
 	private $externalLBs = [];
 
 	/** @var string[] Map of (hostname => IP address) */
@@ -47,7 +47,7 @@ class LBFactoryMulti extends LBFactory {
 	/** @var int[][][] Map of (database => group => host => load ratio) */
 	private $groupLoadsByDB;
 	/** @var int[][] Map of (cluster => host => load ratio) */
-	private $externalLoads;
+	private $externalLoadsByCluster;
 	/** @var array Server config map ("host", "hostName", "load", and "groupLoads" are ignored) */
 	private $serverTemplate;
 	/** @var array Server config map overriding "serverTemplate" for external storage */
@@ -120,7 +120,7 @@ class LBFactoryMulti extends LBFactory {
 			$this->groupLoadsBySection[$section][ILoadBalancer::GROUP_GENERIC] = $loadByHost;
 		}
 		$this->groupLoadsByDB = $conf['groupLoadsByDB'] ?? [];
-		$this->externalLoads = $conf['externalLoads'] ?? [];
+		$this->externalLoadsByCluster = $conf['externalLoads'] ?? [];
 		$this->serverTemplate = $conf['serverTemplate'] ?? [];
 		$this->externalTemplateOverrides = $conf['externalTemplateOverrides'] ?? [];
 		$this->templateOverridesBySection = $conf['templateOverridesBySection'] ?? [];
@@ -136,18 +136,29 @@ class LBFactoryMulti extends LBFactory {
 		} else {
 			$this->loadMonitorConfig = [ 'class' => LoadMonitor::class ];
 		}
+
+		foreach ( array_keys( $this->externalLoadsByCluster ) as $cluster ) {
+			if ( isset( $this->groupLoadsBySection[$cluster] ) ) {
+				throw new LogicException(
+					"External cluster '$cluster' has the same name as a main section/cluster"
+				);
+			}
+		}
 	}
 
 	public function newMainLB( $domain = false, $owner = null ) {
 		$domainInstance = $this->resolveDomainInstance( $domain );
 		$database = $domainInstance->getDatabase();
 		$section = $this->getSectionFromDatabase( $database );
+
 		if ( !isset( $this->groupLoadsBySection[$section][ILoadBalancer::GROUP_GENERIC] ) ) {
 			throw new UnexpectedValueException( "Section '$section' has no hosts defined." );
 		}
+
 		$dbGroupLoads = $this->groupLoadsByDB[$database] ?? [];
 		unset( $dbGroupLoads[ILoadBalancer::GROUP_GENERIC] ); // cannot override
 		return $this->newLoadBalancer(
+			$section,
 			array_merge(
 				$this->serverTemplate,
 				$this->templateOverridesBySection[$section] ?? []
@@ -173,16 +184,17 @@ class LBFactoryMulti extends LBFactory {
 	}
 
 	public function newExternalLB( $cluster, $owner = null ) {
-		if ( !isset( $this->externalLoads[$cluster] ) ) {
+		if ( !isset( $this->externalLoadsByCluster[$cluster] ) ) {
 			throw new InvalidArgumentException( "Unknown cluster '$cluster'" );
 		}
 		return $this->newLoadBalancer(
+			$cluster,
 			array_merge(
 				$this->serverTemplate,
 				$this->externalTemplateOverrides,
 				$this->templateOverridesByCluster[$cluster] ?? []
 			),
-			[ ILoadBalancer::GROUP_GENERIC => $this->externalLoads[$cluster] ],
+			[ ILoadBalancer::GROUP_GENERIC => $this->externalLoadsByCluster[$cluster] ],
 			$this->readOnlyReason,
 			$owner
 		);
@@ -190,8 +202,10 @@ class LBFactoryMulti extends LBFactory {
 
 	public function getExternalLB( $cluster ) {
 		if ( !isset( $this->externalLBs[$cluster] ) ) {
-			$this->externalLBs[$cluster] =
-				$this->newExternalLB( $cluster, $this->getOwnershipId() );
+			$this->externalLBs[$cluster] = $this->newExternalLB(
+				$cluster,
+				$this->getOwnershipId()
+			);
 		}
 
 		return $this->externalLBs[$cluster];
@@ -210,7 +224,7 @@ class LBFactoryMulti extends LBFactory {
 
 	public function getAllExternalLBs() {
 		$lbs = [];
-		foreach ( $this->externalLoads as $cluster => $unused ) {
+		foreach ( $this->externalLoadsByCluster as $cluster => $unused ) {
 			$lbs[$cluster] = $this->getExternalLB( $cluster );
 		}
 
@@ -229,19 +243,27 @@ class LBFactoryMulti extends LBFactory {
 	/**
 	 * Make a new load balancer object based on template and load array
 	 *
+	 * @param string $clusterName
 	 * @param array $serverTemplate
 	 * @param array $groupLoads
 	 * @param string|bool $readOnlyReason
 	 * @param int|null $owner
 	 * @return LoadBalancer
 	 */
-	private function newLoadBalancer( $serverTemplate, $groupLoads, $readOnlyReason, $owner ) {
+	private function newLoadBalancer(
+		string $clusterName,
+		array $serverTemplate,
+		array $groupLoads,
+		$readOnlyReason,
+		$owner
+	) {
 		$lb = new LoadBalancer( array_merge(
 			$this->baseLoadBalancerParams( $owner ),
 			[
 				'servers' => $this->makeServerConfigArrays( $serverTemplate, $groupLoads ),
 				'loadMonitor' => $this->loadMonitorConfig,
-				'readOnlyReason' => $readOnlyReason
+				'readOnlyReason' => $readOnlyReason,
+				'clusterName' => $clusterName
 			]
 		) );
 		$this->initLoadBalancer( $lb );
@@ -305,6 +327,6 @@ class LBFactoryMulti extends LBFactory {
 	 * @return string Section name
 	 */
 	private function getSectionFromDatabase( $database ) {
-		return $this->sectionsByDB[$database] ?? 'DEFAULT';
+		return $this->sectionsByDB[$database] ?? self::CLUSTER_MAIN_DEFAULT;
 	}
 }

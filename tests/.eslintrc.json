@@ -1,0 +1,8 @@
+{
+	"extends": [
+		"wikimedia/server"
+	],
+	"rules": {
+		"compat/compat": [ "error", "last 2 chrome versions, last 2 firefox versions" ]
+	}
+}

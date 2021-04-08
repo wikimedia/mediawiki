@@ -4,7 +4,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageCommandFactory;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -33,7 +32,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$mockLocalRepo = $this->createMock( LocalRepo::class );
 		$mockLocalRepo->method( 'newFile' )->will( $this->returnCallback(
-			function ( Title $title ) use ( $mockExistentFile, $mockNonexistentFile ) {
+			static function ( Title $title ) use ( $mockExistentFile, $mockNonexistentFile ) {
 				if ( in_array( $title->getPrefixedText(),
 					[ 'File:Existent.jpg', 'File:Existent2.jpg', 'File:Existent-file-no-page.jpg' ]
 				) ) {
@@ -70,7 +69,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		$mockNsInfo = $this->createMock( NamespaceInfo::class );
 		$mockNsInfo->method( 'isMovable' )->will( $this->returnCallback(
-			function ( $ns ) {
+			static function ( $ns ) {
 				return $ns >= 0;
 			}
 		) );
@@ -85,12 +84,12 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				$params['options'] ?? [],
 				[
 					'CategoryCollation' => 'uppercase',
+					'MaximumMovedPages' => 100,
 				]
 			),
 			$mockLB,
 			$params['nsInfo'] ?? $mockNsInfo,
 			$params['wiStore'] ?? $this->createNoOpMock( WatchedItemStore::class ),
-			$params['permMgr'] ?? $this->createNoOpMock( PermissionManager::class ),
 			$params['repoGroup'] ?? $this->getMockRepoGroup(),
 			$params['contentHandlerFactory']
 				?? MediaWikiServices::getInstance()->getContentHandlerFactory()
@@ -118,7 +117,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 
 		// Set a couple of hooks for specific pages
 		$this->setTemporaryHook( 'ContentModelCanBeUsedOn',
-			function ( $modelId, Title $title, &$ok ) {
+			static function ( $modelId, Title $title, &$ok ) {
 				if ( $title->getPrefixedText() === 'No content allowed' ) {
 					$ok = false;
 				}
@@ -126,7 +125,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->setTemporaryHook( 'TitleIsMovable',
-			function ( Title $title, &$result ) {
+			static function ( Title $title, &$result ) {
 				if ( strtolower( $title->getPrefixedText() ) === 'hooked in place' ) {
 					$result = false;
 				}
@@ -152,7 +151,6 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
-			$services->getPermissionManager(),
 			$services->getRepoGroup(),
 			$services->getContentHandlerFactory()
 		);
@@ -373,7 +371,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	public function testMoveAbortedByTitleMoveHook() {
 		$error = 'Preventing move operation with TitleMove hook.';
 		$this->setTemporaryHook( 'TitleMove',
-			function ( $old, $new, $user, $reason, $status ) use ( $error ) {
+			static function ( $old, $new, $user, $reason, $status ) use ( $error ) {
 				$status->fatal( $error );
 			}
 		);
@@ -493,5 +491,45 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$this->assertSame( $id, $toTitle->getArticleID() );
+	}
+
+	/**
+	 * Test redirect handling
+	 *
+	 * @covers MovePage::isValidMove
+	 */
+	public function testRedirects() {
+		$this->editPage( 'ExistentRedirect', '#REDIRECT [[Existent]]' );
+		$mp = $this->newMovePage(
+			Title::newFromText( 'Existent' ),
+			Title::newFromText( 'ExistentRedirect' )
+		);
+		$this->assertSame(
+			[],
+			$mp->isValidMove()->getErrorsArray(),
+			'Sanity check - can move over normal redirect'
+		);
+
+		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent]]' );
+		$mp = $this->newMovePage(
+			Title::newFromText( 'Existent2' ),
+			Title::newFromText( 'ExistentRedirect3' )
+		);
+		$this->assertSame(
+			[ [ 'redirectexists', 'ExistentRedirect3' ] ],
+			$mp->isValidMove()->getErrorsArray(),
+			'Cannot move over redirect with a different target'
+		);
+
+		$this->editPage( 'ExistentRedirect3', '#REDIRECT [[Existent2]]' );
+		$mp = $this->newMovePage(
+			Title::newFromText( 'Existent' ),
+			Title::newFromText( 'ExistentRedirect3' )
+		);
+		$this->assertSame(
+			[ [ 'articleexists', 'ExistentRedirect3' ] ],
+			$mp->isValidMove()->getErrorsArray(),
+			'Multi-revision redirects count as articles'
+		);
 	}
 }

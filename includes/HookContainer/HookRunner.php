@@ -2,9 +2,17 @@
 
 namespace MediaWiki\HookContainer;
 
+use Article;
 use Config;
+use IContextSource;
+use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Revision\RevisionRecord;
+use ParserOptions;
 use ResourceLoaderContext;
 use Skin;
+use SpecialPage;
+use Title;
 
 /**
  * This class provides an implementation of the core hook interfaces,
@@ -103,6 +111,7 @@ class HookRunner implements
 	\MediaWiki\Hook\BeforePageRedirectHook,
 	\MediaWiki\Hook\BeforeParserFetchFileAndTitleHook,
 	\MediaWiki\Hook\BeforeParserFetchTemplateAndtitleHook,
+	\MediaWiki\Hook\BeforeParserFetchTemplateRevisionRecordHook,
 	\MediaWiki\Hook\BeforeParserrenderImageGalleryHook,
 	\MediaWiki\Hook\BeforeResetNotificationTimestampHook,
 	\MediaWiki\Hook\BeforeWelcomeCreationHook,
@@ -192,6 +201,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ImageBeforeProduceHTMLHook,
 	\MediaWiki\Hook\ImgAuthBeforeStreamHook,
 	\MediaWiki\Hook\ImgAuthModifyHeadersHook,
+	\MediaWiki\Hook\ImportHandleContentXMLTagHook,
 	\MediaWiki\Hook\ImportHandleLogItemXMLTagHook,
 	\MediaWiki\Hook\ImportHandlePageXMLTagHook,
 	\MediaWiki\Hook\ImportHandleRevisionXMLTagHook,
@@ -231,6 +241,7 @@ class HookRunner implements
 	\MediaWiki\Hook\LonelyPagesQueryHook,
 	\MediaWiki\Hook\MagicWordwgVariableIDsHook,
 	\MediaWiki\Hook\MaintenanceRefreshLinksInitHook,
+	\MediaWiki\Hook\MaintenanceShellStartHook,
 	\MediaWiki\Hook\MaintenanceUpdateAddParamsHook,
 	\MediaWiki\Hook\MakeGlobalVariablesScriptHook,
 	\MediaWiki\Hook\ManualLogEntryBeforePublishHook,
@@ -266,12 +277,9 @@ class HookRunner implements
 	\MediaWiki\Hook\PageMoveCompletingHook,
 	\MediaWiki\Hook\PageRenderingHashHook,
 	\MediaWiki\Hook\ParserAfterParseHook,
-	\MediaWiki\Hook\ParserAfterStripHook,
 	\MediaWiki\Hook\ParserAfterTidyHook,
 	\MediaWiki\Hook\ParserBeforeInternalParseHook,
 	\MediaWiki\Hook\ParserBeforePreprocessHook,
-	\MediaWiki\Hook\ParserBeforeStripHook,
-	\MediaWiki\Hook\ParserBeforeTidyHook,
 	\MediaWiki\Hook\ParserCacheSaveCompleteHook,
 	\MediaWiki\Hook\ParserClearStateHook,
 	\MediaWiki\Hook\ParserClonedHook,
@@ -297,6 +305,7 @@ class HookRunner implements
 	\MediaWiki\Hook\ProtectionForm__buildFormHook,
 	\MediaWiki\Hook\ProtectionForm__saveHook,
 	\MediaWiki\Hook\ProtectionForm__showLogExtractHook,
+	\MediaWiki\Hook\ProtectionFormAddFormFieldsHook,
 	\MediaWiki\Hook\RandomPageQueryHook,
 	\MediaWiki\Hook\RawPageViewBeforeOutputHook,
 	\MediaWiki\Hook\RecentChangesPurgeRowsHook,
@@ -422,10 +431,9 @@ class HookRunner implements
 	\MediaWiki\Interwiki\Hook\InterwikiLoadPrefixHook,
 	\MediaWiki\Languages\Hook\LanguageGetTranslatedLanguageNamesHook,
 	\MediaWiki\Languages\Hook\Language__getMessagesFileNameHook,
+	\MediaWiki\Linker\Hook\LinkerGenerateRollbackLinkHook,
 	\MediaWiki\Linker\Hook\HtmlPageLinkRendererBeginHook,
 	\MediaWiki\Linker\Hook\HtmlPageLinkRendererEndHook,
-	\MediaWiki\Linker\Hook\LinkBeginHook,
-	\MediaWiki\Linker\Hook\LinkEndHook,
 	\MediaWiki\Page\Hook\ArticleConfirmDeleteHook,
 	\MediaWiki\Page\Hook\ArticleDeleteAfterSuccessHook,
 	\MediaWiki\Page\Hook\ArticleDeleteCompleteHook,
@@ -433,6 +441,7 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\ArticleFromTitleHook,
 	\MediaWiki\Page\Hook\ArticlePageDataAfterHook,
 	\MediaWiki\Page\Hook\ArticlePageDataBeforeHook,
+	\MediaWiki\Page\Hook\ArticleParserOptionsHook,
 	\MediaWiki\Page\Hook\ArticleProtectCompleteHook,
 	\MediaWiki\Page\Hook\ArticleProtectHook,
 	\MediaWiki\Page\Hook\ArticlePurgeHook,
@@ -520,6 +529,7 @@ class HookRunner implements
 	\MediaWiki\Storage\Hook\ArticleEditUpdatesDeleteFromRecentchangesHook,
 	\MediaWiki\Storage\Hook\ArticleEditUpdatesHook,
 	\MediaWiki\Storage\Hook\ArticlePrepareTextForEditHook,
+	\MediaWiki\Storage\Hook\BeforeRevertedTagUpdateHook,
 	\MediaWiki\Storage\Hook\MultiContentSaveHook,
 	\MediaWiki\Storage\Hook\PageContentInsertCompleteHook,
 	\MediaWiki\Storage\Hook\PageContentSaveCompleteHook,
@@ -779,6 +789,13 @@ class HookRunner implements
 		);
 	}
 
+	public function onArticleParserOptions( Article $article, ParserOptions $popts ) {
+		return $this->container->run(
+			'ArticleParserOptions',
+			[ $article, $popts ]
+		);
+	}
+
 	public function onArticlePrepareTextForEdit( $wikiPage, $popts ) {
 		return $this->container->run(
 			'ArticlePrepareTextForEdit',
@@ -880,10 +897,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onArticleViewHeader( $article, &$pcache, &$outputDone ) {
+	public function onArticleViewHeader( $article, &$outputDone, &$pcache ) {
 		return $this->container->run(
 			'ArticleViewHeader',
-			[ $article, &$pcache, &$outputDone ]
+			[ $article, &$outputDone, &$pcache ]
 		);
 	}
 
@@ -1017,6 +1034,16 @@ class HookRunner implements
 		);
 	}
 
+	public function onBeforeParserFetchTemplateRevisionRecord(
+		?LinkTarget $contextTitle, LinkTarget $title,
+		bool &$skip, ?RevisionRecord &$revRecord
+	) {
+		return $this->container->run(
+			'BeforeParserFetchTemplateRevisionRecord',
+			[ $contextTitle, $title, &$skip, &$revRecord ]
+		);
+	}
+
 	public function onBeforeParserrenderImageGallery( $parser, $ig ) {
 		return $this->container->run(
 			'BeforeParserrenderImageGallery',
@@ -1030,6 +1057,17 @@ class HookRunner implements
 		return $this->container->run(
 			'BeforeResetNotificationTimestamp',
 			[ &$userObj, &$titleObj, $force, &$oldid ]
+		);
+	}
+
+	public function onBeforeRevertedTagUpdate( $wikiPage, $user,
+		$summary, $flags, $revisionRecord, $editResult, &$approved
+	) : void {
+		$this->container->run(
+			'BeforeRevertedTagUpdate',
+			[ $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult,
+				&$approved ],
+			[ 'abortable' => false ]
 		);
 	}
 
@@ -1325,7 +1363,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onContributionsToolLinks( $id, $title, &$tools, $specialPage ) {
+	public function onContributionsToolLinks( $id, Title $title, array &$tools, SpecialPage $specialPage ) {
 		return $this->container->run(
 			'ContributionsToolLinks',
 			[ $id, $title, &$tools, $specialPage ]
@@ -2007,7 +2045,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onHistoryPageToolLinks( $context, $linkRenderer, &$links ) {
+	public function onHistoryPageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links ) {
 		return $this->container->run(
 			'HistoryPageToolLinks',
 			[ $context, $linkRenderer, &$links ]
@@ -2311,20 +2349,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onLinkBegin( $skin, $target, &$html, &$customAttribs, &$query,
-		&$options, &$ret
-	) {
+	public function onLinkerGenerateRollbackLink( $revRecord, $context, $options, &$inner ) {
 		return $this->container->run(
-			'LinkBegin',
-			[ $skin, $target, &$html, &$customAttribs, &$query, &$options,
-				&$ret ]
-		);
-	}
-
-	public function onLinkEnd( $skin, $target, $options, &$html, &$attribs, &$ret ) {
-		return $this->container->run(
-			'LinkEnd',
-			[ $skin, $target, $options, &$html, &$attribs, &$ret ]
+			'LinkerGenerateRollbackLink',
+			[ $revRecord, $context, $options, &$inner ]
 		);
 	}
 
@@ -2512,10 +2540,11 @@ class HookRunner implements
 		);
 	}
 
-	public function onMakeGlobalVariablesScript( &$vars, $out ) {
-		return $this->container->run(
+	public function onMakeGlobalVariablesScript( &$vars, $out ) : void {
+		$this->container->run(
 			'MakeGlobalVariablesScript',
-			[ &$vars, $out ]
+			[ &$vars, $out ],
+			[ 'abortable' => false ]
 		);
 	}
 
@@ -2734,10 +2763,11 @@ class HookRunner implements
 		);
 	}
 
-	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ) {
-		return $this->container->run(
+	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ) : void {
+		$this->container->run(
 			'OutputPageBodyAttributes',
-			[ $out, $sk, &$bodyAttrs ]
+			[ $out, $sk, &$bodyAttrs ],
+			[ 'abortable' => false ]
 		);
 	}
 
@@ -2882,13 +2912,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onParserAfterStrip( $parser, &$text, $stripState ) {
-		return $this->container->run(
-			'ParserAfterStrip',
-			[ $parser, &$text, $stripState ]
-		);
-	}
-
 	public function onParserAfterTidy( $parser, &$text ) {
 		return $this->container->run(
 			'ParserAfterTidy',
@@ -2907,20 +2930,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ParserBeforePreprocess',
 			[ $parser, &$text, $stripState ]
-		);
-	}
-
-	public function onParserBeforeStrip( $parser, &$text, $stripState ) {
-		return $this->container->run(
-			'ParserBeforeStrip',
-			[ $parser, &$text, $stripState ]
-		);
-	}
-
-	public function onParserBeforeTidy( $parser, &$text ) {
-		return $this->container->run(
-			'ParserBeforeTidy',
-			[ $parser, &$text ]
 		);
 	}
 
@@ -3149,6 +3158,13 @@ class HookRunner implements
 		return $this->container->run(
 			'ProtectionForm::buildForm',
 			[ $article, &$output ]
+		);
+	}
+
+	public function onProtectionFormAddFormFields( $article, &$hookFormOptions ) {
+		return $this->container->run(
+			'ProtectionFormAddFormFields',
+			[ $article, &$hookFormOptions ]
 		);
 	}
 
@@ -3715,10 +3731,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onSpecialMuteModifyFormFields( $sp, &$fields ) {
+	public function onSpecialMuteModifyFormFields( $target, $user, &$fields ) {
 		return $this->container->run(
 			'SpecialMuteModifyFormFields',
-			[ $sp, &$fields ]
+			[ $target, $user, &$fields ]
 		);
 	}
 
@@ -4069,7 +4085,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onUndeletePageToolLinks( $context, $linkRenderer, &$links ) {
+	public function onUndeletePageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links ) {
 		return $this->container->run(
 			'UndeletePageToolLinks',
 			[ $context, $linkRenderer, &$links ]
@@ -4220,10 +4236,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onUserCanSendEmail( $user, &$canSend ) {
+	public function onUserCanSendEmail( $user, &$hookErr ) {
 		return $this->container->run(
 			'UserCanSendEmail',
-			[ $user, &$canSend ]
+			[ $user, &$hookErr ]
 		);
 	}
 
@@ -4641,6 +4657,14 @@ class HookRunner implements
 		return $this->container->run(
 			'XmlDumpWriterWriteRevision',
 			[ $obj, &$out, $row, $text, $rev ]
+		);
+	}
+
+	public function onMaintenanceShellStart() : void {
+		$this->container->run(
+			'MaintenanceShellStart',
+			[],
+			[ 'abortable' => false ]
 		);
 	}
 }

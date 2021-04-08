@@ -70,10 +70,11 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			\TestUser::setPasswordForUser( $user, 'UTBlockeePassword' );
 			$user->saveSettings();
 		}
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$oldBlock = DatabaseBlock::newFromTarget( 'UTBlockee' );
 		if ( $oldBlock ) {
 			// An old block will prevent our new one from saving.
-			$oldBlock->delete();
+			$blockStore->deleteBlock( $oldBlock );
 		}
 		$blockOptions = [
 			'address' => 'UTBlockee',
@@ -84,7 +85,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			'createAccount' => true,
 		];
 		$block = new DatabaseBlock( $blockOptions );
-		$block->insert();
+		$blockStore->insertBlock( $block );
 		return $user;
 	}
 
@@ -158,7 +159,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			'sitewide' => false,
 		];
 		$block = new DatabaseBlock( $blockOptions );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		$scopeVariable = new \Wikimedia\ScopedCallback( [ $block, 'delete' ] );
 
 		$user = \User::newFromName( 'UTNormalUser' );
@@ -167,7 +168,6 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			\TestUser::setPasswordForUser( $user, 'UTNormalUserPassword' );
 			$user->saveSettings();
 		}
-		$this->setMwGlobals( [ 'wgUser' => $user ] );
 		\RequestContext::getMain()->setUser( $user );
 		$newuser = \User::newFromName( 'RandomUser' );
 

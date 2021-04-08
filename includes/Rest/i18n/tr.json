@@ -2,7 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"BaRaN6161 TURK",
-			"Grkn gll"
+			"Grkn gll",
+			"MuratTheTurkish",
+			"Stonecy"
 		]
 	},
 	"rest-prefix-mismatch": "İstenen yol ($1), REST API kök yolunun içinde değildi ($2)",
@@ -11,9 +13,12 @@
 	"rest-nonexistent-title": "Belirtilen başlık ($1) mevcut değil",
 	"rest-nonexistent-title-revision": "Belirtilen revizyon ($1) belirtilen sayfa için mevcut değil ($2)",
 	"rest-nonexistent-revision": "İstenen revizyon ($1) mevcut değil",
+	"rest-nonexistent-user": "Belirtilen kullanıcı ($1) mevcut değil",
+	"rest-invalid-user": "Belirtilen kullanıcı adı ($1) geçersiz",
 	"rest-permission-denied-anon": "Anonim kullanıcı tarafından erişilemiyor",
 	"rest-permission-denied-title": "Kullanıcının başlık okuma hakkı yok ($1)",
 	"rest-permission-denied-revision": "Kullanıcının istenen revizyona erişimi yok ($1).",
+	"rest-resource-limit-exceeded": "Kaynak sınırları, isteği işlerken aşıldı.",
 	"rest-pagehistory-incompatible-params": "\"older_than\" ve \"newer_than\" parametrelerinin her ikisi de belirtilemez",
 	"rest-pagehistory-param-range-error": "Revizyon kimliği 0'dan büyük olmalıdır",
 	"rest-pagehistory-timestamp-error": "Belirtilen revizyon için zaman damgası alınamadı ($1)",
@@ -37,5 +42,6 @@
 	"rest-bad-content-model": "Kötü içerik modeli: $1",
 	"rest-update-cannot-create-page": "\"$1\" sayfası zaten mevcut olduğundan oluşturulamıyor. Mevcut sayfayı güncellemek için, istek gövdesinde \"en son\" tuşu altındaki yapıda temel düzeltme kimliğini girin.",
 	"rest-extraneous-csrf-token": "Yabancı CSRF jetonu bulundu. CSRF saldırılarına karşı güvenli olan OAuth gibi kimlik doğrulama mekanizmaları kullanılırken CSRF belirteçleri kullanılmamalıdır.",
-	"rest-cannot-load-file": "\"$1\" başlıklı dosya yüklenemiyor."
+	"rest-cannot-load-file": "\"$1\" başlıklı dosya yüklenemiyor.",
+	"rest-cross-origin-anon-write": "Anonim çapraz kaynak yazma isteklerine izin verilmez"
 }

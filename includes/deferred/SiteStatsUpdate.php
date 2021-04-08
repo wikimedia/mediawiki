@@ -100,7 +100,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		( new AutoCommitUpdate(
 			$services->getDBLoadBalancer()->getConnectionRef( DB_MASTER ),
 			__METHOD__,
-			function ( IDatabase $dbw, $fname ) use ( $deltaByType ) {
+			static function ( IDatabase $dbw, $fname ) use ( $deltaByType ) {
 				$set = [];
 				foreach ( self::COUNTERS as $field => $type ) {
 					$delta = (int)$deltaByType[$type];

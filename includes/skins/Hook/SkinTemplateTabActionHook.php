@@ -6,6 +6,9 @@ use SkinTemplate;
 use Title;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "SkinTemplateTabAction" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35 Use SkinTemplateNavigation__Universal instead
  * @ingroup Hooks
  */

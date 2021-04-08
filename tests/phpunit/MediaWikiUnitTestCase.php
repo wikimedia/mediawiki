@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\Exception;
 use PHPUnit\Framework\TestCase;
 use Wikimedia\ObjectFactory;
@@ -40,16 +39,15 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 
 	private static $originalGlobals;
 	private static $unitGlobals;
-	private static $temporaryHooks;
 
 	/**
-	 * Whitelist of globals to allow in MediaWikiUnitTestCase.
+	 * List of allowed globals to allow in MediaWikiUnitTestCase.
 	 *
 	 * Please, keep this list to the bare minimum.
 	 *
 	 * @return string[]
 	 */
-	private static function getGlobalsWhitelist() {
+	private static function getAllowedGlobalsList() {
 		return [
 			// The autoloader may change between bootstrap and the first test,
 			// so (lazily) capture these here instead.
@@ -60,6 +58,8 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 			'wgAutoloadAttemptLowercase',
 			'wgLegalTitleChars',
 			'wgDevelopmentWarnings',
+			// Dependency of wfParseUrl()
+			'wgUrlProtocols',
 		];
 	}
 
@@ -77,10 +77,9 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 
 		self::$unitGlobals =& TestSetup::$bootstrapGlobals;
 
-		foreach ( self::getGlobalsWhitelist() as $global ) {
+		foreach ( self::getAllowedGlobalsList() as $global ) {
 			self::$unitGlobals[ $global ] =& $GLOBALS[ $global ];
 		}
-		self::$temporaryHooks = [];
 
 		// Would be nice if we could simply replace $GLOBALS as a whole,
 		// but un-setting or re-assigning that breaks the reference of this magic
@@ -136,7 +135,6 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		foreach ( self::$unitGlobals as $key => $value ) {
 			$GLOBALS[ $key ] = $value;
 		}
-		self::$temporaryHooks = [];
 
 		parent::tearDown();
 	}
@@ -157,20 +155,6 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 		}
 
 		parent::tearDownAfterClass();
-	}
-
-	/**
-	 * Create a temporary hook handler which will be reset by tearDown.
-	 * @param string $hookName Hook name
-	 * @param mixed $handler Value suitable for a hook handler
-	 * @since 1.34
-	 */
-	protected function setTemporaryHook( $hookName, $handler ) {
-		// Adds handler to list of hook handlers
-		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookToRemove = $hookContainer->scopedRegister( $hookName, $handler, true );
-		// Keep reference to the ScopedCallback
-		self::$temporaryHooks[] = $hookToRemove;
 	}
 
 }

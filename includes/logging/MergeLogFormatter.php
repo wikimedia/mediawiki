@@ -22,8 +22,6 @@
  * @since 1.25
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * This class formats merge log entries.
  *
@@ -49,9 +47,7 @@ class MergeLogFormatter extends LogFormatter {
 
 	public function getActionLinks() {
 		if ( $this->entry->isDeleted( LogPage::DELETED_ACTION ) // Action is hidden
-			|| !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->context->getUser(), 'mergehistory' )
+			|| !$this->context->getAuthority()->isAllowed( 'mergehistory' )
 		) {
 			return '';
 		}

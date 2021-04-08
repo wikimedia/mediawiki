@@ -18,6 +18,10 @@ class ApiUserrightsTest extends ApiTestCase {
 			$this->tablesUsed,
 			[ 'change_tag', 'change_tag_def', 'logging' ]
 		);
+		$this->setMwGlobals( [
+			'wgAddGroups' => [],
+			'wgRemoveGroups' => [],
+		] );
 	}
 
 	/**
@@ -131,16 +135,17 @@ class ApiUserrightsTest extends ApiTestCase {
 	}
 
 	public function testBlockedWithUserrights() {
-		global $wgUser;
+		$user = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [ 'address' => $wgUser, 'by' => $wgUser->getId(), ] );
-		$block->insert();
+		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user->getId(), ] );
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->doSuccessfulRightsChange();
 		} finally {
-			$block->delete();
-			$wgUser->clearInstanceCache();
+			$blockStore->deleteBlock( $block );
+			$user->clearInstanceCache();
 		}
 	}
 
@@ -150,12 +155,13 @@ class ApiUserrightsTest extends ApiTestCase {
 		$this->setPermissions( true, true );
 
 		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user->getId() ] );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->doFailedRightsChange( 'You have been blocked from editing.' );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 			$user->clearInstanceCache();
 		}
 	}
@@ -260,6 +266,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	 * error in the way we construct the mock.
 	 *
 	 * @param bool $canProcessExpiries
+	 * @return ApiUserrights
 	 */
 	private function getMockForProcessingExpiries( $canProcessExpiries ) {
 		$sysop = $this->getTestSysop()->getUser();

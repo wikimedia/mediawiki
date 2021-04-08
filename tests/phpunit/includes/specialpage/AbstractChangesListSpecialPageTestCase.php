@@ -46,11 +46,11 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 	protected function tearDown() : void {
 		global $wgGroupPermissions;
 
-		parent::tearDown();
-
 		if ( $this->oldPatrollersGroup !== null ) {
 			$wgGroupPermissions['patrollers'] = $this->oldPatrollersGroup;
 		}
+
+		parent::tearDown();
 	}
 
 	abstract public function provideParseParameters();
@@ -98,7 +98,7 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 			->disableOriginalConstructor()
 			->getMock();
 		$output->method( 'redirect' )->willReturnCallback(
-			function ( $url ) use ( &$redirectQuery, &$redirected ) {
+			static function ( $url ) use ( &$redirectQuery, &$redirected ) {
 				$urlParts = wfParseUrl( $url );
 				$query = $urlParts[ 'query' ] ?? '';
 				parse_str( $query, $redirectQuery );

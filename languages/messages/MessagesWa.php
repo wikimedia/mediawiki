@@ -57,6 +57,7 @@ $namespaceNames = [
 // Remove French aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'Totes_les_pådjes' ],
 	'Block'                     => [ 'Bloker', 'Blocaedje' ],

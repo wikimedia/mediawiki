@@ -48,16 +48,16 @@ class ProfilerOutputText extends ProfilerOutput {
 
 		// Filter out really tiny entries
 		$min = $this->thresholdMs;
-		$stats = array_filter( $stats, function ( $a ) use ( $min ) {
+		$stats = array_filter( $stats, static function ( $a ) use ( $min ) {
 			return $a['real'] > $min;
 		} );
 		// Sort descending by time elapsed
-		usort( $stats, function ( $a, $b ) {
+		usort( $stats, static function ( $a, $b ) {
 			return $b['real'] <=> $a['real'];
 		} );
 
 		array_walk( $stats,
-			function ( $item ) use ( &$out ) {
+			static function ( $item ) use ( &$out ) {
 				$out .= sprintf( "%6.2f%% %3.3f %6d - %s\n",
 					$item['%real'], $item['real'], $item['calls'], $item['name'] );
 			}

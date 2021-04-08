@@ -299,7 +299,6 @@ class CookieSessionProvider extends SessionProvider {
 	}
 
 	/**
-	 * Set the "logged out" cookie
 	 * @param int $loggedOut timestamp
 	 * @param WebRequest $request
 	 */

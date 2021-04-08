@@ -195,7 +195,6 @@ abstract class ImageGalleryBase extends ContextSource {
 	}
 
 	/**
-	 * Set bad image flag
 	 * @param bool $flag
 	 */
 	public function setHideBadImages( $flag = true ) {

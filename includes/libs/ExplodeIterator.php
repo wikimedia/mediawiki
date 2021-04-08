@@ -28,16 +28,22 @@
  * Except it doesn't use 193 byte per element
  */
 class ExplodeIterator implements Iterator {
-	// The subject string
-	private $subject, $subjectLength;
+	/** @var string The subject string */
+	private $subject;
 
-	// The delimiter
-	private $delim, $delimLength;
+	/** @var int The subject string length */
+	private $subjectLength;
 
-	// The position of the start of the line
+	/** @var string The delimiter */
+	private $delim;
+
+	/** @var int The delimiter string length */
+	private $delimLength;
+
+	/** @var int The position of the start of the line */
 	private $curPos;
 
-	// The position after the end of the next delimiter
+	/** @var int The position after the end of the next delimiter */
 	private $endPos;
 
 	/** @var string|false The current token */

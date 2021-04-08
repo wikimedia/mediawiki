@@ -37,7 +37,7 @@
 			},
 			{
 				"name": "API",
-				"classes": ["mw.Api*", "mw.ForeignApi*"]
+				"classes": [ "mw.Api*", "mw.ForeignApi*", "mw.Rest*", "mw.ForeignRest*" ]
 			},
 			{
 				"name": "Language",
@@ -127,11 +127,11 @@
 			},
 			{
 				"name": "jQuery",
-				"classes": ["jQuery", "jQuery.Event", "jQuery.Callbacks", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR", "QUnit"]
+				"classes": [ "jQuery", "jQuery.Event", "jQuery.Callbacks", "jQuery.Promise", "jQuery.Deferred", "jQuery.jqXHR", "QUnit" ]
 			},
 			{
 				"name": "JavaScript",
-				"classes": ["Array", "Boolean", "Date", "Function", "Number", "Object", "RegExp", "String"]
+				"classes": [ "Array", "Boolean", "Date", "Function", "Number", "Object", "RegExp", "String" ]
 			}
 		]
 	}

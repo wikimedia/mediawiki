@@ -9,6 +9,9 @@ use User;
 use WebRequest;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "BeforeInitialize" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -19,7 +22,7 @@ interface BeforeInitializeHook {
 	 * @since 1.35
 	 *
 	 * @param Title $title Title being used for request
-	 * @param null $unused Null
+	 * @param null $unused
 	 * @param OutputPage $output
 	 * @param User $user
 	 * @param WebRequest $request

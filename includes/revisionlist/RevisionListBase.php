@@ -30,7 +30,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	/** @var Title */
 	public $title;
 
-	/** @var array */
+	/** @var int[]|null */
 	protected $ids;
 
 	/** @var IResultWrapper|false */
@@ -51,7 +51,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 
 	/**
 	 * Select items only where the ID is any of the specified values
-	 * @param array $ids
+	 * @param int[] $ids
 	 */
 	public function filterByIds( array $ids ) {
 		$this->ids = $ids;
@@ -60,7 +60,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	/**
 	 * Get the internal type name of this list. Equal to the table name.
 	 * Override this function.
-	 * @return null
+	 * @return string|null
 	 */
 	public function getType() {
 		return null;
@@ -144,7 +144,7 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 
 	/**
 	 * Create an item object from a DB result row
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return RevisionItemBase
 	 */
 	abstract public function newItem( $row );

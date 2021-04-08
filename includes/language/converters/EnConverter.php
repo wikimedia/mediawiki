@@ -25,13 +25,36 @@
  */
 class EnConverter extends LanguageConverter {
 
-	public function __construct( $langobj ) {
-		parent::__construct( $langobj, 'en', [ 'en', 'en-x-piglatin' ] );
+	/**
+	 * Get Main language code.
+	 * @since 1.36
+	 *
+	 * @return string
+	 */
+	public function getMainCode(): string {
+		return 'en';
 	}
 
 	/**
-	 * Dummy methods required by base class.
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
 	 */
+	public function getLanguageVariants(): array {
+		return [ 'en', 'en-x-piglatin' ];
+	}
+
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantsFallbacks(): array {
+		return [];
+	}
+
 	protected function loadDefaultTables() {
 		$this->mTables = [
 			'en' => new ReplacementArray(),
@@ -55,13 +78,13 @@ class EnConverter extends LanguageConverter {
 		// Only process words composed of standard English alphabet, leave the rest unchanged.
 		// This skips some English words like 'naïve' or 'résumé', but we can live with that.
 		// Ignore single letters and words which aren't lowercase or uppercase-first.
-		return preg_replace_callback( '/[A-Za-z][a-z\']+/', function ( $matches ) {
+		return preg_replace_callback( '/[A-Za-z][a-z\']+/', static function ( $matches ) {
 			$word = $matches[0];
 			if ( preg_match( '/^[aeiou]/i', $word ) ) {
 				return $word . 'way';
 			}
 
-			return preg_replace_callback( '/^(s?qu|[^aeiou][^aeiouy]*)(.*)$/i', function ( $m ) {
+			return preg_replace_callback( '/^(s?qu|[^aeiou][^aeiouy]*)(.*)$/i', static function ( $m ) {
 				$ucfirst = strtoupper( $m[1][0] ) === $m[1][0];
 				if ( $ucfirst ) {
 					return ucfirst( $m[2] ) . lcfirst( $m[1] ) . 'ay';

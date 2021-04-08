@@ -36,7 +36,7 @@ class ApiImport extends ApiBase {
 
 		$isUpload = false;
 		if ( isset( $params['interwikisource'] ) ) {
-			if ( !$this->getPermissionManager()->userHasRight( $user, 'import' ) ) {
+			if ( !$this->getAuthority()->isAllowed( 'import' ) ) {
 				$this->dieWithError( 'apierror-cantimport' );
 			}
 			if ( !isset( $params['interwikipage'] ) ) {
@@ -51,7 +51,7 @@ class ApiImport extends ApiBase {
 			$usernamePrefix = $params['interwikisource'];
 		} else {
 			$isUpload = true;
-			if ( !$this->getPermissionManager()->userHasRight( $user, 'importupload' ) ) {
+			if ( !$this->getAuthority()->isAllowed( 'importupload' ) ) {
 				$this->dieWithError( 'apierror-cantimport-upload' );
 			}
 			$source = ImportStreamSource::newFromUpload( 'xml' );
@@ -67,7 +67,7 @@ class ApiImport extends ApiBase {
 
 		// Check if user can add the log entry tags which were requested
 		if ( $params['tags'] ) {
-			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$ableToTag = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
 			if ( !$ableToTag->isOK() ) {
 				$this->dieStatus( $ableToTag );
 			}

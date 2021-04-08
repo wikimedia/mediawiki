@@ -12,11 +12,24 @@ use Wikimedia\TestingAccessWrapper;
  * @covers ApiBase
  */
 class ApiBaseTest extends ApiTestCase {
+
+	protected function setUp() : void {
+		parent::setUp();
+		$this->mergeMwGlobalArrayValue(
+			'wgGroupPermissions',
+			[
+				'*' => [
+					'read' => true,
+					'edit' => true,
+					'writeapi' => true,
+					'apihighlimits' => false,
+				],
+			]
+		);
+	}
+
 	/**
 	 * This covers a variety of stub methods that return a fixed value.
-	 *
-	 * @param string|array $method Name of method, or [ name, params... ]
-	 * @param string $value Expected value
 	 *
 	 * @dataProvider provideStubMethods
 	 */
@@ -260,11 +273,11 @@ class ApiBaseTest extends ApiTestCase {
 	 * @param string|null $input
 	 * @param array $paramSettings
 	 * @param mixed $expected
+	 * @param string[] $warnings
 	 * @param array $options Key-value pairs:
 	 *   'parseLimits': true|false
 	 *   'apihighlimits': true|false
 	 *   'prefix': true|false
-	 * @param string[] $warnings
 	 */
 	private function doGetParameterFromSettings(
 		$input, $paramSettings, $expected, $warnings, $options = []
@@ -329,7 +342,7 @@ class ApiBaseTest extends ApiTestCase {
 			} else {
 				$this->assertSame( $expected, $result );
 			}
-			$actualWarnings = array_map( function ( $warn ) {
+			$actualWarnings = array_map( static function ( $warn ) {
 				return $warn instanceof Message
 					? array_merge( [ $warn->getKey() ], $warn->getParams() )
 					: $warn;
@@ -719,7 +732,7 @@ class ApiBaseTest extends ApiTestCase {
 					'paramvalidator-badvalue-enumnotmulti',
 					Message::plaintextParam( 'myParam' ),
 					Message::plaintextParam( '-1' ),
-					Message::listParam( array_map( 'Message::plaintextParam', $namespaces ) ),
+					Message::listParam( array_map( [ Message::class, 'plaintextParam' ], $namespaces ) ),
 					Message::numParam( count( $namespaces ) ),
 				], 'badvalue' ),
 				[],
@@ -1331,7 +1344,7 @@ class ApiBaseTest extends ApiTestCase {
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
 		$mockTrait->method( 'getLanguage' )->willReturn( 'en' );
@@ -1390,7 +1403,7 @@ class ApiBaseTest extends ApiTestCase {
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$mockTrait = $this->getMockForTrait( ApiBlockInfoTrait::class );
 		$mockTrait->method( 'getLanguage' )->willReturn( 'en' );

@@ -1,5 +1,6 @@
 'use strict';
 
+require( 'dotenv' ).config();
 const fs = require( 'fs' );
 const path = require( 'path' );
 const video = require( 'wdio-video-reporter' );
@@ -21,30 +22,25 @@ function filePath( test, screenshotPath, extension ) {
  * and <https://webdriver.io/docs/options.html>.
  */
 exports.config = {
+	// ==================
+	// Automation Protocols
+	// ==================
+	// See https://webdriver.io/docs/automationProtocols/
+	automationProtocol: 'devtools',
+
 	// ======
 	// Custom conf keys for MediaWiki
 	//
 	// Access via `browser.config.<key>`.
 	// Defaults are for MediaWiki-Vagrant
 	// ======
-	mwUser: process.env.MEDIAWIKI_USER || 'Admin',
-	mwPwd: process.env.MEDIAWIKI_PASSWORD || 'vagrant',
+	mwUser: process.env.MEDIAWIKI_USER,
+	mwPwd: process.env.MEDIAWIKI_PASSWORD,
 
 	// ==================
 	// Runner Configuration
 	// ==================
 	runner: 'local',
-	// The standalone chromedriver uses "/wd/hub".
-	path: '/wd/hub',
-
-	// ======
-	// Sauce Labs
-	// ======
-	// See http://webdriver.io/guide/services/sauce.html
-	// and https://github.com/bermi/sauce-connect-launcher#advanced-usage
-	user: process.env.SAUCE_USERNAME,
-	key: process.env.SAUCE_ACCESS_KEY,
-	sauceConnect: true,
 
 	// ==================
 	// Test Files
@@ -82,12 +78,9 @@ exports.config = {
 	// Stop after this many failures, or 0 to run all tests before reporting failures.
 	bail: 0,
 	// Base for browser.url() and wdio-mediawiki/Page#openTitle()
-	baseUrl: ( process.env.MW_SERVER || 'http://127.0.0.1:8080' ) + (
-		process.env.MW_SCRIPT_PATH || '/w'
+	baseUrl: ( process.env.MW_SERVER ) + (
+		process.env.MW_SCRIPT_PATH
 	),
-	services: [
-		...( process.env.SAUCE_ACCESS_KEY ? [ 'sauce' ] : [] )
-	],
 	// See also: https://webdriver.io/docs/frameworks.html
 	framework: 'mocha',
 	// See also: https://webdriver.io/docs/dot-reporter.html

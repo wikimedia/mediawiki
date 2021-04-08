@@ -22,6 +22,8 @@
  * @author Brian Wolff
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Special page to direct the user to a random page
  *
@@ -58,8 +60,15 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	/** @var int|null */
 	private $minTimestamp = null;
 
-	public function __construct( $name = 'RandomInCategory' ) {
-		parent::__construct( $name );
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'RandomInCategory' );
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -225,7 +234,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 			]
 		];
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$minClTime = $this->getTimestampOffset( $rand );
 		if ( $minClTime ) {
 			$qi['conds'][] = 'cl_timestamp ' . $op . ' ' .
@@ -266,7 +275,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @throws MWException If category has no entries.
 	 */
 	protected function getMinAndMaxForCat( Title $category ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$res = $dbr->selectRow(
 			'categorylinks',
 			[
@@ -296,7 +305,7 @@ class SpecialRandomInCategory extends FormSpecialPage {
 	 * @return stdClass|false Info for the title selected.
 	 */
 	private function selectRandomPageFromDB( $rand, $offset, $up, $fname = __METHOD__ ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 		$query = $this->getQueryInfo( $rand, $offset, $up );
 		$res = $dbr->select(

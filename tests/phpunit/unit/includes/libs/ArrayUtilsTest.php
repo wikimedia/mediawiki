@@ -1,8 +1,6 @@
 <?php
 /**
  * Test class for ArrayUtils class
- *
- * @group Database
  */
 class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 
@@ -16,9 +14,10 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 		$valueCallback, $valueCount, $comparisonCallback, $target, $expected
 	) {
 		$this->assertSame(
+			$expected,
 			ArrayUtils::findLowerBound(
 				$valueCallback, $valueCount, $comparisonCallback, $target
-			), $expected
+			)
 		);
 	}
 
@@ -30,7 +29,7 @@ class ArrayUtilsTest extends PHPUnit\Framework\TestCase {
 				return $val;
 			};
 		};
-		$comparisonCallback = function ( $a, $b ) {
+		$comparisonCallback = static function ( $a, $b ) {
 			return $a - $b;
 		};
 

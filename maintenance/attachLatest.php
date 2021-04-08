@@ -56,8 +56,11 @@ class AttachLatest extends Maintenance {
 			$conds,
 			__METHOD__ );
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 		$dbDomain = $lbFactory->getLocalDomainID();
+		$wikiPageFactory = $services->getWikiPageFactory();
+		$revisionLookup = $services->getRevisionLookup();
 
 		$n = 0;
 		foreach ( $result as $row ) {
@@ -73,9 +76,7 @@ class AttachLatest extends Maintenance {
 				continue;
 			}
 
-			$revRecord = MediaWikiServices::getInstance()
-				->getRevisionLookup()
-				->getRevisionByTimestamp( $title, $latestTime, RevisionLookup::READ_LATEST );
+			$revRecord = $revisionLookup->getRevisionByTimestamp( $title, $latestTime, RevisionLookup::READ_LATEST );
 			if ( $revRecord === null ) {
 				$this->output(
 					"$dbDomain $pageId [[$name]] latest time $latestTime, can't find revision id\n"
@@ -86,7 +87,7 @@ class AttachLatest extends Maintenance {
 			$id = $revRecord->getId();
 			$this->output( "$dbDomain $pageId [[$name]] latest time $latestTime, rev id $id\n" );
 			if ( $this->hasOption( 'fix' ) ) {
-				$page = WikiPage::factory( $title );
+				$page = $wikiPageFactory->newFromTitle( $title );
 				$page->updateRevisionOn( $dbw, $revRecord );
 				$lbFactory->waitForReplication();
 			}

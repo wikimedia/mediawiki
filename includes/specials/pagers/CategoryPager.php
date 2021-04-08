@@ -18,20 +18,35 @@
  * @file
  * @ingroup Pager
  */
+
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @ingroup Pager
  */
 class CategoryPager extends AlphabeticPager {
 
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param IContextSource $context
 	 * @param string $from
 	 * @param LinkRenderer $linkRenderer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
 	 */
-	public function __construct( IContextSource $context, $from, LinkRenderer $linkRenderer
+	public function __construct(
+		IContextSource $context,
+		$from,
+		LinkRenderer $linkRenderer,
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer
 	) {
+		// Set database before parent constructor to avoid setting it there with wfGetDB
+		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $context, $linkRenderer );
 		$from = str_replace( ' ', '_', $from );
 		if ( $from !== '' ) {
@@ -39,6 +54,7 @@ class CategoryPager extends AlphabeticPager {
 			$this->setOffset( $from );
 			$this->setIncludeOffset( true );
 		}
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	public function getQueryInfo() {
@@ -62,12 +78,12 @@ class CategoryPager extends AlphabeticPager {
 
 	/* Override getBody to apply LinksBatch on resultset before actually outputting anything. */
 	public function getBody() {
-		$batch = new LinkBatch;
+		$batch = $this->linkBatchFactory->newLinkBatch();
 
 		$this->mResult->rewind();
 
 		foreach ( $this->mResult as $row ) {
-			$batch->addObj( new TitleValue( NS_CATEGORY, $row->cat_title ) );
+			$batch->add( NS_CATEGORY, $row->cat_title );
 		}
 		$batch->execute();
 		$this->mResult->rewind();

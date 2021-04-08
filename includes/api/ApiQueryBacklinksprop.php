@@ -32,7 +32,7 @@
  */
 class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
-	// Data for the various modules implemented by this class
+	/** @var array Data for the various modules implemented by this class */
 	private static $settings = [
 		'redirects' => [
 			'code' => 'rd',
@@ -75,6 +75,10 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		],
 	];
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, self::$settings[$moduleName]['code'] );
 	}
@@ -119,7 +123,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 			$bl_namespace = $settings['to_namespace'];
 			$bl_title = "{$p}_to";
 
-			$titles = array_filter( $titles, function ( $t ) use ( $bl_namespace ) {
+			$titles = array_filter( $titles, static function ( $t ) use ( $bl_namespace ) {
 				return $t->getNamespace() === $bl_namespace;
 			} );
 			$map = array_intersect_key( $map, [ $bl_namespace => true ] );

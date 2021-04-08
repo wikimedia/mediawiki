@@ -5,27 +5,15 @@
  */
 class WikitextStructureTest extends MediaWikiLangTestCase {
 
-	private function getMockTitle() {
-		return Title::newFromText( "TestTitle" );
-	}
-
-	/**
-	 * Get parser output for Wiki text
-	 * @param string $text
-	 * @return ParserOutput
-	 */
-	private function getParserOutput( $text ) {
-		$content = new WikitextContent( $text );
-		return $content->getParserOutput( $this->getMockTitle() );
-	}
-
 	/**
 	 * Get WikitextStructure for given text
 	 * @param string $text
 	 * @return WikiTextStructure
 	 */
 	private function getStructure( $text ) {
-		return new WikiTextStructure( $this->getParserOutput( $text ) );
+		$content = new WikitextContent( $text );
+		$parserOutput = $content->getParserOutput( Title::newFromText( 'TestTitle' ) );
+		return new WikiTextStructure( $parserOutput );
 	}
 
 	public function testHeadings() {

@@ -40,6 +40,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserOptionsLookup;
 use MessageLocalizer;
 use MWException;
 use MWTimestamp;
@@ -50,7 +51,6 @@ use ParserOptions;
 use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
-use Skin;
 use SpecialPage;
 use Status;
 use Title;
@@ -92,9 +92,11 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
-	 * @var array
-	 * @since 1.34
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'AllowRequiringEmailForResets',
@@ -102,7 +104,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'AllowUserCssPrefs',
 		'AllowUserJs',
 		'DefaultSkin',
-		'DisableLangConversion',
 		'EmailAuthentication',
 		'EmailConfirmToEdit',
 		'EnableEmail',
@@ -138,6 +139,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param ILanguageConverter|null $languageConverter
 	 * @param LanguageNameUtils|null $languageNameUtils
 	 * @param HookContainer|null $hookContainer
+	 * @param UserOptionsLookup|null $userOptionsLookup
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -148,7 +150,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		PermissionManager $permissionManager,
 		ILanguageConverter $languageConverter = null,
 		LanguageNameUtils $languageNameUtils = null,
-		HookContainer $hookContainer = null
+		HookContainer $hookContainer = null,
+		UserOptionsLookup $userOptionsLookup = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -175,9 +178,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->languageNameUtils = $languageNameUtils;
 
 		if ( !$hookContainer ) {
+			wfDeprecated( __METHOD__ . ' without $hookContainer parameter', '1.35' );
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		}
 		$this->hookRunner = new HookRunner( $hookContainer );
+
+		if ( !$userOptionsLookup ) {
+			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		}
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
@@ -233,9 +242,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	private function loadPreferenceValues( User $user, IContextSource $context, &$defaultPreferences ) {
 		// Remove preferences that wikis don't want to use
 		foreach ( $this->options->get( 'HiddenPrefs' ) as $pref ) {
-			if ( isset( $defaultPreferences[$pref] ) ) {
-				unset( $defaultPreferences[$pref] );
-			}
+			unset( $defaultPreferences[$pref] );
 		}
 
 		// Make sure that form fields have their parent set. See T43337.
@@ -243,7 +250,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$disable = !$this->permissionManager->userHasRight( $user, 'editmyoptions' );
 
-		$defaultOptions = User::getDefaultOptions();
+		$defaultOptions = $this->userOptionsLookup->getDefaultOptions();
 		$userOptions = $user->getOptions();
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
 		// Add in defaults from the user
@@ -388,6 +395,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'type' => 'info',
 			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
 				count( $userGroups ) )->params( $userName )->text(),
+			// @phan-suppress-next-line SecurityCheck-XSS False positive, T183174
 			'default' => $context->msg( 'prefs-memberingroups-type' )
 				->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
 				->escaped(),
@@ -483,7 +491,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				],
 				$context->msg( 'prefs-user-downloaddata-info' )->text()
 			 ),
-			'help-message' => [ 'prefs-user-downloaddata-help-message', $user->getTitleKey() ],
+			'help-message' => [ 'prefs-user-downloaddata-help-message', urlencode( $user->getTitleKey() ) ],
 			'section' => 'personal/info',
 		];
 
@@ -528,7 +536,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		// see if there are multiple language variants to choose from
-		if ( !$this->options->get( 'DisableLangConversion' ) ) {
+		$languageConverterFactory = $services->getLanguageConverterFactory();
+		if ( !$languageConverterFactory->isConversionDisabled() ) {
 
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $this->contLang->getCode() ) {
@@ -576,7 +585,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		);
 		$signatureFieldConfig = [];
 		// Validate existing signature and show a message about it
-		if ( $user->getBoolOption( 'fancysig' ) ) {
+		if ( $services->getUserOptionsLookup()->getBoolOption( $user, 'fancysig' ) ) {
 			$validator = new SignatureValidator(
 				$user,
 				$context,
@@ -823,6 +832,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$skinOptions = $this->generateSkinOptions( $user, $context );
 		if ( $skinOptions ) {
 			$defaultPreferences['skin'] = [
+				// @phan-suppress-next-line SecurityCheck-XSS False positive, key is escaped
 				'type' => 'radio',
 				'options' => $skinOptions,
 				'section' => 'rendering/skin',
@@ -1135,6 +1145,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-hideminor',
 			'section' => 'rc/changesrc',
 		];
+		$defaultPreferences['pst-cssjs'] = [
+			'type' => 'api',
+		];
 		$defaultPreferences['rcfilters-rc-collapsed'] = [
 			'type' => 'api',
 		];
@@ -1387,7 +1400,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $this->options->get( 'SearchMatchRedirectPreference' ) ) {
 			$defaultPreferences['search-match-redirect'] = [
 				'type' => 'toggle',
-				'section' => 'searchoptions',
+				'section' => 'searchoptions/searchmisc',
 				'label-message' => 'search-match-redirect-label',
 				'help-message' => 'search-match-redirect-help',
 			];
@@ -1410,8 +1423,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$previewtext = $context->msg( 'skin-preview' )->escaped();
 
 		// Only show skins that aren't disabled
-		$validSkinNames = Skin::getAllowedSkins();
-		$allInstalledSkins = Skin::getSkinNames();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$validSkinNames = $skinFactory->getAllowedSkins();
+		$allInstalledSkins = $skinFactory->getSkinNames();
 
 		// Display the installed skin the user has specifically requested via useskin=….
 		$useSkin = $context->getRequest()->getRawVal( 'useskin' );
@@ -1442,7 +1456,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// Sort by the internal name, so that the ordering is the same for each display language,
 		// especially if some skin names are translated to use a different alphabet and some are not.
-		uksort( $validSkinNames, function ( $a, $b ) use ( $defaultSkin ) {
+		uksort( $validSkinNames, static function ( $a, $b ) use ( $defaultSkin ) {
 			// Display the default first in the list by comparing it as lesser than any other.
 			if ( strcasecmp( $a, $defaultSkin ) === 0 ) {
 				return -1;

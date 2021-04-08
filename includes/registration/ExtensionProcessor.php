@@ -170,11 +170,6 @@ class ExtensionProcessor implements Processor {
 	protected $credits = [];
 
 	/**
-	 * @var array
-	 */
-	protected $config = [];
-
-	/**
 	 * Any thing else in the $info that hasn't
 	 * already been processed
 	 *
@@ -200,6 +195,7 @@ class ExtensionProcessor implements Processor {
 		$this->extractHooks( $info, $path );
 		$this->extractExtensionMessagesFiles( $dir, $info );
 		$this->extractMessagesDirs( $dir, $info );
+		$this->extractSkinImportPaths( $dir, $info );
 		$this->extractNamespaces( $info );
 		$this->extractResourceLoaderModules( $dir, $info );
 		if ( isset( $info['ServiceWiringFiles'] ) ) {
@@ -307,7 +303,6 @@ class ExtensionProcessor implements Processor {
 
 		return [
 			'globals' => $this->globals,
-			'config' => $this->config,
 			'defines' => $this->defines,
 			'callbacks' => $this->callbacks,
 			'credits' => $this->credits,
@@ -332,7 +327,7 @@ class ExtensionProcessor implements Processor {
 		// picking the non-null if one is, or combines
 		// the two. Note that it is not possible for
 		// both inputs to be null.
-		$pick = function ( $a, $b ) {
+		$pick = static function ( $a, $b ) {
 			if ( $a === null ) {
 				return $b;
 			} elseif ( $b === null ) {
@@ -624,6 +619,18 @@ class ExtensionProcessor implements Processor {
 	}
 
 	/**
+	 * @param string $dir
+	 * @param array $info
+	 */
+	protected function extractSkinImportPaths( $dir, array $info ) {
+		if ( isset( $info['SkinLessImportPaths'] ) ) {
+			foreach ( $info['SkinLessImportPaths'] as $skin => $subpath ) {
+				$this->attributes['SkinLessImportPaths'][$skin] = "$dir/$subpath";
+			}
+		}
+	}
+
+	/**
 	 * @param string $path
 	 * @param array $info
 	 * @return string Name of thing
@@ -690,7 +697,7 @@ class ExtensionProcessor implements Processor {
 			foreach ( $info['config'] as $key => $data ) {
 				$value = $data['value'];
 				if ( isset( $data['path'] ) && $data['path'] ) {
-					$callback = function ( $value ) use ( $dir ) {
+					$callback = static function ( $value ) use ( $dir ) {
 						return "$dir/$value";
 					};
 					if ( is_array( $value ) ) {
@@ -707,7 +714,6 @@ class ExtensionProcessor implements Processor {
 				if ( isset( $info['ConfigRegistry'][0] ) ) {
 					$data['configregistry'] = array_keys( $info['ConfigRegistry'] )[0];
 				}
-				$this->config[$key] = $data;
 			}
 		}
 	}

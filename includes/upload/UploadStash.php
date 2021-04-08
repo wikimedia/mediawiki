@@ -63,17 +63,17 @@ class UploadStash {
 	 */
 	public $repo;
 
-	// array of initialized repo objects
+	/** @var array array of initialized repo objects */
 	protected $files = [];
 
-	// cache of the file metadata that's stored in the database
+	/** @var array cache of the file metadata that's stored in the database */
 	protected $fileMetadata = [];
 
-	// fileprops cache
+	/** @var array fileprops cache */
 	protected $fileProps = [];
 
 	// current user
-	protected $user, $userId, $isLoggedIn;
+	protected $user, $userId, $isRegistered;
 
 	/**
 	 * Represents a temporary filestore, with metadata in the database.
@@ -87,14 +87,16 @@ class UploadStash {
 		// this might change based on wiki's configuration.
 		$this->repo = $repo;
 
-		// if a user was passed, use it. otherwise, attempt to use the global.
+		// if a user was passed, use it. otherwise, attempt to use the global request context.
 		// this keeps FileRepo from breaking when it creates an UploadStash object
-		global $wgUser;
-		$this->user = $user ?: $wgUser;
+		if ( !$user ) {
+			$user = RequestContext::getMain()->getUser();
+		}
+		$this->user = $user;
 
 		if ( is_object( $this->user ) ) {
 			$this->userId = $this->user->getId();
-			$this->isLoggedIn = $this->user->isLoggedIn();
+			$this->isRegistered = $this->user->isRegistered();
 		}
 	}
 
@@ -118,7 +120,7 @@ class UploadStash {
 			);
 		}
 
-		if ( !$noAuth && !$this->isLoggedIn ) {
+		if ( !$noAuth && !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -275,7 +277,7 @@ class UploadStash {
 		$stashPath = $storeStatus->value;
 
 		// fetch the current user ID
-		if ( !$this->isLoggedIn ) {
+		if ( !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -336,7 +338,7 @@ class UploadStash {
 	 * @return bool Success
 	 */
 	public function clear() {
-		if ( !$this->isLoggedIn ) {
+		if ( !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -366,7 +368,7 @@ class UploadStash {
 	 * @return bool Success
 	 */
 	public function removeFile( $key ) {
-		if ( !$this->isLoggedIn ) {
+		if ( !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -436,7 +438,7 @@ class UploadStash {
 	 * @return array|false
 	 */
 	public function listFiles() {
-		if ( !$this->isLoggedIn ) {
+		if ( !$this->isRegistered ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);

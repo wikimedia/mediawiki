@@ -521,8 +521,8 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param File $image
-	 * @param bool|IContextSource $context Context to use (optional)
-	 * @return array|bool
+	 * @param IContextSource|false $context
+	 * @return array|false
 	 */
 	public function formatMetadata( $image, $context = false ) {
 		return false;
@@ -537,14 +537,33 @@ abstract class MediaHandler {
 	 * @stable to override
 	 *
 	 * @param array $metadataArray
-	 * @param bool|IContextSource $context Context to use (optional)
-	 * @return array Array for use displaying metadata.
+	 * @param IContextSource|false $context
+	 * @return array[] Array for use displaying metadata.
 	 */
 	protected function formatMetadataHelper( $metadataArray, $context = false ) {
 		$result = [
 			'visible' => [],
 			'collapsed' => []
 		];
+
+		// Allow this MediaHandler to override formatting on certain values
+		foreach ( $metadataArray as $tag => $vals ) {
+			$v = $this->formatTag( $tag, $vals, $context );
+			if ( $v === false ) {
+				// Use default formatting
+				continue;
+			} elseif ( $v === null ) {
+				// Remove this tag, don't format it for display
+				unset( $metadataArray[$tag] );
+			} else {
+				// Allow subclass to override default formatting.
+				$metadataArray[$tag] = [ '_formatted' => $v ];
+				if ( isset( $v['_type'] ) ) {
+					$metadataArray[$tag]['_type'] = $v['_type'];
+					unset( $metadataArray[$tag]['_formatted']['_type'] );
+				}
+			}
+		}
 
 		$formatted = FormatMetadata::getFormattedData( $metadataArray, $context );
 		// Sort fields into visible and collapsed
@@ -563,12 +582,28 @@ abstract class MediaHandler {
 	}
 
 	/**
+	 * Override default formatting for the given metadata field.
+	 *
+	 * @stable to override
+	 *
+	 * @param string $key The metadata field key
+	 * @param string|array $vals The unformatted value of this metadata field
+	 * @param bool|IContextSource $context Context to use (optional)
+	 * @return false|null|string|array False to use default formatting, null
+	 *   to remove this tag from the formatted list; otherwise return
+	 *   a formatted HTML string (or array of them).
+	 */
+	protected function formatTag( string $key, $vals, $context = false ) {
+		return false; // Use default formatting
+	}
+
+	/**
 	 * Get a list of metadata items which should be displayed when
 	 * the metadata table is collapsed.
 	 *
 	 * @stable to override
 	 *
-	 * @return array Array of strings
+	 * @return string[]
 	 */
 	protected function visibleMetadataFields() {
 		return FormatMetadata::getVisibleFields();

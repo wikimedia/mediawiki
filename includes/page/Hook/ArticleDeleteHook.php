@@ -7,6 +7,9 @@ use User;
 use WikiPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ArticleDelete" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -26,7 +29,7 @@ interface ArticleDeleteHook {
 	 * @param bool $suppress Whether this is a suppression deletion or not (added in 1.27)
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onArticleDelete( $wikiPage, $user, &$reason, &$error, &$status,
+	public function onArticleDelete( WikiPage $wikiPage, User $user, &$reason, &$error, Status &$status,
 		$suppress
 	);
 }

@@ -1,10 +1,13 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Tests for CategoryChangesAsRdf recent changes exporter.
  * @covers CategoryChangesAsRdf
+ * @group Database
  */
 class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
@@ -260,6 +263,44 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 		$update = $dumpScript->updateTS( 1503620949 );
 		$outFile = __DIR__ . '/../data/categoriesrdf/updatets.txt';
 		$this->assertFileContains( $outFile, $update );
+	}
+
+	public function testCategorization() {
+		$this->setMwGlobals( [ 'wgRCWatchCategoryMembership' => true ] );
+		$start = new MWTimestamp( "2020-07-31T10:00:00" );
+		$end = new MWTimestamp( "2020-07-31T10:01:00" );
+		ConvertibleTimestamp::setFakeTime( "2020-07-31T10:00:00" );
+		$l1 = Title::makeTitle( NS_CATEGORY, __CLASS__ . "_L1" );
+		$l2 = Title::makeTitle( NS_CATEGORY, __CLASS__ . "_L2" );
+		$pageInL2 = Title::makeTitle( NS_MAIN, __CLASS__ . "_Page" );
+		$this->editPage( $l1->getPrefixedText(), "", "", NS_CATEGORY );
+		$this->editPage( $l2->getPrefixedText(), "[[{$l1->getPrefixedText()}]]", "", NS_CATEGORY );
+		$this->editPage( $pageInL2->getPrefixedText(), "[[{$l2->getPrefixedText()}]]", "", NS_CATEGORY );
+
+		$output = fopen( "php://memory", "w+b" );
+
+		MediaWikiServices::getInstance()->getJobRunner()->run( [
+			'type' => 'categoryMembershipChange'
+		] );
+
+		$dbr = wfGetDB( DB_REPLICA );
+		$categoryChangesAsRdf = new CategoryChangesAsRdf();
+
+		$ref = new ReflectionObject( $categoryChangesAsRdf );
+		$startTSProp = $ref->getProperty( 'startTS' );
+		$startTSProp->setAccessible( true );
+		$startTSProp->setValue( $categoryChangesAsRdf, $start->getTimestamp() );
+		$endTSProp = $ref->getProperty( 'endTS' );
+		$endTSProp->setAccessible( true );
+		$endTSProp->setValue( $categoryChangesAsRdf, $end->getTimestamp() );
+
+		$categoryChangesAsRdf->initialize();
+		$categoryChangesAsRdf->getRdf();
+		$categoryChangesAsRdf->handleCategorization( $dbr, $output );
+		rewind( $output );
+		$sparql = stream_get_contents( $output );
+		$outFile = __DIR__ . '/../data/categoriesrdf/categorization.txt';
+		$this->assertFileContains( $outFile, $sparql );
 	}
 
 }

@@ -307,6 +307,10 @@
 									"items": {
 										"type": ["string", "object"]
 									}
+								},
+								"es6": {
+									"type": "boolean",
+									"description": "Whether this module requires an ES6-capable browser. If set to true, loading this module in a non-ES6 browser will cause an error. Using ES6 syntax in modules is not yet supported, but will be in the near future. Default is false."
 								}
 							}
 						},
@@ -419,6 +423,10 @@
 		"ResourceLoaderSources": {
 			"type": "object",
 			"description": "ResourceLoader sources to register"
+		},
+		"SkinLessImportPaths": {
+			"type": "object",
+			"description": "Path to the skin-specific LESS import directory, keyed by skin name. Can be used to define skin-specific LESS variables."
 		},
 		"QUnitTestModule": {
 			"type": "object",
@@ -843,6 +851,10 @@
 					"services": {
 						"type": "array",
 						"description": "If supplied and non-empty, the named services are requested from the service container and prepended before 'args'."
+					},
+					"optional_services": {
+						"type": "array",
+						"description": "If supplied and non-empty, the named services are requested from the service container and appended after 'services' if the services are available; null is passed if the services are not available."
 					}
 				}
 			}

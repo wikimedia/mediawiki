@@ -62,10 +62,10 @@ class FindBadBlobs extends Maintenance {
 		parent::__construct();
 
 		$this->setBatchSize( 1000 );
-		$this->addDescription( 'Find and mark bad content blobs. '
+		$this->addDescription( 'Find and mark bad content blobs. Marked blobs will be read as empty. '
 			. 'Use --scan-from to find revisions with bad blobs, use --mark to mark them.' );
 		$this->addOption( 'scan-from', 'Start scanning revisions at the given date. '
-			. 'Format: Anything supported by MediaWiki, e.g. YYYYMMDDHHMMSS or YYYY-MM-DD_HH:MM:SS',
+			. 'Format: Anything supported by MediaWiki, e.g. YYYYMMDDHHMMSS or YYYY-MM-DDTHH:MM:SS',
 			false, true );
 		$this->addOption( 'revisions', 'A list of revision IDs to process, separated by comma or '
 			. 'colon or whitespace. Revisions belonging to deleted pages will work. '
@@ -169,7 +169,7 @@ class FindBadBlobs extends Maintenance {
 			if ( $count > 0 ) {
 				$this->output( "On a unix/linux environment, you can use grep and cut to list of IDs\n" );
 				$this->output( "that can then be used with the --revisions option. E.g.\n" );
-				$this->output( "  grep '!.*Bad blob address' | cut -s -f 3\n" );
+				$this->output( "  grep '! Found bad blob' | cut -s -f 3\n" );
 			}
 		}
 	}
@@ -462,7 +462,8 @@ class FindBadBlobs extends Maintenance {
 
 		// NOTE: output the revision ID again at the end in a separate column for easy processing
 		// via the "cut" shell command.
-		$this->output( "\t! Found bad blob on revision {$rev->getId()} ({$slot->getRole()} slot): "
+		$this->output( "\t! Found bad blob on revision {$rev->getId()} "
+			. "from {$rev->getTimestamp()} ({$slot->getRole()} slot): "
 			. "content_id={$slot->getContentId()}, address=<{$slot->getAddress()}>, "
 			. "error='$error', type='$type'. ID:\t{$rev->getId()}\n" );
 
@@ -510,10 +511,6 @@ class FindBadBlobs extends Maintenance {
 		);
 
 		return $badAddress;
-	}
-
-	private function waitForReplication() {
-		return $this->lbFactory->waitForReplication();
 	}
 
 	private function handleStatus( StatusValue $status ) {

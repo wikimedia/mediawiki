@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * Wraps the user object, so we can also retain full access to properties
@@ -24,7 +26,10 @@ class TestUser {
 
 	private function assertNotReal() {
 		global $wgDBprefix;
-		if ( $wgDBprefix !== MediaWikiIntegrationTestCase::DB_PREFIX ) {
+		if (
+			$wgDBprefix !== MediaWikiIntegrationTestCase::DB_PREFIX &&
+			$wgDBprefix !== ParserTestRunner::DB_PREFIX
+		) {
 			throw new MWException( "Can't create user on real database" );
 		}
 	}
@@ -44,7 +49,7 @@ class TestUser {
 		// But for now, we just need to create or update the user with the desired properties.
 		// we particularly need the new password, since we just generated it randomly.
 		// In core MediaWiki, there is no functionality to delete users, so this is the best we can do.
-		if ( !$this->user->isLoggedIn() ) {
+		if ( !$this->user->isRegistered() ) {
 			// create the user
 			$this->user = User::createNew(
 				$this->username, [
@@ -99,7 +104,7 @@ class TestUser {
 	 * @param string $email
 	 * @return bool
 	 */
-	private function setEmail( $email ) {
+	private function setEmail( string $email ) {
 		if ( $this->user->getEmail() !== $email ) {
 			$this->user->setEmail( $email );
 			return true;
@@ -158,6 +163,14 @@ class TestUser {
 	 */
 	public function getUser() {
 		return $this->user;
+	}
+
+	/**
+	 * @since 1.36
+	 * @return UserIdentity
+	 */
+	public function getUserIdentity(): UserIdentity {
+		return new UserIdentityValue( $this->user->getId(), $this->user->getName() );
 	}
 
 	/**

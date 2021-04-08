@@ -24,14 +24,21 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A special page that lists unused templates
  *
  * @ingroup SpecialPage
  */
 class SpecialUnusedTemplates extends QueryPage {
-	public function __construct( $name = 'Unusedtemplates' ) {
-		parent::__construct( $name );
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'Unusedtemplates' );
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {
@@ -68,9 +75,13 @@ class SpecialUnusedTemplates extends QueryPage {
 		];
 	}
 
+	public function preprocessResults( $db, $res ) {
+		$this->executeLBFromResultWrapper( $res );
+	}
+
 	/**
 	 * @param Skin $skin
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {

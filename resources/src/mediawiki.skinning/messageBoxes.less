@@ -14,26 +14,25 @@
 	/* Standard property is `overflow-wrap` */
 	overflow-wrap: break-word;
 	overflow: hidden;
-}
 
-/* Ensure box inner spacing is not all over the place no matter what element is only child. */
-.messagebox :only-child,
-.errorbox :only-child,
-.warningbox :only-child,
-.successbox :only-child {
-	margin: 0;
-}
+	/* Ensure box inner spacing is not all over the place no matter what element is only child. */
+	:only-child {
+		margin: 0;
+	}
 
-.messagebox h2,
-.errorbox h2,
-.warningbox h2,
-.successbox h2 {
-	color: inherit;
-	display: inline;
-	margin: 0 0.5em 0 0;
-	border: 0;
-	font-size: 1em;
-	font-weight: bold;
+	h2 {
+		color: inherit;
+		display: inline;
+		margin: 0 0.5em 0 0;
+		border: 0;
+		font-size: 1em;
+		font-weight: bold;
+	}
+
+	// Formerly provided by mw-warning-with-logexcerpt, now available for all messageboxes.
+	.mw-logevent-loglines li {
+		font-size: 90%;
+	}
 }
 
 .messagebox {

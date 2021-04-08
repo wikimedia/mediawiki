@@ -89,7 +89,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	private $legacyEncoding = false;
 
 	/**
-	 * @var boolean
+	 * @var bool
 	 */
 	private $useExternalStore = false;
 
@@ -317,7 +317,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 
 		list( $blobsByAddress, $errors ) = $this->fetchBlobs( $blobAddresses, $queryFlags );
 
-		$blobsByAddress = array_map( function ( $blob ) {
+		$blobsByAddress = array_map( static function ( $blob ) {
 			return $blob === false ? null : $blob;
 		}, $blobsByAddress );
 
@@ -348,7 +348,11 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			try {
 				list( $schema, $id ) = self::splitBlobAddress( $blobAddress );
 			} catch ( InvalidArgumentException $ex ) {
-				throw new BlobAccessException( $ex->getMessage(), 0, $ex );
+				throw new BlobAccessException(
+					$ex->getMessage() . '. Use findBadBlobs.php to remedy.',
+					0,
+					$ex
+				);
 			}
 
 			// TODO: MCR: also support 'ex' schema with ExternalStore URLs, plus flags encoded in the URL!
@@ -364,13 +368,15 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				$textId = intval( $id );
 
 				if ( $textId < 1 || $id !== (string)$textId ) {
-					$errors[$blobAddress] = "Bad blob address: $blobAddress";
+					$errors[$blobAddress] = "Bad blob address: $blobAddress."
+						. ' Use findBadBlobs.php to remedy.';
 					$result[$blobAddress] = false;
 				}
 
 				$textIdToBlobAddress[$textId] = $blobAddress;
 			} else {
-				$errors[$blobAddress] = "Unknown blob address schema: $schema";
+				$errors[$blobAddress] = "Unknown blob address schema: $schema."
+					. ' Use findBadBlobs.php to remedy.';
 				$result[$blobAddress] = false;
 				continue;
 			}
@@ -423,7 +429,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			$blobAddress = $textIdToBlobAddress[$row->old_id];
 			$blob = $this->expandBlob( $row->old_text, $row->old_flags, $blobAddress );
 			if ( $blob === false ) {
-				$errors[$blobAddress] = "Bad data in text row {$row->old_id}.";
+				$errors[$blobAddress] = "Bad data in text row {$row->old_id}."
+					. ' Use findBadBlobs.php to remedy.';
 			}
 			$result[$blobAddress] = $blob;
 		}
@@ -432,7 +439,8 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 		if ( count( $result ) !== count( $blobAddresses ) ) {
 			foreach ( $blobAddresses as $blobAddress ) {
 				if ( !isset( $result[$blobAddress ] ) ) {
-					$errors[$blobAddress] = "Unable to fetch blob at $blobAddress";
+					$errors[$blobAddress] = "Unable to fetch blob at $blobAddress."
+						. ' Use findBadBlobs.php to remedy.';
 					$result[$blobAddress] = false;
 				}
 			}
@@ -600,7 +608,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			$blob = $obj->getText();
 		}
 
-		// Needed to support old revisions left over from from the 1.4 / 1.5 migration.
+		// Needed to support old revisions left over from the 1.4 / 1.5 migration.
 		if ( $blob !== false && $this->legacyEncoding
 			&& !in_array( 'utf-8', $blobFlags ) && !in_array( 'utf8', $blobFlags )
 		) {

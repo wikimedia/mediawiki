@@ -6,6 +6,9 @@ use IContextSource;
 use MediaWiki\Linker\LinkRenderer;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "UndeletePageToolLinks" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -21,5 +24,5 @@ interface UndeletePageToolLinksHook {
 	 * @param string[] &$links Array of HTML strings
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onUndeletePageToolLinks( $context, $linkRenderer, &$links );
+	public function onUndeletePageToolLinks( IContextSource $context, LinkRenderer $linkRenderer, array &$links );
 }

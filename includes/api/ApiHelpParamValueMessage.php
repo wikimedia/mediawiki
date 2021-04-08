@@ -90,7 +90,6 @@ class ApiHelpParamValueMessage extends Message {
 	}
 
 	/**
-	 * Fetch the message.
 	 * @return string
 	 */
 	public function fetchMessage() {

@@ -76,7 +76,7 @@ class RawAction extends FormlessAction {
 				$contentType == 'text/javascript'
 			) {
 				// CSS/JSON/JS raw content has its own CDN max age configuration.
-				// Note: Title::getCdnUrls() includes action=raw for css/json/js
+				// Note: HtmlCacheUpdater::getUrls() includes action=raw for css/json/js
 				// pages, so if using the canonical url, this will get HTCP purges.
 				$smaxage = intval( $config->get( 'ForcedRawSMaxage' ) );
 			} else {
@@ -93,8 +93,8 @@ class RawAction extends FormlessAction {
 		// vary generated content for open sessions on private wikis
 		$privateCache = !$permissionManager->isEveryoneAllowed( 'read' ) &&
 			( $smaxage == 0 || MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() );
-		// Don't accidentally cache cookies if user is logged in (T55032)
-		$privateCache = $privateCache || $this->getUser()->isLoggedIn();
+		// Don't accidentally cache cookies if user is registered (T55032)
+		$privateCache = $privateCache || $this->getUser()->isRegistered();
 		$mode = $privateCache ? 'private' : 'public';
 		$response->header(
 			'Cache-Control: ' . $mode . ', s-maxage=' . $smaxage . ', max-age=' . $maxage
@@ -111,7 +111,7 @@ class RawAction extends FormlessAction {
 			$rootPage = strtok( $title->getText(), '/' );
 			$userFromTitle = User::newFromName( $rootPage, 'usable' );
 			if ( !$userFromTitle || $userFromTitle->getId() === 0 ) {
-				$elevated = $permissionManager->userHasRight( $this->getUser(), 'editinterface' );
+				$elevated = $this->getContext()->getAuthority()->isAllowed( 'editinterface' );
 				$elevatedText = $elevated ? 'by elevated ' : '';
 				$log = LoggerFactory::getInstance( "security" );
 				$log->warning(
@@ -123,8 +123,7 @@ class RawAction extends FormlessAction {
 						'elevated' => $elevated
 					]
 				);
-				$msg = wfMessage( 'unregistered-user-config' );
-				throw new HttpError( 403, $msg );
+				throw new HttpError( 403, wfMessage( 'unregistered-user-config' ) );
 			}
 		}
 

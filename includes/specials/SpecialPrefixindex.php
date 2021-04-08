@@ -20,7 +20,8 @@
  * @file
  * @ingroup SpecialPage
  */
-use MediaWiki\MediaWikiServices;
+
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Implements Special:Prefixindex
@@ -39,13 +40,29 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 	// Inherit $maxPerPage
 
-	public function __construct() {
-		parent::__construct( 'Prefixindex' );
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var LinkCache */
+	private $linkCache;
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkCache $linkCache
+	 */
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		LinkCache $linkCache
+	) {
+		parent::__construct( $loadBalancer );
+		$this->mName = 'Prefixindex';
+		$this->loadBalancer = $loadBalancer;
+		$this->linkCache = $linkCache;
 	}
 
 	/**
 	 * Entry point : initialise variables and call subfunctions.
-	 * @param string $par Becomes "FOO" when called like Special:Prefixindex/FOO (default null)
+	 * @param string|null $par Becomes "FOO" when called like Special:Prefixindex/FOO
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
@@ -63,7 +80,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 		$this->hideRedirects = $request->getBool( 'hideredirects', $this->hideRedirects );
 		$this->stripPrefix = $request->getBool( 'stripprefix', $this->stripPrefix );
 
-		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces();
+		$namespaces = $this->getContentLanguage()->getNamespaces();
 		$out->setPageTitle(
 			( $namespace > 0 && array_key_exists( $namespace, $namespaces ) )
 				? $this->msg( 'prefixindex-namespace', str_replace( '_', ' ', $namespaces[$namespace] ) )
@@ -114,20 +131,19 @@ class SpecialPrefixindex extends SpecialAllPages {
 				'default' => $namespace,
 			],
 			'hidedirects' => [
-				'class' => 'HTMLCheckField',
+				'class' => HTMLCheckField::class,
 				'name' => 'hideredirects',
 				'label-message' => 'allpages-hide-redirects',
 			],
 			'stripprefix' => [
-				'class' => 'HTMLCheckField',
+				'class' => HTMLCheckField::class,
 				'name' => 'stripprefix',
 				'label-message' => 'prefixindex-strip',
 			],
 		];
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
-		$htmlForm
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context )
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'prefixindex' )
 			->setSubmitTextMsg( 'prefixindex-submit' );
@@ -147,7 +163,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 		$fromList = $this->getNamespaceKeyAndText( $namespace, $from );
 		$prefixList = $this->getNamespaceKeyAndText( $namespace, $prefix );
-		$namespaces = MediaWikiServices::getInstance()->getContentLanguage()->getNamespaces();
+		$namespaces = $this->getContentLanguage()->getNamespaces();
 		$res = null;
 		$n = 0;
 		$nextRow = null;
@@ -164,7 +180,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			# ## @todo FIXME: Should complain if $fromNs != $namespace
 
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
 			$conds = [
 				'page_namespace' => $namespace,
@@ -194,7 +210,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 
 			if ( $res->numRows() > 0 ) {
 				$out = Html::openElement( 'ul', [ 'class' => 'mw-prefixindex-list' ] );
-				$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 
 				$prefixLength = strlen( $prefix );
 				foreach ( $res as $row ) {
@@ -204,7 +219,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 					}
 					$title = Title::newFromRow( $row );
 					// Make sure it gets into LinkCache
-					$linkCache->addGoodLinkObjFromRow( $title, $row );
+					$this->linkCache->addGoodLinkObjFromRow( $title, $row );
 					$displayed = $title->getText();
 					// Try not to generate unclickable links
 					if ( $this->stripPrefix && $prefixLength !== strlen( $displayed ) ) {
@@ -282,18 +297,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 		}
 
 		$output->addHTML( $topOut . $out );
-	}
-
-	/**
-	 * Return an array of subpages beginning with $search that this special page will accept.
-	 *
-	 * @param string $search Prefix to search for
-	 * @param int $limit Maximum number of results to return (usually 10)
-	 * @param int $offset Number of results to skip (usually 0)
-	 * @return string[] Matching subpages
-	 */
-	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {

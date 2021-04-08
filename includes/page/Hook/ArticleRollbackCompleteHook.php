@@ -7,7 +7,10 @@ use User;
 use WikiPage;
 
 /**
- * @deprecated since 1.35. Use RollbackComplete instead.
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ArticleRollbackComplete" to register handlers implementing this interface.
+ *
+ * @deprecated since 1.35. Use PageSaveComplete instead.
  * @ingroup Hooks
  */
 interface ArticleRollbackCompleteHook {

@@ -26,8 +26,8 @@ class TestSetup {
 	 * of a Maintenance subclass
 	 */
 	public static function applyInitialConfig() {
-		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache;
-		global $wgMainStash;
+		global $wgMainCacheType, $wgMessageCacheType, $wgParserCacheType, $wgMainWANCache, $wgSessionCacheType;
+		global $wgMainStash, $wgChronologyProtectorStash;
 		global $wgObjectCaches;
 		global $wgLanguageConverterCacheType, $wgUseDatabaseMessages;
 		global $wgLocaltimezone, $wgLocalisationCacheConf;
@@ -59,6 +59,7 @@ class TestSetup {
 		$wgLanguageConverterCacheType = 'hash';
 		// Uses db-replicated in DefaultSettings
 		$wgMainStash = 'hash';
+		$wgChronologyProtectorStash = 'hash';
 		// Use hash instead of db
 		$wgObjectCaches['db-replicated'] = $wgObjectCaches['hash'];
 		// Use memory job queue

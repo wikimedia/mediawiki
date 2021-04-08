@@ -74,18 +74,19 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$expect3[ApiResult::META_TYPE] = 'assoc';
 
 		$formatter->addWarning( 'string', 'mainpage' );
-		$formatter->addError( 'err', 'mainpage' );
+		$formatter->addError( 'err', 'aboutpage' );
 		$this->assertEquals( $expect1, $result->getResultData(), 'Simple test' );
 
 		$result->reset();
 		$formatter->addWarning( 'foo', 'mainpage' );
 		$formatter->addWarning( 'foo', 'mainpage' );
 		$formatter->addWarning( 'foo', [ 'parentheses', 'foobar' ] );
-		$msg1 = wfMessage( 'mainpage' );
+		$msg1 = wfMessage( 'copyright' );
 		$formatter->addWarning( 'message', $msg1 );
-		$msg2 = new ApiMessage( 'mainpage', 'overriddenCode', [ 'overriddenData' => true ] );
+		$msg2 = new ApiMessage( 'disclaimers', 'overriddenCode', [ 'overriddenData' => true ] );
 		$formatter->addWarning( 'messageWithData', $msg2 );
-		$formatter->addError( 'errWithData', $msg2 );
+		$msg3 = new ApiMessage( 'edithelp', 'overriddenCode', [ 'overriddenData' => true ] );
+		$formatter->addError( 'errWithData', $msg3 );
 		$this->assertSame( $expect2, $result->getResultData(), 'Complex test' );
 
 		$this->assertEquals(
@@ -105,8 +106,8 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$status->warning( 'parentheses', 'foobar' );
 		$status->warning( $msg1 );
 		$status->warning( $msg2 );
-		$status->error( 'mainpage' );
-		$status->error( 'parentheses', 'foobar' );
+		$status->error( 'aboutpage' );
+		$status->error( 'brackets', 'foobar' );
 		$formatter->addMessagesFromStatus( 'status', $status );
 		$this->assertSame( $expect3, $result->getResultData(), 'Status test' );
 
@@ -129,106 +130,127 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		return $s;
 	}
 
+	private static function text( $msg ) {
+		return $msg->inLanguage( 'de' )->useDatabase( false )->text();
+	}
+
+	private static function html( $msg ) {
+		return $msg->inLanguage( 'en' )->parse();
+	}
+
 	public static function provideErrorFormatter() {
-		$mainpageText = wfMessage( 'mainpage' )->inLanguage( 'de' )->useDatabase( false )->text();
-		$parensText = wfMessage( 'parentheses', 'foobar' )->inLanguage( 'de' )
-			->useDatabase( false )->text();
-		$mainpageHTML = wfMessage( 'mainpage' )->inLanguage( 'en' )->parse();
-		$parensHTML = wfMessage( 'parentheses', 'foobar' )->inLanguage( 'en' )->parse();
+		$aboutpage = wfMessage( 'aboutpage' );
+		$mainpage = wfMessage( 'mainpage' );
+		$parens = wfMessage( 'parentheses', 'foobar' );
+		$brackets = wfMessage( 'brackets', 'foobar' );
+		$copyright = wfMessage( 'copyright' );
+		$disclaimers = wfMessage( 'disclaimers' );
+		$edithelp = wfMessage( 'edithelp' );
+
 		$C = ApiResult::META_CONTENT;
 		$I = ApiResult::META_INDEXED_TAG_NAME;
 		$overriddenData = [ 'overriddenData' => true, ApiResult::META_TYPE => 'assoc' ];
 
 		return [
-			$tmp = [ 'wikitext', 'de', false,
+			'zero' => $tmp = [ 'wikitext', 'de', false,
 				[
 					'errors' => [
-						[ 'code' => 'mainpage', 'text' => $mainpageText, 'module' => 'err', $C => 'text' ],
+						[ 'code' => 'aboutpage', 'text' => self::text( $aboutpage ), 'module' => 'err', $C => 'text' ],
 						$I => 'error',
 					],
 					'warnings' => [
-						[ 'code' => 'mainpage', 'text' => $mainpageText, 'module' => 'string', $C => 'text' ],
+						[ 'code' => 'mainpage', 'text' => self::text( $mainpage ), 'module' => 'string', $C => 'text' ],
 						$I => 'warning',
 					],
 				],
 				[
 					'errors' => [
-						[ 'code' => 'overriddenCode', 'text' => $mainpageText,
+						[ 'code' => 'overriddenCode', 'text' => self::text( $edithelp ),
 							'data' => $overriddenData, 'module' => 'errWithData', $C => 'text' ],
 						$I => 'error',
 					],
 					'warnings' => [
-						[ 'code' => 'mainpage', 'text' => $mainpageText, 'module' => 'foo', $C => 'text' ],
-						[ 'code' => 'parentheses', 'text' => $parensText, 'module' => 'foo', $C => 'text' ],
-						[ 'code' => 'mainpage', 'text' => $mainpageText, 'module' => 'message', $C => 'text' ],
-						[ 'code' => 'overriddenCode', 'text' => $mainpageText,
+						[ 'code' => 'mainpage', 'text' => self::text( $mainpage ), 'module' => 'foo', $C => 'text' ],
+						[ 'code' => 'parentheses', 'text' => self::text( $parens ), 'module' => 'foo', $C => 'text' ],
+						[ 'code' => 'copyright', 'text' => self::text( $copyright ),
+							'module' => 'message', $C => 'text' ],
+						[ 'code' => 'overriddenCode', 'text' => self::text( $disclaimers ),
 							'data' => $overriddenData, 'module' => 'messageWithData', $C => 'text' ],
 						$I => 'warning',
 					],
 				],
 				[
 					'errors' => [
-						[ 'code' => 'mainpage', 'text' => $mainpageText, 'module' => 'status', $C => 'text' ],
-						[ 'code' => 'parentheses', 'text' => $parensText, 'module' => 'status', $C => 'text' ],
+						[ 'code' => 'aboutpage', 'text' => self::text( $aboutpage ),
+							'module' => 'status', $C => 'text' ],
+						[ 'code' => 'brackets', 'text' => self::text( $brackets ), 'module' => 'status', $C => 'text' ],
 						$I => 'error',
 					],
 					'warnings' => [
-						[ 'code' => 'mainpage', 'text' => $mainpageText, 'module' => 'status', $C => 'text' ],
-						[ 'code' => 'parentheses', 'text' => $parensText, 'module' => 'status', $C => 'text' ],
-						[ 'code' => 'overriddenCode', 'text' => $mainpageText,
+						[ 'code' => 'mainpage', 'text' => self::text( $mainpage ), 'module' => 'status', $C => 'text' ],
+						[ 'code' => 'parentheses', 'text' => self::text( $parens ),
+							'module' => 'status', $C => 'text' ],
+						[ 'code' => 'copyright', 'text' => self::text( $copyright ),
+							'module' => 'status', $C => 'text' ],
+						[ 'code' => 'overriddenCode', 'text' => self::text( $disclaimers ),
 							'data' => $overriddenData, 'module' => 'status', $C => 'text' ],
 						$I => 'warning',
 					],
 				],
 			],
-			[ 'plaintext' ] + $tmp, // For these messages, plaintext and wikitext are the same
-			[ 'html', 'en', true,
+			'one' => [ 'plaintext' ] + $tmp, // For these messages, plaintext and wikitext are the same
+			'two' => [ 'html', 'en', true,
 				[
 					'errors' => [
-						[ 'code' => 'mainpage', 'html' => $mainpageHTML, 'module' => 'err', $C => 'html' ],
+						[ 'code' => 'aboutpage', 'html' => self::html( $aboutpage ), 'module' => 'err', $C => 'html' ],
 						$I => 'error',
 					],
 					'warnings' => [
-						[ 'code' => 'mainpage', 'html' => $mainpageHTML, 'module' => 'string', $C => 'html' ],
+						[ 'code' => 'mainpage', 'html' => self::html( $mainpage ), 'module' => 'string', $C => 'html' ],
 						$I => 'warning',
 					],
 				],
 				[
 					'errors' => [
-						[ 'code' => 'overriddenCode', 'html' => $mainpageHTML,
+						[ 'code' => 'overriddenCode', 'html' => self::html( $edithelp ),
 							'data' => $overriddenData, 'module' => 'errWithData', $C => 'html' ],
 						$I => 'error',
 					],
 					'warnings' => [
-						[ 'code' => 'mainpage', 'html' => $mainpageHTML, 'module' => 'foo', $C => 'html' ],
-						[ 'code' => 'parentheses', 'html' => $parensHTML, 'module' => 'foo', $C => 'html' ],
-						[ 'code' => 'mainpage', 'html' => $mainpageHTML, 'module' => 'message', $C => 'html' ],
-						[ 'code' => 'overriddenCode', 'html' => $mainpageHTML,
+						[ 'code' => 'mainpage', 'html' => self::html( $mainpage ), 'module' => 'foo', $C => 'html' ],
+						[ 'code' => 'parentheses', 'html' => self::html( $parens ), 'module' => 'foo', $C => 'html' ],
+						[ 'code' => 'copyright', 'html' => self::html( $copyright ),
+							'module' => 'message', $C => 'html' ],
+						[ 'code' => 'overriddenCode', 'html' => self::html( $disclaimers ),
 							'data' => $overriddenData, 'module' => 'messageWithData', $C => 'html' ],
 						$I => 'warning',
 					],
 				],
 				[
 					'errors' => [
-						[ 'code' => 'mainpage', 'html' => $mainpageHTML, 'module' => 'status', $C => 'html' ],
-						[ 'code' => 'parentheses', 'html' => $parensHTML, 'module' => 'status', $C => 'html' ],
+						[ 'code' => 'aboutpage', 'html' => self::html( $aboutpage ),
+							'module' => 'status', $C => 'html' ],
+						[ 'code' => 'brackets', 'html' => self::html( $brackets ), 'module' => 'status', $C => 'html' ],
 						$I => 'error',
 					],
 					'warnings' => [
-						[ 'code' => 'mainpage', 'html' => $mainpageHTML, 'module' => 'status', $C => 'html' ],
-						[ 'code' => 'parentheses', 'html' => $parensHTML, 'module' => 'status', $C => 'html' ],
-						[ 'code' => 'overriddenCode', 'html' => $mainpageHTML,
+						[ 'code' => 'mainpage', 'html' => self::html( $mainpage ), 'module' => 'status', $C => 'html' ],
+						[ 'code' => 'parentheses', 'html' => self::html( $parens ),
+							'module' => 'status', $C => 'html' ],
+						[ 'code' => 'copyright', 'html' => self::html( $copyright ),
+							'module' => 'status', $C => 'html' ],
+						[ 'code' => 'overriddenCode', 'html' => self::html( $disclaimers ),
 							'data' => $overriddenData, 'module' => 'status', $C => 'html' ],
 						$I => 'warning',
 					],
 				],
 			],
-			[ 'raw', 'fr', true,
+			'three' => [ 'raw', 'fr', true,
 				[
 					'errors' => [
 						[
-							'code' => 'mainpage',
-							'key' => 'mainpage',
+							'code' => 'aboutpage',
+							'key' => 'aboutpage',
 							'params' => [ $I => 'param' ],
 							'module' => 'err',
 						],
@@ -248,7 +270,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 					'errors' => [
 						[
 							'code' => 'overriddenCode',
-							'key' => 'mainpage',
+							'key' => 'edithelp',
 							'params' => [ $I => 'param' ],
 							'data' => $overriddenData,
 							'module' => 'errWithData',
@@ -269,14 +291,14 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 							'module' => 'foo',
 						],
 						[
-							'code' => 'mainpage',
-							'key' => 'mainpage',
+							'code' => 'copyright',
+							'key' => 'copyright',
 							'params' => [ $I => 'param' ],
 							'module' => 'message',
 						],
 						[
 							'code' => 'overriddenCode',
-							'key' => 'mainpage',
+							'key' => 'disclaimers',
 							'params' => [ $I => 'param' ],
 							'data' => $overriddenData,
 							'module' => 'messageWithData',
@@ -287,14 +309,14 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 				[
 					'errors' => [
 						[
-							'code' => 'mainpage',
-							'key' => 'mainpage',
+							'code' => 'aboutpage',
+							'key' => 'aboutpage',
 							'params' => [ $I => 'param' ],
 							'module' => 'status',
 						],
 						[
-							'code' => 'parentheses',
-							'key' => 'parentheses',
+							'code' => 'brackets',
+							'key' => 'brackets',
 							'params' => [ 'foobar', $I => 'param' ],
 							'module' => 'status',
 						],
@@ -314,8 +336,14 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 							'module' => 'status',
 						],
 						[
+							'code' => 'copyright',
+							'key' => 'copyright',
+							'params' => [ $I => 'param' ],
+							'module' => 'status',
+						],
+						[
 							'code' => 'overriddenCode',
-							'key' => 'mainpage',
+							'key' => 'disclaimers',
 							'params' => [ $I => 'param' ],
 							'data' => $overriddenData,
 							'module' => 'status',
@@ -324,10 +352,10 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 					],
 				],
 			],
-			[ 'none', 'fr', true,
+			'four' => [ 'none', 'fr', true,
 				[
 					'errors' => [
-						[ 'code' => 'mainpage', 'module' => 'err' ],
+						[ 'code' => 'aboutpage', 'module' => 'err' ],
 						$I => 'error',
 					],
 					'warnings' => [
@@ -344,7 +372,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 					'warnings' => [
 						[ 'code' => 'mainpage', 'module' => 'foo' ],
 						[ 'code' => 'parentheses', 'module' => 'foo' ],
-						[ 'code' => 'mainpage', 'module' => 'message' ],
+						[ 'code' => 'copyright', 'module' => 'message' ],
 						[ 'code' => 'overriddenCode', 'data' => $overriddenData,
 							'module' => 'messageWithData' ],
 						$I => 'warning',
@@ -352,13 +380,14 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 				],
 				[
 					'errors' => [
-						[ 'code' => 'mainpage', 'module' => 'status' ],
-						[ 'code' => 'parentheses', 'module' => 'status' ],
+						[ 'code' => 'aboutpage', 'module' => 'status' ],
+						[ 'code' => 'brackets', 'module' => 'status' ],
 						$I => 'error',
 					],
 					'warnings' => [
 						[ 'code' => 'mainpage', 'module' => 'status' ],
 						[ 'code' => 'parentheses', 'module' => 'status' ],
+						[ 'code' => 'copyright', 'module' => 'status' ],
 						[ 'code' => 'overriddenCode', 'data' => $overriddenData, 'module' => 'status' ],
 						$I => 'warning',
 					],
@@ -371,8 +400,13 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 	 * @covers ApiErrorFormatter_BackCompat
 	 */
 	public function testErrorFormatterBC() {
-		$mainpagePlain = wfMessage( 'mainpage' )->useDatabase( false )->plain();
-		$parensPlain = wfMessage( 'parentheses', 'foobar' )->useDatabase( false )->plain();
+		$aboutpage = wfMessage( 'aboutpage' );
+		$mainpage = wfMessage( 'mainpage' );
+		$parens = wfMessage( 'parentheses', 'foobar' );
+		$brackets = wfMessage( 'brackets', 'foobar' );
+		$copyright = wfMessage( 'copyright' );
+		$disclaimers = wfMessage( 'disclaimers' );
+		$edithelp = wfMessage( 'edithelp' );
 
 		$result = new ApiResult( 8388608 );
 		$formatter = new ApiErrorFormatter_BackCompat( $result );
@@ -386,11 +420,11 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$formatter->addWarning( 'raw',
 			new RawMessage( 'Blah <kbd>kbd</kbd> <b>&lt;X&gt;</b> &#x1f61e;' )
 		);
-		$formatter->addError( 'err', 'mainpage' );
+		$formatter->addError( 'err', 'aboutpage' );
 		$this->assertSame( [
 			'error' => [
-				'code' => 'mainpage',
-				'info' => $mainpagePlain,
+				'code' => 'aboutpage',
+				'info' => $aboutpage->useDatabase( false )->plain(),
 			],
 			'warnings' => [
 				'raw' => [
@@ -398,7 +432,7 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 					ApiResult::META_CONTENT => 'warnings',
 				],
 				'string' => [
-					'warnings' => $mainpagePlain,
+					'warnings' => $mainpage->useDatabase( false )->plain(),
 					ApiResult::META_CONTENT => 'warnings',
 				],
 			],
@@ -409,33 +443,35 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$formatter->addWarning( 'foo', 'mainpage' );
 		$formatter->addWarning( 'foo', 'mainpage' );
 		$formatter->addWarning( 'xxx+foo', [ 'parentheses', 'foobar' ] );
-		$msg1 = wfMessage( 'mainpage' );
+		$msg1 = wfMessage( 'copyright' );
 		$formatter->addWarning( 'message', $msg1 );
-		$msg2 = new ApiMessage( 'mainpage', 'overriddenCode', [ 'overriddenData' => true ] );
+		$msg2 = new ApiMessage( 'disclaimers', 'overriddenCode', [ 'overriddenData' => true ] );
 		$formatter->addWarning( 'messageWithData', $msg2 );
-		$formatter->addError( 'errWithData', $msg2 );
+		$msg3 = new ApiMessage( 'edithelp', 'overriddenCode', [ 'overriddenData' => true ] );
+		$formatter->addError( 'errWithData', $msg3 );
 		$formatter->addWarning( null, 'mainpage' );
 		$this->assertSame( [
 			'error' => [
 				'code' => 'overriddenCode',
-				'info' => $mainpagePlain,
+				'info' => $edithelp->useDatabase( false )->plain(),
 				'overriddenData' => true,
 			],
 			'warnings' => [
 				'unknown' => [
-					'warnings' => $mainpagePlain,
+					'warnings' => $mainpage->useDatabase( false )->plain(),
 					ApiResult::META_CONTENT => 'warnings',
 				],
 				'messageWithData' => [
-					'warnings' => $mainpagePlain,
+					'warnings' => $disclaimers->useDatabase( false )->plain(),
 					ApiResult::META_CONTENT => 'warnings',
 				],
 				'message' => [
-					'warnings' => $mainpagePlain,
+					'warnings' => $copyright->useDatabase( false )->plain(),
 					ApiResult::META_CONTENT => 'warnings',
 				],
 				'foo' => [
-					'warnings' => "$mainpagePlain\n$parensPlain",
+					'warnings' => $mainpage->useDatabase( false )->plain()
+						. "\n" . $parens->useDatabase( false )->plain(),
 					ApiResult::META_CONTENT => 'warnings',
 				],
 			],
@@ -444,18 +480,26 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 
 		$this->assertSame(
 			[
-				'code' => 'mainpage',
-				'info' => 'Main Page',
+				'code' => 'copyright',
+				'info' => $copyright->useDatabase( false )->plain(),
 			],
 			$formatter->formatMessage( $msg1 )
 		);
 		$this->assertSame(
 			[
 				'code' => 'overriddenCode',
-				'info' => 'Main Page',
+				'info' => $disclaimers->useDatabase( false )->plain(),
 				'overriddenData' => true,
 			],
 			$formatter->formatMessage( $msg2 )
+		);
+		$this->assertSame(
+			[
+				'code' => 'overriddenCode',
+				'info' => $edithelp->useDatabase( false )->plain(),
+				'overriddenData' => true,
+			],
+			$formatter->formatMessage( $msg3 )
 		);
 
 		$result->reset();
@@ -464,17 +508,20 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$status->warning( 'parentheses', 'foobar' );
 		$status->warning( $msg1 );
 		$status->warning( $msg2 );
-		$status->error( 'mainpage' );
-		$status->error( 'parentheses', 'foobar' );
+		$status->error( 'aboutpage' );
+		$status->error( 'brackets', 'foobar' );
 		$formatter->addMessagesFromStatus( 'status', $status );
 		$this->assertSame( [
 			'error' => [
-				'code' => 'mainpage',
-				'info' => $mainpagePlain,
+				'code' => 'aboutpage',
+				'info' => $aboutpage->useDatabase( false )->plain(),
 			],
 			'warnings' => [
 				'status' => [
-					'warnings' => "$mainpagePlain\n$parensPlain",
+					'warnings' => $mainpage->useDatabase( false )->plain()
+						. "\n" . $parens->useDatabase( false )->plain()
+						. "\n" . $copyright->useDatabase( false )->plain()
+						. "\n" . $disclaimers->useDatabase( false )->plain(),
 					ApiResult::META_CONTENT => 'warnings',
 				],
 			],
@@ -485,15 +532,15 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 		$this->assertSame(
 			[
 				[
-					'message' => 'mainpage',
+					'message' => 'aboutpage',
 					'params' => [ $I => 'param' ],
-					'code' => 'mainpage',
+					'code' => 'aboutpage',
 					'type' => 'error',
 				],
 				[
-					'message' => 'parentheses',
+					'message' => 'brackets',
 					'params' => [ 'foobar', $I => 'param' ],
-					'code' => 'parentheses',
+					'code' => 'brackets',
 					'type' => 'error',
 				],
 				$I => 'error',
@@ -516,13 +563,13 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 					'type' => 'warning',
 				],
 				[
-					'message' => 'mainpage',
+					'message' => 'copyright',
 					'params' => [ $I => 'param' ],
-					'code' => 'mainpage',
+					'code' => 'copyright',
 					'type' => 'warning',
 				],
 				[
-					'message' => 'mainpage',
+					'message' => 'disclaimers',
 					'params' => [ $I => 'param' ],
 					'code' => 'overriddenCode',
 					'type' => 'warning',
@@ -535,11 +582,11 @@ class ApiErrorFormatterTest extends MediaWikiLangTestCase {
 
 		$result->reset();
 		$result->addValue( null, 'error', [ 'bogus' ] );
-		$formatter->addError( 'err', 'mainpage' );
+		$formatter->addError( 'err', 'aboutpage' );
 		$this->assertSame( [
 			'error' => [
-				'code' => 'mainpage',
-				'info' => $mainpagePlain,
+				'code' => 'aboutpage',
+				'info' => $aboutpage->useDatabase( false )->plain(),
 			],
 			ApiResult::META_TYPE => 'assoc',
 		], $result->getResultData(), 'Overwrites bogus "error" value with real error' );

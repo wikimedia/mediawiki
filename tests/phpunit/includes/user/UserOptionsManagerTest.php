@@ -103,7 +103,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserLoadOptions',
-			function ( User $hookUser, &$options ) use ( $user ) {
+			static function ( User $hookUser, &$options ) use ( $user ) {
 				if ( $hookUser->equals( $user ) ) {
 					$options['from_hook'] = 'value_from_hook';
 				}
@@ -119,7 +119,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserSaveOptions',
-			function () {
+			static function () {
 				return false;
 			}
 		);
@@ -136,7 +136,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserSaveOptions',
-			function ( User $hookUser, &$options ) use ( $user ) {
+			static function ( User $hookUser, &$options ) use ( $user ) {
 				if ( $hookUser->equals( $user ) ) {
 					$options['from_hook'] = 'value_from_hook';
 				}
@@ -181,7 +181,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$manager = $this->getManager();
 		$this->setTemporaryHook(
 			'UserLoadOptions',
-			function ( User $hookUser, &$options ) use ( $user ) {
+			static function ( User $hookUser, &$options ) use ( $user ) {
 				if ( $hookUser->equals( $user ) ) {
 					$options['from_load_hook'] = 'from_load_hook';
 				}

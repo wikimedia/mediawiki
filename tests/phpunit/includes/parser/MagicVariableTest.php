@@ -151,12 +151,20 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 
 	# ############## HELPERS ############################################
 
-	/** assertion helper expecting a magic output which is zero padded */
+	/**
+	 * assertion helper expecting a magic output which is zero padded
+	 * @param string $magic
+	 * @param string $value
+	 */
 	public function assertZeroPadded( $magic, $value ) {
 		$this->assertMagicPadding( $magic, $value, '%02d' );
 	}
 
-	/** assertion helper expecting a magic output which is unpadded */
+	/**
+	 * assertion helper expecting a magic output which is unpadded
+	 * @param string $magic
+	 * @param string $value
+	 */
 	public function assertUnPadded( $magic, $value ) {
 		$this->assertMagicPadding( $magic, $value, '%d' );
 	}

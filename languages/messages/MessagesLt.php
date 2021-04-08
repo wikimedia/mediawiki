@@ -58,12 +58,14 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Naudotojo_aptarimas', 'female' => 'Naudotojos_aptarimas' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Visi_pranešimai' ],
 	'Allpages'                  => [ 'Visi_puslapiai' ],
 	'Ancientpages'              => [ 'Seniausi_puslapiai' ],
 	'Blankpage'                 => [ 'Tuščias_puslapis' ],
 	'Block'                     => [ 'Blokuoti_IP' ],
+	'BlockList'                 => [ 'IP_blokavimų_sąrašas' ],
 	'Booksources'               => [ 'Knygų_šaltiniai' ],
 	'BrokenRedirects'           => [ 'Peradresavimai_į_niekur' ],
 	'Categories'                => [ 'Kategorijos' ],
@@ -81,7 +83,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Kelias_iki_failo' ],
 	'Import'                    => [ 'Importas' ],
 	'Invalidateemail'           => [ 'Nutraukti_elektroninio_pašto_galiojimą' ],
-	'BlockList'                 => [ 'IP_blokavimų_sąrašas' ],
 	'LinkSearch'                => [ 'Nuorodų_paieška' ],
 	'Listadmins'                => [ 'Administratorių_sąrašas' ],
 	'Listbots'                  => [ 'Botų_sąrašas' ],
@@ -145,29 +146,30 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'Be_interwiki' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#PERADRESAVIMAS', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__BETURIN__', '__NOTOC__' ],
-	'nogallery'                 => [ '0', '__BEGALERIJOS__', '__NOGALLERY__' ],
-	'toc'                       => [ '0', '__TURINYS__', '__TOC__' ],
-	'noeditsection'             => [ '0', '__BEREDAGSEKC__', '__NOEDITSECTION__' ],
-	'currentmonth'              => [ '1', 'DABARTINISMĖNESIS', 'CURRENTMONTH', 'CURRENTMONTH2' ],
-	'currentmonthname'          => [ '1', 'DABARTINIOMĖNESIOPAVADINIMAS', 'CURRENTMONTHNAME' ],
 	'currentday'                => [ '1', 'DABARTINĖDIENA', 'CURRENTDAY' ],
 	'currentday2'               => [ '1', 'DABARTINĖDIENA2', 'CURRENTDAY2' ],
 	'currentdayname'            => [ '1', 'DABARTINĖSDIENOSPAVADINIMAS', 'CURRENTDAYNAME' ],
-	'currentyear'               => [ '1', 'DABARTINIAIMETAI', 'CURRENTYEAR' ],
-	'currenttime'               => [ '1', 'DABARTINISLAIKAS', 'CURRENTTIME' ],
 	'currenthour'               => [ '1', 'DABARTINĖVALANDA', 'CURRENTHOUR' ],
-	'numberofpages'             => [ '1', 'PUSLAPIŲSKAIČIUS', 'NUMBEROFPAGES' ],
-	'numberofarticles'          => [ '1', 'STRAIPSNIŲSKAIČIUS', 'NUMBEROFARTICLES' ],
-	'numberoffiles'             => [ '1', 'FAILŲSKAIČIUS', 'NUMBEROFFILES' ],
-	'numberofusers'             => [ '1', 'NAUDOTOJŲSKAIČIUS', 'NUMBEROFUSERS' ],
-	'numberofedits'             => [ '1', 'KEITIMŲSKAIČIUS', 'NUMBEROFEDITS' ],
-	'img_thumbnail'             => [ '1', 'miniatiūra', 'mini', 'thumb', 'thumbnail' ],
+	'currentmonth'              => [ '1', 'DABARTINISMĖNESIS', 'CURRENTMONTH', 'CURRENTMONTH2' ],
+	'currentmonthname'          => [ '1', 'DABARTINIOMĖNESIOPAVADINIMAS', 'CURRENTMONTHNAME' ],
+	'currenttime'               => [ '1', 'DABARTINISLAIKAS', 'CURRENTTIME' ],
+	'currentyear'               => [ '1', 'DABARTINIAIMETAI', 'CURRENTYEAR' ],
+	'img_left'                  => [ '1', 'kairėje', 'left' ],
 	'img_manualthumb'           => [ '1', 'miniatiūra=$1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'                 => [ '1', 'dešinėje', 'right' ],
-	'img_left'                  => [ '1', 'kairėje', 'left' ],
+	'img_thumbnail'             => [ '1', 'miniatiūra', 'mini', 'thumb', 'thumbnail' ],
+	'noeditsection'             => [ '0', '__BEREDAGSEKC__', '__NOEDITSECTION__' ],
+	'nogallery'                 => [ '0', '__BEGALERIJOS__', '__NOGALLERY__' ],
+	'notoc'                     => [ '0', '__BETURIN__', '__NOTOC__' ],
+	'numberofarticles'          => [ '1', 'STRAIPSNIŲSKAIČIUS', 'NUMBEROFARTICLES' ],
+	'numberofedits'             => [ '1', 'KEITIMŲSKAIČIUS', 'NUMBEROFEDITS' ],
+	'numberoffiles'             => [ '1', 'FAILŲSKAIČIUS', 'NUMBEROFFILES' ],
+	'numberofpages'             => [ '1', 'PUSLAPIŲSKAIČIUS', 'NUMBEROFPAGES' ],
+	'numberofusers'             => [ '1', 'NAUDOTOJŲSKAIČIUS', 'NUMBEROFUSERS' ],
+	'redirect'                  => [ '0', '#PERADRESAVIMAS', '#REDIRECT' ],
+	'toc'                       => [ '0', '__TURINYS__', '__TOC__' ],
 ];
 
 $fallback8bitEncoding = 'windows-1257';

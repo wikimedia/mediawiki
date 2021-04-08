@@ -21,10 +21,13 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that lists existing blocks
@@ -38,8 +41,40 @@ class SpecialBlockList extends SpecialPage {
 
 	protected $blockType;
 
-	public function __construct() {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var BlockRestrictionStore */
+	private $blockRestrictionStore;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var BlockUtils */
+	private $blockUtils;
+
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		BlockRestrictionStore $blockRestrictionStore,
+		ILoadBalancer $loadBalancer,
+		ActorMigration $actorMigration,
+		CommentStore $commentStore,
+		BlockUtils $blockUtils
+	) {
 		parent::__construct( 'BlockList' );
+
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->loadBalancer = $loadBalancer;
+		$this->actorMigration = $actorMigration;
+		$this->commentStore = $commentStore;
+		$this->blockUtils = $blockUtils;
 	}
 
 	/**
@@ -64,7 +99,7 @@ class SpecialBlockList extends SpecialPage {
 
 		if ( $action == 'unblock' || $action == 'submit' && $request->wasPosted() ) {
 			# B/C @since 1.18: Unblock interface is now at Special:Unblock
-			$title = SpecialPage::getTitleFor( 'Unblock', $this->target );
+			$title = $this->getSpecialPageFactory()->getTitleForAlias( 'Unblock/' . $this->target );
 			$out->redirect( $title->getFullURL() );
 
 			return;
@@ -138,15 +173,12 @@ class SpecialBlockList extends SpecialPage {
 		$conds = [];
 		$db = $this->getDB();
 		# Is the user allowed to see hidden blocks?
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $this->getUser(), 'hideuser' )
-		) {
+		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
 		}
 
 		if ( $this->target !== '' ) {
-			list( $target, $type ) = DatabaseBlock::parseTarget( $this->target );
+			list( $target, $type ) = $this->blockUtils->parseBlockTarget( $this->target );
 
 			switch ( $type ) {
 				case DatabaseBlock::TYPE_ID:
@@ -202,7 +234,17 @@ class SpecialBlockList extends SpecialPage {
 			$conds['ipb_sitewide'] = 0;
 		}
 
-		return new BlockListPager( $this, $conds );
+		return new BlockListPager(
+			$this,
+			$conds,
+			$this->linkBatchFactory,
+			$this->blockRestrictionStore,
+			$this->loadBalancer,
+			$this->getSpecialPageFactory(),
+			$this->actorMigration,
+			$this->commentStore,
+			$this->blockUtils
+		);
 	}
 
 	/**
@@ -262,6 +304,6 @@ class SpecialBlockList extends SpecialPage {
 	 * @return IDatabase
 	 */
 	protected function getDB() {
-		return wfGetDB( DB_REPLICA );
+		return $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 	}
 }

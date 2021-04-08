@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Revision;
 
+use Message;
+
 /**
  * @newable
  * @since 1.35
@@ -42,10 +44,10 @@ class ContributionsSegment {
 	 * ContributionsSegment constructor.
 	 *
 	 * @param RevisionRecord[] $revisions
-	 * @param string[][] $tags An associative array mapping revision IDs to lists of tag names.
+	 * @param string[][] $tags Associative array mapping revision IDs to a map of tag names to Message objects
 	 * @param string|null $before
 	 * @param string|null $after
-	 * @param array $deltas An associative array mapping a revision Id to the difference in size of this revision
+	 * @param int[] $deltas An associative array mapping a revision Id to the difference in size of this revision
 	 * and its parent revision. Values may be null if the size difference is unknown.
 	 * @param array $flags Is an associative array, known fields are:
 	 *  - newest: bool indicating whether this segment is the newest in time
@@ -68,11 +70,11 @@ class ContributionsSegment {
 	}
 
 	/**
-	 * Returns an associative array mapping revision IDs to lists of tag names.
+	 * Get tags and associated metadata for a given revision
 	 *
 	 * @param int $revId a revision ID
 	 *
-	 * @return string[]
+	 * @return Message[] Associative array mapping tag name to a Message object storing tag display data
 	 */
 	public function getTagsForRevision( $revId ): array {
 		return $this->tags[$revId] ?? [];
@@ -115,7 +117,7 @@ class ContributionsSegment {
 	 *
 	 * @return bool
 	 */
-	public function isNewest() {
+	public function isNewest(): bool {
 		return $this->flags['newest'] ?? false;
 	}
 
@@ -125,7 +127,7 @@ class ContributionsSegment {
 	 *
 	 * @return bool
 	 */
-	public function isOldest() {
+	public function isOldest(): bool {
 		return $this->flags['oldest'] ?? false;
 	}
 

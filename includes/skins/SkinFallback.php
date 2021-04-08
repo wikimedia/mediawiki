@@ -29,12 +29,12 @@ class SkinFallback extends SkinMustache {
 		$styleDirectory = $config->get( 'StyleDirectory' );
 		// Get all subdirectories which might contains skins
 		$possibleSkins = scandir( $styleDirectory );
-		$possibleSkins = array_filter( $possibleSkins, function ( $maybeDir ) use ( $styleDirectory ) {
+		$possibleSkins = array_filter( $possibleSkins, static function ( $maybeDir ) use ( $styleDirectory ) {
 			return $maybeDir !== '.' && $maybeDir !== '..' && is_dir( "$styleDirectory/$maybeDir" );
 		} );
 
 		// Filter out skins that aren't installed
-		$possibleSkins = array_filter( $possibleSkins, function ( $skinDir ) use ( $styleDirectory ) {
+		$possibleSkins = array_filter( $possibleSkins, static function ( $skinDir ) use ( $styleDirectory ) {
 			return is_file( "$styleDirectory/$skinDir/skin.json" )
 				|| is_file( "$styleDirectory/$skinDir/$skinDir.php" );
 		} );

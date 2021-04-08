@@ -58,7 +58,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 	private $redirTitles = [];
 	private $continueStr = null;
 
-	// output element name, database column field prefix, database table
+	/** @var string[][] output element name, database column field prefix, database table */
 	private $backlinksSettings = [
 		'backlinks' => [
 			'code' => 'bl',
@@ -80,6 +80,10 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		]
 	];
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		$settings = $this->backlinksSettings[$moduleName];
 		$prefix = $settings['prefix'];
@@ -445,7 +449,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		if ( $resultPageSet === null ) {
 			// Try to add the result data in one go and pray that it fits
 			$code = $this->bl_code;
-			$data = array_map( function ( $arr ) use ( $code ) {
+			$data = array_map( static function ( $arr ) use ( $code ) {
 				if ( isset( $arr['redirlinks'] ) ) {
 					$arr['redirlinks'] = array_values( $arr['redirlinks'] );
 					ApiResult::setIndexedTagName( $arr['redirlinks'], $code );

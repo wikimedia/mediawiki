@@ -58,7 +58,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			$cont = explode( '|', $params['continue'] );
 			$this->dieContinueUsageIf( count( $cont ) != 2 );
 			$cont_page = (int)$cont[0];
-			$pages = array_filter( $pages, function ( $v ) use ( $cont_page ) {
+			$pages = array_filter( $pages, static function ( $v ) use ( $cont_page ) {
 				return $v >= $cont_page;
 			} );
 		}
@@ -146,7 +146,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		} elseif ( $params['rights'] ) {
 			$excludeGroups = false;
 			foreach ( $params['rights'] as $r ) {
-				$limitGroups = array_merge( $limitGroups, $this->getPermissionManager()
+				$limitGroups = array_merge( $limitGroups, $this->getGroupPermissionsLookup()
 					->getGroupsWithPermission( $r ) );
 			}
 
@@ -163,7 +163,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		} elseif ( $params['excluderights'] ) {
 			$excludeGroups = true;
 			foreach ( $params['excluderights'] as $r ) {
-				$limitGroups = array_merge( $limitGroups, $this->getPermissionManager()
+				$limitGroups = array_merge( $limitGroups, $this->getGroupPermissionsLookup()
 					->getGroupsWithPermission( $r ) );
 			}
 		}

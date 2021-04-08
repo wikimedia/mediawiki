@@ -47,6 +47,12 @@ use Wikimedia\Rdbms\LBFactory;
  * bar is the option value of the option for param foo
  * baz is the arg value at index 0 in the arg list
  *
+ * WARNING: the constructor, shouldExecute(), setup(), getName() and
+ * loadSettings() are called before Setup.php is run, which means most of the
+ * common infrastructure, like logging or autoloading, is not available. Be
+ * careful when changing these methods or the ones called from them. Likewise,
+ * be careful with the constructor when subclassing.
+ *
  * @stable for subclassing
  *
  * @since 1.16
@@ -62,7 +68,7 @@ abstract class Maintenance {
 	public const DB_ADMIN = 2;
 
 	// Const for getStdin()
-	public const STDIN_ALL = 'all';
+	public const STDIN_ALL = -1;
 
 	/**
 	 * Array of desired/allowed params
@@ -71,39 +77,39 @@ abstract class Maintenance {
 	 */
 	protected $mParams = [];
 
-	// Array of mapping short parameters to long ones
+	/** @var array Mapping short parameters to long ones */
 	protected $mShortParamsMap = [];
 
-	// Array of desired/allowed args
+	/** @var array Desired/allowed args */
 	protected $mArgList = [];
 
-	// This is the list of options that were actually passed
+	/** @var array This is the list of options that were actually passed */
 	protected $mOptions = [];
 
-	// This is the list of arguments that were actually passed
+	/** @var array This is the list of arguments that were actually passed */
 	protected $mArgs = [];
 
-	// Allow arbitrary options to be passed, or only specified ones?
+	/** @var bool Allow arbitrary options to be passed, or only specified ones? */
 	protected $mAllowUnregisteredOptions = false;
 
-	// Name of the script currently running
+	/** @var string|null Name of the script currently running */
 	protected $mSelf;
 
-	// Special vars for params that are always used
+	/** @var bool Special vars for params that are always used */
 	protected $mQuiet = false;
 	protected $mDbUser, $mDbPass;
 
-	// A description of the script, children should change this via addDescription()
+	/** @var string A description of the script, children should change this via addDescription() */
 	protected $mDescription = '';
 
-	// Have we already loaded our user input?
+	/** @var bool Have we already loaded our user input? */
 	protected $mInputLoaded = false;
 
 	/**
 	 * Batch size. If a script supports this, they should set
 	 * a default with setBatchSize()
 	 *
-	 * @var int
+	 * @var int|null
 	 */
 	protected $mBatchSize = null;
 
@@ -118,11 +124,11 @@ abstract class Maintenance {
 	 * @var array[]
 	 * @phan-var array<string,array{desc:string,require:bool,withArg:string,shortName:string,multiOccurrence:bool}>
 	 */
-	private $mDependantParameters = [];
+	private $mDependentParameters = [];
 
 	/**
 	 * Used by getDB() / setDB()
-	 * @var IMaintainableDatabase
+	 * @var IMaintainableDatabase|null
 	 */
 	private $mDb = null;
 
@@ -131,7 +137,7 @@ abstract class Maintenance {
 
 	/**
 	 * Used when creating separate schema files.
-	 * @var resource
+	 * @var resource|null
 	 */
 	public $fileHandle;
 
@@ -144,7 +150,7 @@ abstract class Maintenance {
 	/**
 	 * Accessible via getConfig()
 	 *
-	 * @var Config
+	 * @var Config|null
 	 */
 	private $config;
 
@@ -366,7 +372,6 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Set the batch size.
 	 * @param int $s The number of operations to do in a batch
 	 */
 	protected function setBatchSize( $s = 0 ) {
@@ -382,7 +387,7 @@ abstract class Maintenance {
 				'per batch, default: ' . $this->mBatchSize, false, true );
 			if ( isset( $this->mParams['batch-size'] ) ) {
 				// This seems a little ugly...
-				$this->mDependantParameters['batch-size'] = $this->mParams['batch-size'];
+				$this->mDependentParameters['batch-size'] = $this->mParams['batch-size'];
 			}
 		}
 	}
@@ -397,8 +402,8 @@ abstract class Maintenance {
 
 	/**
 	 * Return input from stdin.
-	 * @param int|null $len The number of bytes to read. If null, just return the handle.
-	 *   Maintenance::STDIN_ALL returns the full length
+	 * @param int|null $len The number of bytes to read. If null, just
+	 * return the handle. Maintenance::STDIN_ALL returns the full content
 	 * @return mixed
 	 */
 	protected function getStdin( $len = null ) {
@@ -550,7 +555,7 @@ abstract class Maintenance {
 	 * Add the default parameters to the scripts
 	 */
 	protected function addDefaultParams() {
-		# Generic (non script dependant) options:
+		# Generic (non-script-dependent) options:
 
 		$this->addOption( 'help', 'Display this help message', false, false, 'h' );
 		$this->addOption( 'quiet', 'Whether to suppress non-error output', false, false, 'q' );
@@ -572,7 +577,7 @@ abstract class Maintenance {
 		# Save generic options to display them separately in help
 		$this->mGenericParameters = $this->mParams;
 
-		# Script dependant options:
+		# Script-dependent options:
 
 		// If we support a DB, show the options
 		if ( $this->getDbType() > 0 ) {
@@ -581,9 +586,9 @@ abstract class Maintenance {
 			$this->addOption( 'dbgroupdefault', 'The default DB group to use.', false, true );
 		}
 
-		# Save additional script dependant options to display
+		# Save additional script-dependent options to display
 		#  them separately in help
-		$this->mDependantParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
+		$this->mDependentParameters = array_diff_key( $this->mParams, $this->mGenericParameters );
 	}
 
 	/**
@@ -635,9 +640,13 @@ abstract class Maintenance {
 		}
 
 		if ( $missing ) {
-			$joined = implode( ', ', $missing );
-			$msg = "The following extensions are required to be installed "
-				. "for this script to run: $joined. Please enable them and then try again.";
+			if ( count( $missing ) === 1 ) {
+				$msg = 'The "' . $missing[ 0 ] . '" extension must be installed for this script to run. '
+					. 'Please enable it and then try again.';
+			} else {
+				$msg = 'The following extensions must be installed for this script to run: "'
+					. implode( '", "', $missing ) . '". Please enable them and then try again.';
+			}
 			$this->fatalError( $msg );
 		}
 	}
@@ -674,7 +683,7 @@ abstract class Maintenance {
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$lbFactory->setWaitForReplicationListener(
 			__METHOD__,
-			function () use ( $stats, $config ) {
+			static function () use ( $stats, $config ) {
 				// Check config in case of JobRunner and unit tests
 				if ( $config->get( 'CommandLineMode' ) ) {
 					DeferredUpdates::tryOpportunisticExecute( 'run' );
@@ -687,7 +696,7 @@ abstract class Maintenance {
 		// to the master but mostly be writing to something else, like a file store.
 		$lbFactory->getMainLB()->setTransactionListener(
 			__METHOD__,
-			function ( $trigger ) use ( $stats, $config ) {
+			static function ( $trigger ) use ( $stats, $config ) {
 				// Check config in case of JobRunner and unit tests
 				if ( $config->get( 'CommandLineMode' ) && $trigger === IDatabase::TRIGGER_COMMIT ) {
 					DeferredUpdates::tryOpportunisticExecute( 'run' );
@@ -712,7 +721,7 @@ abstract class Maintenance {
 				require_once $classFile;
 			}
 			if ( !class_exists( $maintClass ) ) {
-				$this->error( "Cannot spawn child: $maintClass" );
+				$this->fatalError( "Cannot spawn child: $maintClass" );
 			}
 		}
 
@@ -746,7 +755,7 @@ abstract class Maintenance {
 		}
 
 		# Make sure we can handle script parameters
-		if ( !defined( 'HPHP_VERSION' ) && !ini_get( 'register_argc_argv' ) ) {
+		if ( !ini_get( 'register_argc_argv' ) ) {
 			$this->fatalError( 'Cannot get command line arguments, register_argc_argv is set to false' );
 		}
 
@@ -1087,61 +1096,33 @@ abstract class Maintenance {
 		}
 		$this->output( "$output\n\n" );
 
-		# TODO abstract some repetitive code below
+		$this->formatHelpItems(
+			$this->mGenericParameters,
+			'Generic maintenance parameters',
+			$descWidth, $tab
+		);
 
-		// Generic parameters
-		$this->output( "Generic maintenance parameters:\n" );
-		foreach ( $this->mGenericParameters as $par => $info ) {
-			if ( $info['shortName'] !== false ) {
-				$par .= " (-{$info['shortName']})";
-			}
-			$this->output(
-				wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-					"\n$tab$tab" ) . "\n"
-			);
-		}
-		$this->output( "\n" );
+		$this->formatHelpItems(
+			$this->mDependentParameters,
+			'Script dependent parameters',
+			$descWidth, $tab
+		);
 
-		$scriptDependantParams = $this->mDependantParameters;
-		if ( count( $scriptDependantParams ) > 0 ) {
-			$this->output( "Script dependant parameters:\n" );
-			// Parameters description
-			foreach ( $scriptDependantParams as $par => $info ) {
-				if ( $info['shortName'] !== false ) {
-					$par .= " (-{$info['shortName']})";
-				}
-				$this->output(
-					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-						"\n$tab$tab" ) . "\n"
-				);
-			}
-			$this->output( "\n" );
-		}
-
-		// Script specific parameters not defined on construction by
+		// Script-specific parameters not defined on construction by
 		// Maintenance::addDefaultParams()
 		$scriptSpecificParams = array_diff_key(
 			# all script parameters:
 			$this->mParams,
 			# remove the Maintenance default parameters:
 			$this->mGenericParameters,
-			$this->mDependantParameters
+			$this->mDependentParameters
 		);
-		'@phan-var array[] $scriptSpecificParams';
-		if ( count( $scriptSpecificParams ) > 0 ) {
-			$this->output( "Script specific parameters:\n" );
-			// Parameters description
-			foreach ( $scriptSpecificParams as $par => $info ) {
-				if ( $info['shortName'] !== false ) {
-					$par .= " (-{$info['shortName']})";
-				}
-				$this->output(
-					wordwrap( "$tab--$par: " . $info['desc'], $descWidth,
-						"\n$tab$tab" ) . "\n"
-				);
-			}
-			$this->output( "\n" );
-		}
+
+		$this->formatHelpItems(
+			$scriptSpecificParams,
+			'Script specific parameters',
+			$descWidth, $tab
+		);
 
 		// Print arguments
 		if ( count( $this->mArgList ) > 0 ) {
@@ -1157,6 +1138,29 @@ abstract class Maintenance {
 			}
 			$this->output( "\n" );
 		}
+	}
+
+	private function formatHelpItems( array $items, $heading, $descWidth, $tab ) {
+		if ( $items === [] ) {
+			return;
+		}
+
+		$this->output( "$heading:\n" );
+
+		foreach ( $items as $name => $info ) {
+			if ( $info['shortName'] !== false ) {
+				$name .= ' (-' . $info['shortName'] . ')';
+			}
+			$this->output(
+				wordwrap(
+					"$tab--$name: " . $info['desc'],
+					$descWidth,
+					"\n$tab$tab"
+				) . "\n"
+			);
+		}
+
+		$this->output( "\n" );
 	}
 
 	/**
@@ -1251,6 +1255,31 @@ abstract class Maintenance {
 	public function globals() {
 		if ( $this->hasOption( 'globals' ) ) {
 			print_r( $GLOBALS );
+		}
+	}
+
+	/**
+	 * Call before shutdown to run any deferred updates
+	 * @since 1.36
+	 */
+	public function shutdown() {
+		$lbFactory = null;
+		if (
+			$this->getDbType() !== self::DB_NONE &&
+			// Service might be disabled, e.g. when running install.php
+			!MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancerFactory' )
+		) {
+			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+			$lbFactory->commitMasterChanges( get_class( $this ) );
+			// @TODO: make less assumptions about deferred updates being coupled to the DB
+			DeferredUpdates::doUpdates();
+		}
+
+		wfLogProfilingData();
+
+		if ( $lbFactory ) {
+			$lbFactory->commitMasterChanges( 'doMaintenance' );
+			$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
 		}
 	}
 
@@ -1382,7 +1411,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Begin a transcation on a DB
+	 * Begin a transaction on a DB
 	 *
 	 * This method makes it clear that begin() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->begin() called in other places.
@@ -1396,7 +1425,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Commit the transcation on a DB handle and wait for replica DBs to catch up
+	 * Commit the transaction on a DB handle and wait for replica DBs to catch up
 	 *
 	 * This method makes it clear that commit() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->commit() called in other places.
@@ -1408,6 +1437,16 @@ abstract class Maintenance {
 	 */
 	protected function commitTransaction( IDatabase $dbw, $fname ) {
 		$dbw->commit( $fname );
+		return $this->waitForReplication();
+	}
+
+	/**
+	 * Wait for replica DBs to catch up
+	 *
+	 * @return bool Whether the replica DB wait succeeded
+	 * @since 1.36
+	 */
+	protected function waitForReplication() {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$waitSucceeded = $lbFactory->waitForReplication(
 			[ 'timeout' => 30, 'ifWritesSince' => $this->lastReplicationWait ]
@@ -1417,7 +1456,7 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Rollback the transcation on a DB handle
+	 * Rollback the transaction on a DB handle
 	 *
 	 * This method makes it clear that rollback() is called from a maintenance script,
 	 * which has outermost scope. This is safe, unlike $dbw->rollback() called in other places.
@@ -1610,16 +1649,16 @@ abstract class Maintenance {
 	private static function readlineEmulation( $prompt ) {
 		$bash = ExecutableFinder::findInDefaultPaths( 'bash' );
 		if ( !wfIsWindows() && $bash ) {
-			$retval = false;
 			$encPrompt = Shell::escape( $prompt );
 			$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
-			$encCommand = Shell::escape( $command );
-			$line = Shell::escape( "$bash -c $encCommand", $retval, [], [ 'walltime' => 0 ] );
+			$result = Shell::command( $bash, '-c', $command )
+				->passStdin()
+				->forwardStderr()
+				->execute();
 
-			// @phan-suppress-next-line PhanImpossibleCondition,PhanSuspiciousValueComparison
-			if ( $retval == 0 ) {
-				return $line;
-			} elseif ( $retval == 127 ) {
+			if ( $result->getExitCode() == 0 ) {
+				return $result->getStdout();
+			} elseif ( $result->getExitCode() == 127 ) {
 				// Couldn't execute bash even though we thought we saw it.
 				// Shell probably spit out an error message, sorry :(
 				// Fall through to fgets()...
@@ -1646,13 +1685,20 @@ abstract class Maintenance {
 	 * @return array
 	 */
 	public static function getTermSize() {
+		static $termSize = null;
+
+		if ( $termSize !== null ) {
+			return $termSize;
+		}
+
 		$default = [ 80, 50 ];
-		if ( wfIsWindows() ) {
-			return $default;
+
+		if ( wfIsWindows() || Shell::isDisabled() ) {
+			$termSize = $default;
+
+			return $termSize;
 		}
-		if ( Shell::isDisabled() ) {
-			return $default;
-		}
+
 		// It's possible to get the screen size with VT-100 terminal escapes,
 		// but reading the responses is not possible without setting raw mode
 		// (unless you want to require the user to press enter), and that
@@ -1660,15 +1706,18 @@ abstract class Maintenance {
 		// something that can do the relevant syscalls. There are a few
 		// options. Linux and Mac OS X both have "stty size" which does the
 		// job directly.
-		$result = Shell::command( 'stty', 'size' )
-			->execute();
-		if ( $result->getExitCode() !== 0 ) {
-			return $default;
+		$result = Shell::command( 'stty', 'size' )->passStdin()->execute();
+		if ( $result->getExitCode() !== 0 ||
+			!preg_match( '/^(\d+) (\d+)$/', $result->getStdout(), $m )
+		) {
+			$termSize = $default;
+
+			return $termSize;
 		}
-		if ( !preg_match( '/^(\d+) (\d+)$/', $result->getStdout(), $m ) ) {
-			return $default;
-		}
-		return [ intval( $m[2] ), intval( $m[1] ) ];
+
+		$termSize = [ intval( $m[2] ), intval( $m[1] ) ];
+
+		return $termSize;
 	}
 
 	/**
@@ -1720,7 +1769,7 @@ abstract class Maintenance {
 	protected function parseIntList( $text ) {
 		$ids = preg_split( '/[\s,;:|]+/', $text );
 		$ids = array_map(
-			function ( $id ) {
+			static function ( $id ) {
 				return (int)$id;
 			},
 			$ids

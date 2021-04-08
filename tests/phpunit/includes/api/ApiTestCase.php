@@ -28,8 +28,8 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			'uploader' => static::getTestUser(),
 		];
 
+		$this->setRequest( new FauxRequest( [] ) );
 		$this->setMwGlobals( [
-			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => self::$users['sysop']->getUser(),
 		] );
 
@@ -46,21 +46,18 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	/**
 	 * Does the API request and returns the result.
 	 *
-	 * The returned value is an array containing
-	 * - the result data (array)
-	 * - the request (WebRequest)
-	 * - the session data of the request (array)
-	 * - if $appendModule is true, the Api module $module
-	 *
 	 * @param array $params
 	 * @param array|null $session
 	 * @param bool $appendModule
 	 * @param User|null $user
 	 * @param string|null $tokenType Set to a string like 'csrf' to send an
 	 *   appropriate token
-	 *
+	 * @return array List of:
+	 * - the result data (array)
+	 * - the request (WebRequest)
+	 * - the session data of the request (array)
+	 * - if $appendModule is true, the Api module $module
 	 * @throws ApiUsageException
-	 * @return array
 	 */
 	protected function doApiRequest( array $params, array $session = null,
 		$appendModule = false, User $user = null, $tokenType = null
@@ -83,25 +80,38 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		// set up global environment
 		if ( $user ) {
 			$wgUser = $user;
+
+			// Only $contextUser should be used, $wgUser is set for anything that still
+			// tries to read it
+			$contextUser = $user;
+		} else {
+			// Fallback, eventually should be removed. Once no tests write to $wgUser
+			// directly or via `setMwGlobals`, this should always be a reference
+			// to `self::$users['sysop']->getUser()` (which is set as the value of
+			// $wgUser in ::setUp) and should be replaced with using that.
+			$contextUser = $wgUser;
 		}
 
+		$sessionObj->setUser( $contextUser );
 		if ( $tokenType !== null ) {
 			if ( $tokenType === 'auto' ) {
 				$tokenType = ( new ApiMain() )->getModuleManager()
 					->getModule( $params['action'], 'action' )->needsToken();
 			}
 			$params['token'] = ApiQueryTokens::getToken(
-				$wgUser, $sessionObj, ApiQueryTokens::getTokenTypeSalts()[$tokenType]
+				$contextUser,
+				$sessionObj,
+				ApiQueryTokens::getTokenTypeSalts()[$tokenType]
 			)->toString();
 		}
 
 		$wgRequest = new FauxRequest( $params, true, $sessionObj );
 		RequestContext::getMain()->setRequest( $wgRequest );
-		RequestContext::getMain()->setUser( $wgUser );
+		RequestContext::getMain()->setUser( $contextUser );
 		MediaWiki\Auth\AuthManager::resetCache();
 
 		// set up local environment
-		$context = $this->apiContext->newTestContext( $wgRequest, $wgUser );
+		$context = $this->apiContext->newTestContext( $wgRequest, $contextUser );
 
 		$module = new ApiMain( $context, true );
 
@@ -138,32 +148,6 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		return $this->doApiRequest( $params, $session, false, $user, $tokenType );
 	}
 
-	/**
-	 * Previously this would do API requests to log in, as well as setting $wgUser and the request
-	 * context's user.  The API requests are unnecessary, and the global-setting is unwanted, so
-	 * this method should not be called.  Instead, pass appropriate User values directly to
-	 * functions that need them.  For functions that still rely on $wgUser, set that directly.  If
-	 * you just want to log in the test sysop user, don't do anything -- that's the default.
-	 *
-	 * @param TestUser|string $testUser Object, or key to self::$users such as 'sysop' or 'uploader'
-	 * @deprecated since 1.31
-	 */
-	protected function doLogin( $testUser = null ) {
-		wfDeprecated( __METHOD__, '1.31' );
-		global $wgUser;
-
-		if ( $testUser === null ) {
-			$testUser = static::getTestSysop();
-		} elseif ( is_string( $testUser ) && array_key_exists( $testUser, self::$users ) ) {
-			$testUser = self::$users[$testUser];
-		} elseif ( !$testUser instanceof TestUser ) {
-			throw new MWException( "Can't log in to undefined user $testUser" );
-		}
-
-		$wgUser = $testUser->getUser();
-		RequestContext::getMain()->setUser( $wgUser );
-	}
-
 	protected function getTokenList( TestUser $user, $session = null ) {
 		$data = $this->doApiRequest( [
 			'action' => 'tokens',
@@ -191,7 +175,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	public static function apiExceptionHasCode( ApiUsageException $ex, $code ) {
 		return (bool)array_filter(
 			self::getErrorFormatter()->arrayFromStatus( $ex->getStatusValue() ),
-			function ( $e ) use ( $code ) {
+			static function ( $e ) use ( $code ) {
 				return is_array( $e ) && $e['code'] === $code;
 			}
 		);

@@ -33,15 +33,16 @@ $namespaceAliases = [
 	'Размовы_пра_выяву' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'img_thumbnail'             => [ '1', 'міні', 'мініяцюра', 'thumb', 'thumbnail' ],
-	'img_manualthumb'           => [ '1', 'міні=$1', 'мініяцюра=$1', 'thumbnail=$1', 'thumb=$1' ],
-	'img_right'                 => [ '1', 'справа', 'right' ],
-	'img_left'                  => [ '1', 'злева', 'left' ],
-	'img_none'                  => [ '1', 'няма', 'none' ],
-	'img_width'                 => [ '1', '$1пкс', '$1px' ],
 	'img_center'                => [ '1', 'цэнтр', 'center', 'centre' ],
 	'img_framed'                => [ '1', 'безрамкі', 'frame', 'framed', 'enframed' ],
+	'img_left'                  => [ '1', 'злева', 'left' ],
+	'img_manualthumb'           => [ '1', 'міні=$1', 'мініяцюра=$1', 'thumbnail=$1', 'thumb=$1' ],
+	'img_none'                  => [ '1', 'няма', 'none' ],
+	'img_right'                 => [ '1', 'справа', 'right' ],
+	'img_thumbnail'             => [ '1', 'міні', 'мініяцюра', 'thumb', 'thumbnail' ],
+	'img_width'                 => [ '1', '$1пкс', '$1px' ],
 ];
 
 $bookstoreList = [

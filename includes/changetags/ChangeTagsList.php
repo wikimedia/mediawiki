@@ -19,6 +19,8 @@
  * @ingroup Change tagging
  */
 
+use MediaWiki\Permissions\Authority;
+
 /**
  * Generic list for change tagging.
  *
@@ -71,13 +73,13 @@ abstract class ChangeTagsList extends RevisionListBase {
 	/**
 	 * Add/remove change tags from all the items in the list.
 	 *
-	 * @param array $tagsToAdd
-	 * @param array $tagsToRemove
+	 * @param string[] $tagsToAdd
+	 * @param string[] $tagsToRemove
 	 * @param string|null $params
 	 * @param string $reason
-	 * @param User $user
+	 * @param Authority $performer
 	 * @return Status
 	 */
 	abstract public function updateChangeTagsOnAll( $tagsToAdd, $tagsToRemove, $params,
-		$reason, $user );
+													$reason, Authority $performer );
 }

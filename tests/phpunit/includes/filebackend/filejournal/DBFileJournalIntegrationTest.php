@@ -125,7 +125,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 		$journal = $this->getJournal();
 
 		$i = 0;
-		$makeExpectedEntry = function ( $op, $path, $newSha1, $batch, $time ) use ( &$i ) {
+		$makeExpectedEntry = static function ( $op, $path, $newSha1, $batch, $time ) use ( &$i ) {
 			$i++;
 			return [
 				'id' => (string)$i,

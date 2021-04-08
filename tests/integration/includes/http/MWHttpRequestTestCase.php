@@ -32,8 +32,8 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		Http::$httpEngine = $this->oldHttpEngine;
+		parent::tearDown();
 	}
 
 	public function testIsRedirect() {
@@ -170,7 +170,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 
 		$request = $this->factory->create( 'http://httpbin.org/ip' );
 		$data = '';
-		$request->setCallback( function ( $fh, $content ) use ( &$data ) {
+		$request->setCallback( static function ( $fh, $content ) use ( &$data ) {
 			$data .= $content;
 			return strlen( $content );
 		} );

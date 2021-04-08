@@ -232,7 +232,7 @@ class MWNamespace {
 
 	/**
 	 * Get a list of all namespace indices which are considered to contain content
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public static function getContentNamespaces() {
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getContentNamespaces();
@@ -242,7 +242,7 @@ class MWNamespace {
 	 * List all namespace indices which are considered subject, aka not a talk
 	 * or special namespace. See also MWNamespace::isSubject
 	 *
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public static function getSubjectNamespaces() {
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectNamespaces();
@@ -252,7 +252,7 @@ class MWNamespace {
 	 * List all namespace indices which are considered talks, aka not a subject
 	 * or special namespace. See also MWNamespace::isTalk
 	 *
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public static function getTalkNamespaces() {
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getTalkNamespaces();

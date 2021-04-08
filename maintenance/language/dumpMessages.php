@@ -34,18 +34,15 @@ require_once __DIR__ . '/../Maintenance.php';
  */
 class DumpMessages extends Maintenance {
 
-	/** @var LocalisationCache */
-	private $localisationCache;
-
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Dump an entire language, using the keys from English' );
-		$this->localisationCache = MediaWikiServices::getInstance()->getLocalisationCache();
 	}
 
 	public function execute() {
 		$messages = [];
-		$localisationMessagesEn = $this->localisationCache->getItem( 'en', 'messages' );
+		$localisationCache = MediaWikiServices::getInstance()->getLocalisationCache();
+		$localisationMessagesEn = $localisationCache->getItem( 'en', 'messages' );
 		foreach ( array_keys( $localisationMessagesEn ) as $key ) {
 			$messages[$key] = wfMessage( $key )->text();
 		}

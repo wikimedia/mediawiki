@@ -57,7 +57,7 @@ class SiteTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddNavigationId( Site $site ) {
 		$site->addNavigationId( 'foobar' );
-		$this->assertTrue( in_array( 'foobar', $site->getNavigationIds(), true ) );
+		$this->assertContains( 'foobar', $site->getNavigationIds() );
 	}
 
 	/**
@@ -67,7 +67,7 @@ class SiteTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddInterwikiId( Site $site ) {
 		$site->addInterwikiId( 'foobar' );
-		$this->assertTrue( in_array( 'foobar', $site->getInterwikiIds(), true ) );
+		$this->assertContains( 'foobar', $site->getInterwikiIds() );
 	}
 
 	/**

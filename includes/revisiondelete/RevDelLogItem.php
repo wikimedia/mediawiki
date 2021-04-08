@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -110,7 +111,11 @@ class RevDelLogItem extends RevDelItem {
 		// User links and action text
 		$action = $formatter->getActionText();
 
-		$comment = CommentStore::getStore()->getComment( 'log_comment', $this->row )->text;
+		$comment = MediaWikiServices::getInstance()
+			->getCommentStore()
+			->getComment( 'log_comment', $this->row )
+			->text;
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped false positive
 		$comment = $this->list->getLanguage()->getDirMark()
 			. Linker::commentBlock( $comment );
 

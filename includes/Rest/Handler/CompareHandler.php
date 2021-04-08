@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\Handler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\StringStream;
@@ -12,9 +11,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use Parser;
-use RequestContext;
 use TextContent;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -22,14 +19,8 @@ class CompareHandler extends Handler {
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var Parser */
 	private $parser;
-
-	/** @var User */
-	private $user;
 
 	/** @var RevisionRecord[] */
 	private $revisions = [];
@@ -39,15 +30,10 @@ class CompareHandler extends Handler {
 
 	public function __construct(
 		RevisionLookup $revisionLookup,
-		PermissionManager $permissionManager,
 		Parser $parser
 	) {
 		$this->revisionLookup = $revisionLookup;
-		$this->permissionManager = $permissionManager;
 		$this->parser = $parser;
-
-		// @todo Inject this, when there is a good way to do that
-		$this->user = RequestContext::getMain()->getUser();
 	}
 
 	public function execute() {
@@ -59,9 +45,7 @@ class CompareHandler extends Handler {
 				new MessageValue( 'rest-compare-page-mismatch' ), 400 );
 		}
 
-		if ( !$this->permissionManager->userCan( 'read', $this->user,
-			$toRev->getPageAsLinkTarget() )
-		) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $toRev->getPage() ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-compare-permission-denied' ), 403 );
 		}
@@ -127,11 +111,7 @@ class CompareHandler extends Handler {
 	 * @return bool
 	 */
 	private function isAccessible( $rev ) {
-		return $rev->audienceCan(
-			RevisionRecord::DELETED_TEXT,
-			RevisionRecord::FOR_THIS_USER,
-			$this->user
-		);
+		return $rev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() );
 	}
 
 	private function getRole() {
@@ -143,7 +123,7 @@ class CompareHandler extends Handler {
 			$revision = $this->getRevision( $paramName );
 			try {
 				$content = $revision
-					->getSlot( $this->getRole(), RevisionRecord::FOR_THIS_USER, $this->user )
+					->getSlot( $this->getRole(), RevisionRecord::FOR_THIS_USER, $this->getAuthority() )
 					->getContent()
 					->convert( CONTENT_MODEL_TEXT );
 				if ( $content instanceof TextContent ) {

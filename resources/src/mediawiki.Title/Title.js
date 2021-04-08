@@ -116,8 +116,19 @@ var toUpperMap,
 
 	/**
 	 * @private
+	 * @method isKnownNamespace
+	 * @param {number} namespace that may or may not exist
+	 * @return {boolean}
+	 */
+	isKnownNamespace = function ( namespace ) {
+		return namespace === NS_MAIN || mw.config.get( 'wgFormattedNamespaces' )[ namespace ] !== undefined;
+	},
+
+	/**
+	 * @private
 	 * @method getNamespacePrefix_
-	 * @param {number} namespace
+	 * @param {number} namespace that is valid and known. Callers should call
+	 *  `isKnownNamespace` before executing this method.
 	 * @return {string}
 	 */
 	getNamespacePrefix = function ( namespace ) {
@@ -471,7 +482,11 @@ Title.newFromText = function ( title, namespace ) {
  * @return {mw.Title|null} A valid Title object or null if the title is invalid
  */
 Title.makeTitle = function ( namespace, title ) {
-	return mw.Title.newFromText( getNamespacePrefix( namespace ) + title );
+	if ( !isKnownNamespace( namespace ) ) {
+		return null;
+	} else {
+		return mw.Title.newFromText( getNamespacePrefix( namespace ) + title );
+	}
 };
 
 /**
@@ -797,18 +812,6 @@ Title.prototype = {
 			return null;
 		}
 		return this.title.slice( lastDot + 1 ) || null;
-	},
-
-	/**
-	 * Shortcut for appendable string to form the main page name.
-	 *
-	 * Returns a string like ".json", or "" if no extension.
-	 *
-	 * @return {string}
-	 */
-	getDotExtension: function () {
-		var ext = this.getExtension();
-		return ext === null ? '' : '.' + ext;
 	},
 
 	/**

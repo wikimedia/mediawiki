@@ -5,6 +5,7 @@ namespace Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
@@ -12,7 +13,9 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class EnumDefTest extends TypeDefTestCase {
 
-	protected static $testClass = EnumDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new EnumDef( $callbacks, $options );
+	}
 
 	public function provideValidate() {
 		$settings = [

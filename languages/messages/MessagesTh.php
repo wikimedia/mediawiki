@@ -51,6 +51,7 @@ $namespaceAliases = [
 	'คุยเรื่องภาพ' => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ผู้ใช้ที่มีความเคลื่อนไหว' ],
 	'Allmessages'               => [ 'ข้อความทั้งหมด' ],
@@ -59,6 +60,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'ชื่อเรื่องไม่เหมาะสม' ],
 	'Blankpage'                 => [ 'หน้าว่าง' ],
 	'Block'                     => [ 'บล็อกไอพี' ],
+	'BlockList'                 => [ 'รายชื่อผู้ใช้ที่ถูกบล็อก', 'รายการบล็อก', 'รายชื่อไอพีที่ถูกบล็อก' ],
 	'Booksources'               => [ 'แหล่งหนังสือ' ],
 	'BrokenRedirects'           => [ 'เปลี่ยนทางเสีย' ],
 	'Categories'                => [ 'หมวดหมู่' ],
@@ -80,7 +82,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'นำเข้า' ],
 	'Invalidateemail'           => [ 'ยกเลิกการยืนยันทางอีเมล' ],
 	'JavaScriptTest'            => [ 'ทดสอบจาวาสคริปต์' ],
-	'BlockList'                 => [ 'รายชื่อผู้ใช้ที่ถูกบล็อก', 'รายการบล็อก', 'รายชื่อไอพีที่ถูกบล็อก' ],
 	'LinkSearch'                => [ 'ค้นหาเว็บลิงก์' ],
 	'Listadmins'                => [ 'รายชื่อผู้ดูแล' ],
 	'Listbots'                  => [ 'รายชื่อบอต' ],
@@ -149,13 +150,14 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'หน้าที่ไม่มีลิงก์ข้ามภาษา' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#เปลี่ยนทาง', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__ไม่มีสารบัญ__', '__NOTOC__' ],
-	'nogallery'                 => [ '0', '__ไม่มีแกลเลอรี่__', '__NOGALLERY__' ],
-	'noeditsection'             => [ '0', '__ไม่มีแก้เฉพาะส่วน__', '__NOEDITSECTION__' ],
 	'currentmonth'              => [ '1', 'เดือนปัจจุบัน', 'CURRENTMONTH', 'CURRENTMONTH2' ],
 	'currentmonthname'          => [ '1', 'ชื่อเดือนปัจจุบัน', 'CURRENTMONTHNAME' ],
+	'noeditsection'             => [ '0', '__ไม่มีแก้เฉพาะส่วน__', '__NOEDITSECTION__' ],
+	'nogallery'                 => [ '0', '__ไม่มีแกลเลอรี่__', '__NOGALLERY__' ],
+	'notoc'                     => [ '0', '__ไม่มีสารบัญ__', '__NOTOC__' ],
+	'redirect'                  => [ '0', '#เปลี่ยนทาง', '#REDIRECT' ],
 ];
 
 $datePreferences = [

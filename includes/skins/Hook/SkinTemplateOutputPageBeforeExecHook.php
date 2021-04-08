@@ -6,6 +6,9 @@ use QuickTemplate;
 use SkinTemplate;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "SkinTemplateOutputPageBeforeExec" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35. See
  * https://www.mediawiki.org/wiki/Manual:Hooks/SkinTemplateOutputPageBeforeExec
  * for migration notes.

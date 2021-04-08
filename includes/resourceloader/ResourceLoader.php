@@ -29,6 +29,8 @@ use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Wikimedia\DependencyStore\DependencyStore;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
+use Wikimedia\Minify\CSSMin;
+use Wikimedia\Minify\JavaScriptMinifier;
 use Wikimedia\Rdbms\DBConnectionError;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WrappedString;
@@ -97,7 +99,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	private $moduleSkinStyles = [];
 
-	/** @var bool */
+	/** @var int|null */
 	protected static $debugMode = null;
 
 	/** @var int */
@@ -165,8 +167,8 @@ class ResourceLoader implements LoggerAwareInterface {
 	 *
 	 * Available filters are:
 	 *
-	 *    - minify-js \see JavaScriptMinifier::minify
-	 *    - minify-css \see CSSMin::minify
+	 *    - minify-js
+	 *    - minify-css
 	 *
 	 * If $data is empty, only contains whitespace or the filter was unknown,
 	 * $data is returned unmodified.
@@ -234,22 +236,18 @@ class ResourceLoader implements LoggerAwareInterface {
 
 	/**
 	 * Register core modules and runs registration hooks.
-	 * @param Config|null $config
+	 * @param Config $config
 	 * @param LoggerInterface|null $logger [optional]
 	 * @param DependencyStore|null $tracker [optional]
 	 */
 	public function __construct(
-		Config $config = null,
+		Config $config,
 		LoggerInterface $logger = null,
 		DependencyStore $tracker = null
 	) {
 		$this->logger = $logger ?: new NullLogger();
 		$services = MediaWikiServices::getInstance();
 
-		if ( !$config ) {
-			wfDeprecated( __METHOD__ . ' without a Config instance', '1.34' );
-			$config = $services->getMainConfig();
-		}
 		$this->config = $config;
 
 		$this->hookContainer = $services->getHookContainer();
@@ -327,6 +325,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	/**
 	 * Register a module with the ResourceLoader system.
 	 *
+	 * @see $wgResourceModules for the available options.
 	 * @param string|array[] $name Module name as a string or, array of module info arrays
 	 *  keyed by name.
 	 * @param array|null $info Module info array. When using the first parameter to register
@@ -476,9 +475,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get a list of module names.
-	 *
-	 * @return array List of module names
+	 * @return string[]
 	 */
 	public function getModuleNames() {
 		return array_keys( $this->moduleInfos );
@@ -488,7 +485,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * Get a list of module names with QUnit test suites.
 	 *
 	 * @internal For use by SpecialJavaScriptTest only
-	 * @return array
+	 * @return string[]
 	 * @codeCoverageIgnore
 	 */
 	public function getTestSuiteModuleNames() {
@@ -947,7 +944,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	}
 
 	protected function measureResponseTime( Timing $timing ) {
-		DeferredUpdates::addCallableUpdate( function () use ( $timing ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $timing ) {
 			$measure = $timing->measure( 'responseTime', 'requestStart', 'requestShutdown' );
 			if ( $measure !== false ) {
 				$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
@@ -1548,9 +1545,7 @@ MESSAGE;
 	 *  - string|null: Module group (optional)
 	 *  - string|null: Name of foreign module source, or 'local' (optional)
 	 *  - string|null: Script body of a skip function (optional)
-	 * @codingStandardsIgnoreStart
 	 * @phan-param array<int,array{0:string,1:string,2?:?array,3?:?string,4?:?string,5?:?string}> $modules
-	 * @codingStandardsIgnoreEnd
 	 * @return string JavaScript code
 	 */
 	public static function makeLoaderRegisterScript(
@@ -1758,14 +1753,15 @@ MESSAGE;
 	 * - 2) Cookie,
 	 * - 3) Site configuration.
 	 *
-	 * @return bool
+	 * @return int
 	 */
 	public static function inDebugMode() {
 		if ( self::$debugMode === null ) {
 			global $wgRequest, $wgResourceLoaderDebug;
-			self::$debugMode = $wgRequest->getFuzzyBool( 'debug',
-				$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug )
+			$str = $wgRequest->getRawVal( 'debug',
+				$wgRequest->getCookie( 'resourceLoaderDebug', '', $wgResourceLoaderDebug ? 'true' : '' )
 			);
+			self::$debugMode = ResourceLoaderContext::debugFromString( $str );
 		}
 		return self::$debugMode;
 	}
@@ -1837,7 +1833,7 @@ MESSAGE;
 	 * @param string $skin
 	 * @param string|null $user
 	 * @param string|null $version
-	 * @param bool $debug
+	 * @param int $debug
 	 * @param string|null $only
 	 * @param bool $printable
 	 * @param bool $handheld
@@ -1845,8 +1841,8 @@ MESSAGE;
 	 * @return array
 	 */
 	public static function makeLoaderQuery( array $modules, $lang, $skin, $user = null,
-		$version = null, $debug = false, $only = null, $printable = false,
-		$handheld = false, array $extraQuery = []
+		$version = null, $debug = ResourceLoaderContext::DEBUG_OFF, $only = null,
+		$printable = false, $handheld = false, array $extraQuery = []
 	) {
 		$query = [
 			'modules' => self::makePackedModulesString( $modules ),
@@ -1861,8 +1857,8 @@ MESSAGE;
 		if ( $skin !== ResourceLoaderContext::DEFAULT_SKIN ) {
 			$query['skin'] = $skin;
 		}
-		if ( $debug === true ) {
-			$query['debug'] = 'true';
+		if ( $debug !== ResourceLoaderContext::DEBUG_OFF ) {
+			$query['debug'] = strval( $debug );
 		}
 		if ( $user !== null ) {
 			$query['user'] = $user;
@@ -1907,10 +1903,11 @@ MESSAGE;
 	 * @param array $vars Associative array of variables that should be used
 	 *  for compilation. Since 1.32, this method no longer automatically includes
 	 *  global LESS vars from ResourceLoader::getLessVars (T191937).
+	 * @param array $importDirs Additional directories to look in for @import (since 1.36)
 	 * @throws MWException
 	 * @return Less_Parser
 	 */
-	public function getLessCompiler( $vars = [] ) {
+	public function getLessCompiler( array $vars = [], array $importDirs = [] ) {
 		global $IP;
 		// When called from the installer, it is possible that a required PHP extension
 		// is missing (at least for now; see T49564). If this is the case, throw an
@@ -1919,11 +1916,12 @@ MESSAGE;
 			throw new MWException( 'MediaWiki requires the less.php parser' );
 		}
 
+		$importDirs[] = "$IP/resources/src/mediawiki.less";
+
 		$parser = new Less_Parser;
 		$parser->ModifyVars( $vars );
-		$parser->SetImportDirs( [
-			"$IP/resources/src/mediawiki.less/" => '',
-		] );
+		// SetImportDirs expects an array like [ 'path1' => '', 'path2' => '' ]
+		$parser->SetImportDirs( array_fill_keys( $importDirs, '' ) );
 		$parser->SetOption( 'relativeUrls', false );
 
 		return $parser;

@@ -5,5 +5,8 @@
 		]
 	},
 	"rest-nonexistent-title": "Il titolo indicato ($1) non esiste",
-	"rest-nonexistent-revision": "La versione richiesta ($1) non esiste."
+	"rest-nonexistent-revision": "La versione richiesta ($1) non esiste.",
+	"rest-nonexistent-user": "L'utente indicato ($1) non esiste",
+	"rest-invalid-user": "Il nome utente indicato ($1) non è valido",
+	"rest-permission-denied-anon": "Non accessibile ad utenti anonimi"
 }

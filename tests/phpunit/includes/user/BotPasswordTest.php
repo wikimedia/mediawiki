@@ -48,10 +48,10 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$mock2->expects( $this->never() )->method( 'lookupCentralIds' );
 
 		$this->mergeMwGlobalArrayValue( 'wgCentralIdLookupProviders', [
-			'BotPasswordTest OkMock' => [ 'factory' => function () use ( $mock1 ) {
+			'BotPasswordTest OkMock' => [ 'factory' => static function () use ( $mock1 ) {
 				return $mock1;
 			} ],
-			'BotPasswordTest FailMock' => [ 'factory' => function () use ( $mock2 ) {
+			'BotPasswordTest FailMock' => [ 'factory' => static function () use ( $mock2 ) {
 				return $mock2;
 			} ],
 		] );

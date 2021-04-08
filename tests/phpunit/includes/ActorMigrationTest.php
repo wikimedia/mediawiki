@@ -1,7 +1,11 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ActorStore;
+use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\ScopedCallback;
+use MediaWiki\User\UserIdentityValue;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -10,48 +14,11 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ActorMigrationTest extends MediaWikiLangTestCase {
 
-	protected $resetActorMigration = null;
 	protected static $amId = 0;
 
 	protected $tablesUsed = [
 		'actor',
 	];
-
-	protected function setUp() : void {
-		parent::setUp();
-
-		$w = TestingAccessWrapper::newFromClass( ActorMigration::class );
-		$data = [
-			'tempTables' => $w->tempTables,
-			'formerTempTables' => $w->formerTempTables,
-			'deprecated' => $w->deprecated,
-			'removed' => $w->removed,
-			'specialFields' => $w->specialFields,
-		];
-		$this->resetActorMigration = new ScopedCallback( function ( $w, $data ) {
-			foreach ( $data as $k => $v ) {
-				$w->$k = $v;
-			}
-		}, [ $w, $data ] );
-
-		$w->tempTables = [
-			'am2_user' => [
-				'table' => 'actormigration2_temp',
-				'pk' => 'am2t_id',
-				'field' => 'am2t_actor',
-				'joinPK' => 'am2_id',
-				'extra' => [],
-			]
-		];
-		$w->specialFields = [
-			'am3_xxx' => [ 'am3_xxx_text', 'am3_xxx_actor' ],
-		];
-	}
-
-	protected function tearDown() : void {
-		parent::tearDown();
-		ScopedCallback::consume( $this->resetActorMigration );
-	}
 
 	protected function getSchemaOverrides( IMaintainableDatabase $db ) {
 		return [
@@ -64,6 +31,27 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	private function getMigration( $stage ) {
+		$mwServices = MediaWikiServices::getInstance();
+		return new class(
+			$stage,
+			$mwServices->getActorStoreFactory()
+		) extends ActorMigration {
+			protected const TEMP_TABLES = [
+				'am2_user' => [
+					'table' => 'actormigration2_temp',
+					'pk' => 'am2t_id',
+					'field' => 'am2t_actor',
+					'joinPK' => 'am2_id',
+					'extra' => [],
+				],
+			];
+			protected const SPECIAL_FIELDS = [
+				'am3_xxx' => [ 'am3_xxx_text', 'am3_xxx_actor' ],
+			];
+		};
+	}
+
 	/**
 	 * @dataProvider provideConstructor
 	 * @param int $stage
@@ -71,7 +59,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testConstructor( $stage, $exceptionMsg ) {
 		try {
-			$m = new ActorMigration( $stage );
+			$m = $this->getMigration( $stage );
 			if ( $exceptionMsg !== null ) {
 				$this->fail( 'Expected exception not thrown' );
 			}
@@ -118,7 +106,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetJoin( $stage, $key, $expect ) {
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$result = $m->getJoin( $key );
 		$this->assertEquals( $expect, $result );
 	}
@@ -282,6 +270,53 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		];
 	}
 
+	private const ACTORS = [
+		[ 1, 'User1', 11 ],
+		[ 2, 'User2', 12 ],
+		[ 0, '192.168.12.34', 34 ],
+	];
+
+	private static function findRow( $table, $index, $value ) {
+		foreach ( $table as $row ) {
+			if ( $row[$index] === $value ) {
+				return $row;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * @return ActorStore
+	 */
+	private function getMockActorStore() {
+		/** @var MockObject|ActorStore $mock */
+		$mock = $this->createNoOpMock( ActorStore::class, [ 'findActorId' ] );
+
+		$mock->method( 'findActorId' )
+			->willReturnCallback( function ( UserIdentity $user ) {
+				$row = self::findRow( self::ACTORS, 1, $user->getName() );
+				return $row ? $row[2] : null;
+			} );
+
+		return $mock;
+	}
+
+	/**
+	 * @return ActorStoreFactory
+	 */
+	private function getMockActorStoreFactory() {
+		$store = $this->getMockActorStore();
+
+		/** @var MockObject|ActorStoreFactory $mock */
+		$mock = $this->createNoOpMock( ActorStoreFactory::class, [ 'getActorNormalization' ] );
+
+		$mock->method( 'getActorNormalization' )
+			->willReturn( $store );
+
+		return $mock;
+	}
+
 	/**
 	 * @dataProvider provideGetWhere
 	 * @param int $stage
@@ -291,31 +326,27 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetWhere( $stage, $key, $users, $useId, $expect ) {
+		$this->setService( 'ActorStoreFactory', $this->getMockActorStoreFactory() );
+
 		if ( !isset( $expect['conds'] ) ) {
 			$expect['conds'] = '(' . implode( ') OR (', $expect['orconds'] ) . ')';
 		}
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$result = $m->getWhere( $this->db, $key, $users, $useId );
 		$this->assertEquals( $expect, $result );
 	}
 
 	public function provideGetWhere() {
-		$makeUserIdentity = function ( $id, $name, $actor ) {
-			$u = $this->createMock( UserIdentity::class );
-			$u->method( 'getId' )->willReturn( $id );
-			$u->method( 'getName' )->willReturn( $name );
-			$u->method( 'getActorId' )->willReturn( $actor );
-			return $u;
-		};
-
-		$genericUser = $makeUserIdentity( 1, 'User1', 11 );
+		$genericUser = new UserIdentityValue( 1, 'User1', 11 );
 		$complicatedUsers = [
-			$makeUserIdentity( 1, 'User1', 11 ),
-			$makeUserIdentity( 2, 'User2', 12 ),
-			$makeUserIdentity( 3, 'User3', 0 ),
-			$makeUserIdentity( 0, '192.168.12.34', 34 ),
-			$makeUserIdentity( 0, '192.168.12.35', 0 ),
+			new UserIdentityValue( 1, 'User1', 11 ),
+			new UserIdentityValue( 2, 'User2', 12 ),
+			new UserIdentityValue( 3, 'User3', 0 ),
+			new UserIdentityValue( 0, '192.168.12.34', 34 ),
+			new UserIdentityValue( 0, '192.168.12.35', 0 ),
+			// test handling of non-normalized IPv6 IP
+			new UserIdentityValue( 0, '2600:1004:b14a:5ddd:3ebe:bba4:bfba:f37e', 0 ),
 		];
 
 		return [
@@ -419,7 +450,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'tables' => [],
 					'orconds' => [
 						'userid' => "am1_user IN (1,2,3) ",
-						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35') "
+						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35',"
+							. "'2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
 					],
 					'joins' => [],
 				],
@@ -429,7 +461,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'tables' => [],
 					'orconds' => [
 						'userid' => "am1_user IN (1,2,3) ",
-						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35') "
+						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35',"
+							. "'2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
 					],
 					'joins' => [],
 				],
@@ -453,28 +486,30 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				SCHEMA_COMPAT_OLD, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [
-						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34','192.168.12.35') "
+						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34',"
+							. "'192.168.12.35','2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
 					],
 					'joins' => [],
 				],
 			],
-			'Multiple users, read-old' => [
+			'Multiple users, no use ID, read-old' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [
-						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34','192.168.12.35') "
+						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34',"
+							. "'192.168.12.35','2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
 					],
 					'joins' => [],
 				],
 			],
-			'Multiple users, read-new' => [
+			'Multiple users, no use ID, read-new' => [
 				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
 					'joins' => [],
 				],
 			],
-			'Multiple users, new' => [
+			'Multiple users, no use ID, new' => [
 				SCHEMA_COMPAT_NEW, 'am1_user', $complicatedUsers, false, [
 					'tables' => [],
 					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
@@ -518,7 +553,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			'ActorMigration::getWhere: Value for $users must be a UserIdentity or array, got string'
 		);
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$result = $m->getWhere( $this->db, 'am1_user', 'Foo' );
 	}
 
@@ -531,10 +566,9 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertRoundTrip( $table, $key, $pk, $usesTemp ) {
 		$u = $this->getTestUser()->getUser();
-		$user = $this->createMock( UserIdentity::class );
-		$user->method( 'getId' )->willReturn( $u->getId() );
-		$user->method( 'getName' )->willReturn( $u->getName() );
-		$user->method( 'getActorId' )->willReturn( $u->getActorId( $this->db ) );
+		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
+		$actorId = $actorNormalization->acquireActorId( $u, $this->db );
+		$user = new UserIdentityValue( $u->getId(), $u->getName(), $actorId );
 
 		$stageNames = [
 			SCHEMA_COMPAT_OLD => 'old',
@@ -570,7 +604,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$actorKey = ( $key === 'am3_xxx' ? $key : substr( $key, 0, -5 ) ) . '_actor';
 
 		foreach ( $stages as $writeStage => $possibleReadStages ) {
-			$w = new ActorMigration( $writeStage );
+			$w = $this->getMigration( $writeStage );
 
 			if ( $usesTemp ) {
 				list( $fields, $callback ) = $w->getInsertValuesWithTempTable( $this->db, $key, $user );
@@ -602,7 +636,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			}
 
 			foreach ( $possibleReadStages as $readStage ) {
-				$r = new ActorMigration( $readStage );
+				$r = $this->getMigration( $readStage );
 
 				$queryInfo = $r->getJoin( $key );
 				$row = $this->db->selectRow(
@@ -649,7 +683,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWrong( $stage ) {
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Must use getInsertValuesWithTempTable() for am2_user" );
 		$m->getInsertValues( $this->db, 'am2_user', $this->getTestUser()->getUser() );
@@ -660,7 +694,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableWrong( $stage ) {
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( "Must use getInsertValues() for am1_user" );
 		$m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
@@ -671,11 +705,13 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableDeprecated( $stage ) {
-		$wrap = TestingAccessWrapper::newFromClass( ActorMigration::class );
-		$wrap->formerTempTables += [ 'am1_user' => '1.30' ];
-
 		$this->hideDeprecated( 'ActorMigration::getInsertValuesWithTempTable for am1_user' );
-		$m = new ActorMigration( $stage );
+		$m = new class(
+			$stage,
+			MediaWikiServices::getInstance()->getActorStoreFactory()
+		) extends ActorMigration {
+			protected const FORMER_TEMP_TABLES = [ 'am1_user' => '1.30' ];
+		};
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
 		$this->assertIsCallable( $callback );
@@ -686,18 +722,20 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableCallbackMissingFields( $stage ) {
-		$w = TestingAccessWrapper::newFromClass( ActorMigration::class );
-		$w->tempTables = [
-			'foo_user' => [
-				'table' => 'foo_temp',
-				'pk' => 'footmp_id',
-				'field' => 'footmp_actor',
-				'joinPK' => 'foo_id',
-				'extra' => [ 'footmp_timestamp' => 'foo_timestamp' ],
-			],
-		];
-
-		$m = new ActorMigration( $stage );
+		$m = new class(
+			$stage,
+			MediaWikiServices::getInstance()->getActorStoreFactory()
+		) extends ActorMigration {
+			protected const TEMP_TABLES = [
+				'foo_user' => [
+					'table' => 'foo_temp',
+					'pk' => 'footmp_id',
+					'field' => 'footmp_actor',
+					'joinPK' => 'foo_id',
+					'extra' => [ 'footmp_timestamp' => 'foo_timestamp' ],
+				],
+			];
+		};
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'foo_user', $this->getTestUser()->getUser() );
 		$this->expectException( InvalidArgumentException::class );
@@ -711,12 +749,9 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertUserIdentity( $stage ) {
 		$user = $this->getMutableTestUser()->getUser();
-		$userIdentity = $this->createMock( UserIdentity::class );
-		$userIdentity->method( 'getId' )->willReturn( $user->getId() );
-		$userIdentity->method( 'getName' )->willReturn( $user->getName() );
-		$userIdentity->method( 'getActorId' )->willReturn( 0 );
+		$userIdentity = new UserIdentityValue( $user->getId(), $user->getName(), 0 );
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		list( $fields, $callback ) =
 			$m->getInsertValuesWithTempTable( $this->db, 'am2_user', $userIdentity );
 		$id = ++self::$amId;
@@ -739,7 +774,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			(int)$row->am2_actor
 		);
 
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$fields = $m->getInsertValues( $this->db, 'dummy_user', $userIdentity );
 		if ( $stage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$this->assertSame( $user->getId(), $fields['dummy_user'] );
@@ -768,7 +803,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param string $isNotAnon
 	 */
 	public function testIsAnon( $stage, $isAnon, $isNotAnon ) {
-		$m = new ActorMigration( $stage );
+		$m = $this->getMigration( $stage );
 		$this->assertSame( $isAnon, $m->isAnon( 'foo' ) );
 		$this->assertSame( $isNotAnon, $m->isNotAnon( 'foo' ) );
 	}
@@ -785,9 +820,15 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	public function testCheckDeprecation() {
-		$wrap = TestingAccessWrapper::newFromClass( ActorMigration::class );
-		$wrap->deprecated += [ 'soft' => null, 'hard' => '1.34' ];
-		$wrap->removed += [ 'gone' => '1.34' ];
+		$m = new class(
+			SCHEMA_COMPAT_NEW,
+			MediaWikiServices::getInstance()->getActorStoreFactory()
+		) extends ActorMigration {
+			protected const DEPRECATED = [ 'soft' => null, 'hard' => '1.34' ];
+			protected const REMOVED = [ 'gone' => '1.34' ];
+		};
+		/** @var ActorMigration $wrap */
+		$wrap = TestingAccessWrapper::newFromObject( $m );
 
 		$this->hideDeprecated( 'ActorMigration for \'hard\'' );
 

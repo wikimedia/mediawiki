@@ -18,6 +18,9 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+
 /**
  * Trait for functionality related to media files
  * @since 1.35
@@ -25,7 +28,7 @@
  */
 trait MediaFileTrait {
 	/**
-	 * @param File $file the file object
+	 * @param File $file
 	 * @param User $user user object (for permissions check)
 	 * @param array $transforms array of transforms to include in the response
 	 * @return array response data
@@ -136,17 +139,17 @@ trait MediaFileTrait {
 	/**
 	 * Returns the corresponding $wgImageLimits entry for the selected user option
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
 	 * @return int[]
 	 * @since 1.35
 	 */
-	public static function getImageLimitsFromOption( $user, $optionName ) {
+	public static function getImageLimitsFromOption( UserIdentity $user, string $optionName ) {
 		global $wgImageLimits;
-
-		$option = $user->getIntOption( $optionName );
+		$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$option = $optionsLookup->getIntOption( $user, $optionName );
 		if ( !isset( $wgImageLimits[$option] ) ) {
-			$option = User::getDefaultOption( $optionName );
+			$option = $optionsLookup->getDefaultOption( $optionName );
 		}
 
 		// The user offset might still be incorrect, specially if

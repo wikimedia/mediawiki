@@ -216,7 +216,6 @@
 	"exif-photometricinterpretation-4": "透明マスク",
 	"exif-photometricinterpretation-5": "分版 (おそらく CMYK)",
 	"exif-photometricinterpretation-6": "YCbCr",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC エンコード)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU エンコード)",
 	"exif-photometricinterpretation-32803": "カラーフィルター配列",
@@ -396,5 +395,12 @@
 	"exif-urgency-normal": "通常 ($1)",
 	"exif-urgency-low": "低 ($1)",
 	"exif-urgency-high": "高 ($1)",
-	"exif-urgency-other": "利用者定義の優先度 ($1)"
+	"exif-urgency-other": "利用者定義の優先度 ($1)",
+	"exif-usepanoramaviewer": "パノラマビューワーを使用するか",
+	"exif-usepanoramaviewer-true": "はい",
+	"exif-usepanoramaviewer-false": "いいえ",
+	"exif-exposurelockused": "露出を固定していたか",
+	"exif-exposurelockused-true": "はい",
+	"exif-exposurelockused-false": "いいえ",
+	"exif-stitchingsoftware": "スティッチングソフトウェア"
 }

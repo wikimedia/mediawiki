@@ -382,7 +382,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$context = new DerivativeResourceLoaderContext(
 			new ResourceLoaderContext( $rl, new FauxRequest() )
 		);
-		$context->setContentOverrideCallback( function ( Title $t ) {
+		$context->setContentOverrideCallback( static function ( Title $t ) {
 			if ( $t->getPrefixedText() === 'MediaWiki:Common.css' ) {
 				return new CssContent( '.override{}' );
 			}
@@ -396,7 +396,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			]
 		], $module->getStyles( $context ) );
 
-		$context->setContentOverrideCallback( function ( Title $t ) {
+		$context->setContentOverrideCallback( static function ( Title $t ) {
 			if ( $t->getPrefixedText() === 'MediaWiki:Skin.css' ) {
 				return new CssContent( '.override{}' );
 			}
@@ -417,7 +417,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			->willReturn( [
 				'MediaWiki:Redirect.js' => [ 'type' => 'script' ]
 			] );
-		$context->setContentOverrideCallback( function ( Title $title ) {
+		$context->setContentOverrideCallback( static function ( Title $title ) {
 			if ( $title->getPrefixedText() === 'MediaWiki:Redirect.js' ) {
 				$handler = new JavaScriptContentHandler();
 				return $handler->makeRedirectContent(

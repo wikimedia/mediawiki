@@ -46,6 +46,7 @@ $namespaceAliases = [
 // Remove Russian gender aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Эдэбхитэй_хэрэглэгшэд' ],
 	'Allmessages'               => [ 'Бүхы_зурбас' ],

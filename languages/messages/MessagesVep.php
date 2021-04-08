@@ -35,6 +35,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Lodu_kategorijas',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'KaikTedotused' ],
 	'Allpages'                  => [ 'KaikLehtesed' ],
@@ -69,19 +70,20 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'KaclendNimikirjutez' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'img_right'                 => [ '1', 'oiged', 'paremal', 'right' ],
-	'img_left'                  => [ '1', 'hura', 'vasakul', 'left' ],
-	'img_none'                  => [ '1', 'eile', 'tühi', 'none' ],
-	'img_width'                 => [ '1', '$1piks', '$1px' ],
-	'img_border'                => [ '1', 'röun', 'ääris', 'border' ],
-	'img_top'                   => [ '1', 'üläh', 'top' ],
-	'img_middle'                => [ '1', 'kesk', 'middle' ],
-	'img_bottom'                => [ '1', 'ala', 'bottom' ],
-	'sitename'                  => [ '1', 'SAITANNIMI', 'KOHANIMI', 'SITENAME' ],
-	'grammar'                   => [ '0', 'GRAMMATIK:', 'GRAMMAR:' ],
-	'gender'                    => [ '0', 'SUGU:', 'GENDER:' ],
-	'plural'                    => [ '0', 'ÄILUGU:', 'PLURAL:' ],
 	'fullurl'                   => [ '0', 'TÄUZ\'URL:', 'KOGUURL:', 'FULLURL:' ],
+	'gender'                    => [ '0', 'SUGU:', 'GENDER:' ],
+	'grammar'                   => [ '0', 'GRAMMATIK:', 'GRAMMAR:' ],
+	'img_border'                => [ '1', 'röun', 'ääris', 'border' ],
+	'img_bottom'                => [ '1', 'ala', 'bottom' ],
+	'img_left'                  => [ '1', 'hura', 'vasakul', 'left' ],
+	'img_middle'                => [ '1', 'kesk', 'middle' ],
+	'img_none'                  => [ '1', 'eile', 'tühi', 'none' ],
+	'img_right'                 => [ '1', 'oiged', 'paremal', 'right' ],
+	'img_top'                   => [ '1', 'üläh', 'top' ],
+	'img_width'                 => [ '1', '$1piks', '$1px' ],
 	'index'                     => [ '1', '__INDEKS__', 'INDEKSIGA', '__INDEX__' ],
+	'plural'                    => [ '0', 'ÄILUGU:', 'PLURAL:' ],
+	'sitename'                  => [ '1', 'SAITANNIMI', 'KOHANIMI', 'SITENAME' ],
 ];

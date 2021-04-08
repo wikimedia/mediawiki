@@ -48,12 +48,12 @@ trait ResourceLoaderOOUIModule {
 		'icons-wikimedia',
 	];
 
-	// Note that keys must be lowercase, values TitleCase.
+	/** @var string[] Note that keys must be lowercase, values TitleCase. */
 	protected static $builtinSkinThemeMap = [
 		'default' => 'WikimediaUI',
 	];
 
-	// Note that keys must be TitleCase.
+	/** @var string[][] Note that keys must be TitleCase. */
 	protected static $builtinThemePaths = [
 		'WikimediaUI' => [
 			'scripts' => 'resources/lib/ooui/oojs-ui-wikimediaui.js',

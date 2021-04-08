@@ -4,6 +4,9 @@ namespace MediaWiki\Page\Hook;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "Article::MissingArticleConditions" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

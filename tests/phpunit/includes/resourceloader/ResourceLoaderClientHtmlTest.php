@@ -249,8 +249,8 @@ Deprecation message.' ]
 				'modules' => [ 'test.styles.pure', 'test.styles.mixed' ],
 				'only' => ResourceLoaderModule::TYPE_STYLES,
 				'extra' => [],
-				'output' => '<link rel="stylesheet" href="/w/load.php?debug=true&amp;lang=nl&amp;modules=test.styles.mixed&amp;only=styles"/>' . "\n"
-					. '<link rel="stylesheet" href="/w/load.php?debug=true&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles"/>',
+				'output' => '<link rel="stylesheet" href="/w/load.php?debug=1&amp;lang=nl&amp;modules=test.styles.mixed&amp;only=styles"/>' . "\n"
+					. '<link rel="stylesheet" href="/w/load.php?debug=1&amp;lang=nl&amp;modules=test.styles.pure&amp;only=styles"/>',
 			],
 			[
 				'context' => [ 'debug' => 'false' ],
@@ -418,7 +418,7 @@ Deprecation message.' ]
 			'test.ordering.d' => [ 'shouldEmbed' => true, 'styles' => '.orderingD{}' ],
 			'test.ordering.e' => [ 'shouldEmbed' => false ],
 		];
-		return array_map( function ( $options ) {
+		return array_map( static function ( $options ) {
 			return self::makeModule( $options );
 		}, $modules );
 	}

@@ -18,7 +18,6 @@ return [
 		],
 		'dependencies' => [
 			'mediawiki.page.ready',
-			'mediawiki.page.startup',
 			'sinonjs',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
@@ -91,7 +90,9 @@ return [
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.parse.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.upload.test.js',
 			'tests/qunit/suites/resources/mediawiki.api/mediawiki.api.watch.test.js',
-			'tests/qunit/suites/resources/mediawiki.api/mediawiki.ForeignApi.test.js',
+			'tests/qunit/suites/resources/mediawiki.api/mediawiki.rest.test.js',
+			'tests/qunit/suites/resources/mediawiki.ForeignApi/mediawiki.ForeignApi.test.js',
+			'tests/qunit/suites/resources/mediawiki.ForeignApi/mediawiki.ForeignRest.test.js',
 			'tests/qunit/suites/resources/mediawiki.special/mediawiki.special.recentchanges.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.FiltersViewModel.test.js',
 			'tests/qunit/suites/resources/mediawiki.rcfilters/dm.FilterItem.test.js',

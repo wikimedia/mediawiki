@@ -25,11 +25,11 @@ namespace MediaWiki\Revision;
 use CommentStoreComment;
 use Content;
 use InvalidArgumentException;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use MWTimestamp;
-use Title;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -54,9 +54,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @return MutableRevisionRecord
 	 */
 	public static function newFromParentRevision( RevisionRecord $parent ) {
-		// TODO: ideally, we wouldn't need a Title here
-		$title = Title::newFromLinkTarget( $parent->getPageAsLinkTarget() );
-		$rev = new MutableRevisionRecord( $title, $parent->getWikiId() );
+		$rev = new MutableRevisionRecord( $parent->getPage(), $parent->getWikiId() );
 
 		foreach ( $parent->getSlotRoles() as $role ) {
 			$slot = $parent->getSlot( $role, self::RAW );
@@ -70,31 +68,64 @@ class MutableRevisionRecord extends RevisionRecord {
 	}
 
 	/**
-	 * @note Avoid calling this constructor directly. Use the appropriate methods
-	 * in RevisionStore instead.
-	 *
+	 * Returns a MutableRevisionRecord which is an updated version of $revision with $slots
+	 * added.
+	 * @param RevisionRecord $revision
+	 * @param SlotRecord[] $slots
+	 * @return MutableRevisionRecord
+	 * @since 1.36
+	 */
+	public static function newUpdatedRevisionRecord(
+		RevisionRecord $revision,
+		array $slots
+	): MutableRevisionRecord {
+		$newRevisionRecord = new MutableRevisionRecord(
+			$revision->getPage(),
+			$revision->getWikiId()
+		);
+
+		$newRevisionRecord->setId( $revision->getId( $revision->getWikiId() ) );
+		$newRevisionRecord->setPageId( $revision->getPageId( $revision->getWikiId() ) );
+		$newRevisionRecord->setParentId( $revision->getParentId( $revision->getWikiId() ) );
+		$newRevisionRecord->setUser( $revision->getUser() );
+
+		foreach ( $revision->getSlots()->getSlots() as $role => $slot ) {
+			$newRevisionRecord->setSlot( $slot );
+		}
+
+		foreach ( $slots as $role => $slot ) {
+			$newRevisionRecord->setSlot( $slot );
+		}
+
+		return $newRevisionRecord;
+	}
+
+	/**
 	 * @stable to call.
 	 *
-	 * @param Title $title The title of the page this Revision is associated with.
-	 * @param bool|string $dbDomain DB domain of the relevant wiki or false for the current one.
+	 * @param PageIdentity $page The page this Revision is associated with.
+	 * @param false|string $wikiId Relevant wiki id or self::LOCAL for the current one.
 	 *
 	 * @throws MWException
 	 */
-	public function __construct( Title $title, $dbDomain = false ) {
+	public function __construct( PageIdentity $page, $wikiId = self::LOCAL ) {
 		$slots = new MutableRevisionSlots( [], function () {
 			$this->resetAggregateValues();
 		} );
 
-		parent::__construct( $title, $slots, $dbDomain );
+		parent::__construct( $page, $slots, $wikiId );
 	}
 
 	/**
 	 * @param int $parentId
+	 * @return self
 	 */
 	public function setParentId( $parentId ) {
 		Assert::parameterType( 'integer', $parentId, '$parentId' );
 
 		$this->mParentId = $parentId;
+
+		return $this;
 	}
 
 	/**
@@ -111,6 +142,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *       the next call to getSize() and getSha1(), respectively.
 	 *
 	 * @param SlotRecord $slot
+	 * @return self
 	 */
 	public function setSlot( SlotRecord $slot ) {
 		if ( $slot->hasRevision() && $slot->getRevision() !== $this->getId() ) {
@@ -122,6 +154,8 @@ class MutableRevisionRecord extends RevisionRecord {
 		}
 
 		$this->mSlots->setSlot( $slot );
+
+		return $this;
 	}
 
 	/**
@@ -132,9 +166,12 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
 	 *
 	 * @param SlotRecord $parentSlot
+	 * @return self
 	 */
 	public function inheritSlot( SlotRecord $parentSlot ) {
 		$this->mSlots->inheritSlot( $parentSlot );
+
+		return $this;
 	}
 
 	/**
@@ -150,9 +187,12 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *
 	 * @param string $role
 	 * @param Content $content
+	 * @return self
 	 */
 	public function setContent( $role, Content $content ) {
 		$this->mSlots->setContent( $role, $content );
+
+		return $this;
 	}
 
 	/**
@@ -166,25 +206,34 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *       the next call to getSize() and getSha1(), respectively.
 	 *
 	 * @param string $role
+	 * @return self
 	 */
 	public function removeSlot( $role ) {
 		$this->mSlots->removeSlot( $role );
+
+		return $this;
 	}
 
 	/**
 	 * Applies the given update to the slots of this revision.
 	 *
 	 * @param RevisionSlotsUpdate $update
+	 * @return self
 	 */
 	public function applyUpdate( RevisionSlotsUpdate $update ) {
 		$update->apply( $this->mSlots );
+
+		return $this;
 	}
 
 	/**
 	 * @param CommentStoreComment $comment
+	 * @return self
 	 */
 	public function setComment( CommentStoreComment $comment ) {
 		$this->mComment = $comment;
+
+		return $this;
 	}
 
 	/**
@@ -195,11 +244,14 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * later. When in doubt, this method should not be called.
 	 *
 	 * @param string $sha1 SHA1 hash as a base36 string.
+	 * @return self
 	 */
 	public function setSha1( $sha1 ) {
 		Assert::parameterType( 'string', $sha1, '$sha1' );
 
 		$this->mSha1 = $sha1;
+
+		return $this;
 	}
 
 	/**
@@ -210,38 +262,50 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * later. When in doubt, this method should not be called.
 	 *
 	 * @param int $size nominal size in bogo-bytes
+	 * @return self
 	 */
 	public function setSize( $size ) {
 		Assert::parameterType( 'integer', $size, '$size' );
 
 		$this->mSize = $size;
+
+		return $this;
 	}
 
 	/**
 	 * @param int $visibility
+	 * @return self
 	 */
 	public function setVisibility( $visibility ) {
 		Assert::parameterType( 'integer', $visibility, '$visibility' );
 
 		$this->mDeleted = $visibility;
+
+		return $this;
 	}
 
 	/**
 	 * @param string $timestamp A timestamp understood by MWTimestamp
+	 * @return self
 	 */
 	public function setTimestamp( $timestamp ) {
 		Assert::parameterType( 'string', $timestamp, '$timestamp' );
 
 		$this->mTimestamp = MWTimestamp::convert( TS_MW, $timestamp );
+
+		return $this;
 	}
 
 	/**
 	 * @param bool $minorEdit
+	 * @return self
 	 */
 	public function setMinorEdit( $minorEdit ) {
 		Assert::parameterType( 'boolean', $minorEdit, '$minorEdit' );
 
 		$this->mMinorEdit = $minorEdit;
+
+		return $this;
 	}
 
 	/**
@@ -254,35 +318,45 @@ class MutableRevisionRecord extends RevisionRecord {
 	 *          like preserving the original ID when restoring a revision.
 	 *
 	 * @param int $id
+	 * @return self
 	 */
 	public function setId( $id ) {
 		Assert::parameterType( 'integer', $id, '$id' );
 
 		$this->mId = $id;
+
+		return $this;
 	}
 
 	/**
 	 * Sets the user identity associated with the revision
 	 *
 	 * @param UserIdentity $user
+	 * @return self
 	 */
 	public function setUser( UserIdentity $user ) {
 		$this->mUser = $user;
+
+		return $this;
 	}
 
 	/**
 	 * @param int $pageId
+	 * @return self
 	 */
 	public function setPageId( $pageId ) {
 		Assert::parameterType( 'integer', $pageId, '$pageId' );
 
-		if ( $this->mTitle->exists() && $pageId !== $this->mTitle->getArticleID() ) {
+		$pageIdBasedOnPage = $this->getArticleId( $this->mPage );
+		if ( $pageIdBasedOnPage && $pageIdBasedOnPage !== $this->getArticleId( $this->mPage ) ) {
 			throw new InvalidArgumentException(
-				'The given Title does not belong to page ID ' . $this->mPageId
+				'The given page does not belong to page ID ' . $this->mPageId
 			);
 		}
 
 		$this->mPageId = $pageId;
+
+		return $this;
 	}
 
 	/**

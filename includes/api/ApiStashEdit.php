@@ -19,8 +19,9 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\PageEditStash;
 
 /**
  * Prepare an edit in shared cache so that it can be reused on edit
@@ -36,6 +37,43 @@ use MediaWiki\Revision\SlotRecord;
  * @since 1.25
  */
 class ApiStashEdit extends ApiBase {
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var PageEditStash */
+	private $pageEditStash;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	/** @var IBufferingStatsdDataFactory */
+	private $statsdDataFactory;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param PageEditStash $pageEditStash
+	 * @param RevisionLookup $revisionLookup
+	 * @param IBufferingStatsdDataFactory $statsdDataFactory
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		IContentHandlerFactory $contentHandlerFactory,
+		PageEditStash $pageEditStash,
+		RevisionLookup $revisionLookup,
+		IBufferingStatsdDataFactory $statsdDataFactory
+	) {
+		parent::__construct( $main, $action );
+
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->pageEditStash = $pageEditStash;
+		$this->revisionLookup = $revisionLookup;
+		$this->statsdDataFactory = $statsdDataFactory;
+	}
+
 	public function execute() {
 		$user = $this->getUser();
 		$params = $this->extractRequestParams();
@@ -44,11 +82,10 @@ class ApiStashEdit extends ApiBase {
 			$this->dieWithError( 'apierror-botsnotsupported' );
 		}
 
-		$editStash = MediaWikiServices::getInstance()->getPageEditStash();
 		$page = $this->getTitleOrPageId( $params );
 		$title = $page->getTitle();
 
-		if ( !$this->getContentHandlerFactory()
+		if ( !$this->contentHandlerFactory
 			->getContentHandler( $params['contentmodel'] )
 			->isSupportedFormat( $params['contentformat'] )
 		) {
@@ -68,7 +105,7 @@ class ApiStashEdit extends ApiBase {
 			if ( !preg_match( '/^[0-9a-f]{40}$/', $textHash ) ) {
 				$this->dieWithError( 'apierror-stashedit-missingtext', 'missingtext' );
 			}
-			$text = $editStash->fetchInputText( $textHash );
+			$text = $this->pageEditStash->fetchInputText( $textHash );
 			if ( !is_string( $text ) ) {
 				$this->dieWithError( 'apierror-stashedit-missingtext', 'missingtext' );
 			}
@@ -85,9 +122,10 @@ class ApiStashEdit extends ApiBase {
 		$page = WikiPage::factory( $title );
 		if ( $page->exists() ) {
 			// Page exists: get the merged content with the proposed change
-			$baseRev = MediaWikiServices::getInstance()
-				->getRevisionLookup()
-				->getRevisionByPageId( $page->getId(), $params['baserevid'] );
+			$baseRev = $this->revisionLookup->getRevisionByPageId(
+				$page->getId(),
+				$params['baserevid']
+			);
 			if ( !$baseRev ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['baserevid'] ] );
 			}
@@ -115,9 +153,24 @@ class ApiStashEdit extends ApiBase {
 				if ( !$baseContent || !$currentContent ) {
 					$this->dieWithError( [ 'apierror-missingcontent-pageid', $page->getId() ], 'missingrev' );
 				}
-				$content = $this->getContentHandlerFactory()
-					->getContentHandler( $baseContent->getModel() )
-					->merge3( $baseContent, $editContent, $currentContent );
+
+				$baseModel = $baseContent->getModel();
+				$currentModel = $currentContent->getModel();
+
+				// T255700: Put this in try-block because if the models of these three Contents
+				// happen to not be identical, the ContentHandler may throw exception here.
+				try {
+					$content = $this->contentHandlerFactory
+						->getContentHandler( $baseModel )
+						->merge3( $baseContent, $editContent, $currentContent );
+				} catch ( Exception $e ) {
+					$this->dieWithException( $e, [
+						'wrap' => ApiMessage::create(
+							[ 'apierror-contentmodel-mismatch', $currentModel, $baseModel ]
+						)
+					] );
+				}
+
 			}
 		} else {
 			// New pages: use the user-provided content model
@@ -133,12 +186,11 @@ class ApiStashEdit extends ApiBase {
 		if ( $user->pingLimiter( 'stashedit' ) ) {
 			$status = 'ratelimited';
 		} else {
-			$status = $editStash->parseAndCache( $page, $content, $user, $params['summary'] );
-			$editStash->stashInputText( $text, $textHash );
+			$status = $this->pageEditStash->parseAndCache( $page, $content, $user, $params['summary'] );
+			$this->pageEditStash->stashInputText( $text, $textHash );
 		}
 
-		$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
-		$stats->increment( "editstash.cache_stores.$status" );
+		$this->statsdDataFactory->increment( "editstash.cache_stores.$status" );
 
 		$ret = [ 'status' => $status ];
 		// If we were rate-limited, we still return the pre-existing valid hash if one was passed
@@ -159,9 +211,7 @@ class ApiStashEdit extends ApiBase {
 	 * @deprecated Since 1.34
 	 */
 	public function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {
-		$editStash = MediaWikiServices::getInstance()->getPageEditStash();
-
-		return $editStash->parseAndCache( $page, $content, $user, $summary ?? '' );
+		return $this->pageEditStash->parseAndCache( $page, $content, $user, $summary ?? '' );
 	}
 
 	public function getAllowedParams() {
@@ -189,11 +239,11 @@ class ApiStashEdit extends ApiBase {
 				ApiBase::PARAM_DFLT => ''
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 				ApiBase::PARAM_REQUIRED => true
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 				ApiBase::PARAM_REQUIRED => true
 			],
 			'baserevid' => [
@@ -217,9 +267,5 @@ class ApiStashEdit extends ApiBase {
 
 	public function isInternal() {
 		return true;
-	}
-
-	private function getContentHandlerFactory(): IContentHandlerFactory {
-		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 }

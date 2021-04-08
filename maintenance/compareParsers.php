@@ -166,11 +166,14 @@ class CompareParsers extends DumpIterator {
 				);
 			}
 			if ( $this->showDiff ) {
-				$this->output( wfDiff(
-					$this->stripParameters( $output1->getText() ),
-					$this->stripParameters( $output2->getText() ),
-					''
-				) );
+				$diffs = new Diff(
+					explode( "\n", $this->stripParameters( $output1->getText() ) ),
+					explode( "\n", $this->stripParameters( $output2->getText() ) )
+				);
+				$formatter = new UnifiedDiffFormatter();
+				$unifiedDiff = $formatter->format( $diffs );
+
+				$this->output( $unifiedDiff );
 			}
 		} else {
 			$this->output( $title->getPrefixedText() . "\tOK\n" );

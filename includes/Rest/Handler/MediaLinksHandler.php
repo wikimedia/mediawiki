@@ -3,12 +3,10 @@
 namespace MediaWiki\Rest\Handler;
 
 use MediaFileTrait;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use RepoGroup;
-use RequestContext;
 use Title;
 use User;
 use Wikimedia\Message\MessageValue;
@@ -24,17 +22,11 @@ class MediaLinksHandler extends SimpleHandler {
 	/** int The maximum number of media links to return */
 	private const MAX_NUM_LINKS = 100;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
 	/** @var RepoGroup */
 	private $repoGroup;
-
-	/** @var User */
-	private $user;
 
 	/**
 	 * @var Title|bool|null
@@ -42,21 +34,15 @@ class MediaLinksHandler extends SimpleHandler {
 	private $title = null;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RepoGroup $repoGroup
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		RepoGroup $repoGroup
 	) {
-		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->repoGroup = $repoGroup;
-
-		// @todo Inject this, when there is a good way to do that
-		$this->user = RequestContext::getMain()->getUser();
 	}
 
 	/**
@@ -83,7 +69,7 @@ class MediaLinksHandler extends SimpleHandler {
 			);
 		}
 
-		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $title ),
 				403
@@ -129,15 +115,20 @@ class MediaLinksHandler extends SimpleHandler {
 	private function processDbResults( $results ) {
 		// Using "private" here means an equivalent of the Action API's "anon-public-user-private"
 		// caching model would be necessary, if caching is ever added to this endpoint.
-		$findTitles = array_map( function ( $title ) {
+		// TODO: make RepoGroup::findFiles take Authority
+		$user = User::newFromIdentity( $this->getAuthority()->getUser() );
+		$findTitles = array_map( static function ( $title ) use ( $user ) {
 			return [
 				'title' => $title,
-				'private' => $this->user,
+				'private' => $user,
 			];
 		}, $results );
 
 		$files = $this->repoGroup->findFiles( $findTitles );
-		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption( $this->user, 'imagesize' );
+		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
+			$this->getAuthority()->getUser(),
+			'imagesize'
+		);
 		$transforms = [
 			'preferred' => [
 				'maxWidth' => $maxWidth,
@@ -146,7 +137,7 @@ class MediaLinksHandler extends SimpleHandler {
 		];
 		$response = [];
 		foreach ( $files as $file ) {
-			$response[] = $this->getFileInfo( $file, $this->user, $transforms );
+			$response[] = $this->getFileInfo( $file, $user, $transforms );
 		}
 
 		$response = [

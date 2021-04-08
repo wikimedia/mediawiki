@@ -49,7 +49,7 @@ class ApiLinkAccount extends ApiBase {
 	}
 
 	public function execute() {
-		if ( !$this->getUser()->isLoggedIn() ) {
+		if ( !$this->getUser()->isRegistered() ) {
 			$this->dieWithError( 'apierror-mustbeloggedin-linkaccounts', 'notloggedin' );
 		}
 

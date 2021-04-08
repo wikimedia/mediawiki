@@ -8,6 +8,7 @@
  *
  */
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'Вьсѩ_страницѧ' ],
 	'Categories'                => [ 'Катигорїѩ' ],
@@ -58,9 +59,10 @@ $namespaceAliases = [
 	'Катигорїѩ_бесѣда'               => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ],
 	'language'                  => [ '0', '#ѨꙀꙐКЪ:', '#LANGUAGE:' ],
+	'redirect'                  => [ '0', '#ПРѢНАПРАВЛЄНИѤ', '#REDIRECT' ],
 ];
 
 $separatorTransformTable = [

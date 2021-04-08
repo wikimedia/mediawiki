@@ -23,8 +23,8 @@
 			}
 		],
 		"indexes": [
-			{ "name": "site_ids_site", "columns": [ "si_site" ], "unique": false },
-			{ "name": "site_ids_key", "columns": [ "si_key" ], "unique": false }
+			{ "name": "si_site", "columns": [ "si_site" ], "unique": false },
+			{ "name": "si_key", "columns": [ "si_key" ], "unique": false }
 		],
 		"pk": [ "si_type", "si_key" ]
 	},
@@ -60,7 +60,7 @@
 				"name": "actor_user",
 				"comment": "Key to user.user_id, or NULL for anonymous edits",
 				"type": "integer",
-				"options": { "unsigned": true, "notNull": false }
+				"options": { "unsigned": true, "notnull": false }
 			},
 			{
 				"name": "actor_name",
@@ -93,5 +93,3347 @@
 		],
 		"indexes": [],
 		"pk": [ "ufg_user", "ufg_group" ]
+	},
+	{
+		"name": "bot_passwords",
+		"comment": "This table contains a user's bot passwords: passwords that allow access to the account via the API with limited rights.",
+		"columns": [
+			{
+				"name": "bp_user",
+				"comment": "User ID obtained from CentralIdLookup.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "bp_app_id",
+				"comment": "Application identifier.",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "bp_password",
+				"comment": "Password hashes, like user.user_password.",
+				"type": "blob",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "bp_token",
+				"comment": "Like user.user_token",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true, "default": "", "fixed": true }
+			},
+			{
+				"name": "bp_restrictions",
+				"comment": "JSON blob for MWRestrictions",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": true }
+			},
+			{
+				"name": "bp_grants",
+				"comment": "Grants allowed to the account when authenticated with this bot-password",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": true }
+			}
+		],
+		"indexes": [],
+		"pk": [ "bp_user", "bp_app_id" ]
+	},
+	{
+		"name": "comment",
+		"comment": "Edits, blocks, and other actions typically have a textual comment describing the action. They are stored here to reduce the size of the main tables, and to allow for deduplication. Deduplication is currently best-effort to avoid locking on inserts that would be required for strict deduplication. There MAY be multiple rows with the same comment_text and comment_data.",
+		"columns": [
+			{
+				"name": "comment_id",
+				"comment": "Unique ID to identify each comment",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "comment_hash",
+				"comment": "Hash of comment_text and comment_data, for deduplication",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "comment_text",
+				"comment": "Text comment summarizing the change. This text is shown in the history and other changes lists, rendered in a subset of wiki markup by Linker::formatComment(). Size limits are enforced at the application level, and should take care to crop UTF-8 strings appropriately.",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": true }
+			},
+			{
+				"name": "comment_data",
+				"comment": "JSON data, intended for localizing auto-generated comments. This holds structured data that is intended to be used to provide localized versions of automatically-generated comments. When not empty, comment_text should be the generated comment localized using the wiki's content language.",
+				"type": "blob",
+				"options": { "length": 65535, "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "comment_hash", "columns": [ "comment_hash" ], "unique": false }
+		],
+		"pk": [ "comment_id" ]
+	},
+	{
+		"name": "slots",
+		"comment": "Slots represent an n:m relation between revisions and content objects. A content object can have a specific \"role\" in one or more revisions. Each revision can have multiple content objects, each having a different role.",
+		"columns": [
+			{
+				"name": "slot_revision_id",
+				"comment": "reference to rev_id or ar_rev_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "slot_role_id",
+				"comment": "reference to role_id",
+				"type": "smallint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "slot_content_id",
+				"comment": "reference to content_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "slot_origin",
+				"comment": "The revision ID of the revision that originated the slot's content. To find revisions that changed slots, look for slot_origin = slot_revision_id. TODO: Is that actually true? Rollback seems to violate it by setting slot_origin to an older rev_id. Undeletions could result in the same situation.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "slot_revision_origin_role",
+				"columns": [ "slot_revision_id", "slot_origin", "slot_role_id" ],
+				"comment": "Index for finding revisions that modified a specific slot",
+				"unique": false
+			}
+		],
+		"pk": [ "slot_revision_id", "slot_role_id" ]
+	},
+	{
+		"name": "site_stats",
+		"comment": "Contains a single row with some aggregate info on the state of the site.",
+		"columns": [
+			{
+				"name": "ss_row_id",
+				"comment": "The single row should contain 1 here.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "ss_total_edits",
+				"comment": "Total number of edits performed.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_good_articles",
+				"comment": "See SiteStatsInit::articles().",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_total_pages",
+				"comment": "Total pages, theoretically equal to SELECT COUNT(*) FROM page.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_users",
+				"comment": "Number of users, theoretically equal to SELECT COUNT(*) FROM user.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_active_users",
+				"comment": "Number of users that still edit.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ss_images",
+				"comment": "Number of images, equivalent to SELECT COUNT(*) FROM image.",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			}
+		],
+		"indexes": [],
+		"pk": [ "ss_row_id" ]
+	},
+	{
+		"name": "user_properties",
+		"comment": "User preferences and perhaps other fun stuff. :) Replaces the old user.user_options blob, with a couple nice properties: 1) We only store non-default settings, so changes to the defaults are now reflected for everybody, not just new accounts. 2) We can more easily do bulk lookups, statistics, or modifications of saved options since it's a sane table structure.",
+		"columns": [
+			{
+				"name": "up_user",
+				"comment": "Foreign key to user.user_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "up_property",
+				"comment": "Name of the option being saved. This is indexed for bulk lookup.",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "up_value",
+				"comment": "Property value as a string.",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "up_property", "columns": [ "up_property" ], "unique": false }
+		],
+		"pk": [ "up_user", "up_property" ]
+	},
+	{
+		"name": "log_search",
+		"columns": [
+			{
+				"name": "ls_field",
+				"comment": "The type of ID (rev ID, log ID, rev timestamp, username)",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "ls_value",
+				"comment": "The value of the ID",
+				"type": "string",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ls_log_id",
+				"comment": "Key to log_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{ "name": "ls_log_id", "columns": [ "ls_log_id" ], "unique": false }
+		],
+		"pk": [ "ls_field", "ls_value", "ls_log_id" ]
+	},
+	{
+		"name": "change_tag",
+		"comment": "A table to track tags for revisions, logs and recent changes",
+		"columns": [
+			{
+				"name": "ct_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "ct_rc_id",
+				"comment": "RCID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_log_id",
+				"comment": "LOGID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_rev_id",
+				"comment": "REVID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_params",
+				"comment": "Parameters for the tag; used by some extensions",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_tag_id",
+				"comment": "Foreign key to change_tag_def row",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "change_tag_rc_tag_id", "columns": [ "ct_rc_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_log_tag_id", "columns": [ "ct_log_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_rev_tag_id", "columns": [ "ct_rev_id", "ct_tag_id" ], "unique": true },
+			{
+				"name": "change_tag_tag_id_id",
+				"comment": "Covering index, so we can pull all the info only out of the index.",
+				"columns": [ "ct_tag_id", "ct_rc_id", "ct_rev_id", "ct_log_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "ct_id" ]
+	},
+	{
+		"name": "content",
+		"comment": "The content table represents content objects. It's primary purpose is to provide the necessary meta-data for loading and interpreting a serialized data blob to create a content object.",
+		"columns": [
+			{
+				"name": "content_id",
+				"comment": "ID of the content object",
+				"type": "bigint",
+				"options": { "notnull": true, "unsigned": true, "autoincrement": true }
+			},
+			{
+				"name": "content_size",
+				"comment": "Nominal size of the content object (not necessarily of the serialized blob)",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "content_sha1",
+				"comment": "Nominal hash of the content object (not necessarily of the serialized blob)",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "content_model",
+				"comment": "reference to model_id. Note the content format isn't specified; it should be assumed to be in the default format for the model unless auto-detected otherwise.",
+				"type": "smallint",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "content_address",
+				"comment": "URL-like address of the content blob",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "content_id" ]
+	},
+	{
+		"name": "l10n_cache",
+		"comment": "Table for storing localisation data",
+		"columns": [
+			{
+				"name": "lc_lang",
+				"comment": "Language code",
+				"type": "binary",
+				"options": { "notnull": true, "length": 35 }
+			},
+			{
+				"name": "lc_key",
+				"comment": "Cache key",
+				"type": "string",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "lc_value",
+				"comment": "Value",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "lc_lang", "lc_key" ]
+	},
+	{
+		"name": "module_deps",
+		"comment": "Table caching which local files a module depends on that aren't registered directly, used for fast retrieval of file dependency. Currently only used for tracking images that CSS depends on",
+		"columns": [
+			{
+				"name": "md_module",
+				"comment": "Module name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "md_skin",
+				"comment": "Module context vary (includes skin and language; called \"md_skin\" for legacy reasons)",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "md_deps",
+				"comment": "JSON blob with file dependencies",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "md_module", "md_skin" ]
+	},
+	{
+		"name": "redirect",
+		"comment": "For each redirect, this table contains exactly one row defining its target.\nRedirect targets are key to page_namespace/page_title of the target page.\nThe target page may or may not exist, and due to renames\nand deletions may refer to different page records as time\ngoes by.",
+		"columns": [
+			{
+				"name": "rd_from",
+				"comment": "Key to the page_id of the redirect page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "rd_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "rd_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "rd_interwiki",
+				"type": "string",
+				"options": { "notnull": false, "length": 32, "default": null }
+			},
+			{
+				"name": "rd_fragment",
+				"type": "binary",
+				"options": { "notnull": false, "length": 255, "default": null }
+			}
+		],
+		"indexes": [
+			{ "name": "rd_ns_title", "columns": [ "rd_namespace", "rd_title", "rd_from" ], "unique": false }
+		],
+		"pk": [ "rd_from" ]
+	},
+	{
+		"name": "pagelinks",
+		"comment": "Track page-to-page hyperlinks within the wiki. The target page may or may not exist, and due to renames and deletions may refer to different page records as time goes by.",
+		"columns": [
+			{
+				"name": "pl_from",
+				"comment": "Key to the page_id of the page containing the link.",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "pl_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "pl_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			},
+			{
+				"name": "pl_from_namespace",
+				"type": "integer",
+				"comment": "Namespace for pl_from page",
+				"options": { "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "pl_namespace",
+				"columns": [ "pl_namespace", "pl_title", "pl_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere",
+				"unique": false
+			},
+			{
+				"name": "pl_backlinks_namespace",
+				"columns": [ "pl_from_namespace", "pl_namespace", "pl_title", "pl_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			}
+		],
+		"pk": [ "pl_from", "pl_namespace", "pl_title" ]
+	},
+	{
+		"name": "templatelinks",
+		"comment": "Track template inclusions. The target page may or may not exist, and due to renames and deletions may refer to different page records as time goes by.",
+		"columns": [
+			{
+				"name": "tl_from",
+				"comment": "Key to the page_id of the page containing the link.",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "tl_from_namespace",
+				"type": "integer",
+				"comment": "Namespace for this page",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "tl_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "tl_title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "tl_namespace",
+				"columns": [ "tl_namespace", "tl_title", "tl_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere",
+				"unique": false
+			},
+			{
+				"name": "tl_backlinks_namespace",
+				"columns": [ "tl_from_namespace", "tl_namespace", "tl_title", "tl_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			}
+		],
+		"pk": [ "tl_from", "tl_namespace", "tl_title" ]
+	},
+	{
+		"name": "imagelinks",
+		"comment": "Track links to images *used inline* We don't distinguish live from broken links here, so they do not need to be changed on upload/removal.",
+		"columns": [
+			{
+				"name": "il_from",
+				"comment": "Key to page_id of the page containing the image / media link.",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "il_from_namespace",
+				"type": "integer",
+				"comment": "Namespace for this page",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "il_to",
+				"type": "binary",
+				"comment": "Filename of target image. This is also the page_title of the file's description page; all such pages are in namespace 6 (NS_FILE).",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "il_to",
+				"columns": [ "il_to", "il_from" ],
+				"comment": "Reverse index, for Special:Whatlinkshere and file description page local usage",
+				"unique": false
+			},
+			{
+				"name": "il_backlinks_namespace",
+				"columns": [ "il_from_namespace", "il_to", "il_from" ],
+				"comment": "Index for Special:Whatlinkshere with namespace filter",
+				"unique": false
+			}
+		],
+		"pk": [ "il_from", "il_to" ]
+	},
+	{
+		"name": "langlinks",
+		"comment": "Track interlanguage links.",
+		"columns": [
+			{
+				"name": "ll_from",
+				"comment": "page_id of the referring page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "ll_lang",
+				"type": "binary",
+				"comment": "Language code of the target",
+				"options": { "notnull": true, "length": 35, "default": "" }
+			},
+			{
+				"name": "ll_title",
+				"type": "binary",
+				"comment": "Title of the target, including namespace",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "ll_lang",
+				"columns": [ "ll_lang", "ll_title" ],
+				"comment": "Index for ApiQueryLangbacklinks",
+				"unique": false
+			}
+		],
+		"pk": [ "ll_from", "ll_lang" ]
+	},
+	{
+		"name": "iwlinks",
+		"comment": "Track inline interwiki links",
+		"columns": [
+			{
+				"name": "iwl_from",
+				"comment": "page_id of the referring page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "iwl_prefix",
+				"type": "binary",
+				"comment": "Interwiki prefix code of the target",
+				"options": { "notnull": true, "length": 32, "default": "" }
+			},
+			{
+				"name": "iwl_title",
+				"type": "binary",
+				"comment": "Title of the target, including namespace",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "iwl_prefix_title_from",
+				"columns": [ "iwl_prefix", "iwl_title", "iwl_from" ],
+				"comment": "Index for ApiQueryIWBacklinks",
+				"unique": false
+			},
+			{
+				"name": "iwl_prefix_from_title",
+				"columns": [ "iwl_prefix", "iwl_from", "iwl_title" ],
+				"comment": "Index for ApiQueryIWLinks",
+				"unique": false
+			}
+		],
+		"pk": [ "iwl_from", "iwl_prefix", "iwl_title" ]
+	},
+	{
+		"name": "category",
+		"comment": "Track all existing categories. Something is a category if 1) it has an entry somewhere in categorylinks, or 2) it has a description page. Categories might not have corresponding pages, so they need to be tracked separately. The numbers of member pages (including categories and media), subcategories, and Image: namespace members, respectively are included in this table too.  These are signed to make underflow more obvious.  We make the first number include the second two for better sorting: subtracting for display is easy, adding for ordering is not.",
+		"columns": [
+			{
+				"name": "cat_id",
+				"comment": "Primary key",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "autoincrement": true }
+			},
+			{
+				"name": "cat_title",
+				"type": "binary",
+				"comment": "Name of the category, in the same form as page_title (with underscores). If there is a category page corresponding to this category, by definition, it has this name (in the Category namespace).",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "cat_pages",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "cat_subcats",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "cat_files",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "cat_title",
+				"columns": [ "cat_title" ],
+				"unique": true
+			},
+			{
+				"name": "cat_pages",
+				"columns": [ "cat_pages" ],
+				"comment": "For Special:Mostlinkedcategories",
+				"unique": false
+			}
+		],
+		"pk": [ "cat_id" ]
+	},
+	{
+		"name": "watchlist_expiry",
+		"comment": "Allows setting an expiry for watchlist items.",
+		"columns": [
+			{
+				"name": "we_item",
+				"comment": "Key to watchlist.wl_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "we_expiry",
+				"type": "mwtimestamp",
+				"comment": "Expiry time",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "we_expiry",
+				"columns": [ "we_expiry" ],
+				"unique": false
+			}
+		],
+		"pk": [ "we_item" ]
+	},
+	{
+		"name": "change_tag_def",
+		"comment": "Table defining tag names for IDs. Also stores hit counts to avoid expensive queries on change_tag",
+		"columns": [
+			{
+				"name": "ctd_id",
+				"comment": "Numerical ID of the tag (ct_tag_id refers to this)",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "ctd_name",
+				"comment": "Symbolic name of the tag (what would previously be put in ct_tag)",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "ctd_user_defined",
+				"comment": "Whether this tag was defined manually by a privileged user using Special:Tags",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 1 }
+			},
+			{
+				"name": "ctd_count",
+				"comment": "Number of times this tag was used",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{ "name": "ctd_name", "columns": [ "ctd_name" ], "unique": true },
+			{ "name": "ctd_count", "columns": [ "ctd_count" ], "unique": false },
+			{ "name": "ctd_user_defined", "columns": [ "ctd_user_defined" ], "unique": false }
+		],
+		"pk": [ "ctd_id" ]
+	},
+	{
+		"name": "ipblocks_restrictions",
+		"comment": "Partial Block Restrictions",
+		"columns": [
+			{
+				"name": "ir_ipb_id",
+				"comment": "The ipb_id from ipblocks",
+				"type": "integer",
+				"options": { "unsigned": false, "notnull": true }
+			},
+			{
+				"name": "ir_type",
+				"comment": "The restriction type id.",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "length": 4 }
+			},
+			{
+				"name": "ir_value",
+				"comment": "The restriction id that corresponds to the type. Typically a Page ID or a Namespace ID.",
+				"type": "integer",
+				"options": { "unsigned": false, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "ir_type_value",
+				"comment": "Index to query restrictions by the page or namespace.",
+				"columns": [ "ir_type", "ir_value" ],
+				"unique": false
+			}
+		],
+		"pk": [ "ir_ipb_id", "ir_type", "ir_value" ]
+	},
+	{
+		"name": "querycache",
+		"comment": "Used for caching expensive grouped queries",
+		"columns": [
+			{
+				"name": "qc_type",
+				"comment": "A key name, generally the base name of of the special page",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "qc_value",
+				"comment": "Some sort of stored value. Sizes, counts...",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "qc_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "qc_title",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			}
+		],
+		"indexes": [
+			{ "name": "qc_type", "columns": [ "qc_type", "qc_value" ], "unique": false }
+		],
+		"pk": []
+	},
+	{
+		"name": "querycachetwo",
+		"comment": "Used for caching expensive grouped queries that need two links (for example double-redirects)",
+		"columns": [
+			{
+				"name": "qcc_type",
+				"comment": "A key name, generally the base name of of the special page.",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "qcc_value",
+				"comment": "Some sort of stored value. Sizes, counts...",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "qcc_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "qcc_title",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			},
+			{
+				"name": "qcc_namespacetwo",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "qcc_titletwo",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			}
+		],
+		"indexes": [
+			{ "name": "qcc_type", "columns": [ "qcc_type", "qcc_value" ], "unique": false },
+			{ "name": "qcc_title", "columns": [ "qcc_type", "qcc_namespace", "qcc_title" ], "unique": false },
+			{ "name": "qcc_titletwo", "columns": [ "qcc_type", "qcc_namespacetwo", "qcc_titletwo" ], "unique": false }
+		],
+		"pk": []
+	},
+	{
+		"name": "page_restrictions",
+		"comment": "Used for storing page restrictions (i.e. protection levels)",
+		"columns": [
+			{
+				"name": "pr_id",
+				"comment": "Field for an ID for this restrictions row (sort-key for Special:ProtectedPages)",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "pr_page",
+				"comment": "Page to apply restrictions to (Foreign Key to page).",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "pr_type",
+				"comment": "The protection type (edit, move, etc)",
+				"type": "binary",
+				"options": { "length": 60, "notnull": true }
+			},
+			{
+				"name": "pr_level",
+				"comment": "The protection level (Sysop, autoconfirmed, etc)",
+				"type": "binary",
+				"options": { "length": 60, "notnull": true }
+			},
+			{
+				"name": "pr_cascade",
+				"type": "mwtinyint",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "pr_user",
+				"comment": "Field for future support of per-user restriction.",
+				"type": "integer",
+				"options": { "notnull": false, "unsigned": true }
+			},
+			{
+				"name": "pr_expiry",
+				"comment": "Field for time-limited protection.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false,
+					"CustomSchemaOptions": {
+						"allowInfinite": true
+					}
+				}
+			}
+		],
+		"indexes": [
+			{ "name": "pr_pagetype", "columns": [ "pr_page", "pr_type" ], "unique": true },
+			{ "name": "pr_typelevel", "columns": [ "pr_type", "pr_level" ], "unique": false },
+			{ "name": "pr_level", "columns": [ "pr_level" ], "unique": false },
+			{ "name": "pr_cascade", "columns": [ "pr_cascade" ], "unique": false }
+		],
+		"pk": [ "pr_id" ]
+	},
+	{
+		"name": "user_groups",
+		"comment": "User permissions have been broken out to a separate table; this allows sites with a shared user table to have different permissions assigned to a user in each project. This table replaces the old user_rights field which used a comma-separated blob.",
+		"columns": [
+			{
+				"name": "ug_user",
+				"comment": "Key to user_id",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "ug_group",
+				"comment": "Group names are short symbolic string keys. The set of group names is open-ended, though in practice only some predefined ones are likely to be used. At runtime $wgGroupPermissions will associate group keys with particular permissions. A user will have the combined permissions of any group they're explicitly in, plus the implicit '*' and 'user' groups.",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			},
+			{
+				"name": "ug_expiry",
+				"comment": "Time at which the user group membership will expire. Set to NULL for a non-expiring (infinite) membership.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"CustomSchemaOptions": {
+						"allowInfinite": true
+					}
+				}
+			}
+		],
+		"indexes": [
+			{ "name": "ug_group", "columns": [ "ug_group" ], "unique": false },
+			{ "name": "ug_expiry", "columns": [ "ug_expiry" ], "unique": false }
+		],
+		"pk": [ "ug_user", "ug_group" ]
+	},
+	{
+		"name": "querycache_info",
+		"comment": "Details of updates to cached special pages",
+		"columns": [
+			{
+				"name": "qci_type",
+				"comment": "Special page name. Corresponds to a qc_type value",
+				"type": "binary",
+				"options": { "length": 32, "notnull": true, "default": "" }
+			},
+			{
+				"name": "qci_timestamp",
+				"comment": "Timestamp of last update",
+				"type": "mwtimestamp",
+				"options": { "length": 14, "notnull": true, "default": "19700101000000" }
+			}
+		],
+		"indexes": [],
+		"pk": [ "qci_type" ]
+	},
+	{
+		"name": "watchlist",
+		"columns": [
+			{
+				"name": "wl_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "wl_user",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "wl_namespace",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": false, "default": 0 }
+			},
+			{
+				"name": "wl_title",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			},
+			{
+				"name": "wl_notificationtimestamp",
+				"comment": "Timestamp used to send notification e-mails and show 'updated since last visit' markers. Set to NULL when the user visits the latest revision of the page, which means that they should be sent an e-mail on the next change.",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			}
+		],
+		"indexes": [
+			{
+				"name": "wl_user",
+				"columns": [ "wl_user", "wl_namespace", "wl_title" ],
+				"comment": "Special:Watchlist",
+				"unique": true
+			},
+			{
+				"name": "wl_namespace_title",
+				"columns": [ "wl_namespace", "wl_title" ],
+				"comment": "Special:Movepage (WatchedItemStore::duplicateEntry)",
+				"unique": false
+			},
+			{
+				"name": "wl_user_notificationtimestamp",
+				"columns": [ "wl_user", "wl_notificationtimestamp" ],
+				"comment": "ApiQueryWatchlistRaw changed filter",
+				"unique": false
+			}
+		],
+		"pk": [ "wl_id" ]
+	},
+	{
+		"name": "sites",
+		"comment": "Holds all the sites known to the wiki.",
+		"columns": [
+			{
+				"name": "site_id",
+				"type": "integer",
+				"comment": "Numeric id of the site",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "site_global_key",
+				"type": "binary",
+				"comment": "Global identifier for the site, ie 'enwiktionary'",
+				"options": { "notnull": true, "length": 64 }
+			},
+			{
+				"name": "site_type",
+				"type": "binary",
+				"comment": "Type of the site, ie 'mediawiki'",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "site_group",
+				"type": "binary",
+				"comment": "Group of the site, ie 'wikipedia'",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "site_source",
+				"type": "binary",
+				"comment": "Source of the site data, ie 'local', 'wikidata', 'my-magical-repo'",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "site_language",
+				"type": "binary",
+				"comment": "Language code of the sites primary language.",
+				"options": { "notnull": true, "length": 35 }
+			},
+			{
+				"name": "site_protocol",
+				"type": "binary",
+				"comment": "Protocol of the site, ie 'http://', 'irc://', '//'. This field is an index for lookups and is build from type specific data in site_data.",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "site_domain",
+				"type": "string",
+				"comment": "Domain of the site in reverse order, ie 'org.mediawiki.www.'. This field is an index for lookups and is build from type specific data in site_data.",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "site_data",
+				"type": "blob",
+				"comment": "Type dependent site data.",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "site_forward",
+				"type": "mwtinyint",
+				"comment": "If site.tld/path/key:pageTitle should forward users to  the page on the actual site, where \"key\" is the local identifier.",
+				"options": { "notnull": true, "length": 1 }
+			},
+			{
+				"name": "site_config",
+				"type": "blob",
+				"comment": "Type dependent site config. For instance if template transclusion should be allowed if it's a MediaWiki.",
+				"options": { "notnull": true, "length": 65530 }
+			}
+		],
+		"indexes": [
+			{ "name": "site_global_key", "columns": [ "site_global_key" ], "unique": true },
+			{ "name": "site_type", "columns": [ "site_type" ], "unique": false },
+			{ "name": "site_group", "columns": [ "site_group" ], "unique": false },
+			{ "name": "site_source", "columns": [ "site_source" ], "unique": false },
+			{ "name": "site_language", "columns": [ "site_language" ], "unique": false },
+			{ "name": "site_protocol", "columns": [ "site_protocol" ], "unique": false },
+			{ "name": "site_domain", "columns": [ "site_domain" ], "unique": false },
+			{ "name": "site_forward", "columns": [ "site_forward" ], "unique": false }
+		],
+		"pk": [ "site_id" ]
+	},
+	{
+		"name": "user_newtalk",
+		"comment": "Stores notifications of user talk page changes, for the display of the 'you have new messages' box",
+		"columns": [
+			{
+				"name": "user_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "user_ip",
+				"comment": "If the user is an anonymous user their IP address is stored here since the user_id of 0 is ambiguous",
+				"type": "binary",
+				"options": { "length": 40, "notnull": true, "default": "" }
+			},
+			{
+				"name": "user_last_timestamp",
+				"comment": "The highest timestamp of revisions of the talk page viewed by this user",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "un_user_id", "columns": [ "user_id" ], "unique": false },
+			{ "name": "un_user_ip", "columns": [ "user_ip" ], "unique": false }
+		],
+		"pk": []
+	},
+	{
+		"name": "interwiki",
+		"comment": "Recognized interwiki link prefixes",
+		"columns": [
+			{
+				"name": "iw_prefix",
+				"type": "string",
+				"comment": "The interwiki prefix, (e.g. \"Meatball\", or the language prefix \"de\")",
+				"options": { "length": 32, "notnull": true }
+			},
+			{
+				"name": "iw_url",
+				"type": "blob",
+				"comment": "The URL of the wiki, with \"$1\" as a placeholder for an article name. Any spaces in the name will be transformed to underscores before insertion.",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "iw_api",
+				"type": "blob",
+				"comment": "The URL of the file api.php",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "iw_wikiid",
+				"type": "string",
+				"comment": "The name of the database (for a connection to be established with LBFactory::getMainLB( 'wikiid' ))",
+				"options": { "notnull": true, "length": 64 }
+			},
+			{
+				"name": "iw_local",
+				"type": "mwtinyint",
+				"comment": "A boolean value indicating whether the wiki is in this project (used, for example, to detect redirect loops)",
+				"options": { "notnull": true, "length": 1 }
+			},
+			{
+				"name": "iw_trans",
+				"type": "mwtinyint",
+				"comment": "Boolean value indicating whether interwiki transclusions are allowed.",
+				"options": { "notnull": true, "default": 0 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "iw_prefix" ]
+	},
+	{
+		"name": "protected_titles",
+		"comment": "Used for storing nonexistent pages that have been protected",
+		"columns": [
+			{
+				"name": "pt_namespace",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "pt_title",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			},
+			{
+				"name": "pt_user",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "pt_reason_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "pt_timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "pt_expiry",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"CustomSchemaOptions": {
+						"allowInfinite": true
+					}
+				}
+			},
+			{
+				"name": "pt_create_perm",
+				"type": "binary",
+				"options": { "length": 60, "notnull": true }
+			}
+		],
+		"indexes": [ { "name": "pt_timestamp", "columns": [ "pt_timestamp" ], "unique": false } ],
+		"pk": [ "pt_namespace", "pt_title" ]
+	},
+	{
+		"name": "externallinks",
+		"comment": "Track links to external URLs",
+		"columns": [
+			{
+				"name": "el_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "el_from",
+				"type": "integer",
+				"comment": "page_id of the referring page",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "el_to",
+				"type": "blob",
+				"comment": "The external link",
+				"options": { "length": 65530, "notnull": true }
+			},
+			{
+				"name": "el_index",
+				"type": "blob",
+				"comment": "In the case of HTTP URLs, this is the URL with any username or password removed, and with the labels in the hostname reversed and converted to lower case which will allow faster searching for all pages with WHERE clause. Note: If PHP's intl extension is enabled/disabled, maintenance/refreshExternallinksIndex.php needs to be run to refresh this field",
+				"options": { "length": 65530, "notnull": true }
+			},
+			{
+				"name": "el_index_60",
+				"type": "binary",
+				"comment": "'el_index' truncated to 60 bytes to allow for sortable queries that aren't supported by a partial index",
+				"options": { "notnull": true, "length": 60 }
+			}
+		],
+		"indexes": [
+			{ "name": "el_from", "columns": [ "el_from", "el_to" ], "unique": false, "options": { "lengths": [ null, 40 ] } },
+			{ "name": "el_to", "columns": [ "el_to", "el_from" ], "unique": false, "options": { "lengths": [ 60, null ] } },
+			{ "name": "el_index", "columns": [ "el_index" ], "unique": false, "options": { "lengths": [ 60 ] } },
+			{ "name": "el_index_60", "columns": [ "el_index_60", "el_id" ], "unique": false },
+			{ "name": "el_from_index_60", "columns": [ "el_from", "el_index_60", "el_id" ], "unique": false }
+		],
+		"pk": [ "el_id" ]
+	},
+	{
+		"name": "ip_changes",
+		"comment": "Every time an edit by a logged out user is saved, a row is created in ip_changes. This stores the IP as a hex representation so that we can more easily find edits within an IP range.",
+		"columns": [
+			{
+				"name": "ipc_rev_id",
+				"comment": "Foreign key to the revision table, also serves as the unique primary key",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "ipc_rev_timestamp",
+				"comment": "The timestamp of the revision",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "ipc_hex",
+				"comment": "Hex representation of the IP address, as returned by Wikimedia\\IPUtils::toHex() For IPv4 it will resemble: ABCD1234 For IPv6: v6-ABCD1234000000000000000000000000 BETWEEN is then used to identify revisions within a given range",
+				"type": "binary",
+				"options": { "length": 35, "notnull": true, "default": "" }
+			}
+		],
+		"indexes": [
+			{ "name": "ipc_rev_timestamp", "columns": [ "ipc_rev_timestamp" ], "unique": false },
+			{ "name": "ipc_hex_time", "columns": [ "ipc_hex", "ipc_rev_timestamp" ], "unique": false }
+		],
+		"pk": [ "ipc_rev_id" ]
+	},
+	{
+		"name": "revision_comment_temp",
+		"comment": "Temporary table to avoid blocking on an alter of revision. On large wikis like the English Wikipedia, altering the revision table is a months-long process. This table is being created to avoid such an alter, and will be merged back into revision in the future",
+		"columns": [
+			{
+				"name": "revcomment_rev",
+				"comment": "Key to rev_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "revcomment_comment_id",
+				"comment": "Key to comment_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "revcomment_rev", "columns": [ "revcomment_rev" ], "unique": true }
+		],
+		"pk": [ "revcomment_rev", "revcomment_comment_id" ]
+	},
+	{
+		"name": "revision_actor_temp",
+		"comment": "Temporary table to avoid blocking on an alter of revision. On large wikis like the English Wikipedia, altering the revision table is a months-long process. This table is being created to avoid such an alter, and will be merged back into revision in the future",
+		"columns": [
+			{
+				"name": "revactor_rev",
+				"comment": "Key to rev_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "revactor_actor",
+				"comment": "Key to actor_id",
+				"type": "bigint",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "revactor_timestamp",
+				"comment": "Copy field from revision for indexes",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "revactor_page",
+				"comment": "Copy field from revision for indexes",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "revactor_rev", "columns": [ "revactor_rev" ], "unique": true },
+			{ "name": "actor_timestamp", "columns": [ "revactor_actor", "revactor_timestamp" ], "unique": false },
+			{ "name": "page_actor_timestamp", "columns": [ "revactor_page", "revactor_actor", "revactor_timestamp" ], "unique": false }
+		],
+		"pk": [ "revactor_rev", "revactor_actor" ]
+	},
+	{
+		"name": "page_props",
+		"comment": "Name/value pairs indexed by page_id",
+		"columns": [
+			{
+				"name": "pp_page",
+				"type": "integer",
+				"options": { "unsigned": false, "notnull": true }
+			},
+			{
+				"name": "pp_propname",
+				"type": "binary",
+				"options": { "length": 60, "notnull": true }
+			},
+			{
+				"name": "pp_value",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": true }
+			},
+			{
+				"name": "pp_sortkey",
+				"type": "float",
+				"options": { "notnull": false }
+			}
+		],
+		"indexes": [
+			{ "name": "pp_propname_page", "columns": [ "pp_propname", "pp_page" ], "unique": true },
+			{ "name": "pp_propname_sortkey_page", "columns": [ "pp_propname", "pp_sortkey", "pp_page" ], "unique": true, "options": { "where": "(pp_sortkey IS NOT NULL)" } }
+		],
+		"pk": [ "pp_page", "pp_propname" ]
+	},
+	{
+		"name": "job",
+		"comment": "Jobs performed by parallel apache threads or a command-line daemon",
+		"columns": [
+			{
+				"name": "job_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "job_cmd",
+				"comment": "Command name. Limited to 60 to prevent key length overflow",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 60 }
+			},
+			{
+				"name": "job_namespace",
+				"comment": "Namespace to act on. Should be 0 if the command does not operate on a title",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "job_title",
+				"comment": "Title to act on. Should be '' if the command does not operate on a title",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": "job_timestamp",
+				"comment": "Timestamp of when the job was inserted. NULL for jobs added before addition of the timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "job_params",
+				"comment": "Any other parameters to the command. Stored as a PHP serialized array, or an empty string if there are no parameters",
+				"type": "blob",
+				"options": { "notnull": true, "length": 16777215 }
+			},
+			{
+				"name": "job_random",
+				"comment": "Random, non-unique, number used for job acquisition (for lock concurrency)",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "job_attempts",
+				"comment": "The number of times this job has been locked",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "job_token",
+				"comment": "Field that conveys process locks on rows via process UUIDs",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 32 }
+			},
+			{
+				"name": "job_token_timestamp",
+				"comment": "Timestamp when the job was locked",
+				"type": "mwtimestamp",
+				"options": { "notnull": false }
+			},
+			{
+				"name": "job_sha1",
+				"comment": "Base 36 SHA1 of the job parameters relevant to detecting duplicates",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32, "default": "" }
+			}
+		],
+		"indexes": [
+			{ "name": "job_sha1", "columns": [ "job_sha1" ], "unique": false },
+			{ "name": "job_cmd_token", "columns": [ "job_cmd", "job_token", "job_random" ], "unique": false },
+			{ "name": "job_cmd_token_id", "columns": [ "job_cmd", "job_token", "job_id" ], "unique": false },
+			{ "name": "job_cmd", "columns": [ "job_cmd", "job_namespace", "job_title", "job_params" ],
+				"unique": false,
+				"options": { "lengths": [ null, null, null, 128 ] }
+			},
+			{ "name": "job_timestamp", "columns": [ "job_timestamp" ], "unique": false }
+		],
+		"pk": [ "job_id" ]
+	},
+	{
+		"name": "slot_roles",
+		"comment": "Normalization table for role names",
+		"columns": [
+			{
+				"name": "role_id",
+				"type": "integer",
+				"options": { "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "role_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "role_name",
+				"columns": [ "role_name" ],
+				"comment": "Index for looking up the internal ID of a role",
+				"unique": true
+			}
+		],
+		"pk": [ "role_id" ]
+	},
+	{
+		"name": "content_models",
+		"comment": "Normalization table for content model names",
+		"columns": [
+			{
+				"name": "model_id",
+				"type": "integer",
+				"options": { "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "model_name",
+				"type": "binary",
+				"options": { "notnull": true, "length": 64 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "model_name",
+				"columns": [ "model_name" ],
+				"comment": "Index for looking up the internal ID of a model",
+				"unique": true
+			}
+		],
+		"pk": [ "model_id" ]
+	},
+	{
+		"name": "categorylinks",
+		"comment": "Track category inclusions *used inline* This tracks a single level of category membership",
+		"columns": [
+			{
+				"name": "cl_from",
+				"comment": "Key to page_id of the page defined as a category member.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "default": 0 }
+			},
+			{
+				"name": "cl_to",
+				"comment": "Name of the category. This is also the page_title of the category's description page; all such pages are in namespace 14 (NS_CATEGORY).",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 255 }
+			},
+			{
+				"name": "cl_sortkey",
+				"comment": "A binary string obtained by applying a sortkey generation algorithm (Collation::getSortKey()) to page_title, or cl_sortkey_prefix . \"\\n\" page_title if cl_sortkey_prefix is nonempty.",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 230 }
+			},
+			{
+				"name": "cl_sortkey_prefix",
+				"comment": "A prefix for the raw sortkey manually specified by the user, either via [[Category:Foo|prefix]] or {{defaultsort:prefix}}.  If nonempty, it's concatenated with a line break followed by the page title before the sortkey conversion algorithm is run.  We store this so that we can update collations without reparsing all pages. Note: If you change the length of this field, you also need to change code in LinksUpdate.php. See T27254.",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 255 }
+			},
+			{
+				"name": "cl_timestamp",
+				"comment": "This isn't really used at present. Provided for an optional sorting method by approximate addition time.",
+				"type": "datetimetz",
+				"options": { "notnull": true, "PlatformOptions": { "version": true } }
+			},
+			{
+				"name": "cl_collation",
+				"comment": "Stores $wgCategoryCollation at the time cl_sortkey was generated.  This can be used to install new collation versions, tracking which rows are not yet updated.  '' means no collation, this is a legacy row that needs to be updated by updateCollation.php.  In the future, it might be possible to specify different collations per category.",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 32 }
+			},
+			{
+				"name": "cl_type",
+				"comment": "Stores whether cl_from is a category, file, or other page, so we can paginate the three categories separately.  This only has to be updated when moving pages into or out of the category namespace, since file pages cannot be moved to other namespaces, nor can non-files be moved into the file namespace.",
+				"type": "mwenum",
+				"options": { "notnull": true, "default": "page",
+					"CustomSchemaOptions": {
+						"enum_values": [ "page", "subcat", "file" ]
+					}
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "cl_sortkey",
+				"comment": "We always sort within a given category, and within a given type.  FIXME: Formerly this index didn't cover cl_type (since that didn't exist), so old callers won't be using an index: fix this?",
+				"columns": [ "cl_to", "cl_type", "cl_sortkey", "cl_from" ],
+				"unique": false
+			},
+			{
+				"name": "cl_timestamp",
+				"comment": "Used by the API (and some extensions)",
+				"columns": [ "cl_to", "cl_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "cl_collation_ext",
+				"comment": "Used when updating collation (e.g. updateCollation.php)",
+				"columns": [ "cl_collation", "cl_to", "cl_type", "cl_from" ],
+				"unique": false
+			}
+		],
+		"pk": [ "cl_from", "cl_to" ]
+	},
+	{
+		"name": "logging",
+		"columns": [
+			{
+				"name": "log_id",
+				"comment": "Log ID, for referring to this specific log entry, probably for deletion and such.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "log_type",
+				"comment": "Symbolic key for the general log type. The output format will be controlled by the log_action field.",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 32 }
+			},
+			{
+				"name": "log_action",
+				"comment": "Symbolic key for the log action type.",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 32 }
+			},
+			{
+				"name": "log_timestamp",
+				"type": "mwtimestamp",
+				"options": { "notnull": true, "default": "19700101000000" }
+			},
+			{
+				"name": "log_actor",
+				"type": "bigint",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "log_namespace",
+				"comment": "Key to the namespace of the page affected",
+				"type": "integer",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "log_title",
+				"comment": "Key to the title of the page affected",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 255 }
+			},
+			{
+				"name": "log_page",
+				"comment": "Key to the page affected",
+				"type": "integer",
+				"options": { "notnull": false, "unsigned": true }
+			},
+			{
+				"name": "log_comment_id",
+				"comment": "Key to comment_id. Comment summarizing the change.",
+				"type": "bigint",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "log_params",
+				"comment": "LF separated list (old system) or serialized PHP array (new system)",
+				"type": "blob",
+				"options": { "notnull": true, "length": 65530 }
+			},
+			{
+				"name": "log_deleted",
+				"comment": "rev_deleted for logs",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "log_type_time",
+				"comment": "Special:Log type filter",
+				"columns": [ "log_type", "log_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "log_actor_time",
+				"comment": "Special:Log performer filter",
+				"columns": [ "log_actor", "log_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "log_page_time",
+				"comment": "Special:Log title filter, log extract",
+				"columns": [ "log_namespace", "log_title", "log_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "log_times",
+				"comment": "Special:Log unfiltered",
+				"columns": [ "log_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "log_actor_type_time",
+				"comment": "Special:Log filter by performer and type",
+				"columns": [ "log_actor", "log_type", "log_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "log_page_id_time",
+				"comment": "Apparently just used for a few maintenance pages (findMissingFiles.php, Flow). Could be removed?",
+				"columns": [ "log_page", "log_timestamp" ],
+				"unique": false
+			},
+			{
+				"name": "log_type_action",
+				"comment": "Special:Log action filter",
+				"columns": [ "log_type", "log_action", "log_timestamp" ],
+				"unique": false
+			}
+		],
+		"pk": [ "log_id" ]
+	},
+	{
+		"name": "uploadstash",
+		"comment": "Store information about newly uploaded files before they're moved into the actual filestore",
+		"columns": [
+			{
+				"name": "us_id",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_user",
+				"comment": "the user who uploaded the file.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_key",
+				"comment": "file key. this is how applications actually search for the file. this might go away, or become the primary key.",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_orig_path",
+				"comment": "the original path",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_path",
+				"comment": "the temporary path at which the file is actually stored",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_source_type",
+				"comment": "which type of upload the file came from (sometimes)",
+				"type": "string",
+				"options": {
+					"notnull": false,
+					"length": 50
+				}
+			},
+			{
+				"name": "us_timestamp",
+				"comment": "the date/time on which the file was added",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"length": 14
+				}
+			},
+			{
+				"name": "us_status",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 50
+				}
+			},
+			{
+				"name": "us_chunk_inx",
+				"comment": "chunk counter starts at 0, current offset is stored in us_size",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_props",
+				"comment": "Serialized file properties from FSFile::getProps()",
+				"type": "blob",
+				"options": {
+					"notnull": false,
+					"length": 65530
+				}
+			},
+			{
+				"name": "us_size",
+				"comment": "file size in bytes",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "us_sha1",
+				"comment": "this hash comes from FSFile::getSha1Base36(), and is 31 characters",
+				"type": "string",
+				"options": {
+					"notnull": true,
+					"length": 31
+				}
+			},
+			{
+				"name": "us_mime",
+				"type": "string",
+				"options": {
+					"notnull": false,
+					"length": 255
+				}
+			},
+			{
+				"name": "us_media_type",
+				"comment": "Media type as defined by the MEDIATYPE_xxx constants, should duplicate definition in the image table",
+				"type": "mwenum",
+				"options": { "notnull": false, "default": null,
+					"fixed": true,
+					"CustomSchemaOptions": {
+						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
+					}
+				}
+			},
+			{
+				"name": "us_image_width",
+				"comment": "image-specific properties",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_image_height",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "us_image_bits",
+				"type": "smallint",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "us_user",
+				"comment": "sometimes there's a delete for all of a user's stuff.",
+				"columns": [
+					"us_user"
+				],
+				"unique": false
+			},
+			{
+				"name": "us_key",
+				"comment": "pick out files by key, enforce key uniqueness",
+				"columns": [
+					"us_key"
+				],
+				"unique": true
+			},
+			{
+				"name": "us_timestamp",
+				"comment": "the abandoned upload cleanup script needs this",
+				"columns": [
+					"us_timestamp"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"us_id"
+		]
+	},
+	{
+		"name": "filearchive",
+		"comment": "Record of deleted file data",
+		"columns": [
+			{
+				"name": "fa_id",
+				"comment": "Unique row id",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "fa_name",
+				"comment": "Original base filename; key to image.img_name, page.page_title, etc",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "fa_archive_name",
+				"comment": "Filename of archived file, if an old revision",
+				"type": "binary",
+				"options": {
+					"notnull": false,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "fa_storage_group",
+				"comment": "Which storage bin (directory tree or object store) the file data is stored in. Should be 'deleted' for files that have been deleted; any other bin is not yet in use.",
+				"type": "binary",
+				"options": {
+					"notnull": false,
+					"length": 16
+				}
+			},
+			{
+				"name": "fa_storage_key",
+				"comment": "SHA-1 of the file contents plus extension, used as a key for storage. eg 8f8a562add37052a1848ff7771a2c515db94baa9.jpg. If NULL, the file was missing at deletion time or has been purged from the archival storage.",
+				"type": "binary",
+				"options": {
+					"notnull": false,
+					"default": "",
+					"length": 64
+				}
+			},
+			{
+				"name": "fa_deleted_user",
+				"type": "integer",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "fa_deleted_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false,
+					"length": 14
+				}
+			},
+			{
+				"name": "fa_deleted_reason_id",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "fa_size",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false,
+					"default": 0
+				}
+			},
+			{
+				"name": "fa_width",
+				"type": "integer",
+				"options": {
+					"notnull": false,
+					"default": 0
+				}
+			},
+			{
+				"name": "fa_height",
+				"type": "integer",
+				"options": {
+					"notnull": false,
+					"default": 0
+				}
+			},
+			{
+				"name": "fa_metadata",
+				"type": "blob",
+				"options": {
+					"notnull": false,
+					"length": 16777215
+				}
+			},
+			{
+				"name": "fa_bits",
+				"type": "integer",
+				"options": {
+					"notnull": false,
+					"default": 0
+				}
+			},
+			{
+				"name": "fa_media_type",
+				"type": "mwenum",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"CustomSchemaOptions": {
+						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
+					}
+				}
+			},
+			{
+				"name": "fa_major_mime",
+				"type": "mwenum",
+				"options": {
+					"notnull": false,
+					"default": "unknown",
+					"CustomSchemaOptions": {
+						"enum_values": [ "unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical" ]
+					}
+				}
+			},
+			{
+				"name": "fa_minor_mime",
+				"type": "binary",
+				"options": {
+					"notnull": false,
+					"default": "unknown",
+					"length": 100
+				}
+			},
+			{
+				"name": "fa_description_id",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "fa_actor",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "fa_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false,
+					"length": 14
+				}
+			},
+			{
+				"name": "fa_deleted",
+				"comment": "Visibility of deleted revisions, bitfield",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "fa_sha1",
+				"comment": "sha1 hash of file content",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "fa_name",
+				"comment": "pick out by image name",
+				"columns": [
+					"fa_name",
+					"fa_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "fa_storage_group",
+				"comment": "pick out dupe files",
+				"columns": [
+					"fa_storage_group",
+					"fa_storage_key"
+				],
+				"unique": false
+			},
+			{
+				"name": "fa_deleted_timestamp",
+				"comment": "sort by deletion time",
+				"columns": [
+					"fa_deleted_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "fa_actor_timestamp",
+				"comment": "sort by uploader",
+				"columns": [
+					"fa_actor",
+					"fa_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "fa_sha1",
+				"comment": "find file by sha1, 10 bytes will be enough for hashes to be indexed",
+				"columns": [
+					"fa_sha1"
+				],
+				"unique": false,
+				"options": { "lengths": [ 10 ] }
+			}
+		],
+		"pk": [
+			"fa_id"
+		]
+	},
+	{
+		"name": "text",
+		"comment": "Holds text of individual page revisions. Field names are a holdover from the 'old' revisions table in MediaWiki 1.4 and earlier: an upgrade will transform that table into the 'text' table to minimize unnecessary churning and downtime. If upgrading, the other fields will be left unused.",
+		"columns": [
+			{
+				"name": "old_id",
+				"comment": "Unique text storage key number. Note that the 'oldid' parameter used in URLs does *not* refer to this number anymore, but to rev_id. content.content_address refers to this column",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "old_text",
+				"comment": "Depending on the contents of the old_flags field, the text may be convenient plain text, or it may be funkily encoded.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 16777215
+				}
+			},
+			{
+				"name": "old_flags",
+				"comment": "Comma-separated list of flags:\n* gzip: text is compressed with PHP's gzdeflate() function.\n* utf-8: text was stored as UTF-8. If $wgLegacyEncoding option is on, rows *without* this flag will be converted to UTF-8 transparently at load time. Note that due to a bug in a maintenance script, this flag may have been stored as 'utf8' in some cases (T18841).\n* object: text field contained a serialized PHP object. The object either contains multiple versions compressed together to achieve a better compression ratio, or it refers to another row where the text can be found.\n* external: text was stored in an external location specified by old_text. Any additional flags apply to the data stored at that URL, not the URL itself. The 'object' flag is *not* set for URLs of the form 'DB://cluster/id/itemid', because the external storage system itself decompresses these.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			}
+		],
+		"indexes": [],
+		"pk": [
+			"old_id"
+		]
+	},
+	{
+		"name": "oldimage",
+		"comment": "Previous revisions of uploaded files. Awkwardly, image rows have to be moved into this table at re-upload time.",
+		"columns": [
+			{
+				"name": "oi_name",
+				"comment": "Base filename: key to image.img_name",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "oi_archive_name",
+				"comment": "Filename of the archived file. This is generally a timestamp and '!' prepended to the base name.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "oi_size",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "oi_width",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "oi_height",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "oi_bits",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "oi_description_id",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "oi_actor",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "oi_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"length": 14
+				}
+			},
+			{
+				"name": "oi_metadata",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 16777215
+				}
+			},
+			{
+				"name": "oi_media_type",
+				"type": "mwenum",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"CustomSchemaOptions": {
+						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
+					}
+				}
+			},
+			{
+				"name": "oi_major_mime",
+				"type": "mwenum",
+				"options": {
+					"notnull": true,
+					"default": "unknown",
+					"CustomSchemaOptions": {
+						"enum_values": [ "unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical" ]
+					}
+				}
+			},
+			{
+				"name": "oi_minor_mime",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "unknown",
+					"length": 100
+				}
+			},
+			{
+				"name": "oi_deleted",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "oi_sha1",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "oi_actor_timestamp",
+				"columns": [
+					"oi_actor",
+					"oi_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "oi_name_timestamp",
+				"columns": [
+					"oi_name",
+					"oi_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "oi_name_archive_name",
+				"comment": "oi_archive_name truncated to 14 to avoid key length overflow",
+				"columns": [
+					"oi_name",
+					"oi_archive_name"
+				],
+				"unique": false,
+				"options": { "lengths": [ null, 14 ] }
+			},
+			{
+				"name": "oi_sha1",
+				"columns": [
+					"oi_sha1"
+				],
+				"unique": false,
+				"options": { "lengths": [ 10 ] }
+			}
+		]
+	},
+	{
+		"name": "objectcache",
+		"comment": "For a few generic cache operations if not using Memcached",
+		"columns": [
+			{
+				"name": "keyname",
+				"type": "binary",
+				"options": { "notnull": true, "default": "", "length": 255 }
+			},
+			{
+				"name": "value",
+				"type": "blob",
+				"options": { "notnull": false, "length": 16777215 }
+			},
+			{
+				"name": "exptime",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "exptime", "columns": [ "exptime" ], "unique": false }
+		],
+		"pk": [ "keyname" ]
+	},
+	{
+		"name": "ipblocks",
+		"comment": "Blocks against user accounts, IP addresses and IP ranges.",
+		"columns": [
+			{
+				"name": "ipb_id",
+				"comment": "Primary key, introduced for privacy.",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ipb_address",
+				"comment": "Blocked IP address in dotted-quad form or user name.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "ipb_user",
+				"comment": "Blocked user ID or 0 for IP blocks.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "ipb_by_actor",
+				"comment": "Actor who made the block.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ipb_reason_id",
+				"comment": "Key to comment_id. Text comment made by blocker.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ipb_timestamp",
+				"comment": "Creation (or refresh) date in standard YMDHMS form. IP blocks expire automatically.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true
+				}
+			},
+			{
+				"name": "ipb_auto",
+				"comment": "Indicates that the IP address was banned because a banned user accessed a page through it. If this is 1, ipb_address will be hidden, and the block identified by block ID number.",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"length": 1,
+					"default": 0
+				}
+			},
+			{
+				"name": "ipb_anon_only",
+				"comment": "If set to 1, block applies only to logged-out users",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"length": 1,
+					"default": 0
+				}
+			},
+			{
+				"name": "ipb_create_account",
+				"comment": "Block prevents account creation from matching IP addresses",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"length": 1,
+					"default": 1
+				}
+			},
+			{
+				"name": "ipb_enable_autoblock",
+				"comment": "Block triggers autoblocks",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"length": 1,
+					"default": 1
+				}
+			},
+			{
+				"name": "ipb_expiry",
+				"comment": "Time at which the block will expire. May be \"infinity\"",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"CustomSchemaOptions": {
+						"allowInfinite": true
+					}
+				}
+			},
+			{
+				"name": "ipb_range_start",
+				"comment": "Start of an address range, in hexadecimal size chosen to allow IPv6. FIXME: this field were originally blank for single-IP blocks, but now it's populated. No migration was ever done. It should be fixed to be blank again for such blocks (T51504).",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "ipb_range_end",
+				"comment": "End of an address range, in hexadecimal size chosen to allow IPv6. FIXME: this field were originally blank for single-IP blocks, but now it's populated. No migration was ever done. It should be fixed to be blank again for such blocks (T51504).",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 255
+				}
+			},
+			{
+				"name": "ipb_deleted",
+				"comment": "Flag for entries hidden from users and Sysops",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"length": 1,
+					"default": 0
+				}
+			},
+			{
+				"name": "ipb_block_email",
+				"comment": "Block prevents user from accessing Special:Emailuser",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"length": 1,
+					"default": 0
+				}
+			},
+			{
+				"name": "ipb_allow_usertalk",
+				"comment": "Block allows user to edit their own talk page",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"length": 1,
+					"default": 0
+				}
+			},
+			{
+				"name": "ipb_parent_block_id",
+				"comment": "ID of the block that caused this block to exist. Autoblocks set this to the original block so that the original block being deleted also deletes the autoblocks",
+				"type": "integer",
+				"options": {
+					"notnull": false,
+					"default": null
+				}
+			},
+			{
+				"name": "ipb_sitewide",
+				"comment": "Block user from editing any page on the site (other than their own user talk page).",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"length": 1,
+					"default": 1
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "ipb_address_unique",
+				"comment": "Unique index to support \"user already blocked\" messages. Any new options which prevent collisions should be included",
+				"columns": [
+					"ipb_address",
+					"ipb_user",
+					"ipb_auto"
+				],
+				"unique": true,
+				"options": { "lengths": [ 255, null, null ] }
+			},
+			{
+				"name": "ipb_user",
+				"comment": "For querying whether a logged-in user is blocked",
+				"columns": [
+					"ipb_user"
+				],
+				"unique": false
+			},
+			{
+				"name": "ipb_range",
+				"comment": "For querying whether an IP address is in any range",
+				"columns": [
+					"ipb_range_start",
+					"ipb_range_end"
+				],
+				"unique": false,
+				"options": { "lengths": [ 8, 8 ] }
+			},
+			{
+				"name": "ipb_timestamp",
+				"comment": "Index for Special:BlockList",
+				"columns": [
+					"ipb_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "ipb_expiry",
+				"comment": "Index for table pruning",
+				"columns": [
+					"ipb_expiry"
+				],
+				"unique": false
+			},
+			{
+				"name": "ipb_parent_block_id",
+				"comment": "Index for removing autoblocks when a parent block is removed",
+				"columns": [
+					"ipb_parent_block_id"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"ipb_id"
+		]
+	},
+	{
+		"name": "image",
+		"comment": "Uploaded images and other files.",
+		"columns": [
+			{
+				"name": "img_name",
+				"comment": "Filename. This is also the title of the associated description page, which will be in namespace 6 (NS_FILE).",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "img_size",
+				"comment": "File size in bytes.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_width",
+				"comment": "For images, width in pixels.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_height",
+				"comment": "For images, height in pixels.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_metadata",
+				"comment": "Extracted Exif metadata stored as a serialized PHP array.",
+				"type": "blob",
+				"options": {
+					"notnull": true,
+					"length": 16777215
+				}
+			},
+			{
+				"name": "img_bits",
+				"comment": "For images, bits per pixel if known.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "img_media_type",
+				"comment": "Media type as defined by the MEDIATYPE_xxx constants",
+				"type": "mwenum",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"CustomSchemaOptions": {
+						"enum_values": [ "UNKNOWN", "BITMAP", "DRAWING", "AUDIO", "VIDEO", "MULTIMEDIA", "OFFICE", "TEXT", "EXECUTABLE", "ARCHIVE", "3D" ]
+					}
+				}
+			},
+			{
+				"name": "img_major_mime",
+				"comment": "major part of a MIME media type as defined by IANA see https://www.iana.org/assignments/media-types/ for \"chemical\" cf. http://dx.doi.org/10.1021/ci9803233 by the ACS",
+				"type": "mwenum",
+				"options": {
+					"notnull": true,
+					"default": "unknown",
+					"CustomSchemaOptions": {
+						"enum_values": [ "unknown", "application", "audio", "image", "text", "video", "message", "model", "multipart", "chemical" ]
+					}
+				}
+			},
+			{
+				"name": "img_minor_mime",
+				"comment": "minor part of a MIME media type as defined by IANA the minor parts are not required to adhere to any standard but should be consistent throughout the database see https://www.iana.org/assignments/media-types/",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "unknown",
+					"length": 100
+				}
+			},
+			{
+				"name": "img_description_id",
+				"comment": "Foreign key to comment table, which contains the description field as entered by the uploader. This is displayed in image upload history and logs.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "img_actor",
+				"comment": "actor_id of the uploader.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "img_timestamp",
+				"comment": "Time of the upload.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"length": 14
+				}
+			},
+			{
+				"name": "img_sha1",
+				"comment": "SHA-1 content hash in base-36",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "img_actor_timestamp",
+				"comment": "Used by Special:Newimages and ApiQueryAllImages",
+				"columns": [
+					"img_actor",
+					"img_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_size",
+				"comment": "Used by Special:ListFiles for sort-by-size",
+				"columns": [
+					"img_size"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_timestamp",
+				"comment": "Used by Special:Newimages and Special:ListFiles",
+				"columns": [
+					"img_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "img_sha1",
+				"comment": "Used in API and duplicate search",
+				"columns": [
+					"img_sha1"
+				],
+				"unique": false,
+				"options": { "lengths": [ 10 ] }
+			},
+			{
+				"name": "img_media_mime",
+				"comment": "Used to get media of one type",
+				"columns": [
+					"img_media_type",
+					"img_major_mime",
+					"img_minor_mime"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"img_name"
+		]
+	},
+	{
+		"name": "recentchanges",
+		"comment": "Primarily a summary table for Special:RecentChanges, this table contains some additional info on edits from the last few days",
+		"columns": [
+			{
+				"name": "rc_id",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "rc_timestamp",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"length": 14
+				}
+			},
+			{
+				"name": "rc_actor",
+				"comment": "As in revision",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "rc_namespace",
+				"comment": "When pages are renamed, their RC entries do _not_ change.",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_title",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "rc_comment_id",
+				"comment": "as in revision...",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "rc_minor",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_bot",
+				"comment": "Edits by user accounts with the 'bot' rights key are marked with a 1 here, and will be hidden from the default view.",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_new",
+				"comment": "Set if this change corresponds to a page creation",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_cur_id",
+				"comment": "Key to page_id (was cur_id prior to 1.5). This will keep links working after moves while retaining the at-the-time name in the changes list.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_this_oldid",
+				"comment": "rev_id of the given revision",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_last_oldid",
+				"comment": "rev_id of the prior revision, for generating diff links.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_type",
+				"comment": "The type of change entry (RC_EDIT,RC_NEW,RC_LOG,RC_EXTERNAL)",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_source",
+				"comment": "The source of the change entry (replaces rc_type) default of '' is temporary, needed for initial migration",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 16
+				}
+			},
+			{
+				"name": "rc_patrolled",
+				"comment": "If the Recent Changes Patrol option is enabled, users may mark edits as having been reviewed to remove a warning flag on the RC list. A value of 1 indicates the page has been reviewed.",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_ip",
+				"comment": "Recorded IP address the edit was made from, if the $wgPutIPinRC option is enabled.",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 40
+				}
+			},
+			{
+				"name": "rc_old_len",
+				"comment": "Text length in characters before the edit",
+				"type": "integer",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "rc_new_len",
+				"comment": "Text length in characters after the edit",
+				"type": "integer",
+				"options": {
+					"notnull": false
+				}
+			},
+			{
+				"name": "rc_deleted",
+				"comment": "Visibility of recent changes items, bitfield",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_logid",
+				"comment": "Value corresponding to log_id, specific log entries",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "rc_log_type",
+				"comment": "Store log type info here, or null",
+				"type": "binary",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"length": 255
+				}
+			},
+			{
+				"name": "rc_log_action",
+				"comment": "Store log action or null",
+				"type": "binary",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"length": 255
+				}
+			},
+			{
+				"name": "rc_params",
+				"comment": "Log params",
+				"type": "blob",
+				"options": {
+					"notnull": false,
+					"length": 65535
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "rc_timestamp",
+				"comment": "Special:Recentchanges",
+				"columns": [
+					"rc_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_namespace_title_timestamp",
+				"comment": "Special:Watchlist",
+				"columns": [
+					"rc_namespace",
+					"rc_title",
+					"rc_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_cur_id",
+				"comment": "Special:Recentchangeslinked when finding changes in pages linked from a page",
+				"columns": [
+					"rc_cur_id"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_new_name_timestamp",
+				"comment": "Special:Newpages",
+				"columns": [
+					"rc_new",
+					"rc_namespace",
+					"rc_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_ip",
+				"comment": "Blank unless $wgPutIPinRC=true (false at WMF), possibly used by extensions, but mostly replaced by CheckUser.",
+				"columns": [
+					"rc_ip"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_ns_actor",
+				"comment": "Probably intended for Special:NewPages namespace filter",
+				"columns": [
+					"rc_namespace",
+					"rc_actor"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_actor",
+				"comment": "SiteStats active user count, Special:ActiveUsers, Special:NewPages user filter",
+				"columns": [
+					"rc_actor",
+					"rc_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_name_type_patrolled_timestamp",
+				"comment": "ApiQueryRecentChanges (T140108)",
+				"columns": [
+					"rc_namespace",
+					"rc_type",
+					"rc_patrolled",
+					"rc_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "rc_this_oldid",
+				"comment": "Article.php and friends (T139012)",
+				"columns": [
+					"rc_this_oldid"
+				],
+				"unique": false
+			}
+		],
+		"pk": [
+			"rc_id"
+		]
+	},
+	{
+		"name": "archive",
+		"comment": "Archive area for deleted pages and their revisions. These may be viewed (and restored) by admins through the Special:Undelete interface.",
+		"columns": [
+			{
+				"name": "ar_id",
+				"comment": "Primary key",
+				"type": "integer",
+				"options": {
+					"autoincrement": true,
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ar_namespace",
+				"comment": "Copied from page_namespace",
+				"type": "integer",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "ar_title",
+				"comment": "Copied from page_title",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 255
+				}
+			},
+			{
+				"name": "ar_comment_id",
+				"comment": "Basic revision stuff.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ar_actor",
+				"comment": "Basic revision stuff.",
+				"type": "bigint",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ar_timestamp",
+				"comment": "Basic revision stuff.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": true,
+					"length": 14
+				}
+			},
+			{
+				"name": "ar_minor_edit",
+				"comment": "Basic revision stuff.",
+				"type": "mwtinyint",
+				"options": {
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "ar_rev_id",
+				"comment": "Copied from rev_id. @since 1.5 Entries from 1.4 will be NULL here. When restoring archive rows from before 1.5, a new rev_id is created.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": true
+				}
+			},
+			{
+				"name": "ar_deleted",
+				"comment": "Copied from rev_deleted. Although this may be raised during deletion. Users with the \"suppressrevision\" right may \"archive\" and \"suppress\" content in a single action. @since 1.10",
+				"type": "mwtinyint",
+				"options": {
+					"unsigned": true,
+					"notnull": true,
+					"default": 0
+				}
+			},
+			{
+				"name": "ar_len",
+				"comment": "Copied from rev_len, length of this revision in bytes. @since 1.10",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "ar_page_id",
+				"comment": "Copied from page_id. Restoration will attempt to use this as page ID if no current page with the same name exists. Otherwise, the revisions will be restored under the current page. Can be used for manual undeletion by developers if multiple pages by the same name were archived. @since 1.11 Older entries will have NULL.",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false
+				}
+			},
+			{
+				"name": "ar_parent_id",
+				"comment": "Copied from rev_parent_id. @since 1.13",
+				"type": "integer",
+				"options": {
+					"unsigned": true,
+					"notnull": false,
+					"default": null
+				}
+			},
+			{
+				"name": "ar_sha1",
+				"comment": "Copied from rev_sha1, SHA-1 text content hash in base-36 @since 1.19",
+				"type": "binary",
+				"options": {
+					"notnull": true,
+					"default": "",
+					"length": 32
+				}
+			}
+		],
+		"indexes": [
+			{
+				"name": "ar_name_title_timestamp",
+				"comment": "Index for Special:Undelete to page through deleted revisions",
+				"columns": [
+					"ar_namespace",
+					"ar_title",
+					"ar_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "ar_actor_timestamp",
+				"comment": "Index for Special:DeletedContributions",
+				"columns": [
+					"ar_actor",
+					"ar_timestamp"
+				],
+				"unique": false
+			},
+			{
+				"name": "ar_revid_uniq",
+				"comment": "Index for linking archive rows with tables that normally link with revision rows, such as change_tag.",
+				"columns": [
+					"ar_rev_id"
+				],
+				"unique": true
+			}
+		],
+		"pk": [
+			"ar_id"
+		]
+	},
+	{
+		"name": "page",
+		"comment": "Core of the wiki: each page has an entry here which identifies it by title and contains some essential metadata.",
+		"columns": [
+			{
+				"name": "page_id",
+				"comment": "Unique identifier number. The page_id will be preserved across edits and rename operations, but not deletions and recreations.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "page_namespace",
+				"comment": "A page name is broken into a namespace and a title. The namespace keys are UI-language-independent constants, defined in includes/Defines.php",
+				"type": "integer",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "page_title",
+				"comment": "The rest of the title, as text. Spaces are transformed into underscores in title storage.",
+				"type": "binary",
+				"options": { "notnull": true, "length": 255 }
+			},
+			{
+				"name": " page_restrictions",
+				"comment": "Comma-separated set of permission keys indicating who can move or edit the page.",
+				"type": "blob",
+				"options": { "notnull": false, "length": 255 }
+			},
+			{
+				"name": "page_is_redirect",
+				"comment": "1 indicates the article is a redirect.",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "page_is_new",
+				"comment": "1 indicates this is a new entry, with only one edit. Not all pages with one edit are new pages.",
+				"type": "mwtinyint",
+				"options": { "notnull": true, "default": 0 }
+			},
+			{
+				"name": "page_random",
+				"comment": "Random value between 0 and 1, used for Special:Randompage",
+				"type": "float",
+				"options": {
+					"notnull": true,
+					"unsigned": true,
+					"CustomSchemaOptions": {
+						"doublePrecision": true
+					}
+				}
+			},
+			{
+				"name": "page_touched",
+				"comment": "This timestamp is updated whenever the page changes in a way requiring it to be re-rendered, invalidating caches. Aside from editing this includes permission changes, creation or deletion of linked pages, and alteration of contained templates.",
+				"type": "mwtimestamp",
+				"options": { "notnull": true }
+			},
+			{
+				"name": "page_links_updated",
+				"comment": "This timestamp is updated whenever a page is re-parsed and it has all the link tracking tables updated for it. This is useful for de-duplicating expensive backlink update jobs.",
+				"type": "mwtimestamp",
+				"options": {
+					"notnull": false,
+					"default": null,
+					"CustomSchemaOptions": {
+						"allowInfinite": true
+					}
+				}
+			},
+			{
+				"name": "page_latest",
+				"comment": "Handy key to revision.rev_id of the current revision. This may be 0 during page creation, but that shouldn't happen outside of a transaction... hopefully.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "page_len",
+				"comment": "Uncompressed length in bytes of the page's current source text.",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "page_content_model",
+				"comment": "content model, see CONTENT_MODEL_XXX constants",
+				"type": "binary",
+				"options": { "length": 32, "notnull": false }
+			},
+			{
+				"name": "page_lang",
+				"comment": "Page content language",
+				"type": "binary",
+				"options": { "length": 35, "notnull": false }
+			}
+		],
+		"indexes": [
+			{
+				"name": "name_title",
+				"columns": [ "page_namespace", "page_title" ],
+				"comment": "The title index. Care must be taken to always specify a namespace when by title, so that the index is used. Even listing all known namespaces with IN() is better than omitting page_namespace from the WHERE clause.",
+				"unique": true
+			},
+			{
+				"name": "page_random",
+				"columns": [ "page_random" ],
+				"comment": "Index for Special:Random",
+				"unique": false
+			},
+			{
+				"name": "page_len",
+				"columns": [ "page_len" ],
+				"comment": "Questionable utility, used by ProofreadPage, possibly DynamicPageList. ApiQueryAllPages unconditionally filters on namespace and so hopefully does not use it.",
+				"unique": false
+			},
+			{
+				"name": "page_redirect_namespace_len",
+				"columns": [ "page_is_redirect", "page_namespace", "page_len" ],
+				"comment": "The index for Special:Shortpages and Special:Longpages. Also SiteStats::articles() in 'comma' counting mode, MessageCache::loadFromDB().",
+				"unique": false
+			}
+		],
+		"pk": [ "page_id" ]
 	}
 ]

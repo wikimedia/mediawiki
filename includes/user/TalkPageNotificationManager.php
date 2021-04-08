@@ -34,6 +34,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class TalkPageNotificationManager {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'DisableAnonTalk'
 	];

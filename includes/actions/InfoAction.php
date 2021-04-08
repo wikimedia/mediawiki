@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\Database;
 
@@ -65,19 +66,19 @@ class InfoAction extends FormlessAction {
 	 * Clear the info cache for a given Title.
 	 *
 	 * @since 1.22
-	 * @param Title $title Title to clear cache for
+	 * @param PageIdentity $page Title to clear cache for
 	 * @param int|null $revid Revision id to clear
 	 */
-	public static function invalidateCache( Title $title, $revid = null ) {
+	public static function invalidateCache( PageIdentity $page, $revid = null ) {
 		$services = MediaWikiServices::getInstance();
 		if ( !$revid ) {
 			$revision = $services->getRevisionLookup()
-				->getRevisionByTitle( $title, 0, IDBAccessObject::READ_LATEST );
+				->getRevisionByTitle( $page, 0, IDBAccessObject::READ_LATEST );
 			$revid = $revision ? $revision->getId() : null;
 		}
 		if ( $revid !== null ) {
 			$cache = $services->getMainWANObjectCache();
-			$key = self::getCacheKey( $cache, $title, $revid );
+			$key = self::getCacheKey( $cache, $page, $revid );
 			$cache->delete( $key );
 		}
 	}
@@ -89,6 +90,9 @@ class InfoAction extends FormlessAction {
 	 */
 	public function onView() {
 		$content = '';
+
+		// "Help" button
+		$this->addHelpLink( 'Page information' );
 
 		// Validate revision
 		$oldid = $this->getArticle()->getOldID();
@@ -105,9 +109,6 @@ class InfoAction extends FormlessAction {
 				return $this->msg( 'pageinfo-not-current' )->plain();
 			}
 		}
-
-		// "Help" button
-		$this->addHelpLink( 'Page information' );
 
 		// Page header
 		if ( !$this->msg( 'pageinfo-header' )->isDisabled() ) {
@@ -149,7 +150,12 @@ class InfoAction extends FormlessAction {
 				$id = ( $infoRow[0] instanceof Message ) ? $infoRow[0]->getKey() : null;
 				$table = $this->addRow( $table, $name, $value, $id ) . "\n";
 			}
-			$content = $this->addTable( $content, $table ) . "\n" . $below;
+			if ( $table === "\n" ) {
+				// Don't add tables with no rows
+				$content .= "\n" . $below;
+			} else {
+				$content = $this->addTable( $content, $table ) . "\n" . $below;
+			}
 		}
 
 		// Page footer
@@ -285,9 +291,8 @@ class InfoAction extends FormlessAction {
 		$pageLangHtml = $pageLang . ' - ' .
 			$services->getLanguageNameUtils()->getLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
-		$permissionManager = $services->getPermissionManager();
 		if ( $config->get( 'PageLanguageUseDB' )
-			&& $permissionManager->userCan( 'pagelang', $user, $title )
+			&& $this->getContext()->getAuthority()->probablyCan( 'pagelang', $title )
 		) {
 			$pageLangHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'PageLanguage', $title->getPrefixedText() ),
@@ -303,7 +308,7 @@ class InfoAction extends FormlessAction {
 		// Content model of the page
 		$modelHtml = htmlspecialchars( ContentHandler::getLocalizedName( $title->getContentModel() ) );
 		// If the user can change it, add a link to Special:ChangeContentModel
-		if ( $permissionManager->userCan( 'editcontentmodel', $user, $title ) ) {
+		if ( $this->getContext()->getAuthority()->probablyCan( 'editcontentmodel', $title ) ) {
 			$modelHtml .= ' ' . $this->msg( 'parentheses' )->rawParams( $linkRenderer->makeLink(
 				SpecialPage::getTitleValueFor( 'ChangeContentModel', $title->getPrefixedText() ),
 				$this->msg( 'pageinfo-content-model-change' )->text()
@@ -343,7 +348,7 @@ class InfoAction extends FormlessAction {
 		];
 
 		$unwatchedPageThreshold = $config->get( 'UnwatchedPageThreshold' );
-		if ( $permissionManager->userHasRight( $user, 'unwatchedpages' ) ||
+		if ( $this->getContext()->getAuthority()->isAllowed( 'unwatchedpages' ) ||
 			( $unwatchedPageThreshold !== false &&
 				$pageCounts['watchers'] >= $unwatchedPageThreshold )
 		) {
@@ -358,7 +363,7 @@ class InfoAction extends FormlessAction {
 			) {
 				$minToDisclose = $config->get( 'UnwatchedPageSecret' );
 				if ( $pageCounts['visitingWatchers'] > $minToDisclose ||
-					$permissionManager->userHasRight( $user, 'unwatchedpages' ) ) {
+					$this->getContext()->getAuthority()->isAllowed( 'unwatchedpages' ) ) {
 					$pageInfo['header-basic'][] = [
 						$this->msg( 'pageinfo-visiting-watchers' ),
 						$lang->formatNum( $pageCounts['visitingWatchers'] )
@@ -387,7 +392,7 @@ class InfoAction extends FormlessAction {
 				[
 					'hidelinks' => 1,
 					'hidetrans' => 1,
-					'hideimages' => $title->getNamespace() == NS_FILE
+					'hideimages' => $title->getNamespace() === NS_FILE
 				]
 			),
 			$this->msg( 'pageinfo-redirects-value' )
@@ -541,8 +546,8 @@ class InfoAction extends FormlessAction {
 			->getRevisionLookup()
 			->getFirstRevision( $this->getTitle() );
 		$lastRev = $this->getWikiPage()->getRevisionRecord();
-		$batch = new LinkBatch;
-
+		$linkBatchFactory = $services->getLinkBatchFactory();
+		$batch = $linkBatchFactory->newLinkBatch();
 		if ( $firstRev ) {
 			$firstRevUser = $firstRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
 			if ( $firstRevUser ) {
@@ -740,7 +745,7 @@ class InfoAction extends FormlessAction {
 		return $cache->getWithSetCallback(
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
-			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname, $services ) {
+			static function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname, $services ) {
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
@@ -884,72 +889,6 @@ class InfoAction extends FormlessAction {
 	}
 
 	/**
-	 * Get a list of contributors of $article
-	 * @return string Html
-	 */
-	protected function getContributors() {
-		$contributors = $this->getWikiPage()->getContributors();
-		$real_names = [];
-		$user_names = [];
-		$anon_ips = [];
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-
-		# Sift for real versus user names
-		/** @var User $user */
-		foreach ( $contributors as $user ) {
-			$page = $user->isAnon()
-				? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
-				: $user->getUserPage();
-
-			$hiddenPrefs = $this->context->getConfig()->get( 'HiddenPrefs' );
-			if ( $user->getId() == 0 ) {
-				$anon_ips[] = $linkRenderer->makeLink( $page, $user->getName() );
-			} elseif ( !in_array( 'realname', $hiddenPrefs ) && $user->getRealName() ) {
-				$real_names[] = $linkRenderer->makeLink( $page, $user->getRealName() );
-			} else {
-				$user_names[] = $linkRenderer->makeLink( $page, $user->getName() );
-			}
-		}
-
-		$lang = $this->getLanguage();
-
-		$real = $lang->listToText( $real_names );
-
-		# "ThisSite user(s) A, B and C"
-		if ( count( $user_names ) ) {
-			$user = $this->msg( 'siteusers' )
-				->rawParams( $lang->listToText( $user_names ) )
-				->params( count( $user_names ) )->escaped();
-		} else {
-			$user = false;
-		}
-
-		if ( count( $anon_ips ) ) {
-			$anon = $this->msg( 'anonusers' )
-				->rawParams( $lang->listToText( $anon_ips ) )
-				->params( count( $anon_ips ) )->escaped();
-		} else {
-			$anon = false;
-		}
-
-		# This is the big list, all mooshed together. We sift for blank strings
-		$fulllist = [];
-		foreach ( [ $real, $user, $anon ] as $s ) {
-			if ( $s !== '' ) {
-				array_push( $fulllist, $s );
-			}
-		}
-
-		$count = count( $fulllist );
-
-		# "Based on work by ..."
-		return $count
-			? $this->msg( 'othercontribs' )->rawParams(
-				$lang->listToText( $fulllist ) )->params( $count )->escaped()
-			: '';
-	}
-
-	/**
 	 * Returns the description that goes below the "<h1>" tag.
 	 *
 	 * @return string
@@ -960,11 +899,11 @@ class InfoAction extends FormlessAction {
 
 	/**
 	 * @param WANObjectCache $cache
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param int $revId
 	 * @return string
 	 */
-	protected static function getCacheKey( WANObjectCache $cache, Title $title, $revId ) {
-		return $cache->makeKey( 'infoaction', md5( $title->getPrefixedText() ), $revId, self::VERSION );
+	protected static function getCacheKey( WANObjectCache $cache, PageIdentity $page, $revId ) {
+		return $cache->makeKey( 'infoaction', md5( (string)$page ), $revId, self::VERSION );
 	}
 }

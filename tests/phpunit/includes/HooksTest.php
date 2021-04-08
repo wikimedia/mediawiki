@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\Error\Deprecated;
 use Wikimedia\ScopedCallback;
 
 class HooksTest extends MediaWikiIntegrationTestCase {
@@ -44,12 +43,12 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 			],
 			[ 'Global function', [ 'NothingFunction' ], 'changed-func', 'original' ],
 			[ 'Global function with data', [ 'NothingFunctionData', 'data' ], 'data', 'original' ],
-			[ 'Closure', [ function ( &$foo, $bar ) {
+			[ 'Closure', [ static function ( &$foo, $bar ) {
 				$foo = 'changed-closure';
 
 				return true;
 			} ], 'changed-closure', 'original' ],
-			[ 'Closure with data', [ function ( $data, &$foo, $bar ) {
+			[ 'Closure with data', [ static function ( $data, &$foo, $bar ) {
 				$foo = $data;
 
 				return true;
@@ -85,7 +84,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 			'No hooks registered'
 		);
 
-		$a = new NothingClass();
+		$a = [ new NothingClass(), 'someStatic' ];
 		$b = new NothingClass();
 
 		$wgHooks['MediaWikiHooksTest001'][] = $a;
@@ -97,8 +96,8 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 		);
 		$reset = $hookContainer->scopedRegister( 'MediaWikiHooksTest001', $b );
 		$this->assertSame(
-			[ $b, $a ],
-			Hooks::getHandlers( 'MediaWikiHooksTest001' ),
+			[ $a, $b ],
+			array_values( Hooks::getHandlers( 'MediaWikiHooksTest001' ) ),
 			'Hooks::getHandlers() should return hooks registered via wgHooks as well as Hooks::register'
 		);
 
@@ -167,10 +166,10 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testFalseReturn() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$foo ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$foo ) {
 			return false;
 		} );
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$foo ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$foo ) {
 			$foo = 'test';
 			return true;
 		} );
@@ -184,10 +183,10 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNullReturn() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$foo ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$foo ) {
 			return;
 		} );
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$foo ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$foo ) {
 			$foo = 'test';
 
 			return true;
@@ -203,7 +202,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testCallHook_FalseHook() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$hookContainer->register( 'MediaWikiHooksTest001', false );
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$foo ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$foo ) {
 			$foo = 'test';
 
 			return true;
@@ -229,7 +228,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testCallHook_Deprecated() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		$hookContainer->register( 'MediaWikiHooksTest001', 'NothingClass::someStatic' );
-		$this->expectException( Deprecated::class );
+		$this->expectDeprecation();
 		Hooks::run( 'MediaWikiHooksTest001', [], '1.31' );
 	}
 
@@ -239,15 +238,15 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	public function testRunWithoutAbort() {
 		$list = [];
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$list ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$list ) {
 			$list[] = 1;
 			return true; // Explicit true
 		} );
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$list ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$list ) {
 			$list[] = 2;
 			return; // Implicit null
 		} );
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$list ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$list ) {
 			$list[] = 3;
 			// No return
 		} );
@@ -261,10 +260,10 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testRunWithoutAbortWarning() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$foo ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$foo ) {
 			return false;
 		} );
-		$hookContainer->register( 'MediaWikiHooksTest001', function ( &$foo ) {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function ( &$foo ) {
 			$foo = 'test';
 			return true;
 		} );
@@ -282,7 +281,7 @@ class HooksTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testFatalError() {
 		$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		$hookContainer->register( 'MediaWikiHooksTest001', function () {
+		$hookContainer->register( 'MediaWikiHooksTest001', static function () {
 			return 'test';
 		} );
 		$this->expectDeprecation();

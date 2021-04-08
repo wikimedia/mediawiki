@@ -30,8 +30,9 @@ class OOUIHTMLForm extends HTMLForm {
 	private $oouiErrors;
 	private $oouiWarnings;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $descriptor, $context = null, $messagePrefix = '' ) {
 		parent::__construct( $descriptor, $context, $messagePrefix );
@@ -56,9 +57,6 @@ class OOUIHTMLForm extends HTMLForm {
 	public function getButtons() {
 		$buttons = '';
 
-		// IE<8 has bugs with <button>, so we'll need to avoid them.
-		$isBadIE = preg_match( '/MSIE [1-7]\./i', $this->getRequest()->getHeader( 'User-Agent' ) );
-
 		if ( $this->mShowSubmit ) {
 			$attribs = [ 'infusable' => true ];
 
@@ -82,7 +80,6 @@ class OOUIHTMLForm extends HTMLForm {
 			$attribs['label'] = $this->getSubmitText();
 			$attribs['value'] = $this->getSubmitText();
 			$attribs['flags'] = $this->mSubmitFlags;
-			$attribs['useInputTag'] = $isBadIE;
 
 			$buttons .= new OOUI\ButtonInputWidget( $attribs );
 		}
@@ -91,7 +88,6 @@ class OOUIHTMLForm extends HTMLForm {
 			$buttons .= new OOUI\ButtonInputWidget( [
 				'type' => 'reset',
 				'label' => $this->msg( 'htmlform-reset' )->text(),
-				'useInputTag' => $isBadIE,
 			] );
 		}
 
@@ -117,9 +113,7 @@ class OOUIHTMLForm extends HTMLForm {
 				$attrs['id'] = $button['id'];
 			}
 
-			if ( $isBadIE ) {
-				$label = $button['value'];
-			} elseif ( isset( $button['label-message'] ) ) {
+			if ( isset( $button['label-message'] ) ) {
 				$label = new OOUI\HtmlSnippet( $this->getMessage( $button['label-message'] )->parse() );
 			} elseif ( isset( $button['label'] ) ) {
 				$label = $button['label'];
@@ -138,7 +132,6 @@ class OOUIHTMLForm extends HTMLForm {
 				'label' => $label,
 				'flags' => $button['flags'],
 				'framed' => $button['framed'],
-				'useInputTag' => $isBadIE,
 			] + $attrs );
 		}
 
@@ -219,21 +212,23 @@ class OOUIHTMLForm extends HTMLForm {
 			if ( !$elements->isGood() ) {
 				$errors = $elements->getErrorsByType( $elementsType );
 				foreach ( $errors as &$error ) {
-					// Input:  [ 'message' => 'foo', 'errors' => [ 'a', 'b', 'c' ] ]
+					// Input:  [ 'message' => 'foo', 'params' => [ 'a', 'b', 'c' ] ]
 					// Output: [ 'foo', 'a', 'b', 'c' ]
-					$error = array_merge( [ $error['message'] ], $error['params'] );
+					$error = $this->getMessage(
+						array_merge( [ $error['message'] ], $error['params'] ) )->parse();
 				}
 			}
 		} elseif ( $elementsType === 'error' ) {
 			if ( is_array( $elements ) ) {
-				$errors = $elements;
-			} elseif ( is_string( $elements ) ) {
-				$errors = [ $elements ];
+				foreach ( $elements as $error ) {
+					$errors[] = $this->getMessage( $error )->parse();
+				}
+			} elseif ( $elements && $elements !== true ) {
+				$errors[] = (string)$elements;
 			}
 		}
 
 		foreach ( $errors as &$error ) {
-			$error = $this->getMessage( $error )->parse();
 			$error = new OOUI\HtmlSnippet( $error );
 		}
 

@@ -2,6 +2,7 @@
 *.icc binary
 *.webp binary
 *.mp3 binary
+*.map.json binary
 *~ export-ignore
 #*# export-ignore
 .* export-ignore

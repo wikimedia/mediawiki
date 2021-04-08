@@ -62,21 +62,20 @@ class MWGrants {
 		// grant-highvolume, grant-oversight, grant-patrol, grant-protect,
 		// grant-rollback, grant-sendemail, grant-uploadeditmovefile,
 		// grant-uploadfile, grant-basic, grant-viewdeleted,
-		// grant-viewmywatchlist, grant-createaccount, grant-mergehistory
+		// grant-viewmywatchlist, grant-createaccount, grant-mergehistory,
+		// grant-import
 		$msg = wfMessage( "grant-$grant" );
-		if ( $lang !== null ) {
-			if ( is_string( $lang ) ) {
-				$lang = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $lang );
-			}
+
+		if ( $lang ) {
 			$msg->inLanguage( $lang );
 		}
+
 		if ( !$msg->exists() ) {
-			$msg = wfMessage( 'grant-generic', $grant );
-			if ( $lang ) {
-				$msg->inLanguage( $lang );
-			}
+			$msg = $lang
+				? wfMessage( 'grant-generic', $grant )->inLanguage( $lang )
+				: wfMessage( 'grant-generic', $grant );
 		}
+
 		return $msg->text();
 	}
 
@@ -87,11 +86,8 @@ class MWGrants {
 	 * @return string[] Corresponding grant descriptions
 	 */
 	public static function grantNames( array $grants, $lang = null ) {
-		if ( $lang !== null && is_string( $lang ) ) {
-			$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang );
-		}
-
 		$ret = [];
+
 		foreach ( $grants as $grant ) {
 			$ret[] = self::grantName( $grant, $lang );
 		}

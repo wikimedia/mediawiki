@@ -56,7 +56,7 @@ trait ActionModuleBasedHandlerTestTrait {
 
 		$module->method( 'execute' )
 			->willReturnCallback(
-				function () use ( $module, $resultData, $throwException ) {
+				static function () use ( $module, $resultData, $throwException ) {
 					if ( $throwException ) {
 						throw $throwException;
 					}
@@ -72,6 +72,7 @@ trait ActionModuleBasedHandlerTestTrait {
 	}
 
 	/**
+	 * @param bool $csrfSafe
 	 * @return ApiMain
 	 */
 	private function getApiMain( $csrfSafe = false ) {

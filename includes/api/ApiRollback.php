@@ -61,7 +61,7 @@ class ApiRollback extends ApiBase {
 		// If change tagging was requested, check that the user is allowed to tag,
 		// and the tags are valid
 		if ( $params['tags'] ) {
-			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
 			if ( !$tagStatus->isOK() ) {
 				$this->dieStatus( $tagStatus );
 			}
@@ -72,7 +72,7 @@ class ApiRollback extends ApiBase {
 		$trxLimits = $this->getConfig()->get( 'TrxProfilerLimits' );
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
 		$trxProfiler->redefineExpectations( $trxLimits['POST'], $fname );
-		DeferredUpdates::addCallableUpdate( function () use ( $trxProfiler, $trxLimits, $fname ) {
+		DeferredUpdates::addCallableUpdate( static function () use ( $trxProfiler, $trxLimits, $fname ) {
 			$trxProfiler->redefineExpectations( $trxLimits['PostSend-POST'], $fname );
 		} );
 
@@ -82,7 +82,7 @@ class ApiRollback extends ApiBase {
 			$params['token'],
 			$params['markbot'],
 			$details,
-			$user,
+			$this->getAuthority(),
 			$params['tags']
 		);
 

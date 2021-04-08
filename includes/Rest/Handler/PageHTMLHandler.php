@@ -3,179 +3,100 @@
 namespace MediaWiki\Rest\Handler;
 
 use Config;
-use ConfigException;
-use Exception;
-use GuzzleHttp\Psr7\Uri;
 use LogicException;
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
+use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Revision\RevisionLookup;
-use RestbaseVirtualRESTService;
+use TitleFactory;
 use TitleFormatter;
-use UIDGenerator;
-use VirtualRESTServiceClient;
-use WebRequest;
-use Wikimedia\Message\MessageValue;
+use Wikimedia\Assert\Assert;
+use Wikimedia\UUID\GlobalIdGenerator;
 
 /**
  * A handler that returns Parsoid HTML for the following routes:
  * - /page/{title}/html,
  * - /page/{title}/with_html
- * - /page/{title}/bare routes.
- * Currently the HTML is fetched from RESTBase, thus in order to use the routes,
- * RESTBase must be installed and VirtualRESTService for RESTBase needs to be configured.
  *
- * Class PageHTMLHandler
  * @package MediaWiki\Rest\Handler
  */
-class PageHTMLHandler extends LatestPageContentHandler {
-	private const MAX_AGE_200 = 5;
+class PageHTMLHandler extends SimpleHandler {
 
-	/** @var VirtualRESTServiceClient */
-	private $restClient;
+	/** @var ParsoidHTMLHelper */
+	private $htmlHelper;
 
-	/** @var array */
-	private $htmlResponse;
+	/** @var PageContentHelper */
+	private $contentHelper;
 
-	/**
-	 * @param Config $config
-	 * @param PermissionManager $permissionManager
-	 * @param RevisionLookup $revisionLookup
-	 * @param TitleFormatter $titleFormatter
-	 * @param VirtualRESTServiceClient $virtualRESTServiceClient
-	 */
 	public function __construct(
 		Config $config,
-		PermissionManager $permissionManager,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		VirtualRESTServiceClient $virtualRESTServiceClient
+		TitleFactory $titleFactory,
+		ParserCacheFactory $parserCacheFactory,
+		WikiPageFactory $wikiPageFactory,
+		GlobalIdGenerator $globalIdGenerator
 	) {
-		parent::__construct( $config, $permissionManager, $revisionLookup, $titleFormatter );
-
-		$this->restClient = $virtualRESTServiceClient;
+		$this->contentHelper = new PageContentHelper(
+			$config,
+			$revisionLookup,
+			$titleFormatter,
+			$titleFactory
+		);
+		$this->htmlHelper = new ParsoidHTMLHelper(
+			$parserCacheFactory->getParserCache( 'parsoid' ),
+			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
+			$wikiPageFactory,
+			$globalIdGenerator
+		);
 	}
 
-	/**
-	 * @param LinkTarget $title
-	 * @return array
-	 * @throws LocalizedHttpException
-	 */
-	private function fetchHtmlFromRESTBase( LinkTarget $title ): array {
-		if ( $this->htmlResponse !== null ) {
-			return $this->htmlResponse;
+	protected function postValidationSetup() {
+		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
+
+		$title = $this->contentHelper->getTitle();
+		if ( $title ) {
+			$this->htmlHelper->init( $title );
 		}
-
-		list( , $service ) = $this->restClient->getMountAndService( '/restbase/ ' );
-		if ( !$service ) {
-			try {
-				$restConfig = $this->config->get( 'VirtualRestConfig' );
-				if ( !isset( $restConfig['modules']['restbase'] ) ) {
-					throw new ConfigException(
-						__CLASS__ . " requires restbase module configured for VirtualRestConfig"
-					);
-				}
-				$this->restClient->mount( '/restbase/',
-					new RestbaseVirtualRESTService( $restConfig['modules']['restbase'] ) );
-			} catch ( Exception $e ) {
-				// This would usually be config exception, but let's fail on any exception
-				throw new LocalizedHttpException( MessageValue::new( 'rest-html-backend-error' ), 500 );
-			}
-		}
-
-		$this->htmlResponse = $this->restClient->run( [
-			'method' => 'GET',
-			'url' => '/restbase/local/v1/page/html/' .
-				urlencode( $this->titleFormatter->getPrefixedDBkey( $title ) ) .
-				'?redirect=false'
-		] );
-		return $this->htmlResponse;
 	}
 
 	/**
-	 * @param LinkTarget $title
-	 * @return array
-	 * @throws LocalizedHttpException
-	 */
-	private function fetch200HtmlFromRESTBase( LinkTarget $title ): array {
-		$restbaseResp = $this->fetchHtmlFromRESTBase( $title );
-		if ( $restbaseResp['code'] !== 200 ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-html-backend-error' ),
-				$restbaseResp['code']
-			);
-		}
-		return $restbaseResp;
-	}
-
-	/**
-	 * @return string
-	 */
-	private function constructHtmlUrl(): string {
-		$wr = new WebRequest();
-		$urlParts = wfParseUrl( $wr->getFullRequestURL() );
-		$currentPathParts = explode( '/', $urlParts['path'] );
-		$currentPathParts[ count( $currentPathParts ) - 1 ] = 'html';
-		$urlParts['path'] = implode( '/', $currentPathParts );
-		return Uri::fromParts( $urlParts );
-	}
-
-	/**
-	 * @param string $title
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
-	public function run( string $title ): Response {
-		$titleObj = $this->getTitle();
-		if ( !$titleObj || !$titleObj->getArticleID() ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $title ),
-				404
-			);
-		}
+	public function run(): Response {
+		$this->contentHelper->checkAccess();
 
-		if ( !$this->isAccessible( $titleObj ) ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $title ),
-				403
-			);
-		}
+		$titleObj = $this->contentHelper->getTitle();
 
-		$revision = $this->getLatestRevision();
-		if ( !$revision ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-no-revision' )->plaintextParams( $title ),
-				404
-			);
-		}
+		// The call to $this->contentHelper->getTitle() should not return null if
+		// $this->contentHelper->checkAccess() did not throw.
+		Assert::invariant( $titleObj !== null, 'Title should be known' );
 
-		$htmlType = $this->getHtmlType();
-		switch ( $htmlType ) {
-			case 'bare':
-				$body = $this->constructMetadata( $titleObj, $revision );
-				$body['html_url'] = $this->constructHtmlUrl();
-				$response = $this->getResponseFactory()->createJson( $body );
-				break;
+		$outputMode = $this->getOutputMode();
+		switch ( $outputMode ) {
 			case 'html':
-				$restbaseResp = $this->fetch200HtmlFromRESTBase( $titleObj );
+				$parserOutput = $this->htmlHelper->getHtml();
 				$response = $this->getResponseFactory()->create();
-				$response->setHeader( 'Content-Type', $restbaseResp[ 'headers' ][ 'content-type' ] );
-				$response->setBody( new StringStream( $restbaseResp[ 'body' ] ) );
+				// TODO: need to respect content-type returned by Parsoid.
+				$response->setHeader( 'Content-Type', 'text/html' );
+				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
+				$response->setBody( new StringStream( $parserOutput->getText() ) );
 				break;
 			case 'with_html':
-				$restbaseResp = $this->fetch200HtmlFromRESTBase( $titleObj );
-				$body = $this->constructMetadata( $titleObj, $revision );
-				$body['html'] = $restbaseResp['body'];
+				$parserOutput = $this->htmlHelper->getHtml();
+				$body = $this->contentHelper->constructMetadata();
+				$body['html'] = $parserOutput->getText();
 				$response = $this->getResponseFactory()->createJson( $body );
+				$this->contentHelper->setCacheControl( $response, $parserOutput->getCacheExpiry() );
 				break;
 			default:
-				throw new LogicException( "Unknown HTML type $htmlType" );
+				throw new LogicException( "Unknown HTML type $outputMode" );
 		}
 
-		$response->setHeader( 'Cache-Control', 'max-age=' . self::MAX_AGE_200 );
 		return $response;
 	}
 
@@ -184,52 +105,33 @@ class PageHTMLHandler extends LatestPageContentHandler {
 	 * if the latest revision of a page has been made private, un-readable for another reason,
 	 * or a newer revision exists.
 	 * @return string|null
-	 * @throws LocalizedHttpException
 	 */
 	protected function getETag(): ?string {
-		$title = $this->getTitle();
-		if ( !$title || !$title->getArticleID() || !$this->isAccessible( $title ) ) {
+		if ( !$this->contentHelper->isAccessible() ) {
 			return null;
 		}
-		if ( $this->getHtmlType() === 'bare' ) {
-			return '"' . $this->getLatestRevision()->getId() . '"';
-		}
-
-		$restbaseRes = $this->fetch200HtmlFromRESTBase( $title );
-		return $restbaseRes['headers']['etag'] ?? null;
+		return $this->htmlHelper->getETag();
 	}
 
 	/**
 	 * @return string|null
-	 * @throws LocalizedHttpException
 	 */
 	protected function getLastModified(): ?string {
-		$title = $this->getTitle();
-		if ( !$title || !$title->getArticleID() || !$this->isAccessible( $title ) ) {
+		if ( !$this->contentHelper->isAccessible() ) {
 			return null;
 		}
-
-		if ( $this->getHtmlType() === 'bare' ) {
-			return $this->getLatestRevision()->getTimestamp();
-		}
-
-		$restbaseRes = $this->fetch200HtmlFromRESTBase( $title );
-		$restbaseEtag = $restbaseRes['headers']['etag'] ?? null;
-		if ( !$restbaseEtag ) {
-			return null;
-		}
-
-		$etagComponents = [];
-		if ( !preg_match( '/^(?:W\/)?"?[^"\/]+(?:\/([^"\/]+))"?$/',
-			$restbaseEtag, $etagComponents )
-		) {
-			return null;
-		}
-
-		return UIDGenerator::getTimestampFromUUIDv1( $etagComponents[1] ) ?: null;
+		return $this->htmlHelper->getLastModified();
 	}
 
-	private function getHtmlType(): string {
+	private function getOutputMode(): string {
 		return $this->getConfig()['format'];
+	}
+
+	public function needsWriteAccess(): bool {
+		return false;
+	}
+
+	public function getParamSettings(): array {
+		return $this->contentHelper->getParamSettings();
 	}
 }

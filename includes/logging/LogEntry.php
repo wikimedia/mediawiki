@@ -23,6 +23,8 @@
  * @since 1.19
  */
 
+use MediaWiki\User\UserIdentity;
+
 /**
  * Interface for log entries. Every log entry has these methods.
  *
@@ -61,10 +63,16 @@ interface LogEntry {
 
 	/**
 	 * Get the user who performed this action.
-	 *
+	 * @deprecated since 1.36 use ::getPerformerIdentity instead
 	 * @return User
 	 */
 	public function getPerformer();
+
+	/**
+	 * @since 1.36
+	 * @return UserIdentity
+	 */
+	public function getPerformerIdentity(): UserIdentity;
 
 	/**
 	 * Get the target page of this action.

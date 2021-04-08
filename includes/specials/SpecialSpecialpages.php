@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * A special page that lists special pages
  *
@@ -52,8 +50,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 	}
 
 	private function getPageGroups() {
-		$pages = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-			getUsablePages( $this->getUser() );
+		$pages = $this->getSpecialPageFactory()->getUsablePages( $this->getUser() );
 
 		if ( $pages === [] ) {
 			# Yeah, that was pointless. Thanks for coming.
@@ -115,9 +112,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				Html::openElement( 'div', [ 'class' => 'mw-specialpages-list' ] )
 				. '<ul>'
 			);
-			foreach ( $sortedPages as $desc => $specialpage ) {
-				list( $title, $restricted, $cached ) = $specialpage;
-
+			foreach ( $sortedPages as $desc => [ $title, $restricted, $cached ] ) {
 				$pageClasses = [];
 				if ( $cached ) {
 					$includesCachedPages = true;
@@ -131,7 +126,7 @@ class SpecialSpecialpages extends UnlistedSpecialPage {
 				$link = $this->getLinkRenderer()->makeKnownLink( $title, $desc );
 				$out->addHTML( Html::rawElement(
 						'li',
-						[ 'class' => implode( ' ', $pageClasses ) ],
+						[ 'class' => $pageClasses ],
 						$link
 					) . "\n" );
 			}

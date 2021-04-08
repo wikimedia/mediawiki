@@ -34,8 +34,8 @@
  * @ingroup SpecialPage
  */
 class SpecialGoToInterwiki extends UnlistedSpecialPage {
-	public function __construct( $name = 'GoToInterwiki' ) {
-		parent::__construct( $name );
+	public function __construct() {
+		parent::__construct( 'GoToInterwiki' );
 	}
 
 	public function execute( $par ) {

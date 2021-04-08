@@ -189,12 +189,12 @@ class HtmlCacheUpdater {
 		if ( !$this->fieldHasFlag( $flags, self::PURGE_URLS_LINKSUPDATE_ONLY ) ) {
 			$urls[] = $title->getInternalURL( 'action=history' );
 
-			// Canonical action=raw URLs for user config pages
-			if ( $title->isUserJsConfigPage() ) {
+			// Canonical action=raw URLs for user and site config pages (T58874, T261371).
+			if ( $title->isUserJsConfigPage() || $title->isSiteJsConfigPage() ) {
 				$urls[] = $title->getInternalURL( 'action=raw&ctype=text/javascript' );
-			} elseif ( $title->isUserJsonConfigPage() ) {
+			} elseif ( $title->isUserJsonConfigPage() || $title->isSiteJsonConfigPage() ) {
 				$urls[] = $title->getInternalURL( 'action=raw&ctype=application/json' );
-			} elseif ( $title->isUserCssConfigPage() ) {
+			} elseif ( $title->isUserCssConfigPage() || $title->isSiteCssConfigPage() ) {
 				$urls[] = $title->getInternalURL( 'action=raw&ctype=text/css' );
 			}
 		}

@@ -89,13 +89,15 @@ class DeleteDefaultMessages extends Maintenance {
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
 		$dbw = $this->getDB( DB_MASTER );
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$wikiPageFactory = $services->getWikiPageFactory();
 
 		foreach ( $res as $row ) {
 			$lbFactory->waitForReplication();
 			$dbw->ping();
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-			$page = WikiPage::factory( $title );
+			$page = $wikiPageFactory->newFromTitle( $title );
 			// FIXME: Deletion failures should be reported, not silently ignored.
 			$page->doDeleteArticleReal( 'No longer required', $user );
 		}

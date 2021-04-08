@@ -5,13 +5,16 @@ namespace MediaWiki\Hook;
 use Skin;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "SkinAddFooterLinks" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
 interface SkinAddFooterLinksHook {
 	/**
 	 * This hook is called when generating the code used to display the
-	 * footer. Skins
+	 * footer.
 	 *
 	 * @since 1.35
 	 *

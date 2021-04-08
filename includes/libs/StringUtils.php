@@ -250,7 +250,7 @@ class StringUtils {
 	) {
 		return self::delimiterReplaceCallback(
 			$startDelim, $endDelim,
-			function ( array $matches ) use ( $replace ) {
+			static function ( array $matches ) use ( $replace ) {
 				return strtr( $replace, [ '$0' => $matches[0], '$1' => $matches[1] ] );
 			},
 			$subject, $flags
@@ -274,7 +274,7 @@ class StringUtils {
 		// Replace instances of the separator inside HTML-like tags with the placeholder
 		$cleaned = self::delimiterReplaceCallback(
 			'<', '>',
-			function ( array $matches ) use ( $search, $placeholder ) {
+			static function ( array $matches ) use ( $search, $placeholder ) {
 				return str_replace( $search, $placeholder, $matches[0] );
 			},
 			$text

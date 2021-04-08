@@ -21,24 +21,27 @@
  * @ingroup Parser
  */
 
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
-
 /**
  * @ingroup Parser
  */
 abstract class Preprocessor {
+	/** Transclusion mode flag for Preprocessor::preprocessToObj() */
+	public const DOM_FOR_INCLUSION = 1;
+	/** Language conversion construct omission flag for Preprocessor::preprocessToObj() */
+	public const DOM_LANG_CONVERSION_DISABLED = 2;
+	/** Preprocessor cache bypass flag for Preprocessor::preprocessToObj */
+	public const DOM_UNCACHED = 4;
 
-	public const CACHE_VERSION = 1;
-
-	/**
-	 * @var Parser
-	 */
+	/** @var Parser */
 	public $parser;
 
-	/**
-	 * @var array Brace matching rules.
-	 */
+	/** @var WANObjectCache */
+	protected $wanCache;
+
+	/** @var bool Whether language variant conversion is disabled */
+	protected $disableLangConversion;
+
+	/** @var array Brace matching rules */
 	protected $rules = [
 		'{' => [
 			'end' => '}',
@@ -64,76 +67,33 @@ abstract class Preprocessor {
 	];
 
 	/**
-	 * Store a document tree in the cache.
-	 *
-	 * @param string $text
-	 * @param int $flags
-	 * @param string $tree
+	 * @param Parser $parser
+	 * @param WANObjectCache|null $wanCache
+	 * @param array $options Map of additional options, including:
+	 * 	 - disableLangConversion: disable language variant conversion. [Default: false]
 	 */
-	protected function cacheSetTree( $text, $flags, $tree ) {
-		$config = RequestContext::getMain()->getConfig();
-
-		$length = strlen( $text );
-		$threshold = $config->get( 'PreprocessorCacheThreshold' );
-		if ( $threshold === false || $length < $threshold || $length > 1e6 ) {
-			return;
-		}
-
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		$key = $cache->makeKey(
-			// @phan-suppress-next-line PhanUndeclaredConstantOfClass
-			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : static::class,
-			md5( $text ),
-			$flags
-		);
-		$value = sprintf( "%08d", static::CACHE_VERSION ) . $tree;
-
-		$cache->set( $key, $value, 86400 );
-
-		LoggerFactory::getInstance( 'Preprocessor' )
-			->info( "Cached preprocessor output (key: $key)" );
+	public function __construct(
+		Parser $parser,
+		WANObjectCache $wanCache = null,
+		array $options = []
+	) {
+		$this->parser = $parser;
+		$this->wanCache = $wanCache ?: WANObjectCache::newEmpty();
+		$this->disableLangConversion = !empty( $options['disableLangConversion'] );
 	}
 
 	/**
-	 * Attempt to load a precomputed document tree for some given wikitext
-	 * from the cache.
+	 * Allows resetting the internal Parser reference after Preprocessor is
+	 * cloned.
 	 *
-	 * @param string $text
-	 * @param int $flags
-	 * @return PPNode_Hash_Tree|bool
+	 * Do not use this function in new code, since this method will be
+	 * moved once Parser cloning goes away (T250448)
+	 *
+	 * @param ?Parser $parser
+	 * @internal
 	 */
-	protected function cacheGetTree( $text, $flags ) {
-		$config = RequestContext::getMain()->getConfig();
-
-		$length = strlen( $text );
-		$threshold = $config->get( 'PreprocessorCacheThreshold' );
-		if ( $threshold === false || $length < $threshold || $length > 1e6 ) {
-			return false;
-		}
-
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-
-		$key = $cache->makeKey(
-			// @phan-suppress-next-line PhanUndeclaredConstantOfClass
-			defined( 'static::CACHE_PREFIX' ) ? static::CACHE_PREFIX : static::class,
-			md5( $text ),
-			$flags
-		);
-
-		$value = $cache->get( $key );
-		if ( !$value ) {
-			return false;
-		}
-
-		$version = intval( substr( $value, 0, 8 ) );
-		if ( $version !== static::CACHE_VERSION ) {
-			return false;
-		}
-
-		LoggerFactory::getInstance( 'Preprocessor' )
-			->info( "Loaded preprocessor output from cache (key: $key)" );
-
-		return substr( $value, 8 );
+	public function resetParser( ?Parser $parser ) {
+		$this->parser = $parser;
 	}
 
 	/**
@@ -145,29 +105,41 @@ abstract class Preprocessor {
 
 	/**
 	 * Create a new custom frame for programmatic use of parameter replacement
-	 * as used in some extensions.
+	 *
+	 * This is useful for certain types of extensions
 	 *
 	 * @param array $args
-	 *
 	 * @return PPFrame
 	 */
 	abstract public function newCustomFrame( $args );
 
 	/**
 	 * Create a new custom node for programmatic use of parameter replacement
-	 * as used in some extensions.
+	 *
+	 * This is useful for certain types of extensions
 	 *
 	 * @param array $values
 	 */
 	abstract public function newPartNodeArray( $values );
 
 	/**
-	 * Preprocess text to a PPNode
+	 * Get the document object model for the given wikitext
 	 *
-	 * @param string $text
-	 * @param int $flags
+	 * Any flag added to the $flags parameter here, or any other parameter liable to cause
+	 * a change in the DOM tree for the given wikitext, must be passed through the section
+	 * identifier in the section edit link and thus back to extractSections().
 	 *
+	 * @param string $text Wikitext
+	 * @param int $flags Bit field of Preprocessor::DOM_* flags:
+	 *   - Preprocessor::DOM_FOR_INCLUSION: treat the wikitext as transcluded content from
+	 *      a page rather than direct content of a page or message. By default, the text is
+	 *      assumed to be undergoing processing for use by direct page views. The use of this
+	 *      flag causes text within <noinclude> tags to be ignored, text within <includeonly>
+	 *      to be included, and text outside of <onlyinclude> to be ignored.
+	 *   - Preprocessor::DOM_NO_LANG_CONV: do not parse "-{ ... }-" constructs, which are
+	 *      involved in language variant conversion. (deprecated since 1.36)
+	 *   - Preprocessor::DOM_UNCACHED: disable use of the preprocessor cache.
 	 * @return PPNode
 	 */
-	abstract public function preprocessToObj( $text, $flags = 0 );
+	 abstract public function preprocessToObj( $text, $flags = 0 );
 }

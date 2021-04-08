@@ -17,6 +17,7 @@
  *
  * @file
  */
+use Wikimedia\Minify\CSSMin;
 
 /**
  * Module for skin stylesheets.
@@ -24,7 +25,7 @@
  * @ingroup ResourceLoader
  * @internal
  */
-class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
+class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/**
 	 * All skins are assumed to be compatible with mobile
 	 */
@@ -54,18 +55,35 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 *     content area structures like the TOC themselves.
 	 *
 	 * "content":
-	 *     The most commonly used level for skins implemented from scratch. This level includes all
-	 *     the single element styles from "elements" as well as styles for complex structures such
-	 *     as the TOC that are output in the content area by MediaWiki rather than the skin.
-	 *     Essentially this is the common level that lets skins leave the style of the content area
-	 *     as it is normally styled, while leaving the rest of the skin up to the skin
-	 *     implementation.
+	 *     Deprecated. Alias for "content-thumbnails".
+	 *
+	 * "content-thumbnails":
+	 *     Styles for thumbnails and floated elements.
+	 *
+	 * "content-media":
+	 *     Styles for the new media structure on wikis where $wgUseNewMediaStructure is enabled.
+	 *     See https://www.mediawiki.org/wiki/Parsing/Media_structure
+	 *
+	 * "content-links":
+	 *     The skin will apply optional styling rules to links to provide icons for different file types.
+	 *
+	 * "content-parser-output":
+	 *     Styles for the mw-parser-output class.
+	 *
+	 * "content-tables":
+	 *     Styles .wikitable style tables.
 	 *
 	 * "interface":
 	 *     The highest level, this stylesheet contains extra common styles for classes like
 	 *     .firstHeading, #contentSub, et cetera which are not outputted by MediaWiki but are common
 	 *     to skins like MonoBook, Vector, etc... Essentially this level is for styles that are
 	 *     common to MonoBook clones.
+	 *
+	 * "interface-category":
+	 *     Styles used for styling the categories in a horizontal bar at the bottom of the content.
+	 *
+	 * "interface-message-box":
+	 *     Styles for message boxes.
 	 *
 	 * "i18n-ordered-lists":
 	 *     Styles for ordered lists elements that support mixed language content.
@@ -79,30 +97,55 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * "legacy":
 	 *     For backwards compatibility a legacy feature is provided.
 	 *     New skins should not use this if they can avoid doing so.
-	 *     This feature also contains all `i18n-` prefixed features.
+	 *     This feature also contains `interface-message-box` and
+	 *     all `i18n-` prefixed features.
+	 *
+	 * "toc"
+	 *     Styling rules for the table of contents.
+	 *
+	 * NOTE: The order of the keys defines the order in which the styles are output.
 	 */
 	private const FEATURE_FILES = [
+		'normalize' => [
+			'all' => [ 'resources/src/mediawiki.skinning/normalize.less' ],
+		],
 		'logo' => [
 			// Applies the logo and ensures it downloads prior to printing.
 			'all' => [ 'resources/src/mediawiki.skinning/logo.less' ],
 			// Reserves whitespace for the logo in a pseudo element.
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
-		'content' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/content.css' ],
+		'content-thumbnails' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails.less' ],
+		],
+		'content-media' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.media.less' ],
+		],
+		'content-links' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.externallinks.less' ]
+		],
+		'content-parser-output' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.parser-output.less' ]
+		],
+		'content-tables' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.tables.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/content.tables-print.less' ]
 		],
 		'interface' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/interface.css' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/interface.less' ],
 		],
-		'normalize' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/normalize.less' ],
+		'interface-category' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/interface.category.less' ],
+		],
+		'interface-message-box' => [
+			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
 		],
 		'elements' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/elements.css' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/elements.less' ],
 		],
 		'legacy' => [
 			'all' => [ 'resources/src/mediawiki.skinning/messageBoxes.less' ],
-			'print' => [ 'resources/src/mediawiki.skinning/commonPrint.css' ],
+			'print' => [ 'resources/src/mediawiki.skinning/commonPrint.less' ],
 			'screen' => [ 'resources/src/mediawiki.skinning/legacy.less' ],
 		],
 		'i18n-ordered-lists' => [
@@ -114,21 +157,40 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		'i18n-headings' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/i18n-headings.less' ],
 		],
+		'toc' => [
+			'all' => [ 'resources/src/mediawiki.skinning/toc/common.css' ],
+			'screen' => [ 'resources/src/mediawiki.skinning/toc/screen.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/toc/print.css' ],
+		],
 	];
 
 	/** @var string[] */
 	private $features;
 
-	/** @var array */
+	/** @var array please order alphabetically */
 	private const DEFAULT_FEATURES = [
-		'logo' => false,
-		'content' => false,
-		'interface' => false,
+		'content-links' => false,
+		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
+		'content-parser-output' => true,
+		'content-tables' => false,
+		'content-thumbnails' => false, // To be consolidated with content-media at a future date.
 		'elements' => false,
-		'legacy' => false,
-		'i18n-ordered-lists' => false,
 		'i18n-all-lists-margins' => false,
 		'i18n-headings' => false,
+		'i18n-ordered-lists' => false,
+		'interface' => false,
+		'interface-category' => false,
+		'interface-message-box' => false,
+		'legacy' => false,
+		'logo' => false,
+		'normalize' => false,
+		'toc' => true,
+	];
+
+	private const LESS_MESSAGES = [
+		// `toc` feature, used in screen.less
+		'hidetoc',
+		'showtoc',
 	];
 
 	public function __construct(
@@ -136,6 +198,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
+		$options['lessMessages'] = array_merge(
+			$options['lessMessages'] ?? [],
+			self::LESS_MESSAGES
+		);
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
 		$features = $options['features'] ??
 			// For historic reasons if nothing is declared logo and legacy features are enabled.
@@ -143,15 +209,29 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 				'logo' => true,
 				'legacy' => true
 			];
+
+		// The `content` feature is mapped to `content-thumbnails`.
+		// FIXME: This should log a deprecated notice at a later date (proposed: 1.37 release)
+		if ( isset( $features[ 'content' ] ) ) {
+			$features[ 'content-thumbnails' ] = $features[ 'content' ];
+			unset( $features[ 'content' ] );
+		}
+
 		$enabledFeatures = [];
 		$compatibilityMode = false;
 		foreach ( $features as $key => $enabled ) {
 			if ( is_bool( $enabled ) ) {
+				$feature = $key;
 				$enabledFeatures[$key] = $enabled;
 			} else {
+				$feature = $enabled;
 				// operating in array mode.
 				$enabledFeatures[$enabled] = true;
 				$compatibilityMode = true;
+			}
+			if ( !isset( self::FEATURE_FILES[$feature] ) || !isset( self::DEFAULT_FEATURES[$feature] ) ) {
+				// We could be an old version of MediaWiki and a new feature is being requested (T271441).
+				continue;
 			}
 		}
 		// If the module didn't specify an option use the default features values.
@@ -159,13 +239,22 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		if ( !$compatibilityMode ) {
 			foreach ( self::DEFAULT_FEATURES as $key => $enabled ) {
 				if ( !isset( $enabledFeatures[$key] ) ) {
-					$enabledFeatures[$key] = $enabled;
+					if ( $key === 'content-media' ) {
+						// Only ship this by default if enabled, since it's going
+						// to be adding some unnecessary overhead where unused.
+						// Also, assume that if a skin is being picky about which
+						// features it wants, it'll pull this in when it's ready
+						// for it.
+						$enabledFeatures[$key] = (bool)$this->getConfig()->get( 'UseNewMediaStructure' );
+					} else {
+						$enabledFeatures[$key] = $enabled;
+					}
 				}
 			}
 		}
 		$this->features = array_filter(
 			array_keys( $enabledFeatures ),
-			function ( $key ) use ( $enabledFeatures ) {
+			static function ( $key ) use ( $enabledFeatures ) {
 				return $enabledFeatures[ $key ];
 			}
 		);
@@ -175,7 +264,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * Get styles defined in the module definition, plus any enabled feature styles.
 	 *
 	 * @param ResourceLoaderContext $context
-	 * @return array
+	 * @return string[][]
 	 */
 	public function getStyleFiles( ResourceLoaderContext $context ) {
 		$styles = parent::getStyleFiles( $context );
@@ -183,26 +272,31 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
 			ResourceLoaderFileModule::extractBasePaths();
 
-		foreach ( $this->features as $feature ) {
-			if ( !isset( self::FEATURE_FILES[$feature] ) ) {
-				// We could be an old version of MediaWiki and a new feature is being requested (T271441).
-				continue;
-			}
-			foreach ( self::FEATURE_FILES[$feature] as $mediaType => $files ) {
-				if ( !isset( $styles[$mediaType] ) ) {
-					$styles[$mediaType] = [];
-				}
-				foreach ( $files as $filepath ) {
-					$styles[$mediaType][] = new ResourceLoaderFilePath(
-						$filepath,
-						$defaultLocalBasePath,
-						$defaultRemoteBasePath
-					);
+		$featureFilePaths = [];
+
+		foreach ( self::FEATURE_FILES as $feature => $files ) {
+			if ( in_array( $feature, $this->features ) ) {
+				foreach ( $files as $mediaType => $files ) {
+					foreach ( $files as $filepath ) {
+						$featureFilePaths[$mediaType][] = new ResourceLoaderFilePath(
+							$filepath,
+							$defaultLocalBasePath,
+							$defaultRemoteBasePath
+						);
+					}
 				}
 			}
 		}
 
-		return $styles;
+		// Styles defines in options are added to the $featureFilePaths to ensure
+		// that $featureFilePaths styles precede module defined ones.
+		// This is particularly important given the `normalize` styles need to be the first
+		// outputted (see T269618).
+		foreach ( $styles as $mediaType => $paths ) {
+			$featureFilePaths[$mediaType] = array_merge( $featureFilePaths[$mediaType] ?? [], $paths );
+		}
+
+		return $featureFilePaths;
 	}
 
 	/**
@@ -220,6 +314,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 			$styles['all'][] = '.mw-wiki-logo { background-image: ' .
 				CSSMin::buildUrlValue( $default ) .
 				'; }';
+
 			if ( is_array( $logo ) ) {
 				if ( isset( $logo['svg'] ) ) {
 					$styles['all'][] = '.mw-wiki-logo { ' .
@@ -233,11 +328,11 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 						$styles[
 							'(-webkit-min-device-pixel-ratio: 1.5), ' .
 							'(min--moz-device-pixel-ratio: 1.5), ' .
-						'(min-resolution: 1.5dppx), ' .
+							'(min-resolution: 1.5dppx), ' .
 							'(min-resolution: 144dpi)'
 						][] = '.mw-wiki-logo { background-image: ' .
-						CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
-						'background-size: 135px auto; }';
+							CSSMin::buildUrlValue( $logo['1.5x'] ) . ';' .
+							'background-size: 135px auto; }';
 					}
 					if ( isset( $logo['2x'] ) ) {
 						$styles[
@@ -246,8 +341,8 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 							'(min-resolution: 2dppx), ' .
 							'(min-resolution: 192dpi)'
 						][] = '.mw-wiki-logo { background-image: ' .
-						CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
-						'background-size: 135px auto; }';
+							CSSMin::buildUrlValue( $logo['2x'] ) . ';' .
+							'background-size: 135px auto; }';
 					}
 				}
 			}
@@ -269,26 +364,24 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 	 * @return array
 	 */
 	private function getLogoPreloadlinks() : array {
+		if ( !in_array( 'logo', $this->features ) ) {
+			return [];
+		}
+
 		$logo = $this->getLogoData( $this->getConfig() );
-
-		$logosPerDppx = [];
-		$logos = [];
-
-		$preloadLinks = [];
 
 		if ( !is_array( $logo ) ) {
 			// No media queries required if we only have one variant
-			$preloadLinks[$logo] = [ 'as' => 'image' ];
-			return $preloadLinks;
+			return [ $logo => [ 'as' => 'image' ] ];
 		}
 
 		if ( isset( $logo['svg'] ) ) {
 			// No media queries required if we only have a 1x and svg variant
 			// because all preload-capable browsers support SVGs
-			$preloadLinks[$logo['svg']] = [ 'as' => 'image' ];
-			return $preloadLinks;
+			return [ $logo['svg'] => [ 'as' => 'image' ] ];
 		}
 
+		$logosPerDppx = [];
 		foreach ( $logo as $dppx => $src ) {
 			// Keys are in this format: "1.5x"
 			$dppx = substr( $dppx, 0, -1 );
@@ -296,13 +389,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		}
 
 		// Because PHP can't have floats as array keys
-		uksort( $logosPerDppx, function ( $a, $b ) {
+		uksort( $logosPerDppx, static function ( $a, $b ) {
 			$a = floatval( $a );
 			$b = floatval( $b );
 			// Sort from smallest to largest (e.g. 1x, 1.5x, 2x)
 			return $a <=> $b;
 		} );
 
+		$logos = [];
 		foreach ( $logosPerDppx as $dppx => $src ) {
 			$logos[] = [
 				'dppx' => $dppx,
@@ -311,6 +405,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 		}
 
 		$logosCount = count( $logos );
+		$preloadLinks = [];
 		// Logic must match ResourceLoaderSkinModule:
 		// - 1x applies to resolution < 1.5dppx
 		// - 1.5x applies to resolution >= 1.5dppx && < 2dppx
@@ -400,7 +495,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderFileModule {
 
 		// check the configuration is valid
 		if ( !isset( $logos['1x'] ) ) {
-			throw new \RuntimeException( "The key `1x` is required for wgLogos or wgLogo must be defined." );
+			throw new RuntimeException( "The key `1x` is required for wgLogos or wgLogo must be defined." );
 		}
 		// return the modified logos!
 		return $logos;

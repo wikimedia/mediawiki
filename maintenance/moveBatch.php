@@ -21,15 +21,6 @@
  * @ingroup Maintenance
  * @author Tim Starling
  *
- * USAGE: php moveBatch.php [-u <user>] [-r <reason>] [-i <interval>] [-noredirects] [listfile]
- *
- * [listfile] - file with two titles per line, separated with pipe characters;
- * the first title is the source, the second is the destination.
- * Standard input is used if listfile is not given.
- * <user> - username to perform moves as
- * <reason> - reason to be given for moves
- * <interval> - number of seconds to sleep after each move
- * <noredirects> - suppress creation of redirects
  *
  * This will print out error codes from Title::moveTo() if something goes wrong,
  * e.g. immobile_namespace for namespaces which can't be moved

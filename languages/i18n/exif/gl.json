@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Alma",
+			"ArenaL5",
 			"Banjo",
 			"Elisardojm",
 			"Prevert",
@@ -205,7 +206,6 @@
 	"exif-photometricinterpretation-3": "Paleta",
 	"exif-photometricinterpretation-4": "Máscara de transparencia",
 	"exif-photometricinterpretation-5": "Separados (Probablemente CMYK)",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (codificación ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (codificación ITU)",
 	"exif-photometricinterpretation-32803": "Matriz de filtro de cor",
@@ -371,5 +371,26 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Baixa ($1)",
 	"exif-urgency-high": "Alta ($1)",
-	"exif-urgency-other": "Prioridade definida polo usuario ($1)"
+	"exif-urgency-other": "Prioridade definida polo usuario ($1)",
+	"exif-firstphotodate": "Data da primeira fotografía",
+	"exif-lastphotodate": "Data da última fotografía",
+	"exif-projectiontype": "Tipo de proxección",
+	"exif-projectiontype-equirectangular": "Equirrectangular",
+	"exif-usepanoramaviewer": "Usar visor panorámico",
+	"exif-usepanoramaviewer-true": "Si",
+	"exif-usepanoramaviewer-false": "Non",
+	"exif-exposurelockused": "Bloqueo de exposición utilizado",
+	"exif-exposurelockused-true": "Si",
+	"exif-exposurelockused-false": "Non",
+	"exif-poseheadingdegrees": "Dirección (graos)",
+	"exif-initialviewheadingdegrees": "Dirección inicial (graos)",
+	"exif-initialhorizontalfovdegrees": "Campo de visión inicial (graos en horizontal)",
+	"exif-initialverticalfovdegrees": "Campo de visión inicial (graos en vertical)",
+	"exif-sourcephotoscount": "Número de fotografías na fonte",
+	"exif-croppedareaimagewidthpixels": "Largura recortada do panorama",
+	"exif-croppedareaimageheightpixels": "Altura recortada do panorama",
+	"exif-fullpanowidthpixels": "Largura recortada do panorama",
+	"exif-fullpanoheightpixels": "Altura total do panorama",
+	"exif-croppedarealeftpixels": "Recorte esquerdo do panorama",
+	"exif-croppedareatoppixels": "Recorte superior do panorama"
 }

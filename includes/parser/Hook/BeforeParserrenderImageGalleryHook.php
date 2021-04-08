@@ -6,6 +6,9 @@ use ImageGalleryBase;
 use Parser;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "BeforeParserrenderImageGallery" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35
  * @ingroup Hooks
  */

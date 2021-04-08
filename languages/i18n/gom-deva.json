@@ -1,7 +1,6 @@
 {
 	"@metadata": {
 		"authors": [
-			"Abijeet Patro",
 			"Amire80",
 			"AshLin",
 			"Cliffa fernandes",
@@ -117,7 +116,6 @@
 	"category-subcat-count-limited": "ह्या वर्गान सकयल दिल्ले {{PLURAL:$1|उपवर्ग}} आसात.",
 	"category-article-count": "{{PLURAL:$2|ह्या वर्गांत सकयल दिल्लीं पानां आसात.|ह्या वर्गांत सकलय दिल्लीं {{PLURAL:$1|पानां आसात|$1 पानां आसात}}, वट्ट पानां $2}}",
 	"category-file-count": "{{PLURAL:$2|ह्या वर्गांत फकत सकयली फायल आसपावता.|ह्या वर्गांत सकयल दिल्लीं {{PLURAL:$1|फायल|$1 फायलीं}} आसता, वट्ट फायलीं $2}}",
-	"listingcontinuesabbrev": "चालू.",
 	"index-category": "सुची-पत्रान जोडलेलीं पानां",
 	"noindex-category": "सुचीपत्रान जोडूंक-नासलेलीं पानां",
 	"broken-file-category": "तुटलेल्या फायलींचो दुवे आसलेलीं पानां",
@@ -233,7 +231,6 @@
 	"confirmable-no": "ना",
 	"thisisdeleted": "$1 पळय वा परत हाड?",
 	"viewdeleted": "दाखयात $1?",
-	"feedlinks": "पुरवय :",
 	"feed-invalid": "चुकीचें सब्सक्रिप्शन फीड प्रकार",
 	"site-rss-feed": "$1 चीं आर.एस.एस फीड",
 	"site-atom-feed": "$1 एटम फिड",
@@ -601,7 +598,6 @@
 	"rcfilters-empty-filter": "क्रियाशील गाऴण्यो नांत. सगळें योगदान दाखयलां.",
 	"rcfilters-filterlist-title": "गाळण्यो",
 	"rcfilters-filterlist-whatsthis": "ह्यो कश्यो काम करतात?",
-	"rcfilters-filterlist-feedbacklink": "ह्या गाळणेच्या आवतां विशीं तुका कितें दिसता तें आमकां सांग",
 	"rcfilters-highlightbutton-title": "परिणामांचेर व्हड-उजवाड घाल",
 	"rcfilters-highlightmenu-title": "एक रंग विंच",
 	"rcfilters-highlightmenu-help": "हे गुणाचेर व्हड-उजवाड घालुंक एक रंग वेंच",
@@ -892,7 +888,7 @@
 	"namespace_association": "संबंदीत नांवथोळ",
 	"tooltip-namespace_association": "चर्चा वा वेंचीक नांवाचें सुवातीक संबंदीत विशयाच्या नांवाची सुवात आस्पावन घेवपाखातीर ह्या बॉक्सांत पळयात",
 	"blanknamespace": "(मुखेल)",
-	"contributions": "{{GENDER:$1|वापरपी}} योगदानां",
+	"tool-link-contributions": "{{GENDER:$1|वापरपी}} योगदानां",
 	"contributions-title": "$1 खातीर वापरप्याचीं योगदानां",
 	"mycontris": "योगदान",
 	"anoncontribs": "योगदान",
@@ -953,6 +949,7 @@
 	"movepage-page-exists": "पान $1 आदींच प्रत्यक्षांत आसा आनी आपोआप ताचे वयर बरोवंक जायना.",
 	"movepage-page-unmoved": "$1 हाका $2 हांगा हालोवंक जावंक ना.",
 	"movelogpage": "पान हालोवण्यांचो सोत्र",
+	"movesubpage": "{{PLURAL:$1|उप-पान|उप-पानां}}",
 	"movereason": "कारण:",
 	"revertmove": "मूळ पदार व्हरप",
 	"export": "पानां निर्यात कर",

@@ -13,16 +13,13 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCa
 				'name' => 'group',
 				'filters' => [],
 				'isFullCoverage' => false,
-				'queryCallable' => function () {
+				'queryCallable' => static function () {
 				},
 				'default' => '',
 			] )
 		);
 
-		$this->assertSame(
-			false,
-			$falseGroup->isFullCoverage
-		);
+		$this->assertFalse( $falseGroup->isFullCoverage );
 
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( 'You must specify isFullCoverage' );
@@ -104,7 +101,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCa
 	 * @dataProvider provideNoOpModifyQuery
 	 */
 	public function testNoOpModifyQuery( $filterDefinitions, $input, $message ) {
-		$noFiltersAllowedCallable = function (
+		$noFiltersAllowedCallable = static function (
 			$className,
 			$ctx,
 			$dbr,
@@ -211,7 +208,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCa
 			'default' => 'foo',
 			'priority' => 1,
 			'isFullCoverage' => false,
-			'queryCallable' => function () {
+			'queryCallable' => static function () {
 			},
 			'filters' => [
 				[

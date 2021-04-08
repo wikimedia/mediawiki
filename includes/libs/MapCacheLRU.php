@@ -31,7 +31,6 @@ use Wikimedia\LightweightObjectStore\ExpirationAwareness;
  * the hasField(), getField(), and setField() methods can be used for entries that are field/value
  * maps themselves; such fields will have their own internally tracked last-modification timestamp.
  *
- * @see ProcessCacheLRU
  * @ingroup Cache
  * @since 1.23
  */
@@ -165,6 +164,10 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	 * @return mixed Returns $default if the key was not found or is older than $maxAge
 	 * @since 1.32 Added $maxAge
 	 * @since 1.34 Added $default
+	 *
+	 * Although sometimes this can be tainted, taint-check doesn't distinguish separate instances
+	 * of MapCacheLRU, so assume untainted to cut down on false positives. See T272134.
+	 * @return-taint none
 	 */
 	public function get( $key, $maxAge = INF, $default = null ) {
 		if ( !$this->has( $key, $maxAge ) ) {

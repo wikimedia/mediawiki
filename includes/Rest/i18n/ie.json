@@ -1,0 +1,35 @@
+{
+	"@metadata": {
+		"authors": [
+			"OIS"
+		]
+	},
+	"rest-prefix-mismatch": "Li demandat rute ($1) ne esset intra li radical rute de REST API ($2)",
+	"rest-wrong-method": "Li metode de demanda ($1) ne esset {{PLURAL:$3|li|un}} permisset metode por ti-ci rute ($2)",
+	"rest-nonexistent-title": "Li providet titul ($1) ne existe",
+	"rest-nonexistent-title-revision": "Li providet version ($1) ne existe por li providet págine ($2)",
+	"rest-nonexistent-revision": "Li providet version ($1) ne existe",
+	"rest-nonexistent-user": "Li providet usator ($1) ne existe",
+	"rest-invalid-user": "Li providet nómine de usator ($1) es ínvalid",
+	"rest-permission-denied-anon": "Ne es accessibil de un anonim usator",
+	"rest-permission-denied-title": "Li usator ne have permissiones por leer li titul ($1)",
+	"rest-permission-denied-revision": "Li usator ne have accesse al version demandat ($1).",
+	"rest-resource-limit-exceeded": "Límites de ressurses esset excedet durante li procession del demanda.",
+	"rest-pagehistory-incompatible-params": "On ne posse provider ambi parametres \"older_than\" e \"newer_than\"",
+	"rest-pagehistory-param-range-error": "Li id de version deve esser plu quam 0",
+	"rest-pagehistory-timestamp-error": "Ne successat obtener li témpormarca del providet version ($1)",
+	"rest-pagehistorycount-type-unrecognized": "Li providet tip de númere ($1) ne es valid",
+	"rest-pagehistorycount-parameters-invalid": "Li providet combination de parametres ne es suportat.",
+	"rest-compare-page-mismatch": "Li providet versiones apartene a different págines; on ne posse comparar les.",
+	"rest-compare-permission-denied": "Li usator ne have accesse al versiones demandat",
+	"rest-compare-nonexistent": "Li version providet del parametre \"$1\" ne existe.",
+	"rest-compare-inaccessible": "Li version providet del parametre \"$1\" ne es accessibil de publica.",
+	"rest-pagehistorycount-too-many-revisions": "Li providet titul have tro mult versiones por obtener ti númere.",
+	"rest-search-error": "Un errore evenit serchante por resultates: $1",
+	"rest-no-revision": "Ne successat obtener li version del titul $1",
+	"rest-media-too-many-links": "Tro mult ligamentes de media esset trovat in li titul $1 ($2 es permisset)",
+	"rest-bad-json-body": "Ínvalid \"body\" de demanda, deve esser un objecte JSON.",
+	"rest-json-body-parse-error": "Ne successat analisar li \"body\" de demanda quam JSON: $1",
+	"rest-missing-body-field": "Li besonat camp \"$1\" manca in li \"body\" del demanda.",
+	"rest-bad-content-model": "Ínvalid modelle de contenete: $1"
+}

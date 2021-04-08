@@ -63,7 +63,7 @@ class FileBackendGroup {
 	private $objectFactory;
 
 	/**
-	 * @internal
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'DirectoryMode',
@@ -82,8 +82,6 @@ class FileBackendGroup {
 	}
 
 	/**
-	 * Destroy the singleton instance
-	 *
 	 * @deprecated since 1.35, test framework should reset services between tests instead
 	 */
 	public static function destroySingleton() {
@@ -245,7 +243,7 @@ class FileBackendGroup {
 				'wanCache' => $this->wanCache,
 				'srvCache' => $this->srvCache,
 				'logger' => LoggerFactory::getInstance( 'FileOperation' ),
-				'profiler' => function ( $section ) {
+				'profiler' => static function ( $section ) {
 					return Profiler::instance()->scopedProfileIn( $section );
 				}
 			],

@@ -38,17 +38,15 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
-	/**
-	 * @name Constants for internal use. Don't use externally.
-	 * @{
-	 */
+	// region Constants for internal use. Don't use externally.
+	/** @name Constants for internal use. Don't use externally. */
 
 	// Bits to indicate the results of the revdel permission check on a revision,
 	// see self::checkRevDel()
 	private const IS_DELETED = 1; // Whether the field is revision-deleted
 	private const CANNOT_VIEW = 2; // Whether the user cannot view the field due to revdel
 
-	/** @} */
+	// endregion
 
 	protected $limit, $diffto, $difftotext, $difftotextpst, $expandTemplates, $generateXML,
 		$section, $parseContent, $fetchContent, $contentFormat, $setParsedLimit = true,
@@ -221,7 +219,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	private function checkRevDel( RevisionRecord $revision, $field ) {
 		$ret = $revision->isDeleted( $field ) ? self::IS_DELETED : 0;
 		if ( $ret ) {
-			$canSee = $revision->audienceCan( $field, RevisionRecord::FOR_THIS_USER, $this->getUser() );
+			$canSee = $revision->userCan( $field, $this->getAuthority() );
 			$ret |= ( $canSee ? 0 : self::CANNOT_VIEW );
 		}
 		return $ret;
@@ -231,8 +229,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * Extract information from the RevisionRecord
 	 *
 	 * @since 1.32, takes a RevisionRecord instead of a Revision
-	 * @param RevisionRecord $revision Revision
-	 * @param object $row Should have a field 'ts_tags' if $this->fld_tags is set
+	 * @param RevisionRecord $revision
+	 * @param stdClass $row Should have a field 'ts_tags' if $this->fld_tags is set
 	 * @return array
 	 */
 	protected function extractRevisionInfo( RevisionRecord $revision, $row ) {
@@ -296,7 +294,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 				try {
 					$vals['sha1'] = Wikimedia\base_convert( $revision->getSha1(), 36, 16, 40 );
 				} catch ( RevisionAccessException $e ) {
-					// Back compat: If there's no sha1, return emtpy string.
+					// Back compat: If there's no sha1, return empty string.
 					// @todo: Gergő says to mention T198099 as a "todo" here.
 					$vals['sha1'] = '';
 				}

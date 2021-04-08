@@ -59,9 +59,6 @@ class LoadMonitor implements ILoadMonitor {
 	/** @var bool Whether the "server states" cache key is in the process of being updated */
 	private $serverStatesKeyLocked = false;
 
-	/** @var int Default 'max lag' in seconds when unspecified */
-	private const LAG_WARN_THRESHOLD = 10;
-
 	/** @var int cache key version */
 	private const VERSION = 1;
 	/** @var int Maximum effective logical TTL for server state cache */
@@ -88,7 +85,7 @@ class LoadMonitor implements ILoadMonitor {
 		$this->replLogger = new NullLogger();
 
 		$this->movingAveRatio = $options['movingAveRatio'] ?? 0.1;
-		$this->lagWarnThreshold = $options['lagWarnThreshold'] ?? self::LAG_WARN_THRESHOLD;
+		$this->lagWarnThreshold = $options['lagWarnThreshold'] ?? LoadBalancer::MAX_LAG_DEFAULT;
 	}
 
 	public function setLogger( LoggerInterface $logger ) {

@@ -5,6 +5,7 @@
 			"Eleferen",
 			"Facenapalm",
 			"Kaganer",
+			"Kareyac",
 			"Lemondoge",
 			"MaxBioHazard",
 			"MaxSem",
@@ -204,7 +205,6 @@
 	"exif-photometricinterpretation-3": "Цветовая палитра",
 	"exif-photometricinterpretation-4": "Маска прозрачности",
 	"exif-photometricinterpretation-5": "Разделены (вероятно CMYK)",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-кодирование)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-кодирование)",
 	"exif-unknowndate": "Неизвестная дата",
@@ -370,5 +370,13 @@
 	"exif-urgency-normal": "Обычная ($1)",
 	"exif-urgency-low": "Низкая ($1)",
 	"exif-urgency-high": "Высокая ($1)",
-	"exif-urgency-other": "Определённый пользователем приоритет ($1)"
+	"exif-urgency-other": "Определённый пользователем приоритет ($1)",
+	"exif-firstphotodate": "Дата первой фотографии",
+	"exif-lastphotodate": "Дата последней фотографии",
+	"exif-projectiontype": "Тип проекции",
+	"exif-usepanoramaviewer": "Использовать программу просмотра панорам",
+	"exif-usepanoramaviewer-true": "Да",
+	"exif-usepanoramaviewer-false": "Нет",
+	"exif-exposurelockused-true": "Да",
+	"exif-exposurelockused-false": "Нет"
 }

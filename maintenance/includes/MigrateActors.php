@@ -123,7 +123,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	 * Calculate a "next" condition and a display string
 	 * @param IDatabase $dbw
 	 * @param string[] $primaryKey Primary key of the table.
-	 * @param object $row Database row
+	 * @param stdClass $row Database row
 	 * @return array [ string $next, string $display ]
 	 */
 	private function makeNextCond( $dbw, $primaryKey, $row ) {
@@ -172,7 +172,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	 * @suppress SecurityCheck-SQLInjection The array_keys/array_map is too much for static analysis
 	 * @param IDatabase $dbw
 	 * @param string $nameField
-	 * @param object[] &$rows
+	 * @param stdClass[] &$rows
 	 * @param array &$complainedAboutUsers
 	 * @param int &$countErrors
 	 * @return int Count of actors inserted
@@ -182,6 +182,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 	) {
 		$needActors = [];
 		$countActors = 0;
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 
 		$keep = [];
 		foreach ( $rows as $index => $row ) {
@@ -191,7 +192,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 				// if we have a usable name here, it means they didn't run
 				// maintenance/cleanupUsersWithNoId.php
 				$name = $row->$nameField;
-				if ( User::isUsableName( $name ) ) {
+				if ( $userNameUtils->isUsable( $name ) ) {
 					if ( !isset( $complainedAboutUsers[$name] ) ) {
 						$complainedAboutUsers[$name] = true;
 						$this->error(
@@ -211,7 +212,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		if ( $needActors ) {
 			$dbw->insert(
 				'actor',
-				array_map( function ( $v ) {
+				array_map( static function ( $v ) {
 					return [
 						'actor_name' => $v,
 					];

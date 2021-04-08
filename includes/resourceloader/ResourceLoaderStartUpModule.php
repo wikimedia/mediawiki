@@ -123,9 +123,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *  - array 'dependencies'
 	 *  - string|null 'group'
 	 *  - string 'source'
-	 * @codingStandardsIgnoreStart
 	 * @phan-param array<string,array{version:string,dependencies:array,group:?string,source:string}> &$registryData
-	 * @codingStandardsIgnoreEnd
 	 */
 	public static function compileUnresolvedDependencies( array &$registryData ) : void {
 		foreach ( $registryData as $name => &$data ) {
@@ -243,6 +241,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			$registryData[$name] = [
 				'version' => $versionHash,
 				'dependencies' => $module->getDependencies( $context ),
+				'es6' => $module->requiresES6(),
 				'group' => $this->getGroupId( $module->getGroup() ),
 				'source' => $module->getSource(),
 				'skip' => $skipFunction,
@@ -260,7 +259,10 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			// Call mw.loader.register(name, version, dependencies, group, source, skip)
 			$registrations[] = [
 				$name,
-				$data['version'],
+				// HACK: signify ES6 with a ! added at the end of the version
+				// This avoids having to add another register() parameter, and generating
+				// a bunch of nulls for ES6-only modules
+				$data['version'] . ( $data['es6'] ? '!' : '' ),
 				$data['dependencies'],
 				$data['group'],
 				// Swap default (local) for null

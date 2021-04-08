@@ -27,6 +27,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'श्रेणी_वार्ता',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'सक्रिय_सदस्य' ],
 	'Allmessages'               => [ 'सारा_संदेस' ],

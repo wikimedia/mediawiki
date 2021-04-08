@@ -42,8 +42,6 @@ class ExifBitmapHandler extends BitmapHandler {
 			return $metadata;
 		}
 
-		$avoidHtml = true;
-
 		if ( !is_array( $metadata ) ) {
 			$metadata = unserialize( $metadata );
 		}
@@ -67,14 +65,15 @@ class ExifBitmapHandler extends BitmapHandler {
 
 		// ContactInfo also has to be dealt with specially
 		if ( isset( $metadata['Contact'] ) ) {
-			$metadata['Contact'] =
-				$formatter->collapseContactInfo(
-					$metadata['Contact'] );
+			$metadata['Contact'] = $formatter->collapseContactInfo(
+				is_array( $metadata['Contact'] ) ? $metadata['Contact'] : [ $metadata['Contact'] ]
+			);
 		}
 
 		foreach ( $metadata as &$val ) {
 			if ( is_array( $val ) ) {
-				$val = $formatter->flattenArrayReal( $val, 'ul', $avoidHtml );
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Ambiguous with the true for nohtml
+				$val = $formatter->flattenArrayReal( $val, 'ul', true );
 			}
 		}
 		$metadata['MEDIAWIKI_EXIF_VERSION'] = 1;
@@ -128,12 +127,12 @@ class ExifBitmapHandler extends BitmapHandler {
 
 	/**
 	 * @param File $image
-	 * @param bool|IContextSource $context Context to use (optional)
-	 * @return array|bool
+	 * @param IContextSource|false $context
+	 * @return array[]|false
 	 */
 	public function formatMetadata( $image, $context = false ) {
 		$meta = $this->getCommonMetaArray( $image );
-		if ( count( $meta ) === 0 ) {
+		if ( !$meta ) {
 			return false;
 		}
 
@@ -219,7 +218,7 @@ class ExifBitmapHandler extends BitmapHandler {
 	 * Given a chunk of serialized Exif metadata, return the orientation as
 	 * degrees of rotation.
 	 *
-	 * @param string $data
+	 * @param string|false $data
 	 * @return int 0, 90, 180 or 270
 	 * @todo FIXME: Orientation can include flipping as well; see if this is an issue!
 	 */

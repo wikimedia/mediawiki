@@ -61,10 +61,12 @@ $namespaceAliases = [
 	'Gambar_Pembicaraan'    => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
 	'redirect'                  => [ '0', '#PUPINAH', '#ALIH', '#REDIRECT' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'UreuëngNguiUdép' ],
 	'Allmessages'               => [ 'BanDumPeusan' ],
@@ -74,6 +76,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'NanBrôk' ],
 	'Blankpage'                 => [ 'LamanSoh' ],
 	'Block'                     => [ 'TheunUreuëngNgui' ],
+	'BlockList'                 => [ 'DapeutaTeuneuheun' ],
 	'Booksources'               => [ 'NèKitab' ],
 	'BrokenRedirects'           => [ 'PeuninahReuloh' ],
 	'Categories'                => [ 'DapeutaKawan' ],
@@ -91,7 +94,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'NeuduëkBeureukaih' ],
 	'Import'                    => [ 'Peutamöng' ],
 	'Invalidateemail'           => [ 'PeubateuëPeusahSurat-e' ],
-	'BlockList'                 => [ 'DapeutaTeuneuheun' ],
 	'LinkSearch'                => [ 'MitaPeunawôt' ],
 	'Listadmins'                => [ 'DapeutaUreuëngUrôh' ],
 	'Listbots'                  => [ 'DapeutaBot' ],

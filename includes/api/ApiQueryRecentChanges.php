@@ -33,6 +33,10 @@ use MediaWiki\Storage\NameTableAccessException;
  */
 class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'rc' );
 	}
@@ -49,13 +53,12 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	/**
 	 * Get an array mapping token names to their handler functions.
-	 * The prototype for a token function is func($pageid, $title, $rc)
+	 * The prototype for a token function is func( User $user, $rc)
 	 * it should return a token or false (permission denied)
 	 * @deprecated since 1.24
 	 * @return array [ tokenname => function ]
 	 */
 	protected function getTokenFunctions() {
-		// Don't call the hooks twice
 		if ( isset( $this->tokenFunctions ) ) {
 			return $this->tokenFunctions;
 		}
@@ -69,30 +72,27 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->tokenFunctions = [
 			'patrol' => [ self::class, 'getPatrolToken' ]
 		];
-		$this->getHookRunner()->onAPIQueryRecentChangesTokens( $this->tokenFunctions );
 
 		return $this->tokenFunctions;
 	}
 
 	/**
 	 * @deprecated since 1.24
-	 * @param int $pageid
-	 * @param Title $title
+	 * @internal
+	 * @param User $user
 	 * @param RecentChange|null $rc
-	 * @return bool|string
+	 * @return string|false
 	 */
-	public static function getPatrolToken( $pageid, $title, $rc = null ) {
-		global $wgUser;
-
+	public static function getPatrolToken( User $user, $rc = null ) {
 		$validTokenUser = false;
 
 		if ( $rc ) {
-			if ( ( $wgUser->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
-				( $wgUser->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW )
+			if ( ( $user->useRCPatrol() && $rc->getAttribute( 'rc_type' ) == RC_EDIT ) ||
+				( $user->useNPPatrol() && $rc->getAttribute( 'rc_type' ) == RC_NEW )
 			) {
 				$validTokenUser = true;
 			}
-		} elseif ( $wgUser->useRCPatrol() || $wgUser->useNPPatrol() ) {
+		} elseif ( $user->useRCPatrol() || $user->useNPPatrol() ) {
 			$validTokenUser = true;
 		}
 
@@ -101,7 +101,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			static $cachedPatrolToken = null;
 
 			if ( $cachedPatrolToken === null ) {
-				$cachedPatrolToken = $wgUser->getEditToken( 'patrol' );
+				$cachedPatrolToken = $user->getEditToken( 'patrol' );
 			}
 
 			return $cachedPatrolToken;
@@ -363,11 +363,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		// Paranoia: avoid brute force searches (T19342)
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
-			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
+			if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER;
-			} elseif ( !$this->getPermissionManager()
-				->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-			) {
+			} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;
@@ -378,11 +376,9 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 		if ( $this->getRequest()->getCheck( 'namespace' ) ) {
 			// LogPage::DELETED_ACTION hides the affected page, too.
-			if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
+			if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 				$bitmask = LogPage::DELETED_ACTION;
-			} elseif ( !$this->getPermissionManager()
-				->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-			) {
+			} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 				$bitmask = LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED;
 			} else {
 				$bitmask = 0;
@@ -678,8 +674,11 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		if ( $this->token !== null ) {
 			$tokenFunctions = $this->getTokenFunctions();
 			foreach ( $this->token as $t ) {
-				$val = call_user_func( $tokenFunctions[$t], $row->rc_cur_id,
-					$title, RecentChange::newFromRow( $row ) );
+				$val = call_user_func(
+					$tokenFunctions[$t],
+					$this->getUser(),
+					RecentChange::newFromRow( $row )
+				);
 				if ( $val === false ) {
 					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
 				} else {

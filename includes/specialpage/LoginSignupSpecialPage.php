@@ -24,6 +24,7 @@
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
@@ -264,7 +265,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		 */
 		if ( !$this->isSignup() && !$this->mPosted && !$this->securityLevel &&
 			 ( $this->mReturnTo !== '' || $this->mReturnToQuery !== '' ) &&
-			 $this->getUser()->isLoggedIn()
+			 $this->getUser()->isRegistered()
 		) {
 			$this->successfulAction();
 			return;
@@ -568,7 +569,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		// warning header for non-standard workflows (e.g. security reauthentication)
 		if (
 			!$this->isSignup() &&
-			$this->getUser()->isLoggedIn() &&
+			$this->getUser()->isRegistered() &&
 			$this->authAction !== AuthManager::ACTION_LOGIN_CONTINUE
 		) {
 			$reauthMessage = $this->securityLevel ? 'userlogin-reauth' : 'userlogin-loggedin';
@@ -702,46 +703,12 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 		return $form;
 	}
 
+	/** @inheritDoc */
 	public function onAuthChangeFormFields(
 		array $requests, array $fieldInfo, array &$formDescriptor, $action
 	) {
-		$coreFieldDescriptors = $this->getFieldDefinitions();
-
-		// keep the ordering from getCoreFieldDescriptors() where there is no explicit weight
-		foreach ( $coreFieldDescriptors as $fieldName => $coreField ) {
-			$requestField = $formDescriptor[$fieldName] ?? [];
-
-			// remove everything that is not in the fieldinfo, is not marked as a supplemental field
-			// to something in the fieldinfo, and is not an info field or a submit button
-			if (
-				!isset( $fieldInfo[$fieldName] )
-				&& (
-					!isset( $coreField['baseField'] )
-					|| !isset( $fieldInfo[$coreField['baseField']] )
-				)
-				&& (
-					!isset( $coreField['type'] )
-					|| !in_array( $coreField['type'], [ 'submit', 'info' ], true )
-				)
-			) {
-				$coreFieldDescriptors[$fieldName] = null;
-				continue;
-			}
-
-			// core message labels should always take priority
-			if (
-				isset( $coreField['label'] )
-				|| isset( $coreField['label-message'] )
-				|| isset( $coreField['label-raw'] )
-			) {
-				unset( $requestField['label'], $requestField['label-message'], $coreField['label-raw'] );
-			}
-
-			$coreFieldDescriptors[$fieldName] += $requestField;
-		}
-
-		$formDescriptor = array_filter( $coreFieldDescriptors + $formDescriptor );
-		return true;
+		$formDescriptor = self::mergeDefaultFormDescriptor( $fieldInfo, $formDescriptor,
+			$this->getFieldDefinitions() );
 	}
 
 	/**
@@ -762,9 +729,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	protected function getFieldDefinitions() {
 		global $wgEmailConfirmToEdit;
 
-		$isLoggedIn = $this->getUser()->isLoggedIn();
+		$isRegistered = $this->getUser()->isRegistered();
 		$continuePart = $this->isContinued() ? 'continue-' : '';
-		$anotherPart = $isLoggedIn ? 'another-' : '';
+		$anotherPart = $isRegistered ? 'another-' : '';
 		// @phan-suppress-next-line PhanUndeclaredMethod
 		$expiration = $this->getRequest()->getSession()->getProvider()->getRememberUserDuration();
 		$expirationDays = ceil( $expiration / ( 3600 * 24 ) );
@@ -795,7 +762,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				'username' => [
 					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $usernameHelpLink,
 					'id' => 'wpName2',
-					'placeholder-message' => $isLoggedIn ? 'createacct-another-username-ph'
+					'placeholder-message' => $isRegistered ? 'createacct-another-username-ph'
 						: 'userlogin-yourname-ph',
 				],
 				'mailpassword' => [
@@ -807,18 +774,19 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 				'password' => [
 					'id' => 'wpPassword2',
+					'autocomplete' => 'new-password',
 					'placeholder-message' => 'createacct-yourpassword-ph',
 					'help-message' => 'createacct-useuniquepass',
 					'hide-if' => [ '===', 'wpCreateaccountMail', '1' ],
 				],
 				'domain' => [],
 				'retype' => [
-					'baseField' => 'password',
 					'type' => 'password',
 					'label-message' => 'createacct-yourpasswordagain',
 					'id' => 'wpRetype',
 					'cssclass' => 'loginPassword',
 					'size' => 20,
+					'autocomplete' => 'new-password',
 					'validation-callback' => function ( $value, $alldata ) {
 						if ( empty( $alldata['mailpassword'] ) && !empty( $alldata['password'] ) ) {
 							if ( !$value ) {
@@ -839,6 +807,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 					'id' => 'wpEmail',
 					'cssclass' => 'loginText',
 					'size' => '20',
+					'autocomplete' => 'email',
 					// FIXME will break non-standard providers
 					'required' => $wgEmailConfirmToEdit,
 					'validation-callback' => function ( $value, $alldata ) {
@@ -862,12 +831,13 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 				'realname' => [
 					'type' => 'text',
-					'help-message' => $isLoggedIn ? 'createacct-another-realname-tip'
+					'help-message' => $isRegistered ? 'createacct-another-realname-tip'
 						: 'prefs-help-realname',
 					'label-message' => 'createacct-realname',
 					'cssclass' => 'loginText',
 					'size' => 20,
 					'id' => 'wpRealName',
+					'autocomplete' => 'name',
 				],
 				'reason' => [
 					// comment for the user creation log
@@ -906,15 +876,42 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				],
 			];
 		} else {
+			// When the user's password is too weak, they might be asked to provide a stronger one
+			// as a followup step. That is a form with only two fields, 'password' and 'retype',
+			// and they should behave more like account creation.
+			$passwordRequest = AuthenticationRequest::getRequestByClass( $this->authRequests,
+				PasswordAuthenticationRequest::class );
+			$changePassword = $passwordRequest && $passwordRequest->action == AuthManager::ACTION_CHANGE;
 			$fieldDefinitions = [
-				'username' => [
-					'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $secureLoginLink,
-					'id' => 'wpName1',
-					'placeholder-message' => 'userlogin-yourname-ph',
-				],
-				'password' => [
-					'id' => 'wpPassword1',
-					'placeholder-message' => 'userlogin-yourpassword-ph',
+				'username' => (
+					[
+						'label-raw' => $this->msg( 'userlogin-yourname' )->escaped() . $secureLoginLink,
+						'id' => 'wpName1',
+						'placeholder-message' => 'userlogin-yourname-ph',
+					] + ( $changePassword ? [
+						// There is no username field on the AuthManager level when changing
+						// passwords. Fake one because password
+						'baseField' => 'password',
+						'nodata' => true,
+						'readonly' => true,
+						'cssclass' => 'mw-htmlform-hidden-field',
+					] : [] )
+				),
+				'password' => (
+					$changePassword ? [
+						'autocomplete' => 'new-password',
+						'placeholder-message' => 'createacct-yourpassword-ph',
+						'help-message' => 'createacct-useuniquepass',
+					] : [
+						'id' => 'wpPassword1',
+						'autocomplete' => 'current-password',
+						'placeholder-message' => 'userlogin-yourpassword-ph',
+					]
+				),
+				'retype' => [
+					'type' => 'password',
+					'autocomplete' => 'new-password',
+					'placeholder-message' => 'createacct-yourpasswordagain-ph',
 				],
 				'domain' => [],
 				'rememberMe' => [
@@ -959,6 +956,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			'name' => 'wpName',
 			'cssclass' => 'loginText',
 			'size' => 20,
+			'autocomplete' => 'username',
 			// 'required' => true,
 		];
 		$fieldDefinitions['password'] += [
@@ -1024,26 +1022,26 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 				if ( $this->mLanguage ) {
 					$linkq .= '&uselang=' . urlencode( $this->mLanguage );
 				}
-				$loggedIn = $this->getUser()->isLoggedIn();
+				$isRegistered = $this->getUser()->isRegistered();
 
 				$fieldDefinitions['createOrLogin'] = [
 					'type' => 'info',
 					'raw' => true,
 					'linkQuery' => $linkq,
-					'default' => function ( $params ) use ( $loggedIn, $linkTitle ) {
+					'default' => function ( $params ) use ( $isRegistered, $linkTitle ) {
 						return Html::rawElement( 'div',
-							[ 'id' => 'mw-createaccount' . ( !$loggedIn ? '-cta' : '' ),
-								'class' => ( $loggedIn ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
-							( $loggedIn ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
+							[ 'id' => 'mw-createaccount' . ( !$isRegistered ? '-cta' : '' ),
+								'class' => ( $isRegistered ? 'mw-form-related-link-container' : 'mw-ui-vform-field' ) ],
+							( $isRegistered ? '' : $this->msg( 'userlogin-noaccount' )->escaped() )
 							. Html::element( 'a',
 								[
-									'id' => 'mw-createaccount-join' . ( $loggedIn ? '-loggedin' : '' ),
+									'id' => 'mw-createaccount-join' . ( $isRegistered ? '-loggedin' : '' ),
 									'href' => $linkTitle->getLocalURL( $params['linkQuery'] ),
-									'class' => ( $loggedIn ? '' : 'mw-ui-button' ),
+									'class' => ( $isRegistered ? '' : 'mw-ui-button' ),
 									'tabindex' => 100,
 								],
 								$this->msg(
-									$loggedIn ? 'userlogin-createanother' : 'userlogin-joinproject'
+									$isRegistered ? 'userlogin-createanother' : 'userlogin-joinproject'
 								)->text()
 							)
 						);
@@ -1098,10 +1096,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	private function showCreateAccountLink() {
 		if ( $this->isSignup() ) {
 			return true;
-		} elseif ( MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $this->getUser(), 'createaccount' )
-		) {
+		} elseif ( $this->getContext()->getAuthority()->isAllowed( 'createaccount' ) ) {
 			return true;
 		} else {
 			return false;
@@ -1185,7 +1180,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 			!$this->isSignup()
 		) {
 			$user = $this->getUser();
-			if ( $user->isLoggedIn() ) {
+			if ( $user->isRegistered() ) {
 				$formDescriptor['username']['default'] = $user->getName();
 			} else {
 				$formDescriptor['username']['default'] =

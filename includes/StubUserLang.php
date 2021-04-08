@@ -18,6 +18,8 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Stub object for the user language. Assigned to the $wgLang global.
  */
@@ -33,6 +35,7 @@ class StubUserLang extends StubObject {
 	 * This method is implemented with a full signature rather than relying on
 	 * __call so that the pass-by-reference signature of the proxied method is
 	 * honored.
+	 * @deprecated since 1.35
 	 *
 	 * @param string &$link The name of the link
 	 * @param Title &$nt The title object of the link
@@ -41,8 +44,12 @@ class StubUserLang extends StubObject {
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
 		global $wgLang;
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->_unstub( 'findVariantLink', 3 );
-		$wgLang->findVariantLink( $link, $nt, $ignoreOtherCond );
+		MediaWikiServices::getInstance()
+			->getLanguageConverterFactory()
+			->getLanguageConverter( $wgLang )
+			->findVariantLink( $link, $nt, $ignoreOtherCond );
 	}
 
 	/**

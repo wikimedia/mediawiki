@@ -32,6 +32,13 @@ use MediaWiki\Revision\SlotRecord;
  * EditPage.php should be rewritten to provide a cleaner interface,
  * see T20654 if you're inspired to fix this.
  *
+ * WARNING: This class is //not// stable to extend. However, it is
+ * currently extended by the ApiThreadAction class in the LiquidThreads
+ * extension, which is deployed on WMF servers. Changes that would
+ * break LiquidThreads will likely be reverted. See T264200 for context
+ * and T264213 for removing LiquidThreads' unsupported extending of this
+ * class.
+ *
  * @ingroup API
  */
 class ApiEditPage extends ApiBase {
@@ -152,7 +159,7 @@ class ApiEditPage extends ApiBase {
 			$content = $pageObj->getContent();
 
 			if ( !$content ) {
-				if ( $titleObj->getNamespace() == NS_MEDIAWIKI ) {
+				if ( $titleObj->getNamespace() === NS_MEDIAWIKI ) {
 					# If this is a MediaWiki:x message, then load the messages
 					# and return the message value for x.
 					$text = $titleObj->getDefaultMessageText();
@@ -213,10 +220,6 @@ class ApiEditPage extends ApiBase {
 
 		if ( $params['undo'] > 0 ) {
 			if ( $params['undoafter'] > 0 ) {
-				if ( $params['undo'] < $params['undoafter'] ) {
-					list( $params['undo'], $params['undoafter'] ) =
-						[ $params['undoafter'], $params['undo'] ];
-				}
 				$undoafterRev = $revisionLookup->getRevisionById( $params['undoafter'] );
 			}
 			$undoRev = $revisionLookup->getRevisionById( $params['undo'] );
@@ -273,6 +276,7 @@ class ApiEditPage extends ApiBase {
 				}
 				// Override content model with model of undid revision.
 				$contentModel = $newContent->getModel();
+				$undoContentModel = true;
 			}
 			$params['text'] = $newContent->serialize( $contentFormat );
 			// If no summary was given and we only undid one rev,
@@ -388,7 +392,7 @@ class ApiEditPage extends ApiBase {
 
 		// Apply change tags
 		if ( $params['tags'] ) {
-			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $user );
+			$tagStatus = ChangeTags::canAddTagsAccompanyingChange( $params['tags'], $this->getAuthority() );
 			if ( $tagStatus->isOK() ) {
 				$requestArray['wpChangeTags'] = implode( ',', $params['tags'] );
 			} else {
@@ -422,19 +426,37 @@ class ApiEditPage extends ApiBase {
 		$ep->setContextTitle( $titleObj );
 		$ep->importFormData( $req );
 
+		// T255700: Ensure content models of the base content
+		// and fetched revision remain the same before attempting to save.
+		$editRevId = $requestArray['editRevId'] ?? false;
+		$baseRev = $revisionLookup->getRevisionByTitle( $titleObj, $editRevId );
+		$baseContentModel = $baseRev
+			? $baseRev->getContent( SlotRecord::MAIN )->getModel()
+			: $pageObj->getContentModel();
+
+		// However, allow the content models to possibly differ if we are intentionally
+		// changing them or we are doing an undo edit that is reverting content model change.
+		$contentModelsCanDiffer = $params['contentmodel'] || isset( $undoContentModel );
+
+		if ( !$contentModelsCanDiffer && $contentModel !== $baseContentModel ) {
+			$this->dieWithError( [ 'apierror-contentmodel-mismatch', $contentModel, $baseContentModel ] );
+		}
+
 		// Do the actual save
 		$oldRevId = $articleObject->getRevIdFetched();
 		$result = null;
+
 		// Fake $wgRequest for some hooks inside EditPage
 		// @todo FIXME: This interface SUCKS
 		$oldRequest = $wgRequest;
 		$wgRequest = $req;
 
 		$status = $ep->attemptSave( $result );
+		$statusValue = is_int( $status->value ) ? $status->value : 0;
 		$wgRequest = $oldRequest;
 
 		$r = [];
-		switch ( $status->value ) {
+		switch ( $statusValue ) {
 			case EditPage::AS_HOOK_ERROR:
 			case EditPage::AS_HOOK_ERROR_EXPECTED:
 				if ( isset( $status->apiHookResult ) ) {
@@ -483,6 +505,7 @@ class ApiEditPage extends ApiBase {
 
 				if ( $watch ) {
 					$r['watched'] = true;
+
 					$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 					$watchlistExpiry = $this->getWatchlistExpiry(
 						$watchedItemStore,
@@ -500,7 +523,7 @@ class ApiEditPage extends ApiBase {
 				if ( !$status->getErrors() ) {
 					// EditPage sometimes only sets the status code without setting
 					// any actual error messages. Supply defaults for those cases.
-					switch ( $status->value ) {
+					switch ( $statusValue ) {
 						// Currently needed
 						case EditPage::AS_IMAGE_REDIRECT_ANON:
 							$status->fatal( 'apierror-noimageredirect-anon' );
@@ -551,8 +574,8 @@ class ApiEditPage extends ApiBase {
 							$status->fatal( 'apierror-summaryrequired' );
 							break;
 						default:
-							wfWarn( __METHOD__ . ": Unknown EditPage code {$status->value} with no message" );
-							$status->fatal( 'apierror-unknownerror-editpage', $status->value );
+							wfWarn( __METHOD__ . ": Unknown EditPage code $statusValue with no message" );
+							$status->fatal( 'apierror-unknownerror-editpage', $statusValue );
 							break;
 						// @codeCoverageIgnoreEnd
 					}

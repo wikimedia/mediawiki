@@ -23,6 +23,9 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\RelPath;
@@ -118,16 +121,16 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mLastModified = '';
 
-	/** @var array */
+	/** @var string[][] */
 	protected $mCategoryLinks = [];
 
-	/** @var array */
+	/** @var string[][] */
 	protected $mCategories = [
 		'hidden' => [],
 		'normal' => [],
 	];
 
-	/** @var array */
+	/** @var string[] */
 	protected $mIndicators = [];
 
 	/** @var array Array of Interwiki Prefixed (non DB key) Titles (e.g. 'fr:Test page') */
@@ -224,7 +227,7 @@ class OutputPage extends ContextSource {
 	 */
 	private $mFeedLinks = [];
 
-	// Gwicke work on squid caching? Roughly from 2003.
+	/** @var bool Gwicke work on squid caching? Roughly from 2003. */
 	protected $mEnableClientCache = true;
 
 	/** @var bool Flag if output should only contain the body of the article. */
@@ -255,7 +258,7 @@ class OutputPage extends ContextSource {
 	 */
 	protected $mPreventClickjacking = true;
 
-	/** @var int To include the variable {{REVISIONID}} */
+	/** @var int|null To include the variable {{REVISIONID}} */
 	private $mRevisionId = null;
 
 	/** @var string */
@@ -493,10 +496,10 @@ class OutputPage extends ContextSource {
 	/**
 	 * Filter an array of modules to remove insufficiently trustworthy members, and modules
 	 * which are no longer registered (eg a page is cached before an extension is disabled)
-	 * @param array $modules
+	 * @param string[] $modules
 	 * @param string|null $position Unused
 	 * @param string $type
-	 * @return array
+	 * @return string[]
 	 */
 	protected function filterModules( array $modules, $position = null,
 		$type = ResourceLoaderModule::TYPE_COMBINED
@@ -540,7 +543,7 @@ class OutputPage extends ContextSource {
 	 * @param string|null $position Unused
 	 * @param string $param
 	 * @param string $type
-	 * @return array Array of module names
+	 * @return string[] Array of module names
 	 */
 	public function getModules( $filter = false, $position = null, $param = 'mModules',
 		$type = ResourceLoaderModule::TYPE_COMBINED
@@ -565,7 +568,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * @param bool $filter
 	 * @param string|null $position Unused
-	 * @return array Array of module names
+	 * @return string[] Array of module names
 	 */
 	public function getModuleStyles( $filter = false, $position = null ) {
 		return $this->getModules( $filter, null, 'mModuleStyles',
@@ -830,7 +833,7 @@ class OutputPage extends ContextSource {
 		// Don't output a compressed blob when using ob_gzhandler;
 		// it's technically against HTTP spec and seems to confuse
 		// Firefox when the response gets split over two packets.
-		wfClearOutputBuffers();
+		wfResetOutputBuffers( false );
 
 		return true;
 	}
@@ -864,7 +867,6 @@ class OutputPage extends ContextSource {
 	 * @param string $policy The literal string to output as the contents of
 	 *   the meta tag.  Will be parsed according to the spec and output in
 	 *   standardized form.
-	 * @return null
 	 */
 	public function setRobotPolicy( $policy ) {
 		$policy = Article::formatRobotPolicy( $policy );
@@ -892,7 +894,6 @@ class OutputPage extends ContextSource {
 	 * touched.
 	 *
 	 * @param string $policy Either 'index' or 'noindex'.
-	 * @return null
 	 */
 	public function setIndexPolicy( $policy ) {
 		$policy = trim( $policy );
@@ -915,7 +916,6 @@ class OutputPage extends ContextSource {
 	 * touched.
 	 *
 	 * @param string $policy Either 'follow' or 'nofollow'.
-	 * @return null
 	 */
 	public function setFollowPolicy( $policy ) {
 		$policy = trim( $policy );
@@ -1114,8 +1114,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Get the subtitle
-	 *
 	 * @return string
 	 */
 	public function getSubtitle() {
@@ -1193,7 +1191,7 @@ class OutputPage extends ContextSource {
 	 * Return effective list of advertised feed types
 	 * @see addFeedLink()
 	 *
-	 * @return array Array of feed type names ( 'rss', 'atom' )
+	 * @return string[] Array of feed type names ( 'rss', 'atom' )
 	 */
 	protected function getAdvertisedFeedTypes() {
 		if ( $this->getConfig()->get( 'Feed' ) ) {
@@ -1386,6 +1384,8 @@ class OutputPage extends ContextSource {
 		) {
 			$services = MediaWikiServices::getInstance();
 			$linkRenderer = $services->getLinkRenderer();
+			$languageConverter = $services->getLanguageConverterFactory()
+				->getLanguageConverter( $services->getContentLanguage() );
 			foreach ( $categories as $category => $type ) {
 				// array keys will cast numeric category names to ints, so cast back to string
 				$category = (string)$category;
@@ -1394,11 +1394,12 @@ class OutputPage extends ContextSource {
 				if ( !$title ) {
 					continue;
 				}
-				$services->getContentLanguage()->findVariantLink( $category, $title, true );
+				$languageConverter->findVariantLink( $category, $title, true );
+
 				if ( $category != $origcategory && array_key_exists( $category, $categories ) ) {
 					continue;
 				}
-				$text = $services->getContentLanguage()->convertHtml( $title->getText() );
+				$text = $languageConverter->convertHtml( $title->getText() );
 				$this->mCategories[$type][] = $title->getText();
 				$this->mCategoryLinks[$type][] = $linkRenderer->makeLink( $title, new HtmlArmor( $text ) );
 			}
@@ -1412,7 +1413,8 @@ class OutputPage extends ContextSource {
 	protected function addCategoryLinksToLBAndGetResult( array $categories ) {
 		# Add the links to a LinkBatch
 		$arr = [ NS_CATEGORY => $categories ];
-		$lb = new LinkBatch;
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch();
 		$lb->setArray( $arr );
 
 		# Fetch existence plus the hiddencat property
@@ -1456,7 +1458,7 @@ class OutputPage extends ContextSource {
 	 * hidden categories) and $link a HTML fragment with a link to the category
 	 * page
 	 *
-	 * @return array
+	 * @return string[][]
 	 */
 	public function getCategoryLinks() {
 		return $this->mCategoryLinks;
@@ -1469,7 +1471,7 @@ class OutputPage extends ContextSource {
 	 *  * all: all categories of all types
 	 *  * hidden: only the hidden categories
 	 *  * normal: all categories, except hidden categories
-	 * @return array Array of strings
+	 * @return string[]
 	 */
 	public function getCategories( $type = 'all' ) {
 		if ( $type === 'all' ) {
@@ -1491,7 +1493,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * In case of duplicate keys, existing values are overwritten.
 	 *
-	 * @param array $indicators
+	 * @param string[] $indicators
 	 * @since 1.25
 	 */
 	public function setIndicators( array $indicators ) {
@@ -1505,7 +1507,7 @@ class OutputPage extends ContextSource {
 	 *
 	 * The array will be internally ordered by item keys.
 	 *
-	 * @return array Keys: identifiers, values: HTML contents
+	 * @return string[] Keys: identifiers, values: HTML contents
 	 * @since 1.25
 	 */
 	public function getIndicators() {
@@ -1654,7 +1656,7 @@ class OutputPage extends ContextSource {
 	public function parserOptions() {
 		if ( !$this->mParserOptions ) {
 			if ( !$this->getUser()->isSafeToLoad() ) {
-				// $wgUser isn't unstubbable yet, so don't try to get a
+				// Context user isn't unstubbable yet, so don't try to get a
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
 				$po = ParserOptions::newFromAnon();
@@ -1685,7 +1687,7 @@ class OutputPage extends ContextSource {
 	/**
 	 * Get the displayed revision ID
 	 *
-	 * @return int
+	 * @return int|null
 	 */
 	public function getRevisionId() {
 		return $this->mRevisionId;
@@ -1917,7 +1919,7 @@ class OutputPage extends ContextSource {
 		if ( $this->getConfig()->get( 'ImagePreconnect' ) && count( $parserOutput->getImages() ) ) {
 			$preconnect = [];
 			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
-			$repoGroup->forEachForeignRepo( function ( $repo ) use ( &$preconnect ) {
+			$repoGroup->forEachForeignRepo( static function ( $repo ) use ( &$preconnect ) {
 				$preconnect[] = wfParseUrl( $repo->getZoneUrl( 'thumb' ) )['host'];
 			} );
 			$preconnect[] = wfParseUrl( $repoGroup->getLocalRepo()->getZoneUrl( 'thumb' ) )['host'];
@@ -2323,8 +2325,9 @@ class OutputPage extends ContextSource {
 			return;
 		}
 
-		$lang = $title->getPageLanguage();
-		if ( !$this->getRequest()->getCheck( 'variant' ) && $lang->hasVariants() ) {
+		$languageConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			->getLanguageConverter( $title->getPageLanguage() );
+		if ( !$this->getRequest()->getCheck( 'variant' ) && $languageConverter->hasVariants() ) {
 			$this->addVaryHeader( 'Accept-Language' );
 		}
 	}
@@ -2437,16 +2440,25 @@ class OutputPage extends ContextSource {
 		$response->header( $this->getVaryHeader() );
 
 		if ( $this->mEnableClientCache ) {
-			if (
-				$config->get( 'UseCdn' ) &&
-				!$response->hasCookies() &&
-				// The client might use methods other than cookies to appear logged-in.
-				// E.g. HTTP headers, or query parameter tokens, OAuth, etc.
-				!SessionManager::getGlobalSession()->isPersistent() &&
-				!$this->isPrintable() &&
-				$this->mCdnMaxage != 0 &&
-				!$this->haveCacheVaryCookies()
-			) {
+			if ( !$config->get( 'UseCdn' ) ) {
+				$privateReason = 'config';
+			} elseif ( $response->hasCookies() ) {
+				$privateReason = 'set-cookies';
+			// The client might use methods other than cookies to appear logged-in.
+			// E.g. HTTP headers, or query parameter tokens, OAuth, etc.
+			} elseif ( SessionManager::getGlobalSession()->isPersistent() ) {
+				$privateReason = 'session';
+			} elseif ( $this->isPrintable() ) {
+				$privateReason = 'printable';
+			} elseif ( $this->mCdnMaxage == 0 ) {
+				$privateReason = 'no-maxage';
+			} elseif ( $this->haveCacheVaryCookies() ) {
+				$privateReason = 'cache-vary-cookies';
+			} else {
+				$privateReason = false;
+			}
+
+			if ( $privateReason === false ) {
 				# We'll purge the proxy cache for anons explicitly, but require end user agents
 				# to revalidate against the proxy on each visit.
 				# IMPORTANT! The CDN needs to replace the Cache-Control header with
@@ -2460,7 +2472,7 @@ class OutputPage extends ContextSource {
 			} else {
 				# We do want clients to cache if they can, but they *must* check for updates
 				# on revisiting the page, after the max-age period.
-				wfDebug( __METHOD__ . ": private caching; {$this->mLastModified} **", 'private' );
+				wfDebug( __METHOD__ . ": private caching ($privateReason); {$this->mLastModified} **", 'private' );
 
 				if ( $response->hasCookies() || SessionManager::getGlobalSession()->isPersistent() ) {
 					$response->header( 'Expires: ' . gmdate( 'D, d M Y H:i:s', 0 ) . ' GMT' );
@@ -2774,9 +2786,7 @@ class OutputPage extends ContextSource {
 
 			# Don't return to a page the user can't read otherwise
 			# we'll end up in a pointless loop
-			if ( $displayReturnto && $permissionManager->userCan(
-				'read', $this->getUser(), $displayReturnto
-			) ) {
+			if ( $displayReturnto && $this->getAuthority()->probablyCan( 'read', $displayReturnto ) ) {
 				$this->returnToMain( null, $displayReturnto );
 			}
 		} else {
@@ -2799,8 +2809,23 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
+	 * Format permission $status obtained from Authority for display.
+	 *
+	 * @param PermissionStatus $status
+	 * @param string|null $action that was denied or null if unknown
+	 * @return string
+	 */
+	public function formatPermissionStatus( PermissionStatus $status, string $action = null ): string {
+		if ( $status->isGood() ) {
+			return '';
+		}
+		return $this->formatPermissionsErrorMessage( $status->toLegacyErrorArray(), $action );
+	}
+
+	/**
 	 * Format a list of error messages
 	 *
+	 * @deprecated since 1.36. Use ::formatPermissionStatus instead
 	 * @param array $errors Array of arrays returned by PermissionManager::getPermissionErrors
 	 * @param string|null $action Action that was denied or null if unknown
 	 * @return string The wikitext error-messages, formatted into a list.
@@ -2838,17 +2863,17 @@ class OutputPage extends ContextSource {
 	/**
 	 * Show a warning about replica DB lag
 	 *
-	 * If the lag is higher than $wgSlaveLagCritical seconds,
+	 * If the lag is higher than $wgDatabaseReplicaLagCritical seconds,
 	 * then the warning is a bit more obvious. If the lag is
-	 * lower than $wgSlaveLagWarning, then no warning is shown.
+	 * lower than $wgDatabaseReplicaLagWarning, then no warning is shown.
 	 *
 	 * @param int $lag Replica lag
 	 */
 	public function showLagWarning( $lag ) {
 		$config = $this->getConfig();
-		if ( $lag >= $config->get( 'SlaveLagWarning' ) ) {
+		if ( $lag >= $config->get( 'DatabaseReplicaLagWarning' ) ) {
 			$lag = floor( $lag ); // floor to avoid nano seconds to display
-			$message = $lag < $config->get( 'SlaveLagCritical' )
+			$message = $lag < $config->get( 'DatabaseReplicaLagCritical' )
 				? 'lag-warn-normal'
 				: 'lag-warn-high';
 			// For grep: mw-lag-warn-normal, mw-lag-warn-high
@@ -2926,7 +2951,7 @@ class OutputPage extends ContextSource {
 				[], // modules; not relevant
 				$this->getLanguage()->getCode(),
 				$this->getSkin()->getSkinName(),
-				$this->getUser()->isLoggedIn() ? $this->getUser()->getName() : null,
+				$this->getUser()->isRegistered() ? $this->getUser()->getName() : null,
 				null, // version; not relevant
 				ResourceLoader::inDebugMode(),
 				null, // only; not relevant
@@ -2989,7 +3014,7 @@ class OutputPage extends ContextSource {
 				'noscript',
 				'user.styles',
 			] );
-			$this->getSkin()->setupSkinUserCss( $this );
+			$this->getSkin()->doSetupSkinUserCss( $this );
 
 			// Prepare exempt modules for buildExemptModules()
 			$exemptGroups = [ 'site' => [], 'noscript' => [], 'private' => [], 'user' => [] ];
@@ -3006,7 +3031,7 @@ class OutputPage extends ContextSource {
 
 			// Filter out modules handled by buildExemptModules()
 			$moduleStyles = array_filter( $moduleStyles,
-				function ( $name ) use ( $rl, $context, &$exemptGroups, &$exemptStates ) {
+				static function ( $name ) use ( $rl, $context, &$exemptGroups, &$exemptStates ) {
 					$module = $rl->getModule( $name );
 					if ( $module ) {
 						$group = $module->getGroup();
@@ -3055,7 +3080,8 @@ class OutputPage extends ContextSource {
 	public function headElement( Skin $sk, $includeStyle = true ) {
 		$config = $this->getConfig();
 		$userdir = $this->getLanguage()->getDir();
-		$sitedir = MediaWikiServices::getInstance()->getContentLanguage()->getDir();
+		$services = MediaWikiServices::getInstance();
+		$sitedir = $services->getContentLanguage()->getDir();
 
 		$pieces = [];
 		$htmlAttribs = Sanitizer::mergeAttributes( Sanitizer::mergeAttributes(
@@ -3087,17 +3113,6 @@ class OutputPage extends ContextSource {
 		$pieces = array_merge( $pieces, array_values( $this->getHeadLinksArray() ) );
 		$pieces = array_merge( $pieces, array_values( $this->mHeadItems ) );
 
-		// This library is intended to run on older browsers that MediaWiki no longer
-		// supports as Grade A. For these Grade C browsers, we provide an experience
-		// using only HTML and CSS. But, where standards-compliant browsers are able to
-		// style unknown HTML elements without issue, old IE ignores these styles.
-		// The html5shiv library fixes that.
-		// Use an IE conditional comment to serve the script only to old IE
-		$shivUrl = $config->get( 'ResourceBasePath' ) . '/resources/lib/html5shiv/html5shiv.js';
-		$pieces[] = '<!--[if lt IE 9]>' .
-			Html::linkedScript( $shivUrl, $this->CSP->getNonce() ) .
-			'<![endif]-->';
-
 		$pieces[] = Html::closeElement( 'head' );
 
 		$bodyClasses = $this->mAdditionalBodyClasses;
@@ -3107,7 +3122,7 @@ class OutputPage extends ContextSource {
 		$bodyClasses[] = $userdir;
 		$bodyClasses[] = "sitedir-$sitedir";
 
-		$underline = $this->getUser()->getOption( 'underline' );
+		$underline = $services->getUserOptionsLookup()->getOption( $this->getUser(), 'underline' );
 		if ( $underline < 2 ) {
 			// The following classes can be used here:
 			// * mw-underline-always
@@ -3129,6 +3144,10 @@ class OutputPage extends ContextSource {
 		$bodyClasses[] = 'skin-' . Sanitizer::escapeClass( $sk->getSkinName() );
 		$bodyClasses[] =
 			'action-' . Sanitizer::escapeClass( Action::getActionName( $this->getContext() ) );
+
+		if ( $sk->isResponsive() ) {
+			$bodyClasses[] = 'skin--responsive';
+		}
 
 		$bodyAttrs = [];
 		// While the implode() is not strictly needed, it's used for backwards compatibility
@@ -3275,9 +3294,8 @@ class OutputPage extends ContextSource {
 		// Get the relevant title so that AJAX features can use the correct page name
 		// when making API requests from certain special pages (T36972).
 		$relevantTitle = $sk->getRelevantTitle();
-		$relevantUser = $sk->getRelevantUser();
 
-		if ( $ns == NS_SPECIAL ) {
+		if ( $ns === NS_SPECIAL ) {
 			list( $canonicalSpecialPageName, /*...*/ ) =
 				$services->getSpecialPageFactory()->
 					resolveAlias( $title->getDBkey() );
@@ -3307,7 +3325,7 @@ class OutputPage extends ContextSource {
 
 		// Internal variables for MediaWiki core
 		$vars = [
-			// @internal For mediawiki.page.startup
+			// @internal For mediawiki.page.ready
 			'wgBreakFrames' => $this->getFrameOptions() == 'DENY',
 
 			// @internal For jquery.tablesorter
@@ -3337,14 +3355,14 @@ class OutputPage extends ContextSource {
 			'wgIsRedirect' => $title->isRedirect(),
 			'wgAction' => Action::getActionName( $this->getContext() ),
 			'wgUserName' => $user->isAnon() ? null : $user->getName(),
-			'wgUserGroups' => $user->getEffectiveGroups(),
+			'wgUserGroups' => $services->getUserGroupManager()->getUserEffectiveGroups( $user ),
 			'wgCategories' => $this->getCategories(),
 			'wgPageContentLanguage' => $lang->getCode(),
 			'wgPageContentModel' => $title->getContentModel(),
 			'wgRelevantPageName' => $relevantTitle->getPrefixedDBkey(),
 			'wgRelevantArticleId' => $relevantTitle->getArticleID(),
 		];
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$vars['wgUserId'] = $user->getId();
 			$vars['wgUserEditCount'] = $user->getEditCount();
 			$userReg = $user->getRegistration();
@@ -3359,14 +3377,15 @@ class OutputPage extends ContextSource {
 				$vars['wgUserNewMsgRevisionId'] = $userNewMsgRevId;
 			}
 		}
-		$contLang = $services->getContentLanguage();
-		if ( $contLang->hasVariants() ) {
-			$vars['wgUserVariant'] = $contLang->getPreferredVariant();
+		$languageConverter = $services->getLanguageConverterFactory()
+			->getLanguageConverter( $services->getContentLanguage() );
+		if ( $languageConverter->hasVariants() ) {
+			$vars['wgUserVariant'] = $languageConverter->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
-		$vars['wgIsProbablyEditable'] = $this->userCanEditOrCreate( $user, $title );
+		$vars['wgIsProbablyEditable'] = $this->performerCanEditOrCreate( $this->getAuthority(), $title );
 		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle &&
-			$this->userCanEditOrCreate( $user, $relevantTitle );
+			$this->performerCanEditOrCreate( $this->getAuthority(), $relevantTitle );
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			// Following keys are set in $vars:
 			// wgRestrictionCreate, wgRestrictionEdit, wgRestrictionMove, wgRestrictionUpload
@@ -3375,11 +3394,9 @@ class OutputPage extends ContextSource {
 		if ( $title->isMainPage() ) {
 			$vars['wgIsMainPage'] = true;
 		}
-		if ( $relevantUser && ( !$relevantUser->isHidden() ||
-			$services->getPermissionManager()->userHasRight( $user, 'hideuser' ) )
-		) {
-			// T120883 if the user is hidden and the viewer cannot see
-			// hidden users, pretend like it does not exist at all.
+
+		$relevantUser = $sk->getRelevantUser();
+		if ( $relevantUser ) {
 			$vars['wgRelevantUserName'] = $relevantUser->getName();
 		}
 		// End of stable config vars
@@ -3391,7 +3408,7 @@ class OutputPage extends ContextSource {
 
 		// Allow extensions to add their custom variables to the mw.config map.
 		// Use the 'ResourceLoaderGetConfigVars' hook if the variable is not
-		// page-dependant but site-wide (without state).
+		// page-dependent but site-wide (without state).
 		// Alternatively, you may want to use OutputPage->addJsConfigVars() instead.
 		$this->getHookRunner()->onMakeGlobalVariablesScript( $vars, $this );
 
@@ -3454,7 +3471,7 @@ class OutputPage extends ContextSource {
 
 		$user = $this->getUser();
 
-		if ( !$user->isLoggedIn() ) {
+		if ( !$user->isRegistered() ) {
 			// Anons have predictable edit tokens
 			return false;
 		}
@@ -3463,9 +3480,7 @@ class OutputPage extends ContextSource {
 		}
 
 		$title = $this->getTitle();
-		$errors = MediaWikiServices::getInstance()->getPermissionManager()
-			->getPermissionErrors( 'edit', $user, $title );
-		if ( count( $errors ) !== 0 ) {
+		if ( !$this->getAuthority()->probablyCan( 'edit', $title ) ) {
 			return false;
 		}
 
@@ -3473,18 +3488,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @param User $user
-	 * @param LinkTarget $title
+	 * @param Authority $performer
+	 * @param PageIdentity $page
 	 * @return bool
 	 */
-	private function userCanEditOrCreate(
-		User $user,
-		LinkTarget $title
+	private function performerCanEditOrCreate(
+		Authority $performer,
+		PageIdentity $page
 	) {
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
-		return $pm->quickUserCan( 'edit', $user, $title )
-		&& ( $this->getTitle()->exists() ||
-			 $pm->quickUserCan( 'create', $user, $title ) );
+		return $performer->probablyCan( 'edit', $page )
+		&& ( $page->exists() || $performer->probablyCan( 'create', $page ) );
 	}
 
 	/**
@@ -3549,7 +3562,7 @@ class OutputPage extends ContextSource {
 
 		# Universal edit button
 		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
-			if ( $this->userCanEditOrCreate( $this->getUser(), $this->getTitle() ) ) {
+			if ( $this->performerCanEditOrCreate( $this->getAuthority(), $this->getTitle() ) ) {
 				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
 				$tags['universal-edit-button'] = Html::element( 'link', [
@@ -3611,10 +3624,14 @@ class OutputPage extends ContextSource {
 		] );
 
 		# Language variants
-		if ( !$config->get( 'DisableLangConversion' ) ) {
+		$services = MediaWikiServices::getInstance();
+		$languageConverterFactory = $services->getLanguageConverterFactory();
+		$disableLangConversion = $languageConverterFactory->isConversionDisabled();
+		if ( !$disableLangConversion ) {
 			$lang = $this->getTitle()->getPageLanguage();
-			if ( $lang->hasVariants() ) {
-				$variants = $lang->getVariants();
+			$languageConverter = $languageConverterFactory->getLanguageConverter( $lang );
+			if ( $languageConverter->hasVariants() ) {
+				$variants = $languageConverter->getVariants();
 				foreach ( $variants as $variant ) {
 					$tags["variant-$variant"] = Html::element( 'link', [
 						'rel' => 'alternate',
@@ -3990,6 +4007,7 @@ class OutputPage extends ContextSource {
 	 * @return string URL
 	 */
 	public static function transformFilePath( $remotePathPrefix, $localPath, $file ) {
+		// This MUST match the equivalent logic in CSSMin::remapOne()
 		$hash = md5_file( "$localPath/$file" );
 		if ( $hash === false ) {
 			wfLogWarning( __METHOD__ . ": Failed to hash $localPath/$file" );

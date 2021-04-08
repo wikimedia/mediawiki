@@ -120,17 +120,21 @@ CSS
 	public function testGetStyles( $parent, $logo, $expected ) {
 		$module = $this->getMockBuilder( ResourceLoaderSkinModule::class )
 			->setMethods( [ 'readStyleFiles', 'getConfig', 'getLogoData' ] )
+			->disableOriginalConstructor()
 			->getMock();
 		$module->expects( $this->once() )->method( 'readStyleFiles' )
 			->willReturn( $parent );
-		$module->expects( $this->once() )->method( 'getConfig' )
-			->willReturn( new HashConfig() );
+		$module->expects( $this->any() )->method( 'getConfig' )
+			->willReturn( new HashConfig( [
+				'UseNewMediaStructure' => true,
+			] ) );
 		$module->expects( $this->once() )->method( 'getLogoData' )
 			->willReturn( $logo );
 
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
 
+		$module->__construct();
 		$this->assertEquals(
 			$expected,
 			$module->getStyles( $ctx )
@@ -367,6 +371,30 @@ CSS
 	}
 
 	/**
+	 * @covers ResourceLoaderSkinModule::getPreloadLinks
+	 */
+	public function testNoPreloadLogos() {
+		$module = new ResourceLoaderSkinModule( [ 'features' => [ 'logo' => false ] ] );
+		$context =
+			$this->getMockBuilder( ResourceLoaderContext::class )
+				->disableOriginalConstructor()
+				->getMock();
+		$preloadLinks = $module->getPreloadLinks( $context );
+		$this->assertArrayEquals( [], $preloadLinks );
+	}
+
+	/**
+	 * @covers ResourceLoaderSkinModule::getPreloadLinks
+	 */
+	public function testPreloadLogos() {
+		$module = new ResourceLoaderSkinModule();
+		$context = $this->getMockBuilder( ResourceLoaderContext::class )
+			->disableOriginalConstructor()->getMock();
+		$preloadLinks = $module->getPreloadLinks( $context );
+		$this->assertNotSameSize( [], $preloadLinks );
+	}
+
+	/**
 	 * Covers ResourceLoaderSkinModule::FEATURE_FILES, but not annotatable.
 	 *
 	 * @dataProvider provideFeatureFiles
@@ -391,5 +419,96 @@ CSS
 				}
 			}
 		}
+	}
+
+	public static function provideGetStyleFilesFeatureStylesOrder() {
+		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
+			ResourceLoaderFileModule::extractBasePaths();
+		$featureFiles = ( new ReflectionClass( ResourceLoaderSkinModule::class ) )
+			->getConstant( 'FEATURE_FILES' );
+
+		$normalizePath = new ResourceLoaderFilePath(
+			$featureFiles['normalize']['all'][0],
+			$defaultLocalBasePath,
+			$defaultRemoteBasePath
+		);
+		$elementsPath = new ResourceLoaderFilePath(
+			$featureFiles['elements']['screen'][0],
+			$defaultLocalBasePath,
+			$defaultRemoteBasePath
+		);
+
+		return [
+			[
+				[ 'elements', 'normalize' ],
+				[
+					'test.styles/styles.css' => [
+						'media' => 'screen'
+					]
+				],
+				[ $normalizePath ],
+				[ $elementsPath, 'test.styles/styles.css' ],
+				'opt-out by default policy results in correct order'
+			],
+			[
+				[
+					'content-parser-output' => false,
+					'elements' => true,
+					'normalize' => true,
+					'toc' => false,
+				],
+				[
+					'test.styles/styles.css' => [
+						'media' => 'screen'
+					]
+				],
+				[ $normalizePath ],
+				[ $elementsPath, 'test.styles/styles.css' ],
+				'opt-in by default policy results in correct order'
+			],
+
+			[
+				[ 'normalize' ],
+				[ 'test.styles/styles.css' => [ 'media' => 'screen' ] ],
+				[ $normalizePath ],
+				[ 'test.styles/styles.css' ],
+				'module provided styles come after skin defined'
+			],
+		];
+	}
+
+	/**
+	 * @covers ResourceLoaderSkinModule::getStyleFiles
+	 * @dataProvider provideGetStyleFilesFeatureStylesOrder
+	 * @param array $features
+	 * @param array $styles
+	 * @param array $expectedAllStyles array of styles
+	 * @param array $expectedScreenStyles array of styles
+	 * @param string $msg to show for debugging
+	 */
+	public function testGetStyleFilesFeatureStylesOrder(
+		$features, $styles, $expectedAllStyles, $expectedScreenStyles, $msg
+	) : void {
+		$ctx = $this->createMock( ResourceLoaderContext::class );
+		$module = new ResourceLoaderSkinModule(
+			[
+				// The ordering should be controlled by ResourceLoaderSkinModule
+				// `normalize` will be outputted before `elements` despite the ordering
+				'features' => $features,
+				'styles' => $styles,
+			]
+		);
+
+		$expected = [
+			'all' => $expectedAllStyles,
+			'screen' => $expectedScreenStyles,
+		];
+
+		$actual = $module->getStyleFiles( $ctx );
+		unset( $actual['print'] ); // not testing print for now
+		$this->assertEquals(
+			array_values( $expected ),
+			array_values( $actual )
+		);
 	}
 }

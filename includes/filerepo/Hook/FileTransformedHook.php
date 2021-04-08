@@ -6,6 +6,9 @@ use File;
 use MediaTransformOutput;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "FileTransformed" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

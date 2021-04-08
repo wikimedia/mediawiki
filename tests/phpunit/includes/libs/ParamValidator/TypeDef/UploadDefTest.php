@@ -13,8 +13,6 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class UploadDefTest extends TypeDefTestCase {
 
-	protected static $testClass = UploadDef::class;
-
 	protected function getCallbacks( $value, array $options ) {
 		if ( $value instanceof UploadedFile ) {
 			return new SimpleCallbacks( [], [ 'test' => $value ] );

@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Hello903hello"
+			"Hello903hello",
+			"Moon0319"
 		]
 	},
 	"config-desc": "MediaWiki安裝程式",
@@ -13,7 +14,7 @@
 	"config-wiki-language-help": "揀將要安裝嘅wiki多數情況主要用嘅語言。",
 	"config-back": "← 返去",
 	"config-continue": "繼續 →",
-	"config-page-language": "語言",
+	"config-page-language": "話",
 	"config-page-welcome": "歡迎使用MediaWiki!",
 	"config-page-dbconnect": "連線到資料庫",
 	"config-page-upgrade": "升級安裝咗嘅版本",
@@ -23,7 +24,6 @@
 	"config-page-install": "安裝",
 	"config-page-complete": "搞掂！",
 	"config-page-restart": "重新開始安裝",
-	"config-page-readme": "讀我",
 	"config-page-releasenotes": "發行解",
 	"config-page-copying": "複製緊",
 	"config-page-upgradedoc": "升級緊",

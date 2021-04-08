@@ -36,7 +36,7 @@ class BlockRestrictionStore {
 	/**
 	 * Map of all of the restriction types.
 	 */
-	private $types = [
+	private const TYPES_MAP = [
 		PageRestriction::TYPE_ID => PageRestriction::class,
 		NamespaceRestriction::TYPE_ID => NamespaceRestriction::class,
 	];
@@ -299,7 +299,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function equals( array $a, array $b ) {
-		$filter = function ( $restriction ) {
+		$filter = static function ( $restriction ) {
 			return $restriction instanceof Restriction;
 		};
 
@@ -322,7 +322,7 @@ class BlockRestrictionStore {
 			return true;
 		}
 
-		$hasher = function ( $r ) {
+		$hasher = static function ( $r ) {
 			return $r->getHash();
 		};
 
@@ -371,7 +371,7 @@ class BlockRestrictionStore {
 	 * @return array
 	 */
 	private function restrictionsToRemove( array $existing, array $new ) {
-		return array_filter( $existing, function ( $e ) use ( $new ) {
+		return array_filter( $existing, static function ( $e ) use ( $new ) {
 			foreach ( $new as $restriction ) {
 				if ( !$restriction instanceof Restriction ) {
 					continue;
@@ -440,8 +440,8 @@ class BlockRestrictionStore {
 	 * @return Restriction|null
 	 */
 	private function rowToRestriction( stdClass $row ) {
-		if ( array_key_exists( (int)$row->ir_type, $this->types ) ) {
-			$class = $this->types[ (int)$row->ir_type ];
+		if ( array_key_exists( (int)$row->ir_type, self::TYPES_MAP ) ) {
+			$class = self::TYPES_MAP[ (int)$row->ir_type ];
 			return call_user_func( [ $class, 'newFromRow' ], $row );
 		}
 

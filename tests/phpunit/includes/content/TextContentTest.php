@@ -25,23 +25,17 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->context->setTitle( Title::makeTitle( NS_MAIN, 'Test' ) );
 		$this->context->setUser( $user );
 
+		RequestContext::getMain()->setTitle( $this->context->getTitle() );
+
 		$this->setMwGlobals( [
 			'wgTextModelsToParse' => [
 				CONTENT_MODEL_WIKITEXT,
 				CONTENT_MODEL_CSS,
 				CONTENT_MODEL_JAVASCRIPT,
 			],
-			'wgTidyConfig' => [ 'driver' => 'RemexHtml' ],
 			'wgCapitalLinks' => true,
 			'wgHooks' => [], // bypass hook ContentGetParserOutput that force custom rendering
 		] );
-
-		MWTidy::destroySingleton();
-	}
-
-	protected function tearDown() : void {
-		MWTidy::destroySingleton();
-		parent::tearDown();
 	}
 
 	/**
@@ -385,7 +379,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 	 * @covers TextContent::getDeletionUpdates
 	 */
 	public function testDeletionUpdates( $model, $text, $expectedStuff ) {
-		$page = $this->getNonexistingTestPage( get_class( $this ) . '-' . $this->getName() );
+		$page = $this->getNonexistingTestPage( get_class( $this ) . '::' . __FUNCTION__ );
 		$title = $page->getTitle();
 
 		$content = ContentHandler::makeContent( $text, $title, $model );

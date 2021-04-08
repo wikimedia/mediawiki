@@ -58,7 +58,7 @@ class NumericUppercaseCollation extends UppercaseCollation {
 		// correct position (where digits would normally sort), then the length will be compared putting
 		// shorter numbers before longer ones; if identical, then the characters will be compared, which
 		// generates the correct results for numbers of equal length.
-		$sortkey = preg_replace_callback( '/\d+/', function ( $matches ) {
+		$sortkey = preg_replace_callback( '/\d+/', static function ( $matches ) {
 			// Strip any leading zeros
 			$number = ltrim( $matches[0], '0' );
 			$len = strlen( $number );

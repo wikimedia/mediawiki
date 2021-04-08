@@ -19,6 +19,9 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+
 /**
  * @covers TitleValue
  *
@@ -162,6 +165,18 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertEquals( $fragment, $fragmentTitle->getFragment() );
 	}
 
+	public function testNewFromPage() {
+		$page = new PageIdentityValue( 0, NS_USER, 'Test', PageIdentity::LOCAL );
+		$title = TitleValue::newFromPage( $page );
+
+		$this->assertSame( NS_USER, $title->getNamespace() );
+		$this->assertSame( 'Test', $title->getDBkey() );
+		$this->assertSame( 'Test', $title->getText() );
+		$this->assertSame( '', $title->getFragment() );
+		$this->assertSame( '', $title->getInterwiki() );
+		$this->assertFalse( $title->isExternal() );
+	}
+
 	public function getTextProvider() {
 		return [
 			[ 'Foo', 'Foo' ],
@@ -205,5 +220,46 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 			$expected,
 			$value->__toString()
 		);
+	}
+
+	public function provideIsSameLinkAs() {
+		yield [
+			new TitleValue( 0, 'Foo' ),
+			new TitleValue( 0, 'Foo' ),
+			true
+		];
+		yield [
+			new TitleValue( 1, 'Bar_Baz' ),
+			new TitleValue( 1, 'Bar_Baz' ),
+			true
+		];
+		yield [
+			new TitleValue( 0, 'Foo' ),
+			new TitleValue( 1, 'Foo' ),
+			false
+		];
+		yield [
+			new TitleValue( 0, 'Foo' ),
+			new TitleValue( 0, 'Foozz' ),
+			false
+		];
+		yield [
+			new TitleValue( 0, 'Foo', '' ),
+			new TitleValue( 0, 'Foo', 'Bar' ),
+			false
+		];
+		yield [
+			new TitleValue( 0, 'Foo', '', 'bar' ),
+			new TitleValue( 0, 'Foo', '', '' ),
+			false
+		];
+	}
+
+	/**
+	 * @dataProvider provideIsSameLinkAs
+	 */
+	public function testIsSameLinkAs( TitleValue $a, TitleValue $b, $expected ) {
+		$this->assertSame( $expected, $a->isSameLinkAs( $b ) );
+		$this->assertSame( $expected, $b->isSameLinkAs( $a ) );
 	}
 }

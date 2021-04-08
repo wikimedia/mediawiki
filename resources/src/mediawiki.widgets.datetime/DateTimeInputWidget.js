@@ -24,7 +24,7 @@
 	 * @constructor
 	 * @param {Object} [config] Configuration options
 	 * @cfg {string} [type='datetime'] Whether to act like a 'date', 'time', or 'datetime' input.
-	 *  Affects values stored in the relevant <input> and the formatting and
+	 *  Affects values stored in the relevant `<input>` and the formatting and
 	 *  interpretation of values passed to/from getValue() and setValue(). It's up
 	 *  to the user to configure the DateTimeFormatter correctly.
 	 * @cfg {Object|mw.widgets.datetime.DateTimeFormatter} [formatter={}] Configuration options for

@@ -26,7 +26,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
 $optionsWithArgs = [ 'start', 'limit', 'type' ];
-require __DIR__ . '/../commandLine.inc';
+require __DIR__ . '/../CommandLineInc.php';
 
 if ( !isset( $args[0] ) ) {
 	echo "Usage: php testCompression.php [--type=<type>] [--start=<start-date>] " .

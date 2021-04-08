@@ -5,8 +5,8 @@
 			"Gleb Borisov",
 			"Jureits",
 			"Reedy",
-			"아라",
-			"ديفيد"
+			"ديفيد",
+			"아라"
 		]
 	},
 	"tog-showhiddencats": "Ruodeit nūglobuotys kategorejis",
@@ -71,7 +71,6 @@
 	"hidden-category-category": "Nūglobuotuos kategorejis",
 	"category-subcat-count": "{{PLURAL:$2|Itymā kategorejā ir vīn dūtuo zamkategoreja.|{{PLURAL:$1|Paruodeita $1 zamkategoreja|Paruodeitys $1 zamkategorejis}} nu $2.}}",
 	"category-article-count": "{{PLURAL:$2|Itymā kategorejā ir vīn dūtuo puslopa.|{{PLURAL:$1|Paruodeita $1 puslopa|Paruodeitys $1 puslopys}} nu $2.}}",
-	"listingcontinuesabbrev": "(tuoļuojums)",
 	"about": "Aproksts",
 	"article": "Rakstīņs",
 	"newwindow": "(atdareišona jaunuo puslopā)",
@@ -435,7 +434,7 @@
 	"namespace": "Vuordu pluots:",
 	"invert": "Izavielēt pretejū",
 	"blanknamespace": "(Pamatpuslopa)",
-	"contributions": "Lītuotuoja devīņs",
+	"tool-link-contributions": "Lītuotuoja devīņs",
 	"contributions-title": "Lītuotuoja $1 devīņs",
 	"mycontris": "Muns devīņs",
 	"contribsub2": "Lītuotuojs: $1 ($2)",

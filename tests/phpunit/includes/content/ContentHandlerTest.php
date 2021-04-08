@@ -29,7 +29,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 				CONTENT_MODEL_CSS => CssContentHandler::class,
 				CONTENT_MODEL_TEXT => TextContentHandler::class,
 				'testing' => DummyContentHandlerForTesting::class,
-				'testing-callbacks' => function ( $modelId ) {
+				'testing-callbacks' => static function ( $modelId ) {
 					return new DummyContentHandlerForTesting( $modelId );
 				}
 			],
@@ -338,7 +338,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			wfMessage( 'autosumm-newblank' )->inContentLanguage()->text() );
 		// now check, what we become with another bitmask
 		$autoSummary = $content->getAutosummary( null, $newContent, 92 );
-		$this->assertEquals( $autoSummary, '' );
+		$this->assertSame( '', $autoSummary );
 	}
 
 	/**
@@ -354,7 +354,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$newContent = ContentHandler::makeContent( '', null, CONTENT_MODEL_WIKITEXT, null );
 		// Get the tag for this edit
 		$tag = $wikitextContentHandler->getChangeTag( $oldContent, $newContent, EDIT_UPDATE );
-		$this->assertSame( $tag, 'mw-contentmodelchange' );
+		$this->assertSame( 'mw-contentmodelchange', $tag );
 	}
 
 	/**
@@ -428,7 +428,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 
 		$searchEngine->expects( $this->any() )
 			->method( 'makeSearchFieldMapping' )
-			->will( $this->returnCallback( function ( $name, $type ) {
+			->will( $this->returnCallback( static function ( $name, $type ) {
 					return new DummySearchIndexFieldDefinition( $name, $type );
 			} ) );
 
@@ -444,7 +444,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$page = new WikiPage( $title );
 
 		$this->setTemporaryHook( 'SearchDataForIndex',
-			function (
+			static function (
 				&$fields,
 				ContentHandler $handler,
 				WikiPage $page,
@@ -480,7 +480,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ContentHandler::getContentModels
 	 */
 	public function testGetContentModelsHook() {
-		$this->setTemporaryHook( 'GetContentModels', function ( &$models ) {
+		$this->setTemporaryHook( 'GetContentModels', static function ( &$models ) {
 			$models[] = 'Ferrari';
 		} );
 		$this->assertContains( 'Ferrari', ContentHandler::getContentModels() );
@@ -600,7 +600,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 		$this->setTemporaryHook( 'GetSlotDiffRenderer',
-			function ( $handler, &$slotDiffRenderer ) use ( $customSlotDiffRenderer2 ) {
+			static function ( $handler, &$slotDiffRenderer ) use ( $customSlotDiffRenderer2 ) {
 				$slotDiffRenderer = $customSlotDiffRenderer2;
 			} );
 
@@ -608,13 +608,6 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
 		$slotDiffRenderer = $customContentHandler2->getSlotDiffRenderer( RequestContext::getMain() );
 		$this->assertSame( $customSlotDiffRenderer2, $slotDiffRenderer );
-	}
-
-	private function getMockContentHander() {
-		$handler = $this->getMockBuilder( ContentHandler::class )
-			->disableOriginalConstructor()
-			->getMockForAbstractClass();
-		return $handler;
 	}
 
 	public function providerGetPageViewLanguage() {
@@ -629,7 +622,9 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 	 * @covers ContentHandler::getPageViewLanguage
 	 */
 	public function testGetPageViewLanguage( $namespace, $lang, $variant, $expected ) {
-		$contentHandler = $this->getMockContentHander();
+		$contentHandler = $this->getMockBuilder( ContentHandler::class )
+			->disableOriginalConstructor()
+			->getMockForAbstractClass();
 
 		$title = Title::newFromText( "SimpleTitle", $namespace );
 

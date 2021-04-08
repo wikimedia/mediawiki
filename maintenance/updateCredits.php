@@ -22,14 +22,10 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
+// NO_AUTOLOAD -- file-scope code
+
 if ( PHP_SAPI != 'cli' ) {
 	die( "This script can only be run from the command line.\n" );
-}
-
-// class Collator is provided by the intl extension.
-// It is only suggested in composer.json, so remind here when not loaded.
-if ( !extension_loaded( 'intl' ) ) {
-	die( "This script needs the 'intl' extension to be loaded." );
 }
 
 $CREDITS = 'CREDITS';
@@ -78,9 +74,11 @@ $contributors = array_keys( $contributors );
 $collator = Collator::create( 'root' );
 $collator->setAttribute( Collator::NUMERIC_COLLATION, Collator::ON );
 $collator->sort( $contributors );
-array_walk( $contributors, function ( &$v, $k ) {
+array_walk( $contributors, static function ( &$v, $k ) {
 	$v = "* {$v}";
 } );
 
-file_put_contents( $CREDITS,
-	implode( "\n", array_merge( $header, $contributors, $footer ) ) );
+file_put_contents(
+	$CREDITS,
+	implode( "\n", array_merge( $header, $contributors, $footer ) )
+);

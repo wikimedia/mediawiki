@@ -79,6 +79,10 @@ class DatabaseDomain {
 			return $domain;
 		}
 
+		if ( !is_string( $domain ) ) {
+			throw new InvalidArgumentException( "Domain must be a string or " . __CLASS__ );
+		}
+
 		$parts = array_map( [ __CLASS__, 'decode' ], explode( '-', $domain ) );
 
 		$schema = null;
@@ -103,7 +107,7 @@ class DatabaseDomain {
 		}
 
 		$instance = new self( $database, $schema, $prefix );
-		$instance->equivalentString = (string)$domain;
+		$instance->equivalentString = $domain;
 
 		return $instance;
 	}

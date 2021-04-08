@@ -5,6 +5,9 @@ namespace MediaWiki\Search\Hook;
 use SpecialPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "SpecialSearchProfileForm" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

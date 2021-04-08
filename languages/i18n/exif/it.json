@@ -205,7 +205,6 @@
 	"exif-photometricinterpretation-3": "Tavolozza",
 	"exif-photometricinterpretation-4": "Maschera di trasparenza",
 	"exif-photometricinterpretation-5": "Separato (probabilmente CMYK)",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (codifica ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (codifica ITU)",
 	"exif-unknowndate": "Data sconosciuta",
@@ -369,5 +368,9 @@
 	"exif-urgency-normal": "Normale ($1)",
 	"exif-urgency-low": "Bassa ($1)",
 	"exif-urgency-high": "Alta ($1)",
-	"exif-urgency-other": "Priorità definite dal'utente ($1)"
+	"exif-urgency-other": "Priorità definite dal'utente ($1)",
+	"exif-usepanoramaviewer-true": "Sì",
+	"exif-usepanoramaviewer-false": "No",
+	"exif-exposurelockused-true": "Sì",
+	"exif-exposurelockused-false": "No"
 }

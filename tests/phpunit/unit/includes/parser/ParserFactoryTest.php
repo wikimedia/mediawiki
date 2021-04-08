@@ -5,6 +5,9 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Tidy\TidyDriverBase;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 
@@ -51,7 +54,11 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( LoggerInterface::class ),
 			$this->createNoOpMock( BadFileLookup::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
-			$this->createHookContainer()
+			$this->createHookContainer(),
+			$this->createNoOpMock( TidyDriverBase::class ),
+			$this->createNoOpMock( WANObjectCache::class ),
+			$this->createNoOpMock( UserOptionsLookup::class ),
+			$this->createNoOpMock( UserFactory::class )
 		);
 		return $factory;
 	}

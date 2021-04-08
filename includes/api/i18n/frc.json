@@ -6,9 +6,6 @@
 		]
 	},
 	"apihelp-block-summary": "Bloquer un useur.",
-	"apihelp-createaccount-param-name": "Nom d'useur.",
-	"apihelp-createaccount-param-password": "Mot de passe (ignoré si <var>$1mailpassword</var> est défini).",
-	"apihelp-createaccount-param-domain": "Domaine pour l’authentification externe (optional).",
 	"apihelp-delete-summary": "Effacer une page.",
 	"apihelp-delete-param-title": "Titre de la page que tu veux effacer. Impossible de l’user avec $1pageid.",
 	"apihelp-delete-example-simple": "Effacer <kbd>Main Page</kbd>.",

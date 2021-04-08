@@ -1,4 +1,159 @@
 # OOUI Release History
+## v0.41.3 / 2021-03-12
+### Styles
+* TagMultiselectWidget: Fix appearance when disabled (Ed Sanders)
+
+### Code
+* SearchWidget: Fix exception when there are no results (Bartosz Dziewoński)
+* TagMultiselectWidget: Don't fire blur event while changing, and restore focus (Ed Sanders)
+* TagMultiselectWidget: Fix typo in disable logic (Ed Sanders)
+* build: Updating eslint-config-wikimedia to 0.19.0 (libraryupgrader)
+
+## v0.41.2 / 2021-03-08
+### Styles
+* Apex: Hide close button on disabled tagItemWidget (Ed Sanders)
+* icons: Amend 'search' size on canvas slightly (Volker E.)
+* icons: Optimize several icons with lower path precision (Volker E.)
+
+### Code
+* DropdownInputWidget: Fix index error (Thiemo Kreuz)
+* SelectFileInputWidget: Fix height change when infusing (Ed Sanders)
+* TagMultiselectWidget: Fix position of input (Ed Sanders)
+* build: Updating dependencies (libraryupgrader)
+* build: Updating eslint-config-wikimedia to 0.18.2 (libraryupgrader)
+* build: Updating prismjs to 1.23.0 (libraryupgrader)
+
+
+## v0.41.1 / 2021-01-26
+### Features
+* Create RequiredElement mixin and use (Ed Sanders)
+
+### Styles
+* icons: Amend stroke width in 'network' and 'networkOff' icons (Volker E.)
+* themes: Fix TagItem size (Volker E.)
+
+### Code
+* OO.ui.infuse: Add test for passing an empty jQuery collection (Thalia Chan)
+* OO.ui.infuse: Throw error if called on more than one node (Thalia Chan)
+* code: Fix line length warnings in Element and PopupWidget (Thalia Chan)
+* build: Add .phan to .gitattributes (Umherirrender)
+* build: Updating ini to 1.3.8 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 34.0.0 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.10.5 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.10.6 (libraryupgrader)
+* build: Upgrade eslint-config-wikimedia from 0.17.0 to 0.18.0 and make pass (James D. Forrester)
+* stylelint: Remove needless disable directives (Thalia Chan)
+
+
+## v0.41.0 / 2020-12-03
+### Deprecating changes
+* Deprecate passing a string to OO.ui.infuse (Thalia Chan)
+
+### Styles
+* PopupWidget: Fix margins (Ed Sanders)
+* WikimediaUI theme: Remove variables already covered in WikimediaUI Base (Volker E.)
+* WikimediaUI theme: Replace `em`s with `px` on remaining vertical paddings (Volker E.)
+* WikimediaUI theme: Update 'wikimedia-ui-base' to v0.18.0 (Volker E.)
+* WikimediaUI theme: Use correct `min-size` WikimediaUI Base value (Volker E.)
+* icons: Add 'network' and 'networkOff' icons (Volker E.)
+
+### Code
+* MessageWidget: Support passing 'icon' in config (Ed Sanders)
+* OO.ui.mixin.IndicatorElement: Fix docs for available indicators (Thalia Chan)
+* PHP: MessageWidget: Add `isset()` to determine if icon variable is declared (Volker E.)
+* ProgressBar: Mixin PendingElement (Ed Sanders)
+* TextInputWidget: Remove deprecated `DOMNodeInsertedIntoDocument` fallback (Volker E.)
+* Use `calc` in `font-size` to harmonize IE 9-11 (Volker E.)
+* themes: Replace var with WikimediaUI Base variable (Volker E.)
+* build: Remove needless stylelint disables (Ed Sanders)
+* build: Updating mediawiki/mediawiki-codesniffer to 32.0.0 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-codesniffer to 33.0.0 (libraryupgrader)
+* build: Updating mediawiki/mediawiki-phan-config to 0.10.4 (libraryupgrader)
+* build: Updating npm dependencies (libraryupgrader)
+* build: Upgrade stylelint-config-wikimedia and use Grade A profile (James D. Forrester)
+* icons: Optimize 'search' path (Volker E.)
+
+
+## v0.40.4 / 2020-10-07
+### Styles
+* FieldLayout: Upstream clearfix from demo (Ed Sanders)
+
+### Code
+* DropdownInputWidget: Fix failing when 1st element is a group (Thiemo Kreuz)
+* SelectFileWidget: Add specific messages for multiple file widgets (Ed Sanders)
+* SelectFileWidget: Allow using showDropTarget=true with multiple=true (Ed Sanders)
+* TextInputWidget: support non-boolean autocomplete values (Gergő Tisza)
+* PHP Tag: Handle stringifiable PHP values (Gergő Tisza)
+* build: Updating mediawiki/mediawiki-phan-config to 0.10.3 (libraryupgrader)
+* icons: Add 'volumeDown*' and 'volumeOff*' and optimize 'volumeUp' further (Volker E.)
+* icons: Manually optimize userAdd/Contributions/Group icons (Thiemo Kreuz)
+* icons: Merge paths in 'recentChanges' icons (Thiemo Kreuz)
+* icons: Re-crush with SVGO (Volker E.)
+* icons: Remove not needed `fill-rule="…"` and `clip-rule="…"` (Thiemo Kreuz)
+* icons: Remove not needed transformations from 'recentChanges' (Thiemo Kreuz)
+
+
+## v0.40.3 / 2020-09-02
+### Styles
+* Update 'wikimedia-ui-base' to v0.17.0 and remove obsolete variable definitions (Volker E.)
+
+### Code
+* Fix broken resolveMsg() call in the AccessKeyedElement mixin (Thiemo Kreuz)
+* Fix the removing of windows being broken by `this` scoping issue (Michael Große)
+* SelectFileInputWidget: setValue should be chainable (Adam Wight)
+* StackLayout: Check for this.currentItem in onScroll (Ed Sanders)
+* ComboBoxInputWidget: Only show menu on user triggered events (Thiemo Kreuz)
+* TextInputWidget: Don't override pending background when setting readOnly background (Ed Sanders)
+* build: Updating grunt to 1.3.0 (libraryupgrader)
+
+
+## v0.40.2 / 2020-08-20
+### Styles
+* icons: Add 'volumeUp' (Volker E.)
+
+### Code
+* InputWidget: Fix infusion when something removes the 'oo-ui-inputWidget-input' class (Bartosz Dziewoński)
+* PopupWidget: Fix reverse tabbing order when exiting popup (edwintam)
+* ToggleSwitchWidget: Fix wrong role type & change to `switch` (edwintam)
+* Check `config.$input` in #gatherPreInfuseState methods (Bartosz Dziewoński)
+* Fix label mixin docs related to {string|Function} types (Thiemo Kreuz)
+* Remove redundant type checks before calling resolveMsg() (Thiemo Kreuz)
+* Rewrite insufficient label mixin documentation (Thiemo Kreuz)
+* build: Update eslint-config-wikimedia to 0.17.0 (Ed Sanders)
+
+
+## v0.40.1 / 2020-08-05
+### Styles
+* ActionFieldLayout: Fix input margin styles (Ed Sanders)
+
+### Code
+* PopupWidget: Follow-up I42584a6: Fix styling of PopupWidget head in WMUI (Ed Sanders)
+* MenuSelectWidget: Don't handle keydown if no items are visible (Thalia Chan)
+* MenuTagMultiselectWidget: Don't modify `config` object (Thalia Chan)
+* MenuTagMultiselectWidget: Fix handling of options configs (Thalia Chan)
+* build: Fix build step glob in 'imagesThemes' task (Volker E.)
+* build: Update devDependencies to latest (Volker E.)
+* demos: Fix ActionFieldLayout + Dropdown demo (Ed Sanders)
+
+
+## v0.40.0 / 2020-07-30
+### Breaking changes
+* [BREAKING CHANGE] build: Remove PNG fallback, composition and optimization (Volker E.)
+
+### Styles
+* WikimediaUI theme: Increase `@line-height-base` to `20px` equivalent (Volker E.)
+* WikimediaUI theme: Remove IE 8 workaround (Volker E.)
+* WikimediaUI theme: Replace `@color-progressive` with `@color-primary` var (Volker E.)
+* styles: Remove outdated comment (Volker E.)
+
+### Code
+* Element: Avoid crash when `getDocument()` is called with `window` (Bartosz Dziewoński)
+* OO.ui.PopupWidget: Reword a comment to fit within max line length (Thalia Chan)
+* build: Bump 'cssmin' compatibility version to 'ie9' (Volker E.)
+* build: Updating grunt to 1.2.1 (libraryupgrader)
+* build: Updating lodash to 4.17.19 (libraryupgrader)
+
+
 ## v0.39.3 / 2020-07-09
 ### Styles
 * WikimediaUI theme: Add button focus for Windows high contrast mode (bkudiess-msft)

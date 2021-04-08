@@ -21,8 +21,9 @@ use MediaWiki\Widget\TitlesMultiselectWidget;
  * @note This widget is not likely to remain functional in non-OOUI forms.
  */
 class HTMLTitlesMultiselectField extends HTMLTitleTextField {
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		$params += [
@@ -38,7 +39,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 
 		$titlesArray = explode( "\n", $value );
 		// Remove empty lines
-		$titlesArray = array_values( array_filter( $titlesArray, function ( $title ) {
+		$titlesArray = array_values( array_filter( $titlesArray, static function ( $title ) {
 			return trim( $title ) !== '';
 		} ) );
 		// This function is expected to return a string

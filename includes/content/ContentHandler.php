@@ -137,7 +137,7 @@ abstract class ContentHandler {
 	 * @throws MWException If model ID or format is not supported or if the text can not be
 	 * unserialized using the format.
 	 * @throws MWContentSerializationException
-	 * @return Content A Content object representing the text.	 *
+	 * @return Content A Content object representing the text.
 	 */
 	public static function makeContent( $text, Title $title = null,
 		$modelId = null, $format = null ) {
@@ -1038,16 +1038,15 @@ abstract class ContentHandler {
 	 * @return mixed String containing deletion reason or empty string, or
 	 *    boolean false if no revision occurred
 	 *
-	 * @todo &$hasHistory is extremely ugly, it's here because
-	 * WikiPage::getAutoDeleteReason() and Article::generateReason()
+	 * @todo &$hasHistory is extremely ugly, it's here because WikiPage::getAutoDeleteReason()
 	 * have it / want it.
 	 */
 	public function getAutoDeleteReason( Title $title, &$hasHistory ) {
 		$dbr = wfGetDB( DB_REPLICA );
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$revStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		// Get the last revision
-		$revRecord = $revLookup->getRevisionByTitle( $title );
+		$revRecord = $revStore->getRevisionByTitle( $title );
 
 		if ( $revRecord === null ) {
 			return false;
@@ -1061,7 +1060,7 @@ abstract class ContentHandler {
 		// which can only be blank if there's a move/import/protect dummy
 		// revision involved
 		if ( !$content || $content->isEmpty() ) {
-			$prev = $revLookup->getPreviousRevision( $revRecord );
+			$prev = $revStore->getPreviousRevision( $revRecord );
 
 			if ( $prev ) {
 				$revRecord = $prev;
@@ -1074,7 +1073,7 @@ abstract class ContentHandler {
 
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
+		$revQuery = $revStore->getQueryInfo();
 		$res = $dbr->select(
 			$revQuery['tables'],
 			[ 'rev_user_text' => $revQuery['fields']['rev_user_text'] ],
@@ -1280,7 +1279,7 @@ abstract class ContentHandler {
 	 *
 	 * @stable to override
 	 *
-	 * @return bool Default is false, and true for TextContent and it's derivatives.
+	 * @return bool Default is false, and true for TextContent and its derivatives.
 	 */
 	public function supportsDirectEditing() {
 		return false;
@@ -1360,8 +1359,18 @@ abstract class ContentHandler {
 	 * as representation of this document.
 	 * Overriding class should call parent function or take care of calling
 	 * the SearchDataForIndex hook.
-	 * @stable to override
 	 *
+	 * The $output must be the result of a call to {@link getParserOutputForIndexing()}
+	 * on the same content handler. That method may return ParserOutput
+	 * {@link ParserOutput::hasText() without HTML}; this base implementation
+	 * does not rely on the HTML being present, so it is safe to call
+	 * even by subclasses that override {@link getParserOutputForIndexing()}
+	 * to skip HTML generation. On the other hand,
+	 * since the default implementation of {@link getParserOutputForIndexing()}
+	 * does generate HTML, subclasses are free to rely on the HTML here
+	 * if they do not override {@link getParserOutputForIndexing()}.
+	 *
+	 * @stable to override
 	 * @param WikiPage $page Page to index
 	 * @param ParserOutput $output
 	 * @param SearchEngine $engine Search engine for which we are indexing
@@ -1398,8 +1407,14 @@ abstract class ContentHandler {
 
 	/**
 	 * Produce page output suitable for indexing.
+	 * Typically used with {@link getDataForSearchIndex()}.
 	 *
 	 * Specific content handlers may override it if they need different content handling.
+	 *
+	 * The default implementation returns output {@link ParserOutput::hasText() with HTML},
+	 * but callers should not rely on this, and subclasses may override this method
+	 * and skip HTML generation if it is not needed for indexing.
+	 * (In that case, they should not attempt to store the output in the $cache.)
 	 *
 	 * @stable to override
 	 *
@@ -1422,7 +1437,10 @@ abstract class ContentHandler {
 				$renderer->getRenderedRevision(
 					$revisionRecord,
 					$parserOptions
-				)->getRevisionParserOutput();
+				)->getRevisionParserOutput( [
+					// subclasses may want to add the following here:
+					// 'generate-html' => false,
+				] );
 			if ( $cache ) {
 				$cache->save( $parserOutput, $page, $parserOptions );
 			}
@@ -1430,7 +1448,15 @@ abstract class ContentHandler {
 		return $parserOutput;
 	}
 
-	private function latestRevision( WikiPage $page ): RevisionRecord {
+	/**
+	 * Get the latest revision of the given $page,
+	 * fetching it from the master if necessary.
+	 *
+	 * @param WikiPage $page
+	 * @return RevisionRecord
+	 * @since 1.36 (previously private)
+	 */
+	protected function latestRevision( WikiPage $page ): RevisionRecord {
 		$revRecord = $page->getRevisionRecord();
 		if ( $revRecord == null ) {
 			// If the content represents a brand new page it's possible

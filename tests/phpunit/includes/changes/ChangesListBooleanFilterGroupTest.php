@@ -15,10 +15,7 @@ class ChangesListBooleanFilterGroupTest extends MediaWikiIntegrationTestCase {
 			] )
 		);
 
-		$this->assertSame(
-			true,
-			$hideGroupDefault->isFullCoverage
-		);
+		$this->assertTrue( $hideGroupDefault->isFullCoverage );
 	}
 
 	public function testGetJsData() {

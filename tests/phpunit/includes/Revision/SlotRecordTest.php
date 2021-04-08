@@ -48,23 +48,24 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 33, $record->getContentId() );
 		$this->assertSame( CONTENT_FORMAT_WIKITEXT, $record->getFormat() );
 		$this->assertSame( 'myRole', $record->getRole() );
+		$this->assertFalse( $record->isDerived() );
 	}
 
 	public function testConstructionDeferred() {
 		$row = $this->makeRow( [
 			'content_size' => null, // to be computed
 			'content_sha1' => null, // to be computed
-			'format_name' => function () {
+			'format_name' => static function () {
 				return CONTENT_FORMAT_WIKITEXT;
 			},
 			'slot_revision_id' => '2',
 			'slot_origin' => '2',
-			'slot_content_id' => function () {
+			'slot_content_id' => static function () {
 				return null;
 			},
 		] );
 
-		$content = function () {
+		$content = static function () {
 			return new WikitextContent( 'A' );
 		};
 
@@ -83,6 +84,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 'tt:456', $record->getAddress() );
 		$this->assertSame( CONTENT_FORMAT_WIKITEXT, $record->getFormat() );
 		$this->assertSame( 'myRole', $record->getRole() );
+		$this->assertFalse( $record->isDerived() );
 	}
 
 	public function testNewUnsaved() {
@@ -98,6 +100,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertNotEmpty( $record->getSha1() );
 		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
 		$this->assertSame( 'myRole', $record->getRole() );
+		$this->assertFalse( $record->isDerived() );
 	}
 
 	public function provideInvalidConstruction() {
@@ -205,6 +208,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $inherited->isInherited() );
 		$this->assertTrue( $inherited->hasOrigin() );
 		$this->assertFalse( $inherited->hasRevision() );
+		$this->assertFalse( $inherited->isDerived() );
 
 		// make sure we didn't mess with the internal state of $parent
 		$this->assertFalse( $parent->isInherited() );
@@ -224,6 +228,7 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertTrue( $saved->isInherited() );
 		$this->assertTrue( $saved->hasRevision() );
 		$this->assertSame( 10, $saved->getRevision() );
+		$this->assertFalse( $saved->isDerived() );
 
 		// make sure we didn't mess with the internal state of $parent or $inherited
 		$this->assertSame( 7, $parent->getRevision() );
@@ -247,11 +252,13 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( 'A', $saved->getContent()->getText() );
 		$this->assertSame( 10, $saved->getRevision() );
 		$this->assertSame( 10, $saved->getOrigin() );
+		$this->assertFalse( $saved->isDerived() );
 
 		// make sure we didn't mess with the internal state of $unsaved
 		$this->assertFalse( $unsaved->hasAddress() );
 		$this->assertFalse( $unsaved->hasContentId() );
 		$this->assertFalse( $unsaved->hasRevision() );
+		$this->assertFalse( $unsaved->isDerived() );
 	}
 
 	public function provideNewSaved_LogicException() {
@@ -412,4 +419,54 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( $sameContent, $b->hasSameContent( $a ) );
 	}
 
+	public function testNewDerived() {
+		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
+			'derivedslot',
+			CONTENT_MODEL_WIKITEXT,
+			[],
+			true
+		);
+		$record = SlotRecord::newDerived( 'derivedslot', new WikitextContent( 'A' ) );
+
+		$this->assertFalse( $record->hasAddress() );
+		$this->assertFalse( $record->hasContentId() );
+		$this->assertFalse( $record->hasRevision() );
+		$this->assertFalse( $record->isInherited() );
+		$this->assertFalse( $record->hasOrigin() );
+		$this->assertSame( 'A', $record->getContent()->getText() );
+		$this->assertSame( 1, $record->getSize() );
+		$this->assertNotEmpty( $record->getSha1() );
+		$this->assertSame( CONTENT_MODEL_WIKITEXT, $record->getModel() );
+		$this->assertSame( 'derivedslot', $record->getRole() );
+		$this->assertTrue( $record->isDerived() );
+	}
+
+	public function testCopyDerived() {
+		$this->getServiceContainer()->getSlotRoleRegistry()->defineRoleWithModel(
+			'derivedslot',
+			CONTENT_MODEL_WIKITEXT,
+			[],
+			true
+		);
+		$unsaved = SlotRecord::newDerived( 'derivedslot', new WikitextContent( 'A' ) );
+		$saved = SlotRecord::newSaved( 10, 20, 'theNewAddress', $unsaved );
+
+		$this->assertFalse( $saved->isInherited() );
+		$this->assertTrue( $saved->hasOrigin() );
+		$this->assertTrue( $saved->hasRevision() );
+		$this->assertTrue( $saved->hasAddress() );
+		$this->assertTrue( $saved->hasContentId() );
+		$this->assertSame( 'theNewAddress', $saved->getAddress() );
+		$this->assertSame( 20, $saved->getContentId() );
+		$this->assertSame( 'A', $saved->getContent()->getText() );
+		$this->assertSame( 10, $saved->getRevision() );
+		$this->assertSame( 10, $saved->getOrigin() );
+		$this->assertTrue( $saved->isDerived() );
+
+		// make sure we didn't mess with the internal state of $unsaved
+		$this->assertFalse( $unsaved->hasAddress() );
+		$this->assertFalse( $unsaved->hasContentId() );
+		$this->assertFalse( $unsaved->hasRevision() );
+		$this->assertTrue( $unsaved->isDerived() );
+	}
 }

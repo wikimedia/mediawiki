@@ -1,6 +1,11 @@
 <?php
 
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\TestingAccessWrapper;
 
@@ -11,16 +16,18 @@ use Wikimedia\TestingAccessWrapper;
  * @group Output
  */
 class OutputPageTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
+
 	private const SCREEN_MEDIA_QUERY = 'screen and (min-width: 982px)';
 	private const SCREEN_ONLY_MEDIA_QUERY = 'only screen and (min-width: 982px)';
 
-	// @codingStandardsIgnoreStart Generic.Files.LineLength
+	// phpcs:disable Generic.Files.LineLength
 	private const RSS_RC_LINK = '<link rel="alternate" type="application/rss+xml" title=" RSS feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=rss"/>';
 	private const ATOM_RC_LINK = '<link rel="alternate" type="application/atom+xml" title=" Atom feed" href="/w/index.php?title=Special:RecentChanges&amp;feed=atom"/>';
 
 	private const RSS_TEST_LINK = '<link rel="alternate" type="application/rss+xml" title="&quot;Test&quot; RSS feed" href="fake-link"/>';
 	private const ATOM_TEST_LINK = '<link rel="alternate" type="application/atom+xml" title="&quot;Test&quot; Atom feed" href="fake-link"/>';
-	// @codingStandardsIgnoreEnd
+	// phpcs:enable
 
 	// Ensure that we don't affect the global ResourceLoader state.
 	protected function setUp() : void {
@@ -29,8 +36,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		ResourceLoader::clearCache();
+		parent::tearDown();
 	}
 
 	/**
@@ -527,18 +534,18 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 					[ 'UseCdn' => true, 'CdnMaxAge' => 3599 ] ],
 			'Hook allows cache use' =>
 				[ $lastModified + 1, $lastModified, true, [],
-				function ( $op, $that ) {
+				static function ( $op, $that ) {
 					$that->setTemporaryHook( 'OutputPageCheckLastModified',
-						function ( &$modifiedTimes ) {
+						static function ( &$modifiedTimes ) {
 							$modifiedTimes = [ 1 ];
 						}
 					);
 				} ],
 			'Hooks prohibits cache use' =>
 				[ $lastModified, $lastModified, false, [],
-				function ( $op, $that ) {
+				static function ( $op, $that ) {
 					$that->setTemporaryHook( 'OutputPageCheckLastModified',
-						function ( &$modifiedTimes ) {
+						static function ( &$modifiedTimes ) {
 							$modifiedTimes = [ max( $modifiedTimes ) + 1 ];
 						}
 					);
@@ -647,6 +654,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * Shorthand for getting the text of a message, in content language.
+	 * @param MessageLocalizer $op
+	 * @param mixed ...$msgParams
+	 * @return string
 	 */
 	private static function getMsgText( MessageLocalizer $op, ...$msgParams ) {
 		return $op->msg( ...$msgParams )->inContentLanguage()->text();
@@ -1171,6 +1181,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * We allow different expectations for different tests as an associative array, like
 	 * [ 'set' => [ ... ], 'default' => [ ... ] ] if setCategoryLinks() will give a different
 	 * result.
+	 * @param array $expected
+	 * @param string $key
+	 * @return array
 	 */
 	private function extractExpectedCategories( array $expected, $key ) {
 		if ( !$expected || isset( $expected[0] ) ) {
@@ -1184,9 +1197,37 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	) : OutputPage {
 		$this->setMwGlobals( 'wgUsePigLatinVariant', true );
 
+		if ( $variantLinkCallback ) {
+			$mockContLang = $this->createMock( Language::class );
+			$mockContLang
+				->expects( $this->any() )
+				->method( 'convertHtml' )
+				->will( $this->returnCallback( static function ( $arg ) {
+					return $arg;
+				} ) );
+
+			$mockLanguageConverter = $this
+				->createMock( ILanguageConverter::class );
+			$mockLanguageConverter
+				->expects( $this->any() )
+				->method( 'findVariantLink' )
+				->will( $this->returnCallback( $variantLinkCallback ) );
+
+			$languageConverterFactory = $this
+				->createMock( LanguageConverterFactory::class );
+			$languageConverterFactory
+				->expects( $this->any() )
+				->method( 'getLanguageConverter' )
+				->willReturn( $mockLanguageConverter );
+			$this->setService(
+				'LanguageConverterFactory',
+				$languageConverterFactory
+			);
+		}
+
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
-				   ->setMethods( [ 'addCategoryLinksToLBAndGetResult', 'getTitle' ] )
+			->setMethods( [ 'addCategoryLinksToLBAndGetResult', 'getTitle' ] )
 			->getMock();
 
 		$title = Title::newFromText( 'My test page' );
@@ -1196,7 +1237,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$op->expects( $this->any() )
 			->method( 'addCategoryLinksToLBAndGetResult' )
-			->will( $this->returnCallback( function ( array $categories ) use ( $fakeResults ) {
+			->will( $this->returnCallback( static function ( array $categories ) use ( $fakeResults ) {
 				$return = [];
 				foreach ( $categories as $category => $unused ) {
 					if ( isset( $fakeResults[$category] ) ) {
@@ -1205,21 +1246,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 				}
 				return new FakeResultWrapper( $return );
 			} ) );
-
-		if ( $variantLinkCallback ) {
-			$mockContLang = $this->getMockBuilder( Language::class )
-				->setMethods( [ 'findVariantLink', 'convertHtml' ] )
-				->getMock();
-			$mockContLang->expects( $this->any() )
-				->method( 'findVariantLink' )
-				->will( $this->returnCallback( $variantLinkCallback ) );
-			$mockContLang->expects( $this->any() )
-				->method( 'convertHtml' )
-				->will( $this->returnCallback( function ( $arg ) {
-					return $arg;
-				} ) );
-			$this->setContentLang( $mockContLang );
-		}
 
 		$this->assertSame( [], $op->getCategories() );
 
@@ -1234,7 +1260,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private function doCategoryLinkAsserts( OutputPage $op, $expectedNormal, $expectedHidden ) {
 		$catLinks = $op->getCategoryLinks();
-		$this->assertSame( (bool)$expectedNormal + (bool)$expectedHidden, count( $catLinks ) );
+		$this->assertCount( (bool)$expectedNormal + (bool)$expectedHidden, $catLinks );
 		if ( $expectedNormal ) {
 			$this->assertSame( count( $expectedNormal ), count( $catLinks['normal'] ) );
 		}
@@ -1271,7 +1297,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			'Variant link' => [
 				[ 'Test' => 'Test', 'Estay' => 'Estay' ],
 				[ 'Test' => (object)[ 'page_title' => 'Test' ] ],
-				function ( &$link, &$title ) {
+				static function ( &$link, &$title ) {
 					if ( $link === 'Estay' ) {
 						$link = 'Test';
 						$title = Title::makeTitleSafe( NS_CATEGORY, $link );
@@ -1458,6 +1484,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Call either with arguments $methodName, $returnValue; or an array
 	 * [ $methodName => $returnValue, $methodName => $returnValue, ... ]
+	 * @param mixed ...$args
+	 * @return ParserOutput
 	 */
 	private function createParserOutputStub( ...$args ) : ParserOutput {
 		if ( count( $args ) === 0 ) {
@@ -1865,9 +1893,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideParseAs
 	 * @covers OutputPage::parseAsContent
-	 * @param array $args To pass to parse()
-	 * @param string $expectedHTML Expected return value for parseAsContent()
-	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
 	 */
 	public function testParseAsContent(
 		array $args, $expectedHTML, $expectedHTMLInline = null
@@ -1879,9 +1904,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideParseAs
 	 * @covers OutputPage::parseAsInterface
-	 * @param array $args To pass to parse()
-	 * @param string $expectedHTML Expected return value for parseAsInterface()
-	 * @param string $expectedHTML Expected return value for parseInlineAsInterface(), if different
 	 */
 	public function testParseAsInterface(
 		array $args, $expectedHTML, $expectedHTMLInline = null
@@ -2338,14 +2360,27 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		if ( !in_array( 'notitle', $options ) ) {
 			$mockLang = $this->createMock( Language::class );
+			$mockLang->method( 'getCode' )->willReturn( $code );
 
+			$mockLanguageConverter = $this
+				->createMock( ILanguageConverter::class );
 			if ( in_array( 'varianturl', $options ) ) {
-				$mockLang->expects( $this->never() )->method( $this->anything() );
+				$mockLanguageConverter->expects( $this->never() )->method( $this->anything() );
 			} else {
-				$mockLang->method( 'hasVariants' )->willReturn( count( $variants ) > 1 );
-				$mockLang->method( 'getVariants' )->willReturn( $variants );
-				$mockLang->method( 'getCode' )->willReturn( $code );
+				$mockLanguageConverter->method( 'hasVariants' )->willReturn( count( $variants ) > 1 );
+				$mockLanguageConverter->method( 'getVariants' )->willReturn( $variants );
 			}
+
+			$languageConverterFactory = $this
+				->createMock( LanguageConverterFactory::class );
+			$languageConverterFactory
+				->expects( $this->any() )
+				->method( 'getLanguageConverter' )
+				->willReturn( $mockLanguageConverter );
+			$this->setService(
+				'LanguageConverterFactory',
+				$languageConverterFactory
+			);
 
 			$mockTitle = $this->createMock( Title::class );
 			$mockTitle->method( 'getPageLanguage' )->willReturn( $mockLang );
@@ -2785,9 +2820,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$fauxRequest = new FauxRequest( $queryData, false );
-		$this->setMwGlobals( [
-			'wgRequest' => $fauxRequest,
-		] );
+		$this->setRequest( $fauxRequest );
 
 		$actualReturn = OutputPage::transformCssMedia( $args['media'] );
 		$this->assertSame( $args['expectedReturn'], $actualReturn, $args['message'] );
@@ -3015,12 +3048,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param array $options
-	 * @param array $expectations
 	 * @covers OutputPage::sendCacheControl
 	 * @dataProvider provideSendCacheControl
 	 */
-	public function testSendCacheControl( array $options = [], array $expecations = [] ) {
+	public function testSendCacheControl( array $options = [], array $expectations = [] ) {
 		$output = $this->newInstance( [
 			'LoggedOutMaxAge' => $options['loggedOutMaxAge'] ?? 0,
 			'UseCdn' => $options['useCdn'] ?? false,
@@ -3049,7 +3080,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 
 		foreach ( $headers as $header => $default ) {
-			$value = $expecations[$header] ?? $default;
+			$value = $expectations[$header] ?? $default;
 			if ( $value === true ) {
 				$this->assertNotEmpty( $response->getHeader( $header ) );
 			} elseif ( $value === false ) {
@@ -3113,17 +3144,134 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function provideGetJsVarsEditable() {
+		yield 'can edit and create' => [
+			'performer' => $this->mockAnonAuthorityWithPermissions( [ 'edit', 'create' ] ),
+			'expectedEditableConfig' => [
+				'wgIsProbablyEditable' => true,
+				'wgRelevantPageIsProbablyEditable' => true,
+			]
+		];
+		yield 'cannot edit or create' => [
+			'performer' => $this->mockAnonAuthorityWithoutPermissions( [ 'edit', 'create' ] ),
+			'expectedEditableConfig' => [
+				'wgIsProbablyEditable' => false,
+				'wgRelevantPageIsProbablyEditable' => false,
+			]
+		];
+		yield 'only can edit relevant title' => [
+			'performer' => $this->mockAnonAuthority( function (
+				string $permission,
+				PageIdentity $page
+			) {
+				if ( $permission === 'edit' | $permission === 'create' ) {
+					if ( $page->getDBkey() === 'RelevantTitle' ) {
+						return true;
+					}
+					return false;
+				}
+				return false;
+			} ),
+			'expectedEditableConfig' => [
+				'wgIsProbablyEditable' => false,
+				'wgRelevantPageIsProbablyEditable' => true,
+			]
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetJsVarsEditable
+	 * @covers OutputPage::performerCanEditOrCreate
+	 */
+	public function testGetJsVarsEditable( Authority $performer, array $expectedEditableConfig ) {
+		$op = $this->newInstance( [], null, null, $performer );
+		$op->getContext()->getSkin()->setRelevantTitle( Title::newFromText( 'RelevantTitle' ) );
+		$this->assertArraySubmapSame( $expectedEditableConfig, $op->getJSVars() );
+	}
+
+	/**
+	 * @param bool $registered
+	 * @param bool $matchToken
+	 * @return MockObject|User
+	 */
+	private function mockUser( bool $registered, bool $matchToken ) {
+		$user = $this->createNoOpMock( User::class, [ 'isRegistered', 'matchEditToken' ] );
+		$user->method( 'isRegistered' )->willReturn( $registered );
+		$user->method( 'matchEditToken' )->willReturn( $matchToken );
+		return $user;
+	}
+
+	public function provideUserCanPreview() {
+		yield 'all good' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
+			true
+		];
+		yield 'get request' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], false ),
+			false
+		];
+		yield 'not a submit action' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'something' ], true ),
+			false
+		];
+		yield 'anon can not' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( false, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
+			false
+		];
+		yield 'token not match' => [
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, false ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
+			false
+		];
+		yield 'no permission' => [
+			'performer' => $this->mockUserAuthorityWithoutPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
+			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
+			false
+		];
+	}
+
+	/**
+	 * @dataProvider provideUserCanPreview
+	 * @covers OutputPage::userCanPreview
+	 */
+	public function testUserCanPreview( Authority $performer, WebRequest $request, bool $expected ) {
+		$op = $this->newInstance( [], $request, null, $performer );
+		$this->assertSame( $expected, $op->userCanPreview() );
+	}
+
 	private function newInstance(
 		array $config = [],
 		WebRequest $request = null,
-		$option = null
+		$option = null,
+		Authority $performer = null
 	) : OutputPage {
 		$context = new RequestContext();
 
 		$context->setConfig( new MultiConfig( [
 			new HashConfig( $config + [
 				'AppleTouchIcon' => false,
-				'DisableLangConversion' => true,
 				'EnableCanonicalServerLink' => false,
 				'Favicon' => false,
 				'Feed' => false,
@@ -3142,6 +3290,10 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		if ( $request ) {
 			$context->setRequest( $request );
+		}
+
+		if ( $performer ) {
+			$context->setAuthority( $performer );
 		}
 
 		return new OutputPage( $context );

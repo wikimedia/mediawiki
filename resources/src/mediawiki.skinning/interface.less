@@ -1,0 +1,95 @@
+/**
+ * MediaWiki style sheet for common core styles on interfaces
+ *
+ * Styles for the Monobook/Vector pattern of laying out common interfaces.
+ * These ids/classes are not built into the system,
+ * they are outputted by the actual MonoBook/Vector code by convention.
+ */
+
+/* stylelint-disable selector-class-pattern */
+
+/* Categories */
+.catlinks {
+	border: 1px solid #a2a9b1;
+	background-color: #f8f9fa;
+	padding: 5px;
+	margin-top: 1em;
+	clear: both;
+}
+
+textarea {
+	/* Support: Firefox */
+	/* Border rule required to override system appearance on Linux (T136415) */
+	border: 1px solid #c8ccd1;
+}
+
+.editOptions {
+	background-color: #eaecf0;
+	color: #202122;
+	border: 1px solid #c8ccd1;
+	border-top: 0;
+	padding: 1em 1em 1.5em 1em;
+	margin-bottom: 2em;
+}
+
+.usermessage {
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: #000;
+	font-weight: bold;
+	margin: 2em 0 1em;
+	padding: 0.5em 1em;
+	vertical-align: middle;
+}
+
+#siteNotice {
+	position: relative;
+	text-align: center;
+	margin: 0;
+}
+
+#localNotice {
+	margin-bottom: 0.9em;
+}
+
+/* Sub-navigation */
+#siteSub {
+	display: none;
+}
+
+#contentSub,
+#contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	margin: 0 0 1.4em 1em;
+	color: #54595d;
+	width: auto;
+}
+
+span.subpages {
+	display: block;
+}
+
+/**
+ * Hide empty portlets. Controlled by mw.util.(show|hide)Portlet.
+ *
+ * Note: Historically this class was provided by the skins themselves but in
+ * I2ba68122fd82a254a5ad0e45157f095508f6fa39 was moved into core to formalize
+ * the behaviour of hidden portlets.
+ */
+.emptyPortlet {
+	display: none;
+}
+
+.printfooter,
+/* Hide links which require JavaScript to work */
+.client-nojs #t-print {
+	display: none; /* T167956 */
+}
+
+/** Float indicators into the h1. This requires that they are outputted before the h1. */
+.mw-indicators {
+	float: right;
+}
+
+@import 'interface-edit-section-links.less';

@@ -44,6 +44,10 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML
 	 */
 	public function onView() {
+		$this->getOutput()->addModuleStyles( [
+			'mediawiki.action.styles',
+		] );
+
 		if ( $this->getWikiPage()->getId() == 0 ) {
 			$s = $this->msg( 'nocredits' )->parse();
 		} else {
@@ -135,7 +139,7 @@ class CreditsAction extends FormlessAction {
 		/** @var User $user */
 		foreach ( $contributors as $user ) {
 			$cnt--;
-			if ( $user->isLoggedIn() ) {
+			if ( $user->isRegistered() ) {
 				$link = $this->link( $user );
 				if ( $this->canShowRealUserName() && $user->getRealName() ) {
 					$real_names[] = $link;

@@ -1,0 +1,44 @@
+/* stylelint-disable selector-class-pattern */
+
+#catlinks {
+	/**
+	 * Overrides text justification (user preference)
+	 * See T33990
+	 */
+	text-align: left;
+}
+
+.catlinks {
+	ul {
+		display: inline;
+		margin: 0;
+		padding: 0;
+		list-style: none none;
+	}
+
+	li {
+		display: inline-block;
+		line-height: 1.25em;
+		border-left: 1px solid #a2a9b1;
+		margin: 0.125em 0;
+		padding: 0 0.5em;
+
+		&:first-child {
+			padding-left: 0.25em;
+			border-left: 0;
+		}
+
+		/* (T7346) make category redirects italic */
+		a.mw-redirect {
+			font-style: italic;
+		}
+	}
+}
+
+/**
+ * Hidden categories
+ */
+.mw-hidden-cats-hidden,
+.catlinks-allhidden {
+	display: none;
+}

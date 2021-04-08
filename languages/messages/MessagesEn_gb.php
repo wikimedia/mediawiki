@@ -10,6 +10,7 @@
 
 $fallback = 'en';
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Uncategorizedcategories'   => [ 'UncategorisedCategories' ],
 	'Uncategorizedimages'       => [ 'UncategorisedFiles', 'UncategorisedImages' ],

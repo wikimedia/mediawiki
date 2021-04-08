@@ -21,6 +21,10 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A special page that lists uncategorized categories
  *
@@ -34,8 +38,25 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	 */
 	private $exceptionList = null;
 
-	public function __construct( $name = 'Uncategorizedcategories' ) {
-		parent::__construct( $name );
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LanguageConverterFactory $languageConverterFactory
+	 */
+	public function __construct(
+		NamespaceInfo $namespaceInfo,
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory,
+		LanguageConverterFactory $languageConverterFactory
+	) {
+		parent::__construct(
+			$namespaceInfo,
+			$loadBalancer,
+			$linkBatchFactory,
+			$languageConverterFactory
+		);
+		$this->mName = 'Uncategorizedcategories';
 		$this->requestedNamespace = NS_CATEGORY;
 	}
 
@@ -69,10 +90,10 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	}
 
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_REPLICA );
 		$query = parent::getQueryInfo();
 		$exceptionList = $this->getExceptionList();
 		if ( $exceptionList ) {
+			$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$query['conds'][] = 'page_title not in ( ' . $dbr->makeList( $exceptionList ) . ' )';
 		}
 
@@ -82,7 +103,7 @@ class SpecialUncategorizedCategories extends SpecialUncategorizedPages {
 	/**
 	 * Formats the result
 	 * @param Skin $skin The current skin
-	 * @param object $result The query result
+	 * @param stdClass $result The query result
 	 * @return string The category link
 	 */
 	public function formatResult( $skin, $result ) {

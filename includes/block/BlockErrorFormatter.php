@@ -22,8 +22,9 @@ namespace MediaWiki\Block;
 
 use CommentStoreComment;
 use Language;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use Message;
-use User;
 
 /**
  * A service class for getting formatted information about a block.
@@ -32,20 +33,31 @@ use User;
  * @since 1.35
  */
 class BlockErrorFormatter {
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/**
+	 * @param UserFactory $userFactory
+	 */
+	public function __construct( UserFactory $userFactory ) {
+		$this->userFactory = $userFactory;
+	}
+
 	/**
 	 * Get a block error message. Different message keys are chosen depending on the
-	 * block features. Message paramaters are formatted for the specified user and
+	 * block features. Message parameters are formatted for the specified user and
 	 * language.
 	 *
 	 * @param AbstractBlock $block
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @param string $ip
 	 * @return Message
 	 */
 	public function getMessage(
 		AbstractBlock $block,
-		User $user,
+		UserIdentity $user,
 		Language $language,
 		$ip
 	) {
@@ -85,18 +97,18 @@ class BlockErrorFormatter {
 	 *
 	 * @since 1.35
 	 * @param AbstractBlock $block
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @return mixed[] See getBlockErrorInfo
 	 */
 	private function getFormattedBlockErrorInfo(
 		AbstractBlock $block,
-		User $user,
+		UserIdentity $user,
 		Language $language
 	) {
 		$info = $this->getBlockErrorInfo( $block );
 
-		$info['expiry'] = $language->formatExpiry( $info['expiry'] );
+		$info['expiry'] = $language->formatExpiry( $info['expiry'], true, 'infinity', $user );
 		$info['timestamp'] = $language->userTimeAndDate( $info['timestamp'], $user );
 		$info['blockerName'] = $language->embedBidi( $info['blockerName'] );
 		$info['targetName'] = $language->embedBidi( $info['targetName'] );
@@ -137,7 +149,7 @@ class BlockErrorFormatter {
 			return $blockerName;
 		}
 
-		$blocker = User::newFromId( $blockerId );
+		$blocker = $this->userFactory->newFromId( (int)$blockerId );
 		$blockerUserpage = $blocker->getUserPage();
 		$blockerText = $language->embedBidi( $blockerUserpage->getText() );
 		return "[[{$blockerUserpage->getPrefixedText()}|{$blockerText}]]";
@@ -170,7 +182,7 @@ class BlockErrorFormatter {
 	 * getBlockErrorMessageKey.
 	 *
 	 * @param AbstractBlock $block
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @param string $ip
 	 * @return mixed[] Params used by standard block error messages, in order:
@@ -185,7 +197,7 @@ class BlockErrorFormatter {
 	 */
 	private function getBlockErrorMessageParams(
 		AbstractBlock $block,
-		User $user,
+		UserIdentity $user,
 		Language $language,
 		$ip
 	) {
@@ -202,7 +214,7 @@ class BlockErrorFormatter {
 		// Display the CompositeBlock identifier as a message containing relevant block IDs
 		if ( $block instanceof CompositeBlock ) {
 			$ids = $language->commaList( array_map(
-				function ( $id ) {
+				static function ( $id ) {
 					return '#' . $id;
 				},
 				array_filter( $info['identifier'], 'is_int' )

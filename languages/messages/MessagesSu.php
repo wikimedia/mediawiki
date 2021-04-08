@@ -42,12 +42,14 @@ $namespaceAliases = [
 	'Obrolan_MediaWiki' => NS_MEDIAWIKI_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'SadayaTalatah' ],
 	'Allpages'                  => [ 'SadayaKaca' ],
 	'Ancientpages'              => [ 'KacaKolot' ],
 	'Blankpage'                 => [ 'KacaKosong' ],
 	'Block'                     => [ 'PeungpeukIP' ],
+	'BlockList'                 => [ 'IPDipeungpeuk' ],
 	'Booksources'               => [ 'SumberPustaka' ],
 	'BrokenRedirects'           => [ 'AlihanPegat' ],
 	'Categories'                => [ 'Kategori' ],
@@ -64,7 +66,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'JalurKoropak' ],
 	'Import'                    => [ 'Impor' ],
 	'Invalidateemail'           => [ 'SurelekTeuKaci' ],
-	'BlockList'                 => [ 'IPDipeungpeuk' ],
 	'Listadmins'                => [ 'DaptarKuncen' ],
 	'Listbots'                  => [ 'DaptarBot' ],
 	'Listfiles'                 => [ 'DaptarGambar' ],

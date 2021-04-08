@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+// NO_AUTOLOAD -- file-scope define() used to modify behaviour
+
 require_once __DIR__ . '/Maintenance.php';
 
 define( 'MW_CONFIG_CALLBACK', 'Installer::overrideConfig' );

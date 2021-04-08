@@ -1,0 +1,30 @@
+!! Version 2
+!! article
+Template:=
+!! text
+no
+!! endarticle
+
+# {{=}} will be converted to a parser function which expands to `=`
+# If you have it defined as a Template that expands to something other
+# than `=` that will generate a warning and a tracking category, although
+# referencing the template explicitly as {{Template:=}} is fine
+# regardless of what it expands to. (T91154)
+!! test
+Using {{=}} when that doesn't expand to "=" should create a tracking category
+!! options
+cat
+!! wikitext
+This uses {{=}}.
+!! html/php
+cat=Pages_which_use_=_as_a_template sort=
+!! end
+
+!! test
+Using {{Template:=}} shouldn't create tracking category regardless of definition
+!! options
+cat
+!! wikitext
+This uses {{Template:=}}.
+!! html/php
+!! end

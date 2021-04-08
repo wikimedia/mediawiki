@@ -25,12 +25,12 @@ namespace MediaWiki\Revision;
 use Content;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\Permissions\Authority;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Title;
-use User;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -61,9 +61,9 @@ class RenderedRevision implements SlotRenderingProvider {
 	private $audience = RevisionRecord::FOR_PUBLIC;
 
 	/**
-	 * @var User|null The user to use for audience checks during content access.
+	 * @var Authority|null The user to use for audience checks during content access.
 	 */
-	private $forUser = null;
+	private $performer = null;
 
 	/**
 	 * @var ParserOutput|null The combined ParserOutput for the revision,
@@ -102,7 +102,7 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @param callable $combineOutput Callback for combining slot output into revision output.
 	 *        Signature: function ( RenderedRevision $this ): ParserOutput.
 	 * @param int $audience Use RevisionRecord::FOR_PUBLIC, FOR_THIS_USER, or RAW.
-	 * @param User|null $forUser Required if $audience is FOR_THIS_USER.
+	 * @param Authority|null $performer Required if $audience is FOR_THIS_USER.
 	 */
 	public function __construct(
 		Title $title,
@@ -110,7 +110,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		ParserOptions $options,
 		callable $combineOutput,
 		$audience = RevisionRecord::FOR_PUBLIC,
-		User $forUser = null
+		Authority $performer = null
 	) {
 		$this->title = $title;
 		$this->options = $options;
@@ -120,14 +120,14 @@ class RenderedRevision implements SlotRenderingProvider {
 		$this->combineOutput = $combineOutput;
 		$this->saveParseLogger = new NullLogger();
 
-		if ( $audience === RevisionRecord::FOR_THIS_USER && !$forUser ) {
+		if ( $audience === RevisionRecord::FOR_THIS_USER && !$performer ) {
 			throw new InvalidArgumentException(
 				'User must be specified when setting audience to FOR_THIS_USER'
 			);
 		}
 
 		$this->audience = $audience;
-		$this->forUser = $forUser;
+		$this->performer = $performer;
 	}
 
 	/**
@@ -224,7 +224,7 @@ class RenderedRevision implements SlotRenderingProvider {
 		if ( !isset( $this->slotsOutput[ $role ] )
 			|| ( $withHtml && !$this->slotsOutput[ $role ]->hasText() )
 		) {
-			$content = $this->revision->getContent( $role, $this->audience, $this->forUser );
+			$content = $this->revision->getContent( $role, $this->audience, $this->performer );
 
 			if ( !$content ) {
 				throw new SuppressedDataException(
@@ -259,12 +259,16 @@ class RenderedRevision implements SlotRenderingProvider {
 	 * @return ParserOutput
 	 */
 	private function getSlotParserOutputUncached( Content $content, $withHtml ) {
-		return $content->getParserOutput(
+		$parserOutput = $content->getParserOutput(
 			$this->title,
 			$this->revision->getId(),
 			$this->options,
 			$withHtml
 		);
+		// Save the rev_id and timestamp so that we don't have to load the revision row on view
+		$parserOutput->setCacheRevisionId( $this->revision->getId() );
+		$parserOutput->setTimestamp( $this->revision->getTimestamp() );
+		return $parserOutput;
 	}
 
 	/**

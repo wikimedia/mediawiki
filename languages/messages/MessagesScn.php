@@ -49,6 +49,7 @@ $namespaceAliases = [
 	'Discussioni_Catigurìa' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'UtentiAttivi' ],
 	'Allmessages'               => [ 'Messaggi' ],
@@ -57,6 +58,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'TitoloErrato' ],
 	'Blankpage'                 => [ 'PaginaVuota' ],
 	'Block'                     => [ 'Blocca' ],
+	'BlockList'                 => [ 'IPBloccati', 'ElencoBlocchi', 'Blocchi' ],
 	'Booksources'               => [ 'RicercaISBN' ],
 	'BrokenRedirects'           => [ 'RedirectErrati' ],
 	'Categories'                => [ 'Categorie' ],
@@ -79,7 +81,6 @@ $specialPageAliases = [
 	'Import'                    => [ 'Importa' ],
 	'Invalidateemail'           => [ 'InvalidaEMail' ],
 	'JavaScriptTest'            => [ 'TestJavaScript' ],
-	'BlockList'                 => [ 'IPBloccati', 'ElencoBlocchi', 'Blocchi' ],
 	'LinkSearch'                => [ 'CercaCollegamenti', 'CercaLink' ],
 	'Listadmins'                => [ 'Amministratori', 'ElencoAmministratori', 'Admin', 'Sysop', 'Cricca' ],
 	'Listbots'                  => [ 'Bot', 'ElencoBot' ],
@@ -114,8 +115,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'Prefissi' ],
 	'Protectedpages'            => [ 'PagineProtette' ],
 	'Protectedtitles'           => [ 'TitoliProtetti' ],
-	'Randompage'                => [ 'PaginaCasuale' ],
 	'RandomInCategory'          => [ 'CasualeInCategoria' ],
+	'Randompage'                => [ 'PaginaCasuale' ],
 	'Randomredirect'            => [ 'RedirectCasuale' ],
 	'Recentchanges'             => [ 'UltimeModifiche' ],
 	'Recentchangeslinked'       => [ 'ModificheCorrelate' ],

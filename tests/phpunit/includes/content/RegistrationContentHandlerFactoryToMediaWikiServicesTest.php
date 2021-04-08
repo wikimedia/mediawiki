@@ -18,7 +18,7 @@ class RegistrationContentHandlerFactoryToMediaWikiServicesTest extends MediaWiki
 				CONTENT_MODEL_CSS => CssContentHandler::class,
 				CONTENT_MODEL_TEXT => TextContentHandler::class,
 				'testing' => DummyContentHandlerForTesting::class,
-				'testing-callbacks' => function ( $modelId ) {
+				'testing-callbacks' => static function ( $modelId ) {
 					return new DummyContentHandlerForTesting( $modelId );
 				},
 			],

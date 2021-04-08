@@ -95,10 +95,10 @@ class HTTPFileStreamer {
 		}
 
 		$headerFunc = ( $flags & self::STREAM_HEADLESS )
-			? function ( $header ) {
+			? static function ( $header ) {
 				// no-op
 			}
-			: function ( $header ) {
+			: static function ( $header ) {
 				is_int( $header ) ? HttpStatus::header( $header ) : header( $header );
 			};
 

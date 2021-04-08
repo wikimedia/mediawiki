@@ -14,6 +14,7 @@
 
 $fallback = 'it';
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'TutteLeMessagge' ],
 	'Preferences'               => [ 'Preferenze' ],

@@ -13,14 +13,8 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class TimestampDefTest extends TypeDefTestCase {
 
-	protected static $testClass = TimestampDef::class;
-
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
-		if ( static::$testClass === null ) {
-			throw new \LogicException( 'Either assign static::$testClass or override ' . __METHOD__ );
-		}
-
-		return new static::$testClass( $callbacks, $options );
+		return new TimestampDef( $callbacks, $options );
 	}
 
 	/** @dataProvider provideConstructorOptions */
@@ -99,6 +93,15 @@ class TimestampDefTest extends TypeDefTestCase {
 					DataMessageValue::new( 'paramvalidator-badtimestamp', [], 'badtimestamp' ),
 					'test', 'bogus', []
 				),
+			],
+			// T272637
+			'Incomplete MW format' => [
+				'2014815210101',
+				new ValidationException(
+					DataMessageValue::new( 'paramvalidator-badtimestamp', [], 'badtimestamp' ),
+					'test', '2014815210101', []
+				),
+				$formatMW
 			],
 
 			// Formatting

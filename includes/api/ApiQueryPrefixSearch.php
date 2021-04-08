@@ -29,6 +29,10 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 	/** @var array list of api allowed params */
 	private $allowedParams;
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'ps' );
 	}
@@ -59,7 +63,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 		}
 
 		if ( $resultPageSet ) {
-			$resultPageSet->setRedirectMergePolicy( function ( array $current, array $new ) {
+			$resultPageSet->setRedirectMergePolicy( static function ( array $current, array $new ) {
 				if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
 					$current['index'] = $new['index'];
 				}
@@ -74,7 +78,7 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 			$count = 0;
 			foreach ( $titles as $title ) {
 				$vals = [
-					'ns' => (int)$title->getNamespace(),
+					'ns' => $title->getNamespace(),
 					'title' => $title->getPrefixedText(),
 				];
 				if ( $title->isSpecialPage() ) {

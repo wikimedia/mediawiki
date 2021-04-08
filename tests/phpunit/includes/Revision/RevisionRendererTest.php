@@ -6,7 +6,7 @@ use CommentStoreComment;
 use Content;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
@@ -14,12 +14,15 @@ use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use MockTitleTrait;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
+use TitleFactory;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikitextContent;
@@ -28,6 +31,8 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\RevisionRenderer
  */
 class RevisionRendererTest extends MediaWikiIntegrationTestCase {
+	use MockTitleTrait;
+	use MockAuthorityTrait;
 
 	/**
 	 * @param int $articleId
@@ -35,70 +40,29 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	 * @return Title
 	 */
 	private function getMockTitle( $articleId, $revisionId ) {
-		/** @var Title|MockObject $mock */
-		$mock = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getNamespace' )
-			->will( $this->returnValue( NS_MAIN ) );
-		$mock->expects( $this->any() )
-			->method( 'getText' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getPrefixedText' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getDBkey' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getArticleID' )
-			->will( $this->returnValue( $articleId ) );
-		$mock->expects( $this->any() )
-			->method( 'getLatestRevId' )
-			->will( $this->returnValue( $revisionId ) );
-		$mock->expects( $this->any() )
-			->method( 'getContentModel' )
-			->will( $this->returnValue( CONTENT_MODEL_WIKITEXT ) );
-		$mock->expects( $this->any() )
-			->method( 'getPageLanguage' )
-			->will( $this->returnValue(
-				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) ) );
-		$mock->expects( $this->any() )
-			->method( 'isContentPage' )
-			->will( $this->returnValue( true ) );
-		$mock->expects( $this->any() )
-			->method( 'equals' )
-			->willReturnCallback(
-				function ( Title $other ) use ( $mock ) {
-					return $mock->getArticleID() === $other->getArticleID();
-				}
-			);
-		$mock->expects( $this->any() )
-			->method( 'getRestrictions' )
-			->willReturn( [] );
-
-		return $mock;
+		return $this->makeMockTitle( __CLASS__, [
+			'id' => $articleId,
+			'revision' => $revisionId,
+			'language' => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
+		] );
 	}
 
 	/**
 	 * @param int $maxRev
-	 * @param int $linkCount
 	 *
 	 * @return IDatabase
 	 */
-	private function getMockDatabaseConnection( $maxRev = 100, $linkCount = 0 ) {
+	private function getMockDatabaseConnection( $maxRev = 100 ) {
 		/** @var IDatabase|MockObject $db */
 		$db = $this->createMock( IDatabase::class );
 		$db->method( 'selectField' )
 			->willReturnCallback(
-				function ( $table, $fields, $cond ) use ( $maxRev, $linkCount ) {
+				function ( $table, $fields, $cond ) use ( $maxRev ) {
 					return $this->selectFieldCallback(
 						$table,
 						$fields,
 						$cond,
-						$maxRev,
-						$linkCount
+						$maxRev
 					);
 				}
 			);
@@ -107,6 +71,8 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param int $maxRev
+	 * @param bool $useMaster
 	 * @return RevisionRenderer
 	 */
 	private function newRevisionRenderer( $maxRev = 100, $useMaster = false ) {
@@ -137,7 +103,9 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$roleReg->defineRole( 'main', function () {
 			return new MainSlotRoleHandler(
 				[],
-				$this->createMock( IContentHandlerFactory::class )
+				$this->createMock( IContentHandlerFactory::class ),
+				$this->createMock( HookContainer::class ),
+				$this->createMock( TitleFactory::class )
 			);
 		} );
 		$roleReg->defineRoleWithModel( 'aux', CONTENT_MODEL_WIKITEXT );
@@ -365,7 +333,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$rev->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
 		$options = ParserOptions::newCanonical( 'canonical' );
-		$sysop = $this->getTestUser( [ 'sysop' ] )->getUser(); // privileged!
+		$sysop = $this->mockRegisteredUltimateAuthority();
 		$rr = $renderer->getRenderedRevision( $rev, $options, $sysop );
 
 		$this->assertNotNull( $rr, 'getRenderedRevision' );
@@ -417,7 +385,12 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $rev, $rr->getRevision() );
 		$this->assertSame( $options, $rr->getOptions() );
 
-		$html = $rr->getRevisionParserOutput()->getText();
+		$parserOutput = $rr->getRevisionParserOutput();
+		// Assert parser output recorded timestamp and parsed rev_id
+		$this->assertSame( $rev->getId(), $parserOutput->getCacheRevisionId() );
+		$this->assertSame( $rev->getTimestamp(), $parserOutput->getTimestamp() );
+
+		$html = $parserOutput->getText();
 
 		// Suppressed content should be visible in raw mode
 		$this->assertStringContainsString( 'page:' . __CLASS__, $html );

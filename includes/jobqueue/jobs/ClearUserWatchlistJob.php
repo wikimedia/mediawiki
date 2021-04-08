@@ -74,7 +74,6 @@ class ClearUserWatchlistJob extends Job implements GenericParameterJob {
 			],
 			__METHOD__,
 			[
-				'ORDER BY' => 'wl_id ASC',
 				'LIMIT' => $batchSize,
 			]
 		);

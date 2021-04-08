@@ -19,6 +19,8 @@
  * @file
  */
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use Wikimedia\IPSet;
 
 /**
@@ -26,28 +28,31 @@ use Wikimedia\IPSet;
  */
 class ProxyLookup {
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	private $proxyServers;
 
-	/**
-	 * @var string[]
-	 */
+	/** @var string[] */
 	private $proxyServersComplex;
 
-	/**
-	 * @var IPSet|null
-	 */
+	/** @var IPSet|null */
 	private $proxyIPSet;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * @param string[] $proxyServers Simple list of IPs
 	 * @param string[] $proxyServersComplex Complex list of IPs/ranges
+	 * @param HookContainer $hookContainer
 	 */
-	public function __construct( $proxyServers, $proxyServersComplex ) {
+	public function __construct(
+		$proxyServers,
+		$proxyServersComplex,
+		HookContainer $hookContainer
+	) {
 		$this->proxyServers = $proxyServers;
 		$this->proxyServersComplex = $proxyServersComplex;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -72,14 +77,14 @@ class ProxyLookup {
 	/**
 	 * Checks if an IP is a trusted proxy provider.
 	 * Useful to tell if X-Forwarded-For data is possibly bogus.
-	 * CDN cache servers for the site are whitelisted.
+	 * CDN cache servers for the site are allowed.
 	 *
 	 * @param string $ip
 	 * @return bool
 	 */
 	public function isTrustedProxy( $ip ) {
 		$trusted = $this->isConfiguredProxy( $ip );
-		Hooks::runner()->onIsTrustedProxy( $ip, $trusted );
+		$this->hookRunner->onIsTrustedProxy( $ip, $trusted );
 		return $trusted;
 	}
 }

@@ -25,23 +25,56 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\User\UserGroupManager;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * @ingroup SpecialPage
  */
 class SpecialListUsers extends IncludableSpecialPage {
 
-	public function __construct() {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param UserGroupManager $userGroupManager
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
+		UserGroupManager $userGroupManager
+	) {
 		parent::__construct( 'Listusers' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**
-	 * @param string|null $par (optional) A group to list users from
+	 * @param string|null $par A group to list users from
 	 */
 	public function execute( $par ) {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$up = new UsersPager( $this->getContext(), $par, $this->including() );
+		$up = new UsersPager(
+			$this->getContext(),
+			$par,
+			$this->including(),
+			$this->linkBatchFactory,
+			$this->getHookContainer(),
+			$this->loadBalancer,
+			$this->userGroupManager
+		);
 
 		# getBody() first to check, if empty
 		$usersbody = $up->getBody();
@@ -70,7 +103,7 @@ class SpecialListUsers extends IncludableSpecialPage {
 	 * @return string[] subpages
 	 */
 	public function getSubpagesForPrefixSearch() {
-		return User::getAllGroups();
+		return $this->userGroupManager->listAllGroups();
 	}
 
 	protected function getGroupName() {

@@ -75,7 +75,10 @@ class JobQueueGroup {
 		}
 
 		if ( !isset( self::$instances[$domain] ) ) {
-			self::$instances[$domain] = new self( $domain, wfConfiguredReadOnlyReason() );
+			$reason = MediaWikiServices::getInstance()
+				->getConfiguredReadOnlyMode()
+				->getReason();
+			self::$instances[$domain] = new self( $domain, $reason );
 			// Make sure jobs are not getting pushed to bogus wikis. This can confuse
 			// the job runner system into spawning endless RPC requests that fail (T171371).
 			$wikiId = WikiMap::getWikiIdFromDbDomain( $domain );
@@ -227,10 +230,10 @@ class JobQueueGroup {
 	 *
 	 * @param int|string $qtype JobQueueGroup::TYPE_* constant or job type string
 	 * @param int $flags Bitfield of JobQueueGroup::USE_* constants
-	 * @param array $blacklist List of job types to ignore
+	 * @param array $ignored List of job types to ignore
 	 * @return RunnableJob|bool Returns false on failure
 	 */
-	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $blacklist = [] ) {
+	public function pop( $qtype = self::TYPE_DEFAULT, $flags = 0, array $ignored = [] ) {
 		global $wgJobClasses;
 
 		$job = false;
@@ -244,7 +247,7 @@ class JobQueueGroup {
 		}
 
 		if ( is_string( $qtype ) ) { // specific job type
-			if ( !in_array( $qtype, $blacklist ) ) {
+			if ( !in_array( $qtype, $ignored ) ) {
 				$job = $this->get( $qtype )->pop();
 			}
 		} else { // any job in the "default" jobs types
@@ -261,7 +264,7 @@ class JobQueueGroup {
 				$types = array_intersect( $types, $this->getDefaultQueueTypes() );
 			}
 
-			$types = array_diff( $types, $blacklist ); // avoid selected types
+			$types = array_diff( $types, $ignored ); // avoid selected types
 			shuffle( $types ); // avoid starvation
 
 			foreach ( $types as $type ) { // for each queue...
@@ -317,7 +320,7 @@ class JobQueueGroup {
 	/**
 	 * Get the list of queue types
 	 *
-	 * @return array List of strings
+	 * @return string[]
 	 */
 	public function getQueueTypes() {
 		return array_keys( $this->getCachedConfigVar( 'wgJobClasses' ) );
@@ -326,7 +329,7 @@ class JobQueueGroup {
 	/**
 	 * Get the list of default queue types
 	 *
-	 * @return array List of strings
+	 * @return string[]
 	 */
 	public function getDefaultQueueTypes() {
 		global $wgJobTypesExcludedFromDefaultQueue;
@@ -451,7 +454,7 @@ class JobQueueGroup {
 			$value = $cache->getWithSetCallback(
 				$cache->makeGlobalKey( 'jobqueue', 'configvalue', $this->domain, $name ),
 				$cache::TTL_DAY + mt_rand( 0, $cache::TTL_DAY ),
-				function () use ( $wiki, $name ) {
+				static function () use ( $wiki, $name ) {
 					global $wgConf;
 					// @TODO: use the full domain ID here
 					return [ 'v' => $wgConf->getConfig( $wiki, $name ) ];

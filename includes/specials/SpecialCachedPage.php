@@ -55,6 +55,14 @@ abstract class SpecialCachedPage extends SpecialPage implements ICacheHelper {
 	 */
 	protected $cacheEnabled = true;
 
+	public function __construct(
+		$name = '', $restriction = '', $listed = true,
+		$function = false, $file = '', $includable = false
+	) {
+		parent::__construct( $name, $restriction, $listed, $function, $file, $includable );
+		wfDeprecated( __CLASS__, '1.36' );
+	}
+
 	/**
 	 * Gets called after @see SpecialPage::execute.
 	 *

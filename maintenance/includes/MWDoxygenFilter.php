@@ -19,7 +19,7 @@
  *
  * @file
  * @ingroup Maintenance
- * @phan-file-suppress PhanInvalidCommentForDeclarationType False negative about about `@var`
+ * @phan-file-suppress PhanInvalidCommentForDeclarationType False negative about `@var`
  */
 
 /**
@@ -77,7 +77,7 @@ class MWDoxygenFilter {
 						$buffer['desc'] = preg_replace_callback(
 							// Strip "@var SomeType" part, but remember the type and optional name
 							'#@var\s+(\S+)(\s+)?(\S+)?#s',
-							function ( $matches ) use ( &$buffer ) {
+							static function ( $matches ) use ( &$buffer ) {
 								$buffer['type'] = $matches[1];
 								$buffer['name'] = $matches[3] ?? null;
 								return ( $matches[2] ?? '' ) . ( $matches[3] ?? '' );

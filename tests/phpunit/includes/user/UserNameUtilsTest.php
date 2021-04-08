@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
@@ -21,7 +22,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$contentLang->method( 'ucfirst' )
-			->willReturnCallback( function ( $str ) {
+			->willReturnCallback( static function ( $str ) {
 				return ucfirst( $str );
 			} );
 		return $contentLang;
@@ -105,7 +106,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			'Looks too much like an IPv4 address (1)' => [ '300.300.300.300', false ],
 			'Looks too much like an IPv4 address (2)' => [ '302.113.311.900', false ],
 			'Reserved for usage by UseMod for cloaked logged-out users' => [ '203.0.113.xxx', false ],
-			'Blacklisted characters' => [ "\u{E000}", false ],
+			'Disallowed characters' => [ "\u{E000}", false ],
 		];
 	}
 
@@ -149,7 +150,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::isCreatable
 	 */
 	public function testIsCreatable() {
-		$logger = new TestLogger( true, function ( $message ) {
+		$logger = new TestLogger( true, static function ( $message ) {
 			$message = str_replace(
 				'MediaWiki\\User\\UserNameUtils::isCreatable: ',
 				'',
@@ -279,19 +280,16 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetCanonical_interwiki() {
 		// fake interwiki map for the 'Interwiki prefix' testcase
-		$this->setTemporaryHook(
-			'InterwikiLoadPrefix',
-			function ( $prefix, &$iwdata ) {
-				if ( $prefix === 'interwiki' ) {
-					$iwdata = [
-						'iw_url' => 'http://example.com/',
-						'iw_local' => 0,
-						'iw_trans' => 0,
-					];
-					return false;
-				}
-			}
-		);
+		$this->setMwGlobals( [
+			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
+				[
+					'iw_prefix' => 'interwiki',
+					'iw_url' => 'http://example.com/',
+					'iw_local' => 0,
+					'iw_trans' => 0,
+				],
+			] ),
+		] );
 
 		$utils = $this->getUtils(
 			[],

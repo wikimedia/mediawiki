@@ -32,11 +32,13 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Dischussioni_categuria',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Imbasciaddi' ],
 	'Allpages'                  => [ 'TuttiLiPàgini' ],
 	'Ancientpages'              => [ 'PàginiMancuRizzenti' ],
 	'Block'                     => [ 'Brocca' ],
+	'BlockList'                 => [ 'IPBroccaddi' ],
 	'Booksources'               => [ 'ZirchaISBN' ],
 	'BrokenRedirects'           => [ 'RinviiIbbagliaddi' ],
 	'Categories'                => [ 'Categuri' ],
@@ -48,7 +50,6 @@ $specialPageAliases = [
 	'Export'                    => [ 'Ippurtha' ],
 	'Fewestrevisions'           => [ 'PàginiCunMancuRibisioni' ],
 	'Import'                    => [ 'Impurtha' ],
-	'BlockList'                 => [ 'IPBroccaddi' ],
 	'Listadmins'                => [ 'Amministhradori' ],
 	'Listfiles'                 => [ 'Immagini' ],
 	'Listredirects'             => [ 'Rinvii' ],

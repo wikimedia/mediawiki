@@ -3,13 +3,16 @@
 namespace Wikimedia\ParamValidator\TypeDef;
 
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 
 /**
  * @covers Wikimedia\ParamValidator\TypeDef\LimitDef
  */
 class LimitDefTest extends TypeDefTestCase {
 
-	protected static $testClass = LimitDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new LimitDef( $callbacks, $options );
+	}
 
 	public function provideValidate() {
 		$useHigh = [ 'useHighLimits' => true ];

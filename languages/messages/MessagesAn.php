@@ -39,24 +39,27 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Descusión_usuario', 'female' => 'Descusión_usuaria' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ],
+	'currentversion'            => [ '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ],
+	'displaytitle'              => [ '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ],
+	'img_left'                  => [ '1', 'cucha', 'izquierda', 'zurda', 'izda', 'izq', 'left' ],
+	'img_right'                 => [ '1', 'dreita', 'derecha', 'dcha', 'der', 'right' ],
+	'language'                  => [ '0', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ],
 	'namespace'                 => [ '1', 'ESPACIODENOMBRES', 'ESPACIODENOMBRE', 'NAMESPACE' ],
 	'namespacee'                => [ '1', 'ESPACIODENOMBRESE', 'ESPACIODENOMBREC', 'NAMESPACEE' ],
-	'img_right'                 => [ '1', 'dreita', 'derecha', 'dcha', 'der', 'right' ],
-	'img_left'                  => [ '1', 'cucha', 'izquierda', 'zurda', 'izda', 'izq', 'left' ],
 	'ns'                        => [ '0', 'EN:', 'EDN:', 'NS:' ],
-	'displaytitle'              => [ '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ],
-	'currentversion'            => [ '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'VERSIONACTUAL', 'VERSIÓNACTUAL', 'CURRENTVERSION' ],
-	'language'                  => [ '0', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ],
+	'redirect'                  => [ '0', '#ENDRECERA', '#REENDRECERA', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ],
 	'special'                   => [ '0', 'especial', 'espezial', 'special' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Totz_os_mensaches', 'Toz_os_mensaches' ],
 	'Allpages'                  => [ 'Todas_as_pachinas' ],
 	'Ancientpages'              => [ 'Pachinas_mas_viellas', 'Pachinas_mas_antigas', 'Pachinas_más_biellas', 'Pachinas_biellas', 'Pachinas_antigas' ],
 	'Block'                     => [ 'Bloqueyar' ],
+	'BlockList'                 => [ 'Lista_d\'IPs_bloqueyatas', 'Lista_d\'IPs_bloquiatas', 'Lista_d\'adrezas_IP_bloqueyatas', 'Lista_d\'adrezas_IP_bloquiatas' ],
 	'Booksources'               => [ 'Fuents_de_libros' ],
 	'BrokenRedirects'           => [ 'Endreceras_trencatas', 'Endreceras_trencadas', 'Reendrezeras_trencatas', 'Endrezeras_trencatas', 'Reendrezeras_crebatas', 'Endrezeras_crebatas', 'Endrezeras_trencadas', 'Endrezeras_crebadas' ],
 	'Categories'                => [ 'Categorías' ],
@@ -70,7 +73,6 @@ $specialPageAliases = [
 	'Export'                    => [ 'Exportar' ],
 	'Fewestrevisions'           => [ 'Pachinas_con_menos_edicions', 'Pachinas_con_menos_edizions', 'Pachinas_menos_editatas', 'Pachinas_con_menos_bersions' ],
 	'Import'                    => [ 'Importar' ],
-	'BlockList'                 => [ 'Lista_d\'IPs_bloqueyatas', 'Lista_d\'IPs_bloquiatas', 'Lista_d\'adrezas_IP_bloqueyatas', 'Lista_d\'adrezas_IP_bloquiatas' ],
 	'Listadmins'                => [ 'Lista_d\'almenistradors' ],
 	'Listbots'                  => [ 'Lista_de_botz', 'Lista_de_bots' ],
 	'Listfiles'                 => [ 'Lista_de_fichers', 'Lista_d\'imáchens', 'Lista_d\'imachens' ],

@@ -284,7 +284,7 @@ class BaseDumpTest extends MediaWikiIntegrationTestCase {
 		// Putting together the content of the prefetch files
 		$content = $header;
 		foreach ( $requested_pages as $i ) {
-			$this->assertTrue( array_key_exists( $i, $available_pages ),
+			$this->assertArrayHasKey( $i, $available_pages,
 				"Check for availability of requested page " . $i );
 			$content .= $available_pages[$i];
 		}

@@ -21,11 +21,17 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserOptionsLookup;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that list newly created pages
@@ -42,8 +48,71 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 	protected $showNavigation = false;
 
-	public function __construct() {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param CommentStore $commentStore
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param PermissionManager $permissionManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param RevisionLookup $revisionLookup
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ActorMigration $actorMigration
+	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserFactory $userFactory
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		CommentStore $commentStore,
+		IContentHandlerFactory $contentHandlerFactory,
+		PermissionManager $permissionManager,
+		ILoadBalancer $loadBalancer,
+		RevisionLookup $revisionLookup,
+		NamespaceInfo $namespaceInfo,
+		ActorMigration $actorMigration,
+		UserOptionsLookup $userOptionsLookup,
+		UserFactory $userFactory
+	) {
 		parent::__construct( 'Newpages' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->commentStore = $commentStore;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->permissionManager = $permissionManager;
+		$this->loadBalancer = $loadBalancer;
+		$this->revisionLookup = $revisionLookup;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->actorMigration = $actorMigration;
+		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -53,10 +122,16 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$opts = new FormOptions();
 		$this->opts = $opts; // bind
 		$opts->add( 'hideliu', false );
-		$opts->add( 'hidepatrolled', $this->getUser()->getBoolOption( 'newpageshidepatrolled' ) );
+		$opts->add(
+			'hidepatrolled',
+			$this->userOptionsLookup->getBoolOption( $this->getUser(), 'newpageshidepatrolled' )
+		);
 		$opts->add( 'hidebots', false );
 		$opts->add( 'hideredirs', true );
-		$opts->add( 'limit', $this->getUser()->getIntOption( 'rclimit' ) );
+		$opts->add(
+			'limit',
+			$this->userOptionsLookup->getIntOption( $this->getUser(), 'rclimit' )
+		);
 		$opts->add( 'offset', '' );
 		$opts->add( 'namespace', '0' );
 		$opts->add( 'username', '' );
@@ -159,7 +234,17 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$out->setFeedAppendQuery( wfArrayToCgi( $allValues ) );
 		}
 
-		$pager = new NewPagesPager( $this, $this->opts );
+		$pager = new NewPagesPager(
+			$this,
+			$this->opts,
+			$this->linkBatchFactory,
+			$this->getHookContainer(),
+			$this->permissionManager,
+			$this->loadBalancer,
+			$this->namespaceInfo,
+			$this->actorMigration,
+			$this->userFactory
+		);
 		$pager->mLimit = $this->opts->getValue( 'limit' );
 		$pager->mOffset = $this->opts->getValue( 'offset' );
 
@@ -302,7 +387,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			// The form should be visible on each request (inclusive requests with submitted forms), so
 			// return always false here.
 			->setSubmitCallback(
-				function () {
+				static function () {
 					return false;
 				}
 			)
@@ -325,7 +410,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	private function revisionFromRcResult( stdClass $result, Title $title ) : RevisionRecord {
 		$revRecord = new MutableRevisionRecord( $title );
 		$revRecord->setComment(
-			CommentStore::getStore()->getComment( 'rc_comment', $result )
+			$this->commentStore->getComment( 'rc_comment', $result )
 		);
 		$revRecord->setVisibility( (int)$result->rc_deleted );
 
@@ -343,7 +428,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * Format a row, providing the timestamp, links to the page/history,
 	 * size, user links, and a comment
 	 *
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	public function formatRow( $result ) {
@@ -385,9 +470,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			[ 'class' => 'mw-newpages-history' ],
 			[ 'action' => 'history' ]
 		);
-		if ( MediaWikiServices::getInstance()
-			->getContentHandlerFactory()
-			->getContentHandler( $title->getContentModel() )
+		if ( $this->contentHandlerFactory->getContentHandler( $title->getContentModel() )
 			->supportsDirectEditing()
 		) {
 			$linkArr[] = $linkRenderer->makeKnownLink(
@@ -456,8 +539,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 			ARRAY_FILTER_USE_KEY
 		);
 
-		if ( count( $classes ) ) {
-			$attribs['class'] = implode( ' ', $classes );
+		if ( $classes ) {
+			$attribs['class'] = $classes;
 		}
 
 		return Html::rawElement( 'li', $attribs, $ret ) . "\n";
@@ -466,7 +549,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/**
 	 * Should a specific result row provide "patrollable" links?
 	 *
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return bool
 	 */
 	protected function patrollable( $result ) {
@@ -498,7 +581,17 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->getPageTitle()->getFullURL()
 		);
 
-		$pager = new NewPagesPager( $this, $this->opts );
+		$pager = new NewPagesPager(
+			$this,
+			$this->opts,
+			$this->linkBatchFactory,
+			$this->getHookContainer(),
+			$this->permissionManager,
+			$this->loadBalancer,
+			$this->namespaceInfo,
+			$this->actorMigration,
+			$this->userFactory
+		);
 		$limit = $this->opts->getValue( 'limit' );
 		$pager->mLimit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
 
@@ -543,9 +636,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	protected function feedItemDesc( $row ) {
-		$revisionRecord = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getRevisionById( $row->rev_id );
+		$revisionRecord = $this->revisionLookup->getRevisionById( $row->rev_id );
 		if ( !$revisionRecord ) {
 			return '';
 		}
@@ -568,10 +659,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 	}
 
 	private function canAnonymousUsersCreatePages() {
-		$pm = MediaWikiServices::getInstance()->getPermissionManager();
-		return ( $pm->groupHasPermission( '*', 'createpage' ) ||
-			$pm->groupHasPermission( '*', 'createtalk' )
-		);
+		return $this->permissionManager->groupHasPermission( '*', 'createpage' ) ||
+			$this->permissionManager->groupHasPermission( '*', 'createtalk' );
 	}
 
 	protected function getGroupName() {

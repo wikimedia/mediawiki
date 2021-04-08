@@ -39,6 +39,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Diskusija_wužywarja', 'female' => 'Diskusija_wužywarki' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktiwne_wužywarje' ],
 	'Allmessages'               => [ 'Systemowe_powěsći' ],
@@ -46,6 +47,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Nejstarše_boki' ],
 	'Blankpage'                 => [ 'Prozny_bok' ],
 	'Block'                     => [ 'Blokěrowaś' ],
+	'BlockList'                 => [ 'Blokěrowane_IPje' ],
 	'Booksources'               => [ 'Pytaś_pó_ISBN' ],
 	'BrokenRedirects'           => [ 'Njefunkcioněrujuce_dalejpósrědnjenja' ],
 	'Categories'                => [ 'Kategorije' ],
@@ -63,7 +65,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Datajowa_sćažka' ],
 	'Import'                    => [ 'Importěrowaś' ],
 	'Invalidateemail'           => [ 'E-mail_njewobkšuśis' ],
-	'BlockList'                 => [ 'Blokěrowane_IPje' ],
 	'LinkSearch'                => [ 'Pytanje_wótkazow' ],
 	'Listadmins'                => [ 'Administratory' ],
 	'Listbots'                  => [ 'Boty' ],

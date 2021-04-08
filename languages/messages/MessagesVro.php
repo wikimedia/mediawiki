@@ -36,6 +36,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Katõgooria_arotus',
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
 	'redirect'                  => [ '0', '#saadaq', '#suuna', '#REDIRECT' ],
 ];

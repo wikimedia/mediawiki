@@ -34,7 +34,7 @@ abstract class FileCacheBase {
 	protected $mExt = 'cache';
 	protected $mFilePath;
 	protected $mUseGzip;
-	/* lazy loaded */
+	/** @var bool|null lazy loaded */
 	protected $mCached;
 
 	/* @todo configurable? */

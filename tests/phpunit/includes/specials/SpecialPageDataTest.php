@@ -95,11 +95,11 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 	 * @dataProvider provideExecute
 	 *
 	 * @param string $subpage The subpage to request (or '')
-	 * @param array  $params  Request parameters
-	 * @param array  $headers  Request headers
-	 * @param string $expRegExp   Regex to match the output against.
-	 * @param int    $expCode     Expected HTTP status code
-	 * @param array  $expHeaders  Expected HTTP response headers
+	 * @param array $params Request parameters
+	 * @param array $headers Request headers
+	 * @param string $expRegExp Regex to match the output against.
+	 * @param int $expCode Expected HTTP status code
+	 * @param array $expHeaders Expected HTTP response headers
 	 */
 	public function testExecute(
 		$subpage,
@@ -117,7 +117,7 @@ class SpecialPageDataTest extends SpecialPageTestBase {
 		}
 
 		try {
-			/* @var FauxResponse $response */
+			/** @var FauxResponse $response */
 			list( $output, $response ) = $this->executeSpecialPage( $subpage, $request );
 
 			$this->assertEquals( $expCode, $response->getStatusCode(), "status code" );

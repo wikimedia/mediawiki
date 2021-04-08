@@ -4,17 +4,20 @@ use Composer\Package\Package;
 use Composer\Plugin\PluginInterface;
 use Composer\Script\Event;
 
-$GLOBALS['IP'] = __DIR__ . '/../../';
-require_once __DIR__ . '/../AutoLoader.php';
-
 /**
  * @license GPL-2.0-or-later
  * @author Jeroen De Dauw < jeroendedauw@gmail.com >
  */
 class ComposerHookHandler {
 
+	private static function startAutoloader() {
+		$GLOBALS['IP'] = __DIR__ . '/../../';
+		require_once __DIR__ . '/../AutoLoader.php';
+	}
+
 	public static function onPreUpdate( Event $event ) {
 		self::checkMergePluginActive( $event );
+		self::startAutoloader();
 		self::handleChangeEvent( $event );
 	}
 
@@ -46,6 +49,7 @@ class ComposerHookHandler {
 	}
 
 	public static function onPreInstall( Event $event ) {
+		self::startAutoloader();
 		self::handleChangeEvent( $event );
 	}
 

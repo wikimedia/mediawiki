@@ -31,6 +31,7 @@ use MediaWiki\ProcOpenError;
 use MediaWiki\Shell\Shell;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
+use Wikimedia\RequestTimeout\RequestTimeout;
 use Wikimedia\WrappedString;
 
 /**
@@ -143,6 +144,7 @@ function wfArrayDiff2_cmp( $a, $b ) {
 /**
  * Appends to second array if $value differs from that in $default
  *
+ * @deprecated since 1.36
  * @param string|int $key
  * @param mixed $value
  * @param mixed $default
@@ -150,6 +152,8 @@ function wfArrayDiff2_cmp( $a, $b ) {
  * @throws MWException
  */
 function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
+
 	if ( $changed === null ) {
 		throw new MWException( 'GlobalFunctions::wfAppendToArrayIfNotDefault got null' );
 	}
@@ -198,7 +202,7 @@ function wfMergeErrorArrays( ...$args ) {
 /**
  * Insert array into another array after the specified *KEY*
  *
- * @param array $array The array.
+ * @param array $array
  * @param array $insert The array to insert.
  * @param mixed $after The key to insert after. Callers need to make sure the key is set.
  * @return array
@@ -222,6 +226,7 @@ function wfArrayInsertAfter( array $array, array $insert, $after ) {
 /**
  * Recursively converts the parameter (an object) to an array with the same data
  *
+ * @phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
  * @param object|array $objOrArray
  * @param bool $recursive
  * @return array
@@ -770,7 +775,7 @@ function wfUrlProtocolsWithoutProtRel() {
  * 1) Handles protocols that don't use :// (e.g., mailto: and news:, as well as
  *    protocol-relative URLs) correctly.
  * 2) Adds a "delimiter" element to the array (see (2)).
- * 3) Verifies that the protocol is on the $wgUrlProtocols whitelist.
+ * 3) Verifies that the protocol is on the $wgUrlProtocols allowed list.
  * 4) Rejects some invalid URLs that parse_url doesn't, e.g. the empty string or URLs starting with
  *    a line feed character.
  *
@@ -860,7 +865,7 @@ function wfParseUrl( $url ) {
 function wfExpandIRI( $url ) {
 	return preg_replace_callback(
 		'/((?:%[89A-F][0-9A-F])+)/i',
-		function ( array $matches ) {
+		static function ( array $matches ) {
 			return urldecode( $matches[1] );
 		},
 		wfExpandUrl( $url )
@@ -950,8 +955,10 @@ function wfIsDebugRawPage() {
  * Send a line giving PHP memory usage.
  *
  * @param bool $exact Print exact byte values instead of kibibytes (default: false)
+ * @deprecated since 1.36
  */
 function wfDebugMem( $exact = false ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	$mem = memory_get_usage();
 	if ( !$exact ) {
 		$mem = floor( $mem / 1024 ) . ' KiB';
@@ -1021,14 +1028,14 @@ function wfLogDBError( $text, array $context = [] ) {
  *    caller. 2 = function that called the function that called
  *    wfDeprecated (Added in 1.20).
  *
- * @throws Exception If the MediaWiki version number specified by $version is neither a string nor
- *    false, an exception is thrown to indicate invalid arguments.
+ * @throws InvalidArgumentException If the MediaWiki version
+ *     number specified by $version is neither a string nor false.
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
 	if ( is_string( $version ) || $version === false ) {
 		MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
 	} else {
-		throw new Exception(
+		throw new InvalidArgumentException(
 			"MediaWiki version must either be a string or false. " .
 			"Example valid version: '1.33'"
 		);
@@ -1112,6 +1119,8 @@ function wfLogProfilingData() {
  * @param string $key
  * @param int $count
  * @return void
+ *
+ * @deprecated since 1.36, use MediaWikiServices::getInstance()->getStatsdDataFactory()->updateCount() instead
  */
 function wfIncrStats( $key, $count = 1 ) {
 	$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
@@ -1146,8 +1155,10 @@ function wfReadOnlyReason() {
  *
  * @return string|bool String when in read-only mode; false otherwise
  * @since 1.27
+ * @deprecated since 1.36
  */
 function wfConfiguredReadOnlyReason() {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	return MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()
 		->getReason();
 }
@@ -1310,7 +1321,13 @@ function wfReportTime( $nonce = null ) {
 	if ( $wgShowHostnames ) {
 		$reportVars['wgHostname'] = wfHostname();
 	}
-	return Skin::makeVariablesScript( $reportVars, $nonce );
+
+	return (
+		ResourceLoader::makeInlineScript(
+			ResourceLoader::makeConfigSetScript( $reportVars ),
+			$nonce
+		)
+	);
 }
 
 /**
@@ -1366,7 +1383,7 @@ function wfBacktrace( $raw = null ) {
 		$traceFormat = "<ul>\n%s</ul>\n";
 	}
 
-	$frames = array_map( function ( $frame ) use ( $frameFormat ) {
+	$frames = array_map( static function ( $frame ) use ( $frameFormat ) {
 		$file = !empty( $frame['file'] ) ? basename( $frame['file'] ) : '-';
 		$line = $frame['line'] ?? '-';
 		$call = $frame['function'];
@@ -1684,8 +1701,11 @@ function wfResetOutputBuffers( $resetGzipEncoding = true ) {
  * also need to suppress the output of ob_gzhandler to keep to spec
  * and avoid breaking Firefox in rare cases where the headers and
  * body are broken over two packets.
+ *
+ * @deprecated since 1.36
  */
 function wfClearOutputBuffers() {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	wfResetOutputBuffers( false );
 }
 
@@ -1696,8 +1716,10 @@ function wfClearOutputBuffers() {
  * @param string $accept
  * @param string $def Default
  * @return float[] Associative array of string => float pairs
+ * @deprecated since 1.36
  */
 function wfAcceptToPrefs( $accept, $def = '*/*' ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	# No arg means accept anything (per HTTP spec)
 	if ( !$accept ) {
 		return [ $def => 1.0 ];
@@ -1760,9 +1782,10 @@ function mimeTypeMatch( $type, $avail ) {
  *
  * @todo FIXME: Doesn't handle params like 'text/plain; charset=UTF-8'
  * XXX: generalize to negotiate other stuff
- * @todo The function appears unused. Is it worth to keep?
+ * @deprecated since 1.36
  */
 function wfNegotiateType( $cprefs, $sprefs ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	$combine = [];
 
 	foreach ( array_keys( $sprefs ) as $type ) {
@@ -2232,6 +2255,7 @@ function wfMerge( $old, $mine, $yours, &$result, &$mergeAttemptResult = null ) {
  * @return string Unified diff of $before and $after
  */
 function wfDiff( $before, $after, $params = '-u' ) {
+	wfDeprecated( __FUNCTION__, '1.25' );
 	if ( $before == $after ) {
 		return '';
 	}
@@ -2366,7 +2390,7 @@ function wfRelativePath( $path, $from ) {
 		array_shift( $against );
 	}
 
-	array_push( $pieces, wfBaseName( $path ) );
+	$pieces[] = wfBaseName( $path );
 
 	return implode( DIRECTORY_SEPARATOR, $pieces );
 }
@@ -2376,8 +2400,10 @@ function wfRelativePath( $path, $from ) {
  *
  * @param string $name
  * @return mixed The variable on success, false on failure
+ * @deprecated since 1.36
  */
 function wfGetPrecompiledData( $name ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	global $IP;
 
 	$file = "$IP/serialized/$name";
@@ -2388,33 +2414,6 @@ function wfGetPrecompiledData( $name ) {
 		}
 	}
 	return false;
-}
-
-/**
- * Make a cache key for the local wiki.
- *
- * @deprecated since 1.30 Call makeKey on a BagOStuff instance
- * @param string|int ...$args
- * @return string
- */
-function wfMemcKey( ...$args ) {
-	return ObjectCache::getLocalClusterInstance()->makeKey( ...$args );
-}
-
-/**
- * Make a cache key for a foreign DB.
- *
- * Must match what wfMemcKey() would produce in context of the foreign wiki.
- *
- * @param string $db
- * @param string $prefix
- * @param string|int ...$args
- * @return string
- * @deprecated Since 1.35 Call makeGlobalKey on a BagOStuff instance
- */
-function wfForeignMemcKey( $db, $prefix, ...$args ) {
-	$keyspace = $prefix ? "$db-$prefix" : $db;
-	return ObjectCache::getLocalClusterInstance()->makeKeyInternal( $keyspace, $args );
 }
 
 /**
@@ -2589,56 +2588,6 @@ function wfGetNull() {
 }
 
 /**
- * Waits for the replica DBs to catch up to the master position
- *
- * Use this when updating very large numbers of rows, as in maintenance scripts,
- * to avoid causing too much lag. Of course, this is a no-op if there are no replica DBs.
- *
- * By default this waits on the main DB cluster of the current wiki.
- * If $cluster is set to "*" it will wait on all DB clusters, including
- * external ones. If the lag being waiting on is caused by the code that
- * does this check, it makes since to use $ifWritesSince, particularly if
- * cluster is "*", to avoid excess overhead.
- *
- * Never call this function after a big DB write that is still in a transaction.
- * This only makes sense after the possible lag inducing changes were committed.
- *
- * @param float|null $ifWritesSince Only wait if writes were done since this UNIX timestamp
- * @param string|bool $wiki Wiki identifier accepted by wfGetLB
- * @param string|bool $cluster Cluster name accepted by LBFactory. Default: false.
- * @param int|null $timeout Max wait time. Default: 60 seconds (cli), 1 second (web)
- * @return bool Success (able to connect and no timeouts reached)
- * @deprecated since 1.27 Use LBFactory::waitForReplication
- */
-function wfWaitForSlaves(
-	$ifWritesSince = null, $wiki = false, $cluster = false, $timeout = null
-) {
-	wfDeprecated( __FUNCTION__, '1.27' );
-	$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-
-	if ( $cluster === '*' ) {
-		$cluster = false;
-		$domain = false;
-	} elseif ( $wiki === false ) {
-		$domain = $lbFactory->getLocalDomainID();
-	} else {
-		$domain = $wiki;
-	}
-
-	$opts = [
-		'domain' => $domain,
-		'cluster' => $cluster,
-		// B/C: first argument used to be "max seconds of lag"; ignore such values
-		'ifWritesSince' => ( $ifWritesSince > 1e9 ) ? $ifWritesSince : null
-	];
-	if ( $timeout !== null ) {
-		$opts['timeout'] = $timeout;
-	}
-
-	return $lbFactory->waitForReplication( $opts );
-}
-
-/**
  * Replace all invalid characters with '-'.
  * Additional characters can be defined in $wgIllegalFileChars (see T22489).
  * By default, $wgIllegalFileChars includes ':', '/', '\'.
@@ -2685,7 +2634,7 @@ function wfMemoryLimit( $newLimit ) {
 }
 
 /**
- * Set PHP's time limit to the larger of php.ini or $wgTransactionalTimeLimit
+ * Raise the request time limit to $wgTransactionalTimeLimit
  *
  * @return int Prior time limit
  * @since 1.26
@@ -2693,12 +2642,21 @@ function wfMemoryLimit( $newLimit ) {
 function wfTransactionalTimeLimit() {
 	global $wgTransactionalTimeLimit;
 
-	$timeLimit = (int)ini_get( 'max_execution_time' );
-	// Note that CLI scripts use 0
-	if ( $timeLimit > 0 && $wgTransactionalTimeLimit > $timeLimit ) {
-		set_time_limit( $wgTransactionalTimeLimit );
+	$timeout = RequestTimeout::singleton();
+	$timeLimit = $timeout->getWallTimeLimit();
+	if ( $timeLimit !== INF ) {
+		// RequestTimeout library is active
+		if ( $wgTransactionalTimeLimit > $timeLimit ) {
+			$timeout->setWallTimeLimit( $wgTransactionalTimeLimit );
+		}
+	} else {
+		// Fallback case, likely $wgRequestTimeLimit === null
+		$timeLimit = (int)ini_get( 'max_execution_time' );
+		// Note that CLI scripts use 0
+		if ( $timeLimit > 0 && $wgTransactionalTimeLimit > $timeLimit ) {
+			$timeout->setWallTimeLimit( $wgTransactionalTimeLimit );
+		}
 	}
-
 	ignore_user_abort( true ); // ignore client disconnects
 
 	return $timeLimit;
@@ -2793,27 +2751,6 @@ function wfUnpack( $format, $data, $length = false ) {
 }
 
 /**
- * Determine if an image exists on the 'bad image list'.
- *
- * The format of MediaWiki:Bad_image_list is as follows:
- *    * Only list items (lines starting with "*") are considered
- *    * The first link on a line must be a link to a bad image
- *    * Any subsequent links on the same line are considered to be exceptions,
- *      i.e. articles where the image may occur inline.
- *
- * @deprecated since 1.34, use the BadFileLookup service directly instead
- *
- * @param string $name The image name to check
- * @param Title|bool $contextTitle The page on which the image occurs, if known
- * @return bool
- */
-function wfIsBadImage( $name, $contextTitle = false ) {
-	wfDeprecated( __FUNCTION__, '1.34' );
-	$services = MediaWikiServices::getInstance();
-	return $services->getBadFileLookup()->isBadFile( $name, $contextTitle ?: null );
-}
-
-/**
  * Determine whether the client at a given source IP is likely to be able to
  * access the wiki via HTTPS.
  *
@@ -2878,12 +2815,12 @@ function wfThumbIsStandard( File $file, array $params ) {
 	// Expand limits to account for multipliers
 	foreach ( $multipliers as $multiplier ) {
 		$thumbLimits = array_merge( $thumbLimits, array_map(
-			function ( $width ) use ( $multiplier ) {
+			static function ( $width ) use ( $multiplier ) {
 				return round( $width * $multiplier );
 			}, $wgThumbLimits )
 		);
 		$imageLimits = array_merge( $imageLimits, array_map(
-			function ( $pair ) use ( $multiplier ) {
+			static function ( $pair ) use ( $multiplier ) {
 				return [
 					round( $pair[0] * $multiplier ),
 					round( $pair[1] * $multiplier ),

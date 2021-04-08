@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Susith Chandira Gts",
-			"SusithCM"
+			"SusithCM",
+			1100100
 		]
 	},
 	"apihelp-main-param-action": "ඉටු කිරීමට ඇත්තේ කුමන ක්‍රියාවද.",
@@ -20,7 +22,7 @@
 	"apihelp-help-example-query": "සැකසහිත අනුඒකක සදහා උදවු කරන්න",
 	"apihelp-login-param-name": "පරිශීලක නාමය.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "මෙම පිටුව සඳහා වූ JavaScript වින්‍යාස විචල්‍යයන් ලබා දෙයි.",
-	"apihelp-userrights-param-user": "පරිශීලක නාමය.",
+	"apihelp-userrights-param-user": "පරිශීලකයා.",
 	"apihelp-userrights-param-userid": "පරිශීලක අනන්‍යාංකය.",
 	"apihelp-format-example-generic": "$1 ආකෘතියේ ඇති සැක සහිත ප්‍රථිපල පරිවර්තනය කරන්න",
 	"apihelp-json-summary": "ප්‍රතිදාන දත්ත JSON ආකෘතියෙන් පවතී.",
@@ -43,17 +45,8 @@
 	"api-help-flag-generator": "මෙම ආකෘතිය \tඋත්පාදකයක් ලෙස භාවිතා කල හැක.",
 	"api-help-parameters": "{{PLURAL:$1|පරාමිතිය|පරාමිතීන්}}:",
 	"api-help-param-deprecated": "විරුද්ධත්වය ප්‍රකාශ කර ඇත.",
-	"api-help-param-required": "මෙම පරාමිතිය අවශ්‍යයි.",
-	"api-help-param-list": "{{PLURAL:$1|1=එක් වටිනාකමක්|2=වටිනාකම් (\"{{!}}\" සමග වෙන් කරන්න)}}: $2",
-	"api-help-param-list-can-be-empty": "{{PLURAL:$1|0=හිස් කල යුතුයි|හිස් කල හැකියි, හෝ $2}}",
-	"api-help-param-limit": "$1 ට වඩා අනුමත නොකරයි.",
-	"api-help-param-limit2": "$1 කට වැඩ අනුමත කරන්නේ නැත ($2 බොට්ස් සදහාය).",
-	"api-help-param-integer-min": "{{PLURAL:$1|1=අගය|2=අගයන්}} $2 ට වඩා අඩු නොවිය යුතුය.",
-	"api-help-param-integer-max": "{{PLURAL:$1|1=වටිනාකම|2=වටිනාකම්}} $3 ට ව වැඩි නොවිය යුතුය.",
-	"api-help-param-integer-minmax": "{{PLURAL:$1|1=අගය|2=අගයන්}} $2 සහ $3 අතර පැවතිය යුතුය.",
+	"api-help-param-type-enum": "{{PLURAL:$1|1=එක් වටිනාකමක්|2=වටිනාකම් (\"{{!}}\" සමග වෙන් කරන්න)}}: $2",
 	"api-help-param-multi-separate": "වටිනාකම් \"|\" සමග වෙන් කරන්න.",
-	"api-help-param-multi-max": "අංක සදහා උපරිම වටිනාකම {{PLURAL:$1|$1}}\n({{PLURAL:$2|$2}} බොට්ස් සදහා)",
-	"api-help-param-default": "Default: $1",
 	"api-help-param-default-empty": "Default: <span class=\"apihelp-empty\">(හිස්)</span>",
 	"api-help-param-token": "[[Special:ApiHelp/query+tokens|action=query&meta=tokens]] මගින් \"$1\" \tසංඥාව සොයාගන්නා ලදී",
 	"api-help-param-no-description": "<span class=\"apihelp-empty\">(විස්තරයක් නැත)</span>",

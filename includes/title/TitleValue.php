@@ -21,6 +21,7 @@
  * @author Daniel Kinzler
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Assert\ParameterAssertionException;
 use Wikimedia\Assert\ParameterTypeException;
@@ -100,6 +101,30 @@ class TitleValue implements LinkTarget {
 		} catch ( ParameterAssertionException $ex ) {
 			return null;
 		}
+	}
+
+	/**
+	 * Constructs a TitleValue from a local PageIdentity.
+	 *
+	 * @note PageIdentities from another wiki are not supported, this method will
+	 *       throw if $page->getWikiId() doesn't return false.
+	 *
+	 * @since 1.36
+	 *
+	 * @param PageIdentity $page
+	 *
+	 * @throws InvalidArgumentException if $page does not belong to the local wiki.
+	 * @return TitleValue
+	 */
+	public static function newFromPage( PageIdentity $page ) : TitleValue {
+		if ( $page->getWikiId() ) {
+			// TODO: we could allow "foreign" PageIdentities by providing an interwiki prefix,
+			// but the exact semantics seem unclear. For instance, would the interwiki prefix
+			// be valid in the context of the local wiki, or the wiki indicated by getWikiId()?
+			throw new InvalidArgumentException( 'Not a local PageIdentity: ' . $page );
+		}
+
+		return new TitleValue( $page->getNamespace(), $page->getDBkey() );
 	}
 
 	/**
@@ -277,7 +302,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @return string
 	 */
-	public function __toString() {
+	public function __toString(): string {
 		$name = $this->namespace . ':' . $this->dbkey;
 
 		if ( $this->fragment !== '' ) {
@@ -289,5 +314,18 @@ class TitleValue implements LinkTarget {
 		}
 
 		return $name;
+	}
+
+	/**
+	 * @param LinkTarget $other
+	 *
+	 * @return bool
+	 */
+	public function isSameLinkAs( LinkTarget $other ) {
+		// NOTE: keep in sync with Title::isSameLinkAs()!
+		return ( $other->getInterwiki() === $this->getInterwiki() )
+			&& ( $other->getDBkey() === $this->getDBkey() )
+			&& ( $other->getNamespace() === $this->getNamespace() )
+			&& ( $other->getFragment() === $this->getFragment() );
 	}
 }

@@ -74,20 +74,6 @@ FilterTagMultiselectWidget = function MwRcfiltersUiFilterTagMultiselectWidget( c
 					$element: $( '<div>' )
 						.append( new ViewSwitchWidget( this.controller, this.model ).$element ),
 					views: [ 'default' ]
-				},
-				{
-					name: 'feedback',
-					// Feedback footer, appears on all views
-					$element: $( '<div>' )
-						.append(
-							new OO.ui.ButtonWidget( {
-								framed: false,
-								icon: 'feedback',
-								flags: [ 'progressive' ],
-								label: mw.msg( 'rcfilters-filterlist-feedbacklink' ),
-								href: 'https://www.mediawiki.org/wiki/Help_talk:New_filters_for_edit_review'
-							} ).$element
-						)
 				}
 			]
 		},

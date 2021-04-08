@@ -4,23 +4,38 @@
 
 /* stylelint-disable selector-class-pattern */
 
-#pagehistory .history-user {
-	margin-left: 0.4em;
-	margin-right: 0.2em;
+.mw-history-compareselectedversions {
+	margin-top: 8px;
 }
 
-#pagehistory li {
-	padding: 1px;
-}
-
-#pagehistory li.selected {
-	background-color: #f8f9fa;
-	color: #202122;
-	outline: 1px dashed #a2a9b1;
+.mw-checkbox-toggle-controls {
+	margin-top: 4px;
 }
 
 .mw-history-revisionactions {
 	float: right;
+}
+
+#pagehistory {
+	.history-user {
+		margin-left: 0.4em;
+		margin-right: 0.2em;
+	}
+
+	li {
+		padding: 1px;
+	}
+
+	li.selected {
+		background-color: #f8f9fa;
+		color: #202122;
+		outline: 1px dashed #a2a9b1;
+	}
+
+	[ type='checkbox' ],
+	[ type='radio' ] {
+		margin: 4px 4px 0 4px;
+	}
 }
 
 .updatedmarker {

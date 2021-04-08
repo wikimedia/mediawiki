@@ -74,7 +74,7 @@ class SpecialListGrants extends SpecialPage {
 				"<td>" .
 				$this->msg(
 					"listgrants-grant-display",
-					\User::getGrantName( $grant ),
+					MWGrants::grantName( $grant ),
 					"<span class='mw-listgrants-grant-name'>" . $id . "</span>"
 				)->parse() .
 				"</td>" .

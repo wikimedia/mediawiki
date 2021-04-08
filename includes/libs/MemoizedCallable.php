@@ -65,8 +65,7 @@ class MemoizedCallable {
 		}
 
 		if ( $this->callableName === 'Closure::__invoke' ) {
-			// Differentiate anonymous functions from one another
-			$this->callableName .= uniqid();
+			throw new InvalidArgumentException( 'Cannot memoize unnamed closure' );
 		}
 
 		$this->callable = $callable;

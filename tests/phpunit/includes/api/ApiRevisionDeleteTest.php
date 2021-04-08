@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Tests for action=revisiondelete
@@ -137,7 +138,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$block->setRestrictions( [
 			new PageRestriction( 0, Title::newFromText( self::$page )->getArticleID() )
 		] );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		$revid = array_shift( $this->revs );
 

@@ -9,6 +9,12 @@
 	background-color: #fdf1d1;
 }
 
+.mw-destfile-warning:after {
+	content: '';
+	clear: both;
+	display: block;
+}
+
 p.mw-upload-editlicenses {
 	font-size: 90%;
 	text-align: right;

@@ -22,7 +22,6 @@
 
 require_once __DIR__ . '/Maintenance.php';
 
-use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 
 class BlockUsers extends Maintenance {
@@ -34,9 +33,10 @@ class BlockUsers extends Maintenance {
 			"Blocks a list of usernames. Can use STDIN or the file argument.\n\n" .
 			'Note, this is probably most useful when dealing with spammers, with a ' .
 			"list you've generated with an SQL query or similar.\n\n" .
-			'All users are hard blocked, auto blocked from any current and subsequent IP ' .
-			'addresses, email disabled, unable to write to their user page and unable to ' .
-			'create further accounts with no expiry to this block.'
+			'By default, all users are hard blocked, auto blocked from any current and subsequent ' .
+			'IP addresses, email disabled, unable to write to their user page and unable to ' .
+			'create further accounts with no expiry to this block. You can change the expiry ' .
+			'with --expiry parameter.'
 		);
 
 		$this->addArg(
@@ -48,7 +48,7 @@ class BlockUsers extends Maintenance {
 		$this->addOption(
 			'performer',
 			'User to make the blocks',
-			true,
+			false,
 			true
 		);
 
@@ -65,121 +65,118 @@ class BlockUsers extends Maintenance {
 			false,
 			false
 		);
-	}
 
-	public function execute() {
-		$performerName = $this->getOption( 'performer' );
-		$performer = User::newFromName( $performerName );
+		$this->addOption(
+			'expiry',
+			'Expiry of your block',
+			false,
+			true
+		);
 
-		if ( !$performer ) {
-			$this->fatalError( "Username '{$performerName}' isn't valid.\n" );
-		}
+		$this->addOption(
+			'unblock',
+			'Should this unblock?',
+			false,
+			false
+		);
 
-		if ( !$performer->getId() ) {
-			$this->fatalError( "User '{$performerName}' doesn't exist.\n" );
-		}
+		$this->addOption(
+			'allow-createaccount',
+			'Allow account creation for blocked IPs',
+			false
+		);
 
-		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( !$permManager->userHasRight( $performer, 'block' ) ) {
-			$this->fatalError( "User '{$performerName}' doesn't have blocking rights.\n" );
-		}
+		$this->addOption(
+			'allow-email',
+			'Allow blocked accounts to send emails',
+			false
+		);
 
-		$reblock = $this->hasOption( 'reblock' );
+		$this->addOption(
+			'allow-talkedit',
+			'Allow blocked accounts to edit their own talk page',
+			false
+		);
 
-		$users = null;
-		if ( $this->hasArg( 0 ) ) {
-			$users = explode(
-				"\n",
-				trim( file_get_contents( $this->getArg( 0 ) ) )
-			);
-		} else {
-			$stdin = $this->getStdin();
-			$users = [];
-			while ( !feof( $stdin ) ) {
-				$name = trim( fgets( $stdin ) );
-				if ( $name ) {
-					$users[] = $name;
-				}
-			}
-		}
+		$this->addOption(
+			'disable-hardblock',
+			'Don\'t block logged in accounts from a blocked IP address',
+			false
+		);
 
-		$this->blockUsers(
-			$users,
-			$performer,
-			$this->getOption( 'reason', '' ),
-			$reblock
+		$this->addOption(
+			'disable-autoblock',
+			'Don\'t autoblock IP addresses used by the accounts',
+			false
 		);
 	}
 
-	/**
-	 * @param string[] $users
-	 * @param User $performer
-	 * @param string $reason
-	 * @param bool $reblock
-	 * @throws MWException
-	 */
-	private function blockUsers( $users, $performer, $reason, $reblock ) {
-		foreach ( $users as $name ) {
-			$user = User::newFromName( $name );
+	public function execute() {
+		$performerName = $this->getOption( 'performer', false );
+		$reason = $this->getOption( 'reason', '' );
+		$unblocking = $this->getOption( 'unblock', false );
+		$reblock = $this->hasOption( 'reblock' );
+		$expiry = $this->getOption( 'expiry', 'indefinite' );
 
-			// User is invalid, skip
-			if ( !$user || !$user->getId() ) {
-				$this->output( "Blocking '{$name}' skipped (user doesn't exist or is invalid).\n" );
+		$performer = null;
+		if ( $performerName ) {
+			$performer = User::newFromName( $performerName );
+		} else {
+			$performer = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+		}
+
+		if ( $performer === null ) {
+			$this->fatalError( "Unable to parse performer's username" );
+		}
+
+		if ( $this->hasArg( 0 ) ) {
+			$file = fopen( $this->getArg( 0 ), 'r' );
+		} else {
+			$file = $this->getStdin();
+		}
+
+		# Setup
+		if ( !$file ) {
+			$this->fatalError( "Unable to read file, exiting" );
+		}
+
+		# Handle each entry
+		$blockUserFactory = MediaWikiServices::getInstance()->getBlockUserFactory();
+		$unblockUserFactory = MediaWikiServices::getInstance()->getUnblockUserFactory();
+		$action = $unblocking ? "Unblocking" : "Blocking";
+		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
+			$line = trim( fgets( $file ) );
+			if ( $line == '' ) {
 				continue;
 			}
 
-			$priorBlock = DatabaseBlock::newFromTarget( $user );
-			if ( $priorBlock === null ) {
-				$block = new DatabaseBlock();
-			} elseif ( $reblock ) {
-				$block = clone $priorBlock;
+			if ( $unblocking ) {
+				$res = $unblockUserFactory->newUnblockUser(
+					$line,
+					$performer,
+					$reason
+				)->unblockUnsafe();
 			} else {
-				$this->output( "Blocking '{$name}' skipped (user already blocked).\n" );
-				continue;
+				$res = $blockUserFactory->newBlockUser(
+					$line,
+					$performer,
+					$expiry,
+					$reason,
+					[
+						'isCreateAccountBlocked' => !$this->hasOption( 'allow-createaccount' ),
+						'isEmailBlocked' => !$this->hasOption( 'allow-email' ),
+						'isUserTalkEditBlocked' => !$this->hasOption( 'allow-talkedit' ),
+						'isHardBlock' => !$this->hasOption( 'disable-hardblock' ),
+						'isAutoblocking' => !$this->hasOption( 'disable-autoblock' ),
+					]
+				)->placeBlockUnsafe( $reblock );
 			}
 
-			$block->setTarget( $name );
-			$block->setBlocker( $performer );
-			$block->setReason( $reason );
-			$block->isHardblock( true );
-			$block->isAutoblocking( true );
-			$block->isCreateAccountBlocked( true );
-			$block->isEmailBlocked( true );
-			$block->isUsertalkEditAllowed( false );
-			$block->setExpiry( SpecialBlock::parseExpiryInput( 'infinity' ) );
-
-			if ( $priorBlock === null ) {
-				$success = $block->insert();
+			if ( $res->isOK() ) {
+				$this->output( "{$action} '{$line}' succeeded.\n" );
 			} else {
-				$success = $block->update();
-			}
-
-			if ( $success ) {
-				// Fire any post block hooks
-				$this->getHookRunner()->onBlockIpComplete( $block, $performer, $priorBlock );
-				// Log it only if the block was successful
-				$flags = [
-					'nocreate',
-					'noemail',
-					'nousertalk',
-				];
-				$logParams = [
-					'5::duration' => 'indefinite',
-					'6::flags' => implode( ',', $flags ),
-				];
-
-				$logEntry = new ManualLogEntry( 'block', 'block' );
-				$logEntry->setTarget( Title::makeTitle( NS_USER, $name ) );
-				$logEntry->setComment( $reason );
-				$logEntry->setPerformer( $performer );
-				$logEntry->setParameters( $logParams );
-				$blockIds = array_merge( [ $success['id'] ], $success['autoIds'] );
-				$logEntry->setRelations( [ 'ipb_id' => $blockIds ] );
-				$logEntry->publish( $logEntry->insert() );
-
-				$this->output( "Blocking '{$name}' succeeded.\n" );
-			} else {
-				$this->output( "Blocking '{$name}' failed.\n" );
+				$errorsText = $res->getMessage()->text();
+				$this->output( "{$action} '{$line}' failed ({$errorsText}).\n" );
 			}
 		}
 	}

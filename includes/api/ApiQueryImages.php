@@ -28,6 +28,10 @@
  */
 class ApiQueryImages extends ApiQueryGeneratorBase {
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'im' );
 	}
@@ -85,7 +89,7 @@ class ApiQueryImages extends ApiQueryGeneratorBase {
 			$images = [];
 			foreach ( $params['images'] as $img ) {
 				$title = Title::newFromText( $img );
-				if ( !$title || $title->getNamespace() != NS_FILE ) {
+				if ( !$title || $title->getNamespace() !== NS_FILE ) {
 					$this->addWarning( [ 'apiwarn-notfile', wfEscapeWikiText( $img ) ] );
 				} else {
 					$images[] = $title->getDBkey();

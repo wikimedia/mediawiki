@@ -43,7 +43,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Returns a non-persistent backend that thinks it has at least one session active
 	 * @param User|null $user
-	 * @param string $id
+	 * @param string|null $id
 	 * @return SessionBackend
 	 */
 	protected function getBackend( User $user = null, $id = null ) {
@@ -644,7 +644,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
+		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
 		// (also persists if forced)
@@ -670,7 +670,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
+		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
 		// (also persists if metadata dirty)
@@ -695,7 +695,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
+		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
 		// Not marked dirty, but dirty data
@@ -720,7 +720,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsArray( $metadata );
 		$this->assertArrayHasKey( '???', $metadata );
 		$this->assertSame( '!!!', $metadata['???'] );
-		$this->assertNotSame( false, $this->store->getSessionFromBackend( self::SESSIONID ),
+		$this->assertIsArray( $this->store->getSessionFromBackend( self::SESSIONID ),
 			'making sure it did save to backend' );
 
 		// Bad hook
@@ -729,7 +729,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			->setMethods( [ 'onSessionMetadata' ] )->getMock();
 		$mockHook->expects( $this->any() )->method( 'onSessionMetadata' )
 			->will( $this->returnCallback(
-				function ( SessionBackend $backend, array &$metadata, array $requests ) {
+				static function ( SessionBackend $backend, array &$metadata, array $requests ) {
 					$metadata['userId']++;
 				}
 			) );
@@ -857,7 +857,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );
@@ -897,7 +897,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );
@@ -933,7 +933,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			$rProp = new \ReflectionProperty( PHPSessionHandler::class, 'instance' );
 			$rProp->setAccessible( true );
 			$handler = TestingAccessWrapper::newFromObject( $rProp->getValue() );
-			$resetHandler = new \Wikimedia\ScopedCallback( function () use ( $handler ) {
+			$resetHandler = new \Wikimedia\ScopedCallback( static function () use ( $handler ) {
 				session_write_close();
 				$handler->enable = false;
 			} );

@@ -7,6 +7,9 @@ use Revision;
 use Title;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ParserFetchTemplate" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35
  * @ingroup Hooks
  */
@@ -15,6 +18,7 @@ interface ParserFetchTemplateHook {
 	 * This hook is called when the parser fetches a template.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.35, use BeforeParserFetchTemplateRevisionRecordHook
 	 *
 	 * @param Parser|bool $parser Parser object or false
 	 * @param Title $title Title object of the template to be fetched

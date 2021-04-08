@@ -115,20 +115,27 @@ class ApiQueryLangLinks extends ApiQueryBase {
 				$this->setContinueEnumParameter( 'continue', "{$row->ll_from}|{$row->ll_lang}" );
 				break;
 			}
-			$entry = [ 'lang' => $row->ll_lang ];
+
+			$languageNameMap = $this->getConfig()->get( 'InterlanguageLinkCodeMap' );
+			$displayLanguageCode = $languageNameMap[ $row->ll_lang ] ?? $row->ll_lang;
+
+			// This is potentially risky and confusing (request `no`, but get `nb` in the result).
+			$entry = [ 'lang' => $displayLanguageCode ];
 			if ( isset( $prop['url'] ) ) {
 				$title = Title::newFromText( "{$row->ll_lang}:{$row->ll_title}" );
 				if ( $title ) {
 					$entry['url'] = wfExpandUrl( $title->getFullURL(), PROTO_CURRENT );
 				}
 			}
+
 			$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
+
 			if ( isset( $prop['langname'] ) ) {
 				$entry['langname'] = $languageNameUtils
-					->getLanguageName( $row->ll_lang, $params['inlanguagecode'] );
+					->getLanguageName( $displayLanguageCode, $params['inlanguagecode'] );
 			}
 			if ( isset( $prop['autonym'] ) ) {
-				$entry['autonym'] = $languageNameUtils->getLanguageName( $row->ll_lang );
+				$entry['autonym'] = $languageNameUtils->getLanguageName( $displayLanguageCode );
 			}
 			ApiResult::setContentValue( $entry, 'title', $row->ll_title );
 			$fit = $this->addPageSubItem( $row->ll_from, $entry );

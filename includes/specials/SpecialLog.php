@@ -21,7 +21,10 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\User\ActorNormalization;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\TimestampException;
 
 /**
@@ -30,8 +33,30 @@ use Wikimedia\Timestamp\TimestampException;
  * @ingroup SpecialPage
  */
 class SpecialLog extends SpecialPage {
-	public function __construct() {
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var ActorNormalization */
+	private $actorNormalization;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param ActorNormalization $actorNormalization
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
+		ActorNormalization $actorNormalization
+	) {
 		parent::__construct( 'Log' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
+		$this->actorNormalization = $actorNormalization;
 	}
 
 	public function execute( $par ) {
@@ -94,9 +119,7 @@ class SpecialLog extends SpecialPage {
 		if ( !LogPage::isLogType( $type ) ) {
 			$opts->setValue( 'type', '' );
 		} elseif ( isset( $logRestrictions[$type] )
-			&& !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), $logRestrictions[$type] )
+			&& !$this->getAuthority()->isAllowed( $logRestrictions[$type] )
 		) {
 			throw new PermissionsError( $logRestrictions[$type] );
 		}
@@ -104,10 +127,11 @@ class SpecialLog extends SpecialPage {
 		# Handle type-specific inputs
 		$qc = [];
 		if ( $opts->getValue( 'type' ) == 'suppress' ) {
+			$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 			$offenderName = $opts->getValue( 'offender' );
-			$offender = empty( $offenderName ) ? null : User::newFromName( $offenderName, false );
-			if ( $offender ) {
-				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => (string)$offender->getActorId() ];
+			$offenderId = $this->actorNormalization->findActorIdByName( $offenderName, $dbr );
+			if ( $offenderId ) {
+				$qc = [ 'ls_field' => 'target_author_actor', 'ls_value' => $offenderId ];
 			}
 		} else {
 			// Allow extensions to add relations to their search types
@@ -118,7 +142,7 @@ class SpecialLog extends SpecialPage {
 		# Some log types are only for a 'User:' title but we might have been given
 		# only the username instead of the full title 'User:username'. This part try
 		# to lookup for a user by that name and eventually fix user input. See T3697.
-		if ( in_array( $opts->getValue( 'type' ), self::getLogTypesOnUser() ) ) {
+		if ( in_array( $opts->getValue( 'type' ), self::getLogTypesOnUser( $this->getHookRunner() ) ) ) {
 			# ok we have a type of log which expect a user title.
 			$target = Title::newFromText( $opts->getValue( 'page' ) );
 			if ( $target && $target->getNamespace() === NS_MAIN ) {
@@ -138,9 +162,12 @@ class SpecialLog extends SpecialPage {
 	 * Title user instead.
 	 *
 	 * @since 1.25
+	 * @since 1.36 Added $runner parameter
+	 *
+	 * @param HookRunner|null $runner
 	 * @return array
 	 */
-	public static function getLogTypesOnUser() {
+	public static function getLogTypesOnUser( HookRunner $runner = null ) {
 		static $types = null;
 		if ( $types !== null ) {
 			return $types;
@@ -151,7 +178,7 @@ class SpecialLog extends SpecialPage {
 			'rights',
 		];
 
-		Hooks::runner()->onGetLogTypesOnUser( $types );
+		( $runner ?? Hooks::runner() )->onGetLogTypesOnUser( $types );
 		return $types;
 	}
 
@@ -213,7 +240,10 @@ class SpecialLog extends SpecialPage {
 			$opts->getValue( 'day' ),
 			$opts->getValue( 'tagfilter' ),
 			$opts->getValue( 'subtype' ),
-			$opts->getValue( 'logid' )
+			$opts->getValue( 'logid' ),
+			$this->linkBatchFactory,
+			$this->loadBalancer,
+			$this->actorNormalization
 		);
 
 		$this->addHeader( $opts->getValue( 'type' ) );
@@ -221,7 +251,9 @@ class SpecialLog extends SpecialPage {
 		# Set relevant user
 		if ( $pager->getPerformer() ) {
 			$performerUser = User::newFromName( $pager->getPerformer(), false );
-			$this->getSkin()->setRelevantUser( $performerUser );
+			if ( $performerUser ) {
+				$this->getSkin()->setRelevantUser( $performerUser );
+			}
 		}
 
 		# Show form options
@@ -256,11 +288,9 @@ class SpecialLog extends SpecialPage {
 	}
 
 	private function getActionButtons( $formcontents ) {
-		$user = $this->getUser();
-		$canRevDelete = MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAllRights( $user, 'deletedhistory', 'deletelogentry' );
-		$showTagEditUI = ChangeTags::showTagEditingUI( $user );
+		$canRevDelete = $this->getAuthority()
+			->isAllowedAll( 'deletedhistory', 'deletelogentry' );
+		$showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
 		# If the user doesn't have the ability to delete log entries nor edit tags,
 		# don't bother showing them the button(s).
 		if ( !$canRevDelete && !$showTagEditUI ) {

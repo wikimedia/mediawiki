@@ -84,7 +84,7 @@ class LBFactorySingle extends LBFactory {
 	}
 
 	public function getAllMainLBs() {
-		return [ 'DEFAULT' => $this->lb ];
+		return [ self::CLUSTER_MAIN_DEFAULT => $this->lb ];
 	}
 
 	public function getAllExternalLBs() {
@@ -95,5 +95,9 @@ class LBFactorySingle extends LBFactory {
 		if ( isset( $this->lb ) ) { // may not be set during _destruct()
 			$callback( $this->lb, ...$params );
 		}
+	}
+
+	public function __destruct() {
+		// do nothing since the connection was injected
 	}
 }

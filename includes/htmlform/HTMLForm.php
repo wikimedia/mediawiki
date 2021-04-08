@@ -115,6 +115,13 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
  *                             The expressions will be given to a JavaScript frontend
  *                             module which will continually update the field's
  *                             visibility.
+ *    'section'                -- A string name for the section of the form to which the field
+ *                             belongs. Subsections may be added using the separator '/', e.g.:
+ *                               'section' => 'section1/subsection1'
+ *                             More levels may be added, e.g.:
+ *                               'section' => 'section1/subsection2/subsubsection1'
+ *                             The message key for a section or subsection header is built from
+ *                             its name and the form's message prefix (if present).
  *
  * Since 1.20, you can chain mutators to ease the form generation:
  * @par Example:
@@ -129,13 +136,11 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
  * method calls done after that would simply not be part of the form :(
  *
  * @stable to extend
- *
- * @todo Document 'section' / 'subsection' stuff
  */
 class HTMLForm extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
-	// A mapping of 'type' inputs onto standard HTMLFormField subclasses
+	/** @var string[] A mapping of 'type' inputs onto standard HTMLFormField subclasses */
 	public static $typeMappings = [
 		'api' => HTMLApiField::class,
 		'text' => HTMLTextField::class,
@@ -149,6 +154,7 @@ class HTMLForm extends ContextSource {
 		'check' => HTMLCheckField::class,
 		'toggle' => HTMLCheckField::class,
 		'int' => HTMLIntField::class,
+		'file' => HTMLFileField::class,
 		'float' => HTMLFloatField::class,
 		'info' => HTMLInfoField::class,
 		'selectorother' => HTMLSelectOrOtherField::class,
@@ -176,6 +182,7 @@ class HTMLForm extends ContextSource {
 		'url' => HTMLTextField::class,
 		'title' => HTMLTitleTextField::class,
 		'user' => HTMLUserTextField::class,
+		'tagmultiselect' => HTMLTagMultiselectField::class,
 		'usersmultiselect' => HTMLUsersMultiselectField::class,
 		'titlesmultiselect' => HTMLTitlesMultiselectField::class,
 		'namespacesmultiselect' => HTMLNamespacesMultiselectField::class,
@@ -273,6 +280,7 @@ class HTMLForm extends ContextSource {
 	 *
 	 * Subclasses may set this to false to render subsections after fields
 	 * instead.
+	 * @var bool
 	 */
 	protected $mSubSectionBeforeFields = true;
 
@@ -566,7 +574,7 @@ class HTMLForm extends ContextSource {
 
 	/**
 	 * Try submitting, with edit token check first
-	 * @return Status|bool
+	 * @return bool|string|array|Status As documented for HTMLForm::trySubmit
 	 */
 	public function tryAuthorizedSubmit() {
 		$result = false;
@@ -582,7 +590,7 @@ class HTMLForm extends ContextSource {
 			$tokenOkay = true; // no session check needed
 		} elseif ( $this->getRequest()->wasPosted() ) {
 			$editToken = $this->getRequest()->getVal( 'wpEditToken' );
-			if ( $this->getUser()->isLoggedIn() || $editToken !== null ) {
+			if ( $this->getUser()->isRegistered() || $editToken !== null ) {
 				// Session tokens for logged-out users have no security value.
 				// However, if the user gave one, check it in order to give a nice
 				// "session expired" error instead of "permission denied" or such.
@@ -998,9 +1006,8 @@ class HTMLForm extends ContextSource {
 	 *  - attribs: (array, optional) Additional HTML attributes.
 	 *  - flags: (string|string[], optional) OOUI flags.
 	 *  - framed: (boolean=true, optional) OOUI framed attribute.
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{name:string,value:string,label-message?:string|string[]|MessageSpecifier,label?:string,label-raw?:string,id?:string,attribs?:array,flags?:string|string[],framed?:bool} $data
-	 * @codingStandardsIgnoreEnd
 	 * @return HTMLForm $this for chaining calls (since 1.20)
 	 */
 	public function addButton( $data ) {
@@ -1083,6 +1090,11 @@ class HTMLForm extends ContextSource {
 		$this->getOutput()->preventClickjacking();
 		$this->getOutput()->addModules( 'mediawiki.htmlform' );
 		$this->getOutput()->addModuleStyles( 'mediawiki.htmlform.styles' );
+
+		if ( $this->mCollapsible ) {
+			// Preload jquery.makeCollapsible for mediawiki.htmlform
+			$this->getOutput()->addModules( 'jquery.makeCollapsible' );
+		}
 
 		$html = ''
 			. $this->getErrorsOrWarnings( $submitResult, 'error' )
@@ -1191,8 +1203,7 @@ class HTMLForm extends ContextSource {
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
 
-		foreach ( $this->mHiddenFields as $data ) {
-			list( $value, $attribs ) = $data;
+		foreach ( $this->mHiddenFields as [ $value, $attribs ] ) {
 			$html .= Html::hidden( $attribs['name'], $value, $attribs ) . "\n";
 		}
 
@@ -1337,10 +1348,12 @@ class HTMLForm extends ContextSource {
 					->setInterfaceMessageFlag( true )
 					->parse();
 			}
-		} elseif ( is_array( $elements ) && $elementsType === 'error' ) {
-			$elementstr = $this->formatErrors( $elements );
 		} elseif ( $elementsType === 'error' ) {
-			$elementstr = $elements;
+			if ( is_array( $elements ) ) {
+				$elementstr = $this->formatErrors( $elements );
+			} elseif ( $elements && $elements !== true ) {
+				$elementstr = (string)$elements;
+			}
 		}
 
 		return $elementstr
@@ -1629,7 +1642,6 @@ class HTMLForm extends ContextSource {
 	}
 
 	/**
-	 * Get the title
 	 * @return Title
 	 */
 	public function getTitle() {
@@ -1803,9 +1815,7 @@ class HTMLForm extends ContextSource {
 			$classes[] = 'mw-htmlform-nolabel';
 		}
 
-		$attribs = [
-			'class' => implode( ' ', $classes ),
-		];
+		$attribs = [ 'class' => $classes ];
 
 		if ( $sectionName ) {
 			$attribs['id'] = Sanitizer::escapeIdForAttribute( $sectionName );

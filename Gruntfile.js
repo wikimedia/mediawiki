@@ -38,6 +38,9 @@ module.exports = function ( grunt ) {
 			paramvalidator: 'includes/libs/ParamValidator/i18n/'
 		},
 		stylelint: {
+			options: {
+				reportNeedlessDisables: true
+			},
 			src: '{resources/src,mw-config}/**/*.{css,less,vue}'
 		},
 		svgmin: {

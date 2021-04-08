@@ -121,7 +121,7 @@ class RollbackAction extends FormAction {
 			$request->getVal( 'token' ),
 			$request->getBool( 'bot' ),
 			$data,
-			$this->getUser()
+			$this->getContext()->getAuthority()
 		);
 
 		if ( in_array( [ 'actionthrottledtext' ], $errors ) ) {
@@ -184,14 +184,16 @@ class RollbackAction extends FormAction {
 				->parseAsBlock()
 		);
 
-		if ( $user->getBoolOption( 'watchrollback' ) ) {
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+
+		if ( $userOptionsLookup->getBoolOption( $user, 'watchrollback' ) ) {
 			$user->addWatch( $this->getTitle(), User::IGNORE_USER_RIGHTS );
 		}
 
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
 
 		if ( !$request->getBool( 'hidediff', false ) &&
-			!$this->getUser()->getBoolOption( 'norollbackdiff' )
+			!$userOptionsLookup->getBoolOption( $this->getUser(), 'norollbackdiff' )
 		) {
 			$contentModel = $current->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
 				->getModel();
@@ -225,7 +227,7 @@ class RollbackAction extends FormAction {
 			$trxLimits = $this->context->getConfig()->get( 'TrxProfilerLimits' );
 			$trxProfiler = Profiler::instance()->getTransactionProfiler();
 			$trxProfiler->redefineExpectations( $trxLimits['POST'], $fname );
-			DeferredUpdates::addCallableUpdate( function () use ( $trxProfiler, $trxLimits, $fname
+			DeferredUpdates::addCallableUpdate( static function () use ( $trxProfiler, $trxLimits, $fname
 			) {
 				$trxProfiler->redefineExpectations( $trxLimits['PostSend-POST'], $fname );
 			} );

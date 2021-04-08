@@ -6,7 +6,7 @@
 --
 CREATE TABLE /*_*/ip_changes (
   -- Foreign key to the revision table, also serves as the unique primary key
-  ipc_rev_id int unsigned NOT NULL PRIMARY KEY DEFAULT '0',
+  ipc_rev_id int unsigned NOT NULL PRIMARY KEY DEFAULT 0,
 
   -- The timestamp of the revision
   ipc_rev_timestamp binary(14) NOT NULL DEFAULT '',

@@ -11,7 +11,7 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 			$this->createHookContainer(),
 			0, false, 86400 );
 		$title = $this->createMock( Title::class );
-		$title->method( 'getInternalURL' )->will( $this->returnCallback( function ( $query = '' ) {
+		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
 			return 'https://test/?title=Example' . ( $query !== '' ? "&$query" : '' );
 		} ) );
 
@@ -32,7 +32,7 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 		);
 
 		$title = $this->createMock( Title::class );
-		$title->method( 'getInternalURL' )->will( $this->returnCallback( function ( $query = '' ) {
+		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
 			return 'https://test/?title=User:Example/foo.js' . ( $query !== '' ? "&$query" : '' );
 		} ) );
 		$title->method( 'isUserJsConfigPage' )->willReturn( true );
@@ -44,6 +44,21 @@ class HtmlCacheUpdaterTest extends MediaWikiUnitTestCase {
 			],
 			$htmlCache->getUrls( $title ),
 			'all urls for a user js page'
+		);
+
+		$title = $this->createMock( Title::class );
+		$title->method( 'getInternalURL' )->will( $this->returnCallback( static function ( $query = '' ) {
+			return 'https://test/?title=MediaWiki:Example.js' . ( $query !== '' ? "&$query" : '' );
+		} ) );
+		$title->method( 'isSiteJsConfigPage' )->willReturn( true );
+		$this->assertEquals(
+			[
+				'https://test/?title=MediaWiki:Example.js',
+				'https://test/?title=MediaWiki:Example.js&action=history',
+				'https://test/?title=MediaWiki:Example.js&action=raw&ctype=text/javascript',
+			],
+			$htmlCache->getUrls( $title ),
+			'all urls for a site js page'
 		);
 	}
 }

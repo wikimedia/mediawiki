@@ -30,13 +30,20 @@ use MediaWiki\Logger\LoggerFactory;
  * @ingroup Exception
  */
 class HttpError extends MWException {
-	private $httpCode, $header, $content;
+	/** @var int */
+	private $httpCode;
+	/** @var string|Message|null */
+	private $header;
+	/** @var string|Message */
+	private $content;
 
 	/**
 	 * @stable to call
 	 * @param int $httpCode HTTP status code to send to the client
 	 * @param string|Message $content Content of the message
 	 * @param string|Message|null $header Content of the header (\<title\> and \<h1\>)
+	 * @param-taint $content tainted
+	 * @param-taint $header tainted
 	 */
 	public function __construct( $httpCode, $content, $header = null ) {
 		parent::__construct( $content );

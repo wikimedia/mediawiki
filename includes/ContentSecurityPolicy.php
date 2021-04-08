@@ -395,7 +395,7 @@ class ContentSecurityPolicy {
 	 * Get additional host names for the wiki (e.g. if static content loaded elsewhere)
 	 *
 	 * @note These are general load sources, not script sources
-	 * @return array Array of other urls for wiki (for use in default-src)
+	 * @return string[] Array of other urls for wiki (for use in default-src)
 	 */
 	private function getAdditionalSelfUrls() {
 		// XXX on a foreign repo, the included description page can have anything on it,
@@ -410,7 +410,7 @@ class ContentSecurityPolicy {
 		// img-src unspecified they should be in default-src. Similarly,
 		// the DescriptionStylesheetUrl only needs to be in style-src
 		// (or default-src if style-src unspecified).
-		$callback = function ( $repo, &$urls ) {
+		$callback = static function ( $repo, &$urls ) {
 			$urls[] = $repo->getZoneUrl( 'public' );
 			$urls[] = $repo->getZoneUrl( 'transcoded' );
 			$urls[] = $repo->getZoneUrl( 'thumb' );

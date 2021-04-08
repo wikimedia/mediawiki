@@ -2,10 +2,7 @@
 
 use Wikimedia\ScopedCallback;
 
-require __DIR__ . '/../../maintenance/Maintenance.php';
-
-// Make RequestContext::resetMain() happy
-define( 'MW_PARSER_TEST', 1 );
+require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 class ParserFuzzTest extends Maintenance {
 	private $parserTest;
@@ -24,6 +21,9 @@ class ParserFuzzTest extends Maintenance {
 	}
 
 	public function finalSetup() {
+		// Make RequestContext::resetMain() happy
+		define( 'MW_PARSER_TEST', 1 );
+
 		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
 	}
@@ -158,6 +158,8 @@ class ParserFuzzTest extends Maintenance {
 
 	/**
 	 * Estimate the size of the input variable
+	 * @param mixed $var
+	 * @return int
 	 */
 	public function guessVarSize( $var ) {
 		$length = 0;
@@ -196,4 +198,4 @@ class ParserFuzzTest extends Maintenance {
 }
 
 $maintClass = ParserFuzzTest::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

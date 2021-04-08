@@ -26,7 +26,6 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 
 	private function newHandler() {
 		return new MediaLinksHandler(
-			$this->makeMockPermissionManager(),
 			MediaWikiServices::getInstance()->getDBLoadBalancer(),
 			$this->makeMockRepoGroup()
 		);

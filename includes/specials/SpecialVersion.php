@@ -24,7 +24,6 @@
  */
 
 use MediaWiki\ExtensionInfo;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Give information about the version of MediaWiki, PHP, the DB and extensions
@@ -48,8 +47,15 @@ class SpecialVersion extends SpecialPage {
 	 */
 	protected static $extensionTypes = false;
 
-	public function __construct() {
+	/** @var Parser */
+	private $parser;
+
+	/**
+	 * @param Parser $parser
+	 */
+	public function __construct( Parser $parser ) {
 		parent::__construct( 'Version' );
+		$this->parser = $parser;
 	}
 
 	/**
@@ -244,6 +250,7 @@ class SpecialVersion extends SpecialPage {
 			'Timo Tijhof', 'Daniel Kinzler', 'Jeroen De Dauw', 'Brad Jorsch',
 			'Bartosz Dziewoński', 'Ed Sanders', 'Moriel Schottlender',
 			'Kunal Mehta', 'James D. Forrester', 'Brian Wolff', 'Adam Shorland',
+			'DannyS712',
 			$othersLink, $translatorsLink
 		];
 
@@ -585,7 +592,7 @@ class SpecialVersion extends SpecialPage {
 				// in their proper section
 				continue;
 			}
-			$authors = array_map( function ( $arr ) {
+			$authors = array_map( static function ( $arr ) {
 				// If a homepage is set, link to it
 				if ( isset( $arr['homepage'] ) ) {
 					return "[{$arr['homepage']} {$arr['name']}]";
@@ -629,7 +636,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserTags() {
-		$tags = MediaWikiServices::getInstance()->getParser()->getTags();
+		$tags = $this->parser->getTags();
 
 		if ( count( $tags ) ) {
 			$out = Html::rawElement(
@@ -638,6 +645,7 @@ class SpecialVersion extends SpecialPage {
 					'class' => 'mw-headline plainlinks',
 					'id' => 'mw-version-parser-extensiontags',
 				],
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Using false for escape is safe
 				Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Tag_extensions',
 					$this->msg( 'version-parser-extensiontags' )->parse(),
@@ -645,7 +653,7 @@ class SpecialVersion extends SpecialPage {
 				)
 			);
 
-			array_walk( $tags, function ( &$value ) {
+			array_walk( $tags, static function ( &$value ) {
 				// Bidirectional isolation improves readability in RTL wikis
 				$value = Html::element(
 					'bdi',
@@ -671,7 +679,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return string HTML output
 	 */
 	protected function getParserFunctionHooks() {
-		$fhooks = MediaWikiServices::getInstance()->getParser()->getFunctionHooks();
+		$fhooks = $this->parser->getFunctionHooks();
 		if ( count( $fhooks ) ) {
 			$out = Html::rawElement(
 				'h2',
@@ -679,6 +687,7 @@ class SpecialVersion extends SpecialPage {
 					'class' => 'mw-headline plainlinks',
 					'id' => 'mw-version-parser-function-hooks',
 				],
+				// @phan-suppress-next-line SecurityCheck-DoubleEscaped Using false for escape is safe
 				Linker::makeExternalLink(
 					'https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Parser_functions',
 					$this->msg( 'version-parser-function-hooks' )->parse(),
@@ -800,7 +809,7 @@ class SpecialVersion extends SpecialPage {
 					$this->coreId = $coreHeadSHA1;
 				}
 			}
-			$cache = wfGetCache( CACHE_ANYTHING );
+			$cache = ObjectCache::getInstance( CACHE_ANYTHING );
 			$memcKey = $cache->makeKey(
 				'specialversion-ext-version-text', $extension['path'], $this->coreId
 			);
@@ -831,7 +840,7 @@ class SpecialVersion extends SpecialPage {
 			if ( $vcsLink ) {
 				$vcsVerString = Linker::makeExternalLink(
 					$vcsLink,
-					$this->msg( 'version-version', $vcsVersion ),
+					$this->msg( 'version-version', $vcsVersion )->text(),
 					true,
 					'',
 					[ 'class' => 'mw-version-ext-vcs-version' ]

@@ -14,6 +14,7 @@
 			"ترجمان05",
 			"ديفيد",
 			"زكريا",
+			"علاء",
 			"محمد أحمد عبد الفتاح",
 			"مشعل الحربي"
 		]
@@ -36,5 +37,6 @@
 	"ooui-selectfile-not-supported": "اختيار الملفات غير مدعوم",
 	"ooui-selectfile-placeholder": "لم يتم اختيار أي ملف",
 	"ooui-selectfile-dragdrop-placeholder": "اترك الملف هنا",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "أسقط الملفات هنا",
 	"ooui-field-help": "مساعدة"
 }

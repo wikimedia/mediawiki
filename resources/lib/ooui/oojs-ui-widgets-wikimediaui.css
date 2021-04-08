@@ -1,25 +1,31 @@
 /*!
- * OOUI v0.39.3
+ * OOUI v0.41.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2020 OOUI Team and other contributors.
+ * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-07-10T06:32:25Z
+ * Date: 2021-03-12T21:47:58Z
  */
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ).oo-ui-widget {
   cursor: move;
   cursor: url(images/grab.cur );
+  /* stylelint-disable plugin/no-unsupported-browser-features */
   cursor: -webkit-grab;
   cursor: -moz-grab;
   cursor: grab;
+  /* stylelint-enable plugin/no-unsupported-browser-features */
 }
 .oo-ui-draggableElement-handle:not( .oo-ui-draggableElement-undraggable ):active {
   cursor: url(images/grabbing.cur );
+  /* stylelint-disable plugin/no-unsupported-browser-features */
   cursor: -webkit-grabbing;
   cursor: -moz-grabbing;
   cursor: grabbing;
+  /* stylelint-enable plugin/no-unsupported-browser-features */
 }
 .oo-ui-draggableElement-handle.oo-ui-widget-disabled,
 .oo-ui-widget-disabled .oo-ui-draggableElement-handle {
@@ -32,8 +38,14 @@
   display: inline-block;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-bookletLayout-stackLayout.oo-ui-stackLayout-continuous > .oo-ui-panelLayout-scrollable {
   overflow: hidden;
 }
@@ -70,6 +82,8 @@
   border-right: 1px solid #c8ccd1;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-indexLayout {
   /* Use two classes to ensure increased specificity over menuLayout */
 }
@@ -93,6 +107,8 @@
   top: 2.64285714em;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-menuLayout {
   top: 0;
   left: 0;
@@ -191,13 +207,21 @@
   bottom: 0 !important;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-stackLayout-continuous > .oo-ui-panelLayout {
   display: block;
   position: relative;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonSelectWidget {
   display: inline-block;
   border-radius: 2px;
@@ -245,6 +269,8 @@
   z-index: -1;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-buttonOptionWidget {
   display: inline-block;
 }
@@ -252,7 +278,11 @@
   cursor: default;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toggleButtonWidget {
   margin-right: 8px;
 }
@@ -267,6 +297,8 @@
   opacity: 1;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-toggleSwitchWidget {
   position: relative;
   display: inline-block;
@@ -409,6 +441,8 @@
   background-color: #fff;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-selectFileWidget-dropTarget {
   position: relative;
   cursor: default;
@@ -426,6 +460,7 @@
   left: 0.5em;
   background-position: center center;
   background-repeat: no-repeat;
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   background-size: contain;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileWidget-thumbnail > .oo-ui-selectFileWidget-noThumbnail-icon {
@@ -440,13 +475,15 @@
   display: block;
   height: 100%;
   width: auto;
-  margin-left: 8.815em;
   margin-right: 0;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileInputWidget-info > .oo-ui-inputWidget-input {
   border: 0;
   box-shadow: none;
   background: transparent;
+}
+.oo-ui-selectFileWidget-dropTarget.oo-ui-selectFileWidget-withThumbnail .oo-ui-selectFileInputWidget-info {
+  margin-left: 8.815em;
 }
 .oo-ui-selectFileWidget-dropTarget .oo-ui-selectFileInputWidget-label {
   display: block;
@@ -479,6 +516,7 @@
 }
 .oo-ui-selectFileWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget,
 .oo-ui-selectFileWidget.oo-ui-selectFileInputWidget-empty.oo-ui-widget-disabled.oo-ui-selectFileWidget-dropTarget .oo-ui-buttonElement-button {
+  /* stylelint-disable-next-line plugin/no-unsupported-browser-features */
   cursor: no-drop;
 }
 .oo-ui-selectFileWidget-dropTarget {
@@ -523,6 +561,8 @@
   border-color: #c8ccd1;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-outlineSelectWidget {
   height: 100%;
 }
@@ -530,13 +570,15 @@
   box-shadow: inset 0 0 0 2px #36c;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-outlineOptionWidget {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  padding: 0.85714286em 12px;
+  padding: 11px 12px;
   -webkit-transition: background-color 100ms, color 100ms;
   -moz-transition: background-color 100ms, color 100ms;
   transition: background-color 100ms, color 100ms;
@@ -578,6 +620,8 @@
   left: 4.429em;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-outlineControlsWidget {
   background-color: #fff;
 }
@@ -605,6 +649,8 @@
   /* stylelint-disable-line declaration-no-important */
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tabSelectWidget {
   text-align: left;
   overflow-x: auto;
@@ -650,6 +696,8 @@
   outline: 0;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tabOptionWidget {
   display: inline-block;
   -webkit-box-sizing: border-box;
@@ -672,8 +720,8 @@
 }
 .oo-ui-tabOptionWidget > .oo-ui-labelElement-label {
   color: inherit;
-  padding: 6px 5px;
-  line-height: 1.28571429em;
+  padding: 5px 5px;
+  line-height: 1.42857143em;
   text-decoration: inherit;
 }
 .oo-ui-tabSelectWidget-mobile .oo-ui-tabOptionWidget:last-child {
@@ -686,7 +734,7 @@
 }
 .oo-ui-tabSelectWidget-framed .oo-ui-tabOptionWidget .oo-ui-labelElement-label {
   border-bottom: 2px solid transparent;
-  padding: 6px 5px 4px;
+  padding: 5px 5px 3px;
   -webkit-transition: border-color 100ms;
   -moz-transition: border-color 100ms;
   transition: border-color 100ms;
@@ -737,6 +785,8 @@
   box-shadow: inset 0 0 0 2px #36c;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tagMultiselectWidget {
   display: inline-block;
   position: relative;
@@ -767,7 +817,7 @@
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-inlined .oo-ui-tagMultiselectWidget-handle {
   cursor: text;
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-content > input {
+.oo-ui-tagMultiselectWidget.oo-ui-widget-disabled .oo-ui-tagMultiselectWidget-group > input {
   display: none;
 }
 .oo-ui-tagMultiselectWidget-focusTrap {
@@ -782,7 +832,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  min-height: 2.28571429em;
+  min-height: 32px;
   margin-right: 8px;
   border: 1px solid #a2a9b1;
   border-radius: 2px;
@@ -792,7 +842,13 @@
 .oo-ui-tagMultiselectWidget-handle:last-child {
   margin-right: 0;
 }
-.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input {
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group {
+  display: inline-block;
+  max-width: 100%;
+  margin-top: 4px;
+  margin-left: -0.14285714em;
+}
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input {
   background-color: transparent;
   color: #000;
   -webkit-box-sizing: border-box;
@@ -800,43 +856,38 @@
   box-sizing: border-box;
   height: 2.14285714em;
   border: 0;
-  padding: 6px 0 6px 0.57142857em;
+  padding: 5px 0 5px 0.57142857em;
+  margin-top: -4px;
   font-family: inherit;
   font-size: inherit;
-  line-height: 1.28571429em;
+  line-height: 1.42857143em;
   vertical-align: top;
 }
-.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::-webkit-input-placeholder {
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input::-webkit-input-placeholder {
   color: #72777d;
   opacity: 1;
 }
-.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input:-ms-input-placeholder {
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input:-ms-input-placeholder {
   color: #72777d;
   opacity: 1;
 }
-.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::-moz-placeholder {
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input::-moz-placeholder {
   color: #72777d;
   opacity: 1;
 }
-.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input:-moz-placeholder {
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input:-moz-placeholder {
   color: #72777d;
   opacity: 1;
 }
-.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input::placeholder {
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input::placeholder {
   color: #72777d;
   opacity: 1;
 }
-.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content > input:focus {
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input:focus {
   outline: 0;
 }
-.oo-ui-tagMultiselectWidget-handle > .oo-ui-tagMultiselectWidget-content .oo-ui-tagMultiselectWidget-group:empty + input {
+.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group > input:first-child {
   margin-left: 0;
-}
-.oo-ui-tagMultiselectWidget-handle .oo-ui-tagMultiselectWidget-group {
-  display: inline-block;
-  max-width: 100%;
-  margin-top: 4px;
-  margin-left: -0.14285714em;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-iconElement .oo-ui-tagMultiselectWidget-handle {
   padding-left: 2.02857143em;
@@ -851,6 +902,15 @@
 .oo-ui-tagMultiselectWidget.oo-ui-indicatorElement .oo-ui-tagMultiselectWidget-handle > .oo-ui-indicatorElement-indicator {
   right: 0;
   margin: 0 0.775em;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-tagMultiselectWidget-outlined .oo-ui-tagMultiselectWidget-handle {
+  border-bottom: 0;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.oo-ui-tagMultiselectWidget.oo-ui-tagMultiselectWidget-outlined .oo-ui-inputWidget-input {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled {
   background-color: #fff;
@@ -875,17 +935,8 @@
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined {
   background-color: #f8f9fa;
 }
-.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .oo-ui-tagMultiselectWidget-handle {
-  border-bottom: 0;
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .oo-ui-tagItemWidget.oo-ui-widget-enabled {
   background-color: #fff;
-}
-.oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined .oo-ui-inputWidget-input {
-  border-top-left-radius: 0;
-  border-top-right-radius: 0;
 }
 .oo-ui-tagMultiselectWidget.oo-ui-widget-enabled.oo-ui-tagMultiselectWidget-outlined.oo-ui-flaggedElement-invalid .oo-ui-inputWidget-input {
   border-color: #d33;
@@ -906,7 +957,11 @@
   opacity: 0.15;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-tagItemWidget {
   position: relative;
   display: inline-block;
@@ -976,6 +1031,8 @@
 }
 .oo-ui-tagItemWidget.oo-ui-widget-enabled .oo-ui-buttonElement-button {
   display: block;
+  min-width: 20px;
+  min-height: 20px;
   border: 0;
   border-radius: 1.57142857em;
   padding-top: 1.42857143em;
@@ -1012,6 +1069,8 @@
   display: none;
 }
 
+/* stylelint-disable selector-no-vendor-prefix */
+/* stylelint-enable selector-no-vendor-prefix */
 .oo-ui-searchWidget-query {
   position: absolute;
   top: 0;

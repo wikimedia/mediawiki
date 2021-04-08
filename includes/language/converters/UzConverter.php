@@ -103,16 +103,37 @@ class UzConverter extends LanguageConverter {
 	];
 
 	/**
-	 * @param Language $langobj
+	 * Get Main language code.
+	 * @since 1.36
+	 *
+	 * @return string
 	 */
-	public function __construct( $langobj ) {
-		$variants = [ 'uz', 'uz-latn', 'uz-cyrl' ];
-		$variantfallbacks = [
+	public function getMainCode(): string {
+		return 'uz';
+	}
+
+	/**
+	 * Get supported variants of the language.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getLanguageVariants(): array {
+		return [ 'uz', 'uz-latn', 'uz-cyrl' ];
+	}
+
+	/**
+	 * Get language variants fallbacks.
+	 * @since 1.36
+	 *
+	 * @return array
+	 */
+	public function getVariantsFallbacks(): array {
+		return [
 			'uz' => 'uz-latn',
 			'uz-cyrl' => 'uz',
 			'uz-latn' => 'uz',
 		];
-		parent::__construct( $langobj, 'uz', $variants, $variantfallbacks );
 	}
 
 	protected function loadDefaultTables() {
@@ -123,6 +144,11 @@ class UzConverter extends LanguageConverter {
 		];
 	}
 
+	/**
+	 * @param string $text
+	 * @param string $toVariant
+	 * @return string
+	 */
 	public function translate( $text, $toVariant ) {
 		if ( $toVariant == 'uz-cyrl' ) {
 			$text = str_replace( 'ye', 'е', $text );
@@ -134,5 +160,4 @@ class UzConverter extends LanguageConverter {
 		}
 		return parent::translate( $text, $toVariant );
 	}
-
 }

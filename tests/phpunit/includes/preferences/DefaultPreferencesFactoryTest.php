@@ -75,7 +75,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$mockPM,
 			$services->getLanguageConverterFactory()->getLanguageConverter( $language ),
 			$services->getLanguageNameUtils(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getUserOptionsLookup()
 		);
 	}
 

@@ -23,32 +23,67 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Json\JsonCodec;
+use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Parser\ParserCacheMetadata;
+use Psr\Log\LoggerInterface;
 
 /**
+ * Cache for ParserOutput objects corresponding to the latest page revisions.
+ *
+ * The ParserCache is a two-tiered cache backed by BagOStuff which supports
+ * varying the stored content on the values of ParserOptions used during
+ * a page parse.
+ *
+ * First tier is keyed by the page ID and stores ParserCacheMetadata, which
+ * contains information about cache expiration and the list of ParserOptions
+ * used during the parse of the page. For example, if only 'dateformat' and
+ * 'userlang' options were accessed by the parser when producing output for the
+ * page, array [ 'dateformat', 'userlang' ] will be stored in the metadata cache.
+ * This means none of the other existing options had any effect on the output.
+ *
+ * The second tier of the cache contains ParserOutput objects. The key for the
+ * second tier is constructed from the page ID and values of those ParserOptions
+ * used during a page parse which affected the output. Upon cache lookup, the list
+ * of used option names is retrieved from tier 1 cache, and only the values of
+ * those options are hashed together with the page ID to produce a key, while
+ * the rest of the options are ignored. Following the example above where
+ * only [ 'dateformat', 'userlang' ] options changed the parser output for a
+ * page, the key will look like 'page_id!dateformat=default:userlang=ru'.
+ * Thus any cache lookup with dateformat=default and userlang=ru will hit the
+ * same cache entry regardless of the values of the rest of the options, since they
+ * were not accessed during a parse and thus did not change the output.
+ *
+ * @see ParserOutput::recordOption()
+ * @see ParserOutput::getUsedOptions()
+ * @see ParserOptions::allCacheVaryingOptions()
  * @ingroup Cache Parser
- * @todo document
  */
 class ParserCache {
 	/**
 	 * Constants for self::getKey()
 	 * @since 1.30
+	 * @since 1.36 the constants were made public
 	 */
 
 	/** Use only current data */
-	private const USE_CURRENT_ONLY = 0;
+	public const USE_CURRENT_ONLY = 0;
 
 	/** Use expired data if current data is unavailable */
-	private const USE_EXPIRED = 1;
+	public const USE_EXPIRED = 1;
 
 	/** Use expired data or data from different revisions if current data is unavailable */
-	private const USE_OUTDATED = 2;
+	public const USE_OUTDATED = 2;
 
 	/**
 	 * Use expired data and data from different revisions, and if all else
 	 * fails vary on all variable options
 	 */
 	private const USE_ANYTHING = 3;
+
+	/** @var string The name of this ParserCache. Used as a root of the cache key. */
+	private $name;
 
 	/** @var BagOStuff */
 	private $cache;
@@ -63,19 +98,32 @@ class ParserCache {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var JsonCodec */
+	private $jsonCodec;
+
 	/** @var IBufferingStatsdDataFactory */
 	private $stats;
 
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
-	 * Get an instance of this object
-	 *
-	 * @deprecated since 1.30, use MediaWikiServices instead
-	 * @return ParserCache
+	 * @note Temporary feature flag, remove before 1.36 is released.
+	 * @var bool
 	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.30' );
-		return MediaWikiServices::getInstance()->getParserCache();
-	}
+	private $writeJson = false;
+
+	/**
+	 * @note Temporary feature flag, remove before 1.36 is released.
+	 * @var bool
+	 */
+	private $readJson = false;
 
 	/**
 	 * Setup a cache pathway with a given back-end storage mechanism.
@@ -83,103 +131,107 @@ class ParserCache {
 	 * This class use an invalidation strategy that is compatible with
 	 * MultiWriteBagOStuff in async replication mode.
 	 *
+	 * @param string $name
 	 * @param BagOStuff $cache
 	 * @param string $cacheEpoch Anything before this timestamp is invalidated
-	 * @param HookContainer|null $hookContainer
-	 * @param IBufferingStatsdDataFactory|null $stats
-	 * @throws MWException
+	 * @param HookContainer $hookContainer
+	 * @param JsonCodec $jsonCodec
+	 * @param IBufferingStatsdDataFactory $stats
+	 * @param LoggerInterface $logger
+	 * @param TitleFactory $titleFactory
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param bool $useJson Temporary feature flag, remove before 1.36 is released.
 	 */
 	public function __construct(
+		string $name,
 		BagOStuff $cache,
-		$cacheEpoch = '20030516000000',
-		HookContainer $hookContainer = null,
-		IBufferingStatsdDataFactory $stats = null
+		string $cacheEpoch,
+		HookContainer $hookContainer,
+		JsonCodec $jsonCodec,
+		IBufferingStatsdDataFactory $stats,
+		LoggerInterface $logger,
+		TitleFactory $titleFactory,
+		WikiPageFactory $wikiPageFactory,
+		$useJson = false
 	) {
+		if ( !$cache instanceof EmptyBagOStuff && !$cache instanceof CachedBagOStuff ) {
+			// It seems on some page views, the same entry is retreived twice from the ParserCache.
+			// This shouldn't happen but use a process-cache and log duplicate fetches to mitigate
+			// this and figure out why. (T269593)
+			$cache = new CachedBagOStuff( $cache, [
+				'logger' => $logger,
+				'asyncHandler' => [ DeferredUpdates::class, 'addCallableUpdate' ],
+				'reportDupes' => true,
+				// Each ParserCache entry uses 2 keys, one for metadata and one for parser output.
+				// So, cache at most 4 different parser outputs in memory. The number was chosen ad hoc.
+				'maxKeys' => 8
+			] );
+		}
+		$this->name = $name;
 		$this->cache = $cache;
 		$this->cacheEpoch = $cacheEpoch;
-		$this->hookRunner = new HookRunner(
-			$hookContainer ?: MediaWikiServices::getInstance()->getHookContainer()
-		);
-		$this->stats = $stats ?: MediaWikiServices::getInstance()->getStatsdDataFactory();
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->jsonCodec = $jsonCodec;
+		$this->stats = $stats;
+		$this->logger = $logger;
+		$this->titleFactory = $titleFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
+		$this->readJson = $useJson;
+		$this->writeJson = $useJson;
 	}
 
 	/**
-	 * @param WikiPage $wikiPage
-	 * @param string $hash
-	 * @return mixed|string
-	 */
-	protected function getParserOutputKey( WikiPage $wikiPage, $hash ) {
-		global $wgRequest;
-
-		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
-		$pageid = $wikiPage->getId();
-		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
-
-		$key = $this->cache->makeKey( 'pcache', 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
-		return $key;
-	}
-
-	/**
-	 * @param WikiPage $wikiPage
-	 * @return mixed|string
-	 */
-	protected function getOptionsKey( WikiPage $wikiPage ) {
-		return $this->cache->makeKey( 'pcache', 'idoptions', $wikiPage->getId() );
-	}
-
-	/**
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @since 1.28
 	 */
-	public function deleteOptionsKey( WikiPage $wikiPage ) {
-		$this->cache->delete( $this->getOptionsKey( $wikiPage ) );
+	public function deleteOptionsKey( PageRecord $page ) {
+		$page->assertWiki( PageRecord::LOCAL );
+		$this->cache->delete( $this->makeMetadataKey( $page ) );
 	}
 
 	/**
-	 * Provides an E-Tag suitable for the whole page. Note that $wikiPage
+	 * Provides an E-Tag suitable for the whole page. Note that $page
 	 * is just the main wikitext. The E-Tag has to be unique to the whole
 	 * page, even if the article itself is the same, so it uses the
 	 * complete set of user options. We don't want to use the preference
 	 * of a different user on a message just because it wasn't used in
-	 * $wikiPage. For example give a Chinese interface to a user with
+	 * $page. For example give a Chinese interface to a user with
 	 * English preferences. That's why we take into account *all* user
 	 * options. (r70809 CR)
 	 *
-	 * @param WikiPage $wikiPage
+	 * @deprecated since 1.36
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @return string
 	 */
-	public function getETag( WikiPage $wikiPage, $popts ) {
-		return 'W/"'
-			. $this->getParserOutputKey(
-				$wikiPage,
-				$popts->optionsHash(
-					ParserOptions::allCacheVaryingOptions(),
-					$wikiPage->getTitle()
-				)
-			)
-			. "--" . $wikiPage->getTouched() . '"';
+	public function getETag( PageRecord $page, $popts ) {
+		wfDeprecated( __METHOD__, '1.36' );
+		$page->assertWiki( PageRecord::LOCAL );
+		return 'W/"' . $this->makeParserOutputKey( $page, $popts )
+			. "--" . $page->getTouched() . '"';
 	}
 
 	/**
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function getDirty( WikiPage $wikiPage, $popts ) {
-		$value = $this->get( $wikiPage, $popts, true );
+	public function getDirty( PageRecord $page, $popts ) {
+		$page->assertWiki( PageRecord::LOCAL );
+		$value = $this->get( $page, $popts, true );
 		return is_object( $value ) ? $value : false;
 	}
 
 	/**
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param string $metricSuffix
 	 */
-	private function incrementStats( WikiPage $wikiPage, $metricSuffix ) {
+	private function incrementStats( PageRecord $page, $metricSuffix ) {
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
 		$contentModel = str_replace( '.', '_', $wikiPage->getContentModel() );
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
-		$this->stats->increment( 'pcache.' . $contentModel . '.' . $metricSuffix );
+		$this->stats->increment( "{$this->name}.{$contentModel}.{$metricSuffix}" );
 	}
 
 	/**
@@ -194,209 +246,338 @@ class ParserCache {
 	 * It would be preferable to have this code in get()
 	 * instead of having Article looking in our internals.
 	 *
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @param int|bool $useOutdated One of the USE constants. For backwards
 	 *  compatibility, boolean false is treated as USE_CURRENT_ONLY and
 	 *  boolean true is treated as USE_ANYTHING.
 	 * @return bool|mixed|string
 	 * @since 1.30 Changed $useOutdated to an int and added the non-boolean values
+	 * @deprecated 1.36 Use ::getMetadata and ::makeParserOutputKey methods instead.
 	 */
-	public function getKey( WikiPage $wikiPage, $popts, $useOutdated = self::USE_ANYTHING ) {
+	public function getKey( PageRecord $page, $popts, $useOutdated = self::USE_ANYTHING ) {
+		wfDeprecated( __METHOD__, '1.36' );
+		$page->assertWiki( PageRecord::LOCAL );
+
 		if ( is_bool( $useOutdated ) ) {
 			$useOutdated = $useOutdated ? self::USE_ANYTHING : self::USE_CURRENT_ONLY;
 		}
 
 		if ( $popts instanceof User ) {
-			wfWarn( "Use of outdated prototype ParserCache::getKey( &\$wikiPage, &\$user )\n" );
+			$this->logger->warning(
+				"Use of outdated prototype ParserCache::getKey( &\$wikiPage, &\$user )\n"
+			);
 			$popts = ParserOptions::newFromUser( $popts );
 		}
 
-		// Determine the options which affect this article
-		$optionsKey = $this->cache->get(
-			$this->getOptionsKey( $wikiPage ), BagOStuff::READ_VERIFIED );
-		if ( $optionsKey instanceof CacheTime ) {
-			if (
-				$useOutdated < self::USE_EXPIRED
-				&& $optionsKey->expired( $wikiPage->getTouched() )
-			) {
-				$this->incrementStats( $wikiPage, "miss.expired" );
-				$cacheTime = $optionsKey->getCacheTime();
-				wfDebugLog( "ParserCache",
-					"Parser options key expired, touched {$wikiPage->getTouched()}"
-					. ", epoch {$this->cacheEpoch}, cached $cacheTime" );
-				return false;
-			} elseif ( $useOutdated < self::USE_OUTDATED &&
-				$optionsKey->isDifferentRevision( $wikiPage->getLatest() )
-			) {
-				$this->incrementStats( $wikiPage, "miss.revid" );
-				$revId = $wikiPage->getLatest();
-				$cachedRevId = $optionsKey->getCacheRevisionId();
-				wfDebugLog( "ParserCache",
-					"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId"
-				);
-				return false;
-			}
-
-			// $optionsKey->mUsedOptions is set by save() by calling ParserOutput::getUsedOptions()
-			$usedOptions = $optionsKey->mUsedOptions;
-			wfDebug( "Parser cache options found." );
-		} else {
+		$metadata = $this->getMetadata( $page, $useOutdated );
+		if ( !$metadata ) {
 			if ( $useOutdated < self::USE_ANYTHING ) {
 				return false;
 			}
 			$usedOptions = ParserOptions::allCacheVaryingOptions();
+		} else {
+			$usedOptions = $metadata->getUsedOptions();
 		}
 
-		return $this->getParserOutputKey(
-			$wikiPage,
-			$popts->optionsHash( $usedOptions, $wikiPage->getTitle() )
+		return $this->makeParserOutputKey( $page, $popts, $usedOptions );
+	}
+
+	/**
+	 * Returns the ParserCache metadata about the given page
+	 * considering the given options.
+	 *
+	 * @note Which parser options influence the cache key
+	 * is controlled via ParserOutput::recordOption() or
+	 * ParserOptions::addExtraKey().
+	 *
+	 * @param PageRecord $page
+	 * @param int $staleConstraint one of the self::USE_ constants
+	 * @return ParserCacheMetadata|null
+	 * @since 1.36
+	 */
+	public function getMetadata(
+		PageRecord $page,
+		int $staleConstraint = self::USE_ANYTHING
+	): ?ParserCacheMetadata {
+		$page->assertWiki( PageRecord::LOCAL );
+
+		$pageKey = $this->makeMetadataKey( $page );
+		$metadata = $this->cache->get(
+			$pageKey,
+			BagOStuff::READ_VERIFIED
 		);
+
+		// NOTE: If the value wasn't serialized to JSON when being stored,
+		//       we may already have a ParserOutput object here. This used
+		//       to be the default behavior before 1.36. We need to retain
+		//       support so we can handle cached objects after an update
+		//       from an earlier revision.
+		// NOTE: Support for reading string values from the cache must be
+		//       deployed a while before starting to write JSON to the cache,
+		//       in case we have to revert either change.
+		if ( is_string( $metadata ) && $this->readJson ) {
+			$metadata = $this->restoreFromJson( $metadata, $pageKey, CacheTime::class );
+		}
+
+		if ( !$metadata instanceof CacheTime ) {
+			$this->incrementStats( $page, 'miss.unserialize' );
+			return null;
+		}
+
+		if ( $this->checkExpired( $metadata, $page, $staleConstraint, 'metadata' ) ) {
+			return null;
+		}
+
+		if ( $this->checkOutdated( $metadata, $page, $staleConstraint, 'metadata' ) ) {
+			return null;
+		}
+
+		$this->logger->debug( 'Parser cache options found', [ 'name' => $this->name ] );
+		return $metadata;
+	}
+
+	/**
+	 * @param PageRecord $page
+	 * @return string
+	 */
+	private function makeMetadataKey( PageRecord $page ): string {
+		return $this->cache->makeKey( $this->name, 'idoptions', $page->getId( PageRecord::LOCAL ) );
+	}
+
+	/**
+	 * Get a key that will be used by the ParserCache to store the content
+	 * for a given page considering the given options and the array of
+	 * used options.
+	 *
+	 * @warning The exact format of the key is considered internal and is subject
+	 * to change, thus should not be used as storage or long-term caching key.
+	 * This is intended to be used for logging or keying something transient.
+	 *
+	 * @param PageRecord $page
+	 * @param ParserOptions $options
+	 * @param array|null $usedOptions Defaults to all cache verying options.
+	 * @return string
+	 * @internal
+	 * @since 1.36
+	 */
+	public function makeParserOutputKey(
+		PageRecord $page,
+		ParserOptions $options,
+		array $usedOptions = null
+	): string {
+		global $wgRequest;
+		$usedOptions = $usedOptions ?? ParserOptions::allCacheVaryingOptions();
+
+		// idhash seem to mean 'page id' + 'rendering hash' (r3710)
+		$pageid = $page->getId( PageRecord::LOCAL );
+		// TODO: remove the split T263581
+		$renderkey = (int)( $wgRequest->getVal( 'action' ) == 'render' );
+		$title = $this->titleFactory->castFromPageIdentity( $page );
+		$hash = $options->optionsHash( $usedOptions, $title );
+
+		return $this->cache->makeKey( $this->name, 'idhash', "{$pageid}-{$renderkey}!{$hash}" );
 	}
 
 	/**
 	 * Retrieve the ParserOutput from ParserCache.
 	 * false if not found or outdated.
 	 *
-	 * @param WikiPage|Article|Page $wikiPage Article is hard deprecated since 1.35
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
 	 * @return ParserOutput|bool False on failure
 	 */
-	public function get( Page $wikiPage, $popts, $useOutdated = false ) {
-		if ( $wikiPage instanceof Article ) {
-			wfDeprecated(
-				__METHOD__ . ' with Article parameter',
-				'1.35'
-			);
-			$wikiPage = $wikiPage->getPage();
+	public function get( PageRecord $page, $popts, $useOutdated = false ) {
+		$page->assertWiki( PageRecord::LOCAL );
+
+		if ( !$page->exists() ) {
+			$this->incrementStats( $page, 'miss.nonexistent' );
+			return false;
 		}
 
-		$canCache = $wikiPage->checkTouched();
-		if ( !$canCache ) {
+		if ( $page->isRedirect() ) {
 			// It's a redirect now
+			$this->incrementStats( $page, 'miss.redirect' );
 			return false;
 		}
 
-		$touched = $wikiPage->getTouched();
+		$staleConstraint = $useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY;
+		$parserOutputMetadata = $this->getMetadata( $page, $staleConstraint );
+		if ( !$parserOutputMetadata ) {
+			return false;
+		}
 
-		$parserOutputKey = $this->getKey( $wikiPage, $popts,
-			$useOutdated ? self::USE_OUTDATED : self::USE_CURRENT_ONLY
+		if ( !$popts->isSafeToCache( $parserOutputMetadata->getUsedOptions() ) ) {
+			$this->incrementStats( $page, 'miss.unsafe' );
+			return false;
+		}
+
+		$parserOutputKey = $this->makeParserOutputKey(
+			$page,
+			$popts,
+			$parserOutputMetadata->getUsedOptions()
 		);
-		if ( $parserOutputKey === false ) {
-			$this->incrementStats( $wikiPage, 'miss.absent' );
-			return false;
-		}
 
-		$casToken = null;
-		/** @var ParserOutput $value */
 		$value = $this->cache->get( $parserOutputKey, BagOStuff::READ_VERIFIED );
-		if ( !$value ) {
-			wfDebug( "ParserOutput cache miss." );
-			$this->incrementStats( $wikiPage, "miss.absent" );
+		if ( $value === false ) {
+			$this->incrementStats( $page, "miss.absent" );
+			$this->logger->debug( 'ParserOutput cache miss', [ 'name' => $this->name ] );
 			return false;
 		}
 
-		wfDebug( "ParserOutput cache found." );
-
-		if ( !$useOutdated && $value->expired( $touched ) ) {
-			$this->incrementStats( $wikiPage, "miss.expired" );
-			$cacheTime = $value->getCacheTime();
-			wfDebugLog( "ParserCache",
-				"ParserOutput key expired, touched $touched, "
-				. "epoch {$this->cacheEpoch}, cached $cacheTime" );
-			$value = false;
-		} elseif (
-			!$useOutdated
-			&& $value->isDifferentRevision( $wikiPage->getLatest() )
-		) {
-			$this->incrementStats( $wikiPage, "miss.revid" );
-			$revId = $wikiPage->getLatest();
-			$cachedRevId = $value->getCacheRevisionId();
-			wfDebugLog( "ParserCache",
-				"ParserOutput key is for an old revision, latest $revId, cached $cachedRevId"
-			);
-			$value = false;
-		} elseif (
-			$this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false
-		) {
-			$this->incrementStats( $wikiPage, 'miss.rejected' );
-			wfDebugLog( "ParserCache",
-				"ParserOutput key valid, but rejected by RejectParserCacheValue hook handler."
-			);
-			$value = false;
-		} else {
-			$this->incrementStats( $wikiPage, "hit" );
+		// NOTE: If the value wasn't serialized to JSON when being stored,
+		//       we may already have a ParserOutput object here. This used
+		//       to be the default behavior before 1.36. We need to retain
+		//       support so we can handle cached objects after an update
+		//       from an earlier revision.
+		// NOTE: Support for reading string values from the cache must be
+		//       deployed a while before starting to write JSON to the cache,
+		//       in case we have to revert either change.
+		if ( is_string( $value ) && $this->readJson ) {
+			$value = $this->restoreFromJson( $value, $parserOutputKey, ParserOutput::class );
 		}
 
+		if ( !$value instanceof ParserOutput ) {
+			$this->incrementStats( $page, 'miss.unserialize' );
+			return false;
+		}
+
+		if ( $this->checkExpired( $value, $page, $staleConstraint, 'output' ) ) {
+			return false;
+		}
+
+		if ( $this->checkOutdated( $value, $page, $staleConstraint, 'output' ) ) {
+			return false;
+		}
+
+		$wikiPage = $this->wikiPageFactory->newFromTitle( $page );
+		if ( $this->hookRunner->onRejectParserCacheValue( $value, $wikiPage, $popts ) === false ) {
+			$this->incrementStats( $page, 'miss.rejected' );
+			$this->logger->debug( 'key valid, but rejected by RejectParserCacheValue hook handler',
+				[ 'name' => $this->name ] );
+			return false;
+		}
+
+		$this->logger->debug( 'ParserOutput cache found', [ 'name' => $this->name ] );
+		$this->incrementStats( $page, 'hit' );
 		return $value;
 	}
 
 	/**
 	 * @param ParserOutput $parserOutput
-	 * @param WikiPage $wikiPage
+	 * @param PageRecord $page
 	 * @param ParserOptions $popts
 	 * @param string|null $cacheTime TS_MW timestamp when the cache was generated
 	 * @param int|null $revId Revision ID that was parsed
 	 */
 	public function save(
 		ParserOutput $parserOutput,
-		WikiPage $wikiPage,
+		PageRecord $page,
 		$popts,
 		$cacheTime = null,
 		$revId = null
 	) {
+		$page->assertWiki( PageRecord::LOCAL );
+
 		if ( !$parserOutput->hasText() ) {
 			throw new InvalidArgumentException( 'Attempt to cache a ParserOutput with no text set!' );
 		}
 
 		$expire = $parserOutput->getCacheExpiry();
-		if ( $expire > 0 && !$this->cache instanceof EmptyBagOStuff ) {
-			$cacheTime = $cacheTime ?: wfTimestampNow();
-			if ( !$revId ) {
-				$revision = $wikiPage->getRevisionRecord();
-				$revId = $revision ? $revision->getId() : null;
-			}
 
-			$optionsKey = new CacheTime;
-			$optionsKey->mUsedOptions = $parserOutput->getUsedOptions();
-			$optionsKey->updateCacheExpiry( $expire );
-
-			$optionsKey->setCacheTime( $cacheTime );
-			$parserOutput->setCacheTime( $cacheTime );
-			$optionsKey->setCacheRevisionId( $revId );
-			$parserOutput->setCacheRevisionId( $revId );
-
-			$parserOutputKey = $this->getParserOutputKey( $wikiPage,
-				$popts->optionsHash( $optionsKey->mUsedOptions, $wikiPage->getTitle() ) );
-
-			// Save the timestamp so that we don't have to load the revision row on view
-			$parserOutput->setTimestamp( $wikiPage->getTimestamp() );
-
-			$msg = "Saved in parser cache with key $parserOutputKey" .
-				" and timestamp $cacheTime" .
-				" and revision id $revId";
-
-			$parserOutput->mText .= "\n<!-- $msg\n -->\n";
-			wfDebug( $msg );
-
-			// Save the parser output
-			$this->cache->set(
-				$parserOutputKey,
-				$parserOutput,
-				$expire,
-				BagOStuff::WRITE_ALLOW_SEGMENTS
+		if ( !$popts->isSafeToCache( $parserOutput->getUsedOptions() ) ) {
+			$this->logger->debug(
+				'Parser options are not safe to cache and has not been saved',
+				[ 'name' => $this->name ]
 			);
-
-			// ...and its pointer
-			$this->cache->set( $this->getOptionsKey( $wikiPage ), $optionsKey, $expire );
-
-			$this->hookRunner->onParserCacheSaveComplete(
-				$this, $parserOutput, $wikiPage->getTitle(), $popts, $revId );
-		} elseif ( $expire <= 0 ) {
-			wfDebug( "Parser output was marked as uncacheable and has not been saved." );
+			$this->incrementStats( $page, 'save.unsafe' );
+			return;
 		}
+
+		if ( $expire <= 0 ) {
+			$this->logger->debug(
+				'Parser output was marked as uncacheable and has not been saved',
+				[ 'name' => $this->name ]
+			);
+			$this->incrementStats( $page, 'save.uncacheable' );
+			return;
+		}
+
+		if ( $this->cache instanceof EmptyBagOStuff ) {
+			return;
+		}
+
+		$cacheTime = $cacheTime ?: wfTimestampNow();
+		$revId = $revId ?: $page->getLatest( PageRecord::LOCAL );
+
+		$metadata = new CacheTime;
+		$metadata->recordOptions( $parserOutput->getUsedOptions() );
+		$metadata->updateCacheExpiry( $expire );
+
+		$metadata->setCacheTime( $cacheTime );
+		$parserOutput->setCacheTime( $cacheTime );
+		$metadata->setCacheRevisionId( $revId );
+		$parserOutput->setCacheRevisionId( $revId );
+
+		$parserOutputKey = $this->makeParserOutputKey(
+			$page,
+			$popts,
+			$metadata->getUsedOptions()
+		);
+
+		$msg = "Saved in parser cache with key $parserOutputKey" .
+			" and timestamp $cacheTime" .
+			" and revision id $revId.";
+		if ( $this->writeJson ) {
+			$msg .= " Serialized with JSON.";
+		} else {
+			$msg .= " Serialized with PHP.";
+		}
+		$parserOutput->addCacheMessage( $msg );
+
+		$pageKey = $this->makeMetadataKey( $page );
+
+		if ( $this->writeJson ) {
+			$parserOutputData = $this->encodeAsJson( $parserOutput, $parserOutputKey );
+			$metadataData = $this->encodeAsJson( $metadata, $pageKey );
+		} else {
+			// rely on implicit PHP serialization in the cache
+			$parserOutputData = $parserOutput;
+			$metadataData = $metadata;
+		}
+
+		if ( !$parserOutputData || !$metadataData ) {
+			$this->logger->warning(
+				'Parser output failed to serialize and was not saved',
+				[ 'name' => $this->name ]
+			);
+			$this->incrementStats( $page, 'save.nonserializable' );
+			return;
+		}
+
+		// Save the parser output
+		$this->cache->set(
+			$parserOutputKey,
+			$parserOutputData,
+			$expire,
+			BagOStuff::WRITE_ALLOW_SEGMENTS
+		);
+
+		// ...and its pointer
+		$this->cache->set( $pageKey, $metadataData, $expire );
+
+		$title = $this->titleFactory->castFromPageIdentity( $page );
+		$this->hookRunner->onParserCacheSaveComplete( $this, $parserOutput, $title, $popts, $revId );
+
+		$this->logger->debug( 'Saved in parser cache', [
+			'name' => $this->name,
+			'key' => $parserOutputKey,
+			'cache_time' => $cacheTime,
+			'rev_id' => $revId
+		] );
+		$this->incrementStats( $page, 'save.success' );
 	}
 
 	/**
@@ -404,9 +585,116 @@ class ParserCache {
 	 * powers the parser cache
 	 *
 	 * @since 1.30
+	 * @internal
 	 * @return BagOStuff
 	 */
 	public function getCacheStorage() {
 		return $this->cache;
+	}
+
+	/**
+	 * Check if $entry expired for $page given the $staleConstraint
+	 * when fetching from $cacheTier.
+	 * @param CacheTime $entry
+	 * @param PageRecord $page
+	 * @param int $staleConstraint One of USE_* constants.
+	 * @param string $cacheTier
+	 * @return bool
+	 */
+	private function checkExpired(
+		CacheTime $entry,
+		PageRecord $page,
+		int $staleConstraint,
+		string $cacheTier
+	): bool {
+		if ( $staleConstraint < self::USE_EXPIRED && $entry->expired( $page->getTouched() ) ) {
+			$this->incrementStats( $page, "miss.expired" );
+			$this->logger->debug( "{$cacheTier} key expired", [
+				'name' => $this->name,
+				'touched' => $page->getTouched(),
+				'epoch' => $this->cacheEpoch,
+				'cache_time' => $entry->getCacheTime()
+			] );
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * Check if $entry belongs to the latest revision of $page
+	 * given $staleConstraint when fetched from $cacheTier.
+	 * @param CacheTime $entry
+	 * @param PageRecord $page
+	 * @param int $staleConstraint One of USE_* constants.
+	 * @param string $cacheTier
+	 * @return bool
+	 */
+	private function checkOutdated(
+		CacheTime $entry,
+		PageRecord $page,
+		int $staleConstraint,
+		string $cacheTier
+	): bool {
+		$latestRevId = $page->getLatest( PageRecord::LOCAL );
+		if ( $staleConstraint < self::USE_OUTDATED && $entry->isDifferentRevision( $latestRevId ) ) {
+			$this->incrementStats( $page, "miss.revid" );
+			$this->logger->debug( "{$cacheTier} key is for an old revision", [
+				'name' => $this->name,
+				'rev_id' => $latestRevId,
+				'cached_rev_id' => $entry->getCacheRevisionId()
+			] );
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * @note setter for temporary feature flags, for use in testing.
+	 * @internal
+	 * @param bool $readJson
+	 * @param bool $writeJson
+	 */
+	public function setJsonSupport( bool $readJson, bool $writeJson ): void {
+		$this->readJson = $readJson;
+		$this->writeJson = $writeJson;
+	}
+
+	/**
+	 * @param string $jsonData
+	 * @param string $key
+	 * @param string $expectedClass
+	 * @return CacheTime|ParserOutput|null
+	 */
+	private function restoreFromJson( string $jsonData, string $key, string $expectedClass ) {
+		try {
+			/** @var CacheTime $obj */
+			$obj = $this->jsonCodec->unserialize( $jsonData, $expectedClass );
+			return $obj;
+		} catch ( InvalidArgumentException $e ) {
+			$this->logger->error( "Unable to unserialize JSON", [
+				'name' => $this->name,
+				'cache_key' => $key,
+				'message' => $e->getMessage()
+			] );
+			return null;
+		}
+	}
+
+	/**
+	 * @param CacheTime $obj
+	 * @param string $key
+	 * @return string|null
+	 */
+	private function encodeAsJson( CacheTime $obj, string $key ) {
+		try {
+			return $this->jsonCodec->serialize( $obj );
+		} catch ( InvalidArgumentException $e ) {
+			$this->logger->error( "Unable to serialize JSON", [
+				'name' => $this->name,
+				'cache_key' => $key,
+				'message' => $e->getMessage(),
+			] );
+			return null;
+		}
 	}
 }

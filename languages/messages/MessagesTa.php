@@ -64,22 +64,23 @@ $namespaceAliases = [
 	'உருவப்_பேச்சு' => NS_FILE_TALK
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#வழிமாற்று', '#REDIRECT' ],
-	'img_right'                 => [ '1', 'வலது', 'right' ],
-	'img_left'                  => [ '1', 'இடது', 'left' ],
-	'img_none'                  => [ '1', 'ஒன்றுமில்லை', 'none' ],
-	'img_center'                => [ '1', 'மையம்', 'center', 'centre' ],
-	'img_top'                   => [ '1', 'மேல்', 'top' ],
-	'img_middle'                => [ '1', 'மத்தியில்', 'middle' ],
 	'img_bottom'                => [ '1', 'கீழ்', 'bottom' ],
-	'plural'                    => [ '0', 'பன்மை', 'PLURAL:' ],
-	'special'                   => [ '0', 'சிறப்பு', 'special' ],
+	'img_center'                => [ '1', 'மையம்', 'center', 'centre' ],
+	'img_left'                  => [ '1', 'இடது', 'left' ],
+	'img_middle'                => [ '1', 'மத்தியில்', 'middle' ],
+	'img_none'                  => [ '1', 'ஒன்றுமில்லை', 'none' ],
+	'img_right'                 => [ '1', 'வலது', 'right' ],
+	'img_top'                   => [ '1', 'மேல்', 'top' ],
 	'pagesize'                  => [ '1', 'பக்க_அளவு', 'PAGESIZE' ],
+	'plural'                    => [ '0', 'பன்மை', 'PLURAL:' ],
+	'redirect'                  => [ '0', '#வழிமாற்று', '#REDIRECT' ],
+	'special'                   => [ '0', 'சிறப்பு', 'special' ],
 	'url_path'                  => [ '0', 'வழி', 'PATH' ],
 	'url_wiki'                  => [ '0', 'விக்கி', 'WIKI' ],
 ];
 
 $linkTrail = "/^([\u{0B80}-\u{0BFF}]+)(.*)$/sDu";
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";

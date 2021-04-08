@@ -85,9 +85,9 @@
 			border-radius: @border-radius-base;
 		}
 
-		// Apply a checkmark on the pseudo `:before` element when the input is checked
+		// Apply a checkmark on the pseudo `:before` element when the input is checked.
 		&:checked + label:before {
-			.background-image-svg( 'images/checkbox-checked.svg', 'images/checkbox-checked.png' );
+			background-image: url( images/checkbox-checked.svg );
 			background-size: 90% 90%;
 		}
 

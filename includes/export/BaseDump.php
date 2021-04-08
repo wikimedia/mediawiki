@@ -42,14 +42,22 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup Maintenance
  */
 class BaseDump {
-	/** @var XMLReader */
+	/** @var XMLReader|null */
 	protected $reader = null;
+	/** @var bool */
 	protected $atEnd = false;
+	/** @var bool */
 	protected $atPageEnd = false;
+	/** @var int */
 	protected $lastPage = 0;
+	/** @var int */
 	protected $lastRev = 0;
+	/** @var string[]|null */
 	protected $infiles = null;
 
+	/**
+	 * @param string $infile
+	 */
 	public function __construct( $infile ) {
 		$this->infiles = explode( ';', $infile );
 		$this->reader = new XMLReader();
@@ -110,6 +118,9 @@ class BaseDump {
 		}
 	}
 
+	/**
+	 * @param string $str
+	 */
 	protected function debug( $str ) {
 		wfDebug( $str );
 		// global $dumper;

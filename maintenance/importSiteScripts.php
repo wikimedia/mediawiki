@@ -54,6 +54,9 @@ class ImportSiteScripts extends Maintenance {
 		$baseUrl = $this->getArg( 1 );
 		$pageList = $this->fetchScriptList();
 		$this->output( 'Importing ' . count( $pageList ) . " pages\n" );
+		$services = MediaWikiServices::getInstance();
+		$wikiPageFactory = $services->getWikiPageFactory();
+		$httpRequestFactory = $services->getHttpRequestFactory();
 
 		foreach ( $pageList as $page ) {
 			$title = Title::makeTitleSafe( NS_MEDIAWIKI, $page );
@@ -66,10 +69,9 @@ class ImportSiteScripts extends Maintenance {
 			$url = wfAppendQuery( $baseUrl, [
 				'action' => 'raw',
 				'title' => "MediaWiki:{$page}" ] );
-			$text = MediaWikiServices::getInstance()->getHttpRequestFactory()->
-				get( $url, [], __METHOD__ );
+			$text = $httpRequestFactory->get( $url, [], __METHOD__ );
 
-			$wikiPage = WikiPage::factory( $title );
+			$wikiPage = $wikiPageFactory->newFromTitle( $title );
 			$content = ContentHandler::makeContent( $text, $wikiPage->getTitle() );
 			$wikiPage->doEditContent( $content, "Importing from $url", 0, false, $user );
 		}

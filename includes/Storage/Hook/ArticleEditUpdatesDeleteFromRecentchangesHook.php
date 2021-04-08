@@ -5,6 +5,9 @@ namespace MediaWiki\Storage\Hook;
 use WikiPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ArticleEditUpdatesDeleteFromRecentchanges" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35 Use RecentChange_save or similar instead
  * @ingroup Hooks
  */

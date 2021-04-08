@@ -55,34 +55,35 @@ $namespaceAliases = [
 	'Kategorie_Diskussion' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#wiederleiden', '#WEITERLEITUNG', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__KEENINHOLTVERTEKEN__', '__KEIN_INHALTSVERZEICHNIS__', '__KEININHALTSVERZEICHNIS__', '__NOTOC__' ],
-	'forcetoc'                  => [ '0', '__WIESINHOLTVERTEKEN__', '__INHALTSVERZEICHNIS_ERZWINGEN__', '__FORCETOC__' ],
-	'toc'                       => [ '0', '__INHOLTVERTEKEN__', '__INHALTSVERZEICHNIS__', '__TOC__' ],
-	'noeditsection'             => [ '0', '__KEENÄNNERNLINK__', '__ABSCHNITTE_NICHT_BEARBEITEN__', '__NOEDITSECTION__' ],
+	'currentday'                => [ '1', 'AKTDAG', 'JETZIGER_KALENDERTAG', 'JETZIGER_TAG', 'CURRENTDAY' ],
+	'currentdayname'            => [ '1', 'AKTDAGNAAM', 'JETZIGER_WOCHENTAG', 'CURRENTDAYNAME' ],
 	'currentmonth'              => [ '1', 'AKTMAAND', 'JETZIGER_MONAT', 'JETZIGER_MONAT_2', 'CURRENTMONTH', 'CURRENTMONTH2' ],
 	'currentmonthname'          => [ '1', 'AKTMAANDNAAM', 'JETZIGER_MONATSNAME', 'CURRENTMONTHNAME' ],
 	'currentmonthnamegen'       => [ '1', 'AKTMAANDNAAMGEN', 'JETZIGER_MONATSNAME_GENITIV', 'JETZIGER_MONATSNAME_GEN', 'CURRENTMONTHNAMEGEN' ],
-	'currentday'                => [ '1', 'AKTDAG', 'JETZIGER_KALENDERTAG', 'JETZIGER_TAG', 'CURRENTDAY' ],
-	'currentdayname'            => [ '1', 'AKTDAGNAAM', 'JETZIGER_WOCHENTAG', 'CURRENTDAYNAME' ],
-	'currentyear'               => [ '1', 'AKTJOHR', 'JETZIGES_JAHR', 'CURRENTYEAR' ],
 	'currenttime'               => [ '1', 'AKTTIED', 'JETZIGE_UHRZEIT', 'CURRENTTIME' ],
+	'currentyear'               => [ '1', 'AKTJOHR', 'JETZIGES_JAHR', 'CURRENTYEAR' ],
+	'forcetoc'                  => [ '0', '__WIESINHOLTVERTEKEN__', '__INHALTSVERZEICHNIS_ERZWINGEN__', '__FORCETOC__' ],
+	'grammar'                   => [ '0', 'GRAMMATIK:', 'GRAMMAR:' ],
+	'img_center'                => [ '1', 'zentriert', 'merrn', 'center', 'centre' ],
+	'img_framed'                => [ '1', 'gerahmt', 'rahmt', 'frame', 'framed', 'enframed' ],
+	'img_left'                  => [ '1', 'links', 'left' ],
+	'img_none'                  => [ '1', 'keen', 'ohne', 'none' ],
+	'img_right'                 => [ '1', 'rechts', 'right' ],
+	'img_thumbnail'             => [ '1', 'duum', 'miniatur', 'mini', 'thumb', 'thumbnail' ],
+	'localurl'                  => [ '0', 'STEEDURL:', 'LOKALE_URL:', 'LOCALURL:' ],
+	'localurle'                 => [ '0', 'STEEDURLE:', 'LOKALE_URL_C:', 'LOCALURLE:' ],
+	'namespace'                 => [ '1', 'NAAMRUUM', 'NAMENSRAUM', 'NAMESPACE' ],
+	'noeditsection'             => [ '0', '__KEENÄNNERNLINK__', '__ABSCHNITTE_NICHT_BEARBEITEN__', '__NOEDITSECTION__' ],
+	'notoc'                     => [ '0', '__KEENINHOLTVERTEKEN__', '__KEIN_INHALTSVERZEICHNIS__', '__KEININHALTSVERZEICHNIS__', '__NOTOC__' ],
+	'ns'                        => [ '0', 'NR:', 'NS:' ],
 	'numberofarticles'          => [ '1', 'ARTIKELTALL', 'ARTIKELANZAHL', 'NUMBEROFARTICLES' ],
 	'pagename'                  => [ '1', 'SIETNAAM', 'SEITENNAME', 'PAGENAME' ],
 	'pagenamee'                 => [ '1', 'SIETNAAME', 'SEITENNAME_URL', 'PAGENAMEE' ],
-	'namespace'                 => [ '1', 'NAAMRUUM', 'NAMENSRAUM', 'NAMESPACE' ],
-	'img_thumbnail'             => [ '1', 'duum', 'miniatur', 'mini', 'thumb', 'thumbnail' ],
-	'img_right'                 => [ '1', 'rechts', 'right' ],
-	'img_left'                  => [ '1', 'links', 'left' ],
-	'img_none'                  => [ '1', 'keen', 'ohne', 'none' ],
-	'img_center'                => [ '1', 'zentriert', 'merrn', 'center', 'centre' ],
-	'img_framed'                => [ '1', 'gerahmt', 'rahmt', 'frame', 'framed', 'enframed' ],
+	'redirect'                  => [ '0', '#wiederleiden', '#WEITERLEITUNG', '#REDIRECT' ],
 	'sitename'                  => [ '1', 'STEEDNAAM', 'PROJEKTNAME', 'SITENAME' ],
-	'ns'                        => [ '0', 'NR:', 'NS:' ],
-	'localurl'                  => [ '0', 'STEEDURL:', 'LOKALE_URL:', 'LOCALURL:' ],
-	'localurle'                 => [ '0', 'STEEDURLE:', 'LOKALE_URL_C:', 'LOCALURLE:' ],
-	'grammar'                   => [ '0', 'GRAMMATIK:', 'GRAMMAR:' ],
+	'toc'                       => [ '0', '__INHOLTVERTEKEN__', '__INHALTSVERZEICHNIS__', '__TOC__' ],
 ];
 
 $bookstoreList = [
@@ -132,12 +133,14 @@ $dateFormats = [
 // Remove German aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Systemnarichten' ],
 	'Allpages'                  => [ 'Alle Sieden' ],
 	'Ancientpages'              => [ 'Ole Sieden' ],
 	'Blankpage'                 => [ 'Leddige Sied' ],
 	'Block'                     => [ 'Blocken' ],
+	'BlockList'                 => [ 'List vun blockte IPs' ],
 	'Booksources'               => [ 'ISBN-Söök' ],
 	'BrokenRedirects'           => [ 'Kaputte Redirects' ],
 	'Categories'                => [ 'Kategorien' ],
@@ -153,7 +156,6 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Dubbelte-Datein-Söök' ],
 	'Filepath'                  => [ 'Dateipadd' ],
 	'Import'                    => [ 'Importeren' ],
-	'BlockList'                 => [ 'List vun blockte IPs' ],
 	'Listadmins'                => [ 'Administraters' ],
 	'Listbots'                  => [ 'Bots' ],
 	'Listfiles'                 => [ 'Dateilist' ],

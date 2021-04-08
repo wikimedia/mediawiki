@@ -68,7 +68,7 @@ class RefreshExternallinksIndex extends LoggedUpdateMaintenance {
 		$updated = 0;
 		$deleted = 0;
 		$start = $minmax->min - 1;
-		$last = $minmax->max;
+		$last = (int)$minmax->max;
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		while ( $start < $last ) {
 			$end = min( $start + $this->mBatchSize, $last );

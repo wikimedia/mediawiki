@@ -2,14 +2,17 @@
 
 use MediaWiki\Auth\AuthenticationResponse;
 use MediaWiki\Auth\AuthManager;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionManager;
 
 class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	protected static $allowedActions = [ AuthManager::ACTION_UNLINK ];
 
-	public function __construct() {
+	/**
+	 * @param AuthManager $authManager
+	 */
+	public function __construct( AuthManager $authManager ) {
 		parent::__construct( 'UnlinkAccounts' );
+		$this->setAuthManager( $authManager );
 	}
 
 	protected function getLoginSecurityLevel() {
@@ -29,7 +32,7 @@ class SpecialUnlinkAccounts extends AuthManagerSpecialPage {
 	}
 
 	public function isListed() {
-		return MediaWikiServices::getInstance()->getAuthManager()->canLinkAccounts();
+		return $this->getAuthManager()->canLinkAccounts();
 	}
 
 	protected function getRequestBlacklist() {

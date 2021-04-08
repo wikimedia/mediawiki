@@ -22,14 +22,20 @@
 
 use MediaWiki\MediaWikiServices;
 
+// The point of this class is to be a wrapper around super globals
+// phpcs:disable MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals
+
 /**
  * Object to access the $_FILES array
  *
  * @ingroup HTTP
  */
 class WebRequestUpload {
+	/** @var WebRequest */
 	protected $request;
+	/** @var bool */
 	protected $doesExist;
+	/** @var array|null */
 	protected $fileInfo;
 
 	/**
@@ -65,12 +71,14 @@ class WebRequestUpload {
 			return null;
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Okay after exists check
 		$name = $this->fileInfo['name'];
 
 		# Safari sends filenames in HTML-encoded Unicode form D...
 		# Horrid and evil! Let's try to make some kind of sense of it.
 		$name = Sanitizer::decodeCharReferences( $name );
 		$name = MediaWikiServices::getInstance()->getContentLanguage()->normalize( $name );
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Okay after exists check
 		wfDebug( __METHOD__ . ": {$this->fileInfo['name']} normalized to '$name'" );
 		return $name;
 	}
@@ -85,6 +93,7 @@ class WebRequestUpload {
 			return 0;
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Okay after exists check
 		return $this->fileInfo['size'];
 	}
 
@@ -98,6 +107,7 @@ class WebRequestUpload {
 			return null;
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Okay after exists check
 		return $this->fileInfo['tmp_name'];
 	}
 
@@ -112,6 +122,7 @@ class WebRequestUpload {
 			return null;
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Okay after exists check
 		return $this->fileInfo['type'];
 	}
 
@@ -126,6 +137,7 @@ class WebRequestUpload {
 			return 0; # UPLOAD_ERR_OK
 		}
 
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable Okay after exists check
 		return $this->fileInfo['error'];
 	}
 

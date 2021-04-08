@@ -21,21 +21,26 @@
  * @ingroup Parser
  */
 
+use MediaWiki\Json\JsonUnserializable;
+use MediaWiki\Json\JsonUnserializableTrait;
+use MediaWiki\Json\JsonUnserializer;
+use MediaWiki\Parser\ParserCacheMetadata;
+use Wikimedia\Reflection\GhostFieldAccessTrait;
+
 /**
  * Parser cache specific expiry check.
  *
  * @ingroup Parser
  */
-class CacheTime {
-	/**
-	 * @var string[] ParserOptions which have been taken into account to produce output.
-	 */
-	public $mUsedOptions;
+class CacheTime implements ParserCacheMetadata, JsonUnserializable {
+	use GhostFieldAccessTrait;
+	use JsonUnserializableTrait;
 
 	/**
-	 * @var string|null Compatibility check
+	 * @var true[] ParserOptions which have been taken into account
+	 * to produce output, option names stored in array keys.
 	 */
-	public $mVersion = Parser::VERSION;
+	protected $mParseUsedOptions = [];
 
 	/**
 	 * @var string|int TS_MW timestamp when this object was generated, or -1 for not cacheable. Used
@@ -55,7 +60,7 @@ class CacheTime {
 	public $mCacheRevisionId = null;
 
 	/**
-	 * @return string TS_MW timestamp
+	 * @return string|int TS_MW timestamp
 	 */
 	public function getCacheTime() {
 		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
@@ -77,6 +82,10 @@ class CacheTime {
 			$t = MWTimestamp::convert( TS_MW, $t );
 		}
 
+		if ( $t === -1 || $t === '-1' ) {
+			wfDeprecatedMsg( __METHOD__ . ' called with -1 as an argument', '1.36' );
+		}
+
 		return wfSetVar( $this->mCacheTime, $t );
 	}
 
@@ -84,7 +93,7 @@ class CacheTime {
 	 * @since 1.23
 	 * @return int|null Revision id, if any was set
 	 */
-	public function getCacheRevisionId() {
+	public function getCacheRevisionId(): ?int {
 		return $this->mCacheRevisionId;
 	}
 
@@ -126,7 +135,7 @@ class CacheTime {
 	 * value of $wgParserCacheExpireTime.
 	 * @return int
 	 */
-	public function getCacheExpiry() {
+	public function getCacheExpiry(): int {
 		global $wgParserCacheExpireTime;
 
 		// NOTE: keep support for undocumented used of -1 to mean "not cacheable".
@@ -172,9 +181,7 @@ class CacheTime {
 		return !$this->isCacheable() // parser says it's not cacheable
 			|| $this->getCacheTime() < $touched
 			|| $this->getCacheTime() <= $wgCacheEpoch
-			|| $this->getCacheTime() < $expiry // expiry period has passed
-			|| !isset( $this->mVersion )
-			|| version_compare( $this->mVersion, Parser::VERSION, "lt" );
+			|| $this->getCacheTime() < $expiry; // expiry period has passed
 	}
 
 	/**
@@ -192,5 +199,93 @@ class CacheTime {
 	public function isDifferentRevision( $id ) {
 		$cached = $this->getCacheRevisionId();
 		return $cached !== null && $id !== $cached;
+	}
+
+	/**
+	 * Returns the options from its ParserOptions which have been taken
+	 * into account to produce the output.
+	 * @since 1.36
+	 * @return string[]
+	 */
+	public function getUsedOptions(): array {
+		return array_keys( $this->mParseUsedOptions );
+	}
+
+	/**
+	 * Tags a parser option for use in the cache key for this parser output.
+	 * Registered as a watcher at ParserOptions::registerWatcher() by Parser::clearState().
+	 * The information gathered here is available via getUsedOptions(),
+	 * and is used by ParserCache::save().
+	 *
+	 * @see ParserCache::getMetadata
+	 * @see ParserCache::save
+	 * @see ParserOptions::addExtraKey
+	 * @see ParserOptions::optionsHash
+	 * @param string $option
+	 */
+	public function recordOption( string $option ) {
+		$this->mParseUsedOptions[$option] = true;
+	}
+
+	/**
+	 * Tags a list of parser option names for use in the cache key for this parser output.
+	 *
+	 * @see recordOption()
+	 * @param string[] $options
+	 */
+	public function recordOptions( array $options ) {
+		$this->mParseUsedOptions = array_merge(
+			$this->mParseUsedOptions,
+			array_fill_keys( $options, true )
+		);
+	}
+
+	/**
+	 * Returns a JSON serializable structure representing this CacheTime instance.
+	 * @see newFromJson()
+	 *
+	 * @return array
+	 */
+	protected function toJsonArray(): array {
+		return [
+			'ParseUsedOptions' => $this->mParseUsedOptions,
+			'CacheExpiry' => $this->mCacheExpiry,
+			'CacheTime' => $this->mCacheTime,
+			'CacheRevisionId' => $this->mCacheRevisionId,
+		];
+	}
+
+	public static function newFromJsonArray( JsonUnserializer $unserializer, array $json ) {
+		$cacheTime = new CacheTime();
+		$cacheTime->initFromJson( $unserializer, $json );
+		return $cacheTime;
+	}
+
+	/**
+	 * Initialize member fields from an array returned by jsonSerialize().
+	 * @param JsonUnserializer $unserializer
+	 * @param array $jsonData
+	 */
+	protected function initFromJson( JsonUnserializer $unserializer, array $jsonData ) {
+		if ( array_key_exists( 'AccessedOptions', $jsonData ) ) {
+			// Backwards compatibility for ParserOutput
+			$this->mParseUsedOptions = $jsonData['AccessedOptions'] ?: [];
+		} elseif ( array_key_exists( 'UsedOptions', $jsonData ) ) {
+			// Backwards compatibility
+			$this->recordOptions( $jsonData['UsedOptions'] ?: [] );
+		} else {
+			$this->mParseUsedOptions = $jsonData['ParseUsedOptions'] ?: [];
+		}
+		$this->mCacheExpiry = $jsonData['CacheExpiry'];
+		$this->mCacheTime = $jsonData['CacheTime'];
+		$this->mCacheRevisionId = $jsonData['CacheRevisionId'];
+	}
+
+	public function __wakeup() {
+		// Backwards compatibility, pre 1.36
+		$priorOptions = $this->getGhostFieldValue( 'mUsedOptions' );
+		if ( $priorOptions ) {
+			$this->recordOptions( $priorOptions );
+		}
 	}
 }

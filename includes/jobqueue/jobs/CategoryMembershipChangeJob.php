@@ -78,13 +78,14 @@ class CategoryMembershipChangeJob extends Job {
 	}
 
 	public function run() {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getMainLB();
 		$dbw = $lb->getConnectionRef( DB_MASTER );
 
 		$this->ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
-		$page = WikiPage::newFromID( $this->params['pageId'], WikiPage::READ_LATEST );
+		$page = $services->getWikiPageFactory()->newFromID( $this->params['pageId'], WikiPage::READ_LATEST );
 		if ( !$page ) {
 			$this->setLastError( "Could not find page #{$this->params['pageId']}" );
 			return false; // deleted?
@@ -150,7 +151,7 @@ class CategoryMembershipChangeJob extends Job {
 		// Find revisions to this page made around and after this revision which lack category
 		// notifications in recent changes. This lets jobs pick up were the last one left off.
 		$encCutoff = $dbr->addQuotes( $dbr->timestamp( $cutoffUnix ) );
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $services->getRevisionStore();
 		$revQuery = $revisionStore->getQueryInfo();
 		$res = $dbr->select(
 			$revQuery['tables'],

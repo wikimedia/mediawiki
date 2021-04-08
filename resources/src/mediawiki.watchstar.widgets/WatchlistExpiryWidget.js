@@ -1,4 +1,3 @@
-/* eslint-disable no-implicit-globals */
 /**
  * A special widget that displays a message that a page is being watched/unwatched
  * with a selection widget that can determine how long the page will be watched.
@@ -11,11 +10,15 @@
  * @param {Function} updateWatchLink
  * @param {Object} config Configuration object
  */
-
-var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, config ) {
+function WatchlistExpiryWidget( action, pageTitle, updateWatchLink, config ) {
 	var dataExpiryOptions = require( './data.json' ).options,
-		messageLabel, dropdownLabel,
-		expiryDropdown, onDropdownChange, api, $link, $li,
+		messageLabel,
+		dropdownLabel,
+		expiryDropdown,
+		onDropdownChange,
+		api,
+		$link,
+		$li,
 		expiryOptions = [];
 
 	config = config || {};
@@ -121,7 +124,7 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 					// Update the "Watch this page" checkbox on action=edit when the
 					// page is watched or unwatched via the tab.
 					if ( document.getElementById( 'wpWatchlistExpiryWidget' ) ) {
-						OO.ui.infuse( '#wpWatchlistExpiryWidget' ).setValue( value );
+						OO.ui.infuse( $( '#wpWatchlistExpiryWidget' ) ).setValue( value );
 					}
 				} )
 				.fail( function ( code, data ) {
@@ -140,12 +143,10 @@ var WatchlistExpiryWidget = function ( action, pageTitle, updateWatchLink, confi
 
 		expiryDropdown.on( 'change', onDropdownChange );
 		this.$element.append( dropdownLabel.$element, expiryDropdown.$element );
-	} else {
-		if ( typeof $li !== 'undefined' ) {
-			$li.removeClass( 'mw-watchlink-temp' );
-		}
+	} else if ( typeof $li !== 'undefined' ) {
+		$li.removeClass( 'mw-watchlink-temp' );
 	}
-};
+}
 
 OO.inheritClass( WatchlistExpiryWidget, OO.ui.Widget );
 

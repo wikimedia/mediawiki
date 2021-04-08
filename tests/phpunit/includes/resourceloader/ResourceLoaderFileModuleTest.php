@@ -11,9 +11,9 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$skinFactory = new SkinFactory( new ObjectFactory(
-			$this->createMock( ContainerInterface::class )
-		) );
+		$skinFactory = new SkinFactory(
+			new ObjectFactory( $this->createMock( ContainerInterface::class ) ), []
+		);
 		// The empty spec shouldn't matter since this test should never call it
 		$skinFactory->register(
 			'fakeskin',
@@ -455,40 +455,40 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		yield 'identical Less variables' => [ $x, $x, true ];
 
 		$a = [
-			'packageFiles' => [ [ 'name' => 'data.json', 'callback' => function () {
+			'packageFiles' => [ [ 'name' => 'data.json', 'callback' => static function () {
 				return [ 'aaa' ];
 			} ] ]
 		];
 		$b = [
-			'packageFiles' => [ [ 'name' => 'data.json', 'callback' => function () {
+			'packageFiles' => [ [ 'name' => 'data.json', 'callback' => static function () {
 				return [ 'bbb' ];
 			} ] ]
 		];
 		yield 'packageFiles with different callback' => [ $a, $b, false ];
 
 		$a = [
-			'packageFiles' => [ [ 'name' => 'aaa.json', 'callback' => function () {
+			'packageFiles' => [ [ 'name' => 'aaa.json', 'callback' => static function () {
 				return [ 'x' ];
 			} ] ]
 		];
 		$b = [
-			'packageFiles' => [ [ 'name' => 'bbb.json', 'callback' => function () {
+			'packageFiles' => [ [ 'name' => 'bbb.json', 'callback' => static function () {
 				return [ 'x' ];
 			} ] ]
 		];
 		yield 'packageFiles with different file name and a callback' => [ $a, $b, false ];
 
 		$a = [
-			'packageFiles' => [ [ 'name' => 'data.json', 'versionCallback' => function () {
+			'packageFiles' => [ [ 'name' => 'data.json', 'versionCallback' => static function () {
 				return [ 'A-version' ];
-			}, 'callback' => function () {
+			}, 'callback' => static function () {
 				throw new Exception( 'Unexpected computation' );
 			} ] ]
 		];
 		$b = [
-			'packageFiles' => [ [ 'name' => 'data.json', 'versionCallback' => function () {
+			'packageFiles' => [ [ 'name' => 'data.json', 'versionCallback' => static function () {
 				return [ 'B-version' ];
-			}, 'callback' => function () {
+			}, 'callback' => static function () {
 				throw new Exception( 'Unexpected computation' );
 			} ] ]
 		];
@@ -496,20 +496,20 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
 		$a = [
 			'packageFiles' => [ [ 'name' => 'aaa.json',
-				'versionCallback' => function () {
+				'versionCallback' => static function () {
 					return [ 'X-version' ];
 				},
-				'callback' => function () {
+				'callback' => static function () {
 					throw new Exception( 'Unexpected computation' );
 				}
 			] ]
 		];
 		$b = [
 			'packageFiles' => [ [ 'name' => 'bbb.json',
-				'versionCallback' => function () {
+				'versionCallback' => static function () {
 					return [ 'X-version' ];
 				},
-				'callback' => function () {
+				'callback' => static function () {
 					throw new Exception( 'Unexpected computation' );
 				}
 			] ]
@@ -623,7 +623,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						[ 'name' => 'bar.js', 'content' => "console.log('Hello');" ],
 						[
 							'name' => 'data.json',
-							'callback' => function ( $context, $config, $extra ) {
+							'callback' => static function ( $context, $config, $extra ) {
 								return [ 'langCode' => $context->getLanguage(), 'extra' => $extra ];
 							},
 							'callbackParam' => [ 'a' => 'b' ],
@@ -672,10 +672,10 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 						[ 'name' => 'bar.js', 'content' => "console.log('Hello');" ],
 						[
 							'name' => 'data.json',
-							'versionCallback' => function ( $context ) {
+							'versionCallback' => static function ( $context ) {
 								return 'x';
 							},
-							'callback' => function ( $context, $config, $extra ) {
+							'callback' => static function ( $context, $config, $extra ) {
 								return [ 'langCode' => $context->getLanguage(), 'extra' => $extra ];
 							},
 							'callbackParam' => [ 'A', 'B' ]
@@ -702,7 +702,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'package file with callback that returns a file (1)' => [
 				$base + [
 					'packageFiles' => [
-						[ 'name' => 'dynamic.js', 'callback' => function ( $context ) {
+						[ 'name' => 'dynamic.js', 'callback' => static function ( $context ) {
 							$file = $context->getLanguage() === 'fy' ? 'script-comment.js' : 'script-nosemi.js';
 							return new ResourceLoaderFilePath( $file );
 						} ]
@@ -724,7 +724,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			'package file with callback that returns a file (2)' => [
 				$base + [
 					'packageFiles' => [
-						[ 'name' => 'dynamic.js', 'callback' => function ( $context ) {
+						[ 'name' => 'dynamic.js', 'callback' => static function ( $context ) {
 							$file = $context->getLanguage() === 'fy' ? 'script-comment.js' : 'script-nosemi.js';
 							return new ResourceLoaderFilePath( $file );
 						} ]
@@ -866,5 +866,17 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 			// Array of expected return value
 			$this->assertEquals( $expected, $module->getScript( $context ) );
 		}
+	}
+
+	/**
+	 * @covers ResourceLoaderFileModule::requiresES6
+	 */
+	public function testRequiresES6() {
+		$module = new ResourceLoaderFileModule();
+		$this->assertFalse( $module->requiresES6(), 'requiresES6 defaults to false' );
+		$module = new ResourceLoaderFileModule( [ 'es6' => false ] );
+		$this->assertFalse( $module->requiresES6(), 'requiresES6 is false when set to false' );
+		$module = new ResourceLoaderFileModule( [ 'es6' => true ] );
+		$this->assertTrue( $module->requiresES6(), 'requiresES6 is true when set to true' );
 	}
 }

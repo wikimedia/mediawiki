@@ -235,7 +235,7 @@ class ApiLoginTest extends ApiTestCase {
 
 		$this->mergeMwGlobalArrayValue( 'wgAuthManagerConfig', [
 			'secondaryauth' => [ [
-				'factory' => function () use ( $mockProvider ) {
+				'factory' => static function () use ( $mockProvider ) {
 					return $mockProvider;
 				},
 			] ],
@@ -253,54 +253,6 @@ class ApiLoginTest extends ApiTestCase {
 			'reason' => ApiErrorFormatter::stripMarkup( wfMessage(
 				'api-login-fail-aborted' . ( $enableBotPasswords ? '' : '-nobotpw' ) )->text() ),
 		] ], $ret[0] );
-	}
-
-	/**
-	 * @todo Should this test just be deleted?
-	 * @group Broken
-	 */
-	public function testGotCookie() {
-		$this->markTestIncomplete( "The server can't do external HTTP requests, "
-			. "and the internal one won't give cookies" );
-
-		global $wgServer, $wgScriptPath;
-
-		$user = self::$users['sysop'];
-		$userName = $user->getUser()->getName();
-		$password = $user->getPassword();
-
-		$req = MWHttpRequest::factory(
-			self::$apiUrl . '?action=login&format=json',
-			[
-				'method' => 'POST',
-				'postData' => [
-					'lgname' => $userName,
-					'lgpassword' => $password,
-				],
-			],
-			__METHOD__
-		);
-		$req->execute();
-
-		$content = json_decode( $req->getContent() );
-
-		$this->assertSame( 'NeedToken', $content->login->result );
-
-		$req->setData( [
-			'lgtoken' => $content->login->token,
-			'lgname' => $userName,
-			'lgpassword' => $password,
-		] );
-		$req->execute();
-
-		$cj = $req->getCookieJar();
-		$serverName = parse_url( $wgServer, PHP_URL_HOST );
-		$this->assertNotEquals( false, $serverName );
-		$serializedCookie = $cj->serializeToHttpRequest( $wgScriptPath, $serverName );
-		$this->assertRegExp(
-			'/_session=[^;]*; .*UserID=[0-9]*; .*UserName=' . $userName . '; .*Token=/',
-			$serializedCookie
-		);
 	}
 
 	/**
@@ -394,7 +346,7 @@ class ApiLoginTest extends ApiTestCase {
 	}
 
 	public function testBotPasswordLocked() {
-		$this->setTemporaryHook( 'UserIsLocked', function ( User $unused, &$isLocked ) {
+		$this->setTemporaryHook( 'UserIsLocked', static function ( User $unused, &$isLocked ) {
 			$isLocked = true;
 			return true;
 		} );
@@ -409,7 +361,7 @@ class ApiLoginTest extends ApiTestCase {
 
 	public function testNoSameOriginSecurity() {
 		$this->setTemporaryHook( 'RequestHasSameOriginSecurity',
-			function () {
+			static function () {
 				return false;
 			}
 		);

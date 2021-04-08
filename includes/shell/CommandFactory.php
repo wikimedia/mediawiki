@@ -23,6 +23,9 @@ namespace MediaWiki\Shell;
 use ExecutableFinder;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use Shellbox\Command\BoxedCommand;
+use Shellbox\Command\RemoteBoxedExecutor;
+use Shellbox\Shellbox;
 
 /**
  * Factory facilitating dependency injection for Command
@@ -47,21 +50,31 @@ class CommandFactory {
 	private $restrictionMethod;
 
 	/**
-	 * @var string|bool
+	 * @var string|bool|null
 	 */
 	private $firejail;
 
+	/** @var bool */
+	private $useAllUsers;
+
+	/** @var ShellboxClientFactory */
+	private $shellboxClientFactory;
+
 	/**
+	 * @param ShellboxClientFactory $shellboxClientFactory
 	 * @param array $limits See {@see Command::limits()}
 	 * @param string|bool $cgroup See {@see Command::cgroup()}
 	 * @param string|bool $restrictionMethod
 	 */
-	public function __construct( array $limits, $cgroup, $restrictionMethod ) {
+	public function __construct( ShellboxClientFactory $shellboxClientFactory,
+		array $limits, $cgroup, $restrictionMethod
+	) {
+		$this->shellboxClientFactory = $shellboxClientFactory;
 		$this->limits = $limits;
 		$this->cgroup = $cgroup;
 		if ( $restrictionMethod === 'autodetect' ) {
 			// On Linux systems check for firejail
-			if ( PHP_OS === 'Linux' && $this->findFirejail() !== null ) {
+			if ( PHP_OS === 'Linux' && $this->findFirejail() ) {
 				$this->restrictionMethod = 'firejail';
 			} else {
 				$this->restrictionMethod = false;
@@ -72,10 +85,12 @@ class CommandFactory {
 		$this->setLogger( new NullLogger() );
 	}
 
-	protected function findFirejail(): ?string {
+	/**
+	 * @return bool|string
+	 */
+	protected function findFirejail() {
 		if ( $this->firejail === null ) {
-			// Convert a `false` from ExecutableFinder to `null` (T257282)
-			$this->firejail = ExecutableFinder::findInDefaultPaths( 'firejail' ) ?: null;
+			$this->firejail = ExecutableFinder::findInDefaultPaths( 'firejail' );
 		}
 
 		return $this->firejail;
@@ -92,22 +107,90 @@ class CommandFactory {
 	}
 
 	/**
+	 * Get the options which will be used for local unboxed execution.
+	 * Shellbox should be configured to act in an approximately backwards
+	 * compatible way, equivalent to the pre-Shellbox MediaWiki shell classes.
+	 *
+	 * @return array
+	 */
+	private function getLocalShellboxOptions() {
+		$options = [
+			'tempDir' => wfTempDir(),
+			'useBashWrapper' => file_exists( '/bin/bash' ),
+			'cgroup' => $this->cgroup
+		];
+		if ( $this->restrictionMethod === 'firejail' ) {
+			$firejailPath = $this->findFirejail();
+			if ( !$firejailPath ) {
+				throw new \RuntimeException( 'firejail is enabled, but cannot be found' );
+			}
+			$options['useFirejail'] = true;
+			$options['firejailPath'] = $firejailPath;
+			$options['firejailProfile'] = __DIR__ . '/firejail.profile';
+		}
+		return $options;
+	}
+
+	/**
 	 * Instantiates a new Command
 	 *
 	 * @return Command
 	 */
 	public function create(): Command {
+		$allUsers = false;
 		if ( $this->restrictionMethod === 'firejail' ) {
-			$command = new FirejailCommand( $this->findFirejail() );
-			$command->restrict( Shell::RESTRICT_DEFAULT );
-		} else {
-			$command = new Command();
+			if ( $this->useAllUsers === null ) {
+				global $IP;
+				// In case people are doing funny things with symlinks
+				// or relative paths, resolve them all.
+				$realIP = realpath( $IP );
+				$currentUser = posix_getpwuid( posix_geteuid() );
+				$this->useAllUsers = ( strpos( $realIP, '/home/' ) === 0 )
+					&& ( strpos( $realIP, $currentUser['dir'] ) !== 0 );
+				if ( $this->useAllUsers ) {
+					$this->logger->warning( 'firejail: MediaWiki is located ' .
+						'in a home directory that does not belong to the ' .
+						'current user, so allowing access to all home ' .
+						'directories (--allusers)' );
+				}
+			}
+			$allUsers = $this->useAllUsers;
 		}
-		$command->setLogger( $this->logger );
+		$executor = Shellbox::createUnboxedExecutor(
+			$this->getLocalShellboxOptions(), $this->logger );
 
+		$command = new Command( $executor );
+		$command->setLogger( $this->logger );
+		if ( $allUsers ) {
+			$command->allowPath( '/home' );
+		}
 		return $command
 			->limits( $this->limits )
-			->cgroup( $this->cgroup )
+			->logStderr( $this->doLogStderr );
+	}
+
+	/**
+	 * Instantiates a new BoxedCommand.
+	 *
+	 * @return BoxedCommand
+	 */
+	public function createBoxed(): BoxedCommand {
+		if ( $this->shellboxClientFactory->isEnabled() ) {
+			$client = $this->shellboxClientFactory->getClient( [
+				'timeout' => $this->limits['walltime'] + 1
+			] );
+			$executor = new RemoteBoxedExecutor( $client );
+			$executor->setLogger( $this->logger );
+		} else {
+			$executor = Shellbox::createBoxedExecutor(
+				$this->getLocalShellboxOptions(),
+				$this->logger );
+		}
+		return $executor->createCommand()
+			->cpuTimeLimit( $this->limits['time'] )
+			->wallTimeLimit( $this->limits['walltime'] )
+			->memoryLimit( $this->limits['memory'] * 1024 )
+			->fileSizeLimit( $this->limits['filesize'] * 1024 )
 			->logStderr( $this->doLogStderr );
 	}
 }

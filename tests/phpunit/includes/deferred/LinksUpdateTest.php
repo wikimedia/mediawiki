@@ -12,8 +12,8 @@ use Wikimedia\TestingAccessWrapper;
 class LinksUpdateTest extends MediaWikiLangTestCase {
 	protected static $testingPageId;
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
+	protected function setUp() : void {
+		parent::setUp();
 
 		$this->tablesUsed = array_merge( $this->tablesUsed,
 			[
@@ -29,10 +29,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 				'recentchanges',
 			]
 		);
-	}
 
-	protected function setUp() : void {
-		parent::setUp();
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->replace(
 			'interwiki',
@@ -358,12 +355,10 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 	 * @covers ParserOutput::setProperty
 	 */
 	public function testUpdate_page_props() {
-		global $wgPagePropsHaveSortkey;
-
 		/** @var ParserOutput $po */
 		list( $t, $po ) = $this->makeTitleAndParserOutput( "Testing", self::$testingPageId );
 
-		$fields = [ 'pp_propname', 'pp_value' ];
+		$fields = [ 'pp_propname', 'pp_value', 'pp_sortkey' ];
 		$expected = [];
 
 		$po->setProperty( "bool", true );
@@ -379,28 +374,18 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 		$expected[] = [ "string", "33 bar" ];
 
 		// compute expected sortkey values
-		if ( $wgPagePropsHaveSortkey ) {
-			$fields[] = 'pp_sortkey';
+		foreach ( $expected as &$row ) {
+			$value = $row[1];
 
-			foreach ( $expected as &$row ) {
-				$value = $row[1];
-
-				if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
-					$row[] = floatval( $value );
-				} else {
-					$row[] = null;
-				}
+			if ( is_int( $value ) || is_float( $value ) || is_bool( $value ) ) {
+				$row[] = floatval( $value );
+			} else {
+				$row[] = null;
 			}
 		}
 
 		$this->assertLinksUpdate(
 			$t, $po, 'page_props', $fields, 'pp_page = ' . self::$testingPageId, $expected );
-	}
-
-	public function testUpdate_page_props_without_sortkey() {
-		$this->setMwGlobals( 'wgPagePropsHaveSortkey', false );
-
-		$this->testUpdate_page_props();
 	}
 
 	// @todo test recursive, too!

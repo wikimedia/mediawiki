@@ -5,6 +5,9 @@ namespace MediaWiki\ResourceLoader\Hook;
 use ResourceLoader;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ResourceLoaderRegisterModules" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup ResourceLoaderHooks
  */

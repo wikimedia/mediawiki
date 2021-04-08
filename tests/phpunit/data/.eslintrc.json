@@ -1,0 +1,13 @@
+{
+	"rules": {
+		"array-bracket-spacing": "off",
+		"comma-spacing": "off",
+		"eol-last": "off",
+		"indent": "off",
+		"key-spacing": "off",
+		"no-multi-spaces": "off",
+		"no-multiple-empty-lines": "off",
+		"object-curly-spacing": "off",
+		"strict": "off"
+	}
+}

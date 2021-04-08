@@ -1,6 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajam",
+			"Amire80",
 			"Ebraminio",
 			"Huji",
 			"Meisam",
@@ -197,7 +199,7 @@
 	"exif-photometricinterpretation-3": "پالت",
 	"exif-photometricinterpretation-4": "شفافیت پوشش",
 	"exif-photometricinterpretation-5": "جداشده (احتمالاُ CMYK)",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
+	"exif-photometricinterpretation-8": "CIE L*a*b*‎",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (رمزنگاری ICC)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (رمزنگاری ITU)",
 	"exif-unknowndate": "تاریخ نامعلوم",
@@ -363,5 +365,13 @@
 	"exif-urgency-normal": "عادی ($1)",
 	"exif-urgency-low": "کم ($1)",
 	"exif-urgency-high": "زیاد ($1)",
-	"exif-urgency-other": "اولویت تعریف شده توسط کاربر ($1)"
+	"exif-urgency-other": "اولویت تعریف شده توسط کاربر ($1)",
+	"exif-firstphotodate": "تاریخ اولین عکس",
+	"exif-lastphotodate": "تاریخ آخرین عکس",
+	"exif-projectiontype": "نوع نمایش",
+	"exif-usepanoramaviewer": "استفاده از نمایشگر پانوراما",
+	"exif-usepanoramaviewer-true": "بله",
+	"exif-usepanoramaviewer-false": "خیر",
+	"exif-exposurelockused-true": "بله",
+	"exif-exposurelockused-false": "خیر"
 }

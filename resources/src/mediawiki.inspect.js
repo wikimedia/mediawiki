@@ -198,7 +198,7 @@
 			// Use Function.prototype#call to force an exception on Firefox,
 			// which doesn't define console#table but doesn't complain if you
 			// try to invoke it.
-			// eslint-disable-next-line no-useless-call
+			// eslint-disable-next-line no-useless-call, compat/compat
 			console.table.call( console, data );
 			return;
 		} catch ( e ) {}

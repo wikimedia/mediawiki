@@ -17,8 +17,9 @@ use MediaWiki\Widget\TitleInputWidget;
  * @since 1.26
  */
 class HTMLTitleTextField extends HTMLTextField {
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		$params += [

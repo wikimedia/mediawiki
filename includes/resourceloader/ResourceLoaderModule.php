@@ -26,12 +26,12 @@ use MediaWiki\ResourceLoader\HookRunner;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\RelPath;
 
 /**
  * Abstraction for ResourceLoader modules, with name registration and maxage functionality.
  *
+ * @see $wgResourceModules for the available options when registering a module.
  * @stable to extend
  * @ingroup ResourceLoader
  * @since 1.17
@@ -102,6 +102,9 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	public const ORIGIN_USER_INDIVIDUAL = 4;
 	/** @var int An access constant; make sure this is kept as the largest number in this group */
 	public const ORIGIN_ALL = 10;
+
+	/** @var int Cache version for user-script JS validation errors from validateScriptFile(). */
+	private const USERJSPARSE_CACHE_VERSION = 2;
 
 	/**
 	 * Get this module's name. This is set when the module is registered
@@ -283,7 +286,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @stable to override
 	 * @param ResourceLoaderContext $context
-	 * @return array Array of URLs
+	 * @return string[]
 	 */
 	public function getScriptURLsForDebug( ResourceLoaderContext $context ) {
 		$resourceLoader = $context->getResourceLoader();
@@ -357,7 +360,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * To get a JSON blob with messages, use MessageBlobStore::get()
 	 *
 	 * @stable to override
-	 * @return array List of message keys. Keys may occur more than once
+	 * @return string[] List of message keys. Keys may occur more than once
 	 */
 	public function getMessages() {
 		// Stub, override expected
@@ -397,7 +400,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @stable to override
 	 * @param ResourceLoaderContext|null $context
-	 * @return array List of module names as strings
+	 * @return string[] List of module names as strings
 	 */
 	public function getDependencies( ResourceLoaderContext $context = null ) {
 		// Stub, override expected
@@ -408,7 +411,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * Get target(s) for the module, eg ['desktop'] or ['desktop', 'mobile']
 	 *
 	 * @stable to override
-	 * @return array Array of strings
+	 * @return string[]
 	 */
 	public function getTargets() {
 		return $this->targets;
@@ -442,6 +445,20 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public function getSkipFunction() {
 		return null;
+	}
+
+	/**
+	 * Whether the module requires ES6 support in the client.
+	 *
+	 * If the client does not support ES6, attempting to load a module that requires ES6 will
+	 * result in an error.
+	 *
+	 * @stable to override
+	 * @since 1.36
+	 * @return bool
+	 */
+	public function requiresES6() {
+		return false;
 	}
 
 	/**
@@ -543,7 +560,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public static function getRelativePaths( array $filePaths ) {
 		global $IP;
-		return array_map( function ( $path ) use ( $IP ) {
+		return array_map( static function ( $path ) use ( $IP ) {
 			return RelPath::getRelativePath( $path, $IP );
 		}, $filePaths );
 	}
@@ -557,7 +574,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public static function expandRelativePaths( array $filePaths ) {
 		global $IP;
-		return array_map( function ( $path ) use ( $IP ) {
+		return array_map( static function ( $path ) use ( $IP ) {
 			return RelPath::joinPath( $IP, $path );
 		}, $filePaths );
 	}
@@ -947,52 +964,60 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 		return $this->getGroup() === 'private';
 	}
 
-	private static $parseCacheVersion = 1;
-
 	/**
-	 * Validate a given script file; if valid returns the original source.
-	 * If invalid, returns replacement JS source that throws an exception.
+	 * Validate a user-provided JavaScript blob.
 	 *
 	 * @param string $fileName
-	 * @param string $contents
-	 * @return string JS with the original, or a replacement error
+	 * @param string $contents JavaScript code
+	 * @return string JavaScript code, either the original content or a replacement
+	 *  that uses `mw.log.error()` to communicate a syntax error.
 	 */
 	protected function validateScriptFile( $fileName, $contents ) {
-		if ( !$this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
+		$error = null;
+
+		if ( $this->getConfig()->get( 'ResourceLoaderValidateJS' ) ) {
+			$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
+			// Cache potentially slow parsing of JavaScript code during the
+			// critical path. This happens lazily when responding to requests
+			// for modules=site, modules=user, and Gadgets.
+			$error = $cache->getWithSetCallback(
+				$cache->makeKey(
+					'resourceloader-userjsparse',
+					self::USERJSPARSE_CACHE_VERSION,
+					md5( $contents ),
+					$fileName
+				),
+				$cache::TTL_WEEK,
+				static function () use ( $contents, $fileName ) {
+					$parser = new JSParser();
+					try {
+						// Ignore compiler warnings (T77169)
+						// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+						@$parser->parse( $contents, $fileName, 1 );
+					} catch ( Exception $e ) {
+						return $e->getMessage();
+					}
+					// Cache success as null
+					return null;
+				}
+			);
+		}
+
+		if ( $error ) {
+			// Send the error to the browser console client-side.
+			// By returning this as replacement for the actual script,
+			// we ensure user-provided scripts are safe to include in a batch
+			// request, without risk of a syntax error in this blob breaking
+			// the response itself.
+			return 'mw.log.error(' .
+				json_encode(
+					'JavaScript parse error (scripts need to be valid ECMAScript 5): ' .
+					$error
+				) .
+				');';
+		} else {
 			return $contents;
 		}
-		$cache = MediaWikiServices::getInstance()->getMainWANObjectCache();
-		return $cache->getWithSetCallback(
-			$cache->makeGlobalKey(
-				'resourceloader-jsparse',
-				self::$parseCacheVersion,
-				md5( $contents ),
-				$fileName
-			),
-			$cache::TTL_WEEK,
-			function () use ( $contents, $fileName ) {
-				$parser = new JSParser();
-				$err = null;
-				try {
-					AtEase::suppressWarnings();
-					$parser->parse( $contents, $fileName, 1 );
-				} catch ( Exception $e ) {
-					$err = $e;
-				} finally {
-					AtEase::restoreWarnings();
-				}
-				if ( $err ) {
-					// Send the error to the browser console client-side.
-					// By returning this as replacement for the actual script,
-					// we ensure modules are safe to load in a batch request,
-					// without causing other unrelated modules to break.
-					return 'mw.log.error(' . Xml::encodeJsVar(
-						'JavaScript parse error (scripts need to be valid ECMAScript 5): ' .
-						$err->getMessage() ) . ');';
-				}
-				return $contents;
-			}
-		);
 	}
 
 	/**

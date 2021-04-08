@@ -105,28 +105,17 @@ abstract class Action implements MessageLocalizer {
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
 	 *
-	 * @param string|null $action Null is hard-deprecated since 1.35
-	 * @param Article|WikiPage|Page $article Calling with anything
-	 *  other than Article is hard-deprecated since 1.35
+	 * @param string $action
+	 * @param Article $article
 	 * @param IContextSource|null $context
 	 * @return Action|bool|null False if the action is disabled, null
 	 *     if it is not recognised
 	 */
 	final public static function factory(
-		?string $action,
-		Page $article,
+		string $action,
+		Article $article,
 		IContextSource $context = null
 	) {
-		if ( !is_string( $action ) ) {
-			wfDeprecated( __METHOD__ . ' with null $action', '1.35' );
-			return null;
-		}
-		if ( !$article instanceof Article ) {
-			wfDeprecated(
-				__METHOD__ . ' with ' . get_class( $article ),
-				'1.35'
-			);
-		}
 		$classOrCallable = self::getClass( $action, $article->getActionOverrides() );
 		if ( is_string( $classOrCallable ) ) {
 			if ( !class_exists( $classOrCallable ) ) {
@@ -177,7 +166,7 @@ abstract class Action implements MessageLocalizer {
 		}
 
 		// Trying to get a WikiPage for NS_SPECIAL etc. will result
-		// in WikiPage::factory throwing "Invalid or virtual namespace -1 given."
+		// in WikiPageFactory::newFromTitle throwing "Invalid or virtual namespace -1 given."
 		// For SpecialPages et al, default to action=view.
 		if ( !$context->canUseWikiPage() ) {
 			return 'view';
@@ -507,13 +496,15 @@ abstract class Action implements MessageLocalizer {
 	 * @since 1.25
 	 */
 	public function addHelpLink( $to, $overrideBaseUrl = false ) {
-		$msg = wfMessage( MediaWikiServices::getInstance()->getContentLanguage()->lc(
-			self::getActionName( $this->getContext() )
-			) . '-helppage' );
+		$lang = MediaWikiServices::getInstance()->getContentLanguage();
+		$target = $lang->lc( self::getActionName( $this->getContext() ) . '-helppage' );
+		$msg = $this->msg( $target );
 
 		if ( !$msg->isDisabled() ) {
-			$helpUrl = Skin::makeUrl( $msg->plain() );
-			$this->getOutput()->addHelpLink( $helpUrl, true );
+			$title = Title::newFromText( $msg->plain() );
+			if ( $title instanceof Title ) {
+				$this->getOutput()->addHelpLink( $title->getLocalURL(), true );
+			}
 		} else {
 			$this->getOutput()->addHelpLink( $to, $overrideBaseUrl );
 		}

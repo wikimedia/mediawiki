@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
+			"Luky001",
 			"Teslaton"
 		]
 	},
-	"apihelp-main-param-format": "Formát výstupu."
+	"apihelp-main-param-format": "Formát výstupu.",
+	"apierror-assertuserfailed": "Tvrdenie, že používateľ je prihlásený, zlyhalo."
 }

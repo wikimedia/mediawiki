@@ -11,7 +11,10 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	/** @var MultiHttpClient|MockObject */
 	protected $client;
 
-	/** @return MultiHttpClient|MockObject */
+	/**
+	 * @param array $options
+	 * @return MultiHttpClient|MockObject
+	 */
 	private function createClient( $options = [] ) {
 		$client = $this->getMockBuilder( MultiHttpClient::class )
 			->setConstructorArgs( [ $options ] )
@@ -169,7 +172,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$this->assertEquals( 200, $rcode );
-		$this->assertEquals( count( $headers ), count( $rhdrs ) );
+		$this->assertSame( count( $headers ), count( $rhdrs ) );
 		foreach ( $headers as $name => $values ) {
 			$value = implode( ', ', $values );
 			$this->assertArrayHasKey( $name, $rhdrs );
@@ -257,7 +260,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 			->with(
 				$url,
 				$this->callback(
-					function ( $options ) use ( $expectedReqTimeout, $expectedConnTimeout ) {
+					static function ( $options ) use ( $expectedReqTimeout, $expectedConnTimeout ) {
 						return $options['timeout'] === $expectedReqTimeout
 							&& $options['connectTimeout'] === $expectedConnTimeout;
 					}

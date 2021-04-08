@@ -34,6 +34,9 @@ class DifferenceEngineSlotDiffRenderer extends SlotDiffRenderer {
 	/** @var DifferenceEngine */
 	private $differenceEngine;
 
+	/**
+	 * @param DifferenceEngine $differenceEngine
+	 */
 	public function __construct( DifferenceEngine $differenceEngine ) {
 		$this->differenceEngine = clone $differenceEngine;
 
@@ -54,6 +57,7 @@ class DifferenceEngineSlotDiffRenderer extends SlotDiffRenderer {
 		return $this->differenceEngine->generateContentDiffBody( $oldContent, $newContent );
 	}
 
+	/** @inheritDoc */
 	public function addModules( OutputPage $output ) {
 		$oldContext = null;
 		if ( $output !== $this->differenceEngine->getOutput() ) {
@@ -68,6 +72,7 @@ class DifferenceEngineSlotDiffRenderer extends SlotDiffRenderer {
 		}
 	}
 
+	/** @inheritDoc */
 	public function getExtraCacheKeys() {
 		return $this->differenceEngine->getExtraCacheKeys();
 	}

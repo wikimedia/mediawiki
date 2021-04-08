@@ -11,3 +11,8 @@ insert_final_newline = true
 
 [*.md]
 trim_trailing_whitespace = false
+
+# Tabs may not be valid YAML
+# @see https://yaml.org/spec/1.2/spec.html#id2777534
+[*.{yml,yaml}]
+indent_style = space

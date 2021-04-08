@@ -101,12 +101,11 @@ class SVGReader {
 		} catch ( Exception $e ) {
 			// Note, if this happens, the width/height will be taken to be 0x0.
 			// Should we consider it the default 512x512 instead?
+			throw $e;
+		} finally {
 			Wikimedia\restoreWarnings();
 			libxml_disable_entity_loader( $oldDisable );
-			throw $e;
 		}
-		Wikimedia\restoreWarnings();
-		libxml_disable_entity_loader( $oldDisable );
 	}
 
 	/**

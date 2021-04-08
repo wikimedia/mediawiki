@@ -59,16 +59,6 @@ class GenderCache {
 	}
 
 	/**
-	 * @see MediaWikiServices::getInstance()->getGenderCache()
-	 * @deprecated in 1.28 (soft), 1.35 (hard)
-	 * @return GenderCache
-	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.28' );
-		return MediaWikiServices::getInstance()->getGenderCache();
-	}
-
-	/**
 	 * Returns the default gender option in this wiki.
 	 * @return string
 	 */
@@ -87,15 +77,15 @@ class GenderCache {
 	 * @return string
 	 */
 	public function getGenderOf( $username, $caller = '' ) {
-		global $wgUser;
-
 		if ( $username instanceof UserIdentity ) {
 			$username = $username->getName();
 		}
 
 		$username = self::normalizeUsername( $username );
 		if ( !isset( $this->cache[$username] ) ) {
-			if ( $this->misses >= $this->missLimit && $wgUser->getName() !== $username ) {
+			if ( $this->misses >= $this->missLimit &&
+				RequestContext::getMain()->getUser()->getName() !== $username
+			) {
 				if ( $this->misses === $this->missLimit ) {
 					$this->misses++;
 					wfDebug( __METHOD__ . ": too many misses, returning default onwards" );
@@ -160,6 +150,7 @@ class GenderCache {
 	 */
 	public function doQuery( $users, $caller = '' ) {
 		$default = $this->getDefault();
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 
 		$usersToCheck = [];
 		foreach ( (array)$users as $value ) {
@@ -169,7 +160,7 @@ class GenderCache {
 				// For existing users, this value will be overwritten by the correct value
 				$this->cache[$name] = $default;
 				// query only for valid names, which can be in the database
-				if ( User::isValidUserName( $name ) ) {
+				if ( $userNameUtils->isValid( $name ) ) {
 					$usersToCheck[] = $name;
 				}
 			}

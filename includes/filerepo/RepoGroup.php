@@ -78,7 +78,7 @@ class RepoGroup {
 		$services = MediaWikiServices::getInstance();
 		$services->disableService( 'RepoGroup' );
 		$services->redefineService( 'RepoGroup',
-			function () use ( $instance ) {
+			static function () use ( $instance ) {
 				return $instance;
 			}
 		);
@@ -287,7 +287,7 @@ class RepoGroup {
 		foreach ( $this->foreignRepos as $repo ) {
 			$result = array_merge( $result, $repo->findBySha1( $hash ) );
 		}
-		usort( $result, 'File::compare' );
+		usort( $result, [ File::class, 'compare' ] );
 
 		return $result;
 	}
@@ -296,7 +296,7 @@ class RepoGroup {
 	 * Find all instances of files with this keys
 	 *
 	 * @param array $hashes Base 36 SHA-1 hashes
-	 * @return array Array of array of File objects
+	 * @return File[][]
 	 */
 	public function findBySha1s( array $hashes ) {
 		if ( !$this->reposInitialised ) {
@@ -309,7 +309,7 @@ class RepoGroup {
 		}
 		// sort the merged (and presorted) sublist of each hash
 		foreach ( $result as $hash => $files ) {
-			usort( $result[$hash], 'File::compare' );
+			usort( $result[$hash], [ File::class, 'compare' ] );
 		}
 
 		return $result;

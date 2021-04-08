@@ -4,6 +4,7 @@ namespace Wikimedia\ParamValidator\TypeDef;
 
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
@@ -12,7 +13,9 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class IntegerDefTest extends TypeDefTestCase {
 
-	protected static $testClass = IntegerDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new IntegerDef( $callbacks, $options );
+	}
 
 	/**
 	 * @param string $v Representing a positive integer
@@ -53,7 +56,7 @@ class IntegerDefTest extends TypeDefTestCase {
 			] ),
 			'test', '...', []
 		);
-		$asWarn = function ( ValidationException $ex ) {
+		$asWarn = static function ( ValidationException $ex ) {
 			return [
 				'code' => $ex->getFailureMessage()->getCode(),
 				'data' => $ex->getFailureMessage()->getData(),

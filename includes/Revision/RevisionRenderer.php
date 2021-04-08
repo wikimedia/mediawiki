@@ -24,17 +24,17 @@ namespace MediaWiki\Revision;
 
 use Html;
 use InvalidArgumentException;
+use MediaWiki\Permissions\Authority;
 use ParserOptions;
 use ParserOutput;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use Title;
-use User;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * The RevisionRenderer service provides access to rendered output for revisions.
- * It does so be acting as a factory for RenderedRevision instances, which in turn
+ * It does so by acting as a factory for RenderedRevision instances, which in turn
  * provide lazy access to ParserOutput objects.
  *
  * One key responsibility of RevisionRenderer is implementing the layout used to combine
@@ -82,8 +82,8 @@ class RevisionRenderer {
 	/**
 	 * @param RevisionRecord $rev
 	 * @param ParserOptions|null $options
-	 * @param User|null $forUser User for privileged access. Default is unprivileged (public)
-	 *        access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
+	 * @param Authority|null $forPerformer User for privileged access. Default is unprivileged
+	 *        (public) access, unless the 'audience' hint is set to something else RevisionRecord::RAW.
 	 * @param array $hints Hints given as an associative array. Known keys:
 	 *      - 'use-master' Use master when rendering for the parser cache during save.
 	 *        Default is to use a replica.
@@ -102,7 +102,7 @@ class RevisionRenderer {
 	public function getRenderedRevision(
 		RevisionRecord $rev,
 		ParserOptions $options = null,
-		User $forUser = null,
+		Authority $forPerformer = null,
 		array $hints = []
 	) {
 		if ( $rev->getWikiId() !== $this->dbDomain ) {
@@ -110,16 +110,18 @@ class RevisionRenderer {
 		}
 
 		$audience = $hints['audience']
-			?? ( $forUser ? RevisionRecord::FOR_THIS_USER : RevisionRecord::FOR_PUBLIC );
+			?? ( $forPerformer ? RevisionRecord::FOR_THIS_USER : RevisionRecord::FOR_PUBLIC );
 
-		if ( !$rev->audienceCan( RevisionRecord::DELETED_TEXT, $audience, $forUser ) ) {
-			// Returning null here is awkward, but consist with the signature of
+		if ( !$rev->audienceCan( RevisionRecord::DELETED_TEXT, $audience, $forPerformer ) ) {
+			// Returning null here is awkward, but consistent with the signature of
 			// Revision::getContent() and RevisionRecord::getContent().
 			return null;
 		}
 
 		if ( !$options ) {
-			$options = ParserOptions::newCanonical( $forUser ?: 'canonical' );
+			$options = ParserOptions::newCanonical(
+				$forPerformer ? $forPerformer->getUser() : 'canonical'
+			);
 		}
 
 		$useMaster = $hints['use-master'] ?? false;
@@ -152,7 +154,7 @@ class RevisionRenderer {
 				return $this->combineSlotOutput( $rrev, $hints );
 			},
 			$audience,
-			$forUser
+			$forPerformer
 		);
 
 		$renderedRevision->setSaveParseLogger( $this->saveParseLogger );
@@ -212,7 +214,7 @@ class RevisionRenderer {
 
 		// short circuit if there is only the main slot
 		if ( array_keys( $slots ) === [ SlotRecord::MAIN ] ) {
-			return $rrev->getSlotParserOutput( SlotRecord::MAIN );
+			return $rrev->getSlotParserOutput( SlotRecord::MAIN, $hints );
 		}
 
 		// move main slot to front

@@ -24,6 +24,8 @@
  * @author Antoine Musso <hashar at free dot fr>
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -68,7 +70,8 @@ The new option is NOT validated.' );
 	 * List default options and their value
 	 */
 	private function listAvailableOptions() {
-		$def = User::getDefaultOptions();
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$def = $userOptionsLookup->getDefaultOptions();
 		ksort( $def );
 		$maxOpt = 0;
 		foreach ( $def as $opt => $value ) {
@@ -86,7 +89,8 @@ The new option is NOT validated.' );
 		$option = $this->getArg( 0 );
 
 		$ret = [];
-		$defaultOptions = User::getDefaultOptions();
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$defaultOptions = $userOptionsLookup->getDefaultOptions();
 
 		// We list user by user_id from one of the replica DBs
 		$dbr = wfGetDB( DB_REPLICA );
@@ -197,4 +201,4 @@ WARN
 }
 
 $maintClass = UserOptionsMaintenance::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

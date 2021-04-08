@@ -22,7 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\Permissions\Authority;
 
 /**
  * Implements uploading from a HTTP resource.
@@ -43,19 +43,17 @@ class UploadFromUrl extends UploadBase {
 	 * user is not allowed, return the name of the user right as a string. If
 	 * the user is allowed, have the parent do further permissions checking.
 	 *
-	 * @param UserIdentity $user
+	 * @param Authority $performer
 	 *
 	 * @return bool|string
 	 */
-	public static function isAllowed( UserIdentity $user ) {
-		if ( !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $user, 'upload_by_url' )
+	public static function isAllowed( Authority $performer ) {
+		if ( !$performer->isAllowed( 'upload_by_url' )
 		) {
 			return 'upload_by_url';
 		}
 
-		return parent::isAllowed( $user );
+		return parent::isAllowed( $performer );
 	}
 
 	/**
@@ -88,12 +86,12 @@ class UploadFromUrl extends UploadBase {
 		$valid = false;
 		foreach ( $wgCopyUploadsDomains as $domain ) {
 			// See if the domain for the upload matches this whitelisted domain
-			$whitelistedDomainPieces = explode( '.', $domain );
+			$domainPieces = explode( '.', $domain );
 			$uploadDomainPieces = explode( '.', $parsedUrl['host'] );
-			if ( count( $whitelistedDomainPieces ) === count( $uploadDomainPieces ) ) {
+			if ( count( $domainPieces ) === count( $uploadDomainPieces ) ) {
 				$valid = true;
 				// See if all the pieces match or not (excluding wildcards)
-				foreach ( $whitelistedDomainPieces as $index => $piece ) {
+				foreach ( $domainPieces as $index => $piece ) {
 					if ( $piece !== '*' && $piece !== $uploadDomainPieces[$index] ) {
 						$valid = false;
 					}
@@ -266,7 +264,7 @@ class UploadFromUrl extends UploadBase {
 		$this->mRemoveTempFile = true;
 		$this->mFileSize = 0;
 
-		$options = $httpOptions + [ 'followRedirects' => true ];
+		$options = $httpOptions + [ 'followRedirects' => false ];
 
 		if ( $wgCopyUploadProxy !== false ) {
 			$options['proxy'] = $wgCopyUploadProxy;
@@ -280,9 +278,28 @@ class UploadFromUrl extends UploadBase {
 			'Starting download from "' . $this->mUrl . '" ' .
 				'<' . implode( ',', array_keys( array_filter( $options ) ) ) . '>'
 		);
-		$req = MWHttpRequest::factory( $this->mUrl, $options, __METHOD__ );
-		$req->setCallback( [ $this, 'saveTempFileChunk' ] );
-		$status = $req->execute();
+
+		// Manually follow any redirects up to the limit and reset the output file before each new request to prevent
+		// capturing the redirect response as part of the file.
+		$attemptsLeft = $options['maxRedirects'] ?? 5;
+		$targetUrl = $this->mUrl;
+		while ( $attemptsLeft > 0 ) {
+			$req = MWHttpRequest::factory( $targetUrl, $options, __METHOD__ );
+			$req->setCallback( [ $this, 'saveTempFileChunk' ] );
+			$status = $req->execute();
+			if ( !$req->isRedirect() ) {
+				break;
+			}
+			$targetUrl = $req->getFinalUrl();
+			// Remove redirect response content from file.
+			ftruncate( $this->mTmpHandle, 0 );
+			rewind( $this->mTmpHandle );
+			$attemptsLeft--;
+		}
+
+		if ( $attemptsLeft == 0 ) {
+			return Status::newFatal( 'upload-too-many-redirects' );
+		}
 
 		if ( $this->mTmpHandle ) {
 			// File got written ok...

@@ -1,12 +1,4 @@
 <?php
-/**
- * This file host two test case classes for the MediaWiki FormOptions class:
- *  - FormOptionsInitializationTest : tests initialization of the class.
- *  - FormOptionsTest : tests methods an on instance
- *
- * The split let us take advantage of setting up a fixture for the methods
- * tests.
- */
 
 /**
  * Test class for FormOptions methods.
@@ -15,84 +7,35 @@
  *
  * @author Antoine Musso
  */
-class FormOptionsTest extends \MediaWikiUnitTestCase {
-	/**
-	 * @var FormOptions
-	 */
-	protected $object;
+class FormOptionsTest extends MediaWikiUnitTestCase {
 
 	/**
-	 * Instanciates a FormOptions object to play with.
-	 * FormOptions::add() is tested by the class FormOptionsInitializationTest
-	 * so we assume the function is well tested already an use it to create
-	 * the fixture.
+	 * @covers FormOptions::guessType
+	 * @dataProvider provideTypeDetection
 	 */
-	protected function setUp() : void {
-		parent::setUp();
-		$this->object = new FormOptions;
-		$this->object->add( 'string1', 'string one' );
-		$this->object->add( 'string2', 'string two' );
-		$this->object->add( 'integer', 0 );
-		$this->object->add( 'float', 0.0 );
-		$this->object->add( 'intnull', 0, FormOptions::INTNULL );
-	}
-
-	/** Helpers for testGuessType() */
-	/* @{ */
-	private function assertGuessBoolean( $data ) {
-		$this->guess( FormOptions::BOOL, $data );
-	}
-
-	private function assertGuessInt( $data ) {
-		$this->guess( FormOptions::INT, $data );
-	}
-
-	private function assertGuessFloat( $data ) {
-		$this->guess( FormOptions::FLOAT, $data );
-	}
-
-	private function assertGuessString( $data ) {
-		$this->guess( FormOptions::STRING, $data );
-	}
-
-	private function assertGuessArray( $data ) {
-		$this->guess( FormOptions::ARR, $data );
-	}
-
-	/** Generic helper */
-	private function guess( $expected, $data ) {
+	public function testGuessTypeDetection( $expectedType, $data ) {
 		$this->assertEquals(
-			$expected,
+			$expectedType,
 			FormOptions::guessType( $data )
 		);
 	}
 
-	/* @} */
-
-	/**
-	 * Reuse helpers above assertGuessBoolean assertGuessInt assertGuessString
-	 * @covers FormOptions::guessType
-	 */
-	public function testGuessTypeDetection() {
-		$this->assertGuessBoolean( true );
-		$this->assertGuessBoolean( false );
-
-		$this->assertGuessInt( 0 );
-		$this->assertGuessInt( -5 );
-		$this->assertGuessInt( 5 );
-		$this->assertGuessInt( 0x0F );
-
-		$this->assertGuessFloat( 0.0 );
-		$this->assertGuessFloat( 1.5 );
-		$this->assertGuessFloat( 1e3 );
-
-		$this->assertGuessString( 'true' );
-		$this->assertGuessString( 'false' );
-		$this->assertGuessString( '5' );
-		$this->assertGuessString( '0' );
-		$this->assertGuessString( '1.5' );
-
-		$this->assertGuessArray( [ 'foo' ] );
+	public function provideTypeDetection() {
+		yield [ FormOptions::BOOL, true ];
+		yield [ FormOptions::BOOL, false ];
+		yield [ FormOptions::INT, 0 ];
+		yield [ FormOptions::INT, -5 ];
+		yield [ FormOptions::INT, 5 ];
+		yield [ FormOptions::INT, 0x0F ];
+		yield [ FormOptions::FLOAT, 0.0 ];
+		yield [ FormOptions::FLOAT, 1.5 ];
+		yield [ FormOptions::FLOAT, 1e3 ];
+		yield [ FormOptions::STRING, 'true' ];
+		yield [ FormOptions::STRING, 'false' ];
+		yield [ FormOptions::STRING, '5' ];
+		yield [ FormOptions::STRING, '0' ];
+		yield [ FormOptions::STRING, '1.5' ];
+		yield [ FormOptions::ARR, [ 'foo' ] ];
 	}
 
 	/**
@@ -100,6 +43,7 @@ class FormOptionsTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testGuessTypeOnNullThrowException() {
 		$this->expectException( MWException::class );
-		$this->object->guessType( null );
+		$this->expectExceptionMessage( 'Unsupported datatype' );
+		FormOptions::guessType( null );
 	}
 }

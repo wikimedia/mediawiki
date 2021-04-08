@@ -128,15 +128,6 @@ abstract class JobQueue {
 			throw new JobQueueError( "Invalid job queue class '$class'." );
 		}
 
-		if ( !isset( $params['idGenerator'] ) ) {
-			wfDeprecated( __METHOD__ . ' called without "idGenerator" set', '1.35' );
-			$params['idGenerator'] = new GlobalIdGenerator(
-				sys_get_temp_dir(),
-				new EmptyBagOStuff(),
-				'shell_exec'
-			);
-		}
-
 		$obj = new $class( $params );
 		if ( !( $obj instanceof self ) ) {
 			throw new JobQueueError( "Class '$class' is not a " . __CLASS__ . " class." );
@@ -220,7 +211,7 @@ abstract class JobQueue {
 	 *
 	 * If caching is used, this might return false when there are actually no jobs.
 	 * If pop() is called and returns false then it should correct the cache. Also,
-	 * calling flushCaches() first prevents this. However, this affect is typically
+	 * calling flushCaches() first prevents this. However, this effect is typically
 	 * not distinguishable from the race condition between isEmpty() and pop().
 	 *
 	 * @return bool

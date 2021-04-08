@@ -118,7 +118,7 @@ class CleanupSpam extends Maintenance {
 						$row->el_from,
 						$spec,
 						$prot,
-						$wgUser
+						$user
 					);
 				}
 			}
@@ -132,10 +132,10 @@ class CleanupSpam extends Maintenance {
 	 * @param int $id
 	 * @param string $domain
 	 * @param string $protocol
-	 * @param User $deleter
+	 * @param User $actingUser
 	 * @throws MWException
 	 */
-	private function cleanupArticle( $id, $domain, $protocol, User $deleter ) {
+	private function cleanupArticle( $id, $domain, $protocol, User $actingUser ) {
 		$title = Title::newFromID( $id );
 		if ( !$title ) {
 			$this->error( "Internal error: no page for ID $id" );
@@ -145,7 +145,8 @@ class CleanupSpam extends Maintenance {
 
 		$this->output( $title->getPrefixedDBkey() . " ..." );
 
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$services = MediaWikiServices::getInstance();
+		$revLookup = $services->getRevisionLookup();
 		$rev = $revLookup->getRevisionByTitle( $title );
 		$currentRevId = $rev->getId();
 
@@ -166,7 +167,7 @@ class CleanupSpam extends Maintenance {
 		} else {
 			$dbw = $this->getDB( DB_MASTER );
 			$this->beginTransaction( $dbw, __METHOD__ );
-			$page = WikiPage::factory( $title );
+			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 			if ( $rev ) {
 				// Revert to this revision
 				$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
@@ -176,19 +177,19 @@ class CleanupSpam extends Maintenance {
 					$content,
 					wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
 					EDIT_UPDATE | EDIT_FORCE_BOT,
-					$rev->getId()
+					$rev->getId(),
+					$actingUser
 				);
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "deleting\n" );
 				$page->doDeleteArticleReal(
 					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text(),
-					$deleter
+					$actingUser
 				);
 			} else {
 				// Didn't find a non-spammy revision, blank the page
-				$handler = MediaWikiServices::getInstance()
-					->getContentHandlerFactory()
+				$handler = $services->getContentHandlerFactory()
 					->getContentHandler( $title->getContentModel() );
 				$content = $handler->makeEmptyContent();
 
@@ -196,7 +197,9 @@ class CleanupSpam extends Maintenance {
 				$page->doEditContent(
 					$content,
 					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text(),
-					EDIT_UPDATE | EDIT_FORCE_BOT
+					EDIT_UPDATE | EDIT_FORCE_BOT,
+					false,
+					$actingUser
 				);
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );

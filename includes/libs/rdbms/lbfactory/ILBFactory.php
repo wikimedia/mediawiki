@@ -31,12 +31,10 @@ use InvalidArgumentException;
  * @since 1.28
  */
 interface ILBFactory {
-	/** @var int Don't save DB positions at all */
-	public const SHUTDOWN_NO_CHRONPROT = 0; // don't save DB positions at all
-	/** @var int Save DB positions, but don't wait on remote DCs */
-	public const SHUTDOWN_CHRONPROT_ASYNC = 1;
-	/** @var int Save DB positions, waiting on all DCs */
-	public const SHUTDOWN_CHRONPROT_SYNC = 2;
+	/** Idion for "no special shutdown flags" */
+	public const SHUTDOWN_NORMAL = 0;
+	/** Do not save "session consistency" DB replication positions */
+	public const SHUTDOWN_NO_CHRONPROT = 1;
 
 	/** @var string Default main LB cluster name (do not change this) */
 	public const CLUSTER_MAIN_DEFAULT = 'DEFAULT';
@@ -50,7 +48,8 @@ interface ILBFactory {
 	 *  - localDomain: A DatabaseDomain or domain ID string.
 	 *  - readOnlyReason: Reason the master DB is read-only if so [optional]
 	 *  - srvCache: BagOStuff object for server cache [optional]
-	 *  - memStash: BagOStuff object for cross-datacenter memory storage [optional]
+	 *  - cpStash: BagOStuff object for ChronologyProtector store [optional]
+	 *    See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements).
 	 *  - wanCache: WANObjectCache object [optional]
 	 *  - hostname: The name of the current server [optional]
 	 *  - cliMode: Whether the execution context is a CLI script. [optional]
@@ -177,13 +176,13 @@ interface ILBFactory {
 	/**
 	 * Prepare all currently tracked (instantiated) load balancers for shutdown
 	 *
-	 * @param int $mode One of the class SHUTDOWN_* constants
+	 * @param int $flags Bit field of ILBFactory::SHUTDOWN_* constants
 	 * @param callable|null $workCallback Work to mask ChronologyProtector writes
-	 * @param int|null &$cpIndex Position key write counter for ChronologyProtector
-	 * @param string|null &$cpClientId Client ID hash for ChronologyProtector
+	 * @param int|null &$cpIndex Position key write counter for ChronologyProtector [returned]
+	 * @param string|null &$cpClientId Client ID hash for ChronologyProtector [returned]
 	 */
 	public function shutdown(
-		$mode = self::SHUTDOWN_CHRONPROT_SYNC,
+		$flags = self::SHUTDOWN_NORMAL,
 		callable $workCallback = null,
 		&$cpIndex = null,
 		&$cpClientId = null
@@ -330,8 +329,10 @@ interface ILBFactory {
 	public function commitAndWaitForReplication( $fname, $ticket, array $opts = [] );
 
 	/**
+	 * Get the UNIX timestamp when the client last touched the DB, if they did so recently
+	 *
 	 * @param DatabaseDomain|string|bool $domain Domain ID, or false for the current domain
-	 * @return float|bool UNIX timestamp when client last touched the DB or false if not recent
+	 * @return float|false UNIX timestamp; false if not recent or on record
 	 */
 	public function getChronologyProtectorTouched( $domain = false );
 

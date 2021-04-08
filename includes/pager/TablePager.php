@@ -219,7 +219,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @stable to override
 	 *
-	 * @param object $row The database result row
+	 * @param stdClass $row The database result row
 	 * @return string
 	 */
 	protected function getRowClass( $row ) {
@@ -231,7 +231,7 @@ abstract class TablePager extends IndexPager {
 	 *
 	 * @stable to override
 	 *
-	 * @param object $row The database result row
+	 * @param stdClass $row The database result row
 	 * @return array Array of attribute => value
 	 */
 	protected function getRowAttrs( $row ) {
@@ -407,13 +407,13 @@ abstract class TablePager extends IndexPager {
 	 * Resubmits all defined elements of the query string, except for a
 	 * blacklist, passed in the $blacklist parameter.
 	 *
-	 * @param array $blacklist Parameters from the request query which should not be resubmitted
+	 * @param array $noResubmit Parameters from the request query which should not be resubmitted
 	 * @return string HTML fragment
 	 */
-	public function getHiddenFields( $blacklist = [] ) {
-		$blacklist = (array)$blacklist;
+	public function getHiddenFields( $noResubmit = [] ) {
+		$noResubmit = (array)$noResubmit;
 		$query = $this->getRequest()->getQueryValues();
-		foreach ( $blacklist as $name ) {
+		foreach ( $noResubmit as $name ) {
 			unset( $query[$name] );
 		}
 		$s = '';
@@ -459,6 +459,7 @@ abstract class TablePager extends IndexPager {
 	 * otherwise
 	 *
 	 * @param string $field
+	 * @return bool
 	 */
 	abstract protected function isFieldSortable( $field );
 
@@ -490,7 +491,7 @@ abstract class TablePager extends IndexPager {
 	 * field name, for use in the table header. The description should be plain
 	 * text, it will be HTML-escaped later.
 	 *
-	 * @return array
+	 * @return string[]
 	 */
 	abstract protected function getFieldNames();
 }

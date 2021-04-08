@@ -79,18 +79,16 @@ class RevDelRevisionItem extends RevDelItem {
 	}
 
 	public function canView() {
-		return RevisionRecord::userCanBitfield(
-			$this->getRevisionRecord()->getVisibility(),
+		return $this->getRevisionRecord()->userCan(
 			RevisionRecord::DELETED_RESTRICTED,
-			$this->list->getUser()
+			$this->list->getAuthority()
 		);
 	}
 
 	public function canViewContent() {
-		return RevisionRecord::userCanBitfield(
-			$this->getRevisionRecord()->getVisibility(),
+		return $this->getRevisionRecord()->userCan(
 			RevisionRecord::DELETED_TEXT,
-			$this->list->getUser()
+			$this->list->getAuthority()
 		);
 	}
 
@@ -227,7 +225,7 @@ class RevDelRevisionItem extends RevDelItem {
 
 	public function getApiData( ApiResult $result ) {
 		$revRecord = $this->getRevisionRecord();
-		$user = $this->list->getUser();
+		$authority = $this->list->getAuthority();
 		$ret = [
 			'id' => $revRecord->getId(),
 			'timestamp' => wfTimestamp( TS_ISO_8601, $revRecord->getTimestamp() ),
@@ -235,23 +233,15 @@ class RevDelRevisionItem extends RevDelItem {
 			'commenthidden' => (bool)$revRecord->isDeleted( RevisionRecord::DELETED_COMMENT ),
 			'texthidden' => (bool)$revRecord->isDeleted( RevisionRecord::DELETED_TEXT ),
 		];
-		if ( RevisionRecord::userCanBitfield(
-			$revRecord->getVisibility(),
-			RevisionRecord::DELETED_USER,
-			$user
-		) ) {
-			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $user );
+		if ( $revRecord->userCan( RevisionRecord::DELETED_USER, $authority ) ) {
+			$revUser = $revRecord->getUser( RevisionRecord::FOR_THIS_USER, $authority );
 			$ret += [
 				'userid' => $revUser ? $revUser->getId() : 0,
 				'user' => $revUser ? $revUser->getName() : '',
 			];
 		}
-		if ( RevisionRecord::userCanBitfield(
-			$revRecord->getVisibility(),
-			RevisionRecord::DELETED_COMMENT,
-			$user
-		) ) {
-			$revComment = $revRecord->getComment( RevisionRecord::FOR_THIS_USER, $user );
+		if ( $revRecord->userCan( RevisionRecord::DELETED_COMMENT, $authority ) ) {
+			$revComment = $revRecord->getComment( RevisionRecord::FOR_THIS_USER, $authority );
 			$ret += [
 				'comment' => $revComment ? $revComment->text : ''
 			];

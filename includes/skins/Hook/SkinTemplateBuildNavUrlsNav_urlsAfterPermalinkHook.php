@@ -6,6 +6,9 @@ namespace MediaWiki\Hook;
 use SkinTemplate;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "SkinTemplateBuildNavUrlsNav_urlsAfterPermalink" to register handlers implementing this interface.
+ *
  * @deprecated since 1.35. Use SidebarBeforeOutput hook
  * @ingroup Hooks
  */

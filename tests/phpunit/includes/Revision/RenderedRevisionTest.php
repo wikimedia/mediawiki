@@ -5,7 +5,6 @@ namespace MediaWiki\Tests\Revision;
 use Content;
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RenderedRevision;
@@ -17,11 +16,11 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SuppressedDataException;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use MockTitleTrait;
 use ParserOptions;
 use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 use Title;
-use User;
 use Wikimedia\TestingAccessWrapper;
 use WikitextContent;
 
@@ -29,6 +28,7 @@ use WikitextContent;
  * @covers \MediaWiki\Revision\RenderedRevision
  */
 class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
+	use MockTitleTrait;
 
 	/** @var callable */
 	private $combinerCallback;
@@ -85,52 +85,11 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	 * @return Title
 	 */
 	private function getMockTitle( $articleId, $revisionId ) {
-		/** @var Title|MockObject $mock */
-		$mock = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getNamespace' )
-			->will( $this->returnValue( NS_MAIN ) );
-		$mock->expects( $this->any() )
-			->method( 'getText' )
-			->will( $this->returnValue( 'RenderTestPage' ) );
-		$mock->expects( $this->any() )
-			->method( 'getPrefixedText' )
-			->will( $this->returnValue( 'RenderTestPage' ) );
-		$mock->expects( $this->any() )
-			->method( 'getDBkey' )
-			->will( $this->returnValue( 'RenderTestPage' ) );
-		$mock->expects( $this->any() )
-			->method( 'getArticleID' )
-			->will( $this->returnValue( $articleId ) );
-		$mock->expects( $this->any() )
-			->method( 'getLatestRevId' )
-			->will( $this->returnValue( $revisionId ) );
-		$mock->expects( $this->any() )
-			->method( 'getContentModel' )
-			->will( $this->returnValue( CONTENT_MODEL_WIKITEXT ) );
-		$mock->expects( $this->any() )
-			->method( 'getPageLanguage' )
-			->will( $this->returnValue(
-				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) ) );
-		$mock->expects( $this->any() )
-			->method( 'isContentPage' )
-			->will( $this->returnValue( true ) );
-		$mock->expects( $this->any() )
-			->method( 'equals' )
-			->willReturnCallback( function ( Title $other ) use ( $mock ) {
-				return $mock->getPrefixedText() === $other->getPrefixedText();
-			} );
-		$mock->expects( $this->any() )
-			->method( 'userCan' )
-			->willReturnCallback( function ( $perm, User $user ) use ( $mock ) {
-				return MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, $perm );
-			} );
-
-		return $mock;
+		return $this->makeMockTitle( 'RenderTestPage', [
+			'id' => $articleId,
+			'revision' => $revisionId,
+			'language' => $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
+		] );
 	}
 
 	/**
@@ -138,6 +97,7 @@ class RenderedRevisionTest extends MediaWikiIntegrationTestCase {
 	 * @param Title $title
 	 * @param null|int $id
 	 * @param int $visibility
+	 * @param Content[]|null $content
 	 * @return RevisionRecord
 	 */
 	private function getMockRevision(

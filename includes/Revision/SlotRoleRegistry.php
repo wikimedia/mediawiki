@@ -104,14 +104,16 @@ class SlotRoleRegistry {
 	 *        for more information.
 	 * @param string $model A content model name, see ContentHandler
 	 * @param array $layout See SlotRoleHandler getOutputLayoutHints
+	 * @param bool $derived see SlotRoleHandler constructor
+	 * @since 1.36 optional $derived parameter added
 	 */
-	public function defineRoleWithModel( $role, $model, $layout = [] ) {
+	public function defineRoleWithModel( $role, $model, $layout = [], bool $derived = false ) {
 		$role = strtolower( $role );
 
 		$this->defineRole(
 			$role,
-			function ( $role ) use ( $model, $layout ) {
-				return new SlotRoleHandler( $role, $model, $layout );
+			static function ( $role ) use ( $model, $layout, $derived ) {
+				return new SlotRoleHandler( $role, $model, $layout, $derived );
 			}
 		);
 	}

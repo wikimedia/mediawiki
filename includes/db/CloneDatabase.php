@@ -71,9 +71,6 @@ class CloneDatabase {
 		$this->useTemporaryTables = $u;
 	}
 
-	/**
-	 * Clone the table structure
-	 */
 	public function cloneTableStructure() {
 		global $wgSharedTables, $wgSharedDB;
 		foreach ( $this->tablesToClone as $tbl ) {
@@ -142,7 +139,7 @@ class CloneDatabase {
 			$wgDBname => $lbFactory->getLocalDomainID()
 		];
 		$lbFactory->setDomainAliases( $aliases );
-		$lbFactory->forEachLB( function ( ILoadBalancer $lb ) use ( $aliases ) {
+		$lbFactory->forEachLB( static function ( ILoadBalancer $lb ) use ( $aliases ) {
 			$lb->setDomainAliases( $aliases );
 		} );
 

@@ -5,6 +5,9 @@ namespace MediaWiki\SpecialPage\Hook;
 use ChangesListSpecialPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ChangesListSpecialPageStructuredFilters" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

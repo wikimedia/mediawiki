@@ -22,8 +22,9 @@
  * @ingroup Benchmark
  */
 
-require __DIR__ . '/../Maintenance.php';
+require_once __DIR__ . '/../Maintenance.php';
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -70,7 +71,7 @@ class BenchmarkParse extends Maintenance {
 	public function execute() {
 		if ( $this->hasOption( 'tpl-time' ) ) {
 			$this->templateTimestamp = wfTimestamp( TS_MW, strtotime( $this->getOption( 'tpl-time' ) ) );
-			Hooks::register( 'BeforeParserFetchTemplateAndtitle', [ $this, 'onFetchTemplate' ] );
+			Hooks::register( 'BeforeParserFetchTemplateRevisionRecord', [ $this, 'onFetchTemplate' ] );
 		}
 
 		$this->clearLinkCache = $this->hasOption( 'reset-linkcache' );
@@ -173,20 +174,28 @@ class BenchmarkParse extends Maintenance {
 	 * Hook into the parser's revision ID fetcher. Make sure that the parser only
 	 * uses revisions around the specified timestamp.
 	 *
-	 * @param Parser $parser
-	 * @param Title $title
+	 * @param ?LinkTarget $contextTitle
+	 * @param LinkTarget $titleTarget
 	 * @param bool &$skip
-	 * @param string|bool &$id
+	 * @param ?RevisionRecord &$revRecord
 	 * @return bool
 	 */
-	private function onFetchTemplate( Parser $parser, Title $title, &$skip, &$id ) {
+	private function onFetchTemplate(
+		?LinkTarget $contextTitle,
+		LinkTarget $titleTarget,
+		bool &$skip,
+		?RevisionRecord &$revRecord
+	): bool {
+		$title = Title::castFromLinkTarget( $titleTarget );
+
 		$pdbk = $title->getPrefixedDBkey();
 		if ( !isset( $this->idCache[$pdbk] ) ) {
 			$proposedId = $this->getRevIdForTime( $title, $this->templateTimestamp );
 			$this->idCache[$pdbk] = $proposedId;
 		}
 		if ( $this->idCache[$pdbk] !== false ) {
-			$id = $this->idCache[$pdbk];
+			$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+			$revRecord = $revLookup->getRevisionById( $this->idCache[$pdbk] );
 		}
 
 		return true;
@@ -194,4 +203,4 @@ class BenchmarkParse extends Maintenance {
 }
 
 $maintClass = BenchmarkParse::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

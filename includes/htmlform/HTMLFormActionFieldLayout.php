@@ -6,8 +6,9 @@
 class HTMLFormActionFieldLayout extends OOUI\ActionFieldLayout {
 	use HTMLFormElement;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $fieldWidget, $buttonWidget = false, array $config = [] ) {
 		parent::__construct( $fieldWidget, $buttonWidget, $config );

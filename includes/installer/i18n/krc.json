@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Iltever",
-			"Ernác"
+			"Ernác",
+			"Iltever"
 		]
 	},
 	"config-desc": "MediaWiki инсталлятор",
@@ -15,13 +15,9 @@
 	"config-back": "← Артха",
 	"config-continue": "Баргъаны →",
 	"config-page-language": "Тил",
-	"config-db-host-oracle": "Билгиле базаны TNS'и:",
 	"config-db-wiki-settings": "Бу Викини идентификациясы",
 	"config-db-name": "Билгиле базаны аты:",
 	"config-mysql-innodb": "InnoDB",
-	"config-mysql-myisam": "MyISAM",
-	"config-mysql-binary": "Экили",
-	"config-mysql-utf8": "UTF-8",
 	"config-ns-generic": "Проект",
 	"config-ns-other-default": "MyWiki",
 	"config-profile-private": "Джабыкъ вики",

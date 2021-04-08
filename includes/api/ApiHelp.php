@@ -121,9 +121,6 @@ class ApiHelp extends ApiBase {
 			'mediawiki.hlist',
 			'mediawiki.apipretty',
 		] );
-		if ( !empty( $options['toc'] ) ) {
-			$out->addModuleStyles( 'mediawiki.toc.styles' );
-		}
 		$out->setPageTitle( $context->msg( 'api-help-title' ) );
 
 		$services = MediaWikiServices::getInstance();
@@ -284,8 +281,9 @@ class ApiHelp extends ApiBase {
 					];
 				} else {
 					$name = $module->getModuleName();
-					$headerContent = $module->getParent()->getModuleManager()->getModuleGroup( $name ) .
-						"=$name";
+					$headerContent = htmlspecialchars(
+						$module->getParent()->getModuleManager()->getModuleGroup( $name ) . "=$name"
+					);
 					if ( $module->getModulePrefix() !== '' ) {
 						$headerContent .= ' ' .
 							$context->msg( 'parentheses', $module->getModulePrefix() )->parse();
@@ -311,7 +309,7 @@ class ApiHelp extends ApiBase {
 					'index' => false,
 				];
 				if ( empty( $options['noheader'] ) ) {
-					$help['header'] .= Html::element(
+					$help['header'] .= Html::rawElement(
 						'h' . min( 6, $level ),
 						$headerAttr,
 						$headerContent
@@ -412,6 +410,9 @@ class ApiHelp extends ApiBase {
 
 			$urls = $module->getHelpUrls();
 			if ( $urls ) {
+				if ( !is_array( $urls ) ) {
+					$urls = [ $urls ];
+				}
 				$help['help-urls'] .= Html::openElement( 'div',
 					[ 'class' => 'apihelp-block apihelp-help-urls' ]
 				);
@@ -420,9 +421,6 @@ class ApiHelp extends ApiBase {
 					$help['help-urls'] .= self::wrap(
 						$msg->numParams( count( $urls ) ), 'apihelp-block-head', 'div'
 					);
-				}
-				if ( !is_array( $urls ) ) {
-					$urls = [ $urls ];
 				}
 				$help['help-urls'] .= Html::openElement( 'ul' );
 				foreach ( $urls as $url ) {

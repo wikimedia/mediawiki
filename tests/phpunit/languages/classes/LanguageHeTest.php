@@ -100,8 +100,10 @@ class LanguageHeTest extends LanguageClassesTestCase {
 		$this->assertEquals( $result, $this->getLang()->convertGrammar( $word, $case ) );
 	}
 
-	// The comments in the beginning of the line help avoid RTL problems
-	// with text editors.
+	/**
+	 * The comments in the beginning of the line help avoid RTL problems
+	 * with text editors.
+	 */
 	public static function provideGrammar() {
 		return [
 			[

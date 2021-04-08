@@ -90,6 +90,9 @@ class SiteConfigurationTest extends \MediaWikiUnitTestCase {
 
 	/**
 	 * This function is used as a callback within the tests below
+	 * @param SiteConfiguration $conf
+	 * @param string $wiki
+	 * @return array
 	 */
 	public static function getSiteParamsCallback( $conf, $wiki ) {
 		$site = null;

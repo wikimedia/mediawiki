@@ -19,6 +19,8 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
  * The simplest way of implementing IContextSource is to hold a RequestContext as a
@@ -28,6 +30,8 @@ use MediaWiki\MediaWikiServices;
  * @since 1.18
  */
 abstract class ContextSource implements IContextSource {
+	use NonSerializableTrait;
+
 	/**
 	 * @var IContextSource
 	 */
@@ -130,6 +134,13 @@ abstract class ContextSource implements IContextSource {
 	 */
 	public function getUser() {
 		return $this->getContext()->getUser();
+	}
+
+	/**
+	 * @return Authority
+	 */
+	public function getAuthority(): Authority {
+		return $this->getContext()->getAuthority();
 	}
 
 	/**

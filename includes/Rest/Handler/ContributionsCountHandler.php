@@ -2,57 +2,47 @@
 
 namespace MediaWiki\Rest\Handler;
 
-use MediaWiki\Rest\Handler;
+use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
-use MediaWiki\Revision\ContributionsLookup;
-use RequestContext;
-use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
 /**
  * @since 1.35
  */
-class ContributionsCountHandler extends Handler {
-
-	/**
-	 * @var ContributionsLookup
-	 */
-	private $contributionsLookup;
-
-	public function __construct( ContributionsLookup $contributionsLookup ) {
-		$this->contributionsLookup = $contributionsLookup;
-	}
+class ContributionsCountHandler extends AbstractContributionHandler {
 
 	/**
 	 * @return array|ResponseInterface
 	 * @throws LocalizedHttpException
 	 */
 	public function execute() {
-		$user = RequestContext::getMain()->getUser();
-		if ( $user->isAnon() ) {
-			throw new LocalizedHttpException(
-				new MessageValue( 'rest-permission-denied-anon' ), 401
-			);
-		}
-
+		$target = $this->getTargetUser();
 		$tag = $this->getValidatedParams()['tag'];
-		$count = $this->contributionsLookup->getContributionCount( $user, $user, $tag );
-
+		$count = $this->contributionsLookup->getContributionCount( $target, $this->getAuthority(), $tag );
 		$response = [ 'count' => $count ];
-
 		return $response;
 	}
 
 	public function getParamSettings() {
-		return [
+		$settings = [
 			'tag' => [
 				self::PARAM_SOURCE => 'query',
 				ParamValidator::PARAM_TYPE => 'string',
 				ParamValidator::PARAM_REQUIRED => false,
 				ParamValidator::PARAM_DEFAULT => null,
-			],
+			]
 		];
+		if ( $this->me === false ) {
+			$settings['user'] = [
+				self::PARAM_SOURCE => 'path',
+				ParamValidator::PARAM_REQUIRED => true,
+				ParamValidator::PARAM_TYPE => 'user',
+				UserDef::PARAM_RETURN_OBJECT => true,
+				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip' ],
+			];
+		}
+		return $settings;
 	}
 
 }

@@ -17,37 +17,26 @@ class ExternalStoreTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function provideFetchFromURLWithStore() {
+		yield [ 'Hello', 'ForTesting://cluster1/200', 'Allow FOO://cluster1/200' ];
+		yield [ 'Hello', 'ForTesting://cluster1/300/0', 'Allow FOO://cluster1/300/0' ];
+
+		// cases for r68900
+		yield [ false, 'ftp.example.org', 'Deny domain ftp.example.org' ];
+		yield [ false, '/example.txt', 'Deny path /example.txt' ];
+		yield [ false, 'http://', 'Deny protocol http://' ];
+	}
+
 	/**
 	 * @covers ExternalStore::fetchFromURL
+	 * @dataProvider provideFetchFromURLWithStore
 	 */
-	public function testExternalFetchFromURL_someExternalStore() {
+	public function testExternalFetchFromURL_someExternalStore( $expect, $url, $msg ) {
 		$this->setService(
 			'ExternalStoreFactory',
 			new ExternalStoreFactory( [ 'ForTesting' ], [ 'ForTesting://cluster1' ], 'test-id' )
 		);
 
-		$this->assertEquals(
-			'Hello',
-			ExternalStore::fetchFromURL( 'ForTesting://cluster1/200' ),
-			'Allow FOO://cluster1/200'
-		);
-		$this->assertEquals(
-			'Hello',
-			ExternalStore::fetchFromURL( 'ForTesting://cluster1/300/0' ),
-			'Allow FOO://cluster1/300/0'
-		);
-		# Assertions for r68900
-		$this->assertFalse(
-			ExternalStore::fetchFromURL( 'ftp.example.org' ),
-			'Deny domain ftp.example.org'
-		);
-		$this->assertFalse(
-			ExternalStore::fetchFromURL( '/example.txt' ),
-			'Deny path /example.txt'
-		);
-		$this->assertFalse(
-			ExternalStore::fetchFromURL( 'http://' ),
-			'Deny protocol http://'
-		);
+		$this->assertSame( $expect, ExternalStore::fetchFromURL( $url ), $msg );
 	}
 }

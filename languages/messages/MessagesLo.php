@@ -33,6 +33,7 @@ $namespaceAliases = [
 	'ສື່ອ' => NS_MEDIA,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'ໜ້າທັງໝົດ' ],
 	'BrokenRedirects'           => [ 'ໂອນເສຍ' ],

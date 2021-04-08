@@ -39,6 +39,9 @@ use WatchedItemStoreInterface;
  */
 class WatchlistNotificationManager {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'UseEnotif',
 		'ShowUpdatedMarker',
@@ -189,7 +192,7 @@ class WatchlistNotificationManager {
 			// Try to update the DB post-send and only if needed...
 			$talkPageNotificationManager = $this->talkPageNotificationManager;
 			$revisionLookup = $this->revisionLookup;
-			DeferredUpdates::addCallableUpdate( function () use (
+			DeferredUpdates::addCallableUpdate( static function () use (
 				$user,
 				$oldid,
 				$talkPageNotificationManager,

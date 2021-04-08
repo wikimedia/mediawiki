@@ -18,61 +18,6 @@
  * @file
  */
 
-declare( strict_types = 1 );
+use Shellbox\Command\UnboxedResult;
 
-namespace MediaWiki\Shell;
-
-/**
- * Returned by MediaWiki\Shell\Command::execute()
- *
- * @since 1.30
- */
-class Result {
-	/** @var int */
-	private $exitCode;
-
-	/** @var string */
-	private $stdout;
-
-	/** @var string|null */
-	private $stderr;
-
-	/**
-	 * @param int $exitCode
-	 * @param string $stdout
-	 * @param string|null $stderr
-	 */
-	public function __construct( int $exitCode, string $stdout, ?string $stderr ) {
-		$this->exitCode = $exitCode;
-		$this->stdout = $stdout;
-		$this->stderr = $stderr;
-	}
-
-	/**
-	 * Returns exit code of the process
-	 *
-	 * @return int
-	 */
-	public function getExitCode() : int {
-		return $this->exitCode;
-	}
-
-	/**
-	 * Returns stdout of the process
-	 *
-	 * @return string
-	 */
-	public function getStdout() : string {
-		return $this->stdout;
-	}
-
-	/**
-	 * Returns stderr of the process or null if the Command was configured to add stderr to stdout
-	 * with includeStderr( true )
-	 *
-	 * @return string|null
-	 */
-	public function getStderr() : ?string {
-		return $this->stderr;
-	}
-}
+class_alias( UnboxedResult::class, 'MediaWiki\\Shell\\Result', true );

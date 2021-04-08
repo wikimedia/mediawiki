@@ -1,8 +1,62 @@
 {
-    "@metadata": {
-        "authors": [
-            "Biŋhai"
-        ]
-    },
-    "mainpage": "ꀨꏾꌠ"
+	"@metadata": {
+		"authors": [
+			"Biŋhai",
+			"大小李子"
+		]
+	},
+	"tog-underline": "链接下划线：",
+	"tog-hideminor": "在最近更改中隐藏小编辑",
+	"tog-hidepatrolled": "在最近更改中隐藏已检查过的编辑",
+	"tog-newpageshidepatrolled": "在新页面列表中隐藏已巡查页面",
+	"tog-hidecategorization": "ꏾꑊꀋꄜꑫꁸ",
+	"tog-extendwatchlist": "ꐛꐈꈁꐥꌠꄜꅐꇁ，ꉈꑴꀋꑍꊂꐛꐈꌠꀉꄂꀋꉬꃅ",
+	"tog-usenewrc": "按页面合并最近更改和监视列表中的更改",
+	"tog-numberheadings": "ꑴꇙꃅꁸꌐꂷ",
+	"tog-editondblclick": "双击编辑页面",
+	"tog-editsectiononrightclick": "ꑳꏯꎎꌠꌉꄚꊁꆏ，ꌌꄜꀨꃅꄉꌠꁰꄻꌠꌌꌬꄚꊁꆏ",
+	"tog-watchcreations": "ꉢꁦꎆꃅꇱꀹꄻꌠꏾꑊꌠꌋꆀꉢꏮꊐꌠꁱꐘꅑꉠꑴꉻꄻꆫꃬ",
+	"tog-watchdefault": "添加我编辑的页面和文件至我的监视列表",
+	"tog-watchmoves": "添加我移动的页面和文件至我的监视列表",
+	"tog-watchdeletion": "添加我删除的页面和文件至我的监视列表",
+	"tog-watchuploads": "添加我上传的新文件至我的监视列表",
+	"tog-watchrollback": "添加我执行过回退的页面至我的监视列表",
+	"tog-minordefault": "默认标记所有编辑为小编辑",
+	"tog-previewontop": "在编辑框上方显示预览",
+	"tog-previewonfirst": "首次编辑时显示预览",
+	"tog-enotifwatchlistpages": "ꉠꆫꃬꌠꁱꐘꄻꐛꐈꄮꇬꆏꄆꌅꒀꏧꁵꉉꉡꇰ",
+	"tog-enotifusertalkpages": "当我的用户讨论页面更改时发送电子邮件通知我",
+	"tog-enotifminoredits": "当我的监视列表中的页面和文件有小编辑时也发送电子邮件通知我",
+	"tog-enotifrevealaddr": "ꋋꆹꉢꄆꌅꒀꏧ",
+	"tog-shownumberswatching": "显示监视用户数",
+	"tog-oldsig": "ꂓꁱ",
+	"tog-fancysig": "ꆏꂓꁱꇬꄀꄉꌌꎃꐚꄯꒉ（ꆹꋧꁧꃅꅐꀋꇁꌠꒆꐛꃅꐯꊛꌠ）",
+	"tog-uselivepreview": "ꄜꅐꇁꇈꀱꏾꑊ",
+	"tog-forceeditsummary": "未输入编辑摘要时提醒我",
+	"tog-watchlisthideown": "隐藏监视列表中的我的编辑",
+	"tog-watchlisthidebots": "隐藏监视列表中的机器人编辑",
+	"tog-watchlisthideminor": "隐藏监视列表中的小编辑",
+	"tog-watchlisthideliu": "隐藏监视列表中的登录用户的编辑",
+	"tog-watchlistreloadautomatically": "当一条过滤器规则被更改时，自动重新加载监视列表（需要JavaScript）",
+	"tog-watchlistunwatchlinks": "为有更改的监视页面添加直接（取消）监视标记（{{int:Watchlist-unwatch}}/{{int:Watchlist-unwatch-undo}}，需要JavaScript才能打开功能）",
+	"tog-watchlisthideanons": "隐藏监视列表中的登录用户的编辑",
+	"tog-watchlisthidepatrolled": "隐藏监视列表中的小编辑",
+	"tog-watchlisthidecategorization": "ꏾꑊꀋꄜꑫꁸ",
+	"tog-ccmeonemails": "把我给其他用户发送的电子邮件的副本发送给我",
+	"tog-diffonly": "不在差异下面显示页面内容",
+	"tog-showhiddencats": "显示隐藏分类",
+	"tog-norollbackdiff": "执行回退后不显示差异",
+	"tog-useeditwarning": "ꀋꄸꄷꀧꌋꃅ，ꆍꑴꌠꉢꇬꏭꊼꇅꌗꋏ",
+	"tog-prefershttps": "在登录后总是使用安全连接。",
+	"underline-always": "ꂴꊂꃅꋍꃅꐙ",
+	"underline-never": "从不",
+	"sunday": "ꆏꑍ",
+	"monday": "ꆏꊂꋍꑍ",
+	"tuesday": "ꆏꊂꑍꀕꇬꑌ",
+	"wednesday": "ꆏꊂꌕꑍꆏ",
+	"thursday": "ꆏꊂꇖ",
+	"friday": "ꆏꊂꉬꑍ",
+	"saturday": "ꆏꊂꃘꑍꄹꉇ",
+	"mainpage": "ꀨꏾꌠ",
+	"mainpage-nstab": "ꀨꏾꌠ"
 }

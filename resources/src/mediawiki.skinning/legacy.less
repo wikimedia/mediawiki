@@ -29,16 +29,21 @@
 }
 
 /* Most input fields should be in site direction */
-.sitedir-ltr textarea,
-.sitedir-ltr input {
-	/* @noflip */
-	direction: ltr;
-}
+textarea,
+input {
+	// Doubling of `dir` attribute selector increases specificity to allow
+	// attributes to override content and/or site directionality. See T260993.
+	.sitedir-ltr &,
+	&[ dir='ltr' ][ dir='ltr' ] {
+		/* @noflip */
+		direction: ltr;
+	}
 
-.sitedir-rtl textarea,
-.sitedir-rtl input {
-	/* @noflip */
-	direction: rtl;
+	.sitedir-rtl &,
+	&[ dir='rtl' ][ dir='rtl' ] {
+		/* @noflip */
+		direction: rtl;
+	}
 }
 
 .mw-userlink {
@@ -70,19 +75,6 @@ input[ type='file' ] {
 	direction: ltr;
 }
 
-/* Override default values */
-textarea[ dir='ltr' ],
-input[ dir='ltr' ] {
-	/* @noflip */
-	direction: ltr;
-}
-
-textarea[ dir='rtl' ],
-input[ dir='rtl' ] {
-	/* @noflip */
-	direction: rtl;
-}
-
 /* Default style for semantic tags */
 abbr[ title ], /* Note: Duplicate ruleset if skins load `normalize` and `legacy`. */
 .explain[ title ] {
@@ -105,28 +97,6 @@ span.comment {
 	unicode-bidi: isolate;
 }
 
-/* Stop floats from intruding into edit area in previews */
-#editform,
-#toolbar,
-#wpTextbox1 {
-	clear: both;
-}
-
-/* Prevent editing textarea from jumping when toolbar is loaded */
-#toolbar {
-	height: 22px;
-}
-
-/* Underline preference */
-
-.mw-underline-always a {
-	text-decoration: underline;
-}
-
-.mw-underline-never a {
-	text-decoration: none;
-}
-
 /**
  * rev_deleted stuff
  */
@@ -140,19 +110,6 @@ span.history-deleted {
 /**
  * Patrol stuff
  */
-.not-patrolled {
-	background-color: #ffa;
-}
-
-.unpatrolled {
-	font-weight: bold;
-	color: #d33;
-}
-
-div.patrollink {
-	font-size: 75%;
-	text-align: right;
-}
 
 /**
  * Forms
@@ -171,93 +128,9 @@ td.mw-submit {
 	white-space: nowrap;
 }
 
-.mw-input-with-label {
-	white-space: nowrap;
-	display: inline-block;
-}
-
-/**
- * Image captions.
- *
- * This is only meant to provide the most basic of styles, visual settings shouldn't be added here.
- */
-
-/* @noflip */
-.mw-content-ltr .thumbcaption {
-	text-align: left;
-}
-
-/* @noflip */
-.mw-content-ltr .magnify {
-	float: right;
-}
-
-/* @noflip */
-.mw-content-rtl .thumbcaption {
-	text-align: right;
-}
-
-/* @noflip */
-.mw-content-rtl .magnify {
-	float: left;
-}
-
-/**
- * Categories
- */
-#catlinks {
-	/**
-	 * Overrides text justification (user preference)
-	 * See T33990
-	 */
-	text-align: left;
-}
-
-.catlinks ul {
-	display: inline;
-	margin: 0;
-	padding: 0;
-	list-style: none none;
-}
-
-.catlinks li {
-	display: inline-block;
-	line-height: 1.25em;
-	border-left: 1px solid #a2a9b1;
-	margin: 0.125em 0;
-	padding: 0 0.5em;
-}
-
-.catlinks li:first-child {
-	padding-left: 0.25em;
-	border-left: 0;
-}
-
-/* (T7346) make category redirects italic */
-.catlinks li a.mw-redirect {
-	font-style: italic;
-}
-
-/**
- * Hidden categories
- */
-.mw-hidden-cats-hidden {
-	display: none;
-}
-
-.catlinks-allhidden {
-	display: none;
-}
-
-/**
- * Convenience links to edit delete and protect reasons
- */
-p.mw-protect-editreasons,
-p.mw-filedelete-editreasons,
-p.mw-delete-editreasons {
-	font-size: 90%;
-	text-align: right;
-}
+@import 'content.thumbnails.less';
+@import 'interface.category.less';
+@import '../mediawiki.action/styles.less';
 
 /* The auto-generated edit comments */
 .autocomment,
@@ -266,26 +139,12 @@ p.mw-delete-editreasons {
 	color: #72777d;
 }
 
-/** Generic minor/bot/newpage styling (recent changes) */
-.newpage,
-.minoredit,
-.botedit {
-	font-weight: bold;
-}
-
 /**
  * Recreating deleted page warning
  * Reupload file warning
  * Page protection warning
  * incl. log entries for these warnings
  */
-.mw-warning-with-logexcerpt {
-	clear: both;
-}
-
-.mw-warning-with-logexcerpt ul li {
-	font-size: 90%;
-}
 
 /* (show/hide) revision deletion links */
 span.mw-revdelundel-link,
@@ -298,60 +157,12 @@ input.mw-revdelundel-hidden {
 	visibility: hidden;
 }
 
-td.mw-revdel-checkbox,
-th.mw-revdel-checkbox {
-	padding-right: 10px;
-	text-align: center;
-}
-
 /* red links; see T38276 */
 a.new {
 	color: #ba0000;
 }
 
-/* Plainlinks - this can be used to switch
- * off special external link styling */
-.plainlinks a.external {
-	background: none !important; /* stylelint-disable-line declaration-no-important */
-	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
-}
-
-/* External URLs should always be treated as LTR (T6330) */
-/* @noflip */ .rtl a.external.free,
-.rtl a.external.autonumber {
-	direction: ltr;
-	unicode-bidi: embed;
-}
-
-/**
- * wikitable class for skinning normal tables
- * keep in sync with commonPrint.css
- */
-.wikitable {
-	background-color: #f8f9fa;
-	color: #202122;
-	margin: 1em 0;
-	border: 1px solid #a2a9b1;
-	border-collapse: collapse;
-}
-
-.wikitable > tr > th,
-.wikitable > tr > td,
-.wikitable > * > tr > th,
-.wikitable > * > tr > td {
-	border: 1px solid #a2a9b1;
-	padding: 0.2em 0.4em;
-}
-
-.wikitable > tr > th,
-.wikitable > * > tr > th {
-	background-color: #eaecf0;
-	text-align: center;
-}
-
-.wikitable > caption {
-	font-weight: bold;
-}
+@import 'content.tables.less';
 
 /* Error, warning, success and neutral messages */
 .error,
@@ -372,61 +183,19 @@ a.new {
 	color: #14866d;
 }
 
-/* general info/warning box for SP */
-.mw-infobox {
-	border: 2px solid #fc3;
-	margin: 0.5em;
-	clear: left;
-	overflow: hidden;
-}
-
-.mw-infobox-left {
-	margin: 7px;
-	float: left;
-	width: 35px;
-}
-
-.mw-infobox-right {
-	margin: 0.5em 0.5em 0.5em 49px;
-}
-
-/* Note on preview page */
-.previewnote {
-	margin-bottom: 1em;
-}
+/**
+ * `HTML::infobox` `.mw-infobox` class.
+ *
+ * Deprecated since 1.36.
+ */
+// Deprecate on directory base to uniquely mark its status.
+@import 'deprecated/mw-infobox.less';
 
 .visualClear {
 	clear: both;
 }
 
-/**
- * Data table style
- *
- * Table with suddle borders
- * and row-highlighting.
- */
-.mw-datatable {
-	border: 1px solid #a2a9b1;
-	border-collapse: collapse;
-}
-
-.mw-datatable td,
-.mw-datatable th {
-	border: 1px solid #a2a9b1;
-	padding: 0.2em 0.4em;
-}
-
-.mw-datatable th {
-	background-color: #eaeeff;
-}
-
-.mw-datatable td {
-	background-color: #fff;
-}
-
-.mw-datatable tr:hover td {
-	background-color: #eaf3ff;
-}
+@import '../mediawiki.pager.tablePager/DataTable.less';
 
 .mw-ajax-loader {
 	background-image: url( images/ajax-loader.gif );
@@ -448,71 +217,7 @@ a.new {
 @import 'i18n-all-lists-margins.less';
 @import 'i18n-headings.less';
 @import 'i18n-ordered-lists.less';
-
-.toc ul {
-	margin: 0.3em 0;
-}
-
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */ .mw-content-ltr .toc ul,
-.mw-content-rtl .mw-content-ltr .toc ul {
-	text-align: left;
-}
-
-/* @noflip */ .mw-content-rtl .toc ul,
-.mw-content-ltr .mw-content-rtl .toc ul {
-	text-align: right;
-}
-
-/* @noflip */ .mw-content-ltr .toc ul ul,
-.mw-content-rtl .mw-content-ltr .toc ul ul {
-	margin: 0 0 0 2em;
-}
-
-/* @noflip */ .mw-content-rtl .toc ul ul,
-.mw-content-ltr .mw-content-rtl .toc ul ul {
-	margin: 0 2em 0 0;
-}
-
-.toc .toctitle {
-	direction: ltr;
-}
-
-#mw-clearyourcache,
-#mw-sitecsspreview,
-#mw-sitejspreview,
-#mw-usercsspreview,
-#mw-userjspreview {
-	direction: ltr;
-	unicode-bidi: embed;
-}
-
-#mw-revision-info,
-#mw-revision-info-current,
-#mw-revision-nav {
-	direction: ltr;
-}
-
-/* Images */
-
-/* @noflip */ div.tright,
-div.floatright,
-table.floatright {
-	clear: right;
-	float: right;
-}
-
-/* @noflip */ div.tleft,
-div.floatleft,
-table.floatleft {
-	float: left;
-	clear: left;
-}
-
-/* T14205 */
-#mw-credits a {
-	unicode-bidi: embed;
-}
+@import 'toc/i18n.less';
 
 /* Print footer should be hidden by default in screen. */
 .printfooter {
@@ -525,36 +230,7 @@ table.floatleft {
 	z-index: 99;
 }
 
-.mw-editsection {
-	-moz-user-select: none;
-	-webkit-user-select: none;
-	-ms-user-select: none;
-	user-select: none;
-}
-
-/* Display editsection links smaller and next to headings */
-.mw-editsection,
-.mw-editsection-like {
-	font-size: small;
-	font-weight: normal;
-	margin-left: 1em;
-	vertical-align: baseline;
-	/* Reset line-height; headings tend to have it set to larger values */
-	line-height: 1em;
-}
-
-/* Correct directionality when page dir is different from site/user dir */
-/* @noflip */
-.mw-content-ltr .mw-editsection,
-.mw-content-rtl .mw-content-ltr .mw-editsection {
-	margin-left: 1em;
-}
-
-/* @noflip */
-.mw-content-rtl .mw-editsection,
-.mw-content-ltr .mw-content-rtl .mw-editsection {
-	margin-right: 1em;
-}
+@import 'interface-edit-section-links.less';
 
 /* Prevent citations and subscripts from interfering with the line-height */
 sup, /* FIXME: Remove after adding 'normalize.less' added to all 'legacy.less' calling skins. */

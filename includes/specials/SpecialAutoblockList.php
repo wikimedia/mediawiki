@@ -21,7 +21,10 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Block\BlockRestrictionStore;
+use MediaWiki\Block\BlockUtils;
+use MediaWiki\Cache\LinkBatchFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A special page that lists autoblocks
@@ -31,8 +34,48 @@ use MediaWiki\MediaWikiServices;
  */
 class SpecialAutoblockList extends SpecialPage {
 
-	public function __construct() {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var BlockRestrictionStore */
+	private $blockRestrictionStore;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var BlockUtils */
+	private $blockUtils;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param BlockRestrictionStore $blockRestrictionStore
+	 * @param ILoadBalancer $loadBalancer
+	 * @param ActorMigration $actorMigration
+	 * @param CommentStore $commentStore
+	 * @param BlockUtils $blockUtils
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		BlockRestrictionStore $blockRestrictionStore,
+		ILoadBalancer $loadBalancer,
+		ActorMigration $actorMigration,
+		CommentStore $commentStore,
+		BlockUtils $blockUtils
+	) {
 		parent::__construct( 'AutoblockList' );
+
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->loadBalancer = $loadBalancer;
+		$this->actorMigration = $actorMigration;
+		$this->commentStore = $commentStore;
+		$this->blockUtils = $blockUtils;
 	}
 
 	/**
@@ -83,14 +126,21 @@ class SpecialAutoblockList extends SpecialPage {
 			'ipb_parent_block_id IS NOT NULL'
 		];
 		# Is the user allowed to see hidden blocks?
-		if ( !MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $this->getUser(), 'hideuser' )
-		) {
+		if ( !$this->getAuthority()->isAllowed( 'hideuser' ) ) {
 			$conds['ipb_deleted'] = 0;
 		}
 
-		return new BlockListPager( $this, $conds );
+		return new BlockListPager(
+			$this,
+			$conds,
+			$this->linkBatchFactory,
+			$this->blockRestrictionStore,
+			$this->loadBalancer,
+			$this->getSpecialPageFactory(),
+			$this->actorMigration,
+			$this->commentStore,
+			$this->blockUtils
+		);
 	}
 
 	/**

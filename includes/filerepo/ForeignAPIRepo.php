@@ -1,7 +1,5 @@
 <?php
 /**
- * Foreign repository accessible through api.php requests.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,7 +22,7 @@
 use MediaWiki\Logger\LoggerFactory;
 
 /**
- * A foreign repository with a remote MediaWiki with an API thingy
+ * A foreign repository for a remote MediaWiki accessible through api.php requests.
  *
  * Example config:
  *
@@ -46,9 +44,8 @@ class ForeignAPIRepo extends FileRepo {
 
 	/**
 	 * List of iiprop values for the thumbnail fetch queries.
-	 * @since 1.23
 	 */
-	protected static $imageInfoProps = [
+	private const IMAGE_INFO_PROPS = [
 		'url',
 		'timestamp',
 	];
@@ -341,9 +338,11 @@ class ForeignAPIRepo extends FileRepo {
 
 		if ( !$this->canCacheThumbs() ) {
 			$result = null; // can't pass "null" by reference, but it's ok as default value
+
 			return $this->getThumbUrl( $name, $width, $height, $result, $params );
 		}
-		$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $name );
+
+		$key = $this->getLocalCacheKey( 'file-thumb-url', sha1( $name ) );
 		$sizekey = "$width:$height:$params";
 
 		/* Get the array of urls that we already know */
@@ -552,17 +551,17 @@ class ForeignAPIRepo extends FileRepo {
 	 * @since 1.23
 	 */
 	protected static function getIIProps() {
-		return implode( '|', self::$imageInfoProps );
+		return implode( '|', self::IMAGE_INFO_PROPS );
 	}
 
 	/**
 	 * HTTP GET request to a mediawiki API (with caching)
-	 * @param string $target Used in cache key creation, mostly
+	 * @param string $attribute Used in cache key creation, mostly
 	 * @param array $query The query parameters for the API request
 	 * @param int $cacheTTL Time to live for the memcached caching
 	 * @return string|null
 	 */
-	public function httpGetCached( $target, $query, $cacheTTL = 3600 ) {
+	public function httpGetCached( $attribute, $query, $cacheTTL = 3600 ) {
 		if ( $this->mApiBase ) {
 			$url = wfAppendQuery( $this->mApiBase, $query );
 		} else {
@@ -570,7 +569,7 @@ class ForeignAPIRepo extends FileRepo {
 		}
 
 		return $this->wanCache->getWithSetCallback(
-			$this->getLocalCacheKey( static::class, $target, md5( $url ) ),
+			$this->getLocalCacheKey( $attribute, sha1( $url ) ),
 			$cacheTTL,
 			function ( $curValue, &$ttl ) use ( $url ) {
 				$html = self::httpGet( $url, 'default', [], $mtime );

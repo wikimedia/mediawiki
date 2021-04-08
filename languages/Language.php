@@ -29,7 +29,9 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -334,7 +336,7 @@ class Language {
 	 * Get a cached or new language object for a given language code
 	 * @deprecated since 1.35, use LanguageFactory
 	 * @param string $code
-	 * @throws MWException
+	 * @throws MWException if the language code is invalid
 	 * @return Language
 	 */
 	public static function factory( $code ) {
@@ -443,7 +445,8 @@ class Language {
 	 *
 	 * @param string $code
 	 *
-	 * @return bool
+	 * @return bool False if the language code contains dangerous characters, e.g. HTML special
+	 *  characters or characters illegal in MediaWiki titles.
 	 */
 	public static function isValidCode( $code ) {
 		return MediaWikiServices::getInstance()->getLanguageNameUtils()->isValidCode( $code );
@@ -481,8 +484,6 @@ class Language {
 	}
 
 	/**
-	 * Get the LocalisationCache instance
-	 *
 	 * @deprecated since 1.34, use MediaWikiServices
 	 * @return LocalisationCache
 	 */
@@ -712,7 +713,7 @@ class Language {
 			// $wgExtraGenderNamespaces overrides everything
 			return true;
 		} elseif ( isset( $wgExtraNamespaces[NS_USER] ) && isset( $wgExtraNamespaces[NS_USER_TALK] ) ) {
-			/// @todo There may be other gender namespace than NS_USER & NS_USER_TALK in the future
+			// @todo There may be other gender namespace than NS_USER & NS_USER_TALK in the future
 			// $wgExtraNamespaces overrides any gender aliases specified in i18n files
 			return false;
 		} else {
@@ -728,7 +729,7 @@ class Language {
 	 * canonical ones defined in Namespace.php.
 	 *
 	 * @param string $text
-	 * @return int|bool An integer if $text is a valid value otherwise false
+	 * @return int|false An integer if $text is a valid value otherwise false
 	 */
 	public function getLocalNsIndex( $text ) {
 		$lctext = $this->lc( $text );
@@ -885,14 +886,6 @@ class Language {
 	 */
 	public function getDatePreferenceMigrationMap() {
 		return $this->localisationCache->getItem( $this->mCode, 'datePreferenceMigrationMap' );
-	}
-
-	/**
-	 * @return array
-	 */
-	public function getExtraUserToggles() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return [];
 	}
 
 	/**
@@ -1510,8 +1503,10 @@ class Language {
 				} elseif ( $hebrewNum ) {
 					$s .= self::hebrewNumeral( $num );
 					$hebrewNum = false;
+				} elseif ( preg_match( '/^[\d.]+$/', $num ) ) {
+					$s .= $this->formatNumNoSeparators( $num );
 				} else {
-					$s .= $this->formatNum( $num, true );
+					$s .= $num;
 				}
 			}
 		}
@@ -2151,10 +2146,14 @@ class Language {
 	 * @return int
 	 */
 	public function userAdjust( $ts, $tz = false ) {
-		global $wgUser, $wgLocalTZoffset;
+		global $wgLocalTZoffset;
 
 		if ( $tz === false ) {
-			$tz = $wgUser->getOption( 'timecorrection' );
+			$optionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+			$tz = $optionsLookup->getOption(
+				RequestContext::getMain()->getUser(),
+				'timecorrection'
+			);
 		}
 
 		$data = explode( '|', $tz, 3 );
@@ -2230,13 +2229,14 @@ class Language {
 	 * @return string
 	 */
 	public function dateFormat( $usePrefs = true ) {
-		global $wgUser;
-
 		if ( is_bool( $usePrefs ) ) {
 			if ( $usePrefs ) {
-				$datePreference = $wgUser->getDatePreference();
+				$datePreference = RequestContext::getMain()
+					->getUser()
+					->getDatePreference();
 			} else {
-				$datePreference = (string)User::getDefaultOption( 'date' );
+				$userOptionsLookup = MediawikiServices::getInstance()->getUserOptionsLookup();
+				$datePreference = (string)$userOptionsLookup->getDefaultOption( 'date' );
 			}
 		} else {
 			$datePreference = (string)$usePrefs;
@@ -2418,7 +2418,7 @@ class Language {
 	 * @param string $type Can be 'date', 'time' or 'both'
 	 * @param string $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param User $user User object used to get preferences for timezone and format
+	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
 	 *     - true: use user's preference
@@ -2431,7 +2431,9 @@ class Language {
 	 * @since 1.19
 	 * @return string
 	 */
-	private function internalUserTimeAndDate( $type, $ts, User $user, array $options ) {
+	private function internalUserTimeAndDate( $type, $ts, UserIdentity $user, array $options ) {
+		$user = User::newFromIdentity( $user );
+
 		$ts = wfTimestamp( TS_MW, $ts );
 		$options += [ 'timecorrection' => true, 'format' => true ];
 		if ( $options['timecorrection'] !== false ) {
@@ -2457,7 +2459,7 @@ class Language {
 	 *
 	 * @param mixed $ts Mixed: the time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param User $user User object used to get preferences for timezone and format
+	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
 	 *     - true: use user's preference
@@ -2470,7 +2472,7 @@ class Language {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function userDate( $ts, User $user, array $options = [] ) {
+	public function userDate( $ts, UserIdentity $user, array $options = [] ) {
 		return $this->internalUserTimeAndDate( 'date', $ts, $user, $options );
 	}
 
@@ -2480,7 +2482,7 @@ class Language {
 	 *
 	 * @param mixed $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param User $user User object used to get preferences for timezone and format
+	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
 	 *     - true: use user's preference
@@ -2493,7 +2495,7 @@ class Language {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function userTime( $ts, User $user, array $options = [] ) {
+	public function userTime( $ts, UserIdentity $user, array $options = [] ) {
 		return $this->internalUserTimeAndDate( 'time', $ts, $user, $options );
 	}
 
@@ -2503,7 +2505,7 @@ class Language {
 	 *
 	 * @param mixed $ts The time format which needs to be turned into a
 	 *   date('YmdHis') format with wfTimestamp(TS_MW,$ts)
-	 * @param User $user User object used to get preferences for timezone and format
+	 * @param UserIdentity $user User used to get preferences for timezone and format
 	 * @param array $options Array, can contain the following keys:
 	 *   - 'timecorrection': time correction, can have the following values:
 	 *     - true: use user's preference
@@ -2516,7 +2518,7 @@ class Language {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function userTimeAndDate( $ts, User $user, array $options = [] ) {
+	public function userTimeAndDate( $ts, UserIdentity $user, array $options = [] ) {
 		return $this->internalUserTimeAndDate( 'both', $ts, $user, $options );
 	}
 
@@ -2531,12 +2533,12 @@ class Language {
 	 *
 	 * @param MWTimestamp $time
 	 * @param MWTimestamp|null $relativeTo The base timestamp to compare to (defaults to now)
-	 * @param User|null $user User the timestamp is being generated for
+	 * @param UserIdentity|null $user User the timestamp is being generated for
 	 *  (or null to use main context's user)
 	 * @return string Formatted timestamp
 	 */
 	public function getHumanTimestamp(
-		MWTimestamp $time, MWTimestamp $relativeTo = null, User $user = null
+		MWTimestamp $time, MWTimestamp $relativeTo = null, UserIdentity $user = null
 	) {
 		if ( $relativeTo === null ) {
 			$relativeTo = new MWTimestamp();
@@ -2544,6 +2546,9 @@ class Language {
 		if ( $user === null ) {
 			$user = RequestContext::getMain()->getUser();
 		}
+
+		// For compatibility with the hook signature and MWTimestamp
+		$user = User::newFromIdentity( $user );
 
 		// Adjust for the user's timezone.
 		$offsetThis = $time->offsetForUser( $user );
@@ -2568,13 +2573,15 @@ class Language {
 	 * @see Language::getHumanTimestamp
 	 * @param MWTimestamp $ts Timestamp to prettify
 	 * @param MWTimestamp $relativeTo Base timestamp
-	 * @param User $user User preferences to use
+	 * @param UserIdentity $user User preferences to use
 	 * @return string Human timestamp
 	 * @since 1.26
 	 */
 	private function getHumanTimestampInternal(
-		MWTimestamp $ts, MWTimestamp $relativeTo, User $user
+		MWTimestamp $ts, MWTimestamp $relativeTo, UserIdentity $user
 	) {
+		$user = User::newFromIdentity( $user );
+
 		$diff = $ts->diff( $relativeTo );
 		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) -
 			(int)$relativeTo->timestamp->format( 'w' ) );
@@ -2781,7 +2788,7 @@ class Language {
 			// function to use to capitalize a single char
 			return preg_replace_callback(
 				$replaceRegexp,
-				function ( $matches ) {
+				static function ( $matches ) {
 					return mb_strtoupper( $matches[0] );
 				},
 				$str
@@ -2810,7 +2817,7 @@ class Language {
 
 			return preg_replace_callback(
 				$replaceRegexp,
-				function ( $matches ) {
+				static function ( $matches ) {
 					return mb_strtoupper( $matches[0] );
 				},
 				$str
@@ -3238,8 +3245,8 @@ class Language {
 
 	/**
 	 * Normally we output all numbers in plain en_US style, that is
-	 * 293,291.235 for twohundredninetythreethousand-twohundredninetyone
-	 * point twohundredthirtyfive. However this is not suitable for all
+	 * 293,291.235 for two hundred ninety-three thousand two hundred ninety-one
+	 * point two hundred thirty-five. However this is not suitable for all
 	 * languages, some such as Bengali (bn) want ২,৯৩,২৯১.২৩৫ and others such as
 	 * Icelandic just want to use commas instead of dots, and dots instead
 	 * of commas like "293.291,235".
@@ -3252,30 +3259,168 @@ class Language {
 	 * See $separatorTransformTable on MessageIs.php for
 	 * the , => . and . => , implementation.
 	 *
-	 * @todo check if it's viable to use localeconv() for the decimal separator thing.
 	 * @param string|int|float $number Expected to be a pre-formatted (e.g. leading zeros, number
 	 *  of decimal places) numeric string. Any non-string will be cast to string.
-	 * @param bool $nocommafy Set to true for special numbers like dates
+	 * @param bool|null $noSeparators Set to true for special numbers like dates
+	 *     (deprecated: use ::formatNumNoSeparators instead of this param)
 	 * @return string
 	 */
-	public function formatNum( $number, $nocommafy = false ) {
+	public function formatNum( $number, $noSeparators = null ) {
+		if ( $noSeparators !== null ) {
+			wfDeprecated( __METHOD__ . ' with $noSeparators parameter', '1.36' );
+		} else {
+			// The legacy default value.
+			$noSeparators = false;
+		}
+		return $this->formatNumInternal( (string)$number, false, $noSeparators );
+	}
+
+	/**
+	 * Internal implementation function, shared between commafy, formatNum,
+	 * and formatNumNoSeparators.
+	 *
+	 * @param string $number The stringification of a valid PHP number
+	 * @param bool $noTranslate Whether to translate digits and separators
+	 * @param bool $noSeparators Whether to add separators
+	 * @return string
+	 */
+	private function formatNumInternal(
+		string $number, bool $noTranslate, bool $noSeparators
+	): string {
 		global $wgTranslateNumerals;
 
-		$number = (string)$number;
-		if ( !$nocommafy ) {
-			$number = $this->commafy( $number );
-			$s = $this->separatorTransformTable();
-			if ( $s ) {
-				$number = strtr( $number, $s );
+		if ( $number === '' ) {
+			return $number;
+		}
+		if ( $number === (string)NAN ) {
+			return $this->msg( 'formatnum-nan' )->text();
+		}
+		if ( $number === (string)INF ) {
+			return "∞";
+		}
+		if ( $number === (string)-INF ) {
+			return "\u{2212}∞";
+		}
+		if ( !is_numeric( $number ) ) {
+			# T267587: downgrade this to level:warn while we chase down the long
+			# trail of callers.
+			# wfDeprecated( 'Language::formatNum with a non-numeric string', '1.36' );
+			LoggerFactory::getInstance( 'formatnum' )->warning(
+				'Language::formatNum with non-numeric string',
+				[ 'number' => $number ]
+			);
+			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
+			// For backwards-compat, apply formatNum piecewise on the valid
+			// numbers in the string. Don't split on NAN/INF in this legacy
+			// case as they are likely to be found embedded inside non-numeric
+			// text.
+			return preg_replace_callback( "/{$validNumberRe}/", function ( $m )  use ( $noTranslate, $noSeparators ) {
+				return $this->formatNumInternal( $m[0], $noTranslate, $noSeparators );
+			}, $number );
+		}
+
+		if ( !$noSeparators ) {
+			$separatorTransformTable = $this->separatorTransformTable();
+			$digitGroupingPattern = $this->digitGroupingPattern();
+			$code = $this->getCode();
+			if ( !( $wgTranslateNumerals && $this->langNameUtils->isValidCode( $code ) ) ) {
+				$code = 'C'; // POSIX system default locale
+			}
+
+			if ( $digitGroupingPattern ) {
+				$fmt = new NumberFormatter(
+					$code, NumberFormatter::PATTERN_DECIMAL, $digitGroupingPattern
+				);
+			} else {
+				/** @suppress PhanParamTooFew Phan thinks this always requires 3 parameters, that's wrong */
+				$fmt = new NumberFormatter( $code, NumberFormatter::DECIMAL );
+			}
+
+			// minimumGroupingDigits can be used to suppress groupings below a certain value.
+			// This is used for languages such as Polish, where one would only write the grouping
+			// separator for values above 9999 - numbers with more than 4 digits.
+			// NumberFormatter is yet to support minimumGroupingDigits, ICU has it as experimental feature.
+			// The attribute value is used by adding it to the grouping separator value. If
+			// the input number has fewer integer digits, the grouping separator is suppressed.
+			$minimumGroupingDigits = $this->minimumGroupingDigits() ?? 0;
+			// Minimum length of a number to do digit grouping on.
+			// http://unicode.org/reports/tr35/tr35-numbers.html#Examples_of_minimumGroupingDigits
+			$minimumLength = $minimumGroupingDigits + $fmt->getAttribute( NumberFormatter::GROUPING_SIZE );
+			if ( $minimumGroupingDigits && !preg_match( '/^\-?\d{' . $minimumLength . '}/', $number ) ) {
+				// Even if number does not need commafy, do decimal
+				// separator tranformation.  For example 1234.56 becoms
+				// 1234,56 in pl with $minimumGroupingDigits = 2
+				if ( !$noTranslate ) {
+					$number = strtr( $number, $separatorTransformTable ?: [] );
+				}
+			} elseif ( $number === '-0' ) {
+				// Special case to ensure we don't lose the minus sign by
+				// converting to an int.
+				if ( !$noTranslate ) {
+					$number = strtr( $number, $separatorTransformTable ?: [] );
+				}
+			} else {
+				// NumberFormatter supports separator transformation,
+				// but it does not know all languages MW
+				// supports. Example: arq. Also, languages like pl has
+				// customisation.  So manually set it.
+				if ( $noTranslate ) {
+					$fmt->setSymbol(
+						NumberFormatter::DECIMAL_SEPARATOR_SYMBOL,
+						'.'
+					);
+					$fmt->setSymbol(
+						NumberFormatter::GROUPING_SEPARATOR_SYMBOL,
+						','
+					);
+				} elseif ( $separatorTransformTable ) {
+					$fmt->setSymbol(
+						NumberFormatter::DECIMAL_SEPARATOR_SYMBOL,
+						$separatorTransformTable[ '.' ] ?? '.'
+					);
+					$fmt->setSymbol(
+						NumberFormatter::GROUPING_SEPARATOR_SYMBOL,
+						$separatorTransformTable[ ',' ] ?? ','
+					);
+				}
+
+				// Maintain # of digits before and after the decimal point
+				// (and presence of decimal point)
+				if ( preg_match( '/^-?(\d*)(\.(\d*))?$/', $number, $m ) ) {
+					$fmt->setAttribute( NumberFormatter::MIN_INTEGER_DIGITS, strlen( $m[1] ) );
+					if ( isset( $m[2] ) ) {
+						$fmt->setAttribute( NumberFormatter::DECIMAL_ALWAYS_SHOWN, true );
+					}
+					$fmt->setAttribute( NumberFormatter::FRACTION_DIGITS, strlen( $m[3] ?? '' ) );
+				}
+				$number = $fmt->format( $number );
 			}
 		}
 
-		if ( $wgTranslateNumerals ) {
-			$s = $this->digitTransformTable();
-			if ( $s ) {
-				$number = strtr( $number, $s );
+		if ( !$noTranslate ) {
+			if ( $wgTranslateNumerals ) {
+				// This is often unnecessary: PHP's NumberFormatter will often
+				// do the digit transform itself (T267614)
+				$s = $this->digitTransformTable();
+				if ( $s ) {
+					$number = strtr( $number, $s );
+				}
 			}
+			# T10327: Make our formatted numbers prettier by using a
+			# proper Unicode 'minus' character.
+			$number = strtr( $number, [ '-' => "\u{2212}" ] );
 		}
+
+		// Remove any LRM or RLM characters generated from NumberFormatter,
+		// since directionality is handled outside of this context.
+		// Similarly remove \u61C, the "Arabic Letter mark" (unicode 6.3.0)
+		// https://en.wikipedia.org/wiki/Arabic_letter_mark
+		// which is added starting PHP 7.3+
+		$number = strtr( $number, [
+			"\u{200E}" => '', // LRM
+			"\u{200F}" => '', // RLM
+			"\u{061C}" => '', // ALM
+		] );
 
 		return $number;
 	}
@@ -3289,7 +3434,7 @@ class Language {
 	 * @return string
 	 */
 	public function formatNumNoSeparators( $number ) {
-		return $this->formatNum( $number, true );
+		return $this->formatNumInternal( (string)$number, false, true );
 	}
 
 	/**
@@ -3297,6 +3442,18 @@ class Language {
 	 * @return string
 	 */
 	public function parseFormattedNumber( $number ) {
+		if ( $number === $this->msg( 'formatnum-nan' )->text() ) {
+			return (string)NAN;
+		}
+		if ( $number === "∞" ) {
+			return (string)INF;
+		}
+		// Accept either ASCII hyphen-minus or the unicode minus emitted by
+		// ::formatNum()
+		$number = strtr( $number, [ "\u{2212}" => '-' ] );
+		if ( $number === "-∞" ) {
+			return (string)-INF;
+		}
 		$s = $this->digitTransformTable();
 		if ( $s ) {
 			// eliminate empty array values such as ''. (T66347)
@@ -3316,73 +3473,24 @@ class Language {
 	}
 
 	/**
-	 * Adds commas to a given number
+	 * Adds commas to a given number.  NumberFormatting class is used
+	 * when available for correct implementation as per tr35
+	 * specification of unicode.
+	 *
 	 * @since 1.19
+	 * @deprecated in 1.36 use formatNum
 	 * @param string|null $number Expected to be a numeric string without (thousand) group
 	 *  separators. Decimal seperator, if present, must be a dot. Any non-string will be cast to
 	 *  string.
 	 * @return string
 	 */
 	public function commafy( $number ) {
-		$digitGroupingPattern = $this->digitGroupingPattern();
-		$minimumGroupingDigits = $this->minimumGroupingDigits();
-		if ( $number === null ) {
+		wfDeprecated( __METHOD__, '1.36' );
+		// Validate the input argument.
+		if ( $number === null || $number === '' ) {
 			return '';
 		}
-
-		if ( !$digitGroupingPattern || $digitGroupingPattern === "###,###,###" ) {
-			// Default grouping is at thousands, use the same for ###,###,### pattern too.
-			// In some languages it's conventional not to insert a thousands separator
-			// in numbers that are four digits long (1000-9999).
-			if ( $minimumGroupingDigits ) {
-				// Number of '#' characters after last comma in the grouping pattern.
-				// The pattern is hardcoded here, but this would vary for different patterns.
-				$primaryGroupingSize = 3;
-				// Maximum length of a number to suppress digit grouping for.
-				$maximumLength = $minimumGroupingDigits + $primaryGroupingSize - 1;
-				if ( preg_match( '/^\-?\d{1,' . $maximumLength . '}(\.\d+)?$/', $number ) ) {
-					return $number;
-				}
-			}
-			return strrev( (string)preg_replace( '/(\d{3})(?=\d)(?!\d*\.)/', '$1,', strrev( $number ) ) );
-		} else {
-			// Ref: http://cldr.unicode.org/translation/number-patterns
-			$sign = "";
-			if ( intval( $number ) < 0 ) {
-				// For negative numbers apply the algorithm like positive number and add sign.
-				$sign = "-";
-				$number = substr( $number, 1 );
-			}
-			$integerPart = [];
-			$decimalPart = [];
-			$numMatches = preg_match_all( "/(#+)/", $digitGroupingPattern, $matches );
-			preg_match( "/\d+/", $number, $integerPart );
-			preg_match( "/\.\d*/", $number, $decimalPart );
-			$groupedNumber = ( count( $decimalPart ) > 0 ) ? $decimalPart[0] : "";
-			if ( $groupedNumber === $number ) {
-				// the string does not have any number part. Eg: .12345
-				return $sign . $groupedNumber;
-			}
-			$start = $end = ( $integerPart ) ? strlen( $integerPart[0] ) : 0;
-			while ( $start > 0 ) {
-				$match = $matches[0][$numMatches - 1];
-				$matchLen = strlen( $match );
-				$start = $end - $matchLen;
-				if ( $start < 0 ) {
-					$start = 0;
-				}
-				$groupedNumber = substr( $number, $start, $end - $start ) . $groupedNumber;
-				$end = $start;
-				if ( $numMatches > 1 ) {
-					// use the last pattern for the rest of the number
-					$numMatches--;
-				}
-				if ( $start > 0 ) {
-					$groupedNumber = "," . $groupedNumber;
-				}
-			}
-			return $sign . $groupedNumber;
-		}
+		return $this->formatNumInternal( $number, true, false );
 	}
 
 	/**
@@ -4041,12 +4149,12 @@ class Language {
 	 * match up with it.
 	 *
 	 * @param string $str The validated block duration in English
-	 * @param User|null $user User object to use timezone from or null for $wgUser
+	 * @param UserIdentity|null $user User to use timezone from or null for the context user
 	 * @param int $now Current timestamp, for formatting relative block durations
 	 * @return string Somehow translated block duration
 	 * @see LanguageFi.php for example implementation
 	 */
-	public function translateBlockExpiry( $str, User $user = null, $now = 0 ) {
+	public function translateBlockExpiry( $str, UserIdentity $user = null, $now = 0 ) {
 		$duration = SpecialBlock::getSuggestedDurations( $this );
 		foreach ( $duration as $show => $value ) {
 			if ( strcmp( $str, $value ) == 0 ) {
@@ -4169,6 +4277,7 @@ class Language {
 	 * @return string
 	 */
 	public function convertTitle( $title ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->getConverter()->convertTitle( $title );
 	}
 
@@ -4287,6 +4396,7 @@ class Language {
 	 *   we need to transclude a template or update a category's link
 	 */
 	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->getConverter()->findVariantLink( $link, $nt, $ignoreOtherCond );
 	}
 
@@ -4311,6 +4421,7 @@ class Language {
 	 * @param LinkTarget $linkTarget The LinkTarget of the page being updated
 	 */
 	public function updateConversionTable( LinkTarget $linkTarget ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		$this->getConverter()->updateConversionTable( $linkTarget );
 	}
 
@@ -4579,10 +4690,12 @@ class Language {
 	 * @param bool|int $format True to process using language functions, or TS_ constant
 	 *     to return the expiry in a given timestamp
 	 * @param string $infinity If $format is not true, use this string for infinite expiry
+	 * @param UserIdentity|null $user If $format is true, use this user for date format
 	 * @return string
 	 * @since 1.18
+	 * @since 1.36 $user was added
 	 */
-	public function formatExpiry( $expiry, $format = true, $infinity = 'infinity' ) {
+	public function formatExpiry( $expiry, $format = true, $infinity = 'infinity', $user = null ) {
 		static $dbInfinity;
 		if ( $dbInfinity === null ) {
 			$dbInfinity = wfGetDB( DB_REPLICA )->getInfinity();
@@ -4593,9 +4706,12 @@ class Language {
 				? $this->getMessageFromDB( 'infiniteblock' )
 				: $infinity;
 		} else {
-			return $format === true
-				? $this->timeanddate( $expiry, /* User preference timezone */ true )
-				: wfTimestamp( $format, $expiry );
+			if ( $format === true ) {
+				return $user
+					? $this->userTimeAndDate( $expiry, $user )
+					: $this->timeanddate( $expiry, /* User preference timezone */ true );
+			}
+			return wfTimestamp( $format, $expiry );
 		}
 	}
 
@@ -4727,7 +4843,7 @@ class Language {
 	/**
 	 * @param int $size Size of the unit
 	 * @param int $boundary Size boundary (1000, or 1024 in most cases)
-	 * @param string $messageKey Message key to be uesd
+	 * @param string $messageKey Message key to be used
 	 * @return string
 	 */
 	public function formatComputingNumbers( $size, $boundary, $messageKey ) {
@@ -4791,78 +4907,6 @@ class Language {
 			$dirmark .
 			$this->msg( 'word-separator' )->escaped() .
 			$this->msg( 'parentheses' )->rawParams( $details )->escaped();
-	}
-
-	/**
-	 * Generate (prev x| next x) (20|50|100...) type links for paging
-	 *
-	 * @param Title $title Title object to link
-	 * @param int $offset
-	 * @param int $limit
-	 * @param array $query Optional URL query parameter string
-	 * @param bool $atend Optional param for specified if this is the last page
-	 * @return string
-	 * @deprecated since 1.34, use PrevNextNavigationRenderer::buildPrevNextNavigation()
-	 *  instead.
-	 */
-	public function viewPrevNext( Title $title, $offset, $limit,
-		array $query = [], $atend = false
-	) {
-		wfDeprecated( __METHOD__, '1.34' );
-		// @todo FIXME: Why on earth this needs one message for the text and another one for tooltip?
-
-		# Make 'previous' link
-		$prev = wfMessage( 'prevn' )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
-		if ( $offset > 0 ) {
-			$plink = $this->numLink( $title, max( $offset - $limit, 0 ), $limit,
-				$query, $prev, 'prevn-title', 'mw-prevlink' );
-		} else {
-			$plink = htmlspecialchars( $prev );
-		}
-
-		# Make 'next' link
-		$next = wfMessage( 'nextn' )->inLanguage( $this )->title( $title )->numParams( $limit )->text();
-		if ( $atend ) {
-			$nlink = htmlspecialchars( $next );
-		} else {
-			$nlink = $this->numLink( $title, $offset + $limit, $limit,
-				$query, $next, 'nextn-title', 'mw-nextlink' );
-		}
-
-		# Make links to set number of items per page
-		$numLinks = [];
-		foreach ( [ 20, 50, 100, 250, 500 ] as $num ) {
-			$numLinks[] = $this->numLink( $title, $offset, $num,
-				$query, $this->formatNum( $num ), 'shown-title', 'mw-numlink' );
-		}
-
-		return wfMessage( 'viewprevnext' )->inLanguage( $this )->title( $title
-			)->rawParams( $plink, $nlink, $this->pipeList( $numLinks ) )->escaped();
-	}
-
-	/**
-	 * Helper function for viewPrevNext() that generates links
-	 *
-	 * @deprecated since 1.35, used with {@link viewPrevNext} only
-	 *
-	 * @param Title $title Title object to link
-	 * @param int $offset
-	 * @param int $limit
-	 * @param array $query Extra query parameters
-	 * @param string $link Text to use for the link; will be escaped
-	 * @param string $tooltipMsg Name of the message to use as tooltip
-	 * @param string $class Value of the "class" attribute of the link
-	 * @return string HTML fragment
-	 */
-	private function numLink( Title $title, $offset, $limit, array $query, $link,
-		$tooltipMsg, $class
-	) {
-		$query = [ 'limit' => $limit, 'offset' => $offset ] + $query;
-		$tooltip = wfMessage( $tooltipMsg )->inLanguage( $this )->title( $title )
-			->numParams( $limit )->text();
-
-		return Html::element( 'a', [ 'href' => $title->getLocalURL( $query ),
-			'title' => $tooltip, 'class' => $class ], $link );
 	}
 
 	/**

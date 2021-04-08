@@ -46,8 +46,9 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 */
 	protected $uniqueId;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		$this->uniqueId = $this->getClassName() . ++self::$counter . 'x';
@@ -198,8 +199,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	public function getDefault() {
 		$ret = parent::getDefault();
 
-		// The default default is one entry with all subfields at their
-		// defaults.
+		// The default is one entry with all subfields at their defaults.
 		if ( $ret === null ) {
 			$fields = $this->createFieldsForKey( $this->uniqueId );
 			$row = [];
@@ -326,17 +326,13 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		if ( $displayFormat !== 'raw' ) {
-			$classes = [
-				'mw-htmlform-cloner-row',
-			];
+			$classes = [ 'mw-htmlform-cloner-row' ];
 
 			if ( !$hasLabel ) { // Avoid strange spacing when no labels exist
 				$classes[] = 'mw-htmlform-nolabel';
 			}
 
-			$attribs = [
-				'class' => implode( ' ', $classes ),
-			];
+			$attribs = [ 'class' => $classes ];
 
 			if ( $displayFormat === 'table' ) {
 				$html = Html::rawElement( 'table',
@@ -371,6 +367,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'id' => Sanitizer::escapeIdForAttribute( "{$this->mID}--$key--delete" ),
 			'cssclass' => 'mw-htmlform-cloner-delete-button',
 			'default' => $this->getMessage( $label )->text(),
+			'disabled' => $this->mParams['disabled'] ?? false,
 		], $this->mParent );
 		return $field;
 	}
@@ -385,6 +382,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			'id' => Sanitizer::escapeIdForAttribute( "{$this->mID}--create" ),
 			'cssclass' => 'mw-htmlform-cloner-create-button',
 			'default' => $this->getMessage( $label )->text(),
+			'disabled' => $this->mParams['disabled'] ?? false,
 		], $this->mParent );
 	}
 
@@ -401,6 +399,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		$template = $this->getInputHTMLForKey( $this->uniqueId, [] );
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped data-template contains html, but that is okay here
 		$html = Html::rawElement( 'ul', [
 			'id' => "mw-htmlform-cloner-list-{$this->mID}",
 			'class' => 'mw-htmlform-cloner-ul',
@@ -448,15 +447,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 			$html .= $fieldHtml;
 		}
 
-		$classes = [
-			'mw-htmlform-cloner-row',
-		];
-
-		$attribs = [
-			'class' => implode( ' ', $classes ),
-		];
-
-		$html = Html::rawElement( 'div', $attribs, "\n$html\n" );
+		$html = Html::rawElement( 'div', [ 'class' => 'mw-htmlform-cloner-row' ], "\n$html\n" );
 
 		$html .= $hidden;
 
@@ -481,6 +472,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		}
 
 		$template = $this->getInputOOUIForKey( $this->uniqueId, [] );
+		// @phan-suppress-next-line SecurityCheck-DoubleEscaped data-template contains html, but that is okay here
 		$html = Html::rawElement( 'ul', [
 			'id' => "mw-htmlform-cloner-list-{$this->mID}",
 			'class' => 'mw-htmlform-cloner-ul',

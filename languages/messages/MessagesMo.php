@@ -13,6 +13,7 @@
 
 $fallback = 'ro';
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'CreateAccount'             => [ 'КреареКонт' ],
 	'Preferences'               => [ 'Преферинце' ],

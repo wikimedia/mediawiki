@@ -6,6 +6,9 @@ use SpecialNewpages;
 use stdClass;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "NewPagesLineEnding" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -15,7 +18,7 @@ interface NewPagesLineEndingHook {
 	 *
 	 * @since 1.35
 	 *
-	 * @param SpecialNewPages $page The SpecialNewPages object
+	 * @param SpecialNewPages $page
 	 * @param string &$ret the HTML line
 	 * @param stdClass $row The database row for this page (the recentchanges record and a few extras
 	 *   - see NewPagesPager::getQueryInfo)

@@ -55,7 +55,7 @@ class CliInstaller extends Installer {
 	 * @throws InstallException
 	 */
 	public function __construct( $siteName, $admin = null, array $options = [] ) {
-		global $wgContLang, $wgPasswordPolicy;
+		global $wgPasswordPolicy;
 
 		parent::__construct();
 
@@ -75,7 +75,6 @@ class CliInstaller extends Installer {
 			$this->setVar( '_UserLang', $options['lang'] );
 			$wgLanguageCode = $options['lang'];
 			$this->setVar( 'wgLanguageCode', $wgLanguageCode );
-			$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 			$wgLang = MediaWikiServices::getInstance()->getLanguageFactory()
 				->getLanguage( $options['lang'] );
 			RequestContext::getMain()->setLanguage( $wgLang );
@@ -83,7 +82,8 @@ class CliInstaller extends Installer {
 
 		$this->setVar( 'wgSitename', $siteName );
 
-		$metaNS = $wgContLang->ucfirst( str_replace( ' ', '_', $siteName ) );
+		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$metaNS = $contLang->ucfirst( str_replace( ' ', '_', $siteName ) );
 		if ( $metaNS == 'MediaWiki' ) {
 			$metaNS = 'Project';
 		}
@@ -192,7 +192,7 @@ class CliInstaller extends Installer {
 	public function execute() {
 		// If APC is available, use that as the MainCacheType, instead of nothing.
 		// This is hacky and should be consolidated with WebInstallerOptions.
-		// This is here instead of in __construct(), because it should run run after
+		// This is here instead of in __construct(), because it should run after
 		// doEnvironmentChecks(), which populates '_Caches'.
 		if ( count( $this->getVar( '_Caches' ) ) ) {
 			// We detected a CACHE_ACCEL implementation, use it.
@@ -243,11 +243,13 @@ class CliInstaller extends Installer {
 	}
 
 	public function showMessage( $msg, ...$params ) {
+		// @phan-suppress-next-line SecurityCheck-XSS
 		echo $this->getMessageText( $msg, $params ) . "\n";
 		flush();
 	}
 
 	public function showError( $msg, ...$params ) {
+		// @phan-suppress-next-line SecurityCheck-XSS
 		echo "***{$this->getMessageText( $msg, $params )}***\n";
 		flush();
 	}

@@ -2,87 +2,87 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use Config;
+use LogicException;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
-use MediaWiki\Revision\RevisionAccessException;
-use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Revision\SuppressedDataException;
-use TextContent;
-use Wikimedia\Message\MessageValue;
+use MediaWiki\Rest\SimpleHandler;
+use MediaWiki\Revision\RevisionLookup;
+use Title;
+use TitleFactory;
+use TitleFormatter;
+use Wikimedia\Assert\Assert;
 
 /**
- * Handler class for Core REST API Page Source endpoint
+ * Handler class for Core REST API Page Source endpoint with the following routes:
+ * - /page/{title}
+ * - /page/{title}/bare
  */
-class PageSourceHandler extends LatestPageContentHandler {
-	private const MAX_AGE_200 = 5;
+class PageSourceHandler extends SimpleHandler {
 
-	// Default to main slot
-	private function getRole(): string {
-		return SlotRecord::MAIN;
+	/** @var PageContentHelper */
+	private $contentHelper;
+
+	public function __construct(
+		Config $config,
+		RevisionLookup $revisionLookup,
+		TitleFormatter $titleFormatter,
+		TitleFactory $titleFactory
+	) {
+		$this->contentHelper = new PageContentHelper(
+			$config,
+			$revisionLookup,
+			$titleFormatter,
+			$titleFactory
+		);
+	}
+
+	protected function postValidationSetup() {
+		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
 	}
 
 	/**
-	 * @param string $slotRole
-	 * @param RevisionRecord $revision
-	 * @return TextContent $content
-	 * @throws LocalizedHttpException slot content is not TextContent or Revision/Slot is inaccessible
+	 * @param Title $title
+	 * @return string
 	 */
-	protected function getPageContent( string $slotRole, RevisionRecord $revision ): TextContent {
-		try {
-			$content = $revision
-				->getSlot( $slotRole, RevisionRecord::FOR_THIS_USER, $this->user )
-				->getContent()
-				->convert( CONTENT_MODEL_TEXT );
-			if ( !( $content instanceof TextContent ) ) {
-				throw new LocalizedHttpException( MessageValue::new( 'rest-page-source-type-error' ), 400 );
-			}
-		} catch ( SuppressedDataException $e ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-permission-denied-revision' )->numParams( $revision->getId() ),
-				403
-			);
-		} catch ( RevisionAccessException $e ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-nonexistent-revision' )->numParams( $revision->getId() ),
-				404
-			);
-		}
-		return $content;
+	private function constructHtmlUrl( Title $title ): string {
+		return $this->getRouter()->getRouteUrl(
+			'/v1/page/{title}/html',
+			[ 'title' => $title->getPrefixedText() ]
+		);
 	}
 
 	/**
-	 * @param string $title
 	 * @return Response
 	 * @throws LocalizedHttpException
 	 */
-	public function run( string $title ): Response {
-		$titleObject = $this->getTitle();
-		if ( !$titleObject || !$titleObject->getArticleID() ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-nonexistent-title' )->plaintextParams( $title ),
-				404
-			);
+	public function run(): Response {
+		$this->contentHelper->checkAccess();
+
+		$titleObj = $this->contentHelper->getTitle();
+
+		// The call to $this->contentHelper->getTitle() should not return null if
+		// $this->contentHelper->checkAccess() did not throw.
+		Assert::invariant( $titleObj !== null, 'Title should be known' );
+
+		$outputMode = $this->getOutputMode();
+		switch ( $outputMode ) {
+			case 'bare':
+				$body = $this->contentHelper->constructMetadata();
+				$body['html_url'] = $this->constructHtmlUrl( $titleObj );
+				break;
+			case 'source':
+				$content = $this->contentHelper->getContent();
+				$body = $this->contentHelper->constructMetadata();
+				$body['source'] = $content->getText();
+				break;
+			default:
+				throw new LogicException( "Unknown HTML type $outputMode" );
 		}
-		if ( !$this->isAccessible( $titleObject ) ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams( $title ),
-				403
-			);
-		}
-		$revision = $this->getLatestRevision();
-		if ( !$revision ) {
-			throw new LocalizedHttpException(
-				MessageValue::new( 'rest-no-revision' ),
-				404
-			);
-		}
-		$content = $this->getPageContent( $this->getRole(), $revision );
-		$body = $this->constructMetadata( $titleObject, $revision );
-		$body['source'] = $content->getText();
 
 		$response = $this->getResponseFactory()->createJson( $body );
-		$response->setHeader( 'Cache-Control', 'max-age=' . self::MAX_AGE_200 );
+		$this->contentHelper->setCacheControl( $response );
+
 		return $response;
 	}
 
@@ -93,24 +93,32 @@ class PageSourceHandler extends LatestPageContentHandler {
 	 * @return string
 	 */
 	protected function getETag(): string {
-		$revision = $this->getLatestRevision();
-		$latestRevision = $revision ? $revision->getId() : 'e0';
-
-		$isAccessible = $this->isAccessible( $this->getTitle() );
-		$accessibleTag = $isAccessible ? 'a1' : 'a0';
-
-		$revisionTag = $latestRevision . $accessibleTag;
-		return '"' . sha1( "$revisionTag" ) . '"';
+		return $this->contentHelper->getETag();
 	}
 
 	/**
 	 * @return string|null
 	 */
 	protected function getLastModified(): ?string {
-		$revision = $this->getLatestRevision();
-		if ( $revision ) {
-			return $revision->getTimestamp();
-		}
-		return null;
+		return $this->contentHelper->getLastModified();
+	}
+
+	private function getOutputMode(): string {
+		return $this->getConfig()['format'];
+	}
+
+	public function needsWriteAccess(): bool {
+		return false;
+	}
+
+	public function getParamSettings(): array {
+		return $this->contentHelper->getParamSettings();
+	}
+
+	/**
+	 * @return bool
+	 */
+	protected function hasRepresentation() {
+		return $this->contentHelper->hasContent();
 	}
 }

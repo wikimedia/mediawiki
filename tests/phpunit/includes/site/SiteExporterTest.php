@@ -76,7 +76,7 @@ class SiteExporterTest extends MediaWikiIntegrationTestCase {
 
 		$store->expects( $this->once() )
 			->method( 'saveSites' )
-			->will( $this->returnCallback( function ( $moreSites ) use ( $sites ) {
+			->will( $this->returnCallback( static function ( $moreSites ) use ( $sites ) {
 				foreach ( $moreSites as $site ) {
 					$sites->setSite( $site );
 				}

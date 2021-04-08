@@ -21,13 +21,15 @@
  * @ingroup Maintenance ExternalStorage
  */
 
+// NO_AUTOLOAD -- file scope code
+
 use MediaWiki\MediaWikiServices;
 
 define( 'REPORTING_INTERVAL', 1 );
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithArgs = [ 'e', 's' ];
-	require_once __DIR__ . '/../commandLine.inc';
+	require_once __DIR__ . '/../CommandLineInc.php';
 	require_once 'resolveStubs.php';
 
 	$fname = 'moveToExternal';
@@ -41,8 +43,8 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 	$location = $args[1]; // e.g. "cluster12" or "global-swift"
 	$dbw = wfGetDB( DB_MASTER );
 
-	$maxID = $options['e'] ?? $dbw->selectField( 'text', 'MAX(old_id)', '', $fname );
-	$minID = $options['s'] ?? 1;
+	$maxID = (int)( $options['e'] ?? $dbw->selectField( 'text', 'MAX(old_id)', '', $fname ) );
+	$minID = (int)( $options['s'] ?? 1 );
 
 	moveToExternal( $type, $location, $maxID, $minID );
 }

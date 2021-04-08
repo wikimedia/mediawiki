@@ -6,6 +6,9 @@ use ChangesList;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ChangesListInitRows" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -16,7 +19,7 @@ interface ChangesListInitRowsHook {
 	 * @since 1.35
 	 *
 	 * @param ChangesList $changesList
-	 * @param IResultWrapper|array $rows Data that will be rendered
+	 * @param IResultWrapper|\stdClass[] $rows Data that will be rendered
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onChangesListInitRows( $changesList, $rows );

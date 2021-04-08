@@ -21,6 +21,7 @@
  * @author Daniel Kinzler
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * A title formatter service for MediaWiki.
@@ -50,22 +51,20 @@ interface TitleFormatter {
 	/**
 	 * Returns the title text formatted for display, without namespace of fragment.
 	 *
-	 * @note Consider using LinkTarget::getText() directly, it's identical.
-	 *
-	 * @param LinkTarget $title The title to format
+	 * @param LinkTarget|PageIdentity $title The title to format
 	 *
 	 * @return string
 	 */
-	public function getText( LinkTarget $title );
+	public function getText( $title );
 
 	/**
 	 * Returns the title formatted for display, including the namespace name.
 	 *
-	 * @param LinkTarget $title The title to format
+	 * @param LinkTarget|PageIdentity $title The title to format
 	 *
 	 * @return string
 	 */
-	public function getPrefixedText( LinkTarget $title );
+	public function getPrefixedText( $title );
 
 	/**
 	 * Return the title in prefixed database key form, with interwiki
@@ -73,20 +72,20 @@ interface TitleFormatter {
 	 *
 	 * @since 1.27
 	 *
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target
 	 *
 	 * @return string
 	 */
-	public function getPrefixedDBkey( LinkTarget $target );
+	public function getPrefixedDBkey( $target );
 
 	/**
 	 * Returns the title formatted for display, with namespace and fragment.
 	 *
-	 * @param LinkTarget $title The title to format
+	 * @param LinkTarget|PageIdentity $title The title to format
 	 *
 	 * @return string
 	 */
-	public function getFullText( LinkTarget $title );
+	public function getFullText( $title );
 
 	/**
 	 * Returns the name of the namespace for the given title.

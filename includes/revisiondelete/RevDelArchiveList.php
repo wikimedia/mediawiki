@@ -19,13 +19,52 @@
  * @ingroup RevisionDelete
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * List for archive table items, i.e. revisions deleted via action=delete
  */
 class RevDelArchiveList extends RevDelRevisionList {
+
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/**
+	 * @param IContextSource $context
+	 * @param Title $title
+	 * @param array $ids
+	 * @param LBFactory $lbFactory
+	 * @param HookContainer $hookContainer
+	 * @param HtmlCacheUpdater $htmlCacheUpdater
+	 * @param RevisionStore $revisionStore
+	 * @param WANObjectCache $wanObjectCache
+	 */
+	public function __construct(
+		IContextSource $context,
+		Title $title,
+		array $ids,
+		LBFactory $lbFactory,
+		HookContainer $hookContainer,
+		HtmlCacheUpdater $htmlCacheUpdater,
+		RevisionStore $revisionStore,
+		WANObjectCache $wanObjectCache
+	) {
+		parent::__construct(
+			$context,
+			$title,
+			$ids,
+			$lbFactory,
+			$hookContainer,
+			$htmlCacheUpdater,
+			$revisionStore,
+			$wanObjectCache
+		);
+		$this->revisionStore = $revisionStore;
+	}
+
 	public function getType() {
 		return 'archive';
 	}
@@ -44,9 +83,7 @@ class RevDelArchiveList extends RevDelRevisionList {
 			$timestamps[] = $db->timestamp( $id );
 		}
 
-		$arQuery = MediaWikiServices::getInstance()
-			->getRevisionStore()
-			->getArchiveQueryInfo();
+		$arQuery = $this->revisionStore->getArchiveQueryInfo();
 		$tables = $arQuery['tables'];
 		$fields = $arQuery['fields'];
 		$conds = [

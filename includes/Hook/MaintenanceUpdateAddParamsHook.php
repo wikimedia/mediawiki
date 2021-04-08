@@ -2,8 +2,10 @@
 
 namespace MediaWiki\Hook;
 
-// phpcs:disable Generic.Files.LineLength -- Remove this after doc review
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "MaintenanceUpdateAddParams" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

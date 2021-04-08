@@ -1,0 +1,124 @@
+{
+	"comment": "Drop change_tag.ct_tag field (T185355)",
+	"before": {
+		"name": "change_tag",
+		"comment": "A table to track tags for revisions, logs and recent changes",
+		"columns": [
+			{
+				"name": "ct_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "ct_rc_id",
+				"comment": "RCID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_log_id",
+				"comment": "LOGID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_rev_id",
+				"comment": "REVID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_tag",
+				"comment": "Tag applied, this will go away and be replaced with ct_tag_id",
+				"type": "string",
+				"options": { "length": 255, "notnull": true, "default": ""  }
+			},
+			{
+				"name": "ct_params",
+				"comment": "Parameters for the tag; used by some extensions",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_tag_id",
+				"comment": "Foreign key to change_tag_def row",
+				"type": "integer",
+				"options": { "unsigned": false, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "change_tag_rc_tag_id", "columns": [ "ct_rc_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_log_tag_id", "columns": [ "ct_log_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_rev_tag_id", "columns": [ "ct_rev_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_rc_tag_nonuniq", "columns": [ "ct_rc_id", "ct_tag" ], "unique": true },
+			{ "name": "change_tag_log_tag_nonuniq", "columns": [ "ct_log_id", "ct_tag" ], "unique": true },
+			{ "name": "change_tag_rev_tag_nonuniq", "columns": [ "ct_rev_id", "ct_tag" ], "unique": true },
+			{
+				"name": "change_tag_tag_id",
+				"comment": "Covering index, so we can pull all the info only out of the index.",
+				"columns": [ "ct_tag", "ct_rc_id", "ct_rev_id", "ct_log_id" ],
+				"unique": false
+			},
+			{
+				"name": "change_tag_tag_id_id",
+				"comment": "Covering index, so we can pull all the info only out of the index.",
+				"columns": [ "ct_tag_id", "ct_rc_id", "ct_rev_id", "ct_log_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "ct_id" ]
+	},
+	"after": {
+		"name": "change_tag",
+		"comment": "A table to track tags for revisions, logs and recent changes",
+		"columns": [
+			{
+				"name": "ct_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true, "autoincrement": true }
+			},
+			{
+				"name": "ct_rc_id",
+				"comment": "RCID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_log_id",
+				"comment": "LOGID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_rev_id",
+				"comment": "REVID for the change",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_params",
+				"comment": "Parameters for the tag; used by some extensions",
+				"type": "blob",
+				"options": { "length": 65530, "notnull": false, "default": null }
+			},
+			{
+				"name": "ct_tag_id",
+				"comment": "Foreign key to change_tag_def row",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			}
+		],
+		"indexes": [
+			{ "name": "change_tag_rc_tag_id", "columns": [ "ct_rc_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_log_tag_id", "columns": [ "ct_log_id", "ct_tag_id" ], "unique": true },
+			{ "name": "change_tag_rev_tag_id", "columns": [ "ct_rev_id", "ct_tag_id" ], "unique": true },
+			{
+				"name": "change_tag_tag_id_id",
+				"comment": "Covering index, so we can pull all the info only out of the index.",
+				"columns": [ "ct_tag_id", "ct_rc_id", "ct_rev_id", "ct_log_id" ],
+				"unique": false
+			}
+		],
+		"pk": [ "ct_id" ]
+	}
+}

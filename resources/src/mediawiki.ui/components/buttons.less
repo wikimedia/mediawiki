@@ -58,25 +58,27 @@
 		// Quiet buttons all start gray, and reveal
 		// progressive/destructive color on hover and active.
 		color: @color-base;
+		min-height: 32px;
 		border-color: transparent;
+		font-weight: bold;
 
 		&:hover {
-			background-color: transparent;
+			background-color: @colorGray15;
 			color: @color-base--hover;
 			border-color: transparent;
 			box-shadow: none;
 		}
 
 		&:active {
-			background-color: transparent;
+			background-color: @colorGray14;
 			color: @color-base--active;
-			border-color: transparent;
+			border-color: @colorGray7;
 		}
 
 		&:focus {
 			background-color: transparent;
 			color: @color-base;
-			border-color: transparent;
+			border-color: @border-color-base--focus;
 			box-shadow: none;
 		}
 

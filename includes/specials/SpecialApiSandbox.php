@@ -21,13 +21,12 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
-
 /**
  * @ingroup SpecialPage
  * @since 1.27
  */
 class SpecialApiSandbox extends SpecialPage {
+
 	public function __construct() {
 		parent::__construct( 'ApiSandbox' );
 	}
@@ -37,9 +36,9 @@ class SpecialApiSandbox extends SpecialPage {
 		$out = $this->getOutput();
 		$this->addHelpLink( 'Help:ApiSandbox' );
 
-		$out->addJsConfigVars( 'apihighlimits', MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasRight( $this->getUser(), 'apihighlimits' )
+		$out->addJsConfigVars(
+			'apihighlimits',
+			$this->getAuthority()->isAllowed( 'apihighlimits' )
 		);
 		$out->addModuleStyles( [
 			'mediawiki.special',

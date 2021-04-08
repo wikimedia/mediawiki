@@ -222,7 +222,7 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param array $names
+	 * @param string[] $names
 	 */
 	public function pagesByName( $names ) {
 		foreach ( $names as $name ) {
@@ -497,8 +497,8 @@ class WikiExporter {
 	 * and be sorted/grouped by page and revision to avoid duplicate page records in the output.
 	 *
 	 * @param IResultWrapper $results
-	 * @param object $lastRow the last row output from the previous call (or null if none)
-	 * @return object the last row processed
+	 * @param stdClass $lastRow the last row output from the previous call (or null if none)
+	 * @return stdClass the last row processed
 	 */
 	protected function outputPageStreamBatch( $results, $lastRow ) {
 		$rowCarry = null;
@@ -550,9 +550,9 @@ class WikiExporter {
 	 * Takes and returns a carry row from the last batch;
 	 *
 	 * @param IResultWrapper|array $results
-	 * @param null|object &$carry A row carried over from the last call to getSlotRowBatch()
+	 * @param null|stdClass &$carry A row carried over from the last call to getSlotRowBatch()
 	 *
-	 * @return object[]
+	 * @return stdClass[]
 	 */
 	protected function getSlotRowBatch( $results, &$carry = null ) {
 		$slotRows = [];
@@ -579,7 +579,7 @@ class WikiExporter {
 	/**
 	 * Final page stream output, after all batches are complete
 	 *
-	 * @param object $lastRow the last row output from the last batch (or null if none)
+	 * @param stdClass $lastRow the last row output from the last batch (or null if none)
 	 */
 	protected function finishPageStreamOutput( $lastRow ) {
 		$output = '';

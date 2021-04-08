@@ -24,7 +24,7 @@ trait LanguageConverterTestTrait {
 		$language = MediaWikiServices::getInstance()->getLanguageFactory()
 			->getLanguage( $code );
 
-		$factory = new LanguageConverterFactory( false, function () use ( $language ) {
+		$factory = new LanguageConverterFactory( false, false, false, static function () use ( $language ) {
 			return $language;
 		} );
 

@@ -41,6 +41,7 @@ $namespaceAliases = [
 	'Doaimmat' => NS_SPECIAL,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktiivvalaš_geavaheaddjit' ],
 	'Allmessages'               => [ 'Buot_systemadieđáhusat', 'Buot_vuogádatdieđáhusat' ],
@@ -49,6 +50,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Veadjemeahttun_bajilčála' ],
 	'Blankpage'                 => [ 'Guoros_siidu' ],
 	'Block'                     => [ 'Hehtte', 'Hehtte_geavaheaddji', 'Hehtte_IP' ],
+	'BlockList'                 => [ 'Hehttenlistu', 'Listu_hehttemiin' ],
 	'Booksources'               => [ 'Girjegáldut' ],
 	'BrokenRedirects'           => [ 'Boatkanan_stivremat', 'Boatkanan_ođđasitstivremat' ],
 	'Categories'                => [ 'Kategoriijat' ],
@@ -63,7 +65,6 @@ $specialPageAliases = [
 	'Emailuser'                 => [ 'Sádde_e-poastta' ],
 	'Export'                    => [ 'Olggosfievrrit_siidduid' ],
 	'Import'                    => [ 'Sisafievrrit' ],
-	'BlockList'                 => [ 'Hehttenlistu', 'Listu_hehttemiin' ],
 	'Listadmins'                => [ 'Administráhtorlistu', 'Listu_administráhtoriin' ],
 	'Listbots'                  => [ 'Bohttalistu', 'Listu_bohtain' ],
 	'Listfiles'                 => [ 'Fiilalogahallan' ],
@@ -114,24 +115,25 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'Interwikihis_siiddut', 'Giellaliŋkkahis_siiddut', 'Giellaleaŋkkahis_siiddut' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#STIVREN', '#OĐĐASITSTIVREN', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__IISISDOALLU__', '__IISIS__', '__NOTOC__' ],
-	'nogallery'                 => [ '0', '__IIGALLERIIJA__', '__NOGALLERY__' ],
-	'toc'                       => [ '0', '__SISDOALLU__', ' __SIS__', '__TOC__' ],
-	'noeditsection'             => [ '0', '__IIRIEVDADITOASI__', '__NOEDITSECTION__' ],
-	'numberofarticles'          => [ '1', 'ARTIHKKALIIDMEARRI', ' ARTIHKALMEARRI', 'NUMBEROFARTICLES' ],
-	'numberoffiles'             => [ '1', 'FIILLAIDMEARRI', 'FIILAMEARRI', ' GOVAIDMEARRI', ' GOVVAMEARRI', 'NUMBEROFFILES' ],
-	'numberofusers'             => [ '1', 'GEAVAHEDDJIIDMEARRI', ' GEAVAHEADDJIMEARRI', ' GEAVAHEADDJEMEARRI', 'NUMBEROFUSERS' ],
-	'numberofactiveusers'       => [ '1', 'AKTIIVAGEAVAHEDDJIIDMEARRI', ' AKTIIVAGEAVAHEADDJIMEARRI', ' AKTIIVAGEAVAHEADDJEMEARRI', 'NUMBEROFACTIVEUSERS' ],
-	'numberofedits'             => [ '1', 'RIEVDADUSAIDMEARRI', ' RIEVDADUSMEARRI', 'NUMBEROFEDITS' ],
-	'subst'                     => [ '0', 'LIIBME:', 'SUBST:' ],
-	'img_thumbnail'             => [ '1', 'mini', 'thumb', 'thumbnail' ],
+	'img_center'                => [ '1', 'gasku', 'center', 'centre' ],
+	'img_left'                  => [ '1', 'gurut', 'left' ],
+	'img_link'                  => [ '1', 'liŋka=$1', 'link=$1' ],
 	'img_manualthumb'           => [ '1', 'mini=$1', 'thumbnail=$1', 'thumb=$1' ],
 	'img_right'                 => [ '1', 'olgeš', 'right' ],
-	'img_left'                  => [ '1', 'gurut', 'left' ],
-	'img_center'                => [ '1', 'gasku', 'center', 'centre' ],
-	'img_link'                  => [ '1', 'liŋka=$1', 'link=$1' ],
+	'img_thumbnail'             => [ '1', 'mini', 'thumb', 'thumbnail' ],
+	'noeditsection'             => [ '0', '__IIRIEVDADITOASI__', '__NOEDITSECTION__' ],
+	'nogallery'                 => [ '0', '__IIGALLERIIJA__', '__NOGALLERY__' ],
+	'notoc'                     => [ '0', '__IISISDOALLU__', '__IISIS__', '__NOTOC__' ],
+	'numberofactiveusers'       => [ '1', 'AKTIIVAGEAVAHEDDJIIDMEARRI', ' AKTIIVAGEAVAHEADDJIMEARRI', ' AKTIIVAGEAVAHEADDJEMEARRI', 'NUMBEROFACTIVEUSERS' ],
+	'numberofarticles'          => [ '1', 'ARTIHKKALIIDMEARRI', ' ARTIHKALMEARRI', 'NUMBEROFARTICLES' ],
+	'numberofedits'             => [ '1', 'RIEVDADUSAIDMEARRI', ' RIEVDADUSMEARRI', 'NUMBEROFEDITS' ],
+	'numberoffiles'             => [ '1', 'FIILLAIDMEARRI', 'FIILAMEARRI', ' GOVAIDMEARRI', ' GOVVAMEARRI', 'NUMBEROFFILES' ],
+	'numberofusers'             => [ '1', 'GEAVAHEDDJIIDMEARRI', ' GEAVAHEADDJIMEARRI', ' GEAVAHEADDJEMEARRI', 'NUMBEROFUSERS' ],
+	'redirect'                  => [ '0', '#STIVREN', '#OĐĐASITSTIVREN', '#REDIRECT' ],
+	'subst'                     => [ '0', 'LIIBME:', 'SUBST:' ],
+	'toc'                       => [ '0', '__SISDOALLU__', ' __SIS__', '__TOC__' ],
 ];
 
 $defaultDateFormat = 'mdy';

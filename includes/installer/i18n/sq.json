@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ammartivari",
+			"Arianit",
 			"Kosovastar"
 		]
 	},
@@ -15,7 +16,7 @@
 	"config-back": "← Prapa",
 	"config-continue": "Para →",
 	"config-page-language": "Gjuha",
-	"config-page-welcome": "Mirësevini në MediaWiki!",
+	"config-page-welcome": "Mirë se vini në MediaWiki!",
 	"config-page-dbconnect": "Lidhu me bazën e të dhënave",
 	"config-page-dbsettings": "Parametrat e bazës së të dhënave",
 	"config-page-name": "Emri",
@@ -25,9 +26,8 @@
 	"config-page-restart": "Rinisni instalimin",
 	"config-page-copying": "Duke kopjuar",
 	"config-restart": "Po, rinisni",
-	"config-xcache": "[http://xcache.lighttpd.net/ XCache] u instalua",
-	"config-apc": "[http://www.php.net/apc APC] u instalua",
-	"config-wincache": "[http://www.iis.net/download/WinCacheForPhp WinCache] u instalua",
+	"config-apc": "[https://www.php.net/apc APC] u instalua",
+	"config-wincache": "[https://www.iis.net/downloads/microsoft/wincache-extension WinCache] u instalua",
 	"config-diff3-bad": "GNU diff3 nuk u gjet.",
 	"config-db-wiki-settings": "Identifikoni këtë wiki",
 	"config-db-name": "Emri i bazës së të dhënave:",
@@ -40,6 +40,6 @@
 	"config-install-tables": "Duke krijuar tabela",
 	"config-install-stats": "Nisja e statistikave",
 	"config-help": "ndihmë",
-	"mainpagetext": "'''MediaWiki software u instalua me sukses.'''",
+	"mainpagetext": "<strong>MediaWiki u instalua.</strong>",
 	"mainpagedocfooter": "Për më shumë informata rreth përdorimit të softwerit wiki , ju lutem shikoni [https://meta.wikimedia.org/wiki/Help:Contents dokumentacionin përkatës].\n\n== Sa për fillim==\n* [https://www.mediawiki.org/wiki/Help:Configuration_settings Parazgjedhjet e MediaWiki-t]\n* [https://www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWiki-t]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWiki-t]"
 }

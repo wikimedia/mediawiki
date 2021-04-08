@@ -59,7 +59,7 @@ class OutputHandler {
 	 * @return string
 	 */
 	private static function findUriExtension() {
-		/// @todo FIXME: this sort of dupes some code in WebRequest::getRequestUrl()
+		// @todo FIXME: this sort of dupes some code in WebRequest::getRequestUrl()
 		if ( isset( $_SERVER['REQUEST_URI'] ) ) {
 			// Strip the query string...
 			$path = explode( '?', $_SERVER['REQUEST_URI'], 2 )[0];

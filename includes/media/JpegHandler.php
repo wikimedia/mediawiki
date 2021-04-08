@@ -175,9 +175,7 @@ class JpegHandler extends ExifBitmapHandler {
 		$params = parent::sanitizeParamsForBucketing( $params );
 
 		// Quality needs to be cleared for bucketing. Buckets need to be default quality
-		if ( isset( $params['quality'] ) ) {
-			unset( $params['quality'] );
-		}
+		unset( $params['quality'] );
 
 		return $params;
 	}

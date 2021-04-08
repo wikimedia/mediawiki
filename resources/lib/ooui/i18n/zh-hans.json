@@ -18,7 +18,8 @@
 			"Yejianfei",
 			"Yfdyh000",
 			"Zhangjintao",
-			"乌拉跨氪"
+			"乌拉跨氪",
+			"沈澄心"
 		]
 	},
 	"ooui-outline-control-move-down": "向下移动一项",
@@ -38,5 +39,6 @@
 	"ooui-selectfile-not-supported": "不支持文件选择器",
 	"ooui-selectfile-placeholder": "没有选定文件",
 	"ooui-selectfile-dragdrop-placeholder": "将文件拖动至此",
+	"ooui-popup-widget-close-button-aria-label": "关闭",
 	"ooui-field-help": "帮助"
 }

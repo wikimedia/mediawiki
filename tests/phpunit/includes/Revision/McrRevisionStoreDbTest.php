@@ -134,8 +134,8 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$queryInfo = $store->getQueryInfo();
 
 		// with the new schema enabled, query info should not join the main slot info
-		$this->assertFalse( array_key_exists( 'a_slot_data', $queryInfo['tables'] ) );
-		$this->assertFalse( array_key_exists( 'a_slot_data', $queryInfo['joins'] ) );
+		$this->assertArrayNotHasKey( 'a_slot_data', $queryInfo['tables'] );
+		$this->assertArrayNotHasKey( 'a_slot_data', $queryInfo['joins'] );
 	}
 
 	/**
@@ -166,11 +166,11 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		], __METHOD__ );
 
 		$rev = new MutableRevisionRecord( $page->getTitle() );
-		$rev->setTimestamp( '20180101000000' );
-		$rev->setComment( CommentStoreComment::newUnsavedComment( 'test' ) );
-		$rev->setUser( $this->getTestUser()->getUser() );
-		$rev->setContent( 'main', new WikitextContent( 'Text' ) );
-		$rev->setPageId( $page->getId() );
+		$rev->setTimestamp( '20180101000000' )
+			->setComment( CommentStoreComment::newUnsavedComment( 'test' ) )
+			->setUser( $this->getTestUser()->getUser() )
+			->setContent( 'main', new WikitextContent( 'Text' ) )
+			->setPageId( $page->getId() );
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$return = $store->insertRevisionOn( $rev, $this->db );

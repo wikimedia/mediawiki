@@ -11,7 +11,6 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideDeprecationWarning
-	 * @param callable $callback
 	 */
 	public function testDeprecationWarning( callable $callback, string $message ) {
 		$this->expectDeprecation();
@@ -24,7 +23,7 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 		$array = new DeprecatablePropertyArray(
 			[
 				self::PROP_NAME => 'test_value',
-				'callback' => function () {
+				'callback' => static function () {
 					return 'callback_test_value';
 				},
 			],
@@ -54,7 +53,7 @@ class DeprecatablePropertyArrayTest extends MediaWikiUnitTestCase {
 			"TEST exists '{$propName}'"
 		];
 		yield 'unset' => [
-			function () use ( $array ) {
+			static function () use ( $array ) {
 				unset( $array[ self::PROP_NAME ] );
 			},
 			"TEST unset '{$propName}'"

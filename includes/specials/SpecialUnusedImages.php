@@ -21,14 +21,21 @@
  * @ingroup SpecialPage
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A special page that lists unused images
  *
  * @ingroup SpecialPage
  */
 class SpecialUnusedImages extends ImageQueryPage {
-	public function __construct( $name = 'Unusedimages' ) {
-		parent::__construct( $name );
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct( ILoadBalancer $loadBalancer ) {
+		parent::__construct( 'Unusedimages' );
+		$this->setDBLoadBalancer( $loadBalancer );
 	}
 
 	public function isExpensive() {

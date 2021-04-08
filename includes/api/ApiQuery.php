@@ -38,9 +38,8 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * List of Api Query prop modules
-	 * @var array
 	 */
-	private static $QueryPropModules = [
+	private const QUERY_PROP_MODULES = [
 		'categories' => ApiQueryCategories::class,
 		'categoryinfo' => ApiQueryCategoryInfo::class,
 		'contributors' => ApiQueryContributors::class,
@@ -50,7 +49,16 @@ class ApiQuery extends ApiBase {
 		'fileusage' => ApiQueryBacklinksprop::class,
 		'images' => ApiQueryImages::class,
 		'imageinfo' => ApiQueryImageInfo::class,
-		'info' => ApiQueryInfo::class,
+		'info' => [
+			'class' => ApiQueryInfo::class,
+			'services' => [
+				'ContentLanguage',
+				'LinkBatchFactory',
+				'NamespaceInfo',
+				'TitleFactory',
+				'WatchedItemStore',
+			],
+		],
 		'links' => ApiQueryLinks::class,
 		'linkshere' => ApiQueryBacklinksprop::class,
 		'iwlinks' => ApiQueryIWLinks::class,
@@ -65,9 +73,8 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * List of Api Query list modules
-	 * @var array
 	 */
-	private static $QueryListModules = [
+	private const QUERY_LIST_MODULES = [
 		'allcategories' => ApiQueryAllCategories::class,
 		'alldeletedrevisions' => ApiQueryAllDeletedRevisions::class,
 		'allfileusages' => ApiQueryAllLinks::class,
@@ -99,7 +106,12 @@ class ApiQuery extends ApiBase {
 		'recentchanges' => ApiQueryRecentChanges::class,
 		'search' => ApiQuerySearch::class,
 		'tags' => ApiQueryTags::class,
-		'usercontribs' => ApiQueryUserContribs::class,
+		'usercontribs' => [
+			'class' => ApiQueryUserContribs::class,
+			'services' => [
+				'UserIdentityLookup',
+			],
+		],
 		'users' => ApiQueryUsers::class,
 		'watchlist' => ApiQueryWatchlist::class,
 		'watchlistraw' => ApiQueryWatchlistRaw::class,
@@ -107,13 +119,24 @@ class ApiQuery extends ApiBase {
 
 	/**
 	 * List of Api Query meta modules
-	 * @var array
 	 */
-	private static $QueryMetaModules = [
+	private const QUERY_META_MODULES = [
 		'allmessages' => ApiQueryAllMessages::class,
 		'authmanagerinfo' => ApiQueryAuthManagerInfo::class,
-		'siteinfo' => ApiQuerySiteinfo::class,
-		'userinfo' => ApiQueryUserInfo::class,
+		'siteinfo' => [
+			'class' => ApiQuerySiteinfo::class,
+			'services' => [
+				'UserOptionsLookup',
+			]
+		],
+		'userinfo' => [
+			'class' => ApiQueryUserInfo::class,
+			'services' => [
+				'TalkPageNotificationManager',
+				'WatchedItemStore',
+				'UserEditTracker'
+			]
+		],
 		'filerepoinfo' => ApiQueryFileRepoInfo::class,
 		'tokens' => ApiQueryTokens::class,
 		'languageinfo' => [
@@ -150,11 +173,11 @@ class ApiQuery extends ApiBase {
 
 		// Allow custom modules to be added in LocalSettings.php
 		$config = $this->getConfig();
-		$this->mModuleMgr->addModules( self::$QueryPropModules, 'prop' );
+		$this->mModuleMgr->addModules( self::QUERY_PROP_MODULES, 'prop' );
 		$this->mModuleMgr->addModules( $config->get( 'APIPropModules' ), 'prop' );
-		$this->mModuleMgr->addModules( self::$QueryListModules, 'list' );
+		$this->mModuleMgr->addModules( self::QUERY_LIST_MODULES, 'list' );
 		$this->mModuleMgr->addModules( $config->get( 'APIListModules' ), 'list' );
-		$this->mModuleMgr->addModules( self::$QueryMetaModules, 'meta' );
+		$this->mModuleMgr->addModules( self::QUERY_META_MODULES, 'meta' );
 		$this->mModuleMgr->addModules( $config->get( 'APIMetaModules' ), 'meta' );
 
 		$this->getHookRunner()->onApiQuery__moduleManager( $this->mModuleMgr );
@@ -446,7 +469,7 @@ class ApiQuery extends ApiBase {
 		if ( count( $titles ) ) {
 			/** @var Title $title */
 			foreach ( $titles as $title ) {
-				if ( $this->getPermissionManager()->userCan( 'read', $this->getUser(), $title ) ) {
+				if ( $this->getAuthority()->authorizeRead( 'read', $title ) ) {
 					$exportTitles[] = $title;
 				}
 			}

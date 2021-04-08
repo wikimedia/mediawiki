@@ -21,7 +21,9 @@
  * @ingroup FileAbstraction
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -64,6 +66,9 @@ class LocalFileMoveBatch {
 	/** @var string */
 	protected $newRel;
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/**
 	 * @param LocalFile $file
 	 * @param Title $target
@@ -78,6 +83,8 @@ class LocalFileMoveBatch {
 		$this->oldRel = $this->oldHash . $this->oldName;
 		$this->newRel = $this->newHash . $this->newName;
 		$this->db = $file->getRepo()->getMasterDB();
+
+		$this->logger = LoggerFactory::getInstance( 'imagemove' );
 	}
 
 	/**
@@ -110,14 +117,20 @@ class LocalFileMoveBatch {
 			$bits = explode( '!', $oldName, 2 );
 
 			if ( count( $bits ) != 2 ) {
-				wfDebug( "Old file name missing !: '$oldName'" );
+				$this->logger->debug(
+					'Old file name missing !: {oldName}',
+					[ 'oldName' => $oldName ]
+				);
 				continue;
 			}
 
 			list( $timestamp, $filename ) = $bits;
 
 			if ( $this->oldName != $filename ) {
-				wfDebug( "Old file name doesn't match: '$oldName'" );
+				$this->logger->debug(
+					'Old file name does not match: {oldName}',
+					[ 'oldName' => $oldName ]
+				);
 				continue;
 			}
 
@@ -175,15 +188,27 @@ class LocalFileMoveBatch {
 			// If a prior process fataled copying or cleaning up files we tolerate any
 			// of the existing files if they are identical to the ones being stored.
 			$statusMove = $repo->storeBatch( $triplets, FileRepo::OVERWRITE_SAME );
-			wfDebugLog( 'imagemove', "Moved files for {$this->file->getName()}: " .
-				"{$statusMove->successCount} successes, {$statusMove->failCount} failures" );
+
+			$this->logger->debug(
+				'Moved files for {fileName}: {successCount} successes, {failCount} failures',
+				[
+					'fileName' => $this->file->getName(),
+					'successCount' => $statusMove->successCount,
+					'failCount' => $statusMove->failCount,
+				]
+			);
+
 			if ( !$statusMove->isGood() ) {
 				// Delete any files copied over (while the destination is still locked)
 				$this->cleanupTarget( $triplets );
 				$destFile->unlock();
 				$this->file->unlock();
-				wfDebugLog( 'imagemove', "Error in moving files: "
-					. $statusMove->getWikiText( false, false, 'en' ) );
+
+				$this->logger->debug(
+					'Error in moving files: {error}',
+					[ 'error' => $statusMove->getWikiText( false, false, 'en' ) ]
+				);
+
 				$statusMove->setOK( false );
 
 				return $statusMove;
@@ -194,8 +219,14 @@ class LocalFileMoveBatch {
 		// Rename the file versions metadata in the DB.
 		$this->doDBUpdates();
 
-		wfDebugLog( 'imagemove', "Renamed {$this->file->getName()} in database: " .
-			"{$statusDb->successCount} successes, {$statusDb->failCount} failures" );
+		$this->logger->debug(
+			'Renamed {fileName} in database: {successCount} successes, {failCount} failures',
+			[
+				'fileName' => $this->file->getName(),
+				'successCount' => $statusDb->successCount,
+				'failCount' => $statusDb->failCount,
+			]
+		);
 
 		$destFile->unlock();
 		$this->file->unlock();
@@ -287,9 +318,14 @@ class LocalFileMoveBatch {
 			// $move: (oldRelativePath, newRelativePath)
 			$srcUrl = $this->file->repo->getVirtualUrl() . '/public/' . rawurlencode( $move[0] );
 			$triplets[] = [ $srcUrl, 'public', $move[1] ];
-			wfDebugLog(
-				'imagemove',
-				"Generated move triplet for {$this->file->getName()}: {$srcUrl} :: public :: {$move[1]}"
+
+			$this->logger->debug(
+				'Generated move triplet for {fileName}: {srcUrl} :: public :: {move1}',
+				[
+					'fileName' => $this->file->getName(),
+					'srcUrl' => $srcUrl,
+					'move1' => $move[1],
+				]
 			);
 		}
 
@@ -319,7 +355,10 @@ class LocalFileMoveBatch {
 			if ( $result[$file[0]] ) {
 				$filteredTriplets[] = $file;
 			} else {
-				wfDebugLog( 'imagemove', "File {$file[0]} does not exist" );
+				$this->logger->debug(
+					'File {file} does not exist',
+					[ 'file' => $file[0] ]
+				);
 			}
 		}
 

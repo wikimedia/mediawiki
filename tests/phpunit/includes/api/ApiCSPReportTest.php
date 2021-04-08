@@ -7,13 +7,6 @@
  */
 class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
-		parent::setUp();
-		$this->setMwGlobals( [
-			'CSPFalsePositiveUrls' => [],
-		] );
-	}
-
 	public function testInternalReportonly() {
 		$params = [
 			'reportonly' => '1',
@@ -84,7 +77,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 		$log = [];
 		$logger = $this->createMock( Psr\Log\AbstractLogger::class );
 		$logger->method( 'warning' )->will( $this->returnCallback(
-			function ( $msg, $ctx ) use ( &$log ) {
+			static function ( $msg, $ctx ) use ( &$log ) {
 				unset( $ctx['csp-report'] );
 				$log[] = [ $msg, $ctx ];
 			}
@@ -107,7 +100,7 @@ class ApiCSPReportTest extends MediaWikiIntegrationTestCase {
 			->setMethods( [ 'getParameter', 'getRequest', 'getResult' ] )
 			->getMock();
 		$api->method( 'getParameter' )->will( $this->returnCallback(
-			function ( $key ) use ( $req ) {
+			static function ( $key ) use ( $req ) {
 				return $req->getRawVal( $key );
 			}
 		) );

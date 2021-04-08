@@ -3,7 +3,8 @@
 		"authors": [
 			"Helix84",
 			"Teslaton",
-			"Vlad5250"
+			"Vlad5250",
+			"Yardom78"
 		]
 	},
 	"exif-imagewidth": "Šírka",
@@ -29,8 +30,8 @@
 	"exif-referenceblackwhite": "Dvojica bielych a čiernych referenčných hodnôt",
 	"exif-datetime": "Dátum a čas zmeny súboru",
 	"exif-imagedescription": "Názov obrázka",
-	"exif-make": "Výrobca aparátu",
-	"exif-model": "Model aparátu",
+	"exif-make": "Výrobca zariadenia",
+	"exif-model": "Model zariadenia",
 	"exif-software": "Použitý softvér",
 	"exif-artist": "Autor",
 	"exif-copyright": "Držiteľ autorských práv",

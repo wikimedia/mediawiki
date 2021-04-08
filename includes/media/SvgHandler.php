@@ -90,7 +90,7 @@ class SvgHandler extends ImageHandler {
 	 * this list.
 	 *
 	 * @param File $file
-	 * @return array Array of language codes, or empty if no language switching supported.
+	 * @return string[] Array of language codes, or empty if no language switching supported.
 	 */
 	public function getAvailableLanguages( File $file ) {
 		$metadata = $file->getMetadata();
@@ -280,7 +280,7 @@ class SvgHandler extends ImageHandler {
 		}
 		$ok = symlink( $srcPath, $lnPath );
 		/** @noinspection PhpUnusedLocalVariableInspection */
-		$cleaner = new ScopedCallback( function () use ( $tmpDir, $lnPath ) {
+		$cleaner = new ScopedCallback( static function () use ( $tmpDir, $lnPath ) {
 			Wikimedia\suppressWarnings();
 			unlink( $lnPath );
 			rmdir( $tmpDir );
@@ -491,8 +491,8 @@ class SvgHandler extends ImageHandler {
 
 	/**
 	 * @param File $file
-	 * @param bool|IContextSource $context Context to use (optional)
-	 * @return array|bool
+	 * @param IContextSource|false $context
+	 * @return array[]|false
 	 */
 	public function formatMetadata( $file, $context = false ) {
 		$result = [

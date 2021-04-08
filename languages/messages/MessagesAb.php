@@ -54,6 +54,7 @@ $namespaceAliases = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Categories'                => [ 'Акатегориақәа' ],
 	'Mycontributions'           => [ 'Архиарақәа' ],
@@ -68,10 +69,11 @@ $specialPageAliases = [
 	'Upload'                    => [ 'Аҭагалара' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
+	'index'                     => [ '1', '__АИНДЕКС__', '__ИНДЕКС__', '__INDEX__' ],
 	'language'                  => [ '0', '#АБЫЗШӘА:', '#ЯЗЫК:', '#LANGUAGE:' ],
 	'special'                   => [ '0', 'цастәи', 'служебная', 'special' ],
-	'index'                     => [ '1', '__АИНДЕКС__', '__ИНДЕКС__', '__INDEX__' ],
 ];
 
 $linkTrail = '/^([a-zабвгҕдежзӡикқҟлмнопҧрстҭуфхҳцҵчҷҽҿшыҩџьә]+)(.*)$/sDu';

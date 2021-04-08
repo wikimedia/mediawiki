@@ -34,37 +34,37 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class LinkBatch {
 	/**
-	 * 2-d array, first index namespace, second index dbkey, value arbitrary
+	 * @var array[] 2-d array, first index namespace, second index dbkey, value arbitrary
 	 */
 	public $data = [];
 
 	/**
-	 * For debugging which method is using this class.
+	 * @var string|null For debugging which method is using this class.
 	 */
 	protected $caller;
 
 	/**
-	 * @var LinkCache|null
+	 * @var LinkCache
 	 */
 	private $linkCache;
 
 	/**
-	 * @var TitleFormatter|null
+	 * @var TitleFormatter
 	 */
 	private $titleFormatter;
 
 	/**
-	 * @var Language|null
+	 * @var Language
 	 */
 	private $contentLanguage;
 
 	/**
-	 * @var GenderCache|null
+	 * @var GenderCache
 	 */
 	private $genderCache;
 
 	/**
-	 * @var ILoadBalancer|null
+	 * @var ILoadBalancer
 	 */
 	private $loadBalancer;
 
@@ -85,13 +85,16 @@ class LinkBatch {
 		?GenderCache $genderCache = null,
 		?ILoadBalancer $loadBalancer = null
 	) {
-		$services = MediaWikiServices::getInstance();
+		$getServices = static function () {
+			// BC hack. Use a closure so this can be unit-tested.
+			return MediaWikiServices::getInstance();
+		};
 
-		$this->linkCache = $linkCache ?? $services->getLinkCache();
-		$this->titleFormatter = $titleFormatter ?? $services->getTitleFormatter();
-		$this->contentLanguage = $contentLanguage ?? $services->getContentLanguage();
-		$this->genderCache = $genderCache ?? $services->getGenderCache();
-		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->linkCache = $linkCache ?? $getServices()->getLinkCache();
+		$this->titleFormatter = $titleFormatter ?? $getServices()->getTitleFormatter();
+		$this->contentLanguage = $contentLanguage ?? $getServices()->getContentLanguage();
+		$this->genderCache = $genderCache ?? $getServices()->getGenderCache();
+		$this->loadBalancer = $loadBalancer ?? $getServices()->getDBLoadBalancer();
 
 		foreach ( $arr as $item ) {
 			$this->addObj( $item );
@@ -169,7 +172,7 @@ class LinkBatch {
 	/**
 	 * Do the query and add the results to the LinkCache object
 	 *
-	 * @return array Mapping PDBK to ID
+	 * @return int[] Mapping PDBK to ID
 	 */
 	public function execute() {
 		return $this->executeInto( $this->linkCache );
@@ -180,7 +183,7 @@ class LinkBatch {
 	 * Return an array mapping PDBK to ID
 	 *
 	 * @param LinkCache $cache
-	 * @return array Remaining IDs
+	 * @return int[] Remaining IDs
 	 */
 	protected function executeInto( $cache ) {
 		$res = $this->doQuery();
@@ -198,7 +201,7 @@ class LinkBatch {
 	 *
 	 * @param LinkCache $cache
 	 * @param IResultWrapper $res
-	 * @return array Array of remaining titles
+	 * @return int[] Array of remaining titles
 	 */
 	public function addResultToCache( $cache, $res ) {
 		if ( !$res ) {

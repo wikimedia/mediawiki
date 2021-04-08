@@ -44,7 +44,7 @@ class SearchResultSet extends BaseSearchResultSet {
 	protected $results;
 
 	/**
-	 * @var boolean True when there are more pages of search results available.
+	 * @var bool True when there are more pages of search results available.
 	 */
 	private $hasMoreResults;
 
@@ -229,7 +229,7 @@ class SearchResultSet extends BaseSearchResultSet {
 				$this->titles = [];
 			} else {
 				$this->titles = array_map(
-					function ( SearchResult $result ) {
+					static function ( SearchResult $result ) {
 						return $result->getTitle();
 					},
 					$this->extractResults() );

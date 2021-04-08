@@ -1,27 +1,22 @@
 ( function () {
-	var hidden, visibilityChange,
+	var doc, HIDDEN, VISIBILITY_CHANGE,
 		nextVisibleTimeoutId = 1,
-		activeTimeouts = {},
-		document = window.document,
-		init = function ( overrideDoc ) {
-			if ( overrideDoc !== undefined ) {
-				document = overrideDoc;
-			}
+		activeTimeouts = Object.create( null );
 
-			if ( document.hidden !== undefined ) {
-				hidden = 'hidden';
-				visibilityChange = 'visibilitychange';
-			} else if ( document.mozHidden !== undefined ) {
-				hidden = 'mozHidden';
-				visibilityChange = 'mozvisibilitychange';
-			} else if ( document.msHidden !== undefined ) {
-				hidden = 'msHidden';
-				visibilityChange = 'msvisibilitychange';
-			} else if ( document.webkitHidden !== undefined ) {
-				hidden = 'webkitHidden';
-				visibilityChange = 'webkitvisibilitychange';
-			}
-		};
+	function init( overrideDoc ) {
+		doc = overrideDoc || document;
+
+		if ( doc.hidden !== undefined ) {
+			HIDDEN = 'hidden';
+			VISIBILITY_CHANGE = 'visibilitychange';
+		} else if ( doc.mozHidden !== undefined ) {
+			HIDDEN = 'mozHidden';
+			VISIBILITY_CHANGE = 'mozvisibilitychange';
+		} else if ( doc.webkitHidden !== undefined ) {
+			HIDDEN = 'webkitHidden';
+			VISIBILITY_CHANGE = 'webkitvisibilitychange';
+		}
+	}
 
 	init();
 
@@ -42,29 +37,32 @@
 		 *  value can be passed to clearVisibleTimeout() to cancel the timeout.
 		 */
 		set: function ( fn, delay ) {
-			var handleVisibilityChange,
-				timeoutId = null,
+			var timeoutId = null,
 				visibleTimeoutId = nextVisibleTimeoutId++,
-				lastStartedAt = mw.now(),
-				clearVisibleTimeout = function () {
-					if ( timeoutId !== null ) {
-						clearTimeout( timeoutId );
-						timeoutId = null;
-					}
-					delete activeTimeouts[ visibleTimeoutId ];
-					if ( hidden !== undefined ) {
-						document.removeEventListener( visibilityChange, handleVisibilityChange, false );
-					}
-				},
-				onComplete = function () {
-					clearVisibleTimeout();
-					fn();
-				};
+				lastStartedAt = mw.now();
 
-			handleVisibilityChange = function () {
+			function clearVisibleTimeout() {
+				if ( timeoutId !== null ) {
+					clearTimeout( timeoutId );
+					timeoutId = null;
+				}
+				delete activeTimeouts[ visibleTimeoutId ];
+				if ( VISIBILITY_CHANGE ) {
+					// Circular reference is intentional, chain starts after last definition.
+					// eslint-disable-next-line no-use-before-define
+					doc.removeEventListener( VISIBILITY_CHANGE, handleVisibilityChange, false );
+				}
+			}
+
+			function onComplete() {
+				clearVisibleTimeout();
+				fn();
+			}
+
+			function handleVisibilityChange() {
 				var now = mw.now();
 
-				if ( document[ hidden ] ) {
+				if ( HIDDEN && doc[ HIDDEN ] ) {
 					// pause timeout if running
 					if ( timeoutId !== null ) {
 						delay = Math.max( 0, delay - Math.max( 0, now - lastStartedAt ) );
@@ -76,17 +74,19 @@
 						}
 					}
 				} else {
-					// resume timeout if not running
+					// If we're visible, or if HIDDEN is not supported, then start
+					// (or resume) the timeout, which runs the user callback after one
+					// delay, unless the page becomes hidden first.
 					if ( timeoutId === null ) {
 						lastStartedAt = now;
 						timeoutId = setTimeout( onComplete, delay );
 					}
 				}
-			};
+			}
 
 			activeTimeouts[ visibleTimeoutId ] = clearVisibleTimeout;
-			if ( hidden !== undefined ) {
-				document.addEventListener( visibilityChange, handleVisibilityChange, false );
+			if ( VISIBILITY_CHANGE ) {
+				doc.addEventListener( VISIBILITY_CHANGE, handleVisibilityChange, false );
 			}
 			handleVisibilityChange();
 
@@ -95,21 +95,21 @@
 
 		/**
 		 * Cancel a visible timeout previously established by calling set.
+		 *
 		 * Passing an invalid ID silently does nothing.
 		 *
-		 * @param {number} visibleTimeoutId The identifier of the visible
-		 *  timeout you want to cancel. This ID was returned by the
-		 *  corresponding call to set().
+		 * @param {number} visibleTimeoutId The identifier of the visible timeout you
+		 *  want to cancel. This ID was returned by the corresponding call to set().
 		 */
 		clear: function ( visibleTimeoutId ) {
-			if ( Object.prototype.hasOwnProperty.call( activeTimeouts, visibleTimeoutId ) ) {
+			if ( visibleTimeoutId in activeTimeouts ) {
 				activeTimeouts[ visibleTimeoutId ]();
 			}
 		}
 	};
 
 	if ( window.QUnit ) {
-		module.exports.setDocument = init;
+		module.exports.init = init;
 	}
 
 }() );

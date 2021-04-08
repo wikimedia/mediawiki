@@ -7,7 +7,7 @@
 
 // Start up MediaWiki in command-line mode
 require_once __DIR__ . "/../../../../maintenance/Maintenance.php";
-require __DIR__ . "/RandomImageGenerator.php";
+require_once __DIR__ . "/RandomImageGenerator.php";
 
 class GenerateRandomImages extends Maintenance {
 
@@ -41,4 +41,4 @@ class GenerateRandomImages extends Maintenance {
 }
 
 $maintClass = GenerateRandomImages::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

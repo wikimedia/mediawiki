@@ -148,7 +148,7 @@ trait SearchApi {
 	 *  - search engine profiles defined by SearchApi::getSearchProfileParams()
 	 * @param string[]|null $params API request params (must be sanitized by
 	 * ApiBase::extractRequestParams() before)
-	 * @return SearchEngine the search engine
+	 * @return SearchEngine
 	 */
 	public function buildSearchEngine( array $params = null ) {
 		if ( $params != null ) {

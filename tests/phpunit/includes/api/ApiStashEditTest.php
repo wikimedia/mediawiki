@@ -32,7 +32,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 *
 	 * @param array $params Query parameters for API request.  All are optional and will have
 	 *   sensible defaults filled in.  To make a parameter actually not passed, set to null.
-	 * @param User $user User to do the request
+	 * @param User|null $user User to do the request
 	 * @param string $expectedResult 'stashed', 'editconflict'
 	 * @return array
 	 */
@@ -107,7 +107,7 @@ class ApiStashEditTest extends ApiTestCase {
 	 *
 	 * @param string $title Title of page
 	 * @param string Content $text Content of edit
-	 * @param User $user User who made edit
+	 * @param User|null $user User who made edit
 	 * @return string
 	 */
 	protected function getStashKey( $title = __CLASS__, $text = 'Content', User $user = null ) {
@@ -231,6 +231,20 @@ class ApiStashEditTest extends ApiTestCase {
 			'baserevid' => $oldRevRecord->getId(),
 			'text' => 'C',
 		], null, 'editconflict' );
+	}
+
+	public function testMidEditContentModelMismatch() {
+		$name = ucfirst( __FUNCTION__ );
+		$page = WikiPage::factory( Title::makeTitle( NS_MAIN, $name ) );
+
+		$content = new CssContent( 'Css' );
+		$revRecord = $page->doEditContent( $content, '' )->value['revision-record'];
+		$page->doEditContent( new WikitextContent( 'Text' ), '' );
+
+		$this->setExpectedApiException(
+			[ 'apierror-contentmodel-mismatch', 'wikitext', 'css' ]
+		);
+		$this->doStash( [ 'title' => $name, 'baserevid' => $revRecord->getId() ] );
 	}
 
 	public function testDeletedRevision() {
@@ -381,7 +395,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->doStashOld( $user );
 
 		// Now let's also increment our editcount
-		$this->editPage( ucfirst( __FUNCTION__ ), '' );
+		$this->editPage( ucfirst( __FUNCTION__ ), '', '', NS_MAIN, $user );
 
 		$user->clearInstanceCache();
 		$this->assertFalse( $this->doCheckCache( $user ),

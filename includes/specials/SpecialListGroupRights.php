@@ -21,7 +21,8 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageConverterFactory;
+use MediaWiki\User\UserGroupManager;
 
 /**
  * This special page lists all defined user groups and the associated rights.
@@ -31,8 +32,30 @@ use MediaWiki\MediaWikiServices;
  * @author Petr Kadlec <mormegil@centrum.cz>
  */
 class SpecialListGroupRights extends SpecialPage {
-	public function __construct() {
+
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
+	/**
+	 * @param NamespaceInfo $nsInfo
+	 * @param UserGroupManager $userGroupManager
+	 * @param LanguageConverterFactory $languageConverterFactory
+	 */
+	public function __construct(
+		NamespaceInfo $nsInfo,
+		UserGroupManager $userGroupManager,
+		LanguageConverterFactory $languageConverterFactory
+	) {
 		parent::__construct( 'Listgrouprights' );
+		$this->nsInfo = $nsInfo;
+		$this->userGroupManager = $userGroupManager;
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	/**
@@ -85,8 +108,7 @@ class SpecialListGroupRights extends SpecialPage {
 			$groupnameLocalized = UserGroupMembership::getGroupName( $groupname );
 
 			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $groupname )
-				?: Title::newFromText( MediaWikiServices::getInstance()->getNamespaceInfo()->
-				getCanonicalName( NS_PROJECT ) . ':' . $groupname );
+				?: Title::newFromText( $this->nsInfo->getCanonicalName( NS_PROJECT ) . ':' . $groupname );
 
 			if ( $group == '*' || !$grouppageLocalizedTitle ) {
 				// Do not make a link for the generic * group or group with invalid group page
@@ -164,9 +186,7 @@ class SpecialListGroupRights extends SpecialPage {
 		);
 		$linkRenderer = $this->getLinkRenderer();
 		ksort( $namespaceProtection );
-		$validNamespaces =
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces();
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$validNamespaces = $this->nsInfo->getValidNamespaces();
 		foreach ( $namespaceProtection as $namespace => $rights ) {
 			if ( !in_array( $namespace, $validNamespaces ) ) {
 				continue;
@@ -175,7 +195,7 @@ class SpecialListGroupRights extends SpecialPage {
 			if ( $namespace == NS_MAIN ) {
 				$namespaceText = $this->msg( 'blanknamespace' )->text();
 			} else {
-				$namespaceText = $contLang->convertNamespace( $namespace );
+				$namespaceText = $this->languageConverter->convertNamespace( $namespace );
 			}
 
 			$out->addHTML(
@@ -254,7 +274,7 @@ class SpecialListGroupRights extends SpecialPage {
 		sort( $r );
 
 		$lang = $this->getLanguage();
-		$allGroups = User::getAllGroups();
+		$allGroups = $this->userGroupManager->listAllGroups();
 
 		$changeGroups = [
 			'addgroup' => $add,

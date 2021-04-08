@@ -3,6 +3,7 @@
 		"authors": [
 			"Apundung",
 			"NoiX180",
+			"Salomo Christian Hutajulu",
 			"Simartampua"
 		]
 	},
@@ -132,7 +133,6 @@
 	"category-article-count": "{{PLURAL:$2|Kategori on umna marisi alaman ima.|Onma{{PLURAL:$1|alaman ima|$1 alaman}} i kategori on, tingon bahat $2.}}",
 	"category-article-count-limited": "Kategori on puna {{PLURAL:$1|$1 alaman}} onma.",
 	"category-file-count": "{{PLURAL:$2|Kategori on umna marisi alaman ima.|Onma{{PLURAL:$1|alaman ima|$1 alaman}} i kategori on, tingon bahat $2.}}",
-	"listingcontinuesabbrev": "Sat",
 	"index-category": "Alaman na iindeks",
 	"noindex-category": "Alaman naso tarindeks",
 	"broken-file-category": "Alaman dot link berkas sega",
@@ -487,7 +487,7 @@
 	"namespace_association": "Kumpulan ruang gorar",
 	"tooltip-namespace_association": "Centang kotak on giot mambunion ruang gorar pangecean sanga subjek na tarkait dohot ruang gorar na ipili",
 	"blanknamespace": "(Utamo)",
-	"contributions": "{{GENDER:$1|User}} kontribusi",
+	"tool-link-contributions": "{{GENDER:$1|User}} kontribusi",
 	"contributions-title": "Kontribusi pangguna tu $1",
 	"mycontris": "Kontribusi",
 	"anoncontribs": "Kontribusingku",

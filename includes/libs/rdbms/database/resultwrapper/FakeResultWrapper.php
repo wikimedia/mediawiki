@@ -39,6 +39,7 @@ class FakeResultWrapper implements IResultWrapper {
 	}
 
 	public function fetchRow() {
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable valid() checks for result not null
 		$row = $this->valid() ? $this->result[$this->pos] : false;
 
 		$this->next();
@@ -59,7 +60,7 @@ class FakeResultWrapper implements IResultWrapper {
 	}
 
 	public function current() {
-		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+		// @phan-suppress-next-line PhanTypeArraySuspiciousNullable valid() checks for result not null
 		$row = $this->valid() ? $this->result[$this->pos] : false;
 
 		return is_array( $row ) ? (object)$row : $row;

@@ -103,8 +103,6 @@ class JobTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideTestJobFactory
 	 *
-	 * @param mixed $handler
-	 *
 	 * @covers Job::factory
 	 */
 	public function testJobFactory( $handler ) {
@@ -121,7 +119,7 @@ class JobTest extends MediaWikiIntegrationTestCase {
 	public function provideTestJobFactory() {
 		return [
 			'class name' => [ 'NullJob' ],
-			'closure' => [ function ( Title $title, array $params ) {
+			'closure' => [ static function ( Title $title, array $params ) {
 				return Job::factory( 'null', $title, $params );
 			} ],
 			'function' => [ [ $this, 'newNullJob' ] ],

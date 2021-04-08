@@ -20,8 +20,12 @@
  * @file
  * @ingroup SpecialPage
  */
+
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\MultiUsernameFilter;
+use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * A special page that allows users to send e-mails to other users
@@ -36,8 +40,29 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 */
 	protected $mTargetObj;
 
-	public function __construct() {
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
+	/** @var UserNamePrefixSearch */
+	private $userNamePrefixSearch;
+
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
+	/**
+	 * @param UserNameUtils $userNameUtils
+	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param UserOptionsLookup $userOptionsLookup
+	 */
+	public function __construct(
+		UserNameUtils $userNameUtils,
+		UserNamePrefixSearch $userNamePrefixSearch,
+		UserOptionsLookup $userOptionsLookup
+	) {
 		parent::__construct( 'Emailuser' );
+		$this->userNameUtils = $userNameUtils;
+		$this->userNamePrefixSearch = $userNamePrefixSearch;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function doesWrites() {
@@ -55,13 +80,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 
 	protected function getFormFields() {
 		$linkRenderer = $this->getLinkRenderer();
+		$user = $this->getUser();
 		return [
 			'From' => [
 				'type' => 'info',
 				'raw' => 1,
 				'default' => $linkRenderer->makeLink(
-					$this->getUser()->getUserPage(),
-					$this->getUser()->getName()
+					$user->getUserPage(),
+					$user->getName()
 				),
 				'label-message' => 'emailfrom',
 				'id' => 'mw-emailuser-sender',
@@ -82,8 +108,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			],
 			'Subject' => [
 				'type' => 'text',
-				'default' => $this->msg( 'defemailsubject',
-					$this->getUser()->getName() )->inContentLanguage()->text(),
+				'default' => $this->msg( 'defemailsubject', $user->getName() )->inContentLanguage()->text(),
 				'label-message' => 'emailsubject',
 				'maxlength' => 200,
 				'size' => 60,
@@ -98,7 +123,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			'CCMe' => [
 				'type' => 'check',
 				'label-message' => 'emailccme',
-				'default' => $this->getUser()->getBoolOption( 'ccmeonemails' ),
+				'default' => $this->userOptionsLookup->getBoolOption( $user, 'ccmeonemails' ),
 			],
 		];
 	}
@@ -248,7 +273,8 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			return 'usermaildisabled';
 		}
 
-		// Run this before $user->isAllowed, to show appropriate message to anons (T160309)
+		// Run this before checking 'sendemail' permission
+		// to show appropriate message to anons (T160309)
 		if ( !$user->isEmailConfirmed() ) {
 			return 'mailnologin';
 		}
@@ -358,42 +384,52 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @param array $data
 	 * @param IContextSource $context
 	 * @return Status|bool
+	 * @throws MWException if EmailUser hook sets the error to something unsupported
 	 */
 	public static function submit( array $data, IContextSource $context ) {
 		$config = $context->getConfig();
 
-		$target = self::getTarget( $data['Target'], $context->getUser() );
+		$sender = $context->getUser();
+		$target = self::getTarget( $data['Target'], $sender );
 		if ( !$target instanceof User ) {
 			// Messages used here: notargettext, noemailtext, nowikiemailtext
 			return Status::newFatal( $target . 'text' );
 		}
 
-		$to = MailAddress::newFromUser( $target );
-		$from = MailAddress::newFromUser( $context->getUser() );
+		$toAddress = MailAddress::newFromUser( $target );
+		$fromAddress = MailAddress::newFromUser( $sender );
 		$subject = $data['Subject'];
 		$text = $data['Text'];
 
 		// Add a standard footer and trim up trailing newlines
 		$text = rtrim( $text ) . "\n\n-- \n";
-		$text .= $context->msg( 'emailuserfooter',
-			$from->name, $to->name )->inContentLanguage()->text();
+		$text .= $context->msg(
+			'emailuserfooter',
+			$fromAddress->name,
+			$toAddress->name
+		)->inContentLanguage()->text();
 
 		if ( $config->get( 'EnableSpecialMute' ) ) {
-			$specialMutePage = SpecialPage::getTitleFor( 'Mute', $context->getUser()->getName() );
+			$specialMutePage = SpecialPage::getTitleFor( 'Mute', $sender->getName() );
 			$text .= "\n" . $context->msg(
 				'specialmute-email-footer',
 				$specialMutePage->getCanonicalURL(),
-				$context->getUser()->getName()
+				$sender->getName()
 			)->inContentLanguage()->text();
 		}
 
 		// Check and increment the rate limits
-		if ( $context->getUser()->pingLimiter( 'emailuser' ) ) {
+		if ( $sender->pingLimiter( 'emailuser' ) ) {
 			throw new ThrottledError();
 		}
 
+		// Services that are needed, will be injected once this is moved to EmailUserUtils
+		// service, see T265541
+		$hookRunner = Hooks::runner();
+		$emailer = MediaWikiServices::getInstance()->getEmailer();
+
 		$error = false;
-		if ( !Hooks::runner()->onEmailUser( $to, $from, $subject, $text, $error ) ) {
+		if ( !$hookRunner->onEmailUser( $toAddress, $fromAddress, $subject, $text, $error ) ) {
 			if ( $error instanceof Status ) {
 				return $error;
 			} elseif ( $error === false || $error === '' || $error === [] ) {
@@ -411,15 +447,12 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			} elseif ( $error instanceof MessageSpecifier ) {
 				return Status::newFatal( $error );
 			} else {
-				// Ugh. Either a raw HTML string, or something that's supposed
-				// to be treated like one.
+				// Setting $error to something else was deprecated in 1.29 and
+				// removed in 1.36, and so an exception is now thrown
 				$type = is_object( $error ) ? get_class( $error ) : gettype( $error );
-				wfDeprecatedMsg( "An EmailUser hook returned a $type as \$error, " .
-					"this is deprecated since MediaWiki 1.29",
-					'1.29', false, false );
-				return Status::newFatal( new ApiRawMessage(
-					[ '$1', Message::rawParam( (string)$error ) ], 'hookaborted'
-				) );
+				throw new MWException(
+					'EmailUser hook set $error to unsupported type ' . $type
+				);
 			}
 		}
 
@@ -432,9 +465,11 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			 * wiki-borne mails from direct mails and protects against
 			 * SPF and bounce problems with some mailers (see below).
 			 */
-			$mailFrom = new MailAddress( $config->get( 'PasswordSender' ),
-				$context->msg( 'emailsender' )->inContentLanguage()->text() );
-			$replyTo = $from;
+			$mailFrom = new MailAddress(
+				$config->get( 'PasswordSender' ),
+				$context->msg( 'emailsender' )->inContentLanguage()->text()
+			);
+			$replyTo = $fromAddress;
 		} else {
 			/**
 			 * Put the sending user's e-mail address in the From: header.
@@ -451,51 +486,62 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 			 * containing the recipient's e-mail address may get sent to
 			 * the sending user.
 			 */
-			$mailFrom = $from;
+			$mailFrom = $fromAddress;
 			$replyTo = null;
 		}
 
-		$status = UserMailer::send( $to, $mailFrom, $subject, $text, [
-			'replyTo' => $replyTo,
-		] );
+		$status = $emailer->send(
+			$toAddress,
+			$mailFrom,
+			$subject,
+			$text,
+			null,
+			[ 'replyTo' => $replyTo ]
+		);
 
 		if ( !$status->isGood() ) {
 			return $status;
-		} else {
-			// if the user requested a copy of this mail, do this now,
-			// unless they are emailing themselves, in which case one
-			// copy of the message is sufficient.
-			if ( $data['CCMe'] && $to != $from ) {
-				$ccTo = $from;
-				$ccFrom = $from;
-				$ccSubject = $context->msg( 'emailccsubject' )->plaintextParams(
-					$target->getName(), $subject )->text();
-				$ccText = $text;
+		}
 
-				Hooks::runner()->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
+		// if the user requested a copy of this mail, do this now,
+		// unless they are emailing themselves, in which case one
+		// copy of the message is sufficient.
+		if ( $data['CCMe'] && $toAddress != $fromAddress ) {
+			$ccTo = $fromAddress;
+			$ccFrom = $fromAddress;
+			$ccSubject = $context->msg( 'emailccsubject' )->plaintextParams(
+				$target->getName(),
+				$subject
+			)->text();
+			$ccText = $text;
 
-				if ( $config->get( 'UserEmailUseReplyTo' ) ) {
-					$mailFrom = new MailAddress(
-						$config->get( 'PasswordSender' ),
-						$context->msg( 'emailsender' )->inContentLanguage()->text()
-					);
-					$replyTo = $ccFrom;
-				} else {
-					$mailFrom = $ccFrom;
-					$replyTo = null;
-				}
+			$hookRunner->onEmailUserCC( $ccTo, $ccFrom, $ccSubject, $ccText );
 
-				$ccStatus = UserMailer::send(
-					$ccTo, $mailFrom, $ccSubject, $ccText, [
-						'replyTo' => $replyTo,
-				] );
-				$status->merge( $ccStatus );
+			if ( $config->get( 'UserEmailUseReplyTo' ) ) {
+				$mailFrom = new MailAddress(
+					$config->get( 'PasswordSender' ),
+					$context->msg( 'emailsender' )->inContentLanguage()->text()
+				);
+				$replyTo = $ccFrom;
+			} else {
+				$mailFrom = $ccFrom;
+				$replyTo = null;
 			}
 
-			Hooks::runner()->onEmailUserComplete( $to, $from, $subject, $text );
-
-			return $status;
+			$ccStatus = $emailer->send(
+				$ccTo,
+				$mailFrom,
+				$ccSubject,
+				$ccText,
+				null,
+				[ 'replyTo' => $replyTo ]
+			);
+			$status->merge( $ccStatus );
 		}
+
+		$hookRunner->onEmailUserComplete( $toAddress, $fromAddress, $subject, $text );
+
+		return $status;
 	}
 
 	/**
@@ -507,13 +553,14 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$user = User::newFromName( $search );
-		if ( !$user ) {
+		$search = $this->userNameUtils->getCanonical( $search );
+		if ( !$search ) {
 			// No prefix suggestion for invalid user
 			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
-		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
+		return $this->userNamePrefixSearch
+			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {

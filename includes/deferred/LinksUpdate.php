@@ -334,7 +334,7 @@ class LinksUpdate extends DataUpdate {
 		$agent = $this->getCauseAgent();
 
 		self::queueRecursiveJobsForTable( $this->mTitle, 'templatelinks', $action, $agent );
-		if ( $this->mTitle->getNamespace() == NS_FILE ) {
+		if ( $this->mTitle->getNamespace() === NS_FILE ) {
 			// Process imagelinks in case the title is or was a redirect
 			self::queueRecursiveJobsForTable( $this->mTitle, 'imagelinks', $action, $agent );
 		}
@@ -406,8 +406,9 @@ class LinksUpdate extends DataUpdate {
 		}
 
 		$domainId = $this->getDB()->getDomainID();
-		$wp = WikiPage::factory( $this->mTitle );
-		$lbf = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$wp = $services->getWikiPageFactory()->newFromTitle( $this->mTitle );
+		$lbf = $services->getDBLoadBalancerFactory();
 		// T163801: try to release any row locks to reduce contention
 		$lbf->commitAndWaitForReplication( __METHOD__, $this->ticket, [ 'domain' => $domainId ] );
 
@@ -695,8 +696,7 @@ class LinksUpdate extends DataUpdate {
 	 * include the page id from $this->mId and any property value from
 	 * $this->mProperties.
 	 *
-	 * The array returned will include the pp_sortkey field if this
-	 * is present in the database (as indicated by $wgPagePropsHaveSortkey).
+	 * The array returned will include the pp_sortkey field.
 	 * The sortkey value is currently determined by getPropertySortKeyValue().
 	 *
 	 * @note this assumes that $this->mProperties[$prop] is defined.
@@ -706,21 +706,14 @@ class LinksUpdate extends DataUpdate {
 	 * @return array
 	 */
 	private function getPagePropRowData( $prop ) {
-		global $wgPagePropsHaveSortkey;
-
 		$value = $this->mProperties[$prop];
 
-		$row = [
+		return [
 			'pp_page' => $this->mId,
 			'pp_propname' => $prop,
 			'pp_value' => $value,
+			'pp_sortkey' => $this->getPropertySortKeyValue( $value )
 		];
-
-		if ( $wgPagePropsHaveSortkey ) {
-			$row['pp_sortkey'] = $this->getPropertySortKeyValue( $value );
-		}
-
-		return $row;
 	}
 
 	/**
@@ -1168,11 +1161,7 @@ class LinksUpdate extends DataUpdate {
 		if ( $this->externalLinkInsertions === null ) {
 			return null;
 		}
-		$result = [];
-		foreach ( $this->externalLinkInsertions as $key => $value ) {
-			$result[] = $value['el_to'];
-		}
-		return $result;
+		return array_column( $this->externalLinkInsertions, 'el_to' );
 	}
 
 	/**

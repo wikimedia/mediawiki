@@ -15,10 +15,15 @@
 	function appendToCloner( $createButton ) {
 		var $li,
 			$ul = $createButton.prev( 'ul.mw-htmlform-cloner-ul' ),
-			html = $ul.data( 'template' ).replace(
-				new RegExp( mw.util.escapeRegExp( $ul.data( 'uniqueId' ) ), 'g' ),
-				'clone' + ( ++cloneCounter )
-			);
+			cloneRegex = new RegExp( mw.util.escapeRegExp( $ul.data( 'uniqueId' ) ), 'g' ),
+			// Assume the ids that need to be made unique will start with 'ooui-php-'. See T274533
+			inputIdRegex = new RegExp( /(ooui-php-[0-9]*)/, 'gm' ),
+			html;
+
+		++cloneCounter;
+		html = $ul.data( 'template' )
+			.replace( cloneRegex, 'clone' + cloneCounter )
+			.replace( inputIdRegex, '$1-clone' + cloneCounter );
 
 		$li = $( '<li>' )
 			.addClass( 'mw-htmlform-cloner-li' )
@@ -30,8 +35,7 @@
 
 	mw.hook( 'htmlform.enhance' ).add( function ( $root ) {
 		var $deleteElement = $root.find( '.mw-htmlform-cloner-delete-button' ),
-			$createElement = $root.find( '.mw-htmlform-cloner-create-button' ),
-			createButton;
+			$createElement = $root.find( '.mw-htmlform-cloner-create-button' );
 
 		$deleteElement.each( function () {
 			var $element = $( this ),
@@ -52,20 +56,25 @@
 			}
 		} );
 
-		// eslint-disable-next-line no-jquery/no-class-state
-		if ( $createElement.hasClass( 'oo-ui-widget' ) ) {
-			createButton = OO.ui.infuse( $createElement );
-			createButton.on( 'click', function () {
-				appendToCloner( createButton.$element );
-			} );
-		} else {
-			// eslint-disable-next-line no-jquery/no-sizzle
-			$createElement.filter( ':input' ).on( 'click', function ( e ) {
-				e.preventDefault();
+		$createElement.each( function () {
+			var $element = $( this ),
+				createButton;
 
-				appendToCloner( $( this ) );
-			} );
-		}
+			// eslint-disable-next-line no-jquery/no-class-state
+			if ( $element.hasClass( 'oo-ui-widget' ) ) {
+				createButton = OO.ui.infuse( $element );
+				createButton.on( 'click', function () {
+					appendToCloner( createButton.$element );
+				} );
+			} else {
+				// eslint-disable-next-line no-jquery/no-sizzle
+				$element.filter( ':input' ).on( 'click', function ( e ) {
+					e.preventDefault();
+					appendToCloner( $( this ) );
+				} );
+			}
+		} );
+
 	} );
 
 }() );

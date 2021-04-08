@@ -35,7 +35,7 @@ class SearchPostgres extends SearchDatabase {
 	/**
 	 * Perform a full text search query via tsearch2 and return a result set.
 	 * Currently searches a page's current title (page.page_title) and
-	 * latest revision article text (pagecontent.old_text)
+	 * latest revision article text (text.old_text)
 	 *
 	 * @param string $term Raw search term
 	 * @return SqlSearchResultSet
@@ -147,7 +147,7 @@ class SearchPostgres extends SearchDatabase {
 		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
 		if ( $top === "" ) { # # e.g. if only stopwords are used XXX return something better
 			$query = "SELECT page_id, page_namespace, page_title, 0 AS score " .
-				"FROM page p, revision r, slots s, content c, pagecontent pc " .
+				"FROM page p, revision r, slots s, content c, \"text\" pc " .
 				"WHERE p.page_latest = r.rev_id " .
 				"AND s.slot_revision_id = r.rev_id " .
 				"AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
@@ -164,7 +164,7 @@ class SearchPostgres extends SearchDatabase {
 
 			$query = "SELECT page_id, page_namespace, page_title, " .
 				"ts_rank($fulltext, to_tsquery($searchstring), 5) AS score " .
-				"FROM page p, revision r, slots s, content c, pagecontent pc " .
+				"FROM page p, revision r, slots s, content c, \"text\" pc " .
 				"WHERE p.page_latest = r.rev_id " .
 				"AND s.slot_revision_id = r.rev_id " .
 				"AND s.slot_role_id = " . $slotRoleStore->getId( SlotRecord::MAIN ) . " " .
@@ -196,7 +196,7 @@ class SearchPostgres extends SearchDatabase {
 	public function update( $pageid, $title, $text ) {
 		# # We don't want to index older revisions
 		$slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
-		$sql = "UPDATE pagecontent SET textvector = NULL " .
+		$sql = "UPDATE \"text\" SET textvector = NULL " .
 			"WHERE textvector IS NOT NULL " .
 			"AND old_id IN " .
 			"(SELECT DISTINCT substring( c.content_address from '^tt:([0-9]+)$' )::int AS old_rev_text_id " .

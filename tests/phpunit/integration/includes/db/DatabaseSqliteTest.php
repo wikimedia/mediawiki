@@ -30,8 +30,8 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param null $version
-	 * @param null $sqlDump
+	 * @param string|null $version
+	 * @param string|null &$sqlDump
 	 * @return \PHPUnit\Framework\MockObject\MockObject|DatabaseSqlite
 	 */
 	private function newMockDb( $version = null, &$sqlDump = null ) {
@@ -66,7 +66,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 		$mock->initConnection();
 
 		$sqlDump = '';
-		$mock->method( 'query' )->willReturnCallback( function ( $sql ) use ( &$sqlDump ) {
+		$mock->method( 'query' )->willReturnCallback( static function ( $sql ) use ( &$sqlDump ) {
 			$sqlDump .= "$sql;";
 
 			return true;
@@ -80,10 +80,11 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @param $sql
-	 * @return string|string[]|null
+	 * @param string $sql
+	 * @return string
 	 */
 	private function replaceVars( $sql ) {
+		/** @var Database $wrapper */
 		$wrapper = TestingAccessWrapper::newFromObject( $this->db );
 		// normalize spacing to hide implementation details
 		return preg_replace( '/\s+/', ' ', $wrapper->replaceVars( $sql ) );
@@ -342,23 +343,19 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 
 		// Versions tested
 		$versions = [
-			// '1.13', disabled for now, was totally screwed up
-			// SQLite wasn't included in 1.14
-			'1.15',
-			'1.16',
-			'1.17',
-			'1.18',
-			'1.19',
-			'1.20',
-			'1.21',
-			'1.22',
-			'1.23',
+			'1.27',
+			'1.28',
+			'1.29',
+			'1.30',
+			'1.31',
+			'1.32',
+			'1.33',
+			'1.34',
+			'1.35',
 		];
 
 		// Mismatches for these columns we can safely ignore
-		$ignoredColumns = [
-			'user_newtalk.user_last_timestamp', // r84185
-		];
+		$ignoredColumns = [];
 
 		$currentDB = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		$currentDB->sourceFile( "$IP/maintenance/tables.sql" );
@@ -482,9 +479,6 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 			'searchindex_content',
 			'searchindex_segments',
 			'searchindex_segdir',
-			// FTS4 ready!!1
-			'searchindex_docsize',
-			'searchindex_stat',
 		];
 		foreach ( $excluded as $t ) {
 			unset( $list[$t] );

@@ -46,7 +46,7 @@ class ApiWatch extends ApiBase {
 
 	public function execute() {
 		$user = $this->getUser();
-		if ( !$user->isLoggedIn() ) {
+		if ( !$user->isRegistered() ) {
 			$this->dieWithError( 'watchlistanontext', 'notloggedin' );
 		}
 
@@ -83,7 +83,7 @@ class ApiWatch extends ApiBase {
 			ApiResult::setIndexedTagName( $res, 'w' );
 		} else {
 			// dont allow use of old title parameter with new pageset parameters.
-			$extraParams = array_keys( array_filter( $pageSet->extractRequestParams(), function ( $x ) {
+			$extraParams = array_keys( array_filter( $pageSet->extractRequestParams(), static function ( $x ) {
 				return $x !== null && $x !== false;
 			} ) );
 

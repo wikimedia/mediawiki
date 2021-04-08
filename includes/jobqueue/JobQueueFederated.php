@@ -236,7 +236,7 @@ class JobQueueFederated extends JobQueue {
 				$this->logException( $e );
 			}
 			if ( !$ok ) {
-				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) { // blacklist
+				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) {
 					throw new JobQueueError( "Could not insert job(s), no partitions available." );
 				}
 				$jobsLeft = array_merge( $jobsLeft, $jobBatch ); // not inserted
@@ -255,7 +255,7 @@ class JobQueueFederated extends JobQueue {
 				$this->logException( $e );
 			}
 			if ( !$ok ) {
-				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) { // blacklist
+				if ( !$partitionRing->ejectFromLiveRing( $partition, 5 ) ) {
 					throw new JobQueueError( "Could not insert job(s), no partitions available." );
 				}
 				$jobsLeft = array_merge( $jobsLeft, $jobBatch ); // not inserted
@@ -456,7 +456,7 @@ class JobQueueFederated extends JobQueue {
 				$sizes = $queue->doGetSiblingQueueSizes( $types );
 				if ( is_array( $sizes ) ) {
 					foreach ( $sizes as $type => $size ) {
-						$result[$type] = isset( $result[$type] ) ? $result[$type] + $size : $size;
+						$result[$type] = ( $result[$type] ?? 0 ) + $size;
 					}
 				} else {
 					return null; // not supported on all partitions; bail

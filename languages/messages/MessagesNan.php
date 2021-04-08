@@ -51,6 +51,7 @@ $namespaceAliases = [
 	'分類討論' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Recentchangeslinked'       => [ 'Siong-koan_ê_kái-piàn' ],
 	'Specialpages'              => [ 'Te̍k-sû_ia̍h' ],

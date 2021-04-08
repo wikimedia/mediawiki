@@ -44,6 +44,7 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $prefix
+	 * @param string[] $keys
 	 *
 	 * @return string[]
 	 */
@@ -59,12 +60,12 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $xmlData
-	 * @param string[] pageTitles
+	 * @param string[] $pageTitles
 	 *
 	 * @return string
 	 */
 	private function injectPageTitles( string $xmlData, array $pageTitles ) {
-		$keys = array_map( function ( $name ) {
+		$keys = array_map( static function ( $name ) {
 			return "{{{$name}_title}}";
 		}, array_keys( $pageTitles ) );
 
@@ -76,13 +77,13 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideImportFailure() {
-		yield [ 'BadXML', 'PHPUnit\Framework\Error\Warning', '/^XMLReader::read\(\): .*$/' ];
-		yield [ 'MissingMediaWikiTag', 'MWException', '/^Expected <mediawiki> tag, got .*$/' ];
-		yield [ 'MissingMainTextField', 'MWException', '/^Missing text field in import.$/' ];
-		yield [ 'MissingSlotTextField', 'MWException', '/^Missing text field in import.$/' ];
-		yield [ 'MissingSlotRole', 'MWException', '/^Missing role for imported slot.$/' ];
-		yield [ 'UndefinedSlotRole', 'MWException', '/^Undefined slot role .*$/' ];
-		yield [ 'UndefinedContentModel', 'MWException', '/not registered on this wiki/' ];
+		yield [ 'BadXML', 'warning', '/^XMLReader::read\(\): .*$/' ];
+		yield [ 'MissingMediaWikiTag', MWException::class, '/^Expected <mediawiki> tag, got .*$/' ];
+		yield [ 'MissingMainTextField', MWException::class, '/^Missing text field in import.$/' ];
+		yield [ 'MissingSlotTextField', MWException::class, '/^Missing text field in import.$/' ];
+		yield [ 'MissingSlotRole', MWException::class, '/^Missing role for imported slot.$/' ];
+		yield [ 'UndefinedSlotRole', MWException::class, '/^Undefined slot role .*$/' ];
+		yield [ 'UndefinedContentModel', MWException::class, '/not registered on this wiki/' ];
 	}
 
 	/**
@@ -99,8 +100,13 @@ class ImportFailureTest extends MediaWikiLangTestCase {
 
 		$source = new ImportStringSource( $xmlData );
 		$importer = $this->getImporter( $source );
-		$this->expectException( $exceptionName );
-		$this->expectExceptionMessageMatches( $exceptionMessage );
+		if ( $exceptionName === 'warning' ) {
+			$this->expectWarning();
+			$this->expectWarningMessageMatches( $exceptionMessage );
+		} else {
+			$this->expectException( $exceptionName );
+			$this->expectExceptionMessageMatches( $exceptionMessage );
+		}
 		$importer->doImport();
 	}
 }

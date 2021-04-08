@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -37,37 +39,43 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 	private $slotRoleRegistry;
 
 	/**
+	 * @var WikiPageFactory
+	 */
+	private $wikiPageFactory;
+
+	/**
 	 * @param bool $doUpdates
 	 * @param LoggerInterface $logger
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionStore $revisionStore
-	 * @param SlotRoleRegistry|null $slotRoleRegistry
+	 * @param SlotRoleRegistry $slotRoleRegistry
+	 * @param WikiPageFactory|null $wikiPageFactory
 	 */
 	public function __construct(
 		$doUpdates,
 		LoggerInterface $logger,
 		ILoadBalancer $loadBalancer,
 		RevisionStore $revisionStore,
-		SlotRoleRegistry $slotRoleRegistry = null
+		SlotRoleRegistry $slotRoleRegistry,
+		WikiPageFactory $wikiPageFactory = null
 	) {
 		$this->doUpdates = $doUpdates;
 		$this->logger = $logger;
 		$this->loadBalancer = $loadBalancer;
 		$this->revisionStore = $revisionStore;
-		// @todo: temporary - remove when FileImporter extension is updated
-		if ( !$slotRoleRegistry ) {
-			$slotRoleRegistry = \MediaWiki\MediaWikiServices::getInstance()->getSlotRoleRegistry();
-		}
 		$this->slotRoleRegistry = $slotRoleRegistry;
+		// @todo: temporary - remove when FileImporter extension is updated
+		$this->wikiPageFactory = $wikiPageFactory ?? MediaWikiServices::getInstance()->getWikiPageFactory();
 	}
 
+	/** @inheritDoc */
 	public function import( ImportableOldRevision $importableRevision, $doUpdates = true ) {
 		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 
 		# Sneak a single revision into place
 		$user = $importableRevision->getUserObj() ?: User::newFromName( $importableRevision->getUser() );
 		if ( $user ) {
-			$userId = intval( $user->getId() );
+			$userId = $user->getId();
 			$userText = $user->getName();
 		} else {
 			$userId = 0;
@@ -78,7 +86,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 		// avoid memory leak...?
 		Title::clearCaches();
 
-		$page = WikiPage::factory( $importableRevision->getTitle() );
+		$page = $this->wikiPageFactory->newFromTitle( $importableRevision->getTitle() );
 		$page->loadPageData( 'fromdbmaster' );
 		if ( !$page->exists() ) {
 			// must create the page...

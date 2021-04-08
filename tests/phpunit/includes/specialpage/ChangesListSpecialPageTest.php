@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -76,13 +75,19 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 		$queryConditions = array_filter(
 			$queryConditions,
-			'ChangesListSpecialPageTest::filterOutRcTimestampCondition'
+			[ __CLASS__, 'filterOutRcTimestampCondition' ]
 		);
 
 		return $queryConditions;
 	}
 
-	/** helper to test SpecialRecentchanges::buildQuery() */
+	/**
+	 * helper to test SpecialRecentchanges::buildQuery()
+	 * @param array $expected
+	 * @param array|null $requestOptions
+	 * @param string $message
+	 * @param User|null $user
+	 */
 	private function assertConditions(
 		$expected,
 		$requestOptions = null,
@@ -101,7 +106,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	private static function normalizeCondition( $conds ) {
 		$dbr = wfGetDB( DB_REPLICA );
 		$normalized = array_map(
-			function ( $k, $v ) use ( $dbr ) {
+			static function ( $k, $v ) use ( $dbr ) {
 				if ( is_array( $v ) ) {
 					sort( $v );
 				}
@@ -115,7 +120,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $normalized;
 	}
 
-	/** return false if condition begins with 'rc_timestamp ' */
+	/**
+	 * @param array|string $var
+	 * @return bool false if condition begins with 'rc_timestamp '
+	 */
 	private static function filterOutRcTimestampCondition( $var ) {
 		return ( is_array( $var ) || strpos( $var, 'rc_timestamp ' ) === false );
 	}
@@ -123,7 +131,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilter() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace = '0'",
+				'rc_namespace = 0',
 			],
 			[
 				'namespace' => NS_MAIN,
@@ -135,7 +143,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterInversion() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace != '0'",
+				'rc_namespace != 0',
 			],
 			[
 				'namespace' => NS_MAIN,
@@ -148,7 +156,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultiple() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace IN ('1','2','3')",
+				'rc_namespace IN (1,2,3)',
 			],
 			[
 				'namespace' => '1;2;3',
@@ -160,7 +168,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultipleAssociated() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace IN (0,'1','4',5,6,'7')",
+				'rc_namespace IN (0,1,4,5,6,7)',
 			],
 			[
 				'namespace' => '1;4;7',
@@ -173,7 +181,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterAssociatedSpecial() {
 		$this->assertConditions(
 			[ # expected
-			  "rc_namespace IN ('-1',0,'1')",
+			  'rc_namespace IN (-1,0,1)',
 			],
 			[
 				'namespace' => '1;-1',
@@ -186,7 +194,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultipleAssociatedInvert() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace NOT IN ('2','3',8,'9')",
+				'rc_namespace NOT IN (2,3,8,9)',
 			],
 			[
 				'namespace' => '2;3;9',
@@ -200,7 +208,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	public function testRcNsFilterMultipleInvert() {
 		$this->assertConditions(
 			[ # expected
-				"rc_namespace NOT IN ('1','2','3')",
+				'rc_namespace NOT IN (1,2,3)',
 			],
 			[
 				'namespace' => '1;2;3',
@@ -211,7 +219,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcNsFilterAllContents() {
-		$namespaces = MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectNamespaces();
+		$namespaces = $this->getServiceContainer()->getNamespaceInfo()->getSubjectNamespaces();
 		$this->assertConditions(
 			[ # expected
 				'rc_namespace IN (' . $this->db->makeList( $namespaces ) . ')',
@@ -223,12 +231,41 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	public function testRcHidemyselfFilter() {
-		$user = $this->getTestUser()->getUser();
-		$user->getActorId( wfGetDB( DB_MASTER ) );
+	public function testRcNsFilterInvalid() {
 		$this->assertConditions(
 			[ # expected
-				"NOT((rc_actor = {$user->getActorId()}))",
+			],
+			[
+				'namespace' => 'invalid',
+			],
+			"rc conditions with invalid namespace"
+		);
+	}
+
+	public function testRcNsFilterPartialInvalid() {
+		$namespaces = array_merge(
+			[ 1 ],
+			$this->getServiceContainer()->getNamespaceInfo()->getSubjectNamespaces()
+		);
+		sort( $namespaces );
+		$this->assertConditions(
+			[ # expected
+				'rc_namespace IN (' . $this->db->makeList( $namespaces ) . ')',
+			],
+			[
+				'namespace' => 'all-contents;1;invalid',
+			],
+			"rc conditions with invalid namespace"
+		);
+	}
+
+	public function testRcHidemyselfFilter() {
+		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
+		$user = $this->getTestUser()->getUser();
+		$actorId = $actorNormalization->acquireActorId( $user, $this->db );
+		$this->assertConditions(
+			[ # expected
+				"NOT((rc_actor = {$actorId}))",
 			],
 			[
 				'hidemyself' => 1,
@@ -238,10 +275,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$user = User::newFromName( '10.11.12.13', false );
-		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
+		$actorId = $actorNormalization->acquireActorId( $user, $this->db );
 		$this->assertConditions(
 			[ # expected
-				"NOT((rc_actor = {$user->getActorId()}))",
+				"NOT((rc_actor = {$actorId}))",
 			],
 			[
 				'hidemyself' => 1,
@@ -252,11 +289,12 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	public function testRcHidebyothersFilter() {
+		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
 		$user = $this->getTestUser()->getUser();
-		$user->getActorId( wfGetDB( DB_MASTER ) );
+		$actorId = $actorNormalization->acquireActorId( $user, $this->db );
 		$this->assertConditions(
 			[ # expected
-				"(rc_actor = {$user->getActorId()})",
+				"(rc_actor = {$actorId})",
 			],
 			[
 				'hidebyothers' => 1,
@@ -266,10 +304,10 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 
 		$user = User::newFromName( '10.11.12.13', false );
-		$id = $user->getActorId( wfGetDB( DB_MASTER ) );
+		$actorId = $actorNormalization->acquireActorId( $user, $this->db );
 		$this->assertConditions(
 			[ # expected
-				"(rc_actor = {$user->getActorId()})",
+				"(rc_actor = {$actorId})",
 			],
 			[
 				'hidebyothers' => 1,
@@ -538,7 +576,8 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 		$this->assertRegExp(
 			'/\(actor_rc_user\.actor_user IS NULL\) OR '
-				. '\(\(user_editcount >= 500\) AND \(user_registration <= \'[^\']+\'\)\)/',
+				. '\(\(user_editcount >= 500\) AND \(\(user_registration IS NULL\) OR '
+				. '\(user_registration <= \'[^\']+\'\)\)\)/',
 			reset( $conds ),
 			"rc conditions: userExpLevel=unregistered;experienced"
 		);
@@ -714,7 +753,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 						'description' => 'garply-description',
 					],
 				],
-				'queryCallable' => function () {
+				'queryCallable' => static function () {
 				},
 				'default' => ChangesListStringOptionsFilterGroup::NONE,
 			],

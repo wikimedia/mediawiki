@@ -21,8 +21,8 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Auth\AuthManager;
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 
 /**
  * Let users manage bot passwords
@@ -46,9 +46,18 @@ class SpecialBotPasswords extends FormSpecialPage {
 	/** @var Psr\Log\LoggerInterface */
 	private $logger = null;
 
-	public function __construct() {
+	/** @var PasswordFactory */
+	private $passwordFactory;
+
+	/**
+	 * @param PasswordFactory $passwordFactory
+	 * @param AuthManager $authManager
+	 */
+	public function __construct( PasswordFactory $passwordFactory, AuthManager $authManager ) {
 		parent::__construct( 'BotPasswords', 'editmyprivateinfo' );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
+		$this->passwordFactory = $passwordFactory;
+		$this->setAuthManager( $authManager );
 	}
 
 	/**
@@ -126,6 +135,8 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 			$lang = $this->getLanguage();
 			$showGrants = MWGrants::getValidGrants();
+			$grantLinks = array_map( [ MWGrants::class, 'getGrantsLink' ], $showGrants );
+
 			$fields['grants'] = [
 				'type' => 'checkmatrix',
 				'label-message' => 'botpasswords-label-grants',
@@ -134,26 +145,26 @@ class SpecialBotPasswords extends FormSpecialPage {
 					$this->msg( 'botpasswords-label-grants-column' )->escaped() => 'grant'
 				],
 				'rows' => array_combine(
-					array_map( 'MWGrants::getGrantsLink', $showGrants ),
+					$grantLinks,
 					$showGrants
 				),
 				'default' => array_map(
-					function ( $g ) {
+					static function ( $g ) {
 						return "grant-$g";
 					},
 					$this->botPassword->getGrants()
 				),
 				'tooltips' => array_combine(
-					array_map( 'MWGrants::getGrantsLink', $showGrants ),
+					$grantLinks,
 					array_map(
-						function ( $rights ) use ( $lang ) {
-							return $lang->semicolonList( array_map( 'User::getRightDescription', $rights ) );
+						static function ( $rights ) use ( $lang ) {
+							return $lang->semicolonList( array_map( [ User::class, 'getRightDescription' ], $rights ) );
 						},
 						array_intersect_key( MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
 					)
 				),
 				'force-options-on' => array_map(
-					function ( $g ) {
+					static function ( $g ) {
 						return "grant-$g";
 					},
 					MWGrants::getHiddenGrants()
@@ -168,7 +179,6 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 		} else {
 			$linkRenderer = $this->getLinkRenderer();
-			$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 
 			$dbr = BotPassword::getDB( DB_REPLICA );
 			$res = $dbr->select(
@@ -179,7 +189,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			);
 			foreach ( $res as $row ) {
 				try {
-					$password = $passwordFactory->newFromCiphertext( $row->bp_password );
+					$password = $this->passwordFactory->newFromCiphertext( $row->bp_password );
 					$passwordInvalid = $password instanceof InvalidPassword;
 					unset( $password );
 				} catch ( PasswordError $ex ) {
@@ -212,7 +222,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 				'required' => true,
 				'size' => BotPassword::APPID_MAXLENGTH,
 				'maxlength' => BotPassword::APPID_MAXLENGTH,
-				'validation-callback' => function ( $v ) {
+				'validation-callback' => static function ( $v ) {
 					$v = trim( $v );
 					return $v !== '' && strlen( $v ) <= BotPassword::APPID_MAXLENGTH;
 				},
@@ -329,8 +339,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 
 		if ( $this->operation === 'insert' || !empty( $data['resetPassword'] ) ) {
 			$this->password = BotPassword::generatePassword( $this->getConfig() );
-			$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
-			$password = $passwordFactory->newFromPlaintext( $this->password );
+			$password = $this->passwordFactory->newFromPlaintext( $this->password );
 		} else {
 			$password = null;
 		}

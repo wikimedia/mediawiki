@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
-use PHPUnit\Framework\Error\Notice;
 
 class HtmlTest extends MediaWikiIntegrationTestCase {
 	private $restoreWarnings;
@@ -82,8 +81,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 * @covers Html::openElement
 	 */
 	public function testOpenElement() {
-		$this->expectException( Notice::class );
-		$this->expectExceptionMessage( 'given element name with space' );
+		$this->expectNotice();
+		$this->expectNoticeMessage( 'given element name with space' );
 		Html::openElement( 'span id="x"' );
 	}
 
@@ -139,170 +138,114 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $isXmlMimeType, Html::isXmlMimeType( $mimetype ) );
 	}
 
-	/**
-	 * @covers Html::expandAttributes
-	 */
-	public function testExpandAttributesSkipsNullAndFalse() {
-		# ## EMPTY ########
-		$this->assertEmpty(
-			Html::expandAttributes( [ 'foo' => null ] ),
-			'skip keys with null value'
-		);
-		$this->assertEmpty(
-			Html::expandAttributes( [ 'foo' => false ] ),
-			'skip keys with false value'
-		);
-		$this->assertEquals(
+	public function provideExpandAttributes() {
+		// $expect, $attributes
+		yield 'keep keys with an empty string' => [
 			' foo=""',
-			Html::expandAttributes( [ 'foo' => '' ] ),
-			'keep keys with an empty string'
-		);
-	}
-
-	/**
-	 * @covers Html::expandAttributes
-	 */
-	public function testExpandAttributesForBooleans() {
-		$this->assertSame(
+			[ 'foo' => '' ]
+		];
+		yield 'False bool attribs have no output' => [
 			'',
-			Html::expandAttributes( [ 'selected' => false ] ),
-			'Boolean attributes do not generates output when value is false'
-		);
-		$this->assertSame(
+			[ 'selected' => false ]
+		];
+		yield 'Null bool attribs have no output' => [
 			'',
-			Html::expandAttributes( [ 'selected' => null ] ),
-			'Boolean attributes do not generates output when value is null'
-		);
-
-		$this->assertEquals(
+			[ 'selected' => null ]
+		];
+		yield 'True bool attribs have output' => [
 			' selected=""',
-			Html::expandAttributes( [ 'selected' => true ] ),
-			'Boolean attributes have no value when value is true'
-		);
-		$this->assertEquals(
+			[ 'selected' => true ]
+		];
+		yield 'True bool attribs have output (passed as numerical array)' => [
 			' selected=""',
-			Html::expandAttributes( [ 'selected' ] ),
-			'Boolean attributes have no value when value is true (passed as numerical array)'
-		);
-	}
-
-	/**
-	 * @covers Html::expandAttributes
-	 */
-	public function testExpandAttributesForNumbers() {
-		$this->assertEquals(
+			[ 'selected' ]
+		];
+		yield 'integer value is cast to string' => [
 			' value="1"',
-			Html::expandAttributes( [ 'value' => 1 ] ),
-			'Integer value is cast to a string'
-		);
-		$this->assertEquals(
+			[ 'value' => 1 ]
+		];
+		yield 'float value is cast to string' => [
 			' value="1.1"',
-			Html::expandAttributes( [ 'value' => 1.1 ] ),
-			'Float value is cast to a string'
-		);
-	}
-
-	/**
-	 * @covers Html::expandAttributes
-	 */
-	public function testExpandAttributesForObjects() {
-		$this->assertEquals(
+			[ 'value' => 1.1 ]
+		];
+		yield 'object value is converted to string' => [
 			' value="stringValue"',
-			Html::expandAttributes( [ 'value' => new HtmlTestValue() ] ),
-			'Object value is converted to a string'
-		);
-	}
-
-	/**
-	 * Please note it output a string prefixed with a space!
-	 * @covers Html::expandAttributes
-	 */
-	public function testExpandAttributesVariousExpansions() {
-		# ## NOT EMPTY ####
-		$this->assertEquals(
+			[ 'value' => new HtmlTestValue() ]
+		];
+		yield 'Empty string is always quoted' => [
 			' empty_string=""',
-			Html::expandAttributes( [ 'empty_string' => '' ] ),
-			'Empty string is always quoted'
-		);
-		$this->assertEquals(
+			[ 'empty_string' => '' ]
+		];
+		yield 'Simple string value needs no quotes' => [
 			' key="value"',
-			Html::expandAttributes( [ 'key' => 'value' ] ),
-			'Simple string value needs no quotes'
-		);
-		$this->assertEquals(
+			[ 'key' => 'value' ]
+		];
+		yield 'Number 1 value needs no quotes' => [
 			' one="1"',
-			Html::expandAttributes( [ 'one' => 1 ] ),
-			'Number 1 value needs no quotes'
-		);
-		$this->assertEquals(
+			[ 'one' => 1 ]
+		];
+		yield 'Number 0 value needs no quotes' => [
 			' zero="0"',
-			Html::expandAttributes( [ 'zero' => 0 ] ),
-			'Number 0 value needs no quotes'
-		);
+			[ 'zero' => 0 ]
+		];
 	}
 
 	/**
-	 * Html::expandAttributes has special features for HTML
-	 * attributes that use space separated lists and also
-	 * allows arrays to be used as values.
 	 * @covers Html::expandAttributes
+	 * @dataProvider provideExpandAttributes
 	 */
-	public function testExpandAttributesListValueAttributes() {
-		# ## STRING VALUES
-		$this->assertEquals(
+	public function testExpandAttributes( string $expect, array $attribs ) {
+		$this->assertEquals( $expect, Html::expandAttributes( $attribs ) );
+	}
+
+	public function provideExpandAttributesEmpty() {
+		// $attributes
+		yield 'skip keys with null value' => [ [ 'foo' => null ] ];
+		yield 'skip keys with false value' => [ [ 'foo' => false ] ];
+	}
+
+	/**
+	 * @covers Html::expandAttributes
+	 * @dataProvider provideExpandAttributesEmpty
+	 */
+	public function testExpandAttributesEmpty( array $attribs ) {
+		$this->assertEmpty( Html::expandAttributes( $attribs ) );
+	}
+
+	public function provideExpandAttributesClass() {
+		// $expect, $classes
+		// string values
+		yield 'Normalization should strip redundant spaces' => [
 			' class="redundant spaces here"',
-			Html::expandAttributes( [ 'class' => ' redundant  spaces  here  ' ] ),
-			'Normalization should strip redundant spaces'
-		);
-		$this->assertEquals(
+			' redundant  spaces  here  '
+		];
+		yield 'Normalization should remove duplicates in string-lists' => [
 			' class="foo bar"',
-			Html::expandAttributes( [ 'class' => 'foo bar foo bar bar' ] ),
-			'Normalization should remove duplicates in string-lists'
-		);
-		# ## "EMPTY" ARRAY VALUES
-		$this->assertEquals(
+			'foo bar foo bar bar'
+		];
+		// array values
+		yield 'Value with an empty array' => [
 			' class=""',
-			Html::expandAttributes( [ 'class' => [] ] ),
-			'Value with an empty array'
-		);
-		$this->assertEquals(
+			[]
+		];
+		yield 'Array with null, empty string and spaces' => [
 			' class=""',
-			Html::expandAttributes( [ 'class' => [ null, '', ' ', '  ' ] ] ),
-			'Array with null, empty string and spaces'
-		);
-		# ## NON-EMPTY ARRAY VALUES
-		$this->assertEquals(
+			[ null, '', ' ', '  ' ]
+		];
+		yield 'Normalization should remove duplicates in the array' => [
 			' class="foo bar"',
-			Html::expandAttributes( [ 'class' => [
-				'foo',
-				'bar',
-				'foo',
-				'bar',
-				'bar',
-			] ] ),
-			'Normalization should remove duplicates in the array'
-		);
-		$this->assertEquals(
+			[ 'foo', 'bar', 'foo', 'bar', 'bar' ]
+		];
+		yield 'Normalization should remove duplicates in string-lists in the array' => [
 			' class="foo bar"',
-			Html::expandAttributes( [ 'class' => [
-				'foo bar',
-				'bar foo',
-				'foo',
-				'bar bar',
-			] ] ),
-			'Normalization should remove duplicates in string-lists in the array'
-		);
-	}
+			[ 'foo bar', 'bar foo', 'foo', 'bar bar' ]
+		];
 
-	/**
-	 * Test feature added by r96188, let pass attributes values as
-	 * a PHP array. Restricted to class,rel, accesskey.
-	 * @covers Html::expandAttributes
-	 */
-	public function testExpandAttributesSpaceSeparatedAttributesWithBoolean() {
-		$this->assertEquals(
+		// Feature added in r96188 - pass attributes values as a PHP array
+		// only applies to class, rel, and accesskey
+		yield 'Associative array' => [
 			' class="booltrue one"',
-			Html::expandAttributes( [ 'class' => [
+			[
 				'booltrue' => true,
 				'one' => 1,
 
@@ -312,26 +255,34 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 				'boolfalse' => false,
 				'zero' => 0,
 				'null' => null,
-			] ] )
-		);
-	}
+			]
+		];
 
-	/**
-	 * How do we handle duplicate keys in HTML attributes expansion?
-	 * We could pass a "class" the values: 'GREEN' and [ 'GREEN' => false ]
-	 * The latter will take precedence.
-	 *
-	 * Feature added by r96188
-	 * @covers Html::expandAttributes
-	 */
-	public function testValueIsAuthoritativeInSpaceSeparatedAttributesArrays() {
-		$this->assertEquals(
+		// How do we handle duplicate keys in HTML attributes expansion?
+		// We could pass a "class" the values: 'GREEN' and [ 'GREEN' => false ]
+		// The latter will take precedence
+		yield 'Duplicate keys' => [
 			' class=""',
-			Html::expandAttributes( [ 'class' => [
+			[
 				'GREEN',
 				'GREEN' => false,
 				'GREEN',
-			] ] )
+			]
+		];
+	}
+
+	/**
+	 * Html::expandAttributes has special features for HTML
+	 * attributes that use space separated lists and also
+	 * allows arrays to be used as values.
+	 *
+	 * @covers Html::expandAttributes
+	 * @dataProvider provideExpandAttributesClass
+	 */
+	public function testExpandAttributesClass( string $expect, $classes ) {
+		$this->assertEquals(
+			$expect,
+			Html::expandAttributes( [ 'class' => $classes ] )
 		);
 	}
 
@@ -553,8 +504,8 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testWarningBox() {
 		$this->assertEquals(
-			Html::warningBox( 'warn' ),
-			'<div class="warningbox">warn</div>'
+			'<div class="warningbox">warn</div>',
+			Html::warningBox( 'warn' )
 		);
 	}
 
@@ -564,16 +515,16 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testErrorBox() {
 		$this->assertEquals(
-			Html::errorBox( 'err' ),
-			'<div class="errorbox">err</div>'
+			'<div class="errorbox">err</div>',
+			Html::errorBox( 'err' )
 		);
 		$this->assertEquals(
-			Html::errorBox( 'err', 'heading', 'errorbox-custom-class' ),
-			'<div class="errorbox errorbox-custom-class"><h2>heading</h2>err</div>'
+			'<div class="errorbox errorbox-custom-class"><h2>heading</h2>err</div>',
+			Html::errorBox( 'err', 'heading', 'errorbox-custom-class' )
 		);
 		$this->assertEquals(
-			Html::errorBox( 'err', '0', '' ),
-			'<div class="errorbox"><h2>0</h2>err</div>'
+			'<div class="errorbox"><h2>0</h2>err</div>',
+			Html::errorBox( 'err', '0', '' )
 		);
 	}
 
@@ -583,12 +534,12 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSuccessBox() {
 		$this->assertEquals(
-			Html::successBox( 'great' ),
-			'<div class="successbox">great</div>'
+			'<div class="successbox">great</div>',
+			Html::successBox( 'great' )
 		);
 		$this->assertEquals(
-			Html::successBox( '<script>beware no escaping!</script>' ),
-			'<div class="successbox"><script>beware no escaping!</script></div>'
+			'<div class="successbox"><script>beware no escaping!</script></div>',
+			Html::successBox( '<script>beware no escaping!</script>' )
 		);
 	}
 

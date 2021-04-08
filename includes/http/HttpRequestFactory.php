@@ -20,6 +20,7 @@
 namespace MediaWiki\Http;
 
 use CurlHttpRequest;
+use GuzzleHttp\Client;
 use GuzzleHttpRequest;
 use Http;
 use MediaWiki\Config\ServiceOptions;
@@ -41,6 +42,9 @@ class HttpRequestFactory {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'HTTPTimeout',
 		'HTTPConnectTimeout',
@@ -83,9 +87,8 @@ class HttpRequestFactory {
 	 *    - password            Password for HTTP Basic Authentication
 	 *    - originalRequest     Information about the original request (as a WebRequest object or
 	 *                          an associative array with 'ip' and 'userAgent').
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{timeout?:int|string,connectTimeout?:int|string,postData?:string|array,proxy?:?string,noProxy?:bool,sslVerifyHost?:bool,sslVerifyCert?:bool,caInfo?:?string,maxRedirects?:int,followRedirects?:bool,userAgent?:string,method?:string,logger?:\Psr\Log\LoggerInterface,username?:string,password?:string,originalRequest?:\WebRequest|array{ip:string,userAgent:string}} $options
-	 * @codingStandardsIgnoreEnd
 	 * @param string $caller The method making this request, for profiling
 	 * @throws RuntimeException
 	 * @return MWHttpRequest
@@ -260,5 +263,40 @@ class HttpRequestFactory {
 			'logger' => $this->logger
 		];
 		return new MultiHttpClient( $options );
+	}
+
+	/**
+	 * Get a GuzzleHttp\Client instance.
+	 *
+	 * @since 1.36
+	 * @param array $config Client configuration settings.
+	 * @return Client
+	 *
+	 * @see \GuzzleHttp\RequestOptions for a list of available request options.
+	 * @see Client::__construct() for additional options.
+	 * Additional options that should not be used in production code:
+	 *	- maxTimeout          Override for the configured maximum timeout.
+	 *	- maxConnectTimeout   Override for the configured maximum connect timeout.
+	 */
+	public function createGuzzleClient( array $config = [] ): Client {
+		$config['timeout'] = $this->normalizeTimeout(
+			$config['timeout'] ?? null,
+			$config['maxTimeout'] ?? null,
+			$this->options->get( 'HTTPTimeout' ),
+			$this->options->get( 'HTTPMaxTimeout' )
+		);
+
+		$config['connect_timeout'] = $this->normalizeTimeout(
+			$config['connect_timeout'] ?? null,
+			$config['maxConnectTimeout'] ?? null,
+			$this->options->get( 'HTTPConnectTimeout' ),
+			$this->options->get( 'HTTPMaxConnectTimeout' )
+		);
+
+		if ( !isset( $config['headers']['User-Agent'] ) ) {
+			$config['headers']['User-Agent'] = $this->getUserAgent();
+		}
+
+		return new Client( $config );
 	}
 }

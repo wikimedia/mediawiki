@@ -47,6 +47,7 @@ $namespaceAliases = [
 	'Pembicaraan_Kategori'  => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Pamakai_aktip' ],
 	'Allmessages'               => [ 'Pasan_sistim' ],
@@ -55,6 +56,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'Judul_nang_buruk' ],
 	'Blankpage'                 => [ 'Tungkaran_kusung' ],
 	'Block'                     => [ 'Blukir_pamakai' ],
+	'BlockList'                 => [ 'Daptar_pamblukiran' ],
 	'Booksources'               => [ 'Sumbar_buku' ],
 	'BrokenRedirects'           => [ 'Paugahan_rakai' ],
 	'Categories'                => [ 'Daptar_tumbung' ],
@@ -71,7 +73,6 @@ $specialPageAliases = [
 	'Fewestrevisions'           => [ 'Paubahan_tasadikit' ],
 	'FileDuplicateSearch'       => [ 'Panggagaian_barakas_kambar' ],
 	'Filepath'                  => [ 'Andakan_barakas' ],
-	'BlockList'                 => [ 'Daptar_pamblukiran' ],
 	'LinkSearch'                => [ 'Tautan_luar' ],
 	'Listadmins'                => [ 'Daptar_pambakal' ],
 	'Listbots'                  => [ 'Daptar_bot' ],
@@ -102,8 +103,8 @@ $specialPageAliases = [
 	'Preferences'               => [ 'Kakatujuan' ],
 	'Protectedpages'            => [ 'Tungkaran_nang_dilindungi' ],
 	'Protectedtitles'           => [ 'Judul_nang_dilindungi' ],
-	'Randompage'                => [ 'Tungkaran_babarang' ],
 	'RandomInCategory'          => [ 'Babarang_di_tumbung' ],
+	'Randompage'                => [ 'Tungkaran_babarang' ],
 	'Randomredirect'            => [ 'Paugahan_babarang' ],
 	'Recentchanges'             => [ 'Paubahan_pahanyarnya' ],
 	'Recentchangeslinked'       => [ 'Paubahan_tarait' ],

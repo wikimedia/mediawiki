@@ -30,6 +30,11 @@ describe( 'Page', function () {
 		assert.strictEqual( EditPage.displayedContent.getText(), content );
 		assert( EditPage.content.isDisplayed(), 'editor is still present' );
 		assert( !EditPage.conflictingContent.isDisplayed(), 'no edit conflict happened' );
+
+		// T269566: Popup with text
+		// 'Leave site? Changes that you made may not be saved. Cancel/Leave'
+		// appears after the browser tries to leave the page with the preview.
+		browser.reloadSession();
 	} );
 
 	it( 'should be creatable', function () {
@@ -99,7 +104,7 @@ describe( 'Page', function () {
 		// check
 		assert.strictEqual(
 			DeletePage.displayedContent.getText(),
-			'"' + name + '" has been deleted. See deletion log for a record of recent deletions.\nReturn to Main Page.'
+			'"' + name + '" has been deleted. See deletion log for a record of recent deletions.\n\nReturn to Main Page.'
 		);
 	} );
 
@@ -117,10 +122,10 @@ describe( 'Page', function () {
 		RestorePage.restore( name, 'restore reason' );
 
 		// check
-		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\nConsult the deletion log for a record of recent deletions and restorations.' );
+		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\n\nConsult the deletion log for a record of recent deletions and restorations.' );
 	} );
 
-	it( 'should be undoable', function () {
+	it.skip( 'should be undoable', function () {
 		let previousRev, undoRev;
 		browser.call( async () => {
 			// create

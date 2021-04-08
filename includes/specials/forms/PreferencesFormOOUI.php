@@ -24,7 +24,7 @@
  * @since 1.32
  */
 class PreferencesFormOOUI extends OOUIHTMLForm {
-	// Override default value from HTMLForm
+	/** @var bool Override default value from HTMLForm */
 	protected $mSubSectionBeforeFields = false;
 
 	/** @var User|null */

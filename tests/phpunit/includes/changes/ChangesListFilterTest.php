@@ -9,9 +9,8 @@ class ChangesListFilterTest extends MediaWikiIntegrationTestCase {
 	protected $group;
 
 	protected function setUp() : void {
-		$this->group = $this->getGroup( [ 'name' => 'group' ] );
-
 		parent::setUp();
+		$this->group = $this->getGroup( [ 'name' => 'group' ] );
 	}
 
 	protected function getGroup( $groupDefinition ) {

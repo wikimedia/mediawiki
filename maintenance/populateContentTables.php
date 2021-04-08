@@ -21,6 +21,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Storage\BlobAccessException;
 use MediaWiki\Storage\BlobStore;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\SqlBlobStore;
@@ -73,9 +74,10 @@ class PopulateContentTables extends Maintenance {
 
 	private function initServices() {
 		$this->dbw = $this->getDB( DB_MASTER );
-		$this->contentModelStore = MediaWikiServices::getInstance()->getContentModelStore();
-		$this->slotRoleStore = MediaWikiServices::getInstance()->getSlotRoleStore();
-		$this->blobStore = MediaWikiServices::getInstance()->getBlobStore();
+		$services = MediaWikiServices::getInstance();
+		$this->contentModelStore = $services->getContentModelStore();
+		$this->slotRoleStore = $services->getSlotRoleStore();
+		$this->blobStore = $services->getBlobStore();
 
 		// Don't trust the cache for the NameTableStores, in case something went
 		// wrong during a previous run (see T224949#5325895).
@@ -212,8 +214,8 @@ class PopulateContentTables extends Maintenance {
 
 		$batchSize = $this->getBatchSize();
 
-		for ( $startId = $minmax->min; $startId <= $minmax->max; $startId += $batchSize ) {
-			$endId = min( $startId + $batchSize - 1, $minmax->max );
+		for ( $startId = (int)$minmax->min; $startId <= $minmax->max; $startId += $batchSize ) {
+			$endId = (int)min( $startId + $batchSize - 1, $minmax->max );
 			$rows = $this->dbw->select(
 				$tables,
 				$fields,
@@ -273,7 +275,10 @@ class PopulateContentTables extends Maintenance {
 				$contentKeys[$revisionId] = $key;
 
 				if ( !isset( $map[$key] ) ) {
-					$this->fillMissingFields( $row, $model, $address );
+					$fillFields = $this->fillMissingFields( $row, $model, $address );
+					if ( !$fillFields ) {
+						continue;
+					}
 
 					$map[$key] = false;
 					$contentRows[] = [
@@ -356,9 +361,10 @@ class PopulateContentTables extends Maintenance {
 	 * Compute any missing fields in $row.
 	 * The way the missing values are computed must correspond to the way this is done in SlotRecord.
 	 *
-	 * @param object $row to be modified
+	 * @param stdClass $row to be modified
 	 * @param string $model
 	 * @param string $address
+	 * @return bool
 	 */
 	private function fillMissingFields( $row, $model, $address ) {
 		if ( !isset( $row->content_model ) ) {
@@ -368,10 +374,15 @@ class PopulateContentTables extends Maintenance {
 
 		if ( isset( $row->len ) && isset( $row->sha1 ) && $row->sha1 !== '' ) {
 			// No need to load the content, quite now.
-			return;
+			return true;
 		}
 
-		$blob = $this->blobStore->getBlob( $address );
+		try {
+			$blob = $this->blobStore->getBlob( $address );
+		} catch ( BlobAccessException $e ) {
+			$this->error( $e->getMessage() );
+			return false;
+		}
 
 		if ( !isset( $row->len ) ) {
 			// NOTE: The nominal size of the content may not be the length of the raw blob.
@@ -381,6 +392,8 @@ class PopulateContentTables extends Maintenance {
 		if ( !isset( $row->sha1 ) || $row->sha1 === '' ) {
 			$row->sha1 = SlotRecord::base36Sha1( $blob );
 		}
+
+		return true;
 	}
 }
 

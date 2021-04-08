@@ -214,9 +214,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
 	 *   - usePipelining   : whether to use HTTP pipelining if possible
 	 *   - maxConnsPerHost : maximum number of concurrent connections (per host)
-	 * @codingStandardsIgnoreStart
 	 * @phan-param array{connTimeout?:int,reqTimeout?:int,usePipelining?:bool,maxConnsPerHost?:int} $opts
-	 * @codingStandardsIgnoreEnd
 	 * @return array $reqs With response array populated for each
 	 * @throws Exception
 	 * @suppress PhanTypeInvalidDimOffset
@@ -268,6 +266,23 @@ class MultiHttpClient implements LoggerAwareInterface {
 					}
 					$this->logger->warning( "Error fetching URL \"{$req['url']}\": " .
 						$req['response']['error'] );
+				} else {
+					$this->logger->debug(
+						"HTTP complete: {method} {url} code={response_code} size={size} " .
+						"total={total_time} connect={connect_time}",
+						[
+							'method' => $req['method'],
+							'url' => $req['url'],
+							'response_code' => $req['response']['code'],
+							'size' => curl_getinfo( $ch, CURLINFO_SIZE_DOWNLOAD ),
+							'total_time' => $this->getCurlTime(
+								$ch, CURLINFO_TOTAL_TIME, 'CURLINFO_TOTAL_TIME_T'
+							),
+							'connect_time' => $this->getCurlTime(
+								$ch, CURLINFO_CONNECT_TIME, 'CURLINFO_CONNECT_TIME_T'
+							),
+						]
+					);
 				}
 			} else {
 				$req['response']['error'] = "(curl error: no status set)";
@@ -293,9 +308,8 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 	/**
 	 * @param array &$req HTTP request map
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{url:string,proxy?:?string,query:mixed,method:string,body:string|resource,headers:string[],stream?:resource,flags:array} $req
-	 * @codingStandardsIgnoreEnd
 	 * @param array $opts
 	 *   - connTimeout : default connection timeout
 	 *   - reqTimeout : default request timeout
@@ -350,7 +364,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 				curl_setopt( $ch, CURLOPT_INFILESIZE, 0 );
 			}
 			curl_setopt( $ch, CURLOPT_READFUNCTION,
-				function ( $ch, $fd, $length ) {
+				static function ( $ch, $fd, $length ) {
 					return (string)fread( $fd, $length );
 				}
 			);
@@ -378,7 +392,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		curl_setopt( $ch, CURLOPT_HTTPHEADER, $headers );
 
 		curl_setopt( $ch, CURLOPT_HEADERFUNCTION,
-			function ( $ch, $header ) use ( &$req ) {
+			static function ( $ch, $header ) use ( &$req ) {
 				if ( !empty( $req['flags']['relayResponseHeaders'] ) && trim( $header ) !== '' ) {
 					header( $header );
 				}
@@ -410,7 +424,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 		// This works with both file and php://temp handles (unlike CURLOPT_FILE)
 		$hasOutputStream = isset( $req['stream'] );
 		curl_setopt( $ch, CURLOPT_WRITEFUNCTION,
-			function ( $ch, $data ) use ( &$req, $hasOutputStream ) {
+			static function ( $ch, $data ) use ( &$req, $hasOutputStream ) {
 				if ( $hasOutputStream ) {
 					return fwrite( $req['stream'], $data );
 				} else {
@@ -432,10 +446,6 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 */
 	protected function getCurlMulti( array $opts ) {
 		if ( !$this->cmh ) {
-			if ( !function_exists( 'curl_multi_init' ) ) {
-				throw new Exception( "PHP cURL function curl_multi_init missing. " .
-					"Check https://www.mediawiki.org/wiki/Manual:CURL" );
-			}
 			$cmh = curl_multi_init();
 			// Limit the size of the idle connection cache such that consecutive parallel
 			// request batches to the same host can avoid having to keep making connections
@@ -458,15 +468,31 @@ class MultiHttpClient implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Get a time in seconds, formatted with microsecond resolution, or fall back to second
+	 * resolution on PHP 7.2
+	 *
+	 * @param resource $ch
+	 * @param int $oldOption
+	 * @param string $newConstName
+	 * @return string
+	 */
+	private function getCurlTime( $ch, $oldOption, $newConstName ): string {
+		if ( version_compare( PHP_VERSION, '7.3.0', '>=' ) ) {
+			return sprintf( "%.6f", curl_getinfo( $ch, constant( $newConstName ) ) / 1e6 );
+		} else {
+			return (string)curl_getinfo( $ch, $oldOption );
+		}
+	}
+
+	/**
 	 * Execute a set of HTTP(S) requests sequentially.
 	 *
 	 * @see MultiHttpClient::runMulti()
 	 * @todo Remove dependency on MediaWikiServices: use a separate HTTP client
 	 *  library or copy code from PhpHttpRequest
 	 * @param array $reqs Map of HTTP request arrays
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array<int,array{url:string,query:array,method:string,body:string,proxy?:?string,headers?:string[]}> $reqs
-	 * @codingStandardsIgnoreEnd
 	 * @param array $opts
 	 *   - connTimeout     : connection timeout per request (seconds)
 	 *   - reqTimeout      : post-connection timeout per request (seconds)
@@ -497,10 +523,11 @@ class MultiHttpClient implements LoggerAwareInterface {
 
 			$httpRequest = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
 				$url, $reqOptions, __METHOD__ );
+			$httpRequest->setLogger( $this->logger );
 			$sv = $httpRequest->execute()->getStatusValue();
 
 			$respHeaders = array_map(
-				function ( $v ) {
+				static function ( $v ) {
 					return implode( ', ', $v );
 				},
 				$httpRequest->getResponseHeaders() );
@@ -569,7 +596,12 @@ class MultiHttpClient implements LoggerAwareInterface {
 			} elseif ( !isset( $req['url'] ) ) {
 				throw new Exception( "Request has no 'url' field set." );
 			}
-			$this->logger->debug( "{$req['method']}: {$req['url']}" );
+			$this->logger->debug( "HTTP start: {method} {url}",
+				[
+					'method' => $req['method'],
+					'url' => $req['url'],
+				]
+			);
 			$req['query'] = $req['query'] ?? [];
 			$headers = []; // normalized headers
 			if ( isset( $req['headers'] ) ) {

@@ -45,6 +45,10 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 
 	public static function provider_testExtractPostableContentHeaders() {
 		return [
+			'empty' => [
+				[],
+				[]
+			],
 			[
 				[
 					'content-length' => 345,
@@ -73,7 +77,7 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 				],
 				[
 					'content-type' => 'image+bitmap/jpeg',
-					'content-disposition' => 'inline;filename=xxx',
+					'content-disposition' => 'inline; filename=xxx',
 					'content-duration' => 35.6363,
 					'content-custom' => 'hello',
 					'x-content-custom' => 'hello'

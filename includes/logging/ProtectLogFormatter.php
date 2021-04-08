@@ -91,7 +91,7 @@ class ProtectLogFormatter extends LogFormatter {
 		$title = $this->entry->getTarget();
 		$links = [];
 		if ( $title->exists() ) {
-			$links [] = $linkRenderer->makeLink( $title,
+			$links[] = $linkRenderer->makeLink( $title,
 				$this->msg( 'hist' )->text(),
 				[],
 				[
@@ -102,10 +102,7 @@ class ProtectLogFormatter extends LogFormatter {
 		}
 
 		// Show change protection link
-		if ( MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->context->getUser(), 'protect' )
-		) {
+		if ( $this->context->getAuthority()->isAllowed( 'protect' ) ) {
 			$links[] = $linkRenderer->makeKnownLink(
 				$title,
 				$this->msg( 'protect_change' )->text(),

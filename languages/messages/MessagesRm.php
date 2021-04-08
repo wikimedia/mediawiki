@@ -34,9 +34,10 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Categoria_discussiun',
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#RENVIAMENT', '#REDIRECT' ],
-	'img_thumbnail'             => [ '1', 'miniatura', 'thumb', 'thumbnail' ],
 	'img_manualthumb'           => [ '1', 'miniatura=$1', 'thumbnail=$1', 'thumb=$1' ],
+	'img_thumbnail'             => [ '1', 'miniatura', 'thumb', 'thumbnail' ],
 	'img_upright'               => [ '1', 'sidretg', 'sidretg=$1', 'sidretg_$1', 'upright', 'upright=$1', 'upright $1' ],
+	'redirect'                  => [ '0', '#RENVIAMENT', '#REDIRECT' ],
 ];

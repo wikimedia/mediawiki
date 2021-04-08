@@ -157,7 +157,9 @@ class Orphans extends Maintenance {
 			FROM $page LEFT JOIN $revision ON page_latest=rev_id
 		", __METHOD__ );
 		$found = 0;
-		$revLookup = MediaWikiServices::getInstance()->getRevisionLookup();
+		$services = MediaWikiServices::getInstance();
+		$revLookup = $services->getRevisionLookup();
+		$wikiPageFactory = $services->getWikiPageFactory();
 		foreach ( $result as $row ) {
 			$result2 = $dbw->query( "
 				SELECT MAX(rev_timestamp) as max_timestamp
@@ -192,7 +194,7 @@ class Orphans extends Maintenance {
 						$this->output( "... updating to revision $maxId\n" );
 						$maxRev = $revLookup->getRevisionById( $maxId );
 						$title = Title::makeTitle( $row->page_namespace, $row->page_title );
-						$article = WikiPage::factory( $title );
+						$article = $wikiPageFactory->newFromTitle( $title );
 						$article->updateRevisionOn( $dbw, $maxRev );
 					}
 				}

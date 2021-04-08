@@ -6,7 +6,10 @@ namespace MediaWiki\Hook;
 use Article;
 
 /**
- * @stable to implement
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ProtectionForm::buildForm" to register handlers implementing this interface.
+ *
+ * @deprecated since 1.36, use ProtectionFormAddFormFields
  * @ingroup Hooks
  */
 interface ProtectionForm__buildFormHook {

@@ -218,7 +218,7 @@ util = {
 	 *
 	 * @param {string} param The parameter name.
 	 * @param {string} [url=location.href] URL to search through, defaulting to the current browsing location.
-	 * @return {Mixed} Parameter value or null.
+	 * @return {string|null} Parameter value or null when the parameter cannot be decoded or is absent.
 	 */
 	getParamValue: function ( param, url ) {
 		// Get last match, stop at hash
@@ -228,7 +228,13 @@ util = {
 		if ( m ) {
 			// Beware that decodeURIComponent is not required to understand '+'
 			// by spec, as encodeURIComponent does not produce it.
-			return decodeURIComponent( m[ 1 ].replace( /\+/g, '%20' ) );
+			try {
+				return decodeURIComponent( m[ 1 ].replace( /\+/g, '%20' ) );
+			} catch ( e ) {
+				// catch URIError if parameter is invalid UTF-8
+				// due to malformed or double-decoded values (T106244),
+				// e.g. "Autom%F3vil" instead of "Autom%C3%B3vil".
+			}
 		}
 		return null;
 	},
@@ -253,6 +259,41 @@ util = {
 	 * @property {jQuery}
 	 */
 	$content: null,
+
+	/**
+	 * Hide a portlet.
+	 *
+	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
+	 */
+	hidePortlet: function ( portletId ) {
+		var portlet = document.getElementById( portletId );
+		if ( portlet ) {
+			portlet.classList.add( 'emptyPortlet' );
+		}
+	},
+
+	/**
+	 * Is a portlet visible?
+	 *
+	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
+	 * @return {boolean}
+	 */
+	isPortletVisible: function ( portletId ) {
+		var portlet = document.getElementById( portletId );
+		return portlet && !portlet.classList.contains( 'emptyPortlet' );
+	},
+
+	/**
+	 * Reveal a portlet if it is hidden.
+	 *
+	 * @param {string} portletId ID of the target portlet (e.g. 'p-cactions' or 'p-personal')
+	 */
+	showPortlet: function ( portletId ) {
+		var portlet = document.getElementById( portletId );
+		if ( portlet ) {
+			portlet.classList.remove( 'emptyPortlet' );
+		}
+	},
 
 	/**
 	 * Add a link to a portlet menu on the page, such as:
@@ -298,7 +339,7 @@ util = {
 	 * @return {HTMLElement|null} The added list item, or null if no element was added.
 	 */
 	addPortletLink: function ( portletId, href, text, id, tooltip, accesskey, nextnode ) {
-		var item, link, $portlet, portlet, portletDiv, ul, next;
+		var item, link, portlet, portletDiv, ul, next;
 
 		if ( !portletId ) {
 			// Avoid confusing id="undefined" lookup
@@ -324,8 +365,7 @@ util = {
 		}
 
 		// Unhide portlet if it was hidden before
-		$portlet = $( portlet );
-		$portlet.removeClass( 'emptyPortlet' );
+		util.showPortlet( portletId );
 
 		item = $( '<li>' ).append( link )[ 0 ];
 

@@ -1,7 +1,7 @@
 <?php
 /**
  * Take page text out of an XML dump file and perform some operation on it.
- * Used as a base class for CompareParsers and PreprocessDump.
+ * Used as a base class for CompareParsers.
  * We implement below the simple task of searching inside a dump.
  *
  * Copyright © 2011 Platonides
@@ -25,6 +25,8 @@
  * @file
  * @ingroup Maintenance
  */
+
+use MediaWiki\Revision\SlotRecord;
 
 require_once __DIR__ . '/Maintenance.php';
 
@@ -55,12 +57,14 @@ abstract class DumpIterator extends Maintenance {
 		$this->checkOptions();
 
 		if ( $this->hasOption( 'file' ) ) {
+			$file = $this->getOption( 'file' );
 			$revision = new WikiRevision( $this->getConfig() );
+			$text = file_get_contents( $file );
+			$title = Title::newFromText( rawurldecode( basename( $file, '.txt' ) ) );
+			$revision->setTitle( $title );
+			$content = ContentHandler::makeContent( $text, $title );
+			$revision->setContent( SlotRecord::MAIN, $content );
 
-			$revision->setText( file_get_contents( $this->getOption( 'file' ) ) );
-			$revision->setTitle( Title::newFromText(
-				rawurldecode( basename( $this->getOption( 'file' ), '.txt' ) )
-			) );
 			$this->from = false;
 			$this->handleRevision( $revision );
 
@@ -79,7 +83,7 @@ abstract class DumpIterator extends Maintenance {
 
 		$importer->setRevisionCallback(
 			[ $this, 'handleRevision' ] );
-		$importer->setNoticeCallback( function ( $msg, $params ) {
+		$importer->setNoticeCallback( static function ( $msg, $params ) {
 			echo wfMessage( $msg, $params )->text() . "\n";
 		} );
 

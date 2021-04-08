@@ -44,7 +44,7 @@ class DisabledSpecialPage extends UnlistedSpecialPage {
 	 * @return Closure
 	 */
 	public static function getCallback( $name, $errorMessage = null ) {
-		return function () use ( $name, $errorMessage ) {
+		return static function () use ( $name, $errorMessage ) {
 			return new DisabledSpecialPage( $name, $errorMessage );
 		};
 	}

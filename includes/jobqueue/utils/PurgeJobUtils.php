@@ -41,7 +41,7 @@ class PurgeJobUtils {
 		DeferredUpdates::addUpdate( new AutoCommitUpdate(
 			$dbw,
 			__METHOD__,
-			function () use ( $dbw, $namespace, $dbkeys, $fname ) {
+			static function () use ( $dbw, $namespace, $dbkeys, $fname ) {
 				$services = MediaWikiServices::getInstance();
 				$lbFactory = $services->getDBLoadBalancerFactory();
 				// Determine which pages need to be updated.

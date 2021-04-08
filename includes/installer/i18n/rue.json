@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Gazeb"
-		]
-	},
-	"mainpagetext": "'''MediaWiki была успішно наіншталована.'''",
-	"mainpagedocfooter": "[https://meta.wikimedia.org/wiki/Help:Contents Мануял хоснователя] Вам порадить, як хосновати MediaWiki.\n\n== Про початок ==\n\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Configuration_settings Наставлїня конфіґурації]\n* [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:FAQ Часты вопросы о MediaWiki]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Розосыланя повідомлїнь про новы верзії MediaWiki]"
-}

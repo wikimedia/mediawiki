@@ -8,14 +8,13 @@ use MediaWiki\MediaWikiServices;
 class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
+		parent::setUp();
 		$this->collation = new CustomUppercaseCollation( [
 			'D',
 			'C',
 			'Cs',
 			'B'
 		], MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) );
-
-		parent::setUp();
 	}
 
 	/**

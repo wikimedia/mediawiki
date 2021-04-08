@@ -72,7 +72,7 @@ class TestBagOStuff extends CachedBagOStuff {
 	 * @return mixed
 	 */
 	public function getSessionFromBackend( $id ) {
-		return $this->backend->get( $this->makeKey( 'MWSession', $id ) );
+		return $this->store->get( $this->makeKey( 'MWSession', $id ) );
 	}
 
 	/**

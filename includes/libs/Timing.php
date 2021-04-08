@@ -59,7 +59,6 @@ class Timing implements LoggerAwareInterface {
 	 * Sets a logger instance on the object.
 	 *
 	 * @param LoggerInterface $logger
-	 * @return null
 	 */
 	public function setLogger( LoggerInterface $logger ) {
 		$this->logger = $logger;
@@ -154,7 +153,7 @@ class Timing implements LoggerAwareInterface {
 	 * Sort entries in chronological order with respect to startTime.
 	 */
 	private function sortEntries() {
-		uasort( $this->entries, function ( $a, $b ) {
+		uasort( $this->entries, static function ( $a, $b ) {
 			return $a['startTime'] <=> $b['startTime'];
 		} );
 	}

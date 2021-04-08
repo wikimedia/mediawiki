@@ -47,46 +47,46 @@ class BenchmarkSanitizer extends Benchmarker {
 		$benches = [];
 
 		if ( !$method || $method === 'validateEmail' ) {
-			$benches['Sanitizer::validateEmail (valid)'] = function () {
+			$benches['Sanitizer::validateEmail (valid)'] = static function () {
 				Sanitizer::validateEmail( 'user@example.org' );
 			};
-			$benches['Sanitizer::validateEmail (invalid)'] = function () {
+			$benches['Sanitizer::validateEmail (invalid)'] = static function () {
 				Sanitizer::validateEmail( 'username@example! org' );
 			};
 		}
 		if ( !$method || $method === 'encodeAttribute' ) {
-			$benches['Sanitizer::encodeAttribute (simple)'] = function () {
+			$benches['Sanitizer::encodeAttribute (simple)'] = static function () {
 				Sanitizer::encodeAttribute( 'simple' );
 			};
-			$benches['Sanitizer::encodeAttribute (special)'] = function () {
+			$benches['Sanitizer::encodeAttribute (special)'] = static function () {
 				Sanitizer::encodeAttribute( ":'\"\n https://example" );
 			};
 		}
 		if ( !$method || $method === 'safeEncodeAttribute' ) {
-			$benches['Sanitizer::safeEncodeAttribute (simple)'] = function () {
+			$benches['Sanitizer::safeEncodeAttribute (simple)'] = static function () {
 				Sanitizer::safeEncodeAttribute( 'simple' );
 			};
-			$benches['Sanitizer::safeEncodeAttribute (special)'] = function () {
+			$benches['Sanitizer::safeEncodeAttribute (special)'] = static function () {
 				Sanitizer::safeEncodeAttribute( ":'\"\n https://example" );
 			};
 		}
 		if ( !$method || $method === 'removeHTMLtags' ) {
 			$sm = strlen( $textWithHtmlSm );
 			$lg = round( strlen( $textWithHtmlLg ) / 1000 ) . 'K';
-			$benches["Sanitizer::removeHTMLtags (input: $sm)"] = function () use ( $textWithHtmlSm ) {
+			$benches["Sanitizer::removeHTMLtags (input: $sm)"] = static function () use ( $textWithHtmlSm ) {
 				Sanitizer::removeHTMLtags( $textWithHtmlSm );
 			};
-			$benches["Sanitizer::removeHTMLtags (input: $lg)"] = function () use ( $textWithHtmlLg ) {
+			$benches["Sanitizer::removeHTMLtags (input: $lg)"] = static function () use ( $textWithHtmlLg ) {
 				Sanitizer::removeHTMLtags( $textWithHtmlLg );
 			};
 		}
 		if ( !$method || $method === 'stripAllTags' ) {
 			$sm = strlen( $textWithHtmlSm );
 			$lg = round( strlen( $textWithHtmlLg ) / 1000 ) . 'K';
-			$benches["Sanitizer::stripAllTags (input: $sm)"] = function () use ( $textWithHtmlSm ) {
+			$benches["Sanitizer::stripAllTags (input: $sm)"] = static function () use ( $textWithHtmlSm ) {
 				Sanitizer::stripAllTags( $textWithHtmlSm );
 			};
-			$benches["Sanitizer::stripAllTags (input: $lg)"] = function () use ( $textWithHtmlLg ) {
+			$benches["Sanitizer::stripAllTags (input: $lg)"] = static function () use ( $textWithHtmlLg ) {
 				Sanitizer::stripAllTags( $textWithHtmlLg );
 			};
 		}

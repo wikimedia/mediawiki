@@ -110,7 +110,8 @@ class WANCacheReapUpdate implements DeferrableUpdate {
 		// namespaces, but special pages do appear in RC sometimes, e.g. for logs
 		// of AbuseFilter filter changes.
 		if ( $t->getNamespace() >= 0 ) {
-			$entities[] = WikiPage::factory( Title::newFromLinkTarget( $t ) );
+			$entities[] = MediaWikiServices::getInstance()->getWikiPageFactory()
+				->newFromLinkTarget( $t );
 		}
 
 		if ( $t->inNamespace( NS_FILE ) ) {

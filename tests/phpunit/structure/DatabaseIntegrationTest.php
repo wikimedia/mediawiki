@@ -22,6 +22,51 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertIsInt( $res->numRows() );
 	}
 
+	public function testUniformTablePrefix() {
+		global $IP;
+		$path = "$IP/maintenance/tables.json";
+		$tables = json_decode( file_get_contents( $path ), true );
+
+		// @todo Remove exception once these tables are fixed
+		$excludeList = [
+			'user_newtalk',
+			'revision_actor_temp',
+			'change_tag',
+			'objectcache',
+			'page'
+		];
+
+		$prefixes = [];
+		foreach ( $tables as $table ) {
+			$tableName = $table['name'];
+
+			if ( in_array( $tableName, $excludeList ) ) {
+				continue;
+			}
+
+			foreach ( $table['columns'] as $column ) {
+				$prefixes[] = strtok( $column['name'], '_' );
+			}
+			foreach ( $table['indexes'] ?? [] as $index ) {
+				$prefixes[] = strtok( $index['name'], '_' );
+			}
+
+			if ( count( array_unique( $prefixes ) ) === 1 ) {
+				$prefixes = []; // reset
+				continue;
+			}
+
+			$list = implode( '_, ', $prefixes ) . '_';
+
+			$this->fail(
+				"Columns and indexes of '$tableName' table should"
+				. " have uniform prefix. Non-uniform found: [ $list ]"
+			);
+		}
+
+		$this->assertSame( [], $prefixes );
+	}
+
 	public function automaticSqlGenerationParams() {
 		return [
 			[ 'mysql' ],

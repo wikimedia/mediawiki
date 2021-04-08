@@ -24,7 +24,7 @@ use Wikimedia\Rdbms\IDatabase;
  * Class designed for counting of stats.
  */
 class SiteStatsInit {
-	/* @var IDatabase */
+	/** @var IDatabase */
 	private $dbr;
 	/** @var int */
 	private $edits;

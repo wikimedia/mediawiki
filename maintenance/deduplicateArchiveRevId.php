@@ -116,7 +116,7 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 	 * Process a set of ar_rev_ids
 	 * @param IDatabase $dbw
 	 * @param int[] $arRevIds IDs to process
-	 * @param object[] $revRows Existing revision-table row data
+	 * @param stdClass[] $revRows Existing revision-table row data
 	 */
 	private function processArRevIds( IDatabase $dbw, array $arRevIds, array $revRows ) {
 		// Select all the data we need for deduplication
@@ -198,7 +198,7 @@ class DeduplicateArchiveRevId extends LoggedUpdateMaintenance {
 
 	/**
 	 * Make a key identifying a "unique" change from a row
-	 * @param object $row
+	 * @param stdClass $row
 	 * @return string
 	 */
 	private function getSeenKey( $row ) {

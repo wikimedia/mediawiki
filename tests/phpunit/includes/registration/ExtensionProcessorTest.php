@@ -416,7 +416,7 @@ class ExtensionProcessorTest extends MediaWikiIntegrationTestCase {
 			'HookHandlers' => []
 		] + self::$default;
 		$processor = new MockExtensionProcessor();
-		$this->expectException( 'UnexpectedValueException' );
+		$this->expectException( UnexpectedValueException::class );
 		$this->expectExceptionMessage(
 			'Missing handler definition for FooBaz in HookHandlers attribute'
 		);

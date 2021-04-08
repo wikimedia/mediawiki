@@ -32,6 +32,9 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 			'setContentValue' => '3',
 		], $arr );
 
+		ApiResult::setValue( $arr, 'setValue', '1' );
+		$this->assertSame( '1', $arr['setValue'] );
+
 		try {
 			ApiResult::setValue( $arr, 'setValue', '99' );
 			$this->fail( 'Expected exception not thrown' );
@@ -713,7 +716,7 @@ class ApiResultTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideTransformations() {
-		$kvp = function ( $keyKey, $key, $valKey, $value ) {
+		$kvp = static function ( $keyKey, $key, $valKey, $value ) {
 			return [
 				$keyKey => $key,
 				$valKey => $value,

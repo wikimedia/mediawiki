@@ -16,7 +16,13 @@
 	}
 
 	function decoded(s) {
-		return unRfc2068(decodeURIComponent(s.replace(pluses, ' ')));
+		try {
+			return unRfc2068(decodeURIComponent(s.replace(pluses, ' ')));
+		} catch(e) {
+			// If the cookie cannot be decoded this should not throw an error.
+			// See T271838.
+			return '';
+		}
 	}
 
 	function unRfc2068(value) {

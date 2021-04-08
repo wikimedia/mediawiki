@@ -27,6 +27,10 @@
  */
 class ApiQueryCategories extends ApiQueryGeneratorBase {
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'cl' );
 	}
@@ -69,7 +73,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 			$cats = [];
 			foreach ( $params['categories'] as $cat ) {
 				$title = Title::newFromText( $cat );
-				if ( !$title || $title->getNamespace() != NS_CATEGORY ) {
+				if ( !$title || $title->getNamespace() !== NS_CATEGORY ) {
 					$this->addWarning( [ 'apiwarn-invalidcategory', wfEscapeWikiText( $cat ) ] );
 				} else {
 					$cats[] = $title->getDBkey();

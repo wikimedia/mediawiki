@@ -82,7 +82,10 @@ class DeleteBatch extends Maintenance {
 			$this->fatalError( "Unable to read file, exiting" );
 		}
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$services = MediaWikiServices::getInstance();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$wikiPageFactory = $services->getWikiPageFactory();
+		$repoGroup = $services->getRepoGroup();
 
 		# Handle each entry
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
@@ -101,15 +104,15 @@ class DeleteBatch extends Maintenance {
 			}
 
 			$this->output( $title->getPrefixedText() );
-			if ( $title->getNamespace() == NS_FILE ) {
-				$img = MediaWikiServices::getInstance()->getRepoGroup()->findFile(
+			if ( $title->getNamespace() === NS_FILE ) {
+				$img = $repoGroup->findFile(
 					$title, [ 'ignoreRedirect' => true ]
 				);
 				if ( $img && $img->isLocal() && !$img->deleteFile( $reason, $user ) ) {
 					$this->output( " FAILED to delete associated file... " );
 				}
 			}
-			$page = WikiPage::factory( $title );
+			$page = $wikiPageFactory->newFromTitle( $title );
 			$error = '';
 			$status = $page->doDeleteArticleReal(
 				$reason,

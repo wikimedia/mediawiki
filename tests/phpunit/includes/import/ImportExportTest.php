@@ -68,6 +68,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $prefix
+	 * @param string[] $keys
 	 *
 	 * @return string[]
 	 */
@@ -83,12 +84,12 @@ class ImportExportTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @param string $xmlData
-	 * @param string[] pageTitles
+	 * @param string[] $pageTitles
 	 *
 	 * @return string
 	 */
 	private function injectPageTitles( string $xmlData, array $pageTitles ) {
-		$keys = array_map( function ( $name ) {
+		$keys = array_map( static function ( $name ) {
 			return "{{{$name}_title}}";
 		}, array_keys( $pageTitles ) );
 
@@ -125,7 +126,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @param string[] pageTitles
+	 * @param string[] $pageTitles
 	 *
 	 * @return string[]
 	 */
@@ -157,6 +158,7 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @param string $schemaVersion
 	 * @return string[]
 	 */
 	private function getSiteVars( $schemaVersion ) {

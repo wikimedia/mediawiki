@@ -23,6 +23,8 @@
 
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Shell\Shell;
 use MediaWiki\User\UserIdentity;
 
@@ -45,7 +47,7 @@ use MediaWiki\User\UserIdentity;
 abstract class UploadBase {
 	use ProtectedHookAccessorTrait;
 
-	/** @var string Local file system path to the file to upload (or a local copy) */
+	/** @var string|null Local file system path to the file to upload (or a local copy) */
 	protected $mTempPath;
 	/** @var TempFSFile|null Wrapper to handle deleting the temp file */
 	protected $tempFileObj;
@@ -53,7 +55,7 @@ abstract class UploadBase {
 	protected $mDesiredDestName;
 	/** @var string|null */
 	protected $mDestName;
-	/** @var string|null */
+	/** @var bool|null */
 	protected $mRemoveTempFile;
 	/** @var string|null */
 	protected $mSourceType;
@@ -149,13 +151,12 @@ abstract class UploadBase {
 	 * identifying the missing permission.
 	 * Can be overridden by subclasses.
 	 *
-	 * @param UserIdentity $user
+	 * @param Authority $performer
 	 * @return bool|string
 	 */
-	public static function isAllowed( UserIdentity $user ) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+	public static function isAllowed( Authority $performer ) {
 		foreach ( [ 'upload', 'edit' ] as $permission ) {
-			if ( !$permissionManager->userHasRight( $user, $permission ) ) {
+			if ( !$performer->isAllowed( $permission ) ) {
 				return $permission;
 			}
 		}
@@ -173,7 +174,7 @@ abstract class UploadBase {
 		return $user->pingLimiter( 'upload' );
 	}
 
-	// Upload handlers. Should probably just be a global.
+	/** @var string[] Upload handlers. Should probably just be a global. */
 	private static $uploadHandlers = [ 'Stash', 'File', 'Url' ];
 
 	/**
@@ -454,15 +455,17 @@ abstract class UploadBase {
 			if ( $wgVerifyMimeTypeIE ) {
 				# Check what Internet Explorer would detect
 				$fp = fopen( $this->mTempPath, 'rb' );
-				$chunk = fread( $fp, 256 );
-				fclose( $fp );
+				if ( $fp ) {
+					$chunk = fread( $fp, 256 );
+					fclose( $fp );
 
-				$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
-				$extMime = $magic->getMimeTypeFromExtensionOrNull( $this->mFinalExtension );
-				$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
-				foreach ( $ieTypes as $ieType ) {
-					if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
-						return [ 'filetype-bad-ie-mime', $ieType ];
+					$magic = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer();
+					$extMime = $magic->getMimeTypeFromExtensionOrNull( (string)$this->mFinalExtension ) ?? '';
+					$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
+					foreach ( $ieTypes as $ieType ) {
+						if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
+							return [ 'filetype-bad-ie-mime', $ieType ];
+						}
 					}
 				}
 			}
@@ -490,7 +493,9 @@ abstract class UploadBase {
 
 		if ( $wgVerifyMimeType ) {
 			# XXX: Missing extension will be caught by validateName() via getTitle()
-			if ( $this->mFinalExtension != '' && !$this->verifyExtension( $mime, $this->mFinalExtension ) ) {
+			if ( (string)$this->mFinalExtension !== '' &&
+				!$this->verifyExtension( $mime, $this->mFinalExtension )
+			) {
 				return [ 'filetype-mime-mismatch', $this->mFinalExtension, $mime ];
 			}
 		}
@@ -623,12 +628,12 @@ abstract class UploadBase {
 	 * 'verifyPermissions', but that suggests it's checking the user, when it's
 	 * really checking the title + user combination.
 	 *
-	 * @param User $user User object to verify the permissions against
+	 * @param Authority $performer to verify the permissions against
 	 * @return array|bool An array as returned by getPermissionErrors or true
 	 *   in case the user has proper permissions.
 	 */
-	public function verifyPermissions( $user ) {
-		return $this->verifyTitlePermissions( $user );
+	public function verifyPermissions( Authority $performer ) {
+		return $this->verifyTitlePermissions( $performer );
 	}
 
 	/**
@@ -638,11 +643,11 @@ abstract class UploadBase {
 	 * isAllowed() should be called as well for generic is-user-blocked or
 	 * can-user-upload checking.
 	 *
-	 * @param User $user User object to verify the permissions against
+	 * @param Authority $performer to verify the permissions against
 	 * @return array|bool An array as returned by getPermissionErrors or true
 	 *   in case the user has proper permissions.
 	 */
-	public function verifyTitlePermissions( $user ) {
+	public function verifyTitlePermissions( Authority $performer ) {
 		/**
 		 * If the image is protected, non-sysop users won't be able
 		 * to modify it by uploading a new revision.
@@ -651,22 +656,18 @@ abstract class UploadBase {
 		if ( $nt === null ) {
 			return true;
 		}
-		$permManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$permErrors = $permManager->getPermissionErrors( 'edit', $user, $nt );
-		$permErrorsUpload = $permManager->getPermissionErrors( 'upload', $user, $nt );
+
+		$status = PermissionStatus::newEmpty();
+		$performer->authorizeWrite( 'edit', $nt, $status );
+		$performer->authorizeWrite( 'upload', $nt, $status );
 		if ( !$nt->exists() ) {
-			$permErrorsCreate = $permManager->getPermissionErrors( 'create', $user, $nt );
-		} else {
-			$permErrorsCreate = [];
+			$performer->authorizeWrite( 'create', $nt, $status );
 		}
-		if ( $permErrors || $permErrorsUpload || $permErrorsCreate ) {
-			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsUpload, $permErrors ) );
-			$permErrors = array_merge( $permErrors, wfArrayDiff2( $permErrorsCreate, $permErrors ) );
-
-			return $permErrors;
+		if ( !$status->isGood() ) {
+			return $status->toLegacyErrorArray();
 		}
 
-		$overwriteError = $this->checkOverwrite( $user );
+		$overwriteError = $this->checkOverwrite( $performer );
 		if ( $overwriteError !== true ) {
 			return [ $overwriteError ];
 		}
@@ -701,7 +702,7 @@ abstract class UploadBase {
 			$warnings['badfilename'] = $badFileName;
 		}
 
-		$unwantedFileExtensionDetails = $this->checkUnwantedFileExtensions( $this->mFinalExtension );
+		$unwantedFileExtensionDetails = $this->checkUnwantedFileExtensions( (string)$this->mFinalExtension );
 		if ( $unwantedFileExtensionDetails !== null ) {
 			$warnings['filetype-unwanted-type'] = $unwantedFileExtensionDetails;
 		}
@@ -748,7 +749,7 @@ abstract class UploadBase {
 	 * @return mixed[]
 	 */
 	public static function makeWarningsSerializable( $warnings ) {
-		array_walk_recursive( $warnings, function ( &$param, $key ) {
+		array_walk_recursive( $warnings, static function ( &$param, $key ) {
 			if ( $param instanceof File ) {
 				$param = [
 					'fileName' => $param->getName(),
@@ -997,7 +998,7 @@ abstract class UploadBase {
 		 * and that the namespace prefix needs to be stripped of.
 		 */
 		$title = Title::newFromText( $this->mDesiredDestName );
-		if ( $title && $title->getNamespace() == NS_FILE ) {
+		if ( $title && $title->getNamespace() === NS_FILE ) {
 			$this->mFilteredName = $title->getDBkey();
 		} else {
 			$this->mFilteredName = $this->mDesiredDestName;
@@ -1304,7 +1305,7 @@ abstract class UploadBase {
 		$match = $magic->isMatchingExtension( $extension, $mime );
 
 		if ( $match === null ) {
-			if ( $magic->getTypesForExtension( $extension ) !== null ) {
+			if ( $magic->getMimeTypesFromExtension( $extension ) !== [] ) {
 				wfDebug( __METHOD__ . ": No extension known for $mime, but we know a mime for $extension" );
 
 				return false;
@@ -1334,7 +1335,7 @@ abstract class UploadBase {
 	 *
 	 * @param string $file Pathname to the temporary upload file
 	 * @param string $mime The MIME type of the file
-	 * @param string $extension The extension of the file
+	 * @param string|null $extension The extension of the file
 	 * @return bool True if the file contains something looking like embedded scripts
 	 */
 	public static function detectScript( $file, $mime, $extension ) {
@@ -1346,6 +1347,9 @@ abstract class UploadBase {
 			$chunk = file_get_contents( $file );
 		} else {
 			$fp = fopen( $file, 'rb' );
+			if ( !$fp ) {
+				return false;
+			}
 			$chunk = fread( $fp, 1024 );
 			fclose( $fp );
 		}
@@ -1987,16 +1991,16 @@ abstract class UploadBase {
 	 * Check if there's an overwrite conflict and, if so, if restrictions
 	 * forbid this user from performing the upload.
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 *
 	 * @return bool|array
 	 */
-	private function checkOverwrite( $user ) {
+	private function checkOverwrite( Authority $performer ) {
 		// First check whether the local file can be overwritten
 		$file = $this->getLocalFile();
 		$file->load( File::READ_LATEST );
 		if ( $file->exists() ) {
-			if ( !self::userCanReUpload( $user, $file ) ) {
+			if ( !self::userCanReUpload( $performer, $file ) ) {
 				return [ 'fileexists-forbidden', $file->getName() ];
 			} else {
 				return true;
@@ -2009,8 +2013,7 @@ abstract class UploadBase {
 		 * RepoGroup::findFile finds a file, it exists in a shared repository.
 		 */
 		$file = $services->getRepoGroup()->findFile( $this->getTitle(), [ 'latest' => true ] );
-		if ( $file && !$services->getPermissionManager()
-				->userHasRight( $user, 'reupload-shared' )
+		if ( $file && !$performer->isAllowed( 'reupload-shared' )
 		) {
 			return [ 'fileexists-shared-forbidden', $file->getName() ];
 		}
@@ -2021,15 +2024,14 @@ abstract class UploadBase {
 	/**
 	 * Check if a user is the last uploader
 	 *
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param File $img
 	 * @return bool
 	 */
-	public static function userCanReUpload( User $user, File $img ) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $permissionManager->userHasRight( $user, 'reupload' ) ) {
+	public static function userCanReUpload( Authority $performer, File $img ) {
+		if ( $performer->isAllowed( 'reupload' ) ) {
 			return true; // non-conditional
-		} elseif ( !$permissionManager->userHasRight( $user, 'reupload-own' ) ) {
+		} elseif ( !$performer->isAllowed( 'reupload-own' ) ) {
 			return false;
 		}
 
@@ -2039,7 +2041,7 @@ abstract class UploadBase {
 
 		$img->load();
 
-		return $user->getId() == $img->getUser( 'id' );
+		return $performer->getUser()->getId() == $img->getUser( 'id' );
 	}
 
 	/**
@@ -2156,10 +2158,10 @@ abstract class UploadBase {
 	/**
 	 * Get a list of blacklisted filename prefixes from [[MediaWiki:Filename-prefix-blacklist]]
 	 *
-	 * @return array List of prefixes
+	 * @return string[] List of prefixes
 	 */
 	public static function getFilenamePrefixBlacklist() {
-		$blacklist = [];
+		$list = [];
 		$message = wfMessage( 'filename-prefix-blacklist' )->inContentLanguage();
 		if ( !$message->isDisabled() ) {
 			$lines = explode( "\n", $message->plain() );
@@ -2174,11 +2176,11 @@ abstract class UploadBase {
 				if ( $comment > 0 ) {
 					$line = substr( $line, 0, $comment - 1 );
 				}
-				$blacklist[] = trim( $line );
+				$list[] = trim( $line );
 			}
 		}
 
-		return $blacklist;
+		return $list;
 	}
 
 	/**
@@ -2300,11 +2302,11 @@ abstract class UploadBase {
 
 	/**
 	 * @param BagOStuff $store
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $statusKey
 	 * @return string
 	 */
-	private static function getUploadSessionKey( BagOStuff $store, User $user, $statusKey ) {
+	private static function getUploadSessionKey( BagOStuff $store, UserIdentity $user, $statusKey ) {
 		return $store->makeKey(
 			'uploadstatus',
 			$user->getId() ?: md5( $user->getName() ),

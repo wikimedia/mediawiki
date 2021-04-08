@@ -16,8 +16,15 @@ class ComposerPackageModifier {
 	protected $versionNormalizer;
 	protected $versionFetcher;
 
-	public function __construct( Package $package,
-		ComposerVersionNormalizer $versionNormalizer, MediaWikiVersionFetcher $versionFetcher
+	/**
+	 * @param Package $package
+	 * @param ComposerVersionNormalizer $versionNormalizer
+	 * @param MediaWikiVersionFetcher $versionFetcher
+	 */
+	public function __construct(
+		Package $package,
+		ComposerVersionNormalizer $versionNormalizer,
+		MediaWikiVersionFetcher $versionFetcher
 	) {
 		$this->package = $package;
 		$this->versionNormalizer = $versionNormalizer;
@@ -25,28 +32,6 @@ class ComposerPackageModifier {
 	}
 
 	public function setProvidesMediaWiki() {
-		$this->setLinkAsProvides( $this->newMediaWikiLink() );
-	}
-
-	private function setLinkAsProvides( Link $link ) {
-		$this->package->setProvides( [ $link ] );
-	}
-
-	private function newMediaWikiLink() {
-		$version = $this->getMediaWikiVersionConstraint();
-
-		$link = new Link(
-			'__root__',
-			self::MEDIAWIKI_PACKAGE_NAME,
-			$version,
-			'provides',
-			$version->getPrettyString()
-		);
-
-		return $link;
-	}
-
-	private function getMediaWikiVersionConstraint() {
 		$mvVersion = $this->versionFetcher->fetchVersion();
 		$mvVersion = $this->versionNormalizer->normalizeSuffix( $mvVersion );
 
@@ -56,7 +41,15 @@ class ComposerPackageModifier {
 		);
 		$version->setPrettyString( $mvVersion );
 
-		return $version;
+		$link = new Link(
+			'__root__',
+			self::MEDIAWIKI_PACKAGE_NAME,
+			$version,
+			'provides',
+			$version->getPrettyString()
+		);
+
+		$this->package->setProvides( [ $link ] );
 	}
 
 }

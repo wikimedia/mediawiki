@@ -1,0 +1,27 @@
+/* stylelint-disable selector-class-pattern */
+.toc {
+	.toctitle {
+		direction: ltr;
+	}
+}
+
+/* Correct directionality when page dir is different from site/user dir */
+/* @noflip */ .mw-content-ltr .toc ul,
+.mw-content-rtl .mw-content-ltr .toc ul {
+	text-align: left;
+}
+
+/* @noflip */ .mw-content-rtl .toc ul,
+.mw-content-ltr .mw-content-rtl .toc ul {
+	text-align: right;
+}
+
+/* @noflip */ .mw-content-ltr .toc ul ul,
+.mw-content-rtl .mw-content-ltr .toc ul ul {
+	margin: 0 0 0 2em;
+}
+
+/* @noflip */ .mw-content-rtl .toc ul ul,
+.mw-content-ltr .mw-content-rtl .toc ul ul {
+	margin: 0 2em 0 0;
+}

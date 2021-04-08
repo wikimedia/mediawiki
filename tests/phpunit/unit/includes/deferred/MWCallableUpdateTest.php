@@ -7,7 +7,7 @@ class MWCallableUpdateTest extends MediaWikiUnitTestCase {
 
 	public function testDoUpdate() {
 		$ran = 0;
-		$update = new MWCallableUpdate( function () use ( &$ran ) {
+		$update = new MWCallableUpdate( static function () use ( &$ran ) {
 			$ran++;
 		} );
 		$this->assertSame( 0, $ran );
@@ -20,7 +20,7 @@ class MWCallableUpdateTest extends MediaWikiUnitTestCase {
 		$db = new DatabaseTestHelper( __METHOD__ );
 		$db->begin( __METHOD__ );
 		$ran = 0;
-		$update = new MWCallableUpdate( function () use ( &$ran ) {
+		$update = new MWCallableUpdate( static function () use ( &$ran ) {
 			$ran++;
 		}, __METHOD__, $db );
 
@@ -40,7 +40,7 @@ class MWCallableUpdateTest extends MediaWikiUnitTestCase {
 		$db2 = new DatabaseTestHelper( __METHOD__ );
 		$db2->begin( __METHOD__ );
 		$ran = 0;
-		$update = new MWCallableUpdate( function () use ( &$ran ) {
+		$update = new MWCallableUpdate( static function () use ( &$ran ) {
 			$ran++;
 		}, __METHOD__, [ $db1, $db2 ] );
 
@@ -63,7 +63,7 @@ class MWCallableUpdateTest extends MediaWikiUnitTestCase {
 		$db2 = new DatabaseTestHelper( __METHOD__ );
 		$db2->begin( __METHOD__ );
 		$ran = 0;
-		$update = new MWCallableUpdate( function () use ( &$ran ) {
+		$update = new MWCallableUpdate( static function () use ( &$ran ) {
 			$ran++;
 		}, __METHOD__, [ $db1, $db2 ] );
 

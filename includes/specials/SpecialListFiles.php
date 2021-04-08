@@ -21,9 +21,59 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 class SpecialListFiles extends IncludableSpecialPage {
-	public function __construct() {
+
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var CommentStore */
+	private $commentStore;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
+	/** @var UserNamePrefixSearch */
+	private $userNamePrefixSearch;
+
+	/** @var UserCache */
+	private $userCache;
+
+	/**
+	 * @param RepoGroup $repoGroup
+	 * @param ILoadBalancer $loadBalancer
+	 * @param CommentStore $commentStore
+	 * @param ActorMigration $actorMigration
+	 * @param UserNameUtils $userNameUtils
+	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param UserCache $userCache
+	 */
+	public function __construct(
+		RepoGroup $repoGroup,
+		ILoadBalancer $loadBalancer,
+		CommentStore $commentStore,
+		ActorMigration $actorMigration,
+		UserNameUtils $userNameUtils,
+		UserNamePrefixSearch $userNamePrefixSearch,
+		UserCache $userCache
+	) {
 		parent::__construct( 'Listfiles' );
+		$this->repoGroup = $repoGroup;
+		$this->loadBalancer = $loadBalancer;
+		$this->commentStore = $commentStore;
+		$this->actorMigration = $actorMigration;
+		$this->userNameUtils = $userNameUtils;
+		$this->userNamePrefixSearch = $userNamePrefixSearch;
+		$this->userCache = $userCache;
 	}
 
 	public function execute( $par ) {
@@ -32,7 +82,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 		$this->addHelpLink( 'Help:Managing_files' );
 
 		if ( $this->including() ) {
-			$userName = $par;
+			$userName = (string)$par;
 			$search = '';
 			$showAll = false;
 		} else {
@@ -41,7 +91,7 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$showAll = $this->getRequest()->getBool( 'ilshowall', false );
 		}
 		// Sanitize usernames to avoid symbols in the title of page.
-		$sanitizedUserName = User::getCanonicalName( $userName, false );
+		$sanitizedUserName = $this->userNameUtils->getCanonical( $userName, UserNameUtils::RIGOR_NONE );
 		if ( $sanitizedUserName ) {
 			$userName = $sanitizedUserName;
 		}
@@ -58,7 +108,12 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$search,
 			$this->including(),
 			$showAll,
-			$this->getLinkRenderer()
+			$this->getLinkRenderer(),
+			$this->repoGroup,
+			$this->loadBalancer,
+			$this->commentStore,
+			$this->actorMigration,
+			$this->userCache
 		);
 
 		$out = $this->getOutput();
@@ -68,7 +123,9 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$out->addParserOutputContent( $pager->getBodyOutput() );
 		} else {
 			$user = $pager->getRelevantUser();
-			$this->getSkin()->setRelevantUser( $user );
+			if ( $user ) {
+				$this->getSkin()->setRelevantUser( $user );
+			}
 			$pager->getForm();
 			$out->addParserOutputContent( $pager->getFullOutput() );
 		}
@@ -83,13 +140,14 @@ class SpecialListFiles extends IncludableSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$user = User::newFromName( $search );
-		if ( !$user ) {
+		$search = $this->userNameUtils->getCanonical( $search );
+		if ( !$search ) {
 			// No prefix suggestion for invalid user
 			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
-		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
+		return $this->userNamePrefixSearch
+			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {

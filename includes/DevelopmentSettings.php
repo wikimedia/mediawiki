@@ -27,7 +27,7 @@ ini_set( 'display_errors', 1 );
 
 global $wgDevelopmentWarnings, $wgShowExceptionDetails, $wgShowHostnames,
 	$wgDebugRawPage, $wgCommandLineMode, $wgDebugLogFile,
-	$wgDBerrorLog, $wgDebugLogGroups, $wgLocalisationCacheConf;
+	$wgDBerrorLog, $wgDebugLogGroups;
 
 // Use of wfWarn() should cause tests to fail
 $wgDevelopmentWarnings = true;
@@ -56,7 +56,7 @@ unset( $logDir );
  * Make testing possible (or easier)
  */
 
-global $wgRateLimits;
+global $wgRateLimits, $wgEnableJavaScriptTest, $wgRestAPIAdditionalRouteFiles;
 
 // Disable rate-limiting to allow integration tests to run unthrottled
 // in CI and for devs locally (T225796)
@@ -74,7 +74,8 @@ $wgRestAPIAdditionalRouteFiles = [ 'includes/Rest/coreDevelopmentRoutes.json' ];
  * (Must reference a Phabricator ticket)
  */
 
-global $wgSQLMode, $wgLegacyJavaScriptGlobals;
+global $wgSQLMode, $wgLegacyJavaScriptGlobals, $wgLocalisationCacheConf,
+	$wgCacheDirectory, $wgEnableUploads, $wgCiteBookReferencing;
 
 // Enable MariaDB/MySQL strict mode (T108255)
 $wgSQLMode = 'TRADITIONAL';
@@ -86,7 +87,6 @@ $wgLegacyJavaScriptGlobals = false;
 $wgLocalisationCacheConf['store'] = 'array';
 
 // Experimental Book Referencing feature (T236255)
-global $wgCiteBookReferencing;
 $wgCiteBookReferencing = true;
 
 // The default value is false, but for development it is useful to set this to the system temp
@@ -94,3 +94,11 @@ $wgCiteBookReferencing = true;
 $wgCacheDirectory = TempFSFile::getUsableTempDirectory() .
 	DIRECTORY_SEPARATOR .
 	rawurlencode( WikiMap::getCurrentWikiId() );
+
+// Enable uploads for FileImporter browser tests (T190829)
+$wgEnableUploads = true;
+
+// Enable the new wikitext mode for browser testing (T270240)
+$wgVisualEditorEnableWikitext = true;
+// Currently the default, but repeated here for safety since it would break many source editor tests.
+$wgDefaultUserOptions['visualeditor-newwikitext'] = 0;

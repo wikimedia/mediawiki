@@ -7,7 +7,7 @@
  * @since 1.29
  */
 class ConfiguredReadOnlyMode {
-	/** @var string|boolean|null */
+	/** @var string|bool|null */
 	private $reason;
 
 	/** @var string|null */
@@ -21,12 +21,6 @@ class ConfiguredReadOnlyMode {
 	 *   Otherwise, the wiki is not read-only.
 	 */
 	public function __construct( $reason, $reasonFile = null ) {
-		if ( $reason instanceof Config ) {
-			// Before 1.34 we passed a whole Config object, which was overkill
-			wfDeprecated( __METHOD__ . ' with Config passed to constructor', '1.34' );
-			$reason = $reason->get( 'ReadOnly' );
-			$reasonFile = $reason->get( 'ReadOnlyFile' );
-		}
 		$this->reason = $reason;
 		$this->reasonFile = $reasonFile;
 	}

@@ -373,7 +373,7 @@ abstract class IndexPager extends ContextSource implements Pager {
 		$this->mPastTheEndRow = null;
 
 		if ( $numRows ) {
-			$indexColumns = array_map( function ( $v ) {
+			$indexColumns = array_map( static function ( $v ) {
 				// Remove any table prefix from index field
 				$parts = explode( '.', $v );
 				return end( $parts );
@@ -702,8 +702,8 @@ abstract class IndexPager extends ContextSource implements Pager {
 
 	/**
 	 * Get an array of query parameters that should be put into self-links.
-	 * By default, all parameters passed in the URL are used, except for a
-	 * short blacklist.
+	 * By default, all parameters passed in the URL are used, apart from a
+	 * few exceptions.
 	 *
 	 * @stable to override
 	 *
@@ -973,6 +973,10 @@ abstract class IndexPager extends ContextSource implements Pager {
 		return $prevNext->buildPrevNextNavigation( $title, $offset, $limit, $query, $atend );
 	}
 
+	/**
+	 * @since 1.34
+	 * @return LinkRenderer
+	 */
 	protected function getLinkRenderer() {
 		if ( $this->linkRenderer === null ) {
 			 $this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();

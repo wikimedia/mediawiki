@@ -54,16 +54,16 @@ class SpecialPermanentLink extends RedirectSpecialPage {
 	}
 
 	private function showForm() {
-		$form = HTMLForm::factory( 'ooui', [
+		HTMLForm::factory( 'ooui', [
 			'revid' => [
 				'type' => 'int',
 				'name' => 'revid',
 				'label-message' => 'permanentlink-revid',
 			],
-		], $this->getContext(), 'permanentlink' );
-		$form->setSubmitTextMsg( 'permanentlink-submit' );
-		$form->setSubmitCallback( [ $this, 'onFormSubmit' ] );
-		$form->show();
+		], $this->getContext(), 'permanentlink' )
+			->setSubmitTextMsg( 'permanentlink-submit' )
+			->setSubmitCallback( [ $this, 'onFormSubmit' ] )
+			->show();
 	}
 
 	public function onFormSubmit( $formData ) {

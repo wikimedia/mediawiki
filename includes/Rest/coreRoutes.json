@@ -25,24 +25,25 @@
 		"class": "MediaWiki\\Rest\\Handler\\CompareHandler",
 		"services": [
 			"RevisionLookup",
-			"PermissionManager",
 			"Parser"
 		]
 	},
 	{
 		"path": "/v1/revision/{id}/bare",
-		"class": "MediaWiki\\Rest\\Handler\\RevisionHandler",
+		"class": "MediaWiki\\Rest\\Handler\\RevisionSourceHandler",
 		"services": [
+			"MainConfig",
 			"RevisionLookup",
-			"PermissionManager"
-		]
+			"TitleFormatter",
+			"TitleFactory"
+		],
+		"format": "bare"
 	},
 	{
 		"path": "/v1/search/page",
 		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"SearchEngineFactory",
 			"SearchEngineConfig"
 		],
@@ -53,7 +54,6 @@
 		"class": "MediaWiki\\Rest\\Handler\\SearchHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"SearchEngineFactory",
 			"SearchEngineConfig"
 		],
@@ -65,7 +65,6 @@
 		"services": [
 			"DBLoadBalancer",
 			"LanguageNameUtils",
-			"PermissionManager",
 			"TitleFormatter",
 			"TitleParser"
 		]
@@ -75,20 +74,20 @@
 		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"RevisionLookup",
-			"TitleFormatter"
-		]
+			"TitleFormatter",
+			"TitleFactory"
+		],
+		"format": "source"
 	},
 	{
 		"path": "/v1/page/{title}/bare",
-		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
+		"class": "MediaWiki\\Rest\\Handler\\PageSourceHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
-			"VirtualRESTServiceClient"
+			"TitleFactory"
 		],
 		"format": "bare"
 	},
@@ -97,10 +96,12 @@
 		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
-			"VirtualRESTServiceClient"
+			"TitleFactory",
+			"ParserCacheFactory",
+			"WikiPageFactory",
+			"GlobalIdGenerator"
 		],
 		"format": "html"
 	},
@@ -109,10 +110,12 @@
 		"class": "MediaWiki\\Rest\\Handler\\PageHTMLHandler",
 		"services": [
 			"MainConfig",
-			"PermissionManager",
 			"RevisionLookup",
 			"TitleFormatter",
-			"VirtualRESTServiceClient"
+			"TitleFactory",
+			"ParserCacheFactory",
+			"WikiPageFactory",
+			"GlobalIdGenerator"
 		],
 		"format": "with_html"
 	},
@@ -120,7 +123,6 @@
 		"path": "/v1/page/{title}/links/media",
 		"class": "MediaWiki\\Rest\\Handler\\MediaLinksHandler",
 		"services": [
-			"PermissionManager",
 			"DBLoadBalancer",
 			"RepoGroup"
 		]
@@ -129,7 +131,6 @@
 		"path": "/v1/file/{title}",
 		"class": "MediaWiki\\Rest\\Handler\\MediaFileHandler",
 		"services": [
-			"PermissionManager",
 			"RepoGroup"
 		]
 	},

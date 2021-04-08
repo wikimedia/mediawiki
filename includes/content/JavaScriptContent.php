@@ -60,8 +60,13 @@ class JavaScriptContent extends TextContent {
 	 * @return JavaScriptContent
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		// @todo Make pre-save transformation optional for script pages
-		// See T34858
+		// @todo Make pre-save transformation optional for script pages (T34858)
+
+		if ( !MediaWikiServices::getInstance()->getUserOptionsLookup()->getBoolOption( $user, 'pst-cssjs' ) ) {
+			// Allow bot users to disable the pre-save transform for CSS/JS (T236828).
+			$popts = clone $popts;
+			$popts->setPreSaveTransform( false );
+		}
 
 		$text = $this->getText();
 		$pst = MediaWikiServices::getInstance()->getParser()
@@ -106,8 +111,7 @@ class JavaScriptContent extends TextContent {
 		$text = $this->getText();
 		if ( strpos( $text, '/* #REDIRECT */' ) === 0 ) {
 			// Extract the title from the url
-			preg_match( '/title=(.*?)\\\\u0026action=raw/', $text, $matches );
-			if ( isset( $matches[1] ) ) {
+			if ( preg_match( '/title=(.*?)\\\\u0026action=raw/', $text, $matches ) ) {
 				$title = Title::newFromText( urldecode( $matches[1] ) );
 				if ( $title ) {
 					// Have a title, check that the current content equals what

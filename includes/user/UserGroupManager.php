@@ -30,7 +30,7 @@ use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
 use Sanitizer;
@@ -50,6 +50,9 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class UserGroupManager implements IDBAccessObject {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'Autopromote',
 		'AutopromoteOnce',
@@ -80,6 +83,9 @@ class UserGroupManager implements IDBAccessObject {
 
 	/** @var UserEditTracker */
 	private $userEditTracker;
+
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
 
 	/** @var LoggerInterface */
 	private $logger;
@@ -134,6 +140,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param ILBFactory $loadBalancerFactory
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param LoggerInterface $logger
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|bool $dbDomain
@@ -144,6 +151,7 @@ class UserGroupManager implements IDBAccessObject {
 		ILBFactory $loadBalancerFactory,
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
+		GroupPermissionsLookup $groupPermissionsLookup,
 		LoggerInterface $logger,
 		array $clearCacheCallbacks = [],
 		$dbDomain = false
@@ -155,6 +163,7 @@ class UserGroupManager implements IDBAccessObject {
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userEditTracker = $userEditTracker;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->logger = $logger;
 		// Can't just inject ROM since we LB can be for foreign wiki
 		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $this->loadBalancer );
@@ -166,7 +175,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
-	 * @return string[] Array of internal group names
+	 * @return string[] internal group names
 	 */
 	public function listAllGroups() : array {
 		return array_values( array_diff(
@@ -276,7 +285,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
 	 * @param bool $recache Whether to avoid the cache
-	 * @return string[] Array of String internal group names
+	 * @return string[] internal group names
 	 */
 	public function getUserEffectiveGroups(
 		UserIdentity $user,
@@ -318,7 +327,7 @@ class UserGroupManager implements IDBAccessObject {
 	 *
 	 * @param UserIdentity $user
 	 * @param int $queryFlags
-	 * @return array Names of the groups the user has belonged to.
+	 * @return string[] Names of the groups the user has belonged to.
 	 */
 	public function getUserFormerGroups(
 		UserIdentity $user,
@@ -357,7 +366,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
 	 * @param UserIdentity $user The user to get the groups for
-	 * @return array Array of groups to promote to.
+	 * @return string[] Array of groups to promote to.
 	 *
 	 * @see $wgAutopromote
 	 */
@@ -383,7 +392,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param UserIdentity $user The user to get the groups for
 	 * @param string $event Key in $wgAutopromoteOnce (each event has groups/criteria)
 	 *
-	 * @return array Groups the user should be promoted to.
+	 * @return string[] Groups the user should be promoted to.
 	 *
 	 * @see $wgAutopromoteOnce
 	 */
@@ -538,9 +547,7 @@ class UserGroupManager implements IDBAccessObject {
 				$block = $user->getBlock( false, true );
 				return $block && $block->isSitewide();
 			case APCOND_ISBOT:
-				// TODO: Injecting permission manager will cause a cyclic dependency. T254537
-				return in_array( 'bot', MediaWikiServices::getInstance()
-					->getPermissionManager()
+				return in_array( 'bot', $this->groupPermissionsLookup
 					->getGroupPermissions( $this->getUserGroups( $user ) ) );
 			default:
 				$result = null;
@@ -567,7 +574,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param UserIdentity $user User to add to the groups
 	 * @param string $event Key in $wgAutopromoteOnce (each event has groups/criteria)
 	 *
-	 * @return array Array of groups the user has been promoted to.
+	 * @return string[] Array of groups the user has been promoted to.
 	 *
 	 * @see $wgAutopromoteOnce
 	 */
@@ -877,7 +884,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * Return the tables and fields to be selected to construct new UserGroupMembership object
 	 * using newGroupMembershipFromRow method.
 	 *
-	 * @return array With three keys:
+	 * @return array[] With three keys:
 	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
 	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
 	 *  - joins: (string[]) to include in the `$joins` to `IDatabase->select()`

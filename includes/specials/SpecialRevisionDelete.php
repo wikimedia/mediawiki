@@ -235,7 +235,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		}
 
 		if ( $this->permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
-			$qc = $this->getLogQueryCond();
 			# Show relevant lines from the deletion log
 			$deleteLogPage = new LogPage( 'delete' );
 			$output->addHTML( "<h2>" . $deleteLogPage->getName()->escaped() . "</h2>\n" );
@@ -244,7 +243,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				'delete',
 				$this->targetObj,
 				'', /* user */
-				[ 'lim' => 25, 'conds' => $qc, 'useMaster' => $this->wasSaved ]
+				[ 'lim' => 25, 'conds' => $this->getLogQueryCond(), 'useMaster' => $this->wasSaved ]
 			);
 		}
 		# Show relevant lines from the suppression log
@@ -256,7 +255,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				'suppress',
 				$this->targetObj,
 				'',
-				[ 'lim' => 25, 'conds' => $qc, 'useMaster' => $this->wasSaved ]
+				[ 'lim' => 25, 'conds' => $this->getLogQueryCond(), 'useMaster' => $this->wasSaved ]
 			);
 		}
 	}

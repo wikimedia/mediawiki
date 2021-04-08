@@ -49,6 +49,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	/**
 	 * @param string $domain Expected argument that LockManagerGroupFactory::getLockManagerGroup
 	 *   will receive
+	 * @return LockManagerGroupFactory
 	 */
 	private function getLockManagerGroupFactory( $domain = 'mywiki' ) : LockManagerGroupFactory {
 		if ( !$this->lmgFactory ) {
@@ -79,6 +80,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	 *     * 'lmgFactory'
 	 *     * 'mimeAnalyzer'
 	 *     * 'tmpFileFactory'
+	 * @return FileBackendGroup
 	 */
 	private function newObj( array $options = [] ) : FileBackendGroup {
 		return new FileBackendGroup(

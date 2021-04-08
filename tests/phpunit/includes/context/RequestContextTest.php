@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Permissions\UltimateAuthority;
+use MediaWiki\User\UserIdentityValue;
+
 /**
  * @group Database
  * @group RequestContext
@@ -66,7 +69,6 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		];
 		// importScopedSession() sets these variables
 		$this->setMwGlobals( [
-			'wgUser' => new User,
 			'wgRequest' => new FauxRequest,
 		] );
 		$sc = RequestContext::importScopedSession( $sinfo ); // load new context
@@ -96,7 +98,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		} else {
 			$this->assertEquals( $oldSessionId, session_id(), "Unchanged PHP session ID." );
 		}
-		$this->assertTrue( $context->getUser()->isLoggedIn(), "Correct context user." );
+		$this->assertTrue( $context->getUser()->isRegistered(), "Correct context user." );
 		$this->assertEquals( $sinfo['userId'], $context->getUser()->getId(), "Correct context user ID." );
 		$this->assertEquals(
 			'UnitTestContextUser',
@@ -113,5 +115,28 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $oInfo['userId'], $info['userId'], "Correct restored user ID." );
 		$this->assertFalse( MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent(),
 			'Global session isn\'t persistent after restoring the context' );
+	}
+
+	/**
+	 * @covers RequestContext::getUser
+	 * @covers RequestContext::setUser
+	 * @covers RequestContext::getAuthority
+	 * @covers RequestContext::setAuthority
+	 */
+	public function testTestGetSetAuthority() {
+		$context = new RequestContext();
+
+		$user = $this->getTestUser()->getUser();
+
+		$context->setUser( $user );
+		$this->assertTrue( $user->equals( $context->getAuthority()->getUser() ) );
+		$this->assertTrue( $user->equals( $context->getUser() ) );
+
+		$authorityActor = new UserIdentityValue( 42, 'Test', 24 );
+		$authority = new UltimateAuthority( $authorityActor );
+
+		$context->setAuthority( $authority );
+		$this->assertTrue( $context->getUser()->equals( $authorityActor ) );
+		$this->assertTrue( $context->getAuthority()->getUser()->equals( $authorityActor ) );
 	}
 }

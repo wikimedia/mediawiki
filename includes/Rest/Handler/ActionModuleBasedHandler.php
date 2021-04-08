@@ -101,7 +101,7 @@ abstract class ActionModuleBasedHandler extends Handler {
 			$group,
 			[
 				'class' => get_class( $module ),
-				'factory' => function () use ( $module ) {
+				'factory' => static function () use ( $module ) {
 					return $module;
 				}
 			]

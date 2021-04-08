@@ -7,6 +7,7 @@ use ApiModuleManager;
 use MockApi;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
@@ -17,7 +18,9 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SubmoduleDefTest extends TypeDefTestCase {
 
-	protected static $testClass = SubmoduleDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new SubmoduleDef( $callbacks, $options );
+	}
 
 	private function mockApi() {
 		$api = $this->getMockBuilder( MockApi::class )
@@ -30,7 +33,7 @@ class SubmoduleDefTest extends TypeDefTestCase {
 
 		$w->mMainModule->getModuleManager()->addModule( 'testmod', 'action', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $api ) {
+			'factory' => static function () use ( $api ) {
 				return $api;
 			},
 		] );
@@ -55,25 +58,25 @@ class SubmoduleDefTest extends TypeDefTestCase {
 		$manager->addModule( 'mod2', 'test', MockApi::class );
 		$manager->addModule( 'dep', 'test', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $dep ) {
+			'factory' => static function () use ( $dep ) {
 				return $dep;
 			},
 		] );
 		$manager->addModule( 'depint', 'test', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $depint ) {
+			'factory' => static function () use ( $depint ) {
 				return $depint;
 			},
 		] );
 		$manager->addModule( 'int', 'test', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $int ) {
+			'factory' => static function () use ( $int ) {
 				return $int;
 			},
 		] );
 		$manager->addModule( 'recurse', 'test', [
 			'class' => MockApi::class,
-			'factory' => function () use ( $api ) {
+			'factory' => static function () use ( $api ) {
 				return $api;
 			},
 		] );

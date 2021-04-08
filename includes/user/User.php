@@ -25,16 +25,24 @@ use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
+use MediaWiki\DAO\WikiAwareEntityTrait;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Mail\UserEmailContact;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Permissions\UserAuthority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
-use Wikimedia\IPSet;
+use Wikimedia\Assert\Assert;
+use Wikimedia\Assert\PreconditionException;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
@@ -51,13 +59,14 @@ use Wikimedia\ScopedCallback;
  * for rendering normal pages are set in the cookie to minimize use
  * of the database.
  *
- * @newable
- * @note marked as newable in 1.35 because the canonical way to construct an
- *       anonymous (IP) user is to call the constructor directly. A factory
- *       method for that purpose should be added to TitleFactory, see T257464.
+ * @note User implements Authority to ease transition. Always prefer
+ * using existing Authority or obtaining a proper Authority implementation.
+ *
+ * @newable in 1.35 only, the constructor is @internal since 1.36
  */
-class User implements IDBAccessObject, UserIdentity {
+class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact {
 	use ProtectedHookAccessorTrait;
+	use WikiAwareEntityTrait;
 
 	/**
 	 * Number of characters required for the user_token field.
@@ -93,7 +102,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public const IGNORE_USER_RIGHTS = false;
 
 	/**
-	 * Array of Strings List of member variables which are saved to the
+	 * List of member variables which are saved to the
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.
 	 * @showinitializer
@@ -117,13 +126,19 @@ class User implements IDBAccessObject, UserIdentity {
 	];
 
 	/** Cache variables */
+	// Some of these are public, including for use by the UserFactory, but they generally
+	// should not be set manually
 	// @{
 	/** @var int */
 	public $mId;
 	/** @var string */
 	public $mName;
-	/** @var int|null */
-	protected $mActorId;
+	/**
+	 * Switched from protected to public for use in UserFactory
+	 *
+	 * @var int|null
+	 */
+	public $mActorId;
 	/** @var string */
 	public $mRealName;
 
@@ -217,14 +232,19 @@ class User implements IDBAccessObject, UserIdentity {
 	/** @var int User::READ_* constant bitfield used to load data */
 	protected $queryFlagsUsed = self::READ_NORMAL;
 
+	/** @var Authority|null lazy-initialized Authority of this user */
+	private $mThisAsAuthority;
+
 	/** @var int[] */
 	public static $idCacheByName = [];
 
 	/**
 	 * Lightweight constructor for an anonymous user.
-	 * Use the User::newFrom* factory functions for other kinds of users.
 	 *
-	 * @stable to call
+	 * @stable to call since 1.35
+	 * @internal since 1.36, use the UserFactory service instead
+	 *
+	 * @see MediaWiki\User\UserFactory
 	 *
 	 * @see newFromName()
 	 * @see newFromId()
@@ -238,10 +258,20 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
+	 * Returns self::LOCAL to indicate the user is associated with the local wiki.
+	 *
+	 * @since 1.36
+	 * @return string|false
+	 */
+	public function getWikiId() {
+		return self::LOCAL;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function __toString() {
-		return (string)$this->getName();
+		return $this->getName();
 	}
 
 	public function &__get( $name ) {
@@ -284,6 +314,15 @@ class User implements IDBAccessObject, UserIdentity {
 		} else {
 			wfLogWarning( 'tried to set non-visible property' );
 		}
+	}
+
+	public function __sleep(): array {
+		return array_diff(
+			array_keys( get_object_vars( $this ) ),
+			[
+				'mThisAsAuthority' // memoization, will be recreated on demand.
+			]
+		);
 	}
 
 	/**
@@ -331,7 +370,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// If this is called too early, things are likely to break.
 		if ( !$wgFullyInitialised && $this->mFrom === 'session' ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+			LoggerFactory::getInstance( 'session' )
 				->warning( 'User::loadFromSession called before the end of Setup.php', [
 					'exception' => new Exception( 'User::loadFromSession called before the end of Setup.php' ),
 				] );
@@ -369,7 +408,10 @@ class User implements IDBAccessObject, UserIdentity {
 				$row = wfGetDB( $index )->selectRow(
 					'actor',
 					[ 'actor_id', 'actor_user', 'actor_name' ],
-					$this->mFrom === 'name' ? [ 'actor_name' => $this->mName ] : [ 'actor_id' => $this->mActorId ],
+					$this->mFrom === 'name'
+						// make sure to use normalized form of IP for anonymous users
+						? [ 'actor_name' => IPUtils::sanitizeIP( $this->mName ) ]
+						: [ 'actor_id' => $this->mActorId ],
 					__METHOD__,
 					$options
 				);
@@ -518,11 +560,16 @@ class User implements IDBAccessObject, UserIdentity {
 		return true;
 	}
 
-	/** @name newFrom*() static factory methods */
-	// @{
+	/***************************************************************************/
+	// region   newFrom*() static factory methods
+	/** @name   newFrom*() static factory methods
+	 * @{
+	 */
 
 	/**
-	 * Static factory method for creation from username.
+	 * @see UserFactory::newFromName
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
 	 *
 	 * This is slightly less efficient than newFromId(), so use newFromId() if
 	 * you have both an ID and a name handy.
@@ -538,54 +585,75 @@ class User implements IDBAccessObject, UserIdentity {
 	 *  with a name, zero user ID and default settings.
 	 */
 	public static function newFromName( $name, $validate = 'valid' ) {
+		// Backwards compatibility with strings / false
+		$validationLevels = [
+			'valid' => UserFactory::RIGOR_VALID,
+			'usable' => UserFactory::RIGOR_USABLE,
+			'creatable' => UserFactory::RIGOR_CREATABLE
+		];
 		if ( $validate === true ) {
 			$validate = 'valid';
 		}
-		$name = self::getCanonicalName( $name, $validate );
-		if ( $name === false ) {
-			return false;
+		if ( $validate === false ) {
+			$validation = UserFactory::RIGOR_NONE;
+		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
+			$validation = $validationLevels[ $validate ];
+		} else {
+			// Not a recognized value, probably a test for unsupported validation
+			// levels, regardless, just pass it along
+			$validation = $validate;
 		}
 
-		// Create unloaded user object
-		$u = new User;
-		$u->mName = $name;
-		$u->mFrom = 'name';
-		$u->setItemLoaded( 'name' );
+		$user = MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromName( (string)$name, $validation );
 
-		return $u;
+		// UserFactory returns null instead of false
+		if ( $user === null ) {
+			$user = false;
+		}
+		return $user;
 	}
 
 	/**
 	 * Static factory method for creation from a given user ID.
 	 *
+	 * @see UserFactory::newFromId
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
+	 *
 	 * @param int $id Valid user ID
 	 * @return User The corresponding User object
 	 */
 	public static function newFromId( $id ) {
-		$u = new User;
-		$u->mId = $id;
-		$u->mFrom = 'id';
-		$u->setItemLoaded( 'id' );
-		return $u;
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromId( (int)$id );
 	}
 
 	/**
 	 * Static factory method for creation from a given actor ID.
+	 *
+	 * @see UserFactory::newFromActorId
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
 	 *
 	 * @since 1.31
 	 * @param int $id Valid actor ID
 	 * @return User The corresponding User object
 	 */
 	public static function newFromActorId( $id ) {
-		$u = new User;
-		$u->mActorId = $id;
-		$u->mFrom = 'actor';
-		$u->setItemLoaded( 'actor' );
-		return $u;
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromActorId( (int)$id );
 	}
 
 	/**
 	 * Returns a User object corresponding to the given UserIdentity.
+	 *
+	 * @see UserFactory::newFromUserIdentity
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
 	 *
 	 * @since 1.32
 	 *
@@ -594,6 +662,12 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return User
 	 */
 	public static function newFromIdentity( UserIdentity $identity ) {
+		// Don't use the service if we already have a User object,
+		// so that User::newFromIdentity calls don't break things in unit tests.
+		if ( $identity instanceof User ) {
+			return $identity;
+		}
+
 		return MediaWikiServices::getInstance()
 			->getUserFactory()
 			->newFromUserIdentity( $identity );
@@ -605,6 +679,10 @@ class User implements IDBAccessObject, UserIdentity {
 	 * This does not check that the ID, name, and actor ID all correspond to
 	 * the same user.
 	 *
+	 * @see UserFactory::newFromAnyId
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
+	 *
 	 * @since 1.31
 	 * @param int|null $userId User ID, if known
 	 * @param string|null $userName User name, if known
@@ -613,46 +691,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return User
 	 */
 	public static function newFromAnyId( $userId, $userName, $actorId, $dbDomain = false ) {
-		// Stop-gap solution for the problem described in T222212.
-		// Force the User ID and Actor ID to zero for users loaded from the database
-		// of another wiki, to prevent subtle data corruption and confusing failure modes.
-		if ( $dbDomain !== false ) {
-			$userId = 0;
-			$actorId = 0;
-		}
-
-		$user = new User;
-		$user->mFrom = 'defaults';
-
-		if ( $actorId !== null ) {
-			$user->mActorId = (int)$actorId;
-			if ( $user->mActorId !== 0 ) {
-				$user->mFrom = 'actor';
-			}
-			$user->setItemLoaded( 'actor' );
-		}
-
-		if ( $userName !== null && $userName !== '' ) {
-			$user->mName = $userName;
-			$user->mFrom = 'name';
-			$user->setItemLoaded( 'name' );
-		}
-
-		if ( $userId !== null ) {
-			$user->mId = (int)$userId;
-			if ( $user->mId !== 0 ) {
-				$user->mFrom = 'id';
-			}
-			$user->setItemLoaded( 'id' );
-		}
-
-		if ( $user->mFrom === 'defaults' ) {
-			throw new InvalidArgumentException(
-				'Cannot create a user with no name, no ID, and no actor ID'
-			);
-		}
-
-		return $user;
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromAnyId( $userId, $userName, $actorId, $dbDomain );
 	}
 
 	/**
@@ -662,33 +703,25 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * If the code is invalid or has expired, returns NULL.
 	 *
+	 * @see UserFactory::newFromConfirmationCode
+	 *
+	 * @deprecated since 1.36, use a UserFactory instead
+	 *
 	 * @param string $code Confirmation code
 	 * @param int $flags User::READ_* bitfield
 	 * @return User|null
 	 */
-	public static function newFromConfirmationCode( $code, $flags = 0 ) {
-		$db = ( $flags & self::READ_LATEST ) == self::READ_LATEST
-			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_REPLICA );
-
-		$id = $db->selectField(
-			'user',
-			'user_id',
-			[
-				'user_email_token' => md5( $code ),
-				'user_email_token_expires > ' . $db->addQuotes( $db->timestamp() ),
-			],
-			__METHOD__
-		);
-
-		return $id ? self::newFromId( $id ) : null;
+	public static function newFromConfirmationCode( $code, $flags = self::READ_NORMAL ) {
+		return MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromConfirmationCode( (string)$code, $flags );
 	}
 
 	/**
 	 * Create a new user object using data from session. If the login
 	 * credentials are invalid, the result is an anonymous user.
 	 *
-	 * @param WebRequest|null $request Object to use; $wgRequest will be used if omitted.
+	 * @param WebRequest|null $request Object to use; the global request will be used if omitted.
 	 * @return User
 	 */
 	public static function newFromSession( WebRequest $request = null ) {
@@ -747,7 +780,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $name Username
 	 * @param array $options Options are:
-	 *  - validate: As for User::getCanonicalName(), default 'valid'
+	 *  - validate: As for User::getCanonicalName(), default 'valid'. Deprecated since 1.36.
 	 *  - create: Whether to create the user if it doesn't already exist, default true
 	 *  - steal: Whether to "disable" the account for normal use if it already
 	 *    exists, default false
@@ -756,17 +789,48 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public static function newSystemUser( $name, $options = [] ) {
 		$options += [
-			'validate' => 'valid',
+			'validate' => UserNameUtils::RIGOR_VALID,
 			'create' => true,
 			'steal' => false,
 		];
 
-		$name = self::getCanonicalName( $name, $options['validate'] );
+		// Username validation
+		// Backwards compatibility with strings / false
+		$validationLevels = [
+			'valid' => UserNameUtils::RIGOR_VALID,
+			'usable' => UserNameUtils::RIGOR_USABLE,
+			'creatable' => UserNameUtils::RIGOR_CREATABLE
+		];
+		$validate = $options['validate'];
+
+		// @phan-suppress-next-line PhanSuspiciousValueComparison
+		if ( $validate === false ) {
+			$validation = UserNameUtils::RIGOR_NONE;
+		} elseif ( array_key_exists( $validate, $validationLevels ) ) {
+			$validation = $validationLevels[ $validate ];
+		} else {
+			// Not a recognized value, probably a test for unsupported validation
+			// levels, regardless, just pass it along
+			$validation = $validate;
+		}
+
+		if ( $validation !== UserNameUtils::RIGOR_VALID ) {
+			wfDeprecatedMsg(
+				__METHOD__ . ' options["validation"] parameter must be omitted or set to "valid".',
+				'1.36'
+			);
+		}
+		$services = MediaWikiServices::getInstance();
+		$userNameUtils = $services->getUserNameUtils();
+
+		$name = $userNameUtils->getCanonical( (string)$name, $validation );
 		if ( $name === false ) {
 			return null;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$loadBalancer = $services->getDBLoadBalancer();
+		$dbr = $loadBalancer->getConnectionRef( DB_REPLICA );
+
 		$userQuery = self::getQueryInfo();
 		$row = $dbr->selectRow(
 			$userQuery['tables'],
@@ -778,7 +842,7 @@ class User implements IDBAccessObject, UserIdentity {
 		);
 		if ( !$row ) {
 			// Try the master database...
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $loadBalancer->getConnectionRef( DB_MASTER );
 			$row = $dbw->selectRow(
 				$userQuery['tables'],
 				$userQuery['fields'],
@@ -791,7 +855,6 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( !$row ) {
 			// No user. Create it?
-			// @phan-suppress-next-line PhanImpossibleCondition
 			if ( !$options['create'] ) {
 				// No.
 				return null;
@@ -799,13 +862,13 @@ class User implements IDBAccessObject, UserIdentity {
 
 			// If it's a reserved user that had an anonymous actor created for it at
 			// some point, we need special handling.
-			if ( !self::isValidUserName( $name ) || self::isUsableName( $name ) ) {
+			if ( !$userNameUtils->isValid( $name ) || $userNameUtils->isUsable( $name ) ) {
 				// Not reserved, so just create it.
 				return self::createNew( $name, [ 'token' => self::INVALID_TOKEN ] );
 			}
 
 			// It is reserved. Check for an anonymous actor row.
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $loadBalancer->getConnectionRef( DB_MASTER );
 			return $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $name ) {
 				$row = $dbw->selectRow(
 					'actor',
@@ -840,12 +903,11 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( !$user->isSystemUser() ) {
 			// User exists. Steal it?
-			// @phan-suppress-next-line PhanRedundantCondition
 			if ( !$options['steal'] ) {
 				return null;
 			}
 
-			MediaWikiServices::getInstance()->getAuthManager()->revokeAccessForUser( $name );
+			$services->getAuthManager()->revokeAccessForUser( $name );
 
 			$user->invalidateEmail();
 			$user->mToken = self::INVALID_TOKEN;
@@ -856,7 +918,8 @@ class User implements IDBAccessObject, UserIdentity {
 		return $user;
 	}
 
-	// @}
+	/** @} */
+	// endregion -- end of newFrom*() static factory methods
 
 	/**
 	 * Get the username corresponding to a given user ID
@@ -955,11 +1018,14 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Is the user an IP range?
 	 *
-	 * @deprecated since 1.35, use the UserNameUtils service or IPUtils directly
+	 * @deprecated since 1.35, hard deprecated since 1.36
+	 * Use the UserNameUtils service or IPUtils directly
+	 *
 	 * @since 1.30
 	 * @return bool
 	 */
 	public function isIPRange() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return IPUtils::isValidRange( $this->mName );
 	}
 
@@ -971,11 +1037,14 @@ class User implements IDBAccessObject, UserIdentity {
 	 * is longer than the maximum allowed username size or doesn't begin with
 	 * a capital letter.
 	 *
-	 * @deprecated since 1.35, use the UserNameUtils service
+	 * @deprecated since 1.35, hard deprecated in 1.36
+	 * Use the UserNameUtils service
+	 *
 	 * @param string $name Name to match
 	 * @return bool
 	 */
 	public static function isValidUserName( $name ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $name );
 	}
 
@@ -1003,7 +1072,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int $limit Max number of users to return. The actual limit will never exceed 5000
 	 *   records; larger values are ignored.
 	 * @param int|null $after ID the user to start after
-	 * @return UserArrayFromResult
+	 * @return UserArrayFromResult|ArrayIterator
 	 */
 	public static function findUsersByGroup( $groups, $limit = 5000, $after = null ) {
 		if ( $groups === [] ) {
@@ -1039,7 +1108,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * either by batch processes or by user accounts which have
 	 * already been created.
 	 *
-	 * Additional blacklisting may be added here rather than in
+	 * Additional preventions may be added here rather than in
 	 * isValidUserName() to avoid disrupting existing accounts.
 	 *
 	 * @deprecated since 1.35, use the UserNameUtils service
@@ -1202,9 +1271,11 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Set that an item has been loaded
 	 *
+	 * @internal Only public for use in UserFactory
+	 *
 	 * @param string $item
 	 */
-	protected function setItemLoaded( $item ) {
+	public function setItemLoaded( $item ) {
 		if ( is_array( $this->mLoadedItems ) ) {
 			$this->mLoadedItems[$item] = true;
 		}
@@ -1220,7 +1291,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// returned here, so just use it if applicable.
 		$session = $this->getRequest()->getSession();
 		$user = $session->getUser();
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$this->loadFromUserObject( $user );
 
 			// Other code expects these to be set in the session, so set them.
@@ -1232,17 +1303,6 @@ class User implements IDBAccessObject, UserIdentity {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Set the 'BlockID' cookie depending on block type and user authentication status.
-	 *
-	 * @deprecated since 1.34 Use BlockManager::trackBlockWithCookie instead
-	 */
-	public function trackBlockWithCookie() {
-		wfDeprecated( __METHOD__, '1.34' );
-		// Obsolete.
-		// MediaWiki::preOutputCommit() handles this whenever possible.
 	}
 
 	/**
@@ -1287,7 +1347,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		// Invalid user_id
 		$this->mId = 0;
-		$this->loadDefaults();
+		$this->loadDefaults( 'Unknown user' );
 
 		return false;
 	}
@@ -1429,7 +1489,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $event Key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
-	 * @return array Array of groups the user has been promoted to.
+	 * @return string[] Array of groups the user has been promoted to.
 	 *
 	 * @deprecated since 1.35 Use UserGroupManager::addUserToAutopromoteOnceGroups
 	 * @see $wgAutopromoteOnce
@@ -1513,6 +1573,7 @@ class User implements IDBAccessObject, UserIdentity {
 		$this->mBlockedby = -1; # Unset
 		$this->mHash = false;
 		$this->mEditCount = null;
+		$this->mThisAsAuthority = null;
 
 		if ( $wgFullyInitialised && $this->mFrom ) {
 			$services = MediaWikiServices::getInstance();
@@ -1537,6 +1598,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return array Array of options; typically strings, possibly booleans
 	 */
 	public static function getDefaultOptions() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getDefaultOptions();
@@ -1550,6 +1612,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return string|null Default option value
 	 */
 	public static function getDefaultOption( $opt ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getDefaultOption( $opt );
@@ -1588,15 +1651,7 @@ class User implements IDBAccessObject, UserIdentity {
 		// - Check if this is the user associated with the main request
 		// - If so, pass the relevant request information to the block manager
 		$request = null;
-
-		// The session user is set up towards the end of Setup.php. Until then,
-		// assume it's a logged-out user.
-		$sessionUser = RequestContext::getMain()->getUser();
-		$globalUserName = $sessionUser->isSafeToLoad()
-			? $sessionUser->getName()
-			: IPUtils::sanitizeIP( $sessionUser->getRequest()->getIP() );
-
-		if ( $this->getName() === $globalUserName ) {
+		if ( $this->isGlobalSessionUser() ) {
 			// This is the global user, so we need to pass the request
 			$request = $this->getRequest();
 		}
@@ -1621,94 +1676,6 @@ class User implements IDBAccessObject, UserIdentity {
 			$this->mHideName = 0;
 			$this->mAllowUsertalk = false;
 		}
-	}
-
-	/**
-	 * Whether the given IP is in a DNS blacklist.
-	 *
-	 * @deprecated since 1.34 Use BlockManager::isDnsBlacklisted.
-	 * @param string $ip IP to check
-	 * @param bool $checkWhitelist Whether to check the whitelist first
-	 * @return bool True if blacklisted.
-	 */
-	public function isDnsBlacklisted( $ip, $checkWhitelist = false ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getBlockManager()
-			->isDnsBlacklisted( $ip, $checkWhitelist );
-	}
-
-	/**
-	 * Whether the given IP is in a given DNS blacklist.
-	 *
-	 * @deprecated since 1.34 Check via BlockManager::isDnsBlacklisted instead.
-	 * @param string $ip IP to check
-	 * @param string|array $bases Array of Strings: URL of the DNS blacklist
-	 * @return bool True if blacklisted.
-	 */
-	public function inDnsBlacklist( $ip, $bases ) {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		$found = false;
-		// @todo FIXME: IPv6 ???  (https://bugs.php.net/bug.php?id=33170)
-		if ( IPUtils::isIPv4( $ip ) ) {
-			// Reverse IP, T23255
-			$ipReversed = implode( '.', array_reverse( explode( '.', $ip ) ) );
-
-			foreach ( (array)$bases as $base ) {
-				// Make hostname
-				// If we have an access key, use that too (ProjectHoneypot, etc.)
-				$basename = $base;
-				if ( is_array( $base ) ) {
-					if ( count( $base ) >= 2 ) {
-						// Access key is 1, base URL is 0
-						$host = "{$base[1]}.$ipReversed.{$base[0]}";
-					} else {
-						$host = "$ipReversed.{$base[0]}";
-					}
-					$basename = $base[0];
-				} else {
-					$host = "$ipReversed.$base";
-				}
-
-				// Send query
-				$ipList = gethostbynamel( $host );
-
-				if ( $ipList ) {
-					wfDebugLog( 'dnsblacklist', "Hostname $host is {$ipList[0]}, it's a proxy says $basename!" );
-					$found = true;
-					break;
-				}
-
-				wfDebugLog( 'dnsblacklist', "Requested $host, not found in $basename." );
-			}
-		}
-
-		return $found;
-	}
-
-	/**
-	 * Check if an IP address is in the local proxy list
-	 *
-	 * @deprecated since 1.34 Use BlockManager::getUserBlock instead.
-	 * @param string $ip
-	 * @return bool
-	 */
-	public static function isLocallyBlockedProxy( $ip ) {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		global $wgProxyList;
-
-		if ( !$wgProxyList ) {
-			return false;
-		}
-
-		if ( !is_array( $wgProxyList ) ) {
-			// Load values from the specified file
-			$wgProxyList = array_map( 'trim', file( $wgProxyList ) );
-		}
-
-		$proxyListIPSet = new IPSet( $wgProxyList );
-		return $proxyListIPSet->match( $ip );
 	}
 
 	/**
@@ -1744,7 +1711,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @throws MWException
 	 */
 	public function pingLimiter( $action = 'edit', $incrBy = 1 ) {
-		$logger = \MediaWiki\Logger\LoggerFactory::getInstance( 'ratelimit' );
+		$logger = LoggerFactory::getInstance( 'ratelimit' );
 
 		// Call the 'PingLimiter' hook
 		$result = false;
@@ -2115,13 +2082,17 @@ class User implements IDBAccessObject, UserIdentity {
 
 	/**
 	 * Get the user's ID.
+	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
-	public function getId() {
+	public function getId( $wikiId = self::LOCAL ) : int {
+		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		if ( $this->mId === null && $this->mName !== null &&
 			( self::isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) )
 		) {
 			// Special case, we know the user is anonymous
+			// Note that "external" users are "local" (they have an actor ID that is relative to
+			// the local wiki).
 			return 0;
 		}
 
@@ -2146,7 +2117,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the user name, or the IP of an anonymous user
 	 * @return string User's name or IP address
 	 */
-	public function getName() {
+	public function getName() : string {
 		if ( $this->isItemLoaded( 'name', 'only' ) ) {
 			// Special case optimisation
 			return $this->mName;
@@ -2182,23 +2153,56 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get the user's actor ID.
 	 * @since 1.31
-	 * @param IDatabase|null $dbw Assign a new actor ID, using this DB handle, if none exists
+	 * @note This method is deprecated in the UserIdentity interface since 1.36,
+	 *       but remains supported in the User class for now.
+	 *       New code should use ActorNormalization::findActorId() or
+	 *       ActorNormalization::acquireActorId() instead.
+	 * @param IDatabase|string|false $dbwOrWikiId Assign a new actor ID, using this DB handle,
+	 *        if none exists; wiki ID, if provided, must be self::LOCAL; Usage with IDatabase is
+	 *        deprecated since 1.36
 	 * @return int The actor's ID, or 0 if no actor ID exists and $dbw was null
+	 * @throws PreconditionException if $dbwOrWikiId is a string and does not match the local wiki
 	 */
-	public function getActorId( IDatabase $dbw = null ) {
+	public function getActorId( $dbwOrWikiId = self::LOCAL ) : int {
+		if ( $dbwOrWikiId instanceof IDatabase ) {
+			wfDeprecatedMsg( 'Passing parameter of type IDatabase', '1.36' );
+		} else {
+			$this->assertWiki( $dbwOrWikiId );
+		}
+
 		if ( !$this->isItemLoaded( 'actor' ) ) {
 			$this->load();
 		}
 
-		if ( !$this->mActorId && $dbw ) {
-			$migration = MediaWikiServices::getInstance()->getActorMigration();
-			$this->mActorId = $migration->getNewActorId( $dbw, $this );
-
-			$this->invalidateCache();
-			$this->setItemLoaded( 'actor' );
+		if ( !$this->mActorId && $dbwOrWikiId instanceof IDatabase ) {
+			MediaWikiServices::getInstance()
+				->getActorStoreFactory()
+				->getActorNormalization( $dbwOrWikiId->getDomainID() )
+				->acquireActorId( $this, $dbwOrWikiId );
+			// acquireActorId will call setActorId on $this
+			Assert::postcondition(
+				$this->mActorId !== null,
+				"Failed to acquire actor ID for user id {$this->mId} name {$this->mName}"
+			);
 		}
 
 		return (int)$this->mActorId;
+	}
+
+	/**
+	 * Sets the actor id.
+	 *
+	 * This method is deprecated upon introduction. It only exists for transition to ActorStore,
+	 * and will be removed shortly - T274148
+	 *
+	 * @internal
+	 * @deprecated since 1.36
+	 * @param int $actorId
+	 */
+	public function setActorId( int $actorId ) {
+		$this->mActorId = $actorId;
+		$this->invalidateCache();
+		$this->setItemLoaded( 'actor' );
 	}
 
 	/**
@@ -2358,7 +2362,7 @@ class User implements IDBAccessObject, UserIdentity {
 			$cache->delete( $key, 1 ); // low tombstone/"hold-off" TTL
 		} else {
 			$lb->getConnectionRef( DB_MASTER )->onTransactionPreCommitOrIdle(
-				function () use ( $cache, $key ) {
+				static function () use ( $cache, $key ) {
 					$cache->delete( $key );
 				},
 				__METHOD__
@@ -2528,7 +2532,7 @@ class User implements IDBAccessObject, UserIdentity {
 	public function setToken( $token = false ) {
 		$this->load();
 		if ( $this->mToken === self::INVALID_TOKEN ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+			LoggerFactory::getInstance( 'session' )
 				->debug( __METHOD__ . ": Ignoring attempt to set token for system user \"$this\"" );
 		} elseif ( !$token ) {
 			$this->mToken = MWCryptRand::generateHex( self::TOKEN_LENGTH );
@@ -2541,7 +2545,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the user's e-mail address
 	 * @return string User's email address
 	 */
-	public function getEmail() {
+	public function getEmail(): string {
 		$this->load();
 		$this->getHookRunner()->onUserGetEmail( $this, $this->mEmail );
 		return $this->mEmail;
@@ -2562,9 +2566,9 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Set the user's e-mail address
 	 * @param string $str New e-mail address
 	 */
-	public function setEmail( $str ) {
+	public function setEmail( string $str ) {
 		$this->load();
-		if ( $str == $this->mEmail ) {
+		if ( $str == $this->getEmail() ) {
 			return;
 		}
 		$this->invalidateEmail();
@@ -2579,7 +2583,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param string $str New e-mail address
 	 * @return Status
 	 */
-	public function setEmailWithConfirmation( $str ) {
+	public function setEmailWithConfirmation( string $str ) {
 		global $wgEnableEmail, $wgEmailAuthentication;
 
 		if ( !$wgEnableEmail ) {
@@ -2632,7 +2636,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Get the user's real name
 	 * @return string User's real name
 	 */
-	public function getRealName() {
+	public function getRealName(): string {
 		if ( !$this->isItemLoaded( 'realname' ) ) {
 			$this->load();
 		}
@@ -2644,7 +2648,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * Set the user's real name
 	 * @param string $str New real name
 	 */
-	public function setRealName( $str ) {
+	public function setRealName( string $str ) {
 		$this->load();
 		$this->mRealName = $str;
 	}
@@ -2821,7 +2825,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param IContextSource $context
 	 * @param array|null $options Assoc. array with options keys to check as keys.
 	 *   Defaults to $this->mOptions.
-	 * @return array The key => kind mapping data
+	 * @return string[] The key => kind mapping data
 	 * @deprecated since 1.35 Use UserOptionsManager::getOptionKinds instead
 	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
@@ -2964,7 +2968,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.35 Use UserGroupManager::getUserEffectiveGroups instead
 	 *
 	 * @param bool $recache Whether to avoid the cache
-	 * @return array Array of String internal group names
+	 * @return string[] internal group names
 	 */
 	public function getEffectiveGroups( $recache = false ) {
 		return MediaWikiServices::getInstance()
@@ -2980,7 +2984,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.35 Use UserGroupManager::getUserImplicitGroups instead.
 	 *
 	 * @param bool $recache Whether to avoid the cache
-	 * @return array Array of String internal group names
+	 * @return string[] internal group names
 	 */
 	public function getAutomaticGroups( $recache = false ) {
 		return MediaWikiServices::getInstance()
@@ -3057,22 +3061,21 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Alias of isLoggedIn() with a name that describes its actual functionality. UserIdentity has
-	 * only this new name and not the old isLoggedIn() variant.
+	 * Get whether the user is registered.
 	 *
 	 * @return bool True if user is registered on this wiki, i.e., has a user ID. False if user is
 	 *   anonymous or has no local account (which can happen when importing). This is equivalent to
 	 *   getId() != 0 and is provided for code readability.
 	 * @since 1.34
 	 */
-	public function isRegistered() {
+	public function isRegistered() : bool {
 		return $this->getId() != 0;
 	}
 
 	/**
 	 * Get whether the user is registered.
 	 *
-	 * @deprecated since 1.36 (backported in 1.35.2); use isRegistered() directly
+	 * @deprecated since 1.36; use isRegistered() directly
 	 * @return bool
 	 */
 	public function isLoggedIn() {
@@ -3113,7 +3116,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isSystemUser() {
 		$this->load();
-		if ( $this->mEmail || $this->mToken !== self::INVALID_TOKEN ||
+		if ( $this->getEmail() || $this->mToken !== self::INVALID_TOKEN ||
 			MediaWikiServices::getInstance()->getAuthManager()->userCanAuthenticate( $this->mName )
 		) {
 			return false;
@@ -3121,46 +3124,16 @@ class User implements IDBAccessObject, UserIdentity {
 		return true;
 	}
 
-	/**
-	 * Check if user is allowed to access a feature / make an action
-	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
-	 * ->getPermissionManager()->userHasAnyRights(...) instead
-	 *
-	 * @param string ...$permissions Permissions to test
-	 * @return bool True if user is allowed to perform *any* of the given actions
-	 */
-	public function isAllowedAny( ...$permissions ) {
-		return MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAnyRight( $this, ...$permissions );
+	public function isAllowedAny( ...$permissions ): bool {
+		return $this->getThisAsAuthority()->isAllowedAny( ...$permissions );
 	}
 
-	/**
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
-	 * ->getPermissionManager()->userHasAllRights(...) instead
-	 * @param string ...$permissions Permissions to test
-	 * @return bool True if the user is allowed to perform *all* of the given actions
-	 */
-	public function isAllowedAll( ...$permissions ) {
-		return MediaWikiServices::getInstance()
-			->getPermissionManager()
-			->userHasAllRights( $this, ...$permissions );
+	public function isAllowedAll( ...$permissions ): bool {
+		return $this->getThisAsAuthority()->isAllowedAll( ...$permissions );
 	}
 
-	/**
-	 * Internal mechanics of testing a permission
-	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()
-	 * ->getPermissionManager()->userHasRight(...) instead
-	 *
-	 * @param string $action
-	 *
-	 * @return bool
-	 */
-	public function isAllowed( $action = '' ) {
-		return MediaWikiServices::getInstance()->getPermissionManager()
-			->userHasRight( $this, $action );
+	public function isAllowed( string $permission ): bool {
+		return $this->getThisAsAuthority()->isAllowed( $permission );
 	}
 
 	/**
@@ -3205,9 +3178,7 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( $this->mRequest ) {
 			return $this->mRequest;
 		}
-
-		global $wgRequest;
-		return $wgRequest;
+		return RequestContext::getMain()->getRequest();
 	}
 
 	/**
@@ -3257,10 +3228,16 @@ class User implements IDBAccessObject, UserIdentity {
 		$checkRights = self::CHECK_USER_RIGHTS,
 		?string $expiry = null
 	) {
+		if ( !$title->isWatchable() ) {
+			return;
+		}
+
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
 			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			$store->addWatch( $this, $title->getSubjectPage(), $expiry );
-			$store->addWatch( $this, $title->getTalkPage(), $expiry );
+			if ( $title->canHaveTalkPage() ) {
+				$store->addWatch( $this, $title->getTalkPage(), $expiry );
+			}
 		}
 		$this->invalidateCache();
 	}
@@ -3273,10 +3250,16 @@ class User implements IDBAccessObject, UserIdentity {
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 */
 	public function removeWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		if ( !$title->isWatchable() ) {
+			return;
+		}
+
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
 			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
 			$store->removeWatch( $this, $title->getSubjectPage() );
-			$store->removeWatch( $this, $title->getTalkPage() );
+			if ( $title->canHaveTalkPage() ) {
+				$store->removeWatch( $this, $title->getTalkPage() );
+			}
 		}
 		$this->invalidateCache();
 	}
@@ -3286,38 +3269,24 @@ class User implements IDBAccessObject, UserIdentity {
 	 * If e-notif e-mails are on, they will receive notification mails on
 	 * the next change of the page if it's watched etc.
 	 *
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35, hard deprecated since 1.36
+	 * Use WatchlistNotificationManager::clearTitleUserNotification() instead.
 	 *
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 * @param Title &$title Title of the article to look at
 	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
 	 */
 	public function clearNotification( &$title, $oldid = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		MediaWikiServices::getInstance()
 			->getWatchlistNotificationManager()
 			->clearTitleUserNotifications( $this, $title, $oldid );
 	}
 
 	/**
-	 * Resets all of the given user's page-change notification timestamps.
-	 * If e-notif e-mails are on, they will receive notification mails on
-	 * the next change of any watched page.
-	 *
-	 * @deprecated since 1.35
-	 *
-	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
-	 */
-	public function clearAllNotifications() {
-		wfDeprecated( __METHOD__, '1.35' );
-		MediaWikiServices::getInstance()
-			->getWatchlistNotificationManager()
-			->clearAllUserNotifications( $this );
-	}
-
-	/**
 	 * Compute experienced level based on edit count and registration date.
 	 *
-	 * @return string 'newcomer', 'learner', or 'experienced'
+	 * @return string|false 'newcomer', 'learner', or 'experienced', false for anonymous users
 	 */
 	public function getExperienceLevel() {
 		global $wgLearnerEdits,
@@ -3334,6 +3303,11 @@ class User implements IDBAccessObject, UserIdentity {
 		$now = time();
 		$learnerRegistration = wfTimestamp( TS_MW, $now - $wgLearnerMemberSince * 86400 );
 		$experiencedRegistration = wfTimestamp( TS_MW, $now - $wgExperiencedUserMemberSince * 86400 );
+		if ( $registration === null ) {
+			// for some very old accounts, this information is missing in the database
+			// treat them as old enough to be 'experienced'
+			$registration = $experiencedRegistration;
+		}
 
 		if ( $editCount < $wgLearnerEdits ||
 		$registration > $learnerRegistration ) {
@@ -3352,8 +3326,8 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Persist this user's session (e.g. set cookies)
 	 *
-	 * @param WebRequest|null $request WebRequest object to use; $wgRequest will be used if null
-	 *        is passed.
+	 * @param WebRequest|null $request WebRequest object to use; the global request
+	 *        will be used if null is passed.
 	 * @param bool|null $secure Whether to force secure/insecure cookies or use default
 	 * @param bool $rememberMe Whether to add a Token cookie for elongated sessions
 	 */
@@ -3371,7 +3345,7 @@ class User implements IDBAccessObject, UserIdentity {
 
 		if ( !$session->getUser()->equals( $this ) ) {
 			if ( !$session->canSetUser() ) {
-				\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+				LoggerFactory::getInstance( 'session' )
 					->warning( __METHOD__ .
 						": Cannot save user \"$this\" to a user \"{$session->getUser()}\"'s immutable session"
 					);
@@ -3408,11 +3382,11 @@ class User implements IDBAccessObject, UserIdentity {
 	public function doLogout() {
 		$session = $this->getRequest()->getSession();
 		if ( !$session->canSetUser() ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+			LoggerFactory::getInstance( 'session' )
 				->warning( __METHOD__ . ": Cannot log out of an immutable session" );
 			$error = 'immutable';
 		} elseif ( !$session->getUser()->equals( $this ) ) {
-			\MediaWiki\Logger\LoggerFactory::getInstance( 'session' )
+			LoggerFactory::getInstance( 'session' )
 				->warning( __METHOD__ .
 					": Cannot log user \"$this\" out of a user \"{$session->getUser()}\"'s session"
 				);
@@ -3430,7 +3404,7 @@ class User implements IDBAccessObject, UserIdentity {
 			ScopedCallback::consume( $delay );
 			$error = false;
 		}
-		\MediaWiki\Logger\LoggerFactory::getInstance( 'authevents' )->info( 'Logout', [
+		LoggerFactory::getInstance( 'authevents' )->info( 'Logout', [
 			'event' => 'logout',
 			'successful' => $error === false,
 			'status' => $error ?: 'success',
@@ -3516,19 +3490,14 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param int $flags Bitfield of User:READ_* constants; useful for existence checks
 	 * @return int
 	 */
-	public function idForName( $flags = 0 ) {
+	public function idForName( $flags = self::READ_NORMAL ) {
 		$s = trim( $this->getName() );
 		if ( $s === '' ) {
 			return 0;
 		}
 
-		$db = ( ( $flags & self::READ_LATEST ) == self::READ_LATEST )
-			? wfGetDB( DB_MASTER )
-			: wfGetDB( DB_REPLICA );
-
-		$options = ( ( $flags & self::READ_LOCKING ) == self::READ_LOCKING )
-			? [ 'LOCK IN SHARE MODE' ]
-			: [];
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = wfGetDB( $index );
 
 		$id = $db->selectField( 'user',
 			'user_id', [ 'user_name' => $s ], __METHOD__, $options );
@@ -3613,7 +3582,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * in code along the lines of:
 	 *
 	 *   $user = User::newFromName( $name );
-	 *   if ( !$user->isLoggedIn() ) {
+	 *   if ( !$user->isRegistered() ) {
 	 *       $user->addToDatabase();
 	 *   }
 	 *   // do something with $user...
@@ -3623,7 +3592,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * calling sequence as far as possible.
 	 *
 	 * Note that if the user exists, this function will acquire a write lock,
-	 * so it is still advisable to make the call conditional on isLoggedIn(),
+	 * so it is still advisable to make the call conditional on isRegistered(),
 	 * and to commit the transaction after calling.
 	 *
 	 * @throws MWException
@@ -3714,7 +3683,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @return bool A block was spread
 	 */
 	public function spreadAnyEditBlock() {
-		if ( $this->isLoggedIn() && $this->getBlock() ) {
+		if ( $this->isRegistered() && $this->getBlock() ) {
 			return $this->spreadBlock();
 		}
 
@@ -3828,8 +3797,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * submission.
 	 *
 	 * @since 1.27
-	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
-	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
+	 * @param string|string[] $salt Optional function-specific data for hashing
+	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
 	 * @return MediaWiki\Session\Token The new edit token
 	 */
 	public function getEditTokenObject( $salt = '', $request = null ) {
@@ -3852,8 +3821,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * The $salt for 'edit' and 'csrf' tokens is the default (empty string).
 	 *
 	 * @since 1.19
-	 * @param string|array $salt Array of Strings Optional function-specific data for hashing
-	 * @param WebRequest|null $request WebRequest object to use or null to use $wgRequest
+	 * @param string|string[] $salt Optional function-specific data for hashing
+	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
 	 * @return string The new edit token
 	 */
 	public function getEditToken( $salt = '', $request = null ) {
@@ -3868,7 +3837,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request Object to use or null to use $wgRequest
+	 * @param WebRequest|null $request Object to use, or null to use the global request
 	 * @param int|null $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
 	 */
@@ -3882,7 +3851,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
-	 * @param WebRequest|null $request Object to use or null to use $wgRequest
+	 * @param WebRequest|null $request Object to use, or null to use the global request
 	 * @param int|null $maxage Fail tokens older than this, in seconds
 	 * @return bool Whether the token matches
 	 */
@@ -4085,9 +4054,9 @@ class User implements IDBAccessObject, UserIdentity {
 		if ( !$wgEnableEmail || !$wgEnableUserEmail || !$this->isAllowed( 'sendemail' ) ) {
 			return false;
 		}
-		$canSend = $this->isEmailConfirmed();
-		$this->getHookRunner()->onUserCanSendEmail( $this, $canSend );
-		return $canSend;
+		$hookErr = $this->isEmailConfirmed();
+		$this->getHookRunner()->onUserCanSendEmail( $this, $hookErr );
+		return $hookErr;
 	}
 
 	/**
@@ -4109,7 +4078,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *
 	 * @return bool
 	 */
-	public function isEmailConfirmed() {
+	public function isEmailConfirmed(): bool {
 		global $wgEmailAuthentication;
 		$this->load();
 		// Avoid PHP 7.1 warning of passing $this by reference
@@ -4119,7 +4088,7 @@ class User implements IDBAccessObject, UserIdentity {
 			if ( $this->isAnon() ) {
 				return false;
 			}
-			if ( !Sanitizer::validateEmail( $this->mEmail ) ) {
+			if ( !Sanitizer::validateEmail( $this->getEmail() ) ) {
 				return false;
 			}
 			if ( $wgEmailAuthentication && !$this->getEmailAuthenticationTimestamp() ) {
@@ -4161,10 +4130,13 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get the timestamp of the first edit
 	 *
+	 * @deprecated since 1.36, use a UserEditTracker instead
+	 *
 	 * @return string|bool Timestamp of first edit, or false for
 	 *  non-existent/anonymous user accounts.
 	 */
 	public function getFirstEditTimestamp() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getUserEditTracker()
 			->getFirstEditTimestamp( $this );
@@ -4173,11 +4145,14 @@ class User implements IDBAccessObject, UserIdentity {
 	/**
 	 * Get the timestamp of the latest edit
 	 *
+	 * @deprecated since 1.36, use a UserEditTracker instead
+	 *
 	 * @since 1.33
 	 * @return string|bool Timestamp of first edit, or false for
 	 *  non-existent/anonymous user accounts.
 	 */
 	public function getLatestEditTimestamp() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getUserEditTracker()
 			->getLatestEditTimestamp( $this );
@@ -4189,8 +4164,8 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
 	 *             ->getGroupPermissions() instead
 	 *
-	 * @param array $groups Array of Strings List of internal group names
-	 * @return array Array of Strings List of permission key names for given groups combined
+	 * @param string[] $groups internal group names
+	 * @return string[] permission key names for given groups combined
 	 */
 	public static function getGroupPermissions( $groups ) {
 		return MediaWikiServices::getInstance()->getPermissionManager()->getGroupPermissions( $groups );
@@ -4203,7 +4178,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 *             ->getGroupsWithPermission() instead
 	 *
 	 * @param string $role Role to check
-	 * @return array Array of Strings List of internal group names with the given permission
+	 * @return string[] internal group names with the given permission
 	 */
 	public static function getGroupsWithPermission( $role ) {
 		return MediaWikiServices::getInstance()->getPermissionManager()->getGroupsWithPermission( $role );
@@ -4230,33 +4205,11 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Check if all users may be assumed to have the given permission
-	 *
-	 * We generally assume so if the right is granted to '*' and isn't revoked
-	 * on any group. It doesn't attempt to take grants or other extension
-	 * limitations on rights into account in the general case, though, as that
-	 * would require it to always return false and defeat the purpose.
-	 * Specifically, session-based rights restrictions (such as OAuth or bot
-	 * passwords) are applied based on the current session.
-	 *
-	 * @deprecated since 1.34, use PermissionManager::isEveryoneAllowed() instead
-	 *
-	 * @param string $right Right to check
-	 *
-	 * @return bool
-	 * @since 1.22
-	 */
-	public static function isEveryoneAllowed( $right ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getPermissionManager()->isEveryoneAllowed( $right );
-	}
-
-	/**
 	 * Return the set of defined explicit groups.
 	 * The implicit groups (by default *, 'user' and 'autoconfirmed')
 	 * are not included, as they are defined automatically, not in the database.
 	 * @deprecated since 1.35, use UserGroupManager::listAllGroups instead
-	 * @return array Array of internal group names
+	 * @return string[] internal group names
 	 */
 	public static function getAllGroups() {
 		return MediaWikiServices::getInstance()
@@ -4265,21 +4218,8 @@ class User implements IDBAccessObject, UserIdentity {
 	}
 
 	/**
-	 * Get a list of all available permissions.
-	 *
-	 * @deprecated since 1.34, use PermissionManager::getAllPermissions() instead
-	 *
-	 * @return string[] Array of permission names
-	 */
-	public static function getAllRights() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return MediaWikiServices::getInstance()->getPermissionManager()->getAllPermissions();
-	}
-
-	/**
-	 * Get a list of implicit groups
 	 * @deprecated since 1.35, use UserGroupManager::listAllImplicitGroups() instead
-	 * @return array Array of Strings Array of internal group names
+	 * @return string[] internal group names
 	 */
 	public static function getImplicitGroups() {
 		return MediaWikiServices::getInstance()
@@ -4461,35 +4401,11 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @since 1.29
 	 * @param string $grant Grant to query
 	 * @return string Localized name of the grant
+	 * @deprecated since 1.36, use MWGrants::grantName instead
 	 */
 	public static function getGrantName( $grant ) {
-		$key = "grant-$grant";
-		$msg = wfMessage( $key );
-		return $msg->isDisabled() ? $grant : $msg->text();
-	}
-
-	/**
-	 * Add a newuser log entry for this user.
-	 * Before 1.19 the return value was always true.
-	 *
-	 * @deprecated since 1.27, AuthManager handles logging
-	 * @param string|bool $action Account creation type.
-	 *   - String, one of the following values:
-	 *     - 'create' for an anonymous user creating an account for himself.
-	 *       This will force the action's performer to be the created user itself,
-	 *       no matter the value of $wgUser
-	 *     - 'create2' for a logged in user creating an account for someone else
-	 *     - 'byemail' when the created user will receive its password by e-mail
-	 *     - 'autocreate' when the user is automatically created (such as by CentralAuth).
-	 *   - Boolean means whether the account was created by e-mail (deprecated):
-	 *     - true will be converted to 'byemail'
-	 *     - false will be converted to 'create' if this object is the same as
-	 *       $wgUser and to 'create2' otherwise
-	 * @param string $reason User supplied reason
-	 * @return bool true
-	 */
-	public function addNewUserLogEntry( $action = false, $reason = '' ) {
-		return true; // disabled
+		wfDeprecated( __METHOD__, '1.36' );
+		return MWGrants::grantName( $grant );
 	}
 
 	/**
@@ -4579,7 +4495,7 @@ class User implements IDBAccessObject, UserIdentity {
 	 * @param UserIdentity $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user ) {
+	public function equals( UserIdentity $user ) : bool {
 		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
 	}
@@ -4591,5 +4507,94 @@ class User implements IDBAccessObject, UserIdentity {
 	 */
 	public function isAllowUsertalk() {
 		return $this->mAllowUsertalk;
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @return UserIdentity
+	 */
+	public function getUser(): UserIdentity {
+		return $this;
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @param string $action
+	 * @param PageIdentity $target
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function probablyCan( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->probablyCan( $action, $target, $status );
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @param string $action
+	 * @param PageIdentity $target
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function definitelyCan( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->definitelyCan( $action, $target, $status );
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @param string $action
+	 * @param PageIdentity $target
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function authorizeRead( string $action, PageIdentity $target, PermissionStatus $status = null
+	): bool {
+		return $this->getThisAsAuthority()->authorizeRead( $action, $target, $status );
+	}
+
+	/**
+	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @param string $action
+	 * @param PageIdentity $target
+	 * @param PermissionStatus|null $status
+	 * @return bool
+	 */
+	public function authorizeWrite( string $action, PageIdentity $target, PermissionStatus $status = null ): bool {
+		return $this->getThisAsAuthority()->authorizeWrite( $action, $target, $status );
+	}
+
+	/**
+	 * Returns the Authority of this User if it's the main request context user.
+	 * This is intended to exist only for the period of transition to Authority.
+	 * @return Authority
+	 */
+	private function getThisAsAuthority(): Authority {
+		if ( !$this->mThisAsAuthority ) {
+			// TODO: For users that are not User::isGlobalSessionUser,
+			// creating a UserAuthority here is incorrect, since it depends
+			// on global WebRequest, but that is what we've used to do before Authority.
+			// When PermissionManager is refactored into Authority, we need
+			// to provide base implementation, based on just user groups/rights,
+			// and use it here.
+			$this->mThisAsAuthority = new UserAuthority(
+				$this,
+				MediaWikiServices::getInstance()->getPermissionManager()
+			);
+		}
+		return $this->mThisAsAuthority;
+	}
+
+	/**
+	 * Check whether this is the global session user.
+	 * @return bool
+	 */
+	private function isGlobalSessionUser(): bool {
+		// The session user is set up towards the end of Setup.php. Until then,
+		// assume it's a logged-out user.
+		$sessionUser = RequestContext::getMain()->getUser();
+		$globalUserName = $sessionUser->isSafeToLoad()
+			? $sessionUser->getName()
+			: IPUtils::sanitizeIP( $sessionUser->getRequest()->getIP() );
+
+		return $this->getName() === $globalUserName;
 	}
 }

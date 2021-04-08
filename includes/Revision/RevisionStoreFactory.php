@@ -29,9 +29,12 @@ use ActorMigration;
 use CommentStore;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStoreFactory;
+use MediaWiki\User\ActorStoreFactory;
 use Psr\Log\LoggerInterface;
+use TitleFactory;
 use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\ILBFactory;
@@ -63,7 +66,8 @@ class RevisionStoreFactory {
 	private $commentStore;
 	/** @var ActorMigration */
 	private $actorMigration;
-
+	/** @var ActorStoreFactory */
+	private $actorStoreFactory;
 	/** @var NameTableStoreFactory */
 	private $nameTables;
 
@@ -72,6 +76,12 @@ class RevisionStoreFactory {
 
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
+
+	/** @var PageStoreFactory */
+	private $pageStoreFactory;
+
+	/** @var TitleFactory */
+	private $titleFactory;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -84,8 +94,11 @@ class RevisionStoreFactory {
 	 * @param WANObjectCache $cache
 	 * @param CommentStore $commentStore
 	 * @param ActorMigration $actorMigration
+	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param LoggerInterface $logger
 	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param PageStoreFactory $pageStoreFactory
+	 * @param TitleFactory $titleFactory
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
@@ -96,8 +109,11 @@ class RevisionStoreFactory {
 		WANObjectCache $cache,
 		CommentStore $commentStore,
 		ActorMigration $actorMigration,
+		ActorStoreFactory $actorStoreFactory,
 		LoggerInterface $logger,
 		IContentHandlerFactory $contentHandlerFactory,
+		PageStoreFactory $pageStoreFactory,
+		TitleFactory $titleFactory,
 		HookContainer $hookContainer
 	) {
 		$this->dbLoadBalancerFactory = $dbLoadBalancerFactory;
@@ -107,8 +123,11 @@ class RevisionStoreFactory {
 		$this->cache = $cache;
 		$this->commentStore = $commentStore;
 		$this->actorMigration = $actorMigration;
+		$this->actorStoreFactory = $actorStoreFactory;
 		$this->logger = $logger;
 		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->pageStoreFactory = $pageStoreFactory;
+		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
 	}
 
@@ -131,7 +150,10 @@ class RevisionStoreFactory {
 			$this->nameTables->getSlotRoles( $dbDomain ),
 			$this->slotRoleRegistry,
 			$this->actorMigration,
+			$this->actorStoreFactory->getActorStore( $dbDomain ),
 			$this->contentHandlerFactory,
+			$this->pageStoreFactory->getPageStore( $dbDomain ),
+			$this->titleFactory,
 			$this->hookContainer,
 			$dbDomain
 		);

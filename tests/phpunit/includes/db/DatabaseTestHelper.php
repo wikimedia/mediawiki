@@ -12,13 +12,13 @@ use Wikimedia\Rdbms\TransactionProfiler;
 class DatabaseTestHelper extends Database {
 
 	/**
-	 * __CLASS__ of the test suite,
+	 * @var string[] __CLASS__ of the test suite,
 	 * used to determine, if the function name is passed every time to query()
 	 */
 	protected $testName = [];
 
 	/**
-	 * Array of lastSqls passed to query(),
+	 * @var string[] Array of lastSqls passed to query(),
 	 * This is an array since some methods in Database can do more than one
 	 * query. Cleared when calling getLastSqls().
 	 */
@@ -33,13 +33,13 @@ class DatabaseTestHelper extends Database {
 	protected $lastError = null;
 
 	/**
-	 * Array of tables to be considered as existing by tableExist()
+	 * @var string[] Array of tables to be considered as existing by tableExist()
 	 * Use setExistingTables() to alter.
 	 */
 	protected $tablesExists;
 
 	/**
-	 * Value to return from unionSupportsOrderAndLimit()
+	 * @var bool Value to return from unionSupportsOrderAndLimit()
 	 */
 	protected $unionSupportsOrderAndLimit = true;
 
@@ -65,10 +65,10 @@ class DatabaseTestHelper extends Database {
 			'connLogger' => new NullLogger(),
 			'queryLogger' => new NullLogger(),
 			'replLogger' => new NullLogger(),
-			'errorLogger' => function ( Exception $e ) {
+			'errorLogger' => static function ( Exception $e ) {
 				wfWarn( get_class( $e ) . ": {$e->getMessage()}" );
 			},
-			'deprecationLogger' => function ( $msg ) {
+			'deprecationLogger' => static function ( $msg ) {
 				wfWarn( $msg );
 			}
 		] );
@@ -174,6 +174,7 @@ class DatabaseTestHelper extends Database {
 	}
 
 	public function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
+		$this->server = 'localhost';
 		$this->conn = (object)[ 'test' ];
 
 		return true;

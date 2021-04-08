@@ -62,24 +62,42 @@ class PrevNextNavigationRenderer {
 		$atend = false
 	) {
 		# Make 'previous' link
-		$prev = $this->messageLocalizer->msg( 'prevn' )->title( $title )
-			->numParams( $limit )->text();
+		$prev = $this->messageLocalizer->msg( 'prevn' )
+			->title( $title )
+			->numParams( $limit )
+			->text();
 
 		if ( $offset > 0 ) {
-			$plink = $this->numLink( $title, max( $offset - $limit, 0 ), $limit, $query,
-				$prev, 'prevn-title', 'mw-prevlink' );
+			$plink = $this->numLink(
+				$title,
+				max( $offset - $limit, 0 ),
+				$limit,
+				$query,
+				$prev,
+				'prevn-title',
+				'mw-prevlink'
+			);
 		} else {
 			$plink = htmlspecialchars( $prev );
 		}
 
 		# Make 'next' link
-		$next = $this->messageLocalizer->msg( 'nextn' )->title( $title )
-			->numParams( $limit )->text();
+		$next = $this->messageLocalizer->msg( 'nextn' )
+			->title( $title )
+			->numParams( $limit )
+			->text();
 		if ( $atend ) {
 			$nlink = htmlspecialchars( $next );
 		} else {
-			$nlink = $this->numLink( $title, $offset + $limit, $limit,
-				$query, $next, 'nextn-title', 'mw-nextlink' );
+			$nlink = $this->numLink(
+				$title,
+				$offset + $limit,
+				$limit,
+				$query,
+				$next,
+				'nextn-title',
+				'mw-nextlink'
+			);
 		}
 
 		# Make links to set number of items per page
@@ -88,12 +106,21 @@ class PrevNextNavigationRenderer {
 		// @fixme MessageLocalizer doesn't have a getLanguage() method!
 		$lang = $this->messageLocalizer->getLanguage();
 		foreach ( [ 20, 50, 100, 250, 500 ] as $num ) {
-			$numLinks[] = $this->numLink( $title, $offset, $num, $query,
-				$lang->formatNum( $num ), 'shown-title', 'mw-numlink' );
+			$numLinks[] = $this->numLink(
+				$title,
+				$offset,
+				$num,
+				$query,
+				$lang->formatNum( $num ),
+				'shown-title',
+				'mw-numlink'
+			);
 		}
 
-		return $this->messageLocalizer->msg( 'viewprevnext' )->title( $title
-		)->rawParams( $plink, $nlink, $lang->pipeList( $numLinks ) )->escaped();
+		return $this->messageLocalizer->msg( 'viewprevnext' )
+			->title( $title )
+			->rawParams( $plink, $nlink, $lang->pipeList( $numLinks ) )
+			->escaped();
 	}
 
 	/**
@@ -118,10 +145,20 @@ class PrevNextNavigationRenderer {
 		$class
 	) {
 		$query = [ 'limit' => $limit, 'offset' => $offset ] + $query;
-		$tooltip = $this->messageLocalizer->msg( $tooltipMsg )->title( $title )
-			->numParams( $limit )->text();
-		return Html::element( 'a', [ 'href' => $title->getLocalURL( $query ),
-			'title' => $tooltip, 'class' => $class ], $link );
+		$tooltip = $this->messageLocalizer->msg( $tooltipMsg )
+			->title( $title )
+			->numParams( $limit )
+			->text();
+
+		return Html::element(
+			'a',
+			[
+				'href' => $title->getLocalURL( $query ),
+				'title' => $tooltip,
+				'class' => $class,
+			],
+			$link
+		);
 	}
 
 }

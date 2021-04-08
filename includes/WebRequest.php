@@ -49,18 +49,19 @@ class WebRequest {
 	/**
 	 * The parameters from $_GET. The parameters from the path router are
 	 * added by interpolateTitle() during Setup.php.
-	 * @var array
+	 * @var string[]
 	 */
 	protected $queryAndPathParams;
 
 	/**
 	 * The parameters from $_GET only.
+	 * @var string[]
 	 */
 	protected $queryParams;
 
 	/**
 	 * Lazy-initialized request headers indexed by upper-case header name
-	 * @var array
+	 * @var string[]
 	 */
 	protected $headers = [];
 
@@ -135,17 +136,18 @@ class WebRequest {
 	 * If the REQUEST_URI is not provided we'll fall back on the PATH_INFO
 	 * provided by the server if any and use that to set a 'title' parameter.
 	 *
-	 * @internal This has many odd special cases and so should only be used by
-	 *   interpolateTitle() for index.php. Instead try getRequestPathSuffix().
+	 * This internal method handles many odd cases and is tailored specifically for
+	 * used by WebRequest::interpolateTitle, for index.php requests.
+	 * Consider using WebRequest::getRequestPathSuffix for other path-related use cases.
 	 *
 	 * @param string $want If this is not 'all', then the function
 	 * will return an empty array if it determines that the URL is
 	 * inside a rewrite path.
 	 *
-	 * @return array Any query arguments found in path matches.
+	 * @return string[] Any query arguments found in path matches.
 	 * @throws FatalError If invalid routes are configured (T48998)
 	 */
-	public static function getPathInfo( $want = 'all' ) {
+	protected static function getPathInfo( $want = 'all' ) {
 		// PATH_INFO is mangled due to https://bugs.php.net/bug.php?id=31892
 		// And also by Apache 2.x, double slashes are converted to single slashes.
 		// So we will use REQUEST_URI if possible.
@@ -317,22 +319,21 @@ class WebRequest {
 	}
 
 	/**
-	 * Get the unique request ID.
-	 * This is either the value of the UNIQUE_ID envvar (if present) or a
-	 * randomly-generated 24-character string.
+	 * Get the current request ID.
+	 *
+	 * This is usually based on the `X-Request-Id` header, or the `UNIQUE_ID`
+	 * environment variable, falling back to (process cached) randomly-generated string.
 	 *
 	 * @return string
 	 * @since 1.27
 	 */
 	public static function getRequestId() {
-		// This method is called from various error handlers and should be kept simple.
-
+		// This method is called from various error handlers and MUST be kept simple and stateless.
 		if ( !self::$reqId ) {
 			global $wgAllowExternalReqID;
-			$id = $wgAllowExternalReqID
-				? RequestContext::getMain()->getRequest()->getHeader( 'X-Request-Id' )
-				: null;
-			if ( !$id ) {
+			if ( $wgAllowExternalReqID ) {
+				$id = $_SERVER['HTTP_X_REQUEST_ID'] ?? $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
+			} else {
 				$id = $_SERVER['UNIQUE_ID'] ?? wfRandomString( 24 );
 			}
 			self::$reqId = $id;
@@ -388,7 +389,7 @@ class WebRequest {
 	 *
 	 * @param string $path The URL path given from the client
 	 * @param array $bases One or more URLs, optionally with $1 at the end
-	 * @param string|bool $key If provided, the matching key in $bases will be
+	 * @param string|false $key If provided, the matching key in $bases will be
 	 *    passed on as the value of this URL parameter
 	 * @return array Array of URL variables to interpolate; empty if no match
 	 */
@@ -676,15 +677,14 @@ class WebRequest {
 	}
 
 	/**
-	 * Extracts the given named values into an array.
-	 * If no arguments are given, returns all input values.
+	 * Extracts the (given) named values into an array.
 	 * No transformation is performed on the values.
 	 *
+	 * @param string ...$names If no arguments are given, returns all input values
 	 * @return array
 	 */
-	public function getValues() {
-		$names = func_get_args();
-		if ( count( $names ) == 0 ) {
+	public function getValues( ...$names ) {
+		if ( $names === [] ) {
 			$names = array_keys( $this->data );
 		}
 
@@ -713,7 +713,7 @@ class WebRequest {
 	 * No transformation is performed on the values.
 	 *
 	 * @codeCoverageIgnore
-	 * @return array
+	 * @return string[]
 	 */
 	public function getQueryValues() {
 		return $this->queryAndPathParams;
@@ -726,7 +726,7 @@ class WebRequest {
 	 * values.
 	 *
 	 * @since 1.34
-	 * @return array
+	 * @return string[]
 	 */
 	public function getQueryValuesOnly() {
 		return $this->queryParams;
@@ -738,7 +738,7 @@ class WebRequest {
 	 *
 	 * @since 1.32
 	 * @codeCoverageIgnore
-	 * @return array
+	 * @return string[]
 	 */
 	public function getPostValues() {
 		return $_POST;
@@ -999,22 +999,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Same as ::getLimitOffsetForUser, but without a user parameter, instead using $wgUser
-	 *
-	 * @deprecated since 1.35, use ::getLimitOffsetForUser instead
-	 *
-	 * @param int $deflimit Limit to use if no input and the user hasn't set the option.
-	 * @param string $optionname To specify an option other than rclimit to pull from.
-	 * @return int[] First element is limit, second is offset
-	 */
-	public function getLimitOffset( $deflimit = 50, $optionname = 'rclimit' ) {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		global $wgUser;
-		return $this->getLimitOffsetForUser( $wgUser, $deflimit, $optionname );
-	}
-
-	/**
 	 * Check for limit and offset parameters on the input, and return sensible
 	 * defaults if not given. The limit must be positive and is capped at 5000.
 	 * Offset must be positive but is not capped.
@@ -1124,7 +1108,7 @@ class WebRequest {
 	/**
 	 * Get an array containing all request headers
 	 *
-	 * @return array Mapping header name to its value
+	 * @return string[] Mapping header name to its value
 	 */
 	public function getAllHeaders() {
 		$this->initHeaders();
@@ -1139,7 +1123,7 @@ class WebRequest {
 	 *   WebRequest::GETHEADER_LIST  Treat the header as a comma-separated list
 	 *                               of values, as described in RFC 2616 § 4.2.
 	 *                               (since 1.26).
-	 * @return string|array|bool False if header is unset; otherwise the
+	 * @return string|string[]|false False if header is unset; otherwise the
 	 *  header value(s) as either a string (the default) or an array, if
 	 *  WebRequest::GETHEADER_LIST flag was set.
 	 */
@@ -1168,8 +1152,6 @@ class WebRequest {
 	}
 
 	/**
-	 * Set session data
-	 *
 	 * @note Prefer $this->getSession() instead if making multiple calls.
 	 * @param string $key Name of key in the session
 	 * @param mixed $data
@@ -1218,7 +1200,17 @@ class WebRequest {
 
 		// Break up string into pieces (languages and q factors)
 		if ( !preg_match_all(
-			'/([a-z]{1,8}(?:-[a-z]{1,8})*|\*)\s*(?:;\s*q\s*=\s*(1(?:\.0{0,3})?|0(?:\.[0-9]{0,3})?)?)?/',
+			'/
+				# a language code or a star is required
+				([a-z]{1,8}(?:-[a-z]{1,8})*|\*)
+				# from here everything is optional
+				\s*
+				(?:
+					# this accepts only numbers in the range ;q=0.000 to ;q=1.000
+					;\s*q\s*=\s*
+					(1(?:\.0{0,3})?|0(?:\.\d{0,3})?)?
+				)?
+			/x',
 			$acceptLang,
 			$matches,
 			PREG_SET_ORDER
@@ -1231,8 +1223,8 @@ class WebRequest {
 		foreach ( $matches as $match ) {
 			$languageCode = $match[1];
 			// When not present, the default value is 1
-			$qValue = $match[2] ?? 1;
-			if ( $qValue > 0 ) {
+			$qValue = (float)( $match[2] ?? 1.0 );
+			if ( $qValue ) {
 				$langs[$languageCode] = $qValue;
 			}
 		}
@@ -1303,7 +1295,11 @@ class WebRequest {
 			# IP addresses over proxy servers controlled by this site (more sensible).
 			# Note that some XFF values might be "unknown" with Squid/Varnish.
 			foreach ( $ipchain as $i => $curIP ) {
-				$curIP = IPUtils::sanitizeIP( IPUtils::canonicalize( $curIP ) );
+				$curIP = IPUtils::sanitizeIP(
+					IPUtils::canonicalize(
+						self::canonicalizeIPv6LoopbackAddress( $curIP )
+					)
+				);
 				if ( !$curIP || !isset( $ipchain[$i + 1] ) || $ipchain[$i + 1] === 'unknown'
 					|| !$proxyLookup->isTrustedProxy( $curIP )
 				) {
@@ -1314,14 +1310,19 @@ class WebRequest {
 					$wgUsePrivateIPs ||
 					$proxyLookup->isConfiguredProxy( $curIP ) // T50919; treat IP as sane
 				) {
+					$nextIP = $ipchain[$i + 1];
+
 					// Follow the next IP according to the proxy
-					$nextIP = IPUtils::canonicalize( $ipchain[$i + 1] );
+					$nextIP = IPUtils::canonicalize(
+						self::canonicalizeIPv6LoopbackAddress( $nextIP )
+					);
 					if ( !$nextIP && $isConfigured ) {
 						// We have not yet made it past CDN/proxy servers of this site,
 						// so either they are misconfigured or there is some IP spoofing.
 						throw new MWException( "Invalid IP given in XFF '$forwardedFor'." );
 					}
 					$ip = $nextIP;
+
 					// keep traversing the chain
 					continue;
 				}
@@ -1337,6 +1338,23 @@ class WebRequest {
 		}
 
 		$this->ip = $ip;
+		return $ip;
+	}
+
+	/**
+	 * Converts ::1 (IPv6 loopback address) to 127.0.0.1 (IPv4 loopback address);
+	 * assists in matching trusted proxies.
+	 *
+	 * @param string $ip
+	 * @return string either '127.0.0.1' or $ip
+	 * @since 1.36
+	 */
+	public static function canonicalizeIPv6LoopbackAddress( $ip ) {
+		// Code moved from IPUtils library. See T248237#6614927
+		$m = [];
+		if ( preg_match( '/^0*' . IPUtils::RE_IPV6_GAP . '1$/', $ip, $m ) ) {
+			return '127.0.0.1';
+		}
 		return $ip;
 	}
 

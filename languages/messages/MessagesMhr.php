@@ -66,6 +66,7 @@ $namespaceAliases = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Blankpage'                 => [ 'Пуста_лаштык' ],
 	'BrokenRedirects'           => [ 'Кӱрылтшӧ_вес_вере_колтымаш-влак' ],
@@ -80,14 +81,15 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'Эскерымаш_лӱмер' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'img_right'                 => [ '1', 'справа', 'пурла', 'right' ],
-	'img_left'                  => [ '1', 'шола', 'слева', 'left' ],
 	'img_border'                => [ '1', 'чек', 'граница', 'border' ],
+	'img_bottom'                => [ '1', 'ӱлычын', 'снизу', 'bottom' ],
+	'img_left'                  => [ '1', 'шола', 'слева', 'left' ],
+	'img_middle'                => [ '1', 'покшелне', 'посередине', 'middle' ],
+	'img_right'                 => [ '1', 'справа', 'пурла', 'right' ],
 	'img_sub'                   => [ '1', 'йымалне', 'под', 'sub' ],
 	'img_super'                 => [ '1', 'ӱмбалне', 'над', 'super', 'sup' ],
 	'img_top'                   => [ '1', 'кӱшычын', 'сверху', 'top' ],
-	'img_middle'                => [ '1', 'покшелне', 'посередине', 'middle' ],
-	'img_bottom'                => [ '1', 'ӱлычын', 'снизу', 'bottom' ],
 	'sitename'                  => [ '1', 'САЙТЛӰМ', 'НАЗВАНИЕ_САЙТА', 'SITENAME' ],
 ];

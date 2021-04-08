@@ -11,6 +11,7 @@ use Wikimedia\TestingAccessWrapper;
 class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 
 	/**
+	 * @param array|null $options
 	 * @return HttpRequestFactory
 	 */
 	private function newFactory( $options = null ) {
@@ -29,6 +30,9 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param MWHttpRequest $req
+	 * @param string $expectedUrl
+	 * @param array $expectedOptions
 	 * @return HttpRequestFactory
 	 */
 	private function newFactoryWithFakeRequest(
@@ -61,6 +65,7 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param Status|string $result
 	 * @return MWHttpRequest
 	 */
 	private function newFakeRequest( $result ) {
@@ -231,4 +236,24 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected['timeout'], $multi->reqTimeout );
 	}
 
+	/** @dataProvider provideCreateTimeouts */
+	public function testCreateGuzzleClient( $config, $createOptions, $expected ) {
+		$factory = $this->newFactory( $config );
+		$client = $factory->createGuzzleClient(
+			[
+				'timeout' => $createOptions['timeout'] ?? null,
+				'connect_timeout' => $createOptions['connectTimeout'] ?? null,
+				'maxTimeout' => $createOptions['maxTimeout'] ?? null,
+				'maxConnectTimeout' => $createOptions['maxConnectTimeout'] ?? null
+			]
+		);
+		$this->assertEquals(
+			$expected['connectTimeout'],
+			$client->getConfig( 'connect_timeout' )
+		);
+		$this->assertEquals(
+			$expected['timeout'],
+			$client->getConfig( 'timeout' )
+		);
+	}
 }

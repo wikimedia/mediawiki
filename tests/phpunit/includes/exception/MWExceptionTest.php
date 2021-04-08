@@ -20,11 +20,11 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideTextUseOutputPage
 	 * @covers MWException::useOutputPage
 	 */
-	public function testUseOutputPage( $expected, $langObj, $wgFullyInitialised, $wgOut ) {
+	public function testUseOutputPage( $expected, $langObj, $fullyInitialised, $outputPage ) {
 		$this->setMwGlobals( [
 			'wgLang' => $langObj,
-			'wgFullyInitialised' => $wgFullyInitialised,
-			'wgOut' => $wgOut,
+			'wgFullyInitialised' => $fullyInitialised,
+			'wgOut' => $outputPage,
 		] );
 
 		$e = new MWException();
@@ -69,9 +69,9 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIsCommandLine
 	 * @covers MWException::isCommandLine
 	 */
-	public function testisCommandLine( $expected, $wgCommandLineMode ) {
+	public function testisCommandLine( $expected, $commandLineMode ) {
 		$this->setMwGlobals( [
-			'wgCommandLineMode' => $wgCommandLineMode,
+			'wgCommandLineMode' => $commandLineMode,
 		] );
 		$e = new MWException();
 		$this->assertEquals( $expected, $e->isCommandLine() );
@@ -94,7 +94,7 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 		$json = MWExceptionHandler::jsonSerializeException(
 			new $exception_class()
 		);
-		$this->assertNotEquals( false, $json,
+		$this->assertIsString( $json,
 			"The $exception_class exception should be JSON serializable, got false." );
 	}
 
@@ -103,80 +103,6 @@ class MWExceptionTest extends MediaWikiIntegrationTestCase {
 			[ Exception::class ],
 			[ MWException::class ],
 		];
-	}
-
-	/**
-	 * Lame JSON schema validation.
-	 *
-	 * @covers MWExceptionHandler::jsonSerializeException
-	 *
-	 * @param string $expectedKeyType Type expected as returned by gettype()
-	 * @param string $exClass An exception class (ie: Exception, MWException)
-	 * @param string $key Name of the key to validate in the serialized JSON
-	 * @dataProvider provideJsonSerializedKeys
-	 */
-	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
-		# Make sure we log a backtrace:
-		$this->setMwGlobals( [ 'wgLogExceptionBacktrace' => true ] );
-
-		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new $exClass() )
-		);
-		$this->assertObjectHasAttribute( $key, $json,
-			"JSON serialized exception is missing key '$key'"
-		);
-		$this->assertSame( $expectedKeyType, gettype( $json->$key ),
-			"JSON serialized key '$key' has type " . gettype( $json->$key )
-			. " (expected: $expectedKeyType)."
-		);
-	}
-
-	/**
-	 * Returns test cases: exception class, key name, gettype()
-	 */
-	public static function provideJsonSerializedKeys() {
-		$testCases = [];
-		foreach ( [ Exception::class, MWException::class ] as $exClass ) {
-			$exTests = [
-				[ 'string', $exClass, 'id' ],
-				[ 'string', $exClass, 'file' ],
-				[ 'integer', $exClass, 'line' ],
-				[ 'string', $exClass, 'message' ],
-				[ 'NULL', $exClass, 'url' ],
-				# Backtrace only enabled with wgLogExceptionBacktrace = true
-				[ 'array', $exClass, 'backtrace' ],
-			];
-			$testCases = array_merge( $testCases, $exTests );
-		}
-		return $testCases;
-	}
-
-	/**
-	 * Given wgLogExceptionBacktrace is true
-	 * then serialized exception SHOULD have a backtrace
-	 *
-	 * @covers MWExceptionHandler::jsonSerializeException
-	 */
-	public function testJsonserializeexceptionBacktracingEnabled() {
-		$this->setMwGlobals( [ 'wgLogExceptionBacktrace' => true ] );
-		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new Exception() )
-		);
-		$this->assertObjectHasAttribute( 'backtrace', $json );
-	}
-
-	/**
-	 * Given wgLogExceptionBacktrace is false
-	 * then serialized exception SHOULD NOT have a backtrace
-	 *
-	 * @covers MWExceptionHandler::jsonSerializeException
-	 */
-	public function testJsonserializeexceptionBacktracingDisabled() {
-		$this->setMwGlobals( [ 'wgLogExceptionBacktrace' => false ] );
-		$json = json_decode(
-			MWExceptionHandler::jsonSerializeException( new Exception() )
-		);
-		$this->assertObjectNotHasAttribute( 'backtrace', $json );
 	}
 
 }

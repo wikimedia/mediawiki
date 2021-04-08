@@ -20,17 +20,21 @@ class ImportTest extends MediaWikiLangTestCase {
 	 */
 	public function testUnknownXMLTags( $xml, $text, $title ) {
 		$source = new ImportStringSource( $xml );
+		$services = MediaWikiServices::getInstance();
 
 		$importer = new WikiImporter(
 			$source,
-			MediaWikiServices::getInstance()->getMainConfig()
+			$services->getMainConfig()
 		);
 
 		$importer->doImport();
 		$title = Title::newFromText( $title );
 		$this->assertTrue( $title->exists() );
 
-		$this->assertEquals( WikiPage::factory( $title )->getContent()->getText(), $text );
+		$this->assertEquals(
+			$services->getWikiPageFactory()->newFromTitle( $title )->getContent()->getText(),
+			$text
+		);
 	}
 
 	public function getUnknownTagsXML() {
@@ -81,7 +85,7 @@ EOF
 		$source = new ImportStringSource( $xml );
 
 		$redirect = null;
-		$callback = function ( Title $title, ForeignTitle $foreignTitle, $revCount,
+		$callback = static function ( Title $title, ForeignTitle $foreignTitle, $revCount,
 			$sRevCount, $pageInfo ) use ( &$redirect ) {
 			if ( array_key_exists( 'redirect', $pageInfo ) ) {
 				$redirect = $pageInfo['redirect'];
@@ -167,7 +171,7 @@ EOF
 		$source = new ImportStringSource( $xml );
 
 		$importNamespaces = null;
-		$callback = function ( array $siteinfo, $innerImporter ) use ( &$importNamespaces ) {
+		$callback = static function ( array $siteinfo, $innerImporter ) use ( &$importNamespaces ) {
 			$importNamespaces = $siteinfo['_namespaces'];
 		};
 

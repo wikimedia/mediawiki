@@ -26,7 +26,6 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ::import
-	 * @param $expectedTags
 	 * @dataProvider provideTestCases
 	 */
 	public function testImport( $expectedTags ) {
@@ -44,7 +43,8 @@ class ImportableOldRevisionImporterTest extends MediaWikiIntegrationTestCase {
 			new NullLogger(),
 			$services->getDBLoadBalancer(),
 			$services->getRevisionStore(),
-			$services->getSlotRoleRegistry()
+			$services->getSlotRoleRegistry(),
+			$services->getWikiPageFactory()
 		);
 		$result = $importer->import( $revision );
 		$this->assertTrue( $result );

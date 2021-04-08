@@ -40,7 +40,9 @@ abstract class ApiFormatTestBase extends MediaWikiIntegrationTestCase {
 		$flags = $options['flags'] ?? 0;
 
 		$context = new RequestContext;
-		$context->setRequest( new FauxRequest( $params, true ) );
+		$fauxRequest = new FauxRequest( $params, true );
+		$fauxRequest->setRequestURL( 'https://' );
+		$context->setRequest( $fauxRequest );
 		$main = new ApiMain( $context );
 		if ( isset( $options['class'] ) ) {
 			$spec = [

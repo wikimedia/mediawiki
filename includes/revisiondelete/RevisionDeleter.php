@@ -21,6 +21,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -29,13 +30,56 @@ use MediaWiki\Revision\RevisionRecord;
  * @ingroup RevisionDelete
  */
 class RevisionDeleter {
-	/** List of known revdel types, with their corresponding list classes */
+	/**
+	 * List of known revdel types, with their corresponding ObjectFactory spec to
+	 * create the relevant class. All specs need to include DBLoadBalancerFactory,
+	 * which is used in the base RevDelList class
+	 */
 	private const ALLOWED_TYPES = [
-		'revision' => RevDelRevisionList::class,
-		'archive' => RevDelArchiveList::class,
-		'oldimage' => RevDelFileList::class,
-		'filearchive' => RevDelArchivedFileList::class,
-		'logging' => RevDelLogList::class,
+		'revision' => [
+			'class' => RevDelRevisionList::class,
+			'services' => [
+				'DBLoadBalancerFactory',
+				'HookContainer',
+				'HtmlCacheUpdater',
+				'RevisionStore',
+				'MainWANObjectCache',
+			],
+		],
+		'archive' => [
+			'class' => RevDelArchiveList::class,
+			'services' => [
+				'DBLoadBalancerFactory',
+				'HookContainer',
+				'HtmlCacheUpdater',
+				'RevisionStore',
+				'MainWANObjectCache',
+			],
+		],
+		'oldimage' => [
+			'class' => RevDelFileList::class,
+			'services' => [
+				'DBLoadBalancerFactory',
+				'HtmlCacheUpdater',
+				'RepoGroup',
+			],
+		],
+		'filearchive' => [
+			'class' => RevDelArchivedFileList::class,
+			'services' => [
+				'DBLoadBalancerFactory',
+				'HtmlCacheUpdater',
+				'RepoGroup',
+			],
+		],
+		'logging' => [
+			'class' => RevDelLogList::class,
+			'services' => [
+				'DBLoadBalancerFactory',
+				'ActorMigration',
+				'CommentStore',
+			],
+		],
 	];
 
 	/** Type map to support old log entries */
@@ -87,8 +131,18 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			throw new MWException( __METHOD__ . ": Unknown RevDel type '$typeName'" );
 		}
-		$class = self::ALLOWED_TYPES[$typeName];
-		return new $class( $context, $title, $ids );
+		$spec = self::ALLOWED_TYPES[$typeName];
+		$objectFactory = MediaWikiServices::getInstance()->getObjectFactory();
+
+		// ObjectFactory::createObject accepts an array, not just a callable (phan bug)
+		// @phan-suppress-next-line PhanTypeInvalidCallableArrayKey
+		return $objectFactory->createObject(
+			$spec,
+			[
+				'extraArgs' => [ $context, $title, $ids ],
+				'assertClass' => RevDelList::class,
+			]
+		);
 	}
 
 	/**
@@ -158,7 +212,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::ALLOWED_TYPES[$typeName], 'getRelationType' ] );
+		return call_user_func( [ self::ALLOWED_TYPES[$typeName]['class'], 'getRelationType' ] );
 	}
 
 	/**
@@ -172,7 +226,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::ALLOWED_TYPES[$typeName], 'getRestriction' ] );
+		return call_user_func( [ self::ALLOWED_TYPES[$typeName]['class'], 'getRestriction' ] );
 	}
 
 	/**
@@ -186,7 +240,7 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return null;
 		}
-		return call_user_func( [ self::ALLOWED_TYPES[$typeName], 'getRevdelConstant' ] );
+		return call_user_func( [ self::ALLOWED_TYPES[$typeName]['class'], 'getRevdelConstant' ] );
 	}
 
 	/**
@@ -202,33 +256,11 @@ class RevisionDeleter {
 		if ( !$typeName ) {
 			return $target;
 		}
-		return call_user_func( [ self::ALLOWED_TYPES[$typeName], 'suggestTarget' ], $target, $ids );
-	}
-
-	/**
-	 * Checks if a revision still exists in the revision table.
-	 * If it doesn't, returns the corresponding ar_timestamp field
-	 * so that this key can be used instead.
-	 *
-	 * @param Title $title
-	 * @param int $revid
-	 * @return bool|mixed
-	 */
-	public static function checkRevisionExistence( $title, $revid ) {
-		$dbr = wfGetDB( DB_REPLICA );
-		$exists = $dbr->selectField( 'revision', '1',
-				[ 'rev_id' => $revid ], __METHOD__ );
-
-		if ( $exists ) {
-			return true;
-		}
-
-		$timestamp = $dbr->selectField( 'archive', 'ar_timestamp',
-				[ 'ar_namespace' => $title->getNamespace(),
-					'ar_title' => $title->getDBkey(),
-					'ar_rev_id' => $revid ], __METHOD__ );
-
-		return $timestamp;
+		return call_user_func(
+			[ self::ALLOWED_TYPES[$typeName]['class'], 'suggestTarget' ],
+			$target,
+			$ids
+		);
 	}
 
 	/**

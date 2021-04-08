@@ -5,6 +5,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 	protected static $restrictionsForChecks;
 
 	public static function setUpBeforeClass() : void {
+		parent::setUpBeforeClass();
 		self::$restrictionsForChecks = MWRestrictions::newFromArray( [
 			'IPAddresses' => [
 				'10.0.0.0/8',

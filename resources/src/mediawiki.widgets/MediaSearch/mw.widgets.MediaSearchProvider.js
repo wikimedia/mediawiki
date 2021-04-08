@@ -21,7 +21,8 @@
 
 		config.staticParams = $.extend( {
 			generator: 'search',
-			gsrnamespace: mw.config.get( 'wgNamespaceIds' ).file
+			gsrnamespace: mw.config.get( 'wgNamespaceIds' ).file,
+			uselang: mw.config.get( 'wgUserLanguage' )
 		}, config.staticParams );
 
 		// Parent constructor

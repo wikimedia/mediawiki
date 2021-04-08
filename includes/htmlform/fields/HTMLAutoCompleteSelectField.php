@@ -35,8 +35,9 @@
 class HTMLAutoCompleteSelectField extends HTMLTextField {
 	protected $autocompleteData = [];
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		$params += [

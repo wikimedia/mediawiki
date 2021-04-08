@@ -228,6 +228,8 @@ class MessageBlobStore implements LoggerAwareInterface {
 		$messages = [];
 		foreach ( $module->getMessages() as $key ) {
 			$value = $this->fetchMessage( $key, $lang );
+			// If the message does not exist, omit it from the blob so that
+			// client-side mw.message may do its own existence handling.
 			if ( $value !== null ) {
 				$messages[$key] = $value;
 			}

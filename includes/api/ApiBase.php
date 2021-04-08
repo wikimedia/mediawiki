@@ -27,8 +27,11 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -60,11 +63,10 @@ abstract class ApiBase extends ContextSource {
 	private $hookRunner;
 
 	/**
-	 * @name Old constants for ::getAllowedParams() arrays
+	 * @name   Old constants for ::getAllowedParams() arrays
 	 * @deprecated since 1.35, use the equivalent ParamValidator or TypeDef constants instead.
 	 * @{
 	 */
-
 	public const PARAM_DFLT = ParamValidator::PARAM_DEFAULT;
 	public const PARAM_ISMULTI = ParamValidator::PARAM_ISMULTI;
 	public const PARAM_TYPE = ParamValidator::PARAM_TYPE;
@@ -84,6 +86,7 @@ abstract class ApiBase extends ContextSource {
 	public const PARAM_ISMULTI_LIMIT2 = ParamValidator::PARAM_ISMULTI_LIMIT2;
 	public const PARAM_MAX_BYTES = StringDef::PARAM_MAX_BYTES;
 	public const PARAM_MAX_CHARS = StringDef::PARAM_MAX_CHARS;
+	/** @} */
 
 	/**
 	 * (boolean) Inverse of IntegerDef::PARAM_IGNORE_RANGE
@@ -91,12 +94,8 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public const PARAM_RANGE_ENFORCE = 'api-param-range-enforce';
 
-	/** @} */
-
-	/**
-	 * @name API-specific constants for ::getAllowedParams() arrays
-	 * @{
-	 */
+	// region   API-specific constants for ::getAllowedParams() arrays
+	/** @name   API-specific constants for ::getAllowedParams() arrays */
 
 	/**
 	 * (string|array|Message) Specify an alternative i18n documentation message
@@ -156,7 +155,7 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public const PARAM_TEMPLATE_VARS = 'param-template-vars';
 
-	/** @} */
+	// endregion -- end of API-specific constants for ::getAllowedParams() arrays
 
 	public const ALL_DEFAULT_STRING = '*';
 
@@ -182,7 +181,7 @@ abstract class ApiBase extends ContextSource {
 	/** @var stdClass[][] Cache for self::filterIDs() */
 	private static $filterIDsCache = [];
 
-	/** $var array Map of web UI block messages to corresponding API messages and codes */
+	/** @var array Map of web UI block messages to corresponding API messages and codes */
 	private static $blockMsgMap = [
 		'blockedtext' => [ 'apierror-blocked', 'blocked' ],
 		'blockedtext-partial' => [ 'apierror-blocked-partial', 'blocked' ],
@@ -200,7 +199,7 @@ abstract class ApiBase extends ContextSource {
 	 * @var array
 	 */
 	private $mParamCache = [];
-	/** @var array|null|bool */
+	/** @var array|null|false */
 	private $mModuleSource = false;
 
 	/**
@@ -219,10 +218,9 @@ abstract class ApiBase extends ContextSource {
 		}
 	}
 
-	/************************************************************************//**
-	 * @name   Methods to implement
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Methods to implement
+	/** @name   Methods to implement */
 
 	/**
 	 * Evaluates the parameters, performs the requested query, and sets up
@@ -429,12 +427,11 @@ abstract class ApiBase extends ContextSource {
 		return null;
 	}
 
-	/** @} */
+	// endregion -- end of methods to implement
 
-	/************************************************************************//**
-	 * @name   Data access methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Data access methods
+	/** @name   Data access methods */
 
 	/**
 	 * Get the name of the module being executed by this instance
@@ -572,7 +569,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Get the error formatter
 	 * @stable to override
 	 * @return ApiErrorFormatter
 	 */
@@ -600,7 +596,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Get the continuation manager
 	 * @return ApiContinuationManager|null
 	 */
 	public function getContinuationManager() {
@@ -614,7 +609,6 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
-	 * Set the continuation manager
 	 * @param ApiContinuationManager|null $manager
 	 */
 	public function setContinuationManager( ApiContinuationManager $manager = null ) {
@@ -635,6 +629,17 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function getPermissionManager(): PermissionManager {
 		return MediaWikiServices::getInstance()->getPermissionManager();
+	}
+
+	/**
+	 * Obtain a GroupPermissionsLookup instance that subclasses may use to access group permissions.
+	 *
+	 * @since 1.36
+	 * @return GroupPermissionsLookup
+	 * @internal
+	 */
+	protected function getGroupPermissionsLookup(): GroupPermissionsLookup {
+		return MediaWikiServices::getInstance()->getGroupPermissionsLookup();
 	}
 
 	/**
@@ -665,12 +670,11 @@ abstract class ApiBase extends ContextSource {
 		return $this->hookRunner;
 	}
 
-	/** @} */
+	// endregion -- end of data access methods
 
-	/************************************************************************//**
-	 * @name   Parameter handling
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Parameter handling
+	/** @name   Parameter handling */
 
 	/**
 	 * Indicate if the module supports dynamically-determined parameters that
@@ -964,7 +968,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Callback function used in requireOnlyOneParameter to check whether required parameters are set
 	 *
-	 * @param object $x Parameter to check is not null/false
+	 * @param mixed $x Parameter to check is not null/false
 	 * @return bool
 	 */
 	private function parameterNotEmpty( $x ) {
@@ -976,7 +980,7 @@ abstract class ApiBase extends ContextSource {
 	 * Can die, if no param is set or if the title or page id is not valid.
 	 *
 	 * @param array $params User provided set of parameters, as from $this->extractRequestParams()
-	 * @param bool|string $load Whether load the object's state from the database:
+	 * @param string|false $load Whether load the object's state from the database:
 	 *        - false: don't load (if the pageid is given, it will still be loaded)
 	 *        - 'fromdb': load from a replica DB
 	 *        - 'fromdbmaster': load from the master database
@@ -1052,6 +1056,7 @@ abstract class ApiBase extends ContextSource {
 		$validator = $this->getMain()->getParamValidator();
 		$value = $validator->getValue( $this, $name, $settings, [
 			'parse-limit' => $parseLimit,
+			'raw' => ( $settings[ParamValidator::PARAM_TYPE] ?? '' ) === 'raw',
 		] );
 
 		// @todo Deprecate and remove this, if possible.
@@ -1116,12 +1121,11 @@ abstract class ApiBase extends ContextSource {
 		return false;
 	}
 
-	/** @} */
+	// endregion -- end of parameter handling
 
-	/************************************************************************//**
-	 * @name   Utility methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Utility methods
+	/** @name   Utility methods */
 
 	/**
 	 * Gets the user for whom to get the watchlist
@@ -1142,7 +1146,7 @@ abstract class ApiBase extends ContextSource {
 				$this->dieWithError( 'apierror-bad-watchlist-token', 'bad_wltoken' );
 			}
 		} else {
-			if ( !$this->getUser()->isLoggedIn() ) {
+			if ( !$this->getUser()->isRegistered() ) {
 				$this->dieWithError( 'watchlistanontext', 'notloggedin' );
 			}
 			$this->checkUserRightsAny( 'viewmywatchlist' );
@@ -1244,7 +1248,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Filter out-of-range values from a list of positive integer IDs
 	 * @since 1.33
-	 * @param array $fields Array of pairs of table and field to check
+	 * @param string[][] $fields Array of pairs of table and field to check
 	 * @param (string|int)[] $ids IDs to filter. Strings in the array are
 	 *  expected to be stringified ints.
 	 * @return (string|int)[] Filtered IDs.
@@ -1270,18 +1274,17 @@ abstract class ApiBase extends ContextSource {
 			$min = min( $min, $row->min_id );
 			$max = max( $max, $row->max_id );
 		}
-		return array_filter( $ids, function ( $id ) use ( $min, $max ) {
+		return array_filter( $ids, static function ( $id ) use ( $min, $max ) {
 			return ( is_int( $id ) && $id >= 0 || ctype_digit( $id ) )
 				&& $id >= $min && $id <= $max;
 		} );
 	}
 
-	/** @} */
+	// endregion -- end of utility methods
 
-	/************************************************************************//**
-	 * @name   Warning and error reporting
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Warning and error reporting
+	/** @name   Warning and error reporting */
 
 	/**
 	 * Add a warning for this module.
@@ -1476,18 +1479,18 @@ abstract class ApiBase extends ContextSource {
 	 * Helper function for permission-denied errors
 	 * @since 1.29
 	 * @param string|string[] $rights
-	 * @param User|null $user
+	 * @param User|null $user deprecated since 1.36
 	 * @throws ApiUsageException if the user doesn't have any of the rights.
 	 *  The error message is based on $rights[0].
 	 */
 	public function checkUserRightsAny( $rights, $user = null ) {
-		if ( !$user ) {
-			$user = $this->getUser();
+		$authority = $this->getAuthority();
+		if ( $user !== null ) {
+			wfDeprecatedMsg( __METHOD__ . ': $user parameter is deprecated', '1.36' );
+			$authority = $user;
 		}
 		$rights = (array)$rights;
-		if ( !$this->getPermissionManager()
-			->userHasAnyRight( $user, ...$rights )
-		) {
+		if ( !$authority->isAllowedAny( ...$rights ) ) {
 			$this->dieWithError( [ 'apierror-permissiondenied', $this->msg( "action-{$rights[0]}" ) ] );
 		}
 	}
@@ -1495,7 +1498,7 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Helper function for permission-denied errors
 	 *
-	 * @param LinkTarget $linkTarget
+	 * @param PageIdentity|LinkTarget $pageIdentity deprecated passing LinkTarget since 1.36
 	 * @param string|string[] $actions
 	 * @param array $options Additional options
 	 *   - user: (User) User to use rather than $this->getUser()
@@ -1504,28 +1507,31 @@ abstract class ApiBase extends ContextSource {
 	 *
 	 * @since 1.29
 	 * @since 1.33 Changed the third parameter from $user to $options.
+	 * @since 1.36 deprecated passing LinkTarget as first parameter
 	 */
 	public function checkTitleUserPermissions(
-		LinkTarget $linkTarget,
+		$pageIdentity,
 		$actions,
 		array $options = []
 	) {
-		$user = $options['user'] ?? $this->getUser();
-
-		$errors = [];
-		foreach ( (array)$actions as $action ) {
-			$errors = array_merge(
-				$errors,
-				$this->getPermissionManager()->getPermissionErrors( $action, $user, $linkTarget )
-			);
+		if ( !$pageIdentity instanceof PageIdentity ) {
+			wfDeprecatedMsg( __METHOD__ . ': passing LinkTarget as $pageIdentity parameter is deprecated',
+				'1.36' );
+			$pageIdentity = Title::castFromLinkTarget( $pageIdentity );
 		}
-
-		if ( $errors ) {
-			if ( !empty( $options['autoblock'] ) ) {
-				$user->spreadAnyEditBlock();
+		$status = new PermissionStatus();
+		foreach ( (array)$actions as $action ) {
+			if ( $this->isWriteMode() ) {
+				$this->getAuthority()->authorizeWrite( $action, $pageIdentity, $status );
+			} else {
+				$this->getAuthority()->authorizeRead( $action, $pageIdentity, $status );
 			}
-
-			$this->dieStatus( $this->errorArrayToStatus( $errors, $user ) );
+		}
+		if ( !$status->isGood() ) {
+			if ( !empty( $options['autoblock'] ) ) {
+				$this->getUser()->spreadAnyEditBlock();
+			}
+			$this->dieStatus( $status );
 		}
 	}
 
@@ -1610,12 +1616,11 @@ abstract class ApiBase extends ContextSource {
 		wfDebugLog( 'api-feature-usage', $s, 'private', $ctx );
 	}
 
-	/** @} */
+	// endregion -- end of warning and error reporting
 
-	/************************************************************************//**
-	 * @name   Help message generation
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Help message generation
+	/** @name   Help message generation */
 
 	/**
 	 * Return the summary message.
@@ -1697,7 +1702,7 @@ abstract class ApiBase extends ContextSource {
 	 * tweak it as needed.
 	 *
 	 * @param int $flags Zero or more flags like GET_VALUES_FOR_HELP
-	 * @return array|bool False on no parameters
+	 * @return array
 	 * @since 1.21 $flags param added
 	 */
 	public function getFinalParams( $flags = 0 ) {
@@ -1996,12 +2001,11 @@ abstract class ApiBase extends ContextSource {
 	public function modifyHelp( array &$help, array $options, array &$tocData ) {
 	}
 
-	/** @} */
+	// endregion -- end of help message generation
 
-	/************************************************************************//**
-	 * @name   Deprecated methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Deprecated methods
+	/** @name   Deprecated methods */
 
 	/**
 	 * Split a multi-valued parameter string, like explode()
@@ -2046,7 +2050,7 @@ abstract class ApiBase extends ContextSource {
 		$limit2 = $limit2 ?: self::LIMIT_SML2;
 
 		// This is a bit awkward, but we want to avoid calling canApiHighLimits()
-		// because it unstubs $wgUser
+		// if we don't need to because its fairly expensive
 		$valuesList = $this->explodeMultiValue( $value, $limit2 + 1 );
 		$sizeLimit = count( $valuesList ) > $limit1 && $this->mMainModule->canApiHighLimits()
 			? $limit2
@@ -2071,7 +2075,7 @@ abstract class ApiBase extends ContextSource {
 				return $value;
 			}
 
-			$values = array_map( function ( $v ) {
+			$values = array_map( static function ( $v ) {
 				return '<kbd>' . wfEscapeWikiText( $v ) . '</kbd>';
 			}, $allowedValues );
 			$this->dieWithError( [
@@ -2158,11 +2162,15 @@ abstract class ApiBase extends ContextSource {
 		);
 	}
 
-	/** @} */
+	// endregion -- end of deprecated methods
 
 }
 
-/**
- * For really cool vim folding this needs to be at the end:
- * vim: foldmarker=@{,@} foldmethod=marker
+/*
+ * This file uses VisualStudio style region/endregion fold markers which are
+ * recognised by PHPStorm. If modelines are enabled, the following editor
+ * configuration will also enable folding in vim, if it is in the last 5 lines
+ * of the file. We also use "@name" which creates sections in Doxygen.
+ *
+ * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
  */

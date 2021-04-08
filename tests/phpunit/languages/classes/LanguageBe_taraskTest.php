@@ -20,7 +20,7 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @see T25156 & r64981
-	 * @covers Language::commafy
+	 * @covers Language::normalizeForSearch
 	 */
 	public function testSearchRightSingleQuotationMarkAsApostroph() {
 		$this->assertEquals(
@@ -32,19 +32,19 @@ class LanguageBe_taraskTest extends LanguageClassesTestCase {
 
 	/**
 	 * @see T25156 & r64981
-	 * @covers Language::commafy
+	 * @covers Language::formatNum
 	 */
-	public function testCommafy() {
-		$this->assertEquals( '1,234,567', $this->getLang()->commafy( '1234567' ) );
-		$this->assertEquals( '12,345', $this->getLang()->commafy( '12345' ) );
+	public function testFormatNum() {
+		$this->assertEquals( '1 234 567', $this->getLang()->formatNum( '1234567' ) );
+		$this->assertEquals( '12 345', $this->getLang()->formatNum( '12345' ) );
 	}
 
 	/**
 	 * @see T25156 & r64981
-	 * @covers Language::commafy
+	 * @covers Language::formatNum
 	 */
 	public function testDoesNotCommafyFourDigitsNumber() {
-		$this->assertSame( '1234', $this->getLang()->commafy( '1234' ) );
+		$this->assertSame( '1234', $this->getLang()->formatNum( '1234' ) );
 	}
 
 	/**

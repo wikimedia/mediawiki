@@ -64,6 +64,12 @@
 		assert.strictEqual( mw.language.convertNumber( 180 ), '180', 'formatting 3-digit with minimumGroupingDigits=2' );
 		assert.strictEqual( mw.language.convertNumber( 1800 ), '1800', 'formatting 4-digit with minimumGroupingDigits=2' );
 		assert.strictEqual( mw.language.convertNumber( 18000 ), '18.000', 'formatting 5-digit with minimumGroupingDigits=2' );
+
+		mw.language.setData( 'en', 'minimumGroupingDigits', 3 );
+		assert.strictEqual( mw.language.convertNumber( 180 ), '180', 'formatting 3-digit with minimumGroupingDigits=3' );
+		assert.strictEqual( mw.language.convertNumber( 1800 ), '1800', 'formatting 4-digit with minimumGroupingDigits=3' );
+		assert.strictEqual( mw.language.convertNumber( 18000 ), '18000', 'formatting 5-digit with minimumGroupingDigits=3' );
+		assert.strictEqual( mw.language.convertNumber( 180000 ), '180.000', 'formatting 6-digit with minimumGroupingDigits=3' );
 	} );
 
 	QUnit.test( 'mw.language.convertNumber - digitTransformTable', function ( assert ) {
@@ -354,6 +360,84 @@
 				grammarForm: 'genitive',
 				expected: 'Викисклада',
 				description: 'Grammar test for genitive case, Викисклад -> Викисклада'
+			},
+			{
+				word: 'Википедия',
+				grammarForm: 'accusative',
+				expected: 'Википедию',
+				description: 'Grammar test for accusative case, Википедия -> Вики'
+			},
+			{
+				word: 'Викисловарь',
+				grammarForm: 'accusative',
+				expected: 'Викисловарь',
+				description: 'Grammar test for accusative case, Викисловарь -> Викисловарь'
+			},
+			{
+				word: 'Викицитатник',
+				grammarForm: 'accusative',
+				expected: 'Викицитатник',
+				description: 'Grammar test for accusative case, Викицитатник -> Викицитатник'
+			},
+			{
+				word: 'Викиучебник',
+				grammarForm: 'accusative',
+				expected: 'Викиучебник',
+				description: 'Grammar test for accusative case, Викиучебник -> Викиучебник'
+			},
+			{
+				word: 'Викитека',
+				grammarForm: 'accusative',
+				expected: 'Викитека',
+				description: 'Grammar test for accusative case, Викитека -> Викитеку'
+			},
+			{
+				word: 'Викиновости',
+				grammarForm: 'accusative',
+				expected: 'Викиновости',
+				description: 'Grammar test for accusative case, Викиновости -> Викиновости'
+			},
+			{
+				word: 'Викиверситет',
+				grammarForm: 'accusative',
+				expected: 'Викиверситет',
+				description: 'Grammar test for accusative case, Викиверситет -> Викиверситет'
+			},
+			{
+				word: 'Викивиды',
+				grammarForm: 'accusative',
+				expected: 'Викивиды',
+				description: 'Grammar test for accusative case, Викивиды -> Викивиды'
+			},
+			{
+				word: 'Викиданные',
+				grammarForm: 'accusative',
+				expected: 'Викиданные',
+				description: 'Grammar test for accusative case, Викиданные -> Викиданные'
+			},
+			{
+				word: 'Викисклад',
+				grammarForm: 'accusative',
+				expected: 'Викисклад',
+				description: 'Grammar test for accusative case, Викисклад -> Викисклад'
+			},
+			{
+				word: 'Викигид',
+				grammarForm: 'accusative',
+				expected: 'Викигид',
+				description: 'Grammar test for accusative case, Викигид -> Викигид'
+			},
+			{
+				word: 'Мета',
+				grammarForm: 'accusative',
+				expected: 'Мету',
+				description: 'Grammar test for accusative case, Мета -> Мету'
+			},
+			{
+				word: 'Инкубатор',
+				grammarForm: 'accusative',
+				expected: 'Инкубатор',
+				description: 'Grammar test for accusative case, Инкубатор -> Инкубатор'
 			},
 			{
 				word: 'песчаник',

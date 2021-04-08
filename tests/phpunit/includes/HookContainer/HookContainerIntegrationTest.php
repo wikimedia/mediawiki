@@ -22,9 +22,9 @@ namespace MediaWiki\HookContainer {
 				] ] ]
 			];
 			$reset = $extensionRegistry->setAttributeForTest( 'Hooks', $handlers );
-			$this->assertEquals( $numHandlersExecuted, 0 );
+			$this->assertSame( 0, $numHandlersExecuted );
 			$hookContainer->run( 'FooHook', [ &$numHandlersExecuted ] );
-			$this->assertEquals( $numHandlersExecuted, 1 );
+			$this->assertSame( 1, $numHandlersExecuted );
 			ScopedCallback::consume( $reset );
 		}
 
@@ -36,17 +36,17 @@ namespace MediaWiki\HookContainer {
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 
 			// Some handlers for FooHook have been previously set
-			$reset = $hookContainer->register( 'FooHook', function () {
+			$reset = $hookContainer->register( 'FooHook', static function () {
 				return true;
 			} );
-			$reset1 = $hookContainer->register( 'FooHook', function () {
+			$reset1 = $hookContainer->register( 'FooHook', static function () {
 				return true;
 			} );
 			$handlersBeforeScopedRegister = $hookContainer->getLegacyHandlers( 'FooHook' );
 			$this->assertCount( 2, $handlersBeforeScopedRegister );
 
 			// Wipe out the 2 existing handlers and add a new scoped handler
-			$reset2 = $hookContainer->scopedRegister( 'FooHook', function () {
+			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function () {
 				return true;
 			}, true );
 			$handlersAfterScopedRegister = $hookContainer->getLegacyHandlers( 'FooHook' );
@@ -68,10 +68,10 @@ namespace MediaWiki\HookContainer {
 		public function testHookRunsWithMultipleMixedHandlerTypes() {
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 			$numHandlersExecuted = 0;
-			$reset = $hookContainer->scopedRegister( 'FooHook', function ( &$numHandlersRun ) {
+			$reset = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
 				$numHandlersRun++;
 			}, false );
-			$reset2 = $hookContainer->scopedRegister( 'FooHook', function ( &$numHandlersRun ) {
+			$reset2 = $hookContainer->scopedRegister( 'FooHook', static function ( &$numHandlersRun ) {
 				$numHandlersRun++;
 			}, false );
 			$handlerThree = [
@@ -85,7 +85,7 @@ namespace MediaWiki\HookContainer {
 			];
 			$reset3 = ExtensionRegistry::getInstance()->setAttributeForTest( 'Hooks', $handlerThree );
 			$hookContainer->run( 'FooHook', [ &$numHandlersExecuted ] );
-			$this->assertEquals( $numHandlersExecuted, 3 );
+			$this->assertEquals( 3, $numHandlersExecuted );
 			ScopedCallback::consume( $reset );
 			ScopedCallback::consume( $reset2 );
 			ScopedCallback::consume( $reset3 );

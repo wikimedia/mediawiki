@@ -150,7 +150,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @param array $idToName Array with keys being central user IDs
 	 * @param int|User $audience One of the audience constants, or a specific user
 	 * @param int $flags IDBAccessObject read flags
-	 * @return array Copy of $idToName with values set to user names (or
+	 * @return string[] Copy of $idToName with values set to user names (or
 	 *  empty-string if the user exists but $audience lacks the rights needed
 	 *  to see it). IDs not corresponding to a user are unchanged.
 	 */
@@ -165,7 +165,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @param array $nameToId Array with keys being canonicalized user names
 	 * @param int|User $audience One of the audience constants, or a specific user
 	 * @param int $flags IDBAccessObject read flags
-	 * @return array Copy of $nameToId with values set to central IDs.
+	 * @return int[] Copy of $nameToId with values set to central IDs.
 	 *  Names not corresponding to a user (or $audience lacks the rights needed
 	 *  to see it) are unchanged.
 	 */
@@ -204,7 +204,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 		$idToName = array_fill_keys( $ids, false );
 		$names = $this->lookupCentralIds( $idToName, $audience, $flags );
 		$names = array_unique( $names );
-		$names = array_filter( $names, function ( $name ) {
+		$names = array_filter( $names, static function ( $name ) {
 			return $name !== false && $name !== '';
 		} );
 
@@ -242,7 +242,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 		$nameToId = array_fill_keys( $names, false );
 		$ids = $this->lookupUserNames( $nameToId, $audience, $flags );
 		$ids = array_unique( $ids );
-		$ids = array_filter( $ids, function ( $id ) {
+		$ids = array_filter( $ids, static function ( $id ) {
 			return $id !== false;
 		} );
 

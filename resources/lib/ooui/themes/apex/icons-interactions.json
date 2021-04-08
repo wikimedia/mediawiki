@@ -89,6 +89,12 @@
 				"rtl": "../wikimediaui/images/icons/logOut-rtl.svg"
 			}
 		},
+		"network": {
+			"file": "../wikimediaui/images/icons/network.svg"
+		},
+		"networkOff": {
+			"file": "../wikimediaui/images/icons/networkOff.svg"
+		},
 		"newWindow": {
 			"file": {
 				"ltr": "../wikimediaui/images/icons/newWindow-ltr.svg",

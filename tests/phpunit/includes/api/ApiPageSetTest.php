@@ -18,7 +18,7 @@ class ApiPageSetTest extends ApiTestCase {
 			],
 
 			'A simple merge policy adds the redirect data in' => [
-				function ( $current, $new ) {
+				static function ( $current, $new ) {
 					if ( !isset( $current['index'] ) || $new['index'] < $current['index'] ) {
 						$current['index'] = $new['index'];
 					}
@@ -88,7 +88,7 @@ class ApiPageSetTest extends ApiTestCase {
 		list( $target, $pageSet ) = $this->createPageSetWithRedirect(
 			'#REDIRECT [[UTPageRedirectOne]]'
 		);
-		$pageSet->setRedirectMergePolicy( function ( $cur, $new ) {
+		$pageSet->setRedirectMergePolicy( static function ( $cur, $new ) {
 			throw new \RuntimeException( 'unreachable, no merge when target is redirect loop' );
 		} );
 		// This could infinite loop in a bugged impl, but php doesn't offer
@@ -102,7 +102,7 @@ class ApiPageSetTest extends ApiTestCase {
 				'UTRedirectSourceA', 'UTRedirectSourceB', 'UTRedirectTarget',
 				'UTPageRedirectOne', 'UTPageRedirectTwo',
 			],
-			array_map( function ( $x ) {
+			array_map( static function ( $x ) {
 				return $x->getPrefixedText();
 			}, $pageSet->getTitles() )
 		);

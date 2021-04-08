@@ -61,10 +61,10 @@ class ExternalUserNames {
 	 */
 	public static function getUserLinkTitle( $userName ) {
 		$pos = strpos( $userName, '>' );
+		$services = MediaWikiServices::getInstance();
 		if ( $pos !== false ) {
 			$iw = explode( ':', substr( $userName, 0, $pos ) );
 			$firstIw = array_shift( $iw );
-			$services = MediaWikiServices::getInstance();
 			$interwikiLookup = $services->getInterwikiLookup();
 			if ( $interwikiLookup->isValidInterwiki( $firstIw ) ) {
 				$title = $services->getNamespaceInfo()->getCanonicalName( NS_USER ) .
@@ -76,7 +76,17 @@ class ExternalUserNames {
 			}
 			return null;
 		} else {
-			return SpecialPage::getTitleFor( 'Contributions', $userName );
+			// Protect against invalid user names from old corrupt database rows, T232451
+			if (
+				$services->getUserNameUtils()->isIP( $userName )
+				|| $services->getUserNameUtils()->isValidIPRange( $userName )
+				|| $services->getUserNameUtils()->isValid( $userName )
+			) {
+				return SpecialPage::getTitleFor( 'Contributions', $userName );
+			} else {
+				// Bad user name, no link
+				return null;
+			}
 		}
 	}
 

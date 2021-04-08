@@ -47,11 +47,13 @@
  * @file
  */
 
+use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\RequestTimeout\RequestTimeout;
 
 /**
  * Environment checks
@@ -124,7 +126,7 @@ if ( !interface_exists( LoggerInterface::class ) ) {
 	die( 1 );
 }
 
-MediaWiki\HeaderCallback::register();
+HeaderCallback::register();
 
 // Set the encoding used by PHP for reading HTTP input, and writing output.
 // This is also the default for mbstring functions.
@@ -152,6 +154,11 @@ if ( defined( 'MW_CONFIG_CALLBACK' ) ) {
 
 if ( defined( 'MW_SETUP_CALLBACK' ) ) {
 	call_user_func( MW_SETUP_CALLBACK );
+}
+
+// Start time limit
+if ( $wgRequestTimeLimit && !$wgCommandLineMode ) {
+	RequestTimeout::singleton()->setWallTimeLimit( $wgRequestTimeLimit );
 }
 
 /**
@@ -449,7 +456,7 @@ if ( $wgEnableEmail ) {
  */
 $wgCanonicalNamespaceNames = NamespaceInfo::CANONICAL_NAMES;
 
-/// @todo UGLY UGLY
+// @todo UGLY UGLY
 if ( is_array( $wgExtraNamespaces ) ) {
 	$wgCanonicalNamespaceNames += $wgExtraNamespaces;
 }
@@ -471,6 +478,39 @@ foreach ( LanguageCode::getNonstandardLanguageCodeMapping() as $code => $bcp47 )
 	if ( !isset( $wgDummyLanguageCodes[$bcp47] ) ) {
 		$wgDummyLanguageCodes[$bcp47] = $wgDummyLanguageCodes[$code] ?? $code;
 	}
+}
+unset( $code ); // no global pollution; destroy reference
+unset( $bcp47 ); // no global pollution; destroy reference
+
+// Temporary backwards-compatibility reading of old replica lag settings as of MediaWiki 1.36,
+// to support sysadmins who fail to update their settings immediately:
+
+if ( isset( $wgSlaveLagWarning ) ) {
+	// If the old value is set to something other than the default, use it.
+	if ( $wgDatabaseReplicaLagWarning === 10 && $wgSlaveLagWarning !== 10 ) {
+		$wgDatabaseReplicaLagWarning = $wgSlaveLagWarning;
+		wfDeprecated(
+			'$wgSlaveLagWarning set but $wgDatabaseReplicaLagWarning unchanged; using $wgSlaveLagWarning',
+			'1.36'
+		);
+	}
+} else {
+	// Backwards-compatibility for extensions that read this value.
+	$wgSlaveLagWarning = $wgDatabaseReplicaLagWarning;
+}
+
+if ( isset( $wgSlaveLagCritical ) ) {
+	// If the old value is set to something other than the default, use it.
+	if ( $wgDatabaseReplicaLagCritical === 30 && $wgSlaveLagCritical !== 30 ) {
+		$wgDatabaseReplicaLagCritical = $wgSlaveLagCritical;
+		wfDeprecated(
+			'$wgSlaveLagCritical set but $wgDatabaseReplicaLagCritical unchanged; using $wgSlaveLagCritical',
+			'1.36'
+		);
+	}
+} else {
+	// Backwards-compatibility for extensions that read this value.
+	$wgSlaveLagCritical = $wgDatabaseReplicaLagCritical;
 }
 
 if ( $wgInvalidateCacheOnLocalSettingsChange ) {
@@ -529,9 +569,8 @@ if ( defined( 'MW_NO_SESSION' ) ) {
 
 MWDebug::setup();
 
-// Reset the global service locator, so any services that have already been created will be
-// re-created while taking into account any custom settings and extensions.
-MediaWikiServices::resetGlobalInstance( new GlobalVarConfig(), 'quick' );
+// Enable the global service locator.
+MediaWikiServices::allowGlobalInstance();
 
 // Define a constant that indicates that the bootstrapping of the service locator
 // is complete.
@@ -666,7 +705,7 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 }
 
 // Useful debug output
-( function () {
+( static function () {
 	global $wgCommandLineMode, $wgRequest;
 	$logger = LoggerFactory::getInstance( 'wfDebug' );
 	if ( $wgCommandLineMode ) {
@@ -684,20 +723,8 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 	}
 } )();
 
-/**
- * @var BagOStuff $wgMemc
- * @deprecated since 1.35, use the LocalServerObjectCache service instead
- */
-$wgMemc = ObjectCache::getLocalClusterInstance();
-
 // Most of the config is out, some might want to run hooks here.
 Hooks::runner()->onSetupAfterCache();
-
-/**
- * @var Language $wgContLang
- * @deprecated since 1.32, use the ContentLanguage service directly
- */
-$wgContLang = MediaWikiServices::getInstance()->getContentLanguage();
 
 // Now that variant lists may be available...
 $wgRequest->interpolateTitle();
@@ -709,6 +736,7 @@ $wgInitialSessionId = null;
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	// If session.auto_start is there, we can't touch session name
 	if ( $wgPHPSessionHandling !== 'disable' && !wfIniGetBool( 'session.auto_start' ) ) {
+		HeaderCallback::warnIfHeadersSent();
 		session_name( $wgSessionName ?: $wgCookiePrefix . '_session' );
 	}
 
@@ -720,6 +748,8 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		);
 	}
 
+	$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+
 	// Initialize the session
 	try {
 		$session = MediaWiki\Session\SessionManager::getGlobalSession();
@@ -728,13 +758,15 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 		// sessions tied for top priority. Report this to the user.
 		$list = [];
 		foreach ( $ex->getSessionInfos() as $info ) {
-			$list[] = $info->getProvider()->describe( $wgContLang );
+			$list[] = $info->getProvider()->describe( $contLang );
 		}
-		$list = $wgContLang->listToText( $list );
+		$list = $contLang->listToText( $list );
 		throw new HttpError( 400,
-			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $wgContLang )->plain()
+			Message::newFromKey( 'sessionmanager-tie', $list )->inLanguage( $contLang )
 		);
 	}
+
+	unset( $contLang );
 
 	if ( $session->isPersistent() ) {
 		$wgInitialSessionId = $session->getSessionId();
@@ -776,7 +808,7 @@ if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 $wgUser = RequestContext::getMain()->getUser(); // BackCompat
 
 /**
- * @var Language $wgLang
+ * @var Language|StubUserLang $wgLang
  */
 $wgLang = new StubUserLang;
 
@@ -789,12 +821,12 @@ $wgOut = RequestContext::getMain()->getOutput(); // BackCompat
  * @var Parser $wgParser
  * @deprecated since 1.32, use MediaWikiServices::getInstance()->getParser() instead
  */
-$wgParser = new DeprecatedGlobal( 'wgParser', function () {
+$wgParser = new DeprecatedGlobal( 'wgParser', static function () {
 	return MediaWikiServices::getInstance()->getParser();
 }, '1.32' );
 
 /**
- * @var Title $wgTitle
+ * @var Title|null $wgTitle
  */
 $wgTitle = null;
 
@@ -805,12 +837,15 @@ $wgTitle = null;
 foreach ( $wgExtensionFunctions as $func ) {
 	call_user_func( $func );
 }
+unset( $func ); // no global pollution; destroy reference
 
 // If the session user has a 0 id but a valid name, that means we need to
 // autocreate it.
 if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
 	$sessionUser = MediaWiki\Session\SessionManager::getGlobalSession()->getUser();
-	if ( $sessionUser->getId() === 0 && User::isValidUserName( $sessionUser->getName() ) ) {
+	if ( $sessionUser->getId() === 0 &&
+		MediaWikiServices::getInstance()->getUserNameUtils()->isValid( $sessionUser->getName() )
+	) {
 		$res = MediaWikiServices::getInstance()->getAuthManager()->autoCreateUser(
 			$sessionUser,
 			MediaWiki\Auth\AuthManager::AUTOCREATE_SOURCE_SESSION,
@@ -830,3 +865,8 @@ if ( !$wgCommandLineMode ) {
 }
 
 $wgFullyInitialised = true;
+
+// T264370
+if ( !defined( 'MW_NO_SESSION' ) && !$wgCommandLineMode ) {
+	MediaWiki\Session\SessionManager::singleton()->logPotentialSessionLeakage();
+}

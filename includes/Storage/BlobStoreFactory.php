@@ -55,8 +55,7 @@ class BlobStoreFactory {
 	private $options;
 
 	/**
-	 * @var array
-	 * @since 1.34
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'CompressRevisions',

@@ -31,6 +31,10 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
  */
 class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'wr' );
 	}
@@ -108,7 +112,7 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 			$nsInfo = $services->getNamespaceInfo();
 			$usernames = [];
 			foreach ( $items as $item ) {
-				$linkTarget = $item->getLinkTarget();
+				$linkTarget = $item->getTarget();
 				if ( $nsInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
 					$usernames[] = $linkTarget->getText();
 				}
@@ -119,8 +123,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 		}
 
 		foreach ( $items as $item ) {
-			$ns = $item->getLinkTarget()->getNamespace();
-			$dbKey = $item->getLinkTarget()->getDBkey();
+			$ns = $item->getTarget()->getNamespace();
+			$dbKey = $item->getTarget()->getDBkey();
 			if ( ++$count > $params['limit'] ) {
 				// We've reached the one extra which shows that there are
 				// additional pages to be had. Stop here...

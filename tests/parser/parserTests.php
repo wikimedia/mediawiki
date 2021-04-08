@@ -24,11 +24,7 @@
  * @ingroup Testing
  */
 
-// Some methods which are discouraged for normal code throw exceptions unless
-// we declare this is just a test.
-define( 'MW_PARSER_TEST', true );
-
-require __DIR__ . '/../../maintenance/Maintenance.php';
+require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
 
@@ -77,6 +73,10 @@ class ParserTestsMaintenance extends Maintenance {
 	}
 
 	public function finalSetup() {
+		// Some methods which are discouraged for normal code throw exceptions unless
+		// we declare this is just a test.
+		define( 'MW_PARSER_TEST', true );
+
 		parent::finalSetup();
 		self::requireTestsAutoloader();
 		TestSetup::applyInitialConfig();
@@ -160,7 +160,7 @@ class ParserTestsMaintenance extends Maintenance {
 			}
 			$recorder->addRecorder( new DbTestPreviewer(
 				$recorderDB,
-				function ( $name ) use ( $regex ) {
+				static function ( $name ) use ( $regex ) {
 					// Filter reports of old tests by the filter regex
 					if ( $regex === false ) {
 						return true;

@@ -157,7 +157,7 @@
 	"config-upload-deleted-help": "Izberite mapo za arhiviranje izbrisanih datotek.\nNajbolje je, da mapa ni dostopna preko spleta.",
 	"config-logo": "URL logotipa:",
 	"config-cc-error": "Izbirnik dovoljenja Creative Commons ni vrnil nobenih rezultatov.\nVnesite ime dovoljenja ročno.",
-	"config-cc-again": "Izberi ponovno ...",
+	"config-cc-again": "Izberite znova ...",
 	"config-cc-not-chosen": "Izberite licenco Creative Commons, ki jo želite uporabiti, in kliknite »proceed«.",
 	"config-advanced-settings": "Napredna konfiguracija",
 	"config-cache-accel": "Predpomnjenje predmetov PHP (APC, APCu ali WinCache)",

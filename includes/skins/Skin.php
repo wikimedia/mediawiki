@@ -23,6 +23,7 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Revision\RevisionStore;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -51,6 +52,10 @@ abstract class Skin extends ContextSource {
 	 */
 	protected $options = [];
 	protected $mRelevantTitle = null;
+
+	/**
+	 * @var User|null
+	 */
 	protected $mRelevantUser = null;
 
 	/**
@@ -59,11 +64,31 @@ abstract class Skin extends ContextSource {
 	 */
 	public $stylename = null;
 
+	/** The current major version of the skin specification. */
+	protected const VERSION_MAJOR = 1;
+
+	private $searchPageTitle = null;
+
+	/**
+	 * Get the current major version of Skin. This is used to manage changes
+	 * to underlying data and for providing support for older and new versions of code.
+	 *
+	 * @since 1.36
+	 * @return int
+	 */
+	public static function getVersion() {
+		return self::VERSION_MAJOR;
+	}
+
 	/**
 	 * Fetch the set of available skins.
+	 *
+	 * @deprecated since 1.36. Use SkinFactory::getSkinNames() instead.
 	 * @return array Associative array of strings
 	 */
 	public static function getSkinNames() {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 		return $skinFactory->getSkinNames();
 	}
@@ -72,23 +97,16 @@ abstract class Skin extends ContextSource {
 	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
 	 * only want to show skins users _can_ use.
-	 * @return string[]
+	 *
 	 * @since 1.23
+	 * @deprecated since 1.36. Use SkinFactory::getAllowedSkins() instead.
+	 * @return string[]
 	 */
 	public static function getAllowedSkins() {
-		global $wgSkipSkins;
+		wfDeprecated( __METHOD__, '1.36' );
 
-		$allowedSkins = self::getSkinNames();
-
-		// Internal skins not intended for general use
-		unset( $allowedSkins['fallback'] );
-		unset( $allowedSkins['apioutput'] );
-
-		foreach ( $wgSkipSkins as $skip ) {
-			unset( $allowedSkins[$skip] );
-		}
-
-		return $allowedSkins;
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		return $skinFactory->getAllowedSkins();
 	}
 
 	/**
@@ -103,7 +121,8 @@ abstract class Skin extends ContextSource {
 	public static function normalizeKey( $key ) {
 		global $wgDefaultSkin, $wgFallbackSkin;
 
-		$skinNames = self::getSkinNames();
+		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
+		$skinNames = $skinFactory->getSkinNames();
 
 		// Make keys lowercase for case-insensitive matching.
 		$skinNames = array_change_key_case( $skinNames, CASE_LOWER );
@@ -143,22 +162,26 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @since 1.31
-	 * @param string|null|array $options Options for the skin can be an array since 1.35.
-	 *  When an array is passed `name` represents skinname,
-	 *  `scripts` represents an array of ResourceLoader script modules
-	 *  and `styles` represents
-	 *  an array of ResourceLoader style modules to load on all pages.
+	 * @param string|array|null $options Options for the skin can be an array since 1.35.
+	 *  When a string is passed, it's the skinname.
+	 *  When an array is passed;
+	 *  `name` key represents the skinname, defaults to $wgDefaultSkin if not provided
+	 *  `scripts` represents an array of ResourceLoader script modules and
+	 *  `styles` represents an array of ResourceLoader style modules to load on all pages.
+	 *  `responsive` indicates if a viewport meta tag should be set.
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
 			$this->skinname = $options;
 		} elseif ( $options ) {
-			$this->options = $options;
 			$name = $options['name'] ?? null;
-			// Note: skins might override the public $skinname method instead
-			if ( $name ) {
-				$this->skinname = $name;
+
+			if ( !$name ) {
+				throw new SkinException( 'Skin name must be specified' );
 			}
+
+			$this->options = $options;
+			$this->skinname = $name;
 		}
 	}
 
@@ -170,11 +193,46 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Indicates if this skin is responsive.
+	 * Responsive skins have skin--responsive added to <body> by OutputPage,
+	 * and a viewport <meta> tag set by Skin::initPage.
+	 *
+	 * @since 1.36
+	 * @stable to override
+	 * @return bool
+	 */
+	public function isResponsive() {
+		return $this->options['responsive'] ?? false;
+	}
+
+	/**
 	 * @stable to override
 	 * @param OutputPage $out
 	 */
 	public function initPage( OutputPage $out ) {
+		$skinMetaTags = $this->getConfig()->get( 'SkinMetaTags' );
 		$this->preloadExistence();
+
+		if ( $this->isResponsive() ) {
+			$out->addMeta(
+				'viewport',
+				'width=device-width, initial-scale=1.0, ' .
+				'user-scalable=yes, minimum-scale=0.25, maximum-scale=5.0'
+			);
+		}
+
+		$tags = [
+			'og:title' => $out->getHTMLTitle(),
+			'twitter:card' => 'summary_large_image',
+			'og:type' => 'website',
+		];
+
+		// Support sharing on platforms such as Facebook and Twitter
+		foreach ( $tags as $key => $value ) {
+			if ( in_array( $key, $skinMetaTags ) ) {
+				$out->addMeta( $key, $value );
+			}
+		}
 	}
 
 	/**
@@ -207,12 +265,10 @@ abstract class Skin extends ContextSource {
 			],
 			'core' => [
 				'site',
-				'mediawiki.page.startup',
-			],
-			// modules that enhance the content in some way
-			'content' => [
 				'mediawiki.page.ready',
 			],
+			// modules that enhance the content in some way
+			'content' => [],
 			// modules relating to search functionality
 			'search' => [],
 			// Skins can register their own scripts
@@ -245,19 +301,19 @@ abstract class Skin extends ContextSource {
 
 		if ( $out->isTOCEnabled() ) {
 			$modules['content'][] = 'mediawiki.toc';
-			$modules['styles']['content'][] = 'mediawiki.toc.styles';
 		}
 
-		$prefMgr = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $user->isLoggedIn()
-			&& $prefMgr->userHasAllRights( $user, 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
+		$authority = $this->getAuthority();
+		if ( $authority->getUser()->isRegistered()
+			&& $authority->isAllowedAll( 'writeapi', 'viewmywatchlist', 'editmywatchlist' )
 			&& $this->getRelevantTitle()->canExist()
 		) {
 			$modules['watch'][] = 'mediawiki.page.watch.ajax';
 		}
 
-		if ( $user->getBoolOption( 'editsectiononrightclick' )
-			|| ( $out->isArticle() && $user->getOption( 'editondblclick' ) )
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		if ( $userOptionsLookup->getBoolOption( $user, 'editsectiononrightclick' )
+			|| ( $out->isArticle() && $userOptionsLookup->getOption( $user, 'editondblclick' ) )
 		) {
 			$modules['user'][] = 'mediawiki.misc-authed-pref';
 		}
@@ -277,7 +333,7 @@ abstract class Skin extends ContextSource {
 
 		// User/talk link
 		$user = $this->getUser();
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$titles[] = $user->getUserPage();
 			$titles[] = $user->getTalkPage();
 		}
@@ -308,7 +364,8 @@ abstract class Skin extends ContextSource {
 		$this->getHookRunner()->onSkinPreloadExistence( $titles, $this );
 
 		if ( $titles ) {
-			$lb = new LinkBatch( $titles );
+			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+			$lb = $linkBatchFactory->newLinkBatch( $titles );
 			$lb->setCaller( __METHOD__ );
 			$lb->execute();
 		}
@@ -321,6 +378,8 @@ abstract class Skin extends ContextSource {
 	 * @return int
 	 */
 	public function getRevisionId() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		return $this->getOutput()->getRevisionId();
 	}
 
@@ -331,11 +390,12 @@ abstract class Skin extends ContextSource {
 	 * @return bool
 	 */
 	public function isRevisionCurrent() {
+		wfDeprecated( __METHOD__, '1.34' );
+
 		return $this->getOutput()->isRevisionCurrent();
 	}
 
 	/**
-	 * Set the "relevant" title
 	 * @see self::getRelevantTitle()
 	 * @param Title $t
 	 */
@@ -348,7 +408,7 @@ abstract class Skin extends ContextSource {
 	 * A "relevant" title is not necessarily the actual title of the page.
 	 * Special pages like Special:MovePage use set the page they are acting on
 	 * as their "relevant" title, this allows the skin system to display things
-	 * such as content tabs which belong to to that page instead of displaying
+	 * such as content tabs which belong to that page instead of displaying
 	 * a basic special page tab which has almost no meaning.
 	 *
 	 * @return Title
@@ -358,11 +418,10 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Set the "relevant" user
 	 * @see self::getRelevantUser()
 	 * @param User $u
 	 */
-	public function setRelevantUser( $u ) {
+	public function setRelevantUser( User $u ) {
 		$this->mRelevantUser = $u;
 	}
 
@@ -372,31 +431,39 @@ abstract class Skin extends ContextSource {
 	 * Special:Contributions mark the user which they are relevant to so that
 	 * things like the toolbox can display the information they usually are only
 	 * able to display on a user's userpage and talkpage.
-	 * @return User
+	 *
+	 * @return User|null Null if there's no relevant user or the viewer cannot view it.
 	 */
 	public function getRelevantUser() {
-		if ( isset( $this->mRelevantUser ) ) {
-			return $this->mRelevantUser;
-		}
-		$title = $this->getRelevantTitle();
-		if ( $title->hasSubjectNamespace( NS_USER ) ) {
-			$rootUser = $title->getRootText();
-			if ( User::isIP( $rootUser ) ) {
-				$this->mRelevantUser = User::newFromName( $rootUser, false );
-			} else {
-				$user = User::newFromName( $rootUser, false );
+		if ( $this->mRelevantUser === null ) {
+			$title = $this->getRelevantTitle();
+			if ( $title->hasSubjectNamespace( NS_USER ) ) {
+				$rootUser = $title->getRootText();
+				if ( User::isIP( $rootUser ) ) {
+					$this->mRelevantUser = User::newFromName( $rootUser, false );
+				} else {
+					$user = User::newFromName( $rootUser, false );
 
-				if ( $user ) {
-					$user->load( User::READ_NORMAL );
-
-					if ( $user->isLoggedIn() ) {
-						$this->mRelevantUser = $user;
+					if ( $user ) {
+						$user->load( User::READ_NORMAL );
+						$this->mRelevantUser = $user->isRegistered() ? $user : null;
 					}
 				}
 			}
-			return $this->mRelevantUser;
 		}
-		return null;
+
+		// The relevant user should only be set if it exists. However, if it exists but is hidden,
+		// and the viewer cannot see hidden users, this exposes the fact that the user exists;
+		// pretend like the user does not exist in such cases, by setting it to null. T120883
+		if ( $this->mRelevantUser
+			&& $this->mRelevantUser->isRegistered()
+			&& $this->mRelevantUser->isHidden()
+			&& !$this->getAuthority()->isAllowed( 'hideuser' )
+		) {
+			return null;
+		}
+
+		return $this->mRelevantUser;
 	}
 
 	/**
@@ -405,11 +472,14 @@ abstract class Skin extends ContextSource {
 	abstract public function outputPage();
 
 	/**
+	 * @deprecated since 1.36. Use ResourceLoader::makeInlineScript() directly.
 	 * @param array $data
 	 * @param string|null $nonce OutputPage->getCSP()->getNonce()
 	 * @return string|WrappedString HTML
 	 */
 	public static function makeVariablesScript( $data, $nonce = null ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		if ( $data ) {
 			return ResourceLoader::makeInlineScript(
 				ResourceLoader::makeConfigSetScript( $data ),
@@ -420,27 +490,29 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Get the query to generate a dynamic stylesheet
+	 * Call the subclass's setupSkinUserCss and throw a deprecation warning
+	 * if required.
 	 *
-	 * @deprecated since 1.32 Use action=raw&ctype=text/css directly.
-	 * @return array
+	 * @param OutputPage $out
+	 * @internal only for use in Skin or inside OutputPage and ApiParse where support for
+	 *  setupSkinUserCss is required.
 	 */
-	public static function getDynamicStylesheetQuery() {
-		wfDeprecated( __METHOD__, '1.32' );
-		return [
-				'action' => 'raw',
-				'ctype' => 'text/css',
-			];
+	final public function doSetupSkinUserCss( OutputPage $out ) {
+		if ( MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'setupSkinUserCss', '1.32' ) ) {
+			$this->setupSkinUserCss( $out );
+		}
 	}
 
 	/**
 	 * Hook point for adding style modules to OutputPage.
 	 *
-	 * @deprecated since 1.32 Use getDefaultModules() instead.
+	 * @deprecated since 1.32 Use getDefaultModules() instead. If using for backwards
+	 *  compatability, the caller is required to throw deprecation warnings if this
+	 *  changes the number of style modules on OutputPage.
 	 * @param OutputPage $out Legacy parameter, identical to $this->getOutput()
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
-		// Stub.
+		wfDeprecated( __METHOD__, '1.32' );
 	}
 
 	/**
@@ -450,7 +522,6 @@ abstract class Skin extends ContextSource {
 	 */
 	public function getPageClasses( $title ) {
 		$numeric = 'ns-' . $title->getNamespace();
-		$user = $this->getUser();
 
 		if ( $title->isSpecialPage() ) {
 			$type = 'ns-special';
@@ -469,9 +540,7 @@ abstract class Skin extends ContextSource {
 				$type = 'ns-subject';
 			}
 			// T208315: add HTML class when the user can edit the page
-			if ( MediaWikiServices::getInstance()->getPermissionManager()
-					->quickUserCan( 'edit', $user, $title )
-			) {
+			if ( $this->getAuthority()->probablyCan( 'edit', $title ) ) {
 				$type .= ' mw-editable';
 			}
 		}
@@ -497,10 +566,12 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * URL to the default square logo (1x key)
-	 * Please use ResourceLoaderSkinModule::getAvailableLogos
+	 *
+	 * @deprecated since 1.36, please use ResourceLoaderSkinModule::getAvailableLogos
 	 * @return string
 	 */
 	protected function getLogo() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
 	}
 
@@ -511,7 +582,8 @@ abstract class Skin extends ContextSource {
 		$out = $this->getOutput();
 		$allCats = $out->getCategoryLinks();
 		$title = $this->getTitle();
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
 
 		if ( $allCats === [] ) {
 			return '';
@@ -540,7 +612,9 @@ abstract class Skin extends ContextSource {
 
 		# Hidden categories
 		if ( isset( $allCats['hidden'] ) ) {
-			if ( $this->getUser()->getBoolOption( 'showhiddencats' ) ) {
+			$userOptionsLookup = $services->getUserOptionsLookup();
+
+			if ( $userOptionsLookup->getBoolOption( $this->getUser(), 'showhiddencats' ) ) {
 				$class = ' mw-hidden-cats-user-shown';
 			} elseif ( $title->inNamespace( NS_CATEGORY ) ) {
 				$class = ' mw-hidden-cats-ns-shown';
@@ -604,11 +678,13 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getCategories() {
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$showHiddenCats = $userOptionsLookup->getBoolOption( $this->getUser(), 'showhiddencats' );
+
 		$catlinks = $this->getCategoryLinks();
 		// Check what we're showing
 		$allCats = $this->getOutput()->getCategoryLinks();
-		$showHidden = $this->getUser()->getBoolOption( 'showhiddencats' ) ||
-						$this->getTitle()->inNamespace( NS_CATEGORY );
+		$showHidden = $showHiddenCats || $this->getTitle()->inNamespace( NS_CATEGORY );
 
 		$classes = [ 'catlinks' ];
 		if ( empty( $allCats['normal'] ) && !( !empty( $allCats['hidden'] ) && $showHidden ) ) {
@@ -719,17 +795,15 @@ abstract class Skin extends ContextSource {
 	public function getUndeleteLink() {
 		$action = $this->getRequest()->getVal( 'action', 'view' );
 		$title = $this->getTitle();
-		$user = $this->getUser();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		if ( ( !$title->exists() || $action == 'history' ) &&
-			$permissionManager->quickUserCan( 'deletedhistory', $user, $title )
+			$this->getAuthority()->probablyCan( 'deletedhistory', $title )
 		) {
-			$n = $title->isDeleted();
+			$n = $title->getDeletedEditsCount();
 
 			if ( $n ) {
-				if ( $permissionManager->quickUserCan( 'undelete', $user, $title ) ) {
+				if ( $this->getAuthority()->probablyCan( 'undelete', $title ) ) {
 					$msg = 'thisisdeleted';
 				} else {
 					$msg = 'viewdeleted';
@@ -773,12 +847,22 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @param OutputPage|null $out Defaults to $this->getOutput() if left as null
+	 * @deprecated since 1.36 use Skin::prepareSubtitle instead
+	 * @param OutputPage|null $out Defaults to $this->getOutput() if left as null (unused)
 	 * @return string
 	 */
-	public function subPageSubtitle( $out = null ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		$out = $out ?? $this->getOutput();
+	public function subPageSubtitle( $out ) {
+		wfDeprecated( __METHOD__, '1.36' );
+		return $this->subPageSubtitleInternal();
+	}
+
+	/**
+	 * @return string
+	 */
+	private function subPageSubtitleInternal() {
+		$services = MediaWikiServices::getInstance();
+		$linkRenderer = $services->getLinkRenderer();
+		$out = $this->getOutput();
 		$title = $out->getTitle();
 		$subpages = '';
 
@@ -786,44 +870,42 @@ abstract class Skin extends ContextSource {
 			return $subpages;
 		}
 
-		if (
-			$out->isArticle() && MediaWikiServices::getInstance()->getNamespaceInfo()->
-				hasSubpages( $title->getNamespace() )
-		) {
-			$ptext = $title->getPrefixedText();
-			if ( strpos( $ptext, '/' ) !== false ) {
-				$links = explode( '/', $ptext );
-				array_pop( $links );
-				$c = 0;
-				$growinglink = '';
-				$display = '';
-				$lang = $this->getLanguage();
+		$hasSubpages = $services->getNamespaceInfo()->hasSubpages( $title->getNamespace() );
+		if ( !$out->isArticle() || !$hasSubpages ) {
+			return $subpages;
+		}
 
-				foreach ( $links as $link ) {
-					$growinglink .= $link;
-					$display .= $link;
-					$linkObj = Title::newFromText( $growinglink );
+		$ptext = $title->getPrefixedText();
+		if ( strpos( $ptext, '/' ) !== false ) {
+			$links = explode( '/', $ptext );
+			array_pop( $links );
+			$count = 0;
+			$growingLink = '';
+			$display = '';
+			$lang = $this->getLanguage();
 
-					if ( is_object( $linkObj ) && $linkObj->isKnown() ) {
-						$getlink = $linkRenderer->makeKnownLink(
-							$linkObj, $display
-						);
+			foreach ( $links as $link ) {
+				$growingLink .= $link;
+				$display .= $link;
+				$linkObj = Title::newFromText( $growingLink );
 
-						$c++;
+				if ( $linkObj && $linkObj->isKnown() ) {
+					$getlink = $linkRenderer->makeKnownLink( $linkObj, $display );
 
-						if ( $c > 1 ) {
-							$subpages .= $lang->getDirMarkEntity() . $this->msg( 'pipe-separator' )->escaped();
-						} else {
-							$subpages .= '&lt; ';
-						}
+					$count++;
 
-						$subpages .= $getlink;
-						$display = '';
+					if ( $count > 1 ) {
+						$subpages .= $lang->getDirMarkEntity() . $this->msg( 'pipe-separator' )->escaped();
 					} else {
-						$display .= '/';
+						$subpages .= '&lt; ';
 					}
-					$growinglink .= '/';
+
+					$subpages .= $getlink;
+					$display = '';
+				} else {
+					$display .= '/';
 				}
+				$growingLink .= '/';
 			}
 		}
 
@@ -831,10 +913,13 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * @deprecated since 1.36.
 	 * @return string
 	 */
 	protected function getSearchLink() {
-		$searchPage = SpecialPage::getTitleFor( 'Search' );
+		wfDeprecated( __METHOD__, '1.36' );
+
+		$searchPage = $this->getSearchPageTitle();
 		return $searchPage->getLocalURL();
 	}
 
@@ -865,7 +950,7 @@ abstract class Skin extends ContextSource {
 		if ( $config->get( 'RightsPage' ) ) {
 			$title = Title::newFromText( $config->get( 'RightsPage' ) );
 			$link = $linkRenderer->makeKnownLink(
-				$title, new HtmlArmor( $config->get( 'RightsText' ) )
+				$title, new HtmlArmor( $config->get( 'RightsText' ) ?: $title->getText() )
 			);
 		} elseif ( $config->get( 'RightsUrl' ) ) {
 			$link = Linker::makeExternalLink( $config->get( 'RightsUrl' ), $config->get( 'RightsText' ) );
@@ -945,9 +1030,12 @@ abstract class Skin extends ContextSource {
 
 		# No cached timestamp, load it from the database
 		if ( $timestamp === null ) {
-			$timestamp = MediaWikiServices::getInstance()
-				->getRevisionLookup()
-				->getTimestampFromId( $this->getOutput()->getRevisionId() );
+			$revId = $this->getOutput()->getRevisionId();
+			if ( $revId !== null ) {
+				$timestamp = MediaWikiServices::getInstance()
+					->getRevisionLookup()
+					->getTimestampFromId( $revId );
+			}
 		}
 
 		if ( $timestamp ) {
@@ -980,7 +1068,7 @@ abstract class Skin extends ContextSource {
 		$mptitle = Title::newMainPage();
 		$url = ( is_object( $mptitle ) ? htmlspecialchars( $mptitle->getLocalURL() ) : '' );
 
-		$logourl = $this->getLogo();
+		$logourl = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() )[ '1x' ];
 		return "<a href='{$url}'><img{$a} src='{$logourl}' alt='[{$mp}]' /></a>";
 	}
 
@@ -996,19 +1084,19 @@ abstract class Skin extends ContextSource {
 		if ( is_string( $icon ) ) {
 			$html = $icon;
 		} else { // Assuming array
-			$url = $icon["url"] ?? null;
-			unset( $icon["url"] );
-			if ( isset( $icon["src"] ) && $withImage === 'withImage' ) {
+			$url = $icon['url'] ?? null;
+			unset( $icon['url'] );
+			if ( isset( $icon['src'] ) && $withImage === 'withImage' ) {
 				// Lazy-load footer icons, since they're not part of the printed view.
-				$icon["loading"] = 'lazy';
+				$icon['loading'] = 'lazy';
 				// do this the lazy way, just pass icon data as an attribute array
 				$html = Html::element( 'img', $icon );
 			} else {
-				$html = htmlspecialchars( $icon["alt"] );
+				$html = htmlspecialchars( $icon['alt'] ?? '' );
 			}
 			if ( $url ) {
 				$html = Html::rawElement( 'a',
-					[ "href" => $url, "target" => $this->getConfig()->get( 'ExternalLinkTarget' ) ],
+					[ 'href' => $url, 'target' => $this->getConfig()->get( 'ExternalLinkTarget' ) ],
 					$html );
 			}
 		}
@@ -1017,9 +1105,13 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Gets the link to the wiki's main page.
+	 *
+	 * @deprecated since 1.36
 	 * @return string
 	 */
 	public function mainPageLink() {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$s = $linkRenderer->makeKnownLink(
 			Title::newMainPage(),
@@ -1030,18 +1122,30 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Returns an HTML link for use in the footer
-	 * @param string $desc The i18n message key for the link text
-	 * @param string $page The i18n message key for the page to link to
+	 * Given a pair of message keys for link and text label,
+	 * return an HTML link for use in the footer.
+	 *
+	 * @param string $desc The i18n message key for the link text.
+	 * 		The content of this message will be the visibile text label.
+	 * 		If this is set to nonexisting message key or the message is
+	 * 		disabled, the link will not be generated, empty string will
+	 * 		be returned in the stead.
+	 * @param string $page The i18n message key for the page to link to.
+	 * 		The content of this message will be the destination page for
+	 * 		the footer link. Given a messsage key 'Privacypage' with content
+	 * 		'Project:Privacy policy', the link will lead to the wiki page with
+	 * 		the title of the content.
+	 *
 	 * @return string HTML anchor
 	 */
 	public function footerLink( $desc, $page ) {
 		$title = $this->footerLinkTitle( $desc, $page );
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
+
 		if ( !$title ) {
 			return '';
 		}
 
+		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		return $linkRenderer->makeKnownLink(
 			$title,
 			$this->msg( $desc )->text()
@@ -1054,7 +1158,7 @@ abstract class Skin extends ContextSource {
 	 * @return Title|null
 	 */
 	private function footerLinkTitle( $desc, $page ) {
-		// If the link description has been set to "-" in the default language,
+		// If the link description has been disabled in the default language,
 		if ( $this->msg( $desc )->inContentLanguage()->isDisabled() ) {
 			// then it is disabled, for all languages.
 			return null;
@@ -1076,9 +1180,9 @@ abstract class Skin extends ContextSource {
 	public function getSiteFooterLinks() {
 		$callback = function () {
 			return [
-				'privacy' => $this->privacyLink(),
-				'about' => $this->aboutLink(),
-				'disclaimer' => $this->disclaimerLink()
+				'privacy' => $this->footerLink( 'privacy', 'privacypage' ),
+				'about' => $this->footerLink( 'aboutsite', 'aboutpage' ),
+				'disclaimer' => $this->footerLink( 'disclaimers', 'disclaimerpage' )
 			];
 		};
 
@@ -1106,25 +1210,34 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * Gets the link to the wiki's privacy policy page.
+	 *
+	 * @deprecated since 1.36, use self::footerLink();
 	 * @return string HTML
 	 */
 	public function privacyLink() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->footerLink( 'privacy', 'privacypage' );
 	}
 
 	/**
 	 * Gets the link to the wiki's about page.
+	 *
+	 * @deprecated since 1.36, use self::footerLink();
 	 * @return string HTML
 	 */
 	public function aboutLink() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->footerLink( 'aboutsite', 'aboutpage' );
 	}
 
 	/**
 	 * Gets the link to the wiki's general disclaimers page.
+	 *
+	 * @deprecated since 1.36, use self::footerLink();
 	 * @return string HTML
 	 */
 	public function disclaimerLink() {
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this->footerLink( 'disclaimers', 'disclaimerpage' );
 	}
 
@@ -1170,6 +1283,8 @@ abstract class Skin extends ContextSource {
 	 *
 	 * Requires $stylename to be set, otherwise throws MWException.
 	 *
+	 * @deprecated since 1.36, Replace usages with direct path of
+	 *  the resource and then remove the $stylename property.
 	 * @param string $name The name or path of a skin resource file
 	 * @return string The fully resolved style path URL
 	 * @throws MWException
@@ -1231,24 +1346,13 @@ abstract class Skin extends ContextSource {
 	 * @param string $name
 	 * @param string|array $urlaction
 	 * @return string
-	 * @deprecated since 1.35, no longer used
-	 */
-	public static function makeI18nUrl( $name, $urlaction = '' ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$title = Title::newFromText( wfMessage( $name )->inContentLanguage()->text() );
-		self::checkTitle( $title, $name );
-		return $title->getLocalURL( $urlaction );
-	}
-
-	/**
-	 * @param string $name
-	 * @param string|array $urlaction
-	 * @return string
+	 * @deprecated since 1.36. Use Title methods directly.
 	 */
 	public static function makeUrl( $name, $urlaction = '' ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$title = Title::newFromText( $name );
 		self::checkTitle( $title, $name );
-
 		return $title->getLocalURL( $urlaction );
 	}
 
@@ -1262,7 +1366,9 @@ abstract class Skin extends ContextSource {
 		if ( preg_match( '/^(?i:' . wfUrlProtocols() . ')/', $name ) ) {
 			return $name;
 		} else {
-			return self::makeUrl( $name );
+			$title = Title::newFromText( $name );
+			self::checkTitle( $title, $name );
+			return $title->getLocalURL();
 		}
 	}
 
@@ -1458,7 +1564,6 @@ abstract class Skin extends ContextSource {
 	 */
 	protected function buildNavUrls() {
 		$out = $this->getOutput();
-		$request = $this->getRequest();
 		$title = $this->getTitle();
 		$thispage = $title->getPrefixedDBkey();
 		$uploadNavigationUrl = $this->getConfig()->get( 'UploadNavigationUrl' );
@@ -1524,7 +1629,6 @@ abstract class Skin extends ContextSource {
 		}
 
 		$user = $this->getRelevantUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		// The relevant user should only be set if it exists. However, if it exists but is hidden,
 		// and the viewer cannot see hidden users, this exposes the fact that the user exists;
@@ -1532,7 +1636,7 @@ abstract class Skin extends ContextSource {
 		// is what getRelevantUser returns if there is no user set (though it is documented as
 		// always returning a User...) See T120883
 		if ( $user && $user->isRegistered() && $user->isHidden() &&
-			 !$permissionManager->userHasRight( $this->getUser(), 'hideuser' )
+			 !$this->getAuthority()->isAllowed( 'hideuser' )
 		) {
 			$user = null;
 		}
@@ -1541,7 +1645,7 @@ abstract class Skin extends ContextSource {
 			$rootUser = $user->getName();
 
 			$nav_urls['contributions'] = [
-				'text' => $this->msg( 'contributions', $rootUser )->text(),
+				'text' => $this->msg( 'tool-link-contributions', $rootUser )->text(),
 				'href' => self::makeSpecialUrlSubpage( 'Contributions', $rootUser ),
 				'tooltip-params' => [ $rootUser ],
 			];
@@ -1550,7 +1654,7 @@ abstract class Skin extends ContextSource {
 				'href' => self::makeSpecialUrlSubpage( 'Log', $rootUser )
 			];
 
-			if ( $permissionManager->userHasRight( $this->getUser(), 'block' ) ) {
+			if ( $this->getAuthority()->isAllowed( 'block' ) ) {
 				$nav_urls['blockip'] = [
 					'text' => $this->msg( 'blockip', $rootUser )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Block', $rootUser )
@@ -1621,9 +1725,8 @@ abstract class Skin extends ContextSource {
 	 *     - For it to work, a skin must add custom support for it.
 	 *   - a message name (e.g. 'navigation'), the message should be HTML-escaped by the skin
 	 *   - plain text, which should be HTML-escaped by the skin
-	 * - content is the contents of the portlet. It is either:
-	 *   - HTML text (<ul><li>...</li>...</ul>)
-	 *   - array of link data in a format accepted by BaseTemplate::makeListItem()
+	 * - content is the contents of the portlet. This must be array of link data in a format
+	 * 		accepted by self::makeListItem().
 	 *   - (for a magic string as a key, any value)
 	 *
 	 * Note that extensions can control the sidebar contents using the SkinBuildSidebar hook
@@ -1845,7 +1948,7 @@ abstract class Skin extends ContextSource {
 						$latestRev,
 						null,
 						10,
-						'include_new'
+						RevisionStore::INCLUDE_NEW
 					);
 				}
 			} else {
@@ -1946,15 +2049,13 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Get the site notice
-	 *
 	 * @return string HTML fragment
 	 */
 	public function getSiteNotice() {
 		$siteNotice = '';
 
 		if ( $this->getHookRunner()->onSiteNoticeBefore( $siteNotice, $this ) ) {
-			if ( $this->getUser()->isLoggedIn() ) {
+			if ( $this->getUser()->isRegistered() ) {
 				$siteNotice = $this->getCachedNotice( 'sitenotice' );
 			} else {
 				$anonNotice = $this->getCachedNotice( 'anonnotice' );
@@ -1976,14 +2077,13 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Create a section edit link.
 	 *
-	 * @suppress SecurityCheck-XSS $links has keys of different taint types
 	 * @param Title $nt The title being linked to (may not be the same as
 	 *   the current page, if the section is included from a template)
 	 * @param string $section The designation of the section being pointed to,
 	 *   to be included in the link, like "&section=$section"
 	 * @param string|null $tooltip The tooltip to use for the link: will be escaped
 	 *   and wrapped in the 'editsectionhint' message
-	 * @param Language $lang Language object
+	 * @param Language $lang
 	 * @return string HTML to use for edit link
 	 */
 	public function doEditSectionLink( Title $nt, $section, $tooltip, Language $lang ) {
@@ -2102,10 +2202,13 @@ abstract class Skin extends ContextSource {
 	 * identifiers, values: contents) internally ordered by keys.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.36.
 	 * @param array $indicators
 	 * @return string HTML
 	 */
 	final public function getIndicatorsHTML( $indicators ) {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$out = "<div class=\"mw-indicators mw-body-content\">\n";
 		foreach ( $this->getIndicatorsData( $indicators ) as $indicatorData ) {
 			$out .= Html::rawElement(
@@ -2166,6 +2269,13 @@ abstract class Skin extends ContextSource {
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
+			// Set class for the link to link-class, when defined.
+			// This allows newer notifications content navigation to retain their classes
+			// when merged back into the personal tools.
+			// Doing this here allows the loop below to overwrite the class if defined directly.
+			if ( isset( $plink['link-class'] ) ) {
+				$ptool['links'][0]['class'] = $plink['link-class'];
+			}
 			foreach ( [
 				'href',
 				'class',
@@ -2220,6 +2330,9 @@ abstract class Skin extends ContextSource {
 	 *     ];
 	 * will render as element properties:
 	 *     data-foo='1' data-bar='baz'
+	 *
+	 * The "class" key currently accepts both a string and an array of classes, but this will be
+	 * changed to only accept an array in the future.
 	 *
 	 * @param array $options Can be used to affect the output of a link.
 	 * Possible options are:
@@ -2301,7 +2414,12 @@ abstract class Skin extends ContextSource {
 			}
 			if ( isset( $options['link-class'] ) ) {
 				if ( isset( $attrs['class'] ) ) {
-					$attrs['class'] .= " {$options['link-class']}";
+					// In the future, this should accept an array of classes, not a string
+					if ( is_array( $attrs['class'] ) ) {
+						$attrs['class'][] = $options['link-class'];
+					} else {
+						$attrs['class'] .= " {$options['link-class']}";
+					}
 				} else {
 					$attrs['class'] = $options['link-class'];
 				}
@@ -2322,7 +2440,9 @@ abstract class Skin extends ContextSource {
 	 * @param array $item Array of list item data containing some of a specific set of keys.
 	 * The "id", "class" and "itemtitle" keys will be used as attributes for the list item,
 	 * if "active" contains a value of true a "active" class will also be appended to class.
-	 * @phan-param array{id?:string,class?:string,itemtitle?:string,active?:bool} $item
+	 * The "class" key currently accepts both a string and an array of classes, but this will be
+	 * changed to only accept an array in the future.
+	 * @phan-param array{id?:string,class?:string|string[],itemtitle?:string,active?:bool} $item
 	 *
 	 * @param array $options
 	 * @phan-param array{tag?:string} $options
@@ -2388,8 +2508,14 @@ abstract class Skin extends ContextSource {
 			if ( !isset( $attrs['class'] ) ) {
 				$attrs['class'] = '';
 			}
-			$attrs['class'] .= ' active';
-			$attrs['class'] = trim( $attrs['class'] );
+
+			// In the future, this should accept an array of classes, not a string
+			if ( is_array( $attrs['class'] ) ) {
+				$attrs['class'][] = 'active';
+			} else {
+				$attrs['class'] .= ' active';
+				$attrs['class'] = trim( $attrs['class'] );
+			}
 		}
 		if ( isset( $item['itemtitle'] ) ) {
 			$attrs['title'] = $item['itemtitle'];
@@ -2404,11 +2530,16 @@ abstract class Skin extends ContextSource {
 	 * @return string of HTML input
 	 */
 	final public function makeSearchInput( $attrs = [] ) {
+		$autoCapHint = $this->getConfig()->get( 'CapitalLinks' );
 		$realAttrs = [
 			'type' => 'search',
 			'name' => 'search',
 			'placeholder' => $this->msg( 'searchsuggest-search' )->text(),
+			// T251664: Disable autocapitalization of input
+			// method when using fully case-sensitive titles.
+			'autocapitalize' => $autoCapHint ? 'sentences' : 'none',
 		];
+
 		$realAttrs = array_merge( $realAttrs, Linker::tooltipAndAccesskeyAttribs( 'search' ), $attrs );
 		return Html::element( 'input', $realAttrs );
 	}
@@ -2480,6 +2611,20 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
+	 * Prepare the subtitle of the page for output in the skin if one has been set.
+	 * @since 1.35
+	 * @return string HTML
+	 */
+	final public function prepareSubtitle() {
+		$out = $this->getOutput();
+		$subpagestr = $this->subPageSubtitleInternal();
+		if ( $subpagestr !== '' ) {
+			$subpagestr = '<span class="subpages">' . $subpagestr . '</span>';
+		}
+		return $subpagestr . $out->getSubtitle();
+	}
+
+	/**
 	 * Get template representation of the footer containing
 	 * site footer links as well as standard footer links.
 	 *
@@ -2503,7 +2648,7 @@ abstract class Skin extends ContextSource {
 			&& $maxCredits !== 0;
 
 		/** @var CreditsAction $action */
-		if ( $titleExists ) {
+		if ( $useCredits ) {
 			$article = Article::newFromWikiPage( $this->getWikiPage(), $this );
 			$action = Action::factory( 'credits', $article, $this );
 		}
@@ -2528,4 +2673,11 @@ abstract class Skin extends ContextSource {
 		return $data;
 	}
 
+	public function getSearchPageTitle() : Title {
+		return $this->searchPageTitle ?? SpecialPage::getTitleFor( 'Search' );
+	}
+
+	public function setSearchPageTitle( Title $title ) {
+		$this->searchPageTitle = $title;
+	}
 }

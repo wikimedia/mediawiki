@@ -2,10 +2,13 @@
 
 namespace MediaWiki\Api\Hook;
 
-// phpcs:disable Generic.Files.LineLength -- Remove this after doc review
 use ApiQueryWatchlist;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ApiQueryWatchlistPrepareWatchedItemQueryServiceOptions"
+ * to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

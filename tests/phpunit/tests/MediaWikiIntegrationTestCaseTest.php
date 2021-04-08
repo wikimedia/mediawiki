@@ -2,6 +2,9 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
+use PHPUnit\Framework\AssertionFailedError;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\TestingAccessWrapper;
@@ -216,7 +219,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			__METHOD__
 		);
 
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $this->getServiceContainer()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->newMainLB();
 		$db = $lb->getConnection( DB_REPLICA );
 
@@ -235,6 +238,9 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'TEST', $value, 'Copied Data' );
 	}
 
+	/**
+	 * @covers MediaWikiIntegrationTestCase::resetServices
+	 */
 	public function testResetServices() {
 		$services = MediaWikiServices::getInstance();
 
@@ -243,6 +249,9 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		$this->setService( 'ReadOnlyMode', $myReadOnlyMode );
+		$this->setTemporaryHook( 'MyTestHook', static function ( &$n ) {
+			$n++;
+		}, true );
 
 		// sanity check
 		$this->assertSame( $myReadOnlyMode, $services->getService( 'ReadOnlyMode' ) );
@@ -250,7 +259,7 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 		// define a custom service
 		$services->defineService(
 			'_TEST_ResetService_Dummy',
-			function ( MediaWikiServices $services ) {
+			static function ( MediaWikiServices $services ) {
 				$conf = $services->getMainConfig();
 				return (object)[ 'lang' => $conf->get( 'LanguageCode' ) ];
 			}
@@ -263,14 +272,174 @@ class MediaWikiIntegrationTestCaseTest extends MediaWikiIntegrationTestCase {
 
 		// the actual test: change config, reset services.
 		$this->setMwGlobals( 'wgLanguageCode', 'qqx' );
+		$this->resetServices();
 
 		// the overridden service instance should still be there
 		$this->assertSame( $myReadOnlyMode, $services->getService( 'ReadOnlyMode' ) );
+
+		// the temporary hook should still be there
+		$this->assertTrue(
+			$this->getServiceContainer()->getHookContainer()->isRegistered( 'MyTestHook' )
+		);
 
 		// our custom service should have been re-created with the new language code
 		$dummy2 = $services->getService( '_TEST_ResetService_Dummy' );
 		$this->assertNotSame( $dummy2, $dummy );
 		$this->assertSame( 'qqx', $dummy2->lang );
+	}
+
+	/**
+	 * @covers MediaWikiIntegrationTestCase::getServiceContainer
+	 */
+	public function testGetServiceContainer() {
+		$this->assertSame( MediaWikiServices::getInstance(), $this->getServiceContainer() );
+	}
+
+	/**
+	 * @covers MediaWikiIntegrationTestCase::setTemporaryHook
+	 * @covers MediaWikiIntegrationTestCase::clearHook
+	 */
+	public function testSetTemporaryHook() {
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
+		$name = 'MWITCT_Dummy_Hook';
+
+		$inc = static function ( &$n ) {
+			$n++;
+		};
+
+		// add two handlers
+		$this->setTemporaryHook( $name, $inc, false );
+		$this->setTemporaryHook( $name, $inc, false );
+
+		$count = 0;
+		$hookContainer->run( $name, [ &$count ] );
+		$this->assertSame( 2, $count );
+
+		// replace existing hooks
+		$this->setTemporaryHook( $name, $inc );
+
+		$count = 0;
+		$hookContainer->run( $name, [ &$count ] );
+		$this->assertSame( 1, $count );
+
+		// clear all hooks
+		$this->clearHook( $name );
+
+		$count = 0;
+		$hookContainer->run( $name, [ &$count ] );
+		$this->assertSame( 0, $count );
+
+		// Put back a hook handler, so we can check in testSetTemporaryHookGetsReset
+		// that hooks get reset between tests.
+		$this->setTemporaryHook( $name, $inc );
+		$this->assertTrue( $hookContainer->isRegistered( 'MWITCT_Dummy_Hook' ) );
+	}
+
+	public function testSetTemporaryHookGetsReset() {
+		// We just check here that the hook we added in testSetTemporaryHook() is no longer present.
+		$hookContainer = $this->getServiceContainer()->getHookContainer();
+		$this->assertFalse( $hookContainer->isRegistered( 'MWITCT_Dummy_Hook' ) );
+	}
+
+	/**
+	 * @covers NullHttpRequestFactory
+	 * @covers NullMultiHttpClient
+	 */
+	public function testHttpRequestsArePrevented() {
+		$httpRequestFactory = $this->getServiceContainer()->getHttpRequestFactory();
+
+		$prevented = true;
+		try {
+			$httpRequestFactory->get( 'http://0.0.0.0/' );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'get() should fail' );
+
+		try {
+			$httpRequestFactory->post( 'http://0.0.0.0/' );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'post() should fail' );
+
+		try {
+			$httpRequestFactory->request( 'HEAD', 'http://0.0.0.0/' );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'request() should fail' );
+
+		try {
+			$httpRequestFactory->create( 'http://0.0.0.0/' );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'create() should fail' );
+
+		try {
+			$httpRequestFactory->createGuzzleClient();
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'createGuzzleClient() should fail' );
+
+		$multiClient = $httpRequestFactory->createMultiClient();
+		$req = [ 'url' => 'http://0.0.0.0/' ];
+
+		try {
+			$multiClient->run( $req );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'MultiHttpRequest::run() should fail' );
+
+		try {
+			$multiClient->runMulti( [ $req ] );
+			$prevented = false;
+		} catch ( AssertionFailedError $e ) {
+			// pass
+		}
+
+		$this->assertTrue( $prevented, 'MultiHttpRequest::runMulti() should fail' );
+	}
+
+	public function testEditPage() {
+		// NOTE: can't use a data provider, since creating Title or WikiPage instances
+		//       is not safe without the test DB having been initialized.
+
+		$this->assertEditPage( 'Hello Wörld A', __METHOD__, 'Hello Wörld A' );
+		$this->assertEditPage( 'Hello Wörld B', __METHOD__, new TextContent( 'Hello Wörld B' ) );
+		$this->assertEditPage( 'Hello Wörld C', Title::newFromText( __METHOD__ ), 'Hello Wörld C' );
+		$this->assertEditPage(
+			'Hello Wörld D',
+			new WikiPage( Title::newFromText( __METHOD__ ) ),
+			'Hello Wörld D'
+		);
+	}
+
+	public function assertEditPage( $expected, $page, $content ) {
+		$status = $this->editPage( $page, $content );
+		$this->assertTrue( $status->isOK() );
+		$this->assertNotNull( $status->getValue()['revision-record'] );
+
+		/** @var RevisionRecord $rev */
+		$rev = $status->getValue()['revision-record'];
+		$cnt = $rev->getContent( SlotRecord::MAIN );
+
+		$this->assertSame( $expected, $cnt->serialize() );
 	}
 
 }

@@ -106,7 +106,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 
 			$dbw->insert(
 				'comment',
-				array_map( function ( $v ) {
+				array_map( static function ( $v ) {
 					return [
 						'comment_hash' => CommentStore::hash( $v, null ),
 						'comment_text' => $v,

@@ -1,5 +1,8 @@
 <?php
 
+use PHPUnit\Framework\SkippedTestError;
+use PHPUnit\Framework\SkippedTestSuiteError;
+use PHPUnit\Framework\SyntheticError;
 use PHPUnit\Framework\TestResult;
 
 /**
@@ -13,23 +16,70 @@ trait SuiteEventsTrait {
 	 * @inheritDoc
 	 */
 	public function run( TestResult $result = null ) : TestResult {
+		// setUp / tearDown handling based on code in TestSuite::run()
+		// (except in the parent only beforeClass / afterClass are run)
+		if ( $result === null ) {
+			$result = $this->createResult();
+		}
 		$calls = 0;
 		if ( is_callable( [ $this, 'setUp' ] ) ) {
+			$calls++;
 			try {
 				$this->setUp();
-			} catch ( \Throwable $_ ) {
-				// FIXME handle
+			} catch ( SkippedTestSuiteError $error ) {
+				$result->startTestSuite( $this );
+				foreach ( $this->tests() as $test ) {
+					$result->startTest( $test );
+					$result->addFailure( $test, $error, 0 );
+					$result->endTest( $test, 0 );
+				}
+				$result->endTestSuite( $this );
+				return $result;
+			} catch ( \Throwable $t ) {
+				$errorAdded = false;
+				$result->startTestSuite( $this );
+				foreach ( $this->tests() as $test ) {
+					if ( $result->shouldStop() ) {
+						break;
+					}
+					$result->startTest( $test );
+					if ( !$errorAdded ) {
+						$result->addError( $test, $t, 0 );
+						$errorAdded = true;
+					} else {
+						$result->addFailure(
+							$test,
+							new SkippedTestError( 'Test skipped because of an error in setUp method' ),
+							0
+						);
+					}
+					$result->endTest( $test, 0 );
+				}
+				$result->endTestSuite( $this );
+				return $result;
 			}
-			$calls++;
 		}
-		$res = parent::run( $result );
+
+		$result = parent::run( $result );
+
 		if ( is_callable( [ $this, 'tearDown' ] ) ) {
+			$calls++;
 			try {
 				$this->tearDown();
-			} catch ( \Throwable $_ ) {
-				// FIXME handle
+			} catch ( \Throwable $t ) {
+				$message = "Exception in tearDown" . \PHP_EOL . $t->getMessage();
+				$error = new SyntheticError( $message, 0, $t->getFile(), $t->getLine(), $t->getTrace() );
+				$placeholderTest = clone $this->testAt( 0 );
+				$placeholderTest->setName( 'tearDown' );
+				// Unlike in parent implementation, $result->endTestSuite() has
+				// already been invoked by parent::run, so we need to reopen
+				// the test suite
+				$result->startTestSuite( $this );
+				$result->startTest( $placeholderTest );
+				$result->addFailure( $placeholderTest, $error, 0 );
+				$result->endTest( $placeholderTest, 0 );
+				$result->endTestSuite( $this );
 			}
-			$calls++;
 		}
 		if ( !$calls ) {
 			throw new LogicException(
@@ -37,6 +87,6 @@ trait SuiteEventsTrait {
 				. " uses neither setUp() nor tearDown(), so it doesn't need SuiteEventsTrait"
 			);
 		}
-		return $res;
+		return $result;
 	}
 }

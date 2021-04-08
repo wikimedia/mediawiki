@@ -630,7 +630,7 @@
 	 * @param {jQuery} $table jQuery object for a <table>
 	 */
 	function explodeRowspans( $table ) {
-		var spanningRealCellIndex, rowSpan, colSpan,
+		var spanningRealCellIndex, rowSpan, colSpan, row,
 			cell, cellData, i, $tds, $clone, $nextRows,
 			rowspanCells = $table.find( '> tbody > tr > [rowspan]' ).get();
 
@@ -700,8 +700,18 @@
 			spanningRealCellIndex = cellData.realCellIndex;
 			cell.rowSpan = 1;
 			$nextRows = $( cell ).parent().nextAll();
+
 			for ( i = 0; i < rowSpan - 1; i++ ) {
-				$tds = $( $nextRows[ i ].cells ).filter( filterfunc );
+				row = $nextRows[ i ];
+				if ( !row ) {
+					// Badly formatted HTML for table.
+					// Ignore this row, but leave a warning for someone to be able to find this.
+					// Perhaps in future this could be a wikitext linter rule, or preview warning
+					// on the edit page.
+					mw.log.warn( mw.message( 'sort-rowspan-error' ).plain() );
+					break;
+				}
+				$tds = $( row.cells ).filter( filterfunc );
 				$clone = $( cell ).clone();
 				$clone.data( 'tablesorter', {
 					realCellIndex: spanningRealCellIndex,

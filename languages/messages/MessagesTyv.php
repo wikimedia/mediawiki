@@ -16,6 +16,7 @@
  */
 
 $fallback = 'ru';
+
 $fallback8bitEncoding = "windows-1251";
 
 $namespaceNames = [
@@ -50,6 +51,7 @@ $namespaceAliases = [
 
 $namespaceGenderAliases = []; // T259003
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Идекпейжилер' ],
 	'Allmessages'               => [ 'Шупту_медеглелдер' ],
@@ -68,50 +70,51 @@ $specialPageAliases = [
 	'MyLanguage'                => [ 'Дылым' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#көжүрүлге', '#ШИГЛЕДИР', '#перенаправление', '#перенапр', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__ЭГЕ_ЧОК__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__БЕЗ_ОГЛ__', '__NOTOC__' ],
-	'nogallery'                 => [ '0', '__ГАЛЕРЕЯ_ЧОК__', '__БЕЗ_ГАЛЕРЕИ__', '__NOGALLERY__' ],
-	'forcetoc'                  => [ '0', '__АЛБАН_ЭГЕ__', '__ОБЯЗАТЕЛЬНОЕ_ОГЛАВЛЕНИЕ__', '__ОБЯЗ_ОГЛ__', '__FORCETOC__' ],
-	'toc'                       => [ '0', '__ДОПЧУ__', '__ОГЛАВЛЕНИЕ__', '__ОГЛ__', '__TOC__' ],
-	'noeditsection'             => [ '0', '__ҮЛЕГ_ЭДИЛГЕЗИ_ЧОК__', '__БЕЗ_РЕДАКТИРОВАНИЯ_РАЗДЕЛА__', '__NOEDITSECTION__' ],
-	'currentmonth'              => [ '1', '__АМГЫ_АЙ', '__АМГЫ_АЙ_2__', 'ТЕКУЩИЙ_МЕСЯЦ', 'ТЕКУЩИЙ_МЕСЯЦ_2', 'CURRENTMONTH', 'CURRENTMONTH2' ],
-	'currentmonth1'             => [ '1', '__АМГЫ_АЙ_1__', 'ТЕКУЩИЙ_МЕСЯЦ_1', 'CURRENTMONTH1' ],
-	'currentmonthname'          => [ '1', 'АМГЫАЙНЫҢАДЫ', 'НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА', 'CURRENTMONTHNAME' ],
 	'currentday'                => [ '1', 'АМГЫХҮН', 'ТЕКУЩИЙ_ДЕНЬ', 'CURRENTDAY' ],
 	'currentday2'               => [ '1', 'АМГЫХҮН2', 'ТЕКУЩИЙ_ДЕНЬ_2', 'CURRENTDAY2' ],
 	'currentdayname'            => [ '1', 'АМГЫХҮННҮҢАДЫ', 'НАЗВАНИЕ_ТЕКУЩЕГО_ДНЯ', 'CURRENTDAYNAME' ],
-	'currentyear'               => [ '1', 'АМГЫЧЫЛ', 'ТЕКУЩИЙ_ГОД', 'CURRENTYEAR' ],
-	'currenttime'               => [ '1', 'АМГЫҮЕ', 'ТЕКУЩЕЕ_ВРЕМЯ', 'CURRENTTIME' ],
+	'currentdow'                => [ '1', 'АМГЫЧЕДИХОНУКТУҢХҮНҮ', 'ТЕКУЩИЙ_ДЕНЬ_НЕДЕЛИ', 'CURRENTDOW' ],
 	'currenthour'               => [ '1', 'АМГЫШАК', 'ТЕКУЩИЙ_ЧАС', 'CURRENTHOUR' ],
-	'numberofpages'             => [ '1', 'АРЫННАРНЫҢСАНЫ', 'КОЛИЧЕСТВО_СТРАНИЦ', 'NUMBEROFPAGES' ],
-	'numberofarticles'          => [ '1', 'ЧҮҮЛДЕРНИҢСАНЫ', 'КОЛИЧЕСТВО_СТАТЕЙ', 'NUMBEROFARTICLES' ],
-	'numberoffiles'             => [ '1', 'ФАЙЛДАРНЫҢСАНЫ', 'КОЛИЧЕСТВО_ФАЙЛОВ', 'NUMBEROFFILES' ],
-	'numberofusers'             => [ '1', 'АЖЫГЛАКЧЫЛАРНЫҢСАНЫ', 'КОЛИЧЕСТВО_УЧАСТНИКОВ', 'NUMBEROFUSERS' ],
-	'numberofedits'             => [ '1', 'ӨСКЕРЛИИШКИННЕРНИҢСАНЫ', 'КОЛИЧЕСТВО_ПРАВОК', 'NUMBEROFEDITS' ],
-	'pagename'                  => [ '1', 'АРЫННЫҢАДЫ', 'НАЗВАНИЕ_СТРАНИЦЫ', 'PAGENAME' ],
+	'currentmonth'              => [ '1', '__АМГЫ_АЙ', '__АМГЫ_АЙ_2__', 'ТЕКУЩИЙ_МЕСЯЦ', 'ТЕКУЩИЙ_МЕСЯЦ_2', 'CURRENTMONTH', 'CURRENTMONTH2' ],
+	'currentmonth1'             => [ '1', '__АМГЫ_АЙ_1__', 'ТЕКУЩИЙ_МЕСЯЦ_1', 'CURRENTMONTH1' ],
+	'currentmonthname'          => [ '1', 'АМГЫАЙНЫҢАДЫ', 'НАЗВАНИЕ_ТЕКУЩЕГО_МЕСЯЦА', 'CURRENTMONTHNAME' ],
+	'currenttime'               => [ '1', 'АМГЫҮЕ', 'ТЕКУЩЕЕ_ВРЕМЯ', 'CURRENTTIME' ],
+	'currentweek'               => [ '1', 'АМГЫЧЕДИХОНУК', 'ТЕКУЩАЯ_НЕДЕЛЯ', 'CURRENTWEEK' ],
+	'currentyear'               => [ '1', 'АМГЫЧЫЛ', 'ТЕКУЩИЙ_ГОД', 'CURRENTYEAR' ],
+	'forcetoc'                  => [ '0', '__АЛБАН_ЭГЕ__', '__ОБЯЗАТЕЛЬНОЕ_ОГЛАВЛЕНИЕ__', '__ОБЯЗ_ОГЛ__', '__FORCETOC__' ],
+	'hiddencat'                 => [ '1', '__ЧАЖЫТ_АҢГЫЛАЛ__', '__СКРЫТАЯ_КАТЕГОРИЯ__', '__HIDDENCAT__' ],
+	'img_center'                => [ '1', 'төп', 'центр', 'center', 'centre' ],
+	'img_left'                  => [ '1', 'солагай', 'слева', 'left' ],
+	'img_right'                 => [ '1', 'оң', 'справа', 'right' ],
+	'language'                  => [ '0', '#ДЫЛ:', '#ЯЗЫК:', '#LANGUAGE:' ],
 	'namespace'                 => [ '1', 'АТТАРДЕЛГЕМИ', 'ПРОСТРАНСТВО_ИМЁН', 'NAMESPACE' ],
 	'namespacee'                => [ '1', 'АТТАРДЕЛГЕМИ2', 'ПРОСТРАНСТВО_ИМЁН_2', 'NAMESPACEE' ],
 	'namespacenumber'           => [ '1', 'АТТАРДЕЛГЕМИНИҢСАНЫ', 'НОМЕР_ПРОСТРАНСТВА_ИМЁН', 'NAMESPACENUMBER' ],
-	'talkspace'                 => [ '1', 'ЧУГААДЕЛГЕМИ', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ', 'TALKSPACE' ],
-	'talkspacee'                => [ '1', 'ЧУГААДЕЛГЕМИ2', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ_2', 'TALKSPACEE' ],
-	'img_right'                 => [ '1', 'оң', 'справа', 'right' ],
-	'img_left'                  => [ '1', 'солагай', 'слева', 'left' ],
-	'img_center'                => [ '1', 'төп', 'центр', 'center', 'centre' ],
-	'sitename'                  => [ '1', 'САЙТТЫҢАДЫ', 'НАЗВАНИЕ_САЙТА', 'SITENAME' ],
+	'noeditsection'             => [ '0', '__ҮЛЕГ_ЭДИЛГЕЗИ_ЧОК__', '__БЕЗ_РЕДАКТИРОВАНИЯ_РАЗДЕЛА__', '__NOEDITSECTION__' ],
+	'nogallery'                 => [ '0', '__ГАЛЕРЕЯ_ЧОК__', '__БЕЗ_ГАЛЕРЕИ__', '__NOGALLERY__' ],
+	'notoc'                     => [ '0', '__ЭГЕ_ЧОК__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__БЕЗ_ОГЛ__', '__NOTOC__' ],
 	'ns'                        => [ '0', 'АД:', 'ПИ:', 'NS:' ],
 	'nse'                       => [ '0', 'АД2:', 'ПИК:', 'NSE:' ],
-	'currentweek'               => [ '1', 'АМГЫЧЕДИХОНУК', 'ТЕКУЩАЯ_НЕДЕЛЯ', 'CURRENTWEEK' ],
-	'currentdow'                => [ '1', 'АМГЫЧЕДИХОНУКТУҢХҮНҮ', 'ТЕКУЩИЙ_ДЕНЬ_НЕДЕЛИ', 'CURRENTDOW' ],
-	'raw'                       => [ '0', 'ЧИГ:', 'НЕОБРАБ:', 'RAW:' ],
-	'language'                  => [ '0', '#ДЫЛ:', '#ЯЗЫК:', '#LANGUAGE:' ],
-	'special'                   => [ '0', 'тускай', 'служебная', 'special' ],
-	'tag'                       => [ '0', 'демдек', 'метка', 'тег', 'тэг', 'tag' ],
-	'hiddencat'                 => [ '1', '__ЧАЖЫТ_АҢГЫЛАЛ__', '__СКРЫТАЯ_КАТЕГОРИЯ__', '__HIDDENCAT__' ],
+	'numberofarticles'          => [ '1', 'ЧҮҮЛДЕРНИҢСАНЫ', 'КОЛИЧЕСТВО_СТАТЕЙ', 'NUMBEROFARTICLES' ],
+	'numberofedits'             => [ '1', 'ӨСКЕРЛИИШКИННЕРНИҢСАНЫ', 'КОЛИЧЕСТВО_ПРАВОК', 'NUMBEROFEDITS' ],
+	'numberoffiles'             => [ '1', 'ФАЙЛДАРНЫҢСАНЫ', 'КОЛИЧЕСТВО_ФАЙЛОВ', 'NUMBEROFFILES' ],
+	'numberofpages'             => [ '1', 'АРЫННАРНЫҢСАНЫ', 'КОЛИЧЕСТВО_СТРАНИЦ', 'NUMBEROFPAGES' ],
+	'numberofusers'             => [ '1', 'АЖЫГЛАКЧЫЛАРНЫҢСАНЫ', 'КОЛИЧЕСТВО_УЧАСТНИКОВ', 'NUMBEROFUSERS' ],
+	'pagename'                  => [ '1', 'АРЫННЫҢАДЫ', 'НАЗВАНИЕ_СТРАНИЦЫ', 'PAGENAME' ],
 	'pagesincategory'           => [ '1', '__АҢГЫЛАЛ_АРЫННАРЫ__', 'СТРАНИЦ_В_КАТЕГОРИИ', 'PAGESINCATEGORY', 'PAGESINCAT' ],
 	'pagesincategory_all'       => [ '0', 'шупту', 'все', 'all' ],
-	'pagesincategory_pages'     => [ '0', 'арыннар', 'страницы', 'pages' ],
 	'pagesincategory_files'     => [ '0', 'файлдар', 'файлы', 'files' ],
+	'pagesincategory_pages'     => [ '0', 'арыннар', 'страницы', 'pages' ],
+	'raw'                       => [ '0', 'ЧИГ:', 'НЕОБРАБ:', 'RAW:' ],
+	'redirect'                  => [ '0', '#көжүрүлге', '#ШИГЛЕДИР', '#перенаправление', '#перенапр', '#REDIRECT' ],
+	'sitename'                  => [ '1', 'САЙТТЫҢАДЫ', 'НАЗВАНИЕ_САЙТА', 'SITENAME' ],
+	'special'                   => [ '0', 'тускай', 'служебная', 'special' ],
+	'tag'                       => [ '0', 'демдек', 'метка', 'тег', 'тэг', 'tag' ],
+	'talkspace'                 => [ '1', 'ЧУГААДЕЛГЕМИ', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ', 'TALKSPACE' ],
+	'talkspacee'                => [ '1', 'ЧУГААДЕЛГЕМИ2', 'ПРОСТРАНСТВО_ОБСУЖДЕНИЙ_2', 'TALKSPACEE' ],
+	'toc'                       => [ '0', '__ДОПЧУ__', '__ОГЛАВЛЕНИЕ__', '__ОГЛ__', '__TOC__' ],
 ];
 
 $bookstoreList = [

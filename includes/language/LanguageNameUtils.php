@@ -75,6 +75,9 @@ class LanguageNameUtils {
 	 */
 	private $validCodeCache = [];
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'ExtraLanguageNames',
 		'UsePigLatinVariant',
@@ -120,7 +123,8 @@ class LanguageNameUtils {
 	 *
 	 * @param string $code
 	 *
-	 * @return bool
+	 * @return bool False if the language code contains dangerous characters, e.g. HTML special
+	 *  characters or characters illegal in MediaWiki titles.
 	 */
 	public function isValidCode( string $code ) : bool {
 		if ( !isset( $this->validCodeCache[$code] ) ) {
@@ -130,7 +134,9 @@ class LanguageNameUtils {
 			$this->validCodeCache[$code] =
 				// Protect against path traversal
 				strcspn( $code, ":/\\\000&<>'\"" ) === strlen( $code ) &&
-				!preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code );
+				!preg_match( MediaWikiTitleCodec::getTitleInvalidRegex(), $code ) &&
+				// libicu sets ULOC_FULLNAME_CAPACITY to 157; stay comfortably lower
+				strlen( $code ) <= 128;
 		}
 		return $this->validCodeCache[$code];
 	}

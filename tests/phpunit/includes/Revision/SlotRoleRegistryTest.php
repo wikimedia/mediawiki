@@ -5,12 +5,14 @@ namespace MediaWiki\Tests\Revision;
 use InvalidArgumentException;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
 use MediaWikiIntegrationTestCase;
 use Title;
+use TitleFactory;
 use Wikimedia\Assert\PostconditionException;
 
 /**
@@ -52,7 +54,7 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDefineRole() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'FOO', function ( $role ) {
+		$registry->defineRole( 'FOO', static function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 
@@ -78,12 +80,12 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDefineRoleFailsForDupe() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'foo', function ( $role ) {
+		$registry->defineRole( 'foo', static function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 
 		$this->expectException( LogicException::class );
-		$registry->defineRole( 'FOO', function ( $role ) {
+		$registry->defineRole( 'FOO', static function ( $role ) {
 			return new SlotRoleHandler( $role, 'FooModel' );
 		} );
 	}
@@ -143,7 +145,7 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetRoleHandlerWithBadInstantiator() {
 		$registry = $this->newSlotRoleRegistry();
-		$registry->defineRole( 'foo', function ( $role ) {
+		$registry->defineRole( 'foo', static function ( $role ) {
 			return 'Not a SlotRoleHandler instance';
 		} );
 
@@ -159,7 +161,9 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 		$registry->defineRole( 'main', function ( $role ) {
 			return new MainSlotRoleHandler(
 				[],
-				$this->createMock( IContentHandlerFactory::class )
+				$this->createMock( IContentHandlerFactory::class ),
+				$this->createMock( HookContainer::class ),
+				$this->createMock( TitleFactory::class )
 			);
 		} );
 
@@ -175,7 +179,9 @@ class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
 		$registry->defineRole( 'main', function ( $role ) {
 			return new MainSlotRoleHandler(
 				[],
-				$this->createMock( IContentHandlerFactory::class )
+				$this->createMock( IContentHandlerFactory::class ),
+				$this->createMock( HookContainer::class ),
+				$this->createMock( TitleFactory::class )
 			);
 		} );
 		$registry->defineRoleWithModel( 'FOO', CONTENT_MODEL_TEXT );

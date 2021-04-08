@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @author Addshore
  */
@@ -49,8 +51,6 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Test 'ok' and 'errors' getters.
-	 *
 	 * @covers Status::__get
 	 */
 	public function testOkAndErrorsGetters() {
@@ -71,8 +71,6 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * Test 'ok' setter.
-	 *
 	 * @covers Status::__set
 	 */
 	public function testOkSetter() {
@@ -167,7 +165,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		}
 		$warnings = $status->getWarningsArray();
 
-		$this->assertEquals( count( $messages ), count( $warnings ) );
+		$this->assertSame( count( $messages ), count( $warnings ) );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
 			$this->assertEquals( $warnings[$key], $expectedArray );
@@ -190,7 +188,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		}
 		$errors = $status->getErrorsArray();
 
-		$this->assertEquals( count( $messages ), count( $errors ) );
+		$this->assertSame( count( $messages ), count( $errors ) );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
 			$this->assertEquals( $errors[$key], $expectedArray );
@@ -212,7 +210,7 @@ class StatusTest extends MediaWikiLangTestCase {
 		}
 		$errors = $status->getErrorsArray();
 
-		$this->assertEquals( count( $messages ), count( $errors ) );
+		$this->assertSame( count( $messages ), count( $errors ) );
 		foreach ( $messages as $key => $message ) {
 			$expectedArray = array_merge( [ $message->getKey() ], $message->getParams() );
 			$this->assertEquals( $errors[$key], $expectedArray );
@@ -295,16 +293,14 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::cleanParams
 	 */
 	public function testCleanParams( $cleanCallback, $params, $expected ) {
-		$method = new ReflectionMethod( Status::class, 'cleanParams' );
-		$method->setAccessible( true );
-		$status = new Status();
+		$status = TestingAccessWrapper::newFromObject( new Status() );
 		$status->cleanCallback = $cleanCallback;
 
-		$this->assertEquals( $expected, $method->invoke( $status, $params ) );
+		$this->assertEquals( $expected, $status->cleanParams( $params ) );
 	}
 
 	public static function provideCleanParams() {
-		$cleanCallback = function ( $value ) {
+		$cleanCallback = static function ( $value ) {
 			return '-' . $value . '-';
 		};
 
@@ -414,7 +410,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	}
 
 	private static function sanitizedMessageParams( Message $message ) {
-		return array_map( function ( $p ) {
+		return array_map( static function ( $p ) {
 			return $p instanceof Message
 				? [
 					'key' => $p->getKey(),
@@ -544,14 +540,12 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getErrorMessage
 	 */
 	public function testGetErrorMessage() {
-		$method = new ReflectionMethod( Status::class, 'getErrorMessage' );
-		$method->setAccessible( true );
-		$status = new Status();
+		$status = TestingAccessWrapper::newFromObject( new Status() );
 		$key = 'foo';
 		$params = [ 'bar' ];
 
 		/** @var Message $message */
-		$message = $method->invoke( $status, array_merge( [ $key ], $params ) );
+		$message = $status->getErrorMessage( array_merge( [ $key ], $params ) );
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
@@ -561,14 +555,12 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getErrorMessage
 	 */
 	public function testGetErrorMessageComplexParam() {
-		$method = new ReflectionMethod( Status::class, 'getErrorMessage' );
-		$method->setAccessible( true );
-		$status = new Status();
+		$status = TestingAccessWrapper::newFromObject( new Status() );
 		$key = 'foo';
 		$params = [ 'bar', Message::numParam( 5 ) ];
 
 		/** @var Message $message */
-		$message = $method->invoke( $status, array_merge( [ $key ], $params ) );
+		$message = $status->getErrorMessage( array_merge( [ $key ], $params ) );
 		$this->assertInstanceOf( Message::class, $message );
 		$this->assertEquals( $key, $message->getKey() );
 		$this->assertEquals( $params, $message->getParams() );
@@ -578,15 +570,12 @@ class StatusTest extends MediaWikiLangTestCase {
 	 * @covers Status::getErrorMessageArray
 	 */
 	public function testGetErrorMessageArray() {
-		$method = new ReflectionMethod( Status::class, 'getErrorMessageArray' );
-		$method->setAccessible( true );
-		$status = new Status();
+		$status = TestingAccessWrapper::newFromObject( new Status() );
 		$key = 'foo';
 		$params = [ 'bar' ];
 
 		/** @var Message[] $messageArray */
-		$messageArray = $method->invoke(
-			$status,
+		$messageArray = $status->getErrorMessageArray(
 			[
 				array_merge( [ $key ], $params ),
 				array_merge( [ $key ], $params )
@@ -626,7 +615,7 @@ class StatusTest extends MediaWikiLangTestCase {
 	 */
 	public function testWakeUpSanitizesCallback() {
 		$status = new Status();
-		$status->cleanCallback = function ( $value ) {
+		$status->cleanCallback = static function ( $value ) {
 			return '-' . $value . '-';
 		};
 		$status->__wakeup();
@@ -752,7 +741,7 @@ class StatusTest extends MediaWikiLangTestCase {
 			->getMockForAbstractClass();
 		$messageLocalizer->expects( $this->atLeastOnce() )
 			->method( 'msg' )
-			->willReturnCallback( function ( $key ) {
+			->willReturnCallback( static function ( $key ) {
 				return new RawMessage( $key );
 			} );
 		/** @var MessageLocalizer $messageLocalizer */
@@ -762,4 +751,238 @@ class StatusTest extends MediaWikiLangTestCase {
 		$status->getWikiText( 'wrap-short', 'wrap-long' );
 	}
 
+	public function provideDuplicates() {
+		yield [ [ 'foo', 1, 2 ], [ 'foo', 1, 2 ] ];
+		$message = new Message( 'foo', [ 1, 2 ] );
+		yield [ $message, $message ];
+		yield [ $message, array_merge( [ $message->getKey() ], $message->getParams() ) ];
+		yield [ array_merge( [ $message->getKey() ], $message->getParams() ), $message ];
+	}
+
+	/**
+	 * @dataProvider provideDuplicates
+	 * @covers Status::error
+	 */
+	public function testDuplicateError( $error1, $error2 ) {
+		$status = Status::newGood();
+		if ( $error1 instanceof MessageSpecifier ) {
+			$status->error( $error1 );
+			$expected = [
+				'type' => 'error',
+				'message' => $error1,
+				'params' => []
+			];
+		} else {
+			$status->error( ...$error1 );
+			$message1 = $error1[0];
+			array_shift( $error1 );
+			$expected = [
+				'type' => 'error',
+				'message' => $message1,
+				'params' => $error1
+			];
+		}
+		if ( $error2 instanceof MessageSpecifier ) {
+			$status->error( $error2 );
+		} else {
+			$message2 = $error2[0];
+			array_shift( $error2 );
+			$status->error( $message2, ...$error2 );
+		}
+		$this->assertArrayEquals( [ $expected ], $status->errors );
+	}
+
+	/**
+	 * @covers Status::warning
+	 */
+	public function testDuplicateWarning() {
+		$status = Status::newGood();
+		$status->warning( 'foo', 1, 2 );
+		$status->warning( 'foo', 1, 2 );
+		$this->assertArrayEquals(
+			[
+				[
+					'type' => 'warning',
+					'message' => 'foo',
+					'params' => [ 1, 2 ]
+				]
+			],
+			$status->errors
+		);
+	}
+
+	/**
+	 * @covers Status::error
+	 * @covers Status::warning
+	 */
+	public function testErrorNotDowngradedToWarning() {
+		$status = Status::newGood();
+		$status->error( 'foo', 1, 2 );
+		$status->warning( 'foo', 1, 2 );
+		$this->assertArrayEquals(
+			[
+				[
+					'type' => 'error',
+					'message' => 'foo',
+					'params' => [ 1, 2 ]
+				]
+			],
+			$status->errors
+		);
+	}
+
+	/**
+	 * @covers Status::error
+	 * @covers Status::warning
+	 */
+	public function testErrorNotDowngradedToWarningMessage() {
+		$status = Status::newGood();
+		$message = new Message( 'foo', [ 1, 2 ] );
+		$status->error( $message );
+		$status->warning( $message );
+		$this->assertArrayEquals(
+			[
+				[
+					'type' => 'error',
+					'message' => $message,
+					'params' => []
+				]
+			],
+			$status->errors
+		);
+	}
+
+	/**
+	 * @covers Status::error
+	 * @covers Status::warning
+	 */
+	public function testWarningUpgradedToError() {
+		$status = Status::newGood();
+		$status->warning( 'foo', 1, 2 );
+		$status->error( 'foo', 1, 2 );
+		$this->assertArrayEquals(
+			[
+				[
+					'type' => 'error',
+					'message' => 'foo',
+					'params' => [ 1, 2 ]
+				]
+			],
+			$status->errors
+		);
+	}
+
+	/**
+	 * @covers Status::error
+	 * @covers Status::warning
+	 */
+	public function testWarningUpgradedToErrorMessage() {
+		$status = Status::newGood();
+		$message = new Message( 'foo', [ 1, 2 ] );
+		$status->warning( $message );
+		$status->error( $message );
+		$this->assertArrayEquals(
+			[
+				[
+					'type' => 'error',
+					'message' => $message,
+					'params' => []
+				]
+			],
+			$status->errors
+		);
+	}
+
+	/**
+	 * Ensure that two MessageSpecifiers that have the same key and params are considered
+	 * identical even if they are different instances.
+	 * @covers Status::error
+	 */
+	public function testCompareMessages() {
+		$status = Status::newGood();
+		$message1 = new Message( 'foo', [ 1, 2 ] );
+		$status->error( $message1 );
+		$message2 = new Message( 'foo', [ 1, 2 ] );
+		$status->error( $message2 );
+		$this->assertEquals( count( $status->errors ), 1 );
+	}
+
+	/**
+	 * @covers Status::merge
+	 */
+	public function testDuplicateMerge() {
+		$status1 = Status::newGood();
+		$status1->error( 'cat', 1, 2 );
+		$status1->warning( 'dog', 3, 4 );
+		$status2 = Status::newGood();
+		$status2->warning( 'cat', 1, 2 );
+		$status1->error( 'dog', 3, 4 );
+		$status2->warning( 'rabbit', 5, 6 );
+		$status1->merge( $status2 );
+		$this->assertArrayEquals(
+			[
+				[
+					'type' => 'error',
+					'message' => 'cat',
+					'params' => [ 1, 2 ]
+				],
+				[
+					'type' => 'error',
+					'message' => 'dog',
+					'params' => [ 3, 4 ]
+				],
+				[
+					'type' => 'warning',
+					'message' => 'rabbit',
+					'params' => [ 5, 6 ]
+				]
+			],
+			$status1->errors
+		);
+	}
+
+	/**
+	 * @covers Status::error
+	 */
+	public function testNotDuplicateIfKeyDiffers() {
+		$status = Status::newGood();
+		$status->error( 'foo', 1, 2 );
+		$status->error( 'bar', 1, 2 );
+		$this->assertArrayEquals(
+			[
+				[
+					'type' => 'error',
+					'message' => 'foo',
+					'params' => [ 1, 2 ]
+				],
+				[
+					'type' => 'error',
+					'message' => 'bar',
+					'params' => [ 1, 2 ]
+				]
+			],
+			$status->errors
+		);
+	}
+
+	/**
+	 * @covers Status::error
+	 */
+	public function testNotDuplicateIfParamsDiffer() {
+		$status = Status::newGood();
+		$status->error( 'foo', 1, 2 );
+		$status->error( 'foo', 3, 4 );
+		$this->assertArrayEquals( [
+			[
+				'type' => 'error',
+				'message' => 'foo',
+				'params' => [ 1, 2 ]
+			],
+			[
+				'type' => 'error',
+				'message' => 'foo',
+				'params' => [ 3, 4 ]
+			]
+		], $status->errors );
+	}
 }

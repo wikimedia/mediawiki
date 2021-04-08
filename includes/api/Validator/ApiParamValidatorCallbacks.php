@@ -39,6 +39,10 @@ class ApiParamValidatorCallbacks implements Callbacks {
 		$request = $this->apiMain->getRequest();
 		$rawValue = $request->getRawVal( $name );
 
+		if ( $options['raw'] ?? false ) {
+			// Bypass NFC normalization
+			return $rawValue;
+		}
 		if ( is_string( $rawValue ) ) {
 			// Preserve U+001F for multi-values
 			if ( substr( $rawValue, 0, 1 ) === "\x1f" ) {

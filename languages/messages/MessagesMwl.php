@@ -65,6 +65,7 @@ $namespaceGenderAliases = [
 	NS_USER_TALK => [ 'male' => 'Cumbersa_outelizador', 'female' => 'Cumbersa_outelizadora' ],
 ]; // T180052
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'CreateAccount'             => [ 'Criar_Cuonta' ],
 	'Lonelypages'               => [ 'Páiginas_Uorfanas' ],
@@ -74,16 +75,17 @@ $specialPageAliases = [
 	'Userlogout'                => [ 'Salir' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ANCAMINAR', '#REDIRECIONAMENTO', '#REDIRECT' ],
-	'img_right'                 => [ '1', 'dreita', 'direita', 'right' ],
-	'img_left'                  => [ '1', 'squierda', 'esquerda', 'left' ],
-	'img_none'                  => [ '1', 'nanhun', 'nenhum', 'none' ],
-	'img_center'                => [ '1', 'centro', 'center', 'centre' ],
-	'img_middle'                => [ '1', 'meio', 'middle' ],
-	'language'                  => [ '0', '#LHENGUA:', '#IDIOMA:', '#LANGUAGE:' ],
 	'filepath'                  => [ '0', 'CAMINOFEXEIRO:', 'CAMINHODOARQUIVO', 'FILEPATH:' ],
-	'tag'                       => [ '0', 'eitiqueta', 'tag' ],
+	'img_center'                => [ '1', 'centro', 'center', 'centre' ],
+	'img_left'                  => [ '1', 'squierda', 'esquerda', 'left' ],
+	'img_middle'                => [ '1', 'meio', 'middle' ],
+	'img_none'                  => [ '1', 'nanhun', 'nenhum', 'none' ],
+	'img_right'                 => [ '1', 'dreita', 'direita', 'right' ],
+	'language'                  => [ '0', '#LHENGUA:', '#IDIOMA:', '#LANGUAGE:' ],
 	'pagesize'                  => [ '1', 'TAMANHOFEXEIRO', 'TAMANHODAPAGINA', 'TAMANHODAPÁGINA', 'PAGESIZE' ],
+	'redirect'                  => [ '0', '#ANCAMINAR', '#REDIRECIONAMENTO', '#REDIRECT' ],
 	'staticredirect'            => [ '1', '_ANCAMINARSTATICO_', '__REDIRECIONAMENTOESTATICO__', '__REDIRECIONAMENTOESTÁTICO__', '__STATICREDIRECT__' ],
+	'tag'                       => [ '0', 'eitiqueta', 'tag' ],
 ];

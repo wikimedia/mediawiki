@@ -24,13 +24,18 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\BlockManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
+use ReadOnlyMode;
+use SpecialPage;
 use Status;
 use StatusValue;
 use User;
@@ -139,8 +144,8 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var PermissionManager */
-	private $permManager;
+	/** @var UserNameUtils */
+	private $userNameUtils;
 
 	/** @var AuthenticationProvider[] */
 	private $allAuthenticationProviders = [];
@@ -163,12 +168,23 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
+	/** @var BlockManager */
+	private $blockManager;
+
+	/** @var BlockErrorFormatter */
+	private $blockErrorFormatter;
+
 	/**
 	 * Get the global AuthManager
 	 * @return AuthManager
-	 * @deprecated since 1.35 use MediaWikiServices::getInstance()->getAuthManager() instead.
+	 * @deprecated since 1.35, hard deprecated since 1.36
+	 * Use MediaWikiServices::getInstance()->getAuthManager() instead.
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getAuthManager();
 	}
 
@@ -176,23 +192,32 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param WebRequest $request
 	 * @param Config $config
 	 * @param ObjectFactory $objectFactory
-	 * @param PermissionManager $permManager
 	 * @param HookContainer $hookContainer
+	 * @param ReadOnlyMode $readOnlyMode
+	 * @param UserNameUtils $userNameUtils
+	 * @param BlockManager $blockManager
+	 * @param BlockErrorFormatter $blockErrorFormatter
 	 */
 	public function __construct(
 		WebRequest $request,
 		Config $config,
 		ObjectFactory $objectFactory,
-		PermissionManager $permManager,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		ReadOnlyMode $readOnlyMode,
+		UserNameUtils $userNameUtils,
+		BlockManager $blockManager,
+		BlockErrorFormatter $blockErrorFormatter
 	) {
 		$this->request = $request;
 		$this->config = $config;
 		$this->objectFactory = $objectFactory;
-		$this->permManager = $permManager;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->setLogger( new NullLogger() );
+		$this->readOnlyMode = $readOnlyMode;
+		$this->userNameUtils = $userNameUtils;
+		$this->blockManager = $blockManager;
+		$this->blockErrorFormatter = $blockErrorFormatter;
 	}
 
 	/**
@@ -259,10 +284,9 @@ class AuthManager implements LoggerAwareInterface {
 		}
 	}
 
-	/**
-	 * @name Authentication
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Authentication
+	/** @name   Authentication */
 
 	/**
 	 * Indicate whether user authentication is possible
@@ -703,11 +727,19 @@ class AuthManager implements LoggerAwareInterface {
 				'user' => $user->getName(),
 				'clientip' => $this->request->getIP(),
 			] );
-			/** @var RememberMeAuthenticationRequest $req */
-			$req = AuthenticationRequest::getRequestByClass(
-				$beginReqs, RememberMeAuthenticationRequest::class
-			);
-			$this->setSessionDataForUser( $user, $req && $req->rememberMe );
+			$rememberMeConfig = $this->config->get( 'RememberMe' );
+			if ( $rememberMeConfig === RememberMeAuthenticationRequest::ALWAYS_REMEMBER ) {
+				$rememberMe = true;
+			} elseif ( $rememberMeConfig === RememberMeAuthenticationRequest::NEVER_REMEMBER ) {
+				$rememberMe = false;
+			} else {
+				/** @var RememberMeAuthenticationRequest $req */
+				$req = AuthenticationRequest::getRequestByClass(
+					$beginReqs, RememberMeAuthenticationRequest::class
+				);
+				$rememberMe = $req && $req->rememberMe;
+			}
+			$this->setSessionDataForUser( $user, $rememberMe );
 			$ret = AuthenticationResponse::newPass( $user->getName() );
 			$this->callMethodOnProviders( 7, 'postAuthentication', [ $user, $ret ] );
 			$session->remove( 'AuthManager::authnState' );
@@ -843,12 +875,11 @@ class AuthManager implements LoggerAwareInterface {
 		return array_keys( $ret );
 	}
 
-	/** @} */
+	// endregion -- end of Authentication
 
-	/**
-	 * @name Authentication data changing
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Authentication data changing
+	/** @name   Authentication data changing */
 
 	/**
 	 * Revoke any authentication credentials for a user
@@ -930,12 +961,11 @@ class AuthManager implements LoggerAwareInterface {
 		}
 	}
 
-	/** @} */
+	// endregion -- end of Authentication data changing
 
-	/**
-	 * @name Account creation
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Account creation
+	/** @name   Account creation */
 
 	/**
 	 * Determine whether accounts can be created
@@ -1010,21 +1040,17 @@ class AuthManager implements LoggerAwareInterface {
 	 */
 	public function checkAccountCreatePermissions( User $creator ) {
 		// Wiki is read-only?
-		if ( wfReadOnly() ) {
-			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
+		if ( $this->readOnlyMode->isReadOnly() ) {
+			return Status::newFatal( wfMessage( 'readonlytext', $this->readOnlyMode->getReason() ) );
 		}
 
-		$permErrors = $this->permManager->getPermissionErrors(
+		$permStatus = new PermissionStatus();
+		if ( !$creator->authorizeWrite(
 			'createaccount',
-			$creator,
-			\SpecialPage::getTitleFor( 'CreateAccount' )
-		);
-		if ( $permErrors ) {
-			$status = Status::newGood();
-			foreach ( $permErrors as $args ) {
-				$status->fatal( ...$args );
-			}
-			return $status;
+			SpecialPage::getTitleFor( 'CreateAccount' ),
+			$permStatus
+		) ) {
+			return Status::wrap( $permStatus );
 		}
 
 		$ip = $this->getRequest()->getIP();
@@ -1032,16 +1058,12 @@ class AuthManager implements LoggerAwareInterface {
 		$block = $creator->isBlockedFromCreateAccount();
 		if ( $block ) {
 			$language = \RequestContext::getMain()->getLanguage();
-			$formatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
 			return Status::newFatal(
-				$formatter->getMessage( $block, $creator, $language, $ip )
+				$this->blockErrorFormatter->getMessage( $block, $creator, $language, $ip )
 			);
 		}
 
-		if (
-			MediaWikiServices::getInstance()->getBlockManager()
-				->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ )
-		) {
+		if ( $this->blockManager->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
 
@@ -1554,7 +1576,7 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Auto-create an account, and log into that account
+	 * Auto-create an account, and optionally log into that account
 	 *
 	 * PrimaryAuthenticationProviders can invoke this method by returning a PASS from
 	 * beginPrimaryAuthentication/continuePrimaryAuthentication with the username of a
@@ -1568,9 +1590,10 @@ class AuthManager implements LoggerAwareInterface {
 	 *  - the constant self::AUTOCREATE_SOURCE_SESSION, or
 	 *  - the constant AUTOCREATE_SOURCE_MAINT.
 	 * @param bool $login Whether to also log the user in
+	 * @param bool $log Whether to generate a user creation log entry (since 1.36)
 	 * @return Status Good if user was created, Ok if user already existed, otherwise Fatal
 	 */
-	public function autoCreateUser( User $user, $source, $login = true ) {
+	public function autoCreateUser( User $user, $source, $login = true, $log = true ) {
 		if ( $source !== self::AUTOCREATE_SOURCE_SESSION &&
 			$source !== self::AUTOCREATE_SOURCE_MAINT &&
 			!$this->getAuthenticationProvider( $source ) instanceof PrimaryAuthenticationProvider
@@ -1611,14 +1634,15 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Wiki is read-only?
-		if ( wfReadOnly() ) {
-			$this->logger->debug( __METHOD__ . ': denied by wfReadOnly(): {reason}', [
+		if ( $this->readOnlyMode->isReadOnly() ) {
+			$reason = $this->readOnlyMode->getReason();
+			$this->logger->debug( __METHOD__ . ': denied because of read only mode: {reason}', [
 				'username' => $username,
-				'reason' => wfReadOnlyReason(),
+				'reason' => $reason,
 			] );
 			$user->setId( 0 );
 			$user->loadFromId();
-			return Status::newFatal( wfMessage( 'readonlytext', wfReadOnlyReason() ) );
+			return Status::newFatal( wfMessage( 'readonlytext', $reason ) );
 		}
 
 		// Check the session, if we tried to create this user already there's
@@ -1640,7 +1664,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Is the username creatable?
-		if ( !User::isCreatableName( $username ) ) {
+		if ( !$this->userNameUtils->isCreatable( $username ) ) {
 			$this->logger->debug( __METHOD__ . ': name "{username}" is not creatable', [
 				'username' => $username,
 			] );
@@ -1652,9 +1676,8 @@ class AuthManager implements LoggerAwareInterface {
 
 		// Is the IP user able to create accounts?
 		$anon = new User;
-		if ( $source !== self::AUTOCREATE_SOURCE_MAINT && !MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasAnyRight( $anon, 'createaccount', 'autocreateaccount' )
+		if ( $source !== self::AUTOCREATE_SOURCE_MAINT &&
+			!$anon->isAllowedAny( 'createaccount', 'autocreateaccount' )
 		) {
 			$this->logger->debug( __METHOD__ . ': IP lacks the ability to create or autocreate accounts', [
 				'username' => $username,
@@ -1769,12 +1792,12 @@ class AuthManager implements LoggerAwareInterface {
 		// Update user count
 		\DeferredUpdates::addUpdate( \SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 		// Watch user's userpage and talk page
-		\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+		\DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
 			$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
 		} );
 
 		// Log the creation
-		if ( $this->config->get( 'NewUserLog' ) ) {
+		if ( $this->config->get( 'NewUserLog' ) && $log ) {
 			$logEntry = new \ManualLogEntry( 'newusers', 'autocreate' );
 			$logEntry->setPerformer( $user );
 			$logEntry->setTarget( $user->getUserPage() );
@@ -1794,12 +1817,11 @@ class AuthManager implements LoggerAwareInterface {
 		return Status::newGood();
 	}
 
-	/** @} */
+	// endregion -- end of Account creation
 
-	/**
-	 * @name Account linking
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Account linking
+	/** @name   Account linking */
 
 	/**
 	 * Determine whether accounts can be linked
@@ -1833,7 +1855,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		if ( $user->getId() === 0 ) {
-			if ( !User::isUsableName( $user->getName() ) ) {
+			if ( !$this->userNameUtils->isUsable( $user->getName() ) ) {
 				$msg = wfMessage( 'noname' );
 			} else {
 				$msg = wfMessage( 'authmanager-userdoesnotexist', $user->getName() );
@@ -2019,12 +2041,11 @@ class AuthManager implements LoggerAwareInterface {
 		}
 	}
 
-	/** @} */
+	// endregion -- end of Account linking
 
-	/**
-	 * @name Information methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Information methods
+	/** @name   Information methods */
 
 	/**
 	 * Return the applicable list of AuthenticationRequests
@@ -2145,7 +2166,7 @@ class AuthManager implements LoggerAwareInterface {
 		// AuthManager has its own req for some actions
 		switch ( $providerAction ) {
 			case self::ACTION_LOGIN:
-				$reqs[] = new RememberMeAuthenticationRequest;
+				$reqs[] = new RememberMeAuthenticationRequest( $this->config->get( 'RememberMe' ) );
 				break;
 
 			case self::ACTION_CREATE:
@@ -2258,12 +2279,11 @@ class AuthManager implements LoggerAwareInterface {
 		return null;
 	}
 
-	/** @} */
+	// endregion -- end of Information methods
 
-	/**
-	 * @name Internal methods
-	 * @{
-	 */
+	/***************************************************************************/
+	// region   Internal methods
+	/** @name   Internal methods */
 
 	/**
 	 * Store authentication in the current session
@@ -2328,7 +2348,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 		unset( $spec );
 		// Sort according to the 'sort' field, and if they are equal, according to 'sort2'
-		usort( $specs, function ( $a, $b ) {
+		usort( $specs, static function ( $a, $b ) {
 			return $a['sort'] <=> $b['sort']
 				?: $a['sort2'] <=> $b['sort2'];
 		} );
@@ -2356,7 +2376,6 @@ class AuthManager implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Get the configuration
 	 * @return array
 	 */
 	private function getConfiguration() {
@@ -2500,11 +2519,15 @@ class AuthManager implements LoggerAwareInterface {
 		return $this->hookRunner;
 	}
 
-	/** @} */
+	// endregion -- end of Internal methods
 
 }
 
-/**
- * For really cool vim folding this needs to be at the end:
- * vim: foldmarker=@{,@} foldmethod=marker
+/*
+ * This file uses VisualStudio style region/endregion fold markers which are
+ * recognised by PHPStorm. If modelines are enabled, the following editor
+ * configuration will also enable folding in vim, if it is in the last 5 lines
+ * of the file. We also use "@name" which creates sections in Doxygen.
+ *
+ * vim: foldmarker=//\ region,//\ endregion foldmethod=marker
  */

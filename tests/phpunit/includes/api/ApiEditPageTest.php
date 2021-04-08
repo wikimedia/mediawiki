@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -783,11 +784,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$text = ( new WikiPage( $titleObj ) )->getContent()->getText();
 
-		// This is wrong!  It should be 1.  But let's test for our incorrect
-		// behavior for now, so if someone fixes it they'll fix the test as
-		// well to expect 1.  If we disabled the test, it might stay disabled
-		// even once the bug is fixed, which would be a shame.
-		$this->assertSame( '2', $text );
+		$this->assertSame( '1', $text );
 	}
 
 	public function testUndoWithConflicts() {
@@ -815,10 +812,6 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->assertSame( '3', $text );
 	}
 
-	/**
-	 * undoafter is supposed to be less than undo.  If not, we reverse their
-	 * meaning, so that the two are effectively interchangeable.
-	 */
 	public function testReversedUndoAfter() {
 		$this->markTestSkippedIfNoDiff3();
 
@@ -837,7 +830,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$text = ( new WikiPage( Title::newFromText( $name ) ) )->getContent()
 			->getText();
-		$this->assertSame( '1', $text );
+		$this->assertSame( '2', $text );
 	}
 
 	public function testUndoToRevFromDifferentPage() {
@@ -1047,7 +1040,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->expectExceptionMessage( "Can't append to pages using content model testing-nontext." );
 
 		$this->setTemporaryHook( 'ContentHandlerDefaultModelFor',
-			function ( Title $title, &$model ) use ( $name ) {
+			static function ( Title $title, &$model ) use ( $name ) {
 				if ( $title->getPrefixedText() === $name ) {
 					$model = 'testing-nontext';
 				}
@@ -1083,7 +1076,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$this->expectExceptionMessage( 'Content serialization failed: Could not unserialize content' );
 
 		$this->setTemporaryHook( 'ContentHandlerDefaultModelFor',
-			function ( Title $title, &$model ) use ( $name ) {
+			static function ( Title $title, &$model ) use ( $name ) {
 				if ( $title->getPrefixedText() === $name ) {
 					$model = 'testing-serialize-error';
 				}
@@ -1443,7 +1436,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
-			function ( $unused1, $unused2, Status $status ) {
+			static function ( $unused1, $unused2, Status $status ) {
 				$status->apiHookResult = [ 'msg' => 'A message for you!' ];
 				return false;
 			} );
@@ -1468,7 +1461,7 @@ class ApiEditPageTest extends ApiTestCase {
 		);
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
-			function () {
+			static function () {
 				return false;
 			}
 		);
@@ -1497,7 +1490,8 @@ class ApiEditPageTest extends ApiTestCase {
 			'expiry' => 'infinity',
 			'enableAutoblock' => true,
 		] );
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$this->doApiRequestWithToken( [
@@ -1510,7 +1504,7 @@ class ApiEditPageTest extends ApiTestCase {
 			$this->assertSame( 'You have been blocked from editing.', $ex->getMessage() );
 			$this->assertNotNull( DatabaseBlock::newFromTarget( '127.0.0.1' ), 'Autoblock spread' );
 		} finally {
-			$block->delete();
+			$blockStore->deleteBlock( $block );
 			self::$users['sysop']->getUser()->clearInstanceCache();
 		}
 	}
@@ -1588,7 +1582,10 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
-			'The action you have requested is limited to users in the group: '
+			// Two error messages are possible depending on the number of groups in the wiki with edit rights:
+			// - The action you have requested is limited to users in the group:
+			// - The action you have requested is limited to users in one of the groups:
+			'The action you have requested is limited to users in'
 		);
 
 		$this->setMwGlobals( 'wgRevokePermissions', [ '*' => [ 'edit' => true ] ] );
@@ -1617,5 +1614,39 @@ class ApiEditPageTest extends ApiTestCase {
 			'text' => 'Some text',
 			'contentmodel' => 'json',
 		] );
+	}
+
+	public function testMidEditContentModelMismatch() {
+		$name = 'Help:' . ucfirst( __FUNCTION__ );
+		$title = Title::newFromText( $name );
+
+		$page = WikiPage::factory( $title );
+
+		// base edit, currently in Wikitext
+		$page->doEditContent( new WikitextContent( "Foo" ),
+			"testing 1", EDIT_NEW, false, self::$users['sysop']->getUser() );
+		$this->forceRevisionDate( $page, '20120101000000' );
+		$baseId = $page->getRevisionRecord()->getId();
+
+		// Attempt edit in Javascript. This may happen, for instance, if we
+		// started editing the base content while it was in Javascript and
+		// before we save it was changed to Wikitext (base edit model).
+		$page->doEditContent( new JavaScriptContent( "Bar" ),
+			"testing 2", EDIT_UPDATE, $page->getLatest(), self::$users['uploader']->getUser() );
+		$this->forceRevisionDate( $page, '20120101020202' );
+
+		// ContentHanlder may throw exception if we attempt saving the above, so we will
+		// handle that with contentmodel-mismatch error. Test this is the case.
+		try {
+			$this->doApiRequestWithToken( [
+				'action' => 'edit',
+				'title' => $name,
+				'text' => 'different content models!',
+				'baserevid' => $baseId,
+			] );
+			$this->fail( "Should have raised an ApiUsageException" );
+		} catch ( ApiUsageException $e ) {
+			$this->assertTrue( self::apiExceptionHasCode( $e, 'contentmodel-mismatch' ) );
+		}
 	}
 }

@@ -5,7 +5,7 @@
 		]
 	},
 	"apihelp-delete-example-simple": "Busak <kbd>Tepas</kbd>.",
-	"apihelp-query+backlinks-example-simple": "Tuduhaké pranala menyang <kbd>Kaca utama</kbd>.",
-	"apihelp-query+backlinks-example-generator": "Deleng pratélan bab kaca-kaca sing nggayut <kbd>Kaca utama</kbd>.",
-	"apihelp-query+contributors-example-simple": "Tuduhaké para nyumbang <kbd>Kaca Utama</kbd>."
+	"apihelp-query+backlinks-example-simple": "Tuduhaké pranala menyang <kbd>Tepas</kbd>.",
+	"apihelp-query+backlinks-example-generator": "Deleng informasi bab kabèh kaca kang nggayut kaca <kbd>Tepas</kbd>.",
+	"apihelp-query+contributors-example-simple": "Tuduhaké kontributor <kbd>Tepas</kbd>."
 }

@@ -36,7 +36,7 @@
 				lastTop = top;
 			}
 
-			$img = $this.find( 'div.thumb a.image img' );
+			$img = $this.find( 'div.thumb img' );
 			if ( $img.length && $img[ 0 ].height ) {
 				imgHeight = $img[ 0 ].height;
 				imgWidth = $img[ 0 ].width;

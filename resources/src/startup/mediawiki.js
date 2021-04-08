@@ -11,7 +11,7 @@
 ( function () {
 	'use strict';
 
-	var mw, StringSet, log,
+	var mw, StringSet, log, isES6Supported,
 		hasOwn = Object.hasOwnProperty,
 		console = window.console;
 
@@ -21,7 +21,7 @@
 	 * This function implements the 32-bit version of FNV-1.
 	 * It is equivalent to hash( 'fnv132', ... ) in PHP, except
 	 * its output is base 36 rather than hex.
-	 * See <https://en.wikipedia.org/wiki/FNV_hash_function>
+	 * See <https://en.wikipedia.org/wiki/Fowler–Noll–Vo_hash_function>
 	 *
 	 * @private
 	 * @param {string} str String to hash
@@ -340,6 +340,35 @@
 		}
 	};
 
+	// Check whether the browser supports ES6.
+	//
+	// Most browsers that support native Promises also support all the ES6 features we need.
+	// The exceptions are:
+	// - Android 4.4.3, which supports almost no ES6 features besides Promise
+	// - Edge 17 and 18, which don't support RegExp-related features
+	// - Safari and iOS versions below 14, which don't support non-BMP characters in variable names
+	//   (older versions have other problems too)
+	isES6Supported =
+		// Check for Promise support (filters out most non-ES6 browsers)
+		typeof Promise === 'function' &&
+		// eslint-disable-next-line no-undef
+		Promise.prototype.finally &&
+
+		// Check for RegExp.prototype.flags (filters out Android 4.4.3 and Edge <= 18)
+		/./g.flags === 'g' &&
+
+		// Try a non-BMP variable name (filters out Safari < 14, iOS < 14)
+		( function () {
+			try {
+				// \ud800\udec0 is U+102C0 CARIAN LETTER G
+				// eslint-disable-next-line no-new, no-new-func
+				new Function( 'var \ud800\udec0;' );
+				return true;
+			} catch ( e ) {
+				return false;
+			}
+		}() );
+
 	/**
 	 * @class mw
 	 */
@@ -488,10 +517,11 @@
 			 *         'moduleName': {
 			 *             // From mw.loader.register()
 			 *             'version': '########' (hash)
+			 *             'requiresES6': bool
 			 *             'dependencies': ['required.foo', 'bar.also', ...]
 			 *             'group': string, integer, (or) null
 			 *             'source': 'local', (or) 'anotherwiki'
-			 *             'skip': 'return !!window.Example', (or) null, (or) boolean result of skip
+			 *             'skip': 'return !!window.Example;', (or) null, (or) boolean result of skip
 			 *             'module': export Object
 			 *
 			 *             // Set from execute() or mw.loader.state()
@@ -716,8 +746,9 @@
 			 * execute the module or job now.
 			 *
 			 * @private
-			 * @param {Array} modules Names of modules to be checked
-			 * @return {boolean} True if no modules are in state 'error' or 'missing', false otherwise
+			 * @param {string[]} modules Names of modules to be checked
+			 * @return {boolean|string} False if no modules are in state 'error' or 'missing';
+			 *  failed module otherwise
 			 */
 			function anyFailed( modules ) {
 				var state,
@@ -725,7 +756,7 @@
 				for ( ; i < modules.length; i++ ) {
 					state = mw.loader.getState( modules[ i ] );
 					if ( state === 'error' || state === 'missing' ) {
-						return true;
+						return modules[ i ];
 					}
 				}
 				return false;
@@ -739,7 +770,7 @@
 			 * - When a module reaches a final state, pending job callbacks for the
 			 *   module from mw.loader.using() should be called.
 			 * - When a module reaches the 'ready' state from #execute(), consider
-			 *   executing dependant modules now having their dependencies satisfied.
+			 *   executing dependent modules now having their dependencies satisfied.
 			 * - When a module reaches the 'loaded' state from mw.loader.implement,
 			 *   consider executing it, if it has no unsatisfied dependencies.
 			 *
@@ -791,13 +822,13 @@
 					for ( i = 0; i < jobs.length; i++ ) {
 						job = jobs[ i ];
 						failed = anyFailed( job.dependencies );
-						if ( failed || allReady( job.dependencies ) ) {
+						if ( failed !== false || allReady( job.dependencies ) ) {
 							jobs.splice( i, 1 );
 							i -= 1;
 							try {
-								if ( failed && job.error ) {
-									job.error( new Error( 'Failed dependencies' ), job.dependencies );
-								} else if ( !failed && job.ready ) {
+								if ( failed !== false && job.error ) {
+									job.error( new Error( 'Failed dependency: ' + failed ), job.dependencies );
+								} else if ( failed === false && job.ready ) {
 									job.ready();
 								}
 							} catch ( e ) {
@@ -876,10 +907,19 @@
 			 * @throws {Error} If an unknown module or a circular dependency is encountered
 			 */
 			function sortDependencies( module, resolved, unresolved ) {
-				var i, skip, deps;
+				var e, i, skip, deps;
 
 				if ( !( module in registry ) ) {
-					throw new Error( 'Unknown module: ' + module );
+					e = new Error( 'Unknown module: ' + module );
+					e.name = 'DependencyError';
+					throw e;
+				}
+
+				// Check requiresES6 before skip, to avoid executing an ES6 skip function in an ES5 client
+				if ( !isES6Supported && registry[ module ].requiresES6 ) {
+					e = new Error( 'Module requires ES6 but ES6 is not supported: ' + module );
+					e.name = 'ES6Error';
+					throw e;
 				}
 
 				if ( typeof registry[ module ].skip === 'string' ) {
@@ -904,9 +944,11 @@
 				for ( i = 0; i < deps.length; i++ ) {
 					if ( resolved.indexOf( deps[ i ] ) === -1 ) {
 						if ( unresolved.has( deps[ i ] ) ) {
-							throw new Error(
+							e = new Error(
 								'Circular reference detected: ' + module + ' -> ' + deps[ i ]
 							);
+							e.name = 'DependencyError';
+							throw e;
 						}
 
 						sortDependencies( deps[ i ], resolved, unresolved );
@@ -952,19 +994,28 @@
 					try {
 						sortDependencies( modules[ i ], resolved );
 					} catch ( err ) {
-						// This module is not currently known, or has invalid dependencies.
-						// Most likely due to a cached reference after the module was
-						// removed, otherwise made redundant, or omitted from the registry
-						// by the ResourceLoader "target" system.
 						resolved = saved;
-						mw.log.warn( 'Skipped unresolvable module ' + modules[ i ] );
-						if ( modules[ i ] in registry ) {
-							// If the module was known but had unknown or circular dependencies,
-							// also track it as an error.
-							mw.trackError( 'resourceloader.exception', {
-								exception: err,
-								source: 'resolve'
-							} );
+
+						if ( err.name === 'ES6Error' ) {
+							// These errors are common, since trying to load ES6-only modules
+							// in non-ES6 clients is OK and should fail gracefully. Don't track
+							// them as errors, and display a custom warning message.
+							mw.log.warn( 'Skipped ES6-only module ' + modules[ i ] );
+						} else {
+							// err.name === 'DependencyError'
+							// This module is not currently known, or has invalid dependencies.
+							// Most likely due to a cached reference after the module was
+							// removed, otherwise made redundant, or omitted from the registry
+							// by the ResourceLoader "target" system.
+							mw.log.warn( 'Skipped unresolvable module ' + modules[ i ] );
+							if ( modules[ i ] in registry ) {
+								// If the module was known but had unknown or circular dependencies,
+								// also track it as an error.
+								mw.trackError( 'resourceloader.exception', {
+									exception: err,
+									source: 'resolve'
+								} );
+							}
 						}
 					}
 				}
@@ -1167,6 +1218,8 @@
 			 * @param {Function} [error] Callback to execute when any dependency fails
 			 */
 			function enqueue( dependencies, ready, error ) {
+				var failed;
+
 				if ( allReady( dependencies ) ) {
 					// Run ready immediately
 					if ( ready !== undefined ) {
@@ -1175,11 +1228,12 @@
 					return;
 				}
 
-				if ( anyFailed( dependencies ) ) {
+				failed = anyFailed( dependencies );
+				if ( failed !== false ) {
 					if ( error !== undefined ) {
 						// Execute error immediately if any dependencies have errors
 						error(
-							new Error( 'One or more dependencies failed to load' ),
+							new Error( 'Dependency ' + failed + ' failed to load' ),
 							dependencies
 						);
 					}
@@ -1238,17 +1292,17 @@
 						$CODE.profileScriptEnd();
 						setAndPropagate( module, 'ready' );
 					};
-					nestedAddScript = function ( arr, callback, i ) {
+					nestedAddScript = function ( arr, callback, j ) {
 						// Recursively call queueModuleScript() in its own callback
 						// for each element of arr.
-						if ( i >= arr.length ) {
+						if ( j >= arr.length ) {
 							// We're at the end of the array
 							callback();
 							return;
 						}
 
-						queueModuleScript( arr[ i ], module, function () {
-							nestedAddScript( arr, callback, i + 1 );
+						queueModuleScript( arr[ j ], module, function () {
+							nestedAddScript( arr, callback, j + 1 );
 						} );
 					};
 
@@ -1705,9 +1759,18 @@
 			 * @param {string} [skip]
 			 */
 			function registerOne( module, version, dependencies, group, source, skip ) {
+				var requiresES6 = false;
 				if ( module in registry ) {
 					throw new Error( 'module already registered: ' + module );
 				}
+
+				// requiresES6 is encoded as a ! at the end of version
+				version = String( version || '' );
+				if ( version.slice( -1 ) === '!' ) {
+					version = version.slice( 0, -1 );
+					requiresES6 = true;
+				}
+
 				registry[ module ] = {
 					// Exposed to execute() for mw.loader.implement() closures.
 					// Import happens via require().
@@ -1716,7 +1779,8 @@
 					},
 					// module.export objects for each package file inside this module
 					packageExports: {},
-					version: String( version || '' ),
+					version: version,
+					requiresES6: requiresES6,
 					dependencies: dependencies || [],
 					group: typeof group === 'undefined' ? null : group,
 					source: typeof source === 'string' ? source : 'local',
@@ -1824,8 +1888,8 @@
 							source: 'store-eval'
 						} );
 						// For any failed ones, fallback to requesting from network
-						failed = storedNames.filter( function ( module ) {
-							return registry[ module ].state === 'loading';
+						failed = storedNames.filter( function ( name ) {
+							return registry[ name ].state === 'loading';
 						} );
 						batchRequest( failed );
 					} );
@@ -1868,6 +1932,7 @@
 				 *  a list of arguments compatible with this method
 				 * @param {string|number} [version] Module version hash (falls backs to empty string)
 				 *  Can also be a number (timestamp) for compatibility with MediaWiki 1.25 and earlier.
+				 *  A version string that ends with '!' signifies that the module requires ES6 support.
 				 * @param {string[]} [dependencies] Array of module names on which this module depends.
 				 * @param {string} [group=null] Group which the module is in
 				 * @param {string} [source='local'] Name of the source
@@ -2289,9 +2354,9 @@
 								encodedScript = '{' +
 									'main:' + JSON.stringify( descriptor.script.main ) + ',' +
 									'files:{' +
-									Object.keys( descriptor.script.files ).map( function ( key ) {
-										var value = descriptor.script.files[ key ];
-										return JSON.stringify( key ) + ':' +
+									Object.keys( descriptor.script.files ).map( function ( file ) {
+										var value = descriptor.script.files[ file ];
+										return JSON.stringify( file ) + ':' +
 											( typeof value === 'function' ? value : JSON.stringify( value ) );
 									} ).join( ',' ) +
 									'}}';

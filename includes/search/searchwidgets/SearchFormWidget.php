@@ -18,7 +18,7 @@ class SearchFormWidget {
 	protected $searchConfig;
 	/** @var array */
 	protected $profiles;
-	/** @var HookContainer $hookContainer */
+	/** @var HookContainer */
 	private $hookContainer;
 	/** @var HookRunner */
 	private $hookRunner;
@@ -69,7 +69,7 @@ class SearchFormWidget {
 				[
 					'id' => $isPowerSearch ? 'powersearch' : 'search',
 					// T151903: default to POST in case JS is disabled
-					'method' => ( $isPowerSearch && $user->isLoggedIn() ) ? 'post' : 'get',
+					'method' => ( $isPowerSearch && $user->isRegistered() ) ? 'post' : 'get',
 					'action' => wfScript(),
 				]
 			) .
@@ -309,7 +309,7 @@ class SearchFormWidget {
 		// Stuff to feed SpecialSearch::saveNamespaces()
 		$user = $this->specialSearch->getUser();
 		$remember = '';
-		if ( $user->isLoggedIn() ) {
+		if ( $user->isRegistered() ) {
 			$remember = $divider . Xml::checkLabel(
 				$this->specialSearch->msg( 'powersearch-remember' )->text(),
 				'nsRemember',

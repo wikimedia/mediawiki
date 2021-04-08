@@ -23,6 +23,8 @@
  * @covers SubpageImportTitleFactory
  *
  * @group Title
+ *
+ * TODO convert to Unit tests
  */
 class SubpageImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 
@@ -33,6 +35,14 @@ class SubpageImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( [
 			'wgNamespacesWithSubpages' => [ 0 => false, 2 => true ],
 		] );
+	}
+
+	private function newSubpageImportTitleFactory( Title $rootPage ) {
+		return new SubpageImportTitleFactory(
+			$this->getServiceContainer()->getNamespaceInfo(),
+			$this->getServiceContainer()->getTitleFactory(),
+			$rootPage
+		);
 	}
 
 	public function basicProvider() {
@@ -61,7 +71,7 @@ class SubpageImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testBasic( ForeignTitle $foreignTitle, Title $rootPage,
 		Title $title
 	) {
-		$factory = new SubpageImportTitleFactory( $rootPage );
+		$factory = $this->newSubpageImportTitleFactory( $rootPage );
 		$testTitle = $factory->createTitleFromForeignTitle( $foreignTitle );
 
 		$this->assertTrue( $testTitle->equals( $title ) );
@@ -80,6 +90,6 @@ class SubpageImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testFailures( Title $rootPage ) {
 		$this->expectException( MWException::class );
-		new SubpageImportTitleFactory( $rootPage );
+		$this->newSubpageImportTitleFactory( $rootPage );
 	}
 }

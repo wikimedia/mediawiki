@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -116,6 +117,20 @@ class ApiOptions extends ApiBase {
 					} else {
 						$validation = true;
 					}
+
+					LoggerFactory::getInstance( 'api-warning' )->info(
+						'ApiOptions: Setting userjs option',
+						[
+							'phab' => 'T259073',
+							'OptionName' => substr( $key, 0, 255 ),
+							'OptionValue' => substr( $value, 0, 255 ),
+							'OptionSize' => strlen( $value ),
+							'OptionValidation' => $validation,
+							'UserId' => $user->getId(),
+							'RequestIP' => $this->getRequest()->getIP(),
+							'RequestUA' => $this->getRequest()->getHeader( 'User-Agent' )
+						]
+					);
 					break;
 				case 'special':
 					$validation = $this->msg( 'apiwarn-validationfailed-cannotset' );
@@ -143,7 +158,7 @@ class ApiOptions extends ApiBase {
 	/**
 	 * Load the user from the master to reduce CAS errors on double post (T95839)
 	 *
-	 * @return null|User
+	 * @return User|null
 	 */
 	protected function getUserForUpdates() {
 		if ( !$this->userForUpdates ) {

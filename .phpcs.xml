@@ -5,22 +5,17 @@
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationPublic" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.ObjectTypeHintReturn" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam" />
+		<exclude name="MediaWiki.Commenting.FunctionComment.WrongStyle" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPrivate" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationProtected" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingDocumentationPublic" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.MissingVar" />
-		<exclude name="MediaWiki.Commenting.PropertyDocumentation.NotShortBoolVar" />
-		<exclude name="MediaWiki.Commenting.PropertyDocumentation.NotShortIntVar" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.SpacingAfter" />
 		<exclude name="MediaWiki.Commenting.PropertyDocumentation.WrongStyle" />
-		<exclude name="MediaWiki.Commenting.RedundantVarName.Found" /><!-- autofix -->
 		<exclude name="MediaWiki.ControlStructures.AssignmentInControlStructures.AssignmentInControlStructures" />
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName" />
+		<exclude name="MediaWiki.PHPUnit.AssertCount.NotUsed" />
 		<exclude name="MediaWiki.Usage.DbrQueryUsage.DbrQueryFound" />
-		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgContLang" />
-		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgMemc" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgTitle" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser" />
 		<exclude name="MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgVersion" />
@@ -28,23 +23,9 @@
 		<exclude name="MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.is_resource" />
 		<exclude name="MediaWiki.Usage.ForbiddenFunctions.passthru" />
-		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.False" /><!-- autofix -->
-		<exclude name="MediaWiki.Usage.PHPUnitAssertEquals.True" /><!-- autofix -->
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgCommandLineMode" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgFullyInitialised" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgOut" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgPoolCounterConf" />
-		<exclude name="MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgSessionCacheType" />
+		<exclude name="MediaWiki.Usage.SuperGlobalsUsage.SuperGlobals" />
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment" />
-	</rule>
-	<!-- TODO Still to be done -->
-	<rule ref="MediaWiki.Commenting.FunctionComment.WrongStyle">
-		<exclude-pattern>includes/</exclude-pattern>
-	</rule>
-	<!-- See T238572 -->
-	<rule ref="MediaWiki.Commenting.FunctionComment.MissingParamTag">
-		<exclude-pattern>tests/</exclude-pattern>
+		<exclude name="PSR2.Classes.PropertyDeclaration.Multiple" />
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.PrefixedGlobalFunctions">
 		<properties>
@@ -76,11 +57,13 @@
 		</properties>
 	</rule>
 	<rule ref="MediaWiki.NamingConventions.ValidGlobalName.allowedPrefix">
-		<exclude-pattern>maintenance/language/checkLanguage\.inc</exclude-pattern>
 		<exclude-pattern>maintenance/doMaintenance\.php</exclude-pattern>
 		<exclude-pattern>maintenance/mergeMessageFileList\.php</exclude-pattern>
-		<exclude-pattern>maintenance/commandLine\.inc</exclude-pattern>
+		<exclude-pattern>maintenance/CommandLineInc\.php</exclude-pattern>
 		<exclude-pattern>tests/phpunit/MediaWikiIntegrationTestCase\.php</exclude-pattern>
+	</rule>
+	<rule ref="Generic.Classes.DuplicateClassName.Found">
+		<exclude-pattern>*/includes/libs/rdbms/database/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
 	</rule>
 	<rule ref="Generic.Files.LineLength">
 		<exclude-pattern>*/languages/messages/Messages*\.php</exclude-pattern>
@@ -96,7 +79,6 @@
 		<exclude-pattern>*/includes/specials/SpecialUserrights\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedfiles\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedpages\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/CodeCleanerGlobalsPass.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/archives/upgradeLogging\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_HTTP_HTTPS\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_Wikimedia_base_convert\.php</exclude-pattern>
@@ -104,9 +86,7 @@
 		<exclude-pattern>*/maintenance/benchmarks/bench_if_switch\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_utf8_title_check\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_wfIsWindows\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/cleanupTable.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/cleanupTitles\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/commandLine.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/edit\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/getText\.php</exclude-pattern>
@@ -116,9 +96,7 @@
 		<exclude-pattern>*/maintenance/jsparse\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/lag\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/language/checkLanguage.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/date-formats\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/language/languages.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/minify\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/mysql\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/parse\.php</exclude-pattern>
@@ -127,11 +105,8 @@
 		<exclude-pattern>*/maintenance/renderDump\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/shell\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/sql\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/sqlite.inc</exclude-pattern>
-		<exclude-pattern>*/maintenance/sqlite\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/term/MWTerm\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/update\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/userDupes.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/userOptions\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/view\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
@@ -194,13 +169,12 @@
 			Whitelist existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
+		<exclude-pattern>*/includes/libs/rdbms/database/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/dumpIterator\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/storage/recompressTracked\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/language/languages.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/language/checkLanguage.inc</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/generateCollationData\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/term/MWTerm\.php</exclude-pattern>
 		<!-- Language converters use the pattern of 2 classes in one file -->
@@ -265,10 +239,20 @@
 	<rule ref="MediaWiki.Commenting.MissingCovers.MissingCovers">
 		<exclude-pattern>tests/phpunit/structure/*</exclude-pattern>
 	</rule>
+	<rule ref="Generic.Arrays.DisallowShortArraySyntax">
+		<!--
+			T273340: Rule not to be enabled on any other file.
+			PHPVersionCheck.php requires syntax to be old PHP compatible.
+			The rest should therefore use [] rather than array() as per the
+			MediaWiki style guide.
+		-->
+		<include-pattern>includes/PHPVersionCheck\.php</include-pattern>
+	</rule>
 	<file>.</file>
 	<arg name="encoding" value="UTF-8"/>
 	<arg name="extensions" value="php,sample"/>
 	<exclude-pattern type="relative">^extensions/</exclude-pattern>
 	<exclude-pattern type="relative">^skins/</exclude-pattern>
 	<exclude-pattern>LocalSettings\.php</exclude-pattern>
+	<exclude-pattern>LocalSettings-installer\.php</exclude-pattern>
 </ruleset>

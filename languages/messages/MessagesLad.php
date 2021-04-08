@@ -73,6 +73,7 @@ $namespaceAliases = [
 // Remove Spanish gender aliases (T39090)
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'UsadoresAktivos' ],
 	'Allmessages'               => [ 'TodosLosMessajes' ],
@@ -80,6 +81,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'HojasViejas' ],
 	'Blankpage'                 => [ 'VaziarHoja' ],
 	'Block'                     => [ 'Bloquear' ],
+	'BlockList'                 => [ 'UsadoresBloqueados' ],
 	'Booksources'               => [ 'FuentesDeLivros' ],
 	'BrokenRedirects'           => [ 'DireksionesBozeadas' ],
 	'Categories'                => [ 'Katēggorías' ],
@@ -100,7 +102,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Pozisyón_de_dosya' ],
 	'Import'                    => [ 'AktarearAriento' ],
 	'Invalidateemail'           => [ 'DesverdadearLetral' ],
-	'BlockList'                 => [ 'UsadoresBloqueados' ],
 	'LinkSearch'                => [ 'Busqueda_de_atamientos' ],
 	'Listadmins'                => [ 'ListaDeAdministradores' ],
 	'Listbots'                  => [ 'ListaDeBotes' ],
@@ -169,11 +170,12 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'SinIntervikis' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#DIRIJAR', '#DIRECCIÓN', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ],
 	'fullpagename'              => [ '1', 'NOMBREDEHOJACOMPLETA', 'NOMBREDEPÁGINACOMPLETA', 'NOMBREDEPAGINACOMPLETA', 'NOMBREDEPÁGINAENTERA', 'NOMBREDEPAGINAENTERA', 'NOMBRECOMPLETODEPÁGINA', 'NOMBRECOMPLETODEPAGINA', 'FULLPAGENAME' ],
-	'subpagename'               => [ '1', 'NOMBREDEHOJICA', 'NOMBREDESUBPAGINA', 'NOMBREDESUBPÁGINA', 'SUBPAGENAME' ],
-	'msg'                       => [ '0', 'MSJ:', 'MSG:' ],
 	'img_left'                  => [ '1', 'cierda', 'izquierda', 'izda', 'izq', 'left' ],
 	'img_none'                  => [ '1', 'dinguna', 'dinguno', 'ninguna', 'nada', 'no', 'ninguno', 'none' ],
+	'msg'                       => [ '0', 'MSJ:', 'MSG:' ],
+	'redirect'                  => [ '0', '#DIRIJAR', '#DIRECCIÓN', '#REDIRECCIÓN', '#REDIRECCION', '#REDIRECT' ],
+	'subpagename'               => [ '1', 'NOMBREDEHOJICA', 'NOMBREDESUBPAGINA', 'NOMBREDESUBPÁGINA', 'SUBPAGENAME' ],
 ];

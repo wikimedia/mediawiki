@@ -94,7 +94,7 @@ class FauxResponse extends WebResponse {
 		global $wgCookiePath, $wgCookiePrefix, $wgCookieDomain;
 		global $wgCookieSecure, $wgCookieExpiration, $wgCookieHttpOnly;
 
-		$options = array_filter( $options, function ( $a ) {
+		$options = array_filter( $options, static function ( $a ) {
 			return $a !== null;
 		} ) + [
 			'prefix' => $wgCookiePrefix,

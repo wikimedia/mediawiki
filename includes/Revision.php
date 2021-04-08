@@ -174,7 +174,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param array $overrides
 	 *
 	 * @throws MWException
@@ -231,7 +231,7 @@ class Revision implements IDBAccessObject {
 	 * but should be avoided.
 	 *
 	 * @deprecated since 1.31 together with the Revision class. Hard deprecated since 1.35
-	 * @param object|array $row
+	 * @param stdClass|array $row
 	 * @return Revision
 	 */
 	public static function newFromRow( $row ) {
@@ -353,7 +353,7 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * @param object|array|RevisionRecord $row Either a database row or an array
+	 * @param stdClass|array|RevisionRecord $row Either a database row or an array
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
@@ -400,10 +400,11 @@ class Revision implements IDBAccessObject {
 	 * Make sure we have *some* Title object for use by the constructor.
 	 * For B/C, the constructor shouldn't fail even for a bad page ID or bad revision ID.
 	 *
-	 * @param array|object $row
+	 * @param array|stdClass $row
 	 * @param int $queryFlags
 	 * @param Title|null $title
 	 *
+	 * @throws RevisionAccessException if title can not be found
 	 * @return Title $title if not null, or a Title constructed from information in $row.
 	 */
 	private function ensureTitle( $row, $queryFlags, $title = null ) {
@@ -427,18 +428,7 @@ class Revision implements IDBAccessObject {
 			$revId = $row->rev_id ?? 0;
 		}
 
-		try {
-			$title = self::getRevisionStore()->getTitle( $pageId, $revId, $queryFlags );
-		} catch ( RevisionAccessException $ex ) {
-			// construct a dummy title!
-			wfLogWarning( __METHOD__ . ': ' . $ex->getMessage() );
-
-			// NOTE: this Title will only be used inside RevisionRecord
-			$title = Title::makeTitleSafe( NS_SPECIAL, "Badtitle/ID=$pageId" );
-			$title->resetArticleID( $pageId );
-		}
-
-		return $title;
+		return self::getRevisionStore()->getTitle( $pageId, $revId, $queryFlags );
 	}
 
 	/**
@@ -485,8 +475,6 @@ class Revision implements IDBAccessObject {
 	}
 
 	/**
-	 * Set the user ID/name
-	 *
 	 * This should only be used for proposed revisions that turn out to be null edits
 	 *
 	 * @note Only supported on Revisions that were constructed based on associative arrays,
@@ -597,8 +585,7 @@ class Revision implements IDBAccessObject {
 	 */
 	public function getTitle() {
 		wfDeprecated( __METHOD__, '1.31' );
-		$linkTarget = $this->mRecord->getPageAsLinkTarget();
-		return Title::newFromLinkTarget( $linkTarget );
+		return Title::castFromPageIdentity( $this->mRecord->getPage() );
 	}
 
 	/**
@@ -1109,7 +1096,7 @@ class Revision implements IDBAccessObject {
 			global $wgUser;
 			$user = $wgUser;
 		}
-		return RevisionRecord::userCanBitfield( $this->mRecord->getVisibility(), $field, $user );
+		return $this->mRecord->userCan( $field, $user );
 	}
 
 	/**

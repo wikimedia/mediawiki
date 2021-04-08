@@ -188,7 +188,7 @@ class ApiModuleManager extends ContextSource {
 	/**
 	 * Get an array of modules in a specific group or all if no group is set.
 	 * @param string|null $group Optional group filter
-	 * @return array List of module names
+	 * @return string[] List of module names
 	 */
 	public function getNames( $group = null ) {
 		if ( $group === null ) {
@@ -224,7 +224,7 @@ class ApiModuleManager extends ContextSource {
 	 * Returns the class name of the given module
 	 *
 	 * @param string $module Module name
-	 * @return string|bool class name or false if the module does not exist
+	 * @return string|false class name or false if the module does not exist
 	 * @since 1.24
 	 */
 	public function getClassName( $module ) {

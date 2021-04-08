@@ -3,7 +3,6 @@
 use Composer\Semver\Semver;
 use MediaWiki\Shell\Shell;
 use MediaWiki\ShellDisabledError;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -59,6 +58,7 @@ class ExtensionRegistry {
 	private const LAZY_LOADED_ATTRIBUTES = [
 		'TrackingCategories',
 		'QUnitTestModules',
+		'SkinLessImportPaths',
 	];
 
 	/**
@@ -68,7 +68,7 @@ class ExtensionRegistry {
 	 * by ExtensionProcessor::CREDIT_ATTRIBS (plus a 'path' key that
 	 * points to the skin or extension JSON file).
 	 *
-	 * This info may be accessed via via ExtensionRegistry::getAllThings.
+	 * This info may be accessed via ExtensionRegistry::getAllThings.
 	 *
 	 * @var array[]
 	 */
@@ -77,7 +77,7 @@ class ExtensionRegistry {
 	/**
 	 * List of paths that should be loaded
 	 *
-	 * @var array
+	 * @var int[]
 	 */
 	protected $queued = [];
 
@@ -168,9 +168,8 @@ class ExtensionRegistry {
 
 		$mtime = $wgExtensionInfoMTime;
 		if ( $mtime === false ) {
-			AtEase::suppressWarnings();
-			$mtime = filemtime( $path );
-			AtEase::restoreWarnings();
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$mtime = @filemtime( $path );
 			// @codeCoverageIgnoreStart
 			if ( $mtime === false ) {
 				$err = error_get_last();
@@ -269,7 +268,7 @@ class ExtensionRegistry {
 	 * Get the current load queue. Not intended to be used
 	 * outside of the installer.
 	 *
-	 * @return array
+	 * @return int[] Map of extension.json files' modification timestamps keyed by absolute path
 	 */
 	public function getQueue() {
 		return $this->queued;
@@ -326,7 +325,7 @@ class ExtensionRegistry {
 	/**
 	 * Process a queue of extensions and return their extracted data
 	 *
-	 * @param array $queue keys are filenames, values are ignored
+	 * @param int[] $queue keys are filenames, values are ignored
 	 * @return array extracted info
 	 * @throws Exception
 	 * @throws ExtensionDependencyError
@@ -652,7 +651,7 @@ class ExtensionRegistry {
 	 * Fully expand autoloader paths
 	 *
 	 * @param string $dir
-	 * @param array $files
+	 * @param string[] $files
 	 * @return array
 	 */
 	protected static function processAutoLoader( $dir, array $files ) {

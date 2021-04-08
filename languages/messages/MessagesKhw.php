@@ -10,6 +10,7 @@
  */
 
 $fallback = 'ur';
+
 $rtl = true;
 
 $namespaceNames = [

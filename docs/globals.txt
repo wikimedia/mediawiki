@@ -52,15 +52,9 @@ $wgUser
 $wgLang
 	Language object selected by user preferences.
 
-$wgContLang
-	Language object associated with the wiki being viewed.
-
 $wgParser
 	Parser object. Parser extensions used to register their hooks here;
 	modern code should use the ParserFirstCallInit hook.
 
 $wgRequest
 	WebRequest object, to get request data
-
-$wgMemc
-	Object caches

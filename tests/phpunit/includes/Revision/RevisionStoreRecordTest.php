@@ -4,6 +4,8 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
 use InvalidArgumentException;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStoreRecord;
@@ -11,8 +13,12 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
+use stdClass;
 use TextContent;
 use Title;
+use TitleValue;
+use Wikimedia\Assert\PreconditionException;
+use Wikimedia\Timestamp\TimestampException;
 
 /**
  * @covers \MediaWiki\Revision\RevisionStoreRecord
@@ -20,45 +26,7 @@ use Title;
  */
 class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 
-	use RevisionRecordTests;
-
-	/**
-	 * @param array $rowOverrides
-	 *
-	 * @return RevisionStoreRecord
-	 */
-	protected function newRevision( array $rowOverrides = [] ) {
-		$title = Title::newFromText( 'Dummy' );
-		$title->resetArticleID( 17 );
-
-		$user = new UserIdentityValue( 11, 'Tester', 0 );
-		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
-
-		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
-		$aux = SlotRecord::newUnsaved( 'aux', new TextContent( 'Frumious Bandersnatch' ) );
-		$slots = new RevisionSlots( [ $main, $aux ] );
-
-		$row = [
-			'rev_id' => '7',
-			'rev_page' => strval( $title->getArticleID() ),
-			'rev_timestamp' => '20200101000000',
-			'rev_deleted' => 0,
-			'rev_minor_edit' => 0,
-			'rev_parent_id' => '5',
-			'rev_len' => $slots->computeSize(),
-			'rev_sha1' => $slots->computeSha1(),
-			'page_latest' => '18',
-		];
-
-		$row = array_merge( $row, $rowOverrides );
-
-		return new RevisionStoreRecord( $title, $user, $comment, (object)$row, $slots );
-	}
-
 	public function provideConstructor() {
-		$title = Title::newFromText( 'Dummy' );
-		$title->resetArticleID( 17 );
-
 		$user = new UserIdentityValue( 11, 'Tester', 0 );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
@@ -68,7 +36,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 
 		$protoRow = [
 			'rev_id' => '7',
-			'rev_page' => strval( $title->getArticleID() ),
+			'rev_page' => '17',
 			'rev_timestamp' => '20200101000000',
 			'rev_deleted' => 0,
 			'rev_minor_edit' => 0,
@@ -80,12 +48,32 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 
 		$row = $protoRow;
 		yield 'all info' => [
+			new PageIdentityValue( 17, NS_MAIN, 'Dummy', 'acmewiki' ),
+			$user,
+			$comment,
+			(object)$row,
+			$slots,
+			'acmewiki',
+			PreconditionException::class
+		];
+
+		yield 'all info, local' => [
+			new PageIdentityValue( 17, NS_MAIN, 'Dummy', PageIdentity::LOCAL ),
+			$user,
+			$comment,
+			(object)$row,
+			$slots,
+		];
+
+		$title = Title::newFromText( 'Dummy' );
+		$title->resetArticleID( 17 );
+
+		yield 'all info, local with Title' => [
 			$title,
 			$user,
 			$comment,
 			(object)$row,
 			$slots,
-			'acmewiki'
 		];
 
 		$row = $protoRow;
@@ -147,24 +135,26 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConstructor
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param RevisionSlots $slots
 	 * @param bool $wikiId
+	 * @param string|null $expectedException
 	 */
 	public function testConstructorAndGetters(
-		Title $title,
+		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
 		RevisionSlots $slots,
-		$wikiId = false
+		$wikiId = RevisionRecord::LOCAL,
+		string $expectedException = null
 	) {
-		$rec = new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
+		$rec = new RevisionStoreRecord( $page, $user, $comment, $row, $slots, $wikiId );
 
-		$this->assertSame( $title, $rec->getPageAsLinkTarget(), 'getPageAsLinkTarget' );
+		$this->assertTrue( $page->isSamePageAs( $rec->getPage() ), 'getPage' );
 		$this->assertSame( $user, $rec->getUser( RevisionRecord::RAW ), 'getUser' );
 		$this->assertSame( $comment, $rec->getComment(), 'getComment' );
 
@@ -173,16 +163,16 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $slots->getSlots(), $rec->getSlots()->getSlots(), 'getSlots' );
 		$this->assertSame( $wikiId, $rec->getWikiId(), 'getWikiId' );
 
-		$this->assertSame( (int)$row->rev_id, $rec->getId(), 'getId' );
-		$this->assertSame( (int)$row->rev_page, $rec->getPageId(), 'getId' );
+		$this->assertSame( (int)$row->rev_id, $rec->getId( $wikiId ), 'getId' );
+		$this->assertSame( (int)$row->rev_page, $rec->getPageId( $wikiId ), 'getId' );
 		$this->assertSame( $row->rev_timestamp, $rec->getTimestamp(), 'getTimestamp' );
 		$this->assertSame( (int)$row->rev_deleted, $rec->getVisibility(), 'getVisibility' );
 		$this->assertSame( (bool)$row->rev_minor_edit, $rec->isMinor(), 'getIsMinor' );
 
 		if ( isset( $row->rev_parent_id ) ) {
-			$this->assertSame( (int)$row->rev_parent_id, $rec->getParentId(), 'getParentId' );
+			$this->assertSame( (int)$row->rev_parent_id, $rec->getParentId( $wikiId ), 'getParentId' );
 		} else {
-			$this->assertSame( 0, $rec->getParentId(), 'getParentId' );
+			$this->assertSame( 0, $rec->getParentId( $wikiId ), 'getParentId' );
 		}
 
 		if ( isset( $row->rev_len ) ) {
@@ -208,6 +198,16 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 				false,
 				$rec->isCurrent(),
 				'isCurrent'
+			);
+		}
+
+		if ( $expectedException ) {
+			$this->expectException( $expectedException );
+			$rec->getPageAsLinkTarget();
+		} else {
+			$this->assertTrue(
+				TitleValue::newFromPage( $page )->isSameLinkAs( $rec->getPageAsLinkTarget() ),
+				'getPageAsLinkTarget'
 			);
 		}
 	}
@@ -237,23 +237,12 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		];
 
 		yield 'not a row' => [
-			$title,
+			new PageIdentityValue( 17, NS_MAIN, 'Dummy', 'acmewiki' ),
 			$user,
 			$comment,
 			'not a row',
 			$slots,
 			'acmewiki'
-		];
-
-		$row = $protoRow;
-		$row['rev_timestamp'] = 'kittens';
-
-		yield 'bad timestamp' => [
-			$title,
-			$user,
-			$comment,
-			(object)$row,
-			$slots
 		];
 
 		$row = $protoRow;
@@ -282,15 +271,15 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideConstructorFailure
 	 *
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param RevisionSlots $slots
 	 * @param bool $wikiId
 	 */
 	public function testConstructorFailure(
-		Title $title,
+		PageIdentity $page,
 		UserIdentity $user,
 		CommentStoreComment $comment,
 		$row,
@@ -298,69 +287,23 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		$wikiId = false
 	) {
 		$this->expectException( InvalidArgumentException::class );
-		new RevisionStoreRecord( $title, $user, $comment, $row, $slots, $wikiId );
+		new RevisionStoreRecord( $page, $user, $comment, $row, $slots, $wikiId );
 	}
 
-	public function provideIsCurrent() {
-		yield [
-			[
-				'rev_id' => 11,
-				'page_latest' => 11,
-			],
-			true,
+	public function testConstructorBadTimestamp() {
+		$row = (object)[
+			'rev_id' => 42,
+			'rev_page' => 'Foobar',
+			'rev_timestamp' => 'kittens',
 		];
-		yield [
-			[
-				'rev_id' => 11,
-				'page_latest' => 10,
-			],
-			false,
-		];
-	}
-
-	/**
-	 * @dataProvider provideIsCurrent
-	 */
-	public function testIsCurrent( $row, $current ) {
-		$rev = $this->newRevision( $row );
-
-		$this->assertSame( $current, $rev->isCurrent(), 'isCurrent()' );
-	}
-
-	public function provideGetSlot_audience_latest() {
-		return $this->provideAudienceCheckData( RevisionRecord::DELETED_TEXT );
-	}
-
-	/**
-	 * @dataProvider provideGetSlot_audience_latest
-	 */
-	public function testGetSlot_audience_latest( $visibility, $groups, $userCan, $publicCan ) {
-		$this->forceStandardPermissions();
-
-		$user = $this->getTestUser( $groups )->getUser();
-		$rev = $this->newRevision(
-			[
-				'rev_deleted' => $visibility,
-				'rev_id' => 11,
-				'page_latest' => 11, // revision is current
-			]
+		$this->expectException( TimestampException::class );
+		new RevisionStoreRecord(
+			$this->createMock( PageIdentity::class ),
+			new UserIdentityValue( 11, 'Tester', 0 ),
+			$this->createMock( CommentStoreComment::class ),
+			$row,
+			$this->createMock( RevisionSlots::class ),
+			false
 		);
-
-		// NOTE: slot meta-data is never suppressed, just the content is!
-		$this->assertNotNull( $rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW ), 'raw can' );
-		$this->assertNotNull( $rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC ),
-			'public can' );
-
-		$this->assertNotNull(
-			$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user ),
-			'user can'
-		);
-
-		$rev->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )->getContent();
-		// NOTE: the content of the current revision is never suppressed!
-		// Check that getContent() doesn't throw SuppressedDataException
-		$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC )->getContent();
-		$rev->getSlot( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user )->getContent();
 	}
-
 }

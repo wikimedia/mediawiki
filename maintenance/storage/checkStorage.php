@@ -27,7 +27,7 @@ use MediaWiki\Shell\Shell;
 
 if ( !defined( 'MEDIAWIKI' ) ) {
 	$optionsWithoutArgs = [ 'fix' ];
-	require_once __DIR__ . '/../commandLine.inc';
+	require_once __DIR__ . '/../CommandLineInc.php';
 
 	$cs = new CheckStorage;
 	$fix = isset( $options['fix'] );
@@ -506,7 +506,7 @@ class CheckStorage {
 			MediaWikiServices::getInstance()->getMainConfig()
 		);
 		$importer->setRevisionCallback( [ $this, 'importRevision' ] );
-		$importer->setNoticeCallback( function ( $msg, $params ) {
+		$importer->setNoticeCallback( static function ( $msg, $params ) {
 			echo wfMessage( $msg, $params )->text() . "\n";
 		} );
 		$importer->doImport();

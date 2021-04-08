@@ -178,6 +178,7 @@ class LocalFileRestoreBatch {
 			) {
 				// Refresh our metadata
 				// Required for a new current revision; nice for older ones too. :)
+				// @phan-suppress-next-line SecurityCheck-PathTraversal False positive T268920
 				$props = MediaWikiServices::getInstance()->getRepoGroup()->getFileProps( $deletedUrl );
 			} else {
 				$props = [

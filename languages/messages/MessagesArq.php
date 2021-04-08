@@ -8,11 +8,13 @@
  *
  */
 
+$fallback = 'ar';
+
+$rtl = true;
+
 $digitTransformTable = [];
 
 $separatorTransformTable = [
 	'.' => ',',
 	',' => '.'
 ];
-
-$fallback = 'ar';

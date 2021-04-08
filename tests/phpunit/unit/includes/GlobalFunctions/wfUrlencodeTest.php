@@ -28,6 +28,9 @@ class WfUrlencodeTest extends MediaWikiUnitTestCase {
 	/**
 	 * Internal helper that actually run the test.
 	 * Called by the public methods testEncodingUrlWith...()
+	 * @param string $server
+	 * @param string $input
+	 * @param array|string $expectations
 	 */
 	private function verifyEncodingFor( $server, $input, $expectations ) {
 		$expected = $this->extractExpect( $server, $expectations );
@@ -56,6 +59,9 @@ class WfUrlencodeTest extends MediaWikiUnitTestCase {
 	/**
 	 * Interprets the provider array. Return expected value depending
 	 * the HTTP server name.
+	 * @param string $server
+	 * @param string|array $expectations
+	 * @return string
 	 */
 	private function extractExpect( $server, $expectations ) {
 		if ( is_string( $expectations ) ) {

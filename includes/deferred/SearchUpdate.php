@@ -26,7 +26,7 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * Database independant search index updater
+ * Database independent search index updater
  *
  * @ingroup Search
  */
@@ -186,7 +186,8 @@ class SearchUpdate implements DeferrableUpdate {
 	 */
 	private function getLatestPage() {
 		if ( !isset( $this->page ) ) {
-			$this->page = WikiPage::newFromID( $this->id, WikiPage::READ_LATEST );
+			$this->page = MediaWikiServices::getInstance()->getWikiPageFactory()
+				->newFromID( $this->id, WikiPage::READ_LATEST );
 		}
 
 		return $this->page;
@@ -215,7 +216,7 @@ class SearchUpdate implements DeferrableUpdate {
 
 		$t = preg_replace( "/\\s+/", ' ', $t );
 
-		if ( $ns == NS_FILE ) {
+		if ( $ns === NS_FILE ) {
 			$t = preg_replace( "/ (png|gif|jpg|jpeg|ogg)$/", "", $t );
 		}
 

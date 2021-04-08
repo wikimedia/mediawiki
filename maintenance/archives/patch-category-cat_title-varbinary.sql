@@ -1,0 +1,1 @@
+ALTER TABLE /*_*/category MODIFY cat_title VARBINARY(255) NOT NULL;

@@ -141,6 +141,8 @@ class HistoryAction extends FormlessAction {
 	public function onView() {
 		$out = $this->getOutput();
 		$request = $this->getRequest();
+		$config = $this->context->getConfig();
+		$services = MediaWikiServices::getInstance();
 
 		// Allow client-side HTTP caching of the history page.
 		// But, always ignore this cache if the (logged-in) user has this page on their watchlist
@@ -149,15 +151,20 @@ class HistoryAction extends FormlessAction {
 		// so going from "some unseen" to "all seen" would not clear the cache.
 		// But, when all of the revisions are marked as seen, then only way for new unseen revision
 		// markers to appear, is for the page to be edited, which updates page_touched/Last-Modified.
+		$watchlistNotificationManager = $services->getWatchlistNotificationManager();
+		$hasUnseenRevisionMarkers = $config->get( 'ShowUpdatedMarker' ) &&
+			$watchlistNotificationManager->getTitleNotificationTimestamp(
+				$this->getUser(),
+				$this->getTitle()
+			);
 		if (
-			!$this->hasUnseenRevisionMarkers() &&
+			!$hasUnseenRevisionMarkers &&
 			$out->checkLastModified( $this->getWikiPage()->getTouched() )
 		) {
 			return null; // Client cache fresh and headers sent, nothing more to do.
 		}
 
 		$this->preCacheMessages();
-		$config = $this->context->getConfig();
 
 		# Fill in the file cache if not set already
 		if ( HTMLFileCache::useFileCache( $this->getContext() ) ) {
@@ -176,7 +183,6 @@ class HistoryAction extends FormlessAction {
 			'mediawiki.special.changeslist',
 		] );
 		if ( $config->get( 'UseMediaWikiUIEverywhere' ) ) {
-			$out = $this->getOutput();
 			$out->addModuleStyles( [
 				'mediawiki.ui.input',
 				'mediawiki.ui.checkbox',
@@ -259,8 +265,7 @@ class HistoryAction extends FormlessAction {
 				'value' => $tagFilter,
 			]
 		];
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		if ( $permissionManager->userHasRight( $this->getUser(), 'deletedhistory' ) ) {
+		if ( $this->getContext()->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$fields[] = [
 				'type' => 'check',
 				'label' => $this->msg( 'history-show-deleted' )->text(),
@@ -299,7 +304,16 @@ class HistoryAction extends FormlessAction {
 			$m = '';
 			$d = '';
 		}
-		$pager = new HistoryPager( $this, $y, $m, $tagFilter, $conds, $d );
+		$pager = new HistoryPager(
+			$this,
+			$y,
+			$m,
+			$tagFilter,
+			$conds,
+			$d,
+			$services->getLinkBatchFactory(),
+			$watchlistNotificationManager
+		);
 		$out->addHTML(
 			$pager->getNavigationBar() .
 			$pager->getBody() .
@@ -308,16 +322,6 @@ class HistoryAction extends FormlessAction {
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
 
 		return null;
-	}
-
-	/**
-	 * @return bool Page is watched by and has unseen revision for the user
-	 */
-	private function hasUnseenRevisionMarkers() {
-		return (
-			$this->getContext()->getConfig()->get( 'ShowUpdatedMarker' ) &&
-			$this->getTitle()->getNotificationTimestamp( $this->getUser() )
-		);
 	}
 
 	/**
@@ -373,7 +377,7 @@ class HistoryAction extends FormlessAction {
 	 * @param string $type Feed type
 	 */
 	private function feed( $type ) {
-		if ( !FeedUtils::checkFeedOutput( $type ) ) {
+		if ( !FeedUtils::checkFeedOutput( $type, $this->getOutput() ) ) {
 			return;
 		}
 		$request = $this->getRequest();

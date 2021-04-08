@@ -5,6 +5,7 @@ namespace MediaWiki\Tidy;
 use RemexHtml\HTMLData;
 use RemexHtml\Serializer\HtmlFormatter;
 use RemexHtml\Serializer\SerializerNode;
+use Sanitizer;
 
 /**
  * @internal
@@ -16,16 +17,36 @@ class RemexCompatFormatter extends HtmlFormatter {
 		'tr' => true,
 	];
 
+	/* @var ?callable */
+	private $textProcessor;
+
 	public function __construct( $options = [] ) {
 		parent::__construct( $options );
 		$this->attributeEscapes["\u{00A0}"] = '&#160;';
 		unset( $this->attributeEscapes["&"] );
 		$this->textEscapes["\u{00A0}"] = '&#160;';
 		unset( $this->textEscapes["&"] );
+		$this->textProcessor = $options['textProcessor'] ?? null;
 	}
 
 	public function startDocument( $fragmentNamespace, $fragmentName ) {
 		return '';
+	}
+
+	public function characters( SerializerNode $parent, $text, $start, $length ) {
+		$text = parent::characters( $parent, $text, $start, $length );
+
+		if ( $parent->namespace !== HTMLData::NS_HTML
+			|| !isset( $this->rawTextElements[$parent->name] )
+		) {
+			if ( $this->textProcessor !== null ) {
+				$text = call_user_func( $this->textProcessor, $text );
+			}
+		}
+
+		// Ensure a consistent representation for all entities
+		$text = Sanitizer::normalizeCharReferences( $text );
+		return $text;
 	}
 
 	public function element( SerializerNode $parent, SerializerNode $node, $contents ) {
@@ -49,6 +70,7 @@ class RemexCompatFormatter extends HtmlFormatter {
 		$s = "<$name";
 		foreach ( $attrs->getValues() as $attrName => $attrValue ) {
 			$encValue = strtr( $attrValue, $this->attributeEscapes );
+			$encValue = Sanitizer::normalizeCharReferences( $encValue );
 			$s .= " $attrName=\"$encValue\"";
 		}
 		if ( $node->namespace === HTMLData::NS_HTML && isset( $this->voidElements[$name] ) ) {

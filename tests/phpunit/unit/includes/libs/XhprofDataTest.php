@@ -177,7 +177,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 			$this->assertSame( $last, $func );
 			$last = $call;
 		}
-		$this->assertSame( $last, 'bar@1' );
+		$this->assertSame( 'bar@1', $last );
 	}
 
 	/**
@@ -206,6 +206,7 @@ class XhprofDataTest extends PHPUnit\Framework\TestCase {
 	 * var_export( $x );
 	 * @endcode
 	 *
+	 * @param array $opts
 	 * @return Xhprof
 	 */
 	protected function getXhprofDataFixture( array $opts = [] ) {

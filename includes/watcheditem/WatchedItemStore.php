@@ -1,11 +1,14 @@
 <?php
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -26,12 +29,13 @@ use Wikimedia\ScopedCallback;
 class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterface {
 
 	/**
-	 * @since 1.35
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'UpdateRowsPerQuery',
 		'WatchlistExpiry',
 		'WatchlistExpiryMaxDuration',
+		'WatchlistPurgeRate',
 	];
 
 	/**
@@ -114,9 +118,23 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private $hookRunner;
 
 	/**
+	 * @var LinkBatchFactory
+	 */
+	private $linkBatchFactory;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/**
 	 * @var string|null Maximum configured relative expiry.
 	 */
 	private $maxExpiryDuration;
+
+	/** @var float corresponds to $wgWatchlistPurgeRate value */
+	private $watchlistPurgeRate;
 
 	/**
 	 * @param ServiceOptions $options
@@ -128,6 +146,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param NamespaceInfo $nsInfo
 	 * @param RevisionLookup $revisionLookup
 	 * @param HookContainer $hookContainer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param UserFactory $userFactory
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -138,12 +159,16 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		ReadOnlyMode $readOnlyMode,
 		NamespaceInfo $nsInfo,
 		RevisionLookup $revisionLookup,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		LinkBatchFactory $linkBatchFactory,
+		UserFactory $userFactory,
+		TitleFactory $titleFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->updateRowsPerQuery = $options->get( 'UpdateRowsPerQuery' );
 		$this->expiryEnabled = $options->get( 'WatchlistExpiry' );
 		$this->maxExpiryDuration = $options->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistPurgeRate = $options->get( 'WatchlistPurgeRate' );
 
 		$this->lbFactory = $lbFactory;
 		$this->loadBalancer = $lbFactory->getMainLB();
@@ -157,6 +182,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$this->nsInfo = $nsInfo;
 		$this->revisionLookup = $revisionLookup;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->userFactory = $userFactory;
+		$this->titleFactory = $titleFactory;
 
 		$this->latestUpdateCache = new HashBagOStuff( [ 'maxKeys' => 3 ] );
 	}
@@ -192,7 +220,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		} );
 	}
 
-	private function getCacheKey( UserIdentity $user, LinkTarget $target ) {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return string
+	 */
+	private function getCacheKey( UserIdentity $user, $target ) {
 		return $this->cache->makeKey(
 			(string)$target->getNamespace(),
 			$target->getDBkey(),
@@ -202,20 +235,27 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	private function cache( WatchedItem $item ) {
 		$user = $item->getUserIdentity();
-		$target = $item->getLinkTarget();
+		$target = $item->getTarget();
 		$key = $this->getCacheKey( $user, $target );
 		$this->cache->set( $key, $item );
 		$this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] = $key;
 		$this->stats->increment( 'WatchedItemStore.cache' );
 	}
 
-	private function uncache( UserIdentity $user, LinkTarget $target ) {
+	/**
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 */
+	private function uncache( UserIdentity $user, $target ) {
 		$this->cache->delete( $this->getCacheKey( $user, $target ) );
 		unset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()][$user->getId()] );
 		$this->stats->increment( 'WatchedItemStore.uncache' );
 	}
 
-	private function uncacheLinkTarget( LinkTarget $target ) {
+	/**
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 */
+	private function uncacheLinkTarget( $target ) {
 		$this->stats->increment( 'WatchedItemStore.uncacheLinkTarget' );
 		if ( !isset( $this->cacheIndex[$target->getNamespace()][$target->getDBkey()] ) ) {
 			return;
@@ -244,11 +284,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param UserIdentity $user
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 *
 	 * @return WatchedItem|false
 	 */
-	private function getCached( UserIdentity $user, LinkTarget $target ) {
+	private function getCached( UserIdentity $user, $target ) {
 		return $this->cache->get( $this->getCacheKey( $user, $target ) );
 	}
 
@@ -357,8 +397,27 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @inheritDoc
 	 */
 	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void {
+		wfDeprecated( __METHOD__, '1.36' );
 		$max = mt_getrandmax();
 		if ( mt_rand( 0, $max ) < $max * $watchlistPurgeRate ) {
+			// The higher the watchlist purge rate, the more likely we are to enqueue a job.
+			$this->queueGroup->push( new WatchlistExpiryJob() );
+		}
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function maybeEnqueueWatchlistExpiryJob(): void {
+		if ( !$this->expiryEnabled ) {
+			// No need to purge expired entries if there are none
+			return;
+		}
+
+		// Yes, we duplicate some of the logic from enqueueWatchlistExpiryJob, but we can't
+		// just call that because its hard deprecated
+		$max = mt_getrandmax();
+		if ( mt_rand( 0, $max ) < $max * $this->watchlistPurgeRate ) {
 			// The higher the watchlist purge rate, the more likely we are to enqueue a job.
 			$this->queueGroup->push( new WatchlistExpiryJob() );
 		}
@@ -409,10 +468,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @return int
 	 */
-	public function countWatchers( LinkTarget $target ) {
+	public function countWatchers( $target ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 		$tables = [ 'watchlist' ];
 		$conds = [
@@ -441,11 +500,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @param string|int $threshold
 	 * @return int
 	 */
-	public function countVisitingWatchers( LinkTarget $target, $threshold ) {
+	public function countVisitingWatchers( $target, $threshold ) {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 		$tables = [ 'watchlist' ];
 		$conds = [
@@ -477,7 +536,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param UserIdentity $user
-	 * @param LinkTarget[] $titles
+	 * @param LinkTarget[]|PageIdentity[] $titles deprecated passing LinkTarget[] since 1.36
 	 * @return bool
 	 */
 	public function removeWatchBatchForUser( UserIdentity $user, array $titles ) {
@@ -540,7 +599,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param LinkTarget[] $targets
+	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
 	 * @param array $options
 	 * @return array
 	 */
@@ -553,7 +612,13 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$options['minimumWatchers'];
 		}
 
-		$lb = new LinkBatch( $targets );
+		$linkTargets = array_map( function ( $target ) {
+			if ( !$target instanceof LinkTarget ) {
+				return new TitleValue( $target->getNamespace(), $target->getDBkey() );
+			}
+			return $target;
+		}, $targets );
+		$lb = $this->linkBatchFactory->newLinkBatch( $linkTargets );
 
 		$tables = [ 'watchlist' ];
 		$conds = [ $lb->constructSet( 'wl', $dbr ) ];
@@ -588,7 +653,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param array $targetsWithVisitThresholds
+	 * @param array $targetsWithVisitThresholds array of LinkTarget[]|PageIdentity[] (not type
+	 *        hinted since it annoys phan) - deprecated passing LinkTarget[] since 1.36
 	 * @param int|null $minimumWatchers
 	 * @return array
 	 */
@@ -630,7 +696,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$watcherCounts = [];
 		foreach ( $targetsWithVisitThresholds as list( $target ) ) {
-			/* @var LinkTarget $target */
+			/** @var LinkTarget|PageIdentity $target */
 			$watcherCounts[$target->getNamespace()][$target->getDBkey()] = 0;
 		}
 
@@ -645,7 +711,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * Generates condition for the query used in a batch count visiting watchers.
 	 *
 	 * @param IDatabase $db
-	 * @param array $targetsWithVisitThresholds array of pairs (LinkTarget, last visit threshold)
+	 * @param array $targetsWithVisitThresholds array of pairs (LinkTarget|PageIdentity,
+	 *              last visit threshold) - deprecated passing LinkTarget since 1.36
 	 * @return string
 	 */
 	private function getVisitingWatchersCondition(
@@ -659,7 +726,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				$missingTargets[] = $target;
 				continue;
 			}
-			/* @var LinkTarget $target */
+			/** @var LinkTarget|PageIdentity $target */
 			$namespaceConds[$target->getNamespace()][] = $db->makeList( [
 				'wl_title = ' . $db->addQuotes( $target->getDBkey() ),
 				$db->makeList( [
@@ -678,7 +745,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		if ( $missingTargets ) {
-			$lb = new LinkBatch( $missingTargets );
+			$lb = $this->linkBatchFactory->newLinkBatch( $missingTargets );
 			$conds[] = $lb->constructSet( 'wl', $db );
 		}
 
@@ -688,10 +755,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @since 1.27
 	 * @param UserIdentity $user
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @return WatchedItem|false
 	 */
-	public function getWatchedItem( UserIdentity $user, LinkTarget $target ) {
+	public function getWatchedItem( UserIdentity $user, $target ) {
 		if ( !$user->isRegistered() ) {
 			return false;
 		}
@@ -708,10 +775,21 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @since 1.27
 	 * @param UserIdentity $user
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @return WatchedItem|false
 	 */
-	public function loadWatchedItem( UserIdentity $user, LinkTarget $target ) {
+	public function loadWatchedItem( UserIdentity $user, $target ) {
+		$item = $this->loadWatchedItemsBatch( $user, [ $target ] );
+		return $item ? $item[0] : false;
+	}
+
+	/**
+	 * @since 1.36
+	 * @param UserIdentity $user
+	 * @param LinkTarget[]|PageIdentity[] $targets deprecated passing LinkTarget[] since 1.36
+	 * @return WatchedItem[]|false
+	 */
+	public function loadWatchedItemsBatch( UserIdentity $user, array $targets ) {
 		// Only registered user can have a watchlist
 		if ( !$user->isRegistered() ) {
 			return false;
@@ -719,22 +797,28 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 
-		$row = $this->fetchWatchedItems(
+		$rows = $this->fetchWatchedItems(
 			$dbr,
 			$user,
-			[ 'wl_notificationtimestamp' ],
+			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 			[],
-			$target
+			$targets
 		);
 
-		if ( !$row ) {
+		if ( !$rows ) {
 			return false;
 		}
 
-		$item = $this->getWatchedItemFromRow( $user, $target, $row );
-		$this->cache( $item );
+		$items = [];
+		foreach ( $rows as $row ) {
+			// TODO: convert to PageIdentity
+			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
+			$item = $this->getWatchedItemFromRow( $user, $target, $row );
+			$this->cache( $item );
+			$items[] = $item;
+		}
 
-		return $item;
+		return $items;
 	}
 
 	/**
@@ -779,6 +863,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$watchedItems = [];
 		foreach ( $res as $row ) {
+			// TODO: convert to PageIdentity
 			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
 			// @todo: Should we add these to the process cache?
 			$watchedItems[] = $this->getWatchedItemFromRow( $user, $target, $row );
@@ -790,13 +875,13 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * Construct a new WatchedItem given a row from watchlist/watchlist_expiry.
 	 * @param UserIdentity $user
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @param stdClass $row
 	 * @return WatchedItem
 	 */
 	private function getWatchedItemFromRow(
 		UserIdentity $user,
-		LinkTarget $target,
+		$target,
 		stdClass $row
 	): WatchedItem {
 		return new WatchedItem(
@@ -809,7 +894,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * Fetches either a single or all watched items for the given user.
+	 * Fetches either a single or all watched items for the given user, or a specific set of items.
 	 * If a $target is given, IDatabase::selectRow() is called, otherwise select().
 	 * If $wgWatchlistExpiry is enabled, expired items are not returned.
 	 *
@@ -817,7 +902,8 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param UserIdentity $user
 	 * @param array $vars we_expiry is added when $wgWatchlistExpiry is enabled.
 	 * @param array $options
-	 * @param LinkTarget|null $target null if selecting all watched items.
+	 * @param LinkTarget|LinkTarget[]|PageIdentity|PageIdentity[]|null $target null if selecting all
+	 *        watched items - deprecated passing LinkTarget or LinkTarget[] since 1.36
 	 * @return IResultWrapper|stdClass|false
 	 */
 	private function fetchWatchedItems(
@@ -825,17 +911,31 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		UserIdentity $user,
 		array $vars,
 		array $options = [],
-		?LinkTarget $target = null
+		$target = null
 	) {
 		$dbMethod = 'select';
 		$conds = [ 'wl_user' => $user->getId() ];
 
 		if ( $target ) {
-			$dbMethod = 'selectRow';
-			$conds = array_merge( $conds, [
-				'wl_namespace' => $target->getNamespace(),
-				'wl_title' => $target->getDBkey(),
-			] );
+			if ( $target instanceof LinkTarget || $target instanceof PageIdentity ) {
+				$dbMethod = 'selectRow';
+				$conds = array_merge( $conds, [
+					'wl_namespace' => $target->getNamespace(),
+					'wl_title' => $target->getDBkey(),
+				] );
+			} else {
+				$titleConds = [];
+				foreach ( $target as $linkTarget ) {
+					$titleConds[] = $db->makeList(
+						[
+							'wl_namespace' => $linkTarget->getNamespace(),
+							'wl_title' => $linkTarget->getDBkey(),
+						],
+						$db::LIST_AND
+					);
+				}
+				$conds[] = $db->makeList( $titleConds, $db::LIST_OR );
+			}
 		}
 
 		if ( $this->expiryEnabled ) {
@@ -864,10 +964,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @since 1.27
 	 * @param UserIdentity $user
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @return bool
 	 */
-	public function isWatched( UserIdentity $user, LinkTarget $target ) {
+	public function isWatched( UserIdentity $user, $target ) {
 		return (bool)$this->getWatchedItem( $user, $target );
 	}
 
@@ -875,10 +975,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * Check if the user is temporarily watching the page.
 	 * @since 1.35
 	 * @param UserIdentity $user
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @return bool
 	 */
-	public function isTempWatched( UserIdentity $user, LinkTarget $target ): bool {
+	public function isTempWatched( UserIdentity $user, $target ): bool {
 		$item = $this->getWatchedItem( $user, $target );
 		return $item && $item->getExpiry();
 	}
@@ -916,7 +1016,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$dbr = $this->getConnectionRef( DB_REPLICA );
 
-		$lb = new LinkBatch( $targetsToLoad );
+		$lb = $this->linkBatchFactory->newLinkBatch( $targetsToLoad );
 		$res = $dbr->select(
 			'watchlist',
 			[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
@@ -928,6 +1028,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		);
 
 		foreach ( $res as $row ) {
+			// TODO: convert to PageIdentity
 			$target = new TitleValue( (int)$row->wl_namespace, $row->wl_title );
 			$timestamps[$row->wl_namespace][$row->wl_title] =
 				$this->getLatestNotificationTimestamp(
@@ -941,11 +1042,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @since 1.27 Method added.
 	 * @since 1.35 Accepts $expiry parameter.
 	 * @param UserIdentity $user
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @param string|null $expiry Optional expiry in any format acceptable to wfTimestamp().
 	 *   null will not create an expiry, or leave it unchanged should one already exist.
 	 */
-	public function addWatch( UserIdentity $user, LinkTarget $target, ?string $expiry = null ) {
+	public function addWatch( UserIdentity $user, $target, ?string $expiry = null ) {
 		$this->addWatchBatchForUser( $user, [ $target ], $expiry );
 
 		if ( $this->expiryEnabled && !$expiry ) {
@@ -1098,7 +1199,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$expiry = $dbw->timestamp( $expiry );
 
-		$weRows = array_map( function ( $wlId ) use ( $expiry, $dbw ) {
+		$weRows = array_map( static function ( $wlId ) use ( $expiry, $dbw ) {
 			return [
 				'we_item' => $wlId,
 				'we_expiry' => $expiry
@@ -1120,10 +1221,10 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @since 1.27
 	 * @param UserIdentity $user
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @return bool
 	 */
-	public function removeWatch( UserIdentity $user, LinkTarget $target ) {
+	public function removeWatch( UserIdentity $user, $target ) {
 		return $this->removeWatchBatchForUser( $user, [ $target ] );
 	}
 
@@ -1195,8 +1296,16 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		return true;
 	}
 
+	/**
+	 * @param string|null $timestamp
+	 * @param UserIdentity $user
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
+	 * @return bool|string|null
+	 */
 	public function getLatestNotificationTimestamp(
-		$timestamp, UserIdentity $user, LinkTarget $target
+		$timestamp,
+		UserIdentity $user,
+		$target
 	) {
 		$timestamp = wfTimestampOrNull( TS_MW, $timestamp );
 		if ( $timestamp === null ) {
@@ -1236,7 +1345,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		// Calls DeferredUpdates::addCallableUpdate in normal operation
 		call_user_func(
 			$this->deferredUpdatesAddCallableUpdateCallback,
-			function () use ( $job ) {
+			static function () use ( $job ) {
 				$job->run();
 			}
 		);
@@ -1245,17 +1354,19 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @since 1.27
 	 * @param UserIdentity $editor
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @param string|int $timestamp
 	 * @return int[]
 	 */
 	public function updateNotificationTimestamp(
-		UserIdentity $editor, LinkTarget $target, $timestamp
+		UserIdentity $editor,
+		$target,
+		$timestamp
 	) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
 		$selectTables = [ 'watchlist' ];
 		$selectConds = [
-			'wl_user != ' . intval( $editor->getId() ),
+			'wl_user != ' . $editor->getId(),
 			'wl_namespace' => $target->getNamespace(),
 			'wl_title' => $target->getDBkey(),
 			'wl_notificationtimestamp IS NULL',
@@ -1282,7 +1393,11 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		if ( $watchers ) {
 			// Update wl_notificationtimestamp for all watching users except the editor
 			$fname = __METHOD__;
-			DeferredUpdates::addCallableUpdate(
+
+			// Try to run this post-send
+			// Calls DeferredUpdates::addCallableUpdate in normal operation
+			call_user_func(
+				$this->deferredUpdatesAddCallableUpdateCallback,
 				function () use ( $timestamp, $watchers, $target, $fname ) {
 					$dbw = $this->getConnectionRef( DB_MASTER );
 					$ticket = $this->lbFactory->getEmptyTransactionTicket( $fname );
@@ -1317,13 +1432,16 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @since 1.27
 	 * @param UserIdentity $user
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.36
 	 * @param string $force
 	 * @param int $oldid
 	 * @return bool
 	 */
 	public function resetNotificationTimestamp(
-		UserIdentity $user, LinkTarget $title, $force = '', $oldid = 0
+		UserIdentity $user,
+		$title,
+		$force = '',
+		$oldid = 0
 	) {
 		$time = time();
 
@@ -1332,9 +1450,14 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			return false;
 		}
 
-		// Hook expects User and Title, not UserIdentity and LinkTarget
-		$userObj = User::newFromId( $user->getId() );
-		$titleObj = Title::castFromLinkTarget( $title );
+		// Hook expects User and Title, not UserIdentity and LinkTarget|PageIdentity
+		$userObj = $this->userFactory->newFromId( $user->getId() );
+		if ( $title instanceof LinkTarget ) {
+			$titleObj = $this->titleFactory->castFromLinkTarget( $title );
+		} else {
+			// instanceof PageIdentity
+			$titleObj = $this->titleFactory->castFromPageIdentity( $title );
+		}
 		if ( !$this->hookRunner->onBeforeResetNotificationTimestamp(
 			$userObj, $titleObj, $force, $oldid )
 		) {
@@ -1396,7 +1519,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		// If the page is watched by the user (or may be watched), update the timestamp
 		$job = new ActivityUpdateJob(
-			$title,
+			$titleObj,
 			[
 				'type'      => 'updateWatchlistNotification',
 				'userid'    => $user->getId(),
@@ -1441,23 +1564,27 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @return string
 	 */
-	private function getPageSeenKey( LinkTarget $target ) {
+	private function getPageSeenKey( $target ) {
 		return "{$target->getNamespace()}:{$target->getDBkey()}";
 	}
 
 	/**
 	 * @param UserIdentity $user
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageIdentity $title deprecated passing LinkTarget since 1.36
 	 * @param WatchedItem $item
 	 * @param bool $force
 	 * @param int|bool $oldid The ID of the last revision that the user viewed
 	 * @return bool|string|null
 	 */
 	private function getNotificationTimestamp(
-		UserIdentity $user, LinkTarget $title, $item, $force, $oldid
+		UserIdentity $user,
+		$title,
+		$item,
+		$force,
+		$oldid
 	) {
 		if ( !$oldid ) {
 			// No oldid given, assuming latest revision; clear the timestamp.
@@ -1544,27 +1671,28 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @since 1.27
-	 * @param LinkTarget $oldTarget
-	 * @param LinkTarget $newTarget
+	 * @param LinkTarget|PageIdentity $oldTarget deprecated passing LinkTarget since 1.36
+	 * @param LinkTarget|PageIdentity $newTarget deprecated passing LinkTarget since 1.36
 	 */
-	public function duplicateAllAssociatedEntries( LinkTarget $oldTarget, LinkTarget $newTarget ) {
+	public function duplicateAllAssociatedEntries( $oldTarget, $newTarget ) {
 		// Duplicate first the subject page, then the talk page
+		// TODO: convert to PageIdentity
 		$this->duplicateEntry(
-			$this->nsInfo->getSubjectPage( $oldTarget ),
-			$this->nsInfo->getSubjectPage( $newTarget )
+			new TitleValue( $this->nsInfo->getSubject( $oldTarget->getNamespace() ), $oldTarget->getDBkey() ),
+			new TitleValue( $this->nsInfo->getSubject( $newTarget->getNamespace() ), $newTarget->getDBkey() )
 		);
 		$this->duplicateEntry(
-			$this->nsInfo->getTalkPage( $oldTarget ),
-			$this->nsInfo->getTalkPage( $newTarget )
+			new TitleValue( $this->nsInfo->getTalk( $oldTarget->getNamespace() ), $oldTarget->getDBkey() ),
+			new TitleValue( $this->nsInfo->getTalk( $newTarget->getNamespace() ), $newTarget->getDBkey() )
 		);
 	}
 
 	/**
 	 * @since 1.27
-	 * @param LinkTarget $oldTarget
-	 * @param LinkTarget $newTarget
+	 * @param LinkTarget|PageIdentity $oldTarget deprecated passing LinkTarget since 1.36
+	 * @param LinkTarget|PageIdentity $newTarget deprecated passing LinkTarget since 1.36
 	 */
-	public function duplicateEntry( LinkTarget $oldTarget, LinkTarget $newTarget ) {
+	public function duplicateEntry( $oldTarget, $newTarget ) {
 		$dbw = $this->getConnectionRef( DB_MASTER );
 		$result = $this->fetchWatchedItemsForPage( $dbw, $oldTarget );
 		$newNamespace = $newTarget->getNamespace();
@@ -1607,12 +1735,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param IDatabase $dbw
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @return IResultWrapper
 	 */
 	private function fetchWatchedItemsForPage(
 		IDatabase $dbw,
-		LinkTarget $target
+		$target
 	) : IResultWrapper {
 		$tables = [ 'watchlist' ];
 		$fields = [ 'wl_user', 'wl_notificationtimestamp' ];
@@ -1677,8 +1805,9 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 				// Batch the insertions.
 				$batches = array_chunk( $expiryData, $this->updateRowsPerQuery );
 				foreach ( $batches as $toInsert ) {
-					$dbw->insert(
+					$dbw->replace(
 						'watchlist_expiry',
+						'we_item',
 						$toInsert,
 						$method
 					);
@@ -1690,7 +1819,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param LinkTarget[] $titles
+	 * @param LinkTarget[]|PageIdentity[] $titles deprecated passing LinkTarget[] since 1.36
 	 * @return array
 	 */
 	private function getTitleDbKeysGroupedByNamespace( array $titles ) {
@@ -1704,7 +1833,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 	/**
 	 * @param UserIdentity $user
-	 * @param LinkTarget[] $titles
+	 * @param LinkTarget[]|PageIdentity[] $titles deprecated passing LinkTarget[] since 1.36
 	 */
 	private function uncacheTitlesForUser( UserIdentity $user, array $titles ) {
 		foreach ( $titles as $title ) {

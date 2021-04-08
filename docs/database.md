@@ -84,6 +84,34 @@ Use of locking reads (e.g. the `FOR UPDATE` clause) is not advised. They are poo
 
 Instead of locking reads, combine your existence checks into your write queries, by using an appropriate condition in the `WHERE` clause of an `UPDATE`, or by using unique indexes in combination with `INSERT IGNORE`. Then use the affected row count to see if the query succeeded.
 
+## Query groups
+
+MediaWiki supports database query groups, a way to indicate a preferred group of database hosts to use for a given query. Query groups are only supported for connections to child (non-master) databases, making them only viable for read operations. It should be noted that using query groups does not _guarantee_ a given group of hosts will be used, but rather that the query prefers such group. Making use of query groups can be benficial in many cases.
+
+One benefit is a reduction of cache misses. Directing reads for a category of queries (e.g. all logging queries) to a given host can result in more deterministic and faster performing queries.
+
+Another benefit is that it allows high-traffic wikis to configure some of their database hosts to handle some types of queries more optimally than others. For example, optimizing with different table indices for faster performance.
+
+Query groups are especially beneficial for queries expected to have a long execution time. Such queries can exhaust a database of its resources (e.g. cache space and I/O time), so targeting a specific group of hosts prevents more urgent queries from suffering a performance decrease.
+
+Additionally, expensive queries can delay database maintenance operations which may increase latency for other queries.
+For example, while a database read is executing, if other queries have performed updates to any tables those tables must retain all stale versions of its rows until the read is complete. Now, other potentially unrelated queries must now spend additional time scanning over obsolete rows that are waiting to be purged. Directing these long running queries to dedicated hosts helps prevent other queries in suffering a performance hit.
+
+MediaWiki currently supports the following query groups:
+
+* api
+    * Only use for queries specific to api.php requests; the method ApiBase::getDB() is provided for this purpose.
+* dump
+    * Only use in MediaWiki dump maintenance scripts. In such scripts, all queries, even fast ones, should use this group.
+* vslow
+    * Only use for queries that are expected to have a long execution time. For example, when calculating per-wiki site statistics.
+
+Use the below example syntax to connect to a database when your query falls into one of the above 3 categories:
+```php
+$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+$lb->getConnectionRef( DB_REPLICA, 'vslow' );
+```
+
 ## Supported DBMSs
 
 MediaWiki is written primarily for use with MySQL. Queries are optimized for it and its schema is considered the canonical version. However, MediaWiki does support the following other DBMSs to varying degrees:

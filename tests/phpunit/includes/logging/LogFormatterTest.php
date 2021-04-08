@@ -55,7 +55,6 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 			'wgLogTypes' => [ 'phpunit' ],
 			'wgLogActionsHandlers' => [ 'phpunit/test' => LogFormatter::class,
 				'phpunit/param' => LogFormatter::class ],
-			'wgUser' => User::newFromName( 'Testuser' ),
 		] );
 
 		$this->user = User::newFromName( 'Testuser' );
@@ -666,8 +665,9 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 * @param string $type Log type (move, delete, suppress, patrol ...)
 	 * @param string $action A log type action
 	 * @param array $params
-	 * @param string $comment (optional) A comment for the log action
-	 * @param string $msg (optional) A message for PHPUnit :-)
+	 * @param string|null $comment A comment for the log action
+	 * @param string $msg
+	 * @param bool $legacy
 	 */
 	protected function assertIRCComment( $expected, $type, $action, $params,
 		$comment = null, $msg = '', $legacy = false

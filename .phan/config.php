@@ -18,7 +18,6 @@
  * @file
  */
 
-$disableTaintCheck = true;
 $cfg = require __DIR__ . '/../vendor/mediawiki/mediawiki-phan-config/src/config.php';
 
 $cfg['file_list'] = array_merge(
@@ -53,7 +52,6 @@ $cfg['autoload_internal_extension_signatures'] = [
 	'dom' => '.phan/internal_stubs/dom.phan_php',
 	'excimer' => '.phan/internal_stubs/excimer.php',
 	'imagick' => '.phan/internal_stubs/imagick.phan_php',
-	'intl' => '.phan/internal_stubs/intl.phan_php',
 	'memcached' => '.phan/internal_stubs/memcached.phan_php',
 	'oci8' => '.phan/internal_stubs/oci8.phan_php',
 	'pcntl' => '.phan/internal_stubs/pcntl.phan_php',
@@ -128,5 +126,10 @@ $cfg['globals_type_map'] = array_merge( $cfg['globals_type_map'], [
 	'wgOut' => 'OutputPage',
 	'wgExtraNamespaces' => 'string[]',
 ] );
+
+// Include a local config file if it exists
+if ( file_exists( __DIR__ . '/local-config.php' ) ) {
+	require __DIR__ . '/local-config.php';
+}
 
 return $cfg;

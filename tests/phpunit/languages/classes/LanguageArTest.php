@@ -16,7 +16,8 @@ class LanguageArTest extends LanguageClassesTestCase {
 	public static function provideFormatNum() {
 		return [
 			[ '1234567', '١٬٢٣٤٬٥٦٧' ],
-			[ -12.89, '-١٢٫٨٩' ],
+			[ -12.89, '−١٢٫٨٩' ],
+			[ '1289.456', '١٬٢٨٩٫٤٥٦' ]
 		];
 	}
 

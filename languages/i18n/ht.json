@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Bfpage",
 			"Boukman",
 			"DannyS712",
@@ -142,7 +143,6 @@
 	"category-article-count-limited": "{{PLURAL:$1|Paj sa|$1 paj sa yo}} nan kategori kouran.",
 	"category-file-count": "{{PLURAL:$2|Kategori sa gen sèlman dokiman swivan ladan l.|{{PLURAL:$1|Dokiman sa|$1 dokiman sa yo}} nan kategori sa, sou $2 total.}}",
 	"category-file-count-limited": "{{PLURAL:$1|Dokiman sa|$1 dokiman sa yo}} nan kategori kouran.",
-	"listingcontinuesabbrev": "(kontinye)",
 	"index-category": "Paj endèkse yo",
 	"noindex-category": "Paj ki pa endèkse yo",
 	"broken-file-category": "Paj ak lyen fichye kase",
@@ -269,7 +269,6 @@
 	"thisisdeleted": "Ou vle wè oubyen restore $1 ?",
 	"viewdeleted": "Wè $1&nbsp;?",
 	"restorelink": "{{PLURAL:$1|yon revizion efase|$1 revizion efase yo}}",
-	"feedlinks": "Fil:",
 	"feed-invalid": "Kalite fil sa envalid.",
 	"feed-unavailable": "Fil sendikasyon yo pa disponib",
 	"site-rss-feed": "Fil RSS depi $1",
@@ -826,11 +825,11 @@
 	"invert": "Envèse seleksyon an",
 	"namespace_association": "Non menm jan an",
 	"blanknamespace": "(Prensipal)",
-	"contributions": "Kontribisyon $1",
+	"tool-link-contributions": "Kontribisyon $1",
 	"contributions-title": "Lis tout kontribisyon itilizatè ki rele $1",
 	"mycontris": "Kontribisyon mwen",
 	"contribsub2": "Lis kontribisyon $1 ($2).",
-	"uctop": "tèt",
+	"uctop": "dènye",
 	"month": "depi mwa (ak mwa anvan yo) :",
 	"year": "Depi lane (ak anvan tou) :",
 	"sp-contributions-blocklog": "jounal blokaj yo",

@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Ibrahim khashrowdi"
 		]
 	},
 	"apihelp-block-summary": "کار زوروکئ بستین",
-	"apihelp-createaccount-param-name": "کار زورؤکین نام.",
 	"apihelp-login-param-name": "کار زورؤکین نام.",
-	"apihelp-userrights-param-user": "کار زورؤکین نام."
+	"apihelp-userrights-param-user": "کار زوروک."
 }

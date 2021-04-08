@@ -1,14 +1,27 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\MediaWikiServices;
 
 class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
+	use LanguageNameUtilsTestTrait;
+
+	/** @var HookContainer */
+	private $hookContainer;
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->hookContainer = $this->createHookContainer();
+	}
+
 	/**
 	 * @param array $optionsArray
+	 * @return LanguageNameUtils
 	 */
-	private static function newObj( array $optionsArray = [] ) : LanguageNameUtils {
+	private function newObj( array $optionsArray = [] ) : LanguageNameUtils {
+		// TODO Why is hookContainer unset here sometimes?
+		$this->hookContainer = $this->hookContainer ?? $this->createHookContainer();
 		return new LanguageNameUtils(
 			new ServiceOptions(
 				LanguageNameUtils::CONSTRUCTOR_OPTIONS,
@@ -19,11 +32,13 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 					'UsePigLatinVariant' => false,
 				]
 			),
-			MediaWikiServices::getInstance()->getHookContainer()
+			$this->hookContainer
 		);
 	}
 
-	use LanguageNameUtilsTestTrait;
+	protected function setLanguageTemporaryHook( string $hookName, $handler ): void {
+		$this->hookContainer->register( $hookName, $handler );
+	}
 
 	private function isSupportedLanguage( $code ) {
 		return $this->newObj()->isSupportedLanguage( $code );
@@ -57,14 +72,14 @@ class LanguageNameUtilsTest extends MediaWikiUnitTestCase {
 	}
 
 	private function getFileName( ...$args ) {
-		return self::newObj()->getFileName( ...$args );
+		return $this->newObj()->getFileName( ...$args );
 	}
 
 	private function getMessagesFileName( $code ) {
-		return self::newObj()->getMessagesFileName( $code );
+		return $this->newObj()->getMessagesFileName( $code );
 	}
 
 	private function getJsonMessagesFileName( $code ) {
-		return self::newObj()->getJsonMessagesFileName( $code );
+		return $this->newObj()->getJsonMessagesFileName( $code );
 	}
 }

@@ -30,7 +30,7 @@ use MediaWiki\MediaWikiServices;
  */
 class DumpNotalkFilter extends DumpFilter {
 	/**
-	 * @param object $page
+	 * @param stdClass $page
 	 * @return bool
 	 */
 	protected function pass( $page ) {

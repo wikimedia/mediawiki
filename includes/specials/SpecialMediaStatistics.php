@@ -22,7 +22,9 @@
  * @author Brian Wolff
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -41,12 +43,27 @@ class SpecialMediaStatistics extends QueryPage {
 	 */
 	protected $totalSize = 0;
 
-	public function __construct( $name = 'MediaStatistics' ) {
-		parent::__construct( $name );
+	/** @var MimeAnalyzer */
+	private $mimeAnalyzer;
+
+	/**
+	 * @param MimeAnalyzer $mimeAnalyzer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 */
+	public function __construct(
+		MimeAnalyzer $mimeAnalyzer,
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory
+	) {
+		parent::__construct( 'MediaStatistics' );
 		// Generally speaking there is only a small number of file types,
 		// so just show all of them.
 		$this->limit = 5000;
 		$this->shownavigation = false;
+		$this->mimeAnalyzer = $mimeAnalyzer;
+		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setLinkBatchFactory( $linkBatchFactory );
 	}
 
 	public function isExpensive() {
@@ -68,7 +85,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 * @return array
 	 */
 	public function getQueryInfo() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$fakeTitle = $dbr->buildConcat( [
 			'img_media_type',
 			$dbr->addQuotes( ';' ),
@@ -240,8 +257,7 @@ class SpecialMediaStatistics extends QueryPage {
 	 * @return string Comma separated list of allowed extensions (e.g. ".ogg, .oga")
 	 */
 	private function getExtensionList( $mime ) {
-		$exts = MediaWiki\MediaWikiServices::getInstance()->getMimeAnalyzer()
-			->getExtensionsFromMimeType( $mime );
+		$exts = $this->mimeAnalyzer->getExtensionsFromMimeType( $mime );
 		if ( !$exts ) {
 			return '';
 		}

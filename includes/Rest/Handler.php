@@ -4,6 +4,7 @@ namespace MediaWiki\Rest;
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\Validator\BodyValidator;
 use MediaWiki\Rest\Validator\NullBodyValidator;
 use MediaWiki\Rest\Validator\Validator;
@@ -18,6 +19,9 @@ abstract class Handler {
 	/**
 	 * (string) ParamValidator constant to specify the source of the parameter.
 	 * Value must be 'path', 'query', or 'post'.
+	 * 'post' refers to application/x-www-form-urlencoded or multipart/form-data encoded parameters
+	 * in the body of a POST request (in other words, parameters in PHP's $_POST). For other kinds
+	 * of POST parameters, such as JSON fields, use BodyValidator instead of ParamValidator.
 	 */
 	public const PARAM_SOURCE = 'rest-param-source';
 
@@ -26,6 +30,9 @@ abstract class Handler {
 
 	/** @var RequestInterface */
 	private $request;
+
+	/** @var Authority */
+	private $authority;
 
 	/** @var array */
 	private $config;
@@ -50,18 +57,20 @@ abstract class Handler {
 
 	/**
 	 * Initialise with dependencies from the Router. This is called after construction.
-	 * @internal
 	 * @param Router $router
 	 * @param RequestInterface $request
 	 * @param array $config
+	 * @param Authority $authority
 	 * @param ResponseFactory $responseFactory
 	 * @param HookContainer $hookContainer
+	 * @internal
 	 */
 	final public function init( Router $router, RequestInterface $request, array $config,
-		ResponseFactory $responseFactory, HookContainer $hookContainer
+		Authority $authority, ResponseFactory $responseFactory, HookContainer $hookContainer
 	) {
 		$this->router = $router;
 		$this->request = $request;
+		$this->authority = $authority;
 		$this->config = $config;
 		$this->responseFactory = $responseFactory;
 		$this->hookContainer = $hookContainer;
@@ -115,9 +124,8 @@ abstract class Handler {
 		// %3B_a_%40_b_%24_c_%21_d_%2A_e_%28_f_%29_g_%2C_h_~_i_%3A
 		$replace = [ '%3B', '%40', '%24', '%21', '%2A', '%28', '%29', '%2C', '%7E', '%3A' ];
 		$with = [ ';', '@', '$', '!', '*', '(', ')', ',', '~', ':' ];
-		$title = str_replace( $replace, $with, $title );
 
-		return $title;
+		return str_replace( $replace, $with, $title );
 	}
 
 	/**
@@ -128,6 +136,17 @@ abstract class Handler {
 	 */
 	public function getRequest(): RequestInterface {
 		return $this->request;
+	}
+
+	/**
+	 * Get the current acting authority. The return type declaration causes it to raise
+	 * a fatal error if init() has not yet been called.
+	 *
+	 * @since 1.36
+	 * @return Authority
+	 */
+	public function getAuthority(): Authority {
+		return $this->authority;
 	}
 
 	/**
@@ -166,6 +185,7 @@ abstract class Handler {
 		$validatedBody = $restValidator->validateBody( $this->request, $this );
 		$this->validatedParams = $validatedParams;
 		$this->validatedBody = $validatedBody;
+		$this->postValidationSetup();
 	}
 
 	/**
@@ -183,7 +203,8 @@ abstract class Handler {
 			$this->conditionalHeaderUtil->setValidators(
 				$this->getETag(),
 				$this->getLastModified(),
-				$this->hasRepresentation() );
+				$this->hasRepresentation()
+			);
 		}
 		return $this->conditionalHeaderUtil;
 	}
@@ -202,9 +223,9 @@ abstract class Handler {
 			$response = $this->getResponseFactory()->create();
 			$response->setStatus( $status );
 			return $response;
-		} else {
-			return null;
 		}
+
+		return null;
 	}
 
 	/**
@@ -225,6 +246,10 @@ abstract class Handler {
 	 *
 	 * Every setting must include self::PARAM_SOURCE to specify which part of
 	 * the request is to contain the parameter.
+	 *
+	 * Can be used for validating parameters inside an application/x-www-form-urlencoded or
+	 * multipart/form-data POST body (i.e. parameters which would be present in PHP's $_POST
+	 * array). For validating other kinds of request bodies, override getBodyValidator().
 	 *
 	 * @stable to override
 	 *
@@ -381,12 +406,24 @@ abstract class Handler {
 	}
 
 	/**
+	 * The handler can override this to do any necessary setup after validate()
+	 * has been called. This gives the handler an opportunity to do initialization
+	 * based on parameters before pre-execution calls like getLastModified() or getETag().
+	 *
+	 * @stable to override
+	 * @since 1.36
+	 */
+	protected function postValidationSetup() {
+	}
+
+	/**
 	 * Execute the handler. This is called after parameter validation. The
 	 * return value can either be a Response or any type accepted by
 	 * ResponseFactory::createFromReturnValue().
 	 *
 	 * To automatically construct an error response, execute() should throw a
-	 * RestException. Such exceptions will not be logged like a normal exception.
+	 * \MediaWiki\Rest\HttpException. Such exceptions will not be logged like
+	 * a normal exception.
 	 *
 	 * If execute() throws any other kind of exception, the exception will be
 	 * logged and a generic 500 error page will be shown.

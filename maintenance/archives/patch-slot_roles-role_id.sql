@@ -1,0 +1,2 @@
+ALTER TABLE /*_*/slot_roles
+  MODIFY role_id INT AUTO_INCREMENT NOT NULL;

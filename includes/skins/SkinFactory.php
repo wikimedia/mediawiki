@@ -49,12 +49,22 @@ class SkinFactory {
 	private $objectFactory;
 
 	/**
+	 * Array of skins that should not be presented in the list of
+	 * available skins in user preferences, while they're still installed.
+	 *
+	 * @var string[]
+	 */
+	private $skipSkins = [];
+
+	/**
 	 * @internal For ServiceWiring only
 	 *
 	 * @param ObjectFactory $objectFactory
+	 * @param string[] $skipSkins
 	 */
-	public function __construct( ObjectFactory $objectFactory ) {
+	public function __construct( ObjectFactory $objectFactory, array $skipSkins ) {
 		$this->objectFactory = $objectFactory;
+		$this->skipSkins = $skipSkins;
 	}
 
 	/**
@@ -116,5 +126,27 @@ class SkinFactory {
 				'assertClass' => Skin::class,
 			]
 		);
+	}
+
+	/**
+	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
+	 * Useful for Special:Preferences and other places where you
+	 * only want to show skins users _can_ use.
+	 *
+	 * @return string[]
+	 * @since 1.36
+	 */
+	public function getAllowedSkins() {
+		$allowedSkins = $this->getSkinNames();
+
+		// Internal skins not intended for general use
+		unset( $allowedSkins['fallback'] );
+		unset( $allowedSkins['apioutput'] );
+
+		foreach ( $this->skipSkins as $skip ) {
+			unset( $allowedSkins[$skip] );
+		}
+
+		return $allowedSkins;
 	}
 }

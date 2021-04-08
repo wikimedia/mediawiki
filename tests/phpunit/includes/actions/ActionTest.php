@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\MediaWikiServices;
 
 /**
  * @covers Action
@@ -156,8 +157,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetActionNameNotPossible
-	 * @param mixed $requestedAction
-	 * @param string $expected
 	 */
 	public function testGetActionNameNotPossible( $requestedAction, string $expected ) {
 		$actionName = Action::getActionName(
@@ -224,15 +223,6 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 'view', $actionName );
 	}
 
-	/**
-	 * @covers \Action::factory
-	 */
-	public function testActionFactory_withNull_expectNull() {
-		$this->hideDeprecated( 'Action::factory with null $action' );
-		$result = Action::factory( null, $this->getPage() );
-		$this->assertNull( $result );
-	}
-
 	public function testDisabledAction_exists() {
 		$exists = Action::exists( 'disabled' );
 
@@ -295,7 +285,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			new PageRestriction( 0, $page->getTitle()->getArticleID() ),
 		] );
 
-		$block->insert();
+		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
+		$blockStore->insertBlock( $block );
 
 		try {
 			$action->canExecute( $user );
@@ -304,7 +295,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			$this->assertInstanceOf( UserBlockedError::class, $e );
 		}
 
-		$block->delete();
+		$blockStore->deleteBlock( $block );
 	}
 
 }

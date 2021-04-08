@@ -27,7 +27,7 @@
 
 use MediaWiki\MediaWikiServices;
 
-require_once __DIR__ . '/cleanupTable.inc';
+require_once __DIR__ . '/TableCleanup.php';
 
 /**
  * Maintenance script to clean up broken, unparseable titles.
@@ -42,7 +42,7 @@ class TitleCleanup extends TableCleanup {
 	}
 
 	/**
-	 * @param object $row
+	 * @param stdClass $row
 	 */
 	protected function processRow( $row ) {
 		$display = Title::makeName( $row->page_namespace, $row->page_title );
@@ -88,7 +88,7 @@ class TitleCleanup extends TableCleanup {
 	}
 
 	/**
-	 * @param object $row
+	 * @param stdClass $row
 	 */
 	protected function moveIllegalPage( $row ) {
 		$legal = 'A-Za-z0-9_/\\\\-';
@@ -130,7 +130,7 @@ class TitleCleanup extends TableCleanup {
 	}
 
 	/**
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param Title $title
 	 */
 	protected function moveInconsistentPage( $row, Title $title ) {

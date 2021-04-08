@@ -68,32 +68,11 @@ class SampleTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $text, "$title", "see if '$titleName' matches '$text'" );
 	}
 
-	public function testSetUpMainPageTitleForNextTest() {
-		$title = Title::newMainPage();
-		$this->assertEquals( "Main Page", "$title", "Test initial creation of a title" );
-
-		return $title;
-	}
-
 	/**
 	 * Instead of putting a bunch of tests in a single test method,
 	 * you should put only one or two tests in each test method.  This
 	 * way, the test method names can remain descriptive.
-	 *
-	 * If you want to make tests depend on data created in another
-	 * method, you can create dependencies feed whatever you return
-	 * from the dependant method (e.g. testInitialCreation in this
-	 * example) as arguments to the next method (e.g. $title in
-	 * testTitleDepends is whatever testInitialCreatiion returned.)
 	 */
-
-	/**
-	 * @depends testSetUpMainPageTitleForNextTest
-	 * See https://phpunit.de/manual/6.5/en/appendixes.annotations.html#appendixes.annotations.depends
-	 */
-	public function testCheckMainPageTitleIsConsideredLocal( $title ) {
-		$this->assertTrue( $title->isLocal() );
-	}
 
 	/**
 	 * See https://phpunit.de/manual/6.5/en/writing-tests-for-phpunit.html#writing-tests-for-phpunit.exceptions

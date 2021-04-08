@@ -23,8 +23,8 @@
 namespace MediaWiki\Revision;
 
 use Content;
-use LogicException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 
 /**
  * Value object representing the set of slots belonging to a revision.
@@ -39,6 +39,7 @@ use Wikimedia\Assert\Assert;
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionSlots
  */
 class RevisionSlots {
+	use NonSerializableTrait;
 
 	/** @var SlotRecord[]|callable */
 	protected $slots;
@@ -72,15 +73,6 @@ class RevisionSlots {
 			$role = $slot->getRole();
 			$this->slots[$role] = $slot;
 		}
-	}
-
-	/**
-	 * Implemented to defy serialization.
-	 *
-	 * @throws LogicException always
-	 */
-	public function __sleep() {
-		throw new LogicException( __CLASS__ . ' is not serializable.' );
 	}
 
 	/**
@@ -150,13 +142,13 @@ class RevisionSlots {
 	/**
 	 * Computes the total nominal size of the revision's slots, in bogo-bytes.
 	 *
-	 * @warning This is potentially expensive! It may cause all slot's content to be loaded
+	 * @warning This is potentially expensive! It may cause some slots' content to be loaded
 	 * and deserialized.
 	 *
 	 * @return int
 	 */
 	public function computeSize() {
-		return array_reduce( $this->getSlots(), function ( $accu, SlotRecord $slot ) {
+		return array_reduce( $this->getPrimarySlots(), static function ( $accu, SlotRecord $slot ) {
 			return $accu + $slot->getSize();
 		}, 0 );
 	}
@@ -192,20 +184,20 @@ class RevisionSlots {
 	 * is that slot's hash. For consistency, the combined hash of an empty set of slots
 	 * is the hash of the empty string.
 	 *
-	 * @warning This is potentially expensive! It may cause all slot's content to be loaded
+	 * @warning This is potentially expensive! It may cause some slots' content to be loaded
 	 * and deserialized, then re-serialized and hashed.
 	 *
 	 * @return string
 	 */
 	public function computeSha1() {
-		$slots = $this->getSlots();
+		$slots = $this->getPrimarySlots();
 		ksort( $slots );
 
 		if ( empty( $slots ) ) {
 			return SlotRecord::base36Sha1( '' );
 		}
 
-		return array_reduce( $slots, function ( $accu, SlotRecord $slot ) {
+		return array_reduce( $slots, static function ( $accu, SlotRecord $slot ) {
 			return $accu === null
 				? $slot->getSha1()
 				: SlotRecord::base36Sha1( $accu . $slot->getSha1() );
@@ -223,14 +215,14 @@ class RevisionSlots {
 	public function getOriginalSlots() {
 		return array_filter(
 			$this->getSlots(),
-			function ( SlotRecord $slot ) {
+			static function ( SlotRecord $slot ) {
 				return !$slot->isInherited();
 			}
 		);
 	}
 
 	/**
-	 * Return all slots that are not not originate in the revision they belong to (that is,
+	 * Return all slots that are not originate in the revision they belong to (that is,
 	 * they are inherited from some other revision).
 	 *
 	 * @note This may cause the slot meta-data for the revision to be lazy-loaded.
@@ -240,8 +232,23 @@ class RevisionSlots {
 	public function getInheritedSlots() {
 		return array_filter(
 			$this->getSlots(),
-			function ( SlotRecord $slot ) {
+			static function ( SlotRecord $slot ) {
 				return $slot->isInherited();
+			}
+		);
+	}
+
+	/**
+	 * Return all primary slots (those that are not derived).
+	 *
+	 * @return SlotRecord[]
+	 * @since 1.36
+	 */
+	public function getPrimarySlots() : array {
+		return array_filter(
+			$this->getSlots(),
+			static function ( SlotRecord $slot ) {
+				return !$slot->isDerived();
 			}
 		);
 	}

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Hellohappy",
 			"ଶିତିକଣ୍ଠ ଦାଶ"
 		]
 	},
@@ -9,6 +10,6 @@
 	"apihelp-block-summary": "ଜଣେ ବ୍ୟବହାରକାରୀଙ୍କୁ ବ୍ଲକ କରନ୍ତୁ ।",
 	"apihelp-block-param-reason": "ବ୍ଲକ କରିବାର କାରଣ ।",
 	"apihelp-block-param-nocreate": "ଆକାଉଣ୍ଟ ତିଆରି ହେବାକୁ ପ୍ରତିରୋଧ କରନ୍ତୁ ।",
-	"apihelp-createaccount-param-name": "ବ୍ୟବହାରକାରୀଙ୍କ ନାମ",
-	"apihelp-delete-summary": "ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ"
+	"apihelp-delete-summary": "ପୃଷ୍ଠାଟି ଲିଭାଇଦେବେ",
+	"api-help-param-internal": "ଆଭନ୍ତରୀଣ"
 }

@@ -126,7 +126,7 @@ abstract class ChangesListFilter {
 	 * * $filterDefinition['cssClassSuffix'] string CSS class suffix, used to mark
 	 *     that a particular row belongs to this filter (when a row is included by the
 	 *     filter) (optional)
-	 * * $filterDefinition['isRowApplicableCallable'] Callable taking two parameters, the
+	 * * $filterDefinition['isRowApplicableCallable'] callable Callable taking two parameters, the
 	 *     IContextSource, and the RecentChange object for the row, and returning true if
 	 *     the row is attributed to this filter.  The above CSS class will then be
 	 *     automatically added (optional, required if cssClassSuffix is used).
@@ -137,9 +137,8 @@ abstract class ChangesListFilter {
 	 *     UI.
 	 * * $filterDefinition['priority'] int Priority integer.  Higher value means higher
 	 *     up in the group's filter list.
-	 * @codingStandardsIgnoreStart
+	 * @phpcs:ignore Generic.Files.LineLength
 	 * @phan-param array{name:string,cssClassSuffix?:string,isRowApplicableCallable?:callable,group:ChangesListFilterGroup,label:string,description:string,priority:int} $filterDefinition
-	 * @codingStandardsIgnoreEnd
 	 */
 	public function __construct( array $filterDefinition ) {
 		if ( isset( $filterDefinition['group'] ) ) {
@@ -415,7 +414,7 @@ abstract class ChangesListFilter {
 	 */
 	public function getConflictingGroups() {
 		return array_map(
-			function ( $conflictDesc ) {
+			static function ( $conflictDesc ) {
 				return $conflictDesc[ 'groupObject' ];
 			},
 			$this->conflictingGroups
@@ -429,7 +428,7 @@ abstract class ChangesListFilter {
 	 */
 	public function getConflictingFilters() {
 		return array_map(
-			function ( $conflictDesc ) {
+			static function ( $conflictDesc ) {
 				return $conflictDesc[ 'filterObject' ];
 			},
 			$this->conflictingFilters

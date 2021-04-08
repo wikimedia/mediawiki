@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Logger\LegacyLogger;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -264,6 +263,8 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfNegotiateType
 	 */
 	public function testNegotiateType() {
+		$this->hideDeprecated( 'wfNegotiateType' );
+
 		$this->assertEquals(
 			'text/html',
 			wfNegotiateType(
@@ -309,6 +310,8 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfDebugMem
 	 */
 	public function testDebugFunctionTest() {
+		$this->hideDeprecated( 'wfDebugMem' );
+
 		$debugLogFile = $this->getNewTempFile();
 
 		$this->setMwGlobals( [
@@ -681,29 +684,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			wfWikiID(),
 			'example-mw_'
-		);
-	}
-
-	/**
-	 * @covers ::wfMemcKey
-	 */
-	public function testWfMemcKey() {
-		$cache = ObjectCache::getLocalClusterInstance();
-		$this->assertEquals(
-			$cache->makeKey( 'foo', 123, 'bar' ),
-			wfMemcKey( 'foo', 123, 'bar' )
-		);
-	}
-
-	/**
-	 * @covers ::wfForeignMemcKey
-	 */
-	public function testWfForeignMemcKey() {
-		$cache = ObjectCache::getLocalClusterInstance();
-		$keyspace = TestingAccessWrapper::newFromObject( $cache )->keyspace;
-		$this->assertEquals(
-			wfForeignMemcKey( $keyspace, '', 'foo', 'bar' ),
-			$cache->makeKey( 'foo', 'bar' )
 		);
 	}
 

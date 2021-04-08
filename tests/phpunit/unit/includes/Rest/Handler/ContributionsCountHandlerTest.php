@@ -7,9 +7,9 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Revision\ContributionsLookup;
+use MediaWiki\User\UserIdentityValue;
+use MediaWiki\User\UserNameUtils;
 use PHPUnit\Framework\MockObject\MockObject;
-use RequestContext;
-use User;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -19,48 +19,66 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
 
-	private function newHandler( $numRevisions = 5 ) {
+	private function newHandler( $numContributions = 5 ) {
 		/** @var MockObject|ContributionsLookup $mockContributionsLookup */
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
 			[ 'getContributionCount' ]
 		);
-		$mockContributionsLookup->method( 'getContributionCount' )->willReturn( $numRevisions );
-		$handler = new ContributionsCountHandler( $mockContributionsLookup );
-		return $handler;
+
+		$mockContributionsLookup->method( 'getContributionCount' )->willReturn( $numContributions );
+		$mockUserNameUtils = $this->createNoOpMock( UserNameUtils::class,
+			[ 'isIP' ]
+		);
+
+		$mockUserNameUtils->method( 'isIP' )
+			->willReturnCallback( static function ( $name ) {
+				return $name === '127.0.0.1';
+			} );
+
+		return new ContributionsCountHandler(
+			$mockContributionsLookup,
+			$mockUserNameUtils
+		);
 	}
 
 	public function provideTestThatParametersAreHandledCorrectly() {
-		yield [ new RequestData( [] ) ];
+		yield [ new RequestData( [] ), 'me' ];
 		yield [ new RequestData(
 			[ 'queryParams' => [ 'tag' => 'test' ] ]
-		) ];
+		), 'me' ];
 		yield [ new RequestData(
 			[ 'queryParams' => [ 'tag' => null ] ]
-		) ];
+		), 'me' ];
 		yield [ new RequestData(
-			[ 'queryParams' => [ 'tag' => '' ] ]
-		) ];
+			[ 'pathParams' => [ 'user' => 'someUser' ], 'queryParams' => [ 'tag' => '' ] ]
+		), 'user' ];
+		yield [ new RequestData(
+			[ 'pathParams' => [ 'user' => 'someUser' ] ]
+		), 'user' ];
 	}
 
 	/**
-	 * @param RequestInterface $request
 	 * @dataProvider provideTestThatParametersAreHandledCorrectly
 	 */
-	public function testThatParametersAreHandledCorrectly( RequestInterface $request ) {
+	public function testThatParametersAreHandledCorrectly( RequestInterface $request, $mode ) {
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
 			[ 'getContributionCount' ]
 		);
-		$user = $this->makeMockUser( false );
-		RequestContext::getMain()->setUser( $user );
+		$username = $request->getPathParams()['user'] ?? null;
+		$user = $username ? new UserIdentityValue( 42, $username, 24 ) : null;
 
 		$tag = $request->getQueryParams()['tag'] ?? null;
 		$mockContributionsLookup->method( 'getContributionCount' )
-			->with( $user, $user, $tag )
+			->with( $user, $this->anything(), $tag )
 			->willReturn( 123 );
 
-		$handler = new ContributionsCountHandler( $mockContributionsLookup );
-
-		$response = $this->executeHandler( $handler, $request );
+		$handler = $this->newHandler( 5 );
+		$validatedParams = [
+			'user' => $user,
+			'tag' => $tag ?? null,
+		];
+		$response = $this->executeHandler( $handler, $request, [ 'mode' => $mode ], [], $validatedParams, [],
+			$mode === 'me' ? $this->mockRegisteredUltimateAuthority() : null );
 
 		$this->assertSame( 200, $response->getStatusCode() );
 	}
@@ -68,45 +86,69 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 	public function testThatAnonymousUserReturns401() {
 		$handler = $this->newHandler();
 		$request = new RequestData( [] );
-		RequestContext::getMain()->setUser( new User() );
+		$validatedParams = [ 'user' => null, 'tag' => null ];
 
 		$this->expectExceptionObject(
 			new LocalizedHttpException( new MessageValue( 'rest-permission-denied-anon' ), 401 )
 		);
-		$response = $this->executeHandler( $handler, $request );
-		$this->assertSame( 401, $response->getStatusCode() );
-	}
-
-	private function makeMockUser( $anon = false ) {
-		$user = $this->createNoOpMock( User::class, [ 'isAnon' ] );
-		$user->method( 'isAnon' )->willReturn( $anon );
-		return $user;
+		$this->executeHandler( $handler, $request, [ 'mode' => 'me' ], [], $validatedParams, [],
+			$this->mockAnonUltimateAuthority() );
 	}
 
 	public function provideThatResponseConformsToSchema() {
-		$basePath = 'https://wiki.example.com/rest/coredev/v0/me/contributions/count';
-		yield [ 0, [ 'count' => 0 ] ];
-		yield [ 3, [ 'count' => 3 ] ];
+		yield [ 0, [ 'count' => 0 ], [], 'me' ];
+		yield [ 3, [ 'count' => 3 ], [], 'me' ];
+		yield [ 0, [ 'count' => 0 ], [ 'pathParams' => [ 'user' => 'someName' ] ], 'user' ];
+		yield [ 3, [ 'count' => 3 ], [ 'pathParams' => [ 'user' => 'someName' ] ] , 'user' ];
 	}
 
 	/**
 	 * @dataProvider provideThatResponseConformsToSchema
 	 */
-	public function testThatResponseConformsToSchema( $numRevisions, $expectedResponse ) {
-		$handler = $this->newHandler( $numRevisions );
-		$request = new RequestData( [] );
+	public function testThatResponseConformsToSchema( $numContributions, $expectedResponse, $config, $mode ) {
+		$handler = $this->newHandler( $numContributions );
+		$request = new RequestData( $config );
+		$username = $request->getPathParams()['user'] ?? null;
+		$validatedParams = [
+			'user' => $username ? new UserIdentityValue( 42, $username, 24 ) : null,
+			'tag' => null
+		];
 
-		$user = $this->makeMockUser();
-		RequestContext::getMain()->setUser( $user );
+		$response = $this->executeHandlerAndGetBodyData(
+			$handler, $request, [ 'mode' => $mode ], [], $validatedParams, [],
+				$this->mockRegisteredUltimateAuthority()
+		);
 
-		$response = $this->executeHandlerAndGetBodyData( $handler, $request );
 		$this->assertSame( $expectedResponse, $response );
 	}
-}
 
-// Returns a list of page revisions by the current logged-in user
-// There is a stable chronological order allowing the client to request
-// the next or previous segments such that the client will eventually receive all contributions
-// Returned list must segmented based on a LIMIT
-// Response object must be JSON
-// Response object must contain the following fields:
+	public function testThatUnknownUserReturns404() {
+		$username = 'UNKNOWN';
+		$handler = $this->newHandler();
+		$request = new RequestData( [ 'pathParams' => [ 'user' => $username ] ] );
+
+		$validatedParams = [
+			'user' => new UserIdentityValue( 0, $username, 0 ),
+			'tag' => null
+		];
+
+		$this->expectExceptionObject(
+			new LocalizedHttpException( new MessageValue( 'rest-nonexistent-user' ), 404 )
+		);
+		$this->executeHandler( $handler, $request, [ 'mode' => 'user' ], [], $validatedParams );
+	}
+
+	public function testThatIpUserReturns200() {
+		$handler = $this->newHandler();
+		$ipAddr = '127.0.0.1';
+		$request = new RequestData( [ 'pathParams' => [ 'user' => $ipAddr ] ] );
+		$validatedParams = [
+			'user' => new UserIdentityValue( 0, $ipAddr, 0 ),
+			'tag' => null
+		];
+
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [ 'mode' => 'user' ], [], $validatedParams );
+		$this->assertArrayHasKey( 'count', $data );
+	}
+
+}

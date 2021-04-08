@@ -10,6 +10,7 @@
 			"LNDDYL",
 			"Lauhenry",
 			"Mark85296341",
+			"Pseudo Classes",
 			"Waihorace",
 			"Xiplus"
 		]
@@ -53,9 +54,9 @@
 	"exif-relatedsoundfile": "相關的音效檔案",
 	"exif-datetimeoriginal": "資料產生的日期時間",
 	"exif-datetimedigitized": "數位化的日期時間",
-	"exif-subsectime": "DateTime 次秒",
-	"exif-subsectimeoriginal": "DateTimeOriginal 次秒",
-	"exif-subsectimedigitized": "DateTimeDigitized 次秒",
+	"exif-subsectime": "時間數據亞秒數",
+	"exif-subsectimeoriginal": "文件建立時間數據亞秒數",
+	"exif-subsectimedigitized": "文件數位化時間數據亞秒數",
 	"exif-exposuretime": "曝光時間",
 	"exif-exposuretime-format": "$1 秒 ($2)",
 	"exif-fnumber": "光圈值",
@@ -202,7 +203,6 @@
 	"exif-photometricinterpretation-3": "調色板",
 	"exif-photometricinterpretation-4": "透明遮罩",
 	"exif-photometricinterpretation-5": "分隔（可能是 CMYK）",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b*（ICC 編碼）",
 	"exif-photometricinterpretation-10": "CIE L*a*b*（ITU 編碼）",
 	"exif-unknowndate": "日期不明",
@@ -366,5 +366,18 @@
 	"exif-urgency-normal": "正常 ($1)",
 	"exif-urgency-low": "低 ($1)",
 	"exif-urgency-high": "高 ($1)",
-	"exif-urgency-other": "使用者自訂優先權 ($1)"
+	"exif-urgency-other": "使用者自訂優先權 ($1)",
+	"exif-firstphotodate": "首次攝影日期",
+	"exif-lastphotodate": "最後攝影日期",
+	"exif-projectiontype": "投影類型",
+	"exif-projectiontype-equirectangular": "等距長方",
+	"exif-usepanoramaviewer": "使用環景檢視",
+	"exif-usepanoramaviewer-true": "是",
+	"exif-usepanoramaviewer-false": "否",
+	"exif-exposurelockused": "使用曝光鎖定",
+	"exif-exposurelockused-true": "是",
+	"exif-exposurelockused-false": "否",
+	"exif-fullpanowidthpixels": "環景全寬",
+	"exif-fullpanoheightpixels": "環景全高",
+	"exif-initialcameradolly": "初始攝影台車"
 }

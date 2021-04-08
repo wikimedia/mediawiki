@@ -333,7 +333,7 @@ class CompressOld extends Maintenance {
 					# Don't operate on the current revision
 					# Use < instead of <> in case the current revision has changed
 					# since the page select, which wasn't locking
-					'rev_id < ' . $pageRow->page_latest
+					'rev_id < ' . (int)$pageRow->page_latest
 				], $conds ),
 				__METHOD__,
 				$revLoadOptions

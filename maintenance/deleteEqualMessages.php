@@ -65,7 +65,11 @@ class DeleteEqualMessages extends Maintenance {
 		$messageNames = array_map( [ $contLang, 'ucfirst' ], $messageNames );
 
 		$statuses = AllMessagesTablePager::getCustomisedStatuses(
-			$messageNames, $langCode, $nonContentLanguage );
+			$messageNames,
+			$langCode,
+			$nonContentLanguage,
+			$this->getDB( DB_REPLICA )
+		);
 		// getCustomisedStatuses is stripping the sub page from the page titles, add it back
 		$titleSuffix = $nonContentLanguage ? "/$langCode" : '';
 
@@ -111,10 +115,10 @@ class DeleteEqualMessages extends Maintenance {
 
 		$this->output( 'Checking for pages with default message...' );
 
+		$services = MediaWikiServices::getInstance();
 		// Load message information
 		if ( $langCode ) {
-			$langCodes = MediaWikiServices::getInstance()
-				->getLanguageNameUtils()
+			$langCodes = $services->getLanguageNameUtils()
 				->getLanguageNames( null, 'mwfile' );
 			if ( $langCode === '*' ) {
 				// All valid lang-code subpages in NS_MEDIAWIKI that
@@ -179,13 +183,14 @@ class DeleteEqualMessages extends Maintenance {
 		// Handle deletion
 		$this->output( "\n...deleting equal messages (this may take a long time!)..." );
 		$dbw = $this->getDB( DB_MASTER );
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
+		$lbFactory = $services->getDBLoadBalancerFactory();
+		$wikiPageFactory = $services->getWikiPageFactory();
 		foreach ( $messageInfo['results'] as $result ) {
 			$lbFactory->waitForReplication();
 			$dbw->ping();
 			$title = Title::makeTitle( NS_MEDIAWIKI, $result['title'] );
 			$this->output( "\n* [[$title]]" );
-			$page = WikiPage::factory( $title );
+			$page = $wikiPageFactory->newFromTitle( $title );
 			$status = $page->doDeleteArticleReal( 'No longer required', $user );
 			if ( !$status->isOK() ) {
 				$this->output( " (Failed!)" );
@@ -193,7 +198,7 @@ class DeleteEqualMessages extends Maintenance {
 			if ( $result['hasTalk'] && $doDeleteTalk ) {
 				$title = Title::makeTitle( NS_MEDIAWIKI_TALK, $result['title'] );
 				$this->output( "\n* [[$title]]" );
-				$page = WikiPage::factory( $title );
+				$page = $wikiPageFactory->newFromTitle( $title );
 				$status = $page->doDeleteArticleReal(
 					'Orphaned talk page of no longer required message',
 					$user

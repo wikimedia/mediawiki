@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -34,9 +35,9 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class WatchedItem {
 	/**
-	 * @var LinkTarget
+	 * @var LinkTarget|PageIdentity deprecated LinkTarget since 1.36
 	 */
-	private $linkTarget;
+	private $target;
 
 	/**
 	 * @var UserIdentity
@@ -65,18 +66,18 @@ class WatchedItem {
 
 	/**
 	 * @param UserIdentity $user
-	 * @param LinkTarget $linkTarget
+	 * @param LinkTarget|PageIdentity $target deprecated passing LinkTarget since 1.36
 	 * @param null|string $notificationTimestamp the value of the wl_notificationtimestamp field
 	 * @param null|string $expiry Optional expiry timestamp in any format acceptable to wfTimestamp()
 	 */
 	public function __construct(
 		UserIdentity $user,
-		LinkTarget $linkTarget,
+		$target,
 		$notificationTimestamp,
 		?string $expiry = null
 	) {
 		$this->user = $user;
-		$this->linkTarget = $linkTarget;
+		$this->target = $target;
 		$this->notificationTimestamp = $notificationTimestamp;
 
 		// Expiry will be saved in ConvertibleTimestamp
@@ -105,9 +106,11 @@ class WatchedItem {
 
 	/**
 	 * @deprecated since 1.34, use getUserIdentity()
+	 * Hard deprecated since 1.36
 	 * @return User
 	 */
 	public function getUser() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return User::newFromIdentity( $this->user );
 	}
 
@@ -120,9 +123,21 @@ class WatchedItem {
 
 	/**
 	 * @return LinkTarget
+	 * @deprecated since 1.36, use getTarget() instead
 	 */
 	public function getLinkTarget() {
-		return $this->linkTarget;
+		if ( !$this->target instanceof LinkTarget ) {
+			return TitleValue::newFromPage( $this->target );
+		}
+		return $this->getTarget();
+	}
+
+	/**
+	 * @return LinkTarget|PageIdentity deprecated returning LinkTarget since 1.36
+	 * @since 1.36
+	 */
+	public function getTarget() {
+		return $this->target;
 	}
 
 	/**

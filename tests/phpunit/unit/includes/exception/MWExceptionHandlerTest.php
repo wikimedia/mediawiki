@@ -23,6 +23,38 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	/**
+	 * Test end-to-end formatting of an exception, such as used by LogstashFormatter.
+	 *
+	 * @covers MWExceptionHandler
+	 * @see MWExceptionHandler::prettyPrintTrace
+	 */
+	public function testTraceFormatting() {
+		try {
+			$dummy = new TestThrowerDummy();
+			$startLine = __LINE__ + 1;
+			$dummy->main();
+		} catch ( Exception $e ) {
+		}
+
+		$startFile = __FILE__;
+		$dummyFile = TestThrowerDummy::getFile();
+		$dummyClass = TestThrowerDummy::class;
+		$expected = <<<TEXT
+from ${dummyFile}(17)
+#0 ${dummyFile}(13): ${dummyClass}->getQuux()
+#1 ${dummyFile}(9): ${dummyClass}->getBar()
+#2 ${dummyFile}(5): ${dummyClass}->doFoo()
+#3 ${startFile}($startLine): ${dummyClass}->main()
+TEXT;
+
+		// Trim up until our call()
+		$trace = MWExceptionHandler::getRedactedTraceAsString( $e );
+		$actual = implode( "\n", array_slice( explode( "\n", trim( $trace ) ), 0, 5 ) );
+
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
 	 * @covers MWExceptionHandler::getRedactedTrace
 	 */
 	public function testGetRedactedTrace() {
@@ -30,13 +62,13 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 		try {
 			$array = [ 'a', 'b' ];
 			$object = (object)[];
-			self::helperThrowAnException( $array, $object, $refvar );
+			self::helperThrowForArgs( $array, $object, $refvar );
 		} catch ( Exception $e ) {
 		}
 
-		# Make sure our stack trace contains an array and an object passed to
-		# some function in the stacktrace. Else, we can not assert the trace
-		# redaction achieved its job.
+		// Make sure our stack trace contains an array and an object passed to
+		// some function in the stacktrace. Else, we can not assert the trace
+		// redaction achieved its job.
 		$trace = $e->getTrace();
 		$hasObject = false;
 		$hasArray = false;
@@ -53,13 +85,10 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 				break;
 			}
 		}
-		$this->assertTrue( $hasObject,
-			"The stacktrace must contain a function having an object as a parameter" );
-		$this->assertTrue( $hasArray,
-			"The stacktrace must contain a function having an array as a parameter" );
+		$this->assertTrue( $hasObject, "The stacktrace has a frame with an object parameter" );
+		$this->assertTrue( $hasArray, "The stacktrace has a frame with an array parameter" );
 
-		# Now we redact the trace.. and make sure no function arguments are
-		# arrays or objects.
+		// Now we redact the trace.. and verify there are no longer any arrays or objects
 		$redacted = MWExceptionHandler::getRedactedTrace( $e );
 
 		foreach ( $redacted as $frame ) {
@@ -72,17 +101,81 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 			}
 		}
 
-		$this->assertEquals( 'value', $refvar, 'Ensuring reference variable wasn\'t changed' );
+		$this->assertEquals( 'value', $refvar, 'Reference variable' );
 	}
 
 	/**
-	 * Helper function for testExpandArgumentsInCall
+	 * @dataProvider provideJsonSerializedKeys
+	 * @covers MWExceptionHandler::jsonSerializeException
 	 *
-	 * Pass it an object and an array, and something by reference :-)
+	 * @param string $expectedKeyType Type expected as returned by gettype()
+	 * @param string $exClass An exception class (ie: Exception, MWException)
+	 * @param string $key Name of the key to validate in the serialized JSON
+	 */
+	public function testJsonserializeexceptionKeys( $expectedKeyType, $exClass, $key ) {
+		// Make sure we log a backtrace:
+		$GLOBALS['wgLogExceptionBacktrace'] = true;
+
+		$json = json_decode(
+			MWExceptionHandler::jsonSerializeException( new $exClass() )
+		);
+		$this->assertObjectHasAttribute( $key, $json );
+		$this->assertSame( $expectedKeyType, gettype( $json->$key ), "Type of the '$key' key" );
+	}
+
+	/**
+	 * Each case provides: [ type, exception class, key name ]
+	 */
+	public static function provideJsonSerializedKeys() {
+		foreach ( [ Exception::class, MWException::class ] as $exClass ) {
+			yield [ 'string', $exClass, 'id' ];
+			yield [ 'string', $exClass, 'file' ];
+			yield [ 'integer', $exClass, 'line' ];
+			yield [ 'string', $exClass, 'message' ];
+			yield [ 'NULL', $exClass, 'url' ];
+			// Backtrace only enabled with wgLogExceptionBacktrace = true
+			yield [ 'array', $exClass, 'backtrace' ];
+		}
+	}
+
+	/**
+	 * Given wgLogExceptionBacktrace is true
+	 * then serialized exception must have a backtrace
 	 *
+	 * @covers MWExceptionHandler::jsonSerializeException
+	 */
+	public function testJsonserializeexceptionBacktracingEnabled() {
+		$GLOBALS['wgLogExceptionBacktrace'] = true;
+		$json = json_decode(
+			MWExceptionHandler::jsonSerializeException( new Exception() )
+		);
+		$this->assertObjectHasAttribute( 'backtrace', $json );
+	}
+
+	/**
+	 * Given wgLogExceptionBacktrace is false
+	 * then serialized exception must not have a backtrace
+	 *
+	 * @covers MWExceptionHandler::jsonSerializeException
+	 */
+	public function testJsonserializeexceptionBacktracingDisabled() {
+		$GLOBALS['wgLogExceptionBacktrace'] = false;
+		$json = json_decode(
+			MWExceptionHandler::jsonSerializeException( new Exception() )
+		);
+		$this->assertObjectNotHasAttribute( 'backtrace', $json );
+	}
+
+	/**
+	 * Helper function for testGetRedactedTrace
+	 *
+	 * @param array $a
+	 * phpcs:disable MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @param object $b
+	 * @param mixed &$c
 	 * @throws Exception
 	 */
-	protected static function helperThrowAnException( $a, $b, &$c ) {
+	protected static function helperThrowForArgs( array $a, object $b, &$c ) {
 		throw new Exception();
 	}
 }

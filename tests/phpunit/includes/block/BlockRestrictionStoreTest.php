@@ -26,8 +26,8 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
 		$this->resetTables();
+		parent::tearDown();
 	}
 
 	/**
@@ -593,7 +593,7 @@ class BlockRestrictionStoreTest extends \MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 		] );
 
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		return $block;
 	}

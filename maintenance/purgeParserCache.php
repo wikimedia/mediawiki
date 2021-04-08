@@ -22,7 +22,7 @@
  * @ingroup Maintenance
  */
 
-require __DIR__ . '/Maintenance.php';
+require_once __DIR__ . '/Maintenance.php';
 
 use MediaWiki\MediaWikiServices;
 

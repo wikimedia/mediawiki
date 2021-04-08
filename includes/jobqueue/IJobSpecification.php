@@ -29,6 +29,13 @@
  * that will eventually pop the job specification from the queue, construct a RunnableJob
  * instance from the specification, and then execute that instance via RunnableJob::run().
  *
+ * Job classes must have a constructor that takes a Title and a parameter array, except
+ * when they also implement GenericParameterJob in which case they must only take an array.
+ * When reconstructing the job from the job queue, the value returned from getParams() will
+ * be passed in as the constructor's array parameter; the title will be constructed from
+ * the parameter array's `namespace` and `title` fields (when these are omitted, some
+ * fallback title will be used).
+ *
  * @ingroup JobQueue
  * @since 1.23
  */

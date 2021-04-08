@@ -35,19 +35,28 @@ class FeedUtils {
 	/**
 	 * Check whether feeds can be used and that $type is a valid feed type
 	 *
+	 * @since 1.36 $output parameter added
+	 *
 	 * @param string $type Feed type, as requested by the user
+	 * @param OutputPage|null $output Null falls back to $wgOut
 	 * @return bool
 	 */
-	public static function checkFeedOutput( $type ) {
-		global $wgOut, $wgFeed, $wgFeedClasses;
+	public static function checkFeedOutput( $type, $output = null ) {
+		global $wgFeed, $wgFeedClasses;
+
+		if ( $output === null ) {
+			// Todo update GoogleNewsSitemap and deprecate
+			global $wgOut;
+			$output = $wgOut;
+		}
 
 		if ( !$wgFeed ) {
-			$wgOut->addWikiMsg( 'feed-unavailable' );
+			$output->addWikiMsg( 'feed-unavailable' );
 			return false;
 		}
 
 		if ( !isset( $wgFeedClasses[$type] ) ) {
-			$wgOut->addWikiMsg( 'feed-invalid' );
+			$output->addWikiMsg( 'feed-invalid' );
 			return false;
 		}
 
@@ -57,7 +66,7 @@ class FeedUtils {
 	/**
 	 * Format a diff for the newsfeed
 	 *
-	 * @param object $row Row from the recentchanges table, including fields as
+	 * @param stdClass $row Row from the recentchanges table, including fields as
 	 *  appropriate for CommentStore
 	 * @return string
 	 */
@@ -249,8 +258,9 @@ class FeedUtils {
 		];
 
 		foreach ( $styles as $class => $style ) {
-			$text = preg_replace( "/(<[^>]+)class=(['\"])$class\\2([^>]*>)/",
-				"\\1style=\"$style\"\\3", $text );
+			$text = preg_replace( '/(<\w+\b[^<>]*)\bclass=([\'"])(?:[^\'"]*\s)?' .
+				preg_quote( $class ) . '(?:\s[^\'"]*)?\2(?=[^<>]*>)/',
+				'$1style="' . $style . '"', $text );
 		}
 
 		return $text;

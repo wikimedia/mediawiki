@@ -438,7 +438,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 			$status = Status::newFatal( 'tags-edit-none-selected' );
 		} else {
 			$status = $this->getList()->updateChangeTagsOnAll( $tagsToAdd,
-				$tagsToRemove, null, $this->reason, $this->getUser() );
+				$tagsToRemove, null, $this->reason, $this->getAuthority() );
 		}
 
 		if ( $status->isGood() ) {

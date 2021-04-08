@@ -70,7 +70,7 @@ class ApiParseTest extends ApiTestCase {
 	 * parser adds around the parsed page.  Also asserts that warnings match
 	 * the provided $warning.
 	 *
-	 * @param string $html Expected HTML
+	 * @param string $expected Expected HTML
 	 * @param array $res Returned from doApiRequest()
 	 * @param string|null $warnings Exact value of expected warnings, null for
 	 *   no warnings
@@ -83,7 +83,7 @@ class ApiParseTest extends ApiTestCase {
 	 * Same as above, but asserts that the HTML matches a regexp instead of a
 	 * literal string match.
 	 *
-	 * @param string $html Expected HTML
+	 * @param string $expected Expected HTML
 	 * @param array $res Returned from doApiRequest()
 	 * @param string|null $warnings Exact value of expected warnings, null for
 	 *   no warnings
@@ -112,7 +112,7 @@ class ApiParseTest extends ApiTestCase {
 		} else {
 			$expectedEnd = '#\n<!-- \nNewPP limit report\n(?>.+?\n-->)\n' .
 				'<!--\nTransclusion expansion time report \(%,ms,calls,template\)\n(?>.*?\n-->)\n' .
-				'(\n<!-- Saved in parser cache (?>.*?\n -->)\n)?</div>$#s';
+				'(\n<!-- Saved in (?>parser cache|RevisionOutputCache) (?>.*?\n -->)\n)?</div>$#s';
 			$this->assertRegExp( $expectedEnd, $html );
 
 			$html = preg_replace( $expectedEnd, '', $html );
@@ -156,10 +156,10 @@ class ApiParseTest extends ApiTestCase {
 	 * @todo Should this code be in MediaWikiIntegrationTestCase or something?
 	 */
 	protected function setupSkin() {
-		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ) );
+		$factory = new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ), [] );
 		$factory->register( 'testing', 'Testing', function () {
 			$skin = $this->getMockBuilder( SkinFallback::class )
-				->setMethods( [ 'getDefaultModules', 'setupSkinUserCss' ] )
+				->setMethods( [ 'getDefaultModules' ] )
 				->getMock();
 			$skin->expects( $this->once() )->method( 'getDefaultModules' )
 				->willReturn( [
@@ -167,10 +167,6 @@ class ApiParseTest extends ApiTestCase {
 					'core' => [ 'foo', 'bar' ],
 					'content' => [ 'baz' ]
 				] );
-			$skin->expects( $this->once() )->method( 'setupSkinUserCss' )
-				->will( $this->returnCallback( function ( OutputPage $out ) {
-					$out->addModuleStyles( 'foo.styles' );
-				} ) );
 			return $skin;
 		} );
 		$this->setService( 'SkinFactory', $factory );
@@ -618,7 +614,7 @@ class ApiParseTest extends ApiTestCase {
 	public function testEffectiveLangLinks() {
 		$hookRan = false;
 		$this->setTemporaryHook( 'LanguageLinks',
-			function () use ( &$hookRan ) {
+			static function () use ( &$hookRan ) {
 				$hookRan = true;
 			}
 		);
@@ -705,7 +701,7 @@ class ApiParseTest extends ApiTestCase {
 
 	public function testModules() {
 		$this->setTemporaryHook( 'ParserAfterParse',
-			function ( $parser ) {
+			static function ( $parser ) {
 				$output = $parser->getOutput();
 				$output->addModules( [ 'foo', 'bar' ] );
 				$output->addModuleStyles( [ 'aaa', 'zzz' ] );
@@ -747,7 +743,7 @@ class ApiParseTest extends ApiTestCase {
 			'resp.parse.modulescripts'
 		);
 		$this->assertSame(
-			[ 'foo.styles', 'quux.styles' ],
+			[ 'quux.styles' ],
 			$res[0]['parse']['modulestyles'],
 			'resp.parse.modulestyles'
 		);
@@ -885,13 +881,11 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testConcurrentLimitPageParse() {
-		$wgPoolCounterConf = [
+		$this->setMwGlobals( 'wgPoolCounterConf', [
 			'ApiParser' => [
 				'class' => MockPoolCounterFailing::class,
 			]
-		];
-
-		$this->setMwGlobals( 'wgPoolCounterConf', $wgPoolCounterConf );
+		] );
 
 		try{
 			$this->doApiRequest( [
@@ -905,13 +899,11 @@ class ApiParseTest extends ApiTestCase {
 	}
 
 	public function testConcurrentLimitContentParse() {
-		$wgPoolCounterConf = [
+		$this->setMwGlobals( 'wgPoolCounterConf', [
 			'ApiParser' => [
 				'class' => MockPoolCounterFailing::class,
 			]
-		];
-
-		$this->setMwGlobals( 'wgPoolCounterConf', $wgPoolCounterConf );
+		] );
 
 		try{
 			$this->doApiRequest( [

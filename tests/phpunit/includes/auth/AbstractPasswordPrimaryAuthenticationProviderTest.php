@@ -97,7 +97,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 					],
 				],
 				'checks' => [
-					'Check' => function () use ( &$uppCalled, &$uppStatus ) {
+					'Check' => static function () use ( &$uppCalled, &$uppStatus ) {
 						$uppCalled++;
 						return $uppStatus;
 					},
@@ -128,8 +128,11 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			new \FauxRequest(),
 			$services->getMainConfig(),
 			$services->getObjectFactory(),
-			$services->getPermissionManager(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getReadOnlyMode(),
+			$services->getUserNameUtils(),
+			$services->getBlockManager(),
+			$services->getBlockErrorFormatter()
 		);
 
 		$provider = $this->getMockForAbstractClass(

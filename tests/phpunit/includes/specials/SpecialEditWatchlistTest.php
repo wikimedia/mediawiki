@@ -17,8 +17,14 @@ class SpecialEditWatchlistTest extends SpecialPageTestBase {
 	 * @return SpecialPage
 	 */
 	protected function newSpecialPage() {
+		$services = MediaWikiServices::getInstance();
 		return new SpecialEditWatchlist(
-			MediaWikiServices::getInstance()->getWatchedItemStore()
+			$services->getWatchedItemStore(),
+			$services->getTitleParser(),
+			$services->getGenderCache(),
+			$services->getLinkBatchFactory(),
+			$services->getNamespaceInfo(),
+			$services->getWikiPageFactory()
 		);
 	}
 

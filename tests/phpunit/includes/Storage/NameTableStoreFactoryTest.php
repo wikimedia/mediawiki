@@ -17,6 +17,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class NameTableStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	/**
+	 * @param string $localDomain
 	 * @return MockObject|ILoadBalancer
 	 */
 	private function getMockLoadBalancer( $localDomain ) {
@@ -31,6 +32,7 @@ class NameTableStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param string $expectedWiki
 	 * @return MockObject|ILBFactory
 	 */
 	private function getMockLoadBalancerFactory( $expectedWiki ) {

@@ -90,7 +90,7 @@ class LanguageFallback {
 	 * @param int $mode Fallback mode, either MESSAGES (which always falls back to 'en'), or STRICT
 	 *   (which only falls back to 'en' when explicitly defined)
 	 * @throws InvalidArgumentException If $mode is invalid
-	 * @return array List of language codes
+	 * @return string[] List of language codes
 	 */
 	public function getAll( $code, $mode = self::MESSAGES ) {
 		// XXX The LanguageNameUtils dependency is just because of this line, is it needed?

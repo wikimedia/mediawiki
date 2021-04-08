@@ -34,6 +34,7 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Gadâgoriidisghusjoon',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Ôlâ_Nôôchrichdâ' ],
 	'Allpages'                  => [ 'Ôlâ_Sajdâ' ],

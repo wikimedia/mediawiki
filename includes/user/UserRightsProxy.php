@@ -202,7 +202,7 @@ class UserRightsProxy {
 
 	/**
 	 * Replaces User::getUserGroups()
-	 * @return array
+	 * @return string[]
 	 */
 	public function getGroups() {
 		return array_keys( self::getGroupMemberships() );
@@ -211,7 +211,7 @@ class UserRightsProxy {
 	/**
 	 * Replaces User::getGroupMemberships()
 	 *
-	 * @return array
+	 * @return UserGroupMembership[]
 	 * @since 1.29
 	 */
 	public function getGroupMemberships() {
@@ -296,7 +296,7 @@ class UserRightsProxy {
 		$domainId = $this->db->getDomainID();
 		$userId = $this->id;
 		$this->db->onTransactionPreCommitOrIdle(
-			function () use ( $domainId, $userId ) {
+			static function () use ( $domainId, $userId ) {
 				User::purge( $domainId, $userId );
 			},
 			__METHOD__

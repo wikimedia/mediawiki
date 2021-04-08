@@ -6,6 +6,9 @@ namespace MediaWiki\Hook;
 use File;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "LocalFile::getHistory" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

@@ -37,7 +37,7 @@ class SuiteDirectoryTest extends PHPUnit\Framework\TestCase {
 		$directoriesNeeded = array_values( array_diff(
 			array_filter(
 				$directoriesFound,
-				function ( $name ) use ( $rootPath ) {
+				static function ( $name ) use ( $rootPath ) {
 					return (
 						$name !== '.' &&
 						$name !== '..' &&

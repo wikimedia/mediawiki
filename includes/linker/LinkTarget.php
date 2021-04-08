@@ -104,13 +104,24 @@ interface LinkTarget {
 	public function getInterwiki();
 
 	/**
-	 * Returns an informative human readable representation of the link target,
-	 * for use in logging and debugging. There is no requirement for the return
-	 * value to have any relationship with the input of TitleParser.
-	 * @since 1.31
+	 * Checks whether the given LinkTarget refers to the same target as this LinkTarget.
+	 *
+	 * Two link targets are considered the same if they have the same interwiki prefix,
+	 * the same namespace ID, the same text, and the same fragment.
+	 *
+	 * @since 1.36
+	 *
+	 * @param LinkTarget $other
+	 * @return bool
+	 */
+	public function isSameLinkAs( LinkTarget $other );
+
+	/**
+	 * Returns an informative human readable representation of the page identity,
+	 * for use in logging and debugging.
 	 *
 	 * @return string
 	 */
-	public function __toString();
+	public function __toString(): string;
 
 }

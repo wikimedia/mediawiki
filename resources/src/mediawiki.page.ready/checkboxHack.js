@@ -115,7 +115,6 @@
  * @property {Function} [onUpdateAriaExpandedOnInput]
  * @property {Function} [onToggleOnClick]
  * @property {Function} [onToggleOnSpaceEnter]
- * @property {Function} [onKeydownSpaceEnter]
  * @property {Function} [onDismissOnClickOutside]
  * @property {Function} [onDismissOnFocusLoss]
  * @ignore
@@ -264,18 +263,8 @@ function bindToggleOnSpaceEnter( checkbox, button ) {
 		setCheckedState( checkbox, !checkbox.checked );
 	}
 
-	function onKeydownSpaceEnter( /** @type {KeyboardEvent} */ event ) {
-		// Only catch SPACE and ENTER.
-		if ( event.key !== ' ' && event.key !== 'Enter' ) {
-			return;
-		}
-		// Do not allow the browser to page down.
-		event.preventDefault();
-	}
-
-	button.addEventListener( 'keydown', onKeydownSpaceEnter, true );
-	button.addEventListener( 'keyup', onToggleOnSpaceEnter, true );
-	return { onToggleOnSpaceEnter: onToggleOnSpaceEnter, onKeydownSpaceEnter: onKeydownSpaceEnter };
+	button.addEventListener( 'keydown', onToggleOnSpaceEnter, true );
+	return { onToggleOnSpaceEnter: onToggleOnSpaceEnter };
 }
 
 /**
@@ -368,10 +357,7 @@ function unbind( window, checkbox, button, listeners ) {
 		button.removeEventListener( 'click', listeners.onToggleOnClick );
 	}
 	if ( listeners.onToggleOnSpaceEnter ) {
-		button.removeEventListener( 'keyup', listeners.onToggleOnSpaceEnter );
-	}
-	if ( listeners.onKeydownSpaceEnter ) {
-		button.removeEventListener( 'keydown', listeners.onKeydownSpaceEnter );
+		button.removeEventListener( 'keydown', listeners.onToggleOnSpaceEnter );
 	}
 	if ( listeners.onUpdateAriaExpandedOnInput ) {
 		checkbox.removeEventListener( 'input', listeners.onUpdateAriaExpandedOnInput );

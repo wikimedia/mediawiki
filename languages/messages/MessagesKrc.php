@@ -38,12 +38,14 @@ $namespaceNames = [
 // Remove Russian aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Тири_къошулуучула' ],
 	'Allmessages'               => [ 'Системаны_билдириулери' ],
 	'Allpages'                  => [ 'Бютеу_бетле' ],
 	'Blankpage'                 => [ 'Бош_бет' ],
 	'Block'                     => [ 'Блок_эт' ],
+	'BlockList'                 => [ 'Блок_этиулени_тизмеси', 'Блок_этиуле' ],
 	'Booksources'               => [ 'Китабланы_къайнакълары' ],
 	'BrokenRedirects'           => [ 'Джыртылгъан_редиректле' ],
 	'Categories'                => [ 'Категорияла' ],
@@ -62,7 +64,6 @@ $specialPageAliases = [
 	'FileDuplicateSearch'       => [ 'Файлланы_дубликатларын_излеу' ],
 	'Filepath'                  => [ 'Файлгъа_джол' ],
 	'Import'                    => [ 'Импорт' ],
-	'BlockList'                 => [ 'Блок_этиулени_тизмеси', 'Блок_этиуле' ],
 	'LinkSearch'                => [ 'Джибериуле_излеу' ],
 	'Listadmins'                => [ 'Администраторланы_тизмеси' ],
 	'Listbots'                  => [ 'Ботланы_тизмеси' ],
@@ -102,8 +103,9 @@ $specialPageAliases = [
 	'Unblock'                   => [ 'Блокну_алыу' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#джибериу', '#редирект', '#перенаправление', '#перенапр', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__БАШЛАСЫЗ__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__БЕЗ_ОГЛ__', '__NOTOC__' ],
 	'nogallery'                 => [ '0', '_ГАЛЛЕРЕЯСЫЗ__', '__БЕЗ_ГАЛЕРЕИ__', '__NOGALLERY__' ],
+	'notoc'                     => [ '0', '__БАШЛАСЫЗ__', '__БЕЗ_ОГЛАВЛЕНИЯ__', '__БЕЗ_ОГЛ__', '__NOTOC__' ],
+	'redirect'                  => [ '0', '#джибериу', '#редирект', '#перенаправление', '#перенапр', '#REDIRECT' ],
 ];

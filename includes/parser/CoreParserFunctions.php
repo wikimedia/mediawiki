@@ -26,7 +26,7 @@ use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
- * Various core parser functions, registered in Parser::firstCallInit()
+ * Various core parser functions, registered in every Parser
  * @ingroup Parser
  */
 class CoreParserFunctions {
@@ -296,10 +296,42 @@ class CoreParserFunctions {
 			self::matchAgainstMagicword( $parser->getMagicWordFactory(), 'nocommafysuffix', $arg )
 		) {
 			$func = [ $parser->getFunctionLang(), 'formatNumNoSeparators' ];
+			$func = self::getLegacyFormatNum( $parser, $func );
 		} else {
 			$func = [ $parser->getFunctionLang(), 'formatNum' ];
+			$func = self::getLegacyFormatNum( $parser, $func );
 		}
 		return $parser->markerSkipCallback( $num, $func );
+	}
+
+	/**
+	 * @param Parser $parser
+	 * @param callable $callback
+	 *
+	 * @return callable
+	 */
+	private static function getLegacyFormatNum( $parser, $callback ) {
+		// For historic reasons, the formatNum parser function will
+		// take arguments which are not actually formatted numbers,
+		// which then trigger deprecation warnings in Language::formatNum*.
+		// Instead emit a tracking category instead to allow linting.
+		return static function ( $number ) use ( $parser, $callback ) {
+			$validNumberRe = '(-(?=[\d\.]))?(\d+|(?=\.\d))(\.\d*)?([Ee][-+]?\d+)?';
+			if (
+				!is_numeric( $number ) &&
+				$number !== (string)NAN &&
+				$number !== (string)INF &&
+				$number !== (string)-INF
+			) {
+				$parser->addTrackingCategory( 'nonnumeric-formatnum' );
+				// Don't split on NAN/INF in the legacy case since they are
+				// likely to be found embedded inside non-numeric text.
+				return preg_replace_callback( "/{$validNumberRe}/", static function ( $m ) use ( $callback ) {
+					return call_user_func( $callback, $m[0] );
+				}, $number );
+			}
+			return call_user_func( $callback, $number );
+		};
 	}
 
 	/**
@@ -329,7 +361,8 @@ class CoreParserFunctions {
 
 		$username = trim( $username );
 
-		$gender = User::getDefaultOption( 'gender' );
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$gender = $userOptionsLookup->getDefaultOption( 'gender' );
 
 		// allow prefix and normalize (e.g. "&#42;foo" -> "*foo" ).
 		$title = Title::newFromText( $username, NS_USER );
@@ -413,7 +446,7 @@ class CoreParserFunctions {
 
 		// disallow some styles that could be used to bypass $wgRestrictDisplayTitle
 		if ( $wgRestrictDisplayTitle ) {
-			$htmlTagsCallback = function ( &$params ) {
+			$htmlTagsCallback = static function ( &$params ) {
 				$decoded = Sanitizer::decodeTagAttributes( $params );
 
 				if ( isset( $decoded['style'] ) ) {
@@ -449,9 +482,9 @@ class CoreParserFunctions {
 			&& !$title->hasFragment()
 			&& $title->equals( $parser->getTitle() ) )
 		) {
-			$old = $parser->mOutput->getProperty( 'displaytitle' );
+			$old = $parser->getOutput()->getProperty( 'displaytitle' );
 			if ( $old === false || $arg !== 'displaytitle_noreplace' ) {
-				$parser->mOutput->setDisplayTitle( $text );
+				$parser->getOutput()->setDisplayTitle( $text );
 			}
 			if ( $old !== false && $old !== $text && !$arg ) {
 
@@ -793,7 +826,10 @@ class CoreParserFunctions {
 		if ( !$title ) { # invalid title
 			return self::formatRaw( 0, $raw, $parser->getFunctionLang() );
 		}
-		$parser->getContentLanguage()->findVariantLink( $name, $title, true );
+		$languageConverter = MediaWikiServices::getInstance()
+			->getLanguageConverterFactory()
+			->getLanguageConverter( $parser->getContentLanguage() );
+		$languageConverter->findVariantLink( $name, $title, true );
 
 		// Normalize name for cache
 		$name = $title->getDBkey();
@@ -1431,5 +1467,4 @@ class CoreParserFunctions {
 		}
 		return '';
 	}
-
 }

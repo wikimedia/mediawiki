@@ -18,7 +18,10 @@
  * @file
  * @ingroup SpecialPage
  */
+
 use MediaWiki\Preferences\MultiUsernameFilter;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserOptionsManager;
 
 /**
  * A special page that allows users to modify their notification
@@ -36,30 +39,33 @@ class SpecialMute extends FormSpecialPage {
 	/** @var int */
 	private $targetCentralId;
 
-	/** @var bool */
-	private $enableUserEmailMuteList;
-
-	/** @var bool */
-	private $enableUserEmail;
-
 	/** @var CentralIdLookup */
 	private $centralIdLookup;
 
-	public function __construct() {
-		// TODO: inject all these dependencies once T222388 is resolved
-		$config = RequestContext::getMain()->getConfig();
-		$this->enableUserEmailMuteList = $config->get( 'EnableUserEmailBlacklist' );
-		$this->enableUserEmail = $config->get( 'EnableUserEmail' );
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
 
-		$this->centralIdLookup = CentralIdLookup::factory();
+	/** @var UserFactory */
+	private $userFactory;
 
+	/**
+	 * @param UserOptionsManager $userOptionsManager
+	 * @param UserFactory $userFactory
+	 */
+	public function __construct(
+		UserOptionsManager $userOptionsManager,
+		UserFactory $userFactory
+	) {
 		parent::__construct( self::PAGE_NAME, '', false );
+		$this->centralIdLookup = CentralIdLookup::factory();
+		$this->userOptionsManager = $userOptionsManager;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
 	 * Entry point for special pages
 	 *
-	 * @param string $par
+	 * @param string|null $par
 	 */
 	public function execute( $par ) {
 		$this->addHelpLink(
@@ -148,7 +154,7 @@ class SpecialMute extends FormSpecialPage {
 			$muteList = implode( "\n", $muteList );
 
 			$user = $this->getUser();
-			$user->setOption( $userOption, $muteList );
+			$this->userOptionsManager->setOption( $user, $userOption, $muteList );
 			$user->saveSettings();
 		}
 	}
@@ -166,7 +172,7 @@ class SpecialMute extends FormSpecialPage {
 			$muteList = implode( "\n", $muteList );
 
 			$user = $this->getUser();
-			$user->setOption( $userOption, $muteList );
+			$this->userOptionsManager->setOption( $user, $userOption, $muteList );
 			$user->saveSettings();
 		}
 	}
@@ -188,10 +194,11 @@ class SpecialMute extends FormSpecialPage {
 	 * @inheritDoc
 	 */
 	protected function getFormFields() {
+		$config = $this->getConfig();
 		$fields = [];
 		if (
-			$this->enableUserEmailMuteList &&
-			$this->enableUserEmail &&
+			$config->get( 'EnableUserEmailBlacklist' ) &&
+			$config->get( 'EnableUserEmail' ) &&
 			$this->getUser()->getEmailAuthenticationTimestamp()
 		) {
 			$fields['email-blacklist'] = [
@@ -204,7 +211,7 @@ class SpecialMute extends FormSpecialPage {
 			];
 		}
 
-		$this->getHookRunner()->onSpecialMuteModifyFormFields( $this, $fields );
+		$this->getHookRunner()->onSpecialMuteModifyFormFields( $this->getTarget(), $this->getUser(), $fields );
 
 		if ( count( $fields ) == 0 ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-no-options' );
@@ -214,10 +221,13 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
-	 * @param string $username
+	 * @param string|null $username
 	 */
 	private function loadTarget( $username ) {
-		$target = User::newFromName( $username );
+		$target = null;
+		if ( $username !== null ) {
+			$target = $this->userFactory->newFromName( $username );
+		}
 		if ( !$target || !$target->getId() ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-invalid-user' );
 		} else {
@@ -250,7 +260,7 @@ class SpecialMute extends FormSpecialPage {
 	 * @return array
 	 */
 	private function getMuteList( $userOption ) {
-		$muteList = $this->getUser()->getOption( $userOption );
+		$muteList = $this->userOptionsManager->getOption( $this->getUser(), $userOption );
 		if ( !$muteList ) {
 			return [];
 		}

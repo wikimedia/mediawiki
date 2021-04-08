@@ -13,6 +13,7 @@
  */
 
 $fallback = 'fa';
+
 $rtl = true;
 
 $namespaceNames = [
@@ -39,6 +40,7 @@ $namespaceAliases = [
 	'مدیا‌ویکی_دانیشیغی' => NS_MEDIAWIKI_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'چالیشقان_ایشلدن‌لر' ],
 	'Allmessages'               => [ 'بوتون_مئساژلار' ],
@@ -70,16 +72,17 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'ایزله‌دیکلر' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'numberofpages'             => [ '1', 'صفحه‌لر_ساییسی', 'تعدادصفحه‌ها', 'NUMBEROFPAGES' ],
-	'numberofarticles'          => [ '1', 'مقاله‌لر_ساییسی', 'تعدادمقاله‌ها', 'NUMBEROFARTICLES' ],
-	'numberoffiles'             => [ '1', 'قایل‌لار_ساییسی', 'تعدادپرونده‌ها', 'NUMBEROFFILES' ],
-	'numberofusers'             => [ '1', 'یشلدن‌لر_ساییسی', 'تعدادکاربران', 'NUMBEROFUSERS' ],
-	'numberofactiveusers'       => [ '1', 'چالیشقان_ایشلدن‌لر', 'کاربران‌فعال', 'کاربران_فعال', 'NUMBEROFACTIVEUSERS' ],
-	'numberofedits'             => [ '1', 'دَییشدیرمه_ساییسی', 'تعدادویرایش‌ها', 'NUMBEROFEDITS' ],
-	'pagename'                  => [ '1', 'صفحه‌نین_آدی', 'نام‌صفحه', 'نام_صفحه', 'PAGENAME' ],
-	'img_right'                 => [ '1', 'ساغ', 'راست', 'right' ],
+	'img_framed'                => [ '1', 'قابیق', 'قاب', 'frame', 'framed', 'enframed' ],
 	'img_left'                  => [ '1', 'سول', 'چپ', 'left' ],
 	'img_none'                  => [ '1', 'هئچ', 'هیچ', 'none' ],
-	'img_framed'                => [ '1', 'قابیق', 'قاب', 'frame', 'framed', 'enframed' ],
+	'img_right'                 => [ '1', 'ساغ', 'راست', 'right' ],
+	'numberofactiveusers'       => [ '1', 'چالیشقان_ایشلدن‌لر', 'کاربران‌فعال', 'کاربران_فعال', 'NUMBEROFACTIVEUSERS' ],
+	'numberofarticles'          => [ '1', 'مقاله‌لر_ساییسی', 'تعدادمقاله‌ها', 'NUMBEROFARTICLES' ],
+	'numberofedits'             => [ '1', 'دَییشدیرمه_ساییسی', 'تعدادویرایش‌ها', 'NUMBEROFEDITS' ],
+	'numberoffiles'             => [ '1', 'قایل‌لار_ساییسی', 'تعدادپرونده‌ها', 'NUMBEROFFILES' ],
+	'numberofpages'             => [ '1', 'صفحه‌لر_ساییسی', 'تعدادصفحه‌ها', 'NUMBEROFPAGES' ],
+	'numberofusers'             => [ '1', 'یشلدن‌لر_ساییسی', 'تعدادکاربران', 'NUMBEROFUSERS' ],
+	'pagename'                  => [ '1', 'صفحه‌نین_آدی', 'نام‌صفحه', 'نام_صفحه', 'PAGENAME' ],
 ];

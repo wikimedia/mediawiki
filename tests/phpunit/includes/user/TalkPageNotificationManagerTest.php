@@ -16,6 +16,8 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp(): void {
 		parent::setUp();
+		// tablesUsed don't clear up the database before the first test runs: T265033
+		$this->truncateTable( 'user_newtalk' );
 		$this->tablesUsed[] = 'user_newtalk';
 	}
 
@@ -140,7 +142,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $veryOldTimestamp );
 		$mockRevLookup = $this->getMockForAbstractClass( RevisionLookup::class );
 		$mockRevLookup->method( 'getPreviousRevision' )
-			->willReturnCallback( function ( RevisionRecord $rev )
+			->willReturnCallback( static function ( RevisionRecord $rev )
 				use ( $firstRev, $secondRev, $thirdRev, $mockOldRev )
 			{
 				if ( $rev === $secondRev ) {

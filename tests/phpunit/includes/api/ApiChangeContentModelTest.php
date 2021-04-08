@@ -44,9 +44,6 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		] );
 	}
 
-	/**
-	 * Test title must exist
-	 */
 	public function testTitleMustExist() {
 		$name = __METHOD__;
 
@@ -147,7 +144,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		);
 
 		$this->setTemporaryHook( 'EditFilterMergedContent',
-			function ( $unused1, $unused2, Status $status ) use ( $customMessage ) {
+			static function ( $unused1, $unused2, Status $status ) use ( $customMessage ) {
 				if ( $customMessage !== false ) {
 					$status->fatal( $customMessage );
 				}
@@ -190,7 +187,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		);
 
 		$this->setTemporaryHook( 'ContentModelCanBeUsedOn',
-			function ( $unused1, $unused2, &$ok ) {
+			static function ( $unused1, $unused2, &$ok ) {
 				$ok = false;
 				return false;
 			}

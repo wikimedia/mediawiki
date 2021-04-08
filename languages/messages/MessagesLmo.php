@@ -69,6 +69,7 @@ $namespaceAliases = [
 	'Ciciarada_Categoria'   => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Messagg' ],
 	'BrokenRedirects'           => [ 'RedirezionS-cepada' ],
@@ -94,9 +95,10 @@ $specialPageAliases = [
 	'Watchlist'                 => [ 'SutOeugg' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'img_right'                 => [ '1', 'drita', 'destra', 'right' ],
 	'img_left'                  => [ '1', 'manzína', 'sinistra', 'left' ],
 	'img_none'                  => [ '1', 'nissön', 'nessuno', 'none' ],
+	'img_right'                 => [ '1', 'drita', 'destra', 'right' ],
 	'sitename'                  => [ '1', 'NUMSIT', 'NOMESITO', 'SITENAME' ],
 ];

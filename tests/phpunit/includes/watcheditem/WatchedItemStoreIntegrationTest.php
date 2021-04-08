@@ -58,8 +58,8 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$watchedItemsForUserHasExpectedItem = false;
 		foreach ( $watchedItemsForUser as $watchedItem ) {
 			if (
-				$watchedItem->getUser()->equals( $user ) &&
-				$watchedItem->getLinkTarget() == $title->getTitleValue()
+				$watchedItem->getUserIdentity()->equals( $user ) &&
+				$watchedItem->getTarget() == $title->getTitleValue()
 			) {
 				$watchedItemsForUserHasExpectedItem = true;
 			}
@@ -97,8 +97,8 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$watchedItemsForUserHasExpectedItem = false;
 		foreach ( $watchedItemsForUser as $watchedItem ) {
 			if (
-				$watchedItem->getUser()->equals( $user ) &&
-				$watchedItem->getLinkTarget() == $title->getTitleValue()
+				$watchedItem->getUserIdentity()->equals( $user ) &&
+				$watchedItem->getTarget() == $title->getTitleValue()
 			) {
 				$watchedItemsForUserHasExpectedItem = true;
 			}
@@ -324,7 +324,7 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// setNotificationTimestampsForUser not specifying a title
 		// This will try to use a DeferredUpdate; disable that
-		$mockCallback = function ( $callback ) {
+		$mockCallback = static function ( $callback ) {
 			$callback();
 		};
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
@@ -353,21 +353,23 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$store->addWatch( $user, $titleOld->getTalkPage(), '99990123000000' );
 
 		// Fetch stored expiry (may have changed due to wgWatchlistExpiryMaxDuration).
-		$expectedExpiry = $store->getWatchedItem( $user, $titleOld )->getExpiry();
+		// Note we use loadWatchedItem() instead of getWatchedItem() to bypass the process cache.
+		$expectedExpiry = $store->loadWatchedItem( $user, $titleOld )->getExpiry();
 
-		// Use the standard test user as well, so we can test that each user's
-		// respective expiry is correctly copied.
+		// Watch the new title with a different expiry, so that we can confirm
+		// it gets replaced with the old title's expiry.
+		$store->addWatch( $user, $titleNew->getSubjectPage(), '1 day' );
+		$store->addWatch( $user, $titleNew->getTalkPage(), '1 day' );
+
+		// Use the sysop test user as well on the old title, so we can test that
+		// each user's respective expiry is correctly copied.
 		$user2 = $this->getTestSysop()->getUser();
 		$store->addWatch( $user2, $titleOld->getSubjectPage(), '1 week' );
 		$store->addWatch( $user2, $titleOld->getTalkPage(), '1 week' );
-		$expectedExpiry2 = $store->getWatchedItem( $user2, $titleOld )->getExpiry();
-
-		// Cleanup after previous tests
-		$store->removeWatch( $user, $titleNew->getSubjectPage() );
-		$store->removeWatch( $user, $titleNew->getTalkPage() );
+		$expectedExpiry2 = $store->loadWatchedItem( $user2, $titleOld )->getExpiry();
 
 		// Duplicate associated entries. This will try to use a DeferredUpdate; disable that.
-		$mockCallback = function ( $callback ) {
+		$mockCallback = static function ( $callback ) {
 			$callback();
 		};
 		$store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
@@ -378,14 +380,14 @@ class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $store->isWatched( $user, $titleNew->getSubjectPage() ) );
 		$this->assertTrue( $store->isWatched( $user, $titleNew->getTalkPage() ) );
 
-		$oldExpiry = $store->getWatchedItem( $user, $titleOld )->getExpiry();
-		$newExpiry = $store->getWatchedItem( $user, $titleNew )->getExpiry();
+		$oldExpiry = $store->loadWatchedItem( $user, $titleOld )->getExpiry();
+		$newExpiry = $store->loadWatchedItem( $user, $titleNew )->getExpiry();
 		$this->assertSame( $expectedExpiry, $oldExpiry );
 		$this->assertSame( $expectedExpiry, $newExpiry );
 
 		// Same for $user2 and $expectedExpiry2
-		$oldExpiry = $store->getWatchedItem( $user2, $titleOld )->getExpiry();
-		$newExpiry = $store->getWatchedItem( $user2, $titleNew )->getExpiry();
+		$oldExpiry = $store->loadWatchedItem( $user2, $titleOld )->getExpiry();
+		$newExpiry = $store->loadWatchedItem( $user2, $titleNew )->getExpiry();
 		$this->assertSame( $expectedExpiry2, $oldExpiry );
 		$this->assertSame( $expectedExpiry2, $newExpiry );
 	}

@@ -100,7 +100,7 @@ class SearchHighlighter {
 							$ns = substr( $val[0], 2, -1 );
 							if (
 								MediaWikiServices::getInstance()->getContentLanguage()->
-								getNsIndex( $ns ) != NS_FILE
+								getNsIndex( $ns ) !== NS_FILE
 							) {
 								break;
 							}
@@ -499,7 +499,7 @@ class SearchHighlighter {
 		}
 		$ns = substr( $matches[1], 0, $colon );
 		$index = MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $ns );
-		if ( $index !== false && ( $index == NS_FILE || $index == NS_CATEGORY ) ) {
+		if ( $index !== false && ( $index === NS_FILE || $index === NS_CATEGORY ) ) {
 			return $matches[0]; // return the whole thing
 		} else {
 			return $matches[2];

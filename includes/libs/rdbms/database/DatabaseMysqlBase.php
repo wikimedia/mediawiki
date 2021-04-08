@@ -918,7 +918,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$status = ( $row[0] !== null ) ? intval( $row[0] ) : null;
 		if ( $status === null ) {
 			$this->replLogger->error(
-				"An error occurred while waiting for replication to reach {raw_pos}",
+				"An error occurred while waiting for replication to reach {wait_pos}",
 				$this->getLogContext( [
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
@@ -929,7 +929,7 @@ abstract class DatabaseMysqlBase extends Database {
 			);
 		} elseif ( $status < 0 ) {
 			$this->replLogger->error(
-				"Timed out waiting for replication to reach {raw_pos}",
+				"Timed out waiting for replication to reach {wait_pos}",
 				$this->getLogContext( [
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
@@ -941,7 +941,7 @@ abstract class DatabaseMysqlBase extends Database {
 			);
 		} elseif ( $status >= 0 ) {
 			$this->replLogger->debug(
-				"Replication has reached {raw_pos}",
+				"Replication has reached {wait_pos}",
 				$this->getLogContext( [
 					'raw_pos' => $pos,
 					'wait_pos' => $waitPos,
@@ -1415,15 +1415,15 @@ abstract class DatabaseMysqlBase extends Database {
 
 		if ( $errno === 1205 ) { // lock wait timeout
 			// Note that this is uncached to avoid stale values of SET is used
-			$row = $this->selectRow(
-				false,
-				[ 'innodb_rollback_on_timeout' => '@@innodb_rollback_on_timeout' ],
-				[],
-				__METHOD__
+			$res = $this->query(
+				"SELECT @@innodb_rollback_on_timeout AS Value",
+				__METHOD__,
+				self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 			);
+			$row = $res ? $res->fetchObject() : false;
 			// https://dev.mysql.com/doc/refman/5.7/en/innodb-error-handling.html
 			// https://dev.mysql.com/doc/refman/5.5/en/innodb-parameters.html
-			return $row->innodb_rollback_on_timeout ? false : true;
+			return ( $row && !$row->Value );
 		}
 
 		// See https://dev.mysql.com/doc/refman/5.5/en/error-messages-server.html
@@ -1569,7 +1569,7 @@ abstract class DatabaseMysqlBase extends Database {
 		return 'CAST( ' . $field . ' AS SIGNED )';
 	}
 
-	/*
+	/**
 	 * @return bool Whether GTID support is used (mockable for testing)
 	 */
 	protected function useGTIDs() {

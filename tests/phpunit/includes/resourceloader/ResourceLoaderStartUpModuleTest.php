@@ -523,6 +523,25 @@ mw.loader.register([
 ]);',
 			] ],
 			[ [
+				'msg' => 'ES6-only module',
+				'modules' => [
+					'test.es6' => [
+						'class' => ResourceLoaderTestModule::class,
+						'es6' => true
+					],
+				],
+				'out' => '
+mw.loader.addSource({
+    "local": "/w/load.php"
+});
+mw.loader.register([
+    [
+        "test.es6",
+        "{blankVer}!"
+    ]
+]);',
+			] ],
+			[ [
 				// This may seem like an edge case, but a plain MediaWiki core install
 				// with a few extensions installed is likely far more complex than this
 				// even, not to mention an install like Wikipedia.
@@ -591,6 +610,10 @@ mw.loader.register([
 						'source' => 'example',
 						'targets' => [ 'x-foo' ],
 					],
+					'test.es6' => [
+						'class' => ResourceLoaderTestModule::class,
+						'es6' => true
+					]
 				],
 				'out' => '
 mw.loader.addSource({
@@ -660,6 +683,10 @@ mw.loader.register([
         [],
         3,
         "example"
+    ],
+    [
+        "test.es6",
+        "{blankVer}!"
     ]
 ]);'
 			] ],

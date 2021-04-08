@@ -30,6 +30,7 @@ use MWDebug;
 use MWException;
 use UnexpectedValueException;
 use Wikimedia\Assert\Assert;
+use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory;
 use Wikimedia\ScopedCallback;
 use Wikimedia\Services\SalvageableService;
@@ -42,9 +43,18 @@ use Wikimedia\Services\SalvageableService;
  * @since 1.35
  */
 class HookContainer implements SalvageableService {
+	use NonSerializableTrait;
 
 	/** @var array Hooks and their callbacks registered through $this->register() */
-	private $legacyRegisteredHandlers = [];
+	private $dynamicHandlers = [];
+
+	/**
+	 * @var array Tombstone count by hook name
+	 */
+	private $tombstones = [];
+
+	/** @var string magic value for use in $dynamicHandlers */
+	private const TOMBSTONE = 'TOMBSTONE';
 
 	/** @var array handler name and their handler objects */
 	private $handlersByName = [];
@@ -57,9 +67,6 @@ class HookContainer implements SalvageableService {
 
 	/** @var int The next ID to be used by scopedRegister() */
 	private $nextScopedRegisterId = 0;
-
-	/** @var array existing hook names and their handlers to restore between tests */
-	private $originalHooks;
 
 	/**
 	 * @param HookRegistry $hookRegistry
@@ -85,11 +92,12 @@ class HookContainer implements SalvageableService {
 	 */
 	public function salvage( SalvageableService $other ) {
 		Assert::parameterType( self::class, $other, '$other' );
-		if ( $this->legacyRegisteredHandlers || $this->handlersByName ) {
+		if ( $this->dynamicHandlers || $this->handlersByName ) {
 			throw new MWException( 'salvage() must be called immediately after construction' );
 		}
 		$this->handlersByName = $other->handlersByName;
-		$this->legacyRegisteredHandlers = $other->legacyRegisteredHandlers;
+		$this->dynamicHandlers = $other->dynamicHandlers;
+		$this->tombstones = $other->tombstones;
 	}
 
 	/**
@@ -99,9 +107,6 @@ class HookContainer implements SalvageableService {
 	 * process them. Determine the proper callback for each hook and
 	 * then call the actual hook using the appropriate arguments.
 	 * Finally, process the return value and return/throw accordingly.
-	 *
-	 * For hooks that are not abortable through a handler's return value,
-	 * use runWithoutAbort() instead.
 	 *
 	 * @param string $hook Name of the hook
 	 * @param array $args Arguments to pass to hook handler
@@ -183,7 +188,15 @@ class HookContainer implements SalvageableService {
 		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
 			throw new MWException( 'Cannot reset hooks in operation.' );
 		}
-		unset( $this->legacyRegisteredHandlers[$hook] ); // dynamically registered legacy handlers
+
+		// The tombstone logic makes it so the clear() operation can be reversed reliably,
+		// and does not affect global state.
+		// $this->tombstones[$hook]>0 suppresses any handlers from the HookRegistry,
+		// see getHandlers().
+		// The TOMBSTONE value in $this->dynamicHandlers[$hook] means that all handlers
+		// that precede it in the array are ignored, see getLegacyHandlers().
+		$this->dynamicHandlers[$hook][] = self::TOMBSTONE;
+		$this->tombstones[$hook] = ( $this->tombstones[$hook] ?? 0 ) + 1;
 	}
 
 	/**
@@ -197,37 +210,33 @@ class HookContainer implements SalvageableService {
 	 * @return ScopedCallback
 	 */
 	public function scopedRegister( string $hook, $callback, bool $replace = false ) : ScopedCallback {
+		// Use a known key to register the handler, so we can later remove it
+		// from $this->dynamicHandlers using that key.
+		$id = 'TemporaryHook_' . $this->nextScopedRegisterId++;
+
 		if ( $replace ) {
-			// Stash any previously registered hooks
-			if ( !isset( $this->originalHooks[$hook] ) &&
-				isset( $this->legacyRegisteredHandlers[$hook] )
-			) {
-				$this->originalHooks[$hook] = $this->legacyRegisteredHandlers[$hook];
-			}
-			$this->legacyRegisteredHandlers[$hook] = [ $callback ];
-			return new ScopedCallback( function () use ( $hook ) {
-				unset( $this->legacyRegisteredHandlers[$hook] );
+			// Use a known key for the tombstone, so we can later remove it
+			// from $this->dynamicHandlers using that key.
+			$ts = "{$id}_TOMBSTONE";
+
+			// See comment in clear() for the tombstone logic.
+			$this->dynamicHandlers[$hook][$ts] = self::TOMBSTONE;
+			$this->dynamicHandlers[$hook][$id] = $callback;
+			$this->tombstones[$hook] = ( $this->tombstones[$hook] ?? 0 ) + 1;
+
+			return new ScopedCallback(
+				function () use ( $hook, $id, $ts ) {
+					unset( $this->dynamicHandlers[$hook][$ts] );
+					unset( $this->dynamicHandlers[$hook][$id] );
+					$this->tombstones[$hook]--;
+				}
+			);
+		} else {
+			$this->dynamicHandlers[$hook][$id] = $callback;
+			return new ScopedCallback( function () use ( $hook, $id ) {
+				unset( $this->dynamicHandlers[$hook][$id] );
 			} );
 		}
-		$id = $this->nextScopedRegisterId++;
-		$this->legacyRegisteredHandlers[$hook][$id] = $callback;
-		return new ScopedCallback( function () use ( $hook, $id ) {
-			unset( $this->legacyRegisteredHandlers[$hook][$id] );
-		} );
-	}
-
-	/**
-	 * Return hooks that were set before being potentially overridden by scopedRegister().
-	 * For use in restoring registered hook handlers between tests.
-	 *
-	 * @return array Associative array mapping hook names to array of handlers
-	 * @throws MWException
-	 */
-	public function getOriginalHooksForTest() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) && !defined( 'MW_PARSER_TEST' ) ) {
-			throw new MWException( 'Cannot get original hooks outside when not in test mode' );
-		}
-		return $this->originalHooks ?? [];
 	}
 
 	/**
@@ -329,10 +338,21 @@ class HookContainer implements SalvageableService {
 	 * @return bool Whether the hook has a handler registered to it
 	 */
 	public function isRegistered( string $hook ) : bool {
-		$legacyRegisteredHook = !empty( $this->registry->getGlobalHooks()[$hook] ) ||
-			!empty( $this->legacyRegisteredHandlers[$hook] );
-		$registeredHooks = $this->registry->getExtensionHooks();
-		return !empty( $registeredHooks[$hook] ) || $legacyRegisteredHook;
+		if ( $this->tombstones[$hook] ?? false ) {
+			// If a tombstone is set, we only care about dynamically registered hooks,
+			// and leave it to getLegacyHandlers() to handle the cut-off.
+			return !empty( $this->getLegacyHandlers( $hook ) );
+		}
+
+		// If no tombstone is set, we just check if any of the three arrays contains handlers.
+		if ( !empty( $this->registry->getGlobalHooks()[$hook] ) ||
+			!empty( $this->dynamicHandlers[$hook] ) ||
+			!empty( $this->registry->getExtensionHooks()[$hook] )
+		) {
+			return true;
+		}
+
+		return false;
 	}
 
 	/**
@@ -354,26 +374,56 @@ class HookContainer implements SalvageableService {
 				);
 			}
 		}
-		$this->legacyRegisteredHandlers[$hook][] = $callback;
+		$this->dynamicHandlers[$hook][] = $callback;
 	}
 
 	/**
-	 * Get all handlers for legacy hooks system
+	 * Get all handlers for legacy hooks system, plus any handlers added
+	 * using register().
 	 *
 	 * @internal For use by Hooks.php
 	 * @param string $hook Name of hook
-	 * @return array function names
+	 * @return callable[]
 	 */
 	public function getLegacyHandlers( string $hook ) : array {
-		$handlers = array_merge(
-			$this->legacyRegisteredHandlers[$hook] ?? [],
-			$this->registry->getGlobalHooks()[$hook] ?? []
-		);
+		if ( $this->tombstones[$hook] ?? false ) {
+			// If there is at least one tombstone set for the hook,
+			// ignore all handlers from the registry, and
+			// only consider handlers registered after the tombstone
+			// was set.
+			$handlers = $this->dynamicHandlers[$hook] ?? [];
+			$keys = array_keys( $handlers );
+
+			// Loop over the handlers backwards, to find the last tombstone.
+			for ( $i = count( $keys ) - 1; $i >= 0; $i-- ) {
+				$k = $keys[$i];
+				$v = $handlers[$k];
+
+				if ( $v === self::TOMBSTONE ) {
+					break;
+				}
+			}
+
+			// Return the part of $this->dynamicHandlers[$hook] after the TOMBSTONE
+			// marker, preserving keys.
+			$keys = array_slice( $keys, $i + 1 );
+			$handlers = array_intersect_key( $handlers, array_flip( $keys ) );
+		} else {
+			// If no tombstone is set, just merge the two arrays.
+			$handlers = array_merge(
+				$this->registry->getGlobalHooks()[$hook] ?? [],
+				$this->dynamicHandlers[$hook] ?? []
+			);
+		}
+
 		return $handlers;
 	}
 
 	/**
-	 * Return array of handler objects registered with given hook in the new system
+	 * Return array of handler objects registered with given hook in the new system.
+	 * This does not include handlers registered dynamically using register(), nor does
+	 * it include hooks registered via the old mechanism using $wgHooks.
+	 *
 	 * @internal For use by Hooks.php
 	 * @param string $hook Name of the hook
 	 * @param array $options Handler options, which may include:
@@ -381,6 +431,10 @@ class HookContainer implements SalvageableService {
 	 * @return array non-deprecated handler objects
 	 */
 	public function getHandlers( string $hook, array $options = [] ) : array {
+		if ( $this->tombstones[$hook] ?? false ) {
+			// There is at least one tombstone for the hook, so suppress all new-style hooks.
+			return [];
+		}
 		$handlers = [];
 		$deprecatedHooks = $this->registry->getDeprecatedHooks();
 		$registeredHooks = $this->registry->getExtensionHooks();
@@ -395,7 +449,12 @@ class HookContainer implements SalvageableService {
 					continue;
 				}
 				$handlerName = $handlerSpec['name'];
-				if ( !empty( $options['noServices'] ) && isset( $handlerSpec['services'] ) ) {
+				if (
+					!empty( $options['noServices'] ) && (
+						isset( $handlerSpec['services'] ) ||
+						isset( $handlerSpec['optional_services'] )
+					)
+				) {
 					throw new UnexpectedValueException(
 						"The handler for the hook $hook registered in " .
 						"{$hookReference['extensionPath']} has a service dependency, " .

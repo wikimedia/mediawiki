@@ -24,72 +24,40 @@ use Exception;
 use MediaWiki\ProcOpenError;
 use MediaWiki\ShellDisabledError;
 use Profiler;
-use Psr\Log\LoggerAwareTrait;
+use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use Wikimedia\AtEase\AtEase;
+use Shellbox\Command\UnboxedCommand;
+use Shellbox\Command\UnboxedExecutor;
+use Shellbox\Command\UnboxedResult;
+use Wikimedia\ScopedCallback;
 
 /**
  * Class used for executing shell commands
  *
  * @since 1.30
  */
-class Command {
-	use LoggerAwareTrait;
-
-	/** @var string */
-	protected $command = '';
-
-	/** @var array */
-	private $limits = [
-		// seconds
-		'time' => 180,
-		// seconds
-		'walltime' => 180,
-		// KB
-		'memory' => 307200,
-		// KB
-		'filesize' => 102400,
-	];
-
-	/** @var string[] */
-	private $env = [];
+class Command extends UnboxedCommand {
+	/** @var bool */
+	private $everExecuted = false;
 
 	/** @var string */
 	private $method;
 
-	/** @var string|null */
-	private $inputString;
-
-	/** @var bool */
-	private $doIncludeStderr = false;
-
-	/** @var bool */
-	private $doLogStderr = false;
-
-	/** @var bool */
-	private $everExecuted = false;
-
-	/** @var string|false */
-	private $cgroup = false;
-
-	/**
-	 * Bitfield with restrictions
-	 *
-	 * @var int
-	 */
-	protected $restrictions = 0;
+	/** @var LoggerInterface */
+	protected $logger;
 
 	/**
 	 * Don't call directly, instead use Shell::command()
 	 *
+	 * @param UnboxedExecutor $executor
 	 * @throws ShellDisabledError
 	 */
-	public function __construct() {
+	public function __construct( UnboxedExecutor $executor ) {
 		if ( Shell::isDisabled() ) {
 			throw new ShellDisabledError();
 		}
-
-		$this->setLogger( new NullLogger() );
+		parent::__construct( $executor );
+		$this->setLogger( new NullLogger );
 	}
 
 	/**
@@ -97,7 +65,7 @@ class Command {
 	 */
 	public function __destruct() {
 		if ( !$this->everExecuted ) {
-			$context = [ 'command' => $this->command ];
+			$context = [ 'command' => $this->getCommandString() ];
 			$message = __CLASS__ . " was instantiated, but execute() was never called.";
 			if ( $this->method ) {
 				$message .= ' Calling method: {method}.';
@@ -108,45 +76,11 @@ class Command {
 		}
 	}
 
-	/**
-	 * Adds parameters to the command. All parameters are sanitized via Shell::escape().
-	 * Null values are ignored.
-	 *
-	 * @param string|string[] ...$args
-	 * @return $this
-	 */
-	public function params( ...$args ): Command {
-		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
-			// If only one argument has been passed, and that argument is an array,
-			// treat it as a list of arguments
-			$args = reset( $args );
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
+		if ( $this->executor ) {
+			$this->executor->setLogger( $logger );
 		}
-		$this->command = trim( $this->command . ' ' . Shell::escape( $args ) );
-
-		return $this;
-	}
-
-	/**
-	 * Adds unsafe parameters to the command. These parameters are NOT sanitized in any way.
-	 * Null values are ignored.
-	 *
-	 * @param string|string[] ...$args
-	 * @return $this
-	 */
-	public function unsafeParams( ...$args ): Command {
-		if ( count( $args ) === 1 && is_array( reset( $args ) ) ) {
-			// If only one argument has been passed, and that argument is an array,
-			// treat it as a list of arguments
-			$args = reset( $args );
-		}
-		$args = array_filter( $args,
-			function ( $value ) {
-				return $value !== null;
-			}
-		);
-		$this->command = trim( $this->command . ' ' . implode( ' ', $args ) );
-
-		return $this;
 	}
 
 	/**
@@ -162,19 +96,18 @@ class Command {
 			// if the latter was overridden and the former wasn't
 			$limits['walltime'] = $limits['time'];
 		}
-		$this->limits = $limits + $this->limits;
-
-		return $this;
-	}
-
-	/**
-	 * Sets environment variables which should be added to the executed command environment
-	 *
-	 * @param string[] $env array of variable name => value
-	 * @return $this
-	 */
-	public function environment( array $env ): Command {
-		$this->env = $env;
+		if ( isset( $limits['filesize'] ) ) {
+			$this->fileSizeLimit( $limits['filesize'] * 1024 );
+		}
+		if ( isset( $limits['memory'] ) ) {
+			$this->memoryLimit( $limits['memory'] * 1024 );
+		}
+		if ( isset( $limits['time'] ) ) {
+			$this->cpuTimeLimit( $limits['time'] );
+		}
+		if ( isset( $limits['walltime'] ) ) {
+			$this->wallTimeLimit( $limits['walltime'] );
+		}
 
 		return $this;
 	}
@@ -192,51 +125,27 @@ class Command {
 	}
 
 	/**
-	 * Sends the provided input to the command.
-	 * When set to null (default), the command will use the standard input.
-	 * @param string|null $inputString
+	 * Sends the provided input to the command. Defaults to an empty string.
+	 * If you want to pass stdin through to the command instead, use
+	 * passStdin().
+	 *
+	 * @param string $inputString
 	 * @return $this
 	 */
-	public function input( ?string $inputString ): Command {
-		$this->inputString = $inputString;
-
-		return $this;
+	public function input( string $inputString ): Command {
+		return $this->stdin( $inputString );
 	}
 
 	/**
-	 * Controls whether stderr should be included in stdout, including errors from limit.sh.
-	 * Default: don't include.
+	 * Sets cgroup for this command. Has no effect since MW 1.36. This setting
+	 * is injected into the executor from CommandFactory instead.
 	 *
-	 * @param bool $yesno
-	 * @return $this
-	 */
-	public function includeStderr( bool $yesno = true ): Command {
-		$this->doIncludeStderr = $yesno;
-
-		return $this;
-	}
-
-	/**
-	 * When enabled, text sent to stderr will be logged with a level of 'error'.
-	 *
-	 * @param bool $yesno
-	 * @return $this
-	 */
-	public function logStderr( bool $yesno = true ): Command {
-		$this->doLogStderr = $yesno;
-
-		return $this;
-	}
-
-	/**
-	 * Sets cgroup for this command
-	 *
+	 * @deprecated since 1.36
 	 * @param string|false $cgroup Absolute file path to the cgroup, or false to not use a cgroup
 	 * @return $this
 	 */
 	public function cgroup( $cgroup ): Command {
-		$this->cgroup = $cgroup;
-
+		wfDeprecated( __METHOD__, '1.36' );
 		return $this;
 	}
 
@@ -258,25 +167,33 @@ class Command {
 	 *  $command->restrict( Shell::RESTRICT_NONE );
 	 * @endcode
 	 *
+	 * @deprecated since 1.36 Set the options using their separate accessors
+	 *
 	 * @since 1.31
 	 * @param int $restrictions
 	 * @return $this
 	 */
 	public function restrict( int $restrictions ): Command {
-		$this->restrictions = $restrictions;
+		$this->privateUserNamespace( (bool)( $restrictions & Shell::NO_ROOT ) );
+		$this->firejailDefaultSeccomp( (bool)( $restrictions & Shell::SECCOMP ) );
+		$this->noNewPrivs( (bool)( $restrictions & Shell::SECCOMP ) );
+		$this->privateDev( (bool)( $restrictions & Shell::PRIVATE_DEV ) );
+		$this->disableNetwork( (bool)( $restrictions & Shell::NO_NETWORK ) );
+		if ( $restrictions & Shell::NO_EXECVE ) {
+			$this->disabledSyscalls( [ 'execve' ] );
+		} else {
+			$this->disabledSyscalls( [] );
+		}
+		if ( $restrictions & Shell::NO_LOCALSETTINGS ) {
+			$this->disallowedPaths( [ realpath( MW_CONFIG_FILE ) ] );
+		} else {
+			$this->disallowedPaths( [] );
+		}
+		if ( $restrictions === 0 ) {
+			$this->disableSandbox();
+		}
 
 		return $this;
-	}
-
-	/**
-	 * Bitfield helper on whether a specific restriction is enabled
-	 *
-	 * @param int $restriction
-	 *
-	 * @return bool
-	 */
-	protected function hasRestriction( int $restriction ): bool {
-		return ( $this->restrictions & $restriction ) === $restriction;
 	}
 
 	/**
@@ -285,294 +202,31 @@ class Command {
 	 *
 	 * limit.sh will always be whitelisted
 	 *
+	 * @deprecated since 1.36 Use allowPath/disallowPath
 	 * @param string[] $paths
-	 *
 	 * @return $this
 	 */
 	public function whitelistPaths( array $paths ): Command {
-		// Default implementation is a no-op
+		$this->allowedPaths( array_merge( $this->getAllowedPaths(), $paths ) );
 		return $this;
-	}
-
-	/**
-	 * String together all the options and build the final command
-	 * to execute
-	 *
-	 * @param string $command Already-escaped command to run
-	 * @return array [ command, whether to use log pipe ]
-	 */
-	protected function buildFinalCommand( string $command ): array {
-		$envcmd = '';
-		foreach ( $this->env as $k => $v ) {
-			if ( wfIsWindows() ) {
-				/* Surrounding a set in quotes (method used by wfEscapeShellArg) makes the quotes themselves
-				 * appear in the environment variable, so we must use carat escaping as documented in
-				 * https://technet.microsoft.com/en-us/library/cc723564.aspx
-				 * Note however that the quote isn't listed there, but is needed, and the parentheses
-				 * are listed there but doesn't appear to need it.
-				 */
-				$envcmd .= "set $k=" . preg_replace( '/([&|()<>^"])/', '^\\1', $v ) . '&& ';
-			} else {
-				/* Assume this is a POSIX shell, thus required to accept variable assignments before the command
-				 * http://www.opengroup.org/onlinepubs/009695399/utilities/xcu_chap02.html#tag_02_09_01
-				 */
-				$envcmd .= "$k=" . escapeshellarg( $v ) . ' ';
-			}
-		}
-
-		$useLogPipe = false;
-		$cmd = $envcmd . trim( $command );
-
-		if ( is_executable( '/bin/bash' ) ) {
-			$time = intval( $this->limits['time'] );
-			$wallTime = intval( $this->limits['walltime'] );
-			$mem = intval( $this->limits['memory'] );
-			$filesize = intval( $this->limits['filesize'] );
-
-			if ( $time > 0 || $mem > 0 || $filesize > 0 || $wallTime > 0 ) {
-				$cmd = '/bin/bash ' . escapeshellarg( __DIR__ . '/limit.sh' ) . ' ' .
-					escapeshellarg( $cmd ) . ' ' .
-					escapeshellarg(
-						"MW_INCLUDE_STDERR=" . ( $this->doIncludeStderr ? '1' : '' ) . ';' .
-						"MW_CPU_LIMIT=$time; " .
-						'MW_CGROUP=' . escapeshellarg( $this->cgroup ) . '; ' .
-						"MW_MEM_LIMIT=$mem; " .
-						"MW_FILE_SIZE_LIMIT=$filesize; " .
-						"MW_WALL_CLOCK_LIMIT=$wallTime; " .
-						"MW_USE_LOG_PIPE=yes"
-					);
-				$useLogPipe = true;
-			}
-		}
-		if ( !$useLogPipe && $this->doIncludeStderr ) {
-			$cmd .= ' 2>&1';
-		}
-
-		if ( wfIsWindows() ) {
-			$cmd = 'cmd.exe /c "' . $cmd . '"';
-		}
-
-		return [ $cmd, $useLogPipe ];
 	}
 
 	/**
 	 * Executes command. Afterwards, getExitCode() and getOutput() can be used to access execution
 	 * results.
 	 *
-	 * @return Result
+	 * @return UnboxedResult
 	 * @throws Exception
 	 * @throws ProcOpenError
 	 * @throws ShellDisabledError
 	 */
-	public function execute(): Result {
+	public function execute(): UnboxedResult {
 		$this->everExecuted = true;
-
 		$profileMethod = $this->method ?: wfGetCaller();
-
-		list( $cmd, $useLogPipe ) = $this->buildFinalCommand( $this->command );
-
-		$this->logger->debug( __METHOD__ . ": $cmd" );
-
-		// Don't try to execute commands that exceed Linux's MAX_ARG_STRLEN.
-		// Other platforms may be more accomodating, but we don't want to be
-		// accomodating, because very long commands probably include user
-		// input. See T129506.
-		if ( strlen( $cmd ) > SHELL_MAX_ARG_STRLEN ) {
-			throw new Exception( __METHOD__ .
-				'(): total length of $cmd must not exceed SHELL_MAX_ARG_STRLEN' );
-		}
-
-		$desc = [
-			0 => $this->inputString === null ? [ 'file', 'php://stdin', 'r' ] : [ 'pipe', 'r' ],
-			1 => [ 'pipe', 'w' ],
-			2 => [ 'pipe', 'w' ],
-		];
-		if ( $useLogPipe ) {
-			$desc[3] = [ 'pipe', 'w' ];
-		}
-		$pipes = null;
 		$scoped = Profiler::instance()->scopedProfileIn( __FUNCTION__ . '-' . $profileMethod );
-		$proc = null;
-
-		if ( wfIsWindows() ) {
-			// Windows Shell bypassed, but command run is "cmd.exe /C "{$cmd}"
-			// This solves some shell parsing issues, see T207248
-			$proc = proc_open( $cmd, $desc, $pipes, null, null, [ 'bypass_shell' => true ] );
-		} else {
-			$proc = proc_open( $cmd, $desc, $pipes );
-		}
-
-		if ( !$proc ) {
-			$this->logger->error( "proc_open() failed: {command}", [ 'command' => $cmd ] );
-			throw new ProcOpenError();
-		}
-
-		$buffers = [
-			0 => $this->inputString, // input
-			1 => '', // stdout
-			2 => null, // stderr
-			3 => '', // log
-		];
-		$emptyArray = [];
-		$status = false;
-		$logMsg = false;
-
-		/* According to the documentation, it is possible for stream_select()
-		 * to fail due to EINTR. I haven't managed to induce this in testing
-		 * despite sending various signals. If it did happen, the error
-		 * message would take the form:
-		 *
-		 * stream_select(): unable to select [4]: Interrupted system call (max_fd=5)
-		 *
-		 * where [4] is the value of the macro EINTR and "Interrupted system
-		 * call" is string which according to the Linux manual is "possibly"
-		 * localised according to LC_MESSAGES.
-		 */
-		$eintr = defined( 'SOCKET_EINTR' ) ? SOCKET_EINTR : 4;
-		$eintrMessage = "stream_select(): unable to select [$eintr]";
-
-		/* The select(2) system call only guarantees a "sufficiently small write"
-		 * can be made without blocking. And on Linux the read might block too
-		 * in certain cases, although I don't know if any of them can occur here.
-		 * Regardless, set all the pipes to non-blocking to avoid T184171.
-		 */
-		foreach ( $pipes as $pipe ) {
-			stream_set_blocking( $pipe, false );
-		}
-
-		$running = true;
-		$timeout = null;
-		$numReadyPipes = 0;
-
-		while ( $pipes && ( $running === true || $numReadyPipes !== 0 ) ) {
-			if ( $running ) {
-				$status = proc_get_status( $proc );
-				// If the process has terminated, switch to nonblocking selects
-				// for getting any data still waiting to be read.
-				if ( !$status['running'] ) {
-					$running = false;
-					$timeout = 0;
-				}
-			}
-
-			error_clear_last();
-
-			$readPipes = array_filter( $pipes, function ( $fd ) use ( $desc ) {
-				return $desc[$fd][0] === 'pipe' && $desc[$fd][1] === 'r';
-			}, ARRAY_FILTER_USE_KEY );
-			$writePipes = array_filter( $pipes, function ( $fd ) use ( $desc ) {
-				return $desc[$fd][0] === 'pipe' && $desc[$fd][1] === 'w';
-			}, ARRAY_FILTER_USE_KEY );
-			// stream_select parameter names are from the POV of us being able to do the operation;
-			// proc_open desriptor types are from the POV of the process doing it.
-			// So $writePipes is passed as the $read parameter and $readPipes as $write.
-			AtEase::suppressWarnings();
-			$numReadyPipes = stream_select( $writePipes, $readPipes, $emptyArray, $timeout );
-			AtEase::restoreWarnings();
-			if ( $numReadyPipes === false ) {
-				$error = error_get_last();
-				if ( strncmp( $error['message'], $eintrMessage, strlen( $eintrMessage ) ) == 0 ) {
-					continue;
-				} else {
-					trigger_error( $error['message'], E_USER_WARNING );
-					$logMsg = $error['message'];
-					break;
-				}
-			}
-			foreach ( $writePipes + $readPipes as $fd => $pipe ) {
-				// True if a pipe is unblocked for us to write into, false if for reading from
-				$isWrite = array_key_exists( $fd, $readPipes );
-
-				if ( $isWrite ) {
-					// Don't bother writing if the buffer is empty
-					if ( $buffers[$fd] === '' ) {
-						fclose( $pipes[$fd] );
-						unset( $pipes[$fd] );
-						continue;
-					}
-					$res = fwrite( $pipe, $buffers[$fd], 65536 );
-				} else {
-					$res = fread( $pipe, 65536 );
-				}
-
-				if ( $res === false ) {
-					$logMsg = 'Error ' . ( $isWrite ? 'writing to' : 'reading from' ) . ' pipe';
-					break 2;
-				}
-
-				if ( $res === '' || $res === 0 ) {
-					// End of file?
-					if ( feof( $pipe ) ) {
-						fclose( $pipes[$fd] );
-						unset( $pipes[$fd] );
-					}
-				} elseif ( $isWrite ) {
-					$buffers[$fd] = (string)substr( $buffers[$fd], $res );
-					if ( $buffers[$fd] === '' ) {
-						fclose( $pipes[$fd] );
-						unset( $pipes[$fd] );
-					}
-				} else {
-					$buffers[$fd] .= $res;
-					if ( $fd === 3 && strpos( $res, "\n" ) !== false ) {
-						// For the log FD, every line is a separate log entry.
-						$lines = explode( "\n", $buffers[3] );
-						$buffers[3] = array_pop( $lines );
-						foreach ( $lines as $line ) {
-							$this->logger->info( $line );
-						}
-					}
-				}
-			}
-		}
-
-		foreach ( $pipes as $pipe ) {
-			fclose( $pipe );
-		}
-
-		// Use the status previously collected if possible, since proc_get_status()
-		// just calls waitpid() which will not return anything useful the second time.
-		if ( $running ) {
-			$status = proc_get_status( $proc );
-		}
-
-		if ( $logMsg !== false ) {
-			// Read/select error
-			$retval = -1;
-			proc_close( $proc );
-		} elseif ( $status['signaled'] ) {
-			$logMsg = "Exited with signal {$status['termsig']}";
-			$retval = 128 + $status['termsig'];
-			proc_close( $proc );
-		} else {
-			if ( $status['running'] ) {
-				$retval = proc_close( $proc );
-			} else {
-				$retval = $status['exitcode'];
-				proc_close( $proc );
-			}
-			if ( $retval == 127 ) {
-				$logMsg = "Possibly missing executable file";
-			} elseif ( $retval >= 129 && $retval <= 192 ) {
-				$logMsg = "Probably exited with signal " . ( $retval - 128 );
-			}
-		}
-
-		if ( $logMsg !== false ) {
-			$this->logger->warning( "$logMsg: {command}", [ 'command' => $cmd ] );
-		}
-
-		// @phan-suppress-next-line PhanImpossibleCondition
-		if ( $buffers[2] && $this->doLogStderr ) {
-			$this->logger->error( "Error running {command}: {error}", [
-				'command' => $cmd,
-				'error' => $buffers[2],
-				'exitcode' => $retval,
-				'exception' => new Exception( 'Shell error' ),
-			] );
-		}
-
-		return new Result( $retval, $buffers[1], $buffers[2] );
+		$result = parent::execute();
+		ScopedCallback::consume( $scoped );
+		return $result;
 	}
 
 	/**
@@ -583,6 +237,6 @@ class Command {
 	 * @return string
 	 */
 	public function __toString(): string {
-		return "#Command: {$this->command}";
+		return "#Command: {$this->getCommandString()}";
 	}
 }

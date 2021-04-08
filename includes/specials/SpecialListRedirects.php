@@ -24,7 +24,10 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Page\WikiPageFactory;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -32,8 +35,27 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialListRedirects extends QueryPage {
-	public function __construct( $name = 'Listredirects' ) {
-		parent::__construct( $name );
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param WikiPageFactory $wikiPageFactory
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
+		WikiPageFactory $wikiPageFactory
+	) {
+		parent::__construct( 'Listredirects' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->setDBLoadBalancer( $loadBalancer );
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	public function isExpensive() {
@@ -82,7 +104,7 @@ class SpecialListRedirects extends QueryPage {
 			return;
 		}
 
-		$batch = new LinkBatch;
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $res as $row ) {
 			$batch->add( $row->namespace, $row->title );
 			$redirTarget = $this->getRedirectTarget( $row );
@@ -108,15 +130,15 @@ class SpecialListRedirects extends QueryPage {
 			);
 		} else {
 			$title = Title::makeTitle( $row->namespace, $row->title );
-			$article = WikiPage::factory( $title );
+			$page = $this->wikiPageFactory->newFromTitle( $title );
 
-			return $article->getRedirectTarget();
+			return $page->getRedirectTarget();
 		}
 	}
 
 	/**
 	 * @param Skin $skin
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {

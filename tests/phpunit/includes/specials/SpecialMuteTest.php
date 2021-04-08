@@ -1,14 +1,20 @@
 <?php
 
+use MediaWiki\User\UserOptionsManager;
+
 /**
  * @group SpecialPage
  * @covers SpecialMute
  */
 class SpecialMuteTest extends SpecialPageTestBase {
 
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
+
 	protected function setUp() : void {
 		parent::setUp();
 
+		$this->userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		$this->setMwGlobals( [
 			'wgEnableUserEmailBlacklist' => true
 		] );
@@ -18,7 +24,10 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	 * @inheritDoc
 	 */
 	protected function newSpecialPage() {
-		return new SpecialMute();
+		return new SpecialMute(
+			$this->userOptionsManager,
+			$this->getServiceContainer()->getUserFactory()
+		);
 	}
 
 	/**
@@ -73,7 +82,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		$targetUser = $this->getTestUser()->getUser();
 
 		$loggedInUser = $this->getMutableTestUser()->getUser();
-		$loggedInUser->setOption( 'email-blacklist', "999" );
+		$this->userOptionsManager->setOption( $loggedInUser, 'email-blacklist', "999" );
 		$loggedInUser->confirmEmail();
 		$loggedInUser->saveSettings();
 
@@ -85,7 +94,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		$this->assertStringContainsString( 'specialmute-success', $html );
 		$this->assertEquals(
 			"999\n" . $targetUser->getId(),
-			$loggedInUser->getOption( 'email-blacklist' )
+			$this->userOptionsManager->getOption( $loggedInUser, 'email-blacklist' )
 		);
 	}
 
@@ -100,7 +109,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		$targetUser = $this->getTestUser()->getUser();
 
 		$loggedInUser = $this->getMutableTestUser()->getUser();
-		$loggedInUser->setOption( 'email-blacklist', "999\n" . $targetUser->getId() );
+		$this->userOptionsManager->setOption( $loggedInUser, 'email-blacklist', "999\n" . $targetUser->getId() );
 		$loggedInUser->confirmEmail();
 		$loggedInUser->saveSettings();
 
@@ -110,6 +119,6 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		);
 
 		$this->assertStringContainsString( 'specialmute-success', $html );
-		$this->assertSame( "999", $loggedInUser->getOption( 'email-blacklist' ) );
+		$this->assertSame( "999", $this->userOptionsManager->getOption( $loggedInUser, 'email-blacklist' ) );
 	}
 }

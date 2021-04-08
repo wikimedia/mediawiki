@@ -6,6 +6,9 @@ namespace MediaWiki\Hook;
 use EditPage;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "EditPage::attemptSave" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

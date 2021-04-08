@@ -63,6 +63,7 @@ $namespaceAliases = [
 	'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ' => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ਸਰਗਰਮ_ਵਰਤੋਂਕਾਰ' ],
 	'Allmessages'               => [ 'ਸਾਰੇ_ਸਨੇਹੇ' ],
@@ -72,6 +73,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'ਖ਼ਰਾਬ_ਸਿਰਲੇਖ' ],
 	'Blankpage'                 => [ 'ਖ਼ਾਲੀ_ਸਫ਼ਾ' ],
 	'Block'                     => [ 'ਪਾਬੰਦੀ_ਲਾਓ', 'IP_’ਤੇ_ਪਾਬੰਦੀ_ਲਾਓ', 'ਵਰਤੋਂਕਾਰ_’ਤੇ_ਪਾਬੰਦੀ_ਲਾਓ' ],
+	'BlockList'                 => [ 'ਪਾਬੰਦੀਆਂ_ਦੀ_ਲਿਸਟ' ],
 	'Booksources'               => [ 'ਕਿਤਾਬ_ਸਰੋਤ' ],
 	'BrokenRedirects'           => [ 'ਟੁੱਟੇ_ਰੀਡਿਰੈਕਟ' ],
 	'Categories'                => [ 'ਸ਼੍ਰੇਣੀਆਂ', 'ਵਰਗ' ],
@@ -95,14 +97,13 @@ $specialPageAliases = [
 	'Import'                    => [ 'ਆਯਾਤ' ],
 	'Invalidateemail'           => [ 'ਗਲਤ_ਈ-ਮੇਲ_ਪਤਾ' ],
 	'JavaScriptTest'            => [ 'ਜਾਵਾਸਕ੍ਰਿਪਟ_ਪਰਖ' ],
-	'BlockList'                 => [ 'ਪਾਬੰਦੀਆਂ_ਦੀ_ਲਿਸਟ' ],
 	'LinkSearch'                => [ 'ਲਿੰਕ_ਖੋਜੋ', 'ਕੜੀ_ਖੋਜੋ' ],
 	'Listadmins'                => [ 'ਪ੍ਰਬੰਧਕਾਂ_ਦੀ_ਲਿਸਟ' ],
 	'Listbots'                  => [ 'ਬੋਟ_ਲਿਸਟ' ],
+	'ListDuplicatedFiles'       => [ 'ਨਕਲੀ_ਫ਼ਾਇਲ_ਲਿਸਟ' ],
 	'Listfiles'                 => [ 'ਫ਼ਾਈਲ_ਲਿਸਟ', 'ਫ਼ਾਇਲ_ਲਿਸਟ', 'ਤਸਵੀਰ_ਲਿਸਟ' ],
 	'Listgrouprights'           => [ 'ਵਰਤੋਂਕਾਰ_ਹੱਕਾਂ_ਦੀ_ਲਿਸਟ' ],
 	'Listredirects'             => [ 'ਰੀਡਿਰੈਕਟਾਂ_ਦੀ_ਲਿਸਟ' ],
-	'ListDuplicatedFiles'       => [ 'ਨਕਲੀ_ਫ਼ਾਇਲ_ਲਿਸਟ' ],
 	'Listusers'                 => [ 'ਵਰਤੋਂਕਾਰਾਂ_ਦੀ_ਲਿਸਟ' ],
 	'Lockdb'                    => [ 'ਡੈਟਾਬੇਸ_’ਤੇ_ਤਾਲਾ_ਲਗਾਓ' ],
 	'Log'                       => [ 'ਚਿੱਠਾ', 'ਚਿੱਠੇ' ],
@@ -132,8 +133,8 @@ $specialPageAliases = [
 	'Prefixindex'               => [ 'ਅਗੇਤਰ_ਤਤਕਰਾ' ],
 	'Protectedpages'            => [ 'ਸੁਰੱਖਿਅਤ_ਸਫ਼ੇ' ],
 	'Protectedtitles'           => [ 'ਸੁਰੱਖਿਅਤ_ਸਿਰਲੇਖ' ],
-	'Randompage'                => [ 'ਰਲਵਾਂ_ਸਫ਼ਾ' ],
 	'RandomInCategory'          => [ 'ਰਲਵੀਂ_ਸ਼੍ਰੇਣੀ' ],
+	'Randompage'                => [ 'ਰਲਵਾਂ_ਸਫ਼ਾ' ],
 	'Randomredirect'            => [ 'ਸੁਰੱਖਿਅਤ_ਰੀਡਿਰੈਕਟ' ],
 	'Recentchanges'             => [ 'ਤਾਜ਼ਾ_ਤਬਦੀਲੀਆਂ' ],
 	'Recentchangeslinked'       => [ 'ਜੁੜੀਆਂ_ਹਾਲੀਆ_ਤਬਦੀਲੀਆਂ', 'ਸਬੰਧਤ_ਹਾਲੀਆ_ਤਬਦੀਲੀਆਂ' ],
@@ -169,16 +170,17 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'ਬਿਨਾਂ_ਇੰਟਰਵਿਕੀਆਂ_ਵਾਲੇ' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ਰੀਡਿਰੈਕਟ', '#REDIRECT' ],
-	'url_wiki'                  => [ '0', 'ਵਿਕੀ', 'WIKI' ],
 	'defaultsort_noerror'       => [ '0', 'ਗਲਤੀ_ਨਹੀਂ', 'noerror' ],
 	'pagesincategory_all'       => [ '0', 'ਸਬ', 'all' ],
+	'pagesincategory_files'     => [ '0', 'ਫ਼ਾਈਲਾਂ', 'files' ],
 	'pagesincategory_pages'     => [ '0', 'ਪੰਨੇ', 'pages' ],
 	'pagesincategory_subcats'   => [ '0', 'ਉਪਸ਼੍ਰੇਣੀਆਂ', 'subcats' ],
-	'pagesincategory_files'     => [ '0', 'ਫ਼ਾਈਲਾਂ', 'files' ],
+	'redirect'                  => [ '0', '#ਰੀਡਿਰੈਕਟ', '#REDIRECT' ],
+	'url_wiki'                  => [ '0', 'ਵਿਕੀ', 'WIKI' ],
 ];
 
 $linkTrail = '/^([ਁਂਃਅਆਇਈਉਊਏਐਓਔਕਖਗਘਙਚਛਜਝਞਟਠਡਢਣਤਥਦਧਨਪਫਬਭਮਯਰਲਲ਼ਵਸ਼ਸਹ਼ਾਿੀੁੂੇੈੋੌ੍ਖ਼ਗ਼ਜ਼ੜਫ਼ੰੱੲੳa-z]+)(.*)$/sDu';
 
-$digitGroupingPattern = "##,##,###";
+$digitGroupingPattern = "#,##,##0.###";

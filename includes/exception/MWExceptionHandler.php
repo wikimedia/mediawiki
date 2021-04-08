@@ -158,7 +158,7 @@ class MWExceptionHandler {
 		// Make sure we don't claim success on exit for CLI scripts (T177414)
 		if ( wfIsCLI() ) {
 			register_shutdown_function(
-				function () {
+				static function () {
 					exit( 255 );
 				}
 			);
@@ -248,9 +248,22 @@ class MWExceptionHandler {
 				$severity = LogLevel::WARNING;
 				break;
 			case E_DEPRECATED:
+				$prefix = 'PHP Deprecated: ';
+				$severity = LogLevel::WARNING;
+				break;
 			case E_USER_DEPRECATED:
 				$prefix = 'PHP Deprecated: ';
 				$severity = LogLevel::WARNING;
+				$real = MWDebug::parseCallerDescription( $message );
+				if ( $real ) {
+					// Used by wfDeprecated(), MWDebug::deprecated()
+					// Apply caller offset from wfDeprecated() to the native error.
+					// This makes errors easier to aggregate and find in e.g. Kibana.
+					$file = $real['file'];
+					$line = $real['line'];
+					$message = $real['message'];
+					$prefix = '';
+				}
 				break;
 			default:
 				$prefix = 'PHP Unknown error: ';
@@ -287,15 +300,14 @@ class MWExceptionHandler {
 		self::$reservedMemory = null;
 
 		$lastError = error_get_last();
-		if ( $lastError !== null ) {
-			$level = $lastError['type'];
-			$message = $lastError['message'];
-			$file = $lastError['file'];
-			$line = $lastError['line'];
-		} else {
-			$level = 0;
-			$message = '';
+		if ( $lastError === null ) {
+			return false;
 		}
+
+		$level = $lastError['type'];
+		$message = $lastError['message'];
+		$file = $lastError['file'];
+		$line = $lastError['line'];
 
 		if ( !in_array( $level, self::$fatalErrorTypes ) ) {
 			// Only interested in fatal errors, others should have been
@@ -305,7 +317,7 @@ class MWExceptionHandler {
 
 		$url = WebRequest::getGlobalRequestURL();
 		$msgParts = [
-			'[{exception_id}] {exception_url}   PHP Fatal Error',
+			'[{reqId}] {exception_url}   PHP Fatal Error',
 			( $line || $file ) ? ' from' : '',
 			$line ? " line $line" : '',
 			( $line && $file ) ? ' of' : '',
@@ -329,12 +341,7 @@ TXT;
 
 		$e = new ErrorException( "PHP Fatal Error: {$message}", 0, $level, $file, $line );
 		$logger = LoggerFactory::getInstance( 'exception' );
-		$logger->error( $msg, [
-			'exception' => $e,
-			'exception_id' => WebRequest::getRequestId(),
-			'exception_url' => $url,
-			'caught_by' => self::CAUGHT_BY_HANDLER
-		] );
+		$logger->error( $msg, self::getLogContext( $e, self::CAUGHT_BY_HANDLER ) );
 
 		return false;
 	}
@@ -343,14 +350,15 @@ TXT;
 	 * Generate a string representation of a throwable's stack trace
 	 *
 	 * Like Throwable::getTraceAsString, but replaces argument values with
-	 * argument type or class name.
+	 * their type or class name, and prepends the start line of the throwable.
 	 *
 	 * @param Throwable $e
 	 * @return string
 	 * @see prettyPrintTrace()
 	 */
 	public static function getRedactedTraceAsString( Throwable $e ) {
-		return self::prettyPrintTrace( self::getRedactedTrace( $e ) );
+		$from = 'from ' . $e->getFile() . '(' . $e->getLine() . ')' . "\n";
+		return $from . self::prettyPrintTrace( self::getRedactedTrace( $e ) );
 	}
 
 	/**
@@ -391,7 +399,7 @@ TXT;
 			}
 		}
 
-		$level += 1;
+		$level++;
 		$text .= "{$pad}#{$level} {main}";
 
 		return $text;
@@ -423,9 +431,9 @@ TXT;
 	 * @return array Stacktrace with arugment values converted to data types
 	 */
 	public static function redactTrace( array $trace ) {
-		return array_map( function ( $frame ) {
+		return array_map( static function ( $frame ) {
 			if ( isset( $frame['args'] ) ) {
-				$frame['args'] = array_map( function ( $arg ) {
+				$frame['args'] = array_map( static function ( $arg ) {
 					return is_object( $arg ) ? get_class( $arg ) : gettype( $arg );
 				}, $frame['args'] );
 			}
@@ -462,8 +470,6 @@ TXT;
 	public static function getLogMessage( Throwable $e ) {
 		$id = WebRequest::getRequestId();
 		$type = get_class( $e );
-		$file = $e->getFile();
-		$line = $e->getLine();
 		$message = $e->getMessage();
 		$url = self::getURL() ?: '[no req]';
 
@@ -473,7 +479,7 @@ TXT;
 				. $message;
 		}
 
-		return "[$id] $url   $type from line $line of $file: $message";
+		return "[$id] $url   $type: $message";
 	}
 
 	/**
@@ -487,11 +493,9 @@ TXT;
 	 */
 	public static function getLogNormalMessage( Throwable $e ) {
 		$type = get_class( $e );
-		$file = $e->getFile();
-		$line = $e->getLine();
 		$message = $e->getMessage();
 
-		return "[{exception_id}] {exception_url}   $type from line $line of $file: $message";
+		return "[{reqId}] {exception_url}   $type: $message";
 	}
 
 	/**
@@ -521,8 +525,14 @@ TXT;
 	public static function getLogContext( Throwable $e, $catcher = self::CAUGHT_BY_OTHER ) {
 		return [
 			'exception' => $e,
-			'exception_id' => WebRequest::getRequestId(),
 			'exception_url' => self::getURL() ?: '[no req]',
+			// The reqId context key use the same familiar name and value as the top-level field
+			// provided by LogstashFormatter. However, formatters are configurable at run-time,
+			// and their top-level fields are logically separate from context keys and cannot be,
+			// substituted in a message, hence set explicitly here. For WMF users, these may feel,
+			// like the same thing due to Monolog V0 handling, which transmits "fields" and "context",
+			// in the same JSON object (after message formatting).
+			'reqId' => WebRequest::getRequestId(),
 			'caught_by' => $catcher
 		];
 	}
@@ -580,7 +590,7 @@ TXT;
 	 *
 	 * The JSON object will have keys 'id', 'file', 'line', 'message', and
 	 * 'url'. These keys map to string values, with the exception of 'line',
-	 * which is a number, and 'url', which may be either a string URL or or
+	 * which is a number, and 'url', which may be either a string URL or
 	 * null if the throwable did not occur in the context of serving a web
 	 * request.
 	 *

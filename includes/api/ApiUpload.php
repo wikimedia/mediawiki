@@ -560,7 +560,7 @@ class ApiUpload extends ApiBase {
 		$permission = $this->mUpload->isAllowed( $user );
 
 		if ( $permission !== true ) {
-			if ( !$user->isLoggedIn() ) {
+			if ( !$user->isRegistered() ) {
 				$this->dieWithError( [ 'apierror-mustbeloggedin', $this->msg( 'action-upload' ) ] );
 			}
 
@@ -724,10 +724,7 @@ class ApiUpload extends ApiBase {
 			ApiResult::setIndexedTagName( $warnings, 'warning' );
 
 			if ( isset( $warnings['duplicate'] ) ) {
-				$dupes = [];
-				foreach ( $warnings['duplicate'] as $dupe ) {
-					$dupes[] = $dupe['fileName'];
-				}
+				$dupes = array_column( $warnings['duplicate'], 'fileName' );
 				ApiResult::setIndexedTagName( $dupes, 'duplicate' );
 				$warnings['duplicate'] = $dupes;
 			}
@@ -845,7 +842,7 @@ class ApiUpload extends ApiBase {
 		}
 
 		if ( $this->mParams['tags'] ) {
-			$status = ChangeTags::canAddTagsAccompanyingChange( $this->mParams['tags'], $this->getUser() );
+			$status = ChangeTags::canAddTagsAccompanyingChange( $this->mParams['tags'], $this->getAuthority() );
 			if ( !$status->isOK() ) {
 				$this->dieStatus( $status );
 			}

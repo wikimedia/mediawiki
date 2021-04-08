@@ -6,6 +6,8 @@
  * Copyright © 2013, Wikimedia Foundation Inc.
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * @group Preferences
  * @group Database
@@ -56,8 +58,12 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 		$context->setUser( $user );
 		$context->setTitle( Title::newFromText( 'Test' ) );
 
+		$services = MediaWikiServices::getInstance();
 		# Do the call, should not spurt a fatal error.
-		$special = new SpecialPreferences();
+		$special = new SpecialPreferences(
+			$services->getPreferencesFactory(),
+			$services->getUserOptionsManager()
+		);
 		$special->setContext( $context );
 		$this->assertNull( $special->execute( [] ) );
 	}

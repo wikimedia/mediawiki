@@ -5,6 +5,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
@@ -79,6 +80,9 @@ class WatchedItemQueryService {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
 	 */
@@ -91,6 +95,7 @@ class WatchedItemQueryService {
 		WatchedItemStoreInterface $watchedItemStore,
 		PermissionManager $permissionManager,
 		HookContainer $hookContainer,
+		UserFactory $userFactory,
 		bool $expiryEnabled = false
 	) {
 		$this->loadBalancer = $loadBalancer;
@@ -99,6 +104,7 @@ class WatchedItemQueryService {
 		$this->watchedItemStore = $watchedItemStore;
 		$this->permissionManager = $permissionManager;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userFactory = $userFactory;
 		$this->expiryEnabled = $expiryEnabled;
 	}
 
@@ -262,7 +268,8 @@ class WatchedItemQueryService {
 					$target,
 					$this->watchedItemStore->getLatestNotificationTimestamp(
 						$row->wl_notificationtimestamp, $user, $target
-					)
+					),
+					$row->we_expiry ?? null
 				),
 				$this->getRecentChangeFieldsFromRow( $row )
 			];
@@ -356,7 +363,8 @@ class WatchedItemQueryService {
 				$target,
 				$this->watchedItemStore->getLatestNotificationTimestamp(
 					$row->wl_notificationtimestamp, $user, $target
-				)
+				),
+				$row->we_expiry ?? null
 			);
 		}
 
@@ -369,7 +377,7 @@ class WatchedItemQueryService {
 		$allFields = get_object_vars( $row );
 		$rcKeys = array_filter(
 			array_keys( $allFields ),
-			function ( $key ) {
+			static function ( $key ) {
 				return substr( $key, 0, 3 ) === 'rc_';
 			}
 		);
@@ -602,10 +610,16 @@ class WatchedItemQueryService {
 		$conds = [];
 
 		if ( array_key_exists( 'onlyByUser', $options ) ) {
-			$byUser = User::newFromName( $options['onlyByUser'], false );
+			$byUser = $this->userFactory->newFromName(
+				$options['onlyByUser'],
+				UserFactory::RIGOR_NONE
+			);
 			$conds[] = $this->actorMigration->getWhere( $db, 'rc_user', $byUser )['conds'];
 		} elseif ( array_key_exists( 'notByUser', $options ) ) {
-			$byUser = User::newFromName( $options['notByUser'], false );
+			$byUser = $this->userFactory->newFromName(
+				$options['notByUser'],
+				UserFactory::RIGOR_NONE
+			);
 			$conds[] = 'NOT(' . $this->actorMigration->getWhere( $db, 'rc_user', $byUser )['conds'] . ')';
 		}
 

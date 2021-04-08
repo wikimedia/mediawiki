@@ -398,7 +398,7 @@ abstract class Installer {
 
 		// make sure we use the installer config as the main config
 		$configRegistry = $baseConfig->get( 'ConfigRegistry' );
-		$configRegistry['main'] = function () use ( $installerConfig ) {
+		$configRegistry['main'] = static function () use ( $installerConfig ) {
 			return $installerConfig;
 		};
 
@@ -455,16 +455,16 @@ abstract class Installer {
 	 * @throws MWException
 	 */
 	public function resetMediaWikiServices( Config $installerConfig = null, $serviceOverrides = [] ) {
-		global $wgMemc, $wgUser, $wgObjectCaches, $wgLang;
+		global $wgUser, $wgObjectCaches, $wgLang;
 
 		$serviceOverrides += [
 			// Disable interwiki lookup, to avoid database access during parses
-			'InterwikiLookup' => function () {
+			'InterwikiLookup' => static function () {
 				return new NullInterwikiLookup();
 			},
 
 			// Disable user options database fetching, only rely on default options.
-			'UserOptionsLookup' => function ( MediaWikiServices $services ) {
+			'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
 				return $services->get( '_DefaultOptionsLookup' );
 			}
 		];
@@ -508,7 +508,6 @@ abstract class Installer {
 		// Disable object cache (otherwise CACHE_ANYTHING will try CACHE_DB and
 		// SqlBagOStuff will then throw since we just disabled wfGetDB)
 		$wgObjectCaches = $mwServices->getMainConfig()->get( 'ObjectCaches' );
-		$wgMemc = ObjectCache::getInstance( CACHE_NONE );
 
 		$this->parserOptions = new ParserOptions( $user ); // language will be wrong :(
 		// Don't try to access DB before user language is initialised
@@ -795,7 +794,8 @@ abstract class Installer {
 				'ss_active_users' => 0,
 				'ss_images' => 0
 			],
-			__METHOD__, 'IGNORE'
+			__METHOD__,
+			'IGNORE'
 		);
 
 		return Status::newGood();
@@ -963,8 +963,6 @@ abstract class Installer {
 		if ( $convert ) {
 			$this->setVar( 'wgImageMagickConvertCommand', $convert );
 			$this->showMessage( 'config-imagemagick', $convert );
-
-			return true;
 		} elseif ( function_exists( 'imagejpeg' ) ) {
 			$this->showMessage( 'config-gd' );
 		} else {
@@ -1041,8 +1039,7 @@ abstract class Installer {
 		}
 
 		# Get a list of available locales.
-		$result = Shell::command( '/usr/bin/locale', '-a' )
-			->execute();
+		$result = Shell::command( '/usr/bin/locale', '-a' )->execute();
 
 		if ( $result->getExitCode() != 0 ) {
 			return true;
@@ -1169,25 +1166,11 @@ abstract class Installer {
 		$not_normal_c = "\u{FA6C}";
 		$normal_c = "\u{242EE}";
 
-		$useNormalizer = 'php';
-		$needsUpdate = false;
+		$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
 
-		if ( function_exists( 'normalizer_normalize' ) ) {
-			$useNormalizer = 'intl';
-			$intl = normalizer_normalize( $not_normal_c, Normalizer::FORM_C );
-			if ( $intl !== $normal_c ) {
-				$needsUpdate = true;
-			}
-		}
-
-		// Uses messages 'config-unicode-using-php' and 'config-unicode-using-intl'
-		if ( $useNormalizer === 'php' ) {
-			$this->showMessage( 'config-unicode-pure-php-warning' );
-		} else {
-			$this->showMessage( 'config-unicode-using-' . $useNormalizer );
-			if ( $needsUpdate ) {
-				$this->showMessage( 'config-unicode-update-warning' );
-			}
+		$this->showMessage( 'config-unicode-using-intl' );
+		if ( $intl !== $normal_c ) {
+			$this->showMessage( 'config-unicode-update-warning' );
 		}
 	}
 
@@ -1233,6 +1216,9 @@ abstract class Installer {
 		];
 
 		// it would be good to check other popular languages here, but it'll be slow.
+		// TODO no need to have a loop if there is going to only be one script type
+
+		$httpRequestFactory = MediaWikiServices::getInstance()->getHttpRequestFactory();
 
 		Wikimedia\suppressWarnings();
 
@@ -1245,8 +1231,11 @@ abstract class Installer {
 				}
 
 				try {
-					$text = MediaWikiServices::getInstance()->getHttpRequestFactory()->
-						get( $url . $file, [ 'timeout' => 3 ], __METHOD__ );
+					$text = $httpRequestFactory->get(
+						$url . $file,
+						[ 'timeout' => 3 ],
+						__METHOD__
+					);
 				} catch ( Exception $e ) {
 					// HttpRequestFactory::get can throw with allow_url_fopen = false and no curl
 					// extension.
@@ -1343,6 +1332,7 @@ abstract class Installer {
 			return Status::newGood( [] );
 		}
 
+		// @phan-suppress-next-line SecurityCheck-PathTraversal False positive T268920
 		$dh = opendir( $extDir );
 		$exts = [];
 		$status = new Status;
@@ -1525,7 +1515,6 @@ abstract class Installer {
 	/**
 	 * Installs the auto-detected extensions.
 	 *
-	 * @suppress SecurityCheck-OTHER It thinks $exts/$IP is user controlled but they are not.
 	 * @return Status
 	 */
 	protected function includeExtensions() {
@@ -1557,7 +1546,7 @@ abstract class Installer {
 	 * Auto-detect extensions with an old style .php registration file, load
 	 * the extensions, and return the merged $wgHooks array.
 	 *
-	 * @suppress SecurityCheck-OTHER It thinks $exts/$IP is user controlled but they are not.
+	 * @suppress SecurityCheck-PathTraversal It thinks $exts/$IP is user controlled but they are not.
 	 * @return array
 	 */
 	protected function getAutoExtensionLegacyHooks() {
@@ -1604,8 +1593,10 @@ abstract class Installer {
 			require_once $file;
 		}
 
+		// @phpcs:disable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
 		// @phan-suppress-next-line PhanUndeclaredVariable,PhanCoalescingAlwaysNull $wgHooks is set by DefaultSettings
 		$hooksWeWant = $wgHooks['LoadExtensionSchemaUpdates'] ?? [];
+		// @phpcs:enable MediaWiki.VariableAnalysis.MisleadingGlobalNames.Misleading$wgHooks
 
 		// Ignore everyone else's hooks. Lord knows what someone might be doing
 		// in ParserFirstCallInit (see T29171)
@@ -1639,7 +1630,7 @@ abstract class Installer {
 	 * Get the hook container previously populated by includeExtensions().
 	 *
 	 * @internal For use by DatabaseInstaller
-	 * @since 1.35.1
+	 * @since 1.36
 	 * @return HookContainer
 	 */
 	public function getAutoExtensionHookContainer() {
@@ -1771,7 +1762,7 @@ abstract class Installer {
 	 */
 	public function restoreServices() {
 		$this->resetMediaWikiServices( null, [
-			'UserOptionsLookup' => function ( MediaWikiServices $services ) {
+			'UserOptionsLookup' => static function ( MediaWikiServices $services ) {
 				return $services->get( 'UserOptionsManager' );
 			}
 		] );
@@ -1785,14 +1776,11 @@ abstract class Installer {
 	 * @return Status
 	 */
 	protected function doGenerateKeys( $keys ) {
-		$status = Status::newGood();
-
 		foreach ( $keys as $name => $length ) {
 			$secretKey = MWCryptRand::generateHex( $length );
 			$this->setVar( $name, $secretKey );
 		}
-
-		return $status;
+		return Status::newGood();
 	}
 
 	/**
@@ -1835,19 +1823,17 @@ abstract class Installer {
 			$ssUpdate = SiteStatsUpdate::factory( [ 'users' => 1 ] );
 			$ssUpdate->doUpdate();
 		}
-		$status = Status::newGood();
 
 		if ( $this->getVar( '_Subscribe' ) && $this->getVar( '_AdminEmail' ) ) {
-			$this->subscribeToMediaWikiAnnounce( $status );
+			return $this->subscribeToMediaWikiAnnounce();
 		}
-
-		return $status;
+		return Status::newGood();
 	}
 
 	/**
-	 * @param Status $s
+	 * @return Status
 	 */
-	private function subscribeToMediaWikiAnnounce( Status $s ) {
+	private function subscribeToMediaWikiAnnounce() {
 		$params = [
 			'email' => $this->getVar( '_AdminEmail' ),
 			'language' => 'en',
@@ -1862,15 +1848,20 @@ abstract class Installer {
 			$params['language'] = $myLang;
 		}
 
+		$status = Status::newGood();
 		if ( MWHttpRequest::canMakeRequests() ) {
-			$res = MWHttpRequest::factory( $this->mediaWikiAnnounceUrl,
-				[ 'method' => 'POST', 'postData' => $params ], __METHOD__ )->execute();
+			$res = MWHttpRequest::factory(
+				$this->mediaWikiAnnounceUrl,
+				[ 'method' => 'POST', 'postData' => $params ],
+				__METHOD__
+			)->execute();
 			if ( !$res->isOK() ) {
-				$s->warning( 'config-install-subscribe-fail', $res->getMessage() );
+				$status->warning( 'config-install-subscribe-fail', $res->getMessage() );
 			}
 		} else {
-			$s->warning( 'config-install-subscribe-notpossible' );
+			$status->warning( 'config-install-subscribe-notpossible' );
 		}
+		return $status;
 	}
 
 	/**
@@ -1887,13 +1878,14 @@ abstract class Installer {
 			return $status;
 		}
 		try {
-			$page = WikiPage::factory( $title );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 			$content = new WikitextContent(
 				wfMessage( 'mainpagetext' )->inContentLanguage()->text() . "\n\n" .
 				wfMessage( 'mainpagedocfooter' )->inContentLanguage()->text()
 			);
 
-			$status = $page->doEditContent( $content,
+			$status = $page->doEditContent(
+				$content,
 				'',
 				EDIT_NEW,
 				false,

@@ -3,7 +3,8 @@
 use MediaWiki\MediaWikiServices;
 
 /**
- * TODO: refactor encodeJsVar() tests to be one method with a provider
+ * Split into separate \MediaWiki\Tests\Unit\XmlTest for unit tests
+ *
  * @group Xml
  */
 class XmlTest extends MediaWikiIntegrationTestCase {
@@ -37,45 +38,32 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	/**
-	 * @covers Xml::expandAttributes
-	 */
-	public function testExpandAttributes() {
-		$this->assertNull( Xml::expandAttributes( null ),
-			'Converting a null list of attributes'
-		);
-		$this->assertSame( '', Xml::expandAttributes( [] ),
-			'Converting an empty list of attributes'
-		);
-	}
-
-	/**
-	 * @covers Xml::expandAttributes
-	 */
-	public function testExpandAttributesException() {
-		$this->expectException( MWException::class );
-		Xml::expandAttributes( 'string' );
-	}
-
-	/**
-	 * @covers Xml::element
-	 */
-	public function testElementOpen() {
-		$this->assertEquals(
-			'<element>',
-			Xml::element( 'element', null, null ),
-			'Opening element with no attributes'
-		);
+	public function provideElement() {
+		// $expect, $element, $attribs, $contents
+		yield 'Opening element with no attributes' => [ '<element>', 'element', null, null ];
+		yield 'Terminated empty element' => [ '<element />', 'element', null, '' ];
+		yield 'Element with no attributes and content that needs escaping' => [
+			'<element>"hello &lt;there&gt; your\'s &amp; you"</element>',
+			'element',
+			null,
+			'"hello <there> your\'s & you"'
+		];
+		yield 'Element attributes, keys are not escaped' => [
+			'<element key="value" <>="&lt;&gt;">',
+			'element',
+			[ 'key' => 'value', '<>' => '<>' ],
+			null
+		];
 	}
 
 	/**
 	 * @covers Xml::element
+	 * @dataProvider provideElement
 	 */
-	public function testElementEmpty() {
+	public function testElement( string $expect, string $element, $attribs, $content ) {
 		$this->assertEquals(
-			'<element />',
-			Xml::element( 'element', null, '' ),
-			'Terminated empty element'
+			$expect,
+			Xml::element( $element, $attribs, $content )
 		);
 	}
 
@@ -87,37 +75,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 			'<input name="name" value="0" />',
 			Xml::input( 'name', false, 0 ),
 			'Input with a value of 0 (T25797)'
-		);
-	}
-
-	/**
-	 * @covers Xml::element
-	 */
-	public function testElementEscaping() {
-		$this->assertEquals(
-			'<element>"hello &lt;there&gt; your\'s &amp; you"</element>',
-			Xml::element( 'element', null, '"hello <there> your\'s & you"' ),
-			'Element with no attributes and content that needs escaping'
-		);
-	}
-
-	/**
-	 * @covers Xml::escapeTagsOnly
-	 */
-	public function testEscapeTagsOnly() {
-		$this->assertEquals( '&quot;&gt;&lt;', Xml::escapeTagsOnly( '"><' ),
-			'replace " > and < with their HTML entitites'
-		);
-	}
-
-	/**
-	 * @covers Xml::element
-	 */
-	public function testElementAttributes() {
-		$this->assertEquals(
-			'<element key="value" <>="&lt;&gt;">',
-			Xml::element( 'element', [ 'key' => 'value', '<>' => '<>' ], null ),
-			'Element attributes, keys are not escaped'
 		);
 	}
 
@@ -360,127 +317,6 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testEncodeJsVarBoolean() {
-		$this->assertEquals(
-			'true',
-			Xml::encodeJsVar( true ),
-			'encodeJsVar() with boolean'
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testEncodeJsVarNull() {
-		$this->assertEquals(
-			'null',
-			Xml::encodeJsVar( null ),
-			'encodeJsVar() with null'
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testEncodeJsVarArray() {
-		$this->assertEquals(
-			'["a",1]',
-			Xml::encodeJsVar( [ 'a', 1 ] ),
-			'encodeJsVar() with array'
-		);
-		$this->assertEquals(
-			'{"a":"a","b":1}',
-			Xml::encodeJsVar( [ 'a' => 'a', 'b' => 1 ] ),
-			'encodeJsVar() with associative array'
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testEncodeJsVarObject() {
-		$this->assertEquals(
-			'{"a":"a","b":1}',
-			Xml::encodeJsVar( (object)[ 'a' => 'a', 'b' => 1 ] ),
-			'encodeJsVar() with object'
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testEncodeJsVarInt() {
-		$this->assertSame(
-			'123456',
-			Xml::encodeJsVar( 123456 ),
-			'encodeJsVar() with int'
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testEncodeJsVarFloat() {
-		$this->assertSame(
-			'1.5',
-			Xml::encodeJsVar( 1.5 ),
-			'encodeJsVar() with float'
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testEncodeJsVarIntString() {
-		$this->assertEquals(
-			'"123456"',
-			Xml::encodeJsVar( '123456' ),
-			'encodeJsVar() with int-like string'
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testEncodeJsVarFloatString() {
-		$this->assertEquals(
-			'"1.23456"',
-			Xml::encodeJsVar( '1.23456' ),
-			'encodeJsVar() with float-like string'
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 */
-	public function testXmlJsCode() {
-		$code = 'function () { foo( 42 ); }';
-		$this->assertEquals(
-			$code,
-			Xml::encodeJsVar( new XmlJsCode( $code ) )
-		);
-	}
-
-	/**
-	 * @covers Xml::encodeJsVar
-	 * @covers XmlJsCode::encodeObject
-	 */
-	public function testEncodeObject() {
-		$codeA = 'function () { foo( 42 ); }';
-		$codeB = 'function ( jQuery ) { bar( 142857 ); }';
-		$obj = XmlJsCode::encodeObject( [
-			'a' => new XmlJsCode( $codeA ),
-			'b' => new XmlJsCode( $codeB )
-		] );
-		$this->assertEquals(
-			"{\"a\":$codeA,\"b\":$codeB}",
-			Xml::encodeJsVar( $obj )
-		);
-	}
-
-	/**
 	 * @covers Xml::listDropDown
 	 */
 	public function testListDropDown() {
@@ -519,6 +355,7 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			[
 				'other reasons' => 'other',
+				'Empty group item' => 'Empty group item',
 				'Foo' => [
 					'Foo 1' => 'Foo 1',
 					'Example' => 'Example',
@@ -528,7 +365,28 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 				],
 			],
 			Xml::listDropDownOptions(
-				"* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
+				"*\n** Empty group item\n* Foo\n** Foo 1\n** Example\n* Bar\n** Bar 1",
+				[ 'other' => 'other reasons' ]
+			)
+		);
+	}
+
+	/**
+	 * @covers Xml::listDropDownOptions
+	 */
+	public function testListDropDownOptionsOthers() {
+		// Do not use the value for 'other' as option group - T251351
+		$this->assertEquals(
+			[
+				'other reasons' => 'other',
+				'Foo 1' => 'Foo 1',
+				'Example' => 'Example',
+				'Bar' => [
+					'Bar 1' => 'Bar 1',
+				],
+			],
+			Xml::listDropDownOptions(
+				"* other reasons\n** Foo 1\n** Example\n* Bar\n** Bar 1",
 				[ 'other' => 'other reasons' ]
 			)
 		);
@@ -560,54 +418,45 @@ class XmlTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
+	public function provideFieldset() {
+		// $expect, [ $arg1, $arg2, ... ]
+		yield 'Opening tag' => [ "<fieldset>\n", [] ];
+		yield 'Opening tag (false means no legend)' => [ "<fieldset>\n", [ false ] ];
+		yield 'Opening tag (empty string means no legend)' => [ "<fieldset>\n", [ '' ] ];
+		yield 'Opening tag with legend' => [
+			"<fieldset>\n<legend>Foo</legend>\n",
+			[ 'Foo' ]
+		];
+		yield 'Entire element with legend' => [
+			"<fieldset>\n<legend>Foo</legend>\nBar\n</fieldset>\n",
+			[ 'Foo', 'Bar' ]
+		];
+		yield 'Opening tag with legend (false means no content and no closing tag)' => [
+			"<fieldset>\n<legend>Foo</legend>\n",
+			[ 'Foo', false ]
+		];
+		yield 'Entire element with legend but no content (empty string generates a closing tag)' => [
+			"<fieldset>\n<legend>Foo</legend>\n\n</fieldset>\n",
+			[ 'Foo', '' ]
+		];
+		yield 'Opening tag with legend and attributes' => [
+			"<fieldset class=\"bar\">\n<legend>Foo</legend>\nBar\n</fieldset>\n",
+			[ 'Foo', 'Bar', [ 'class' => 'bar' ] ]
+		];
+		yield 'Entire element with legend and attributes' => [
+			"<fieldset class=\"bar\">\n<legend>Foo</legend>\n",
+			[ 'Foo', false, [ 'class' => 'bar' ] ]
+		];
+	}
+
 	/**
 	 * @covers Xml::fieldset
+	 * @dataProvider provideFieldset
 	 */
-	public function testFieldset() {
+	public function testFieldset( string $expect, array $args ) {
 		$this->assertEquals(
-			"<fieldset>\n",
-			Xml::fieldset(),
-			'Opening tag'
-		);
-		$this->assertEquals(
-			"<fieldset>\n",
-			Xml::fieldset( false ),
-			'Opening tag (false means no legend)'
-		);
-		$this->assertEquals(
-			"<fieldset>\n",
-			Xml::fieldset( '' ),
-			'Opening tag (empty string also means no legend)'
-		);
-		$this->assertEquals(
-			"<fieldset>\n<legend>Foo</legend>\n",
-			Xml::fieldset( 'Foo' ),
-			'Opening tag with legend'
-		);
-		$this->assertEquals(
-			"<fieldset>\n<legend>Foo</legend>\nBar\n</fieldset>\n",
-			Xml::fieldset( 'Foo', 'Bar' ),
-			'Entire element with legend'
-		);
-		$this->assertEquals(
-			"<fieldset>\n<legend>Foo</legend>\n",
-			Xml::fieldset( 'Foo', false ),
-			'Opening tag with legend (false means no content and no closing tag)'
-		);
-		$this->assertEquals(
-			"<fieldset>\n<legend>Foo</legend>\n\n</fieldset>\n",
-			Xml::fieldset( 'Foo', '' ),
-			'Entire element with legend but no content (empty string generates a closing tag)'
-		);
-		$this->assertEquals(
-			"<fieldset class=\"bar\">\n<legend>Foo</legend>\nBar\n</fieldset>\n",
-			Xml::fieldset( 'Foo', 'Bar', [ 'class' => 'bar' ] ),
-			'Opening tag with legend and attributes'
-		);
-		$this->assertEquals(
-			"<fieldset class=\"bar\">\n<legend>Foo</legend>\n",
-			Xml::fieldset( 'Foo', false, [ 'class' => 'bar' ] ),
-			'Entire element with legend and attributes'
+			$expect,
+			Xml::fieldset( ...$args )
 		);
 	}
 

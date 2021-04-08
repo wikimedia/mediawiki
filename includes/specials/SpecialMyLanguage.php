@@ -23,7 +23,8 @@
  * @copyright Copyright © 2010-2013 Niklas Laxström, Siebrand Mazeland
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Page\WikiPageFactory;
 
 /**
  * Unlisted special page just to redirect the user to the translated version of
@@ -35,8 +36,24 @@ use MediaWiki\MediaWikiServices;
  * @ingroup SpecialPage
  */
 class SpecialMyLanguage extends RedirectSpecialArticle {
-	public function __construct() {
+
+	/** @var LanguageNameUtils */
+	private $languageNameUtils;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
+	/**
+	 * @param LanguageNameUtils $languageNameUtils
+	 * @param WikiPageFactory $wikiPageFactory
+	 */
+	public function __construct(
+		LanguageNameUtils $languageNameUtils,
+		WikiPageFactory $wikiPageFactory
+	) {
 		parent::__construct( 'MyLanguage' );
+		$this->languageNameUtils = $languageNameUtils;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	/**
@@ -65,7 +82,6 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 	 * @return Title|null
 	 */
 	public function findTitle( $subpage ) {
-		$services = MediaWikiServices::getInstance();
 		// base = title without language code suffix
 		// provided = the title as it was given
 		$base = $provided = null;
@@ -77,24 +93,24 @@ class SpecialMyLanguage extends RedirectSpecialArticle {
 				$pos = strrpos( $subpage, '/' );
 				$basepage = substr( $subpage, 0, $pos );
 				$code = substr( $subpage, $pos + 1 );
-				if ( strlen( $code ) && $services->getLanguageNameUtils()->isKnownLanguageTag( $code ) ) {
+				if ( strlen( $code ) && $this->languageNameUtils->isKnownLanguageTag( $code ) ) {
 					$base = Title::newFromText( $basepage );
 				}
 			}
 		}
 
-		if ( !$base ) {
+		if ( !$base || !$base->canExist() ) {
 			// No subpage provided or base page does not exist
 			return null;
 		}
 
 		if ( $base->isRedirect() ) {
-			$page = new WikiPage( $base );
+			$page = $this->wikiPageFactory->newFromTitle( $base );
 			$base = $page->getRedirectTarget();
 		}
 
 		$uiLang = $this->getLanguage();
-		$contLang = $services->getContentLanguage();
+		$contLang = $this->getContentLanguage();
 
 		if ( $uiLang->equals( $contLang ) ) {
 			// Short circuit when the current UI language is the

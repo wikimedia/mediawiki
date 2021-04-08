@@ -105,8 +105,8 @@ class DoubleRedirectJob extends Job {
 			return false;
 		}
 
-		$targetRev = MediaWikiServices::getInstance()
-			->getRevisionLookup()
+		$services = MediaWikiServices::getInstance();
+		$targetRev = $services->getRevisionLookup()
 			->getRevisionByTitle( $this->title, 0, RevisionLookup::READ_LATEST );
 		if ( !$targetRev ) {
 			wfDebug( __METHOD__ . ": target redirect already deleted, ignoring" );
@@ -122,7 +122,7 @@ class DoubleRedirectJob extends Job {
 		}
 
 		// Check for a suppression tag (used e.g. in periodically archived discussions)
-		$mw = MediaWikiServices::getInstance()->getMagicWordFactory()->get( 'staticredirect' );
+		$mw = $services->getMagicWordFactory()->get( 'staticredirect' );
 		if ( $content->matchMagicWord( $mw ) ) {
 			wfDebug( __METHOD__ . ": skipping: suppressed with __STATICREDIRECT__" );
 
@@ -167,7 +167,7 @@ class DoubleRedirectJob extends Job {
 		global $wgUser;
 		$oldUser = $wgUser;
 		$wgUser = $user;
-		$article = WikiPage::factory( $this->title );
+		$article = $services->getWikiPageFactory()->newFromTitle( $this->title );
 
 		// Messages: double-redirect-fixed-move, double-redirect-fixed-maintenance
 		$reason = wfMessage( 'double-redirect-fixed-' . $this->params['reason'],
@@ -248,7 +248,7 @@ class DoubleRedirectJob extends Job {
 			$username = wfMessage( 'double-redirect-fixer' )->inContentLanguage()->text();
 			self::$user = User::newFromName( $username );
 			# User::newFromName() can return false on a badly configured wiki.
-			if ( self::$user && !self::$user->isLoggedIn() ) {
+			if ( self::$user && !self::$user->isRegistered() ) {
 				self::$user->addToDatabase();
 			}
 		}

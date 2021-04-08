@@ -10,6 +10,31 @@
 
 $fallback = 'ru';
 
+$namespaceNames = [
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Хъулухъалъулаб',
+	NS_TALK             => 'БахӀс',
+	NS_USER             => 'ГӀахьалчи',
+	NS_USER_TALK        => 'ГӀахьалчиясул_бахӀс',
+	NS_PROJECT_TALK     => '$1лъул_бахӀс',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файлалъул_бахӀс',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki-ялъул_бахӀс',
+	NS_TEMPLATE         => 'Халип',
+	NS_TEMPLATE_TALK    => 'Халипалъул_бахӀс',
+	NS_HELP             => 'Кумек',
+	NS_HELP_TALK        => 'Кумекалъул_бахӀс',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Категориялъул_бахӀс',
+];
+
+$namespaceGenderAliases = [
+	NS_USER      => [ 'male' => 'ГӀахьалчи', 'female' => 'ГӀахьалчӀужу' ],
+	NS_USER_TALK => [ 'male' => 'ГӀахьалчиясул_бахӀс', 'female' => 'ГӀахьалчӀужуялъул_бахӀс' ],
+];
+
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'ХІаракатчилъи_бугел_гІахьалчагІи' ],
 	'Allmessages'               => [ 'Системаялъулал_баян_кьеял' ],
@@ -18,6 +43,7 @@ $specialPageAliases = [
 	'Badtitle'                  => [ 'БукІине_бегьулареб_цІар' ],
 	'Blankpage'                 => [ 'ЧІобогояб_гьумер' ],
 	'Block'                     => [ 'Блокалада_лъезе' ],
+	'BlockList'                 => [ 'Блокалда_лъеялъул_сияхІ', 'Блокалда_лъеял' ],
 	'Booksources'               => [ 'ТІахьазул_иццал' ],
 	'BrokenRedirects'           => [ 'Рек-рекарал_цоги_бакІалде_руссинариял' ],
 	'Categories'                => [ 'Категориял' ],
@@ -41,13 +67,12 @@ $specialPageAliases = [
 	'Import'                    => [ 'Импорт' ],
 	'Invalidateemail'           => [ 'Адрес_битІухъ_гьаби_нахъ_чІвазе' ],
 	'JavaScriptTest'            => [ 'JavaScript_хІалбихьи' ],
-	'BlockList'                 => [ 'Блокалда_лъеялъул_сияхІ', 'Блокалда_лъеял' ],
 	'LinkSearch'                => [ 'Ссылкаби_хъирщи' ],
 	'Listbots'                  => [ 'Ботазул_сияхІ' ],
+	'ListDuplicatedFiles'       => [ 'Релъарал_файлазул_сияхІ' ],
 	'Listfiles'                 => [ 'Файлазул_сияхІ', 'Суратазул_сияхІ' ],
 	'Listgrouprights'           => [ 'ГІахьалчагІазул_группабазул_ихтиярал', 'Группабазул_ихтияразул_сияхІ' ],
 	'Listredirects'             => [ 'Цоги_бакІалде_руссинабиязул_сияхІ' ],
-	'ListDuplicatedFiles'       => [ 'Релъарал_файлазул_сияхІ' ],
 	'Listusers'                 => [ 'ГІахьалчагІазул_сияхІ' ],
 	'Lockdb'                    => [ 'ХІБ_блокалда_лъезе', 'ХІужжабазул_база_блокалда_лъезе' ],
 	'Log'                       => [ 'Журналал', 'Журнал' ],

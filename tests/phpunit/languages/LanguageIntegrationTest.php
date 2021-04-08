@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
@@ -1669,13 +1670,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	/**
 	 * @dataProvider provideFormatNum
 	 * @covers Language::formatNum
+	 * @covers Language::formatNumNoSeparators
 	 */
 	public function testFormatNum(
-		$translateNumerals, $langCode, $number, $nocommafy, $expected
+		$translateNumerals, $langCode, $number, $noSeparators, $expected
 	) {
+		$this->hideDeprecated( 'Language::formatNum with a non-numeric string' );
 		$this->setMwGlobals( [ 'wgTranslateNumerals' => $translateNumerals ] );
 		$lang = Language::factory( $langCode );
-		$formattedNum = $lang->formatNum( $number, $nocommafy );
+		if ( $noSeparators ) {
+			$formattedNum = $lang->formatNumNoSeparators( $number );
+		} else {
+			$formattedNum = $lang->formatNum( $number );
+		}
 		$this->assertIsString( $formattedNum );
 		$this->assertEquals( $expected, $formattedNum );
 	}
@@ -1690,6 +1697,55 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ true, 'en', '106', true, '106' ],
 			[ false, 'en', '107', false, '107' ],
 			[ false, 'en', '108', true, '108' ],
+			[ true, 'en', -1, false, '−1' ],
+			[ true, 'en', 10, false, '10' ],
+			[ true, 'en', 100, false, '100' ],
+			[ true, 'en', 1000, false, '1,000' ],
+			[ true, 'en', 10000, false, '10,000' ],
+			[ true, 'en', 100000, false, '100,000' ],
+			[ true, 'en', 1000000, false, '1,000,000' ],
+			[ true, 'en', -1.001, false, '−1.001' ],
+			[ true, 'en', 1.001, false, '1.001' ],
+			[ true, 'en', 10.0001, false, '10.0001' ],
+			[ true, 'en', 100.001, false, '100.001' ],
+			[ true, 'en', 1000.001, false, '1,000.001' ],
+			[ true, 'en', 10000.001, false, '10,000.001' ],
+			[ true, 'en', 100000.001, false, '100,000.001' ],
+			[ true, 'en', 1000000.0001, false, '1,000,000.0001' ],
+			[ true, 'en', -1.0001, false, '−1.0001' ],
+			[ true, 'en', '200000000000000000000', false, '200,000,000,000,000,000,000' ],
+			[ true, 'en', '-200000000000000000000', false, '−200,000,000,000,000,000,000' ],
+			[ true, 'en', '1.23e10', false, '12,300,000,000' ],
+			[ true, 'en', 1.23e10, false, '12,300,000,000' ],
+			[ true, 'en', '1.23E-01', false, '0.123' ],
+			[ true, 'en', 1.23e-1, false, '0.123' ],
+			[ true, 'en', 0.0, false, '0' ],
+			[ true, 'en', -0.0, false, '−0' ],
+			[ true, 'en', INF, false, '∞' ],
+			[ true, 'en', -INF, false, '−∞' ],
+			[ true, 'en', NAN, false, 'Not a Number' ],
+			[ true, 'kn', '1050', false, '೧,೦೫೦' ],
+			[ true, 'kn', '1060', true, '೧೦೬೦' ],
+			[ false, 'kn', '1070', false, '1,070' ],
+			[ false, 'kn', '1080', true, '1080' ],
+			[ true, 'kn', '.1090', false, '.೧೦೯೦' ],
+
+			// Make sure non-numeric strings are not destroyed
+			[ false, 'en', 'The number is 1234', false, 'The number is 1,234' ],
+			[ false, 'en', '1234 is the number', false, '1,234 is the number' ],
+			[ false, 'de', '.', false, '.' ],
+			[ false, 'de', ',', false, ',' ],
+
+			/** @see https://phabricator.wikimedia.org/T237467 */
+			[ false, 'kn', "೭\u{FFFD}0", false, "೭\u{FFFD}0" ],
+			[ false, 'kn', "-೭\u{FFFD}0", false, "-೭\u{FFFD}0" ],
+			[ false, 'kn', "-1೭\u{FFFD}0", false, "−1೭\u{FFFD}0" ],
+
+			/** @see https://phabricator.wikimedia.org/T267614 */
+			[ false, 'ar', "1", false, "1" ],
+			[ false, 'ar', "1234.5", false, "1٬234٫5" ],
+			[ true, 'ar', "1", false, "١" ],
+			[ true, 'ar', "1234.5", false, "١٬٢٣٤٫٥" ],
 		];
 	}
 
@@ -1713,7 +1769,13 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ 'fa', 382.772 ],
 			[ 'ar', 1844 ],
 			[ 'lzh', 3731 ],
-			[ 'zh-classical', 7432 ]
+			[ 'zh-classical', 7432 ],
+			[ 'en', 1234.567 ],
+			[ 'en', 0.0 ],
+			[ 'en', -0.0 ],
+			[ 'en', INF ],
+			[ 'en', -INF ],
+			[ 'en', NAN ],
 		];
 	}
 
@@ -1722,6 +1784,8 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 	 * @dataProvider provideCommafyData
 	 */
 	public function testCommafy( $number, $numbersWithCommas ) {
+		$this->hideDeprecated( 'Language::commafy' );
+		$this->hideDeprecated( 'Language::formatNum with a non-numeric string' );
 		$this->assertEquals(
 			$numbersWithCommas,
 			$this->getLang()->commafy( $number ),
@@ -1748,6 +1812,19 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[ 1000000.0001, '1,000,000.0001' ],
 			[ '200000000000000000000', '200,000,000,000,000,000,000' ],
 			[ '-200000000000000000000', '-200,000,000,000,000,000,000' ],
+			[ '1.', '1.' ],
+			[ '-.1', '-.1' ],
+			[ '-0', '-0' ],
+
+			// Make sure non-numeric strings are not destroyed
+			// (But these will trigger deprecation warnings)
+			[ 'The number is 1234', 'The number is 1,234' ],
+			[ '1234 is the number', '1,234 is the number' ],
+			[ '.', '.' ],
+			[ ',', ',' ],
+			[ '-', '-' ],
+			[ 'abcdefg', 'abcdefg' ],
+			[ 'dontBeF00led.2', 'dontBeF00led.2' ],
 		];
 	}
 
@@ -1839,7 +1916,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			->setMethods( [ 'getMessagesFileName' ] )
 			->getMock();
 		$langNameUtils->method( 'getMessagesFileName' )->will(
-			$this->returnCallback( function ( $code ) {
+			$this->returnCallback( static function ( $code ) {
 				return __DIR__ . '/../data/messages/Messages_' . $code . '.php';
 			} )
 		);
@@ -1938,6 +2015,10 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		return Language::isKnownLanguageTag( $code );
 	}
 
+	protected function setLanguageTemporaryHook( string $hookName, $handler ): void {
+		$this->setTemporaryHook( $hookName, $handler );
+	}
+
 	/**
 	 * Call getLanguageName() and getLanguageNames() using the Language static methods.
 	 *
@@ -2015,7 +2096,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			$this->createNoOpMock( LanguageNameUtils::class ),
 			$this->createNoOpMock( LanguageFallback::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
-			$this->createHookContainer()
+			$this->createMock( HookContainer::class )
 		);
 		$config += [
 			'wgMetaNamespace' => 'Project',

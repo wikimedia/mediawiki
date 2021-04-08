@@ -6,6 +6,9 @@ use OutputPage;
 use ParserOutput;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "OutputPageParserOutput" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

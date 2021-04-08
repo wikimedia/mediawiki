@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -29,12 +30,12 @@ abstract class RevisionItemBase {
 	/** @var RevisionListBase The parent */
 	protected $list;
 
-	/** The database result row */
+	/** @var stdClass The database result row */
 	protected $row;
 
 	/**
 	 * @param RevisionListBase $list
-	 * @param object $row DB result row
+	 * @param stdClass $row DB result row
 	 */
 	public function __construct( RevisionListBase $list, $row ) {
 		$this->list = $list;
@@ -53,7 +54,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing timestamps.
 	 * Override this function.
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getTimestampField() {
 		return false;
@@ -62,7 +63,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing user ids.
 	 * Override this function.
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getAuthorIdField() {
 		return false;
@@ -71,7 +72,7 @@ abstract class RevisionItemBase {
 	/**
 	 * Get the DB field name storing user names.
 	 * Override this function.
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getAuthorNameField() {
 		return false;
@@ -81,7 +82,7 @@ abstract class RevisionItemBase {
 	 * Get the DB field name storing actor ids.
 	 * Override this function.
 	 * @since 1.31
-	 * @return string|bool
+	 * @return string|false
 	 */
 	public function getAuthorActorField() {
 		return false;
@@ -116,7 +117,7 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Get the timestamp in MW 14-char form
-	 * @return mixed
+	 * @return string|false
 	 */
 	public function getTimestamp() {
 		$field = $this->getTimestampField();
@@ -153,23 +154,26 @@ abstract class RevisionItemBase {
 
 	/**
 	 * Returns true if the current user can view the item
+	 * @return bool
 	 */
 	abstract public function canView();
 
 	/**
 	 * Returns true if the current user can view the item text/file
+	 * @return bool
 	 */
 	abstract public function canViewContent();
 
 	/**
 	 * Get the HTML of the list item. Should be include "<li></li>" tags.
 	 * This is used to show the list in HTML form, by the special page.
+	 * @return string HTML
 	 */
 	abstract public function getHTML();
 
 	/**
 	 * Returns an instance of LinkRenderer
-	 * @return \MediaWiki\Linker\LinkRenderer
+	 * @return LinkRenderer
 	 */
 	protected function getLinkRenderer() {
 		return MediaWikiServices::getInstance()->getLinkRenderer();

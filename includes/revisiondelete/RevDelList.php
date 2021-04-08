@@ -19,8 +19,8 @@
  * @ingroup RevisionDelete
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Abstract base class for a list of deletable items. The list class
@@ -34,9 +34,27 @@ use MediaWiki\Revision\RevisionRecord;
  * @method RevDelItem current()
  */
 abstract class RevDelList extends RevisionListBase {
-	public function __construct( IContextSource $context, Title $title, array $ids ) {
+
+	/** @var LBFactory */
+	private $lbFactory;
+
+	/**
+	 * @param IContextSource $context
+	 * @param Title $title
+	 * @param array $ids
+	 * @param LBFactory $lbFactory
+	 */
+	public function __construct(
+		IContextSource $context,
+		Title $title,
+		array $ids,
+		LBFactory $lbFactory
+	) {
 		parent::__construct( $context, $title );
+
+		// ids is a protected variable in RevisionListBase
 		$this->ids = $ids;
+		$this->lbFactory = $lbFactory;
 	}
 
 	/**
@@ -120,7 +138,7 @@ abstract class RevDelList extends RevisionListBase {
 
 		// CAS-style checks are done on the _deleted fields so the select
 		// does not need to use FOR UPDATE nor be in the atomic section
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
 		$this->res = $this->doQuery( $dbw );
 
 		$status->merge( $this->acquireItemLocks() );
@@ -259,8 +277,7 @@ abstract class RevDelList extends RevisionListBase {
 		$status->merge( $this->doPreCommitUpdates() );
 		if ( !$status->isOK() ) {
 			// Fatal error, such as no configured archive directory or I/O failures
-			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-			$lbFactory->rollbackMasterChanges( __METHOD__ );
+			$this->lbFactory->rollbackMasterChanges( __METHOD__ );
 			return $status;
 		}
 
@@ -319,7 +336,7 @@ abstract class RevDelList extends RevisionListBase {
 	 * to allow $item->getHTML() to show the new data.
 	 */
 	public function reloadFromMaster() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = $this->lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
 		$this->res = $this->doQuery( $dbw );
 	}
 

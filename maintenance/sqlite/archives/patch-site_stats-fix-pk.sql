@@ -9,7 +9,7 @@ CREATE TABLE /*_*/site_stats_tmp (
   -- * in namespace 0
   -- * not a redirect
   -- * contains the text '[['
-  -- See Article::isCountable() in includes/Article.php
+  -- See WikiPage::isCountable() in includes/Article.php
   ss_good_articles bigint unsigned default 0,
 
   -- Total pages, theoretically equal to SELECT COUNT(*) FROM page; except faster

@@ -367,7 +367,7 @@ class XhprofData {
 	 * @return Closure
 	 */
 	public static function makeSortFunction( $key, $sub ) {
-		return function ( $a, $b ) use ( $key, $sub ) {
+		return static function ( $a, $b ) use ( $key, $sub ) {
 			if ( isset( $a[$key] ) && isset( $b[$key] ) ) {
 				// Descending sort: larger values will be first in result.
 				// Values for 'main()' will not have sub keys

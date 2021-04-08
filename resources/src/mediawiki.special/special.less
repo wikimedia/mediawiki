@@ -4,35 +4,39 @@
 @import 'mediawiki.ui/variables.less';
 @import 'mediawiki.mixins.less';
 
-/* stylelint-disable selector-class-pattern */
-
 /* Special:AllMessages */
 /* Visually hide repeating text, but leave in for better form navigation on screen readers */
 .mw-special-Allmessages .mw-htmlform-ooui .oo-ui-fieldsetLayout:first-child .oo-ui-fieldsetLayout-header {
 	.mixin-screen-reader-text();
 }
 
-#mw-allmessagestable tbody:hover td {
-	/* Duplicate of `.mw-datatable tr:hover td` from shared.css,
-	 * so that it also applies when hovering a lower cell
-	 * within the same rowspan */
-	background-color: #eaf3ff;
-}
+#mw-allmessagestable {
+	tbody:hover td {
+		/* Duplicate of `.mw-datatable tr:hover td` from shared.css,
+		 * so that it also applies when hovering a lower cell
+		 * within the same rowspan */
+		background-color: #eaf3ff;
+	}
 
-#mw-allmessagestable .am_default {
-	background-color: #fcffc4;
-}
+	/* stylelint-disable-next-line selector-class-pattern */
+	.am_default {
+		background-color: #fcffc4;
+	}
 
-#mw-allmessagestable tbody:hover .am_default {
-	background-color: #faff90;
-}
+	/* stylelint-disable-next-line selector-class-pattern */
+	tbody:hover .am_default {
+		background-color: #faff90;
+	}
 
-#mw-allmessagestable .am_actual {
-	background-color: #e2ffe2;
-}
+	/* stylelint-disable-next-line selector-class-pattern */
+	.am_actual {
+		background-color: #e2ffe2;
+	}
 
-#mw-allmessagestable tbody:hover .am_actual {
-	background-color: #b1ffb1;
+	/* stylelint-disable-next-line selector-class-pattern */
+	tbody:hover .am_actual {
+		background-color: #b1ffb1;
+	}
 }
 
 /* Common for Special:Allpages and Special:PrefixIndex */
@@ -56,6 +60,7 @@
 	margin-bottom: 0;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .allpagesredirect {
 	font-style: italic;
 }
@@ -94,12 +99,13 @@
 }
 
 /* Special:EditWatchlist */
+/* stylelint-disable-next-line selector-class-pattern */
 .watchlistredir {
 	font-style: italic;
 }
 
 /* Special:EditWatchlist */
-.watchlistexpiry-msg {
+.mw-watchlistexpiry-msg {
 	margin-left: 0.3em;
 	color: @color-base--subtle;
 }
@@ -120,6 +126,7 @@
 	vertical-align: top;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .listgrouprights-revoked {
 	text-decoration: line-through;
 }
@@ -128,6 +135,12 @@
 .mw-revdel-editreasons {
 	font-size: 90%;
 	text-align: right;
+}
+
+td.mw-revdel-checkbox,
+th.mw-revdel-checkbox {
+	padding-right: 10px;
+	text-align: center;
 }
 
 /* Special:Specialpages */
@@ -139,11 +152,11 @@
 	-webkit-columns: 16em 2;
 	-moz-columns: 16em 2;
 	columns: 16em 2;
-}
 
-.mw-specialpages-list ul {
-	margin-top: 0;
-	margin-bottom: 0;
+	ul {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 
 /* Special:Statistics */
@@ -169,6 +182,7 @@
 	vertical-align: top;
 }
 
+/* stylelint-disable-next-line selector-class-pattern */
 .passwordpolicies-policy-flags {
 	font-size: 90%;
 }

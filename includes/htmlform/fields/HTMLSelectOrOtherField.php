@@ -10,8 +10,9 @@
  */
 class HTMLSelectOrOtherField extends HTMLTextField {
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $params ) {
 		parent::__construct( $params );

@@ -68,6 +68,17 @@ class GlobalIdGenerator {
 	 */
 	private const FILE_PREFIX = 'mw-GlobalIdGenerator';
 
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_TIME = 'time';
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_COUNTER = 'counter';
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_SEQUENCE = 'clkSeq';
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_OFFSET = 'offset';
+	/** Key used in the serialized clock state map that is stored on disk */
+	private const CLOCK_OFFSET_COUNTER = 'offsetCounter';
+
 	/**
 	 * @param string $tempDirectory A writable temporary directory
 	 * @param BagOStuff $srvCache A server-local APC-like cache instance
@@ -110,24 +121,19 @@ class GlobalIdGenerator {
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
 		$info = $this->getTimeAndDelay( 'lockFile88', 1, 1024, 1024 );
-		$info['offsetCounter'] %= 1024;
+		$info[self::CLOCK_OFFSET_COUNTER] %= 1024;
 
 		return \Wikimedia\base_convert( $this->getTimestampedID88( $info ), 2, $base );
 	}
 
 	/**
-	 * @param array $info result of GlobalIdGenerator::getTimeAndDelay(), or
-	 *  for sub classes, a seqencial array like (time, offsetCounter).
+	 * @param array $info result of GlobalIdGenerator::getTimeAndDelay()
 	 * @return string 88 bits
 	 * @throws RuntimeException
 	 */
 	protected function getTimestampedID88( array $info ) {
-		if ( isset( $info['time'] ) ) {
-			$time = $info['time'];
-			$counter = $info['offsetCounter'];
-		} else {
-			list( $time, $counter ) = $info;
-		}
+		$time = $info[self::CLOCK_TIME];
+		$counter = $info[self::CLOCK_OFFSET_COUNTER];
 		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
 		// Add a 10 bit counter resulting in 56 bits total
@@ -162,25 +168,20 @@ class GlobalIdGenerator {
 		Assert::parameter( $base >= 2, '$base', 'must be >= 2' );
 
 		$info = $this->getTimeAndDelay( 'lockFile128', 16384, 1048576, 1048576 );
-		$info['offsetCounter'] %= 1048576;
+		$info[self::CLOCK_OFFSET_COUNTER] %= 1048576;
 
 		return \Wikimedia\base_convert( $this->getTimestampedID128( $info ), 2, $base );
 	}
 
 	/**
-	 * @param array $info The result of GlobalIdGenerator::getTimeAndDelay(),
-	 *  for sub classes, a seqencial array like (time, offsetCounter, clkSeq).
+	 * @param array $info The result of GlobalIdGenerator::getTimeAndDelay()
 	 * @return string 128 bits
 	 * @throws RuntimeException
 	 */
 	protected function getTimestampedID128( array $info ) {
-		if ( isset( $info['time'] ) ) {
-			$time = $info['time'];
-			$counter = $info['offsetCounter'];
-			$clkSeq = $info['clkSeq'];
-		} else {
-			list( $time, $counter, $clkSeq ) = $info;
-		}
+		$time = $info[self::CLOCK_TIME];
+		$counter = $info[self::CLOCK_OFFSET_COUNTER];
+		$clkSeq = $info[self::CLOCK_SEQUENCE];
 		// Take the 46 LSBs of "milliseconds since epoch"
 		$id_bin = $this->millisecondsSinceEpochBinary( $time );
 		// Add a 20 bit counter resulting in 66 bits total
@@ -215,8 +216,11 @@ class GlobalIdGenerator {
 	 * @return string 128 bits
 	 */
 	protected function getUUIDv1( array $info ) {
-		$clkSeq_bin = \Wikimedia\base_convert( $info['clkSeq'], 10, 2, 14 );
-		$time_bin = $this->intervalsSinceGregorianBinary( $info['time'], $info['offsetCounter'] );
+		$clkSeq_bin = \Wikimedia\base_convert( $info[self::CLOCK_SEQUENCE], 10, 2, 14 );
+		$time_bin = $this->intervalsSinceGregorianBinary(
+			$info[self::CLOCK_TIME],
+			$info[self::CLOCK_OFFSET_COUNTER]
+		);
 		// Take the 32 bits of "time low"
 		$id_bin = substr( $time_bin, 28, 32 );
 		// Add 16 bits of "time mid" resulting in 48 bits total
@@ -434,20 +438,20 @@ class GlobalIdGenerator {
 	 * @param int $counterSize The number of possible counter values
 	 * @param int $offsetSize The number of possible offset values
 	 * @return array Array with the following keys:
-	 *  - array 'time': array of seconds int and milliseconds int.
-	 *  - int 'counter'.
-	 *  - int 'clkSeq'.
-	 *  - int 'offset': .
-	 *  - int 'offsetCounter'.
+	 *  - GlobalIdGenerator::CLOCK_TIME: (integer seconds, integer milliseconds) array
+	 *  - GlobalIdGenerator::CLOCK_COUNTER: integer millisecond tie-breaking counter
+	 *  - GlobalIdGenerator::CLOCK_SEQUENCE: integer clock identifier that is local to the node
+	 *  - GlobalIdGenerator::CLOCK_OFFSET: integer offset for millisecond tie-breaking counter
+	 *  - GlobalIdGenerator::CLOCK_OFFSET_COUNTER: integer; CLOCK_COUNTER with CLOCK_OFFSET applied
 	 * @throws RuntimeException
 	 */
 	protected function getTimeAndDelay( $lockFile, $clockSeqSize, $counterSize, $offsetSize ) {
 		// Get the UID lock file handle
-		if ( isset( $this->fileHandles[$lockFile] ) ) {
-			$handle = $this->fileHandles[$lockFile];
+		if ( isset( $this->fileHandles[$this->$lockFile] ) ) {
+			$handle = $this->fileHandles[$this->$lockFile];
 		} else {
 			$handle = fopen( $this->$lockFile, 'cb+' );
-			$this->fileHandles[$lockFile] = $handle ?: null; // cache
+			$this->fileHandles[$this->$lockFile] = $handle ?: null; // cache
 		}
 		// Acquire the UID lock file
 		if ( $handle === false ) {
@@ -464,7 +468,7 @@ class GlobalIdGenerator {
 		// cannot increment further, because the formatted ID would not have enough
 		// bits to fit the counter.
 		//
-		// To orchestrate this between independant PHP processes on the same hosts,
+		// To orchestrate this between independent PHP processes on the same host,
 		// we must have a common sense of time so that we only have to maintain
 		// a single counter in a single lock file.
 		//
@@ -473,31 +477,31 @@ class GlobalIdGenerator {
 		// * Some other clock can be observed via microtime(), which also offers
 		//   millisecond precision.
 		// * microtime() drifts in-process further and further away from the system
-		//   clock the longer the longer the process runs for.
+		//   clock the longer a process runs for.
 		//   For example, on 2018-10-03 an HHVM 3.18 JobQueue process at WMF,
-		//   that ran for 9 min 55 sec, drifted 7 seconds.
-		//   The drift is immediate for processes running while the system clock changes.
+		//   that ran for 9 min 55 sec, microtime drifted by 7 seconds.
 		//   time() does not have this problem. See https://bugs.php.net/bug.php?id=42659.
 		//
 		// We have two choices:
 		//
 		// 1. Use microtime() with the following caveats:
-		//    - The last stored time may be in the future, or our current time
-		//    may be in the past, in which case we'll frequently enter the slow
-		//    timeWaitUntil() method to try and "sync" the current process with
-		//    the previous process. We mustn't block for long though, max 10ms?
-		//    - For any drift above 10ms, we pretend that the clock went backwards,
-		//    and treat it the same way as after an NTP sync, by incrementing clock
-		//    sequence instead. Given this rolls over automatically and silently
-		//    and is meant to be rare, this is essentially sacrifices a reasonable
-		//    guarantee of uniqueness.
-		//    - For long running processes (e.g. longer than a few seconds) the drift
-		//    can easily be more than 2 seconds. Because we only have a single lock
-		//    file and don't want to keep too many counters and deal with clearing
-		//    those, we fatal the user and refuse to make an ID. (T94522)
-		// 2. Use time() and expand the counter by 1000x and use the first digits
-		//    as if they are the millisecond fraction of the timestamp.
-		//    Known caveats or perf impact: None.
+		//    - The last stored time may be in the future, or our current time may be in the
+		//      past, in which case we'll frequently enter the slow timeWaitUntil() method to
+		//      try and "sync" the current process with the previous process.
+		//      We mustn't block for long though, max 10ms?
+		//    - For any drift above 10ms, we pretend that the clock went backwards, and treat
+		//      it the same way as after an NTP sync, by incrementing clock sequence instead.
+		//      Given the sequence rolls over automatically, and silently, and is meant to be
+		//      rare, this is essentially sacrifices a reasonable guarantee of uniqueness.
+		//    - For long running processes (e.g. longer than a few seconds) the drift can
+		//      easily be more than 2 seconds. Because we only have a single lock file
+		//      and don't want to keep too many counters and deal with clearing those,
+		//      we fatal the user and refuse to make an ID.  (T94522)
+		//    - This offers terrible service availability.
+		// 2. Use time() instead, and expand the counter size by 1000x and use its
+		//    digits as if they were the millisecond fraction of our timestamp.
+		//    Known caveats or perf impact: None. We still need to read-write our
+		//    lock file on each generation, so might as well make the most of it.
 		//
 		// We choose the latter.
 		$msecCounterSize = $counterSize * 1000;
@@ -559,11 +563,11 @@ class GlobalIdGenerator {
 		$counter = $msecCounter % 1000;
 
 		return [
-			'time' => [ $sec, $msec ],
-			'counter' => $counter,
-			'clkSeq' => $clkSeq,
-			'offset' => $randOffset,
-			'offsetCounter' => $counter + $randOffset,
+			self::CLOCK_TIME     => [ $sec, $msec ],
+			self::CLOCK_COUNTER  => $counter,
+			self::CLOCK_SEQUENCE => $clkSeq,
+			self::CLOCK_OFFSET   => $randOffset,
+			self::CLOCK_OFFSET_COUNTER => $counter + $randOffset,
 		];
 	}
 

@@ -40,6 +40,9 @@ use Wikimedia\ScopedCallback;
  */
 class JobRunner implements LoggerAwareInterface {
 
+	/**
+	 * @internal For use by ServiceWiring
+	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'JobBackoffThrottling',
 		'JobClasses',
@@ -251,9 +254,7 @@ class JobRunner implements LoggerAwareInterface {
 				// Back off of certain jobs for a while (for throttling and for errors)
 				if ( $info['status'] === false && mt_rand( 0, 49 ) == 0 ) {
 					$ttw = max( $ttw, $this->getErrorBackoffTTL( $info['caught'] ) );
-					$backoffDeltas[$jType] = isset( $backoffDeltas[$jType] )
-						? $backoffDeltas[$jType] + $ttw
-						: $ttw;
+					$backoffDeltas[$jType] = ( $backoffDeltas[$jType] ?? 0 ) + $ttw;
 				}
 
 				$response['jobs'][] = [
@@ -670,7 +671,7 @@ class JobRunner implements LoggerAwareInterface {
 			// This will trigger a rollback in the main loop
 			throw new DBError( $dbwSerial, "Timed out waiting on commit queue." );
 		}
-		$unlocker = new ScopedCallback( function () use ( $dbwSerial, $fnameTrxOwner ) {
+		$unlocker = new ScopedCallback( static function () use ( $dbwSerial, $fnameTrxOwner ) {
 			$dbwSerial->unlock( 'jobrunner-serial-commit', $fnameTrxOwner );
 		} );
 

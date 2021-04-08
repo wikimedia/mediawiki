@@ -26,6 +26,7 @@ class ExifRotationTest extends MediaWikiMediaTestCase {
 
 	/**
 	 * Mark this test as creating thumbnail files.
+	 * @inheritDoc
 	 */
 	protected function createsThumbnails() {
 		return true;

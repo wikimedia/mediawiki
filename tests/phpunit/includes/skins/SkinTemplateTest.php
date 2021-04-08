@@ -1,5 +1,7 @@
 <?php
 
+use Wikimedia\TestingAccessWrapper;
+
 /**
  * @covers SkinTemplate
  *
@@ -14,6 +16,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	public function testMakeListItem( $expected, $key, array $item, array $options, $message ) {
 		$template = $this->getMockForAbstractClass( BaseTemplate::class );
 		$template->set( 'skin', new SkinFallback( [
+			'name' => 'fallback',
 			'templateDirectory' => __DIR__,
 		] ) );
 
@@ -43,6 +46,8 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @param bool $isSyndicated
+	 * @param string $html
 	 * @return OutputPage
 	 */
 	private function getMockOutputPage( $isSyndicated, $html ) {
@@ -98,5 +103,83 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		foreach ( $expectedModuleStyles as $expected ) {
 			$this->assertContains( $expected, $actualStylesModule );
 		}
+	}
+
+	/**
+	 * @covers SkinTemplate::insertNotificationsIntoPersonalTools
+	 * @dataProvider provideContentNavigation
+	 *
+	 * @param array $contentNavigation
+	 * @param array $expected
+	 */
+	public function testInsertNotificationsIntoPersonalTools(
+		array $contentNavigation,
+		array $expected
+	) {
+		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
+
+		$this->assertEquals(
+			$expected,
+			$wrapper->insertNotificationsIntoPersonalTools( $contentNavigation )
+		);
+	}
+
+	public function provideContentNavigation() : array {
+		return [
+			'No userpage set' => [
+				'contentNavigation' => [
+					'notifications' => [
+						'notification 1' => []
+					],
+					'user-menu' => [
+						'item 1' => [],
+						'item 2' => [],
+						'item 3' => []
+					]
+				],
+				'expected' => [
+					'item 1' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
+			],
+			'userpage set, no notifications' => [
+				'contentNavigation' => [
+					'notifications' => [],
+					'user-menu' => [
+						'item 1' => [],
+						'userpage' => [],
+						'item 2' => [],
+						'item 3' => []
+					]
+				],
+				'expected' => [
+					'item 1' => [],
+					'userpage' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
+			],
+			'userpage set, notification defined' => [
+				'contentNavigation' => [
+					'notifications' => [
+						'notification 1' => []
+					],
+					'user-menu' => [
+						'item 1' => [],
+						'userpage' => [],
+						'item 2' => [],
+						'item 3' => []
+					]
+				],
+				'expected' => [
+					'item 1' => [],
+					'userpage' => [],
+					'notification 1' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
+			]
+		];
 	}
 }

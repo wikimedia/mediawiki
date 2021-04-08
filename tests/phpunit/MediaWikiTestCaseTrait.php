@@ -15,7 +15,7 @@ trait MediaWikiTestCaseTrait {
 
 	/**
 	 * Returns a PHPUnit constraint that matches anything other than a fixed set of values. This can
-	 * be used to whitelist values, e.g.
+	 * be used to list accepted values, e.g.
 	 *   $mock->expects( $this->never() )->method( $this->anythingBut( 'foo', 'bar' ) );
 	 * which will throw if any unexpected method is called.
 	 *
@@ -34,7 +34,7 @@ trait MediaWikiTestCaseTrait {
 	 * @param string $type
 	 * @param string[] $allow methods to allow
 	 *
-	 * @return object|MockObject
+	 * @return MockObject
 	 */
 	protected function createNoOpMock( $type, $allow = [] ) {
 		$mock = $this->createMock( $type );
@@ -46,16 +46,17 @@ trait MediaWikiTestCaseTrait {
 	 * Return a PHPUnit mock that is expected to never have any methods called on it.
 	 *
 	 * @param string $type
-	 * @return object
+	 * @param string[] $allow methods to allow
+	 * @return MockObject
 	 */
-	protected function createNoOpAbstractMock( $type ) {
+	protected function createNoOpAbstractMock( $type, $allow = [] ) {
 		$mock = $this->getMockBuilder( $type )
 			->disableOriginalConstructor()
 			->disableOriginalClone()
 			->disableArgumentCloning()
 			->disallowMockingUnknownTypes()
 			->getMockForAbstractClass();
-		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct' ) );
+		$mock->expects( $this->never() )->method( $this->anythingBut( '__destruct', ...$allow ) );
 		return $mock;
 	}
 
@@ -149,9 +150,15 @@ trait MediaWikiTestCaseTrait {
 	 * @param array $actual
 	 * @param bool $ordered If the order of the values should match
 	 * @param bool $named If the keys should match
+	 * @param string $message
+	 * @param float $delta Deprecated in assertEquals()
+	 * @param int $maxDepth Deprecated in assertEquals()
+	 * @param bool $canonicalize Deprecated in assertEquals()
+	 * @param bool $ignoreCase Deprecated in assertEquals()
 	 */
-	protected function assertArrayEquals(
-		array $expected, array $actual, $ordered = false, $named = false
+	public function assertArrayEquals(
+		array $expected, array $actual, $ordered = false, $named = false, string $message = '',
+		float $delta = 0.0, int $maxDepth = 10, bool $canonicalize = false, bool $ignoreCase = false
 	) {
 		if ( !$ordered ) {
 			$this->objectAssociativeSort( $expected );
@@ -163,7 +170,11 @@ trait MediaWikiTestCaseTrait {
 			$actual = array_values( $actual );
 		}
 
-		$this->assertEquals( $expected, $actual, ...array_slice( func_get_args(), 4 ) );
+		$this->assertEquals(
+			$expected, $actual, $message,
+			// Deprecated args
+			$delta, $maxDepth, $canonicalize, $ignoreCase
+		);
 	}
 
 	/**
@@ -176,7 +187,7 @@ trait MediaWikiTestCaseTrait {
 	protected function objectAssociativeSort( array &$array ) {
 		uasort(
 			$array,
-			function ( $a, $b ) {
+			static function ( $a, $b ) {
 				return serialize( $a ) <=> serialize( $b );
 			}
 		);
@@ -204,6 +215,15 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
+	 * Re-enable any disabled deprecation warnings and allow same deprecations to be thrown
+	 * multiple times in different tests, so the PHPUnit expectDeprecation() works.
+	 * @after
+	 */
+	protected function mwDebugTearDown() {
+		MWDebug::clearLog();
+	}
+
+	/**
 	 * @param string $text
 	 * @param array $params
 	 * @return Message|MockObject
@@ -227,6 +247,7 @@ trait MediaWikiTestCaseTrait {
 		$msg->method( 'params' )->willReturn( $msg );
 		$msg->method( 'getParams' )->willReturn( $params );
 		$msg->method( 'rawParams' )->willReturn( $msg );
+		$msg->method( 'numParams' )->willReturn( $msg );
 		$msg->method( 'inLanguage' )->willReturn( $msg );
 		$msg->method( 'inContentLanguage' )->willReturn( $msg );
 		$msg->method( 'useDatabase' )->willReturn( $msg );

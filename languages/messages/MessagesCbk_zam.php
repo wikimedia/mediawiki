@@ -8,4 +8,4 @@
  *
  */
 
-$fallback = "es";
+$fallback = 'es';

@@ -26,5 +26,6 @@
 	"ooui-selectfile-not-supported": "Izbor datoteke nije podržan",
 	"ooui-selectfile-placeholder": "Datoteka nije označena",
 	"ooui-selectfile-dragdrop-placeholder": "Povucite datoteku ovdje",
+	"ooui-popup-widget-close-button-aria-label": "Zatvori",
 	"ooui-field-help": "Pomoć"
 }

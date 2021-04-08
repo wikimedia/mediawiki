@@ -14,6 +14,7 @@ use MediaWiki\Storage\MutableRevisionRecord;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiIntegrationTestCase;
 use MediaWikiTitleCodec;
+use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Status;
 use Wikimedia\Message\MessageValue;
@@ -27,6 +28,7 @@ use WikitextContent;
 class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 
 	use ActionModuleBasedHandlerTestTrait;
+	use MockTitleTrait;
 
 	private function newHandler( $resultData, $throwException = null, $csrfSafe = false ) {
 		$config = new HashConfig( [
@@ -52,11 +54,11 @@ class CreationHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$titleCodec->method( 'formatTitle' )
-			->willReturnCallback( function ( $namespace, $text ) {
+			->willReturnCallback( static function ( $namespace, $text ) {
 				return "ns:$namespace:" . ucfirst( $text );
 			} );
 		$titleCodec->method( 'splitTitleString' )
-			->willReturnCallback( function ( $text ) {
+			->willReturnCallback( static function ( $text ) {
 				return [
 					'interwiki' => '',
 					'fragment' => '',

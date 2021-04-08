@@ -36,7 +36,7 @@
  */
 class CachedBagOStuff extends BagOStuff {
 	/** @var BagOStuff */
-	protected $backend;
+	protected $store;
 	/** @var HashBagOStuff */
 	protected $procCache;
 
@@ -46,65 +46,73 @@ class CachedBagOStuff extends BagOStuff {
 	 * @param array $params Parameters for HashBagOStuff
 	 */
 	public function __construct( BagOStuff $backend, $params = [] ) {
+		$params['keyspace'] = $backend->keyspace;
 		parent::__construct( $params );
 
-		$this->backend = $backend;
+		$this->store = $backend;
 		$this->procCache = new HashBagOStuff( $params );
 		$this->attrMap = $backend->attrMap;
 	}
 
-	public function setDebug( $enabled ) {
-		parent::setDebug( $enabled );
-		$this->backend->setDebug( $enabled );
-	}
-
 	public function get( $key, $flags = 0 ) {
 		$value = $this->procCache->get( $key, $flags );
-		if ( $value === false && !$this->procCache->hasKey( $key ) ) {
-			$value = $this->backend->get( $key, $flags );
-			$this->set( $key, $value, self::TTL_INDEFINITE, self::WRITE_CACHE_ONLY );
+		if ( $value !== false || $this->procCache->hasKey( $key ) ) {
+			return $value;
 		}
+
+		$value = $this->store->proxyCall(
+			__FUNCTION__,
+			self::ARG0_KEY,
+			self::RES_NONKEY,
+			func_get_args()
+		);
+		$this->set( $key, $value, self::TTL_INDEFINITE, self::WRITE_CACHE_ONLY );
 
 		return $value;
 	}
 
 	public function getMulti( array $keys, $flags = 0 ) {
-		$valuesByKeyCached = [];
+		$valueByKeyCached = [];
 
-		$keysMissing = [];
+		$keysFetch = [];
 		foreach ( $keys as $key ) {
 			$value = $this->procCache->get( $key, $flags );
 			if ( $value === false && !$this->procCache->hasKey( $key ) ) {
-				$keysMissing[] = $key;
+				$keysFetch[] = $key;
 			} else {
-				$valuesByKeyCached[$key] = $value;
+				$valueByKeyCached[$key] = $value;
 			}
 		}
 
-		$valuesByKeyFetched = $this->backend->getMulti( $keysMissing, $flags );
-		$this->setMulti( $valuesByKeyFetched, self::TTL_INDEFINITE, self::WRITE_CACHE_ONLY );
+		$valueByKeyFetched = $this->store->proxyCall(
+			__FUNCTION__,
+			self::ARG0_KEYARR,
+			self::RES_KEYMAP,
+			[ $keysFetch, $flags ]
+		);
+		$this->setMulti( $valueByKeyFetched, self::TTL_INDEFINITE, self::WRITE_CACHE_ONLY );
 
-		return $valuesByKeyCached + $valuesByKeyFetched;
+		return $valueByKeyCached + $valueByKeyFetched;
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
 		$this->procCache->set( $key, $value, $exptime, $flags );
 
-		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
-			$this->backend->set( $key, $value, $exptime, $flags );
+		if ( $this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
+			return true;
 		}
 
-		return true;
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function delete( $key, $flags = 0 ) {
 		$this->procCache->delete( $key, $flags );
 
-		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
-			$this->backend->delete( $key, $flags );
+		if ( $this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
+			return true;
 		}
 
-		return true;
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function add( $key, $value, $exptime = 0, $flags = 0 ) {
@@ -121,21 +129,21 @@ class CachedBagOStuff extends BagOStuff {
 	public function merge( $key, callable $callback, $exptime = 0, $attempts = 10, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
-		return $this->backend->merge( $key, $callback, $exptime, $attempts, $flags );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function changeTTL( $key, $exptime = 0, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
-		return $this->backend->changeTTL( $key, $exptime, $flags );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
-		return $this->backend->lock( $key, $timeout, $expiry, $rclass );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function unlock( $key ) {
-		return $this->backend->unlock( $key );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function deleteObjectsExpiringBefore(
@@ -145,89 +153,93 @@ class CachedBagOStuff extends BagOStuff {
 	) {
 		$this->procCache->deleteObjectsExpiringBefore( $timestamp, $progress, $limit );
 
-		return $this->backend->deleteObjectsExpiringBefore( $timestamp, $progress, $limit );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_NONKEY, self::RES_NONKEY, func_get_args() );
 	}
 
-	public function makeKeyInternal( $keyspace, $args ) {
-		return $this->backend->makeKeyInternal( $keyspace, $args );
+	public function makeKeyInternal( $keyspace, $components ) {
+		return $this->genericKeyFromComponents( $keyspace, ...$components );
 	}
 
-	public function makeKey( $class, ...$components ) {
-		return $this->backend->makeKey( $class, ...$components );
+	public function makeKey( $collection, ...$components ) {
+		return $this->genericKeyFromComponents( $this->keyspace, $collection, ...$components );
 	}
 
-	public function makeGlobalKey( $class, ...$components ) {
-		return $this->backend->makeGlobalKey( $class, ...$components );
+	public function makeGlobalKey( $collection, ...$components ) {
+		return $this->genericKeyFromComponents( self::GLOBAL_KEYSPACE, $collection, ...$components );
+	}
+
+	protected function convertGenericKey( $key ) {
+		return $key; // short-circuit; already uses "generic" keys
 	}
 
 	public function getLastError() {
-		return $this->backend->getLastError();
+		return $this->store->getLastError();
 	}
 
 	public function clearLastError() {
-		return $this->backend->clearLastError();
+		return $this->store->clearLastError();
 	}
 
-	public function setMulti( array $data, $exptime = 0, $flags = 0 ) {
-		$this->procCache->setMulti( $data, $exptime, $flags );
+	public function setMulti( array $valueByKey, $exptime = 0, $flags = 0 ) {
+		$this->procCache->setMulti( $valueByKey, $exptime, $flags );
 
-		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
-			return $this->backend->setMulti( $data, $exptime, $flags );
+		if ( $this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
+			return true;
 		}
 
-		return true;
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEYMAP, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function deleteMulti( array $keys, $flags = 0 ) {
 		$this->procCache->deleteMulti( $keys, $flags );
 
-		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
-			return $this->backend->deleteMulti( $keys, $flags );
+		if ( $this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
+			return true;
 		}
 
-		return true;
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEYARR, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function changeTTLMulti( array $keys, $exptime, $flags = 0 ) {
 		$this->procCache->changeTTLMulti( $keys, $exptime, $flags );
 
-		if ( !$this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
-			return $this->backend->changeTTLMulti( $keys, $exptime, $flags );
+		if ( $this->fieldHasFlags( $flags, self::WRITE_CACHE_ONLY ) ) {
+			return true;
 		}
 
-		return true;
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEYARR, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function incr( $key, $value = 1, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
-		return $this->backend->incr( $key, $value, $flags );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function decr( $key, $value = 1, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
-		return $this->backend->decr( $key, $value, $flags );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
 		$this->procCache->delete( $key );
 
-		return $this->backend->incrWithInit( $key, $exptime, $value, $init, $flags );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function addBusyCallback( callable $workCallback ) {
-		$this->backend->addBusyCallback( $workCallback );
+		$this->store->addBusyCallback( $workCallback );
 	}
 
 	public function setNewPreparedValues( array $valueByKey ) {
-		return $this->backend->setNewPreparedValues( $valueByKey );
+		return $this->store->proxyCall( __FUNCTION__, self::ARG0_KEYMAP, self::RES_NONKEY, func_get_args() );
 	}
 
 	public function setMockTime( &$time ) {
 		parent::setMockTime( $time );
 		$this->procCache->setMockTime( $time );
-		$this->backend->setMockTime( $time );
+		$this->store->setMockTime( $time );
 	}
 
 	// @codeCoverageIgnoreEnd

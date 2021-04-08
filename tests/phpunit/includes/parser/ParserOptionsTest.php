@@ -1,30 +1,13 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\ScopedCallback;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers ParserOptions
  */
-class ParserOptionsTest extends MediaWikiIntegrationTestCase {
-
-	private static function clearCache() {
-		$wrap = TestingAccessWrapper::newFromClass( ParserOptions::class );
-		$wrap->defaults = null;
-		$wrap->lazyOptions = [
-			'dateformat' => [ ParserOptions::class, 'initDateFormat' ],
-			'speculativeRevId' => [ ParserOptions::class, 'initSpeculativeRevId' ],
-		];
-		$wrap->inCacheKey = [
-			'dateformat' => true,
-			'numberheadings' => true,
-			'thumbsize' => true,
-			'stubthreshold' => true,
-			'printable' => true,
-			'userlang' => true,
-		];
-	}
+class ParserOptionsTest extends MediaWikiLangTestCase {
 
 	protected function setUp() : void {
 		if ( PHP_VERSION_ID >= 70400 && PHP_VERSION_ID <= 70408 ) {
@@ -32,7 +15,6 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 		}
 
 		parent::setUp();
-		self::clearCache();
 
 		$this->setMwGlobals( [
 			'wgRenderHashAppend' => '',
@@ -44,7 +26,7 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown() : void {
-		self::clearCache();
+		ParserOptions::clearStaticCache();
 		parent::tearDown();
 	}
 
@@ -61,8 +43,8 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 			'wgLang' => $userLang,
 		] );
 
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'de' );
-		$lang2 = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'bug' );
+		$lang = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'de' );
+		$lang2 = $this->getServiceContainer()->getLanguageFactory()->getLanguage( 'bug' );
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setUser( $user );
 		$context->setLanguage( $lang );
@@ -89,7 +71,7 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 
 		// Passing 'canonical' uses an anon and $contLang, and ignores any passed $userLang
 		$popt = ParserOptions::newCanonical( 'canonical' );
-		$this->assertTrue( $popt->getUser()->isAnon() );
+		$this->assertTrue( $popt->getUserIdentity()->isAnon() );
 		$this->assertSame( $contLang, $popt->getUserLangObj() );
 		$popt = ParserOptions::newCanonical( 'canonical', $lang2 );
 		$this->assertSame( $contLang, $popt->getUserLangObj() );
@@ -114,28 +96,53 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideIsSafeToCache
 	 * @param bool $expect Expected value
 	 * @param array $options Options to set
+	 * @param array|null $usedOptions
 	 */
-	public function testIsSafeToCache( $expect, $options ) {
+	public function testIsSafeToCache( bool $expect, array $options, array $usedOptions = null ) {
 		$popt = ParserOptions::newCanonical( 'canonical' );
 		foreach ( $options as $name => $value ) {
 			$popt->setOption( $name, $value );
 		}
-		$this->assertSame( $expect, $popt->isSafeToCache() );
+		$this->assertSame( $expect, $popt->isSafeToCache( $usedOptions ) );
 	}
 
 	public static function provideIsSafeToCache() {
 		global $wgEnableParserLimitReporting;
+
+		$seven = static function () {
+			return 7;
+		};
+
 		return [
 			'No overrides' => [ true, [] ],
+			'No overrides, some used' => [ true, [], [ 'thumbsize', 'removeComments' ] ],
 			'In-key options are ok' => [ true, [
 				'thumbsize' => 1e100,
 				'printable' => false,
 			] ],
+			'In-key options are ok, some used' => [ true, [
+				'thumbsize' => 1e100,
+				'printable' => false,
+			], [ 'thumbsize', 'removeComments' ] ],
 			'Non-in-key options are not ok' => [ false, [
 				'removeComments' => false,
 			] ],
+			'Non-in-key options are not ok, used' => [ false, [
+				'removeComments' => false,
+			], [ 'removeComments' ] ],
+			'Non-in-key options are ok if other used' => [ true, [
+				'removeComments' => false,
+			], [ 'thumbsize' ] ],
+			'Non-in-key options are ok if nothing used' => [ true, [
+				'removeComments' => false,
+			], [] ],
+			'Unknown used options do not crash' => [ true, [
+			], [ 'unknown' ] ],
 			'Non-in-key options are not ok (2)' => [ false, [
 				'wrapclass' => 'foobar',
+			] ],
+			'Callback not default' => [ true, [
+				'speculativeRevIdCallback' => $seven,
 			] ],
 			'Canonical override, not default (1)' => [ true, [
 				'enableLimitReport' => $wgEnableParserLimitReporting,
@@ -170,16 +177,15 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 	public static function provideOptionsHash() {
 		$used = [ 'thumbsize', 'printable' ];
 
-		$classWrapper = TestingAccessWrapper::newFromClass( ParserOptions::class );
-		$classWrapper->getDefaults();
 		$allUsableOptions = array_diff(
-			array_keys( $classWrapper->inCacheKey ),
-			array_keys( $classWrapper->lazyOptions )
+			ParserOptions::allCacheVaryingOptions(),
+			array_keys( ParserOptions::getLazyOptions() )
 		);
 
 		return [
 			'Canonical options, nothing used' => [ [], 'canonical', [] ],
 			'Canonical options, used some options' => [ $used, 'canonical', [] ],
+			'Canonical options, used some more options' => [ array_merge( $used, [ 'wrapclass' ] ), 'canonical', [] ],
 			'Used some options, non-default values' => [
 				$used,
 				'printable=1!thumbsize=200',
@@ -188,6 +194,7 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 					'printable' => true,
 				]
 			],
+
 			'Canonical options, used all non-lazy options' => [ $allUsableOptions, 'canonical', [] ],
 			'Canonical options, nothing used, but with hooks and $wgRenderHashAppend' => [
 				[],
@@ -225,7 +232,7 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 			}
 		);
 
-		self::clearCache();
+		ParserOptions::clearStaticCache();
 
 		$popt = ParserOptions::newCanonical( 'canonical' );
 		$popt->registerWatcher( function () {
@@ -256,14 +263,6 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testMatches() {
-		$classWrapper = TestingAccessWrapper::newFromClass( ParserOptions::class );
-		$oldDefaults = $classWrapper->defaults;
-		$oldLazy = $classWrapper->lazyOptions;
-		$reset = new ScopedCallback( function () use ( $classWrapper, $oldDefaults, $oldLazy ) {
-			$classWrapper->defaults = $oldDefaults;
-			$classWrapper->lazyOptions = $oldLazy;
-		} );
-
 		$popt1 = ParserOptions::newCanonical( 'canonical' );
 		$popt2 = ParserOptions::newCanonical( 'canonical' );
 		$this->assertTrue( $popt1->matches( $popt2 ) );
@@ -276,10 +275,16 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $popt1->matches( $popt2 ) );
 
 		$ctr = 0;
-		$classWrapper->defaults += [ __METHOD__ => null ];
-		$classWrapper->lazyOptions += [ __METHOD__ => function () use ( &$ctr ) {
-			return ++$ctr;
-		} ];
+		$this->setTemporaryHook( 'ParserOptionsRegister',
+			function ( &$defaults, &$inCacheKey, &$lazyOptions ) use ( &$ctr ) {
+				$defaults['testMatches'] = null;
+				$lazyOptions['testMatches'] = static function () use ( &$ctr ) {
+					return ++$ctr;
+				};
+			}
+		);
+		ParserOptions::clearStaticCache();
+
 		$popt1 = ParserOptions::newCanonical( 'canonical' );
 		$popt2 = ParserOptions::newCanonical( 'canonical' );
 		$this->assertFalse( $popt1->matches( $popt2 ) );
@@ -287,43 +292,60 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 		ScopedCallback::consume( $reset );
 	}
 
+	/**
+	 * This test fails if tearDown() does not call ParserOptions::clearStaticCache(),
+	 * because the lazy option from the hook in the previous test remains active.
+	 */
+	public function testTeardownClearedCache() {
+		$popt1 = ParserOptions::newCanonical( 'canonical' );
+		$popt2 = ParserOptions::newCanonical( 'canonical' );
+		$this->assertTrue( $popt1->matches( $popt2 ) );
+	}
+
 	public function testMatchesForCacheKey() {
 		$this->hideDeprecated( 'ParserOptions::newCanonical with no user' );
-		$cOpts = ParserOptions::newCanonical( null, 'en' );
+		$cOpts = ParserOptions::newCanonical(
+			null,
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
+		);
 
 		$uOpts = ParserOptions::newFromAnon();
 		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new User();
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new User();
-		$user->setOption( 'thumbsize', 251 );
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$this->getServiceContainer()
+			->getUserOptionsManager()
+			->setOption( $user, 'thumbsize', 251 );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new User();
-		$user->setOption( 'stubthreshold', 800 );
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
+		$this->getServiceContainer()
+			->getUserOptionsManager()
+			->setOption( $user, 'stubthreshold', 800 );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new User();
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$uOpts = ParserOptions::newFromUserAndLang( $user,
-			MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'zh' ) );
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' ) );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 	}
 
 	public function testAllCacheVaryingOptions() {
 		$this->setTemporaryHook( 'ParserOptionsRegister', null );
 		$this->assertSame( [
-			'dateformat', 'numberheadings', 'printable', 'stubthreshold',
+			'dateformat', 'numberheadings', 'printable',
 			'thumbsize', 'userlang'
 		], ParserOptions::allCacheVaryingOptions() );
 
-		self::clearCache();
+		ParserOptions::clearStaticCache();
 
-		$this->setTemporaryHook( 'ParserOptionsRegister', function ( &$defaults, &$inCacheKey ) {
+		$this->setTemporaryHook( 'ParserOptionsRegister', static function ( &$defaults, &$inCacheKey ) {
 			$defaults += [
 				'foo' => 'foo',
 				'bar' => 'bar',
@@ -335,18 +357,18 @@ class ParserOptionsTest extends MediaWikiIntegrationTestCase {
 			];
 		} );
 		$this->assertSame( [
-			'dateformat', 'foo', 'numberheadings', 'printable', 'stubthreshold',
+			'dateformat', 'foo', 'numberheadings', 'printable',
 			'thumbsize', 'userlang'
 		], ParserOptions::allCacheVaryingOptions() );
 	}
 
 	public function testGetSpeculativeRevid() {
-		$options = new ParserOptions();
+		$options = ParserOptions::newFromAnon();
 
 		$this->assertFalse( $options->getSpeculativeRevId() );
 
 		$counter = 0;
-		$options->setSpeculativeRevIdCallback( function () use( &$counter ) {
+		$options->setSpeculativeRevIdCallback( static function () use( &$counter ) {
 			return ++$counter;
 		} );
 

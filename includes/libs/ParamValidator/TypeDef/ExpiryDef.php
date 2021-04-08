@@ -70,7 +70,7 @@ class ExpiryDef extends TypeDef {
 			->textListParams(
 				// Should be quoted or monospace for presentation purposes,
 				//   but textListParams() doesn't do this.
-				array_map( function ( $val ) {
+				array_map( static function ( $val ) {
 					return "\"$val\"";
 				}, self::INFINITY_VALS )
 			);

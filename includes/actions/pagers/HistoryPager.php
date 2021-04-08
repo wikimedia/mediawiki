@@ -21,9 +21,11 @@
  * @ingroup Actions
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\WatchlistNotificationManager;
 
 /**
  * @ingroup Pager
@@ -54,6 +56,12 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var WatchlistNotificationManager */
+	private $watchlistNotificationManager;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param HistoryAction $historyPage
 	 * @param string $year
@@ -61,6 +69,8 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @param string $tagFilter
 	 * @param array $conds
 	 * @param string $day
+	 * @param LinkBatchFactory|null $linkBatchFactory
+	 * @param WatchlistNotificationManager|null $watchlistNotificationManager
 	 */
 	public function __construct(
 		HistoryAction $historyPage,
@@ -68,15 +78,21 @@ class HistoryPager extends ReverseChronologicalPager {
 		$month = '',
 		$tagFilter = '',
 		array $conds = [],
-		$day = ''
+		$day = '',
+		LinkBatchFactory $linkBatchFactory = null,
+		WatchlistNotificationManager $watchlistNotificationManager = null
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
 		$this->tagFilter = $tagFilter;
 		$this->getDateCond( $year, $month, $day );
 		$this->conds = $conds;
-		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getUser() );
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$this->showTagEditUI = ChangeTags::showTagEditingUI( $this->getAuthority() );
+		$services = MediaWikiServices::getInstance();
+		$this->revisionStore = $services->getRevisionStore();
+		$this->linkBatchFactory = $linkBatchFactory ?? $services->getLinkBatchFactory();
+		$this->watchlistNotificationManager = $watchlistNotificationManager
+			?? $services->getWatchlistNotificationManager();
 	}
 
 	// For hook compatibility...
@@ -131,7 +147,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->counter++;
 
 			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
-				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
+				? $this->watchlistNotificationManager
+					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 				: false;
 
 			$s = $this->historyLine( $this->lastRow, $row, $notifTimestamp, false, $firstInList );
@@ -150,7 +167,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		# Do a link batch query
 		$this->mResult->seek( 0 );
-		$batch = new LinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		$revIds = [];
 		foreach ( $this->mResult as $row ) {
 			if ( $row->rev_parent_id ) {
@@ -183,7 +200,6 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	protected function getStartBody() {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
@@ -209,9 +225,8 @@ class HistoryPager extends ReverseChronologicalPager {
 				$attrs
 			) . "\n";
 
-			$user = $this->getUser();
 			$actionButtons = '';
-			if ( $permissionManager->userHasRight( $user, 'deleterevision' ) ) {
+			if ( $this->getAuthority()->isAllowed( 'deleterevision' ) ) {
 				$actionButtons .= $this->getRevisionButton(
 					'revisiondelete', 'showhideselectedversions' );
 			}
@@ -224,7 +239,7 @@ class HistoryPager extends ReverseChronologicalPager {
 					'mw-history-revisionactions' ], $actionButtons );
 			}
 
-			if ( $permissionManager->userHasRight( $user, 'deleterevision' ) || $this->showTagEditUI ) {
+			if ( $this->getAuthority()->isAllowed( 'deleterevision' ) || $this->showTagEditUI ) {
 				$this->buttons .= ( new ListToggle( $this->getOutput() ) )->getHTML();
 			}
 
@@ -273,7 +288,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->counter++;
 
 			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
-				? $this->getTitle()->getNotificationTimestamp( $this->getUser() )
+				? $this->watchlistNotificationManager
+					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
 				: false;
 
 			$s = $this->historyLine( $this->lastRow, $next, $notifTimestamp, false, $firstInList );
@@ -321,8 +337,6 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	private function historyLine( $row, $next, $notificationtimestamp = false,
 		$dummy = false, $firstInList = false ) {
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-
 		$revRecord = $this->revisionStore->newRevisionFromRow(
 			$row,
 			RevisionStore::READ_NORMAL,
@@ -358,7 +372,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		$del = '';
 		$user = $this->getUser();
-		$canRevDelete = $permissionManager->userHasRight( $user, 'deleterevision' );
+		$canRevDelete = $this->getAuthority()->isAllowed( 'deleterevision' );
 		// Show checkboxes for each revision, to allow for revision deletion and
 		// change tags
 		$visibility = $revRecord->getVisibility();
@@ -367,11 +381,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			// If revision was hidden from sysops and we don't need the checkbox
 			// for anything else, disable it
 			if ( !$this->showTagEditUI
-				&& !RevisionRecord::userCanBitfield(
-					$visibility,
-					RevisionRecord::DELETED_RESTRICTED,
-					$user
-				)
+				&& !$revRecord->userCan( RevisionRecord::DELETED_RESTRICTED, $this->getAuthority() )
 			) {
 				$del = Xml::check( 'deleterevisions', false, [ 'disabled' => 'disabled' ] );
 			// Otherwise, enable the checkbox...
@@ -380,13 +390,9 @@ class HistoryPager extends ReverseChronologicalPager {
 					[ 'name' => 'ids[' . $revRecord->getId() . ']' ] );
 			}
 		// User can only view deleted revisions...
-		} elseif ( $visibility && $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+		} elseif ( $revRecord->getVisibility() && $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			// If revision was hidden from sysops, disable the link
-			if ( !RevisionRecord::userCanBitfield(
-				$visibility,
-				RevisionRecord::DELETED_RESTRICTED,
-				$user
-			) ) {
+			if ( !$revRecord->userCan( RevisionRecord::DELETED_RESTRICTED, $this->getAuthority() ) ) {
 				$del = Linker::revDeleteLinkDisabled( false );
 			// Otherwise, show the link...
 			} else {
@@ -440,11 +446,8 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		# Rollback and undo links
 
-		if ( $previousRevRecord &&
-			$permissionManager->quickUserCan( 'edit', $user, $this->getTitle() )
-		) {
-			if ( $latest && $permissionManager->quickUserCan( 'rollback',
-					$user, $this->getTitle() )
+		if ( $previousRevRecord && $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
+			if ( $latest && $this->getAuthority()->probablyCan( 'rollback', $this->getTitle() )
 			) {
 				// Get a rollback link without the brackets
 				$rollbackLink = Linker::generateRollback(
@@ -557,11 +560,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$cur = $this->historyPage->message['cur'];
 		$latest = $this->getWikiPage()->getLatest();
 		if ( $latest === $rev->getId()
-			|| !RevisionRecord::userCanBitfield(
-				$rev->getVisibility(),
-				RevisionRecord::DELETED_TEXT,
-				$this->getUser()
-			)
+			|| !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 		) {
 			return $cur;
 		} else {
@@ -614,15 +613,8 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->getTitle()
 		);
 
-		if ( !RevisionRecord::userCanBitfield(
-				$prevRev->getVisibility(),
-				RevisionRecord::DELETED_TEXT,
-				$this->getUser()
-			) || !RevisionRecord::userCanBitfield(
-				$nextRev->getVisibility(),
-				RevisionRecord::DELETED_TEXT,
-				$this->getUser()
-			)
+		if ( !$prevRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ||
+			!$nextRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 		) {
 			return $last;
 		}
@@ -661,11 +653,7 @@ class HistoryPager extends ReverseChronologicalPager {
 				$checkmark = [ 'checked' => 'checked' ];
 			} else {
 				# Check visibility of old revisions
-				if ( !RevisionRecord::userCanBitfield(
-					$rev->getVisibility(),
-					RevisionRecord::DELETED_TEXT,
-					$this->getUser()
-				) ) {
+				if ( !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ) {
 					$radio['disabled'] = 'disabled';
 					$checkmark = []; // We will check the next possible one
 				} elseif ( !$this->oldIdChecked ) {
@@ -689,6 +677,18 @@ class HistoryPager extends ReverseChronologicalPager {
 		} else {
 			return '';
 		}
+	}
+
+	/**
+	 * Returns whether to show the "navigation bar"
+	 *
+	 * @return bool
+	 */
+	protected function isNavigationBarShown() {
+		if ( $this->getNumRows() == 0 ) {
+			return false;
+		}
+		return parent::isNavigationBarShown();
 	}
 
 	/**

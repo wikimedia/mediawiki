@@ -141,6 +141,9 @@ class FileRepo {
 	/** @var string Secret key to pass as an X-Swift-Secret header to the proxied thumb service */
 	protected $thumbProxySecret;
 
+	/** @var bool Disable local image scaling */
+	protected $disableLocalTransform = false;
+
 	/** @var WANObjectCache */
 	protected $wanCache;
 
@@ -181,7 +184,7 @@ class FileRepo {
 		$optionalSettings = [
 			'descBaseUrl', 'scriptDirUrl', 'articleUrl', 'fetchDescription',
 			'thumbScriptUrl', 'pathDisclosureProtection', 'descriptionCacheExpiry',
-			'favicon', 'thumbProxyUrl', 'thumbProxySecret',
+			'favicon', 'thumbProxyUrl', 'thumbProxySecret', 'disableLocalTransform'
 		];
 		foreach ( $optionalSettings as $var ) {
 			if ( isset( $info[$var] ) ) {
@@ -440,13 +443,21 @@ class FileRepo {
 	 *                   current version. An image object will be returned which was
 	 *                   created at the specified time (which may be archived or current).
 	 *   ignoreRedirect: If true, do not follow file redirects
-	 *   private:        If true, return restricted (deleted) files if the current
+	 *   private:        If a User object, return restricted (deleted) files if the
 	 *                   user is allowed to view them. Otherwise, such files will not
-	 *                   be found. If a User object, use that user instead of the current.
+	 *                   be found. If set and not a User object, throws an exception
 	 *   latest:         If true, load from the latest available data into File objects
 	 * @return File|bool False on failure
+	 * @throws InvalidArgumentException
 	 */
 	public function findFile( $title, $options = [] ) {
+		if ( !empty( $options['private'] ) && !( $options['private'] instanceof User ) ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ' called with the `private` option set to something ' .
+				'other than a User object'
+			);
+		}
+
 		$title = File::normalizeTitle( $title );
 		if ( !$title ) {
 			return false;
@@ -471,13 +482,12 @@ class FileRepo {
 			if ( $img ) {
 				$img->load( $flags );
 				if ( $img->exists() ) {
-					global $wgUser;
 					if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 						return $img; // always OK
-					} elseif ( !empty( $options['private'] ) &&
-						$img->userCan( File::DELETED_FILE,
-							$options['private'] instanceof User ? $options['private'] : $wgUser
-						)
+					} elseif (
+						// If its not empty, its a User object
+						!empty( $options['private'] ) &&
+						$img->userCan( File::DELETED_FILE, $options['private'] )
 					) {
 						return $img;
 					}
@@ -490,7 +500,7 @@ class FileRepo {
 			return false;
 		}
 		$redir = $this->checkRedirect( $title );
-		if ( $redir && $title->getNamespace() == NS_FILE ) {
+		if ( $redir && $title->getNamespace() === NS_FILE ) {
 			$img = $this->newFile( $redir );
 			if ( !$img ) {
 				return false;
@@ -530,6 +540,13 @@ class FileRepo {
 				$title = $item['title'];
 				$options = $item;
 				unset( $options['title'] );
+
+				if (
+					!empty( $options['private'] ) &&
+					!( $options['private'] instanceof User )
+				) {
+					$options['private'] = RequestContext::getMain()->getUser();
+				}
 			} else {
 				$title = $item;
 				$options = [];
@@ -559,8 +576,16 @@ class FileRepo {
 	 * @param string $sha1 Base 36 SHA-1 hash
 	 * @param array $options Option array, same as findFile().
 	 * @return File|bool False on failure
+	 * @throws InvalidArgumentException if the `private` option is set and not a User object
 	 */
 	public function findFileFromKey( $sha1, $options = [] ) {
+		if ( !empty( $options['private'] ) && !( $options['private'] instanceof User ) ) {
+			throw new InvalidArgumentException(
+				__METHOD__ . ' called with the `private` option set to something ' .
+				'other than a User object'
+			);
+		}
+
 		$time = $options['time'] ?? false;
 		# First try to find a matching current version of a file...
 		if ( !$this->fileFactoryKey ) {
@@ -574,13 +599,12 @@ class FileRepo {
 		if ( $time !== false && $this->oldFileFactoryKey ) { // find-by-sha1 supported?
 			$img = call_user_func( $this->oldFileFactoryKey, $sha1, $this, $time );
 			if ( $img && $img->exists() ) {
-				global $wgUser;
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
-				} elseif ( !empty( $options['private'] ) &&
-					$img->userCan( File::DELETED_FILE,
-						$options['private'] instanceof User ? $options['private'] : $wgUser
-					)
+				} elseif (
+					// If its not empty, its a User object
+					!empty( $options['private'] ) &&
+					$img->userCan( File::DELETED_FILE, $options['private'] )
 				) {
 					return $img;
 				}
@@ -607,7 +631,7 @@ class FileRepo {
 	 * have the given SHA-1 content hashes.
 	 *
 	 * @param string[] $hashes An array of hashes
-	 * @return array[] An Array of arrays or iterators of file objects and the hash as key
+	 * @return File[][] An Array of arrays or iterators of file objects and the hash as key
 	 */
 	public function findBySha1s( array $hashes ) {
 		$result = [];
@@ -667,6 +691,16 @@ class FileRepo {
 	 */
 	public function canTransformVia404() {
 		return $this->transformVia404;
+	}
+
+	/**
+	 * Returns true if the repository can transform files locally.
+	 *
+	 * @since 1.36
+	 * @return bool
+	 */
+	public function canTransformLocally() {
+		return !$this->disableLocalTransform;
 	}
 
 	/**
@@ -850,7 +884,7 @@ class FileRepo {
 	public function getDescriptionStylesheetUrl() {
 		if ( isset( $this->scriptDirUrl ) ) {
 			// Must match canonical query parameter order for optimum caching
-			// See Title::getCdnUrls
+			// See HtmlCacheUpdater::getUrls
 			return $this->makeUrl( 'title=MediaWiki:Filepage.css&action=raw&ctype=text/css' );
 		}
 
@@ -1475,8 +1509,7 @@ class FileRepo {
 		$backend = $this->backend; // convenience
 		$operations = [];
 		// Validate filenames and create archive directories
-		foreach ( $sourceDestPairs as $pair ) {
-			list( $srcRel, $archiveRel ) = $pair;
+		foreach ( $sourceDestPairs as [ $srcRel, $archiveRel ] ) {
 			if ( !$this->validateFilename( $srcRel ) ) {
 				throw new MWException( __METHOD__ . ':Validation error in $srcRel' );
 			} elseif ( !$this->validateFilename( $archiveRel ) ) {
@@ -1854,30 +1887,37 @@ class FileRepo {
 	}
 
 	/**
-	 * Get a key on the primary cache for this repository.
-	 * Returns false if the repository's cache is not accessible at this site.
-	 * The parameters are the parts of the key.
+	 * Get a global, repository-qualified, WAN cache key
 	 *
-	 * STUB
-	 * @param mixed ...$args
-	 * @return bool
+	 * This might be called from either the site context of the wiki that owns the repo or
+	 * the site context of another wiki that simply has access to the repo. This returns
+	 * false if the repository's cache is not accessible from the current site context.
+	 *
+	 * @param string $kClassSuffix Key collection name suffix (added to this repo class)
+	 * @param mixed ...$components Additional key components
+	 * @return string|false
 	 */
-	public function getSharedCacheKey( ...$args ) {
+	public function getSharedCacheKey( $kClassSuffix, ...$components ) {
 		return false;
 	}
 
 	/**
-	 * Get a key for this repo in the local cache domain. These cache keys are
-	 * not shared with remote instances of the repo.
-	 * The parameters are the parts of the key.
+	 * Get a site-local, repository-qualified, WAN cache key
 	 *
-	 * @param mixed ...$args
+	 * These cache keys are not shared among different site context and thus cannot be
+	 * directly invalidated when repo objects are modified. These are useful when there
+	 * is no accessible global cache or the values depend on the current site context.
+	 *
+	 * @param string $kClassSuffix Key collection name suffix (added to this repo class)
+	 * @param mixed ...$components Additional key components
 	 * @return string
 	 */
-	public function getLocalCacheKey( ...$args ) {
-		array_unshift( $args, 'filerepo', $this->getName() );
-
-		return $this->wanCache->makeKey( ...$args );
+	public function getLocalCacheKey( $kClassSuffix, ...$components ) {
+		return $this->wanCache->makeKey(
+			'filerepo-' . $kClassSuffix,
+			$this->getName(),
+			...$components
+		);
 	}
 
 	/**

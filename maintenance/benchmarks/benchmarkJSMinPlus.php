@@ -48,7 +48,7 @@ class BenchmarkJSMinPlus extends Benchmarker {
 
 		$this->bench( [
 			"JSParser::parse ($filename)" => [
-				'function' => function ( $parser, $content, $filename ) {
+				'function' => static function ( $parser, $content, $filename ) {
 					$parser->parse( $content, $filename, 1 );
 				},
 				'args' => [ $parser, $content, $filename ]

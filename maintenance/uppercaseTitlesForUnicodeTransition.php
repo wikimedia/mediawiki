@@ -116,7 +116,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			$this->user = User::newSystemUser( $username, [ 'steal' => $steal ] );
 			if ( !$this->user ) {
 				$user = User::newFromName( $username );
-				if ( !$steal && $user && $user->isLoggedIn() ) {
+				if ( !$steal && $user && $user->isRegistered() ) {
 					$this->fatalError( "User $username already exists.\n"
 						. "Use --steal if you really want to steal it from the human who currently owns it."
 					);
@@ -232,11 +232,11 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			$nsinfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 			$this->namespaces = array_filter(
 				array_keys( $nsinfo->getCanonicalNamespaces() ),
-				function ( $ns ) use ( $nsinfo ) {
+				static function ( $ns ) use ( $nsinfo ) {
 					return $nsinfo->isMovable( $ns ) && $nsinfo->isCapitalized( $ns );
 				}
 			);
-			usort( $this->namespaces, function ( $ns1, $ns2 ) use ( $nsinfo ) {
+			usort( $this->namespaces, static function ( $ns1, $ns2 ) use ( $nsinfo ) {
 				if ( $ns1 === $ns2 ) {
 					return 0;
 				}
@@ -305,9 +305,10 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		if ( $this->isUserPage( $db, $newTitle->getNamespace(), $newTitle->getText() ) ) {
 			$munge = 'Target title\'s user exists';
 		} else {
-			$mp = new MovePage( $oldTitle, $newTitle );
-			$status = $mp->isValidMove();
-			if ( !$status->isOK() && $status->hasMessage( 'articleexists' ) ) {
+			$mpFactory = MediaWikiServices::getInstance()->getMovePageFactory();
+			$status = $mpFactory->newMovePage( $oldTitle, $newTitle )->isValidMove();
+			if ( !$status->isOK() && (
+				$status->hasMessage( 'articleexists' ) || $status->hasMessage( 'redirectexists' ) ) ) {
 				$munge = 'Target title exists';
 			}
 		}
@@ -385,8 +386,10 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return false;
 		}
 
-		$mp = new MovePage( $oldTitle, $newTitle );
-		$status = $mp->isValidMove();
+		$services = MediaWikiServices::getInstance();
+		$mpFactory = $services->getMovePageFactory();
+		$movePage = $mpFactory->newMovePage( $oldTitle, $newTitle );
+		$status = $movePage->isValidMove();
 		if ( !$status->isOK() ) {
 			$this->error(
 				"Invalid move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()}: "
@@ -407,7 +410,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			return true;
 		}
 
-		$status = $mp->move( $this->user, $this->reason, false, $this->tags );
+		$status = $movePage->move( $this->user, $this->reason, false, $this->tags );
 		if ( !$status->isOK() ) {
 			$this->error(
 				"Move {$oldTitle->getPrefixedText()} → {$newTitle->getPrefixedText()} failed: "
@@ -431,7 +434,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		);
 
 		if ( $deletionReason !== null ) {
-			$page = WikiPage::factory( $newTitle );
+			$page = $services->getWikiPageFactory()->newFromTitle( $newTitle );
 			$error = '';
 			$status = $page->doDeleteArticleReal(
 				$deletionReason,

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"1233qwer1234qwer4",
 			"Ahmed-Najib-Biabani-Ibrahimkhel",
 			"Macofe"
 		]
@@ -10,7 +11,6 @@
 	"apihelp-block-param-user": "کارن-نوم، IP پته، يا IP سيمې باندې بنديز لگول.",
 	"apihelp-block-param-reason": "د بنديز سبب.",
 	"apihelp-block-param-nocreate": "د گڼون جوړولو مخ نيول.",
-	"apihelp-createaccount-param-name": "کارن-نوم.",
 	"apihelp-delete-summary": "يو مخ ړنگول.",
 	"apihelp-delete-example-simple": "<kbd>لومړی مخ</kbd> ړنگول.",
 	"apihelp-edit-summary": "مخونه جوړول او سمول.",
@@ -51,7 +51,7 @@
 	"apihelp-undelete-param-reason": "د بيازېرملو سبب.",
 	"apihelp-upload-param-watch": "مخ کتل.",
 	"apihelp-upload-param-file": "د دوتنې مېنځپانگه.",
-	"apihelp-userrights-param-user": "کارن نوم.",
+	"apihelp-userrights-param-user": "کارن.",
 	"apihelp-userrights-param-userid": "کارن پېژند.",
 	"apihelp-userrights-param-reason": "د بدلون سبب.",
 	"api-format-title": "د مېډياويکي API پايله",
@@ -63,9 +63,7 @@
 	"api-help-license-noname": "منښتليک: [[$1|تړنه وڅارئ]]",
 	"api-help-license-unknown": "منښتليک: <span class=\"apihelp-unknown\">ناجوت</span>",
 	"api-help-parameters": "{{PLURAL:$1|پاراميټر|پاراميټرونه}}:",
-	"api-help-param-required": "دې پاراميټر ته اړتيا ده.",
 	"api-help-datatypes-header": "اومتوگ ډولونه",
-	"api-help-param-default": "تلواليز: $1",
 	"api-help-param-default-empty": "تلواليز: <span class=\"apihelp-empty\">(تش)</span>",
 	"api-help-examples": "{{PLURAL:$1|بېلگه|بېلگې}}:",
 	"api-help-permissions": "{{PLURAL:$1|پرېښه|پرېښې}}:",

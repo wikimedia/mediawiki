@@ -37,7 +37,7 @@ use Wikimedia\Rdbms\Database;
  * InterwikiLookup implementing the "classic" interwiki storage (hardcoded up to MW 1.26).
  *
  * This implements two levels of caching (in-process array and a WANObjectCache)
- * and tree storage backends (SQL, CDB, and plain PHP arrays).
+ * and three storage backends (SQL, CDB, and plain PHP arrays).
  *
  * All information is loaded on creation when called by $this->fetch( $prefix ).
  * All work is done on replica DB, because this should *never* change (except during
@@ -400,6 +400,42 @@ class ClassicInterwikiLookup implements InterwikiLookup {
 		}
 
 		return array_values( $data );
+	}
+
+	/**
+	 * Given the array returned by getAllPrefixes(), build a PHP hash which
+	 * can be given to \Cdb\Reader\Hash() as $this->cdbData, ie as the
+	 * value of $wgInterwikiCache.  This is used to construct mock
+	 * interwiki lookup services for testing (in particular, parsertests).
+	 * @param array $allPrefixes An array of interwiki information such as
+	 *   would be returned by ::getAllPrefixes()
+	 * @param int $scope The scope at which to insert interwiki prefixes.
+	 *   See the $interwikiScopes parameter to ::__construct().
+	 * @param ?string $thisSite The value of $thisSite, if $scope is 3.
+	 * @return array A PHP associative array suitable to use as
+	 *   $wgInterwikiCache
+	 */
+	public static function buildCdbHash(
+		array $allPrefixes, int $scope = 1, ?string $thisSite = null
+	): array {
+		$result = [];
+		$wikiId = WikiMap::getCurrentWikiId();
+		$keyPrefix = ( $scope >= 2 ) ? '__global' : $wikiId;
+		if ( $scope >= 3 && $thisSite ) {
+			$result[ "__sites:$wikiId" ] = $thisSite;
+			$keyPrefix = "_$thisSite";
+		}
+		$list = [];
+		foreach ( $allPrefixes as $iwInfo ) {
+			$prefix = $iwInfo['iw_prefix'];
+			$result["$keyPrefix:$prefix"] = implode( ' ', [
+				$iwInfo['iw_local'] ?? 0, $iwInfo['iw_url']
+			] );
+			$list[] = $prefix;
+		}
+		$result["__list:$keyPrefix"]  = implode( ' ', $list );
+		$result["__list:__sites"] = $wikiId;
+		return $result;
 	}
 
 	/**

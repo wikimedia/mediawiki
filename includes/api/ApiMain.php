@@ -25,6 +25,7 @@ use MediaWiki\Api\Validator\ApiParamValidator;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Rest\HeaderParser\Origin;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Timestamp\TimestampException;
 
@@ -58,7 +59,7 @@ class ApiMain extends ApiBase {
 	/**
 	 * List of available modules: action name => module class
 	 */
-	private static $Modules = [
+	private const MODULES = [
 		'login' => ApiLogin::class,
 		'clientlogin' => ApiClientLogin::class,
 		'logout' => ApiLogout::class,
@@ -67,14 +68,32 @@ class ApiMain extends ApiBase {
 		'unlinkaccount' => ApiRemoveAuthenticationData::class,
 		'changeauthenticationdata' => ApiChangeAuthenticationData::class,
 		'removeauthenticationdata' => ApiRemoveAuthenticationData::class,
-		'resetpassword' => ApiResetPassword::class,
+		'resetpassword' => [
+			'class' => ApiResetPassword::class,
+			'services' => [
+				'PasswordReset',
+			]
+		],
 		'query' => ApiQuery::class,
 		'expandtemplates' => ApiExpandTemplates::class,
 		'parse' => ApiParse::class,
-		'stashedit' => ApiStashEdit::class,
+		'stashedit' => [
+			'class' => ApiStashEdit::class,
+			'services' => [
+				'ContentHandlerFactory',
+				'PageEditStash',
+				'RevisionLookup',
+				'StatsdDataFactory',
+			]
+		],
 		'opensearch' => ApiOpenSearch::class,
 		'feedcontributions' => ApiFeedContributions::class,
-		'feedrecentchanges' => ApiFeedRecentChanges::class,
+		'feedrecentchanges' => [
+			'class' => ApiFeedRecentChanges::class,
+			'services' => [
+				'SpecialPageFactory',
+			]
+		],
 		'feedwatchlist' => ApiFeedWatchlist::class,
 		'help' => ApiHelp::class,
 		'paraminfo' => ApiParamInfo::class,
@@ -83,18 +102,53 @@ class ApiMain extends ApiBase {
 		'tokens' => ApiTokens::class,
 		'checktoken' => ApiCheckToken::class,
 		'cspreport' => ApiCSPReport::class,
-		'validatepassword' => ApiValidatePassword::class,
+		'validatepassword' => [
+			'class' => ApiValidatePassword::class,
+			'services' => [
+				'AuthManager',
+				'UserFactory',
+			]
+		],
 
 		// Write modules
 		'purge' => ApiPurge::class,
-		'setnotificationtimestamp' => ApiSetNotificationTimestamp::class,
+		'setnotificationtimestamp' => [
+			'class' => ApiSetNotificationTimestamp::class,
+			'services' => [
+				'DBLoadBalancer',
+				'RevisionStore',
+				'WatchedItemStore',
+			]
+		],
 		'rollback' => ApiRollback::class,
 		'delete' => ApiDelete::class,
 		'undelete' => ApiUndelete::class,
 		'protect' => ApiProtect::class,
-		'block' => ApiBlock::class,
-		'unblock' => ApiUnblock::class,
-		'move' => ApiMove::class,
+		'block' => [
+			'class' => ApiBlock::class,
+			'services' => [
+				'BlockPermissionCheckerFactory',
+				'BlockUserFactory',
+				'TitleFactory',
+				'UserFactory',
+				'WatchedItemStore',
+				'BlockUtils'
+			]
+		],
+		'unblock' => [
+			'class' => ApiUnblock::class,
+			'services' => [
+				'BlockPermissionCheckerFactory',
+				'UnblockUserFactory',
+				'UserCache',
+			]
+		],
+		'move' => [
+			'class' => ApiMove::class,
+			'services' => [
+				'MovePageFactory',
+			]
+		],
 		'edit' => ApiEditPage::class,
 		'upload' => ApiUpload::class,
 		'filerevert' => ApiFileRevert::class,
@@ -102,7 +156,12 @@ class ApiMain extends ApiBase {
 		'watch' => ApiWatch::class,
 		'patrol' => ApiPatrol::class,
 		'import' => ApiImport::class,
-		'clearhasmsg' => ApiClearHasMsg::class,
+		'clearhasmsg' => [
+			'class' => ApiClearHasMsg::class,
+			'services' => [
+				'TalkPageNotificationManager',
+			]
+		],
 		'userrights' => ApiUserrights::class,
 		'options' => ApiOptions::class,
 		'imagerotate' => ApiImageRotate::class,
@@ -111,13 +170,19 @@ class ApiMain extends ApiBase {
 		'tag' => ApiTag::class,
 		'mergehistory' => ApiMergeHistory::class,
 		'setpagelanguage' => ApiSetPageLanguage::class,
-		'changecontentmodel' => ApiChangeContentModel::class,
+		'changecontentmodel' => [
+			'class' => ApiChangeContentModel::class,
+			'services' => [
+				'ContentHandlerFactory',
+				'ContentModelChangeFactory',
+			]
+		],
 	];
 
 	/**
 	 * List of available formats: format name => format class
 	 */
-	private static $Formats = [
+	private const FORMATS = [
 		'json' => ApiFormatJson::class,
 		'jsonfm' => ApiFormatJson::class,
 		'php' => ApiFormatPhp::class,
@@ -134,7 +199,7 @@ class ApiMain extends ApiBase {
 	 *                'params' => [ $someVarToSubst ] ],
 	 * ];
 	 */
-	private static $mRights = [
+	private const RIGHTS_MAP = [
 		'writeapi' => [
 			'msg' => 'right-writeapi',
 			'params' => []
@@ -145,24 +210,46 @@ class ApiMain extends ApiBase {
 		]
 	];
 
-	/**
-	 * @var ApiFormatBase
-	 */
+	/** @var ApiFormatBase */
 	private $mPrinter;
 
-	private $mModuleMgr, $mResult, $mErrorFormatter = null, $mParamValidator;
+	/** @var ApiModuleManager */
+	private $mModuleMgr;
+
+	/** @var ApiResult */
+	private $mResult;
+
+	/** @var ApiErrorFormatter */
+	private $mErrorFormatter;
+
+	/** @var ApiParamValidator */
+	private $mParamValidator;
+
 	/** @var ApiContinuationManager|null */
 	private $mContinuationManager;
+
+	/** @var string|null */
 	private $mAction;
+
+	/** @var bool */
 	private $mEnableWrite;
-	private $mInternalMode, $mCdnMaxAge;
+
+	/** @var bool */
+	private $mInternalMode;
+
 	/** @var ApiBase */
 	private $mModule;
 
+	/** @var string */
 	private $mCacheMode = 'private';
+
 	/** @var array */
 	private $mCacheControl = [];
+
+	/** @var array */
 	private $mParamsUsed = [];
+
+	/** @var array */
 	private $mParamsSensitive = [];
 
 	/** @var bool|null Cached return value from self::lacksSameOriginSecurity() */
@@ -214,8 +301,11 @@ class ApiMain extends ApiBase {
 			}
 		}
 
+		// TODO inject stuff, see T265644
+		$services = MediaWikiServices::getInstance();
 		$this->mParamValidator = new ApiParamValidator(
-			$this, MediaWikiServices::getInstance()->getObjectFactory()
+			$this,
+			$services->getObjectFactory()
 		);
 
 		$this->mResult = new ApiResult( $this->getConfig()->get( 'APIMaxResultSize' ) );
@@ -229,7 +319,7 @@ class ApiMain extends ApiBase {
 			// for uselang=user (see T85635).
 		} else {
 			if ( $uselang === 'content' ) {
-				$uselang = MediaWikiServices::getInstance()->getContentLanguage()->getCode();
+				$uselang = $services->getContentLanguage()->getCode();
 			}
 			$code = RequestContext::sanitizeLangCode( $uselang );
 			$derivativeContext->setLanguage( $code );
@@ -250,14 +340,16 @@ class ApiMain extends ApiBase {
 			if ( $errorLangCode === 'uselang' ) {
 				$errorLang = $this->getLanguage();
 			} elseif ( $errorLangCode === 'content' ) {
-				$errorLang = MediaWikiServices::getInstance()->getContentLanguage();
+				$errorLang = $services->getContentLanguage();
 			} else {
 				$errorLangCode = RequestContext::sanitizeLangCode( $errorLangCode );
-				$errorLang = MediaWikiServices::getInstance()->getLanguageFactory()
-					->getLanguage( $errorLangCode );
+				$errorLang = $services->getLanguageFactory()->getLanguage( $errorLangCode );
 			}
 			$this->mErrorFormatter = new ApiErrorFormatter(
-				$this->mResult, $errorLang, $errorFormat, $errorsUseDB
+				$this->mResult,
+				$errorLang,
+				$errorFormat,
+				$errorsUseDB
 			);
 		} else {
 			$this->mErrorFormatter = new ApiErrorFormatter_BackCompat( $this->mResult );
@@ -266,19 +358,17 @@ class ApiMain extends ApiBase {
 
 		$this->mModuleMgr = new ApiModuleManager(
 			$this,
-			MediaWikiServices::getInstance()->getObjectFactory()
+			$services->getObjectFactory()
 		);
-		$this->mModuleMgr->addModules( self::$Modules, 'action' );
+		$this->mModuleMgr->addModules( self::MODULES, 'action' );
 		$this->mModuleMgr->addModules( $config->get( 'APIModules' ), 'action' );
-		$this->mModuleMgr->addModules( self::$Formats, 'format' );
+		$this->mModuleMgr->addModules( self::FORMATS, 'format' );
 		$this->mModuleMgr->addModules( $config->get( 'APIFormatModules' ), 'format' );
 
 		$this->getHookRunner()->onApiMain__moduleManager( $this->mModuleMgr );
 
 		$this->mContinuationManager = null;
 		$this->mEnableWrite = $enableWrite;
-
-		$this->mCdnMaxAge = -1; // flag for executeActionWithErrorHandling()
 	}
 
 	/**
@@ -343,7 +433,6 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Get the continuation manager
 	 * @return ApiContinuationManager|null
 	 */
 	public function getContinuationManager() {
@@ -351,7 +440,6 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Set the continuation manager
 	 * @param ApiContinuationManager|null $manager
 	 */
 	public function setContinuationManager( ApiContinuationManager $manager = null ) {
@@ -723,8 +811,8 @@ class ApiMain extends ApiBase {
 			}
 
 			$config = $this->getConfig();
-			$matchedOrigin = count( $origins ) === 1 && self::matchOrigin(
-				$originParam,
+			$origin = Origin::parseHeaderList( $origins );
+			$matchedOrigin = $origin->match(
 				$config->get( 'CrossSiteAJAXdomains' ),
 				$config->get( 'CrossSiteAJAXdomainExceptions' )
 			);
@@ -790,31 +878,6 @@ class ApiMain extends ApiBase {
 	}
 
 	/**
-	 * Attempt to match an Origin header against a set of rules and a set of exceptions
-	 * @param string $value Origin header
-	 * @param array $rules Set of wildcard rules
-	 * @param array $exceptions Set of wildcard rules
-	 * @return bool True if $value matches a rule in $rules and doesn't match
-	 *    any rules in $exceptions, false otherwise
-	 */
-	protected static function matchOrigin( $value, $rules, $exceptions ) {
-		foreach ( $rules as $rule ) {
-			if ( preg_match( self::wildcardToRegex( $rule ), $value ) ) {
-				// Rule matches, check exceptions
-				foreach ( $exceptions as $exc ) {
-					if ( preg_match( self::wildcardToRegex( $exc ), $value ) ) {
-						return false;
-					}
-				}
-
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/**
 	 * Attempt to validate the value of Access-Control-Request-Headers against a list
 	 * of headers that we allow the follow up request to send.
 	 *
@@ -840,25 +903,6 @@ class ApiMain extends ApiBase {
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * Helper function to convert wildcard string into a regex
-	 * '*' => '.*?'
-	 * '?' => '.'
-	 *
-	 * @param string $wildcard String with wildcards
-	 * @return string Regular expression
-	 */
-	protected static function wildcardToRegex( $wildcard ) {
-		$wildcard = preg_quote( $wildcard, '/' );
-		$wildcard = str_replace(
-			[ '\*', '\?' ],
-			[ '.*?', '.' ],
-			$wildcard
-		);
-
-		return "/^https?:\/\/$wildcard$/";
 	}
 
 	/**
@@ -1144,10 +1188,18 @@ class ApiMain extends ApiBase {
 		}
 
 		if ( $this->getParameter( 'responselanginfo' ) ) {
-			$result->addValue( null, 'uselang', $this->getLanguage()->getCode(),
-				ApiResult::NO_SIZE_CHECK );
-			$result->addValue( null, 'errorlang', $this->getErrorFormatter()->getLanguage()->getCode(),
-				ApiResult::NO_SIZE_CHECK );
+			$result->addValue(
+				null,
+				'uselang',
+				$this->getLanguage()->getCode(),
+				ApiResult::NO_SIZE_CHECK
+			);
+			$result->addValue(
+				null,
+				'errorlang',
+				$this->getErrorFormatter()->getLanguage()->getCode(),
+				ApiResult::NO_SIZE_CHECK
+			);
 		}
 	}
 
@@ -1177,7 +1229,8 @@ class ApiMain extends ApiBase {
 			// Probably can't happen
 			// @codeCoverageIgnoreStart
 			$this->dieWithError(
-				[ 'apierror-unknownaction', wfEscapeWikiText( $this->mAction ) ], 'unknown_action'
+				[ 'apierror-unknownaction', wfEscapeWikiText( $this->mAction ) ],
+				'unknown_action'
 			);
 			// @codeCoverageIgnoreEnd
 		}
@@ -1325,7 +1378,7 @@ class ApiMain extends ApiBase {
 		}
 		if ( $ifNoneMatch && $etag !== null ) {
 			$test = substr( $etag, 0, 2 ) === 'W/' ? substr( $etag, 2 ) : $etag;
-			$match = array_map( function ( $s ) {
+			$match = array_map( static function ( $s ) {
 				return substr( $s, 0, 2 ) === 'W/' ? substr( $s, 2 ) : $s;
 			}, $ifNoneMatch );
 			$return304 = in_array( $test, $match, true );
@@ -1386,7 +1439,7 @@ class ApiMain extends ApiBase {
 			Wikimedia\suppressWarnings();
 			ini_set( 'zlib.output_compression', 0 );
 			Wikimedia\restoreWarnings();
-			wfClearOutputBuffers();
+			wfResetOutputBuffers( false );
 
 			return false;
 		}
@@ -1401,7 +1454,7 @@ class ApiMain extends ApiBase {
 	protected function checkExecutePermissions( $module ) {
 		$user = $this->getUser();
 		if ( $module->isReadMode() && !$this->getPermissionManager()->isEveryoneAllowed( 'read' ) &&
-			!$this->getPermissionManager()->userHasRight( $user, 'read' )
+			!$this->getAuthority()->isAllowed( 'read' )
 		) {
 			$this->dieWithError( 'apierror-readapidenied' );
 		}
@@ -1409,7 +1462,7 @@ class ApiMain extends ApiBase {
 		if ( $module->isWriteMode() ) {
 			if ( !$this->mEnableWrite ) {
 				$this->dieWithError( 'apierror-noapiwrite' );
-			} elseif ( !$this->getPermissionManager()->userHasRight( $user, 'writeapi' ) ) {
+			} elseif ( !$this->getAuthority()->isAllowed( 'writeapi' ) ) {
 				$this->dieWithError( 'apierror-writeapidenied' );
 			} elseif ( $this->getRequest()->getHeader( 'Promise-Non-Write-API-Action' ) ) {
 				$this->dieWithError( 'apierror-promised-nonwrite-api' );
@@ -1419,6 +1472,7 @@ class ApiMain extends ApiBase {
 		}
 
 		// Allow extensions to stop execution for arbitrary reasons.
+		// TODO: change hook to accept Authority
 		$message = 'hookaborted';
 		if ( !$this->getHookRunner()->onApiCheckCanExecute( $module, $user, $message ) ) {
 			$this->dieWithError( $message );
@@ -1430,7 +1484,7 @@ class ApiMain extends ApiBase {
 	 * @param ApiBase $module An Api module
 	 */
 	protected function checkReadOnly( $module ) {
-		if ( wfReadOnly() ) {
+		if ( MediaWikiServices::getInstance()->getReadOnlyMode()->isReadOnly() ) {
 			$this->dieReadOnly();
 		}
 
@@ -1499,7 +1553,7 @@ class ApiMain extends ApiBase {
 					}
 					break;
 				case 'bot':
-					if ( !$this->getPermissionManager()->userHasRight( $user, 'bot' ) ) {
+					if ( !$this->getAuthority()->isAllowed( 'bot' ) ) {
 						$this->dieWithError( 'apierror-assertbotfailed' );
 					}
 					break;
@@ -1551,7 +1605,7 @@ class ApiMain extends ApiBase {
 			(
 				$this->getConfig()->get( 'ForceHTTPS' ) ||
 				$request->getSession()->shouldForceHTTPS() ||
-				( $this->getUser()->isLoggedIn() &&
+				( $this->getUser()->isRegistered() &&
 					$this->getUser()->requiresHTTPS() )
 			)
 		) {
@@ -1629,7 +1683,7 @@ class ApiMain extends ApiBase {
 		$request = $this->getRequest();
 
 		$logCtx = [
-			// https://gerrit.wikimedia.org/r/plugins/gitiles/mediawiki/event-schemas/+/master/jsonschema/mediawiki/api/request
+			// https://gerrit.wikimedia.org/g/mediawiki/event-schemas/+/master/jsonschema/mediawiki/api/request
 			'$schema' => '/mediawiki/api/request/0.0.1',
 			'meta' => [
 				'request_id' => WebRequest::getRequestId(),
@@ -1744,6 +1798,10 @@ class ApiMain extends ApiBase {
 
 	/**
 	 * Mark parameters as sensitive
+	 *
+	 * This is called automatically for you when declaring a parameter
+	 * with ApiBase::PARAM_SENSITIVE.
+	 *
 	 * @since 1.29
 	 * @param string|string[] $params
 	 */
@@ -1938,19 +1996,19 @@ class ApiMain extends ApiBase {
 		$m = $this->msg( 'api-help-permissions' );
 		if ( !$m->isDisabled() ) {
 			$help['permissions'] .= Html::rawElement( 'div', [ 'class' => 'apihelp-block-head' ],
-				$m->numParams( count( self::$mRights ) )->parse()
+				$m->numParams( count( self::RIGHTS_MAP ) )->parse()
 			);
 		}
 		$help['permissions'] .= Html::openElement( 'dl' );
-		foreach ( self::$mRights as $right => $rightMsg ) {
+		foreach ( self::RIGHTS_MAP as $right => $rightMsg ) {
 			$help['permissions'] .= Html::element( 'dt', null, $right );
 
 			$rightMsg = $this->msg( $rightMsg['msg'], $rightMsg['params'] )->parse();
 			$help['permissions'] .= Html::rawElement( 'dd', null, $rightMsg );
 
-			$groups = array_map( function ( $group ) {
+			$groups = array_map( static function ( $group ) {
 				return $group == '*' ? 'all' : $group;
-			}, $this->getPermissionManager()->getGroupsWithPermission( $right ) );
+			}, $this->getGroupPermissionsLookup()->getGroupsWithPermission( $right ) );
 
 			$help['permissions'] .= Html::rawElement( 'dd', null,
 				$this->msg( 'api-help-permissions-granted-to' )
@@ -2081,8 +2139,7 @@ class ApiMain extends ApiBase {
 	 */
 	public function canApiHighLimits() {
 		if ( !isset( $this->mCanApiHighLimits ) ) {
-			$this->mCanApiHighLimits = $this->getPermissionManager()
-				->userHasRight( $this->getUser(), 'apihighlimits' );
+			$this->mCanApiHighLimits = $this->getAuthority()->isAllowed( 'apihighlimits' );
 		}
 
 		return $this->mCanApiHighLimits;

@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
 /**
@@ -37,8 +37,12 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	 */
 	protected $ipRev;
 
-	public function __construct( $name = null, array $data = [], $dataName = '' ) {
-		parent::__construct( $name, $data, $dataName );
+	protected function addCoreDBData() {
+		// Blanked out to keep auto-increment values stable.
+	}
+
+	protected function setUp() : void {
+		parent::setUp();
 
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
@@ -59,14 +63,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'slot_roles',
 			]
 		);
-	}
 
-	protected function addCoreDBData() {
-		// Blanked out to keep auto-increment values stable.
-	}
-
-	protected function setUp() : void {
-		parent::setUp();
+		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
 
 		// First create our dummy page
 		$page = Title::newFromText( 'PageArchiveTest_thePage' );
@@ -84,9 +82,9 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$this->firstRev = $page->getRevisionRecord();
 
 		// Insert IP revision
-		$this->ipEditor = '2001:db8::1';
+		$this->ipEditor = '2001:DB8:0:0:0:0:0:1';
 
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		$ipTimestamp = wfTimestamp(
 			TS_MW,
@@ -111,15 +109,12 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::undelete
+	 * @covers PageArchive::undeleteAsUser
 	 * @covers PageArchive::undeleteRevisions
 	 */
 	public function testUndeleteRevisions() {
 		// TODO: MCR: Test undeletion with multiple slots. Check that slots remain untouched.
-		// TODO: Replace deprecated PageArchive::undelete with ::undeleteAsUser
-		$this->hideDeprecated( 'PageArchive::undelete' );
-
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 
 		// First make sure old revisions are archived
 		$dbr = wfGetDB( DB_REPLICA );
@@ -143,7 +138,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $row );
 
 		// Restore the page
-		$this->archivedPage->undelete( [] );
+		$this->archivedPage->undeleteAsUser( [], $this->getTestSysop()->getUser() );
 
 		// Should be back in revision
 		$revQuery = $revisionStore->getQueryInfo();
@@ -170,7 +165,8 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 				'ar_minor_edit' => '0',
 				'ar_user' => null,
 				'ar_user_text' => $this->ipEditor,
-				'ar_actor' => (string)User::newFromName( $this->ipEditor, false )->getActorId( $this->db ),
+				'ar_actor' => (string)$this->getServiceContainer()->getActorNormalization()
+					->acquireActorId( new UserIdentityValue( 0, $this->ipEditor, 0 ), $this->db ),
 				'ar_len' => '11',
 				'ar_deleted' => '0',
 				'ar_rev_id' => strval( $this->ipRev->getId() ),
@@ -238,7 +234,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	public function testListRevisions_slots() {
 		$revisions = $this->archivedPage->listRevisions();
 
-		$revisionStore = MediaWikiServices::getInstance()->getInstance()->getRevisionStore();
+		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		$slotsQuery = $revisionStore->getSlotsQueryInfo( [ 'content' ] );
 
 		foreach ( $revisions as $row ) {

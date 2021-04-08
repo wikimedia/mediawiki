@@ -41,6 +41,7 @@ $namespaceAliases = [
 	'Okwu_ébéonọr'         => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allpages'                  => [ 'IhüNílé' ],
 	'Blankpage'                 => [ 'HịcháIhü' ],
@@ -57,15 +58,16 @@ $specialPageAliases = [
 	'Userlogout'                => [ 'Ọ\'bàniféÍFụtá' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#KÚFÙ', '#REDIRECT' ],
-	'fullpagename'              => [ '1', 'ÁHÀNÍLÉNKÈIHÜ', 'FULLPAGENAME' ],
-	'msg'                       => [ '0', 'OZI:', 'MSG:' ],
-	'img_right'                 => [ '1', 'áká_ịkẹngạ', 'right' ],
-	'img_left'                  => [ '1', 'áká_èkpè', 'left' ],
-	'img_top'                   => [ '1', 'élú', 'top' ],
-	'img_middle'                => [ '1', 'ẹtítì', 'middle' ],
-	'img_text_bottom'           => [ '1', 'okpúrù-ede', 'text-bottom' ],
 	'displaytitle'              => [ '1', 'ZIÍSHÍ', 'DISPLAYTITLE' ],
+	'fullpagename'              => [ '1', 'ÁHÀNÍLÉNKÈIHÜ', 'FULLPAGENAME' ],
+	'img_left'                  => [ '1', 'áká_èkpè', 'left' ],
+	'img_middle'                => [ '1', 'ẹtítì', 'middle' ],
+	'img_right'                 => [ '1', 'áká_ịkẹngạ', 'right' ],
+	'img_text_bottom'           => [ '1', 'okpúrù-ede', 'text-bottom' ],
+	'img_top'                   => [ '1', 'élú', 'top' ],
+	'msg'                       => [ '0', 'OZI:', 'MSG:' ],
 	'pagesize'                  => [ '1', 'ÀSÁIHÜ', 'PAGESIZE' ],
+	'redirect'                  => [ '0', '#KÚFÙ', '#REDIRECT' ],
 ];

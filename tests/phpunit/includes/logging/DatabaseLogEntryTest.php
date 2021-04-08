@@ -13,15 +13,14 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function tearDown() : void {
-		parent::tearDown();
-
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'CommentStore' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'ActorMigration' );
+		parent::tearDown();
 	}
 
 	/**
-	 * @covers       DatabaseLogEntry::newFromId
-	 * @covers       DatabaseLogEntry::getSelectQueryData
+	 * @covers DatabaseLogEntry::newFromId
+	 * @covers DatabaseLogEntry::getSelectQueryData
 	 *
 	 * @dataProvider provideNewFromId
 	 *

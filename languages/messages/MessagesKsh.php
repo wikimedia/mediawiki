@@ -102,6 +102,7 @@ $linkTrail = '/^([äöüėëĳßəğåůæœça-z]+)(.*)$/sDu';
 // Remove German aliases
 $namespaceGenderAliases = [];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktive', 'AktiveMetmaacher', 'Aktive_Metmaacher', 'AktiveMedmaacher', 'Aktive_Medmaacher' ],
 	'Allmessages'               => [ 'MediaWiki-Appachtemang' ],
@@ -109,6 +110,7 @@ $specialPageAliases = [
 	'Ancientpages'              => [ 'Ahl_Atikelle' ],
 	'Blankpage'                 => [ 'Leddijje_Sigge' ],
 	'Block'                     => [ 'IP-Sperre' ],
+	'BlockList'                 => [ 'Jesperrt', 'Jeshpächt' ],
 	'Booksources'               => [ 'ISBN', 'Böcher', 'Böösher' ],
 	'BrokenRedirects'           => [ 'Ömleitunge_en_et_Leere' ],
 	'Categories'                => [ 'Saachjruppe' ],
@@ -127,7 +129,6 @@ $specialPageAliases = [
 	'Filepath'                  => [ 'Dateipaad' ],
 	'Import'                    => [ 'Emport', 'Empocht' ],
 	'Invalidateemail'           => [ 'Onjöltije_e-mail_Addräß', 'Onjöltije_E-Mail_Adress' ],
-	'BlockList'                 => [ 'Jesperrt', 'Jeshpächt' ],
 	'LinkSearch'                => [ 'Websigge_Söke' ],
 	'Listadmins'                => [ 'Köbese', 'Köbeße', 'Wiki-Köbesse' ],
 	'Listbots'                  => [ 'Bots' ],
@@ -192,12 +193,13 @@ $specialPageAliases = [
 	'Withoutinterwiki'          => [ 'Ohne_Shproche_Lenks' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#ÖMLEIDE_OP', '#ÖMLEIDE', '#LEIDT_ÖM_OP', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ],
-	'nogallery'                 => [ '0', '__KEIN_JALLERIE__', '__KEINE_GALERIE__', '__KEINEGALERIE__', '__NOGALLERY__' ],
-	'toc'                       => [ '0', '__ENHALLT__', '__INHALTSVERZEICHNIS__', '__TOC__' ],
-	'img_right'                 => [ '1', 'rähß', 'räts', 'rechts', 'right' ],
-	'img_left'                  => [ '1', 'links', 'lengks', 'lenks', 'left' ],
-	'language'                  => [ '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ],
 	'hiddencat'                 => [ '1', '__VERSHTOCHE_SAACHJRUPP__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ],
+	'img_left'                  => [ '1', 'links', 'lengks', 'lenks', 'left' ],
+	'img_right'                 => [ '1', 'rähß', 'räts', 'rechts', 'right' ],
+	'language'                  => [ '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ],
+	'nogallery'                 => [ '0', '__KEIN_JALLERIE__', '__KEINE_GALERIE__', '__KEINEGALERIE__', '__NOGALLERY__' ],
+	'redirect'                  => [ '0', '#ÖMLEIDE_OP', '#ÖMLEIDE', '#LEIDT_ÖM_OP', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ],
+	'toc'                       => [ '0', '__ENHALLT__', '__INHALTSVERZEICHNIS__', '__TOC__' ],
 ];

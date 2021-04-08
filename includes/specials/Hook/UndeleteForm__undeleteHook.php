@@ -7,6 +7,9 @@ use Title;
 
 // phpcs:disable Squiz.Classes.ValidClassName.NotCamelCaps
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "UndeleteForm::undelete" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

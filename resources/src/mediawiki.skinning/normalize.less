@@ -18,7 +18,6 @@ body {
 
 main {
 	// Support IE 9-11: Add the correct display.
-	// Note: Support for IE <= 8 is provided by html5shiv.js.
 	display: block;
 }
 
@@ -71,12 +70,21 @@ img {
 
 // Forms and form elements
 
+button,
+input,
+optgroup,
+select,
+textarea {
+	// Support Firefox, Safari: Remove user-agent stylesheet `margin`.
+	margin: 0;
+}
+
 button::-moz-focus-inner,
 [ type='button' ]::-moz-focus-inner,
 [ type='reset' ]::-moz-focus-inner,
 [ type='submit' ]::-moz-focus-inner {
 	// Support Firefox: Remove the inner border and padding.
-	border-style: none; // stylelint-disable-line declaration-property-value-blacklist
+	border-style: none; // stylelint-disable-line declaration-property-value-disallowed-list
 	padding: 0;
 }
 

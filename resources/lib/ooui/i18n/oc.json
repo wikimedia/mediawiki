@@ -3,6 +3,7 @@
 		"authors": [
 			"Cedric31",
 			"Gloria sah",
+			"Nicolas Eynaud",
 			"Quentí"
 		]
 	},
@@ -22,5 +23,6 @@
 	"ooui-selectfile-button-select": "Seleccionar un fichièr",
 	"ooui-selectfile-not-supported": "Lo tipe de fichièr es pas compatible",
 	"ooui-selectfile-placeholder": "Cap de fichièr pas seleccionat",
-	"ooui-selectfile-dragdrop-placeholder": "Depausar lo fichièr aicí"
+	"ooui-selectfile-dragdrop-placeholder": "Depausar lo fichièr aicí",
+	"ooui-field-help": "Ajuda"
 }

@@ -4,12 +4,10 @@ namespace MediaWiki\Rest\Handler;
 
 use File;
 use MediaFileTrait;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use RepoGroup;
-use RequestContext;
 use Title;
 use User;
 use Wikimedia\Message\MessageValue;
@@ -21,14 +19,8 @@ use Wikimedia\ParamValidator\ParamValidator;
 class MediaFileHandler extends SimpleHandler {
 	use MediaFileTrait;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var RepoGroup */
 	private $repoGroup;
-
-	/** @var User */
-	private $user;
 
 	/**
 	 * @var Title|bool|null
@@ -41,18 +33,12 @@ class MediaFileHandler extends SimpleHandler {
 	private $file = null;
 
 	/**
-	 * @param PermissionManager $permissionManager
 	 * @param RepoGroup $repoGroup
 	 */
 	public function __construct(
-		PermissionManager $permissionManager,
 		RepoGroup $repoGroup
 	) {
-		$this->permissionManager = $permissionManager;
 		$this->repoGroup = $repoGroup;
-
-		// @todo Inject this, when there is a good way to do that
-		$this->user = RequestContext::getMain()->getUser();
 	}
 
 	/**
@@ -72,8 +58,10 @@ class MediaFileHandler extends SimpleHandler {
 	private function getFile() {
 		if ( $this->file === null ) {
 			$title = $this->getTitle();
+			// TODO: make RepoGroup::findFile take Authority
+			$user = User::newFromIdentity( $this->getAuthority()->getUser() );
 			$this->file =
-				$this->repoGroup->findFile( $title, [ 'private' => $this->user ] ) ?? false;
+				$this->repoGroup->findFile( $title, [ 'private' => $user ] ) ?? false;
 		}
 		return $this->file;
 	}
@@ -96,7 +84,7 @@ class MediaFileHandler extends SimpleHandler {
 			);
 		}
 
-		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
 			throw new LocalizedHttpException(
 				MessageValue::new( 'rest-permission-denied-title' )->plaintextParams(
 					$titleObj->getPrefixedDBkey()
@@ -124,10 +112,10 @@ class MediaFileHandler extends SimpleHandler {
 	 */
 	private function getResponse( File $file ) : array {
 		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
-			$this->user, 'imagesize'
+			$this->getAuthority()->getUser(), 'imagesize'
 		);
 		list( $maxThumbWidth, $maxThumbHeight ) = self::getImageLimitsFromOption(
-			$this->user, 'thumbsize'
+			$this->getAuthority()->getUser(), 'thumbsize'
 		);
 		$transforms = [
 			'preferred' => [
@@ -140,7 +128,9 @@ class MediaFileHandler extends SimpleHandler {
 			]
 		];
 
-		return $this->getFileInfo( $file, $this->user, $transforms );
+		// TODO: make MediaFileTrait::getFileInfo take Authority
+		$user = User::newFromIdentity( $this->getAuthority()->getUser() );
+		return $this->getFileInfo( $file, $user, $transforms );
 	}
 
 	public function needsWriteAccess() {

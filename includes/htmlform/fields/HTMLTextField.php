@@ -111,7 +111,6 @@ class HTMLTextField extends HTMLFormField {
 			// Only used in HTML mode:
 			'pattern',
 			'list',
-			'multiple',
 		];
 
 		$attribs += $this->getAttributes( $allowedParams );
@@ -141,7 +140,6 @@ class HTMLTextField extends HTMLFormField {
 				# Pass through
 				case 'email':
 				case 'password':
-				case 'file':
 				case 'url':
 					$type = $this->mParams['type'];
 					break;
@@ -196,17 +194,6 @@ class HTMLTextField extends HTMLFormField {
 		$attribs += OOUI\Element::configFromHtmlAttributes(
 			$this->getAttributes( $allowedParams )
 		);
-
-		// FIXME T150983 downgrade autocomplete
-		if ( isset( $attribs['autocomplete'] ) ) {
-			if ( $attribs['autocomplete'] === 'on' ) {
-				$attribs['autocomplete'] = true;
-			} elseif ( $attribs['autocomplete'] === 'off' ) {
-				$attribs['autocomplete'] = false;
-			} else {
-				unset( $attribs['autocomplete'] );
-			}
-		}
 
 		$type = $this->getType( $attribs );
 		if ( isset( $attribs['step'] ) && $attribs['step'] === 'any' ) {

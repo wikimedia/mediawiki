@@ -378,7 +378,7 @@ JAVASCRIPT;
 	 * Explicitly load or embed modules on a page.
 	 *
 	 * @param ResourceLoaderContext $mainContext
-	 * @param array $modules One or more module names
+	 * @param string[] $modules One or more module names
 	 * @param string $only ResourceLoaderModule TYPE_ class constant
 	 * @param array $extraQuery [optional] Array with extra query parameters for the request
 	 * @param string|null $nonce [optional] Content-Security-Policy nonce
@@ -464,9 +464,8 @@ JAVASCRIPT;
 						} elseif ( $context->getRaw() ) {
 							// This request is asking for the module to be delivered standalone,
 							// (aka "raw") without communicating to any mw.loader client.
-							// Use cases:
+							// For:
 							// - startup (naturally because this is what will define mw.loader)
-							// - html5shiv (loads synchronously in old IE before the async startup module arrives)
 							$chunk = Html::element( 'script', [
 								'async' => true,
 								'src' => $url

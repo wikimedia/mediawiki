@@ -8,7 +8,7 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	public function provideSingleFile() {
-		return array_map( function ( $file ) {
+		return array_map( static function ( $file ) {
 			return [ $file, file_get_contents( $file ) ];
 		}, glob( __DIR__ . '/../../data/filecontentshasher/*.*' ) );
 	}
@@ -42,8 +42,7 @@ class FileContentsHasherTest extends PHPUnit\Framework\TestCase {
 	public function testMultipleFileHash( $files ) {
 		$fileNames = [];
 		$hashes = [];
-		foreach ( $files as $fileInfo ) {
-			list( $fileName, $contents ) = $fileInfo;
+		foreach ( $files as [ $fileName, $contents ] ) {
 			$fileNames[] = $fileName;
 			$hashes[] = md5( $contents );
 		}

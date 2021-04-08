@@ -4,8 +4,6 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * @covers MediaWiki\Interwiki\ClassicInterwikiLookup
- *
- * @group MediaWiki
  * @group Database
  */
 class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {

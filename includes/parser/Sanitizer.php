@@ -25,6 +25,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use RemexHtml\HTMLData;
 
 /**
  * HTML sanitizer for MediaWiki
@@ -33,10 +34,12 @@ use MediaWiki\MediaWikiServices;
 class Sanitizer {
 	/**
 	 * Regular expression to match various types of character references in
-	 * Sanitizer::normalizeCharReferences and Sanitizer::decodeCharReferences
+	 * Sanitizer::normalizeCharReferences and Sanitizer::decodeCharReferences.
+	 * Note that HTML5 allows some named entities to omit the trailing
+	 * semicolon; wikitext entities *must* have a trailing semicolon.
 	 */
 	private const CHAR_REFS_REGEX =
-		'/&([A-Za-z0-9\x80-\xff]+);
+		'/&([A-Za-z0-9\x80-\xff]+;)
 		 |&\#([0-9]+);
 		 |&\#[xX]([0-9A-Fa-f]+);
 		 |(&)/x';
@@ -75,272 +78,12 @@ class Sanitizer {
 	public const ID_FALLBACK = 1;
 
 	/**
-	 * List of all named character entities defined in HTML 4.01
-	 * https://www.w3.org/TR/html4/sgml/entities.html
-	 * As well as &apos; which is only defined starting in XHTML1.
+	 * Character entity aliases accepted by MediaWiki in wikitext.
+	 * These are not part of the HTML standard.
 	 */
-	private const HTML_ENTITIES = [
-		'Aacute'   => 193,
-		'aacute'   => 225,
-		'Acirc'    => 194,
-		'acirc'    => 226,
-		'acute'    => 180,
-		'AElig'    => 198,
-		'aelig'    => 230,
-		'Agrave'   => 192,
-		'agrave'   => 224,
-		'alefsym'  => 8501,
-		'Alpha'    => 913,
-		'alpha'    => 945,
-		'amp'      => 38,
-		'and'      => 8743,
-		'ang'      => 8736,
-		'apos'     => 39, // New in XHTML & HTML 5; avoid in output for compatibility with IE.
-		'Aring'    => 197,
-		'aring'    => 229,
-		'asymp'    => 8776,
-		'Atilde'   => 195,
-		'atilde'   => 227,
-		'Auml'     => 196,
-		'auml'     => 228,
-		'bdquo'    => 8222,
-		'Beta'     => 914,
-		'beta'     => 946,
-		'brvbar'   => 166,
-		'bull'     => 8226,
-		'cap'      => 8745,
-		'Ccedil'   => 199,
-		'ccedil'   => 231,
-		'cedil'    => 184,
-		'cent'     => 162,
-		'Chi'      => 935,
-		'chi'      => 967,
-		'circ'     => 710,
-		'clubs'    => 9827,
-		'cong'     => 8773,
-		'copy'     => 169,
-		'crarr'    => 8629,
-		'cup'      => 8746,
-		'curren'   => 164,
-		'dagger'   => 8224,
-		'Dagger'   => 8225,
-		'darr'     => 8595,
-		'dArr'     => 8659,
-		'deg'      => 176,
-		'Delta'    => 916,
-		'delta'    => 948,
-		'diams'    => 9830,
-		'divide'   => 247,
-		'Eacute'   => 201,
-		'eacute'   => 233,
-		'Ecirc'    => 202,
-		'ecirc'    => 234,
-		'Egrave'   => 200,
-		'egrave'   => 232,
-		'empty'    => 8709,
-		'emsp'     => 8195,
-		'ensp'     => 8194,
-		'Epsilon'  => 917,
-		'epsilon'  => 949,
-		'equiv'    => 8801,
-		'Eta'      => 919,
-		'eta'      => 951,
-		'ETH'      => 208,
-		'eth'      => 240,
-		'Euml'     => 203,
-		'euml'     => 235,
-		'euro'     => 8364,
-		'exist'    => 8707,
-		'fnof'     => 402,
-		'forall'   => 8704,
-		'frac12'   => 189,
-		'frac14'   => 188,
-		'frac34'   => 190,
-		'frasl'    => 8260,
-		'Gamma'    => 915,
-		'gamma'    => 947,
-		'ge'       => 8805,
-		'gt'       => 62,
-		'harr'     => 8596,
-		'hArr'     => 8660,
-		'hearts'   => 9829,
-		'hellip'   => 8230,
-		'Iacute'   => 205,
-		'iacute'   => 237,
-		'Icirc'    => 206,
-		'icirc'    => 238,
-		'iexcl'    => 161,
-		'Igrave'   => 204,
-		'igrave'   => 236,
-		'image'    => 8465,
-		'infin'    => 8734,
-		'int'      => 8747,
-		'Iota'     => 921,
-		'iota'     => 953,
-		'iquest'   => 191,
-		'isin'     => 8712,
-		'Iuml'     => 207,
-		'iuml'     => 239,
-		'Kappa'    => 922,
-		'kappa'    => 954,
-		'Lambda'   => 923,
-		'lambda'   => 955,
-		'lang'     => 9001,
-		'laquo'    => 171,
-		'larr'     => 8592,
-		'lArr'     => 8656,
-		'lceil'    => 8968,
-		'ldquo'    => 8220,
-		'le'       => 8804,
-		'lfloor'   => 8970,
-		'lowast'   => 8727,
-		'loz'      => 9674,
-		'lrm'      => 8206,
-		'lsaquo'   => 8249,
-		'lsquo'    => 8216,
-		'lt'       => 60,
-		'macr'     => 175,
-		'mdash'    => 8212,
-		'micro'    => 181,
-		'middot'   => 183,
-		'minus'    => 8722,
-		'Mu'       => 924,
-		'mu'       => 956,
-		'nabla'    => 8711,
-		'nbsp'     => 160,
-		'ndash'    => 8211,
-		'ne'       => 8800,
-		'ni'       => 8715,
-		'not'      => 172,
-		'notin'    => 8713,
-		'nsub'     => 8836,
-		'Ntilde'   => 209,
-		'ntilde'   => 241,
-		'Nu'       => 925,
-		'nu'       => 957,
-		'Oacute'   => 211,
-		'oacute'   => 243,
-		'Ocirc'    => 212,
-		'ocirc'    => 244,
-		'OElig'    => 338,
-		'oelig'    => 339,
-		'Ograve'   => 210,
-		'ograve'   => 242,
-		'oline'    => 8254,
-		'Omega'    => 937,
-		'omega'    => 969,
-		'Omicron'  => 927,
-		'omicron'  => 959,
-		'oplus'    => 8853,
-		'or'       => 8744,
-		'ordf'     => 170,
-		'ordm'     => 186,
-		'Oslash'   => 216,
-		'oslash'   => 248,
-		'Otilde'   => 213,
-		'otilde'   => 245,
-		'otimes'   => 8855,
-		'Ouml'     => 214,
-		'ouml'     => 246,
-		'para'     => 182,
-		'part'     => 8706,
-		'permil'   => 8240,
-		'perp'     => 8869,
-		'Phi'      => 934,
-		'phi'      => 966,
-		'Pi'       => 928,
-		'pi'       => 960,
-		'piv'      => 982,
-		'plusmn'   => 177,
-		'pound'    => 163,
-		'prime'    => 8242,
-		'Prime'    => 8243,
-		'prod'     => 8719,
-		'prop'     => 8733,
-		'Psi'      => 936,
-		'psi'      => 968,
-		'quot'     => 34,
-		'radic'    => 8730,
-		'rang'     => 9002,
-		'raquo'    => 187,
-		'rarr'     => 8594,
-		'rArr'     => 8658,
-		'rceil'    => 8969,
-		'rdquo'    => 8221,
-		'real'     => 8476,
-		'reg'      => 174,
-		'rfloor'   => 8971,
-		'Rho'      => 929,
-		'rho'      => 961,
-		'rlm'      => 8207,
-		'rsaquo'   => 8250,
-		'rsquo'    => 8217,
-		'sbquo'    => 8218,
-		'Scaron'   => 352,
-		'scaron'   => 353,
-		'sdot'     => 8901,
-		'sect'     => 167,
-		'shy'      => 173,
-		'Sigma'    => 931,
-		'sigma'    => 963,
-		'sigmaf'   => 962,
-		'sim'      => 8764,
-		'spades'   => 9824,
-		'sub'      => 8834,
-		'sube'     => 8838,
-		'sum'      => 8721,
-		'sup'      => 8835,
-		'sup1'     => 185,
-		'sup2'     => 178,
-		'sup3'     => 179,
-		'supe'     => 8839,
-		'szlig'    => 223,
-		'Tau'      => 932,
-		'tau'      => 964,
-		'there4'   => 8756,
-		'Theta'    => 920,
-		'theta'    => 952,
-		'thetasym' => 977,
-		'thinsp'   => 8201,
-		'THORN'    => 222,
-		'thorn'    => 254,
-		'tilde'    => 732,
-		'times'    => 215,
-		'trade'    => 8482,
-		'Uacute'   => 218,
-		'uacute'   => 250,
-		'uarr'     => 8593,
-		'uArr'     => 8657,
-		'Ucirc'    => 219,
-		'ucirc'    => 251,
-		'Ugrave'   => 217,
-		'ugrave'   => 249,
-		'uml'      => 168,
-		'upsih'    => 978,
-		'Upsilon'  => 933,
-		'upsilon'  => 965,
-		'Uuml'     => 220,
-		'uuml'     => 252,
-		'weierp'   => 8472,
-		'Xi'       => 926,
-		'xi'       => 958,
-		'Yacute'   => 221,
-		'yacute'   => 253,
-		'yen'      => 165,
-		'Yuml'     => 376,
-		'yuml'     => 255,
-		'Zeta'     => 918,
-		'zeta'     => 950,
-		'zwj'      => 8205,
-		'zwnj'     => 8204
-	];
-
-	/**
-	 * Character entity aliases accepted by MediaWiki
-	 */
-	private const HTML_ENTITY_ALIASES = [
-		'רלמ' => 'rlm',
-		'رلم' => 'rlm',
+	private const MW_ENTITY_ALIASES = [
+		'רלמ;' => 'rlm;',
+		'رلم;' => 'rlm;',
 	];
 
 	/**
@@ -716,7 +459,7 @@ class Sanitizer {
 				|| $attribute === 'aria-labelledby'
 				|| $attribute === 'aria-owns'
 			) {
-				$value = self::escapeIdReferenceList( $value );
+				$value = self::escapeIdReferenceListInternal( $value );
 			}
 
 			// RDFa and microdata properties allow URLs, URIs and/or CURIs.
@@ -1005,9 +748,8 @@ class Sanitizer {
 		$space = preg_replace( '#(?<!\\\\)(\\$|\\\\)#', '\\\\$1', $space );
 		$fixtags = [
 			# French spaces, last one Guillemet-left
-			# only if there is something before the space
-			# and a non-word character after the punctuation.
-			'/(?<=\S) (?=[?:;!%»›](?!\w))/u' => "$space",
+			# only if it isn't followed by a word character.
+			'/ (?=[?:;!%»›](?!\w))/u' => "$space",
 			# French spaces, Guillemet-right
 			'/([«‹]) /u' => "\\1$space",
 		];
@@ -1041,13 +783,10 @@ class Sanitizer {
 			'__'   => '&#95;_',
 		] );
 
-		# Armor against French spaces detection (T5158)
-		$encValue = self::armorFrenchSpaces( $encValue, '&#32;' );
-
 		# Stupid hack
 		$encValue = preg_replace_callback(
 			'/((?i)' . wfUrlProtocols() . ')/',
-			function ( $matches ) {
+			static function ( $matches ) {
 				return str_replace( ':', '&#58;', $matches[1] );
 			},
 			$encValue );
@@ -1055,59 +794,11 @@ class Sanitizer {
 	}
 
 	/**
-	 * Given a value, escape it so that it can be used in an id attribute and
-	 * return it.  This will use HTML5 validation, allowing anything but ASCII
-	 * whitespace.
-	 *
-	 * To ensure we don't have to bother escaping anything, we also strip ', ".
-	 * TODO: Is this the best tactic?
-	 *
-	 * We also strip # because it upsets IE, and % because it could be
-	 * ambiguous if it's part of something that looks like a percent escape
-	 * (which don't work reliably in fragments cross-browser).
-	 *
-	 * @deprecated since 1.30, use one of this class' escapeIdFor*() functions
-	 *
-	 * @see https://www.w3.org/TR/html401/types.html#type-name Valid characters
-	 *   in the id and name attributes
-	 * @see https://www.w3.org/TR/html401/struct/links.html#h-12.2.3 Anchors with
-	 *   the id attribute
-	 * @see https://www.w3.org/TR/html5/dom.html#the-id-attribute
-	 *   HTML5 definition of id attribute
-	 *
-	 * @param string $id Id to escape
-	 * @param string|array $options String or array of strings (default is []):
-	 *   'noninitial': This is a non-initial fragment of an id, not a full id,
-	 *       so don't pay attention if the first character isn't valid at the
-	 *       beginning of an id.
-	 * @return string
-	 */
-	public static function escapeId( $id, $options = [] ) {
-		wfDeprecated( __METHOD__, '1.30' );
-		$options = (array)$options;
-
-		// HTML4-style escaping
-		static $replace = [
-			'%3A' => ':',
-			'%' => '.'
-		];
-
-		$id = urlencode( strtr( $id, ' ', '_' ) );
-		$id = strtr( $id, $replace );
-
-		if ( !preg_match( '/^[a-zA-Z]/', $id ) && !in_array( 'noninitial', $options ) ) {
-			// Initial character must be a letter!
-			$id = "x$id";
-		}
-		return $id;
-	}
-
-	/**
 	 * Given a section name or other user-generated or otherwise unsafe string, escapes it to be
 	 * a valid HTML id attribute.
 	 *
-	 * WARNING: unlike escapeId(), the output of this function is not guaranteed to be HTML safe,
-	 * be sure to use proper escaping.
+	 * WARNING: The output of this function is not guaranteed to be HTML safe, so be sure to use
+	 * proper escaping.
 	 *
 	 * @param string $id String to escape
 	 * @param int $mode One of ID_* constants, specifying whether the primary or fallback encoding
@@ -1136,8 +827,8 @@ class Sanitizer {
 	 * Given a section name or other user-generated or otherwise unsafe string, escapes it to be
 	 * a valid URL fragment.
 	 *
-	 * WARNING: unlike escapeId(), the output of this function is not guaranteed to be HTML safe,
-	 * be sure to use proper escaping.
+	 * WARNING: The output of this function is not guaranteed to be HTML safe, so be sure to use
+	 * proper escaping.
 	 *
 	 * @param string $id String to escape
 	 * @return string Escaped ID
@@ -1213,7 +904,7 @@ class Sanitizer {
 				$id = str_replace( [ "\t", "\n", "\f", "\r", " " ], '_', $id );
 				break;
 			case 'legacy':
-				// This corresponds to 'noninitial' mode of the old escapeId()
+				// This corresponds to 'noninitial' mode of the former escapeId()
 				static $replace = [
 					'%3A' => ':',
 					'%' => '.'
@@ -1234,11 +925,24 @@ class Sanitizer {
 	 * to match ids escaped by the escapeIdForAttribute() function.
 	 *
 	 * @since 1.27
+	 * @deprecated since 1.36. Unused outside this class, will be made private.
 	 *
 	 * @param string $referenceString Space delimited list of ids
 	 * @return string
 	 */
 	public static function escapeIdReferenceList( $referenceString ) {
+		wfDeprecated( __METHOD__, '1.36' );
+		return self::escapeIdReferenceListInternal( $referenceString );
+	}
+
+	/**
+	 * Given a string containing a space delimited list of ids, escape each id
+	 * to match ids escaped by the escapeIdForAttribute() function.
+	 *
+	 * @param string $referenceString Space delimited list of ids
+	 * @return string
+	 */
+	private static function escapeIdReferenceListInternal( $referenceString ) {
 		# Explode the space delimited list string into an array of tokens
 		$references = preg_split( '/\s+/', "{$referenceString}", -1, PREG_SPLIT_NO_EMPTY );
 
@@ -1444,24 +1148,29 @@ class Sanitizer {
 	}
 
 	/**
-	 * If the named entity is defined in the HTML 4.0/XHTML 1.0 DTD,
+	 * If the named entity is defined in HTML5
 	 * return the equivalent numeric entity reference (except for the core &lt;
 	 * &gt; &amp; &quot;). If the entity is a MediaWiki-specific alias, returns
 	 * the HTML equivalent. Otherwise, returns HTML-escaped text of
 	 * pseudo-entity source (eg &amp;foo;)
 	 *
-	 * @param string $name
+	 * @param string $name Semicolon-terminated name
 	 * @return string
 	 */
 	private static function normalizeEntity( $name ) {
-		if ( isset( self::HTML_ENTITY_ALIASES[$name] ) ) {
-			return '&' . self::HTML_ENTITY_ALIASES[$name] . ';';
-		} elseif ( in_array( $name, [ 'lt', 'gt', 'amp', 'quot' ] ) ) {
-			return "&$name;";
-		} elseif ( isset( self::HTML_ENTITIES[$name] ) ) {
-			return '&#' . self::HTML_ENTITIES[$name] . ';';
+		if ( isset( self::MW_ENTITY_ALIASES[$name] ) ) {
+			// Non-standard MediaWiki-specific entities
+			return '&' . self::MW_ENTITY_ALIASES[$name];
+		} elseif ( in_array( $name, [ 'lt;', 'gt;', 'amp;', 'quot;' ], true ) ) {
+			// Keep these in word form
+			return "&$name";
+		} elseif ( isset( HTMLData::$namedEntityTranslations[$name] ) ) {
+			// Beware: some entities expand to more than 1 codepoint
+			return preg_replace_callback( '/./Ssu', static function ( $m ) {
+				return '&#' . UtfNormal\Utils::utf8ToCodepoint( $m[0] ) . ';';
+			}, HTMLData::$namedEntityTranslations[$name] );
 		} else {
-			return "&amp;$name;";
+			return "&amp;$name";
 		}
 	}
 
@@ -1581,22 +1290,20 @@ class Sanitizer {
 	}
 
 	/**
-	 * If the named entity is defined in the HTML 4.0/XHTML 1.0 DTD,
+	 * If the named entity is defined in HTML5
 	 * return the UTF-8 encoding of that character. Otherwise, returns
 	 * pseudo-entity source (eg "&foo;")
 	 *
-	 * @param string $name
+	 * @param string $name Semicolon-terminated entity name
 	 * @return string
 	 */
 	private static function decodeEntity( $name ) {
-		if ( isset( self::HTML_ENTITY_ALIASES[$name] ) ) {
-			$name = self::HTML_ENTITY_ALIASES[$name];
+		// These are MediaWiki-specific entities, not in the HTML standard
+		if ( isset( self::MW_ENTITY_ALIASES[$name] ) ) {
+			$name = self::MW_ENTITY_ALIASES[$name];
 		}
-		if ( isset( self::HTML_ENTITIES[$name] ) ) {
-			return UtfNormal\Utils::codepointToUtf8( self::HTML_ENTITIES[$name] );
-		} else {
-			return "&$name;";
-		}
+		$trans = HTMLData::$namedEntityTranslations[$name] ?? null;
+		return $trans ?? "&$name";
 	}
 
 	/**
@@ -1627,7 +1334,7 @@ class Sanitizer {
 
 		// For lookup efficiency flip each attributes array so the keys are
 		// the valid attributes.
-		$merge = function ( $a, $b, $c = [] ) {
+		$merge = static function ( $a, $b, $c = [] ) {
 			return array_merge( $a, array_flip( $b ), array_flip( $c ) );
 		};
 		$common = $merge( [], [
@@ -1826,7 +1533,6 @@ class Sanitizer {
 
 			// HTML 5 section 4.5
 			'figure'     => $common,
-			'figure-inline' => $common, # T118520
 			'figcaption' => $common,
 
 			# HTML 5 section 4.6
@@ -1885,11 +1591,24 @@ class Sanitizer {
 	 * Use for passing XHTML fragments to PHP's XML parsing functions
 	 *
 	 * @return string
+	 * @deprecated since 1.36; will be made private or removed in a future
+	 *    release.
 	 */
 	public static function hackDocType() {
 		$out = "<!DOCTYPE html [\n";
-		foreach ( self::HTML_ENTITIES as $entity => $codepoint ) {
-			$out .= "<!ENTITY $entity \"&#$codepoint;\">";
+		foreach ( HTMLData::$namedEntityTranslations as $entity => $translation ) {
+			if ( substr( $entity, -1 ) !== ';' ) {
+				// Some HTML entities omit the trailing semicolon;
+				// wikitext does not permit these.
+				continue;
+			}
+			$name = substr( $entity, 0, -1 );
+			$expansion = self::normalizeEntity( $entity );
+			if ( $entity === $expansion ) {
+				// Skip &lt; &gt; etc
+				continue;
+			}
+			$out .= "<!ENTITY $name \"$expansion\">";
 		}
 		$out .= "]>\n";
 		return $out;
@@ -1987,6 +1706,7 @@ class Sanitizer {
 	 */
 	public static function validateEmail( $addr ) {
 		$result = null;
+		// TODO This method should be non-static, and have a HookRunner injected
 		if ( !Hooks::runner()->onIsValidEmailAddr( $addr, $result ) ) {
 			return $result;
 		}

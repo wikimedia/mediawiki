@@ -4,8 +4,6 @@ use MediaWiki\Interwiki\InterwikiLookupAdapter;
 
 /**
  * @covers MediaWiki\Interwiki\InterwikiLookupAdapter
- *
- * @group MediaWiki
  * @group Interwiki
  */
 class InterwikiLookupAdapterTest extends \MediaWikiUnitTestCase {
@@ -119,7 +117,6 @@ class InterwikiLookupAdapterTest extends \MediaWikiUnitTestCase {
 		$site = new MediaWikiSite();
 		$site->setGlobalId( 'enwiktionary' );
 		$site->setGroup( 'wiktionary' );
-		$site->setLanguageCode( 'en' );
 		$site->addNavigationId( 'enwiktionary' );
 		$site->addInterwikiId( 'enwt' );
 		$site->setSource( 'local' );

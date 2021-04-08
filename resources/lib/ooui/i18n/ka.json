@@ -9,7 +9,8 @@
 			"MIKHEIL",
 			"NoiX180",
 			"Pras",
-			"Tokoko"
+			"Tokoko",
+			"Გიო ოქრო"
 		]
 	},
 	"ooui-outline-control-move-down": "ელემენტის ქვემოთ გადატანა",
@@ -28,5 +29,6 @@
 	"ooui-selectfile-button-select": "აირჩიეთ ფაილი",
 	"ooui-selectfile-not-supported": "ფაილის არჩევა არ არის მხარდაჭერილი",
 	"ooui-selectfile-placeholder": "ფაილი არ არის არჩეული",
-	"ooui-selectfile-dragdrop-placeholder": "ჩააგდეთ ფაილი აქ"
+	"ooui-selectfile-dragdrop-placeholder": "ჩააგდეთ ფაილი აქ",
+	"ooui-selectfile-dragdrop-placeholder-multiple": "ჩაყარეთ ფაილები აქ"
 }

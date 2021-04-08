@@ -36,8 +36,7 @@ abstract class MWLBFactory {
 	private static $loggedDeprecations = [];
 
 	/**
-	 * @var array
-	 * @since 1.34
+	 * @internal For use by ServiceWiring
 	 */
 	public const APPLY_DEFAULT_CONFIG_OPTIONS = [
 		'DBcompress',
@@ -64,8 +63,8 @@ abstract class MWLBFactory {
 	 * @param array $lbConf Config for LBFactory::__construct()
 	 * @param ServiceOptions $options
 	 * @param ConfiguredReadOnlyMode $readOnlyMode
+	 * @param BagOStuff $cpStash
 	 * @param BagOStuff $srvCache
-	 * @param BagOStuff $mainStash
 	 * @param WANObjectCache $wanCache
 	 * @return array
 	 * @internal For use with service wiring
@@ -74,8 +73,8 @@ abstract class MWLBFactory {
 		array $lbConf,
 		ServiceOptions $options,
 		ConfiguredReadOnlyMode $readOnlyMode,
+		BagOStuff $cpStash,
 		BagOStuff $srvCache,
-		BagOStuff $mainStash,
 		WANObjectCache $wanCache
 	) {
 		$options->assertRequiredOptions( self::APPLY_DEFAULT_CONFIG_OPTIONS );
@@ -90,7 +89,7 @@ abstract class MWLBFactory {
 				$options->get( 'DBmwschema' ),
 				$options->get( 'DBprefix' )
 			),
-			'profiler' => function ( $section ) {
+			'profiler' => static function ( $section ) {
 				return Profiler::instance()->scopedProfileIn( $section );
 			},
 			'trxProfiler' => Profiler::instance()->getTransactionProfiler(),
@@ -157,8 +156,8 @@ abstract class MWLBFactory {
 			$options->get( 'DBprefix' )
 		);
 
+		$lbConf['cpStash'] = $cpStash;
 		$lbConf['srvCache'] = $srvCache;
-		$lbConf['memStash'] = $mainStash;
 		$lbConf['wanCache'] = $wanCache;
 
 		return $lbConf;
@@ -199,7 +198,7 @@ abstract class MWLBFactory {
 			$server += [
 				'port' => $options->get( 'DBport' ),
 				// Work around the reserved word usage in MediaWiki schema
-				'keywordTableMap' => [ 'user' => 'mwuser', 'text' => 'pagecontent' ]
+				'keywordTableMap' => [ 'user' => 'mwuser' ]
 			];
 		}
 

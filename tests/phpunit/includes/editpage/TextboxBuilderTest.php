@@ -21,118 +21,15 @@
 namespace MediaWiki\Tests\EditPage;
 
 use MediaWiki\EditPage\TextboxBuilder;
-use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
 use Title;
-use User;
 
 /**
+ * See also unit tests at \MediaWiki\Tests\Unit\EditPage\TextboxBuilderTest
+ *
  * @covers \MediaWiki\EditPage\TextboxBuilder
  */
 class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
-
-	public function provideAddNewLineAtEnd() {
-		return [
-			[ '', '' ],
-			[ 'foo', "foo\n" ],
-		];
-	}
-
-	/**
-	 * @dataProvider provideAddNewLineAtEnd
-	 */
-	public function testAddNewLineAtEnd( $input, $expected ) {
-		$builder = new TextboxBuilder();
-		$this->assertSame( $expected, $builder->addNewLineAtEnd( $input ) );
-	}
-
-	public function testBuildTextboxAttribs() {
-		$user = new User();
-		$user->setOption( 'editfont', 'monospace' );
-
-		$title = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$title->expects( $this->any() )
-			->method( 'getPageLanguage' )
-			->will( $this->returnValue(
-				MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' ) ) );
-
-		$builder = new TextboxBuilder();
-		$attribs = $builder->buildTextboxAttribs(
-			'mw-textbox1',
-			[ 'class' => 'foo bar', 'data-foo' => '123', 'rows' => 30 ],
-			$user,
-			$title
-		);
-
-		$this->assertIsArray( $attribs );
-		// custom attrib showed up
-		$this->assertArrayHasKey( 'data-foo', $attribs );
-		// classes merged properly (string)
-		$this->assertSame( 'foo bar mw-editfont-monospace', $attribs['class'] );
-		// overrides in custom attrib worked
-		$this->assertSame( 30, $attribs['rows'] );
-		$this->assertSame( 'en', $attribs['lang'] );
-
-		$attribs2 = $builder->buildTextboxAttribs(
-			'mw-textbox2', [ 'class' => [ 'foo', 'bar' ] ], $user, $title
-		);
-		// classes merged properly (array)
-		$this->assertSame( [ 'foo', 'bar', 'mw-editfont-monospace' ], $attribs2['class'] );
-
-		$attribs3 = $builder->buildTextboxAttribs(
-			'mw-textbox3', [], $user, $title
-		);
-		// classes ok when nothing to be merged
-		$this->assertSame( 'mw-editfont-monospace', $attribs3['class'] );
-	}
-
-	public function provideMergeClassesIntoAttributes() {
-		return [
-			[
-				[],
-				[],
-				[],
-			],
-			[
-				[ 'mw-new-classname' ],
-				[],
-				[ 'class' => 'mw-new-classname' ],
-			],
-			[
-				[],
-				[ 'title' => 'My Title' ],
-				[ 'title' => 'My Title' ],
-			],
-			[
-				[ 'mw-new-classname' ],
-				[ 'title' => 'My Title' ],
-				[ 'title' => 'My Title', 'class' => 'mw-new-classname' ],
-			],
-			[
-				[ 'mw-new-classname' ],
-				[ 'class' => 'mw-existing-classname' ],
-				[ 'class' => 'mw-existing-classname mw-new-classname' ],
-			],
-			[
-				[ 'mw-new-classname', 'mw-existing-classname' ],
-				[ 'class' => 'mw-existing-classname' ],
-				[ 'class' => 'mw-existing-classname mw-new-classname' ],
-			],
-		];
-	}
-
-	/**
-	 * @dataProvider provideMergeClassesIntoAttributes
-	 */
-	public function testMergeClassesIntoAttributes( $inputClasses, $inputAttributes, $expected ) {
-		$builder = new TextboxBuilder();
-		$this->assertSame(
-			$expected,
-			$builder->mergeClassesIntoAttributes( $inputClasses, $inputAttributes )
-		);
-	}
 
 	public function provideGetTextboxProtectionCSSClasses() {
 		return [
@@ -178,34 +75,18 @@ class TextboxBuilderTest extends MediaWikiIntegrationTestCase {
 		$expected
 	) {
 		$this->setMwGlobals( [
-			// set to trick NamespaceInfo::getRestrictionLevels
+			// set to trick PermissionManager::getNamespaceRestrictionLevels
 			'wgRestrictionLevels' => $restrictionLevels
 		] );
 
-		$builder = new TextboxBuilder();
-		$this->assertSame( $expected, $builder->getTextboxProtectionCSSClasses(
-			$this->mockProtectedTitle( $protectionModes )
-		) );
-	}
+		$title = $this->createMock( Title::class );
+		$title->method( 'getNamespace' )->willReturn( 1 );
 
-	/**
-	 * @return Title
-	 */
-	private function mockProtectedTitle( $methodsToReturnTrue ) {
-		$title = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$title->expects( $this->any() )
-			->method( 'getNamespace' )
-			->will( $this->returnValue( 1 ) );
-
-		foreach ( $methodsToReturnTrue as $method ) {
-			$title->expects( $this->any() )
-				->method( $method )
-				->will( $this->returnValue( true ) );
+		foreach ( $protectionModes as $method ) {
+			$title->method( $method )->willReturn( true );
 		}
 
-		return $title;
+		$builder = new TextboxBuilder();
+		$this->assertSame( $expected, $builder->getTextboxProtectionCSSClasses( $title ) );
 	}
 }

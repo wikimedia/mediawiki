@@ -24,7 +24,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 
 /**
@@ -33,32 +32,18 @@ use MediaWiki\Permissions\PermissionManager;
  * @ingroup SpecialPage
  */
 class SpecialImport extends SpecialPage {
-	private $sourceName = false;
-	private $interwiki = false;
-	private $subproject;
-	private $fullInterwikiPrefix;
-	private $mapping = 'default';
-	private $namespace;
-	private $rootpage = '';
-	private $frompage = '';
-	private $logcomment = false;
-	private $history = true;
-	private $includeTemplates = false;
-	private $pageLinkDepth;
-
 	/** @var array */
 	private $importSources;
-	private $assignKnownUsers;
-	private $usernamePrefix;
 
-	/**
-	 * @var PermissionManager
-	 */
+	/** @var PermissionManager */
 	private $permManager;
 
-	public function __construct() {
+	/**
+	 * @param PermissionManager $permManager
+	 */
+	public function __construct( PermissionManager $permManager ) {
 		parent::__construct( 'Import', 'import' );
-		$this->permManager = MediaWikiServices::getInstance()->getPermissionManager();
+		$this->permManager = $permManager;
 	}
 
 	public function doesWrites() {
@@ -77,9 +62,8 @@ class SpecialImport extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$this->namespace = $this->getConfig()->get( 'ImportTargetNamespace' );
-
 		$this->getOutput()->addModules( 'mediawiki.special.import' );
+		$this->getOutput()->addModuleStyles( 'mediawiki.special.import.styles.ooui' );
 
 		$this->importSources = $this->getConfig()->get( 'ImportSources' );
 		// Avoid phan error by checking the type
@@ -126,69 +110,76 @@ class SpecialImport extends SpecialPage {
 	private function doImport() {
 		$isUpload = false;
 		$request = $this->getRequest();
-		$this->sourceName = $request->getVal( "source" );
-		$this->assignKnownUsers = $request->getCheck( 'assignKnownUsers' );
+		$sourceName = $request->getVal( 'source' );
+		$assignKnownUsers = $request->getCheck( 'assignKnownUsers' );
 
-		$this->logcomment = $request->getText( 'log-comment' );
-		$this->pageLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' ) == 0
+		$logcomment = $request->getText( 'log-comment' );
+		$pageLinkDepth = $this->getConfig()->get( 'ExportMaxLinkDepth' ) == 0
 			? 0
 			: $request->getIntOrNull( 'pagelink-depth' );
 
-		$this->mapping = $request->getVal( 'mapping' );
-		if ( $this->mapping === 'namespace' ) {
-			$this->namespace = $request->getIntOrNull( 'namespace' );
-		} elseif ( $this->mapping === 'subpage' ) {
-			$this->rootpage = $request->getText( 'rootpage' );
-		} else {
-			$this->mapping = 'default';
+		$rootpage = '';
+		$mapping = $request->getVal( 'mapping' );
+		$namespace = $this->getConfig()->get( 'ImportTargetNamespace' );
+		if ( $mapping === 'namespace' ) {
+			$namespace = $request->getIntOrNull( 'namespace' );
+		} elseif ( $mapping === 'subpage' ) {
+			$rootpage = $request->getText( 'rootpage' );
 		}
 
 		$user = $this->getUser();
-		if ( !$user->matchEditToken( $request->getVal( 'editToken' ) ) ) {
+
+		$fullInterwikiPrefix = null;
+		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			$source = Status::newFatal( 'import-token-mismatch' );
-		} elseif ( $this->sourceName === 'upload' ) {
+		} elseif ( $sourceName === 'upload' ) {
 			$isUpload = true;
-			$this->usernamePrefix = $this->fullInterwikiPrefix = $request->getVal( 'usernamePrefix' );
+			$fullInterwikiPrefix = $request->getVal( 'usernamePrefix' );
 			if ( $this->permManager->userHasRight( $user, 'importupload' ) ) {
 				$source = ImportStreamSource::newFromUpload( "xmlimport" );
 			} else {
 				throw new PermissionsError( 'importupload' );
 			}
-		} elseif ( $this->sourceName === 'interwiki' ) {
+		} elseif ( $sourceName === 'interwiki' ) {
 			if ( !$this->permManager->userHasRight( $user, 'import' ) ) {
 				throw new PermissionsError( 'import' );
 			}
-			$this->interwiki = $this->fullInterwikiPrefix = $request->getVal( 'interwiki' );
+			$interwiki = $fullInterwikiPrefix = $request->getVal( 'interwiki' );
 			// does this interwiki have subprojects?
-			$hasSubprojects = array_key_exists( $this->interwiki, $this->importSources );
-			if ( !$hasSubprojects && !in_array( $this->interwiki, $this->importSources ) ) {
+			$hasSubprojects = array_key_exists( $interwiki, $this->importSources );
+			if ( !$hasSubprojects && !in_array( $interwiki, $this->importSources ) ) {
 				$source = Status::newFatal( "import-invalid-interwiki" );
 			} else {
+				$subproject = null;
 				if ( $hasSubprojects ) {
-					$this->subproject = $request->getVal( 'subproject' );
-					$this->fullInterwikiPrefix .= ':' . $request->getVal( 'subproject' );
+					$subproject = $request->getVal( 'subproject' );
+					// Trim "project::" prefix added for JS
+					if ( strpos( $subproject, $interwiki . '::' ) === 0 ) {
+						$subproject = substr( $subproject, strlen( $interwiki . '::' ) );
+					}
+					$fullInterwikiPrefix .= ':' . $subproject;
 				}
 				if ( $hasSubprojects &&
-					!in_array( $this->subproject, $this->importSources[$this->interwiki] )
+					!in_array( $subproject, $this->importSources[$interwiki] )
 				) {
-					$source = Status::newFatal( "import-invalid-interwiki" );
+					$source = Status::newFatal( 'import-invalid-interwiki' );
 				} else {
-					$this->history = $request->getCheck( 'interwikiHistory' );
-					$this->frompage = $request->getText( "frompage" );
-					$this->includeTemplates = $request->getCheck( 'interwikiTemplates' );
+					$history = $request->getCheck( 'interwikiHistory' );
+					$frompage = $request->getText( 'frompage' );
+					$includeTemplates = $request->getCheck( 'interwikiTemplates' );
 					$source = ImportStreamSource::newFromInterwiki(
-						$this->fullInterwikiPrefix,
-						$this->frompage,
-						$this->history,
-						$this->includeTemplates,
-						$this->pageLinkDepth );
+						$fullInterwikiPrefix,
+						$frompage,
+						$history,
+						$includeTemplates,
+						$pageLinkDepth );
 				}
 			}
 		} else {
 			$source = Status::newFatal( "importunknownsource" );
 		}
 
-		if ( (string)$this->fullInterwikiPrefix === '' ) {
+		if ( (string)$fullInterwikiPrefix === '' ) {
 			$source->fatal( 'importnoprefix' );
 		}
 
@@ -200,10 +191,10 @@ class SpecialImport extends SpecialPage {
 			);
 		} else {
 			$importer = new WikiImporter( $source->value, $this->getConfig() );
-			if ( $this->namespace !== null ) {
-				$importer->setTargetNamespace( $this->namespace );
-			} elseif ( $this->rootpage !== null ) {
-				$statusRootPage = $importer->setTargetRootPage( $this->rootpage );
+			if ( $namespace !== null ) {
+				$importer->setTargetNamespace( $namespace );
+			} elseif ( $rootpage !== null ) {
+				$statusRootPage = $importer->setTargetRootPage( $rootpage );
 				if ( !$statusRootPage->isGood() ) {
 					$out->wrapWikiMsg(
 						"<div class=\"error\">\n$1\n</div>",
@@ -217,15 +208,15 @@ class SpecialImport extends SpecialPage {
 					return;
 				}
 			}
-			$importer->setUsernamePrefix( $this->fullInterwikiPrefix, $this->assignKnownUsers );
+			$importer->setUsernamePrefix( $fullInterwikiPrefix, $assignKnownUsers );
 
 			$out->addWikiMsg( "importstart" );
 
 			$reporter = new ImportReporter(
 				$importer,
 				$isUpload,
-				$this->fullInterwikiPrefix,
-				$this->logcomment
+				$fullInterwikiPrefix,
+				$logcomment
 			);
 			$reporter->setContext( $this->getContext() );
 			$exception = false;
@@ -259,77 +250,37 @@ class SpecialImport extends SpecialPage {
 	}
 
 	private function getMappingFormPart( $sourceName ) {
-		$isSameSourceAsBefore = ( $this->sourceName === $sourceName );
 		$defaultNamespace = $this->getConfig()->get( 'ImportTargetNamespace' );
-		return "<tr>
-					<td>
-					</td>
-					<td class='mw-input'>" .
-					Xml::radioLabel(
-						$this->msg( 'import-mapping-default' )->text(),
-						'mapping',
-						'default',
-						// mw-import-mapping-interwiki-default, mw-import-mapping-upload-default
-						"mw-import-mapping-$sourceName-default",
-						( $isSameSourceAsBefore ?
-							( $this->mapping === 'default' ) :
-							$defaultNamespace === null )
-					) .
-					"</td>
-				</tr>
-				<tr>
-					<td>
-					</td>
-					<td class='mw-input'>" .
-					Xml::radioLabel(
-						$this->msg( 'import-mapping-namespace' )->text(),
-						'mapping',
-						'namespace',
-						// mw-import-mapping-interwiki-namespace, mw-import-mapping-upload-namespace
-						"mw-import-mapping-$sourceName-namespace",
-						( $isSameSourceAsBefore ?
-							( $this->mapping === 'namespace' ) :
-							$defaultNamespace !== null )
-					) . ' ' .
-					Html::namespaceSelector(
-						[
-							'selected' => ( $isSameSourceAsBefore ?
-								$this->namespace :
-								( $defaultNamespace || '' ) ),
-							'in-user-lang' => true,
-						], [
-							'name' => "namespace",
-							// mw-import-namespace-interwiki, mw-import-namespace-upload
-							'id' => "mw-import-namespace-$sourceName",
-							'class' => 'namespaceselector',
-						]
-					) .
-					"</td>
-				</tr>
-				<tr>
-					<td>
-					</td>
-					<td class='mw-input'>" .
-					Xml::radioLabel(
-						$this->msg( 'import-mapping-subpage' )->text(),
-						'mapping',
-						'subpage',
-						// mw-import-mapping-interwiki-subpage, mw-import-mapping-upload-subpage
-						"mw-import-mapping-$sourceName-subpage",
-						( $isSameSourceAsBefore ? ( $this->mapping === 'subpage' ) : '' )
-					) . ' ' .
-					Xml::input( 'rootpage', 50,
-						( $isSameSourceAsBefore ? $this->rootpage : '' ),
-						[
-							// Should be "mw-import-rootpage-...", but we keep this inaccurate
-							// ID for legacy reasons
-							// mw-interwiki-rootpage-interwiki, mw-interwiki-rootpage-upload
-							'id' => "mw-interwiki-rootpage-$sourceName",
-							'type' => 'text'
-						]
-					) . ' ' .
-					"</td>
-				</tr>";
+		return [
+			'mapping' => [
+				'type' => 'radio',
+				'name' => 'mapping',
+				// mw-import-mapping-interwiki, mw-import-mapping-upload
+				'id' => "mw-import-mapping-$sourceName",
+				'options-messages' => [
+					'import-mapping-default' => 'default',
+					'import-mapping-namespace' => 'namespace',
+					'import-mapping-subpage' => 'subpage'
+				],
+				'default' => $defaultNamespace !== null ? 'namespace' : 'default'
+			],
+			'namespace' => [
+				'type' => 'namespaceselect',
+				'name' => 'namespace',
+				// mw-import-namespace-interwiki, mw-import-namespace-upload
+				'id' => "mw-import-namespace-$sourceName",
+				'default' => $defaultNamespace ?: '',
+				'all' => null
+			],
+			'rootpage' => [
+				'type' => 'text',
+				'name' => 'rootpage',
+				// Should be "mw-import-rootpage-...", but we keep this inaccurate
+				// ID for legacy reasons
+				// mw-interwiki-rootpage-interwiki, mw-interwiki-rootpage-upload
+				'id' => "mw-interwiki-rootpage-$sourceName",
+			],
+		];
 	}
 
 	private function showForm() {
@@ -338,120 +289,64 @@ class SpecialImport extends SpecialPage {
 		$out = $this->getOutput();
 		$this->addHelpLink( 'https://meta.wikimedia.org/wiki/Special:MyLanguage/Help:Import', true );
 
+		$interwikiFormDescriptor = [];
+		$uploadFormDescriptor = [];
+
 		if ( $this->permManager->userHasRight( $user, 'importupload' ) ) {
 			$mappingSelection = $this->getMappingFormPart( 'upload' );
-			$out->addHTML(
-				Xml::fieldset( $this->msg( 'import-upload' )->text() ) .
-					Xml::openElement(
-						'form',
-						[
-							'enctype' => 'multipart/form-data',
-							'method' => 'post',
-							'action' => $action,
-							'id' => 'mw-import-upload-form'
-						]
-					) .
-					$this->msg( 'importtext' )->parseAsBlock() .
-					Html::hidden( 'action', 'submit' ) .
-					Html::hidden( 'source', 'upload' ) .
-					Xml::openElement( 'table', [ 'id' => 'mw-import-table-upload' ] ) .
-					"<tr>
-					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-upload-filename' )->text(), 'xmlimport' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Html::input( 'xmlimport', '', 'file', [ 'id' => 'xmlimport' ] ) . ' ' .
-					"</td>
-				</tr>
-				<tr>
-					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-upload-username-prefix' )->text(),
-						'mw-import-usernamePrefix' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::input( 'usernamePrefix', 50,
-						$this->usernamePrefix,
-						[ 'id' => 'usernamePrefix', 'type' => 'text' ] ) . ' ' .
-					"</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td class='mw-input'>" .
-					Xml::checkLabel(
-						$this->msg( 'import-assign-known-users' )->text(),
-						'assignKnownUsers',
-						'assignKnownUsers',
-						$this->assignKnownUsers
-					) .
-					"</td>
-				</tr>
-				<tr>
-					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-comment' )->text(), 'mw-import-comment' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::input( 'log-comment', 50,
-						( $this->sourceName === 'upload' ? $this->logcomment : '' ),
-						[ 'id' => 'mw-import-comment', 'type' => 'text' ] ) . ' ' .
-					"</td>
-				</tr>
-				$mappingSelection
-				<tr>
-					<td></td>
-					<td class='mw-submit'>" .
-					Xml::submitButton( $this->msg( 'uploadbtn' )->text() ) .
-					"</td>
-				</tr>" .
-					Xml::closeElement( 'table' ) .
-					Html::hidden( 'editToken', $user->getEditToken() ) .
-					Xml::closeElement( 'form' ) .
-					Xml::closeElement( 'fieldset' )
-			);
+			$uploadFormDescriptor += [
+				'intro' => [
+					'type' => 'info',
+					'raw' => true,
+					'default' => $this->msg( 'importtext' )->parseAsBlock()
+				],
+				'xmlimport' => [
+					'type' => 'file',
+					'name' => 'xmlimport',
+					'accept' => [ 'application/xml', 'text/xml' ],
+					'label-message' => 'import-upload-filename',
+					'required' => true,
+				],
+				'usernamePrefix' => [
+					'type' => 'text',
+					'name' => 'usernamePrefix',
+					'label-message' => 'import-upload-username-prefix',
+					// TODO: Is this field required?
+				],
+				'assignKnownUsers' => [
+					'type' => 'check',
+					'name' => 'assignKnownUsers',
+					'label-message' => 'import-assign-known-users'
+				],
+				'log-comment' => [
+					'type' => 'text',
+					'name' => 'log-comment',
+					'label-message' => 'import-comment'
+				],
+				'source' => [
+					'type' => 'hidden',
+					'name' => 'source',
+					'default' => 'upload',
+					'id' => '',
+				],
+			];
+
+			$uploadFormDescriptor += $mappingSelection;
+
+			$htmlForm = HTMLForm::factory( 'ooui', $uploadFormDescriptor, $this->getContext() );
+			$htmlForm->setAction( $action );
+			$htmlForm->setId( 'mw-import-upload-form' );
+			$htmlForm->setWrapperLegend( $this->msg( 'import-upload' )->text() );
+			$htmlForm->setSubmitTextMsg( 'uploadbtn' );
+			$htmlForm->prepareForm()->displayForm( false );
+
 		} elseif ( empty( $this->importSources ) ) {
 			$out->addWikiMsg( 'importnosources' );
 		}
 
 		if ( $this->permManager->userHasRight( $user, 'import' ) && !empty( $this->importSources ) ) {
-			# Show input field for import depth only if $wgExportMaxLinkDepth > 0
-			$importDepth = '';
-			if ( $this->getConfig()->get( 'ExportMaxLinkDepth' ) > 0 ) {
-				$importDepth = "<tr>
-							<td class='mw-label'>" .
-					$this->msg( 'export-pagelinks' )->parse() .
-					"</td>
-							<td class='mw-input'>" .
-					Xml::input( 'pagelink-depth', 3, 0 ) .
-					"</td>
-				</tr>";
-			}
-			$mappingSelection = $this->getMappingFormPart( 'interwiki' );
 
-			$out->addHTML(
-				Xml::fieldset( $this->msg( 'importinterwiki' )->text() ) .
-					Xml::openElement(
-						'form',
-						[
-							'method' => 'post',
-							'action' => $action,
-							'id' => 'mw-import-interwiki-form'
-						]
-					) .
-					$this->msg( 'import-interwiki-text' )->parseAsBlock() .
-					Html::hidden( 'action', 'submit' ) .
-					Html::hidden( 'source', 'interwiki' ) .
-					Html::hidden( 'editToken', $user->getEditToken() ) .
-					Xml::openElement( 'table', [ 'id' => 'mw-import-table-interwiki' ] ) .
-					"<tr>
-					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-interwiki-sourcewiki' )->text(), 'interwiki' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::openElement(
-						'select',
-						[ 'name' => 'interwiki', 'id' => 'interwiki' ]
-					)
-			);
-
+			$projects = [];
 			$needSubprojectField = false;
 			foreach ( $this->importSources as $key => $value ) {
 				if ( is_int( $key ) ) {
@@ -460,119 +355,99 @@ class SpecialImport extends SpecialPage {
 					$needSubprojectField = true;
 				}
 
-				$attribs = [
-					'value' => $key,
-				];
-				if ( is_array( $value ) ) {
-					$attribs['data-subprojects'] = implode( ' ', $value );
-				}
-				if ( $this->interwiki === $key ) {
-					$attribs['selected'] = 'selected';
-				}
-				$out->addHTML( Html::element( 'option', $attribs, $key ) );
+				$projects[ $key ] = $key;
 			}
 
-			$out->addHTML(
-				Xml::closeElement( 'select' )
-			);
+			$interwikiFormDescriptor += [
+				'intro' => [
+					'type' => 'info',
+					'raw' => true,
+					'default' => $this->msg( 'import-interwiki-text' )->parseAsBlock()
+				],
+				'interwiki' => [
+					'type' => 'select',
+					'name' => 'interwiki',
+					'label-message' => 'import-interwiki-sourcewiki',
+					'options' => $projects
+				],
+			];
 
 			if ( $needSubprojectField ) {
-				$out->addHTML(
-					Xml::openElement(
-						'select',
-						[ 'name' => 'subproject', 'id' => 'subproject' ]
-					)
-				);
-
-				$subprojectsToAdd = [];
+				$subprojects = [];
 				foreach ( $this->importSources as $key => $value ) {
 					if ( is_array( $value ) ) {
-						$subprojectsToAdd = array_merge( $subprojectsToAdd, $value );
+						foreach ( $value as $subproject ) {
+							$subprojects[ $subproject ] = $key . '::' . $subproject;
+						}
 					}
 				}
-				$subprojectsToAdd = array_unique( $subprojectsToAdd );
-				sort( $subprojectsToAdd );
-				foreach ( $subprojectsToAdd as $subproject ) {
-					$out->addHTML( Xml::option( $subproject, $subproject, $this->subproject === $subproject ) );
-				}
 
-				$out->addHTML(
-					Xml::closeElement( 'select' )
-				);
+				$interwikiFormDescriptor += [
+					'subproject' => [
+						'type' => 'select',
+						'name' => 'subproject',
+						'options' => $subprojects
+					]
+				];
 			}
 
-			$out->addHTML(
-					"</td>
-				</tr>
-				<tr>
-					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-interwiki-sourcepage' )->text(), 'frompage' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::input( 'frompage', 50, $this->frompage, [ 'id' => 'frompage' ] ) .
-					"</td>
-				</tr>
-				<tr>
-					<td>
-					</td>
-					<td class='mw-input'>" .
-					Xml::checkLabel(
-						$this->msg( 'import-interwiki-history' )->text(),
-						'interwikiHistory',
-						'interwikiHistory',
-						$this->history
-					) .
-					"</td>
-				</tr>
-				<tr>
-					<td>
-					</td>
-					<td class='mw-input'>" .
-					Xml::checkLabel(
-						$this->msg( 'import-interwiki-templates' )->text(),
-						'interwikiTemplates',
-						'interwikiTemplates',
-						$this->includeTemplates
-					) .
-					"</td>
-				</tr>
-				<tr>
-					<td></td>
-					<td class='mw-input'>" .
-					Xml::checkLabel(
-						$this->msg( 'import-assign-known-users' )->text(),
-						'assignKnownUsers',
-						'interwikiAssignKnownUsers',
-						$this->assignKnownUsers
-					) .
-					"</td>
-				</tr>
-				$importDepth
-				<tr>
-					<td class='mw-label'>" .
-					Xml::label( $this->msg( 'import-comment' )->text(), 'mw-interwiki-comment' ) .
-					"</td>
-					<td class='mw-input'>" .
-					Xml::input( 'log-comment', 50,
-						( $this->sourceName === 'interwiki' ? $this->logcomment : '' ),
-						[ 'id' => 'mw-interwiki-comment', 'type' => 'text' ] ) . ' ' .
-					"</td>
-				</tr>
-				$mappingSelection
-				<tr>
-					<td>
-					</td>
-					<td class='mw-submit'>" .
-					Xml::submitButton(
-						$this->msg( 'import-interwiki-submit' )->text(),
-						Linker::tooltipAndAccesskeyAttribs( 'import' )
-					) .
-					"</td>
-				</tr>" .
-					Xml::closeElement( 'table' ) .
-					Xml::closeElement( 'form' ) .
-					Xml::closeElement( 'fieldset' )
-			);
+			$interwikiFormDescriptor += [
+				'frompage' => [
+					'type' => 'text',
+					'name' => 'frompage',
+					'label-message' => 'import-interwiki-sourcepage'
+				],
+				'interwikiHistory' => [
+					'type' => 'check',
+					'name' => 'interwikiHistory',
+					'label-message' => 'import-interwiki-history'
+				],
+				'interwikiTemplates' => [
+					'type' => 'check',
+					'name' => 'interwikiTemplates',
+					'label-message' => 'import-interwiki-templates'
+				],
+				'assignKnownUsers' => [
+					'type' => 'check',
+					'name' => 'assignKnownUsers',
+					'label-message' => 'import-assign-known-users'
+				],
+			];
+
+			if ( $this->getConfig()->get( 'ExportMaxLinkDepth' ) > 0 ) {
+				$interwikiFormDescriptor += [
+					'pagelink-depth' => [
+						'type' => 'int',
+						'name' => 'pagelink-depth',
+						'label-message' => 'export-pagelinks',
+						'default' => 0
+					]
+				];
+			}
+
+			$interwikiFormDescriptor += [
+				'log-comment' => [
+					'type' => 'text',
+					'name' => 'log-comment',
+					'label-message' => 'import-comment'
+				],
+				'source' => [
+					'type' => 'hidden',
+					'name' => 'source',
+					'default' => 'interwiki',
+					'id' => '',
+				],
+			];
+			$mappingSelection = $this->getMappingFormPart( 'interwiki' );
+
+			$interwikiFormDescriptor += $mappingSelection;
+
+			$htmlForm = HTMLForm::factory( 'ooui', $interwikiFormDescriptor, $this->getContext() );
+			$htmlForm->setAction( $action );
+			$htmlForm->setId( 'mw-import-interwiki-form' );
+			$htmlForm->setWrapperLegend( $this->msg( 'importinterwiki' )->text() );
+			$htmlForm->setSubmitTextMsg( 'import-interwiki-submit' );
+			$htmlForm->prepareForm()->displayForm( false );
 		}
 	}
 

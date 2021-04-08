@@ -23,6 +23,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * Form for handling uploads and special page.
@@ -31,12 +32,33 @@ use MediaWiki\MediaWikiServices;
  * @ingroup Upload
  */
 class SpecialUpload extends SpecialPage {
+
+	/** @var LocalRepo */
+	private $localRepo;
+
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
 	/**
-	 * Get data POSTed through the form and assign them to the object
-	 * @param WebRequest|null $request Data posted.
+	 * @param RepoGroup|null $repoGroup
+	 * @param UserOptionsLookup|null $userOptionsLookup
+	 * @param NamespaceInfo|null $nsInfo
 	 */
-	public function __construct( $request = null ) {
+	public function __construct(
+		RepoGroup $repoGroup = null,
+		UserOptionsLookup $userOptionsLookup = null,
+		NamespaceInfo $nsInfo = null
+	) {
 		parent::__construct( 'Upload', 'upload' );
+		// This class is extended and therefor fallback to global state - T265300
+		$services = MediaWikiServices::getInstance();
+		$repoGroup = $repoGroup ?? $services->getRepoGroup();
+		$this->localRepo = $repoGroup->getLocalRepo();
+		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
+		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 	}
 
 	public function doesWrites() {
@@ -84,8 +106,9 @@ class SpecialUpload extends SpecialPage {
 	/** @var bool Subclasses can use this to determine whether a file was uploaded */
 	public $mUploadSuccessful = false;
 
-	/** Text injection points for hooks not using HTMLForm */
+	/** @var string Raw html injection point for hooks not using HTMLForm */
 	public $uploadFormTextTop;
+	/** @var string Raw html injection point for hooks not using HTMLForm */
 	public $uploadFormTextAfterSummary;
 
 	/**
@@ -109,7 +132,7 @@ class SpecialUpload extends SpecialPage {
 		$this->mDestWarningAck = $request->getText( 'wpDestFileWarningAck' );
 		$this->mIgnoreWarning = $request->getCheck( 'wpIgnoreWarning' )
 			|| $request->getCheck( 'wpUploadIgnoreWarning' );
-		$this->mWatchthis = $request->getBool( 'wpWatchthis' ) && $this->getUser()->isLoggedIn();
+		$this->mWatchthis = $request->getBool( 'wpWatchthis' ) && $this->getUser()->isRegistered();
 		$this->mCopyrightStatus = $request->getText( 'wpUploadCopyStatus' );
 		$this->mCopyrightSource = $request->getText( 'wpUploadSource' );
 
@@ -258,18 +281,25 @@ class SpecialUpload extends SpecialPage {
 		# Initialize form
 		$context = new DerivativeContext( $this->getContext() );
 		$context->setTitle( $this->getPageTitle() ); // Remove subpage
-		$form = new UploadForm( [
-			'watch' => $this->getWatchCheck(),
-			'forreupload' => $this->mForReUpload,
-			'sessionkey' => $sessionKey,
-			'hideignorewarning' => $hideIgnoreWarning,
-			'destwarningack' => (bool)$this->mDestWarningAck,
+		$form = new UploadForm(
+			[
+				'watch' => $this->getWatchCheck(),
+				'forreupload' => $this->mForReUpload,
+				'sessionkey' => $sessionKey,
+				'hideignorewarning' => $hideIgnoreWarning,
+				'destwarningack' => (bool)$this->mDestWarningAck,
 
-			'description' => $this->mComment,
-			'texttop' => $this->uploadFormTextTop,
-			'textaftersummary' => $this->uploadFormTextAfterSummary,
-			'destfile' => $this->mDesiredDestName,
-		], $context, $this->getLinkRenderer() );
+				'description' => $this->mComment,
+				'texttop' => $this->uploadFormTextTop,
+				'textaftersummary' => $this->uploadFormTextAfterSummary,
+				'destfile' => $this->mDesiredDestName,
+			],
+			$context,
+			$this->getLinkRenderer(),
+			$this->localRepo,
+			$this->getContentLanguage(),
+			$this->nsInfo
+		);
 
 		# Check the token, but only if necessary
 		if (
@@ -284,12 +314,10 @@ class SpecialUpload extends SpecialPage {
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$delNotice = ''; // empty by default
 		if ( $desiredTitleObj instanceof Title && !$desiredTitleObj->exists() ) {
-			$dbr = wfGetDB( DB_REPLICA );
-
 			LogEventsList::showLogExtract( $delNotice, [ 'delete', 'move' ],
 				$desiredTitleObj,
 				'', [ 'lim' => 10,
-					'conds' => [ 'log_action != ' . $dbr->addQuotes( 'revision' ) ],
+					'conds' => [ 'log_action != ' . $this->localRepo->getReplicaDB()->addQuotes( 'revision' ) ],
 					'showIfEmpty' => false,
 					'msgKey' => [ 'upload-recreate-warning' ] ]
 			);
@@ -319,17 +347,16 @@ class SpecialUpload extends SpecialPage {
 	protected function showViewDeletedLinks() {
 		$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 		$user = $this->getUser();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Show a subtitle link to deleted revisions (to sysops et al only)
 		if ( $title instanceof Title ) {
-			$count = $title->isDeleted();
-			if ( $count > 0 && $permissionManager->userHasRight( $user, 'deletedhistory' ) ) {
+			$count = $title->getDeletedEditsCount();
+			if ( $count > 0 && $this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 				$restorelink = $this->getLinkRenderer()->makeKnownLink(
 					SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
 					$this->msg( 'restorelink' )->numParams( $count )->text()
 				);
 				$link = $this->msg(
-					$permissionManager->userHasRight( $user, 'delete' ) ? 'thisisdeleted' : 'viewdeleted'
+					$this->getAuthority()->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted'
 				)->rawParams( $restorelink )->parseAsBlock();
 				$this->getOutput()->addHTML(
 					Html::rawElement(
@@ -666,30 +693,30 @@ class SpecialUpload extends SpecialPage {
 	 *
 	 * Note that the page target can be changed *on the form*, so our check
 	 * state can get out of sync.
-	 * @return bool|string
+	 * @return bool
 	 */
 	protected function getWatchCheck() {
-		if ( $this->getUser()->getOption( 'watchdefault' ) ) {
+		$user = $this->getUser();
+		if ( $this->userOptionsLookup->getBoolOption( $user, 'watchdefault' ) ) {
 			// Watch all edits!
 			return true;
 		}
 
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
-		if ( $desiredTitleObj instanceof Title && $this->getUser()->isWatched( $desiredTitleObj ) ) {
+		if ( $desiredTitleObj instanceof Title && $user->isWatched( $desiredTitleObj ) ) {
 			// Already watched, don't change that
 			return true;
 		}
 
-		$local = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
-			->newFile( $this->mDesiredDestName );
+		$local = $this->localRepo->newFile( $this->mDesiredDestName );
 		if ( $local && $local->exists() ) {
 			// We're uploading a new version of an existing file.
 			// No creation, so don't watch it if we're not already.
 			return false;
 		} else {
 			// New page should get watched if that's our option.
-			return $this->getUser()->getOption( 'watchcreations' ) ||
-				$this->getUser()->getOption( 'watchuploads' );
+			return $this->userOptionsLookup->getBoolOption( $user, 'watchcreations' ) ||
+				$this->userOptionsLookup->getBoolOption( $user, 'watchuploads' );
 		}
 	}
 

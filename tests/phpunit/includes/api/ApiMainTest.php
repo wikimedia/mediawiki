@@ -13,12 +13,29 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class ApiMainTest extends ApiTestCase {
 
+	protected function setUp() : void {
+		parent::setUp();
+		$this->mergeMwGlobalArrayValue(
+			'wgGroupPermissions',
+			[
+				'*' => [
+					'read' => true,
+					'edit' => true,
+					'writeapi' => true,
+					'apihighlimits' => false,
+				],
+			]
+		);
+	}
+
 	/**
 	 * Test that the API will accept a FauxRequest and execute.
 	 */
 	public function testApi() {
+		$fauxRequest = new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] );
+		$fauxRequest->setRequestURL( 'https://' );
 		$api = new ApiMain(
-			new FauxRequest( [ 'action' => 'query', 'meta' => 'siteinfo' ] )
+			$fauxRequest
 		);
 		$api->execute();
 		$data = $api->getResult()->getResultData();
@@ -45,6 +62,7 @@ class ApiMainTest extends ApiTestCase {
 	 *
 	 * @param array $requestData Query parameters for the WebRequest
 	 * @param array $headers Headers for the WebRequest
+	 * @return ApiMain
 	 */
 	private function getNonInternalApiMain( array $requestData, array $headers = [] ) {
 		$req = $this->getMockBuilder( WebRequest::class )
@@ -103,20 +121,18 @@ class ApiMainTest extends ApiTestCase {
 		$manager = $this->createMock( ApiContinuationManager::class );
 		$api->setContinuationManager( $manager );
 		$this->assertTrue( true, 'No exception' );
-		return [ $api, $manager ];
 	}
 
-	/**
-	 * @depends testSetContinuationManager
-	 */
-	public function testSetContinuationManagerTwice( $args ) {
+	public function testSetContinuationManagerTwice() {
 		$this->expectException( UnexpectedValueException::class );
 		$this->expectExceptionMessage(
 			'ApiMain::setContinuationManager: tried to set manager from  ' .
 				'when a manager is already set from '
 		);
 
-		list( $api, $manager ) = $args;
+		$api = new ApiMain();
+		$manager = $this->createMock( ApiContinuationManager::class );
+		$api->setContinuationManager( $manager );
 		$api->setContinuationManager( $manager );
 	}
 
@@ -233,7 +249,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
 		$api->getModuleManager()->addModule( 'testmodule', 'action', [
 			'class' => get_class( $mock ),
-			'factory' => function () use ( $mock ) {
+			'factory' => static function () use ( $mock ) {
 				return $mock;
 			}
 		] );
@@ -252,7 +268,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( new FauxRequest( [ 'action' => 'testmodule' ] ) );
 		$api->getModuleManager()->addModule( 'testmodule', 'action', [
 			'class' => get_class( $mock ),
-			'factory' => function () use ( $mock ) {
+			'factory' => static function () use ( $mock ) {
 				return $mock;
 			}
 		] );
@@ -302,7 +318,7 @@ class ApiMainTest extends ApiTestCase {
 		$api = new ApiMain( $req );
 		$api->getModuleManager()->addModule( 'testmodule', 'action', [
 			'class' => get_class( $mock ),
-			'factory' => function () use ( $mock ) {
+			'factory' => static function () use ( $mock ) {
 				return $mock;
 			}
 		] );
@@ -514,7 +530,7 @@ class ApiMainTest extends ApiTestCase {
 			->getMockForAbstractClass();
 		$module->expects( $this->any() )
 			->method( 'getConditionalRequestData' )
-			->will( $this->returnCallback( function ( $condition ) use ( $conditions ) {
+			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
 			} ) );
 
@@ -645,7 +661,7 @@ class ApiMainTest extends ApiTestCase {
 			->getMockForAbstractClass();
 		$module->expects( $this->any() )
 			->method( 'getConditionalRequestData' )
-			->will( $this->returnCallback( function ( $condition ) use ( $conditions ) {
+			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
 			} ) );
 		$priv->mModule = $module;
@@ -705,11 +721,7 @@ class ApiMainTest extends ApiTestCase {
 
 	public function testCheckExecutePermissionWriteDisabled() {
 		$this->expectException( ApiUsageException::class );
-		$this->expectExceptionMessage(
-			'Editing of this wiki through the API is disabled. Make sure the ' .
-				'"$wgEnableWriteAPI=true;" statement is included in the wiki\'s ' .
-				'"LocalSettings.php" file.'
-		);
+		$this->expectExceptionMessage( 'Editing of this wiki through the API is disabled.' );
 		$main = new ApiMain( new FauxRequest( [
 			'action' => 'edit',
 			'title' => 'Some page',
@@ -755,7 +767,7 @@ class ApiMainTest extends ApiTestCase {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'Main Page' );
 
-		$this->setTemporaryHook( 'ApiCheckCanExecute', function ( $unused1, $unused2, &$message ) {
+		$this->setTemporaryHook( 'ApiCheckCanExecute', static function ( $unused1, $unused2, &$message ) {
 			$message = 'mainpage';
 			return false;
 		} );
@@ -812,7 +824,7 @@ class ApiMainTest extends ApiTestCase {
 
 		// Hook
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'RequestHasSameOriginSecurity' => [ function () {
+			'RequestHasSameOriginSecurity' => [ static function () {
 				return false;
 			} ]
 		] );
@@ -957,9 +969,6 @@ class ApiMainTest extends ApiTestCase {
 
 	/**
 	 * @dataProvider provideExceptionErrors
-	 * @param Exception $exception
-	 * @param array $expectReturn
-	 * @param array $expectResult
 	 */
 	public function testExceptionErrors( $error, $expectReturn, $expectResult ) {
 		$context = new RequestContext();

@@ -48,8 +48,9 @@ class ApiFeedContributions extends ApiBase {
 	}
 
 	public function execute() {
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->titleParser = MediaWikiServices::getInstance()->getTitleParser();
+		$services = MediaWikiServices::getInstance();
+		$this->revisionStore = $services->getRevisionStore();
+		$this->titleParser = $services->getTitleParser();
 
 		$params = $this->extractRequestParams();
 
@@ -90,18 +91,27 @@ class ApiFeedContributions extends ApiBase {
 		$params['end'] = '';
 		$params = ContribsPager::processDateFilter( $params );
 
-		$pager = new ContribsPager( $this->getContext(), [
-			'target' => $target,
-			'namespace' => $params['namespace'],
-			'start' => $params['start'],
-			'end' => $params['end'],
-			'tagFilter' => $params['tagfilter'],
-			'deletedOnly' => $params['deletedonly'],
-			'topOnly' => $params['toponly'],
-			'newOnly' => $params['newonly'],
-			'hideMinor' => $params['hideminor'],
-			'showSizeDiff' => $params['showsizediff'],
-		] );
+		$pager = new ContribsPager(
+			$this->getContext(), [
+				'target' => $target,
+				'namespace' => $params['namespace'],
+				'start' => $params['start'],
+				'end' => $params['end'],
+				'tagFilter' => $params['tagfilter'],
+				'deletedOnly' => $params['deletedonly'],
+				'topOnly' => $params['toponly'],
+				'newOnly' => $params['newonly'],
+				'hideMinor' => $params['hideminor'],
+				'showSizeDiff' => $params['showsizediff'],
+			],
+			$services->getLinkRenderer(),
+			$services->getLinkBatchFactory(),
+			$services->getHookContainer(),
+			$services->getDBLoadBalancer(),
+			$services->getActorMigration(),
+			$this->revisionStore,
+			$services->getNamespaceInfo()
+		);
 
 		$feedLimit = $this->getConfig()->get( 'FeedLimit' );
 		if ( $pager->getLimit() > $feedLimit ) {
@@ -144,9 +154,8 @@ class ApiFeedContributions extends ApiBase {
 
 		// Hook completed and did not return a valid feed item
 		$title = Title::makeTitle( (int)$row->page_namespace, $row->page_title );
-		$user = $this->getUser();
 
-		if ( $title && $this->getPermissionManager()->userCan( 'read', $user, $title ) ) {
+		if ( $title && $this->getAuthority()->authorizeRead( 'read', $title ) ) {
 			$date = $row->rev_timestamp;
 			$comments = $title->getTalkPage()->getFullURL();
 			$revision = $this->revisionStore->newRevisionFromRow( $row, 0, $title );

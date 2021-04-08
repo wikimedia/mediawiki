@@ -336,7 +336,6 @@ class LocalFile extends File {
 				}
 				$cacheVal['user'] = $this->user ? $this->user->getId() : 0;
 				$cacheVal['user_text'] = $this->user ? $this->user->getName() : '';
-				$cacheVal['actor'] = $this->user ? $this->user->getActorId() : null;
 
 				// Strip off excessive entries from the subset of fields that can become large.
 				// If the cache value gets to large it will not fit in memcached and nothing will
@@ -382,7 +381,7 @@ class LocalFile extends File {
 		}
 
 		$this->repo->getMasterDB()->onTransactionPreCommitOrIdle(
-			function () use ( $key ) {
+			static function () use ( $key ) {
 				MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
 			},
 			__METHOD__
@@ -548,7 +547,7 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * @param array|object $row
+	 * @param array|stdClass $row
 	 * @param string $prefix
 	 * @throws MWException
 	 * @return array
@@ -573,7 +572,7 @@ class LocalFile extends File {
 	/**
 	 * Decode a row from the database (either object or array) to an array
 	 * with timestamps and MIME types decoded, and the field prefix removed.
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param string $prefix
 	 * @throws MWException
 	 * @return array
@@ -622,7 +621,7 @@ class LocalFile extends File {
 	 * Load file metadata from a DB result row
 	 * @stable to override
 	 *
-	 * @param object $row
+	 * @param stdClass $row
 	 * @param string $prefix
 	 */
 	public function loadFromRow( $row, $prefix = 'img_' ) {
@@ -1361,7 +1360,7 @@ class LocalFile extends File {
 	 *   info is already known
 	 * @param string|bool $timestamp Timestamp for img_timestamp, or false to use the
 	 *   current time
-	 * @param User|null $user User object or null to use $wgUser
+	 * @param User|null $user User object or null to use the context user
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
 	 *   (This doesn't check $user's permissions.)
 	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
@@ -1422,13 +1421,19 @@ class LocalFile extends File {
 			// Once the second operation goes through, then the current version was
 			// updated and we must therefore update the DB too.
 			$oldver = $status->value;
-			$uploadStatus = $this->recordUpload2(
+
+			if ( $user === null ) {
+				// User argument is optional, fall back to the context user
+				$user = RequestContext::getMain()->getUser();
+			}
+
+			$uploadStatus = $this->recordUpload3(
 				$oldver,
 				$comment,
 				$pageText,
+				$user,
 				$props,
 				$timestamp,
-				$user,
 				$tags,
 				$createNullRevision,
 				$revert
@@ -1449,41 +1454,7 @@ class LocalFile extends File {
 
 	/**
 	 * Record a file upload in the upload log and the image table
-	 * @deprecated since 1.35
-	 * @param string $oldver
-	 * @param string $desc
-	 * @param string $license
-	 * @param string $copyStatus
-	 * @param string $source
-	 * @param bool $watch
-	 * @param string|bool $timestamp
-	 * @param User|null $user User object or null to use $wgUser
-	 * @return bool
-	 */
-	public function recordUpload( $oldver, $desc, $license = '', $copyStatus = '', $source = '',
-		$watch = false, $timestamp = false, User $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( !$user ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-
-		$pageText = SpecialUpload::getInitialPageText( $desc, $license, $copyStatus, $source );
-
-		if ( !$this->recordUpload2( $oldver, $desc, $pageText, false, $timestamp, $user )->isOK() ) {
-			return false;
-		}
-
-		if ( $watch ) {
-			$user->addWatch( $this->getTitle() );
-		}
-
-		return true;
-	}
-
-	/**
-	 * Record a file upload in the upload log and the image table
-	 * @deprecated since 1.35
+	 * @deprecated since 1.35 (hard deprecated since 1.36)
 	 * @param string $oldver
 	 * @param string $comment
 	 * @param string $pageText
@@ -1500,7 +1471,7 @@ class LocalFile extends File {
 		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
-		// TODO check all callers and hard deprecate
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $user === null ) {
 			global $wgUser;
 			$user = $wgUser;
@@ -1552,9 +1523,6 @@ class LocalFile extends File {
 
 		$props = $props ?: $this->repo->getFileProps( $this->getVirtualUrl() );
 		$props['description'] = $comment;
-		$props['user'] = $user->getId();
-		$props['user_text'] = $user->getName();
-		$props['actor'] = $user->getActorId( $dbw );
 		$props['timestamp'] = wfTimestamp( TS_MW, $timestamp ); // DB -> TS_MW
 		$this->setProps( $props );
 
@@ -1565,15 +1533,19 @@ class LocalFile extends File {
 			return Status::newFatal( 'filenotfound', $this->getRel() );
 		}
 
+		$actorNormalizaton = MediaWikiServices::getInstance()->getActorNormalization();
+
 		$dbw->startAtomic( __METHOD__ );
+
+		$actorId = $actorNormalizaton->acquireActorId( $user, $dbw );
+		$this->user = $user;
 
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
 		# doesn't deadlock. SELECT FOR UPDATE causes a deadlock for every race condition.
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 		$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
-		$actorMigration = ActorMigration::newMigration();
-		$actorFields = $actorMigration->getInsertValues( $dbw, 'img_user', $user );
+		$actorFields = [ 'img_actor' => $actorId ];
 		$dbw->insert( 'image',
 			[
 				'img_name' => $this->getName(),
@@ -1755,135 +1727,144 @@ class LocalFile extends File {
 			$newPageContent = ContentHandler::makeContent( $pageText, $descTitle );
 		}
 
-		# Defer purges, page creation, and link updates in case they error out.
-		# The most important thing is that files and the DB registry stay synced.
+		// NOTE: Even after ending this atomic section, we are probably still in the transaction
+		//       started by the call to lock() in publishTo(). We cannot yet safely schedule jobs,
+		//       see T263301.
 		$dbw->endAtomic( __METHOD__ );
 		$fname = __METHOD__;
 
 		# Do some cache purges after final commit so that:
 		# a) Changes are more likely to be seen post-purge
 		# b) They won't cause rollback of the log publish/update above
-		DeferredUpdates::addUpdate(
-			new AutoCommitUpdate(
-				$dbw,
-				__METHOD__,
-				/** @suppress PhanTypeArraySuspiciousNullable False positives with $this->status->value */
-				function () use (
-					$reupload, $wikiPage, $newPageContent, $comment, $user,
-					$logEntry, $logId, $descId, $tags, $fname
-				) {
-					# Update memcache after the commit
-					$this->invalidateCache();
+		$purgeUpdate = new AutoCommitUpdate(
+			$dbw,
+			__METHOD__,
+			/** @suppress PhanTypeArraySuspiciousNullable False positives with $this->status->value */
+			function () use (
+				$reupload, $wikiPage, $newPageContent, $comment, $user,
+				$logEntry, $logId, $descId, $tags, $fname
+			) {
+				# Update memcache after the commit
+				$this->invalidateCache();
 
-					$updateLogPage = false;
-					if ( $newPageContent ) {
-						# New file page; create the description page.
-						# There's already a log entry, so don't make a second RC entry
-						# CDN and file cache for the description page are purged by doEditContent.
-						$status = $wikiPage->doEditContent(
-							$newPageContent,
-							$comment,
-							EDIT_NEW | EDIT_SUPPRESS_RC,
-							false,
-							$user
-						);
-
-						if ( isset( $status->value['revision-record'] ) ) {
-							/** @var RevisionRecord $revRecord */
-							$revRecord = $status->value['revision-record'];
-							// Associate new page revision id
-							$logEntry->setAssociatedRevId( $revRecord->getId() );
-						}
-						// This relies on the resetArticleID() call in WikiPage::insertOn(),
-						// which is triggered on $descTitle by doEditContent() above.
-						if ( isset( $status->value['revision-record'] ) ) {
-							/** @var RevisionRecord $revRecord */
-							$revRecord = $status->value['revision-record'];
-							$updateLogPage = $revRecord->getPageId();
-						}
-					} else {
-						# Existing file page: invalidate description page cache
-						$title = $wikiPage->getTitle();
-						$title->invalidateCache();
-						$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
-						$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
-						# Allow the new file version to be patrolled from the page footer
-						Article::purgePatrolFooterCache( $descId );
-					}
-
-					# Update associated rev id. This should be done by $logEntry->insert() earlier,
-					# but setAssociatedRevId() wasn't called at that point yet...
-					$logParams = $logEntry->getParameters();
-					$logParams['associated_rev_id'] = $logEntry->getAssociatedRevId();
-					$update = [ 'log_params' => LogEntryBase::makeParamBlob( $logParams ) ];
-					if ( $updateLogPage ) {
-						# Also log page, in case where we just created it above
-						$update['log_page'] = $updateLogPage;
-					}
-					$this->getRepo()->getMasterDB()->update(
-						'logging',
-						$update,
-						[ 'log_id' => $logId ],
-						$fname
-					);
-					$this->getRepo()->getMasterDB()->insert(
-						'log_search',
-						[
-							'ls_field' => 'associated_rev_id',
-							'ls_value' => (string)$logEntry->getAssociatedRevId(),
-							'ls_log_id' => $logId,
-						],
-						$fname
+				$updateLogPage = false;
+				if ( $newPageContent ) {
+					# New file page; create the description page.
+					# There's already a log entry, so don't make a second RC entry
+					# CDN and file cache for the description page are purged by doEditContent.
+					$status = $wikiPage->doEditContent(
+						$newPageContent,
+						$comment,
+						EDIT_NEW | EDIT_SUPPRESS_RC,
+						false,
+						$user
 					);
 
-					# Add change tags, if any
-					if ( $tags ) {
-						$logEntry->addTags( $tags );
+					if ( isset( $status->value['revision-record'] ) ) {
+						/** @var RevisionRecord $revRecord */
+						$revRecord = $status->value['revision-record'];
+						// Associate new page revision id
+						$logEntry->setAssociatedRevId( $revRecord->getId() );
 					}
-
-					# Uploads can be patrolled
-					$logEntry->setIsPatrollable( true );
-
-					# Now that the log entry is up-to-date, make an RC entry.
-					$logEntry->publish( $logId );
-
-					# Run hook for other updates (typically more cache purging)
-					$this->getHookRunner()->onFileUpload( $this, $reupload, !$newPageContent );
-
-					if ( $reupload ) {
-						# Delete old thumbnails
-						$this->purgeThumbnails();
-						# Remove the old file from the CDN cache
-						$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
-						$hcu->purgeUrls( $this->getUrl(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
-					} else {
-						# Update backlink pages pointing to this title if created
-						LinksUpdate::queueRecursiveJobsForTable(
-							$this->getTitle(),
-							'imagelinks',
-							'upload-image',
-							$user->getName()
-						);
+					// This relies on the resetArticleID() call in WikiPage::insertOn(),
+					// which is triggered on $descTitle by doEditContent() above.
+					if ( isset( $status->value['revision-record'] ) ) {
+						/** @var RevisionRecord $revRecord */
+						$revRecord = $status->value['revision-record'];
+						$updateLogPage = $revRecord->getPageId();
 					}
-
-					$this->prerenderThumbnails();
+				} else {
+					# Existing file page: invalidate description page cache
+					$title = $wikiPage->getTitle();
+					$title->invalidateCache();
+					$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+					$hcu->purgeTitleUrls( $title, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
+					# Allow the new file version to be patrolled from the page footer
+					Article::purgePatrolFooterCache( $descId );
 				}
-			),
-			DeferredUpdates::PRESEND
+
+				# Update associated rev id. This should be done by $logEntry->insert() earlier,
+				# but setAssociatedRevId() wasn't called at that point yet...
+				$logParams = $logEntry->getParameters();
+				$logParams['associated_rev_id'] = $logEntry->getAssociatedRevId();
+				$update = [ 'log_params' => LogEntryBase::makeParamBlob( $logParams ) ];
+				if ( $updateLogPage ) {
+					# Also log page, in case where we just created it above
+					$update['log_page'] = $updateLogPage;
+				}
+				$this->getRepo()->getMasterDB()->update(
+					'logging',
+					$update,
+					[ 'log_id' => $logId ],
+					$fname
+				);
+				$this->getRepo()->getMasterDB()->insert(
+					'log_search',
+					[
+						'ls_field' => 'associated_rev_id',
+						'ls_value' => (string)$logEntry->getAssociatedRevId(),
+						'ls_log_id' => $logId,
+					],
+					$fname
+				);
+
+				# Add change tags, if any
+				if ( $tags ) {
+					$logEntry->addTags( $tags );
+				}
+
+				# Uploads can be patrolled
+				$logEntry->setIsPatrollable( true );
+
+				# Now that the log entry is up-to-date, make an RC entry.
+				$logEntry->publish( $logId );
+
+				# Run hook for other updates (typically more cache purging)
+				$this->getHookRunner()->onFileUpload( $this, $reupload, !$newPageContent );
+
+				if ( $reupload ) {
+					# Delete old thumbnails
+					$this->purgeThumbnails();
+					# Remove the old file from the CDN cache
+					$hcu = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+					$hcu->purgeUrls( $this->getUrl(), $hcu::PURGE_INTENT_TXROUND_REFLECTED );
+				} else {
+					# Update backlink pages pointing to this title if created
+					LinksUpdate::queueRecursiveJobsForTable(
+						$this->getTitle(),
+						'imagelinks',
+						'upload-image',
+						$user->getName()
+					);
+				}
+
+				$this->prerenderThumbnails();
+			}
 		);
 
-		if ( !$reupload ) {
-			# This is a new file, so update the image count
-			DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => 1 ] ) );
-		}
-
 		# Invalidate cache for all pages using this file
-		$job = HTMLCacheUpdateJob::newForBacklinks(
+		$cacheUpdateJob = HTMLCacheUpdateJob::newForBacklinks(
 			$this->getTitle(),
 			'imagelinks',
 			[ 'causeAction' => 'file-upload', 'causeAgent' => $user->getName() ]
 		);
-		JobQueueGroup::singleton()->lazyPush( $job );
+
+		// NOTE: We are probably still in the transaction started by the call to lock() in
+		//       publishTo(). We should only schedule jobs after that transaction was committed,
+		//       so a job queue failure doesn't cause the upload to fail (T263301).
+		//       Also, we should generally not schedule any Jobs or the DeferredUpdates that
+		//       assume the update is complete until after the transaction has been committed and
+		//       we are sure that the upload was indeed successful.
+		$dbw->onTransactionCommitOrIdle( function () use ( $reupload, $purgeUpdate, $cacheUpdateJob ) {
+			DeferredUpdates::addUpdate( $purgeUpdate, DeferredUpdates::PRESEND );
+
+			if ( !$reupload ) {
+				// This is a new file, so update the image count
+				DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [ 'images' => 1 ] ) );
+			}
+
+			JobQueueGroup::singleton()->lazyPush( $cacheUpdateJob );
+		} );
 
 		return Status::newGood();
 	}
@@ -2015,7 +1996,7 @@ class LocalFile extends File {
 			new AutoCommitUpdate(
 				$this->getRepo()->getMasterDB(),
 				__METHOD__,
-				function () use ( $oldTitleFile, $newTitleFile, $archiveNames ) {
+				static function () use ( $oldTitleFile, $newTitleFile, $archiveNames ) {
 					$oldTitleFile->purgeEverything();
 					foreach ( $archiveNames as $archiveName ) {
 						/** @var OldLocalFile $oldTitleFile */
@@ -2037,30 +2018,6 @@ class LocalFile extends File {
 		}
 
 		return $status;
-	}
-
-	/**
-	 * Delete all versions of the file.
-	 *
-	 * @deprecated since 1.35, use deleteFile
-	 *
-	 * Moves the files into an archive directory (or deletes them)
-	 * and removes the database rows.
-	 *
-	 * Cache purging is done; logging is caller's responsibility.
-	 *
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param User|null $user
-	 * @return Status
-	 */
-	public function delete( $reason, $suppress = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-		return $this->deleteFile( $reason, $user, $suppress );
 	}
 
 	/**
@@ -2122,32 +2079,6 @@ class LocalFile extends File {
 		$hcu->purgeUrls( $purgeUrls, $hcu::PURGE_INTENT_TXROUND_REFLECTED );
 
 		return $status;
-	}
-
-	/**
-	 * Delete an old version of the file.
-	 *
-	 * @deprecated since 1.35, use deleteOldFile
-	 *
-	 * Moves the file into an archive directory (or deletes it)
-	 * and removes the database row.
-	 *
-	 * Cache purging is done; logging is caller's responsibility.
-	 *
-	 * @param string $archiveName
-	 * @param string $reason
-	 * @param bool $suppress
-	 * @param User|null $user
-	 * @throws MWException Exception on database or file store failure
-	 * @return Status
-	 */
-	public function deleteOld( $archiveName, $reason, $suppress = false, $user = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $user === null ) {
-			global $wgUser;
-			$user = $wgUser;
-		}
-		return $this->deleteOldFile( $archiveName, $reason, $user, $suppress );
 	}
 
 	/**
@@ -2268,7 +2199,13 @@ class LocalFile extends File {
 		}
 
 		$renderer = MediaWikiServices::getInstance()->getRevisionRenderer();
-		$rendered = $renderer->getRenderedRevision( $revision, new ParserOptions( null, $lang ) );
+		$rendered = $renderer->getRenderedRevision(
+			$revision,
+			ParserOptions::newFromUserAndLang(
+				RequestContext::getMain()->getUser(),
+				$lang
+			)
+		);
 
 		if ( !$rendered ) {
 			// audience check failed
@@ -2440,7 +2377,7 @@ class LocalFile extends File {
 	 *
 	 * This method should not be used outside of LocalFile/LocalFile*Batch
 	 *
-	 * The commit and loc release will happen when no atomic sections are active, which
+	 * The commit and lock release will happen when no atomic sections are active, which
 	 * may happen immediately or at some point after calling this
 	 */
 	public function unlock() {

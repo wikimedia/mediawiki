@@ -3,6 +3,7 @@
 		"authors": [
 			"AS",
 			"Ahonc",
+			"Base",
 			"Dim Grits",
 			"Innv",
 			"Microcell",
@@ -215,7 +216,6 @@
 	"exif-photometricinterpretation-4": "Маска прозорості",
 	"exif-photometricinterpretation-5": "Відокремлено (ймовірно CMYK)",
 	"exif-photometricinterpretation-6": "YCbCr",
-	"exif-photometricinterpretation-8": "CIE L*a*b*",
 	"exif-photometricinterpretation-9": "CIE L*a*b* (ICC-кодування)",
 	"exif-photometricinterpretation-10": "CIE L*a*b* (ITU-кодування)",
 	"exif-unknowndate": "Невідома дата",
@@ -393,5 +393,20 @@
 	"exif-urgency-normal": "Звичайна ($1)",
 	"exif-urgency-low": "Низька ($1)",
 	"exif-urgency-high": "Висока ($1)",
-	"exif-urgency-other": "Визначений користувачем пріоритет ($1)"
+	"exif-urgency-other": "Визначений користувачем пріоритет ($1)",
+	"exif-firstphotodate": "Дата першого фото",
+	"exif-lastphotodate": "Дата останнього фото",
+	"exif-projectiontype": "Тип проекції",
+	"exif-usepanoramaviewer": "Використовувати переглядач панорами",
+	"exif-usepanoramaviewer-true": "Так",
+	"exif-usepanoramaviewer-false": "Ні",
+	"exif-exposurelockused-true": "Так",
+	"exif-exposurelockused-false": "Ні",
+	"exif-sourcephotoscount": "Число вихідних фото",
+	"exif-croppedareaimagewidthpixels": "Ширина обрізаної панорами",
+	"exif-croppedareaimageheightpixels": "Висота обрізаної панорами",
+	"exif-fullpanowidthpixels": "Повна ширина панорами",
+	"exif-fullpanoheightpixels": "Повна висота панорами",
+	"exif-croppedarealeftpixels": "Ліве обрізання панорами",
+	"exif-croppedareatoppixels": "Верхнє обрізання панорами"
 }

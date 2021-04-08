@@ -2,9 +2,9 @@
 	"@metadata": {
 		"authors": [
 			"Cekli829",
+			"Khan27",
 			"Vago",
-			"Wertuose",
-			"Khan27"
+			"Wertuose"
 		]
 	},
 	"config-desc": "MediaWiki yükləyicisi",
@@ -19,8 +19,6 @@
 	"config-page-options": "Nizamlamalar:",
 	"config-page-install": "Nizamlama",
 	"config-page-complete": "Komplektləşdir!",
-	"config-mysql-myisam": "MyISAM",
-	"config-mysql-utf8": "UTF-8",
 	"config-ns-generic": "Layihə",
 	"config-admin-name": "Sizin istifadəçi adınız:",
 	"config-admin-password": "Parol:",

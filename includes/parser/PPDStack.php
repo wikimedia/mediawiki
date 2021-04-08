@@ -26,6 +26,7 @@
 class PPDStack {
 	/** @var PPDStackElement[] */
 	public $stack;
+	/** @var string|array */
 	public $rootAccum;
 	/** @var string|array */
 	public $accum;
@@ -58,7 +59,7 @@ class PPDStack {
 	}
 
 	/**
-	 * @return bool|PPDPart
+	 * @return false|PPDPart
 	 */
 	public function getCurrentPart() {
 		if ( $this->top === false ) {

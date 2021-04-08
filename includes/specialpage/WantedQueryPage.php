@@ -68,7 +68,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * @stable to override
 	 *
 	 * @param Skin $skin Skin to use for UI elements
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
@@ -114,7 +114,7 @@ abstract class WantedQueryPage extends QueryPage {
 	 * Make a "what links here" link for a given title
 	 *
 	 * @param Title $title Title to make the link for
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string
 	 */
 	protected function makeWlhLink( $title, $result ) {

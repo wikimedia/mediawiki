@@ -150,7 +150,7 @@ class RefreshLinksJob extends Job {
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
 		// Load the page from the master DB
-		$page = WikiPage::factory( $title );
+		$page = $services->getWikiPageFactory()->newFromTitle( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
 
 		// Serialize link update job by page ID so they see each others' changes.

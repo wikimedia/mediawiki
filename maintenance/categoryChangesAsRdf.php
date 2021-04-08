@@ -55,23 +55,6 @@ DELETE {
 SPARQLD;
 
 	/**
-	 * Delete/Insert query
-	 */
-	private const SPARQL_DELETE_INSERT = <<<SPARQLDI
-DELETE {
-?category ?x ?y
-} INSERT {
-%s
-} WHERE {
-  ?category ?x ?y
-   VALUES ?category {
-     %s
-   }
-};
-
-SPARQLDI;
-
-	/**
 	 * @var RdfWriter
 	 */
 	private $rdfWriter;
@@ -209,7 +192,7 @@ SPARQLDI;
 	 * @param string[] $pages List of child categories: id => title
 	 */
 	private function writeParentCategories( IDatabase $dbr, $pages ) {
-		foreach ( $this->getCategoryLinksIterator( $dbr, array_keys( $pages ) ) as $row ) {
+		foreach ( $this->getCategoryLinksIterator( $dbr, array_keys( $pages ), __METHOD__ ) as $row ) {
 			$this->categoriesRdf->writeCategoryLinkData( $pages[$row->cl_from], $row->cl_to );
 		}
 	}
@@ -242,12 +225,14 @@ SPARQL;
 	 * @param IDatabase $dbr
 	 * @param string[] $columns List of additional fields to get
 	 * @param string[] $extra_tables List of additional tables to join
+	 * @param string $fname Name of the calling function
 	 * @return BatchRowIterator
 	 */
 	private function setupChangesIterator(
 		IDatabase $dbr,
 		array $columns = [],
-		array $extra_tables = []
+		array $extra_tables = [],
+		$fname = __METHOD__
 	) {
 		$tables = [ 'recentchanges', 'page_props', 'category' ];
 		if ( $extra_tables ) {
@@ -277,16 +262,18 @@ SPARQL;
 			'cat_subcats',
 			'cat_files'
 		] ) );
+		$it->setCaller( $fname );
 		return $it;
 	}
 
 	/**
 	 * Fetch newly created categories
 	 * @param IDatabase $dbr
+	 * @param string $fname Name of the calling function
 	 * @return BatchRowIterator
 	 */
-	protected function getNewCatsIterator( IDatabase $dbr ) {
-		$it = $this->setupChangesIterator( $dbr );
+	protected function getNewCatsIterator( IDatabase $dbr, $fname ) {
+		$it = $this->setupChangesIterator( $dbr, [], [], $fname );
 		$it->addConditions( [
 			'rc_namespace' => NS_CATEGORY,
 			'rc_new' => 1,
@@ -297,10 +284,16 @@ SPARQL;
 	/**
 	 * Fetch moved categories
 	 * @param IDatabase $dbr
+	 * @param string $fname Name of the calling function
 	 * @return BatchRowIterator
 	 */
-	protected function getMovedCatsIterator( IDatabase $dbr ) {
-		$it = $this->setupChangesIterator( $dbr, [ 'page_title', 'page_namespace' ], [ 'page' ] );
+	protected function getMovedCatsIterator( IDatabase $dbr, $fname ) {
+		$it = $this->setupChangesIterator(
+			$dbr,
+			[ 'page_title', 'page_namespace' ],
+			[ 'page' ],
+			$fname
+		);
 		$it->addConditions( [
 			'rc_namespace' => NS_CATEGORY,
 			'rc_new' => 0,
@@ -310,16 +303,17 @@ SPARQL;
 		$it->addJoinConditions( [
 			'page' => [ 'JOIN', 'rc_cur_id = page_id' ],
 		] );
-		$this->addIndex( $it );
+		$this->addIndex( $it, $dbr );
 		return $it;
 	}
 
 	/**
 	 * Fetch deleted categories
 	 * @param IDatabase $dbr
+	 * @param string $fname Name of the calling function
 	 * @return BatchRowIterator
 	 */
-	protected function getDeletedCatsIterator( IDatabase $dbr ) {
+	protected function getDeletedCatsIterator( IDatabase $dbr, $fname ) {
 		$it = new BatchRowIterator( $dbr,
 			'recentchanges',
 			[ 'rc_timestamp' ],
@@ -336,18 +330,20 @@ SPARQL;
 			// this means they were restored, thus restoring handler will pick it up.
 			'NOT EXISTS (SELECT * FROM page WHERE page_id = rc_cur_id)',
 		] );
-		$this->addIndex( $it );
+		$this->addIndex( $it, $dbr );
 		$it->setFetchColumns( [ 'rc_cur_id', 'rc_title' ] );
+		$it->setCaller( $fname );
 		return $it;
 	}
 
 	/**
 	 * Fetch restored categories
 	 * @param IDatabase $dbr
+	 * @param string $fname Name of the calling function
 	 * @return BatchRowIterator
 	 */
-	protected function getRestoredCatsIterator( IDatabase $dbr ) {
-		$it = $this->setupChangesIterator( $dbr );
+	protected function getRestoredCatsIterator( IDatabase $dbr, $fname ) {
+		$it = $this->setupChangesIterator( $dbr, [], [], $fname );
 		$it->addConditions( [
 			'rc_namespace' => NS_CATEGORY,
 			'rc_new' => 0,
@@ -357,7 +353,7 @@ SPARQL;
 			// We will only fetch ones that have page record
 			'EXISTS (SELECT page_id FROM page WHERE page_id = rc_cur_id)',
 		] );
-		$this->addIndex( $it );
+		$this->addIndex( $it, $dbr );
 		return $it;
 	}
 
@@ -365,17 +361,17 @@ SPARQL;
 	 * Fetch categorization changes or edits
 	 * @param IDatabase $dbr
 	 * @param int $type
+	 * @param string $fname Name of the calling function
 	 * @return BatchRowIterator
 	 */
-	protected function getChangedCatsIterator( IDatabase $dbr, $type ) {
-		$it =
-			$this->setupChangesIterator( $dbr );
+	protected function getChangedCatsIterator( IDatabase $dbr, $type, $fname ) {
+		$it = $this->setupChangesIterator( $dbr, [], [], $fname );
 		$it->addConditions( [
 			'rc_namespace' => NS_CATEGORY,
 			'rc_new' => 0,
 			'rc_type' => $type,
 		] );
-		$this->addIndex( $it );
+		$this->addIndex( $it, $dbr );
 		return $it;
 	}
 
@@ -394,10 +390,15 @@ SPARQL;
 	/**
 	 * Need to force index, somehow on terbium the optimizer chooses wrong one
 	 * @param BatchRowIterator $it
+	 * @param IDatabase $dbr
 	 */
-	private function addIndex( BatchRowIterator $it ) {
+	private function addIndex( BatchRowIterator $it, IDatabase $dbr ) {
+		// T270033 'new_name_timestamp' index is being renamed
+		$indexName = $dbr->indexExists( 'recentchanges', 'rc_new_name_timestamp', __METHOD__ )
+			? 'rc_new_name_timestamp'
+			: 'new_name_timestamp';
 		$it->addOptions( [
-			'USE INDEX' => [ 'recentchanges' => 'new_name_timestamp' ]
+			'USE INDEX' => [ 'recentchanges' => $indexName ]
 		] );
 	}
 
@@ -405,9 +406,10 @@ SPARQL;
 	 * Get iterator for links for categories.
 	 * @param IDatabase $dbr
 	 * @param int[] $ids List of page IDs
+	 * @param string $fname Name of the calling function
 	 * @return Traversable
 	 */
-	protected function getCategoryLinksIterator( IDatabase $dbr, array $ids ) {
+	protected function getCategoryLinksIterator( IDatabase $dbr, array $ids, $fname ) {
 		$it = new BatchRowIterator(
 			$dbr,
 			'categorylinks',
@@ -419,6 +421,7 @@ SPARQL;
 			'cl_from' => $ids
 		] );
 		$it->setFetchColumns( [ 'cl_from', 'cl_to' ] );
+		$it->setCaller( $fname );
 		return new RecursiveIteratorIterator( $it );
 	}
 
@@ -437,7 +440,8 @@ SPARQL;
 	 */
 	public function handleDeletes( IDatabase $dbr, $output ) {
 		// This only does "true" deletes - i.e. those that the page stays deleted
-		foreach ( $this->getDeletedCatsIterator( $dbr ) as $batch ) {
+
+		foreach ( $this->getDeletedCatsIterator( $dbr, __METHOD__ ) as $batch ) {
 			$deleteUrls = [];
 			foreach ( $batch as $row ) {
 				// This can produce duplicates, we don't care
@@ -466,7 +470,7 @@ SPARQL;
 	 * @param resource $output
 	 */
 	public function handleMoves( IDatabase $dbr, $output ) {
-		foreach ( $this->getMovedCatsIterator( $dbr ) as $batch ) {
+		foreach ( $this->getMovedCatsIterator( $dbr, __METHOD__ ) as $batch ) {
 			$pages = [];
 			$deleteUrls = [];
 			foreach ( $batch as $row ) {
@@ -497,8 +501,9 @@ SPARQL;
 	 */
 	public function handleRestores( IDatabase $dbr, $output ) {
 		fwrite( $output, "# Restores\n" );
+
 		// This will only find those restores that were not deleted later.
-		foreach ( $this->getRestoredCatsIterator( $dbr ) as $batch ) {
+		foreach ( $this->getRestoredCatsIterator( $dbr, __METHOD__ ) as $batch ) {
 			$pages = [];
 			foreach ( $batch as $row ) {
 				if ( isset( $this->processed[$row->rc_cur_id] ) ) {
@@ -526,7 +531,8 @@ SPARQL;
 	 */
 	public function handleAdds( IDatabase $dbr, $output ) {
 		fwrite( $output, "# Additions\n" );
-		foreach ( $this->getNewCatsIterator( $dbr ) as $batch ) {
+
+		foreach ( $this->getNewCatsIterator( $dbr, __METHOD__ ) as $batch ) {
 			$pages = [];
 			foreach ( $batch as $row ) {
 				if ( isset( $this->processed[$row->rc_cur_id] ) ) {
@@ -557,7 +563,8 @@ SPARQL;
 		// TODO: it's pretty expensive to update all edited categories, and most edits
 		// aren't actually interesting for us. Some way to know which are interesting?
 		// We can capture recategorization on the next step, but not change in hidden status.
-		foreach ( $this->getChangedCatsIterator( $dbr, RC_EDIT ) as $batch ) {
+
+		foreach ( $this->getChangedCatsIterator( $dbr, RC_EDIT, __METHOD__ ) as $batch ) {
 			$pages = [];
 			$deleteUrls = [];
 			foreach ( $batch as $row ) {
@@ -584,9 +591,11 @@ SPARQL;
 	 */
 	public function handleCategorization( IDatabase $dbr, $output ) {
 		$processedTitle = [];
+
 		// Categorization change can add new parents and change counts
 		// for the parent category.
-		foreach ( $this->getChangedCatsIterator( $dbr, RC_CATEGORIZE ) as $batch ) {
+
+		foreach ( $this->getChangedCatsIterator( $dbr, RC_CATEGORIZE, __METHOD__ ) as $batch ) {
 			/*
 			 * Note that on categorization event, cur_id points to
 			 * the child page, not the parent category!
@@ -639,8 +648,11 @@ SPARQL;
 						continue;
 					}
 					$this->writeCategoryData( $row );
-					$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
-					$this->processed[$row->page_id] = true;
+					if ( $row->page_id ) {
+						$pages[$row->page_id] = $row->rc_title;
+						$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
+						$this->processed[$row->page_id] = true;
+					}
 				}
 			}
 
@@ -682,8 +694,9 @@ SPARQL;
 						continue;
 					}
 					$this->writeCategoryData( $row );
-					$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
 					if ( $row->page_id ) {
+						$pages[$row->page_id] = $row->rc_title;
+						$deleteUrls[] = '<' . $this->categoriesRdf->labelToUrl( $row->rc_title ) . '>';
 						$this->processed[$row->page_id] = true;
 					}
 					$processedTitle[$row->rc_title] = true;

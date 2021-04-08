@@ -57,14 +57,18 @@ trait ApiBlockInfoTrait {
 		$vals['blockedtimestamp'] = wfTimestamp( TS_ISO_8601, $block->getTimestamp() );
 		$vals['blockexpiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 		$vals['blockpartial'] = !$block->isSitewide();
+		$vals['blocknocreate'] = $block->isCreateAccountBlocked();
+		$vals['blockanononly'] = !$block->isHardblock();
+
 		if ( $block instanceof SystemBlock ) {
 			$vals['systemblocktype'] = $block->getSystemBlockType();
 		}
+
 		return $vals;
 	}
 
-	/**
-	 * @name Methods required from ApiBase
+	// region   Methods required from ApiBase
+	/** @name   Methods required from ApiBase
 	 * @{
 	 */
 
@@ -75,5 +79,6 @@ trait ApiBlockInfoTrait {
 	abstract public function getLanguage();
 
 	/** @} */
+	// endregion -- end of methods required from ApiBase
 
 }

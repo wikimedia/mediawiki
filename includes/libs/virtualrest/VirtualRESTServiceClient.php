@@ -102,7 +102,7 @@ class VirtualRESTServiceClient {
 	 * @return array (prefix,VirtualRESTService) or (null,null) if none found
 	 */
 	public function getMountAndService( $path ) {
-		$cmpFunc = function ( $a, $b ) {
+		$cmpFunc = static function ( $a, $b ) {
 			$al = substr_count( $a, '/' );
 			$bl = substr_count( $b, '/' );
 			return $bl <=> $al; // largest prefix first
@@ -203,7 +203,7 @@ class VirtualRESTServiceClient {
 		}
 
 		// Function to get IDs that won't collide with keys in $armoredIndexMap
-		$idFunc = function () use ( &$curUniqueId ) {
+		$idFunc = static function () use ( &$curUniqueId ) {
 			return $curUniqueId++;
 		};
 

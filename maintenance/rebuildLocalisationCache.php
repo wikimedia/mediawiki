@@ -56,6 +56,11 @@ class RebuildLocalisationCache extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption(
+			'offline',
+			'Do not perform database dependent tasks such as clearing of the MessageBlogStore ' .
+			'cache. This option may not be used with the LCStoreDB store class.'
+		);
 	}
 
 	public function finalSetup() {
@@ -96,6 +101,12 @@ class RebuildLocalisationCache extends Maintenance {
 		if ( $this->hasOption( 'store-class' ) ) {
 			$conf['storeClass'] = $this->getOption( 'store-class' );
 		}
+
+		// Use of LCStoreDB prohibits us from functioning offline
+		if ( $conf['storeClass'] == 'LCStoreDB' && $this->hasOption( 'offline' ) ) {
+			$this->fatalError( 'LCStoreDB cannot function in offline mode.' );
+		}
+
 		// XXX Copy-pasted from ServiceWiring.php. Do we need a factory for this one caller?
 		$services = MediaWikiServices::getInstance();
 		$lc = new LocalisationCacheBulkLoad(
@@ -106,9 +117,10 @@ class RebuildLocalisationCache extends Maintenance {
 			),
 			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
 			LoggerFactory::getInstance( 'localisation' ),
-			[ function () use ( $services ) {
-				MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
-			} ],
+			$this->hasOption( 'offline' ) ? [] :
+				[ static function () use ( $services ) {
+					MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
+				} ],
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer()
 		);
@@ -159,9 +171,18 @@ class RebuildLocalisationCache extends Maintenance {
 		foreach ( $pids as $pid ) {
 			$status = 0;
 			pcntl_waitpid( $pid, $status );
-			if ( pcntl_wexitstatus( $status ) ) {
-				// Pass a fatal error code through to the caller
-				$parentStatus = pcntl_wexitstatus( $status );
+
+			if ( pcntl_wifexited( $status ) ) {
+			$code = pcntl_wexitstatus( $status );
+				if ( $code ) {
+					$this->output( "Pid $pid exited with status $code !!\n" );
+				}
+				// Mush all child statuses into a single value in the parent.
+				$parentStatus |= $code;
+			} elseif ( pcntl_wifsignaled( $status ) ) {
+				$signum = pcntl_wtermsig( $status );
+				$this->output( "Pid $pid terminated by signal $signum !!\n" );
+				$parentStatus |= 1;
 			}
 		}
 
@@ -195,6 +216,19 @@ class RebuildLocalisationCache extends Maintenance {
 		}
 
 		return $numRebuilt;
+	}
+
+	/**
+	 * Database access is not required if the 'offline' option is passed.
+	 *
+	 * @return int DB constant
+	 */
+	public function getDbType() {
+		if ( $this->hasOption( 'offline' ) ) {
+			return Maintenance::DB_NONE;
+		}
+
+		return parent::getDbType();
 	}
 
 	/**

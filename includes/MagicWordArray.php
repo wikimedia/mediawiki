@@ -96,20 +96,29 @@ class MagicWordArray {
 
 	/**
 	 * Get the base regex
+	 * @param bool $capture Set to false to suppress the capture groups,
+	 *  which can cause unexpected conflicts when this regexp is embedded in
+	 *  other regexps with similar constructs.
+	 * @param string $delimiter The delimiter which will be used for the
+	 *  eventual regexp.
 	 * @return string[]
+	 * @internal
 	 */
-	public function getBaseRegex() : array {
-		if ( $this->baseRegex === null ) {
-			$this->baseRegex = [ 0 => '', 1 => '' ];
-			$allGroups = [];
-			foreach ( $this->names as $name ) {
-				$magic = $this->factory->get( $name );
-				$case = intval( $magic->isCaseSensitive() );
-				foreach ( $magic->getSynonyms() as $i => $syn ) {
+	public function getBaseRegex( bool $capture = true, string $delimiter = '/' ) : array {
+		if ( $capture && $delimiter === '/' && $this->baseRegex !== null ) {
+			return $this->baseRegex;
+		}
+		$regex = [ 0 => [], 1 => [] ];
+		$allGroups = [];
+		foreach ( $this->names as $name ) {
+			$magic = $this->factory->get( $name );
+			$case = $magic->isCaseSensitive() ? 1 : 0;
+			foreach ( $magic->getSynonyms() as $i => $syn ) {
+				if ( $capture ) {
 					// Group name must start with a non-digit in PCRE 8.34+
 					$it = strtr( $i, '0123456789', 'abcdefghij' );
 					$groupName = $it . '_' . $name;
-					$group = '(?P<' . $groupName . '>' . preg_quote( $syn, '/' ) . ')';
+					$group = '(?P<' . $groupName . '>' . preg_quote( $syn, $delimiter ) . ')';
 					// look for same group names to avoid same named subpatterns in the regex
 					if ( isset( $allGroups[$groupName] ) ) {
 						throw new MWException(
@@ -117,32 +126,42 @@ class MagicWordArray {
 						);
 					}
 					$allGroups[$groupName] = true;
-					if ( $this->baseRegex[$case] === '' ) {
-						$this->baseRegex[$case] = $group;
-					} else {
-						$this->baseRegex[$case] .= '|' . $group;
-					}
+					$regex[$case][] = $group;
+				} else {
+					$regex[$case][] = preg_quote( $syn, $delimiter );
 				}
 			}
 		}
-		return $this->baseRegex;
+		'@phan-var array<int,string[]> $regex';
+		foreach ( $regex as $case => &$re ) {
+			$re = count( $re ) ? implode( '|', $re ) : '(?!)';
+			if ( !$case ) {
+				$re = "(?i:{$re})";
+			}
+		}
+		'@phan-var array<int,string> $regex';
+
+		if ( $capture && $delimiter === '/' ) {
+			$this->baseRegex = $regex;
+		}
+		return $regex;
 	}
 
 	/**
 	 * Get an unanchored regex that does not match parameters
 	 * @return string[]
-	 * @suppress PhanTypeArraySuspiciousNullable False positive
+	 * @internal
 	 */
 	public function getRegex() {
 		if ( $this->regex === null ) {
-			$base = $this->getBaseRegex();
-			$this->regex = [ '', '' ];
-			if ( $this->baseRegex[0] !== '' ) {
-				$this->regex[0] = "/{$base[0]}/iuS";
+			$this->regex = [];
+			$base = $this->getBaseRegex( true, '/' );
+			foreach ( $base as $case => $re ) {
+				$this->regex[$case] = "/{$re}/S";
 			}
-			if ( $this->baseRegex[1] !== '' ) {
-				$this->regex[1] = "/{$base[1]}/S";
-			}
+			// As a performance optimization, turn on unicode mode only for
+			// case-insensitive matching.
+			$this->regex[0] .= 'u';
 		}
 		return $this->regex;
 	}
@@ -151,6 +170,8 @@ class MagicWordArray {
 	 * Get a regex for matching variables with parameters
 	 *
 	 * @return string[]
+	 * @internal
+	 * @deprecated since 1.36 Appears to have no uses.
 	 */
 	public function getVariableRegex() {
 		return str_replace( "\\$1", "(.*?)", $this->getRegex() );
@@ -160,16 +181,17 @@ class MagicWordArray {
 	 * Get a regex anchored to the start of the string that does not match parameters
 	 *
 	 * @return string[]
+	 * @internal
 	 */
 	public function getRegexStart() {
-		$base = $this->getBaseRegex();
-		$newRegex = [ '', '' ];
-		if ( $base[0] !== '' ) {
-			$newRegex[0] = "/^(?:{$base[0]})/iuS";
+		$newRegex = [];
+		$base = $this->getBaseRegex( true, '/' );
+		foreach ( $base as $case => $re ) {
+			$newRegex[$case] = "/^(?:{$re})/S";
 		}
-		if ( $base[1] !== '' ) {
-			$newRegex[1] = "/^(?:{$base[1]})/S";
-		}
+		// As a performance optimization, turn on unicode mode only for
+		// case-insensitive matching.
+		$newRegex[0] .= 'u';
 		return $newRegex;
 	}
 
@@ -177,16 +199,17 @@ class MagicWordArray {
 	 * Get an anchored regex for matching variables with parameters
 	 *
 	 * @return string[]
+	 * @internal
 	 */
 	public function getVariableStartToEndRegex() {
-		$base = $this->getBaseRegex();
-		$newRegex = [ '', '' ];
-		if ( $base[0] !== '' ) {
-			$newRegex[0] = str_replace( "\\$1", "(.*?)", "/^(?:{$base[0]})$/iuS" );
+		$newRegex = [];
+		$base = $this->getBaseRegex( true, '/' );
+		foreach ( $base as $case => $re ) {
+			$newRegex[$case] = str_replace( "\\$1", "(.*?)", "/^(?:{$re})$/S" );
 		}
-		if ( $base[1] !== '' ) {
-			$newRegex[1] = str_replace( "\\$1", "(.*?)", "/^(?:{$base[1]})$/S" );
-		}
+		// As a performance optimization, turn on unicode mode only for
+		// case-insensitive matching.
+		$newRegex[0] .= 'u';
 		return $newRegex;
 	}
 
@@ -243,11 +266,9 @@ class MagicWordArray {
 	public function matchVariableStartToEnd( $text ) {
 		$regexes = $this->getVariableStartToEndRegex();
 		foreach ( $regexes as $regex ) {
-			if ( $regex !== '' ) {
-				$m = [];
-				if ( preg_match( $regex, $text, $m ) ) {
-					return $this->parseMatch( $m );
-				}
+			$m = [];
+			if ( preg_match( $regex, $text, $m ) ) {
+				return $this->parseMatch( $m );
 			}
 		}
 		return [ false, false ];
@@ -282,9 +303,6 @@ class MagicWordArray {
 		$found = [];
 		$regexes = $this->getRegex();
 		foreach ( $regexes as $regex ) {
-			if ( $regex === '' ) {
-				continue;
-			}
 			$matches = [];
 			$res = preg_match_all( $regex, $text, $matches, PREG_SET_ORDER );
 			if ( $res === false ) {
@@ -325,9 +343,6 @@ class MagicWordArray {
 	public function matchStartAndRemove( &$text ) {
 		$regexes = $this->getRegexStart();
 		foreach ( $regexes as $regex ) {
-			if ( $regex === '' ) {
-				continue;
-			}
 			if ( preg_match( $regex, $text, $m ) ) {
 				list( $id, ) = $this->parseMatch( $m );
 				if ( strlen( $m[0] ) >= strlen( $text ) ) {

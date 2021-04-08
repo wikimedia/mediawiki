@@ -37,17 +37,18 @@ $namespaceAliases = [
 	"Diskusaun_Kategoría" => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Mensajen_hotu' ],
 	'Allpages'                  => [ 'Pájina_hotu' ],
 	'Block'                     => [ 'Blokeiu' ],
+	'BlockList'                 => [ 'Lista_ema_sira-ne\'ebé_blokeiu_tiha' ],
 	'Categories'                => [ 'Kategoria' ],
 	'Contributions'             => [ 'Kontribuisaun' ],
 	'CreateAccount'             => [ 'Rejista' ],
 	'Emailuser'                 => [ 'Haruka_korreiu_eletróniku' ],
 	'Export'                    => [ 'Esporta' ],
 	'Import'                    => [ 'Importa' ],
-	'BlockList'                 => [ 'Lista_ema_sira-ne\'ebé_blokeiu_tiha' ],
 	'Listadmins'                => [ 'Lista_administradór' ],
 	'Listfiles'                 => [ 'Lista_imajen' ],
 	'Listusers'                 => [ 'Lista_uza-na\'in' ],

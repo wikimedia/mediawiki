@@ -5,6 +5,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use PHPUnit\Framework\MockObject\MockObject;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \Article::view()
@@ -50,6 +51,9 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 			$revisions[ $key ] = $rev;
 		}
+
+		// Clear content model cache to support tests that mock the revision
+		$this->getServiceContainer()->getMainWANObjectCache()->clearProcessCache();
 
 		return $page;
 	}
@@ -184,7 +188,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		$this->setTemporaryHook(
 			'ContentHandlerForModelID',
-			function ( $id, &$handler ) use ( $mockHandler ) {
+			static function ( $id, &$handler ) use ( $mockHandler ) {
 				$handler = $mockHandler;
 			}
 		);
@@ -246,6 +250,41 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 	}
 
+	public function testViewOfOldRevisionFromCache() {
+		$this->setMwGlobals( [
+			'wgOldRevisionParserCacheExpireTime' => 100500,
+			'wgMainWANCache' => 'main',
+			'wgWANObjectCaches' => [
+				'main' => [
+					'class' => WANObjectCache::class,
+					'cacheId' => 'hash',
+				],
+			],
+		] );
+		$revisions = [];
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
+		$idA = $revisions[1]->getId();
+
+		$article = new Article( $page->getTitle(), $idA );
+		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
+
+		// Force cache
+		MediaWikiServices::getInstance()
+			->getParserOutputAccess()
+			->getParserOutput(
+				$page,
+				ParserOptions::newCanonical( $article->getContext()->getUser() ),
+				$revisions[1]
+			);
+
+		$article->view();
+
+		$output = $article->getContext()->getOutput();
+		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
+		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'class="mw-revision warningbox"' ) );
+		$this->assertSame( $idA, $output->getRevisionId() );
+	}
+
 	public function testViewOfCurrentRevision() {
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
@@ -281,9 +320,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
 		$idA = $revisions[1]->getId();
 
-		$revDelList = new RevDelRevisionList(
-			RequestContext::getMain(), $page->getTitle(), [ $idA ]
-		);
+		$revDelList = $this->getRevDelRevisionList( $page->getTitle(), $idA );
 		$revDelList->setVisibility( [
 			'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
 			'comment' => "Testing",
@@ -294,7 +331,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertStringContainsString( '(rev-deleted-text-permission)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'rev-deleted-text-permission', $this->getHtml( $output ) );
 
 		$this->assertStringNotContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
@@ -305,9 +342,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
 		$idA = $revisions[1]->getId();
 
-		$revDelList = new RevDelRevisionList(
-			RequestContext::getMain(), $page->getTitle(), [ $idA ]
-		);
+		$revDelList = $this->getRevDelRevisionList( $page->getTitle(), $idA );
 		$revDelList->setVisibility( [
 			'value' => [ RevisionRecord::DELETED_TEXT => 1 ],
 			'comment' => "Testing",
@@ -322,7 +357,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$article->view();
 
 		$output = $article->getContext()->getOutput();
-		$this->assertStringContainsString( '(rev-deleted-text-view)', $this->getHtml( $output ) );
+		$this->assertStringContainsString( 'rev-deleted-text-view', $this->getHtml( $output ) );
 
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
@@ -446,7 +481,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		// use ArticleViewHeader hook to bypass the parser cache
 		$this->setTemporaryHook(
 			'ArticleViewHeader',
-			function ( Article $articlePage, &$outputDone, &$useParserCache ) use ( $article ) {
+			static function ( Article $articlePage, &$outputDone, &$useParserCache ) use ( $article ) {
 				$useParserCache = false;
 			}
 		);
@@ -492,4 +527,75 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringContainsString( 'Hook Text', $this->getHtml( $output ) );
 	}
 
+	/**
+	 * @covers \Article::showViewError()
+	 */
+	public function testViewLatestError() {
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A' ] );
+
+		$article = new Article( $page->getTitle(), 0 );
+		$output = $article->getContext()->getOutput();
+		$output->setTitle( $page->getTitle() );
+
+		// use ArticleViewHeader hook to bypass the parser cache
+		$this->setTemporaryHook(
+			'ArticleViewHeader',
+			static function ( Article $articlePage, &$outputDone, &$useParserCache ) use ( $article ) {
+				$useParserCache = false;
+			}
+		);
+
+		$article = TestingAccessWrapper::newFromObject( $article );
+		$article->fetchResult = Status::newFatal(
+			'rev-deleted-text-permission',
+			$page->getTitle()->getPrefixedDBkey()
+		);
+
+		$article->view();
+
+		$this->assertStringContainsString(
+			'rev-deleted-text-permission: ArticleViewTest::testViewLatestError',
+			$this->getHtml( $output )
+		);
+	}
+
+	/**
+	 * @covers \Article::showViewError()
+	 */
+	public function testViewOldError() {
+		$revisions = [];
+		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
+		$idA = $revisions[1]->getId();
+
+		$article = new Article( $page->getTitle(), $idA );
+		$output = $article->getContext()->getOutput();
+		$output->setTitle( $page->getTitle() );
+
+		$article = TestingAccessWrapper::newFromObject( $article );
+		$article->fetchResult = Status::newFatal(
+			'rev-deleted-text-permission',
+			$page->getTitle()->getPrefixedDBkey()
+		);
+
+		$article->view();
+
+		$this->assertStringContainsString(
+			'rev-deleted-text-permission: ArticleViewTest::testViewOldError',
+			$this->getHtml( $output )
+		);
+	}
+
+	private function getRevDelRevisionList( $title, $revisionId ) {
+		$services = MediaWikiServices::getInstance();
+		return new RevDelRevisionList(
+			RequestContext::getMain(),
+			$title,
+			[ $revisionId ],
+			$services->getDBLoadBalancerFactory(),
+			$services->getHookContainer(),
+			$services->getHtmlCacheUpdater(),
+			$services->getRevisionStore(),
+			$services->getMainWANObjectCache()
+		);
+	}
 }

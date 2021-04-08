@@ -28,7 +28,7 @@ use User;
 use WebRequest;
 
 /**
- * Manages data for an an authenticated session
+ * Manages data for an authenticated session
  *
  * A Session represents the fact that the current HTTP request is part of a
  * session. There are two broad types of Sessions, based on whether they
@@ -239,7 +239,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Set the "logged out" timestamp
 	 * @param int $ts
 	 */
 	public function setLoggedOutTimestamp( $ts ) {
@@ -271,8 +270,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Renew the session
-	 *
 	 * Resets the TTL in the backend store if the session is near expiring, and
 	 * re-persists the session to any active WebRequests if persistent.
 	 */
@@ -575,8 +572,6 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
-	 * Save the session
-	 *
 	 * This will update the backend data and might re-persist the session
 	 * if needed.
 	 */
@@ -584,8 +579,8 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 		$this->backend->save();
 	}
 
-	/**
-	 * @name Interface methods
+	// region   Interface methods
+	/** @name   Interface methods
 	 * @{
 	 */
 
@@ -663,5 +658,5 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/** @} */
-
+	// endregion  -- end of Interface methods
 }

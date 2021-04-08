@@ -3,6 +3,9 @@
 namespace MediaWiki\Hook;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "isValidEmailAddr" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

@@ -87,7 +87,10 @@ class ApiDeleteTest extends ApiTestCase {
 	public function testDeletionWithoutPermission() {
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
-			'The action you have requested is limited to users in the group:'
+			// Two error messages are possible depending on the number of groups in the wiki with deletion rights:
+			// - The action you have requested is limited to users in the group:
+			// - The action you have requested is limited to users in one of the groups:
+			'The action you have requested is limited to users in'
 		);
 
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
@@ -174,7 +177,7 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->editPage( $name, 'Some text' );
 
 		$this->setTemporaryHook( 'ArticleDelete',
-			function () {
+			static function () {
 				return false;
 			}
 		);
@@ -209,7 +212,7 @@ class ApiDeleteTest extends ApiTestCase {
 
 	public function testDeleteUnwatch() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
-		$user = self::$users['sysop']->getUser();
+		$user = $this->getTestSysop()->getUser();
 
 		$this->editPage( $name, 'Some text' );
 		$this->assertTrue( Title::newFromText( $name )->exists() );

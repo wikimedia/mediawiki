@@ -31,6 +31,7 @@ use Liuggio\StatsdClient\Factory\StatsdDataFactory;
  * a reference to each constructed metric in an internal array buffer.
  *
  * @since 1.25
+ * @method StatsdData produceStatsdDataEntity()
  */
 class BufferingStatsdDataFactory extends StatsdDataFactory implements IBufferingStatsdDataFactory {
 	protected $buffer = [];

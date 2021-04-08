@@ -13,29 +13,33 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	/** @var DummyConverter */
 	protected $lc;
 
+	/**
+	 * @param User $user
+	 */
+	private function setContextUser( User $user ) {
+		// TODO stop using the deprecated global here, and convert
+		// LanguageConverter to use RequestContext or dependency injection
+		global $wgUser;
+		$wgUser = $user;
+	}
+
 	protected function setUp() : void {
 		parent::setUp();
 		$this->setContentLang( 'tg' );
 
 		$this->setMwGlobals( [
 			'wgDefaultLanguageVariant' => false,
-			'wgRequest' => new FauxRequest( [] ),
 			'wgUser' => new User,
 		] );
 
 		$this->lang = $this->createMock( Language::class );
 		$this->lang->method( 'getNsText' )->with( NS_MEDIAWIKI )->willReturn( 'MediaWiki' );
-		$this->lang->method( 'ucfirst' )->will( $this->returnCallback( function ( $s ) {
+		$this->lang->method( 'ucfirst' )->will( $this->returnCallback( static function ( $s ) {
 			return ucfirst( $s );
 		} ) );
 		$this->lang->expects( $this->never() )
 			->method( $this->anythingBut( 'factory', 'getNsText', 'ucfirst' ) );
-		$this->lc = new DummyConverter(
-			$this->lang, 'tg',
-			# Adding 'sgs' as a variant to ensure we handle deprecated codes
-			# adding 'simple' as a variant to ensure we handle non BCP 47 codes
-			[ 'tg', 'tg-latn', 'sgs', 'simple' ]
-		);
+		$this->lc = new DummyConverter( $this->lang );
 	}
 
 	protected function tearDown() : void {
@@ -53,199 +57,72 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @dataProvider provideGetPreferredVariant
 	 * @covers LanguageConverter::getPreferredVariant
 	 * @covers LanguageConverter::getURLVariant
 	 */
-	public function testGetPreferredVariantUrl() {
+	public function testGetPreferredVariant( $requestVal, $expected ) {
 		global $wgRequest;
-		$wgRequest->setVal( 'variant', 'tg-latn' );
+		$wgRequest->setVal( 'variant', $requestVal );
 
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
+	}
+
+	public function provideGetPreferredVariant() {
+		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn' ];
+		yield 'deprecated (bat-smg)' => [ 'bat-smg', 'sgs' ];
+		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple' ];
 	}
 
 	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getURLVariant
-	 */
-	public function testGetPreferredVariantUrlDeprecated() {
-		global $wgRequest;
-		$wgRequest->setVal( 'variant', 'bat-smg' );
-
-		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getURLVariant
-	 */
-	public function testGetPreferredVariantUrlBCP47() {
-		global $wgRequest;
-		$wgRequest->setVal( 'variant', 'en-simple' );
-
-		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
-	}
-
-	/**
+	 * @dataProvider provideGetPreferredVariantHeaders
 	 * @covers LanguageConverter::getPreferredVariant
 	 * @covers LanguageConverter::getHeaderVariant
 	 */
-	public function testGetPreferredVariantHeaders() {
+	public function testGetPreferredVariantHeaders( $headerVal, $expected ) {
 		global $wgRequest;
-		$wgRequest->setHeader( 'Accept-Language', 'tg-latn' );
+		$wgRequest->setHeader( 'Accept-Language', $headerVal );
 
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
+	}
+
+	public function provideGetPreferredVariantHeaders() {
+		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn' ];
+		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple' ];
+		yield 'with weight #1' => [ 'tg;q=1', 'tg' ];
+		yield 'with weight #2' => [ 'tg-latn;q=1', 'tg-latn' ];
+		yield 'with multi' => [ 'en, tg-latn;q=1', 'tg-latn' ];
 	}
 
 	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getHeaderVariant
-	 */
-	public function testGetPreferredVariantHeadersBCP47() {
-		global $wgRequest;
-		$wgRequest->setHeader( 'Accept-Language', 'en-simple' );
-
-		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getHeaderVariant
-	 */
-	public function testGetPreferredVariantHeaderWeight() {
-		global $wgRequest;
-		$wgRequest->setHeader( 'Accept-Language', 'tg;q=1' );
-
-		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getHeaderVariant
-	 */
-	public function testGetPreferredVariantHeaderWeight2() {
-		global $wgRequest;
-		$wgRequest->setHeader( 'Accept-Language', 'tg-latn;q=1' );
-
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getHeaderVariant
-	 */
-	public function testGetPreferredVariantHeaderMulti() {
-		global $wgRequest;
-		$wgRequest->setHeader( 'Accept-Language', 'en, tg-latn;q=1' );
-
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
-	}
-
-	/**
+	 * @dataProvider provideGetPreferredVariantUserOption
 	 * @covers LanguageConverter::getPreferredVariant
 	 */
-	public function testGetPreferredVariantUserOption() {
-		global $wgUser;
+	public function testGetPreferredVariantUserOption( $optionVal, $expected, $foreignLang ) {
+		$optionName = 'variant';
+		if ( $foreignLang ) {
+			$this->setContentLang( 'en' );
+			$optionName = 'variant-tg';
+		}
 
 		$user = new User;
 		$user->load(); // from 'defaults'
 		$user->mId = 1;
 		$user->mDataLoaded = true;
-		$user->setOption( 'variant', 'tg-latn' );
+		$user->setOption( $optionName, $optionVal );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
 
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 */
-	public function testGetPreferredVariantUserOptionDeprecated() {
-		global $wgUser;
-
-		$user = new User;
-		$user->load(); // from 'defaults'
-		$user->mId = 1;
-		$user->mDataLoaded = true;
-		$user->setOption( 'variant', 'bat-smg' );
-
-		$wgUser = $user;
-
-		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 */
-	public function testGetPreferredVariantUserOptionBCP47() {
-		global $wgUser;
-
-		$user = new User;
-		$user->load(); // from 'defaults'
-		$user->mId = 1;
-		$user->mDataLoaded = true;
-		$user->setOption( 'variant', 'en-simple' );
-
-		$wgUser = $user;
-
-		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getUserVariant
-	 */
-	public function testGetPreferredVariantUserOptionForForeignLanguage() {
-		global $wgUser;
-
-		$this->setContentLang( 'en' );
-		$user = new User;
-		$user->load(); // from 'defaults'
-		$user->mId = 1;
-		$user->mDataLoaded = true;
-		$user->setOption( 'variant-tg', 'tg-latn' );
-
-		$wgUser = $user;
-
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getUserVariant
-	 */
-	public function testGetPreferredVariantUserOptionForForeignLanguageDeprecated() {
-		global $wgUser;
-
-		$this->setContentLang( 'en' );
-		$user = new User;
-		$user->load(); // from 'defaults'
-		$user->mId = 1;
-		$user->mDataLoaded = true;
-		$user->setOption( 'variant-tg', 'bat-smg' );
-
-		$wgUser = $user;
-
-		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 * @covers LanguageConverter::getUserVariant
-	 */
-	public function testGetPreferredVariantUserOptionForForeignLanguageBCP47() {
-		global $wgUser;
-
-		$this->setContentLang( 'en' );
-		$user = new User;
-		$user->load(); // from 'defaults'
-		$user->mId = 1;
-		$user->mDataLoaded = true;
-		$user->setOption( 'variant-tg', 'en-simple' );
-
-		$wgUser = $user;
-
-		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
+	public function provideGetPreferredVariantUserOption() {
+		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn', false ];
+		yield 'deprecated (bat-smg)' => [ 'bat-smg', 'sgs', false ];
+		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple', false ];
+		yield 'for foreign language, normal (tg-latn)' => [ 'tg-latn', 'tg-latn', true ];
+		yield 'for foreign language, deprecated (bat-smg)' => [ 'bat-smg', 'sgs', true ];
+		yield 'for foreign language, BCP47 (en-simple)' => [ 'en-simple', 'simple', true ];
 	}
 
 	/**
@@ -254,7 +131,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @covers LanguageConverter::getURLVariant
 	 */
 	public function testGetPreferredVariantHeaderUserVsUrl() {
-		global $wgRequest, $wgUser;
+		global $wgRequest;
 
 		$this->setContentLang( 'tg-latn' );
 		$wgRequest->setVal( 'variant', 'tg' );
@@ -264,39 +141,26 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		// The user's data is ignored because the variant is set in the URL.
 		$user->setOption( 'variant', 'tg-latn' );
 
-		$wgUser = $user;
+		$this->setContextUser( $user );
 
 		$this->assertEquals( 'tg', $this->lc->getPreferredVariant() );
 	}
 
 	/**
+	 * @dataProvider provideGetPreferredVariantDefaultLanguageVariant
 	 * @covers LanguageConverter::getPreferredVariant
 	 */
-	public function testGetPreferredVariantDefaultLanguageVariant() {
+	public function testGetPreferredVariantDefaultLanguageVariant( $globalVal, $expected ) {
 		global $wgDefaultLanguageVariant;
 
-		$wgDefaultLanguageVariant = 'tg-latn';
-		$this->assertEquals( 'tg-latn', $this->lc->getPreferredVariant() );
+		$wgDefaultLanguageVariant = $globalVal;
+		$this->assertEquals( $expected, $this->lc->getPreferredVariant() );
 	}
 
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 */
-	public function testGetPreferredVariantDefaultLanguageVariantDeprecated() {
-		global $wgDefaultLanguageVariant;
-
-		$wgDefaultLanguageVariant = 'bat-smg';
-		$this->assertEquals( 'sgs', $this->lc->getPreferredVariant() );
-	}
-
-	/**
-	 * @covers LanguageConverter::getPreferredVariant
-	 */
-	public function testGetPreferredVariantDefaultLanguageVariantBCP47() {
-		global $wgDefaultLanguageVariant;
-
-		$wgDefaultLanguageVariant = 'en-simple';
-		$this->assertEquals( 'simple', $this->lc->getPreferredVariant() );
+	public function provideGetPreferredVariantDefaultLanguageVariant() {
+		yield 'normal (tg-latn)' => [ 'tg-latn', 'tg-latn' ];
+		yield 'deprecated (bat-smg)' => [ 'bat-smg', 'sgs' ];
+		yield 'BCP47 (en-simple)' => [ 'en-simple', 'simple' ];
 	}
 
 	/**
@@ -326,15 +190,16 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->setIniSetting( 'pcre.backtrack_limit', 200 );
 		$result = $this->lc->autoConvert( $testString, 'tg-latn' );
 		// The в in the id attribute should not get converted to a v
-		$this->assertFalse(
-			strpos( $result, 'v' ),
+		$this->assertStringNotContainsString(
+			'v',
+			$result,
 			"в converted to v despite being in attribue"
 		);
 	}
 
 	/**
 	 * @dataProvider provideTitlesToConvert
-	 * @covers       LanguageConverter::convertTitle
+	 * @covers LanguageConverter::convertTitle
 	 *
 	 * @param LinkTarget $linkTarget LinkTarget to convert
 	 * @param string $expected

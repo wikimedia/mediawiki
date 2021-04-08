@@ -33,11 +33,13 @@ class Autopromote {
 	 * Get the groups for the given user based on $wgAutopromote.
 	 *
 	 * @param User $user The user to get the groups for
-	 * @return array Array of groups to promote to.
+	 * @return string[] Array of groups to promote to.
 	 *
-	 * @deprecated since 1.35. Use UserGroupManager::getUserAutopromoteGroups.
+	 * @deprecated since 1.35 (hard deprecated since 1.36). Use UserGroupManager::getUserAutopromoteGroups.
 	 */
 	public static function getAutopromoteGroups( User $user ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserAutopromoteGroups( $user );
@@ -52,13 +54,15 @@ class Autopromote {
 	 * @param User $user The user to get the groups for
 	 * @param string $event Key in $wgAutopromoteOnce (each one has groups/criteria)
 	 *
-	 * @return array Groups the user should be promoted to.
+	 * @return string[] Groups the user should be promoted to.
 	 *
 	 * @see $wgAutopromoteOnce
 	 *
-	 * @deprecated since 1.35. Use UserGroupManager::getUserAutopromoteOnceGroups.
+	 * @deprecated since 1.35 (hard deprecated since 1.36). Use UserGroupManager::getUserAutopromoteOnceGroups.
 	 */
 	public static function getAutopromoteOnceGroups( User $user, $event ) {
+		wfDeprecated( __METHOD__, '1.35' );
+
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserAutopromoteOnceGroups( $user, $event );

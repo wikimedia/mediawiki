@@ -3,6 +3,9 @@
 namespace MediaWiki\Permissions\Hook;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "UserIsEveryoneAllowed" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */

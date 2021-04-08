@@ -22,6 +22,7 @@
  * @author Russ Nelson
  */
 
+use Psr\Log\LoggerInterface;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -137,6 +138,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		}
 		$this->http = new MultiHttpClient( $httpOptions );
+		$this->http->setLogger( $this->logger );
 
 		// Cache container information to mask latency
 		if ( isset( $config['wanCache'] ) && $config['wanCache'] instanceof WANObjectCache ) {
@@ -154,6 +156,11 @@ class SwiftFileBackend extends FileBackendStore {
 		$this->writeUsers = $config['writeUsers'] ?? [];
 		$this->secureReadUsers = $config['secureReadUsers'] ?? [];
 		$this->secureWriteUsers = $config['secureWriteUsers'] ?? [];
+	}
+
+	public function setLogger( LoggerInterface $logger ) {
+		parent::setLogger( $logger );
+		$this->http->setLogger( $logger );
 	}
 
 	public function getFeatures() {
@@ -208,18 +215,15 @@ class SwiftFileBackend extends FileBackendStore {
 		}
 		// By default, Swift has annoyingly low maximum header value limits
 		if ( isset( $contentHeaders['content-disposition'] ) ) {
-			$disposition = '';
+			$maxLength = 255;
 			// @note: assume FileBackend::makeContentDisposition() already used
-			foreach ( explode( ';', $contentHeaders['content-disposition'] ) as $part ) {
-				$part = trim( $part );
-				$new = ( $disposition === '' ) ? $part : "{$disposition};{$part}";
-				if ( strlen( $new ) <= 255 ) {
-					$disposition = $new;
-				} else {
-					break; // too long; sigh
-				}
+			$offset = $maxLength - strlen( $contentHeaders['content-disposition'] );
+			if ( $offset < 0 ) {
+				$pos = strrpos( $contentHeaders['content-disposition'], ';', $offset );
+				$contentHeaders['content-disposition'] = $pos === false
+					? ''
+					: trim( substr( $contentHeaders['content-disposition'], 0, $pos ) );
 			}
-			$contentHeaders['content-disposition'] = $disposition;
 		}
 
 		return $contentHeaders;
@@ -941,7 +945,7 @@ class SwiftFileBackend extends FileBackendStore {
 			}
 		} else {
 			// Recursive: list all dirs under $dir and its subdirs
-			$getParentDir = function ( $path ) {
+			$getParentDir = static function ( $path ) {
 				return ( strpos( $path, '/' ) !== false ) ? dirname( $path ) : false;
 			};
 

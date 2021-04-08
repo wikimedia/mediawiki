@@ -53,7 +53,7 @@ class IcuCollation extends Collation {
 	 * is pretty useless for sorting Chinese text anyway. Japanese and Korean
 	 * blocks are not included here, because they are smaller and more useful.
 	 */
-	private static $cjkBlocks = [
+	private const CJK_BLOCKS = [
 		[ 0x2E80, 0x2EFF ], // CJK Radicals Supplement
 		[ 0x2F00, 0x2FDF ], // Kangxi Radicals
 		[ 0x2FF0, 0x2FFF ], // Ideographic Description Characters
@@ -92,7 +92,7 @@ class IcuCollation extends Collation {
 	 * Empty arrays are intended; this signifies that the data for the language is
 	 * available and that there are, in fact, no additional letters to consider.
 	 */
-	private static $tailoringFirstLetters = [
+	private const TAILORING_FIRST_LETTERS = [
 		'af' => [],
 		'am' => [],
 		'ar' => [],
@@ -242,11 +242,6 @@ class IcuCollation extends Collation {
 	];
 
 	public function __construct( $locale ) {
-		if ( !extension_loaded( 'intl' ) ) {
-			throw new MWException( 'An ICU collation was requested, ' .
-				'but the intl extension is not available.' );
-		}
-
 		$this->locale = $locale;
 		// Drop everything after the '@' in locale's name
 		$localeParts = explode( '@', $locale );
@@ -349,25 +344,25 @@ class IcuCollation extends Collation {
 	private function fetchFirstLetterData() {
 		global $IP;
 		// Generate data from serialized data file
-		if ( isset( self::$tailoringFirstLetters[$this->locale] ) ) {
+		if ( isset( self::TAILORING_FIRST_LETTERS[$this->locale] ) ) {
 			$letters = require "$IP/includes/collation/data/first-letters-root.php";
 			// Append additional characters
-			$letters = array_merge( $letters, self::$tailoringFirstLetters[$this->locale] );
+			$letters = array_merge( $letters, self::TAILORING_FIRST_LETTERS[$this->locale] );
 			// Remove unnecessary ones, if any
-			if ( isset( self::$tailoringFirstLetters['-' . $this->locale] ) ) {
-				$letters = array_diff( $letters, self::$tailoringFirstLetters['-' . $this->locale] );
+			if ( isset( self::TAILORING_FIRST_LETTERS['-' . $this->locale] ) ) {
+				$letters = array_diff( $letters, self::TAILORING_FIRST_LETTERS['-' . $this->locale] );
 			}
 			// Apply digit transforms
 			$digits = [ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9' ];
 			$letters = array_diff( $letters, $digits );
 			foreach ( $digits as $digit ) {
-				$letters[] = $this->digitTransformLanguage->formatNum( $digit, true );
+				$letters[] = $this->digitTransformLanguage->formatNumNoSeparators( $digit );
 			}
 		} elseif ( $this->locale === 'root' ) {
 			$letters = require "$IP/includes/collation/data/first-letters-root.php";
 		} else {
 			// FIXME: Is this still used?
-			$letters = wfGetPrecompiledData( "first-letters-{$this->locale}.ser" );
+			$letters = $this->getPrecompiledData( "first-letters-{$this->locale}.ser" );
 			if ( $letters === false ) {
 				throw new MWException( "MediaWiki does not support ICU locale " .
 					"\"{$this->locale}\"" );
@@ -484,6 +479,26 @@ class IcuCollation extends Collation {
 	}
 
 	/**
+	 * Get an object from the precompiled serialized directory
+	 *
+	 * Replaced use of wfGetPrecompiledData
+	 *
+	 * @param string $name
+	 * @return mixed The variable on success, false on failure
+	 */
+	private function getPrecompiledData( $name ) {
+		global $IP;
+		$file = "$IP/serialized/$name";
+		if ( file_exists( $file ) ) {
+			$blob = file_get_contents( $file );
+			if ( $blob ) {
+				return unserialize( $blob );
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * @param string $index
 	 * @return string
 	 * @since 1.16.3
@@ -516,7 +531,7 @@ class IcuCollation extends Collation {
 	 * @since 1.16.3
 	 */
 	public static function isCjk( $codepoint ) {
-		foreach ( self::$cjkBlocks as $block ) {
+		foreach ( self::CJK_BLOCKS as $block ) {
 			if ( $codepoint >= $block[0] && $codepoint <= $block[1] ) {
 				return true;
 			}

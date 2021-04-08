@@ -22,7 +22,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$goodTrxFname = get_class( $goodUpdate ) . '::doUpdate';
 		$goodUpdate->method( 'doUpdate' )
-			->willReturnCallback( function () use ( &$goodCalls, $lbFactory, $goodTrxFname ) {
+			->willReturnCallback( static function () use ( &$goodCalls, $lbFactory, $goodTrxFname ) {
 				// Update can commit since it owns the transaction
 				$lbFactory->commitMasterChanges( $goodTrxFname );
 				++$goodCalls;
@@ -85,7 +85,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$goodTrxFname = get_class( $goodUpdate ) . '::doUpdate';
 		$goodUpdate->method( 'doUpdate' )
-			->willReturnCallback( function () use ( &$goodCalls, $lbFactory, $goodTrxFname ) {
+			->willReturnCallback( static function () use ( &$goodCalls, $lbFactory, $goodTrxFname ) {
 				// Update can commit since it owns the transaction
 				$lbFactory->commitMasterChanges( $goodTrxFname );
 				++$goodCalls;
@@ -101,7 +101,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$badUpdate->expects( $this->once() )
 			->method( 'setTransactionTicket' );
 		$badUpdate->method( 'doUpdate' )
-			->willReturnCallback( function () use ( &$badCalls, $lbFactory, $badTrxFname ) {
+			->willReturnCallback( static function () use ( &$badCalls, $lbFactory, $badTrxFname ) {
 				// Update can commit since it owns the transaction
 				$lbFactory->commitMasterChanges( $badTrxFname );
 				++$badCalls;
@@ -190,7 +190,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 			->setMethods( [ 'doUpdate' ] )
 			->getMock();
 		$goodUpdate->method( 'doUpdate' )
-			->willReturnCallback( function () use ( &$goodCalls ) {
+			->willReturnCallback( static function () use ( &$goodCalls ) {
 				++$goodCalls;
 			} );
 
@@ -199,9 +199,9 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 			->setMethods( [ 'getSecondaryDataUpdates' ] )
 			->getMock();
 		$updater->method( 'getSecondaryDataUpdates' )
-			->willReturnCallback( function () use ( $dbw, $fname, $goodUpdate ) {
+			->willReturnCallback( static function () use ( $dbw, $fname, $goodUpdate ) {
 				$dbw->selectRow( 'page', '*', '', $fname );
-				$dbw->onTransactionResolution( function () {
+				$dbw->onTransactionResolution( static function () {
 				}, $fname );
 
 				return [ $goodUpdate ];

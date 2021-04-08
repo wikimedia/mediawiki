@@ -22,6 +22,7 @@
 
 use MediaWiki\ExtensionInfo;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * A query action to return meta information about the wiki site.
@@ -29,9 +30,23 @@ use MediaWiki\MediaWikiServices;
  * @ingroup API
  */
 class ApiQuerySiteinfo extends ApiQueryBase {
+	/**
+	 * @var UserOptionsLookup
+	 */
+	private $userOptionsLookup;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param UserOptionsLookup $userOptionsLookup
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		UserOptionsLookup $userOptionsLookup
+	) {
 		parent::__construct( $query, $moduleName, 'si' );
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function execute() {
@@ -160,11 +175,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			ApiResult::setIndexedTagName( $data['externalimages'], 'prefix' );
 		}
 
-		$data['langconversion'] = !$config->get( 'DisableLangConversion' );
-		$data['titleconversion'] = !$config->get( 'DisableTitleConversion' );
+		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+		$data['langconversion'] = !$languageConverterFactory->isConversionDisabled();
+		$data['linkconversion'] = !$languageConverterFactory->isLinkConversionDisabled();
+		// For backwards compatibility (soft deprecated since MW 1.36)
+		$data['titleconversion'] = $data['linkconversion'];
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-		$contLangConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+		$contLangConverter = $languageConverterFactory
 			->getLanguageConverter( $contLang );
 		if ( $contLang->linkPrefixExtension() ) {
 			$linkPrefixCharset = $contLang->linkPrefixCharset();
@@ -745,7 +763,8 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	// language conversion. (T153341)
 	public function appendLanguageVariants( $property ) {
 		$langNames = LanguageConverter::$languagesWithVariants;
-		if ( $this->getConfig()->get( 'DisableLangConversion' ) ) {
+		$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+		if ( $languageConverterFactory->isConversionDisabled() ) {
 			// Ensure result is empty if language conversion is disabled.
 			$langNames = [];
 		}
@@ -755,10 +774,10 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		foreach ( $langNames as $langCode ) {
 			$lang = MediaWikiServices::getInstance()->getLanguageFactory()
 				->getLanguage( $langCode );
-			$langConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+			$langConverter = $languageConverterFactory
 				->getLanguageConverter( $lang );
 			if ( !$langConverter->hasVariants() ) {
-				// Only languages which has conversions can be processed
+				// Only languages which have variants should be listed
 				continue;
 			}
 			$data[$langCode] = [];
@@ -787,11 +806,14 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendSkins( $property ) {
+		$services = MediaWikiServices::getInstance();
 		$data = [];
-		$allowed = Skin::getAllowedSkins();
+		$allowed = $services->getSkinFactory()->getAllowedSkins();
 		$default = Skin::normalizeKey( 'default' );
-		$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-		foreach ( Skin::getSkinNames() as $name => $displayName ) {
+		$languageNameUtils = $services->getLanguageNameUtils();
+		$skinNames = $services->getSkinFactory()->getSkinNames();
+
+		foreach ( $skinNames as $name => $displayName ) {
 			$msg = $this->msg( "skinname-{$name}" );
 			$code = $this->getParameter( 'inlanguagecode' );
 			if ( $code && $languageNameUtils->isValidCode( $code ) ) {
@@ -819,7 +841,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 	public function appendExtensionTags( $property ) {
 		$tags = array_map(
-			function ( $item ) {
+			static function ( $item ) {
 				return "<$item>";
 			},
 			MediaWikiServices::getInstance()->getParser()->getTags()
@@ -856,7 +878,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	}
 
 	public function appendDefaultOptions( $property ) {
-		$options = User::getDefaultOptions();
+		$options = $this->userOptionsLookup->getDefaultOptions();
 		$options[ApiResult::META_BC_BOOLS] = array_keys( $options );
 		return $this->getResult()->addValue( 'query', $property, $options );
 	}

@@ -12,8 +12,14 @@ use Wikimedia\TestingAccessWrapper;
  */
 class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 	protected function getPage() {
+		$services = MediaWikiServices::getInstance();
 		return TestingAccessWrapper::newFromObject(
-			new SpecialRecentChanges
+			new SpecialRecentChanges(
+				$services->getWatchedItemStore(),
+				$services->getMessageCache(),
+				$services->getDBLoadBalancer(),
+				$services->getUserOptionsLookup()
+			)
 		);
 	}
 
@@ -65,7 +71,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		$context->setRequest( new FauxRequest );
 
 		// Confirm that the test page is in RC.
-		$rc1 = new SpecialRecentChanges;
+		$rc1 = $this->getPage();
 		$rc1->setContext( $context );
 		$rc1->execute( null );
 		$this->assertStringContainsString( 'Test page', $rc1->getOutput()->getHTML() );
@@ -74,7 +80,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		// Watch the page, and check that it's now watched in RC.
 		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 		$watchedItemStore->addWatch( $context->getUser(), $testTitle );
-		$rc2 = new SpecialRecentChanges;
+		$rc2 = $this->getPage();
 		$rc2->setContext( $context );
 		$rc2->execute( null );
 		$this->assertStringContainsString( 'Test page', $rc2->getOutput()->getHTML() );
@@ -92,7 +98,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		);
 
 		// Check that the page is still in RC, but that it's no longer watched.
-		$rc3 = new SpecialRecentChanges;
+		$rc3 = $this->getPage();
 		$rc3->setContext( $context );
 		$rc3->execute( null );
 		$this->assertStringContainsString( 'Test page', $rc3->getOutput()->getHTML() );

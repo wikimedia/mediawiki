@@ -21,6 +21,7 @@
 namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
+use JobQueueGroup;
 use LogEntryBase;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
@@ -53,6 +54,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @param array $configOverrides
 	 * @param UserEditTracker|null $userEditTrackerOverride
+	 * @param callable|null $callback
 	 * @return UserGroupManager
 	 */
 	private function getManager(
@@ -84,6 +86,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$services->getDBLoadBalancerFactory(),
 			$services->getHookContainer(),
 			$userEditTrackerOverride ?? $services->getUserEditTracker(),
+			$services->getGroupPermissionsLookup(),
 			new TestLogger(),
 			$callback ? [ $callback ] : []
 		);
@@ -96,6 +99,12 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user_former_groups';
 		$this->tablesUsed[] = 'logging';
 		$this->expiryTime = wfTimestamp( TS_MW, time() + 100500 );
+
+		// Workaround: Force instantiate JobQueueGroup before overriding ConfiguredReadOnlyMode.
+		// Setting read-only mode before JobQueueGroup instantiation will cache the read-only state
+		// inside JobQueueGroup and JobQueue instances and will prevent them from being reset by
+		// resetNonServiceCaches().
+		JobQueueGroup::singleton();
 	}
 
 	/**
@@ -584,7 +593,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideGetUserAutopromoteEditCount() {
-		yield 'Successfull promote'	=> [
+		yield 'Successfull promote' => [
 			5, true, 10, [ 'test_autoconfirmed' ]
 		];
 		yield 'Required edit count negative' => [
@@ -602,9 +611,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetUserAutopromoteEditCount
 	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
-	 * @param int $requiredCount
-	 * @param bool $userRegistered
-	 * @param int $userEditCount
 	 */
 	public function testGetUserAutopromoteEditCount(
 		int $requiredCount,
@@ -706,9 +712,6 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::getUserAutopromoteGroups
 	 * @covers \MediaWiki\User\UserGroupManager::checkCondition
-	 * @param int $requiredAge
-	 * @param string $firstEditTs
-	 * @param array $expected
 	 */
 	public function testGetUserAutopromoteGroups(
 		array $requiredGroups,
@@ -846,7 +849,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		$block->setTarget( $blockedUser );
 		$block->setBlocker( $this->getTestSysop()->getUser() );
 		$block->isSitewide( true );
-		$block->insert();
+		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		$this->assertArrayEquals( [ 'test_autoconfirmed' ],
 			$manager->getUserAutopromoteGroups( $blockedUser ) );
 	}

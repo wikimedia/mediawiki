@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * @group Database
+ */
 class ArticleTest extends \MediaWikiIntegrationTestCase {
 
 	/**
@@ -16,13 +19,6 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 		parent::setUp();
 		$this->title = Title::makeTitle( NS_MAIN, 'SomePage' );
 		$this->article = new Article( $this->title );
-	}
-
-	/** cleanup title object and its article object */
-	protected function tearDown() : void {
-		parent::tearDown();
-		$this->title = null;
-		$this->article = null;
 	}
 
 	/**
@@ -65,5 +61,31 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 			"Article get/set magic on update to new field" );
 		$this->assertEquals( -8, $this->article->getPage()->ext_someNewProperty,
 			"Article get/set magic on new field" );
+	}
+
+	/**
+	 * @covers Article::__sleep
+	 */
+	public function testSerialization_fails() {
+		$this->expectException( LogicException::class );
+		serialize( $this->article );
+	}
+
+	/**
+	 * Tests that missing article page shows parser contents
+	 * of the well-known system message for NS_MEDIAWIKI pages
+	 * @covers Article::showMissingArticle
+	 */
+	public function testMissingArticleMessage() {
+		// Use a well-known system message
+		$title = Title::makeTitle( NS_MEDIAWIKI, 'Uploadedimage' );
+		$article = new Article( $title, 0 );
+		$article->getContext()->getOutput()->setTitle( $title );
+		$article->showMissingArticle();
+		$output = $article->getContext()->getOutput();
+		$this->assertStringContainsString(
+			Message::newFromKey( 'uploadedimage' )->parse(),
+			$output->getHTML()
+		);
 	}
 }

@@ -168,7 +168,7 @@ class GuzzleHttpRequest extends MWHttpRequest {
 
 		$mwCookieJar = $this->getCookieJar();
 		$stack->push( Middleware::mapRequest(
-			function ( RequestInterface $request ) use ( $mwCookieJar ) {
+			static function ( RequestInterface $request ) use ( $mwCookieJar ) {
 				$uri = $request->getUri();
 				$cookieHeader = $mwCookieJar->serializeToHttpRequest(
 					$uri->getPath() ?: '/',
@@ -237,7 +237,6 @@ class GuzzleHttpRequest extends MWHttpRequest {
 				}
 			}
 		} catch ( GuzzleHttp\Exception\GuzzleException $e ) {
-			// @phan-suppress-previous-line PhanRedefinedClassReference False positive
 			$this->status->fatal( 'http-internal-error' );
 		}
 

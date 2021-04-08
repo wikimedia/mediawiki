@@ -115,9 +115,6 @@ class ApiStructureTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideParameters
-	 * @param string $path
-	 * @param array $params
-	 * @param string $name
 	 */
 	public function testParameters( string $path, array $params, string $name ) : void {
 		$main = self::getMain();

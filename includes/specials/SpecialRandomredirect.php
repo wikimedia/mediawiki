@@ -22,14 +22,25 @@
  * @author Rob Church <robchur@gmail.com>, Ilmari Karonen
  */
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Special page to direct the user to a random redirect page (minus the second redirect)
  *
  * @ingroup SpecialPage
  */
 class SpecialRandomredirect extends RandomPage {
-	public function __construct() {
-		parent::__construct( 'Randomredirect' );
+
+	/**
+	 * @param ILoadBalancer $loadBalancer
+	 * @param NamespaceInfo $nsInfo
+	 */
+	public function __construct(
+		ILoadBalancer $loadBalancer,
+		NamespaceInfo $nsInfo
+	) {
+		parent::__construct( $loadBalancer, $nsInfo );
+		$this->mName = 'Randomredirect';
 		$this->isRedir = true;
 	}
 }

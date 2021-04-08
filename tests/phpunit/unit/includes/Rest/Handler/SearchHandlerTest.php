@@ -5,13 +5,13 @@ namespace MediaWiki\Tests\Rest\Handler;
 use HashConfig;
 use InvalidArgumentException;
 use Language;
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Rest\Handler\SearchHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Search\Entity\SearchResultThumbnail;
 use MockSearchResultSet;
+use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use SearchEngine;
 use SearchEngineFactory;
@@ -20,7 +20,6 @@ use SearchResultSet;
 use SearchSuggestion;
 use SearchSuggestionSet;
 use Status;
-use User;
 use Wikimedia\Message\MessageValue;
 
 /**
@@ -29,6 +28,7 @@ use Wikimedia\Message\MessageValue;
 class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 	use HandlerTestTrait;
+	use MockTitleTrait;
 
 	/**
 	 * @var SearchEngine|MockObject|null
@@ -36,7 +36,7 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 	private $searchEngine = null;
 
 	/**
-	 * @param $query
+	 * @param string $query
 	 * @param SearchResultSet|Status $titleResult
 	 * @param SearchResultSet|Status $textResult
 	 * @param SearchSuggestionSet|null $completionResult
@@ -61,15 +61,6 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 		$hookContainer = $this->createHookContainer();
 		$searchEngineConfig = new \SearchEngineConfig( $config, $language, $hookContainer, [] );
 
-		/** @var PermissionManager|MockObject $permissionManager */
-		$permissionManager = $this->createNoOpMock(
-			PermissionManager::class, [ 'quickUserCan' ]
-		);
-		$permissionManager->method( 'quickUserCan' )
-			->willReturnCallback( function ( $action, User $user, LinkTarget $page ) {
-				return !preg_match( '/Forbidden/', $page->getText() );
-			} );
-
 		/** @var SearchEngine|MockObject $searchEngine */
 		$this->searchEngine = $this->createMock( SearchEngine::class );
 		$this->searchEngine->method( 'searchTitle' )
@@ -92,7 +83,6 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		return new SearchHandler(
 			$config,
-			$permissionManager,
 			$searchEngineFactory,
 			$searchEngineConfig
 		);
@@ -165,7 +155,10 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$handler = $this->newHandler( $query, $titleResults, $textResults );
 		$config = [ 'mode' => SearchHandler::FULLTEXT_MODE ];
-		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config );
+		$data = $this->executeHandlerAndGetBodyData( $handler, $request, $config, [], [], [],
+			$this->mockAnonAuthority( static function ( string $permission, ?PageIdentity $target ) {
+				return $target && !preg_match( '/Forbidden/', $target->getDBkey() );
+			} ) );
 
 		$this->assertArrayHasKey( 'pages', $data );
 		$this->assertCount( 4, $data['pages'] );
@@ -388,13 +381,13 @@ class SearchHandlerTest extends \MediaWikiUnitTestCase {
 
 		$data = $this->executeHandlerAndGetBodyData( $handler, $request, [], [
 			'SearchResultProvideDescription' =>
-				function ( array $pageIdentities, array &$result ) {
+				static function ( array $pageIdentities, array &$result ) {
 					foreach ( $pageIdentities as $pageId => $pageIdentity ) {
 						$result[ $pageId ] = 'Description_' . $pageIdentity->getId();
 					}
 				},
 			'SearchResultProvideThumbnail' =>
-				function ( array $pageIdentities, array &$result ) {
+				static function ( array $pageIdentities, array &$result ) {
 					foreach ( $pageIdentities as $pageId => $pageIdentity ) {
 						$result[ $pageId ] = new SearchResultThumbnail(
 							'image/png',

@@ -1,0 +1,6 @@
+{
+	"rules": {
+		"indent": "off",
+		"eol-last": "off"
+	}
+}

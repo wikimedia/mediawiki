@@ -22,6 +22,10 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
 
 /**
  * Special page to allow managing user group membership
@@ -36,14 +40,40 @@ class UserrightsPage extends SpecialPage {
 	 * @var null|string
 	 */
 	protected $mTarget;
-	/*
-	 * @var null|User $mFetchedUser The user object of the target username or null.
+	/**
+	 * @var null|User The user object of the target username or null.
 	 */
 	protected $mFetchedUser = null;
 	protected $isself = false;
 
-	public function __construct() {
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
+	/** @var UserNamePrefixSearch */
+	private $userNamePrefixSearch;
+
+	/**
+	 * @param UserGroupManagerFactory|null $userGroupManagerFactory
+	 * @param UserNameUtils|null $userNameUtils
+	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
+	 */
+	public function __construct(
+		UserGroupManagerFactory $userGroupManagerFactory = null,
+		UserNameUtils $userNameUtils = null,
+		UserNamePrefixSearch $userNamePrefixSearch = null
+	) {
 		parent::__construct( 'Userrights' );
+		$services = MediaWikiServices::getInstance();
+		// This class is extended and therefore falls back to global state - T263207
+		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
+		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
+
+		// TODO don't hard code false, use interwiki domains. See T14518
+		$this->userGroupManager = ( $userGroupManagerFactory ?? $services->getUserGroupManagerFactory() )
+			->getUserGroupManager( false );
 	}
 
 	public function doesWrites() {
@@ -88,7 +118,6 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param string|null $par String if any subpage provided, else null
 	 * @throws UserBlockedError|PermissionsError
-	 * @suppress PhanUndeclaredMethod
 	 */
 	public function execute( $par ) {
 		$user = $this->getUser();
@@ -104,11 +133,12 @@ class UserrightsPage extends SpecialPage {
 			$this->mTarget = trim( $this->mTarget );
 		}
 
-		if ( $this->mTarget !== null && User::getCanonicalName( $this->mTarget ) === $user->getName() ) {
+		if ( $this->mTarget !== null && $this->userNameUtils->getCanonical( $this->mTarget ) === $user->getName() ) {
 			$this->isself = true;
 		}
 
-		$fetchedStatus = $this->fetchUser( $this->mTarget, true );
+		$fetchedStatus = $this->mTarget === null ? Status::newFatal( 'nouserspecified' ) :
+			$this->fetchUser( $this->mTarget, true );
 		if ( $fetchedStatus->isOK() ) {
 			$this->mFetchedUser = $fetchedStatus->value;
 			if ( $this->mFetchedUser instanceof User ) {
@@ -163,10 +193,7 @@ class UserrightsPage extends SpecialPage {
 			 * (e.g. they don't have the userrights permission), then don't
 			 * allow them to change any user rights.
 			 */
-			if ( !MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, 'userrights' )
-			) {
+			if ( !$this->getAuthority()->isAllowed( 'userrights' ) ) {
 				$block = $user->getBlock();
 				if ( $block && $block->isSitewide() ) {
 					throw new UserBlockedError(
@@ -344,7 +371,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param array $add Array of groups to add
 	 * @param array $remove Array of groups to remove
 	 * @param string $reason Reason for group change
-	 * @param array $tags Array of change tags to add to the log entry
+	 * @param string[] $tags Array of change tags to add to the log entry
 	 * @param array $groupExpiries Associative array of (group name => expiry),
 	 *   containing only those groups that are to have new expiry values set
 	 * @return array Tuple of added, then removed groups
@@ -367,7 +394,7 @@ class UserrightsPage extends SpecialPage {
 		// UNLESS the user can only add this group (not remove it) and the expiry time
 		// is being brought forward (T156784)
 		$add = array_filter( $add,
-			function ( $group ) use ( $groups, $groupExpiries, $removable, $ugms ) {
+			static function ( $group ) use ( $groups, $groupExpiries, $removable, $ugms ) {
 				if ( isset( $groupExpiries[$group] ) &&
 					!in_array( $group, $removable ) &&
 					isset( $ugms[$group] ) &&
@@ -446,7 +473,7 @@ class UserrightsPage extends SpecialPage {
 	 * @param array $oldGroups
 	 * @param array $newGroups
 	 * @param string $reason
-	 * @param array $tags Change tags for the log entry
+	 * @param string[] $tags Change tags for the log entry
 	 * @param array $oldUGMs Associative array of (group name => UserGroupMembership)
 	 * @param array $newUGMs Associative array of (group name => UserGroupMembership)
 	 */
@@ -530,9 +557,8 @@ class UserrightsPage extends SpecialPage {
 			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
 				$dbDomain = '';
 			} else {
-				if ( $writing && !MediaWikiServices::getInstance()
-						->getPermissionManager()
-						->userHasRight( $this->getUser(), 'userrights-interwiki' )
+				if ( $writing &&
+					!$this->getAuthority()->isAllowed( 'userrights-interwiki' )
 				) {
 					return Status::newFatal( 'userrights-no-interwiki' );
 				}
@@ -561,7 +587,7 @@ class UserrightsPage extends SpecialPage {
 				return Status::newFatal( 'noname' );
 			}
 		} else {
-			$name = User::getCanonicalName( $name );
+			$name = $this->userNameUtils->getCanonical( $name );
 			if ( $name === false ) {
 				// invalid name
 				return Status::newFatal( 'nosuchusershort', $username );
@@ -580,9 +606,7 @@ class UserrightsPage extends SpecialPage {
 
 		if ( $user instanceof User &&
 			$user->isHidden() &&
-			!MediaWikiServices::getInstance()
-				->getPermissionManager()
-				->userHasRight( $this->getUser(), 'hideuser' )
+			!$this->getAuthority()->isAllowed( 'hideuser' )
 		) {
 			// Cannot see hidden users, pretend they don't exist
 			return Status::newFatal( 'nosuchusershort', $username );
@@ -676,7 +700,7 @@ class UserrightsPage extends SpecialPage {
 		$isUserInstance = $user instanceof User;
 
 		if ( $isUserInstance ) {
-			foreach ( Autopromote::getAutopromoteGroups( $user ) as $group ) {
+			foreach ( $this->userGroupManager->getUserAutopromoteGroups( $user ) as $group ) {
 				$autoList[] = UserGroupMembership::getLink( $group, $this->getContext(), 'html' );
 				$autoMembersList[] = UserGroupMembership::getLink( $group, $this->getContext(),
 					'html', $user->getName() );
@@ -804,11 +828,14 @@ class UserrightsPage extends SpecialPage {
 	}
 
 	/**
-	 * Returns an array of all groups that may be edited
-	 * @return array Array of groups that may be edited.
+	 * @return string[] Array of groups that may be edited
 	 */
 	protected static function getAllGroups() {
-		return User::getAllGroups();
+		// TODO don't hard code false here (refers to local domain). See T14518
+		return MediaWikiServices::getInstance()
+			->getUserGroupManagerFactory()
+			->getUserGroupManager( false )
+			->listAllGroups();
 	}
 
 	/**
@@ -1069,13 +1096,14 @@ class UserrightsPage extends SpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		$user = User::newFromName( $search );
-		if ( !$user ) {
+		$search = $this->userNameUtils->getCanonical( $search );
+		if ( !$search ) {
 			// No prefix suggestion for invalid user
 			return [];
 		}
 		// Autocomplete subpage as user list - public to allow caching
-		return UserNamePrefixSearch::search( 'public', $search, $limit, $offset );
+		return $this->userNamePrefixSearch
+			->search( UserNamePrefixSearch::AUDIENCE_PUBLIC, $search, $limit, $offset );
 	}
 
 	protected function getGroupName() {

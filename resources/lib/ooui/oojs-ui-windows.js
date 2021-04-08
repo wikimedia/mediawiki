@@ -1,12 +1,12 @@
 /*!
- * OOUI v0.39.3
+ * OOUI v0.41.3
  * https://www.mediawiki.org/wiki/OOUI
  *
- * Copyright 2011–2020 OOUI Team and other contributors.
+ * Copyright 2011–2021 OOUI Team and other contributors.
  * Released under the MIT license
  * http://oojs.mit-license.org
  *
- * Date: 2020-07-10T06:31:58Z
+ * Date: 2021-03-12T21:47:47Z
  */
 ( function ( OO ) {
 
@@ -1365,8 +1365,8 @@ OO.ui.WindowManager.prototype.openWindow = function ( win, data, lifecycle, comp
 	// Argument handling
 	if ( typeof win === 'string' ) {
 		this.getWindow( win ).then(
-			function ( win ) {
-				manager.openWindow( win, data, lifecycle, compatOpening );
+			function ( w ) {
+				manager.openWindow( w, data, lifecycle, compatOpening );
 			},
 			function ( err ) {
 				lifecycle.deferreds.opening.reject( err );
@@ -1628,23 +1628,23 @@ OO.ui.WindowManager.prototype.addWindows = function ( windows ) {
  * @throws {Error} An error is thrown if the named windows are not managed by the window manager.
  */
 OO.ui.WindowManager.prototype.removeWindows = function ( names ) {
-	var i, len, win, name, cleanupWindow,
-		manager = this,
-		promises = [],
-		cleanup = function ( name, win ) {
-			delete manager.windows[ name ];
-			win.$element.detach();
-		};
+	var promises,
+		manager = this;
 
-	for ( i = 0, len = names.length; i < len; i++ ) {
-		name = names[ i ];
-		win = this.windows[ name ];
+	function cleanup( name, win ) {
+		delete manager.windows[ name ];
+		win.$element.detach();
+	}
+
+	promises = names.map( function ( name ) {
+		var cleanupWindow,
+			win = manager.windows[ name ];
 		if ( !win ) {
 			throw new Error( 'Cannot remove window' );
 		}
 		cleanupWindow = cleanup.bind( null, name, win );
-		promises.push( this.closeWindow( name ).closed.then( cleanupWindow, cleanupWindow ) );
-	}
+		return manager.closeWindow( name ).closed.then( cleanupWindow, cleanupWindow );
+	} );
 
 	return $.when.apply( $, promises );
 };

@@ -3,7 +3,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
@@ -29,6 +29,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	 * @return TemporaryPasswordPrimaryAuthenticationProvider
 	 */
 	protected function getProvider( $params = [] ) {
+		$mwServices = MediaWikiServices::getInstance();
 		if ( !$this->config ) {
 			$this->config = new \HashConfig( [
 				'EmailEnabled' => true,
@@ -36,21 +37,24 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		}
 		$config = new \MultiConfig( [
 			$this->config,
-			MediaWikiServices::getInstance()->getMainConfig()
+			$mwServices->getMainConfig()
 		] );
 		$hookContainer = $this->createHookContainer();
 
 		if ( !$this->manager ) {
 			$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 			$objectFactory = new \Wikimedia\ObjectFactory( $services );
-			$permManager = $this->createNoOpMock( PermissionManager::class );
+			$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 			$this->manager = new AuthManager(
 				new \FauxRequest(),
 				$config,
 				$objectFactory,
-				$permManager,
-				$hookContainer
+				$hookContainer,
+				$mwServices->getReadOnlyMode(),
+				$userNameUtils,
+				$mwServices->getBlockManager(),
+				$mwServices->getBlockErrorFormatter()
 			);
 		}
 		$this->validity = \Status::newGood();
@@ -210,31 +214,31 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 	public static function provideGetAuthenticationRequests() {
 		$anon = [ 'username' => null ];
-		$loggedIn = [ 'username' => 'UTSysop' ];
+		$registered = [ 'username' => 'UTSysop' ];
 
 		return [
 			[ AuthManager::ACTION_LOGIN, $anon, [
 				new PasswordAuthenticationRequest
 			] ],
-			[ AuthManager::ACTION_LOGIN, $loggedIn, [
+			[ AuthManager::ACTION_LOGIN, $registered, [
 				new PasswordAuthenticationRequest
 			] ],
 			[ AuthManager::ACTION_CREATE, $anon, [] ],
-			[ AuthManager::ACTION_CREATE, $loggedIn, [
+			[ AuthManager::ACTION_CREATE, $registered, [
 				new TemporaryPasswordAuthenticationRequest( 'random' )
 			] ],
 			[ AuthManager::ACTION_LINK, $anon, [] ],
-			[ AuthManager::ACTION_LINK, $loggedIn, [] ],
+			[ AuthManager::ACTION_LINK, $registered, [] ],
 			[ AuthManager::ACTION_CHANGE, $anon, [
 				new TemporaryPasswordAuthenticationRequest( 'random' )
 			] ],
-			[ AuthManager::ACTION_CHANGE, $loggedIn, [
+			[ AuthManager::ACTION_CHANGE, $registered, [
 				new TemporaryPasswordAuthenticationRequest( 'random' )
 			] ],
 			[ AuthManager::ACTION_REMOVE, $anon, [
 				new TemporaryPasswordAuthenticationRequest
 			] ],
-			[ AuthManager::ACTION_REMOVE, $loggedIn, [
+			[ AuthManager::ACTION_REMOVE, $registered, [
 				new TemporaryPasswordAuthenticationRequest
 			] ],
 		];
@@ -423,7 +427,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$dbw = wfGetDB( DB_MASTER );
 		$oldHash = $dbw->selectField( 'user', 'user_newpassword', [ 'user_name' => $cuser ] );
-		$cb = new ScopedCallback( function () use ( $dbw, $cuser, $oldHash ) {
+		$cb = new ScopedCallback( static function () use ( $dbw, $cuser, $oldHash ) {
 			$dbw->update( 'user', [ 'user_newpassword' => $oldHash ], [ 'user_name' => $cuser ] );
 		} );
 
@@ -687,7 +691,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$creator = \User::newFromName( 'Foo' );
 
 		$user = self::getMutableTestUser()->getUser();
-		$user->setEmail( null );
+		$user->setEmail( '' );
 
 		$req = TemporaryPasswordAuthenticationRequest::newRandom();
 		$req->username = $user->getName();

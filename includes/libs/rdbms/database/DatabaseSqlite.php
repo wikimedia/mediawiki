@@ -1027,6 +1027,7 @@ class DatabaseSqlite extends Database {
 			}
 		}
 
+		// @phan-suppress-next-line SecurityCheck-SQLInjection SQL is taken from database
 		$res = $this->query( $sql, $fname, $queryFlags );
 
 		// Take over indexes
@@ -1041,13 +1042,14 @@ class DatabaseSqlite extends Database {
 			}
 
 			if ( $index->unique ) {
-				$sql = 'CREATE UNIQUE INDEX';
+				$sqlIndex = 'CREATE UNIQUE INDEX';
 			} else {
-				$sql = 'CREATE INDEX';
+				$sqlIndex = 'CREATE INDEX';
 			}
 			// Try to come up with a new index name, given indexes have database scope in SQLite
 			$indexName = $newName . '_' . $index->name;
-			$sql .= ' ' . $indexName . ' ON ' . $newName;
+			$sqlIndex .= ' ' . $this->addIdentifierQuotes( $indexName ) .
+				' ON ' . $this->addIdentifierQuotes( $newName );
 
 			$indexInfo = $this->query(
 				'PRAGMA INDEX_INFO(' . $this->addQuotes( $index->name ) . ')',
@@ -1056,12 +1058,13 @@ class DatabaseSqlite extends Database {
 			);
 			$fields = [];
 			foreach ( $indexInfo as $indexInfoRow ) {
-				$fields[$indexInfoRow->seqno] = $indexInfoRow->name;
+				$fields[$indexInfoRow->seqno] = $this->addQuotes( $indexInfoRow->name );
 			}
 
-			$sql .= '(' . implode( ',', $fields ) . ')';
+			$sqlIndex .= '(' . implode( ',', $fields ) . ')';
 
-			$this->query( $sql, __METHOD__ );
+			// @phan-suppress-next-line SecurityCheck-SQLInjection implode does not ignore taint from keys T270942
+			$this->query( $sqlIndex, __METHOD__ );
 		}
 
 		return $res;

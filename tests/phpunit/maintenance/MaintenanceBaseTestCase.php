@@ -43,21 +43,21 @@ abstract class MaintenanceBaseTestCase extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return string Class name
-	 *
 	 * Subclasses must implement this in order to use the $this->maintenance
 	 * variable.  Normally, it will be set like:
 	 *     return PopulateDatabaseMaintenance::class;
 	 *
 	 * If you need to change the way your maintenance class is constructed,
 	 * override createMaintenance.
+	 *
+	 * @return string Class name
 	 */
 	abstract protected function getMaintenanceClass();
 
 	/**
 	 * Called by setUp to initialize $this->maintenance.
 	 *
-	 * @return object The Maintenance instance to test.
+	 * @return Maintenance The Maintenance instance to test.
 	 */
 	protected function createMaintenance() {
 		$className = $this->getMaintenanceClass();

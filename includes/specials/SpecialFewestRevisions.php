@@ -21,8 +21,10 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -32,8 +34,30 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @author Martin Drashkov
  */
 class SpecialFewestRevisions extends QueryPage {
-	public function __construct( $name = 'Fewestrevisions' ) {
-		parent::__construct( $name );
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var ILanguageConverter */
+	private $languageConverter;
+
+	/**
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param ILoadBalancer $loadBalancer
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LanguageConverterFactory $languageConverterFactory
+	 */
+	public function __construct(
+		NamespaceInfo $namespaceInfo,
+		ILoadBalancer $loadBalancer,
+		LinkBatchFactory $linkBatchFactory,
+		LanguageConverterFactory $languageConverterFactory
+	) {
+		parent::__construct( 'Fewestrevisions' );
+		$this->namespaceInfo = $namespaceInfo;
+		$this->setDBLoadBalancer( $loadBalancer );
+		$this->setLinkBatchFactory( $linkBatchFactory );
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 	}
 
 	public function isExpensive() {
@@ -53,8 +77,7 @@ class SpecialFewestRevisions extends QueryPage {
 				'value' => 'COUNT(*)',
 			],
 			'conds' => [
-				'page_namespace' => MediaWikiServices::getInstance()->getNamespaceInfo()->
-					getContentNamespaces(),
+				'page_namespace' => $this->namespaceInfo->getContentNamespaces(),
 				'page_id = rev_page',
 				'page_is_redirect = 0',
 			],
@@ -70,7 +93,7 @@ class SpecialFewestRevisions extends QueryPage {
 
 	/**
 	 * @param Skin $skin
-	 * @param object $result Database row
+	 * @param stdClass $result Database row
 	 * @return string
 	 */
 	public function formatResult( $skin, $result ) {
@@ -88,7 +111,7 @@ class SpecialFewestRevisions extends QueryPage {
 		}
 		$linkRenderer = $this->getLinkRenderer();
 
-		$text = $this->getLanguageConverter()->convertHtml( $nt->getPrefixedText() );
+		$text = $this->languageConverter->convertHtml( $nt->getPrefixedText() );
 		$plink = $linkRenderer->makeLink( $nt, new HtmlArmor( $text ) );
 
 		$nl = $this->msg( 'nrevisions' )->numParams( $result->value )->text();

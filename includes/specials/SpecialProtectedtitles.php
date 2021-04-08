@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A special page that list protected titles from creation
  *
@@ -30,8 +33,23 @@ class SpecialProtectedtitles extends SpecialPage {
 	protected $IdLevel = 'level';
 	protected $IdType = 'type';
 
-	public function __construct() {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer
+	) {
 		parent::__construct( 'Protectedtitles' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	public function execute( $par ) {
@@ -46,7 +64,17 @@ class SpecialProtectedtitles extends SpecialPage {
 		$size = $request->getIntOrNull( 'size' );
 		$NS = $request->getIntOrNull( 'namespace' );
 
-		$pager = new ProtectedTitlesPager( $this, [], $type, $level, $NS, $sizetype, $size );
+		$pager = new ProtectedTitlesPager(
+			$this,
+			[],
+			$type,
+			$level,
+			$NS,
+			$sizetype,
+			$size,
+			$this->linkBatchFactory,
+			$this->loadBalancer
+		);
 
 		$this->getOutput()->addHTML( $this->showOptions( $NS, $type, $level ) );
 
@@ -64,7 +92,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	/**
 	 * Callback function to output a restriction
 	 *
-	 * @param object $row Database row
+	 * @param stdClass $row Database row
 	 * @return string
 	 */
 	public function formatRow( $row ) {
@@ -116,7 +144,7 @@ class SpecialProtectedtitles extends SpecialPage {
 	private function showOptions( $namespace, $type, $level ) {
 		$formDescriptor = [
 			'namespace' => [
-				'class' => 'HTMLSelectNamespace',
+				'class' => HTMLSelectNamespace::class,
 				'name' => 'namespace',
 				'id' => 'namespace',
 				'cssclass' => 'namespaceselector',
@@ -126,8 +154,7 @@ class SpecialProtectedtitles extends SpecialPage {
 			'levelmenu' => $this->getLevelMenu( $level )
 		];
 
-		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() );
-		$htmlForm
+		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'protectedtitles' )
 			->setSubmitText( $this->msg( 'protectedtitles-submit' )->text() );

@@ -6,6 +6,9 @@ use OutputPage;
 use Skin;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "OutputPageBodyAttributes" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -21,7 +24,7 @@ interface OutputPageBodyAttributesHook {
 	 * @param OutputPage $out OutputPage which called the hook, can be used to get the real title
 	 * @param Skin $sk Skin that called OutputPage::headElement
 	 * @param string[] &$bodyAttrs Array of attributes for the body tag passed to Html::openElement
-	 * @return bool|void True or no return value to continue or false to abort
+	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs );
+	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ): void;
 }

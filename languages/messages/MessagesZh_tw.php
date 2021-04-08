@@ -38,6 +38,7 @@ $namespaceAliases = [
 	"圖片討論" => NS_FILE_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ '所有訊息' ],
 	'Ancientpages'              => [ '最舊頁面' ],

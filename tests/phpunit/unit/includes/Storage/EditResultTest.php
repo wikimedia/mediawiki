@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use FormatJson;
 use MediaWiki\Storage\EditResult;
 use MediaWikiUnitTestCase;
 
@@ -57,8 +58,6 @@ class EditResultTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers \MediaWiki\Storage\EditResult::isRevert()
 	 * @dataProvider provideIsRevertEditResults
-	 * @param EditResult $er
-	 * @param bool $isRevert
 	 */
 	public function testIsRevert( EditResult $er, bool $isRevert ) {
 		$this->assertSame( $isRevert, $er->isRevert(), 'isRevert()' );
@@ -126,13 +125,13 @@ class EditResultTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @covers       \MediaWiki\Storage\EditResult::getRevertMethod()
-	 * @covers       \MediaWiki\Storage\EditResult::getRevertTags()
+	 * @covers \MediaWiki\Storage\EditResult::getRevertMethod()
+	 * @covers \MediaWiki\Storage\EditResult::getRevertTags()
 	 * @dataProvider provideGetRevertMethodEditResults
 	 *
 	 * @param EditResult $er
 	 * @param int|null $revertMethod
-	 * @param array $tags
+	 * @param string[] $tags
 	 */
 	public function testGetRevertMethodAndTags( EditResult $er, ?int $revertMethod, array $tags ) {
 		$this->assertSame( $revertMethod, $er->getRevertMethod(), 'getRevertMethod()' );
@@ -193,5 +192,89 @@ class EditResultTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetUndidRevId( EditResult $er, ?int $undidRevId ) {
 		$this->assertSame( $undidRevId, $er->getUndidRevId(), 'getUndidRevId()' );
+	}
+
+	public function provideSerialization() {
+		yield 'page creation' => [
+			new EditResult(
+				true,
+				false,
+				null,
+				null,
+				null,
+				false,
+				false,
+				[]
+			)
+		];
+		yield 'rollback' => [
+			new EditResult(
+				false,
+				100,
+				EditResult::REVERT_ROLLBACK,
+				120,
+				150,
+				true,
+				false,
+				[ 'mw-rollback' ]
+			)
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\EditResult::jsonSerialize()
+	 * @covers \MediaWiki\Storage\EditResult::newFromArray
+	 * @dataProvider provideSerialization
+	 */
+	public function testSerialization( EditResult $editResult ) {
+		$serialized = FormatJson::encode( $editResult );
+
+		$deserializedArray = FormatJson::decode( $serialized, true );
+		$this->assertSame(
+			'1',
+			$deserializedArray['version'],
+			'"version" key is present and set correctly'
+		);
+
+		$deserialized = EditResult::newFromArray( $deserializedArray );
+
+		$this->assertSame( $editResult->isNew(), $deserialized->isNew(), 'isNew()' );
+		$this->assertSame(
+			$editResult->getOriginalRevisionId(),
+			$deserialized->getOriginalRevisionId(),
+			'getOriginalRevisionId()'
+		);
+		$this->assertSame(
+			$editResult->getRevertMethod(),
+			$deserialized->getRevertMethod(),
+			'getRevertMethod()'
+		);
+		$this->assertSame(
+			$editResult->getOldestRevertedRevisionId(),
+			$deserialized->getOldestRevertedRevisionId(),
+			'getOldestRevertedRevisionId()'
+		);
+		$this->assertSame(
+			$editResult->getNewestRevertedRevisionId(),
+			$deserialized->getNewestRevertedRevisionId(),
+			'getNewestRevertedRevisionId()'
+		);
+		$this->assertSame(
+			$editResult->isExactRevert(),
+			$deserialized->isExactRevert(),
+			'isExactRevert()'
+		);
+		$this->assertSame(
+			$editResult->isNullEdit(),
+			$deserialized->isNullEdit(),
+			'isNullEdit()'
+		);
+		$this->assertArrayEquals(
+			$editResult->getRevertTags(),
+			$deserialized->getRevertTags(),
+			false,
+			false,
+			'getRevertTags()'
+		);
 	}
 }

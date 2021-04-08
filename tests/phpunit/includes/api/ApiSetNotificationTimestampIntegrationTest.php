@@ -11,13 +11,17 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiSetNotificationTimestampIntegrationTest extends ApiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
-		self::$users[__CLASS__] = new TestUser( __CLASS__ );
+
+		$this->tablesUsed = array_merge(
+			$this->tablesUsed,
+			[ 'watchlist', 'watchlist_expiry' ]
+		);
 	}
 
 	public function testStuff() {
-		$user = self::$users[__CLASS__]->getUser();
+		$user = $this->getTestUser()->getUser();
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 
 		$user->addWatch( $page->getTitle() );

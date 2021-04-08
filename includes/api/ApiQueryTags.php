@@ -57,7 +57,7 @@ class ApiQueryTags extends ApiQueryBase {
 		# Fetch defined tags that aren't past the continuation
 		if ( $params['continue'] !== null ) {
 			$cont = $params['continue'];
-			$tags = array_filter( $tags, function ( $v ) use ( $cont ) {
+			$tags = array_filter( $tags, static function ( $v ) use ( $cont ) {
 				return $v >= $cont;
 			} );
 		}

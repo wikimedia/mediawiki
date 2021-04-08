@@ -21,12 +21,15 @@
  * @ingroup Parser
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
- * Various tag hooks, registered in Parser::firstCallInit()
+ * Various tag hooks, registered in every Parser
  * @ingroup Parser
  */
 class CoreTagHooks {
 	/**
+	 * @internal
 	 * @param Parser $parser
 	 * @return void
 	 */
@@ -36,6 +39,7 @@ class CoreTagHooks {
 		$parser->setHook( 'nowiki', [ __CLASS__, 'nowiki' ] );
 		$parser->setHook( 'gallery', [ __CLASS__, 'gallery' ] );
 		$parser->setHook( 'indicator', [ __CLASS__, 'indicator' ] );
+		$parser->setHook( 'langconvert', [ __CLASS__, 'langconvert' ] );
 		if ( $wgRawHtml ) {
 			$parser->setHook( 'html', [ __CLASS__, 'html' ] );
 		}
@@ -46,18 +50,15 @@ class CoreTagHooks {
 	 * Text is treated roughly as 'nowiki' wrapped in an HTML 'pre' tag;
 	 * valid HTML attributes are passed on.
 	 *
-	 * Uses custom html escaping which phan-taint-check won't recognize
-	 * hence we suppress the error.
-	 * @suppress SecurityCheck-XSS
-	 *
-	 * @param string $text
+	 * @param ?string $content
 	 * @param array $attribs
 	 * @param Parser $parser
 	 * @return string HTML
+	 * @internal
 	 */
-	public static function pre( $text, $attribs, $parser ) {
+	public static function pre( ?string $content, array $attribs, Parser $parser ): string {
 		// Backwards-compatibility hack
-		$content = StringUtils::delimiterReplace( '<nowiki>', '</nowiki>', '$1', $text, 'i' );
+		$content = StringUtils::delimiterReplace( '<nowiki>', '</nowiki>', '$1', $content ?? '', 'i' );
 
 		$attribs = Sanitizer::validateTagAttributes( $attribs, 'pre' );
 		// We need to let both '"' and '&' through,
@@ -80,17 +81,18 @@ class CoreTagHooks {
 	 * Uses undocumented extended tag hook return values, introduced in r61913.
 	 *
 	 * @suppress SecurityCheck-XSS
-	 * @param string $content
+	 * @param ?string $content
 	 * @param array $attributes
 	 * @param Parser $parser
 	 * @throws MWException
 	 * @return array|string Output of tag hook
+	 * @internal
 	 */
-	public static function html( $content, $attributes, $parser ) {
+	public static function html( ?string $content, array $attributes, Parser $parser ) {
 		global $wgRawHtml;
 		if ( $wgRawHtml ) {
 			if ( $parser->getOptions()->getAllowUnsafeRawHtml() ) {
-				return [ $content, 'markerType' => 'nowiki' ];
+				return [ $content ?? '', 'markerType' => 'nowiki' ];
 			} else {
 				// In a system message where raw html is
 				// not allowed (but it is allowed in other
@@ -119,13 +121,14 @@ class CoreTagHooks {
 	 * hence we suppress the error.
 	 * @suppress SecurityCheck-XSS
 	 *
-	 * @param string $content
+	 * @param ?string $content
 	 * @param array $attributes
 	 * @param Parser $parser
 	 * @return array
+	 * @internal
 	 */
-	public static function nowiki( $content, $attributes, $parser ) {
-		$content = strtr( $content, [
+	public static function nowiki( ?string $content, array $attributes, Parser $parser ): array {
+		$content = strtr( $content ?? '', [
 			// lang converter
 			'-{' => '-&#123;',
 			'}-' => '&#125;-',
@@ -148,27 +151,29 @@ class CoreTagHooks {
 	 *
 	 * @todo break Parser::renderImageGallery out here too.
 	 *
-	 * @param string $content
+	 * @param ?string $content
 	 * @param array $attributes
 	 * @param Parser $parser
 	 * @return string HTML
+	 * @internal
 	 */
-	public static function gallery( $content, $attributes, $parser ) {
-		return $parser->renderImageGallery( $content, $attributes );
+	public static function gallery( ?string $content, array $attributes, Parser $parser ):string {
+		return $parser->renderImageGallery( $content ?? '', $attributes );
 	}
 
 	/**
 	 * XML-style tag for page status indicators: icons (or short text snippets) usually displayed in
 	 * the top-right corner of the page, outside of the main content.
 	 *
-	 * @param string $content
+	 * @param ?string $content
 	 * @param array $attributes
 	 * @param Parser $parser
 	 * @param PPFrame $frame
 	 * @return string
 	 * @since 1.25
+	 * @internal
 	 */
-	public static function indicator( $content, array $attributes, Parser $parser, PPFrame $frame ) {
+	public static function indicator( ?string $content, array $attributes, Parser $parser, PPFrame $frame ):string {
 		if ( !isset( $attributes['name'] ) || trim( $attributes['name'] ) === '' ) {
 			return '<span class="error">' .
 				wfMessage( 'invalid-indicator-name' )->inContentLanguage()->parse() .
@@ -177,9 +182,57 @@ class CoreTagHooks {
 
 		$parser->getOutput()->setIndicator(
 			trim( $attributes['name'] ),
-			Parser::stripOuterParagraph( $parser->recursiveTagParseFully( $content, $frame ) )
+			Parser::stripOuterParagraph( $parser->recursiveTagParseFully( $content ?? '', $frame ) )
 		);
 
 		return '';
 	}
+
+	/**
+	 * Returns content converted into the requested language variant, using LanguageConverter.
+	 *
+	 * @param ?string $content
+	 * @param array $attributes
+	 * @param Parser $parser
+	 * @param PPFrame $frame
+	 * @return string
+	 * @since 1.36
+	 * @internal
+	 */
+	public static function langconvert( ?string $content, array $attributes, Parser $parser, PPFrame $frame ): string {
+		if ( isset( $attributes['from'] ) && isset( $attributes['to'] ) ) {
+			$fromArg = trim( $attributes['from'] );
+			$toArg = trim( $attributes['to'] );
+			$fromLangCode = explode( '-', $fromArg )[0];
+			if ( $fromLangCode && $fromLangCode === explode( '-', $toArg )[0] ) {
+				$lang = MediaWikiServices::getInstance()->getLanguageFactory()
+					->getLanguage( $fromLangCode );
+				$converter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
+					->getLanguageConverter( $lang );
+
+				# ensure that variants are available,
+				# and the variants are valid BCP 47 codes
+				if ( $converter->hasVariants()
+					&& strcasecmp( $fromArg, LanguageCode::bcp47( $fromArg ) ) === 0
+					&& strcasecmp( $toArg, LanguageCode::bcp47( $toArg ) ) === 0 ) {
+
+						$toVariant = $converter->validateVariant( $toArg );
+
+						if ( $toVariant ) {
+							return $converter->autoConvert(
+								$parser->recursiveTagParse( $content ?? '', $frame ),
+								$toVariant
+							);
+						}
+				}
+			}
+		}
+
+		return Html::rawElement(
+			'span',
+			[ 'class' => 'error' ],
+			wfMessage( 'invalid-langconvert-attrs' )->inContentLanguage()->parse()
+		);
+	}
+
 }

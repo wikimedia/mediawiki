@@ -27,6 +27,10 @@
  */
 class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 */
 	public function __construct( ApiQuery $query, $moduleName ) {
 		parent::__construct( $query, $moduleName, 'cm' );
 	}
@@ -60,7 +64,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		$categoryTitle = $this->getTitleOrPageId( $params )->getTitle();
-		if ( $categoryTitle->getNamespace() != NS_CATEGORY ) {
+		if ( $categoryTitle->getNamespace() !== NS_CATEGORY ) {
 			$this->dieWithError( 'apierror-invalidcategory' );
 		}
 

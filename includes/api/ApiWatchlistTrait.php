@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -84,7 +85,7 @@ trait ApiWatchlistTrait {
 	 * Return true if we're to watch the page, false if not.
 	 * @param string $watchlist Valid values: 'watch', 'unwatch', 'preferences', 'nochange'
 	 * @param Title $title The page under consideration
-	 * @param User $user The user get the the value for.
+	 * @param User $user The user get the value for.
 	 * @param string|null $userOption The user option to consider when $watchlist=preferences.
 	 *    If not set will use watchdefault always and watchcreations if $title doesn't exist.
 	 * @return bool
@@ -108,6 +109,10 @@ trait ApiWatchlistTrait {
 				// If the user is already watching, don't bother checking
 				if ( $userWatching ) {
 					return true;
+				}
+				// If the user is a bot, act as 'nochange' to avoid big watchlists on single users
+				if ( $user->isBot() ) {
+					return $userWatching;
 				}
 				// If no user option was passed, use watchdefault and watchcreations
 				if ( $userOption === null ) {
@@ -146,13 +151,13 @@ trait ApiWatchlistTrait {
 	 *
 	 * @param WatchedItemStoreInterface $store
 	 * @param Title $title
-	 * @param User $user The user to get the expiry for.
+	 * @param UserIdentity $user The user to get the expiry for.
 	 * @return string|null
 	 */
 	protected function getWatchlistExpiry(
 		WatchedItemStoreInterface $store,
 		Title $title,
-		User $user
+		UserIdentity $user
 	): ?string {
 		$watchedItem = $store->getWatchedItem( $user, $title );
 

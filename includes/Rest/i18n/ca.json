@@ -1,0 +1,32 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido",
+			"Mguix",
+			"Toniher"
+		]
+	},
+	"rest-nonexistent-title": "El títol especificat ($1) no existeix",
+	"rest-nonexistent-title-revision": "La revisió especificada ($1) no existeix per a la pàgina especificada ($2)",
+	"rest-nonexistent-revision": "La revisió especificada ($1) no existeix",
+	"rest-nonexistent-user": "L'usuari especificat ($1) no existeix",
+	"rest-invalid-user": "El nom d'usuari especificat ($1) no és vàlid",
+	"rest-permission-denied-anon": "No accessible per a usuaris anònims",
+	"rest-permission-denied-title": "L'usuari no té permisos per a llegir el títol ($1)",
+	"rest-permission-denied-revision": "L'usuari no té accés a revisió sol·licitada ($1).",
+	"rest-resource-limit-exceeded": "S'han exhaurit els límits de recursos en processar la sol·licitud.",
+	"rest-pagehistory-param-range-error": "L'ID de la revisió ha de ser més gran que 0",
+	"rest-pagehistory-timestamp-error": "No es pot recuperar la marca horària de la revisió especificada ($1)",
+	"rest-pagehistorycount-type-unrecognized": "El tipus de recompte ($1) especificat no és vàlid",
+	"rest-pagehistorycount-parameters-invalid": "La combinació de paràmetres especificada no és permesa",
+	"rest-compare-inaccessible": "La revisió especificada pel paràmetre $1 no és accessible públicament.",
+	"rest-pagehistorycount-too-many-revisions": "El títol especificat conté massa revisions per a recuperar-ne el recompte.",
+	"rest-search-error": "S'ha produït un error en retornar els resultats de la cerca: $1",
+	"rest-page-source-type-error": "No és permès el tipus de contingut de la font de la pàgina sol·licitada",
+	"rest-no-revision": "No s'ha pogut recuperar la revisió del títol $1",
+	"rest-html-backend-error": "No es pot recuperar l'HTML de Parsoid.",
+	"rest-bad-json-body": "Cos de la sol·licitud incorrecte. Cal que sigui un objecte JSON.",
+	"rest-missing-body-field": "No hi és el camp obligatori «$1» en el cos de la sol·licitud.",
+	"rest-bad-content-model": "Model de contingut incorrecte: $1",
+	"rest-cannot-load-file": "No es pot carregar el fitxer corresponent al títol «$1»."
+}

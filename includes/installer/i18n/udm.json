@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Andrewboltachev",
 			"AlnashPiyash2",
+			"Andrewboltachev",
+			"Kotwys",
 			"Zpizza"
 		]
 	},
@@ -15,9 +16,8 @@
 	"config-page-name": "Ним",
 	"config-page-options": "Настройкаос",
 	"config-page-complete": "Быдэстэмын!",
-	"config-page-readme": "Лыдӟы монэ",
 	"config-page-copying": "Лицензия",
 	"config-page-upgradedoc": "Выльдытон",
-	"config-diff3-bad": "GNU diff3 шедьтэмын ӧвӧл.",
+	"config-diff3-bad": "GNU diff3 текст ӵошатон тӥрлык шедьтымтэ. Тӥляд али сое санэ басьтытэк кельтэмды луэ, но тӥ та янгышез выльысь но выльысь адӟылоды, лэся.",
 	"mainpagetext": "<strong>MediaWiki движок азинлыко пуктэмын.</strong>"
 }

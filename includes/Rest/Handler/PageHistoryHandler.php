@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use ChangeTags;
 use IDBAccessObject;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
@@ -12,9 +13,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
-use RequestContext;
 use Title;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
 use Wikimedia\Message\ScalarParam;
@@ -27,7 +26,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class PageHistoryHandler extends SimpleHandler {
 	private const REVISIONS_RETURN_LIMIT = 20;
-	private const REVERTED_TAG_NAMES = [ 'mw-undo', 'mw-rollback' ];
 	private const ALLOWED_FILTER_TYPES = [ 'anonymous', 'bot', 'reverted', 'minor' ];
 
 	/** @var RevisionStore */
@@ -41,9 +39,6 @@ class PageHistoryHandler extends SimpleHandler {
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
-
-	/** @var User */
-	private $user;
 
 	/**
 	 * @var Title|bool|null
@@ -68,9 +63,6 @@ class PageHistoryHandler extends SimpleHandler {
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
 		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
-
-		// @todo Inject this, when there is a good way to do that
-		$this->user = RequestContext::getMain()->getUser();
 	}
 
 	/**
@@ -108,7 +100,7 @@ class PageHistoryHandler extends SimpleHandler {
 
 		$tagIds = [];
 		if ( $params['filter'] === 'reverted' ) {
-			foreach ( self::REVERTED_TAG_NAMES as $tagName ) {
+			foreach ( ChangeTags::REVERT_TAGS as $tagName ) {
 				try {
 					$tagIds[] = $this->changeTagDefStore->getId( $tagName );
 				} catch ( NameTableAccessException $exception ) {
@@ -126,7 +118,7 @@ class PageHistoryHandler extends SimpleHandler {
 				404
 			);
 		}
-		if ( !$this->permissionManager->userCan( 'read', $this->user, $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-permission-denied-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ] ),
@@ -270,11 +262,9 @@ class PageHistoryHandler extends SimpleHandler {
 	 * @return int
 	 */
 	private function getBitmask() {
-		if ( !$this->permissionManager->userHasRight( $this->user, 'deletedhistory' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER;
-		} elseif ( !$this->permissionManager
-			->userHasAnyRight( $this->user, 'suppressrevision', 'viewsuppressed' )
-		) {
+		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;
@@ -319,10 +309,10 @@ class PageHistoryHandler extends SimpleHandler {
 					$revision['parent_id'] = $parentId;
 				}
 
-				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->user );
+				$comment = $rev->getComment( RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 				$revision['comment'] = $comment ? $comment->text : null;
 
-				$revUser = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->user );
+				$revUser = $rev->getUser( RevisionRecord::FOR_THIS_USER, $this->getAuthority() );
 				if ( $revUser ) {
 					$revision['user'] = [
 						'id' => $revUser->isRegistered() ? $revUser->getId() : null,

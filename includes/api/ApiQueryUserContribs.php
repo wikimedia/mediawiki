@@ -24,6 +24,9 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
+use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
  * This query action adds a list of a specified user's contributions to the output.
@@ -32,8 +35,16 @@ use MediaWiki\Storage\NameTableAccessException;
  */
 class ApiQueryUserContribs extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
+
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		UserIdentityLookup $userIdentityLookup
+	) {
 		parent::__construct( $query, $moduleName, 'uc' );
+		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	private $params, $multiUserMode, $orderBy, $parentLens;
@@ -68,7 +79,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		// queries should use a regular replica DB since the lookup pattern is not all by user.
 		$dbSecondary = $this->getDB(); // any random replica DB
 
-		$sort = ( $this->params['dir'] == 'newer' ? '' : ' DESC' );
+		$sort = ( $this->params['dir'] == 'newer' ?
+			SelectQueryBuilder::SORT_ASC : SelectQueryBuilder::SORT_DESC );
 		$op = ( $this->params['dir'] == 'older' ? '<' : '>' );
 
 		// Create an Iterator that produces the UserIdentity objects we need, depending
@@ -91,28 +103,27 @@ class ApiQueryUserContribs extends ApiQueryBase {
 					$this->dieContinueUsageIf( $continue[0] !== 'name' );
 					$fromName = $continue[1];
 				}
-				$like = $dbSecondary->buildLike( $this->params['userprefix'], $dbSecondary->anyString() );
 
 				$limit = 501;
-
 				do {
 					$from = $fromName ? "$op= " . $dbSecondary->addQuotes( $fromName ) : false;
-					$res = $dbSecondary->select(
-						'actor',
-						[ 'actor_id', 'user_id' => 'COALESCE(actor_user,0)', 'user_name' => 'actor_name' ],
-						array_merge( [ "actor_name$like" ], $from ? [ "actor_name $from" ] : [] ),
-						$fname,
-						[ 'ORDER BY' => [ "user_name $sort" ], 'LIMIT' => $limit ]
-					);
+					$usersBatch = $this->userIdentityLookup
+						->newSelectQueryBuilder()
+						->caller( $fname )
+						->limit( $limit )
+						->userNamePrefix( $this->params['userprefix'] )
+						->where( $from ? [ "actor_name $from" ] : [] )
+						->orderByName( $sort )
+						->fetchUserIdentities();
 
 					$count = 0;
 					$fromName = false;
-					foreach ( $res as $row ) {
+					foreach ( $usersBatch as $user ) {
 						if ( ++$count >= $limit ) {
-							$fromName = $row->user_name;
+							$fromName = $user->getName();
 							break;
 						}
-						yield User::newFromRow( $row );
+						yield $user;
 					}
 				} while ( $fromName !== false );
 			} );
@@ -146,14 +157,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$from = "$op= $fromId";
 			}
 
-			$res = $dbSecondary->select(
-				'actor',
-				[ 'actor_id', 'user_id' => 'actor_user', 'user_name' => 'actor_name' ],
-				array_merge( [ 'actor_user' => $ids ], $from ? [ "actor_id $from" ] : [] ),
-				__METHOD__,
-				[ 'ORDER BY' => "user_id $sort" ]
-			);
-			$userIter = UserArray::newFromResult( $res );
+			$userIter = $this->userIdentityLookup
+				->newSelectQueryBuilder()
+				->caller( __METHOD__ )
+				->userIds( $ids )
+				->orderByUserId( $sort )
+				->where( $from ? [ "actor_id $from" ] : [] )
+				->fetchUserIdentities();
 			$batchSize = count( $ids );
 		} else {
 			$names = [];
@@ -197,17 +207,13 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				$from = "$op= " . $dbSecondary->addQuotes( $fromName );
 			}
 
-			$res = $dbSecondary->select(
-				'actor',
-				[ 'actor_id', 'user_id' => 'actor_user', 'user_name' => 'actor_name' ],
-				array_merge(
-					[ 'actor_name' => array_map( 'strval', array_keys( $names ) ) ],
-					$from ? [ "actor_id $from" ] : []
-				),
-				__METHOD__,
-				[ 'ORDER BY' => "actor_name $sort" ]
-			);
-			$userIter = UserArray::newFromResult( $res );
+			$userIter = $this->userIdentityLookup
+				->newSelectQueryBuilder()
+				->caller( __METHOD__ )
+				->userNames( array_keys( $names ) )
+				->where( $from ? [ "actor_id $from" ] : [] )
+				->orderByName( $sort )
+				->fetchUserIdentities();
 			$batchSize = count( $names );
 		}
 
@@ -268,7 +274,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 	/**
 	 * Prepares the query and returns the limit of rows requested
-	 * @param User[] $users
+	 * @param UserIdentity[] $users
 	 * @param int $limit
 	 */
 	private function prepareQuery( array $users, $limit ) {
@@ -340,12 +346,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 
 		// Don't include any revisions where we're not supposed to be able to
 		// see the username.
-		$user = $this->getUser();
-		if ( !$this->getPermissionManager()->userHasRight( $user, 'deletedhistory' ) ) {
+		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER;
-		} elseif ( !$this->getPermissionManager()
-			->userHasAnyRight( $user, 'suppressrevision', 'viewsuppressed' )
-		) {
+		} elseif ( !$this->getAuthority()->isAllowedAny( 'suppressrevision', 'viewsuppressed' ) ) {
 			$bitmask = RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED;
 		} else {
 			$bitmask = 0;
@@ -413,6 +416,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		if ( isset( $show['patrolled'] ) || isset( $show['!patrolled'] ) ||
 			isset( $show['autopatrolled'] ) || isset( $show['!autopatrolled'] ) || $this->fld_patrolled
 		) {
+			$user = $this->getUser();
 			if ( !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}

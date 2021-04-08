@@ -39,13 +39,13 @@ interface StorageAwareness {
 	/** @var int Operation failed */
 	public const ERR_UNEXPECTED = 3;
 
-	/** @var int Emulation/fallback mode; see ATTR_EMULATION_*; higher is better */
+	/** @var int Emulation/fallback mode; see QOS_EMULATION_*; higher is better */
 	public const ATTR_EMULATION = 1;
-	/** @var int Multi-DC consistency of SYNC_WRITES; see ATTR_SYNCWRITES_*; higher is better */
+	/** @var int Multi-DC consistency of SYNC_WRITES; see QOS_SYNCWRITES_*; higher is better */
 	public const ATTR_SYNCWRITES = 2;
-	/** @var int Locality; see ATTR_LOCALITY_*; higher is better */
+	/** @var int Locality; see QOS_LOCALITY_*; higher is better */
 	public const ATTR_LOCALITY = 3;
-	/** @var int Durability; see ATTR_DURABILITY_*; higher is better */
+	/** @var int Durability; see QOS_DURABILITY_*; higher is better */
 	public const ATTR_DURABILITY = 4;
 
 	/** @var int Fallback disk-based SQL store */

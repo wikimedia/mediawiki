@@ -246,6 +246,11 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 				'Category:Search is not search',
 				[ NS_CATEGORY ],
 			],
+			'Copy-pasted wikilinks with invalid characters will still find the page' => [
+				'[[smithee]]',
+				'Smithee',
+				[ NS_MAIN ],
+			],
 		];
 	}
 
@@ -307,7 +312,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 		// Not using mock since PHPUnit mocks do not work properly with references in params
 		$this->setTemporaryHook( 'SearchIndexFields',
-			function ( &$fields, SearchEngine $engine ) use ( $mockFieldBuilder ) {
+			static function ( &$fields, SearchEngine $engine ) use ( $mockFieldBuilder ) {
 				$fields['testField'] =
 					$mockFieldBuilder( "testField", SearchIndexField::INDEX_TYPE_TEXT );
 				return true;
@@ -349,7 +354,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$setAugmentor = $this->createMock( ResultSetAugmentor::class );
 		$setAugmentor->expects( $this->once() )
 			->method( 'augmentAll' )
-			->willReturnCallback( function ( ISearchResultSet $resultSet ) {
+			->willReturnCallback( static function ( ISearchResultSet $resultSet ) {
 				$data = [];
 				/** @var SearchResult $result */
 				foreach ( $resultSet as $result ) {
@@ -363,7 +368,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		$rowAugmentor = $this->createMock( ResultAugmentor::class );
 		$rowAugmentor->expects( $this->exactly( 2 ) )
 			->method( 'augment' )
-			->willReturnCallback( function ( SearchResult $result ) {
+			->willReturnCallback( static function ( SearchResult $result ) {
 				$id = $result->getTitle()->getArticleID();
 				return "Result2:$id:" . $result->getTitle()->getText();
 			} );
@@ -484,13 +489,9 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideDataForParseNamespacePrefix
-	 * @param array $params
-	 * @param  array|false $expected
-	 * @throws FatalError
-	 * @throws MWException
 	 */
 	public function testParseNamespacePrefix( array $params, $expected ) {
-		$this->setTemporaryHook( 'PrefixSearchExtractNamespace', function ( &$namespaces, &$query ) {
+		$this->setTemporaryHook( 'PrefixSearchExtractNamespace', static function ( &$namespaces, &$query ) {
 			if ( strpos( $query, 'hélp:' ) === 0 ) {
 				$namespaces = [ NS_HELP ];
 				$query = substr( $query, strlen( 'hélp:' ) );

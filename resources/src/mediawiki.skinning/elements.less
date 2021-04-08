@@ -1,0 +1,295 @@
+/**
+ * MediaWiki style sheet for general styles on basic content elements
+ *
+ * Styles for basic elements: links, lists, etc...
+ *
+ * This style sheet is used by the Monobook and Vector skins.
+ */
+
+@import 'mediawiki.mixins';
+
+/* stylelint-disable selector-class-pattern */
+
+/* Links */
+a {
+	text-decoration: none;
+	color: #0645ad;
+	background: none;
+}
+
+a:not( [ href ] ) {
+	cursor: pointer; /* Always cursor:pointer even without href */
+}
+
+a:visited {
+	color: #0b0080;
+}
+
+a:active {
+	color: #faa700;
+}
+
+a:hover,
+a:focus {
+	text-decoration: underline;
+}
+
+a:lang( ar ),
+a:lang( kk-arab ),
+a:lang( mzn ),
+a:lang( ps ),
+a:lang( ur ) {
+	text-decoration: none;
+}
+
+a.stub {
+	color: #723;
+}
+
+a.new,
+#p-personal a.new {
+	color: #d33;
+}
+
+/* self links */
+a.mw-selflink {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: inherit;
+}
+
+a.mw-selflink:hover {
+	cursor: inherit;
+	text-decoration: inherit;
+}
+
+a.mw-selflink:active,
+a.mw-selflink:visited {
+	color: inherit;
+}
+
+a.new:visited,
+#p-personal a.new:visited {
+	color: #a55858;
+}
+
+/* Interwiki & External links */
+.mw-parser-output a.extiw,
+.mw-parser-output a.external {
+	color: #36b;
+}
+
+.mw-parser-output a.extiw:visited,
+.mw-parser-output a.external:visited {
+	color: #636; /* See T5112. */
+}
+
+.mw-parser-output a.extiw:active,
+.mw-parser-output a.external:active {
+	color: #b63;
+}
+
+/* Underline preference */
+
+.mw-underline-always a {
+	text-decoration: underline;
+}
+
+.mw-underline-never a {
+	text-decoration: none;
+}
+
+/* Plainlinks - this can be used to switch
+ * off special external link styling */
+.plainlinks a.external {
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
+
+/* Inline Elements */
+img {
+	border: 0; /* FIXME: Remove after adding 'normalize.less' added to all 'elements.less' calling skins. */
+	vertical-align: middle;
+}
+
+hr {
+	height: 1px;
+	background-color: #a2a9b1;
+	border: 0;
+	margin: 0.2em 0;
+}
+
+/* Structural Elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: #000;
+	margin: 0;
+	padding-top: 0.5em;
+	padding-bottom: 0.17em;
+	overflow: hidden;
+}
+
+h1,
+h2 {
+	margin-bottom: 0.6em;
+	border-bottom: 1px solid #a2a9b1;
+}
+
+h3,
+h4,
+h5 {
+	margin-bottom: 0.3em;
+}
+
+h1 {
+	font-size: 188%;
+	font-weight: normal;
+}
+
+h2 {
+	font-size: 150%;
+	font-weight: normal;
+}
+
+h3 {
+	font-size: 128%;
+}
+
+h4 {
+	font-size: 116%;
+}
+
+h5 {
+	font-size: 108%;
+}
+
+h6 {
+	font-size: 100%;
+}
+
+p {
+	margin: 0.4em 0 0.5em 0;
+}
+
+p img {
+	margin: 0;
+}
+
+ul {
+	margin: 0.3em 0 0 1.6em;
+	padding: 0;
+}
+
+ol {
+	margin: 0.3em 0 0 3.2em;
+	padding: 0;
+	list-style-image: none;
+}
+
+li {
+	margin-bottom: 0.1em;
+}
+
+dt {
+	font-weight: bold;
+	margin-bottom: 0.1em;
+}
+
+dl {
+	margin-top: 0.2em;
+	margin-bottom: 0.5em;
+}
+
+dd {
+	margin-left: 1.6em;
+	margin-bottom: 0.1em;
+}
+
+/* FIXME: Duplicated ruleset if skins using ResourceLoaderSkinModule
+load the features `normalize` and `elements`. */
+pre,
+code,
+tt,
+kbd,
+samp,
+.mw-code {
+	/* Support: Blink, Gecko, Webkit; enable unified font sizes for monospace font. T176636 */
+	font-family: monospace, monospace;
+}
+
+pre,
+code,
+.mw-code {
+	background-color: #f8f9fa;
+	color: #000;
+	border: 1px solid #eaecf0;
+}
+
+code {
+	border-radius: 2px;
+	padding: 1px 4px;
+}
+
+pre,
+.mw-code {
+	padding: 1em;
+	/* Wrap lines in overflow. T2260, T103780 */
+	white-space: pre-wrap;
+	/* Create a new block formatting context */
+	overflow-x: hidden;
+	/* Break really long words when they overflow to the next line */
+	word-wrap: break-word;
+}
+
+/* Tables */
+table {
+	font-size: 100%;
+}
+
+/* Forms */
+fieldset {
+	border: 1px solid #2a4b8d;
+	margin: 1em 0 1em 0;
+	padding: 0 1em 1em;
+}
+
+legend {
+	padding: 0.5em;
+	font-size: 95%;
+}
+
+form {
+	border: 0;
+	margin: 0;
+}
+
+textarea {
+	display: block;
+	.box-sizing( border-box );
+	width: 100%;
+	padding: 0.1em;
+}
+
+/* Emulate Center */
+.center {
+	width: 100%;
+	text-align: center;
+}
+
+*.center * {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Small for tables and similar */
+.small {
+	font-size: 94%;
+}
+
+table.small {
+	font-size: 100%;
+}

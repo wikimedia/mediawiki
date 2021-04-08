@@ -6,6 +6,9 @@ use SearchResult;
 use SpecialSearch;
 
 /**
+ * This is a hook handler interface, see docs/Hooks.md.
+ * Use the hook name "ShowSearchHit" to register handlers implementing this interface.
+ *
  * @stable to implement
  * @ingroup Hooks
  */
@@ -24,7 +27,7 @@ interface ShowSearchHitHook {
 	 * @param string &$extract HTML of content extract. May be modified.
 	 * @param string &$score HTML of score. May be modified.
 	 * @param string &$size HTML of page size. May be modified.
-	 * @param string &$date HTML of of page modification date. May be modified.
+	 * @param string &$date HTML of page modification date. May be modified.
 	 * @param string &$related HTML of additional info for the matching page. May be modified.
 	 * @param string &$html May be set to the full HTML that should be used to represent the search
 	 *   hit. Must include the `<li> ... </li>` tags. Will only be used if the hook

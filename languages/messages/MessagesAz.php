@@ -32,6 +32,7 @@ $namespaceAliases = [
 	'MediyaViki_müzakirəsi'  => NS_MEDIAWIKI_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'Aktivİstifadəçilər' ],
 	'Allpages'                  => [ 'BütünSəhifələr' ],
@@ -52,10 +53,11 @@ $specialPageAliases = [
 	'Version'                   => [ 'Versiya' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'redirect'                  => [ '0', '#İSTİQAMƏTLƏNDİRMƏ', '#İSTİQAMƏTLƏNDİR', '#REDIRECT' ],
-	'notoc'                     => [ '0', '__MÜNDƏRİCATYOX__', '__NOTOC__' ],
 	'nogallery'                 => [ '0', '__QALEREYAYOX__', '__NOGALLERY__' ],
+	'notoc'                     => [ '0', '__MÜNDƏRİCATYOX__', '__NOTOC__' ],
+	'redirect'                  => [ '0', '#İSTİQAMƏTLƏNDİRMƏ', '#İSTİQAMƏTLƏNDİR', '#REDIRECT' ],
 ];
 
 $separatorTransformTable = [ ',' => '.', '.' => ',' ];

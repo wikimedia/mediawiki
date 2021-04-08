@@ -5,8 +5,12 @@ use Wikimedia\ObjectFactory;
 
 class SkinFactoryTest extends \MediaWikiUnitTestCase {
 
-	private function createSkinFactory() : SkinFactory {
-		return new SkinFactory( new ObjectFactory( $this->createMock( ContainerInterface::class ) ) );
+	private function createSkinFactory( $service = null, $options = [] ) : SkinFactory {
+		$objectFactory = $service
+			? new ObjectFactory( $service )
+			: new ObjectFactory( $this->createMock( ContainerInterface::class ) );
+
+		return new SkinFactory( $objectFactory, $options );
 	}
 
 	/**
@@ -26,7 +30,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$factory = $this->createSkinFactory();
 		$instance = new SkinFallback();
 
-		$factory->register( 'fallback', 'Fallback', function () use ( $instance ) {
+		$factory->register( 'fallback', 'Fallback', static function () use ( $instance ) {
 			return $instance;
 		} );
 
@@ -59,7 +63,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testMakeSkinWithInvalidCallback() {
 		$factory = $this->createSkinFactory();
-		$factory->register( 'unittest', 'Unittest', function () {
+		$factory->register( 'unittest', 'Unittest', static function () {
 			// Not a Skin object
 			return true;
 		} );
@@ -72,7 +76,7 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 	 */
 	public function testMakeSkinWithValidCallback() {
 		$factory = $this->createSkinFactory();
-		$factory->register( 'testfallback', 'TestFallback', function () {
+		$factory->register( 'testfallback', 'TestFallback', static function () {
 			return new SkinFallback();
 		} );
 
@@ -93,9 +97,9 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$serviceContainer->method( 'get' )->willReturn( $serviceInstance );
 
 		$args = [];
-		$factory = new SkinFactory( new ObjectFactory( $serviceContainer ) );
+		$factory = $this->createSkinFactory( $serviceContainer );
 		$factory->register( 'testfallback', 'TestFallback', [
-			'factory' => function ( $service, $options ) use ( &$args ) {
+			'factory' => static function ( $service, $options ) use ( &$args ) {
 				$args = [ $service, $options ];
 				return new SkinFallback();
 			},
@@ -133,5 +137,33 @@ class SkinFactoryTest extends \MediaWikiUnitTestCase {
 		$names = $factory->getSkinNames();
 		$this->assertEquals( 'Skin1', $names['skin1'] );
 		$this->assertEquals( 'Skin2', $names['skin2'] );
+	}
+
+	/**
+	 * @covers SkinFactory::getAllowedSkins
+	 */
+	public function testGetAllowedSkins() {
+		$sf = $this->createSkinFactory( null, [ 'quux' ] );
+		$sf->register( 'foo', 'Foo', [] );
+		$sf->register( 'apioutput', 'ApiOutput', [] );
+		$sf->register( 'quux', 'Quux', [] );
+		$sf->register( 'fallback', 'Fallback', [] );
+		$sf->register( 'bar', 'Barbar', [] );
+
+		$this->assertEquals(
+			[ 'foo' => 'Foo', 'bar' => 'Barbar' ],
+			$sf->getAllowedSkins()
+		);
+	}
+
+	/**
+	 * @covers SkinFactory::getAllowedSkins
+	 */
+	public function testGetAllowedSkinsEmpty() {
+		$sf = $this->createSkinFactory();
+		$sf->register( 'apioutput', 'ApiOutput', [] );
+		$sf->register( 'fallback', 'Fallback', [] );
+
+		$this->assertEquals( [], $sf->getAllowedSkins() );
 	}
 }

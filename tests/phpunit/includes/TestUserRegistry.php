@@ -64,7 +64,7 @@ class TestUserRegistry {
 
 		$testUser = self::$testUsers[$key] ?? false;
 
-		if ( !$testUser || !$testUser->getUser()->isLoggedIn() ) {
+		if ( !$testUser || !$testUser->getUser()->isRegistered() ) {
 			$id = self::getNextId();
 			// Hack! If this is the primary sysop account, make the username
 			// be 'UTSysop', for back-compat, and for the sake of PHPUnit data
@@ -91,15 +91,11 @@ class TestUserRegistry {
 	}
 
 	/**
-	 * Clear the registry.
-	 *
 	 * TestUsers created by this class will not be deleted, but any handles
 	 * to existing immutable TestUsers will be deleted, ensuring these users
 	 * are not reused. We don't reset the counter or random string by design.
 	 *
 	 * @since 1.28
-	 *
-	 * @return TestUser
 	 */
 	public static function clear() {
 		self::$testUsers = [];

@@ -140,7 +140,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		if ( $this->getPasswordFactory()->needsUpdate( $pwhash ) ) {
 			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
 			$fname = __METHOD__;
-			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow, $fname ) {
+			\DeferredUpdates::addCallableUpdate( static function () use ( $newHash, $oldRow, $fname ) {
 				$dbw = wfGetDB( DB_MASTER );
 				$dbw->update(
 					'user',

@@ -206,14 +206,10 @@ class MWDebug {
 
 	/**
 	 * Show a warning that $function is deprecated.
-	 * This will send it to the following locations:
-	 * - Debug toolbar, with one item per function and caller, if $wgDebugToolbar
-	 *   is set to true.
-	 * - PHP's error log, with level E_USER_DEPRECATED, if $wgDevelopmentWarnings
-	 *   is set to true.
-	 * - MediaWiki's debug log, if $wgDevelopmentWarnings is set to false.
 	 *
+	 * @see deprecatedMsg()
 	 * @since 1.19
+	 *
 	 * @param string $function Function that is deprecated.
 	 * @param string|false $version Version in which the function was deprecated.
 	 * @param string|bool $component Component to which the function belongs.
@@ -235,6 +231,49 @@ class MWDebug {
 	}
 
 	/**
+	 * Show a warning if $method declared in $class is overridden in $instance.
+	 *
+	 * @since 1.36
+	 * @see deprecatedMsg()
+	 *
+	 * phpcs:ignore MediaWiki.Commenting.FunctionComment.ObjectTypeHintParam
+	 * @param object $instance Object on which to detect deprecated overrides (typically $this).
+	 * @param string $class Class declaring the deprecated method (typically __CLASS__ )
+	 * @param string $method The name of the deprecated method.
+	 * @param string|false $version Version in which the method was deprecated.
+	 * @param string|bool $component Component to which the class belongs.
+	 *    If false, it is assumed the class is in MediaWiki core.
+	 * @param int $callerOffset How far up the callstack is the original
+	 *    caller. 2 = function that called the function that called
+	 *    MWDebug::detectDeprecatedOverride()
+	 *
+	 * @return bool True if the method was overridden, false otherwise. If the method
+	 *         was overridden, it should be called. The deprecated method's default
+	 *         implementation should call MWDebug::deprecated().
+	 */
+	public static function detectDeprecatedOverride( $instance, $class, $method, $version = false,
+		$component = false, $callerOffset = 2
+	) {
+		$reflectionMethod = new ReflectionMethod( $instance, $method );
+		$declaringClass = $reflectionMethod->getDeclaringClass()->getName();
+
+		if ( $declaringClass === $class ) {
+			// not overridden, nothing to do
+			return false;
+		}
+
+		if ( $version ) {
+			$component = $component ?: 'MediaWiki';
+			$msg = "$declaringClass overrides $method which was deprecated in $component $version.";
+		} else {
+			$msg = "$declaringClass overrides $method which is deprecated.";
+		}
+		self::deprecatedMsg( $msg, $version, $component, $callerOffset + 1 );
+
+		return true;
+	}
+
+	/**
 	 * Log a deprecation warning with arbitrary message text. A caller
 	 * description will be appended. If the message has already been sent for
 	 * this caller, it won't be sent again.
@@ -242,6 +281,14 @@ class MWDebug {
 	 * Although there are component and version parameters, they are not
 	 * automatically appended to the message. The message text should include
 	 * information about when the thing was deprecated.
+	 *
+	 * The warning will be sent to the following locations:
+	 * - Debug toolbar, with one item per function and caller, if $wgDebugToolbar
+	 *   is set to true.
+	 * - PHP's error log, with level E_USER_DEPRECATED, if $wgDevelopmentWarnings
+	 *   is set to true. This is the case in phpunit tests per default, and will
+	 *   cause tests to fail.
+	 * - MediaWiki's debug log, if $wgDevelopmentWarnings is set to false.
 	 *
 	 * @since 1.35
 	 *
@@ -313,9 +360,8 @@ class MWDebug {
 	 *
 	 * @param string $msg The complete message including relevant caller information.
 	 * @param bool $sendToLog If true, the message will be sent to the debug
-	 *   toolbar, the debug log, and raised as a warning if indicated by
-	 *   $wgDevelopmentWarnings. If false, the message will only be sent to
-	 *   the debug toolbar.
+	 *   toolbar, the debug log, and raised as a warning to PHP. If false, the message
+	 *   will only be sent to the debug toolbar.
 	 * @param string $callerFunc The caller, for display in the debug toolbar's
 	 *   caller column.
 	 */
@@ -327,12 +373,7 @@ class MWDebug {
 		}
 
 		if ( $sendToLog ) {
-			global $wgDevelopmentWarnings; // we could have a more specific $wgDeprecationWarnings setting.
-			self::sendMessage(
-				$msg,
-				'deprecated',
-				$wgDevelopmentWarnings ? E_USER_DEPRECATED : false
-			);
+			trigger_error( $msg, E_USER_DEPRECATED );
 		}
 
 		if ( self::$enabled ) {
@@ -414,7 +455,35 @@ class MWDebug {
 	 * @return string
 	 */
 	private static function formatCallerDescription( $msg, $caller ) {
+		// When changing this, update the below parseCallerDescription() method  as well.
 		return $msg . ' [Called from ' . $caller['func'] . ' in ' . $caller['file'] . ']';
+	}
+
+	/**
+	 * Append a caller description to an error message
+	 *
+	 * @internal For use by MWExceptionHandler to override 'exception.file' in error logs.
+	 * @param string $msg Formatted message from formatCallerDescription() and getCallerDescription()
+	 * @return null|array<string,string> Null if unable to recognise all parts, or array with:
+	 *  - 'file': string of file path
+	 *  - 'line': string of line number
+	 *  - 'func': string of function or method name
+	 *  - 'message': Re-formatted version of $msg for use with ErrorException,
+	 *  so as to not include file/line twice.
+	 */
+	public static function parseCallerDescription( $msg ) {
+		$match = null;
+		preg_match( '/(.*) \[Called from ([^ ]+) in ([^ ]+) at line (\d+)\]$/', $msg, $match );
+		if ( $match ) {
+			return [
+				'message' => "{$match[1]} [Called from {$match[2]}]",
+				'func' => $match[2],
+				'file' => $match[3],
+				'line' => $match[4],
+			];
+		} else {
+			return null;
+		}
 	}
 
 	/**
@@ -589,7 +658,7 @@ class MWDebug {
 
 		$ret .= '</ul>' . "\n";
 
-		return $ret;
+		return Html::rawElement( 'div', [ 'id' => 'mw-html-debug-log' ], $ret );
 	}
 
 	/**

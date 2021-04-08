@@ -1,6 +1,6 @@
 /* global isCompatible: true */
 ( function () {
-	var featureTestable, blacklisted;
+	var featureTestable, bannedUserAgent;
 
 	// Browsers that pass or fail the feature test and get bucketed
 	// correctly as Grade A and Grade C. This is tested here to make
@@ -117,7 +117,7 @@
 	// Browsers that pass the feature test but for which we chose to serve
 	// a Grade C experience instead. E.g. they have implementation bugs
 	// for which support would be more expensive than deem worthwhile.
-	blacklisted = [
+	bannedUserAgent = [
 		/* Grade C */
 
 		// Internet Explorer 10
@@ -159,8 +159,8 @@
 		} );
 	} );
 
-	QUnit.test( 'isCompatible( blacklisted )', function ( assert ) {
-		blacklisted.forEach( function ( ua ) {
+	QUnit.test( 'isCompatible( bannedUserAgent )', function ( assert ) {
+		bannedUserAgent.forEach( function ( ua ) {
 			assert.strictEqual( isCompatible( ua ), false, ua );
 		} );
 	} );

@@ -4,11 +4,15 @@ namespace MediaWiki\Tests\Revision;
 
 use ChangeTags;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Permissions\SimpleAuthority;
+use MediaWiki\Permissions\UltimateAuthority;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiIntegrationTestCase;
-use User;
+use Message;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -30,6 +34,11 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	private static $testUser;
 
 	/**
+	 * @var Authority
+	 */
+	private static $performer;
+
+	/**
 	 * @var int[][]
 	 */
 	private static $storedDeltas;
@@ -41,16 +50,24 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 	private const TAG1 = 'test-ContributionsLookup-1';
 	private const TAG2 = 'test-ContributionsLookup-2';
+	private const TAG3 = 'test-ContributionsLookup-3';
+
+	private const TAG_DISPLAY = 'ContributionsLookup Tag Display Text';
 
 	public function setUp() : void {
 		parent::setUp();
 
 		// Work around T256006
 		ChangeTags::$avoidReopeningTablesForTesting = true;
+
+		// MessageCache needs to be explicitly enabled to load changetag display text.
+		MediaWikiServices::getInstance()->getMessageCache()->enable();
 	}
 
 	public function tearDown() : void {
 		ChangeTags::$avoidReopeningTablesForTesting = false;
+		MediaWikiServices::getInstance()->getMessageCache()->disable();
+
 		parent::tearDown();
 	}
 
@@ -58,11 +75,13 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$clock = (int)ConvertibleTimestamp::now( TS_UNIX );
-		ConvertibleTimestamp::setFakeTime( function () use ( &$clock ) {
+		ConvertibleTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return ++$clock;
 		} );
 
 		self::$testUser = $user;
+		self::$performer = new UltimateAuthority( $user );
+
 		$revisionText = [ 1 => 'Lorem', 2 => 'Lorem Ipsum', 3 => 'Lor', 4 => 'Lorem' ];
 		// maps $storedRevision revision number to delta of revision length from its parent
 		self::$storedDeltas = [ 1 => 5, 2 => 11, 3 => -2, 4 => -6 ];
@@ -90,28 +109,41 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			if ( !$tags ) {
 				continue;
 			}
-
 			$revId = self::$storedRevisions[$idx]->getId();
 			ChangeTags::addTags( $tags, null, $revId );
 		}
 
+		// Pages at MediaWiki:tag-{tag_name} override any tag display text
+		$this->insertPage( "tag-" . self::TAG1, "''" . self::TAG_DISPLAY . "''", NS_MEDIAWIKI );
+		$this->insertPage( "tag-" . self::TAG2, "''" . self::TAG_DISPLAY . "''", NS_MEDIAWIKI );
+
+		// Add a 3rd disabled tag (empty string as display name equates to disabled tag)
+		ChangeTags::addTags( [ self::TAG3 ], null, $revId );
+		$this->insertPage( "tag-" . self::TAG3, '', NS_MEDIAWIKI );
+
 		ConvertibleTimestamp::setFakeTime( false );
+	}
+
+	/**
+	 * @return ContributionsLookup
+	 */
+	private function getContributionsLookup() {
+		// Helper to simplify potential switch to unit tests
+		return $this->getServiceContainer()->getContributionsLookup();
 	}
 
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetDeltas() {
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
-		$performer = self::$testUser;
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment =
-			$contributionsLookup->getContributions( self::$testUser, 10, $performer );
+			$contributionsLookup->getContributions( self::$testUser, 10, self::$performer );
 
 		// Contributions are returned in descending order.
 		$revIds = array_map(
-			function ( RevisionRecord $rev ) {
+			static function ( RevisionRecord $rev ) {
 				return $rev->getId();
 			},
 			$segment->getRevisions()
@@ -128,7 +160,6 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetUnknownDeltas() {
 		$user = $this->getTestUser()->getUser();
-		$performer = $user;
 
 		$rev1 = $this->editPage( __METHOD__ . '_1', 'foo', 'test', NS_MAIN, $user )
 			->getValue()['revision-record'];
@@ -150,11 +181,10 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			__METHOD__
 		);
 
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment =
-			$contributionsLookup->getContributions( $user, 10, $performer );
+			$contributionsLookup->getContributions( $user, 10, self::$performer );
 
 		$this->assertNull( $segment->getDeltaForRevision( $rev1->getId() ) );
 		$this->assertNull( $segment->getDeltaForRevision( $rev2->getId() ) );
@@ -163,13 +193,11 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
-	public function testGetListOfRevisionsByUserIdentity() {
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
-		$performer = self::$testUser;
+	public function testGetContributionsByUserIdentity() {
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$segment =
-			$contributionsLookup->getContributions( self::$testUser, 2, $performer );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
 
 		// Desc order comes back from db query
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
@@ -178,27 +206,42 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
-	public function testGetListOfRevisionsFilteredByTag() {
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
+	public function testGetListOfContributions_revisionOnly() {
+		$this->setTemporaryHook( 'ContribsPager::reallyDoQuery', function ( &$data ) {
+			$this->fail( 'ContribsPager::reallyDoQuery was not expected to be called' );
+		} );
+
+		$contributionsLookup = $this->getContributionsLookup();
+
+		$segment =
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
+
+		// Desc order comes back from db query
+		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
+	 */
+	public function testGetContributionsFilteredByTag() {
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$target = self::$testUser;
-		$performer = self::$testUser;
 
 		$segment1 =
-			$contributionsLookup->getContributions( $target, 10, $performer, '', self::TAG1 );
+			$contributionsLookup->getContributions( $target, 10, self::$performer, '', self::TAG1 );
 
 		$this->assertSegmentRevisions( [ 2 ], $segment1 );
 		$this->assertTrue( $segment1->isOldest() );
 
 		$segment2 =
-			$contributionsLookup->getContributions( $target, 10, $performer, '', self::TAG2 );
+			$contributionsLookup->getContributions( $target, 10, self::$performer, '', self::TAG2 );
 
 		$this->assertSegmentRevisions( [ 3, 2 ], $segment2 );
 		$this->assertTrue( $segment1->isOldest() );
 
 		$segment0 =
-			$contributionsLookup->getContributions( $target, 10, $performer, '', 'not-a-tag' );
+			$contributionsLookup->getContributions( $target, 10, self::$performer, '', 'not-a-tag' );
 
 		$this->assertEmpty( $segment0->getRevisions() );
 	}
@@ -207,10 +250,9 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributions()
 	 */
 	public function testGetSegmentChain() {
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
+		$contributionsLookup = $this->getContributionsLookup();
 
-		$segment1 = $contributionsLookup->getContributions( self::$testUser, 2, self::$testUser );
+		$segment1 = $contributionsLookup->getContributions( self::$testUser, 2, self::$performer );
 		$this->assertInstanceOf( ContributionsSegment::class, $segment1 );
 		$this->assertCount( 2, $segment1->getRevisions() );
 		$this->assertNotNull( $segment1->getAfter() );
@@ -218,14 +260,14 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $segment1->isOldest() );
 
 		$segment2 =
-			$contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment1->getBefore() );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer, $segment1->getBefore() );
 		$this->assertCount( 2, $segment2->getRevisions() );
 		$this->assertNotNull( $segment2->getAfter() );
 		$this->assertNull( $segment2->getBefore() );
 		$this->assertTrue( $segment2->isOldest() );
 
 		$segment3 =
-			$contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment2->getAfter() );
+			$contributionsLookup->getContributions( self::$testUser, 2, self::$performer, $segment2->getAfter() );
 		$this->assertInstanceOf( ContributionsSegment::class, $segment3 );
 		$this->assertCount( 2, $segment3->getRevisions() );
 		$this->assertNotNull( $segment3->getAfter() );
@@ -251,9 +293,9 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 			$actual = $revisions[$idx];
 			$this->assertSame( $expected->getId(), $actual->getId(), 'rev_id' );
 			$this->assertSame( $expected->getPageId(), $actual->getPageId(), 'rev_page_id' );
-			$this->assertSame(
-				$expected->getPageAsLinkTarget()->getPrefixedDBkey(),
-				$actual->getPageAsLinkTarget()->getPrefixedDBkey()
+			$this->assertTrue(
+				$expected->getPageAsLinkTarget()->isSameLinkAs( $actual->getPageAsLinkTarget() ),
+				'getPageAsLinkTarget'
 			);
 
 			$expectedUser = $expected->getUser( RevisionRecord::RAW )->getName();
@@ -283,32 +325,30 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideBadSegmentMarker
 	 */
 	public function testBadSegmentMarkerReturnsLatestSegment( $segment ) {
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
+		$contributionsLookup = $this->getContributionsLookup();
 
-		$segment = $contributionsLookup->getContributions( self::$testUser, 2, self::$testUser, $segment );
+		$segment = $contributionsLookup->getContributions( self::$testUser, 2, self::$performer, $segment );
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
 	}
 
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributionCount()
 	 */
-	public function testGetCountOfRevisionsByUserIdentity() {
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
-		$count = $contributionsLookup->getContributionCount( self::$testUser, self::$testUser );
+	public function testGetCountOfContributionsByUserIdentity() {
+		$contributionsLookup = $this->getContributionsLookup();
+
+		$count = $contributionsLookup->getContributionCount( self::$testUser, self::$performer );
 		$this->assertSame( count( self::$storedRevisions ), $count );
 	}
 
 	/**
 	 * @covers \MediaWiki\Revision\ContributionsLookup::getContributionCount()
 	 */
-	public function testGetCountOfRevisionsByUserAndTag() {
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
+	public function testGetCountOfContributionsByUserAndTag() {
+		$contributionsLookup = $this->getContributionsLookup();
 		$count = $contributionsLookup->getContributionCount(
 			self::$testUser,
-			self::$testUser,
+			self::$performer,
 			self::TAG2
 		);
 		$this->assertSame( 2, $count );
@@ -316,11 +356,9 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function testPermissionChecksAreApplied() {
 		$editingUser = self::$testUser;
-		$sysop = $this->getTestUser( [ 'sysop', 'suppress' ] )->getUser();
-		$anon = User::newFromId( 0 );
+		$dummyUser = new UserIdentityValue( 0, 'test', 0 );
 
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$contributionsLookup = new ContributionsLookup( $revisionStore );
+		$contributionsLookup = $this->getContributionsLookup();
 
 		$revIds = [ self::$storedRevisions[1]->getId(), self::$storedRevisions[2]->getId() ];
 		$this->db->update(
@@ -334,17 +372,21 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 2, $this->db->affectedRows() );
 
 		// anons should not see suppressed contribs
-		$segment = $contributionsLookup->getContributions( $editingUser, 10, $anon );
+		$segment = $contributionsLookup->getContributions( $editingUser, 10,
+			new SimpleAuthority( $dummyUser, [] ) );
 		$this->assertSegmentRevisions( [ 4, 3 ], $segment );
 
-		$count = $contributionsLookup->getContributionCount( $editingUser, $anon );
+		$count = $contributionsLookup->getContributionCount( $editingUser,
+			new SimpleAuthority( $dummyUser, [] ) );
 		$this->assertSame( 2, $count );
 
-		// sysop also gets suppressed contribs
-		$segment = $contributionsLookup->getContributions( $editingUser, 10, $sysop );
+		// Actor with suppressrevision right should
+		$segment = $contributionsLookup->getContributions( $editingUser, 10,
+			new SimpleAuthority( $dummyUser, [ 'deletedhistory', 'suppressrevision' ] ) );
 		$this->assertSegmentRevisions( [ 4, 3, 2, 1 ], $segment );
 
-		$count = $contributionsLookup->getContributionCount( $editingUser, $sysop );
+		$count = $contributionsLookup->getContributionCount( $editingUser,
+			new SimpleAuthority( $dummyUser, [ 'deletedhistory', 'suppressrevision' ] ) );
 		$this->assertSame( 4, $count );
 	}
 
@@ -361,8 +403,15 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 		// FIXME: fails under postgres, see T195807
 		if ( $this->db->getType() !== 'postgres' ) {
 			$actualTags = $segmentObject->getTagsForRevision( $actual->getId() );
-			$this->assertArrayEquals( $expectedTags, $actualTags );
+
+			// Tag 3 was disabled and should not be included in results
+			$this->assertArrayNotHasKey( self::TAG3, $actualTags );
+			foreach ( $actualTags as $tagName => $actualTag ) {
+				$this->assertContains( $tagName, $expectedTags );
+				$this->assertInstanceOf( Message::class, $actualTag );
+				$this->assertEquals( $actualTag->parse(), "<i>" . self::TAG_DISPLAY . "</i>" );
+				$this->assertEquals( $actualTag->text(), "''" . self::TAG_DISPLAY . "''" );
+			}
 		}
 	}
-
 }

@@ -35,6 +35,12 @@
  * @file
  * @ingroup Maintenance
  */
+
+if ( PHP_SAPI !== 'cli' && PHP_SAPI !== 'phpdbg' ) {
+	echo "This script must be run from the command line\n";
+	exit( 1 );
+}
+
 $IP = getenv( 'MW_INSTALL_PATH' );
 
 if ( $IP === false ) {
@@ -61,4 +67,5 @@ if ( !$scriptFile ) {
 	exit( 1 );
 }
 
+// @phan-suppress-next-line SecurityCheck-PathTraversal User input is wanted in this script
 require_once $scriptFile;

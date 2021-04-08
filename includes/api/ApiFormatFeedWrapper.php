@@ -33,8 +33,8 @@ class ApiFormatFeedWrapper extends ApiFormatBase {
 	/**
 	 * Call this method to initialize output data. See execute()
 	 * @param ApiResult $result
-	 * @param object $feed An instance of one of the $wgFeedClasses classes
-	 * @param array $feedItems Array of FeedItem objects
+	 * @param FeedItem $feed An instance of one of the $wgFeedClasses classes
+	 * @param FeedItem[] $feedItems
 	 */
 	public static function setResult( $result, $feed, $feedItems ) {
 		// Store output in the Result data.

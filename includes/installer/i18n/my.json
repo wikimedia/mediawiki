@@ -1,10 +1,27 @@
 {
 	"@metadata": {
 		"authors": [
+			"Dr Lotus Black",
 			"Lionslayer",
 			"Ninjastrikers"
 		]
 	},
+	"config-information": "သတင်းအချက်အလက်",
+	"config-your-language": "သင့်ဘာသာစကား :",
+	"config-wiki-language": "ဝီကီ ဘာသာစကား",
+	"config-back": "← နောက်သို့",
+	"config-continue": "ဆက်လက် →",
+	"config-page-language": "ဘာသာစကား",
+	"config-page-welcome": "မီဒီယာဝီကီမှ ကြိုပါဆိုပါ၏",
+	"config-page-dbconnect": "ဒေတာဘစ်သို့ ချိတ်ဆက်ရန်",
+	"config-page-dbsettings": "ဒေတာဘစ် အပြင်အဆင်များ",
+	"config-page-name": "အမည်",
+	"config-page-options": "ရွေးပိုင်ခွင့်",
+	"config-page-complete": "ပြီးဆုံးသည်",
+	"config-page-copying": "မိတ္တူကူးနေသည်",
+	"config-page-upgradedoc": "အဆင့်မြှင့်နေသည်",
+	"config-page-existingwiki": "ရှိပြီးသား ဝီကီ",
+	"config-ns-generic": "ပရောဂျက်",
 	"config-help": "အကူအညီ",
 	"mainpagetext": "<strong>မီဒီယာဝီကီကို အောင်မြင်စွာ သွင်းပြီးပါပြီ။</strong>"
 }

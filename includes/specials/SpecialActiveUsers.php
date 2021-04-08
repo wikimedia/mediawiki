@@ -21,6 +21,10 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\User\UserGroupManager;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Implements Special:Activeusers
  *
@@ -28,8 +32,29 @@
  */
 class SpecialActiveUsers extends SpecialPage {
 
-	public function __construct() {
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param ILoadBalancer $loadBalancer
+	 * @param UserGroupManager $userGroupManager
+	 */
+	public function __construct(
+		LinkBatchFactory $linkBatchFactory,
+		ILoadBalancer $loadBalancer,
+		UserGroupManager $userGroupManager
+	) {
 		parent::__construct( 'Activeusers' );
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->loadBalancer = $loadBalancer;
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**
@@ -56,7 +81,14 @@ class SpecialActiveUsers extends SpecialPage {
 			$opts->setValue( 'username', $par );
 		}
 
-		$pager = new ActiveUsersPager( $this->getContext(), $opts );
+		$pager = new ActiveUsersPager(
+			$this->getContext(),
+			$opts,
+			$this->linkBatchFactory,
+			$this->getHookContainer(),
+			$this->loadBalancer,
+			$this->userGroupManager
+		);
 		$usersBody = $pager->getBody();
 
 		$this->buildForm();
@@ -77,7 +109,7 @@ class SpecialActiveUsers extends SpecialPage {
 	 * Generate and output the form
 	 */
 	protected function buildForm() {
-		$groups = User::getAllGroups();
+		$groups = $this->userGroupManager->listAllGroups();
 
 		$options = [];
 		foreach ( $groups as $group ) {
@@ -144,7 +176,7 @@ class SpecialActiveUsers extends SpecialPage {
 		$intro = $this->msg( 'activeusers-intro' )->numParams( $days )->parse();
 
 		// Mention the level of cache staleness...
-		$dbr = wfGetDB( DB_REPLICA, 'recentchanges' );
+		$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA, 'recentchanges' );
 		$rcMax = $dbr->selectField( 'recentchanges', 'MAX(rc_timestamp)', '', __METHOD__ );
 		if ( $rcMax ) {
 			$cTime = $dbr->selectField( 'querycache_info',

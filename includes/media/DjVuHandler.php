@@ -182,7 +182,7 @@ class DjVuHandler extends ImageHandler {
 		if ( $image->getSize() >= 1e7 ) { // 10MB
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $image->getName() ),
 				[
-					'doWork' => function () use ( $image ) {
+					'doWork' => static function () use ( $image ) {
 						return $image->getLocalRefPath();
 					}
 				]
@@ -457,12 +457,6 @@ class DjVuHandler extends ImageHandler {
 		}
 
 		$o = $tree->BODY[0]->PAGE[$page - 1];
-		if ( $o ) {
-			$txt = $o['value'];
-
-			return $txt;
-		} else {
-			return false;
-		}
+		return $o ? (string)$o['value'] : false;
 	}
 }

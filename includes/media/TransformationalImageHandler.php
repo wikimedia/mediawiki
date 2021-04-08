@@ -320,7 +320,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 	 *
 	 * @param string $dstPath
 	 * @param bool $checkDstPath Check that $dstPath is valid
-	 * @return string|Callable One of client, im, custom, gd, imext, or a Callable array.
+	 * @return string|callable One of client, im, custom, gd, imext, or a callable
 	 */
 	abstract protected function getScalerType( $dstPath, $checkDstPath = true );
 
@@ -523,7 +523,7 @@ abstract class TransformationalImageHandler extends ImageHandler {
 		return $cache->getWithSetCallback(
 			$cache->makeGlobalKey( 'imagemagick-version' ),
 			$cache::TTL_HOUR,
-			function () use ( $method ) {
+			static function () use ( $method ) {
 				global $wgImageMagickConvertCommand;
 
 				$cmd = Shell::escape( $wgImageMagickConvertCommand ) . ' -version';

@@ -1,9 +1,0 @@
-{
-	"@metadata": {
-		"authors": [
-			"Bresta"
-		]
-	},
-	"mainpagetext": "'''MediaWiki software u instalue me sukses.'''",
-	"mainpagedocfooter": "Për mâ shumë informata rreth përdorimit të softwareit wiki, ju lutem shikoni [https://meta.wikimedia.org/wiki/Help:Contents dokumentacionin].\n\n\n== Për fillim ==\n\n* [https://www.mediawiki.org/wiki/Help:Configuration_settings Konfigurimi i MediaWikit]\n* [https://www.mediawiki.org/wiki/Help:FAQ Pyetjet e shpeshta rreth MediaWikit]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Njoftime rreth MediaWikit]"
-}

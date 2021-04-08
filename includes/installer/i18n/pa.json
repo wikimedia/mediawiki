@@ -25,7 +25,6 @@
 	"config-page-install": "ਜੜੋ",
 	"config-page-complete": "ਮੁਕੰਮਲ!",
 	"config-page-restart": "ਜੜਾਈ ਮੁੜ-ਸ਼ੁਰੂ ਕਰੋ",
-	"config-page-readme": "ਮੈਨੂੰ ਪੜ੍ਹੋ",
 	"config-page-copying": "ਨਕਲ",
 	"config-page-upgradedoc": "ਮਿਆਰ-ਉਚਾਈ",
 	"config-page-existingwiki": "ਮੌਜੂਦਾ ਵਿਕੀ",
@@ -33,7 +32,6 @@
 	"config-env-good": "ਵਾਤਾਵਰਨ ਪਰਖਿਅਾ ਗਿਅਾ ਹੈ।\nਤੁਸੀਂ ਮੀਡੀਆਵਿਕੀ ਸਥਾਪਿਤ ਕਰ ਸਕਦੇ ਹੋ",
 	"config-env-bad": "ਵਾਤਾਵਰਨ ਪਰਖਿਅਾ ਗਿਅਾ ਹੈ।\nਤੁਸੀਂ ਮੀਡੀਆਵਿਕੀ ਸਥਾਪਿਤ ਨਹੀਂ ਕਰ ਸਕਦੇ ਹੋ",
 	"config-env-php": "PHP $1 ਜੜਿਆ ਗਿਆ।",
-	"config-env-hhvm": "HHVM $1 ਜੜਿਆ ਗਿਆ।",
 	"config-db-wiki-settings": "ਇਸ ਵਿਕੀ ਦੀ ਪਛਾਣ ਕਰਾਉ",
 	"config-db-name": "ਤੱਥ-ਅਧਾਰ ਦਾ ਨਾਂ:",
 	"mainpagetext": "'''ਮੀਡਿਆਵਿਕਿ ਠੀਕ ਤਰ੍ਹਾਂ ਇੰਸਟਾਲ ਹੋ ਗਿਆ ਹੈ।'''"

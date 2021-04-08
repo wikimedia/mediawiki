@@ -1,7 +1,5 @@
 <?php
 /**
- * Foreign file accessible through api.php requests.
- *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -25,7 +23,6 @@ use MediaWiki\MediaWikiServices;
 
 /**
  * Foreign file accessible through api.php requests.
- * Very hacky and inefficient, do not use :D
  *
  * @ingroup FileAbstraction
  */
@@ -63,7 +60,7 @@ class ForeignAPIFile extends File {
 			'iiprop' => self::getProps(),
 			'prop' => 'imageinfo',
 			'iimetadataversion' => MediaHandler::getMetadataVersion(),
-			// extmetadata is language-dependant, accessing the current language here
+			// extmetadata is language-dependent, accessing the current language here
 			// would be problematic, so we just get them all
 			'iiextmetadatamultilang' => 1,
 		] );
@@ -177,14 +174,14 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
-	 * @return bool|null|string
+	 * @return string|false
 	 */
 	public function getMetadata() {
 		if ( isset( $this->mInfo['metadata'] ) ) {
 			return serialize( self::parseMetadata( $this->mInfo['metadata'] ) );
 		}
 
-		return null;
+		return false;
 	}
 
 	/**
@@ -359,9 +356,11 @@ class ForeignAPIFile extends File {
 	private function purgeDescriptionPage() {
 		$services = MediaWikiServices::getInstance();
 		$url = $this->repo->getDescriptionRenderUrl(
-			$this->getName(), $services->getContentLanguage()->getCode() );
-		$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', md5( $url ) );
+			$this->getName(),
+			$services->getContentLanguage()->getCode()
+		);
 
+		$key = $this->repo->getLocalCacheKey( 'file-remote-description', md5( $url ) );
 		$services->getMainWANObjectCache()->delete( $key );
 	}
 
@@ -369,7 +368,7 @@ class ForeignAPIFile extends File {
 	 * @param array $options
 	 */
 	public function purgeThumbnails( $options = [] ) {
-		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
+		$key = $this->repo->getLocalCacheKey( 'file-thumb-url', sha1( $this->getName() ) );
 		MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
 
 		$files = $this->getThumbnails();

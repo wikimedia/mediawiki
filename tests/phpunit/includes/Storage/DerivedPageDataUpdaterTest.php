@@ -2,19 +2,25 @@
 
 namespace MediaWiki\Tests\Storage;
 
+use BagOStuff;
 use CommentStoreComment;
 use Content;
 use ContentHandler;
 use DeferredUpdates;
+use JobQueueGroup;
 use LinksUpdate;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\MutableRevisionSlots;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
+use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWikiIntegrationTestCase;
+use MockTitleTrait;
 use MWCallableUpdate;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -32,6 +38,7 @@ use WikitextContent;
  * @covers \MediaWiki\Storage\DerivedPageDataUpdater
  */
 class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
+	use MockTitleTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -510,7 +517,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetPreparedEditAfterPrepareUpdate() {
 		$clock = MWTimestamp::convert( TS_UNIX, '20100101000000' );
-		MWTimestamp::setFakeTime( function () use ( &$clock ) {
+		MWTimestamp::setFakeTime( static function () use ( &$clock ) {
 			return $clock++;
 		} );
 
@@ -551,10 +558,31 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotEmpty( $dataUpdates );
 
-		$linksUpdates = array_filter( $dataUpdates, function ( $du ) {
+		$linksUpdates = array_filter( $dataUpdates, static function ( $du ) {
 			return $du instanceof LinksUpdate;
 		} );
 		$this->assertCount( 1, $linksUpdates );
+	}
+
+	public function testGetSecondaryDataUpdatesDeleted() {
+		$user = $this->getTestUser()->getUser();
+		$page = $this->getPage( __METHOD__ );
+		$this->createRevision( $page, __METHOD__ );
+
+		$mainContent1 = new WikitextContent( 'first' );
+
+		$update = new RevisionSlotsUpdate();
+		$update->modifyContent( SlotRecord::MAIN, $mainContent1 );
+		$updater = $this->getDerivedPageDataUpdater( $page );
+		$updater->prepareContent( $user, $update, false );
+
+		// Test that nothing happens if the page was deleted in the meantime
+		// This can happen when started by the job queue
+		$page->doDeleteArticleReal( 'Test', $user );
+
+		$dataUpdates = $updater->getSecondaryDataUpdates();
+
+		$this->assertEmpty( $dataUpdates );
 	}
 
 	/**
@@ -587,7 +615,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers', [
-				$name => function () use ( $handler ){
+				$name => static function () use ( $handler ){
 					return $handler;
 				}
 			]
@@ -654,8 +682,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertNotEmpty( $dataUpdates );
 
-		$updateNames = array_map( function ( $du ) {
-			return isset( $du->_name ) ? $du->_name : get_class( $du );
+		$updateNames = array_map( static function ( $du ) {
+			return $du->_name ?? get_class( $du );
 		}, $dataUpdates );
 
 		$this->assertContains( LinksUpdate::class, $updateNames );
@@ -699,26 +727,8 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		return $rev;
 	}
 
-	/**
-	 * @param int $id
-	 * @return Title
-	 */
-	private function getMockTitle( $id = 23 ) {
-		$mock = $this->getMockBuilder( Title::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getDBkey' )
-			->will( $this->returnValue( __CLASS__ ) );
-		$mock->expects( $this->any() )
-			->method( 'getArticleID' )
-			->will( $this->returnValue( $id ) );
-
-		return $mock;
-	}
-
 	public function provideIsReusableFor() {
-		$title = $this->getMockTitle();
+		$title = $this->makeMockTitle( __CLASS__, [ 'id' => 23 ] );
 
 		$user1 = User::newFromName( 'Alice' );
 		$user2 = User::newFromName( 'Bob' );
@@ -857,25 +867,16 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideIsReusableFor
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isReusableFor()
-	 *
-	 * @param User|null $prepUser
-	 * @param RevisionRecord|null $prepRevision
-	 * @param RevisionSlotsUpdate|null $prepUpdate
-	 * @param User|null $forUser
-	 * @param RevisionRecord|null $forRevision
-	 * @param RevisionSlotsUpdate|null $forUpdate
-	 * @param int|null $forParent
-	 * @param bool $isReusable
 	 */
 	public function testIsReusableFor(
-		User $prepUser = null,
-		RevisionRecord $prepRevision = null,
-		RevisionSlotsUpdate $prepUpdate = null,
-		User $forUser = null,
-		RevisionRecord $forRevision = null,
-		RevisionSlotsUpdate $forUpdate = null,
-		$forParent = null,
-		$isReusable = null
+		?User $prepUser,
+		?RevisionRecord $prepRevision,
+		?RevisionSlotsUpdate $prepUpdate,
+		?User $forUser,
+		?RevisionRecord $forRevision,
+		?RevisionSlotsUpdate $forUpdate,
+		$forParent,
+		$isReusable
 	) {
 		$updater = $this->getDerivedPageDataUpdater( __METHOD__ );
 
@@ -939,11 +940,6 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideIsCountable
 	 *
-	 * @param string $articleCountMethod
-	 * @param string $wikitextContent
-	 * @param int $revisionVisibility
-	 * @param bool $isCountable
-	 * @throws \MWException
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::isCountable
 	 */
 	public function testIsCountable(
@@ -1036,7 +1032,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// parser cache update
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions() );
 		$this->assertIsObject( $cached );
-		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
+		$this->assertEquals( $updater->getCanonicalParserOutput(), $cached );
 
 		// site stats
 		$stats = $this->db->selectRow( 'site_stats', '*', '1=1' );
@@ -1117,6 +1113,73 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertNotFalse( $pcache->get( $page, $updater->getCanonicalParserOptions() ) );
 	}
 
+	public function provideEnqueueRevertedTagUpdateJob() {
+		return [
+			'approved' => [ true, 1 ],
+			'not approved' => [ false, 0 ]
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doUpdates
+	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::maybeEnqueueRevertedTagUpdateJob
+	 * @dataProvider provideEnqueueRevertedTagUpdateJob
+	 */
+	public function testEnqueueRevertedTagUpdateJob( bool $approved, int $queueSize ) {
+		$page = $this->getPage( __METHOD__ );
+
+		$content = [ 'main' => new WikitextContent( '1' ) ];
+		$rev = $this->createRevision( $page, '', $content );
+		$editResult = new EditResult(
+			false,
+			10,
+			EditResult::REVERT_ROLLBACK,
+			11,
+			12,
+			true,
+			false,
+			[ 'mw-rollback' ]
+		);
+
+		$updater = $this->getDerivedPageDataUpdater( $page, $rev );
+
+		$updater->prepareUpdate( $rev, [
+			'editResult' => $editResult,
+			'approved' => $approved
+		] );
+		$updater->doUpdates();
+
+		$services = MediaWikiServices::getInstance();
+		$editResultCache = new EditResultCache(
+			$services->getMainObjectStash(),
+			$services->getDBLoadBalancer(),
+			new ServiceOptions(
+				EditResultCache::CONSTRUCTOR_OPTIONS,
+				[ 'RCMaxAge' => BagOStuff::TTL_MONTH ]
+			)
+		);
+
+		if ( $approved ) {
+			$this->assertNull(
+				$editResultCache->get( $rev->getId() ),
+				'EditResult should not be cached when the revert is approved'
+			);
+		} else {
+			$this->assertEquals(
+				$editResult,
+				$editResultCache->get( $rev->getId() ),
+				'EditResult should be cached when the revert is not approved'
+			);
+		}
+
+		$jobQueueGroup = JobQueueGroup::singleton();
+		$jobQueue = $jobQueueGroup->get( 'revertedTagUpdate' );
+		$this->assertSame(
+			$queueSize,
+			$jobQueue->getSize()
+		);
+	}
+
 	/**
 	 * @covers \MediaWiki\Storage\DerivedPageDataUpdater::doParserCacheUpdate()
 	 */
@@ -1160,7 +1223,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// The cached ParserOutput should not use the revision timestamp
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions(), true );
 		$this->assertIsObject( $cached );
-		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
+		$this->assertEquals( $updater->getCanonicalParserOutput(), $cached );
 
 		$this->assertSame( $rev->getTimestamp(), $cached->getCacheTime() );
 		$this->assertSame( $rev->getId(), $cached->getCacheRevisionId() );
@@ -1179,7 +1242,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 		// The cached ParserOutput should not use the revision timestamp
 		$cached = $pcache->get( $page, $updater->getCanonicalParserOptions(), true );
 		$this->assertIsObject( $cached );
-		$this->assertSame( $updater->getCanonicalParserOutput(), $cached );
+		$this->assertEquals( $updater->getCanonicalParserOutput(), $cached );
 
 		$this->assertGreaterThan( $rev->getTimestamp(), $cached->getCacheTime() );
 		$this->assertSame( $rev->getId(), $cached->getCacheRevisionId() );

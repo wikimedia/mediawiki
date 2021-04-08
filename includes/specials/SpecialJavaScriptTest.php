@@ -54,8 +54,8 @@ class SpecialJavaScriptTest extends SpecialPage {
 		$out = $this->getOutput();
 		$rl = $out->getResourceLoader();
 
-		// Allow framing (disabling wgBreakFrames). Otherwise, mediawiki.page.startup.js
-		// will close this tab when run from CLI using karma-qunit.
+		// Allow framing (disabling wgBreakFrames). Otherwise, mediawiki.page.ready
+		// will close this tab when running from CLI using karma-qunit.
 		$out->allowClickjacking();
 
 		$query = [

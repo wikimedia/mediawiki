@@ -83,11 +83,9 @@ class NamespaceInfo {
 	];
 
 	/**
-	 * @since 1.34
-	 * @internal
+	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'AllowImageMoving',
 		'CanonicalNamespaceNames',
 		'CapitalLinkOverrides',
 		'CapitalLinks',
@@ -160,17 +158,10 @@ class NamespaceInfo {
 	 * @return bool
 	 */
 	public function isMovable( $index ) {
-		if ( !$this->options->get( 'AllowImageMoving' ) ) {
-			wfDeprecatedMsg( 'Setting $wgAllowImageMoving to false was deprecated in MediaWiki 1.35',
-				'1.35', false, false );
-		}
-
 		$extensionRegistry = ExtensionRegistry::getInstance();
 		$extNamespaces = $extensionRegistry->getAttribute( 'ImmovableNamespaces' );
 
-		$result = $index >= NS_MAIN &&
-			( $index != NS_FILE || $this->options->get( 'AllowImageMoving' ) ) &&
-			!in_array( $index, $extNamespaces );
+		$result = $index >= NS_MAIN && !in_array( $index, $extNamespaces );
 
 		/**
 		 * @since 1.20
@@ -227,7 +218,7 @@ class NamespaceInfo {
 	 * @param LinkTarget $target
 	 * @return LinkTarget Talk page for $target
 	 * @throws MWException if $target doesn't have talk pages, e.g. because it's in NS_SPECIAL,
-	 *         because it's a relative section-only link, or it's an an interwiki link.
+	 *         because it's a relative section-only link, or it's an interwiki link.
 	 */
 	public function getTalkPage( LinkTarget $target ) : LinkTarget {
 		if ( $target->getText() === '' ) {
@@ -496,7 +487,8 @@ class NamespaceInfo {
 	}
 
 	/**
-	 * Does the namespace allow subpages?
+	 * Does the namespace allow subpages? Note that this refers to structured
+	 * handling of subpages, and does not include SpecialPage subpage parameters.
 	 *
 	 * @param int $index Index to check
 	 * @return bool
@@ -507,7 +499,7 @@ class NamespaceInfo {
 
 	/**
 	 * Get a list of all namespace indices which are considered to contain content
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public function getContentNamespaces() {
 		$contentNamespaces = $this->options->get( 'ContentNamespaces' );
@@ -525,7 +517,7 @@ class NamespaceInfo {
 	 * List all namespace indices which are considered subject, aka not a talk
 	 * or special namespace. See also NamespaceInfo::isSubject
 	 *
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public function getSubjectNamespaces() {
 		return array_filter(
@@ -538,7 +530,7 @@ class NamespaceInfo {
 	 * List all namespace indices which are considered talks, aka not a subject
 	 * or special namespace. See also NamespaceInfo::isTalk
 	 *
-	 * @return array Array of namespace indices
+	 * @return int[] Array of namespace indices
 	 */
 	public function getTalkNamespaces() {
 		return array_filter(
@@ -622,6 +614,7 @@ class NamespaceInfo {
 		// PermissionManager is not injected because adding an explicit dependency
 		// breaks MW installer by adding a dependency chain on the database before
 		// it was set up. Also, the method is deprecated and will be soon removed.
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()
 			->getPermissionManager()
 			->getNamespaceRestrictionLevels( $index, $user );

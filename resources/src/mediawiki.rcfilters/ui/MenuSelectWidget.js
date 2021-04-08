@@ -101,8 +101,8 @@ MenuSelectWidget = function MwRcfiltersUiMenuSelectWidget( controller, model, co
 			adjustedData = {
 				// Wrap the element with our own footer wrapper
 				// The following classes are used here:
-				// * mw-rcfilters-ui-menuSelectWidget-footer-feedback
 				// * mw-rcfilters-ui-menuSelectWidget-footer-viewSelect
+				// * and no others (currently)
 				$element: $( '<div>' )
 					.addClass( 'mw-rcfilters-ui-menuSelectWidget-footer' )
 					.addClass( 'mw-rcfilters-ui-menuSelectWidget-footer-' + footerData.name )

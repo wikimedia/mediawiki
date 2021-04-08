@@ -11,77 +11,15 @@
 		updatingBooklet = false,
 		pages = {},
 		moduleInfoCache = {},
-		baseRequestParams;
-
-	/**
-	 * A wrapper for a widget that provides an enable/disable button
-	 *
-	 * @class
-	 * @private
-	 * @constructor
-	 * @param {OO.ui.Widget} widget
-	 * @param {Object} [config] Configuration options
-	 */
-	function OptionalWidget( widget, config ) {
-		var k;
-
-		config = config || {};
-
-		this.widget = widget;
-		this.$cover = config.$cover ||
-			$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-cover' );
-		this.checkbox = new OO.ui.CheckboxInputWidget( config.checkbox )
-			.on( 'change', this.onCheckboxChange, [], this );
-
-		OptionalWidget.super.call( this, config );
-
-		// Forward most methods for convenience
-		for ( k in this.widget ) {
-			if ( typeof this.widget[ k ] === 'function' && !this[ k ] ) {
-				this[ k ] = this.widget[ k ].bind( this.widget );
-			}
-		}
-
-		widget.connect( this, {
-			change: [ this.emit, 'change' ]
-		} );
-
-		this.$cover.on( 'click', this.onOverlayClick.bind( this ) );
-
-		this.$element
-			.addClass( 'mw-apisandbox-optionalWidget' )
-			.append(
-				this.$cover,
-				$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-fields' ).append(
-					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-widget' ).append(
-						widget.$element
-					),
-					$( '<div>' ).addClass( 'mw-apisandbox-optionalWidget-checkbox' ).append(
-						this.checkbox.$element
-					)
-				)
-			);
-
-		this.setDisabled( widget.isDisabled() );
-	}
-	OO.inheritClass( OptionalWidget, OO.ui.Widget );
-	OptionalWidget.prototype.onCheckboxChange = function ( checked ) {
-		this.setDisabled( !checked );
-	};
-	OptionalWidget.prototype.onOverlayClick = function () {
-		this.setDisabled( false );
-		if ( typeof this.widget.focus === 'function' ) {
-			this.widget.focus();
-		}
-	};
-	OptionalWidget.prototype.setDisabled = function ( disabled ) {
-		OptionalWidget.super.prototype.setDisabled.call( this, disabled );
-		this.widget.setDisabled( this.isDisabled() );
-		this.checkbox.setSelected( !this.isDisabled() );
-		this.$cover.toggle( this.isDisabled() );
-		this.emit( 'change' );
-		return this;
-	};
+		baseRequestParams,
+		OptionalParamWidget = require( './OptionalParamWidget.js' ),
+		ParamLabelWidget = require( './ParamLabelWidget.js' ),
+		BooleanToggleSwitchParamWidget = require( './BooleanToggleSwitchParamWidget.js' ),
+		DateTimeParamWidget = require( './DateTimeParamWidget.js' ),
+		IntegerParamWidget = require( './IntegerParamWidget.js' ),
+		LimitParamWidget = require( './LimitParamWidget.js' ),
+		PasswordParamWidget = require( './PasswordParamWidget.js' ),
+		UploadSelectFileParamWidget = require( './UploadSelectFileParamWidget.js' );
 
 	WidgetMethods = {
 		textInputWidget: {
@@ -94,27 +32,17 @@
 				}
 				this.setValue( v );
 			},
-			apiCheckValid: function () {
+			apiCheckValid: function ( shouldSuppressErrors ) {
 				var that = this;
 				return this.getValidity().then( function () {
 					return $.Deferred().resolve( true ).promise();
 				}, function () {
 					return $.Deferred().resolve( false ).promise();
 				} ).done( function ( ok ) {
-					ok = ok || suppressErrors;
+					ok = ok || shouldSuppressErrors;
 					that.setIcon( ok ? null : 'alert' );
 					that.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				} );
-			}
-		},
-
-		dateTimeInputWidget: {
-			getValidity: function () {
-				if ( !Util.apiBool( this.paramInfo.required ) || this.getApiValue() !== '' ) {
-					return $.Deferred().resolve().promise();
-				} else {
-					return $.Deferred().reject().promise();
-				}
 			}
 		},
 
@@ -140,28 +68,13 @@
 					.always( this.popPending.bind( this ) );
 			},
 			setApiValue: function ( v ) {
-				WidgetMethods.textInputWidget.setApiValue.call( this, v );
+				if ( v === undefined ) {
+					v = this.paramInfo.default;
+				}
+				this.setValue( v );
 				if ( v === '123ABC' ) {
 					this.fetchToken();
 				}
-			}
-		},
-
-		passwordWidget: {
-			getApiValueForDisplay: function () {
-				return '';
-			}
-		},
-
-		toggleSwitchWidget: {
-			getApiValue: function () {
-				return this.getValue() ? 1 : undefined;
-			},
-			setApiValue: function ( v ) {
-				this.setValue( Util.apiBool( v ) );
-			},
-			apiCheckValid: function () {
-				return $.Deferred().resolve( true ).promise();
 			}
 		},
 
@@ -182,8 +95,8 @@
 					menu.selectItemByData( String( v ) );
 				}
 			},
-			apiCheckValid: function () {
-				var ok = this.getApiValue() !== undefined || suppressErrors;
+			apiCheckValid: function ( shouldSuppressErrors ) {
+				var ok = this.getApiValue() !== undefined || shouldSuppressErrors;
 				this.setIcon( ok ? null : 'alert' );
 				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
 				return $.Deferred().resolve( ok ).promise();
@@ -220,11 +133,11 @@
 				}
 				this.setValue( this.parseApiValue( v ) );
 			},
-			apiCheckValid: function () {
+			apiCheckValid: function ( shouldSuppressErrors ) {
 				var ok = true,
 					pi = this.paramInfo;
 
-				if ( !suppressErrors ) {
+				if ( !shouldSuppressErrors ) {
 					ok = this.getApiValue() !== undefined && !(
 						pi.allspecifier !== undefined &&
 						this.getValue().length > 1 &&
@@ -252,23 +165,6 @@
 			}
 		},
 
-		optionalWidget: {
-			getApiValue: function () {
-				return this.isDisabled() ? undefined : this.widget.getApiValue();
-			},
-			setApiValue: function ( v ) {
-				this.setDisabled( v === undefined );
-				this.widget.setApiValue( v );
-			},
-			apiCheckValid: function () {
-				if ( this.isDisabled() ) {
-					return $.Deferred().resolve( true ).promise();
-				} else {
-					return this.widget.apiCheckValid();
-				}
-			}
-		},
-
 		submoduleWidget: {
 			single: function () {
 				var v = this.isDisabled() ? this.paramInfo.default : this.getApiValue();
@@ -280,24 +176,6 @@
 				return v === undefined || v === '' ? [] : String( v ).split( '|' ).map( function ( val ) {
 					return { value: val, path: map[ val ] };
 				} );
-			}
-		},
-
-		uploadWidget: {
-			getApiValueForDisplay: function () {
-				return '...';
-			},
-			getApiValue: function () {
-				return this.getValue();
-			},
-			setApiValue: function () {
-				// Can't, sorry.
-			},
-			apiCheckValid: function () {
-				var ok = this.getValue() !== null && this.getValue() !== undefined || suppressErrors;
-				this.info.setIcon( ok ? null : 'alert' );
-				this.setTitle( ok ? '' : mw.message( 'apisandbox-alert-field' ).plain() );
-				return $.Deferred().resolve( ok ).promise();
 			}
 		}
 	};
@@ -412,13 +290,33 @@
 
 			switch ( pi.type ) {
 				case 'boolean':
-					widget = new OO.ui.ToggleSwitchWidget();
+					widget = new BooleanToggleSwitchParamWidget();
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.toggleSwitchWidget );
 					pi.required = true; // Avoid wrapping in the non-required widget
 					break;
 
 				case 'string':
+					// ApiParamInfo only sets `tokentype` when the parameter
+					// name is `token` AND the module ::needsToken() returns
+					// a truthy value; ApiBase, when the module ::needsToken()
+					// returns a truthy value, sets the `token` param to PARAM_TYPE
+					// string always, so we only need to have handling for
+					// token widgets for `string`. The token never accepts multiple
+					// values, though that doesn't appear to be enforced anywhere...
+					// and the token widget methods all assume it only a single value
+					if ( pi.tokentype ) {
+						// We probably don't need to check if its required,
+						// it always is, but whats the harm
+						widget = new OO.ui.TextInputWidget( {
+							required: Util.apiBool( pi.required )
+						} );
+						widget.paramInfo = pi;
+						$.extend( widget, WidgetMethods.textInputWidget );
+						widget.setValidation( Validators.generic );
+						$.extend( widget, WidgetMethods.tokenWidget );
+						break;
+					}
+					// intentional fall through
 				case 'user':
 				case 'expiry':
 					if ( Util.apiBool( pi.multi ) ) {
@@ -433,19 +331,13 @@
 						widget = new OO.ui.TextInputWidget( {
 							required: Util.apiBool( pi.required )
 						} );
-					}
-					if ( !Util.apiBool( pi.multi ) ) {
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.textInputWidget );
 						widget.setValidation( Validators.generic );
 					}
-					if ( pi.tokentype ) {
-						widget.paramInfo = pi;
-						$.extend( widget, WidgetMethods.textInputWidget );
-						$.extend( widget, WidgetMethods.tokenWidget );
-					}
 					break;
 
+				case 'raw':
 				case 'text':
 					widget = new OO.ui.MultilineTextInputWidget( {
 						required: Util.apiBool( pi.required )
@@ -456,75 +348,47 @@
 					break;
 
 				case 'password':
-					widget = new OO.ui.TextInputWidget( {
-						type: 'password',
+					widget = new PasswordParamWidget( {
 						required: Util.apiBool( pi.required )
 					} );
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
-					$.extend( widget, WidgetMethods.passwordWidget );
 					widget.setValidation( Validators.generic );
 					multiModeAllowed = true;
 					multiModeInput = widget;
 					break;
 
 				case 'integer':
-					widget = new OO.ui.NumberInputWidget( {
-						required: Util.apiBool( pi.required ),
-						isInteger: true
+					widget = new IntegerParamWidget( {
+						required: Util.apiBool( pi.required )
 					} );
-					widget.setIcon = widget.input.setIcon.bind( widget.input );
-					widget.setTitle = widget.input.setTitle.bind( widget.input );
-					widget.getValidity = widget.input.getValidity.bind( widget.input );
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
 					widget.setRange( pi.min || -Infinity, pi.max || Infinity );
 					multiModeAllowed = true;
 					multiModeInput = widget;
 					break;
 
 				case 'limit':
-					widget = new OO.ui.TextInputWidget( {
+					widget = new LimitParamWidget( {
 						required: Util.apiBool( pi.required )
-					} );
-					widget.setValidation( function ( value ) {
-						var n, info = this.paramInfo;
-
-						if ( value === 'max' ) {
-							return true;
-						} else {
-							n = +value;
-							return !isNaN( n ) && isFinite( n ) &&
-								Math.floor( n ) === n &&
-								n >= info.min && n <= info.apiSandboxMax;
-						}
 					} );
 					pi.min = pi.min || 0;
 					pi.apiSandboxMax = ( mw.config.get( 'apihighlimits' ) ? pi.highmax : pi.max ) || pi.max;
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
 					multiModeAllowed = true;
 					multiModeInput = widget;
 					break;
 
 				case 'timestamp':
-					widget = new mw.widgets.datetime.DateTimeInputWidget( {
-						formatter: {
-							format: '${year|0}-${month|0}-${day|0}T${hour|0}:${minute|0}:${second|0}${zone|short}'
-						},
-						required: Util.apiBool( pi.required ),
-						clearable: false
+					widget = new DateTimeParamWidget( {
+						required: Util.apiBool( pi.required )
 					} );
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.textInputWidget );
-					$.extend( widget, WidgetMethods.dateTimeInputWidget );
 					multiModeAllowed = true;
 					break;
 
 				case 'upload':
-					widget = new OO.ui.SelectFileWidget();
+					widget = new UploadSelectFileParamWidget();
 					widget.paramInfo = pi;
-					$.extend( widget, WidgetMethods.uploadWidget );
 					break;
 
 				case 'namespace':
@@ -558,6 +422,32 @@
 						} );
 						widget.paramInfo = pi;
 						$.extend( widget, WidgetMethods.dropdownWidget );
+					}
+					break;
+
+				case 'title':
+					if ( Util.apiBool( pi.multi ) ) {
+						widget = new mw.widgets.TitlesMultiselectWidget( {
+							required: Util.apiBool( pi.required ),
+							validateTitle: true,
+							suggestions: true,
+							showMissing: !Util.apiBool( pi.mustExist ),
+							addQueryInput: !Util.apiBool( pi.mustExist ),
+							tagLimit: pi.limit || undefined
+						} );
+						widget.paramInfo = pi;
+						$.extend( widget, WidgetMethods.tagWidget );
+					} else {
+						widget = new mw.widgets.TitleInputWidget( {
+							required: Util.apiBool( pi.required ),
+							validateTitle: true,
+							suggestions: true,
+							autocomplete: true,
+							showMissing: !Util.apiBool( pi.mustExist ),
+							addQueryInput: !Util.apiBool( pi.mustExist )
+						} );
+						widget.paramInfo = pi;
+						$.extend( widget, WidgetMethods.textInputWidget );
 					}
 					break;
 
@@ -653,7 +543,7 @@
 
 				func = function () {
 					if ( !innerWidget.isDisabled() ) {
-						innerWidget.apiCheckValid().done( function ( ok ) {
+						innerWidget.apiCheckValid( suppressErrors ).done( function ( ok ) {
 							if ( ok ) {
 								widget.addTag( innerWidget.getApiValue() );
 								innerWidget.setApiValue( undefined );
@@ -672,9 +562,8 @@
 			if ( Util.apiBool( pi.required ) || opts.nooptional ) {
 				finalWidget = widget;
 			} else {
-				finalWidget = new OptionalWidget( widget );
+				finalWidget = new OptionalParamWidget( widget );
 				finalWidget.paramInfo = pi;
-				$.extend( finalWidget, WidgetMethods.optionalWidget );
 				if ( widget.getSubmodules ) {
 					finalWidget.getSubmodules = widget.getSubmodules.bind( widget );
 					finalWidget.on( 'disable', function () {
@@ -834,8 +723,7 @@
 			panel = new OO.ui.PanelLayout( {
 				classes: [ 'mw-apisandbox-container' ],
 				content: [ booklet ],
-				expanded: false,
-				framed: true
+				expanded: false
 			} );
 
 			pages.main = new ApiSandbox.PageLayout( { key: 'main', path: 'main' } );
@@ -1044,7 +932,7 @@
 					if ( tokenWidgets.length ) {
 						// Check all token widgets' validity separately
 						deferred = $.when.apply( $, tokenWidgets.map( function ( w ) {
-							return w.apiCheckValid();
+							return w.apiCheckValid( suppressErrors );
 						} ) );
 
 						deferred.done( function () {
@@ -1399,7 +1287,7 @@
 	 * @return {OO.ui.FieldLayout} return.helpField
 	 */
 	ApiSandbox.PageLayout.prototype.makeWidgetFieldLayouts = function ( ppi, name ) {
-		var j, l, widget, $descriptionContainer, tmp, $tmp, flag, count, button, widgetField, helpField, layoutConfig;
+		var j, l, widget, helpLabel, tmp, $tmp, flag, count, button, widgetField, helpField, layoutConfig;
 
 		widget = Util.createWidgetForParameter( ppi );
 		if ( ppi.tokentype ) {
@@ -1409,7 +1297,7 @@
 			widget.on( 'change', this.updateTemplatedParameters, [ null ], this );
 		}
 
-		$descriptionContainer = $( '<div>' );
+		helpLabel = new ParamLabelWidget();
 
 		$tmp = Util.parseHTML( ppi.description );
 		$tmp.filter( 'dl' ).makeCollapsible( {
@@ -1418,11 +1306,11 @@
 			var $this = $( this );
 			$this.parent().prev( 'p' ).append( $this );
 		} );
-		$descriptionContainer.append( $( '<div>' ).addClass( 'description' ).append( $tmp ) );
+		helpLabel.addDescription( $tmp );
 
 		if ( ppi.info && ppi.info.length ) {
 			for ( j = 0; j < ppi.info.length; j++ ) {
-				$descriptionContainer.append( $( '<div>' )
+				helpLabel.$element.append( $( '<div>' )
 					.addClass( 'info' )
 					.append( Util.parseHTML( ppi.info[ j ] ) )
 				);
@@ -1437,16 +1325,13 @@
 				break;
 
 			case 'limit':
-				$descriptionContainer.append( $( '<div>' )
-					.addClass( 'info' )
-					.append(
-						Util.parseMsg(
-							'paramvalidator-help-type-number-minmax', 1,
-							ppi.min, ppi.highmax !== undefined ? ppi.highmax : ppi.max
-						),
-						' ',
-						Util.parseMsg( 'apisandbox-param-limit' )
-					)
+				helpLabel.addInfo(
+					Util.parseMsg(
+						'paramvalidator-help-type-number-minmax', 1,
+						ppi.min, ppi.highmax !== undefined ? ppi.highmax : ppi.max
+					),
+					' ',
+					Util.parseMsg( 'apisandbox-param-limit' )
 				);
 				break;
 
@@ -1459,13 +1344,12 @@
 					tmp += 'max';
 				}
 				if ( tmp !== '' ) {
-					$descriptionContainer.append( $( '<div>' )
-						.addClass( 'info' )
-						.append( Util.parseMsg(
+					helpLabel.addInfo(
+						Util.parseMsg(
 							'paramvalidator-help-type-number-' + tmp,
 							Util.apiBool( ppi.multi ) ? 2 : 1,
 							ppi.min, ppi.max
-						) )
+						)
 					);
 				}
 				break;
@@ -1481,7 +1365,7 @@
 			tmp = [];
 			if ( flag && !( widget instanceof OO.ui.TagMultiselectWidget ) &&
 				!(
-					widget instanceof OptionalWidget &&
+					widget instanceof OptionalParamWidget &&
 					widget.widget instanceof OO.ui.TagMultiselectWidget
 				)
 			) {
@@ -1493,23 +1377,14 @@
 				);
 			}
 			if ( tmp.length ) {
-				$descriptionContainer.append( $( '<div>' )
-					.addClass( 'info' )
-					.append( Util.parseHTML( tmp.join( ' ' ) ) )
-				);
+				helpLabel.addInfo( Util.parseHTML( tmp.join( ' ' ) ) );
 			}
 		}
 		if ( 'maxbytes' in ppi ) {
-			$descriptionContainer.append( $( '<div>' )
-				.addClass( 'info' )
-				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxbytes', ppi.maxbytes ) )
-			);
+			helpLabel.addInfo( Util.parseMsg( 'paramvalidator-help-type-string-maxbytes', ppi.maxbytes ) );
 		}
 		if ( 'maxchars' in ppi ) {
-			$descriptionContainer.append( $( '<div>' )
-				.addClass( 'info' )
-				.append( Util.parseMsg( 'paramvalidator-help-type-string-maxchars', ppi.maxchars ) )
-			);
+			helpLabel.addInfo( Util.parseMsg( 'paramvalidator-help-type-string-maxchars', ppi.maxchars ) );
 		}
 		if ( ppi.usedTemplateVars && ppi.usedTemplateVars.length ) {
 			$tmp = $();
@@ -1522,24 +1397,23 @@
 					$tmp = $tmp.add( mw.message( 'comma-separator' ).parseDom() );
 				}
 			}
-			$descriptionContainer.append( $( '<div>' )
-				.addClass( 'info' )
-				.append( Util.parseMsg(
+			helpLabel.addInfo(
+				Util.parseMsg(
 					'apisandbox-templated-parameter-reason',
 					ppi.usedTemplateVars.length,
 					$tmp
-				) )
+				)
 			);
 		}
 
+		// TODO: Consder adding more options for the position of helpInline
+		// so that this can become part of the widgetField, instead of
+		// having to use a separate field.
 		helpField = new OO.ui.FieldLayout(
-			new OO.ui.Widget( {
-				$content: '\xa0',
-				classes: [ 'mw-apisandbox-spacer' ]
-			} ), {
-				align: 'inline',
-				classes: [ 'mw-apisandbox-help-field' ],
-				label: $descriptionContainer
+			helpLabel,
+			{
+				align: 'top',
+				classes: [ 'mw-apisandbox-help-field' ]
 			}
 		);
 
@@ -1846,6 +1720,7 @@
 						popup: {
 							width: 'auto',
 							padded: true,
+							classes: [ 'mw-apisandbox-popup-help' ],
 							$content: $( '<ul>' ).append( pi.helpurls.map( function ( link ) {
 								return $( '<li>' ).append( $( '<a>' )
 									.attr( { href: link, target: '_blank' } )
@@ -1864,6 +1739,7 @@
 						popup: {
 							width: 'auto',
 							padded: true,
+							classes: [ 'mw-apisandbox-popup-help' ],
 							$content: $( '<ul>' ).append( pi.examples.map( function ( example ) {
 								var $a = $( '<a>' )
 									.attr( 'href', '#' + example.query )
@@ -2005,7 +1881,7 @@
 		} else {
 			// eslint-disable-next-line no-jquery/no-map-util
 			promises = $.map( this.widgets, function ( widget ) {
-				return widget.apiCheckValid();
+				return widget.apiCheckValid( suppressErrors );
 			} );
 			$.when.apply( $, promises ).then( function () {
 				that.apiIsValid = Array.prototype.indexOf.call( arguments, false ) === -1;

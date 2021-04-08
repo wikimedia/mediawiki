@@ -88,7 +88,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			}
 
 			$user = $this->getUser();
-			$findTitles = array_map( function ( $title ) use ( $user ) {
+			$findTitles = array_map( static function ( $title ) use ( $user ) {
 				return [
 					'title' => $title,
 					'private' => $user,
@@ -364,7 +364,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 * @param array $prop Array of properties to get (in the keys)
 	 * @param ApiResult $result
 	 * @param array|null $thumbParams Containing 'width' and 'height' items, or null
-	 * @param array|bool|string $opts Options for data fetching.
+	 * @param array|false|string $opts Options for data fetching.
 	 *   This is an array consisting of the keys:
 	 *    'version': The metadata version for the metadata option
 	 *    'language': The language for extmetadata property
@@ -401,11 +401,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		// Handle external callers who don't pass revdelUser
 		if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
 			$revdelUser = $opts['revdelUser'];
-			$canShowField = function ( $field ) use ( $file, $revdelUser ) {
+			$canShowField = static function ( $field ) use ( $file, $revdelUser ) {
 				return $file->userCan( $field, $revdelUser );
 			};
 		} else {
-			$canShowField = function ( $field ) use ( $file ) {
+			$canShowField = static function ( $field ) use ( $file ) {
 				return !$file->isDeleted( $field );
 			};
 		}
@@ -526,6 +526,14 @@ class ApiQueryImageInfo extends ApiQueryBase {
 							list( , $mime ) = $file->getHandler()->getThumbType(
 								$mto->getExtension(), $file->getMimeType(), $thumbParams );
 							$vals['thumbmime'] = $mime;
+						}
+						// Report srcset parameters
+						Linker::processResponsiveImages( $file, $mto, [
+							'width' => $vals['thumbwidth'],
+							'height' => $vals['thumbheight']
+						] + $thumbParams );
+						foreach ( $mto->responsiveUrls as $density => $url ) {
+							$vals['responsiveUrls'][$density] = wfExpandUrl( $url, PROTO_CURRENT );
 						}
 					} elseif ( $mto && $mto->isError() ) {
 						/** @var MediaTransformError $mto */
@@ -650,7 +658,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 
 	/**
 	 * @param File $img
-	 * @param null|string $start
+	 * @param string|null $start
 	 * @return string
 	 */
 	protected function getContinueStr( $img, $start = null ) {

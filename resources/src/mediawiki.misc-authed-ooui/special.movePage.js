@@ -8,17 +8,11 @@
 	}
 
 	$( function () {
-		var summaryCodePointLimit = mw.config.get( 'wgCommentCodePointLimit' ),
-			summaryByteLimit = mw.config.get( 'wgCommentByteLimit' ),
-			wpReason = OO.ui.infuse( $( '#wpReason' ) );
+		var wpReason = OO.ui.infuse( $( '#wpReason' ) );
 
 		// Infuse for pretty dropdown
 		OO.ui.infuse( $( '#wpNewTitle' ) );
-		// Limit to bytes or UTF-8 codepoints, depending on MediaWiki's configuration
-		if ( summaryCodePointLimit ) {
-			mw.widgets.visibleCodePointLimit( wpReason, summaryCodePointLimit );
-		} else if ( summaryByteLimit ) {
-			mw.widgets.visibleByteLimit( wpReason, summaryByteLimit );
-		}
+
+		mw.widgets.visibleCodePointLimit( wpReason, mw.config.get( 'wgCommentCodePointLimit' ) );
 	} );
 }() );

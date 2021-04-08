@@ -21,6 +21,9 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Implements Special:Allpages
  *
@@ -43,17 +46,31 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 */
 	protected $nsfromMsg = 'allpagesfrom';
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	/**
-	 * @param string $name Name of the special page, as seen in links and URLs (default: 'Allpages')
+	 * @param ILoadBalancer|null $loadBalancer
+	 * @param SearchEngineFactory|null $searchEngineFactory
 	 */
-	public function __construct( $name = 'Allpages' ) {
-		parent::__construct( $name );
+	public function __construct(
+		ILoadBalancer $loadBalancer = null,
+		SearchEngineFactory $searchEngineFactory = null
+	) {
+		parent::__construct( 'Allpages' );
+		// This class is extended and therefore falls back to global state - T265309
+		$services = MediaWikiServices::getInstance();
+		$this->loadBalancer = $loadBalancer ?? $services->getDBLoadBalancer();
+		$this->searchEngineFactory = $searchEngineFactory ?? $services->getSearchEngineFactory();
 	}
 
 	/**
 	 * Entry point : initialise variables and call subfunctions.
 	 *
-	 * @param string $par Becomes "FOO" when called like Special:Allpages/FOO (default null)
+	 * @param string|null $par Becomes "FOO" when called like Special:Allpages/FOO
 	 */
 	public function execute( $par ) {
 		$request = $this->getRequest();
@@ -196,7 +213,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 			list( $namespace, $fromKey, $from ) = $fromList;
 			list( , $toKey, $to ) = $toList;
 
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$filterConds = [ 'page_namespace' => $namespace ];
 			if ( $hideredirects ) {
 				$filterConds['page_is_redirect'] = 0;
@@ -382,7 +399,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 	 * @return string[] Matching subpages
 	 */
 	public function prefixSearchSubpages( $search, $limit, $offset ) {
-		return $this->prefixSearchString( $search, $limit, $offset );
+		return $this->prefixSearchString( $search, $limit, $offset, $this->searchEngineFactory );
 	}
 
 	protected function getGroupName() {

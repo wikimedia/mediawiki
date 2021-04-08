@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../maintenance/Maintenance.php';
+require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 define( 'MW_PARSER_TEST', true );
 
@@ -409,7 +409,7 @@ class ParserEditTests extends Maintenance {
 			return false;
 		}
 		$result = TestFileEditor::edit( $text, $deletions, $changes,
-			function ( $msg ) {
+			static function ( $msg ) {
 				print "$msg\n";
 			}
 		);
@@ -485,4 +485,4 @@ class ParserEditTests extends Maintenance {
 }
 
 $maintClass = ParserEditTests::class;
-require RUN_MAINTENANCE_IF_MAIN;
+require_once RUN_MAINTENANCE_IF_MAIN;

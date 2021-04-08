@@ -2,9 +2,12 @@
 
 namespace MediaWiki\ParamValidator\TypeDef;
 
+use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\MediaWikiServices;
 use User;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
+use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 
@@ -13,33 +16,50 @@ use Wikimedia\ParamValidator\ValidationException;
  */
 class UserDefTest extends TypeDefTestCase {
 
-	protected static $testClass = UserDef::class;
+	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
+		return new UserDef(
+			$callbacks,
+			MediaWikiServices::getInstance()->getUserFactory(),
+			MediaWikiServices::getInstance()->getTitleFactory(),
+			MediaWikiServices::getInstance()->getUserNameUtils()
+		);
+	}
 
-	private $wgHooks = null;
+	private $wgInterwikiCache = null;
 
 	protected function setUp(): void {
-		global $wgHooks;
+		global $wgInterwikiCache;
 
 		parent::setUp();
 
 		// We don't have MediaWikiIntegrationTestCase's methods available, so we have to do it ourself.
-		$this->wgHooks = $wgHooks;
-		$wgHooks['InterwikiLoadPrefix'][] = function ( $prefix, &$iwdata ) {
-			if ( $prefix === 'interwiki' ) {
-				$iwdata = [
-					'iw_url' => 'http://example.com/',
-					'iw_local' => 0,
-					'iw_trans' => 0,
-				];
-				return false;
-			}
-		};
+		$this->wgInterwikiCache = $wgInterwikiCache;
+		$wgInterwikiCache = ClassicInterwikiLookup::buildCdbHash( [
+			[
+				'iw_prefix' => 'interwiki',
+				'iw_url' => 'http://example.com/',
+				'iw_local' => 0,
+				'iw_trans' => 0,
+			],
+		] );
+		// UserFactory holds UserNameUtils holds
+		// TitleParser (aka _MediaWikiTitleCodec) holds InterwikiLookup
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserNameUtils' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserFactory' );
 	}
 
 	protected function tearDown(): void {
-		global $wgHooks;
+		global $wgInterwikiCache;
 
-		$wgHooks = $this->wgHooks;
+		$wgInterwikiCache = $this->wgInterwikiCache;
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserNameUtils' );
+		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserFactory' );
 
 		parent::tearDown();
 	}
@@ -69,6 +89,7 @@ class UserDefTest extends TypeDefTestCase {
 			'No interwiki prefixes' => [ '', 'interwiki:Foo', null ],
 			'No fragment in IP' => [ '', '192.168.0.256#', null ],
 		];
+		$userFactory = MediaWikiServices::getInstance()->getUserFactory();
 		foreach ( $data as $key => [ $type, $input, $expect ] ) {
 			$ex = new ValidationException(
 				DataMessageValue::new( 'paramvalidator-baduser', [], 'baduser' ),
@@ -93,8 +114,14 @@ class UserDefTest extends TypeDefTestCase {
 				$ex,
 				[ UserDef::PARAM_ALLOWED_USER_TYPES => $types ],
 			];
+			if ( $type === 'ip' ) {
+				$obj = $userFactory->newAnonymous( $expect );
+			} elseif ( $type === 'interwiki' || $type === 'cidr' ) {
+				$obj = $userFactory->newFromAnyId( 0, $expect, null );
+			} else {
+				$obj = $userFactory->newFromName( $expect );
+			}
 
-			$obj = $type === 'name' ? User::newFromName( $expect ) : User::newFromAnyId( 0, $expect, null );
 			yield "$key, returning object" => [ $input, $obj, [ UserDef::PARAM_RETURN_OBJECT => true ] ];
 		}
 

@@ -188,6 +188,17 @@
 	/**
 	 * @inheritdoc
 	 */
+	mw.widgets.CategoryMultiselectWidget.prototype.isAllowedData = function ( data ) {
+		var title = mw.Title.makeTitle( NS_CATEGORY, data );
+		if ( !title ) {
+			return false;
+		}
+		return mw.widgets.CategoryMultiselectWidget.parent.prototype.isAllowedData.call( this, data );
+	};
+
+	/**
+	 * @inheritdoc
+	 */
 	mw.widgets.CategoryMultiselectWidget.prototype.createTagItemWidget = function ( data ) {
 		var title = mw.Title.makeTitle( NS_CATEGORY, data );
 

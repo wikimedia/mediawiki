@@ -1,0 +1,306 @@
+@import 'variables';
+
+/**
+ * Block media items
+ */
+figure[ typeof~='mw:Image' ],
+figure[ typeof~='mw:Video' ],
+figure[ typeof~='mw:Audio' ],
+figure[ typeof~='mw:Image/Frameless' ],
+figure[ typeof~='mw:Video/Frameless' ],
+figure[ typeof~='mw:Audio/Frameless' ] {
+	margin: 0;  // Maybe belongs in element.css for figure
+
+	> a {
+		border: 0;
+	}
+
+	&.mw-halign-right {
+		/* @noflip */
+		margin: @margin-floatright;
+		/* @noflip */
+		clear: right;
+		/* @noflip */
+		float: right;
+	}
+
+	&.mw-halign-left {
+		/* @noflip */
+		margin: @margin-floatleft;
+		/* @noflip */
+		clear: left;
+		/* @noflip */
+		float: left;
+	}
+
+	&.mw-halign-none {
+		clear: none;
+		float: none;
+	}
+
+	&.mw-halign-center {
+		/* Matches *.center * in element.css */
+		margin: 0 auto;
+		display: table;
+		border-collapse: collapse;
+		clear: none;
+		float: none;
+	}
+
+	/* Hide the caption for frameless and plain floated images */
+	> figcaption {
+		display: none;
+	}
+}
+
+figure[ typeof~='mw:Image/Thumb' ],
+figure[ typeof~='mw:Video/Thumb' ],
+figure[ typeof~='mw:Audio/Thumb' ],
+figure[ typeof~='mw:Image/Frame' ],
+figure[ typeof~='mw:Video/Frame' ],
+figure[ typeof~='mw:Audio/Frame' ] {
+	margin: 0;  // Maybe belongs in element.css for figure
+	margin-bottom: @margin-bottom-thumb;
+	display: table;
+	text-align: center;
+	border: @border-thumbinner;
+	border-bottom: 0;  // No border to figcaption
+	border-collapse: collapse;
+	background-color: @background-color-thumbinner;
+
+	> a {
+		border: 0;
+	}
+
+	// Defaults for page content language
+
+	.mw-content-ltr & {
+		/* @noflip */
+		margin: @margin-tright;
+		/* @noflip */
+		clear: right;
+		/* @noflip */
+		float: right;
+	}
+
+	.mw-content-rtl & {
+		/* @noflip */
+		margin: @margin-tleft;
+		/* @noflip */
+		clear: left;
+		/* @noflip */
+		float: left;
+	}
+
+	// Override defaults when explicitly set
+	// Order of application is important, so don't combine with the defaults
+
+	&.mw-halign-right {
+		/* @noflip */
+		margin: @margin-tright;
+		/* @noflip */
+		clear: right;
+		/* @noflip */
+		float: right;
+	}
+
+	&.mw-halign-left {
+		/* @noflip */
+		margin: @margin-tleft;
+		/* @noflip */
+		clear: left;
+		/* @noflip */
+		float: left;
+	}
+
+	&.mw-halign-none {
+		/* Override the default margin from mw-content-xxx above */
+		margin: 0;
+		margin-bottom: @margin-bottom-thumb;
+		clear: none;
+		float: none;
+	}
+
+	&.mw-halign-center {
+		/* Override the default margin from mw-content-xxx above
+		 * And, matches *.center * in element.css
+		 */
+		margin: 0 auto @margin-bottom-thumb auto;
+		clear: none;
+		float: none;
+	}
+
+	> *:first-child {
+		> audio,
+		> img,
+		> video {
+			border: @border-thumbimage;
+			background: @background-color-thumbimage;
+			margin: 3px;
+		}
+		/* Broken media get a span instead */
+		> span {
+			display: inline-block;
+			/* The extra horizontal margin here is to make up for the lack of a border */
+			margin: 3px 4px;
+			/* This is hardcoded in Linker::makeThumbLink2 for broken media */
+			width: 180px;
+			/* Styles the text of broken media */
+			font-size: @font-size-thumbinner;
+		}
+	}
+
+	> figcaption {
+		display: table-caption;
+		caption-side: bottom;
+		border: @border-thumbinner;
+		border-top: 0;
+		background-color: @background-color-thumbinner;
+		line-height: @line-height-thumbcaption;
+
+		/**
+		 * The "break-word" value is deprecated, however, it's well supported
+		 * at 94.73%
+		 * https://caniuse.com/mdn-css_properties_word-break_break-word
+		 *
+		 * The spec suggests it has the same effect as,
+		 *
+		 *   word-break: normal;
+		 *   overflow-wrap: anywhere;
+		 *
+		 * https://drafts.csswg.org/css-text-3/#word-break-property
+		 *
+		 * So, we should use that.  However, support for "anywhere" is lagging
+		 * at just 72.39%, with Safari being a notable miss.
+		 * https://caniuse.com/mdn-css_properties_overflow-wrap_anywhere
+		 *
+		 * "Soft wrap opportunities introduced by the word break are considered
+		 * when calculating min-content intrinsic sizes."
+		 * From https://developer.mozilla.org/en-US/docs/Web/CSS/overflow-wrap
+		 */
+		word-break: break-word;
+
+		/* In mw-core the font-size is duplicated, 94% in thumbinner
+		 * and again 94% in thumbcaption. 88.4% for font size of the
+		 * caption results in the same behavior. */
+		font-size: 88.4%;  // @font-size-thumbinner * @font-size-thumbcaption
+
+		.mw-content-ltr & {
+			/* @noflip */
+			text-align: left;
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			text-align: right;
+		}
+
+		/* taken from .thumbcaption, plus .thumbinner */
+		padding: 0 6px 6px 6px;
+	}
+}
+
+/* Magnify clip, not present for broken media */
+figure[ typeof~='mw:Image/Thumb' ]:not( [ typeof~='mw:Error' ] ),
+figure[ typeof~='mw:Video/Thumb' ]:not( [ typeof~='mw:Error' ] ),
+figure[ typeof~='mw:Audio/Thumb' ]:not( [ typeof~='mw:Error' ] ) {
+	> figcaption:before {
+		content: '';
+		width: 15px;
+		height: 11px;
+
+		.mw-content-ltr & {
+			/* @noflip */
+			margin-left: 3px;
+			/* @noflip */
+			float: right;
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			margin-right: 3px;
+			/* @noflip */
+			float: left;
+		}
+	}
+
+	> a {
+		display: inline-block;
+		position: relative;
+	}
+
+	> a:after {
+		content: '';
+		width: 15px;
+		height: 11px;
+		position: absolute;
+		bottom: -11px;
+
+		.mw-content-ltr & {
+			/* @noflip */
+			right: 6px;
+			/* @noflip */
+			background-image: @background-image-magnify-ltr-1;
+			/* @noflip */
+			background-image: @background-image-magnify-ltr-2;
+		}
+
+		.mw-content-rtl & {
+			/* @noflip */
+			left: 6px;
+			/* @noflip */
+			background-image: @background-image-magnify-rtl-1;
+			/* @noflip */
+			background-image: @background-image-magnify-rtl-2;
+		}
+	}
+}
+
+.mw-image-border > *:first-child {
+	> audio,
+	> img,
+	> video {
+		border: @border-thumbborder;
+	}
+}
+
+/**
+ * Inline media items
+ */
+*:first-child {
+	> audio,
+	> img,
+	> video {
+		.mw-valign-middle > & {
+			vertical-align: middle;
+		}
+
+		.mw-valign-baseline > & {
+			vertical-align: baseline;
+		}
+
+		.mw-valign-sub > & {
+			vertical-align: sub;
+		}
+
+		.mw-valign-super > & {
+			vertical-align: super;
+		}
+
+		.mw-valign-top > & {
+			vertical-align: top;
+		}
+
+		.mw-valign-text-top > & {
+			vertical-align: text-top;
+		}
+
+		.mw-valign-bottom > & {
+			vertical-align: bottom;
+		}
+
+		.mw-valign-text-bottom > & {
+			vertical-align: text-bottom;
+		}
+	}
+}

@@ -1,7 +1,5 @@
 <?php
 
-use PHPUnit\Framework\MockObject\MockObject;
-
 /**
  * @group Search
  * @covers FauxSearchResultSet
@@ -39,8 +37,8 @@ class FauxSearchResultSetTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param $titleText
-	 * @return Title|MockObject
+	 * @param string $titleText
+	 * @return Title
 	 */
 	private function getTitleMock( $titleText ) {
 		$title = $this->getMockBuilder( Title::class )

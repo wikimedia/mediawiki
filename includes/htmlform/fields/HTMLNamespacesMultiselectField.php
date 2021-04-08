@@ -21,7 +21,7 @@ class HTMLNamespacesMultiselectField extends HTMLSelectNamespace {
 
 		$namespaces = explode( "\n", $value );
 		// Remove empty lines
-		$namespaces = array_values( array_filter( $namespaces, function ( $namespace ) {
+		$namespaces = array_values( array_filter( $namespaces, static function ( $namespace ) {
 			return trim( $namespace ) !== '';
 		} ) );
 		// This function is expected to return a string

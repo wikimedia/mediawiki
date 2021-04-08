@@ -68,6 +68,11 @@ class LanguageKk extends LanguageKk_cyrl {
 	 * @return string
 	 */
 	public function convertGrammar( $word, $case ) {
+		// T277689: If there's no word, then there's nothing to convert.
+		if ( $word === '' ) {
+			return '';
+		}
+
 		$variant = $this->getPreferredVariant();
 		switch ( $variant ) {
 			case 'kk-arab':

@@ -181,12 +181,6 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	/**
 	 * @covers SvgHandler::normaliseParamsInternal()
 	 * @dataProvider provideNormaliseParamsInternal
-	 *
-	 * @param string $message
-	 * @param int $width
-	 * @param int $height
-	 * @param array $params
-	 * @param array $paramsExpected
 	 */
 	public function testNormaliseParamsInternal( $message,
 		$width,
@@ -296,9 +290,6 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 	/**
 	 * @covers \SvgHandler::getAvailableLanguages()
 	 * @dataProvider provideAvailableLanguages
-	 *
-	 * @param array $metadata
-	 * @param array $expected
 	 */
 	public function testGetAvailableLanguages( array $metadata, array $expected ) {
 		$metadata['version'] = SvgHandler::SVG_METADATA_VERSION;

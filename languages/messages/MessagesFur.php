@@ -29,11 +29,13 @@ $namespaceNames = [
 	NS_CATEGORY_TALK    => 'Discussion_categorie',
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Messaçs' ],
 	'Allpages'                  => [ 'DutisLisPagjinis' ],
 	'Ancientpages'              => [ 'PagjinisPluiVieris' ],
 	'Block'                     => [ 'BlocheIP' ],
+	'BlockList'                 => [ 'IPBlocâts' ],
 	'Booksources'               => [ 'RicercjeISBN' ],
 	'BrokenRedirects'           => [ 'ReIndreçamentsSbaliâts' ],
 	'Categories'                => [ 'Categoriis' ],
@@ -46,7 +48,6 @@ $specialPageAliases = [
 	'Emailuser'                 => [ 'MandeEmail' ],
 	'Export'                    => [ 'Espuarte' ],
 	'Import'                    => [ 'Impuarte' ],
-	'BlockList'                 => [ 'IPBlocâts' ],
 	'Listadmins'                => [ 'ListeAministradôrs' ],
 	'Listbots'                  => [ 'ListeBots' ],
 	'Listfiles'                 => [ 'Figuris' ],

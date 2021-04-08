@@ -26,7 +26,7 @@ trait HamcrestPHPUnitIntegration {
 	/**
 	 * Wrapper around Hamcrest's assertThat, which marks the assertion
 	 * for PHPUnit so the test is not marked as risky
-	 * @param array ...$args
+	 * @param mixed ...$args
 	 */
 	public function assertThatHamcrest( ...$args ) {
 		assertThat( ...$args );

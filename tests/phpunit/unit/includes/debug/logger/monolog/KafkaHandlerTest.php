@@ -29,13 +29,12 @@ use Monolog\Logger;
 class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 
 	protected function setUp() : void {
+		parent::setUp();
 		if ( !class_exists( \Monolog\Handler\AbstractProcessingHandler::class )
 			|| !class_exists( \Kafka\Produce::class )
 		) {
 			$this->markTestSkipped( 'Monolog and Kafka are required for the KafkaHandlerTest' );
 		}
-
-		parent::setUp();
 	}
 
 	public function topicNamingProvider() {
@@ -49,7 +48,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider topicNamingProvider
 	 */
 	public function testTopicNaming( $options, $expect ) {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )
@@ -86,7 +85,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider swallowsExceptionsWhenRequested
 	 */
 	public function testGetAvailablePartitionsException( $options, $expectException ) {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )
@@ -117,7 +116,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	 * @dataProvider swallowsExceptionsWhenRequested
 	 */
 	public function testSendException( $options, $expectException ) {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )
@@ -145,7 +144,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testHandlesNullFormatterResult() {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )
@@ -179,7 +178,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 	}
 
 	public function testBatchHandlesNullFormatterResult() {
-		$produce = $this->getMockBuilder( 'Kafka\Produce' )
+		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$produce->expects( $this->any() )

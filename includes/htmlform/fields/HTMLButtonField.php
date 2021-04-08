@@ -29,8 +29,9 @@ class HTMLButtonField extends HTMLFormField {
 
 	protected $mFormnovalidate = false;
 
-	/*
+	/**
 	 * @stable to call
+	 * @inheritDoc
 	 */
 	public function __construct( $info ) {
 		$info['nodata'] = true;

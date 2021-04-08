@@ -60,10 +60,11 @@ class DjVuTest extends MediaWikiMediaTestCase {
 
 	public function testGetPageText() {
 		$file = $this->dataFile( 'LoremIpsum.djvu', 'image/x.djvu' );
-		$this->assertEquals(
-			"Lorem ipsum \n1 \n",
-			(string)$this->handler->getPageText( $file, 1 ),
-			"Text layer of page 1 of file LoremIpsum.djvu should be 'Lorem ipsum \n1 \n'"
+		$this->assertSame(
+			// note: this also tests that the column/paragraph is detected and converted
+			"Lorem ipsum \n\n1 \n",
+			$this->handler->getPageText( $file, 1 ),
+			"Text layer of page 1 of file LoremIpsum.djvu should be 'Lorem ipsum \n\n1 \n'"
 		);
 	}
 }

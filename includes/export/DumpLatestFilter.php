@@ -27,16 +27,20 @@
  * @ingroup Dump
  */
 class DumpLatestFilter extends DumpFilter {
+	/** @var stdClass|null */
 	public $page;
 
+	/** @var string|null */
 	public $pageString;
 
+	/** @var stdClass|null */
 	public $rev;
 
+	/** @var string|null */
 	public $revString;
 
 	/**
-	 * @param object $page
+	 * @param stdClass $page
 	 * @param string $string
 	 */
 	public function writeOpenPage( $page, $string ) {
@@ -60,7 +64,7 @@ class DumpLatestFilter extends DumpFilter {
 	}
 
 	/**
-	 * @param object $rev
+	 * @param stdClass $rev
 	 * @param string $string
 	 */
 	public function writeRevision( $rev, $string ) {

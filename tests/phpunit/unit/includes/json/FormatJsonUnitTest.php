@@ -160,7 +160,6 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideParse
-	 * @param mixed $value
 	 */
 	public function testParse( $value ) {
 		$expected = self::toObject( $value );
@@ -189,7 +188,6 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideParseErrors
-	 * @param mixed $value
 	 */
 	public function testParseErrors( $value, $error ) {
 		$st = FormatJson::parse( $value );
@@ -249,8 +247,6 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 	 * @covers FormatJson::parse
 	 * @covers FormatJson::stripComments
 	 * @dataProvider provideParseStripComments
-	 * @param string $json
-	 * @param mixed $expect
 	 */
 	public function testParseStripComments( $json, $expect ) {
 		$st = FormatJson::parse( $json, FormatJson::STRIP_COMMENTS );
@@ -347,7 +343,6 @@ class FormatJsonUnitTest extends MediaWikiUnitTestCase {
 	 * @covers FormatJson::encode
 	 * @covers FormatJson::decode
 	 * @dataProvider provideEmptyJsonKeyStrings
-	 * @param string $json
 	 *
 	 * Decoding behavior with empty keys can be surprising.
 	 * See https://phabricator.wikimedia.org/T206411

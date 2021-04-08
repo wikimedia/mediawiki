@@ -221,7 +221,7 @@ Deprecating a hook in this way activates a migration system called
     "Hooks": {
         "Mash": {
             "handler": "main",
-            "deprecated": "true"
+            "deprecated": true
         }
     }
 

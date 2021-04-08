@@ -54,7 +54,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		$foreignTargets = $conf->get( 'ForeignUploadTargets' );
 
 		$repoGroup->forEachForeignRepo(
-			function ( FileRepo $repo ) use ( &$repos, $props, $foreignTargets ) {
+			static function ( FileRepo $repo ) use ( &$repos, $props, $foreignTargets ) {
 				$repoProps = $repo->getInfo();
 				$repoProps['canUpload'] = in_array( $repoProps['name'], $foreignTargets );
 
@@ -94,7 +94,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		$props = [];
 		$repoGroup = $this->getInitialisedRepoGroup();
 
-		$repoGroup->forEachForeignRepo( function ( FileRepo $repo ) use ( &$props ) {
+		$repoGroup->forEachForeignRepo( static function ( FileRepo $repo ) use ( &$props ) {
 			$props = array_merge( $props, array_keys( $repo->getInfo() ) );
 		} );
 

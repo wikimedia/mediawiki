@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Seb35",
-			"Ooswesthoesbes"
+			"Ooswesthoesbes",
+			"Seb35"
 		]
 	},
 	"config-desc": "'t Installeringsprogram veur MediaWiki",
@@ -30,14 +30,12 @@
 	"config-page-install": "Installeer",
 	"config-page-complete": "Vaerdig!",
 	"config-page-restart": "Begin installering oppernuuj",
-	"config-page-readme": "Laes mich",
 	"config-page-releasenotes": "Gaef ópmèrkinge vrie",
 	"config-page-copying": "Kopieer",
 	"config-page-upgradedoc": "Wirk bie",
 	"config-page-existingwiki": "Bestäönde wiki",
 	"config-restart": "Jao, begin oppernuuj",
 	"config-env-php": "PHP $1 is geïnstalleerd.",
-	"config-env-hhvm": "HHVM $1 is geïnstalleerd.",
 	"config-diff3-bad": "GNU diff3 neet gevónje.",
 	"config-db-type": "Databanksaort:",
 	"config-db-host": "Databankgashieër:",

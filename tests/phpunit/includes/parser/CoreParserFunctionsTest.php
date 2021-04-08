@@ -14,11 +14,11 @@ class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 		$user->saveSettings();
 
 		$msg = ( new RawMessage( '{{GENDER:*Female|m|f|o}}' ) )->parse();
-		$this->assertEquals( $msg, 'f', 'Works unescaped' );
+		$this->assertEquals( 'f', $msg, 'Works unescaped' );
 		$escapedName = wfEscapeWikiText( '*Female' );
 		$msg2 = ( new RawMessage( '{{GENDER:' . $escapedName . '|m|f|o}}' ) )
 			->parse();
-		$this->assertEquals( $msg, 'f', 'Works escaped' );
+		$this->assertEquals( 'f', $msg2, 'Works escaped' );
 	}
 
 	public function provideTalkpagename() {
@@ -65,12 +65,12 @@ class CoreParserFunctionsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
-	 * @dataProvider provideTalkpagename
+	 * @dataProvider provideSubjectpagename
 	 */
 	public function testSubjectpagename( $expected, $title ) {
 		$parser = MediaWikiServices::getInstance()->getParser();
 
-		$this->assertSame( $expected, CoreParserFunctions::talkpagename( $parser, $title ) );
+		$this->assertSame( $expected, CoreParserFunctions::subjectpagename( $parser, $title ) );
 	}
 
 }

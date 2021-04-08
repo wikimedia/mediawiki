@@ -25,7 +25,7 @@ kmwiki|https://kmwiki.wikispaces.com/$1|0|
 linuxwiki|http://linuxwiki.de/$1|0|
 lojban|https://mw.lojban.org/papri/$1|0|
 lqwiki|http://wiki.linuxquestions.org/wiki/$1|0|
-meatball|http://www.usemod.com/cgi-bin/mb.pl?$1|0|
+meatball|http://meatballwiki.org/wiki/$1|0|
 mediawikiwiki|https://www.mediawiki.org/wiki/$1|0|https://www.mediawiki.org/w/api.php
 memoryalpha|http://en.memory-alpha.org/wiki/$1|0|http://en.memory-alpha.org/api.php
 metawiki|http://sunir.org/apps/meta.pl?$1|0|

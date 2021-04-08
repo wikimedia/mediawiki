@@ -21,6 +21,8 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -75,7 +77,7 @@ class Protect extends Maintenance {
 		# un/protect the article
 		$this->output( "Updating protection status... " );
 
-		$page = WikiPage::factory( $t );
+		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $t );
 		$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, $reason, $user );
 
 		if ( $status->isOK() ) {

@@ -53,11 +53,13 @@ $namespaceAliases = [
 	'Brûker_oerlis' => NS_USER_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Allmessages'               => [ 'Alle wikiberjochten' ],
 	'Allpages'                  => [ 'Alle titels', 'Alle siden' ],
 	'Ancientpages'              => [ 'Alde siden', 'Âlde siden', 'Siden dy\'t lang net feroare binne' ],
 	'Block'                     => [ 'Slút brûker út', 'Slút meidogger út' ],
+	'BlockList'                 => [ 'List fan útsletten Ynternet-adressen en brûkersnammen', 'List fan útsletten ynternet-adressen en meidochnammen', 'Útslette brûkers', 'Utslette brûkers', 'Útsletten meidoggers', 'Utsletten meidoggers' ],
 	'Booksources'               => [ 'Boekynformaasje' ],
 	'BrokenRedirects'           => [ 'Misse trochferwizings', 'Missetrochferwizings' ],
 	'Categories'                => [ 'Kategoryen', 'Rubriken' ],
@@ -71,7 +73,6 @@ $specialPageAliases = [
 	'Fewestrevisions'           => [ 'Siden mei de minste bewurkings', 'Siden mei de minste ferzjes', 'Siden mei de minste wizigings' ],
 	'Filepath'                  => [ 'Triempad' ],
 	'Import'                    => [ 'Ymport' ],
-	'BlockList'                 => [ 'List fan útsletten Ynternet-adressen en brûkersnammen', 'List fan útsletten ynternet-adressen en meidochnammen', 'Útslette brûkers', 'Utslette brûkers', 'Útsletten meidoggers', 'Utsletten meidoggers' ],
 	'Listadmins'                => [ 'Meidoggerlist Behearders' ],
 	'Listbots'                  => [ 'Meidoggerlist Bots' ],
 	'Listfiles'                 => [ 'Ofbyld list', 'Ofbyldlist' ],

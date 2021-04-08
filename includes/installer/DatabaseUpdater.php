@@ -31,8 +31,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
 require_once __DIR__ . '/../../maintenance/Maintenance.php';
 
 /**
- * Class for handling database updates. Roughly based off of updaters.inc, with
- * a few improvements :)
+ * Class for handling database updates.
  *
  * @stable to extend
  * @ingroup Installer
@@ -101,7 +100,7 @@ abstract class DatabaseUpdater {
 	/**
 	 * File handle for SQL output.
 	 *
-	 * @var resource
+	 * @var resource|null
 	 */
 	protected $fileHandle = null;
 
@@ -139,27 +138,8 @@ abstract class DatabaseUpdater {
 	 * Cause extensions to register any updates they need to perform.
 	 */
 	private function loadExtensionSchemaUpdates() {
-		$this->initOldGlobals();
 		$hookContainer = $this->loadExtensions();
 		( new HookRunner( $hookContainer ) )->onLoadExtensionSchemaUpdates( $this );
-	}
-
-	/**
-	 * Initialize all of the old globals. One day this should all become
-	 * something much nicer
-	 */
-	private function initOldGlobals() {
-		global $wgExtNewTables, $wgExtNewFields, $wgExtPGNewFields,
-			$wgExtPGAlteredFields, $wgExtNewIndexes, $wgExtModifiedFields;
-
-		# For extensions only, should be populated via hooks
-		# $wgDBtype should be checked to specify the proper file
-		$wgExtNewTables = []; // table, dir
-		$wgExtNewFields = []; // table, column, dir
-		$wgExtPGNewFields = []; // table, column, column attributes; for PostgreSQL
-		$wgExtPGAlteredFields = []; // table, column, new type, conversion method; for PostgreSQL
-		$wgExtNewIndexes = []; // table, index, dir
-		$wgExtModifiedFields = []; // table, index, dir
 	}
 
 	/**
@@ -241,7 +221,7 @@ abstract class DatabaseUpdater {
 	 * Set the HookContainer to use for loading extension schema updates.
 	 *
 	 * @internal For use by DatabaseInstaller
-	 * @since 1.35.1
+	 * @since 1.36
 	 * @param HookContainer $hookContainer
 	 */
 	public function setAutoExtensionHookContainer( HookContainer $hookContainer ) {
@@ -479,8 +459,7 @@ abstract class DatabaseUpdater {
 		$updates = $this->updatesSkipped;
 		$this->updatesSkipped = [];
 
-		foreach ( $updates as $funcList ) {
-			list( $func, $args, $origParams ) = $funcList;
+		foreach ( $updates as [ $func, $args, $origParams ] ) {
 			// @phan-suppress-next-line PhanUndeclaredInvokeInCallable
 			$func( ...$args );
 			flush();
@@ -514,11 +493,11 @@ abstract class DatabaseUpdater {
 		$what = array_flip( $what );
 		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
 		if ( isset( $what['core'] ) ) {
+			$this->doCollationUpdate();
 			$this->runUpdates( $this->getCoreUpdateList(), false );
 		}
 		if ( isset( $what['extensions'] ) ) {
 			$this->loadExtensionSchemaUpdates();
-			$this->runUpdates( $this->getOldGlobalUpdates(), false );
 			$this->runUpdates( $this->getExtensionUpdates(), true );
 		}
 
@@ -645,55 +624,9 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Before 1.17, we used to handle updates via stuff like
-	 * $wgExtNewTables/Fields/Indexes. This is nasty :) We refactored a lot
-	 * of this in 1.17 but we want to remain back-compatible for a while. So
-	 * load up these old global-based things into our update list.
-	 *
-	 * @stable to override
-	 * @return array
-	 */
-	protected function getOldGlobalUpdates() {
-		global $wgExtNewFields, $wgExtNewTables, $wgExtModifiedFields,
-			$wgExtNewIndexes;
-
-		$updates = [];
-
-		foreach ( $wgExtNewTables as $tableRecord ) {
-			$updates[] = [
-				'addTable', $tableRecord[0], $tableRecord[1], true
-			];
-		}
-
-		foreach ( $wgExtNewFields as $fieldRecord ) {
-			$updates[] = [
-				'addField', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2], true
-			];
-		}
-
-		foreach ( $wgExtNewIndexes as $fieldRecord ) {
-			$updates[] = [
-				'addIndex', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2], true
-			];
-		}
-
-		foreach ( $wgExtModifiedFields as $fieldRecord ) {
-			$updates[] = [
-				'modifyField', $fieldRecord[0], $fieldRecord[1],
-				$fieldRecord[2], true
-			];
-		}
-
-		return $updates;
-	}
-
-	/**
 	 * Get an array of updates to perform on the database. Should return a
 	 * multi-dimensional array. The main key is the MediaWiki version (1.12,
-	 * 1.13...) with the values being arrays of updates, identical to how
-	 * updaters.inc did it (for now)
+	 * 1.13...) with the values being arrays of updates.
 	 *
 	 * @return array[]
 	 */
@@ -774,8 +707,7 @@ abstract class DatabaseUpdater {
 	}
 
 	/**
-	 * Get the full path of a patch file. Originally based on archive()
-	 * from updaters.inc. Keep in mind this always returns a patch, as
+	 * Get the full path of a patch file. Keep in mind this always returns a patch, as
 	 * it fails back to MySQL if no DB-specific patch can be found
 	 *
 	 * @param IDatabase $db
@@ -1230,90 +1162,26 @@ abstract class DatabaseUpdater {
 	# Common updater functions
 
 	/**
-	 * Sets the number of active users in the site_stats table
-	 */
-	protected function doActiveUsersInit() {
-		$activeUsers = $this->db->selectField( 'site_stats', 'ss_active_users', '', __METHOD__ );
-		if ( $activeUsers == -1 ) {
-			$activeUsers = $this->db->selectField( 'recentchanges',
-				'COUNT( DISTINCT rc_user_text )',
-				[ 'rc_user != 0', 'rc_bot' => 0, "rc_log_type != 'newusers'" ], __METHOD__
-			);
-			$this->db->update( 'site_stats',
-				[ 'ss_active_users' => intval( $activeUsers ) ],
-				[ 'ss_row_id' => 1 ], __METHOD__, [ 'LIMIT' => 1 ]
-			);
-		}
-		$this->output( "...ss_active_users user count set...\n" );
-	}
-
-	/**
-	 * Populates the log_user_text field in the logging table
-	 */
-	protected function doLogUsertextPopulation() {
-		if ( !$this->updateRowExists( 'populate log_usertext' ) ) {
-			$this->output(
-				"Populating log_user_text field, printing progress markers. For large\n" .
-				"databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateLogUsertext.php.\n"
-			);
-
-			$task = $this->maintenance->runChild( PopulateLogUsertext::class );
-			$task->execute();
-			$this->output( "done.\n" );
-		}
-	}
-
-	/**
-	 * Migrate log params to new table and index for searching
-	 */
-	protected function doLogSearchPopulation() {
-		if ( !$this->updateRowExists( 'populate log_search' ) ) {
-			$this->output(
-				"Populating log_search table, printing progress markers. For large\n" .
-				"databases, you may want to hit Ctrl-C and do this manually with\n" .
-				"maintenance/populateLogSearch.php.\n" );
-
-			$task = $this->maintenance->runChild( PopulateLogSearch::class );
-			$task->execute();
-			$this->output( "done.\n" );
-		}
-	}
-
-	/**
 	 * Update CategoryLinks collation
 	 */
 	protected function doCollationUpdate() {
 		global $wgCategoryCollation;
-		if ( $this->db->fieldExists( 'categorylinks', 'cl_collation', __METHOD__ ) ) {
-			if ( $this->db->selectField(
+		if ( $this->db->selectField(
 				'categorylinks',
 				'COUNT(*)',
 				'cl_collation != ' . $this->db->addQuotes( $wgCategoryCollation ),
 				__METHOD__
-				) == 0
-			) {
-				$this->output( "...collations up-to-date.\n" );
+			) == 0
+		) {
+			$this->output( "...collations up-to-date.\n" );
 
-				return;
-			}
-
-			$this->output( "Updating category collations..." );
-			$task = $this->maintenance->runChild( UpdateCollation::class );
-			$task->execute();
-			$this->output( "...done.\n" );
+			return;
 		}
-	}
 
-	/**
-	 * Migrates user options from the user table blob to user_properties
-	 */
-	protected function doMigrateUserOptions() {
-		if ( $this->db->tableExists( 'user_properties', __METHOD__ ) ) {
-			$cl = $this->maintenance->runChild( ConvertUserOptions::class, 'convertUserOptions.php' );
-			$cl->execute();
-			$this->output( "done.\n" );
-		}
+		$this->output( "Updating category collations..." );
+		$task = $this->maintenance->runChild( UpdateCollation::class );
+		$task->execute();
+		$this->output( "...done.\n" );
 	}
 
 	/**
@@ -1546,4 +1414,5 @@ abstract class DatabaseUpdater {
 		// @phan-suppress-next-line PhanUndeclaredInvokeInCallable Phan is confused
 		return $func( ...$params );
 	}
+
 }

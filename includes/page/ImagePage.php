@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\IResultWrapper;
 class ImagePage extends Article {
 	use MediaFileTrait;
 
-	/** @var File|false */
+	/** @var File|false Only temporary false, most code can assume this is a File */
 	private $displayImg;
 
 	/** @var FileRepo */
@@ -42,7 +42,7 @@ class ImagePage extends Article {
 	/** @var bool */
 	private $fileLoaded;
 
-	/** @var bool */
+	/** @var string|false Guaranteed to be HTML, {@see File::getDescriptionText} */
 	protected $mExtraDescription = false;
 
 	/**
@@ -104,7 +104,7 @@ class ImagePage extends Article {
 			$this->getContext()->getUser()->getOption( 'diffonly' )
 		);
 
-		if ( $this->getTitle()->getNamespace() != NS_FILE || ( $diff !== null && $diffOnly ) ) {
+		if ( $this->getTitle()->getNamespace() !== NS_FILE || ( $diff !== null && $diffOnly ) ) {
 			parent::view();
 			return;
 		}
@@ -112,7 +112,7 @@ class ImagePage extends Article {
 		$this->loadFile();
 
 		if (
-			$this->getTitle()->getNamespace() == NS_FILE
+			$this->getTitle()->getNamespace() === NS_FILE
 			&& $this->getFile()->getRedirected()
 		) {
 			if (
@@ -129,13 +129,12 @@ class ImagePage extends Article {
 		if ( $wgShowEXIF && $this->displayImg->exists() ) {
 			// @todo FIXME: Bad interface, see note on MediaHandler::formatMetadata().
 			$formattedMetadata = $this->displayImg->formatMetadata( $this->getContext() );
-			$showmeta = $formattedMetadata !== false;
 		} else {
-			$showmeta = false;
+			$formattedMetadata = false;
 		}
 
 		if ( !$diff && $this->displayImg->exists() ) {
-			$out->addHTML( $this->showTOC( $showmeta ) );
+			$out->addHTML( $this->showTOC( (bool)$formattedMetadata ) );
 		}
 
 		if ( !$diff ) {
@@ -192,8 +191,7 @@ class ImagePage extends Article {
 			$out->addHTML( $html );
 		}
 
-		if ( $showmeta ) {
-			'@phan-var array $formattedMetadata';
+		if ( $formattedMetadata ) {
 			$out->addHTML( Xml::element(
 				'h2',
 				[ 'id' => 'metadata' ],
@@ -261,7 +259,7 @@ class ImagePage extends Article {
 	 */
 	protected function makeMetadataTable( $metadata ) {
 		$r = $this->getContext()->msg( 'metadata-help' )->plain();
-		// Intial state is collapsed
+		// Initial state is collapsed
 		// see filepage.css and mediawiki.action.view.metadata module.
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata collapsed\">\n";
 		foreach ( $metadata as $type => $stuff ) {
@@ -279,27 +277,6 @@ class ImagePage extends Article {
 		}
 		$r .= "</table>\n";
 		return $r;
-	}
-
-	/**
-	 * Overloading Article's getEmptyPageParserOutput method.
-	 *
-	 * Omit noarticletext if sharedupload; text will be fetched from the
-	 * shared upload server if possible.
-	 *
-	 * @param ParserOptions $options
-	 * @return ParserOutput
-	 */
-	public function getEmptyPageParserOutput( ParserOptions $options ) {
-		$this->loadFile();
-		if (
-			$this->getFile()
-			&& !$this->getFile()->isLocal()
-			&& !$this->getPage()->getId()
-		) {
-			return new ParserOutput();
-		}
-		return parent::getEmptyPageParserOutput( $options );
 	}
 
 	/**
@@ -469,6 +446,7 @@ class ImagePage extends Article {
 							[],
 							[ 'page' => $page - 1 ]
 						);
+						// @phan-suppress-next-line SecurityCheck-DoubleEscaped link getting a key, false positive
 						$thumb1 = Linker::makeThumbLinkObj(
 							$this->getTitle(),
 							$this->displayImg,
@@ -489,6 +467,7 @@ class ImagePage extends Article {
 							[],
 							[ 'page' => $page + 1 ]
 						);
+						// @phan-suppress-next-line SecurityCheck-DoubleEscaped link getting a key, false positive
 						$thumb2 = Linker::makeThumbLinkObj(
 							$this->getTitle(),
 							$this->displayImg,
@@ -622,9 +601,8 @@ EOT
 				);
 			}
 
-			if ( $wgEnableUploads && MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $user, 'upload' )
+			if ( $wgEnableUploads &&
+				$this->getContext()->getAuthority()->isAllowed( 'upload' )
 			) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
@@ -770,10 +748,10 @@ EOT
 			return;
 		}
 
-		$canUpload = MediaWikiServices::getInstance()->getPermissionManager()
-			->quickUserCan( 'upload', $this->getContext()->getUser(), $this->getTitle() );
+		$canUpload = $this->getContext()->getAuthority()
+			->probablyCan( 'upload', $this->getTitle() );
 		if ( $canUpload && UploadBase::userCanReUpload(
-				$this->getContext()->getUser(),
+				$this->getContext()->getAuthority(),
 				$this->getFile() )
 		) {
 			// "Upload a new version of this file" link
@@ -807,7 +785,10 @@ EOT
 	protected function imageHistory() {
 		$this->loadFile();
 		$out = $this->getContext()->getOutput();
-		$pager = new ImageHistoryPseudoPager( $this );
+		$pager = new ImageHistoryPseudoPager(
+			$this,
+			MediaWikiServices::getInstance()->getLinkBatchFactory()
+		);
 		$out->addHTML( $pager->getBody() );
 		$out->preventClickjacking( $pager->getPreventClickjacking() );
 
@@ -1016,7 +997,12 @@ EOT
 		}
 		'@phan-var LocalFile $file';
 
-		$deleter = new FileDeleteForm( $file, $this->getContext()->getUser() );
+		$context = $this->getContext();
+		$deleter = new FileDeleteForm(
+			$file,
+			$context->getUser(),
+			$context->getOutput()
+		);
 		$deleter->execute();
 	}
 
@@ -1038,8 +1024,8 @@ EOT
 	 * Callback for usort() to do link sorts by (namespace, title)
 	 * Function copied from Title::compare()
 	 *
-	 * @param object $a Object page to compare with
-	 * @param object $b Object page to compare with
+	 * @param stdClass $a Object page to compare with
+	 * @param stdClass $b Object page to compare with
 	 * @return int Result of string comparison, or namespace comparison
 	 */
 	protected function compare( $a, $b ) {
@@ -1183,7 +1169,7 @@ EOT
 
 	/**
 	 * @see WikiFilePage::getDuplicates
-	 * @return array|null
+	 * @return File[]|null
 	 */
 	public function getDuplicates() {
 		return $this->getPage()->getDuplicates();

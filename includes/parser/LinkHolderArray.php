@@ -72,6 +72,7 @@ class LinkHolderArray {
 		}
 		$this->languageConverter = $languageConverter;
 		if ( !$hookContainer ) {
+			wfDeprecated( __METHOD__ . ' without $hookContainer parameter', '1.35' );
 			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
 		}
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -177,8 +178,9 @@ class LinkHolderArray {
 			return;
 		}
 
-		$colours = [];
-		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
+		$classes = [];
+		$services = MediaWikiServices::getInstance();
+		$linkCache = $services->getLinkCache();
 		$output = $this->parent->getOutput();
 		$linkRenderer = $this->parent->getLinkRenderer();
 
@@ -187,10 +189,11 @@ class LinkHolderArray {
 		# Sort by namespace
 		ksort( $this->internals );
 
-		$linkcolour_ids = [];
+		$pagemap = [];
 
 		# Generate query
-		$lb = new LinkBatch();
+		$linkBatchFactory = $services->getLinkBatchFactory();
+		$lb = $linkBatchFactory->newLinkBatch();
 		$lb->setCaller( __METHOD__ );
 
 		foreach ( $this->internals as $ns => $entries ) {
@@ -205,17 +208,17 @@ class LinkHolderArray {
 
 				# Check if it's a static known link, e.g. interwiki
 				if ( $title->isAlwaysKnown() ) {
-					$colours[$pdbk] = '';
+					$classes[$pdbk] = '';
 				} elseif ( $ns == NS_SPECIAL ) {
-					$colours[$pdbk] = 'new';
+					$classes[$pdbk] = 'new';
 				} else {
 					$id = $linkCache->getGoodLinkID( $pdbk );
 					if ( $id != 0 ) {
-						$colours[$pdbk] = $linkRenderer->getLinkClasses( $title );
+						$classes[$pdbk] = $linkRenderer->getLinkClasses( $title );
 						$output->addLink( $title, $id );
-						$linkcolour_ids[$id] = $pdbk;
+						$pagemap[$id] = $pdbk;
 					} elseif ( $linkCache->isBadLink( $pdbk ) ) {
-						$colours[$pdbk] = 'new';
+						$classes[$pdbk] = 'new';
 					} else {
 						# Not in the link cache, add it to the query
 						$lb->addObj( $title );
@@ -243,20 +246,20 @@ class LinkHolderArray {
 				$pdbk = $title->getPrefixedDBkey();
 				$linkCache->addGoodLinkObjFromRow( $title, $s );
 				$output->addLink( $title, $s->page_id );
-				$colours[$pdbk] = $linkRenderer->getLinkClasses( $title );
+				$classes[$pdbk] = $linkRenderer->getLinkClasses( $title );
 				// add id to the extension todolist
-				$linkcolour_ids[$s->page_id] = $pdbk;
+				$pagemap[$s->page_id] = $pdbk;
 			}
 			unset( $res );
 		}
-		if ( $linkcolour_ids !== [] ) {
+		if ( $pagemap !== [] ) {
 			// pass an array of page_ids to an extension
-			$this->hookRunner->onGetLinkColours( $linkcolour_ids, $colours, $this->parent->getTitle() );
+			$this->hookRunner->onGetLinkColours( $pagemap, $classes, $this->parent->getTitle() );
 		}
 
 		# Do a second query for different language variants of links and categories
 		if ( $this->languageConverter->hasVariants() ) {
-			$this->doVariants( $colours );
+			$this->doVariants( $classes );
 		}
 
 		# Construct search and replace arrays
@@ -277,10 +280,10 @@ class LinkHolderArray {
 				} else {
 					$displayText = new HtmlArmor( $displayTextHtml );
 				}
-				if ( !isset( $colours[$pdbk] ) ) {
-					$colours[$pdbk] = 'new';
+				if ( !isset( $classes[$pdbk] ) ) {
+					$classes[$pdbk] = 'new';
 				}
-				if ( $colours[$pdbk] == 'new' ) {
+				if ( $classes[$pdbk] == 'new' ) {
 					$linkCache->addBadLinkObj( $title );
 					$output->addLink( $title, 0 );
 					$link = $linkRenderer->makeBrokenLink(
@@ -288,7 +291,7 @@ class LinkHolderArray {
 					);
 				} else {
 					$link = $linkRenderer->makePreloadedLink(
-						$title, $displayText, $colours[$pdbk], [], $query
+						$title, $displayText, $classes[$pdbk], [], $query
 					);
 				}
 
@@ -299,7 +302,7 @@ class LinkHolderArray {
 		# Do the thing
 		$text = preg_replace_callback(
 			'/(<!--LINK\'" .*?-->)/',
-			function ( array $matches ) use ( $replacePairs ) {
+			static function ( array $matches ) use ( $replacePairs ) {
 				return $replacePairs[$matches[1]];
 			},
 			$text
@@ -330,7 +333,7 @@ class LinkHolderArray {
 
 		$text = preg_replace_callback(
 			'/<!--IWLINK\'" (.*?)-->/',
-			function ( array $matches ) use ( $replacePairs ) {
+			static function ( array $matches ) use ( $replacePairs ) {
 				return $replacePairs[$matches[1]];
 			},
 			$text
@@ -338,11 +341,12 @@ class LinkHolderArray {
 	}
 
 	/**
-	 * Modify $this->internals and $colours according to language variant linking rules
-	 * @param array &$colours
+	 * Modify $this->internals and $classes according to language variant linking rules
+	 * @param array &$classes
 	 */
-	protected function doVariants( &$colours ) {
-		$linkBatch = new LinkBatch();
+	protected function doVariants( &$classes ) {
+		$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		$linkBatch = $linkBatchFactory->newLinkBatch();
 		$variantMap = []; // maps $pdbkey_Variant => $keys (of link holders)
 		$output = $this->parent->getOutput();
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
@@ -358,7 +362,7 @@ class LinkHolderArray {
 			}
 			foreach ( $entries as $index => [ 'title' => $title, 'pdbk' => $pdbk ] ) {
 				// we only deal with new links (in its first query)
-				if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
+				if ( !isset( $classes[$pdbk] ) || $classes[$pdbk] === 'new' ) {
 					$titlesAttrs[] = [ $index, $title ];
 					// separate titles with \0 because it would never appears
 					// in a valid title
@@ -435,7 +439,7 @@ class LinkHolderArray {
 				__METHOD__
 			);
 
-			$linkcolour_ids = [];
+			$pagemap = [];
 			$linkRenderer = $this->parent->getLinkRenderer();
 
 			// for each found variants, figure out link holders and replace
@@ -457,14 +461,14 @@ class LinkHolderArray {
 					$entry =& $this->internals[$ns][$index];
 					$pdbk = $entry['pdbk'];
 
-					if ( !isset( $colours[$pdbk] ) || $colours[$pdbk] === 'new' ) {
+					if ( !isset( $classes[$pdbk] ) || $classes[$pdbk] === 'new' ) {
 						// found link in some of the variants, replace the link holder data
 						$entry['title'] = $variantTitle;
 						$entry['pdbk'] = $varPdbk;
 
 						// set pdbk and colour
-						$colours[$varPdbk] = $linkRenderer->getLinkClasses( $variantTitle );
-						$linkcolour_ids[$s->page_id] = $pdbk;
+						$classes[$varPdbk] = $linkRenderer->getLinkClasses( $variantTitle );
+						$pagemap[$s->page_id] = $pdbk;
 					}
 				}
 
@@ -476,7 +480,7 @@ class LinkHolderArray {
 					}
 				}
 			}
-			$this->hookRunner->onGetLinkColours( $linkcolour_ids, $colours, $this->parent->getTitle() );
+			$this->hookRunner->onGetLinkColours( $pagemap, $classes, $this->parent->getTitle() );
 
 			// rebuild the categories in original order (if there are replacements)
 			if ( $varCategories !== [] ) {
@@ -484,11 +488,7 @@ class LinkHolderArray {
 				$originalCats = $output->getCategories();
 				foreach ( $originalCats as $cat => $sortkey ) {
 					// make the replacement
-					if ( array_key_exists( $cat, $varCategories ) ) {
-						$newCats[$varCategories[$cat]] = $sortkey;
-					} else {
-						$newCats[$cat] = $sortkey;
-					}
+					$newCats[$varCategories[$cat] ?? $cat] = $sortkey;
 				}
 				$output->setCategoryLinks( $newCats );
 			}

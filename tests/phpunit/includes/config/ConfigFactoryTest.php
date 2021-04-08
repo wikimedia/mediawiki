@@ -72,7 +72,7 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 		// define new config instance
 		$newFactory = new ConfigFactory();
 		$newFactory->register( 'foo', 'GlobalVarConfig::newInstance' );
-		$newFactory->register( 'bar', function () {
+		$newFactory->register( 'bar', static function () {
 			return new HashConfig();
 		} );
 
@@ -148,7 +148,7 @@ class ConfigFactoryTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testMakeConfigWithInvalidCallback() {
 		$factory = new ConfigFactory();
-		$factory->register( 'unittest', function () {
+		$factory->register( 'unittest', static function () {
 			return true; // Not a Config object
 		} );
 		$this->expectException( UnexpectedValueException::class );

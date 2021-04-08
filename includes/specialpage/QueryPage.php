@@ -21,10 +21,12 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -64,6 +66,12 @@ abstract class QueryPage extends SpecialPage {
 	 * @var bool Whether to show prev/next links
 	 */
 	protected $shownavigation = true;
+
+	/** @var ILoadBalancer|null */
+	private $loadBalancer = null;
+
+	/** @var LinkBatchFactory|null */
+	private $linkBatchFactory = null;
 
 	/**
 	 * Get a list of query page classes and their associated special pages,
@@ -119,6 +127,27 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		return $qp;
+	}
+
+	/**
+	 * @since 1.36
+	 * @param LinkBatchFactory $linkBatchFactory
+	 */
+	final protected function setLinkBatchFactory( LinkBatchFactory $linkBatchFactory ) {
+		$this->linkBatchFactory = $linkBatchFactory;
+	}
+
+	/**
+	 * @since 1.36
+	 * @return LinkBatchFactory
+	 */
+	final protected function getLinkBatchFactory(): LinkBatchFactory {
+		if ( $this->linkBatchFactory === null ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
+		}
+		return $this->linkBatchFactory;
 	}
 
 	/**
@@ -285,7 +314,7 @@ abstract class QueryPage extends SpecialPage {
 	 * result data. You should be able to grab SQL results from it.
 	 * If the function returns false, the line output will be skipped.
 	 * @param Skin $skin
-	 * @param object $result Result row
+	 * @param stdClass $result Result row
 	 * @return string|bool String or false to skip
 	 */
 	abstract protected function formatResult( $skin, $result );
@@ -339,10 +368,7 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		$fname = static::class . '::recache';
-		$dbw = wfGetDB( DB_MASTER );
-		if ( !$dbw ) {
-			return false;
-		}
+		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_MASTER );
 
 		try {
 			# Do query
@@ -413,7 +439,8 @@ abstract class QueryPage extends SpecialPage {
 	 * @return IDatabase
 	 */
 	protected function getRecacheDB() {
-		return wfGetDB( DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
+		return $this->getDBLoadBalancer()
+			->getConnectionRef( ILoadBalancer::DB_REPLICA, [ $this->getName(), 'QueryPage::recache', 'vslow' ] );
 	}
 
 	/**
@@ -424,7 +451,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function delete( LinkTarget $title ) {
 		if ( $this->isCached() ) {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_MASTER );
 			$dbw->delete( 'querycache', [
 				'qc_type' => $this->getName(),
 				'qc_namespace' => $title->getNamespace(),
@@ -510,7 +537,7 @@ abstract class QueryPage extends SpecialPage {
 	 * @since 1.18
 	 */
 	public function fetchFromCache( $limit, $offset = false ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$options = [];
 
 		if ( $limit !== false ) {
@@ -558,7 +585,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function getCachedTimestamp() {
 		if ( $this->cachedTimestamp === null ) {
-			$dbr = wfGetDB( DB_REPLICA );
+			$dbr = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_REPLICA );
 			$fname = static::class . '::getCachedTimestamp';
 			$this->cachedTimestamp = $dbr->selectField( 'querycache_info', 'qci_timestamp',
 				[ 'qci_type' => $this->getName() ], $fname );
@@ -779,7 +806,7 @@ abstract class QueryPage extends SpecialPage {
 			}
 
 			$html = $this->listoutput
-				? MediaWikiServices::getInstance()->getContentLanguage()->listToText( $html )
+				? $this->getContentLanguage()->listToText( $html )
 				: implode( '', $html );
 
 			$out->addHTML( $html );
@@ -815,6 +842,8 @@ abstract class QueryPage extends SpecialPage {
 	 * title and optional the namespace field) and executes the batch. This operation will pre-cache
 	 * LinkCache information like page existence and information for stub color and redirect hints.
 	 *
+	 * @note Call self::setLinkBatchFactory from special page constructor when use
+	 *
 	 * @param IResultWrapper $res The result wrapper to process. Needs to include the title
 	 *  field and namespace field, if the $ns parameter isn't set.
 	 * @param null $ns Use this namespace for the given titles in the result wrapper,
@@ -825,12 +854,33 @@ abstract class QueryPage extends SpecialPage {
 			return;
 		}
 
-		$batch = new LinkBatch;
+		$batch = $this->getLinkBatchFactory()->newLinkBatch();
 		foreach ( $res as $row ) {
 			$batch->add( $ns ?? $row->namespace, $row->title );
 		}
 		$batch->execute();
 
 		$res->seek( 0 );
+	}
+
+	/**
+	 * @since 1.36
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	final protected function setDBLoadBalancer( ILoadBalancer $loadBalancer ) {
+		$this->loadBalancer = $loadBalancer;
+	}
+
+	/**
+	 * @since 1.36
+	 * @return ILoadBalancer
+	 */
+	final protected function getDBLoadBalancer(): ILoadBalancer {
+		if ( $this->loadBalancer === null ) {
+			// Fallback if not provided
+			// TODO Change to wfWarn in a future release
+			$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		}
+		return $this->loadBalancer;
 	}
 }

@@ -42,6 +42,7 @@ $namespaceAliases = [
 	'لێدوانی_پۆل'       => NS_CATEGORY_TALK,
 ];
 
+/** @phpcs-require-sorted-array */
 $specialPageAliases = [
 	'Activeusers'               => [ 'بەکارھێنەرە_چالاکەکان' ],
 	'Allmessages'               => [ 'ھەموو_پەیامەکان' ],
@@ -108,15 +109,16 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'چی_بەستەری_داوە_بێرە' ],
 ];
 
+/** @phpcs-require-sorted-array */
 $magicWords = [
-	'img_thumbnail'             => [ '1', 'وێنۆک', 'thumb', 'thumbnail' ],
-	'img_right'                 => [ '1', 'ڕاست', 'right' ],
-	'img_left'                  => [ '1', 'چەپ', 'left' ],
-	'img_width'                 => [ '1', '$1پیکسڵ', '$1px' ],
+	'img_border'                => [ '1', 'سنوور', 'border' ],
 	'img_center'                => [ '1', 'ناوەڕاست', 'center', 'centre' ],
 	'img_framed'                => [ '1', 'چوارچێوە', 'frame', 'framed', 'enframed' ],
 	'img_frameless'             => [ '1', 'بێچوارچێوە', 'frameless' ],
-	'img_border'                => [ '1', 'سنوور', 'border' ],
+	'img_left'                  => [ '1', 'چەپ', 'left' ],
+	'img_right'                 => [ '1', 'ڕاست', 'right' ],
+	'img_thumbnail'             => [ '1', 'وێنۆک', 'thumb', 'thumbnail' ],
+	'img_width'                 => [ '1', '$1پیکسڵ', '$1px' ],
 	'redirect'                  => [ '0', '#ڕەوانەکەر', '#REDIRECT' ],
 ];
 
