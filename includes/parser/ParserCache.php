@@ -309,6 +309,12 @@ class ParserCache {
 			);
 		}
 
+		if ( $metadata === false ) {
+			$this->incrementStats( $page, "miss.absent.metadata" );
+			$this->logger->debug( 'ParserOutput metadata cache miss', [ 'name' => $this->name ] );
+			return null;
+		}
+
 		// NOTE: If the value wasn't serialized to JSON when being stored,
 		//       we may already have a ParserOutput object here. This used
 		//       to be the default behavior before 1.36. We need to retain
