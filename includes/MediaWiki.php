@@ -26,7 +26,6 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use Psr\Log\LoggerInterface;
-use Wikimedia\AtEase;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DBConnectionError;
 
@@ -46,10 +45,12 @@ class MediaWiki {
 	/** @var int Class DEFER_* constant; how non-blocking post-response tasks should run */
 	private $postSendStrategy;
 
-	/** @var int Use fastcgi_finish_request() */
+	/** Call fastcgi_finish_request() to make post-send updates async */
 	private const DEFER_FASTCGI_FINISH_REQUEST = 1;
-	/** @var int Use ob_end_flush() after explicitly setting the Content-Length */
+	/** Set Content-Length and call ob_end_flush()/flush() to make post-send updates async */
 	private const DEFER_SET_LENGTH_AND_FLUSH = 2;
+	/** Do not try to make post-send updates async (e.g. for CLI mode) */
+	private const DEFER_CLI_MODE = 3;
 
 	/**
 	 * @param IContextSource|null $context
@@ -57,7 +58,10 @@ class MediaWiki {
 	public function __construct( IContextSource $context = null ) {
 		$this->context = $context ?: RequestContext::getMain();
 		$this->config = $this->context->getConfig();
-		if ( function_exists( 'fastcgi_finish_request' ) ) {
+
+		if ( $this->config->get( 'CommandLineMode' ) ) {
+			$this->postSendStrategy = self::DEFER_CLI_MODE;
+		} elseif ( function_exists( 'fastcgi_finish_request' ) ) {
 			$this->postSendStrategy = self::DEFER_FASTCGI_FINISH_REQUEST;
 		} else {
 			$this->postSendStrategy = self::DEFER_SET_LENGTH_AND_FLUSH;
@@ -611,7 +615,11 @@ class MediaWiki {
 			$n = intval( $jobRunRate );
 		}
 
-		// Note that DeferredUpdates will catch and log an errors (T88312)
+		if ( wfReadOnly() ) {
+			return;
+		}
+
+		// Note that DeferredUpdates will catch and log any errors (T88312)
 		DeferredUpdates::addUpdate( new TransactionRoundDefiningUpdate( function () use ( $n ) {
 			$logger = LoggerFactory::getInstance( 'runJobs' );
 			if ( $this->config->get( 'RunJobsAsync' ) ) {
@@ -803,46 +811,41 @@ class MediaWiki {
 		$timing = $this->context->getTiming();
 		$timing->mark( 'requestShutdown' );
 
-		// Perform the last synchronous operations...
-		try {
-			// Show visible profiling data if enabled (which cannot be post-send)
-			Profiler::instance()->logDataPageOutputOnly();
-		} catch ( Throwable $e ) {
-			// An error may already have been shown in run(), so just log it to be safe
-			MWExceptionHandler::logException( $e, MWExceptionHandler::CAUGHT_BY_ENTRYPOINT );
-		}
-
-		// Disable WebResponse setters for post-send processing (T191537).
-		WebResponse::disableForPostSend();
-
 		// Defer everything else if possible...
-		$callback = function () {
-			try {
-				$this->restInPeace();
-			} catch ( Throwable $e ) {
-				// If this is post-send, then displaying errors can cause broken HTML
-				MWExceptionHandler::rollbackMasterChangesAndLog(
-					$e,
-					MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
-				);
-			}
-		};
-
 		if ( $this->postSendStrategy === self::DEFER_FASTCGI_FINISH_REQUEST ) {
+			// Flush the output to the client, continue processing, and avoid further output
 			fastcgi_finish_request();
-			$callback();
-		} else {
-			// Flush PHP and web server output buffers
-			if ( !$this->config->get( 'CommandLineMode' ) ) {
-				AtEase\AtEase::suppressWarnings();
-				if ( ob_get_status() ) {
-					ob_end_flush();
-				}
-				flush();
-				AtEase\AtEase::restoreWarnings();
+		} elseif ( $this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH ) {
+			// Flush the output to the client, continue processing, and avoid further output
+			if ( ob_get_level() ) {
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				@ob_end_flush();
 			}
-			$callback();
+			// Flush the web server output buffer to the client/proxy if possible
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@flush();
 		}
+
+		// Since the headers and output where already flushed, disable WebResponse setters
+		// during post-send processing to warnings and unexpected behavior (T191537)
+		WebResponse::disableForPostSend();
+		// Run post-send updates while preventing further output for sanity...
+		ob_start( function () {
+			return ''; // do not output uncaught exceptions
+		} );
+		try {
+			$this->restInPeace();
+		} catch ( Throwable $e ) {
+			MWExceptionHandler::rollbackMasterChangesAndLog(
+				$e,
+				MWExceptionHandler::CAUGHT_BY_ENTRYPOINT
+			);
+		}
+		$length = ob_get_length();
+		if ( $length > 0 ) {
+			trigger_error( __METHOD__ . ": suppressed $length byte(s)", E_USER_NOTICE );
+		}
+		ob_end_clean();
 	}
 
 	/**
@@ -1028,12 +1031,79 @@ class MediaWiki {
 	}
 
 	/**
-	 * Print the actual output to the buffer (or webserver if there is none)
+	 * Print a response body to the current buffer (if there is one) or the server (otherwise)
 	 *
-	 * @param string $content
+	 * This method should be called after doPreOutputCommit() and before doPostOutputShutdown()
+	 *
+	 * Any accompanying Content-Type header is assumed to have already been set
+	 *
+	 * @param string $content Response content, usually from OutputPage::output()
 	 */
 	private function outputResponsePayload( $content ) {
-		// @TODO: respect DEFER_SET_LENGTH_AND_FLUSH
+		// Append any visible profiling data in a manner appropriate for the Content-Type
+		ob_start();
+		try {
+			Profiler::instance()->logDataPageOutputOnly();
+		} finally {
+			$content .= ob_get_clean();
+		}
+
+		// By default, usually one output buffer is active now, either the internal PHP buffer
+		// started by "output_buffering" in php.ini or the buffer started by MW_SETUP_CALLBACK.
+		// The MW_SETUP_CALLBACK buffer has an unlimited chunk size, while the internal PHP
+		// buffer only has an unlimited chunk size if output_buffering="On". If the buffer was
+		// filled up to the chunk size with printed data, then HTTP headers will have already
+		// been sent. Also, if the entry point had to stream content to the client, then HTTP
+		// headers will have already been sent as well, regardless of chunk size.
+
+		// Disable mod_deflate compression since it interferes with the output buffer set
+		// by MW_SETUP_CALLBACK and can also cause the client to wait on deferred updates
+		if ( function_exists( 'apache_setenv' ) ) {
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			@apache_setenv( 'no-gzip', 1 );
+		}
+
+		if (
+			// "Content-Length" is used to prevent clients from waiting on deferred updates
+			$this->postSendStrategy === self::DEFER_SET_LENGTH_AND_FLUSH &&
+			// The HTTP response code clearly allows for a meaningful body
+			in_array( http_response_code(), [ 200, 404 ], true ) &&
+			// The queue of (post-send) deferred updates is non-empty
+			DeferredUpdates::pendingUpdatesCount() &&
+			// Any buffered output is not spread out accross multiple output buffers
+			ob_get_level() <= 1 &&
+			// It is not too late to set additional HTTP headers
+			!headers_sent()
+		) {
+			$response = $this->context->getRequest()->response();
+
+			$obStatus = ob_get_status();
+			if ( !isset( $obStatus['name'] ) ) {
+				// No output buffer is active
+				$response->header( 'Content-Length: ' . strlen( $content ) );
+			} elseif ( $obStatus['name'] === 'default output handler' ) {
+				// Internal PHP "output_buffering" output buffer (note that the internal PHP
+				// "zlib.output_compression" output buffer is named "zlib output compression")
+				$response->header( 'Content-Length: ' . ( ob_get_length() + strlen( $content ) ) );
+			}
+
+			// The MW_SETUP_CALLBACK output buffer ("MediaWiki\OutputHandler::handle") sets
+			// "Content-Length" where applicable. Other output buffer types might not set this
+			// header, and since they might mangle or compress the payload, it is not possible
+			// to determine the final payload size here.
+
+			// Tell the client to immediately end the connection as soon as the response payload
+			// has been read (informed by any "Content-Length" header). This prevents the client
+			// from waiting on deferred updates.
+			// https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Connection
+			if ( ( $_SERVER['SERVER_PROTOCOL'] ?? '' ) === 'HTTP/1.1' ) {
+				$response->header( 'Connection: close' );
+			}
+		}
+
+		// Print the content *after* adjusting HTTP headers and disabling mod_deflate since
+		// calling "print" will send the output to the client if there is no output buffer or
+		// if the output buffer chunk size is reached
 		print $content;
 	}
 

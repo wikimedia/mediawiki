@@ -50,7 +50,9 @@ function wfLoadMain() {
 	// Respond to ResourceLoader request
 	$resourceLoader->respond( $context );
 
+	// Append any visible profiling data in a manner appropriate for the Content-Type
 	Profiler::instance()->setAllowOutput();
+	Profiler::instance()->logDataPageOutputOnly();
 
 	$mediawiki = new MediaWiki();
 	$mediawiki->doPostOutputShutdown();
