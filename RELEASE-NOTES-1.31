@@ -1,6 +1,6 @@
 == MediaWiki 1.31.13 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.12 ===
 * (T115436) resourceloader: CSSMin::getLocalFileReferences now strips
@@ -10,9 +10,11 @@ THIS IS NOT A RELEASE YET
 * DefaultSettings.php: Update $wgPingback documentation.
 * PHPVersionCheck: The PHP Group only supports PHP >= 7.3.0.
 * (T275261) Escape wikitext in the title in invalid title error messages.
-* (T277009) Allow blocked users to access Special:ResetTokens.
+* (T277009, CVE-2021-30158) SECURITY: Allow blocked users to access
+  Special:ResetTokens.
 * pageExist.php: Output trailing newlines.
-* (T278058) Escape rcfilters-filter-* messages on ChangesList pages.
+* (T278058, CVE-2021-30157) SECURITY: Escape rcfilters-filter-* messages
+  on ChangesList pages.
 * (T277414) HTMLFormField: Use non namespaced class name rather than
   static::class.
 * (T268230) Switch to new MediaWiki logo by Serhio Magpie.
@@ -20,7 +22,17 @@ THIS IS NOT A RELEASE YET
   config-pingback.
 * Fix documentation of user-global in $wgRateLimits.
 * BackupDumper: Add -o as shortcode for --output.
-* (T278014) Escape mediastatistics-header-* messages on Special:NewFiles.
+* (T278014, CVE-2021-30154) SECURITY: Escape mediastatistics-header-*
+  messages on Special:NewFiles.
+* (T270713, CVE-2021-30152) SECURITY: Allow user to only apply protection
+  they have right to do so via action=protect.
+* (T272386, CVE-2021-30159) SECURITY: Non-admin deleted enwiki page in
+  fast double move.
+* (T270988, CVE-2021-30155) SECURITY: ContentModelChange: Check that user
+  can create pages.
+* (T276843, CVE-2021-20270, CVE-2021-27291) SECURITY:
+  SyntaxHighlight_GeSHi: Various lexers have been disabled due to DoS
+  vectors.
 
 == MediaWiki 1.31.12 ==
 
