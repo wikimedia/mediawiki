@@ -68,7 +68,7 @@ MediaWiki supports over 350 languages. Many localisations are updated regularly.
 Below only new and removed languages are listed, as well as changes to languages
 because of Phabricator reports.
 
-* …
+* (T279619) Added language support for Dagbani (dag).
 
 === Breaking changes in 1.37 ===
 * WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
