@@ -3270,7 +3270,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * the next change of the page if it's watched etc.
 	 *
 	 * @deprecated since 1.35, hard deprecated since 1.36
-	 * Use WatchlistNotificationManager::clearTitleUserNotification() instead.
+	 * Use WatchlistManager::clearTitleUserNotification() instead.
 	 *
 	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
 	 * @param Title &$title Title of the article to look at
@@ -3279,7 +3279,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	public function clearNotification( &$title, $oldid = 0 ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		MediaWikiServices::getInstance()
-			->getWatchlistNotificationManager()
+			->getWatchlistManager()
 			->clearTitleUserNotifications( $this, $title, $oldid );
 	}
 

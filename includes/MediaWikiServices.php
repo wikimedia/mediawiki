@@ -93,7 +93,7 @@ use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
-use MediaWiki\User\WatchlistNotificationManager;
+use MediaWiki\Watchlist\WatchlistManager;
 use MessageCache;
 use MimeAnalyzer;
 use MWException;
@@ -1603,10 +1603,20 @@ class MediaWikiServices extends ServiceContainer {
 
 	/**
 	 * @since 1.35
-	 * @return WatchlistNotificationManager
+	 * @return WatchlistManager
+	 * @deprecated since 1.36 use getWatchlistManager() instead
 	 */
-	public function getWatchlistNotificationManager() : WatchlistNotificationManager {
-		return $this->getService( 'WatchlistNotificationManager' );
+	public function getWatchlistNotificationManager() : WatchlistManager {
+		wfDeprecated( __METHOD__, '1.36' );
+		return $this->getWatchlistManager();
+	}
+
+	/**
+	 * @since 1.36
+	 * @return WatchlistManager
+	 */
+	public function getWatchlistManager() : WatchlistManager {
+		return $this->getService( 'WatchlistManager' );
 	}
 
 	/**

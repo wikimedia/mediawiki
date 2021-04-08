@@ -6,19 +6,19 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\TalkPageNotificationManager;
-use MediaWiki\User\WatchlistNotificationManager;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
- * @covers \MediaWiki\User\WatchlistNotificationManager
+ * @covers \MediaWiki\Watchlist\WatchlistManager
  *
  * @author DannyS712
  * @group Database
  */
-class WatchlistNotificationManagerTest extends MediaWikiIntegrationTestCase {
+class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 	public function testClearTitleUserNotifications() {
 		$options = new ServiceOptions(
-			WatchlistNotificationManager::CONSTRUCTOR_OPTIONS,
+			WatchlistManager::CONSTRUCTOR_OPTIONS,
 			[
 				'UseEnotif' => false,
 				'ShowUpdatedMarker' => false
@@ -68,7 +68,7 @@ class WatchlistNotificationManagerTest extends MediaWikiIntegrationTestCase {
 			)
 			->willReturn( true );
 
-		$manager = new WatchlistNotificationManager(
+		$manager = new WatchlistManager(
 			$options,
 			$hookContainer,
 			$permissionManager,

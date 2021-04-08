@@ -1407,7 +1407,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 				// TODO: watchlist manager needs to take Authority and PageIdentity.
 				MediaWikiServices::getInstance()
-					->getWatchlistNotificationManager()
+					->getWatchlistManager()
 					->clearTitleUserNotifications( $performer->getUser(), $this->mTitle, $oldid );
 			},
 			DeferredUpdates::PRESEND

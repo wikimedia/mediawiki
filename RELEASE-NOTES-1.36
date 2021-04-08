@@ -476,7 +476,7 @@ because of Phabricator reports.
 * The $wgContLang variable, deprecated in 1.32, was removed. You can instead use
   MediaWikiServices::getInstance()->getContentLanguage().
 * User::clearAllNotifications(), hard deprecated in 1.35, was removed. Use
-  WatchlistNotificationManager::clearAllUserNotifications() instead.
+  WatchlistManager::clearAllUserNotifications() instead.
 * DatabaseBlock::getBlocker can return any UserIdentity instance, not just User.
 * MediaWiki::triggerJobs(), deprecated in 1.34, was removed.
 * The following Article methods, deprecated in 1.35, were removed:
@@ -720,7 +720,7 @@ because of Phabricator reports.
 * AuthManager::singleton(), deprecated in 1.35, is hard deprecated. Use
   MediaWikiServices::getAuthManager() instead.
 * User::clearNotification(), deprecated in 1.35, is hard deprecated. Use
-  WatchlistNotificationManager::clearTitleUserNotification() instead.
+  WatchlistManager::clearTitleUserNotification() instead.
 * Passing string to DatabaseBlock::setBlocker was deprecated. Only UserIdentity
   is now allowed.
 * DatabaseBlock constructor 'byText' option was deprecated in favour of 'by'
@@ -742,6 +742,10 @@ because of Phabricator reports.
 * The EditPageBeforeEditToolbar hook has been deprecated; it has become
   defunct after the classic edit toolbar was removed. Use one of the many
   other EditPage hooks instead.
+* Deprecated the class name MediaWiki\User\WatchlistNotificationManager; use
+  MediaWiki\Watchlist\WatchlistManager instead. Deprecated the method
+  MediaWikiServices->getWatchlistNotificationManager(); use
+  MediaWikiServices->getWatchlistManager() instead.
 * WANObjectCache::__construct() no longer takes the "coalesceKeys" option.
   A new "coalesceScheme" option takes its place, and is "hash_stop" by default.
   $wgWANObjectCaches entries that use dynomite should be updated to set the

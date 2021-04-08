@@ -4195,7 +4195,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function getNotificationTimestamp( User $user ) {
 		return MediaWikiServices::getInstance()
-			->getWatchlistNotificationManager()
+			->getWatchlistManager()
 			->getTitleNotificationTimestamp( $user, $this );
 	}
 

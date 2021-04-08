@@ -262,7 +262,6 @@ class MWExceptionHandler {
 					$file = $real['file'];
 					$line = $real['line'];
 					$message = $real['message'];
-					$prefix = '';
 				}
 				break;
 			default:
@@ -492,10 +491,16 @@ TXT;
 	 * @return string
 	 */
 	public static function getLogNormalMessage( Throwable $e ) {
-		$type = get_class( $e );
 		$message = $e->getMessage();
+		if ( !$e instanceof ErrorException ) {
+			// ErrorException is something we use internally to represent
+			// PHP errors (runtime warnings that aren't thrown or caught),
+			// don't bother putting it in the logs. Let the log message
+			// lead with "PHP Warning: " instead (see ::handleError).
+			$message = get_class( $e ) . ": $message";
+		}
 
-		return "[{reqId}] {exception_url}   $type: $message";
+		return "[{reqId}] {exception_url}   $message";
 	}
 
 	/**
