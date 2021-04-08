@@ -1634,12 +1634,6 @@ function wfHttpError( $code, $label, $desc ) {
  * @param bool $resetGzipEncoding
  */
 function wfResetOutputBuffers( $resetGzipEncoding = true ) {
-	if ( $resetGzipEncoding ) {
-		// Suppress Content-Encoding and Content-Length
-		// headers from OutputHandler::handle.
-		global $wgDisableOutputCompression;
-		$wgDisableOutputCompression = true;
-	}
 	while ( $status = ob_get_status() ) {
 		if ( isset( $status['flags'] ) ) {
 			$flags = PHP_OUTPUT_HANDLER_CLEANABLE | PHP_OUTPUT_HANDLER_REMOVABLE;
