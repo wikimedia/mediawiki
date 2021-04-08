@@ -57,6 +57,7 @@
 	"apihelp-block-example-user-complex": "Gebruiker <kbd>Vandal</kbd> voor onbepaalde tijd blokkeren met een reden, en verhinder het aanmaken van nieuwe accounts en het versturen van e-mail.",
 	"apihelp-changeauthenticationdata-example-password": "Poging om het wachtwoord van de huidige gebruiker te veranderen in <kbd>ExamplePassword</kbd>.",
 	"apihelp-changecontentmodel-summary": "Wijzig het inhoudsmodel van een pagina",
+	"apihelp-changecontentmodel-param-model": "Inhoudsmodel van de nieuwe inhoud.",
 	"apihelp-checktoken-summary": "De geldigheid van een token van <kbd>[[Special:ApiHelp/query+tokens|action=query&meta=tokens]]</kbd> controleren.",
 	"apihelp-checktoken-param-type": "Het type token dat getest wordt.",
 	"apihelp-checktoken-param-token": "Te testen token.",
