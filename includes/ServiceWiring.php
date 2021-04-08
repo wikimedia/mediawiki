@@ -1633,7 +1633,8 @@ return [
 			$services->getRevisionLookup(),
 			$services->getTalkPageNotificationManager(),
 			$services->getWatchedItemStore(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getNamespaceInfo()
 		);
 	},
 

@@ -150,8 +150,22 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			) );
 		$mock->method( 'getSubject' )->willReturn( 0 );
 		$mock->method( 'getTalk' )->willReturn( 1 );
+		$mock->method( 'isWatchable' )->willReturnCallback(
+			function ( $ns ) {
+				return $ns >= 0;
+			}
+		);
+
 		$mock->expects( $this->never() )
-			->method( $this->anythingBut( 'getSubjectPage', 'getTalkPage', 'getSubject', 'getTalk' ) );
+			->method(
+				$this->anythingBut(
+					'getSubjectPage',
+					'getTalkPage',
+					'getSubject',
+					'getTalk',
+					'isWatchable'
+				)
+			);
 		return $mock;
 	}
 

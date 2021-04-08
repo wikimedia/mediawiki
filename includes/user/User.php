@@ -1962,7 +1962,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/**
 	 * Check if user is blocked from editing a particular article
 	 *
-	 * @param Title $title Title to check
+	 * @param PageIdentity $title Title to check
 	 * @param bool $fromReplica Whether to check the replica DB instead of the master
 	 * @return bool
 	 *
@@ -1971,6 +1971,8 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *
 	 */
 	public function isBlockedFrom( $title, $fromReplica = false ) {
+		// TODO: remove the cast when PermissionManager accepts PageIdentity
+		$title = TitleValue::castPageToLinkTarget( $title );
 		return MediaWikiServices::getInstance()->getPermissionManager()
 			->isBlockedFrom( $this, $title, $fromReplica );
 	}
@@ -3185,14 +3187,18 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/**
 	 * Check the watched status of an article.
 	 * @since 1.22 $checkRights parameter added
-	 * @param Title $title Title of the article to look at
+	 * @param PageIdentity $title the article to look at
 	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 * @return bool
 	 */
-	public function isWatched( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
-		if ( $title->isWatchable() && ( !$checkRights || $this->isAllowed( 'viewmywatchlist' ) ) ) {
-			return MediaWikiServices::getInstance()->getWatchedItemStore()->isWatched( $this, $title );
+	public function isWatched( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		if ( $watchlistManager->isWatchable( $title )
+			&& ( !$checkRights || $this->isAllowed( 'viewmywatchlist' ) )
+		) {
+			return $watchedItemStore->isWatched( $this, $title );
 		}
 		return false;
 	}
@@ -3202,15 +3208,18 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @since 1.35
 	 * @internal This, isWatched() and related User methods may be deprecated soon (T208766).
 	 *     If possible, implement permissions checks and call WatchedItemStore::isTempWatched()
-	 * @param Title $title Title of the article to look at
+	 * @param PageIdentity $title the article to look at
 	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 * @return bool
 	 */
-	public function isTempWatched( $title, $checkRights = self::CHECK_USER_RIGHTS ): bool {
-		if ( $title->isWatchable() && ( !$checkRights || $this->isAllowed( 'viewmywatchlist' ) ) ) {
-			return MediaWikiServices::getInstance()->getWatchedItemStore()
-				->isTempWatched( $this, $title );
+	public function isTempWatched( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ): bool {
+		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		if ( $watchlistManager->isWatchable( $title )
+			&& ( !$checkRights || $this->isAllowed( 'viewmywatchlist' ) )
+		) {
+			return $watchedItemStore->isTempWatched( $this, $title );
 		}
 		return false;
 	}
@@ -3218,26 +3227,30 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/**
 	 * Watch an article.
 	 * @since 1.22 $checkRights parameter added
-	 * @param Title $title Title of the article to look at
+	 * @param PageIdentity $title the article to look at
 	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 */
 	public function addWatch(
-		$title,
+		PageIdentity $title,
 		$checkRights = self::CHECK_USER_RIGHTS,
 		?string $expiry = null
 	) {
-		if ( !$title->isWatchable() ) {
+		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		if ( !$watchlistManager->isWatchable( $title ) ) {
 			return;
 		}
 
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
-			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-			$store->addWatch( $this, $title->getSubjectPage(), $expiry );
-			if ( $title->canHaveTalkPage() ) {
-				$store->addWatch( $this, $title->getTalkPage(), $expiry );
+			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+			$linkTarget = TitleValue::castPageToLinkTarget( $title );
+
+			$watchedItemStore->addWatch( $this, $nsInfo->getSubjectPage( $linkTarget ), $expiry );
+			if ( $nsInfo->canHaveTalkPage( $linkTarget ) ) {
+				$watchedItemStore->addWatch( $this, $nsInfo->getTalkPage( $linkTarget ), $expiry );
 			}
 		}
 		$this->invalidateCache();
@@ -3246,42 +3259,27 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/**
 	 * Stop watching an article.
 	 * @since 1.22 $checkRights parameter added
-	 * @param Title $title Title of the article to look at
+	 * @param PageIdentity $title the article to look at
 	 * @param bool $checkRights Whether to check 'viewmywatchlist'/'editmywatchlist' rights.
 	 *     Pass User::CHECK_USER_RIGHTS or User::IGNORE_USER_RIGHTS.
 	 */
-	public function removeWatch( $title, $checkRights = self::CHECK_USER_RIGHTS ) {
-		if ( !$title->isWatchable() ) {
+	public function removeWatch( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
+		if ( !$watchlistManager->isWatchable( $title ) ) {
 			return;
 		}
 
 		if ( !$checkRights || $this->isAllowed( 'editmywatchlist' ) ) {
-			$store = MediaWikiServices::getInstance()->getWatchedItemStore();
-			$store->removeWatch( $this, $title->getSubjectPage() );
-			if ( $title->canHaveTalkPage() ) {
-				$store->removeWatch( $this, $title->getTalkPage() );
+			$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+			$linkTarget = TitleValue::castPageToLinkTarget( $title );
+
+			$watchedItemStore->removeWatch( $this, $nsInfo->getSubjectPage( $linkTarget ) );
+			if ( $nsInfo->canHaveTalkPage( $linkTarget ) ) {
+				$watchedItemStore->removeWatch( $this, $nsInfo->getTalkPage( $linkTarget ) );
 			}
 		}
 		$this->invalidateCache();
-	}
-
-	/**
-	 * Clear the user's notification timestamp for the given title.
-	 * If e-notif e-mails are on, they will receive notification mails on
-	 * the next change of the page if it's watched etc.
-	 *
-	 * @deprecated since 1.35, hard deprecated since 1.36
-	 * Use WatchlistManager::clearTitleUserNotification() instead.
-	 *
-	 * @note If the user doesn't have 'editmywatchlist', this will do nothing.
-	 * @param Title &$title Title of the article to look at
-	 * @param int $oldid The revision id being viewed. If not given or 0, latest revision is assumed.
-	 */
-	public function clearNotification( &$title, $oldid = 0 ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		MediaWikiServices::getInstance()
-			->getWatchlistManager()
-			->clearTitleUserNotifications( $this, $title, $oldid );
 	}
 
 	/**

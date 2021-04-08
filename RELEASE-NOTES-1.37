@@ -83,6 +83,8 @@ because of Phabricator reports.
    - updateConversionTable()
 * (T273354) When an edit is prevented by an 'EditFilterMergedContent' hook
   handler without changing the status, the edit form will now be displayed.
+* User::clearNotification() which had been deprecated in 1.35 has been removed.
+  Use WatchlistManager::clearTitleUserNotification() instead.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
@@ -92,7 +94,8 @@ because of Phabricator reports.
 * Deprecated passing LinkTarget to
   WatchlistManager::clearTitleUserNotifications() and
   WatchlistManager::getTitleNotificationTimestamp(). Pass PageIdentity instead.
-* …
+* Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
+  instead.
 
 === Other changes in 1.37 ===
 * …
