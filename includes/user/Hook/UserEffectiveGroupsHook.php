@@ -10,7 +10,7 @@ use User;
  */
 interface UserEffectiveGroupsHook {
 	/**
-	 * This hook is called in User::getEffectiveGroups().
+	 * This hook is called in UserGroupManager::getUserEffectiveGroups().
 	 *
 	 * @since 1.35
 	 *

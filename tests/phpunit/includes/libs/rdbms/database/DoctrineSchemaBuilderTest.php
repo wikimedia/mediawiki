@@ -1,6 +1,6 @@
 <?php
 
-use Doctrine\DBAL\Platforms\MySqlPlatform;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
 use Wikimedia\Rdbms\DoctrineSchemaBuilder;
 
 class DoctrineSchemaBuilderTest extends \PHPUnit\Framework\TestCase {
@@ -9,7 +9,7 @@ class DoctrineSchemaBuilderTest extends \PHPUnit\Framework\TestCase {
 	 * @covers \Wikimedia\Rdbms\DoctrineSchemaBuilder
 	 */
 	public function testGetResultAllTables() {
-		$platform = new MySqlPlatform();
+		$platform = new MySQLPlatform();
 		$builder = new DoctrineSchemaBuilder( $platform );
 		$tables = json_decode( file_get_contents( __DIR__ . '/../../../../data/db/tables.json' ), true );
 		$expected = file_get_contents( __DIR__ . '/../../../../data/db/mysql/tables.sql' );

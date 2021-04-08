@@ -123,7 +123,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 		);
 		if ( $missingKeys ) {
 			$this->logger->info( 'Session "{session}": Missing metadata: {missing}', [
-				'session' => $info,
+				'session' => $info->__toString(),
 				'missing' => implode( ', ', $missingKeys ),
 			] );
 			return false;
@@ -134,7 +134,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 			$this->logger->info(
 				'Session "{session}": No BotPassword for {centralId} {appId}',
 				[
-					'session' => $info,
+					'session' => $info->__toString(),
 					'centralId' => $metadata['centralId'],
 					'appId' => $metadata['appId'],
 			] );
@@ -143,7 +143,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 
 		if ( !hash_equals( $metadata['token'], $bp->getToken() ) ) {
 			$this->logger->info( 'Session "{session}": BotPassword token check failed', [
-				'session' => $info,
+				'session' => $info->__toString(),
 				'centralId' => $metadata['centralId'],
 				'appId' => $metadata['appId'],
 			] );
@@ -155,7 +155,7 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 			$this->logger->info(
 				'Session "{session}": Restrictions check failed',
 				[
-					'session' => $info,
+					'session' => $info->__toString(),
 					'restrictions' => $status->getValue(),
 					'centralId' => $metadata['centralId'],
 					'appId' => $metadata['appId'],

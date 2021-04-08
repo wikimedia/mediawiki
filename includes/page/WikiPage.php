@@ -733,7 +733,7 @@ class WikiPage implements Page, IDBAccessObject {
 			// SELECT. Thus we need S1 to also gets the revision row FOR UPDATE; otherwise, it
 			// may not find it since a page row UPDATE and revision row INSERT by S2 may have
 			// happened after the first S1 SELECT.
-			// https://dev.mysql.com/doc/refman/5.0/en/set-transaction.html#isolevel_repeatable-read
+			// https://dev.mysql.com/doc/refman/5.7/en/set-transaction.html#isolevel_repeatable-read
 			$revision = $this->getRevisionStore()
 				->getRevisionByPageId( $this->getId(), $latest, RevisionStore::READ_LOCKING );
 		} elseif ( $this->mDataLoadedFrom == self::READ_LATEST ) {
@@ -1949,7 +1949,7 @@ class WikiPage implements Page, IDBAccessObject {
 		// checked for the EDIT_FORCE_BOT flag, which is currently in EditPage::attemptSave.
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		if ( ( $flags & EDIT_MINOR ) && !$permissionManager->userHasRight( $user, 'minoredit' ) ) {
-			$flags = ( $flags & ~EDIT_MINOR );
+			$flags &= ~EDIT_MINOR;
 		}
 
 		$slotsUpdate = new RevisionSlotsUpdate();

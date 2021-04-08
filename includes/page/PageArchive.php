@@ -309,7 +309,7 @@ class PageArchive {
 		$dbr = wfGetDB( DB_REPLICA );
 		$arQuery = $this->getRevisionStore()->getArchiveQueryInfo();
 
-		$conditions = $conditions + [
+		$conditions += [
 			'ar_namespace' => $this->title->getNamespace(),
 			'ar_title' => $this->title->getDBkey(),
 		];

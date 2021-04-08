@@ -755,9 +755,8 @@ class LocalisationCache {
 		if ( $value !== null ) {
 			if ( $fallbackValue !== null ) {
 				if ( in_array( $key, self::$mergeableMapKeys ) ) {
-					$value = $value + $fallbackValue;
+					$value += $fallbackValue;
 				} elseif ( in_array( $key, self::$mergeableListKeys ) ) {
-					// @phan-suppress-next-line PhanTypeMismatchArgumentInternal
 					$value = array_unique( array_merge( $fallbackValue, $value ) );
 				} elseif ( in_array( $key, self::$mergeableAliasListKeys ) ) {
 					$value = array_merge_recursive( $value, $fallbackValue );

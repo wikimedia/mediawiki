@@ -110,9 +110,9 @@ class JobQueueGroup {
 
 		$conf = [ 'domain' => $this->domain, 'type' => $type ];
 		if ( isset( $wgJobTypeConf[$type] ) ) {
-			$conf = $conf + $wgJobTypeConf[$type];
+			$conf += $wgJobTypeConf[$type];
 		} else {
-			$conf = $conf + $wgJobTypeConf['default'];
+			$conf += $wgJobTypeConf['default'];
 		}
 		if ( !isset( $conf['readOnlyReason'] ) ) {
 			$conf['readOnlyReason'] = $this->readOnlyReason;
@@ -395,7 +395,7 @@ class JobQueueGroup {
 			$queue = $info['queue'];
 			$sizes = $queue->getSiblingQueueSizes( $this->getQueueTypes() );
 			if ( is_array( $sizes ) ) { // batching features supported
-				$sizeMap = $sizeMap + $sizes;
+				$sizeMap += $sizes;
 			} else { // we have to go through the queues in the bucket one-by-one
 				foreach ( $info['types'] as $type ) {
 					$sizeMap[$type] = $this->get( $type )->getSize();

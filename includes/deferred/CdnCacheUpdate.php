@@ -295,31 +295,20 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 		foreach ( $urls as $url ) {
 			// Southparkfan hack start (adds x-device)
 			foreach ( [ 'desktop', 'phone-tablet' ] as $deviceHeader ) {
-				$urlInfo = wfParseUrl( self::expand( $url ) );
+                $url = self::expand( $url );
+                $urlInfo = wfParseUrl( $url );
 				$urlHost = strlen( $urlInfo['port'] ?? null )
 					? IP::combineHostAndPort( $urlInfo['host'], $urlInfo['port'] )
 					: $urlInfo['host'];
-				$urlPath = strlen( $urlInfo['query'] ?? null )
-					? wfAppendQuery( $urlInfo['path'], $urlInfo['query'] )
-					: $urlInfo['path'];
 				$baseReq = [
 					'method' => 'PURGE',		
-					// In April 2020, PURGE requests were converted from
-					// raw crafted requests to MultiHttpClient (curl).
-					// However, curl needs a full url (protocol + domain
-					// name + path), otherwise it fails with an invalid
-					// url error. By using self::expand(), we get a full 
-					// URL, but MediaWiki assumes HTTPS, which is not
-					// supported by Varnish, so we convert the request
-					// to 'http://'.
-					'url' => str_replace( 'https://', 'http://', self::expand( $url ) ),
+                    'url' => $url,
 					'headers' => [
 						'Host' => $urlHost,
 						'Connection' => 'Keep-Alive',
 						'Proxy-Connection' => 'Keep-Alive',
 						'User-Agent' => 'MediaWiki/' . MW_VERSION . ' ' . __CLASS__,
 						'X-Device' => $deviceHeader
-
 					]
 				];
 				foreach ( $wgCdnServers as $server ) {

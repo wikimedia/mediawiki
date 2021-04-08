@@ -38,6 +38,10 @@ class SpecialResetTokens extends FormSpecialPage {
 		return true;
 	}
 
+	public function requiresUnblock() {
+		return false;
+	}
+
 	/**
 	 * Returns the token information list for this page after running
 	 * the hook and filtering out disabled preferences.

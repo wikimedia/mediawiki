@@ -443,9 +443,13 @@ class MultiHttpClient implements LoggerAwareInterface {
 			$this->cmh = $cmh;
 		}
 
-		// Limit the number of in-flight requests for any given host
-		$maxHostConns = $opts['maxConnsPerHost'] ?? $this->maxConnsPerHost;
-		curl_multi_setopt( $this->cmh, CURLMOPT_MAX_HOST_CONNECTIONS, (int)$maxHostConns );
+		// CURLMOPT_MAX_HOST_CONNECTIONS is available since PHP 7.0.7 and cURL 7.30.0
+		if ( version_compare( curl_version()['version'], '7.30.0', '>=' ) ) {
+			// Limit the number of in-flight requests for any given host
+			$maxHostConns = $opts['maxConnsPerHost'] ?? $this->maxConnsPerHost;
+			curl_multi_setopt( $this->cmh, CURLMOPT_MAX_HOST_CONNECTIONS, (int)$maxHostConns );
+		}
+
 		// Configure when to multiplex multiple requests onto single TCP handles
 		$pipelining = $opts['usePipelining'] ?? $this->usePipelining;
 		curl_multi_setopt( $this->cmh, CURLMOPT_PIPELINING, $pipelining ? 3 : 0 );

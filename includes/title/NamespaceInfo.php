@@ -165,8 +165,12 @@ class NamespaceInfo {
 				'1.35', false, false );
 		}
 
+		$extensionRegistry = ExtensionRegistry::getInstance();
+		$extNamespaces = $extensionRegistry->getAttribute( 'ImmovableNamespaces' );
+
 		$result = $index >= NS_MAIN &&
-			( $index != NS_FILE || $this->options->get( 'AllowImageMoving' ) );
+			( $index != NS_FILE || $this->options->get( 'AllowImageMoving' ) ) &&
+			!in_array( $index, $extNamespaces );
 
 		/**
 		 * @since 1.20

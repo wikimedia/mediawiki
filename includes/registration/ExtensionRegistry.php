@@ -196,7 +196,9 @@ class ExtensionRegistry {
 			'checkDev' => $this->checkDev,
 			'queue' => $this->queued,
 		];
-		return $cache->makeKey(
+
+		// Allow reusing cached ExtensionRegistry metadata between wikis (T274648)
+		return $cache->makeGlobalKey(
 			"registration-$component",
 			// We vary the cache on the current queue (what will be or already was loaded)
 			// plus various versions of stuff for VersionChecker

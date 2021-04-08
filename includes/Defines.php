@@ -32,11 +32,12 @@ use Wikimedia\Rdbms\IDatabase;
 /**
  * The running version of MediaWiki.
  *
- * This replaces the $wgVersion global found in earlier versions.
+ * This replaces the $wgVersion global found in earlier versions. When updating,
+ * remember to also bump the stand-alone duplicate of this in PHPVersionCheck.
  *
  * @since 1.35
  */
-define( 'MW_VERSION', '1.35.1' );
+define( 'MW_VERSION', '1.35.2' );
 
 # Obsolete aliases
 

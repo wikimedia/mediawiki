@@ -54,18 +54,31 @@ return [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
 			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements', 'legacy' ],
+		'features' => [
+			'elements' => true,
+			'legacy' => true,
+		],
 	],
 	'mediawiki.skinning.content' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
 			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements', 'content', 'legacy' ],
+		'features' => [
+			'elements' => true,
+			'content' => true,
+			'legacy' => true,
+		],
 	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => [
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'elements', 'content', 'interface', 'logo', 'legacy' ],
+		'features' => [
+			'elements' => true,
+			'content' => true,
+			'interface' => true,
+			'logo' => true,
+			'legacy' => true,
+		],
 	],
 	'jquery.makeCollapsible.styles' => [
 		'targets' => [ 'desktop', 'mobile' ],
@@ -1091,7 +1104,8 @@ return [
 				'prefix' => 'CookiePrefix',
 				'domain' => 'CookieDomain',
 				'path' => 'CookiePath',
-				'expires' => 'CookieExpiration'
+				'expires' => 'CookieExpiration',
+				'sameSiteLegacy' => 'UseSameSiteLegacyCookies',
 			] ],
 		],
 		'dependencies' => 'jquery.cookie',
@@ -2262,7 +2276,9 @@ return [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
 			. 'ResourceLoaderSkinModule::class',
 		'class' => ResourceLoaderSkinModule::class,
-		'features' => [ 'legacy' ],
+		'features' => [
+			'legacy' => true,
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.legacy.oldshared' => [

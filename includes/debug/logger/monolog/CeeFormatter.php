@@ -7,17 +7,15 @@ namespace MediaWiki\Logger\Monolog;
  * The cookie is used to tell JSON and non-JSON messages apart when logging to syslog.
  * See also: https://www.rsyslog.com/doc/v8-stable/configuration/modules/mmjsonparse.html
  *
- * Compatible with Monolog 1.x only.
- *
  * @since 1.33
  */
 class CeeFormatter extends LogstashFormatter {
 	/**
 	 * Format records with a cee cookie
 	 * @param array $record
-	 * @return mixed
+	 * @return string
 	 */
-	public function format( array $record ) {
+	public function format( array $record ): string {
 		return "@cee: " . parent::format( $record );
 	}
 }

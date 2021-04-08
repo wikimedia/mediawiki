@@ -36,7 +36,7 @@ class BufferHandler extends BaseBufferHandler {
 	/**
 	 * @inheritDoc
 	 */
-	public function handle( array $record ) {
+	public function handle( array $record ): bool {
 		if ( !$this->initialized ) {
 			DeferredUpdates::addCallableUpdate( [ $this, 'close' ] );
 			$this->initialized = true;

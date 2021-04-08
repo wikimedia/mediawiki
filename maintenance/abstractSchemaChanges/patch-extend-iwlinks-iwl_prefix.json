@@ -1,0 +1,81 @@
+{
+	"comment": "T275242 - increase size of iwl_prefix from VARBINARY(20) to VARBINARY(32)",
+	"before": {
+		"name": "iwlinks",
+		"comment": "Track inline interwiki links",
+		"columns": [
+			{
+				"name": "iwl_from",
+				"comment": "page_id of the referring page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "iwl_prefix",
+				"type": "binary",
+				"comment": "Interwiki prefix code of the target",
+				"options": { "notnull": true, "length": 20, "default": "" }
+			},
+			{
+				"name": "iwl_title",
+				"type": "binary",
+				"comment": "Title of the target, including namespace",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "iwl_prefix_title_from",
+				"columns": [ "iwl_prefix", "iwl_title", "iwl_from" ],
+				"comment": "Index for ApiQueryIWBacklinks",
+				"unique": false
+			},
+			{
+				"name": "iwl_prefix_from_title",
+				"columns": [ "iwl_prefix", "iwl_from", "iwl_title" ],
+				"comment": "Index for ApiQueryIWLinks",
+				"unique": false
+			}
+		],
+		"pk": [ "iwl_from", "iwl_prefix", "iwl_title" ]
+	},
+	"after": {
+		"name": "iwlinks",
+		"comment": "Track inline interwiki links",
+		"columns": [
+			{
+				"name": "iwl_from",
+				"comment": "page_id of the referring page",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "iwl_prefix",
+				"type": "binary",
+				"comment": "Interwiki prefix code of the target",
+				"options": { "notnull": true, "length": 32, "default": "" }
+			},
+			{
+				"name": "iwl_title",
+				"type": "binary",
+				"comment": "Title of the target, including namespace",
+				"options": { "notnull": true, "length": 255, "default": "" }
+			}
+		],
+		"indexes": [
+			{
+				"name": "iwl_prefix_title_from",
+				"columns": [ "iwl_prefix", "iwl_title", "iwl_from" ],
+				"comment": "Index for ApiQueryIWBacklinks",
+				"unique": false
+			},
+			{
+				"name": "iwl_prefix_from_title",
+				"columns": [ "iwl_prefix", "iwl_from", "iwl_title" ],
+				"comment": "Index for ApiQueryIWLinks",
+				"unique": false
+			}
+		],
+		"pk": [ "iwl_from", "iwl_prefix", "iwl_title" ]
+	}
+}

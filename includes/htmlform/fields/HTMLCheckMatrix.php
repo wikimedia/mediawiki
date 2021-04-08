@@ -208,7 +208,7 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 	public function getTableRow( $value ) {
 		list( $errors, $errorClass ) = $this->getErrorsAndErrorClass( $value );
 		$inputHtml = $this->getInputHTML( $value );
-		$fieldType = static::class;
+		$fieldType = $this->getClassName();
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = [ 'colspan' => 2 ];
 

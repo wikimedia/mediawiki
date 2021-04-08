@@ -2,8 +2,8 @@
 
 namespace Wikimedia\Rdbms;
 
-use Doctrine\DBAL\Platforms\MySqlPlatform;
-use Doctrine\DBAL\Platforms\PostgreSqlPlatform;
+use Doctrine\DBAL\Platforms\MySQLPlatform;
+use Doctrine\DBAL\Platforms\PostgreSQL94Platform;
 use Doctrine\DBAL\Platforms\SqlitePlatform;
 use InvalidArgumentException;
 
@@ -19,9 +19,9 @@ class DoctrineSchemaBuilderFactory {
 	 */
 	public function getSchemaBuilder( $platform ) {
 		if ( $platform === 'mysql' ) {
-			$platformObject = new MySqlPlatform();
+			$platformObject = new MySQLPlatform();
 		} elseif ( $platform === 'postgres' ) {
-			$platformObject = new PostgreSqlPlatform();
+			$platformObject = new PostgreSQL94Platform();
 		} elseif ( $platform === 'sqlite' ) {
 			$platformObject = new SqlitePlatform();
 		} else {

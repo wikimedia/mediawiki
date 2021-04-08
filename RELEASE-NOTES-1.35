@@ -9,9 +9,103 @@ declare 1.35 as supporting PHP 8.0.
 
 PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 
+== MediaWiki 1.35.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+MediaWiki 1.35.2 supports Composer 2.0. It is reccommended to make sure your
+libraries are up to date on Composer 1.x, before running Composer 2.x.
+
+While normally running update.php isn't required for point releases,
+it is recommended to run it for 1.35.2 so that iwlinks.iwl_prefix is
+updated to take 32 characters.
+
+=== Changes since MediaWiki 1.35.1 ===
+* (T270450) The confusingly-named User->isLoggedIn() method has been deprecated
+  in favour of the method it wraps, User->isRegistered().
+* Upgrade pimple/pimple from 3.3.0 to 3.3.1 for PHP 8.0 support.
+* Upgrade seld/jsonlint from 1.7.1 to 1.8.3 for PHP 8.0 support.
+* Upgrade doctrine/dbal from 2.10.4 to 3.0.0 for PHP 8.0 support.
+* (T270734) Fix display of Special:Preferences URL in password reset email.
+* (T252774, T271441) resourceloader: Give SkinModule 'features' option an
+  extensible default.
+* (T271441) Unknown features shouldn't break style output.
+* (T264986) Make use of CURLMOPT_MAX_HOST_CONNECTIONS conditional on having
+  curl >= 7.30.0.
+* DefaultSettings.php: Update $wgPingback documentation.
+* Fix docs for LanguageConverter::translate.
+* (T272250) Don't rely on implicit string->int cast in comparison.
+* (T272327) Exif::isSlong: Cast input to float so PHP 8.0 abs() doesn't whine.
+* (T272328) UploadBase: Don't call MimeAnalyzer if mTempPath is null.
+* Remove nonfunctional default sampling for WANObjectCache metrics.
+* (T258851) Prevent service injection to LoadExtensionSchemaUpdates hook.
+* (T270852) Hooks: Map dash character to underscore when generating hook names.
+* (T271551, T270145) Fix fetching ipblock-exempt within
+  BlockManager::getUserBlock.
+* PHPVersionCheck: The PHP Group only supports PHP >= 7.3.0.
+* (T248925) Set empty closures in DatabaseTest to fix PHP 8 tests.
+* (T34217) rdbms: Remove outdated MySQL 4 references and fix doc URLs.
+* (T248925) Special:Contributions reports negative namespace error on PHP 8.
+* (T248925) objectcache: Fix non-numeric string check in HashBagOStuff for
+  PHP 8.
+* (T248925) Fix CacheTime::getCacheExpiry for PHP 8.
+* (T259685) Allow REST API POST handlers to opt out of mandatory SQLite locking.
+* (T91820, T259685) MWLBFactory: rename magic HTTP header for opting out of
+  SQLite write lock.
+* (T272326) Fix DeprecationHelperTest on PHP 8.
+* Upgrade wikimedia/less.php from 3.0.0 to 3.1.0 for PHP 8.0 support.
+* (T236639) OutputPage: Make $wgDebugRedirects work again.
+* (T274648) registration: Allow reusing cached metadata between wikis.
+* CdnCacheUpdate: Send full URL instead of path to Curl for purge.
+* Upgrade monolog/monolog from 1.25.3 to 2.2.0 for PHP 8.0 support.
+* FileBackend: Do not use SOCKET_ENOENT on windows.
+* (T275441) ApiQueryUserInfo: Allow all uiprops to be requested at once.
+* (T275261) Escape wikitext in the title in invalid title error messages.
+* (T275242) Extend iwlinks.iwl_prefix to VARBINARY(32) on MySQL.
+* (T246594, T270228) PHPVersionCheck: Complain about known-bad versions above
+  minimum.
+* (T275824) Upgrade wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1 for
+  Composer 2.0 support.
+* (T269293) Record all used options in metadata.
+* Allow usage of Composer 2.0 to install MediaWiki's dependencies.
+* (T259872) skins: Call headElement() after getTemplateData() in SkinMustache.
+* (T277009, CVE-2021-30158) SECURITY: Allow blocked users to access
+  Special:ResetTokens.
+* (T272412) Add "Account data" section to user preferences.
+* (T268310) Add list of thumbnail urls to LocalFilePurgeThumbnails hook.
+* (T277520) registration: Allow specifying immovable namespaces in
+  extension.json.
+* (T275619) Maintenance::hasOption and Maintenance::getOption now behave as
+  documented and are not altered by previous calls to these methods.
+* (T254688) Remove page inner join from subquery in SpecialWhatLinksHere.
+* (T122124) signup: added help message for security.
+* (T278014, CVE-2021-30154) SECURITY: Escape mediastatistics-header-* messages
+  on Special:NewFiles.
+* (T278058, CVE-2021-30157) SECURITY: Escape rcfilters-filter-* messages on
+  ChangesList pages.
+* (T277414) HTMLFormField: Use non namespaced class name rather than
+  static::class.
+* (T268673) maintenance: Don't create SearchUpdate in rebuildtextindex.php
+  for page_namespace below 0.
+* (T246594, T270228) Mark ParserOptionsTests skipped on PHP 7.4.0-7.4.8.
+* (T268230) Switch to new MediaWiki logo by Serhio Magpie.
+* (T271735) Expand config-pingback-help, link to privacy policy in
+  config-pingback.
+* Fix documentation of user-global in $wgRateLimits.
+* BackupDumper: Add -o as shortcode for --output.
+* (T235554) Disable DEFER_SET_LENGTH_AND_FLUSH headers to avoid HTTP errors.
+* (T270713, CVE-2021-30152) SECURITY: Allow user to only apply protection they
+  have right to do so via action=protect.
+* (T272386, CVE-2021-30159) SECURITY: Non-admin deleted enwiki page in fast
+  double move.
+* (T270988, CVE-2021-30155) SECURITY: ContentModelChange: Check that user can
+  create pages.
+* (T279451, CVE-2021-30458) SECURITY: Parsoid comment fostering allows for
+  inserting mostly arbitrary <meta> tags.
+
 == MediaWiki 1.35.1 ==
 
-This is a maintenance release of the MediaWiki 1.35 branch.
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 While normally running update.php isn't required for point releases,
 it is recommended to run it for 1.35.1 so that sites.site_language is
@@ -487,20 +581,20 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added wikimedia/ip-utils 1.0.0.
-* Added wikimedia/parsoid 0.12.1.
+* Added wikimedia/parsoid 0.12.2.
 * Added wikimedia/services 2.0.1.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.
 * Added vuex v3.1.3.
 
 ===== New development-only external libraries =====
-* Added doctrine/dbal 2.10.2.
+* Added doctrine/dbal 3.0.0.
 * Added doctrine/sql-formatter 1.1.0.
-* Added pimple/pimple 3.3.0.
+* Added pimple/pimple 3.3.1.
 
 ==== Changed external libraries ====
 * pear/mail_mime was upgraded from 1.10.2 to 1.10.8.
-* wikimedia/less.php was upgraded from 1.8.0 to 3.0.0.
+* wikimedia/less.php was upgraded from 1.8.0 to 3.1.0.
 * Updated oojs from 3.0.0 to 5.0.0.
 * Updated OOUI from 0.35.1 to 0.39.3.
 * zordius/lightncandy was upgraded from 0.23.0 to 1.2.5.
@@ -518,6 +612,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated wikimedia/remex-html from 2.1.0 to 2.2.0.
 * Replaced wikimedia/password-blacklist 0.1.4 with wikimedia/common-passwords
   0.2.0.
+* Updated wikimedia/composer-merge-plugin from 1.4.1 to 2.0.1.
 
 ===== Changed development-only external libraries =====
 * Updated symfony/yaml from 3.4.28 to 5.0.5.
@@ -525,12 +620,13 @@ For notes on 1.34.x and older releases, see HISTORY.
 * Updated php-parallel-lint/php-console-highlighter from v0.3.2 to v0.5.
 * Updated php-parallel-lint/php-parallel-lint from v0.9.2 to v1.2.0.
 * Updated psy/psysh from 0.9.9 to 0.10.4.
-* Updated monolog/monolog from 1.24.0 to 1.25.2.
+* Updated monolog/monolog from 1.24.0 to 2.2.0.
 * Upgrade mediawiki-codesniffer from 28.0.0 to 34.0.0.
 * Updated composer/spdx-licenses from 1.5.1 to 1.5.3.
 * Updated monolog/monolog from 1.25.2 to 1.25.3.
 * Updated qunit from 2.9.1 to 2.10.0.
 * Updating wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
+* Updated seld/jsonlint from 1.7.1 to 1.8.3.
 
 ==== Removed external libraries ====
 * phpunit/php-invoker (dev-only).

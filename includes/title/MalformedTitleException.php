@@ -41,7 +41,7 @@ class MalformedTitleException extends Exception implements ILocalizedException {
 		$this->errorMessage = $errorMessage;
 		$this->titleText = $titleText;
 		if ( $titleText !== null ) {
-			$errorMessageParameters[] = $titleText;
+			$errorMessageParameters[] = wfEscapeWikiText( $titleText );
 		}
 		$this->errorMessageParameters = $errorMessageParameters;
 

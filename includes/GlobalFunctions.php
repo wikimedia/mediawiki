@@ -345,7 +345,7 @@ function wfUrlencode( $s ) {
  */
 function wfArrayToCgi( $array1, $array2 = null, $prefix = '' ) {
 	if ( $array2 !== null ) {
-		$array1 = $array1 + $array2;
+		$array1 += $array2;
 	}
 
 	$cgi = '';

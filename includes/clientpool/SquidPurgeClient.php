@@ -225,6 +225,7 @@ class SquidPurgeClient {
 		}
 		// Two ''s to create \r\n\r\n
 		$request[] = '';
+		// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement
 		$request[] = '';
 
 		$this->requests[] = implode( "\r\n", $request );

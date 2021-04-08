@@ -442,12 +442,13 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'doFixIpbAddressUniqueIndex' ],
 			[ 'modifyField', 'actor', 'actor_name', 'patch-actor-actor_name-varbinary.sql' ],
 			[ 'modifyField', 'sites', 'site_global_key', 'patch-sites-site_global_key.sql' ],
+			[ 'modifyField', 'iwlinks', 'iwl_prefix', 'patch-extend-iwlinks-iwl_prefix.sql' ],
 		];
 	}
 
 	/**
-	 * 1.4 betas were missing the 'binary' marker from logging.log_title,
-	 * which causes a collation mismatch error on joins in MySQL 4.1.
+	 * MW 1.4 betas were missing the 'binary' marker from logging.log_title,
+	 * which caused a MySQL collation mismatch error.
 	 *
 	 * @param string $table Table name
 	 * @param string $field Field name to check

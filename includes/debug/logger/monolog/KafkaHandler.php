@@ -130,7 +130,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 	/**
 	 * @inheritDoc
 	 */
-	protected function write( array $record ) {
+	protected function write( array $record ): void {
 		if ( $record['formatted'] !== null ) {
 			$this->addMessages( $record['channel'], [ $record['formatted'] ] );
 			$this->send();
@@ -141,7 +141,7 @@ class KafkaHandler extends AbstractProcessingHandler {
 	 * @inheritDoc
 	 * @phan-param array[] $batch
 	 */
-	public function handleBatch( array $batch ) {
+	public function handleBatch( array $batch ): void {
 		$channels = [];
 		foreach ( $batch as $record ) {
 			if ( $record['level'] < $this->level ) {

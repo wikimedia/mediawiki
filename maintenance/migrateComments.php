@@ -247,7 +247,6 @@ class MigrateComments extends LoggedUpdateMaintenance {
 			$res = $dbw->select(
 				[ $table, $newTable ],
 				[ $primaryKey, $oldField ],
-				// @phan-suppress-next-line PhanSuspiciousBinaryAddLists
 				[ $newPrimaryKey => null ] + $next,
 				__METHOD__,
 				[

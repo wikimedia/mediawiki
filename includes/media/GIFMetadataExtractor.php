@@ -127,6 +127,7 @@ class GIFMetadataExtractor {
 					// Graphics Control Extension.
 					fread( $fh, 1 ); // Block size
 
+					// @phan-suppress-next-line PhanPluginDuplicateAdjacentStatement
 					fread( $fh, 1 ); // Transparency, disposal method, user input
 
 					$buf = fread( $fh, 2 ); // Delay, in hundredths of seconds.
@@ -283,7 +284,6 @@ class GIFMetadataExtractor {
 		}
 		$buf = unpack( 'C', $data )[1];
 		$bpp = ( $buf & 7 ) + 1;
-		// @phan-suppress-next-line PhanTypeInvalidLeftOperandOfIntegerOp
 		$buf >>= 7;
 
 		$have_map = $buf & 1;

@@ -123,6 +123,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		'RCWatchCategoryMembership',
 		'SearchMatchRedirectPreference',
 		'SecureLogin',
+		'ScriptPath',
 		'SignatureValidation',
 		'ThumbLimits',
 	];
@@ -469,6 +470,22 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'section' => 'personal/info'
 			];
 		}
+
+		$defaultPreferences['downloaduserdata'] = [
+			'type' => 'info',
+			'raw' => true,
+			'label-message' => 'prefs-user-downloaddata-label',
+			'default' => HTML::Element(
+				'a',
+				[
+					'href' => $this->options->get( 'ScriptPath' ) .
+						'/api.php?action=query&meta=userinfo&uiprop=*',
+				],
+				$context->msg( 'prefs-user-downloaddata-info' )->text()
+			 ),
+			'help-message' => [ 'prefs-user-downloaddata-help-message', $user->getTitleKey() ],
+			'section' => 'personal/info',
+		];
 
 		$languages = $this->languageNameUtils->getLanguageNames( null, 'mwfile' );
 		$languageCode = $this->options->get( 'LanguageCode' );

@@ -535,8 +535,8 @@ class UserGroupManager implements IDBAccessObject {
 				// we stop checking for ipblock-exempt via here. We do this by setting the second
 				// param to true.
 				// See T270145.
-				return $user->getBlock( false, true ) &&
-					$user->getBlock( false, true )->isSitewide();
+				$block = $user->getBlock( false, true );
+				return $block && $block->isSitewide();
 			case APCOND_ISBOT:
 				// TODO: Injecting permission manager will cause a cyclic dependency. T254537
 				return in_array( 'bot', MediaWikiServices::getInstance()
