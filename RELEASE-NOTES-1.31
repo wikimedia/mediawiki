@@ -1,8 +1,9 @@
 == MediaWiki 1.31.14 ==
 
-THIS IS NOT A RELEASE YET
+This is a maintenance release of the MediaWiki 1.31 branch.
 
 === Changes since MediaWiki 1.31.13 ===
+* Make Title implement IDBAccessObject.
 
 == MediaWiki 1.31.13 ==
 
