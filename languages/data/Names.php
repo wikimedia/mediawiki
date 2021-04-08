@@ -133,6 +133,7 @@ class Names {
 		'cv' => 'Чӑвашла', # Chuvash
 		'cy' => 'Cymraeg', # Welsh
 		'da' => 'dansk', # Danish
+		'dag' => 'dagbanli', # Dagbani
 		'de' => 'Deutsch', # German ("Du")
 		'de-at' => 'Österreichisches Deutsch', # Austrian German
 		'de-ch' => 'Schweizer Hochdeutsch', # Swiss Standard German
