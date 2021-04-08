@@ -350,10 +350,10 @@ See the file UPGRADE for more detailed upgrade instructions, including
 important information when upgrading from versions prior to 1.11.
 
 Some specific notes for MediaWiki 1.35 upgrades are below:
-* (T259685) Zeroconf (zero-configuration) VisualEditor/Parsoid doesn't work
-  using SQLite as the database backend for MediaWiki. This is due to the lack
-  of write concurrency in SQLite. If you wish to use this feature, it is
-  recommended to use MySQL/MariaDB rather than SQLite.
+* (T259685) When using SQLite as the database backend for MediaWiki,
+  Zeroconf (zero-configuration) VisualEditor/Parsoid only works with
+  MediaWiki 1.35.2 and above.  It is still recommended to use
+  MySQL/MariaDB rather than SQLite when using VisualEditor.
 
 For notes on 1.34.x and older releases, see HISTORY.
 
