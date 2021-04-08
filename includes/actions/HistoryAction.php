@@ -151,9 +151,9 @@ class HistoryAction extends FormlessAction {
 		// so going from "some unseen" to "all seen" would not clear the cache.
 		// But, when all of the revisions are marked as seen, then only way for new unseen revision
 		// markers to appear, is for the page to be edited, which updates page_touched/Last-Modified.
-		$watchlistNotificationManager = $services->getWatchlistNotificationManager();
+		$watchlistManager = $services->getWatchlistManager();
 		$hasUnseenRevisionMarkers = $config->get( 'ShowUpdatedMarker' ) &&
-			$watchlistNotificationManager->getTitleNotificationTimestamp(
+			$watchlistManager->getTitleNotificationTimestamp(
 				$this->getUser(),
 				$this->getTitle()
 			);
@@ -312,7 +312,7 @@ class HistoryAction extends FormlessAction {
 			$conds,
 			$d,
 			$services->getLinkBatchFactory(),
-			$watchlistNotificationManager
+			$watchlistManager
 		);
 		$out->addHTML(
 			$pager->getNavigationBar() .
