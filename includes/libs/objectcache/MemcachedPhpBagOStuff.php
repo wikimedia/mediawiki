@@ -46,7 +46,8 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		// Default class-specific parameters
 		$params += [
 			'compress_threshold' => 1500,
-			'connect_timeout' => 0.5
+			'connect_timeout' => 0.5,
+			'timeout' => 500000,
 		];
 
 		$this->client = new MemcachedClient( $params );
@@ -102,6 +103,24 @@ class MemcachedPhpBagOStuff extends MemcachedBagOStuff {
 		$n = $this->client->decr( $routeKey, $value );
 
 		return ( $n !== false && $n !== null ) ? $n : false;
+	}
+
+	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+
+		$watchPoint = $this->watchErrors();
+		$newValue = $this->client->incr( $routeKey, $step ) ?? false;
+		if ( $newValue === false && !$this->getLastError( $watchPoint ) ) {
+			// No key set; initialize
+			$success = $this->client->add( $routeKey, $init, $this->fixExpiry( $exptime ) );
+			$newValue = $success ? $init : false;
+			if ( $newValue === false && !$this->getLastError( $watchPoint ) ) {
+				// Raced out initializing; increment
+				$newValue = $this->client->incr( $routeKey, $step ) ?? false;
+			}
+		}
+
+		return $newValue;
 	}
 
 	protected function doChangeTTL( $key, $exptime, $flags ) {

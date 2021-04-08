@@ -71,6 +71,7 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$params += [
 			'compress_threshold' => 1500,
 			'connect_timeout' => 0.5,
+			'timeout' => 500000,
 			'serializer' => 'php',
 			'use_binary_protocol' => false,
 			'allow_tcp_nagle_delay' => true
@@ -272,6 +273,29 @@ class MemcachedPeclBagOStuff extends MemcachedBagOStuff {
 		$result = $this->acquireSyncClient()->decrement( $routeKey, $value );
 
 		return $this->checkResult( $key, $result );
+	}
+
+	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
+		$this->debug( "incrWithInit($key)" );
+
+		$routeKey = $this->validateKeyAndPrependRoute( $key );
+
+		$client = $this->acquireSyncClient();
+		$watchPoint = $this->watchErrors();
+		$result = $client->increment( $routeKey, $step );
+		$newValue = $this->checkResult( $key, $result );
+		if ( $newValue === false && !$this->getLastError( $watchPoint ) ) {
+			// No key set; initialize
+			$result = $client->add( $routeKey, $init, $this->fixExpiry( $exptime ) );
+			$newValue = $this->checkResult( $key, $result ) ? $init : false;
+			if ( $newValue === false && !$this->getLastError( $watchPoint ) ) {
+				// Raced out initializing; increment
+				$result = $client->increment( $routeKey, $step );
+				$newValue = $this->checkResult( $key, $result );
+			}
+		}
+
+		return $newValue;
 	}
 
 	public function setNewPreparedValues( array $valueByKey ) {

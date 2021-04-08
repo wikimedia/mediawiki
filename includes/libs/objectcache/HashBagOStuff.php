@@ -119,7 +119,15 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	public function incr( $key, $value = 1, $flags = 0 ) {
-		$n = $this->get( $key );
+		return $this->doIncr( $key, $value, $flags );
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return $this->doIncr( $key, -$value, $flags );
+	}
+
+	private function doIncr( $key, $value = 1, $flags = 0 ) {
+		$n = $this->doGet( $key );
 		if ( $this->isInteger( $n ) ) {
 			$n = max( $n + (int)$value, 0 );
 			$this->bag[$key][self::KEY_VAL] = $n;
@@ -130,8 +138,18 @@ class HashBagOStuff extends MediumSpecificBagOStuff {
 		return false;
 	}
 
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		return $this->incr( $key, -$value, $flags );
+	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
+		$curValue = $this->doGet( $key );
+		if ( $curValue === false ) {
+			$newValue = $this->doSet( $key, $init, $exptime ) ? $init : false;
+		} elseif ( $this->isInteger( $curValue ) ) {
+			$newValue = max( $curValue + $step, 0 );
+			$this->bag[$key][self::KEY_VAL] = $newValue;
+		} else {
+			$newValue = false;
+		}
+
+		return $newValue;
 	}
 
 	/**

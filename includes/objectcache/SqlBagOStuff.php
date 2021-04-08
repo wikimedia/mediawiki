@@ -306,16 +306,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		);
 	}
 
-	public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 ) {
-		$value = (int)$value;
-		$init = is_int( $init ) ? $init : $value;
-
+	protected function doIncrWithInit( $key, $exptime, $step, $init, $flags ) {
 		$mtime = $this->getCurrentTime();
 
 		$result = $this->modifyBlobs(
 			[ $this, 'modifyTableSpecificBlobsForIncrInit' ],
 			$mtime,
-			[ $key => [ $value, $init, $exptime ] ],
+			[ $key => [ $step, $init, $exptime ] ],
 			$flags,
 			$resByKey
 		) ? $resByKey[$key] : false;
@@ -358,6 +355,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$result = false;
 			$this->logger->debug( __METHOD__ . ": $key does not exists" );
 		}
+
+		$this->updateOpStats( $value >= 0 ? self::METRIC_OP_INCR : self::METRIC_OP_DECR, [ $key ] );
 
 		return $result;
 	}

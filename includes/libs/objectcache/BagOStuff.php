@@ -429,6 +429,7 @@ abstract class BagOStuff implements
 	 * @param int $value Value to add to $key (default: 1) [optional]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
+	 * @deprecated Since 1.38
 	 */
 	abstract public function incr( $key, $value = 1, $flags = 0 );
 
@@ -439,6 +440,7 @@ abstract class BagOStuff implements
 	 * @param int $value Value to subtract from $key (default: 1) [optional]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
+	 * @deprecated Since 1.38
 	 */
 	abstract public function decr( $key, $value = 1, $flags = 0 );
 
@@ -446,18 +448,18 @@ abstract class BagOStuff implements
 	 * Increase the value of the given key (no TTL change) if it exists or create it otherwise
 	 *
 	 * This will create the key with the value $init and TTL $exptime instead if not present.
-	 * Callers should make sure that both ($init - $value) and $exptime are invariants for all
-	 * operations to any given key. The value of $init should be at least that of $value.
+	 * Callers should make sure that both ($init - $step) and $exptime are invariants for all
+	 * operations to any given key. The value of $init should be at least that of $step.
 	 *
 	 * @param string $key Key built via makeKey() or makeGlobalKey()
 	 * @param int $exptime Time-to-live (in seconds) or a UNIX timestamp expiration
-	 * @param int $value Amount to increase the key value by [default: 1]
-	 * @param int|null $init Value to initialize the key to if it does not exist [default: $value]
+	 * @param int $step Amount to increase the key value by [default: 1]
+	 * @param int|null $init Value to initialize the key to if it does not exist [default: $step]
 	 * @param int $flags Bit field of class WRITE_* constants [optional]
 	 * @return int|bool New value or false on failure
 	 * @since 1.24
 	 */
-	abstract public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 );
+	abstract public function incrWithInit( $key, $exptime, $step = 1, $init = null, $flags = 0 );
 
 	/**
 	 * Get a "watch point" token that can be used to get the "last error" to occur after now
