@@ -36,7 +36,7 @@ use MediaWiki\MediaWikiServices;
  * @note Consider using a TitleValue object instead. TitleValue is more lightweight
  *       and does not rely on global state or the database.
  */
-class Title implements LinkTarget {
+class Title implements LinkTarget, IDBAccessObject {
 	/** @var HashBagOStuff */
 	static private $titleCache = null;
 
