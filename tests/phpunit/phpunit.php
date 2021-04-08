@@ -331,7 +331,7 @@ class PHPUnitMaintClass {
 
 		$this->forceFormatServerArgv();
 
-		if ( !class_exists( 'PHPUnit\\Framework\\TestCase' ) ) {
+		if ( !class_exists( PHPUnit\Framework\TestCase::class ) ) {
 			echo "PHPUnit not found. Please install it and other dev dependencies by
 		running `composer install` in MediaWiki root directory.\n";
 			exit( 1 );
