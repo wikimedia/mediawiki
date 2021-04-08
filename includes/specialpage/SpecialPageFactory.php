@@ -599,7 +599,6 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'RepoGroup',
 				'SearchEngineFactory',
-				'DBLoadBalancer',
 				'LanguageConverterFactory',
 			]
 		],

@@ -8735,7 +8735,6 @@ $wgAPICacheHelpTimeout = 60 * 60;
 $wgAPIUselessQueryPages = [
 	'MIMEsearch', // aiprop=mime
 	'LinkSearch', // list=exturlusage
-	'FileDuplicateSearch', // prop=duplicatefiles
 ];
 
 /**
