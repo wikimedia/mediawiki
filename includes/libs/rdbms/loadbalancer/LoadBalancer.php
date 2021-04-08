@@ -94,8 +94,6 @@ class LoadBalancer implements ILoadBalancer {
 	/** @var string|null Default query group to use with getConnection() */
 	private $defaultGroup;
 
-	/** @var string Current server name */
-	private $hostname;
 	/** @var bool Whether this PHP instance is for a CLI script */
 	private $cliMode;
 	/** @var string Agent name for query profiling */
@@ -246,7 +244,6 @@ class LoadBalancer implements ILoadBalancer {
 
 		$this->csProvider = $params['criticalSectionProvider'] ?? null;
 
-		$this->hostname = $params['hostname'] ?? ( gethostname() ?: 'unknown' );
 		$this->cliMode = $params['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
 		$this->agent = $params['agent'] ?? '';
 
