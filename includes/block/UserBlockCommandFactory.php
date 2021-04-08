@@ -28,6 +28,7 @@ use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
+use TitleFactory;
 
 class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/**
@@ -59,6 +60,9 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/** @var LoggerInterface */
 	private $logger;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	/**
 	 * @internal Use only in ServiceWiring
 	 */
@@ -74,6 +78,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 * @param UserFactory $userFactory
 	 * @param UserEditTracker $userEditTracker
 	 * @param LoggerInterface $logger
+	 * @param TitleFactory $titleFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -84,7 +89,8 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		BlockRestrictionStore $blockRestrictionStore,
 		UserFactory $userFactory,
 		UserEditTracker $userEditTracker,
-		LoggerInterface $logger
+		LoggerInterface $logger,
+		TitleFactory $titleFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -97,6 +103,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		$this->userFactory = $userFactory;
 		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
+		$this->titleFactory = $titleFactory;
 	}
 
 	/**
@@ -135,6 +142,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->userFactory,
 			$this->userEditTracker,
 			$this->logger,
+			$this->titleFactory,
 			$target,
 			$performer,
 			$expiry,

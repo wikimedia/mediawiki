@@ -3070,6 +3070,7 @@
 	"softblockrangesreason": "This text is shown to the user as a block reason and describes that the user is being blocked because the user is not logged in and their IP is in [[mw:Special:MyLanguage/Manual:$wgSoftBlockRanges|$wgSoftBlockRanges]].\n\nParameters:\n* $1 - The IP address that is blocked.",
 	"xffblockreason": "This text is shown to the user as a block reason and describes that the user is being blocked because an IP in the X-Forwarded-For header (which lists the user's IP as well as all IPs of the transparent proxy servers they went through) sent when they loaded the page has been blocked:\n* $1 is the original block reason for the IP address matched in the X-Forwarded-For header",
 	"cant-see-hidden-user": "Used as (red) error message on [[Special:Block]] when you try to change (as sysop without the hideuser right) the block of a hidden user.",
+	"cant-block-nonexistent-page": "Error message when user tries to block a user on a page that does not exist. $1 is the page title.",
 	"ipbblocked": "Error message shown when a user tries to alter block settings when they are themselves blocked.",
 	"ipbnounblockself": "Error message shown when a user without the <code>unblockself</code> right tries to unblock themself.",
 	"ipb-default-expiry": "{{ignored}}The default block expiry on the block form on [[Special:Block]] when blocking users.",
