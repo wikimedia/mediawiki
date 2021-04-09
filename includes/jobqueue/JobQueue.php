@@ -145,9 +145,10 @@ abstract class JobQueue {
 
 	/**
 	 * @return string Wiki ID
-	 * @deprecated 1.33
+	 * @deprecated 1.33 (hard deprecated since 1.37)
 	 */
 	final public function getWiki() {
+		wfDeprecated( __METHOD__, '1.33' );
 		return WikiMap::getWikiIdFromDbDomain( $this->domain );
 	}
 

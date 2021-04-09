@@ -74,8 +74,6 @@ abstract class LBFactory implements ILBFactory {
 	/** @var DatabaseDomain Local domain */
 	protected $localDomain;
 
-	/** @var string Local hostname of the app server */
-	private $hostname;
 	/** @var array Web request information about the client */
 	private $requestInfo;
 	/** @var bool Whether this PHP instance is for a CLI script */
@@ -166,7 +164,6 @@ abstract class LBFactory implements ILBFactory {
 		];
 
 		$this->cliMode = $conf['cliMode'] ?? ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' );
-		$this->hostname = $conf['hostname'] ?? gethostname();
 		$this->agent = $conf['agent'] ?? '';
 		$this->defaultGroup = $conf['defaultGroup'] ?? null;
 		$this->secret = $conf['secret'] ?? '';
@@ -647,7 +644,6 @@ abstract class LBFactory implements ILBFactory {
 			'replLogger' => $this->replLogger,
 			'errorLogger' => $this->errorLogger,
 			'deprecationLogger' => $this->deprecationLogger,
-			'hostname' => $this->hostname,
 			'cliMode' => $this->cliMode,
 			'agent' => $this->agent,
 			'maxLag' => $this->maxLag,

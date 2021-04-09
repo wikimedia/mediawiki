@@ -103,7 +103,6 @@ abstract class MWLBFactory {
 			'errorLogger' => [ MWExceptionHandler::class, 'logException' ],
 			'deprecationLogger' => [ static::class, 'logDeprecation' ],
 			'cliMode' => $wgCommandLineMode,
-			'hostname' => wfHostname(),
 			'readOnlyReason' => $readOnlyMode->getReason(),
 			'defaultGroup' => $options->get( 'DBDefaultGroup' ),
 			'criticalSectionProvider' => $csProvider
