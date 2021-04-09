@@ -70,6 +70,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 	 * @covers JobQueue::getWiki
 	 */
 	public function testGetWiki( $queue, $recycles, $desc ) {
+		$this->hideDeprecated( 'JobQueue::getWiki' );
 		$queue = $this->$queue;
 		if ( !$queue ) {
 			$this->markTestSkipped( $desc );
@@ -338,6 +339,8 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 	 * @covers JobQueue
 	 */
 	public function testQueueAggregateTable() {
+		$this->hideDeprecated( 'JobQueue::getWiki' );
+
 		$queue = $this->queueFifo;
 		if ( !$queue || !method_exists( $queue, 'getServerQueuesWithJobs' ) ) {
 			$this->markTestSkipped();
