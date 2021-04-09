@@ -1556,7 +1556,7 @@ class PermissionManager {
 	 * Determine which restriction levels it makes sense to use in a namespace,
 	 * optionally filtered by a user's rights.
 	 *
-	 * @param int $index Index to check
+	 * @param int $index Namespace ID (index) to check
 	 * @param UserIdentity|null $user User to check
 	 * @return array
 	 */
