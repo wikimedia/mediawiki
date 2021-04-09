@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Page\PageIdentityValue;
+
 class FileTest extends MediaWikiMediaTestCase {
 
 	/**
@@ -441,5 +443,42 @@ class FileTest extends MediaWikiMediaTestCase {
 				[ 0, 0 ]
 			],
 		];
+	}
+
+	public function provideNormalizeTitle() {
+		yield [ 'some name.jpg', 'Some_name.jpg' ];
+		yield [ new TitleValue( NS_FILE, 'Some_name.jpg' ), 'Some_name.jpg' ];
+		yield [ new TitleValue( NS_MEDIA, 'Some_name.jpg' ), 'Some_name.jpg' ];
+		yield [ new PageIdentityValue( 0, NS_FILE, 'Some_name.jpg', false ), 'Some_name.jpg' ];
+	}
+
+	/**
+	 * @covers File::normalizeTitle
+	 * @dataProvider provideNormalizeTitle
+	 */
+	public function testNormalizeTitle( $title, $expected ) {
+		$actual = File::normalizeTitle( $title );
+
+		$this->assertSame( NS_FILE, $actual->getNamespace() );
+		$this->assertSame( $expected, $actual->getDBkey() );
+	}
+
+	public function provideNormalizeTitleFails() {
+		yield [ '' ];
+		yield [ '#' ];
+		yield [ new TitleValue( NS_USER, 'Some_name.jpg' ) ];
+		yield [ new PageIdentityValue( 0, NS_USER, 'Some_name.jpg', false ) ];
+	}
+
+	/**
+	 * @covers File::normalizeTitle
+	 * @dataProvider provideNormalizeTitleFails
+	 */
+	public function testNormalizeTitleFails( $title ) {
+		$actual = File::normalizeTitle( $title );
+		$this->assertNull( $actual );
+
+		$this->expectException( MWException::class );
+		File::normalizeTitle( $title, 'exception' );
 	}
 }
