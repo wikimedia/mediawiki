@@ -164,9 +164,7 @@
 			return;
 		}
 
-		// eslint-disable-next-line compat/compat
 		this.nativeSet = window.Set;
-		// eslint-disable-next-line compat/compat
 		window.Set = undefined;
 		mw.redefineFallbacksForTest();
 
@@ -808,7 +806,8 @@
 			function ( e, modules ) {
 				// When the server sets state of 'testMissing' to 'missing'
 				// it should bubble up and trigger the error callback of the job for 'testUsesNestedMissing'.
-				assert.strictEqual( modules.indexOf( 'testMissing' ) !== -1, true, 'Triggered by testMissing.' );
+				// eslint-disable-next-line qunit/no-ok-equality
+				assert.ok( modules.indexOf( 'testMissing' ) !== -1, 'Triggered by testMissing.' );
 
 				verifyModuleStates();
 			}
