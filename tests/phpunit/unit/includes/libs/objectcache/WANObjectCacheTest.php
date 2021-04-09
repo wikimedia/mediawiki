@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers WANObjectCache::makeSisterKeys
  * @covers WANObjectCache::getProcessCache
  * @covers WANObjectCache::getNonProcessCachedMultiKeys
- * @covers WANObjectCache::getRawKeysForWarmup
+ * @covers WANObjectCache::fetchWrappedValuesForWarmupCache
  * @covers WANObjectCache::getInterimValue
  * @covers WANObjectCache::setInterimValue
  */
@@ -1657,8 +1657,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 
 	/**
 	 * @covers WANObjectCache::delete
-	 * @covers WANObjectCache::relayDelete
-	 * @covers WANObjectCache::relayPurge
+	 * @covers WANObjectCache::relayNonVolatilePurge
+	 * @covers WANObjectCache::relayVolatilePurges
 	 * @covers WANObjectCache::makeTombstonePurgeValue
 	 */
 	public function testDelete() {
@@ -1851,7 +1851,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	 * @covers WANObjectCache::resetCheckKey
 	 * @covers WANObjectCache::getCheckKeyTime
 	 * @covers WANObjectCache::getMultiCheckKeyTime
-	 * @covers WANObjectCache::makeCheckKeyPurgeValue
+	 * @covers WANObjectCache::makeCheckPurgeValue
 	 * @covers WANObjectCache::parsePurgeValue
 	 */
 	public function testTouchKeys() {
@@ -2461,11 +2461,15 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	/**
 	 * @param string $key
 	 * @param string $expectedCollection
-	 * @covers WANObjectCache::getCollectionFromKey()
+	 * @covers WANObjectCache::getCollectionFromSisterKey()
 	 * @dataProvider provideCollectionKeys
 	 */
-	public function testGetCollectionFromKey( $key, $expectedCollection ) {
-		$this->assertSame( $expectedCollection, WANObjectCache::getCollectionFromKey( $key ) );
+	public function testgetCollectionFromSisterKey( $key, $expectedCollection ) {
+		$this->assertSame(
+			$expectedCollection,
+			WANObjectCache::getCollectionFromSisterKey( $key ),
+			'Correct key collection name'
+		);
 	}
 
 	public static function provideCollectionKeys() {
