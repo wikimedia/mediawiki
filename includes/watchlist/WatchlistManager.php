@@ -20,7 +20,7 @@
  * @author DannyS712
  */
 
-namespace MediaWiki\User;
+namespace MediaWiki\Watchlist;
 
 use DeferredUpdates;
 use MediaWiki\Config\ServiceOptions;
@@ -29,15 +29,17 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\UserIdentity;
 use ReadOnlyMode;
 use WatchedItemStoreInterface;
 
 /**
- * WatchlistNotificationManager service
+ * WatchlistManager service
  *
  * @since 1.35
  */
-class WatchlistNotificationManager {
+class WatchlistManager {
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -281,3 +283,9 @@ class WatchlistNotificationManager {
 	}
 
 }
+
+/**
+ * Retain the old class name for backwards compatibility.
+ * @deprecated since 1.36
+ */
+class_alias( WatchlistManager::class, 'MediaWiki\User\WatchlistNotificationManager' );

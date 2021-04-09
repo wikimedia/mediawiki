@@ -78,7 +78,7 @@ class PHPVersionCheck {
 	 * Displays an error, if the installed PHP version does not meet the minimum requirement.
 	 */
 	function checkRequiredPHPVersion() {
-		$minimumVersion = '7.2.22';
+		$minimumVersion = '7.3.19';
 
 		/**
 		 * This is a list of known-bad ranges of PHP versions. Syntax is like SemVer – either:
@@ -94,7 +94,6 @@ class PHPVersionCheck {
 		 * Remember to drop irrelevant ranges when bumping $minimumVersion.
 		 */
 		$knownBad = array(
-			'CVE-2019-11048' => '7.3.0 - 7.3.18',
 		);
 
 		$passes = version_compare( PHP_VERSION, $minimumVersion, '>=' );
