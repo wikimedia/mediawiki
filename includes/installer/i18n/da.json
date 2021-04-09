@@ -43,6 +43,7 @@
 	"config-page-existingwiki": "Eksisterende wiki",
 	"config-help-restart": "Vil du rydde alle gemte data, du har indtastet og genstarte installationen?",
 	"config-restart": "Ja, genstart den",
+	"config-sidebar-license": "Kopiering",
 	"config-sidebar-upgrade": "Opgraderer",
 	"config-env-php": "PHP $1 er installeret.",
 	"config-apc": "[https://www.php.net/apc APC] er installeret",
