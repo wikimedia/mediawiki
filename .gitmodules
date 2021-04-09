@@ -1196,7 +1196,7 @@
 [submodule "skins/Femiwiki"]
 	path = skins/Femiwiki
 	url = https://github.com/femiwiki/FemiwikiSkin.git
-	branch = master
+	branch = REL1_36
 	ignore = dirty
 [submodule "skins/Citizen"]
 	path = skins/Citizen
@@ -1336,7 +1336,7 @@
 [submodule "extensions/DynamicPageList3"]
 	path = extensions/DynamicPageList3
 	url = https://github.com/Universal-Omega/DynamicPageList3.git
-	branch = master
+	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Report"]
 	path = extensions/Report
