@@ -45,7 +45,6 @@
 	"apihelp-feedrecentchanges-param-hideliu": "Skjul ændringer lavet af registrerede brugere.",
 	"apihelp-feedrecentchanges-param-hidepatrolled": "Skjul patruljerede ændringer.",
 	"apihelp-feedrecentchanges-param-hidemyself": "Skjul ændringer udført af den aktuelle bruger.",
-	"apihelp-feedrecentchanges-param-tagfilter": "Filtrer efter tag.",
 	"apihelp-feedrecentchanges-example-simple": "Vis seneste ændringer.",
 	"apihelp-feedrecentchanges-example-30days": "Vis seneste ændringer for 30 dage.",
 	"apihelp-help-example-main": "Hjælp til hovedmodulet.",
