@@ -4631,7 +4631,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * For the purpose of the Title class, a proper page is one that can
 	 * exist in the page table. That is, a Title represents a proper page
-	 * if canExist() returns true and getFragment() returns an empty string.
+	 * if canExist() returns true.
 	 *
 	 * @see canExist()
 	 *
@@ -4641,11 +4641,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		Assert::precondition(
 			$this->canExist(),
 			'This Title instance does not represent a proper page, but merely a link target.'
-		);
-
-		Assert::precondition(
-			$this->getFragment() === '',
-			'This Title instance represents a fragment link.'
 		);
 	}
 
