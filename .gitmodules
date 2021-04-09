@@ -111,12 +111,12 @@
 [submodule "extensions/Translate"]
 	path = extensions/Translate
 	url = https://github.com/wikimedia/mediawiki-extensions-Translate
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/UniversalLanguageSelector"]
 	path = extensions/UniversalLanguageSelector
 	url = https://github.com/wikimedia/mediawiki-extensions-UniversalLanguageSelector
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/UrlShortener"]
 	path = extensions/UrlShortener
@@ -126,7 +126,7 @@
 [submodule "extensions/cldr"]
 	path = extensions/cldr
 	url = https://github.com/wikimedia/mediawiki-extensions-cldr
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "skins/CologneBlue"]
 	path = skins/CologneBlue
@@ -246,7 +246,7 @@
 [submodule "extensions/SocialProfile"]
 	path = extensions/SocialProfile
 	url = https://github.com/wikimedia/mediawiki-extensions-SocialProfile.git
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/Variables"]
 	path = extensions/Variables
@@ -391,7 +391,7 @@
 [submodule "extensions/VoteNY"]
 	path = extensions/VoteNY
 	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY.git
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "skins/Metrolook"]
 	path = skins/Metrolook
@@ -401,12 +401,12 @@
 [submodule "extensions/AJAXPoll"]
 	path = extensions/AJAXPoll
 	url = https://github.com/wikimedia/mediawiki-extensions-AJAXPoll.git
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/BlogPage"]
 	path = extensions/BlogPage
 	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage.git
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/WebChat"]
 	path = extensions/WebChat
@@ -486,7 +486,7 @@
 [submodule "extensions/Comments"]
 	path = extensions/Comments
 	url = https://github.com/wikimedia/mediawiki-extensions-Comments.git
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/ScratchBlocks"]
 	path = extensions/ScratchBlocks
@@ -596,7 +596,7 @@
 [submodule "extensions/LocalisationUpdate"]
 	path = extensions/LocalisationUpdate
 	url = https://github.com/wikimedia/mediawiki-extensions-LocalisationUpdate
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/Newsletter"]
 	path = extensions/Newsletter
@@ -631,7 +631,7 @@
 [submodule "extensions/ProtectSite"]
 	path = extensions/ProtectSite
 	url = https://github.com/wikimedia/mediawiki-extensions-ProtectSite
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/Theme"]
 	path = extensions/Theme
@@ -696,7 +696,7 @@
 [submodule "extensions/AutoCreateCategoryPages"]
 	path = extensions/AutoCreateCategoryPages
 	url = https://github.com/wikimedia/mediawiki-extensions-AutoCreateCategoryPages
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/PageForms"]
 	path = extensions/PageForms
@@ -786,7 +786,7 @@
 [submodule "extensions/WikiForum"]
 	path = extensions/WikiForum
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiForum
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/Cargo"]
 	path = extensions/Cargo
@@ -796,7 +796,7 @@
 [submodule "extensions/HAWelcome"]
 	path = extensions/HAWelcome
 	url = https://github.com/wikimedia/mediawiki-extensions-HAWelcome
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "skins/MinervaNeue"]
 	path = skins/MinervaNeue
@@ -821,7 +821,7 @@
 [submodule "extensions/QuizGame"]
 	path = extensions/QuizGame
 	url = https://github.com/wikimedia/mediawiki-extensions-QuizGame
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/Capiunto"]
 	path = extensions/Capiunto
@@ -961,7 +961,7 @@
 [submodule "extensions/PollNY"]
 	path = extensions/PollNY
 	url = https://github.com/wikimedia/mediawiki-extensions-PollNY.git
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/WikimediaIncubator"]
 	path = extensions/WikimediaIncubator
@@ -971,7 +971,7 @@
 [submodule "extensions/ApprovedRevs"]
 	path = extensions/ApprovedRevs
 	url = https://github.com/wikimedia/mediawiki-extensions-ApprovedRevs.git
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/Purge"]
 	path = extensions/Purge
@@ -1056,7 +1056,7 @@
 [submodule "extensions/WikiCategoryTagCloud"]
 	path = extensions/WikiCategoryTagCloud
 	url = https://github.com/wikimedia/mediawiki-extensions-WikiCategoryTagCloud.git
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "skins/Mask"]
 	path = skins/Mask
@@ -1226,7 +1226,7 @@
 [submodule "extensions/TwitterTag"]
 	path = extensions/TwitterTag
 	url = https://github.com/wikimedia/mediawiki-extensions-TwitterTag
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/MobileTabsPlugin"]
 	path = extensions/MobileTabsPlugin
@@ -1276,7 +1276,7 @@
 [submodule "skins/Cosmos"]
 	path = skins/Cosmos
 	url = https://github.com/wikimedia/mediawiki-skins-Cosmos
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/TranslationNotifications"]
 	path = extensions/TranslationNotifications
@@ -1286,7 +1286,7 @@
 [submodule "skins/Truglass"]
 	path = skins/Truglass
 	url = https://github.com/wikimedia/mediawiki-skins-Truglass
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/EventStreamConfig"]
 	path = extensions/EventStreamConfig
