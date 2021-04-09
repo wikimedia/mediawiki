@@ -352,9 +352,5 @@
 	"exif-urgency-normal": "Normal ($1)",
 	"exif-urgency-low": "Lav ($1)",
 	"exif-urgency-high": "Høj ($1)",
-	"exif-urgency-other": "Bruger-defineret prioritet ($1)",
-	"exif-usepanoramaviewer-true": "Ja",
-	"exif-usepanoramaviewer-false": "Nej",
-	"exif-exposurelockused-true": "Ja",
-	"exif-exposurelockused-false": "Nej"
+	"exif-urgency-other": "Bruger-defineret prioritet ($1)"
 }

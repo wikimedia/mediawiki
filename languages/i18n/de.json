@@ -2797,7 +2797,6 @@
 	"softblockrangesreason": "Anonyme Beiträge von deiner IP-Adresse ($1) sind nicht erlaubt. Bitte melde dich an.",
 	"xffblockreason": "Eine IP-Adresse im X-Forwarded-For-Header wurde gesperrt, entweder deine oder die des benutzten Proxyservers. Der ursprüngliche Sperrgrund war: $1",
 	"cant-see-hidden-user": "Der Benutzer, den du versuchst zu sperren, wurde bereits gesperrt und verborgen. Da du das „hideuser“-Recht nicht hast, kannst du die Benutzersperre nicht sehen und nicht bearbeiten.",
-	"cant-block-nonexistent-page": "Du kannst einen Benutzer nicht für $1 sperren, weil die Seite nicht existiert",
 	"ipbblocked": "Du kannst keine anderen Benutzer sperren oder entsperren, da du selbst gesperrt bist",
 	"ipbnounblockself": "Du hast nicht die Berechtigung, dich selbst zu entsperren",
 	"lockdb": "Datenbank sperren",
