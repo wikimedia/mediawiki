@@ -520,6 +520,7 @@ $wgAutoloadLocalClasses = [
 	'FileOpPerfTest' => __DIR__ . '/maintenance/fileOpPerfTest.php',
 	'FileRepo' => __DIR__ . '/includes/filerepo/FileRepo.php',
 	'FindBadBlobs' => __DIR__ . '/maintenance/findBadBlobs.php',
+	'FindClasses' => __DIR__ . '/maintenance/findClasses.php',
 	'FindDeprecated' => __DIR__ . '/maintenance/findDeprecated.php',
 	'FindMissingActors' => __DIR__ . '/maintenance/findMissingActors.php',
 	'FindMissingFiles' => __DIR__ . '/maintenance/findMissingFiles.php',
