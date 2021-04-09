@@ -29,6 +29,7 @@
 
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
@@ -82,6 +83,9 @@ class WikiExporter {
 	/** @var RevisionStore */
 	private $revisionStore;
 
+	/** @var TitleParser */
+	private $titleParser;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -120,6 +124,7 @@ class WikiExporter {
 		$services = MediaWikiServices::getInstance();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
 		$this->revisionStore = $services->getRevisionStore();
+		$this->titleParser = $services->getTitleParser();
 	}
 
 	/**
@@ -200,12 +205,12 @@ class WikiExporter {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 */
-	public function pageByTitle( $title ) {
+	public function pageByTitle( PageIdentity $page ) {
 		$this->dumpFrom(
-			'page_namespace=' . $title->getNamespace() .
-			' AND page_title=' . $this->db->addQuotes( $title->getDBkey() ) );
+			'page_namespace=' . $page->getNamespace() .
+			' AND page_title=' . $this->db->addQuotes( $page->getDBkey() ) );
 	}
 
 	/**
@@ -213,11 +218,13 @@ class WikiExporter {
 	 * @throws MWException
 	 */
 	public function pageByName( $name ) {
-		$title = Title::newFromText( $name );
-		if ( $title === null ) {
+		try {
+			$link = $this->titleParser->parseTitle( $name );
+			$this->dumpFrom(
+				'page_namespace=' . $link->getNamespace() .
+				' AND page_title=' . $this->db->addQuotes( $link->getDBkey() ) );
+		} catch ( MalformedTitleException $ex ) {
 			throw new MWException( "Can't export invalid title" );
-		} else {
-			$this->pageByTitle( $title );
 		}
 	}
 
