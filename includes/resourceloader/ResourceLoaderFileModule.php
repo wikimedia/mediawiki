@@ -1324,7 +1324,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * Resolves the package files defintion and generates the content of each package file.
+	 * Resolves the package files definition and generates the content of each package file.
 	 * @param ResourceLoaderContext $context
 	 * @return array Package files data structure, see ResourceLoaderModule::getScript()
 	 * @throws RuntimeException If a file doesn't exist, or parsing a .vue file fails
