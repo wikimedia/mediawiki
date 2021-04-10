@@ -41,6 +41,10 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return [
+			// Exception to the sequential updates. Renaming pagecontent to text table.
+			// Introduced in 1.36.
+			[ 'renameTable', 'pagecontent', 'text' ],
+
 			// 1.28
 			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
 				'( rc_namespace, rc_type, rc_patrolled, rc_timestamp )' ],
@@ -520,7 +524,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'filearchive', 'fa_actor_timestamp', '(fa_actor, fa_timestamp)' ],
 			[ 'addPgIndex', 'ipblocks', 'ipb_expiry', '(ipb_expiry)' ],
 			[ 'addPgIndex', 'ipblocks', 'ipb_timestamp', '(ipb_timestamp)' ],
-			[ 'renameTable', 'pagecontent', 'text' ],
 			[ 'renameIndex', 'text', 'pagecontent_pkey', 'text_pkey' ],
 			[ 'changeNullableField', 'text', 'old_text', 'NOT NULL', true ],
 			[ 'changeNullableField', 'text', 'old_flags', 'NOT NULL', true ],
@@ -605,7 +608,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'revision', 'revision_unique', 'rev_page_id' ],
 			[ 'renameIndex', 'revision', 'rev_timestamp_idx', 'rev_timestamp' ],
 			[ 'addPgIndex', 'revision', 'rev_page_timestamp', '(rev_page,rev_timestamp)' ],
-			[ 'changeNullableField', 'user', 'user_touched', 'NOT NULL', true ],
+			[ 'changeNullableField', 'mwuser', 'user_touched', 'NOT NULL', true ],
 
 		];
 	}
