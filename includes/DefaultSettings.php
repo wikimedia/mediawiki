@@ -4276,6 +4276,7 @@ $wgIncludeLegacyJavaScript = false;
  * @code{,js}
  *     if ( mw.config.get('wgIsArticle') ) { ... }
  * @endcode
+ * @deprecated since 1.36: Use mw.config.get() instead.
  */
 $wgLegacyJavaScriptGlobals = false;
 
