@@ -28,7 +28,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
-use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
@@ -62,23 +61,6 @@ class Language {
 	 * @deprecated since 1.34, use LanguageNameUtils::SUPPORTED
 	 */
 	public const SUPPORTED = LanguageNameUtils::SUPPORTED;
-
-	/**
-	 * Use PHP's magic __get handler to handle lazy accessing to
-	 * deprecated mConverter.
-	 *
-	 * @param string $name Field name
-	 * @return mixed
-	 */
-	public function __get( string $name ) {
-		if ( $name == "mConverter" ) {
-			wfDeprecatedMsg(
-				'Access to Language::$mConverter was deprecated in MediaWiki 1.35',
-				'1.35' );
-			return $this->getConverter();
-		}
-		throw new RuntimeException( "Cannot get '$name' property." );
-	}
 
 	public $mCode;
 
@@ -341,25 +323,6 @@ class Language {
 	 */
 	public static function factory( $code ) {
 		return MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $code );
-	}
-
-	/**
-	 * Intended for tests that may change configuration in a way that invalidates caches.
-	 *
-	 * @since 1.32
-	 * @deprecated since 1.35. Instead, reset all services and set Language::$mLangObjCache = [].
-	 */
-	public static function clearCaches() {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		$services = MediaWikiServices::getInstance();
-
-		$services->resetServiceForTesting( 'LanguageFallback' );
-		$services->resetServiceForTesting( 'LanguageNameUtils' );
-		$services->resetServiceForTesting( 'LocalisationCache' );
-		$services->resetServiceForTesting( 'LanguageFactory' );
-
-		self::$mLangObjCache = [];
 	}
 
 	/**
@@ -4269,19 +4232,6 @@ class Language {
 	}
 
 	/**
-	 * Convert a Title object to a string in the preferred variant
-	 *
-	 * @deprecated since 1.35 use LanguageConverter::convertTitle
-	 *
-	 * @param Title $title
-	 * @return string
-	 */
-	public function convertTitle( $title ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->getConverter()->convertTitle( $title );
-	}
-
-	/**
 	 * Convert a namespace index to a string in the preferred variant
 	 *
 	 * @deprecated since 1.35 use LanguageConverter::convertNamespace instead
@@ -4382,25 +4332,6 @@ class Language {
 	}
 
 	/**
-	 * If a language supports multiple variants, it is
-	 * possible that non-existing link in one variant
-	 * actually exists in another variant. this function
-	 * tries to find it. See e.g. LanguageZh.php
-	 * The input parameters may be modified upon return
-	 *
-	 * @deprecated since 1.35 use LanguageConverter::findVariantLink instead
-	 *
-	 * @param string &$link The name of the link
-	 * @param Title &$nt The title object of the link
-	 * @param bool $ignoreOtherCond To disable other conditions when
-	 *   we need to transclude a template or update a category's link
-	 */
-	public function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->getConverter()->findVariantLink( $link, $nt, $ignoreOtherCond );
-	}
-
-	/**
 	 * returns language specific options used by User::getPageRenderHash()
 	 * for example, the preferred language variant
 	 *
@@ -4410,19 +4341,6 @@ class Language {
 	 */
 	public function getExtraHashOptions() {
 		return $this->getConverter()->getExtraHashOptions();
-	}
-
-	/**
-	 * Refresh the cache of conversion tables when
-	 * MediaWiki:Conversiontable* is updated.
-	 *
-	 * @deprecated since 1.35 use LanguageConverter::updateConversionTable instead
-	 *
-	 * @param LinkTarget $linkTarget The LinkTarget of the page being updated
-	 */
-	public function updateConversionTable( LinkTarget $linkTarget ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->getConverter()->updateConversionTable( $linkTarget );
 	}
 
 	/**
@@ -4513,24 +4431,6 @@ class Language {
 			return false;
 		}
 		return str_replace( '_', '-', strtolower( $m[1] ) );
-	}
-
-	/**
-	 * @deprecated since 1.35, this is an internal method and should not need
-	 * to be used elsewhere
-	 *
-	 * @param string $code
-	 * @param bool $fallback Whether we're going through language fallback chain
-	 * @return string Name of the language class
-	 */
-	public static function classFromCode( $code, $fallback = true ) {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		if ( $fallback && $code == 'en' ) {
-			return 'Language';
-		} else {
-			return 'Language' . str_replace( '-', '_', ucfirst( $code ) );
-		}
 	}
 
 	/**

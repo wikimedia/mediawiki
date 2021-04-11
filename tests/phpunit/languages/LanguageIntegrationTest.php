@@ -6,7 +6,6 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Language
@@ -1842,23 +1841,6 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 		$this->assertEquals( "a{$and}{$s}b", $lang->listToText( [ 'a', 'b' ] ) );
 		$this->assertEquals( "a{$c}b{$and}{$s}c", $lang->listToText( [ 'a', 'b', 'c' ] ) );
 		$this->assertEquals( "a{$c}b{$c}c{$and}{$s}d", $lang->listToText( [ 'a', 'b', 'c', 'd' ] ) );
-	}
-
-	/**
-	 * @covers Language::clearCaches
-	 */
-	public function testClearCaches() {
-		$this->hideDeprecated( 'Language::clearCaches' );
-
-		$languageClass = TestingAccessWrapper::newFromClass( Language::class );
-
-		// Populate $mLangObjCache
-		$lang = Language::factory( 'en' );
-		$this->assertNotCount( 0, Language::$mLangObjCache );
-
-		Language::clearCaches();
-
-		$this->assertSame( [], Language::$mLangObjCache );
 	}
 
 	/**
