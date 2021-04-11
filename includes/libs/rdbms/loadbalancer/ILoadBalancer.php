@@ -78,8 +78,17 @@ use InvalidArgumentException;
 interface ILoadBalancer {
 	/** @var int Request a replica DB connection */
 	const DB_REPLICA = -1;
-	/** @var int Request a master DB connection */
-	const DB_MASTER = -2;
+
+	/**
+	 * Request a primary, write-enabled DB connection
+	 * @since 1.31.15
+	 */
+	const DB_PRIMARY = -2;
+	/**
+	 * Request a primary, write-enabled DB connection
+	 * @deprecated since 1.31.15, Use DB_PRIMARY instead
+	 */
+	const DB_MASTER = self::DB_PRIMARY;
 
 	/** @var string Domain specifier when no specific database needs to be selected */
 	const DOMAIN_ANY = '';
