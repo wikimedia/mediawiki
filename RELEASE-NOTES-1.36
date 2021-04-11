@@ -553,6 +553,7 @@ because of Phabricator reports.
 * …
 
 === Deprecations in 1.36 ===
+* (T278026) The DB_MASTER constant has been deprecated in favour of DB_PRIMARY.
 * (T245963) User::getGrantName() is now hard deprecated and will be removed in
   a subsequent release. Use MWGrants::grantName() instead.
 * wfIncrStats() is now deprecated. Use MediaWikiServices::getInstance()
