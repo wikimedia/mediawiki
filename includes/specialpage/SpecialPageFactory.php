@@ -30,10 +30,12 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\Page\PageReference;
 use Profiler;
 use RequestContext;
 use SpecialPage;
 use Title;
+use TitleFactory;
 use User;
 use Wikimedia\ObjectFactory;
 
@@ -977,21 +979,29 @@ class SpecialPageFactory {
 	];
 
 	/**
+	 * @var TitleFactory
+	 */
+	private $titleFactory;
+
+	/**
 	 * @param ServiceOptions $options
 	 * @param Language $contLang
 	 * @param ObjectFactory $objectFactory
+	 * @param TitleFactory $titleFactory
 	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		Language $contLang,
 		ObjectFactory $objectFactory,
+		TitleFactory $titleFactory,
 		HookContainer $hookContainer
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
 		$this->contLang = $contLang;
 		$this->objectFactory = $objectFactory;
+		$this->titleFactory = $titleFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
@@ -1307,18 +1317,21 @@ class SpecialPageFactory {
 	 * Returns a title object if the page is redirected, false if there was no such special
 	 * page, and true if it was successful.
 	 *
-	 * @param Title &$title
-	 * @param IContextSource &$context
+	 * @param PageReference|string $path
+	 * @param IContextSource $context
 	 * @param bool $including Bool output is being captured for use in {{special:whatever}}
 	 * @param LinkRenderer|null $linkRenderer (since 1.28)
 	 *
 	 * @return bool|Title
 	 */
-	public function executePath( Title &$title, IContextSource &$context, $including = false,
+	public function executePath( $path, IContextSource $context, $including = false,
 		LinkRenderer $linkRenderer = null
 	) {
-		// @todo FIXME: Redirects broken due to this call
-		$bits = explode( '/', $title->getDBkey(), 2 );
+		if ( $path instanceof PageReference ) {
+			$path = $path->getDBkey();
+		}
+
+		$bits = explode( '/', $path, 2 );
 		$name = $bits[0];
 		$par = $bits[1] ?? null; // T4087
 
@@ -1393,13 +1406,13 @@ class SpecialPageFactory {
 	 * variables so that the special page will get the context it'd expect on a
 	 * normal request, and then restores them to their previous values after.
 	 *
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param IContextSource $context
 	 * @param LinkRenderer|null $linkRenderer (since 1.28)
 	 * @return string HTML fragment
 	 */
 	public function capturePath(
-		Title $title, IContextSource $context, LinkRenderer $linkRenderer = null
+		PageReference $page, IContextSource $context, LinkRenderer $linkRenderer = null
 	) {
 		global $wgTitle, $wgOut, $wgRequest, $wgUser, $wgLang;
 		$main = RequestContext::getMain();
@@ -1423,6 +1436,9 @@ class SpecialPageFactory {
 			$ctx['wikipage'] = $main->getWikiPage();
 		}
 
+		// just needed for $wgTitle and RequestContext::setTitle
+		$title = $this->titleFactory->castFromPageReference( $page );
+
 		// Override
 		$wgTitle = $title;
 		$wgOut = $context->getOutput();
@@ -1436,7 +1452,7 @@ class SpecialPageFactory {
 		$main->setLanguage( $context->getLanguage() );
 
 		// The useful part
-		$ret = $this->executePath( $title, $context, true, $linkRenderer );
+		$ret = $this->executePath( $page, $context, true, $linkRenderer );
 
 		// Restore old globals and context
 		$wgTitle = $glob['title'];
