@@ -40,7 +40,6 @@ use Message;
 use RawMessage;
 use ReadOnlyMode;
 use RecentChange;
-use Revision;
 use StatusValue;
 use TitleFormatter;
 use TitleValue;
@@ -81,9 +80,6 @@ class RollbackPage {
 
 	/** @var RevisionStore */
 	private $revisionStore;
-
-	/** @var HookContainer */
-	private $hookContainer;
 
 	/** @var HookRunner */
 	private $hookRunner;
@@ -152,7 +148,6 @@ class RollbackPage {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionStore = $revisionStore;
 		$this->titleFormatter = $titleFormatter;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->actorMigration = $actorMigration;
@@ -420,16 +415,8 @@ class RollbackPage {
 			$log->publish( $logId );
 		}
 
-		// Hook is hard deprecated since 1.35
 		$user = $this->userFactory->newFromAuthority( $this->performer );
 		$wikiPage = $this->wikiPageFactory->newFromTitle( $this->page );
-		if ( $this->hookContainer->isRegistered( 'ArticleRollbackComplete' ) ) {
-			// Only create the Revision objects if needed
-			$legacyCurrent = new Revision( $currentRevision );
-			$legacyTarget = new Revision( $targetRevision );
-			$this->hookRunner->onArticleRollbackComplete( $wikiPage, $user,
-				$legacyTarget, $legacyCurrent );
-		}
 
 		$this->hookRunner->onRollbackComplete( $wikiPage, $user, $targetRevision, $currentRevision );
 

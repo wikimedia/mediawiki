@@ -485,7 +485,8 @@ class PageUpdater {
 	 * This is used with rollbacks and with dummy "null" revisions which are created to record
 	 * things like page moves.
 	 *
-	 * This value is passed to the PageContentSaveComplete and NewRevisionFromEditComplete hooks.
+	 * TODO This value was passed to the PageContentSaveComplete and NewRevisionFromEditComplete
+	 * hooks, but those were removed - where is it used now?.
 	 *
 	 * @param int|bool $originalRevId The original revision id, or false if no earlier revision
 	 * is known to be repeated or restored by this update.
@@ -1246,19 +1247,6 @@ class PageUpdater {
 				$wikiPage, $newRevisionRecord, $editResult->getOriginalRevisionId(), $user, $tags
 			);
 
-			// Hook is hard deprecated since 1.35
-			if ( $this->hookContainer->isRegistered( 'NewRevisionFromEditComplete' ) ) {
-				// Only create Revision object if needed
-				$newLegacyRevision = new Revision( $newRevisionRecord );
-				$this->hookRunner->onNewRevisionFromEditComplete(
-					$wikiPage,
-					$newLegacyRevision,
-					$editResult->getOriginalRevisionId(),
-					$legacyUser,
-					$tags
-				);
-			}
-
 			// Update recentchanges
 			if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 				// Add RC row to the DB
@@ -1402,19 +1390,6 @@ class PageUpdater {
 
 		$legacyUser = self::toLegacyUser( $user );
 
-		// Hook is deprecated since 1.35
-		if ( $this->hookContainer->isRegistered( 'NewRevisionFromEditComplete' ) ) {
-			// ONly create Revision object if needed
-			$newLegacyRevision = new Revision( $newRevisionRecord );
-			$this->hookRunner->onNewRevisionFromEditComplete(
-				$wikiPage,
-				$newLegacyRevision,
-				false,
-				$legacyUser,
-				$tags
-			);
-		}
-
 		// Update recentchanges
 		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 			// Add RC row to the DB
@@ -1539,31 +1514,6 @@ class PageUpdater {
 					$newRevisionRecord,
 					$editResult
 				);
-
-				// Both hooks are hard deprecated since 1.35
-				if ( !$this->hookContainer->isRegistered( 'PageContentInsertComplete' )
-					&& !$this->hookContainer->isRegistered( 'PageContentSaveComplete' )
-				) {
-					// Don't go on to create a Revision unless its needed
-					return;
-				}
-
-				$legacyUser = self::toLegacyUser( $user );
-
-				$mainContent = $newRevisionRecord->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
-				$newLegacyRevision = new Revision( $newRevisionRecord );
-				if ( $created ) {
-					// Trigger post-create hook
-					$this->hookRunner->onPageContentInsertComplete( $wikiPage, $legacyUser,
-						$mainContent, $summary->text, $flags & EDIT_MINOR,
-						null, null, $flags, $newLegacyRevision );
-				}
-
-				// Trigger post-save hook
-				$this->hookRunner->onPageContentSaveComplete( $wikiPage, $legacyUser, $mainContent,
-					$summary->text, $flags & EDIT_MINOR, null,
-					null, $flags, $newLegacyRevision, $status,
-					$editResult->getOriginalRevisionId(), $editResult->getUndidRevId() );
 			}
 		);
 	}
