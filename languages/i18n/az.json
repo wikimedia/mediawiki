@@ -902,6 +902,7 @@
 	"search-category": "(kateqoriya $1)",
 	"search-file-match": "(faylın məzmunu ilə oxşardır)",
 	"search-suggest": "Bəlkə, bunu nəzərdə tuturdunuz: $1",
+	"search-rewritten": "$1 üçün nəticələr göstərilir. $2 üçün heç bir nəticə tapılmadı.",
 	"search-interwiki-caption": "Qonşu layihələrdəki nəticələr",
 	"search-interwiki-default": "$1 nəticələri:",
 	"search-interwiki-more": "(yenə)",

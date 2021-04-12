@@ -2726,7 +2726,7 @@
 	"rollback-confirmation-confirm": "Prompt which asks the user to confirm that they want to really perform the rollback action after clicking on the rollback button.",
 	"rollback-confirmation-yes": "Button text to confirm that a rollback should be executed.",
 	"rollback-confirmation-no": "Button text to cancel a rollback instead of executing it.\n{{Identical|Cancel}}",
-	"rollbacklink": "{{Doc-actionlink}}\nThis link text appears on the recent changes page to users who have the \"rollback\" right.\nThis message has a tooltip {{msg-mw|tooltip-rollback}}\n{{Identical|Rollback}}",
+	"rollbacklink": "{{Doc-actionlink}}\nThis link text appears on the recent changes page to users who have the \"rollback\" right. This message has a tooltip {{msg-mw|tooltip-rollback}}\n{{Identical|Rollback}}",
 	"rollbacklinkcount": "{{doc-actionlink}}\nText of the rollback link showing the number of edits to be rolled back. The word \"rollback\" is supposed to be the same as in {{msg-mw|rollbacklink}}.\n\nParameters:\n* $1 - the number of edits that will be rolled back. If $1 is over the value of <code>$wgShowRollbackEditCount</code> (default: 10) {{msg-mw|rollbacklinkcount-morethan}} is used.\n\nThe rollback link is displayed with a tooltip {{msg-mw|Tooltip-rollback}}",
 	"rollbacklinkcount-morethan": "{{doc-actionlink}}\nText of the rollback link when a greater number of edits is to be rolled back. See also {{msg-mw|rollbacklink}}.\n\nWhen the number of edits rolled back is smaller than [[mw:Special:MyLanguage/Manual:$wgShowRollbackEditCount|$wgShowRollbackEditCount]], {{msg-mw|rollbacklinkcount}} is used instead.\n\nParameters:\n* $1 - number of edits",
 	"rollbackfailed": "{{Identical|Rollback}}",

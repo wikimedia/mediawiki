@@ -2769,6 +2769,7 @@
 	"softblockrangesreason": "Anonyma bidrag tillåts inte från din IP-adress ($1). Var god logga in.",
 	"xffblockreason": "En IP-adress i sidhuvudet X-Forwarded-For, antingen din adress eller en proxyserver som du använder, har blockerats. Den ursprungliga anledningen till blockeringen var: $1",
 	"cant-see-hidden-user": "Användaren du försöker blockera är redan blockerad och dold. Eftersom du inte har hideuser-rättigheter, kan du inte se eller redigera användarens blockering.",
+	"cant-block-nonexistent-page": "Du kan inte blockera en användare från $1 eftersom sidan inte finns",
 	"ipbblocked": "Du kan inte blockera eller avblockera andra användare, eftersom du själv är blockerad",
 	"ipbnounblockself": "Du har inte tillåtelse att avblockera dig själv",
 	"lockdb": "Lås databas",

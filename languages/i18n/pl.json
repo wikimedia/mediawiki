@@ -2782,6 +2782,7 @@
 	"softblockrangesreason": "Edycje niezalogowanych z Twojego adresu IP ($1) są niedozwolone. Proszę się zalogować.",
 	"xffblockreason": "Adres IP obecny w nagłówku X-Forwarded-For – twój lub serwera proxy, z którego korzystasz – został zablokowany. Powód blokady to: $1",
 	"cant-see-hidden-user": "Konto użytkownika, które próbujesz zablokować, zostało już zablokowane oraz ukryte. Bez uprawnienia do ukrywania kont nie możesz zobaczyć oraz modyfikować blokady tego użytkownika.",
+	"cant-block-nonexistent-page": "Nie możesz zablokować użytkownikowi edycji strony „$1”, ponieważ ona nie istnieje",
 	"ipbblocked": "Nie możesz blokować i odblokowywać innych użytkowników, ponieważ sam jesteś zablokowany",
 	"ipbnounblockself": "Nie możesz odblokować samego siebie",
 	"lockdb": "Zablokuj bazę danych",
