@@ -106,7 +106,8 @@ class SpecialListFiles extends IncludableSpecialPage {
 			$this->repoGroup,
 			$this->loadBalancer,
 			$this->commentStore,
-			$this->userCache
+			$this->userCache,
+			$this->userNameUtils
 		);
 
 		$out = $this->getOutput();

@@ -297,6 +297,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isIP
 	 */
 	public function testIsIP( $value, $result, $message ) {
+		$this->hideDeprecated( 'User::isIP' );
 		$this->assertSame( $result, $this->user->isIP( $value ), $message );
 	}
 

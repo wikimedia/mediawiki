@@ -282,7 +282,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 			return $copy;
 		} elseif ( $name === 'mOptions' ) {
 			wfDeprecated( 'User::$mOptions', '1.35' );
-			$options = $this->getOptions();
+			$options = MediaWikiServices::getInstance()->getUserOptionsLookup()->getOptions( $this );
 			return $options;
 		} elseif ( !property_exists( $this, $name ) ) {
 			// T227688 - do not break $u->foo['bar'] = 1
@@ -974,12 +974,14 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * addresses like this, if we allowed accounts like this to be created
 	 * new users could get the old edits of these anonymous users.
 	 *
-	 * @deprecated since 1.35, use the UserNameUtils service
+	 * @deprecated since 1.35, use the UserNameUtils service.
+	 * Hard deprecated since 1.37.
 	 *    Note that UserNameUtils::isIP does not accept IPv6 ranges, while this method does
 	 * @param string $name Name to match
 	 * @return bool
 	 */
 	public static function isIP( $name ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return preg_match( '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/', $name )
 			|| IPUtils::isIPv6( $name );
 	}
@@ -2058,8 +2060,9 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 */
 	public function getId( $wikiId = self::LOCAL ) : int {
 		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 		if ( $this->mId === null && $this->mName !== null &&
-			( self::isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) )
+			( $userNameUtils->isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) )
 		) {
 			// Special case, we know the user is anonymous
 			// Note that "external" users are "local" (they have an actor ID that is relative to
@@ -2652,9 +2655,11 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *   User::GETOPTIONS_EXCLUDE_DEFAULTS  Exclude user options that are set
 	 *                                      to the default value. (Since 1.25)
 	 * @return array
-	 * @deprecated since 1.35 Use UserOptionsLookup::getOptions instead
+	 * @deprecated since 1.35 Use UserOptionsLookup::getOptions instead.
+	 * Hard deprecated since 1.37.
 	 */
 	public function getOptions( $flags = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsLookup()
 			->getOptions( $this, $flags );

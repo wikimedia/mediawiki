@@ -4,6 +4,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\User\UserNameUtils;
 
 /**
  * Implementation of near match title search.
@@ -38,6 +39,11 @@ class SearchNearMatcher {
 	private $wikiPageFactory;
 
 	/**
+	 * @var UserNameUtils
+	 */
+	private $userNameUtils;
+
+	/**
 	 * SearchNearMatcher constructor.
 	 * @param Config $config
 	 * @param Language $lang
@@ -51,6 +57,7 @@ class SearchNearMatcher {
 			->getLanguageConverter( $lang );
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userNameUtils = $services->getUserNameUtils();
 	}
 
 	/**
@@ -168,8 +175,8 @@ class SearchNearMatcher {
 
 		# Entering an IP address goes to the contributions page
 		if ( $this->config->get( 'EnableSearchContributorsByIP' ) ) {
-			if ( ( $title->getNamespace() === NS_USER && User::isIP( $title->getText() ) )
-				|| User::isIP( trim( $searchterm ) ) ) {
+			if ( ( $title->getNamespace() === NS_USER && $this->userNameUtils->isIP( $title->getText() ) )
+				|| $this->userNameUtils->isIP( trim( $searchterm ) ) ) {
 				return SpecialPage::getTitleFor( 'Contributions', $title->getDBkey() );
 			}
 		}

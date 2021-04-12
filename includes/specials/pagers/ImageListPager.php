@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\FakeResultWrapper;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -80,6 +81,7 @@ class ImageListPager extends TablePager {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
 	 * @param UserCache $userCache
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		IContextSource $context,
@@ -91,7 +93,8 @@ class ImageListPager extends TablePager {
 		RepoGroup $repoGroup,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		UserCache $userCache
+		UserCache $userCache,
+		UserNameUtils $userNameUtils
 	) {
 		$this->setContext( $context );
 
@@ -109,7 +112,7 @@ class ImageListPager extends TablePager {
 				if ( $user ) {
 					$this->mUser = $user;
 				}
-				if ( !$user || ( $user->isAnon() && !User::isIP( $user->getName() ) ) ) {
+				if ( !$user || ( $user->isAnon() && !$userNameUtils->isIP( $user->getName() ) ) ) {
 					$this->outputUserDoesNotExist( $userName );
 				}
 			}

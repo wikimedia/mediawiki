@@ -22,6 +22,7 @@
 
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserOptionsLookup;
 
 /**
  * Query module to get information about the currently logged-in user
@@ -55,17 +56,32 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 */
 	private $userEditTracker;
 
+	/**
+	 * @var UserOptionsLookup
+	 */
+	private $userOptionsLookup;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param TalkPageNotificationManager $talkPageNotificationManager
+	 * @param WatchedItemStore $watchedItemStore
+	 * @param UserEditTracker $userEditTracker
+	 * @param UserOptionsLookup $userOptionsLookup
+	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WatchedItemStore $watchedItemStore,
-		UserEditTracker $userEditTracker
+		UserEditTracker $userEditTracker,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $query, $moduleName, 'ui' );
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->userEditTracker = $userEditTracker;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function execute() {
@@ -180,7 +196,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['options'] ) ) {
-			$vals['options'] = $user->getOptions();
+			$vals['options'] = $this->userOptionsLookup->getOptions( $user );
 			$vals['options'][ApiResult::META_BC_BOOLS] = array_keys( $vals['options'] );
 		}
 

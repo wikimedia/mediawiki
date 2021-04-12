@@ -439,7 +439,9 @@ abstract class Skin extends ContextSource {
 			$title = $this->getRelevantTitle();
 			if ( $title->hasSubjectNamespace( NS_USER ) ) {
 				$rootUser = $title->getRootText();
-				if ( User::isIP( $rootUser ) ) {
+				$services = MediaWikiServices::getInstance();
+				$userNameUtils = $services->getUserNameUtils();
+				if ( $userNameUtils->isIP( $rootUser ) ) {
 					$this->mRelevantUser = User::newFromName( $rootUser, false );
 				} else {
 					$user = User::newFromName( $rootUser, false );

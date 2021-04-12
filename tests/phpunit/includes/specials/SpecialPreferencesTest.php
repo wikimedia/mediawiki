@@ -41,10 +41,6 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 			]
 			) );
 
-		# Needs to return something
-		$user->method( 'getOptions' )
-			->willReturn( [] );
-
 		// isAnyAllowed used to return null from the mock,
 		// thus revoke it's permissions.
 		$this->overrideUserPermissions( $user, [] );

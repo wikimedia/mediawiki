@@ -22,6 +22,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsManager;
 
 /**
  * API module that facilitates the changing of user's preferences.
@@ -32,6 +33,27 @@ use MediaWiki\MediaWikiServices;
 class ApiOptions extends ApiBase {
 	/** @var User User account to modify */
 	private $userForUpdates;
+
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param UserOptionsManager|null $userOptionsManager
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		UserOptionsManager $userOptionsManager = null
+	) {
+		parent::__construct( $main, $action );
+		/**
+		 * This class is extended by GlobalPreferences extension.
+		 * So it falls back to the global state.
+		 */
+		$this->userOptionsManager = $userOptionsManager ?? MediaWikiServices::getInstance()->getUserOptionsManager();
+	}
 
 	/**
 	 * Changes preferences of the current user.
@@ -99,7 +121,7 @@ class ApiOptions extends ApiBase {
 							$htmlForm = new HTMLForm( [], $this );
 						}
 						$field = HTMLForm::loadInputFromParameters( $key, $prefs[$key], $htmlForm );
-						$validation = $field->validate( $value, $user->getOptions() );
+						$validation = $field->validate( $value, $this->userOptionsManager->getOptions( $user ) );
 					}
 					break;
 				case 'registered-multiselect':
