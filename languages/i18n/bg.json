@@ -439,6 +439,7 @@
 	"userlogin-yourpassword-ph": "Въведете вашата парола",
 	"createacct-yourpassword-ph": "Въведете парола",
 	"yourpasswordagain": "Парола (повторно):",
+	"createacct-useuniquepass": "Препоръчително е да използвате уникална парола, която не ползвате за никой друг уебсайт.",
 	"createacct-yourpasswordagain": "Потвърждаване на паролата",
 	"createacct-yourpasswordagain-ph": "Въведете паролата (повторно)",
 	"userlogin-remembermypassword": "Запомняне",

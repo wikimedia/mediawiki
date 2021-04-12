@@ -2819,6 +2819,7 @@
 	"softblockrangesreason": "IP adresinizden anonim katkılara izin verilmez ($1). Lütfen oturum açın.",
 	"xffblockreason": "Sizin ya da kullandığınız vekil sunucuya ait bir IP adresi X-Forwarded-For başlığında bulunuyor, ve engellendi. Orijinal engelleme nedeni: $1",
 	"cant-see-hidden-user": "Engellemeye çalıştığınız kullanıcı zaten engellendi ve gizlendi.\nHideuser hakkına sahip olmadığınız için kullanıcının engelini göremez veya düzenleyemezsiniz.",
+	"cant-block-nonexistent-page": "Sayfa mevcut olmadığı için bir kullanıcıyı $1 sayfasından engelleyemezsiniz",
 	"ipbblocked": "Diğer kullanıcıları engelleyemez ya da engellemesini kaldıramazsınız, çünkü kendiniz engellenmişsiz.",
 	"ipbnounblockself": "Kendi engellemenizi kaldırmanıza izniniz yok.",
 	"lockdb": "Veritabanını kilitle",

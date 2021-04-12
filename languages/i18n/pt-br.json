@@ -2835,6 +2835,7 @@
 	"softblockrangesreason": "Contribuições anônimas não são permitidas do seu endereço  IP $1 Por favor, faça login.",
 	"xffblockreason": "Um endereço IP presente no cabeçalho X-Forwarded-For, seu ou do servidor proxy que está usando, foi bloqueado. O motivo original do bloqueio foi: $1",
 	"cant-see-hidden-user": "O usuário que você está tentando bloquear já está bloqueado ou oculto. Como você não possui privilégio de ocultar usuários, você não pode ver ou editar o bloqueio desse usuário.",
+	"cant-block-nonexistent-page": "Você não pode bloquear um usuário $1 porque a página não existe",
 	"ipbblocked": "Não é possível que você bloqueie ou desbloqueie outros usuários, já que você se encontra bloqueado",
 	"ipbnounblockself": "Não é permitido que você se desbloqueie",
 	"lockdb": "Trancar banco de dados",

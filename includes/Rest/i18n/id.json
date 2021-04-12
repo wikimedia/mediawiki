@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rachmat04"
+		]
+	},
+	"rest-prefix-mismatch": "Lintasan yang diminta ($1) tidak berada di dalam lintasan utama REST API ($2)",
+	"rest-wrong-method": "Metode yang diminta ($1) bukan {{PLURAL:$3|metode yang diizinkan untuk lintasan tunggal dari metode yang diizinkan pada lintasan ini}} ($2)",
+	"rest-no-match": "Lintasan relatif yang diminta ($1) tidak sesuai dengan penangan yang dikenali",
+	"rest-nonexistent-title": "Judul yang dimaksud ($1) tidak ada",
+	"rest-nonexistent-title-revision": "Revisi yang ditentukan ($1) tidak tersedia bagi halaman yang ditentukan ($2)",
+	"rest-nonexistent-revision": "Revisi yang dimaksud ($1) tidak ada",
+	"rest-nonexistent-user": "Pengguna yang dimaksud ($1) tidak ada",
+	"rest-invalid-user": "Nama pengguna yang dimaksud ($1) tidak sah",
+	"rest-permission-denied-anon": "Tidak dapat diakses oleh pengguna anonim",
+	"rest-permission-denied-title": "Pengguna ini tidak memiliki akses untuk membaca judul ($1)",
+	"rest-permission-denied-revision": "Pengguna tidak memiliki akses ke revisi yang dimaksud ($1).",
+	"rest-resource-limit-exceeded": "Batasan sumber daya telah melebihi batas untuk memproses permintaan ini.",
+	"rest-pagehistory-incompatible-params": "Parameter \"older_than\" dan \"newer_than\" tidak boleh dimasukkan sekaligus",
+	"rest-pagehistory-param-range-error": "Penanda revisi harus lebih besar dari 0",
+	"rest-pagehistory-timestamp-error": "Tidak dapat mengambil stempel waktu untuk revisi yang dimaksud ($1)"
+}

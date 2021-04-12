@@ -2696,6 +2696,7 @@
 	"softblockrangesreason": "Brezimni prispevki z vašega IP-naslova ($1) niso dovoljeni. Prosimo, prijavite se.",
 	"xffblockreason": "IP-naslov, prisoten v glavi X-Forwarded-For, ali vaš ali od strežnika proxy, ki ga uporabljate, je blokiran. Izvirni razlog za blokado: $1",
 	"cant-see-hidden-user": "Uporabnik, ki ga poskušate blokirate, je že blokiran in skrit.\nKer nimate pravice hideuser, si ne morete ogledati ali urejati uporabnikove blokade.",
+	"cant-block-nonexistent-page": "Uporabnika ne morete blokirati s strani $1, ker stran ne obstaja",
 	"ipbblocked": "Ne morete blokirati ali deblokirati drugih uporabnikov, saj ste sami blokirani",
 	"ipbnounblockself": "Ni vam dovoljeno deblokirati samega sebe",
 	"lockdb": "Zakleni zbirko podatkov",
