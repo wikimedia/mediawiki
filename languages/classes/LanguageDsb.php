@@ -45,6 +45,7 @@ class LanguageDsb extends Language {
 		switch ( $case ) {
 			case 'instrumental': # instrumental
 				$word = 'z ' . $word;
+				// fall-through
 			case 'lokatiw': # lokatiw
 				$word = 'wo ' . $word;
 				break;

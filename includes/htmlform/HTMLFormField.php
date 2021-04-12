@@ -250,7 +250,7 @@ abstract class HTMLFormField {
 						case '!==':
 							return ( $value !== $testValue );
 					}
-
+					// fall-through, if $op is not added to both cases
 				default:
 					throw new MWException( "Unknown operation" );
 			}

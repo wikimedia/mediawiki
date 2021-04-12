@@ -480,6 +480,7 @@ class ApiEditPage extends ApiBase {
 			// @codeCoverageIgnoreStart
 			case EditPage::AS_BLOCKED_PAGE_FOR_USER:
 				$this->dieBlocked( $user->getBlock() );
+				// dieBlocked prevents continuation
 
 			case EditPage::AS_READ_ONLY_PAGE:
 				$this->dieReadOnly();

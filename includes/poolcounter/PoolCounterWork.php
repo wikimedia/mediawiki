@@ -163,7 +163,7 @@ abstract class PoolCounterWork {
 				} finally {
 					$this->poolCounter->release();
 				}
-
+				// no fall-through, because try returns or throws
 			case PoolCounter::DONE:
 				$result = $this->getCachedWork();
 				if ( $result === false ) {
