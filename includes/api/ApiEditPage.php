@@ -42,14 +42,19 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup API
  */
 class ApiEditPage extends ApiBase {
-
 	use ApiWatchlistTrait;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
 
 	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
 		parent::__construct( $mainModule, $moduleName, $modulePrefix );
 
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+
+		// Cannot inject yet, see above
+		$this->contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 
 	public function execute() {
@@ -66,7 +71,8 @@ class ApiEditPage extends ApiBase {
 		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
 		if ( $params['redirect'] ) {
-			if ( $params['prependtext'] === null && $params['appendtext'] === null
+			if ( $params['prependtext'] === null
+				&& $params['appendtext'] === null
 				&& $params['section'] !== 'new'
 			) {
 				$this->dieWithError( 'apierror-redirect-appendonly' );
@@ -118,26 +124,24 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( $params['contentmodel'] ) {
-			$contentHandler = $this->getContentHandlerFactory()
-				->getContentHandler( $params['contentmodel'] );
+			$contentHandler = $this->contentHandlerFactory->getContentHandler( $params['contentmodel'] );
 		} else {
 			$contentHandler = $pageObj->getContentHandler();
 		}
 		$contentModel = $contentHandler->getModelID();
 
 		$name = $titleObj->getPrefixedDBkey();
-		$model = $contentHandler->getModelID();
 
 		if ( $params['undo'] > 0 ) {
 			// allow undo via api
 		} elseif ( $contentHandler->supportsDirectApiEditing() === false ) {
-			$this->dieWithError( [ 'apierror-no-direct-editing', $model, $name ] );
+			$this->dieWithError( [ 'apierror-no-direct-editing', $contentModel, $name ] );
 		}
 
 		$contentFormat = $params['contentformat'] ?: $contentHandler->getDefaultFormat();
 
 		if ( !$contentHandler->isSupportedFormat( $contentFormat ) ) {
-			$this->dieWithError( [ 'apierror-badformat', $contentFormat, $model, $name ] );
+			$this->dieWithError( [ 'apierror-badformat', $contentFormat, $contentModel, $name ] );
 		}
 
 		if ( $params['createonly'] && $titleObj->exists() ) {
@@ -173,7 +177,6 @@ class ApiEditPage extends ApiBase {
 						$this->dieWithException( $ex, [
 							'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )
 						] );
-						return;
 					}
 				} else {
 					# Otherwise, make a new empty content.
@@ -184,14 +187,12 @@ class ApiEditPage extends ApiBase {
 			// @todo Add support for appending/prepending to the Content interface
 
 			if ( !( $content instanceof TextContent ) ) {
-				$modelName = $contentHandler->getModelID();
-				$this->dieWithError( [ 'apierror-appendnotsupported', $modelName ] );
+				$this->dieWithError( [ 'apierror-appendnotsupported', $contentModel ] );
 			}
 
 			if ( $params['section'] !== null ) {
 				if ( !$contentHandler->supportsSections() ) {
-					$modelName = $contentHandler->getModelID();
-					$this->dieWithError( [ 'apierror-sectionsnotsupported', $modelName ] );
+					$this->dieWithError( [ 'apierror-sectionsnotsupported', $contentModel ] );
 				}
 
 				if ( $params['section'] == 'new' ) {
@@ -219,14 +220,14 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( $params['undo'] > 0 ) {
-			if ( $params['undoafter'] > 0 ) {
-				$undoafterRev = $revisionLookup->getRevisionById( $params['undoafter'] );
-			}
 			$undoRev = $revisionLookup->getRevisionById( $params['undo'] );
 			if ( $undoRev === null || $undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undo'] ] );
 			}
 
+			if ( $params['undoafter'] > 0 ) {
+				$undoafterRev = $revisionLookup->getRevisionById( $params['undoafter'] );
+			}
 			if ( $params['undoafter'] == 0 ) {
 				$undoafterRev = $revisionLookup->getPreviousRevision( $undoRev );
 			}
@@ -268,8 +269,7 @@ class ApiEditPage extends ApiBase {
 					if ( !$contentFormat ) {
 						// fall back to default content format for the model
 						// of $undoafterRev
-						$contentFormat = MediaWikiServices::getInstance()
-							->getContentHandlerFactory()
+						$contentFormat = $this->contentHandlerFactory
 							->getContentHandler( $undoafterRevMainSlot->getModel() )
 							->getDefaultFormat();
 					}
@@ -362,7 +362,8 @@ class ApiEditPage extends ApiBase {
 				$this->dieWithError( 'apierror-invalidsection' );
 			}
 			$content = $pageObj->getContent();
-			if ( $section !== '0' && $section != 'new'
+			if ( $section !== '0'
+				&& $section != 'new'
 				&& ( !$content || !$content->getSection( $section ) )
 			) {
 				$this->dieWithError( [ 'apierror-nosuchsection', $section ] );
@@ -665,10 +666,10 @@ class ApiEditPage extends ApiBase {
 				ApiBase::PARAM_DFLT => false,
 			],
 			'contentformat' => [
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getAllContentFormats(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getAllContentFormats(),
 			],
 			'contentmodel' => [
-				ApiBase::PARAM_TYPE => $this->getContentHandlerFactory()->getContentModels(),
+				ApiBase::PARAM_TYPE => $this->contentHandlerFactory->getContentModels(),
 			],
 			'token' => [
 				// Standard definition automatically inserted
@@ -697,9 +698,5 @@ class ApiEditPage extends ApiBase {
 
 	public function getHelpUrls() {
 		return 'https://www.mediawiki.org/wiki/Special:MyLanguage/API:Edit';
-	}
-
-	private function getContentHandlerFactory(): IContentHandlerFactory {
-		return MediaWikiServices::getInstance()->getContentHandlerFactory();
 	}
 }
