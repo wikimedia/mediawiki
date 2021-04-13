@@ -128,8 +128,10 @@ class ApiMoveTest extends ApiTestCase {
 
 		$title = Title::newFromText( $name );
 		$title2 = Title::newFromText( "$name 2" );
-		$this->assertTrue( $this->getTestSysop()->getUser()->isTempWatched( $title ) );
-		$this->assertTrue( $this->getTestSysop()->getUser()->isTempWatched( $title2 ) );
+		$user = $this->getTestSysop()->getUser();
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
+		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
+		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title2 ) );
 	}
 
 	public function testMoveWithWatchUnchanged(): void {

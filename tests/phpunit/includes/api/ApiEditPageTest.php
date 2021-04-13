@@ -1347,6 +1347,7 @@ class ApiEditPageTest extends ApiTestCase {
 	public function testEditWatch() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 		$user = self::$users['sysop']->getUser();
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1358,8 +1359,8 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$title = Title::newFromText( $name );
 		$this->assertTrue( $title->exists() );
-		$this->assertTrue( $user->isWatched( $title ) );
-		$this->assertTrue( $user->isTempWatched( $title ) );
+		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
+		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
 	}
 
 	public function testEditUnwatch() {
@@ -1367,10 +1368,11 @@ class ApiEditPageTest extends ApiTestCase {
 		$user = self::$users['sysop']->getUser();
 		$titleObj = Title::newFromText( $name );
 
-		$user->addWatch( $titleObj );
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
+		$watchlistManager->addWatch( $user,  $titleObj );
 
 		$this->assertFalse( $titleObj->exists() );
-		$this->assertTrue( $user->isWatched( $titleObj ) );
+		$this->assertTrue( $watchlistManager->isWatched( $user, $titleObj ) );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'edit',
@@ -1380,7 +1382,7 @@ class ApiEditPageTest extends ApiTestCase {
 		] );
 
 		$this->assertTrue( $titleObj->exists() );
-		$this->assertFalse( $user->isWatched( $titleObj ) );
+		$this->assertFalse( $watchlistManager->isWatched( $user, $titleObj ) );
 	}
 
 	public function testEditWithTag() {

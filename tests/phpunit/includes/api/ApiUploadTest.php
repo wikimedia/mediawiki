@@ -75,7 +75,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$this->assertEquals( 'Success', $result['upload']['result'] );
 		$this->assertSame( filesize( $filePath ), (int)$result['upload']['imageinfo']['size'] );
 		$this->assertEquals( $mimeType, $result['upload']['imageinfo']['mime'] );
-		$this->assertTrue( $user->isTempWatched( $title ) );
+		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()->isTempWatched( $user, $title ) );
 	}
 
 	public function testUploadZeroLength() {

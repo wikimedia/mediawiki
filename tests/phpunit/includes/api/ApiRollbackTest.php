@@ -65,6 +65,6 @@ class ApiRollbackTest extends ApiTestCase {
 		$this->assertSame( $name, $apiResult['rollback']['title'] );
 
 		// And that the page was temporarily watched.
-		$this->assertTrue( $sysop->isTempWatched( $title ) );
+		$this->assertTrue( $this->getServiceContainer()->getWatchlistManager()->isTempWatched( $sysop, $title ) );
 	}
 }

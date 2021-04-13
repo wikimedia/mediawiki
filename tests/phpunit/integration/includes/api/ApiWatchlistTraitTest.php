@@ -1,12 +1,13 @@
 <?php
 
+use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group API
  * @covers ApiWatchlistTrait
  */
-class ApiWatchlistTraitTest extends MediaWikiUnitTestCase {
+class ApiWatchlistTraitTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideWatchlistValue
@@ -17,7 +18,6 @@ class ApiWatchlistTraitTest extends MediaWikiUnitTestCase {
 		// TODO we don't currently test any of the logic that depends on if the title exists
 		$user = $this->createMock( User::class );
 		$user->method( 'isBot' )->willReturn( $isBot );
-		$user->method( 'isWatched' )->willReturn( $isWatched );
 		$user->method( 'getBoolOption' )->willReturnCallback(
 			function ( $optionName ) use ( $setOption ) {
 				if ( $optionName === 'watchdefault' ) {
@@ -27,6 +27,11 @@ class ApiWatchlistTraitTest extends MediaWikiUnitTestCase {
 				return true;
 			}
 		);
+
+		$watchlistManager = $this->createMock( WatchlistManager::class );
+		$watchlistManager->method( 'isWatchable' )->willReturn( true );
+		$watchlistManager->method( 'isWatchedIgnoringRights' )->willReturn( $isWatched );
+		$this->setService( 'WatchlistManager', $watchlistManager );
 
 		$title = $this->createMock( Title::class );
 		$title->method( 'exists' )->willReturn( true );

@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
@@ -37,9 +38,13 @@ class ApiWatch extends ApiBase {
 	/** @var string Relative maximum expiry. */
 	private $maxDuration;
 
-	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
-		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+	/** @var WatchlistManager */
+	protected $watchlistManager;
 
+	public function __construct( ApiMain $mainModule, $moduleName, WatchlistManager $watchlistManager ) {
+		parent::__construct( $mainModule, $moduleName );
+
+		$this->watchlistManager = $watchlistManager;
 		$this->expiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->maxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
 	}
@@ -121,7 +126,7 @@ class ApiWatch extends ApiBase {
 		}
 
 		if ( $params['unwatch'] ) {
-			$status = UnwatchAction::doUnwatch( $title, $user );
+			$status = $this->watchlistManager->removeWatch( $user, $title );
 			$res['unwatched'] = $status->isOK();
 		} else {
 			$expiry = null;
@@ -132,7 +137,7 @@ class ApiWatch extends ApiBase {
 				$res['expiry'] = ApiResult::formatExpiry( $expiry );
 			}
 
-			$status = WatchAction::doWatch( $title, $user, User::CHECK_USER_RIGHTS, $expiry );
+			$status = $this->watchlistManager->addWatch( $user, $title, $expiry );
 			$res['watched'] = $status->isOK();
 		}
 
