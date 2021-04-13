@@ -136,10 +136,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param LinkRenderer $linkRenderer
 	 * @param NamespaceInfo $nsInfo
 	 * @param PermissionManager $permissionManager
-	 * @param ILanguageConverter|null $languageConverter
-	 * @param LanguageNameUtils|null $languageNameUtils
-	 * @param HookContainer|null $hookContainer
-	 * @param UserOptionsLookup|null $userOptionsLookup
+	 * @param ILanguageConverter $languageConverter
+	 * @param LanguageNameUtils $languageNameUtils
+	 * @param HookContainer $hookContainer
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -148,10 +148,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		LinkRenderer $linkRenderer,
 		NamespaceInfo $nsInfo,
 		PermissionManager $permissionManager,
-		ILanguageConverter $languageConverter = null,
-		LanguageNameUtils $languageNameUtils = null,
-		HookContainer $hookContainer = null,
-		UserOptionsLookup $userOptionsLookup = null
+		ILanguageConverter $languageConverter,
+		LanguageNameUtils $languageNameUtils,
+		HookContainer $hookContainer,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -162,30 +162,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->nsInfo = $nsInfo;
 		$this->permissionManager = $permissionManager;
 		$this->logger = new NullLogger();
-
-		if ( !$languageConverter ) {
-			wfDeprecated( __METHOD__ . ' without $languageConverter parameter', '1.35' );
-			$languageConverter = MediaWikiServices::getInstance()
-				->getLanguageConverterFactory()
-				->getLanguageConverter();
-		}
 		$this->languageConverter = $languageConverter;
-
-		if ( !$languageNameUtils ) {
-			wfDeprecated( __METHOD__ . ' without $languageNameUtils parameter', '1.35' );
-			$languageNameUtils = MediaWikiServices::getInstance()->getLanguageNameUtils();
-		}
 		$this->languageNameUtils = $languageNameUtils;
-
-		if ( !$hookContainer ) {
-			wfDeprecated( __METHOD__ . ' without $hookContainer parameter', '1.35' );
-			$hookContainer = MediaWikiServices::getInstance()->getHookContainer();
-		}
 		$this->hookRunner = new HookRunner( $hookContainer );
-
-		if ( !$userOptionsLookup ) {
-			$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
-		}
 		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
