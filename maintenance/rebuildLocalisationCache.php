@@ -57,9 +57,21 @@ class RebuildLocalisationCache extends Maintenance {
 			true
 		);
 		$this->addOption(
-			'offline',
-			'Do not perform database dependent tasks such as clearing of the MessageBlogStore ' .
-			'cache. This option may not be used with the LCStoreDB store class.'
+			'no-database',
+			'EXPERIMENTAL: Disable the database backend. Setting this option will result in an error ' .
+			'if you have extensions or use site configuration that need the database. This is an ' .
+			'experimental feature to allow offline building of the localisation cache. Known limitations:' .
+			"\n" .
+			'* Incompatible with LCStoreDB, which always requires a database. ' . "\n" .
+			'* The message purge may require a database. See --skip-message-purge.'
+		);
+		// T237148: The Gadget extension (bundled with MediaWiki by default) requires a database`
+		// connection to register its modules for MessageBlobStore.
+		$this->addOption(
+			'skip-message-purge',
+			'Skip purging of MessageBlobStore. The purge operation may require a database, depending ' .
+			'on the configuration and extensions on this wiki. If skipping the purge now, you need to ' .
+			'run purgeMessageBlobStore.php shortly after deployment.'
 		);
 	}
 
@@ -102,11 +114,6 @@ class RebuildLocalisationCache extends Maintenance {
 			$conf['storeClass'] = $this->getOption( 'store-class' );
 		}
 
-		// Use of LCStoreDB prohibits us from functioning offline
-		if ( $conf['storeClass'] == 'LCStoreDB' && $this->hasOption( 'offline' ) ) {
-			$this->fatalError( 'LCStoreDB cannot function in offline mode.' );
-		}
-
 		// XXX Copy-pasted from ServiceWiring.php. Do we need a factory for this one caller?
 		$services = MediaWikiServices::getInstance();
 		$lc = new LocalisationCacheBulkLoad(
@@ -117,7 +124,7 @@ class RebuildLocalisationCache extends Maintenance {
 			),
 			LocalisationCache::getStoreFromConf( $conf, $wgCacheDirectory ),
 			LoggerFactory::getInstance( 'localisation' ),
-			$this->hasOption( 'offline' ) ? [] :
+			$this->hasOption( 'skip-message-purge' ) ? [] :
 				[ static function () use ( $services ) {
 					MessageBlobStore::clearGlobalCacheEntry( $services->getMainWANObjectCache() );
 				} ],
@@ -218,13 +225,9 @@ class RebuildLocalisationCache extends Maintenance {
 		return $numRebuilt;
 	}
 
-	/**
-	 * Database access is not required if the 'offline' option is passed.
-	 *
-	 * @return int DB constant
-	 */
+	/** @inheritDoc */
 	public function getDbType() {
-		if ( $this->hasOption( 'offline' ) ) {
+		if ( $this->hasOption( 'no-database' ) ) {
 			return Maintenance::DB_NONE;
 		}
 
