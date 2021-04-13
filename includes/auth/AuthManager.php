@@ -31,6 +31,7 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -177,6 +178,9 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var BlockErrorFormatter */
 	private $blockErrorFormatter;
 
+	/** @var WatchlistManager */
+	private $watchlistManager;
+
 	/**
 	 * Get the global AuthManager
 	 * @return AuthManager
@@ -197,6 +201,7 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param UserNameUtils $userNameUtils
 	 * @param BlockManager $blockManager
 	 * @param BlockErrorFormatter $blockErrorFormatter
+	 * @param WatchlistManager $watchlistManager
 	 */
 	public function __construct(
 		WebRequest $request,
@@ -206,7 +211,8 @@ class AuthManager implements LoggerAwareInterface {
 		ReadOnlyMode $readOnlyMode,
 		UserNameUtils $userNameUtils,
 		BlockManager $blockManager,
-		BlockErrorFormatter $blockErrorFormatter
+		BlockErrorFormatter $blockErrorFormatter,
+		WatchlistManager $watchlistManager
 	) {
 		$this->request = $request;
 		$this->config = $config;
@@ -218,6 +224,7 @@ class AuthManager implements LoggerAwareInterface {
 		$this->userNameUtils = $userNameUtils;
 		$this->blockManager = $blockManager;
 		$this->blockErrorFormatter = $blockErrorFormatter;
+		$this->watchlistManager = $watchlistManager;
 	}
 
 	/**
@@ -1473,7 +1480,7 @@ class AuthManager implements LoggerAwareInterface {
 				\DeferredUpdates::addUpdate( \SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 
 				// Watch user's userpage and talk page
-				$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
+				$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
 
 				// Inform the provider
 				$logSubtype = $provider->finishAccountCreation( $user, $creator, $state['primaryResponse'] );
@@ -1792,8 +1799,8 @@ class AuthManager implements LoggerAwareInterface {
 		// Update user count
 		\DeferredUpdates::addUpdate( \SiteStatsUpdate::factory( [ 'users' => 1 ] ) );
 		// Watch user's userpage and talk page
-		\DeferredUpdates::addCallableUpdate( static function () use ( $user ) {
-			$user->addWatch( $user->getUserPage(), User::IGNORE_USER_RIGHTS );
+		\DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+			$this->watchlistManager->addWatchIgnoringRights( $user, $user->getUserPage() );
 		} );
 
 		// Log the creation

@@ -75,7 +75,8 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 			$mwServices->getReadOnlyMode(),
 			$userNameUtils,
 			$mwServices->getBlockManager(),
-			$mwServices->getBlockErrorFormatter()
+			$mwServices->getBlockErrorFormatter(),
+			$mwServices->getWatchlistManager()
 		);
 
 		$creator = $this->getMockBuilder( \User::class )->getMock();
