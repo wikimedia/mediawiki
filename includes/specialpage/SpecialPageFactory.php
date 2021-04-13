@@ -486,6 +486,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'NamespaceInfo',
 				'WikiPageFactory',
+				'WatchlistManager',
 			]
 		],
 		'PasswordPolicies' => [
@@ -875,6 +876,7 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'WikiPageFactory',
 				'SearchEngineFactory',
+				'WatchlistManager',
 			]
 		],
 		'Mycontributions' => [
