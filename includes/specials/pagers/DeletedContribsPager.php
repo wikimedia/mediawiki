@@ -382,7 +382,8 @@ class DeletedContribsPager extends IndexPager {
 		}
 		// Style deleted items
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-			$link = '<span class="history-deleted">' . $link . '</span>';
+			$class = Linker::getRevisionDeletedClass( $revRecord );
+			$link = '<span class="' . $class . '">' . $link . '</span>';
 		}
 
 		$pagelink = $linkRenderer->makeLink(

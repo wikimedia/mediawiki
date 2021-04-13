@@ -1809,7 +1809,7 @@ class DifferenceEngine extends ContextSource {
 			if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$header = Html::rawElement(
 					'span',
-					[ 'class' => 'history-deleted' ],
+					[ 'class' => Linker::getRevisionDeletedClass( $rev ) ],
 					$header
 				);
 			}

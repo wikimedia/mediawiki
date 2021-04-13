@@ -333,7 +333,8 @@ class SpecialMergeHistory extends SpecialPage {
 			[ 'oldid' => $revRecord->getId() ]
 		);
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';
+			$class = Linker::getRevisionDeletedClass( $revRecord );
+			$pageLink = '<span class=" ' . $class . '">' . $pageLink . '</span>';
 		}
 
 		# Last link
