@@ -32,6 +32,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\Authority;
@@ -4272,22 +4273,19 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @inheritDoc
 	 * @since 1.36
 	 *
-	 * @param PageIdentity $other
+	 * @param PageReference $other
 	 * @return bool
 	 */
-	public function isSamePageAs( PageIdentity $other ): bool {
+	public function isSamePageAs( PageReference $other ): bool {
 		// NOTE: keep in sync with PageIdentityValue::isSamePageAs()!
 
-		if ( $other->getWikiId() !== $this->getWikiId()
-			|| $other->getId() !== $this->getId() ) {
+		if ( $other->getWikiId() !== $this->getWikiId() ) {
 			return false;
 		}
 
-		if ( $this->getId() === 0 ) {
-			if ( $other->getNamespace() !== $this->getNamespace()
-				|| $other->getDBkey() !== $this->getDBkey() ) {
-				return false;
-			}
+		if ( $other->getNamespace() !== $this->getNamespace()
+			|| $other->getDBkey() !== $this->getDBkey() ) {
+			return false;
 		}
 
 		return true;
