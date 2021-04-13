@@ -20,7 +20,8 @@
 		"resources/src/mediawiki.libs.jpegmeta/jpegmeta.js",
 		"resources/src/mediawiki.skinning",
 		"resources/src/startup/startup.js",
-		"resources/src/mediawiki.watchstar.widgets/WatchlistExpiryWidget.js"
+		"resources/src/mediawiki.watchstar.widgets/WatchlistExpiryWidget.js",
+		"resources/src/es6-polyfills"
 	],
 	"--": [
 		"maintenance/jsduck/external.js",
