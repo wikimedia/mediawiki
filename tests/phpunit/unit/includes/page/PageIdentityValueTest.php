@@ -84,15 +84,15 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 	public function provideToString() {
 		yield [
 			new PageIdentityValue( 5, 0, 'Foo', PageIdentity::LOCAL ),
-			'#5 [0:Foo]'
+			'[0:Foo]'
 		];
 		yield [
 			new PageIdentityValue( 0, 1, 'Bar_Baz', PageIdentity::LOCAL ),
-			'#0 [1:Bar_Baz]'
+			'[1:Bar_Baz]'
 		];
 		yield [
 			new PageIdentityValue( 7, 200, 'tea', 'codewiki' ),
-			'#7@codewiki [200:tea]'
+			'[200:tea]@codewiki'
 		];
 	}
 

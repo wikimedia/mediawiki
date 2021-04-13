@@ -30,8 +30,8 @@ use MediaWiki\User\UserIdentity;
  * may also be used to represent a fixed set of permissions to be
  * used in some context, e.g. in an asynchronous job.
  *
- * @unstable
  * @since 1.36
+ * @newable
  */
 class SimpleAuthority implements Authority {
 
@@ -42,6 +42,7 @@ class SimpleAuthority implements Authority {
 	private $permissions;
 
 	/**
+	 * @stable to call
 	 * @param UserIdentity $actor
 	 * @param string[] $permissions A list of permissions to grant to the actor
 	 */

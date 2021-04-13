@@ -223,6 +223,10 @@ class DerivativeContext extends ContextSource implements MutableContext {
 			->newFromAuthority( $authority );
 	}
 
+	/**
+	 * @since 1.36
+	 * @return Authority
+	 */
 	public function getAuthority(): Authority {
 		return $this->authority ?: $this->getContext()->getAuthority();
 	}

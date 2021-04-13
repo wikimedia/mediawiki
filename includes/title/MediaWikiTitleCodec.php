@@ -22,7 +22,7 @@
  */
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use Wikimedia\IPUtils;
 
 /**
@@ -213,14 +213,14 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param LinkTarget|PageIdentity $title
+	 * @param LinkTarget|PageReference $title
 	 *
 	 * @return string
 	 */
 	public function getText( $title ) {
 		if ( $title instanceof LinkTarget ) {
 			return $title->getText();
-		} elseif ( $title instanceof PageIdentity ) {
+		} elseif ( $title instanceof PageReference ) {
 			return strtr( $title->getDBKey(), '_', ' ' );
 		} else {
 			throw new InvalidArgumentException( '$title has invalid type: ' . get_class( $title ) );
@@ -230,7 +230,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param LinkTarget|PageIdentity $title
+	 * @param LinkTarget|PageReference $title
 	 *
 	 * @return string
 	 * @suppress PhanUndeclaredProperty
@@ -246,8 +246,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 				);
 			}
 			return $title->prefixedText;
-		} elseif ( $title instanceof PageIdentity ) {
-			$title->assertWiki( PageIdentity::LOCAL );
+		} elseif ( $title instanceof PageReference ) {
+			$title->assertWiki( PageReference::LOCAL );
 			return $this->formatTitle(
 				$title->getNamespace(),
 				$this->getText( $title )
@@ -260,7 +260,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	/**
 	 * @since 1.27
 	 * @see TitleFormatter::getPrefixedDBkey()
-	 * @param LinkTarget|PageIdentity $target
+	 * @param LinkTarget|PageReference $target
 	 * @return string
 	 */
 	public function getPrefixedDBkey( $target ) {
@@ -271,8 +271,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 				'',
 				$target->getInterwiki()
 			), ' ', '_' );
-		} elseif ( $target instanceof PageIdentity ) {
-			$target->assertWiki( PageIdentity::LOCAL );
+		} elseif ( $target instanceof PageReference ) {
+			$target->assertWiki( PageReference::LOCAL );
 			return strtr( $this->formatTitle(
 				$target->getNamespace(),
 				$target->getDBkey()
@@ -285,7 +285,7 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 	/**
 	 * @see TitleFormatter::getText()
 	 *
-	 * @param LinkTarget|PageIdentity $title
+	 * @param LinkTarget|PageReference $title
 	 *
 	 * @return string
 	 */
@@ -297,8 +297,8 @@ class MediaWikiTitleCodec implements TitleFormatter, TitleParser {
 				$title->getFragment(),
 				$title->getInterwiki()
 			);
-		} elseif ( $title instanceof PageIdentity ) {
-			$title->assertWiki( PageIdentity::LOCAL );
+		} elseif ( $title instanceof PageReference ) {
+			$title->assertWiki( PageReference::LOCAL );
 			return $this->formatTitle(
 				$title->getNamespace(),
 				$this->getText( $title )

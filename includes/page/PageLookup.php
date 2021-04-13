@@ -65,13 +65,13 @@ interface PageLookup extends IDBAccessObject {
 	 * Returns the PageRecord of the given page.
 	 * May return $page if that already is a PageRecord.
 	 *
-	 * @param PageIdentity $page
+	 * @param PageReference $page
 	 * @param int $queryFlags
 	 *
 	 * @return ExistingPageRecord|null The page's PageRecord, or null if the page was not found.
 	 */
-	public function getPageByIdentity(
-		PageIdentity $page,
+	public function getPageByReference(
+		PageReference $page,
 		int $queryFlags = self::READ_NORMAL
 	): ?ExistingPageRecord;
 

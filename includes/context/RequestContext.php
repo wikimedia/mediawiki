@@ -306,6 +306,10 @@ class RequestContext implements IContextSource, MutableContext {
 		$this->lang = null;
 	}
 
+	/**
+	 * @since 1.36
+	 * @return Authority
+	 */
 	public function getAuthority(): Authority {
 		return $this->authority ?: $this->getUser();
 	}

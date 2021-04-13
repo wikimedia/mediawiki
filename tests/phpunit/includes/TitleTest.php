@@ -6,6 +6,8 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -599,6 +601,32 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			$this->assertSame( $value, $title );
 		} else {
 			$this->assertSame( $value->getId(), $title->getArticleID() );
+			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
+			$this->assertSame( $value->getDBkey(), $title->getDBkey() );
+		}
+	}
+
+	public function provideCastFromPageReference() {
+		$fake = $this->createMock( PageReference::class );
+		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
+		$fake->method( 'getDBkey' )->willReturn( 'Test' );
+
+		yield [ new PageReferenceValue( NS_MAIN, 'Test', PageReference::LOCAL ) ];
+	}
+
+	/**
+	 * @covers Title::castFromPageReference
+	 * @dataProvider provideCastFromPageIdentity
+	 * @dataProvider provideCastFromPageReference
+	 */
+	public function testCastFromPageReference( ?PageReference $value ) {
+		$title = Title::castFromPageReference( $value );
+
+		if ( $value === null ) {
+			$this->assertNull( $title );
+		} elseif ( $value instanceof Title ) {
+			$this->assertSame( $value, $title );
+		} else {
 			$this->assertSame( $value->getNamespace(), $title->getNamespace() );
 			$this->assertSame( $value->getDBkey(), $title->getDBkey() );
 		}
