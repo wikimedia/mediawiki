@@ -4,6 +4,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\TalkPageNotificationManager;
@@ -67,7 +68,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$talkPageNotificationManager,
 			$watchedItemStore,
 			$userFactory,
-			$nsInfo
+			$nsInfo,
+			$this->createMock( WikiPageFactory::class )
 		);
 	}
 
