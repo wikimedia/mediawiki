@@ -173,6 +173,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$this->numTableShards = intval( $params['shards'] );
 		}
 		$this->replicaOnly = $params['replicaOnly'] ?? false;
+
+		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_RDBMS;
 	}
 
 	/**
