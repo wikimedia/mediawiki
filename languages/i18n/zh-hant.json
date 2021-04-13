@@ -548,7 +548,7 @@
 	"createacct-email-ph": "輸入您的電子郵件地址",
 	"createacct-another-email-ph": "輸入電子郵件地址",
 	"createaccountmail": "使用臨時的隨機密碼，並將它寄至指定的電子郵件地址",
-	"createaccountmail-help": "可用來建立其他人的帳號 (不需要知道密碼)。",
+	"createaccountmail-help": "可用來建立其他人的帳號（不需要知道密碼）。",
 	"createacct-realname": "真實姓名 (選填)",
 	"createacct-reason": "原因（公開記錄）",
 	"createacct-reason-ph": "您為什麼要建立另一個帳號",

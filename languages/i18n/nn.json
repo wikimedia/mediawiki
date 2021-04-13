@@ -412,6 +412,7 @@
 	"userlogin-yourname-ph": "Skriv inn brukarnamnet ditt",
 	"createacct-another-username-ph": "Skriv inn brukarnamnet",
 	"yourpassword": "Passord:",
+	"prefs-help-yourpassword": "Attoppretting av konto er påslege. Sjå $1 for fleire innstillingar.",
 	"userlogin-yourpassword": "Passord",
 	"userlogin-yourpassword-ph": "Skriv inn passordet ditt",
 	"createacct-yourpassword-ph": "Skriv inn eit passord",
