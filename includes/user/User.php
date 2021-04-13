@@ -4510,15 +4510,16 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	}
 
 	/**
-	 * @unstable this is a part of the Authority experiment and should not be used yet.
-	 * @return UserIdentity
+	 * @note This is only here for compatibility with the Authority interface.
+	 * @since 1.36
+	 * @return UserIdentity $this
 	 */
 	public function getUser(): UserIdentity {
 		return $this;
 	}
 
 	/**
-	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @since 1.36
 	 * @param string $action
 	 * @param PageIdentity $target
 	 * @param PermissionStatus|null $status
@@ -4529,7 +4530,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	}
 
 	/**
-	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @since 1.36
 	 * @param string $action
 	 * @param PageIdentity $target
 	 * @param PermissionStatus|null $status
@@ -4540,7 +4541,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	}
 
 	/**
-	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @since 1.36
 	 * @param string $action
 	 * @param PageIdentity $target
 	 * @param PermissionStatus|null $status
@@ -4552,7 +4553,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	}
 
 	/**
-	 * @unstable this is a part of the Authority experiment and should not be used yet.
+	 * @since 1.36
 	 * @param string $action
 	 * @param PageIdentity $target
 	 * @param PermissionStatus|null $status
