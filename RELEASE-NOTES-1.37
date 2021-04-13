@@ -73,7 +73,14 @@ because of Phabricator reports.
 === Breaking changes in 1.37 ===
 * WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
   Use HOLDOFF_TTL_NONE instead.
-* …
+* The following methods and fields in the Language class, deprecated since
+  1.35, have been removed:
+   - classFromCode()
+   - clearCaches()
+   - convertTitle()
+   - findVariantLink()
+   - mConverter
+   - updateConversionTable()
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
