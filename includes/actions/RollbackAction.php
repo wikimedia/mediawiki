@@ -192,10 +192,11 @@ class RollbackAction extends FormAction {
 				->parseAsBlock()
 		);
 
-		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$services = MediaWikiServices::getInstance();
+		$userOptionsLookup = $services->getUserOptionsLookup();
 
 		if ( $userOptionsLookup->getBoolOption( $user, 'watchrollback' ) ) {
-			$user->addWatch( $this->getTitle(), User::IGNORE_USER_RIGHTS );
+			$services->getWatchlistManager()->addWatchIgnoringRights( $user, $this->getTitle() );
 		}
 
 		$this->getOutput()->returnToMain( false, $this->getTitle() );
@@ -205,9 +206,7 @@ class RollbackAction extends FormAction {
 		) {
 			$contentModel = $current->getSlot( SlotRecord::MAIN, RevisionRecord::RAW )
 				->getModel();
-			$contentHandler = MediaWikiServices::getInstance()
-				->getContentHandlerFactory()
-				->getContentHandler( $contentModel );
+			$contentHandler = $services->getContentHandlerFactory()->getContentHandler( $contentModel );
 			$de = $contentHandler->createDifferenceEngine(
 				$this->getContext(),
 				$current->getId(),
