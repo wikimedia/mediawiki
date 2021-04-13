@@ -171,8 +171,8 @@ class SpecialChangeContentModel extends FormSpecialPage {
 		$user = $this->getUser();
 
 		$creationErrors = [];
-		if ( !$current->exists() ) {
-			$creationErrors = $this->title->getUserPermissionErrors( 'create', $user );
+		if ( !$this->title->exists() ) {
+			$creationErrors = $this->title->getUserPermissionsErrors( 'create', $user );
 		}
 
 		// Check permissions and make sure the user has permission to:
