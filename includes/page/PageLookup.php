@@ -10,6 +10,7 @@ use MediaWiki\Linker\LinkTarget;
  * Service interface for looking up infermation about wiki pages
  *
  * @since 1.36
+ * @unstable
  */
 interface PageLookup extends IDBAccessObject {
 
