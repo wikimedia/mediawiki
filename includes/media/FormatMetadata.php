@@ -901,6 +901,7 @@ class FormatMetadata extends ContextSource {
 									'iimcategory',
 									$val
 								);
+								break;
 							default:
 								$val = $this->literal( $val );
 						}
