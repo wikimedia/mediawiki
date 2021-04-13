@@ -33,8 +33,10 @@ use User;
  * membership, but may be adjusted based on things like IP range blocks, OAuth grants, or
  * rate limits.
  *
- * @note Currently this uses global WebRequest, but in future it will get WebRequest directly in
- * the constructor.
+ * @note This is intended as an intermediate step towards an implementation of Authority that
+ * contains much of the logic currently in PermissionManager, and is based directly on
+ * WebRequest and Session, rather than a User object. However, for now, code that needs an
+ * Authority that reflects the current user and web request should use a User object directly.
  *
  * @unstable
  * @since 1.36

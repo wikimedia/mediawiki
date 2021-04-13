@@ -24,7 +24,12 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 
 /**
- * @unstable
+ * This interface represents the authority associated the current execution context,
+ * such as a web request. The authority determines which actions can or cannot be performed
+ * withing that execution context.
+ *
+ * See the individual implementations for information on how that authority is determined.
+ *
  * @since 1.36
  */
 interface Authority {
