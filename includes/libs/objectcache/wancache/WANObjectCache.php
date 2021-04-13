@@ -108,10 +108,15 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * collisions with keys that are not wrapped as metadata arrays. For any given key that
  * a caller uses, there are several "sister" keys that might be involved under the hood.
  * Each "sister" key differs only by a single-character:
- *   - v: used for regular value keys
- *   - i: used for temporarily storing values of tombstoned keys
- *   - t: used for storing timestamp "check" keys
- *   - m: used for temporary mutex keys to avoid cache stampedes
+ *
+ * - `v`: used for storing regular values (or a "tombstone" purge value).
+ * - `f`: used for storing purge values of "flux" keys (copy of a "tombstone", only used
+ *   when the `onHostRoutingPrefix` option is enabled).
+ * - `t`: used for storing purge values of timestamp "check" keys.
+ * - `m`: used for temporary mutex locks to avoid cache stampedes.
+ * - `i`: used for interim storing of values for keys that are tombstoned.
+ * - `c`: used for temporary indicator of a "cool-off" bounce, during which values
+ *    are stored neither regularly nor as interim keys.
  *
  * @ingroup Cache
  * @since 1.26
@@ -274,20 +279,20 @@ class WANObjectCache implements
 	/** Key to how long it took to generate the value */
 	private const FLD_GENERATION_TIME = 6;
 
-	/** Single character value mutex key component */
+	/** Single character component for value keys */
 	private const TYPE_VALUE = 'v';
-	/** Single character timestamp key component */
+	/** Single character component for timestamp check keys */
 	private const TYPE_TIMESTAMP = 't';
-	/** Single character flux key component */
+	/** Single character component for flux keys */
 	private const TYPE_FLUX = 'f';
-	/** Single character mutex key component */
+	/** Single character component for mutex lock keys */
 	private const TYPE_MUTEX = 'm';
-	/** Single character interium key component */
+	/** Single character component for interium value keys */
 	private const TYPE_INTERIM = 'i';
-	/** Single character cool-off key component */
+	/** Single character component for cool-off bounce keys */
 	private const TYPE_COOLOFF = 'c';
 
-	/** Prefix for tombstone key values */
+	/** Value prefix of purge values */
 	private const PURGE_VAL_PREFIX = 'PURGED:';
 
 	/**
@@ -1907,7 +1912,7 @@ class WANObjectCache implements
 				$this->cache->clearLastError();
 				if (
 					!$this->cache->add( $cooloffSisterKey, 1, self::COOLOFF_TTL ) &&
-					// Don't treat failures due to I/O errors as the key being in cooloff
+					// Don't treat failures due to I/O errors as the key being in cool-off
 					$this->cache->getLastError() === BagOStuff::ERR_NONE
 				) {
 					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
