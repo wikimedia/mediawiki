@@ -68,11 +68,12 @@ use Wikimedia\WaitConditionLoop;
  * Toward the end of the response to this POST request, the application takes note of the database
  * master's current "position", and save this under a "clientId" key in the ChronologyProtector
  * store. The web response will also set two cookies that are similarly short-lived (about ten
- * seconds): `UseDC=master` and `cpPosIndex=<clientId>`.
+ * seconds): `UseDC=master` and `cpPosIndex=<posIndex>@<write time>#<clientId>`.
  *
  * The ten seconds window is meant to account for the time needed for the database writes to have
  * replicated across all active database replicas, including the cross-dc latency for those
- * further away in any secondary DCs.
+ * further away in any secondary DCs. The "clientId" is placed in the cookie to handle the case
+ * where the client IP addresses frequently changes between web requests.
  *
  * Future web requests from the client should fall in one of two categories:
  *
@@ -185,11 +186,16 @@ class ChronologyProtector implements LoggerAwareInterface {
 	/**
 	 * @param BagOStuff $store
 	 * @param array $client Map of (ip: <IP>, agent: <user-agent> [, clientId: <hash>] )
-	 * @param int|null $posIndex Write counter index
+	 * @param int|null $clientPosIndex Write counter index of replication positions for this client
 	 * @param string $secret Secret string for HMAC hashing [optional]
 	 * @since 1.27
 	 */
-	public function __construct( BagOStuff $store, array $client, $posIndex, $secret = '' ) {
+	public function __construct(
+		BagOStuff $store,
+		array $client,
+		?int $clientPosIndex,
+		string $secret = ''
+	) {
 		$this->store = $store;
 
 		if ( isset( $client['clientId'] ) ) {
@@ -200,7 +206,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 				: md5( $client['ip'] . "\n" . $client['agent'] );
 		}
 		$this->key = $store->makeGlobalKey( __CLASS__, $this->clientId, 'v2' );
-		$this->waitForPosIndex = $posIndex;
+		$this->waitForPosIndex = $clientPosIndex;
 
 		$this->clientLogInfo = [
 			'clientIP' => $client['ip'],
@@ -240,7 +246,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Apply the "session consistency" DB replication position to a new ILoadBalancer
+	 * Apply client "session consistency" replication position to a new ILoadBalancer
 	 *
 	 * If the stash has a previous master position recorded, this will try to make
 	 * sure that the next query to a replica DB of that master will see changes up
@@ -270,7 +276,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Update the "session consistency" DB replication position for an end-of-life ILoadBalancer
+	 * Update client "session consistency" replication position for an end-of-life ILoadBalancer
 	 *
 	 * This remarks the replication position of the master DB if this request made writes to
 	 * it using the provided ILoadBalancer instance.
@@ -305,14 +311,14 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Save any remarked "session consistency" DB replication positions to persistent storage
+	 * Persist any staged client "session consistency" replication positions
 	 *
 	 * @internal This method should only be called from LBFactory.
 	 *
-	 * @param int|null &$cpIndex DB position key write counter; incremented on update
+	 * @param int|null &$clientPosIndex DB position key write counter; incremented on update
 	 * @return DBMasterPos[] Empty on success; map of (db name => unsaved position) on failure
 	 */
-	public function shutdown( &$cpIndex = null ) {
+	public function persistSessionReplicationPositions( &$clientPosIndex = null ) {
 		if ( !$this->enabled ) {
 			return [];
 		}
@@ -331,7 +337,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 					$this->store->get( $this->key ),
 					$this->shutdownPositionsByMaster,
 					$this->shutdownTimestampsByCluster,
-					$cpIndex
+					$clientPosIndex
 				),
 				self::POSITION_STORE_TTL
 			);
@@ -349,7 +355,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 			);
 
 		} else {
-			$cpIndex = null; // nothing saved
+			$clientPosIndex = null; // nothing saved
 			$bouncedPositions = $this->shutdownPositionsByMaster;
 			// Raced out too many times or stash is down
 			$this->logger->warning(
@@ -414,7 +420,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Load the stored DB replication positions and touch timestamps for the client
+	 * Load the stored replication positions and touch timestamps for the client
 	 *
 	 * @return void
 	 */
@@ -490,19 +496,19 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * Merge the new DB replication positions with the currently stored ones (highest wins)
+	 * Merge the new replication positions with the currently stored ones (highest wins)
 	 *
-	 * @param array<string,mixed>|false $storedValue Current DB replication position data
-	 * @param array<string,DBMasterPos> $shutdownPositions New DB replication positions
+	 * @param array<string,mixed>|false $storedValue Current replication position data
+	 * @param array<string,DBMasterPos> $shutdownPositions New replication positions
 	 * @param array<string,float> $shutdownTimestamps New DB post-commit shutdown timestamps
-	 * @param int|null &$cpIndex New position write index
-	 * @return array<string,mixed> Combined DB replication position data
+	 * @param int|null &$clientPosIndex New position write index
+	 * @return array<string,mixed> Combined replication position data
 	 */
 	protected function mergePositions(
 		$storedValue,
 		array $shutdownPositions,
 		array $shutdownTimestamps,
-		&$cpIndex = null
+		?int &$clientPosIndex = null
 	) {
 		/** @var array<string,DBMasterPos> $mergedPositions */
 		$mergedPositions = $storedValue[self::FLD_POSITIONS] ?? [];
@@ -529,12 +535,12 @@ class ChronologyProtector implements LoggerAwareInterface {
 			}
 		}
 
-		$cpIndex = $storedValue[self::FLD_WRITE_INDEX] ?? 0;
+		$clientPosIndex = ( $storedValue[self::FLD_WRITE_INDEX] ?? 0 ) + 1;
 
 		return [
 			self::FLD_POSITIONS => $mergedPositions,
 			self::FLD_TIMESTAMPS => $mergedTimestamps,
-			self::FLD_WRITE_INDEX => ++$cpIndex
+			self::FLD_WRITE_INDEX => $clientPosIndex
 		];
 	}
 
