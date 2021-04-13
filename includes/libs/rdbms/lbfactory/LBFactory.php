@@ -600,7 +600,7 @@ abstract class LBFactory implements ILBFactory {
 			$cp->stageSessionReplicationPosition( $lb );
 		} );
 		// Write the positions to the persistent stash
-		$unsavedPositions = $cp->shutdown( $cpIndex );
+		$unsavedPositions = $cp->persistSessionReplicationPositions( $cpIndex );
 		if ( $unsavedPositions && $workCallback ) {
 			// Invoke callback in case it did not cache the result yet
 			$workCallback();
@@ -739,28 +739,40 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * @param int $index Write index
+	 * Build a string conveying the client and write index of the chronology protector data
+	 *
+	 * @param int $writeIndex Write index
 	 * @param int $time UNIX timestamp; can be used to detect stale cookies (T190082)
-	 * @param string $clientId Agent ID hash from ILBFactory::shutdown()
-	 * @return string Timestamp-qualified write index of the form "<index>@<timestamp>#<hash>"
+	 * @param string $clientId Client ID hash from ILBFactory::shutdown()
+	 * @return string Value to use for "cpPosIndex" cookie
 	 * @since 1.32
 	 */
-	public static function makeCookieValueFromCPIndex( $index, $time, $clientId ) {
-		return "$index@$time#$clientId";
+	public static function makeCookieValueFromCPIndex(
+		int $writeIndex,
+		int $time,
+		string $clientId
+	) {
+		// Format is "<write index>@<write timestamp>#<client ID hash>"
+		return "{$writeIndex}@{$time}#{$clientId}";
 	}
 
 	/**
-	 * @param string|null $value Possible result of LBFactory::makeCookieValueFromCPIndex()
+	 * Parse a string conveying the client and write index of the chronology protector data
+	 *
+	 * @param string|null $value Value of "cpPosIndex" cookie
 	 * @param int $minTimestamp Lowest UNIX timestamp that a non-expired value can have
 	 * @return array (index: int or null, clientId: string or null)
 	 * @since 1.32
 	 */
-	public static function getCPInfoFromCookieValue( $value, $minTimestamp ) {
+	public static function getCPInfoFromCookieValue( ?string $value, int $minTimestamp ) {
 		static $placeholder = [ 'index' => null, 'clientId' => null ];
 
 		if ( $value === null ) {
 			return $placeholder; // not set
-		} elseif ( !preg_match( '/^(\d+)@(\d+)#([0-9a-f]{32})$/', $value, $m ) ) {
+		}
+
+		// Format is "<write index>@<write timestamp>#<client ID hash>"
+		if ( !preg_match( '/^(\d+)@(\d+)#([0-9a-f]{32})$/', $value, $m ) ) {
 			return $placeholder; // invalid
 		}
 

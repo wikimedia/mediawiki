@@ -341,7 +341,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$cp->stageSessionReplicationPosition( $lb1 );
 		$cp->stageSessionReplicationPosition( $lb2 );
 		$cpIndex = null;
-		$cp->shutdown( $cpIndex );
+		$cp->persistSessionReplicationPositions( $cpIndex );
 
 		$this->assertSame( 1, $cpIndex, "CP write index set" );
 
@@ -384,7 +384,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$cp->stageSessionReplicationPosition( $lb1 );
 		$cp->stageSessionReplicationPosition( $lb2 );
 		$cpIndex = null;
-		$cp->shutdown( $cpIndex );
+		$cp->persistSessionReplicationPositions( $cpIndex );
 
 		$this->assertNull( $cpIndex, "CP write index retained" );
 
