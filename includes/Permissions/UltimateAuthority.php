@@ -28,7 +28,7 @@ use MediaWiki\User\UserIdentity;
  * Represents an authority that has all permissions.
  * This is intended for use in maintenance scripts and tests.
  *
- * @unstable
+ * @newable
  * @since 1.36
  */
 class UltimateAuthority implements Authority {
@@ -37,6 +37,7 @@ class UltimateAuthority implements Authority {
 	private $actor;
 
 	/**
+	 * @stable to call
 	 * @param UserIdentity $actor
 	 */
 	public function __construct( UserIdentity $actor ) {

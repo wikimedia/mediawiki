@@ -98,7 +98,7 @@ interface IContextSource extends MessageLocalizer {
 	public function getUser();
 
 	/**
-	 * @unstable
+	 * @since 1.36
 	 * @return Authority
 	 */
 	public function getAuthority(): Authority;
