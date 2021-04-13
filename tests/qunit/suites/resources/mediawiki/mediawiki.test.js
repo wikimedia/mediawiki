@@ -74,7 +74,7 @@
 	} );
 
 	QUnit.test( 'mw.Map', function ( assert ) {
-		var arry, conf, funky, globalConf, nummy, someValues;
+		var arry, conf, funky, nummy, someValues;
 
 		conf = new mw.Map();
 
@@ -151,40 +151,6 @@
 
 		assert.propEqual( conf.values, someValues, 'Map.values is an internal object with all values (exposed for convenience)' );
 		assert.propEqual( conf.get(), someValues, 'Map.get() returns an object with all values' );
-
-		// Interacting with globals
-		conf.set( 'globalMapChecker', 'Hi' );
-
-		assert.notOk( 'globalMapChecker' in window, 'Map does not its store values in the window object by default' );
-
-		globalConf = new mw.Map( true );
-		globalConf.set( 'anotherGlobalMapChecker', 'Hello' );
-
-		assert.ok( 'anotherGlobalMapChecker' in window, 'global Map stores its values in the window object' );
-
-		assert.strictEqual( globalConf.get( 'anotherGlobalMapChecker' ), 'Hello', 'get value from global Map via get()' );
-		this.suppressWarnings();
-		assert.strictEqual( window.anotherGlobalMapChecker, 'Hello', 'get value from global Map via window object' );
-		this.restoreWarnings();
-
-		// Change value via global Map
-		globalConf.set( 'anotherGlobalMapChecker', 'Again' );
-		assert.strictEqual( globalConf.get( 'anotherGlobalMapChecker' ), 'Again', 'Change in global Map reflected via get()' );
-		this.suppressWarnings();
-		assert.strictEqual( window.anotherGlobalMapChecker, 'Again', 'Change in global Map reflected window object' );
-		this.restoreWarnings();
-
-		// Change value via window object
-		this.suppressWarnings();
-		window.anotherGlobalMapChecker = 'World';
-		assert.strictEqual( window.anotherGlobalMapChecker, 'World', 'Change in window object works' );
-		this.restoreWarnings();
-		assert.strictEqual( globalConf.get( 'anotherGlobalMapChecker' ), 'Again', 'Change in window object not reflected in global Map' );
-
-		// Allow this global variable for QUnit's 'noglobal' mode
-		if ( QUnit.config.noglobals ) {
-			QUnit.config.pollution.push( 'anotherGlobalMapChecker' );
-		}
 	} );
 
 	QUnit.test( 'mw.message & mw.messages', function ( assert ) {

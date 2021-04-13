@@ -74,14 +74,11 @@ $wgRestAPIAdditionalRouteFiles = [ 'includes/Rest/coreDevelopmentRoutes.json' ];
  * (Must reference a Phabricator ticket)
  */
 
-global $wgSQLMode, $wgLegacyJavaScriptGlobals, $wgLocalisationCacheConf,
+global $wgSQLMode, $wgLocalisationCacheConf,
 	$wgCacheDirectory, $wgEnableUploads, $wgCiteBookReferencing;
 
 // Enable MariaDB/MySQL strict mode (T108255)
 $wgSQLMode = 'TRADITIONAL';
-
-// Disable legacy javascript globals in CI and for devs (T72470)
-$wgLegacyJavaScriptGlobals = false;
 
 // Localisation Cache to StaticArray (T218207)
 $wgLocalisationCacheConf['store'] = 'array';

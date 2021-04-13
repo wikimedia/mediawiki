@@ -378,9 +378,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$VARS.storeEnabled' => $context->encodeJson(
 				$conf->get( 'ResourceLoaderStorageEnabled' ) && !$context->getDebug()
 			),
-			'$VARS.wgLegacyJavaScriptGlobals' => $context->encodeJson(
-				$conf->get( 'LegacyJavaScriptGlobals' )
-			),
 			'$VARS.storeKey' => $context->encodeJson( $this->getStoreKey() ),
 			'$VARS.storeVary' => $context->encodeJson( $this->getStoreVary( $context ) ),
 			'$VARS.groupUser' => $context->encodeJson( $this->getGroupId( 'user' ) ),
