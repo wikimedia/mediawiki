@@ -22,11 +22,9 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\Rdbms\IResultWrapper;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -1470,104 +1468,6 @@ abstract class Maintenance {
 	 */
 	protected function rollbackTransaction( IDatabase $dbw, $fname ) {
 		$dbw->rollback( $fname );
-	}
-
-	/**
-	 * Lock the search index
-	 * @param IMaintainableDatabase $db
-	 */
-	private function lockSearchindex( $db ) {
-		$write = [ 'searchindex' ];
-		$read = [
-			'page',
-			'revision',
-			'text',
-			'interwiki',
-			'l10n_cache',
-			'user',
-			'page_restrictions'
-		];
-		$db->lockTables( $read, $write, __CLASS__ . '-searchIndexLock' );
-	}
-
-	/**
-	 * Unlock the tables
-	 * @param IMaintainableDatabase $db
-	 */
-	private function unlockSearchindex( $db ) {
-		$db->unlockTables( __CLASS__ . '-searchIndexLock' );
-	}
-
-	/**
-	 * Unlock and lock again
-	 * Since the lock is low-priority, queued reads will be able to complete
-	 * @param IMaintainableDatabase $db
-	 */
-	private function relockSearchindex( $db ) {
-		$this->unlockSearchindex( $db );
-		$this->lockSearchindex( $db );
-	}
-
-	/**
-	 * Perform a search index update with locking
-	 * @param int $maxLockTime The maximum time to keep the search index locked.
-	 * @param callable $callback The function that will update the function.
-	 * @param IMaintainableDatabase $dbw
-	 * @param array|IResultWrapper $results
-	 */
-	public function updateSearchIndex( $maxLockTime, $callback, $dbw, $results ) {
-		$lockTime = time();
-
-		# Lock searchindex
-		if ( $maxLockTime ) {
-			$this->output( "   --- Waiting for lock ---" );
-			$this->lockSearchindex( $dbw );
-			$lockTime = time();
-			$this->output( "\n" );
-		}
-
-		# Loop through the results and do a search update
-		foreach ( $results as $row ) {
-			# Allow reads to be processed
-			if ( $maxLockTime && time() > $lockTime + $maxLockTime ) {
-				$this->output( "    --- Relocking ---" );
-				$this->relockSearchindex( $dbw );
-				$lockTime = time();
-				$this->output( "\n" );
-			}
-			call_user_func( $callback, $row );
-		}
-
-		# Unlock searchindex
-		if ( $maxLockTime ) {
-			$this->output( "    --- Unlocking --" );
-			$this->unlockSearchindex( $dbw );
-			$this->output( "\n" );
-		}
-	}
-
-	/**
-	 * Update the searchindex table for a given pageid
-	 * @param int $pageId The page ID to update.
-	 * @return null|string
-	 */
-	public function updateSearchIndexForPage( int $pageId ) {
-		// Get current revision
-		$rev = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getRevisionByPageId( $pageId, 0, IDBAccessObject::READ_LATEST );
-		$title = null;
-		if ( $rev ) {
-			$titleObj = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
-			$title = $titleObj->getPrefixedDBkey();
-			$this->output( "$title..." );
-			# Update searchindex
-			$u = new SearchUpdate( $pageId, $titleObj, $rev->getContent( SlotRecord::MAIN ) );
-			$u->doUpdate();
-			$this->output( "\n" );
-		}
-
-		return $title;
 	}
 
 	/**
