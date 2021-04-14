@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ChangesListStringOptionsFilterGroup
  */
-class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCase {
+class ChangesListStringOptionsFilterGroupTest extends MediaWikiUnitTestCase {
 
 	public function testIsFullCoverage() {
 		$falseGroup = TestingAccessWrapper::newFromObject(
@@ -166,10 +166,7 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCa
 
 	protected function getSpecialPage() {
 		return $this->getMockBuilder( ChangesListSpecialPage::class )
-			->setConstructorArgs( [
-					'ChangesListSpecialPage',
-					'',
-				] )
+			->disableOriginalConstructor()
 			->getMockForAbstractClass();
 	}
 
@@ -180,7 +177,11 @@ class ChangesListStringOptionsFilterGroupTest extends MediaWikiIntegrationTestCa
 	protected function modifyQueryHelper( $groupDefinition, $input ) {
 		$ctx = $this->createMock( IContextSource::class );
 		$dbr = $this->createMock( Wikimedia\Rdbms\IDatabase::class );
-		$tables = $fields = $conds = $query_options = $join_conds = [];
+		$tables = [];
+		$fields = [];
+		$conds = [];
+		$query_options = [];
+		$join_conds = [];
 
 		$group = new ChangesListStringOptionsFilterGroup( $groupDefinition );
 
