@@ -3,7 +3,7 @@
 /**
  * @covers ChangesListBooleanFilter
  */
-class ChangesListBooleanFilterTest extends MediaWikiIntegrationTestCase {
+class ChangesListBooleanFilterTest extends MediaWikiUnitTestCase {
 	public function testGetJsData() {
 		$group = new ChangesListBooleanFilterGroup( [
 			'name' => 'group',
