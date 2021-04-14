@@ -142,11 +142,7 @@ class WebInstallerOutput {
 		$module = new ResourceLoaderSkinModule( [
 			'features' => [
 				'elements',
-				'content',
-				'interface',
-				'interface-message-box',
-				'logo',
-				'legacy'
+				'interface-message-box'
 			],
 			'styles' => [
 				'mw-config/config.css',

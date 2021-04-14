@@ -270,6 +270,10 @@ body {
 	background-image: url( images/installer-logo.png );
 }
 
+.visualClear {
+	clear: both;
+}
+
 /** WARNING BOX STYLES */
 .mw-installer-box-left {
 	margin: 7px;
