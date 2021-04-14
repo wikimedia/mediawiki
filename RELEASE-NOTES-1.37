@@ -84,6 +84,12 @@ because of Phabricator reports.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
+* Deprecated passing UserIdentity to
+  WatchlistManager::clearAllUserNotifications() and
+  WatchlistManager::clearTitleUserNotifications(). Pass Authority instead.
+* Deprecated passing LinkTarget to
+  WatchlistManager::clearTitleUserNotifications() and
+  WatchlistManager::getTitleNotificationTimestamp(). Pass PageIdentity instead.
 * …
 
 === Other changes in 1.37 ===
