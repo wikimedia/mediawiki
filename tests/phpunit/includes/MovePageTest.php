@@ -3,7 +3,6 @@
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -80,7 +79,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 			$old,
 			$new,
 			new ServiceOptions(
-				PageCommandFactory::CONSTRUCTOR_OPTIONS,
+				MovePage::CONSTRUCTOR_OPTIONS,
 				$params['options'] ?? [],
 				[
 					'CategoryCollation' => 'uppercase',

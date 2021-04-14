@@ -58,6 +58,7 @@ use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -1326,6 +1327,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRevisionStoreFactory() : RevisionStoreFactory {
 		return $this->getService( 'RevisionStoreFactory' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return RollbackPageFactory
+	 */
+	public function getRollbackPageFactory() : RollbackPageFactory {
+		return $this->getService( 'RollbackPageFactory' );
 	}
 
 	/**

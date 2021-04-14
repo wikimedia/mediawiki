@@ -117,7 +117,7 @@ class MovePage {
 	private $userFactory;
 
 	/**
-	 * @internal For use by MovePageTest
+	 * @internal For use by PageCommandFactory
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'CategoryCollation',

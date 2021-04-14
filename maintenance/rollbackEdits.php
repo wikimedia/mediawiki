@@ -58,7 +58,6 @@ class RollbackEdits extends Maintenance {
 		$bot = $this->hasOption( 'bot' );
 		$summary = $this->getOption( 'summary', $this->mSelf . ' mass rollback' );
 		$titles = [];
-		$results = [];
 		if ( $this->hasOption( 'titles' ) ) {
 			foreach ( explode( '|', $this->getOption( 'titles' ) ) as $title ) {
 				$t = Title::newFromText( $title );
@@ -81,10 +80,17 @@ class RollbackEdits extends Maintenance {
 		$doer = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 
 		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
+		$rollbackPageFactory = MediaWikiServices::getInstance()
+			->getRollbackPageFactory();
 		foreach ( $titles as $t ) {
 			$page = $wikiPageFactory->newFromTitle( $t );
 			$this->output( 'Processing ' . $t->getPrefixedText() . '... ' );
-			if ( !$page->commitRollback( $user, $summary, $bot, $results, $doer ) ) {
+			$rollbackResult = $rollbackPageFactory
+				->newRollbackPage( $page, $doer, $user )
+				->markAsBot( $bot )
+				->setSummary( $summary )
+				->rollback();
+			if ( $rollbackResult->isGood() ) {
 				$this->output( "Done!\n" );
 			} else {
 				$this->output( "Failed!\n" );
