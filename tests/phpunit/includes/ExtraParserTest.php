@@ -94,8 +94,16 @@ class ExtraParserTest extends MediaWikiIntegrationTestCase {
 			new User(),
 			$this->options
 		);
-
 		$this->assertEquals( "Test\nContent of ''Template:Foo''\n{{Bar}}", $outputText );
+
+		$outputText = $this->parser->preSaveTransform(
+			"hello\n\n{{subst:ns:0}}",
+			$title,
+			new User(),
+			$this->options
+		);
+		$this->assertEquals( "hello", $outputText,
+			"Pre-save transform removes trailing whitespace after substituting templates" );
 	}
 
 	/**
