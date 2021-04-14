@@ -16,11 +16,6 @@ class PingbackTest extends MediaWikiUnitTestCase {
 		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 	}
 
-	public function tearDown() : void {
-		ConvertibleTimestamp::setFakeTime( false );
-		parent::tearDown();
-	}
-
 	public function testDisabled() {
 		$db = $this->createMock( IDatabase::class );
 		$lb = $this->createMock( ILoadBalancer::class );

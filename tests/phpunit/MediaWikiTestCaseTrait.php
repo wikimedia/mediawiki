@@ -5,6 +5,7 @@ use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\MockObject\MockObject;
 use Pimple\Psr11\ServiceLocator;
 use Wikimedia\ObjectFactory;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * For code common to both MediaWikiUnitTestCase and MediaWikiIntegrationTestCase.
@@ -235,10 +236,23 @@ trait MediaWikiTestCaseTrait {
 	/**
 	 * Re-enable any disabled deprecation warnings and allow same deprecations to be thrown
 	 * multiple times in different tests, so the PHPUnit expectDeprecation() works.
+	 *
 	 * @after
 	 */
 	protected function mwDebugTearDown() {
 		MWDebug::clearLog();
+	}
+
+	/**
+	 * Reset any fake timestamps so that they don't mess with any other tests.
+	 *
+	 * @since 1.37 before that, integration tests had it reset in
+	 * MediaWikiIntegrationTestCase::mediaWikiTearDown, and unit tests didn't at all
+	 *
+	 * @after
+	 */
+	protected function fakeTimestampTearDown() {
+		ConvertibleTimestamp::setFakeTime( null );
 	}
 
 	/**
