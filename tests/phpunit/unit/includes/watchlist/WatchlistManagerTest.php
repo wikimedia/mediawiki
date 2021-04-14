@@ -1,12 +1,13 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionLookup;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**
@@ -18,34 +19,27 @@ use MediaWiki\Watchlist\WatchlistManager;
  * @author DannyS712
  */
 class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
+	use MockTitleTrait;
+	use MockAuthorityTrait;
 
-	private function getManager( array $params ) {
+	private function getManager( array $params = [] ) {
 		$config = $params['config'] ?? [
 			'UseEnotif' => false,
-			'ShowUpdatedMarker' => false
+			'ShowUpdatedMarker' => false,
 		];
 		$options = new ServiceOptions(
 			WatchlistManager::CONSTRUCTOR_OPTIONS,
 			$config
 		);
 
-		$hookContainer = $params['hookContainer'] ??
-			$this->createNoOpMock( HookContainer::class );
-
-		$permissionManager = $params['permissionManager'] ??
-			$this->createNoOpMock( PermissionManager::class );
-
 		$readOnly = $params['readOnly'] ?? false;
 		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
 		if ( $readOnly !== 'never' ) {
 			// Set 'never' for testing getTitleNotificationTimestamp, which doesn't call
-			$readOnlyMode->expects( $this->once() )
+			$readOnlyMode->expects( $this->atLeast( 1 ) )
 				->method( 'isReadOnly' )
 				->willReturn( $readOnly );
 		}
-
-		$revisionLookup = $params['revisionLookup'] ??
-			$this->createNoOpAbstractMock( RevisionLookup::class );
 
 		$talkPageNotificationManager = $params['talkPageNotificationManager'] ??
 			$this->createNoOpMock( TalkPageNotificationManager::class );
@@ -53,324 +47,353 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$watchedItemStore = $params['watchedItemStore'] ??
 			$this->createNoOpAbstractMock( WatchedItemStoreInterface::class );
 
+		$userFactory = $params['userFactory'] ??
+			$this->createNoOpAbstractMock( UserFactory::class );
+
 		return new WatchlistManager(
 			$options,
-			$hookContainer,
-			$permissionManager,
+			$this->createHookContainer(),
 			$readOnlyMode,
-			$revisionLookup,
+			$this->createMock( RevisionLookup::class ),
 			$talkPageNotificationManager,
-			$watchedItemStore
+			$watchedItemStore,
+			$userFactory
 		);
 	}
 
-	public function testClearAllUserNotifications_readOnly() {
-		$user = $this->createNoOpAbstractMock( UserIdentity::class );
+	private function getAuthorityAndUserFactory( UserIdentity $userIdentity, array $permissions = [] ) {
+		$authority = $this->mockUserAuthorityWithPermissions(
+			$userIdentity,
+			$permissions
+		);
 
+		$userFactory = $this->createMock( UserFactory::class );
+		$userFactory->method( 'newFromUserIdentity' )
+			->willReturnCallback( function ( $userIdentity ) use ( $permissions ) {
+				$user = $this->createMock( User::class );
+				$user->method( 'isAllowed' )
+					->willReturnCallback( function ( $permission ) use ( $permissions ) {
+						return in_array( $permission, $permissions );
+					} );
+				$user->method( 'getUser' )
+					->willReturn( $userIdentity );
+				return $user;
+			} );
+
+		return [ $authority, $userFactory ];
+	}
+
+	public function testClearAllUserNotifications_readOnly() {
 		// ********** Code path #1 **********
 		// Early return: read only mode
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, ) = $this->getAuthorityAndUserFactory( $userIdentity );
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->never() )
+			->method( 'resetAllNotificationTimestampsForUser' );
+
 		$manager = $this->getManager( [
-			'readOnly' => true
+			'readOnly' => true,
+			'watchedItemStore' => $watchedItemStore
 		] );
-		$manager->clearAllUserNotifications( $user );
+
+		$manager->clearAllUserNotifications( $userIdentity );
+		$manager->clearAllUserNotifications( $authority );
 	}
 
 	public function testClearAllUserNotifications_noPerms() {
-		$user = $this->createNoOpAbstractMock( UserIdentity::class );
-
 		// ********** Code path #2 **********
 		// Early return: User lacks `editmywatchlist`
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( false );
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory( $userIdentity );
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->never() )
+			->method( 'resetAllNotificationTimestampsForUser' );
 
 		$manager = $this->getManager( [
-			'permissionManager' => $permissionManager
+			'watchedItemStore' => $watchedItemStore,
+			'userFactory' => $userFactory
 		] );
-		$manager->clearAllUserNotifications( $user );
+
+		$manager->clearAllUserNotifications( $userIdentity );
+		$manager->clearAllUserNotifications( $authority );
 	}
 
 	public function testClearAllUserNotifications_configDisabled() {
-		$user = $this->createNoOpAbstractMock( UserIdentity::class );
-
 		// ********** Code path #3 **********
 		// Early return: config with `UseEnotif` and `ShowUpdatedMarker` both false
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( true );
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+
 		$talkPageNotificationManager = $this->createMock( TalkPageNotificationManager::class );
-		$talkPageNotificationManager->expects( $this->once() )
-			->method( 'removeUserHasNewMessages' )
-			->with( $this->equalTo( $user ) );
+		$talkPageNotificationManager->expects( $this->exactly( 2 ) )
+			->method( 'removeUserHasNewMessages' );
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->never() )
+			->method( 'resetAllNotificationTimestampsForUser' );
 
 		$manager = $this->getManager( [
-			'permissionManager' => $permissionManager,
-			'talkPageNotificationManager' => $talkPageNotificationManager
+			'watchedItemStore' => $watchedItemStore,
+			'talkPageNotificationManager' => $talkPageNotificationManager,
+			'userFactory' => $userFactory
 		] );
-		$manager->clearAllUserNotifications( $user );
+
+		$manager->clearAllUserNotifications( $userIdentity );
+		$manager->clearAllUserNotifications( $authority );
 	}
 
 	public function testClearAllUserNotifications_falseyId() {
 		// ********** Code path #4 **********
 		// Early return: user's id is falsey
+
 		$config = [
 			'UseEnotif' => true,
 			'ShowUpdatedMarker' => true
 		];
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
-			->method( 'getId' )
-			->willReturn( 0 );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( true );
+
+		$userIdentity = new UserIdentityValue( 0, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->never() )
+			->method( 'resetAllNotificationTimestampsForUser' );
 
 		$manager = $this->getManager( [
 			'config' => $config,
-			'permissionManager' => $permissionManager
+			'watchedItemStore' => $watchedItemStore,
+			'userFactory' => $userFactory
 		] );
-		$manager->clearAllUserNotifications( $user );
+
+		$manager->clearAllUserNotifications( $userIdentity );
+		$manager->clearAllUserNotifications( $authority );
 	}
 
 	public function testClearAllUserNotifications() {
 		// ********** Code path #5 **********
 		// No early returns
+
 		$config = [
 			'UseEnotif' => true,
 			'ShowUpdatedMarker' => true
 		];
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
-			->method( 'getId' )
-			->willReturn( 1 );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( true );
-		$watchedItemStore = $this->getMockBuilder( WatchedItemStoreInterface::class )
-			->setMethods( [ 'resetAllNotificationTimestampsForUser' ] )
-			->getMockForAbstractClass();
-		$watchedItemStore->expects( $this->once() )
-			->method( 'resetAllNotificationTimestampsForUser' )
-			->with( $this->equalTo( $user ) );
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->exactly( 2 ) )
+			->method( 'resetAllNotificationTimestampsForUser' );
 
 		$manager = $this->getManager( [
 			'config' => $config,
-			'permissionManager' => $permissionManager,
-			'watchedItemStore' => $watchedItemStore
+			'watchedItemStore' => $watchedItemStore,
+			'userFactory' => $userFactory
 		] );
-		$manager->clearAllUserNotifications( $user );
+
+		$manager->clearAllUserNotifications( $userIdentity );
+		$manager->clearAllUserNotifications( $authority );
 	}
 
-	public function testClearTitleUserNotifications_readOnly() {
-		$user = $this->createNoOpAbstractMock( UserIdentity::class );
-		$title = $this->createNoOpAbstractMock( LinkTarget::class );
+	public function provideTestPageFactory() {
+		yield [ function ( $pageId, $namespace, $dbKey ) {
+			return new TitleValue( $namespace, $dbKey );
+		} ];
+		yield [ function ( $pageId, $namespace, $dbKey ) {
+			return new PageIdentityValue( $pageId, $namespace, $dbKey, PageIdentityValue::LOCAL );
+		} ];
+		yield [ function ( $pageId, $namespace, $dbKey ) {
+			return $this->makeMockTitle( $dbKey, [
+				'id' => $pageId,
+				'namespace' => $namespace
+			] );
+		} ];
+	}
 
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testClearTitleUserNotifications_readOnly( $testPageFactory ) {
 		// ********** Code path #1 **********
 		// Early return: read only mode
-		$manager = $this->getManager( [
-			'readOnly' => true
-		] );
-		$manager->clearTitleUserNotifications( $user, $title );
-	}
 
-	public function testClearTitleUserNotifications_noPerms() {
-		$user = $this->createNoOpAbstractMock( UserIdentity::class );
-		$title = $this->createNoOpAbstractMock( LinkTarget::class );
+		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
-		// ********** Code path #2 **********
-		// Early return: User lacks `editmywatchlist`
-		// readOnlyMode returned false, and since we'll use the same mock again don't only
-		// expect it once
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( false );
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, ) = $this->getAuthorityAndUserFactory( $userIdentity );
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->never() )
+			->method( 'resetNotificationTimestamp' );
 
 		$manager = $this->getManager( [
-			'permissionManager' => $permissionManager
-		] );
-
-		$manager->clearTitleUserNotifications( $user, $title );
-	}
-
-	public function testClearTitleUserNotifications_configDisabled() {
-		// ********** Code path #3 **********
-		// Early return: config with `UseEnotif` and `ShowUpdatedMarker` both false
-		// $user and $title are now checked for if the page is the user's talk page
-		// Currently only tests for when the title isn't the user's talk page, since
-		// DeferredUpdates::addCallableUpdate doesn't work in unit tests
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getName' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
-			->method( 'getName' )
-			->willReturn( 'UserNameGoesHere' );
-		$title = $this->getMockBuilder( LinkTarget::class )
-			->setMethods( [ 'getNamespace', 'getText' ] )
-			->getMockForAbstractClass();
-		$title->expects( $this->once() )
-			->method( 'getNamespace' )
-			->willReturn( NS_USER_TALK );
-		$title->expects( $this->once() )
-			->method( 'getText' )
-			->willReturn( 'PageTitleGoesHere' );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( true );
-
-		$manager = $this->getManager( [
-			'permissionManager' => $permissionManager
-		] );
-		$manager->clearTitleUserNotifications( $user, $title );
-	}
-
-	public function testClearTitleUserNotifications_notRegistered() {
-		// ********** Code path #4 **********
-		// Early return: user is not registered
-		$config = [
-			'UseEnotif' => true,
-			'ShowUpdatedMarker' => true
-		];
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getName', 'isRegistered' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
-			->method( 'getName' )
-			->willReturn( 'UserNameGoesHere' );
-		$user->expects( $this->once() )
-			->method( 'isRegistered' )
-			->willReturn( false );
-		$title = $this->getMockBuilder( LinkTarget::class )
-			->setMethods( [ 'getNamespace', 'getText' ] )
-			->getMockForAbstractClass();
-		$title->expects( $this->once() )
-			->method( 'getNamespace' )
-			->willReturn( NS_USER_TALK );
-		$title->expects( $this->once() )
-			->method( 'getText' )
-			->willReturn( 'PageTitleGoesHere' );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( true );
-
-		$manager = $this->getManager( [
-			'config' => $config,
-			'permissionManager' => $permissionManager
-		] );
-		$manager->clearTitleUserNotifications( $user, $title );
-	}
-
-	public function testClearTitleUserNotifications() {
-		// ********** Code path #5 **********
-		// No early returns; resetNotificationTimestamp is called
-		// PermissionManager now expects a different user object
-		$config = [
-			'UseEnotif' => true,
-			'ShowUpdatedMarker' => true
-		];
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getName', 'isRegistered' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
-			->method( 'getName' )
-			->willReturn( 'UserNameGoesHere' );
-		$user->expects( $this->once() )
-			->method( 'isRegistered' )
-			->willReturn( true );
-		$title = $this->getMockBuilder( LinkTarget::class )
-			->setMethods( [ 'getNamespace', 'getText' ] )
-			->getMockForAbstractClass();
-		$title->expects( $this->once() )
-			->method( 'getNamespace' )
-			->willReturn( NS_USER_TALK );
-		$title->expects( $this->once() )
-			->method( 'getText' )
-			->willReturn( 'PageTitleGoesHere' );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( true );
-		$watchedItemStore = $this->getMockBuilder( WatchedItemStoreInterface::class )
-			->setMethods( [ 'resetNotificationTimestamp' ] )
-			->getMockForAbstractClass();
-		$watchedItemStore->expects( $this->once() )
-			->method( 'resetNotificationTimestamp' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( $title ),
-				$this->equalTo( '' ),
-				$this->equalTo( 0 )
-			);
-
-		$manager = $this->getManager( [
-			'config' => $config,
-			'permissionManager' => $permissionManager,
+			'readOnly' => true,
 			'watchedItemStore' => $watchedItemStore
 		] );
-		$manager->clearTitleUserNotifications( $user, $title );
+
+		$manager->clearTitleUserNotifications( $userIdentity, $title );
+		$manager->clearTitleUserNotifications( $authority, $title );
 	}
 
-	public function testGetTitleNotificationTimestamp_falseyId() {
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testClearTitleUserNotifications_noPerms( $testPageFactory ) {
+		// ********** Code path #2 **********
+		// Early return: User lacks `editmywatchlist`
+
+		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory( $userIdentity );
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->never() )
+			->method( 'resetNotificationTimestamp' );
+
+		$manager = $this->getManager( [
+			'watchedItemStore' => $watchedItemStore,
+			'userFactory' => $userFactory
+		] );
+
+		$manager->clearTitleUserNotifications( $userIdentity, $title );
+		$manager->clearTitleUserNotifications( $authority, $title );
+	}
+
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testClearTitleUserNotifications_configDisabled( $testPageFactory ) {
+		// ********** Code path #3 **********
+		// Early return: config with `UseEnotif` and `ShowUpdatedMarker` both false
+
+		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->never() )
+			->method( 'resetNotificationTimestamp' );
+
+		$manager = $this->getManager( [
+			'watchedItemStore' => $watchedItemStore,
+			'userFactory' => $userFactory
+		] );
+
+		$manager->clearTitleUserNotifications( $userIdentity, $title );
+		$manager->clearTitleUserNotifications( $authority, $title );
+	}
+
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testClearTitleUserNotifications_notRegistered( $testPageFactory ) {
+		// ********** Code path #4 **********
+		// Early return: user is not registered
+
+		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
+
+		$config = [
+			'UseEnotif' => true,
+			'ShowUpdatedMarker' => true
+		];
+
+		$userIdentity = new UserIdentityValue( 0, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->never() )
+			->method( 'resetNotificationTimestamp' );
+
+		$manager = $this->getManager( [
+			'config' => $config,
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore
+		] );
+
+		$manager->clearTitleUserNotifications( $userIdentity, $title );
+		$manager->clearTitleUserNotifications( $authority, $title );
+	}
+
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testClearTitleUserNotifications( $testPageFactory ) {
+		// ********** Code path #5 **********
+		// No early returns; resetNotificationTimestamp is called
+
+		$title = $testPageFactory( 100, NS_USER_TALK, 'PageTitleGoesHere' );
+
+		$config = [
+			'UseEnotif' => true,
+			'ShowUpdatedMarker' => true
+		];
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
+		$watchedItemStore->expects( $this->exactly( 2 ) )
+			->method( 'resetNotificationTimestamp' );
+
+		$manager = $this->getManager( [
+			'config' => $config,
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore
+		] );
+
+		$manager->clearTitleUserNotifications( $userIdentity, $title );
+		$manager->clearTitleUserNotifications( $authority, $title );
+	}
+
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testGetTitleNotificationTimestamp_falseyId( $testPageFactory ) {
 		// ********** Code path #1 **********
 		// Early return: user id is falsey
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
-			->method( 'getId' )
-			->willReturn( 0 );
-		$title = $this->createNoOpAbstractMock( LinkTarget::class );
+
+		$userIdentity = new UserIdentityValue( 0, 'User Name' );
+
+		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
 		$manager = $this->getManager( [
 			'readOnly' => 'never'
 		] );
-		$res = $manager->getTitleNotificationTimestamp( $user, $title );
+
+		$res = $manager->getTitleNotificationTimestamp( $userIdentity, $title );
+
 		$this->assertFalse( $res, 'Early return for anonymous users is false' );
 	}
 
-	public function testGetTitleNotificationTimestamp_timestamp() {
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testGetTitleNotificationTimestamp_timestamp( $testPageFactory ) {
 		// ********** Code path #2 **********
 		// Early return: value is already cached - will be tested after #3 because
 		// an entry in the cache is needed (duh)
@@ -378,32 +401,21 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// ********** Code path #3 **********
 		// Actually check watchedItemStore, v.1-a - returns a WatchedItem with a timestamp
 		// From here on a cache key will be generated each time
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->exactly( 2 ) )
-			->method( 'getId' )
-			->willReturn( 1 );
-		$title = $this->getMockBuilder( LinkTarget::class )
-			->setMethods( [ 'getNamespace', 'getDBkey' ] )
-			->getMockForAbstractClass();
-		$title->expects( $this->exactly( 2 ) )
-			->method( 'getNamespace' )
-			->willReturn( NS_MAIN );
-		$title->expects( $this->exactly( 2 ) )
-			->method( 'getDBkey' )
-			->willReturn( 'Page_db_Key_goesHere' );
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+
+		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere' );
+
 		$watchedItem = $this->createMock( WatchedItem::class );
 		$watchedItem->expects( $this->once() )
 			->method( 'getNotificationTimestamp' )
 			->willReturn( 'stringTimestamp' );
-		$watchedItemStore = $this->getMockBuilder( WatchedItemStoreInterface::class )
-			->setMethods( [ 'getWatchedItem' ] )
-			->getMockForAbstractClass();
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->once() )
 			->method( 'getWatchedItem' )
 			->with(
-				$this->equalTo( $user ),
+				$this->equalTo( $userIdentity ),
 				$this->equalTo( $title )
 			)
 			->willReturn( $watchedItem );
@@ -412,7 +424,9 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'readOnly' => 'never',
 			'watchedItemStore' => $watchedItemStore
 		] );
-		$res = $manager->getTitleNotificationTimestamp( $user, $title );
+
+		$res = $manager->getTitleNotificationTimestamp( $userIdentity, $title );
+
 		$this->assertSame(
 			'stringTimestamp',
 			$res,
@@ -424,7 +438,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// use the same $manager instance (so the value is in the cache, duh)
 		// all of the same expectations apply - getWatchedItem shouldn't be called again, and
 		// so was only expecting to be called ->once() above
-		$res = $manager->getTitleNotificationTimestamp( $user, $title );
+		$res = $manager->getTitleNotificationTimestamp( $userIdentity, $title );
 		$this->assertSame(
 			'stringTimestamp',
 			$res,
@@ -432,36 +446,27 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function testGetTitleNotificationTimestamp_null() {
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
-			->method( 'getId' )
-			->willReturn( 1 );
-		$title = $this->getMockBuilder( LinkTarget::class )
-			->setMethods( [ 'getNamespace', 'getDBkey' ] )
-			->getMockForAbstractClass();
-		$title->expects( $this->once() )
-			->method( 'getNamespace' )
-			->willReturn( NS_MAIN );
-		$title->expects( $this->once() )
-			->method( 'getDBkey' )
-			->willReturn( 'Page_db_Key_goesHere' );
-
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testGetTitleNotificationTimestamp_null( $testPageFactory ) {
 		// ********** Code path #4 **********
 		// Actually check watchedItemStore, v.1-b - returns a WatchedItem with null
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+
+		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere' );
+
 		$watchedItem = $this->createMock( WatchedItem::class );
 		$watchedItem->expects( $this->once() )
 			->method( 'getNotificationTimestamp' )
 			->willReturn( null );
-		$watchedItemStore = $this->getMockBuilder( WatchedItemStoreInterface::class )
-			->setMethods( [ 'getWatchedItem' ] )
-			->getMockForAbstractClass();
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->once() )
 			->method( 'getWatchedItem' )
 			->with(
-				$this->equalTo( $user ),
+				$this->equalTo( $userIdentity ),
 				$this->equalTo( $title )
 			)
 			->willReturn( $watchedItem );
@@ -470,36 +475,28 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'readOnly' => 'never',
 			'watchedItemStore' => $watchedItemStore
 		] );
-		$res = $manager->getTitleNotificationTimestamp( $user, $title );
+
+		$res = $manager->getTitleNotificationTimestamp( $userIdentity, $title );
+
 		$this->assertNull( $res, 'WatchedItem can return null instead of a timestamp' );
 	}
 
-	public function testGetTitleNotificationTimestamp_false() {
-		$user = $this->getMockBuilder( UserIdentity::class )
-			->setMethods( [ 'getId' ] )
-			->getMockForAbstractClass();
-		$user->expects( $this->once() )
-			->method( 'getId' )
-			->willReturn( 1 );
-		$title = $this->getMockBuilder( LinkTarget::class )
-			->setMethods( [ 'getNamespace', 'getDBkey' ] )
-			->getMockForAbstractClass();
-		$title->expects( $this->once() )
-			->method( 'getNamespace' )
-			->willReturn( NS_MAIN );
-		$title->expects( $this->once() )
-			->method( 'getDBkey' )
-			->willReturn( 'Page_db_Key_goesHere' );
-
+	/**
+	 * @dataProvider provideTestPageFactory
+	 */
+	public function testGetTitleNotificationTimestamp_false( $testPageFactory ) {
 		// ********** Code path #5 **********
 		// Actually check watchedItemStore, v.2 - returns false
-		$watchedItemStore = $this->getMockBuilder( WatchedItemStoreInterface::class )
-			->setMethods( [ 'getWatchedItem' ] )
-			->getMockForAbstractClass();
+
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+
+		$title = $testPageFactory( 100, NS_MAIN, 'Page_db_Key_goesHere' );
+
+		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->once() )
 			->method( 'getWatchedItem' )
 			->with(
-				$this->equalTo( $user ),
+				$this->equalTo( $userIdentity ),
 				$this->equalTo( $title )
 			)
 			->willReturn( false );
@@ -508,11 +505,12 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			'readOnly' => 'never',
 			'watchedItemStore' => $watchedItemStore
 		] );
-		$res = $manager->getTitleNotificationTimestamp( $user, $title );
+
+		$res = $manager->getTitleNotificationTimestamp( $userIdentity, $title );
+
 		$this->assertFalse(
 			$res,
 			'getWatchedItem can return false if the item is not watched'
 		);
 	}
-
 }

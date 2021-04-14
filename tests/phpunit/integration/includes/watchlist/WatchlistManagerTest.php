@@ -1,11 +1,9 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Revision\RevisionStore;
-use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**
@@ -15,6 +13,7 @@ use MediaWiki\Watchlist\WatchlistManager;
  * @group Database
  */
 class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
 
 	public function testClearTitleUserNotifications() {
 		$options = new ServiceOptions(
@@ -25,65 +24,30 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 
-		$revisionLookup = $this->createMock( RevisionStore::class );
-		$talkPageNotificationManager = $this->createMock( TalkPageNotificationManager::class );
-		$watchedItemStore = $this->createNoOpAbstractMock( WatchedItemStoreInterface::class );
-
-		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
-		$readOnlyMode->expects( $this->once() )
-			->method( 'isReadOnly' )
-			->willReturn( false );
-
-		$user = $this->createMock( User::class );
-		$user->expects( $this->once() )
-			->method( 'getName' )
-			->willReturn( 'UserNameIsAlsoTitle' );
-		$title = $this->getMockBuilder( LinkTarget::class )
-			->setMethods( [ 'getNamespace', 'getText' ] )
-			->getMockForAbstractClass();
-		$title->expects( $this->any() )
-			->method( 'getNamespace' )
-			->willReturn( NS_USER_TALK );
-		$title->expects( $this->any() )
-			->method( 'getText' )
-			->willReturn( 'UserNameIsAlsoTitle' );
-		$permissionManager = $this->createMock( PermissionManager::class );
-		$permissionManager->expects( $this->once() )
-			->method( 'userHasRight' )
-			->with(
-				$this->equalTo( $user ),
-				$this->equalTo( 'editmywatchlist' )
-			)
-			->willReturn( true );
-
-		$hookContainer = $this->createMock( HookContainer::class );
-		$hookContainer->expects( $this->once() )
-			->method( 'run' )
-			->with(
-				$this->equalTo( 'UserClearNewTalkNotification' ),
-				$this->equalTo( [
-					$user,
-					0
-				] )
-			)
-			->willReturn( true );
-
+		$services = $this->getServiceContainer();
 		$manager = new WatchlistManager(
 			$options,
-			$hookContainer,
-			$permissionManager,
-			$readOnlyMode,
-			$revisionLookup,
-			$talkPageNotificationManager,
-			$watchedItemStore
+			$this->createHookContainer(),
+			$services->getReadOnlyMode(),
+			$services->getRevisionLookup(),
+			$services->getTalkPageNotificationManager(),
+			$services->getWatchedItemStore(),
+			$services->getUserFactory()
 		);
+
+		$username = 'User Name';
+		$user = $this->mockUserAuthorityWithPermissions(
+			new UserIdentityValue( 100, $username ),
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_USER_TALK, $username, PageIdentityValue::LOCAL );
 
 		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
 
+		$updateCountBefore = DeferredUpdates::pendingUpdatesCount();
 		$manager->clearTitleUserNotifications( $user, $title );
-
-		$updateCount = DeferredUpdates::pendingUpdatesCount();
-		$this->assertGreaterThan( 0, $updateCount, 'An update should have been queued' );
+		$updateCountAfter = DeferredUpdates::pendingUpdatesCount();
+		$this->assertGreaterThan( $updateCountBefore, $updateCountAfter, 'An update should have been queued' );
 
 		$this->db->endAtomic( __METHOD__ ); // run deferred updates
 
