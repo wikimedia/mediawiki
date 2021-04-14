@@ -2045,7 +2045,7 @@
 	"block-log-flags-anononly": "yalnız qeydiyyatsız istifadəçilər",
 	"block-log-flags-nocreate": "yeni hesab yaratma bloklanıb",
 	"block-log-flags-noautoblock": "avtobloklama qeyri-mümkündür",
-	"block-log-flags-noemail": "E-mail bloklanıb",
+	"block-log-flags-noemail": "e-mail bloklanıb",
 	"block-log-flags-nousertalk": "Müzakirə səhifəsini redaktə edə bilməz.",
 	"block-log-flags-angry-autoblock": "Avtoblok qüvvədədir",
 	"block-log-flags-hiddenname": "İstifadəçi adı gizli",
