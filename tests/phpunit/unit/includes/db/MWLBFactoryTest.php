@@ -22,12 +22,11 @@ use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\LBFactorySimple;
 
 /**
- * @group Database
  * @covers \Wikimedia\Rdbms\LBFactory
  * @covers \Wikimedia\Rdbms\LBFactorySimple
  * @covers \Wikimedia\Rdbms\LBFactoryMulti
  */
-class MWLBFactoryTest extends MediaWikiIntegrationTestCase {
+class MWLBFactoryTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers MWLBFactory::getLBFactoryClass
 	 * @dataProvider getLBFactoryClassProvider

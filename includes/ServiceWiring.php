@@ -1422,6 +1422,7 @@ return [
 				SpecialPageFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
 			$services->getContentLanguage(),
 			$services->getObjectFactory(),
+			$services->getTitleFactory(),
 			$services->getHookContainer()
 		);
 	},
