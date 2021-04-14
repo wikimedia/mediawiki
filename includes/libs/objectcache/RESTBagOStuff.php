@@ -128,6 +128,7 @@ class RESTBagOStuff extends MediumSpecificBagOStuff {
 		$this->url = rtrim( $params['url'], '/' ) . '/';
 
 		// Default config, R+W > N; no locks on reads though; writes go straight to state-machine
+		// TODO: What does this mean^. What is "N"? What state-machine?
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_QC;
 	}
 
