@@ -34,14 +34,14 @@ use MediaWikiUnitTestCase;
 class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testGetAuthor() {
-		$actor = new UserIdentityValue( 12, 'Test', 17 );
+		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
 		$this->assertSame( $actor, $authority->getUser() );
 	}
 
 	public function testPermissions() {
-		$actor = new UserIdentityValue( 12, 'Test', 17 );
+		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
 		$this->assertTrue( $authority->isAllowed( 'foo' ) );
@@ -53,7 +53,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testProbablyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$actor = new UserIdentityValue( 12, 'Test', 17 );
+		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
 		$this->assertTrue( $authority->probablyCan( 'foo', $target ) );
@@ -66,7 +66,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testDefinitlyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$actor = new UserIdentityValue( 12, 'Test', 17 );
+		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
 		$this->assertTrue( $authority->definitelyCan( 'foo', $target ) );
@@ -79,7 +79,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testAuthorizeRead() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$actor = new UserIdentityValue( 12, 'Test', 17 );
+		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
 		$this->assertTrue( $authority->authorizeRead( 'foo', $target ) );
@@ -92,7 +92,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testAuthorizeWrite() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$actor = new UserIdentityValue( 12, 'Test', 17 );
+		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
 		$this->assertTrue( $authority->authorizeWrite( 'foo', $target ) );
@@ -104,7 +104,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testIsAllowedAnyThrowsOnEmptySet() {
-		$actor = new UserIdentityValue( 12, 'Test', 17 );
+		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
 		$this->expectException( InvalidArgumentException::class );
@@ -112,7 +112,7 @@ class UltimateAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testIsAllowedAllThrowsOnEmptySet() {
-		$actor = new UserIdentityValue( 12, 'Test', 17 );
+		$actor = new UserIdentityValue( 12, 'Test' );
 		$authority = new UltimateAuthority( $actor );
 
 		$this->expectException( InvalidArgumentException::class );

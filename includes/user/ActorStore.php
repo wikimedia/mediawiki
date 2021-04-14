@@ -128,7 +128,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			}
 		}
 
-		$actor = new UserIdentityValue( $userId, $row->actor_name, $actorId, $this->wikiId );
+		$actor = new UserIdentityValue( $userId, $row->actor_name, $this->wikiId );
 		$this->addUserIdentityToCache( $actorId, $actor );
 		return $actor;
 	}
@@ -182,7 +182,6 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$actor = new UserIdentityValue(
 			$userId,
 			$name,
-			$actorId,
 			$this->wikiId
 		);
 
@@ -316,9 +315,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @param int $id
 	 */
 	private function attachActorId( UserIdentity $user, int $id ) {
-		if ( $user instanceof UserIdentityValue ) {
-			$user->setActorId( $id );
-		} elseif ( $user instanceof User ) {
+		if ( $user instanceof User ) {
 			$user->setActorId( $id );
 		}
 	}
@@ -331,9 +328,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @param UserIdentity $user
 	 */
 	private function detachActorId( UserIdentity $user ) {
-		if ( $user instanceof UserIdentityValue ) {
-			$user->setActorId( 0 );
-		} elseif ( $user instanceof User ) {
+		if ( $user instanceof User ) {
 			$user->setActorId( 0 );
 		}
 	}
@@ -365,8 +360,9 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 		$id = $this->findActorIdInternal( $name, $db );
 
-		if ( $id ) {
-			$this->attachActorId( $user, $id );
+		// Set the actor ID in the User object. To be removed, see T274148.
+		if ( $id && $user instanceof User ) {
+			$user->setActorId( $id );
 		}
 
 		return $id;
@@ -522,7 +518,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			}
 		}
 
-		$this->attachActorId( $user, $actorId );
+		// Set the actor ID in the User object. To be removed, see T274148.
+		if ( $user instanceof User ) {
+			$user->setActorId( $actorId );
+		}
 
 		// Cache row we've just created
 		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
@@ -602,7 +601,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		if ( $actor ) {
 			return $actor;
 		}
-		$actor = new UserIdentityValue( 0, self::UNKNOWN_USER_NAME, 0, $this->wikiId );
+		$actor = new UserIdentityValue( 0, self::UNKNOWN_USER_NAME, $this->wikiId );
 
 		[ $db, ] = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
 		$this->acquireActorId( $actor, $db );

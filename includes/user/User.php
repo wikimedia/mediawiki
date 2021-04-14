@@ -2153,20 +2153,22 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/**
 	 * Get the user's actor ID.
 	 * @since 1.31
-	 * @note This method is deprecated in the UserIdentity interface since 1.36,
+	 * @note This method was removed from the UserIdentity interface in 1.36,
 	 *       but remains supported in the User class for now.
 	 *       New code should use ActorNormalization::findActorId() or
 	 *       ActorNormalization::acquireActorId() instead.
-	 * @param IDatabase|string|false $dbwOrWikiId Assign a new actor ID, using this DB handle,
-	 *        if none exists; wiki ID, if provided, must be self::LOCAL; Usage with IDatabase is
-	 *        deprecated since 1.36
+	 * @param IDatabase|string|false $dbwOrWikiId Deprecated since 1.36.
+	 *        If a database connection is passed, a new actor ID is assigned if needed.
+	 *        ActorNormalization::acquireActorId() should be used for that purpose instead.
 	 * @return int The actor's ID, or 0 if no actor ID exists and $dbw was null
 	 * @throws PreconditionException if $dbwOrWikiId is a string and does not match the local wiki
 	 */
 	public function getActorId( $dbwOrWikiId = self::LOCAL ) : int {
-		if ( $dbwOrWikiId instanceof IDatabase ) {
-			wfDeprecatedMsg( 'Passing parameter of type IDatabase', '1.36' );
-		} else {
+		if ( $dbwOrWikiId ) {
+			wfDeprecatedMsg( 'Passing a parameter to getActorId() is deprecated', '1.36' );
+		}
+
+		if ( is_string( $dbwOrWikiId ) ) {
 			$this->assertWiki( $dbwOrWikiId );
 		}
 
@@ -2191,9 +2193,8 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 	/**
 	 * Sets the actor id.
-	 *
-	 * This method is deprecated upon introduction. It only exists for transition to ActorStore,
-	 * and will be removed shortly - T274148
+	 * For use by ActorStore only.
+	 * Should be removed once callers of getActorId() have been migrated to using ActorNormalization.
 	 *
 	 * @internal
 	 * @deprecated since 1.36

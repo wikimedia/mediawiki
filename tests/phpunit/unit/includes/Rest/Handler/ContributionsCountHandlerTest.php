@@ -65,7 +65,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 			[ 'getContributionCount' ]
 		);
 		$username = $request->getPathParams()['user'] ?? null;
-		$user = $username ? new UserIdentityValue( 42, $username, 24 ) : null;
+		$user = $username ? new UserIdentityValue( 42, $username ) : null;
 
 		$tag = $request->getQueryParams()['tag'] ?? null;
 		$mockContributionsLookup->method( 'getContributionCount' )
@@ -110,7 +110,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( $config );
 		$username = $request->getPathParams()['user'] ?? null;
 		$validatedParams = [
-			'user' => $username ? new UserIdentityValue( 42, $username, 24 ) : null,
+			'user' => $username ? new UserIdentityValue( 42, $username ) : null,
 			'tag' => null
 		];
 
@@ -128,7 +128,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 		$request = new RequestData( [ 'pathParams' => [ 'user' => $username ] ] );
 
 		$validatedParams = [
-			'user' => new UserIdentityValue( 0, $username, 0 ),
+			'user' => new UserIdentityValue( 0, $username ),
 			'tag' => null
 		];
 
@@ -143,7 +143,7 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 		$ipAddr = '127.0.0.1';
 		$request = new RequestData( [ 'pathParams' => [ 'user' => $ipAddr ] ] );
 		$validatedParams = [
-			'user' => new UserIdentityValue( 0, $ipAddr, 0 ),
+			'user' => new UserIdentityValue( 0, $ipAddr ),
 			'tag' => null
 		];
 

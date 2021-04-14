@@ -43,7 +43,7 @@ class SpecialPageFatalTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$executor = new SpecialPageExecutor();
-		$authority = new UltimateAuthority( new UserIdentityValue( 0, 'UTSysop', 0 ) );
+		$authority = new UltimateAuthority( new UserIdentityValue( 0, 'UTSysop' ) );
 
 		try {
 			$executor->executeSpecialPage( $page, '', null, 'qqx', $authority );

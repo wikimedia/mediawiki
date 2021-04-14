@@ -25,7 +25,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$this->target = Title::newFromText( 'TestTarget' );
 
 		$user = $this->getTestUser()->getUser();
-		$this->user = new UserIdentityValue( $user->getId(), $user->getName(), $user->getActorId() );
+		$this->user = new UserIdentityValue( $user->getId(), $user->getName() );
 
 		$this->user_comment = '<User comment about action>';
 		$this->context = RequestContext::newExtraneousContext( $this->title );
@@ -114,7 +114,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$actualAttribs = array_intersect_key( $rc->mAttribs, $attribs );
 		$this->assertArrayEquals( $attribs, $actualAttribs, false, true );
 
-		$user = new UserIdentityValue( $attribs['rc_user'] ?? 0, $attribs['rc_user_text'], 0 );
+		$user = new UserIdentityValue( $attribs['rc_user'] ?? 0, $attribs['rc_user_text'] );
 		$this->assertTrue( $user->equals( $rc->getPerformerIdentity() ) );
 		$this->assertTrue( $user->equals( $rc->getPerformer() ) );
 

@@ -1009,12 +1009,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		);
 
 		$revUser = $revRecord->getUser();
+		$actorId = $this->getServiceContainer()
+			->getActorNormalization()->findActorId( $revUser, $this->db );
 
 		$fields = [
 			'rev_id' => (string)$revRecord->getId(),
 			'rev_page' => (string)$revRecord->getPageId(),
 			'rev_timestamp' => $this->db->timestamp( $revRecord->getTimestamp() ),
-			'rev_actor' => $revUser ? $revUser->getActorId() : null,
+			'rev_actor' => $actorId,
 			'rev_user_text' => $revUser ? $revUser->getName() : '',
 			'rev_user' => (string)( $revUser ? $revUser->getId() : 0 ) ?: null,
 			'rev_minor_edit' => $revRecord->isMinor() ? '1' : '0',
@@ -1821,7 +1823,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$rev = new MutableRevisionRecord( $title );
 		yield [ $rev ];
 
-		$user = new UserIdentityValue( 7, 'Frank', 0 );
+		$user = new UserIdentityValue( 7, 'Frank' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Test' );
 		$row = (object)[
 			'ar_id' => 3,
@@ -3116,7 +3118,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			return $services->getUserFactory()->newAnonymous( $ip );
 		} ];
 		yield 'User identity, anon' => [ '127.1.1.1', static function ( MediaWikiServices $services, string $ip ) {
-			return new UserIdentityValue( 0, $ip, 0 );
+			return new UserIdentityValue( 0, $ip );
 		} ];
 	}
 
@@ -3125,7 +3127,10 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInsertRevisionByAnonAssignsNewActor( string $ip, callable $userInitCallback ) {
 		$user = $userInitCallback( $this->getServiceContainer(), $ip );
-		$this->assertSame( 0, $user->getActorId(), 'Sanity, new actor has no actor_id' );
+
+		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
+		$actorId = $actorNormalization->findActorId( $user, $this->db );
+		$this->assertNull( $actorId, 'Sanity, new actor has no actor_id' );
 
 		$page = $this->getTestPage();
 		$rev = new MutableRevisionRecord( $page->getTitle() );
@@ -3137,7 +3142,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		$return = $this->getServiceContainer()->getRevisionStore()->insertRevisionOn( $rev, $this->db );
 		$this->assertSame( $ip, $return->getUser()->getName() );
-		$this->assertNotSame( 0, $return->getUser()->getActorId() );
+
+		$actorId = $actorNormalization->findActorId( $user, $this->db );
+		$this->assertNotNull( $actorId );
 	}
 
 	/**

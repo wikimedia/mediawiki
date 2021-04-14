@@ -237,7 +237,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$oldRevision = new MutableRevisionRecord( $title );
 		$oldRevision->setId( 100 );
-		$oldRevision->setUser( new UserIdentityValue( 7, 'FauxAuthor', 0 ) );
+		$oldRevision->setUser( new UserIdentityValue( 7, 'FauxAuthor' ) );
 		$oldRevision->setTimestamp( '20141111111111' );
 		$oldRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'FAUX' ) );
 
@@ -265,7 +265,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			. 'user-subst:{{subst:REVISIONUSER}};time-subst:{{subst:REVISIONTIMESTAMP}};';
 
 		$newRevision = new MutableRevisionRecord( $title );
-		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor', 0 ) );
+		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor' ) );
 		$newRevision->setTimestamp( '20180808000000' );
 		$newRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'NEW' ) );
 
@@ -300,7 +300,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			. "<noinclude>#{{:ParserRevisionAccessTest}}#</noinclude>";
 
 		$newRevision = new MutableRevisionRecord( $title );
-		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor', 0 ) );
+		$newRevision->setUser( new UserIdentityValue( 9, 'NewAuthor' ) );
 		$newRevision->setTimestamp( '20180808000000' );
 		$newRevision->setContent( SlotRecord::MAIN, new WikitextContent( $text ) );
 
@@ -331,13 +331,13 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 
 		$oldRevision = new MutableRevisionRecord( $title );
 		$oldRevision->setId( 100 );
-		$oldRevision->setUser( new UserIdentityValue( 7, 'OldAuthor', 0 ) );
+		$oldRevision->setUser( new UserIdentityValue( 7, 'OldAuthor' ) );
 		$oldRevision->setTimestamp( '20140404000000' );
 		$oldRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'OLD' ) );
 
 		$currentRevision = new MutableRevisionRecord( $title );
 		$currentRevision->setId( 200 );
-		$currentRevision->setUser( new UserIdentityValue( 9, 'CurrentAuthor', 0 ) );
+		$currentRevision->setUser( new UserIdentityValue( 9, 'CurrentAuthor' ) );
 		$currentRevision->setTimestamp( '20160606000000' );
 		$currentRevision->setContent( SlotRecord::MAIN, new WikitextContent( 'CURRENT' ) );
 

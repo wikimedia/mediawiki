@@ -32,10 +32,10 @@ class StaticUserOptionsLookupTest extends MediaWikiUnitTestCase {
 			],
 			[ 'opt1' => 'val1def', 'opt4' => 'val4def' ]
 		);
-		$user1 = new UserIdentityValue( 1, 'User1', 1 );
-		$user2 = new UserIdentityValue( 2, 'User2', 2 );
-		$user3 = new UserIdentityValue( 3, 'User3', 3 );
-		$fakeUser1 = new UserIdentityValue( 0, 'User1', 4 );
+		$user1 = new UserIdentityValue( 1, 'User1' );
+		$user2 = new UserIdentityValue( 2, 'User2' );
+		$user3 = new UserIdentityValue( 3, 'User3' );
+		$fakeUser1 = new UserIdentityValue( 0, 'User1' );
 
 		$this->assertSame( 'val1', $lookup->getOption( $user1, 'opt1' ) );
 		$this->assertSame( 'val1', $lookup->getOption( $user1, 'opt1', 'def' ) );
@@ -76,10 +76,10 @@ class StaticUserOptionsLookupTest extends MediaWikiUnitTestCase {
 			],
 			[ 'opt1' => 'val1def', 'opt4' => 'val4def' ]
 		);
-		$user1 = new UserIdentityValue( 1, 'User1', 1 );
-		$user2 = new UserIdentityValue( 2, 'User2', 2 );
-		$user3 = new UserIdentityValue( 3, 'User3', 3 );
-		$fakeUser1 = new UserIdentityValue( 0, 'User1', 4 );
+		$user1 = new UserIdentityValue( 1, 'User1' );
+		$user2 = new UserIdentityValue( 2, 'User2' );
+		$user3 = new UserIdentityValue( 3, 'User3' );
+		$fakeUser1 = new UserIdentityValue( 0, 'User1' );
 
 		$this->assertArrayEquals( [ 'opt1' => 'val1', 'opt2' => 'val2', 'opt4' => 'val4def' ],
 			$lookup->getOptions( $user1 ) );

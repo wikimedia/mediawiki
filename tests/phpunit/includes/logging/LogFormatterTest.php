@@ -269,7 +269,7 @@ class LogFormatterTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetPerformerElement() {
 		$entry = $this->newLogEntry( 'param', [] );
-		$entry->setPerformer( new UserIdentityValue( 1328435, 'Test', 0 ) );
+		$entry->setPerformer( new UserIdentityValue( 1328435, 'Test' ) );
 
 		$formatter = LogFormatter::newFromEntry( $entry );
 		$formatter->setContext( $this->context );
