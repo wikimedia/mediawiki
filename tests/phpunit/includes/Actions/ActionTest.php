@@ -19,6 +19,7 @@ use MediaWiki\Request\FauxRequest;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @covers \MediaWiki\Actions\Action
@@ -214,7 +215,8 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 		$this->overrideUserPermissions( $user, 'access' );
 		$action = $this->getAction( 'access' );
-		$this->assertNull( $action->canExecute( $user ) );
+		TestingAccessWrapper::newFromObject( $action )->checkCanExecute( $user );
+		$this->addToAssertionCount( 1 ); // checkCanExecute doesn't return, just throws
 	}
 
 	public function testCanExecuteNoRight() {
@@ -222,7 +224,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$this->overrideUserPermissions( $user, [] );
 		$action = $this->getAction( 'access' );
 		$this->expectException( PermissionsError::class );
-		$action->canExecute( $user );
+		TestingAccessWrapper::newFromObject( $action )->checkCanExecute( $user );
 	}
 
 	public function testCanExecuteRequiresUnblock() {
@@ -250,7 +252,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		$this->setService( 'PermissionManager', $permissionManager );
 
 		$this->expectException( UserBlockedError::class );
-		$action->canExecute( $user );
+		TestingAccessWrapper::newFromObject( $action )->checkCanExecute( $user );
 	}
 
 }
@@ -265,10 +267,6 @@ class DummyAction extends Action {
 	}
 
 	public function execute() {
-	}
-
-	public function canExecute( User $user ) {
-		$this->checkCanExecute( $user );
 	}
 }
 // Old-style: spec=true => Action subclass in root namespace
