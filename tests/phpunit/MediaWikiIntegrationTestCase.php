@@ -15,7 +15,6 @@ use SebastianBergmann\Comparator\ComparisonFailure;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @since 1.18
@@ -665,8 +664,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWiki\Session\SessionManager::resetCache();
 		MediaWiki\Auth\AuthManager::resetCache();
 
-		// If anything faked the time, reset it
-		ConvertibleTimestamp::setFakeTime( false );
 		// If anything changed the content language, we need to
 		// reset the SpecialPageFactory.
 		MediaWikiServices::getInstance()->resetServiceForTesting(
