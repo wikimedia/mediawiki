@@ -221,6 +221,7 @@ class WebInstallerOptions extends WebInstallerPage {
 							}
 						}
 
+						// @phan-suppress-next-line SecurityCheck-XSS
 						$text = wfMessage( 'config-extensions-requires' )
 							->rawParams( $ext, $wgLang->commaList( $links ) )
 							->escaped();

@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Page;
 
+use ActorMigration;
+use Config;
 use ContentModelChange;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -30,11 +32,14 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use MergeHistory;
 use MovePage;
 use NamespaceInfo;
+use ReadOnlyMode;
 use RepoGroup;
 use Title;
+use TitleFormatter;
 use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
 use WikiPage;
@@ -44,9 +49,15 @@ use WikiPage;
  *
  * @since 1.35
  */
-class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFactory, MovePageFactory {
-	/** @var ServiceOptions */
-	private $options;
+class PageCommandFactory implements
+	ContentModelChangeFactory,
+	MergeHistoryFactory,
+	MovePageFactory,
+	RollbackPageFactory
+{
+
+	/** @var Config */
+	private $config;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -60,6 +71,9 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 	/** @var RepoGroup */
 	private $repoGroup;
 
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
@@ -68,6 +82,9 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 
 	/** @var SpamChecker */
 	private $spamChecker;
+
+	/** @var TitleFormatter */
+	private $titleFormatter;
 
 	/** @var HookContainer */
 	private $hookContainer;
@@ -78,40 +95,39 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 	/** @var UserFactory */
 	private $userFactory;
 
-	/**
-	 * @internal For use by ServiceWiring
-	 */
-	public const CONSTRUCTOR_OPTIONS = [
-		'CategoryCollation',
-		'MaximumMovedPages',
-	];
+	/** @var ActorMigration */
+	private $actorMigration;
 
 	public function __construct(
-		ServiceOptions $options,
+		Config $config,
 		ILoadBalancer $loadBalancer,
 		NamespaceInfo $namespaceInfo,
 		WatchedItemStoreInterface $watchedItemStore,
 		RepoGroup $repoGroup,
+		ReadOnlyMode $readOnlyMode,
 		IContentHandlerFactory $contentHandlerFactory,
 		RevisionStore $revisionStore,
 		SpamChecker $spamChecker,
+		TitleFormatter $titleFormatter,
 		HookContainer $hookContainer,
 		WikiPageFactory $wikiPageFactory,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		ActorMigration $actorMigration
 	) {
-		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
-
-		$this->options = $options;
+		$this->config = $config;
 		$this->loadBalancer = $loadBalancer;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->repoGroup = $repoGroup;
+		$this->readOnlyMode = $readOnlyMode;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;
 		$this->spamChecker = $spamChecker;
+		$this->titleFormatter = $titleFormatter;
 		$this->hookContainer = $hookContainer;
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->userFactory = $userFactory;
+		$this->actorMigration = $actorMigration;
 	}
 
 	/**
@@ -175,7 +191,7 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 		return new MovePage(
 			$from,
 			$to,
-			$this->options,
+			new ServiceOptions( MovePage::CONSTRUCTOR_OPTIONS, $this->config ),
 			$this->loadBalancer,
 			$this->namespaceInfo,
 			$this->watchedItemStore,
@@ -186,6 +202,35 @@ class PageCommandFactory implements ContentModelChangeFactory, MergeHistoryFacto
 			$this->hookContainer,
 			$this->wikiPageFactory,
 			$this->userFactory
+		);
+	}
+
+	/**
+	 * Create a new command instance for page rollback.
+	 *
+	 * @param PageIdentity $page
+	 * @param Authority $performer
+	 * @param UserIdentity $byUser
+	 * @return RollbackPage
+	 */
+	public function newRollbackPage(
+		PageIdentity $page,
+		Authority $performer,
+		UserIdentity $byUser
+	) : RollbackPage {
+		return new RollbackPage(
+			new ServiceOptions( RollbackPage::CONSTRUCTOR_OPTIONS, $this->config ),
+			$this->loadBalancer,
+			$this->userFactory,
+			$this->readOnlyMode,
+			$this->revisionStore,
+			$this->titleFormatter,
+			$this->hookContainer,
+			$this->wikiPageFactory,
+			$this->actorMigration,
+			$page,
+			$performer,
+			$byUser
 		);
 	}
 }

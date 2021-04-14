@@ -91,6 +91,7 @@ use MediaWiki\Page\PageCommandFactory;
 use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWiki\Page\ParserOutputAccess;
+use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
@@ -1263,6 +1264,10 @@ return [
 		return $store;
 	},
 
+	'RollbackPageFactory' => static function ( MediaWikiServices $services ) : RollbackPageFactory {
+		return $services->get( '_PageCommandFactory' );
+	},
+
 	'SearchEngineConfig' => static function ( MediaWikiServices $services ) : SearchEngineConfig {
 		// @todo This should not take a Config object, but it's not so easy to remove because it
 		// exposes it in a getter, which is actually used.
@@ -1703,17 +1708,20 @@ return [
 
 	'_PageCommandFactory' => static function ( MediaWikiServices $services ) : PageCommandFactory {
 		return new PageCommandFactory(
-			new ServiceOptions( PageCommandFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
+			$services->getMainConfig(),
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getWatchedItemStore(),
 			$services->getRepoGroup(),
+			$services->getReadOnlyMode(),
 			$services->getContentHandlerFactory(),
 			$services->getRevisionStore(),
 			$services->getSpamChecker(),
+			$services->getTitleFormatter(),
 			$services->getHookContainer(),
 			$services->getWikiPageFactory(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getActorMigration()
 		);
 	},
 
