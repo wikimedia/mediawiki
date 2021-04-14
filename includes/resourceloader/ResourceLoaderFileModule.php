@@ -840,7 +840,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	/**
 	 * Get a list of file paths for all styles in this module, in order of proper inclusion.
 	 *
-	 * @internal Exposed only for use by WebInstallerOutput.
+	 * @internal Exposed only for use by structure phpunit tests.
 	 * @param ResourceLoaderContext $context
 	 * @return string[][] List of file paths
 	 */
