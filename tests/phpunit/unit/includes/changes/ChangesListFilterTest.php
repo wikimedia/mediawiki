@@ -5,8 +5,9 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers ChangesListFilter
  */
-class ChangesListFilterTest extends MediaWikiIntegrationTestCase {
-	protected $group;
+class ChangesListFilterTest extends MediaWikiUnitTestCase {
+	/** @var MockChangesListFilterGroup */
+	private $group;
 
 	protected function setUp() : void {
 		parent::setUp();

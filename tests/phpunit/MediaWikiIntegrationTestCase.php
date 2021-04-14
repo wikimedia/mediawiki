@@ -2302,23 +2302,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Check if $extName is a loaded PHP extension, will skip the
-	 * test whenever it is not loaded.
-	 *
-	 * @since 1.21
-	 * @param string $extName
-	 * @return bool
-	 */
-	protected function checkPHPExtension( $extName ) {
-		$loaded = extension_loaded( $extName );
-		if ( !$loaded ) {
-			$this->markTestSkipped( "PHP extension '$extName' is not loaded, skipping." );
-		}
-
-		return $loaded;
-	}
-
-	/**
 	 * Skip the test if using the specified database type
 	 *
 	 * @param string $type Database type

@@ -90,6 +90,24 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
+	 * Check if $extName is a loaded PHP extension, will skip the
+	 * test whenever it is not loaded.
+	 *
+	 * @since 1.21 added to MediaWikiIntegrationTestCase
+	 * @since 1.37 moved to MediaWikiTestCaseTrait to be available in unit tests
+	 * @param string $extName
+	 * @return bool
+	 */
+	protected function checkPHPExtension( $extName ) {
+		$loaded = extension_loaded( $extName );
+		if ( !$loaded ) {
+			$this->markTestSkipped( "PHP extension '$extName' is not loaded, skipping." );
+		}
+
+		return $loaded;
+	}
+
+	/**
 	 * Don't throw a warning if $function is deprecated and called later
 	 *
 	 * @since 1.19

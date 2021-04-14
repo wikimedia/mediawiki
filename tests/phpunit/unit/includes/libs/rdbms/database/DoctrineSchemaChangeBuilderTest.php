@@ -6,7 +6,7 @@ use Doctrine\DBAL\Platforms\SqlitePlatform;
 use Wikimedia\Rdbms\DoctrineSchemaChangeBuilder;
 use Wikimedia\Rdbms\MWPostgreSqlPlatform;
 
-class DoctrineSchemaChangeBuilderTest extends \PHPUnit\Framework\TestCase {
+class DoctrineSchemaChangeBuilderTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideTestGetResultAllTables
@@ -16,7 +16,7 @@ class DoctrineSchemaChangeBuilderTest extends \PHPUnit\Framework\TestCase {
 	 * @param string $expectedFile path fragment
 	 */
 	public function testGetResultAllTables( $platform, $expectedFile ) {
-		$basePath = dirname( __DIR__, 4 );
+		$basePath = dirname( __DIR__, 5 );
 		$builder = new DoctrineSchemaChangeBuilder( $platform );
 		$json = file_get_contents( $basePath . '/data/db/patch-drop-ct_tag.json' );
 		$schemaChange = json_decode( $json, true );
