@@ -2730,9 +2730,11 @@ $wgMessageCacheType = CACHE_ANYTHING;
 $wgParserCacheType = CACHE_ANYTHING;
 
 /**
- * The cache type for storing session data.
+ * The cache backend for storing session data.
  *
- * For available types see $wgMainCacheType.
+ * Used by MediaWiki\Session\SessionManager. See $wgMainCacheType for available types.
+ *
+ * See [SessionManager Storage expectations](@ref SessionManager-storage-expectations).
  */
 $wgSessionCacheType = CACHE_ANYTHING;
 

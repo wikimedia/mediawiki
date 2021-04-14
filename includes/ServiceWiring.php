@@ -802,6 +802,7 @@ return [
 
 	'MediaHandlerFactory' => static function ( MediaWikiServices $services ) : MediaHandlerFactory {
 		return new MediaHandlerFactory(
+			LoggerFactory::getInstance( 'MediaHandlerFactory' ),
 			$services->getMainConfig()->get( 'MediaHandlers' )
 		);
 	},
