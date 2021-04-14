@@ -979,29 +979,30 @@ function wfLogDBError( $text, array $context = [] ) {
 }
 
 /**
- * Logs a warning that $function is deprecated.
+ * Logs a warning that a deprecated feature was used.
  *
- * @param string $function Function that is deprecated.
- * @param string|false $version Version of MediaWiki that the function
- *    was deprecated in (Added in 1.19).
- * @param string|bool $component Component to which the function belongs.
- *    If false, it is assumed the function is in MediaWiki core (Added in 1.19).
+ * To write a custom deprecation message, use wfDeprecatedMsg() instead.
+ *
+ * @param string $function Feature that is deprecated.
+ * @param string|false $version Version of MediaWiki that the feature
+ *  was deprecated in (Added in 1.19).
+ * @param string|bool $component Component to which the feature belongs.
+ *  If false, it is assumed the function is in MediaWiki core (Added in 1.19).
  * @param int $callerOffset How far up the call stack is the original
- *    caller. 2 = function that called the function that called
- *    wfDeprecated (Added in 1.20).
- *
+ *  caller. 2 = function that called the function that called
+ *  wfDeprecated (Added in 1.20).
  * @throws InvalidArgumentException If the MediaWiki version
- *     number specified by $version is neither a string nor false.
+ *  number specified by $version is neither a string nor false.
  */
 function wfDeprecated( $function, $version = false, $component = false, $callerOffset = 2 ) {
-	if ( is_string( $version ) || $version === false ) {
-		MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
-	} else {
+	if ( !is_string( $version ) && $version !== false ) {
 		throw new InvalidArgumentException(
 			"MediaWiki version must either be a string or false. " .
 			"Example valid version: '1.33'"
 		);
 	}
+
+	MWDebug::deprecated( $function, $version, $component, $callerOffset + 1 );
 }
 
 /**
@@ -1015,15 +1016,14 @@ function wfDeprecated( $function, $version = false, $component = false, $callerO
  * are just used to implement $wgDeprecationReleaseLimit.
  *
  * @since 1.35
- *
  * @param string $msg The message
  * @param string|false $version Version of MediaWiki that the function
- *    was deprecated in.
+ *  was deprecated in.
  * @param string|bool $component Component to which the function belongs.
- *    If false, it is assumed the function is in MediaWiki core.
+ *  If false, it is assumed the function is in MediaWiki core.
  * @param int|false $callerOffset How far up the call stack is the original
- *    caller. 2 = function that called the function that called us. If false,
- *    the caller description will not be appended.
+ *  caller. 2 = function that called the function that called us. If false,
+ *  the caller description will not be appended.
  */
 function wfDeprecatedMsg( $msg, $version = false, $component = false, $callerOffset = 2 ) {
 	MWDebug::deprecatedMsg( $msg, $version, $component,
