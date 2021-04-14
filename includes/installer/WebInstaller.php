@@ -1242,9 +1242,7 @@ class WebInstaller extends Installer {
 	 * @return string HTML
 	 */
 	protected static function infoBox( $rawHtml, $icon, $alt, $class = '' ) {
-		$s = Html::openElement( 'div', [ 'class' => "mw-infobox $class" ] );
-
-		$s .= Html::openElement( 'div', [ 'class' => 'mw-infobox-left' ] ) .
+		$s = Html::openElement( 'div', [ 'class' => 'mw-installer-box-left' ] ) .
 				Html::element( 'img',
 					[
 						'src' => $icon,
@@ -1253,16 +1251,13 @@ class WebInstaller extends Installer {
 				) .
 				Html::closeElement( 'div' );
 
-		$s .= Html::openElement( 'div', [ 'class' => 'mw-infobox-right' ] ) .
+		$s .= Html::openElement( 'div', [ 'class' => 'mw-installer-box-right' ] ) .
 				$rawHtml .
 				Html::closeElement( 'div' );
 		$s .= Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
 
-		$s .= Html::closeElement( 'div' );
-
-		$s .= Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
-
-		return $s;
+		return Html::warningBox( $s, $class )
+			. Html::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
 	}
 
 }
