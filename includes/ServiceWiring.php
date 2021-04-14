@@ -509,12 +509,6 @@ return [
 
 		return new GlobalIdGenerator(
 			$mainConfig->get( 'TmpDirectory' ),
-			// Ignore APC-like caches in CLI mode since there is no meaningful persistence.
-			// This avoids having counters restart with each script run. The ID generator
-			// will fallback to using the disk in those cases.
-			$mainConfig->get( 'CommandLineMode' )
-				? new EmptyBagOStuff()
-				: $services->getLocalServerObjectCache(),
 			static function ( $command ) {
 				return wfShellExec( $command );
 			}
