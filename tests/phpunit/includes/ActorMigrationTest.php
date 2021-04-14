@@ -338,15 +338,15 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	public function provideGetWhere() {
-		$genericUser = new UserIdentityValue( 1, 'User1', 11 );
+		$genericUser = new UserIdentityValue( 1, 'User1' );
 		$complicatedUsers = [
-			new UserIdentityValue( 1, 'User1', 11 ),
-			new UserIdentityValue( 2, 'User2', 12 ),
-			new UserIdentityValue( 3, 'User3', 0 ),
-			new UserIdentityValue( 0, '192.168.12.34', 34 ),
-			new UserIdentityValue( 0, '192.168.12.35', 0 ),
+			new UserIdentityValue( 1, 'User1' ),
+			new UserIdentityValue( 2, 'User2' ),
+			new UserIdentityValue( 3, 'User3' ),
+			new UserIdentityValue( 0, '192.168.12.34' ),
+			new UserIdentityValue( 0, '192.168.12.35' ),
 			// test handling of non-normalized IPv6 IP
-			new UserIdentityValue( 0, '2600:1004:b14a:5ddd:3ebe:bba4:bfba:f37e', 0 ),
+			new UserIdentityValue( 0, '2600:1004:b14a:5ddd:3ebe:bba4:bfba:f37e' ),
 		];
 
 		return [
@@ -566,9 +566,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertRoundTrip( $table, $key, $pk, $usesTemp ) {
 		$u = $this->getTestUser()->getUser();
-		$actorNormalization = $this->getServiceContainer()->getActorNormalization();
-		$actorId = $actorNormalization->acquireActorId( $u, $this->db );
-		$user = new UserIdentityValue( $u->getId(), $u->getName(), $actorId );
+		$user = new UserIdentityValue( $u->getId(), $u->getName() );
 
 		$stageNames = [
 			SCHEMA_COMPAT_OLD => 'old',
@@ -622,7 +620,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				$this->assertArrayNotHasKey( $nameKey, $fields, "old field, stage={$stageNames[$writeStage]}" );
 			}
 			if ( ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) && !$usesTemp ) {
-				$this->assertSame( $user->getActorId(), $fields[$actorKey],
+				$this->assertArrayHasKey( $actorKey, $fields,
 					"new field, stage={$stageNames[$writeStage]}" );
 			} else {
 				$this->assertArrayNotHasKey( $actorKey, $fields,
@@ -652,11 +650,6 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					"w={$stageNames[$writeStage]}, r={$stageNames[$readStage]}, id" );
 				$this->assertSame( $user->getName(), $row->$nameKey,
 					"w={$stageNames[$writeStage]}, r={$stageNames[$readStage]}, name" );
-				$this->assertSame(
-					( $readStage & SCHEMA_COMPAT_READ_OLD ) ? 0 : $user->getActorId(),
-					(int)$row->$actorKey,
-					"w={$stageNames[$writeStage]}, r={$stageNames[$readStage]}, actor"
-				);
 			}
 		}
 	}
@@ -749,7 +742,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 */
 	public function testInsertUserIdentity( $stage ) {
 		$user = $this->getMutableTestUser()->getUser();
-		$userIdentity = new UserIdentityValue( $user->getId(), $user->getName(), 0 );
+		$userIdentity = new UserIdentityValue( $user->getId(), $user->getName() );
 
 		$m = $this->getMigration( $stage );
 		list( $fields, $callback ) =

@@ -1014,6 +1014,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::newFromActorId
 	 */
 	public function testActorId() {
+		$this->filterDeprecated( '/Passing a parameter to getActorId\(\) is deprecated/', '1.36' );
+
 		// Newly-created user has an actor ID
 		$user = User::createNew( 'UserTestActorId1' );
 		$id = $user->getId();
@@ -1075,6 +1077,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getActorId
 	 */
 	public function testForeignGetActorId() {
+		$this->filterDeprecated( '/Passing a parameter to getActorId\(\) is deprecated/', '1.36' );
+
 		$user = User::newFromName( 'UserTestActorId1' );
 		$this->expectException( PreconditionException::class );
 		$user->getActorId( 'Foreign Wiki' );

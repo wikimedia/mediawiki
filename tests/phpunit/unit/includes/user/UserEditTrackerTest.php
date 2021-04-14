@@ -50,7 +50,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 			->with( DB_REPLICA )
 			->willReturn( $database );
 
-		$user = new UserIdentityValue( $userId, 'TestUser', 0 );
+		$user = new UserIdentityValue( $userId, 'TestUser' );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 
@@ -75,7 +75,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$loadBalancer = $this->createMock( LoadBalancer::class );
 
 		$user = $this->createMock( UserIdentity::class );
-		$user = new UserIdentityValue( $userId, 'TestUser', 0 );
+		$user = new UserIdentityValue( $userId, 'TestUser' );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 
@@ -95,7 +95,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName2 = 'MediaWiki\User\UserEditTracker::initializeUserEditCount';
 		$editCount = 17;
 
-		$user = new UserIdentityValue( $userId, 'TestUser', 0 );
+		$user = new UserIdentityValue( $userId, 'TestUser' );
 
 		$database1 = $this->createMock( Database::class );
 		$database1->expects( $this->once() )
@@ -181,7 +181,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName = 'MediaWiki\User\UserEditTracker::initializeUserEditCount';
 		$editCount = 341;
 
-		$user = new UserIdentityValue( $userId, 'TestUser', 0 );
+		$user = new UserIdentityValue( $userId, 'TestUser' );
 
 		$database1 = $this->createMock( Database::class );
 		$database1->expects( $this->once() )
@@ -250,7 +250,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$methodName = 'MediaWiki\User\UserEditTracker::getUserEditTimestamp';
 		$actorId = 982110;
 
-		$user = new UserIdentityValue( 1, 'TestUser', $actorId );
+		$user = new UserIdentityValue( 1, 'TestUser' );
 
 		$expectedSort = ( $type === 'first' ) ? 'ASC' : 'DESC';
 		$dbTime = ( $time === 'null' ) ? null : $time;
@@ -325,7 +325,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$actorMigration = $this->createMock( ActorMigration::class );
 		$loadBalancer = $this->createMock( LoadBalancer::class );
 
-		$user = new UserIdentityValue( 0, 'TestUser', 0 );
+		$user = new UserIdentityValue( 0, 'TestUser' );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 
@@ -341,9 +341,9 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 
 		$tracker = new UserEditTracker( $actorMigration, $loadBalancer, $jobQueueGroup );
 
-		$anon = new UserIdentityValue( 0, 'TestUser', 0 );
+		$anon = new UserIdentityValue( 0, 'TestUser' );
 
-		$user = new UserIdentityValue( 123, 'TestUser', 0 );
+		$user = new UserIdentityValue( 123, 'TestUser' );
 
 		$accessible = TestingAccessWrapper::newFromObject( $tracker );
 		$accessible->userEditCountCache = [ 'u123' => 5 ];

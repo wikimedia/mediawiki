@@ -27,7 +27,7 @@ use Wikimedia\Timestamp\TimestampException;
 class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 
 	public function provideConstructor() {
-		$user = new UserIdentityValue( 11, 'Tester', 0 );
+		$user = new UserIdentityValue( 11, 'Tester' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
 		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
@@ -216,7 +216,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'Dummy' );
 		$title->resetArticleID( 17 );
 
-		$user = new UserIdentityValue( 11, 'Tester', 0 );
+		$user = new UserIdentityValue( 11, 'Tester' );
 
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 

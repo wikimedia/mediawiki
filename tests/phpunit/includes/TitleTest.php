@@ -1463,7 +1463,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		];
 		yield '(makeTitle vs UserIdentityValue) name text' => [
 			Title::makeTitle( NS_MAIN, 'Foo' ),
-			new UserIdentityValue( 7, 'Foo', 8 ),
+			new UserIdentityValue( 7, 'Foo' ),
 			false
 		];
 	}

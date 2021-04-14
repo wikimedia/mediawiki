@@ -793,8 +793,7 @@ class ChangesList extends ContextSource {
 				$revRecord->setVisibility( (int)$rc->mAttribs['rc_deleted'] );
 				$user = new UserIdentityValue(
 					(int)$rc->mAttribs['rc_user'],
-					$rc->mAttribs['rc_user_text'],
-					(int)( $rc->mAttribs['rc_actor'] ?? 0 )
+					$rc->mAttribs['rc_user_text']
 				);
 				$revRecord->setUser( $user );
 

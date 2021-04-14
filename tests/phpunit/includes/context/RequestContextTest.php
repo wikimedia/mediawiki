@@ -132,7 +132,7 @@ class RequestContextTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $user->equals( $context->getAuthority()->getUser() ) );
 		$this->assertTrue( $user->equals( $context->getUser() ) );
 
-		$authorityActor = new UserIdentityValue( 42, 'Test', 24 );
+		$authorityActor = new UserIdentityValue( 42, 'Test' );
 		$authority = new UltimateAuthority( $authorityActor );
 
 		$context->setAuthority( $authority );

@@ -12,68 +12,53 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	/**
 	 * @covers ::getActorId
 	 */
-	public function testGetActorIdLocalUIVNoParam() {
-		$id = 88888888;
-		$user = new UserIdentityValue( 0, 'TestUserName', $id, UserIdentityValue::LOCAL );
+	public function testGetActorIdLocalUIVForeignParam() {
+		$foreignWikiId = 'Foreign Wiki';
+		$user = new UserIdentityValue( 0, 'TestUserName', UserIdentityValue::LOCAL );
 
-		$this->assertEquals( $id, $user->getActorId() );
+		$this->expectDeprecation();
+		$this->assertSame( 0, $user->getActorId( $foreignWikiId ) );
+	}
+
+	/**
+	 * @covers ::getActorId
+	 */
+	public function testGetActorIdDeprecated() {
+		$user = new UserIdentityValue( 0, 'TestUserName' );
+
+		$this->expectDeprecation();
+		$this->assertSame( 0, $user->getActorId() );
+	}
+
+	/**
+	 * @covers ::getActorId
+	 */
+	public function testGetActorIdLocalUIVNoParam() {
+		$this->filterDeprecated( '/UserIdentityValue::getActorId was deprecated/' );
+		$user = new UserIdentityValue( 0, 'TestUserName', UserIdentityValue::LOCAL );
+
+		$this->assertSame( 0, $user->getActorId() );
 	}
 
 	/**
 	 * @covers ::getActorId
 	 */
 	public function testGetActorIdLocalUIVLocalParam() {
-		$id = 88888888;
-		$user = new UserIdentityValue( 0, 'TestUserName', $id, UserIdentityValue::LOCAL );
+		$this->filterDeprecated( '/UserIdentityValue::getActorId was deprecated/' );
+		$user = new UserIdentityValue( 0, 'TestUserName', UserIdentityValue::LOCAL );
 
-		$this->assertEquals( $id, $user->getActorId( UserIdentityValue::LOCAL ) );
-	}
-
-	/**
-	 * @covers ::getActorId
-	 */
-	public function testGetActorIdLocalUIVForeignParam() {
-		$foreignWikiId = 'Foreign Wiki';
-		$id = 88888888;
-		$user = new UserIdentityValue( 0, 'TestUserName', $id, UserIdentityValue::LOCAL );
-
-		$this->expectDeprecation();
-		$this->assertEquals( $id, $user->getActorId( $foreignWikiId ) );
-	}
-
-	/**
-	 * @covers ::getActorId
-	 */
-	public function testGetActorIdForeignUIVNoParam() {
-		$foreignWikiId = 'Foreign Wiki';
-		$id = 88888888;
-		$user = new UserIdentityValue( 0, 'TestUserName', $id, $foreignWikiId );
-
-		$this->expectDeprecation();
-		$this->assertEquals( $id, $user->getActorId() );
-	}
-
-	/**
-	 * @covers ::getActorId
-	 */
-	public function testGetActorIdForeignUIVLocalParam() {
-		$foreignWikiId = 'Foreign Wiki';
-		$id = 88888888;
-		$user = new UserIdentityValue( 0, 'TestUserName', $id, $foreignWikiId );
-
-		$this->expectDeprecation();
-		$this->assertEquals( $id, $user->getActorId( UserIdentityValue::LOCAL ) );
+		$this->assertSame( 0, $user->getActorId( UserIdentityValue::LOCAL ) );
 	}
 
 	/**
 	 * @covers ::getActorId
 	 */
 	public function testGetActorIdForeignUIVForeignParam() {
+		$this->filterDeprecated( '/UserIdentityValue::getActorId was deprecated/' );
 		$foreignWikiId = 'Foreign Wiki';
-		$id = 88888888;
-		$user = new UserIdentityValue( 0, 'TestUserName', $id, $foreignWikiId );
+		$user = new UserIdentityValue( 0, 'TestUserName', $foreignWikiId );
 
-		$this->assertEquals( $id, $user->getActorId( $foreignWikiId ) );
+		$this->assertSame( 0, $user->getActorId( $foreignWikiId ) );
 	}
 
 	/**
@@ -90,7 +75,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	 * @param string|false $wikiId
 	 */
 	public function testGetWiki( $wikiId ) {
-		$user = new UserIdentityValue( 0, 'TestUserName', 0, $wikiId );
+		$user = new UserIdentityValue( 0, 'TestUserName', $wikiId );
 		$this->assertSame( $wikiId, $user->getWikiId() );
 	}
 
@@ -99,7 +84,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	 */
 	public function testAssertWikiLocalUIV() {
 		$foreignWikiId = 'Foreign Wiki';
-		$user = new UserIdentityValue( 0, 'TestUserName', 0, UserIdentityValue::LOCAL );
+		$user = new UserIdentityValue( 0, 'TestUserName', UserIdentityValue::LOCAL );
 
 		$user->assertWiki( UserIdentityValue::LOCAL );
 		$this->assertTrue( true, 'User is for same wiki' );
@@ -113,7 +98,7 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 	 */
 	public function testAssertWikiForeignUIV() {
 		$foreignWikiId = 'Foreign Wiki';
-		$user = new UserIdentityValue( 0, 'TestUserName', 0, $foreignWikiId );
+		$user = new UserIdentityValue( 0, 'TestUserName', $foreignWikiId );
 
 		$user->assertWiki( $foreignWikiId );
 		$this->assertTrue( true, 'User is for same wiki' );

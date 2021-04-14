@@ -1648,7 +1648,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$queryService = $this->newService( $mockDb );
 
 		$items = $queryService->getWatchedItemsForUser(
-			new UserIdentityValue( 0, 'AnonUser', 0 ) );
+			new UserIdentityValue( 0, 'AnonUser' ) );
 		$this->assertSame( [], $items );
 	}
 

@@ -356,7 +356,7 @@ class ContributionsLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function testPermissionChecksAreApplied() {
 		$editingUser = self::$testUser;
-		$dummyUser = new UserIdentityValue( 0, 'test', 0 );
+		$dummyUser = new UserIdentityValue( 0, 'test' );
 
 		$contributionsLookup = $this->getContributionsLookup();
 

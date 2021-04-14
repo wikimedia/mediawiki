@@ -32,7 +32,7 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 
 		$title = new PageIdentityValue( 17, NS_MAIN, 'Dummy', $wikiId );
 
-		$user = new UserIdentityValue( 11, 'Tester', 0 );
+		$user = new UserIdentityValue( 11, 'Tester' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
 		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'Lorem Ipsum' ) );
@@ -59,7 +59,7 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 				$this->assertSame( 7, $revId );
 				return [
 					$row['rev_deleted'],
-					new UserIdentityValue( intval( $row['rev_user'] ), 'Bla', 10 )
+					new UserIdentityValue( intval( $row['rev_user'] ), 'Bla' )
 				];
 			};
 		}
@@ -85,7 +85,7 @@ class RevisionStoreCacheRecordTest extends RevisionStoreRecordTest {
 			$callbackInvoked++;
 			return [
 				RevisionRecord::DELETED_TEXT,
-				new UserIdentityValue( 12, 'Lalala', 24 )
+				new UserIdentityValue( 12, 'Lalala' )
 			];
 		};
 		$rev = $this->newRevision( [], $callback );

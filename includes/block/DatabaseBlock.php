@@ -146,8 +146,7 @@ class DatabaseBlock extends AbstractBlock {
 			if ( !$foreignBlocker ) {
 				// An actor for an interwiki user might not exist on this wiki,
 				// so it's ok to create one. Interwiki actors are still local actors.
-				$foreignBlocker = new UserIdentityValue(
-					0, $options['byText'], 0, UserIdentity::LOCAL );
+				$foreignBlocker = new UserIdentityValue( 0, $options['byText'], UserIdentity::LOCAL );
 			}
 			$this->setBlocker( $foreignBlocker );
 		}
