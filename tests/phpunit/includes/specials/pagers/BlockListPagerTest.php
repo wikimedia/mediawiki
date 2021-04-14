@@ -80,7 +80,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$wrappedPager->mCurrentRow = $row;
 
 		$formatted = $pager->formatValue( $name, $value );
-		$this->assertEquals( $expected, $formatted );
+		$this->assertStringMatchesFormat( $expected, $formatted );
 
 		// Reset the time.
 		MWTimestamp::setFakeTime( false );
@@ -142,7 +142,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				'ipb_by',
-				$row->ipb_by_text,
+				'<a %s><bdi>Admin</bdi></a>%s',
 				$row,
 			],
 			[

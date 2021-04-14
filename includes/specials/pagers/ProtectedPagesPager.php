@@ -220,12 +220,8 @@ class ProtectedPagesPager extends TablePager {
 						LogPage::DELETED_USER,
 						$this->getUser()
 					) ) {
-						if ( !$value ) {
-							$formatted = htmlspecialchars( $username );
-						} else {
-							$formatted = Linker::userLink( $value, $username )
-								. Linker::userToolLinks( $value, $username );
-						}
+						$formatted = Linker::userLink( $value, $username )
+							. Linker::userToolLinks( $value, $username );
 					} else {
 						$formatted = $this->msg( 'rev-deleted-user' )->escaped();
 					}
