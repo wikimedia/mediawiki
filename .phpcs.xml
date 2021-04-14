@@ -79,13 +79,11 @@
 		<exclude-pattern>*/includes/specials/SpecialUserrights\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedfiles\.php</exclude-pattern>
 		<exclude-pattern>*/includes/specials/SpecialWantedpages\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/archives/upgradeLogging\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_HTTP_HTTPS\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_Wikimedia_base_convert\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_delete_truncate\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_if_switch\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/benchmarks/bench_utf8_title_check\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/benchmarks/bench_wfIsWindows\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/cleanupTitles\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/edit\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/findDeprecated\.php</exclude-pattern>
@@ -97,7 +95,6 @@
 		<exclude-pattern>*/maintenance/lag\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/StatOutputs\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/language/date-formats\.php</exclude-pattern>
-		<exclude-pattern>*/maintenance/minify\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/mysql\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/parse\.php</exclude-pattern>
 		<exclude-pattern>*/maintenance/preprocessorFuzzTest\.php</exclude-pattern>
