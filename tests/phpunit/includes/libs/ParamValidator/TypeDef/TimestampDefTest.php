@@ -49,12 +49,8 @@ class TimestampDefTest extends TypeDefTestCase {
 	public function testValidate(
 		$value, $expect, array $settings = [], array $options = [], array $expectConds = []
 	) {
-		$reset = ConvertibleTimestamp::setFakeTime( 1559764242 );
-		try {
-			parent::testValidate( $value, $expect, $settings, $options, $expectConds );
-		} finally {
-			ConvertibleTimestamp::setFakeTime( $reset );
-		}
+		ConvertibleTimestamp::setFakeTime( 1559764242 );
+		parent::testValidate( $value, $expect, $settings, $options, $expectConds );
 	}
 
 	public function provideValidate() {

@@ -7,6 +7,7 @@ use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\SimpleCallbacks;
 use Wikimedia\ParamValidator\TypeDef;
 use Wikimedia\ParamValidator\ValidationException;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * Test case infrastructure for TypeDef subclasses
@@ -15,6 +16,15 @@ use Wikimedia\ParamValidator\ValidationException;
  * data providers methods.
  */
 abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
+
+	/**
+	 * Reset any fake timestamps so that they don't mess with any other tests.
+	 *
+	 * @after
+	 */
+	protected function fakeTimestampTearDown() {
+		ConvertibleTimestamp::setFakeTime( null );
+	}
 
 	/** Standard "$ret" array for provideCheckSettings */
 	protected const STDRET = [ 'issues' => [ 'X' ], 'allowedKeys' => [ 'Y' ], 'messages' => [] ];
