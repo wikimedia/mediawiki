@@ -978,6 +978,8 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 			}
 		}
 
+		$this->checkValueSerializability( $value, $key );
+
 		return $this->serialize( $value );
 	}
 
@@ -1031,6 +1033,65 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 				return $size;
 			default:
 				return null; // invalid
+		}
+	}
+
+	/**
+	 * Log if a new cache value does not appear suitable for serialization at a quick glance
+	 *
+	 * This aids migration of values to JSON-like structures and the debugging of exceptions
+	 * due to serialization failure.
+	 *
+	 * This does not recurse more than one level into container structures.
+	 *
+	 * A proper cache key value is one of the following:
+	 *  - null
+	 *  - a scalar
+	 *  - an array with scalar/null values
+	 *  - an array tree with scalar/null "leaf" values
+	 *  - an stdClass instance with scalar/null field values
+	 *  - an stdClass instance tree with scalar/null "leaf" values
+	 *  - an instance of a class that implements JsonSerializable
+	 *
+	 * @param mixed $value Result of the value generation callback for the key
+	 * @param string $key Cache key
+	 */
+	private function checkValueSerializability( $value, $key ) {
+		if ( is_array( $value ) ) {
+			$this->checkIterableMapSerializability( $value, $key );
+		} elseif ( is_object( $value ) ) {
+			// Note that Closure instances count as objects
+			if ( $value instanceof stdClass ) {
+				$this->checkIterableMapSerializability( $value, $key );
+			} elseif ( !( $value instanceof JsonSerializable ) ) {
+				$this->logger->warning(
+					"{class} value for '{cachekey}'; serialization is suspect.",
+					[ 'cachekey' => $key, 'class' => get_class( $value ) ]
+				);
+			}
+		}
+	}
+
+	/**
+	 * @param array|stdClass $value Result of the value generation callback for the key
+	 * @param string $key Cache key
+	 */
+	private function checkIterableMapSerializability( $value, $key ) {
+		foreach ( $value as $index => $entry ) {
+			if ( is_object( $entry ) ) {
+				// Note that Closure instances count as objects
+				if (
+					!( $entry instanceof stdClass ) &&
+					!( $entry instanceof JsonSerializable )
+				) {
+					$this->logger->warning(
+						"{class} value for '{cachekey}' at '$index'; serialization is suspect.",
+						[ 'cachekey' => $key, 'class' => get_class( $entry ) ]
+					);
+
+					return;
+				}
+			}
 		}
 	}
 
