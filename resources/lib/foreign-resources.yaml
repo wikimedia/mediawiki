@@ -93,6 +93,15 @@ CLDRPluralRuleParser:
   src: https://raw.githubusercontent.com/santhoshtr/CLDRPluralRuleParser/0dda851/src/CLDRPluralRuleParser.js
   integrity: sha384-M4taeYYG2+9Ob1/La16iO+zlRRmBV5lBR3xUKkQT6kfkJ0aLbCi6yc0RYI1BDzdh
 
+fetch-polyfill:
+  type: tar
+  src: https://registry.npmjs.com/whatwg-fetch/-/whatwg-fetch-3.6.2.tgz
+  integrity: sha384-MKKGEwKprHZSo8G05laATm+iES1Lbsp/Dy7riDibahMr2TyJS7HClsxKjcGk+3FJ
+  dest:
+    package/dist/fetch.umd.js:
+    package/LICENSE:
+    package/README.md:
+
 jquery:
   type: multi-file
   files:
