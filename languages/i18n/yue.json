@@ -3097,6 +3097,7 @@
 	"htmlform-time-placeholder": "HH:MM:SS",
 	"htmlform-datetime-placeholder": "YYYY-MM-DD HH:MM:SS",
 	"logentry-delete-delete": "$1 刪咗頁 $3",
+	"logentry-delete-delete_redir": "$1 用覆蓋{{GENDER:$2|刪咗}}跳轉 $3",
 	"logentry-delete-restore": "$1{{GENDER:$2|還原咗}}版面 $3（$4）",
 	"logentry-delete-revision": "$1 {{GENDER:$2|改咗}}版 $3 入面 {{PLURAL:$5|1 筆修訂|$5 筆修訂}}嘅可見性：$4",
 	"revdelete-content-hid": "內容隱藏咗",
