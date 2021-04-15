@@ -187,7 +187,9 @@ class BlockListPager extends TablePager {
 			case 'ipb_expiry':
 				$formatted = htmlspecialchars( $language->formatExpiry(
 					$value,
-					/* User preference timezone */true
+					/* User preference timezone */true,
+					'infinity',
+					$this->getUser()
 				) );
 				if ( $this->getAuthority()->isAllowed( 'block' ) ) {
 					$links = [];
