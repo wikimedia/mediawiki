@@ -434,7 +434,11 @@ return [
 		// for non-essential non-nonimal purposes (via WebRequest::getIP).
 		// This state is fine (and meant) to be consistent for a given PHP process,
 		// even if applied to the service container for a different wiki.
-		MWLBFactory::applyGlobalState( $instance );
+		MWLBFactory::applyGlobalState(
+			$instance,
+			$mainConfig,
+			$services->getStatsdDataFactory()
+		);
 
 		return $instance;
 	},
