@@ -11,6 +11,8 @@ THIS IS NOT A RELEASE YET
   checkbox temporarily.
 * (T283247) Freenode -> Libera per wikimedia moving from
   freenode to libera.
+* (T280226, CVE-2021-35197) SECURITY: Prevent blocked users from
+  purging pages.
 
 == MediaWiki 1.31.14 ==
 

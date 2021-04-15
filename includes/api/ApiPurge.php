@@ -32,6 +32,14 @@ class ApiPurge extends ApiBase {
 	 * Purges the cache of a page
 	 */
 	public function execute() {
+		$user = $this->getUser();
+
+		// Fail early if the user is blocked.
+		$block = $user->getBlock();
+		if ( $block ) {
+			$this->dieBlocked( $block );
+		}
+
 		$params = $this->extractRequestParams();
 
 		$continuationManager = new ApiContinuationManager( $this, [], [] );
@@ -43,7 +51,6 @@ class ApiPurge extends ApiBase {
 		$pageSet->execute();
 
 		$result = $pageSet->getInvalidTitlesAndRevisions();
-		$user = $this->getUser();
 
 		foreach ( $pageSet->getGoodTitles() as $title ) {
 			$r = [];

@@ -33,10 +33,6 @@ class PurgeAction extends FormAction {
 		return 'purge';
 	}
 
-	public function requiresUnblock() {
-		return false;
-	}
-
 	public function getDescription() {
 		return '';
 	}
