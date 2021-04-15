@@ -195,7 +195,7 @@ class ProtectedPagesPager extends TablePager {
 
 			case 'pr_expiry':
 				$formatted = htmlspecialchars( $this->getLanguage()->formatExpiry(
-					$value, /* User preference timezone */true ) );
+					$value, /* User preference timezone */true, 'infinity', $this->getUser() ) );
 				$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 				if ( $title && $this->getAuthority()->isAllowed( 'protect' ) ) {
 					$changeProtection = $linkRenderer->makeKnownLink(
