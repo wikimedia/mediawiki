@@ -15,6 +15,7 @@ THIS IS NOT A RELEASE YET
 * (T235554) Disable DEFER_SET_LENGTH_AND_FLUSH headers to avoid HTTP errors.
 * (T278579) Don't send headers on ob_end_clean().
 * (T285287) MultiHttpClient: Replace PHP version check with defined().
+* (T280226, CVE-2021-35197) SECURITY: Prevent blocked users from purging pages.
 
 == MediaWiki 1.36.0 ==
 
