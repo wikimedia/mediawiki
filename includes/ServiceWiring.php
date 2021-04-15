@@ -430,6 +430,12 @@ return [
 
 		MWLBFactory::setDomainAliases( $instance );
 
+		// NOTE: This accesses ProxyLookup from the MediaWikiServices singleton
+		// for non-essential non-nonimal purposes (via WebRequest::getIP).
+		// This state is fine (and meant) to be consistent for a given PHP process,
+		// even if applied to the service container for a different wiki.
+		MWLBFactory::applyGlobalState( $instance );
+
 		return $instance;
 	},
 
