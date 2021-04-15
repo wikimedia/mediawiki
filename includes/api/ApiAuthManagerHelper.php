@@ -111,9 +111,11 @@ class ApiAuthManagerHelper {
 
 			case AuthManager::SEC_REAUTH:
 				$this->module->dieWithError( 'apierror-reauthenticate' );
+				// dieWithError prevents continuation
 
 			case AuthManager::SEC_FAIL:
 				$this->module->dieWithError( 'apierror-cannotreauthenticate' );
+				// dieWithError prevents continuation
 
 			default:
 				throw new UnexpectedValueException( "Unknown status \"$status\"" );
