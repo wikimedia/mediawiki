@@ -102,7 +102,8 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 			}
 			// Use the existing $status->value if the hook set it
 			if ( !$this->status->value ) {
-				$this->status->value = self::AS_HOOK_ERROR;
+				// T273354: Should be AS_HOOK_ERROR_EXPECTED to display error message
+				$this->status->value = self::AS_HOOK_ERROR_EXPECTED;
 			}
 			return self::CONSTRAINT_FAILED;
 		}
