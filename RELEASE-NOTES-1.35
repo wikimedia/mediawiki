@@ -46,6 +46,8 @@ THIS IS NOT A RELEASE YET
 * (T247223) Optimise MessageCache::isMainCacheable() for the single-message
   case.
 * (T278579) Don't send headers on ob_end_clean().
+* (T280226, CVE-2021-35197) SECURITY: Prevent blocked users from purging
+  pages.
 
 == MediaWiki 1.35.2 ==
 
