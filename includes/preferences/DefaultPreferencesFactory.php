@@ -1713,7 +1713,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$timestamp = MWTimestamp::getLocalInstance();
 		// Check that the LocalTZoffset is the same as the local time zone offset
-		if ( $localTZoffset == $timestamp->format( 'Z' ) / 60 ) {
+		if ( $localTZoffset === $timestamp->format( 'Z' ) / 60 ) {
 			$timezoneName = $timestamp->getTimezone()->getName();
 			// Localize timezone
 			if ( isset( $timeZoneList[$timezoneName] ) ) {
