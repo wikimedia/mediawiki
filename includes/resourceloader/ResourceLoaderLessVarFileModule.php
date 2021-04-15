@@ -56,12 +56,12 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	/**
 	 * Return a subset of messages from a JSON string representation.
 	 *
-	 * @param string $blob JSON
+	 * @param string|null $blob JSON, or null if module has no declared messages
 	 * @param string[] $allowed
 	 * @return array
 	 */
 	private function pluckFromMessageBlob( $blob, array $allowed ) : array {
-		$data = json_decode( $blob, true );
+		$data = $blob ? json_decode( $blob, true ) : [];
 		// Keep only the messages intended for LESS export
 		// (opposite of getMesssages essentially).
 		return array_intersect_key( $data, array_flip( $allowed ) );
@@ -72,6 +72,11 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 	 */
 	protected function getMessageBlob( ResourceLoaderContext $context ) {
 		$blob = parent::getMessageBlob( $context );
+		if ( !$blob ) {
+			// If module has no blob, preserve null to avoid needless WAN cache allocation
+			// client output for modules without messages.
+			return $blob;
+		}
 		return json_encode( (object)$this->pluckFromMessageBlob( $blob, $this->messages ) );
 	}
 
@@ -113,6 +118,7 @@ class ResourceLoaderLessVarFileModule extends ResourceLoaderFileModule {
 
 		$blob = parent::getMessageBlob( $context );
 		$messages = $this->pluckFromMessageBlob( $blob, $this->lessVariables );
+
 		// It is important that we iterate the declared list from $this->lessVariables,
 		// and not $messages since in the case of undefined messages, the key is
 		// omitted entirely from the blob. This emits a log warning for developers,
