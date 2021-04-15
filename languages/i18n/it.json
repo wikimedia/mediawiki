@@ -3295,6 +3295,7 @@
 	"confirm-purge-bottom": "Ripulire la cache di una pagina consente di mostrare la sua versione più aggiornata.",
 	"confirm-watch-button": "OK",
 	"confirm-watch-top": "Aggiungi questa pagina alla tua lista degli osservati speciali?",
+	"confirm-watch-label": "Periodo di tempo nella lista di osservati speciali:",
 	"watchlist-expiry-options": "Permanente:infinite,1 settimana:1 week,1 mese:1 month,3 mesi:3 months,6 mesi:6 months",
 	"confirm-watch-button-expiry": "Segui",
 	"confirm-unwatch-button": "OK",
