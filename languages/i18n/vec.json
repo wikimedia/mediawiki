@@ -1748,6 +1748,7 @@
 	"listgrouprights-removegroup-self-all": "Pol cavarse da tuti i grupi",
 	"listgrouprights-namespaceprotection-namespace": "Spasio de nomi",
 	"trackingcategories-name": "Nome del messajo",
+	"nonnumeric-formatnum": "Voze co argominti formatnum no numèreghi",
 	"mailnologin": "Nissun indirizo a cui mandarghe el messagio",
 	"mailnologintext": "Par inviare messagi e-mail ad altri utenti bisogna [[Special:UserLogin|acedere al sito]] e aver registrà un indirisso vałido ne łe proprie [[Special:Preferences|preferense]].",
 	"emailuser": "Mandaghe na e-mail a sta utensa",
