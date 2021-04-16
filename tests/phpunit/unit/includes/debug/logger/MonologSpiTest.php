@@ -217,10 +217,7 @@ class MonologSpiTest extends \MediaWikiUnitTestCase {
 		$this->assertCount( 1, $wrapperMonologSpi->singletons['loggers'] );
 		$this->assertArrayHasKey( 'emptychannel', $wrapperMonologSpi->singletons['loggers'] );
 		$actualHandlers = $logger->getHandlers();
-		$this->assertCount( 1, $actualHandlers );
-		$this->assertArrayHasKey( 0, $actualHandlers );
-		$firstActualHandler = $actualHandlers[0];
-		$this->assertInstanceOf( \Monolog\Handler\NullHandler::class, $firstActualHandler );
+		$this->assertCount( 0, $actualHandlers );
 		$this->assertCount( 0, $wrapperMonologSpi->singletons['handlers'] );
 		$this->assertCount( 0, $wrapperMonologSpi->singletons['formatters'] );
 		$this->assertCount( 0, $wrapperMonologSpi->singletons['processors'] );
