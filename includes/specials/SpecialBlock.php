@@ -432,11 +432,14 @@ class SpecialBlock extends FormSpecialPage {
 
 		$block = DatabaseBlock::newFromTarget( $this->target );
 
+		// UserIdentity object if possible, string otherwise. Like $this->target
+		$blockTarget = $block ? ( $block->getTargetUserIdentity() ?: $block->getTargetName() ) : null;
+
 		// Populate fields if there is a block that is not an autoblock; if it is a range
 		// block, only populate the fields if the range is the same as $this->target
 		if ( $block instanceof DatabaseBlock && $block->getType() !== DatabaseBlock::TYPE_AUTO
 			&& ( $this->type != DatabaseBlock::TYPE_RANGE
-				|| $block->getTarget() == $this->target )
+				|| ( $this->target && $block->isBlocking( $this->target ) ) )
 		) {
 			$fields['HardBlock']['default'] = $block->isHardblock();
 			$fields['CreateAccount']['default'] = $block->isCreateAccountBlocked();
@@ -519,7 +522,7 @@ class SpecialBlock extends FormSpecialPage {
 			}
 
 			$this->alreadyBlocked = true;
-			$this->preErrors[] = [ 'ipb-needreblock', wfEscapeWikiText( (string)$block->getTarget() ) ];
+			$this->preErrors[] = [ 'ipb-needreblock', wfEscapeWikiText( $block->getTargetName() ) ];
 		}
 
 		if ( $this->alreadyBlocked || $this->getRequest()->wasPosted()

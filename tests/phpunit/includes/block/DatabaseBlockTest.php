@@ -318,7 +318,15 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			$block->getTarget()->getName(),
 			'Correct blockee name'
 		);
+		$this->assertEquals(
+			'UserOnForeignWiki',
+			$block->getTargetUserIdentity()->getName(),
+			'Correct blockee name'
+		);
 		$this->assertEquals( $userId, $block->getTarget()->getId(), 'Correct blockee id' );
+		$this->assertEquals( $userId, $block->getTargetUserIdentity()->getId(), 'Correct blockee id' );
+		$this->assertEquals( 'UserOnForeignWiki', $block->getTargetName(), 'Correct blockee name' );
+		$this->assertTrue( $block->isBlocking( 'UserOnForeignWiki' ), 'Is blocking blockee' );
 		$this->assertEquals( 'Meta>MetaWikiUser', $block->getBlocker()->getName(),
 			'Correct blocker name' );
 		$this->assertEquals( 'Meta>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
@@ -485,6 +493,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertEquals( $block->getBy(), $sysop->getId() );
 		$this->assertEquals( $block->getTarget()->getName(), $badActor->getName() );
+		$this->assertEquals( $block->getTargetName(), $badActor->getName() );
+		$this->assertTrue( $block->isBlocking( $badActor ), 'Is blocking expected user' );
+		$this->assertEquals( $block->getTargetUserIdentity()->getId(), $badActor->getId() );
 		$blockStore->deleteBlock( $block );
 	}
 

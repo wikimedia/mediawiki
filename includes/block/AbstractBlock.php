@@ -34,7 +34,7 @@ use User;
  * @note Extensions should not subclass this, as MediaWiki currently does not support custom block types.
  * @since 1.34 Factored out from DatabaseBlock (previously Block).
  */
-abstract class AbstractBlock {
+abstract class AbstractBlock implements Block {
 	/** @var CommentStoreComment */
 	protected $reason;
 
@@ -79,14 +79,6 @@ abstract class AbstractBlock {
 
 	/** @var bool */
 	protected $isSitewide = true;
-
-	# TYPE constants
-	# Do not introduce negative constants without changing BlockUser command object.
-	public const TYPE_USER = 1;
-	public const TYPE_IP = 2;
-	public const TYPE_RANGE = 3;
-	public const TYPE_AUTO = 4;
-	public const TYPE_ID = 5;
 
 	/**
 	 * Create a new block with specified parameters on a user, IP or IP range.
@@ -137,15 +129,6 @@ abstract class AbstractBlock {
 	public function getId() {
 		return null;
 	}
-
-	/**
-	 * Get the information that identifies this block, such that a user could
-	 * look up everything that can be found about this block. May be an ID,
-	 * array of IDs, type, etc.
-	 *
-	 * @return mixed Identifying information
-	 */
-	abstract public function getIdentifier();
 
 	/**
 	 * Get the reason given for creating the block, as a string.
@@ -350,6 +333,9 @@ abstract class AbstractBlock {
 	 *
 	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
 	 *
+	 * @deprecated since 1.37, use getTargetName() and getTargetUserIdentity()
+	 *             together with getType()
+	 *
 	 * @return array [ User|String|null, int|null ]
 	 * @todo FIXME: This should be an integral part of the block member variables
 	 */
@@ -358,13 +344,47 @@ abstract class AbstractBlock {
 	}
 
 	/**
-	 * Get the target for this particular block.  Note that for autoblocks,
+	 * Get the target for this particular block. Note that for autoblocks,
 	 * this returns the unredacted name; frontend functions need to call $block->getRedactedName()
 	 * in this situation.
+	 * @deprecated since 1.37, use getTargetName() and getTargetUserIdentity()
+	 *             together with getType()
 	 * @return User|string|null
 	 */
 	public function getTarget() {
 		return $this->target;
+	}
+
+	/**
+	 * @since 1.37
+	 * @return ?UserIdentity
+	 */
+	public function getTargetUserIdentity(): ?UserIdentity {
+		return $this->target instanceof UserIdentity ? $this->target : null;
+	}
+
+	/**
+	 * @since 1.37
+	 * @return string
+	 */
+	public function getTargetName(): string {
+		return $this->target instanceof UserIdentity
+			? $this->target->getName()
+			: (string)$this->target;
+	}
+
+	/**
+	 * @param UserIdentity|string $target
+	 *
+	 * @return bool
+	 * @since 1.37
+	 */
+	public function isBlocking( $target ): bool {
+		$targetName = $target instanceof UserIdentity
+			? $target->getName()
+			: (string)$target;
+
+		return $targetName === $this->getTargetName();
 	}
 
 	/**

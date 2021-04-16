@@ -49,14 +49,14 @@ class BlockErrorFormatter {
 	 * block features. Message parameters are formatted for the specified user and
 	 * language.
 	 *
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @param string $ip
 	 * @return Message
 	 */
 	public function getMessage(
-		AbstractBlock $block,
+		Block $block,
 		UserIdentity $user,
 		Language $language,
 		$ip
@@ -69,7 +69,7 @@ class BlockErrorFormatter {
 	/**
 	 * Get a standard set of block details for building a block error message.
 	 *
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @return mixed[]
 	 *  - identifier: Information for looking up the block
 	 *  - targetName: The target, as a string
@@ -79,12 +79,13 @@ class BlockErrorFormatter {
 	 *  - expiry: Expiry time
 	 *  - timestamp: Time the block was created
 	 */
-	private function getBlockErrorInfo( AbstractBlock $block ) {
+	private function getBlockErrorInfo( Block $block ) {
+		$blocker = $block->getBlocker();
 		return [
 			'identifier' => $block->getIdentifier(),
-			'targetName' => (string)$block->getTarget(),
-			'blockerName' => $block->getByName(),
-			'blockerId' => $block->getBy(),
+			'targetName' => $block->getTargetName(),
+			'blockerName' => $blocker ? $blocker->getName() : '',
+			'blockerId' => $blocker ? $blocker->getId() : 0,
 			'reason' => $block->getReasonComment(),
 			'expiry' => $block->getExpiry(),
 			'timestamp' => $block->getTimestamp(),
@@ -96,13 +97,13 @@ class BlockErrorFormatter {
 	 * formatted for a specified user and language.
 	 *
 	 * @since 1.35
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @return mixed[] See getBlockErrorInfo
 	 */
 	private function getFormattedBlockErrorInfo(
-		AbstractBlock $block,
+		Block $block,
 		UserIdentity $user,
 		Language $language
 	) {
@@ -158,13 +159,13 @@ class BlockErrorFormatter {
 	/**
 	 * Determine the block error message key by examining the block.
 	 *
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @return string Message key
 	 */
-	private function getBlockErrorMessageKey( AbstractBlock $block ) {
+	private function getBlockErrorMessageKey( Block $block ) {
 		$key = 'blockedtext';
 		if ( $block instanceof DatabaseBlock ) {
-			if ( $block->getType() === AbstractBlock::TYPE_AUTO ) {
+			if ( $block->getType() === Block::TYPE_AUTO ) {
 				$key = 'autoblockedtext';
 			} elseif ( !$block->isSitewide() ) {
 				$key = 'blockedtext-partial';
@@ -181,7 +182,7 @@ class BlockErrorFormatter {
 	 * Get the formatted parameters needed to build the block error messages handled by
 	 * getBlockErrorMessageKey.
 	 *
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @param UserIdentity $user
 	 * @param Language $language
 	 * @param string $ip
@@ -196,7 +197,7 @@ class BlockErrorFormatter {
 	 *  - timestamp: Time the block was created, in the specified language
 	 */
 	private function getBlockErrorMessageParams(
-		AbstractBlock $block,
+		Block $block,
 		UserIdentity $user,
 		Language $language,
 		$ip

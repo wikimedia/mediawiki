@@ -1382,7 +1382,7 @@ class Article implements Page {
 					$outputPage,
 					'block',
 					$services->getNamespaceInfo()->getCanonicalName( NS_USER ) . ':' .
-						$block->getTarget(),
+						$block->getTargetName(),
 					'',
 					[
 						'lim' => 1,
