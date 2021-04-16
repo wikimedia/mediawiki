@@ -456,8 +456,8 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		);
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 
-		$mock = $this->getMockBuilder( stdClass::class )
-			->setMethods( [ 'onUserSetCookies' ] )
+		$mock = $this->getMockBuilder( \stdClass::class )
+			->addMethods( [ 'onUserSetCookies' ] )
 			->getMock();
 		$mock->expects( $this->never() )->method( 'onUserSetCookies' );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserSetCookies' => [ $mock ] ] );
@@ -624,14 +624,14 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	protected function getSentRequest() {
 		$sentResponse = $this->getMockBuilder( \FauxResponse::class )
-			->setMethods( [ 'headersSent', 'setCookie', 'header' ] )->getMock();
+			->onlyMethods( [ 'headersSent', 'setCookie', 'header' ] )->getMock();
 		$sentResponse->expects( $this->any() )->method( 'headersSent' )
 			->will( $this->returnValue( true ) );
 		$sentResponse->expects( $this->never() )->method( 'setCookie' );
 		$sentResponse->expects( $this->never() )->method( 'header' );
 
 		$sentRequest = $this->getMockBuilder( \FauxRequest::class )
-			->setMethods( [ 'response' ] )->getMock();
+			->onlyMethods( [ 'response' ] )->getMock();
 		$sentRequest->expects( $this->any() )->method( 'response' )
 			->will( $this->returnValue( $sentResponse ) );
 		return $sentRequest;
@@ -674,8 +674,8 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 		TestingAccessWrapper::newFromObject( $backend )->usePhpSessionHandling = false;
 
 		// Anonymous user
-		$mock = $this->getMockBuilder( stdClass::class )
-			->setMethods( [ 'onUserSetCookies' ] )->getMock();
+		$mock = $this->getMockBuilder( \stdClass::class )
+			->addMethods( [ 'onUserSetCookies' ] )->getMock();
 		$mock->expects( $this->never() )->method( 'onUserSetCookies' );
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'UserSetCookies' => [ $mock ] ] );
 		$backend->setUser( $anon );
@@ -694,7 +694,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		// Logged-in user, no remember
 		$mock = $this->getMockBuilder( __CLASS__ )
-			->setMethods( [ 'onUserSetCookies' ] )->getMock();
+			->onlyMethods( [ 'onUserSetCookies' ] )->getMock();
 		$mock->expects( $this->once() )->method( 'onUserSetCookies' )
 			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
 				$this->assertSame( $user, $u );
@@ -741,7 +741,7 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		// Logged-in user, remember
 		$mock = $this->getMockBuilder( __CLASS__ )
-			->setMethods( [ 'onUserSetCookies' ] )->getMock();
+			->onlyMethods( [ 'onUserSetCookies' ] )->getMock();
 		$mock->expects( $this->once() )->method( 'onUserSetCookies' )
 			->will( $this->returnCallback( function ( $u, &$sessionData, &$cookies ) use ( $user ) {
 				$this->assertSame( $user, $u );

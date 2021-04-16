@@ -251,7 +251,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$methods[] = 'canChangeUser';
 		}
 		$provider = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( $methods )
+			->onlyMethods( $methods )
 			->getMock();
 		$provider->expects( $this->any() )->method( '__toString' )
 			->will( $this->returnValue( 'MockSessionProvider' ) );
@@ -897,7 +897,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		// UI, then FAIL in beginAuthentication()
 		$primary = $this->getMockBuilder( AbstractPrimaryAuthenticationProvider::class )
-			->setMethods( [ 'continuePrimaryAuthentication' ] )
+			->onlyMethods( [ 'continuePrimaryAuthentication' ] )
 			->getMockForAbstractClass();
 		$this->primaryauthMocks = [ $primary ];
 		$this->initializeManager( true );
@@ -1782,7 +1782,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->initializeManager( true );
 
 		$req = $this->getMockBuilder( UserDataAuthenticationRequest::class )
-			->setMethods( [ 'populateUser' ] )
+			->onlyMethods( [ 'populateUser' ] )
 			->getMock();
 		$req->expects( $this->any() )->method( 'populateUser' )
 			->willReturn( \StatusValue::newFatal( 'populatefail' ) );
@@ -1938,7 +1938,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		);
 
 		$req = $this->getMockBuilder( UserDataAuthenticationRequest::class )
-			->setMethods( [ 'populateUser' ] )
+			->onlyMethods( [ 'populateUser' ] )
 			->getMock();
 		$req->expects( $this->any() )->method( 'populateUser' )
 			->willReturn( \StatusValue::newFatal( 'populatefail' ) );
@@ -2798,7 +2798,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		// Test addToDatabase fails
 		$session->clear();
 		$user = $this->getMockBuilder( \User::class )
-			->setMethods( [ 'addToDatabase' ] )->getMock();
+			->onlyMethods( [ 'addToDatabase' ] )->getMock();
 		$user->expects( $this->once() )->method( 'addToDatabase' )
 			->will( $this->returnValue( \Status::newFatal( 'because' ) ) );
 		$user->setName( $username );
@@ -2820,7 +2820,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertFalse( $cache->get( $backoffKey ), 'sanity check' );
 		$session->clear();
 		$user = $this->getMockBuilder( \User::class )
-			->setMethods( [ 'addToDatabase' ] )->getMock();
+			->onlyMethods( [ 'addToDatabase' ] )->getMock();
 		$user->expects( $this->once() )->method( 'addToDatabase' )
 			->will( $this->throwException( new \Exception( 'Excepted' ) ) );
 		$user->setName( $username );
@@ -2844,7 +2844,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		// Test addToDatabase fails because the user already exists.
 		$session->clear();
 		$user = $this->getMockBuilder( \User::class )
-			->setMethods( [ 'addToDatabase' ] )->getMock();
+			->onlyMethods( [ 'addToDatabase' ] )->getMock();
 		$user->expects( $this->once() )->method( 'addToDatabase' )
 			->will( $this->returnCallback( function () use ( $username, &$user ) {
 				$oldUser = \User::newFromName( $username );
@@ -2965,10 +2965,19 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$good = StatusValue::newGood();
 
 		$mocks = [];
-		foreach ( [ 'pre', 'primary', 'secondary' ] as $key ) {
+		$mocks['pre'] = $this->getMockBuilder( PreAuthenticationProvider::class )
+			->onlyMethods( [ 'getUniqueId', 'getAuthenticationRequests' ] )
+			->getMockForAbstractClass();
+		$mocks['pre']->expects( $this->any() )->method( 'getUniqueId' )
+			->willReturn( 'pre' );
+		$mocks['pre']->expects( $this->any() )->method( 'getAuthenticationRequests' )
+			->will( $this->returnCallback( static function ( $action ) use ( $makeReq ) {
+				return [ $makeReq( "pre-$action" ), $makeReq( 'generic' ) ];
+			} ) );
+		foreach ( [ 'primary', 'secondary' ] as $key ) {
 			$class = ucfirst( $key ) . 'AuthenticationProvider';
 			$mocks[$key] = $this->getMockBuilder( "MediaWiki\\Auth\\$class" )
-				->setMethods( [
+				->onlyMethods( [
 					'getUniqueId', 'getAuthenticationRequests', 'providerAllowsAuthenticationDataChange',
 				] )
 				->getMockForAbstractClass();
@@ -2990,7 +2999,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		] as $type ) {
 			$class = 'PrimaryAuthenticationProvider';
 			$mocks["primary-$type"] = $this->getMockBuilder( "MediaWiki\\Auth\\$class" )
-				->setMethods( [
+				->onlyMethods( [
 					'getUniqueId', 'accountCreationType', 'getAuthenticationRequests',
 					'providerAllowsAuthenticationDataChange',
 				] )
@@ -3010,7 +3019,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		$mocks['primary2'] = $this->getMockBuilder( PrimaryAuthenticationProvider::class )
-			->setMethods( [
+			->onlyMethods( [
 				'getUniqueId', 'accountCreationType', 'getAuthenticationRequests',
 				'providerAllowsAuthenticationDataChange',
 			] )

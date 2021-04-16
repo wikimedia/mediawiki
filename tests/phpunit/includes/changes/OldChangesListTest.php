@@ -175,7 +175,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 
 	public function testRecentChangesLine_prefix() {
 		$mockContext = $this->getMockBuilder( RequestContext::class )
-			->setMethods( [ 'getTitle' ] )
+			->onlyMethods( [ 'getTitle' ] )
 			->getMock();
 		$mockContext->method( 'getTitle' )
 			->will( $this->returnValue( Title::newFromText( 'Expected Context Title' ) ) );

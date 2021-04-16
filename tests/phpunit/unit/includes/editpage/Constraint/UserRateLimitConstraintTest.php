@@ -36,7 +36,7 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 		// values before PHPUnit checks; first call uses both defaults, third call
 		// uses the default of 1 for the second parameter
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'pingLimiter' ] )
+			->onlyMethods( [ 'pingLimiter' ] )
 			->getMock();
 		$user->expects( $this->exactly( 3 ) )
 			->method( 'pingLimiter' )
@@ -76,7 +76,7 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 		// values before PHPUnit checks; first call uses both defaults, third call
 		// uses the default of 1 for the second parameter
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'pingLimiter' ] )
+			->onlyMethods( [ 'pingLimiter' ] )
 			->getMock();
 		$user->expects( $this->exactly( 3 ) )
 			->method( 'pingLimiter' )

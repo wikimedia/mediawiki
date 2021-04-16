@@ -15,7 +15,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 
 	public function testBenchSimple() {
 		$bench = $this->getMockBuilder( Benchmarker::class )
-			->setMethods( [ 'execute', 'output' ] )
+			->onlyMethods( [ 'execute', 'output' ] )
 			->getMock();
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 3;
@@ -32,7 +32,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 
 	public function testBenchSetup() {
 		$bench = $this->getMockBuilder( Benchmarker::class )
-			->setMethods( [ 'execute', 'output' ] )
+			->onlyMethods( [ 'execute', 'output' ] )
 			->getMock();
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 2;
@@ -54,7 +54,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 
 	public function testBenchVerbose() {
 		$bench = $this->getMockBuilder( Benchmarker::class )
-			->setMethods( [ 'execute', 'output', 'hasOption', 'verboseRun' ] )
+			->onlyMethods( [ 'execute', 'output', 'hasOption', 'verboseRun' ] )
 			->getMock();
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 1;
@@ -80,7 +80,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 
 	public function testBenchName_method() {
 		$bench = $this->getMockBuilder( Benchmarker::class )
-			->setMethods( [ 'execute', 'output', 'addResult' ] )
+			->onlyMethods( [ 'execute', 'output', 'addResult' ] )
 			->getMock();
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 1;
@@ -97,7 +97,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 
 	public function testBenchName_string() {
 		$bench = $this->getMockBuilder( Benchmarker::class )
-			->setMethods( [ 'execute', 'output', 'addResult' ] )
+			->onlyMethods( [ 'execute', 'output', 'addResult' ] )
 			->getMock();
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 1;
@@ -118,7 +118,7 @@ class BenchmarkerTest extends \PHPUnit\Framework\TestCase {
 	 */
 	public function testVerboseRun() {
 		$bench = $this->getMockBuilder( Benchmarker::class )
-			->setMethods( [ 'execute', 'output', 'hasOption', 'startBench', 'addResult' ] )
+			->onlyMethods( [ 'execute', 'output', 'hasOption', 'startBench', 'addResult' ] )
 			->getMock();
 		$benchProxy = TestingAccessWrapper::newFromObject( $bench );
 		$benchProxy->defaultCount = 1;

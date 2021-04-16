@@ -284,7 +284,7 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 		 * @var SearchEngine $mockEngine
 		 */
 		$mockEngine = $this->getMockBuilder( SearchEngine::class )
-			->setMethods( [ 'makeSearchFieldMapping' ] )->getMock();
+			->onlyMethods( [ 'makeSearchFieldMapping' ] )->getMock();
 
 		$mockFieldBuilder = function ( $name, $type ) {
 			$mockField =

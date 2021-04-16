@@ -282,13 +282,13 @@ class ApiUserrightsTest extends ApiTestCase {
 		] ) );
 
 		$mockUserRightsPage = $this->getMockBuilder( UserrightsPage::class )
-			->setMethods( [ 'canProcessExpiries' ] )
+			->onlyMethods( [ 'canProcessExpiries' ] )
 			->getMock();
 		$mockUserRightsPage->method( 'canProcessExpiries' )->willReturn( $canProcessExpiries );
 
 		$mockApi = $this->getMockBuilder( ApiUserrights::class )
 			->setConstructorArgs( [ $main, 'userrights' ] )
-			->setMethods( [ 'getUserRightsPage' ] )
+			->onlyMethods( [ 'getUserRightsPage' ] )
 			->getMock();
 		$mockApi->method( 'getUserRightsPage' )->willReturn( $mockUserRightsPage );
 

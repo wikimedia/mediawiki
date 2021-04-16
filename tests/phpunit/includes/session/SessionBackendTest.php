@@ -283,7 +283,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$id = session_id();
 
 		$builder = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'persistsSessionId', 'sessionIdWasReset' ] );
+			->onlyMethods( [ 'persistsSessionId', 'sessionIdWasReset' ] );
 
 		$this->provider = $builder->getMock();
 		$this->provider->expects( $this->any() )->method( 'persistsSessionId' )
@@ -319,7 +319,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 	public function testPersist() {
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'persistSession' ] )->getMock();
+			->onlyMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->once() )->method( 'persistSession' );
 		$backend = $this->getBackend();
 		$this->assertFalse( $backend->isPersistent(), 'sanity check' );
@@ -339,7 +339,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 	public function testUnpersist() {
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'unpersistSession' ] )->getMock();
+			->onlyMethods( [ 'unpersistSession' ] )->getMock();
 		$this->provider->expects( $this->once() )->method( 'unpersistSession' );
 		$backend = $this->getBackend();
 		$wrap = TestingAccessWrapper::newFromObject( $backend );
@@ -392,7 +392,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$user = static::getTestSysop()->getUser();
 
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'canChangeUser' ] )->getMock();
+			->onlyMethods( [ 'canChangeUser' ] )->getMock();
 		$this->provider->expects( $this->any() )->method( 'canChangeUser' )
 			->will( $this->returnValue( false ) );
 		$backend = $this->getBackend();
@@ -519,11 +519,11 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$testData = [ 'foo' => 'foo!', 'bar', [ 'baz', null ] ];
 
 		$neverHook = $this->getMockBuilder( __CLASS__ )
-			->setMethods( [ 'onSessionMetadata' ] )->getMock();
+			->onlyMethods( [ 'onSessionMetadata' ] )->getMock();
 		$neverHook->expects( $this->never() )->method( 'onSessionMetadata' );
 
 		$builder = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'persistSession', 'unpersistSession' ] );
+			->onlyMethods( [ 'persistSession', 'unpersistSession' ] );
 
 		$neverProvider = $builder->getMock();
 		$neverProvider->expects( $this->never() )->method( 'persistSession' );
@@ -726,7 +726,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		// Bad hook
 		$this->provider = null;
 		$mockHook = $this->getMockBuilder( __CLASS__ )
-			->setMethods( [ 'onSessionMetadata' ] )->getMock();
+			->onlyMethods( [ 'onSessionMetadata' ] )->getMock();
 		$mockHook->expects( $this->any() )->method( 'onSessionMetadata' )
 			->will( $this->returnCallback(
 				static function ( SessionBackend $backend, array &$metadata, array $requests ) {
@@ -771,7 +771,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		// Not persistent
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'persistSession' ] )->getMock();
+			->onlyMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->never() )->method( 'persistSession' );
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );
@@ -797,7 +797,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		// Persistent
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'persistSession' ] )->getMock();
+			->onlyMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->atLeastOnce() )->method( 'persistSession' );
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );
@@ -824,7 +824,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		// Not persistent, not expiring
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'persistSession' ] )->getMock();
+			->onlyMethods( [ 'persistSession' ] )->getMock();
 		$this->provider->expects( $this->never() )->method( 'persistSession' );
 		$this->onSessionMetadataCalled = false;
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [ 'SessionMetadata' => [ $this ] ] );
@@ -966,7 +966,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetAllowedUserRights() {
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
-			->setMethods( [ 'getAllowedUserRights' ] )
+			->onlyMethods( [ 'getAllowedUserRights' ] )
 			->getMock();
 		$this->provider->expects( $this->any() )->method( 'getAllowedUserRights' )
 			->will( $this->returnValue( [ 'foo', 'bar' ] ) );

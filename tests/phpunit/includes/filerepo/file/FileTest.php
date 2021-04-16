@@ -40,7 +40,7 @@ class FileTest extends MediaWikiMediaTestCase {
 
 		$fileMock = $this->getMockBuilder( File::class )
 			->setConstructorArgs( [ 'fileMock', false ] )
-			->setMethods( [ 'getWidth' ] )
+			->onlyMethods( [ 'getWidth' ] )
 			->getMockForAbstractClass();
 
 		$fileMock->expects( $this->any() )
@@ -143,7 +143,7 @@ class FileTest extends MediaWikiMediaTestCase {
 
 		$repoMock = $this->getMockBuilder( FileRepo::class )
 			->setConstructorArgs( [ [ 'name' => 'repoMock', 'backend' => $backendMock ] ] )
-			->setMethods( [ 'fileExists', 'getLocalReference' ] )
+			->onlyMethods( [ 'fileExists', 'getLocalReference' ] )
 			->getMock();
 
 		$tempDir = wfTempDir();
@@ -158,14 +158,14 @@ class FileTest extends MediaWikiMediaTestCase {
 			->will( $this->returnValue( $fsFile ) );
 
 		$handlerMock = $this->getMockBuilder( BitmapHandler::class )
-			->setMethods( [ 'supportsBucketing' ] )->getMock();
+			->onlyMethods( [ 'supportsBucketing' ] )->getMock();
 		$handlerMock->expects( $this->any() )
 			->method( 'supportsBucketing' )
 			->will( $this->returnValue( $data['supportsBucketing'] ) );
 
 		$fileMock = $this->getMockBuilder( File::class )
 			->setConstructorArgs( [ 'fileMock', $repoMock ] )
-			->setMethods( [ 'getThumbnailBucket', 'getLocalRefPath', 'getHandler' ] )
+			->onlyMethods( [ 'getThumbnailBucket', 'getLocalRefPath', 'getHandler' ] )
 			->getMockForAbstractClass();
 
 		$fileMock->expects( $this->any() )
@@ -262,17 +262,17 @@ class FileTest extends MediaWikiMediaTestCase {
 
 		$repoMock = $this->getMockBuilder( FileRepo::class )
 			->setConstructorArgs( [ [ 'name' => 'repoMock', 'backend' => $backendMock ] ] )
-			->setMethods( [ 'fileExists', 'getLocalReference' ] )
+			->onlyMethods( [ 'fileExists', 'getLocalReference' ] )
 			->getMock();
 
 		$fileMock = $this->getMockBuilder( File::class )
 			->setConstructorArgs( [ 'fileMock', $repoMock ] )
-			->setMethods( [ 'getWidth', 'getBucketThumbPath', 'makeTransformTmpFile',
+			->onlyMethods( [ 'getWidth', 'getBucketThumbPath', 'makeTransformTmpFile',
 				'generateAndSaveThumb', 'getHandler' ] )
 			->getMockForAbstractClass();
 
 		$handlerMock = $this->getMockBuilder( JpegHandler::class )
-			->setMethods( [ 'supportsBucketing' ] )->getMock();
+			->onlyMethods( [ 'supportsBucketing' ] )->getMock();
 		$handlerMock->expects( $this->any() )
 			->method( 'supportsBucketing' )
 			->will( $this->returnValue( true ) );
@@ -404,7 +404,7 @@ class FileTest extends MediaWikiMediaTestCase {
 	public function testGetDisplayWidthHeight( $dim, $expected ) {
 		$fileMock = $this->getMockBuilder( File::class )
 			->setConstructorArgs( [ 'fileMock', false ] )
-			->setMethods( [ 'getWidth', 'getHeight' ] )
+			->onlyMethods( [ 'getWidth', 'getHeight' ] )
 			->getMockForAbstractClass();
 
 		$fileMock->method( 'getWidth' )->willReturn( $dim[2] );

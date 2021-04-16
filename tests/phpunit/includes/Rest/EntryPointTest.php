@@ -53,7 +53,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 
 	private function createWebResponse() {
 		return $this->getMockBuilder( WebResponse::class )
-			->setMethods( [ 'header' ] )
+			->onlyMethods( [ 'header' ] )
 			->getMock();
 	}
 

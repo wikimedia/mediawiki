@@ -181,7 +181,7 @@ class MWRestrictionsTest extends MediaWikiUnitTestCase {
 		$ret = [];
 
 		$mockBuilder = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getIP' ] );
+			->onlyMethods( [ 'getIP' ] );
 
 		foreach ( self::provideCheckIP() as $checkIP ) {
 			$ok = [];

@@ -61,7 +61,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 
 		$mockedMethods[] = 'checkPasswordValidity';
 		$provider = $this->getMockBuilder( TemporaryPasswordPrimaryAuthenticationProvider::class )
-			->setMethods( $mockedMethods )
+			->onlyMethods( $mockedMethods )
 			->setConstructorArgs( [ $params ] )
 			->getMock();
 		$provider->expects( $this->any() )->method( 'checkPasswordValidity' )

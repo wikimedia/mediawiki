@@ -73,7 +73,7 @@ class UploadedFileStreamTest extends UploadedFileTestBase {
 		$filename = $this->makeTemp( __FUNCTION__ );
 		$stream = $this->getMockBuilder( UploadedFileStream::class )
 			->setConstructorArgs( [ $filename ] )
-			->setMethods( [ 'getContents' ] )
+			->onlyMethods( [ 'getContents' ] )
 			->getMock();
 		$stream->method( 'getContents' )->willReturnCallback( static function () {
 			throw new \Error( 'Bogus' );

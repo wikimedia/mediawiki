@@ -83,7 +83,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 		$limit = MergeHistory::REVISION_LIMIT;
 
 		$mh = $this->getMockBuilder( MergeHistory::class )
-			->setMethods( [ 'getRevisionCount' ] )
+			->onlyMethods( [ 'getRevisionCount' ] )
 			->setConstructorArgs( [
 				Title::newFromText( 'Test' ),
 				Title::newFromText( 'Test2' ),

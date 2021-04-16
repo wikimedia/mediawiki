@@ -23,7 +23,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 					''
 				]
 			)
-			->setMethods( [ 'getPageTitle' ] )
+			->onlyMethods( [ 'getPageTitle' ] )
 			->getMockForAbstractClass();
 
 		$mock->method( 'getPageTitle' )->willReturn(

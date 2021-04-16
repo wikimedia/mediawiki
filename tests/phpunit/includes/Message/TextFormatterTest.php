@@ -23,13 +23,13 @@ class TextFormatterTest extends MediaWikiIntegrationTestCase {
 		$format = Message::FORMAT_TEXT
 	) {
 		$converter = $this->getMockBuilder( Converter::class )
-			->setMethods( [ 'createMessage' ] )
+			->onlyMethods( [ 'createMessage' ] )
 			->getMock();
 		$converter->method( 'createMessage' )
 			->willReturnCallback( function ( $key ) use ( $includeWikitext ) {
 				$message = $this->getMockBuilder( Message::class )
 					->setConstructorArgs( [ $key ] )
-					->setMethods( [ 'fetchMessage' ] )
+					->onlyMethods( [ 'fetchMessage' ] )
 					->getMock();
 
 				$message->method( 'fetchMessage' )

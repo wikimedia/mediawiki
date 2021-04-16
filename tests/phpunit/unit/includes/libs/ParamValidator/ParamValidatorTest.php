@@ -47,7 +47,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		$callbacks = new SimpleCallbacks( [] );
 		$factory = $this->getMockBuilder( ObjectFactory::class )
 			->setConstructorArgs( [ $this->getMockForAbstractClass( ContainerInterface::class ) ] )
-			->setMethods( [ 'createObject' ] )
+			->onlyMethods( [ 'createObject' ] )
 			->getMock();
 		$factory->method( 'createObject' )
 			->willReturnCallback( function ( $spec, $options ) use ( $callbacks ) {
@@ -86,7 +86,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$factory = $this->getMockBuilder( ObjectFactory::class )
 			->setConstructorArgs( [ $this->getMockForAbstractClass( ContainerInterface::class ) ] )
-			->setMethods( [ 'createObject' ] )
+			->onlyMethods( [ 'createObject' ] )
 			->getMock();
 		$factory->expects( $this->once() )->method( 'createObject' )->willReturn( $def1 );
 
@@ -124,7 +124,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$mb = $this->getMockBuilder( TypeDef::class )
 			->setConstructorArgs( [ $callbacks ] )
-			->setMethods( [ 'normalizeSettings' ] );
+			->onlyMethods( [ 'normalizeSettings' ] );
 		$mock1 = $mb->getMockForAbstractClass();
 		$mock1->method( 'normalizeSettings' )->willReturnCallback( static function ( $s ) {
 			$s['foo'] = 'FooBar!';
@@ -168,7 +168,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$mb = $this->getMockBuilder( TypeDef::class )
 			->setConstructorArgs( [ $callbacks ] )
-			->setMethods( [ 'checkSettings' ] );
+			->onlyMethods( [ 'checkSettings' ] );
 		$mock1 = $mb->getMockForAbstractClass();
 		$mock1->method( 'checkSettings' )->willReturnCallback(
 			static function ( string $name, $settings, array $options, array $ret ) {
@@ -528,7 +528,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 				new ObjectFactory( $this->getMockForAbstractClass( ContainerInterface::class ) ),
 				[ 'typeDefs' => [ 'xyz' => $mockDef ] ]
 			] )
-			->setMethods( [ 'validateValue' ] )
+			->onlyMethods( [ 'validateValue' ] )
 			->getMock();
 		$validator->expects( $this->once() )->method( 'validateValue' )
 			->with(
@@ -609,7 +609,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$mockDef = $this->getMockBuilder( TypeDef::class )
 			->setConstructorArgs( [ $callbacks ] )
-			->setMethods( [ 'validate', 'getEnumValues' ] )
+			->onlyMethods( [ 'validate', 'getEnumValues' ] )
 			->getMockForAbstractClass();
 		$mockDef->method( 'getEnumValues' )
 			->with(
@@ -930,7 +930,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$mb = $this->getMockBuilder( TypeDef::class )
 			->setConstructorArgs( [ $callbacks ] )
-			->setMethods( [ 'getParamInfo' ] );
+			->onlyMethods( [ 'getParamInfo' ] );
 		$mock = $mb->getMockForAbstractClass();
 		$mock->method( 'getParamInfo' )->willReturn( $typeDefReturns );
 
@@ -1057,7 +1057,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 
 		$mb = $this->getMockBuilder( TypeDef::class )
 			->setConstructorArgs( [ $callbacks ] )
-			->setMethods( [ 'getHelpInfo', 'getEnumValues' ] );
+			->onlyMethods( [ 'getHelpInfo', 'getEnumValues' ] );
 		$mock = $mb->getMockForAbstractClass();
 		$mock->method( 'getHelpInfo' )->willReturn( $typeDefReturns );
 		$mock->method( 'getEnumValues' )->willReturn( $settings['values'] ?? null );

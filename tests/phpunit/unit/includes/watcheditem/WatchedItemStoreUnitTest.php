@@ -111,7 +111,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	private function getMockCache() {
 		$mock = $this->getMockBuilder( HashBagOStuff::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'get', 'set', 'delete', 'makeKey' ] )
+			->onlyMethods( [ 'get', 'set', 'delete', 'makeKey' ] )
 			->getMock();
 		$mock->expects( $this->any() )
 			->method( 'makeKey' )

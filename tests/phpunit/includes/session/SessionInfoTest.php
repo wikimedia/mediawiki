@@ -62,7 +62,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 
 		$manager = new SessionManager();
 		$provider = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'persistsSessionId', 'canChangeUser', '__toString' ] )
+			->onlyMethods( [ 'persistsSessionId', 'canChangeUser', '__toString' ] )
 			->getMockForAbstractClass();
 		$provider->setManager( $manager );
 		$provider->expects( $this->any() )->method( 'persistsSessionId' )
@@ -73,7 +73,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( 'Mock' ) );
 
 		$provider2 = $this->getMockBuilder( SessionProvider::class )
-			->setMethods( [ 'persistsSessionId', 'canChangeUser', '__toString' ] )
+			->onlyMethods( [ 'persistsSessionId', 'canChangeUser', '__toString' ] )
 			->getMockForAbstractClass();
 		$provider2->setManager( $manager );
 		$provider2->expects( $this->any() )->method( 'persistsSessionId' )

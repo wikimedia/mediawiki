@@ -165,7 +165,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 
 		// Add a Session that limits rights
 		$mock = $this->getMockBuilder( stdClass::class )
-			->setMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
+			->addMethods( [ 'getAllowedUserRights', 'deregisterSession', 'getSessionId' ] )
 			->getMock();
 		$mock->method( 'getAllowedUserRights' )->willReturn( [ 'test', 'writetest' ] );
 		$mock->method( 'getSessionId' )->willReturn(
@@ -173,7 +173,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		);
 		$session = MediaWiki\Session\TestUtils::getDummySession( $mock );
 		$mockRequest = $this->getMockBuilder( FauxRequest::class )
-			->setMethods( [ 'getSession' ] )
+			->onlyMethods( [ 'getSession' ] )
 			->getMock();
 		$mockRequest->method( 'getSession' )->willReturn( $session );
 		$userWrapper->mRequest = $mockRequest;

@@ -195,7 +195,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 
 		$file = $this->getMockBuilder( File::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getWidth', 'getHeight', 'getMetadata', 'getHandler' ] )
+			->onlyMethods( [ 'getWidth', 'getHeight', 'getMetadata', 'getHandler' ] )
 			->getMock();
 
 		$file->method( 'getWidth' )
@@ -295,7 +295,7 @@ class SvgHandlerTest extends MediaWikiMediaTestCase {
 		$metadata['version'] = SvgHandler::SVG_METADATA_VERSION;
 		$file = $this->getMockBuilder( File::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getMetadata' ] )
+			->onlyMethods( [ 'getMetadata' ] )
 			->getMock();
 		$file->method( 'getMetadata' )
 			->willReturn( serialize( $metadata ) );
