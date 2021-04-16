@@ -24,7 +24,6 @@ use CannotCreateActorException;
 use DBAccessObjectUtils;
 use ExternalUserNames;
 use InvalidArgumentException;
-use MapCacheLRU;
 use MediaWiki\DAO\WikiAwareEntity;
 use Psr\Log\LoggerInterface;
 use stdClass;
@@ -59,14 +58,8 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	/** @var string|false */
 	private $wikiId;
 
-	/** @var MapCacheLRU int actor ID => [ UserIdentity, int actor ID ] */
-	private $actorsByActorId;
-
-	/** @var MapCacheLRU int user ID => [ UserIdentity, int actor ID ] */
-	private $actorsByUserId;
-
-	/** @var MapCacheLRU string user name => [ UserIdentity, int actor ID ] */
-	private $actorsByName;
+	/** @var ActorCache */
+	private $cache;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
@@ -88,9 +81,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$this->logger = $logger;
 		$this->wikiId = $wikiId;
 
-		$this->actorsByActorId = new MapCacheLRU( self::LOCAL_CACHE_SIZE );
-		$this->actorsByUserId = new MapCacheLRU( self::LOCAL_CACHE_SIZE );
-		$this->actorsByName = new MapCacheLRU( self::LOCAL_CACHE_SIZE );
+		$this->cache = new ActorCache( self::LOCAL_CACHE_SIZE );
 	}
 
 	/**
@@ -130,7 +121,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 
 		$actor = new UserIdentityValue( $userId, $row->actor_name, $this->wikiId );
-		$this->addUserIdentityToCache( $actorId, $actor );
+		$this->cache->add( $actorId, $actor );
 		return $actor;
 	}
 
@@ -186,34 +177,16 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			$this->wikiId
 		);
 
-		$this->addUserIdentityToCache( $actorId, $actor );
+		$this->cache->add( $actorId, $actor );
 		return $actor;
 	}
 
 	/**
-	 * @param int $actorId
 	 * @param UserIdentity $actor
+	 * @internal for use in User object only
 	 */
-	private function addUserIdentityToCache( int $actorId, UserIdentity $actor ) {
-		$this->actorsByActorId->set( $actorId, [ $actor, $actorId ] );
-		$userId = $actor->getId( $this->wikiId );
-		if ( $userId ) {
-			$this->actorsByUserId->set( $userId, [ $actor, $actorId ] );
-		}
-		$this->actorsByName->set( $actor->getName(), [ $actor, $actorId ] );
-	}
-
-	/**
-	 * @param int $actorId
-	 * @param UserIdentity $actor
-	 */
-	private function deleteUserIdentityFromCache( int $actorId, UserIdentity $actor ) {
-		$this->actorsByActorId->clear( $actorId );
-		$userId = $actor->getId( $this->wikiId );
-		if ( $userId ) {
-			$this->actorsByUserId->clear( $userId );
-		}
-		$this->actorsByName->clear( $actor->getName() );
+	public function deleteUserIdentityFromCache( UserIdentity $actor ) {
+		$this->cache->remove( $actor );
 	}
 
 	/**
@@ -231,26 +204,18 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return null;
 		}
 
-		$cachedValue = $this->actorsByActorId->get( $actorId );
-		if ( $cachedValue ) {
-			return $cachedValue[0];
-		}
-
-		$actor = $this->newSelectQueryBuilder( $db )
-			->caller( __METHOD__ )
-			->conds( [ 'actor_id' => $actorId ] )
-			->fetchUserIdentity();
-
-		// The actor ID mostly comes from DB, so if we can't find an actor by ID,
-		// it's most likely due to lagged replica and not cause it doesn't actually exist.
-		// Probably we just inserted it? Try master.
-		if ( !$actor ) {
-			$actor = $this->newSelectQueryBuilderForQueryFlags( self::READ_LATEST )
+		return $this->cache->getActor( ActorCache::KEY_ACTOR_ID, $actorId ) ??
+			$this->newSelectQueryBuilder( $db )
+				->caller( __METHOD__ )
+				->conds( [ 'actor_id' => $actorId ] )
+				->fetchUserIdentity() ??
+			// The actor ID mostly comes from DB, so if we can't find an actor by ID,
+			// it's most likely due to lagged replica and not cause it doesn't actually exist.
+			// Probably we just inserted it? Try master.
+			$this->newSelectQueryBuilderForQueryFlags( self::READ_LATEST )
 				->caller( __METHOD__ )
 				->conds( [ 'actor_id' => $actorId ] )
 				->fetchUserIdentity();
-		}
-		return $actor;
 	}
 
 	/**
@@ -273,15 +238,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			);
 		}
 
-		$cachedValue = $this->actorsByName->get( $normalizedName );
-		if ( $cachedValue ) {
-			return $cachedValue[0];
-		}
-
-		return $this->newSelectQueryBuilderForQueryFlags( $queryFlags )
-			->caller( __METHOD__ )
-			->userNames( $normalizedName )
-			->fetchUserIdentity();
+		return $this->cache->getActor( ActorCache::KEY_USER_NAME, $normalizedName ) ??
+			$this->newSelectQueryBuilderForQueryFlags( $queryFlags )
+				->caller( __METHOD__ )
+				->userNames( $normalizedName )
+				->fetchUserIdentity();
 	}
 
 	/**
@@ -296,15 +257,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return null;
 		}
 
-		$cachedValue = $this->actorsByUserId->get( $userId );
-		if ( $cachedValue ) {
-			return $cachedValue[0];
-		}
-
-		return $this->newSelectQueryBuilderForQueryFlags( $queryFlags )
-			->caller( __METHOD__ )
-			->userIds( $userId )
-			->fetchUserIdentity();
+		return $this->cache->getActor( ActorCache::KEY_USER_ID, $userId ) ??
+			$this->newSelectQueryBuilderForQueryFlags( $queryFlags )
+				->caller( __METHOD__ )
+				->userIds( $userId )
+				->fetchUserIdentity();
 	}
 
 	/**
@@ -388,9 +345,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return null;
 		}
 
-		$id = $this->findActorIdInternal( $name, $db );
-
-		return $id;
+		return $this->findActorIdInternal( $name, $db );
 	}
 
 	/**
@@ -412,9 +367,9 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// User always thinks it's local, so we could end up fetching the ID
 		// from the wrong database.
 
-		$cachedValue = $this->actorsByName->get( $name );
+		$cachedValue = $this->cache->getActorId( ActorCache::KEY_USER_NAME, $name );
 		if ( $cachedValue ) {
-			return $cachedValue[1];
+			return $cachedValue;
 		}
 
 		$row = $db->selectRow(
@@ -504,7 +459,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$this->attachActorId( $user, $actorId, true );
 		// Cache row we've just created
 		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
-		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
+		$this->setUpRollbackHandler( $dbw, $cachedUserIdentity, $user );
 		return $actorId;
 	}
 
@@ -544,7 +499,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$this->attachActorId( $user, $actorId, true );
 		// Cache row we've just created
 		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
-		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
+		$this->setUpRollbackHandler( $dbw, $cachedUserIdentity, $user );
 
 		return $actorId;
 	}
@@ -573,7 +528,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$existingActorId = $this->findActorIdInternal( $userName, $dbw );
 		if ( $existingActorId ) {
 			// It certainly will be cached if we just found it.
-			$existingActor = $this->actorsByActorId->get( $existingActorId )[0];
+			$existingActor = $this->cache->getActor( ActorCache::KEY_ACTOR_ID, $existingActorId );
 
 			// If we already have an existing actor with a matching user ID
 			// just return it, nothing to do here.
@@ -605,11 +560,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 		$actorId = $dbw->insertId() ?: $existingActorId;
 
-		$this->deleteUserIdentityFromCache( $actorId, $user );
+		$this->cache->remove( $user );
 		$this->attachActorId( $user, $actorId, true );
 		// Cache row we've just created
 		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
-		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
+		$this->setUpRollbackHandler( $dbw, $cachedUserIdentity, $user );
 		return $actorId;
 	}
 
@@ -674,13 +629,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * Clear in-process caches if transaction gets rolled back.
 	 *
 	 * @param IDatabase $dbw
-	 * @param int $actorId
 	 * @param UserIdentity $cachedActor
 	 * @param UserIdentity $originalActor
 	 */
 	private function setUpRollbackHandler(
 		IDatabase $dbw,
-		int $actorId,
 		UserIdentity $cachedActor,
 		UserIdentity $originalActor
 	) {
@@ -688,9 +641,9 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			// If called within a transaction and it was rolled back, the cached actor ID
 			// becomes invalid, so cache needs to be invalidated as well. See T277795.
 			$dbw->onTransactionResolution(
-				function ( int $trigger ) use ( $actorId, $cachedActor, $originalActor ) {
+				function ( int $trigger ) use ( $cachedActor, $originalActor ) {
 					if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
-						$this->deleteUserIdentityFromCache( $actorId, $cachedActor );
+						$this->cache->remove( $cachedActor );
 						$this->detachActorId( $originalActor );
 					}
 				} );
