@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\User\UserNameUtils;
 use User;
 
 /**
@@ -86,7 +87,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$username = User::getCanonicalName( $req->username, 'usable' );
+		$username = $this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE );
 		if ( $username === false ) {
 			return AuthenticationResponse::newAbstain();
 		}
@@ -161,7 +162,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testUserCanAuthenticate( $username ) {
-		$username = User::getCanonicalName( $username, 'usable' );
+		$username = $this->userNameUtils->getCanonical( $username, UserNameUtils::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;
 		}
@@ -187,7 +188,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testUserExists( $username, $flags = User::READ_NORMAL ) {
-		$username = User::getCanonicalName( $username, 'usable' );
+		$username = $this->userNameUtils->getCanonical( $username, UserNameUtils::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;
 		}
@@ -216,7 +217,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 				return \StatusValue::newGood();
 			}
 
-			$username = User::getCanonicalName( $req->username, 'usable' );
+			$username = $this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE );
 			if ( $username !== false ) {
 				$row = wfGetDB( DB_PRIMARY )->selectRow(
 					'user',
@@ -242,7 +243,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 	}
 
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
-		$username = $req->username !== null ? User::getCanonicalName( $req->username, 'usable' ) : false;
+		$username = $req->username !== null ?
+			$this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE ) : false;
 		if ( $username === false ) {
 			return;
 		}

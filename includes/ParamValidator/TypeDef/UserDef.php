@@ -180,7 +180,7 @@ class UserDef extends TypeDef {
 			return [ 'name', $user ];
 		}
 
-		// (T232672) Reproduce the normalization applied in User::getCanonicalName() when
+		// (T232672) Reproduce the normalization applied in UserNameUtils::getCanonical() when
 		// performing the checks below.
 		if ( strpos( $value, '#' ) !== false ) {
 			return [ '', null ];

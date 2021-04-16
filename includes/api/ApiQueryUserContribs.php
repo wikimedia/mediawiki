@@ -197,7 +197,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 				if ( $this->userNameUtils->isIP( $u ) || ExternalUserNames::isExternal( $u ) ) {
 					$names[$u] = null;
 				} else {
-					$name = User::getCanonicalName( $u, 'valid' );
+					$name = $this->userNameUtils->getCanonical( $u );
 					if ( $name === false ) {
 						$encParamName = $this->encodeParamName( 'user' );
 						$this->dieWithError(
