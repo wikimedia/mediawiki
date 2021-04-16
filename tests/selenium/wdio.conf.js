@@ -106,8 +106,12 @@ exports.config = {
 	// =====
 	// Hooks
 	// =====
-	// Executed after a Mocha test ends.
-	afterTest: function () {
+	/**
+	 * Executed after a Mocha test ends.
+	 *
+	 * @param {Object} test Mocha Test object
+	 */
+	afterTest: function ( test ) {
 		// save screenshot
 		const screenshotfile = filePath( test, logPath, 'png' );
 		browser.saveScreenshot( screenshotfile );
