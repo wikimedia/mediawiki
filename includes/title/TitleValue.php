@@ -104,7 +104,7 @@ class TitleValue implements LinkTarget {
 	}
 
 	/**
-	 * Constructs a TitleValue from a local PageIdentity.
+	 * Constructs a TitleValue from a local PageReference.
 	 *
 	 * @note The PageReference may belong to another wiki. In that case, the resulting TitleValue
 	 *       is also logically bound to that other wiki. No attempt is made to map the
@@ -114,11 +114,31 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @param PageReference $page
 	 *
-	 * @throws InvalidArgumentException if $page does not belong to the local wiki.
 	 * @return TitleValue
 	 */
 	public static function newFromPage( PageReference $page ) : TitleValue {
 		return new TitleValue( $page->getNamespace(), $page->getDBkey() );
+	}
+
+	/**
+	 * Casts a PageReference to a LinkTarget.
+	 * If $page is null, null is returned.
+	 * If $page is also an instance of LinkTarget, $page is returned unchanged.
+	 *
+	 * @see newFromPage()
+	 *
+	 * @since 1.37
+	 *
+	 * @param ?PageReference $page
+	 *
+	 * @return ?LinkTarget
+	 */
+	public static function castPageToLinkTarget( ?PageReference $page ) : ?LinkTarget {
+		if ( !$page || $page instanceof LinkTarget ) {
+			return $page;
+		}
+
+		return self::newFromPage( $page );
 	}
 
 	/**
