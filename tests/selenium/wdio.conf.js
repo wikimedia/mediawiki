@@ -116,6 +116,5 @@ exports.config = {
 		// save screenshot
 		const screenshotfile = filePath( test, logPath, 'png' );
 		browser.saveScreenshot( screenshotfile );
-		console.log( '\n\tScreenshot location:', screenshotfile, '\n' );
 	}
 };
