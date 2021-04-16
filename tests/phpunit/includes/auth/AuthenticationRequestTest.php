@@ -24,7 +24,7 @@ class AuthenticationRequestTest extends \MediaWikiIntegrationTestCase {
 
 	public function testLoadRequestsFromSubmission() {
 		$mb = $this->getMockBuilder( AuthenticationRequest::class )
-			->setMethods( [ 'loadFromSubmission' ] );
+			->onlyMethods( [ 'loadFromSubmission' ] );
 
 		$data = [ 'foo', 'bar' ];
 

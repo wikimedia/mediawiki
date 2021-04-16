@@ -85,7 +85,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
 			->setConstructorArgs( [ self::DIR, $cache2 ] )
-			->setMethods( [ 'compile' ] )
+			->onlyMethods( [ 'compile' ] )
 			->getMock();
 		$tp2->expects( $this->never() )->method( 'compile' );
 
@@ -122,7 +122,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
 			->setConstructorArgs( [ self::DIR, $cache2 ] )
-			->setMethods( [ 'compile' ] )
+			->onlyMethods( [ 'compile' ] )
 			->getMock();
 		$tp2->expects( $this->once() )->method( 'compile' )
 			->willReturn( $store['val'] );
@@ -160,7 +160,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		$tp2 = $this->getMockBuilder( TemplateParser::class )
 			->setConstructorArgs( [ self::DIR, $cache2 ] )
-			->setMethods( [ 'compile' ] )
+			->onlyMethods( [ 'compile' ] )
 			->getMock();
 		$tp2->expects( $this->once() )->method( 'compile' )
 			->willReturn( $store['val'] );

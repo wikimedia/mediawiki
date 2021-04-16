@@ -1248,7 +1248,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
-			->setMethods( [ 'addCategoryLinksToLBAndGetResult', 'getTitle' ] )
+			->onlyMethods( [ 'addCategoryLinksToLBAndGetResult', 'getTitle' ] )
 			->getMock();
 
 		$title = Title::newFromText( 'My test page' );
@@ -2221,7 +2221,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		// Get rid of default Vary fields
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ new RequestContext() ] )
-			->setMethods( [ 'getCacheVaryCookies' ] )
+			->onlyMethods( [ 'getCacheVaryCookies' ] )
 			->getMock();
 		$op->expects( $this->any() )
 			->method( 'getCacheVaryCookies' )
@@ -2661,7 +2661,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$ctx->setLanguage( 'en' );
 		$op = $this->getMockBuilder( OutputPage::class )
 			->setConstructorArgs( [ $ctx ] )
-			->setMethods( [ 'buildCssLinksArray' ] )
+			->onlyMethods( [ 'buildCssLinksArray' ] )
 			->getMock();
 		$op->method( 'buildCssLinksArray' )
 			->willReturn( [] );

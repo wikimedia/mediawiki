@@ -59,7 +59,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		}
 		$this->validity = \Status::newGood();
 		$provider = $this->getMockBuilder( LocalPasswordPrimaryAuthenticationProvider::class )
-			->setMethods( [ 'checkPasswordValidity' ] )
+			->onlyMethods( [ 'checkPasswordValidity' ] )
 			->setConstructorArgs( [ [ 'loginOnly' => $loginOnly ] ] )
 			->getMock();
 

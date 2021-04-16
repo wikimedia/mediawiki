@@ -516,7 +516,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 		$customDifferenceEngine->objectId = 12345;
 		$customContentHandler = $this->getMockBuilder( ContentHandler::class )
 			->setConstructorArgs( [ 'foo', [] ] )
-			->setMethods( [ 'createDifferenceEngine' ] )
+			->onlyMethods( [ 'createDifferenceEngine' ] )
 			->getMockForAbstractClass();
 		$customContentHandler->expects( $this->any() )
 			->method( 'createDifferenceEngine' )
@@ -547,7 +547,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMockForAbstractClass();
 		$customContentHandler2 = $this->getMockBuilder( ContentHandler::class )
 			->setConstructorArgs( [ 'bar', [] ] )
-			->setMethods( [ 'createDifferenceEngine', 'getSlotDiffRendererInternal' ] )
+			->onlyMethods( [ 'createDifferenceEngine', 'getSlotDiffRendererInternal' ] )
 			->getMockForAbstractClass();
 		$customContentHandler2->expects( $this->any() )
 			->method( 'createDifferenceEngine' )
@@ -574,7 +574,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$customContentHandler = $this->getMockBuilder( ContentHandler::class )
 			->setConstructorArgs( [ 'foo', [] ] )
-			->setMethods( [ 'createDifferenceEngine' ] )
+			->onlyMethods( [ 'createDifferenceEngine' ] )
 			->getMockForAbstractClass();
 		$customContentHandler->expects( $this->any() )
 			->method( 'createDifferenceEngine' )
@@ -586,7 +586,7 @@ class ContentHandlerTest extends MediaWikiIntegrationTestCase {
 			->getMockForAbstractClass();
 		$customContentHandler2 = $this->getMockBuilder( ContentHandler::class )
 			->setConstructorArgs( [ 'bar', [] ] )
-			->setMethods( [ 'createDifferenceEngine', 'getSlotDiffRendererInternal' ] )
+			->onlyMethods( [ 'createDifferenceEngine', 'getSlotDiffRendererInternal' ] )
 			->getMockForAbstractClass();
 		$customContentHandler2->expects( $this->any() )
 			->method( 'createDifferenceEngine' )

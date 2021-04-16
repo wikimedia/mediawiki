@@ -38,7 +38,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$obj = new \stdClass;
 
 		$mock = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
-			->setMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
+			->onlyMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'beginLinkAttempt' )
 			->with( $this->identicalTo( $user ), $this->identicalTo( 'AuthManager::authnState' ) )
@@ -54,7 +54,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$reqs = [ new \stdClass ];
 
 		$mock = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
-			->setMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
+			->onlyMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
 			->getMock();
 		$mock->expects( $this->never() )->method( 'beginLinkAttempt' );
 		$mock->expects( $this->once() )->method( 'continueLinkAttempt' )
@@ -73,7 +73,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$obj = new \stdClass;
 
 		$mock = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
-			->setMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
+			->onlyMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'beginLinkAttempt' )
 			->with( $this->identicalTo( $user ), $this->identicalTo( 'AuthManager::accountCreationState' ) )
@@ -89,7 +89,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$reqs = [ new \stdClass ];
 
 		$mock = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
-			->setMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
+			->onlyMethods( [ 'beginLinkAttempt', 'continueLinkAttempt' ] )
 			->getMock();
 		$mock->expects( $this->never() )->method( 'beginLinkAttempt' );
 		$mock->expects( $this->once() )->method( 'continueLinkAttempt' )
@@ -111,7 +111,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$reqs = [];
 
 		$mb = $this->getMockBuilder( AuthenticationRequest::class )
-			->setMethods( [ 'getUniqueId' ] );
+			->onlyMethods( [ 'getUniqueId' ] );
 		for ( $i = 1; $i <= 3; $i++ ) {
 			$req = $mb->getMockForAbstractClass();
 			$req->expects( $this->any() )->method( 'getUniqueId' )
@@ -125,7 +125,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 	public function testBeginLinkAttempt() {
 		$badReq = $this->getMockBuilder( AuthenticationRequest::class )
-			->setMethods( [ 'getUniqueId' ] )
+			->onlyMethods( [ 'getUniqueId' ] )
 			->getMockForAbstractClass();
 		$badReq->expects( $this->any() )->method( 'getUniqueId' )
 			->will( $this->returnValue( "BadReq" ) );
@@ -137,7 +137,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$request = new \FauxRequest();
 		$mwServices = MediaWikiServices::getInstance();
 		$manager = $this->getMockBuilder( AuthManager::class )
-			->setMethods( [ 'allowsAuthenticationDataChange' ] )
+			->onlyMethods( [ 'allowsAuthenticationDataChange' ] )
 			->setConstructorArgs( [
 				$request,
 				\RequestContext::getMain()->getConfig(),
@@ -198,7 +198,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		// First, test the pass-through for not containing the ConfirmLinkAuthenticationRequest
 		$mock = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
-			->setMethods( [ 'beginLinkAttempt' ] )
+			->onlyMethods( [ 'beginLinkAttempt' ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'beginLinkAttempt' )
 			->with( $this->identicalTo( $user ), $this->identicalTo( 'state' ) )
@@ -210,7 +210,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		// Now test the actual functioning
 		$provider = $this->getMockBuilder( ConfirmLinkSecondaryAuthenticationProvider::class )
-			->setMethods( [
+			->onlyMethods( [
 				'beginLinkAttempt', 'providerAllowsAuthenticationDataChange',
 				'providerChangeAuthenticationData'
 			] )

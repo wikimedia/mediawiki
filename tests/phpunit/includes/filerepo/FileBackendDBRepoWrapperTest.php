@@ -125,7 +125,7 @@ class FileBackendDBRepoWrapperTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$wrapperMock = $this->getMockBuilder( FileBackendDBRepoWrapper::class )
-			->setMethods( [ 'getDB' ] )
+			->onlyMethods( [ 'getDB' ] )
 			->setConstructorArgs( [ [
 					'backend' => $backendMock,
 					'repoName' => $this->repoName,

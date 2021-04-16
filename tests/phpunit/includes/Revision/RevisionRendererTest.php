@@ -457,7 +457,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	public function testGetRenderedRevision_noHtml() {
 		/** @var MockObject|Content $mockContent */
 		$mockContent = $this->getMockBuilder( WikitextContent::class )
-			->setMethods( [ 'getParserOutput' ] )
+			->onlyMethods( [ 'getParserOutput' ] )
 			->setConstructorArgs( [ 'Whatever' ] )
 			->getMock();
 		$mockContent->method( 'getParserOutput' )

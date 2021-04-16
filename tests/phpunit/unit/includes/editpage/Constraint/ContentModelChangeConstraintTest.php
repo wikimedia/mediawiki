@@ -40,14 +40,11 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 
 		$title = $this->getMockBuilder( Title::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getContentModel', '__clone', 'setContentModel' ] )
+			->onlyMethods( [ 'getContentModel', 'setContentModel' ] )
 			->getMock();
 		$title->expects( $this->once() )
 			->method( 'getContentModel' )
 			->willReturn( 'differentStartingContentModel' );
-		$title->expects( $this->once() )
-			->method( '__clone' )
-			->will( $this->returnSelf() );
 		$title->expects( $this->once() )
 			->method( 'setContentModel' )
 			->with( $this->equalTo( $newContentModel ) );
@@ -79,14 +76,11 @@ class ContentModelChangeConstraintTest extends MediaWikiUnitTestCase {
 
 		$title = $this->getMockBuilder( Title::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getContentModel', '__clone', 'setContentModel' ] )
+			->onlyMethods( [ 'getContentModel', 'setContentModel' ] )
 			->getMock();
 		$title->expects( $this->once() )
 			->method( 'getContentModel' )
 			->willReturn( 'differentStartingContentModel' );
-		$title->expects( $this->once() )
-			->method( '__clone' )
-			->will( $this->returnSelf() );
 		$title->expects( $this->once() )
 			->method( 'setContentModel' )
 			->with( $this->equalTo( $newContentModel ) );

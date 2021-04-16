@@ -122,11 +122,11 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testMakeKey() {
 		$cache1 = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'makeKey' ] )->getMock();
+			->onlyMethods( [ 'makeKey' ] )->getMock();
 		$cache1->expects( $this->never() )->method( 'makeKey' );
 
 		$cache2 = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'makeKey' ] )->getMock();
+			->onlyMethods( [ 'makeKey' ] )->getMock();
 		$cache2->expects( $this->never() )->method( 'makeKey' );
 
 		$cache = new MultiWriteBagOStuff( [
@@ -142,11 +142,11 @@ class MultiWriteBagOStuffTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testMakeGlobalKey() {
 		$cache1 = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'makeGlobalKey' ] )->getMock();
+			->onlyMethods( [ 'makeGlobalKey' ] )->getMock();
 		$cache1->expects( $this->never() )->method( 'makeGlobalKey' );
 
 		$cache2 = $this->getMockBuilder( HashBagOStuff::class )
-			->setMethods( [ 'makeGlobalKey' ] )->getMock();
+			->onlyMethods( [ 'makeGlobalKey' ] )->getMock();
 		$cache2->expects( $this->never() )->method( 'makeGlobalKey' );
 
 		$cache = new MultiWriteBagOStuff( [ 'caches' => [ $cache1, $cache2 ] ] );

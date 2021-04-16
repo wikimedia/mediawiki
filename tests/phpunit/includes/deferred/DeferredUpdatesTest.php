@@ -13,7 +13,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testAddAndRun() {
 		$update = $this->getMockBuilder( DeferrableUpdate::class )
-			->setMethods( [ 'doUpdate' ] )->getMock();
+			->onlyMethods( [ 'doUpdate' ] )->getMock();
 		$update->expects( $this->once() )->method( 'doUpdate' );
 
 		DeferredUpdates::addUpdate( $update );
@@ -29,12 +29,12 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		$this->setMwGlobals( 'wgCommandLineMode', false );
 
 		$update1 = $this->getMockBuilder( MergeableUpdate::class )
-			->setMethods( [ 'merge', 'doUpdate' ] )->getMock();
+			->onlyMethods( [ 'merge', 'doUpdate' ] )->getMock();
 		$update1->expects( $this->once() )->method( 'merge' );
 		$update1->expects( $this->never() )->method( 'doUpdate' );
 
 		$update2 = $this->getMockBuilder( MergeableUpdate::class )
-			->setMethods( [ 'merge', 'doUpdate' ] )->getMock();
+			->onlyMethods( [ 'merge', 'doUpdate' ] )->getMock();
 		$update2->expects( $this->never() )->method( 'merge' );
 		$update2->expects( $this->never() )->method( 'doUpdate' );
 

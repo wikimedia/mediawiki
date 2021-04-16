@@ -18,7 +18,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$goodCalls = 0;
 		$goodUpdate = $this->getMockBuilder( DataUpdate::class )
-			->setMethods( [ 'doUpdate', 'setTransactionTicket' ] )
+			->onlyMethods( [ 'doUpdate', 'setTransactionTicket' ] )
 			->getMock();
 		$goodTrxFname = get_class( $goodUpdate ) . '::doUpdate';
 		$goodUpdate->method( 'doUpdate' )
@@ -32,14 +32,14 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $this->getMockBuilder( DerivedPageDataUpdater::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getSecondaryDataUpdates' ] )
+			->onlyMethods( [ 'getSecondaryDataUpdates' ] )
 			->getMock();
 		$updater->method( 'getSecondaryDataUpdates' )
 			->willReturn( [ $goodUpdate ] );
 
 		$revision = $this->getMockBuilder( MutableRevisionRecord::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getId' ] )
+			->onlyMethods( [ 'getId' ] )
 			->getMock();
 		$revision->method( 'getId' )
 			->willReturn( 42 );
@@ -81,7 +81,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$goodCalls = 0;
 		$goodUpdate = $this->getMockBuilder( DataUpdate::class )
-			->setMethods( [ 'doUpdate', 'setTransactionTicket' ] )
+			->onlyMethods( [ 'doUpdate', 'setTransactionTicket' ] )
 			->getMock();
 		$goodTrxFname = get_class( $goodUpdate ) . '::doUpdate';
 		$goodUpdate->method( 'doUpdate' )
@@ -95,7 +95,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$badCalls = 0;
 		$badUpdate = $this->getMockBuilder( DataUpdate::class )
-			->setMethods( [ 'doUpdate', 'setTransactionTicket' ] )
+			->onlyMethods( [ 'doUpdate', 'setTransactionTicket' ] )
 			->getMock();
 		$badTrxFname = get_class( $goodUpdate ) . '::doUpdate';
 		$badUpdate->expects( $this->once() )
@@ -110,14 +110,14 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $this->getMockBuilder( DerivedPageDataUpdater::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getSecondaryDataUpdates' ] )
+			->onlyMethods( [ 'getSecondaryDataUpdates' ] )
 			->getMock();
 		$updater->method( 'getSecondaryDataUpdates' )
 			->willReturn( [ $goodUpdate, $badUpdate ] );
 
 		$revision = $this->getMockBuilder( MutableRevisionRecord::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getId' ] )
+			->onlyMethods( [ 'getId' ] )
 			->getMock();
 		$revision->method( 'getId' )
 			->willReturn( 42 );
@@ -187,7 +187,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$goodCalls = 0;
 		$goodUpdate = $this->getMockBuilder( DataUpdate::class )
-			->setMethods( [ 'doUpdate' ] )
+			->onlyMethods( [ 'doUpdate' ] )
 			->getMock();
 		$goodUpdate->method( 'doUpdate' )
 			->willReturnCallback( static function () use ( &$goodCalls ) {
@@ -196,7 +196,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 
 		$updater = $this->getMockBuilder( DerivedPageDataUpdater::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getSecondaryDataUpdates' ] )
+			->onlyMethods( [ 'getSecondaryDataUpdates' ] )
 			->getMock();
 		$updater->method( 'getSecondaryDataUpdates' )
 			->willReturnCallback( static function () use ( $dbw, $fname, $goodUpdate ) {

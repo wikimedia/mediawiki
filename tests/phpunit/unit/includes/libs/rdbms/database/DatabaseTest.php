@@ -450,7 +450,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		];
 		$db = $this->getMockBuilder( Database::class )
 			->disableOriginalConstructor()
-			->setMethods( array_values( array_unique( array_merge(
+			->onlyMethods( array_values( array_unique( array_merge(
 				$abstractMethods,
 				$methods
 			) ) ) )
@@ -624,7 +624,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	public function testDBOCannotSet( $flag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( null )
+			->onlyMethods( [] )
 			->getMock();
 
 		$this->expectException( DBUnexpectedError::class );
@@ -639,7 +639,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	public function testDBOCannotClear( $flag ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
-			->setMethods( null )
+			->onlyMethods( [] )
 			->getMock();
 
 		$this->expectException( DBUnexpectedError::class );

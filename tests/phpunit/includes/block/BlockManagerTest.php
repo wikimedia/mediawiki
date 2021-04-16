@@ -283,7 +283,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 		$blockManager = $this->getMockBuilder( BlockManager::class )
 			->setConstructorArgs( $this->getBlockManagerConstructorArgs( $blockManagerConfig ) )
-			->setMethods( [ 'checkHost' ] )
+			->onlyMethods( [ 'checkHost' ] )
 			->getMock();
 		$blockManager->method( 'checkHost' )
 			->will( $this->returnValueMap( [ [
@@ -391,13 +391,13 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$blockManager = TestingAccessWrapper::newFromObject( $this->getBlockManager( [] ) );
 
 		$block = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getId' ] )
+			->onlyMethods( [ 'getId' ] )
 			->getMock();
 		$block->method( 'getId' )
 			->willReturn( $blockId );
 
 		$autoblock = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getParentBlockId', 'getType' ] )
+			->onlyMethods( [ 'getParentBlockId', 'getType' ] )
 			->getMock();
 		$autoblock->method( 'getParentBlockId' )
 			->willReturn( $blockId );
@@ -424,7 +424,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$response = $request->response();
 
 		$user = $this->getMockBuilder( User::class )
-			->setMethods( [ 'getBlock', 'getRequest' ] )
+			->onlyMethods( [ 'getBlock', 'getRequest' ] )
 			->getMock();
 		$user->method( 'getBlock' )
 			->willReturn( $options['block'] );
@@ -522,7 +522,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 
 	private function getTrackableBlock( $blockId ) {
 		$block = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getType', 'getId' ] )
+			->onlyMethods( [ 'getType', 'getId' ] )
 			->getMock();
 		$block->method( 'getType' )
 			->willReturn( DatabaseBlock::TYPE_IP );
@@ -604,7 +604,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testShouldTrackBlockWithCookie( $options, $expected ) {
 		$block = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getType', 'isAutoblocking' ] )
+			->onlyMethods( [ 'getType', 'isAutoblocking' ] )
 			->getMock();
 		$block->method( 'getType' )
 			->willReturn( $options['type'] );
@@ -778,7 +778,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		] );
 
 		$block = $this->getMockBuilder( DatabaseBlock::class )
-			->setMethods( [ 'getId' ] )
+			->onlyMethods( [ 'getId' ] )
 			->getMock();
 		$block->method( 'getId' )
 			->willReturn( $options['blockId'] );

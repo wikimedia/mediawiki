@@ -38,7 +38,8 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testMethods( $m, $args, $index, $ret ) {
 		$mock = $this->getMockBuilder( DummySessionBackend::class )
-			->setMethods( [ $m, 'deregisterSession' ] )
+			->onlyMethods( [ 'deregisterSession' ] )
+			->addMethods( [ $m ] )
 			->getMock();
 		$mock->expects( $this->once() )->method( 'deregisterSession' )
 			->with( $this->identicalTo( 42 ) );

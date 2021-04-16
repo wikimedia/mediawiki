@@ -77,7 +77,7 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 		// replace the status object with a mock
 		$constraint = $this->getConstraint( false );
 		$mockStatus = $this->getMockBuilder( Status::class )
-			->setMethods( [ 'isGood', 'getWikiText' ] )
+			->onlyMethods( [ 'isGood', 'getWikiText' ] )
 			->getMock();
 		$mockStatus->method( 'isGood' )->willReturn( false );
 		$mockStatus->method( 'getWikiText' )->willReturn( 'WIKITEXT' );
@@ -96,7 +96,7 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 		// replace the status object with a mock
 		$constraint = $this->getConstraint( true );
 		$mockStatus = $this->getMockBuilder( Status::class )
-			->setMethods( [ 'isOK', 'getErrors', 'getWikiText' ] )
+			->onlyMethods( [ 'isOK', 'getErrors', 'getWikiText' ] )
 			->getMock();
 		$mockStatus->method( 'isOK' )->willReturn( false );
 		$mockStatus->method( 'getErrors' )->willReturn( [] );

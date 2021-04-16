@@ -66,7 +66,7 @@ class ApiMainTest extends ApiTestCase {
 	 */
 	private function getNonInternalApiMain( array $requestData, array $headers = [] ) {
 		$req = $this->getMockBuilder( WebRequest::class )
-			->setMethods( [ 'response', 'getRawIP' ] )
+			->onlyMethods( [ 'response', 'getRawIP' ] )
 			->getMock();
 		$response = new FauxResponse();
 		$req->method( 'response' )->willReturn( $response );
@@ -285,7 +285,7 @@ class ApiMainTest extends ApiTestCase {
 
 		$mock = $this->getMockBuilder( ApiMain::class )
 			->setConstructorArgs( [ $req ] )
-			->setMethods( [ 'checkMaxLag' ] )
+			->onlyMethods( [ 'checkMaxLag' ] )
 			->getMock();
 		$mock->method( 'checkMaxLag' )->willReturn( false );
 
@@ -334,7 +334,7 @@ class ApiMainTest extends ApiTestCase {
 	private function doTestCheckMaxLag( $lag ) {
 		$mockLB = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
-			->setMethods( [ 'getMaxLag', 'getConnectionRef', '__destruct' ] )
+			->onlyMethods( [ 'getMaxLag', 'getConnectionRef', '__destruct' ] )
 			->getMock();
 		$mockLB->method( 'getMaxLag' )->willReturn( [ 'somehost', $lag ] );
 		$mockLB->method( 'getConnectionRef' )->willReturn( $this->db );
@@ -526,7 +526,7 @@ class ApiMainTest extends ApiTestCase {
 
 		$module = $this->getMockBuilder( ApiBase::class )
 			->setConstructorArgs( [ $api, 'mock' ] )
-			->setMethods( [ 'getConditionalRequestData' ] )
+			->onlyMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
 		$module->expects( $this->any() )
 			->method( 'getConditionalRequestData' )
@@ -657,7 +657,7 @@ class ApiMainTest extends ApiTestCase {
 
 		$module = $this->getMockBuilder( ApiBase::class )
 			->setConstructorArgs( [ $api, 'mock' ] )
-			->setMethods( [ 'getConditionalRequestData' ] )
+			->onlyMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
 		$module->expects( $this->any() )
 			->method( 'getConditionalRequestData' )
@@ -1037,7 +1037,7 @@ class ApiMainTest extends ApiTestCase {
 
 		$badMsg = $this->getMockBuilder( ApiRawMessage::class )
 			 ->setConstructorArgs( [ 'An error', 'ignored' ] )
-			 ->setMethods( [ 'getApiCode' ] )
+			 ->onlyMethods( [ 'getApiCode' ] )
 			 ->getMock();
 		$badMsg->method( 'getApiCode' )->willReturn( "bad\nvalue" );
 		$apiEx2 = new ApiUsageException( null, StatusValue::newFatal( $badMsg ) );

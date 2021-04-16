@@ -233,7 +233,7 @@ class ApiBaseTest extends ApiTestCase {
 
 	public function testGetParameter() {
 		$mock = $this->getMockBuilder( MockApi::class )
-			->setMethods( [ 'getAllowedParams' ] )
+			->onlyMethods( [ 'getAllowedParams' ] )
 			->getMock();
 		$mock->method( 'getAllowedParams' )->willReturn( [
 			'foo' => [
@@ -1491,7 +1491,7 @@ class ApiBaseTest extends ApiTestCase {
 
 		$mock = $this->getMockBuilder( ApiBase::class )
 			->setConstructorArgs( [ $main, 'test', 'xx' ] )
-			->setMethods( [ 'getAllowedParams' ] )
+			->onlyMethods( [ 'getAllowedParams' ] )
 			->getMockForAbstractClass();
 		$mock->method( 'getAllowedParams' )->willReturn( [
 			'notexists' => null,

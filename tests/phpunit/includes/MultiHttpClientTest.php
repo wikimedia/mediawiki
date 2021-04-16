@@ -18,7 +18,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 	private function createClient( $options = [] ) {
 		$client = $this->getMockBuilder( MultiHttpClient::class )
 			->setConstructorArgs( [ $options ] )
-			->setMethods( [ 'isCurlEnabled' ] )->getMock();
+			->onlyMethods( [ 'isCurlEnabled' ] )->getMock();
 		$client->method( 'isCurlEnabled' )->willReturn( false );
 		return $client;
 	}

@@ -26,7 +26,7 @@ class RCFeedIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function testNotify() {
 		$feed = $this->getMockBuilder( RCFeedEngine::class )
 			->setConstructorArgs( [ [ 'formatter' => JSONRCFeedFormatter::class ] ] )
-			->setMethods( [ 'send' ] )
+			->onlyMethods( [ 'send' ] )
 			->getMock();
 
 		$feed->method( 'send' )

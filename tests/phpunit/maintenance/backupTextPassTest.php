@@ -93,7 +93,7 @@ class TextPassDumperDatabaseTest extends DumpTestCase {
 
 		// The mock itself
 		$prefetchMock = $this->getMockBuilder( BaseDump::class )
-			->setMethods( [ 'prefetch' ] )
+			->onlyMethods( [ 'prefetch' ] )
 			->disableOriginalConstructor()
 			->getMock();
 		$prefetchMock->method( 'prefetch' )

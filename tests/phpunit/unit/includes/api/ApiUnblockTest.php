@@ -60,7 +60,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		// in $args, the $methods methods mocked, and with ::extractRequestParams
 		// returning the $requestParams
 		$apiUnblock = $this->getMockBuilder( ApiUnblock::class )
-			->setMethods( $methods )
+			->onlyMethods( $methods )
 			->setConstructorArgs( [
 				$args['apiMain'],
 				$args['action'],

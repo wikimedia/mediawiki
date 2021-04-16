@@ -172,7 +172,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		/** @var MockObject|ContentHandler $mockHandler */
 		$mockHandler = $this->getMockBuilder( ContentHandler::class )
-			->setMethods(
+			->onlyMethods(
 				[
 					'isParserCacheSupported',
 					'serializeContent',
@@ -214,7 +214,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		/** @var MockObject|WikiPage $page */
 		$page = $this->getMockBuilder( WikiPage::class )
-			->setMethods( [ 'getRevisionRecord', 'getLatest' ] )
+			->onlyMethods( [ 'getRevisionRecord', 'getLatest' ] )
 			->setConstructorArgs( [ $title ] )
 			->getMock();
 

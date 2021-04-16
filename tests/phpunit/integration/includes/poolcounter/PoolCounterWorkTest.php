@@ -59,7 +59,7 @@ class PoolCounterWorkTest extends MediaWikiIntegrationTestCase {
 
 		$worker = $this->getMockBuilder( PoolCounterWork::class )
 			->setConstructorArgs( [ 'PoolType', 'PoolKey', $poolCounter ] )
-			->setMethods( array_keys( $workerMethods ) )
+			->onlyMethods( array_keys( $workerMethods ) )
 			->getMockForAbstractClass();
 
 		$this->configureMock( $worker, $workerMethods );

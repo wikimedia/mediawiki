@@ -48,7 +48,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 		] );
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->setConstructorArgs( [ $resourceLoader, $request ] )
-			->setMethods( [ 'getDirection' ] )
+			->onlyMethods( [ 'getDirection' ] )
 			->getMock();
 		$ctx->method( 'getDirection' )->willReturn( $options['dir'] );
 		return $ctx;

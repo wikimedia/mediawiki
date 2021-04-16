@@ -265,7 +265,6 @@ trait MediaWikiTestCaseTrait {
 		/** @var MockObject $msg */
 		$msg = $this->getMockBuilder( Message::class )
 			->disableOriginalConstructor()
-			->setMethods( [] )
 			->getMock();
 		$msg->method( 'toString' )->willReturn( $text );
 		$msg->method( '__toString' )->willReturn( $text );

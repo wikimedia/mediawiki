@@ -172,7 +172,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public function testOnSuccessMainNamespaceTitle() {
 		/** @var MockObject|IContextSource $testContext */
 		$testContext = $this->getMockBuilder( DerivativeContext::class )
-			->setMethods( [ 'msg' ] )
+			->onlyMethods( [ 'msg' ] )
 			->setConstructorArgs( [ $this->watchAction->getContext() ] )
 			->getMock();
 		$testOutput = new OutputPage( $testContext );
@@ -197,7 +197,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public function testOnSuccessTalkPage() {
 		/** @var MockObject|IContextSource $testContext */
 		$testContext = $this->getMockBuilder( DerivativeContext::class )
-			->setMethods( [ 'getOutput', 'msg' ] )
+			->onlyMethods( [ 'getOutput', 'msg' ] )
 			->setConstructorArgs( [ $this->watchAction->getContext() ] )
 			->getMock();
 		$testOutput = new OutputPage( $testContext );

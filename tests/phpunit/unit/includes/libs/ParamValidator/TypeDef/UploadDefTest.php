@@ -24,7 +24,7 @@ class UploadDefTest extends TypeDefTestCase {
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
 		$ret = $this->getMockBuilder( UploadDef::class )
 			->setConstructorArgs( [ $callbacks ] )
-			->setMethods( [ 'getIniSize' ] )
+			->onlyMethods( [ 'getIniSize' ] )
 			->getMock();
 		$ret->method( 'getIniSize' )->willReturn( $options['inisize'] ?? 2 * 1024 * 1024 );
 		return $ret;

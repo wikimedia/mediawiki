@@ -20,7 +20,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 		$this->client =
 			$this->getMockBuilder( MultiHttpClient::class )
 				->setConstructorArgs( [ [] ] )
-				->setMethods( [ 'run' ] )
+				->onlyMethods( [ 'run' ] )
 				->getMock();
 		$this->bag = new RESTBagOStuff( [ 'client' => $this->client, 'url' => 'http://test/rest/' ] );
 	}

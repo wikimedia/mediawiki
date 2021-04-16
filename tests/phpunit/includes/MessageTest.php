@@ -340,7 +340,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	 */
 	public function testToString_raw( $message, $format, $expect, $expectImplicit ) {
 		// make the message behave like RawMessage and use the key as-is
-		$msg = $this->getMockBuilder( Message::class )->setMethods( [ 'fetchMessage' ] )
+		$msg = $this->getMockBuilder( Message::class )->onlyMethods( [ 'fetchMessage' ] )
 			->disableOriginalConstructor()
 			->getMock();
 		$msg->expects( $this->any() )->method( 'fetchMessage' )->willReturn( $message );
