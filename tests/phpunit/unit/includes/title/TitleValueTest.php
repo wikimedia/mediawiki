@@ -188,6 +188,37 @@ class TitleValueTest extends \MediaWikiUnitTestCase {
 		$this->assertFalse( $title->hasFragment() );
 	}
 
+	public function provideCastPageToLinkTarget() {
+		yield [ new PageReferenceValue( NS_USER, 'Test', PageIdentity::LOCAL ) ];
+		yield [ new PageReferenceValue( NS_USER, 'Test', 'acme' ) ];
+	}
+
+	/**
+	 * @dataProvider provideNewFromPage
+	 *
+	 * @param PageReference $page
+	 */
+	public function testCastPageToLinkTarget( PageReference $page ) {
+		$title = TitleValue::castPageToLinkTarget( $page );
+
+		$this->assertSame( $page->getNamespace(), $title->getNamespace() );
+		$this->assertSame( $page->getDBkey(), $title->getDBkey() );
+		$this->assertSame( $page->getDBkey(), $title->getText() );
+		$this->assertSame( '', $title->getFragment() );
+		$this->assertSame( '', $title->getInterwiki() );
+		$this->assertFalse( $title->isExternal() );
+		$this->assertFalse( $title->hasFragment() );
+	}
+
+	public function testCastTitleToLinkTarget() {
+		$page = Title::makeTitle( NS_MAIN, 'Test' );
+		$this->assertSame( $page, TitleValue::castPageToLinkTarget( $page ) );
+	}
+
+	public function testCastNullToLinkTarget() {
+		$this->assertNull( TitleValue::castPageToLinkTarget( null ) );
+	}
+
 	public function getTextProvider() {
 		return [
 			[ 'Foo', 'Foo' ],
