@@ -2,10 +2,12 @@
 
 namespace MediaWiki\Auth;
 
+use Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -106,7 +108,13 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			$mwServices->getBlockErrorFormatter(),
 			$mwServices->getWatchlistManager()
 		);
-		$provider->setManager( $manager );
+		$provider->init(
+			$this->createNoOpMock( NullLogger::class ),
+			$manager,
+			$this->createHookContainer(),
+			$this->createNoOpAbstractMock( Config::class ),
+			$userNameUtils
+		);
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 
 		$msg = wfMessage( 'foo' );

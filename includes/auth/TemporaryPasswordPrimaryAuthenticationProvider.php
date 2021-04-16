@@ -76,9 +76,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 		}
 	}
 
-	public function setConfig( \Config $config ) {
-		parent::setConfig( $config );
-
+	protected function postInitSetup() {
 		if ( $this->emailEnabled === null ) {
 			$this->emailEnabled = $this->config->get( 'EnableEmail' );
 		}

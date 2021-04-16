@@ -5,6 +5,7 @@ namespace MediaWiki\Auth;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -68,10 +69,13 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->will( $this->returnCallback( function () {
 				return $this->validity;
 			} ) );
-		$provider->setConfig( $config );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setManager( $this->manager );
-		$provider->setHookContainer( $hookContainer );
+		$provider->init(
+			new NullLogger(),
+			$this->manager,
+			$hookContainer,
+			$config,
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		return $provider;
 	}
@@ -81,7 +85,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$userName = $user->getName();
 		$lowerInitialUserName = mb_strtolower( $userName[0] ) . substr( $userName, 1 );
 
-		$provider = new LocalPasswordPrimaryAuthenticationProvider();
+		$provider = $this->getProvider();
 
 		$this->assertSame(
 			PrimaryAuthenticationProvider::TYPE_CREATE,
@@ -93,7 +97,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->assertFalse( $provider->testUserExists( 'DoesNotExist' ) );
 		$this->assertFalse( $provider->testUserExists( '<invalid>' ) );
 
-		$provider = new LocalPasswordPrimaryAuthenticationProvider( [ 'loginOnly' => true ] );
+		$provider = $this->getProvider( [ 'loginOnly' => true ] );
 
 		$this->assertSame(
 			PrimaryAuthenticationProvider::TYPE_NONE,
@@ -151,9 +155,13 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->config->set( 'InvalidPasswordReset', true );
 
 		$provider = new LocalPasswordPrimaryAuthenticationProvider();
-		$provider->setConfig( $this->config );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setManager( $this->manager );
+		$provider->init(
+			new NullLogger(),
+			$this->manager,
+			$this->createHookContainer(),
+			$this->config,
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$user = $this->getMutableTestUser()->getUser();

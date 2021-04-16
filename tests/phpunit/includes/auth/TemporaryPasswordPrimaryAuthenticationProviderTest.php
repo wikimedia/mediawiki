@@ -5,6 +5,7 @@ namespace MediaWiki\Auth;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
@@ -69,10 +70,14 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			->will( $this->returnCallback( function () {
 				return $this->validity;
 			} ) );
-		$provider->setConfig( $config );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setManager( $this->manager );
-		$provider->setHookContainer( $hookContainer );
+		$userNameUtils = $this->getServiceContainer()->getUserNameUtils();
+		$provider->init(
+			new NullLogger(),
+			$this->manager,
+			$hookContainer,
+			$config,
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		return $provider;
 	}
@@ -91,7 +96,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 	}
 
 	public function testBasics() {
-		$provider = new TemporaryPasswordPrimaryAuthenticationProvider();
+		$provider = $this->getProvider();
 
 		$this->assertSame(
 			PrimaryAuthenticationProvider::TYPE_CREATE,
@@ -118,7 +123,13 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		] );
 
 		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider() );
-		$p->setConfig( $config );
+		$p->init(
+			$this->createNoOpMock( NullLogger::class ),
+			$this->createNoOpMock( AuthManager::class ),
+			$this->createHookContainer(),
+			$config,
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$this->assertSame( false, $p->emailEnabled );
 		$this->assertSame( 100, $p->newPasswordExpiry );
 		$this->assertSame( 101, $p->passwordReminderResendTime );
@@ -129,7 +140,13 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			'passwordReminderResendTime' => 43,
 			'allowRequiringEmailForResets' => true,
 		] ) );
-		$p->setConfig( $config );
+		$p->init(
+			$this->createNoOpMock( NullLogger::class ),
+			$this->createNoOpMock( AuthManager::class ),
+			$this->createHookContainer(),
+			$config,
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$this->assertSame( true, $p->emailEnabled );
 		$this->assertSame( 42, $p->newPasswordExpiry );
 		$this->assertSame( 43, $p->passwordReminderResendTime );

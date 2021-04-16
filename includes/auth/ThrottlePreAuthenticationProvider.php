@@ -22,7 +22,6 @@
 namespace MediaWiki\Auth;
 
 use BagOStuff;
-use Config;
 
 /**
  * A pre-authentication provider to throttle authentication actions.
@@ -61,9 +60,7 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 		$this->cache = $params['cache'] ?? \ObjectCache::getLocalClusterInstance();
 	}
 
-	public function setConfig( Config $config ) {
-		parent::setConfig( $config );
-
+	protected function postInitSetup() {
 		$accountCreationThrottle = $this->config->get( 'AccountCreationThrottle' );
 		// Handle old $wgAccountCreationThrottle format (number of attempts per 24 hours)
 		if ( !is_array( $accountCreationThrottle ) ) {
