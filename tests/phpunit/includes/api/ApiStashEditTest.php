@@ -15,11 +15,19 @@ use Wikimedia\TestingAccessWrapper;
 class ApiStashEditTest extends ApiTestCase {
 	protected function setUp() : void {
 		parent::setUp();
+		// Hack to make user edit tracker survive service reset.
+		// We want it's cache to persist within tests run, otherwise
+		// incorrect in-process cache is being reset, and we get outdated
+		// edit counts.
+		$this->setService( 'UserEditTracker', $this->getServiceContainer()
+			->getUserEditTracker() );
 		$this->setService( 'PageEditStash', new PageEditStash(
 			new HashBagOStuff( [] ),
 			MediaWikiServices::getInstance()->getDBLoadBalancer(),
 			new NullLogger(),
 			new NullStatsdDataFactory(),
+			MediaWikiServices::getInstance()->getUserEditTracker(),
+			MediaWikiServices::getInstance()->getUserFactory(),
 			MediaWikiServices::getInstance()->getHookContainer(),
 			PageEditStash::INITIATOR_USER
 		) );

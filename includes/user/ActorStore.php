@@ -31,6 +31,7 @@ use stdClass;
 use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
+use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -423,18 +424,15 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		if ( !$row || !$row->actor_id ) {
 			return null;
 		}
-
-		$id = (int)$row->actor_id;
-
 		// to cache row
 		$this->newActorFromRow( $row );
 
-		return $id;
+		return (int)$row->actor_id;
 	}
 
 	/**
-	 * Attempt to assign an actor ID to the given $user
-	 * If it is already assigned, return the existing ID.
+	 * Attempt to assign an actor ID to the given $user. If it is already assigned,
+	 * return the existing ID.
 	 *
 	 * @note If called within a transaction, the returned ID might become invalid
 	 * if the transaction is rolled back, so it should not be passed outside of the
@@ -447,7 +445,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 *        LoadBalancer provided to the constructor.
 	 *        Not providing a database connection triggers a deprecation warning!
 	 *        In the future, this parameter will be required.
-	 * @return int greater then 0
+	 * @return int actor ID greater then 0
 	 * @throws CannotCreateActorException if no actor ID has been assigned to this $user
 	 */
 	public function acquireActorId( UserIdentity $user, IDatabase $dbw = null ): int {
@@ -462,34 +460,13 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			);
 			[ $dbw, ] = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
 		}
-		// TODO: we want to assert this user belongs to the correct wiki,
-		// but User objects are always local and we used to use them
-		// on a non-local DB connection. We need to first deprecate this
-		// possibility and then throw on mismatching User object - T273972
-		// $user->assertWiki( $this->wikiId );
-
-		$userName = $this->normalizeUserName( $user->getName() );
-		if ( $userName === null || $userName === '' ) {
-			$userIdForErrorMessage = $user->getId( $this->wikiId );
-			throw new CannotCreateActorException(
-				'Cannot create an actor for a user with no name: ' .
-				"user_id={$userIdForErrorMessage} user_name=\"{$user->getName()}\""
-			);
-		}
+		[ $userId, $userName ] = $this->validateActorForInsertion( $user );
 
 		// allow cache to be used, because if it is in the cache, it already has an actor ID
 		$existingActorId = $this->findActorIdInternal( $userName, $dbw );
 		if ( $existingActorId ) {
 			$this->attachActorId( $user, $existingActorId );
 			return $existingActorId;
-		}
-
-		$userId = $user->getId( $this->wikiId ) ?: null;
-		if ( $userId === null && $this->userNameUtils->isUsable( $user->getName() ) ) {
-			throw new CannotCreateActorException(
-				'Cannot create an actor for a usable name that is not an existing user: ' .
-				"user_name=\"{$user->getName()}\""
-			);
 		}
 
 		$dbw->insert(
@@ -499,9 +476,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 				'actor_name' => $userName,
 			],
 			__METHOD__,
-			[ 'IGNORE' ] );
+			[ 'IGNORE' ]
+		);
+
 		if ( $dbw->affectedRows() ) {
-			$actorId = (int)$dbw->insertId();
+			$actorId = $dbw->insertId();
 		} else {
 			// Outdated cache?
 			// Use LOCK IN SHARE MODE to bypass any MySQL REPEATABLE-READ snapshot.
@@ -518,25 +497,115 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			}
 		}
 
-		// Set the actor ID in the User object. To be removed, see T274148.
-		if ( $user instanceof User ) {
-			$user->setActorId( $actorId );
-		}
-
+		$this->attachActorId( $user, $actorId );
 		// Cache row we've just created
 		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
-		if ( $dbw->trxLevel() ) {
-			// If called within a transaction and it was rolled back, the cached actor ID
-			// becomes invalid, so cache needs to be invalidated as well. See T277795.
-			$dbw->onTransactionResolution(
-				function ( int $trigger ) use ( $actorId, $cachedUserIdentity, $user ) {
-					if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
-						$this->deleteUserIdentityFromCache( $actorId, $cachedUserIdentity );
-						$this->detachActorId( $user );
-					}
-				} );
+		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
+		return $actorId;
+	}
+
+	/**
+	 * Create a new actor for the given $user. If an actor with this name already exists,
+	 * this method throws.
+	 *
+	 * @note If called within a transaction, the returned ID might become invalid
+	 * if the transaction is rolled back, so it should not be passed outside of the
+	 * transaction context.
+	 *
+	 * @param UserIdentity $user
+	 * @param IDatabase $dbw
+	 * @return int actor ID greater then 0
+	 * @throws CannotCreateActorException if an actor with this name already exist.
+	 * @internal for use in user account creation only.
+	 */
+	public function createNewActor( UserIdentity $user, IDatabase $dbw ) : int {
+		$this->checkDatabaseDomain( $dbw );
+		[ $userId, $userName ] = $this->validateActorForInsertion( $user );
+
+		try {
+			$dbw->insert(
+				'actor',
+				[
+					'actor_user' => $userId,
+					'actor_name' => $userName,
+				],
+				__METHOD__
+			);
+		} catch ( DBQueryError $e ) {
+			// We rely on the database to crash on unique actor_name constraint.
+			throw new CannotCreateActorException( $e->getMessage() );
+		}
+		$actorId = $dbw->insertId();
+
+		$this->attachActorId( $user, $actorId );
+		// Cache row we've just created
+		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
+		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
+
+		return $actorId;
+	}
+
+	/**
+	 * Attempt to assign an ID to an actor for a system user. If an actor ID already
+	 * exists, return it.
+	 *
+	 * @note For reserved user names this method will overwrite the user ID of the
+	 * existing anon actor.
+	 *
+	 * @note If called within a transaction, the returned ID might become invalid
+	 * if the transaction is rolled back, so it should not be passed outside of the
+	 * transaction context.
+	 *
+	 * @param UserIdentity $user
+	 * @param IDatabase $dbw
+	 * @return int actor ID greater then zero
+	 * @throws CannotCreateActorException if the existing actor is associated with registered user.
+	 * @internal for use in user account creation only.
+	 */
+	public function acquireSystemActorId( UserIdentity $user, IDatabase $dbw ) : int {
+		$this->checkDatabaseDomain( $dbw );
+		[ $userId, $userName ] = $this->validateActorForInsertion( $user );
+
+		$existingActorId = $this->findActorIdInternal( $userName, $dbw );
+		if ( $existingActorId ) {
+			// It certainly will be cached if we just found it.
+			$existingActor = $this->actorsByActorId->get( $existingActorId )[0];
+
+			// If we already have an existing actor with a matching user ID
+			// just return it, nothing to do here.
+			if ( $existingActor->getId( $this->wikiId ) === $user->getId( $this->wikiId ) ) {
+				return $existingActorId;
+			}
+
+			// Allow overwriting user ID for already existing actor with reserved user name, see T236444
+			if ( $this->userNameUtils->isUsable( $userName ) || $existingActor->isRegistered() ) {
+				throw new CannotCreateActorException(
+					'Cannot replace user for existing actor: ' .
+					"actor_id=$existingActorId, new user_id=$userId"
+				);
+			}
 		}
 
+		$dbw->upsert(
+			'actor',
+			[ 'actor_name' => $userName, 'actor_user' => $userId ],
+			[ 'actor_name' ],
+			[ 'actor_user' => $userId ],
+			__METHOD__
+		);
+		if ( !$dbw->affectedRows() ) {
+			throw new CannotCreateActorException(
+				'Failed to replace user for actor: ' .
+				"actor_id=$existingActorId, new user_id=$userId"
+			);
+		}
+		$actorId = $dbw->insertId() ?: $existingActorId;
+
+		$this->deleteUserIdentityFromCache( $actorId, $user );
+		$this->attachActorId( $user, $actorId );
+		// Cache row we've just created
+		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
+		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
 		return $actorId;
 	}
 
@@ -562,6 +631,65 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			return $normalized === false ? null : $normalized;
 		} else {
 			return $name === '' ? null : $name;
+		}
+	}
+
+	/**
+	 * Validates actor before insertion.
+	 *
+	 * @param UserIdentity $user
+	 * @return array [ $normalizedUserId, $normalizedName ]
+	 */
+	private function validateActorForInsertion( UserIdentity $user ): array {
+		// TODO: we want to assert this user belongs to the correct wiki,
+		// but User objects are always local and we used to use them
+		// on a non-local DB connection. We need to first deprecate this
+		// possibility and then throw on mismatching User object - T273972
+		// $user->assertWiki( $this->wikiId );
+
+		$userName = $this->normalizeUserName( $user->getName() );
+		if ( $userName === null || $userName === '' ) {
+			$userIdForErrorMessage = $user->getId( $this->wikiId );
+			throw new CannotCreateActorException(
+				'Cannot create an actor for a user with no name: ' .
+				"user_id={$userIdForErrorMessage} user_name=\"{$user->getName()}\""
+			);
+		}
+
+		$userId = $user->getId( $this->wikiId ) ?: null;
+		if ( $userId === null && $this->userNameUtils->isUsable( $user->getName() ) ) {
+			throw new CannotCreateActorException(
+				'Cannot create an actor for a usable name that is not an existing user: ' .
+				"user_name=\"{$user->getName()}\""
+			);
+		}
+		return [ $userId, $userName ];
+	}
+
+	/**
+	 * Clear in-process caches if transaction gets rolled back.
+	 *
+	 * @param IDatabase $dbw
+	 * @param int $actorId
+	 * @param UserIdentity $cachedActor
+	 * @param UserIdentity $originalActor
+	 */
+	private function setUpRollbackHandler(
+		IDatabase $dbw,
+		int $actorId,
+		UserIdentity $cachedActor,
+		UserIdentity $originalActor
+	) {
+		if ( $dbw->trxLevel() ) {
+			// If called within a transaction and it was rolled back, the cached actor ID
+			// becomes invalid, so cache needs to be invalidated as well. See T277795.
+			$dbw->onTransactionResolution(
+				function ( int $trigger ) use ( $actorId, $cachedActor, $originalActor ) {
+					if ( $trigger === IDatabase::TRIGGER_ROLLBACK ) {
+						$this->deleteUserIdentityFromCache( $actorId, $cachedActor );
+						$this->detachActorId( $originalActor );
+					}
+				} );
 		}
 	}
 

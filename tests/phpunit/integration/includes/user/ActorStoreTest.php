@@ -45,8 +45,6 @@ class ActorStoreTest extends ActorStoreTestBase {
 	/**
 	 * @dataProvider provideGetActorById
 	 * @covers ::getActorById
-	 * @covers ::getUserIdentityByName
-	 * @covers ::getUserIdentityByUserId
 	 */
 	public function testGetActorById( $argument, ?UserIdentity $expected ) {
 		$actor = $this->getStore()->getActorById( $argument, $this->db );
@@ -131,7 +129,6 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	/**
-	 * should check that select is only called once
 	 * @dataProvider provideUserIdentityValues
 	 * @covers ::findActorId
 	 * @covers ::getActorById
@@ -545,24 +542,43 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	public function provideAcquireActorId_foreign() {
-		yield 'anon' => [ static function () {
-			return new UserIdentityValue( 0, '127.3.2.1', 'acmewiki' );
-		} ];
-		yield 'registered' => [ static function () {
-			return new UserIdentityValue( 15, 'MyUser', 'acmewiki' );
-		} ];
+		yield 'anon' => [
+			'userCallback' => static function () {
+				return new UserIdentityValue( 0, '127.3.2.1', 'acmewiki' );
+			},
+			'method' => 'acquireActorId'
+		];
+		yield 'registered' => [
+			'userCallback' => static function () {
+				return new UserIdentityValue( 15, 'MyUser', 'acmewiki' );
+			},
+			'method' => 'acquireActorId'
+		];
+		yield 'anon, new' => [
+			'userCallback' => static function () {
+				return new UserIdentityValue( 0, '128.9.8.7', 'acmewiki' );
+			},
+			'method' => 'createNewActor'
+		];
+		yield 'registered, new' => [
+			'userCallback' => static function () {
+				return new UserIdentityValue( 15, 'New MyUser', 'acmewiki' );
+			},
+			'method' => 'createNewActor'
+		];
 	}
 
 	/**
 	 * @dataProvider provideAcquireActorId_foreign
 	 * @covers ::acquireActorId
+	 * @covers ::createNewActor
 	 */
-	public function testAcquireActorId_foreign( callable $userCallback ) {
+	public function testAcquireActorId_foreign( callable $userCallback, string $method ) {
 		$user = $userCallback( $this->getServiceContainer() );
 		$this->executeWithForeignStore(
 			'acmewiki',
-			function ( ActorStore $store ) use ( $user ) {
-				$actorId = $store->acquireActorId( $user, $this->db );
+			function ( ActorStore $store ) use ( $user, $method ) {
+				$actorId = $store->$method( $user, $this->db );
 				$this->assertTrue( $actorId > 0 );
 				if ( $user instanceof User ) {
 					$this->assertSame( $actorId, $user->getActorId() );
@@ -574,13 +590,14 @@ class ActorStoreTest extends ActorStoreTestBase {
 	/**
 	 * @dataProvider provideAcquireActorId_foreign
 	 * @covers ::acquireActorId
+	 * @covers ::createNewActor
 	 */
-	public function testAcquireActorId_foreign_withDBConnection( callable $userCallback ) {
+	public function testAcquireActorId_foreign_withDBConnection( callable $userCallback, string $method ) {
 		$user = $userCallback( $this->getServiceContainer() );
 		$this->executeWithForeignStore(
 			'acmewiki',
-			function ( ActorStore $store, IDatabase $dbw ) use ( $user ) {
-				$actorId = $store->acquireActorId( $user, $dbw );
+			function ( ActorStore $store, IDatabase $dbw ) use ( $user, $method ) {
+				$actorId = $store->$method( $user, $dbw );
 				$this->assertTrue( $actorId > 0 );
 				if ( $user instanceof User ) {
 					$this->assertSame( $actorId, $user->getActorId() );
@@ -590,17 +607,57 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	public function provideAcquireActorId_canNotCreate() {
-		yield 'usable name' => [ new UserIdentityValue( 0, 'MyFancyUser' ) ];
-		yield 'empty name' => [ new UserIdentityValue( 15, '' ) ];
+		yield 'usable name' => [
+			'actor' => new UserIdentityValue( 0, 'MyFancyUser' ),
+			'method' => 'acquireActorId'
+		];
+		yield 'empty name' => [
+			'actor' => new UserIdentityValue( 15, '' ),
+			'method' => 'acquireActorId'
+		];
+		yield 'usable name, new' => [
+			'actor' => new UserIdentityValue( 0, 'MyFancyUser' ),
+			'method' => 'createNewActor'
+		];
+		yield 'empty name, new' => [
+			'actor' => new UserIdentityValue( 15, '' ),
+			'method' => 'createNewActor'
+		];
+		yield 'usable name, replace' => [
+			'actor' => new UserIdentityValue( 0, 'MyFancyUser' ),
+			'method' => 'acquireSystemActorId'
+		];
+		yield 'empty name, replace' => [
+			'actor' => new UserIdentityValue( 15, '' ),
+			'method' => 'acquireSystemActorId'
+		];
+		yield 'existing non-anon, replace' => [
+			'actor' => new UserIdentityValue( 25, 'TestUser' ),
+			'method' => 'acquireSystemActorId'
+		];
 	}
 
 	/**
 	 * @dataProvider provideAcquireActorId_canNotCreate
 	 * @covers ::acquireActorId
+	 * @covers ::createNewActor
+	 * @covers ::acquireSystemActorId
 	 */
-	public function testAcquireActorId_canNotCreate( UserIdentityValue $actor ) {
+	public function testAcquireActorId_canNotCreate( UserIdentityValue $actor, string $method ) {
+		// We rely on DB to protect against duplicates when inserting new actor
+		$this->setNullLogger( 'DBQuery' );
 		$this->expectException( CannotCreateActorException::class );
-		$this->getStore()->acquireActorId( $actor, $this->db );
+		$this->getStore()->$method( $actor, $this->db );
+	}
+
+	/**
+	 * @covers ::createNewActor
+	 */
+	public function testAcquireNowActorId_existing() {
+		// We rely on DB to protect against duplicates when inserting new actor
+		$this->setNullLogger( 'DBQuery' );
+		$this->expectException( CannotCreateActorException::class );
+		$this->getStore()->createNewActor( new UserIdentityValue( 24, 'TestUser' ), $this->db );
 	}
 
 	public function provideAcquireActorId_existing() {
@@ -629,6 +686,22 @@ class ActorStoreTest extends ActorStoreTestBase {
 	public function testAcquireActorId_domain_mismatch() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->getStore( 'fancywiki' )->acquireActorId(
+			new UserIdentityValue( 15, 'Test', 'fancywiki' ),
+			$this->db
+		);
+	}
+
+	public function testcreateNewActor_domain_mismatch() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->getStore( 'fancywiki' )->createNewActor(
+			new UserIdentityValue( 15, 'Test', 'fancywiki' ),
+			$this->db
+		);
+	}
+
+	public function testAcquireSystemActorId_domain_mismatch() {
+		$this->expectException( InvalidArgumentException::class );
+		$this->getStore( 'fancywiki' )->acquireSystemActorId(
 			new UserIdentityValue( 15, 'Test', 'fancywiki' ),
 			$this->db
 		);
@@ -675,6 +748,55 @@ class ActorStoreTest extends ActorStoreTestBase {
 
 		// Make sure we find correct actor by rolled back actor ID
 		$this->assertSameActors( $anotherActor, $store->getActorById( $anotherActorId, $this->db ) );
+	}
+
+	/**
+	 * @covers ::acquireSystemActorId
+	 */
+	public function testAcquireSystemActorId() {
+		$store = $this->getStore();
+		$originalActor = new UserIdentityValue( 0, '129.0.0.1' );
+		$actorId = $store->createNewActor( $originalActor, $this->db );
+		$this->assertTrue( $actorId > 0, 'Sanity: acquired new actor ID' );
+
+		$updatedActor = new UserIdentityValue( 56789, '129.0.0.1' );
+		$this->assertSame( $actorId, $store->acquireSystemActorId( $updatedActor, $this->db ) );
+		$this->assertSame( 56789, $store->getActorById( $actorId, $this->db )->getId() );
+		// Try with another store to verify not just cache was updated
+		$this->assertSame( 56789, $this->getStore()->getActorById( $actorId, $this->db )->getId() );
+	}
+
+	/**
+	 * @covers ::acquireSystemActorId
+	 */
+	public function testAcquireSystemActorId_replaceReserved() {
+		$this->setMwGlobals( [
+			'wgReservedUsernames' => [ 'RESERVED' ],
+		] );
+		$store = $this->getStore();
+		$originalActor = new UserIdentityValue( 0, 'RESERVED' );
+		$actorId = $store->createNewActor( $originalActor, $this->db );
+		$this->assertTrue( $actorId > 0, 'Sanity: acquired new actor ID' );
+
+		$updatedActor = new UserIdentityValue( 80, 'RESERVED' );
+		$this->assertSame( $actorId, $store->acquireSystemActorId( $updatedActor, $this->db ) );
+		$this->assertSame( 80, $store->getActorById( $actorId, $this->db )->getId() );
+		// Try with another store to verify not just cache was updated
+		$this->assertSame( 80, $this->getStore()->getActorById( $actorId, $this->db )->getId() );
+	}
+
+	/**
+	 * @covers ::acquireSystemActorId
+	 */
+	public function testAcquireSystemActorId_assignsNew() {
+		$store = $this->getStore();
+
+		$newActor = new UserIdentityValue( 456789, '129.0.0.2' );
+		$newActorId = $store->acquireSystemActorId( $newActor, $this->db );
+		$this->assertTrue( $newActorId > 0 );
+		$this->assertSame( 456789, $store->getActorById( $newActorId, $this->db )->getId() );
+		// Try with another store to verify not just cache was updated
+		$this->assertSame( 456789, $this->getStore()->getActorById( $newActorId, $this->db )->getId() );
 	}
 
 	/**

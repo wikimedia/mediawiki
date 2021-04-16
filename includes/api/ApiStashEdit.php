@@ -22,6 +22,7 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Prepare an edit in shared cache so that it can be reused on edit
@@ -204,13 +205,13 @@ class ApiStashEdit extends ApiBase {
 	/**
 	 * @param WikiPage $page
 	 * @param Content $content Edit content
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $summary Edit summary
 	 * @return string ApiStashEdit::ERROR_* constant
 	 * @since 1.25
 	 * @deprecated Since 1.34
 	 */
-	public function parseAndStash( WikiPage $page, Content $content, User $user, $summary ) {
+	public function parseAndStash( WikiPage $page, Content $content, UserIdentity $user, $summary ) {
 		return $this->pageEditStash->parseAndCache( $page, $content, $user, $summary ?? '' );
 	}
 
