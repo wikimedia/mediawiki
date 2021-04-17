@@ -187,6 +187,10 @@ class ImportImages extends Maintenance {
 
 		$sourceWikiUrl = $this->getOption( 'source-wiki-url' );
 
+		$tags = in_array( ChangeTags::TAG_SERVER_SIDE_UPLOAD, ChangeTags::getSoftwareTags() )
+			? [ ChangeTags::TAG_SERVER_SIDE_UPLOAD ]
+			: [];
+
 		# Batch "upload" operation
 		$count = count( $files );
 		if ( $count > 0 ) {
@@ -350,7 +354,8 @@ class ImportImages extends Maintenance {
 					$commentText,
 					$user,
 					$props,
-					$timestamp
+					$timestamp,
+					$tags
 				)->isOK() ) {
 					$this->output( "done.\n" );
 
