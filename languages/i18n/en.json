@@ -3763,6 +3763,8 @@
 	"tag-mw-manual-revert-description": "Edits that manually restore the page to an exact previous state",
 	"tag-mw-reverted": "Reverted",
 	"tag-mw-reverted-description": "Edits that were later reverted by a different edit",
+	"tag-mw-server-side-upload": "Server-side upload",
+	"tag-mw-server-side-upload-description": "Media files that were uploaded via a maintenance script",
 	"tags-title": "Tags",
 	"tags-intro": "This page lists the tags that the software may mark an edit with, and their meaning.",
 	"tags-tag": "Tag name",

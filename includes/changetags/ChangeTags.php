@@ -84,6 +84,10 @@ class ChangeTags {
 	 * with an extra 'revertId' field containing the revision ID of the reverting edit.
 	 */
 	public const TAG_REVERTED = 'mw-reverted';
+	/**
+	 * This tagged edit was performed while importing media files using the importImages.php maintenance script.
+	 */
+	public const TAG_SERVER_SIDE_UPLOAD = 'mw-server-side-upload';
 
 	/**
 	 * List of tags which denote a revert of some sort. (See also TAG_REVERTED.)
@@ -116,6 +120,7 @@ class ChangeTags {
 		'mw-undo',
 		'mw-manual-revert',
 		'mw-reverted',
+		'mw-server-side-upload',
 	];
 
 	/**

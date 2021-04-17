@@ -31,6 +31,8 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 === New user-facing features in 1.37 ===
+* Media files uploaded server side using the importImages.php maintenance
+  script now have the "mw-server-side-upload" change tag.
 * …
 
 === New developer features in 1.37 ===
