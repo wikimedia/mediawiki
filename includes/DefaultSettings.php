@@ -1589,19 +1589,22 @@ $wgXMLMimeTypes = [
 ];
 
 /**
- * Limit images on image description pages to a user-selectable limit. In order
- * to reduce disk usage, limits can only be selected from a list.
+ * Limit images on image description pages to a user-selectable limit.
+ *
+ * In order to reduce disk usage, limits can only be selected from this list.
  * The user preference is saved as an array offset in the database, by default
  * the offset is set with $wgDefaultUserOptions['imagesize']. Make sure you
  * change it if you alter the array (see T10858).
- * This is the list of settings the user can choose from:
+ *
+ * This list is also used by ImagePage for alternate size links.
  */
 $wgImageLimits = [
 	[ 320, 240 ],
 	[ 640, 480 ],
 	[ 800, 600 ],
 	[ 1024, 768 ],
-	[ 1280, 1024 ]
+	[ 1280, 1024 ],
+	[ 2560, 2048 ],
 ];
 
 /**
