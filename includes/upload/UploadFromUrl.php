@@ -68,7 +68,7 @@ class UploadFromUrl extends UploadBase {
 
 	/**
 	 * Checks whether the URL is for an allowed host
-	 * The domains in the whitelist can include wildcard characters (*) in place
+	 * The domains in the allowlist can include wildcard characters (*) in place
 	 * of any of the domain levels, e.g. '*.flickr.com' or 'upload.*.gov.uk'.
 	 *
 	 * @param string $url
@@ -85,7 +85,7 @@ class UploadFromUrl extends UploadBase {
 		}
 		$valid = false;
 		foreach ( $wgCopyUploadsDomains as $domain ) {
-			// See if the domain for the upload matches this whitelisted domain
+			// See if the domain for the upload matches this allowed domain
 			$domainPieces = explode( '.', $domain );
 			$uploadDomainPieces = explode( '.', $parsedUrl['host'] );
 			if ( count( $domainPieces ) === count( $uploadDomainPieces ) ) {
