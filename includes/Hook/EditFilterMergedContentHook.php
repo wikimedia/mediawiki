@@ -17,9 +17,9 @@ use User;
 interface EditFilterMergedContentHook {
 	/**
 	 * Use this hook for a post-section-merge edit filter. This may be triggered by
-	 * the EditPage or any other facility that modifies page content. Use the $status
-	 * object to indicate whether the edit should be allowed and to provide a reason
-	 * for disallowing it. $status->apiHookResult can be set to an array to be returned
+	 * the EditPage or any other facility that modifies page content. Use the return value
+	 * to indicate whether the edit should be allowed, and use the $status object to provide
+	 * a reason for disallowing it. $status->apiHookResult can be set to an array to be returned
 	 * by api.php action=edit. This is used to deliver captchas.
 	 *
 	 * @since 1.35
@@ -30,9 +30,10 @@ interface EditFilterMergedContentHook {
 	 * @param string $summary Edit summary for page
 	 * @param User $user User whois performing the edit
 	 * @param bool $minoredit Whether the edit was marked as minor by the user.
-	 * @return bool|void True or no return value to continue or false to abort the edit.
-	 *   Returning true if $status->isOK() returns false means "don't save but continue user
-	 *   interaction", e.g. show the edit form.
+	 * @return bool|void False or no return value with not $status->isOK() to abort the edit
+	 *   and show the edit form, true to continue. But because mutiple triggers of this hook
+	 *   may have different behavior in different version (T273354), you'd better return false
+	 *   and set $status->value to EditPage::AS_HOOK_ERROR_EXPECTED or any other customized value.
 	 */
 	public function onEditFilterMergedContent( IContextSource $context, Content $content, Status $status,
 		$summary, User $user, $minoredit
