@@ -252,6 +252,7 @@ class SpecialMute extends FormSpecialPage {
 	 * @return bool
 	 */
 	public function isTargetBlacklisted( $userOption ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return $this->isTargetMuted( $userOption );
 	}
 
