@@ -82,7 +82,7 @@ class UserPasswordPolicyTest extends MediaWikiIntegrationTestCase {
 				'MinimumPasswordLengthToLogin' => 1,
 				'PasswordCannotMatchUsername' => true,
 				'PasswordCannotBeSubstringInUsername' => true,
-				'PasswordCannotMatchBlacklist' => true,
+				'PasswordCannotMatchDefaults' => true,
 				'MaximalPasswordLength' => 4096,
 			],
 			$upp->getPoliciesForUser( $user )
