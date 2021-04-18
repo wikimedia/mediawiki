@@ -59,6 +59,13 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
   in jQuery 3. See T280944 for more information.
 * $wgMimeTypeBlacklist - This configuration array now prohibits the RFC 4329
   form of JavaScript, 'application/javascript', as well as previous MIME types.
+* A number of settings have been renamed. The former configuration variable
+  names are deprecated, but will be used as the fall back if they are still set,
+  and remain temporarily available for extensions which try to read them:
+  - $wgFileBlacklist is now $wgProhibitedFileExtensions
+  - $wgMimeTypeBlacklist is now $wgMimeTypeExclusions
+  - $wgEnableUserEmailBlacklist is now $wgEnableUserEmailMuteList
+  - $wgShortPagesNamespaceBlacklist is now $wgShortPagesNamespaceExclusions
 * …
 
 ==== Removed configuration ====

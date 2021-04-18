@@ -447,8 +447,8 @@ abstract class UploadBase {
 		global $wgVerifyMimeType, $wgVerifyMimeTypeIE;
 		if ( $wgVerifyMimeType ) {
 			wfDebug( "mime: <$mime> extension: <{$this->mFinalExtension}>" );
-			global $wgMimeTypeBlacklist;
-			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) ) {
+			global $wgMimeTypeExclusions;
+			if ( self::checkFileExtension( $mime, $wgMimeTypeExclusions ) ) {
 				return [ 'filetype-badmime', $mime ];
 			}
 
@@ -463,7 +463,7 @@ abstract class UploadBase {
 					$extMime = $magic->getMimeTypeFromExtensionOrNull( (string)$this->mFinalExtension ) ?? '';
 					$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
 					foreach ( $ieTypes as $ieType ) {
-						if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
+						if ( self::checkFileExtension( $ieType, $wgMimeTypeExclusions ) ) {
 							return [ 'filetype-bad-ie-mime', $ieType ];
 						}
 					}
@@ -1064,11 +1064,11 @@ abstract class UploadBase {
 			}
 		}
 
-		/* Don't allow users to override the blacklist (check file extension) */
+		// Don't allow users to override the list of prohibited file extensions (check file extension)
 		global $wgCheckFileExtensions, $wgStrictFileExtensions;
-		global $wgFileExtensions, $wgFileBlacklist;
+		global $wgFileExtensions, $wgProhibitedFileExtensions;
 
-		$blackListedExtensions = $this->checkFileExtensionList( $ext, $wgFileBlacklist );
+		$blackListedExtensions = self::checkFileExtensionList( $ext, $wgProhibitedFileExtensions );
 
 		if ( $this->mFinalExtension == '' ) {
 			$this->mTitleError = self::FILETYPE_MISSING;

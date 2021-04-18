@@ -16,7 +16,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 
 		$this->userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();
 		$this->setMwGlobals( [
-			'wgEnableUserEmailBlacklist' => true
+			'wgEnableUserEmailMuteList' => true
 		] );
 	}
 
@@ -53,7 +53,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 		);
 
 		$this->setMwGlobals( [
-			'wgEnableUserEmailBlacklist' => false
+			'wgEnableUserEmailMuteList' => false
 		] );
 
 		$user = $this->getTestUser()->getUser();

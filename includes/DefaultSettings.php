@@ -1108,8 +1108,10 @@ $wgFileExtensions = [ 'png', 'gif', 'jpg', 'jpeg', 'webp' ];
  * Files with these extensions will never be allowed as uploads.
  * An array of file extensions to prevent being uploaded. You should
  * append to this array if you want to prevent additional file extensions.
+ *
+ * @since 1.37; previously $wgFileBlacklist
  */
-$wgFileBlacklist = [
+$wgProhibitedFileExtensions = [
 	# HTML may contain cookie-stealing JavaScript and web bugs
 	'html', 'htm', 'js', 'jsb', 'mhtml', 'mht', 'xhtml', 'xht',
 	# PHP scripts may execute arbitrary code on the server
@@ -1123,8 +1125,10 @@ $wgFileBlacklist = [
 /**
  * Files with these MIME types will never be allowed as uploads
  * if $wgVerifyMimeType is enabled.
+ *
+ * @since 1.37; previously $wgMimeTypeBlacklist
  */
-$wgMimeTypeBlacklist = [
+$wgMimeTypeExclusions = [
 	# HTML may contain cookie-stealing JavaScript and web bugs
 	'text/html',
 	# Similarly with JavaScript itself
@@ -1877,11 +1881,11 @@ $wgEnableUserEmail = true;
 $wgEnableSpecialMute = false;
 
 /**
- * Set to true to enable user-to-user e-mail blacklist.
+ * Set to true to enable user-to-user e-mail mutelist.
  *
- * @since 1.30
+ * @since 1.37; previously $wgEnableUserEmailBlacklist
  */
-$wgEnableUserEmailBlacklist = false;
+$wgEnableUserEmailMuteList = false;
 
 /**
  * If true put the sending user's email in a Reply-To header
@@ -4714,12 +4718,12 @@ $wgNamespacesWithSubpages = [
 $wgContentNamespaces = [ NS_MAIN ];
 
 /**
- * Optional array of namespaces which should be blacklisted from Special:ShortPages
- * Only pages inside $wgContentNamespaces but not $wgShortPagesNamespaceBlacklist will
+ * Optional array of namespaces which should be excluded from Special:ShortPages.
+ * Only pages inside $wgContentNamespaces but not $wgShortPagesNamespaceExclusions will
  * be shown on that page.
- * @since 1.30
+ * @since 1.37; previously $wgShortPagesNamespaceBlacklist
  */
-$wgShortPagesNamespaceBlacklist = [];
+$wgShortPagesNamespaceExclusions = [];
 
 /**
  * Array of namespaces, in addition to the talk namespaces, where signatures

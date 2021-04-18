@@ -255,8 +255,30 @@ if ( $wgMainWANCache === false ) {
 	];
 }
 
-// Blacklisted file extensions shouldn't appear on the "allowed" list
-$wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
+// Back-compat
+if ( isset( $wgFileBlacklist ) ) {
+	$wgProhibitedFileExtensions = array_merge( $wgProhibitedFileExtensions, $wgFileBlacklist );
+} else {
+	$wgFileBlacklist = $wgProhibitedFileExtensions;
+}
+if ( isset( $wgMimeTypeBlacklist ) ) {
+	$wgMimeTypeExclusions = array_merge( $wgMimeTypeExclusions, $wgMimeTypeBlacklist );
+} else {
+	$wgMimeTypeBlacklist = $wgMimeTypeExclusions;
+}
+if ( isset( $wgEnableUserEmailBlacklist ) ) {
+	$wgEnableUserEmailMuteList = $wgEnableUserEmailBlacklist;
+} else {
+	$wgEnableUserEmailBlacklist = $wgEnableUserEmailMuteList;
+}
+if ( isset( $wgShortPagesNamespaceBlacklist ) ) {
+	$wgShortPagesNamespaceExclusions = $wgShortPagesNamespaceBlacklist;
+} else {
+	$wgShortPagesNamespaceBlacklist = $wgShortPagesNamespaceExclusions;
+}
+
+// Prohibited file extensions shouldn't appear on the "allowed" list
+$wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgProhibitedFileExtensions ) );
 
 // Fix path to icon images after they were moved in 1.24
 if ( $wgRightsIcon ) {
