@@ -405,7 +405,7 @@ abstract class TablePager extends IndexPager {
 	/**
 	 * Get \<input type="hidden"\> elements for use in a method="get" form.
 	 * Resubmits all defined elements of the query string, except for a
-	 * blacklist, passed in the $blacklist parameter.
+	 * exclusion list, passed in the $noResubmit parameter.
 	 *
 	 * @param array $noResubmit Parameters from the request query which should not be resubmitted
 	 * @return string HTML fragment

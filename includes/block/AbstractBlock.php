@@ -273,7 +273,7 @@ abstract class AbstractBlock {
 
 	/**
 	 * Determine whether the block prevents a given right. A right
-	 * may be blacklisted or whitelisted, or determined from a
+	 * may be allowed or disallowed, or determined from a
 	 * property on the block object. For certain rights, the property
 	 * may be overridden according to global configs.
 	 *

@@ -218,17 +218,17 @@ class JobRunner implements LoggerAwareInterface {
 		do {
 			// Sync the persistent backoffs with concurrent runners
 			$backoffs = $this->syncBackoffDeltas( $backoffs, $backoffDeltas, $wait );
-			$blacklist = $throttle ? array_keys( $backoffs ) : [];
+			$backoffKeys = $throttle ? array_keys( $backoffs ) : [];
 			$wait = 'nowait'; // less important now
 
 			if ( $type === false ) {
 				// Treat the default job type queues as a single queue and pop off a job
 				$job = $this->jobQueueGroup
-					->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE, $blacklist );
+					->pop( JobQueueGroup::TYPE_DEFAULT, JobQueueGroup::USE_CACHE, $backoffKeys );
 			} else {
 				// Pop off a job from the specified job type queue unless the execution of
-				// that type of job is currently rate-limited by the back-off blacklist
-				$job = in_array( $type, $blacklist ) ? false : $this->jobQueueGroup->pop( $type );
+				// that type of job is currently rate-limited by the back-off list
+				$job = in_array( $type, $backoffKeys ) ? false : $this->jobQueueGroup->pop( $type );
 			}
 
 			if ( $job ) {
