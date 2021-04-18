@@ -135,3 +135,5 @@ $specialPageAliases = [
 	'Whatlinkshere'             => [ 'Ссылкаби_гьанире' ],
 	'Withoutinterwiki'          => [ 'Интервики_гьечІого' ],
 ];
+
+$linkTrail = '/^([a-zабвгдеёжзийклмнопрстуфхцчшщъыьэюяӀ]+)(.*)$/sDu';
