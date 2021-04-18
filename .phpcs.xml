@@ -70,7 +70,7 @@
 	</rule>
 	<rule ref="MediaWiki.Files.ClassMatchesFilename.NotMatch">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/specials/SpecialMostimages\.php</exclude-pattern>
@@ -116,7 +116,7 @@
 	</rule>
 	<rule ref="MediaWiki.Files.ClassMatchesFilename.WrongCase">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/maintenance/language/alltrans\.php</exclude-pattern>
@@ -163,7 +163,7 @@
 	</rule>
 	<rule ref="Generic.Files.OneObjectStructurePerFile.MultipleFound">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/libs/rdbms/database/MWPostgreSqlPlatformCompat\.php</exclude-pattern>
@@ -188,7 +188,7 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.escapeshellarg">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/libs/filebackend/FSFileBackend\.php</exclude-pattern>
@@ -197,7 +197,7 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.popen">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/includes/GlobalFunctions\.php</exclude-pattern>
@@ -207,7 +207,7 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.proc_open">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>includes/export/DumpPipeOutput\.php</exclude-pattern>
@@ -220,7 +220,7 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.shell_exec">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/maintenance/mwdocgen\.php</exclude-pattern>
@@ -228,7 +228,7 @@
 	</rule>
 	<rule ref="MediaWiki.Usage.ForbiddenFunctions.system">
 		<!--
-			Whitelist existing violations, but enable the sniff to prevent
+			Continue to allow existing violations, but enable the sniff to prevent
 			any new occurrences.
 		-->
 		<exclude-pattern>*/maintenance/mwdocgen\.php</exclude-pattern>

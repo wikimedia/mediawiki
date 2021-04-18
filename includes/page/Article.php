@@ -489,7 +489,7 @@ class Article implements Page {
 		$oldid = $this->getOldID();
 
 		$user = $this->getContext()->getUser();
-		# Another whitelist check in case getOldID() is altering the title
+		# Another check in case getOldID() is altering the title
 		$permissionStatus = PermissionStatus::newEmpty();
 		if ( !$this->getContext()->getAuthority()
 			->authorizeRead( 'read', $this->getTitle(), $permissionStatus )

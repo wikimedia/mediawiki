@@ -1472,7 +1472,7 @@ function wfClientAcceptsGzip( $force = false ) {
 	if ( $result === null || $force ) {
 		$result = false;
 		if ( isset( $_SERVER['HTTP_ACCEPT_ENCODING'] ) ) {
-			# @todo FIXME: We may want to blacklist some broken browsers
+			# @todo FIXME: We may want to disallow some broken browsers
 			$m = [];
 			if ( preg_match(
 					'/\bgzip(?:;(q)=([0-9]+(?:\.[0-9]+)))?\b/',

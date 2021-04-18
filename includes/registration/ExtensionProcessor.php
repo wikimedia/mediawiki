@@ -249,7 +249,7 @@ class ExtensionProcessor implements Processor {
 			}
 
 			if ( $version === 2 ) {
-				// Only whitelisted attributes are set
+				// Only allowed attributes are set
 				if ( in_array( $key, self::CORE_ATTRIBS ) ) {
 					$this->storeToArray( $path, $key, $val, $this->attributes );
 				}
@@ -258,7 +258,7 @@ class ExtensionProcessor implements Processor {
 				if ( !in_array( $key, self::NOT_ATTRIBS )
 					&& !in_array( $key, self::CREDIT_ATTRIBS )
 				) {
-					// If it's not blacklisted, it's an attribute
+					// If it's not disallowed, it's an attribute
 					$this->storeToArrayRecursive( $path, $key, $val, $this->attributes );
 				}
 			}

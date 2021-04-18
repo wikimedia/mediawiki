@@ -1166,10 +1166,10 @@ class WebRequest {
 	 * been dropped, this function now returns true unconditionally.
 	 *
 	 * @deprecated since 1.35
-	 * @param array $extWhitelist
+	 * @param array $extList
 	 * @return bool
 	 */
-	public function checkUrlExtension( $extWhitelist = [] ) {
+	public function checkUrlExtension( $extList = [] ) {
 		wfDeprecated( __METHOD__, '1.35' );
 		return true;
 	}

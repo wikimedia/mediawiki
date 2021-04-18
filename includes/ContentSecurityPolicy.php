@@ -243,8 +243,8 @@ class ContentSecurityPolicy {
 			|| !in_array( 'data:', $defaultSrc )
 			|| !in_array( 'blob:', $defaultSrc )
 		) {
-			// A future todo might be to make the whitelist options only
-			// add all the whitelisted sites to the header, instead of
+			// A future todo might be to make the allow options only
+			// add all the allowed sites to the header, instead of
 			// allowing all (Assuming there is a small number of sites).
 			// For now, the external image feature disables the limits
 			// CSP puts on external images.

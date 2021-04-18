@@ -118,7 +118,7 @@ class TraditionalImageGallery extends ImageGalleryBase {
 			} elseif ( $this->mHideBadImages &&
 				$badFileLookup->isBadFile( $nt->getDBkey(), $this->getContextTitle() )
 			) {
-				# The image is blacklisted, just show it as a text link.
+				# The image is bad, so just show it as a text link.
 				$thumbhtml = "\n\t\t\t" . '<div class="thumb" style="height: ' .
 					( $this->getThumbPadding() + $this->mHeights ) . 'px;">' .
 					$linkRenderer->makeKnownLink( $nt, $nt->getText() ) .

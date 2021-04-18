@@ -401,7 +401,7 @@ abstract class SessionProvider implements SessionProviderInterface, LoggerAwareI
 	 * If the provider is capable of returning a SessionInfo with a verified
 	 * UserInfo for the named user in some manner other than by validating
 	 * against $user->getToken(), steps must be taken to prevent that from
-	 * occurring in the future. This might add the username to a blacklist, or
+	 * occurring in the future. This might add the username to a list, or
 	 * it might just delete whatever authentication credentials would allow
 	 * such a session in the first place (e.g. remove all OAuth grants or
 	 * delete record of the SSL client certificate).
