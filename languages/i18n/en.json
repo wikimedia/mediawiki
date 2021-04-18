@@ -3222,7 +3222,7 @@
 	"creditspage": "Page credits",
 	"nocredits": "There is no credits info available for this page.",
 	"spamprotectiontitle": "Spam protection filter",
-	"spamprotectiontext": "The text you wanted to publish was blocked by the spam filter.\nThis is probably caused by a link to a blacklisted external site.",
+	"spamprotectiontext": "The text you wanted to publish was blocked by the spam filter.\nThis is probably caused by a link to a forbidden external site.",
 	"spamprotectionmatch": "The following text is what triggered our spam filter: $1",
 	"spambot_username": "MediaWiki spam cleanup",
 	"spam_reverting": "Reverting to last revision not containing links to $1",
