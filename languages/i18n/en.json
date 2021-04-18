@@ -1131,7 +1131,7 @@
 	"timezoneregion-pacific": "Pacific Ocean",
 	"allowemail": "Allow other users to email me",
 	"email-allow-new-users-label": "Allow emails from brand-new users",
-	"email-blacklist-label": "Prohibit these users from emailing me:",
+	"email-mutelist-label": "Prohibit these users from emailing me:",
 	"prefs-searchoptions": "Search",
 	"prefs-namespaces": "Namespaces",
 	"default": "default",
