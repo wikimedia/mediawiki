@@ -1080,7 +1080,7 @@
 	"timezoneregion-pacific": "Ozeano Barea",
 	"allowemail": "Beste erabiltzaileei niri posta mezuak bidaltzea gaitu",
 	"email-allow-new-users-label": "Baimendu mezuak erabiltzaile berrietatik",
-	"email-blacklist-label": "Debekatu erabiltzaile hauei niri mezu elektronikoak bidaltzea:",
+	"email-mutelist-label": "Debekatu erabiltzaile hauei niri mezu elektronikoak bidaltzea:",
 	"prefs-searchoptions": "Bilatu",
 	"prefs-namespaces": "Izen-tarteak",
 	"default": "lehenetsia",

@@ -971,7 +971,7 @@
 	"timezoneregion-indian": "Indiyang Kadagatan",
 	"timezoneregion-pacific": "Pasipikong Kadagatan",
 	"allowemail": "Togotan an mga ''e''-surat halî sa ibang mga parágamit",
-	"email-blacklist-label": "Pagbawalan an mga paragamit na ini na suratan ako:",
+	"email-mutelist-label": "Pagbawalan an mga paragamit na ini na suratan ako:",
 	"prefs-searchoptions": "Hanapa",
 	"prefs-namespaces": "Pangarang mga espasyo",
 	"default": "pwestong normal",

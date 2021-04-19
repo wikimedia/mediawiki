@@ -1004,7 +1004,7 @@
 	"timezoneregion-pacific": "Kyrrahaf",
 	"allowemail": "Leyfa öðrum notendum að senda mér tölvupóst",
 	"email-allow-new-users-label": "Leyfa tölvupóst frá nýskráðum notendum",
-	"email-blacklist-label": "Banna þessum notendum að senda mér tölvupóst:",
+	"email-mutelist-label": "Banna þessum notendum að senda mér tölvupóst:",
 	"prefs-searchoptions": "Leit",
 	"prefs-namespaces": "Nafnrými",
 	"default": "sjálfgefið",

@@ -1084,7 +1084,7 @@
 	"timezoneregion-pacific": "Samudra Pasifik",
 	"allowemail": "Lugrayang sang anganggé tiosan ngirim rerepél majeng titiang",
 	"email-allow-new-users-label": "Lugrayang rerepél saking sang anganggé anyar",
-	"email-blacklist-label": "Cegat para sang anganggé puniki ngirim titiang rerepél:",
+	"email-mutelist-label": "Cegat para sang anganggé puniki ngirim titiang rerepél:",
 	"prefs-searchoptions": "Rereh",
 	"prefs-namespaces": "Genah wastan",
 	"default": "baku",

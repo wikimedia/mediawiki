@@ -797,7 +797,7 @@
 	"timezoneregion-pacific": "Stille Oseaan",
 	"allowemail": "Oare meidoggers tastean om my te e-mailen",
 	"email-allow-new-users-label": "E-mails fan krekt nije meidoggers tastean",
-	"email-blacklist-label": "Dizze meidoggers net tastean om my te e-mailen:",
+	"email-mutelist-label": "Dizze meidoggers net tastean om my te e-mailen:",
 	"prefs-searchoptions": "Sykjen",
 	"prefs-namespaces": "Nammeromten",
 	"default": "standert",

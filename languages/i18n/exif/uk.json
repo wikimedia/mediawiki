@@ -397,6 +397,7 @@
 	"exif-firstphotodate": "Дата першого фото",
 	"exif-lastphotodate": "Дата останнього фото",
 	"exif-projectiontype": "Тип проекції",
+	"exif-projectiontype-equirectangular": "Еквідистантна",
 	"exif-usepanoramaviewer": "Використовувати переглядач панорами",
 	"exif-usepanoramaviewer-true": "Так",
 	"exif-usepanoramaviewer-false": "Ні",
@@ -408,5 +409,6 @@
 	"exif-fullpanowidthpixels": "Повна ширина панорами",
 	"exif-fullpanoheightpixels": "Повна висота панорами",
 	"exif-croppedarealeftpixels": "Ліве обрізання панорами",
-	"exif-croppedareatoppixels": "Верхнє обрізання панорами"
+	"exif-croppedareatoppixels": "Верхнє обрізання панорами",
+	"exif-stitchingsoftware": "Зшивальна програма"
 }

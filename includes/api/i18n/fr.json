@@ -297,7 +297,7 @@
 	"apihelp-login-param-password": "Mot de passe.",
 	"apihelp-login-param-domain": "Domaine (facultatif).",
 	"apihelp-login-param-token": "Jeton de connexion obtenu à la première requête.",
-	"apihelp-login-example-login": "Se connecter",
+	"apihelp-login-example-login": "Se connecter.",
 	"apihelp-logout-summary": "Se déconnecter et effacer les données de session.",
 	"apihelp-logout-example-logout": "Déconnecter l’utilisateur actuel.",
 	"apihelp-managetags-summary": "Effectuer des tâches de gestion relatives aux balises de modification.",

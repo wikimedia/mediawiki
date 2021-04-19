@@ -1076,7 +1076,7 @@
 	"timezoneregion-pacific": "Océan Passìfich",
 	"allowemail": "Lassa che j'àutri utent am mando ëd mëssagi ëd pòsta eletrònica",
 	"email-allow-new-users-label": "Përmëtte ij mëssagi da j'utent neuv",
-	"email-blacklist-label": "Proibì a costi utent ëd mandeme 'd mëssagi:",
+	"email-mutelist-label": "Proibì a costi utent ëd mandeme 'd mëssagi:",
 	"prefs-searchoptions": "Sërca",
 	"prefs-namespaces": "Spassi nominaj",
 	"default": "stàndard",

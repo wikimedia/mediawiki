@@ -1027,7 +1027,7 @@
 	"timezoneregion-pacific": "Meurvor Habask",
 	"allowemail": "Aotreañ implijerien all da gas din posteloù",
 	"email-allow-new-users-label": "Aotreañ e-bostoù a-berzh an implijerien nevez",
-	"email-blacklist-label": "Difenn d'an implijerien-se da gas un e-bost din:",
+	"email-mutelist-label": "Difenn d'an implijerien-se da gas un e-bost din:",
 	"prefs-searchoptions": "Klask",
 	"prefs-namespaces": "Esaouennoù",
 	"default": "dre ziouer",

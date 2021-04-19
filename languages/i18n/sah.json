@@ -1025,7 +1025,7 @@
 	"timezoneregion-pacific": "Чуумпу байҕал",
 	"allowemail": "Атын кыттааччылартан сурук тутары көҥүллүүбүн",
 	"email-allow-new-users-label": "Сабыс-саҥа киирбит дьонтон сурук тутары көҥүллээ",
-	"email-blacklist-label": "Бу дьон миэхэ суруйалларын боп:",
+	"email-mutelist-label": "Бу дьон миэхэ суруйалларын боп:",
 	"prefs-searchoptions": "Көрдөөһүн",
 	"prefs-namespaces": "Аат дала",
 	"default": "чопчу ыйыллыбатаҕына маннык",

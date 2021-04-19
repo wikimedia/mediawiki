@@ -984,7 +984,7 @@
 	"timezoneregion-indian": "Ranomasimbe Indianina",
 	"timezoneregion-pacific": "Ranomasimbe Pasifika",
 	"allowemail": "Hanaiky ny fandefasana mailaka avy amin'ny mpikambana hafa",
-	"email-blacklist-label": "Hanakana ireo mpikambana ireo tsy handefa mailaka aty amiko:",
+	"email-mutelist-label": "Hanakana ireo mpikambana ireo tsy handefa mailaka aty amiko:",
 	"prefs-searchoptions": "Karoka",
 	"prefs-namespaces": "Toeran'anarana",
 	"default": "tsipalotra",

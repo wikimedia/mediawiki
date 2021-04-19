@@ -686,7 +686,7 @@
 	"timezoneregion-pacific": "မှာသၟိတ် ပသဳဖှေတ်",
 	"allowemail": "ကဵုအခေါၚ်ညးလွဟ်တၞဟ်တအ် ပလံၚ်လိက်ကုအဲ",
 	"email-allow-new-users-label": "ကဵုအခေါၚ်ပလံၚ်လိက်နူ ညးလွဟ်မသုၚ်စောဲတၟိတအ်",
-	"email-blacklist-label": "စဵုဒၞါထောအ်နူ ညးလွဟ်တအ် မပလံၚ်လိက်ကုအဲ:",
+	"email-mutelist-label": "စဵုဒၞါထောအ်နူ ညးလွဟ်တအ် မပလံၚ်လိက်ကုအဲ:",
 	"prefs-searchoptions": "ဂၠာဲ",
 	"prefs-namespaces": "ဒၞာဲယၟု",
 	"default": "မူလ",

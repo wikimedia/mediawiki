@@ -1047,7 +1047,7 @@
 	"timezoneregion-pacific": "ശാന്തസമുദ്രം",
 	"allowemail": "എനിക്ക് ഇമെയിൽ അയയ്ക്കാൻ മറ്റുള്ളവരെ അനുവദിക്കുക",
 	"email-allow-new-users-label": "എനിക്ക് ഇമെയിൽ അയയ്ക്കാൻ പുതിയ ഉപയോക്താക്കളെ അനുവദിക്കുക",
-	"email-blacklist-label": "ഈ ഉപയോക്താക്കൾ എനിക്ക് ഇമെയിൽ അയയ്ക്കുന്നത് തടയുക:",
+	"email-mutelist-label": "ഈ ഉപയോക്താക്കൾ എനിക്ക് ഇമെയിൽ അയയ്ക്കുന്നത് തടയുക:",
 	"prefs-searchoptions": "തിരച്ചിൽ",
 	"prefs-namespaces": "നാമമേഖലകൾ",
 	"default": "സ്വതേ",

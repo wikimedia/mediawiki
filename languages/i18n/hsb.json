@@ -996,7 +996,7 @@
 	"timezoneregion-pacific": "Pacifiski ocean",
 	"allowemail": "Mejlki wot druhich wužiwarjow dowoleć",
 	"email-allow-new-users-label": "Mejlki wot nowych wužiwarjow dowoleć",
-	"email-blacklist-label": "Tutym wužiwarjam mejlowanje ze mnu zakazać:",
+	"email-mutelist-label": "Tutym wužiwarjam mejlowanje ze mnu zakazać:",
 	"prefs-searchoptions": "Pytać",
 	"prefs-namespaces": "Mjenowe rumy",
 	"default": "standard",

@@ -1146,7 +1146,7 @@
 	"timezoneregion-pacific": "Samudera Pasifik",
 	"allowemail": "Izinkan pengguna lain mengirim surel kepada saya",
 	"email-allow-new-users-label": "Izinkan surel dari pengguna baru",
-	"email-blacklist-label": "Cegah para pengguna ini mengirim surel kepada saya:",
+	"email-mutelist-label": "Cegah para pengguna ini mengirim surel kepada saya:",
 	"prefs-searchoptions": "Cari",
 	"prefs-namespaces": "Ruang nama",
 	"default": "baku",

@@ -1031,7 +1031,7 @@
 	"timezoneregion-pacific": "प्रशांत महासागर",
 	"allowemail": "इतर सदस्यांकडून माझ्या ई-मेल पत्त्यावर ई-मेल येण्यास मुभा द्या",
 	"email-allow-new-users-label": "एकदम नवीन सदस्यांच्या विपत्राला परवानगी द्या",
-	"email-blacklist-label": "मला विपत्र पाठविण्यास या सदस्यांना रोका:",
+	"email-mutelist-label": "मला विपत्र पाठविण्यास या सदस्यांना रोका:",
 	"prefs-searchoptions": "शोधा",
 	"prefs-namespaces": "नामविश्वे",
 	"default": "अविचल",

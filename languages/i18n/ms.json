@@ -1092,7 +1092,7 @@
 	"timezoneregion-pacific": "Lautan Pasifik",
 	"allowemail": "Benarkan pengguna lain untuk mengemel saya.",
 	"email-allow-new-users-label": "Benarkan e-mel dari pengguna baharu.",
-	"email-blacklist-label": "Cegah pengguna tersebut dari mengemel saya:",
+	"email-mutelist-label": "Cegah pengguna tersebut dari mengemel saya:",
 	"prefs-searchoptions": "Cari",
 	"prefs-namespaces": "Ruang nama",
 	"default": "asali",

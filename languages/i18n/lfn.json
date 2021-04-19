@@ -986,7 +986,7 @@
 	"timezoneregion-pacific": "Mar Pasifica",
 	"allowemail": "Permete ce otra usores pote eposta me",
 	"email-allow-new-users-label": "Permete epostas de usores intera nova.",
-	"email-blacklist-label": "Proibi esta usores de eposta a me:",
+	"email-mutelist-label": "Proibi esta usores de eposta a me:",
 	"prefs-searchoptions": "Xerca",
 	"prefs-namespaces": "Spasios de nom",
 	"default": "inisial",

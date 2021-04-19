@@ -1223,7 +1223,7 @@
 	"timezoneregion-pacific": "太平洋",
 	"allowemail": "允许其他用户向我发送电子邮件",
 	"email-allow-new-users-label": "允许来自新用户的电子邮件",
-	"email-blacklist-label": "禁止这些用户给我发送电子邮件：",
+	"email-mutelist-label": "禁止这些用户给我发送电子邮件：",
 	"prefs-searchoptions": "搜索",
 	"prefs-namespaces": "名字空间",
 	"default": "默认",

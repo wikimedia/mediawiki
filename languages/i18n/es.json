@@ -1277,7 +1277,7 @@
 	"timezoneregion-pacific": "Océano Pacífico",
 	"allowemail": "Permitir que otros usuarios me envíen mensajes de correo",
 	"email-allow-new-users-label": "Permitir mensajes de correo de usuarios nuevos",
-	"email-blacklist-label": "Prohibir a estos usuarios enviarme mensajes de correo:",
+	"email-mutelist-label": "Prohibir a estos usuarios enviarme mensajes de correo:",
 	"prefs-searchoptions": "Buscar",
 	"prefs-namespaces": "Espacios de nombres",
 	"default": "predeterminado",

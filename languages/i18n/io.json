@@ -960,7 +960,7 @@
 	"timezoneregion-pacific": "Pacifico",
 	"allowemail": "Permisez e-posti de altra uzeri",
 	"email-allow-new-users-label": "Permisez e-posti de la nova uzeri",
-	"email-blacklist-label": "Impedez la sequanta uzeri sendar e-posto a me:",
+	"email-mutelist-label": "Impedez la sequanta uzeri sendar e-posto a me:",
 	"prefs-searchoptions": "Serchar",
 	"prefs-namespaces": "Nomari",
 	"default": "Ordinara ('default')",

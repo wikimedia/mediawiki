@@ -987,7 +987,7 @@
 	"timezoneregion-pacific": "प्रशांत महासागर",
 	"allowemail": "दुसरे सदस्य से ईमेल पावल एलाऊ करीं",
 	"email-allow-new-users-label": "एकदम नया प्रयोगकर्ता लोग से ईमेल पावल एलाऊ करीं",
-	"email-blacklist-label": "एह प्रयोगकर्ता सभ के हमरा के ईमेल करे से प्रतिबंधित करीं:",
+	"email-mutelist-label": "एह प्रयोगकर्ता सभ के हमरा के ईमेल करे से प्रतिबंधित करीं:",
 	"prefs-searchoptions": "खोजीं",
 	"prefs-namespaces": "नामस्थान",
 	"default": "डिफाल्ट",

@@ -995,7 +995,7 @@
 	"timezoneregion-indian": "हिन्द महासागर",
 	"timezoneregion-pacific": "प्राशान्त महासागर",
 	"allowemail": "अरू प्रयोगकर्ताहरूले मलाई  इमेल पठाउन दिनुहोस् ।",
-	"email-blacklist-label": "यी प्रयोगकर्ताहरूलाई मलाई विडाँक गर्नबाट रोक्नुहोस्:",
+	"email-mutelist-label": "यी प्रयोगकर्ताहरूलाई मलाई विडाँक गर्नबाट रोक्नुहोस्:",
 	"prefs-searchoptions": "खोज्ने",
 	"prefs-namespaces": "नेमस्पेसेज",
 	"default": "पूर्वनिर्धारित",

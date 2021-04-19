@@ -1116,7 +1116,7 @@
 	"timezoneregion-pacific": "प्रशांत महासागर",
 	"allowemail": "अन्य सदस्यों से ई-मेल सक्षम करें",
 	"email-allow-new-users-label": "एकदम नये उपयोगकर्ताओं को ईमेल की अनुमति दें",
-	"email-blacklist-label": "इन उपयोगकर्ताओं को मुझे ईमेल भेजने से रोकना:",
+	"email-mutelist-label": "इन उपयोगकर्ताओं को मुझे ईमेल भेजने से रोकना:",
 	"prefs-searchoptions": "खोज",
 	"prefs-namespaces": "नामस्थान",
 	"default": "डिफ़ॉल्ट",

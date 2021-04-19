@@ -1053,7 +1053,7 @@
 	"timezoneregion-pacific": "Tyynimeri",
 	"allowemail": "Salli muitten käyttäjitten lähättää minule e-postia",
 	"email-allow-new-users-label": "Salli e-postit uusilta käyttäjiltä",
-	"email-blacklist-label": "Blokeeraa näitä käyttäjiä lähättämästä minule e-postia:",
+	"email-mutelist-label": "Blokeeraa näitä käyttäjiä lähättämästä minule e-postia:",
 	"prefs-searchoptions": "Hae",
 	"prefs-namespaces": "Nimityhjyyet",
 	"default": "Ylheinen",

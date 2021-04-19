@@ -1181,7 +1181,7 @@
 	"timezoneregion-pacific": "太平洋",
 	"allowemail": "允許其他使用者向我傳送電子郵件",
 	"email-allow-new-users-label": "允許來自新使用者的電子郵件",
-	"email-blacklist-label": "禁止這些使用者向我傳送電子郵件：",
+	"email-mutelist-label": "禁止這些使用者向我傳送電子郵件：",
 	"prefs-searchoptions": "搜尋",
 	"prefs-namespaces": "命名空間",
 	"default": "預設",
