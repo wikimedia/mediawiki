@@ -35,6 +35,7 @@ class HookRunner implements
 	\MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook,
 	\MediaWiki\Auth\Hook\UserLoggedInHook,
 	\MediaWiki\Block\Hook\AbortAutoblockHook,
+	\MediaWiki\Block\Hook\GetAllBlockActionsHook,
 	\MediaWiki\Block\Hook\GetUserBlockHook,
 	\MediaWiki\Block\Hook\PerformRetroactiveAutoblockHook,
 	\MediaWiki\Cache\Hook\BacklinkCacheGetConditionsHook,
@@ -1823,6 +1824,14 @@ class HookRunner implements
 		return $this->container->run(
 			'GalleryGetModes',
 			[ &$modeArray ]
+		);
+	}
+
+	public function onGetAllBlockActions( &$actions ) {
+		return $this->container->run(
+			'GetAllBlockActions',
+			[ &$actions ],
+			[ 'abortable' => false ]
 		);
 	}
 

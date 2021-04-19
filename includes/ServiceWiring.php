@@ -214,7 +214,7 @@ return [
 	},
 
 	'BlockActionInfo' => static function ( MediaWikiServices $services ) : BlockActionInfo {
-		return new BlockActionInfo();
+		return new BlockActionInfo( $services->getHookContainer() );
 	},
 
 	'BlockErrorFormatter' => static function ( MediaWikiServices $services ) : BlockErrorFormatter {

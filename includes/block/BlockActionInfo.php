@@ -20,6 +20,9 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+
 /**
  * Defines the actions that can be blocked by a partial block. They are
  * always blocked by a sitewide block.
@@ -34,6 +37,8 @@ namespace MediaWiki\Block;
  * @since 1.37
  */
 class BlockActionInfo {
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/** @var int */
 	private const ACTION_UPLOAD = 1;
@@ -56,10 +61,28 @@ class BlockActionInfo {
 	];
 
 	/**
+	 * @param HookContainer $hookContainer
+	 */
+	public function __construct( HookContainer $hookContainer ) {
+		$this->hookRunner = new HookRunner( $hookContainer );
+	}
+
+	/**
+	 * Cache the array of actions
+	 * @var int[]|null
+	 */
+	private $allBlockActions = null;
+
+	/**
 	 * @return int[]
 	 */
 	public function getAllBlockActions() : array {
-		return self::CORE_BLOCK_ACTIONS;
+		// Don't run the hook multiple times in the same request
+		if ( !$this->allBlockActions ) {
+			$this->allBlockActions = self::CORE_BLOCK_ACTIONS;
+			$this->hookRunner->onGetAllBlockActions( $this->allBlockActions );
+		}
+		return $this->allBlockActions;
 	}
 
 }
