@@ -42,9 +42,6 @@ class NewFilesPager extends RangeChronologicalPager {
 	/** @var PermissionManager */
 	private $permissionManager;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var UserCache */
 	private $userCache;
 
@@ -56,7 +53,6 @@ class NewFilesPager extends RangeChronologicalPager {
 	 * @param FormOptions $opts
 	 * @param LinkRenderer $linkRenderer
 	 * @param PermissionManager $permissionManager
-	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserCache $userCache
 	 * @param UserFactory $userFactory
@@ -66,7 +62,6 @@ class NewFilesPager extends RangeChronologicalPager {
 		FormOptions $opts,
 		LinkRenderer $linkRenderer,
 		PermissionManager $permissionManager,
-		ActorMigration $actorMigration,
 		ILoadBalancer $loadBalancer,
 		UserCache $userCache,
 		UserFactory $userFactory
@@ -78,7 +73,6 @@ class NewFilesPager extends RangeChronologicalPager {
 
 		$this->opts = $opts;
 		$this->permissionManager = $permissionManager;
-		$this->actorMigration = $actorMigration;
 		$this->userCache = $userCache;
 		$this->userFactory = $userFactory;
 		$this->setLimit( $opts->getValue( 'limit' ) );
@@ -98,17 +92,14 @@ class NewFilesPager extends RangeChronologicalPager {
 		$opts = $this->opts;
 		$conds = [];
 		$dbr = $this->getDatabase();
-		$actorQuery = $this->actorMigration->getJoin( 'img_user' );
-		$tables = [ 'image' ] + $actorQuery['tables'];
-		$fields = [ 'img_name', 'img_timestamp' ] + $actorQuery['fields'];
+		$tables = [ 'image', 'actor' ];
+		$fields = [ 'img_name', 'img_timestamp', 'actor_user', 'actor_name' ];
 		$options = [];
-		$jconds = $actorQuery['joins'];
+		$jconds = [ 'actor' => [ 'JOIN', 'actor_id=img_actor' ] ];
 
 		$user = $opts->getValue( 'user' );
 		if ( $user !== '' ) {
-			$userObj = $this->userFactory->newFromName( $user, UserFactory::RIGOR_NONE );
-			$conds[] = $this->actorMigration
-				->getWhere( $dbr, 'img_user', $userObj )['conds'];
+			$conds['actor_name'] = $user;
 		}
 
 		if ( !$opts->getValue( 'showbots' ) ) {
@@ -121,7 +112,7 @@ class NewFilesPager extends RangeChronologicalPager {
 					'LEFT JOIN',
 					[
 						'ug_group' => $groupsWithBotPermission,
-						'ug_user = ' . $actorQuery['fields']['img_user'],
+						'ug_user = actor_user',
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					]
 				];
@@ -139,7 +130,7 @@ class NewFilesPager extends RangeChronologicalPager {
 				'JOIN',
 				[
 					'rc_title = img_name',
-					'rc_actor = ' . $actorQuery['fields']['img_actor'],
+					'rc_actor = img_actor',
 					'rc_timestamp = img_timestamp'
 				]
 			];
@@ -205,14 +196,16 @@ class NewFilesPager extends RangeChronologicalPager {
 		$userIds = [];
 		$this->mResult->seek( 0 );
 		foreach ( $this->mResult as $row ) {
-			$userIds[] = $row->img_user;
+			if ( $row->actor_user ) {
+				$userIds[] = $row->actor_user;
+			}
 		}
 		// Do a link batch query for names and userpages
 		$this->userCache->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
 	}
 
 	public function formatRow( $row ) {
-		$username = $this->userCache->getUserName( $row->img_user, $row->img_user_text );
+		$username = $row->actor_name;
 
 		if ( ExternalUserNames::isExternal( $username ) ) {
 			$ul = htmlspecialchars( $username );

@@ -100,7 +100,6 @@ class LocalFileRestoreBatch {
 		$dbw = $this->file->repo->getMasterDB();
 
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
-		$actorMigration = ActorMigration::newMigration();
 
 		$status = $this->file->repo->newGood();
 
@@ -190,12 +189,10 @@ class LocalFileRestoreBatch {
 			}
 
 			$comment = $commentStore->getComment( 'fa_description', $row );
-			$user = User::newFromAnyId( $row->fa_user, $row->fa_user_text, $row->fa_actor );
 			if ( $first && !$exists ) {
 				// This revision will be published as the new current version
 				$destRel = $this->file->getRel();
 				$commentFields = $commentStore->insert( $dbw, 'img_description', $comment );
-				$actorFields = $actorMigration->getInsertValues( $dbw, 'img_user', $user );
 				$insertCurrent = [
 					'img_name' => $row->fa_name,
 					'img_size' => $row->fa_size,
@@ -206,9 +203,10 @@ class LocalFileRestoreBatch {
 					'img_media_type' => $props['media_type'],
 					'img_major_mime' => $props['major_mime'],
 					'img_minor_mime' => $props['minor_mime'],
+					'img_actor' => $row->fa_actor,
 					'img_timestamp' => $row->fa_timestamp,
 					'img_sha1' => $sha1
-				] + $commentFields + $actorFields;
+				] + $commentFields;
 
 				// The live (current) version cannot be hidden!
 				if ( !$this->unsuppress && $row->fa_deleted ) {
@@ -240,6 +238,7 @@ class LocalFileRestoreBatch {
 					'oi_width' => $row->fa_width,
 					'oi_height' => $row->fa_height,
 					'oi_bits' => $row->fa_bits,
+					'oi_actor' => $row->fa_actor,
 					'oi_timestamp' => $row->fa_timestamp,
 					'oi_metadata' => $props['metadata'],
 					'oi_media_type' => $props['media_type'],
@@ -247,8 +246,7 @@ class LocalFileRestoreBatch {
 					'oi_minor_mime' => $props['minor_mime'],
 					'oi_deleted' => $this->unsuppress ? 0 : $row->fa_deleted,
 					'oi_sha1' => $sha1
-				] + $commentStore->insert( $dbw, 'oi_description', $comment )
-				+ $actorMigration->getInsertValues( $dbw, 'oi_user', $user );
+				] + $commentStore->insert( $dbw, 'oi_description', $comment );
 			}
 
 			$deleteIds[] = $row->fa_id;

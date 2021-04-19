@@ -187,7 +187,6 @@ class LocalFileDeleteBatch {
 		$dbw = $this->file->repo->getMasterDB();
 
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
-		$actorMigration = ActorMigration::newMigration();
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $now ) );
 		$encUserId = $dbw->addQuotes( $this->user->getId() );
@@ -281,11 +280,11 @@ class LocalFileDeleteBatch {
 						'fa_media_type' => $row->oi_media_type,
 						'fa_major_mime' => $row->oi_major_mime,
 						'fa_minor_mime' => $row->oi_minor_mime,
+						'fa_actor' => $row->oi_actor,
 						'fa_timestamp' => $row->oi_timestamp,
 						'fa_sha1' => $row->oi_sha1
 					] + $commentStore->insert( $dbw, 'fa_deleted_reason', $reason )
-					+ $commentStore->insert( $dbw, 'fa_description', $comment )
-					+ $actorMigration->getInsertValues( $dbw, 'fa_user', $user );
+					+ $commentStore->insert( $dbw, 'fa_description', $comment );
 				}
 			}
 

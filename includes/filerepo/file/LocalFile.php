@@ -214,6 +214,11 @@ class LocalFile extends File {
 	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new localfile object.
+	 *
+	 * Since 1.34, img_user and img_user_text have not been present in the
+	 * database, but they continue to be available in query results as
+	 * aliases.
+	 *
 	 * @since 1.31
 	 * @stable to override
 	 *
@@ -226,9 +231,11 @@ class LocalFile extends File {
 	 */
 	public static function getQueryInfo( array $options = [] ) {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'img_description' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'img_user' );
 		$ret = [
-			'tables' => [ 'image' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'image',
+				'image_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'img_name',
 				'img_size',
@@ -241,8 +248,13 @@ class LocalFile extends File {
 				'img_minor_mime',
 				'img_timestamp',
 				'img_sha1',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'img_actor',
+				'img_user' => 'image_actor.actor_user',
+				'img_user_text' => 'image_actor.actor_name',
+			] + $commentQuery['fields'],
+			'joins' => [
+				'image_actor' => [ 'JOIN', 'actor_id=img_actor' ]
+			] + $commentQuery['joins'],
 		];
 
 		if ( in_array( 'omit-nonlazy', $options, true ) ) {

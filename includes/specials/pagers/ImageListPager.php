@@ -57,9 +57,6 @@ class ImageListPager extends TablePager {
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var UserCache */
 	private $userCache;
 
@@ -82,7 +79,6 @@ class ImageListPager extends TablePager {
 	 * @param RepoGroup $repoGroup
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
-	 * @param ActorMigration $actorMigration
 	 * @param UserCache $userCache
 	 */
 	public function __construct(
@@ -95,7 +91,6 @@ class ImageListPager extends TablePager {
 		RepoGroup $repoGroup,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		ActorMigration $actorMigration,
 		UserCache $userCache
 	) {
 		$this->setContext( $context );
@@ -146,7 +141,6 @@ class ImageListPager extends TablePager {
 		parent::__construct( $context, $linkRenderer );
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->commentStore = $commentStore;
-		$this->actorMigration = $actorMigration;
 		$this->userCache = $userCache;
 	}
 
@@ -187,15 +181,7 @@ class ImageListPager extends TablePager {
 
 		if ( $this->mUserName !== null ) {
 			// getQueryInfoReal() should have handled the tables and joins.
-			$dbr = $this->getDatabase();
-			$actorWhere = $this->actorMigration->getWhere(
-				$dbr,
-				$prefix . '_user',
-				User::newFromName( $this->mUserName, false ),
-				// oldimage doesn't have an index on oi_user, while image does. Set $useId accordingly.
-				$prefix === 'img'
-			);
-			$conds[] = $actorWhere['conds'];
+			$conds['actor_name'] = $this->mUserName;
 		}
 
 		if ( $this->mSearch !== '' ) {
@@ -219,12 +205,6 @@ class ImageListPager extends TablePager {
 		return $conds + $this->mQueryConds;
 	}
 
-	/**
-	 * The array keys (but not the array values) are used in sql. Phan
-	 * gets confused by this, so mark this method as being ok for sql in general.
-	 * @return-taint onlysafefor_sql
-	 * @return array
-	 */
 	protected function getFieldNames() {
 		if ( !$this->mFieldNames ) {
 			$this->mFieldNames = [
@@ -235,7 +215,7 @@ class ImageListPager extends TablePager {
 			];
 			if ( $this->mUserName === null ) {
 				// Do not show username if filtering by username
-				$this->mFieldNames['img_user_text'] = $this->msg( 'listfiles_user' )->text();
+				$this->mFieldNames['img_actor'] = $this->msg( 'listfiles_user' )->text();
 			}
 			// img_description down here, in order so that its still after the username field.
 			$this->mFieldNames['img_description'] = $this->msg( 'listfiles_description' )->text();
@@ -257,12 +237,11 @@ class ImageListPager extends TablePager {
 		}
 		$sortable = array_keys( self::INDEX_FIELDS );
 		/* For reference, the indicies we can use for sorting are:
-		 * On the image table: img_user_timestamp/img_usertext_timestamp/img_actor_timestamp,
-		 * img_size, img_timestamp
-		 * On oldimage: oi_usertext_timestamp/oi_actor_timestamp, oi_name_timestamp
+		 * On the image table: img_actor_timestamp, img_size, img_timestamp
+		 * On oldimage: oi_actor_timestamp, oi_name_timestamp
 		 *
 		 * In particular that means we cannot sort by timestamp when not filtering
-		 * by user and including old images in the results. Which is sad.
+		 * by user and including old images in the results. Which is sad. (T279982)
 		 */
 		if ( $this->getConfig()->get( 'MiserMode' ) && $this->mUserName !== null ) {
 			// If we're sorting by user, the index only supports sorting by time.
@@ -309,22 +288,22 @@ class ImageListPager extends TablePager {
 		$prefix = $table === 'oldimage' ? 'oi' : 'img';
 
 		$tables = [ $table ];
-		$fields = array_keys( $this->getFieldNames() );
-		$fields = array_combine( $fields, $fields );
-		unset( $fields['img_description'] );
-		unset( $fields['img_user_text'] );
 
 		if ( $table === 'oldimage' ) {
-			foreach ( $fields as $id => $field ) {
-				if ( substr( $id, 0, 4 ) === 'img_' ) {
-					$fields[$id] = $prefix . substr( $field, 3 );
-				}
-			}
-			$fields['top'] = $dbr->addQuotes( 'no' );
-		} elseif ( $this->mShowAll ) {
-			$fields['top'] = $dbr->addQuotes( 'yes' );
+			$fields = [
+				'img_timestamp' => 'oi_timestamp',
+				'img_name' => 'oi_name',
+				'img_size' => 'oi_size',
+				'top' => $dbr->addQuotes( 'no' )
+			];
+		} else {
+			$fields = [
+				'img_timestamp',
+				'img_name',
+				'img_size',
+				'top' => $dbr->addQuotes( 'yes' )
+			];
 		}
-		$fields['thumb'] = $prefix . '_name';
 
 		$options = $join_conds = [];
 
@@ -335,17 +314,15 @@ class ImageListPager extends TablePager {
 		$join_conds += $commentQuery['joins'];
 		$fields['description_field'] = $dbr->addQuotes( "{$prefix}_description" );
 
-		# User fields
-		$actorQuery = $this->actorMigration->getJoin( $prefix . '_user' );
-		$tables += $actorQuery['tables'];
-		$join_conds += $actorQuery['joins'];
-		$fields['img_user'] = $actorQuery['fields'][$prefix . '_user'];
-		$fields['img_user_text'] = $actorQuery['fields'][$prefix . '_user_text'];
-		$fields['img_actor'] = $actorQuery['fields'][$prefix . '_actor'];
+		# Actor fields
+		$tables['actor'] = 'actor';
+		$join_conds['actor'] = [ 'JOIN', 'actor_id=img_actor' ];
+		$fields[] = 'actor_user';
+		$fields[] = 'actor_name';
 
 		# Depends on $wgMiserMode
 		# Will also not happen if mShowAll is true.
-		if ( isset( $fields['count'] ) ) {
+		if ( array_key_exists( 'count', $this->getFieldNames() ) ) {
 			$fields['count'] = $dbr->buildSelectSubquery(
 				'oldimage',
 				'COUNT(oi_archive_name)',
@@ -471,7 +448,9 @@ class ImageListPager extends TablePager {
 		$userIds = [];
 		$this->mResult->seek( 0 );
 		foreach ( $this->mResult as $row ) {
-			$userIds[] = $row->img_user;
+			if ( $row->actor_user ) {
+				$userIds[] = $row->actor_user;
+			}
 		}
 		# Do a link batch query for names and userpages
 		$this->userCache->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
@@ -484,7 +463,7 @@ class ImageListPager extends TablePager {
 	 *   - thumb: string
 	 *   - img_timestamp: string
 	 *   - img_name: string
-	 *   - img_user_text: string
+	 *   - img_actor: string
 	 *   - img_size: string
 	 *   - img_description: string
 	 *   - count: int
@@ -496,7 +475,7 @@ class ImageListPager extends TablePager {
 		switch ( $field ) {
 			case 'thumb':
 				$opt = [ 'time' => wfTimestamp( TS_MW, $this->mCurrentRow->img_timestamp ) ];
-				$file = $this->localRepo->findFile( $value, $opt );
+				$file = $this->localRepo->findFile( $this->getCurrentRow()->img_name, $opt );
 				// If statement for paranoia
 				if ( $file ) {
 					$thumb = $file->transform( [ 'width' => 180, 'height' => 360 ] );
@@ -506,7 +485,7 @@ class ImageListPager extends TablePager {
 						return $this->msg( 'thumbnail_error', '' )->escaped();
 					}
 				} else {
-					return htmlspecialchars( $value );
+					return htmlspecialchars( $this->getCurrentRow()->img_name );
 				}
 			case 'img_timestamp':
 				// We may want to make this a link to the "old" version when displaying old files
@@ -548,9 +527,9 @@ class ImageListPager extends TablePager {
 				} else {
 					return htmlspecialchars( $value );
 				}
-			case 'img_user_text':
-				if ( $this->mCurrentRow->img_user ) {
-					$name = $this->userCache->getProp( $this->mCurrentRow->img_user, 'name' );
+			case 'img_actor':
+				if ( $this->mCurrentRow->actor_user ) {
+					$name = $this->mCurrentRow->actor_name;
 					$link = $linkRenderer->makeLink(
 						Title::makeTitle( NS_USER, $name ),
 						$name

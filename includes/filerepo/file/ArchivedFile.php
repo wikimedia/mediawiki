@@ -224,6 +224,11 @@ class ArchivedFile {
 	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new archivedfile object.
+	 *
+	 * Since 1.34, fa_user and fa_user_text have not been present in the
+	 * database, but they continue to be available in query results as an
+	 * alias.
+	 *
 	 * @since 1.31
 	 * @stable to override
 	 * @return array[] With three keys:
@@ -233,9 +238,11 @@ class ArchivedFile {
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'fa_description' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'fa_user' );
 		return [
-			'tables' => [ 'filearchive' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'filearchive',
+				'filearchive_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'fa_id',
 				'fa_name',
@@ -254,8 +261,13 @@ class ArchivedFile {
 				'fa_deleted',
 				'fa_deleted_timestamp', /* Used by LocalFileRestoreBatch */
 				'fa_sha1',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'fa_actor',
+				'fa_user' => 'filearchive_actor.actor_user',
+				'fa_user_text' => 'filearchive_actor.actor_name'
+			] + $commentQuery['fields'],
+			'joins' => [
+				'filearchive_actor' => [ 'JOIN', 'actor_id=fa_actor' ]
+			] + $commentQuery['joins'],
 		];
 	}
 
