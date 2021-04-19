@@ -21,7 +21,9 @@
  * @ingroup FileRepo
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * Prioritized list of file repositories
@@ -105,7 +107,7 @@ class RepoGroup {
 	/**
 	 * Search repositories for an image.
 	 *
-	 * @param Title|string $title Title object or string
+	 * @param PageIdentity|LinkTarget|string $title The file to find
 	 * @param array $options Associative array of options:
 	 *   time:           requested time for an archived image, or false for the
 	 *                   current version. An image object will be returned which was
@@ -223,13 +225,15 @@ class RepoGroup {
 
 	/**
 	 * Interface for FileRepo::checkRedirect()
-	 * @param Title $title
+	 * @param PageIdentity|LinkTarget|string $title
 	 * @return bool|Title
 	 */
-	public function checkRedirect( Title $title ) {
+	public function checkRedirect( $title ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
+
+		$title = File::normalizeTitle( $title );
 
 		$redir = $this->localRepo->checkRedirect( $title );
 		if ( $redir ) {
@@ -463,11 +467,13 @@ class RepoGroup {
 
 	/**
 	 * Clear RepoGroup process cache used for finding a file
-	 * @param Title|null $title Title of the file or null to clear all files
+	 * @param PageIdentity|string|null $title File page or file name, or null to clear all files
 	 */
-	public function clearCache( Title $title = null ) {
+	public function clearCache( $title = null ) {
 		if ( $title == null ) {
 			$this->cache->clear();
+		} elseif ( is_string( $title ) ) {
+			$this->cache->clear( $title );
 		} else {
 			$this->cache->clear( $title->getDBkey() );
 		}

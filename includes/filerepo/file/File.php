@@ -6,7 +6,9 @@
  * Represents files in a repository.
  */
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -191,13 +193,22 @@ abstract class File implements IDBAccessObject {
 	 * Given a string or Title object return either a
 	 * valid Title object with namespace NS_FILE or null
 	 *
-	 * @param Title|string $title
+	 * @param PageIdentity|LinkTarget|string $title
 	 * @param string|bool $exception Use 'exception' to throw an error on bad titles
 	 * @throws MWException
 	 * @return Title|null
 	 */
 	public static function normalizeTitle( $title, $exception = false ) {
 		$ret = $title;
+
+		if ( !$ret instanceof Title ) {
+			if ( $ret instanceof PageIdentity ) {
+				$ret = Title::castFromPageIdentity( $ret );
+			} elseif ( $ret instanceof LinkTarget ) {
+				$ret = Title::castFromLinkTarget( $ret );
+			}
+		}
+
 		if ( $ret instanceof Title ) {
 			# Normalize NS_MEDIA -> NS_FILE
 			if ( $ret->getNamespace() === NS_MEDIA ) {

@@ -22,7 +22,9 @@
  * @ingroup FileRepo
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -86,11 +88,12 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity|LinkTarget|string $title
 	 * @param string $archiveName
 	 * @return OldLocalFile
 	 */
 	public function newFromArchiveName( $title, $archiveName ) {
+		$title = File::normalizeTitle( $title );
 		return OldLocalFile::newFromArchiveName( $title, $this, $archiveName );
 	}
 
@@ -198,10 +201,10 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Checks if there is a redirect named as $title
 	 *
-	 * @param Title $title Title of file
+	 * @param PageIdentity|LinkTarget $title Title of file
 	 * @return bool|Title
 	 */
-	public function checkRedirect( Title $title ) {
+	public function checkRedirect( $title ) {
 		$title = File::normalizeTitle( $title, 'exception' );
 
 		$memcKey = $this->getSharedCacheKey( 'file-redirect', md5( $title->getDBkey() ) );
@@ -524,10 +527,10 @@ class LocalRepo extends FileRepo {
 	/**
 	 * Invalidates image redirect cache related to that image
 	 *
-	 * @param Title $title Title of page
+	 * @param PageIdentity|LinkTarget $title Title of page
 	 * @return void
 	 */
-	public function invalidateImageRedirect( Title $title ) {
+	public function invalidateImageRedirect( $title ) {
 		$key = $this->getSharedCacheKey( 'file-redirect', md5( $title->getDBkey() ) );
 		if ( $key ) {
 			$this->getMasterDB()->onTransactionPreCommitOrIdle(

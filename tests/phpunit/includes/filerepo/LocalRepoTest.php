@@ -104,6 +104,11 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$file = $this->newRepo()->newFromArchiveName( 'Test_file', 'b' );
 		$this->assertInstanceOf( OldLocalFile::class, $file );
 		$this->assertSame( 'Test_file', $file->getName() );
+
+		$page = $this->getExistingTestPage( 'File:Test_file' );
+		$file = $this->newRepo()->newFromArchiveName( $page, 'b' );
+		$this->assertInstanceOf( OldLocalFile::class, $file );
+		$this->assertSame( 'Test_file', $file->getName() );
 	}
 
 	// TODO cleanupDeletedBatch, deletedFileHasKey, hiddenFileHasKey
@@ -159,9 +164,13 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testCheckRedirect_redirect() {
 		$this->editPage( 'File:Redirect', '#REDIRECT [[File:Target]]' );
-		$this->assertEquals( 'File:Target',
-			$this->newRepo()->checkRedirect( Title::makeTitle( NS_FILE, 'Redirect' ) )
-				->getPrefixedText() );
+
+		$target = $this->newRepo()->checkRedirect( Title::makeTitle( NS_FILE, 'Redirect' ) );
+		$this->assertEquals( 'File:Target', $target->getPrefixedText() );
+
+		$page = $this->getExistingTestPage( 'File:Redirect' );
+		$target = $this->newRepo()->checkRedirect( $page );
+		$this->assertEquals( 'File:Target', $target->getPrefixedText() );
 	}
 
 	/**
