@@ -203,11 +203,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		$options['lessMessages'] = array_merge(
-			$options['lessMessages'] ?? [],
-			self::LESS_MESSAGES
-		);
-		parent::__construct( $options, $localBasePath, $remoteBasePath );
 		$features = $options['features'] ??
 			// For historic reasons if nothing is declared logo and legacy features are enabled.
 			[
@@ -263,6 +258,16 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 				return $enabledFeatures[ $key ];
 			}
 		);
+
+		$options['lessMessages'] = $options['lessMessages'] ?? [];
+		// Only the `toc` feature requires access to messages.
+		// For modules not using the `toc` feature make sure this is set to an empty array.
+		// See T270027.
+		// This is done after construction of the enabled features array.
+		if ( in_array( 'toc', $this->features ) ) {
+			$options['lessMessages'] = array_merge( $options['lessMessages'], self::LESS_MESSAGES );
+		}
+		parent::__construct( $options, $localBasePath, $remoteBasePath );
 	}
 
 	/**
