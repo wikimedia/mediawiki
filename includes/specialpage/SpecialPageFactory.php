@@ -376,7 +376,6 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
 				'DBLoadBalancer',
-				'ActorMigration',
 				'CommentStore',
 				'BlockUtils',
 			],
@@ -387,7 +386,6 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'BlockRestrictionStore',
 				'DBLoadBalancer',
-				'ActorMigration',
 				'CommentStore',
 				'BlockUtils'
 			],

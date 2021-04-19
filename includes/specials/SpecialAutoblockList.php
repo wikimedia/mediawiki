@@ -43,9 +43,6 @@ class SpecialAutoblockList extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var CommentStore */
 	private $commentStore;
 
@@ -56,7 +53,6 @@ class SpecialAutoblockList extends SpecialPage {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param ILoadBalancer $loadBalancer
-	 * @param ActorMigration $actorMigration
 	 * @param CommentStore $commentStore
 	 * @param BlockUtils $blockUtils
 	 */
@@ -64,7 +60,6 @@ class SpecialAutoblockList extends SpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
-		ActorMigration $actorMigration,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils
 	) {
@@ -73,7 +68,6 @@ class SpecialAutoblockList extends SpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->loadBalancer = $loadBalancer;
-		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
 	}
@@ -137,7 +131,6 @@ class SpecialAutoblockList extends SpecialPage {
 			$this->blockRestrictionStore,
 			$this->loadBalancer,
 			$this->getSpecialPageFactory(),
-			$this->actorMigration,
 			$this->commentStore,
 			$this->blockUtils
 		);
