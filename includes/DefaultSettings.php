@@ -4409,34 +4409,6 @@ $wgResourceLoaderDebug = false;
 $wgIncludeLegacyJavaScript = false;
 
 /**
- * Whether or not to assign configuration variables to the global window object.
- *
- * If this is set to false, old code using deprecated variables will no longer
- * work.
- *
- * @par Example of legacy code:
- * @code{,js}
- *     if ( window.wgRestrictionEdit ) { ... }
- * @endcode
- * or:
- * @code{,js}
- *     if ( wgIsArticle ) { ... }
- * @endcode
- *
- * Instead, one needs to use mw.config.
- * @par Example using mw.config global configuration:
- * @code{,js}
- *     if ( mw.config.exists('wgRestrictionEdit') ) { ... }
- * @endcode
- * or:
- * @code{,js}
- *     if ( mw.config.get('wgIsArticle') ) { ... }
- * @endcode
- * @deprecated since 1.36: Use mw.config.get() instead.
- */
-$wgLegacyJavaScriptGlobals = false;
-
-/**
  * ResourceLoader will not generate URLs whose query string is more than
  * this many characters long, and will instead use multiple requests with
  * shorter query strings. Using multiple requests may degrade performance,

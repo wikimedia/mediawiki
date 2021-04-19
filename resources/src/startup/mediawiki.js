@@ -66,27 +66,6 @@
 	}
 
 	/**
-	 * Alias property to the global object.
-	 *
-	 * @private
-	 * @static
-	 * @member mw.Map
-	 * @param {mw.Map} map
-	 * @param {string} key
-	 * @param {Mixed} value
-	 */
-	function setGlobalMapValue( map, key, value ) {
-		map.values[ key ] = value;
-		log.deprecate(
-			window,
-			key,
-			value,
-			// Deprecation notice for mw.config globals (T58550, T72470)
-			map === mw.config && 'Use mw.config instead.'
-		);
-	}
-
-	/**
 	 * Log a message to window.console, if possible.
 	 *
 	 * Useful to force logging of some errors that are otherwise hard to detect (i.e., this logs
@@ -128,30 +107,9 @@
 	 * @class mw.Map
 	 *
 	 * @constructor
-	 * @param {boolean} [global=false] Whether to synchronise =values to the global
-	 *  window object (for backwards-compatibility with mw.config; T72470). Values are
-	 *  copied in one direction only. Changes to globals do not reflect in the map.
 	 */
-	function Map( global ) {
+	function Map() {
 		this.values = Object.create( null );
-		if ( global === true ) {
-			// Override #set to also set the global variable
-			this.set = function ( selection, value ) {
-				var s;
-				if ( arguments.length > 1 ) {
-					if ( typeof selection === 'string' ) {
-						setGlobalMapValue( this, selection, value );
-						return true;
-					}
-				} else if ( typeof selection === 'object' ) {
-					for ( s in selection ) {
-						setGlobalMapValue( this, s, selection[ s ] );
-					}
-					return true;
-				}
-				return false;
-			};
-		}
 	}
 
 	Map.prototype = {
@@ -434,12 +392,9 @@
 		 * Check out [the complete list of configuration values](https://www.mediawiki.org/wiki/Manual:Interface/JavaScript#mw.config)
 		 * on mediawiki.org.
 		 *
-		 * If `$wgLegacyJavaScriptGlobals` is true, this Map will add its values to the
-		 * global `window` object.
-		 *
 		 * @property {mw.Map} config
 		 */
-		config: new Map( $VARS.wgLegacyJavaScriptGlobals ),
+		config: new Map(),
 
 		/**
 		 * Store for messages.
