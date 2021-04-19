@@ -92,7 +92,7 @@ class LocalFileDeleteBatch {
 	public function addOlds() {
 		$archiveNames = [];
 
-		$dbw = $this->file->repo->getMasterDB();
+		$dbw = $this->file->repo->getPrimaryDB();
 		$result = $dbw->select( 'oldimage',
 			[ 'oi_archive_name' ],
 			[ 'oi_name' => $this->file->getName() ],
@@ -135,7 +135,7 @@ class LocalFileDeleteBatch {
 		}
 
 		if ( count( $oldRels ) ) {
-			$dbw = $this->file->repo->getMasterDB();
+			$dbw = $this->file->repo->getPrimaryDB();
 			$res = $dbw->select(
 				'oldimage',
 				[ 'oi_archive_name', 'oi_sha1' ],
@@ -184,7 +184,7 @@ class LocalFileDeleteBatch {
 
 	protected function doDBInserts() {
 		$now = time();
-		$dbw = $this->file->repo->getMasterDB();
+		$dbw = $this->file->repo->getPrimaryDB();
 
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 
@@ -293,7 +293,7 @@ class LocalFileDeleteBatch {
 	}
 
 	private function doDBDeletes() {
-		$dbw = $this->file->repo->getMasterDB();
+		$dbw = $this->file->repo->getPrimaryDB();
 		list( $oldRels, $deleteCurrent ) = $this->getOldRels();
 
 		if ( count( $oldRels ) ) {

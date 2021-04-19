@@ -6,7 +6,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 /**
  * @coversDefaultClass DBFileJournal
  * @covers ::__construct
- * @covers ::getMasterDB
+ * @covers ::getPrimaryDB
  * @group Database
  */
 class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {

@@ -199,7 +199,7 @@ class JobQueueDB extends JobQueue {
 	 * @return void
 	 */
 	protected function doBatchPush( array $jobs, $flags ) {
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		// In general, there will be two cases here:
@@ -289,7 +289,7 @@ class JobQueueDB extends JobQueue {
 	 * @return RunnableJob|bool
 	 */
 	protected function doPop() {
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 
@@ -337,7 +337,7 @@ class JobQueueDB extends JobQueue {
 	 * @return stdClass|bool Row|false
 	 */
 	protected function claimRandom( $uuid, $rand, $gte ) {
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		// Check cache to see if the queue has <= OFFSET items
@@ -415,7 +415,7 @@ class JobQueueDB extends JobQueue {
 	 * @return stdClass|bool Row|false
 	 */
 	protected function claimOldest( $uuid ) {
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 
@@ -483,7 +483,7 @@ class JobQueueDB extends JobQueue {
 			throw new MWException( "Job of type '{$job->getType()}' has no ID." );
 		}
 
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		try {
@@ -512,7 +512,7 @@ class JobQueueDB extends JobQueue {
 		// is deferred till "transaction idle", do the same here, so that the ordering is
 		// maintained. Having only the de-duplication registration succeed would cause
 		// jobs to become no-ops without any actual jobs that made them redundant.
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		$dbw->onTransactionCommitOrIdle(
@@ -530,7 +530,7 @@ class JobQueueDB extends JobQueue {
 	 * @return bool
 	 */
 	protected function doDelete() {
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 		try {
@@ -668,7 +668,7 @@ class JobQueueDB extends JobQueue {
 	public function recycleAndDeleteStaleJobs() {
 		$now = time();
 		$count = 0; // affected rows
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbw );
 
@@ -785,12 +785,22 @@ class JobQueueDB extends JobQueue {
 	 * @throws JobQueueConnectionError
 	 * @return IMaintainableDatabase
 	 */
-	protected function getMasterDB() {
+	protected function getPrimaryDB() {
 		try {
 			return $this->getDB( DB_PRIMARY );
 		} catch ( DBConnectionError $e ) {
 			throw new JobQueueConnectionError( "DBConnectionError:" . $e->getMessage() );
 		}
+	}
+
+	/**
+	 * @deprecated since 1.37
+	 * @throws JobQueueConnectionError
+	 * @return IMaintainableDatabase
+	 */
+	public function getMasterDB() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryDB();
 	}
 
 	/**

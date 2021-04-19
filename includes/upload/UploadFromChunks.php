@@ -265,7 +265,7 @@ class UploadFromChunks extends UploadFromFile {
 		wfDebug( __METHOD__ . " update chunk status for {$this->mFileKey} offset:" .
 			$this->getOffset() . ' inx:' . $this->getChunkIndex() );
 
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		$dbw->update(
 			'uploadstash',
 			[
@@ -284,7 +284,7 @@ class UploadFromChunks extends UploadFromFile {
 	private function getChunkStatus() {
 		// get Master db to avoid race conditions.
 		// Otherwise, if chunk upload time < replag there will be spurious errors
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		$row = $dbw->selectRow(
 			'uploadstash',
 			[
