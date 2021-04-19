@@ -92,6 +92,7 @@ class RollbackAction extends FormAction {
 
 	public function handleRollbackRequest() {
 		$this->enableTransactionalTimelimit();
+		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
 
 		$request = $this->getRequest();
 		$user = $this->getUser();
