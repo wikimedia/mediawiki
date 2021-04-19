@@ -13,7 +13,7 @@
 
 	var mw, StringSet, log, isES6Supported,
 		hasOwn = Object.hasOwnProperty,
-		console = window.console;
+		con = window.console;
 
 	/**
 	 * FNV132 hash function
@@ -83,18 +83,18 @@
 		var msg,
 			e = data.exception;
 
-		if ( console && console.log ) {
+		if ( con.log ) {
 			msg = ( e ? 'Exception' : 'Error' ) +
 				' in ' + data.source +
 				( data.module ? ' in module ' + data.module : '' ) +
 				( e ? ':' : '.' );
 
-			console.log( msg );
+			con.log( msg );
 
 			// If we have an exception object, log it to the warning channel to trigger
 			// proper stacktraces in browsers that support it.
-			if ( e && console.warn ) {
-				console.warn( e );
+			if ( e && con.warn ) {
+				con.warn( e );
 			}
 		}
 	}
@@ -203,16 +203,16 @@
 	 * Write a verbose message to the browser's console in debug mode.
 	 *
 	 * This method is mainly intended for verbose logging. It is a no-op in production mode.
-	 * In ResourceLoader debug mode, it will use the browser's console if available.
+	 * In ResourceLoader debug mode, it will use the browser's console.
 	 *
 	 * See {@link mw.log} for other logging methods.
 	 *
 	 * @member mw
 	 * @param {...string} msg Messages to output to console.
 	 */
-	log = function () {};
-
-	// Note: Keep list of log methods in sync with restoration in mediawiki.log.js!
+	log = function () {
+		$CODE.consoleLog();
+	};
 
 	/**
 	 * Collection of methods to help log messages to the console.
@@ -228,8 +228,8 @@
 	 *
 	 * @param {...string} msg Messages to output to console
 	 */
-	log.warn = console && console.warn ?
-		Function.prototype.bind.call( console.warn, console ) :
+	log.warn = con.warn ?
+		Function.prototype.bind.call( con.warn, con ) :
 		function () {};
 
 	/**
@@ -243,8 +243,8 @@
 	 * @since 1.26
 	 * @param {...Mixed} msg Messages to output to console
 	 */
-	log.error = console && console.error ?
-		Function.prototype.bind.call( console.error, console ) :
+	log.error = con.error ?
+		Function.prototype.bind.call( con.error, con ) :
 		function () {};
 
 	/**
