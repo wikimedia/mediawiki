@@ -69,7 +69,6 @@ return [
 			'legacy' => true,
 		],
 	],
-	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => [
 		'class' => ResourceLoaderSkinModule::class,
 		'features' => [
@@ -2318,6 +2317,7 @@ return [
 
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.config' => [
+		'deprecated' => 'This module will be removed in 1.37. Use `mediawiki.skinning.interface`.',
 		// These files are not actually loaded via ResourceLoader, so dependencies etc. won't work.
 		'scripts' => 'mw-config/config.js',
 		'styles' => 'mw-config/config.css',
