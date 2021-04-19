@@ -87,6 +87,8 @@ because of Phabricator reports.
   handler without changing the status, the edit form will now be displayed.
 * User::clearNotification() which had been deprecated in 1.35 has been removed.
   Use WatchlistManager::clearTitleUserNotification() instead.
+* Autopromote class, deprecated since 1.35, was removed. Use
+  UserGroupManager instead.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
