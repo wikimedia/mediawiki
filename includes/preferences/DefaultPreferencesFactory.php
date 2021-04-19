@@ -753,7 +753,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				if ( $this->options->get( 'EnableUserEmailBlacklist' ) ) {
 					$defaultPreferences['email-blacklist'] = [
 						'type' => 'usersmultiselect',
-						'label-message' => 'email-blacklist-label',
+						'label-message' => 'email-mutelist-label',
 						'section' => 'personal/email',
 						'disabled' => $disableEmailPrefs,
 						'filter' => MultiUsernameFilter::class,
