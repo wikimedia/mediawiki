@@ -537,6 +537,7 @@ return [
 
 		return new HtmlCacheUpdater(
 			$services->getHookContainer(),
+			$services->getTitleFactory(),
 			$config->get( 'CdnReboundPurgeDelay' ),
 			$config->get( 'UseFileCache' ),
 			$config->get( 'CdnMaxAge' )
