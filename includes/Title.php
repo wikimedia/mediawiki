@@ -1270,11 +1270,13 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * False for relative section links (with getText() === ''),
 	 * interwiki links (with getInterwiki() !== ''), and pages in NS_SPECIAL.
 	 *
+	 * @deprecated since 1.37, use WatchlistManager::isWatchable instead.
+	 *
 	 * @return bool
 	 */
 	public function isWatchable() {
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
-		return $this->canExist() && $nsInfo->isWatchable( $this->mNamespace );
+		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		return $watchlistManager->isWatchable( $this );
 	}
 
 	/**
