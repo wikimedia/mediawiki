@@ -265,7 +265,8 @@
 			var name = logName || key,
 				trace = new Error().stack;
 			if ( !stacks ) {
-				stacks = new StringSet();
+				/* global Set */
+				stacks = new Set();
 			}
 			if ( !stacks.has( trace ) ) {
 				stacks.add( trace );
@@ -277,10 +278,13 @@
 				);
 			}
 		}
-		// Support: Safari 5.0
-		// Throws "not supported on DOM Objects" for Node or Element objects (incl. document)
+
+		// Support IE 11, ES5: Use ES6 Set conditionally. Fallback to not logging.
+		//
+		// Support Safari 5.0: Object.defineProperty throws  "not supported on DOM Objects" for
+		// Node or Element objects (incl. document)
 		// Safari 4.0 doesn't have this method, and it was fixed in Safari 5.1.
-		try {
+		if ( window.Set ) {
 			Object.defineProperty( obj, key, {
 				configurable: true,
 				enumerable: true,
@@ -293,7 +297,7 @@
 					val = newVal;
 				}
 			} );
-		} catch ( err ) {
+		} else {
 			obj[ key ] = val;
 		}
 	};
