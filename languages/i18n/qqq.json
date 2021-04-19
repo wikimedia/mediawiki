@@ -2626,6 +2626,7 @@
 	"nowatchlist": "Displayed when there is no pages in the watchlist.",
 	"watchlistanontext": "Shown on Special:Userlogin when user tries to access their watchlist before logging in",
 	"watchnologin": "Used as error page title.\n\nThe error message for this title is:\n* {{msg-mw|Watchnologintext}}\n{{Identical|Not logged in}}",
+	"watchlistnotwatchable": "Error displayed when an attempt is made to add or remove a page that is not watchable from a user's watchlist.",
 	"addwatch": "A form fieldset legend that serves as a confirmation message that is shown after a user clicks the watchlist star icon if the JavaScript does not or cannot load, or if they visit the \"action=\" link directly, e.g. https://translatewiki.net/w/i.php?title=MediaWiki:Addwatch/qqq&action=watch\n\nSee also:\n* {{msg-mw|Removewatch}}\n* {{msg-mw|Confirm-watch-top}}\n* {{msg-mw|Confirm-watch-button}}\n* {{msg-mw|updatewatchlist}}",
 	"updatewatchlist": "A form fieldset legend used on <code>?action=watch</code> when watchlist expiries are enabled and the page being watched is already on the user's watchlist. Used instead of {{msg-mw|addwatch}} in this situation.",
 	"addedwatchtext": "Message shown after clicking on the {{msg-mw|Watch}} tab in a content namespace page. Parameters:\n* $1 - page title\nSee also:\n* {{msg-mw|Removedwatchtext}}\n* {{msg-mw|Addedwatchtext-talk}}",

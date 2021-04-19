@@ -273,7 +273,7 @@ class WatchAction extends FormAction {
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 * @return Status
-	 * @deprecated since 1.37, use WatchlistManager:doWatch() instead.
+	 * @deprecated since 1.37, use WatchlistManager:addWatch() instead.
 	 */
 	public static function doWatch(
 		PageIdentity $pageIdentity,
@@ -281,10 +281,17 @@ class WatchAction extends FormAction {
 		$checkRights = User::CHECK_USER_RIGHTS,
 		?string $expiry = null
 	) {
-		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->doWatch(
+		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		if ( $checkRights ) {
+			return Status::wrap( $watchlistManager->addWatch(
+				$performer,
+				$pageIdentity,
+				$expiry
+			) );
+		}
+		return Status::wrap( $watchlistManager->addWatchIgnoringRights(
+			$performer->getUser(),
 			$pageIdentity,
-			$performer,
-			$checkRights,
 			$expiry
 		) );
 	}
@@ -297,12 +304,12 @@ class WatchAction extends FormAction {
 	 *
 	 * @return Status
 	 * @since 1.22 Returns Status
-	 * @deprecated since 1.37, use WatchlistManager:doUnwatch() instead.
+	 * @deprecated since 1.37, use WatchlistManager:removeWatch() instead.
 	 */
 	public static function doUnwatch( PageIdentity $pageIdentity, Authority $performer ) {
-		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->doUnwatch(
-			$pageIdentity,
-			$performer
+		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->removeWatch(
+			$performer,
+			$pageIdentity
 		) );
 	}
 

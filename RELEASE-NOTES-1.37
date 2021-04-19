@@ -105,13 +105,20 @@ because of Phabricator reports.
 * Deprecated WatchAction::doWatchOrUnwatch(). Use WatchlistManager::setWatch()
   instead.
 * Deprecated WatchAction::doWatch() and WatchAction::doUnwatch(). Use
-  WatchlistManager::doWatch() or WatchlistManager::doUnwatch(), instead.
+  WatchlistManager::addWatch() or WatchlistManager::removeWatch(), instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * …
 
 === Other changes in 1.37 ===
+* WatchlistManager::addWatch and WatchlistManager::addWatchIgnoringRights(),
+  which replace User::addWatch(), now call the WatchArticle and
+  WatchArticleComplete hooks.
+* WatchlistManager::removeWatch and
+  WatchlistManager::removeWatchIgnoringRights(), which replace
+  User::removeWatch(), now call the UnwatchArticle and UnwatchArticleComplete
+  hooks.
 * …
 
 == Compatibility ==
