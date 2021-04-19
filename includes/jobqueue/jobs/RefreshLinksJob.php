@@ -91,7 +91,7 @@ class RefreshLinksJob extends Job {
 		// Job to update all (or a range of) backlink pages for a page
 		if ( !empty( $this->params['recursive'] ) ) {
 			$services = MediaWikiServices::getInstance();
-			// When the base job branches, wait for the replica DBs to catch up to the master.
+			// When the base job branches, wait for the replica DBs to catch up to the primary.
 			// From then on, we know that any template changes at the time the base job was
 			// enqueued will be reflected in backlink page parses when the leaf jobs run.
 			if ( !isset( $this->params['range'] ) ) {
@@ -150,7 +150,7 @@ class RefreshLinksJob extends Job {
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
-		// Load the page from the master DB
+		// Load the page from the primary DB
 		$page = $services->getWikiPageFactory()->newFromTitle( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
 

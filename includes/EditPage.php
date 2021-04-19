@@ -2058,7 +2058,7 @@ class EditPage implements IEditObject {
 		}
 		// END OF MIGRATION TO EDITCONSTRAINT SYSTEM (continued below)
 
-		# Load the page data from the master. If anything changes in the meantime,
+		# Load the page data from the primary DB. If anything changes in the meantime,
 		# we detect it by using page_latest like a token in a 1 try compare-and-swap.
 		$this->page->loadPageData( 'fromdbmaster' );
 		$new = !$this->page->exists();

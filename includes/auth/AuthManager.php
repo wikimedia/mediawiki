@@ -1604,7 +1604,7 @@ class AuthManager implements LoggerAwareInterface {
 		$localId = User::idFromName( $username );
 		$flags = User::READ_NORMAL;
 
-		// Fetch the user ID from the master, so that we don't try to create the user
+		// Fetch the user ID from the primary, so that we don't try to create the user
 		// when they already exist, due to replication lag
 		// @codeCoverageIgnoreStart
 		if (

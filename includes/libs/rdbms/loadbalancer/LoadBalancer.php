@@ -329,7 +329,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * Resolve $groups into a list of query groups defining as having database servers
 	 *
 	 * @param string[]|string|bool $groups Query group(s) in preference order, [], or false
-	 * @param int $i Specific server index or DB_MASTER/DB_REPLICA
+	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @return string[] Non-empty group list in preference order with the default group appended
 	 */
 	private function resolveGroups( $groups, $i ) {
@@ -357,7 +357,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @param int $flags Bitfield of class CONN_* constants
-	 * @param int $i Specific server index or DB_MASTER/DB_REPLICA
+	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @param string $domain Database domain
 	 * @return int Sanitized bitfield
 	 */
@@ -497,7 +497,7 @@ class LoadBalancer implements ILoadBalancer {
 	/**
 	 * Get the server index to use for a specified server index and query group list
 	 *
-	 * @param int $i Specific server index or DB_MASTER/DB_REPLICA
+	 * @param int $i Specific server index or DB_PRIMARY/DB_REPLICA
 	 * @param string[] $groups Non-empty query group list in preference order
 	 * @param string|bool $domain
 	 * @return int A specific server index (replica DBs are checked for connectivity)
@@ -955,7 +955,7 @@ class LoadBalancer implements ILoadBalancer {
 		$domain = $this->resolveDomainID( $domain );
 		$groups = $this->resolveGroups( $groups, $i );
 		$flags = $this->sanitizeConnectionFlags( $flags, $i, $domain );
-		// If given DB_MASTER/DB_REPLICA, resolve it to a specific server index. Resolving
+		// If given DB_PRIMARY/DB_REPLICA, resolve it to a specific server index. Resolving
 		// DB_REPLICA might trigger getServerConnection() calls due to the getReaderIndex()
 		// connectivity checks or LoadMonitor::scaleLoads() server state cache regeneration.
 		// The use of getServerConnection() instead of getConnection() avoids infinite loops.
@@ -1133,8 +1133,8 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param int $i Server index or DB_MASTER/DB_REPLICA
-	 * @return int One of DB_MASTER/DB_REPLICA
+	 * @param int $i Server index or DB_PRIMARY/DB_REPLICA
+	 * @return int One of DB_PRIMARY/DB_REPLICA
 	 */
 	private function getRoleFromIndex( $i ) {
 		return ( $i === self::DB_PRIMARY || $i === $this->getWriterIndex() )

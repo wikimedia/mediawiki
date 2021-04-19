@@ -293,7 +293,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	}
 
 	/**
-	 * @param int $dbIndex DB_MASTER or DB_REPLICA
+	 * @param int $dbIndex DB_PRIMARY or DB_REPLICA
 	 *
 	 * @return IDatabase
 	 */

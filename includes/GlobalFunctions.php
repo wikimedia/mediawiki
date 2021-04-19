@@ -2275,8 +2275,8 @@ function wfWikiID() {
 /**
  * Get a Database object.
  *
- * @param int $db Index of the connection to get. May be DB_MASTER for the
- *            master (for write queries), DB_REPLICA for potentially lagged read
+ * @param int $db Index of the connection to get. May be DB_PRIMARY for the
+ *            primary (for write queries), DB_REPLICA for potentially lagged read
  *            queries, or an integer >= 0 for a particular server.
  *
  * @param string|string[] $groups Query groups. An array of group names that this query

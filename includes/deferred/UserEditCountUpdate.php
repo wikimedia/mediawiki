@@ -87,7 +87,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					// Since this update runs after the new revisions were committed,
 					// wait for the replica DB to catch up so they will be counted.
 					$dbr = $lb->getConnectionRef( DB_REPLICA );
-					// If $dbr is actually the master DB, then clearing the snapshot
+					// If $dbr is actually the primary DB, then clearing the snapshot
 					// is harmless and waitForMasterPos() will just no-op.
 					$dbr->flushSnapshot( $fname );
 					$lb->waitForMasterPos( $dbr );

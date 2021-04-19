@@ -734,7 +734,7 @@ class MediaWiki {
 
 		if ( $allowHeaders ) {
 			// Set a cookie to tell all CDN edge nodes to "stick" the user to the DC that
-			// handles this POST request (e.g. the "master" data center). Also have the user
+			// handles this POST request (e.g. the "primary" data center). Also have the user
 			// briefly bypass CDN so ChronologyProtector works for cacheable URLs.
 			if ( $request->wasPosted() && $lbFactory->hasOrMadeRecentMasterChanges() ) {
 				$expires = $now + max(
