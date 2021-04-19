@@ -61,12 +61,12 @@ abstract class DatabaseMysqlBase extends Database {
 	/** @var bool Use experimental UTF-8 transmission encoding */
 	protected $utf8Mode;
 	/** @var bool|null */
-	protected $defaultBigSelects = null;
+	protected $defaultBigSelects;
 
 	/** @var bool|null */
-	private $insertSelectIsSafe = null;
+	private $insertSelectIsSafe;
 	/** @var stdClass|null */
-	private $replicationInfoRow = null;
+	private $replicationInfoRow;
 
 	// Cache getServerId() for 24 hours
 	private const SERVER_ID_CACHE_TTL = 86400;
@@ -496,7 +496,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 * Returns estimated count, based on EXPLAIN output
 	 * Takes same arguments as Database::select()
 	 *
-	 * @param string|array $table
+	 * @param string|array $tables
 	 * @param string|array $var
 	 * @param string|array $conds
 	 * @param string $fname
@@ -504,8 +504,13 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @param array $join_conds
 	 * @return bool|int
 	 */
-	public function estimateRowCount( $table, $var = '*', $conds = '',
-		$fname = __METHOD__, $options = [], $join_conds = []
+	public function estimateRowCount(
+		$tables,
+		$var = '*',
+		$conds = '',
+		$fname = __METHOD__,
+		$options = [],
+		$join_conds = []
 	) {
 		$conds = $this->normalizeConditions( $conds, $fname );
 		$column = $this->extractSingleFieldFromList( $var );
@@ -514,7 +519,7 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		$options['EXPLAIN'] = true;
-		$res = $this->select( $table, $var, $conds, $fname, $options, $join_conds );
+		$res = $this->select( $tables, $var, $conds, $fname, $options, $join_conds );
 		if ( $res === false ) {
 			return false;
 		}
