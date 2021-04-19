@@ -19,7 +19,9 @@
  * @ingroup FileRepo
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * A foreign repository for a remote MediaWiki accessible through api.php requests.
@@ -103,7 +105,7 @@ class ForeignAPIRepo extends FileRepo {
 	 * Per docs in FileRepo, this needs to return false if we don't support versioned
 	 * files. Well, we don't.
 	 *
-	 * @param Title $title
+	 * @param PageIdentity|LinkTarget|string $title
 	 * @param string|bool $time
 	 * @return File|false
 	 */

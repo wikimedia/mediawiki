@@ -7,7 +7,9 @@
  * @details
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * Base code for file repositories.
@@ -408,7 +410,7 @@ class FileRepo {
 	/**
 	 * Create a new File object from the local repository
 	 *
-	 * @param Title|string $title Title object or string
+	 * @param PageIdentity|LinkTarget|string $title
 	 * @param bool|string $time Time at which the image was uploaded. If this
 	 *   is specified, the returned object will be an instance of the
 	 *   repository's old file class instead of a current file. Repositories
@@ -437,7 +439,7 @@ class FileRepo {
 	 * Returns false if the file does not exist. Repositories not supporting
 	 * version control should return false if the time is specified.
 	 *
-	 * @param Title|string $title Title object or string
+	 * @param PageIdentity|LinkTarget|string $title
 	 * @param array $options Associative array of options:
 	 *   time:           requested time for a specific file version, or false for the
 	 *                   current version. An image object will be returned which was
@@ -704,12 +706,12 @@ class FileRepo {
 	}
 
 	/**
-	 * Get the name of a file from its title object
+	 * Get the name of a file from its title
 	 *
-	 * @param Title $title
+	 * @param PageIdentity|LinkTarget $title
 	 * @return string
 	 */
-	public function getNameFromTitle( Title $title ) {
+	public function getNameFromTitle( $title ) {
 		if (
 			$this->initialCapital !=
 			MediaWikiServices::getInstance()->getNamespaceInfo()->isCapitalized( NS_FILE )
@@ -1828,10 +1830,10 @@ class FileRepo {
 	 * title object. If not, return false.
 	 * STUB
 	 *
-	 * @param Title $title Title of image
-	 * @return bool
+	 * @param PageIdentity|LinkTarget $title Title of image
+	 * @return Title|bool
 	 */
-	public function checkRedirect( Title $title ) {
+	public function checkRedirect( $title ) {
 		return false;
 	}
 
@@ -1840,9 +1842,9 @@ class FileRepo {
 	 * Doesn't do anything for repositories that don't support image redirects.
 	 *
 	 * STUB
-	 * @param Title $title Title of image
+	 * @param PageIdentity|LinkTarget $title Title of image
 	 */
-	public function invalidateImageRedirect( Title $title ) {
+	public function invalidateImageRedirect( $title ) {
 	}
 
 	/**
