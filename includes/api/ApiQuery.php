@@ -87,7 +87,12 @@ class ApiQuery extends ApiBase {
 		'alltransclusions' => ApiQueryAllLinks::class,
 		'allusers' => ApiQueryAllUsers::class,
 		'backlinks' => ApiQueryBacklinks::class,
-		'blocks' => ApiQueryBlocks::class,
+		'blocks' => [
+			'class' => ApiQueryBlocks::class,
+			'services' => [
+				'BlockRestrictionStore',
+			],
+		],
 		'categorymembers' => ApiQueryCategoryMembers::class,
 		'deletedrevs' => ApiQueryDeletedrevs::class,
 		'embeddedin' => ApiQueryBacklinks::class,
