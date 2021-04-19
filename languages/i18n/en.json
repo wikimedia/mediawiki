@@ -4351,7 +4351,7 @@
 	"specialmute-label-mute-email": "Mute emails from this {{GENDER:$1|user}}",
 	"specialmute-header": "Please select your mute preferences for user <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "The username requested could not be found.",
-	"specialmute-error-no-options": "Mute features are unavailable. This might be because: you haven't confirmed your email address or the wiki administrator has disabled email features and/or email blacklist for this wiki.",
+	"specialmute-error-no-options": "Mute features are unavailable. This might be because you haven't confirmed your email address, or because the wiki administrator has disabled email features or email mutelist for this wiki.",
 	"specialmute-email-footer": "To manage email preferences for user {{BIDI:$2}} please visit <$1>.",
 	"specialmute-login-required": "Please log in to change your mute preferences.",
 	"mute-preferences": "Mute preferences",
