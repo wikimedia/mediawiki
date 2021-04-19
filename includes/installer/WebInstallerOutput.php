@@ -144,6 +144,7 @@ class WebInstallerOutput {
 				'elements',
 				'content',
 				'interface',
+				'interface-message-box',
 				'logo',
 				'legacy'
 			],
