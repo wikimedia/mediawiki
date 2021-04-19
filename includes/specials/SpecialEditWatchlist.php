@@ -77,9 +77,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 	/** @var WatchlistManager */
 	private $watchlistManager;
 
-	/** @var bool Watchlist Expiry flag */
-	private $isWatchlistExpiryEnabled;
-
 	/**
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param TitleParser|null $titleParser
@@ -108,7 +105,6 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
-		$this->isWatchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 	}
 
 	public function doesWrites() {
@@ -439,7 +435,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		$titles = [];
 		$options = [ 'sort' => WatchedItemStore::SORT_ASC ];
 
-		if ( $this->isWatchlistExpiryEnabled ) {
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
 			$options[ 'sortByExpiry'] = true;
 		}
 
@@ -736,7 +732,7 @@ class SpecialEditWatchlist extends UnlistedSpecialPage {
 		}
 
 		$watchlistExpiringMessage = '';
-		if ( $this->isWatchlistExpiryEnabled && $expiryDaysText ) {
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) && $expiryDaysText ) {
 			$watchlistExpiringMessage = Html::element(
 				'span',
 				[ 'class' => 'mw-watchlistexpiry-msg' ],
