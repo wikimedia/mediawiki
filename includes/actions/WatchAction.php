@@ -315,7 +315,12 @@ class WatchAction extends FormAction {
 		$user = $services->getUserFactory()->newFromAuthority( $performer );
 		if ( Hooks::runner()->onWatchArticle( $user, $wikiPage, $status, $expiry ) ) {
 			$status = Status::newGood();
-			$user->addWatch( $title, $checkRights, $expiry );
+			$watchlistManager = $services->getWatchlistManager();
+			if ( $checkRights ) {
+				$watchlistManager->addWatch( $performer, $title, $expiry );
+			} else {
+				$watchlistManager->addWatchIgnoringRights( $user, $title, $expiry );
+			}
 			Hooks::runner()->onWatchArticleComplete( $user, $wikiPage );
 		}
 
@@ -345,7 +350,7 @@ class WatchAction extends FormAction {
 		$user = $services->getUserFactory()->newFromAuthority( $performer );
 		if ( Hooks::runner()->onUnwatchArticle( $user, $wikiPage, $status ) ) {
 			$status = Status::newGood();
-			$user->removeWatch( $title );
+			$services->getWatchlistManager()->removeWatch( $performer, $title );
 			Hooks::runner()->onUnwatchArticleComplete( $user, $wikiPage );
 		}
 
