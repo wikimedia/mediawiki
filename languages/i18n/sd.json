@@ -800,7 +800,7 @@
 	"timezoneregion-pacific": "ماٺو ساگر",
 	"allowemail": "ٻين واپرائيندڙن کي مون ڏانھن برقٽپال ڪرڻ جي اجازت ڏيو",
 	"email-allow-new-users-label": "بلڪل-نون واپرائيندڙن کان برقٽپالن جي اجازت ڏيو",
-	"email-blacklist-label": "هنن واپرائندڙن کي مون ڏانھن برقٽپال ڪرڻ کان منع ڪريو:",
+	"email-mutelist-label": "هنن واپرائندڙن کي مون ڏانھن برقٽپال ڪرڻ کان منع ڪريو:",
 	"prefs-searchoptions": "ڳولا",
 	"prefs-namespaces": "نانءُپولار",
 	"default": "ڏنل",

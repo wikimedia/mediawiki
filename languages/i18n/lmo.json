@@ -1085,7 +1085,7 @@
 	"timezoneregion-pacific": "Oceano Pacifich",
 	"allowemail": "Permet ai alter utent de toeu contat con mi per mezz de la posta eletronica",
 	"email-allow-new-users-label": "Pemet i messagg de posta eletronica di utent noeuv",
-	"email-blacklist-label": "Proibiss a 'sti utent chì de mandamm di messagg de posta eletronica:",
+	"email-mutelist-label": "Proibiss a 'sti utent chì de mandamm di messagg de posta eletronica:",
 	"prefs-searchoptions": "Ricerca",
 	"prefs-namespaces": "Spazzi di nom",
 	"default": "predefinid",

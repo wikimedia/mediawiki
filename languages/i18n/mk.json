@@ -1093,7 +1093,7 @@
 	"timezoneregion-pacific": "Тихи Океан",
 	"allowemail": "Дозволи е-пошта од други корисници",
 	"email-allow-new-users-label": "Дозволи е-пошта од сосем нови корисници",
-	"email-blacklist-label": "Забрани е-пошта од следниве корисници:",
+	"email-mutelist-label": "Забрани е-пошта од следниве корисници:",
 	"prefs-searchoptions": "Пребарување",
 	"prefs-namespaces": "Именски простори",
 	"default": "по основно",

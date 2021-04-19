@@ -1016,7 +1016,7 @@
 	"timezoneregion-pacific": "Y Môr Tawel",
 	"allowemail": "Caniatau e-bost oddi wrth defnyddwyr eraill",
 	"email-allow-new-users-label": "Caniatau e-bost oddi wrth defnyddwyr newydd",
-	"email-blacklist-label": "Atal y defnyddwyr canlynol rhag danfon ebost ataf:",
+	"email-mutelist-label": "Atal y defnyddwyr canlynol rhag danfon ebost ataf:",
 	"prefs-searchoptions": "Chwilio",
 	"prefs-namespaces": "Parthau",
 	"default": "rhagosodyn",

@@ -1063,7 +1063,7 @@
 	"timezoneregion-pacific": "प्रशांत महासागर",
 	"allowemail": "अउर सदस्यन् से ई-मेल सक्षम करा जाय",
 	"email-allow-new-users-label": "एकदम नवा उपयोगकर्तऽन् का ईमेल कय अनुमति दियैं",
-	"email-blacklist-label": "इन उपयोगकर्तऽन् का हमय ईमेल भेजय से रोका:",
+	"email-mutelist-label": "इन उपयोगकर्तऽन् का हमय ईमेल भेजय से रोका:",
 	"prefs-searchoptions": "खोजा जाय",
 	"prefs-namespaces": "नामस्थान",
 	"default": "डिफ़ॉल्ट",

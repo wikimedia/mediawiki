@@ -980,7 +980,7 @@
 	"timezoneregion-pacific": "Oceano Pacifico",
 	"allowemail": "Consenti a altri utenti de mandarme mail",
 	"email-allow-new-users-label": "Consenti mail da novi utenti",
-	"email-blacklist-label": "Inpedisi a sti utenti de mandarme mail",
+	"email-mutelist-label": "Inpedisi a sti utenti de mandarme mail",
 	"prefs-searchoptions": "Riserca",
 	"prefs-namespaces": "Spasio de nomi",
 	"default": "predefinìo",

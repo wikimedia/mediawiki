@@ -1094,7 +1094,7 @@
 	"timezoneregion-pacific": "Vaikne ookean",
 	"allowemail": "Luba teistel kasutajatel mulle e-kirju saata",
 	"email-allow-new-users-label": "Luba e-kirjad tuliuutelt kasutajatelt",
-	"email-blacklist-label": "Keela neil kasutajatel mulle e-kirju saata:",
+	"email-mutelist-label": "Keela neil kasutajatel mulle e-kirju saata:",
 	"prefs-searchoptions": "Otsimine",
 	"prefs-namespaces": "Nimeruumid",
 	"default": "vaikeväärtus",

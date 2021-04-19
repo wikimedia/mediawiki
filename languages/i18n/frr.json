@@ -979,7 +979,7 @@
 	"timezoneregion-pacific": "Pasiifik",
 	"allowemail": "E-mail faan ööder brükern tuläät",
 	"email-allow-new-users-label": "E-mails uk faan gans nei brükern tuläät",
-	"email-blacklist-label": "Jodiar brükern mut mi nian e-mails schüür:",
+	"email-mutelist-label": "Jodiar brükern mut mi nian e-mails schüür:",
 	"prefs-searchoptions": "Schük",
 	"prefs-namespaces": "Nöömrümer",
 	"default": "Fööriinstelang",

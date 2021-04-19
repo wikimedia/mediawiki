@@ -1032,7 +1032,7 @@
 	"timezoneregion-pacific": "Ramusis vandenynas",
 	"allowemail": "Leisti kitiems naudotojams siųsti man el. laiškus",
 	"email-allow-new-users-label": "Leidžia el. laiškus iš naujų vartotojų",
-	"email-blacklist-label": "Neleisti šiems vartotojams siųsti man el. laiškų:",
+	"email-mutelist-label": "Neleisti šiems vartotojams siųsti man el. laiškų:",
 	"prefs-searchoptions": "Paieška",
 	"prefs-namespaces": "Vardų sritys",
 	"default": "numatytasis",

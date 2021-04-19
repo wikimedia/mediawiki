@@ -1047,7 +1047,7 @@
 	"timezoneregion-pacific": "పసిఫిక్ మహాసముద్రం",
 	"allowemail": "ఇతర వాడుకరులను నాకు ఈ-మెయిలు చెయ్యనివ్వు",
 	"email-allow-new-users-label": "సరికొత్త వాడుకరుల నుండి ఈమెయిళ్ళను రానివ్వు",
-	"email-blacklist-label": "ఈ వాడుకరుల నుండి ఈమెయిళ్ళను రానీయకు:",
+	"email-mutelist-label": "ఈ వాడుకరుల నుండి ఈమెయిళ్ళను రానీయకు:",
 	"prefs-searchoptions": "వెతుకులాట",
 	"prefs-namespaces": "పేరుబరులు",
 	"default": "అప్రమేయం",

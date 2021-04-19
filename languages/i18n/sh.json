@@ -1046,7 +1046,7 @@
 	"timezoneregion-pacific": "Tihi okean",
 	"allowemail": "Dozvoli e-mail od ostalih korisnika",
 	"email-allow-new-users-label": "Dozvoli e-mail od potpuno novih korisnika",
-	"email-blacklist-label": "Zabrani e-mail od sljedećih korisnika:",
+	"email-mutelist-label": "Zabrani e-mail od sljedećih korisnika:",
 	"prefs-searchoptions": "Pretraga",
 	"prefs-namespaces": "Imenski prostori",
 	"default": "standardno",

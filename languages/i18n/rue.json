@@ -857,7 +857,7 @@
 	"timezoneregion-pacific": "Тихый океан",
 	"allowemail": "Поволити електронічну пошту од іншых хоснователїв",
 	"email-allow-new-users-label": "Поволити електронічну пошту од цалком новых хоснователїв",
-	"email-blacklist-label": "Заказати тым хоснователям посилати мі імейлы:",
+	"email-mutelist-label": "Заказати тым хоснователям посилати мі імейлы:",
 	"prefs-searchoptions": "Гляданя",
 	"prefs-namespaces": "Просторы назв",
 	"default": "імпліцітне",

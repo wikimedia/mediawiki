@@ -1048,7 +1048,7 @@
 	"timezoneregion-pacific": "Oceano Pacifiche",
 	"allowemail": "Abbilite l'otre utinde a mannarme 'na mail",
 	"email-allow-new-users-label": "Permette email da utinde nuève",
-	"email-blacklist-label": "'Mbedisce a ste utinde de mannarme 'na mail:",
+	"email-mutelist-label": "'Mbedisce a ste utinde de mannarme 'na mail:",
 	"prefs-searchoptions": "Cirche",
 	"prefs-namespaces": "Namespaces",
 	"default": "defolt",

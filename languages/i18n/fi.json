@@ -1135,7 +1135,7 @@
 	"timezoneregion-pacific": "Tyynimeri",
 	"allowemail": "Salli muiden käyttäjien lähettää minulle sähköpostia",
 	"email-allow-new-users-label": "Salli sähköpostit uusilta käyttäjiltä",
-	"email-blacklist-label": "Estä näitä käyttäjiä lähettämästä minulle sähköpostia:",
+	"email-mutelist-label": "Estä näitä käyttäjiä lähettämästä minulle sähköpostia:",
 	"prefs-searchoptions": "Haku",
 	"prefs-namespaces": "Nimiavaruudet",
 	"default": "oletus",

@@ -931,7 +931,7 @@
 	"timezoneregion-indian": "Karagatang Indyano",
 	"timezoneregion-pacific": "Karagatang Pasipiko",
 	"allowemail": "Payagang i-email ako ng ibang tagagamit",
-	"email-blacklist-label": "Patigiling i-email ako ng itong mga tagagamit:",
+	"email-mutelist-label": "Patigiling i-email ako ng itong mga tagagamit:",
 	"prefs-searchoptions": "Paghahanap",
 	"prefs-namespaces": "Mga espasyo ng pangalan",
 	"default": "Likas na pagtatakda",

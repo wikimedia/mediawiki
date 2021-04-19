@@ -1061,7 +1061,7 @@
 	"timezoneregion-pacific": "Òcéano Pacìfico",
 	"allowemail": "Permetti a pòsta eletrònica da di âtri uténti",
 	"email-allow-new-users-label": "Permetti a pòsta eletrònica da di uténti nêuvi",
-	"email-blacklist-label": "Impedisci a sti utenti chie de mandâme de email:",
+	"email-mutelist-label": "Impedisci a sti utenti chie de mandâme de email:",
 	"prefs-searchoptions": "Çerca",
 	"prefs-namespaces": "Namespace:",
 	"default": "Predefinïo",

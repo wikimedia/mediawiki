@@ -1133,7 +1133,7 @@
 	"timezoneregion-pacific": "Ειρηνικός Ωκεανός",
 	"allowemail": "Να επιτρέπεται σε άλλους χρήστες να μου στέλνουν email",
 	"email-allow-new-users-label": "Να επιτρέπεται σε καινούργιους χρήστες να μου αποστέλλουν email",
-	"email-blacklist-label": "Να απαγορεύεται να μου στέλνουν email αυτοί οι χρήστες:",
+	"email-mutelist-label": "Να απαγορεύεται να μου στέλνουν email αυτοί οι χρήστες:",
 	"prefs-searchoptions": "Αναζήτηση",
 	"prefs-namespaces": "Περιοχές ονομάτων",
 	"default": "προεπιλογή",

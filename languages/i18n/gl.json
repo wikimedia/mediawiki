@@ -1082,7 +1082,7 @@
 	"timezoneregion-pacific": "Océano Pacífico",
 	"allowemail": "Admitir mensaxes de correo electrónico doutros usuarios",
 	"email-allow-new-users-label": "Permite correos electrónicos de usuarios novos",
-	"email-blacklist-label": "Prohibir a eses usuarios enviarme correos electrónicosː",
+	"email-mutelist-label": "Prohibir a eses usuarios enviarme correos electrónicosː",
 	"prefs-searchoptions": "Procura",
 	"prefs-namespaces": "Espazos de nomes",
 	"default": "predeterminado",

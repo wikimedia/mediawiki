@@ -992,7 +992,7 @@
 	"timezoneregion-pacific": "Taaw Pasipiko",
 	"allowemail": "Pakabaelan dagiti sabali nga agar-aramt a mangi-esurat kaniak",
 	"email-allow-new-users-label": "Palubosan dagiti esurat manipud kadagiti agdadamo nga agar-aramat",
-	"email-blacklist-label": "Iparit dagitoy nga agar-aramat a mangi-esurat kaniak:",
+	"email-mutelist-label": "Iparit dagitoy nga agar-aramat a mangi-esurat kaniak:",
 	"prefs-searchoptions": "Agbiruk",
 	"prefs-namespaces": "Dagiti nagan ti espasio",
 	"default": "kasisigud",

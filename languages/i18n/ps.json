@@ -934,7 +934,7 @@
 	"timezoneregion-pacific": "غلی سمندر",
 	"allowemail": "د نورو کارنانو لخوا د برېښليک رالېږل چارن کړه",
 	"email-allow-new-users-label": "د نویو کارنانو لخوا د برېښناليک راليږلو ته اجازه ورکړئ",
-	"email-blacklist-label": "دا کارنان ماته د بریښنالیک رالیږلو څخه منع کړي:",
+	"email-mutelist-label": "دا کارنان ماته د بریښنالیک رالیږلو څخه منع کړي:",
 	"prefs-searchoptions": "پلټنه",
 	"prefs-namespaces": "نوم-تشيالونه",
 	"default": "تلواليز",

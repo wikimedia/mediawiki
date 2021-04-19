@@ -1114,7 +1114,7 @@
 	"timezoneregion-pacific": "Pacifiko",
 	"allowemail": "Ebligi akceptadon de retmesaĝoj de aliaj uzantoj",
 	"email-allow-new-users-label": "Permesi retpoŝtojn de ek-novaj uzantoj",
-	"email-blacklist-label": "Malpermesu al jenaj uzantoj mesaĝi al mi:",
+	"email-mutelist-label": "Malpermesu al jenaj uzantoj mesaĝi al mi:",
 	"prefs-searchoptions": "Serĉi",
 	"prefs-namespaces": "Nomspacoj",
 	"default": "defaŭlte",

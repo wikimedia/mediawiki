@@ -1107,7 +1107,7 @@
 	"timezoneregion-pacific": "Csendes-óceán",
 	"allowemail": "E-mail engedélyezése más szerkesztőktől",
 	"email-allow-new-users-label": "E-mail engedélyezése frissen regisztrált szerkesztőktől",
-	"email-blacklist-label": "Letiltás ezen felhasználóknak, hogy e-mailt küldhessenek nekem",
+	"email-mutelist-label": "Letiltás ezen felhasználóknak, hogy e-mailt küldhessenek nekem",
 	"prefs-searchoptions": "Keresés",
 	"prefs-namespaces": "Névterek",
 	"default": "alapértelmezett",

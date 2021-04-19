@@ -1002,7 +1002,7 @@
 	"timezoneregion-pacific": "Stille Oceaan",
 	"allowemail": "Stank anger gebroekers toe mich te e-maile",
 	"email-allow-new-users-label": "Stank e-mails van kaesnuuj gebroekers toe",
-	"email-blacklist-label": "Verbeej dees gebroekers mich te e-maile:",
+	"email-mutelist-label": "Verbeej dees gebroekers mich te e-maile:",
 	"prefs-searchoptions": "Zeuke",
 	"prefs-namespaces": "Naamruimte",
 	"default": "sjtandaard",

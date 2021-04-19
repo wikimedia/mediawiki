@@ -1090,7 +1090,7 @@
 	"timezoneregion-pacific": "Tichý oceán",
 	"allowemail": "Povoliť ostatným používateľom posielať mi e-maily",
 	"email-allow-new-users-label": "Povoliť e-maily od úplne nových používateľov",
-	"email-blacklist-label": "Znemožniť týmto používateľom posielať mi e-maily:",
+	"email-mutelist-label": "Znemožniť týmto používateľom posielať mi e-maily:",
 	"prefs-searchoptions": "Vyhľadávanie",
 	"prefs-namespaces": "Menné priestory",
 	"default": "predvolený",

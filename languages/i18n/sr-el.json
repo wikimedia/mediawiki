@@ -1088,7 +1088,7 @@
 	"timezoneregion-pacific": "Tihi okean",
 	"allowemail": "Dozvoljavaj drugim korisnicima da mi šalju imejlove",
 	"email-allow-new-users-label": "Dozvoljavaj imejlove od potpuno novih korisnika",
-	"email-blacklist-label": "Zabranjuj sledećim korisnicima da mi šalju imejlove:",
+	"email-mutelist-label": "Zabranjuj sledećim korisnicima da mi šalju imejlove:",
 	"prefs-searchoptions": "Pretraga",
 	"prefs-namespaces": "Imenski prostori",
 	"default": "podrazumevano",

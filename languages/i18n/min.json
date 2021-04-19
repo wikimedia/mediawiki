@@ -1048,7 +1048,7 @@
 	"timezoneregion-pacific": "Samudera Pasifik",
 	"allowemail": "Izinkan pangguno lain mangirim surel",
 	"email-allow-new-users-label": "Izinkan surel dari pangguno baru",
-	"email-blacklist-label": "Panggono ko indak dapek kirim surel ka Ambo:",
+	"email-mutelist-label": "Panggono ko indak dapek kirim surel ka Ambo:",
 	"prefs-searchoptions": "Cari",
 	"prefs-namespaces": "Ruangnamo",
 	"default": "baku",

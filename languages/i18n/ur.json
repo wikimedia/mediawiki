@@ -1044,7 +1044,7 @@
 	"timezoneregion-pacific": "بحر الکاہل",
 	"allowemail": "دوسرے صارفین کو برقی خظ بھیجنے کا اختیار دیں",
 	"email-allow-new-users-label": "نئے ترین صارفین کو خود کو ای میل بھیجنے کی اجازت دیں",
-	"email-blacklist-label": "ان صارفین کو برقی خط ارسال کرنے سے باز رکھیں:",
+	"email-mutelist-label": "ان صارفین کو برقی خط ارسال کرنے سے باز رکھیں:",
 	"prefs-searchoptions": "تلاش",
 	"prefs-namespaces": "جائے نام",
 	"default": "طے شدہ",

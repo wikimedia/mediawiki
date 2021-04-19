@@ -1116,7 +1116,7 @@
 	"timezoneregion-pacific": "Stillehavet",
 	"allowemail": "Tillat andre å sende meg e-post",
 	"email-allow-new-users-label": "Tillat e-poster fra helt nyregistrerte brukere",
-	"email-blacklist-label": "Forhindre disse brukerne fra å sende meg e-post:",
+	"email-mutelist-label": "Forhindre disse brukerne fra å sende meg e-post:",
 	"prefs-searchoptions": "Søk",
 	"prefs-namespaces": "Navnerom",
 	"default": "standard",

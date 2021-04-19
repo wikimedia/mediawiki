@@ -1037,7 +1037,7 @@
 	"timezoneregion-pacific": "Oceano Pacifeco",
 	"allowemail": "Abbìa 'a ricezione 'e mmasciate mannate 'a l'ati utente",
 	"email-allow-new-users-label": "Abbìa 'a ricezione 'e mmasciate 'a l'ati utente nuove nuove",
-	"email-blacklist-label": "Nun permettere chist' utente 'e me mannà masciate:",
+	"email-mutelist-label": "Nun permettere chist' utente 'e me mannà masciate:",
 	"prefs-searchoptions": "Ascìa",
 	"prefs-namespaces": "Namespace",
 	"default": "predefinito",

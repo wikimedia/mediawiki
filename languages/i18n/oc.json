@@ -1021,7 +1021,7 @@
 	"timezoneregion-pacific": "Ocean Pacific",
 	"allowemail": "Autorizar los autres utilizaires a me mandar de corrièls",
 	"email-allow-new-users-label": "Autorizar corrièr electronic d'utilizaires nòus",
-	"email-blacklist-label": "Enebís a aqueles usatgièrs de m'enviar de corrièrs electronics:",
+	"email-mutelist-label": "Enebís a aqueles usatgièrs de m'enviar de corrièrs electronics:",
 	"prefs-searchoptions": "Recèrca",
 	"prefs-namespaces": "Noms d’espacis",
 	"default": "defaut",

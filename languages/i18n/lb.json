@@ -1010,7 +1010,7 @@
 	"timezoneregion-pacific": "Pazifeschen Ozean",
 	"allowemail": "E-Maile vun anere Benotzer kréien.",
 	"email-allow-new-users-label": "E-Maile vu ganz neie Benotzer erlaben",
-	"email-blacklist-label": "Dëse Benotzer verbidde mir E-Mailen ze schécken:",
+	"email-mutelist-label": "Dëse Benotzer verbidde mir E-Mailen ze schécken:",
 	"prefs-searchoptions": "Sichen",
 	"prefs-namespaces": "Nummraim",
 	"default": "Standard",

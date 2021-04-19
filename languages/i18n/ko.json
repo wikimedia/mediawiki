@@ -1139,7 +1139,7 @@
 	"timezoneregion-pacific": "태평양",
 	"allowemail": "다른 사용자가 내게 이메일을 보낼 수 있게 허용",
 	"email-allow-new-users-label": "처음 온 사용자들로부터 오는 이메일 허용",
-	"email-blacklist-label": "이 사용자가 내게 이메일을 보내지 못하게 합니다:",
+	"email-mutelist-label": "이 사용자가 내게 이메일을 보내지 못하게 합니다:",
 	"prefs-searchoptions": "검색",
 	"prefs-namespaces": "이름공간",
 	"default": "기본값",

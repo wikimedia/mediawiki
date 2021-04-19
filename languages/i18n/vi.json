@@ -1120,7 +1120,7 @@
 	"timezoneregion-pacific": "Thái Bình Dương",
 	"allowemail": "Cho phép các thành viên khác gửi thư điện tử cho tôi",
 	"email-allow-new-users-label": "Nhận thư điện tử từ các thành viên mới",
-	"email-blacklist-label": "Cấm các thành viên sau gửi thư điện tử cho tôi:",
+	"email-mutelist-label": "Cấm các thành viên sau gửi thư điện tử cho tôi:",
 	"prefs-searchoptions": "Tìm kiếm",
 	"prefs-namespaces": "Không gian tên",
 	"default": "mặc định",

@@ -1129,7 +1129,7 @@
 	"timezoneregion-pacific": "اقیانوس آرام",
 	"allowemail": "دریافت ایمیل از دیگر کاربران ممکن باشد",
 	"email-allow-new-users-label": "اجازهٔ دریافت ایمیل از کاربران تازه‌کار داده شود",
-	"email-blacklist-label": "این کاربران را از فرستادن رایانامه به من منع کن:",
+	"email-mutelist-label": "این کاربران را از فرستادن رایانامه به من منع کن:",
 	"prefs-searchoptions": "جستجو",
 	"prefs-namespaces": "فضاهای نام",
 	"default": "پیش‌فرض",
