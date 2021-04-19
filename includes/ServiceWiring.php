@@ -366,7 +366,7 @@ return [
 				$services->getMainConfig()
 			),
 			LoggerFactory::getInstance( 'DatabaseBlockStore' ),
-			$services->getActorMigration(),
+			$services->getActorNormalization(),
 			$services->getBlockRestrictionStore(),
 			$services->getCommentStore(),
 			$services->getHookContainer(),

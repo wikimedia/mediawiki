@@ -62,7 +62,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 				$config
 			),
 			'logger' => new NullLogger(),
-			'actorMigration' => $services->getActorMigration(),
+			'actorNormalization' => $services->getActorNormalization(),
 			'blockRestrictionStore' => $services->getBlockRestrictionStore(),
 			'commentStore' => $services->getCommentStore(),
 			'hookContainer' => $hookContainer,

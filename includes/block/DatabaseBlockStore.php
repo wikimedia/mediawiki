@@ -22,13 +22,14 @@
 
 namespace MediaWiki\Block;
 
-use ActorMigration;
 use AutoCommitUpdate;
 use CommentStore;
 use DeferredUpdates;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\User\ActorNormalization;
+use MediaWiki\User\UserIdentity;
 use MWException;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
@@ -57,8 +58,8 @@ class DatabaseBlockStore {
 	/** @var LoggerInterface */
 	private $logger;
 
-	/** @var ActorMigration */
-	private $actorMigration;
+	/** @var ActorNormalization */
+	private $actorNormalization;
 
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
@@ -78,7 +79,7 @@ class DatabaseBlockStore {
 	/**
 	 * @param ServiceOptions $options
 	 * @param LoggerInterface $logger
-	 * @param ActorMigration $actorMigration
+	 * @param ActorNormalization $actorNormalization
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param CommentStore $commentStore
 	 * @param HookContainer $hookContainer
@@ -88,7 +89,7 @@ class DatabaseBlockStore {
 	public function __construct(
 		ServiceOptions $options,
 		LoggerInterface $logger,
-		ActorMigration $actorMigration,
+		ActorNormalization $actorNormalization,
 		BlockRestrictionStore $blockRestrictionStore,
 		CommentStore $commentStore,
 		HookContainer $hookContainer,
@@ -99,7 +100,7 @@ class DatabaseBlockStore {
 
 		$this->options = $options;
 		$this->logger = $logger;
-		$this->actorMigration = $actorMigration;
+		$this->actorNormalization = $actorNormalization;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->commentStore = $commentStore;
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -350,10 +351,15 @@ class DatabaseBlockStore {
 		} else {
 			$userId = 0;
 		}
+		if ( !$block->getBlocker() ) {
+			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
+		}
+		$blockerActor = $this->actorNormalization->acquireActorId( $block->getBlocker(), $dbw );
 
 		$blockArray = [
 			'ipb_address'          => (string)$target,
 			'ipb_user'             => $userId,
+			'ipb_by_actor'         => $blockerActor,
 			'ipb_timestamp'        => $dbw->timestamp( $block->getTimestamp() ),
 			'ipb_auto'             => $block->getType() === AbstractBlock::TYPE_AUTO,
 			'ipb_anon_only'        => !$block->isHardblock(),
@@ -373,13 +379,8 @@ class DatabaseBlockStore {
 			'ipb_reason',
 			$block->getReasonComment()
 		);
-		$actorArray = $this->actorMigration->getInsertValues(
-			$dbw,
-			'ipb_by',
-			$block->getBlocker()
-		);
 
-		$combinedArray = $blockArray + $commentArray + $actorArray;
+		$combinedArray = $blockArray + $commentArray;
 		return $combinedArray;
 	}
 
@@ -390,26 +391,26 @@ class DatabaseBlockStore {
 	 * @return array
 	 */
 	private function getArrayForAutoblockUpdate( DatabaseBlock $block ) : array {
+		if ( !$block->getBlocker() ) {
+			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
+		}
+		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$blockerActor = $this->actorNormalization->acquireActorId( $block->getBlocker(), $dbw );
 		$blockArray = [
+			'ipb_by_actor'       => $blockerActor,
 			'ipb_create_account' => $block->isCreateAccountBlocked(),
 			'ipb_deleted'        => (int)$block->getHideName(), // typecast required for SQLite
 			'ipb_allow_usertalk' => $block->isUsertalkEditAllowed(),
 			'ipb_sitewide'       => $block->isSitewide(),
 		];
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
 		$commentArray = $this->commentStore->insert(
 			$dbw,
 			'ipb_reason',
 			$block->getReasonComment()
 		);
-		$actorArray = $this->actorMigration->getInsertValues(
-			$dbw,
-			'ipb_by',
-			$block->getBlocker()
-		);
 
-		$combinedArray = $blockArray + $commentArray + $actorArray;
+		$combinedArray = $blockArray + $commentArray;
 		return $combinedArray;
 	}
 
@@ -462,22 +463,27 @@ class DatabaseBlockStore {
 			// Autoblocks only apply to users
 			return [];
 		}
+		/** @var UserIdentity $target */
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
-		$rcQuery = $this->actorMigration->getWhere( $dbr, 'rc_user', $target, false );
 
 		$options = [
 			'ORDER BY' => 'rc_timestamp DESC',
 			'LIMIT' => 1,
 		];
 
+		$actor = $this->actorNormalization->findActorId( $target, $dbr );
+		if ( !$actor ) {
+			$this->logger->debug( 'No actor found to retroactively autoblock' );
+			return [];
+		}
+
 		$res = $dbr->select(
-			[ 'recentchanges' ] + $rcQuery['tables'],
+			[ 'recentchanges' ],
 			[ 'rc_ip' ],
-			$rcQuery['conds'],
+			[ 'rc_actor' => $actor ],
 			__METHOD__,
-			$options,
-			$rcQuery['joins']
+			$options
 		);
 
 		if ( !$res->numRows() ) {
