@@ -1349,6 +1349,7 @@ interface IDatabase {
 	 *   table is "applicable" unless either:
 	 *     - It involves an AUTOINCREMENT column for which no values are assigned in $rows
 	 *     - It involves a UUID column for which newly generated UUIDs are assigned in $rows
+	 *   Passing string[] to $uniqueKeys is deprecated.
 	 * @param array $set Combination map/list where each string-keyed entry maps a column
 	 *   to a literal assigned value and each integer-keyed value is a SQL expression in the
 	 *   format of a column assignment within UPDATE...SET. The (column => value) entries are
