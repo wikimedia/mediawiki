@@ -51,7 +51,6 @@ class SpecialUncategorizedPages extends PageQueryPage {
 		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( 'Uncategorizedpages' );
-		$this->addHelpLink( 'Help:Categories' );
 		$this->namespaceInfo = $namespaceInfo;
 		$this->setDBLoadBalancer( $loadBalancer );
 		$this->setLinkBatchFactory( $linkBatchFactory );
@@ -68,6 +67,11 @@ class SpecialUncategorizedPages extends PageQueryPage {
 
 	public function isSyndicated() {
 		return false;
+	}
+
+	public function execute( $par ) {
+		$this->addHelpLink( 'Help:Categories' );
+		parent::execute( $par );
 	}
 
 	public function getQueryInfo() {
