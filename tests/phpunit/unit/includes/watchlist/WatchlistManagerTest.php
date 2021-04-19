@@ -2,6 +2,8 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\TalkPageNotificationManager;
@@ -50,6 +52,13 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$userFactory = $params['userFactory'] ??
 			$this->createNoOpAbstractMock( UserFactory::class );
 
+		$nsInfo = $this->createNoOpMock( NamespaceInfo::class, [ 'isWatchable' ] );
+		$nsInfo->method( 'isWatchable' )->willReturnCallback(
+			function ( $ns ) {
+				return $ns >= 0;
+			}
+		);
+
 		return new WatchlistManager(
 			$options,
 			$this->createHookContainer(),
@@ -57,7 +66,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$this->createMock( RevisionLookup::class ),
 			$talkPageNotificationManager,
 			$watchedItemStore,
-			$userFactory
+			$userFactory,
+			$nsInfo
 		);
 	}
 
@@ -512,5 +522,27 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$res,
 			'getWatchedItem can return false if the item is not watched'
 		);
+	}
+
+	public function testIsWatchable() {
+		$manager = $this->getManager( [ 'readOnly' => 'never' ] );
+
+		$target = new PageReferenceValue( NS_USER, __METHOD__, PageReference::LOCAL );
+		$this->assertTrue( $manager->isWatchable( $target ) );
+	}
+
+	public function provideNotIsWatchable() {
+		yield [ new PageReferenceValue( NS_SPECIAL, 'Contributions', PageReference::LOCAL ) ];
+		yield [ Title::makeTitle( NS_MAIN, '', 'References' ) ];
+		yield [ Title::makeTitle( NS_MAIN, 'Foo', '', 'acme' ) ];
+	}
+
+	/**
+	 * @dataProvider provideNotIsWatchable
+	 */
+	public function testNotIsWatchable( $target ) {
+		$manager = $this->getManager( [ 'readOnly' => 'never' ] );
+
+		$this->assertFalse( $manager->isWatchable( $target ) );
 	}
 }

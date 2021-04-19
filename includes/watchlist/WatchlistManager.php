@@ -28,11 +28,13 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use NamespaceInfo;
 use ReadOnlyMode;
 use WatchedItemStoreInterface;
 
@@ -72,6 +74,9 @@ class WatchlistManager {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var NamespaceInfo */
+	private $nsInfo;
+
 	/**
 	 * @var array
 	 *
@@ -98,6 +103,7 @@ class WatchlistManager {
 	 * @param TalkPageNotificationManager $talkPageNotificationManager
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param UserFactory $userFactory
+	 * @param NamespaceInfo $nsInfo
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -106,7 +112,8 @@ class WatchlistManager {
 		RevisionLookup $revisionLookup,
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WatchedItemStoreInterface $watchedItemStore,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		NamespaceInfo $nsInfo
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->options = $options;
@@ -116,6 +123,7 @@ class WatchlistManager {
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->userFactory = $userFactory;
+		$this->nsInfo = $nsInfo;
 	}
 
 	/**
@@ -296,6 +304,24 @@ class WatchlistManager {
 
 		$this->notificationTimestampCache[ $cacheKey ] = $timestamp;
 		return $timestamp;
+	}
+
+	/**
+	 * @since 1.37
+	 * @param PageReference $target
+	 * @return bool
+	 */
+	public function isWatchable( PageReference $target ): bool {
+		if ( !$this->nsInfo->isWatchable( $target->getNamespace() ) ) {
+			return false;
+		}
+
+		if ( $target instanceof PageIdentity && !$target->canExist() ) {
+			// Catch "improper" Title instances
+			return false;
+		}
+
+		return true;
 	}
 
 }

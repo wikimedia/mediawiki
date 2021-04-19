@@ -25,6 +25,13 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$services = $this->getServiceContainer();
+		$nsInfo = $this->createNoOpMock( NamespaceInfo::class, [ 'isWatchable' ] );
+		$nsInfo->method( 'isWatchable' )->willReturnCallback(
+			function ( $ns ) {
+				return $ns >= 0;
+			}
+		);
+
 		$manager = new WatchlistManager(
 			$options,
 			$this->createHookContainer(),
@@ -32,7 +39,8 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 			$services->getRevisionLookup(),
 			$services->getTalkPageNotificationManager(),
 			$services->getWatchedItemStore(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$nsInfo
 		);
 
 		$username = 'User Name';
