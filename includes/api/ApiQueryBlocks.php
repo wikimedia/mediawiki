@@ -20,7 +20,7 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -32,8 +32,21 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class ApiQueryBlocks extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var BlockRestrictionStore */
+	private $blockRestrictionStore;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param BlockRestrictionStore $blockRestrictionStore
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		BlockRestrictionStore $blockRestrictionStore
+	) {
 		parent::__construct( $query, $moduleName, 'bk' );
+		$this->blockRestrictionStore = $blockRestrictionStore;
 	}
 
 	public function execute() {
@@ -189,7 +202,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 
 		$restrictions = [];
 		if ( $fld_restrictions ) {
-			$restrictions = self::getRestrictionData( $res, $params['limit'] );
+			$restrictions = $this->getRestrictionData( $res, $params['limit'] );
 		}
 
 		$count = 0;
@@ -285,7 +298,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	 *
 	 * @return array
 	 */
-	private static function getRestrictionData( IResultWrapper $result, $limit ) {
+	private function getRestrictionData( IResultWrapper $result, $limit ) {
 		$partialIds = [];
 		$count = 0;
 		foreach ( $result as $row ) {
@@ -294,8 +307,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 			}
 		}
 
-		$blockRestrictionStore = MediaWikiServices::getInstance()->getBlockRestrictionStore();
-		$restrictions = $blockRestrictionStore->loadByBlockId( $partialIds );
+		$restrictions = $this->blockRestrictionStore->loadByBlockId( $partialIds );
 
 		$data = [];
 		$keys = [
