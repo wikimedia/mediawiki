@@ -1526,6 +1526,10 @@ class RevisionStore
 	 * Make a fake revision object from an archive table row. This is queried
 	 * for permissions or even inserted (as in Special:Undelete)
 	 *
+	 * The user ID and user name may optionally be supplied using the aliases
+	 * ar_user and ar_user_text (the names of fields which existed before
+	 * MW 1.34).
+	 *
 	 * MCR migration note: this replaces Revision::newFromArchiveRow
 	 *
 	 * @param \stdClass $row
@@ -2809,6 +2813,10 @@ class RevisionStore
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new RevisionArchiveRecord object.
 	 *
+	 * Since 1.34, ar_user and ar_user_text have not been present in the
+	 * database, but they continue to be available in query results as
+	 * aliases.
+	 *
 	 * MCR migration note: this replaces Revision::getArchiveQueryInfo
 	 *
 	 * @since 1.31
@@ -2820,9 +2828,11 @@ class RevisionStore
 	 */
 	public function getArchiveQueryInfo() {
 		$commentQuery = $this->commentStore->getJoin( 'ar_comment' );
-		$actorQuery = $this->actorMigration->getJoin( 'ar_user' );
 		$ret = [
-			'tables' => [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'archive',
+				'archive_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'ar_id',
 				'ar_page_id',
@@ -2834,9 +2844,14 @@ class RevisionStore
 				'ar_deleted',
 				'ar_len',
 				'ar_parent_id',
-					'ar_sha1',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'ar_sha1',
+				'ar_actor',
+				'ar_user' => 'archive_actor.actor_user',
+				'ar_user_text' => 'archive_actor.actor_name',
+			] + $commentQuery['fields'],
+			'joins' => [
+				'archive_actor' => [ 'JOIN', 'actor_id=ar_actor' ]
+			] + $commentQuery['joins'],
 		];
 
 		return $ret;

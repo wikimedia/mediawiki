@@ -121,20 +121,17 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			$this->addWhere( $where );
 		}
 
-		if ( $params['user'] !== null ) {
-			// Don't query by user ID here, it might be able to use the ar_usertext_timestamp index.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', $params['user'], false );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( $actorQuery['conds'] );
-		} elseif ( $params['excludeuser'] !== null ) {
-			// Here there's no chance of using ar_usertext_timestamp.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', $params['excludeuser'] );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
+		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
+			// In the non-generator case, the actor join will already be present.
+			if ( $resultPageSet !== null ) {
+				$this->addTables( 'actor' );
+				$this->addJoinConds( [ 'actor' => [ 'JOIN', 'actor_id=ar_actor' ] ] );
+			}
+			if ( $params['user'] !== null ) {
+				$this->addWhereFld( 'actor_name', $params['user'] );
+			} elseif ( $params['excludeuser'] !== null ) {
+				$this->addWhere( 'actor_name<>' . $db->addQuotes( $params['excludeuser'] ) );
+			}
 		}
 
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
@@ -281,12 +278,10 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',
