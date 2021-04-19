@@ -101,10 +101,13 @@ class LogPage {
 		$dbw = wfGetDB( DB_MASTER );
 
 		$now = wfTimestampNow();
+		$actorId = MediaWikiServices::getInstance()->getActorNormalization()
+			->acquireActorId( $this->performer, $dbw );
 		$data = [
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $now ),
+			'log_actor' => $actorId,
 			'log_namespace' => $this->target->getNamespace(),
 			'log_title' => $this->target->getDBkey(),
 			'log_page' => $this->target->getArticleID(),
@@ -115,7 +118,6 @@ class LogPage {
 			'log_comment',
 			$this->comment
 		);
-		$data += ActorMigration::newMigration()->getInsertValues( $dbw, 'log_user', $this->performer );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$newId = $dbw->insertId();
 

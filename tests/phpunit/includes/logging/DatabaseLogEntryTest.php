@@ -65,7 +65,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 				'logging',
 				'user',
 				'comment_log_comment' => 'comment',
-				'actor_log_user' => 'actor'
+				'logging_actor' => 'actor'
 			],
 			'fields' => [
 				'log_id',
@@ -82,15 +82,15 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 				'log_comment_text' => 'comment_log_comment.comment_text',
 				'log_comment_data' => 'comment_log_comment.comment_data',
 				'log_comment_cid' => 'comment_log_comment.comment_id',
-				'log_user' => 'actor_log_user.actor_user',
-				'log_user_text' => 'actor_log_user.actor_name',
-				'log_actor' => 'log_actor',
+				'log_user' => 'logging_actor.actor_user',
+				'log_user_text' => 'logging_actor.actor_name',
+				'log_actor',
 			],
 			'options' => [],
 			'join_conds' => [
-				'user' => [ 'LEFT JOIN', 'user_id=actor_log_user.actor_user' ],
+				'user' => [ 'LEFT JOIN', 'user_id=logging_actor.actor_user' ],
 				'comment_log_comment' => [ 'JOIN', 'comment_log_comment.comment_id = log_comment_id' ],
-				'actor_log_user' => [ 'JOIN', 'actor_log_user.actor_id = log_actor' ],
+				'logging_actor' => [ 'JOIN', 'actor_id=log_actor' ],
 			],
 		];
 		return [

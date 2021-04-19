@@ -76,7 +76,6 @@ class RevisionDeleter {
 			'class' => RevDelLogList::class,
 			'services' => [
 				'DBLoadBalancerFactory',
-				'ActorMigration',
 				'CommentStore',
 			],
 		],

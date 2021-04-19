@@ -76,15 +76,9 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$this->addWhere( $hideLogs );
 		}
 
-		$actorMigration = ActorMigration::newMigration();
-		$actorQuery = $actorMigration->getJoin( 'log_user' );
-		$this->addTables( 'logging' );
-		$this->addTables( $actorQuery['tables'] );
-		$this->addTables( [ 'user', 'page' ] );
-		$this->addJoinConds( $actorQuery['joins'] );
+		$this->addTables( [ 'logging', 'actor', 'page' ] );
 		$this->addJoinConds( [
-			'user' => [ 'LEFT JOIN',
-				'user_id=' . $actorQuery['fields']['log_user'] ],
+			'actor' => [ 'JOIN', 'actor_id=log_actor' ],
 			'page' => [ 'LEFT JOIN',
 				[ 'log_namespace=page_namespace',
 					'log_title=page_title' ] ] ] );
@@ -102,8 +96,8 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		// join at query time.  This leads to different results in various
 		// scenarios, e.g. deletion, recreation.
 		$this->addFieldsIf( 'log_page', $this->fld_ids );
-		$this->addFieldsIf( $actorQuery['fields'] + [ 'user_name' ], $this->fld_user );
-		$this->addFieldsIf( $actorQuery['fields'], $this->fld_userid );
+		$this->addFieldsIf( [ 'actor_name', 'actor_user' ], $this->fld_user );
+		$this->addFieldsIf( 'actor_user', $this->fld_userid );
 		$this->addFieldsIf(
 			[ 'log_namespace', 'log_title' ],
 			$this->fld_title || $this->fld_parsedcomment
@@ -188,10 +182,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		$user = $params['user'];
 		if ( $user !== null ) {
-			// Note the joins in $q are the same as those from ->getJoin() above
-			// so we only need to add 'conds' here.
-			$q = $actorMigration->getWhere( $db, 'log_user', $params['user'] );
-			$this->addWhere( $q['conds'] );
+			$this->addWhereFld( 'actor_name', $user );
 
 			// Remove after T270620 is resolved.
 			$index = $db->indexExists( 'logging', 'times', __METHOD__ ) ? 'times' : 'log_times';
@@ -331,13 +322,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_USER, $user ) ) {
 				if ( $this->fld_user ) {
-					$vals['user'] = $row->user_name ?? $row->log_user_text;
+					$vals['user'] = $row->actor_name;
 				}
 				if ( $this->fld_userid ) {
-					$vals['userid'] = (int)$row->log_user;
+					$vals['userid'] = (int)$row->actor_user;
 				}
 
-				if ( !$row->log_user ) {
+				if ( !$row->actor_user ) {
 					$vals['anon'] = true;
 				}
 			}
@@ -457,7 +448,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'title' => null,
 			'namespace' => [

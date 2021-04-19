@@ -143,7 +143,6 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'DBLoadBalancer',
 				'CommentStore',
-				'ActorMigration',
 				'UserCache',
 			]
 		],

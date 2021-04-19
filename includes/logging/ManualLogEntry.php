@@ -277,6 +277,9 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			$this->timestamp = wfTimestampNow();
 		}
 
+		$actorId = \MediaWiki\MediaWikiServices::getInstance()->getActorStore()
+			->acquireActorId( $this->getPerformerIdentity(), $dbw );
+
 		// Trim spaces on user supplied text
 		$comment = trim( $this->getComment() );
 
@@ -294,6 +297,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			'log_type' => $this->getType(),
 			'log_action' => $this->getSubtype(),
 			'log_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
+			'log_actor' => $actorId,
 			'log_namespace' => $this->getTarget()->getNamespace(),
 			'log_title' => $this->getTarget()->getDBkey(),
 			'log_page' => $this->getTarget()->getArticleID(),
@@ -303,8 +307,6 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 			$data['log_deleted'] = $this->deleted;
 		}
 		$data += CommentStore::getStore()->insert( $dbw, 'log_comment', $comment );
-		$data += ActorMigration::newMigration()
-			->getInsertValues( $dbw, 'log_user', $this->getPerformerIdentity() );
 
 		$dbw->insert( 'logging', $data, __METHOD__ );
 		$this->id = $dbw->insertId();
