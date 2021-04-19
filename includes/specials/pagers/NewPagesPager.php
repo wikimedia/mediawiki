@@ -53,9 +53,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var UserFactory */
 	private $userFactory;
 
@@ -67,7 +64,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param NamespaceInfo $namespaceInfo
-	 * @param ActorMigration $actorMigration
 	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
@@ -78,7 +74,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
 		NamespaceInfo $namespaceInfo,
-		ActorMigration $actorMigration,
 		UserFactory $userFactory
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
@@ -90,7 +85,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->permissionManager = $permissionManager;
 		$this->namespaceInfo = $namespaceInfo;
-		$this->actorMigration = $actorMigration;
 		$this->userFactory = $userFactory;
 	}
 
@@ -113,13 +107,10 @@ class NewPagesPager extends ReverseChronologicalPager {
 		}
 
 		if ( $user ) {
-			$userObj = $this->userFactory->newFromName( $user->getText(), UserFactory::RIGOR_NONE );
-			$conds[] = $this->actorMigration->getWhere(
-				$this->getDatabase(), 'rc_user', $userObj, false
-			)['conds'];
+			$conds['actor_name'] = $user->getText();
 		} elseif ( $this->canAnonymousUsersCreatePages() && $this->opts->getValue( 'hideliu' ) ) {
 			# If anons cannot make new pages, don't "exclude logged in users"!
-			$conds[] = $this->actorMigration->isAnon( $rcQuery['fields']['rc_user'] );
+			$conds['actor_user'] = null;
 		}
 
 		$conds = array_merge( $conds, $this->getNamespaceCond() );

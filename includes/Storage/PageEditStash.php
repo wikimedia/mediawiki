@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Storage;
 
-use ActorMigration;
 use BagOStuff;
 use Content;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
@@ -386,15 +385,13 @@ class PageEditStash {
 	private function lastEditTime( UserIdentity $user ) {
 		$db = $this->lb->getConnectionRef( DB_REPLICA );
 
-		$actorQuery = ActorMigration::newMigration()->getWhere( $db, 'rc_user', $user, false );
-		$time = $db->selectField(
-			[ 'recentchanges' ] + $actorQuery['tables'],
-			'MAX(rc_timestamp)',
-			[ $actorQuery['conds'] ],
-			__METHOD__,
-			[],
-			$actorQuery['joins']
-		);
+		$time = $db->newSelectQueryBuilder()
+			->select( 'MAX(rc_timestamp)' )
+			->from( 'recentchanges' )
+			->join( 'actor', null, 'actor_id=rc_actor' )
+			->where( [ 'actor_name' => $user->getName() ] )
+			->caller( __METHOD__ )
+			->fetchField();
 
 		return wfTimestampOrNull( TS_MW, $time );
 	}

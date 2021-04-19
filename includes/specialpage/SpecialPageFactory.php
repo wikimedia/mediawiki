@@ -535,7 +535,6 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'RevisionLookup',
 				'NamespaceInfo',
-				'ActorMigration',
 				'UserOptionsLookup',
 				'UserFactory',
 			]
