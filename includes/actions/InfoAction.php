@@ -89,6 +89,8 @@ class InfoAction extends FormlessAction {
 	 * @return string Page information that will be added to the output
 	 */
 	public function onView() {
+		$this->getOutput()->addModuleStyles( 'mediawiki.interface.helpers.styles' );
+
 		$content = '';
 
 		// "Help" button
