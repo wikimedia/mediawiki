@@ -125,6 +125,10 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			} else {
 				$this->addFields( [ 'ar_timestamp', 'ar_rev_id', 'ar_id' ] );
 			}
+			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
+				$this->addTables( 'actor' );
+				$this->addJoinConds( [ 'actor' => 'actor_id=ar_actor' ] );
+			}
 		}
 
 		if ( $this->fld_tags ) {
@@ -227,19 +231,13 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 		}
 
 		if ( $params['user'] !== null ) {
-			// Don't query by user ID here, it might be able to use the ar_usertext_timestamp index.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', $params['user'], false );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( $actorQuery['conds'] );
+			// We could get the actor ID from the ActorStore, but it's probably
+			// uncached at this point, and the non-generator case needs an actor
+			// join anyway so adding this join here is normally free. This should
+			// use the ar_actor_timestamp index.
+			$this->addWhereFld( 'actor_name',  $params['user'] );
 		} elseif ( $params['excludeuser'] !== null ) {
-			// Here there's no chance of using ar_usertext_timestamp.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $db, 'ar_user', $params['excludeuser'] );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
+			$this->addWhere( 'actor_name<>' . $db->addQuotes( $params['excludeuser'] ) );
 		}
 
 		if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
@@ -407,7 +405,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'namespace' => [
 				ApiBase::PARAM_ISMULTI => true,
@@ -441,7 +438,6 @@ class ApiQueryAllDeletedRevisions extends ApiQueryRevisionsBase {
 			'excludeuser' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'ip', 'id', 'interwiki' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 				ApiBase::PARAM_HELP_MSG_INFO => [ [ 'nonuseronly' ] ],
 			],
 			'tag' => null,

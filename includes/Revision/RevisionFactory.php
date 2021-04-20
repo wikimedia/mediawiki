@@ -79,7 +79,11 @@ interface RevisionFactory extends IDBAccessObject {
 
 	/**
 	 * Make a fake revision object from an archive table row. This is queried
-	 * for permissions or even inserted (as in Special:Undelete)
+	 * for permissions or even inserted (as in Special:Undelete).
+	 *
+	 * The user ID and user name may optionally be supplied using the aliases
+	 * ar_user and ar_user_text (the names of fields which existed before
+	 * MW 1.34).
 	 *
 	 * MCR migration note: this replaces Revision::newFromArchiveRow
 	 *
