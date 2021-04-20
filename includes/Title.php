@@ -2273,7 +2273,11 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		} else {
 			$dbkey = wfUrlencode( $this->getPrefixedDBkey() );
 			if ( $query == '' ) {
-				$url = str_replace( '$1', $dbkey, $wgArticlePath );
+				if ( $wgMainPageIsDomainRoot && $this->isMainPage() ) {
+					$url = '/';
+				} else {
+					$url = str_replace( '$1', $dbkey, $wgArticlePath );
+				}
 				Hooks::runner()->onGetLocalURL__Article( $this, $url );
 			} else {
 				global $wgVariantArticlePath, $wgActionPaths;
@@ -2336,10 +2340,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 					);
 				$url = $wgServer . $url;
 			}
-		}
-
-		if ( $wgMainPageIsDomainRoot && $this->isMainPage() && $query === '' ) {
-			return '/';
 		}
 
 		Hooks::runner()->onGetLocalURL( $this, $url, $query );
