@@ -26,7 +26,8 @@ var queue,
 mw.config.set( require( './config.json' ) );
 
 // Load other files in the package
-require( './mediawiki.errorLogger.js' );
+require( './log.js' );
+require( './errorLogger.js' );
 require( './legacy.wikibits.js' );
 
 /**
