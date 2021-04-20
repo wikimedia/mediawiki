@@ -314,10 +314,14 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 *
 	 * @param UserIdentity $user
 	 * @param int $id
+	 * @param bool $assigned - whether a new actor ID was just assigned.
 	 */
-	private function attachActorId( UserIdentity $user, int $id ) {
+	private function attachActorId( UserIdentity $user, int $id, bool $assigned ) {
 		if ( $user instanceof User ) {
 			$user->setActorId( $id );
+			if ( $assigned ) {
+				$user->invalidateCache();
+			}
 		}
 	}
 
@@ -465,7 +469,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// allow cache to be used, because if it is in the cache, it already has an actor ID
 		$existingActorId = $this->findActorIdInternal( $userName, $dbw );
 		if ( $existingActorId ) {
-			$this->attachActorId( $user, $existingActorId );
+			$this->attachActorId( $user, $existingActorId, false );
 			return $existingActorId;
 		}
 
@@ -497,7 +501,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			}
 		}
 
-		$this->attachActorId( $user, $actorId );
+		$this->attachActorId( $user, $actorId, true );
 		// Cache row we've just created
 		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
 		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
@@ -537,7 +541,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 		$actorId = $dbw->insertId();
 
-		$this->attachActorId( $user, $actorId );
+		$this->attachActorId( $user, $actorId, true );
 		// Cache row we've just created
 		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
 		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
@@ -602,7 +606,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		$actorId = $dbw->insertId() ?: $existingActorId;
 
 		$this->deleteUserIdentityFromCache( $actorId, $user );
-		$this->attachActorId( $user, $actorId );
+		$this->attachActorId( $user, $actorId, true );
 		// Cache row we've just created
 		$cachedUserIdentity = $this->newActorFromRowFields( $userId, $userName, $actorId );
 		$this->setUpRollbackHandler( $dbw, $actorId, $cachedUserIdentity, $user );
