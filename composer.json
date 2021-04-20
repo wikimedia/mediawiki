@@ -94,7 +94,7 @@
 		"seld/jsonlint": "1.8.3",
 		"symfony/yaml": "~3.4|~5.1",
 		"wikimedia/testing-access-wrapper": "~2.0",
-		"wmde/hamcrest-html-matchers": "^0.1.0"
+		"wmde/hamcrest-html-matchers": "^1.0.0"
 	},
 	"replace": {
 		"symfony/polyfill-ctype": "1.99",
