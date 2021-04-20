@@ -1120,9 +1120,11 @@ function wfLogProfilingData() {
  * @param int $count
  * @return void
  *
- * @deprecated since 1.36, use MediaWikiServices::getInstance()->getStatsdDataFactory()->updateCount() instead
+ * @deprecated since 1.36 (emits deprecation warnings since 1.37),
+ * use MediaWikiServices::getInstance()->getStatsdDataFactory()->updateCount() instead
  */
 function wfIncrStats( $key, $count = 1 ) {
+	wfDeprecated( __FUNCTION__, '1.36' );
 	$stats = MediaWikiServices::getInstance()->getStatsdDataFactory();
 	$stats->updateCount( $key, $count );
 }

@@ -104,6 +104,8 @@ because of Phabricator reports.
   User::removeWatch(). Use corresponding methods in WatchlistManager instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
+* wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
+* …
 
 === Other changes in 1.37 ===
 * …
