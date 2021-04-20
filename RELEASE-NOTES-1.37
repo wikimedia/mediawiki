@@ -14,6 +14,10 @@ See the file UPGRADE for more detailed per-version upgrade instructions from the
 oldest supported upgrading version, MediaWiki 1.27.
 
 Some specific notes for MediaWiki 1.37 upgrades are below:
+* (T280806) Deprecated methods of fetching API tokens have been removed. This
+  may cause older bots and scripts to fail. Most queries are trivially
+  updateable to using new methods. See the Action API changes section below
+  for more information.
 * …
 
 For notes on 1.36.x and older releases, see HISTORY.
@@ -127,6 +131,21 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 === Action API changes in 1.37 ===
+* (T280806) The API methods for fetching tokens which were deprecated
+  in MediaWiki 1.24 have been removed. action=query&meta=tokens&type=
+  should be used instead. Please note some token types no longer exist,
+  and you should just use type=csrf for those instead.
+  - action=query&prop=info&intoken ->
+      action=query&meta=tokens&type=csrf
+  - action=tokens&type= -> action=query&meta=tokens&type=
+  - action=query&list=recentchanges&rctoken ->
+      action=query&meta=tokens&type=csrf
+  - action=query&prop=revisions&rvtoken=rollback ->
+      action=query&meta=tokens&type=rollback
+  - action=query&meta=userinfo&uiprop=preferencestoken ->
+      action=query&meta=tokens&type=csrf
+  - action=query&list=users&ustoken=userrights ->
+      action=query&meta=tokens&type=userrights
 * …
 
 === Action API internal changes in 1.37 ===

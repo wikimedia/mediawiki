@@ -92,8 +92,6 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private $showZeroWatchers = false;
 
-	private $tokenFunctions;
-
 	private $countTestedActions = 0;
 
 	/**
@@ -146,199 +144,6 @@ class ApiQueryInfo extends ApiQueryBase {
 		if ( $config->get( 'PageLanguageUseDB' ) ) {
 			$pageSet->requestField( 'page_lang' );
 		}
-	}
-
-	/**
-	 * Get an array mapping token names to their handler functions.
-	 * The prototype for a token function is func( User $user )
-	 * it should return a token or false (permission denied)
-	 * @deprecated since 1.24
-	 * @return array [ tokenname => function ]
-	 */
-	protected function getTokenFunctions() {
-		// Don't call the hooks twice
-		if ( isset( $this->tokenFunctions ) ) {
-			return $this->tokenFunctions;
-		}
-
-		// If we're in a mode that breaks the same-origin policy, no tokens can
-		// be obtained
-		if ( $this->lacksSameOriginSecurity() ) {
-			return [];
-		}
-
-		$this->tokenFunctions = [
-			'edit' => [ self::class, 'getEditToken' ],
-			'delete' => [ self::class, 'getDeleteToken' ],
-			'protect' => [ self::class, 'getProtectToken' ],
-			'move' => [ self::class, 'getMoveToken' ],
-			'block' => [ self::class, 'getBlockToken' ],
-			'unblock' => [ self::class, 'getUnblockToken' ],
-			'email' => [ self::class, 'getEmailToken' ],
-			'import' => [ self::class, 'getImportToken' ],
-			'watch' => [ self::class, 'getWatchToken' ],
-		];
-
-		return $this->tokenFunctions;
-	}
-
-	/** @var string[] */
-	protected static $cachedTokens = [];
-
-	/**
-	 * @deprecated since 1.24
-	 */
-	public static function resetTokenCache() {
-		self::$cachedTokens = [];
-	}
-
-	/**
-	 * Temporary method until the token methods are removed entirely
-	 *
-	 * Only for the tokens that all use User::getEditToken
-	 *
-	 * @param User $user
-	 * @param string $right Right needed (edit/delete/block/etc.)
-	 * @return string|false
-	 */
-	private static function getUserToken( User $user, string $right ) {
-		if ( !$user->isAllowed( $right ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['edit'] ) ) {
-			self::$cachedTokens['edit'] = $user->getEditToken();
-		}
-
-		return self::$cachedTokens['edit'];
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getEditToken( User $user ) {
-		return self::getUserToken( $user, 'edit' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getDeleteToken( User $user ) {
-		return self::getUserToken( $user, 'delete' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getProtectToken( User $user ) {
-		return self::getUserToken( $user, 'protect' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getMoveToken( User $user ) {
-		return self::getUserToken( $user, 'move' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getBlockToken( User $user ) {
-		return self::getUserToken( $user, 'block' );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getUnblockToken( User $user ) {
-		// Currently, this is exactly the same as the block token
-		return self::getBlockToken( $user );
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getEmailToken( User $user ) {
-		if ( !$user->canSendEmail() || $user->isBlockedFromEmailuser() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['email'] ) ) {
-			self::$cachedTokens['email'] = $user->getEditToken();
-		}
-
-		return self::$cachedTokens['email'];
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getImportToken( User $user ) {
-		if ( !$user->isAllowedAny( 'import', 'importupload' ) ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['import'] ) ) {
-			self::$cachedTokens['import'] = $user->getEditToken();
-		}
-
-		return self::$cachedTokens['import'];
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getWatchToken( User $user ) {
-		if ( !$user->isRegistered() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['watch'] ) ) {
-			self::$cachedTokens['watch'] = $user->getEditToken( 'watch' );
-		}
-
-		return self::$cachedTokens['watch'];
-	}
-
-	/**
-	 * @deprecated since 1.24
-	 * @internal
-	 * @param User $user
-	 */
-	public static function getOptionsToken( User $user ) {
-		if ( !$user->isRegistered() ) {
-			return false;
-		}
-
-		// The token is always the same, let's exploit that
-		if ( !isset( self::$cachedTokens['options'] ) ) {
-			self::$cachedTokens['options'] = $user->getEditToken();
-		}
-
-		return self::$cachedTokens['options'];
 	}
 
 	public function execute() {
@@ -475,19 +280,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			}
 			if ( $this->pageIsNew[$pageid] ) {
 				$pageInfo['new'] = true;
-			}
-		}
-
-		if ( $this->params['token'] !== null ) {
-			$tokenFunctions = $this->getTokenFunctions();
-			$pageInfo['starttimestamp'] = wfTimestamp( TS_ISO_8601, time() );
-			foreach ( $this->params['token'] as $t ) {
-				$val = call_user_func( $tokenFunctions[$t], $this->getUser() );
-				if ( $val === false ) {
-					$this->addWarning( [ 'apiwarn-tokennotallowed', $t ] );
-				} else {
-					$pageInfo[$t . 'token'] = $val;
-				}
 			}
 		}
 
@@ -1065,10 +857,6 @@ class ApiQueryInfo extends ApiQueryBase {
 			return 'private';
 		}
 
-		if ( $params['token'] !== null ) {
-			return 'private';
-		}
-
 		return 'public';
 	}
 
@@ -1112,11 +900,6 @@ class ApiQueryInfo extends ApiQueryBase {
 				ApiBase::PARAM_TYPE => [ 'boolean', 'full', 'quick' ],
 				ApiBase::PARAM_DFLT => 'boolean',
 				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
-			],
-			'token' => [
-				ApiBase::PARAM_DEPRECATED => true,
-				ApiBase::PARAM_ISMULTI => true,
-				ApiBase::PARAM_TYPE => array_keys( $this->getTokenFunctions() )
 			],
 			'continue' => [
 				ApiBase::PARAM_HELP_MSG => 'api-help-param-continue',

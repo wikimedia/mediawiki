@@ -5,7 +5,6 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
@@ -34,34 +33,24 @@ class ApiBlockTest extends ApiTestCase {
 		] );
 	}
 
-	protected function getTokens() {
-		return $this->getTokenList( self::$users['sysop'] );
-	}
-
 	/**
 	 * @param array $extraParams Extra API parameters to pass to doApiRequest
-	 * @param Authority|null $blocker User to do the blocking, null to pick arbitrarily
+	 * @param User|null $blocker User to do the blocking, null to pick arbitrarily
 	 * @return array result of doApiRequest
 	 */
-	private function doBlock( array $extraParams = [], Authority $blocker = null ) {
-		$tokens = $this->getTokens();
-
+	private function doBlock( array $extraParams = [], User $blocker = null ) {
 		$this->assertNotNull( $this->mUser, 'Sanity check' );
-
-		$this->assertArrayHasKey( 'blocktoken', $tokens, 'Sanity check' );
 
 		$params = [
 			'action' => 'block',
 			'user' => $this->mUser->getName(),
 			'reason' => 'Some reason',
-			'token' => $tokens['blocktoken'],
 		];
 		if ( array_key_exists( 'userid', $extraParams ) ) {
 			// Make sure we don't have both user and userid
 			unset( $params['user'] );
 		}
-		$ret = $this->doApiRequest( array_merge( $params, $extraParams ), null,
-			false, $blocker );
+		$ret = $this->doApiRequestWithToken( array_merge( $params, $extraParams ), null, $blocker );
 
 		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
 
@@ -162,9 +151,15 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithHide() {
+		global $wgGroupPermissions;
+		$newPermissions = $wgGroupPermissions['sysop'];
+		$newPermissions['hideuser'] = true;
+		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions',
+			[ 'sysop' => $newPermissions ] );
+
 		$res = $this->doBlock(
 			[ 'hidename' => '' ],
-			$this->mockRegisteredAuthorityWithPermissions( [ 'hideuser', 'writeapi', 'block' ] )
+			self::$users['sysop']->getUser()
 		);
 
 		$this->assertSame( '1', $this->db->selectField(
@@ -318,40 +313,32 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithLargeRange() {
-		$tokens = $this->getTokens();
-
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( 'Invalid value "127.0.0.1/64" for user parameter "user".' );
-		$this->doApiRequest(
+		$this->doApiRequestWithToken(
 			[
 				'action' => 'block',
 				'user' => '127.0.0.1/64',
 				'reason' => 'Some reason',
-				'token' => $tokens['blocktoken'],
 			],
 			null,
-			false,
 			self::$users['sysop']->getUser()
 		);
 	}
 
 	public function testBlockingTooManyPageRestrictions() {
-		$tokens = $this->getTokens();
-
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage(
 			"Too many values supplied for parameter \"pagerestrictions\". The limit is 10." );
-		$this->doApiRequest(
+		$this->doApiRequestWithToken(
 			[
 				'action' => 'block',
 				'user' => $this->mUser->getName(),
 				'reason' => 'Some reason',
 				'partial' => true,
 				'pagerestrictions' => 'One|Two|Three|Four|Five|Six|Seven|Eight|Nine|Ten|Eleven',
-				'token' => $tokens['blocktoken'],
 			],
 			null,
-			false,
 			self::$users['sysop']->getUser()
 		);
 	}
