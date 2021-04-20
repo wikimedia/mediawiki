@@ -65,6 +65,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *     See https://www.mediawiki.org/wiki/Parsing/Media_structure
 	 *
 	 * "content-links":
+	 *     The skin will apply optional styling rules for links that should be styled differently
+	 *     to the rules in `elements` and `normalize`. It provides support for .mw-selflink,
+	 *     a.new (red links), a.stub (stub links) and some basic styles for external links.
+	 *     It also provides rules supporting the underline user preference.
+	 *
+	 * "content-links-external":
 	 *     The skin will apply optional styling rules to links to provide icons for different file types.
 	 *
 	 * "content-parser-output":
@@ -123,6 +129,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			'screen' => [ 'resources/src/mediawiki.skinning/content.media.less' ],
 		],
 		'content-links' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.links.less' ]
+		],
+		'content-links-external' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.externallinks.less' ]
 		],
 		'content-parser-output' => [
@@ -175,6 +184,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/** @var array please order alphabetically */
 	private const DEFAULT_FEATURES = [
 		'content-links' => false,
+		'content-links-external' => false,
 		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
 		'content-parser-output' => true,
 		'content-tables' => false,
@@ -203,19 +213,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		$features = $options['features'] ??
-			// For historic reasons if nothing is declared logo and legacy features are enabled.
-			[
-				'logo' => true,
-				'legacy' => true
-			];
-
-		// The `content` feature is mapped to `content-thumbnails`.
-		// FIXME: This should log a deprecated notice at a later date (proposed: 1.37 release)
-		if ( isset( $features[ 'content' ] ) ) {
-			$features[ 'content-thumbnails' ] = $features[ 'content' ];
-			unset( $features[ 'content' ] );
-		}
+		$features = self::getBackwardsCompatibleFeatures( $options );
 
 		$enabledFeatures = [];
 		$compatibilityMode = false;
@@ -268,6 +266,34 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			$options['lessMessages'] = array_merge( $options['lessMessages'], self::LESS_MESSAGES );
 		}
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
+	}
+
+	public static function getBackwardsCompatibleFeatures( array $options ) {
+		$features = $options['features'] ??
+			// For historic reasons if nothing is declared logo and legacy features are enabled.
+			[
+				'logo' => true,
+				'legacy' => true
+			];
+
+		// The `content` feature is mapped to `content-thumbnails`.
+		// FIXME: This should log a deprecated notice at a later date (proposed: 1.37 release)
+		if ( isset( $features[ 'content' ] ) ) {
+			$features[ 'content-thumbnails' ] = $features[ 'content' ];
+			unset( $features[ 'content' ] );
+		}
+		// If the content-links feature is set but the user hasn't expressed a preference for `content-links-external`
+		// then we set it to the same value.
+		if ( isset( $features[ 'content-links' ] ) && !isset( $features[ 'content-links-external' ] ) ) {
+			$features[ 'content-links-external' ] = $features[ 'content-links' ];
+		}
+
+		// Some styles in content-links were previously in `elements`. Make sure clients getting elements get these.
+		if ( isset( $features[ 'element' ] ) && !isset( $features[ 'content-links' ] ) ) {
+			$features[ 'content-links' ] = $features[ 'element' ];
+		}
+
+		return $features;
 	}
 
 	/**

@@ -1,0 +1,64 @@
+/* stylelint-disable selector-class-pattern */
+a.stub {
+	color: #723;
+}
+
+a.new,
+#p-personal a.new {
+	color: #d33;
+}
+
+/* self links */
+a.mw-selflink {
+	color: inherit;
+	font-weight: bold;
+	text-decoration: inherit;
+}
+
+a.mw-selflink:hover {
+	cursor: inherit;
+	text-decoration: inherit;
+}
+
+a.mw-selflink:active,
+a.mw-selflink:visited {
+	color: inherit;
+}
+
+a.new:visited,
+#p-personal a.new:visited {
+	color: #a55858;
+}
+
+/* Interwiki & External links */
+.mw-parser-output a.extiw,
+.mw-parser-output a.external {
+	color: #36b;
+}
+
+.mw-parser-output a.extiw:visited,
+.mw-parser-output a.external:visited {
+	color: #636; /* See T5112. */
+}
+
+.mw-parser-output a.extiw:active,
+.mw-parser-output a.external:active {
+	color: #b63;
+}
+
+/* Underline preference */
+
+.mw-underline-always a {
+	text-decoration: underline;
+}
+
+.mw-underline-never a {
+	text-decoration: none;
+}
+
+/* Plainlinks - this can be used to switch
+ * off special external link styling */
+.plainlinks a.external {
+	background: none !important; /* stylelint-disable-line declaration-no-important */
+	padding: 0 !important; /* stylelint-disable-line declaration-no-important */
+}
