@@ -2173,7 +2173,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 */
 	public function setActorId( int $actorId ) {
 		$this->mActorId = $actorId;
-		$this->invalidateCache();
 		$this->setItemLoaded( 'actor' );
 	}
 
