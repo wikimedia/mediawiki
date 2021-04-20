@@ -76,7 +76,7 @@ describe( 'Rollback with confirmation', function () {
 
 		// waitUntil indirectly asserts that the content we are looking for is present
 		browser.waitUntil( function () {
-			return browser.getText( '#firstHeading' ) === 'Action complete';
+			return $( '#firstHeading' ).getText() === 'Action complete';
 		}, 5000, 'Expected rollback page to appear.' );
 	} );
 
@@ -91,7 +91,7 @@ describe( 'Rollback with confirmation', function () {
 		HistoryPage.rollbackNonJsConfirmableYes.click();
 
 		browser.waitUntil( function () {
-			return browser.getText( '#firstHeading' ) === 'Action complete';
+			return $( '#firstHeading' ).getText() === 'Action complete';
 		}, 5000, 'Expected rollback page to appear.' );
 	} );
 
@@ -135,7 +135,7 @@ describe( 'Rollback without confirmation', function () {
 		browser.url( rollbackActionUrl );
 
 		browser.waitUntil( function () {
-			return browser.getText( '#firstHeading' ) === 'Action complete';
+			return $( '#firstHeading' ).getText() === 'Action complete';
 		}, 5000, 'Expected rollback page to appear.' );
 	} );
 } );
