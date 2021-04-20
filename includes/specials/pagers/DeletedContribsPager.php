@@ -64,9 +64,6 @@ class DeletedContribsPager extends IndexPager {
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var RevisionFactory */
 	private $revisionFactory;
 
@@ -78,7 +75,6 @@ class DeletedContribsPager extends IndexPager {
 	 * @param HookContainer $hookContainer
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
-	 * @param ActorMigration $actorMigration
 	 * @param RevisionFactory $revisionFactory
 	 */
 	public function __construct(
@@ -89,7 +85,6 @@ class DeletedContribsPager extends IndexPager {
 		HookContainer $hookContainer,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		ActorMigration $actorMigration,
 		RevisionFactory $revisionFactory
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
@@ -103,7 +98,6 @@ class DeletedContribsPager extends IndexPager {
 		$this->namespace = $namespace;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->commentStore = $commentStore;
-		$this->actorMigration = $actorMigration;
 		$this->revisionFactory = $revisionFactory;
 	}
 
@@ -116,14 +110,8 @@ class DeletedContribsPager extends IndexPager {
 
 	public function getQueryInfo() {
 		$dbr = $this->getDatabase();
-		$userCond = [
-			// ->getJoin() below takes care of any joins needed
-			$this->actorMigration->getWhere(
-				$dbr, 'ar_user', User::newFromName( $this->target, false ), false
-			)['conds']
-		];
+		$userCond = [ 'actor_name' => $this->target ];
 		$conds = array_merge( $userCond, $this->getNamespaceCond() );
-		$user = $this->getUser();
 		// Paranoia: avoid brute force searches (T19792)
 		if ( !$this->getAuthority()->isAllowed( 'deletedhistory' ) ) {
 			$conds[] = $dbr->bitAnd( 'ar_deleted', RevisionRecord::DELETED_USER ) . ' = 0';
@@ -133,17 +121,26 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		$commentQuery = $this->commentStore->getJoin( 'ar_comment' );
-		$actorQuery = $this->actorMigration->getJoin( 'ar_user' );
 
 		return [
-			'tables' => [ 'archive' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [ 'archive', 'actor' ] + $commentQuery['tables'],
 			'fields' => [
-				'ar_rev_id', 'ar_id', 'ar_namespace', 'ar_title', 'ar_timestamp',
-				'ar_minor_edit', 'ar_deleted'
-			] + $commentQuery['fields'] + $actorQuery['fields'],
+				'ar_rev_id',
+				'ar_id',
+				'ar_namespace',
+				'ar_title',
+				'ar_actor',
+				'ar_timestamp',
+				'ar_minor_edit',
+				'ar_deleted',
+				'ar_user' => 'actor_user',
+				'ar_user_text' => 'actor_name',
+			] + $commentQuery['fields'],
 			'conds' => $conds,
 			'options' => [],
-			'join_conds' => $commentQuery['joins'] + $actorQuery['joins'],
+			'join_conds' => [
+				'actor' => [ 'JOIN', 'actor_id=ar_actor' ]
+			] + $commentQuery['joins'],
 		];
 	}
 

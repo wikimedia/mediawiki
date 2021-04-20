@@ -414,7 +414,6 @@ class SpecialPageFactory {
 				'PermissionManager',
 				'DBLoadBalancer',
 				'CommentStore',
-				'ActorMigration',
 				'RevisionFactory',
 				'NamespaceInfo',
 				'UserNameUtils',

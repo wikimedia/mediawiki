@@ -61,11 +61,19 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	protected function getNewActorQueryFields( $prefix, $tmp = false ) {
-		return [
-			"{$prefix}_user" => "actor_{$prefix}_user.actor_user",
-			"{$prefix}_user_text" => "actor_{$prefix}_user.actor_name",
-			"{$prefix}_actor" => $tmp ? "temp_{$prefix}_user.{$prefix}actor_actor" : "{$prefix}_actor",
-		];
+		if ( $tmp ) {
+			return [
+				"{$prefix}_user" => "actor_{$prefix}_user.actor_user",
+				"{$prefix}_user_text" => "actor_{$prefix}_user.actor_name",
+				"{$prefix}_actor" => "temp_{$prefix}_user.{$prefix}actor_actor",
+			];
+		} else {
+			return [
+				"{$prefix}_actor",
+				"{$prefix}_user" => 'archive_actor.actor_user',
+				"{$prefix}_user_text" => 'archive_actor.actor_name',
+			];
+		}
 	}
 
 	protected function getTextQueryFields() {
@@ -105,7 +113,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 			[
 				'tables' => [
 					'archive',
-					'actor_ar_user' => 'actor',
+					'archive_actor' => 'actor',
 					'comment_ar_comment' => 'comment',
 				],
 				'fields' => array_merge(
@@ -116,7 +124,7 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 				'joins' => [
 					'comment_ar_comment'
 						=> [ 'JOIN', 'comment_ar_comment.comment_id = ar_comment_id' ],
-					'actor_ar_user' => [ 'JOIN', 'actor_ar_user.actor_id = ar_actor' ],
+					'archive_actor' => [ 'JOIN', 'actor_id=ar_actor' ],
 				],
 			]
 		];

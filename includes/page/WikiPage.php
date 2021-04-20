@@ -3153,7 +3153,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$dbKey = $this->getTitle()->getDBkey();
 
 		$commentStore = CommentStore::getStore();
-		$actorMigration = ActorMigration::newMigration();
 
 		$revQuery = $this->getRevisionStore()->getQueryInfo();
 		$bitfield = false;
@@ -3212,10 +3211,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			}
 
 			$comment = $commentStore->getComment( 'rev_comment', $row );
-			$user = User::newFromAnyId( $row->rev_user, $row->rev_user_text, $row->rev_actor );
 			$rowInsert = [
 					'ar_namespace'  => $namespace,
 					'ar_title'      => $dbKey,
+					'ar_actor'      => $row->rev_actor,
 					'ar_timestamp'  => $row->rev_timestamp,
 					'ar_minor_edit' => $row->rev_minor_edit,
 					'ar_rev_id'     => $row->rev_id,
@@ -3224,8 +3223,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 					'ar_page_id'    => $id,
 					'ar_deleted'    => $suppress ? $bitfield : $row->rev_deleted,
 					'ar_sha1'       => $row->rev_sha1,
-				] + $commentStore->insert( $dbw, 'ar_comment', $comment )
-				+ $actorMigration->getInsertValues( $dbw, 'ar_user', $user );
+				] + $commentStore->insert( $dbw, 'ar_comment', $comment );
 
 			$rowsInsert[] = $rowInsert;
 			$revids[] = $row->rev_id;
