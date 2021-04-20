@@ -114,6 +114,10 @@ class RollbackAction extends FormAction {
 			] );
 		}
 
+		if ( !$user->matchEditToken( $request->getVal( 'token' ), 'rollback' ) ) {
+			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
+		}
+
 		// The revision has the user suppressed, so the rollback has empty 'from',
 		// so the check above would succeed in that case.
 		if ( !$revUser ) {
@@ -124,7 +128,7 @@ class RollbackAction extends FormAction {
 			->getRollbackPageFactory()
 			->newRollbackPage( $this->getWikiPage(), $this->getContext()->getAuthority(), $revUser )
 			->setSummary( $request->getText( 'summary' ) )
-			->markAsBot( $request->getVal( 'token' ) )
+			->markAsBot( $request->getBool( 'bot' ) )
 			->rollbackIfAllowed();
 		$data = $rollbackResult->getValue();
 
