@@ -888,6 +888,9 @@ class Linker {
 
 	/**
 	 * Make user link (or user contributions for unregistered users)
+	 *
+	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
+	 *
 	 * @param int $userId User id in database.
 	 * @param string $userName User name in database.
 	 * @param string|false $altUserName Text to display instead of the user name (optional)
@@ -1092,6 +1095,9 @@ class Linker {
 
 	/**
 	 * Generate a user link if the current user is allowed to view it
+	 *
+	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
+	 *
 	 * @since 1.16.3
 	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
 	 *    deprecated since 1.35)
@@ -1128,6 +1134,9 @@ class Linker {
 
 	/**
 	 * Generate a user tool link cluster if the current user is allowed to view it
+	 *
+	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
+	 *
 	 * @since 1.16.3
 	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
 	 *    deprecated since 1.35)
@@ -1175,6 +1184,8 @@ class Linker {
 	 * and by the user contributions list. It is responsible for formatting edit
 	 * summaries. It escapes any HTML in the summary, but adds some CSS to format
 	 * auto-generated comments (from section editing) and formats [[wikilinks]].
+	 *
+	 * This method produces HTML that can require CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @author Erik Moeller <moeller@scireview.de>
 	 * @since 1.16.3. $wikiId added in 1.26
@@ -1585,6 +1596,8 @@ class Linker {
 	/**
 	 * Wrap and format the given revision's comment block, if the current
 	 * user is allowed to view it.
+	 *
+	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @since 1.16.3
 	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
@@ -2235,6 +2248,8 @@ class Linker {
 	/**
 	 * Creates a (show/hide) link for deleting revisions/log entries
 	 *
+	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
+	 *
 	 * @param array $query Query parameters to be passed to link()
 	 * @param bool $restricted Set to true to use a "<strong>" instead of a "<span>"
 	 * @param bool $delete Set to true to use (show/hide) rather than (show)
@@ -2257,6 +2272,8 @@ class Linker {
 
 	/**
 	 * Creates a dead (show/hide) link for deleting revisions/log entries
+	 *
+	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @since 1.16.3
 	 * @param bool $delete Set to true to use (show/hide) rather than (show)
