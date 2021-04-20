@@ -89,6 +89,8 @@ because of Phabricator reports.
   Use WatchlistManager::clearTitleUserNotification() instead.
 * Autopromote class, deprecated since 1.35, was removed. Use
   UserGroupManager instead.
+* The following classes, hard-deprecated since 1.36, have been removed:
+  CachedAction, SpecialCachedPage, CacheHelper, ICacheHelper.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
