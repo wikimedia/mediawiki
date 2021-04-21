@@ -24,6 +24,11 @@ trait MediaWikiTestCaseTrait {
 	 * @return Constraint
 	 */
 	protected function anythingBut( ...$values ) {
+		if ( !in_array( '__destruct', $values, true ) ) {
+			// Ensure that __destruct is always included. PHPUnit will fail very hard with no
+			// useful output if __destruct ends up being called (T280780).
+			$values[] = '__destruct';
+		}
 		return $this->logicalNot( $this->logicalOr(
 			...array_map( [ $this, 'matches' ], $values )
 		) );
