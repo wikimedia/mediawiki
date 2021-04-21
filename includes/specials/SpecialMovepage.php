@@ -903,8 +903,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		# Deal with watches (we don't watch subpages)
-		$this->watchlistManager->setWatch( $this->watch, $ot, $this->getAuthority() );
-		$this->watchlistManager->setWatch( $this->watch, $nt, $this->getAuthority() );
+		$this->watchlistManager->setWatch( $this->watch, $this->getAuthority(), $ot );
+		$this->watchlistManager->setWatch( $this->watch, $this->getAuthority(), $nt );
 	}
 
 	private function showLogFragment( $title ) {

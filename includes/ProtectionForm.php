@@ -395,8 +395,8 @@ class ProtectionForm {
 
 		$this->watchlistManager->setWatch(
 			$this->mRequest->getCheck( 'mwProtectWatch' ),
-			$this->mTitle,
-			$this->mUser
+			$this->mUser,
+			$this->mTitle
 		);
 
 		return true;

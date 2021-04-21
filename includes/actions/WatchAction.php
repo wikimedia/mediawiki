@@ -77,8 +77,8 @@ class WatchAction extends FormAction {
 		// changed expiry.
 		return MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
 			true,
-			$this->getTitle(),
 			$this->getContext()->getAuthority(),
+			$this->getTitle(),
 			$expiry
 		);
 	}
@@ -257,8 +257,8 @@ class WatchAction extends FormAction {
 	) {
 		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
 			$watch,
-			$pageIdentity,
 			$performer,
+			$pageIdentity,
 			$expiry
 		) );
 	}

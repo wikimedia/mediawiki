@@ -1916,7 +1916,7 @@ class Article implements Page {
 
 			$this->doDelete( $reason, $suppress );
 
-			$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $title, $context->getAuthority() );
+			$this->watchlistManager->setWatch( $request->getCheck( 'wpWatch' ), $context->getAuthority(), $title );
 
 			return;
 		}
