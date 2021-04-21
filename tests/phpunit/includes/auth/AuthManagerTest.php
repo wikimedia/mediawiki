@@ -16,6 +16,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\Watchlist\WatchlistManager;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
 use PHPUnit\Framework\MockObject\Rule\InvocationOrder;
@@ -69,6 +70,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 	/** @var BlockErrorFormatter */
 	private $blockErrorFormatter;
+
+	/** @var WatchlistManager */
+	private $watchlistManager;
 
 	/**
 	 * Sets a mock on a hook
@@ -189,6 +193,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		if ( $regen || !$this->blockErrorFormatter ) {
 			$this->blockErrorFormatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
 		}
+		if ( $regen || !$this->watchlistManager ) {
+			$this->watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
+		}
 		if ( $regen || !$this->hookContainer ) {
 			// Set up a HookContainer similar to the normal one except that it
 			// gets global hooks from $this->authHooks instead of $wgHooks
@@ -226,7 +233,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->readOnlyMode,
 			$this->userNameUtils,
 			$this->blockManager,
-			$this->blockErrorFormatter
+			$this->blockErrorFormatter,
+			$this->watchlistManager
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );
