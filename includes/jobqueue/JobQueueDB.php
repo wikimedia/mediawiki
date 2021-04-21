@@ -588,7 +588,6 @@ class JobQueueDB extends JobQueue {
 	 * @return Iterator
 	 */
 	public function getAllAbandonedJobs() {
-		$dbr = $this->getReplicaDB();
 		return $this->getJobIterator( [
 			'job_cmd' => $this->getType(),
 			"job_token > ''",
