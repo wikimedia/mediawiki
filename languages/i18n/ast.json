@@ -3131,7 +3131,6 @@
 	"mcrundo-changed": "La páxina cambió desque visti les diferencies. Revisa'l cambiu nuevu.",
 	"mcrundo-parse-failed": "Nun pudo analizase la nueva revisión: $1",
 	"percent": "$1%",
-	"parentheses": "($1)",
 	"parentheses-start": "(",
 	"parentheses-end": ")",
 	"quotation-marks": "«$1»",

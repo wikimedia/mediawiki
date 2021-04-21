@@ -3988,7 +3988,7 @@
 	"specialmute-label-mute-email": "Tysta e-post från denna {{GENDER:$1|användare}}",
 	"specialmute-header": "Välj dina tystnadsinställningar för användaren <b>{{BIDI:[[User:$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Det begärda användarnamnet kunde inte hittas.",
-	"specialmute-error-no-options": "Tystnadsfunktioner är inte tillgängliga. Detta kan bero på att: du inte har bekräftat din e-postadress eller wikiadministratören har inaktiverat e-postfunktioner och/eller svartlistan för e-post på denna wiki.",
+	"specialmute-error-no-options": "Tystnadsfunktioner är inte tillgängliga. Detta kan bero på att du inte har bekräftat din e-postadress eller wikiadministratören har inaktiverat e-postfunktioner och/eller blockeringslistan för e-post på denna wiki.",
 	"specialmute-email-footer": "För att hantera e-postinställningar för användaren {{BIDI:$2}}, besök <$1>.",
 	"specialmute-login-required": "Logga in för att ändra dina tystnadsinställningar.",
 	"mute-preferences": "Tystnadsinställningar",

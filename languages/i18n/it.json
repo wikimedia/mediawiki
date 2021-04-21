@@ -4032,7 +4032,7 @@
 	"specialmute-label-mute-email": "Silenzia le email da {{GENDER:$1|questo|questa}} utente",
 	"specialmute-header": "Seleziona le preferenze di silenzio per l'utente <b>{{BIDI:[[User:$1|$1]]}}</b>.",
 	"specialmute-error-invalid-user": "Impossibile trovare il nome utente richiesto.",
-	"specialmute-error-no-options": "Le funzioni di silenzio non sono disponibili. Questo potrebbe accadere perchè: non hai confermato il tuoi indirizzo, l'amministratore potrebbe aver disabilitato la funzione di silenzio e/o la blacklist per questa wiki.",
+	"specialmute-error-no-options": "Le funzioni di silenzio non sono disponibili. Questo potrebbe accadere perché non hai confermato il tuoi indirizzo di posta elettronica o perché l'amministratore potrebbe aver disabilitato la funzione di silenzio per questo wiki.",
 	"specialmute-email-footer": "Per gestire le preferenze e-mail per l'utente {{BIDI:$2}} visita <$1>.",
 	"specialmute-login-required": "Accedi per cambiare le impostazioni sul silenzio.",
 	"mute-preferences": "Opzioni di silenziamento",

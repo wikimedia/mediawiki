@@ -2662,7 +2662,6 @@
 	"semicolon-separator": ";",
 	"word-separator": "&#32;",
 	"ellipsis": "&nbsp;…",
-	"parentheses": "($1)",
 	"quotation-marks": "„$1“",
 	"imgmultipageprev": "← de Sigg dovör",
 	"imgmultipagenext": "de Sigg donoh →",

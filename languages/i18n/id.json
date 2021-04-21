@@ -3295,7 +3295,6 @@
 	"pipe-separator": "&#32;|&#32;",
 	"word-separator": "&#32;",
 	"ellipsis": "...",
-	"parentheses": "($1)",
 	"quotation-marks": "\"$1\"",
 	"formatnum-nan": "Bukan Angka",
 	"imgmultipageprev": "← halaman sebelumnya",
