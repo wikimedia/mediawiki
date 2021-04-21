@@ -123,12 +123,13 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'es6-promise' => [
-		'scripts' => 'resources/lib/promise-polyfill/promise-polyfill.js',
-		'skipFunction' => 'resources/src/skip-Promise.js',
+		'deprecated' => 'Use "es6-polyfills" instead.',
+		'dependencies' => [ 'es6-polyfills' ],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'es6-polyfills' => [
 		'scripts' => [
+			'resources/lib/promise-polyfill/promise-polyfill.js',
 			'resources/src/es6-polyfills/array-find-polyfill.js',
 			'resources/src/es6-polyfills/array-findIndex-polyfill.js',
 			'resources/src/es6-polyfills/array-includes-polyfill.js',
@@ -599,7 +600,7 @@ return [
 		],
 		'dependencies' => [
 			'vue',
-			'es6-promise',
+			'es6-polyfills',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
