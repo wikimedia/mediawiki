@@ -123,6 +123,11 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'es6-promise' => [
+		'deprecated' => 'Use "es6-polyfills" instead.',
+		'dependencies' => [ 'es6-polyfills' ],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'es6-polyfills' => [
 		'scripts' => 'resources/lib/promise-polyfill/promise-polyfill.js',
 		'skipFunction' => 'resources/src/skip-Promise.js',
 		'targets' => [ 'desktop', 'mobile' ],
