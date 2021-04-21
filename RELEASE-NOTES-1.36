@@ -94,7 +94,7 @@ is no longer recommended and the option has been removed.
 * The logo of MediaWiki has changed. This means that the "Powered By MediaWiki"
   button shown in the skin footer will be different.
 * All HTML5 named entities are now accepted in wikitext.
-* …
+* (T106263) The file description page's alternate sizes now include 2048px.
 
 === New developer features in 1.36 ===
 * Parser test files can now declare a dependency on a specific extension being
