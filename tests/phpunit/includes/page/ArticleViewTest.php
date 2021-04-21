@@ -63,9 +63,6 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 	 * @covers Article::getRevIdFetched()
 	 */
 	public function testGetOldId() {
-		$this->hideDeprecated( 'Article::getRevisionFetched' );
-		$this->hideDeprecated( 'Revision::__construct' );
-
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
 
@@ -75,13 +72,13 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		// oldid in constructor
 		$article = new Article( $page->getTitle(), $idA );
 		$this->assertSame( $idA, $article->getOldID() );
-		$article->getRevisionFetched();
+		$article->fetchRevisionRecord();
 		$this->assertSame( $idA, $article->getRevIdFetched() );
 
 		// oldid 0 in constructor
 		$article = new Article( $page->getTitle(), 0 );
 		$this->assertSame( 0, $article->getOldID() );
-		$article->getRevisionFetched();
+		$article->fetchRevisionRecord();
 		$this->assertSame( $idB, $article->getRevIdFetched() );
 
 		// oldid in request
@@ -90,7 +87,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$context->setRequest( new FauxRequest( [ 'oldid' => $idA ] ) );
 		$article->setContext( $context );
 		$this->assertSame( $idA, $article->getOldID() );
-		$article->getRevisionFetched();
+		$article->fetchRevisionRecord();
 		$this->assertSame( $idA, $article->getRevIdFetched() );
 
 		// no oldid
@@ -99,7 +96,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$context->setRequest( new FauxRequest( [] ) );
 		$article->setContext( $context );
 		$this->assertSame( 0, $article->getOldID() );
-		$article->getRevisionFetched();
+		$article->fetchRevisionRecord();
 		$this->assertSame( $idB, $article->getRevIdFetched() );
 	}
 

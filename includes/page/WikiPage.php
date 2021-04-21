@@ -798,18 +798,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * Get the Revision object of the oldest revision
-	 * @deprecated since 1.35 Use RevisionStore::getFirstRevision for the
-	 *   corresponding title instead.
-	 * @return Revision|null
-	 */
-	public function getOldestRevision() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$rev = $this->getRevisionStore()->getFirstRevision( $this->getTitle() );
-		return $rev ? new Revision( $rev ) : null;
-	}
-
-	/**
 	 * Loads everything except the text
 	 * This isn't necessary for all uses, so it's only done if needed.
 	 */
@@ -869,20 +857,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$this->mLatest = $revRecord->getId();
 		$this->mTimestamp = $revRecord->getTimestamp();
 		$this->mTouched = max( $this->mTouched, $revRecord->getTimestamp() );
-	}
-
-	/**
-	 * Get the latest revision
-	 * @deprecated since 1.35
-	 * @return Revision|null
-	 */
-	public function getRevision() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->loadLastEdit();
-		if ( $this->mLastRevision ) {
-			return new Revision( $this->mLastRevision );
-		}
-		return null;
 	}
 
 	/**

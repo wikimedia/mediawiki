@@ -94,7 +94,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \WikiPage::newPageUpdater()
 	 */
 	public function testCreatePage() {
-		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
 		$this->hideDeprecated( 'Revision::__construct' );
@@ -163,14 +162,14 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// were the WikiPage and Title objects updated?
 		$this->assertTrue( $page->exists(), 'WikiPage::exists()' );
 		$this->assertTrue( $title->exists(), 'Title::exists()' );
-		$this->assertSame( $rev->getId(), $page->getLatest(), 'WikiPage::getRevision()' );
-		$this->assertNotNull( $page->getRevision(), 'WikiPage::getRevision()' );
+		$this->assertSame( $rev->getId(), $page->getLatest(), 'WikiPage::getLatest()' );
+		$this->assertNotNull( $page->getRevisionRecord(), 'WikiPage::getRevisionRecord()' );
 
 		// re-load
 		$page2 = WikiPage::factory( $title );
 		$this->assertTrue( $page2->exists(), 'WikiPage::exists()' );
-		$this->assertSame( $rev->getId(), $page2->getLatest(), 'WikiPage::getRevision()' );
-		$this->assertNotNull( $page2->getRevision(), 'WikiPage::getRevision()' );
+		$this->assertSame( $rev->getId(), $page2->getLatest(), 'WikiPage::getLatest()' );
+		$this->assertNotNull( $page2->getRevisionRecord(), 'WikiPage::getRevisionRecord()' );
 
 		// Check RC entry
 		$rc = $this->getRecentChangeFor( $rev->getId() );
@@ -202,7 +201,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \WikiPage::newPageUpdater()
 	 */
 	public function testUpdatePage() {
-		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
 		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
 		$this->hideDeprecated( 'Revision::__construct' );
@@ -263,14 +261,14 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		// were the WikiPage and Title objects updated?
 		$this->assertTrue( $page->exists(), 'WikiPage::exists()' );
 		$this->assertTrue( $title->exists(), 'Title::exists()' );
-		$this->assertSame( $rev->getId(), $page->getLatest(), 'WikiPage::getRevision()' );
-		$this->assertNotNull( $page->getRevision(), 'WikiPage::getRevision()' );
+		$this->assertSame( $rev->getId(), $page->getLatest(), 'WikiPage::getLatest()' );
+		$this->assertNotNull( $page->getRevisionRecord(), 'WikiPage::getRevisionRecord()' );
 
 		// re-load
 		$page2 = WikiPage::factory( $title );
 		$this->assertTrue( $page2->exists(), 'WikiPage::exists()' );
-		$this->assertSame( $rev->getId(), $page2->getLatest(), 'WikiPage::getRevision()' );
-		$this->assertNotNull( $page2->getRevision(), 'WikiPage::getRevision()' );
+		$this->assertSame( $rev->getId(), $page2->getLatest(), 'WikiPage::getLatest()' );
+		$this->assertNotNull( $page2->getRevisionRecord(), 'WikiPage::getRevisionRecord()' );
 
 		// Check RC entry
 		$rc = $this->getRecentChangeFor( $rev->getId() );
