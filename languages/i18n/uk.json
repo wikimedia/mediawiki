@@ -3315,7 +3315,6 @@
 	"word-separator": "&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses": "($1)",
 	"quotation-marks": "„$1“",
 	"formatnum-nan": "Не число",
 	"imgmultipageprev": "← попередня сторінка",

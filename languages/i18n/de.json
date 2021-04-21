@@ -2369,6 +2369,7 @@
 	"nowatchlist": "Es befinden sich keine Einträge auf der Beobachtungsliste.",
 	"watchlistanontext": "Du musst dich anmelden, um deine Beobachtungsliste sehen oder Einträge auf ihr bearbeiten zu können.",
 	"watchnologin": "Du bist nicht angemeldet",
+	"watchlistnotwatchable": "Seite ist nicht beobachtbar.",
 	"addwatch": "Zur Beobachtungsliste hinzufügen",
 	"updatewatchlist": "Beobachtungsliste aktualisieren",
 	"addedwatchtext": "„[[:$1]]“ und die Diskussionsseite wurden zu deiner [[Special:Watchlist|Beobachtungsliste]] hinzugefügt.",

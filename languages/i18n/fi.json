@@ -3245,7 +3245,6 @@
 	"word-separator": "&#32;",
 	"ellipsis": "...",
 	"percent": "$1&#160;%",
-	"parentheses": "($1)",
 	"parentheses-start": "(",
 	"parentheses-end": ")",
 	"quotation-marks": "”$1”",

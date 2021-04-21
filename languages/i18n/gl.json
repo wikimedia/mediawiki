@@ -3174,7 +3174,6 @@
 	"word-separator": "&#32;",
 	"ellipsis": "...",
 	"percent": "$1%",
-	"parentheses": "($1)",
 	"brackets": "[$1]",
 	"quotation-marks": "\"$1\"",
 	"imgmultipageprev": "← páxina anterior",

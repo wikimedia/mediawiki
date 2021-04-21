@@ -503,7 +503,7 @@
 	"pagehist": "Estorial la páhina",
 	"deletedhist": "Estorial esborrau",
 	"revdelete-edit-reasonlist": "Eital razonis del esborrau",
-	"suppressionlogtext": "Embahu se muestra una lista colos esborraus i tarugus mas nuevus, encruyendu conteniu açonchau polos çahorilis. Guipai la [[Special:IPBlockList|lista e tarugus a IP]] pa visoreal una lista colos tarugus ativus atualmenti.",
+	"suppressionlogtext": "Embahu se muestra una lista colos esborraus i tarugus mas nuevus, encruyendu conteniu açonchau polos çahorilis. Guipai la [[Special:BlockList|lista e tarugus]] pa visoreal una lista colos tarugus ativus atualmenti.",
 	"mergehistory": "Uñifical el estorial las páhinas",
 	"mergehistory-header": "Esta páhina te premiti mestural las revisionis el estorial duna páhina huenti nuna nueva páhina.\nAsigurati e qu'esti chambu mantenga la continuiá el estorial la páhina.",
 	"mergehistory-box": "Uñifical las revisionis las dos páhinas:",
