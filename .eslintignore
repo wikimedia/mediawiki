@@ -2,8 +2,9 @@
 /resources/lib/
 /resources/src/jquery.tipsy/
 /resources/src/mediawiki.libs.jpegmeta/
-# Skip function
-/resources/src/skip-Promise.js
+
+# Skip functions
+/resources/src/skip-*
 
 # Build tooling
 /docs/

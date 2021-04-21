@@ -127,6 +127,15 @@ return [
 		'skipFunction' => 'resources/src/skip-Promise.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'es6-polyfills' => [
+		'scripts' => [
+			'resources/src/es6-polyfills/array-find-polyfill.js',
+			'resources/src/es6-polyfills/array-findIndex-polyfill.js',
+			'resources/src/es6-polyfills/array-includes-polyfill.js',
+		],
+		'skipFunction' => 'resources/src/skip-es6-polyfills.js',
+		'targets' => [ 'desktop', 'mobile' ],
+	],
 	'mediawiki.base' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.base",
 		'packageFiles' => [
