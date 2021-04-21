@@ -103,6 +103,9 @@ because of Phabricator reports.
   - EditPage::getBaseRevision()
   - LinksUpdate::getRevision()
   - LinksUpdate::setRevision()
+  - PageArchive::getArchivedRevision
+  - PageArchive::getPreviousRevision
+  - PageArchive::getRevision
   - Title::getFirstRevision()
   - WikiPage::getOldestRevision()
   - WikiPage::getRevision()
