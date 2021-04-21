@@ -673,6 +673,9 @@ because of Phabricator reports.
 * Article::getContentObject, soft-deprecated since 1.32, was hard-deprecated.
 * WikiRevision::importUpload, soft-deprecated since 1.31, was hard-deprecated.
 * Html::infoBox() has been deprecated. There's no replacement.
+* Message::toString() without a $format parameter, soft-deprecated since 1.28,
+  was hard-deprecated. Use explicit formatting methods instead, such as
+  Message::text() and Message::escaped().
 * BagOStuff::makeKeyInternal() usage outside of BagOStuff has been deprecated.
 * BagOStuff::setDebug() is deprecated and calls to it are ignored. Debug logs
   are now unconditionally enabled.
