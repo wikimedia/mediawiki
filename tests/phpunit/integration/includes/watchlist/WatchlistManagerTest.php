@@ -213,7 +213,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
 
-		$status = $watchlistManager->setWatch( true, $title, $performer, '1 week' );
+		$status = $watchlistManager->setWatch( true, $performer, $title, '1 week' );
 
 		$this->assertTrue( $status->isGood() );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
@@ -235,7 +235,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$watchlistManager = $services->getWatchlistManager();
 
-		$status = $watchlistManager->setWatch( true, $title, $performer );
+		$status = $watchlistManager->setWatch( true, $performer, $title );
 
 		// returns immediately with no error if not logged in
 		$this->assertTrue( $status->isGood() );
@@ -261,7 +261,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title, $expiry );
 
 		// Same expiry
-		$status = $watchlistManager->setWatch( true, $title, $performer, $expiry );
+		$status = $watchlistManager->setWatch( true, $performer, $title, $expiry );
 
 		$this->assertTrue( $status->isGood() );
 	}
@@ -282,7 +282,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 		$services = $this->getServiceContainer();
 		$watchlistManager = $services->getWatchlistManager();
 
-		$status = $watchlistManager->setWatch( false, $title, $performer );
+		$status = $watchlistManager->setWatch( false, $performer, $title );
 
 		$this->assertTrue( $status->isGood() );
 	}
@@ -301,7 +301,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
 
-		$status = $watchlistManager->setWatch( true, $title, $performer );
+		$status = $watchlistManager->setWatch( true, $performer, $title );
 
 		$this->assertTrue( $status->isGood() );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
@@ -322,7 +322,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$watchedItemStore->clearUserWatchedItems( $userIdentity );
 
-		$status = $watchlistManager->setWatch( false, $title, $performer );
+		$status = $watchlistManager->setWatch( false, $performer, $title );
 
 		$this->assertTrue( $status->isGood() );
 		$this->assertFalse( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );

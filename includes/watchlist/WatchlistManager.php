@@ -518,8 +518,8 @@ class WatchlistManager {
 	 * state and if the expiry is the same so it does not act unnecessarily.
 	 *
 	 * @param bool $watch Whether to watch or unwatch the page
-	 * @param PageIdentity $pageIdentity Page to watch/unwatch
 	 * @param Authority $performer who is watching/unwatching
+	 * @param PageIdentity $target Page to watch/unwatch
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 * @return StatusValue
@@ -527,8 +527,8 @@ class WatchlistManager {
 	 */
 	public function setWatch(
 		bool $watch,
-		PageIdentity $pageIdentity,
 		Authority $performer,
+		PageIdentity $target,
 		string $expiry = null
 	) : StatusValue {
 		// User must be registered, and either changing the watch state or at least the expiry.
@@ -537,7 +537,7 @@ class WatchlistManager {
 		}
 
 		// Only call addWatchhIgnoringRights() or removeWatch() if there's been a change in the watched status.
-		$link = TitleValue::newFromPage( $pageIdentity );
+		$link = TitleValue::newFromPage( $target );
 		$oldWatchedItem = $this->watchedItemStore->getWatchedItem( $performer->getUser(), $link );
 		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
 		if ( $oldWatchedItem && $expiry !== null ) {
@@ -553,9 +553,9 @@ class WatchlistManager {
 			// If the user doesn't have 'editmywatchlist', we still want to
 			// allow them to add but not remove items via edits and such.
 			if ( $watch ) {
-				return $this->addWatchIgnoringRights( $performer->getUser(), $pageIdentity, $expiry );
+				return $this->addWatchIgnoringRights( $performer->getUser(), $target, $expiry );
 			} else {
-				return $this->removeWatch( $performer, $pageIdentity );
+				return $this->removeWatch( $performer, $target );
 			}
 		}
 

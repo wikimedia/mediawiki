@@ -925,7 +925,7 @@ hello
 		$article->setContext( $context );
 		$ep = new EditPage( $article );
 		$this->getServiceContainer()->getWatchlistManager()
-			->setWatch( (bool)$existingExpiry, $title, $user, $existingExpiry );
+			->setWatch( (bool)$existingExpiry, $user, $title, $existingExpiry );
 
 		// Send the request.
 		$req = new FauxRequest( [ 'wpWatchlistExpiry' => $postVal ], true );
