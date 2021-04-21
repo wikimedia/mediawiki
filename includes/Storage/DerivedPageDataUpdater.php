@@ -57,7 +57,6 @@ use ParserOutput;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
-use RecentChangesUpdateJob;
 use RefreshSecondaryDataUpdate;
 use ResourceLoaderWikiModule;
 use RevertedTagUpdateJob;
@@ -1527,14 +1526,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		// this hook whenever possible in order to avoid unnecessary additional parses.
 		$editInfo = $this->getPreparedEdit();
 		$this->hookRunner->onArticleEditUpdates( $wikiPage, $editInfo, $this->options['changed'] );
-
-		// TODO: replace legacy hook! Use a listener on PageEventEmitter instead!
-		if ( $this->hookRunner->onArticleEditUpdatesDeleteFromRecentchanges( $wikiPage ) ) {
-			// Flush old entries from the `recentchanges` table
-			if ( mt_rand( 0, 9 ) == 0 ) {
-				$this->jobQueueGroup->lazyPush( RecentChangesUpdateJob::newPurgeJob() );
-			}
-		}
 
 		$id = $this->getPageId();
 		$title = $this->getTitle();

@@ -526,7 +526,6 @@ class HookRunner implements
 	\MediaWiki\SpecialPage\Hook\SpecialPage_initListHook,
 	\MediaWiki\SpecialPage\Hook\WgQueryPagesHook,
 	\MediaWiki\Storage\Hook\ArticleEditUpdateNewTalkHook,
-	\MediaWiki\Storage\Hook\ArticleEditUpdatesDeleteFromRecentchangesHook,
 	\MediaWiki\Storage\Hook\ArticleEditUpdatesHook,
 	\MediaWiki\Storage\Hook\ArticlePrepareTextForEditHook,
 	\MediaWiki\Storage\Hook\BeforeRevertedTagUpdateHook,
@@ -749,13 +748,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ArticleEditUpdates',
 			[ $wikiPage, $editInfo, $changed ]
-		);
-	}
-
-	public function onArticleEditUpdatesDeleteFromRecentchanges( $wikiPage ) {
-		return $this->container->run(
-			'ArticleEditUpdatesDeleteFromRecentchanges',
-			[ $wikiPage ]
 		);
 	}
 
