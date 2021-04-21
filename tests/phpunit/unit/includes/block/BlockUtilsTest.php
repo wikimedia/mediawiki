@@ -4,7 +4,7 @@ use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\User\UserFactory;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -51,17 +51,13 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		// Code path: providing a UserIdentity
 		// - target name is a valid IP, TYPE_IP
 		// - target name is not a valid IP, TYPE_USER
-		$userIdentity = $this->createMock( UserIdentity::class );
-		$userIdentity->method( 'getName' )
-			->willReturn( $name );
+		$userIdentity = new UserIdentityValue( $type === AbstractBlock::TYPE_IP ? 0 : 1, $name );
 		$userObject = $this->createMock( User::class );
 
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->expects( $this->once() )
 			->method( 'newFromUserIdentity' )
-			->with(
-				$this->equalTo( $userIdentity )
-			)
+			->with( $userIdentity )
 			->willReturn( $userObject );
 
 		$blockUtils = $this->getUtils( [], $userFactory );

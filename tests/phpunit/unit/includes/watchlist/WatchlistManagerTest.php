@@ -426,10 +426,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->once() )
 			->method( 'getWatchedItem' )
-			->with(
-				$this->equalTo( $userIdentity ),
-				$this->equalTo( $title )
-			)
+			->with( $userIdentity, $title )
 			->willReturn( $watchedItem );
 
 		$manager = $this->getManager( [
@@ -477,10 +474,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->once() )
 			->method( 'getWatchedItem' )
-			->with(
-				$this->equalTo( $userIdentity ),
-				$this->equalTo( $title )
-			)
+			->with( $userIdentity, $title )
 			->willReturn( $watchedItem );
 
 		$manager = $this->getManager( [
@@ -507,10 +501,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$watchedItemStore = $this->createMock( WatchedItemStoreInterface::class );
 		$watchedItemStore->expects( $this->once() )
 			->method( 'getWatchedItem' )
-			->with(
-				$this->equalTo( $userIdentity ),
-				$this->equalTo( $title )
-			)
+			->with( $userIdentity, $title )
 			->willReturn( false );
 
 		$manager = $this->getManager( [
