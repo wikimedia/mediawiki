@@ -73,8 +73,9 @@ class WatchAction extends FormAction {
 	public function onSubmit( $data ) {
 		$expiry = $this->getRequest()->getVal( 'wp' . $this->expiryFormFieldName );
 
-		// Even though we're never unwatching here, use doWatchOrUnwatch() because it also checks for changed expiry.
-		return self::doWatchOrUnwatch(
+		// Even though we're never unwatching here, use WatchlistManager::setWatch() because it also checks for
+		// changed expiry.
+		return MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
 			true,
 			$this->getTitle(),
 			$this->getContext()->getAuthority(),
@@ -246,6 +247,7 @@ class WatchAction extends FormAction {
 	 * @return Status
 	 * @since 1.35 New $expiry parameter.
 	 * @since 1.22
+	 * @deprecated since 1.37, use WatchlistManager:setWatch() instead.
 	 */
 	public static function doWatchOrUnwatch(
 		$watch,
@@ -253,36 +255,12 @@ class WatchAction extends FormAction {
 		Authority $performer,
 		string $expiry = null
 	) {
-		// User must be registered, and either changing the watch state or at least the expiry.
-		if ( !$performer->getUser()->isRegistered() ) {
-			return Status::newGood();
-		}
-
-		// Only run doWatch() or doUnwatch() if there's been a change in the watched status.
-		$link = TitleValue::newFromPage( $pageIdentity );
-		$oldWatchedItem = MediaWikiServices::getInstance()->getWatchedItemStore()
-			->getWatchedItem( $performer->getUser(), $link );
-		$changingWatchStatus = (bool)$oldWatchedItem !== $watch;
-		if ( $oldWatchedItem && $expiry !== null ) {
-			// If there's an old watched item, a non-null change to the expiry requires an UPDATE.
-			$oldWatchPeriod = $oldWatchedItem->getExpiry() === null
-				? 'infinity'
-				: $oldWatchedItem->getExpiry();
-			$changingWatchStatus = $changingWatchStatus ||
-				$oldWatchPeriod !== ExpiryDef::normalizeExpiry( $expiry, TS_MW );
-		}
-
-		if ( $changingWatchStatus ) {
-			// If the user doesn't have 'editmywatchlist', we still want to
-			// allow them to add but not remove items via edits and such.
-			if ( $watch ) {
-				return self::doWatch( $pageIdentity, $performer, User::IGNORE_USER_RIGHTS, $expiry );
-			} else {
-				return self::doUnwatch( $pageIdentity, $performer );
-			}
-		}
-
-		return Status::newGood();
+		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
+			$watch,
+			$pageIdentity,
+			$performer,
+			$expiry
+		) );
 	}
 
 	/**
@@ -295,6 +273,7 @@ class WatchAction extends FormAction {
 	 * @param string|null $expiry Optional expiry timestamp in any format acceptable to wfTimestamp(),
 	 *   null will not create expiries, or leave them unchanged should they already exist.
 	 * @return Status
+	 * @deprecated since 1.37, use WatchlistManager:doWatch() instead.
 	 */
 	public static function doWatch(
 		PageIdentity $pageIdentity,
@@ -302,29 +281,12 @@ class WatchAction extends FormAction {
 		$checkRights = User::CHECK_USER_RIGHTS,
 		?string $expiry = null
 	) {
-		$services = MediaWikiServices::getInstance();
-		if ( $checkRights && !$performer->isAllowed( 'editmywatchlist' ) ) {
-			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
-		}
-
-		$wikiPage = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
-		$title = $wikiPage->getTitle();
-
-		$status = Status::newFatal( 'hookaborted' );
-		// TODO: update hooks to take Authority
-		$user = $services->getUserFactory()->newFromAuthority( $performer );
-		if ( Hooks::runner()->onWatchArticle( $user, $wikiPage, $status, $expiry ) ) {
-			$status = Status::newGood();
-			$watchlistManager = $services->getWatchlistManager();
-			if ( $checkRights ) {
-				$watchlistManager->addWatch( $performer, $title, $expiry );
-			} else {
-				$watchlistManager->addWatchIgnoringRights( $user, $title, $expiry );
-			}
-			Hooks::runner()->onWatchArticleComplete( $user, $wikiPage );
-		}
-
-		return $status;
+		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->doWatch(
+			$pageIdentity,
+			$performer,
+			$checkRights,
+			$expiry
+		) );
 	}
 
 	/**
@@ -335,26 +297,13 @@ class WatchAction extends FormAction {
 	 *
 	 * @return Status
 	 * @since 1.22 Returns Status
+	 * @deprecated since 1.37, use WatchlistManager:doUnwatch() instead.
 	 */
 	public static function doUnwatch( PageIdentity $pageIdentity, Authority $performer ) {
-		$services = MediaWikiServices::getInstance();
-		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
-			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
-		}
-
-		$wikiPage = $services->getWikiPageFactory()->newFromTitle( $pageIdentity );
-		$title = $wikiPage->getTitle();
-
-		$status = Status::newFatal( 'hookaborted' );
-		// TODO: update hooks to take Authority
-		$user = $services->getUserFactory()->newFromAuthority( $performer );
-		if ( Hooks::runner()->onUnwatchArticle( $user, $wikiPage, $status ) ) {
-			$status = Status::newGood();
-			$services->getWatchlistManager()->removeWatch( $performer, $title );
-			Hooks::runner()->onUnwatchArticleComplete( $user, $wikiPage );
-		}
-
-		return $status;
+		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->doUnwatch(
+			$pageIdentity,
+			$performer
+		) );
 	}
 
 	/**
