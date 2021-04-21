@@ -91,6 +91,8 @@ because of Phabricator reports.
   UserGroupManager instead.
 * The following classes, hard-deprecated since 1.36, have been removed:
   CachedAction, SpecialCachedPage, CacheHelper, ICacheHelper.
+* The deprecated "es6-promise" alias ResourceLoader module has been removed. Use
+  "es6-polyfills" directly intead.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
