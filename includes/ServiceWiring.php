@@ -1637,7 +1637,8 @@ return [
 			$services->getTalkPageNotificationManager(),
 			$services->getWatchedItemStore(),
 			$services->getUserFactory(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$services->getWikiPageFactory()
 		);
 	},
 
