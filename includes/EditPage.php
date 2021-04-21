@@ -2528,7 +2528,7 @@ class EditPage implements IEditObject {
 		// This can't run as a DeferredUpdate due to a possible race condition
 		// when the post-edit redirect happens if the pendingUpdates queue is
 		// too large to finish in time (T259564)
-		$this->watchlistManager->setWatch( $watch, $title, $performer, $watchlistExpiry );
+		$this->watchlistManager->setWatch( $watch, $performer, $title, $watchlistExpiry );
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
 	}

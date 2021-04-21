@@ -80,7 +80,7 @@ trait ApiWatchlistTrait {
 	): void {
 		$value = $this->getWatchlistValue( $watch, $title, $user, $userOption );
 		MediaWikiServices::getInstance()->getWatchlistManager()
-			->setWatch( $value, $title, $user, $expiry );
+			->setWatch( $value, $user, $title, $expiry );
 	}
 
 	/**

@@ -146,8 +146,8 @@ class FileDeleteForm {
 
 				MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
 					$request->getCheck( 'wpWatch' ),
-					$this->title,
-					$this->user
+					$this->user,
+					$this->title
 				);
 			}
 			return;
