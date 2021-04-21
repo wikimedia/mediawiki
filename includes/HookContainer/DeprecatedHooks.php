@@ -36,7 +36,6 @@ class DeprecatedHooks {
 	private $deprecatedHooks = [
 		'AddNewAccount' => [ 'deprecatedVersion' => '1.27', 'silent' => true ],
 		'ArticleEditUpdates' => [ 'deprecatedVersion' => '1.35' ],
-		'ArticleEditUpdatesDeleteFromRecentchanges' => [ 'deprecatedVersion' => '1.35' ],
 		'ArticleRevisionUndeleted' => [ 'deprecatedVersion' => '1.35' ],
 		'ArticleRollbackComplete' => [ 'deprecatedVersion' => '1.35' ],
 		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
