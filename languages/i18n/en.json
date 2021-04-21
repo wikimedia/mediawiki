@@ -2404,6 +2404,7 @@
 	"nowatchlist": "You have no items on your watchlist.",
 	"watchlistanontext": "Please log in to view or edit items on your watchlist.",
 	"watchnologin": "Not logged in",
+	"watchlistnotwatchable": "Page is not watchable.",
 	"addwatch": "Add to watchlist",
 	"updatewatchlist": "Update watchlist",
 	"addedwatchtext": "\"[[:$1]]\" and its discussion page have been added to your [[Special:Watchlist|watchlist]].",

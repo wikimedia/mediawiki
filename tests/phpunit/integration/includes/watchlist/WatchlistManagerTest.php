@@ -329,7 +329,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Watchlist\WatchlistManager::doWatch()
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::addWatchIgnoringRights()
 	 * @throws Exception
 	 */
 	public function testDoWatchNoCheckRights() {
@@ -343,14 +343,14 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$watchedItemStore->clearUserWatchedItems( $userIdentity );
 
-		$actual = $watchlistManager->doWatch( $title, $performer, false );
+		$actual = $watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
 
 		$this->assertTrue( $actual->isGood() );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
 	/**
-	 * @covers \MediaWiki\Watchlist\WatchlistManager::doWatch()
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::addWatch()
 	 * @throws Exception
 	 */
 	public function testDoWatchUserNotPermittedStatusNotGood() {
@@ -364,14 +364,14 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$watchedItemStore->clearUserWatchedItems( $userIdentity );
 
-		$actual = $watchlistManager->doWatch( $title, $performer, true );
+		$actual = $watchlistManager->addWatch( $performer, $title );
 
 		$this->assertFalse( $actual->isGood() );
 		$this->assertFalse( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
 	/**
-	 * @covers \MediaWiki\Watchlist\WatchlistManager::doWatch()
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::addWatch()
 	 * @throws Exception
 	 */
 	public function testDoWatchSuccess() {
@@ -385,14 +385,14 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$watchedItemStore->clearUserWatchedItems( $userIdentity );
 
-		$actual = $watchlistManager->doWatch( $title, $performer );
+		$actual = $watchlistManager->addWatch( $performer, $title );
 
 		$this->assertTrue( $actual->isGood() );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
 	/**
-	 * @covers \MediaWiki\Watchlist\WatchlistManager::doUnwatch()
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::removeWatch()
 	 * @throws Exception
 	 */
 	public function testDoUnwatchWithoutRights() {
@@ -405,14 +405,14 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
 
-		$actual = $watchlistManager->doUnwatch( $title, $performer );
+		$actual = $watchlistManager->removeWatch( $performer, $title );
 
 		$this->assertFalse( $actual->isGood() );
 		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 
 	/**
-	 * @covers \MediaWiki\Watchlist\WatchlistManager::doUnwatch()
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::removeWatch()
 	 */
 	public function testDoUnwatchUserHookAborted() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
@@ -427,7 +427,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 			return false;
 		} );
 
-		$status = $watchlistManager->doUnwatch( $title, $performer );
+		$status = $watchlistManager->removeWatch( $performer, $title );
 
 		$this->assertFalse( $status->isGood() );
 		$errors = $status->getErrors();
@@ -437,7 +437,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Watchlist\WatchlistManager::doUnwatch()
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::removeWatch()
 	 * @throws Exception
 	 */
 	public function testDoUnwatchSuccess() {
@@ -450,7 +450,7 @@ class WatchlistManagerTest extends MediaWikiIntegrationTestCase {
 
 		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
 
-		$status = $watchlistManager->doUnwatch( $title, $performer );
+		$status = $watchlistManager->removeWatch( $performer, $title );
 
 		$this->assertTrue( $status->isGood() );
 		$this->assertFalse( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
