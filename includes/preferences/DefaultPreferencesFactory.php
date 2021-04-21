@@ -275,7 +275,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Handling for multiselect preferences
 		if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
 				( isset( $info['class'] ) && $info['class'] == \HTMLMultiSelectField::class ) ) {
-			$options = HTMLFormField::flattenOptions( $info['options'] );
+			$options = HTMLFormField::flattenOptions( $info['options-messages'] ?? $info['options'] );
 			$prefix = $info['prefix'] ?? $name;
 			$val = [];
 
