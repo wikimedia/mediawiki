@@ -1099,21 +1099,14 @@ class Linker {
 	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @since 1.16.3
-	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
-	 *    deprecated since 1.35)
+	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
+	 *    since 1.35)
 	 * @param bool $isPublic Show only if all users can see it
 	 * @return string HTML fragment
 	 */
-	public static function revUserLink( $rev, $isPublic = false ) {
+	public static function revUserLink( RevisionRecord $revRecord, $isPublic = false ) {
 		// TODO inject authority
 		$authority = RequestContext::getMain()->getAuthority();
-
-		if ( $rev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $rev->getRevisionRecord();
-		} else {
-			$revRecord = $rev;
-		}
 
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) && $isPublic ) {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
@@ -1153,22 +1146,19 @@ class Linker {
 	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @since 1.16.3
-	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
-	 *    deprecated since 1.35)
+	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
+	 *    since 1.35)
 	 * @param bool $isPublic Show only if all users can see it
 	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML
 	 */
-	public static function revUserTools( $rev, $isPublic = false, $useParentheses = true ) {
+	public static function revUserTools(
+		RevisionRecord $revRecord,
+		$isPublic = false,
+		$useParentheses = true
+	) {
 		// TODO inject authority
 		$authority = RequestContext::getMain()->getAuthority();
-
-		if ( $rev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $rev->getRevisionRecord();
-		} else {
-			$revRecord = $rev;
-		}
 
 		if ( $revRecord->userCan( RevisionRecord::DELETED_USER, $authority ) &&
 			( !$revRecord->isDeleted( RevisionRecord::DELETED_USER ) || !$isPublic )
@@ -1616,25 +1606,21 @@ class Linker {
 	 * This method produces HTML that requires CSS styles in mediawiki.interface.helpers.styles.
 	 *
 	 * @since 1.16.3
-	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
-	 *    deprecated since 1.35)
+	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
+	 *    since 1.35)
 	 * @param bool $local Whether section links should refer to local page
 	 * @param bool $isPublic Show only if all users can see it
 	 * @param bool $useParentheses (optional) Wrap comments in parentheses where needed
 	 * @return string HTML fragment
 	 */
-	public static function revComment( $rev, $local = false, $isPublic = false,
+	public static function revComment(
+		RevisionRecord $revRecord,
+		$local = false,
+		$isPublic = false,
 		$useParentheses = true
 	) {
 		// TODO inject authority
 		$authority = RequestContext::getMain()->getAuthority();
-
-		if ( $rev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $rev->getRevisionRecord();
-		} else {
-			$revRecord = $rev;
-		}
 
 		if ( $revRecord->getComment( RevisionRecord::RAW ) === null ) {
 			return "";
@@ -1870,22 +1856,17 @@ class Linker {
 	 * @since 1.16.3. $context added in 1.20. $options added in 1.21
 	 *   $rev could be a RevisionRecord since 1.35
 	 *
-	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
-	 *    deprecated since 1.35)
+	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
+	 *    since 1.35)
 	 * @param IContextSource|null $context Context to use or null for the main context.
 	 * @param array $options
 	 * @return string
 	 */
-	public static function generateRollback( $rev, IContextSource $context = null,
+	public static function generateRollback(
+		RevisionRecord $revRecord,
+		IContextSource $context = null,
 		$options = [ 'verify' ]
 	) {
-		if ( $rev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $rev->getRevisionRecord();
-		} else {
-			$revRecord = $rev;
-		}
-
 		if ( $context === null ) {
 			$context = RequestContext::getMain();
 		}
@@ -1935,20 +1916,13 @@ class Linker {
 	 *
 	 * @todo Unused outside of this file - should it be made private?
 	 *
-	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
-	 *    deprecated since 1.35)
+	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
+	 *    since 1.35)
 	 * @param bool $verify Try to verify that this revision can really be rolled back
 	 * @return int|bool|null
 	 */
-	public static function getRollbackEditCount( $rev, $verify ) {
+	public static function getRollbackEditCount( RevisionRecord $revRecord, $verify ) {
 		global $wgShowRollbackEditCount;
-
-		if ( $rev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $rev->getRevisionRecord();
-		} else {
-			$revRecord = $rev;
-		}
 
 		if ( !is_int( $wgShowRollbackEditCount ) || !$wgShowRollbackEditCount > 0 ) {
 			// Nothing has happened, indicate this by returning 'null'
@@ -2015,23 +1989,18 @@ class Linker {
 	 *
 	 * @todo Unused outside of this file - should it be made private?
 	 *
-	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
-	 *    deprecated since 1.35)
+	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
+	 *    since 1.35)
 	 * @param IContextSource|null $context Context to use or null for the main context.
 	 * @param int|false $editCount Number of edits that would be reverted
 	 * @return string HTML fragment
 	 */
-	public static function buildRollbackLink( $rev, IContextSource $context = null,
+	public static function buildRollbackLink(
+		RevisionRecord $revRecord,
+		IContextSource $context = null,
 		$editCount = false
 	) {
 		global $wgShowRollbackEditCount, $wgMiserMode;
-
-		if ( $rev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $rev->getRevisionRecord();
-		} else {
-			$revRecord = $rev;
-		}
 
 		// To config which pages are affected by miser mode
 		$disableRollbackEditCountSpecialPage = [ 'Recentchanges', 'Watchlist' ];
@@ -2218,19 +2187,16 @@ class Linker {
 	 * undeletion.
 	 *
 	 * @param Authority $performer
-	 * @param RevisionRecord|Revision $rev (RevisionRecord allowed since 1.35, Revision
-	 *    deprecated since 1.35)
+	 * @param RevisionRecord $revRecord (Switched from the old Revision class to RevisionRecord
+	 *    since 1.35)
 	 * @param LinkTarget $title
 	 * @return string HTML fragment
 	 */
-	public static function getRevDeleteLink( Authority $performer, $rev, LinkTarget $title ) {
-		if ( $rev instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $rev->getRevisionRecord();
-		} else {
-			$revRecord = $rev;
-		}
-
+	public static function getRevDeleteLink(
+		Authority $performer,
+		RevisionRecord $revRecord,
+		LinkTarget $title
+	) {
 		$canHide = $performer->isAllowed( 'deleterevision' );
 		$canHideHistory = $performer->isAllowed( 'deletedhistory' );
 		if ( !$canHide && !( $revRecord->getVisibility() && $canHideHistory ) ) {
