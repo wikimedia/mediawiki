@@ -759,6 +759,8 @@ because of Phabricator reports.
   MediaWiki\Watchlist\WatchlistManager instead. Deprecated the method
   MediaWikiServices->getWatchlistNotificationManager(); use
   MediaWikiServices->getWatchlistManager() instead.
+* The "ArticleEditUpdatesDeleteFromRecentchanges" hook, deprecated in 1.35, has
+  been removed. Other hooks like "RecentChange_save" can be used instead.
 * …
 
 === Other changes in 1.36 ===
