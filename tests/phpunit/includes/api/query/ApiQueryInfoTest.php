@@ -39,14 +39,12 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$title = $page->getTitle();
 		$user = $this->getTestUser()->getUser();
 		RequestContext::getMain()->setUser( $user );
-		WatchAction::doWatch(
-			$title,
+		$this->getServiceContainer()->getWatchlistManager()->addWatch(
 			$user,
-			User::CHECK_USER_RIGHTS,
+			$title,
 			// 3 months later
 			'2011-04-01T00:00:00Z'
 		);
-		$watchItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 
 		list( $data ) = $this->doApiRequest( [
 				'action' => 'query',

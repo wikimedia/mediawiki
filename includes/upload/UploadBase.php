@@ -954,10 +954,9 @@ abstract class UploadBase {
 
 		if ( $status->isGood() ) {
 			if ( $watch ) {
-				WatchAction::doWatch(
-					$this->getLocalFile()->getTitle(),
+				MediaWikiServices::getInstance()->getWatchlistManager()->addWatchIgnoringRights(
 					$user,
-					User::IGNORE_USER_RIGHTS,
+					$this->getLocalFile()->getTitle(),
 					$watchlistExpiry
 				);
 			}

@@ -28,6 +28,7 @@ use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -97,6 +98,9 @@ class MovePageForm extends UnlistedSpecialPage {
 	/** @var SearchEngineFactory */
 	private $searchEngineFactory;
 
+	/** @var WatchlistManager */
+	private $watchlistManager;
+
 	/**
 	 * @param MovePageFactory|null $movePageFactory
 	 * @param PermissionManager|null $permManager
@@ -108,6 +112,7 @@ class MovePageForm extends UnlistedSpecialPage {
 	 * @param RepoGroup|null $repoGroup
 	 * @param WikiPageFactory|null $wikiPageFactory
 	 * @param SearchEngineFactory|null $searchEngineFactory
+	 * @param WatchlistManager|null $watchlistManager
 	 */
 	public function __construct(
 		MovePageFactory $movePageFactory = null,
@@ -119,7 +124,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		LinkBatchFactory $linkBatchFactory = null,
 		RepoGroup $repoGroup = null,
 		WikiPageFactory $wikiPageFactory = null,
-		SearchEngineFactory $searchEngineFactory = null
+		SearchEngineFactory $searchEngineFactory = null,
+		WatchlistManager $watchlistManager = null
 	) {
 		parent::__construct( 'Movepage' );
 		// This class is extended and therefor fallback to global state - T265945
@@ -134,6 +140,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->repoGroup = $repoGroup ?? $services->getRepoGroup();
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 		$this->searchEngineFactory = $searchEngineFactory ?? $services->getSearchEngineFactory();
+		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 	}
 
 	public function doesWrites() {
@@ -526,7 +533,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		# Don't allow watching if user is not logged in
 		if ( $user->isRegistered() ) {
 			$watchChecked = ( $this->watch || $this->userOptionsLookup->getBoolOption( $user, 'watchmoves' )
-				|| $user->isWatched( $this->oldTitle ) );
+				|| $this->watchlistManager->isWatched( $user, $this->oldTitle ) );
 			$fields[] = new OOUI\FieldLayout(
 				new OOUI\CheckboxInputWidget( [
 					'name' => 'wpWatch',
@@ -896,8 +903,8 @@ class MovePageForm extends UnlistedSpecialPage {
 		}
 
 		# Deal with watches (we don't watch subpages)
-		WatchAction::doWatchOrUnwatch( $this->watch, $ot, $this->getAuthority() );
-		WatchAction::doWatchOrUnwatch( $this->watch, $nt, $this->getAuthority() );
+		$this->watchlistManager->setWatch( $this->watch, $ot, $this->getAuthority() );
+		$this->watchlistManager->setWatch( $this->watch, $nt, $this->getAuthority() );
 	}
 
 	private function showLogFragment( $title ) {

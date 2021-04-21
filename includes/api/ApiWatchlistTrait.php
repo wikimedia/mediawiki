@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
@@ -78,7 +79,8 @@ trait ApiWatchlistTrait {
 		?string $expiry = null
 	): void {
 		$value = $this->getWatchlistValue( $watch, $title, $user, $userOption );
-		WatchAction::doWatchOrUnwatch( $value, $title, $user, $expiry );
+		MediaWikiServices::getInstance()->getWatchlistManager()
+			->setWatch( $value, $title, $user, $expiry );
 	}
 
 	/**
@@ -96,7 +98,8 @@ trait ApiWatchlistTrait {
 		User $user,
 		?string $userOption = null
 	): bool {
-		$userWatching = $user->isWatched( $title, User::IGNORE_USER_RIGHTS );
+		$userWatching = MediaWikiServices::getInstance()->getWatchlistManager()
+			->isWatchedIgnoringRights( $user, $title );
 
 		switch ( $watchlist ) {
 			case 'watch':

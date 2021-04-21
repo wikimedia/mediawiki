@@ -56,6 +56,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\Watchlist\WatchlistManager;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
 use OOUI\FieldLayout;
@@ -423,6 +424,11 @@ class EditPage implements IEditObject {
 	private $wikiPageFactory;
 
 	/**
+	 * @var WatchlistManager
+	 */
+	private $watchlistManager;
+
+	/**
 	 * @stable to call
 	 * @param Article $article
 	 */
@@ -454,6 +460,7 @@ class EditPage implements IEditObject {
 			&& $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchedItemStore = $services->getWatchedItemStore();
 		$this->wikiPageFactory = $services->getWikiPageFactory();
+		$this->watchlistManager = $services->getWatchlistManager();
 
 		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'deletedSinceEdit', '1.35', __CLASS__ );
@@ -1241,7 +1248,7 @@ class EditPage implements IEditObject {
 		} elseif ( $user->getOption( 'watchcreations' ) && !$this->mTitle->exists() ) {
 			# Watch creations
 			$this->watchthis = true;
-		} elseif ( $user->isWatched( $this->mTitle ) ) {
+		} elseif ( $this->watchlistManager->isWatched( $user, $this->mTitle ) ) {
 			# Already watched
 			$this->watchthis = true;
 		}
@@ -2509,7 +2516,7 @@ class EditPage implements IEditObject {
 	 * Register the change of watch status
 	 */
 	protected function updateWatchlist() {
-		$performer = $this->context->getUser();
+		$performer = $this->context->getAuthority();
 		if ( !$performer->getUser()->isRegistered() ) {
 			return;
 		}
@@ -2521,7 +2528,7 @@ class EditPage implements IEditObject {
 		// This can't run as a DeferredUpdate due to a possible race condition
 		// when the post-edit redirect happens if the pendingUpdates queue is
 		// too large to finish in time (T259564)
-		WatchAction::doWatchOrUnwatch( $watch, $title, $performer, $watchlistExpiry );
+		$this->watchlistManager->setWatch( $watch, $title, $performer, $watchlistExpiry );
 
 		$this->watchedItemStore->maybeEnqueueWatchlistExpiryJob();
 	}

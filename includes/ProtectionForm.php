@@ -26,6 +26,7 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
  * Handles the page protection UI and backend
@@ -91,6 +92,11 @@ class ProtectionForm {
 	/** @var PermissionManager */
 	private $permManager;
 
+	/**
+	 * @var WatchlistManager
+	 */
+	private $watchlistManager;
+
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -108,6 +114,7 @@ class ProtectionForm {
 		$services = MediaWikiServices::getInstance();
 		$this->permManager = $services->getPermissionManager();
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->watchlistManager = $services->getWatchlistManager();
 
 		// Check if the form should be disabled.
 		// If it is, the form will be available in read-only to show levels.
@@ -386,7 +393,7 @@ class ProtectionForm {
 			return false;
 		}
 
-		WatchAction::doWatchOrUnwatch(
+		$this->watchlistManager->setWatch(
 			$this->mRequest->getCheck( 'mwProtectWatch' ),
 			$this->mTitle,
 			$this->mUser
@@ -564,7 +571,7 @@ class ProtectionForm {
 					'label' => $this->mContext->msg( 'watchthis' )->text(),
 					'name' => 'mwProtectWatch',
 					'default' => (
-						$this->mUser->isWatched( $this->mTitle )
+						$this->watchlistManager->isWatched( $this->mUser, $this->mTitle )
 						|| $this->mUser->getOption( 'watchdefault' )
 					),
 				];

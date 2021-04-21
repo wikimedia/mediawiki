@@ -24,6 +24,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
  * Form for handling uploads and special page.
@@ -42,15 +43,20 @@ class SpecialUpload extends SpecialPage {
 	/** @var NamespaceInfo */
 	private $nsInfo;
 
+	/** @var WatchlistManager */
+	private $watchlistManager;
+
 	/**
 	 * @param RepoGroup|null $repoGroup
 	 * @param UserOptionsLookup|null $userOptionsLookup
 	 * @param NamespaceInfo|null $nsInfo
+	 * @param WatchlistManager|null $watchlistManager
 	 */
 	public function __construct(
 		RepoGroup $repoGroup = null,
 		UserOptionsLookup $userOptionsLookup = null,
-		NamespaceInfo $nsInfo = null
+		NamespaceInfo $nsInfo = null,
+		WatchlistManager $watchlistManager = null
 	) {
 		parent::__construct( 'Upload', 'upload' );
 		// This class is extended and therefor fallback to global state - T265300
@@ -59,6 +65,7 @@ class SpecialUpload extends SpecialPage {
 		$this->localRepo = $repoGroup->getLocalRepo();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 		$this->nsInfo = $nsInfo ?? $services->getNamespaceInfo();
+		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
 	}
 
 	public function doesWrites() {
@@ -703,7 +710,8 @@ class SpecialUpload extends SpecialPage {
 		}
 
 		$desiredTitleObj = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
-		if ( $desiredTitleObj instanceof Title && $user->isWatched( $desiredTitleObj ) ) {
+		if ( $desiredTitleObj instanceof Title &&
+			$this->watchlistManager->isWatched( $user, $desiredTitleObj ) ) {
 			// Already watched, don't change that
 			return true;
 		}

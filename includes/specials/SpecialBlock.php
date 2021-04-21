@@ -883,10 +883,9 @@ class SpecialBlock extends FormSpecialPage {
 
 		# Can't watch a rangeblock
 		if ( $type != DatabaseBlock::TYPE_RANGE && $data['Watch'] ) {
-			WatchAction::doWatch(
-				Title::makeTitle( NS_USER, $target ),
-				$performer,
-				User::IGNORE_USER_RIGHTS
+			MediaWikiServices::getInstance()->getWatchlistManager()->addWatchIgnoringRights(
+				$performer->getUser(),
+				Title::makeTitle( NS_USER, $target )
 			);
 		}
 

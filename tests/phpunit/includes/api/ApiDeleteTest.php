@@ -192,10 +192,11 @@ class ApiDeleteTest extends ApiTestCase {
 	public function testDeleteWatch() {
 		$name = 'Help:' . ucfirst( __FUNCTION__ );
 		$user = self::$users['sysop']->getUser();
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
 
 		$this->editPage( $name, 'Some text' );
 		$this->assertTrue( Title::newFromText( $name )->exists() );
-		$this->assertFalse( $user->isWatched( Title::newFromText( $name ) ) );
+		$this->assertFalse( $watchlistManager->isWatched( $user, Title::newFromText( $name ) ) );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'delete',
@@ -206,8 +207,8 @@ class ApiDeleteTest extends ApiTestCase {
 
 		$title = Title::newFromText( $name );
 		$this->assertFalse( $title->exists() );
-		$this->assertTrue( $user->isWatched( $title ) );
-		$this->assertTrue( $user->isTempWatched( $title ) );
+		$this->assertTrue( $watchlistManager->isWatched( $user, $title ) );
+		$this->assertTrue( $watchlistManager->isTempWatched( $user, $title ) );
 	}
 
 	public function testDeleteUnwatch() {
@@ -216,8 +217,9 @@ class ApiDeleteTest extends ApiTestCase {
 
 		$this->editPage( $name, 'Some text' );
 		$this->assertTrue( Title::newFromText( $name )->exists() );
-		$user->addWatch( Title::newFromText( $name ) );
-		$this->assertTrue( $user->isWatched( Title::newFromText( $name ) ) );
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
+		$watchlistManager->addWatch( $user,  Title::newFromText( $name ) );
+		$this->assertTrue( $watchlistManager->isWatched( $user, Title::newFromText( $name ) ) );
 
 		$this->doApiRequestWithToken( [
 			'action' => 'delete',
@@ -226,6 +228,6 @@ class ApiDeleteTest extends ApiTestCase {
 		] );
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
-		$this->assertFalse( $user->isWatched( Title::newFromText( $name ) ) );
+		$this->assertFalse( $watchlistManager->isWatched( $user, Title::newFromText( $name ) ) );
 	}
 }

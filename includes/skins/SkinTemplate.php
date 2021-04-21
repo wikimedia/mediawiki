@@ -796,7 +796,7 @@ class SkinTemplate extends Skin {
 
 		// Add class identifying the page is temporarily watched, if applicable.
 		if ( $this->getConfig()->get( 'WatchlistExpiry' ) &&
-			$user->isTempWatched( $title )
+			MediaWikiServices::getInstance()->getWatchlistManager()->isTempWatched( $user, $title )
 		) {
 			$class .= ' mw-watchlink-temp';
 		}
@@ -1074,7 +1074,8 @@ class SkinTemplate extends Skin {
 					 * a change to that procedure these messages will have to remain as
 					 * the global versions.
 					 */
-					$mode = $user->isWatched( $title ) ? 'unwatch' : 'watch';
+					$mode = MediaWikiServices::getInstance()->getWatchlistManager()
+						->isWatched( $user, $title ) ? 'unwatch' : 'watch';
 
 					// Add the watch/unwatch link.
 					$content_navigation['actions'][$mode] = $this->getWatchLinkAttrs(

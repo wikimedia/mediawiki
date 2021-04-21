@@ -20,6 +20,8 @@
  * @ingroup Actions
  */
 
+use MediaWiki\MediaWikiServices;
+
 /**
  * Page removal from a user's watchlist
  *
@@ -32,7 +34,10 @@ class UnwatchAction extends WatchAction {
 	}
 
 	public function onSubmit( $data ) {
-		self::doUnwatch( $this->getTitle(), $this->getUser() );
+		MediaWikiServices::getInstance()->getWatchlistManager()->removeWatch(
+			$this->getContext()->getAuthority(),
+			$this->getTitle()
+		);
 
 		return true;
 	}

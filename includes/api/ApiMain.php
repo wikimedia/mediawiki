@@ -158,7 +158,12 @@ class ApiMain extends ApiBase {
 		'upload' => ApiUpload::class,
 		'filerevert' => ApiFileRevert::class,
 		'emailuser' => ApiEmailUser::class,
-		'watch' => ApiWatch::class,
+		'watch' => [
+			'class' => ApiWatch::class,
+			'services' => [
+				'WatchlistManager',
+			]
+		],
 		'patrol' => ApiPatrol::class,
 		'import' => ApiImport::class,
 		'clearhasmsg' => [
