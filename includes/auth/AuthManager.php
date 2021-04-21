@@ -29,7 +29,9 @@ use MediaWiki\Block\BlockManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerAwareInterface;
@@ -1039,10 +1041,10 @@ class AuthManager implements LoggerAwareInterface {
 
 	/**
 	 * Basic permissions checks on whether a user can create accounts
-	 * @param User $creator User doing the account creation
+	 * @param Authority $creator User doing the account creation
 	 * @return Status
 	 */
-	public function checkAccountCreatePermissions( User $creator ) {
+	public function checkAccountCreatePermissions( Authority $creator ) {
 		// Wiki is read-only?
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return Status::newFatal( wfMessage( 'readonlytext', $this->readOnlyMode->getReason() ) );
@@ -1058,15 +1060,6 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		$ip = $this->getRequest()->getIP();
-
-		$block = $creator->isBlockedFromCreateAccount();
-		if ( $block ) {
-			$language = \RequestContext::getMain()->getLanguage();
-			return Status::newFatal(
-				$this->blockErrorFormatter->getMessage( $block, $creator, $language, $ip )
-			);
-		}
-
 		if ( $this->blockManager->isDnsBlacklisted( $ip, true /* check $wgProxyWhitelist */ ) ) {
 			return Status::newFatal( 'sorbs_create_account_reason' );
 		}
@@ -1087,13 +1080,13 @@ class AuthManager implements LoggerAwareInterface {
 	 * should be omitted. If the CreateFromLoginAuthenticationRequest has a
 	 * username set, that username must be used for all other requests.
 	 *
-	 * @param User $creator User doing the account creation
+	 * @param Authority $creator User doing the account creation
 	 * @param AuthenticationRequest[] $reqs
 	 * @param string $returnToUrl Url that REDIRECT responses should eventually
 	 *  return to.
 	 * @return AuthenticationResponse
 	 */
-	public function beginAccountCreation( User $creator, array $reqs, $returnToUrl ) {
+	public function beginAccountCreation( Authority $creator, array $reqs, $returnToUrl ) {
 		$session = $this->request->getSession();
 		if ( !$this->canCreateAccounts() ) {
 			// Caller should have called canCreateAccounts()
@@ -1116,7 +1109,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( !$status->isGood() ) {
 			$this->logger->debug( __METHOD__ . ': {creator} cannot create users: {reason}', [
 				'user' => $username,
-				'creator' => $creator->getName(),
+				'creator' => $creator->getUser()->getName(),
 				'reason' => $status->getWikiText( null, null, 'en' )
 			] );
 			return AuthenticationResponse::newFail( $status->getMessage() );
@@ -1128,7 +1121,7 @@ class AuthManager implements LoggerAwareInterface {
 		if ( !$status->isGood() ) {
 			$this->logger->debug( __METHOD__ . ': {user} cannot be created: {reason}', [
 				'user' => $username,
-				'creator' => $creator->getName(),
+				'creator' => $creator->getUser()->getName(),
 				'reason' => $status->getWikiText( null, null, 'en' )
 			] );
 			return AuthenticationResponse::newFail( $status->getMessage() );
@@ -1145,7 +1138,7 @@ class AuthManager implements LoggerAwareInterface {
 					$session->remove( 'AuthManager::accountCreationState' );
 					$this->logger->debug( __METHOD__ . ': UserData is invalid: {reason}', [
 						'user' => $user->getName(),
-						'creator' => $creator->getName(),
+						'creator' => $creator->getUser()->getName(),
 						'reason' => $status->getWikiText( null, null, 'en' ),
 					] );
 					return AuthenticationResponse::newFail( $status->getMessage() );
@@ -1158,8 +1151,8 @@ class AuthManager implements LoggerAwareInterface {
 		$state = [
 			'username' => $username,
 			'userid' => 0,
-			'creatorid' => $creator->getId(),
-			'creatorname' => $creator->getName(),
+			'creatorid' => $creator->getUser()->getId(),
+			'creatorname' => $creator->getUser()->getName(),
 			'reqs' => $reqs,
 			'returnToUrl' => $returnToUrl,
 			'primary' => null,
@@ -2066,10 +2059,10 @@ class AuthManager implements LoggerAwareInterface {
 	 *  - ACTION_UNLINK: Same as ACTION_REMOVE, but limited to linked accounts.
 	 *
 	 * @param string $action One of the AuthManager::ACTION_* constants
-	 * @param User|null $user User being acted on, instead of the current user.
+	 * @param UserIdentity|null $user User being acted on, instead of the current user.
 	 * @return AuthenticationRequest[]
 	 */
-	public function getAuthenticationRequests( $action, User $user = null ) {
+	public function getAuthenticationRequests( $action, UserIdentity $user = null ) {
 		$options = [];
 		$providerAction = $action;
 
@@ -2136,14 +2129,14 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param string $providerAction Action to pass to providers
 	 * @param array $options Options to pass to providers
 	 * @param AuthenticationProvider[] $providers
-	 * @param User|null $user
+	 * @param UserIdentity|null $user being acted on
 	 * @return AuthenticationRequest[]
 	 */
 	private function getAuthenticationRequestsInternal(
-		$providerAction, array $options, array $providers, User $user = null
+		$providerAction, array $options, array $providers, UserIdentity $user = null
 	) {
 		$user = $user ?: \RequestContext::getMain()->getUser();
-		$options['username'] = $user->isAnon() ? null : $user->getName();
+		$options['username'] = $user->isRegistered() ? $user->getName() : null;
 
 		// Query them and merge results
 		$reqs = [];

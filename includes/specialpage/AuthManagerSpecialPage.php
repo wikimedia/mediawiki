@@ -373,7 +373,7 @@ abstract class AuthManagerSpecialPage extends SpecialPage {
 			case AuthManager::ACTION_LOGIN_CONTINUE:
 				return $authManager->continueAuthentication( $requests );
 			case AuthManager::ACTION_CREATE:
-				return $authManager->beginAccountCreation( $this->getUser(), $requests,
+				return $authManager->beginAccountCreation( $this->getAuthority(), $requests,
 					$returnToUrl );
 			case AuthManager::ACTION_CREATE_CONTINUE:
 				return $authManager->continueAccountCreation( $requests );

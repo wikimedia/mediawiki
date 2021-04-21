@@ -23,6 +23,7 @@ use Action;
 use Article;
 use Exception;
 use MediaWiki\Block\BlockErrorFormatter;
+use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -702,9 +703,8 @@ class PermissionManager {
 		$short,
 		LinkTarget $page
 	) {
-		// Account creation blocks handled at userlogin.
 		// Unblocking handled in SpecialUnblock
-		if ( $rigor === self::RIGOR_QUICK || in_array( $action, [ 'createaccount', 'unblock' ] ) ) {
+		if ( $rigor === self::RIGOR_QUICK || in_array( $action, [ 'unblock' ] ) ) {
 			return $errors;
 		}
 
@@ -722,6 +722,37 @@ class PermissionManager {
 
 		$useReplica = ( $rigor !== self::RIGOR_SECURE );
 		$block = $user->getBlock( $useReplica );
+
+		if ( $action === 'createaccount' ) {
+			$applicableBlock = null;
+			if ( $block && $block->appliesToRight( 'createaccount' ) ) {
+				$applicableBlock = $block;
+			}
+
+			# T15611: if the IP address the user is trying to create an account from is
+			# blocked with createaccount disabled, prevent new account creation there even
+			# when the user is logged in
+			if ( !$this->userHasRight( $user, 'ipblock-exempt' ) ) {
+				$ipBlock = DatabaseBlock::newFromTarget(
+					null, $user->getRequest()->getIP()
+				);
+				if ( $ipBlock && $ipBlock->appliesToRight( 'createaccount' ) ) {
+					$applicableBlock = $ipBlock;
+				}
+			}
+			// @todo FIXME: Pass the relevant context into this function.
+			if ( $applicableBlock ) {
+				$context = RequestContext::getMain();
+				$message = $this->blockErrorFormatter->getMessage(
+					$applicableBlock,
+					$context->getUser(),
+					$context->getLanguage(),
+					$context->getRequest()->getIP()
+				);
+				$errors[] = array_merge( [ $message->getKey() ], $message->getParams() );
+				return $errors;
+			}
+		}
 
 		// If the user does not have a block, or the block they do have explicitly
 		// allows the action (like "read" or "upload").
