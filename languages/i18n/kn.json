@@ -1968,7 +1968,7 @@
 	"searchsuggest-search": "{{SITENAME}} ಅನ್ನು ಹುಡುಕಿ",
 	"duration-seconds": "$1 {{PLURAL:$1|ಕ್ಷಣ|ಕ್ಷಣಗಳು}}",
 	"duration-minutes": "$1 {{PLURAL:$1|ನಿಮಿಷ|ನಿಮಿಷಗಳು}}",
-	"duration-hours": "$1 {{PLURAL:$1|ಘಂಟೆ|ಘಂಟೆಗಳು}}",
+	"duration-hours": "$1 {{PLURAL:$1|ಗಂಟೆ|ಗಂಟೆಗಳು}}",
 	"duration-days": "$1 {{PLURAL:$1|ದಿನ|ದಿನಗಳು}}",
 	"duration-weeks": "$1 {{PLURAL:$1|ವಾರ|ವಾರಗಳು}}",
 	"duration-years": "$1 {{PLURAL:$1|ವರ್ಷ|ವರ್ಷಗಳು}}",

@@ -3196,6 +3196,7 @@
 	"tag-mw-rollback": "vraćanje",
 	"tag-mw-undo": "poništenje",
 	"tag-mw-manual-revert": "ručno vraćanje",
+	"tag-mw-reverted": "vraćeno",
 	"tags-title": "Oznake",
 	"tags-intro": "Ova stranica prikazuje spisak oznaka koje softver može staviti na svaku izmjenu i njihovo značenje.",
 	"tags-tag": "Naziv oznake",

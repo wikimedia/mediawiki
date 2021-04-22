@@ -2458,6 +2458,7 @@
 	"nowatchlist": "Votre liste de suivi ne référence aucune page.",
 	"watchlistanontext": "Veuillez vous connecter pour visualiser ou modifier les éléments de votre liste de suivi.",
 	"watchnologin": "Non connecté{{GENDER:||e}}",
+	"watchlistnotwatchable": "La page ne peut pas être suivie.",
 	"addwatch": "Ajouter à la liste de suivi",
 	"updatewatchlist": "Mettre à jour la liste de suivi",
 	"addedwatchtext": "La page « [[:$1]] » et sa page de discussion ont été ajoutées à votre [[Special:Watchlist|liste de suivi]].",
