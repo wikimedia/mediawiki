@@ -36,7 +36,6 @@ use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
@@ -269,13 +268,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @return RevisionRenderer
-	 */
-	private function getRevisionRenderer() {
-		return MediaWikiServices::getInstance()->getRevisionRenderer();
-	}
-
-	/**
 	 * @return SlotRoleRegistry
 	 */
 	private function getSlotRoleRegistry() {
@@ -287,13 +279,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	private function getContentHandlerFactory(): IContentHandlerFactory {
 		return MediaWikiServices::getInstance()->getContentHandlerFactory();
-	}
-
-	/**
-	 * @return ParserCache
-	 */
-	private function getParserCache() {
-		return MediaWikiServices::getInstance()->getParserCache();
 	}
 
 	/**
@@ -1863,9 +1848,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$derivedDataUpdater = new DerivedPageDataUpdater(
 			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
 			$this->getRevisionStore(),
-			$this->getRevisionRenderer(),
+			$services->getRevisionRenderer(),
 			$this->getSlotRoleRegistry(),
-			$this->getParserCache(),
+			$services->getParserCache(),
 			JobQueueGroup::singleton(),
 			$services->getMessageCache(),
 			$services->getContentLanguage(),
