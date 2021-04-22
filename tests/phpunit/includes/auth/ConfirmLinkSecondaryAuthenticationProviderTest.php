@@ -42,7 +42,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->getMock();
 		$mock->expects( $this->once() )->method( 'beginLinkAttempt' )
 			->with( $this->identicalTo( $user ), $this->identicalTo( 'AuthManager::authnState' ) )
-			->will( $this->returnValue( $obj ) );
+			->willReturn( $obj );
 		$mock->expects( $this->never() )->method( 'continueLinkAttempt' );
 
 		$this->assertSame( $obj, $mock->beginSecondaryAuthentication( $user, [] ) );
@@ -63,7 +63,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$this->identicalTo( 'AuthManager::authnState' ),
 				$this->identicalTo( $reqs )
 			)
-			->will( $this->returnValue( $obj ) );
+			->willReturn( $obj );
 
 		$this->assertSame( $obj, $mock->continueSecondaryAuthentication( $user, $reqs ) );
 	}
@@ -77,7 +77,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->getMock();
 		$mock->expects( $this->once() )->method( 'beginLinkAttempt' )
 			->with( $this->identicalTo( $user ), $this->identicalTo( 'AuthManager::accountCreationState' ) )
-			->will( $this->returnValue( $obj ) );
+			->willReturn( $obj );
 		$mock->expects( $this->never() )->method( 'continueLinkAttempt' );
 
 		$this->assertSame( $obj, $mock->beginSecondaryAccountCreation( $user, $user, [] ) );
@@ -98,7 +98,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$this->identicalTo( 'AuthManager::accountCreationState' ),
 				$this->identicalTo( $reqs )
 			)
-			->will( $this->returnValue( $obj ) );
+			->willReturn( $obj );
 
 		$this->assertSame( $obj, $mock->continueSecondaryAccountCreation( $user, $user, $reqs ) );
 	}
@@ -114,8 +114,8 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->onlyMethods( [ 'getUniqueId' ] );
 		for ( $i = 1; $i <= 3; $i++ ) {
 			$req = $mb->getMockForAbstractClass();
-			$req->expects( $this->any() )->method( 'getUniqueId' )
-				->will( $this->returnValue( "Request$i" ) );
+			$req->method( 'getUniqueId' )
+				->willReturn( "Request$i" );
 			$req->id = $i - 1;
 			$reqs[$req->getUniqueId()] = $req;
 		}
@@ -127,8 +127,8 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$badReq = $this->getMockBuilder( AuthenticationRequest::class )
 			->onlyMethods( [ 'getUniqueId' ] )
 			->getMockForAbstractClass();
-		$badReq->expects( $this->any() )->method( 'getUniqueId' )
-			->will( $this->returnValue( "BadReq" ) );
+		$badReq->method( 'getUniqueId' )
+			->willReturn( "BadReq" );
 
 		$user = \User::newFromName( 'UTSysop' );
 		$provider = TestingAccessWrapper::newFromObject(
@@ -203,7 +203,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->getMock();
 		$mock->expects( $this->once() )->method( 'beginLinkAttempt' )
 			->with( $this->identicalTo( $user ), $this->identicalTo( 'state' ) )
-			->will( $this->returnValue( $obj ) );
+			->willReturn( $obj );
 		$this->assertSame(
 			$obj,
 			TestingAccessWrapper::newFromObject( $mock )->continueLinkAttempt( $user, 'state', $reqs )

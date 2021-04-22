@@ -66,10 +66,10 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
-		$provider->expects( $this->any() )->method( 'persistsSessionId' )
-			->will( $this->returnValue( $persistId ) );
-		$provider->expects( $this->any() )->method( 'canChangeUser' )
-			->will( $this->returnValue( $persistUser ) );
+		$provider->method( 'persistsSessionId' )
+			->willReturn( $persistId );
+		$provider->method( 'canChangeUser' )
+			->willReturn( $persistUser );
 		$provider->setManager( $manager );
 
 		if ( $ok ) {
@@ -125,15 +125,15 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
-		$provider->expects( $this->any() )->method( 'canChangeUser' )
-			->will( $this->returnValue( true ) );
+		$provider->method( 'canChangeUser' )
+			->willReturn( true );
 		$provider->preventSessionsForUser( 'Foo' );
 
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->onlyMethods( [ 'canChangeUser', 'persistsSessionId' ] )
 			->getMockForAbstractClass();
-		$provider->expects( $this->any() )->method( 'canChangeUser' )
-			->will( $this->returnValue( false ) );
+		$provider->method( 'canChangeUser' )
+			->willReturn( false );
 		try {
 			$provider->preventSessionsForUser( 'Foo' );
 			$this->fail( 'Expected exception not thrown' );

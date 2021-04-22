@@ -178,7 +178,7 @@ class OldChangesListTest extends MediaWikiLangTestCase {
 			->onlyMethods( [ 'getTitle' ] )
 			->getMock();
 		$mockContext->method( 'getTitle' )
-			->will( $this->returnValue( Title::newFromText( 'Expected Context Title' ) ) );
+			->willReturn( Title::newFromText( 'Expected Context Title' ) );
 
 		$oldChangesList = $this->getOldChangesList();
 		$oldChangesList->setContext( $mockContext );

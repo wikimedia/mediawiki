@@ -68,11 +68,11 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( [ 15 => null ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 15 => null ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
-			->will( $this->returnValue( [ 15 => 'FooBar' ] ) );
+			->willReturn( [ 15 => 'FooBar' ] );
 
 		$this->assertSame(
 			'FooBar',
@@ -87,15 +87,15 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testLocalUserFromCentralId( $name, $succeeds ) {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->expects( $this->any() )->method( 'isAttached' )
-			->will( $this->returnValue( true ) );
+		$mock->method( 'isAttached' )
+			->willReturn( true );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( [ 42 => null ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 42 => null ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
-			->will( $this->returnValue( [ 42 => $name ] ) );
+			->willReturn( [ 42 => $name ] );
 
 		$user = $mock->localUserFromCentralId(
 			42, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST
@@ -108,15 +108,15 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 		}
 
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->expects( $this->any() )->method( 'isAttached' )
-			->will( $this->returnValue( false ) );
+		$mock->method( 'isAttached' )
+			->willReturn( false );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( [ 42 => null ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 42 => null ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
-			->will( $this->returnValue( [ 42 => $name ] ) );
+			->willReturn( [ 42 => $name ] );
 		$this->assertNull(
 			$mock->localUserFromCentralId( 42, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST )
 		);
@@ -136,11 +136,11 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->once() )->method( 'lookupUserNames' )
 			->with(
-				$this->equalTo( [ 'FooBar' => 0 ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 'FooBar' => 0 ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
-			->will( $this->returnValue( [ 'FooBar' => 23 ] ) );
+			->willReturn( [ 'FooBar' => 23 ] );
 
 		$this->assertSame(
 			23,
@@ -150,15 +150,15 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function testCentralIdFromLocalUser() {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->expects( $this->any() )->method( 'isAttached' )
-			->will( $this->returnValue( true ) );
+		$mock->method( 'isAttached' )
+			->willReturn( true );
 		$mock->expects( $this->once() )->method( 'lookupUserNames' )
 			->with(
-				$this->equalTo( [ 'FooBar' => 0 ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 'FooBar' => 0 ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
-			->will( $this->returnValue( [ 'FooBar' => 23 ] ) );
+			->willReturn( [ 'FooBar' => 23 ] );
 
 		$this->assertSame(
 			23,
@@ -168,8 +168,8 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->expects( $this->any() )->method( 'isAttached' )
-			->will( $this->returnValue( false ) );
+		$mock->method( 'isAttached' )
+			->willReturn( false );
 		$mock->expects( $this->never() )->method( 'lookupUserNames' );
 
 		$this->assertSame(

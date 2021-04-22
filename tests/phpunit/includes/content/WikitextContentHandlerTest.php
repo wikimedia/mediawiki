@@ -283,10 +283,10 @@ class WikitextContentHandlerTest extends MediaWikiLangTestCase {
 			->onlyMethods( [ 'getFileHandler' ] )
 			->getMock();
 
-		$handler->method( 'getFileHandler' )->will( $this->returnValue( $fileHandler ) );
+		$handler->method( 'getFileHandler' )->willReturn( $fileHandler );
 		$fileHandler->expects( $this->once() )
 			->method( 'getDataForSearchIndex' )
-			->will( $this->returnValue( [ 'file_text' => 'This is file content' ] ) );
+			->willReturn( [ 'file_text' => 'This is file content' ] );
 
 		$data = $handler->getDataForSearchIndex( $page, new ParserOutput(), $mockEngine );
 		$this->assertArrayHasKey( 'file_text', $data );

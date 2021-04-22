@@ -211,8 +211,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$userMock->expects( $this->exactly( 2 ) )
 			->method( 'setOption' )
 			->withConsecutive(
-				[ $this->equalTo( 'test' ), $this->equalTo( $newOptions[ 'test' ] ) ],
-				[ $this->equalTo( 'option' ), $this->equalTo( $newOptions[ 'option' ] ) ]
+				[ 'test', $newOptions[ 'test' ] ],
+				[ 'option', $newOptions[ 'option' ] ]
 			);
 
 		$form->method( 'getModifiedUser' )
@@ -294,7 +294,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$pm = $this->createMock( PermissionManager::class );
 
 		$pm->method( 'userHasRight' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 
 		$language = $this->createMock( Language::class );
 		$language->expects( $this->any() )->method( 'getCode' )
@@ -322,7 +322,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$pm = $this->createMock( PermissionManager::class );
 
 		$pm->method( 'userHasRight' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 
 		$language = $this->createMock( Language::class );
 		$language->expects( $this->any() )->method( 'getCode' )

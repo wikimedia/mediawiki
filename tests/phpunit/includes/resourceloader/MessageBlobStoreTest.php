@@ -81,7 +81,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 		// Arrange version 1 of a message
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
-			->will( $this->returnValue( 'First version' ) );
+			->willReturn( 'First version' );
 
 		// Assert
 		$blob = $blobStore->getBlob( $module, 'en' );
@@ -91,7 +91,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 		$blobStore = $this->makeBlobStore( [ 'fetchMessage' ], $rl );
 		$blobStore->expects( $this->once() )
 			->method( 'fetchMessage' )
-			->will( $this->returnValue( 'Second version' ) );
+			->willReturn( 'Second version' );
 		$this->clock += 20;
 
 		// Assert

@@ -55,7 +55,7 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$tmp = $tmp->with( ...$expectArgs );
 
 		$retval = new \stdClass;
-		$tmp->will( $this->returnValue( $retval ) );
+		$tmp->willReturn( $retval );
 
 		$session = TestUtils::getDummySession( $mock, 42 );
 

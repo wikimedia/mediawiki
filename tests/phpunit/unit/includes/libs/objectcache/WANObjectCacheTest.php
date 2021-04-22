@@ -837,7 +837,7 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 		// Mock the BagOStuff to assure only one getMulti() call given process caching
 		$localBag = $this->getMockBuilder( HashBagOStuff::class )
 			->onlyMethods( [ 'getMulti' ] )->getMock();
-		$localBag->expects( $this->exactly( 1 ) )->method( 'getMulti' )->willReturn( [
+		$localBag->expects( $this->once() )->method( 'getMulti' )->willReturn( [
 			'WANCache:v:' . 'k1' => 'val-id1',
 			'WANCache:v:' . 'k2' => 'val-id2'
 		] );

@@ -127,8 +127,8 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			$mock = $this->getMockBuilder( stdClass::class )
 				->addMethods( [ 'onExemptFromAccountCreationThrottle' ] )
 				->getMock();
-			$mock->expects( $this->any() )->method( 'onExemptFromAccountCreationThrottle' )
-				->will( $this->returnValue( false ) );
+			$mock->method( 'onExemptFromAccountCreationThrottle' )
+				->willReturn( false );
 			$this->mergeMwGlobalArrayValue( 'wgHooks', [
 				'ExemptFromAccountCreationThrottle' => [ $mock ],
 			] );

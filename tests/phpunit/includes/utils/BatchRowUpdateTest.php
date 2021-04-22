@@ -131,7 +131,7 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 			->method( 'select' )
 			// only testing second parameter of Database::select
 			->with( 'some_table', $columns )
-			->will( $this->returnValue( new ArrayIterator( [] ) ) );
+			->willReturn( new ArrayIterator( [] ) );
 
 		$reader = new BatchRowIterator( $db, 'some_table', $primaryKeys, 22 );
 		$reader->setFetchColumns( $fetchColumns );
@@ -241,12 +241,10 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->onlyMethods( array_merge( [ 'isOpen', 'getApproximateLagStatus' ], $methods ) )
 			->getMock();
-		$databaseMysql->expects( $this->any() )
-			->method( 'isOpen' )
-			->will( $this->returnValue( true ) );
-		$databaseMysql->expects( $this->any() )
-			->method( 'getApproximateLagStatus' )
-			->will( $this->returnValue( [ 'lag' => 0, 'since' => 0 ] ) );
+		$databaseMysql->method( 'isOpen' )
+			->willReturn( true );
+		$databaseMysql->method( 'getApproximateLagStatus' )
+			->willReturn( [ 'lag' => 0, 'since' => 0 ] );
 		return $databaseMysql;
 	}
 }
