@@ -1246,11 +1246,12 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Return categorised listable special pages which are available
-	 * for the current user, and everyone.
+	 * Get listed special pages available to the current user.
 	 *
-	 * @param User $user User object to check permissions
-	 *  provided
+	 * This includes both unrestricted pages, and restricted pages
+	 * that the current user has the required permissions for.
+	 *
+	 * @param User $user User object to check permissions provided
 	 * @return array ( string => Specialpage )
 	 */
 	public function getUsablePages( User $user ) : array {
@@ -1271,7 +1272,7 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Return categorised listable special pages for all users
+	 * Get listed special pages available to everyone by default.
 	 *
 	 * @return array ( string => Specialpage )
 	 */
@@ -1288,13 +1289,16 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Return categorised listable special pages which are available
-	 * for the current user, but not for everyone
+	 * Get listed special pages generally restricted, but available to the current user.
 	 *
+	 * @deprecated since 1.36 Use getUsablePages() instead and exclude any public
+	 *  entries with `!$page->isRestricted()`
 	 * @param User $user User object to use
 	 * @return array ( string => Specialpage )
 	 */
 	public function getRestrictedPages( User $user ) : array {
+		wfDeprecated( __METHOD__, '1.36' );
+
 		$pages = [];
 		foreach ( $this->getPageList() as $name => $rec ) {
 			$page = $this->getPage( $name );
