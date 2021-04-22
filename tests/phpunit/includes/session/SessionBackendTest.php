@@ -286,8 +286,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'persistsSessionId', 'sessionIdWasReset' ] );
 
 		$this->provider = $builder->getMock();
-		$this->provider->expects( $this->any() )->method( 'persistsSessionId' )
-			->will( $this->returnValue( false ) );
+		$this->provider->method( 'persistsSessionId' )
+			->willReturn( false );
 		$this->provider->expects( $this->never() )->method( 'sessionIdWasReset' );
 		$backend = $this->getBackend( User::newFromName( 'UTSysop' ) );
 		$manager = TestingAccessWrapper::newFromObject( $this->manager );
@@ -299,8 +299,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $backend, $manager->allSessionBackends[self::SESSIONID] );
 
 		$this->provider = $builder->getMock();
-		$this->provider->expects( $this->any() )->method( 'persistsSessionId' )
-			->will( $this->returnValue( true ) );
+		$this->provider->method( 'persistsSessionId' )
+			->willReturn( true );
 		$backend = $this->getBackend();
 		$this->provider->expects( $this->once() )->method( 'sessionIdWasReset' )
 			->with( $this->identicalTo( $backend ), $this->identicalTo( self::SESSIONID ) );
@@ -393,8 +393,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
 			->onlyMethods( [ 'canChangeUser' ] )->getMock();
-		$this->provider->expects( $this->any() )->method( 'canChangeUser' )
-			->will( $this->returnValue( false ) );
+		$this->provider->method( 'canChangeUser' )
+			->willReturn( false );
 		$backend = $this->getBackend();
 		$this->assertFalse( $backend->canSetUser() );
 		try {
@@ -968,8 +968,8 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->provider = $this->getMockBuilder( \DummySessionProvider::class )
 			->onlyMethods( [ 'getAllowedUserRights' ] )
 			->getMock();
-		$this->provider->expects( $this->any() )->method( 'getAllowedUserRights' )
-			->will( $this->returnValue( [ 'foo', 'bar' ] ) );
+		$this->provider->method( 'getAllowedUserRights' )
+			->willReturn( [ 'foo', 'bar' ] );
 
 		$backend = $this->getBackend();
 		$this->assertSame( [ 'foo', 'bar' ], $backend->getAllowedUserRights() );

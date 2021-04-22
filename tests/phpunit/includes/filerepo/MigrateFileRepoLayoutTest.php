@@ -56,14 +56,14 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 		$repoMock
 			->expects( $this->any() )
 			->method( 'getMasterDB' )
-			->will( $this->returnValue( $dbMock ) );
+			->willReturn( $dbMock );
 
 		$this->migratorMock = $this->getMockBuilder( MigrateFileRepoLayout::class )
 			->onlyMethods( [ 'getRepo' ] )->getMock();
 		$this->migratorMock
 			->expects( $this->any() )
 			->method( 'getRepo' )
-			->will( $this->returnValue( $repoMock ) );
+			->willReturn( $repoMock );
 
 		$this->tmpFilepath = TempFSFile::factory(
 			'migratefilelayout-test-', 'png', wfTempDir() )->getPath();

@@ -137,7 +137,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$mock->expects( $this->any() )
 			->method( 'getConnectionRef' )
 			->with( DB_REPLICA )
-			->will( $this->returnValue( $mockDb ) );
+			->willReturn( $mockDb );
 		return $mock;
 	}
 
@@ -250,7 +250,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					],
 				]
 			)
-			->will( $this->returnValue( [
+			->willReturn( [
 				(object)[
 					'rc_id' => 1,
 					'rc_namespace' => 0,
@@ -278,7 +278,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => null,
 				],
-			] ) );
+			] );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
@@ -374,7 +374,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'extension_dummy_join_cond' => [],
 				]
 			)
-			->will( $this->returnValue( [
+			->willReturn( [
 				(object)[
 					'rc_id' => 1,
 					'rc_namespace' => 0,
@@ -393,7 +393,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'rc_deleted' => 0,
 					'wl_notificationtimestamp' => null,
 				],
-			] ) );
+			] );
 
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
 
@@ -888,7 +888,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$expectedDbOptions,
 				$expectedJoinConds
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
@@ -923,7 +923,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'array' )
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$user = $this->getMockNonAnonUserWithIdAndNoPatrolRights( 1 );
 
@@ -983,10 +983,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'array' )
 			)
-			->will( $this->returnValue( [] ) );
-		$mockDb->expects( $this->any() )
-			->method( 'getType' )
-			->will( $this->returnValue( $dbType ) );
+			->willReturn( [] );
+		$mockDb->method( 'getType' )
+			->willReturn( $dbType );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
@@ -1100,7 +1099,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'page' => [ 'LEFT JOIN', 'rc_cur_id=page_id' ],
 				], $expectedExtraJoins )
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$permissionManager = $this->getMockPermissionManager( $notAllowedAction );
 		$user = $this->getMockNonAnonUserWithIdAndNoPatrolRights( 1 );
@@ -1143,7 +1142,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					],
 				]
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
@@ -1271,7 +1270,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					],
 				]
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
@@ -1313,7 +1312,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					],
 				]
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
@@ -1341,7 +1340,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'array' ),
 				$this->isType( 'array' )
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockUnrestrictedNonAnonUserWithId( 1 );
@@ -1368,7 +1367,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				[ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ],
 				[ 'wl_user' => 1 ]
 			)
-			->will( $this->returnValue( [
+			->willReturn( [
 				(object)[
 					'wl_namespace' => 0,
 					'wl_title' => 'Foo1',
@@ -1379,7 +1378,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 					'wl_title' => 'Foo2',
 					'wl_notificationtimestamp' => null,
 				],
-			] ) );
+			] );
 
 		$queryService = $this->newService( $mockDb );
 		$user = $this->getMockNonAnonUserWithId( 1 );
@@ -1479,7 +1478,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'string' ),
 				$expectedDbOptions
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$queryService = $this->newService( $mockDb );
 
@@ -1592,7 +1591,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				$this->isType( 'string' ),
 				$expectedDbOptions
 			)
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 
 		$queryService = $this->newService( $mockDb );
 

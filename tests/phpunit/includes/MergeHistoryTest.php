@@ -91,7 +91,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mh->expects( $this->once() )
 			->method( 'getRevisionCount' )
-			->will( $this->returnValue( $limit + 1 ) );
+			->willReturn( $limit + 1 );
 
 		$status = $mh->isValidMerge();
 		$this->assertTrue( $status->hasMessage( 'mergehistory-fail-toobig' ) );

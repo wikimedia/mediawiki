@@ -98,9 +98,8 @@ class InterwikiLookupAdapterTest extends \MediaWikiUnitTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$siteLookup->expects( $this->any() )
-			->method( 'getSites' )
-			->will( $this->returnValue( $sites ) );
+		$siteLookup->method( 'getSites' )
+			->willReturn( $sites );
 
 		return $siteLookup;
 	}

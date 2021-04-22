@@ -36,7 +36,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
 			->with( DB_REPLICA, [ 'group1' ], 'someDbName' )
-			->will( $this->returnValue( $database ) );
+			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
 		$actual = $manager->getReadConnection();
@@ -51,7 +51,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
 			->with( DB_REPLICA, [ 'group2' ], 'someDbName' )
-			->will( $this->returnValue( $database ) );
+			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
 		$actual = $manager->getReadConnection( [ 'group2' ] );
@@ -66,7 +66,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
 			->with( DB_MASTER, [ 'group1' ], 'someDbName' )
-			->will( $this->returnValue( $database ) );
+			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
 		$actual = $manager->getWriteConnection();
@@ -81,7 +81,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb->expects( $this->once() )
 			->method( 'reuseConnection' )
 			->with( $database )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 
 		$manager = new ConnectionManager( $lb );
 		$manager->releaseConnection( $database );
@@ -94,7 +94,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
 			->with( DB_REPLICA, [ 'group1' ], 'someDbName' )
-			->will( $this->returnValue( $database ) );
+			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
 		$actual = $manager->getReadConnectionRef();
@@ -109,7 +109,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
 			->with( DB_REPLICA, [ 'group2' ], 'someDbName' )
-			->will( $this->returnValue( $database ) );
+			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
 		$actual = $manager->getReadConnectionRef( [ 'group2' ] );
@@ -124,7 +124,7 @@ class ConnectionManagerTest extends TestCase {
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
 			->with( DB_MASTER, [ 'group1' ], 'someDbName' )
-			->will( $this->returnValue( $database ) );
+			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
 		$actual = $manager->getWriteConnectionRef();

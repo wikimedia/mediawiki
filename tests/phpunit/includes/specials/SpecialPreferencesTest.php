@@ -27,14 +27,12 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 		// Set a low limit
 		$this->setMwGlobals( 'wgMaxSigChars', 2 );
 		$user = $this->createMock( User::class );
-		$user->expects( $this->any() )
-			->method( 'isAnon' )
-			->will( $this->returnValue( false ) );
+		$user->method( 'isAnon' )
+			->willReturn( false );
 
 		# Yeah foreach requires an array, not NULL =(
-		$user->expects( $this->any() )
-			->method( 'getEffectiveGroups' )
-			->will( $this->returnValue( [] ) );
+		$user->method( 'getEffectiveGroups' )
+			->willReturn( [] );
 
 		# The mocked user has a long nickname
 		$user->expects( $this->any() )

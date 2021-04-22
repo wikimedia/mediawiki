@@ -53,7 +53,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			$mock = $mb->getMock();
 			$mock->expects( $this->once() )->method( 'tryReset' )
 				->with( $this->identicalTo( $user ), $this->identicalTo( $reqs ) )
-				->will( $this->returnValue( $obj ) );
+				->willReturn( $obj );
 			$this->assertSame( $obj, $mock->$method( ...$args ) );
 		}
 	}

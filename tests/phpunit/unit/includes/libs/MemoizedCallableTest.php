@@ -36,7 +36,7 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 			->addMethods( [ 'computeSomething' ] )->getMock();
 		$observer->expects( $this->once() )
 			->method( 'computeSomething' )
-			->will( $this->returnValue( 'ok' ) );
+			->willReturn( 'ok' );
 
 		$memoized = new ArrayBackedMemoizedCallable( [ $observer, 'computeSomething' ] );
 

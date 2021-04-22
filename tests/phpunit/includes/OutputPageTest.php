@@ -1252,9 +1252,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$title = Title::newFromText( 'My test page' );
-		$op->expects( $this->any() )
-			->method( 'getTitle' )
-			->will( $this->returnValue( $title ) );
+		$op->method( 'getTitle' )
+			->willReturn( $title );
 
 		$op->expects( $this->any() )
 			->method( 'addCategoryLinksToLBAndGetResult' )
@@ -2223,9 +2222,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			->setConstructorArgs( [ new RequestContext() ] )
 			->onlyMethods( [ 'getCacheVaryCookies' ] )
 			->getMock();
-		$op->expects( $this->any() )
-			->method( 'getCacheVaryCookies' )
-			->will( $this->returnValue( $cookies ) );
+		$op->method( 'getCacheVaryCookies' )
+			->willReturn( $cookies );
 		TestingAccessWrapper::newFromObject( $op )->mVaryHeader = [];
 
 		$this->filterDeprecated( '/The \$option parameter to addVaryHeader is ignored/' );
