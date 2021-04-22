@@ -453,7 +453,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'addQuotes' )
 			->willReturn( '20200101000000' );
-		$mockDb->expects( $this->exactly( 1 ) )
+		$mockDb->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
 				[ 'watchlist', 'watchlist_expiry' ],
@@ -501,7 +501,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->once() )
 			->method( 'addQuotes' )
 			->willReturn( '20200101000000' );
-		$mockDb->expects( $this->exactly( 1 ) )
+		$mockDb->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
 				[ 'watchlist', 'watchlist_expiry' ],
@@ -677,7 +677,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$mockDb = $this->getMockDb();
 
-		$mockDb->expects( $this->exactly( 1 ) )
+		$mockDb->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
 				[ 'watchlist', 'watchlist_expiry' ],
@@ -971,7 +971,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->exactly( 1 ) )
+		$mockDb->expects( $this->once() )
 			->method( 'selectRowCount' )
 			->with(
 				'watchlist',
@@ -1001,7 +1001,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->exactly( 1 ) )
+		$mockDb->expects( $this->once() )
 			->method( 'selectRowCount' )
 			->with(
 				'watchlist',
@@ -1035,7 +1035,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->exactly( 1 ) )
+		$mockDb->expects( $this->once() )
 			->method( 'selectRowCount' )
 			->with(
 				'watchlist',
@@ -3163,8 +3163,8 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				[ 'wl_notificationtimestamp' => 'TS' . $timestamp . 'TS' ],
 				[ 'wl_user' => 1, 'wl_namespace' => 0, 'wl_title' => [ 'Foo', 'Bar' ] ]
 			)
-			->will( $this->returnValue( true ) );
-		$mockDb->expects( $this->exactly( 1 ) )
+			->willReturn( true );
+		$mockDb->expects( $this->once() )
 			->method( 'timestamp' )
 			->will( $this->returnCallback( static function ( $value ) {
 				return 'TS' . $value . 'TS';

@@ -56,7 +56,7 @@ class TransactionProfilerTest extends PHPUnit\Framework\TestCase {
 
 	public function testAffectedTrx() {
 		$logger = $this->getMockBuilder( LoggerInterface::class )->getMock();
-		$logger->expects( $this->exactly( 1 ) )->method( 'warning' );
+		$logger->expects( $this->once() )->method( 'warning' );
 
 		$tp = new TransactionProfiler();
 		$tp->setLogger( $logger );
