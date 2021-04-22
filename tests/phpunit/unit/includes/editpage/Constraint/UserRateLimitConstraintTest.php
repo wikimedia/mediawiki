@@ -41,18 +41,9 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 		$user->expects( $this->exactly( 3 ) )
 			->method( 'pingLimiter' )
 			->withConsecutive(
-				[
-					$this->equalTo( 'edit' ),
-					$this->equalTo( 1 ),
-				],
-				[
-					$this->equalTo( 'linkpurge' ),
-					$this->equalTo( 0 ),
-				],
-				[
-					$this->equalTo( 'editcontentmodel' ),
-					$this->equalTo( 1 )
-				]
+				[ 'edit', 1 ],
+				[ 'linkpurge', 0 ],
+				[ 'editcontentmodel', 1 ]
 			)
 			->will(
 				$this->onConsecutiveCalls(
@@ -81,18 +72,9 @@ class UserRateLimitConstraintTest extends MediaWikiUnitTestCase {
 		$user->expects( $this->exactly( 3 ) )
 			->method( 'pingLimiter' )
 			->withConsecutive(
-				[
-					$this->equalTo( 'edit' ),
-					$this->equalTo( 1 ),
-				],
-				[
-					$this->equalTo( 'linkpurge' ),
-					$this->equalTo( 0 ),
-				],
-				[
-					$this->equalTo( 'editcontentmodel' ),
-					$this->equalTo( 1 )
-				]
+				[ 'edit', 1 ],
+				[ 'linkpurge', 0 ],
+				[ 'editcontentmodel', 1 ]
 			)
 			->will(
 				$this->onConsecutiveCalls(

@@ -68,9 +68,9 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( [ 15 => null ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 15 => null ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
 			->will( $this->returnValue( [ 15 => 'FooBar' ] ) );
 
@@ -91,9 +91,9 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( true ) );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( [ 42 => null ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 42 => null ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
 			->will( $this->returnValue( [ 42 => $name ] ) );
 
@@ -112,9 +112,9 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( false ) );
 		$mock->expects( $this->once() )->method( 'lookupCentralIds' )
 			->with(
-				$this->equalTo( [ 42 => null ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 42 => null ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
 			->will( $this->returnValue( [ 42 => $name ] ) );
 		$this->assertNull(
@@ -136,9 +136,9 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
 		$mock->expects( $this->once() )->method( 'lookupUserNames' )
 			->with(
-				$this->equalTo( [ 'FooBar' => 0 ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 'FooBar' => 0 ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
 			->will( $this->returnValue( [ 'FooBar' => 23 ] ) );
 
@@ -154,9 +154,9 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( true ) );
 		$mock->expects( $this->once() )->method( 'lookupUserNames' )
 			->with(
-				$this->equalTo( [ 'FooBar' => 0 ] ),
-				$this->equalTo( CentralIdLookup::AUDIENCE_RAW ),
-				$this->equalTo( CentralIdLookup::READ_LATEST )
+				[ 'FooBar' => 0 ],
+				CentralIdLookup::AUDIENCE_RAW,
+				CentralIdLookup::READ_LATEST
 			)
 			->will( $this->returnValue( [ 'FooBar' => 23 ] ) );
 
