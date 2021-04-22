@@ -38,10 +38,10 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$database->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
-				$this->equalTo( 'user' ),
-				$this->equalTo( 'user_editcount' ),
-				$this->equalTo( [ 'user_id' => $userId ] ),
-				$this->equalTo( $methodName )
+				'user',
+				'user_editcount',
+				[ 'user_id' => $userId ],
+				$methodName
 			)
 			->willReturn( $editCount );
 		$loadBalancer = $this->createMock( LoadBalancer::class );
@@ -101,10 +101,10 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$database1->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
-				$this->equalTo( 'user' ),
-				$this->equalTo( 'user_editcount' ),
-				$this->equalTo( [ 'user_id' => $userId ] ),
-				$this->equalTo( $methodName1 )
+				'user',
+				'user_editcount',
+				[ 'user_id' => $userId ],
+				$methodName1
 			)
 			->willReturn( null );
 
@@ -112,17 +112,12 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$database2->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
-				$this->equalTo( [
-					'revision',
-					'temp_rev_user' => 'revision_actor_temp'
-				] ),
-				$this->equalTo( 'COUNT(*)' ),
-				$this->equalTo( [ [ 'temp_rev_actor.revactor_actor' => $actorId ] ] ),
-				$this->equalTo( $methodName2 ),
-				$this->equalTo( [] ),
-				$this->equalTo( [ 'temp_rev_actor' =>
-					[ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ]
-				] )
+				[ 'revision', 'temp_rev_user' => 'revision_actor_temp' ],
+				'COUNT(*)',
+				[ [ 'temp_rev_actor.revactor_actor' => $actorId ] ],
+				$methodName2,
+				[],
+				[ 'temp_rev_actor' => [ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ] ]
 			)
 			->willReturn( $editCount );
 
@@ -143,9 +138,9 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$actorMigration->expects( $this->once() )
 			->method( 'getWhere' )
 			->with(
-				$this->equalTo( $database2 ),
-				$this->equalTo( 'rev_user' ),
-				$this->equalTo( $user )
+				$database2,
+				'rev_user',
+				$user
 			)
 			->willReturn( [
 				'tables' => [ 'temp_rev_user' => 'revision_actor_temp' ],
@@ -187,32 +182,26 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$database1->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
-				$this->equalTo( [
-					'revision',
-					'temp_rev_user' => 'revision_actor_temp'
-				] ),
-				$this->equalTo( 'COUNT(*)' ),
-				$this->equalTo( [ [ 'temp_rev_actor.revactor_actor' => $actorId ] ] ),
-				$this->equalTo( $methodName ),
-				$this->equalTo( [] ),
-				$this->equalTo( [ 'temp_rev_actor' =>
-					[ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ]
-				] )
+				[ 'revision', 'temp_rev_user' => 'revision_actor_temp' ],
+				'COUNT(*)',
+				[ [ 'temp_rev_actor.revactor_actor' => $actorId ] ],
+				$methodName,
+				[],
+				[ 'temp_rev_actor' => [ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ] ]
 			)
 			->willReturn( $editCount );
 
 		$loadBalancer = $this->createMock( LoadBalancer::class );
-		$loadBalancer->expects( $this->any() )
-			->method( 'getConnectionRef' )
+		$loadBalancer->method( 'getConnectionRef' )
 			->with( DB_REPLICA )
 			->willReturn( $database1 );
 		$actorMigration = $this->createMock( ActorMigration::class );
 		$actorMigration->expects( $this->once() )
 			->method( 'getWhere' )
 			->with(
-				$this->equalTo( $database1 ),
-				$this->equalTo( 'rev_user' ),
-				$this->equalTo( $user )
+				$database1,
+				'rev_user',
+				$user
 			)
 			->willReturn( [
 				'tables' => [ 'temp_rev_user' => 'revision_actor_temp' ],
@@ -259,19 +248,19 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$database->expects( $this->once() )
 			->method( 'selectField' )
 			->with(
-				$this->equalTo( [
+				[
 					'revision',
 					'temp_rev_user' => 'revision_actor_temp'
-				] ),
-				$this->equalTo( 'revactor_timestamp' ),
-				$this->equalTo( [ [ 'temp_rev_actor.revactor_actor' => $actorId ] ] ),
-				$this->equalTo( $methodName ),
-				$this->equalTo( [
+				],
+				'revactor_timestamp',
+				[ [ 'temp_rev_actor.revactor_actor' => $actorId ] ],
+				$methodName,
+				[
 					'ORDER BY' => 'revactor_timestamp ' . $expectedSort
-				] ),
-				$this->equalTo( [ 'temp_rev_actor' =>
+				],
+				[ 'temp_rev_actor' =>
 					[ 'JOIN', 'temp_rev_user.revactor_rev = rev_id' ]
-				] )
+				]
 			)
 			->willReturn( $dbTime );
 		$loadBalancer = $this->createMock( LoadBalancer::class );
@@ -284,9 +273,9 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$actorMigration->expects( $this->once() )
 			->method( 'getWhere' )
 			->with(
-				$this->equalTo( $database ),
-				$this->equalTo( 'rev_user' ),
-				$this->equalTo( $user )
+				$database,
+				'rev_user',
+				$user
 			)
 			->willReturn( [
 				'tables' => [ 'temp_rev_user' => 'revision_actor_temp' ],

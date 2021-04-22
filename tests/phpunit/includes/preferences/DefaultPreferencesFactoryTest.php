@@ -211,8 +211,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$userMock->expects( $this->exactly( 2 ) )
 			->method( 'setOption' )
 			->withConsecutive(
-				[ $this->equalTo( 'test' ), $this->equalTo( $newOptions[ 'test' ] ) ],
-				[ $this->equalTo( 'option' ), $this->equalTo( $newOptions[ 'option' ] ) ]
+				[ 'test', $newOptions[ 'test' ] ],
+				[ 'option', $newOptions[ 'option' ] ]
 			);
 
 		$form->method( 'getModifiedUser' )

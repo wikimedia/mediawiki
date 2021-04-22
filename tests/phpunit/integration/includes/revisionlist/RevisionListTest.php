@@ -63,12 +63,12 @@ class RevisionListTest extends MediaWikiIntegrationTestCase {
 		$db->expects( $this->once() )
 			->method( 'select' )
 			->with(
-				$this->equalTo( $revQuery['tables'] ),
-				$this->equalTo( $revQuery['fields'] ),
-				$this->equalTo( $conds ),
-				$this->equalTo( 'RevisionList::doQuery' ),
-				$this->equalTo( [ 'ORDER BY' => 'rev_id DESC' ] ),
-				$this->equalTo( $revQuery['joins'] )
+				$revQuery['tables'],
+				$revQuery['fields'],
+				$conds,
+				'RevisionList::doQuery',
+				[ 'ORDER BY' => 'rev_id DESC' ],
+				$revQuery['joins']
 			)
 			->willReturn(
 				new FakeResultWrapper( [] )

@@ -44,7 +44,7 @@ class EditFilterMergedContentHookConstraintTest extends MediaWikiUnitTestCase {
 		$hookContainer->expects( $this->once() )
 			->method( 'run' )
 			->with(
-				$this->equalTo( 'EditFilterMergedContent' ),
+				'EditFilterMergedContent',
 				$this->anything() // Not worrying about the hook call here
 			)
 			->willReturn( $hookResult );
