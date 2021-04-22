@@ -54,8 +54,8 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 
 		$provider->expects( $this->once() )
 			->method( 'testUserExists' )
-			->with( $this->equalTo( 'foo' ) )
-			->will( $this->returnValue( true ) );
+			->with( 'foo' )
+			->willReturn( true );
 		$this->assertTrue( $provider->testUserCanAuthenticate( 'foo' ) );
 	}
 

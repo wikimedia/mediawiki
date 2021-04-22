@@ -356,7 +356,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb1->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		$lb1->expects( $this->once() )
-			->method( 'waitFor' )->with( $this->equalTo( $m1Pos ) );
+			->method( 'waitFor' )->with( $m1Pos );
 		// Load balancer for master DB 2
 		$lb2 = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
@@ -366,7 +366,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb2->method( 'hasStreamingReplicaServers' )->willReturn( true );
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
 		$lb2->expects( $this->once() )
-			->method( 'waitFor' )->with( $this->equalTo( $m2Pos ) );
+			->method( 'waitFor' )->with( $m2Pos );
 
 		$cp = new ChronologyProtector(
 			$bag,

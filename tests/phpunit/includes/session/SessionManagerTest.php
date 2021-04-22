@@ -890,9 +890,9 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 
 		$provider1 = $providerBuilder->getMock();
 		$provider1->expects( $this->once() )->method( 'preventSessionsForUser' )
-			->with( $this->equalTo( 'UTSysop' ) );
-		$provider1->expects( $this->any() )->method( '__toString' )
-			->will( $this->returnValue( 'MockProvider1' ) );
+			->with( 'UTSysop' );
+		$provider1->method( '__toString' )
+			->willReturn( 'MockProvider1' );
 
 		$this->config->set( 'SessionProviders', [
 			$this->objectCacheDef( $provider1 ),

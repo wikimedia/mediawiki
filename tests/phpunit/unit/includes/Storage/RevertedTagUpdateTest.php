@@ -150,7 +150,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$logger = $this->createMock( LoggerInterface::class );
 		$logger->expects( $this->once() )
 			->method( $method )
-			->with( $this->equalTo( $message ) );
+			->with( $message );
 		return $logger;
 	}
 
