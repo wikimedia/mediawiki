@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"-iNu-",
+			"AJBot2",
 			"Ahdan",
 			"Akmaie Ajam",
 			"Albertus Aditya",
@@ -388,7 +389,7 @@
 	"missingarticle-rev": "(revisi#: $1)",
 	"missingarticle-diff": "(Beda: $1, $2)",
 	"readonly_lag": "Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama",
-	"nonwrite-api-promise-error": "Kepala HTTP 'Promise-Non-Write-API-Action' telah dikirim tetapi permintaan dibuat kepada modul menulis API.",
+	"nonwrite-api-promise-error": "Itu 'Promise-Non-Write-API-Action' Header HTTP telah dikirim tetapi permintaan tersebut bukan permintaan API.",
 	"timeouterror": "Waktu server berakhir",
 	"timeouterror-text": "Maksimum waktu permintaan $1 {{PLURAL:$1|detik|detik}} telah melebihi batas.",
 	"internalerror": "Kesalahan internal",
@@ -702,7 +703,7 @@
 	"showdiff": "Lihat perubahan",
 	"blankarticle": "<strong>Peringatan:</strong> Halaman yang akan Anda buat tidak berisi apa-apa.\nJika Anda mengklik \"$1\" sekali lagi, halaman ini akan dibuat tanpa ada isi.",
 	"anoneditwarning": "<strong>Peringatan:</strong> Anda sedang tidak masuk log. Alamat IP Anda akan terlihat oleh publik jika Anda melakukan suatu perubahan. Jika Anda <strong>[$1 masuk log]</strong> atau <strong>[$2 membuat akun]</strong>, suntingan Anda akan diatribusikan kepada nama pengguna Anda, beserta berbagai keuntungan lainnya.",
-	"anonpreviewwarning": "''Anda belum masuk log. Menyimpan halaman akan menyebabkan alamat IP Anda tercatat pada riwayat suntingan laman ini.''",
+	"anonpreviewwarning": "<em>Anda belum login. Penerbitan akan mencatat alamat IP Anda dalam riwayat edit halaman ini.</em>",
 	"missingsummary": "<strong>Peringatan:</strong> Anda tidak memasukkan ringkasan penyuntingan. Jika Anda kembali menekan tombol \"$1\", suntingan Anda akan diterbitkan tanpa ringkasan penyuntingan.",
 	"selfredirect": "<strong>Peringatan:</strong> Anda mengalihkan halaman ini kembali ke halaman semula.\nAnda bisa jadi telah memberikan tujuan pengalihan yang salah, atau telah menyunting halaman yang salah.\nJika Anda mengeklik \"$1\" sekali lagi, halaman pengalihan akan dibuat.",
 	"missingcommenttext": "Tolong masukkan komentar.",

@@ -2341,6 +2341,7 @@
 	"nowatchlist": "Du har inga sidor i din bevakningslista.",
 	"watchlistanontext": "Du måste logga in för att se eller redigera din bevakningslista.",
 	"watchnologin": "Inte inloggad",
+	"watchlistnotwatchable": "Sidan kan inte bevakas.",
 	"addwatch": "Lägg till i bevakningslistan",
 	"updatewatchlist": "Uppdatera bevakningslista",
 	"addedwatchtext": "\"[[:$1]]\" och dess diskussionssida har lagts till i din [[Special:Watchlist|bevakningslista]].",
