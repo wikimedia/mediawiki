@@ -72,7 +72,7 @@ class AbstractSecondaryAuthenticationProviderTest extends \MediaWikiUnitTestCase
 				$this->identicalTo( AuthManager::ACTION_REMOVE ),
 				$this->identicalTo( [ 'username' => 'UTSysop' ] )
 			)
-			->will( $this->returnValue( $reqs ) );
+			->willReturn( $reqs );
 		$provider->expects( $this->exactly( 3 ) )->method( 'providerChangeAuthenticationData' )
 			->will( $this->returnCallback( function ( $req ) {
 				$this->assertSame( 'UTSysop', $req->username );

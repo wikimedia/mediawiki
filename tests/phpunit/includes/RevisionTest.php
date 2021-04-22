@@ -508,9 +508,8 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 
 		$domain = MediaWikiServices::getInstance()->getDBLoadBalancer()->getLocalDomainID();
 		$db = $this->createMock( IDatabase::class );
-		$db->expects( $this->any() )
-			->method( 'getDomainId' )
-			->will( $this->returnValue( $domain ) );
+		$db->method( 'getDomainId' )
+			->willReturn( $domain );
 		$db->expects( $this->once() )
 			->method( 'selectRow' )
 			->with(

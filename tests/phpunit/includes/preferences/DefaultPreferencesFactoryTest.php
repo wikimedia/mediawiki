@@ -294,7 +294,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$pm = $this->createMock( PermissionManager::class );
 
 		$pm->method( 'userHasRight' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 
 		$language = $this->createMock( Language::class );
 		$language->expects( $this->any() )->method( 'getCode' )
@@ -322,7 +322,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$pm = $this->createMock( PermissionManager::class );
 
 		$pm->method( 'userHasRight' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 
 		$language = $this->createMock( Language::class );
 		$language->expects( $this->any() )->method( 'getCode' )

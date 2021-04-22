@@ -29,10 +29,8 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame( $expectedLang->getCode(), $message->getLanguage()->getCode() );
 
 		$messageSpecifier = $this->getMockForAbstractClass( MessageSpecifier::class );
-		$messageSpecifier->expects( $this->any() )
-			->method( 'getKey' )->will( $this->returnValue( $key ) );
-		$messageSpecifier->expects( $this->any() )
-			->method( 'getParams' )->will( $this->returnValue( $params ) );
+		$messageSpecifier->method( 'getKey' )->willReturn( $key );
+		$messageSpecifier->method( 'getParams' )->willReturn( $params );
 		$message = new Message( $messageSpecifier, [], $language );
 
 		$this->assertSame( $key, $message->getKey() );

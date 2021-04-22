@@ -23,9 +23,8 @@ class ArrayDiffFormatterTest extends \MediaWikiUnitTestCase {
 		$diff = $this->getMockBuilder( Diff::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$diff->expects( $this->any() )
-			->method( 'getEdits' )
-			->will( $this->returnValue( $edits ) );
+		$diff->method( 'getEdits' )
+			->willReturn( $edits );
 		return $diff;
 	}
 
@@ -33,12 +32,10 @@ class ArrayDiffFormatterTest extends \MediaWikiUnitTestCase {
 		$diffOp = $this->getMockBuilder( DiffOp::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$diffOp->expects( $this->any() )
-			->method( 'getType' )
-			->will( $this->returnValue( $type ) );
-		$diffOp->expects( $this->any() )
-			->method( 'getOrig' )
-			->will( $this->returnValue( $orig ) );
+		$diffOp->method( 'getType' )
+			->willReturn( $type );
+		$diffOp->method( 'getOrig' )
+			->willReturn( $orig );
 		if ( $type === 'change' ) {
 			$diffOp->expects( $this->any() )
 				->method( 'getClosing' )
@@ -47,9 +44,8 @@ class ArrayDiffFormatterTest extends \MediaWikiUnitTestCase {
 					return 'mockLine';
 				} ) );
 		} else {
-			$diffOp->expects( $this->any() )
-				->method( 'getClosing' )
-				->will( $this->returnValue( $closing ) );
+			$diffOp->method( 'getClosing' )
+				->willReturn( $closing );
 		}
 		return $diffOp;
 	}

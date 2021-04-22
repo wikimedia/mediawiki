@@ -2220,10 +2220,10 @@ more stuff
 			->getMock();
 		$readOnly->expects( $this->once() )
 			->method( 'isReadOnly' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 		$readOnly->expects( $this->once() )
 			->method( 'getReason' )
-			->will( $this->returnValue( 'Some Read Only Reason' ) );
+			->willReturn( 'Some Read Only Reason' );
 		$this->setService( 'ReadOnlyMode', $readOnly );
 
 		$status = $page->doUpdateRestrictions( [], [], $cascade, 'aReason', $user, [] );

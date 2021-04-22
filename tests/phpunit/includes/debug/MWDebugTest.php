@@ -162,9 +162,8 @@ class MWDebugTest extends MediaWikiIntegrationTestCase {
 			] )
 			->getMock();
 
-		$request->expects( $this->any() )
-			->method( 'getRequestURL' )
-			->will( $this->returnValue( $requestUrl ) );
+		$request->method( 'getRequestURL' )
+			->willReturn( $requestUrl );
 
 		return $request;
 	}

@@ -21,7 +21,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 			->addMethods( [ 'canSetUser', 'setUser', 'save' ] )
 			->getMock();
 		$backend->expects( $this->once() )->method( 'canSetUser' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 		$backend->expects( $this->once() )->method( 'setUser' )
 			->with( $this->callback( static function ( $user ) {
 				return $user instanceof User && $user->isAnon();
@@ -37,7 +37,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$backend->data = [];
 		$backend->expects( $this->once() )->method( 'canSetUser' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 		$backend->expects( $this->once() )->method( 'setUser' )
 			->with( $this->callback( static function ( $user ) {
 				return $user instanceof User && $user->isAnon();
@@ -51,7 +51,7 @@ class SessionTest extends MediaWikiIntegrationTestCase {
 			->addMethods( [ 'canSetUser', 'setUser', 'save' ] )
 			->getMock();
 		$backend->expects( $this->once() )->method( 'canSetUser' )
-			->will( $this->returnValue( false ) );
+			->willReturn( false );
 		$backend->expects( $this->never() )->method( 'setUser' );
 		$backend->expects( $this->once() )->method( 'save' );
 		$priv->backend = $backend;

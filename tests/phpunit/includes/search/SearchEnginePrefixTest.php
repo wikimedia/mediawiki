@@ -383,9 +383,8 @@ class SearchEnginePrefixTest extends MediaWikiLangTestCase {
 
 		$return = SearchSuggestionSet::fromStrings( $titleStrings );
 
-		$search->expects( $this->any() )
-			->method( 'completionSearchBackend' )
-			->will( $this->returnValue( $return ) );
+		$search->method( 'completionSearchBackend' )
+			->willReturn( $return );
 
 		$search->setLimitOffset( $limit );
 		return $search;

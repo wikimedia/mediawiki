@@ -16,8 +16,8 @@ class TokenTest extends MediaWikiUnitTestCase {
 			->onlyMethods( [ 'toStringAtTimestamp' ] )
 			->setConstructorArgs( [ 'sekret', 'salty', true ] )
 			->getMock();
-		$token->expects( $this->any() )->method( 'toStringAtTimestamp' )
-			->will( $this->returnValue( 'faketoken+\\' ) );
+		$token->method( 'toStringAtTimestamp' )
+			->willReturn( 'faketoken+\\' );
 
 		$this->assertSame( 'faketoken+\\', $token->toString() );
 		$this->assertSame( 'faketoken+\\', (string)$token );

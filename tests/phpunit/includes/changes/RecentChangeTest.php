@@ -379,7 +379,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		$pageProps->expects( $this->once() )
 			->method( 'getProperties' )
 			->with( $categoryTitle, 'hiddencat' )
-			->will( $this->returnValue( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [] ) );
+			->willReturn( $isHidden ? [ $categoryTitle->getArticleID() => '' ] : [] );
 
 		$this->setService( 'PageProps', $pageProps );
 

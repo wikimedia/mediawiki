@@ -6,9 +6,8 @@
 class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 	public function testGetAllowedParams() {
 		$config = $this->replaceSearchEngineConfig();
-		$config->expects( $this->any() )
-			->method( 'getSearchTypes' )
-			->will( $this->returnValue( [ 'the one ring' ] ) );
+		$config->method( 'getSearchTypes' )
+			->willReturn( [ 'the one ring' ] );
 
 		$api = $this->createApi();
 		$engine = $this->replaceSearchEngine();
@@ -51,9 +50,8 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 		$engineFactory = $this->getMockBuilder( SearchEngineFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$engineFactory->expects( $this->any() )
-			->method( 'create' )
-			->will( $this->returnValue( $engine ) );
+		$engineFactory->method( 'create' )
+			->willReturn( $engine );
 		$this->setService( 'SearchEngineFactory', $engineFactory );
 
 		return $engine;

@@ -29,16 +29,14 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->getMock();
 
 		// Set up groups and rights
-		$this->mUserMock->expects( $this->any() )
-			->method( 'getEffectiveGroups' )->will( $this->returnValue( [ '*', 'user' ] ) );
+		$this->mUserMock->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
 
 		// Set up callback for User::getOptionKinds
 		$this->mUserMock->expects( $this->any() )
 			->method( 'getOptionKinds' )->will( $this->returnCallback( [ $this, 'getOptionKinds' ] ) );
 
 		// No actual DB data
-		$this->mUserMock->expects( $this->any() )
-			->method( 'getInstanceForUpdate' )->will( $this->returnValue( $this->mUserMock ) );
+		$this->mUserMock->method( 'getInstanceForUpdate' )->willReturn( $this->mUserMock );
 
 		// Needs to return something
 		$this->mUserMock->method( 'getOptions' )
@@ -184,7 +182,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	public function testAnon() {
 		$this->mUserMock->expects( $this->once() )
 			->method( 'isAnon' )
-			->will( $this->returnValue( true ) );
+			->willReturn( true );
 
 		try {
 			$request = $this->getSampleRequest();
