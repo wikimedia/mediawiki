@@ -299,7 +299,7 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 		$this->expectException( TimestampException::class );
 		new RevisionStoreRecord(
 			$this->createMock( PageIdentity::class ),
-			new UserIdentityValue( 11, 'Tester', 0 ),
+			new UserIdentityValue( 11, __CLASS__ ),
 			$this->createMock( CommentStoreComment::class ),
 			$row,
 			$this->createMock( RevisionSlots::class ),

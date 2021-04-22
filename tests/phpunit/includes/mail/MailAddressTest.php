@@ -20,15 +20,9 @@ class MailAddressTest extends MediaWikiIntegrationTestCase {
 			$this->markTestSkipped( 'This test only works on non-Windows platforms' );
 		}
 		$user = $this->createMock( User::class );
-		$user->expects( $this->any() )->method( 'getUser' )->will(
-			$this->returnValue( new UserIdentityValue( 42, 'UserName' ) )
-		);
-		$user->expects( $this->any() )->method( 'getEmail' )->will(
-			$this->returnValue( 'foo@bar.baz' )
-		);
-		$user->expects( $this->any() )->method( 'getRealName' )->will(
-			$this->returnValue( 'Real name' )
-		);
+		$user->method( 'getUser' )->willReturn( new UserIdentityValue( 42, 'UserName' ) );
+		$user->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
+		$user->method( 'getRealName' )->willReturn( 'Real name' );
 
 		$ma = MailAddress::newFromUser( $user );
 		$this->assertInstanceOf( MailAddress::class, $ma );

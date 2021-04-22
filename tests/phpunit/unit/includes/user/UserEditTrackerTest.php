@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\User\UserEditTracker;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\LoadBalancer;
@@ -74,8 +73,7 @@ class UserEditTrackerTest extends MediaWikiUnitTestCase {
 		$actorMigration = $this->createMock( ActorMigration::class );
 		$loadBalancer = $this->createMock( LoadBalancer::class );
 
-		$user = $this->createMock( UserIdentity::class );
-		$user = new UserIdentityValue( $userId, 'TestUser' );
+		$user = new UserIdentityValue( $userId, __CLASS__ );
 
 		$jobQueueGroup = $this->createMock( JobQueueGroup::class );
 

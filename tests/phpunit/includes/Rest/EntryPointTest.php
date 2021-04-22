@@ -15,7 +15,7 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
-use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Psr\Container\ContainerInterface;
 use RequestContext;
 use WebResponse;
@@ -33,7 +33,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
 		);
-		$user = $this->createMock( UserIdentity::class );
+		$user = new UserIdentityValue( 0, __CLASS__ );
 		$authority = new UltimateAuthority( $user );
 
 		return new Router(
