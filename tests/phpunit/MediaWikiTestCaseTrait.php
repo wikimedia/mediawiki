@@ -15,8 +15,8 @@ trait MediaWikiTestCaseTrait {
 	private $originalPhpErrorFilter;
 
 	/**
-	 * Returns a PHPUnit constraint that matches anything other than a fixed set of values. This can
-	 * be used to list accepted values, e.g.
+	 * Returns a PHPUnit constraint that matches (with `===`) anything other than a fixed set of values.
+	 * This can be used to list accepted values, e.g.
 	 *   $mock->expects( $this->never() )->method( $this->anythingBut( 'foo', 'bar' ) );
 	 * which will throw if any unexpected method is called.
 	 *
@@ -25,7 +25,7 @@ trait MediaWikiTestCaseTrait {
 	 */
 	protected function anythingBut( ...$values ) {
 		return $this->logicalNot( $this->logicalOr(
-			...array_map( [ $this, 'matches' ], $values )
+			...array_map( [ $this, 'identicalTo' ], $values )
 		) );
 	}
 
