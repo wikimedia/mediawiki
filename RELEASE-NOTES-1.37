@@ -177,6 +177,10 @@ because of Phabricator reports.
   deprecation warnings:
    - getOptions
    - isIP
+* Use of ActorMigration for any table except revision, deprecated in 1.34, now
+  emits deprecation warnings. Instead of getInsertValues(), use
+  ActorNormalization::acquireActorId(). Instead of getWhere() and getJoin(),
+  do your own join on the actor table.
 * DatabasePostgres::remappedTableName() and its dependent constructor parameter
   'keywordTableMap' are deprecated. Reserved identifiers that are used as table
   names should be quoted where necessary.
