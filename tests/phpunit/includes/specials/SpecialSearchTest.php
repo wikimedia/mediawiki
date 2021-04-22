@@ -313,12 +313,10 @@ class SpecialSearchTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'getNearMatch' ] )
 			->getMock();
 
-		$nearMatcherMock->expects( $this->any() )
-			->method( 'getNearMatch' )
+		$nearMatcherMock->method( 'getNearMatch' )
 			->willReturn( $results->getFirstResult() );
 
-		$mock->expects( $this->any() )
-			->method( 'getNearMatcher' )
+		$mock->method( 'getNearMatcher' )
 			->willReturn( $nearMatcherMock );
 
 		$mock->setHookContainer( MediaWikiServices::getInstance()->getHookContainer() );

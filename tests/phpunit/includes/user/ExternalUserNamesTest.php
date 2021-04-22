@@ -71,8 +71,7 @@ class ExternalUserNamesTest extends MediaWikiIntegrationTestCase {
 			[ 'valid', true ],
 			[ 'invalid', false ]
 		];
-		$interwikiLookupMock->expects( $this->any() )
-			->method( 'isValidInterwiki' )
+		$interwikiLookupMock->method( 'isValidInterwiki' )
 			->will( $this->returnValueMap( $interwikiValueMap ) );
 
 		$this->setService( 'InterwikiLookup', $interwikiLookupMock );

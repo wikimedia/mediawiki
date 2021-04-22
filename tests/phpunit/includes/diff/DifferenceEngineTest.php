@@ -309,15 +309,13 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 			->setConstructorArgs( [ 'foo', [] ] )
 			->onlyMethods( [ 'createDifferenceEngine' ] )
 			->getMockForAbstractClass();
-		$customContentHandler->expects( $this->any() )
-			->method( 'createDifferenceEngine' )
+		$customContentHandler->method( 'createDifferenceEngine' )
 			->willReturn( $customDifferenceEngine );
 		/** @var ContentHandler $customContentHandler */
 		$customContent = $this->getMockBuilder( Content::class )
 			->onlyMethods( [ 'getContentHandler' ] )
 			->getMockForAbstractClass();
-		$customContent->expects( $this->any() )
-			->method( 'getContentHandler' )
+		$customContent->method( 'getContentHandler' )
 			->willReturn( $customContentHandler );
 		/** @var Content $customContent */
 		$customContent2 = clone $customContent;

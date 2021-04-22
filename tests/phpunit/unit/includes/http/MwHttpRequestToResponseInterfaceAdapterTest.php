@@ -126,8 +126,7 @@ class MwHttpRequestToResponseInterfaceAdapterTest extends MediaWikiUnitTestCase 
 
 	private function newMockMWHttpRequestWithHeaders( array $headers ) {
 		$req = $this->createMock( MWHttpRequest::class );
-		$req->expects( $this->any() )
-			->method( 'getResponseHeaders' )
+		$req->method( 'getResponseHeaders' )
 			->willReturn( $headers );
 
 		return $req;

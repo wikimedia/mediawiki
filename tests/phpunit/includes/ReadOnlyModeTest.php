@@ -112,7 +112,7 @@ class ReadOnlyModeTest extends MediaWikiIntegrationTestCase {
 		$lb = $this->getMockBuilder( \Wikimedia\Rdbms\LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$lb->expects( $this->any() )->method( 'getReadOnlyReason' )
+		$lb->method( 'getReadOnlyReason' )
 			->willReturn( $params['lbMessage'] );
 		return $lb;
 	}

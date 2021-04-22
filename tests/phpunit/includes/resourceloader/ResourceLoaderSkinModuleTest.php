@@ -124,7 +124,7 @@ CSS
 			->getMock();
 		$module->expects( $this->once() )->method( 'readStyleFiles' )
 			->willReturn( $parent );
-		$module->expects( $this->any() )->method( 'getConfig' )
+		$module->method( 'getConfig' )
 			->willReturn( new HashConfig( [
 				'UseNewMediaStructure' => true,
 			] ) );

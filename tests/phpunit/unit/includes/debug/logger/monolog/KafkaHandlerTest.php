@@ -86,8 +86,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 		$produce = $this->getMockBuilder( \Kafka\Produce::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$produce->expects( $this->any() )
-			->method( 'getAvailablePartitions' )
+		$produce->method( 'getAvailablePartitions' )
 			->will( $this->throwException( new Exception ) );
 		$produce->method( 'send' )
 			->willReturn( true );
@@ -154,8 +153,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 			->willReturn( true );
 
 		$formatter = $this->createMock( \Monolog\Formatter\FormatterInterface::class );
-		$formatter->expects( $this->any() )
-			->method( 'format' )
+		$formatter->method( 'format' )
 			->will( $this->onConsecutiveCalls( 'words', null, 'lines' ) );
 
 		$handler = new KafkaHandler( $produce, [] );
@@ -183,8 +181,7 @@ class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 			->willReturn( true );
 
 		$formatter = $this->createMock( \Monolog\Formatter\FormatterInterface::class );
-		$formatter->expects( $this->any() )
-			->method( 'format' )
+		$formatter->method( 'format' )
 			->will( $this->onConsecutiveCalls( 'words', null, 'lines' ) );
 
 		$handler = new KafkaHandler( $produce, [] );

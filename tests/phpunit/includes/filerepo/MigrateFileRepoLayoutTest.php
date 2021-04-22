@@ -37,8 +37,7 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			'img_sha1' => sha1( $this->text ),
 		];
 
-		$dbMock->expects( $this->any() )
-			->method( 'select' )
+		$dbMock->method( 'select' )
 			->will( $this->onConsecutiveCalls(
 				new FakeResultWrapper( [ $imageRow ] ), // image
 				new FakeResultWrapper( [] ), // image
@@ -54,14 +53,12 @@ class MigrateFileRepoLayoutTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 
 		$repoMock
-			->expects( $this->any() )
 			->method( 'getMasterDB' )
 			->willReturn( $dbMock );
 
 		$this->migratorMock = $this->getMockBuilder( MigrateFileRepoLayout::class )
 			->onlyMethods( [ 'getRepo' ] )->getMock();
 		$this->migratorMock
-			->expects( $this->any() )
 			->method( 'getRepo' )
 			->willReturn( $repoMock );
 

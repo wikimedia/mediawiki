@@ -199,11 +199,9 @@ class BatchRowUpdateTest extends MediaWikiIntegrationTestCase {
 
 	protected function mockDbConsecutiveSelect( array $retvals ) {
 		$db = $this->mockDb( [ 'select', 'addQuotes' ] );
-		$db->expects( $this->any() )
-			->method( 'select' )
+		$db->method( 'select' )
 			->will( $this->consecutivelyReturnFromSelect( $retvals ) );
-		$db->expects( $this->any() )
-			->method( 'addQuotes' )
+		$db->method( 'addQuotes' )
 			->will( $this->returnCallback( static function ( $value ) {
 				return "'$value'"; // not real quoting: doesn't matter in test
 			} ) );

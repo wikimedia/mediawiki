@@ -727,7 +727,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		$this->provider = null;
 		$mockHook = $this->getMockBuilder( __CLASS__ )
 			->onlyMethods( [ 'onSessionMetadata' ] )->getMock();
-		$mockHook->expects( $this->any() )->method( 'onSessionMetadata' )
+		$mockHook->method( 'onSessionMetadata' )
 			->will( $this->returnCallback(
 				static function ( SessionBackend $backend, array &$metadata, array $requests ) {
 					$metadata['userId']++;

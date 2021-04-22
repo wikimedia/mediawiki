@@ -551,8 +551,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testSubpage( $title, $sub, LinkTarget $expected ) {
 		$interwikiLookup = $this->createMock( InterwikiLookup::class );
-		$interwikiLookup->expects( $this->any() )
-			->method( 'isValidInterwiki' )
+		$interwikiLookup->method( 'isValidInterwiki' )
 			->willReturnCallback(
 				static function ( $prefix ) {
 					return $prefix == 'wiki';

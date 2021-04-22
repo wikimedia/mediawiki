@@ -35,8 +35,7 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 			->willReturn( [] );
 
 		# The mocked user has a long nickname
-		$user->expects( $this->any() )
-			->method( 'getOption' )
+		$user->method( 'getOption' )
 			->will( $this->returnValueMap( [
 				[ 'nickname', null, false, 'superlongnickname' ],
 			]

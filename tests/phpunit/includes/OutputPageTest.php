@@ -1221,7 +1221,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		if ( $variantLinkCallback ) {
 			$mockContLang = $this->createMock( Language::class );
 			$mockContLang
-				->expects( $this->any() )
 				->method( 'convertHtml' )
 				->will( $this->returnCallback( static function ( $arg ) {
 					return $arg;
@@ -1230,14 +1229,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$mockLanguageConverter = $this
 				->createMock( ILanguageConverter::class );
 			$mockLanguageConverter
-				->expects( $this->any() )
 				->method( 'findVariantLink' )
 				->will( $this->returnCallback( $variantLinkCallback ) );
 
 			$languageConverterFactory = $this
 				->createMock( LanguageConverterFactory::class );
 			$languageConverterFactory
-				->expects( $this->any() )
 				->method( 'getLanguageConverter' )
 				->willReturn( $mockLanguageConverter );
 			$this->setService(
@@ -1255,8 +1252,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$op->method( 'getTitle' )
 			->willReturn( $title );
 
-		$op->expects( $this->any() )
-			->method( 'addCategoryLinksToLBAndGetResult' )
+		$op->method( 'addCategoryLinksToLBAndGetResult' )
 			->will( $this->returnCallback( static function ( array $categories ) use ( $fakeResults ) {
 				$return = [];
 				foreach ( $categories as $category => $unused ) {
@@ -2395,7 +2391,6 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			$languageConverterFactory = $this
 				->createMock( LanguageConverterFactory::class );
 			$languageConverterFactory
-				->expects( $this->any() )
 				->method( 'getLanguageConverter' )
 				->willReturn( $mockLanguageConverter );
 			$this->setService(
@@ -3048,8 +3043,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsRevisionCurrent( $titleLastRevision, $outputRevision, $expectedResult ) {
 		$titleMock = $this->createMock( Title::class );
-		$titleMock->expects( $this->any() )
-			->method( 'getLatestRevID' )
+		$titleMock->method( 'getLatestRevID' )
 			->willReturn( $titleLastRevision );
 
 		$output = $this->newInstance( [], null );

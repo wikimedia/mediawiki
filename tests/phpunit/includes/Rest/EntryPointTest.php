@@ -77,8 +77,7 @@ class EntryPointTest extends \MediaWikiIntegrationTestCase {
 
 	public function testHeader() {
 		$webResponse = $this->createWebResponse();
-		$webResponse->expects( $this->any() )
-			->method( 'header' )
+		$webResponse->method( 'header' )
 			->withConsecutive(
 				[ 'HTTP/1.1 200 OK', true, null ],
 				[ 'Foo: Bar', true, null ]

@@ -150,7 +150,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$mwServices->getWatchlistManager()
 			] )
 			->getMock();
-		$manager->expects( $this->any() )->method( 'allowsAuthenticationDataChange' )
+		$manager->method( 'allowsAuthenticationDataChange' )
 			->will( $this->returnCallback( static function ( $req ) {
 				return $req->getUniqueId() !== 'BadReq'
 					? \StatusValue::newGood()
@@ -217,12 +217,12 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			] )
 			->getMock();
 		$provider->expects( $this->never() )->method( 'beginLinkAttempt' );
-		$provider->expects( $this->any() )->method( 'providerAllowsAuthenticationDataChange' )
+		$provider->method( 'providerAllowsAuthenticationDataChange' )
 			->will( $this->returnCallback( static function ( $req ) use ( $reqs ) {
 				return $req->getUniqueId() === 'Request3'
 					? \StatusValue::newFatal( 'foo' ) : \StatusValue::newGood();
 			} ) );
-		$provider->expects( $this->any() )->method( 'providerChangeAuthenticationData' )
+		$provider->method( 'providerChangeAuthenticationData' )
 			->will( $this->returnCallback( static function ( $req ) use ( &$done ) {
 				$done[$req->id] = true;
 			} ) );

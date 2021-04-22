@@ -64,7 +64,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->setConstructorArgs( [ [ 'loginOnly' => $loginOnly ] ] )
 			->getMock();
 
-		$provider->expects( $this->any() )->method( 'checkPasswordValidity' )
+		$provider->method( 'checkPasswordValidity' )
 			->will( $this->returnCallback( function () {
 				return $this->validity;
 			} ) );

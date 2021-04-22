@@ -70,8 +70,7 @@ class CategoriesRdfTest extends MediaWikiLangTestCase {
 			->method( 'getCategoryIterator' )
 			->willReturn( $this->getCategoryIterator() );
 
-		$dumpScript->expects( $this->any() )
-			->method( 'getCategoryLinksIterator' )
+		$dumpScript->method( 'getCategoryLinksIterator' )
 			->willReturnCallback( [ $this, 'getCategoryLinksIterator' ] );
 
 		/** @var DumpCategoriesAsRdf $dumpScript */

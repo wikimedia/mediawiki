@@ -55,8 +55,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		$mock->expects( $this->once() )
 			->method( 'isSyndicated' )
 			->willReturn( $isSyndicated );
-		$mock->expects( $this->any() )
-			->method( 'getHTML' )
+		$mock->method( 'getHTML' )
 			->willReturn( $html );
 		return $mock;
 	}

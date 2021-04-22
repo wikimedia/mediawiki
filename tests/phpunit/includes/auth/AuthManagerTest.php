@@ -366,7 +366,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		list( $provider, $reset ) = $this->getMockSessionProvider(
 			$mutableSession, [ 'provideSessionInfo' ]
 		);
-		$provider->expects( $this->any() )->method( 'provideSessionInfo' )
+		$provider->method( 'provideSessionInfo' )
 			->will( $this->returnCallback( static function () use ( $provider, &$provideUser ) {
 				return new SessionInfo( SessionInfo::MIN_PRIORITY, [
 					'provider' => $provider,
@@ -933,7 +933,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$createReq->returnToUrl = 'http://localhost/';
 		$createReq->username = 'UTDummy';
 		$res = AuthenticationResponse::newUI( [ $req1 ], wfMessage( 'foo' ) );
-		$primary->expects( $this->any() )->method( 'beginPrimaryAccountCreation' )
+		$primary->method( 'beginPrimaryAccountCreation' )
 			->with( $this->anything(), $this->anything(), [ $userReq, $createReq, $req3 ] )
 			->willReturn( $res );
 		$primary->method( 'accountCreationType' )
@@ -1790,7 +1790,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$req = $this->getMockBuilder( UserDataAuthenticationRequest::class )
 			->onlyMethods( [ 'populateUser' ] )
 			->getMock();
-		$req->expects( $this->any() )->method( 'populateUser' )
+		$req->method( 'populateUser' )
 			->willReturn( \StatusValue::newFatal( 'populatefail' ) );
 		$userReq->username = self::usernameForCreation();
 		$ret = $this->manager->beginAccountCreation(
@@ -1945,7 +1945,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$req = $this->getMockBuilder( UserDataAuthenticationRequest::class )
 			->onlyMethods( [ 'populateUser' ] )
 			->getMock();
-		$req->expects( $this->any() )->method( 'populateUser' )
+		$req->method( 'populateUser' )
 			->willReturn( \StatusValue::newFatal( 'populatefail' ) );
 		$this->request->getSession()->setSecret( 'AuthManager::accountCreationState',
 			[ 'reqs' => [ $req ] ] + $session );
@@ -2973,9 +2973,9 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$mocks['pre'] = $this->getMockBuilder( PreAuthenticationProvider::class )
 			->onlyMethods( [ 'getUniqueId', 'getAuthenticationRequests' ] )
 			->getMockForAbstractClass();
-		$mocks['pre']->expects( $this->any() )->method( 'getUniqueId' )
+		$mocks['pre']->method( 'getUniqueId' )
 			->willReturn( 'pre' );
-		$mocks['pre']->expects( $this->any() )->method( 'getAuthenticationRequests' )
+		$mocks['pre']->method( 'getAuthenticationRequests' )
 			->will( $this->returnCallback( static function ( $action ) use ( $makeReq ) {
 				return [ $makeReq( "pre-$action" ), $makeReq( 'generic' ) ];
 			} ) );
@@ -3548,7 +3548,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			}
 		}
 
-		$mocks['pre']->expects( $this->any() )->method( 'testForAccountLink' )
+		$mocks['pre']->method( 'testForAccountLink' )
 			->will( $this->returnCallback(
 				function ( $u )
 					use ( $user, $preTest )

@@ -32,8 +32,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
 
 		// Set up callback for User::getOptionKinds
-		$this->mUserMock->expects( $this->any() )
-			->method( 'getOptionKinds' )->will( $this->returnCallback( [ $this, 'getOptionKinds' ] ) );
+		$this->mUserMock->method( 'getOptionKinds' )->will( $this->returnCallback( [ $this, 'getOptionKinds' ] ) );
 
 		// No actual DB data
 		$this->mUserMock->method( 'getInstanceForUpdate' )->willReturn( $this->mUserMock );
@@ -42,8 +41,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->method( 'getOptions' )
 			->willReturn( [] );
 
-		$this->mUserMock->expects( $this->any() )
-			->method( 'isAllowedAny' )->willReturn( true );
+		$this->mUserMock->method( 'isAllowedAny' )->willReturn( true );
 
 		// DefaultPreferencesFactory calls a ton of user methods, but we still want to list all of
 		// them in case bugs are caused by unexpected things returning null that shouldn't.

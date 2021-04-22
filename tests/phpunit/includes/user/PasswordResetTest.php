@@ -31,13 +31,13 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 
 		$authManager = $this->getMockBuilder( AuthManager::class )->disableOriginalConstructor()
 			->getMock();
-		$authManager->expects( $this->any() )->method( 'allowsAuthenticationDataChange' )
+		$authManager->method( 'allowsAuthenticationDataChange' )
 			->willReturn( $allowsAuthenticationDataChange ? Status::newGood() : Status::newFatal( 'foo' ) );
 
 		$user = $this->getMockBuilder( User::class )->getMock();
-		$user->expects( $this->any() )->method( 'getName' )->willReturn( 'Foo' );
-		$user->expects( $this->any() )->method( 'getBlock' )->willReturn( $block );
-		$user->expects( $this->any() )->method( 'getGlobalBlock' )->willReturn( $globalBlock );
+		$user->method( 'getName' )->willReturn( 'Foo' );
+		$user->method( 'getBlock' )->willReturn( $block );
+		$user->method( 'getGlobalBlock' )->willReturn( $globalBlock );
 
 		$permissionManager = $this->getMockBuilder( PermissionManager::class )
 			->disableOriginalConstructor()
@@ -212,8 +212,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'isAllowed' ] )
 			->getMock();
-		$passwordReset->expects( $this->any() )
-			->method( 'isAllowed' )
+		$passwordReset->method( 'isAllowed' )
 			->with( $user )
 			->willReturn( Status::newFatal( 'somestatuscode' ) );
 		/** @var PasswordReset $passwordReset */
