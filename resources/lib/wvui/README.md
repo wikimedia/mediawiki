@@ -329,10 +329,12 @@ Each story represents a single visual state of a component.
 
 WVUI uses different Storybook [addons](https://storybook.js.org/addons/), namely:
 
--   [Knobs](https://github.com/storybookjs/storybook/tree/master/addons/knobs) that allows you to
-    edit component props dynamically.
+-   [Controls](https://github.com/storybookjs/storybook/tree/master/addons/controls) that allow you
+    to edit component props dynamically.
 -   [Actions](https://github.com/storybookjs/storybook/tree/master/addons/actions) to retrieve data
     from event handlers.
+-   [Docs](https://github.com/storybookjs/storybook/tree/master/addons/docs) to automatically
+    generate documentation from component definitions.
 -   [a11y](https://github.com/storybookjs/storybook/tree/master/addons/a11y) to analyze
     accessibility issues.
 -   [links](https://github.com/storybookjs/storybook/tree/master/addons/links) which allows a

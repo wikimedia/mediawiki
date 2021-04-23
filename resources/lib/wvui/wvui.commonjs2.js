@@ -199,12 +199,12 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.d(__webpack_exports__, "version", function() { return /* binding */ version; });
 __webpack_require__.d(__webpack_exports__, "restSearchClient", function() { return /* reexport */ restSearchClient; });
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/button/Button.vue?vue&type=template&id=4cd168f9&
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/button/Button.vue?vue&type=template&id=35ed2c28&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('button',{staticClass:"wvui-button",class:_vm.rootClasses,on:{"click":_vm.onClick}},[_vm._t("default")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/button/Button.vue?vue&type=template&id=4cd168f9&
+// CONCATENATED MODULE: ./src/components/button/Button.vue?vue&type=template&id=35ed2c28&
 
 // CONCATENATED MODULE: ./src/actions/PrimaryAction.ts
 /**
@@ -406,12 +406,12 @@ var component = normalizeComponent(
 )
 
 /* harmony default export */ var Button = (component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/icon/Icon.vue?vue&type=template&id=6133cde4&
-var Iconvue_type_template_id_6133cde4_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"wvui-icon",class:_vm.rootClasses,on:{"click":_vm.onClick}},[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","width":"20","height":"20","viewBox":"0 0 20 20","aria-hidden":_vm.lacksTitle}},[(_vm.iconTitle)?_c('title',[_vm._v(_vm._s(_vm.iconTitle))]):_vm._e(),_vm._v(" "),_c('g',{attrs:{"fill":_vm.iconColor}},[_c('path',{attrs:{"d":_vm.iconPath}})])])])}
-var Iconvue_type_template_id_6133cde4_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/icon/Icon.vue?vue&type=template&id=30553f58&
+var Iconvue_type_template_id_30553f58_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('span',{staticClass:"wvui-icon",class:_vm.rootClasses,on:{"click":_vm.onClick}},[_c('svg',{attrs:{"xmlns":"http://www.w3.org/2000/svg","width":"20","height":"20","viewBox":"0 0 20 20","aria-hidden":_vm.lacksTitle}},[(_vm.iconTitle)?_c('title',[_vm._v(_vm._s(_vm.iconTitle))]):_vm._e(),_vm._v(" "),_c('g',{attrs:{"fill":_vm.iconColor}},[_c('path',{attrs:{"d":_vm.iconPath}})])])])}
+var Iconvue_type_template_id_30553f58_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/icon/Icon.vue?vue&type=template&id=6133cde4&
+// CONCATENATED MODULE: ./src/components/icon/Icon.vue?vue&type=template&id=30553f58&
 
 // CONCATENATED MODULE: ./src/components/icon/iconTypes.ts
 /**
@@ -531,6 +531,7 @@ function shouldFlip(icon, langCode) {
         }
     },
     mounted: function () {
+        // Now that the component is mounted, check its computed style and update dir
         var computedStyle = window.getComputedStyle(this.$el);
         this.dir = (computedStyle === null || computedStyle === void 0 ? void 0 : computedStyle.direction) || this.dir;
     },
@@ -557,8 +558,8 @@ var Iconvue_type_style_index_0_lang_less_ = __webpack_require__(8);
 
 var Icon_component = normalizeComponent(
   icon_Iconvue_type_script_lang_ts_,
-  Iconvue_type_template_id_6133cde4_render,
-  Iconvue_type_template_id_6133cde4_staticRenderFns,
+  Iconvue_type_template_id_30553f58_render,
+  Iconvue_type_template_id_30553f58_staticRenderFns,
   false,
   null,
   null,
@@ -1296,12 +1297,12 @@ var Input_component = normalizeComponent(
 )
 
 /* harmony default export */ var Input = (Input_component.exports);
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=template&id=041c4de3&
-var TypeaheadSearchvue_type_template_id_041c4de3_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wvui-typeahead-search",class:_vm.rootClasses,attrs:{"role":"combobox","aria-expanded":_vm.isExpandedString,"aria-haspopup":"listbox","aria-owns":_vm.suggestionsId},on:{"mouseover":_vm.onRootMouseOver,"mouseout":_vm.onRootMouseOut,"keydown":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }return _vm.onKeyDownUp($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }return _vm.onKeyDownDown($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"escape",undefined,$event.key,undefined)){ return null; }return _vm.onKeyDownEscape($event)}]}},[_c('form',{staticClass:"wvui-typeahead-search__form",attrs:{"id":_vm.id,"action":_vm.formAction},on:{"submit":_vm.onSubmit}},[_c('div',{staticClass:"wvui-typeahead-search__wrapper"},[_c('wvui-input',_vm._b({staticClass:"wvui-typeahead-search__input",attrs:{"start-icon":_vm.startIcon,"value":_vm.inputValue,"type":_vm.InputType.Search,"name":"search","dir":"auto","autocapitalize":"off","autocomplete":"off","aria-autocomplete":"list","aria-controls":_vm.suggestionsId,"aria-activedescendant":_vm.activeSuggestionId},on:{"input":_vm.onInput,"blur":_vm.onInputBlur,"focus":_vm.onInputFocus}},'wvui-input',_vm.$attrs,false)),_vm._v(" "),_vm._t("default"),_vm._v(" "),_c('ol',{staticClass:"wvui-typeahead-search__suggestions",attrs:{"id":_vm.suggestionsId,"role":"listbox","aria-label":_vm.suggestionsLabel}},[_vm._l((_vm.suggestionsList),function(suggestion,index){return _c('li',{key:index,attrs:{"role":"option"}},[_c('wvui-typeahead-suggestion',{key:suggestion.id,staticClass:"wvui-typeahead-search__suggestion",attrs:{"id":_vm.getSuggestionId( suggestion ),"article-path":_vm.formAction,"query":_vm.searchQuery,"active":_vm.suggestionActiveIndex === index,"suggestion":suggestion,"show-thumbnail":_vm.showThumbnail,"show-description":_vm.showDescription},on:{"mouseover":function($event){return _vm.onSuggestionMouseOver( index )},"click":function($event){return _vm.onSuggestionClick( suggestion )}},nativeOn:{"mousedown":function($event){return _vm.onSuggestionMouseDown($event)}}})],1)}),_vm._v(" "),_c('li',{attrs:{"role":"option"}},[_c('a',{ref:"footer",staticClass:"wvui-typeahead-search__suggestions__footer",class:_vm.footerClasses,attrs:{"id":_vm.footerId,"tabindex":"-1","href":_vm.footerUrl},on:{"mouseover":_vm.onFooterHover,"mousedown":_vm.onSuggestionMouseDown,"click":function($event){return _vm.onSuggestionClick()}}},[_c('wvui-icon',{staticClass:"wvui-typeahead-search__suggestions-footer-article-icon",attrs:{"icon":_vm.articleIcon}}),_vm._v(" "),_c('span',{staticClass:"wvui-typeahead-search__suggestions__footer__text"},[_vm._v(_vm._s(_vm.footerSearchText)+" "),_c('strong',[_vm._v("\""+_vm._s(_vm.searchQuery)+"\"")])])],1)])],2)],2),_vm._v(" "),_c('wvui-button',{staticClass:"wvui-typeahead-search__submit"},[_vm._v("\n\t\t\t"+_vm._s(_vm.buttonLabel)+"\n\t\t")])],1)])}
-var TypeaheadSearchvue_type_template_id_041c4de3_staticRenderFns = []
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=template&id=88b75b90&
+var TypeaheadSearchvue_type_template_id_88b75b90_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"wvui-typeahead-search",class:_vm.rootClasses,attrs:{"role":"combobox","aria-expanded":_vm.isExpandedString,"aria-haspopup":"listbox","aria-owns":_vm.suggestionsId},on:{"mouseover":_vm.onRootMouseOver,"mouseout":_vm.onRootMouseOut,"keydown":[function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"up",38,$event.key,["Up","ArrowUp"])){ return null; }return _vm.onKeyDownUp($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"down",40,$event.key,["Down","ArrowDown"])){ return null; }return _vm.onKeyDownDown($event)},function($event){if(!$event.type.indexOf('key')&&_vm._k($event.keyCode,"escape",undefined,$event.key,undefined)){ return null; }return _vm.onKeyDownEscape($event)}]}},[_c('form',{staticClass:"wvui-typeahead-search__form",attrs:{"id":_vm.id,"action":_vm.formAction},on:{"submit":_vm.onSubmit}},[_c('div',{staticClass:"wvui-typeahead-search__wrapper"},[_c('wvui-input',_vm._b({staticClass:"wvui-typeahead-search__input",attrs:{"start-icon":_vm.startIcon,"value":_vm.inputValue,"type":_vm.InputType.Search,"name":"search","dir":"auto","autocapitalize":"off","autocomplete":"off","aria-autocomplete":"list","aria-controls":_vm.suggestionsId,"aria-activedescendant":_vm.activeSuggestionId},on:{"input":_vm.onInput,"blur":_vm.onInputBlur,"focus":_vm.onInputFocus}},'wvui-input',_vm.$attrs,false)),_vm._v(" "),_vm._t("default"),_vm._v(" "),_c('ol',{staticClass:"wvui-typeahead-search__suggestions",attrs:{"id":_vm.suggestionsId,"role":"listbox","aria-label":_vm.suggestionsLabel}},[_vm._l((_vm.suggestionsList),function(suggestion,index){return _c('li',{key:index,attrs:{"role":"option"}},[_c('wvui-typeahead-suggestion',{key:suggestion.id,staticClass:"wvui-typeahead-search__suggestion",attrs:{"id":_vm.getSuggestionId( suggestion ),"article-path":_vm.formAction,"query":_vm.searchQuery,"active":_vm.suggestionActiveIndex === index,"suggestion":suggestion,"show-thumbnail":_vm.showThumbnail,"show-description":_vm.showDescription},on:{"mouseover":function($event){return _vm.onSuggestionMouseOver( index )},"click":function($event){return _vm.onSuggestionClick( suggestion )}},nativeOn:{"mousedown":function($event){return _vm.onSuggestionMouseDown($event)}}})],1)}),_vm._v(" "),_c('li',{attrs:{"role":"option"}},[_c('a',{ref:"footer",staticClass:"wvui-typeahead-search__suggestions__footer",class:_vm.footerClasses,attrs:{"id":_vm.footerId,"tabindex":"-1","href":_vm.footerUrl},on:{"mouseover":_vm.onFooterHover,"mousedown":_vm.onSuggestionMouseDown,"click":function($event){return _vm.onSuggestionClick()}}},[_c('wvui-icon',{staticClass:"wvui-typeahead-search__suggestions-footer-article-icon",attrs:{"icon":_vm.articleIcon}}),_vm._v(" "),_c('span',{staticClass:"wvui-typeahead-search__suggestions__footer__text"},[_vm._v(_vm._s(_vm.footerSearchText)+" "),_c('strong',[_vm._v("\""+_vm._s(_vm.searchQuery)+"\"")])])],1)])],2)],2),_vm._v(" "),_c('wvui-button',{staticClass:"wvui-typeahead-search__submit"},[_vm._v("\n\t\t\t"+_vm._s(_vm.buttonLabel)+"\n\t\t")])],1)])}
+var TypeaheadSearchvue_type_template_id_88b75b90_staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=template&id=041c4de3&
+// CONCATENATED MODULE: ./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=template&id=88b75b90&
 
 // CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./src/components/typeahead-suggestion/TypeaheadSuggestion.vue?vue&type=template&id=3d427b3c&
 var TypeaheadSuggestionvue_type_template_id_3d427b3c_render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return (_vm.suggestion)?_c('a',{staticClass:"wvui-typeahead-suggestion",class:_vm.rootClasses,attrs:{"href":_vm.suggestionWikiLink},on:{"mouseover":_vm.onMouseOver,"click":_vm.onClick}},[(_vm.showThumbnail && _vm.suggestion.thumbnail)?_c('span',{staticClass:"wvui-typeahead-suggestion__thumbnail",style:({backgroundImage: _vm.thumbnailBackgroundImage})}):(_vm.showThumbnail)?_c('span',{staticClass:"wvui-typeahead-suggestion__thumbnail-placeholder"},[_c('wvui-icon',{staticClass:"wvui-typeahead-suggestion__thumbnail-icon",attrs:{"icon":_vm.defaultThumbnailIcon}})],1):_vm._e(),_vm._v(" "),_c('span',{staticClass:"wvui-typeahead-suggestion__text"},[_c('wvui-typeahead-suggestion-title',{attrs:{"query":_vm.query,"title":_vm.suggestion.title}}),_vm._v(" "),(_vm.showDescription && _vm.suggestion.description)?_c('span',{staticClass:"wvui-typeahead-suggestion__description"},[_vm._v(_vm._s(_vm.suggestion.description))]):_vm._e()],1)]):_vm._e()}
@@ -1347,6 +1348,13 @@ function buildQueryString(obj) {
 
 // CONCATENATED MODULE: ./src/components/typeahead-suggestion-title/TypeaheadSuggestionTitleUtils.ts
 
+// The following was written by Trey Jones as part of https://phabricator.wikimedia.org/T35242. See
+// https://gerrit.wikimedia.org/r/c/mediawiki/core/+/530929/ for additional detail.
+//
+// Equivalent to \p{Mark} (which is not currently available in JavaScript).
+//
+// eslint-disable-next-line max-len
+var COMBINING_MARK = '[\u0300-\u036F\u0483-\u0489\u0591-\u05BD\u05BF\u05C1\u05C2\u05C4\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7\u06E8\u06EA-\u06ED\u0711\u0730-\u074A\u07A6-\u07B0\u07EB-\u07F3\u07FD\u0816-\u0819\u081B-\u0823\u0825-\u0827\u0829-\u082D\u0859-\u085B\u08D3-\u08E1\u08E3-\u0903\u093A-\u093C\u093E-\u094F\u0951-\u0957\u0962\u0963\u0981-\u0983\u09BC\u09BE-\u09C4\u09C7\u09C8\u09CB-\u09CD\u09D7\u09E2\u09E3\u09FE\u0A01-\u0A03\u0A3C\u0A3E-\u0A42\u0A47\u0A48\u0A4B-\u0A4D\u0A51\u0A70\u0A71\u0A75\u0A81-\u0A83\u0ABC\u0ABE-\u0AC5\u0AC7-\u0AC9\u0ACB-\u0ACD\u0AE2\u0AE3\u0AFA-\u0AFF\u0B01-\u0B03\u0B3C\u0B3E-\u0B44\u0B47\u0B48\u0B4B-\u0B4D\u0B56\u0B57\u0B62\u0B63\u0B82\u0BBE-\u0BC2\u0BC6-\u0BC8\u0BCA-\u0BCD\u0BD7\u0C00-\u0C04\u0C3E-\u0C44\u0C46-\u0C48\u0C4A-\u0C4D\u0C55\u0C56\u0C62\u0C63\u0C81-\u0C83\u0CBC\u0CBE-\u0CC4\u0CC6-\u0CC8\u0CCA-\u0CCD\u0CD5\u0CD6\u0CE2\u0CE3\u0D00-\u0D03\u0D3B\u0D3C\u0D3E-\u0D44\u0D46-\u0D48\u0D4A-\u0D4D\u0D57\u0D62\u0D63\u0D82\u0D83\u0DCA\u0DCF-\u0DD4\u0DD6\u0DD8-\u0DDF\u0DF2\u0DF3\u0E31\u0E34-\u0E3A\u0E47-\u0E4E\u0EB1\u0EB4-\u0EB9\u0EBB\u0EBC\u0EC8-\u0ECD\u0F18\u0F19\u0F35\u0F37\u0F39\u0F3E\u0F3F\u0F71-\u0F84\u0F86\u0F87\u0F8D-\u0F97\u0F99-\u0FBC\u0FC6\u102B-\u103E\u1056-\u1059\u105E-\u1060\u1062-\u1064\u1067-\u106D\u1071-\u1074\u1082-\u108D\u108F\u109A-\u109D\u135D-\u135F\u1712-\u1714\u1732-\u1734\u1752\u1753\u1772\u1773\u17B4-\u17D3\u17DD\u180B-\u180D\u1885\u1886\u18A9\u1920-\u192B\u1930-\u193B\u1A17-\u1A1B\u1A55-\u1A5E\u1A60-\u1A7C\u1A7F\u1AB0-\u1ABE\u1B00-\u1B04\u1B34-\u1B44\u1B6B-\u1B73\u1B80-\u1B82\u1BA1-\u1BAD\u1BE6-\u1BF3\u1C24-\u1C37\u1CD0-\u1CD2\u1CD4-\u1CE8\u1CED\u1CF2-\u1CF4\u1CF7-\u1CF9\u1DC0-\u1DF9\u1DFB-\u1DFF\u20D0-\u20F0\u2CEF-\u2CF1\u2D7F\u2DE0-\u2DFF\u302A-\u302F\u3099\u309A\uA66F-\uA672\uA674-\uA67D\uA69E\uA69F\uA6F0\uA6F1\uA802\uA806\uA80B\uA823-\uA827\uA880\uA881\uA8B4-\uA8C5\uA8E0-\uA8F1\uA8FF\uA926-\uA92D\uA947-\uA953\uA980-\uA983\uA9B3-\uA9C0\uA9E5\uAA29-\uAA36\uAA43\uAA4C\uAA4D\uAA7B-\uAA7D\uAAB0\uAAB2-\uAAB4\uAAB7\uAAB8\uAABE\uAABF\uAAC1\uAAEB-\uAAEF\uAAF5\uAAF6\uABE3-\uABEA\uABEC\uABED\uFB1E\uFE00-\uFE0F\uFE20-\uFE2F]';
 /**
  * Formats title adding highlighted query if it matches.
  *
@@ -1359,11 +1367,17 @@ function splitStringAtMatch(query, title) {
         return [title, '', ''];
     }
     var sanitizedQuery = regExpEscape(query);
-    var matchStartIndex = title.search(new RegExp(sanitizedQuery, 'i'));
-    if (matchStartIndex < 0) {
+    var match = title.match(new RegExp(
+    // Per https://www.regular-expressions.info/unicode.html, "any code point that is not a
+    // combining mark can be followed by any number of combining marks." See also the discussion
+    // in https://phabricator.wikimedia.org/T35242.
+    sanitizedQuery + COMBINING_MARK + '*', 'i'));
+    // Note well that index is an optional property that could be zero.
+    if (!match || match.index === undefined) {
         return [title, '', ''];
     }
-    var matchEndIndex = matchStartIndex + sanitizedQuery.length;
+    var matchStartIndex = match.index;
+    var matchEndIndex = matchStartIndex + match[0].length;
     var highlightedTitle = title.substring(matchStartIndex, matchEndIndex);
     var beforeHighlight = title.substring(0, matchStartIndex);
     var afterHighlight = title.substring(matchEndIndex, title.length);
@@ -1663,7 +1677,7 @@ function restSearchClient(getJson) {
 /**
  * The length of the delay (ms) before dispatching a request via the SearchClient.
  */
-var DEBOUNCE_INTERVAL = 200;
+var DEBOUNCE_INTERVAL = 120;
 
 // CONCATENATED MODULE: ./node_modules/ts-loader??ref--0!./node_modules/vue-loader/lib??vue-loader-options!./src/components/typeahead-search/TypeaheadSearch.vue?vue&type=script&lang=ts&
 
@@ -2000,8 +2014,8 @@ var TypeaheadSearchvue_type_style_index_0_lang_less_ = __webpack_require__(12);
 
 var TypeaheadSearch_component = normalizeComponent(
   typeahead_search_TypeaheadSearchvue_type_script_lang_ts_,
-  TypeaheadSearchvue_type_template_id_041c4de3_render,
-  TypeaheadSearchvue_type_template_id_041c4de3_staticRenderFns,
+  TypeaheadSearchvue_type_template_id_88b75b90_render,
+  TypeaheadSearchvue_type_template_id_88b75b90_staticRenderFns,
   false,
   null,
   null,
