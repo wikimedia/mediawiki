@@ -1,10 +1,10 @@
-diff --git resources/lib/jquery/jquery.migrate.js resources/lib/jquery/jquery.migrate.js
-index 31cf2f5114..7e6dd5a053 100644
---- resources/lib/jquery/jquery.migrate.js
-+++ resources/lib/jquery/jquery.migrate.js
-@@ -1,6 +1,15 @@
+diff --git a/resources/lib/jquery/jquery.migrate.js b/resources/lib/jquery/jquery.migrate.js
+index 7917349ea8..429a66bc12 100644
+--- a/resources/lib/jquery/jquery.migrate.js
++++ b/resources/lib/jquery/jquery.migrate.js
+@@ -1,6 +1,16 @@
  /*!
-  * jQuery Migrate - v3.1.0 - 2019-06-08
+  * jQuery Migrate - v3.3.2 - 2020-11-17T23:22Z
   * Copyright OpenJS Foundation and other contributors
 + *
 + * Patched for MediaWiki:
@@ -15,10 +15,11 @@ index 31cf2f5114..7e6dd5a053 100644
 + * - Disable jQuery.migrateTrace by default. They are slow and
 + *   redundant given console.warn() already provides a trace.
 + * - Don't warn for using features which have no plans for removal.
++ * - Explicit call to UNSAFE_restoreLegacyHtmlPrefilter()
   */
- ;( function( factory ) {
- 	if ( typeof define === "function" && define.amd ) {
-@@ -17,7 +26,8 @@
+ ( function( factory ) {
+ 	"use strict";
+@@ -19,7 +29,8 @@
  	} else {
  
  		// Browser globals
@@ -28,7 +29,7 @@ index 31cf2f5114..7e6dd5a053 100644
  	}
  } )( function( jQuery, window ) {
  "use strict";
-@@ -81,7 +91,8 @@ jQuery.migrateWarnings = [];
+@@ -82,7 +93,8 @@ jQuery.migrateWarnings = [];
  
  // Set to false to disable traces that appear with warnings
  if ( jQuery.migrateTrace === undefined ) {
@@ -38,18 +39,22 @@ index 31cf2f5114..7e6dd5a053 100644
  }
  
  // Forget any warnings we've already given; public
-@@ -95,6 +106,10 @@ function migrateWarn( msg ) {
- 	if ( !warnedAbout[ msg ] ) {
+@@ -96,6 +108,14 @@ function migrateWarn( msg ) {
+ 	if ( !jQuery.migrateDeduplicateWarnings || !warnedAbout[ msg ] ) {
  		warnedAbout[ msg ] = true;
  		jQuery.migrateWarnings.push( msg );
 +		// PATCH: Add instrumentation for statistics --Krinkle
 +		if ( window.mw && window.mw.track ) {
 +			window.mw.track( "mw.deprecate", "jquery-migrate" );
 +		}
++
++		// PATCH: Disable extra console.trace() call --Krinkle
++		jQuery.migrateTrace = false;
++
  		if ( console && console.warn && !jQuery.migrateMute ) {
  			console.warn( "JQMIGRATE: " + msg );
  			if ( jQuery.migrateTrace && console.trace ) {
-@@ -518,19 +533,7 @@ jQuery.each( [ "load", "unload", "error" ], function( _, name ) {
+@@ -672,19 +692,7 @@ jQuery.each( [ "load", "unload", "error" ], function( _, name ) {
  
  } );
  
@@ -70,3 +75,12 @@ index 31cf2f5114..7e6dd5a053 100644
  
  // Trigger "ready" event only once, on document ready
  jQuery( function() {
+@@ -855,5 +863,8 @@ jQuery.Deferred.exceptionHook = oldDeferred.exceptionHook;
+ 
+ }
+ 
++// PATCH: Enable this migration option (disabled by default) to avoid breakage. --JDF/Krinkle
++jQuery.UNSAFE_restoreLegacyHtmlPrefilter()
++
+ return jQuery;
+ } );
