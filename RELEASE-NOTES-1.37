@@ -42,13 +42,13 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== New external libraries ====
-* Updated WVUI from v0.1.0 to v0.1.1
 * …
 
 ===== New development-only external libraries =====
 * …
 
 ==== Changed external libraries ====
+* Updated WVUI from v0.1.0 to v0.1.1
 * …
 
 ===== Changed development-only external libraries =====
