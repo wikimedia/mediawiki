@@ -138,6 +138,7 @@ is no longer recommended and the option has been removed.
 ==== Changed external libraries ====
 * Updated composer/semver from 1.5.1 to 3.2.4.
 * Updated guzzlehttp/guzzle from 6.5.4 to 7.2.0.
+* Updated jQuery from v3.4.1 to v3.6.0.
 * Updated jquery.client from 2.0.2 to 3.0.0.
 * Updated OOUI from 0.39.3 to 0.41.3.
 * Updated pear/mail_mime from 1.10.8 to 1.10.9.
