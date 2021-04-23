@@ -17,8 +17,7 @@ class MemoizedCallableTest extends PHPUnit\Framework\TestCase {
 	public function testReturnValuePassedThrough() {
 		$mock = $this->getMockBuilder( stdClass::class )
 			->addMethods( [ 'reverse' ] )->getMock();
-		$mock->expects( $this->any() )
-			->method( 'reverse' )
+		$mock->method( 'reverse' )
 			->will( $this->returnCallback( 'strrev' ) );
 
 		$memoized = new MemoizedCallable( [ $mock, 'reverse' ] );

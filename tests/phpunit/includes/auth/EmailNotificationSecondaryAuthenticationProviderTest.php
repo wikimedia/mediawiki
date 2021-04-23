@@ -81,25 +81,25 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 
 		$creator = $this->getMockBuilder( \User::class )->getMock();
 		$userWithoutEmail = $this->getMockBuilder( \User::class )->getMock();
-		$userWithoutEmail->expects( $this->any() )->method( 'getEmail' )->willReturn( '' );
-		$userWithoutEmail->expects( $this->any() )->method( 'getInstanceForUpdate' )->willReturnSelf();
+		$userWithoutEmail->method( 'getEmail' )->willReturn( '' );
+		$userWithoutEmail->method( 'getInstanceForUpdate' )->willReturnSelf();
 		$userWithoutEmail->expects( $this->never() )->method( 'sendConfirmationMail' );
 		$userWithEmailError = $this->getMockBuilder( \User::class )->getMock();
-		$userWithEmailError->expects( $this->any() )->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
-		$userWithEmailError->expects( $this->any() )->method( 'getInstanceForUpdate' )->willReturnSelf();
-		$userWithEmailError->expects( $this->any() )->method( 'sendConfirmationMail' )
+		$userWithEmailError->method( 'getEmail' )->willReturn( 'foo@bar.baz' );
+		$userWithEmailError->method( 'getInstanceForUpdate' )->willReturnSelf();
+		$userWithEmailError->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newFatal( 'fail' ) );
 		$userExpectsConfirmation = $this->getMockBuilder( \User::class )->getMock();
-		$userExpectsConfirmation->expects( $this->any() )->method( 'getEmail' )
+		$userExpectsConfirmation->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
-		$userExpectsConfirmation->expects( $this->any() )->method( 'getInstanceForUpdate' )
+		$userExpectsConfirmation->method( 'getInstanceForUpdate' )
 			->willReturnSelf();
 		$userExpectsConfirmation->expects( $this->once() )->method( 'sendConfirmationMail' )
 			->willReturn( \Status::newGood() );
 		$userNotExpectsConfirmation = $this->getMockBuilder( \User::class )->getMock();
-		$userNotExpectsConfirmation->expects( $this->any() )->method( 'getEmail' )
+		$userNotExpectsConfirmation->method( 'getEmail' )
 			->willReturn( 'foo@bar.baz' );
-		$userNotExpectsConfirmation->expects( $this->any() )->method( 'getInstanceForUpdate' )
+		$userNotExpectsConfirmation->method( 'getInstanceForUpdate' )
 			->willReturnSelf();
 		$userNotExpectsConfirmation->expects( $this->never() )->method( 'sendConfirmationMail' );
 

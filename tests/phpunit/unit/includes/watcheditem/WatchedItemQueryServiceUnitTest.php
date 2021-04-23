@@ -19,11 +19,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	 */
 	private function getMockCommentStore() {
 		$mockStore = $this->createMock( CommentStore::class );
-		$mockStore->expects( $this->any() )
-			->method( 'getFields' )
+		$mockStore->method( 'getFields' )
 			->willReturn( [ 'commentstore' => 'fields' ] );
-		$mockStore->expects( $this->any() )
-			->method( 'getJoin' )
+		$mockStore->method( 'getJoin' )
 			->willReturn( [
 				'tables' => [ 'commentstore' => 'table' ],
 				'fields' => [ 'commentstore' => 'field' ],
@@ -37,8 +35,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	 */
 	private function getMockActorMigration() {
 		$mockStore = $this->createMock( ActorMigration::class );
-		$mockStore->expects( $this->any() )
-			->method( 'getJoin' )
+		$mockStore->method( 'getJoin' )
 			->willReturn( [
 				'tables' => [ 'actormigration' => 'table' ],
 				'fields' => [
@@ -48,18 +45,15 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				],
 				'joins' => [ 'actormigration' => 'join' ],
 			] );
-		$mockStore->expects( $this->any() )
-			->method( 'getWhere' )
+		$mockStore->method( 'getWhere' )
 			->willReturn( [
 				'tables' => [ 'actormigration' => 'table' ],
 				'conds' => 'actormigration_conds',
 				'joins' => [ 'actormigration' => 'join' ],
 			] );
-		$mockStore->expects( $this->any() )
-			->method( 'isAnon' )
+		$mockStore->method( 'isAnon' )
 			->willReturn( 'actormigration is anon' );
-		$mockStore->expects( $this->any() )
-			->method( 'isNotAnon' )
+		$mockStore->method( 'isNotAnon' )
 			->willReturn( 'actormigration is not anon' );
 		return $mockStore;
 	}
@@ -88,8 +82,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	private function getMockDb() {
 		$mock = $this->createMock( IDatabase::class );
 
-		$mock->expects( $this->any() )
-			->method( 'makeList' )
+		$mock->method( 'makeList' )
 			->with(
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
@@ -109,18 +102,15 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 				return implode( $sqlConj, $conds );
 			} ) );
 
-		$mock->expects( $this->any() )
-			->method( 'addQuotes' )
+		$mock->method( 'addQuotes' )
 			->will( $this->returnCallback( static function ( $value ) {
 				return "'$value'";
 			} ) );
 
-		$mock->expects( $this->any() )
-			->method( 'timestamp' )
+		$mock->method( 'timestamp' )
 			->will( $this->returnArgument( 0 ) );
 
-		$mock->expects( $this->any() )
-			->method( 'bitAnd' )
+		$mock->method( 'bitAnd' )
 			->willReturnCallback( static function ( $a, $b ) {
 				return "($a & $b)";
 			} );
@@ -134,8 +124,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	 */
 	private function getMockLoadBalancer( $mockDb ) {
 		$mock = $this->createMock( LoadBalancer::class );
-		$mock->expects( $this->any() )
-			->method( 'getConnectionRef' )
+		$mock->method( 'getConnectionRef' )
 			->with( DB_REPLICA )
 			->willReturn( $mockDb );
 		return $mock;
@@ -146,8 +135,7 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	 */
 	private function getMockWatchedItemStore() {
 		$mock = $this->createMock( WatchedItemStore::class );
-		$mock->expects( $this->any() )
-			->method( 'getLatestNotificationTimestamp' )
+		$mock->method( 'getLatestNotificationTimestamp' )
 			->will( $this->returnCallback( static function ( $timestamp ) {
 				return $timestamp;
 			} ) );
@@ -1564,13 +1552,11 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		$expectedConds = array_merge( [ 'wl_user' => 1 ], $expectedConds );
 
 		$mockDb = $this->getMockDb();
-		$mockDb->expects( $this->any() )
-			->method( 'addQuotes' )
+		$mockDb->method( 'addQuotes' )
 			->will( $this->returnCallback( static function ( $value ) {
 				return "'$value'";
 			} ) );
-		$mockDb->expects( $this->any() )
-			->method( 'makeList' )
+		$mockDb->method( 'makeList' )
 			->with(
 				$this->isType( 'array' ),
 				$this->isType( 'int' )

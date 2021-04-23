@@ -158,12 +158,12 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			);
 
 		$provider1 = $providerBuilder->getMock();
-		$provider1->expects( $this->any() )->method( 'provideSessionInfo' )
+		$provider1->method( 'provideSessionInfo' )
 			->with( $this->identicalTo( $request ) )
 			->will( $this->returnCallback( static function ( $request ) {
 				return $request->info1;
 			} ) );
-		$provider1->expects( $this->any() )->method( 'newSessionInfo' )
+		$provider1->method( 'newSessionInfo' )
 			->will( $this->returnCallback( static function () use ( $idEmpty, $provider1 ) {
 				return new SessionInfo( SessionInfo::MIN_PRIORITY, [
 					'provider' => $provider1,
@@ -182,7 +182,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			} ) );
 
 		$provider2 = $providerBuilder->getMock();
-		$provider2->expects( $this->any() )->method( 'provideSessionInfo' )
+		$provider2->method( 'provideSessionInfo' )
 			->with( $this->identicalTo( $request ) )
 			->will( $this->returnCallback( static function ( $request ) {
 				return $request->info2;

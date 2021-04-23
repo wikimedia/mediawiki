@@ -297,7 +297,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( true );
 
 		$language = $this->createMock( Language::class );
-		$language->expects( $this->any() )->method( 'getCode' )
+		$language->method( 'getCode' )
 			->willReturn( 'sr' );
 
 		$prefs = $this->getPreferencesFactory( $pm, $language )
@@ -325,7 +325,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( true );
 
 		$language = $this->createMock( Language::class );
-		$language->expects( $this->any() )->method( 'getCode' )
+		$language->method( 'getCode' )
 			->willReturn( 'en' );
 
 		$prefs = $this->getPreferencesFactory( $pm, $language )

@@ -347,7 +347,7 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = $this->getMockBuilder( Message::class )->onlyMethods( [ 'fetchMessage' ] )
 			->disableOriginalConstructor()
 			->getMock();
-		$msg->expects( $this->any() )->method( 'fetchMessage' )->willReturn( $message );
+		$msg->method( 'fetchMessage' )->willReturn( $message );
 		/** @var Message $msg */
 
 		$this->assertSame( $expect, $msg->$format() );
@@ -894,8 +894,8 @@ class MessageTest extends MediaWikiLangTestCase {
 
 	public function provideNewFromSpecifier() {
 		$messageSpecifier = $this->getMockForAbstractClass( MessageSpecifier::class );
-		$messageSpecifier->expects( $this->any() )->method( 'getKey' )->willReturn( 'mainpage' );
-		$messageSpecifier->expects( $this->any() )->method( 'getParams' )->willReturn( [] );
+		$messageSpecifier->method( 'getKey' )->willReturn( 'mainpage' );
+		$messageSpecifier->method( 'getParams' )->willReturn( [] );
 
 		return [
 			'string' => [ 'mainpage', 'Main Page' ],

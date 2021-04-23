@@ -44,8 +44,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 		if ( $expectedConnectionType !== null ) {
-			$mock->expects( $this->any() )
-				->method( 'getConnectionRef' )
+			$mock->method( 'getConnectionRef' )
 				->with( $expectedConnectionType )
 				->willReturn( $mockDb );
 		} else {
@@ -88,14 +87,12 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mock = $this->getMockBuilder( JobQueueGroup::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'push' )
+		$mock->method( 'push' )
 			->will( $this->returnCallback( static function ( Job $job ) {
 				$job->run();
 			} ) );
 		if ( $mockLazyPush ) {
-			$mock->expects( $this->any() )
-				->method( 'lazyPush' )
+			$mock->method( 'lazyPush' )
 				->will( $this->returnCallback( static function ( Job $job ) {
 					$job->run();
 				} ) );
@@ -111,8 +108,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'get', 'set', 'delete', 'makeKey' ] )
 			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'makeKey' )
+		$mock->method( 'makeKey' )
 			->will( $this->returnCallback( static function ( ...$args ) {
 				return implode( ':', $args );
 			} ) );
@@ -741,8 +737,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				return 'TS' . $value . 'TS';
 			} ) );
 
-		$mockDb->expects( $this->any() )
-			->method( 'makeList' )
+		$mockDb->method( 'makeList' )
 			->with(
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
@@ -832,8 +827,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			->will( $this->returnCallback( static function ( $value ) {
 				return 'TS' . $value . 'TS';
 			} ) );
-		$mockDb->expects( $this->any() )
-			->method( 'makeList' )
+		$mockDb->method( 'makeList' )
 			->with(
 				$this->isType( 'array' ),
 				$this->isType( 'int' )
@@ -2532,8 +2526,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			'titleFactory' => $titleFactory,
 		] );
 
-		$mockQueueGroup->expects( $this->any() )
-			->method( 'lazyPush' )
+		$mockQueueGroup->method( 'lazyPush' )
 			->willReturnCallback( static function ( ActivityUpdateJob $job ) {
 				// don't run
 			} );
@@ -2627,8 +2620,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			'titleFactory' => $titleFactory,
 		] );
 
-		$mockQueueGroup->expects( $this->any() )
-			->method( 'lazyPush' )
+		$mockQueueGroup->method( 'lazyPush' )
 			->will( $this->returnCallback(
 				function ( ActivityUpdateJob $job ) use ( $title, $user ) {
 					$this->verifyCallbackJob(
@@ -2738,8 +2730,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			'titleFactory' => $titleFactory,
 		] );
 
-		$mockQueueGroup->expects( $this->any() )
-			->method( 'lazyPush' )
+		$mockQueueGroup->method( 'lazyPush' )
 			->will( $this->returnCallback(
 				function ( ActivityUpdateJob $job ) use ( $title, $user ) {
 					$this->verifyCallbackJob(
@@ -2841,8 +2832,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			'titleFactory' => $titleFactory,
 		] );
 
-		$mockQueueGroup->expects( $this->any() )
-			->method( 'lazyPush' )
+		$mockQueueGroup->method( 'lazyPush' )
 			->will( $this->returnCallback(
 				function ( ActivityUpdateJob $job ) use ( $title, $user ) {
 					$this->verifyCallbackJob(
@@ -2952,8 +2942,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			'titleFactory' => $titleFactory,
 		] );
 
-		$mockQueueGroup->expects( $this->any() )
-			->method( 'lazyPush' )
+		$mockQueueGroup->method( 'lazyPush' )
 			->will( $this->returnCallback(
 				function ( ActivityUpdateJob $job ) use ( $title, $user ) {
 					$this->verifyCallbackJob(
@@ -3063,8 +3052,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			'titleFactory' => $titleFactory,
 		] );
 
-		$mockQueueGroup->expects( $this->any() )
-			->method( 'lazyPush' )
+		$mockQueueGroup->method( 'lazyPush' )
 			->will( $this->returnCallback(
 				function ( ActivityUpdateJob $job ) use ( $title, $user ) {
 					$this->verifyCallbackJob(

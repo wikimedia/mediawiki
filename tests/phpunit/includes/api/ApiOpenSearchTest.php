@@ -11,8 +11,7 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 
 		$api = $this->createApi();
 		$engine = $this->replaceSearchEngine();
-		$engine->expects( $this->any() )
-			->method( 'getProfiles' )
+		$engine->method( 'getProfiles' )
 			->will( $this->returnValueMap( [
 				[ SearchEngine::COMPLETION_PROFILE_TYPE, $api->getUser(), [
 					[

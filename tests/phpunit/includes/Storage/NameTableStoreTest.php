@@ -54,8 +54,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		$mock = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$mock->expects( $this->any() )
-			->method( 'getConnectionRef' )
+		$mock->method( 'getConnectionRef' )
 			->willReturnCallback( static function ( $i ) use ( $mock, $db ) {
 				return new MaintainableDBConnRef( $mock, $db, $i );
 			} );

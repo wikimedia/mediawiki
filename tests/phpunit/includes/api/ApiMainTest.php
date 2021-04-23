@@ -528,8 +528,7 @@ class ApiMainTest extends ApiTestCase {
 			->setConstructorArgs( [ $api, 'mock' ] )
 			->onlyMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
-		$module->expects( $this->any() )
-			->method( 'getConditionalRequestData' )
+		$module->method( 'getConditionalRequestData' )
 			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
 			} ) );
@@ -659,8 +658,7 @@ class ApiMainTest extends ApiTestCase {
 			->setConstructorArgs( [ $api, 'mock' ] )
 			->onlyMethods( [ 'getConditionalRequestData' ] )
 			->getMockForAbstractClass();
-		$module->expects( $this->any() )
-			->method( 'getConditionalRequestData' )
+		$module->method( 'getConditionalRequestData' )
 			->will( $this->returnCallback( static function ( $condition ) use ( $conditions ) {
 				return $conditions[$condition] ?? null;
 			} ) );

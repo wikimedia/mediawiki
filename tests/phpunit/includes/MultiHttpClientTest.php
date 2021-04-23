@@ -36,14 +36,11 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$httpRequest = $this->getMockBuilder( PhpHttpRequest::class )
 			->setConstructorArgs( [ '', $options ] )
 			->getMock();
-		$httpRequest->expects( $this->any() )
-			->method( 'execute' )
+		$httpRequest->method( 'execute' )
 			->willReturn( Status::wrap( $statusValue ) );
-		$httpRequest->expects( $this->any() )
-			->method( 'getResponseHeaders' )
+		$httpRequest->method( 'getResponseHeaders' )
 			->willReturn( $headers );
-		$httpRequest->expects( $this->any() )
-			->method( 'getStatus' )
+		$httpRequest->method( 'getStatus' )
 			->willReturn( $statusCode );
 		return $httpRequest;
 	}
@@ -52,8 +49,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$factory = $this->getMockBuilder( MediaWiki\Http\HttpRequestFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$factory->expects( $this->any() )
-			->method( 'create' )
+		$factory->method( 'create' )
 			->willReturn( $httpRequest );
 		return $factory;
 	}
@@ -253,8 +249,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		$factory = $this->getMockBuilder( MediaWiki\Http\HttpRequestFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$factory->expects( $this->any() )
-			->method( 'create' )
+		$factory->method( 'create' )
 			->with(
 				$url,
 				$this->callback(

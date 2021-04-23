@@ -1126,8 +1126,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 			] )
 			->getMock();
 
-		$cache->expects( $this->any() )->method( 'worthRefreshExpiring' )->willReturn( $expiring );
-		$cache->expects( $this->any() )->method( 'worthRefreshPopular' )->willReturn( $popular );
+		$cache->method( 'worthRefreshExpiring' )->willReturn( $expiring );
+		$cache->method( 'worthRefreshPopular' )->willReturn( $popular );
 
 		$wasSet = 0;
 		$keyedIds = new ArrayIterator( $idsByKey );

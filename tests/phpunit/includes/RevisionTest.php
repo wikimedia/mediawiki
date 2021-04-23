@@ -408,11 +408,9 @@ class RevisionTest extends MediaWikiIntegrationTestCase {
 		$factory = $this->getMockBuilder( BlobStoreFactory::class )
 			->disableOriginalConstructor()
 			->getMock();
-		$factory->expects( $this->any() )
-			->method( 'newBlobStore' )
+		$factory->method( 'newBlobStore' )
 			->willReturn( $blobStore );
-		$factory->expects( $this->any() )
-			->method( 'newSqlBlobStore' )
+		$factory->method( 'newSqlBlobStore' )
 			->willReturn( $blobStore );
 		return $factory;
 	}

@@ -68,12 +68,12 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 				'providerAllowsAuthenticationDataChange', 'providerChangeAuthenticationData'
 			] )
 			->getMock();
-		$provider->expects( $this->any() )->method( 'providerAllowsAuthenticationDataChange' )
+		$provider->method( 'providerAllowsAuthenticationDataChange' )
 			->will( $this->returnCallback( function ( $req ) {
 				$this->assertSame( 'UTSysop', $req->username );
 				return $req->allow;
 			} ) );
-		$provider->expects( $this->any() )->method( 'providerChangeAuthenticationData' )
+		$provider->method( 'providerChangeAuthenticationData' )
 			->will( $this->returnCallback( function ( $req ) {
 				$this->assertSame( 'UTSysop', $req->username );
 				$req->done = true;

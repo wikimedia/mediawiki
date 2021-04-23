@@ -58,8 +58,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$genderCache->expects( $this->any() )
-			->method( 'getGenderOf' )
+		$genderCache->method( 'getGenderOf' )
 			->will( $this->returnCallback( static function ( $userName ) {
 				return preg_match( '/^[^- _]+a( |_|$)/u', $userName ) ? 'female' : 'male';
 			} ) );
@@ -76,8 +75,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	private function getInterwikiLookup() : InterwikiLookup {
 		$iwLookup = $this->createMock( InterwikiLookup::class );
 
-		$iwLookup->expects( $this->any() )
-			->method( 'isValidInterwiki' )
+		$iwLookup->method( 'isValidInterwiki' )
 			->will( $this->returnCallback( static function ( $prefix ) {
 				return $prefix === 'localtestiw' || $prefix === 'remotetestiw';
 			} ) );

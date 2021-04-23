@@ -2201,11 +2201,9 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ 'newBlobStore', 'newSqlBlobStore' ] )
 			->disableOriginalConstructor()
 			->getMock();
-		$factory->expects( $this->any() )
-			->method( 'newBlobStore' )
+		$factory->method( 'newBlobStore' )
 			->willReturn( $blobStore );
-		$factory->expects( $this->any() )
-			->method( 'newSqlBlobStore' )
+		$factory->method( 'newSqlBlobStore' )
 			->willReturn( $blobStore );
 
 		$this->setService( 'BlobStoreFactory', $factory );
