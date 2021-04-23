@@ -33,7 +33,6 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -89,9 +88,6 @@ class MergeHistory {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
-	/** @var UserFactory */
-	private $userFactory;
-
 	/**
 	 * Since 1.35 dependencies are injected and not providing them is hard deprecated; use the
 	 * MergeHistoryFactory service
@@ -106,7 +102,6 @@ class MergeHistory {
 	 * @param SpamChecker|null $spamChecker
 	 * @param HookContainer|null $hookContainer
 	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
 		Title $source,
@@ -118,8 +113,7 @@ class MergeHistory {
 		WatchedItemStoreInterface $watchedItemStore = null,
 		SpamChecker $spamChecker = null,
 		HookContainer $hookContainer = null,
-		WikiPageFactory $wikiPageFactory = null,
-		UserFactory $userFactory = null
+		WikiPageFactory $wikiPageFactory = null
 	) {
 		if ( $loadBalancer === null ) {
 			wfDeprecatedMsg( 'Direct construction of ' . __CLASS__ .
@@ -133,7 +127,6 @@ class MergeHistory {
 			$spamChecker = $services->getSpamChecker();
 			$hookContainer = $services->getHookContainer();
 			$wikiPageFactory = $services->getWikiPageFactory();
-			$userFactory = $services->getUserFactory();
 		}
 
 		// Save the parameters
@@ -149,7 +142,6 @@ class MergeHistory {
 		$this->spamChecker = $spamChecker;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->wikiPageFactory = $wikiPageFactory;
-		$this->userFactory = $userFactory;
 
 		// Max timestamp should be min of destination page
 		$firstDestTimestamp = $this->dbw->selectField(
@@ -567,8 +559,7 @@ class MergeHistory {
 			// This deletion does not depend on userright but may still fails. If it
 			// fails, it will be communicated in the status reponse.
 			$reason = wfMessage( 'mergehistory-source-deleted-reason' )->inContentLanguage()->plain();
-			$userObj = $this->userFactory->newFromUserIdentity( $user );
-			$deletionStatus = $newPage->doDeleteArticleReal( $reason, $userObj );
+			$deletionStatus = $newPage->doDeleteArticleReal( $reason, $user );
 			$status->merge( $deletionStatus );
 		}
 

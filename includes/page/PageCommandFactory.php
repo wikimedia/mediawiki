@@ -177,8 +177,7 @@ class PageCommandFactory implements
 			$this->watchedItemStore,
 			$this->spamChecker,
 			$this->hookContainer,
-			$this->wikiPageFactory,
-			$this->userFactory
+			$this->wikiPageFactory
 		);
 	}
 

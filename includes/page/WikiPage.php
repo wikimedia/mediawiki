@@ -2165,8 +2165,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// NOTE: while doUserEditContent() executes, callbacks to getDerivedDataUpdater and
 		// prepareContentForEdit will generally use the DerivedPageDataUpdater that is also
 		// used by this PageUpdater. However, there is no guarantee for this.
-		$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-		$updater = $this->newPageUpdater( $user, $slotsUpdate );
+		$updater = $this->newPageUpdater( $performer, $slotsUpdate );
 		$updater->setContent( SlotRecord::MAIN, $content );
 
 		$revisionStore = $this->getRevisionStore();
@@ -2398,9 +2397,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			);
 			return;
 		}
-		$user = User::newFromIdentity( $revision->getUser( RevisionRecord::RAW ) );
+		$userIdentity = $revision->getUser( RevisionRecord::RAW );
 
-		$updater = $this->getDerivedDataUpdater( $user, $revision );
+		$updater = $this->getDerivedDataUpdater( $userIdentity, $revision );
 		$updater->prepareUpdate( $revision, $options );
 		$updater->doParserCacheUpdate();
 	}
@@ -2443,9 +2442,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			);
 			return;
 		}
-		$user = User::newFromIdentity( $revision->getUser( RevisionRecord::RAW ) );
+		$userIdentity = $revision->getUser( RevisionRecord::RAW );
 
-		$updater = $this->getDerivedDataUpdater( $user, $revision );
+		$updater = $this->getDerivedDataUpdater( $userIdentity, $revision );
 		$updater->prepareUpdate( $revision, $options );
 		$updater->doSecondaryDataUpdates( $options );
 	}
