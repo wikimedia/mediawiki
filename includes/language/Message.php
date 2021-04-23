@@ -869,23 +869,29 @@ class Message implements MessageSpecifier, Serializable {
 	}
 
 	/**
-	 * Returns the message parsed from wikitext to HTML.
+	 * Returns the message formatted a certain way.
 	 *
 	 * @since 1.17
-	 *
 	 * @param string|null $format One of the FORMAT_* constants. Null means use whatever was used
-	 *   the last time (this is for B/C and should be avoided).
-	 *
-	 * @return string HTML
-	 * @suppress SecurityCheck-DoubleEscaped phan false positive
+	 *   the last time (deprecated since 1.36).
+	 * @return string Text or HTML
 	 */
 	public function toString( $format = null ) {
 		if ( $format === null ) {
-			$ex = new LogicException( __METHOD__ . ' using implicit format: ' . $this->format );
-			LoggerFactory::getInstance( 'message-format' )->warning(
-				$ex->getMessage(), [ 'exception' => $ex, 'format' => $this->format, 'key' => $this->key ] );
+			wfDeprecated( __METHOD__ . ' with implicit format', '1.36' );
 			$format = $this->format;
 		}
+		return $this->format( $format );
+	}
+
+	/**
+	 * Returns the message formatted a certain way.
+	 *
+	 * @param string $format One of the FORMAT_* constants.
+	 * @return string Text or HTML
+	 * @suppress SecurityCheck-DoubleEscaped phan false positive
+	 */
+	private function format( string $format ) : string {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {
@@ -944,7 +950,7 @@ class Message implements MessageSpecifier, Serializable {
 		// trigger a fatal error if it does. So, catch any exceptions.
 
 		try {
-			return $this->toString( self::FORMAT_PARSE );
+			return $this->format( self::FORMAT_PARSE );
 		} catch ( Exception $ex ) {
 			try {
 				trigger_error( "Exception caught in " . __METHOD__ . " (message " . $this->key . "): "
@@ -966,7 +972,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function parse() {
 		$this->format = self::FORMAT_PARSE;
-		return $this->toString( self::FORMAT_PARSE );
+		return $this->format( self::FORMAT_PARSE );
 	}
 
 	/**
@@ -978,7 +984,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function text() {
 		$this->format = self::FORMAT_TEXT;
-		return $this->toString( self::FORMAT_TEXT );
+		return $this->format( self::FORMAT_TEXT );
 	}
 
 	/**
@@ -990,7 +996,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function plain() {
 		$this->format = self::FORMAT_PLAIN;
-		return $this->toString( self::FORMAT_PLAIN );
+		return $this->format( self::FORMAT_PLAIN );
 	}
 
 	/**
@@ -1002,7 +1008,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function parseAsBlock() {
 		$this->format = self::FORMAT_BLOCK_PARSE;
-		return $this->toString( self::FORMAT_BLOCK_PARSE );
+		return $this->format( self::FORMAT_BLOCK_PARSE );
 	}
 
 	/**
@@ -1015,7 +1021,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function escaped() {
 		$this->format = self::FORMAT_ESCAPED;
-		return $this->toString( self::FORMAT_ESCAPED );
+		return $this->format( self::FORMAT_ESCAPED );
 	}
 
 	/**
@@ -1301,7 +1307,7 @@ class Message implements MessageSpecifier, Serializable {
 			// Message objects should not be before parameters because
 			// then they'll get double escaped. If the message needs to be
 			// escaped, it'll happen right here when we call toString().
-			return [ 'after', $msg->toString( $format ) ];
+			return [ 'after', $msg->format( $format ) ];
 		} else {
 			return [ 'before', $param ];
 		}
