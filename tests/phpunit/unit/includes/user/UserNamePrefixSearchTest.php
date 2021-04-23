@@ -38,9 +38,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->expects( $this->once() )
 			->method( 'newFromName' )
-			->with(
-				$this->equalTo( $prefix )
-			)
+			->with( $prefix )
 			->willReturn( $user );
 
 		$permissionManager = $this->createMock( PermissionManager::class );
@@ -64,10 +62,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			$audience = $this->createMock( User::class );
 			$permissionManager->expects( $this->once() )
 				->method( 'userHasRight' )
-				->with(
-					$this->equalTo( $audience ),
-					$this->equalTo( 'hideuser' )
-				)
+				->with( $audience, 'hideuser' )
 				->willReturn( $hasHideuser );
 		}
 
@@ -77,10 +72,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			->willReturn( 'anyStringGoesHere' );
 		$database->expects( $this->once() )
 			->method( 'buildLike' )
-			->with(
-				$this->equalTo( $prefix ),
-				$this->equalTo( 'anyStringGoesHere' )
-			)
+			->with( $prefix, 'anyStringGoesHere' )
 			->willReturn( 'LIKE ' . $prefix . 'anyStringGoesHere' );
 
 		// Query parameters
@@ -100,12 +92,12 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 		$database->expects( $this->once() )
 			->method( 'selectFieldValues' )
 			->with(
-				$this->equalTo( $tables ),
-				$this->equalTo( 'user_name' ),
-				$this->equalTo( $conds ),
-				$this->equalTo( 'MediaWiki\User\UserNamePrefixSearch::search' ),
-				$this->equalTo( $options ),
-				$this->equalTo( $joinConds )
+				$tables,
+				'user_name',
+				$conds,
+				'MediaWiki\User\UserNamePrefixSearch::search',
+				$options,
+				$joinConds
 			)
 			->willReturn( $result );
 

@@ -86,10 +86,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		$blockPermissionCheckerFactory = $this->createMock( BlockPermissionCheckerFactory::class );
 		$blockPermissionCheckerFactory->expects( $this->once() )
 			->method( 'newBlockPermissionChecker' )
-			->with(
-				$this->equalTo( $target ),
-				$this->equalTo( $performer )
-			)
+			->with( $target, $performer )
 			->willReturn( $blockPermissionChecker );
 
 		return $blockPermissionCheckerFactory;
@@ -105,12 +102,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		$unblockUserFactory = $this->createMock( UnblockUserFactory::class );
 		$unblockUserFactory->expects( $this->once() )
 			->method( 'newUnblockUser' )
-			->with(
-				$this->equalTo( $target ),
-				$this->equalTo( $performer ),
-				$this->equalTo( $reason ),
-				$this->equalTo( $tags )
-			)
+			->with( $target, $performer, $reason, $tags )
 			->willReturn( $unblockUser );
 
 		return $unblockUserFactory;
@@ -148,12 +140,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 
 		$testException = new Exception( 'Error should be thrown in requireOnlyOneParameter' );
 		$apiUnblock->method( 'requireOnlyOneParameter' )
-			->with(
-				$this->equalTo( $requestParams ),
-				$this->equalTo( 'id' ),
-				$this->equalTo( 'user' ),
-				$this->equalTo( 'userid' )
-			)
+			->with( $requestParams, 'id', 'user', 'userid' )
 			->will( $this->throwException( $testException ) );
 
 		$this->expectException( Exception::class );
@@ -168,9 +155,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 
 		$args['performer']->expects( $this->once() )
 			->method( 'isAllowed' )
-			->with(
-				$this->equalTo( 'block' )
-			)
+			->with( 'block' )
 			->willReturn( false );
 
 		$requestParams = [ 'actual contents are not used in this test' ];
@@ -184,10 +169,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 
 		$testException = new Exception( 'Error should be thrown in dieWithError' );
 		$apiUnblock->method( 'dieWithError' )
-			->with(
-				$this->equalTo( 'apierror-permissiondenied-unblock' ),
-				$this->equalTo( 'permissiondenied' )
-			)
+			->with( 'apierror-permissiondenied-unblock', 'permissiondenied' )
 			->will( $this->throwException( $testException ) );
 
 		$this->expectException( Exception::class );
@@ -203,10 +185,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 
 		$args['userCache']->expects( $this->once() )
 			->method( 'getProp' )
-			->with(
-				$this->equalTo( 'userIdGoesHere' ),
-				$this->equalTo( 'name' )
-			)
+			->with( 'userIdGoesHere', 'name' )
 			->willReturn( false );
 
 		$requestParams = [ 'userid' => 'userIdGoesHere' ];
@@ -220,10 +199,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 
 		$testException = new Exception( 'Error should be thrown in dieWithError' );
 		$apiUnblock->method( 'dieWithError' )
-			->with(
-				$this->equalTo( [ 'apierror-nosuchuserid', 'userIdGoesHere' ] ),
-				$this->equalTo( 'nosuchuserid' )
-			)
+			->with( [ 'apierror-nosuchuserid', 'userIdGoesHere' ], 'nosuchuserid' )
 			->will( $this->throwException( $testException ) );
 
 		$this->expectException( Exception::class );
@@ -252,10 +228,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		// Also includes the test of the codepath where UserCache is used and works
 		$args['userCache']->expects( $this->once() )
 			->method( 'getProp' )
-			->with(
-				$this->equalTo( 'userIdGoesHere' ),
-				$this->equalTo( 'name' )
-			)
+			->with( 'userIdGoesHere', 'name' )
 			->willReturn( 'userNameOfTargetFromCache' );
 
 		$badStatus = Status::newFatal( 'bad status' );
@@ -283,7 +256,7 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 
 		$testException = new Exception( 'Error should be thrown in dieStatus' );
 		$apiUnblock->method( 'dieStatus' )
-			->with( $this->equalTo( $badStatus ) )
+			->with( $badStatus )
 			->will( $this->throwException( $testException ) );
 
 		$this->expectException( Exception::class );
@@ -300,14 +273,14 @@ class ApiUnblockTest extends MediaWikiUnitTestCase {
 		$apiResult->expects( $this->once() )
 			->method( 'addValue' )
 			->with(
-				$this->equalTo( null ),
-				$this->equalTo( $args['action'] ),
-				$this->equalTo( [
+				null,
+				$args['action'],
+				[
 					'id' => 678, // block id
 					'user' => 'targetNameGoesHere', // target name
 					'userid' => 123, // target user id
 					'reason' => 'reasonGoesHere', // reason in $requestParams
-				] )
+				]
 			)
 			->willReturn( true );
 		$args['apiMain']->method( 'getResult' )->willReturn( $apiResult );

@@ -91,10 +91,7 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->expects( $this->once() )
 			->method( 'newFromName' )
-			->with(
-				$this->equalTo( $ip ),
-				$this->equalTo( UserFactory::RIGOR_NONE )
-			)
+			->with( $ip, UserFactory::RIGOR_NONE )
 			->willReturn( $user );
 
 		$blockUtils = $this->getUtils( [], $userFactory );
@@ -137,9 +134,7 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		$userFactory = $this->createMock( UserFactory::class );
 		$userFactory->expects( $this->once() )
 			->method( 'newFromName' )
-			->with(
-				$this->equalTo( $baseName )
-			)
+			->with( $baseName )
 			->willReturn( $userFactoryResult );
 		$blockUtils = $this->getUtils( [], $userFactory );
 		$this->assertSame(

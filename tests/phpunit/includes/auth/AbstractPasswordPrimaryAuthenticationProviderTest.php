@@ -229,7 +229,7 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 		);
 		$provider->expects( $this->once() )
 			->method( 'providerChangeAuthenticationData' )
-			->with( $this->equalTo( $req ) );
+			->with( $req );
 
 		$provider->providerRevokeAccessForUser( 'foo' );
 	}

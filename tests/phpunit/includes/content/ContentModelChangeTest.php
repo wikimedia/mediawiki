@@ -337,7 +337,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mock->expects( $this->once() )
 			->method( 'pingLimiter' )
-			->with( $this->equalTo( 'editcontentmodel' ) )
+			->with( 'editcontentmodel' )
 			->willReturn( true );
 
 		$change = $this->newContentModelChange(

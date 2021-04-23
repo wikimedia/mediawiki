@@ -45,7 +45,7 @@ class NameTableStoreFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$mock->expects( $this->once() )
 			->method( 'getMainLB' )
-			->with( $this->equalTo( $expectedWiki ) )
+			->with( $expectedWiki )
 			->willReturnCallback( function ( $domain ) use ( $localDomain ) {
 				return $this->getMockLoadBalancer( $localDomain );
 			} );

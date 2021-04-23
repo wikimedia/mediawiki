@@ -36,7 +36,7 @@ class AutoSummaryMissingSummaryConstraintTest extends MediaWikiUnitTestCase {
 		$newContent = $this->createMock( Content::class );
 		$newContent->expects( $this->once() )
 			->method( 'equals' )
-			->with( $this->equalTo( $originalContent ) )
+			->with( $originalContent )
 			->willReturn( false );
 		$newContent->expects( $this->once() )
 			->method( 'isRedirect' )
@@ -56,7 +56,7 @@ class AutoSummaryMissingSummaryConstraintTest extends MediaWikiUnitTestCase {
 		$newContent = $this->createMock( Content::class );
 		$newContent->expects( $this->once() )
 			->method( 'equals' )
-			->with( $this->equalTo( $originalContent ) )
+			->with( $originalContent )
 			->willReturn( false );
 		$newContent->expects( $this->once() )
 			->method( 'isRedirect' )

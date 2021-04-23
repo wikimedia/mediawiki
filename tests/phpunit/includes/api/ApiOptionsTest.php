@@ -229,7 +229,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	public function testReset() {
 		$this->mUserMock->expects( $this->once() )
 			->method( 'resetOptions' )
-			->with( $this->equalTo( [ 'all' ] ) );
+			->with( [ 'all' ] );
 
 		$this->mUserMock->expects( $this->never() )
 			->method( 'setOption' );
@@ -247,7 +247,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	public function testResetKinds() {
 		$this->mUserMock->expects( $this->once() )
 			->method( 'resetOptions' )
-			->with( $this->equalTo( [ 'registered' ] ) );
+			->with( [ 'registered' ] );
 
 		$this->mUserMock->expects( $this->never() )
 			->method( 'setOption' );
@@ -269,8 +269,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$this->mUserMock->expects( $this->exactly( 2 ) )
 			->method( 'setOption' )
 			->withConsecutive(
-				[ $this->equalTo( 'willBeHappy' ), $this->equalTo( 'Happy' ) ],
-				[ $this->equalTo( 'name' ), $this->equalTo( 'value' ) ]
+				[ 'willBeHappy', 'Happy' ],
+				[ 'name', 'value' ]
 			);
 
 		$this->mUserMock->expects( $this->once() )

@@ -204,7 +204,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		if ( $isRedirect ) {
 			$target = $this->createMock( Title::class );
 			$target->method( 'inNamespace' )
-				->with( $this->equalTo( NS_USER ) )
+				->with( NS_USER )
 				->willReturn( $targetNamespace === NS_USER );
 
 			$target->method( 'getText' )->willReturn( $targetText );
@@ -219,7 +219,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 
 		$revisionLookup = $this->createMock( RevisionLookup::class );
 		$revisionLookup->method( 'getRevisionByTitle' )
-			->with( $this->equalTo( $title ) )
+			->with( $title )
 			->willReturn( $revisionRecord );
 
 		$permissionManager = $this->getPermissionManager( [
@@ -274,7 +274,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$title = $this->createMock( Title::class );
 		$title->expects( $this->once() )
 			->method( 'getRestrictions' )
-			->with( $this->equalTo( $action ) )
+			->with( $action )
 			->willReturn( $restrictions );
 		$title->method( 'areRestrictionsCascading' )->willReturn( $cascading );
 
