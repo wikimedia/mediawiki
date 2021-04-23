@@ -76,9 +76,9 @@ class NoWriteWatchedItemStore implements WatchedItemStoreInterface {
 	 *         of watchers was below the minimumWatchers option if passed.
 	 */
 	public function countWatchersMultiple( array $targets, array $options = [] ) {
-		return $this->actualStore->countVisitingWatchersMultiple(
+		return $this->actualStore->countWatchersMultiple(
 			$targets,
-			$options['minimumWatchers'] ?? null
+			$options
 		);
 	}
 
