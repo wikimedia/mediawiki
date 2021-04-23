@@ -2425,6 +2425,7 @@
 	"nowatchlist": "您的监视列表为空。",
 	"watchlistanontext": "请登录以查看或编辑您的监视列表。",
 	"watchnologin": "未登录",
+	"watchlistnotwatchable": "此页面无法关注。",
 	"addwatch": "添加至监视列表",
 	"updatewatchlist": "更新监视列表",
 	"addedwatchtext": "“[[:$1]]”及其讨论页已加入至您的[[Special:Watchlist|监视列表]]中。",
