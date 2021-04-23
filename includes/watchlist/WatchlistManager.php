@@ -453,7 +453,7 @@ class WatchlistManager {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
-		return $this->addWatchIgnoringRights( $this->userFactory->newFromAuthority( $performer ), $target, $expiry );
+		return $this->addWatchIgnoringRights( $performer->getUser(), $target, $expiry );
 	}
 
 	/**
@@ -509,7 +509,7 @@ class WatchlistManager {
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
 		}
 
-		return $this->removeWatchIgnoringRights( $this->userFactory->newFromAuthority( $performer ), $target );
+		return $this->removeWatchIgnoringRights( $performer->getUser(), $target );
 	}
 
 	/**
