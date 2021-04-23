@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
@@ -25,6 +27,114 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	use MockTitleTrait;
 	use MockAuthorityTrait;
 
+	/** @var bool */
+	private $watched = false;
+
+	/** @var ?string */
+	private $expiry = null;
+
+	private function getMockWatchedItemStore() {
+		$this->watched = false;
+		$this->expiry = null;
+		$mock = $this->createMock( WatchedItemStore::class );
+		$mock->method( 'getWatchedItem' )->willReturnCallback( function ( $user, $target ) {
+			if ( $this->watched ) {
+				return new WatchedItem(
+					$user,
+					$target,
+					null,
+					$this->expiry
+				);
+			}
+			return false;
+		} );
+		$mock->method( 'addWatch' )->willReturnCallback( function ( $user, $title, $expiry ) {
+			$this->watched = true;
+			$this->expiry = $expiry;
+			return true;
+		} );
+		$mock->method( 'removeWatch' )->willReturnCallback( function ( $user, $title ) {
+			$this->watched = false;
+			$this->expiry = null;
+			return false;
+		} );
+		$mock->method( 'isWatched' )->willReturnCallback( function () {
+			return $this->watched;
+		} );
+		$mock->method( 'isTempWatched' )->willReturnCallback( function () {
+			return $this->watched && ( $this->expiry !== null );
+		} );
+		return $mock;
+	}
+
+	private function getNamespaceInfo( HookContainer $hookContainer ) {
+		// Don't try to mock all of the behavior needed for getting associated
+		// talk/subject pages, etc. Instead, since almost all of the NamespaceInfo
+		// class can be used within Unit tests already, and the parts that would
+		// create errors in unit tests aren't needed for this test, we can
+		// just use a real object
+
+		// based on DefaultSettings
+		$options = new ServiceOptions(
+			NamespaceInfo::CONSTRUCTOR_OPTIONS,
+			[
+				'CanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES,
+				'CapitalLinkOverrides' => [],
+				'CapitalLinks' => true,
+				'ContentNamespaces' => [ NS_MAIN ],
+				'ExtraNamespaces' => [],
+				'ExtraSignatureNamespaces' => [],
+				'NamespaceContentModels' => [],
+				'NamespacesWithSubpages' => [
+					NS_TALK => true,
+					NS_USER => true,
+					NS_USER_TALK => true,
+					NS_PROJECT => true,
+					NS_PROJECT_TALK => true,
+					NS_FILE_TALK => true,
+					NS_MEDIAWIKI => true,
+					NS_MEDIAWIKI_TALK => true,
+					NS_TEMPLATE => true,
+					NS_TEMPLATE_TALK => true,
+					NS_HELP => true,
+					NS_HELP_TALK => true,
+					NS_CATEGORY_TALK => true,
+				],
+				'NonincludableNamespaces' => [],
+			]
+		);
+		return new NamespaceInfo( $options, $hookContainer );
+	}
+
+	private function getWikiPageFactory() {
+		// Needed so that we can test addWatchIgnoringRights and removeWatchIgnoringRights,
+		// which convert a PageIdentity to a WikiPage to use WikiPage::getTitle so that
+		// the Title (a LinkTarget) can be used for interacting with the NamespaceInfo
+		// service
+		$wikiPageFactory = $this->createMock( WikiPageFactory::class );
+		$wikiPageFactory->method( 'newFromTitle' )->willReturnCallback(
+			function ( PageIdentity $pageIdentity ) {
+				// We can't use Title::castFromPageIdentity because that
+				// calls Title::resetArticleID which uses MediaWikiServices
+				// Thankfully, however, the only methods on the Title that are
+				// actually needed all work in unit tests
+				$title = Title::makeTitle(
+					$pageIdentity->getNamespace(),
+					$pageIdentity->getDBkey()
+				);
+				// WikiPage::construct calls Title::canExist which returns early
+				// if the id is already set, otherwise would break in unit tests
+				$title->mArticleID = $pageIdentity->getId();
+
+				// We can use an actual WikiPage, constructor works in unit tests
+				// now that the PageIdentity we give it is a real Title object,
+				// and ::getTitle works in unit tests too
+				return new WikiPage( $title );
+			}
+		);
+		return $wikiPageFactory;
+	}
+
 	private function getManager( array $params = [] ) {
 		$config = $params['config'] ?? [
 			'UseEnotif' => false,
@@ -37,12 +147,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$readOnly = $params['readOnly'] ?? false;
 		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
-		if ( $readOnly !== 'never' ) {
-			// Set 'never' for testing getTitleNotificationTimestamp, which doesn't call
-			$readOnlyMode->expects( $this->atLeast( 1 ) )
-				->method( 'isReadOnly' )
-				->willReturn( $readOnly );
-		}
+		$readOnlyMode->method( 'isReadOnly' )->willReturn( $readOnly );
 
 		$talkPageNotificationManager = $params['talkPageNotificationManager'] ??
 			$this->createNoOpMock( TalkPageNotificationManager::class );
@@ -51,25 +156,22 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$this->createNoOpAbstractMock( WatchedItemStoreInterface::class );
 
 		$userFactory = $params['userFactory'] ??
-			$this->createNoOpAbstractMock( UserFactory::class );
+			$this->createNoOpMock( UserFactory::class );
 
-		$nsInfo = $this->createNoOpMock( NamespaceInfo::class, [ 'isWatchable' ] );
-		$nsInfo->method( 'isWatchable' )->willReturnCallback(
-			function ( $ns ) {
-				return $ns >= 0;
-			}
-		);
+		$hookContainer = $params['hookContainer'] ?? $this->createHookContainer();
+
+		$nsInfo = $this->getNamespaceInfo( $hookContainer );
 
 		return new WatchlistManager(
 			$options,
-			$this->createHookContainer(),
+			$hookContainer,
 			$readOnlyMode,
 			$this->createMock( RevisionLookup::class ),
 			$talkPageNotificationManager,
 			$watchedItemStore,
 			$userFactory,
 			$nsInfo,
-			$this->createMock( WikiPageFactory::class )
+			$this->getWikiPageFactory()
 		);
 	}
 
@@ -393,9 +495,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
-		$manager = $this->getManager( [
-			'readOnly' => 'never'
-		] );
+		$manager = $this->getManager();
 
 		$res = $manager->getTitleNotificationTimestamp( $userIdentity, $title );
 
@@ -430,7 +530,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->willReturn( $watchedItem );
 
 		$manager = $this->getManager( [
-			'readOnly' => 'never',
 			'watchedItemStore' => $watchedItemStore
 		] );
 
@@ -478,7 +577,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->willReturn( $watchedItem );
 
 		$manager = $this->getManager( [
-			'readOnly' => 'never',
 			'watchedItemStore' => $watchedItemStore
 		] );
 
@@ -505,7 +603,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->willReturn( false );
 
 		$manager = $this->getManager( [
-			'readOnly' => 'never',
 			'watchedItemStore' => $watchedItemStore
 		] );
 
@@ -537,5 +634,265 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$manager = $this->getManager( [ 'readOnly' => 'never' ] );
 
 		$this->assertFalse( $manager->isWatchable( $target ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::setWatch()
+	 */
+	public function testSetWatchWithExpiry() {
+		// Already watched, but we're adding an expiry so 'addWatch' should be called.
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchedItemStore->expects( $this->exactly( 4 ) )->method( 'addWatch' ); // watch page and its talk page twice
+		$watchedItemStore->expects( $this->never() )->method( 'removeWatch' );
+
+		$watchlistManager = $this->getManager( [
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
+
+		$status = $watchlistManager->setWatch( true, $authority, $title, '1 week' );
+
+		$this->assertTrue( $status->isGood() );
+		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::setWatch()
+	 */
+	public function testSetWatchUserNotLoggedIn() {
+		$userIdentity = new UserIdentityValue( 0, 'User Name' );
+		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchedItemStore->expects( $this->never() )->method( 'addWatch' );
+		$watchedItemStore->expects( $this->never() )->method( 'removeWatch' );
+
+		$watchlistManager = $this->getManager( [
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$status = $watchlistManager->setWatch( true, $performer, $title );
+
+		// returns immediately with no error if not logged in
+		$this->assertTrue( $status->isGood() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::setWatch()
+	 */
+	public function testSetWatchSkipsIfAlreadyWatched() {
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchedItemStore->expects( $this->exactly( 2 ) )->method( 'addWatch' ); // watch page and its talk page
+		$watchedItemStore->expects( $this->never() )->method( 'removeWatch' );
+
+		$watchlistManager = $this->getManager( [
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$expiry = '99990123000000';
+		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title, $expiry );
+
+		// Same expiry
+		$status = $watchlistManager->setWatch( true, $authority, $title, $expiry );
+
+		$this->assertTrue( $status->isGood() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::setWatch()
+	 */
+	public function testSetWatchSkipsIfAlreadyUnWatched() {
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchedItemStore->expects( $this->never() )->method( 'addWatch' );
+		$watchedItemStore->expects( $this->never() )->method( 'removeWatch' );
+
+		$watchlistManager = $this->getManager( [
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$status = $watchlistManager->setWatch( false, $authority, $title );
+
+		$this->assertTrue( $status->isGood() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::setWatch()
+	 */
+	public function testSetWatchWatchesIfWatch() {
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchlistManager = $this->getManager( [
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
+
+		$status = $watchlistManager->setWatch( true, $authority, $title );
+
+		$this->assertTrue( $status->isGood() );
+		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::setWatch()
+	 */
+	public function testSetWatchUnwatchesIfUnwatch() {
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchlistManager = $this->getManager( [
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$status = $watchlistManager->setWatch( false, $authority, $title );
+
+		$this->assertTrue( $status->isGood() );
+		$this->assertFalse( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::addWatchIgnoringRights()
+	 */
+	public function testAddWatchNoCheckRights() {
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchlistManager = $this->getManager( [
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$watchedItemStore->clearUserWatchedItems( $userIdentity );
+
+		$actual = $watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
+
+		$this->assertTrue( $actual->isGood() );
+		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::addWatch()
+	 */
+	public function testAddWatchSuccess() {
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchlistManager = $this->getManager( [
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$actual = $watchlistManager->addWatch( $authority, $title );
+
+		$this->assertTrue( $actual->isGood() );
+		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::removeWatch()
+	 */
+	public function testRemoveWatchUserHookAborted() {
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$hookContainer = $this->createHookContainer( [
+			'UnwatchArticle' => static function () {
+				return false;
+			},
+		] );
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchlistManager = $this->getManager( [
+			'hookContainer' => $hookContainer,
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
+
+		$status = $watchlistManager->removeWatch( $authority, $title );
+
+		$this->assertFalse( $status->isGood() );
+		$errors = $status->getErrors();
+		$this->assertCount( 1, $errors );
+		$this->assertEquals( 'hookaborted', $errors[0]['message'] );
+		$this->assertTrue( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Watchlist\WatchlistManager::removeWatch()
+	 */
+	public function testRemoveWatchSuccess() {
+		$userIdentity = new UserIdentityValue( 100, 'User Name' );
+		list( $authority, $userFactory ) = $this->getAuthorityAndUserFactory(
+			$userIdentity,
+			[ 'editmywatchlist' ]
+		);
+		$title = new PageIdentityValue( 100, NS_MAIN, 'Page_db_Key_goesHere', PageIdentityValue::LOCAL );
+
+		$watchedItemStore = $this->getMockWatchedItemStore();
+		$watchlistManager = $this->getManager( [
+			'userFactory' => $userFactory,
+			'watchedItemStore' => $watchedItemStore,
+		] );
+
+		$watchlistManager->addWatchIgnoringRights( $userIdentity, $title );
+
+		$status = $watchlistManager->removeWatch( $authority, $title );
+
+		$this->assertTrue( $status->isGood() );
+		$this->assertFalse( $watchlistManager->isWatchedIgnoringRights( $userIdentity, $title ) );
 	}
 }
