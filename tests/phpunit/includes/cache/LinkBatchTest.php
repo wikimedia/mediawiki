@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -85,19 +88,21 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 	public function testAddObj() {
 		$batch = new LinkBatch(
 			[
-				new TitleValue( NS_MAIN, 'Foo' )
+				new TitleValue( NS_MAIN, 'Foo' ),
+				new PageReferenceValue( NS_USER, 'Foo', PageReference::LOCAL ),
 			],
 			$this->createMock( LinkCache::class ),
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class )
+			$this->getServiceContainer()->getDBLoadBalancer()
 		);
 
-		$batch->addObj( new TitleValue( NS_TALK, 'Bar' ) );
+		$batch->addObj( new PageReferenceValue( NS_TALK, 'Bar', PageReference::LOCAL ) );
 		$batch->addObj( new TitleValue( NS_MAIN, 'Foo' ) );
 
-		$this->assertSame( 2, $batch->getSize() );
+		$this->assertSame( 3, $batch->getSize() );
+		$this->assertCount( 3, $batch->getPageIdentities() );
 	}
 
 	/**
@@ -113,13 +118,14 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
-			$this->createMock( ILoadBalancer::class )
+			$this->getServiceContainer()->getDBLoadBalancer()
 		);
 
 		$batch->add( NS_TALK, 'Bar' );
 		$batch->add( NS_MAIN, 'Foo' );
 
 		$this->assertSame( 2, $batch->getSize() );
+		$this->assertCount( 2, $batch->getPageIdentities() );
 	}
 
 	public function testExecute() {
@@ -178,6 +184,21 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertArrayHasKey( $nonexisting1->getTitleValue()->__toString(), $bad );
 		$this->assertArrayHasKey( $nonexisting2->getTitleValue()->__toString(), $bad );
+
+		$expected = array_map(
+			[ CacheKeyHelper::class, 'getKeyForPage' ],
+			[ $existing1, $existing2, $nonexisting1, $nonexisting2 ]
+		);
+
+		$actual = array_map(
+			[ CacheKeyHelper::class, 'getKeyForPage' ],
+			$batch->getPageIdentities()
+		);
+
+		sort( $expected );
+		sort( $actual );
+
+		$this->assertEquals( $expected, $actual );
 	}
 
 	public function testDoGenderQueryWithEmptyLinkBatch() {
