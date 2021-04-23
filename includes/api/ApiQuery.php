@@ -91,34 +91,66 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryBlocks::class,
 			'services' => [
 				'BlockRestrictionStore',
+				'CommentStore',
 			],
 		],
 		'categorymembers' => ApiQueryCategoryMembers::class,
-		'deletedrevs' => ApiQueryDeletedrevs::class,
+		'deletedrevs' => [
+			'class' => ApiQueryDeletedrevs::class,
+			'services' => [
+				'CommentStore',
+			],
+		],
 		'embeddedin' => ApiQueryBacklinks::class,
 		'exturlusage' => ApiQueryExtLinksUsage::class,
-		'filearchive' => ApiQueryFilearchive::class,
+		'filearchive' => [
+			'class' => ApiQueryFilearchive::class,
+			'services' => [
+				'CommentStore',
+			],
+		],
 		'imageusage' => ApiQueryBacklinks::class,
 		'iwbacklinks' => ApiQueryIWBacklinks::class,
 		'langbacklinks' => ApiQueryLangBacklinks::class,
-		'logevents' => ApiQueryLogEvents::class,
+		'logevents' => [
+			'class' => ApiQueryLogEvents::class,
+			'services' => [
+				'CommentStore',
+			],
+		],
 		'pageswithprop' => ApiQueryPagesWithProp::class,
 		'pagepropnames' => ApiQueryPagePropNames::class,
 		'prefixsearch' => ApiQueryPrefixSearch::class,
-		'protectedtitles' => ApiQueryProtectedTitles::class,
+		'protectedtitles' => [
+			'class' => ApiQueryProtectedTitles::class,
+			'services' => [
+				'CommentStore',
+			],
+		],
 		'querypage' => ApiQueryQueryPage::class,
 		'random' => ApiQueryRandom::class,
-		'recentchanges' => ApiQueryRecentChanges::class,
+		'recentchanges' => [
+			'class' => ApiQueryRecentChanges::class,
+			'services' => [
+				'CommentStore',
+			],
+		],
 		'search' => ApiQuerySearch::class,
 		'tags' => ApiQueryTags::class,
 		'usercontribs' => [
 			'class' => ApiQueryUserContribs::class,
 			'services' => [
+				'CommentStore',
 				'UserIdentityLookup',
 			],
 		],
 		'users' => ApiQueryUsers::class,
-		'watchlist' => ApiQueryWatchlist::class,
+		'watchlist' => [
+			'class' => ApiQueryWatchlist::class,
+			'services' => [
+				'CommentStore',
+			],
+		],
 		'watchlistraw' => ApiQueryWatchlistRaw::class,
 	];
 

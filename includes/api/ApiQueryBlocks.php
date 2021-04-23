@@ -35,23 +35,28 @@ class ApiQueryBlocks extends ApiQueryBase {
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
+	/** @var CommentStore */
+	private $commentStore;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param BlockRestrictionStore $blockRestrictionStore
+	 * @param CommentStore $commentStore
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		BlockRestrictionStore $blockRestrictionStore
+		BlockRestrictionStore $blockRestrictionStore,
+		CommentStore $commentStore
 	) {
 		parent::__construct( $query, $moduleName, 'bk' );
 		$this->blockRestrictionStore = $blockRestrictionStore;
+		$this->commentStore = $commentStore;
 	}
 
 	public function execute() {
 		$db = $this->getDB();
-		$commentStore = CommentStore::getStore();
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'users', 'ip' );
 
@@ -88,7 +93,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$this->addFieldsIf( 'ipb_sitewide', $fld_restrictions );
 
 		if ( $fld_reason ) {
-			$commentQuery = $commentStore->getJoin( 'ipb_reason' );
+			$commentQuery = $this->commentStore->getJoin( 'ipb_reason' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );
@@ -237,7 +242,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				$block['expiry'] = ApiResult::formatExpiry( $row->ipb_expiry );
 			}
 			if ( $fld_reason ) {
-				$block['reason'] = $commentStore->getComment( 'ipb_reason', $row )->text;
+				$block['reason'] = $this->commentStore->getComment( 'ipb_reason', $row )->text;
 			}
 			if ( $fld_range && !$row->ipb_auto ) {
 				$block['rangestart'] = IPUtils::formatHex( $row->ipb_range_start );
