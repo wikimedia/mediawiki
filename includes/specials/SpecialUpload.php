@@ -396,8 +396,8 @@ class SpecialUpload extends SpecialPage {
 			$sessionKey = null;
 			$uploadWarning = 'upload-tryagain-nostash';
 		}
-		$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . "</h2>\n" .
-			'<div class="error">' . $message . "</div>\n";
+		$message = '<h2>' . $this->msg( 'uploaderror' )->escaped() . '</h2>' .
+			Html::errorBox( $message );
 
 		$form = $this->getUploadForm( $message, $sessionKey );
 		$form->setSubmitText( $this->msg( $uploadWarning )->escaped() );
@@ -517,8 +517,8 @@ class SpecialUpload extends SpecialPage {
 	 * @param string $message HTML string
 	 */
 	protected function showUploadError( $message ) {
-		$message = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . "</h2>\n" .
-			'<div class="error">' . $message . "</div>\n";
+		$message = '<h2>' . $this->msg( 'uploadwarning' )->escaped() . '</h2>' .
+			Html::errorBox( $message );
 		$this->showUploadForm( $this->getUploadForm( $message ) );
 	}
 

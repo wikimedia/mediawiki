@@ -1860,9 +1860,9 @@ class EditPage implements IEditObject {
 				// is if an extension hook aborted from inside ArticleSave.
 				// Render the status object into $this->hookError
 				// FIXME this sucks, we should just use the Status object throughout
-				$this->hookError = '<div class="error">' . "\n" .
-					$status->getWikiText( false, false, $this->context->getLanguage() ) .
-					'</div>';
+				$this->hookError = Html::errorBox(
+					$status->getWikiText( false, false, $this->context->getLanguage() )
+				);
 				return true;
 		}
 	}
@@ -2965,8 +2965,11 @@ class EditPage implements IEditObject {
 		$out->addHTML( $this->editFormTextTop );
 
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype !== 'save' ) {
-			$out->wrapWikiMsg( "<div class='error mw-deleted-while-editing'>\n$1\n</div>",
-				'deletedwhileediting' );
+			$out->addHTML( Html::errorBox(
+				$out->msg( 'deletedwhileediting' )->plain(),
+				'',
+				'mw-deleted-while-editing'
+			) );
 		}
 
 		// @todo add EditForm plugin interface and use it here!
@@ -3359,7 +3362,7 @@ class EditPage implements IEditObject {
 			# Check the skin exists
 			if ( $this->isWrongCaseUserConfigPage() ) {
 				$out->wrapWikiMsg(
-					"<div class='error' id='mw-userinvalidconfigtitle'>\n$1\n</div>",
+					"<div class='errorbox' id='mw-userinvalidconfigtitle'>\n$1\n</div>",
 					[ 'userinvalidconfigtitle', $this->mTitle->getSkinFromConfigSubpage() ]
 				);
 			}

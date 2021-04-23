@@ -256,9 +256,9 @@ class ProtectionForm {
 		$out->addBacklinkSubtitle( $this->mTitle );
 
 		if ( is_array( $err ) ) {
-			$out->wrapWikiMsg( "<div class='error'>\n$1\n</div>\n", $err );
+			$out->addHTML( Html::errorBox( $out->msg( ...$err )->plain() ) );
 		} elseif ( is_string( $err ) ) {
-			$out->addHTML( "<div class='error'>{$err}</div>\n" );
+			$out->addHTML( Html::errorBox( $err ) );
 		}
 
 		if ( $this->mApplicableTypes === [] ) {
