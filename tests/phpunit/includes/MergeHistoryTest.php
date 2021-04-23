@@ -246,8 +246,7 @@ class MergeHistoryTest extends MediaWikiIntegrationTestCase {
 			$services->getWatchedItemStore(),
 			$services->getSpamChecker(),
 			$services->getHookContainer(),
-			$services->getWikiPageFactory(),
-			$services->getUserFactory()
+			$services->getWikiPageFactory()
 		);
 		$this->assertInstanceOf(
 			MergeHistory::class,
