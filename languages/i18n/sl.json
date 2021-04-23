@@ -2268,6 +2268,7 @@
 	"nowatchlist": "Tvoj spisek nadzorov je prazen.",
 	"watchlistanontext": "Za pregled ali urejanje vsebine vašega spiska nadzorov se morate prijaviti.",
 	"watchnologin": "Niste prijavljeni",
+	"watchlistnotwatchable": "Strani ni mogoče nadzorovati.",
 	"addwatch": "Dodaj na spisek nadzorov",
 	"updatewatchlist": "Posodobi spisek nadzorov",
 	"addedwatchtext": "Stran »[[:$1]]« in pripadajočo pogovorno stran smo dodali na vaš [[Special:Watchlist|spisek nadzorov]].",
