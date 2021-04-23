@@ -520,17 +520,17 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testUserCanAuthenticate( $primary1Can, $primary2Can, $expect ) {
 		$mock1 = $this->getMockForAbstractClass( PrimaryAuthenticationProvider::class );
-		$mock1->expects( $this->any() )->method( 'getUniqueId' )
-			->will( $this->returnValue( 'primary1' ) );
-		$mock1->expects( $this->any() )->method( 'testUserCanAuthenticate' )
-			->with( $this->equalTo( 'UTSysop' ) )
-			->will( $this->returnValue( $primary1Can ) );
+		$mock1->method( 'getUniqueId' )
+			->willReturn( 'primary1' );
+		$mock1->method( 'testUserCanAuthenticate' )
+			->with( 'UTSysop' )
+			->willReturn( $primary1Can );
 		$mock2 = $this->getMockForAbstractClass( PrimaryAuthenticationProvider::class );
-		$mock2->expects( $this->any() )->method( 'getUniqueId' )
-			->will( $this->returnValue( 'primary2' ) );
-		$mock2->expects( $this->any() )->method( 'testUserCanAuthenticate' )
-			->with( $this->equalTo( 'UTSysop' ) )
-			->will( $this->returnValue( $primary2Can ) );
+		$mock2->method( 'getUniqueId' )
+			->willReturn( 'primary2' );
+		$mock2->method( 'testUserCanAuthenticate' )
+			->with( 'UTSysop' )
+			->willReturn( $primary2Can );
 		$this->primaryauthMocks = [ $mock1, $mock2 ];
 
 		$this->initializeManager( true );
@@ -553,7 +553,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$mock->method( 'getUniqueId' )
 			->willReturn( 'primary' );
 		$mock->expects( $this->once() )->method( 'providerRevokeAccessForUser' )
-			->with( $this->equalTo( 'UTSysop' ) );
+			->with( 'UTSysop' );
 		$this->primaryauthMocks = [ $mock ];
 
 		$this->initializeManager( true );
@@ -1350,17 +1350,17 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testUserExists( $primary1Exists, $primary2Exists, $expect ) {
 		$mock1 = $this->getMockForAbstractClass( PrimaryAuthenticationProvider::class );
-		$mock1->expects( $this->any() )->method( 'getUniqueId' )
-			->will( $this->returnValue( 'primary1' ) );
-		$mock1->expects( $this->any() )->method( 'testUserExists' )
-			->with( $this->equalTo( 'UTSysop' ) )
-			->will( $this->returnValue( $primary1Exists ) );
+		$mock1->method( 'getUniqueId' )
+			->willReturn( 'primary1' );
+		$mock1->method( 'testUserExists' )
+			->with( 'UTSysop' )
+			->willReturn( $primary1Exists );
 		$mock2 = $this->getMockForAbstractClass( PrimaryAuthenticationProvider::class );
-		$mock2->expects( $this->any() )->method( 'getUniqueId' )
-			->will( $this->returnValue( 'primary2' ) );
-		$mock2->expects( $this->any() )->method( 'testUserExists' )
-			->with( $this->equalTo( 'UTSysop' ) )
-			->will( $this->returnValue( $primary2Exists ) );
+		$mock2->method( 'getUniqueId' )
+			->willReturn( 'primary2' );
+		$mock2->method( 'testUserExists' )
+			->with( 'UTSysop' )
+			->willReturn( $primary2Exists );
 		$this->primaryauthMocks = [ $mock1, $mock2 ];
 
 		$this->initializeManager( true );
@@ -1386,15 +1386,15 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$req = $this->getMockForAbstractClass( AuthenticationRequest::class );
 
 		$mock1 = $this->getMockForAbstractClass( PrimaryAuthenticationProvider::class );
-		$mock1->expects( $this->any() )->method( 'getUniqueId' )->will( $this->returnValue( '1' ) );
-		$mock1->expects( $this->any() )->method( 'providerAllowsAuthenticationDataChange' )
-			->with( $this->equalTo( $req ) )
-			->will( $this->returnValue( $primaryReturn ) );
+		$mock1->method( 'getUniqueId' )->willReturn( '1' );
+		$mock1->method( 'providerAllowsAuthenticationDataChange' )
+			->with( $req )
+			->willReturn( $primaryReturn );
 		$mock2 = $this->getMockForAbstractClass( SecondaryAuthenticationProvider::class );
-		$mock2->expects( $this->any() )->method( 'getUniqueId' )->will( $this->returnValue( '2' ) );
-		$mock2->expects( $this->any() )->method( 'providerAllowsAuthenticationDataChange' )
-			->with( $this->equalTo( $req ) )
-			->will( $this->returnValue( $secondaryReturn ) );
+		$mock2->method( 'getUniqueId' )->willReturn( '2' );
+		$mock2->method( 'providerAllowsAuthenticationDataChange' )
+			->with( $req )
+			->willReturn( $secondaryReturn );
 
 		$this->primaryauthMocks = [ $mock1 ];
 		$this->secondaryauthMocks = [ $mock2 ];
@@ -1469,11 +1469,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$mock1 = $this->getMockForAbstractClass( PrimaryAuthenticationProvider::class );
 		$mock1->method( 'getUniqueId' )->willReturn( '1' );
 		$mock1->expects( $this->once() )->method( 'providerChangeAuthenticationData' )
-			->with( $this->equalTo( $req ) );
+			->with( $req );
 		$mock2 = $this->getMockForAbstractClass( PrimaryAuthenticationProvider::class );
 		$mock2->method( 'getUniqueId' )->willReturn( '2' );
 		$mock2->expects( $this->once() )->method( 'providerChangeAuthenticationData' )
-			->with( $this->equalTo( $req ) );
+			->with( $req );
 
 		$this->primaryauthMocks = [ $mock1, $mock2 ];
 		$this->initializeManager( true );
@@ -2878,7 +2878,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$username = self::usernameForCreation();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->once() )
-			->with( $callback, $this->equalTo( true ) );
+			->with( $callback, true );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, true, true );
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertEquals( \Status::newGood(), $ret );
@@ -2896,7 +2896,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$username = self::usernameForCreation();
 		$user = \User::newFromName( $username );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->once() )
-			->with( $callback, $this->equalTo( true ) );
+			->with( $callback, true );
 		$ret = $this->manager->autoCreateUser( $user, AuthManager::AUTOCREATE_SOURCE_SESSION, false, true );
 		$this->unhook( 'LocalUserCreated' );
 		$this->assertEquals( \Status::newGood(), $ret );
@@ -3336,7 +3336,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$this->hook( 'UserLoggedIn', UserLoggedInHook::class, $this->never() );
 		$this->hook( 'LocalUserCreated', LocalUserCreatedHook::class, $this->once() )
-			->with( $callback, $this->equalTo( true ) );
+			->with( $callback, true );
 		$ret = $this->manager->beginAuthentication( [], 'http://localhost/' );
 		$this->unhook( 'LocalUserCreated' );
 		$this->unhook( 'UserLoggedIn' );

@@ -117,7 +117,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	public function testIsUsable( string $name, bool $result ) {
 		$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
 		$textFormatter->method( 'format' )
-			->with( $this->equalTo( MessageValue::new( 'reserved-user' ) ) )
+			->with( MessageValue::new( 'reserved-user' ) )
 			->willReturn( 'reserved-user' );
 
 		$utils = $this->getUtils(

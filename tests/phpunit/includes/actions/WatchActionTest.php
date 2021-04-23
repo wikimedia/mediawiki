@@ -448,7 +448,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$user = $this->createMock( User::class );
 		$user->expects( $this->once() )
 			->method( 'getEditToken' )
-			->with( $this->equalTo( 'watch' ) );
+			->with( 'watch' );
 
 		WatchAction::getWatchToken( $this->watchAction->getTitle(), $user, 'INVALID_ACTION' );
 	}
