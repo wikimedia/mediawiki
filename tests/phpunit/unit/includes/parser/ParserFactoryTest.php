@@ -8,7 +8,6 @@ use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserOptionsLookup;
-use Psr\Log\LoggerInterface;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -51,7 +50,7 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( SpecialPageFactory::class ),
 			$this->createNoOpMock( LinkRendererFactory::class ),
 			$this->createNoOpMock( NamespaceInfo::class ),
-			$this->createNoOpMock( LoggerInterface::class ),
+			new TestLogger(),
 			$this->createNoOpMock( BadFileLookup::class ),
 			$this->createNoOpMock( LanguageConverterFactory::class ),
 			$this->createHookContainer(),
