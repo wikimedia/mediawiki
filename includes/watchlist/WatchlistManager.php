@@ -479,9 +479,9 @@ class WatchlistManager {
 		$user = $this->userFactory->newFromUserIdentity( $userIdentity );
 		if ( $this->hookRunner->onUnwatchArticle( $user, $wikiPage, $status ) ) {
 			$status = StatusValue::newGood();
-			$this->watchedItemStore->removeWatch( $user, $this->nsInfo->getSubjectPage( $title ) );
+			$this->watchedItemStore->removeWatch( $userIdentity, $this->nsInfo->getSubjectPage( $title ) );
 			if ( $this->nsInfo->canHaveTalkPage( $title ) ) {
-				$this->watchedItemStore->removeWatch( $user, $this->nsInfo->getTalkPage( $title ) );
+				$this->watchedItemStore->removeWatch( $userIdentity, $this->nsInfo->getTalkPage( $title ) );
 			}
 			$this->hookRunner->onUnwatchArticleComplete( $user, $wikiPage );
 		}
