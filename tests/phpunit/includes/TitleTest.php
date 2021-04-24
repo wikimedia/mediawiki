@@ -1832,7 +1832,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'pr_type' => 'edit',
 			'pr_level' => 'sysop',
 			'pr_cascade' => 0,
-			'pr_user' => null,
 			'pr_expiry' => 'infinity'
 		] ] ];
 		yield [ [ (object)[
@@ -1841,7 +1840,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'pr_type' => 'edit',
 			'pr_level' => 'sysop',
 			'pr_cascade' => 0,
-			'pr_user' => null,
 			'pr_expiry' => 'infinity'
 		] ] ];
 		yield [ [ (object)[
@@ -1850,7 +1848,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'pr_type' => 'move',
 			'pr_level' => 'sysop',
 			'pr_cascade' => 0,
-			'pr_user' => null,
 			'pr_expiry' => wfTimestamp( TS_MW, time() + 10000 )
 		] ] ];
 	}
