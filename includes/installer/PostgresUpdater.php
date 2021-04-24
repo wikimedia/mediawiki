@@ -633,6 +633,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			],
 				'CREATE INDEX rev_page_id ON revision (rev_page,rev_id)' ],
 			[ 'addTable', 'searchindex', 'patch-searchindex-table.sql' ],
+			[ 'addPgIndex', 'oldimage', 'oi_timestamp', '(oi_timestamp)' ],
 		];
 	}
 

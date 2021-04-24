@@ -2398,6 +2398,14 @@
 				],
 				"unique": false,
 				"options": { "lengths": [ 10 ] }
+			},
+			{
+				"name": "oi_timestamp",
+				"comment": "Used by Special:ListFiles",
+				"columns": [
+					"oi_timestamp"
+				],
+				"unique": false
 			}
 		]
 	},

@@ -100,6 +100,7 @@ class GenerateSchemaChangeSql extends Maintenance {
 
 		// Until the linting issue is resolved
 		// https://github.com/doctrine/sql-formatter/issues/53
+		$sql = str_replace( "\n/*_*/\n", " /*_*/", $sql );
 		$sql = str_replace( "; ", ";\n", $sql );
 		$sql = preg_replace( "/\n+? +?/", ' ', $sql );
 		$sql = str_replace( "/*_*/  ", "/*_*/", $sql );
