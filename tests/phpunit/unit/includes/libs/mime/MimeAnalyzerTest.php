@@ -86,7 +86,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideGetMediaType
 	 */
 	public function testGetMediaType( $file, $mime, $expectType ) {
-		$file = __DIR__ . '/../../../data/media/' . $file;
+		$file = __DIR__ . '/../../../../data/media/' . $file;
 		$this->assertEquals(
 			$expectType,
 			$this->mimeAnalyzer->getMediaType( $file, $mime )
@@ -118,7 +118,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideDoGuessMimeType
 	 */
 	public function testDoGuessMimeType( $file, $ext, $expectType ) {
-		$file = __DIR__ . '/../../../data/media/' . $file;
+		$file = __DIR__ . '/../../../../data/media/' . $file;
 		$this->assertEquals(
 			$expectType,
 			$this->doGuessMimeType( [ $file, $ext ] )
@@ -182,7 +182,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 
 	/** @dataProvider providePngZipConfusion */
 	public function testPngZipConfusion( $description, $fileName, $expectedType ) {
-		$file = __DIR__ . '/../../../data/media/' . $fileName;
+		$file = __DIR__ . '/../../../../data/media/' . $fileName;
 		$actualType = $this->doGuessMimeType( [ $file, 'png' ] );
 		$this->assertEquals( $expectedType, $actualType, $description );
 	}
