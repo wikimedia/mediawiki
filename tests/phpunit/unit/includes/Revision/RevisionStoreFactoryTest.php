@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Revision;
+namespace MediaWiki\Tests\Unit\Revision;
 
 use ActorMigration;
 use CommentStore;
@@ -19,7 +19,7 @@ use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentityLookup;
-use MediaWikiIntegrationTestCase;
+use MediaWikiUnitTestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
@@ -29,7 +29,7 @@ use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\TestingAccessWrapper;
 
-class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
+class RevisionStoreFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @covers \MediaWiki\Revision\RevisionStoreFactory::__construct
@@ -42,7 +42,7 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 			$this->getMockSlotRoleRegistry(),
 			$this->getHashWANObjectCache(),
 			$this->getMockCommentStore(),
-			ActorMigration::newMigration(),
+			$this->getMockActorMigration(),
 			$this->getMockActorStoreFactory(),
 			new NullLogger(),
 			$this->getContentHandlerFactory(),
@@ -70,7 +70,7 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		$slotRoleRegistry = $this->getMockSlotRoleRegistry();
 		$cache = $this->getHashWANObjectCache();
 		$commentStore = $this->getMockCommentStore();
-		$actorMigration = ActorMigration::newMigration();
+		$actorMigration = $this->getMockActorMigration();
 		$actorStoreFactory = $this->getMockActorStoreFactory();
 		$logger = new NullLogger();
 		$contentHandlerFactory = $this->getContentHandlerFactory();
@@ -117,47 +117,31 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return MockObject|ILoadBalancer
+	 * @return MockObject|ActorMigration
 	 */
-	private function getMockLoadBalancer() {
-		return $this->getMockBuilder( ILoadBalancer::class )
-			->disableOriginalConstructor()->getMock();
+	private function getMockActorMigration() {
+		return $this->createMock( ActorMigration::class );
 	}
 
 	/**
 	 * @return MockObject|ILBFactory
 	 */
 	private function getMockLoadBalancerFactory() {
-		$mock = $this->getMockBuilder( ILBFactory::class )
-			->disableOriginalConstructor()->getMock();
-
+		$mock = $this->createMock( ILBFactory::class );
 		$mock->method( 'getMainLB' )
-			->willReturnCallback( function () {
-				return $this->getMockLoadBalancer();
-			} );
+			->willReturn( $this->createMock( ILoadBalancer::class ) );
 
 		return $mock;
-	}
-
-	/**
-	 * @return MockObject|SqlBlobStore
-	 */
-	private function getMockSqlBlobStore() {
-		return $this->getMockBuilder( SqlBlobStore::class )
-			->disableOriginalConstructor()->getMock();
 	}
 
 	/**
 	 * @return MockObject|BlobStoreFactory
 	 */
 	private function getMockBlobStoreFactory() {
-		$mock = $this->getMockBuilder( BlobStoreFactory::class )
-			->disableOriginalConstructor()->getMock();
+		$mock = $this->createMock( BlobStoreFactory::class );
 
 		$mock->method( 'newSqlBlobStore' )
-			->willReturnCallback( function () {
-				return $this->getMockSqlBlobStore();
-			} );
+			->willReturn( $this->createMock( SqlBlobStore::class ) );
 
 		return $mock;
 	}
@@ -177,20 +161,13 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return PageStore|MockObject
-	 */
-	private function getMockPageStore(): PageStore {
-		return $this->createMock( PageStore::class );
-	}
-
-	/**
 	 * @return PageStoreFactory|MockObject
 	 */
 	private function getPageStoreFactory(): PageStoreFactory {
 		$mock = $this->createMock( PageStoreFactory::class );
 
 		$mock->method( 'getPageStore' )
-			->willReturn( $this->getMockPageStore() );
+			->willReturn( $this->createMock( PageStore::class ) );
 
 		return $mock;
 	}
@@ -209,15 +186,15 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 		return new NameTableStoreFactory(
 			$this->getMockLoadBalancerFactory(),
 			$this->getHashWANObjectCache(),
-			new NullLogger() );
+			new NullLogger()
+		);
 	}
 
 	/**
 	 * @return MockObject|CommentStore
 	 */
 	private function getMockCommentStore() {
-		return $this->getMockBuilder( CommentStore::class )
-			->disableOriginalConstructor()->getMock();
+		return $this->createMock( CommentStore::class );
 	}
 
 	/**
@@ -228,24 +205,13 @@ class RevisionStoreFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @return ActorStore|MockObject
-	 */
-	private function getMockActorStore() {
-		return $this->getMockBuilder( ActorStore::class )
-			->disableOriginalConstructor()->getMock();
-	}
-
-	/**
 	 * @return ActorStoreFactory|MockObject
 	 */
 	private function getMockActorStoreFactory() {
-		$mock = $this->getMockBuilder( ActorStoreFactory::class )
-			->disableOriginalConstructor()->getMock();
+		$mock = $this->createMock( ActorStoreFactory::class );
 
 		$mock->method( 'getActorStore' )
-			->willReturnCallback( function () {
-				return $this->getMockActorStore();
-			} );
+			->willReturn( $this->createMock( ActorStore::class ) );
 
 		return $mock;
 	}
