@@ -113,10 +113,14 @@ return [
 	// These modules' dependencies MUST be dependency-free (having dependencies would cause recursion).
 
 	'jquery' => [
-		'scripts' => [
-			'resources/lib/jquery/jquery.js',
-			'resources/lib/jquery/jquery.migrate.js',
-		],
+		'scripts' => ( $GLOBALS['wgIncludejQueryMigrate'] ?
+			[
+				'resources/lib/jquery/jquery.js',
+				'resources/lib/jquery/jquery.migrate.js',
+			] : [
+				'resources/lib/jquery/jquery.js'
+			]
+		),
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'es6-promise' => [

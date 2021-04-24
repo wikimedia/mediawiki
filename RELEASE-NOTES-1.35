@@ -15,6 +15,9 @@ THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.35.2 ===
 
+* (T280944) $wgIncludejQueryMigrate - This setting allows the jQuery Migrate
+  plugin to be disabled. It has been enabled by default since MediaWiki 1.27.
+
 == MediaWiki 1.35.2 ==
 
 This is a security and maintenance release of the MediaWiki 1.35 branch.
