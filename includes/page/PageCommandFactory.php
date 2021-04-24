@@ -32,6 +32,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\ActorNormalization;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MergeHistory;
@@ -106,6 +107,9 @@ class PageCommandFactory implements
 	/** @var TitleFactory */
 	private $titleFactory;
 
+	/** @var UserEditTracker */
+	private $userEditTracker;
+
 	public function __construct(
 		Config $config,
 		ILoadBalancer $loadBalancer,
@@ -122,7 +126,8 @@ class PageCommandFactory implements
 		UserFactory $userFactory,
 		ActorMigration $actorMigration,
 		ActorNormalization $actorNormalization,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		UserEditTracker $userEditTracker
 	) {
 		$this->config = $config;
 		$this->loadBalancer = $loadBalancer;
@@ -140,6 +145,7 @@ class PageCommandFactory implements
 		$this->actorMigration = $actorMigration;
 		$this->actorNormalization = $actorNormalization;
 		$this->titleFactory = $titleFactory;
+		$this->userEditTracker = $userEditTracker;
 	}
 
 	/**
@@ -214,7 +220,8 @@ class PageCommandFactory implements
 			$this->spamChecker,
 			$this->hookContainer,
 			$this->wikiPageFactory,
-			$this->userFactory
+			$this->userFactory,
+			$this->userEditTracker
 		);
 	}
 

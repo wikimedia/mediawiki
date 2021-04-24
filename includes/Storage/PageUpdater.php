@@ -45,6 +45,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use RecentChange;
@@ -132,6 +133,9 @@ class PageUpdater {
 	 */
 	private $hookContainer;
 
+	/** @var UserEditTracker */
+	private $userEditTracker;
+
 	/**
 	 * @var bool see $wgUseAutomaticEditSummaries
 	 * @see $wgUseAutomaticEditSummaries
@@ -197,6 +201,7 @@ class PageUpdater {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
+	 * @param UserEditTracker $userEditTracker
 	 * @param ServiceOptions $serviceOptions
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
@@ -210,6 +215,7 @@ class PageUpdater {
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
+		UserEditTracker $userEditTracker,
 		ServiceOptions $serviceOptions,
 		array $softwareTags
 	) {
@@ -226,6 +232,7 @@ class PageUpdater {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->userEditTracker = $userEditTracker;
 		$this->softwareTags = $softwareTags;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
@@ -1269,7 +1276,7 @@ class PageUpdater {
 				);
 			}
 
-			$legacyUser->incEditCount();
+			$this->userEditTracker->incrementUserEditCount( $user );
 
 			$dbw->endAtomic( __METHOD__ );
 
@@ -1404,7 +1411,7 @@ class PageUpdater {
 			);
 		}
 
-		$legacyUser->incEditCount();
+		$this->userEditTracker->incrementUserEditCount( $user );
 
 		if ( $this->usePageCreationLog ) {
 			// Log the page creation
