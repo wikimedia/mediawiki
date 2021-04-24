@@ -12,6 +12,8 @@ use MediaWikiUnitTestCase;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
 use Psr\Log\LoggerInterface;
+use Psr\Log\LogLevel;
+use TestLogger;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -134,27 +136,6 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * Returns a LoggerInterface expecting to have one of its methods called with
-	 * a specific message.
-	 *
-	 * @param string $message The message that's expected to be passed to the logger.
-	 * @param string $method Method of the logger that's expected to be called, e.g.:
-	 *   'error', 'warning', 'notice', etc. Default is 'error'.
-	 *
-	 * @return LoggerInterface
-	 */
-	private function getMockLogger(
-		string $message,
-		string $method = 'error'
-	) : LoggerInterface {
-		$logger = $this->createMock( LoggerInterface::class );
-		$logger->expects( $this->once() )
-			->method( $method )
-			->with( $message );
-		return $logger;
-	}
-
-	/**
 	 * Sets up assertions to run inside RevertedTagUpdate::markAsReverted()
 	 * overloaded method.
 	 *
@@ -220,7 +201,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$futureChangeTags->expects( $this->never() )->method( 'addTags' );
 
 		$revisionStore = $this->createNoOpMock( RevisionStore::class );
-		$logger = $this->createNoOpMock( LoggerInterface::class );
+		$logger = new TestLogger();
 		$editResult = $this->createNoOpMock( EditResult::class );
 
 		$update = $this->newRevertedTagUpdate(
@@ -273,7 +254,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			->getMock();
 		$futureChangeTags->expects( $this->never() )->method( 'addTags' );
 
-		$logger = $this->getMockLogger( 'Invalid EditResult specified.' );
+		$logger = new TestLogger( true );
 
 		$revisionStore = $this->createNoOpMock( RevisionStore::class );
 
@@ -287,6 +268,13 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			$editResult
 		);
 		$update->doUpdate();
+
+		$this->assertSame( [
+			[
+				LogLevel::ERROR,
+				'Invalid EditResult specified.'
+			],
+		], $logger->getBuffer() );
 	}
 
 	/**
@@ -298,10 +286,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			->method( 'getRevisionById' )
 			->willReturn( null );
 
-		// an error should be logged
-		$logger = $this->getMockLogger(
-			'Could not find the newest or oldest reverted revision in the database.'
-		);
+		$logger = new TestLogger( true );
 
 		$futureChangeTags = $this->getMockBuilder( FutureChangeTags::class )
 			->allowMockingUnknownTypes()
@@ -330,6 +315,13 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			$editResult
 		);
 		$update->doUpdate();
+
+		$this->assertSame( [
+			[
+				LogLevel::ERROR,
+				'Could not find the newest or oldest reverted revision in the database.'
+			],
+		], $logger->getBuffer() );
 	}
 
 	/**
@@ -345,9 +337,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 				[ 300, 0, null, null ], // the revert
 			] );
 
-		$logger = $this->getMockLogger(
-			'Could not find the revert revision in the database.'
-		);
+		$logger = new TestLogger( true );
 
 		$futureChangeTags = $this->getMockBuilder( FutureChangeTags::class )
 			->allowMockingUnknownTypes()
@@ -376,6 +366,13 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			$editResult
 		);
 		$update->doUpdate();
+
+		$this->assertSame( [
+			[
+				LogLevel::ERROR,
+				'Could not find the revert revision in the database.'
+			],
+		], $logger->getBuffer() );
 	}
 
 	public function providePageIdMismatch() {
@@ -412,9 +409,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 				[ 300, 0, null, $revert ],
 			] );
 
-		$logger = $this->getMockLogger(
-			'The revert and reverted revisions belong to different pages.'
-		);
+		$logger = new TestLogger( true );
 
 		$futureChangeTags = $this->getMockBuilder( FutureChangeTags::class )
 			->allowMockingUnknownTypes()
@@ -443,6 +438,13 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			$editResult
 		);
 		$update->doUpdate();
+
+		$this->assertSame( [
+			[
+				LogLevel::ERROR,
+				'The revert and reverted revisions belong to different pages.'
+			],
+		], $logger->getBuffer() );
 	}
 
 	/**
@@ -455,11 +457,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$revisionStore->method( 'getRevisionById' )
 			->willReturn( $dummyRevision );
 
-		$logger = $this->getMockLogger(
-			'The revert\'s text had been marked as deleted before the update was ' .
-			'executed. Skipping...',
-			'notice'
-		);
+		$logger = new TestLogger( true );
 
 		$futureChangeTags = $this->getMockBuilder( FutureChangeTags::class )
 			->allowMockingUnknownTypes()
@@ -488,6 +486,14 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			$editResult
 		);
 		$update->doUpdate();
+
+		$this->assertSame( [
+			[
+				LogLevel::NOTICE,
+				'The revert\'s text had been marked as deleted before the update was ' .
+					'executed. Skipping...',
+			],
+		], $logger->getBuffer() );
 	}
 
 	/**
@@ -499,10 +505,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		$revisionStore->method( 'getRevisionById' )
 			->willReturn( $dummyRevision );
 
-		$logger = $this->getMockLogger(
-			'The revert had been reverted before the update was executed. Skipping...',
-			'notice'
-		);
+		$logger = new TestLogger( true );
 
 		$futureChangeTags = $this->getMockBuilder( FutureChangeTags::class )
 			->allowMockingUnknownTypes()
@@ -535,6 +538,13 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			$editResult
 		);
 		$update->doUpdate();
+
+		$this->assertSame( [
+			[
+				LogLevel::NOTICE,
+				'The revert had been reverted before the update was executed. Skipping...'
+			],
+		], $logger->getBuffer() );
 	}
 
 	/**
@@ -571,7 +581,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			$editResult
 		);
 
-		$logger = $this->createNoOpMock( LoggerInterface::class );
+		$logger = new TestLogger();
 
 		$update = $this->newRevertedTagUpdate(
 			$futureChangeTags,
@@ -619,10 +629,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			->method( 'getTags' )
 			->willReturn( [] );
 
-		$logger = $this->getMockLogger(
-			'The revert is deeper than $wgRevertedTagMaxDepth. Skipping...',
-			'notice'
-		);
+		$logger = new TestLogger( true );
 
 		$update = $this->newRevertedTagUpdate(
 			$futureChangeTags,
@@ -634,6 +641,13 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			$editResult
 		);
 		$update->doUpdate();
+
+		$this->assertSame( [
+			[
+				LogLevel::NOTICE,
+				'The revert is deeper than $wgRevertedTagMaxDepth. Skipping...'
+			],
+		], $logger->getBuffer() );
 	}
 
 	/**
@@ -693,7 +707,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 			->method( 'getTags' )
 			->willReturn( [] );
 
-		$logger = $this->createNoOpMock( LoggerInterface::class );
+		$logger = new TestLogger();
 
 		$update = $this->newRevertedTagUpdate(
 			$futureChangeTags,
