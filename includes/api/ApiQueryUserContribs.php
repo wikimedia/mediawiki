@@ -35,22 +35,30 @@ use Wikimedia\Rdbms\SelectQueryBuilder;
  */
 class ApiQueryUserContribs extends ApiQueryBase {
 
+	/** @var CommentStore */
+	private $commentStore;
+
 	/** @var UserIdentityLookup */
 	private $userIdentityLookup;
 
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param CommentStore $commentStore
+	 * @param UserIdentityLookup $userIdentityLookup
+	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
+		CommentStore $commentStore,
 		UserIdentityLookup $userIdentityLookup
 	) {
 		parent::__construct( $query, $moduleName, 'uc' );
+		$this->commentStore = $commentStore;
 		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	private $params, $multiUserMode, $orderBy, $parentLens;
-
-	/** @var CommentStore */
-	private $commentStore;
 
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 		$fld_comment = false, $fld_parsedcomment = false, $fld_flags = false,
@@ -59,8 +67,6 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	public function execute() {
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
-
-		$this->commentStore = CommentStore::getStore();
 
 		$prop = array_flip( $this->params['prop'] );
 		$this->fld_ids = isset( $prop['ids'] );

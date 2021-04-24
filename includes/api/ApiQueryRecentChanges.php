@@ -33,16 +33,22 @@ use MediaWiki\Storage\NameTableAccessException;
  */
 class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
+	/** @var CommentStore */
+	private $commentStore;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param CommentStore $commentStore
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		CommentStore $commentStore
+	) {
 		parent::__construct( $query, $moduleName, 'rc' );
+		$this->commentStore = $commentStore;
 	}
-
-	/** @var CommentStore */
-	private $commentStore;
 
 	private $fld_comment = false, $fld_parsedcomment = false, $fld_user = false, $fld_userid = false,
 		$fld_flags = false, $fld_timestamp = false, $fld_title = false, $fld_ids = false,
@@ -394,7 +400,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->token = $params['token'];
 
 		if ( $this->fld_comment || $this->fld_parsedcomment || $this->token ) {
-			$this->commentStore = CommentStore::getStore();
 			$commentQuery = $this->commentStore->getJoin( 'rc_comment' );
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
