@@ -779,6 +779,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 					'section' => 'personal/email',
 					'label-message' => 'email-allow-new-users-label',
 					'disabled' => $disableEmailPrefs,
+					'disable-if' => [ '!==', 'disablemail', '1' ],
 				];
 
 				$defaultPreferences['ccmeonemails'] = [
