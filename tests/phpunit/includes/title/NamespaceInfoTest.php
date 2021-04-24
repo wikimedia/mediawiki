@@ -24,12 +24,6 @@ class NamespaceInfoTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		// Boo, there's still some global state in the class :(
-		global $wgHooks;
-		$hooks = $wgHooks;
-		unset( $hooks['CanonicalNamespaces'] );
-		$this->setMwGlobals( 'wgHooks', $hooks );
-
 		$this->scopedCallback =
 			ExtensionRegistry::getInstance()->setAttributeForTest( 'ExtensionNamespaces', [] );
 	}

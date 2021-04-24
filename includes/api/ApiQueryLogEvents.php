@@ -34,8 +34,18 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	/** @var CommentStore */
 	private $commentStore;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param CommentStore $commentStore
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		CommentStore $commentStore
+	) {
 		parent::__construct( $query, $moduleName, 'le' );
+		$this->commentStore = $commentStore;
 	}
 
 	private $fld_ids = false, $fld_title = false, $fld_type = false,
@@ -46,7 +56,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$db = $this->getDB();
-		$this->commentStore = CommentStore::getStore();
 		$this->requireMaxOneParameter( $params, 'title', 'prefix', 'namespace' );
 
 		$prop = array_flip( $params['prop'] );

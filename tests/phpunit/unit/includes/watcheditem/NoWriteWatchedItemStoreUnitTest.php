@@ -126,7 +126,7 @@ class NoWriteWatchedItemStoreUnitTest extends \MediaWikiUnitTestCase {
 		/** @var WatchedItemStoreInterface|MockObject $innerService */
 		$innerService = $this->getMockForAbstractClass( WatchedItemStoreInterface::class );
 		$innerService->expects( $this->once() )
-			->method( 'countVisitingWatchersMultiple' )
+			->method( 'countWatchersMultiple' )
 			->willReturn( __METHOD__ );
 		$noWriteService = new NoWriteWatchedItemStore( $innerService );
 

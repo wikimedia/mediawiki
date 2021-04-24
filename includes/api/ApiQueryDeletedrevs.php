@@ -36,8 +36,21 @@ use Wikimedia\ParamValidator\TypeDef\IntegerDef;
  */
 class ApiQueryDeletedrevs extends ApiQueryBase {
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var CommentStore */
+	private $commentStore;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param CommentStore $commentStore
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		CommentStore $commentStore
+	) {
 		parent::__construct( $query, $moduleName, 'dr' );
+		$this->commentStore = $commentStore;
 	}
 
 	public function execute() {
@@ -48,7 +61,6 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$user = $this->getUser();
 		$db = $this->getDB();
-		$commentStore = CommentStore::getStore();
 		$params = $this->extractRequestParams( false );
 		$prop = array_flip( $params['prop'] );
 		$fld_parentid = isset( $prop['parentid'] );
@@ -321,7 +333,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					RevisionRecord::DELETED_COMMENT,
 					$user
 				) ) {
-					$comment = $commentStore->getComment( 'ar_comment', $row )->text;
+					$comment = $this->commentStore->getComment( 'ar_comment', $row )->text;
 					if ( $fld_comment ) {
 						$rev['comment'] = $comment;
 					}

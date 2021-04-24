@@ -39,9 +39,15 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param CommentStore $commentStore
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		CommentStore $commentStore
+	) {
 		parent::__construct( $query, $moduleName, 'wl' );
+		$this->commentStore = $commentStore;
 	}
 
 	public function execute() {
@@ -93,10 +99,6 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 			if ( $this->fld_patrol && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'patrol' );
-			}
-
-			if ( $this->fld_comment || $this->fld_parsedcomment ) {
-				$this->commentStore = CommentStore::getStore();
 			}
 		}
 

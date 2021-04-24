@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Rest\BasicAccess;
+namespace MediaWiki\Tests\Unit\Rest\BasicAccess;
 
 use GuzzleHttp\Psr7\Uri;
 use MediaWiki\Permissions\SimpleAuthority;
@@ -11,19 +11,17 @@ use MediaWiki\Rest\ResponseFactory;
 use MediaWiki\Rest\Router;
 use MediaWiki\Rest\Validator\Validator;
 use MediaWiki\User\UserIdentityValue;
-use MediaWikiIntegrationTestCase;
+use MediaWikiUnitTestCase;
 use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
 
 /**
- * @group Database
- *
  * @covers \MediaWiki\Rest\BasicAccess\BasicAuthorizerBase
  * @covers \MediaWiki\Rest\BasicAccess\MWBasicAuthorizer
  * @covers \MediaWiki\Rest\BasicAccess\BasicRequestAuthorizer
  * @covers \MediaWiki\Rest\BasicAccess\MWBasicRequestAuthorizer
  */
-class MWBasicRequestAuthorizerTest extends MediaWikiIntegrationTestCase {
+class MWBasicRequestAuthorizerTest extends MediaWikiUnitTestCase {
 	private function createRouter( $userRights, $request ) {
 		$objectFactory = new ObjectFactory(
 			$this->getMockForAbstractClass( ContainerInterface::class )
