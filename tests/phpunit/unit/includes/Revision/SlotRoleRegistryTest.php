@@ -1,6 +1,6 @@
 <?php
 
-namespace MediaWiki\Tests\Revision;
+namespace MediaWiki\Tests\Unit\Revision;
 
 use InvalidArgumentException;
 use LogicException;
@@ -10,7 +10,7 @@ use MediaWiki\Revision\MainSlotRoleHandler;
 use MediaWiki\Revision\SlotRoleHandler;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\NameTableStore;
-use MediaWikiIntegrationTestCase;
+use MediaWikiUnitTestCase;
 use Title;
 use TitleFactory;
 use Wikimedia\Assert\PostconditionException;
@@ -18,7 +18,7 @@ use Wikimedia\Assert\PostconditionException;
 /**
  * @covers \MediaWiki\Revision\SlotRoleRegistry
  */
-class SlotRoleRegistryTest extends MediaWikiIntegrationTestCase {
+class SlotRoleRegistryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @return Title
