@@ -19,6 +19,7 @@
  */
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
 
 /**
  * A trivial language converter.
@@ -75,11 +76,11 @@ class TrivialLanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * @param LinkTarget $linkTarget
+	 * @param LinkTarget|PageReference $title
 	 * @return mixed
 	 */
-	public function convertTitle( LinkTarget $linkTarget ) {
-		return $this->titleFormatter->getPrefixedText( $linkTarget );
+	public function convertTitle( $title ) {
+		return $this->titleFormatter->getPrefixedText( $title );
 	}
 
 	public function convertNamespace( $index, $variant = null ) {

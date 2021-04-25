@@ -18,6 +18,7 @@
  * @file
  */
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageReference;
 
 /**
  * The shared interface for all language converters.
@@ -114,13 +115,13 @@ interface ILanguageConverter {
 	public function autoConvertToAllVariants( $text );
 
 	/**
-	 * Auto convert a LinkTarget object to a readable string in the
+	 * Auto convert a LinkTarget or PageReference to a readable string in the
 	 * preferred variant.
 	 *
-	 * @param LinkTarget $linkTarget
+	 * @param LinkTarget|PageReference $title
 	 * @return string Converted title text
 	 */
-	public function convertTitle( LinkTarget $linkTarget );
+	public function convertTitle( $title );
 
 	/**
 	 * Get the namespace display name in the preferred variant.

@@ -70,6 +70,9 @@ class ParserFactory {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/**
 	 * Track calls to Parser constructor to aid in deprecation of direct
 	 * Parser invocation.  This is temporary: it will be removed once the
@@ -105,6 +108,7 @@ class ParserFactory {
 	 * @param WANObjectCache $wanCache
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
+	 * @param TitleFormatter $titleFormatter
 	 * @since 1.32
 	 * @internal
 	 */
@@ -123,7 +127,8 @@ class ParserFactory {
 		TidyDriverBase $tidy,
 		WANObjectCache $wanCache,
 		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		TitleFormatter $titleFormatter
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -144,6 +149,7 @@ class ParserFactory {
 		$this->wanCache = $wanCache;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**
@@ -171,7 +177,8 @@ class ParserFactory {
 				$this->tidy,
 				$this->wanCache,
 				$this->userOptionsLookup,
-				$this->userFactory
+				$this->userFactory,
+				$this->titleFormatter
 			);
 		} finally {
 			self::$inParserFactory--;

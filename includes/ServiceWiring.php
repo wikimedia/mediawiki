@@ -1023,7 +1023,8 @@ return [
 			$services->getTidy(),
 			$services->getMainWANObjectCache(),
 			$services->getUserOptionsLookup(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getTitleFormatter()
 		);
 	},
 

@@ -84,6 +84,12 @@ because of Phabricator reports.
    - findVariantLink()
    - mConverter
    - updateConversionTable()
+* The following methods in the Parser class have been removed after having
+  been deprecated in 1.35:
+   - fetchCurrentRevisionOfTitle()
+   - statelessFetchRevision()
+   - fetchTemplate()
+   - Title()
 * (T273354) When an edit is prevented by an 'EditFilterMergedContent' hook
   handler without changing the status, the edit form will now be displayed.
 * User::clearNotification() which had been deprecated in 1.35 has been removed.
@@ -109,6 +115,8 @@ because of Phabricator reports.
   instead.
 * Deprecated WatchAction::doWatch() and WatchAction::doUnwatch(). Use
   WatchlistManager::addWatch() or WatchlistManager::removeWatch(), instead.
+* The getTitle() and setTitle() methods in Parser have been deprecated.
+  Use getPage() and setPage() instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
