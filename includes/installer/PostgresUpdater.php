@@ -1048,12 +1048,9 @@ END;
 				"Please report this.\n" );
 			return;
 		}
-		$conname = $fi->conname();
-		if ( $fi->conname() ) {
+
+		if ( $this->dropConstraint( $table, $field, 'foreignkey', $fi->conname() ) ) {
 			$this->output( "Dropping foreign key constraint on '$table.$field'\n" );
-			$conclause = "CONSTRAINT \"$conname\"";
-			$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
-			$this->db->query( $command, __METHOD__ );
 		} else {
 			$this->output( "...foreign key constraint on '$table.$field' already does not exist\n" );
 		}
@@ -1071,16 +1068,16 @@ END;
 			return;
 		}
 		$this->output( "Altering column '$table.$field' to be DEFERRABLE INITIALLY DEFERRED\n" );
+
 		$conname = $fi->conname();
-		if ( $fi->conname() ) {
-			$conclause = "CONSTRAINT \"$conname\"";
-			$command = "ALTER TABLE $table DROP CONSTRAINT $conname";
-			$this->db->query( $command, __METHOD__ );
-		} else {
+		$conclause = "CONSTRAINT \"$conname\"";
+
+		if ( !$this->dropConstraint( $table, $field, 'foreignkey', $conname ) ) {
 			$this->output( "Column '$table.$field' does not have a foreign key " .
 				"constraint, will be added\n" );
 			$conclause = "";
 		}
+
 		$command =
 			"ALTER TABLE $table ADD $conclause " .
 			"FOREIGN KEY ($field) REFERENCES $clause DEFERRABLE INITIALLY DEFERRED";
@@ -1132,18 +1129,7 @@ END;
 			return true;
 		}
 
-		if ( !$constraintName ) {
-			$constraintName = $table . '_pkey';
-		}
-
-		if ( $this->db->constraintExists( $table, $constraintName ) ) {
-			$table = $this->db->addIdentifierQuotes( $table );
-			$this->db->query(
-				"ALTER TABLE $table" .
-				" DROP CONSTRAINT {$constraintName};",
-				__METHOD__
-			);
-		}
+		$this->dropConstraint( $table, '', 'primary', $constraintName );
 
 		$table = $this->db->addIdentifierQuotes( $table );
 		$this->db->query(
@@ -1157,19 +1143,19 @@ END;
 	 * Drop generic constraint. If the constraint was created with a custom name,
 	 * then the name must be queried and supplied as $conname, otherwise standard
 	 * system suffixes and format would be assumed.
-	 * @todo Use this more in some functions above
 	 *
 	 * @param string $table
 	 * @param string $field
 	 * @param string $type
 	 * @param string|null $conname
+	 * @return bool
 	 */
 	protected function dropConstraint( $table, $field, $type, $conname = null ) {
 		if ( $conname === null ) {
 			if ( $type == 'primary' ) {
 				$conname = "{$table}_pkey";
 			} else {
-				$map = [ 'unique' => 'key', 'check' => 'check', 'foreingkey' => 'fkey' ];
+				$map = [ 'unique' => 'key', 'check' => 'check', 'foreignkey' => 'fkey' ];
 				$conname = "{$table}_{$field}_{$map[$type]}";
 			}
 		}
@@ -1180,7 +1166,11 @@ END;
 				"ALTER TABLE $table DROP CONSTRAINT $conname;",
 				__METHOD__
 			);
+
+			return true;
 		}
+
+		return false;
 	}
 
 	/**
