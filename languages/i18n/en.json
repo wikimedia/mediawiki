@@ -863,7 +863,7 @@
 	"last": "prev",
 	"page_first": "first",
 	"page_last": "last",
-	"histlegend": "Diff selection: Mark the radio boxes of the revisions to compare and hit enter or the button at the bottom.<br />\nLegend: <strong>({{int:cur}})</strong> = difference with latest revision, <strong>({{int:last}})</strong> = difference with preceding revision, <strong>{{int:minoreditletter}}</strong> = minor edit.",
+	"histlegend": "Diff selection: Mark the radio buttons of the revisions to compare and hit enter or the button at the bottom.<br />\nLegend: <strong>({{int:cur}})</strong> = difference with latest revision, <strong>({{int:last}})</strong> = difference with preceding revision, <strong>{{int:minoreditletter}}</strong> = minor edit.",
 	"history-fieldset-title": "Filter revisions",
 	"history-show-deleted": "Revision deleted only",
 	"history_copyright": "-",
