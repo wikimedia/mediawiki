@@ -213,11 +213,11 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		$helptext = $this->getHelpTextHtmlTable( $this->getHelpText() );
 		$cellAttributes = [ 'colspan' => 2 ];
 
-		$hideClass = '';
-		$hideAttributes = [];
-		if ( $this->mHideIf ) {
-			$hideAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
-			$hideClass = 'mw-htmlform-hide-if';
+		$moreClass = '';
+		$moreAttributes = [];
+		if ( $this->mCondState['class'] ) {
+			$moreAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$moreClass = implode( ' ', $this->mCondState['class'] );
 		}
 
 		$label = $this->getLabelHtml( $cellAttributes );
@@ -229,11 +229,11 @@ class HTMLCheckMatrix extends HTMLFormField implements HTMLNestedFilterable {
 		);
 
 		$html = Html::rawElement( 'tr',
-			[ 'class' => "mw-htmlform-vertical-label $hideClass" ] + $hideAttributes,
+			[ 'class' => "mw-htmlform-vertical-label $moreClass" ] + $moreAttributes,
 			$label );
 		$html .= Html::rawElement( 'tr',
-			[ 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass $hideClass" ] +
-				$hideAttributes,
+			[ 'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass $moreClass" ] +
+				$moreAttributes,
 			$field );
 
 		return $html . $helptext;

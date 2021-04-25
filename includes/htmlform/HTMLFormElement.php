@@ -4,24 +4,24 @@
  * Allows custom data specific to HTMLFormField to be set for OOUI forms. A matching JS widget
  * (defined in htmlform.Element.js) picks up the extra config when constructed using OO.ui.infuse().
  *
- * Currently only supports passing 'hide-if' data.
+ * Currently only supports passing 'hide-if' and 'disable-if' data.
  * @phan-file-suppress PhanUndeclaredMethod
  *
  * @stable to extend
  */
 trait HTMLFormElement {
 
-	protected $hideIf = null;
+	protected $condState = null;
 	protected $modules = null;
 
 	public function initializeHTMLFormElement( array $config = [] ) {
 		// Properties
-		$this->hideIf = $config['hideIf'] ?? null;
+		$this->condState = $config['condState'] ?? [ 'class' => [] ];
 		$this->modules = $config['modules'] ?? [];
 
 		// Initialization
-		if ( $this->hideIf ) {
-			$this->addClasses( [ 'mw-htmlform-hide-if' ] );
+		if ( $this->condState['class'] ) {
+			$this->addClasses( $this->condState['class'] );
 		}
 		if ( $this->modules ) {
 			// JS code must be able to read this before infusing (before OOUI is even loaded),
@@ -30,8 +30,8 @@ trait HTMLFormElement {
 			$this->setAttributes( [ 'data-mw-modules' => implode( ',', $this->modules ) ] );
 		}
 		$this->registerConfigCallback( function ( &$config ) {
-			if ( $this->hideIf !== null ) {
-				$config['hideIf'] = $this->hideIf;
+			if ( $this->condState['class'] ) {
+				$config['condState'] = $this->condState;
 			}
 		} );
 	}

@@ -25,7 +25,10 @@ abstract class HTMLFormField {
 	 */
 	protected $mOptions = false;
 	protected $mOptionsLabelsNotFromMessage = false;
-	protected $mHideIf = null;
+	/**
+	 * @var array Array to hold params for 'hide-if' or 'disable-if' statements
+	 */
+	protected $mCondState = [ 'class' => [] ];
 
 	/**
 	 * @var bool If true will generate an empty div element with no label
@@ -272,11 +275,11 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	public function isHidden( $alldata ) {
-		if ( !$this->mHideIf ) {
+		if ( $this->mCondState['class'] || !isset( $this->mCondState['hide'] ) ) {
 			return false;
 		}
 
-		return $this->isHiddenRecurse( $alldata, $this->mHideIf );
+		return $this->isHiddenRecurse( $alldata, $this->mCondState['hide'] );
 	}
 
 	/**
@@ -464,8 +467,15 @@ abstract class HTMLFormField {
 			$this->mShowEmptyLabels = false;
 		}
 
-		if ( isset( $params['hide-if'] ) ) {
-			$this->mHideIf = $params['hide-if'];
+		if ( isset( $params['hide-if'] ) && $params['hide-if'] ) {
+			$this->mCondState['hide'] = $params['hide-if'];
+			$this->mCondState['class'][] = 'mw-htmlform-hide-if';
+		}
+		if ( !( isset( $params['disabled'] ) && $params['disabled'] ) &&
+			isset( $params['disable-if'] ) && $params['disable-if']
+		) {
+			$this->mCondState['disable'] = $params['disable-if'];
+			$this->mCondState['class'][] = 'mw-htmlform-disable-if';
 		}
 	}
 
@@ -502,9 +512,9 @@ abstract class HTMLFormField {
 			$inputHtml . "\n$errors"
 		);
 
-		if ( $this->mHideIf ) {
-			$rowAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
-			$rowClasses .= ' mw-htmlform-hide-if';
+		if ( $this->mCondState['class'] ) {
+			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$rowClasses = implode( ' ', $this->mCondState['class'] );
 		}
 
 		if ( $verticalLabel ) {
@@ -516,12 +526,11 @@ abstract class HTMLFormField {
 				],
 				$field );
 		} else {
-			$html =
-				Html::rawElement( 'tr',
-					$rowAttributes + [
-						'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass $rowClasses"
-					],
-					$label . $field );
+			$html = Html::rawElement( 'tr',
+				$rowAttributes + [
+					'class' => "mw-htmlform-field-$fieldType {$this->mClass} $errorClass $rowClasses"
+				],
+				$label . $field );
 		}
 
 		return $html . $helptext;
@@ -568,9 +577,9 @@ abstract class HTMLFormField {
 		$wrapperAttributes = [
 			'class' => $divCssClasses,
 		];
-		if ( $this->mHideIf ) {
-			$wrapperAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
-			$wrapperAttributes['class'][] = ' mw-htmlform-hide-if';
+		if ( $this->mCondState['class'] ) {
+			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$wrapperAttributes['class'] += $this->mCondState['class'];
 		}
 		$html = Html::rawElement( 'div', $wrapperAttributes, $label . $field );
 		$html .= $helptext;
@@ -638,9 +647,9 @@ abstract class HTMLFormField {
 			$config['label'] = new OOUI\HtmlSnippet( $label );
 		}
 
-		if ( $this->mHideIf ) {
+		if ( $this->mCondState['class'] ) {
 			$preloadModules = true;
-			$config['hideIf'] = $this->mHideIf;
+			$config['condState'] = $this->mCondState;
 		}
 
 		$config['modules'] = $this->getOOUIModules();
@@ -788,9 +797,9 @@ abstract class HTMLFormField {
 		}
 
 		$rowAttributes = [];
-		if ( $this->mHideIf ) {
-			$rowAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
-			$rowAttributes['class'] = 'mw-htmlform-hide-if';
+		if ( $this->mCondState['class'] ) {
+			$rowAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$rowAttributes['class'] = $this->mCondState['class'];
 		}
 
 		$tdClasses = [ 'htmlform-tip' ];
@@ -817,14 +826,14 @@ abstract class HTMLFormField {
 		}
 
 		$wrapperAttributes = [
-			'class' => 'htmlform-tip',
+			'class' => [ 'htmlform-tip' ],
 		];
 		if ( $this->mHelpClass !== false ) {
-			$wrapperAttributes['class'] .= " {$this->mHelpClass}";
+			$wrapperAttributes['class'][] = $this->mHelpClass;
 		}
-		if ( $this->mHideIf ) {
-			$wrapperAttributes['data-hide-if'] = FormatJson::encode( $this->mHideIf );
-			$wrapperAttributes['class'] .= ' mw-htmlform-hide-if';
+		if ( $this->mCondState['class'] ) {
+			$wrapperAttributes['data-cond-state'] = FormatJson::encode( $this->mCondState );
+			$wrapperAttributes['class'] += $this->mCondState['class'];
 		}
 		$div = Html::rawElement( 'div', $wrapperAttributes, $helptext );
 
@@ -1225,7 +1234,7 @@ abstract class HTMLFormField {
 	 * @since 1.29
 	 */
 	public function needsJSForHtml5FormValidation() {
-		if ( $this->mHideIf ) {
+		if ( $this->mCondState['class'] ) {
 			// This is probably more restrictive than it needs to be, but better safe than sorry
 			return true;
 		}
