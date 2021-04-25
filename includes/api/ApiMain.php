@@ -60,19 +60,49 @@ class ApiMain extends ApiBase {
 	 * List of available modules: action name => module class
 	 */
 	private const MODULES = [
-		'login' => ApiLogin::class,
-		'clientlogin' => ApiClientLogin::class,
+		'login' => [
+			'class' => ApiLogin::class,
+			'services' => [
+				'AuthManager',
+			],
+		],
+		'clientlogin' => [
+			'class' => ApiClientLogin::class,
+			'services' => [
+				'AuthManager',
+			],
+		],
 		'logout' => ApiLogout::class,
-		'createaccount' => ApiAMCreateAccount::class,
-		'linkaccount' => ApiLinkAccount::class,
-		'unlinkaccount' => ApiRemoveAuthenticationData::class,
+		'createaccount' => [
+			'class' => ApiAMCreateAccount::class,
+			'services' => [
+				'AuthManager',
+			],
+		],
+		'linkaccount' => [
+			'class' => ApiLinkAccount::class,
+			'services' => [
+				'AuthManager',
+			],
+		],
+		'unlinkaccount' => [
+			'class' => ApiRemoveAuthenticationData::class,
+			'services' => [
+				'AuthManager',
+			],
+		],
 		'changeauthenticationdata' => [
 			'class' => ApiChangeAuthenticationData::class,
 			'services' => [
 				'AuthManager',
-			]
+			],
 		],
-		'removeauthenticationdata' => ApiRemoveAuthenticationData::class,
+		'removeauthenticationdata' => [
+			'class' => ApiRemoveAuthenticationData::class,
+			'services' => [
+				'AuthManager',
+			],
+		],
 		'resetpassword' => [
 			'class' => ApiResetPassword::class,
 			'services' => [

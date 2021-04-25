@@ -31,13 +31,17 @@ class ApiChangeAuthenticationData extends ApiBase {
 	/** @var AuthManager */
 	private $authManager;
 
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param AuthManager $authManager
+	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
 		AuthManager $authManager
 	) {
 		parent::__construct( $main, $action, 'changeauth' );
-
 		$this->authManager = $authManager;
 	}
 
