@@ -29,11 +29,6 @@ namespace MediaWiki\Languages\Data;
  * These determine things like interwikis, language selectors, and so on.
  * Safe to change without running scripts on the respective sites.
  *
- * \u{200E} is the left-to-right marker and
- * \u{200F} is the right-to-left marker.
- * They are required for ensuring the correct display of brackets in
- * mixed rtl/ltr environment.
- *
  * Some writing systems require some line-height fixes. This includes
  * most Indic scripts, like Devanagari.
  * If you are adding support for such a language, add it also to
@@ -91,8 +86,8 @@ class Names {
 		'bcc' => 'جهلسری بلوچی', # Southern Balochi
 		'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 		'be' => 'беларуская', # Belarusian normative
-		'be-tarask' => "беларуская (тарашкевіца)\u{200E}", # Belarusian in Taraskievica orthography
-		'be-x-old' => "беларуская (тарашкевіца)\u{200E}", # (be-tarask compat)
+		'be-tarask' => "беларуская (тарашкевіца)", # Belarusian in Taraskievica orthography
+		'be-x-old' => "беларуская (тарашкевіца)", # (be-tarask compat)
 		'bg' => 'български', # Bulgarian
 		'bgn' => 'روچ کپتین بلوچی', # Western Balochi
 		'bh' => 'भोजपुरी', # Bihari macro language. Falls back to Bhojpuri (bho)
@@ -125,8 +120,8 @@ class Names {
 		'cps' => 'Capiceño', # Capiznon
 		'cr' => 'Nēhiyawēwin / ᓀᐦᐃᔭᐍᐏᐣ', # Cree
 		'crh' => 'qırımtatarca', # Crimean Tatar (multiple scripts - defaults to Latin)
-		'crh-latn' => "qırımtatarca (Latin)\u{200E}", # Crimean Tatar (Latin)
-		'crh-cyrl' => "къырымтатарджа (Кирилл)\u{200E}", # Crimean Tatar (Cyrillic)
+		'crh-latn' => "qırımtatarca (Latin)", # Crimean Tatar (Latin)
+		'crh-cyrl' => "къырымтатарджа (Кирилл)", # Crimean Tatar (Cyrillic)
 		'cs' => 'čeština', # Czech
 		'csb' => 'kaszëbsczi', # Cassubian
 		'cu' => 'словѣньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ', # Old Church Slavonic (ancient language)
@@ -137,7 +132,7 @@ class Names {
 		'de' => 'Deutsch', # German ("Du")
 		'de-at' => 'Österreichisches Deutsch', # Austrian German
 		'de-ch' => 'Schweizer Hochdeutsch', # Swiss Standard German
-		'de-formal' => "Deutsch (Sie-Form)\u{200E}", # German - formal address ("Sie")
+		'de-formal' => "Deutsch (Sie-Form)", # German - formal address ("Sie")
 		'din' => 'Thuɔŋjäŋ', # Dinka
 		'diq' => 'Zazaki', # Zazaki
 		'dsb' => 'dolnoserbski', # Lower Sorbian
@@ -155,7 +150,7 @@ class Names {
 		'eo' => 'Esperanto', # Esperanto
 		'es' => 'español', # Spanish
 		'es-419' => 'español de América Latina', # Spanish for the Latin America and Caribbean region
-		'es-formal' => "español (formal)\u{200E}", # Spanish formal address
+		'es-formal' => "español (formal)", # Spanish formal address
 		'et' => 'eesti', # Estonian
 		'eu' => 'euskara', # Basque
 		'ext' => 'estremeñu', # Extremaduran
@@ -175,8 +170,8 @@ class Names {
 		'ga' => 'Gaeilge', # Irish
 		'gag' => 'Gagauz', # Gagauz
 		'gan' => '贛語', # Gan (multiple scripts - defaults to Traditional)
-		'gan-hans' => "赣语（简体）\u{200E}", # Gan (Simplified Han)
-		'gan-hant' => "贛語（繁體）\u{200E}", # Gan (Traditional Han)
+		'gan-hans' => "赣语（简体）", # Gan (Simplified Han)
+		'gan-hant' => "贛語（繁體）", # Gan (Traditional Han)
 		'gcr' => 'kriyòl gwiyannen', # Guianan Creole
 		'gd' => 'Gàidhlig', # Scots Gaelic
 		'gl' => 'galego', # Galician
@@ -206,7 +201,7 @@ class Names {
 		'hsb' => 'hornjoserbsce', # Upper Sorbian
 		'ht' => 'Kreyòl ayisyen', # Haitian Creole French
 		'hu' => 'magyar', # Hungarian
-		'hu-formal' => "magyar (formal)\u{200E}", # Hungarian formal address
+		'hu-formal' => "magyar (formal)", # Hungarian formal address
 		'hy' => 'հայերեն', # Armenian, T202611
 		'hyw' => 'Արեւմտահայերէն', # Western Armenian, T201276, T219975
 		'hz' => 'Otsiherero', # Herero
@@ -243,12 +238,12 @@ class Names {
 		'kj' => 'Kwanyama', # Kwanyama
 		'kjp' => 'ဖၠုံလိက်', # Eastern Pwo (multiple scripts - defaults to Burmese script)
 		'kk' => 'қазақша', # Kazakh (multiple scripts - defaults to Cyrillic)
-		'kk-arab' => "قازاقشا (تٴوتە)\u{200F}", # Kazakh Arabic
-		'kk-cyrl' => "қазақша (кирил)\u{200E}", # Kazakh Cyrillic
-		'kk-latn' => "qazaqşa (latın)\u{200E}", # Kazakh Latin
-		'kk-cn' => "قازاقشا (جۇنگو)\u{200F}", # Kazakh (China)
-		'kk-kz' => "қазақша (Қазақстан)\u{200E}", # Kazakh (Kazakhstan)
-		'kk-tr' => "qazaqşa (Türkïya)\u{200E}", # Kazakh (Turkey)
+		'kk-arab' => "قازاقشا (تٴوتە)", # Kazakh Arabic
+		'kk-cyrl' => "қазақша (кирил)", # Kazakh Cyrillic
+		'kk-latn' => "qazaqşa (latın)", # Kazakh Latin
+		'kk-cn' => "قازاقشا (جۇنگو)", # Kazakh (China)
+		'kk-kz' => "қазақша (Қазақстан)", # Kazakh (Kazakhstan)
+		'kk-tr' => "qazaqşa (Türkïya)", # Kazakh (Turkey)
 		'kl' => 'kalaallisut', # Inuktitut, Greenlandic/Greenlandic/Kalaallisut (kal)
 		'km' => 'ភាសាខ្មែរ', # Khmer, Central
 		'kn' => 'ಕನ್ನಡ', # Kannada
@@ -265,8 +260,8 @@ class Names {
 		'ks-deva' => 'कॉशुर', # Kashmiri (Devanagari script)
 		'ksh' => 'Ripoarisch', # Ripuarian
 		'ku' => 'kurdî', # Kurdish (multiple scripts - defaults to Latin)
-		'ku-latn' => "kurdî (latînî)\u{200E}", # Northern Kurdish (Latin script)
-		'ku-arab' => "كوردي (عەرەبی)\u{200F}", # Northern Kurdish (Arabic script) (falls back to ckb)
+		'ku-latn' => "kurdî (latînî)", # Northern Kurdish (Latin script)
+		'ku-arab' => "كوردي (عەرەبی)", # Northern Kurdish (Arabic script) (falls back to ckb)
 		'kum' => 'къумукъ', # Kumyk (Cyrillic, 'kum-latn' for Latin script)
 		'kv' => 'коми', # Komi-Zyrian (Cyrillic is common script but also written in Latin script)
 		'kw' => 'kernowek', # Cornish
@@ -333,7 +328,7 @@ class Names {
 		'nia' => 'Li Niha', # Nias, T263968
 		'niu' => 'Niuē', # Niuean
 		'nl' => 'Nederlands', # Dutch
-		'nl-informal' => "Nederlands (informeel)\u{200E}", # Dutch (informal address ("je"))
+		'nl-informal' => "Nederlands (informeel)", # Dutch (informal address ("je"))
 		'nn' => 'norsk nynorsk', # Norwegian (Nynorsk)
 		'no' => 'norsk', # Norwegian macro language (falls back to nb).
 		'nov' => 'Novial', # Novial
@@ -419,8 +414,8 @@ class Names {
 		'so' => 'Soomaaliga', # Somali
 		'sq' => 'shqip', # Albanian
 		'sr' => 'српски / srpski', # Serbian (multiple scripts - defaults to Cyrillic)
-		'sr-ec' => "српски (ћирилица)\u{200E}", # Serbian Cyrillic ekavian
-		'sr-el' => "srpski (latinica)\u{200E}", # Serbian Latin ekavian
+		'sr-ec' => "српски (ћирилица)", # Serbian Cyrillic ekavian
+		'sr-el' => "srpski (latinica)", # Serbian Latin ekavian
 		'srn' => 'Sranantongo', # Sranan Tongo
 		'ss' => 'SiSwati', # Swati
 		'st' => 'Sesotho', # Southern Sotho
@@ -494,15 +489,15 @@ class Names {
 		'zgh' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ ⵜⴰⵏⴰⵡⴰⵢⵜ', # Moroccan Amazigh (multiple scripts - defaults to Neo-Tifinagh)
 		'zh' => '中文', # (Zhōng Wén) - Chinese
 		'zh-classical' => '文言', # Classical Chinese/Literary Chinese -- (see T10217)
-		'zh-cn' => "中文（中国大陆）\u{200E}", # Chinese (PRC)
-		'zh-hans' => "中文（简体）\u{200E}", # Mandarin Chinese (Simplified Chinese script) (cmn-hans)
-		'zh-hant' => "中文（繁體）\u{200E}", # Mandarin Chinese (Traditional Chinese script) (cmn-hant)
-		'zh-hk' => "中文（香港）\u{200E}", # Chinese (Hong Kong)
+		'zh-cn' => "中文（中国大陆）", # Chinese (PRC)
+		'zh-hans' => "中文（简体）", # Mandarin Chinese (Simplified Chinese script) (cmn-hans)
+		'zh-hant' => "中文（繁體）", # Mandarin Chinese (Traditional Chinese script) (cmn-hant)
+		'zh-hk' => "中文（香港）", # Chinese (Hong Kong)
 		'zh-min-nan' => 'Bân-lâm-gú', # Min-nan -- (see T10217)
-		'zh-mo' => "中文（澳門）\u{200E}", # Chinese (Macau)
-		'zh-my' => "中文（马来西亚）\u{200E}", # Chinese (Malaysia)
-		'zh-sg' => "中文（新加坡）\u{200E}", # Chinese (Singapore)
-		'zh-tw' => "中文（台灣）\u{200E}", # Chinese (Taiwan)
+		'zh-mo' => "中文（澳門）", # Chinese (Macau)
+		'zh-my' => "中文（马来西亚）", # Chinese (Malaysia)
+		'zh-sg' => "中文（新加坡）", # Chinese (Singapore)
+		'zh-tw' => "中文（台灣）", # Chinese (Taiwan)
 		'zh-yue' => '粵語', # Cantonese -- (see T10217)
 		'zu' => 'isiZulu' # Zulu
 	];
