@@ -1281,7 +1281,8 @@ return [
 	'SearchEngineFactory' => static function ( MediaWikiServices $services ) : SearchEngineFactory {
 		return new SearchEngineFactory(
 			$services->getSearchEngineConfig(),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getDBLoadBalancer()
 		);
 	},
 
