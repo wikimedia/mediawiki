@@ -3013,7 +3013,6 @@
 	"ipblocklist-localblock": "[[File:Special IPBlockList new.png|thumb|Example]]\nUsed on [[Special:IPBlockList]] as header when global blocks exists too.",
 	"ipblocklist-otherblocks": "[[File:Special IPBlockList new.png|thumb|Example]]\nUsed on [[Special:IPBlockList]] as header for other blocks, i.e. from GlobalBlocking or TorBlocks.\n\nParameters:\n* $1 - number of blocks\nSee also:\n* {{msg-mw|Ipb-otherblocks-header}}",
 	"infiniteblock": "Part of the log entry of user block in [[Special:BlockList]].\n\nSee also:\n* {{msg-mw|Anononlyblock}}\n* {{msg-mw|Createaccountblock}}\n* {{msg-mw|Noautoblockblock}}\n* {{msg-mw|Emailblock}}\n* {{msg-mw|Blocklist-nousertalk}}\n* {{msg-mw|Unblocklink}}\n* {{msg-mw|Change-blocklink}}\n* {{msg-mw|Expiringblock}}\n{{Identical|Infinite}}",
-	"expiringblock": "Unused at this time.\n\nParameters:\n* $1 - a date\n* $2 - a time\nSee also:\n* {{msg-mw|Infiniteblock}}",
 	"anononlyblock": "Part of the log entry of user block in [[Special:BlockList]].\n\n\"anon.\" stands for \"anonymous\".\n\nSee also:\n* {{msg-mw|Block-log-flags-anononly}}\n{{Related|Blocklist}}\n{{Identical|Anon only}}",
 	"noautoblockblock": "Part of the log entry of user block in [[Special:BlockList]].\n{{Related|Blocklist}}\n{{Identical|Autoblock disabled}}",
 	"createaccountblock": "Part of the log entry of user block in [[Special:BlockList]].\n\nSee also:\n* {{msg-mw|Block-log-flags-nocreate}}\n{{Related|Blocklist}}",
