@@ -21185,7 +21185,7 @@ language=zh variant=zh-cn
 !! html/php
 <p>大陆
 </p><p>台灣
-</p><p>српски (ћирилица)‎
+</p><p>српски (ћирилица)
 </p>
 !! html/parsoid
 <p><span typeof="mw:LanguageVariant" data-mw-variant='{"name":{"t":"zh-cn"}}'></span></p>
