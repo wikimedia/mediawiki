@@ -899,3 +899,29 @@ CREATE INDEX page_redirect_namespace_len ON page (
   page_is_redirect, page_namespace,
   page_len
 );
+
+
+CREATE TABLE "user" (
+  user_id SERIAL NOT NULL,
+  user_name TEXT DEFAULT '' NOT NULL,
+  user_real_name TEXT DEFAULT '' NOT NULL,
+  user_password TEXT NOT NULL,
+  user_newpassword TEXT NOT NULL,
+  user_newpass_time TIMESTAMPTZ DEFAULT NULL,
+  user_email TEXT NOT NULL,
+  user_touched TIMESTAMPTZ NOT NULL,
+  user_token TEXT DEFAULT '' NOT NULL,
+  user_email_authenticated TIMESTAMPTZ DEFAULT NULL,
+  user_email_token TEXT DEFAULT NULL,
+  user_email_token_expires TIMESTAMPTZ DEFAULT NULL,
+  user_registration TIMESTAMPTZ DEFAULT NULL,
+  user_editcount INT DEFAULT NULL,
+  user_password_expires TIMESTAMPTZ DEFAULT NULL,
+  PRIMARY KEY(user_id)
+);
+
+CREATE UNIQUE INDEX user_name ON "user" (user_name);
+
+CREATE INDEX user_email_token ON "user" (user_email_token);
+
+CREATE INDEX user_email ON "user" (user_email);

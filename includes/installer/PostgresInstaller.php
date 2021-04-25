@@ -168,7 +168,6 @@ class PostgresInstaller extends DatabaseInstaller {
 				'password' => $password,
 				'dbname' => $dbName,
 				'schema' => $schema,
-				'keywordTableMap' => [ 'user' => 'mwuser' ],
 			] );
 			$status->value = $db;
 		} catch ( DBConnectionError $e ) {
