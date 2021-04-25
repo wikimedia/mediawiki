@@ -838,3 +838,26 @@ CREATE INDEX page_redirect_namespace_len ON /*_*/page (
   page_is_redirect, page_namespace,
   page_len
 );
+
+
+CREATE TABLE /*_*/user (
+  user_id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
+  user_name BLOB DEFAULT '' NOT NULL,
+  user_real_name BLOB DEFAULT '' NOT NULL,
+  user_password BLOB NOT NULL, user_newpassword BLOB NOT NULL,
+  user_newpass_time BLOB DEFAULT NULL,
+  user_email CLOB NOT NULL, user_touched BLOB NOT NULL,
+  user_token BLOB DEFAULT '' NOT NULL,
+  user_email_authenticated BLOB DEFAULT NULL,
+  user_email_token BLOB DEFAULT NULL,
+  user_email_token_expires BLOB DEFAULT NULL,
+  user_registration BLOB DEFAULT NULL,
+  user_editcount INTEGER DEFAULT NULL,
+  user_password_expires BLOB DEFAULT NULL
+);
+
+CREATE UNIQUE INDEX user_name ON /*_*/user (user_name);
+
+CREATE INDEX user_email_token ON /*_*/user (user_email_token);
+
+CREATE INDEX user_email ON /*_*/user (user_email);

@@ -41,9 +41,11 @@ class PostgresUpdater extends DatabaseUpdater {
 	 */
 	protected function getCoreUpdateList() {
 		return [
-			// Exception to the sequential updates. Renaming pagecontent to text table.
+			// Exception to the sequential updates. Renaming pagecontent and mwuser.
 			// Introduced in 1.36.
 			[ 'renameTable', 'pagecontent', 'text' ],
+			// Introduced in 1.37.
+			[ 'renameTable', 'mwuser', 'user' ],
 
 			// 1.28
 			[ 'addPgIndex', 'recentchanges', 'rc_name_type_patrolled_timestamp',
@@ -151,7 +153,7 @@ class PostgresUpdater extends DatabaseUpdater {
 				'recentchanges',
 				'rc_namespace_title_timestamp', '( rc_namespace, rc_title, rc_timestamp )'
 			],
-			[ 'setSequenceOwner', 'mwuser', 'user_id', 'user_user_id_seq' ],
+			[ 'setSequenceOwner', 'user', 'user_id', 'user_user_id_seq' ],
 			[ 'setSequenceOwner', 'actor', 'actor_id', 'actor_actor_id_seq' ],
 			[ 'setSequenceOwner', 'page', 'page_id', 'page_page_id_seq' ],
 			[ 'setSequenceOwner', 'revision', 'rev_id', 'revision_rev_id_seq' ],
@@ -599,17 +601,28 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'archive', 'ar_title', '' ],
 			[ 'changeField', 'archive', 'ar_comment_id', 'BIGINT', '' ],
 			[ 'changeField', 'archive', 'ar_actor', 'BIGINT', '' ],
-			[ 'renameIndex', 'mwuser', 'user_email_token_idx', 'user_email_token' ],
-			[ 'addPgIndex', 'mwuser', 'user_email', '(user_email)' ],
-			[ 'addPgIndex', 'mwuser', 'user_name', '(user_name)', true ],
+			[ 'renameIndex', 'user', 'user_email_token_idx', 'user_email_token' ],
+			[ 'addPgIndex', 'user', 'user_email', '(user_email)' ],
+			[ 'addPgIndex', 'user', 'user_name', '(user_name)', true ],
 			[ 'changeField', 'page', 'page_namespace', 'INTEGER', '' ],
 			[ 'changeNullableField', 'page', 'page_touched', 'NOT NULL', true ],
 			[ 'changeField', 'page', 'page_random', 'FLOAT', '' ],
 			[ 'renameIndex', 'revision', 'revision_unique', 'rev_page_id' ],
 			[ 'renameIndex', 'revision', 'rev_timestamp_idx', 'rev_timestamp' ],
 			[ 'addPgIndex', 'revision', 'rev_page_timestamp', '(rev_page,rev_timestamp)' ],
-			[ 'changeNullableField', 'mwuser', 'user_touched', 'NOT NULL', true ],
+			[ 'changeNullableField', 'user', 'user_touched', 'NOT NULL', true ],
 
+			// 1.37
+			[ 'updateUserTableSequence' ],
+			[ 'changeNullableField', 'user', 'user_token', 'NOT NULL', true ],
+			[ 'changeNullableField', 'user', 'user_real_name', 'NOT NULL', true ],
+			[ 'changeNullableField', 'user', 'user_email', 'NOT NULL', true ],
+			[ 'changeNullableField', 'user', 'user_newpassword', 'NOT NULL', true ],
+			[ 'changeNullableField', 'user', 'user_password', 'NOT NULL', true ],
+			[ 'setDefault', 'user', 'user_name', '' ],
+			[ 'setDefault', 'user', 'user_token', '' ],
+			[ 'setDefault', 'user', 'user_real_name', '' ],
+			[ 'dropConstraint', 'user', 'user_name', 'unique' ],
 		];
 	}
 
@@ -746,6 +759,7 @@ END;
 		if ( !$this->db->sequenceExists( $ns ) ) {
 			$this->output( "Creating sequence $ns\n" );
 			if ( $pkey !== false ) {
+				$table = $this->db->addIdentifierQuotes( $table );
 				$this->db->query( "CREATE SEQUENCE $ns OWNED BY $table.$pkey", __METHOD__ );
 				$this->setDefault( $table, $pkey, '"nextval"(\'"' . $ns . '"\'::"regclass")' );
 			} else {
@@ -776,6 +790,7 @@ END;
 	protected function setSequenceOwner( $table, $pkey, $seq ) {
 		if ( $this->db->sequenceExists( $seq ) ) {
 			$this->output( "Setting sequence $seq owner to $table.$pkey\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER SEQUENCE $seq OWNED BY $table.$pkey", __METHOD__ );
 		}
 	}
@@ -783,8 +798,8 @@ END;
 	protected function renameTable( $old, $new, $patch = false ) {
 		if ( $this->db->tableExists( $old, __METHOD__ ) ) {
 			$this->output( "Renaming table $old to $new\n" );
-			$old = $this->db->realTableName( $old, "quoted" );
-			$new = $this->db->realTableName( $new, "quoted" );
+			$old = $this->db->addIdentifierQuotes( $old );
+			$new = $this->db->addIdentifierQuotes( $new );
 			$this->db->query( "ALTER TABLE $old RENAME TO $new", __METHOD__ );
 			if ( $patch !== false ) {
 				$this->applyPatch( $patch );
@@ -835,6 +850,7 @@ END;
 			return;
 		} else {
 			$this->output( "Dropping column '$table.$field'\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table DROP COLUMN $field", __METHOD__ );
 		}
 	}
@@ -847,6 +863,7 @@ END;
 			return;
 		} else {
 			$this->output( "Adding column '$table.$field'\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table ADD $field $type", __METHOD__ );
 		}
 	}
@@ -862,6 +879,7 @@ END;
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		} else {
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
 			if ( strlen( $default ) ) {
 				$res = [];
@@ -889,6 +907,7 @@ END;
 			$this->output( "...column '$table.$field' is already of type '$newtype'\n" );
 		} else {
 			$this->output( "Purging data from cache table '$table'\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "DELETE from $table", __METHOD__ );
 			$this->output( "Changing column type of '$table.$field' from '{$fi->type()}' to '$newtype'\n" );
 			$sql = "ALTER TABLE $table ALTER $field TYPE $newtype";
@@ -909,6 +928,7 @@ END;
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info && $info->defaultValue() !== $default ) {
 			$this->output( "Changing '$table.$field' default value\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table ALTER $field SET DEFAULT "
 				. $this->db->addQuotes( $default ), __METHOD__ );
 		}
@@ -924,6 +944,7 @@ END;
 		$info = $this->db->fieldInfo( $table, $field );
 		if ( $info->defaultValue() !== false ) {
 			$this->output( "Removing '$table.$field' default value\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "ALTER TABLE $table ALTER $field DROP DEFAULT", __METHOD__ );
 		}
 	}
@@ -937,6 +958,7 @@ END;
 			# # It's NULL - does it need to be NOT NULL?
 			if ( $null === 'NOT NULL' ) {
 				$this->output( "Changing '$table.$field' to not allow NULLs\n" );
+				$table = $this->db->addIdentifierQuotes( $table );
 				if ( $update ) {
 					$this->db->query( "UPDATE $table SET $field = DEFAULT WHERE $field IS NULL", __METHOD__ );
 				}
@@ -948,6 +970,7 @@ END;
 			# # It's NOT NULL - does it need to be NULL?
 			if ( $null === 'NULL' ) {
 				$this->output( "Changing '$table.$field' to allow NULLs\n" );
+				$table = $this->db->addIdentifierQuotes( $table );
 				$this->db->query( "ALTER TABLE $table ALTER $field DROP NOT NULL", __METHOD__ );
 			} else {
 				$this->output( "...column '$table.$field' is already set as NOT NULL\n" );
@@ -960,6 +983,7 @@ END;
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} else {
 			$this->output( "Creating index '$index' on table '$table' $type\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$unique = $unique ? 'UNIQUE' : '';
 			$this->db->query( "CREATE $unique INDEX $index ON $table $type", __METHOD__ );
 		}
@@ -970,6 +994,7 @@ END;
 			$this->output( "...index '$index' on table '$table' already exists\n" );
 		} elseif ( preg_match( '/^\(/', $type ) ) {
 			$this->output( "Creating index '$index' on table '$table'\n" );
+			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query( "CREATE INDEX $index ON $table $type", __METHOD__ );
 		} else {
 			$this->applyPatch( $type, true, "Creating index '$index' on table '$table'" );
@@ -1112,6 +1137,7 @@ END;
 		}
 
 		if ( $this->db->constraintExists( $table, $constraintName ) ) {
+			$table = $this->db->addIdentifierQuotes( $table );
 			$this->db->query(
 				"ALTER TABLE $table" .
 				" DROP CONSTRAINT {$constraintName};",
@@ -1119,10 +1145,75 @@ END;
 			);
 		}
 
+		$table = $this->db->addIdentifierQuotes( $table );
 		$this->db->query(
 			"ALTER TABLE $table" .
 			" ADD PRIMARY KEY (" . implode( ',', $shouldBe ) . ');',
 			__METHOD__
 		);
+	}
+
+	/**
+	 * Drop generic constraint. If the constraint was created with a custom name,
+	 * then the name must be queried and supplied as $conname, otherwise standard
+	 * system suffixes and format would be assumed.
+	 * @todo Use this more in some functions above
+	 *
+	 * @param string $table
+	 * @param string $field
+	 * @param string $type
+	 * @param string|null $conname
+	 */
+	protected function dropConstraint( $table, $field, $type, $conname = null ) {
+		if ( $conname === null ) {
+			if ( $type == 'primary' ) {
+				$conname = "{$table}_pkey";
+			} else {
+				$map = [ 'unique' => 'key', 'check' => 'check', 'foreingkey' => 'fkey' ];
+				$conname = "{$table}_{$field}_{$map[$type]}";
+			}
+		}
+
+		if ( $this->db->constraintExists( $table, $conname ) ) {
+			$table = $this->db->addIdentifierQuotes( $table );
+			$this->db->query(
+				"ALTER TABLE $table DROP CONSTRAINT $conname;",
+				__METHOD__
+			);
+		}
+	}
+
+	/**
+	 * Update `user` table sequence to convert `user_id` field from INT to SERIAL
+	 */
+	protected function updateUserTableSequence() {
+		if ( $this->updateRowExists( 'UserTableSequenceUpdate' ) ) {
+			return;
+		}
+
+		$this->output( "Updating user table sequence\n" );
+
+		$table = $this->db->addIdentifierQuotes( 'user' );
+		$seqName = 'user_user_id_seq';
+		$this->dropSequence( $table, $seqName );
+
+		$res = $this->db->query( "SELECT max(user_id) AS max_id FROM $table", __METHOD__ );
+		$max_id = intval( $this->db->fetchRow( $res )['max_id'] );
+
+		if ( $max_id > 0 ) {
+			$next_id = $max_id + 1;
+
+			$this->db->query(
+				"CREATE SEQUENCE $seqName START WITH $next_id OWNED BY $table.user_id;",
+				__METHOD__
+			);
+
+			$this->db->query(
+				"ALTER TABLE $table ALTER user_id SET DEFAULT nextval( '$seqName' )",
+				 __METHOD__
+			);
+		}
+
+		$this->insertUpdateRow( 'UserTableSequenceUpdate' );
 	}
 }
