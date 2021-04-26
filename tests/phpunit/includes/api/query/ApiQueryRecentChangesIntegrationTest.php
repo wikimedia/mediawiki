@@ -580,7 +580,6 @@ class ApiQueryRecentChangesIntegrationTest extends ApiTestCase {
 		$title = Title::newFromLinkTarget( $target );
 
 		$rc = new RecentChange;
-		$rc->mTitle = $title;
 		$rc->mAttribs = [
 			'rc_timestamp' => wfTimestamp( TS_MW ),
 			'rc_namespace' => $title->getNamespace(),

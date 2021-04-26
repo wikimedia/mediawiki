@@ -21,11 +21,15 @@
  */
 use MediaWiki\ChangeTags\Taggable;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
+use Wikimedia\Assert\Assert;
 use Wikimedia\IPUtils;
 
 /**
@@ -74,6 +78,8 @@ use Wikimedia\IPUtils;
  *  so random crap works right.
  */
 class RecentChange implements Taggable {
+	use DeprecationHelper;
+
 	// Constants for the rc_source field.  Extensions may also have
 	// their own source constants.
 	public const SRC_EDIT = 'mw.edit';
@@ -101,9 +107,9 @@ class RecentChange implements Taggable {
 	public $mExtra = [];
 
 	/**
-	 * @var Title|false
+	 * @var PageReference|null
 	 */
-	public $mTitle = false;
+	private $mPage = null;
 
 	/**
 	 * @var UserIdentity|null
@@ -278,6 +284,19 @@ class RecentChange implements Taggable {
 		];
 	}
 
+	public function __construct() {
+		$this->deprecatePublicPropertyFallback(
+			'mTitle',
+			'1.37',
+			function () {
+				return Title::castFromPageReference( $this->mPage );
+			},
+			function ( ?Title $title ) {
+				$this->mPage = $title;
+			}
+		);
+	}
+
 	# Accessors
 
 	/**
@@ -295,14 +314,40 @@ class RecentChange implements Taggable {
 	}
 
 	/**
+	 * @deprecated since 1.37, use getPage() instead.
 	 * @return Title
 	 */
-	public function &getTitle() {
-		if ( $this->mTitle === false ) {
-			$this->mTitle = Title::makeTitle( $this->mAttribs['rc_namespace'], $this->mAttribs['rc_title'] );
+	public function getTitle() {
+		$this->mPage = Title::castFromPageReference( $this->getPage() );
+		return $this->mPage ?: Title::makeTitle( NS_SPECIAL, 'BadTitle' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return ?PageReference
+	 */
+	public function getPage(): ?PageReference {
+		if ( !$this->mPage ) {
+			// NOTE: As per the 1.36 release, we always provide rc_title,
+			//       even in cases where it doesn't really make sense.
+			//       In the future, rc_title may be nullable, or we may use
+			//       empty strings in entries that do not refer to a page.
+			if ( ( $this->mAttribs['rc_title'] ?? '' ) === '' ) {
+				return null;
+			}
+
+			// XXX: We could use rc_cur_id to create a PageIdentityValue,
+			//      at least if it's not a special page.
+			//      However, newForCategorization() puts the ID of the categorized page into
+			//      rc_cur_id, but the title of the category page into rc_title.
+			$this->mPage = new PageReferenceValue(
+				(int)$this->mAttribs['rc_namespace'],
+				$this->mAttribs['rc_title'],
+				PageReference::LOCAL
+			);
 		}
 
-		return $this->mTitle;
+		return $this->mPage;
 	}
 
 	/**
@@ -446,10 +491,12 @@ class RecentChange implements Taggable {
 		# E-mail notifications
 		if ( $wgUseEnotif || $wgShowUpdatedMarker ) {
 			$editor = $this->getPerformer();
-			$title = $this->getTitle();
+			$page = $this->getPage();
+			$title = Title::castFromPageReference( $page );
 
 			// Never send an RC notification email about categorization changes
 			if (
+				$title &&
 				Hooks::runner()->onAbortEmailNotification( $editor, $title, $this ) &&
 				$this->mAttribs['rc_type'] != RC_CATEGORIZE
 			) {
@@ -646,7 +693,7 @@ class RecentChange implements Taggable {
 	 * @since 1.36 Added $editResult parameter
 	 *
 	 * @param string $timestamp
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param bool $minor
 	 * @param UserIdentity $user
 	 * @param string $comment
@@ -665,21 +712,23 @@ class RecentChange implements Taggable {
 	 * @return RecentChange
 	 */
 	public static function notifyEdit(
-		$timestamp, $title, $minor, $user, $comment, $oldId, $lastTimestamp,
+		$timestamp, $page, $minor, $user, $comment, $oldId, $lastTimestamp,
 		$bot, $ip = '', $oldSize = 0, $newSize = 0, $newId = 0, $patrol = 0,
 		$tags = [], EditResult $editResult = null
 	) {
+		Assert::parameter( $page->exists(), '$page', 'must represent an existing page' );
+
 		$rc = new RecentChange;
-		$rc->mTitle = $title;
+		$rc->mPage = $page;
 		$rc->mPerformer = $user;
 		$rc->mAttribs = [
 			'rc_timestamp' => $timestamp,
-			'rc_namespace' => $title->getNamespace(),
-			'rc_title' => $title->getDBkey(),
+			'rc_namespace' => $page->getNamespace(),
+			'rc_title' => $page->getDBkey(),
 			'rc_type' => RC_EDIT,
 			'rc_source' => self::SRC_EDIT,
 			'rc_minor' => $minor ? 1 : 0,
-			'rc_cur_id' => $title->getArticleID(),
+			'rc_cur_id' => $page->getId(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
 			'rc_comment' => &$comment,
@@ -700,8 +749,11 @@ class RecentChange implements Taggable {
 			'rc_params' => ''
 		];
 
+		// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
+		$formatter = MediaWikiServices::getInstance()->getTitleFormatter();
+
 		$rc->mExtra = [
-			'prefixedDBkey' => $title->getPrefixedDBkey(),
+			'prefixedDBkey' => $formatter->getPrefixedDBkey( $page ),
 			'lastTimestamp' => $lastTimestamp,
 			'oldSize' => $oldSize,
 			'newSize' => $newSize,
@@ -723,10 +775,11 @@ class RecentChange implements Taggable {
 
 	/**
 	 * Makes an entry in the database corresponding to page creation
-	 * Note: the title object must be loaded with the new id using resetArticleID()
+	 * @note $page must reflect the state of the database after the page creation. In particular,
+	 *       $page->getId() must return the newly assigned page ID.
 	 *
 	 * @param string $timestamp
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param bool $minor
 	 * @param UserIdentity $user
 	 * @param string $comment
@@ -736,23 +789,27 @@ class RecentChange implements Taggable {
 	 * @param int $newId
 	 * @param int $patrol
 	 * @param string[] $tags
+	 *
 	 * @return RecentChange
 	 */
 	public static function notifyNew(
-		$timestamp, $title, $minor, $user, $comment, $bot,
+		$timestamp,
+		$page, $minor, $user, $comment, $bot,
 		$ip = '', $size = 0, $newId = 0, $patrol = 0, $tags = []
 	) {
+		Assert::parameter( $page->exists(), '$page', 'must represent an existing page' );
+
 		$rc = new RecentChange;
-		$rc->mTitle = $title;
+		$rc->mPage = $page;
 		$rc->mPerformer = $user;
 		$rc->mAttribs = [
 			'rc_timestamp' => $timestamp,
-			'rc_namespace' => $title->getNamespace(),
-			'rc_title' => $title->getDBkey(),
+			'rc_namespace' => $page->getNamespace(),
+			'rc_title' => $page->getDBkey(),
 			'rc_type' => RC_NEW,
 			'rc_source' => self::SRC_NEW,
 			'rc_minor' => $minor ? 1 : 0,
-			'rc_cur_id' => $title->getArticleID(),
+			'rc_cur_id' => $page->getId(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
 			'rc_comment' => &$comment,
@@ -773,8 +830,11 @@ class RecentChange implements Taggable {
 			'rc_params' => ''
 		];
 
+		// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
+		$formatter = MediaWikiServices::getInstance()->getTitleFormatter();
+
 		$rc->mExtra = [
-			'prefixedDBkey' => $title->getPrefixedDBkey(),
+			'prefixedDBkey' => $formatter->getPrefixedDBkey( $page ),
 			'lastTimestamp' => 0,
 			'oldSize' => 0,
 			'newSize' => $size,
@@ -795,20 +855,22 @@ class RecentChange implements Taggable {
 
 	/**
 	 * @param string $timestamp
-	 * @param Title $title
+	 * @param PageReference $logPage
 	 * @param UserIdentity $user
 	 * @param string $actionComment
 	 * @param string $ip
 	 * @param string $type
 	 * @param string $action
-	 * @param Title $target
+	 * @param PageReference $target
 	 * @param string $logComment
 	 * @param string $params
 	 * @param int $newId
 	 * @param string $actionCommentIRC
+	 *
 	 * @return bool
 	 */
-	public static function notifyLog( $timestamp, $title, $user, $actionComment, $ip, $type,
+	public static function notifyLog( $timestamp,
+		$logPage, $user, $actionComment, $ip, $type,
 		$action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = ''
 	) {
 		global $wgLogRestrictions;
@@ -817,7 +879,8 @@ class RecentChange implements Taggable {
 		if ( isset( $wgLogRestrictions[$type] ) && $wgLogRestrictions[$type] != '*' ) {
 			return false;
 		}
-		$rc = self::newLogEntry( $timestamp, $title, $user, $actionComment, $ip, $type, $action,
+		$rc = self::newLogEntry( $timestamp,
+			$logPage, $user, $actionComment, $ip, $type, $action,
 			$target, $logComment, $params, $newId, $actionCommentIRC );
 		$rc->save();
 
@@ -826,22 +889,24 @@ class RecentChange implements Taggable {
 
 	/**
 	 * @param string $timestamp
-	 * @param Title $title
+	 * @param PageReference $logPage
 	 * @param UserIdentity $user
 	 * @param string $actionComment
 	 * @param string $ip
 	 * @param string $type
 	 * @param string $action
-	 * @param Title $target
+	 * @param PageReference $target
 	 * @param string $logComment
 	 * @param string $params
 	 * @param int $newId
 	 * @param string $actionCommentIRC
 	 * @param int $revId Id of associated revision, if any
 	 * @param bool $isPatrollable Whether this log entry is patrollable
+	 *
 	 * @return RecentChange
 	 */
-	public static function newLogEntry( $timestamp, $title, $user, $actionComment, $ip,
+	public static function newLogEntry( $timestamp,
+		$logPage, $user, $actionComment, $ip,
 		$type, $action, $target, $logComment, $params, $newId = 0, $actionCommentIRC = '',
 		$revId = 0, $isPatrollable = false ) {
 		global $wgRequest;
@@ -874,8 +939,14 @@ class RecentChange implements Taggable {
 		$canAutopatrol = $permissionManager->userHasRight( $user, 'autopatrol' );
 		$markPatrolled = $isPatrollable ? $canAutopatrol : true;
 
+		if ( $target instanceof PageIdentity && $target->canExist() ) {
+			$pageId = $target->getId();
+		} else {
+			$pageId = 0;
+		}
+
 		$rc = new RecentChange;
-		$rc->mTitle = $target;
+		$rc->mPage = $target;
 		$rc->mPerformer = $user;
 		$rc->mAttribs = [
 			'rc_timestamp' => $timestamp,
@@ -884,7 +955,7 @@ class RecentChange implements Taggable {
 			'rc_type' => RC_LOG,
 			'rc_source' => self::SRC_LOG,
 			'rc_minor' => 0,
-			'rc_cur_id' => $target->getArticleID(),
+			'rc_cur_id' => $pageId,
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
 			'rc_comment' => &$logComment,
@@ -906,8 +977,14 @@ class RecentChange implements Taggable {
 			'rc_params' => $params
 		];
 
+		// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
+		$formatter = MediaWikiServices::getInstance()->getTitleFormatter();
+
 		$rc->mExtra = [
-			'prefixedDBkey' => $title->getPrefixedDBkey(),
+			// XXX: This does not correspond to rc_namespace/rc_title/rc_cur_id.
+			//      Is that intentional? For all other kinds of RC entries, prefixedDBkey
+			//      matches rc_namespace/rc_title. Do we even need $logPage?
+			'prefixedDBkey' => $formatter->getPrefixedDBkey( $logPage ),
 			'lastTimestamp' => 0,
 			'actionComment' => $actionComment, // the comment appended to the action, passed from LogPage
 			'pageStatus' => $pageStatus,
@@ -924,10 +1001,10 @@ class RecentChange implements Taggable {
 	 * @since 1.27
 	 *
 	 * @param string $timestamp Timestamp of the recent change to occur
-	 * @param Title $categoryTitle Title of the category a page is being added to or removed from
+	 * @param PageIdentity $categoryTitle the category a page is being added to or removed from
 	 * @param UserIdentity|null $user User object of the user that made the change
 	 * @param string $comment Change summary
-	 * @param Title $pageTitle Title of the page that is being added or removed
+	 * @param PageIdentity $pageTitle the page that is being added or removed
 	 * @param int $oldRevId Parent revision ID of this change
 	 * @param int $newRevId Revision ID of this change
 	 * @param string $lastTimestamp Parent revision timestamp of this change
@@ -940,10 +1017,10 @@ class RecentChange implements Taggable {
 	 */
 	public static function newForCategorization(
 		$timestamp,
-		Title $categoryTitle,
+		PageIdentity $categoryTitle,
 		?UserIdentity $user,
 		$comment,
-		Title $pageTitle,
+		PageIdentity $pageTitle,
 		$oldRevId,
 		$newRevId,
 		$lastTimestamp,
@@ -953,7 +1030,9 @@ class RecentChange implements Taggable {
 		$added = null
 	) {
 		// Done in a backwards compatible way.
-		$categoryWikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $categoryTitle );
+		$categoryWikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()
+			->newFromTitle( $categoryTitle );
+
 		'@phan-var WikiCategoryPage $categoryWikiPage';
 		$params = [
 			'hidden-cat' => $categoryWikiPage->isHidden()
@@ -968,7 +1047,7 @@ class RecentChange implements Taggable {
 		}
 
 		$rc = new RecentChange;
-		$rc->mTitle = $categoryTitle;
+		$rc->mPage = $categoryTitle;
 		$rc->mPerformer = $user;
 		$rc->mAttribs = [
 			'rc_timestamp' => MWTimestamp::convert( TS_MW, $timestamp ),
@@ -977,7 +1056,9 @@ class RecentChange implements Taggable {
 			'rc_type' => RC_CATEGORIZE,
 			'rc_source' => self::SRC_CATEGORIZE,
 			'rc_minor' => 0,
-			'rc_cur_id' => $pageTitle->getArticleID(),
+			// XXX: rc_cur_id does not correspond to rc_namespace/rc_title.
+			//      They refer to different pages. Is that intentional?
+			'rc_cur_id' => $pageTitle->getId(),
 			'rc_user' => $user->getId(),
 			'rc_user_text' => $user->getName(),
 			'rc_comment' => &$comment,
@@ -998,8 +1079,11 @@ class RecentChange implements Taggable {
 			'rc_params' => serialize( $params )
 		];
 
+		// TODO: deprecate the 'prefixedDBkey' entry, let callers do the formatting.
+		$formatter = MediaWikiServices::getInstance()->getTitleFormatter();
+
 		$rc->mExtra = [
-			'prefixedDBkey' => $categoryTitle->getPrefixedDBkey(),
+			'prefixedDBkey' => $formatter->getPrefixedDBkey( $categoryTitle ),
 			'lastTimestamp' => $lastTimestamp,
 			'oldSize' => 0,
 			'newSize' => 0,

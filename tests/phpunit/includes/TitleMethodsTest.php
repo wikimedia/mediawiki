@@ -555,9 +555,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			[ NS_MAIN, '', 'test' ],
 			[ NS_SPECIAL, 'Test' ],
 			[ NS_MAIN, 'Test', '', 'acme' ],
-
-			// Can exist but include a fragment
-			[ NS_MAIN, 'Foo', 'bar' ],
 		];
 	}
 
@@ -570,6 +567,17 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 
 		$this->expectException( PreconditionException::class );
 		$title->getId();
+	}
+
+	/**
+	 * @dataProvider provideImproperPage
+	 * @covers Title::getId
+	 */
+	public function testGetId_fragment() {
+		$title = Title::makeTitle( NS_MAIN, 'Test', 'References' );
+
+		// should not throw
+		$this->assertIsInt( $title->getId() );
 	}
 
 	/**
