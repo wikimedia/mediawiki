@@ -2,9 +2,11 @@
 
 namespace MediaWiki\Auth;
 
+use Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -156,7 +158,13 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 					? \StatusValue::newGood()
 					: \StatusValue::newFatal( 'no' );
 			} ) );
-		$provider->setManager( $manager );
+		$provider->init(
+			$this->createNoOpMock( NullLogger::class ),
+			$manager,
+			$this->createHookContainer(),
+			$this->createNoOpAbstractMock( Config::class ),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		$this->assertEquals(
 			AuthenticationResponse::newAbstain(),
@@ -255,7 +263,13 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$mwServices->getBlockErrorFormatter(),
 			$mwServices->getWatchlistManager()
 		);
-		$provider->setManager( $manager );
+		$provider->init(
+			$this->createNoOpMock( NullLogger::class ),
+			$manager,
+			$this->createHookContainer(),
+			$this->createNoOpAbstractMock( Config::class ),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 
 		$req = new ConfirmLinkAuthenticationRequest( $reqs );

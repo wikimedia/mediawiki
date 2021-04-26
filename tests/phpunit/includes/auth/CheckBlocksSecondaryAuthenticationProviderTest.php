@@ -2,8 +2,11 @@
 
 namespace MediaWiki\Auth;
 
+use HashConfig;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
+use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -18,7 +21,13 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$config = new \HashConfig( [
 			'BlockDisablesLogin' => false
 		] );
-		$provider->setConfig( $config );
+		$provider->init(
+			$this->createNoOpMock( NullLogger::class ),
+			$this->createNoOpMock( AuthManager::class ),
+			$this->createHookContainer(),
+			$config,
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$this->assertSame( false, $providerPriv->blockDisablesLogin );
 
 		$provider = new CheckBlocksSecondaryAuthenticationProvider(
@@ -28,7 +37,13 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$config = new \HashConfig( [
 			'BlockDisablesLogin' => false
 		] );
-		$provider->setConfig( $config );
+		$provider->init(
+			$this->createNoOpMock( NullLogger::class ),
+			$this->createNoOpMock( AuthManager::class ),
+			$this->createHookContainer(),
+			$config,
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$this->assertSame( true, $providerPriv->blockDisablesLogin );
 	}
 
@@ -120,9 +135,14 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$provider = new CheckBlocksSecondaryAuthenticationProvider(
 			[ 'blockDisablesLogin' => false ]
 		);
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setConfig( new \HashConfig() );
-		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
+
+		$provider->init(
+			new NullLogger(),
+			$this->getServiceContainer()->getAuthManager(),
+			$this->createHookContainer(),
+			new HashConfig(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		$unblockedUser = \User::newFromName( 'UTSysop' );
 		$blockedUser = $this->getBlockedUser();
@@ -160,7 +180,6 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		];
 		$block = new DatabaseBlock( $blockOptions );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
-		$scopeVariable = new \Wikimedia\ScopedCallback( [ $block, 'delete' ] );
 
 		$user = \User::newFromName( 'UTNormalUser' );
 		if ( $user->getId() == 0 ) {
@@ -174,9 +193,13 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$provider = new CheckBlocksSecondaryAuthenticationProvider(
 			[ 'blockDisablesLogin' => true ]
 		);
-		$provider->setLogger( new \Psr\Log\NullLogger() );
-		$provider->setConfig( new \HashConfig() );
-		$provider->setManager( MediaWikiServices::getInstance()->getAuthManager() );
+		$provider->init(
+			new NullLogger(),
+			$this->getServiceContainer()->getAuthManager(),
+			$this->createHookContainer(),
+			new HashConfig(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		$ret = $provider->beginSecondaryAuthentication( $user, [] );
 		$this->assertEquals( AuthenticationResponse::FAIL, $ret->status );

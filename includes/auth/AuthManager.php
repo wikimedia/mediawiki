@@ -268,16 +268,13 @@ class AuthManager implements LoggerAwareInterface {
 
 		$this->primaryAuthenticationProviders = [];
 		foreach ( $providers as $provider ) {
-			if ( !$provider instanceof PrimaryAuthenticationProvider ) {
+			if ( !$provider instanceof AbstractPrimaryAuthenticationProvider ) {
 				throw new \RuntimeException(
-					'Expected instance of MediaWiki\\Auth\\PrimaryAuthenticationProvider, got ' .
+					'Expected instance of MediaWiki\\Auth\\AbstractPrimaryAuthenticationProvider, got ' .
 						get_class( $provider )
 				);
 			}
-			$provider->setLogger( $this->logger );
-			$provider->setManager( $this );
-			$provider->setConfig( $this->config );
-			$provider->setHookContainer( $this->hookContainer );
+			$provider->init( $this->logger, $this, $this->hookContainer, $this->config, $this->userNameUtils );
 			$id = $provider->getUniqueId();
 			if ( isset( $this->allAuthenticationProviders[$id] ) ) {
 				throw new \RuntimeException(
@@ -2362,12 +2359,9 @@ class AuthManager implements LoggerAwareInterface {
 
 		$ret = [];
 		foreach ( $specs as $spec ) {
-			/** @var AuthenticationProvider $provider */
+			/** @var AbstractAuthenticationProvider $provider */
 			$provider = $this->objectFactory->createObject( $spec, [ 'assertClass' => $class ] );
-			$provider->setLogger( $this->logger );
-			$provider->setManager( $this );
-			$provider->setConfig( $this->config );
-			$provider->setHookContainer( $this->getHookContainer() );
+			$provider->init( $this->logger, $this, $this->getHookContainer(), $this->config, $this->userNameUtils );
 			$id = $provider->getUniqueId();
 			if ( isset( $this->allAuthenticationProviders[$id] ) ) {
 				throw new \RuntimeException(
