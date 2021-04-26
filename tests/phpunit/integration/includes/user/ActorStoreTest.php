@@ -750,6 +750,23 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$this->assertSameActors( $anotherActor, $store->getActorById( $anotherActorId, $this->db ) );
 	}
 
+	public function testUserRenameUpdatesActor() {
+		$user = $this->getMutableTestUser()->getUser();
+		$oldName = $user->getName();
+
+		$store = $this->getStore();
+		$actorId = $store->findActorId( $user, $this->db );
+		$this->assertTrue( $actorId > 0 );
+
+		$user->setName( 'NewName' );
+		$user->saveSettings();
+
+		$this->assertSameActors( $user, $store->getActorById( $actorId, $this->db ) );
+		$this->assertSameActors( $user, $store->getUserIdentityByName( 'NewName' ) );
+		$this->assertSameActors( $user, $store->getUserIdentityByUserId( $user->getId() ) );
+		$this->assertNull( $store->getUserIdentityByName( $oldName ) );
+	}
+
 	/**
 	 * @covers ::acquireSystemActorId
 	 */
