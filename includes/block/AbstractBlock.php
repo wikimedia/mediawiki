@@ -273,7 +273,7 @@ abstract class AbstractBlock {
 
 	/**
 	 * Determine whether the block prevents a given right. A right
-	 * may be allowed or disallowed, or determined from a
+	 * may be allowed or disallowed by default, or determined from a
 	 * property on the block object. For certain rights, the property
 	 * may be overridden according to global configs.
 	 *
@@ -288,10 +288,6 @@ abstract class AbstractBlock {
 
 		$res = null;
 		switch ( $right ) {
-			case 'edit':
-				// TODO: fix this case to return proper value
-				$res = true;
-				break;
 			case 'createaccount':
 				$res = $this->isCreateAccountBlocked();
 				break;
@@ -299,7 +295,7 @@ abstract class AbstractBlock {
 				$res = $this->isEmailBlocked();
 				break;
 			case 'upload':
-				// Until T6995 is completed
+				// Sitewide blocks always block upload. This may be overridden in a subclass.
 				$res = $this->isSitewide();
 				break;
 			case 'read':

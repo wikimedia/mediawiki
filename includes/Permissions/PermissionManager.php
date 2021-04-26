@@ -67,6 +67,7 @@ class PermissionManager {
 		'WhitelistReadRegexp',
 		'EmailConfirmToEdit',
 		'BlockDisablesLogin',
+		'EnablePartialActionBlocks',
 		'GroupPermissions',
 		'RevokePermissions',
 		'AvailableRights',
@@ -759,7 +760,13 @@ class PermissionManager {
 		// If no action object is returned, assume that the action requires unblock
 		// which is the default.
 		if ( !$actionObj || $actionObj->requiresUnblock() ) {
-			if ( $this->isBlockedFrom( $user, $page, $useReplica ) ) {
+			if (
+				$this->isBlockedFrom( $user, $page, $useReplica ) ||
+				(
+					$this->options->get( 'EnablePartialActionBlocks' ) &&
+					$block->appliesToRight( $action )
+				)
+			) {
 				// @todo FIXME: Pass the relevant context into this function.
 				$context = RequestContext::getMain();
 				$message = $this->blockErrorFormatter->getMessage(

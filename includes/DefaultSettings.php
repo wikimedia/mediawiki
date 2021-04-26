@@ -5794,6 +5794,14 @@ $wgBlockCIDRLimit = [
 $wgBlockDisablesLogin = false;
 
 /**
+ * Flag to enable partial blocks against performing certain actions.
+ *
+ * @unstable Temporary feature flag, to be removed before the release of 1.37: T280532
+ * @var bool
+ */
+$wgEnablePartialActionBlocks = false;
+
+/**
  * Pages anonymous user may see, set as an array of pages titles.
  *
  * @par Example:

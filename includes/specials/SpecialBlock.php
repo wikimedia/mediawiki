@@ -22,11 +22,13 @@
  */
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockUser;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
@@ -59,6 +61,9 @@ class SpecialBlock extends FormSpecialPage {
 	/** @var UserNamePrefixSearch */
 	private $userNamePrefixSearch;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	/** @var User|string|null User to be blocked, as passed either by parameter (url?wpTarget=Foo)
 	 * or as subpage (Special:Block/Foo)
 	 */
@@ -85,13 +90,15 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param BlockUserFactory $blockUserFactory
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
+	 * @param BlockActionInfo $blockActionInfo
 	 */
 	public function __construct(
 		BlockUtils $blockUtils,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		BlockUserFactory $blockUserFactory,
 		UserNameUtils $userNameUtils,
-		UserNamePrefixSearch $userNamePrefixSearch
+		UserNamePrefixSearch $userNamePrefixSearch,
+		BlockActionInfo $blockActionInfo
 	) {
 		parent::__construct( 'Block', 'block' );
 
@@ -100,6 +107,7 @@ class SpecialBlock extends FormSpecialPage {
 		$this->blockUserFactory = $blockUserFactory;
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
+		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	public function doesWrites() {
@@ -192,6 +200,10 @@ class SpecialBlock extends FormSpecialPage {
 	protected function getFormFields() {
 		$conf = $this->getConfig();
 		$blockAllowsUTEdit = $conf->get( 'BlockAllowsUTEdit' );
+		$this->getOutput()->addJsConfigVars(
+			'wgEnablePartialActionBlocks',
+			$conf->get( 'EnablePartialActionBlocks' )
+		);
 
 		$this->getOutput()->enableOOUI();
 
@@ -296,6 +308,21 @@ class SpecialBlock extends FormSpecialPage {
 				'type' => 'check',
 				'label-message' => 'ipb-disableusertalk',
 				'default' => false,
+				'section' => 'actions',
+			];
+		}
+
+		if ( $conf->get( 'EnablePartialActionBlocks' ) ) {
+			$blockActions = $this->blockActionInfo->getAllBlockActions();
+			$a['ActionRestrictions'] = [
+				'type' => 'multiselect',
+				'cssclass' => 'mw-block-action-restriction',
+				'options-messages' => array_combine(
+					array_map( function ( $action ) {
+						return "ipb-action-$action";
+					}, array_keys( $blockActions ) ),
+					$blockActions
+				),
 				'section' => 'actions',
 			];
 		}
@@ -476,6 +503,16 @@ class SpecialBlock extends FormSpecialPage {
 					empty( $namespaceRestrictions )
 				) {
 					$fields['Editing']['default'] = false;
+				}
+
+				if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+					$actionRestrictions = [];
+					foreach ( $block->getRestrictions() as $restriction ) {
+						if ( $restriction instanceof ActionRestriction ) {
+							$actionRestrictions[] = $restriction->getValue();
+						}
+					}
+					$fields['ActionRestrictions']['default'] = $actionRestrictions;
 				}
 			}
 
@@ -766,6 +803,10 @@ class SpecialBlock extends FormSpecialPage {
 		BlockUserFactory $blockUserFactory,
 		BlockUtils $blockUtils
 	) {
+		// Temporarily access service container until the feature flag is removed: T280532
+		$enablePartialActionBlocks = MediaWikiServices::getInstance()
+			->getMainConfig()->get( 'EnablePartialActionBlocks' );
+
 		$isPartialBlock = isset( $data['EditingRestriction'] ) &&
 			$data['EditingRestriction'] === 'partial';
 
@@ -821,6 +862,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		$pageRestrictions = [];
 		$namespaceRestrictions = [];
+		$actionRestrictions = [];
 		if ( $isPartialBlock ) {
 			if ( isset( $data['PageRestrictions'] ) && $data['PageRestrictions'] !== '' ) {
 				$titles = explode( "\n", $data['PageRestrictions'] );
@@ -834,8 +876,17 @@ class SpecialBlock extends FormSpecialPage {
 					return new NamespaceRestriction( 0, $id );
 				}, explode( "\n", $data['NamespaceRestrictions'] ) );
 			}
+			if (
+				$enablePartialActionBlocks &&
+				isset( $data['ActionRestrictions'] ) &&
+				$data['ActionRestrictions'] !== ''
+			) {
+				$actionRestrictions = array_map( function ( $id ) {
+					return new ActionRestriction( 0, $id );
+				}, $data['ActionRestrictions'] );
+			}
 		}
-		$restrictions = ( array_merge( $pageRestrictions, $namespaceRestrictions ) );
+		$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions, $actionRestrictions );
 
 		if ( !isset( $data['Tags'] ) ) {
 			$data['Tags'] = [];
