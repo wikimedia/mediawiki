@@ -98,6 +98,8 @@ because of Phabricator reports.
   CachedAction, SpecialCachedPage, CacheHelper, ICacheHelper.
 * The deprecated "es6-promise" alias ResourceLoader module has been removed. Use
   "es6-polyfills" directly intead.
+* AuthenticationProvider interface doesn't extend LoggerAwareInterface.
+  So AuthenticationProvider can't be typehinted as LoggerAwareInterface.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
@@ -116,6 +118,10 @@ because of Phabricator reports.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
+* AbstractAuthenticationProvider ::setLogger(), ::setManager(), ::setConfig(),
+  ::setHookContainer() were soft deprecated. Use ::init() to inject
+  dependencies or override ::postInitSetup() to do any custom
+  post-initialization configuration.
 * …
 
 === Other changes in 1.37 ===
@@ -126,6 +132,9 @@ because of Phabricator reports.
   WatchlistManager::removeWatchIgnoringRights(), which replace
   User::removeWatch(), now call the UnwatchArticle and UnwatchArticleComplete
   hooks.
+* The overridable postInitSetup() method was added to the
+  AbstractAuthenticationProvider class. A provider can override postInitSetup()
+  to do any custom post-initialization configuration.
 * …
 
 == Compatibility ==

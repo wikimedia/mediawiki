@@ -2,8 +2,6 @@
 
 namespace MediaWiki\Auth;
 
-use Config;
-
 /**
  * Handles email notification / email address confirmation for account creation.
  *
@@ -27,9 +25,7 @@ class EmailNotificationSecondaryAuthenticationProvider
 		}
 	}
 
-	public function setConfig( Config $config ) {
-		parent::setConfig( $config );
-
+	protected function postInitSetup() {
 		if ( $this->sendConfirmationEmail === null ) {
 			$this->sendConfirmationEmail = $this->config->get( 'EnableEmail' )
 				&& $this->config->get( 'EmailAuthentication' );
