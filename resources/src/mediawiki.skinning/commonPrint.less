@@ -76,7 +76,8 @@ sub {
 	margin: 0 !important; /* stylelint-disable-line declaration-no-important */
 }
 
-@import 'toc/print.css';
+/* (T280929) As this is a CSS file, we need to import it inline lest LESS parses the CSS and gets paths wrong. */
+@import (inline) 'toc/print.css';
 @import 'elements-print.less';
 @import 'content.thumbnails-print.less';
 @import 'content.tables-print.less';
