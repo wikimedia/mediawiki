@@ -1551,6 +1551,9 @@ class Sanitizer {
 			// So we don't bother including $common attributes that have no purpose.
 			'meta' => $merge( [], [ 'itemprop', 'content' ] ),
 			'link' => $merge( [], [ 'itemprop', 'href', 'title' ] ),
+
+			# HTML 5 section 4.3.5
+			'aside' => $common,
 		];
 
 		return $allowed;
