@@ -302,12 +302,12 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$cacheID = "$cacheID@{$this->dbDomain}";
 
 		if ( isset( $externalBlobCache[$cacheID] ) ) {
-			$this->logger->debug( "ExternalStoreDB::fetchBlob cache hit on $cacheID" );
+			$this->logger->debug( __METHOD__ . ": cache hit on $cacheID" );
 
 			return $externalBlobCache[$cacheID];
 		}
 
-		$this->logger->debug( "ExternalStoreDB::fetchBlob cache miss on $cacheID" );
+		$this->logger->debug( __METHOD__ . ": cache miss on $cacheID" );
 
 		$dbr = $this->getReplica( $cluster );
 		$ret = $dbr->selectField(
@@ -317,7 +317,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			__METHOD__
 		);
 		if ( $ret === false ) {
-			$this->logger->info( "ExternalStoreDB::fetchBlob master fallback on $cacheID" );
+			$this->logger->warning( __METHOD__ . ": master fallback on $cacheID" );
 			// Try the master
 			$dbw = $this->getMaster( $cluster );
 			$ret = $dbw->selectField(
@@ -327,7 +327,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				__METHOD__
 			);
 			if ( $ret === false ) {
-				$this->logger->error( "ExternalStoreDB::fetchBlob master failed to find $cacheID" );
+				$this->logger->warning( __METHOD__ . ": master failed to find $cacheID" );
 			}
 		}
 		if ( $itemID !== false && $ret !== false ) {
