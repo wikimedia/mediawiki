@@ -35,9 +35,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/** @var PermissionManager */
 	private $permissionManager;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
@@ -50,7 +47,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	/**
 	 * @param MimeAnalyzer $mimeAnalyzer
 	 * @param PermissionManager $permissionManager
-	 * @param ActorMigration $actorMigration
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserCache $userCache
 	 * @param UserFactory $userFactory
@@ -58,14 +54,12 @@ class SpecialNewFiles extends IncludableSpecialPage {
 	public function __construct(
 		MimeAnalyzer $mimeAnalyzer,
 		PermissionManager $permissionManager,
-		ActorMigration $actorMigration,
 		ILoadBalancer $loadBalancer,
 		UserCache $userCache,
 		UserFactory $userFactory
 	) {
 		parent::__construct( 'Newimages' );
 		$this->permissionManager = $permissionManager;
-		$this->actorMigration = $actorMigration;
 		$this->loadBalancer = $loadBalancer;
 		$this->mediaTypes = $mimeAnalyzer->getMediaTypes();
 		$this->userCache = $userCache;
@@ -143,7 +137,6 @@ class SpecialNewFiles extends IncludableSpecialPage {
 			$opts,
 			$this->getLinkRenderer(),
 			$this->permissionManager,
-			$this->actorMigration,
 			$this->loadBalancer,
 			$this->userCache,
 			$this->userFactory

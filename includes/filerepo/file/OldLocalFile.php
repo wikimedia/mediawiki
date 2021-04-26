@@ -117,6 +117,11 @@ class OldLocalFile extends LocalFile {
 	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new oldlocalfile object.
+	 *
+	 * Since 1.34, oi_user and oi_user_text have not been present in the
+	 * database, but they continue to be available in query results as
+	 * aliases.
+	 *
 	 * @since 1.31
 	 * @stable to override
 	 *
@@ -129,9 +134,11 @@ class OldLocalFile extends LocalFile {
 	 */
 	public static function getQueryInfo( array $options = [] ) {
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'oi_description' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'oi_user' );
 		$ret = [
-			'tables' => [ 'oldimage' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'oldimage',
+				'oldimage_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'oi_name',
 				'oi_archive_name',
@@ -145,8 +152,13 @@ class OldLocalFile extends LocalFile {
 				'oi_timestamp',
 				'oi_deleted',
 				'oi_sha1',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'oi_actor',
+				'oi_user' => 'oldimage_actor.actor_user',
+				'oi_user_text' => 'oldimage_actor.actor_name'
+			] + $commentQuery['fields'],
+			'joins' => [
+				'oldimage_actor' => [ 'JOIN', 'actor_id=oi_actor' ]
+			] + $commentQuery['joins'],
 		];
 
 		if ( in_array( 'omit-nonlazy', $options, true ) ) {
@@ -442,7 +454,8 @@ class OldLocalFile extends LocalFile {
 
 		$commentFields = MediaWikiServices::getInstance()->getCommentStore()
 			->insert( $dbw, 'oi_description', $comment );
-		$actorFields = ActorMigration::newMigration()->getInsertValues( $dbw, 'oi_user', $user );
+		$actorId = MediaWikiServices::getInstance()->getActorNormalization()
+			->acquireActorId( $user, $dbw );
 		$dbw->insert( 'oldimage',
 			[
 				'oi_name' => $this->getName(),
@@ -451,13 +464,14 @@ class OldLocalFile extends LocalFile {
 				'oi_width' => intval( $props['width'] ),
 				'oi_height' => intval( $props['height'] ),
 				'oi_bits' => $props['bits'],
+				'oi_actor' => $actorId,
 				'oi_timestamp' => $dbw->timestamp( $timestamp ),
 				'oi_metadata' => $props['metadata'],
 				'oi_media_type' => $props['media_type'],
 				'oi_major_mime' => $props['major_mime'],
 				'oi_minor_mime' => $props['minor_mime'],
 				'oi_sha1' => $props['sha1'],
-			] + $commentFields + $actorFields, __METHOD__
+			] + $commentFields, __METHOD__
 		);
 
 		return true;

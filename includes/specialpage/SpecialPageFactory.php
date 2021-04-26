@@ -502,7 +502,6 @@ class SpecialPageFactory {
 			'services' => [
 				'MimeAnalyzer',
 				'PermissionManager',
-				'ActorMigration',
 				'DBLoadBalancer',
 				'UserCache',
 				'UserFactory',
@@ -570,7 +569,6 @@ class SpecialPageFactory {
 				'RepoGroup',
 				'DBLoadBalancer',
 				'CommentStore',
-				'ActorMigration',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
 				'UserCache',
