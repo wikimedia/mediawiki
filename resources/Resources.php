@@ -141,7 +141,8 @@ return [
 		'packageFiles' => [
 			// This MUST be kept in sync with maintenance/jsduck/eg-iframe.html
 			'mediawiki.base.js',
-			'mediawiki.errorLogger.js',
+			'log.js',
+			'errorLogger.js',
 
 			// (not this though)
 			[ 'name' => 'config.json', 'callback' => 'ResourceLoader::getSiteConfigSettings' ],

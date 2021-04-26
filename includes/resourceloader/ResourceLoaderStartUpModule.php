@@ -359,9 +359,6 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		// and MUST be considered by 'fileHashes' in StartUpModule::getDefinitionSummary().
 		$mwLoaderCode = file_get_contents( "$IP/resources/src/startup/mediawiki.js" ) .
 			file_get_contents( "$IP/resources/src/startup/mediawiki.requestIdleCallback.js" );
-		if ( $context->getDebug() ) {
-			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/mediawiki.log.js" );
-		}
 		if ( $conf->get( 'ResourceLoaderEnableJSProfiler' ) ) {
 			$mwLoaderCode .= file_get_contents( "$IP/resources/src/startup/profiler.js" );
 		}
@@ -389,13 +386,16 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 			'$CODE.profileScriptStart();' => 'mw.loader.profiler.onScriptStart( module );',
 			'$CODE.profileScriptEnd();' => 'mw.loader.profiler.onScriptEnd( module );',
 		];
-		if ( $conf->get( 'ResourceLoaderEnableJSProfiler' ) ) {
-			// When profiling is enabled, insert the calls.
-			$mwLoaderPairs += $profilerStubs;
-		} else {
-			// When disabled (by default), insert nothing.
-			$mwLoaderPairs += array_fill_keys( array_keys( $profilerStubs ), '' );
-		}
+		$debugStubs = [
+			'$CODE.consoleLog();' => 'console.log.apply( console, arguments );',
+		];
+		// When profiling is enabled, insert the calls. When disabled (by default), insert nothing.
+		$mwLoaderPairs += $conf->get( 'ResourceLoaderEnableJSProfiler' )
+			? $profilerStubs
+			: array_fill_keys( array_keys( $profilerStubs ), '' );
+		$mwLoaderPairs += $context->getDebug()
+			? $debugStubs
+			: array_fill_keys( array_keys( $debugStubs ), '' );
 		$mwLoaderCode = strtr( $mwLoaderCode, $mwLoaderPairs );
 
 		// Perform string replacements for startup.js
