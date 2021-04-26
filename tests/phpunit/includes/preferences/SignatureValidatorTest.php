@@ -102,4 +102,22 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	/**
+	 * @covers MediaWiki\Preferences\SignatureValidator::checkLineBreaks()
+	 * @dataProvider provideCheckLineBreaks
+	 */
+	public function testCheckLineBreaks( $signature, $expected ) {
+		$isValid = $this->validator->checkLineBreaks( $signature );
+		$this->assertSame( $expected, $isValid );
+	}
+
+	public function provideCheckLineBreaks() {
+		return [
+			'Perfect' =>
+				[ '[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk]])', true ],
+			'Line break' =>
+				[ "[[User:SignatureValidatorTest|Signature]] ([[User talk:SignatureValidatorTest|talk\n]])", false ],
+		];
+	}
+
 }
