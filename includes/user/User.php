@@ -3426,6 +3426,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 				[ 'actor_user' => $this->mId ],
 				$fname
 			);
+			MediaWikiServices::getInstance()->getActorStore()->deleteUserIdentityFromCache( $this );
 		} );
 
 		$this->mTouched = $newTouched;
