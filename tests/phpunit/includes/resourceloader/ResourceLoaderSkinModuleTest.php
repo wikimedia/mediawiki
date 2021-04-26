@@ -6,6 +6,75 @@ use Wikimedia\TestingAccessWrapper;
  * @group ResourceLoader
  */
 class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
+	public function provideGetBackwardsCompatibleFeatures() {
+		return [
+			[
+				[],
+				[
+					'logo' => true,
+					'legacy' => true
+				],
+				'For historic reasons if nothing is declared logo and legacy features are enabled.'
+			],
+			[
+				[
+					'features' => [
+						'content' => true,
+					]
+				],
+				[
+					'content-thumbnails' => true,
+				],
+				'The `content` feature is mapped to `content-thumbnails`.'
+			],
+			[
+				[
+					'features' => [
+						'content-links' => true,
+					]
+				],
+				[
+					'content-links-external' => true,
+					'content-links' => true,
+				],
+				'The `content-links` feature will also enable `content-links-external` if it not specified.'
+			],
+			[
+				[
+					'features' => [
+						'element' => true,
+					]
+				],
+				[
+					'element' => true,
+					'content-links' => true,
+				],
+				'The `element` feature will turn on `content-links` if not specified.'
+			],
+			[
+				[
+					'features' => [
+						'content-links-external' => false,
+						'content-links' => true,
+					]
+				],
+				[
+					'content-links-external' => false,
+					'content-links' => true,
+				],
+				'The `content-links` feature has no impact on content-links-external value.'
+			],
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetBackwardsCompatibleFeatures
+	 * @covers ResourceLoaderSkinModule::getBackwardsCompatibleFeatures
+	 */
+	public function testGetBackwardsCompatibleFeatures( $options, $expected, $msg ) {
+		$actual = ResourceLoaderSkinModule::getBackwardsCompatibleFeatures( $options );
+		$this->assertEquals( $expected, $actual, $msg );
+	}
 
 	public static function provideGetAvailableLogos() {
 		return [
