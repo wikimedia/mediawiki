@@ -100,6 +100,12 @@ because of Phabricator reports.
   "es6-polyfills" directly intead.
 * AuthenticationProvider interface doesn't extend LoggerAwareInterface.
   So AuthenticationProvider can't be typehinted as LoggerAwareInterface.
+* The following methods, deprecated in 1.35, were removed:
+  - Parser::fetchCurrentRevisionOfTitle
+  - Parser::statelessFetchRevision
+  - Parser::getRevisionObject
+  - ParserOptions::getCurrentRevisionCallback
+  - ParserOptions::setCurrentRevisionCallback
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
