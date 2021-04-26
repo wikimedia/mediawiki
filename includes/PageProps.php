@@ -22,7 +22,6 @@
 
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -89,7 +88,7 @@ class PageProps {
 	 * returned. An empty array will be returned if no matching properties
 	 * were found.
 	 *
-	 * @param iterable<PageIdentity>|PageIdentity $titles
+	 * @param Title[]|TitleArray|Title $titles
 	 * @param string[]|string $propertyNames
 	 * @return array associative array mapping page ID to property value
 	 */
@@ -160,7 +159,7 @@ class PageProps {
 	 * will always be returned. An empty array will be returned if no
 	 * matching properties were found.
 	 *
-	 * @param iterable<PageIdentity>|PageIdentity $titles
+	 * @param Title[]|TitleArray|Title $titles
 	 * @return array associative array mapping page ID to property value array
 	 */
 	public function getAllProperties( $titles ) {
@@ -216,30 +215,22 @@ class PageProps {
 	}
 
 	/**
-	 * @param iterable<PageIdentity>|PageIdentity $titles
+	 * @param Title[]|TitleArray|Title $titles
 	 * @return int[] List of good page IDs
 	 */
 	private function getGoodIDs( $titles ) {
 		$result = [];
 		if ( is_iterable( $titles ) ) {
-			if ( $titles instanceof TitleArray ||
-				( is_array( $titles ) && reset( $titles ) instanceof Title
-			) ) {
-				// If the first element is a Title, assume all elements are Titles,
-				// and pre-fetch their IDs using a batch query. For PageIdentityValues
-				// or PageStoreRecords, this is not necessary, since they already
-				// know their ID.
-				$this->linkBatchFactory->newLinkBatch( $titles )->execute();
-			}
+			$this->linkBatchFactory->newLinkBatch( $titles )->execute();
 
 			foreach ( $titles as $title ) {
-				$pageID = $title->getId();
+				$pageID = $title->getArticleID();
 				if ( $pageID > 0 ) {
 					$result[] = $pageID;
 				}
 			}
 		} else {
-			$pageID = $titles->getId();
+			$pageID = $titles->getArticleID();
 			if ( $pageID > 0 ) {
 				$result[] = $pageID;
 			}

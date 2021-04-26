@@ -4221,9 +4221,9 @@ class EditPage implements IEditObject {
 		$parserOptions->setIsSectionPreview( $this->section !== null && $this->section !== '' );
 		$parserOptions->enableLimitReport();
 
-		// XXX: we could call $parserOptions->setCurrentRevisionCallback here to force the
+		// XXX: we could call $parserOptions->setCurrentRevisionRecordCallback here to force the
 		// current revision to be null during PST, until setupFakeRevision is called on
-		// the ParserOptions. Currently, we rely on Parser::getRevisionObject() to ignore
+		// the ParserOptions. Currently, we rely on Parser::getRevisionRecordObject() to ignore
 		// existing revisions in preview mode.
 
 		return $parserOptions;
@@ -4243,7 +4243,7 @@ class EditPage implements IEditObject {
 		$parserOptions = $this->getPreviewParserOptions();
 
 		// NOTE: preSaveTransform doesn't have a fake revision to operate on.
-		// Parser::getRevisionObject() will return null in preview mode,
+		// Parser::getRevisionRecordObject() will return null in preview mode,
 		// causing the context user to be used for {{subst:REVISIONUSER}}.
 		// XXX: Alternatively, we could also call setupFakeRevision() a second time:
 		// once before PST with $content, and then after PST with $pstContent.
