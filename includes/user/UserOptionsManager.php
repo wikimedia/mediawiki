@@ -258,8 +258,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * - 'registered-checkmatrix' - as above, using the 'checkmatrix' type.
 	 * - 'userjs' - preferences with names starting with 'userjs-', intended to
 	 *              be used by user scripts.
-	 * - 'special' - "preferences" that are not accessible via User::getOptions
-	 *               or UserOptionsManager::setOptions.
+	 * - 'special' - "preferences" that are not accessible via
+	 *              UserOptionsLookup::getOptions or UserOptionsManager::setOptions.
 	 * - 'unused' - preferences about which MediaWiki doesn't know anything.
 	 *              These are usually legacy options, removed in newer versions.
 	 *

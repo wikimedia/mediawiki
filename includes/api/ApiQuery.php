@@ -92,6 +92,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'BlockRestrictionStore',
 				'CommentStore',
+				'UserNameUtils',
 			],
 		],
 		'categorymembers' => ApiQueryCategoryMembers::class,
@@ -142,6 +143,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'CommentStore',
 				'UserIdentityLookup',
+				'UserNameUtils',
 			],
 		],
 		'users' => ApiQueryUsers::class,
@@ -171,7 +173,8 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'TalkPageNotificationManager',
 				'WatchedItemStore',
-				'UserEditTracker'
+				'UserEditTracker',
+				'UserOptionsLookup',
 			]
 		],
 		'filerepoinfo' => ApiQueryFileRepoInfo::class,

@@ -173,7 +173,12 @@ class ApiMain extends ApiBase {
 			]
 		],
 		'userrights' => ApiUserrights::class,
-		'options' => ApiOptions::class,
+		'options' => [
+			'class' => ApiOptions::class,
+			'services' => [
+				'UserOptionsManager',
+			],
+		],
 		'imagerotate' => ApiImageRotate::class,
 		'revisiondelete' => ApiRevisionDelete::class,
 		'managetags' => ApiManageTags::class,

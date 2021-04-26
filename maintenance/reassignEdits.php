@@ -169,7 +169,8 @@ class ReassignEdits extends Maintenance {
 	 * @return User
 	 */
 	private function initialiseUser( $username ) {
-		if ( User::isIP( $username ) ) {
+		$services = MediaWikiServices::getInstance();
+		if ( $services->getUserNameUtils()->isIP( $username ) ) {
 			$user = User::newFromName( $username, false );
 			$user->getActorId();
 		} else {

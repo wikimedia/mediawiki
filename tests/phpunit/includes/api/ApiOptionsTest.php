@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\User\UserOptionsManager;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**
@@ -37,16 +38,12 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		// No actual DB data
 		$this->mUserMock->method( 'getInstanceForUpdate' )->willReturn( $this->mUserMock );
 
-		// Needs to return something
-		$this->mUserMock->method( 'getOptions' )
-			->willReturn( [] );
-
 		$this->mUserMock->method( 'isAllowedAny' )->willReturn( true );
 
 		// DefaultPreferencesFactory calls a ton of user methods, but we still want to list all of
 		// them in case bugs are caused by unexpected things returning null that shouldn't.
 		$this->mUserMock->expects( $this->never() )->method( $this->anythingBut(
-			'getEffectiveGroups', 'getOptionKinds', 'getInstanceForUpdate', 'getOptions', 'getId',
+			'getEffectiveGroups', 'getOptionKinds', 'getInstanceForUpdate', 'getId',
 			'isAnon', 'getRequest', 'isLoggedIn', 'getName', 'getGroupMemberships', 'getEditCount',
 			'getRegistration', 'isAllowed', 'getRealName', 'getOption', 'getStubThreshold',
 			'getBoolOption', 'getEmail', 'getDatePreference', 'useRCPatrol', 'useNPPatrol',
@@ -65,7 +62,11 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		// Empty session
 		$this->mSession = [];
 
-		$this->mTested = new ApiOptions( $main, 'options' );
+		$userOptionsManagerMock = $this->createNoOpMock( UserOptionsManager::class, [ 'getOptions' ] );
+		// Needs to return something
+		$userOptionsManagerMock->method( 'getOptions' )->willReturn( [] );
+
+		$this->mTested = new ApiOptions( $main, 'options', $userOptionsManagerMock );
 
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
 			'GetPreferences' => [

@@ -26,6 +26,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\Rdbms\SelectQueryBuilder;
 
 /**
@@ -41,21 +42,27 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	/** @var UserIdentityLookup */
 	private $userIdentityLookup;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
 	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		CommentStore $commentStore,
-		UserIdentityLookup $userIdentityLookup
+		UserIdentityLookup $userIdentityLookup,
+		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( $query, $moduleName, 'uc' );
 		$this->commentStore = $commentStore;
 		$this->userIdentityLookup = $userIdentityLookup;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	private $params, $multiUserMode, $orderBy, $parentLens;
@@ -187,7 +194,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 					);
 				}
 
-				if ( User::isIP( $u ) || ExternalUserNames::isExternal( $u ) ) {
+				if ( $this->userNameUtils->isIP( $u ) || ExternalUserNames::isExternal( $u ) ) {
 					$names[$u] = null;
 				} else {
 					$name = User::getCanonicalName( $u, 'valid' );
