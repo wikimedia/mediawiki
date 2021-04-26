@@ -1086,7 +1086,7 @@
 	"last": "Link in page history",
 	"page_first": "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the '[[Special:Categories|Categories]]' special page. It is followed by the message {{msg-mw|Viewprevnext}}.\n{{Identical|First}}",
 	"page_last": "This is part of the navigation message on the top and bottom of Special pages which are lists of things in alphabetical order, e.g. the '[[Special:Categories|Categories]]' special page. It is followed by the message {{msg-mw|Viewprevnext}}.\n\n{{Identical|Last}}",
-	"histlegend": "Text in history page.\n\nSee also:\n* {{msg-mw|Cur}}\n* {{msg-mw|Last}}\n* {{msg-mw|Minoreditletter}}",
+	"histlegend": "Text at the top of the history page, explaining how to use it.\n\nOne or two [[:w:en:Radio button|radio buttons]] appear in each row that represents a revision of a wiki page.\n\n\"Legend\" means \"explanation of symbols\".\n\nSee also:\n* {{msg-mw|Cur}}\n* {{msg-mw|Last}}\n* {{msg-mw|Minoreditletter}}\n\nScreenshot:\n[[File:Screenshot of Revision history of Douglas Adams (Q42) - Wikidata.png|thumb|Screenshot of the revision history feature]]",
 	"history-fieldset-title": "Form legend label in the edit history page.",
 	"history-show-deleted": "CheckBox to show only per [[mw:Manual:RevisionDelete|RevisionDelete]] deleted versions.\n\nUsed in History and [[Special:Contributions]].",
 	"history_copyright": "{{notranslate}}",

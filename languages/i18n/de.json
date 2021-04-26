@@ -919,7 +919,7 @@
 	"last": "Vorherige",
 	"page_first": "Anfang",
 	"page_last": "Ende",
-	"histlegend": "Zur Anzeige der Änderungen einfach die zu vergleichenden Versionen auswählen und die Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />\n* ({{int:cur}}) = Unterschied zur aktuellen Version, ({{int:last}}) = Unterschied zur vorherigen Version\n* Uhrzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Adresse des Bearbeiters, {{int:minoreditletter}} = Kleine Änderung",
+	"histlegend": "Auswahl des Versionsunterschieds: Markiere die Radiobuttons der zu vergleichenden Versionen und drücke die Eingabetaste oder die Schaltfläche am unteren Rand.<br>\nLegende: <strong>({{int:cur}})</strong> = Unterschied zur aktuellen Version, <strong>({{int:last}})</strong> = Unterschied zur vorherigen Version, <strong>{{int:minoreditletter}}</strong> = Kleine Änderung",
 	"history-fieldset-title": "Versionen filtern",
 	"history-show-deleted": "Nur gelöschte Versionen zeigen",
 	"histfirst": "älteste",
