@@ -91,7 +91,7 @@ class ApiAMCreateAccount extends ApiBase {
 					$reqs[] = $req;
 				}
 			}
-			$res = $manager->beginAccountCreation( $this->getUser(), $reqs, $params['returnurl'] );
+			$res = $manager->beginAccountCreation( $this->getAuthority(), $reqs, $params['returnurl'] );
 		}
 
 		$this->getResult()->addValue( null, 'createaccount',

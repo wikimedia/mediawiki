@@ -3671,6 +3671,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 	/**
 	 * Get whether the user is explicitly blocked from account creation.
+	 * @deprecated since 1.37. Instead use Authority::authorize* for createaccount permission.
 	 * @return bool|AbstractBlock
 	 */
 	public function isBlockedFromCreateAccount() {
