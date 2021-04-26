@@ -381,11 +381,12 @@ abstract class MWLBFactory {
 		$req = RequestContext::getMain()->getRequest();
 
 		// Set user IP/agent information for agent session consistency purposes
+		$reqStart = (int)( $_SERVER['REQUEST_TIME_FLOAT'] ?? time() );
 		$cpPosInfo = LBFactory::getCPInfoFromCookieValue(
 			// The cookie has no prefix and is set by MediaWiki::preOutputCommit()
 			$req->getCookie( 'cpPosIndex', '' ),
 			// Mitigate broken client-side cookie expiration handling (T190082)
-			time() - ChronologyProtector::POSITION_COOKIE_TTL
+			$reqStart - ChronologyProtector::POSITION_COOKIE_TTL
 		);
 		$lbFactory->setRequestInfo( [
 			'IPAddress' => $req->getIP(),
