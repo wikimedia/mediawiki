@@ -86,7 +86,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 		yield 'getUserIdentityByName, user name 0' => [
 			'getUserIdentityByName', // $method
 			'0', // $argument
-			new UserIdentityValue( 26, '0', 46 ), // $expected
+			new UserIdentityValue( 26, '0' ), // $expected
 		];
 		yield 'getUserIdentityByUserId, registered' => [
 			'getUserIdentityByUserId', // $method
@@ -231,12 +231,12 @@ class ActorStoreTest extends ActorStoreTestBase {
 		yield 'cross-wiki' => [
 			'acmewiki', // $wikiId
 			(object)[ 'actor_id' => 42, 'actor_name' => 'TestUser', 'actor_user' => 24 ], // $row
-			new UserIdentityValue( 24, 'TestUser', 42, 'acmewiki' ), // $expected
+			new UserIdentityValue( 24, 'TestUser', 'acmewiki' ), // $expected
 		];
 		yield 'user name 0' => [
 			UserIdentity::LOCAL, // $wikiId
 			(object)[ 'actor_id' => '46', 'actor_name' => '0', 'actor_user' => 26 ], // $row
-			new UserIdentityValue( 26, '0', 46 ), // $expected
+			new UserIdentityValue( 26, '0' ), // $expected
 		];
 	}
 
@@ -304,14 +304,14 @@ class ActorStoreTest extends ActorStoreTestBase {
 			46, // $actorId
 			'0', // $name
 			26, // $userId
-			new UserIdentityValue( 26, '0', 46 ), // $expected
+			new UserIdentityValue( 26, '0' ), // $expected
 		];
 		yield 'cross-wiki' => [
 			'acmewiki', // $wikiId
 			42, // $actorId
 			'TestUser', // $name
 			0, // $userId
-			new UserIdentityValue( 0, 'TestUser', 42, 'acmewiki' ), // $expected
+			new UserIdentityValue( 0, 'TestUser', 'acmewiki' ), // $expected
 		];
 	}
 
@@ -613,7 +613,7 @@ class ActorStoreTest extends ActorStoreTestBase {
 			42, // $expected
 		];
 		yield 'registered, 0 user name' => [
-			new UserIdentityValue( 26, '0', 46 ), // $actor
+			new UserIdentityValue( 26, '0' ), // $actor
 			46, // $expected
 		];
 	}
