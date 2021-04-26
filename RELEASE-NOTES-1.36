@@ -19,6 +19,12 @@ Some specific notes for MediaWiki 1.36 upgrades are below:
 * MediaWiki:Autoblock_whitelist has been moved to
   MediaWiki:Block-autoblock-exemptionlist. If you use this feature, please move
   the MediaWiki:Autoblock_whitelist page.
+* (T275334) $wgExtensionFunctions is sometimes used to change configuration
+  settings. This is not safe; extension functions are run relatively late, some
+  services are already initialized by that point and so they use the old
+  configuration. Changes in 1.36 make this kind of breakage even more common.
+  You can use the MediaWikiServices hook instead. (In the future there might be
+  a dedicated hook for configuration changes.)
 * …
 
 For notes on 1.35.x and older releases, see HISTORY.
