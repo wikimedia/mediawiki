@@ -18,18 +18,19 @@
  * @file
  */
 
-use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
+use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
  * Used to show archived pages and eventually restore them.
  */
 class PageArchive {
-	use ProtectedHookAccessorTrait;
 
 	/** @var Title */
 	protected $title;
@@ -43,24 +44,48 @@ class PageArchive {
 	/** @var Config */
 	protected $config;
 
-	public function __construct( Title $title, Config $config = null ) {
-		$this->title = $title;
-		if ( $config === null ) {
-			wfDebug( __METHOD__ . ' did not have a Config object passed to it' );
-			$config = MediaWikiServices::getInstance()->getMainConfig();
-		}
-		$this->config = $config;
-	}
+	/** @var HookRunner */
+	private $hookRunner;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
 
 	/**
-	 * @return RevisionStore
+	 * @param Title $title
+	 * @param Config|null $config
 	 */
-	private function getRevisionStore() {
+	public function __construct( Title $title, Config $config = null ) {
+		$this->title = $title;
+
+		$services = MediaWikiServices::getInstance();
+		if ( $config === null ) {
+			// TODO deprecate not passing a Config object, though technically this class is
+			// not @newable / stable to create
+			wfDebug( __METHOD__ . ' did not have a Config object passed to it' );
+			$config = $services->getMainConfig();
+		}
+		$this->config = $config;
+
+		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->repoGroup = $services->getRepoGroup();
+
 		// TODO: Refactor: delete()/undeleteAsUser() should live in a PageStore service;
 		//       Methods in PageArchive and RevisionStore that deal with archive revisions
 		//       should move into an ArchiveStore service (but could still be implemented
 		//       together with RevisionStore).
-		return MediaWikiServices::getInstance()->getRevisionStore();
+		$this->revisionStore = $services->getRevisionStore();
+
+		$this->wikiPageFactory = $services->getWikiPageFactory();
 	}
 
 	public function doesWrites() {
@@ -176,8 +201,7 @@ class PageArchive {
 	 * @return IResultWrapper|bool
 	 */
 	public function listRevisions() {
-		$revisionStore = $this->getRevisionStore();
-		$queryInfo = $revisionStore->getArchiveQueryInfo();
+		$queryInfo = $this->revisionStore->getArchiveQueryInfo();
 
 		$conds = [
 			'ar_namespace' => $this->title->getNamespace(),
@@ -198,7 +222,7 @@ class PageArchive {
 			''
 		);
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		return $dbr->select(
 			$queryInfo['tables'],
 			$queryInfo['fields'],
@@ -222,7 +246,7 @@ class PageArchive {
 			return null;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$fileQuery = ArchivedFile::getQueryInfo();
 		return $dbr->select(
 			$fileQuery['tables'],
@@ -243,7 +267,7 @@ class PageArchive {
 	 * @return RevisionRecord|null
 	 */
 	public function getRevisionRecordByTimestamp( $timestamp ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$rec = $this->getRevisionByConditions(
 			[ 'ar_timestamp' => $dbr->timestamp( $timestamp ) ]
 		);
@@ -269,8 +293,8 @@ class PageArchive {
 	 * @return RevisionRecord|null
 	 */
 	private function getRevisionByConditions( array $conditions, array $options = [] ) {
-		$dbr = wfGetDB( DB_REPLICA );
-		$arQuery = $this->getRevisionStore()->getArchiveQueryInfo();
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+		$arQuery = $this->revisionStore->getArchiveQueryInfo();
 
 		$conditions += [
 			'ar_namespace' => $this->title->getNamespace(),
@@ -287,7 +311,7 @@ class PageArchive {
 		);
 
 		if ( $row ) {
-			return $this->getRevisionStore()->newRevisionFromArchiveRow( $row, 0, $this->title );
+			return $this->revisionStore->newRevisionFromArchiveRow( $row, 0, $this->title );
 		}
 
 		return null;
@@ -306,7 +330,7 @@ class PageArchive {
 	 * @return RevisionRecord|null Null when there is no previous revision
 	 */
 	public function getPreviousRevisionRecord( string $timestamp ) {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
 		// Check the previous deleted revision...
 		$row = $dbr->selectRow( 'archive',
@@ -339,7 +363,7 @@ class PageArchive {
 
 		if ( $prevLive && $prevLive > $prevDeleted ) {
 			// Most prior revision was live
-			$rec = $this->getRevisionStore()->getRevisionById( $prevLiveId );
+			$rec = $this->revisionStore->getRevisionById( $prevLiveId );
 		} elseif ( $prevDeleted ) {
 			// Most prior revision was deleted
 			$rec = $this->getArchivedRevisionRecord( $prevDeletedId );
@@ -356,7 +380,7 @@ class PageArchive {
 	 * @return int|false The revision's ID, or false if there is no deleted revision.
 	 */
 	public function getLastRevisionId() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$revId = $dbr->selectField(
 			'archive',
 			'ar_rev_id',
@@ -376,7 +400,7 @@ class PageArchive {
 	 * @return bool
 	 */
 	public function isDeleted() {
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$row = $dbr->selectRow(
 			[ 'archive' ],
 			'1', // We don't care about the value. Allow the database to optimize.
@@ -426,8 +450,7 @@ class PageArchive {
 
 		if ( $restoreFiles && $this->title->getNamespace() === NS_FILE ) {
 			/** @var LocalFile $img */
-			$img = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()
-				->newFile( $this->title );
+			$img = $this->repoGroup->getLocalRepo()->newFile( $this->title );
 			$img->load( File::READ_LATEST );
 			$this->fileStatus = $img->restore( $fileVersions, $unsuppress );
 			if ( !$this->fileStatus->isOK() ) {
@@ -469,7 +492,7 @@ class PageArchive {
 			],
 		] );
 
-		$this->getHookRunner()->onArticleUndeleteLogEntry( $this, $logEntry, $user );
+		$this->hookRunner->onArticleUndeleteLogEntry( $this, $logEntry, $user );
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
@@ -493,13 +516,13 @@ class PageArchive {
 			throw new ReadOnlyError();
 		}
 
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
 		$restoreAll = empty( $timestamps );
 
 		# Does this page already exist? We'll have to update it...
-		$article = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $this->title );
+		$article = $this->wikiPageFactory->newFromTitle( $this->title );
 		# Load latest data for the current page (T33179)
 		$article->loadPageData( 'fromdbmaster' );
 		$oldcountable = $article->isCountable();
@@ -545,7 +568,7 @@ class PageArchive {
 			$oldWhere['ar_timestamp'] = array_map( [ &$dbw, 'timestamp' ], $timestamps );
 		}
 
-		$revisionStore = $this->getRevisionStore();
+		$revisionStore = $this->revisionStore;
 		$queryInfo = $revisionStore->getArchiveQueryInfo();
 		$queryInfo['tables'][] = 'revision';
 		$queryInfo['fields'][] = 'rev_id';
@@ -708,8 +731,7 @@ class PageArchive {
 
 				$restored++;
 
-				$hookRunner = $this->getHookRunner();
-				$hookRunner->onRevisionUndeleted( $revision, $row->ar_page_id );
+				$this->hookRunner->onRevisionUndeleted( $revision, $row->ar_page_id );
 
 				$restoredPages[$row->ar_page_id] = true;
 			}
@@ -776,7 +798,7 @@ class PageArchive {
 				);
 			}
 
-			$this->getHookRunner()->onArticleUndelete(
+			$this->hookRunner->onArticleUndelete(
 				$this->title, $created, $comment, $oldPageId, $restoredPages );
 
 			if ( $this->title->getNamespace() === NS_FILE ) {
