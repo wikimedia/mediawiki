@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Aushulz",
 			"DannyS712",
 			"Fitoschido",
@@ -174,6 +175,7 @@
 	"searcharticle": "Vai",
 	"history": "Crunuluggìa dâ pàggina",
 	"history_short": "Crunuluggìa",
+	"history_small": "crunuluggìa",
 	"updatedmarker": "canciata dâ mè ùrtima vìsita",
 	"printableversion": "Virsioni stampàbbili",
 	"permalink": "Liami pirmanenti",
@@ -197,6 +199,7 @@
 	"talk": "Discussioni",
 	"views": "Vìsiti",
 	"toolbox": "Strummenta",
+	"cactions": "Àutri cosi",
 	"imagepage": "Talìa la pàggina dû file",
 	"mediawikipage": "Talìa lu missaggiu",
 	"templatepage": "Talìa lu template",
@@ -478,6 +481,7 @@
 	"resetpass_submit": "Mposta la password e trasi",
 	"changepassword-success": "La tò password fu canciata!",
 	"changepassword-throttled": "Facisti troppi tintativi di trasuta.\nPi favuri aspetta $1 prima di pruvari n'àutra vota.",
+	"botpasswords-label-delete": "Cancella",
 	"resetpass_forbidden": "Li password nun si ponnu canciari",
 	"resetpass-no-info": "Pi tràsiri nta sta pàggina hai a èssiri riggistratu.",
 	"resetpass-submit-loggedin": "Cancia la password",
@@ -965,6 +969,7 @@
 	"userrights-nodatabase": "La basi di dati $1 nun esisti o nun è lucali.",
 	"userrights-changeable-col": "Gruppi chi si ponnu canciari",
 	"userrights-unchangeable-col": "Gruppi chi nun si ponnu canciari",
+	"userrights-expiry-options": "1 jornu:1 day,1 simana:1 week,1 misi:1 month,3 misi: 3 months,6 misi:6 months,1 annu:1 year",
 	"userrights-conflict": "Cunflittu di canciamentu dî dritti di l'utenti! Pi favuri cuntrolla e cunferma li tò canciamenti.",
 	"group": "Gruppu:",
 	"group-user": "Utenti",
