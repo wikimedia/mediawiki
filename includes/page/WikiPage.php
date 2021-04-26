@@ -1857,7 +1857,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$services->getDBLoadBalancerFactory(),
 			$this->getContentHandlerFactory(),
 			$this->getHookContainer(),
-			$editResultCache
+			$editResultCache,
+			$services->getUserNameUtils()
 		);
 
 		$derivedDataUpdater->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );

@@ -27,7 +27,8 @@ class ImageListPagerTest extends MediaWikiIntegrationTestCase {
 			$services->getRepoGroup(),
 			$services->getDBLoadBalancer(),
 			$services->getCommentStore(),
-			UserCache::singleton()
+			UserCache::singleton(),
+			$services->getUserNameUtils()
 		);
 		$this->expectException( MWException::class );
 		$this->expectExceptionMessage( "invalid_field" );

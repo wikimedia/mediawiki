@@ -50,7 +50,8 @@ class RollbackEdits extends Maintenance {
 
 	public function execute() {
 		$user = $this->getOption( 'user' );
-		$username = User::isIP( $user ) ? $user : User::getCanonicalName( $user );
+		$services = MediaWikiServices::getInstance();
+		$username = $services->getUserNameUtils()->isIP( $user ) ? $user : User::getCanonicalName( $user );
 		if ( !$username ) {
 			$this->fatalError( 'Invalid username' );
 		}
@@ -79,9 +80,8 @@ class RollbackEdits extends Maintenance {
 
 		$doer = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
 
-		$wikiPageFactory = MediaWikiServices::getInstance()->getWikiPageFactory();
-		$rollbackPageFactory = MediaWikiServices::getInstance()
-			->getRollbackPageFactory();
+		$wikiPageFactory = $services->getWikiPageFactory();
+		$rollbackPageFactory = $services->getRollbackPageFactory();
 		foreach ( $titles as $t ) {
 			$page = $wikiPageFactory->newFromTitle( $t );
 			$this->output( 'Processing ' . $t->getPrefixedText() . '... ' );

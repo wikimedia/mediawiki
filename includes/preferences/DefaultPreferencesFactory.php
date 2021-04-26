@@ -230,7 +230,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$disable = !$this->permissionManager->userHasRight( $user, 'editmyoptions' );
 
 		$defaultOptions = $this->userOptionsLookup->getDefaultOptions();
-		$userOptions = $user->getOptions();
+		$userOptions = $this->userOptionsLookup->getOptions( $user );
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
 		// Add in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
@@ -246,9 +246,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				// Already set, no problem
 				continue;
 			} elseif ( $prefFromUser !== null && // Make sure we're not just pulling nothing
-					$field->validate( $prefFromUser, $user->getOptions() ) === true ) {
+					$field->validate( $prefFromUser, $this->userOptionsLookup->getOptions( $user ) ) === true ) {
 				$info['default'] = $prefFromUser;
-			} elseif ( $field->validate( $globalDefault, $user->getOptions() ) === true ) {
+			} elseif ( $field->validate( $globalDefault, $this->userOptionsLookup->getOptions( $user ) ) === true ) {
 				$info['default'] = $globalDefault;
 			} else {
 				$globalDefault = json_encode( $globalDefault );
@@ -1779,7 +1779,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		if ( $this->permissionManager->userHasRight( $user, 'editmyoptions' ) ) {
-			$oldUserOptions = $user->getOptions();
+			$oldUserOptions = $this->userOptionsLookup->getOptions( $user );
 
 			foreach ( $this->getSaveBlacklist() as $b ) {
 				unset( $formData[$b] );

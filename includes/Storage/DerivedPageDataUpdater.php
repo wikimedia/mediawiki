@@ -48,6 +48,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
 use MessageCache;
 use MWTimestamp;
 use MWUnknownContentModelException;
@@ -286,6 +287,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/** @var EditResultCache */
 	private $editResultCache;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @param WikiPage $wikiPage ,
 	 * @param RevisionStore $revisionStore
@@ -299,6 +303,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
 	 * @param EditResultCache $editResultCache
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		WikiPage $wikiPage,
@@ -312,7 +317,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		ILBFactory $loadbalancerFactory,
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
-		EditResultCache $editResultCache
+		EditResultCache $editResultCache,
+		UserNameUtils $userNameUtils
 	) {
 		$this->wikiPage = $wikiPage;
 
@@ -329,6 +335,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->editResultCache = $editResultCache;
+		$this->userNameUtils = $userNameUtils;
 
 		$this->logger = new NullLogger();
 	}
@@ -1591,7 +1598,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 					$revRecord = $this->revision;
 					$talkPageNotificationManager = MediaWikiServices::getInstance()
 						->getTalkPageNotificationManager();
-					if ( User::isIP( $shortTitle ) ) {
+					if ( $this->userNameUtils->isIP( $shortTitle ) ) {
 						// An anonymous user
 						$talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
 					} elseif ( $recipient->isRegistered() ) {

@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\User\UserNameUtils;
 use Wikimedia\IPUtils;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -38,21 +39,27 @@ class ApiQueryBlocks extends ApiQueryBase {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param CommentStore $commentStore
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		BlockRestrictionStore $blockRestrictionStore,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( $query, $moduleName, 'bk' );
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->commentStore = $commentStore;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	public function execute() {
@@ -283,7 +290,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 				"baduser_{$encParamName}"
 			);
 		}
-		$name = User::isIP( $user )
+		$name = $this->userNameUtils->isIP( $user ) || IPUtils::isIPv6( $user )
 			? $user
 			: User::getCanonicalName( $user, 'valid' );
 		if ( $name === false ) {

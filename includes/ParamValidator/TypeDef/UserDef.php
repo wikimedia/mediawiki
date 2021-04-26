@@ -200,7 +200,7 @@ class UserDef extends TypeDef {
 		// An IP?
 		$b = IPUtils::RE_IP_BYTE;
 		if ( IPUtils::isValid( $value ) ||
-			// See comment for User::isIP.  We don't just call that function
+			// See comment for UserNameUtils::isIP. We don't just call that function
 			// here because it also returns true for things like
 			// 300.300.300.300 that are neither valid usernames nor valid IP
 			// addresses.

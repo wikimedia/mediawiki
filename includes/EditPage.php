@@ -56,6 +56,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use OOUI\CheckboxInputWidget;
 use OOUI\DropdownInputWidget;
@@ -429,6 +430,11 @@ class EditPage implements IEditObject {
 	private $watchlistManager;
 
 	/**
+	 * @var UserNameUtils
+	 */
+	private $userNameUtils;
+
+	/**
 	 * @stable to call
 	 * @param Article $article
 	 */
@@ -461,6 +467,7 @@ class EditPage implements IEditObject {
 		$this->watchedItemStore = $services->getWatchedItemStore();
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 		$this->watchlistManager = $services->getWatchlistManager();
+		$this->userNameUtils = $services->getUserNameUtils();
 
 		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'deletedSinceEdit', '1.35', __CLASS__ );
@@ -2747,7 +2754,7 @@ class EditPage implements IEditObject {
 		if ( $namespace === NS_USER || $namespace === NS_USER_TALK ) {
 			$username = explode( '/', $this->mTitle->getText(), 2 )[0];
 			$user = User::newFromName( $username, false /* allow IP users */ );
-			$ip = User::isIP( $username );
+			$ip = $this->userNameUtils->isIP( $username );
 			$block = DatabaseBlock::newFromTarget( $user, $user );
 
 			$userExists = ( $user && $user->isRegistered() );

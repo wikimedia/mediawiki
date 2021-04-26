@@ -1,4 +1,8 @@
 <?php
+
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserOptionsLookup;
+
 /**
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -55,7 +59,8 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 		];
 		$script = 'mw.user.tokens.set(' . $context->encodeJson( $tokens ) . ');';
 
-		$options = $user->getOptions( User::GETOPTIONS_EXCLUDE_DEFAULTS );
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+		$options = $userOptionsLookup->getOptions( $user, UserOptionsLookup::EXCLUDE_DEFAULTS );
 		// Optimisation: Only output this function call if the user has non-default settings.
 		if ( $options ) {
 			$script .= 'mw.user.options.set(' . $context->encodeJson( $options ) . ');';

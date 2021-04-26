@@ -220,7 +220,7 @@ class SpecialContributions extends IncludableSpecialPage {
 			# For IP ranges, we want the contributionsSub, but not the skin-dependent
 			# links under 'Tools', which may include irrelevant links like 'Logs'.
 			if ( !IPUtils::isValidRange( $target ) &&
-				( User::isIP( $target ) || $userObj->isRegistered() )
+				( $this->userNameUtils->isIP( $target ) || $userObj->isRegistered() )
 			) {
 				// Don't add non-existent users, because hidden users
 				// that we add here will be removed later to pretend
@@ -389,10 +389,12 @@ class SpecialContributions extends IncludableSpecialPage {
 
 		if ( $isAnon ) {
 			// Show a warning message that the user being searched for doesn't exist.
-			// User::isIP returns true for IP address and usemod IPs like '123.123.123.xxx',
+			// UserNameUtils::isIP returns true for IP address and usemod IPs like '123.123.123.xxx',
 			// but returns false for IP ranges. We don't want to suggest either of these are
 			// valid usernames which we would with the 'contributions-userdoesnotexist' message.
-			if ( !User::isIP( $userObj->getName() ) && !IPUtils::isValidRange( $userObj->getName() ) ) {
+			if ( !$this->userNameUtils->isIP( $userObj->getName() )
+				&& !IPUtils::isValidRange( $userObj->getName() )
+			) {
 				$this->getOutput()->wrapWikiMsg(
 					"<div class=\"mw-userpage-userdoesnotexist error\">\n\$1\n</div>",
 					[
