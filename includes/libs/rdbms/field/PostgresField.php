@@ -37,7 +37,6 @@ AND relname=%s
 AND attname=%s;
 SQL;
 
-		$table = $db->remappedTableName( $table );
 		foreach ( $db->getCoreSchemas() as $schema ) {
 			$res = $db->query(
 				sprintf( $q,

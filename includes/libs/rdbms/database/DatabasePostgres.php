@@ -49,10 +49,18 @@ class DatabasePostgres extends Database {
 	 * @see Database::__construct()
 	 * @param array $params Additional parameters include:
 	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
+	 *   This is is deprecated since 1.37. Reserved identifiers should be quoted where necessary,
 	 */
 	public function __construct( array $params ) {
 		$this->port = intval( $params['port'] ?? null );
-		$this->keywordTableMap = $params['keywordTableMap'] ?? [];
+
+		if ( isset( $params['keywordTableMap'] ) ) {
+			wfDeprecatedMsg( 'Passing keywordTableMap parameter to ' .
+				'DatabasePostgres::__construct() is deprecated', '1.37'
+			);
+
+			$this->keywordTableMap = $params['keywordTableMap'];
+		}
 
 		parent::__construct( $params );
 	}
@@ -664,17 +672,17 @@ __INDEXATTR__;
 	}
 
 	public function tableName( $name, $format = 'quoted' ) {
-		// Replace reserved words with better ones
-		$name = $this->remappedTableName( $name );
-
 		return parent::tableName( $name, $format );
 	}
 
 	/**
 	 * @param string $name
 	 * @return string Value of $name or remapped name if $name is a reserved keyword
+	 * @deprecated since 1.37. Reserved identifiers should be quoted where necessary
 	 */
 	public function remappedTableName( $name ) {
+		wfDeprecated( __METHOD__, '1.37' );
+
 		return $this->keywordTableMap[$name] ?? $name;
 	}
 
