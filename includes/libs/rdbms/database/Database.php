@@ -3797,12 +3797,12 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function conditional( $cond, $trueVal, $falseVal ) {
+	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
 		if ( is_array( $cond ) ) {
 			$cond = $this->makeList( $cond, self::LIST_AND );
 		}
 
-		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
+		return " (CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END) ";
 	}
 
 	/**

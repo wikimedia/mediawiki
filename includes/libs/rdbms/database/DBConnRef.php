@@ -542,7 +542,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function conditional( $cond, $trueVal, $falseVal ) {
+	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
