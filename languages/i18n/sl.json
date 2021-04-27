@@ -1106,6 +1106,7 @@
 	"badsiglinks": "Tvoj podpis mora vsebovati povezavo do tvoje uporabniške strani, pogovorne strani ali prispevkov na tem wikiju. Prosimo, dodaj jo, na primer: <code>$1</code>.",
 	"badsigsubst": "Tvoj podpis vsebuje gnezdeno zamenjavo (npr. <code>subst:</code> ali <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "Vaš podpis je preobsežen.\nNe sme biti daljši od $1 {{PLURAL:$1|znaka|znakov}}.",
+	"badsiglinebreak": "Vaš podpis mora vsebovati samo eno vrstico wikibesedila.",
 	"linter-pager-bogus-image-options-details": "Napaka v zapisu datoteke",
 	"linter-pager-deletable-table-tag-details": "Značka tabele, ki jo je potrebno odstraniti",
 	"linter-pager-html5-misnesting-details": "Nepravilno gnezdenje (zdaj pokvarjeno)",
