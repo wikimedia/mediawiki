@@ -970,7 +970,7 @@
 	"last": "пред.",
 	"page_first": "первая",
 	"page_last": "последняя",
-	"histlegend": "Выбор версий: отметьте версии страницы, которые вы хотите сравнить, и нажмите <strong>{{int:compare-submit}}</strong>.<br />\nПояснения: <strong>({{int:cur}})</strong> — отличия от текущей версии; <strong>({{int:last}})</strong> — отличия от предшествующей версии; <strong>{{int:minoreditletter}}</strong> — незначительные изменения.",
+	"histlegend": "Выбор версий: отметьте версии страницы, которые вы хотите сравнить, и нажмите Enter или кнопку ниже.<br />\nПояснения: <strong>({{int:cur}})</strong> — отличия от текущей версии; <strong>({{int:last}})</strong> — отличия от предшествующей версии; <strong>{{int:minoreditletter}}</strong> — малое изменения.",
 	"history-fieldset-title": "Фильтровать правки",
 	"history-show-deleted": "Только удалённые правки",
 	"histfirst": "старейшие",

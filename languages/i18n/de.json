@@ -1203,6 +1203,7 @@
 	"badsiglinks": "Deine Unterschrift muss einen Link zu deiner Benutzerseite, Diskussionsseite oder deinen Beiträgen in diesem Wiki enthalten. Bitte füge ihn hinzu, zum Beispiel: <code>$1</code>.",
 	"badsigsubst": "Deine Unterschrift enthält verschachtelte Ersetzungen (z.B. <code>subst:</code> oder <code><nowiki>~~~~~~</nowiki></code>).",
 	"badsiglength": "Die Signatur darf maximal $1 {{PLURAL:$1|Zeichen}} lang sein.",
+	"badsiglinebreak": "Deine Unterschrift muss aus einer einzigen Zeile Wikitext bestehen.",
 	"linter-pager-bogus-image-options-details": "Fehlerhafte Dateioption",
 	"linter-pager-deletable-table-tag-details": "Tabellen-Tag, das gelöscht werden soll.",
 	"linter-pager-html5-misnesting-details": "Missbräuchliche Verschachtelung (jetzt kaputt)",

@@ -1120,6 +1120,7 @@
 	"badsiglinks": "Потписот мора да има врска до вашата корисничка страница, разговорна страница или придонеси. Додајте ја, на пример: <code>$1</code>.",
 	"badsigsubst": "Потписот содржи вгнездена замена (на пр. <code>subst:</code> или <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "Вашиот потпис е премногу долг.\nМора да биде со помалку од $1 {{PLURAL:$1|знак|знаци}}.",
+	"badsiglinebreak": "Вашиот потпис мора да се состои од еден ред викитекст.",
 	"linter-pager-bogus-image-options-details": "Лажна податотечна можност",
 	"linter-pager-deletable-table-tag-details": "Табелната ознака што треба да се избрише",
 	"linter-pager-html5-misnesting-details": "Погрешно вгнездување (сега расипано)",
