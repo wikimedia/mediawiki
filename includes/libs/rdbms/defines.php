@@ -23,5 +23,8 @@ define( 'DBO_COMPRESS', IDatabase::DBO_COMPRESS );
  * Operation-based indexes
  */
 define( 'DB_REPLICA', ILoadBalancer::DB_REPLICA );
+/** @since 1.35.3 */
+define( 'DB_PRIMARY', ILoadBalancer::DB_PRIMARY );
+/** @deprecated since 1.35.3, Use DB_PRIMARY instead */
 define( 'DB_MASTER', ILoadBalancer::DB_MASTER );
 /** @} */

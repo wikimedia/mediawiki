@@ -114,7 +114,15 @@ class ContentModelChange {
 		$titleWithNewContentModel->setContentModel( $this->newModel );
 
 		$pm = $this->permManager;
+
+		$creationErrors = [];
+		if ( !$current->exists() ) {
+			$creationErrors = $pm->getPermissionErrors( 'create', $user, $current );
+		}
+
 		$errors = wfMergeErrorArrays(
+			// Potentially include creation errors, if applicable
+			$creationErrors,
 			// edit the contentmodel of the page
 			$pm->getPermissionErrors( 'editcontentmodel', $user, $current ),
 			// edit the page under the old content model

@@ -9,9 +9,25 @@ declare 1.35 as supporting PHP 8.0.
 
 PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 
-== MediaWiki 1.35.2 ==
+== MediaWiki 1.35.3 ==
 
 THIS IS NOT A RELEASE YET
+
+=== Changes since MediaWiki 1.35.2 ===
+
+* (T280944) $wgIncludejQueryMigrate - This setting allows the jQuery Migrate
+  plugin to be disabled. It has been enabled by default since MediaWiki 1.27.
+
+== MediaWiki 1.35.2 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+MediaWiki 1.35.2 supports Composer 2.0. It is reccommended to make sure your
+libraries are up to date on Composer 1.x, before running Composer 2.x.
+
+While normally running update.php isn't required for point releases,
+it is recommended to run it for 1.35.2 so that iwlinks.iwl_prefix is
+updated to take 32 characters.
 
 === Changes since MediaWiki 1.35.1 ===
 * (T270450) The confusingly-named User->isLoggedIn() method has been deprecated
@@ -62,7 +78,8 @@ THIS IS NOT A RELEASE YET
 * (T269293) Record all used options in metadata.
 * Allow usage of Composer 2.0 to install MediaWiki's dependencies.
 * (T259872) skins: Call headElement() after getTemplateData() in SkinMustache.
-* (T277009) Allow blocked users to access Special:ResetTokens.
+* (T277009, CVE-2021-30158) SECURITY: Allow blocked users to access
+  Special:ResetTokens.
 * (T272412) Add "Account data" section to user preferences.
 * (T268310) Add list of thumbnail urls to LocalFilePurgeThumbnails hook.
 * (T277520) registration: Allow specifying immovable namespaces in
@@ -71,8 +88,10 @@ THIS IS NOT A RELEASE YET
   documented and are not altered by previous calls to these methods.
 * (T254688) Remove page inner join from subquery in SpecialWhatLinksHere.
 * (T122124) signup: added help message for security.
-* (T278014) Escape mediastatistics-header-* messages on Special:NewFiles.
-* (T278058) Escape rcfilters-filter-* messages on ChangesList pages.
+* (T278014, CVE-2021-30154) SECURITY: Escape mediastatistics-header-* messages
+  on Special:NewFiles.
+* (T278058, CVE-2021-30157) SECURITY: Escape rcfilters-filter-* messages on
+  ChangesList pages.
 * (T277414) HTMLFormField: Use non namespaced class name rather than
   static::class.
 * (T268673) maintenance: Don't create SearchUpdate in rebuildtextindex.php
@@ -83,10 +102,19 @@ THIS IS NOT A RELEASE YET
   config-pingback.
 * Fix documentation of user-global in $wgRateLimits.
 * BackupDumper: Add -o as shortcode for --output.
+* (T235554) Disable DEFER_SET_LENGTH_AND_FLUSH headers to avoid HTTP errors.
+* (T270713, CVE-2021-30152) SECURITY: Allow user to only apply protection they
+  have right to do so via action=protect.
+* (T272386, CVE-2021-30159) SECURITY: Non-admin deleted enwiki page in fast
+  double move.
+* (T270988, CVE-2021-30155) SECURITY: ContentModelChange: Check that user can
+  create pages.
+* (T279451, CVE-2021-30458) SECURITY: Parsoid comment fostering allows for
+  inserting mostly arbitrary <meta> tags.
 
 == MediaWiki 1.35.1 ==
 
-This is a maintenance release of the MediaWiki 1.35 branch.
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 While normally running update.php isn't required for point releases,
 it is recommended to run it for 1.35.1 so that sites.site_language is
@@ -325,10 +353,10 @@ See the file UPGRADE for more detailed upgrade instructions, including
 important information when upgrading from versions prior to 1.11.
 
 Some specific notes for MediaWiki 1.35 upgrades are below:
-* (T259685) Zeroconf (zero-configuration) VisualEditor/Parsoid doesn't work
-  using SQLite as the database backend for MediaWiki. This is due to the lack
-  of write concurrency in SQLite. If you wish to use this feature, it is
-  recommended to use MySQL/MariaDB rather than SQLite.
+* (T259685) When using SQLite as the database backend for MediaWiki,
+  Zeroconf (zero-configuration) VisualEditor/Parsoid only works with
+  MediaWiki 1.35.2 and above.  It is still recommended to use
+  MySQL/MariaDB rather than SQLite when using VisualEditor.
 
 For notes on 1.34.x and older releases, see HISTORY.
 
@@ -562,7 +590,7 @@ For notes on 1.34.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added wikimedia/ip-utils 1.0.0.
-* Added wikimedia/parsoid 0.12.1.
+* Added wikimedia/parsoid 0.12.2.
 * Added wikimedia/services 2.0.1.
 * Added taylorhakes/promise-polyfill v8.1.3.
 * Added vuejs v2.6.11.

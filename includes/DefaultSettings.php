@@ -4142,6 +4142,17 @@ $wgResourceLoaderDebug = false;
 $wgIncludeLegacyJavaScript = false;
 
 /**
+ * Whether to load the jquery.migrate library.
+ *
+ * This provides jQuery 1.12 features that were removed in jQuery 3.0.
+ * See also <https://jquery.com/upgrade-guide/3.0/> and
+ * <https://phabricator.wikimedia.org/T280944>.
+ *
+ * @since 1.35.3
+ */
+$wgIncludejQueryMigrate = true;
+
+/**
  * Whether or not to assign configuration variables to the global window object.
  *
  * If this is set to false, old code using deprecated variables will no longer
