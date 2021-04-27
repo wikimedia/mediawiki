@@ -24,7 +24,6 @@ use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\Assert\ParameterAssertionException;
 
 /**
- * @covers \MediaWiki\DAO\WikiAwareEntityTrait
  * @covers MediaWiki\Page\PageReferenceValue
  *
  * @group Title
