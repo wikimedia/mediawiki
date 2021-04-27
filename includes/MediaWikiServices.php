@@ -26,6 +26,7 @@ use LocalisationCache;
 use MagicWordFactory;
 use MediaHandlerFactory;
 use MediaWiki\Auth\AuthManager;
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
@@ -608,6 +609,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBlobStoreFactory() : BlobStoreFactory {
 		return $this->getService( 'BlobStoreFactory' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return BlockActionInfo
+	 */
+	public function getBlockActionInfo() : BlockActionInfo {
+		return $this->getService( 'BlockActionInfo' );
 	}
 
 	/**

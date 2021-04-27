@@ -326,6 +326,10 @@ class ApiQueryBlocks extends ApiQueryBase {
 			'page' => 'pages',
 			'ns' => 'namespaces',
 		];
+		if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+			$keys['action'] = 'actions';
+		}
+
 		foreach ( $restrictions as $restriction ) {
 			$key = $keys[$restriction->getType()];
 			$id = $restriction->getBlockId();

@@ -36,6 +36,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			'WhitelistReadRegexp' => false,
 			'EmailConfirmToEdit' => false,
 			'BlockDisablesLogin' => false,
+			'EnablePartialActionBlocks' => false,
 			'GroupPermissions' => [],
 			'RevokePermissions' => [],
 			'AvailableRights' => [],
