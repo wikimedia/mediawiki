@@ -3802,7 +3802,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$cond = $this->makeList( $cond, self::LIST_AND );
 		}
 
-		return " (CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END) ";
+		return "(CASE WHEN $cond THEN $caseTrueExpression ELSE $caseFalseExpression END)";
 	}
 
 	/**
