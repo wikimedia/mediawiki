@@ -20,8 +20,14 @@
  * @file
  * @ingroup Cache
  */
+
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageReference;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -37,6 +43,11 @@ class LinkBatch {
 	 * @var array[] 2-d array, first index namespace, second index dbkey, value arbitrary
 	 */
 	public $data = [];
+
+	/**
+	 * @var PageIdentity[]|null PageIdentity objects corresponding to the links in the batch
+	 */
+	private $pageIdentities = null;
 
 	/**
 	 * @var string|null For debugging which method is using this class.
@@ -69,7 +80,7 @@ class LinkBatch {
 	private $loadBalancer;
 
 	/**
-	 * @param Traversable|LinkTarget[] $arr Initial items to be added to the batch
+	 * @param iterable<LinkTarget>|iterable<PageReference> $arr Initial items to be added to the batch
 	 * @param LinkCache|null $linkCache
 	 * @param TitleFormatter|null $titleFormatter
 	 * @param Language|null $contentLanguage
@@ -116,14 +127,11 @@ class LinkBatch {
 	}
 
 	/**
-	 * @param LinkTarget $linkTarget
+	 * @param LinkTarget|PageReference $link
 	 */
-	public function addObj( $linkTarget ) {
-		if ( is_object( $linkTarget ) ) {
-			$this->add( $linkTarget->getNamespace(), $linkTarget->getDBkey() );
-		} else {
-			wfDebug( "Warning: LinkBatch::addObj got invalid LinkTarget object" );
-		}
+	public function addObj( $link ) {
+		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $link, '$link' );
+		$this->add( $link->getNamespace(), $link->getDBkey() );
 	}
 
 	/**
@@ -179,6 +187,21 @@ class LinkBatch {
 	}
 
 	/**
+	 * Do the query, add the results to the LinkCache object,
+	 * and return PageIdentity instances corresponding to the pages in the batch.
+	 *
+	 * @since 1.37
+	 * @return PageIdentity[] A list of PageIdentities
+	 */
+	public function getPageIdentities(): array {
+		if ( $this->pageIdentities === null ) {
+			$this->execute();
+		}
+
+		return $this->pageIdentities;
+	}
+
+	/**
 	 * Do the query and add the results to a given LinkCache object
 	 * Return an array mapping PDBK to ID
 	 *
@@ -210,6 +233,10 @@ class LinkBatch {
 
 		// For each returned entry, add it to the list of good links, and remove it from $remaining
 
+		if ( $this->pageIdentities === null ) {
+			$this->pageIdentities = [];
+		}
+
 		$ids = [];
 		$remaining = $this->data;
 		foreach ( $res as $row ) {
@@ -218,6 +245,16 @@ class LinkBatch {
 				$cache->addGoodLinkObjFromRow( $title, $row );
 				$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
 				$ids[$pdbk] = $row->page_id;
+
+				$pageIdentity = new PageIdentityValue(
+					(int)$row->page_id,
+					(int)$row->page_namespace,
+					$row->page_title,
+					PageIdentity::LOCAL
+				);
+
+				$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
+				$this->pageIdentities[$key] = $pageIdentity;
 			} else {
 				wfLogWarning( __METHOD__ . ': encountered invalid title: ' .
 					$row->page_namespace . '-' . $row->page_title );
@@ -234,6 +271,10 @@ class LinkBatch {
 					$cache->addBadLinkObj( $title );
 					$pdbk = $this->titleFormatter->getPrefixedDBkey( $title );
 					$ids[$pdbk] = 0;
+
+					$pageIdentity = new PageIdentityValue( 0, (int)$ns, $dbkey, PageIdentity::LOCAL );
+					$key = CacheKeyHelper::getKeyForPage( $pageIdentity );
+					$this->pageIdentities[$key] = $pageIdentity;
 				} else {
 					wfLogWarning( __METHOD__ . ': encountered invalid title: ' . $ns . '-' . $dbkey );
 				}
