@@ -1,5 +1,12 @@
 ( function () {
-	QUnit.module( 'mediawiki.base' );
+	QUnit.module( 'mediawiki.base', {
+		beforeEach: function () {
+			this.clock = sinon.useFakeTimers();
+		},
+		afterEach: function () {
+			this.clock.restore();
+		}
+	} );
 
 	QUnit.test( 'mw.hook - add() and fire()', function ( assert ) {
 		mw.hook( 'test.basic' ).add( function () {
@@ -89,6 +96,25 @@
 			'early z',
 			'late z'
 		] );
+	} );
+
+	QUnit.test( 'mw.hook - Limit impact of consumer errors T223352', function ( assert ) {
+		mw.hook( 'test.catch' )
+			.add( function callerA( data ) {
+				assert.step( 'A' + data );
+				throw new Error( 'Fail A' );
+			} )
+			.fire( '1' )
+			.add( function callerB( data ) {
+				assert.step( 'B' + data );
+			} )
+			.fire( '2' );
+
+		assert.verifySteps( [ 'A1', 'B1', 'A2', 'B2' ] );
+
+		assert.throws( function () {
+			this.clock.tick( 10 );
+		}, /Fail A/, 'Global error' );
 	} );
 
 	QUnit.test( 'mw.hook - Variadic add and remove', function ( assert ) {
