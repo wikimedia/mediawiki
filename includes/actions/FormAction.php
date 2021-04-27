@@ -76,7 +76,7 @@ abstract class FormAction extends Action {
 	/**
 	 * Get the HTMLForm to control behavior
 	 * @stable to override
-	 * @return HTMLForm|null
+	 * @return HTMLForm
 	 */
 	protected function getForm() {
 		$this->fields = $this->getFormFields();
