@@ -73,9 +73,11 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 		return new HashConfig( self::getSettings() );
 	}
 
-	protected function setUp() : void {
-		parent::setUp();
-
+	/**
+	 * The annotation causes this to be called immediately before setUp()
+	 * @before
+	 */
+	final protected function mediaWikiResourceLoaderSetUp() : void {
 		ResourceLoader::clearCache();
 
 		$globals = [];
