@@ -2792,7 +2792,6 @@
 	"ipblocklist-localblock": "Local block",
 	"ipblocklist-otherblocks": "Other {{PLURAL:$1|block|blocks}}",
 	"infiniteblock": "infinite",
-	"expiringblock": "expires on $1 at $2",
 	"anononlyblock": "anon. only",
 	"noautoblockblock": "autoblock disabled",
 	"createaccountblock": "account creation disabled",
