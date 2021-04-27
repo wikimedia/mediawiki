@@ -93,7 +93,7 @@ function Message( map, key, parameters ) {
 	this.format = 'text';
 	this.map = map;
 	this.key = key;
-	this.parameters = parameters === undefined ? [] : parameters;
+	this.parameters = parameters || [];
 	return this;
 }
 
@@ -147,8 +147,6 @@ Message.prototype = {
 	 *  does not exist.
 	 */
 	toString: function () {
-		var text;
-
 		if ( !this.exists() ) {
 			// Use ⧼key⧽ as text if key does not exist
 			// Err on the side of safety, ensure that the output
@@ -162,15 +160,11 @@ Message.prototype = {
 		}
 
 		if ( this.format === 'plain' || this.format === 'text' || this.format === 'parse' ) {
-			text = this.parser();
+			return this.parser();
 		}
 
-		if ( this.format === 'escaped' ) {
-			text = this.parser();
-			text = mw.html.escape( text );
-		}
-
-		return text;
+		// Format: 'escaped'
+		return mw.html.escape( this.parser() );
 	},
 
 	/**
@@ -270,7 +264,7 @@ mw.inspect = function () {
 };
 
 /**
- * Replace $* with a list of parameters for &uselang=qqx.
+ * Replace `$*` with a list of parameters for `uselang=qqx` support.
  *
  * @private
  * @since 1.33
@@ -279,15 +273,15 @@ mw.inspect = function () {
  * @return {string} Transformed format string
  */
 mw.internalDoTransformFormatForQqx = function ( formatString, parameters ) {
-	var parametersString;
+	var replacement;
 	if ( formatString.indexOf( '$*' ) !== -1 ) {
-		parametersString = '';
+		replacement = '';
 		if ( parameters.length ) {
-			parametersString = ': ' + parameters.map( function ( _, i ) {
+			replacement = ': ' + parameters.map( function ( _, i ) {
 				return '$' + ( i + 1 );
 			} ).join( ', ' );
 		}
-		return formatString.replace( '$*', parametersString );
+		return formatString.replace( '$*', replacement );
 	}
 	return formatString;
 };
@@ -526,101 +520,99 @@ mw.hook = ( function () {
  * @class mw.html
  * @singleton
  */
-mw.html = ( function () {
-	function escapeCallback( s ) {
-		switch ( s ) {
-			case '\'':
-				return '&#039;';
-			case '"':
-				return '&quot;';
-			case '<':
-				return '&lt;';
-			case '>':
-				return '&gt;';
-			case '&':
-				return '&amp;';
-		}
+
+function escapeCallback( s ) {
+	switch ( s ) {
+		case '\'':
+			return '&#039;';
+		case '"':
+			return '&quot;';
+		case '<':
+			return '&lt;';
+		case '>':
+			return '&gt;';
+		case '&':
+			return '&amp;';
 	}
+}
+mw.html = {
+	/**
+	 * Escape a string for HTML.
+	 *
+	 * Converts special characters to HTML entities.
+	 *
+	 *     mw.html.escape( '< > \' & "' );
+	 *     // Returns &lt; &gt; &#039; &amp; &quot;
+	 *
+	 * @param {string} s The string to escape
+	 * @return {string} HTML
+	 */
+	escape: function ( s ) {
+		return s.replace( /['"<>&]/g, escapeCallback );
+	},
 
-	return {
-		/**
-		 * Escape a string for HTML.
-		 *
-		 * Converts special characters to HTML entities.
-		 *
-		 *     mw.html.escape( '< > \' & "' );
-		 *     // Returns &lt; &gt; &#039; &amp; &quot;
-		 *
-		 * @param {string} s The string to escape
-		 * @return {string} HTML
-		 */
-		escape: function ( s ) {
-			return s.replace( /['"<>&]/g, escapeCallback );
-		},
+	/**
+	 * Create an HTML element string, with safe escaping.
+	 *
+	 * @param {string} name The tag name.
+	 * @param {Object} [attrs] An object with members mapping element names to values
+	 * @param {string|mw.html.Raw|null} [contents=null] The contents of the element.
+	 *
+	 *  - string: Text to be escaped.
+	 *  - null: The element is treated as void with short closing form, e.g. `<br/>`.
+	 *  - this.Raw: The raw value is directly included.
+	 * @return {string} HTML
+	 */
+	element: function ( name, attrs, contents ) {
+		var v, attrName, s = '<' + name;
 
-		/**
-		 * Create an HTML element string, with safe escaping.
-		 *
-		 * @param {string} name The tag name.
-		 * @param {Object} [attrs] An object with members mapping element names to values
-		 * @param {string|mw.html.Raw|null} [contents=null] The contents of the element.
-		 *
-		 *  - string: Text to be escaped.
-		 *  - null: The element is treated as void with short closing form, e.g. `<br/>`.
-		 *  - this.Raw: The raw value is directly included.
-		 * @return {string} HTML
-		 */
-		element: function ( name, attrs, contents ) {
-			var v, attrName, s = '<' + name;
-
-			if ( attrs ) {
-				for ( attrName in attrs ) {
-					v = attrs[ attrName ];
-					// Convert name=true, to name=name
-					if ( v === true ) {
-						v = attrName;
-						// Skip name=false
-					} else if ( v === false ) {
-						continue;
-					}
-					s += ' ' + attrName + '="' + this.escape( String( v ) ) + '"';
+		if ( attrs ) {
+			for ( attrName in attrs ) {
+				v = attrs[ attrName ];
+				// Convert name=true, to name=name
+				if ( v === true ) {
+					v = attrName;
+					// Skip name=false
+				} else if ( v === false ) {
+					continue;
 				}
+				s += ' ' + attrName + '="' + this.escape( String( v ) ) + '"';
 			}
-			if ( contents === undefined || contents === null ) {
-				// Self close tag
-				s += '/>';
-				return s;
-			}
-			// Regular open tag
-			s += '>';
-			if ( typeof contents === 'string' ) {
-				// Escaped
-				s += this.escape( contents );
-			} else if ( typeof contents === 'number' || typeof contents === 'boolean' ) {
-				// Convert to string
-				s += String( contents );
-			} else if ( contents instanceof this.Raw ) {
-				// Raw HTML inclusion
-				s += contents.value;
-			} else {
-				throw new Error( 'Invalid content type' );
-			}
-			s += '</' + name + '>';
-			return s;
-		},
-
-		/**
-		 * Wrapper object for raw HTML passed to mw.html.element().
-		 *
-		 * @class mw.html.Raw
-		 * @constructor
-		 * @param {string} value
-		 */
-		Raw: function ( value ) {
-			this.value = value;
 		}
-	};
-}() );
+		if ( contents === undefined || contents === null ) {
+			// Self close tag
+			s += '/>';
+			return s;
+		}
+		// Regular open tag
+		s += '>';
+		if ( typeof contents === 'string' ) {
+			// Escaped
+			s += this.escape( contents );
+		} else if ( typeof contents === 'number' || typeof contents === 'boolean' ) {
+			// Convert to string
+			s += String( contents );
+		} else if ( contents instanceof this.Raw ) {
+			// Raw HTML inclusion
+			s += contents.value;
+		} else {
+			throw new Error( 'Invalid content type' );
+		}
+		s += '</' + name + '>';
+		return s;
+	},
+
+	/**
+	 * Wrapper object for raw HTML passed to mw.html.element().
+	 *
+	 * @class mw.html.Raw
+	 * @constructor
+	 * @param {string} value
+	 */
+	Raw: function ( value ) {
+		this.value = value;
+	}
+};
 
 /**
  * Execute a function after one or more modules are ready.
