@@ -179,6 +179,148 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_RDBMS;
 	}
 
+	protected function doGet( $key, $flags = 0, &$casToken = null ) {
+		$getToken = ( $casToken === self::PASS_BY_REF );
+		$casToken = null;
+
+		$blobs = $this->fetchBlobMulti( [ $key ] );
+		if ( array_key_exists( $key, $blobs ) ) {
+			$blob = $blobs[$key];
+			$result = $this->unserialize( $blob );
+			if ( $getToken && $blob !== false ) {
+				$casToken = $blob;
+			}
+			$valueSize = strlen( $blob );
+		} else {
+			$result = false;
+			$valueSize = false;
+		}
+
+		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ null, $valueSize ] ] );
+
+		return $result;
+	}
+
+	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
+		return $this->modifyMulti( [ $key => $value ], $exptime, $flags, self::OP_SET );
+	}
+
+	protected function doDelete( $key, $flags = 0 ) {
+		return $this->modifyMulti( [ $key => null ], 0, $flags, self::OP_DELETE );
+	}
+
+	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
+		return $this->modifyMulti( [ $key => $value ], $exptime, $flags, self::OP_ADD );
+	}
+
+	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
+		list( $shardIndex, $tableName ) = $this->getKeyLocation( $key );
+		$expiry = $this->getExpirationAsTimestamp( $exptime );
+		$serialized = $this->getSerialized( $value, $key );
+
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$silenceScope = $this->silenceTransactionProfiler();
+		$db = null; // in case of connection failure
+		try {
+			$db = $this->getConnection( $shardIndex );
+			// (T26425) use a replace if the db supports it instead of
+			// delete/insert to avoid clashes with conflicting keynames
+			$db->update(
+				$tableName,
+				[
+					'keyname' => $key,
+					'value' => $db->encodeBlob( $serialized ),
+					'exptime' => $this->encodeDbExpiry( $db, $expiry )
+				],
+				[
+					'keyname' => $key,
+					'value' => $db->encodeBlob( $casToken ),
+					'exptime > ' . $db->addQuotes( $db->timestamp() )
+				],
+				__METHOD__
+			);
+		} catch ( DBQueryError $e ) {
+			$this->handleWriteError( $e, $db, $shardIndex );
+
+			return false;
+		}
+
+		$success = (bool)$db->affectedRows();
+		if ( $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ) {
+			$success = $this->waitForReplication( $shardIndex ) && $success;
+		}
+
+		$this->updateOpStats( self::METRIC_OP_CAS, [ $key => [ strlen( $serialized ), null ] ] );
+
+		return $success;
+	}
+
+	protected function doChangeTTL( $key, $exptime, $flags ) {
+		return $this->modifyMulti( [ $key => null ], $exptime, $flags, self::OP_TOUCH );
+	}
+
+	public function incr( $key, $step = 1, $flags = 0 ) {
+		list( $shardIndex, $tableName ) = $this->getKeyLocation( $key );
+
+		$newCount = false;
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$silenceScope = $this->silenceTransactionProfiler();
+		$db = null; // in case of connection failure
+		try {
+			$db = $this->getConnection( $shardIndex );
+			$encTimestamp = $db->addQuotes( $db->timestamp() );
+			$db->update(
+				$tableName,
+				[ 'value = value + ' . (int)$step ],
+				[ 'keyname' => $key, "exptime > $encTimestamp" ],
+				__METHOD__
+			);
+			if ( $db->affectedRows() > 0 ) {
+				$newValue = $db->selectField(
+					$tableName,
+					'value',
+					[ 'keyname' => $key, "exptime > $encTimestamp" ],
+					__METHOD__
+				);
+				if ( $this->isInteger( $newValue ) ) {
+					$newCount = (int)$newValue;
+				}
+			}
+		} catch ( DBError $e ) {
+			$this->handleWriteError( $e, $db, $shardIndex );
+		}
+
+		$this->updateOpStats( $step >= 0 ? self::METRIC_OP_INCR : self::METRIC_OP_DECR, [ $key ] );
+
+		return $newCount;
+	}
+
+	public function decr( $key, $value = 1, $flags = 0 ) {
+		return $this->incr( $key, -$value, $flags );
+	}
+
+	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
+		return $this->modifyMulti( $data, $exptime, $flags, self::OP_SET );
+	}
+
+	protected function doDeleteMulti( array $keys, $flags = 0 ) {
+		return $this->modifyMulti(
+			array_fill_keys( $keys, null ),
+			0,
+			$flags,
+			self::OP_DELETE
+		);
+	}
+
+	public function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
+		return $this->modifyMulti(
+			array_fill_keys( $keys, null ),
+			$exptime,
+			$flags,
+			self::OP_TOUCH
+		);
+	}
+
 	/**
 	 * Get a connection to the specified database
 	 *
@@ -260,28 +402,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $this->tableName;
-	}
-
-	protected function doGet( $key, $flags = 0, &$casToken = null ) {
-		$getToken = ( $casToken === self::PASS_BY_REF );
-		$casToken = null;
-
-		$blobs = $this->fetchBlobMulti( [ $key ] );
-		if ( array_key_exists( $key, $blobs ) ) {
-			$blob = $blobs[$key];
-			$result = $this->unserialize( $blob );
-			if ( $getToken && $blob !== false ) {
-				$casToken = $blob;
-			}
-			$valueSize = strlen( $blob );
-		} else {
-			$result = false;
-			$valueSize = false;
-		}
-
-		$this->updateOpStats( self::METRIC_OP_GET, [ $key => [ null, $valueSize ] ] );
-
-		return $result;
 	}
 
 	protected function doGetMulti( array $keys, $flags = 0 ) {
@@ -369,10 +489,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $values;
-	}
-
-	protected function doSetMulti( array $data, $exptime = 0, $flags = 0 ) {
-		return $this->modifyMulti( $data, $exptime, $flags, self::OP_SET );
 	}
 
 	/**
@@ -512,122 +628,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $success;
-	}
-
-	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->modifyMulti( [ $key => $value ], $exptime, $flags, self::OP_SET );
-	}
-
-	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
-		return $this->modifyMulti( [ $key => $value ], $exptime, $flags, self::OP_ADD );
-	}
-
-	protected function doCas( $casToken, $key, $value, $exptime = 0, $flags = 0 ) {
-		list( $shardIndex, $tableName ) = $this->getKeyLocation( $key );
-		$expiry = $this->getExpirationAsTimestamp( $exptime );
-		$serialized = $this->getSerialized( $value, $key );
-
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$silenceScope = $this->silenceTransactionProfiler();
-		$db = null; // in case of connection failure
-		try {
-			$db = $this->getConnection( $shardIndex );
-			// (T26425) use a replace if the db supports it instead of
-			// delete/insert to avoid clashes with conflicting keynames
-			$db->update(
-				$tableName,
-				[
-					'keyname' => $key,
-					'value' => $db->encodeBlob( $serialized ),
-					'exptime' => $this->encodeDbExpiry( $db, $expiry )
-				],
-				[
-					'keyname' => $key,
-					'value' => $db->encodeBlob( $casToken ),
-					'exptime > ' . $db->addQuotes( $db->timestamp() )
-				],
-				__METHOD__
-			);
-		} catch ( DBQueryError $e ) {
-			$this->handleWriteError( $e, $db, $shardIndex );
-
-			return false;
-		}
-
-		$success = (bool)$db->affectedRows();
-		if ( $this->fieldHasFlags( $flags, self::WRITE_SYNC ) ) {
-			$success = $this->waitForReplication( $shardIndex ) && $success;
-		}
-
-		$this->updateOpStats( self::METRIC_OP_CAS, [ $key => [ strlen( $serialized ), null ] ] );
-
-		return $success;
-	}
-
-	protected function doDeleteMulti( array $keys, $flags = 0 ) {
-		return $this->modifyMulti(
-			array_fill_keys( $keys, null ),
-			0,
-			$flags,
-			self::OP_DELETE
-		);
-	}
-
-	protected function doDelete( $key, $flags = 0 ) {
-		return $this->modifyMulti( [ $key => null ], 0, $flags, self::OP_DELETE );
-	}
-
-	public function incr( $key, $step = 1, $flags = 0 ) {
-		list( $shardIndex, $tableName ) = $this->getKeyLocation( $key );
-
-		$newCount = false;
-		/** @noinspection PhpUnusedLocalVariableInspection */
-		$silenceScope = $this->silenceTransactionProfiler();
-		$db = null; // in case of connection failure
-		try {
-			$db = $this->getConnection( $shardIndex );
-			$encTimestamp = $db->addQuotes( $db->timestamp() );
-			$db->update(
-				$tableName,
-				[ 'value = value + ' . (int)$step ],
-				[ 'keyname' => $key, "exptime > $encTimestamp" ],
-				__METHOD__
-			);
-			if ( $db->affectedRows() > 0 ) {
-				$newValue = $db->selectField(
-					$tableName,
-					'value',
-					[ 'keyname' => $key, "exptime > $encTimestamp" ],
-					__METHOD__
-				);
-				if ( $this->isInteger( $newValue ) ) {
-					$newCount = (int)$newValue;
-				}
-			}
-		} catch ( DBError $e ) {
-			$this->handleWriteError( $e, $db, $shardIndex );
-		}
-
-		$this->updateOpStats( $step >= 0 ? self::METRIC_OP_INCR : self::METRIC_OP_DECR, [ $key ] );
-
-		return $newCount;
-	}
-
-	public function decr( $key, $value = 1, $flags = 0 ) {
-		return $this->incr( $key, -$value, $flags );
-	}
-
-	public function doChangeTTLMulti( array $keys, $exptime, $flags = 0 ) {
-		return $this->modifyMulti(
-			array_fill_keys( $keys, null ),
-			$exptime,
-			$flags,
-			self::OP_TOUCH
-		);
-	}
-
-	protected function doChangeTTL( $key, $exptime, $flags ) {
-		return $this->modifyMulti( [ $key => null ], $exptime, $flags, self::OP_TOUCH );
 	}
 
 	/**
