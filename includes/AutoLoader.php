@@ -39,11 +39,13 @@ class AutoLoader {
 	public static $psr4Namespaces = [];
 
 	/**
-	 * autoload - take a class name and attempt to load it
+	 * Find the file containing the given class.
 	 *
 	 * @param string $className Name of class we're looking for.
+	 *
+	 * @return string|null The path containing the class, not null if not found
 	 */
-	public static function autoload( $className ) {
+	public static function find( $className ): ?string {
 		global $wgAutoloadClasses, $wgAutoloadLocalClasses,
 			$wgAutoloadAttemptLowercase;
 
@@ -99,7 +101,7 @@ class AutoLoader {
 
 		if ( !$filename ) {
 			// Class not found; let the next autoloader try to find it
-			return;
+			return null;
 		}
 
 		// Make an absolute path, this improves performance by avoiding some stat calls
@@ -109,7 +111,20 @@ class AutoLoader {
 			$filename = "$IP/$filename";
 		}
 
-		require $filename;
+		return $filename;
+	}
+
+	/**
+	 * autoload - take a class name and attempt to load it
+	 *
+	 * @param string $className Name of class we're looking for.
+	 */
+	public static function autoload( $className ) {
+		$filename = self::find( $className );
+
+		if ( $filename !== null ) {
+			require $filename;
+		}
 	}
 
 	/**

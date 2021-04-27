@@ -35,6 +35,11 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 		parent::tearDown();
 	}
 
+	public function testFind() {
+		$path = __DIR__ . '/../data/autoloader/TestAutoloadedLocalClass.php';
+		$this->assertSame( $path, AutoLoader::find( TestAutoloadedLocalClass::class ) );
+	}
+
 	public function testCoreClass() {
 		$this->assertTrue( class_exists( 'TestAutoloadedLocalClass' ) );
 	}
