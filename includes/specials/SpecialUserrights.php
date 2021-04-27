@@ -226,7 +226,9 @@ class UserrightsPage extends SpecialPage {
 			$userGroups = $targetUser->getGroups();
 
 			if ( $userGroups !== $conflictCheck ) {
-				$out->wrapWikiMsg( '<span class="error">$1</span>', 'userrights-conflict' );
+				$out->addHTML( Html::errorBox(
+					$this->msg( 'userrights-conflict' )->parse()
+				) );
 			} else {
 				$status = $this->saveUserGroups(
 					$this->mTarget,
