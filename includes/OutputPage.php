@@ -4117,11 +4117,11 @@ class OutputPage extends ContextSource {
 	 *
 	 * For example:
 	 *
-	 *     $wgOut->wrapWikiMsg( "<div class='error'>\n$1\n</div>", 'some-error' );
+	 *     $wgOut->wrapWikiMsg( "<div class='errorbox'>\n$1\n</div>", 'some-error' );
 	 *
 	 * Is equivalent to:
 	 *
-	 *     $wgOut->addWikiTextAsInterface( "<div class='error'>\n"
+	 *     $wgOut->addWikiTextAsInterface( "<div class='errorbox'>\n"
 	 *         . wfMessage( 'some-error' )->plain() . "\n</div>" );
 	 *
 	 * The newline after the opening div is needed in some wikitext. See T21226.
