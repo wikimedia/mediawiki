@@ -309,6 +309,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// on a non-local DB connection. We need to first deprecate this
 		// possibility and then throw on mismatching User object - T273972
 		// $user->assertWiki( $this->wikiId );
+		$this->deprecateInvalidCrossWikiParam( $user );
 
 		// TODO: In the future we would be able to assume UserIdentity name is ok
 		// and will be able to skip normalization here - T273933
@@ -605,6 +606,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		// on a non-local DB connection. We need to first deprecate this
 		// possibility and then throw on mismatching User object - T273972
 		// $user->assertWiki( $this->wikiId );
+		$this->deprecateInvalidCrossWikiParam( $user );
 
 		$userName = $this->normalizeUserName( $user->getName() );
 		if ( $userName === null || $userName === '' ) {
@@ -723,5 +725,33 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 
 		return new UserSelectQueryBuilder( $db, $this );
+	}
+
+	/**
+	 * Emits a deprecation warning if $user does not belong to the
+	 * same wiki this store belongs to.
+	 *
+	 * @param UserIdentity $user
+	 */
+	private function deprecateInvalidCrossWikiParam( UserIdentity $user ) {
+		if ( $user->getWikiId() !== $this->wikiId ) {
+			$expected = $this->wikiIdToString( $user->getWikiId() );
+			$actual = $this->wikiIdToString( $this->wikiId );
+			wfDeprecatedMsg(
+				'Deprecated passing invalid cross-wiki user. ' .
+				"Expected: {$expected}, Actual: {$actual}.",
+				'1.37'
+			);
+		}
+	}
+
+	/**
+	 * Convert $wikiId to a string for logging.
+	 *
+	 * @param string|false $wikiId
+	 * @return string
+	 */
+	private function wikiIdToString( $wikiId ) : string {
+		return $wikiId === WikiAwareEntity::LOCAL ? 'the local wiki' : "'{$wikiId}'";
 	}
 }
