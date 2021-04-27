@@ -51,8 +51,6 @@ use MediaWiki\HeaderCallback;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LoggerInterface;
-use Wikimedia\Rdbms\ChronologyProtector;
-use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\RequestTimeout;
 
 /**
@@ -680,22 +678,7 @@ if ( !$wgDBerrorLogTZ ) {
 
 // Initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
-// Set user IP/agent information for agent session consistency purposes
-$cpPosInfo = LBFactory::getCPInfoFromCookieValue(
-	// The cookie has no prefix and is set by MediaWiki::preOutputCommit()
-	$wgRequest->getCookie( 'cpPosIndex', '' ),
-	// Mitigate broken client-side cookie expiration handling (T190082)
-	time() - ChronologyProtector::POSITION_COOKIE_TTL
-);
-MediaWikiServices::getInstance()->getDBLoadBalancerFactory()->setRequestInfo( [
-	'IPAddress' => $wgRequest->getIP(),
-	'UserAgent' => $wgRequest->getHeader( 'User-Agent' ),
-	'ChronologyProtection' => $wgRequest->getHeader( 'MediaWiki-Chronology-Protection' ),
-	'ChronologyPositionIndex' => $wgRequest->getInt( 'cpPosIndex', $cpPosInfo['index'] ),
-	'ChronologyClientId' => $cpPosInfo['clientId']
-		?? $wgRequest->getHeader( 'MediaWiki-Chronology-Client-Id' )
-] );
-unset( $cpPosInfo );
+
 // Make sure that object caching does not undermine the ChronologyProtector improvements
 if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 	// The user is pinned to the primary DC, meaning that they made recent changes which should
