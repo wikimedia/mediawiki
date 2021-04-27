@@ -133,6 +133,9 @@ because of Phabricator reports.
   deprecation warnings:
    - getOptions
    - isIP
+* DatabasePostgres::remappedTableName() and its dependent constructor parameter
+  'keywordTableMap' are deprecated. Reserved identifiers that are used as table
+  names should be quoted where necessary.
 * …
 
 === Other changes in 1.37 ===
