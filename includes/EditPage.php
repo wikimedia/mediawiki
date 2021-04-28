@@ -3020,7 +3020,7 @@ class EditPage implements IEditObject {
 		$this->showFormBeforeText();
 
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype == 'save' ) {
-			$username = $this->lastDelete->user_name;
+			$username = $this->lastDelete->actor_name;
 			$comment = CommentStore::getStore()
 				->getComment( 'log_comment', $this->lastDelete )->text;
 
@@ -4010,9 +4010,8 @@ class EditPage implements IEditObject {
 	protected function getLastDelete() {
 		$dbr = wfGetDB( DB_REPLICA );
 		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 		$data = $dbr->selectRow(
-			array_merge( [ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ] ),
+			array_merge( [ 'logging' ], $commentQuery['tables'], [ 'actor' ] ),
 			[
 				'log_type',
 				'log_action',
@@ -4021,8 +4020,8 @@ class EditPage implements IEditObject {
 				'log_title',
 				'log_params',
 				'log_deleted',
-				'user_name'
-			] + $commentQuery['fields'] + $actorQuery['fields'],
+				'actor_name'
+			] + $commentQuery['fields'],
 			[
 				'log_namespace' => $this->mTitle->getNamespace(),
 				'log_title' => $this->mTitle->getDBkey(),
@@ -4032,13 +4031,13 @@ class EditPage implements IEditObject {
 			__METHOD__,
 			[ 'LIMIT' => 1, 'ORDER BY' => 'log_timestamp DESC' ],
 			[
-				'user' => [ 'JOIN', 'user_id=' . $actorQuery['fields']['log_user'] ],
-			] + $commentQuery['joins'] + $actorQuery['joins']
+				'actor' => [ 'JOIN', 'actor_id=log_actor' ],
+			] + $commentQuery['joins']
 		);
 		// Quick paranoid permission checks...
 		if ( is_object( $data ) ) {
 			if ( $data->log_deleted & LogPage::DELETED_USER ) {
-				$data->user_name = $this->context->msg( 'rev-deleted-user' )->escaped();
+				$data->actor_name = $this->context->msg( 'rev-deleted-user' )->escaped();
 			}
 
 			if ( $data->log_deleted & LogPage::DELETED_COMMENT ) {
