@@ -99,10 +99,6 @@ if ( $maintenance->getDbType() == Maintenance::DB_NONE ) {
 	// Be strict with maintenance tasks that claim to not need a database by
 	// disabling the storage backend.
 	MediaWikiServices::disableStorageBackend();
-} else {
-	// A good time when no DBs have writes pending is around lag checks.
-	// This avoids having long running scripts just OOM and lose all the updates.
-	$maintenance->setAgentAndTriggers();
 }
 
 $maintenance->validateParamsAndArgs();

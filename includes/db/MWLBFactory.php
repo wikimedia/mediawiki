@@ -25,6 +25,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DatabaseDomain;
+use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILBFactory;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
@@ -359,8 +360,14 @@ abstract class MWLBFactory {
 	 * and that should be fine as well.
 	 *
 	 * @param ILBFactory $lbFactory
+	 * @param Config $config
+	 * @param IBufferingStatsdDataFactory $stats
 	 */
-	public static function applyGlobalState( ILBFactory $lbFactory ) : void {
+	public static function applyGlobalState(
+		ILBFactory $lbFactory,
+		Config $config,
+		IBufferingStatsdDataFactory $stats
+	) : void {
 		// Use the global WebRequest singleton. The main reason for using this
 		// is to call WebRequest::getIP() which is non-trivial to reproduce statically
 		// because it needs $wgUsePrivateIPs, as well as ProxyLookup and HookRunner services.
@@ -384,6 +391,46 @@ abstract class MWLBFactory {
 			'ChronologyClientId' => $cpPosInfo['clientId']
 				?? $req->getHeader( 'MediaWiki-Chronology-Client-Id' )
 		] );
+
+		if ( $config->get( 'CommandLineMode' ) ) {
+
+			// Add a comment for easy SHOW PROCESSLIST interpretation
+			// TODO: For web requests this is still handled eagerly in MediaWiki.php.
+			if ( function_exists( 'posix_getpwuid' ) ) {
+				$agent = posix_getpwuid( posix_geteuid() )['name'];
+			} else {
+				$agent = 'sysadmin';
+			}
+			$agent .= '@' . wfHostname();
+			$lbFactory->setAgentName(
+				mb_strlen( $agent ) > 15 ? mb_substr( $agent, 0, 15 ) . '...' : $agent
+			);
+
+			// Disable buffering and delaying of DeferredUpdates and stats
+			// for maintenance scripts and PHPUnit tests.
+			// Hook into period lag checks which often happen in long-running scripts
+			$lbFactory->setWaitForReplicationListener(
+				__METHOD__,
+				static function () use ( $stats, $config ) {
+					DeferredUpdates::tryOpportunisticExecute( 'run' );
+					// Try to periodically flush buffered metrics to avoid OOMs
+					MediaWiki::emitBufferedStatsdData( $stats, $config );
+				}
+			);
+			// Check for other windows to run them. A script may read or do a few writes
+			// to the master but mostly be writing to something else, like a file store.
+			$lbFactory->getMainLB()->setTransactionListener(
+				__METHOD__,
+				static function ( $trigger ) use ( $stats, $config ) {
+					if ( $trigger === IDatabase::TRIGGER_COMMIT ) {
+						DeferredUpdates::tryOpportunisticExecute( 'run' );
+					}
+					// Try to periodically flush buffered metrics to avoid OOMs
+					MediaWiki::emitBufferedStatsdData( $stats, $config );
+				}
+			);
+
+		}
 	}
 
 	/**

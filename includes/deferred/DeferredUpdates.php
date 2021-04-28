@@ -60,7 +60,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  *   - d) When the queue is large and an LBFactory DB handle commits (EnqueueableDataUpdate only)
  *   - e) Upon the completion of Maintenance::execute() via Maintenance::shutdown()
  *
- * @see Maintenance::setLBFactoryTriggers()
+ * @see MWLBFactory::applyGlobalState()
  *
  * If DeferredUpdates::doUpdates() is currently running a deferred update, then the public
  * DeferredUpdates interface operates on the PRESEND/POSTSEND "sub"-queues that correspond to
