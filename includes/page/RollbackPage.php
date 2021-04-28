@@ -33,6 +33,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Message;
@@ -93,6 +94,9 @@ class RollbackPage {
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var ActorNormalization */
+	private $actorNormalization;
+
 	/** @var PageIdentity */
 	private $page;
 
@@ -121,6 +125,7 @@ class RollbackPage {
 	 * @param HookContainer $hookContainer
 	 * @param WikiPageFactory $wikiPageFactory
 	 * @param ActorMigration $actorMigration
+	 * @param ActorNormalization $actorNormalization
 	 * @param PageIdentity $page
 	 * @param Authority $performer
 	 * @param UserIdentity $byUser who made the edits we are rolling back
@@ -135,6 +140,7 @@ class RollbackPage {
 		HookContainer $hookContainer,
 		WikiPageFactory $wikiPageFactory,
 		ActorMigration $actorMigration,
+		ActorNormalization $actorNormalization,
 		PageIdentity $page,
 		Authority $performer,
 		UserIdentity $byUser
@@ -150,6 +156,7 @@ class RollbackPage {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->actorMigration = $actorMigration;
+		$this->actorNormalization = $actorNormalization;
 
 		$this->page = $page;
 		$this->performer = $performer;
@@ -455,19 +462,15 @@ class RollbackPage {
 		}
 
 		if ( $set ) {
-			$actorWhere = $this->actorMigration->getWhere(
-				$dbw,
-				'rc_user',
-				$current->getUser( RevisionRecord::RAW ),
-				false
-			);
+			$actorId = $this->actorNormalization
+				->acquireActorId( $current->getUser( RevisionRecord::RAW ), $dbw );
 			$dbw->update(
 				'recentchanges',
 				$set,
 				[ /* WHERE */
 					'rc_cur_id' => $current->getPageId(),
 					'rc_timestamp > ' . $dbw->addQuotes( $dbw->timestamp( $target->getTimestamp() ) ),
-					$actorWhere['conds'], // No tables/joins are needed for rc_user
+					'rc_actor' => $actorId
 				],
 				__METHOD__
 			);

@@ -69,9 +69,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
@@ -86,7 +83,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $namespaceInfo
-	 * @param ActorMigration $actorMigration
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 */
@@ -98,7 +94,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 		ILoadBalancer $loadBalancer,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $namespaceInfo,
-		ActorMigration $actorMigration,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory
 	) {
@@ -110,7 +105,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->loadBalancer = $loadBalancer;
 		$this->revisionLookup = $revisionLookup;
 		$this->namespaceInfo = $namespaceInfo;
-		$this->actorMigration = $actorMigration;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
 	}
@@ -242,7 +236,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->permissionManager,
 			$this->loadBalancer,
 			$this->namespaceInfo,
-			$this->actorMigration,
 			$this->userFactory
 		);
 		$pager->mLimit = $this->opts->getValue( 'limit' );
@@ -588,7 +581,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->permissionManager,
 			$this->loadBalancer,
 			$this->namespaceInfo,
-			$this->actorMigration,
 			$this->userFactory
 		);
 		$limit = $this->opts->getValue( 'limit' );

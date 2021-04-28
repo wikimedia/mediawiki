@@ -54,9 +54,6 @@ class BlockListPager extends TablePager {
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var CommentStore */
 	private $commentStore;
 
@@ -70,7 +67,6 @@ class BlockListPager extends TablePager {
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param ILoadBalancer $loadBalancer
 	 * @param SpecialPageFactory $specialPageFactory
-	 * @param ActorMigration $actorMigration
 	 * @param CommentStore $commentStore
 	 * @param BlockUtils $blockUtils
 	 */
@@ -81,7 +77,6 @@ class BlockListPager extends TablePager {
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
 		SpecialPageFactory $specialPageFactory,
-		ActorMigration $actorMigration,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils
 	) {
@@ -92,7 +87,6 @@ class BlockListPager extends TablePager {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->specialPageFactory = $specialPageFactory;
-		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
 	}
@@ -236,12 +230,8 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_by':
-				if ( isset( $row->by_user_name ) ) {
-					$formatted = Linker::userLink( $value, $row->by_user_name );
-					$formatted .= Linker::userToolLinks( $value, $row->by_user_name );
-				} else {
-					$formatted = htmlspecialchars( $row->ipb_by_text ); // foreign user?
-				}
+				$formatted = Linker::userLink( $value, $row->ipb_by_text );
+				$formatted .= Linker::userToolLinks( $value, $row->ipb_by_text );
 				break;
 
 			case 'ipb_reason':
@@ -377,17 +367,18 @@ class BlockListPager extends TablePager {
 
 	public function getQueryInfo() {
 		$commentQuery = $this->commentStore->getJoin( 'ipb_reason' );
-		$actorQuery = $this->actorMigration->getJoin( 'ipb_by' );
 
 		$info = [
 			'tables' => array_merge(
-				[ 'ipblocks' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ]
+				[ 'ipblocks', 'ipblocks_by_actor' => 'actor' ],
+				$commentQuery['tables']
 			),
 			'fields' => [
 				'ipb_id',
 				'ipb_address',
 				'ipb_user',
-				'by_user_name' => 'user_name',
+				'ipb_by' => 'ipblocks_by_actor.actor_user',
+				'ipb_by_text' => 'ipblocks_by_actor.actor_name',
 				'ipb_timestamp',
 				'ipb_auto',
 				'ipb_anon_only',
@@ -400,11 +391,11 @@ class BlockListPager extends TablePager {
 				'ipb_block_email',
 				'ipb_allow_usertalk',
 				'ipb_sitewide',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
+			] + $commentQuery['fields'],
 			'conds' => $this->conds,
 			'join_conds' => [
-				'user' => [ 'LEFT JOIN', 'user_id = ' . $actorQuery['fields']['ipb_by'] ]
-			] + $commentQuery['joins'] + $actorQuery['joins']
+				'ipblocks_by_actor' => [ 'JOIN', 'actor_id=ipb_by_actor' ]
+			] + $commentQuery['joins']
 		];
 
 		# Filter out any expired blocks
@@ -470,9 +461,9 @@ class BlockListPager extends TablePager {
 			$lb->add( NS_USER, $row->ipb_address );
 			$lb->add( NS_USER_TALK, $row->ipb_address );
 
-			if ( isset( $row->by_user_name ) ) {
-				$lb->add( NS_USER, $row->by_user_name );
-				$lb->add( NS_USER_TALK, $row->by_user_name );
+			if ( $row->ipb_by ?? null ) {
+				$lb->add( NS_USER, $row->ipb_by_text );
+				$lb->add( NS_USER_TALK, $row->ipb_by_text );
 			}
 
 			if ( !$row->ipb_sitewide ) {

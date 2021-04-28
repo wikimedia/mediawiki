@@ -589,7 +589,7 @@ class XmlDumpWriter {
 		if ( $row->log_deleted & LogPage::DELETED_USER ) {
 			$out .= "    " . Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
 		} else {
-			$out .= $this->writeContributor( $row->log_user, $row->user_name, "    " );
+			$out .= $this->writeContributor( $row->actor_user, $row->actor_name, "    " );
 		}
 
 		if ( $row->log_deleted & LogPage::DELETED_COMMENT ) {

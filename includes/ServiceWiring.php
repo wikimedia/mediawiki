@@ -1609,11 +1609,9 @@ return [
 		return new WatchedItemQueryService(
 			$services->getDBLoadBalancer(),
 			$services->getCommentStore(),
-			$services->getActorMigration(),
 			$services->getWatchedItemStore(),
 			$services->getPermissionManager(),
 			$services->getHookContainer(),
-			$services->getUserFactory(),
 			$services->getMainConfig()->get( 'WatchlistExpiry' )
 		);
 	},
@@ -1739,7 +1737,8 @@ return [
 			$services->getHookContainer(),
 			$services->getWikiPageFactory(),
 			$services->getUserFactory(),
-			$services->getActorMigration()
+			$services->getActorMigration(),
+			$services->getActorNormalization()
 		);
 	},
 

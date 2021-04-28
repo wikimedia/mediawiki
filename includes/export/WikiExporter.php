@@ -325,23 +325,22 @@ class WikiExporter {
 		$result = null; // Assuring $result is not undefined, if exception occurs early
 
 		$commentQuery = CommentStore::getStore()->getJoin( 'log_comment' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 
 		$tables = array_merge(
-			[ 'logging' ], $commentQuery['tables'], $actorQuery['tables'], [ 'user' ]
+			[ 'logging', 'actor' ], $commentQuery['tables']
 		);
 		$fields = [
 			'log_id', 'log_type', 'log_action', 'log_timestamp', 'log_namespace',
-			'log_title', 'log_params', 'log_deleted', 'user_name'
-		] + $commentQuery['fields'] + $actorQuery['fields'];
+			'log_title', 'log_params', 'log_deleted', 'actor_user', 'actor_name'
+		] + $commentQuery['fields'];
 		$options = [
 			'ORDER BY' => 'log_id',
 			'USE INDEX' => [ 'logging' => 'PRIMARY' ],
 			'LIMIT' => self::BATCH_SIZE,
 		];
 		$joins = [
-			'user' => [ 'JOIN', 'user_id = ' . $actorQuery['fields']['log_user'] ]
-		] + $commentQuery['joins'] + $actorQuery['joins'];
+			'actor' => [ 'JOIN', 'actor_id=log_actor' ]
+		] + $commentQuery['joins'];
 
 		$lastLogId = 0;
 		while ( true ) {

@@ -246,6 +246,11 @@ class RecentChange implements Taggable {
 	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new recentchanges object.
+	 *
+	 * Since 1.34, rc_user and rc_user_text have not been present in the
+	 * database, but they continue to be available in query results as
+	 * aliases.
+	 *
 	 * @since 1.31
 	 * @return array With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
@@ -254,9 +259,11 @@ class RecentChange implements Taggable {
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = CommentStore::getStore()->getJoin( 'rc_comment' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
 		return [
-			'tables' => [ 'recentchanges' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'recentchanges',
+				'recentchanges_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'rc_id',
 				'rc_timestamp',
@@ -279,8 +286,13 @@ class RecentChange implements Taggable {
 				'rc_log_type',
 				'rc_log_action',
 				'rc_params',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'rc_actor',
+				'rc_user' => 'recentchanges_actor.actor_user',
+				'rc_user_text' => 'recentchanges_actor.actor_name',
+			] + $commentQuery['fields'],
+			'joins' => [
+				'recentchanges_actor' => [ 'JOIN', 'actor_id=rc_actor' ]
+			] + $commentQuery['joins'],
 		];
 	}
 

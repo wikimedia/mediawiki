@@ -143,7 +143,7 @@ class RevDelLogItem extends RevDelItem {
 		}
 		if ( LogEventsList::userCan( $this->row, LogPage::DELETED_USER, $user ) ) {
 			$ret += [
-				'userid' => $this->row->log_user,
+				'userid' => $this->row->log_user ?? 0,
 				'user' => $this->row->log_user_text,
 			];
 		}

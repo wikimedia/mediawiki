@@ -652,7 +652,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			"[[original text]] foo",
 			CONTENT_MODEL_WIKITEXT
 		);
-		$id = $page->getId();
 
 		$deleter = $this->getTestSysop()->getUser();
 
@@ -666,16 +665,14 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			/* unused 2 */ null
 		);
 		$logId = $status->getValue();
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
-			[ 'logging' ] + $actorQuery['tables'] + $commentQuery['tables'], /* table */
+			[ 'logging' ] + $commentQuery['tables'], /* table */
 			[
 				'log_type',
 				'log_action',
 				'log_comment' => $commentQuery['fields']['log_comment_text'],
-				'log_user' => $actorQuery['fields']['log_user'],
-				'log_user_text' => $actorQuery['fields']['log_user_text'],
+				'log_actor',
 				'log_namespace',
 				'log_title',
 			],
@@ -684,13 +681,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				'delete',
 				'delete',
 				'testing user 0 deletion',
-				$deleter->getId(),
-				$deleter->getName(),
+				(string)$deleter->getActorId(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
 			] ],
 			[],
-			$actorQuery['joins'] + $commentQuery['joins']
+			$commentQuery['joins']
 		);
 	}
 
@@ -703,7 +699,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			"[[original text]] foo",
 			CONTENT_MODEL_WIKITEXT
 		);
-		$id = $page->getId();
 
 		$user = $this->getTestSysop()->getUser();
 		$errorStack = '';
@@ -715,16 +710,14 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			/* errorStack */ $errorStack
 		);
 		$logId = $status->getValue();
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
-			[ 'logging' ] + $actorQuery['tables'] + $commentQuery['tables'], /* table */
+			[ 'logging' ] + $commentQuery['tables'], /* table */
 			[
 				'log_type',
 				'log_action',
 				'log_comment' => $commentQuery['fields']['log_comment_text'],
-				'log_user' => $actorQuery['fields']['log_user'],
-				'log_user_text' => $actorQuery['fields']['log_user_text'],
+				'log_actor',
 				'log_namespace',
 				'log_title',
 			],
@@ -733,13 +726,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				'delete',
 				'delete',
 				'testing sysop deletion',
-				(string)$user->getId(),
-				$user->getName(),
+				(string)$user->getActorId(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
 			] ],
 			[],
-			$actorQuery['joins'] + $commentQuery['joins']
+			$commentQuery['joins']
 		);
 	}
 
@@ -766,16 +758,14 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 			/* errorStack */ $errorStack
 		);
 		$logId = $status->getValue();
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
-			[ 'logging' ] + $actorQuery['tables'] + $commentQuery['tables'], /* table */
+			[ 'logging' ] + $commentQuery['tables'], /* table */
 			[
 				'log_type',
 				'log_action',
 				'log_comment' => $commentQuery['fields']['log_comment_text'],
-				'log_user' => $actorQuery['fields']['log_user'],
-				'log_user_text' => $actorQuery['fields']['log_user_text'],
+				'log_actor',
 				'log_namespace',
 				'log_title',
 			],
@@ -784,13 +774,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 				'suppress',
 				'delete',
 				'testing deletion',
-				(string)$user->getId(),
-				$user->getName(),
+				(string)$user->getActorId(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
 			] ],
 			[],
-			$actorQuery['joins'] + $commentQuery['joins']
+			$commentQuery['joins']
 		);
 
 		$this->assertNull(
@@ -2164,10 +2153,12 @@ more stuff
 		} else {
 			$page = new WikiPage( Title::newFromText( __METHOD__ . '-nonexist' ) );
 		}
-		$user = $this->getTestSysop()->getUserIdentity();
+		$user = $this->getTestSysop()->getUser();
+		$userIdentity = $this->getTestSysop()->getUserIdentity();
+
 		$cascade = false;
 
-		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, 'aReason', $user, [] );
+		$status = $page->doUpdateRestrictions( $limit, $expiry, $cascade, 'aReason', $userIdentity, [] );
 
 		$logId = $status->getValue();
 		$allRestrictions = $page->getTitle()->getAllRestrictions();
@@ -2181,27 +2172,24 @@ more stuff
 
 		// Make sure the log entry looks good
 		// log_params is not checked here
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'log_user' );
 		$commentQuery = MediaWikiServices::getInstance()->getCommentStore()->getJoin( 'log_comment' );
 		$this->assertSelect(
-			[ 'logging' ] + $actorQuery['tables'] + $commentQuery['tables'],
+			[ 'logging' ] + $commentQuery['tables'],
 			[
 				'log_comment' => $commentQuery['fields']['log_comment_text'],
-				'log_user' => $actorQuery['fields']['log_user'],
-				'log_user_text' => $actorQuery['fields']['log_user_text'],
+				'log_actor',
 				'log_namespace',
 				'log_title',
 			],
 			[ 'log_id' => $logId ],
 			[ [
 				'aReason',
-				(string)$user->getId(),
-				$user->getName(),
+				(string)$user->getActorId(),
 				(string)$page->getTitle()->getNamespace(),
 				$page->getTitle()->getDBkey(),
 			] ],
 			[],
-			$actorQuery['joins'] + $commentQuery['joins']
+			$commentQuery['joins']
 		);
 	}
 

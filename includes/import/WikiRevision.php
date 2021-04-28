@@ -703,15 +703,17 @@ class WikiRevision implements ImportableUploadRevision, ImportableOldRevision {
 				. $this->timestamp );
 			return false;
 		}
+		$actorId = MediaWikiServices::getInstance()->getActorNormalization()
+			->acquireActorId( $user, $dbw );
 		$data = [
 			'log_type' => $this->type,
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $this->timestamp ),
+			'log_actor' => $actorId,
 			'log_namespace' => $this->getTitle()->getNamespace(),
 			'log_title' => $this->getTitle()->getDBkey(),
 			'log_params' => $this->params
-		] + CommentStore::getStore()->insert( $dbw, 'log_comment', $this->getComment() )
-			+ ActorMigration::newMigration()->getInsertValues( $dbw, 'log_user', $user );
+		] + CommentStore::getStore()->insert( $dbw, 'log_comment', $this->getComment() );
 		$dbw->insert( 'logging', $data, __METHOD__ );
 
 		return true;

@@ -31,6 +31,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MergeHistory;
@@ -98,6 +99,9 @@ class PageCommandFactory implements
 	/** @var ActorMigration */
 	private $actorMigration;
 
+	/** @var ActorNormalization */
+	private $actorNormalization;
+
 	public function __construct(
 		Config $config,
 		ILoadBalancer $loadBalancer,
@@ -112,7 +116,8 @@ class PageCommandFactory implements
 		HookContainer $hookContainer,
 		WikiPageFactory $wikiPageFactory,
 		UserFactory $userFactory,
-		ActorMigration $actorMigration
+		ActorMigration $actorMigration,
+		ActorNormalization $actorNormalization
 	) {
 		$this->config = $config;
 		$this->loadBalancer = $loadBalancer;
@@ -128,6 +133,7 @@ class PageCommandFactory implements
 		$this->wikiPageFactory = $wikiPageFactory;
 		$this->userFactory = $userFactory;
 		$this->actorMigration = $actorMigration;
+		$this->actorNormalization = $actorNormalization;
 	}
 
 	/**
@@ -227,6 +233,7 @@ class PageCommandFactory implements
 			$this->hookContainer,
 			$this->wikiPageFactory,
 			$this->actorMigration,
+			$this->actorNormalization,
 			$page,
 			$performer,
 			$byUser
