@@ -239,14 +239,26 @@ class LinksUpdate extends DataUpdate {
 		# Image links
 		$existingIL = $this->getExistingImages();
 		$imageDeletes = $this->getImageDeletions( $existingIL );
+		$imageAdditions = $this->getImageAdditions( $existingIL );
 		$this->incrTableUpdate(
 			'imagelinks',
 			'il',
 			$imageDeletes,
 			$this->getImageInsertions( $existingIL ) );
 
+		# Image change tags
+		$enabledTags = ChangeTags::getSoftwareTags();
+		$mediaChangeTags = array_filter( [
+			count( $imageAdditions ) && in_array( 'mw-add-media', $enabledTags ) ? 'mw-add-media' : '',
+			count( $imageDeletes ) && in_array( 'mw-remove-media', $enabledTags ) ? 'mw-remove-media' : '',
+		] );
+		$revisionRecord = $this->getRevisionRecord();
+		if ( $revisionRecord && count( $mediaChangeTags ) ) {
+			ChangeTags::addTags( $mediaChangeTags, null, $revisionRecord->getId() );
+		}
+
 		# Invalidate all image description pages which had links added or removed
-		$imageUpdates = $imageDeletes + array_diff_key( $this->mImages, $existingIL );
+		$imageUpdates = $imageDeletes + $imageAdditions;
 		$this->invalidateImageDescriptions( $imageUpdates );
 
 		# External links
@@ -575,7 +587,7 @@ class LinksUpdate extends DataUpdate {
 	 */
 	private function getImageInsertions( $existing = [] ) {
 		$arr = [];
-		$diffs = array_diff_key( $this->mImages, $existing );
+		$diffs = $this->getImageAdditions( $existing );
 		foreach ( $diffs as $iname => $dummy ) {
 			$arr[] = [
 				'il_from' => $this->mId,
@@ -759,6 +771,16 @@ class LinksUpdate extends DataUpdate {
 		}
 
 		return $arr;
+	}
+
+	/**
+	 * Given an array of existing images, returns $this images that are not in there
+	 * and thus should be added.
+	 * @param array $existing
+	 * @return array
+	 */
+	private function getImageAdditions( $existing ) {
+		return array_diff_key( $this->mImages, $existing );
 	}
 
 	/**
