@@ -1983,7 +1983,6 @@
 	"ipblocklist-localblock": "نهاگری ولات نشینی",
 	"ipblocklist-otherblocks": "هنی{{PLURAL:$1|نهاگرتن|نهاگرتنیا}}",
 	"infiniteblock": "بؽ زموݩ",
-	"expiringblock": "د $1 ساعت $2 تموم موئه",
 	"anononlyblock": "فقط کاریاریا نادیار",
 	"noautoblockblock": "بستن خودانجوم ناکشتگر بیه",
 	"createaccountblock": "حساو راس کردن ناکشتگر بیه.",

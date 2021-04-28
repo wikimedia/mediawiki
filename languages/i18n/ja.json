@@ -2759,7 +2759,6 @@
 	"ipblocklist-localblock": "ローカルでのブロック",
 	"ipblocklist-otherblocks": "その他の{{PLURAL:$1|ブロック}}",
 	"infiniteblock": "無期限",
-	"expiringblock": "$1$2に解除",
 	"anononlyblock": "匿名利用者のみ",
 	"noautoblockblock": "自動ブロック無効",
 	"createaccountblock": "アカウント作成も禁止",

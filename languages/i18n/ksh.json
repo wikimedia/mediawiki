@@ -2159,7 +2159,6 @@
 	"ipblocklist-localblock": "Sperr heh em Wiki",
 	"ipblocklist-otherblocks": "Ander {{PLURAL:$1|Sperr|Sperre|-nix-}}",
 	"infiniteblock": "för iwich",
-	"expiringblock": "bes aam $1 öm $2 Uhr",
 	"anononlyblock": "nor Nahmelohse",
 	"noautoblockblock": "automattesch Schpärre avjeschalt",
 	"createaccountblock": "neu Aanmelde verbodde",

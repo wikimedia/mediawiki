@@ -2653,7 +2653,6 @@
 	"ipblocklist-localblock": "Kohalik blokeering",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Muu blokeering|Muud blokeeringud}}",
 	"infiniteblock": "tähtajatu",
-	"expiringblock": "aegumistähtaeg $1, $2",
 	"anononlyblock": "ainult nimetuna",
 	"noautoblockblock": "IP-aadressi ei blokita automaatselt",
 	"createaccountblock": "kontode loomine keelatud",

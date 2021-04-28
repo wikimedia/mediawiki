@@ -2391,7 +2391,6 @@
 	"ipblocklist-localblock": "Blocco lucale",
 	"ipblocklist-otherblocks": "Ati {{PLURAL:$1|blocche|blocche}}",
 	"infiniteblock": "indefinito",
-	"expiringblock": "ammatura 'o $1 a 'e $2",
 	"anononlyblock": "sulamente l'anonime",
 	"noautoblockblock": "autoblocco stutato",
 	"createaccountblock": "riggistrazione 'e cunte stutata",

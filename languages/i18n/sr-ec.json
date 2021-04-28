@@ -2642,7 +2642,6 @@
 	"ipblocklist-localblock": "Локална блокада",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Друга блокада|Друге блокаде}}",
 	"infiniteblock": "трајно",
-	"expiringblock": "истиче $1 у $2",
 	"anononlyblock": "само анонимни",
 	"noautoblockblock": "аутоматско блокирање је онемогућено",
 	"createaccountblock": "отварање налога је онемогућено",

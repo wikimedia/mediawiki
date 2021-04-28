@@ -1848,7 +1848,6 @@
 	"ipblocklist-localblock": "Lokal Sperre",
 	"ipblocklist-otherblocks": "Annrer {{PLURAL:$1|Sperr|Sperre}}",
 	"infiniteblock": "unbegrenzt",
-	"expiringblock": "tut enne am $1 um $2 Uhr",
 	"anononlyblock": "nuar Anonyme",
 	"noautoblockblock": "Autoblock deaktiviert",
 	"createaccountblock": "Erstellung von Benutzerkonte gesperrt",

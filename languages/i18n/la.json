@@ -1324,7 +1324,6 @@
 	"ipblocklist-legend": "Usorem obstructum quaerere",
 	"ipblocklist-submit": "Quaerere",
 	"infiniteblock": "infinita",
-	"expiringblock": "exit $2, $1",
 	"anononlyblock": "solum usores ignoti",
 	"noautoblockblock": "obstructio automatica prohibita",
 	"createaccountblock": "arcemus a nominibus sibi imponendis",

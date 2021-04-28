@@ -854,7 +854,6 @@
 	"ipblocklist": "Listu cakkojuvvon IP-adreassain ja geavaheddjiin",
 	"ipblocklist-submit": "Oza",
 	"infiniteblock": "bissovaččat",
-	"expiringblock": "boarásnuvvá $1 $2",
 	"blocklink": "hehtte",
 	"contribslink": "rievdadusat",
 	"blocklogentry": "esttii geavaheaddji dahje IP-čujuhusa [[$1]], eastima bistin lea $2 $3",

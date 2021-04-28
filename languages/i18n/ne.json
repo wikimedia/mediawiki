@@ -2205,7 +2205,6 @@
 	"ipblocklist-localblock": "स्थानीय रोक",
 	"ipblocklist-otherblocks": "अन्य {{PLURAL:$1|रोक|रोकहरू}}",
 	"infiniteblock": "अनिश्चित काल",
-	"expiringblock": "$1 को दिन  $2 मा सकिनेछ",
 	"anononlyblock": "अज्ञातहरु मात्र",
 	"noautoblockblock": "स्वत: निषेध निस्क्रिय गरिएको",
 	"createaccountblock": "खाता खोल्न बन्देज गरिएको",

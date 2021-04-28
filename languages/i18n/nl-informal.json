@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Bdijkstra",
 			"HanV",
 			"Kars",
 			"Mainframe98",
@@ -96,7 +97,7 @@
 	"usercsspreview": "'''Dit is alleen een voorvertoning van je persoonlijke CSS.\nDeze is nog niet opgeslagen!'''",
 	"userjspreview": "'''Let op: je test nu je persoonlijke JavaScript.'''\n'''De pagina is niet opgeslagen!'''",
 	"userinvalidconfigtitle": "'''Waarschuwing:''' er is geen uiterlijk \"$1\".\nJe eigen .css- en .js-pagina's beginnen met een kleine letter, bijvoorbeeld {{ns:user}}:Naam/vector.css in plaats van {{ns:user}}:Naam/Vector.css.",
-	"previewnote": "'''Let op: dit is een controlepagina.'''\nJe tekst is niet opgeslagen!",
+	"previewnote": "<strong>Let op: dit is een controlepagina.</strong>\nJe tekst is niet gepubliceerd!",
 	"previewconflict": "Deze voorvertoning geeft aan hoe de tekst in het bovenste veld eruit ziet als je deze opslaat.",
 	"session_fail_preview": "'''Je bewerking is niet verwerkt, omdat de sessiegegevens verloren zijn gegaan.\nProbeer het opnieuw.\nAls het dan nog niet lukt, [[Special:UserLogout|meld jezelf dan af]] en weer aan.'''",
 	"session_fail_preview_html": "'''Je bewerking is niet verwerkt, omdat sessiegegevens verloren zijn gegaan.'''\n\n''Omdat in {{SITENAME}} ruwe HTML is ingeschakeld, is een voorvertoning niet mogelijk als bescherming tegen aanvallen met JavaScript.''\n\n'''Als dit een legitieme bewerking is, probeer het dan opnieuw.\nAls het dan nog niet lukt, [[Special:UserLogout|meld jezelf dan af]] en weer aan.'''",
@@ -142,10 +143,13 @@
 	"prefs-help-variant": "Jouw voorkeursvariant of -spelling om de inhoudspagina's van deze wiki in weer te geven.",
 	"prefs-help-signature": "Reacties op de overlegpagina's worden meestal ondertekend met \"<nowiki>~~~~</nowiki>\".\nDe tildes worden omgezet in je ondertekening en een datum en tijd van de bewerking.",
 	"badsiglength": "Je ondertekening is te lang.\nDeze moet minder dan $1 {{PLURAL:$1|teken|tekens}} bevatten.",
+	"yourgender": "Hoe wil je beschreven worden?",
 	"gender-unknown": "De software gebruikt waar mogelijk geslachtsneutrale woorden als het over je gaat",
+	"prefs-help-gender": "Deze voorkeur instellen is optioneel.\nDe software gebruikt deze waarde om je met het toepasselijke grammaticale geslacht aan te spreken en te vermelden aan anderen.\nDeze informatie is openbaar.",
 	"prefs-help-realname": "Echte naam is optioneel.\nAls je deze opgeeft, kan deze naam gebruikt worden om je erkenning te geven voor je werk.",
 	"prefs-help-email": "E-mailadres is optioneel, maar maakt het mogelijk om jou je wachtwoord te e-mailen als je het bent vergeten.",
 	"prefs-help-email-others": "Je kunt ook anderen in staat stellen per e-mail contact met je op te nemen via een koppeling op uw gebruikers- en overlegpagina zonder dat je je identiteit prijsgeeft.",
+	"prefs-help-requireemail": "Dit verbetert je privacy en helpt ongewenste e-mails te voorkomen.",
 	"userrights-groups-help": "Je kunt de groepen wijzigen waar deze gebruiker lid van is.\n* Een aangekruist vakje betekent dat de gebruiker lid is van de groep.\n* Een niet aangekruist vakje betekent dat de gebruiker geen lid is van de groep.\n* Een \"*\" betekent dat je een gebruiker niet uit een groep kunt verwijderen nadat je die hebt toegevoegd of vice versa.",
 	"userrights-no-interwiki": "Je hebt geen rechten om gebruikersrechten op andere wiki's te wijzigen.",
 	"userrights-changeable-col": "Groepen die je kunt beheren",

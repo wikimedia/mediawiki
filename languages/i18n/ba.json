@@ -2392,7 +2392,6 @@
 	"ipblocklist-localblock": "Урындағы (локаль) бикләү",
 	"ipblocklist-otherblocks": "Башҡа {{PLURAL:$1|1=бикләү|бикләүҙәр}}",
 	"infiniteblock": "сикһеҙ",
-	"expiringblock": "$1 $2 тамамлана",
 	"anononlyblock": "танылмағандарҙы ғына",
 	"noautoblockblock": "авто бикләү һүндерелгән",
 	"createaccountblock": "иҫәп яҙыуҙарын булдырыу бикләнгән",

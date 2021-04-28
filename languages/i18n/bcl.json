@@ -2248,7 +2248,6 @@
 	"ipblocklist-localblock": "Pambara sa lokal",
 	"ipblocklist-otherblocks": "Ibang {{PLURAL:$1|pambara|mga pambara}}",
 	"infiniteblock": "daing siring",
-	"expiringblock": "mapaso sa $1 sa oras na $2",
 	"anononlyblock": "anon. sana",
 	"noautoblockblock": "pigpopondo an enseguidang pagbagat",
 	"createaccountblock": "binagat an paggibo nin kuenta",

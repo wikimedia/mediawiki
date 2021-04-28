@@ -1624,7 +1624,6 @@
 	"ipblocklist-localblock": "منع محلى",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|المنع|المنع}} التانى",
 	"infiniteblock": "دايم",
-	"expiringblock": "بيخلص يوم $1 الساعه $2",
 	"anononlyblock": "مجهول بس",
 	"noautoblockblock": "المنع الاوتوماتيكى متعطل",
 	"createaccountblock": " فتح الحسابات ممنوع",

@@ -1933,7 +1933,6 @@
 	"ipblocklist-localblock": "Lokal na pagharang",
 	"ipblocklist-otherblocks": "Ibang {{PLURAL:$1|harang|mga harang}}",
 	"infiniteblock": "walang hanggan",
-	"expiringblock": "magtatapos sa $1 sa ganap na $2",
 	"anononlyblock": "di kilala lamang",
 	"noautoblockblock": "hindi gumagana ang awtomatikong pagharang",
 	"createaccountblock": "isinalanta ang paglikha ng account",

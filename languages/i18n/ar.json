@@ -2706,7 +2706,6 @@
 	"ipblocklist-localblock": "المنع المحلي",
 	"ipblocklist-otherblocks": "{{PLURAL:$1||المنع الآخر|المنعان الآخران|المنوعات الأخرى}}",
 	"infiniteblock": "لا نهائي",
-	"expiringblock": "ينتهي في يوم $1 عند الساعة $2",
 	"anononlyblock": "مجهول فقط",
 	"noautoblockblock": "المنع التلقائي معطل",
 	"createaccountblock": "إنشاء الحسابات ممنوع.",

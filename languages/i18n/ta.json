@@ -2201,7 +2201,6 @@
 	"ipblocklist-localblock": "உள் தடுப்பு",
 	"ipblocklist-otherblocks": "மற்ற  {{PLURAL:$1|தடுப்பு|தடுப்புகள்}}",
 	"infiniteblock": "காலவரையறையற்று",
-	"expiringblock": "$1-தேதியில், $2-மணிக்கு இது காலாவதியாகிறது",
 	"anononlyblock": "அடையாளம் காட்டாத பயனர் மட்டும்",
 	"noautoblockblock": "தானியக்கமான தடை முடக்கப்பட்டுள்ளது",
 	"createaccountblock": "கணக்குத் தொடங்குவது தடுக்கப்பட்டது",

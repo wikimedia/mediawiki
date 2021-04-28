@@ -2040,7 +2040,6 @@
 	"ipblocklist-submit": "ស្វែងរក",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|ការហាមឃាត់|ការហាមឃាត់}}ផ្សេងទៀត",
 	"infiniteblock": "ជារៀងរហូត",
-	"expiringblock": "ផុតកំណត់ នៅថ្ងៃ $1 ម៉ោង $2",
 	"anononlyblock": "សម្រាប់តែអនាមិកជនប៉ុណ្ណោះ",
 	"noautoblockblock": "ការហាមឃាត់ដោយស្វ័យប្រវត្តិមិនត្រូវបានអនុញ្ញាតទេ",
 	"createaccountblock": "ការបង្កើតគណនីត្រូវបានហាមឃាត់",

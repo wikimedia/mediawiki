@@ -2638,7 +2638,6 @@
 	"ipblocklist-localblock": "Лякальнае блякаваньне",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|1=Іншае блякаваньне|Іншыя блякаваньні}}",
 	"infiniteblock": "назаўсёды",
-	"expiringblock": "канчаецца $1 $2",
 	"anononlyblock": "толькі ананімаў",
 	"noautoblockblock": "аўтаматычнае блякаваньне адключанае",
 	"createaccountblock": "стварэньне рахунку заблякаванае",

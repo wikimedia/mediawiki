@@ -1940,7 +1940,6 @@
 	"ipblocklist-localblock": "Nungu hodeyan",
 	"ipblocklist-otherblocks": "Other {{PLURAL:$1|Hodeyan}} tana",
 	"infiniteblock": "ši ben",
-	"expiringblock": "waatoo ga ben $1 hane $2 waate",
 	"anononlyblock": "ši-nda-maa hinne",
 	"noautoblockblock": "boŋhodeyan hun",
 	"createaccountblock": "kontu teeyan hun",

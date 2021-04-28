@@ -2590,7 +2590,6 @@
 	"ipblocklist-localblock": "स्थानीय अवरोध",
 	"ipblocklist-otherblocks": "अन्य {{PLURAL:$1|ब्लॉक}}",
 	"infiniteblock": "इनफाईनाईट",
-	"expiringblock": "$1 कय $2 बजे समय खतम होत है",
 	"anononlyblock": "केवल बेनाम सदस्य",
 	"noautoblockblock": "स्वत:ब्लाक निस्क्रिय कै गय",
 	"createaccountblock": "खाता बनावै कय रोक लगाए दिहा गा हैं",

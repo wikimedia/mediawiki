@@ -2004,7 +2004,6 @@
 	"ipblocklist-localblock": "පෙදෙසි අවහිරය",
 	"ipblocklist-otherblocks": "අනෙක් {{PLURAL:$1|අවහිර කිරීම|අවහිර කිරීම්}}",
 	"infiniteblock": "අනන්තය",
-	"expiringblock": "$1 දිනදී $2 වේලාවේදී  කල් ඉකුත්වේ",
 	"anononlyblock": "නිර්නාමිකයන් පමණි",
 	"noautoblockblock": "ස්වයංක්‍රීය වාරණය අක්‍රීය කෙරිණි",
 	"createaccountblock": "ගිණුම් තැනීම වාරණය කෙරිණි",

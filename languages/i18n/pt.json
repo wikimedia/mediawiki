@@ -2719,7 +2719,6 @@
 	"ipblocklist-localblock": "Bloqueio local",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Outro bloqueio|Outros bloqueios}}",
 	"infiniteblock": "infinito",
-	"expiringblock": "expira em $1 às $2",
 	"anononlyblock": "apenas anón.",
 	"noautoblockblock": "bloqueio automático desativado",
 	"createaccountblock": "criação de conta bloqueada",

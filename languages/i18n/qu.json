@@ -1854,7 +1854,6 @@
 	"ipblocklist-localblock": "Kayllapi hark'ay",
 	"ipblocklist-otherblocks": "Huk {{PLURAL:$1|hark'ay|hark'aykuna}}",
 	"infiniteblock": "wiñaypaq",
-	"expiringblock": "$1 p'unchawpi $2 pachapi puchukanqa",
 	"anononlyblock": "sutinnaqlla",
 	"noautoblockblock": "kikinmanta hark'ayqa ama kachunchu",
 	"createaccountblock": "rakiqunata kichariyqa hark'asqam",

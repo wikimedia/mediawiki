@@ -2684,7 +2684,6 @@
 	"ipblocklist-localblock": "Místní zablokování",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Jiné zablokování|Jiná zablokování}}",
 	"infiniteblock": "do odvolání",
-	"expiringblock": "do $1, $2",
 	"anononlyblock": "jen anonymové",
 	"noautoblockblock": "bez autoblokování",
 	"createaccountblock": "vytváření účtů zablokováno",

@@ -1060,7 +1060,6 @@
 	"ipblocklist-legend": "尋吖拕封鎖嗰用戶",
 	"ipblocklist-submit": "尋",
 	"infiniteblock": "伓限期",
-	"expiringblock": "$1 $2到期",
 	"anononlyblock": "單限制匿名用戶",
 	"noautoblockblock": "停用自動封鎖",
 	"createaccountblock": "禁止新開帳戶",

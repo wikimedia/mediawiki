@@ -2513,7 +2513,6 @@
 	"ipblocklist-localblock": "പ്രാദേശിക തടയൽ",
 	"ipblocklist-otherblocks": "മറ്റ് {{PLURAL:$1|തടയൽ|തടയലുകൾ}}",
 	"infiniteblock": "അനിശ്ചിത കാലം",
-	"expiringblock": "കാലാവധി തീരുന്നത് - $1 $2",
 	"anononlyblock": "അജ്ഞാത ഉപയോക്താക്കളെ മാത്രം",
 	"noautoblockblock": "യാന്ത്രികതടയൽ ഒഴിവാക്കിയിരിക്കുന്നു",
 	"createaccountblock": "അംഗത്വം സൃഷ്ടിക്കുന്നതിൽനിന്ന് തടഞ്ഞിരിക്കുന്നു",

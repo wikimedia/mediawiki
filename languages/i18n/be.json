@@ -2495,7 +2495,6 @@
 	"ipblocklist-localblock": "Лакальная блакіроўка",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Іншая блакіроўка|Іншыя блакіроўкі}}",
 	"infiniteblock": "бясконца",
-	"expiringblock": "канчаецца $1 $2",
 	"anononlyblock": "толькі ананімы",
 	"noautoblockblock": "аўтаблок не дазволены",
 	"createaccountblock": "стварэнне рахунка заблакавана",

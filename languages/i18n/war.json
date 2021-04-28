@@ -1678,7 +1678,6 @@
 	"ipblocklist-localblock": "Lokal nga pagpugong",
 	"ipblocklist-otherblocks": "Iba {{PLURAL:$1|ka pagpugong|ka mga pagpugong}}",
 	"infiniteblock": "kanunay",
-	"expiringblock": "diri madulot pag $1 han $2",
 	"anononlyblock": "Waray nagpakilala la",
 	"createaccountblock": "Diri ginpapagana an paghimo hin akawnt",
 	"emailblock": "Diri ginpapagana an e-mail",

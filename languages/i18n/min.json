@@ -2061,7 +2061,6 @@
 	"ipblocklist-localblock": "Sakek lokal",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Sakek}} lain",
 	"infiniteblock": "salamonyo",
-	"expiringblock": "habih pado $1 di $2",
 	"anononlyblock": "hanyo anon.",
 	"noautoblockblock": "sakek otomatih dimatian",
 	"createaccountblock": "mambuek akun dimatian",

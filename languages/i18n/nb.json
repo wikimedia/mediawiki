@@ -2677,7 +2677,6 @@
 	"ipblocklist-localblock": "Lokal blokkering",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Annen blokkering|Andre blokkeringer}}",
 	"infiniteblock": "uendelig",
-	"expiringblock": "løper ut $1 kl. $2",
 	"anononlyblock": "kun uregistrerte",
 	"noautoblockblock": "autoblokkering slått av",
 	"createaccountblock": "kontooppretting deaktivert",

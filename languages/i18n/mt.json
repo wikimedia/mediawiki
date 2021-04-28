@@ -2316,7 +2316,6 @@
 	"ipblocklist-localblock": "Blokki lokali",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Blokk ieħor|Blokki oħrajn}}",
 	"infiniteblock": "infinit",
-	"expiringblock": "jiskadi sa $1 fil-$2",
 	"anononlyblock": "anonimu biss",
 	"noautoblockblock": "bla blokk awtomatiku",
 	"createaccountblock": "ħolqien tal-kont imblukkat",

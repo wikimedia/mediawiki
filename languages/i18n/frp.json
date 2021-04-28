@@ -2135,7 +2135,6 @@
 	"ipblocklist-localblock": "Blocâjo locâl",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Ôtro blocâjo|Ôtros blocâjos}}",
 	"infiniteblock": "sen fin",
-	"expiringblock": "èxpire lo $1 a $2",
 	"anononlyblock": "mas que los utilisators anonimos",
 	"noautoblockblock": "blocâjo ôtomatico dèsactivâ",
 	"createaccountblock": "crèacion de comptio dèsactivâye",

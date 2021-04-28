@@ -1732,7 +1732,6 @@
 	"ipblocklist-localblock": "Локал блокга салыу",
 	"ipblocklist-otherblocks": "Башха {{PLURAL:$1|1=блокга салыу|блокга салыула}}",
 	"infiniteblock": "Болджалсыз блокга салыу",
-	"expiringblock": "$1 $2 бошаллыкъды",
 	"anononlyblock": "къуру анонимле",
 	"noautoblockblock": "автомат блокга салыу джукъланыбды",
 	"createaccountblock": "тергеу джазыула къураргъа болмайды",

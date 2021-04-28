@@ -2278,7 +2278,6 @@
 	"ipblocklist-localblock": "Lokalne blokowanje",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Druhe blokowanje|Druhej blokowani|Druhe blokowanja|Druhe blokowanja}}",
 	"infiniteblock": "njewobmjezowane",
-	"expiringblock": "spadnje $1 $2",
 	"anononlyblock": "jenož anonymnych blokować",
 	"noautoblockblock": "awtoblokowanje znjemóžnjene",
 	"createaccountblock": "wutworjenje wužiwarskich kontow znjemóžnjene",

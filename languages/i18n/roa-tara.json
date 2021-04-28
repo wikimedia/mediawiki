@@ -2467,7 +2467,6 @@
 	"ipblocklist-localblock": "Blocche locale",
 	"ipblocklist-otherblocks": "Otre {{PLURAL:$1|blocche|blocche}}",
 	"infiniteblock": "quanne pisce a iaddine",
-	"expiringblock": "more 'u $1 a le $2",
 	"anononlyblock": "sulamende l'anonime",
 	"noautoblockblock": "autoblocche disabbilitete",
 	"createaccountblock": "sulamende l'utinde anonime",

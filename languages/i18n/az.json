@@ -2019,7 +2019,6 @@
 	"ipblocklist-localblock": "Yerli blok",
 	"ipblocklist-otherblocks": "Başqa {{PLURAL:$1|bloklama|bloklamalar}}",
 	"infiniteblock": "müddətsiz",
-	"expiringblock": "son tarix $1 saat $2",
 	"anononlyblock": "yalnız anonim istifadəçi",
 	"noautoblockblock": "avtobloklama qeyri-mümkündür",
 	"createaccountblock": "hesab yaratma bloklanıb",

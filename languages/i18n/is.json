@@ -2373,7 +2373,6 @@
 	"ipblocklist-localblock": "Svæðisbundið bann",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Annað bann|Önnur bönn}}",
 	"infiniteblock": "aldrei",
-	"expiringblock": "rennur út  $1 $2",
 	"anononlyblock": "bara ónafngreindir",
 	"noautoblockblock": "sjálfvirkt bann óvirkt",
 	"createaccountblock": "bann við stofnun nýrra aðganga",

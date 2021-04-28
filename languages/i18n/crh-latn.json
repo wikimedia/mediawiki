@@ -1143,7 +1143,6 @@
 	"ipblocklist": "Blok etilgen qullanıcılar ve IP adresleri",
 	"ipblocklist-submit": "Qıdır",
 	"infiniteblock": "müddetsiz",
-	"expiringblock": "$1 $2 tarihında bitecek",
 	"blocklink": "blok et",
 	"unblocklink": "blok etmesini çıqar",
 	"change-blocklink": "blok etüvni deñiştir",

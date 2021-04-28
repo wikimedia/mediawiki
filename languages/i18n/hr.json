@@ -2454,7 +2454,6 @@
 	"ipblocklist-localblock": "Lokalno blokiranje",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Ostalo blokiranje|Ostala blokiranja}}",
 	"infiniteblock": "neograničeno",
-	"expiringblock": "istječe $1 u $2",
 	"anononlyblock": "samo anonimni suradnici",
 	"noautoblockblock": "blokiranje samoga sebe je onemogućeno",
 	"createaccountblock": "blokirano stvaranje suradničkog računa",

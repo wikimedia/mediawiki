@@ -2222,7 +2222,6 @@
 	"ipblocklist-localblock": "Lokal blokkering",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Anna blokkering|Andre blokkeringar}}",
 	"infiniteblock": "uendeleg opphøyrstid",
-	"expiringblock": "endar den $1 ved $2",
 	"anononlyblock": "berre anonyme",
 	"noautoblockblock": "automatisk blokkering slått av",
 	"createaccountblock": "kontooppretting blokkert",

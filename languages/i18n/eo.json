@@ -2672,7 +2672,6 @@
 	"ipblocklist-localblock": "Loka forbaro",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Alia forbaro|Aliaj forbaroj}}",
 	"infiniteblock": "senfina",
-	"expiringblock": "senvalidiĝas je $1 $2",
 	"anononlyblock": "nur anonimuloj",
 	"noautoblockblock": "aŭtomata forbaro malŝaltiĝis",
 	"createaccountblock": "Kreado de kontoj forbarita",

@@ -2228,7 +2228,6 @@
 	"ipblocklist-localblock": "Blok lokal",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Peungpeukan}} lian",
 	"infiniteblock": "salilana",
-	"expiringblock": "kadaluwarsa $1 jam $2",
 	"anononlyblock": "ngan nu teu daptar",
 	"noautoblockblock": "Otopeungpeuk ditumpurkeun",
 	"createaccountblock": "nyieun akun ditumpurkeun",

@@ -2260,7 +2260,6 @@
 	"ipblocklist-localblock": "Local block",
 	"ipblocklist-otherblocks": "Ither {{PLURAL:$1|block|blocks}}",
 	"infiniteblock": "infeenite",
-	"expiringblock": "dies oan $1 at $2",
 	"anononlyblock": "anon. yinlie",
 	"noautoblockblock": "autæblock disabled",
 	"createaccountblock": "account creaution disablt",

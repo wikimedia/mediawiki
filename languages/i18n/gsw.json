@@ -2037,7 +2037,6 @@
 	"ipblocklist-localblock": "Lokali Sperri",
 	"ipblocklist-otherblocks": "Anderi {{PLURAL:$1|Sperri|Sperrine}}",
 	"infiniteblock": "uubegränzt",
-	"expiringblock": "hert uf am $1 am $2",
 	"anononlyblock": "nume Anonymi",
 	"noautoblockblock": "Autoblock deaktiviert",
 	"createaccountblock": "Aalege vu Benutzerchonte gsperrt",

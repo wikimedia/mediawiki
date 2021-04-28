@@ -2557,7 +2557,6 @@
 	"ipblocklist-localblock": "lokaali plokki",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Muu ploki|Muut plokit}}",
 	"infiniteblock": "ikunen",
-	"expiringblock": "vanheentuu $1 kello $2",
 	"anononlyblock": "vain kirjautumattomat käyttäjät estetty",
 	"noautoblockblock": "ei automaattista IP-atressitten plokkia",
 	"createaccountblock": "tunnusten luonti estetty",

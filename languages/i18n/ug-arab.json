@@ -1946,7 +1946,6 @@
 	"ipblocklist-localblock": "يەرلىك چەكلەش",
 	"ipblocklist-otherblocks": "باشقا {{PLURAL:$1|چەكلەنگەن|چەكلەنگەن}}",
 	"infiniteblock": "چەكسىز",
-	"expiringblock": "$1 $2 ۋاقتى توشىدۇ",
 	"anononlyblock": "ئاتسىز ئىشلەتكۈچىلا",
 	"noautoblockblock": "ئۆزلۈكىدىن چەكلەشنى چەكلە",
 	"createaccountblock": "ھېسابات قۇرۇش چەكلەنگەن",

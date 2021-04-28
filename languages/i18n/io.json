@@ -2031,7 +2031,6 @@
 	"ipblocklist-submit": "Serchar",
 	"ipblocklist-otherblocks": "Altra {{PLURAL:$1|blokuso|blokusi}}",
 	"infiniteblock": "nefinita",
-	"expiringblock": "finas ye $2 kloki, en $1",
 	"emailblock": "e-posto blokusita",
 	"blocklist-nousertalk": "ne povas redaktar lua propra diskuto-pagino",
 	"blocklist-editing-sitewide": "redaktado (en omna situo)",

@@ -2438,7 +2438,6 @@
 	"ipblocklist-localblock": "Vietinis blokavimas",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Kitas blokavimas|Kiti blokavimai}}",
 	"infiniteblock": "neribotai",
-	"expiringblock": "baigia galioti $1 $2",
 	"anononlyblock": "tik anonimai",
 	"noautoblockblock": "automatinis blokavimas išjungtas",
 	"createaccountblock": "paskyrų kūrimas uždraustas",

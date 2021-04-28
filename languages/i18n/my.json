@@ -1966,7 +1966,6 @@
 	"ipblocklist-localblock": "ဒေသတွင်း ပိတ်ပင်",
 	"ipblocklist-otherblocks": "အခြား ပိတ်ပင်ထားမှု{{PLURAL:$1|ခု|ခု}}",
 	"infiniteblock": "အကန့်အသတ်မရှိ",
-	"expiringblock": "$1 ရက် $2 အချိန်တွင် သက်တမ်းကုန်မည်",
 	"anononlyblock": "အမည်မသိများသာ",
 	"noautoblockblock": "အလိုအလျောက်ပိတ်ပင်ခြင်းကို ပိတ်ထားရန်",
 	"createaccountblock": "အကောင့်ဖန်တီးခြင်းကို ပိတ်ထားသည်",

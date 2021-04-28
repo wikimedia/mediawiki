@@ -2620,7 +2620,6 @@
 	"ipblocklist-localblock": "Lokalna blokada",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Druga blokada|Druge blokade}}",
 	"infiniteblock": "trajno",
-	"expiringblock": "ističe $1 u $2",
 	"anononlyblock": "samo anonimni",
 	"noautoblockblock": "automatsko blokiranje je onemogućeno",
 	"createaccountblock": "otvaranje naloga je onemogućeno",

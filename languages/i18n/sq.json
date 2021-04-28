@@ -2282,7 +2282,6 @@
 	"ipblocklist-localblock": "Bllokim lokal",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Bllokim tjetër|Bllokime të tjera}}",
 	"infiniteblock": "pakufi",
-	"expiringblock": "skadon më $1 në $2",
 	"anononlyblock": "vetëm anonimët",
 	"noautoblockblock": "autobllokimi është çaktivizuar",
 	"createaccountblock": "hapja e lloggarive është bllokuar",

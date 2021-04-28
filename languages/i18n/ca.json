@@ -2698,7 +2698,6 @@
 	"ipblocklist-localblock": "Blocatge local",
 	"ipblocklist-otherblocks": "Altres {{PLURAL:$1|blocatges}}",
 	"infiniteblock": "infinit",
-	"expiringblock": "venç el $1 a $2",
 	"anononlyblock": "només usuari anònim",
 	"noautoblockblock": "S'ha inhabilitat el blocatge automàtic",
 	"createaccountblock": "s'ha blocat la creació de nous comptes",
