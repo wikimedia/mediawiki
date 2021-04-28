@@ -2112,7 +2112,6 @@
 	"ipblocklist-localblock": "স্থানীয় বাৰণ",
 	"ipblocklist-otherblocks": "অন্যান্য {{PLURAL:$1|বাৰণ|বাৰণসমূহ}}",
 	"infiniteblock": "অসীম",
-	"expiringblock": "$1 তাৰিখৰ $2 সময়ত ম্যাদ উকলিব",
 	"anononlyblock": "কেৱল বেনামী",
 	"noautoblockblock": "স্বয়ংক্ৰিয় প্ৰতিবন্ধক নিষ্ক্ৰিয় কৰা হৈছে",
 	"createaccountblock": "একাউণ্ট সৃষ্টিত প্ৰতিবন্ধক দিয়া হৈছে",

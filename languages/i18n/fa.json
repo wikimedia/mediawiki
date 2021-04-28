@@ -2685,7 +2685,6 @@
 	"ipblocklist-localblock": "قطع دسترسی محلی",
 	"ipblocklist-otherblocks": "سایر {{PLURAL:$1|بستن‌ها|بستن‌ها}}",
 	"infiniteblock": "بی‌پایان",
-	"expiringblock": "در $1 ساعت $2 به پایان می‌رسد",
 	"anononlyblock": "فقط کاربران ناشناس",
 	"noautoblockblock": "قطع دسترسی خودکار غیرفعال است",
 	"createaccountblock": "امکان ساخت حساب گرفته‌شده",

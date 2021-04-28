@@ -1900,7 +1900,6 @@
 	"ipblocklist-localblock": "સ્થાનીય પ્રતિબંધ",
 	"ipblocklist-otherblocks": "અન્ય {{PLURAL:$1|પ્રતિબંધન|પ્રતિબંધનો}}",
 	"infiniteblock": "અનિશ્ચિત",
-	"expiringblock": "$1 તારીખે  $2 વાગ્યે કાલાતીત થયું",
 	"anononlyblock": "માત્ર અનામી",
 	"noautoblockblock": "સ્વયંચાલિત પ્રતિબંધ ક્રિયા નિષ્ક્રીય કરાઈ",
 	"createaccountblock": "ખાતું ખોલવા પર પ્રતિબંધ છે",

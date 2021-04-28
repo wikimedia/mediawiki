@@ -2596,7 +2596,6 @@
 	"ipblocklist-localblock": "การบล็อกในวิกินี้",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|การบล็อก}}อื่น",
 	"infiniteblock": "ไม่มีกำหนด",
-	"expiringblock": "หมดอายุ $1 เวลา $2",
 	"anononlyblock": "เฉพาะนิรนาม",
 	"noautoblockblock": "ปิดใช้งานการบล็อกอัตโนมัติ",
 	"createaccountblock": "ปิดใช้งานการสร้างบัญชี",

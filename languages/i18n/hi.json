@@ -2575,7 +2575,6 @@
 	"ipblocklist-localblock": "स्थानीय अवरोध",
 	"ipblocklist-otherblocks": "अन्य {{PLURAL:$1|ब्लॉक}}",
 	"infiniteblock": "इनफाईनाईट",
-	"expiringblock": "$1 को $2 बजे मियाद खत्म होती है",
 	"anononlyblock": "केवल अनाम सदस्य",
 	"noautoblockblock": "स्वयंचलित ब्लॉक रद्द किये हैं",
 	"createaccountblock": "खाते निर्माण को रोक दिया हैं",

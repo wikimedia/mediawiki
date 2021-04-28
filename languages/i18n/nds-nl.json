@@ -1958,7 +1958,6 @@
 	"ipblocklist-localblock": "Lokale blokkering",
 	"ipblocklist-otherblocks": "Aandere {{PLURAL:$1|blokkering|blokkeringen}}",
 	"infiniteblock": "unbegrensd",
-	"expiringblock": "löp aof op $1 um $2",
 	"anononlyblock": "allinnig anoniemen",
 	"noautoblockblock": "autoblok niet aktief",
 	"createaccountblock": "anmaken van n gebrukersprofiel is eblokkeerd",

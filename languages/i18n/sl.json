@@ -2641,7 +2641,6 @@
 	"ipblocklist-localblock": "Lokalna blokada",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Druga blokada|Drugi blokadi|Druge blokade}}",
 	"infiniteblock": "neomejen čas",
-	"expiringblock": "preteče $1 ob $2",
 	"anononlyblock": "samo brezim.",
 	"noautoblockblock": "onemogočena samodejna blokada",
 	"createaccountblock": "onemogočeno ustvarjanje računov",

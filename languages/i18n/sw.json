@@ -1910,7 +1910,6 @@
 	"ipblocklist-submit": "Tafuta",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Uzuio mwingine|Zuio zingine}}",
 	"infiniteblock": "milele",
-	"expiringblock": "inakwisha tarehe $1 saa $2",
 	"emailblock": "barua pepe imezuiliwa",
 	"blocklist-editing": "kuhariri",
 	"blocklist-editing-page": "kurasa",

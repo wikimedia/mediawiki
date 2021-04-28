@@ -1359,7 +1359,6 @@
 	"ipblocklist-localblock": "Mahalliy chetlashtirish",
 	"ipblocklist-otherblocks": "Boshqa {{PLURAL:$1|chetlashtirishlar}}",
 	"infiniteblock": "muddatsiz",
-	"expiringblock": "$1, $2 da tugaydi",
 	"anononlyblock": "faqat anonimlar",
 	"noautoblockblock": "avtochetlashtirish o‘chirilgan",
 	"createaccountblock": "hisob yozuvi yaratish taqiqlangan",

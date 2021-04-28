@@ -1247,7 +1247,6 @@
 	"ipblocklist-submit": "Sucha",
 	"ipblocklist-otherblocks": "Andere {{PLURAL:$1|Sperre|Sperra}}",
 	"infiniteblock": "unbeschränkt",
-	"expiringblock": "endet oam $1 im $2 Seeger",
 	"anononlyblock": "ocke Anonyme",
 	"createaccountblock": "Erstellung vu Nutzerkonten gesperrt",
 	"blocklist-nousertalk": "darf eegne Dischkurseite nee bearbta",

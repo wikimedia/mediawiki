@@ -1493,7 +1493,6 @@
 	"ipblocklist-localblock": "Lokal blokirleme",
 	"ipblocklist-otherblocks": "Başga {{PLURAL:$1|blokirleme|blokirlemeler}}",
 	"infiniteblock": "möhletsiz",
-	"expiringblock": "$2, $1 senesinde gutarýar",
 	"anononlyblock": "diňe anonimler",
 	"noautoblockblock": "awtoblokirleme ýapyk",
 	"createaccountblock": "hasap açmaklyk blokirlendi",

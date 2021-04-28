@@ -1974,7 +1974,6 @@
 	"ipblocklist-localblock": "Bloccu lucali",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Àutru bloccu|Àutri blocchi}}",
 	"infiniteblock": "nfinitu",
-	"expiringblock": "scadi lu $1 ê $2",
 	"anononlyblock": "sulu anònimi",
 	"noautoblockblock": "bloccu autumàticu disattivatu",
 	"createaccountblock": "criazzioni di cunti bluccata",

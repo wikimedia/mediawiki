@@ -2681,7 +2681,6 @@
 	"ipblocklist-localblock": "Blocare locală",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Altă blocare|Alte $1 blocări}}",
 	"infiniteblock": "termen nelimitat",
-	"expiringblock": "expiră în $1 la $2",
 	"anononlyblock": "doar anonimi",
 	"noautoblockblock": "autoblocare dezactivată",
 	"createaccountblock": "crearea de conturi blocată",

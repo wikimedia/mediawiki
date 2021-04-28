@@ -2033,7 +2033,6 @@
 	"ipblocklist-localblock": "Жергілікті бұғаттауы",
 	"ipblocklist-otherblocks": "Басқа {{PLURAL:$1|бұғаттауы|бұғаттаулары}}",
 	"infiniteblock": "мәңгі",
-	"expiringblock": "мерзімі бітпек: $1 $2",
 	"anononlyblock": "тек тіркелгісіздерді",
 	"noautoblockblock": "өзбұғаттау өшірілген",
 	"createaccountblock": "тіркелу бұғатталған",

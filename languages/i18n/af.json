@@ -2064,7 +2064,6 @@
 	"ipblocklist-localblock": "Lokale blokkade",
 	"ipblocklist-otherblocks": "Ander {{PLURAL:$1|blokkade|blokkades}}",
 	"infiniteblock": "vir altyd",
-	"expiringblock": "verval op $1 om $2",
 	"anononlyblock": "anoniem-alleen",
 	"noautoblockblock": "autoblok afgeskakel",
 	"createaccountblock": "skep van gebruikersrekeninge is geblokkeer",

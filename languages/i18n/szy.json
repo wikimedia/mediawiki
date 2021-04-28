@@ -2211,7 +2211,6 @@
 	"ipblocklist-localblock": "milangat itiniay",
 	"ipblocklist-otherblocks": "zuma {{PLURAL:$1|milangat}}",
 	"infiniteblock": "inayi’ u sungliw",
-	"expiringblock": "$1 $2 hatinitu",
 	"anononlyblock": "wiza dada’ paceba panganganay ku misaungayay",
 	"noautoblockblock": "lunuk malangat mapasatezep tu",
 	"createaccountblock": "canghaw patizeng mapasatezep tuway",

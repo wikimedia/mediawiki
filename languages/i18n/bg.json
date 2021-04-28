@@ -2650,7 +2650,6 @@
 	"ipblocklist-localblock": "Локално блокиране",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Друго блокиране|Други блокирания}}",
 	"infiniteblock": "неограничен",
-	"expiringblock": "изтича на $1 в $2",
 	"anononlyblock": "само анон.",
 	"noautoblockblock": "автоблокировката е изключена",
 	"createaccountblock": "създаването на сметки е блокирано",

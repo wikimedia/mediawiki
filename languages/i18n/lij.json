@@ -2571,7 +2571,6 @@
 	"ipblocklist-localblock": "Blocco locale",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Atro blocco|Atri blocchi}}",
 	"infiniteblock": "infinîo",
-	"expiringblock": "o descazze o $1 a $2",
 	"anononlyblock": "Solo anonnimi",
 	"noautoblockblock": "blocco aotomatico disabilitou",
 	"createaccountblock": "registraçion bloccâ",

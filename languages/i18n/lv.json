@@ -2184,7 +2184,6 @@
 	"ipblocklist-localblock": "Vietējais bloks",
 	"ipblocklist-otherblocks": " {{PLURAL:$1|Citas|Cita|Citas}} {{PLURAL:$1|bloķēšanas|bloķēšana|bloķēšanas}}",
 	"infiniteblock": "bezgalīgs",
-	"expiringblock": "beidzas $1 $2",
 	"anononlyblock": "tikai anon.",
 	"noautoblockblock": "automātiskā bloķēšana atslēgta",
 	"createaccountblock": "kontu veidošana atslēgta",

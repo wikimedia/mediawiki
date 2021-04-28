@@ -1427,7 +1427,6 @@
 	"ipblocklist-submit": "Suk",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Blokam|Blokams}} votik",
 	"infiniteblock": "laidüpo",
-	"expiringblock": "dulon jü $1 düp $2",
 	"anononlyblock": "te nennemans",
 	"noautoblockblock": "Blokam itjäfidik penemögukon",
 	"createaccountblock": "kalijaf peblokon",

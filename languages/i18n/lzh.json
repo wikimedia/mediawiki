@@ -1650,7 +1650,6 @@
 	"ipblocklist-localblock": "本禁",
 	"ipblocklist-otherblocks": "他{{PLURAL:$1|禁|禁}}",
 	"infiniteblock": "恆久",
-	"expiringblock": "屆$1 $2",
 	"anononlyblock": "惟匿者",
 	"noautoblockblock": "止自禁",
 	"createaccountblock": "禁增簿",

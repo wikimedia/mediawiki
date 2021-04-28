@@ -2180,7 +2180,6 @@
 	"ipblocklist-localblock": "Локалан блоктохар",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Кхин блоктохар|Кхин блоктохарш}}",
 	"infiniteblock": "хан чаккхе йоцуш",
-	"expiringblock": "чекхйолу $1 $2",
 	"anononlyblock": "цӀе хьулйина декъашхойн бен",
 	"noautoblockblock": "ша блоктухарг дӏаяйина",
 	"createaccountblock": "цамагдо керла дӀаяздарш кхоллар",

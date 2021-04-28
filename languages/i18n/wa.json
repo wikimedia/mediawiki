@@ -1342,7 +1342,6 @@
 	"ipblocklist-localblock": "Blocaedje locå",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Ôte blocaedje|Ôtes blocaedjes}}",
 	"infiniteblock": "po todi",
-	"expiringblock": "disk' å $1 a $2",
 	"blocklist-editing-page": "pådjes",
 	"blocklink": "bloker",
 	"unblocklink": "disbloker",

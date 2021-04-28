@@ -2051,7 +2051,6 @@
 	"ipblocklist-localblock": "يئرلی بلوک",
 	"ipblocklist-otherblocks": "باشقا {{PLURAL:$1|بلوکلاما|بلوکلامالار}}",
 	"infiniteblock": "سوْن‌سۇز",
-	"expiringblock": "سون تاریخ $1 ساعت $2",
 	"anononlyblock": "يالنیز تانیش‌سیزایستیفاده‌چی",
 	"noautoblockblock": "آوتوبلوکلاما غيری مومکوندور",
 	"createaccountblock": "حساب یاراتماق اولماز",

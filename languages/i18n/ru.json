@@ -2791,7 +2791,6 @@
 	"ipblocklist-localblock": "Локальная блокировка",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|1=Другая блокировка|Другие блокировки}}",
 	"infiniteblock": "бессрочно",
-	"expiringblock": "завершится $1 в $2",
 	"anononlyblock": "только анонимов",
 	"noautoblockblock": "автоблокировка отключена",
 	"createaccountblock": "создание учётных записей запрещено",

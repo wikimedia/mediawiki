@@ -2652,7 +2652,6 @@
 	"ipblocklist-localblock": "Τοπική φραγή",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Άλλη φραγή|Άλλες φραγές}}",
 	"infiniteblock": "αόριστη",
-	"expiringblock": "λήγει στις $1 στις $2",
 	"anononlyblock": "μόνο τους ανώνυμους",
 	"noautoblockblock": "αυτόματη φραγή απενεργοποιημένη",
 	"createaccountblock": "δημιουργία λογαριασμού μπλοκαρισμένη",

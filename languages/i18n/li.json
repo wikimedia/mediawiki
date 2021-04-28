@@ -2412,7 +2412,6 @@
 	"ipblocklist-localblock": "Lokale blok",
 	"ipblocklist-otherblocks": "Anger {{PLURAL:$1|blokkaad|blokkades}}",
 	"infiniteblock": "veur iwweg",
-	"expiringblock": "verlöp op $1 óm $2",
 	"anononlyblock": "allein anoniem",
 	"noautoblockblock": "autoblok neet actief",
 	"createaccountblock": "aanmake gebroekers geblokkeerd",

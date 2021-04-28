@@ -2047,7 +2047,6 @@
 	"ipblocklist-localblock": "Bacadh ionadail",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Bacadh|Bacaidhean}} eile",
 	"infiniteblock": "buan",
-	"expiringblock": "falbhaidh an ùine air $1 $2",
 	"anononlyblock": "gun ainm a-mhàin",
 	"noautoblockblock": "chaidh fèin-bhacadh a chur à comas",
 	"createaccountblock": "chaidh cruthachadh chunntasan ùra a chur à comas",

@@ -2290,7 +2290,6 @@
 	"ipblocklist-localblock": "Локальный туйукташ",
 	"ipblocklist-otherblocks": "Ӧскӧ {{PLURAL:$1|туйукташ}}",
 	"infiniteblock": "улайына",
-	"expiringblock": "Ӧдӧтӧн кӱни $1 ӧйи $2",
 	"anononlyblock": "јӱк ле анонимдер",
 	"blocklist-editing": "тӱзедиш",
 	"blocklist-editing-sitewide": "тӱзедиш (ончо проектте)",

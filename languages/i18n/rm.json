@@ -1697,7 +1697,6 @@
 	"ipblocklist-localblock": "Bloccadas localas",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Autra bloccada|Autras bloccadas}}",
 	"infiniteblock": "permanent",
-	"expiringblock": "scroda ils $1 las $2 uras",
 	"anononlyblock": "be anonims",
 	"noautoblockblock": "deactivà la bloccada automatica",
 	"createaccountblock": "bloccà la creaziun da contos",

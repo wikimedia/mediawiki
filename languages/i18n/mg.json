@@ -2259,7 +2259,6 @@
 	"ipblocklist-localblock": "Fanakanana eo an-toerana",
 	"ipblocklist-otherblocks": "{{PLURAL:$1}}sakana hafa",
 	"infiniteblock": "mandrakizay",
-	"expiringblock": "tapitra amin'ny $1 amin'ny $2",
 	"anononlyblock": "mpikambana tsy nisoratra anarana ihany",
 	"noautoblockblock": "fanakanana mande ho azy nesorina",
 	"createaccountblock": "tsy mahazo manokatra kaonty",

@@ -2523,7 +2523,6 @@
 	"ipblocklist-localblock": "Lokal blokering",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Øvrig blokering|Øvrige blokeringer}}",
 	"infiniteblock": "udløber ikke",
-	"expiringblock": "udløber $1 $2",
 	"anononlyblock": "kun anonyme",
 	"noautoblockblock": "automatisk blokering slået fra",
 	"createaccountblock": "oprettelse af konto deaktiveret",

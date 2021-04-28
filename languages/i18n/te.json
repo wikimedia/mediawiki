@@ -2490,7 +2490,6 @@
 	"ipblocklist-localblock": "స్థానిక నిరోధం",
 	"ipblocklist-otherblocks": "ఇతర {{PLURAL:$1|నిరోధం|నిరోధాలు}}",
 	"infiniteblock": "అనంతం",
-	"expiringblock": "$1 నాడు $2కి కాలం చెల్లుతుంది",
 	"anononlyblock": "అజ్ఞాతవ్యక్తులు మాత్రమే",
 	"noautoblockblock": "ఆటోమాటిక్ నిరోధాన్ని అశక్తం చేసాం",
 	"createaccountblock": "ఖాతా తెరవడాన్ని నిరోధించాము",

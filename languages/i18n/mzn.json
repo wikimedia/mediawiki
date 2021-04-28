@@ -658,7 +658,6 @@
 	"ipboptions": "۲ ساعت:2 hours,۱ روز:1 day,۳ روز:3 days,۱ هفته:1 week,۲ هفته:2 weeks,۱ ماه:1 month,۳ ماه:3 months,۶ ماه:6 months,۱ سال:1 year,بی‌پایون:infinite",
 	"ipblocklist": "IP نـه‌شـونـی‌ئون ئو کـارورنـوم‌ئونی کـه دأبـه‌سـتـوونـه",
 	"infiniteblock": "بی‌پایون",
-	"expiringblock": "$1 دله، ساعت $2 دِرِس وونه",
 	"blocklink": "دَوستن",
 	"unblocklink": "وا هـه‌کـارده‌ن",
 	"change-blocklink": "قطع دسترسی تغییر هدائن",

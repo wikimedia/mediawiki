@@ -2326,7 +2326,6 @@
 	"ipblocklist-localblock": "स्थानिक प्रतिबंधन",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|दुसरे प्रतिबंधन|इतर प्रतिबंधने}}",
 	"infiniteblock": "अनंत",
-	"expiringblock": "समाप्ति $1 $2",
 	"anononlyblock": "केवळ अनामिक",
 	"noautoblockblock": "स्वयंचलित प्रतिबंधन अवरूद्ध केले",
 	"createaccountblock": "खात्याची निर्मिती प्रतिबंधित केली",

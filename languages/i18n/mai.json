@@ -2231,7 +2231,6 @@
 	"ipblocklist-localblock": "स्थानीय प्रतिबन्ध",
 	"ipblocklist-otherblocks": "दोसर {{PLURAL:$1|block|blocks}}",
 	"infiniteblock": "अनिश्चित",
-	"expiringblock": "खतम हएत $1 क $2 केँ",
 	"anononlyblock": "अनाम मात्र",
 	"noautoblockblock": "स्वचालित प्रतिबन्ध अशक्त",
 	"createaccountblock": "लेखा निर्माण अशक्त कएल",

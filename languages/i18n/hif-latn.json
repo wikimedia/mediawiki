@@ -2118,7 +2118,6 @@
 	"ipblocklist-localblock": "Sthaniye rukawat",
 	"ipblocklist-otherblocks": "Duusra {{PLURAL:$1|block|blocks}}",
 	"infiniteblock": "sab din ke khatir",
-	"expiringblock": "khalaas hoe hai $1 at $2",
 	"anononlyblock": "khaali bina naam ke",
 	"noautoblockblock": "ab apne se rokaa nai jaawe sake hai",
 	"createaccountblock": "account banae ke adhikar ke rok dewa gais hai",

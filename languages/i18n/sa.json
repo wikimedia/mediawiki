@@ -1960,7 +1960,6 @@
 	"ipblocklist-localblock": "स्थानीयावरोधः ।",
 	"ipblocklist-otherblocks": "अन्याः{{PLURAL:$1|अवरोधाः}}",
 	"infiniteblock": "अनन्तम् ।",
-	"expiringblock": "$1 इत्यस्य $2समये समाप्तिः भवति ।",
 	"anononlyblock": "अनामकः केवलम् ।",
 	"noautoblockblock": "स्वयमवरोधः निष्क्रियः ।",
 	"createaccountblock": "योजकस्थाननिर्माणं निष्क्रियम् ।",

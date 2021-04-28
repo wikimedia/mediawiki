@@ -2085,7 +2085,6 @@
 	"ipblocklist-localblock": "Lokaal sper",
 	"ipblocklist-otherblocks": "Ööder {{PLURAL:$1|sper|speren}}",
 	"infiniteblock": "saner aanj",
-	"expiringblock": "lääpt di $1 am a klook $2 uf",
 	"anononlyblock": "bluas anonüümen",
 	"noautoblockblock": "autoblock ei aktiif",
 	"createaccountblock": "brükerkontos kön ei iinracht wurd.",

@@ -2609,7 +2609,6 @@
 	"ipblocklist-localblock": "Lokálne blokovanie",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Iný blok|Iné blokovania}}",
 	"infiniteblock": "na neurčito",
-	"expiringblock": "vyprší $1 $2",
 	"anononlyblock": "iba anon.",
 	"noautoblockblock": "automatické blokovanie vypnuté",
 	"createaccountblock": "tvorba účtov bola zablokovaná",

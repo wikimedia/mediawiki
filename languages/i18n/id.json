@@ -2718,7 +2718,6 @@
 	"ipblocklist-localblock": "Blokir lokal",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|pemblokiran|pemblokiran}} lain",
 	"infiniteblock": "tak terbatas",
-	"expiringblock": "kedaluwarsa pada $1 $2",
 	"anononlyblock": "hanya pengguna anonim",
 	"noautoblockblock": "pemblokiran otomatis dimatikan",
 	"createaccountblock": "pembuatan akun diblokir",

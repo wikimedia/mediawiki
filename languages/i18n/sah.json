@@ -2485,7 +2485,6 @@
 	"ipblocklist-localblock": "Соҕотох бырайыакка хааччахтааһын",
 	"ipblocklist-otherblocks": "Атын {{PLURAL:$1|хааччахтааһын|хааччахтааһыннар}}",
 	"infiniteblock": "болдьоҕо суох",
-	"expiringblock": "болдьоҕо: $1 $2",
 	"anononlyblock": "ааттамматахтары эрэ",
 	"noautoblockblock": "автоблокировка араарылынна",
 	"createaccountblock": "саҥа бэлиэтэнии бобуллубут",

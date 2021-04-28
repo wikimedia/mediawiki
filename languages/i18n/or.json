@@ -1981,7 +1981,6 @@
 	"ipblocklist-localblock": "ସ୍ଥାନୀୟ ଅଟକ",
 	"ipblocklist-otherblocks": "ବାକି {{PLURAL:$1|ଗୋଟି ଅଟକ|ଗୋଟି ଅଟକ}}",
 	"infiniteblock": "ଅସିମୀତ",
-	"expiringblock": "$1 ତାରିଖ $2ବେଳେ ମିଆଦ ପୁରିବ",
 	"anononlyblock": "କେବଳ ବେନାମି",
 	"noautoblockblock": "ଆପେଆପେ କରାଯାଇଥିବା ଅଟକ ଅଚଳ କରାଗଲା",
 	"createaccountblock": "ନୂଆ ଖାତା ଖୋଲିବା ଅଚଳ କରାଗଲା",

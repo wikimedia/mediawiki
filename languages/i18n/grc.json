@@ -1389,7 +1389,6 @@
 	"ipblocklist-localblock": "Τοπικὴ φραγή",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Ἑτέρα φραγή|Ἕτεραι φραγαί}}",
 	"infiniteblock": "ἄπειρον",
-	"expiringblock": "λῆξαν ἔσεται ἐν $1 ἐν $2",
 	"anononlyblock": "ἀνωνύμους μόνον",
 	"noautoblockblock": "αὐτόματος φραγὴ κατεσταλμένη",
 	"createaccountblock": "ποίησις λογισμοῦ πεφραγμένη",

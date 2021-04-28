@@ -2287,7 +2287,6 @@
 	"ipblocklist-localblock": "Rhwystr lleol",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Rhwystr arall|Rhwystr arall|Rhwystrau eraill|Rhwystrau eraill|Rhwystrau eraill|Rhwystrau eraill}}",
 	"infiniteblock": "amhenodol",
-	"expiringblock": "yn dod i ben ar $1 am $2",
 	"anononlyblock": "cyfranwyr heb gyfrif yn unig",
 	"noautoblockblock": "analluogwyd blocio awtomatig",
 	"createaccountblock": "ataliwyd y gallu i greu cyfrif",

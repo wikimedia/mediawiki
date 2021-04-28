@@ -2601,7 +2601,6 @@
 	"ipblocklist-localblock": "Sekatan tempatan",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Sekatan|Sekatan-sekatan}} lain",
 	"infiniteblock": "selama-lamanya",
-	"expiringblock": "sehingga $1, $2",
 	"anononlyblock": "pengguna tanpa nama sahaja",
 	"noautoblockblock": "sekatan automatik dipadamkan",
 	"createaccountblock": "pembukaan akaun baru disekat",

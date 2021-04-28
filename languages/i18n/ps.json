@@ -2065,7 +2065,6 @@
 	"ipblocklist-localblock": "سيمه ايز بنديز",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|بل بنديز|نور بنديزونه}}",
 	"infiniteblock": "نامحدوده",
-	"expiringblock": "په $1 نېټه، $2 بجو پای ته رسېږي",
 	"anononlyblock": "يواځې ورکنومی",
 	"noautoblockblock": "خپلواک بنديز ترسره نشو",
 	"createaccountblock": "په گڼون جوړولو بنديز لگېدلی",

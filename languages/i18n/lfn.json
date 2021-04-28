@@ -2389,7 +2389,6 @@
 	"ipblocklist-localblock": "Impedi local",
 	"ipblocklist-otherblocks": "Otra {{PLURAL:$1|impedi|impedis}}",
 	"infiniteblock": "infinita",
-	"expiringblock": "desvalidi a $1 a $2",
 	"anononlyblock": "sola anonim",
 	"noautoblockblock": "autoimpedi descomutada",
 	"createaccountblock": "crea de contas descomutada",

@@ -468,7 +468,6 @@
 	"ipboptions": "2 ގަޑިއިރު:2 hours, 1 ދުވަސް:1 day, 3 ދުވަސް:3 days, 1 ހަފްތާ:1 week, 2 ހަފްތާ:2 weeks, 1 މަސް:1 month,3 މަސް:3 months, 6 މަސް:6 months, 1 އަހަރު:1 year, ހަމައެއްނެތް:infinite",
 	"badipaddress": "ނުރަނގަޅު އައި.ޕީ އެޑްރެހެއް",
 	"ipblocklist": "ފިޔަވަޅު އެޅިފައިވާ މެމްބަރުން",
-	"expiringblock": "މުއްދަތު ހަމަވާނީ $1 $2",
 	"blocklink": "ފިޔަވަޅުއަޅުއްވާ",
 	"unblocklink": "ފިޔަވަޅުއެޅުން ބަދަލުކުރައްވާ",
 	"contribslink": "ޙިއްޞާ",

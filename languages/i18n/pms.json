@@ -2639,7 +2639,6 @@
 	"ipblocklist-localblock": "Blocagi local",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Àutr blocagi|Àutri blocagi}}",
 	"infiniteblock": "për sempe",
-	"expiringblock": "a finiss ël $1 a $2",
 	"anononlyblock": "mach j'utent anònim",
 	"noautoblockblock": "blocagi automàtich nen ativ",
 	"createaccountblock": "creassion dij cont blocà",

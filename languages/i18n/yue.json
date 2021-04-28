@@ -2360,7 +2360,6 @@
 	"ipblocklist-localblock": "本地封鎖",
 	"ipblocklist-otherblocks": "其他{{PLURAL:$1|封鎖|封鎖}}",
 	"infiniteblock": "無期",
-	"expiringblock": "$1 $2 期滿",
 	"anononlyblock": "只限匿名",
 	"noautoblockblock": "自動封鎖已經停用",
 	"createaccountblock": "封咗開新戶口",

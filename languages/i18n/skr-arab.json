@@ -1875,7 +1875,6 @@
 	"ipblocklist-localblock": "لوکل روک",
 	"ipblocklist-otherblocks": "ٻئی {{PLURAL:$1|پابندی|پابندیاں}}",
 	"infiniteblock": "بے انت",
-	"expiringblock": "$1 کوں $2 تے مُکسی",
 	"anononlyblock": "صرف گمنام ورتݨ آلا",
 	"noautoblockblock": "خودکار پابندی غیر فعال",
 	"createaccountblock": "کھاتا کھولݨ تے پابندی ہے",

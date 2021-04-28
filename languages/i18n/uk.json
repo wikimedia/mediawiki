@@ -2722,7 +2722,6 @@
 	"ipblocklist-localblock": "Локальне блокування",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|1=Інше блокування|Інші блокування}}",
 	"infiniteblock": "блокування на невизначений термін",
-	"expiringblock": "закінчиться $1 $2",
 	"anononlyblock": "тільки анонімів",
 	"noautoblockblock": "автоблокування вимкнене",
 	"createaccountblock": "створення облікових записів заблоковане",

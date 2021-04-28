@@ -2581,7 +2581,6 @@
 	"ipblocklist-localblock": "Tokiko blokeoa",
 	"ipblocklist-otherblocks": "Bestelako {{PLURAL:$1|blokeoa|blokeoak}}",
 	"infiniteblock": "infinitu",
-	"expiringblock": "blokeoaldiaren bukaera: $1, $2",
 	"anononlyblock": "anon. soilik",
 	"noautoblockblock": "autoblokeoa ezgaituta",
 	"createaccountblock": "kontua sortzea blokeatuta",

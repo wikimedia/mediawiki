@@ -2256,7 +2256,6 @@
 	"ipblocklist-localblock": "Blokade lokal",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Blokiran|Blokiran}} liya",
 	"infiniteblock": "salawasé",
-	"expiringblock": "kadaluwarsa ing $1, $2",
 	"anononlyblock": "namung anon",
 	"noautoblockblock": "blokir otomatis dipatèni",
 	"createaccountblock": "ndamelipun akun dipunblokir",

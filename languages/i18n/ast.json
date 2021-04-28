@@ -2589,7 +2589,6 @@
 	"ipblocklist-localblock": "Bloquéu llocal",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Otru bloquéu|Otros bloqueos}}",
 	"infiniteblock": "pa siempre",
-	"expiringblock": "caduca'l $1 a les $2",
 	"anononlyblock": "namái anón.",
 	"noautoblockblock": "bloquéu automáticu desactiváu",
 	"createaccountblock": "creación de cuentes desactivada",

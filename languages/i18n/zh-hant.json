@@ -2741,7 +2741,6 @@
 	"ipblocklist-localblock": "本地封鎖",
 	"ipblocklist-otherblocks": "其他{{PLURAL:$1|封鎖}}",
 	"infiniteblock": "無限期",
-	"expiringblock": "$1 $2 到期",
 	"anononlyblock": "僅限匿名使用者",
 	"noautoblockblock": "自動封鎖已停用",
 	"createaccountblock": "帳號建立已停用",

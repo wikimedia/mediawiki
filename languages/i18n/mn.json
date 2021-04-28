@@ -1792,7 +1792,6 @@
 	"ipblocklist-localblock": "Дотоодын түгжилт",
 	"ipblocklist-otherblocks": "Бусад {{PLURAL:$1|түгжээ|түгжээ}}",
 	"infiniteblock": "тодорхойгүй",
-	"expiringblock": "$1-ний $2-д хугацаа нь дуусна",
 	"anononlyblock": "зөвхөн бүртгэгдээгүйг",
 	"noautoblockblock": "Автоматаар түгжихийг хаасан байна.",
 	"createaccountblock": "бүртгэл үүсгэх явдлыг хаав",

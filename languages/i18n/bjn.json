@@ -1685,7 +1685,6 @@
 	"ipblocklist-localblock": "Blukir lokal",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|pamblukiran|papamblukiran}} lain",
 	"infiniteblock": "Kada bawatas",
-	"expiringblock": "kadaluwarsa pada $1, $2",
 	"anononlyblock": "kadabangaran haja",
 	"noautoblockblock": "pamblukiran utumatis dipajahakan",
 	"createaccountblock": "paulahan akun diblukir",

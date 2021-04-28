@@ -2464,7 +2464,6 @@
 	"ipblocklist-localblock": "ლოკალური ბლოკირება",
 	"ipblocklist-otherblocks": "სხვა {{PLURAL:$1|დაბლოკვა|დაბლოკვები}}",
 	"infiniteblock": "უსასრულო",
-	"expiringblock": "ვადის გასვლის დრო $1 $2",
 	"anononlyblock": "მხოლოდ ანონ.",
 	"noautoblockblock": "ავტობლოკირება გათიშულია",
 	"createaccountblock": "ანგარიშის გახსნა ბლოკირებულია",

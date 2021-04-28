@@ -2030,7 +2030,6 @@
 	"ipblocklist-localblock": "Локалне блокованя",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Інше блокованя|Іншы блокованя}}",
 	"infiniteblock": "навсе (до покликаня)",
-	"expiringblock": "до $1, $2",
 	"anononlyblock": "лем анонімы",
 	"noautoblockblock": "без автоблокованя",
 	"createaccountblock": "вытворёваня конт не дозволене",

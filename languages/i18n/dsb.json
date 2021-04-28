@@ -1856,7 +1856,6 @@
 	"ipblocklist-localblock": "Lokalne blokěrowanje",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|Druge blokěrowanje|Drugej blokěrowani|Druge blokěrowanja|Druge blokěrowanja}}",
 	"infiniteblock": "njewobgranicowany",
-	"expiringblock": "pśepadnjo $1 $2",
 	"anononlyblock": "jano anonymne",
 	"noautoblockblock": "awtomatiske blokěrowanje znjemóžnjone",
 	"createaccountblock": "wutwórjenje wužywarskich kontow znjemóžnjone",

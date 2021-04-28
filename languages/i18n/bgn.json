@@ -1767,7 +1767,6 @@
 	"ipblocklist-localblock": "محلین دسترسی ئی بستین",
 	"ipblocklist-otherblocks": "دیگرین {{PLURAL:$1|بستین‌هان|بستین‌هان}}",
 	"infiniteblock": "بی‌پایان",
-	"expiringblock": "بئ $1 سائت $2 ئا الاس ئه بێت",
 	"anononlyblock": "فقط زیان نامین کار زوروکان",
 	"noautoblockblock": "اوتوماتیکبلاک غیرفعال اینت",
 	"createaccountblock": "حسابئ جوڑ کورتینئ قابلیت غیر پئال بوت",

@@ -1760,7 +1760,6 @@
 	"ipblocklist-localblock": "Локаль тыюлык",
 	"ipblocklist-otherblocks": "Башка {{PLURAL:$1|1=тыю|тыюлар}}",
 	"infiniteblock": "чикләнмәгән",
-	"expiringblock": "$1 $2 тәмамлана",
 	"anononlyblock": "анонимнар гына",
 	"noautoblockblock": "автотыю ябык",
 	"createaccountblock": "хисап язмасы теркәү тыелган",

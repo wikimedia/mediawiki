@@ -2124,7 +2124,6 @@
 	"ipblocklist-localblock": "بەرەبەستنی خۆماڵی",
 	"ipblocklist-otherblocks": "{{PLURAL:$1|بەربەستنەکانی}} تر",
 	"infiniteblock": "بێکۆتایی",
-	"expiringblock": "لە $2، $1 ماوەی بەسەر دەچێ",
 	"anononlyblock": "تەنیا بەکارھێنەرە بێناوەکان",
 	"noautoblockblock": "بەربەستنی خۆگەڕ ناچالاکە",
 	"createaccountblock": "دروستکردنی ھەژمار ناچالاکە",

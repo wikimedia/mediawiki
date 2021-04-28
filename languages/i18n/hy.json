@@ -1694,7 +1694,6 @@
 	"blocklist-reason": "Պատճառ",
 	"ipblocklist-submit": "Որոնել",
 	"infiniteblock": "ընդմիշտ",
-	"expiringblock": "կմարվի $1 $2",
 	"anononlyblock": "միայն անանուն",
 	"noautoblockblock": "ավտոմատ արգելափակումն անջատված է",
 	"createaccountblock": "մասնակցային հաշվի ստեղծումը արգելափակված է",
