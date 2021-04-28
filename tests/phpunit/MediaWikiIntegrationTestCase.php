@@ -2434,6 +2434,59 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			'comment' => $comment,
 		] );
 	}
+
+	/**
+	 * Run jobs in the job queue and assert things about the result.
+	 *
+	 * Call this from a test to run jobs. If this is not called, the default
+	 * behaviour is to discard jobs.
+	 *
+	 * @param array $assertOptions An associative array with the following options:
+	 *    - minJobs: The minimum number of jobs expected to be run, default 1
+	 *    - numJobs: The exact number of jobs expected to be run. If set, this
+	 *      overrides minJobs.
+	 *    - complete: Assert that the runner finished with "none-ready", which
+	 *      means execution stopped because the queue was empty. Default true.
+	 *    - ignoreErrorsMatchingFormat: Allow job errors where the error message
+	 *      matches the given format.
+	 * @param array $runOptions Options to pass through to JobRunner::run()
+	 *
+	 * @since 1.37
+	 */
+	protected function runJobs( array $assertOptions = [], array $runOptions = [] ) {
+		$runner = $this->getServiceContainer()->getJobRunner();
+		$status = $runner->run( $runOptions );
+
+		$minJobs = $assertOptions['minJobs'] ?? 1;
+		$numJobs = $assertOptions['numJobs'] ?? null;
+		$complete = $assertOptions['complete'] ?? true;
+		$ignoreFormat = $assertOptions['ignoreErrorsMatchingFormat'] ?? false;
+
+		if ( $complete ) {
+			$this->assertSame( 'none-ready', $status['reached'] );
+		}
+		if ( $numJobs !== null ) {
+			$this->assertCount( $numJobs, $status['jobs'],
+				"Number of jobs executed must be exactly $numJobs" );
+		} else {
+			$this->assertGreaterThanOrEqual( $minJobs, count( $status['jobs'] ),
+				"Number of jobs executed must be at least $minJobs" );
+		}
+		foreach ( $status['jobs'] as $jobStatus ) {
+			if ( $ignoreFormat !== false ) {
+				$this->assertThat( $jobStatus['error'],
+					$this->logicalOr(
+						$this->matches( $ignoreFormat ),
+						$this->isNull()
+					),
+					"Error for job of type {$jobStatus['type']}"
+				);
+			} else {
+				$this->assertNull( $jobStatus['error'],
+					"Error for job of type {$jobStatus['type']}" );
+			}
+		}
+	}
 }
 
 class_alias( 'MediaWikiIntegrationTestCase', 'MediaWikiTestCase' );

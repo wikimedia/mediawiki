@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -278,7 +277,7 @@ class CategoryChangesAsRdfTest extends MediaWikiLangTestCase {
 
 		$output = fopen( "php://memory", "w+b" );
 
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'categoryMembershipChange'
 		] );
 

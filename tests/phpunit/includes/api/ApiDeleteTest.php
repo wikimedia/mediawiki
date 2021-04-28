@@ -66,10 +66,7 @@ class ApiDeleteTest extends ApiTestCase {
 		$this->assertArrayNotHasKey( 'logid', $apiResult['delete'] );
 
 		// Run the jobs
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
+		$this->runJobs();
 
 		$this->assertFalse( Title::newFromText( $name )->exists( Title::READ_LATEST ) );
 	}

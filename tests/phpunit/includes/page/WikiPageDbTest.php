@@ -629,10 +629,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 
 		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
+		$this->runJobs();
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );
@@ -832,10 +829,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 
 		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
+		$this->runJobs();
 
 		# ------------------------
 		$dbr = wfGetDB( DB_REPLICA );

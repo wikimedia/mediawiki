@@ -32,13 +32,6 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 		$this->title = $insertResult['title'];
 	}
 
-	private function runJobs() {
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
-	}
-
 	/**
 	 * @param string $text new page text
 	 *
