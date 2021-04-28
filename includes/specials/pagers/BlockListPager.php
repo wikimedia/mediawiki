@@ -230,12 +230,8 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_by':
-				if ( $value ) {
-					$formatted = Linker::userLink( $value, $row->ipb_by_text );
-					$formatted .= Linker::userToolLinks( $value, $row->ipb_by_text );
-				} else {
-					$formatted = htmlspecialchars( $row->ipb_by_text ); // foreign user?
-				}
+				$formatted = Linker::userLink( $value, $row->ipb_by_text );
+				$formatted .= Linker::userToolLinks( $value, $row->ipb_by_text );
 				break;
 
 			case 'ipb_reason':
