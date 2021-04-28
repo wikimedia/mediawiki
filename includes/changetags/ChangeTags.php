@@ -88,11 +88,22 @@ class ChangeTags {
 	 * This tagged edit was performed while importing media files using the importImages.php maintenance script.
 	 */
 	public const TAG_SERVER_SIDE_UPLOAD = 'mw-server-side-upload';
-
+	/**
+	 * The tagged edit included additions of media.
+	 */
+	public const TAG_ADD_MEDIA = 'mw-add-media';
+	/**
+	 * The tagged edit included removals of media.
+	 */
+	public const TAG_REMOVE_MEDIA = 'mw-remove-media';
 	/**
 	 * List of tags which denote a revert of some sort. (See also TAG_REVERTED.)
 	 */
 	public const REVERT_TAGS = [ self::TAG_ROLLBACK, self::TAG_UNDO, self::TAG_MANUAL_REVERT ];
+	/**
+	 * List of tags which denote a change in media.
+	 */
+	public const MEDIA_TAGS = [ self::TAG_ADD_MEDIA, self::TAG_REMOVE_MEDIA ];
 
 	/**
 	 * Flag for canDeleteTag().
@@ -121,6 +132,8 @@ class ChangeTags {
 		'mw-manual-revert',
 		'mw-reverted',
 		'mw-server-side-upload',
+		'mw-add-media',
+		'mw-remove-media',
 	];
 
 	/**

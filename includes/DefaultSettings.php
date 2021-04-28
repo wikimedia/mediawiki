@@ -8114,6 +8114,8 @@ $wgUseTagFilter = true;
  * @see ChangeTags::TAG_MANUAL_REVERT
  * @see ChangeTags::TAG_REVERTED
  * @see ChangeTags::TAG_SERVER_SIDE_UPLOAD
+ * @see ChangeTags::TAG_ADD_MEDIA
+ * @see ChangeTags::TAG_REMOVE_MEDIA
  */
 $wgSoftwareTags = [
 	'mw-contentmodelchange' => true,
@@ -8127,6 +8129,8 @@ $wgSoftwareTags = [
 	'mw-manual-revert' => true,
 	'mw-reverted' => true,
 	'mw-server-side-upload' => true,
+	'mw-add-media' => false,
+	'mw-remove-media' => false,
 ];
 
 /**
