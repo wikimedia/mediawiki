@@ -50,9 +50,6 @@ class SpecialBlockList extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var CommentStore */
 	private $commentStore;
 
@@ -63,7 +60,6 @@ class SpecialBlockList extends SpecialPage {
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
-		ActorMigration $actorMigration,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils
 	) {
@@ -72,7 +68,6 @@ class SpecialBlockList extends SpecialPage {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->loadBalancer = $loadBalancer;
-		$this->actorMigration = $actorMigration;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
 	}
@@ -241,7 +236,6 @@ class SpecialBlockList extends SpecialPage {
 			$this->blockRestrictionStore,
 			$this->loadBalancer,
 			$this->getSpecialPageFactory(),
-			$this->actorMigration,
 			$this->commentStore,
 			$this->blockUtils
 		);

@@ -22,7 +22,6 @@
 
 namespace MediaWiki\Block;
 
-use ActorMigration;
 use CommentStore;
 use Hooks;
 use Html;
@@ -192,6 +191,11 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new block object.
+	 *
+	 * Since 1.34, ipb_by and ipb_by_text have not been present in the
+	 * database, but they continue to be available in query results as
+	 * aliases.
+	 *
 	 * @since 1.31
 	 * @return array With three keys:
 	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
@@ -200,9 +204,11 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public static function getQueryInfo() {
 		$commentQuery = CommentStore::getStore()->getJoin( 'ipb_reason' );
-		$actorQuery = ActorMigration::newMigration()->getJoin( 'ipb_by' );
 		return [
-			'tables' => [ 'ipblocks' ] + $commentQuery['tables'] + $actorQuery['tables'],
+			'tables' => [
+				'ipblocks',
+				'ipblocks_actor' => 'actor'
+			] + $commentQuery['tables'],
 			'fields' => [
 				'ipb_id',
 				'ipb_address',
@@ -217,8 +223,13 @@ class DatabaseBlock extends AbstractBlock {
 				'ipb_allow_usertalk',
 				'ipb_parent_block_id',
 				'ipb_sitewide',
-			] + $commentQuery['fields'] + $actorQuery['fields'],
-			'joins' => $commentQuery['joins'] + $actorQuery['joins'],
+				'ipb_by_actor',
+				'ipb_by' => 'ipblocks_actor.actor_user',
+				'ipb_by_text' => 'ipblocks_actor.actor_name'
+			] + $commentQuery['fields'],
+			'joins' => [
+				'ipblocks_actor' => [ 'JOIN', 'actor_id=ipb_by_actor' ]
+			] + $commentQuery['joins'],
 		];
 	}
 

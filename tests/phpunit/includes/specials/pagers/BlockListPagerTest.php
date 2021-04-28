@@ -31,9 +31,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var CommentStore */
 	private $commentStore;
 
@@ -48,7 +45,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$this->blockRestrictionStore = $services->getBlockRestrictionStore();
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->specialPageFactory = $services->getSpecialPageFactory();
-		$this->actorMigration = $services->getActorMigration();
 		$this->commentStore = $services->getCommentStore();
 		$this->blockUtils = $services->getBlockUtils();
 	}
@@ -61,7 +57,6 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			$this->blockRestrictionStore,
 			$this->loadBalancer,
 			$this->specialPageFactory,
-			$this->actorMigration,
 			$this->commentStore,
 			$this->blockUtils
 		);
@@ -231,12 +226,13 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		// Test the Link Cache.
 		$linkCache = MediaWikiServices::getInstance()->getLinkCache();
 		$wrappedlinkCache = TestingAccessWrapper::newFromObject( $linkCache );
+		$admin = $this->getTestSysop()->getUser();
 
 		$links = [
 			'User:127.0.0.1',
 			'User_talk:127.0.0.1',
-			'User:Admin',
-			'User_talk:Admin',
+			$admin->getUserPage()->getPrefixedDBkey(),
+			$admin->getTalkPage()->getPrefixedDBkey()
 		];
 
 		foreach ( $links as $link ) {
@@ -245,7 +241,8 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 
 		$row = (object)[
 			'ipb_address' => '127.0.0.1',
-			'by_user_name' => 'Admin',
+			'ipb_by' => $admin->getId(),
+			'ipb_by_text' => $admin->getName(),
 			'ipb_sitewide' => 1,
 			'ipb_timestamp' => $this->db->timestamp( wfTimestamp( TS_MW ) ),
 		];
@@ -253,13 +250,14 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$pager->preprocessResults( [ $row ] );
 
 		foreach ( $links as $link ) {
-			$this->assertSame( 1, $wrappedlinkCache->badLinks->get( $link ) );
+			$this->assertSame( 1, $wrappedlinkCache->badLinks->get( $link ), "Bad link [[$link]]" );
 		}
 
 		// Test sitewide blocks.
 		$row = (object)[
 			'ipb_address' => '127.0.0.1',
-			'by_user_name' => 'Admin',
+			'ipb_by' => $admin->getId(),
+			'ipb_by_text' => $admin->getName(),
 			'ipb_sitewide' => 1,
 		];
 		$pager = $this->getBlockListPager();
