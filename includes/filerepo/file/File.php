@@ -2257,7 +2257,7 @@ abstract class File implements IDBAccessObject {
 	 * Get the SHA-1 base 36 hash of the file
 	 *
 	 * @stable to override
-	 * @return string
+	 * @return string|false
 	 */
 	public function getSha1() {
 		$this->assertRepoDefined();
