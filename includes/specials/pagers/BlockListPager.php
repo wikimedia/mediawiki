@@ -480,7 +480,7 @@ class BlockListPager extends TablePager {
 				if ( $restriction->getType() === PageRestriction::TYPE ) {
 					'@phan-var PageRestriction $restriction';
 					$title = $restriction->getTitle();
-					if ( $title !== null ) {
+					if ( $title ) {
 						$lb->addObj( $title );
 					}
 				}
