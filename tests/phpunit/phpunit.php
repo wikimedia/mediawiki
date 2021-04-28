@@ -7,8 +7,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Rdbms\IDatabase;
-use Wikimedia\Rdbms\LBFactory;
 
 class PHPUnitMaintClass {
 	/**
@@ -435,59 +433,6 @@ class PHPUnitMaintClass {
 
 		return $settingsFile;
 	}
-
-	/**
-	 * Set triggers like when to try to run deferred updates
-	 */
-	public function setAgentAndTriggers() {
-		if ( function_exists( 'posix_getpwuid' ) ) {
-			$agent = posix_getpwuid( posix_geteuid() )['name'];
-		} else {
-			$agent = 'sysadmin';
-		}
-		$agent .= '@' . wfHostname();
-
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		// Add a comment for easy SHOW PROCESSLIST interpretation
-		$lbFactory->setAgentName(
-			mb_strlen( $agent ) > 15 ? mb_substr( $agent, 0, 15 ) . '...' : $agent
-		);
-		self::setLBFactoryTriggers( $lbFactory );
-	}
-
-	/**
-	 * @param LBFactory $lbFactory
-	 */
-	private static function setLBFactoryTriggers( LBFactory $lbFactory ) {
-		$services = MediaWikiServices::getInstance();
-		$stats = $services->getStatsdDataFactory();
-		$config = $services->getMainConfig();
-		// Hook into period lag checks which often happen in long-running scripts
-		$lbFactory->setWaitForReplicationListener(
-			__METHOD__,
-			static function () use ( $stats, $config ) {
-				// Check config in case of JobRunner and unit tests
-				if ( $config->get( 'CommandLineMode' ) ) {
-					DeferredUpdates::tryOpportunisticExecute( 'run' );
-				}
-				// Try to periodically flush buffered metrics to avoid OOMs
-				MediaWiki::emitBufferedStatsdData( $stats, $config );
-			}
-		);
-		// Check for other windows to run them. A script may read or do a few writes
-		// to the master but mostly be writing to something else, like a file store.
-		$lbFactory->getMainLB()->setTransactionListener(
-			__METHOD__,
-			static function ( $trigger ) use ( $stats, $config ) {
-				// Check config in case of JobRunner and unit tests
-				if ( $config->get( 'CommandLineMode' ) && $trigger === IDatabase::TRIGGER_COMMIT ) {
-					DeferredUpdates::tryOpportunisticExecute( 'run' );
-				}
-				// Try to periodically flush buffered metrics to avoid OOMs
-				MediaWiki::emitBufferedStatsdData( $stats, $config );
-			}
-		);
-	}
 }
 
 if ( defined( 'MEDIAWIKI' ) ) {
@@ -521,6 +466,5 @@ define( 'MW_SETUP_CALLBACK', 'wfPHPUnitSetup' );
 
 require_once "$IP/includes/Setup.php";
 
-$wrapper->setAgentAndTriggers();
 $wrapper->maybeHelp( false );
 $wrapper->execute();

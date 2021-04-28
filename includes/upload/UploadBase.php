@@ -319,7 +319,7 @@ abstract class UploadBase {
 	/**
 	 * Get the base 36 SHA1 of the file
 	 * @stable to override
-	 * @return string
+	 * @return string|false
 	 */
 	public function getTempFileSha1Base36() {
 		return FSFile::getSha1Base36FromPath( $this->mTempPath );
@@ -835,7 +835,7 @@ abstract class UploadBase {
 
 	/**
 	 * @param LocalFile $localFile
-	 * @param string $hash sha1 hash of the file to check
+	 * @param string|false $hash sha1 hash of the file to check
 	 *
 	 * @return array warnings
 	 */
@@ -847,7 +847,7 @@ abstract class UploadBase {
 			$warnings['exists'] = $exists;
 
 			// check if file is an exact duplicate of current file version
-			if ( $hash === $localFile->getSha1() ) {
+			if ( $hash !== false && $hash === $localFile->getSha1() ) {
 				$warnings['no-change'] = $localFile;
 			}
 
@@ -868,12 +868,15 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param string $hash sha1 hash of the file to check
+	 * @param string|false $hash sha1 hash of the file to check
 	 * @param bool $ignoreLocalDupes True to ignore local duplicates
 	 *
 	 * @return File[] Duplicate files, if found.
 	 */
 	private function checkAgainstExistingDupes( $hash, $ignoreLocalDupes ) {
+		if ( $hash === false ) {
+			return [];
+		}
 		$dupes = MediaWikiServices::getInstance()->getRepoGroup()->findBySha1( $hash );
 		$title = $this->getTitle();
 		foreach ( $dupes as $key => $dupe ) {
@@ -890,13 +893,16 @@ abstract class UploadBase {
 	}
 
 	/**
-	 * @param string $hash sha1 hash of the file to check
+	 * @param string|false $hash sha1 hash of the file to check
 	 * @param User $user
 	 *
 	 * @return string|null Name of the dupe or empty string if discovered (depending on visibility)
 	 *                     null if the check discovered no dupes.
 	 */
 	private function checkAgainstArchiveDupes( $hash, User $user ) {
+		if ( $hash === false ) {
+			return null;
+		}
 		$archivedFile = new ArchivedFile( null, 0, '', $hash );
 		if ( $archivedFile->getID() > 0 ) {
 			if ( $archivedFile->userCan( File::DELETED_FILE, $user ) ) {

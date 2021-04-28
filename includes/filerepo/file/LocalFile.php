@@ -2283,7 +2283,7 @@ class LocalFile extends File {
 
 	/**
 	 * @stable to override
-	 * @return string
+	 * @return string|false
 	 */
 	public function getSha1() {
 		$this->load();

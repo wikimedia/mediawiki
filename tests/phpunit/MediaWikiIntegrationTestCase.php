@@ -575,11 +575,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Reset all caches between tests.
 		self::resetNonServiceCaches();
 
-		// XXX: reset maintenance triggers
-		// Hook into period lag checks which often happen in long-running scripts
-		$lbFactory = $this->localServices->getDBLoadBalancerFactory();
-		Maintenance::setLBFactoryTriggers( $lbFactory, $this->localServices->getMainConfig() );
-
 		// T46192 Do not attempt to send a real e-mail
 		$this->setTemporaryHook( 'AlternateUserMailer',
 			static function () {

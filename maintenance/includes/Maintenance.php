@@ -25,7 +25,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IMaintainableDatabase;
-use Wikimedia\Rdbms\LBFactory;
 
 /**
  * Abstract maintenance class for quickly writing and churning out
@@ -650,59 +649,16 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Set triggers like when to try to run deferred updates
+	 * This method used to be for internal use by doMaintenance.php to apply
+	 * some optional global state to LBFactory for debugging purposes.
+	 *
+	 * This is now handled lazily by ServiceWiring.
+	 *
+	 * @deprecated since 1.37 No longer needed.
 	 * @since 1.28
 	 */
 	public function setAgentAndTriggers() {
-		if ( function_exists( 'posix_getpwuid' ) ) {
-			$agent = posix_getpwuid( posix_geteuid() )['name'];
-		} else {
-			$agent = 'sysadmin';
-		}
-		$agent .= '@' . wfHostname();
-
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		// Add a comment for easy SHOW PROCESSLIST interpretation
-		$lbFactory->setAgentName(
-			mb_strlen( $agent ) > 15 ? mb_substr( $agent, 0, 15 ) . '...' : $agent
-		);
-		self::setLBFactoryTriggers( $lbFactory, $this->getConfig() );
-	}
-
-	/**
-	 * @param LBFactory $LBFactory
-	 * @param Config $config
-	 * @since 1.28
-	 */
-	public static function setLBFactoryTriggers( LBFactory $LBFactory, Config $config ) {
-		$services = MediaWikiServices::getInstance();
-		$stats = $services->getStatsdDataFactory();
-		// Hook into period lag checks which often happen in long-running scripts
-		$lbFactory = $services->getDBLoadBalancerFactory();
-		$lbFactory->setWaitForReplicationListener(
-			__METHOD__,
-			static function () use ( $stats, $config ) {
-				// Check config in case of JobRunner and unit tests
-				if ( $config->get( 'CommandLineMode' ) ) {
-					DeferredUpdates::tryOpportunisticExecute( 'run' );
-				}
-				// Try to periodically flush buffered metrics to avoid OOMs
-				MediaWiki::emitBufferedStatsdData( $stats, $config );
-			}
-		);
-		// Check for other windows to run them. A script may read or do a few writes
-		// to the master but mostly be writing to something else, like a file store.
-		$lbFactory->getMainLB()->setTransactionListener(
-			__METHOD__,
-			static function ( $trigger ) use ( $stats, $config ) {
-				// Check config in case of JobRunner and unit tests
-				if ( $config->get( 'CommandLineMode' ) && $trigger === IDatabase::TRIGGER_COMMIT ) {
-					DeferredUpdates::tryOpportunisticExecute( 'run' );
-				}
-				// Try to periodically flush buffered metrics to avoid OOMs
-				MediaWiki::emitBufferedStatsdData( $stats, $config );
-			}
-		);
+		wfDeprecated( __METHOD__, '1.37' );
 	}
 
 	/**
