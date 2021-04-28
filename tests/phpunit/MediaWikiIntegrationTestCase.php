@@ -181,11 +181,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * @stable for overriding
+	 * The annotation causes this to be called immediately before setUpBeforeClass()
+	 * @beforeClass
 	 */
-	public static function setUpBeforeClass() : void {
+	final public static function mediaWikiSetUpBeforeClass() : void {
 		global $IP;
-		parent::setUpBeforeClass();
 		if ( !file_exists( "$IP/LocalSettings.php" ) ) {
 				echo "File \"$IP/LocalSettings.php\" could not be found. "
 				. "Test case " . static::class . " extends " . self::class . " "
@@ -540,7 +540,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * The annotation causes this to be called immediately before setUp()
 	 * @before
 	 */
-	protected function mediaWikiSetUp() {
+	final protected function mediaWikiSetUp() : void {
 		$reflection = new ReflectionClass( $this );
 		// TODO: Eventually we should assert for test presence in /integration/
 		if ( strpos( $reflection->getFileName(), '/unit/' ) !== false ) {
@@ -603,7 +603,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * The annotation causes this to be called immediately after tearDown()
 	 * @after
 	 */
-	protected function mediaWikiTearDown() {
+	final protected function mediaWikiTearDown() : void {
 		global $wgRequest, $wgSQLMode;
 
 		$status = ob_get_status();
