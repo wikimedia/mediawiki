@@ -26,6 +26,7 @@ use ActorMigration;
 use CommentStore;
 use Hooks;
 use Html;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -1226,6 +1227,35 @@ class DatabaseBlock extends AbstractBlock {
 		$restriction = $this->findRestriction( PageRestriction::TYPE, $pageId );
 
 		return (bool)$restriction;
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function appliesToRight( $right ) {
+		// Temporarily access service container until the feature flag is removed: T280532
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+
+		$res = parent::appliesToRight( $right );
+
+		if ( !$res && $config->get( 'EnablePartialActionBlocks' ) ) {
+			$blockActions = MediaWikiServices::getInstance()->getBlockActionInfo()
+				->getAllBlockActions();
+
+			if ( isset( $blockActions[$right] ) ) {
+				$restriction = $this->findRestriction(
+					ActionRestriction::TYPE,
+					$blockActions[$right]
+				);
+
+				// $res may be null or false. This should be preserved if there is no restriction.
+				if ( $restriction ) {
+					$res = true;
+				}
+			}
+		}
+
+		return $res;
 	}
 
 	/**

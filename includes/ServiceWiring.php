@@ -47,6 +47,7 @@
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\BadFileLookup;
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
@@ -210,6 +211,10 @@ return [
 			new ServiceOptions( BlobStoreFactory::CONSTRUCTOR_OPTIONS,
 				$services->getMainConfig() )
 		);
+	},
+
+	'BlockActionInfo' => static function ( MediaWikiServices $services ) : BlockActionInfo {
+		return new BlockActionInfo();
 	},
 
 	'BlockErrorFormatter' => static function ( MediaWikiServices $services ) : BlockErrorFormatter {

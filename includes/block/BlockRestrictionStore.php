@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -39,6 +40,7 @@ class BlockRestrictionStore {
 	private const TYPES_MAP = [
 		PageRestriction::TYPE_ID => PageRestriction::class,
 		NamespaceRestriction::TYPE_ID => NamespaceRestriction::class,
+		ActionRestriction::TYPE_ID => ActionRestriction::class,
 	];
 
 	/**

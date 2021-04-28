@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
@@ -24,7 +25,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			$services->getBlockPermissionCheckerFactory(),
 			$services->getBlockUserFactory(),
 			$services->getUserNameUtils(),
-			$services->getUserNamePrefixSearch()
+			$services->getUserNamePrefixSearch(),
+			$services->getBlockActionInfo()
 		);
 	}
 
@@ -39,6 +41,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	public function testGetFormFields() {
 		$this->setMwGlobals( [
 			'wgBlockAllowsUTEdit' => true,
+			'wgEnablePartialActionBlocks' => true,
 		] );
 		$page = $this->newSpecialPage();
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
@@ -56,6 +59,20 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertArrayHasKey( 'EditingRestriction', $fields );
 		$this->assertArrayHasKey( 'PageRestrictions', $fields );
 		$this->assertArrayHasKey( 'NamespaceRestrictions', $fields );
+		$this->assertArrayHasKey( 'ActionRestrictions', $fields );
+	}
+
+	/**
+	 * @covers ::getFormFields()
+	 */
+	public function testGetFormFieldsActionRestrictionDisabled() {
+		$this->setMwGlobals( [
+			'wgEnablePartialActionBlocks' => false,
+		] );
+		$page = $this->newSpecialPage();
+		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
+		$fields = $wrappedPage->getFormFields();
+		$this->assertArrayNotHasKey( 'ActionRestrictions', $fields );
 	}
 
 	/**
@@ -90,10 +107,14 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::maybeAlterFormDefaults()
 	 */
 	public function testMaybeAlterFormDefaultsPartial() {
+		$this->setMwGlobals( [
+			'wgEnablePartialActionBlocks' => true,
+		] );
 		$badActor = $this->getTestUser()->getUser();
 		$sysop = $this->getTestSysop()->getUser();
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
 		$pageMars = $this->getExistingTestPage( 'Mars' );
+		$actionId = 100;
 
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
@@ -110,6 +131,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			new NamespaceRestriction( 0, NS_TALK ),
 			// Deleted page.
 			new PageRestriction( 0, 999999 ),
+			new ActionRestriction( 0, $actionId ),
 		] );
 
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
@@ -131,6 +153,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$this->assertSame( (string)$block->getTarget(), $fields['Target']['default'] );
 		$this->assertSame( 'partial', $fields['EditingRestriction']['default'] );
 		$this->assertSame( implode( "\n", $titles ), $fields['PageRestrictions']['default'] );
+		$this->assertSame( [ $actionId ], $fields['ActionRestrictions']['default'] );
 	}
 
 	/**
@@ -220,12 +243,17 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 * @covers ::processForm()
 	 */
 	public function testProcessFormRestrictions() {
+		$this->setMwGlobals( [
+			'wgEnablePartialActionBlocks' => true,
+		] );
+
 		$badActor = $this->getTestUser()->getUser();
 		$context = RequestContext::getMain();
 		$context->setUser( $this->getTestSysop()->getUser() );
 
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
 		$pageMars = $this->getExistingTestPage( 'Mars' );
+		$actionId = 100;
 
 		$titles = [
 			$pageSaturn->getTitle()->getText(),
@@ -252,6 +280,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			'EditingRestriction' => 'partial',
 			'PageRestrictions' => implode( "\n", $titles ),
 			'NamespaceRestrictions' => '',
+			'ActionRestrictions' => [ $actionId ],
 		];
 		$result = $page->processForm( $data, $context );
 
@@ -260,10 +289,11 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = DatabaseBlock::newFromTarget( $badActor );
 		$this->assertSame( $reason, $block->getReasonComment()->text );
 		$this->assertSame( $expiry, $block->getExpiry() );
-		$this->assertCount( 2, $block->getRestrictions() );
+		$this->assertCount( 3, $block->getRestrictions() );
 		$this->assertTrue( $this->getBlockRestrictionStore()->equals( $block->getRestrictions(), [
 			new PageRestriction( $block->getId(), $pageMars->getId() ),
 			new PageRestriction( $block->getId(), $pageSaturn->getId() ),
+			new ActionRestriction( $block->getId(), $actionId ),
 		] ) );
 	}
 

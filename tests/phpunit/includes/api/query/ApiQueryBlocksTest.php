@@ -125,9 +125,10 @@ class ApiQueryBlocksTest extends ApiTestCase {
 			'ir_type' => NamespaceRestriction::TYPE_ID,
 			'ir_value' => NS_USER_TALK,
 		] );
+		// Invalid type
 		$this->db->insert( 'ipblocks_restrictions', [
 			'ir_ipb_id' => $block->getId(),
-			'ir_type' => 3,
+			'ir_type' => 127,
 			'ir_value' => 4,
 		] );
 

@@ -359,6 +359,7 @@ class SpecialPageFactory {
 				'BlockUserFactory',
 				'UserNameUtils',
 				'UserNamePrefixSearch',
+				'BlockActionInfo',
 			]
 		],
 		'Unblock' => [
