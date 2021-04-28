@@ -565,7 +565,9 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 			// Check for unsafe queries
 			if ( $this->db->getType() === 'mysql' ) {
-				$this->db->query( "SET sql_mode = 'STRICT_ALL_TABLES'", __METHOD__ );
+				$this->db->query(
+					"SET sql_mode = 'STRICT_ALL_TABLES,ONLY_FULL_GROUP_BY'",
+					__METHOD__ );
 			}
 		}
 
