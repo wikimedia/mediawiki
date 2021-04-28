@@ -2047,6 +2047,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$user = $this->user;
 		$articleTitle = Title::makeTitle( NS_MAIN, 'FooBar' );
 
+		$this->hideDeprecated( 'User::isWatched' );
+		$this->hideDeprecated( 'User::isTempWatched' );
+		$this->hideDeprecated( 'User::addWatch' );
+		$this->hideDeprecated( 'User::removeWatch' );
+
 		$this->assertFalse( $user->isWatched( $articleTitle ), 'The article has not been watched yet' );
 
 		$user->addWatch( $articleTitle );
