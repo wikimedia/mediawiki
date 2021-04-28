@@ -5,7 +5,7 @@ const fs = require( 'fs' );
 const path = require( 'path' );
 const video = require( 'wdio-video-reporter' );
 const logPath = process.env.LOG_DIR || path.join( __dirname, '/log' );
-const saveScreenshot = require( 'wdio-mediawiki' ).saveScreenshot;
+const { makeFilenameDate, saveScreenshot } = require( 'wdio-mediawiki' );
 
 /**
  * For more details documentation and available options,
@@ -82,7 +82,10 @@ exports.config = {
 		'dot',
 		// See also: https://webdriver.io/docs/junit-reporter.html#configuration
 		[ 'junit', {
-			outputDir: logPath
+			outputDir: logPath,
+			outputFileFormat: function () {
+				return `WDIO.xunit-${makeFilenameDate()}.xml`;
+			}
 		} ],
 		[
 			video, {
