@@ -809,8 +809,11 @@ class EditPage implements IEditObject {
 
 		$content = $this->getContentObject();
 
-		# Use the normal message if there's nothing to display
-		if ( $this->firsttime && ( !$content || $content->isEmpty() ) ) {
+		// Use the normal message if there's nothing to display
+		// We used to only do this if $this->firsttime was truthy, and there was no content
+		// or the content was empty, but sometimes there was no content even if it not the
+		// first time, we can't use displayViewSourcePage if there is no content (T281400)
+		if ( !$content || ( $this->firsttime && $content->isEmpty() ) ) {
 			$action = $this->mTitle->exists() ? 'edit' :
 				( $this->mTitle->isTalkPage() ? 'createtalk' : 'createpage' );
 			throw new PermissionsError( $action, $permErrors );
