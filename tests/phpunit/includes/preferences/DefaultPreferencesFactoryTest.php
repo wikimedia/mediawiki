@@ -4,6 +4,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\User\UserOptionsLookup;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -51,6 +52,36 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * Get a permission manager for a user with either all or just specified rights - assumes
+	 * everything is for the same user
+	 *
+	 * @param string[]|bool $permissions either `true` for everything, or a list of permissions
+	 * @return PermissionManager|MockObject
+	 */
+	private function getPermissionManager( $permissions ) {
+		$permManager = $this->createMock( PermissionManager::class );
+		$permManager->method( 'userHasRight' )->willReturnCallback(
+			static function ( $user, $action ) use ( $permissions ) {
+				if ( $permissions === true ) {
+					return true;
+				}
+				return in_array( $action, $permissions, true );
+			}
+		);
+		$permManager->method( 'userHasAnyRight' )->willReturnCallback(
+			static function ( $user, ...$actions ) use ( $permManager ) {
+				foreach ( $actions as $action ) {
+					if ( $permManager->userHasRight( $user, $action ) ) {
+						return true;
+					}
+				}
+				return false;
+			}
+		);
+		return $permManager;
+	}
+
+	/**
 	 * Get a basic PreferencesFactory for testing with.
 	 * @param PermissionManager $mockPM
 	 * @param Language $language
@@ -94,8 +125,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$this->setTemporaryHook( 'GetPreferences', null );
 
 		$testUser = $this->getTestUser();
-		$pm = $this->createMock( PermissionManager::class );
-		$pm->method( 'userHasRight' )->willReturn( true );
+		$pm = $this->getPermissionManager( true );
 		$prefFactory = $this->getPreferencesFactory( $pm, new Language() );
 		$form = $prefFactory->getForm( $testUser->getUser(), $this->context );
 		$this->assertInstanceOf( PreferencesFormOOUI::class, $form );
@@ -110,8 +140,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @dataProvider emailAuthenticationProvider
 	 */
 	public function testEmailAuthentication( $user, $cssClass ) {
-		$pm = $this->createMock( PermissionManager::class );
-		$pm->method( 'userHasRight' )->willReturn( true );
+		$pm = $this->getPermissionManager( true );
 		$prefs = $this->getPreferencesFactory( $pm, new Language() )
 			->getFormDescriptor( $user, $this->context );
 		$this->assertArrayHasKey( 'cssclass', $prefs['emailauthentication'] );
@@ -130,11 +159,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$userMock->method( 'getGroupMemberships' )
 			->willReturn( [] );
 
-		$pm = $this->createMock( PermissionManager::class );
-		$pm->method( 'userHasRight' )
-			->will( $this->returnValueMap( [
-				[ $userMock, 'editmyoptions', true ]
-			] ) );
+		$pm = $this->getPermissionManager( [ 'editmyoptions' ] );
 
 		$userOptionsLookupMock = $this->createUserOptionsLookupMock( [ 'test' => 'yes' ], true );
 		$prefs = $this->getPreferencesFactory( $pm, new Language(), $userOptionsLookupMock )
@@ -154,12 +179,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$userMock->method( 'getGroupMemberships' )
 			->willReturn( [] );
 
-		$pm = $this->createMock( PermissionManager::class );
-		$pm->method( 'userHasRight' )
-			->will( $this->returnValueMap( [
-				[ $userMock, 'editmyoptions', true ],
-				[ $userMock, 'rollback', true ]
-			] ) );
+		$pm = $this->getPermissionManager( [ 'editmyoptions', 'rollback' ] );
 
 		$userOptionsLookupMock = $this->createUserOptionsLookupMock( [ 'test' => 'yes' ], true );
 		$prefs = $this->getPreferencesFactory( $pm, new Language(), $userOptionsLookupMock )
@@ -230,15 +250,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$form->method( 'getConfig' )
 			->willReturn( $configMock );
 
-		$pm = $this->createMock( PermissionManager::class );
-		$pm->method( 'userHasAnyRight' )
-			->will( $this->returnValueMap( [
-				[ $userMock, 'editmyprivateinfo', 'editmyoptions', true ]
-			] ) );
-		$pm->method( 'userHasRight' )
-			->will( $this->returnValueMap( [
-				[ $userMock, 'editmyoptions', true ]
-			] ) );
+		$pm = $this->getPermissionManager( [ 'editmyprivateinfo', 'editmyoptions' ] );
 
 		$userOptionsLookupMock = $this->createUserOptionsLookupMock( $oldOptions );
 
@@ -272,13 +284,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		// Test a string with leading zeros (i.e. not octal) and spaces.
 		$this->context->getRequest()->setVal( 'wprclimit', ' 0012 ' );
 		$user = new User;
-		$pm = $this->createMock( PermissionManager::class );
-		$pm->method( 'userHasAnyRight' )
-			->willReturn( true );
-		$pm->method( 'userHasRight' )
-			->will( $this->returnValueMap( [
-				[ $user, 'editmyoptions', true ]
-			] ) );
+		$pm = $this->getPermissionManager( [ 'editmyoptions' ] );
 		$prefFactory = $this->getPreferencesFactory( $pm, new Language() );
 		$form = $prefFactory->getForm( $user, $this->context );
 		$form->show();
@@ -297,10 +303,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( [] );
 		$userMock->method( 'getGroupMemberships' )
 			->willReturn( [] );
-		$pm = $this->createMock( PermissionManager::class );
-
-		$pm->method( 'userHasRight' )
-			->willReturn( true );
+		$pm = $this->getPermissionManager( true );
 
 		$language = $this->createMock( Language::class );
 		$language->method( 'getCode' )
@@ -327,10 +330,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			->willReturn( [ 'users' ] );
 		$userMock->method( 'getGroupMemberships' )
 			->willReturn( [ 'users' ] );
-		$pm = $this->createMock( PermissionManager::class );
-
-		$pm->method( 'userHasRight' )
-			->willReturn( true );
+		$pm = $this->getPermissionManager( true );
 
 		$language = $this->createMock( Language::class );
 		$language->method( 'getCode' )
