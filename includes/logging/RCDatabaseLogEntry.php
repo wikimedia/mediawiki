@@ -23,6 +23,7 @@
  * @since 1.19
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -65,17 +66,11 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 
 	protected function getPerformerUser(): User {
 		if ( !$this->performer ) {
-			$actorId = isset( $this->row->rc_actor ) ? (int)$this->row->rc_actor : 0;
-			$userId = (int)$this->row->rc_user;
-			if ( $actorId !== 0 ) {
-				$this->performer = User::newFromActorId( $actorId );
-			} elseif ( $userId !== 0 ) {
-				$this->performer = User::newFromId( $userId );
-			} else {
-				$userText = $this->row->rc_user_text;
-				// Might be an IP, don't validate the username
-				$this->performer = User::newFromName( $userText, false );
-			}
+			$this->performer = MediaWikiServices::getInstance()->getUserFactory()->newFromAnyId(
+				$this->row->rc_user ?? 0,
+				$this->row->rc_user_text,
+				$this->row->rc_actor ?? null
+			);
 		}
 
 		return $this->performer;

@@ -5,7 +5,6 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
@@ -68,9 +67,6 @@ class WatchedItemQueryService {
 	/** @var CommentStore */
 	private $commentStore;
 
-	/** @var ActorMigration */
-	private $actorMigration;
-
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
@@ -80,9 +76,6 @@ class WatchedItemQueryService {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var UserFactory */
-	private $userFactory;
-
 	/**
 	 * @var bool Correlates to $wgWatchlistExpiry feature flag.
 	 */
@@ -91,20 +84,16 @@ class WatchedItemQueryService {
 	public function __construct(
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		ActorMigration $actorMigration,
 		WatchedItemStoreInterface $watchedItemStore,
 		PermissionManager $permissionManager,
 		HookContainer $hookContainer,
-		UserFactory $userFactory,
 		bool $expiryEnabled = false
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
-		$this->actorMigration = $actorMigration;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->permissionManager = $permissionManager;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userFactory = $userFactory;
 		$this->expiryEnabled = $expiryEnabled;
 	}
 
@@ -403,7 +392,7 @@ class WatchedItemQueryService {
 			in_array( self::FILTER_NOT_ANON, $options['filters'] ) ||
 			array_key_exists( 'onlyByUser', $options ) || array_key_exists( 'notByUser', $options )
 		) {
-			$tables += $this->actorMigration->getJoin( 'rc_user' )['tables'];
+			$tables['watchlist_actor'] = 'actor';
 		}
 		return $tables;
 	}
@@ -441,10 +430,10 @@ class WatchedItemQueryService {
 			$fields = array_merge( $fields, [ 'rc_type', 'rc_minor', 'rc_bot' ] );
 		}
 		if ( in_array( self::INCLUDE_USER, $options['includeFields'] ) ) {
-			$fields['rc_user_text'] = $this->actorMigration->getJoin( 'rc_user' )['fields']['rc_user_text'];
+			$fields['rc_user_text'] = 'watchlist_actor.actor_name';
 		}
 		if ( in_array( self::INCLUDE_USER_ID, $options['includeFields'] ) ) {
-			$fields['rc_user'] = $this->actorMigration->getJoin( 'rc_user' )['fields']['rc_user'];
+			$fields['rc_user'] = 'watchlist_actor.actor_user';
 		}
 		if ( in_array( self::INCLUDE_COMMENT, $options['includeFields'] ) ) {
 			$fields += $this->commentStore->getJoin( 'rc_comment' )['fields'];
@@ -546,13 +535,9 @@ class WatchedItemQueryService {
 		}
 
 		if ( in_array( self::FILTER_ANON, $options['filters'] ) ) {
-			$conds[] = $this->actorMigration->isAnon(
-				$this->actorMigration->getJoin( 'rc_user' )['fields']['rc_user']
-			);
+			$conds[] = 'watchlist_actor.actor_user IS NULL';
 		} elseif ( in_array( self::FILTER_NOT_ANON, $options['filters'] ) ) {
-			$conds[] = $this->actorMigration->isNotAnon(
-				$this->actorMigration->getJoin( 'rc_user' )['fields']['rc_user']
-			);
+			$conds[] = 'watchlist_actor.actor_user IS NOT NULL';
 		}
 
 		if ( $user->useRCPatrol() || $user->useNPPatrol() ) {
@@ -610,17 +595,9 @@ class WatchedItemQueryService {
 		$conds = [];
 
 		if ( array_key_exists( 'onlyByUser', $options ) ) {
-			$byUser = $this->userFactory->newFromName(
-				$options['onlyByUser'],
-				UserFactory::RIGOR_NONE
-			);
-			$conds[] = $this->actorMigration->getWhere( $db, 'rc_user', $byUser )['conds'];
+			$conds['watchlist_actor.actor_name'] = $options['onlyByUser'];
 		} elseif ( array_key_exists( 'notByUser', $options ) ) {
-			$byUser = $this->userFactory->newFromName(
-				$options['notByUser'],
-				UserFactory::RIGOR_NONE
-			);
-			$conds[] = 'NOT(' . $this->actorMigration->getWhere( $db, 'rc_user', $byUser )['conds'] . ')';
+			$conds[] = 'watchlist_actor.actor_name<>' . $db->addQuotes( $options['notByUser'] );
 		}
 
 		// Avoid brute force searches (T19342)
@@ -794,7 +771,7 @@ class WatchedItemQueryService {
 			in_array( self::FILTER_NOT_ANON, $options['filters'] ) ||
 			array_key_exists( 'onlyByUser', $options ) || array_key_exists( 'notByUser', $options )
 		) {
-			$joinConds += $this->actorMigration->getJoin( 'rc_user' )['joins'];
+			$joinConds['watchlist_actor'] = [ 'JOIN', 'actor_id=rc_actor' ];
 		}
 		return $joinConds;
 	}

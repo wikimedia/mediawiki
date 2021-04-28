@@ -131,11 +131,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$actorMigration = ActorMigration::newMigration();
-							$actorQuery = $actorMigration->getJoin( 'rc_user' );
-							$tables += $actorQuery['tables'];
-							$join_conds += $actorQuery['joins'];
-							$conds[] = $actorMigration->isAnon( $actorQuery['fields']['rc_user'] );
+							$conds['actor_user'] = null;
 						},
 						'isReplacedInStructuredUi' => true,
 
@@ -149,11 +145,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$actorMigration = ActorMigration::newMigration();
-							$actorQuery = $actorMigration->getJoin( 'rc_user' );
-							$tables += $actorQuery['tables'];
-							$join_conds += $actorQuery['joins'];
-							$conds[] = $actorMigration->isNotAnon( $actorQuery['fields']['rc_user'] );
+							$conds[] = 'actor_user IS NOT NULL';
 						},
 						'isReplacedInStructuredUi' => true,
 					]
@@ -238,10 +230,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$actorQuery = ActorMigration::newMigration()->getWhere( $dbr, 'rc_user', $ctx->getUser() );
-							$tables += $actorQuery['tables'];
-							$join_conds += $actorQuery['joins'];
-							$conds[] = 'NOT(' . $actorQuery['conds'] . ')';
+							/** @var IContextSource $ctx */
+							$user = $ctx->getUser();
+							if ( $user->isAnon() ) {
+								$conds[] = 'actor_name<>' . $dbr->addQuotes( $user->getName() );
+							} else {
+								$conds[] = 'actor_user<>' . $dbr->addQuotes( $user->getId() );
+							}
 						},
 						'cssClassSuffix' => 'self',
 						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
@@ -256,11 +251,13 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'queryCallable' => static function ( $specialClassName, $ctx, $dbr, &$tables, &$fields, &$conds,
 							&$query_options, &$join_conds
 						) {
-							$actorQuery = ActorMigration::newMigration()
-								->getWhere( $dbr, 'rc_user', $ctx->getUser(), false );
-							$tables += $actorQuery['tables'];
-							$join_conds += $actorQuery['joins'];
-							$conds[] = $actorQuery['conds'];
+							/** @var IContextSource $ctx */
+							$user = $ctx->getUser();
+							if ( $user->isAnon() ) {
+								$conds['actor_name'] = $user->getName();
+							} else {
+								$conds['actor_user'] = $user->getId();
+							}
 						},
 						'cssClassSuffix' => 'others',
 						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
@@ -1885,27 +1882,22 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			return;
 		}
 
-		$actorMigration = ActorMigration::newMigration();
-		$actorQuery = $actorMigration->getJoin( 'rc_user' );
-		$tables += $actorQuery['tables'];
-		$join_conds += $actorQuery['joins'];
-
 		// 'registered' but not 'unregistered', experience levels, if any, are included in 'registered'
 		if (
 			in_array( 'registered', $selectedExpLevels ) &&
 			!in_array( 'unregistered', $selectedExpLevels )
 		) {
-			$conds[] = $actorMigration->isNotAnon( $actorQuery['fields']['rc_user'] );
+			$conds[] = 'actor_user IS NOT NULL';
 			return;
 		}
 
 		if ( $selectedExpLevels === [ 'unregistered' ] ) {
-			$conds[] = $actorMigration->isAnon( $actorQuery['fields']['rc_user'] );
+			$conds['actor_user'] = null;
 			return;
 		}
 
 		$tables[] = 'user';
-		$join_conds['user'] = [ 'LEFT JOIN', $actorQuery['fields']['rc_user'] . ' = user_id' ];
+		$join_conds['user'] = [ 'LEFT JOIN', 'actor_user=user_id' ];
 
 		if ( $now === 0 ) {
 			$now = time();
@@ -1941,7 +1933,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 
 		if ( in_array( 'unregistered', $selectedExpLevels ) ) {
 			$selectedExpLevels = array_diff( $selectedExpLevels, [ 'unregistered' ] );
-			$conditions[] = $actorMigration->isAnon( $actorQuery['fields']['rc_user'] );
+			$conditions['actor_user'] = null;
 		}
 
 		if ( $selectedExpLevels === [ 'newcomer' ] ) {
@@ -1963,7 +1955,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		} elseif ( $selectedExpLevels === [ 'experienced', 'learner' ] ) {
 			$conditions[] = $aboveNewcomer;
 		} elseif ( $selectedExpLevels === [ 'experienced', 'learner', 'newcomer' ] ) {
-			$conditions[] = $actorMigration->isNotAnon( $actorQuery['fields']['rc_user'] );
+			$conditions[] = 'actor_user IS NOT NULL';
 		}
 
 		if ( count( $conditions ) > 1 ) {

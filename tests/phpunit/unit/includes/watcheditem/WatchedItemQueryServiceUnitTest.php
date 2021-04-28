@@ -2,7 +2,6 @@
 
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Rdbms\IDatabase;
@@ -31,34 +30,6 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @return MockObject|ActorMigration
-	 */
-	private function getMockActorMigration() {
-		$mockStore = $this->createMock( ActorMigration::class );
-		$mockStore->method( 'getJoin' )
-			->willReturn( [
-				'tables' => [ 'actormigration' => 'table' ],
-				'fields' => [
-					'rc_user' => 'actormigration_user',
-					'rc_user_text' => 'actormigration_user_text',
-					'rc_actor' => 'actormigration_actor',
-				],
-				'joins' => [ 'actormigration' => 'join' ],
-			] );
-		$mockStore->method( 'getWhere' )
-			->willReturn( [
-				'tables' => [ 'actormigration' => 'table' ],
-				'conds' => 'actormigration_conds',
-				'joins' => [ 'actormigration' => 'join' ],
-			] );
-		$mockStore->method( 'isAnon' )
-			->willReturn( 'actormigration is anon' );
-		$mockStore->method( 'isNotAnon' )
-			->willReturn( 'actormigration is not anon' );
-		return $mockStore;
-	}
-
-	/**
 	 * @param IDatabase $mockDb
 	 * @param PermissionManager|null $mockPM
 	 * @return WatchedItemQueryService
@@ -67,11 +38,9 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 		return new WatchedItemQueryService(
 			$this->getMockLoadBalancer( $mockDb ),
 			$this->getMockCommentStore(),
-			$this->getMockActorMigration(),
 			$this->getMockWatchedItemStore(),
 			$mockPM ?: $this->getMockPermissionManager(),
 			$this->createHookContainer(),
-			$this->createMock( UserFactory::class ),
 			false
 		);
 	}
@@ -495,20 +464,20 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER ] ],
 				null,
-				[ 'actormigration' => 'table' ],
-				[ 'rc_user_text' => 'actormigration_user_text' ],
+				[ 'watchlist_actor' => 'actor' ],
+				[ 'rc_user_text' => 'watchlist_actor.actor_name' ],
 				[],
 				[],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_USER_ID ] ],
 				null,
-				[ 'actormigration' => 'table' ],
-				[ 'rc_user' => 'actormigration_user' ],
+				[ 'watchlist_actor' => 'actor' ],
+				[ 'rc_user' => 'watchlist_actor.actor_user' ],
 				[],
 				[],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 			[
 				[ 'includeFields' => [ WatchedItemQueryService::INCLUDE_COMMENT ] ],
@@ -710,20 +679,20 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_ANON ] ],
 				null,
-				[ 'actormigration' => 'table' ],
+				[ 'watchlist_actor' => 'actor' ],
 				[],
-				[ 'actormigration is anon' ],
+				[ 'watchlist_actor.actor_user IS NULL' ],
 				[],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_NOT_ANON ] ],
 				null,
-				[ 'actormigration' => 'table' ],
+				[ 'watchlist_actor' => 'actor' ],
 				[],
-				[ 'actormigration is not anon' ],
+				[ 'watchlist_actor.actor_user IS NOT NULL' ],
 				[],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 			[
 				[ 'filters' => [ WatchedItemQueryService::FILTER_PATROLLED ] ],
@@ -764,20 +733,20 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				null,
-				[ 'actormigration' => 'table' ],
+				[ 'watchlist_actor' => 'actor' ],
 				[],
-				[ 'actormigration_conds' ],
+				[ 'watchlist_actor.actor_name' => 'SomeOtherUser' ],
 				[],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 			[
 				[ 'notByUser' => 'SomeOtherUser' ],
 				null,
-				[ 'actormigration' => 'table' ],
+				[ 'watchlist_actor' => 'actor' ],
 				[],
-				[ 'NOT(actormigration_conds)' ],
+				[ 'watchlist_actor.actor_name<>\'SomeOtherUser\'' ],
 				[],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 			[
 				[ 'dir' => WatchedItemQueryService::DIR_OLDER ],
@@ -1020,42 +989,42 @@ class WatchedItemQueryServiceUnitTest extends MediaWikiUnitTestCase {
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'deletedhistory',
-				[ 'actormigration' => 'table' ],
+				[ 'watchlist_actor' => 'actor' ],
 				[
-					'actormigration_conds',
+					'watchlist_actor.actor_name' => 'SomeOtherUser',
 					'(rc_deleted & ' . RevisionRecord::DELETED_USER . ') != ' . RevisionRecord::DELETED_USER,
 					'(rc_type != ' . RC_LOG . ') OR ((rc_deleted & ' . LogPage::DELETED_ACTION . ') != ' .
 						LogPage::DELETED_ACTION . ')'
 				],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'suppressrevision',
-				[ 'actormigration' => 'table' ],
+				[ 'watchlist_actor' => 'actor' ],
 				[
-					'actormigration_conds',
+					'watchlist_actor.actor_name' => 'SomeOtherUser',
 					'(rc_deleted & ' . ( RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ) . ') != ' .
 						( RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ),
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
 				],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 			[
 				[ 'onlyByUser' => 'SomeOtherUser' ],
 				'viewsuppressed',
-				[ 'actormigration' => 'table' ],
+				[ 'watchlist_actor' => 'actor' ],
 				[
-					'actormigration_conds',
+					'watchlist_actor.actor_name' => 'SomeOtherUser',
 					'(rc_deleted & ' . ( RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ) . ') != ' .
 						( RevisionRecord::DELETED_USER | RevisionRecord::DELETED_RESTRICTED ),
 					'(rc_type != ' . RC_LOG . ') OR (' .
 						'(rc_deleted & ' . ( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ') != ' .
 						( LogPage::DELETED_ACTION | LogPage::DELETED_RESTRICTED ) . ')'
 				],
-				[ 'actormigration' => 'join' ],
+				[ 'watchlist_actor' => [ 'JOIN', 'actor_id=rc_actor' ] ],
 			],
 		];
 	}

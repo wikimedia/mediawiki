@@ -234,15 +234,13 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addWhereIf( 'rc_bot = 0', isset( $show['!bot'] ) );
 			$this->addWhereIf( 'rc_bot != 0', isset( $show['bot'] ) );
 			if ( isset( $show['anon'] ) || isset( $show['!anon'] ) ) {
-				$actorMigration = ActorMigration::newMigration();
-				$actorQuery = $actorMigration->getJoin( 'rc_user' );
-				$this->addTables( $actorQuery['tables'] );
-				$this->addJoinConds( $actorQuery['joins'] );
+				$this->addTables( 'actor', 'actor' );
+				$this->addJoinConds( [ 'actor' => [ 'JOIN', 'actor_id=rc_actor' ] ] );
 				$this->addWhereIf(
-					$actorMigration->isAnon( $actorQuery['fields']['rc_user'] ), isset( $show['anon'] )
+					'actor_user IS NULL', isset( $show['anon'] )
 				);
 				$this->addWhereIf(
-					$actorMigration->isNotAnon( $actorQuery['fields']['rc_user'] ), isset( $show['!anon'] )
+					'actor_user IS NOT NULL', isset( $show['!anon'] )
 				);
 			}
 			$this->addWhereIf( 'rc_patrolled = 0', isset( $show['!patrolled'] ) );
@@ -277,22 +275,31 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
+		if ( $params['prop'] !== null ) {
+			$prop = array_flip( $params['prop'] );
+
+			/* Set up internal members based upon params. */
+			$this->initProperties( $prop );
+		}
+
+		if ( $this->fld_user
+			|| $this->fld_userid
+			// Token needs actor_user for RecentChange::newFromRow/User::newFromAnyId (T228425)
+			|| $this->token !== null
+			|| $params['user'] !== null
+			|| $params['excludeuser'] !== null
+		) {
+			$this->addTables( 'actor', 'actor' );
+			$this->addFields( [ 'actor_name', 'actor_user', 'rc_actor' ] );
+			$this->addJoinConds( [ 'actor' => [ 'JOIN', 'actor_id=rc_actor' ] ] );
+		}
+
 		if ( $params['user'] !== null ) {
-			// Don't query by user ID here, it might be able to use the rc_user_text index.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $this->getDB(), 'rc_user', $params['user'], false );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( $actorQuery['conds'] );
+			$this->addWhereFld( 'actor_name', $params['user'] );
 		}
 
 		if ( $params['excludeuser'] !== null ) {
-			// Here there's no chance to use the rc_user_text index, so allow ID to be used.
-			$actorQuery = ActorMigration::newMigration()
-				->getWhere( $this->getDB(), 'rc_user', $params['excludeuser'] );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addJoinConds( $actorQuery['joins'] );
-			$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
+			$this->addWhere( 'actor_name<>' . $this->getDB()->addQuotes( $params['excludeuser'] ) );
 		}
 
 		/* Add the fields we're concerned with to our query. */
@@ -309,11 +316,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$showRedirects = false;
 		/* Determine what properties we need to display. */
 		if ( $params['prop'] !== null ) {
-			$prop = array_flip( $params['prop'] );
-
-			/* Set up internal members based upon params. */
-			$this->initProperties( $prop );
-
 			if ( $this->fld_patrolled && !$user->useRCPatrol() && !$user->useNPPatrol() ) {
 				$this->dieWithError( 'apierror-permissiondenied-patrolflag', 'permissiondenied' );
 			}
@@ -404,14 +406,6 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			$this->addTables( $commentQuery['tables'] );
 			$this->addFields( $commentQuery['fields'] );
 			$this->addJoinConds( $commentQuery['joins'] );
-		}
-
-		if ( $this->fld_user || $this->fld_userid || $this->token !== null ) {
-			// Token needs rc_user for RecentChange::newFromRow/User::newFromAnyId (T228425)
-			$actorQuery = ActorMigration::newMigration()->getJoin( 'rc_user' );
-			$this->addTables( $actorQuery['tables'] );
-			$this->addFields( $actorQuery['fields'] );
-			$this->addJoinConds( $actorQuery['joins'] );
 		}
 
 		if ( $params['slot'] !== null ) {
@@ -575,14 +569,14 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			}
 			if ( RevisionRecord::userCanBitfield( $row->rc_deleted, RevisionRecord::DELETED_USER, $user ) ) {
 				if ( $this->fld_user ) {
-					$vals['user'] = $row->rc_user_text;
+					$vals['user'] = $row->actor_name;
 				}
 
 				if ( $this->fld_userid ) {
-					$vals['userid'] = (int)$row->rc_user;
+					$vals['userid'] = (int)$row->actor_user;
 				}
 
-				if ( !$row->rc_user ) {
+				if ( !$row->actor_user ) {
 					$vals['anon'] = true;
 				}
 			}
