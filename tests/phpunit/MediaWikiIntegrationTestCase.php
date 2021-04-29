@@ -1,5 +1,4 @@
 <?php
-// phpcs:disable MediaWiki.Commenting.FunctionAnnotations.UnrecognizedAnnotation
 
 use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\Logger\LegacySpi;

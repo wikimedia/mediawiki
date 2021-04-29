@@ -61,14 +61,12 @@ class LogCapturingSpi implements Spi {
 			/** @var LogCapturingSpi */
 			private $parent;
 
-			// phpcs:ignore MediaWiki.Usage.NestedFunctions.NestedFunction
 			public function __construct( $channel, LoggerInterface $logger, LogCapturingSpi $parent ) {
 				$this->channel = $channel;
 				$this->logger = $logger;
 				$this->parent = $parent;
 			}
 
-			// phpcs:ignore MediaWiki.Usage.NestedFunctions.NestedFunction
 			public function log( $level, $message, array $context = [] ) {
 				$this->parent->capture( [
 					'channel' => $this->channel,
