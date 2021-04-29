@@ -87,7 +87,7 @@ class DeleteDefaultMessages extends Maintenance {
 
 		// Handle deletion
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();

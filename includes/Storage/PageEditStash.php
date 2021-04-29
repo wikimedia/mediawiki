@@ -127,7 +127,7 @@ class PageEditStash {
 		// the stash request finishes parsing. For the lock acquisition below, there is not much
 		// need to duplicate parsing of the same content/user/summary bundle, so try to avoid
 		// blocking at all here.
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		if ( !$dbw->lock( $key, $fname, 0 ) ) {
 			// De-duplicate requests on the same key
 			return self::ERROR_BUSY;

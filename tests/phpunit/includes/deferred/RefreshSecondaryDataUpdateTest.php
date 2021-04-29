@@ -44,7 +44,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$revision->method( 'getId' )
 			->willReturn( 42 );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -122,7 +122,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$revision->method( 'getId' )
 			->willReturn( 42 );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 		$goodCalls = 0;
 
@@ -172,7 +172,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$user = $this->getTestUser()->getUser();
 
 		$fname = __METHOD__;
-		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_MASTER );
+		$dbw = $lbFactory->getMainLB()->getConnectionRef( DB_PRIMARY );
 		$dbw->setFlag( DBO_TRX, $dbw::REMEMBER_PRIOR ); // make queries trigger TRX
 		$reset = new ScopedCallback( [ $dbw, 'restoreFlags' ] );
 

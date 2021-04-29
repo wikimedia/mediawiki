@@ -356,7 +356,7 @@ class NamespaceDupes extends Maintenance {
 	private function checkLinkTable( $table, $fieldPrefix, $ns, $name, $options,
 		$extraConds = []
 	) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$batchConds = [];
 		$fromField = "{$fieldPrefix}_from";
@@ -485,7 +485,7 @@ class NamespaceDupes extends Maintenance {
 	 * @return IResultWrapper
 	 */
 	private function getTargetList( $ns, $name, $options ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		if (
 			$options['move-talk'] &&
@@ -571,7 +571,7 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function movePage( $id, LinkTarget $newLinkTarget ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$dbw->update( 'page',
 			[
@@ -637,7 +637,7 @@ class NamespaceDupes extends Maintenance {
 	 * @return bool
 	 */
 	private function mergePage( $row, Title $newTitle ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$id = $row->page_id;
 

@@ -342,7 +342,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $text
 	 */
 	public function update( $id, $title, $text ) {
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->replace(
 			'searchindex',
 			'si_page',
@@ -363,7 +363,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title
 	 */
 	public function updateTitle( $id, $title ) {
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->update( 'searchindex',
 			[ 'si_title' => $this->normalizeText( $title ) ],
 			[ 'si_page' => $id ],
@@ -379,7 +379,7 @@ class SearchMySQL extends SearchDatabase {
 	 * @param string $title Title of page that was deleted
 	 */
 	public function delete( $id, $title ) {
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->delete( 'searchindex', [ 'si_page' => $id ], __METHOD__ );
 	}
 

@@ -68,12 +68,12 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 */
 	private function getDBConnRef( ILoadBalancer $lb = null ) {
 		$lb = $lb ?: $this->getLoadBalancerMock();
-		return new DBConnRef( $lb, $this->getDatabaseMock(), DB_MASTER );
+		return new DBConnRef( $lb, $this->getDatabaseMock(), DB_PRIMARY );
 	}
 
 	public function testConstruct() {
 		$lb = $this->getLoadBalancerMock();
-		$ref = new DBConnRef( $lb, $this->getDatabaseMock(), DB_MASTER );
+		$ref = new DBConnRef( $lb, $this->getDatabaseMock(), DB_PRIMARY );
 
 		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
 	}
@@ -83,7 +83,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
-			->with( DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT )
+			->with( DB_PRIMARY, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT )
 			->willReturnCallback(
 				function () {
 					return $this->getDatabaseMock();
@@ -92,16 +92,16 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 
 		$ref = new DBConnRef(
 			$lb,
-			[ DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ],
-			DB_MASTER
+			[ DB_PRIMARY, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ],
+			DB_PRIMARY
 		);
 
 		$this->assertInstanceOf( IResultWrapper::class, $ref->select( 'whatever', '*' ) );
-		$this->assertEquals( DB_MASTER, $ref->getReferenceRole() );
+		$this->assertEquals( DB_PRIMARY, $ref->getReferenceRole() );
 
 		$ref2 = new DBConnRef(
 			$lb,
-			[ DB_MASTER, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ],
+			[ DB_PRIMARY, [ 'test' ], 'dummy', ILoadBalancer::CONN_TRX_AUTOCOMMIT ],
 			DB_REPLICA
 		);
 		$this->assertEquals( DB_REPLICA, $ref2->getReferenceRole() );
@@ -158,7 +158,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$this->assertIsString( $ref->__toString() );
 
 		$lb = $this->getLoadBalancerMock();
-		$ref = new DBConnRef( $lb, [ DB_MASTER, [], 'test', 0 ], DB_MASTER );
+		$ref = new DBConnRef( $lb, [ DB_PRIMARY, [], 'test', 0 ], DB_PRIMARY );
 		$this->assertIsString( $ref->__toString() );
 	}
 
@@ -167,7 +167,7 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testClose() {
 		$lb = $this->getLoadBalancerMock();
-		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_MASTER );
+		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_PRIMARY );
 		$this->expectException( \Wikimedia\Rdbms\DBUnexpectedError::class );
 		$ref->close();
 	}
@@ -180,14 +180,14 @@ class DBConnRefTest extends PHPUnit\Framework\TestCase {
 		$ref = new DBConnRef( $lb, [ DB_REPLICA, [], 'dummy', 0 ], DB_REPLICA );
 		$this->assertSame( DB_REPLICA, $ref->getReferenceRole() );
 
-		$ref = new DBConnRef( $lb, [ DB_MASTER, [], 'dummy', 0 ], DB_MASTER );
-		$this->assertSame( DB_MASTER, $ref->getReferenceRole() );
+		$ref = new DBConnRef( $lb, [ DB_PRIMARY, [], 'dummy', 0 ], DB_PRIMARY );
+		$this->assertSame( DB_PRIMARY, $ref->getReferenceRole() );
 
 		$ref = new DBConnRef( $lb, [ 1, [], 'dummy', 0 ], DB_REPLICA );
 		$this->assertSame( DB_REPLICA, $ref->getReferenceRole() );
 
-		$ref = new DBConnRef( $lb, [ 0, [], 'dummy', 0 ], DB_MASTER );
-		$this->assertSame( DB_MASTER, $ref->getReferenceRole() );
+		$ref = new DBConnRef( $lb, [ 0, [], 'dummy', 0 ], DB_PRIMARY );
+		$this->assertSame( DB_PRIMARY, $ref->getReferenceRole() );
 	}
 
 	/**

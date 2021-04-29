@@ -134,7 +134,7 @@ class MergeHistory {
 		$this->dest = $dest;
 
 		// Get the database
-		$this->dbw = $loadBalancer->getConnection( DB_MASTER );
+		$this->dbw = $loadBalancer->getConnection( DB_PRIMARY );
 
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->revisionStore = $revisionStore;

@@ -293,7 +293,7 @@ EOF
 		$importer->setUsernamePrefix( 'Xxx', $assign );
 		$importer->doImport();
 
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
 
 		$row = $db->selectRow(

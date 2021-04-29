@@ -202,7 +202,7 @@ class FileDeleteForm {
 			);
 			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 			'@phan-var WikiFilePage $page';
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_PRIMARY );
 			$dbw->startAtomic( __METHOD__ );
 			// delete the associated article first
 			$error = '';

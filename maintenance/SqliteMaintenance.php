@@ -54,7 +54,7 @@ class SqliteMaintenance extends Maintenance {
 		}
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnection( DB_PRIMARY );
 		if ( !( $dbw instanceof DatabaseSqlite ) ) {
 			$this->error( "This maintenance script requires a SQLite database.\n" );
 

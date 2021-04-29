@@ -748,7 +748,7 @@ class UserGroupManager implements IDBAccessObject {
 		}
 
 		$oldUgms = $this->getUserGroupMemberships( $user, self::READ_LATEST );
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER, [], $this->dbDomain );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->dbDomain );
 
 		$dbw->startAtomic( __METHOD__ );
 		$dbw->insert(
@@ -851,7 +851,7 @@ class UserGroupManager implements IDBAccessObject {
 
 		$oldUgms = $this->getUserGroupMemberships( $user, self::READ_LATEST );
 		$oldFormerGroups = $this->getUserFormerGroups( $user, self::READ_LATEST );
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER, [], $this->dbDomain );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, [], $this->dbDomain );
 		$dbw->delete(
 			'user_groups',
 			[ 'ug_user' => $user->getId(), 'ug_group' => $group ],
@@ -916,7 +916,7 @@ class UserGroupManager implements IDBAccessObject {
 		}
 
 		$ticket = $this->loadBalancerFactory->getEmptyTransactionTicket( __METHOD__ );
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$lockKey = "{$dbw->getDomainID()}:UserGroupManager:purge"; // per-wiki
 		$scopedLock = $dbw->getScopedLockAndFlush( $lockKey, __METHOD__, 0 );

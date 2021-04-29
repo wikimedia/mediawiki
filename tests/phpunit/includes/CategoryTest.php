@@ -55,7 +55,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideInitializeVariants
 	 */
 	public function testInitialize( $createFunction, $createParam, $testFunction, $expected ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'category',
 			[
 				[
@@ -114,7 +114,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers Category::newFromRow()
 	 */
 	public function testNewFromRow_found() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'category',
 			[
 				[
@@ -145,7 +145,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers Category::newFromRow()
 	 */
 	public function testNewFromRow_notFoundWithoutTitle() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'category',
 			[
 				[
@@ -177,7 +177,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers Category::newFromRow()
 	 */
 	public function testNewFromRow_notFoundWithTitle() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'category',
 			[
 				[
@@ -214,7 +214,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers Category::getPageCount()
 	 */
 	public function testGetPageCount() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'category',
 			[
 				[
@@ -239,7 +239,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers Category::getSubcatCount()
 	 */
 	public function testGetSubcatCount() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'category',
 			[
 				[
@@ -264,7 +264,7 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers Category::getFileCount()
 	 */
 	public function testGetFileCount() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'category',
 			[
 				[

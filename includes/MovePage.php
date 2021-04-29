@@ -645,7 +645,7 @@ class MovePage {
 			return $status;
 		}
 
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		$this->hookRunner->onTitleMoveStarting( $this->oldTitle, $this->newTitle, $userObj );
@@ -967,7 +967,7 @@ class MovePage {
 			$comment .= wfMessage( 'colon-separator' )->inContentLanguage()->text() . $reason;
 		}
 
-		$dbw = $this->loadBalancer->getConnection( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnection( DB_PRIMARY );
 
 		$oldpage = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
 		$oldcountable = $oldpage->isCountable();

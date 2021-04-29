@@ -59,7 +59,7 @@ class CleanupPreferences extends Maintenance {
 	 *      all values are in that range. Drop ones that aren't.
 	 */
 	public function execute() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$hidden = $this->hasOption( 'hidden' );
 		$unknown = $this->hasOption( 'unknown' );
 		$bogus = $this->hasOption( 'bogus' );

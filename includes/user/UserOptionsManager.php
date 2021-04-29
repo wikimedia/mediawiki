@@ -417,7 +417,7 @@ class UserOptionsManager extends UserOptionsLookup {
 			}
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$res = $dbw->select(
 			'user_properties',

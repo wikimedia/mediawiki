@@ -73,7 +73,7 @@ class PopulateContentTables extends Maintenance {
 	}
 
 	private function initServices() {
-		$this->dbw = $this->getDB( DB_MASTER );
+		$this->dbw = $this->getDB( DB_PRIMARY );
 		$services = MediaWikiServices::getInstance();
 		$this->contentModelStore = $services->getContentModelStore();
 		$this->slotRoleStore = $services->getSlotRoleStore();

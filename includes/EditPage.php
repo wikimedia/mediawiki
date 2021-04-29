@@ -2165,7 +2165,7 @@ class EditPage implements IEditObject {
 				} elseif ( $this->section == ''
 					&& $this->edittime
 					&& $this->revisionStore->userWasLastToEdit(
-						wfGetDB( DB_MASTER ),
+						wfGetDB( DB_PRIMARY ),
 						$this->mTitle->getArticleID(),
 						$user->getId(),
 						$this->edittime

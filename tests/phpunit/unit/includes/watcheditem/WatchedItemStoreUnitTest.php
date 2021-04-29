@@ -1839,7 +1839,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	public function provideDbTypes() {
 		return [
 			[ false, DB_REPLICA ],
-			[ true, DB_MASTER ],
+			[ true, DB_PRIMARY ],
 		];
 	}
 

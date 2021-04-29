@@ -99,7 +99,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 			'timestamp' => $ipTimestamp,
 		] );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->ipRev = $revisionStore->insertRevisionOn( $rev, $dbw );
 
 		// Delete the page

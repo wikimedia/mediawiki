@@ -87,7 +87,7 @@ class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
 		$this->assertStringContainsString( 'mw-changeslist-line-watched', $rc2->getOutput()->getHTML() );
 
 		// Force a past expiry date on the watchlist item.
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 		$queryConds = [ 'wl_namespace' => $testTitle->getNamespace(), 'wl_title' => $testTitle->getDBkey() ];
 		$watchedItemId = $db->selectField( 'watchlist', 'wl_id', $queryConds, __METHOD__ );
 		$db->update(

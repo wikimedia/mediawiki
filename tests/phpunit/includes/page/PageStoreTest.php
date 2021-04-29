@@ -502,8 +502,8 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$lb = $this->createMock( LoadBalancer::class );
 		$lb->expects( $this->atLeastOnce() )
 			->method( 'getConnectionRef' )
-			->with( DB_MASTER )
-			->willReturn( new DBConnRef( $lb, $db, DB_MASTER ) );
+			->with( DB_PRIMARY )
+			->willReturn( new DBConnRef( $lb, $db, DB_PRIMARY ) );
 
 		$pageStore = new PageStore(
 			$serviceOptions,

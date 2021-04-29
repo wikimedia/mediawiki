@@ -100,7 +100,7 @@ class ConnectionManager {
 	 * @return IDatabase
 	 */
 	public function getWriteConnection() {
-		return $this->getConnection( DB_MASTER );
+		return $this->getConnection( DB_PRIMARY );
 	}
 
 	/**
@@ -135,7 +135,7 @@ class ConnectionManager {
 	 * @return DBConnRef
 	 */
 	public function getWriteConnectionRef() {
-		return $this->getConnectionRef( DB_MASTER );
+		return $this->getConnectionRef( DB_PRIMARY );
 	}
 
 	/**

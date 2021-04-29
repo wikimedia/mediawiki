@@ -40,7 +40,7 @@ class BenchmarkDeleteTruncate extends Benchmarker {
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$test = $dbw->tableName( 'test' );
 		$dbw->query( "CREATE TABLE IF NOT EXISTS /*_*/$test (

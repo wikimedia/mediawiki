@@ -98,7 +98,7 @@ class SiteStatsUpdate implements DeferrableUpdate, MergeableUpdate {
 		}
 
 		( new AutoCommitUpdate(
-			$services->getDBLoadBalancer()->getConnectionRef( DB_MASTER ),
+			$services->getDBLoadBalancer()->getConnectionRef( DB_PRIMARY ),
 			__METHOD__,
 			static function ( IDatabase $dbw, $fname ) use ( $deltaByType ) {
 				$set = [];

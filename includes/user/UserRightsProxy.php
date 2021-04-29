@@ -160,9 +160,9 @@ class UserRightsProxy {
 		if ( $ignoreInvalidDB || self::validDatabase( $dbDomain ) ) {
 			if ( WikiMap::isCurrentWikiId( $dbDomain ) ) {
 				// Hmm... this shouldn't happen though. :)
-				return wfGetDB( DB_MASTER );
+				return wfGetDB( DB_PRIMARY );
 			} else {
-				return wfGetDB( DB_MASTER, [], $dbDomain );
+				return wfGetDB( DB_PRIMARY, [], $dbDomain );
 			}
 		}
 		return null;

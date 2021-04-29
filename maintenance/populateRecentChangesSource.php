@@ -41,7 +41,7 @@ class PopulateRecentChangesSource extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
 		if ( !$dbw->fieldExists( 'recentchanges', 'rc_source', __METHOD__ ) ) {
 			$this->error( 'rc_source field in recentchanges table does not exist.' );

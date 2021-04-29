@@ -44,7 +44,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 
 		if ( !$db->tableExists( 'revision', __METHOD__ ) ) {
 			$this->fatalError( "revision table does not exist" );
@@ -84,7 +84,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 * @return int Rows changed
 	 */
 	protected function doSha1Updates( $revStore, $table, $idCol, $queryInfo, $prefix ) {
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
 		$start = $db->selectField( $table, "MIN($idCol)", '', __METHOD__ );
 		$end = $db->selectField( $table, "MAX($idCol)", '', __METHOD__ );
@@ -129,7 +129,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 */
 	protected function doSha1LegacyUpdates( $revStore ) {
 		$count = 0;
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 		$arQuery = $revStore->getArchiveQueryInfo();
 		$res = $db->select( $arQuery['tables'], $arQuery['fields'],
 			[ 'ar_rev_id IS NULL', 'ar_sha1' => '' ], __METHOD__, [], $arQuery['joins'] );
@@ -161,7 +161,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 * @return bool
 	 */
 	protected function upgradeRow( $revStore, $row, $table, $idCol, $prefix ) {
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 
 		// Create a revision and use it to get the sha1 from the content table, if possible.
 		try {
@@ -189,7 +189,7 @@ class PopulateRevisionSha1 extends LoggedUpdateMaintenance {
 	 * @return bool
 	 */
 	protected function upgradeLegacyArchiveRow( $revStore, $row ) {
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 
 		// Create a revision and use it to get the sha1 from the content table, if possible.
 		try {

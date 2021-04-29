@@ -218,7 +218,7 @@ TEXT
 			if ( !$this->dryRun ) {
 				// bluuuh hack
 				// call_user_func( $this->uploadCallback, $revision );
-				$dbw = $this->getDB( DB_MASTER );
+				$dbw = $this->getDB( DB_PRIMARY );
 
 				return $dbw->deadlockLoop( [ $revision, 'importUpload' ] );
 			}

@@ -67,7 +67,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 	}
 
 	public function setBits( $bits ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update( 'filearchive',
 			[ 'fa_deleted' => $bits ],
 			[

@@ -644,7 +644,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	}
 
 	private function createUsers( $specs, $now ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		foreach ( $specs as $name => $spec ) {
 			User::createNew(
 				$name,
@@ -684,7 +684,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 
 		// @todo: This is not at all safe or sane. It just blindly assumes
 		// nothing in $conds depends on any other tables.
-		$result = wfGetDB( DB_MASTER )->select(
+		$result = wfGetDB( DB_PRIMARY )->select(
 			'user',
 			'user_name',
 			array_filter( $conds ) + [ 'user_email' => 'ut' ]

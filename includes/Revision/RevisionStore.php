@@ -2568,7 +2568,7 @@ class RevisionStore
 			&& $lb->hasOrMadeRecentMasterChanges()
 		) {
 			$flags = self::READ_LATEST;
-			$dbw = $this->getDBConnectionRef( DB_MASTER );
+			$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 			$rev = $this->loadRevisionFromConds( $dbw, $conditions, $flags, $page, $options );
 		}
 

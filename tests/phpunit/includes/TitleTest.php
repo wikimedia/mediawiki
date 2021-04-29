@@ -1305,7 +1305,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'wgFragmentMode' => [ 'html5' ],
 			'wgExternalInterwikiFragmentMode' => 'legacy',
 		] );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'interwiki',
 			[
 				[

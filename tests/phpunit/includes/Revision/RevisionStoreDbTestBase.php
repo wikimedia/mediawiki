@@ -105,7 +105,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		if ( !$page->exists() ) {
 			// Make sure we don't write to the live db.
-			$this->ensureMockDatabaseConnection( wfGetDB( DB_MASTER ) );
+			$this->ensureMockDatabaseConnection( wfGetDB( DB_PRIMARY ) );
 
 			$user = static::getTestSysop()->getUser();
 
@@ -406,7 +406,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$rev = $this->getRevisionRecordFromDetailsArray( $revDetails );
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$return = $store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
+		$return = $store->insertRevisionOn( $rev, wfGetDB( DB_PRIMARY ) );
 
 		// is the new revision correct?
 		$this->assertRevisionCompleteness( $return );
@@ -485,14 +485,14 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		// Insert the first revision
 		$revOne = $this->getRevisionRecordFromDetailsArray( $revDetails );
-		$firstReturn = $store->insertRevisionOn( $revOne, wfGetDB( DB_MASTER ) );
+		$firstReturn = $store->insertRevisionOn( $revOne, wfGetDB( DB_PRIMARY ) );
 		$this->assertLinkTargetsEqual( $title, $firstReturn->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $revOne, $firstReturn );
 
 		// Insert a second revision inheriting the same blob address
 		$revDetails['slot'] = SlotRecord::newInherited( $firstReturn->getSlot( SlotRecord::MAIN ) );
 		$revTwo = $this->getRevisionRecordFromDetailsArray( $revDetails );
-		$secondReturn = $store->insertRevisionOn( $revTwo, wfGetDB( DB_MASTER ) );
+		$secondReturn = $store->insertRevisionOn( $revTwo, wfGetDB( DB_PRIMARY ) );
 		$this->assertLinkTargetsEqual( $title, $secondReturn->getPageAsLinkTarget() );
 		$this->assertRevisionRecordsEqual( $revTwo, $secondReturn );
 
@@ -588,7 +588,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$this->expectException( get_class( $exception ) );
 		$this->expectExceptionMessage( $exception->getMessage() );
 		$this->expectExceptionCode( $exception->getCode() );
-		$store->insertRevisionOn( $rev, wfGetDB( DB_MASTER ) );
+		$store->insertRevisionOn( $rev, wfGetDB( DB_PRIMARY ) );
 	}
 
 	public function provideNewNullRevision() {
@@ -626,12 +626,12 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$baseRev = $this->getRevisionRecordFromDetailsArray( $revDetails );
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$baseRev = $store->insertRevisionOn( $baseRev, $dbw );
 		$page->updateRevisionOn( $dbw, $baseRev, $page->getLatest() );
 
 		$record = $store->newNullRevision(
-			wfGetDB( DB_MASTER ),
+			wfGetDB( DB_PRIMARY ),
 			$title,
 			$comment,
 			$minor,
@@ -666,7 +666,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	public function testNewNullRevision_nonExistingTitle() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$record = $store->newNullRevision(
-			wfGetDB( DB_MASTER ),
+			wfGetDB( DB_PRIMARY ),
 			Title::newFromText( __METHOD__ . '.iDontExist!' ),
 			CommentStoreComment::newUnsavedComment( __METHOD__ . ' comment' ),
 			false,
@@ -1229,7 +1229,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			->value['revision-record'];
 		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
 
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 		$arQuery = $store->getArchiveQueryInfo();
 		$res = $db->select(
 			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
@@ -1350,7 +1350,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			->value['revision-record'];
 		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
 
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 		$arQuery = $store->getArchiveQueryInfo();
 		$res = $db->select(
 			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
@@ -1381,7 +1381,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			->value['revision-record'];
 		$page->doDeleteArticleReal( __METHOD__, $this->getTestSysop()->getUser() );
 
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 		$arQuery = $store->getArchiveQueryInfo();
 		$res = $db->select(
 			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
@@ -1608,7 +1608,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		// re-create page, so we can later load revisions for it
 		$page->doEditContent( new WikitextContent( 'Two' ), __METHOD__ );
 
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 		$arQuery = $store->getArchiveQueryInfo();
 		$row = $db->selectRow(
 			$arQuery['tables'], $arQuery['fields'], [ 'ar_rev_id' => $orig->getId() ],
@@ -1673,7 +1673,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromPageId' );
-		$result = $store->loadRevisionFromPageId( wfGetDB( DB_MASTER ), $page->getId() );
+		$result = $store->loadRevisionFromPageId( wfGetDB( DB_PRIMARY ), $page->getId() );
 		$this->assertRevisionRecordsEqual( $revRecord, $result );
 	}
 
@@ -1689,7 +1689,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			->value['revision-record'];
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$result = $store->loadRevisionFromTitle( wfGetDB( DB_MASTER ), $title );
+		$result = $store->loadRevisionFromTitle( wfGetDB( DB_PRIMARY ), $title );
 		$this->assertRevisionRecordsEqual( $revRecord, $result );
 	}
 
@@ -1712,12 +1712,12 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$this->hideDeprecated( RevisionStore::class . '::loadRevisionFromTimestamp' );
 		$this->assertNull(
-			$store->loadRevisionFromTimestamp( wfGetDB( DB_MASTER ), $title, '20150101010101' )
+			$store->loadRevisionFromTimestamp( wfGetDB( DB_PRIMARY ), $title, '20150101010101' )
 		);
 		$this->assertSame(
 			$revRecordOne->getId(),
 			$store->loadRevisionFromTimestamp(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				$title,
 				$revRecordOne->getTimestamp()
 			)->getId()
@@ -1725,7 +1725,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			$revRecordTwo->getId(),
 			$store->loadRevisionFromTimestamp(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				$title,
 				$revRecordTwo->getTimestamp()
 			)->getId()
@@ -1895,17 +1895,17 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			0,
-			$store->countRevisionsByPageId( wfGetDB( DB_MASTER ), $page->getId() )
+			$store->countRevisionsByPageId( wfGetDB( DB_PRIMARY ), $page->getId() )
 		);
 		$page->doEditContent( new WikitextContent( 'a' ), 'a' );
 		$this->assertSame(
 			1,
-			$store->countRevisionsByPageId( wfGetDB( DB_MASTER ), $page->getId() )
+			$store->countRevisionsByPageId( wfGetDB( DB_PRIMARY ), $page->getId() )
 		);
 		$page->doEditContent( new WikitextContent( 'b' ), 'b' );
 		$this->assertSame(
 			2,
-			$store->countRevisionsByPageId( wfGetDB( DB_MASTER ), $page->getId() )
+			$store->countRevisionsByPageId( wfGetDB( DB_PRIMARY ), $page->getId() )
 		);
 	}
 
@@ -1918,17 +1918,17 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame(
 			0,
-			$store->countRevisionsByTitle( wfGetDB( DB_MASTER ), $page->getTitle() )
+			$store->countRevisionsByTitle( wfGetDB( DB_PRIMARY ), $page->getTitle() )
 		);
 		$page->doEditContent( new WikitextContent( 'a' ), 'a' );
 		$this->assertSame(
 			1,
-			$store->countRevisionsByTitle( wfGetDB( DB_MASTER ), $page->getTitle() )
+			$store->countRevisionsByTitle( wfGetDB( DB_PRIMARY ), $page->getTitle() )
 		);
 		$page->doEditContent( new WikitextContent( 'b' ), 'b' );
 		$this->assertSame(
 			2,
-			$store->countRevisionsByTitle( wfGetDB( DB_MASTER ), $page->getTitle() )
+			$store->countRevisionsByTitle( wfGetDB( DB_PRIMARY ), $page->getTitle() )
 		);
 	}
 
@@ -1942,7 +1942,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->userWasLastToEdit(
-			wfGetDB( DB_MASTER ),
+			wfGetDB( DB_PRIMARY ),
 			$page->getId(),
 			$sysop->getId(),
 			'20160101010101'
@@ -1967,7 +1967,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$result = $store->userWasLastToEdit(
-			wfGetDB( DB_MASTER ),
+			wfGetDB( DB_PRIMARY ),
 			$page->getId(),
 			$sysop->getId(),
 			$startTime

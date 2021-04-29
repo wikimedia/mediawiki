@@ -13,7 +13,7 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	protected function setUp() : void {
 		parent::setUp();
-		$this->db = wfGetDB( DB_MASTER );
+		$this->db = wfGetDB( DB_PRIMARY );
 	}
 
 	public function testUnknownTableCorruptsResults() {

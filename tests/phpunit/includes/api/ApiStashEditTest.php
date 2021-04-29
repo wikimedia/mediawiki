@@ -197,7 +197,7 @@ class ApiStashEditTest extends ApiTestCase {
 		$this->setExpectedApiException( [ 'apierror-missingrev-pageid', $revRecord->getPageId() ] );
 
 		// Corrupt the database.  @todo Does the API really need to fail gracefully for this case?
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update(
 			'page',
 			[ 'page_latest' => 0 ],

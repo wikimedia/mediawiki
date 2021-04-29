@@ -131,7 +131,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 		$rev = new Revision( $props );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$rev->insertOn( $dbw );
 
 		return $rev;
@@ -237,7 +237,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 			'comment' => 'Revision comment',
 		] );
 
-		$revId = $rev->insertOn( wfGetDB( DB_MASTER ) );
+		$revId = $rev->insertOn( wfGetDB( DB_PRIMARY ) );
 
 		$this->assertIsInt( $revId );
 		$this->assertSame( $revId, $rev->getId() );
@@ -334,7 +334,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$title = Title::newFromText( 'Nonexistant-' . __METHOD__ );
 		$rev = new Revision( $array, 0, $title );
 
-		$rev->insertOn( wfGetDB( DB_MASTER ) );
+		$rev->insertOn( wfGetDB( DB_PRIMARY ) );
 	}
 
 	/**
@@ -762,7 +762,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$orig = $this->testPage->getRevision();
 		$user = $this->getTestUser()->getUser();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$rev = Revision::newNullRevision(
 			$dbw, $this->testPage->getId(), 'a null revision', false, $user
 		);
@@ -783,7 +783,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewNullRevision_badPage() {
 		$this->hideDeprecated( 'Revision::newNullRevision' );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$user = $this->getTestUser()->getUser();
 		$rev = Revision::newNullRevision( $dbw, -1, 'a null revision', false, $user );
 
@@ -845,7 +845,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 		$ns = $this->getDefaultWikitextNS();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$revisions = [];
 
 		// create revisions -----------------------------
@@ -1247,7 +1247,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
-			Revision::loadFromPageId( wfGetDB( DB_MASTER ), $this->testPage->getId() )
+			Revision::loadFromPageId( wfGetDB( DB_PRIMARY ), $this->testPage->getId() )
 		);
 	}
 
@@ -1261,7 +1261,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromPageId(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				$this->testPage->getId(),
 				$this->testPage->getLatest()
 			)
@@ -1280,7 +1280,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevEquals(
 			$this->testPage->getRevision()->getPrevious(),
 			Revision::loadFromPageId(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				$this->testPage->getId(),
 				$this->testPage->getRevision()->getPrevious()->getId()
 			)
@@ -1296,7 +1296,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
-			Revision::loadFromTitle( wfGetDB( DB_MASTER ), $this->testPage->getTitle() )
+			Revision::loadFromTitle( wfGetDB( DB_PRIMARY ), $this->testPage->getTitle() )
 		);
 	}
 
@@ -1310,7 +1310,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromTitle(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				$this->testPage->getTitle(),
 				$this->testPage->getLatest()
 			)
@@ -1329,7 +1329,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevEquals(
 			$this->testPage->getRevision()->getPrevious(),
 			Revision::loadFromTitle(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				$this->testPage->getTitle(),
 				$this->testPage->getRevision()->getPrevious()->getId()
 			)
@@ -1347,7 +1347,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevEquals(
 			$this->testPage->getRevision(),
 			Revision::loadFromTimestamp(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				$this->testPage->getTitle(),
 				$this->testPage->getRevision()->getTimestamp()
 			)
@@ -1362,7 +1362,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			[],
 			Revision::getParentLengths(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				[]
 			)
 		);
@@ -1382,7 +1382,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			[ $rev[1] => $textLength ],
 			Revision::getParentLengths(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				[ $rev[1] ]
 			)
 		);
@@ -1406,7 +1406,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame(
 			[ $rev[1] => $textOneLength, $rev[2] => $textTwoLength ],
 			Revision::getParentLengths(
-				wfGetDB( DB_MASTER ),
+				wfGetDB( DB_PRIMARY ),
 				[ $rev[1], $rev[2] ]
 			)
 		);
@@ -1639,7 +1639,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 		$this->overrideMwServices();
 		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
 		$this->setService( 'MainWANObjectCache', $cache );
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 
 		$now = 1553893742;
 		$cache->setMockTime( $now );
@@ -1672,7 +1672,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 
 	public function testNewKnownCurrent_withPageId() {
 		$this->hideDeprecated( 'WikiPage::getRevision' );
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 
 		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
 		$rev = $this->testPage->getRevision();
@@ -1685,7 +1685,7 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewKnownCurrent_returnsFalseWhenTitleDoesntExist() {
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 		$this->hideDeprecated( 'Revision::newKnownCurrent' );
 		$this->assertFalse( Revision::newKnownCurrent( $db, 0 ) );
 	}

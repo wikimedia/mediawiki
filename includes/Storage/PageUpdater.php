@@ -1104,7 +1104,7 @@ class PageUpdater {
 			return Status::newFatal( 'edit-gone-missing' );
 		}
 
-		$dbw = $this->getDBConnectionRef( DB_MASTER );
+		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
 		$slots = $this->revisionStore->updateslotsOn( $revision, $this->slotsUpdate, $dbw );
@@ -1205,7 +1205,7 @@ class PageUpdater {
 
 		$legacyUser = self::toLegacyUser( $user );
 
-		$dbw = $this->getDBConnectionRef( DB_MASTER );
+		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 
 		if ( $changed ) {
 			$dbw->startAtomic( __METHOD__ );
@@ -1367,7 +1367,7 @@ class PageUpdater {
 		$this->buildEditResult( $newRevisionRecord, true );
 		$now = $newRevisionRecord->getTimestamp();
 
-		$dbw = $this->getDBConnectionRef( DB_MASTER );
+		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
 		// Add the page record unless one already exists for the title

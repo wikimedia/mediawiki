@@ -68,7 +68,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	 */
 	public function doUpdate() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$dbw = $lb->getConnectionRef( DB_MASTER );
+		$dbw = $lb->getConnectionRef( DB_PRIMARY );
 		$fname = __METHOD__;
 
 		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname ) {

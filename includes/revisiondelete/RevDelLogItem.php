@@ -61,7 +61,7 @@ class RevDelLogItem extends RevDelItem {
 	}
 
 	public function setBits( $bits ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$dbw->update( 'logging',
 			[ 'log_deleted' => $bits ],

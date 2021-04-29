@@ -134,7 +134,7 @@ class TestUser {
 			throw new MWException( "Passed User has not been added to the database yet!" );
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$row = $dbw->selectRow(
 			'user',
 			[ 'user_password' ],

@@ -111,7 +111,7 @@ class RevDelFileItem extends RevDelItem {
 		}
 
 		# Do the database operations
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update( 'oldimage',
 			[ 'oi_deleted' => $bits ],
 			[

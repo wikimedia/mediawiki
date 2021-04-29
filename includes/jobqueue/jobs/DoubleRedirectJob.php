@@ -64,7 +64,7 @@ class DoubleRedirectJob extends Job {
 	 */
 	public static function fixRedirects( $reason, $redirTitle, $destTitle = false ) {
 		# Need to use the master to get the redirect table updated in the same transaction
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$res = $dbw->select(
 			[ 'redirect', 'page' ],
 			[ 'page_namespace', 'page_title' ],
@@ -189,7 +189,7 @@ class DoubleRedirectJob extends Job {
 	 *  the page is not a redirect or the redirect loops.
 	 */
 	public static function getFinalDestination( $title ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		// Circular redirect check
 		$seenTitles = [];

@@ -978,12 +978,12 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$lb = ( $shardIndex === self::SHARD_LOCAL ) ? $this->localKeyLb : $this->globalKeyLb;
 		if ( $lb->getServerAttributes( $lb->getWriterIndex() )[Database::ATTR_DB_LEVEL_LOCKING] ) {
 			// Use the main connection to avoid transaction deadlocks
-			$conn = $lb->getMaintenanceConnectionRef( DB_MASTER );
+			$conn = $lb->getMaintenanceConnectionRef( DB_PRIMARY );
 		} else {
 			// If the RDBMs has row/table/page level locking, then use separate auto-commit
 			// connection to avoid needless contention and deadlocks.
 			$conn = $lb->getMaintenanceConnectionRef(
-				$this->replicaOnly ? DB_REPLICA : DB_MASTER, [],
+				$this->replicaOnly ? DB_REPLICA : DB_PRIMARY, [],
 				false,
 				$lb::CONN_TRX_AUTOCOMMIT
 			);

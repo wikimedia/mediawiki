@@ -70,7 +70,7 @@ class ImportableOldRevisionImporter implements OldRevisionImporter {
 
 	/** @inheritDoc */
 	public function import( ImportableOldRevision $importableRevision, $doUpdates = true ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		# Sneak a single revision into place
 		$user = $importableRevision->getUserObj() ?: User::newFromName( $importableRevision->getUser() );

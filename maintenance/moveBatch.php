@@ -79,7 +79,7 @@ class MoveBatch extends Maintenance {
 		$wgUser = $user;
 
 		# Setup complete, now start
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		for ( $linenum = 1; !feof( $file ); $linenum++ ) {
 			$line = fgets( $file );
 			if ( $line === false ) {

@@ -141,7 +141,7 @@ class LCStoreDB implements LCStore {
 					throw new MWException( __CLASS__ . ': failed to obtain a DB connection' );
 				}
 			} else {
-				$this->dbw = wfGetDB( DB_MASTER );
+				$this->dbw = wfGetDB( DB_PRIMARY );
 			}
 		}
 

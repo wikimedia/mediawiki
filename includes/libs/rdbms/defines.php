@@ -26,5 +26,5 @@ define( 'DB_REPLICA', ILoadBalancer::DB_REPLICA );
 /** @since 1.36 */
 define( 'DB_PRIMARY', ILoadBalancer::DB_PRIMARY );
 /** @deprecated since 1.36, Use DB_PRIMARY instead */
-define( 'DB_MASTER', ILoadBalancer::DB_MASTER );
+define( 'DB_MASTER', ILoadBalancer::DB_PRIMARY );
 /** @} */

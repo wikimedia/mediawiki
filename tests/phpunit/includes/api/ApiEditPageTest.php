@@ -498,7 +498,7 @@ class ApiEditPageTest extends ApiTestCase {
 	 * @param string|int $timestamp
 	 */
 	protected function forceRevisionDate( WikiPage $page, $timestamp ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$dbw->update( 'revision',
 			[ 'rev_timestamp' => $dbw->timestamp( $timestamp ) ],
@@ -701,7 +701,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$revId3 = $this->editPage( $name, '3' )->value['revision-record']->getId();
 
 		// Make the middle revision disappear
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->delete( 'revision', [ 'rev_id' => $revId2 ], __METHOD__ );
 		$dbw->update( 'revision', [ 'rev_parent_id' => $revId1 ],
 			[ 'rev_id' => $revId3 ], __METHOD__ );
@@ -767,7 +767,7 @@ class ApiEditPageTest extends ApiTestCase {
 		$revId1 = $this->editPage( $name, '1' )->value['revision-record']->getId();
 
 		// Now monkey with the timestamp
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update(
 			'revision',
 			[ 'rev_timestamp' => $dbw->timestamp( time() - 86400 ) ],
@@ -1397,7 +1397,7 @@ class ApiEditPageTest extends ApiTestCase {
 			'tags' => 'custom tag',
 		] )[0]['edit']['newrevid'];
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame( 'custom tag', $dbw->selectField(
 			[ 'change_tag', 'change_tag_def' ],
 			'ctd_name',

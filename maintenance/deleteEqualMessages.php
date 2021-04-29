@@ -182,7 +182,7 @@ class DeleteEqualMessages extends Maintenance {
 
 		// Handle deletion
 		$this->output( "\n...deleting equal messages (this may take a long time!)..." );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$wikiPageFactory = $services->getWikiPageFactory();
 		foreach ( $messageInfo['results'] as $result ) {

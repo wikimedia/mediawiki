@@ -132,7 +132,7 @@ class CleanupUsersWithNoId extends LoggedUpdateMaintenance {
 			return;
 		}
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( !$dbw->fieldExists( $table, $idField, __METHOD__ ) ||
 			!$dbw->fieldExists( $table, $nameField, __METHOD__ )
 		) {

@@ -31,7 +31,7 @@ class SiteStatsUpdateTest extends MediaWikiIntegrationTestCase {
 	public function testDoUpdate() {
 		$this->setMwGlobals( 'wgSiteStatsAsyncFactor', false );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$statsInit = new SiteStatsInit( $dbw );
 		$statsInit->refresh();
 

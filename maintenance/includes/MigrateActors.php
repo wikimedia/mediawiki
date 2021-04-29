@@ -60,7 +60,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		if ( $this->doTable( 'user' ) ) {
 			$this->output( "Creating actor entries for all registered users\n" );
 			$end = 0;
-			$dbw = $this->getDB( DB_MASTER );
+			$dbw = $this->getDB( DB_PRIMARY );
 			$max = $dbw->selectField( 'user', 'MAX(user_id)', '', __METHOD__ );
 			$count = 0;
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
@@ -259,7 +259,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			return 0;
 		}
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( !$dbw->fieldExists( $table, $userField, __METHOD__ ) ) {
 			$this->output( "No need to migrate $table.$userField, field does not exist\n" );
 			return 0;
@@ -367,7 +367,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			return 0;
 		}
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( !$dbw->fieldExists( $table, $userField, __METHOD__ ) ) {
 			$this->output( "No need to migrate $table.$userField, field does not exist\n" );
 			return 0;
@@ -471,7 +471,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lbFactory->waitForReplication();
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$countInserted = 0;
 		$countActors = 0;
 		$countErrors = 0;

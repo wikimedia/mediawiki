@@ -19,7 +19,7 @@ class DeleteTag extends Maintenance {
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$services = MediaWikiServices::getInstance();
 		$defStore = $services->getChangeTagDefStore();
 		$lbFactory = $services->getDBLoadBalancerFactory();

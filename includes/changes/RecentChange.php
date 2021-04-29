@@ -407,7 +407,7 @@ class RecentChange implements Taggable {
 	public function save( $send = self::SEND_FEED ) {
 		global $wgPutIPinRC, $wgUseEnotif, $wgShowUpdatedMarker;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		if ( !is_array( $this->mExtra ) ) {
 			$this->mExtra = [];
 		}
@@ -673,7 +673,7 @@ class RecentChange implements Taggable {
 	 * @return int Number of affected rows
 	 */
 	public function reallyMarkPatrolled() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update(
 			'recentchanges',
 			[
@@ -779,7 +779,7 @@ class RecentChange implements Taggable {
 				$rc->save();
 			},
 			DeferredUpdates::POSTSEND,
-			wfGetDB( DB_MASTER )
+			wfGetDB( DB_PRIMARY )
 		);
 
 		return $rc;
@@ -859,7 +859,7 @@ class RecentChange implements Taggable {
 				$rc->save();
 			},
 			DeferredUpdates::POSTSEND,
-			wfGetDB( DB_MASTER )
+			wfGetDB( DB_PRIMARY )
 		);
 
 		return $rc;

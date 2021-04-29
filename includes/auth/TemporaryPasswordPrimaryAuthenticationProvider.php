@@ -240,7 +240,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return \StatusValue::newGood( 'ignored' );
 		}
 
-		$row = wfGetDB( DB_MASTER )->selectRow(
+		$row = wfGetDB( DB_PRIMARY )->selectRow(
 			'user',
 			[ 'user_id', 'user_newpass_time' ],
 			[ 'user_name' => $username ],
@@ -297,7 +297,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$sendMail = false;
 		if ( $req->action !== AuthManager::ACTION_REMOVE &&
@@ -396,7 +396,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 
 		if ( $mailpassword ) {
 			// Send email after DB commit
-			wfGetDB( DB_MASTER )->onTransactionCommitOrIdle(
+			wfGetDB( DB_PRIMARY )->onTransactionCommitOrIdle(
 				function () use ( $user, $creator, $req ) {
 					$this->sendNewAccountEmail( $user, $creator, $req->password );
 				},
