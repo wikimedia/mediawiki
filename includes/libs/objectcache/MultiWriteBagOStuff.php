@@ -93,7 +93,8 @@ class MultiWriteBagOStuff extends BagOStuff {
 				$this->caches[] = ObjectFactory::getObjectFromSpec( $cacheInfo );
 			}
 		}
-		$this->mergeFlagMaps( $this->caches );
+
+		$this->attrMap = $this->mergeFlagMaps( $this->caches );
 
 		$this->asyncWrites = (
 			isset( $params['replication'] ) &&
