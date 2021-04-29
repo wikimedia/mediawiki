@@ -3348,6 +3348,8 @@
 	"tag-mw-reverted-description": "Modificationes que ha essite disfacite per un altere modification",
 	"tag-mw-server-side-upload": "Incargamento via servitor",
 	"tag-mw-server-side-upload-description": "Files multimedial que ha essite incargate via un script de mantenentia",
+	"tag-mw-add-media-description": "Modificationes que adde multimedia",
+	"tag-mw-remove-media-description": "Modificationes que remove multimedia",
 	"tags-title": "Etiquettas",
 	"tags-intro": "Iste pagina lista le etiquettas con le quales le software pote marcar un modification, e lor significato.",
 	"tags-tag": "Nomine del etiquetta",

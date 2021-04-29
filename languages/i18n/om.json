@@ -587,6 +587,8 @@
 	"monthsall": "hunda",
 	"signature": "[[{{ns:user}}:$1|$2]] ([[{{ns:user_talk}}:$1|dubbadhu]])",
 	"specialpages": "Fuulota addaa",
+	"tag-mw-add-media-description": "Miidiyaa dabalame gulaali",
+	"tag-mw-remove-media-description": "Miidiyaa haqame guaali",
 	"logentry-move-move": "$1n fuula $3 gara $4 itti {{GENDER:$2|oofe}}",
 	"logentry-newusers-create": "Eenyummeessaa fayyadama $1 {{GENDER:$2|uumame}}",
 	"logentry-upload-upload": "$1 $3 {{GENDER:$2|fe'e}}",

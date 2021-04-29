@@ -879,6 +879,8 @@
 	"redirect-file": "koliguyuli",
 	"specialpages": "Yaɣa gahinda",
 	"tag-list-wrapper": "[[Special:Tags|{{PLURAL:$1|Tag|Tags}}]]: $2",
+	"tag-mw-add-media-description": "Malisabi din pahiri anfooninima bee ninyula.",
+	"tag-mw-remove-media-description": "Malisabi din yihiri anfoonimima bee ninyula.",
 	"tags-active-yes": "Eii",
 	"tags-active-no": "Aayi",
 	"tags-hitcount": "$1{{PLURAL:$1taɣbu|taɣbu}}",
