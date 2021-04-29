@@ -1127,9 +1127,24 @@ class Linker {
 			$link = wfMessage( 'rev-deleted-user' )->escaped();
 		}
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
-			return '<span class="history-deleted">' . $link . '</span>';
+			$class = self::getRevisionDeletedClass( $revRecord );
+			return '<span class="' . $class . '">' . $link . '</span>';
 		}
 		return $link;
+	}
+
+	/**
+	 * Returns css class of a deleted revision
+	 * @param RevisionRecord $revisionRecord
+	 * @return string 'history-deleted', 'mw-history-suppressed' added if suppressed too
+	 * @since 1.37
+	 */
+	public static function getRevisionDeletedClass( RevisionRecord $revisionRecord ) : string {
+		$class = 'history-deleted';
+		if ( $revisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
+			$class .= ' mw-history-suppressed';
+		}
+		return $class;
 	}
 
 	/**
@@ -1174,7 +1189,8 @@ class Linker {
 		}
 
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_USER ) ) {
-			return ' <span class="history-deleted mw-userlink">' . $link . '</span>';
+			$class = self::getRevisionDeletedClass( $revRecord );
+			return ' <span class="' . $class . ' mw-userlink">' . $link . '</span>';
 		}
 		return $link;
 	}
@@ -1638,7 +1654,8 @@ class Linker {
 			$block = " <span class=\"comment\">" . wfMessage( 'rev-deleted-comment' )->escaped() . "</span>";
 		}
 		if ( $revRecord->isDeleted( RevisionRecord::DELETED_COMMENT ) ) {
-			return " <span class=\"history-deleted comment\">$block</span>";
+			$class = self::getRevisionDeletedClass( $revRecord );
+			return " <span class=\"$class comment\">$block</span>";
 		}
 		return $block;
 	}

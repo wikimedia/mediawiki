@@ -444,7 +444,8 @@ class ChangesList extends ContextSource {
 			$link = htmlspecialchars( $date );
 		}
 		if ( $rev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
-			$link = "<span class=\"history-deleted mw-changeslist-date\">$link</span>";
+			$deletedClass = Linker::getRevisionDeletedClass( $rev );
+			$link = "<span class=\"$deletedClass mw-changeslist-date\">$link</span>";
 		}
 		return $link;
 	}
@@ -560,7 +561,11 @@ class ChangesList extends ContextSource {
 			$params
 		);
 		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_TEXT ) ) {
-			$articlelink = '<span class="history-deleted">' . $articlelink . '</span>';
+			$class = 'history-deleted';
+			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$class .= ' mw-history-suppressed';
+			}
+			$articlelink = '<span class="' . $class . '">' . $articlelink . '</span>';
 		}
 		# To allow for boldening pages watched by this user
 		$articlelink = "<span class=\"mw-title\">{$articlelink}</span>";
@@ -655,7 +660,11 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertUserRelatedLinks( &$s, &$rc ) {
 		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_USER ) ) {
-			$s .= ' <span class="history-deleted">' .
+			$deletedClass = 'history-deleted';
+			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$deletedClass = ' mw-history-suppressed';
+			}
+			$s .= ' <span class="' . $deletedClass . '">' .
 				$this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		} else {
 			$s .= $this->getLanguage()->getDirMark() . Linker::userLink( $rc->mAttribs['rc_user'],
@@ -694,7 +703,11 @@ class ChangesList extends ContextSource {
 	 */
 	public function insertComment( $rc ) {
 		if ( $this->isDeleted( $rc, RevisionRecord::DELETED_COMMENT ) ) {
-			return ' <span class="history-deleted comment">' .
+			$deletedClass = 'history-deleted';
+			if ( $this->isDeleted( $rc, RevisionRecord::DELETED_RESTRICTED ) ) {
+				$deletedClass .= ' mw-history-suppressed';
+			}
+			return ' <span class="' . $deletedClass . ' comment">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
 		} else {
 			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle(),
