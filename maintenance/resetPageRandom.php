@@ -47,7 +47,7 @@ class ResetPageRandom extends Maintenance {
 
 	public function execute() {
 		$batchSize = $this->getBatchSize();
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$lbFactory = \MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$dbr = $this->getDB( DB_REPLICA );
 		$from = wfTimestampOrNull( TS_MW, $this->getOption( 'from' ) );

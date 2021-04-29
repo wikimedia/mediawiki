@@ -787,7 +787,7 @@ class JobQueueDB extends JobQueue {
 	 */
 	protected function getMasterDB() {
 		try {
-			return $this->getDB( DB_MASTER );
+			return $this->getDB( DB_PRIMARY );
 		} catch ( DBConnectionError $e ) {
 			throw new JobQueueConnectionError( "DBConnectionError:" . $e->getMessage() );
 		}

@@ -66,7 +66,7 @@ abstract class ChangeTagsList extends RevisionListBase {
 	 * Reload the list data from the master DB.
 	 */
 	public function reloadFromMaster() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->res = $this->doQuery( $dbw );
 	}
 

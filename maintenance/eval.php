@@ -47,7 +47,7 @@ if ( isset( $options['d'] ) ) {
 		MediaWikiServices::resetGlobalInstance();
 	}
 	if ( $d > 1 ) {
-		wfGetDB( DB_MASTER )->setFlag( DBO_DEBUG );
+		wfGetDB( DB_PRIMARY )->setFlag( DBO_DEBUG );
 		wfGetDB( DB_REPLICA )->setFlag( DBO_DEBUG );
 	}
 }

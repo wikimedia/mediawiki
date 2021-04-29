@@ -956,7 +956,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			'wgExperiencedUserMemberSince' => 30,
 		] );
 
-		$db = wfGetDB( DB_MASTER );
+		$db = wfGetDB( DB_PRIMARY );
 		$userQuery = User::getQueryInfo();
 		$row = $db->selectRow(
 			$userQuery['tables'],

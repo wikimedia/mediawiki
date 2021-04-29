@@ -65,7 +65,7 @@ class ConnectionManagerTest extends TestCase {
 
 		$lb->expects( $this->once() )
 			->method( 'getConnection' )
-			->with( DB_MASTER, [ 'group1' ], 'someDbName' )
+			->with( DB_PRIMARY, [ 'group1' ], 'someDbName' )
 			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );
@@ -123,7 +123,7 @@ class ConnectionManagerTest extends TestCase {
 
 		$lb->expects( $this->once() )
 			->method( 'getConnectionRef' )
-			->with( DB_MASTER, [ 'group1' ], 'someDbName' )
+			->with( DB_PRIMARY, [ 'group1' ], 'someDbName' )
 			->willReturn( $database );
 
 		$manager = new ConnectionManager( $lb, 'someDbName', [ 'group1' ] );

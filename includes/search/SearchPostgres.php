@@ -207,7 +207,7 @@ class SearchPostgres extends SearchDatabase {
 			" AND c.content_id = s.slot_content_id " .
 			" ORDER BY old_rev_text_id DESC OFFSET 1)";
 
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$dbw->query( $sql, __METHOD__ );
 
 		return true;

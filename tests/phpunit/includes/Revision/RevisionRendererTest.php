@@ -76,7 +76,7 @@ class RevisionRendererTest extends MediaWikiIntegrationTestCase {
 	 * @return RevisionRenderer
 	 */
 	private function newRevisionRenderer( $maxRev = 100, $useMaster = false ) {
-		$dbIndex = $useMaster ? DB_MASTER : DB_REPLICA;
+		$dbIndex = $useMaster ? DB_PRIMARY : DB_REPLICA;
 
 		$db = $this->getMockDatabaseConnection( $maxRev );
 

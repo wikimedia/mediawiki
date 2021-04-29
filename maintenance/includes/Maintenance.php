@@ -1283,7 +1283,7 @@ abstract class Maintenance {
 	 */
 	public function purgeRedundantText( $delete = true ) {
 		# Data should come off the master, wrapped in a transaction
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
 
 		# Get "active" text records via the content table

@@ -220,7 +220,7 @@ class RefreshLinks extends Maintenance {
 	 */
 	private function fixRedirect( $id ) {
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromID( $id );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		if ( $page === null ) {
 			// This page doesn't exist (any more)
@@ -341,7 +341,7 @@ class RefreshLinks extends Maintenance {
 	 * @param int $batchSize The size of deletion batches
 	 */
 	private function dfnCheckInterval( $start = null, $end = null, $batchSize = 100 ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
 
 		$linksTables = [

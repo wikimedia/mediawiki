@@ -63,7 +63,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$passwordFactory = MediaWikiServices::getInstance()->getPasswordFactory();
 		$passwordHash = $passwordFactory->newFromPlaintext( 'foobaz' );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->delete(
 			'bot_passwords',
 			[ 'bp_user' => [ 42, 43 ], 'bp_app_id' => 'BotPassword' ],
@@ -196,7 +196,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf( InvalidPassword::class, $password );
 
 		$bp = TestingAccessWrapper::newFromObject( BotPassword::newFromCentralId( 42, 'BotPassword' ) );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update(
 			'bot_passwords',
 			[ 'bp_password' => 'garbage' ],

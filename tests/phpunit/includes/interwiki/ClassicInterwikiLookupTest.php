@@ -9,7 +9,7 @@ use MediaWiki\MediaWikiServices;
 class ClassicInterwikiLookupTest extends MediaWikiIntegrationTestCase {
 
 	private function populateDB( $iwrows ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->delete( 'interwiki', '*', __METHOD__ );
 		$dbw->insert( 'interwiki', array_values( $iwrows ), __METHOD__ );
 		$this->tablesUsed[] = 'interwiki';

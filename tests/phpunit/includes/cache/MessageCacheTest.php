@@ -120,7 +120,7 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$uckey = MediaWikiServices::getInstance()->getContentLanguage()->ucfirst( $message );
 		$oldText = $messageCache->get( $message ); // "Ausführen"
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ ); // simulate request and block deferred updates
 		$messageCache->replace( $uckey, 'Allez!' );
 		$this->assertEquals( 'Allez!',

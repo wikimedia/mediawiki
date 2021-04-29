@@ -185,6 +185,6 @@ class DBFileJournal extends FileJournal {
 	protected function getMasterDB() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 
-		return $lb->getConnectionRef( DB_MASTER, [], $this->domain, $lb::CONN_TRX_AUTOCOMMIT );
+		return $lb->getConnectionRef( DB_PRIMARY, [], $this->domain, $lb::CONN_TRX_AUTOCOMMIT );
 	}
 }

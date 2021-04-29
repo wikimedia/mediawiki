@@ -85,7 +85,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * @param ILBFactory $lbFactory
 	 */
 	private function rebuildRecentChangesTablePass1( ILBFactory $lbFactory ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$commentStore = CommentStore::getStore();
 
 		if ( $this->hasOption( 'from' ) && $this->hasOption( 'to' ) ) {
@@ -192,7 +192,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * @param ILBFactory $lbFactory
 	 */
 	private function rebuildRecentChangesTablePass2( ILBFactory $lbFactory ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$this->output( "Updating links and size differences...\n" );
 
@@ -286,7 +286,7 @@ class RebuildRecentchanges extends Maintenance {
 	private function rebuildRecentChangesTablePass3( ILBFactory $lbFactory ) {
 		global $wgLogRestrictions, $wgFilterLogTypes;
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$commentStore = CommentStore::getStore();
 		$nonRCLogs = array_merge( array_keys( $wgLogRestrictions ),
 			array_keys( $wgFilterLogTypes ),
@@ -403,7 +403,7 @@ class RebuildRecentchanges extends Maintenance {
 	private function rebuildRecentChangesTablePass4( ILBFactory $lbFactory ) {
 		global $wgUseRCPatrol, $wgUseNPPatrol, $wgUseFilePatrol, $wgMiserMode;
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		# @FIXME: recognize other bot account groups (not the same as users with 'bot' rights)
 		# @NOTE: users with 'bot' rights choose when edits are bot edits or not. That information
@@ -468,7 +468,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * @param ILBFactory $lbFactory
 	 */
 	private function rebuildRecentChangesTablePass5( ILBFactory $lbFactory ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$this->output( "Removing duplicate revision and logging entries...\n" );
 

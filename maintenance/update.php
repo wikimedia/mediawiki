@@ -139,7 +139,7 @@ class UpdateMediaWiki extends Maintenance {
 
 		# Attempt to connect to the database as a privileged user
 		# This will vomit up an error if there are permissions problems
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 
 		# Check to see whether the database server meets the minimum requirements
 		/** @var DatabaseInstaller $dbInstallerClass */

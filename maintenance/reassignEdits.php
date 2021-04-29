@@ -76,7 +76,7 @@ class ReassignEdits extends Maintenance {
 	 * @return int Number of entries changed, or that would be changed
 	 */
 	private function doReassignEdits( &$from, &$to, $rc = false, $report = false ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
 		$actorNormalization = MediaWikiServices::getInstance()->getActorNormalization();
 		$fromActorId = $actorNormalization->findActorId( $from, $dbw );

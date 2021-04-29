@@ -86,7 +86,7 @@ class RemoveUnusedAccounts extends Maintenance {
 		# If required, go back and delete each marked account
 		if ( $count > 0 && $this->hasOption( 'delete' ) ) {
 			$this->output( "\nDeleting unused accounts..." );
-			$dbw = $this->getDB( DB_MASTER );
+			$dbw = $this->getDB( DB_PRIMARY );
 			$dbw->delete( 'user', [ 'user_id' => $delUser ], __METHOD__ );
 			# Keep actor rows referenced from ipblocks
 			$keep = $dbw->selectFieldValues(
@@ -136,7 +136,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			return true;
 		}
 
-		$dbo = $this->getDB( $master ? DB_MASTER : DB_REPLICA );
+		$dbo = $this->getDB( $master ? DB_PRIMARY : DB_REPLICA );
 		$checks = [
 			'archive' => 'ar',
 			'image' => 'img',

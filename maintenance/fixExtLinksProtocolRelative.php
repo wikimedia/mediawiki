@@ -49,7 +49,7 @@ class FixExtLinksProtocolRelative extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 		if ( !$db->tableExists( 'externallinks', __METHOD__ ) ) {
 			$this->error( "externallinks table does not exist" );
 

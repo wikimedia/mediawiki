@@ -12,7 +12,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	public function addDBDataOnce() {
 		global $IP;
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
+		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		if ( $db->getType() !== 'mysql' ) {
 			return;
 		}
@@ -24,7 +24,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_MASTER );
+		$db = MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 		if ( $db->getType() !== 'mysql' ) {
 			$this->markTestSkipped( 'No filejournal schema available for this database type' );
 		}

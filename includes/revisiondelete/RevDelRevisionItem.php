@@ -99,7 +99,7 @@ class RevDelRevisionItem extends RevDelItem {
 	public function setBits( $bits ) {
 		$revRecord = $this->getRevisionRecord();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		// Update revision table
 		$dbw->update( 'revision',
 			[ 'rev_deleted' => $bits ],

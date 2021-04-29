@@ -130,7 +130,7 @@ class UploadStash {
 			if ( !$this->fetchFileMetadata( $key ) ) {
 				// If nothing was received, it's likely due to replication lag.
 				// Check the master to see if the record is there.
-				$this->fetchFileMetadata( $key, DB_MASTER );
+				$this->fetchFileMetadata( $key, DB_PRIMARY );
 			}
 
 			if ( !isset( $this->fileMetadata[$key] ) ) {
@@ -511,7 +511,7 @@ class UploadStash {
 	protected function fetchFileMetadata( $key, $readFromDB = DB_REPLICA ) {
 		// populate $fileMetadata[$key]
 		$dbr = null;
-		if ( $readFromDB === DB_MASTER ) {
+		if ( $readFromDB === DB_PRIMARY ) {
 			// sometimes reading from the master is necessary, if there's replication lag.
 			$dbr = $this->repo->getMasterDB();
 		} else {

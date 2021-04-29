@@ -316,7 +316,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			return false;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		if ( $this->expiryEnabled ) {
 			$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
@@ -553,7 +553,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$rows = $this->getTitleDbKeysGroupedByNamespace( $titles );
 		$this->uncacheTitlesForUser( $user, $titles );
 
-		$dbw = $this->getConnectionRef( DB_MASTER );
+		$dbw = $this->getConnectionRef( DB_PRIMARY );
 		$ticket = count( $titles ) > $this->updateRowsPerQuery ?
 			$this->lbFactory->getEmptyTransactionTicket( __METHOD__ ) : null;
 		$affectedRows = 0;
@@ -831,7 +831,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$options += [ 'forWrite' => false ];
 		$vars = [ 'wl_namespace', 'wl_title', 'wl_notificationtimestamp' ];
 		$dbOptions = [];
-		$db = $this->getConnectionRef( $options['forWrite'] ? DB_MASTER : DB_REPLICA );
+		$db = $this->getConnectionRef( $options['forWrite'] ? DB_PRIMARY : DB_REPLICA );
 		if ( array_key_exists( 'sort', $options ) ) {
 			Assert::parameter(
 				( in_array( $options['sort'], [ self::SORT_ASC, self::SORT_DESC ] ) ),
@@ -1110,7 +1110,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$this->uncache( $user, $target );
 		}
 
-		$dbw = $this->getConnectionRef( DB_MASTER );
+		$dbw = $this->getConnectionRef( DB_PRIMARY );
 		$ticket = count( $targets ) > $this->updateRowsPerQuery ?
 			$this->lbFactory->getEmptyTransactionTicket( __METHOD__ ) : null;
 		$affectedRows = 0;
@@ -1261,7 +1261,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$rows = $this->getTitleDbKeysGroupedByNamespace( $targets );
 
-		$dbw = $this->getConnectionRef( DB_MASTER );
+		$dbw = $this->getConnectionRef( DB_PRIMARY );
 		if ( $timestamp !== null ) {
 			$timestamp = $dbw->timestamp( $timestamp );
 		}
@@ -1363,7 +1363,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		$target,
 		$timestamp
 	) {
-		$dbw = $this->getConnectionRef( DB_MASTER );
+		$dbw = $this->getConnectionRef( DB_PRIMARY );
 		$selectTables = [ 'watchlist' ];
 		$selectConds = [
 			'wl_user != ' . $editor->getId(),
@@ -1399,7 +1399,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			call_user_func(
 				$this->deferredUpdatesAddCallableUpdateCallback,
 				function () use ( $timestamp, $watchers, $target, $fname ) {
-					$dbw = $this->getConnectionRef( DB_MASTER );
+					$dbw = $this->getConnectionRef( DB_PRIMARY );
 					$ticket = $this->lbFactory->getEmptyTransactionTicket( $fname );
 
 					$watchersChunks = array_chunk( $watchers, $this->updateRowsPerQuery );
@@ -1693,7 +1693,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 * @param LinkTarget|PageIdentity $newTarget deprecated passing LinkTarget since 1.36
 	 */
 	public function duplicateEntry( $oldTarget, $newTarget ) {
-		$dbw = $this->getConnectionRef( DB_MASTER );
+		$dbw = $this->getConnectionRef( DB_PRIMARY );
 		$result = $this->fetchWatchedItemsForPage( $dbw, $oldTarget );
 		$newNamespace = $newTarget->getNamespace();
 		$newDBkey = $newTarget->getDBkey();
@@ -1859,7 +1859,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	 */
 	public function removeExpired( int $limit, bool $deleteOrphans = false ): void {
 		$dbr = $this->getConnectionRef( DB_REPLICA );
-		$dbw = $this->getConnectionRef( DB_MASTER );
+		$dbw = $this->getConnectionRef( DB_PRIMARY );
 		$ticket = $this->lbFactory->getEmptyTransactionTicket( __METHOD__ );
 
 		// Get a batch of watchlist IDs to delete.

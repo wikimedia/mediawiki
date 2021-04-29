@@ -69,7 +69,7 @@ TEXT
 	}
 
 	public function execute() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$dbr = $this->getDB( DB_REPLICA );
 		$force = $this->getOption( 'force' );
 		$dryRun = $this->getOption( 'dry-run' );

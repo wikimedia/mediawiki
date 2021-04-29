@@ -154,7 +154,7 @@ class CheckStorage {
 					// It's safe to just erase the old_flags field
 					if ( $fix ) {
 						$this->addError( 'fixed', "Warning: old_flags set to 0", $id );
-						$dbw = wfGetDB( DB_MASTER );
+						$dbw = wfGetDB( DB_PRIMARY );
 						$dbw->ping();
 						$dbw->update( 'text', [ 'old_flags' => '' ],
 							[ 'old_id' => $id ], __METHOD__ );
@@ -496,7 +496,7 @@ class CheckStorage {
 		}
 
 		$dbr = wfGetDB( DB_REPLICA );
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr->ping();
 		$dbw->ping();
 
@@ -567,7 +567,7 @@ class CheckStorage {
 		$flags = $blobStore->compressData( $text );
 
 		// Update the text row
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update( 'text',
 			[ 'old_flags' => $flags, 'old_text' => $text ],
 			[ 'old_id' => $oldId ],

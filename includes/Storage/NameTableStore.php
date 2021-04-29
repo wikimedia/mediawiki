@@ -200,7 +200,7 @@ class NameTableStore {
 				$searchResult = $id;
 
 				// As store returned an ID we know we inserted so delete from WAN cache
-				$dbw = $this->getDBConnection( DB_MASTER );
+				$dbw = $this->getDBConnection( DB_PRIMARY );
 				$dbw->onTransactionPreCommitOrIdle( function () {
 					$this->cache->delete( $this->getCacheKey() );
 				}, __METHOD__ );
@@ -230,7 +230,7 @@ class NameTableStore {
 			$connFlags = 0;
 		}
 
-		$dbw = $this->getDBConnection( DB_MASTER, $connFlags );
+		$dbw = $this->getDBConnection( DB_PRIMARY, $connFlags );
 		$this->tableCache = $this->loadTable( $dbw );
 		$dbw->onTransactionPreCommitOrIdle( function () {
 			$this->cache->reap( $this->getCacheKey(), INF );
@@ -295,9 +295,9 @@ class NameTableStore {
 					return $oldValue;
 				}
 				// Regenerate from replica DB, and master DB if needed
-				foreach ( [ DB_REPLICA, DB_MASTER ] as $source ) {
+				foreach ( [ DB_REPLICA, DB_PRIMARY ] as $source ) {
 					// Log a fallback to master
-					if ( $source === DB_MASTER ) {
+					if ( $source === DB_PRIMARY ) {
 						$this->logger->info(
 							$fname . ' falling back to master select from ' .
 							$this->table . ' with id ' . $id
@@ -399,7 +399,7 @@ class NameTableStore {
 		Assert::parameter( $name !== '', '$name', 'should not be an empty string' );
 		// Note: this is only called internally so normalization of $name has already occurred.
 
-		$dbw = $this->getDBConnection( DB_MASTER );
+		$dbw = $this->getDBConnection( DB_PRIMARY );
 
 		$id = null;
 		$dbw->doAtomicSection(

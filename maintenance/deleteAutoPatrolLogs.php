@@ -189,7 +189,7 @@ class DeleteAutoPatrolLogs extends Maintenance {
 
 	private function deleteRows( array $rows ) {
 		$dbw = MediaWiki\MediaWikiServices::getInstance()->getDBLoadBalancer()->getConnection(
-			DB_MASTER
+			DB_PRIMARY
 		);
 
 		$dbw->delete(

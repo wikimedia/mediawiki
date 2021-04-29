@@ -244,7 +244,7 @@ class EditResultBuilder {
 		// We use master just in case we encounter replication lag.
 		// This is mostly for cases where a revert is applied rapidly after someone saves
 		// the previous edit.
-		$db = $this->loadBalancer->getConnection( DB_MASTER );
+		$db = $this->loadBalancer->getConnection( DB_PRIMARY );
 		$revQuery = $this->revisionStore->getQueryInfo();
 		$subquery = $db->buildSelectSubquery(
 			$revQuery['tables'],

@@ -90,7 +90,7 @@ class ApiSetNotificationTimestamp extends ApiBase {
 			);
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER, 'api' );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY, 'api' );
 
 		$timestamp = null;
 		if ( isset( $params['timestamp'] ) ) {

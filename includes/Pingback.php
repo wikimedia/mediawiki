@@ -151,7 +151,7 @@ class Pingback {
 			return false;
 		}
 
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		if ( !$dbw->lock( $this->key, __METHOD__, 0 ) ) {
 			// already in progress
 			return false;
@@ -227,7 +227,7 @@ class Pingback {
 			return $id;
 		}
 
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$id = $dbw->selectField( 'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
 		if ( $id !== false ) {
 			return $id;
@@ -272,7 +272,7 @@ class Pingback {
 	 * @throws DBError If timestamp upsert fails
 	 */
 	private function markSent() : void {
-		$dbw = $this->lb->getConnectionRef( DB_MASTER );
+		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$timestamp = ConvertibleTimestamp::time();
 		$dbw->upsert(
 			'updatelog',

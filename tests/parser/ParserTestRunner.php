@@ -1341,7 +1341,7 @@ class ParserTestRunner {
 		global $wgDBprefix;
 
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-		$this->db = $lb->getConnection( DB_MASTER );
+		$this->db = $lb->getConnection( DB_PRIMARY );
 
 		$suspiciousPrefixes = [ self::DB_PREFIX, MediaWikiIntegrationTestCase::DB_PREFIX ];
 		if ( in_array( $wgDBprefix, $suspiciousPrefixes ) ) {

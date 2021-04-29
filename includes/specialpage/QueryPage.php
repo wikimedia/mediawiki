@@ -367,7 +367,7 @@ abstract class QueryPage extends SpecialPage {
 		}
 
 		$fname = static::class . '::recache';
-		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_MASTER );
+		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
 
 		try {
 			# Do query
@@ -450,7 +450,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function delete( LinkTarget $title ) {
 		if ( $this->isCached() ) {
-			$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_MASTER );
+			$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
 			$dbw->delete( 'querycache', [
 				'qc_type' => $this->getName(),
 				'qc_namespace' => $title->getNamespace(),
@@ -466,7 +466,7 @@ abstract class QueryPage extends SpecialPage {
 	 */
 	public function deleteAllCachedData() {
 		$fname = static::class . '::' . __FUNCTION__;
-		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_MASTER );
+		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
 		$dbw->delete( 'querycache',
 			[ 'qc_type' => $this->getName() ],
 			$fname

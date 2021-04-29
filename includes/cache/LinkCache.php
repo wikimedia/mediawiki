@@ -275,7 +275,7 @@ class LinkCache {
 
 		// Cache template/file pages as they are less often viewed but heavily used
 		if ( $this->mForUpdate ) {
-			$row = $this->fetchPageRow( $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_MASTER ), $nt );
+			$row = $this->fetchPageRow( $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_PRIMARY ), $nt );
 		} elseif ( $this->isCacheable( $nt ) ) {
 			// These pages are often transcluded heavily, so cache them
 			$cache = $this->wanCache;

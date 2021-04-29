@@ -843,7 +843,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		);
 		if ( !$row ) {
 			// Try the master database...
-			$dbw = $loadBalancer->getConnectionRef( DB_MASTER );
+			$dbw = $loadBalancer->getConnectionRef( DB_PRIMARY );
 			$row = $dbw->selectRow(
 				$userQuery['tables'],
 				$userQuery['fields'],
@@ -1509,7 +1509,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		// Get a new user_touched that is higher than the old one
 		$newTouched = $this->newTouchedTimestamp();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update( 'user',
 			[ 'user_touched' => $dbw->timestamp( $newTouched ) ],
 			$this->makeUpdateConditions( $dbw, [
@@ -2335,7 +2335,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		if ( $mode === 'refresh' ) {
 			$cache->delete( $key, 1 ); // low tombstone/"hold-off" TTL
 		} else {
-			$lb->getConnectionRef( DB_MASTER )->onTransactionPreCommitOrIdle(
+			$lb->getConnectionRef( DB_PRIMARY )->onTransactionPreCommitOrIdle(
 				static function () use ( $cache, $key ) {
 					$cache->delete( $key );
 				},
@@ -3389,7 +3389,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		// check against race conditions and replica DB lag.
 		$newTouched = $this->newTouchedTimestamp();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) use ( $newTouched ) {
 			$dbw->update( 'user',
 				[ /* SET */
@@ -3503,7 +3503,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 				->loadUserOptions( $user, $user->queryFlagsUsed, $params['options'] );
 			unset( $params['options'] );
 		}
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$noPass = PasswordFactory::newInvalidPassword()->toString();
 
@@ -3578,7 +3578,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 		$this->mTouched = $this->newTouchedTimestamp();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$status = $dbw->doAtomicSection( __METHOD__, function ( IDatabase $dbw, $fname ) {
 			$noPass = PasswordFactory::newInvalidPassword()->toString();
 			$dbw->insert( 'user',

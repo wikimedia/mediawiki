@@ -226,7 +226,7 @@ class TalkPageNotificationManager {
 		}
 
 		// Mark the user as having new messages since this revision
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		list( $field, $id ) = $this->getQueryFieldAndId( $user );
 		$dbw->insert(
 			'user_newtalk',
@@ -249,7 +249,7 @@ class TalkPageNotificationManager {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		list( $field, $id ) = $this->getQueryFieldAndId( $user );
 		$dbw->delete(
 			'user_newtalk',

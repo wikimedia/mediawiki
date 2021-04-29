@@ -280,7 +280,7 @@ class DatabaseBlock extends AbstractBlock {
 		$fromMaster,
 		$vagueTarget = null
 	) {
-		$db = wfGetDB( $fromMaster ? DB_MASTER : DB_REPLICA );
+		$db = wfGetDB( $fromMaster ? DB_PRIMARY : DB_REPLICA );
 
 		if ( $specificType !== null ) {
 			$conds = [ 'ipb_address' => [ (string)$specificTarget ] ];
@@ -717,7 +717,7 @@ class DatabaseBlock extends AbstractBlock {
 			$this->setTimestamp( wfTimestamp() );
 			$this->setExpiry( self::getAutoblockExpiry( $this->getTimestamp() ) );
 
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_PRIMARY );
 			$dbw->update( 'ipblocks',
 				[ /* SET */
 					'ipb_timestamp' => $dbw->timestamp( $this->getTimestamp() ),
@@ -979,7 +979,7 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		if ( $fromMaster ) {
-			$db = wfGetDB( DB_MASTER );
+			$db = wfGetDB( DB_PRIMARY );
 		} else {
 			$db = wfGetDB( DB_REPLICA );
 		}

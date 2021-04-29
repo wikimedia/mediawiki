@@ -127,7 +127,7 @@ class RevisionRenderer {
 		$useMaster = $hints['use-master'] ?? false;
 
 		$dbIndex = $useMaster
-			? DB_MASTER // use latest values
+			? DB_PRIMARY // use latest values
 			: DB_REPLICA; // T154554
 
 		$options->setSpeculativeRevIdCallback( function () use ( $dbIndex ) {

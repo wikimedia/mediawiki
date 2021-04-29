@@ -173,7 +173,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 			$this->fatalError( "Charmap file $charmapFile did not contain any usable character mappings." );
 		}
 
-		$db = $this->getDB( $this->run ? DB_MASTER : DB_REPLICA );
+		$db = $this->getDB( $this->run ? DB_PRIMARY : DB_REPLICA );
 
 		// Process inplace moves first, before actual moves, so mungeTitle() doesn't get confused
 		$this->processTable(

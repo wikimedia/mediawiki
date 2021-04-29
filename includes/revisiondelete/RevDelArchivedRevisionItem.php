@@ -33,7 +33,7 @@ class RevDelArchivedRevisionItem extends RevDelArchiveItem {
 	}
 
 	public function setBits( $bits ) {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->update( 'archive',
 			[ 'ar_deleted' => $bits ],
 			[ 'ar_rev_id' => $this->row->ar_rev_id,

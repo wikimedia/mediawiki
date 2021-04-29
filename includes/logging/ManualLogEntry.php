@@ -271,7 +271,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	 * @throws MWException
 	 */
 	public function insert( IDatabase $dbw = null ) {
-		$dbw = $dbw ?: wfGetDB( DB_MASTER );
+		$dbw = $dbw ?: wfGetDB( DB_PRIMARY );
 
 		if ( $this->timestamp === null ) {
 			$this->timestamp = wfTimestampNow();
@@ -430,7 +430,7 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 				}
 			},
 			DeferredUpdates::POSTSEND,
-			wfGetDB( DB_MASTER )
+			wfGetDB( DB_PRIMARY )
 		);
 	}
 

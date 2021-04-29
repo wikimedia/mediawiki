@@ -165,7 +165,7 @@ class CleanupSpam extends Maintenance {
 			// This happens e.g. when a link comes from a template rather than the page itself
 			$this->output( "False match\n" );
 		} else {
-			$dbw = $this->getDB( DB_MASTER );
+			$dbw = $this->getDB( DB_PRIMARY );
 			$this->beginTransaction( $dbw, __METHOD__ );
 			$page = $services->getWikiPageFactory()->newFromTitle( $title );
 			if ( $rev ) {

@@ -65,7 +65,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory = new LBFactorySimple( [ 'servers' => $servers ] );
 		$lb = $factory->getMainLB();
 
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnection( DB_PRIMARY );
 		$this->assertEquals(
 			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
 
@@ -111,7 +111,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		] );
 		$lb = $factory->getMainLB();
 
-		$dbw = $lb->getConnection( DB_MASTER );
+		$dbw = $lb->getConnection( DB_PRIMARY );
 		$this->assertEquals(
 			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
 		$this->assertEquals(
@@ -135,7 +135,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testLBFactoryMultiConns() {
 		$factory = $this->newLBFactoryMultiLBs();
 
-		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
+		$dbw = $factory->getMainLB()->getConnection( DB_PRIMARY );
 		$this->assertEquals(
 			$dbw::ROLE_STREAMING_MASTER, $dbw->getTopologyRole(), 'master shows as master' );
 
@@ -160,7 +160,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$factory = $this->newLBFactoryMultiLBs();
 		$this->assertSame( 0, $countLBsFunc( $factory ) );
-		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
+		$dbw = $factory->getMainLB()->getConnection( DB_PRIMARY );
 		$this->assertSame( 1, $countLBsFunc( $factory ) );
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
 		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.
@@ -170,7 +170,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
 			// There is no s1wiki DB to select so it is not in getConnection(),
 			// but this fools getMainLB() at least.
-			$factory->getMainLB( 's1wiki' )->getConnection( DB_MASTER );
+			$factory->getMainLB( 's1wiki' )->getConnection( DB_PRIMARY );
 		} );
 		$factory->commitMasterChanges( __METHOD__ );
 		$this->assertSame( 1, $called );
@@ -181,7 +181,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$called = 0;
 		$factory = $this->newLBFactoryMultiLBs();
 		$this->assertSame( 0, $countLBsFunc( $factory ) );
-		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
+		$dbw = $factory->getMainLB()->getConnection( DB_PRIMARY );
 		$this->assertSame( 1, $countLBsFunc( $factory ) );
 		// Test that LoadBalancer instances made during pre-commit callbacks in do not
 		// throw DBTransactionError due to transaction ROUND_* stages being mismatched.hrow
@@ -193,7 +193,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			// Trigger s1 LoadBalancer instantiation during "finalize" stage.
 			// There is no s1wiki DB to select so it is not in getConnection(),
 			// but this fools getMainLB() at least.
-			$factory->getMainLB( 's1wiki' )->getConnection( DB_MASTER );
+			$factory->getMainLB( 's1wiki' )->getConnection( DB_PRIMARY );
 		} );
 		$factory->commitMasterChanges( __METHOD__ );
 		$this->assertSame( 1, $called );
@@ -202,7 +202,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$factory->closeAll();
 
 		$factory = $this->newLBFactoryMultiLBs();
-		$dbw = $factory->getMainLB()->getConnection( DB_MASTER );
+		$dbw = $factory->getMainLB()->getConnection( DB_PRIMARY );
 		// DBTransactionError should not be thrown
 		$ran = 0;
 		$dbw->onTransactionPreCommitOrIdle( static function () use ( &$ran ) {
@@ -428,7 +428,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testNiceDomains() {
 		global $wgDBname;
 
-		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
 			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
 			return;
 		}
@@ -439,7 +439,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$lb = $factory->getMainLB();
 
-		$db = $lb->getConnectionRef( DB_MASTER );
+		$db = $lb->getConnectionRef( DB_PRIMARY );
 		$this->assertEquals(
 			wfWikiID(),
 			$db->getDomainID()
@@ -447,7 +447,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		unset( $db );
 
 		/** @var IMaintainableDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
+		$db = $lb->getConnection( DB_PRIMARY, [], $lb::DOMAIN_ANY );
 
 		$this->assertSame(
 			'',
@@ -481,7 +481,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		$lb->reuseConnection( $db ); // don't care
 
-		$db = $lb->getConnection( DB_MASTER ); // local domain connection
+		$db = $lb->getConnection( DB_PRIMARY ); // local domain connection
 		$factory->setLocalDomainPrefix( 'my_' );
 
 		$this->assertEquals( $wgDBname, $db->getDBname() );
@@ -512,7 +512,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testTrickyDomain() {
 		global $wgDBname;
 
-		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
 			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
 			return;
 		}
@@ -526,7 +526,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$lb = $factory->getMainLB();
 		/** @var IMaintainableDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
+		$db = $lb->getConnection( DB_PRIMARY, [], $lb::DOMAIN_ANY );
 
 		$this->assertSame( '', $db->getDomainID(), "Null domain used" );
 
@@ -551,7 +551,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$lb->reuseConnection( $db ); // don't care
 
 		$factory->setLocalDomainPrefix( 'my_' );
-		$db = $lb->getConnection( DB_MASTER, [], "$wgDBname-my_" );
+		$db = $lb->getConnection( DB_PRIMARY, [], "$wgDBname-my_" );
 
 		$this->assertEquals(
 			$this->quoteTable( $db, 'my_page' ),
@@ -581,7 +581,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::selectDB
 	 */
 	public function testInvalidSelectDB() {
-		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
 		}
 
@@ -594,7 +594,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$lb = $factory->getMainLB();
 		/** @var IDatabase $db */
-		$db = $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY );
+		$db = $lb->getConnection( DB_PRIMARY, [], $lb::DOMAIN_ANY );
 
 		AtEase::suppressWarnings();
 		try {
@@ -628,7 +628,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		}
 
 		/** @var IDatabase $db */
-		$this->assertNotNull( $lb->getConnection( DB_MASTER, [], $lb::DOMAIN_ANY ) );
+		$this->assertNotNull( $lb->getConnection( DB_PRIMARY, [], $lb::DOMAIN_ANY ) );
 	}
 
 	/**
@@ -648,11 +648,11 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 
 		// FIXME: this should probaly be lower (T235311)
 		$this->expectException( \Wikimedia\Rdbms\DBExpectedError::class );
-		if ( !$lb->getConnection( DB_MASTER )->databasesAreIndependent() ) {
+		if ( !$lb->getConnection( DB_PRIMARY )->databasesAreIndependent() ) {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
 		}
 
-		$db = $lb->getConnection( DB_MASTER );
+		$db = $lb->getConnection( DB_PRIMARY );
 		$db->selectDomain( 'garbage-db' );
 	}
 
@@ -664,7 +664,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 	public function testRedefineLocalDomain() {
 		global $wgDBname;
 
-		if ( wfGetDB( DB_MASTER )->databasesAreIndependent() ) {
+		if ( wfGetDB( DB_PRIMARY )->databasesAreIndependent() ) {
 			self::markTestSkipped( "Skipping tests about selecting DBs: not applicable" );
 			return;
 		}
@@ -675,7 +675,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$lb = $factory->getMainLB();
 
-		$conn1 = $lb->getConnectionRef( DB_MASTER );
+		$conn1 = $lb->getConnectionRef( DB_PRIMARY );
 		$this->assertEquals(
 			wfWikiID(),
 			$conn1->getDomainID()
@@ -694,7 +694,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		} );
 		$this->assertSame( 0, $n, "Connections closed" );
 
-		$conn2 = $lb->getConnectionRef( DB_MASTER );
+		$conn2 = $lb->getConnectionRef( DB_PRIMARY );
 		$this->assertEquals(
 			$domain->getId(),
 			$conn2->getDomainID()

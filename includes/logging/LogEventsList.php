@@ -669,7 +669,7 @@ class LogEventsList extends ContextSource {
 		}
 
 		if ( $param['useMaster'] ) {
-			$pager->mDb = wfGetDB( DB_MASTER );
+			$pager->mDb = wfGetDB( DB_PRIMARY );
 		}
 		if ( isset( $param['offset'] ) ) { # Tell pager to ignore WebRequest offset
 			$pager->setOffset( $param['offset'] );

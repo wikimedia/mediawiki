@@ -2196,7 +2196,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		}
 
 		// We're testing with $wgNewUserLog = false, so assert that it worked
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$maxLogId = $dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] );
 
 		$first = true;
@@ -2471,7 +2471,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$this->config->set( 'NewUserLog', true );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$maxLogId = $dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] );
 
 		$userReq = new UsernameAuthenticationRequest;
@@ -2962,7 +2962,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		], $logger->getBuffer() );
 		$logger->clearBuffer();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$maxLogId = $dbw->selectField( 'logging', 'MAX(log_id)', [ 'log_type' => 'newusers' ] );
 		$session->clear();
 		$username = self::usernameForCreation();

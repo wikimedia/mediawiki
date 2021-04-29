@@ -97,7 +97,7 @@ class FileBackendDBRepoWrapper extends FileBackend {
 	 * @return string[] Translated paths in same order
 	 */
 	public function getBackendPaths( array $paths, $latest = true ) {
-		$db = $this->getDB( $latest ? DB_MASTER : DB_REPLICA );
+		$db = $this->getDB( $latest ? DB_PRIMARY : DB_REPLICA );
 
 		// @TODO: batching
 		$resolved = [];

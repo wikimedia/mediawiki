@@ -132,7 +132,7 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->doBlock( [ 'tags' => 'custom tag' ] );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame( 1, (int)$dbw->selectField(
 			[ 'change_tag', 'logging', 'change_tag_def' ],
 			'COUNT(*)',
@@ -169,7 +169,7 @@ class ApiBlockTest extends ApiTestCase {
 
 		$res = $this->doBlock( [ 'hidename' => '' ] );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame( '1', $dbw->selectField(
 			'ipblocks',
 			'ipb_deleted',
@@ -195,7 +195,7 @@ class ApiBlockTest extends ApiTestCase {
 
 		$res = $this->doBlock( [ 'noemail' => '' ] );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame( '1', $dbw->selectField(
 			'ipblocks',
 			'ipb_block_email',
@@ -226,7 +226,7 @@ class ApiBlockTest extends ApiTestCase {
 		MWTimestamp::setFakeTime( $fakeTime );
 		$res = $this->doBlock( [ 'expiry' => '1 day' ] );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$expiry = $dbw->selectField(
 			'ipblocks',
 			'ipb_expiry',

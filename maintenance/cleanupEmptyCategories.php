@@ -87,7 +87,7 @@ TEXT
 			return false;
 		}
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		$throttle = intval( $throttle );

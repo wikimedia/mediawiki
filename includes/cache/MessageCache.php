@@ -490,7 +490,7 @@ class MessageCache implements LoggerAwareInterface {
 		// contributions replicas. We don't have a way to say "any group except
 		// contributions", so for the moment let's specify 'api'.
 		// @todo: Get rid of this hack.
-		$dbr = wfGetDB( ( $mode == self::FOR_UPDATE ) ? DB_MASTER : DB_REPLICA, 'api' );
+		$dbr = wfGetDB( ( $mode == self::FOR_UPDATE ) ? DB_PRIMARY : DB_REPLICA, 'api' );
 
 		$cache = [];
 

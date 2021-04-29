@@ -26,7 +26,7 @@ class UserInfoTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testNewFromId() {
-		$id = wfGetDB( DB_MASTER )->selectField( 'user', 'MAX(user_id)' ) + 1;
+		$id = wfGetDB( DB_PRIMARY )->selectField( 'user', 'MAX(user_id)' ) + 1;
 		try {
 			UserInfo::newFromId( $id );
 			$this->fail( 'Expected exception not thrown' );

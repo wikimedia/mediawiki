@@ -29,7 +29,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	private function emptyChangeTagsTables() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->delete( 'change_tag', '*' );
 		$dbw->delete( 'change_tag_def', '*' );
 	}

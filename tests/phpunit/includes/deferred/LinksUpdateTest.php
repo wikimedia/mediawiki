@@ -30,7 +30,7 @@ class LinksUpdateTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->replace(
 			'interwiki',
 			[ 'iw_prefix' ],
