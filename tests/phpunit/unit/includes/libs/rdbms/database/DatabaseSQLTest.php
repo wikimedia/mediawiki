@@ -1065,11 +1065,11 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	 * @covers Wikimedia\Rdbms\Database::conditional
 	 */
 	public function testConditional( $sql, $sqlText ) {
-		$this->assertEquals( trim( $this->database->conditional(
+		$this->assertEquals( $this->database->conditional(
 			$sql['conds'],
 			$sql['true'],
 			$sql['false']
-		) ), $sqlText );
+		), $sqlText );
 	}
 
 	public static function provideConditional() {
