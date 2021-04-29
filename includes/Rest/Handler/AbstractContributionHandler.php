@@ -66,7 +66,7 @@ abstract class AbstractContributionHandler extends Handler {
 			return $user;
 		}
 
-		/* @var UserIdentity $user */
+		/** @var UserIdentity $user */
 		$user = $this->getValidatedParams()['user'];
 		$name = $user->getName();
 		if ( !$this->userNameUtils->isIp( $name ) && !$user->isRegistered() ) {

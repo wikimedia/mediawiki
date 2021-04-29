@@ -6,7 +6,6 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\ResponseInterface;
 use MediaWiki\Revision\ContributionsSegment;
-// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 use MediaWiki\User\UserIdentity;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -79,7 +78,7 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	private function constructURLs( ContributionsSegment $segment ) : array {
 		$limit = $this->getValidatedParams()['limit'];
 		$tag = $this->getValidatedParams()['tag'];
-		/* @var UserIdentity $user */
+		/** @var UserIdentity $user */
 		$user = $this->getValidatedParams()['user'] ?? null;
 		$name = $user ? $user->getName() : null;
 
