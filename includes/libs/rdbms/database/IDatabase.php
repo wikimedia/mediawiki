@@ -1509,12 +1509,12 @@ interface IDatabase {
 	 *
 	 * This doesn't need to be overridden unless CASE isn't supported in the RDBMS.
 	 *
-	 * @param string|array $cond SQL expression which will result in a boolean value
-	 * @param string $trueVal SQL expression to return if true
-	 * @param string $falseVal SQL expression to return if false
+	 * @param string|array $cond SQL condition expression (yields a boolean)
+	 * @param string $caseTrueExpression SQL expression to return when the condition is true
+	 * @param string $caseFalseExpression SQL expression to return when the condition is false
 	 * @return string SQL fragment
 	 */
-	public function conditional( $cond, $trueVal, $falseVal );
+	public function conditional( $cond, $caseTrueExpression, $caseFalseExpression );
 
 	/**
 	 * Returns a SQL expression for simple string replacement (e.g. REPLACE() in mysql)
