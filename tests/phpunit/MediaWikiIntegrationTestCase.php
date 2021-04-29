@@ -570,8 +570,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			}
 		}
 
-		MWDebug::clearDeprecationFilters();
-
 		// Reset all caches between tests.
 		self::resetNonServiceCaches();
 

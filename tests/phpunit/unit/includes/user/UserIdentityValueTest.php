@@ -4,7 +4,6 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\PreconditionException;
 
 /**
- * @covers \MediaWiki\DAO\WikiAwareEntityTrait
  * @coversDefaultClass \MediaWiki\User\UserIdentityValue
  */
 class UserIdentityValueTest extends MediaWikiUnitTestCase {
