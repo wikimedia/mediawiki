@@ -1,10 +1,10 @@
 = MediaWiki 1.36 =
 
-== MediaWiki 1.36.0-PRERELEASE ==
+== MediaWiki 1.36.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
 
-MediaWiki 1.36 is an alpha-quality development branch, and is not recommended
+MediaWiki 1.36 is a pre-release testing branch, and is not recommended
 for use in production.
 
 == Upgrading notes for 1.36 ==
@@ -25,7 +25,6 @@ Some specific notes for MediaWiki 1.36 upgrades are below:
   configuration. Changes in 1.36 make this kind of breakage even more common.
   You can use the MediaWikiServices hook instead. (In the future there might be
   a dedicated hook for configuration changes.)
-* …
 
 For notes on 1.35.x and older releases, see HISTORY.
 
@@ -33,7 +32,6 @@ For notes on 1.35.x and older releases, see HISTORY.
 MediaWiki update script, maintenance/update.php, used to accept `--nopurge`
 option to prevent clearing caches stored in the database during upgrade, this
 is no longer recommended and the option has been removed.
-…
 
 ==== New configuration ====
 * (T256001) $wgManualRevertSearchRadius – This setting introduces a feature that
@@ -50,7 +48,6 @@ is no longer recommended and the option has been removed.
   social platforms more contentful and thus useful.
 * (T280944) $wgIncludejQueryMigrate - This setting allows the jQuery Migrate
   plugin to be disabled. It has been enabled by default since MediaWiki 1.27.
-* …
 
 ==== Changed configuration ====
 * $wgLogos – The default value for the site logo, which is shown in an install
@@ -72,7 +69,6 @@ is no longer recommended and the option has been removed.
   option to "hash_tag".
 * $wgWANObjectCaches - The "cluster" and "mcrouterAware" options were removed
   without deprecation. Use "broadcastRoutingPrefix" instead.
-* …
 
 ==== Removed configuration ====
 * $wgUseTwoButtonsSearchForm — This setting, deprecated in 1.35, has been
@@ -96,7 +92,6 @@ is no longer recommended and the option has been removed.
 * The deprecated password policies PasswordCannotMatchBlacklist and
   PasswordNotInLargeBlacklist were removed. Please use
   PasswordCannotMatchDefaults and PasswordNotInCommonList instead.
-* …
 
 === New user-facing features in 1.36 ===
 * The logo of MediaWiki has changed. This means that the "Powered By MediaWiki"
@@ -134,20 +129,14 @@ is no longer recommended and the option has been removed.
 * ResourceLoader modules can now mark themselves as ES6-only by setting
   `'es6' => true` in their module definition. ES6-only modules will not be
   executed in browsers that don't support ES6, such as IE11.
-* …
 
 === External library changes in 1.36 ===
-* …
 
 ==== New external libraries ====
 * Added wikimedia/minify 2.2.1.
 * Added wikimedia/request-timeout 1.1.0.
 * Added wikimedia/shellbox 1.0.4.
 * Added WVUI 0.1.0.
-* …
-
-===== New development-only external libraries =====
-* …
 
 ==== Changed external libraries ====
 * Updated composer/semver from 1.5.1 to 3.2.4.
@@ -173,7 +162,6 @@ is no longer recommended and the option has been removed.
 * Updated wikimedia/utfnormal from 2.0.0 to 3.0.2.
 * Updated wikimedia/wait-condition-loop from 1.0.1 to 2.0.1.
 * Updated wikimedia/xmp-reader from 0.7.0 to 0.8.1.
-* …
 
 ===== Changed development-only external libraries =====
 * Updated composer/spdx-licenses from 1.5.3 to 1.5.4.
@@ -186,14 +174,12 @@ is no longer recommended and the option has been removed.
 * Updated seld/jsonlint from 1.7.1 to 1.8.3.
 * Updated symfony/yaml from ~3.4|~4.3|~5.0.5 to ~3.4|~5.1.
 * Updated wikimedia/testing-access-wrapper from 1.0.0 to 2.0.0.
-* …
 
 ==== Removed external libraries ====
 * The html5shiv library has been removed, as support for Internet Explorer 8 has
   been dropped.
 * The wikimedia/avro suggested development-only library has been removed, as the
   support for logging in Avro format has been dropped.
-* …
 
 === Bug fixes in 1.36 ===
 * (T190285) ApiEditPage module used to switch 'undo' and 'undoafter' parameters,
@@ -204,7 +190,6 @@ is no longer recommended and the option has been removed.
 * (T263340) In history merging, pages with a content model that does not support
   redirects will now be recorded as deleted if no revision is being left in the
   source page (that's if all revisions of the page have been merged to another).
-* …
 
 === Action API changes in 1.36 ===
 * (T269636) `Access-Control-Max-Age` was added to the default list of headers
@@ -213,10 +198,6 @@ is no longer recommended and the option has been removed.
   added to the watchlist when making API edits, regardless of their preferences.
   This is to reduce the size of the watchlist data in the database. To add API
   bot edits to the watchlist, explicitly set the 'watch' option.
-* …
-
-=== Action API internal changes in 1.36 ===
-* …
 
 === Languages updated in 1.36 ===
 MediaWiki supports over 350 languages. Many localisations are updated regularly.
@@ -560,7 +541,6 @@ because of Phabricator reports.
   without deprecation.
 * AbstractBlock::$mReason, deprecated in 1.34, was removed.
   Use AbstractBlock::getReasonComment and AbstractBlock::setReason instead.
-* …
 
 === Deprecations in 1.36 ===
 * (T278026) The DB_MASTER constant has been deprecated in favour of DB_PRIMARY.
@@ -777,7 +757,6 @@ because of Phabricator reports.
   MediaWikiServices->getWatchlistManager() instead.
 * The "ArticleEditUpdatesDeleteFromRecentchanges" hook, deprecated in 1.35, has
   been removed. Other hooks like "RecentChange_save" can be used instead.
-* …
 
 === Other changes in 1.36 ===
 * The 'tidy' key in ParserOptions (used in the parser cache) has been removed.
