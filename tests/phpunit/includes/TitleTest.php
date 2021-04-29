@@ -1051,6 +1051,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $expected
 	 */
 	public function testIsWatchable( Title $title, $expected ) {
+		$this->hideDeprecated( 'Title::isWatchable' );
 		$actual = $title->isWatchable();
 		$this->assertSame( $expected, $actual, $title->getPrefixedDBkey() );
 	}

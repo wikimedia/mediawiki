@@ -1275,6 +1275,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return bool
 	 */
 	public function isWatchable() {
+		wfDeprecated( __METHOD__, '1.37' );
 		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
 		return $watchlistManager->isWatchable( $this );
 	}
