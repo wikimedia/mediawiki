@@ -21,6 +21,7 @@
  * @ingroup Parser
  */
 use MediaWiki\BadFileLookup;
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
@@ -31,6 +32,8 @@ use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Preferences\SignatureValidator;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -320,6 +323,9 @@ class Parser {
 	/** @var SpecialPageFactory */
 	private $specialPageFactory;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/**
 	 * This is called $svcOptions instead of $options like elsewhere to avoid confusion with
 	 * $mOptions, which is public and widely used, and also with the local variable $options used
@@ -401,6 +407,7 @@ class Parser {
 	 * @param WANObjectCache $wanCache
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
+	 * @param TitleFormatter $titleFormatter
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -418,7 +425,8 @@ class Parser {
 		TidyDriverBase $tidy,
 		WANObjectCache $wanCache,
 		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		TitleFormatter $titleFormatter
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
@@ -462,6 +470,7 @@ class Parser {
 
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
+		$this->titleFormatter = $titleFormatter;
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
@@ -589,7 +598,7 @@ class Parser {
 	 *
 	 * @param string $text Text we want to parse
 	 * @param-taint $text escapes_htmlnoent
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @param bool $linestart
 	 * @param bool $clearState
@@ -601,7 +610,7 @@ class Parser {
 	 * @return-taint escaped
 	 */
 	public function parse(
-		$text, Title $title, ParserOptions $options,
+		$text, PageReference $page, ParserOptions $options,
 		$linestart = true, $clearState = true, $revid = null
 	) {
 		if ( $clearState ) {
@@ -613,7 +622,7 @@ class Parser {
 		// Strip U+0000 NULL (T159174)
 		$text = str_replace( "\000", '', $text );
 
-		$this->startParse( $title, $options, self::OT_HTML, $clearState );
+		$this->startParse( $page, $options, self::OT_HTML, $clearState );
 
 		$this->currentRevisionCache = null;
 		$this->mInputSize = strlen( $text );
@@ -657,7 +666,7 @@ class Parser {
 			if ( $convruletitle ) {
 				$this->mOutput->setTitleText( $convruletitle );
 			} else {
-				$titleText = $this->getTargetLanguageConverter()->convertTitle( $title );
+				$titleText = $this->getTargetLanguageConverter()->convertTitle( $page );
 				$this->mOutput->setTitleText( $titleText );
 			}
 		}
@@ -893,17 +902,17 @@ class Parser {
 	 * Also removes comments.
 	 * Do not call this function recursively.
 	 * @param string $text
-	 * @param Title|null $title
+	 * @param ?PageReference $page
 	 * @param ParserOptions $options
 	 * @param int|null $revid
 	 * @param bool|PPFrame $frame
 	 * @return mixed|string
 	 */
-	public function preprocess( $text, ?Title $title,
+	public function preprocess( $text, ?PageReference $page,
 		ParserOptions $options, $revid = null, $frame = false
 	) {
 		$magicScopeVariable = $this->lock();
-		$this->startParse( $title, $options, self::OT_PREPROCESS, true );
+		$this->startParse( $page, $options, self::OT_PREPROCESS, true );
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
 		}
@@ -936,18 +945,18 @@ class Parser {
 	 * functions are untouched.
 	 *
 	 * @param string $text
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @param array $params
 	 * @return string
 	 */
-	public function getPreloadText( $text, Title $title, ParserOptions $options, $params = [] ) {
+	public function getPreloadText( $text, PageReference $page, ParserOptions $options, $params = [] ) {
 		$msg = new RawMessage( $text );
 		$text = $msg->params( $params )->plain();
 
 		# Parser (re)initialisation
 		$magicScopeVariable = $this->lock();
-		$this->startParse( $title, $options, self::OT_PLAIN, true );
+		$this->startParse( $page, $options, self::OT_PLAIN, true );
 
 		$flags = PPFrame::NO_ARGS | PPFrame::NO_TEMPLATES;
 		$dom = $this->preprocessToDom( $text, Preprocessor::DOM_FOR_INCLUSION );
@@ -973,11 +982,38 @@ class Parser {
 	/**
 	 * Set the context title
 	 *
+	 * @deprecated since 1.37, use setPage() instead.
 	 * @param Title|null $t
 	 */
 	public function setTitle( Title $t = null ) {
+		$this->setPage( $t );
+	}
+
+	/**
+	 * @deprecated since 1.37, use getPage instead.
+	 * @return Title
+	 */
+	public function getTitle() : Title {
+		if ( !$this->mTitle ) {
+			$this->mTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
+		}
+		return $this->mTitle;
+	}
+
+	/**
+	 * Set the page used as context for parsing, e.g. when resolving relative subpage links.
+	 *
+	 * @since 1.37
+	 * @param ?PageReference $t
+	 */
+	public function setPage( ?PageReference $t = null ) {
 		if ( !$t ) {
 			$t = Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
+		} else {
+			// For now (early 1.37 alpha), always convert to Title, so we don't have to do it over
+			// and over again in other methods. Eventually, we will no longer need to have a Title
+			// instance internally.
+			$t = Title::castFromPageReference( $t );
 		}
 
 		if ( $t->hasFragment() ) {
@@ -989,22 +1025,12 @@ class Parser {
 	}
 
 	/**
-	 * @return Title
+	 * Returns the page used as context for parsing, e.g. when resolving relative subpage links.
+	 * @since 1.37
+	 * @return ?PageReference
 	 */
-	public function getTitle() : Title {
+	public function getPage(): ?PageReference {
 		return $this->mTitle;
-	}
-
-	/**
-	 * Accessor/mutator for the Title object
-	 *
-	 * @param Title|null $x Title object or null to just get the current one
-	 * @return Title|null
-	 * @deprecated since 1.35, use getTitle() / setTitle()
-	 */
-	public function Title( Title $x = null ) : ?Title {
-		wfDeprecated( __METHOD__, '1.35' );
-		return wfSetVar( $this->mTitle, $x );
 	}
 
 	/**
@@ -2698,17 +2724,17 @@ class Parser {
 	 * breaking URLs in the following text without breaking trails on the
 	 * wiki links, it's been made into a horrible function.
 	 *
-	 * @param Title $nt
+	 * @param LinkTarget $nt
 	 * @param string $text
 	 * @param string $trail
 	 * @param string $prefix
 	 * @return string HTML-wikitext mix oh yuck
 	 */
-	private function makeKnownLinkHolder( Title $nt, $text = '', $trail = '', $prefix = '' ) {
+	private function makeKnownLinkHolder( LinkTarget $nt, $text = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 
 		if ( $text == '' ) {
-			$text = htmlspecialchars( $nt->getPrefixedText() );
+			$text = htmlspecialchars( $this->titleFormatter->getPrefixedText( $nt ) );
 		}
 
 		$link = $this->getLinkRenderer()->makeKnownLink(
@@ -3394,36 +3420,36 @@ class Parser {
 	 * Get the semi-parsed DOM representation of a template with a given title,
 	 * and its redirect destination title. Cached.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 *
 	 * @return array
 	 */
-	public function getTemplateDom( Title $title ) {
+	public function getTemplateDom( LinkTarget $title ) {
 		$cacheTitle = $title;
-		$titleText = $title->getPrefixedDBkey();
+		$titleKey = CacheKeyHelper::getKeyForPage( $title );
 
-		if ( isset( $this->mTplRedirCache[$titleText] ) ) {
-			list( $ns, $dbk ) = $this->mTplRedirCache[$titleText];
+		if ( isset( $this->mTplRedirCache[$titleKey] ) ) {
+			list( $ns, $dbk ) = $this->mTplRedirCache[$titleKey];
 			$title = Title::makeTitle( $ns, $dbk );
-			$titleText = $title->getPrefixedDBkey();
+			$titleKey = CacheKeyHelper::getKeyForPage( $title );
 		}
-		if ( isset( $this->mTplDomCache[$titleText] ) ) {
-			return [ $this->mTplDomCache[$titleText], $title ];
+		if ( isset( $this->mTplDomCache[$titleKey] ) ) {
+			return [ $this->mTplDomCache[$titleKey], $title ];
 		}
 
 		# Cache miss, go to the database
 		list( $text, $title ) = $this->fetchTemplateAndTitle( $title );
 
 		if ( $text === false ) {
-			$this->mTplDomCache[$titleText] = false;
+			$this->mTplDomCache[$titleKey] = false;
 			return [ false, $title ];
 		}
 
 		$dom = $this->preprocessToDom( $text, Preprocessor::DOM_FOR_INCLUSION );
-		$this->mTplDomCache[$titleText] = $dom;
+		$this->mTplDomCache[$titleKey] = $dom;
 
-		if ( !$title->equals( $cacheTitle ) ) {
-			$this->mTplRedirCache[$cacheTitle->getPrefixedDBkey()] =
+		if ( !$title->isSamePageAs( $cacheTitle ) ) {
+			$this->mTplRedirCache[ CacheKeyHelper::getKeyForPage( $cacheTitle ) ] =
 				[ $title->getNamespace(), $title->getDBkey() ];
 		}
 
@@ -3440,15 +3466,16 @@ class Parser {
 	 * This can return null if the callback returns false
 	 *
 	 * @since 1.35
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @return RevisionRecord|null
 	 */
-	public function fetchCurrentRevisionRecordOfTitle( Title $title ) {
-		$cacheKey = $title->getPrefixedDBkey();
+	public function fetchCurrentRevisionRecordOfTitle( LinkTarget $link ) {
+		$cacheKey = CacheKeyHelper::getKeyForPage( $link );
 		if ( !$this->currentRevisionCache ) {
 			$this->currentRevisionCache = new MapCacheLRU( 100 );
 		}
 		if ( !$this->currentRevisionCache->has( $cacheKey ) ) {
+			$title = Title::castFromLinkTarget( $link ); // hook signature compat
 			$revisionRecord =
 				// Defaults to Parser::statelessFetchRevisionRecord()
 				call_user_func(
@@ -3467,15 +3494,16 @@ class Parser {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @return bool
 	 * @since 1.34
 	 * @internal
 	 */
-	public function isCurrentRevisionOfTitleCached( Title $title ) {
+	public function isCurrentRevisionOfTitleCached( LinkTarget $link ) {
+		$key = CacheKeyHelper::getKeyForPage( $link );
 		return (
 			$this->currentRevisionCache &&
-			$this->currentRevisionCache->has( $title->getPrefixedText() )
+			$this->currentRevisionCache->has( $key )
 		);
 	}
 
@@ -3484,23 +3512,36 @@ class Parser {
 	 * without passing them on to it.
 	 *
 	 * @since 1.34
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param Parser|null $parser
 	 * @return RevisionRecord|bool False if missing
 	 */
-	public static function statelessFetchRevisionRecord( Title $title, $parser = null ) {
+	public static function statelessFetchRevisionRecord( LinkTarget $link, $parser = null ) {
+		if ( $link instanceof PageIdentity ) {
+			// probably a Title, just use it.
+			$page = $link;
+		} else {
+			// XXX: use RevisionStore::getPageForLink()!
+			//      ...but get the info for the current revision at the same time?
+			//      Should RevisionStore::getKnownCurrentRevision accept a LinkTarget?
+			$page = Title::castFromLinkTarget( $link );
+		}
+
 		$revRecord = MediaWikiServices::getInstance()
 			->getRevisionLookup()
-			->getKnownCurrentRevision( $title );
+			->getKnownCurrentRevision( $page );
 		return $revRecord;
 	}
 
 	/**
 	 * Fetch the unparsed text of a template and register a reference to it.
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @return array ( string or false, Title )
 	 */
-	public function fetchTemplateAndTitle( Title $title ) {
+	public function fetchTemplateAndTitle( LinkTarget $link ) {
+		// Use Title for compatibility with callbacks and return type
+		$title = Title::castFromLinkTarget( $link );
+
 		// Defaults to Parser::statelessFetchTemplate()
 		$templateCb = $this->mOptions->getTemplateCallback();
 		$stuff = call_user_func( $templateCb, $title, $this );
@@ -3540,26 +3581,16 @@ class Parser {
 	}
 
 	/**
-	 * Fetch the unparsed text of a template and register a reference to it.
-	 * @param Title $title
-	 * @return string|bool
-	 * @deprecated since 1.35, use Parser::fetchTemplateAndTitle(...)[0]
-	 */
-	public function fetchTemplate( Title $title ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		return $this->fetchTemplateAndTitle( $title )[0];
-	}
-
-	/**
 	 * Static function to get a template
 	 * Can be overridden via ParserOptions::setTemplateCallback().
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $page
 	 * @param bool|Parser $parser
 	 *
 	 * @return array|DeprecatablePropertyArray
 	 */
-	public static function statelessFetchTemplate( $title, $parser = false ) {
+	public static function statelessFetchTemplate( $page, $parser = false ) {
+		$title = Title::castFromLinkTarget( $page ); // for compatibility with return type
 		$text = $skip = false;
 		$finalTitle = $title;
 		$deps = [];
@@ -3716,22 +3747,24 @@ class Parser {
 	/**
 	 * Fetch a file and its title and register a reference to it.
 	 * If 'broken' is a key in $options then the file will appear as a broken thumbnail.
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return array ( File or false, Title of file )
 	 */
-	public function fetchFileAndTitle( Title $title, array $options = [] ) {
-		$file = $this->fetchFileNoRegister( $title, $options );
+	public function fetchFileAndTitle( LinkTarget $link, array $options = [] ) {
+		$file = $this->fetchFileNoRegister( $link, $options );
 
 		$time = $file ? $file->getTimestamp() : false;
 		$sha1 = $file ? $file->getSha1() : false;
 		# Register the file as a dependency...
-		$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
-		if ( $file && !$title->equals( $file->getTitle() ) ) {
+		$this->mOutput->addImage( $link->getDBkey(), $time, $sha1 );
+		if ( $file && !$link->isSameLinkAs( $file->getTitle() ) ) {
 			# Update fetched file title
-			$title = $file->getTitle();
-			$this->mOutput->addImage( $title->getDBkey(), $time, $sha1 );
+			$page = $file->getTitle();
+			$this->mOutput->addImage( $page->getDBkey(), $time, $sha1 );
 		}
+
+		$title = Title::castFromLinkTarget( $link ); // for return type compat
 		return [ $file, $title ];
 	}
 
@@ -3741,11 +3774,11 @@ class Parser {
 	 * Also useful if you need to fetch a file but not use it yet,
 	 * for example to get the file's handler.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param array $options Array of options to RepoGroup::findFile
 	 * @return File|bool
 	 */
-	protected function fetchFileNoRegister( Title $title, array $options = [] ) {
+	protected function fetchFileNoRegister( LinkTarget $link, array $options = [] ) {
 		if ( isset( $options['broken'] ) ) {
 			$file = false; // broken thumbnail forced by hook
 		} else {
@@ -3753,7 +3786,7 @@ class Parser {
 			if ( isset( $options['sha1'] ) ) { // get by (sha1,timestamp)
 				$file = $repoGroup->findFileFromKey( $options['sha1'], $options );
 			} else { // get by (name,timestamp)
-				$file = $repoGroup->findFile( $title, $options );
+				$file = $repoGroup->findFile( $link, $options );
 			}
 		}
 		return $file;
@@ -3762,16 +3795,19 @@ class Parser {
 	/**
 	 * Transclude an interwiki link.
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param string $action Usually one of (raw, render)
 	 *
 	 * @return string
 	 * @internal
 	 */
-	public function interwikiTransclude( Title $title, $action ) {
+	public function interwikiTransclude( LinkTarget $link, $action ) {
 		if ( !$this->svcOptions->get( 'EnableScaryTranscluding' ) ) {
 			return wfMessage( 'scarytranscludedisabled' )->inContentLanguage()->text();
 		}
+
+		// TODO: extract relevant functionality from Title
+		$title = Title::castFromLinkTarget( $link );
 
 		$url = $title->getFullURL( [ 'action' => $action ] );
 		if ( strlen( $url ) > 1024 ) {
@@ -4487,19 +4523,19 @@ class Parser {
 	 * conversion, substituting signatures, {{subst:}} templates, etc.
 	 *
 	 * @param string $text The text to transform
-	 * @param Title $title The Title object for the current article
+	 * @param PageReference $page the current article
 	 * @param UserIdentity $user The User object describing the current user
 	 * @param ParserOptions $options Parsing options
 	 * @param bool $clearState Whether to clear the parser state first
 	 * @return string The altered wiki markup
 	 */
-	public function preSaveTransform( $text, Title $title, UserIdentity $user,
+	public function preSaveTransform( $text, PageReference $page, UserIdentity $user,
 		ParserOptions $options, $clearState = true
 	) {
 		if ( $clearState ) {
 			$magicScopeVariable = $this->lock();
 		}
-		$this->startParse( $title, $options, self::OT_WIKI, $clearState );
+		$this->startParse( $page, $options, self::OT_WIKI, $clearState );
 		$this->setUser( $user );
 
 		// Strip U+0000 NULL (T159174)
@@ -4734,31 +4770,31 @@ class Parser {
 	 * Set up some variables which are usually set up in parse()
 	 * so that an external function can call some class members with confidence
 	 *
-	 * @param Title|null $title
+	 * @param ?PageReference $page
 	 * @param ParserOptions $options
 	 * @param int $outputType
 	 * @param bool $clearState
 	 * @param int|null $revId
 	 */
-	public function startExternalParse( ?Title $title, ParserOptions $options,
+	public function startExternalParse( ?PageReference $page, ParserOptions $options,
 		$outputType, $clearState = true, $revId = null
 	) {
-		$this->startParse( $title, $options, $outputType, $clearState );
+		$this->startParse( $page, $options, $outputType, $clearState );
 		if ( $revId !== null ) {
 			$this->mRevisionId = $revId;
 		}
 	}
 
 	/**
-	 * @param Title|null $title
+	 * @param ?PageReference $page
 	 * @param ParserOptions $options
 	 * @param int $outputType
 	 * @param bool $clearState
 	 */
-	private function startParse( ?Title $title, ParserOptions $options,
+	private function startParse( ?PageReference $page, ParserOptions $options,
 		$outputType, $clearState = true
 	) {
-		$this->setTitle( $title );
+		$this->setPage( $page );
 		$this->mOptions = $options;
 		$this->setOutputType( $outputType );
 		if ( $clearState ) {
@@ -4771,10 +4807,10 @@ class Parser {
 	 *
 	 * @param string $text The text to preprocess
 	 * @param ParserOptions $options
-	 * @param Title|null $title Title object or null to use $wgTitle
+	 * @param ?PageReference $page The context page or null to use $wgTitle
 	 * @return string
 	 */
-	public function transformMsg( $text, ParserOptions $options, Title $title = null ) {
+	public function transformMsg( $text, ParserOptions $options, ?PageReference $page = null ) {
 		static $executing = false;
 
 		# Guard against infinite recursion
@@ -4783,12 +4819,12 @@ class Parser {
 		}
 		$executing = true;
 
-		if ( !$title ) {
+		if ( !$page ) {
 			global $wgTitle;
-			$title = $wgTitle;
+			$page = $wgTitle;
 		}
 
-		$text = $this->preprocess( $text, $title, $options );
+		$text = $this->preprocess( $text, $page, $options );
 
 		$executing = false;
 		return $text;
@@ -5185,12 +5221,12 @@ class Parser {
 	/**
 	 * Parse image options text and use it to make an image
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $link
 	 * @param string $options
 	 * @param LinkHolderArray|bool $holders
 	 * @return string HTML
 	 */
-	public function makeImage( Title $title, $options, $holders = false ) {
+	public function makeImage( LinkTarget $link, $options, $holders = false ) {
 		# Check if the options text is of the form "options|alt text"
 		# Options are:
 		#  * thumbnail  make a thumbnail with enlarge-icon and caption, alignment depends on lang
@@ -5225,10 +5261,11 @@ class Parser {
 		# Give extensions a chance to select the file revision for us
 		$options = [];
 		$descQuery = false;
+		$title = Title::castFromLinkTarget( $link ); // hook signature compat
 		$this->hookRunner->onBeforeParserFetchFileAndTitle(
 			$this, $title, $options, $descQuery );
 		# Fetch and register the file (file title may be different via hooks)
-		list( $file, $title ) = $this->fetchFileAndTitle( $title, $options );
+		list( $file, $link ) = $this->fetchFileAndTitle( $link, $options );
 
 		# Get parameter map
 		$handler = $file ? $file->getHandler() : false;
@@ -5359,7 +5396,7 @@ class Parser {
 			if ( $caption === '' && !isset( $params['frame']['alt'] ) ) {
 				# No caption or alt text, add the filename as the alt text so
 				# that screen readers at least get some description of the image
-				$params['frame']['alt'] = $title->getText();
+				$params['frame']['alt'] = $link->getText();
 			}
 			# Do not set $params['frame']['title'] because tooltips don't make sense
 			# for framed images
@@ -5371,7 +5408,7 @@ class Parser {
 				} else {
 					# No caption, fall back to using the filename for the
 					# alt text
-					$params['frame']['alt'] = $title->getText();
+					$params['frame']['alt'] = $link->getText();
 				}
 			}
 			# Use the "caption" for the tooltip text
@@ -5379,11 +5416,13 @@ class Parser {
 		}
 		$params['handler']['targetlang'] = $this->getTargetLanguage()->getCode();
 
+		// hook signature compat again, $link may have changed
+		$title = Title::castFromLinkTarget( $link );
 		$this->hookRunner->onParserMakeImageParams( $title, $file, $params, $this );
 
 		# Linker does the rest
 		$time = $options['time'] ?? false;
-		$ret = Linker::makeImageLink( $this, $title, $file, $params['frame'], $params['handler'],
+		$ret = Linker::makeImageLink( $this, $link, $file, $params['frame'], $params['handler'],
 			$time, $descQuery, $this->mOptions->getThumbSize() );
 
 		# Give the handler a chance to modify the parser object
@@ -6083,17 +6122,17 @@ class Parser {
 	 * Strip/replaceVariables/unstrip for preprocessor regression testing
 	 *
 	 * @param string $text
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @param int $outputType
 	 *
 	 * @return string
 	 */
-	private function fuzzTestSrvus( $text, Title $title, ParserOptions $options,
+	private function fuzzTestSrvus( $text, PageReference $page, ParserOptions $options,
 		$outputType = self::OT_HTML
 	) {
 		$magicScopeVariable = $this->lock();
-		$this->startParse( $title, $options, $outputType, true );
+		$this->startParse( $page, $options, $outputType, true );
 
 		$text = $this->replaceVariables( $text );
 		$text = $this->mStripState->unstripBoth( $text );
@@ -6103,22 +6142,22 @@ class Parser {
 
 	/**
 	 * @param string $text
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @return string
 	 */
-	private function fuzzTestPst( $text, Title $title, ParserOptions $options ) {
-		return $this->preSaveTransform( $text, $title, $options->getUser(), $options );
+	private function fuzzTestPst( $text, PageReference $page, ParserOptions $options ) {
+		return $this->preSaveTransform( $text, $page, $options->getUser(), $options );
 	}
 
 	/**
 	 * @param string $text
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param ParserOptions $options
 	 * @return string
 	 */
-	private function fuzzTestPreprocess( $text, Title $title, ParserOptions $options ) {
-		return $this->fuzzTestSrvus( $text, $title, $options, self::OT_PREPROCESS );
+	private function fuzzTestPreprocess( $text, PageReference $page, ParserOptions $options ) {
+		return $this->fuzzTestSrvus( $text, $page, $options, self::OT_PREPROCESS );
 	}
 
 	/**
