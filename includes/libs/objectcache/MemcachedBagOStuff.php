@@ -45,6 +45,8 @@ abstract class MemcachedBagOStuff extends MediumSpecificBagOStuff {
 
 		$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE; // unreliable
 		$this->routingPrefix = $params['routingPrefix'] ?? '';
+
+		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_SERVICE;
 	}
 
 	/**

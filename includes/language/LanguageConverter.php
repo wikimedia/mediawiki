@@ -24,6 +24,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
@@ -713,21 +714,22 @@ abstract class LanguageConverter implements ILanguageConverter {
 	}
 
 	/**
-	 * Auto convert a LinkTarget object to a readable string in the
+	 * Auto convert a LinkTarget or PageReference to a readable string in the
 	 * preferred variant.
 	 *
-	 * @param LinkTarget $linkTarget
+	 * @param LinkTarget|PageReference $title
 	 * @return string Converted title text
 	 */
-	public function convertTitle( LinkTarget $linkTarget ) {
+	public function convertTitle( $title ) {
 		$variant = $this->getPreferredVariant();
-		$index = $linkTarget->getNamespace();
+		$index = $title->getNamespace();
 		if ( $index !== NS_MAIN ) {
 			$text = $this->convertNamespace( $index, $variant ) . ':';
 		} else {
 			$text = '';
 		}
-		$text .= $this->translate( $linkTarget->getText(), $variant );
+		$name = str_replace( '_', ' ', $title->getDBKey() );
+		$text .= $this->translate( $name, $variant );
 
 		return $text;
 	}

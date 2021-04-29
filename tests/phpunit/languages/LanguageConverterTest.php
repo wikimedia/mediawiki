@@ -1,6 +1,8 @@
 <?php
 
 use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 
 /**
  * @group Language
@@ -201,11 +203,11 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @dataProvider provideTitlesToConvert
 	 * @covers LanguageConverter::convertTitle
 	 *
-	 * @param LinkTarget $linkTarget LinkTarget to convert
+	 * @param LinkTarget|PageReference $title title to convert
 	 * @param string $expected
 	 */
-	public function testConvertTitle( LinkTarget $linkTarget, string $expected ) : void {
-		$actual = $this->lc->convertTitle( $linkTarget );
+	public function testConvertTitle( $title, string $expected ) : void {
+		$actual = $this->lc->convertTitle( $title );
 		$this->assertSame( $expected, $actual );
 	}
 
@@ -229,6 +231,10 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 			],
 			'TitleValue' => [
 				new TitleValue( NS_FILE, 'Dummy page' ),
+				'Акс:Dummy page',
+			],
+			'PageReference' => [
+				new PageReferenceValue( NS_FILE, 'Dummy page', PageReference::LOCAL ),
 				'Акс:Dummy page',
 			],
 		];
