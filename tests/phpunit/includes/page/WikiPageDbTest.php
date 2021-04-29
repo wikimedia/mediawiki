@@ -1782,7 +1782,7 @@ more stuff
 			$this->getRow( [
 				'page_lang' => null,
 			] ),
-			function ( WikiPage $wikiPage, self $test ) {
+			static function ( WikiPage $wikiPage, self $test ) {
 				$test->assertNull(
 					$wikiPage->getLanguage()
 				);
@@ -1800,7 +1800,7 @@ more stuff
 			$this->getRow( [
 				'page_is_new' => '0',
 			] ),
-			function ( WikiPage $wikiPage, self $test ) {
+			static function ( WikiPage $wikiPage, self $test ) {
 				$test->assertFalse( $wikiPage->isNew() );
 			}
 		];

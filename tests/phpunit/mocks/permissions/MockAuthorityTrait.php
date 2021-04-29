@@ -119,7 +119,7 @@ trait MockAuthorityTrait {
 	): Authority {
 		return $this->mockAuthority(
 			$user,
-			function ( $permission ) use ( $permissions ) {
+			static function ( $permission ) use ( $permissions ) {
 				return !in_array( $permission, $permissions );
 			}
 		);

@@ -612,7 +612,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 			$dbOptions['HAVING'] = 'COUNT(*) >= ' . (int)$options['minimumWatchers'];
 		}
 
-		$linkTargets = array_map( function ( $target ) {
+		$linkTargets = array_map( static function ( $target ) {
 			if ( !$target instanceof LinkTarget ) {
 				return new TitleValue( $target->getNamespace(), $target->getDBkey() );
 			}

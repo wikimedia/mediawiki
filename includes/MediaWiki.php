@@ -830,7 +830,7 @@ class MediaWiki {
 		// during post-send processing to warnings and unexpected behavior (T191537)
 		WebResponse::disableForPostSend();
 		// Run post-send updates while preventing further output for sanity...
-		ob_start( function () {
+		ob_start( static function () {
 			return ''; // do not output uncaught exceptions
 		} );
 		try {

@@ -113,7 +113,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		// service
 		$wikiPageFactory = $this->createMock( WikiPageFactory::class );
 		$wikiPageFactory->method( 'newFromTitle' )->willReturnCallback(
-			function ( PageIdentity $pageIdentity ) {
+			static function ( PageIdentity $pageIdentity ) {
 				// We can't use Title::castFromPageIdentity because that
 				// calls Title::resetArticleID which uses MediaWikiServices
 				// Thankfully, however, the only methods on the Title that are
@@ -186,7 +186,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			->willReturnCallback( function ( $userIdentity ) use ( $permissions ) {
 				$user = $this->createMock( User::class );
 				$user->method( 'isAllowed' )
-					->willReturnCallback( function ( $permission ) use ( $permissions ) {
+					->willReturnCallback( static function ( $permission ) use ( $permissions ) {
 						return in_array( $permission, $permissions );
 					} );
 				$user->method( 'getUser' )
@@ -324,10 +324,10 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function provideTestPageFactory() {
-		yield [ function ( $pageId, $namespace, $dbKey ) {
+		yield [ static function ( $pageId, $namespace, $dbKey ) {
 			return new TitleValue( $namespace, $dbKey );
 		} ];
-		yield [ function ( $pageId, $namespace, $dbKey ) {
+		yield [ static function ( $pageId, $namespace, $dbKey ) {
 			return new PageIdentityValue( $pageId, $namespace, $dbKey, PageIdentityValue::LOCAL );
 		} ];
 		yield [ function ( $pageId, $namespace, $dbKey ) {

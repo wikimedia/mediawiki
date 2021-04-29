@@ -237,7 +237,7 @@ class MovePage {
 	 */
 	public function probablyCanMove( Authority $performer, string $reason = null ): PermissionStatus {
 		return $this->authorizeInternal(
-			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->probablyCan( $action, $target, $status );
 			},
 			$performer,
@@ -258,7 +258,7 @@ class MovePage {
 	 */
 	public function authorizeMove( Authority $performer, string $reason = null ): PermissionStatus {
 		return $this->authorizeInternal(
-			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->authorizeWrite( $action, $target, $status );
 			},
 			$performer,
@@ -277,7 +277,7 @@ class MovePage {
 	 */
 	public function checkPermissions( Authority $performer, $reason ) {
 		$permissionStatus = $this->authorizeInternal(
-			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->definitelyCan( $action, $target, $status );
 			},
 			$performer,
@@ -522,7 +522,7 @@ class MovePage {
 		UserIdentity $user, $reason = null, $createRedirect = true, array $changeTags = []
 	) {
 		return $this->moveSubpagesInternal(
-			function ( Title $oldSubpage, Title $newSubpage )
+			static function ( Title $oldSubpage, Title $newSubpage )
 			use ( $user, $reason, $createRedirect, $changeTags ) {
 				$mp = new MovePage( $oldSubpage, $newSubpage );
 				return $mp->move( $user, $reason, $createRedirect, $changeTags );
@@ -550,7 +550,7 @@ class MovePage {
 			return Status::newFatal( 'cant-move-subpages' );
 		}
 		return $this->moveSubpagesInternal(
-			function ( Title $oldSubpage, Title $newSubpage )
+			static function ( Title $oldSubpage, Title $newSubpage )
 			use ( $performer, $reason, $createRedirect, $changeTags ) {
 				$mp = new MovePage( $oldSubpage, $newSubpage );
 				return $mp->moveIfAllowed( $performer, $reason, $createRedirect, $changeTags );

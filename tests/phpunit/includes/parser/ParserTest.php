@@ -16,7 +16,7 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 		$mockConfig = $this->createMock( Config::class );
 		$mockConfig->method( 'has' )->willReturn( true );
 		$mockConfig->method( 'get' )->will(
-			$this->returnCallback( function ( $arg ) {
+			$this->returnCallback( static function ( $arg ) {
 				return ( $arg === 'TidyConfig' ) ? null : 'I like otters.';
 			} )
 		);

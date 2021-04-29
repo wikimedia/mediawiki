@@ -467,10 +467,10 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function provideTestPageFactory() {
-		yield [ function ( $pageId, $namespace, $dbKey ) {
+		yield [ static function ( $pageId, $namespace, $dbKey ) {
 			return new TitleValue( $namespace, $dbKey );
 		} ];
-		yield [ function ( $pageId, $namespace, $dbKey ) {
+		yield [ static function ( $pageId, $namespace, $dbKey ) {
 			return new PageIdentityValue( $pageId, $namespace, $dbKey, PageIdentityValue::LOCAL );
 		} ];
 		yield [ function ( $pageId, $namespace, $dbKey ) {
