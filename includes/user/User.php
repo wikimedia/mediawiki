@@ -863,7 +863,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 			// If it's a reserved user that had an anonymous actor created for it at
 			// some point, we need special handling.
-			return self::insertNewUser( function ( UserIdentity $actor, IDatabase $dbw ) {
+			return self::insertNewUser( static function ( UserIdentity $actor, IDatabase $dbw ) {
 				return MediaWikiServices::getInstance()->getActorStore()->acquireSystemActorId( $actor, $dbw );
 			}, $name, [ 'token' => self::INVALID_TOKEN ] );
 		}
@@ -3474,7 +3474,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @return User|null User object, or null if the username already exists.
 	 */
 	public static function createNew( $name, $params = [] ) {
-		return self::insertNewUser( function ( UserIdentity $actor, IDatabase $dbw ) {
+		return self::insertNewUser( static function ( UserIdentity $actor, IDatabase $dbw ) {
 			return MediaWikiServices::getInstance()->getActorStore()->createNewActor( $actor, $dbw );
 		}, $name, $params );
 	}

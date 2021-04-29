@@ -280,7 +280,7 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 			'Sanity check: `ExistingPage` should be wikitext'
 		);
 
-		$performer = $this->mockRegisteredAuthority( function (
+		$performer = $this->mockRegisteredAuthority( static function (
 			string $permission,
 			PageIdentity $page,
 			PermissionStatus $status

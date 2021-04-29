@@ -266,7 +266,7 @@ class MergeHistory {
 	 */
 	public function probablyCanMerge( Authority $performer, string $reason = null ): PermissionStatus {
 		return $this->authorizeInternal(
-			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->probablyCan( $action, $target, $status );
 			},
 			$performer,
@@ -287,7 +287,7 @@ class MergeHistory {
 	 */
 	public function authorizeMerge( Authority $performer, string $reason = null ): PermissionStatus {
 		return $this->authorizeInternal(
-			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->authorizeWrite( $action, $target, $status );
 			},
 			$performer,
@@ -305,7 +305,7 @@ class MergeHistory {
 	public function checkPermissions( Authority $performer, $reason ) {
 		wfDeprecated( __METHOD__, '1.36' );
 		$permissionStatus = $this->authorizeInternal(
-			function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
+			static function ( string $action, PageIdentity $target, PermissionStatus $status ) use ( $performer ) {
 				return $performer->definitelyCan( $action, $target, $status );
 			},
 			$performer,

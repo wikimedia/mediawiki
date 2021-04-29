@@ -1867,7 +1867,7 @@ class LocalFile extends File {
 		//       Also, we should generally not schedule any Jobs or the DeferredUpdates that
 		//       assume the update is complete until after the transaction has been committed and
 		//       we are sure that the upload was indeed successful.
-		$dbw->onTransactionCommitOrIdle( function () use ( $reupload, $purgeUpdate, $cacheUpdateJob ) {
+		$dbw->onTransactionCommitOrIdle( static function () use ( $reupload, $purgeUpdate, $cacheUpdateJob ) {
 			DeferredUpdates::addUpdate( $purgeUpdate, DeferredUpdates::PRESEND );
 
 			if ( !$reupload ) {

@@ -3175,7 +3175,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			]
 		];
 		yield 'only can edit relevant title' => [
-			'performer' => $this->mockAnonAuthority( function (
+			'performer' => $this->mockAnonAuthority( static function (
 				string $permission,
 				PageIdentity $page
 			) {

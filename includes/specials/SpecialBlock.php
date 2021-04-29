@@ -318,7 +318,7 @@ class SpecialBlock extends FormSpecialPage {
 				'type' => 'multiselect',
 				'cssclass' => 'mw-block-action-restriction',
 				'options-messages' => array_combine(
-					array_map( function ( $action ) {
+					array_map( static function ( $action ) {
 						return "ipb-action-$action";
 					}, array_keys( $blockActions ) ),
 					$blockActions
@@ -881,7 +881,7 @@ class SpecialBlock extends FormSpecialPage {
 				isset( $data['ActionRestrictions'] ) &&
 				$data['ActionRestrictions'] !== ''
 			) {
-				$actionRestrictions = array_map( function ( $id ) {
+				$actionRestrictions = array_map( static function ( $id ) {
 					return new ActionRestriction( 0, $id );
 				}, $data['ActionRestrictions'] );
 			}

@@ -19,7 +19,7 @@ class ApiWatchlistTraitTest extends MediaWikiIntegrationTestCase {
 		$user = $this->createMock( User::class );
 		$user->method( 'isBot' )->willReturn( $isBot );
 		$user->method( 'getBoolOption' )->willReturnCallback(
-			function ( $optionName ) use ( $setOption ) {
+			static function ( $optionName ) use ( $setOption ) {
 				if ( $optionName === 'watchdefault' ) {
 					return (bool)$setOption;
 				}

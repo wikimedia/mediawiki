@@ -272,7 +272,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 
 		$ctr = 0;
 		$this->setTemporaryHook( 'ParserOptionsRegister',
-			function ( &$defaults, &$inCacheKey, &$lazyOptions ) use ( &$ctr ) {
+			static function ( &$defaults, &$inCacheKey, &$lazyOptions ) use ( &$ctr ) {
 				$defaults['testMatches'] = null;
 				$lazyOptions['testMatches'] = static function () use ( &$ctr ) {
 					return ++$ctr;

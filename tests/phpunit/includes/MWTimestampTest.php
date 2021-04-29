@@ -22,17 +22,17 @@ class MWTimestampTest extends MediaWikiLangTestCase {
 			[ 'getOption', 'getIntOption', 'getDefaultOption' ]
 		);
 		$mock->method( 'getOption' )
-			->willReturnCallback( function ( $user, $name ) use ( $options, $defaults ) {
+			->willReturnCallback( static function ( $user, $name ) use ( $options, $defaults ) {
 				return $options[$name] ?? $defaults[ $name ];
 			}
 		);
 		$mock->method( 'getIntOption' )
-			->willReturnCallback( function ( $user, $name ) use ( $options, $defaults ) {
+			->willReturnCallback( static function ( $user, $name ) use ( $options, $defaults ) {
 				return $options[$name] ?? $defaults[ $name ];
 			}
 		);
 		$mock->method( 'getDefaultOption' )
-			->willReturnCallback( function ( $name ) use ( $defaults ) {
+			->willReturnCallback( static function ( $name ) use ( $defaults ) {
 				return $defaults[$name];
 			}
 		);

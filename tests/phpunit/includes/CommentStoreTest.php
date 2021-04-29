@@ -36,10 +36,10 @@ class CommentStoreTest extends MediaWikiLangTestCase {
 	 */
 	private function makeStore( $stage ) {
 		$lang = $this->createMock( Language::class );
-		$lang->method( 'truncateForDatabase' )->willReturnCallback( function ( $str, $len ) {
+		$lang->method( 'truncateForDatabase' )->willReturnCallback( static function ( $str, $len ) {
 			return strlen( $str ) > $len ? substr( $str, 0, $len - 3 ) . '...' : $str;
 		} );
-		$lang->method( 'truncateForVisual' )->willReturnCallback( function ( $str, $len ) {
+		$lang->method( 'truncateForVisual' )->willReturnCallback( static function ( $str, $len ) {
 			return mb_strlen( $str ) > $len ? mb_substr( $str, 0, $len - 3 ) . '...' : $str;
 		} );
 		return new class( $lang, $stage ) extends CommentStore {

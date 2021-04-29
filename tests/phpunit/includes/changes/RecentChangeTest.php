@@ -490,7 +490,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 		string $expectError
 	) {
 		$rc = $this->getDummyEditRecentChange();
-		$performer = $this->mockRegisteredAuthority( function (
+		$performer = $this->mockRegisteredAuthority( static function (
 			string $permission,
 			PageIdentity $page,
 			PermissionStatus $status
@@ -513,7 +513,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testDoMarkPatrolledPermissions_Hook() {
 		$rc = $this->getDummyEditRecentChange();
-		$this->setTemporaryHook( 'MarkPatrolled', function () {
+		$this->setTemporaryHook( 'MarkPatrolled', static function () {
 			return false;
 		} );
 		$errors = $rc->doMarkPatrolled( $this->mockRegisteredUltimateAuthority() );

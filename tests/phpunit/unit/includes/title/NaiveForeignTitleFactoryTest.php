@@ -70,7 +70,7 @@ class NaiveForeignTitleFactoryTest extends MediaWikiUnitTestCase {
 		$contentLanguage = $this->createMock( Language::class );
 		$contentLanguage->method( 'getNsIndex' )
 			->willReturnCallback(
-				function ( $text ) {
+				static function ( $text ) {
 					$text = strtolower( $text );
 					if ( $text === '' ) {
 						return NS_MAIN;
