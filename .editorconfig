@@ -9,10 +9,14 @@ charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
 
+# Ensure text editors don't turn leading spaces into tabs,
+# e.g. in multi-line bullet list items
 [*.md]
-trim_trailing_whitespace = false
+indent_style = space
+indent_size = 2
 
 # Tabs may not be valid YAML
 # @see https://yaml.org/spec/1.2/spec.html#id2777534
 [*.{yml,yaml}]
 indent_style = space
+indent_size = 2
