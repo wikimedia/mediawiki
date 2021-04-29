@@ -2273,14 +2273,32 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$page = $this->getNonexistingTestPage();
 		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
 
-		// Fore bad article ID
+		// Force bad article ID
 		$title = $page->getTitle();
 		$title->resetArticleID( 886655 );
 
-		$result = $store->getKnownCurrentRevision( $page->getTitle(), $rev->getId() );
+		$result = $store->getKnownCurrentRevision( $title, $rev->getId() );
 
-		// Redundant, we really only care that no exception is thrown.
-		$this->assertSame( $rev->getId(), $result->getId() );
+		$this->assertSame( $rev->getPageId(), $result->getPageId() );
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getKnownCurrentRevision
+	 */
+	public function testGetKnownCurrentRevision_wrongTitle() {
+		$cache = new WANObjectCache( [ 'cache' => new HashBagOStuff() ] );
+		$this->setService( 'MainWANObjectCache', $cache );
+
+		$store = MediaWikiServices::getInstance()->getRevisionStore();
+		$page = $this->getNonexistingTestPage();
+		$rev = $this->createRevisionStoreCacheRecord( $page, $store );
+
+		// Get title of another page
+		$title = $this->getExistingTestPage( __FUNCTION__ )->getTitle();
+		$result = $store->getKnownCurrentRevision( $title, $rev->getId() );
+
+		$this->assertSame( $rev->getPageId(), $result->getPageId() );
+		$this->assertTrue( $rev->getPage()->isSamePageAs( $result->getPage() ) );
 	}
 
 	/**

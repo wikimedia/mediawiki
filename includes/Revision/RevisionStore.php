@@ -1700,7 +1700,7 @@ class RevisionStore
 				$page = $this->getPage( $pageId, $revId, $queryFlags );
 			}
 		} else {
-			$this->ensureRevisionRowMatchesPage( $row, $page );
+			$page = $this->ensureRevisionRowMatchesPage( $row, $page );
 		}
 
 		try {
@@ -1779,24 +1779,39 @@ class RevisionStore
 	 * to avoid spurious errors during page moves.
 	 *
 	 * @param \stdClass $row
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $context
+	 *
+	 * @return Pageidentity
 	 */
-	private function ensureRevisionRowMatchesTitle( $row, Title $title, $context = [] ) {
+	private function ensureRevisionRowMatchesPage( $row, PageIdentity $page, $context = [] ) {
 		$revId = (int)( $row->rev_id ?? 0 );
 		$revPageId = (int)( $row->rev_page ?? 0 ); // XXX: also check $row->page_id?
-		$titlePageId = $title->getArticleID();
-
+		$expectedPageId = $page->getId( $this->wikiId );
 		// Avoid fatal error when the Title's ID changed, T246720
-		if ( $revPageId && $titlePageId && $revPageId !== $titlePageId ) {
-			$masterPageId = $title->getArticleID( Title::READ_LATEST );
-			$masterLatest = $title->getLatestRevID( Title::READ_LATEST );
-
+		if ( $revPageId && $expectedPageId && $revPageId !== $expectedPageId ) {
+			// NOTE: PageStore::getPageByReference may use the page ID, which we don't want here.
+			$pageRec = $this->pageStore->getPageByName(
+				$page->getNamespace(),
+				$page->getDBkey(),
+				PageStore::READ_LATEST
+			);
+			$masterPageId = $pageRec->getId( $this->wikiId );
+			$masterLatest = $pageRec->getLatest( $this->wikiId );
 			if ( $revPageId === $masterPageId ) {
-				$this->logger->warning(
+				if ( $page instanceof Title ) {
+					// If we were using a Title object, keep using it, but update the page ID.
+					// This way, we don't unexpectedly mix Titles with immutable value objects.
+					$page->resetArticleID( $masterPageId );
+
+				} else {
+					$page = $pageRec;
+				}
+
+				$this->logger->info(
 					"Encountered stale Title object",
 					[
-						'page_id_stale' => $titlePageId,
+						'page_id_stale' => $expectedPageId,
 						'page_id_reloaded' => $masterPageId,
 						'page_latest' => $masterLatest,
 						'rev_id' => $revId,
@@ -1804,40 +1819,36 @@ class RevisionStore
 					] + $context
 				);
 			} else {
-				throw new RevisionAccessException(
-					"Revision $revId belongs to page ID $revPageId, "
-					. "the provided Title object belongs to page ID $masterPageId"
+				$expectedTitle = (string)$page;
+				if ( $page instanceof Title ) {
+					// If we started with a Title, keep using a Title.
+					$page = $this->titleFactory->newFromID( $revPageId );
+				} else {
+					$page = $pageRec;
+				}
+
+				// This could happen if a caller to e.g. getRevisionById supplied a Title that is
+				// plain wrong. In this case, we should ideally throw an IllegalArgumentException.
+				// However, it is more likely that we encountered a race condition during a page
+				// move (T268910, T279832) or database corruption (T263340). That situation
+				// should not be ignored, but we can allow the request to continue in a reasonable
+				// manner without breaking things for the user.
+				$this->logger->error(
+					"Encountered mismatching Title object (see T259022, T268910, T279832, T263340)",
+					[
+						'expected_page_id' => $masterPageId,
+						'expected_page_title' => $expectedTitle,
+						'rev_page' => $revPageId,
+						'rev_page_title' => (string)$page,
+						'page_latest' => $masterLatest,
+						'rev_id' => $revId,
+						'trace' => wfBacktrace()
+					] + $context
 				);
 			}
 		}
-	}
 
-	/**
-	 * Check that the given row matches the given PageIdentity object.
-	 * When a mismatch is detected, this tries to re-load the title from master,
-	 * to avoid spurious errors during page moves.
-	 *
-	 * @param \stdClass $row
-	 * @param PageIdentity $page
-	 * @param array $context
-	 */
-	private function ensureRevisionRowMatchesPage( $row, PageIdentity $page, $context = [] ) {
-		if ( $page instanceof Title ) {
-			$this->ensureRevisionRowMatchesTitle( $row, Title::castFromPageIdentity( $page ), $context );
-			return;
-		}
-
-		$revId = (int)( $row->rev_id ?? 0 );
-		$revPageId = (int)( $row->rev_page ?? 0 ); // XXX: also check $row->page_id?
-		$titlePageId = $this->getArticleId( $page );
-
-		// Raise fatal error when the Title's ID changed, T246720
-		if ( $revPageId && $titlePageId && $revPageId !== $titlePageId ) {
-			throw new RevisionAccessException(
-				"Revision $revId belongs to page ID $revPageId, "
-				. "the provided Title object belongs to page ID $titlePageId"
-			);
-		}
+		return $page;
 	}
 
 	/**
@@ -3182,7 +3193,7 @@ class RevisionStore
 			$title = $page;
 		}
 		$revIdPassed = $revId;
-		$pageId = $this->getArticleID( $title );
+		$pageId = $this->getArticleId( $title );
 
 		if ( !$pageId ) {
 			return false;
@@ -3222,7 +3233,7 @@ class RevisionStore
 
 		// Reflect revision deletion and user renames.
 		if ( $row ) {
-			$this->ensureRevisionRowMatchesTitle( $row, $title, [
+			$title = $this->ensureRevisionRowMatchesPage( $row, $title, [
 				'from_cache_flag' => $fromCache,
 				'page_id_initial' => $pageId,
 				'rev_id_used' => $revId,
