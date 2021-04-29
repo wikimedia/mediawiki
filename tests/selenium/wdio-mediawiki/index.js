@@ -19,8 +19,8 @@ function makeFilenameDate() {
  */
 function saveScreenshot( title ) {
 	// Create sane file name for current test title
-	const filename = encodeURIComponent( title.replace( /\s+/g, '-' ) );
-	const filePath = `${browser.config.screenshotPath}/${filename}.png`;
+	const testTitle = encodeURIComponent( title.replace( /\s+/g, '-' ) );
+	const filePath = `${browser.config.screenshotPath}/${testTitle}-${makeFilenameDate()}.png`;
 	// Ensure directory exists, based on WebDriverIO#saveScreenshotSync()
 	try {
 		fs.statSync( browser.config.screenshotPath );
