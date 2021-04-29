@@ -241,6 +241,7 @@ trait MediaWikiTestCaseTrait {
 	 */
 	protected function mwDebugTearDown() {
 		MWDebug::clearLog();
+		MWDebug::clearDeprecationFilters();
 	}
 
 	/**
