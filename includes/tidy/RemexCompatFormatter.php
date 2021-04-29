@@ -17,7 +17,7 @@ class RemexCompatFormatter extends HtmlFormatter {
 		'tr' => true,
 	];
 
-	/* @var ?callable */
+	/** @var ?callable */
 	private $textProcessor;
 
 	public function __construct( $options = [] ) {
