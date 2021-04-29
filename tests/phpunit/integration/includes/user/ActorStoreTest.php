@@ -817,6 +817,30 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	/**
+	 * @covers ::deleteActor
+	 */
+	public function testDelete() {
+		$store = $this->getStore();
+		$actor = new UserIdentityValue( 9999, 'DeleteTest' );
+		$actorId = $store->acquireActorId( $actor, $this->db );
+		$this->assertTrue( $store->deleteActor( $actor, $this->db ) );
+
+		$this->assertNull( $store->findActorId( $actor, $this->db ) );
+		$this->assertNull( $store->getUserIdentityByUserId( $actor->getId() ) );
+		$this->assertNull( $store->getUserIdentityByName( $actor->getName() ) );
+		$this->assertNull( $store->getActorById( $actorId, $this->db ) );
+	}
+
+	/**
+	 * @covers ::deleteActor
+	 */
+	public function testDeleteDoesNotExist() {
+		$this->assertFalse(
+			$this->getStore()->deleteActor( new UserIdentityValue( 9998, 'DoesNotExist' ), $this->db )
+		);
+	}
+
+	/**
 	 * @covers ::getUnknownActor
 	 */
 	public function testGetUnknownActor() {
