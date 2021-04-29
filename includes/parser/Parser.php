@@ -4341,7 +4341,6 @@ class Parser {
 			$anchor = $safeHeadline;
 			$fallbackAnchor = $fallbackHeadline;
 			if ( isset( $refers[$arrayKey] ) ) {
-				// phpcs:ignore Generic.Formatting.DisallowMultipleStatements
 				for ( $i = 2; isset( $refers["${arrayKey}_$i"] ); ++$i );
 				$anchor .= "_$i";
 				$linkAnchor .= "_$i";
@@ -4350,7 +4349,6 @@ class Parser {
 				$refers[$arrayKey] = true;
 			}
 			if ( $fallbackHeadline !== false && isset( $refers[$fallbackArrayKey] ) ) {
-				// phpcs:ignore Generic.Formatting.DisallowMultipleStatements
 				for ( $i = 2; isset( $refers["${fallbackArrayKey}_$i"] ); ++$i );
 				$fallbackAnchor .= "_$i";
 				$refers["${fallbackArrayKey}_$i"] = true;
