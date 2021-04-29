@@ -51,6 +51,7 @@ class CachedBagOStuff extends BagOStuff {
 
 		$this->store = $backend;
 		$this->procCache = new HashBagOStuff( $params );
+
 		$this->attrMap = $backend->attrMap;
 	}
 

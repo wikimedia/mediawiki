@@ -59,6 +59,14 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		// key before it expires should never have the end-result of purging that key. Using
 		// the web request time becomes increasingly problematic the longer the request lasts.
 		ini_set( 'apc.use_request_time', '0' );
+
+		if ( PHP_SAPI === 'cli' ) {
+			$this->attrMap[self::ATTR_DURABILITY] = ini_get( 'apc.enable_cli' )
+				? self::QOS_DURABILITY_SCRIPT
+				: self::QOS_DURABILITY_NONE;
+		} else {
+			$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_SERVICE;
+		}
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {

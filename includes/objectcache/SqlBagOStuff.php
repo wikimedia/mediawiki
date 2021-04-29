@@ -171,7 +171,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$dbType = $info['type'];
 				++$index;
 			}
-			$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_NONE;
 		} else {
 			// Configuration uses the servers defined in LoadBalancer instances.
 			// Object data is vertically partitioned via global vs local keys.
@@ -193,7 +192,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					"Config requires 'server', 'servers', or 'localKeyLB'/'globalKeyLB'"
 				);
 			}
-			$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE;
 		}
 
 		$this->purgePeriod = intval( $params['purgePeriod'] ?? $this->purgePeriod );
@@ -211,8 +209,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 			$this->multiPrimaryModeType = $dbType;
 		}
 
-		$this->attrMap[self::ATTR_EMULATION] = self::QOS_EMULATION_SQL;
 		$this->attrMap[self::ATTR_DURABILITY] = self::QOS_DURABILITY_RDBMS;
+		$this->attrMap[self::ATTR_EMULATION] = self::QOS_EMULATION_SQL;
 	}
 
 	protected function doGet( $key, $flags = 0, &$casToken = null ) {
