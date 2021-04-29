@@ -43,6 +43,9 @@ class BlockActionInfo {
 	/** @var int */
 	private const ACTION_UPLOAD = 1;
 
+	/** @var int */
+	private const ACTION_MOVE = 2;
+
 	/**
 	 * Core block actions.
 	 *
@@ -58,6 +61,7 @@ class BlockActionInfo {
 	 */
 	private const CORE_BLOCK_ACTIONS = [
 		'upload' => self::ACTION_UPLOAD,
+		'move' => self::ACTION_MOVE,
 	];
 
 	/**
