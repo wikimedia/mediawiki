@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
@@ -283,6 +284,26 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->assertInstanceOf( NamespaceRestriction::class, $block->getRestrictions()[0] );
 		$this->assertEquals( $namespace, $block->getRestrictions()[0]->getValue() );
+	}
+
+	public function testBlockWithRestrictionsAction() {
+		$this->setMwGlobals( [
+			'wgEnablePartialActionBlocks' => true,
+		] );
+
+		$blockActionInfo = MediaWikiServices::getInstance()->getBlockActionInfo();
+		$action = 'upload';
+
+		$this->doBlock( [
+			'partial' => true,
+			'actionrestrictions' => $action,
+			'allowusertalk' => true,
+		] );
+
+		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
+
+		$this->assertInstanceOf( ActionRestriction::class, $block->getRestrictions()[0] );
+		$this->assertEquals( $action, $blockActionInfo->getActionFromId( $block->getRestrictions()[0]->getValue() ) );
 	}
 
 	public function testBlockingActionWithNoToken() {
