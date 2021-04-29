@@ -4,7 +4,6 @@ namespace MediaWiki\ParamValidator\TypeDef;
 
 use ExternalUserNames;
 use MediaWiki\User\UserFactory;
-// phpcs:ignore MediaWiki.Classes.UnusedUseStatement.UnusedUse
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use TitleFactory;
