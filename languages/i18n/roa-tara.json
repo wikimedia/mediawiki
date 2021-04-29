@@ -1999,6 +1999,7 @@
 	"apisandbox-results": "Resultate",
 	"apisandbox-sending-request": "Stoche a manne 'a richieste de API...",
 	"apisandbox-loading-results": "Stoche a riceve le resultate de l'API...",
+	"apisandbox-request-selectformat-label": "Fà 'drucà le date cercate cumme:",
 	"apisandbox-request-format-url-label": "Stringhe d'a 'nderrogazione de l'URL",
 	"apisandbox-request-url-label": "URL richieste:",
 	"apisandbox-request-json-label": "JSON cercate:",

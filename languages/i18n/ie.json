@@ -1444,6 +1444,7 @@
 	"tags-apply-blocked": "Vu ne posse aplicar marcationes in tui changes durante li témpor que {{GENDER:$1|vu}} es blocat.",
 	"tags-apply-not-allowed-one": "Li marcation \"$1\" ne posse esser aplicat manualmen.",
 	"tags-apply-not-allowed-multi": "Li sequent {{PLURAL:$2|marcation ne posse|marcationes ne posse}} esser aplicat manualmen: $1",
+	"purge": "Actualisar",
 	"htmlform-reset": "Anullar changes",
 	"logentry-delete-delete": "$1 ha removet li págine $3",
 	"logentry-delete-restore": "$1 restituet li págine $3 ($4)",

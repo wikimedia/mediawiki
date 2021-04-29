@@ -3480,6 +3480,8 @@
 	"tag-mw-reverted-description": "Bearbeitungen, die später durch eine andere Bearbeitung rückgängig gemacht wurden",
 	"tag-mw-server-side-upload": "Serverseitig hochgeladene Datei",
 	"tag-mw-server-side-upload-description": "Mediendateien, die über ein Wartungsskript hochgeladen wurden",
+	"tag-mw-add-media-description": "Bearbeitungen, die Medien hinzufügen",
+	"tag-mw-remove-media-description": "Bearbeitungen, die Medien entfernen",
 	"tags-title": "Markierungen",
 	"tags-intro": "Diese Seite zeigt alle Markierungen, die für Bearbeitungen verwendet wurden, sowie deren Bedeutung. \n\nBei entsprechender Einstellung können die Missbrauchfilter beliebige Markierungen in die Versionsgeschichte setzen. Man kann die Versionsgeschichte dann nach den Markierungen filtern.",
 	"tags-tag": "Markierungsname",

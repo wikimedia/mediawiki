@@ -3343,6 +3343,8 @@
 	"tag-mw-reverted": "Anulad",
 	"tag-mw-reverted-description": "Modifeghe ch'a inn stad poeu inversade per mezz d'una modifega diversa",
 	"tag-mw-server-side-upload-description": "File audiovisiv caregad per mezz de 'n script de manutenzion",
+	"tag-mw-add-media-description": "Modifiche che sgionten di fail audiovisiv",
+	"tag-mw-remove-media-description": "Modifiche che toeuven via i fail audiovisiv",
 	"tags-title": "Etichete",
 	"tags-intro": "Questa pagina chì la fa la lista di etichete cont el qual el programa el podariss marcà una modifega, e 'l so significad.",
 	"tags-tag": "Nom de l'eticheta",
