@@ -570,6 +570,40 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	}
 
 	/**
+	 * Delete the actor from the actor table
+	 *
+	 * @warning this method does very limited validation and is extremely
+	 * dangerous since it can break referential integrity of the database
+	 * if used incorrectly. Use at your own risk!
+	 *
+	 * @since 1.37
+	 * @param UserIdentity $actor
+	 * @param IDatabase $dbw
+	 * @return bool true on success, false if nothing was deleted.
+	 */
+	public function deleteActor( UserIdentity $actor, IDatabase $dbw ): bool {
+		$this->checkDatabaseDomain( $dbw );
+		$this->deprecateInvalidCrossWikiParam( $actor );
+
+		$normalizedName = $this->normalizeUserName( $actor->getName() );
+		if ( $normalizedName === null ) {
+			throw new InvalidArgumentException(
+				"Unable to normalize the provided actor name {$actor->getName()}"
+			);
+		}
+		$dbw->delete(
+			'actor',
+			[ 'actor_name' => $normalizedName ],
+			__METHOD__
+		);
+		if ( $dbw->affectedRows() !== 0 ) {
+			$this->cache->remove( $actor );
+			return true;
+		}
+		return false;
+	}
+
+	/**
 	 * Returns a canonical form of user name suitable for storage.
 	 *
 	 * @internal
