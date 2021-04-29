@@ -81,7 +81,7 @@ class CategoryMembershipChangeJob extends Job {
 		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getMainLB();
-		$dbw = $lb->getConnectionRef( DB_MASTER );
+		$dbw = $lb->getConnectionRef( DB_PRIMARY );
 
 		$this->ticket = $lbFactory->getEmptyTransactionTicket( __METHOD__ );
 

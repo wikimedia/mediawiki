@@ -64,14 +64,14 @@ class ApiComparePagesTest extends ApiTestCase {
 
 		$id = $this->addPage( 'D', 'D 1' );
 		self::$repl['pageD'] = Title::newFromText( 'ApiComparePagesTest D' )->getArticleID();
-		wfGetDB( DB_MASTER )->delete( 'revision', [ 'rev_id' => $id ] );
+		wfGetDB( DB_PRIMARY )->delete( 'revision', [ 'rev_id' => $id ] );
 
 		self::$repl['revE1'] = $this->addPage( 'E', 'E 1' );
 		self::$repl['revE2'] = $this->addPage( 'E', 'E 2' );
 		self::$repl['revE3'] = $this->addPage( 'E', 'E 3' );
 		self::$repl['revE4'] = $this->addPage( 'E', 'E 4' );
 		self::$repl['pageE'] = Title::newFromText( 'ApiComparePagesTest E' )->getArticleID();
-		wfGetDB( DB_MASTER )->update(
+		wfGetDB( DB_PRIMARY )->update(
 			'page', [ 'page_latest' => 0 ], [ 'page_id' => self::$repl['pageE'] ]
 		);
 

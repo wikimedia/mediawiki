@@ -106,7 +106,7 @@ class BlockRestrictionStore {
 			return false;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$dbw->insert(
 			'ipblocks_restrictions',
@@ -127,7 +127,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function update( array $restrictions ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$dbw->startAtomic( __METHOD__ );
 
@@ -199,7 +199,7 @@ class BlockRestrictionStore {
 
 		$parentBlockId = (int)$parentBlockId;
 
-		$db = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$db = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$db->startAtomic( __METHOD__ );
 
@@ -232,7 +232,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function delete( array $restrictions ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$result = true;
 		foreach ( $restrictions as $restriction ) {
 			if ( !$restriction instanceof Restriction ) {
@@ -262,7 +262,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function deleteByBlockId( $blockId ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		return $dbw->delete(
 			'ipblocks_restrictions',
 			[ 'ir_ipb_id' => $blockId ],
@@ -279,7 +279,7 @@ class BlockRestrictionStore {
 	 * @return bool
 	 */
 	public function deleteByParentBlockId( $parentBlockId ) {
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		return $dbw->deleteJoin(
 			'ipblocks_restrictions',
 			'ipblocks',

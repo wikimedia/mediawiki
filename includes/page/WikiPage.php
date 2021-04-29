@@ -1164,7 +1164,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				$this->insertRedirectEntry( $retval, $latest );
 			},
 			DeferredUpdates::POSTSEND,
-			wfGetDB( DB_MASTER )
+			wfGetDB( DB_PRIMARY )
 		);
 
 		return $retval;
@@ -1182,7 +1182,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			return false;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
 		if ( !$oldLatest || $oldLatest == $this->lockAndGetLatest() ) {
@@ -2478,7 +2478,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$protect = false;
 		$changed = false;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		foreach ( $restrictionTypes as $action ) {
 			if ( !isset( $expiry[$action] ) || $expiry[$action] === $dbw->getInfinity() ) {
@@ -2736,7 +2736,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		string $reason,
 		UserIdentity $user
 	) : ?RevisionRecord {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		// Prepare a null revision to be added to the history
 		$editComment = wfMessage(
@@ -2963,7 +2963,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		$status = Status::newGood();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
 		$this->loadPageData( self::READ_LATEST );
@@ -3245,7 +3245,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @since 1.27
 	 */
 	public function lockAndGetLatest() {
-		return (int)wfGetDB( DB_MASTER )->selectField(
+		return (int)wfGetDB( DB_PRIMARY )->selectField(
 			'page',
 			'page_latest',
 			[
@@ -3595,7 +3595,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$removeFields[] = "cat_{$type}s = cat_{$type}s - 1";
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		if ( count( $added ) ) {
 			$existingAdded = $dbw->selectFieldValues(

@@ -422,7 +422,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			self::$reuseDB = $this->getCliArg( 'reuse-db' );
 
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
-			$this->db = $lb->getConnection( DB_MASTER );
+			$this->db = $lb->getConnection( DB_PRIMARY );
 
 			$this->checkDbIsSupported();
 

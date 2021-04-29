@@ -98,7 +98,7 @@ class LogPage {
 	protected function saveContent() {
 		global $wgLogRestrictions;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$now = wfTimestampNow();
 		$actorId = MediaWikiServices::getInstance()->getActorNormalization()
@@ -402,7 +402,7 @@ class LogPage {
 			];
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert( 'log_search', $data, __METHOD__, [ 'IGNORE' ] );
 
 		return true;

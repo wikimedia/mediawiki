@@ -81,7 +81,7 @@ class ImageBuilder extends Maintenance {
 	}
 
 	public function execute() {
-		$this->dbw = $this->getDB( DB_MASTER );
+		$this->dbw = $this->getDB( DB_PRIMARY );
 		$this->dryrun = $this->hasOption( 'dry-run' );
 		if ( $this->dryrun ) {
 			MediaWiki\MediaWikiServices::getInstance()->getReadOnlyMode()

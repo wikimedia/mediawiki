@@ -59,7 +59,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 
 	protected function doDBUpdates() {
 		$this->output( "Populating ar_rev_id...\n" );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		self::checkMysqlAutoIncrementBug( $dbw );
 
 		// Quick exit if there are no rows needing updates.

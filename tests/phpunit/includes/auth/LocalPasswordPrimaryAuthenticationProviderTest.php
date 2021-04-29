@@ -116,7 +116,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 	public function testTestUserCanAuthenticate() {
 		$user = $this->getMutableTestUser()->getUser();
 		$userName = $user->getName();
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$provider = $this->getProvider();
 
@@ -166,7 +166,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		$user = $this->getMutableTestUser()->getUser();
 		$userName = $user->getName();
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$row = $dbw->selectRow(
 			'user',
 			'*',
@@ -228,7 +228,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$testUser = $this->getMutableTestUser();
 		$userName = $testUser->getUser()->getName();
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$id = \User::idFromName( $userName );
 
 		$req = new PasswordAuthenticationRequest();
@@ -462,7 +462,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$oldpass = $testUser->getPassword();
 		$newpass = 'NewPassword';
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$oldExpiry = $dbw->selectField( 'user', 'user_password_expires', [ 'user_name' => $cuser ] );
 
 		$this->mergeMwGlobalArrayValue( 'wgHooks', [
@@ -676,7 +676,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 
 		// We have to cheat a bit to avoid having to add a new user to
 		// the database to test the actual setting of the password works right
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 
 		$user = \User::newFromName( 'UTSysop' );
 		$req->username = $user->getName();

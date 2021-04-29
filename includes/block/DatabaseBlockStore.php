@@ -118,7 +118,7 @@ class DatabaseBlockStore {
 			return;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$blockRestrictionStore = $this->blockRestrictionStore;
 
 		DeferredUpdates::addUpdate( new AutoCommitUpdate(
@@ -162,7 +162,7 @@ class DatabaseBlockStore {
 		// TODO T258866 - consider passing the database
 		$this->purgeExpiredBlocks();
 
-		$dbw = $database ?: $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $database ?: $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 
 		$dbw->insert( 'ipblocks', $row, __METHOD__, [ 'IGNORE' ] );
@@ -231,7 +231,7 @@ class DatabaseBlockStore {
 	public function updateBlock( DatabaseBlock $block ) {
 		$this->logger->debug( 'Updating block; timestamp ' . $block->getTimestamp() );
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
 		$dbw->startAtomic( __METHOD__ );
 
@@ -310,7 +310,7 @@ class DatabaseBlockStore {
 				__METHOD__ . " requires that a block id be set\n"
 			);
 		}
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$this->blockRestrictionStore->deleteByParentBlockId( $blockId );
 		$dbw->delete(
@@ -394,7 +394,7 @@ class DatabaseBlockStore {
 		if ( !$block->getBlocker() ) {
 			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
 		}
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$blockerActor = $this->actorNormalization->acquireActorId( $block->getBlocker(), $dbw );
 		$blockArray = [
 			'ipb_by_actor'       => $blockerActor,

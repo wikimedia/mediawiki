@@ -91,7 +91,7 @@ class TrackBlobs {
 	}
 
 	private function initTrackingTable() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		if ( $dbw->tableExists( 'blob_tracking', __METHOD__ ) ) {
 			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_tracking' ), __METHOD__ );
 			$dbw->query( 'DROP TABLE ' . $dbw->tableName( 'blob_orphans' ), __METHOD__ );
@@ -130,7 +130,7 @@ class TrackBlobs {
 	 *  Scan the revision table for rows stored in the specified clusters
 	 */
 	private function trackRevisions() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$textClause = $this->getTextClause();
@@ -218,7 +218,7 @@ class TrackBlobs {
 	 */
 	private function trackOrphanText() {
 		# Wait until the blob_tracking table is available in the replica DB
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
 		$pos = $dbw->getMasterPos();
 		$dbr->masterPosWait( $pos, 100000 );
@@ -310,7 +310,7 @@ class TrackBlobs {
 			return;
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 
 		foreach ( $this->clusters as $cluster ) {

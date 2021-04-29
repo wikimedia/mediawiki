@@ -312,7 +312,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'Second revision should come after the first'
 		);
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame(
 			'4',
 			$dbw->selectField(

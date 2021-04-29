@@ -23,11 +23,11 @@ class DeleteAutoPatrolLogsTest extends MaintenanceBaseTestCase {
 	}
 
 	private function cleanLoggingTable() {
-		wfGetDB( DB_MASTER )->delete( 'logging', '*' );
+		wfGetDB( DB_PRIMARY )->delete( 'logging', '*' );
 	}
 
 	private function insertLoggingData() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$logs = [];
 
 		$comment = \MediaWiki\MediaWikiServices::getInstance()->getCommentStore()

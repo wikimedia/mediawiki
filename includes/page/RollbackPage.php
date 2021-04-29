@@ -283,7 +283,7 @@ class RollbackPage {
 			return $result;
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		// TODO: move this query to RevisionSelectQueryBuilder when it's available
 		// Get the last edit not by this person...

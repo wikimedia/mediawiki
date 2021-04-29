@@ -142,7 +142,7 @@ class FindMissingActors extends Maintenance {
 			$this->fatalError( "Unknown user: '$name'" );
 		}
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$actorId = $this->actorNormalization->acquireActorId( $user, $dbw );
 
 		if ( !$actorId ) {
@@ -274,7 +274,7 @@ class FindMissingActors extends Maintenance {
 		$count = count( $ids );
 		$this->output( "OVERWRITING $count actor IDs in $table.$actorField with $overwrite...\n" );
 
-		$dbw = $this->loadBalancer->getConnectionRef( DB_MASTER );
+		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 
 		$dbw->update( $table, [ $actorField => $overwrite ], [ $idField => $ids ], __METHOD__ );
 

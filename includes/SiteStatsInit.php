@@ -46,7 +46,7 @@ class SiteStatsInit {
 		if ( $database instanceof IDatabase ) {
 			$this->dbr = $database;
 		} elseif ( $database ) {
-			$this->dbr = self::getDB( DB_MASTER );
+			$this->dbr = self::getDB( DB_PRIMARY );
 		} else {
 			$this->dbr = self::getDB( DB_REPLICA, 'vslow' );
 		}
@@ -147,7 +147,7 @@ class SiteStatsInit {
 
 		// Count active users if need be
 		if ( $options['activeUsers'] ) {
-			SiteStatsUpdate::cacheUpdate( self::getDB( DB_MASTER ) );
+			SiteStatsUpdate::cacheUpdate( self::getDB( DB_PRIMARY ) );
 		}
 	}
 
@@ -155,7 +155,7 @@ class SiteStatsInit {
 	 * Insert a dummy row with all zeroes if no row is present
 	 */
 	public static function doPlaceholderInit() {
-		$dbw = self::getDB( DB_MASTER );
+		$dbw = self::getDB( DB_PRIMARY );
 		$exists = $dbw->selectField( 'site_stats', '1', [ 'ss_row_id' => 1 ],  __METHOD__ );
 		if ( $exists === false ) {
 			$dbw->insert(
@@ -180,7 +180,7 @@ class SiteStatsInit {
 		];
 		$row = [ 'ss_row_id' => 1 ] + $set;
 
-		self::getDB( DB_MASTER )->upsert(
+		self::getDB( DB_PRIMARY )->upsert(
 			'site_stats',
 			$row,
 			'ss_row_id',

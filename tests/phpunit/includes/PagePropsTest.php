@@ -288,7 +288,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 			];
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->replace(
 			'page_props',
 			[

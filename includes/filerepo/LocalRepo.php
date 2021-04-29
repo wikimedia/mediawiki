@@ -490,7 +490,7 @@ class LocalRepo extends FileRepo {
 	 * @return IDatabase
 	 */
 	public function getMasterDB() {
-		return wfGetDB( DB_MASTER );
+		return wfGetDB( DB_PRIMARY );
 	}
 
 	/**

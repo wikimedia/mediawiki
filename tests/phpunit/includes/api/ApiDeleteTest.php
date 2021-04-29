@@ -126,7 +126,7 @@ class ApiDeleteTest extends ApiTestCase {
 
 		$this->assertFalse( Title::newFromText( $name )->exists() );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$this->assertSame( 'custom tag', $dbw->selectField(
 			[ 'change_tag', 'logging', 'change_tag_def' ],
 			'ctd_name',

@@ -49,7 +49,7 @@ class PopulateExternallinksIndex60 extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$this->output( "Populating externallinks.el_index_60...\n" );
 
 		$count = 0;

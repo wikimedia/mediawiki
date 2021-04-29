@@ -45,7 +45,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	}
 
 	public function doDBUpdates() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( !$dbw->tableExists( 'revision', __METHOD__ ) ) {
 			$this->fatalError( "revision table does not exist" );
 		} elseif ( !$dbw->tableExists( 'archive', __METHOD__ ) ) {
@@ -89,7 +89,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	 */
 	protected function doLenUpdates( $table, $idCol, $prefix, $queryInfo ) {
 		$dbr = $this->getDB( DB_REPLICA );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$batchSize = $this->getBatchSize();
 		$start = $dbw->selectField( $table, "MIN($idCol)", '', __METHOD__ );
 		$end = $dbw->selectField( $table, "MAX($idCol)", '', __METHOD__ );
@@ -152,7 +152,7 @@ class PopulateRevisionLength extends LoggedUpdateMaintenance {
 	 * @return bool
 	 */
 	protected function upgradeRow( $row, $table, $idCol, $prefix ) {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$revFactory = MediaWikiServices::getInstance()->getRevisionFactory();
 		if ( $table === 'archive' ) {

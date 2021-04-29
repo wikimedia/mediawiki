@@ -41,7 +41,7 @@ class RenameRestrictions extends Maintenance {
 		$oldLevel = $this->getArg( 0 );
 		$newLevel = $this->getArg( 1 );
 
-		$dbm = wfGetDB( DB_MASTER );
+		$dbm = wfGetDB( DB_PRIMARY );
 		$dbm->update(
 			'page_restrictions',
 			[ 'pr_level' => $newLevel ],

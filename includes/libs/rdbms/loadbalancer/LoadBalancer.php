@@ -362,7 +362,7 @@ class LoadBalancer implements ILoadBalancer {
 	 */
 	private function sanitizeConnectionFlags( $flags, $i, $domain ) {
 		// Whether an outside caller is explicitly requesting the master database server
-		if ( $i === self::DB_MASTER || $i === $this->getWriterIndex() ) {
+		if ( $i === self::DB_PRIMARY || $i === $this->getWriterIndex() ) {
 			$flags |= self::CONN_INTENT_WRITABLE;
 		}
 
@@ -501,7 +501,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return int A specific server index (replica DBs are checked for connectivity)
 	 */
 	private function getConnectionIndex( $i, array $groups, $domain ) {
-		if ( $i === self::DB_MASTER ) {
+		if ( $i === self::DB_PRIMARY ) {
 			$i = $this->getWriterIndex();
 		} elseif ( $i === self::DB_REPLICA ) {
 			foreach ( $groups as $group ) {
@@ -803,7 +803,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function getAnyOpenConnection( $i, $flags = 0 ) {
-		$i = ( $i === self::DB_MASTER ) ? $this->getWriterIndex() : $i;
+		$i = ( $i === self::DB_PRIMARY ) ? $this->getWriterIndex() : $i;
 		// Connection handles required to be in auto-commit mode use a separate connection
 		// pool since the main pool is effected by implicit and explicit transaction rounds
 		$autoCommitOnly = self::fieldHasBit( $flags, self::CONN_TRX_AUTOCOMMIT );
@@ -1135,8 +1135,8 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return int One of DB_MASTER/DB_REPLICA
 	 */
 	private function getRoleFromIndex( $i ) {
-		return ( $i === self::DB_MASTER || $i === $this->getWriterIndex() )
-			? self::DB_MASTER
+		return ( $i === self::DB_PRIMARY || $i === $this->getWriterIndex() )
+			? self::DB_PRIMARY
 			: self::DB_REPLICA;
 	}
 
@@ -1384,7 +1384,7 @@ class LoadBalancer implements ILoadBalancer {
 				'ownerId' => $this->id,
 				// Inject object and callback dependencies
 				'lazyMasterHandle' => $this->getLazyConnectionRef(
-					self::DB_MASTER,
+					self::DB_PRIMARY,
 					[],
 					$domain->getId()
 				),

@@ -191,7 +191,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		$lb = $this->getLoadBalancer( $cluster );
 
 		return $lb->getMaintenanceConnectionRef(
-			DB_MASTER,
+			DB_PRIMARY,
 			[],
 			$this->getDomainId( $lb->getServerInfo( $lb->getWriterIndex() ) ),
 			$lb::CONN_TRX_AUTOCOMMIT

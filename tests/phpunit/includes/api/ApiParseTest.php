@@ -132,7 +132,7 @@ class ApiParseTest extends ApiTestCase {
 	 * Set up an interwiki entry for testing.
 	 */
 	protected function setupInterwiki() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert(
 			'interwiki',
 			[

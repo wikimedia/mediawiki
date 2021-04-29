@@ -52,9 +52,9 @@ class DBAccessObjectUtils implements IDBAccessObject {
 	public static function getDBOptions( $bitfield ) {
 		if ( self::hasFlags( $bitfield, self::READ_LATEST_IMMUTABLE ) ) {
 			$index = DB_REPLICA; // override READ_LATEST if set
-			$fallbackIndex = DB_MASTER;
+			$fallbackIndex = DB_PRIMARY;
 		} elseif ( self::hasFlags( $bitfield, self::READ_LATEST ) ) {
-			$index = DB_MASTER;
+			$index = DB_PRIMARY;
 			$fallbackIndex = null;
 		} else {
 			$index = DB_REPLICA;

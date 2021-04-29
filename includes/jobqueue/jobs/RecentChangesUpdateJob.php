@@ -73,7 +73,7 @@ class RecentChangesUpdateJob extends Job {
 	protected function purgeExpiredRows() {
 		global $wgRCMaxAge, $wgUpdateRowsPerQuery;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$lockKey = $dbw->getDomainID() . ':recentchanges-prune';
 		if ( !$dbw->lock( $lockKey, __METHOD__, 0 ) ) {
 			// already in progress
@@ -123,7 +123,7 @@ class RecentChangesUpdateJob extends Job {
 		// Pull in the full window of active users in this update
 		$window = $wgActiveUserDays * 86400;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$factory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$ticket = $factory->getEmptyTransactionTicket( __METHOD__ );
 

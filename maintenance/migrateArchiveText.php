@@ -65,7 +65,7 @@ class MigrateArchiveText extends LoggedUpdateMaintenance {
 		$batchSize = $this->getBatchSize();
 
 		$dbr = $this->getDB( DB_REPLICA, [ 'vslow' ] );
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		if ( !$dbr->fieldExists( 'archive', 'ar_text', __METHOD__ ) ||
 			!$dbw->fieldExists( 'archive', 'ar_text', __METHOD__ )
 		) {

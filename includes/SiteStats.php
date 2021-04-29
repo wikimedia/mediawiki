@@ -59,7 +59,7 @@ class SiteStats {
 		if ( !self::isRowSane( $row ) && $lb->hasOrMadeRecentMasterChanges() ) {
 			// Might have just been initialized during this request? Underflow?
 			wfDebug( __METHOD__ . ": site_stats damaged or missing on replica DB" );
-			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_MASTER ) );
+			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
 		if ( !self::isRowSane( $row ) ) {
@@ -76,7 +76,7 @@ class SiteStats {
 				SiteStatsInit::doAllAndCommit( $dbr );
 			}
 
-			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_MASTER ) );
+			$row = self::doLoadFromDB( $lb->getConnectionRef( DB_PRIMARY ) );
 		}
 
 		if ( !self::isRowSane( $row ) ) {

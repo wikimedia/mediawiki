@@ -335,7 +335,7 @@ class BotPassword implements IDBAccessObject {
 			$fields['bp_password'] = PasswordFactory::newInvalidPassword()->toString();
 		}
 
-		$dbw = self::getDB( DB_MASTER );
+		$dbw = self::getDB( DB_PRIMARY );
 
 		if ( $operation === 'insert' ) {
 			$dbw->insert( 'bot_passwords', $fields + $conds, __METHOD__, [ 'IGNORE' ] );
@@ -361,7 +361,7 @@ class BotPassword implements IDBAccessObject {
 	 * @return bool Success
 	 */
 	public function delete() {
-		$dbw = self::getDB( DB_MASTER );
+		$dbw = self::getDB( DB_PRIMARY );
 		$dbw->delete(
 			'bot_passwords',
 			[
@@ -405,7 +405,7 @@ class BotPassword implements IDBAccessObject {
 			return false;
 		}
 
-		$dbw = self::getDB( DB_MASTER );
+		$dbw = self::getDB( DB_PRIMARY );
 		$dbw->update(
 			'bot_passwords',
 			[ 'bp_password' => PasswordFactory::newInvalidPassword()->toString() ],
@@ -442,7 +442,7 @@ class BotPassword implements IDBAccessObject {
 			return false;
 		}
 
-		$dbw = self::getDB( DB_MASTER );
+		$dbw = self::getDB( DB_PRIMARY );
 		$dbw->delete(
 			'bot_passwords',
 			[ 'bp_user' => $centralId ],

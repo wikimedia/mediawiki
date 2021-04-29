@@ -241,7 +241,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 				// used. We'll need to assess expected fallout before doing that.
 			}
 
-			$dbw = $this->getDBConnection( DB_MASTER );
+			$dbw = $this->getDBConnection( DB_PRIMARY );
 
 			$old_id = $dbw->nextSequenceValue( 'text_old_id_seq' );
 			$dbw->insert(

@@ -32,7 +32,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 	private function installMockLoadBalancer( IDatabase $db ) {
 		$lb = $this->createNoOpMock( ILoadBalancer::class, [ 'getConnectionRef', 'getLocalDomainID' ] );
 
-		$dbRef = new MaintainableDBConnRef( $lb, $db, DB_MASTER );
+		$dbRef = new MaintainableDBConnRef( $lb, $db, DB_PRIMARY );
 		$lb->method( 'getConnectionRef' )->willReturn( $dbRef );
 		$lb->method( 'getLocalDomainID' )->willReturn( 'fake' );
 
@@ -268,7 +268,7 @@ class RevisionStoreTest extends MediaWikiIntegrationTestCase {
 				if ( $callCounter < 3 ) {
 					$this->assertSame( DB_REPLICA, $masterOrReplica );
 				} else {
-					$this->assertSame( DB_MASTER, $masterOrReplica );
+					$this->assertSame( DB_PRIMARY, $masterOrReplica );
 				}
 				return $db;
 			} );

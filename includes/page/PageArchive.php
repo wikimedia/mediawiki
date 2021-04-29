@@ -547,7 +547,7 @@ class PageArchive {
 			throw new ReadOnlyError();
 		}
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->startAtomic( __METHOD__ );
 
 		$restoreAll = empty( $timestamps );

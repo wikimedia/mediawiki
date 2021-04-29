@@ -31,7 +31,7 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	}
 
 	public function execute() {
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 		$key = $this->getUpdateKey();
 
 		if ( !$this->hasOption( 'force' )

@@ -46,7 +46,7 @@ class CleanupAncientTables extends Maintenance {
 			);
 		}
 
-		$db = $this->getDB( DB_MASTER );
+		$db = $this->getDB( DB_PRIMARY );
 		$ancientTables = [
 			'blobs', // 1.4
 			'brokenlinks', // 1.4

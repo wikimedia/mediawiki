@@ -195,7 +195,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 	 */
 	private function getMasterDb() {
 		return $this->lb
-			->getConnectionRef( DB_MASTER, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
+			->getConnectionRef( DB_PRIMARY, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
 	}
 
 	/**

@@ -299,7 +299,7 @@ class ApiLoginTest extends ApiTestCase {
 		// A is unsalted MD5 (thus fast) ... we don't care about security here, this is test only
 		$passwordHash = $passwordFactory->newFromPlaintext( $password );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert(
 			'bot_passwords',
 			[

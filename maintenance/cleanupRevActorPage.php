@@ -26,7 +26,7 @@ class CleanupRevActorPage extends LoggedUpdateMaintenance {
 	}
 
 	protected function doDBUpdates() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		$max = $dbw->selectField( 'revision', 'MAX(rev_id)', '', __METHOD__ );
 		$batchSize = $this->mBatchSize;
 

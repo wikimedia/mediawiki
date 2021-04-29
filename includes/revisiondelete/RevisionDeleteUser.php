@@ -48,7 +48,7 @@ class RevisionDeleteUser {
 			return false; // sanity check
 		}
 		if ( !$dbw instanceof IDatabase ) {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_PRIMARY );
 		}
 
 		# To suppress, we OR the current bitfields with RevisionRecord::DELETED_USER

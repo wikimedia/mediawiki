@@ -109,7 +109,7 @@ ERROR
 	 * @return IMaintainableDatabase
 	 */
 	protected function getUserDB() {
-		return $this->getDB( DB_MASTER );
+		return $this->getDB( DB_PRIMARY );
 	}
 
 	protected function processUsers( array $userBatch, IDatabase $dbw ) {
@@ -165,7 +165,7 @@ ERROR
 		}
 
 		$lastUsername = '';
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		do {
 			$this->output( "\t ... querying from '$lastUsername'\n" );
 			$users = $dbw->selectFieldValues(

@@ -83,7 +83,7 @@ class ForeignDBRepo extends LocalRepo {
 	public function getMasterDB() {
 		if ( !isset( $this->dbConn ) ) {
 			$func = $this->getDBFactory();
-			$this->dbConn = $func( DB_MASTER );
+			$this->dbConn = $func( DB_PRIMARY );
 		}
 
 		return $this->dbConn;

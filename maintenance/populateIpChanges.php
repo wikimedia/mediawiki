@@ -63,7 +63,7 @@ TEXT
 	}
 
 	public function doDBUpdates() {
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		if ( !$dbw->tableExists( 'ip_changes', __METHOD__ ) ) {
 			$this->fatalError( 'ip_changes table does not exist' );

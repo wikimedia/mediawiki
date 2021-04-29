@@ -107,7 +107,7 @@ class RebuildFileCache extends Maintenance {
 		$blockStart = $start;
 		$blockEnd = $start + $batchSize - 1;
 
-		$dbw = $this->getDB( DB_MASTER );
+		$dbw = $this->getDB( DB_PRIMARY );
 		// Go through each page and save the output
 		while ( $blockEnd <= $end ) {
 			// Get the pages

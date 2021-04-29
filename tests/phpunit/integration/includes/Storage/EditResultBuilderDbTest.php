@@ -56,7 +56,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 
 		$services = MediaWikiServices::getInstance();
 		$this->revisionStore = $services->getRevisionStore();
-		$this->dbw = $services->getDBLoadBalancer()->getConnection( DB_MASTER );
+		$this->dbw = $services->getDBLoadBalancer()->getConnection( DB_PRIMARY );
 
 		$this->wikiPage = $this->getExistingTestPage( self::PAGE_NAME );
 		$this->revisions = [];

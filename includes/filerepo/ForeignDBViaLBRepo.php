@@ -47,7 +47,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	}
 
 	public function getMasterDB() {
-		return $this->getDBLoadBalancer()->getConnectionRef( DB_MASTER, [], $this->dbDomain );
+		return $this->getDBLoadBalancer()->getConnectionRef( DB_PRIMARY, [], $this->dbDomain );
 	}
 
 	public function getReplicaDB() {

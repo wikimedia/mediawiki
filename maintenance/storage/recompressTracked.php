@@ -165,7 +165,7 @@ class RecompressTracked {
 	 * previous part of this batch process.
 	 */
 	private function syncDBs() {
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
 		$pos = $dbw->getMasterPos();
 		$dbr->masterPosWait( $pos, 100000 );
@@ -576,7 +576,7 @@ class RecompressTracked {
 			$this->critical( "Internal error: can't call moveTextRow() in --copy-only mode" );
 			exit( 1 );
 		}
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->begin( __METHOD__ );
 		$dbw->update( 'text',
 			[ // set
@@ -661,7 +661,7 @@ class RecompressTracked {
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lb = $lbFactory->getExternalLB( $cluster );
 
-		return $lb->getMaintenanceConnectionRef( DB_MASTER );
+		return $lb->getMaintenanceConnectionRef( DB_PRIMARY );
 	}
 
 	/**
@@ -790,7 +790,7 @@ class CgzCopyTransaction {
 		 *
 		 * We do a locking read to prevent closer-run race conditions.
 		 */
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->begin( __METHOD__ );
 		$res = $dbw->select( 'blob_tracking',
 			[ 'bt_text_id', 'bt_moved' ],

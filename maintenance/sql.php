@@ -80,7 +80,7 @@ class MwSql extends Maintenance {
 				$this->fatalError( "No replica DB server configured with the name '$replicaDB'." );
 			}
 		} else {
-			$index = DB_MASTER;
+			$index = DB_PRIMARY;
 		}
 
 		$db = $lb->getMaintenanceConnectionRef( $index, [], $wiki );
@@ -88,7 +88,7 @@ class MwSql extends Maintenance {
 			$this->fatalError( "The server selected ({$db->getServer()}) is not a replica DB." );
 		}
 
-		if ( $index === DB_MASTER ) {
+		if ( $index === DB_PRIMARY ) {
 			$updater = DatabaseUpdater::newForDB( $db, true, $this );
 			$db->setSchemaVars( $updater->getSchemaVars() );
 		}

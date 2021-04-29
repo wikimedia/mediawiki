@@ -141,7 +141,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
 			$fname = __METHOD__;
 			\DeferredUpdates::addCallableUpdate( static function () use ( $newHash, $oldRow, $fname ) {
-				$dbw = wfGetDB( DB_MASTER );
+				$dbw = wfGetDB( DB_PRIMARY );
 				$dbw->update(
 					'user',
 					[ 'user_password' => $newHash->toString() ],
@@ -218,7 +218,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 			$username = User::getCanonicalName( $req->username, 'usable' );
 			if ( $username !== false ) {
-				$row = wfGetDB( DB_MASTER )->selectRow(
+				$row = wfGetDB( DB_PRIMARY )->selectRow(
 					'user',
 					[ 'user_id' ],
 					[ 'user_name' => $username ],
@@ -260,7 +260,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		if ( $pwhash ) {
-			$dbw = wfGetDB( DB_MASTER );
+			$dbw = wfGetDB( DB_PRIMARY );
 			$dbw->update(
 				'user',
 				[

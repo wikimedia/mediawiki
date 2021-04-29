@@ -212,7 +212,7 @@ class DBConnRef implements IDatabase {
 	public function getType() {
 		if ( $this->conn === null ) {
 			// Avoid triggering a database connection
-			if ( $this->params[self::FLD_INDEX] === ILoadBalancer::DB_MASTER ) {
+			if ( $this->params[self::FLD_INDEX] === ILoadBalancer::DB_PRIMARY ) {
 				$index = $this->lb->getWriterIndex();
 			} else {
 				$index = $this->params[self::FLD_INDEX];
@@ -279,7 +279,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	public function query( $sql, $fname = __METHOD__, $flags = 0 ) {
-		if ( $this->role !== ILoadBalancer::DB_MASTER ) {
+		if ( $this->role !== ILoadBalancer::DB_PRIMARY ) {
 			$flags |= IDatabase::QUERY_REPLICA_ROLE;
 		}
 
@@ -778,7 +778,7 @@ class DBConnRef implements IDatabase {
 	 */
 	protected function assertRoleAllowsWrites() {
 		// DB_MASTER is "prima facie" writable
-		if ( $this->role !== ILoadBalancer::DB_MASTER ) {
+		if ( $this->role !== ILoadBalancer::DB_PRIMARY ) {
 			throw new DBReadOnlyRoleError( $this->conn, "Cannot write with role DB_REPLICA" );
 		}
 	}

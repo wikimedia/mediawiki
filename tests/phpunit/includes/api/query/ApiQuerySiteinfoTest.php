@@ -165,7 +165,7 @@ class ApiQuerySiteinfoTest extends ApiTestCase {
 	public function testInterwikiMap( $filter ) {
 		global $wgServer, $wgScriptPath;
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->insert(
 			'interwiki',
 			[

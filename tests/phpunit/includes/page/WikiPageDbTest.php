@@ -812,7 +812,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$page->loadPageData(); // make sure the current revision is cached.
 
 		// Similar to MovePage logic
-		wfGetDB( DB_MASTER )->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
+		wfGetDB( DB_PRIMARY )->delete( 'page', [ 'page_id' => $id ], __METHOD__ );
 		$page->doDeleteUpdates(
 			$page->getId(),
 			$page->getContent(),
@@ -2483,7 +2483,7 @@ more stuff
 		$title = Title::makeTitleSafe( NS_MAIN, 'A new redirect' );
 		$this->assertFalse( $title->isRedirect() );
 
-		$dbw = wfGetDB( DB_MASTER );
+		$dbw = wfGetDB( DB_PRIMARY );
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$page = $this->newPage( $title );
 		$page->insertOn( $dbw );

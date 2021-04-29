@@ -1239,7 +1239,7 @@ class LinksUpdate extends DataUpdate {
 	 */
 	protected function getDB() {
 		if ( !$this->db ) {
-			$this->db = wfGetDB( DB_MASTER );
+			$this->db = wfGetDB( DB_PRIMARY );
 		}
 
 		return $this->db;
