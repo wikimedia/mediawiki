@@ -230,8 +230,10 @@ class ApiWatchTest extends ApiTestCase {
 		list( $revUser, $contextUser ) = $info;
 		$title = Title::makeTitle( NS_HELP, 'UTPage' );
 
+		$watchlistManager = $this->getServiceContainer()->getWatchlistManager();
+
 		// This (and assertTrue below) are mostly for completeness.
-		$this->assertFalse( $contextUser->isWatched( $title ) );
+		$this->assertFalse( $watchlistManager->isWatched( $contextUser, $title ) );
 
 		$data = $this->doApiRequest( [
 			'action' => 'rollback',
@@ -243,6 +245,6 @@ class ApiWatchTest extends ApiTestCase {
 
 		$this->assertArrayHasKey( 'rollback', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['rollback'] );
-		$this->assertTrue( $contextUser->isWatched( $title ) );
+		$this->assertTrue( $watchlistManager->isWatched( $contextUser, $title ) );
 	}
 }
