@@ -99,6 +99,36 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 					'content-custom' => 'hello',
 					'x-content-custom' => 'hello'
 				]
+			],
+			[
+				[
+					'x-delete-at' => 'non numeric',
+					'x-delete-after' => 'non numeric',
+					'x-content-custom' => 'hello'
+				],
+				[
+					'x-content-custom' => 'hello'
+				]
+			],
+			[
+				[
+					'x-delete-at' => '12345',
+					'x-delete-after' => '12345'
+				],
+				[
+					'x-delete-at' => '12345',
+					'x-delete-after' => '12345'
+				]
+			],
+			[
+				[
+					'x-delete-at' => 12345,
+					'x-delete-after' => 12345
+				],
+				[
+					'x-delete-at' => 12345,
+					'x-delete-after' => 12345
+				]
 			]
 		];
 	}
