@@ -159,7 +159,8 @@ class RevisionItem extends RevisionItemBase {
 		$userlink = Linker::revUserLink( $this->getRevisionRecord() );
 		$comment = Linker::revComment( $this->getRevisionRecord() );
 		if ( $this->isDeleted() ) {
-			$revlink = "<span class=\"history-deleted\">$revlink</span>";
+			$class = Linker::getRevisionDeletedClass( $this->getRevisionRecord() );
+			$revlink = "<span class=\"$class\">$revlink</span>";
 		}
 		return "<li>$difflink $revlink $userlink $comment</li>";
 	}
