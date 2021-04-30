@@ -26,6 +26,21 @@
 		assert.verifySteps( [ 'call' ] );
 	} );
 
+	QUnit.test( 'mw.hook - Number of arguments', function ( assert ) {
+		// eslint-disable-next-line no-unused-vars
+		mw.hook( 'test.numargs' ).add( function ( one, two ) {
+			assert.step( String( arguments.length ) );
+		} );
+
+		mw.hook( 'test.numargs' ).fire( 'A' );
+		mw.hook( 'test.numargs' ).fire( 'X', 'Y', 'Z' );
+
+		assert.verifySteps(
+			[ '1', '3' ],
+			'Runs normally when number of arguments on fire() is different to those taken by the handler function'
+		);
+	} );
+
 	QUnit.test( 'mw.hook - Variadic firing data and array data type', function ( assert ) {
 		var data;
 		mw.hook( 'test.data' ).add( function ( one, two ) {
@@ -38,6 +53,14 @@
 			// Make sure variadic arguments (array-like), and actual array values
 			// are not confused with each other
 			arg2: [ 'y', 'z' ]
+		} );
+
+		mw.hook( 'test.data' ).fire( [ '1', '2' ] );
+		// Make sure that an array with two elements is
+		// considered the first argument
+		assert.deepEqual( data, {
+			arg1: [ '1', '2' ],
+			arg2: undefined
 		} );
 	} );
 
@@ -96,6 +119,46 @@
 			'early z',
 			'late z'
 		] );
+	} );
+
+	QUnit.test( 'mw.hook - Memory is not wiped when consumed.', function ( assert ) {
+		var handler = function ( data ) {
+			assert.step( data + '1' );
+		};
+
+		mw.hook( 'test.memory' ).fire( 'A' );
+		mw.hook( 'test.memory' ).add( handler );
+		mw.hook( 'test.memory' )
+			.add( function ( data ) {
+				assert.step( data + '2' );
+			} );
+
+		mw.hook( 'test.memory' )
+			.remove( handler )
+			.add( handler );
+		assert.verifySteps(
+			[ 'A1', 'A2', 'A1' ],
+			'Consuming a fired hook from the memory does not clear it.'
+		);
+	} );
+
+	QUnit.test( 'mw.hook - Unregistering handler.', function ( assert ) {
+		var handler = function ( data ) {
+			assert.step( data );
+		};
+
+		mw.hook( 'test.remove' )
+			.add( handler )
+			.remove( handler )
+			.fire( 'A' );
+
+		assert.verifySteps( [], 'The handler was unregistered before the fired event.' );
+
+		mw.hook( 'test.remove' )
+			.add( handler )
+			.remove( handler );
+
+		assert.verifySteps( [ 'A' ], 'The handler runs with memory event before it is unregistered.' );
 	} );
 
 	QUnit.test( 'mw.hook - Limit impact of consumer errors T223352', function ( assert ) {
