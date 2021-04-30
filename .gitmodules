@@ -488,11 +488,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-Comments.git
 	branch = master
 	ignore = dirty
-[submodule "extensions/ScratchBlocks"]
-	path = extensions/ScratchBlocks
-	url = https://github.com/tjvr/wiki-scratchblocks.git
-	branch = master
-	ignore = dirty
 [submodule "extensions/PDFEmbed"]
 	path = extensions/PDFEmbed
 	url = https://github.com/miraheze/PDFEmbed.git
@@ -1447,4 +1442,9 @@
 	path = extensions/PageAssessments
 	url = https://github.com/wikimedia/mediawiki-extensions-PageAssessments
 	branch = REL1_36
+	ignore = dirty
+[submodule "extensions/mw-ScratchBlocks4"]
+	path = extensions/mw-ScratchBlocks4
+	url = https://github.com/InternationalScratchWiki/mw-ScratchBlocks4
+	branch = master
 	ignore = dirty
