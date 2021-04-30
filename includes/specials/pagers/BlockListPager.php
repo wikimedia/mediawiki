@@ -19,8 +19,10 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
@@ -60,6 +62,9 @@ class BlockListPager extends TablePager {
 	/** @var BlockUtils */
 	private $blockUtils;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	/**
 	 * @param SpecialPage $page
 	 * @param array $conds
@@ -69,6 +74,7 @@ class BlockListPager extends TablePager {
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param CommentStore $commentStore
 	 * @param BlockUtils $blockUtils
+	 * @param BlockActionInfo $blockActionInfo
 	 */
 	public function __construct(
 		$page,
@@ -78,7 +84,8 @@ class BlockListPager extends TablePager {
 		ILoadBalancer $loadBalancer,
 		SpecialPageFactory $specialPageFactory,
 		CommentStore $commentStore,
-		BlockUtils $blockUtils
+		BlockUtils $blockUtils,
+		BlockActionInfo $blockActionInfo
 	) {
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $page->getContext(), $page->getLinkRenderer() );
@@ -89,6 +96,7 @@ class BlockListPager extends TablePager {
 		$this->specialPageFactory = $specialPageFactory;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
+		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	protected function getFieldNames() {
@@ -336,6 +344,14 @@ class BlockListPager extends TablePager {
 								'namespace' => $restriction->getValue()
 							]
 						)
+					);
+					break;
+				case ActionRestriction::TYPE:
+					$items[$restriction->getType()][] = Html::rawElement(
+					'li',
+					[],
+					$this->msg( 'ipb-action-' .
+						$this->blockActionInfo->getActionFromId( $restriction->getValue() ) )->escaped()
 					);
 					break;
 			}

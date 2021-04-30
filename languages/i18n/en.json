@@ -2803,6 +2803,7 @@
 	"blocklist-editing-sitewide": "editing (sitewide)",
 	"blocklist-editing-page": "pages",
 	"blocklist-editing-ns": "namespaces",
+	"blocklist-editing-action": "actions",
 	"ipblocklist-empty": "The block list is empty.",
 	"ipblocklist-no-results": "No matching blocks found for the requested IP address or username.",
 	"blocklink": "block",

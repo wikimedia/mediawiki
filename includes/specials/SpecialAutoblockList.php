@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Cache\LinkBatchFactory;
@@ -49,19 +50,24 @@ class SpecialAutoblockList extends SpecialPage {
 	/** @var BlockUtils */
 	private $blockUtils;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param ILoadBalancer $loadBalancer
 	 * @param CommentStore $commentStore
 	 * @param BlockUtils $blockUtils
+	 * @param BlockActionInfo $blockActionInfo
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		BlockUtils $blockUtils
+		BlockUtils $blockUtils,
+		BlockActionInfo $blockActionInfo
 	) {
 		parent::__construct( 'AutoblockList' );
 
@@ -70,6 +76,7 @@ class SpecialAutoblockList extends SpecialPage {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
+		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	/**
@@ -132,7 +139,8 @@ class SpecialAutoblockList extends SpecialPage {
 			$this->loadBalancer,
 			$this->getSpecialPageFactory(),
 			$this->commentStore,
-			$this->blockUtils
+			$this->blockUtils,
+			$this->blockActionInfo
 		);
 	}
 
