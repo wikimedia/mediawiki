@@ -480,7 +480,7 @@
 	ignore = dirty
 [submodule "extensions/SimpleTooltip"]
 	path = extensions/SimpleTooltip
-	url = https://github.com/Fannon/SimpleTooltip.git
+	url = https://github.com/Universal-Omega/SimpleTooltip
 	branch = master
 	ignore = dirty
 [submodule "extensions/Comments"]
