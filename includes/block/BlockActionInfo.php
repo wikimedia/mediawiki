@@ -52,10 +52,11 @@ class BlockActionInfo {
 	 * Each key is an action string passed to PermissionManager::checkUserBlock
 	 * Each value is a class constant for that action
 	 *
-	 * Each key has a corresponding message with key "ipb-actions-$key"
+	 * Each key has a corresponding message with key "ipb-action-$key"
 	 *
 	 * Core messages:
-	 * ipb-actions-upload
+	 * ipb-action-upload
+	 * ipb-action-move
 	 *
 	 * @var int[]
 	 */
