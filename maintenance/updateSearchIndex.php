@@ -28,6 +28,9 @@
  * @ingroup Maintenance
  */
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -50,7 +53,7 @@ class UpdateSearchIndex extends Maintenance {
 		);
 		$this->addOption(
 			'l',
-			'How long the searchindex and revision tables will be locked for',
+			'Deprecated, has no effect (formerly lock time)',
 			false,
 			true
 		);
@@ -66,39 +69,28 @@ class UpdateSearchIndex extends Maintenance {
 		$end = $this->getOption( 'e', wfTimestampNow() );
 		if ( $this->hasOption( 's' ) ) {
 			$start = $this->getOption( 's' );
-		} elseif ( is_readable( 'searchUpdate.pos' ) ) {
-			# B/c to the old position file name which was hardcoded
-			# We can safely delete the file when we're done though.
-			$start = file_get_contents( 'searchUpdate.pos' );
-			unlink( 'searchUpdate.pos' );
 		} elseif ( is_readable( $posFile ) ) {
 			$start = file_get_contents( $posFile );
 		} else {
 			$start = wfTimestamp( TS_MW, time() - 86400 );
 		}
-		$lockTime = $this->getOption( 'l', 20 );
 
-		$this->doUpdateSearchIndex( $start, $end, $lockTime );
-		if ( is_writable( dirname( realpath( $posFile ) ) ) ) {
-			$file = fopen( $posFile, 'w' );
-			if ( $file !== false ) {
-				fwrite( $file, $end );
-				fclose( $file );
-			} else {
-				$this->error( "*** Couldn't write to the $posFile!\n" );
-			}
+		$this->doUpdateSearchIndex( $start, $end );
+		$file = fopen( $posFile, 'w' );
+		if ( $file !== false ) {
+			fwrite( $file, $end );
+			fclose( $file );
 		} else {
 			$this->error( "*** Couldn't write to the $posFile!\n" );
 		}
 	}
 
-	private function doUpdateSearchIndex( $start, $end, $maxLockTime ) {
+	private function doUpdateSearchIndex( $start, $end ) {
 		global $wgDisableSearchUpdate;
 
 		$wgDisableSearchUpdate = false;
 
 		$dbw = $this->getDB( DB_MASTER );
-		$recentchanges = $dbw->tableName( 'recentchanges' );
 
 		$this->output( "Updating searchindex between $start and $end\n" );
 
@@ -106,19 +98,48 @@ class UpdateSearchIndex extends Maintenance {
 		$start = $dbw->timestamp( $start );
 		$end = $dbw->timestamp( $end );
 
-		$page = $dbw->tableName( 'page' );
-		$sql = "SELECT rc_cur_id FROM $recentchanges
-			JOIN $page ON rc_cur_id=page_id AND rc_this_oldid=page_latest
-			WHERE rc_type != " . RC_LOG . " AND rc_timestamp BETWEEN '$start' AND '$end'";
-		$res = $dbw->query( $sql, __METHOD__ );
+		$res = $dbw->select(
+			[ 'recentchanges', 'page' ],
+			'rc_cur_id',
+			[
+				'rc_type != ' . $dbw->addQuotes( RC_LOG ),
+				'rc_timestamp BETWEEN ' . $dbw->addQuotes( $start ) . ' AND ' . $dbw->addQuotes( $end )
+			],
+			__METHOD__,
+			[],
+			[
+				'page' => [ 'JOIN', 'rc_cur_id=page_id AND rc_this_oldid=page_latest' ]
+			]
+		);
 
-		$this->updateSearchIndex( $maxLockTime, [ $this, 'searchIndexUpdateCallback' ], $dbw, $res );
-
+		foreach ( $res as $row ) {
+			$this->updateSearchIndexForPage( (int)$row->rc_cur_id );
+		}
 		$this->output( "Done\n" );
 	}
 
-	public function searchIndexUpdateCallback( $row ) {
-		$this->updateSearchIndexForPage( $row->rc_cur_id );
+	/**
+	 * Update the searchindex table for a given pageid
+	 * @param int $pageId The page ID to update.
+	 * @return null|string
+	 */
+	public function updateSearchIndexForPage( int $pageId ) {
+		// Get current revision
+		$rev = MediaWikiServices::getInstance()
+			->getRevisionLookup()
+			->getRevisionByPageId( $pageId, 0, IDBAccessObject::READ_LATEST );
+		$title = null;
+		if ( $rev ) {
+			$titleObj = Title::newFromLinkTarget( $rev->getPageAsLinkTarget() );
+			$title = $titleObj->getPrefixedDBkey();
+			$this->output( "$title..." );
+			# Update searchindex
+			$u = new SearchUpdate( $pageId, $titleObj, $rev->getContent( SlotRecord::MAIN ) );
+			$u->doUpdate();
+			$this->output( "\n" );
+		}
+
+		return $title;
 	}
 }
 
