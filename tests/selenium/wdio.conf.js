@@ -41,6 +41,14 @@ exports.config = {
 		'./tests/selenium/specs/**/*.js'
 	],
 
+	suites: {
+		daily: [
+			'./tests/selenium/wdio-mediawiki/specs/*.js',
+			'./tests/selenium/specs/page.js',
+			'./tests/selenium/specs/user.js'
+		]
+	},
+
 	// ============
 	// Capabilities
 	// Define the different browser configurations to use ("capabilities") here.
