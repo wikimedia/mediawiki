@@ -1443,3 +1443,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-securelinkfixer
 	branch = REL1_36
 	ignore = dirty
+[submodule "extensions/PageAssessments"]
+	path = extensions/PageAssessments
+	url = https://github.com/wikimedia/mediawiki-extensions-PageAssessments
+	branch = REL1_36
+	ignore = dirty
