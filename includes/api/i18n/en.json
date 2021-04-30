@@ -6,7 +6,6 @@
 			"Zoranzoki21"
 		]
 	},
-
 	"apihelp-main-summary": "",
 	"apihelp-main-extended-description": "<div class=\"hlist plainlinks api-main-links\">\n* [[mw:Special:MyLanguage/API:Main_page|Documentation]]\n* [[mw:Special:MyLanguage/API:FAQ|FAQ]]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api Mailing list]\n* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-api-announce API Announcements]\n* [https://phabricator.wikimedia.org/maniphest/query/GebfyV4uCaLd/#R Bugs & requests]\n</div>\n<strong>Status:</strong> The MediaWiki API is a mature and stable interface that is actively supported and improved. While we try to avoid it, we may occasionally need to make breaking changes; subscribe to [https://lists.wikimedia.org/pipermail/mediawiki-api-announce/ the mediawiki-api-announce mailing list] for notice of updates.\n\n<strong>Erroneous requests:</strong> When erroneous requests are sent to the API, an HTTP header will be sent with the key \"MediaWiki-API-Error\" and then both the value of the header and the error code sent back will be set to the same value. For more information see [[mw:Special:MyLanguage/API:Errors_and_warnings|API: Errors and warnings]].\n\n<p class=\"mw-apisandbox-link\"><strong>Testing:</strong> For ease of testing API requests, see [[Special:ApiSandbox]].</p>",
 	"apihelp-main-param-action": "Which action to perform.",
@@ -953,7 +952,7 @@
 
 	"apihelp-query+iwlinks-summary": "Returns all interwiki links from the given pages.",
 	"apihelp-query+iwlinks-param-url": "Whether to get the full URL (cannot be used with $1prop).",
-	"apihelp-query+iwlinks-param-prop": "Which additional properties to get for each interlanguage link:",
+	"apihelp-query+iwlinks-param-prop": "Which additional properties to get for each interwiki link:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "Adds the full URL.",
 	"apihelp-query+iwlinks-param-limit": "How many interwiki links to return.",
 	"apihelp-query+iwlinks-param-prefix": "Only return interwiki links with this prefix.",
