@@ -332,11 +332,15 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 				$this->addJoinConds( $actorQuery['joins'] );
 				$this->addWhere( 'NOT(' . $actorQuery['conds'] . ')' );
 			} else {
+				// T270033 Index renaming
+				$revIndex = $this->getDB()->indexExists( 'revision', 'page_timestamp',  __METHOD__ )
+					? 'page_timestamp'
+					: 'rev_page_timestamp';
 				// T258480: MariaDB ends up using rev_page_actor_timestamp in some cases here.
 				// Last checked with MariaDB 10.4.13
 				// Unless we are filtering by user (see above), we always want to use the
 				// "history" index on the revision table, namely page_timestamp.
-				$useIndex['revision'] = 'page_timestamp';
+				$useIndex['revision'] = $revIndex;
 			}
 
 			if ( $params['user'] !== null || $params['excludeuser'] !== null ) {
