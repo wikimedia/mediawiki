@@ -236,7 +236,8 @@ class UserRightsProxy {
 			// see comment in getGroupMemberships.
 			new UserIdentityValue( $this->getId(), $this->getName() ),
 			$group,
-			$expiry
+			$expiry,
+			true
 		);
 	}
 
