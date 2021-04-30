@@ -256,7 +256,7 @@ class ProtectionForm {
 		$out->addBacklinkSubtitle( $this->mTitle );
 
 		if ( is_array( $err ) ) {
-			$out->addHTML( Html::errorBox( $out->msg( ...$err )->plain() ) );
+			$out->addHTML( Html::errorBox( $out->msg( ...$err )->parse() ) );
 		} elseif ( is_string( $err ) ) {
 			$out->addHTML( Html::errorBox( $err ) );
 		}
