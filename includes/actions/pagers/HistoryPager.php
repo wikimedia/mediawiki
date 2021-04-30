@@ -110,13 +110,18 @@ class HistoryPager extends ReverseChronologicalPager {
 
 	public function getQueryInfo() {
 		$revQuery = $this->revisionStore->getQueryInfo( [ 'user' ] );
+		// T270033 Index renaming
+		$revIndex = $this->mDb->indexExists( 'revision', 'page_timestamp',  __METHOD__ )
+			? 'page_timestamp'
+			: 'rev_page_timestamp';
+
 		$queryInfo = [
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
 			'conds' => array_merge(
 				[ 'rev_page' => $this->getWikiPage()->getId() ],
 				$this->conds ),
-			'options' => [ 'USE INDEX' => [ 'revision' => 'page_timestamp' ] ],
+			'options' => [ 'USE INDEX' => [ 'revision' => $revIndex ] ],
 			'join_conds' => $revQuery['joins'],
 		];
 		ChangeTags::modifyDisplayQuery(
