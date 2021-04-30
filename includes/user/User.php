@@ -2870,12 +2870,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		if ( !$wgSecureLogin ) {
 			return false;
 		}
-		$https = $this->getBoolOption( 'prefershttps' );
-		if ( $https ) {
-			$https = wfCanIPUseHTTPS( $this->getRequest()->getIP() );
-		}
-
-		return $https;
+		return $this->getBoolOption( 'prefershttps' );
 	}
 
 	/**
