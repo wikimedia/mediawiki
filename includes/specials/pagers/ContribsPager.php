@@ -583,22 +583,6 @@ class ContribsPager extends RangeChronologicalPager {
 	 * Check whether the revision associated is valid for formatting. If has no associated revision
 	 * id then null is returned.
 	 *
-	 * @deprecated since 1.35
-	 *
-	 * @param stdClass $row
-	 * @param Title|null $title
-	 * @return Revision|null
-	 */
-	public function tryToCreateValidRevision( $row, $title = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$potentialRevRecord = $this->tryCreatingRevisionRecord( $row, $title );
-		return $potentialRevRecord ? new Revision( $potentialRevRecord ) : null;
-	}
-
-	/**
-	 * Check whether the revision associated is valid for formatting. If has no associated revision
-	 * id then null is returned.
-	 *
 	 * @since 1.35
 	 *
 	 * @param stdClass $row

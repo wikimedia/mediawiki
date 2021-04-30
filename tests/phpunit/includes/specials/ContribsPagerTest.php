@@ -230,12 +230,9 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \ContribsPager::tryToCreateValidRevision
 	 * @covers \ContribsPager::tryCreatingRevisionRecord
 	 */
 	public function testCreateRevision() {
-		$this->hideDeprecated( 'ContribsPager::tryToCreateValidRevision' );
-		$this->hideDeprecated( 'Revision::__construct' );
 		$title = Title::makeTitle( NS_MAIN, __METHOD__ );
 
 		$pager = $this->getContribsPager( [
@@ -248,7 +245,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			'foo' => 'bar'
 		];
 
-		$this->assertNull( $pager->tryToCreateValidRevision( $invalidRow, $title ) );
 		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidRow, $title ) );
 
 		$validRow = (object)[
@@ -273,7 +269,6 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			'rev_content_model' => null,
 		];
 
-		$this->assertNotNull( $pager->tryToCreateValidRevision( $validRow, $title ) );
 		$this->assertNotNull( $pager->tryCreatingRevisionRecord( $validRow, $title ) );
 	}
 }

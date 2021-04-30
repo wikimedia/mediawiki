@@ -246,7 +246,6 @@ class ApiEditPageTest extends ApiTestCase {
 	 * Ensure we can edit through a redirect, if adding a section
 	 */
 	public function testEdit_redirect() {
-		$this->hideDeprecated( 'WikiPage::getRevision' );
 		static $count = 0;
 		$count++;
 

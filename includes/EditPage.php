@@ -216,16 +216,6 @@ class EditPage implements IEditObject {
 	private $hasPresetSummary = false;
 
 	/**
-	 * @var Revision|bool|null
-	 *
-	 * A revision object corresponding to $this->editRevId.
-	 * Formerly public as part of using Revision objects
-	 *
-	 * @deprecated since 1.35
-	 */
-	protected $mBaseRevision = false;
-
-	/**
 	 * @var RevisionRecord|bool|null
 	 *
 	 * A RevisionRecord corresponding to $this->editRevId or $this->edittime
@@ -469,7 +459,6 @@ class EditPage implements IEditObject {
 		$this->watchlistManager = $services->getWatchlistManager();
 		$this->userNameUtils = $services->getUserNameUtils();
 
-		$this->deprecatePublicProperty( 'mBaseRevision', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'deletedSinceEdit', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'lastDelete', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTokenOk', '1.35', __CLASS__ );
@@ -2588,29 +2577,6 @@ class EditPage implements IEditObject {
 		}
 
 		return false;
-	}
-
-	/**
-	 * Returns the revision that was current at the time editing was initiated on the client,
-	 * even if the edit was based on an old revision.
-	 *
-	 * @deprecated since 1.35, use ::getExpectedParentRevision
-	 *
-	 * @warning this method is very poorly named. If the user opened the form with ?oldid=X,
-	 *        one might think of X as the "base revision", which is NOT what this returns,
-	 *        see oldid for that. One might further assume that this corresponds to the $baseRevId
-	 *        parameter of WikiPage::doEditContent, which is not the case either.
-	 *        getExpectedParentRevision() would perhaps be a better name.
-	 *
-	 * @return Revision|null Current version when editing was initiated on the client
-	 */
-	public function getBaseRevision() {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $this->mBaseRevision === false ) {
-			$revRecord = $this->getExpectedParentRevision();
-			$this->mBaseRevision = $revRecord ? new Revision( $revRecord ) : null;
-		}
-		return $this->mBaseRevision;
 	}
 
 	/**
