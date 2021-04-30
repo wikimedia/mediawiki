@@ -1295,7 +1295,7 @@
 	ignore = dirty
 [submodule "extensions/SimpleBlogPage"]
 	path = extensions/SimpleBlogPage
-	url = https://github.com/1f604/SimpleBlogPage.git
+	url = https://github.com/Universal-Omega/SimpleBlogPage
 	branch = master
 	ignore = dirty
 [submodule "extensions/CleanChanges"]
