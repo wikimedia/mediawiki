@@ -181,9 +181,10 @@ class SpecialMute extends FormSpecialPage {
 	 * @inheritDoc
 	 */
 	protected function getForm() {
+		$target = $this->getTarget();
 		$form = parent::getForm();
 		$form->setId( 'mw-specialmute-form' );
-		$form->setHeaderText( $this->msg( 'specialmute-header', $this->target )->parse() );
+		$form->setHeaderText( $this->msg( 'specialmute-header', $target ? $target->getName() : '' )->parse() );
 		$form->setSubmitTextMsg( 'specialmute-submit' );
 		$form->setSubmitID( 'save' );
 
