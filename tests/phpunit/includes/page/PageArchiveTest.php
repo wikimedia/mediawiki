@@ -310,22 +310,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers PageArchive::getRevision
-	 */
-	public function testGetRevision() {
-		$this->hideDeprecated( 'PageArchive::getRevision' );
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'Revision::getRevisionRecord' );
-
-		$rev = $this->archivedPage->getRevision( $this->ipRev->getTimestamp() );
-		$this->assertNotNull( $rev );
-		$this->assertSame( $this->pageId, $rev->getRevisionRecord()->getPageId() );
-
-		$rev = $this->archivedPage->getRevision( '22991212115555' );
-		$this->assertNull( $rev );
-	}
-
-	/**
 	 * @covers PageArchive::getRevisionRecordByTimestamp
 	 */
 	public function testGetRevisionRecordByTimestamp() {
@@ -337,83 +321,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 
 		$revRecord = $this->archivedPage->getRevisionRecordByTimestamp( '22991212115555' );
 		$this->assertNull( $revRecord );
-	}
-
-	/**
-	 * @covers PageArchive::getArchivedRevision
-	 */
-	public function testGetArchivedRevision() {
-		$this->hideDeprecated( 'PageArchive::getArchivedRevision' );
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'Revision::getRevisionRecord' );
-
-		$rev = $this->archivedPage->getArchivedRevision( $this->ipRev->getId() );
-		$this->assertNotNull( $rev );
-
-		$revRecord = $rev->getRevisionRecord();
-		$this->assertSame( $this->ipRev->getTimestamp(), $revRecord->getTimestamp() );
-		$this->assertSame( $this->pageId, $revRecord->getPageId() );
-
-		$rev = $this->archivedPage->getArchivedRevision( 632546 );
-		$this->assertNull( $rev );
-	}
-
-	/**
-	 * @covers PageArchive::getPreviousRevision
-	 */
-	public function testGetPreviousRevision() {
-		$this->hideDeprecated( 'PageArchive::getPreviousRevision' );
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'Revision::getId' );
-
-		$rev = $this->archivedPage->getPreviousRevision( $this->ipRev->getTimestamp() );
-		$this->assertNotNull( $rev );
-		$this->assertSame( $this->firstRev->getId(), $rev->getId() );
-
-		$rev = $this->archivedPage->getPreviousRevision( $this->firstRev->getTimestamp() );
-		$this->assertNull( $rev );
-
-		// Re-create our dummy page
-		$title = Title::newFromText( 'PageArchiveTest_thePage' );
-		$page = new WikiPage( $title );
-		$content = ContentHandler::makeContent(
-			'testing again',
-			$page->getTitle(),
-			CONTENT_MODEL_WIKITEXT
-		);
-
-		$user = $this->getTestUser()->getUser();
-		$status = $page->doEditContent( $content, 'testing', EDIT_NEW, false, $user );
-
-		/** @var RevisionRecord $newRevRecord */
-		$newRevRecord = $status->value['revision-record'];
-
-		// force the revision timestamp
-		$newTimestamp = wfTimestamp(
-			TS_MW,
-			wfTimestamp( TS_UNIX, $this->ipRev->getTimestamp() ) + 1
-		);
-
-		$this->db->update(
-			'revision',
-			[ 'rev_timestamp' => $this->db->timestamp( $newTimestamp ) ],
-			[ 'rev_id' => $newRevRecord->getId() ]
-		);
-
-		// check that we don't get the existing revision too soon.
-		$rev = $this->archivedPage->getPreviousRevision( $newTimestamp );
-		$this->assertNotNull( $rev );
-		$this->assertSame( $this->ipRev->getId(), $rev->getId() );
-
-		// check that we do get the existing revision when appropriate.
-		$afterNewTimestamp = wfTimestamp(
-			TS_MW,
-			wfTimestamp( TS_UNIX, $newTimestamp ) + 1
-		);
-
-		$rev = $this->archivedPage->getPreviousRevision( $afterNewTimestamp );
-		$this->assertNotNull( $rev );
-		$this->assertSame( $newRevRecord->getId(), $rev->getId() );
 	}
 
 }

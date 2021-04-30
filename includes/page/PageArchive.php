@@ -22,7 +22,6 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
-use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -236,21 +235,6 @@ class PageArchive {
 	}
 
 	/**
-	 * Return a Revision object containing data for the deleted revision.
-	 *
-	 * @deprecated since 1.32 (soft), 1.35 (hard)
-	 * Use getArchivedRevisionRecord() instead if a revision id is available
-	 *
-	 * @param string $timestamp
-	 * @return Revision|null
-	 */
-	public function getRevision( $timestamp ) {
-		wfDeprecated( __METHOD__, '1.32' );
-		$revRecord = $this->getRevisionRecordByTimestamp( $timestamp );
-		return $revRecord ? new Revision( $revRecord ) : null;
-	}
-
-	/**
 	 * Return a RevisionRecord object containing data for the deleted revision.
 	 *
 	 * @internal only for use in SpecialUndelete
@@ -264,24 +248,6 @@ class PageArchive {
 			[ 'ar_timestamp' => $dbr->timestamp( $timestamp ) ]
 		);
 		return $rec;
-	}
-
-	/**
-	 * Return the archived revision with the given ID.
-	 *
-	 * @deprecated since 1.35, use getArchivedRevisionRecord instead
-	 *
-	 * @param int $revId
-	 * @return Revision|null
-	 */
-	public function getArchivedRevision( $revId ) {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		// Protect against code switching from getRevision() passing in a timestamp.
-		Assert::parameterType( 'integer', $revId, '$revId' );
-
-		$revRecord = $this->getArchivedRevisionRecord( $revId );
-		return $revRecord ? new Revision( $revRecord ) : null;
 	}
 
 	/**
@@ -325,26 +291,6 @@ class PageArchive {
 		}
 
 		return null;
-	}
-
-	/**
-	 * Return the most-previous revision, either live or deleted, against
-	 * the deleted revision given by timestamp.
-	 *
-	 * May produce unexpected results in case of history merges or other
-	 * unusual time issues.
-	 *
-	 * @deprecated since 1.35, use getPreviousRevisionRecord
-	 *
-	 * @param string $timestamp
-	 * @return Revision|null Null when there is no previous revision
-	 */
-	public function getPreviousRevision( $timestamp ) {
-		wfDeprecated( __METHOD__, '1.35' );
-
-		$revRecord = $this->getPreviousRevisionRecord( $timestamp );
-		$rev = $revRecord ? new Revision( $revRecord ) : null;
-		return $rev;
 	}
 
 	/**
