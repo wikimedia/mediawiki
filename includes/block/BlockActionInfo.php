@@ -89,4 +89,12 @@ class BlockActionInfo {
 		return $this->allBlockActions;
 	}
 
+	/**
+	 * @param int $actionId
+	 * @return string|false
+	 */
+	public function getActionFromId( int $actionId ) {
+		return array_search( $actionId, $this->getAllBlockActions() );
+	}
+
 }

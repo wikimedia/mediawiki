@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
@@ -37,6 +38,9 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var BlockUtils */
 	private $blockUtils;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	protected function setUp() : void {
 		parent::setUp();
 
@@ -47,6 +51,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		$this->specialPageFactory = $services->getSpecialPageFactory();
 		$this->commentStore = $services->getCommentStore();
 		$this->blockUtils = $services->getBlockUtils();
+		$this->blockActionInfo = $services->getBlockActionInfo();
 	}
 
 	private function getBlockListPager() {
@@ -58,7 +63,8 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 			$this->loadBalancer,
 			$this->specialPageFactory,
 			$this->commentStore,
-			$this->blockUtils
+			$this->blockUtils,
+			$this->blockActionInfo
 		);
 	}
 

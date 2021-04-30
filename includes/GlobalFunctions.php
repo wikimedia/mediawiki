@@ -2750,13 +2750,13 @@ function wfUnpack( $format, $data, $length = false ) {
  * Determine whether the client at a given source IP is likely to be able to
  * access the wiki via HTTPS.
  *
+ * @deprecated since 1.37, always returns true
+ *
  * @param string $ip The IPv4/6 address in the normal human-readable form
  * @return bool
  */
 function wfCanIPUseHTTPS( $ip ) {
-	$canDo = true;
-	Hooks::runner()->onCanIPUseHTTPS( $ip, $canDo );
-	return (bool)$canDo;
+	return true;
 }
 
 /**

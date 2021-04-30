@@ -104,7 +104,6 @@ class HookRunner implements
 	\MediaWiki\Hook\BadImageHook,
 	\MediaWiki\Hook\BaseTemplateAfterPortletHook,
 	\MediaWiki\Hook\BaseTemplateToolboxHook,
-	\MediaWiki\Hook\BeforeHttpsRedirectHook,
 	\MediaWiki\Hook\BeforeInitializeHook,
 	\MediaWiki\Hook\BeforePageDisplayHook,
 	\MediaWiki\Hook\BeforePageRedirectHook,
@@ -119,7 +118,6 @@ class HookRunner implements
 	\MediaWiki\Hook\BlockIpCompleteHook,
 	\MediaWiki\Hook\BlockIpHook,
 	\MediaWiki\Hook\BookInformationHook,
-	\MediaWiki\Hook\CanIPUseHTTPSHook,
 	\MediaWiki\Hook\CanonicalNamespacesHook,
 	\MediaWiki\Hook\CategoryViewer__doCategoryQueryHook,
 	\MediaWiki\Hook\CategoryViewer__generateLinkHook,
@@ -551,7 +549,6 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserLoadOptionsHook,
 	\MediaWiki\User\Hook\UserLogoutHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
-	\MediaWiki\User\Hook\UserRequiresHTTPSHook,
 	\MediaWiki\User\Hook\UserResetAllOptionsHook,
 	\MediaWiki\User\Hook\UserRetrieveNewTalksHook,
 	\MediaWiki\User\Hook\UserSaveOptionsHook,
@@ -949,13 +946,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onBeforeHttpsRedirect( $context, &$redirect ) {
-		return $this->container->run(
-			'BeforeHttpsRedirect',
-			[ $context, &$redirect ]
-		);
-	}
-
 	public function onBeforeInitialize( $title, $unused, $output, $user, $request,
 		$mediaWiki
 	) {
@@ -1080,13 +1070,6 @@ class HookRunner implements
 		return $this->container->run(
 			'BookInformation',
 			[ $isbn, $output ]
-		);
-	}
-
-	public function onCanIPUseHTTPS( $ip, &$canDo ) {
-		return $this->container->run(
-			'CanIPUseHTTPS',
-			[ $ip, &$canDo ]
 		);
 	}
 
@@ -4330,13 +4313,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UserRemoveGroup',
 			[ $user, &$group ]
-		);
-	}
-
-	public function onUserRequiresHTTPS( $user, &$https ) {
-		return $this->container->run(
-			'UserRequiresHTTPS',
-			[ $user, &$https ]
 		);
 	}
 

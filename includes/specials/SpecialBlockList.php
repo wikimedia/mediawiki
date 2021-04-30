@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
@@ -56,12 +57,16 @@ class SpecialBlockList extends SpecialPage {
 	/** @var BlockUtils */
 	private $blockUtils;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
 		BlockRestrictionStore $blockRestrictionStore,
 		ILoadBalancer $loadBalancer,
 		CommentStore $commentStore,
-		BlockUtils $blockUtils
+		BlockUtils $blockUtils,
+		BlockActionInfo $blockActionInfo
 	) {
 		parent::__construct( 'BlockList' );
 
@@ -70,6 +75,7 @@ class SpecialBlockList extends SpecialPage {
 		$this->loadBalancer = $loadBalancer;
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
+		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	/**
@@ -237,7 +243,8 @@ class SpecialBlockList extends SpecialPage {
 			$this->loadBalancer,
 			$this->getSpecialPageFactory(),
 			$this->commentStore,
-			$this->blockUtils
+			$this->blockUtils,
+			$this->blockActionInfo
 		);
 	}
 

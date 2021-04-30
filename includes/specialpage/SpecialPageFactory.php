@@ -378,6 +378,7 @@ class SpecialPageFactory {
 				'DBLoadBalancer',
 				'CommentStore',
 				'BlockUtils',
+				'BlockActionInfo',
 			],
 		],
 		'AutoblockList' => [
@@ -387,7 +388,8 @@ class SpecialPageFactory {
 				'BlockRestrictionStore',
 				'DBLoadBalancer',
 				'CommentStore',
-				'BlockUtils'
+				'BlockUtils',
+				'BlockActionInfo',
 			],
 		],
 		'ChangePassword' => [

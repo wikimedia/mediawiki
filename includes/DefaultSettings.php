@@ -147,7 +147,7 @@ $wgHttpsPort = 443;
 /**
  * If this is true, when an insecure HTTP request is received, always redirect
  * to HTTPS. This overrides and disables the preferhttps user preference, and it
- * overrides $wgSecureLogin and the CanIPUseHTTPS hook.
+ * overrides $wgSecureLogin.
  *
  * $wgServer may be either https or protocol-relative. If $wgServer starts with
  * "http://", an exception will be thrown.
