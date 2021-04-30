@@ -104,7 +104,7 @@ class ApiWatch extends ApiBase {
 			}
 
 			$title = Title::newFromText( $params['title'] );
-			if ( !$title || !$title->isWatchable() ) {
+			if ( !$title || !$this->watchlistManager->isWatchable( $title ) ) {
 				$this->dieWithError( [ 'invalidtitle', $params['title'] ] );
 			}
 			$res = $this->watchTitle( $title, $user, $params, true );
@@ -120,7 +120,7 @@ class ApiWatch extends ApiBase {
 	) {
 		$res = [ 'title' => $title->getPrefixedText(), 'ns' => $title->getNamespace() ];
 
-		if ( !$title->isWatchable() ) {
+		if ( !$this->watchlistManager->isWatchable( $title ) ) {
 			$res['watchable'] = 0;
 			return $res;
 		}
