@@ -45,7 +45,8 @@ class RollbackPageFactoryTest extends MediaWikiUnitTestCase {
 			'watchedItemStore',
 			'repoGroup',
 			'contentHandlerFactory',
-			'spamChecker'
+			'spamChecker',
+			'hookContainer',
 		];
 	}
 }

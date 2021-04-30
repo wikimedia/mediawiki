@@ -1,6 +1,9 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\EditResult;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -281,25 +284,14 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePage(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'PageContentInsertComplete hook' );
-		$this->hideDeprecated( 'PageContentSaveComplete hook' );
-
 		$checkId = null;
 
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ static function (
-				WikiPage &$page, User &$user, Content $content,
-				$summary, $minor, $u1, $u2, &$flags, Revision $revision
-			) {
-				// types/refs checked
-			} ],
-			'PageContentSaveComplete' => [ static function (
-				WikiPage &$page, User &$user, Content $content,
-				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
-				Status &$status, $baseRevId
+			'PageSaveComplete' => [ static function (
+				WikiPage $page, UserIdentity $user, string $summary,
+				int $flags, RevisionRecord $revisionRecord, EditResult $editResult
 			) use ( &$checkId ) {
-				$checkId = $status->value['revision-record']->getId();
+				$checkId = $revisionRecord->getId();
 				// types/refs checked
 			} ],
 		] );
@@ -327,24 +319,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 	public function testCreatePageTrx(
 		$desc, $pageTitle, $user, $editText, $expectedCode, $expectedText, $ignoreBlank = false
 	) {
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'PageContentInsertComplete hook' );
-		$this->hideDeprecated( 'PageContentSaveComplete hook' );
-
 		$checkIds = [];
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ static function (
-				WikiPage &$page, User &$user, Content $content,
-				$summary, $minor, $u1, $u2, &$flags, Revision $revision
-			) {
-				// types/refs checked
-			} ],
-			'PageContentSaveComplete' => [ static function (
-				WikiPage &$page, User &$user, Content $content,
-				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
-				Status &$status, $baseRevId
+			'PageSaveComplete' => [ static function (
+				WikiPage $page, UserIdentity $user, string $summary,
+				int $flags, RevisionRecord $revisionRecord, EditResult $editResult
 			) use ( &$checkIds ) {
-				$checkIds[] = $status->value['revision-record']->getId();
+				$checkIds[] = $revisionRecord->getId();
 				// types/refs checked
 			} ],
 		] );
@@ -386,25 +367,13 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage
 	 */
 	public function testUpdatePage() {
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'PageContentInsertComplete hook' );
-		$this->hideDeprecated( 'PageContentSaveComplete hook' );
-
 		$checkIds = [];
-
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentInsertComplete' => [ static function (
-				WikiPage &$page, User &$user, Content $content,
-				$summary, $minor, $u1, $u2, &$flags, Revision $revision
-			) {
-				// types/refs checked
-			} ],
-			'PageContentSaveComplete' => [ static function (
-				WikiPage &$page, User &$user, Content $content,
-				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
-				Status &$status, $baseRevId
+			'PageSaveComplete' => [ static function (
+				WikiPage $page, UserIdentity $user, string $summary,
+				int $flags, RevisionRecord $revisionRecord, EditResult $editResult
 			) use ( &$checkIds ) {
-				$checkIds[] = $status->value['revision-record']->getId();
+				$checkIds[] = $revisionRecord->getId();
 				// types/refs checked
 			} ],
 		] );
@@ -439,9 +408,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 	 * @covers EditPage
 	 */
 	public function testUpdatePageTrx() {
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'PageContentSaveComplete hook' );
-
 		$text = "one";
 		$edit = [
 			'wpTextbox1' => $text,
@@ -456,12 +422,11 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 		$checkIds = [];
 		$this->setMwGlobals( 'wgHooks', [
-			'PageContentSaveComplete' => [ static function (
-				WikiPage &$page, User &$user, Content $content,
-				$summary, $minor, $u1, $u2, &$flags, Revision $revision,
-				Status &$status, $baseRevId
+			'PageSaveComplete' => [ static function (
+				WikiPage $page, UserIdentity $user, string $summary,
+				int $flags, RevisionRecord $revisionRecord, EditResult $editResult
 			) use ( &$checkIds ) {
-				$checkIds[] = $status->value['revision-record']->getId();
+				$checkIds[] = $revisionRecord->getId();
 				// types/refs checked
 			} ],
 		] );

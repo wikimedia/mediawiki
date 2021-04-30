@@ -765,16 +765,6 @@ class PageArchive {
 				$hookRunner = $this->getHookRunner();
 				$hookRunner->onRevisionUndeleted( $revision, $row->ar_page_id );
 
-				// Hook is hard deprecated since 1.35
-				if ( $this->getHookContainer()->isRegistered( 'ArticleRevisionUndeleted' ) ) {
-					// Only create the Revision object if it is needed
-					$legacyRevision = new Revision( $revision );
-					$hookRunner->onArticleRevisionUndeleted(
-						$this->title,
-						$legacyRevision,
-						$row->ar_page_id
-					);
-				}
 				$restoredPages[$row->ar_page_id] = true;
 			}
 

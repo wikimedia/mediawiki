@@ -161,19 +161,6 @@ class ImportReporter extends ContextSource {
 				$this->getHookRunner()->onRevisionFromEditComplete(
 					$page, $inserted, $latest, $this->getUser(), $fakeTags
 				);
-
-				// Hook is hard deprecated since 1.35
-				if ( $this->getHookContainer()->isRegistered( 'NewRevisionFromEditComplete' ) ) {
-					// Only create Revision object if needed
-					$nullRevision = new Revision( $inserted );
-					$this->getHookRunner()->onNewRevisionFromEditComplete(
-						$page,
-						$nullRevision,
-						$latest,
-						$this->getUser(),
-						$fakeTags
-					);
-				}
 			}
 
 			// Create the import log entry

@@ -61,7 +61,6 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RecentChange;
-use Revision;
 use RuntimeException;
 use StatusValue;
 use Title;
@@ -154,9 +153,6 @@ class RevisionStore
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	/** @var HookContainer */
-	private $hookContainer;
-
 	/** @var HookRunner */
 	private $hookRunner;
 
@@ -222,7 +218,6 @@ class RevisionStore
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->pageStore = $pageStore;
 		$this->titleFactory = $titleFactory;
-		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -528,13 +523,6 @@ class RevisionStore
 		}
 
 		$this->hookRunner->onRevisionRecordInserted( $rev );
-
-		// Soft deprecated in 1.31, hard deprecated in 1.35
-		if ( $this->hookContainer->isRegistered( 'RevisionInsertComplete' ) ) {
-			// Only create the Revision object if its needed
-			$legacyRevision = new Revision( $rev );
-			$this->hookRunner->onRevisionInsertComplete( $legacyRevision, null, null );
-		}
 
 		return $rev;
 	}

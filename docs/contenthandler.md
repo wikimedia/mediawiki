@@ -78,9 +78,9 @@ For rendering page content, `Content::getParserOutput()` should be used instead 
 Besides some functions, some hooks have also been replaced by new versions (see hooks.txt for details). These hooks will now trigger a warning when used:
 
 * `ArticleAfterFetchContent` was replaced by `ArticleAfterFetchContentObject`, later replaced by `ArticleRevisionViewCustom`
-* `ArticleInsertComplete` was replaced by `PageContentInsertComplete`
+* `ArticleInsertComplete` was replaced by `PageContentInsertComplete`, later replaced by `PageSaveComplete`
 * `ArticleSave` was replaced by `PageContentSave`
-* `ArticleSaveComplete` was replaced by `PageContentSaveComplete`
+* `ArticleSaveComplete` was replaced by `PageContentSaveComplete`, later replaced by `PageSaveComplete`
 * `ArticleViewCustom` was replaced by `ArticleContentViewCustom`, which was later removed entirely
 * `EditFilterMerged` was replaced by `EditFilterMergedContent`
 * `EditPageGetDiffText` was replaced by `EditPageGetDiffContent`

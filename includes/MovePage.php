@@ -97,11 +97,6 @@ class MovePage {
 	private $spamChecker;
 
 	/**
-	 * @var HookContainer
-	 */
-	private $hookContainer;
-
-	/**
 	 * @var HookRunner
 	 */
 	private $hookRunner;
@@ -177,8 +172,7 @@ class MovePage {
 
 		$this->revisionStore = $revisionStore ?? $services()->getRevisionStore();
 		$this->spamChecker = $spamChecker ?? $services()->getSpamChecker();
-		$this->hookContainer = $hookContainer ?? $services()->getHookContainer();
-		$this->hookRunner = new HookRunner( $this->hookContainer );
+		$this->hookRunner = new HookRunner( $hookContainer ?? $services()->getHookContainer() );
 		$this->wikiPageFactory = $wikiPageFactory ?? $services()->getWikiPageFactory();
 		$this->userFactory = $userFactory ?? $services()->getUserFactory();
 	}
@@ -796,21 +790,6 @@ class MovePage {
 			$user, $pageid, $redirid, $reason, $nullRevision
 		);
 
-		// Deprecated since 1.35, use PageMoveCompleting
-		if ( $this->hookContainer->isRegistered( 'TitleMoveCompleting' ) ) {
-			// Only create the Revision object if needed
-			$nullRevisionObj = new Revision( $nullRevision );
-			$this->hookRunner->onTitleMoveCompleting(
-				$this->oldTitle,
-				$this->newTitle,
-				$userObj,
-				$pageid,
-				$redirid,
-				$reason,
-				$nullRevisionObj
-			);
-		}
-
 		$dbw->endAtomic( __METHOD__ );
 
 		// Keep each single hook handler atomic
@@ -827,22 +806,6 @@ class MovePage {
 						$redirid,
 						$reason,
 						$nullRevision
-					);
-
-					if ( !$this->hookContainer->isRegistered( 'TitleMoveComplete' ) ) {
-						// Don't go on to create a Revision unless its needed
-						return;
-					}
-
-					$nullRevisionObj = new Revision( $nullRevision );
-					// Deprecated since 1.35, use PageMoveComplete
-					$this->hookRunner->onTitleMoveComplete(
-						$this->oldTitle,
-						$this->newTitle,
-						$userObj, $pageid,
-						$redirid,
-						$reason,
-						$nullRevisionObj
 					);
 				}
 			)
@@ -1029,19 +992,6 @@ class MovePage {
 		$this->hookRunner->onRevisionFromEditComplete(
 			$newpage, $nullRevision, $nullRevision->getParentId(), $user, $fakeTags );
 
-		// Hook is hard deprecated since 1.35
-		if ( $this->hookContainer->isRegistered( 'NewRevisionFromEditComplete' ) ) {
-			// Only create the Revision object if needed
-			$nullRevisionObj = new Revision( $nullRevision );
-			$this->hookRunner->onNewRevisionFromEditComplete(
-				$newpage,
-				$nullRevisionObj,
-				$nullRevision->getParentId(),
-				$userObj,
-				$fakeTags
-			);
-		}
-
 		$newpage->doEditUpdates( $nullRevision, $userObj,
 			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
 
@@ -1076,19 +1026,6 @@ class MovePage {
 					$user,
 					$fakeTags
 				);
-
-				// Hook is hard deprecated since 1.35
-				if ( $this->hookContainer->isRegistered( 'NewRevisionFromEditComplete' ) ) {
-					// Only create the Revision object if needed
-					$redirectRevisionObj = new Revision( $inserted );
-					$this->hookRunner->onNewRevisionFromEditComplete(
-						$redirectArticle,
-						$redirectRevisionObj,
-						false,
-						$userObj,
-						$fakeTags
-					);
-				}
 
 				$redirectArticle->doEditUpdates(
 					$inserted,

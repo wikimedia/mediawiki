@@ -2533,7 +2533,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$logParamsDetails = [];
 
 		// Null revision (used for change tag insertion)
-		$nullRevision = null;
+		$nullRevisionRecord = null;
 
 		if ( $id ) { // Protection of existing page
 			$legacyUser = MediaWikiServices::getInstance()->getUserFactory()->newFromUserIdentity( $user );
@@ -2641,14 +2641,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->getHookRunner()->onRevisionFromEditComplete(
 				$this, $nullRevisionRecord, $latest, $user, $tags );
 
-			// Hook is hard deprecated since 1.35
-			if ( $this->getHookContainer()->isRegistered( 'NewRevisionFromEditComplete' ) ) {
-				// Only create the Revision object if neeed
-				$nullRevision = new Revision( $nullRevisionRecord );
-				$this->getHookRunner()->onNewRevisionFromEditComplete(
-					$this, $nullRevision, $latest, $legacyUser, $tags );
-			}
-
 			$this->getHookRunner()->onArticleProtectComplete( $this, $legacyUser, $limit, $reason );
 		} else { // Protection of non-existing page (also known as "title protection")
 			// Cascade protection is meaningless in this case
@@ -2702,8 +2694,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$logEntry->setComment( $reason );
 		$logEntry->setPerformer( $user );
 		$logEntry->setParameters( $params );
-		if ( $nullRevision !== null ) {
-			$logEntry->setAssociatedRevId( $nullRevision->getId() );
+		if ( $nullRevisionRecord !== null ) {
+			$logEntry->setAssociatedRevId( $nullRevisionRecord->getId() );
 		}
 		$logEntry->addTags( $tags );
 		if ( $logRelationsField !== null && count( $logRelationsValues ) ) {

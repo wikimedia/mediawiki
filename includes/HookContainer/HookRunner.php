@@ -82,9 +82,7 @@ class HookRunner implements
 	\MediaWiki\Diff\Hook\DifferenceEngineShowDiffPageMaybeShowMissingRevisionHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineShowEmptyOldContentHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineViewHeaderHook,
-	\MediaWiki\Diff\Hook\DiffRevisionToolsHook,
 	\MediaWiki\Diff\Hook\DiffToolsHook,
-	\MediaWiki\Diff\Hook\DiffViewHeaderHook,
 	\MediaWiki\Diff\Hook\NewDifferenceEngineHook,
 	\MediaWiki\Hook\AbortEmailNotificationHook,
 	\MediaWiki\Hook\AbortTalkPageEmailNotificationHook,
@@ -197,7 +195,6 @@ class HookRunner implements
 	\MediaWiki\Hook\GetRelativeTimestampHook,
 	\MediaWiki\Hook\GitViewersHook,
 	\MediaWiki\Hook\HistoryPageToolLinksHook,
-	\MediaWiki\Hook\HistoryRevisionToolsHook,
 	\MediaWiki\Hook\HistoryToolsHook,
 	\MediaWiki\Hook\ImageBeforeProduceHTMLHook,
 	\MediaWiki\Hook\ImgAuthBeforeStreamHook,
@@ -284,7 +281,6 @@ class HookRunner implements
 	\MediaWiki\Hook\ParserCacheSaveCompleteHook,
 	\MediaWiki\Hook\ParserClearStateHook,
 	\MediaWiki\Hook\ParserClonedHook,
-	\MediaWiki\Hook\ParserFetchTemplateHook,
 	\MediaWiki\Hook\ParserFirstCallInitHook,
 	\MediaWiki\Hook\ParserGetVariableValueSwitchHook,
 	\MediaWiki\Hook\ParserGetVariableValueTsHook,
@@ -379,8 +375,6 @@ class HookRunner implements
 	\MediaWiki\Hook\TitleGetRestrictionTypesHook,
 	\MediaWiki\Hook\TitleIsAlwaysKnownHook,
 	\MediaWiki\Hook\TitleIsMovableHook,
-	\MediaWiki\Hook\TitleMoveCompleteHook,
-	\MediaWiki\Hook\TitleMoveCompletingHook,
 	\MediaWiki\Hook\TitleMoveHook,
 	\MediaWiki\Hook\TitleMoveStartingHook,
 	\MediaWiki\Hook\UnblockUserCompleteHook,
@@ -389,7 +383,6 @@ class HookRunner implements
 	\MediaWiki\Hook\UndeleteForm__showRevisionHook,
 	\MediaWiki\Hook\UndeleteForm__undeleteHook,
 	\MediaWiki\Hook\UndeletePageToolLinksHook,
-	\MediaWiki\Hook\UndeleteShowRevisionHook,
 	\MediaWiki\Hook\UnitTestsAfterDatabaseSetupHook,
 	\MediaWiki\Hook\UnitTestsBeforeDatabaseTeardownHook,
 	\MediaWiki\Hook\UnitTestsListHook,
@@ -446,9 +439,7 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\ArticleProtectCompleteHook,
 	\MediaWiki\Page\Hook\ArticleProtectHook,
 	\MediaWiki\Page\Hook\ArticlePurgeHook,
-	\MediaWiki\Page\Hook\ArticleRevisionUndeletedHook,
 	\MediaWiki\Page\Hook\ArticleRevisionViewCustomHook,
-	\MediaWiki\Page\Hook\ArticleRollbackCompleteHook,
 	\MediaWiki\Page\Hook\ArticleShowPatrolFooterHook,
 	\MediaWiki\Page\Hook\ArticleUndeleteHook,
 	\MediaWiki\Page\Hook\ArticleUndeleteLogEntryHook,
@@ -467,7 +458,6 @@ class HookRunner implements
 	\MediaWiki\Page\Hook\ImagePageFindFileHook,
 	\MediaWiki\Page\Hook\ImagePageShowTOCHook,
 	\MediaWiki\Page\Hook\IsFileCacheableHook,
-	\MediaWiki\Page\Hook\NewRevisionFromEditCompleteHook,
 	\MediaWiki\Page\Hook\OpportunisticLinksUpdateHook,
 	\MediaWiki\Page\Hook\PageDeletionDataUpdatesHook,
 	\MediaWiki\Page\Hook\PageViewUpdatesHook,
@@ -494,7 +484,6 @@ class HookRunner implements
 	\MediaWiki\Rest\Hook\SearchResultProvideDescriptionHook,
 	\MediaWiki\Rest\Hook\SearchResultProvideThumbnailHook,
 	\MediaWiki\Revision\Hook\ContentHandlerDefaultModelForHook,
-	\MediaWiki\Revision\Hook\RevisionInsertCompleteHook,
 	\MediaWiki\Revision\Hook\RevisionRecordInsertedHook,
 	\MediaWiki\Search\Hook\PrefixSearchBackendHook,
 	\MediaWiki\Search\Hook\PrefixSearchExtractNamespaceHook,
@@ -531,8 +520,6 @@ class HookRunner implements
 	\MediaWiki\Storage\Hook\ArticlePrepareTextForEditHook,
 	\MediaWiki\Storage\Hook\BeforeRevertedTagUpdateHook,
 	\MediaWiki\Storage\Hook\MultiContentSaveHook,
-	\MediaWiki\Storage\Hook\PageContentInsertCompleteHook,
-	\MediaWiki\Storage\Hook\PageContentSaveCompleteHook,
 	\MediaWiki\Storage\Hook\PageContentSaveHook,
 	\MediaWiki\Storage\Hook\PageSaveCompleteHook,
 	\MediaWiki\Storage\Hook\ParserOutputStashForEditHook,
@@ -817,13 +804,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onArticleRevisionUndeleted( $title, $revision, $oldPageID ) {
-		return $this->container->run(
-			'ArticleRevisionUndeleted',
-			[ $title, $revision, $oldPageID ]
-		);
-	}
-
 	public function onArticleRevisionViewCustom( $revision, $title, $oldid,
 		$output
 	) {
@@ -839,15 +819,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ArticleRevisionVisibilitySet',
 			[ $title, $ids, $visibilityChangeMap ]
-		);
-	}
-
-	public function onArticleRollbackComplete( $wikiPage, $user, $revision,
-		$current
-	) {
-		return $this->container->run(
-			'ArticleRollbackComplete',
-			[ $wikiPage, $user, $revision, $current ]
 		);
 	}
 
@@ -1517,24 +1488,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onDiffRevisionTools( $newRev, &$links, $oldRev, $user ) {
-		return $this->container->run(
-			'DiffRevisionTools',
-			[ $newRev, &$links, $oldRev, $user ]
-		);
-	}
-
 	public function onDiffTools( $newRevRecord, &$links, $oldRevRecord, $userIdentity ) {
 		return $this->container->run(
 			'DiffTools',
 			[ $newRevRecord, &$links, $oldRevRecord, $userIdentity ]
-		);
-	}
-
-	public function onDiffViewHeader( $diff, $oldRev, $newRev ) {
-		return $this->container->run(
-			'DiffViewHeader',
-			[ $diff, $oldRev, $newRev ]
 		);
 	}
 
@@ -2050,13 +2007,6 @@ class HookRunner implements
 		return $this->container->run(
 			'HistoryPageToolLinks',
 			[ $context, $linkRenderer, &$links ]
-		);
-	}
-
-	public function onHistoryRevisionTools( $rev, &$links, $prevRev, $user ) {
-		return $this->container->run(
-			'HistoryRevisionTools',
-			[ $rev, &$links, $prevRev, $user ]
 		);
 	}
 
@@ -2704,15 +2654,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onNewRevisionFromEditComplete( $wikiPage, $rev, $originalRevId,
-		$user, &$tags
-	) {
-		return $this->container->run(
-			'NewRevisionFromEditComplete',
-			[ $wikiPage, $rev, $originalRevId, $user, &$tags ]
-		);
-	}
-
 	public function onOldChangesListRecentChangesLine( $changeslist, &$s, $rc,
 		&$classes, &$attribs
 	) {
@@ -2794,16 +2735,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onPageContentInsertComplete( $wikiPage, $user, $content,
-		$summary, $isMinor, $isWatch, $section, $flags, $revision
-	) {
-		return $this->container->run(
-			'PageContentInsertComplete',
-			[ $wikiPage, $user, $content, $summary, $isMinor, $isWatch,
-				$section, $flags, $revision ]
-		);
-	}
-
 	public function onPageContentLanguage( $title, &$pageLang, $userLang ) {
 		return $this->container->run(
 			'PageContentLanguage',
@@ -2818,17 +2749,6 @@ class HookRunner implements
 			'PageContentSave',
 			[ $wikiPage, $user, $content, &$summary, $isminor, $iswatch,
 				$section, $flags, $status ]
-		);
-	}
-
-	public function onPageContentSaveComplete( $wikiPage, $user, $content,
-		$summary, $isMinor, $isWatch, $section, $flags, $revision, $status,
-		$originalRevId, $undidRevId
-	) {
-		return $this->container->run(
-			'PageContentSaveComplete',
-			[ $wikiPage, $user, $content, $summary, $isMinor, $isWatch,
-				$section, $flags, $revision, $status, $originalRevId, $undidRevId ]
 		);
 	}
 
@@ -2954,13 +2874,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ParserCloned',
 			[ $parser ]
-		);
-	}
-
-	public function onParserFetchTemplate( $parser, $title, $rev, &$text, &$deps ) {
-		return $this->container->run(
-			'ParserFetchTemplate',
-			[ $parser, $title, $rev, &$text, &$deps ]
 		);
 	}
 
@@ -3270,13 +3183,6 @@ class HookRunner implements
 		return $this->container->run(
 			'RevisionFromEditComplete',
 			[ $wikiPage, $rev, $originalRevId, $user, &$tags ]
-		);
-	}
-
-	public function onRevisionInsertComplete( $revision, $data, $flags ) {
-		return $this->container->run(
-			'RevisionInsertComplete',
-			[ $revision, $data, $flags ]
 		);
 	}
 
@@ -4003,24 +3909,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onTitleMoveComplete( $old, $nt, $user, $pageid, $redirid,
-		$reason, $revision
-	) {
-		return $this->container->run(
-			'TitleMoveComplete',
-			[ $old, $nt, $user, $pageid, $redirid, $reason, $revision ]
-		);
-	}
-
-	public function onTitleMoveCompleting( $old, $nt, $user, $pageid, $redirid,
-		$reason, $revision
-	) {
-		return $this->container->run(
-			'TitleMoveCompleting',
-			[ $old, $nt, $user, $pageid, $redirid, $reason, $revision ]
-		);
-	}
-
 	public function onTitleMoveStarting( $old, $nt, $user ) {
 		return $this->container->run(
 			'TitleMoveStarting',
@@ -4090,13 +3978,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UndeletePageToolLinks',
 			[ $context, $linkRenderer, &$links ]
-		);
-	}
-
-	public function onUndeleteShowRevision( $title, $rev ) {
-		return $this->container->run(
-			'UndeleteShowRevision',
-			[ $title, $rev ]
 		);
 	}
 
