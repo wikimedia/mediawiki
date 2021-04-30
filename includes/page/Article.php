@@ -458,22 +458,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Get the fetched Revision object depending on request parameters or null on failure.
-	 * Refer to $this->fetchResult for the revision actually loaded from the database.
-	 *
-	 * @deprecated since 1.35
-	 *
-	 * @since 1.19
-	 * @return Revision|null
-	 */
-	public function getRevisionFetched() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$revRecord = $this->fetchRevisionRecord();
-
-		return $revRecord ? new Revision( $revRecord ) : null;
-	}
-
-	/**
 	 * Use this to fetch the rev ID used on page views
 	 *
 	 * Before fetchRevisionRecord was called, this returns the page's latest revision,
@@ -2356,7 +2340,7 @@ class Article implements Page {
 	 * @deprecated since 1.35, use Article::getPage() instead
 	 *
 	 * Use PHP's magic __get handler to handle accessing of
-	 * raw WikiPage fields for backwards compatibility, as well as the deprecated $mRevision
+	 * raw WikiPage fields for backwards compatibility
 	 *
 	 * @param string $fname Field name
 	 * @return mixed
@@ -2364,11 +2348,6 @@ class Article implements Page {
 	public function __get( $fname ) {
 		wfDeprecatedMsg( "Accessing Article::\$$fname is deprecated since MediaWiki 1.35",
 			'1.35' );
-
-		if ( $fname === 'mRevision' ) {
-			$record = $this->fetchRevisionRecord(); // Ensure that it is loaded
-			return $record ? new Revision( $record ) : null;
-		}
 
 		if ( property_exists( $this->mPage, $fname ) ) {
 			return $this->mPage->$fname;
@@ -2380,7 +2359,7 @@ class Article implements Page {
 	 * @deprecated since 1.35, use Article::getPage() instead
 	 *
 	 * Use PHP's magic __set handler to handle setting of
-	 * raw WikiPage fields for backwards compatibility, as well as the deprecated $mRevision
+	 * raw WikiPage fields for backwards compatibility
 	 *
 	 * @param string $fname Field name
 	 * @param mixed $fvalue New value
@@ -2388,13 +2367,6 @@ class Article implements Page {
 	public function __set( $fname, $fvalue ) {
 		wfDeprecatedMsg( "Setting Article::\$$fname is deprecated since MediaWiki 1.35",
 			'1.35' );
-
-		if ( $fname === 'mRevision' ) {
-			$this->mRevisionRecord = $fvalue ?
-				$fvalue->getRevisionRecord() :
-				null;
-			return;
-		}
 
 		if ( property_exists( $this->mPage, $fname ) ) {
 			$this->mPage->$fname = $fvalue;

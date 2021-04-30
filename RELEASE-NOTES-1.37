@@ -95,6 +95,17 @@ because of Phabricator reports.
   - TitleMoveComplete - use PageMoveComplete
   - TitleMoveCompleting - use PageMoveCompleting
   - UndeleteShowRevision - no replacement
+  and the following methods and variables have been removed
+  - Article::$mRevision
+  - Article::getRevisionFetched()
+  - ContribsPager::tryToCreateValidRevision()
+  - EditPage::$mBaseRevision
+  - EditPage::getBaseRevision()
+  - LinksUpdate::getRevision()
+  - LinksUpdate::setRevision()
+  - Title::getFirstRevision()
+  - WikiPage::getOldestRevision()
+  - WikiPage::getRevision()
 * WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
   Use HOLDOFF_TTL_NONE instead.
 * The following methods and fields in the Language class, deprecated since

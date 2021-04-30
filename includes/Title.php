@@ -3748,22 +3748,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Get the first revision of the page
-	 *
-	 * @deprecated since 1.35. Use RevisionLookup::getFirstRevision instead.
-	 * @param int $flags Bitfield of class READ_* constants
-	 * @return Revision|null If page doesn't exist
-	 */
-	public function getFirstRevision( $flags = 0 ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$flags |= ( $flags & self::GAID_FOR_UPDATE ) ? self::READ_LATEST : 0; // b/c
-		$rev = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getFirstRevision( $this, $flags );
-		return $rev ? new Revision( $rev ) : null;
-	}
-
-	/**
 	 * Get the oldest revision timestamp of this page
 	 *
 	 * @deprecated since 1.35. Use RevisionLookup::getFirstRevision instead.

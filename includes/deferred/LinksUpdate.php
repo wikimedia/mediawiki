@@ -1052,18 +1052,6 @@ class LinksUpdate extends DataUpdate {
 	}
 
 	/**
-	 * Set the revision corresponding to this LinksUpdate
-	 *
-	 * @since 1.27
-	 * @deprecated since 1.35, use setRevisionRecord
-	 * @param Revision $revision
-	 */
-	public function setRevision( Revision $revision ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$this->mRevisionRecord = $revision->getRevisionRecord();
-	}
-
-	/**
 	 * Set the RevisionRecord corresponding to this LinksUpdate
 	 *
 	 * @since 1.35
@@ -1071,17 +1059,6 @@ class LinksUpdate extends DataUpdate {
 	 */
 	public function setRevisionRecord( RevisionRecord $revisionRecord ) {
 		$this->mRevisionRecord = $revisionRecord;
-	}
-
-	/**
-	 * @since 1.28
-	 * @deprecated since 1.35, use getRevisionRecord
-	 * @return null|Revision
-	 */
-	public function getRevision() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$revRecord = $this->mRevisionRecord;
-		return $revRecord ? new Revision( $revRecord ) : null;
 	}
 
 	/**
