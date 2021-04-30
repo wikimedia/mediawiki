@@ -24,8 +24,10 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\SlotRecord;
 
 /**
@@ -461,14 +463,14 @@ class WikiImporter {
 
 	/**
 	 * Mostly for hook use
-	 * @param Title $title
+	 * @param PageIdentity $pageIdentity
 	 * @param ForeignTitle $foreignTitle
 	 * @param int $revCount
 	 * @param int $sRevCount
 	 * @param array $pageInfo
 	 * @return bool
 	 */
-	public function finishImportPage( $title, $foreignTitle, $revCount,
+	public function finishImportPage( PageIdentity $pageIdentity, $foreignTitle, $revCount,
 		$sRevCount, $pageInfo
 	) {
 		// Update article count statistics (T42009)
@@ -478,15 +480,17 @@ class WikiImporter {
 		// and revision count, and we implement our own custom logic for the
 		// article (content page) count.
 		if ( !$this->disableStatisticsUpdate ) {
-			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()
+				->newFromTitle( $pageIdentity );
+
 			$page->loadPageData( 'fromdbmaster' );
 			$content = $page->getContent();
 			if ( $content === null ) {
-				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $title .
+				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $pageIdentity .
 					' because WikiPage::getContent() returned null' );
 			} else {
 				$editInfo = $page->prepareContentForEdit( $content );
-				$countKey = 'title_' . $title->getPrefixedText();
+				$countKey = 'title_' . CacheKeyHelper::getKeyForPage( $pageIdentity );
 				$countable = $page->isCountable( $editInfo );
 				if ( array_key_exists( $countKey, $this->countableCache ) &&
 					$countable != $this->countableCache[$countKey] ) {
@@ -497,6 +501,7 @@ class WikiImporter {
 			}
 		}
 
+		$title = Title::castFromPageIdentity( $pageIdentity );
 		return $this->hookRunner->onAfterImportPage( $title, $foreignTitle,
 			$revCount, $sRevCount, $pageInfo );
 	}
@@ -546,13 +551,13 @@ class WikiImporter {
 
 	/**
 	 * Notify the callback function when a "</page>" is closed.
-	 * @param Title $title
+	 * @param PageIdentity $pageIdentity
 	 * @param ForeignTitle $foreignTitle
 	 * @param int $revCount
 	 * @param int $sucCount Number of revisions for which callback returned true
 	 * @param array $pageInfo Associative array of page information
 	 */
-	private function pageOutCallback( $title, $foreignTitle, $revCount,
+	private function pageOutCallback( PageIdentity $pageIdentity, $foreignTitle, $revCount,
 			$sucCount, $pageInfo ) {
 		if ( isset( $this->mPageOutCallback ) ) {
 			call_user_func_array( $this->mPageOutCallback, func_get_args() );
@@ -875,8 +880,10 @@ class WikiImporter {
 		//       If $pageInfo['_title'] is not set, then $foreignTitle is also not
 		//       set since they both come from $title above.
 		if ( array_key_exists( '_title', $pageInfo ) ) {
+			/** @var Title $title */
+			$title = $pageInfo['_title'];
 			$this->pageOutCallback(
-				$pageInfo['_title'],
+				$title,
 				$foreignTitle,
 				$pageInfo['revisionCount'],
 				$pageInfo['successfulRevisionCount'],

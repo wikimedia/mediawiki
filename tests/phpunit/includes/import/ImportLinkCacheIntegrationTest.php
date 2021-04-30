@@ -46,14 +46,6 @@ class ImportLinkCacheIntegrationTest extends MediaWikiIntegrationTestCase {
 			$categoryLoremIpsum->getArticleID(),
 			$categoryLoremIpsum->getArticleID( Title::GAID_FOR_UPDATE )
 		);
-
-		$user = $this->getTestSysop()->getUser();
-
-		$page = new WikiPage( $loremIpsum );
-		$page->doDeleteArticleReal( 'import test: delete page', $user );
-
-		$page = new WikiPage( $categoryLoremIpsum );
-		$page->doDeleteArticleReal( 'import test: delete page', $user );
 	}
 
 	/**
