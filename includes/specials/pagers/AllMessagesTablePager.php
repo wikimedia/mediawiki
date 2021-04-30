@@ -162,12 +162,15 @@ class AllMessagesTablePager extends TablePager {
 		// FIXME: This function should be moved to Language:: or something.
 		// Fallback to global state, if not provided
 		$dbr = $dbr ?? wfGetDB( DB_REPLICA );
+		// T270033 Index renaming
+		$pageIndex = $dbr->indexExists( 'page', 'name_title', __METHOD__ )
+			? 'name_title' : 'page_name_title';
 
 		$res = $dbr->select( 'page',
 			[ 'page_namespace', 'page_title' ],
 			[ 'page_namespace' => [ NS_MEDIAWIKI, NS_MEDIAWIKI_TALK ] ],
 			__METHOD__,
-			[ 'USE INDEX' => 'name_title' ]
+			[ 'USE INDEX' => $pageIndex ]
 		);
 		$xNames = array_flip( $messageNames );
 
