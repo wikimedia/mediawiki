@@ -357,14 +357,16 @@ class ParserTestRunner {
 		$setup['wgSVGConverters'] = [ 'null' => 'echo "1">$output' ];
 
 		// Fake constant timestamp
-		Hooks::register( 'ParserGetVariableValueTs', function ( $parser, &$ts ) {
-			$ts = $this->getFakeTimestamp();
-			return true;
-		} );
+		MediaWikiServices::getInstance()->getHookContainer()->register(
+			'ParserGetVariableValueTs',
+			function ( $parser, &$ts ) {
+				$ts = $this->getFakeTimestamp();
+				return true;
+			}
+		);
 
-		$this->hideDeprecated( 'Hooks::clear' );
 		$teardown[] = static function () {
-			Hooks::clear( 'ParserGetVariableValueTs' );
+			MediaWikiServices::getInstance()->getHookContainer()->clear( 'ParserGetVariableValueTs' );
 		};
 
 		$this->appendNamespaceSetup( $setup, $teardown );
