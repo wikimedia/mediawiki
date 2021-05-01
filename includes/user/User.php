@@ -4357,19 +4357,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	}
 
 	/**
-	 * Get the name of a given grant
-	 *
-	 * @since 1.29
-	 * @param string $grant Grant to query
-	 * @return string Localized name of the grant
-	 * @deprecated since 1.36, use MWGrants::grantName instead
-	 */
-	public static function getGrantName( $grant ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MWGrants::grantName( $grant );
-	}
-
-	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new user object.
 	 * @since 1.31
