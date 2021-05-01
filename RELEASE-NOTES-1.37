@@ -145,6 +145,8 @@ because of Phabricator reports.
   - Parser::getRevisionObject
   - ParserOptions::getCurrentRevisionCallback
   - ParserOptions::setCurrentRevisionCallback
+* User::getGrantName(), hard deprecated since 1.36, has been removed.
+  Use MWGrants::grantName instead.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
