@@ -22,8 +22,6 @@
  */
 namespace Wikimedia\Rdbms;
 
-use DateTime;
-use DateTimeZone;
 use InvalidArgumentException;
 use RuntimeException;
 use stdClass;
@@ -684,7 +682,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * @return bool|int
+	 * @return int|false Second of lag
 	 */
 	protected function getLagFromSlaveStatus() {
 		$res = $this->query(
@@ -702,7 +700,7 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * @return bool|float
+	 * @return float|false Seconds of lag
 	 */
 	protected function getLagFromPtHeartbeat() {
 		$options = $this->lagDetectionOptions;
@@ -729,7 +727,7 @@ abstract class DatabaseMysqlBase extends Database {
 
 		if ( isset( $options['conds'] ) ) {
 			// Best method for multi-DC setups: use logical channel names
-			$data = $this->getHeartbeatData( $options['conds'] );
+			$ago = $this->fetchSecondsSinceHeartbeat( $options['conds'] );
 		} else {
 			// Standard method: use master server ID (works with stock pt-heartbeat)
 			$masterInfo = $this->getMasterServerInfo();
@@ -745,16 +743,11 @@ abstract class DatabaseMysqlBase extends Database {
 			}
 
 			$conds = [ 'server_id' => intval( $masterInfo['serverId'] ) ];
-			$data = $this->getHeartbeatData( $conds );
+			$ago = $this->fetchSecondsSinceHeartbeat( $conds );
 		}
 
-		list( $time, $nowUnix ) = $data;
-		if ( $time !== null ) {
-			// @time is in ISO format like "2015-09-25T16:48:10.000510"
-			$dateTime = new DateTime( $time, new DateTimeZone( 'UTC' ) );
-			$timeUnix = (int)$dateTime->format( 'U' ) + $dateTime->format( 'u' ) / 1e6;
-
-			return max( $nowUnix - $timeUnix, 0.0 );
+		if ( $ago !== null ) {
+			return max( $ago, 0.0 );
 		}
 
 		$this->queryLogger->error(
@@ -809,24 +802,22 @@ abstract class DatabaseMysqlBase extends Database {
 
 	/**
 	 * @param array $conds WHERE clause conditions to find a row
-	 * @return array (heartbeat `ts` column value or null, UNIX timestamp) for the newest beat
+	 * @return float|null Elapsed seconds since the newest beat or null if none was found
 	 * @see https://www.percona.com/doc/percona-toolkit/2.1/pt-heartbeat.html
 	 */
-	protected function getHeartbeatData( array $conds ) {
-		// Query time and trip time are not counted
-		$nowUnix = microtime( true );
+	protected function fetchSecondsSinceHeartbeat( array $conds ) {
 		$whereSQL = $this->makeList( $conds, self::LIST_AND );
+		// User mysql server time so that query time and trip time are not counted.
 		// Use ORDER BY for channel based queries since that field might not be UNIQUE.
-		// Note: this would use "TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6))" but the
-		// percision field is not supported in MySQL <= 5.5.
 		$res = $this->query(
-			"SELECT ts FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1",
+			"SELECT TIMESTAMPDIFF(MICROSECOND,ts,UTC_TIMESTAMP(6)) AS us_ago " .
+			"FROM heartbeat.heartbeat WHERE $whereSQL ORDER BY ts DESC LIMIT 1",
 			__METHOD__,
 			self::QUERY_SILENCE_ERRORS | self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		$row = $res ? $res->fetchObject() : false;
 
-		return [ $row ? $row->ts : null, $nowUnix ];
+		return $row ? ( $row->us_ago / 1e6 ) : null;
 	}
 
 	protected function getApproximateLagStatus() {
