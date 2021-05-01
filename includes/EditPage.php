@@ -2932,7 +2932,7 @@ class EditPage implements IEditObject {
 
 		if ( $this->wasDeletedSinceLastEdit() && $this->formtype !== 'save' ) {
 			$out->addHTML( Html::errorBox(
-				$out->msg( 'deletedwhileediting' )->plain(),
+				$out->msg( 'deletedwhileediting' )->parse(),
 				'',
 				'mw-deleted-while-editing'
 			) );
