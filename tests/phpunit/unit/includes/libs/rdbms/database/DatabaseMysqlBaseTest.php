@@ -362,7 +362,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [
-				'getLagDetectionMethod', 'getHeartbeatData', 'getMasterServerInfo' ] )
+				'getLagDetectionMethod', 'fetchSecondsSinceHeartbeat', 'getMasterServerInfo' ] )
 			->getMock();
 
 		$db->method( 'getLagDetectionMethod' )
@@ -373,21 +373,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 
 		$db->setLBInfo( 'replica', true );
 
-		// Fake the current time.
-		list( $nowSecFrac, $nowSec ) = explode( ' ', microtime() );
-		$now = (float)$nowSec + (float)$nowSecFrac;
-		// Fake the heartbeat time.
-		// Work arounds for weak DataTime microseconds support.
-		$ptTime = $now - $lag;
-		$ptSec = (int)$ptTime;
-		$ptSecFrac = ( $ptTime - $ptSec );
-		$ptDateTime = new DateTime( "@$ptSec" );
-		$ptTimeISO = $ptDateTime->format( 'Y-m-d\TH:i:s' );
-		$ptTimeISO .= ltrim( number_format( $ptSecFrac, 6 ), '0' );
-
-		$db->method( 'getHeartbeatData' )
+		$db->method( 'fetchSecondsSinceHeartbeat' )
 			->with( [ 'server_id' => 172 ] )
-			->willReturn( [ $ptTimeISO, $now ] );
+			->willReturn( $lag );
 
 		/** @var IDatabase $db */
 		$db->setLBInfo( 'clusterMasterHost', 'db1052' );
