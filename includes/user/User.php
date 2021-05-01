@@ -1307,6 +1307,8 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		);
 
 		$this->queryFlagsUsed = $flags;
+
+		// hook is hard deprecated since 1.37
 		$this->getHookRunner()->onUserLoadFromDatabase( $this, $s );
 
 		if ( $s !== false ) {
