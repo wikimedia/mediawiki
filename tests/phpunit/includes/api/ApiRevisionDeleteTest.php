@@ -3,6 +3,8 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * Tests for action=revisiondelete
@@ -31,12 +33,6 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testHidingRevisions() {
-		$this->hideDeprecated( 'Revision::newFromId' );
-		$this->hideDeprecated( 'Revision::getContent' );
-		$this->hideDeprecated( 'Revision::getComment' );
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'Revision::getUser' );
-
 		$user = self::$users['sysop']->getUser();
 		$revid = array_shift( $this->revs );
 		$out = $this->doApiRequest( [
@@ -58,10 +54,12 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertEquals( $item['id'], $revid );
 
 		// Now check that that revision was actually hidden
-		$rev = Revision::newFromId( $revid );
-		$this->assertNull( $rev->getContent( Revision::FOR_PUBLIC ) );
-		$this->assertNull( $rev->getComment( Revision::FOR_PUBLIC ) );
-		$this->assertSame( 0, $rev->getUser( Revision::FOR_PUBLIC ) );
+		$revRecord = $this->getServiceContainer()
+			->getRevisionLookup()
+			->getRevisionById( $revid );
+		$this->assertNull( $revRecord->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC ) );
+		$this->assertNull( $revRecord->getComment( RevisionRecord::FOR_PUBLIC ) );
+		$this->assertNull( $revRecord->getUser( RevisionRecord::FOR_PUBLIC ) );
 
 		// Now test unhiding!
 		$out2 = $this->doApiRequest( [
@@ -85,10 +83,13 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 		$this->assertEquals( $item['id'], $revid );
 
-		$rev = Revision::newFromId( $revid );
-		$this->assertNotEquals( $rev->getContent( Revision::FOR_PUBLIC ), null );
-		$this->assertNotEquals( $rev->getComment( Revision::FOR_PUBLIC ), '' );
-		$this->assertNotEquals( $rev->getUser( Revision::FOR_PUBLIC ), 0 );
+		// Now check that that revision was actually unhidden
+		$revRecord = $this->getServiceContainer()
+			->getRevisionLookup()
+			->getRevisionById( $revid );
+		$this->assertNotNull( $revRecord->getContent( SlotRecord::MAIN, RevisionRecord::FOR_PUBLIC ) );
+		$this->assertNotNull( $revRecord->getComment( RevisionRecord::FOR_PUBLIC ) );
+		$this->assertNotNull( $revRecord->getUser( RevisionRecord::FOR_PUBLIC ) );
 	}
 
 	public function testUnhidingOutput() {
