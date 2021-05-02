@@ -66,7 +66,7 @@ use MediaWiki\User\UserIdentity;
 abstract class File implements IDBAccessObject, MediaHandlerState {
 	use ProtectedHookAccessorTrait;
 
-	// Bitfield values akin to the Revision deletion constants
+	// Bitfield values akin to the revision deletion constants
 	public const DELETED_FILE = 1;
 	public const DELETED_COMMENT = 2;
 	public const DELETED_USER = 4;

@@ -34,7 +34,6 @@ use LogicException;
 use ManualLogEntry;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
@@ -952,7 +951,7 @@ class PageUpdater {
 	 *
 	 *  $return->value will contain an associative array with members as follows:
 	 *     new: Boolean indicating if the function attempted to create a new article.
-	 *     revision: The revision object for the inserted revision, or null.
+	 *     revision-record: The RevisionRecord object for the inserted revision, or null.
 	 *
 	 * @return null|Status
 	 */
@@ -1153,7 +1152,6 @@ class PageUpdater {
 					$user,
 					$revision->getComment(),
 					EDIT_INTERNAL,
-					$status,
 					[ 'changed' => false, ]
 				),
 				DeferredUpdates::PRESEND
@@ -1176,12 +1174,7 @@ class PageUpdater {
 
 		// Update article, but only if changed.
 		$status = Status::newGood(
-			// TODO nothing is deprecated, no need to use DeprecatablePropertyArray
-			new DeprecatablePropertyArray(
-				[ 'new' => false, 'revision-record' => null ],
-				[],
-				__METHOD__ . ' status'
-			)
+			[ 'new' => false, 'revision-record' => null ]
 		);
 
 		$oldRev = $this->grabParentRevision();
@@ -1317,7 +1310,6 @@ class PageUpdater {
 				$user,
 				$summary,
 				$flags,
-				$status,
 				[ 'changed' => $changed, ]
 			),
 			DeferredUpdates::PRESEND
@@ -1343,12 +1335,7 @@ class PageUpdater {
 		}
 
 		$status = Status::newGood(
-			// TODO nothing is deprecated, no need to use DeprecatablePropertyArray
-			new DeprecatablePropertyArray(
-				[ 'new' => true, 'revision-record' => null ],
-				[],
-				__METHOD__ . ' status'
-			)
+			[ 'new' => true, 'revision-record' => null ]
 		);
 
 		$newRevisionRecord = $this->makeNewRevision(
@@ -1447,7 +1434,6 @@ class PageUpdater {
 				$user,
 				$summary,
 				$flags,
-				$status,
 				[ 'created' => true ]
 			),
 			DeferredUpdates::PRESEND
@@ -1463,7 +1449,6 @@ class PageUpdater {
 		UserIdentity $user,
 		CommentStoreComment $summary,
 		$flags,
-		Status $status,
 		$hints = []
 	) {
 		return new AtomicSectionUpdate(
@@ -1471,7 +1456,7 @@ class PageUpdater {
 			__METHOD__,
 			function () use (
 				$wikiPage, $newRevisionRecord, $user,
-				$summary, $flags, $status, $hints
+				$summary, $flags, $hints
 			) {
 				// set debug data
 				$hints['causeAction'] = 'edit-page';
@@ -1508,7 +1493,8 @@ class PageUpdater {
 				$created = $hints['created'] ?? false;
 				$flags |= ( $created ? EDIT_NEW : EDIT_UPDATE );
 
-				// PageSaveComplete replaces the other two since 1.35
+				// PageSaveComplete replaced old PageContentInsertComplete and
+				// PageContentSaveComplete hooks since 1.35
 				$this->hookRunner->onPageSaveComplete(
 					$wikiPage,
 					$user,

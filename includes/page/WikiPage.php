@@ -1470,7 +1470,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// Assertion to try to catch T92046
 		if ( (int)$revision->getId() === 0 ) {
 			throw new InvalidArgumentException(
-				__METHOD__ . ': Revision has ID ' . var_export( $revision->getId(), 1 )
+				__METHOD__ . ': revision has ID ' . var_export( $revision->getId(), 1 )
 			);
 		}
 
@@ -1623,8 +1623,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		if ( $edittime && $sectionId !== 'new' ) {
 			$lb = $this->getDBLoadBalancer();
 			$rev = $this->getRevisionStore()->getRevisionByTimestamp( $this->mTitle, $edittime );
-			// Try the master if this thread may have just added it.
-			// This could be abstracted into a Revision method, but we don't want
+			// Try the primary database if this thread may have just added it.
+			// The logic to fallback to the primary database if the replica is missing
+			// the revision could be generalized into RevisionStore, but we don't want
 			// to encourage loading of revisions by timestamp.
 			if ( !$rev
 				&& $lb->getServerCount() > 1
@@ -1927,8 +1928,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 *  $return->value will contain an associative array with members as follows:
 	 *     new: Boolean indicating if the function attempted to create a new article.
-	 *     revision: The revision object for the inserted revision, or null. Trying to access
-	 *       this Revision object is deprecated since 1.35
 	 *     revision-record: The RevisionRecord object for the inserted revision, or null.
 	 *
 	 * @since 1.21
@@ -3284,7 +3283,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
-	 * @param RevisionRecord|null $revRecord Revision that was just saved, may be null
+	 * @param RevisionRecord|null $revRecord revision that was just saved, may be null
 	 * @param string[]|null $slotsChanged The role names of the slots that were changed.
 	 *        If not given, all slots are assumed to have changed.
 	 */
@@ -3708,7 +3707,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		// Make sure we re-fetch the latest state from the database.
 		// In particular, the latest revision may have changed.
 		// As a side-effect, this makes sure mLastRevision doesn't
-		// end up being an instance of the old Revision class (see T259181).
+		// end up being an instance of the old Revision class (see T259181),
+		// especially since that class was removed entirely in 1.37.
 		$this->clear();
 	}
 

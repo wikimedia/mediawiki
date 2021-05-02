@@ -123,8 +123,14 @@ because of Phabricator reports.
   - LinksUpdate::getRevision()
   - LinksUpdate::setRevision()
   - PageArchive::getArchivedRevision()
-  - PageArchive::getPreviousRevision
+  - PageArchive::getPreviousRevision()
   - PageArchive::getRevision()
+  - Parser::$mRevisionObject
+  - Parser::fetchCurrentRevisionOfTitle()
+  - Parser::getRevisionObject()
+  - Parser::statelessFetchRevision()
+  - ParserOptions::getCurrentRevisionCallback()
+  - ParserOptions::setCurrentRevisionCallback()
   - Title::countAuthorsBetween()
   - Title::getFirstRevision()
   - User::getNewMessageLinks()
@@ -135,31 +141,32 @@ because of Phabricator reports.
   - WikiPage::getUndoContent()
   - WikiPage::updateIfNewerOn()
   and the following methods no longer accept Revision objects as parameters:
-  - CategoryMembershipChange::__construct
-  - ContentHandler::getUndoContent
-  - DerivedPageDataUpdater::prepareUpdate
-  - DifferenceEngine::getRevisionHeader
-  - Linker::buildRollbackLink
-  - Linker::generateRollback
-  - Linker::getRevDeleteLink
-  - Linker::getRollbackEditCount
-  - Linker::revComment
-  - Linker::revUserLink
-  - Linker::revUserTools
-  - WikiPage::doDeleteUpdates
-  - WikiPage::doEditUpdates
-  - WikiPage::hasDifferencesOutsideMainSlot
-  - WikiPage::onArticleEdit
-  - WikiPage::prepareContentForEdit
-  - WikiPage::updateRevisionOn
+  - CategoryMembershipChange::__construct()
+  - ContentHandler::getUndoContent()
+  - DerivedPageDataUpdater::prepareUpdate()
+  - DifferenceEngine::getRevisionHeader()
+  - Linker::buildRollbackLink()
+  - Linker::generateRollback()
+  - Linker::getRevDeleteLink()
+  - Linker::getRollbackEditCount()
+  - Linker::revComment()
+  - Linker::revUserLink()
+  - Linker::revUserTools()
+  - WikiPage::doDeleteUpdates()
+  - WikiPage::doEditUpdates()
+  - WikiPage::hasDifferencesOutsideMainSlot()
+  - WikiPage::onArticleEdit()
+  - WikiPage::prepareContentForEdit()
+  - WikiPage::updateRevisionOn()
   The following methods return arrays that formerly included a 'revision'
   key that would emit deprecation warnings when accessed and return a
   Revision object. The Revision object has been removed from the arrays,
   and the 'revision-record' key should be used to get the relevant
   RevisionRecord instead:
-  - PageUpdater::doCreate
-  - PageUpdater::doModify
-  - Parser::statelessFetchTemplate
+  - PageUpdater::doCreate()
+  - PageUpdater::doModify()
+  - Parser::statelessFetchTemplate()
+  - WikiPage::doEditContent()
   The ParserOptions `templateCallback` option is a callback that is called
   in Parser::fetchTemplateAndTitle() and should return an array - the
   'revision' key to that array used to be a Revision object and was used if
@@ -181,8 +188,6 @@ because of Phabricator reports.
    - updateConversionTable()
 * The following methods in the Parser class have been removed after having
   been deprecated in 1.35:
-   - fetchCurrentRevisionOfTitle()
-   - statelessFetchRevision()
    - fetchTemplate()
    - Title()
 * (T273354) When an edit is prevented by an 'EditFilterMergedContent' hook
@@ -202,12 +207,6 @@ because of Phabricator reports.
   "es6-polyfills" directly intead.
 * AuthenticationProvider interface doesn't extend LoggerAwareInterface.
   So AuthenticationProvider can't be typehinted as LoggerAwareInterface.
-* The following methods, deprecated in 1.35, were removed:
-  - Parser::fetchCurrentRevisionOfTitle
-  - Parser::statelessFetchRevision
-  - Parser::getRevisionObject
-  - ParserOptions::getCurrentRevisionCallback
-  - ParserOptions::setCurrentRevisionCallback
 * User::getGrantName(), hard deprecated since 1.36, has been removed.
   Use MWGrants::grantName instead.
 * SessionProvider class doesn't extend LoggerAwareInterface.

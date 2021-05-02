@@ -49,7 +49,7 @@ class RevisionArchiveRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param PageIdentity $page The page this Revision is associated with.
+	 * @param PageIdentity $page The page this RevisionRecord is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param \stdClass $row An archive table row. Use RevisionStore::getArchiveQueryInfo() to build

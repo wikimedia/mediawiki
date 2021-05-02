@@ -45,7 +45,7 @@ class CategoryMembershipChange {
 	private $pageTitle;
 
 	/**
-	 * @var RevisionRecord|null Latest Revision instance of the categorized page
+	 * @var RevisionRecord|null Latest revision of the categorized page
 	 */
 	private $revision;
 
@@ -63,7 +63,7 @@ class CategoryMembershipChange {
 
 	/**
 	 * @param Title $pageTitle Title instance of the categorized page
-	 * @param RevisionRecord|null $revision Latest Revision instance of the categorized page.
+	 * @param RevisionRecord|null $revision Latest revision of the categorized page.
 	 *
 	 * @throws MWException
 	 */

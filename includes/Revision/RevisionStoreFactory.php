@@ -18,7 +18,8 @@
  *
  * Attribution notice: when this file was created, much of its content was taken
  * from the Revision.php file as present in release 1.30. Refer to the history
- * of that file for original authorship.
+ * of that file for original authorship (that file was removed entirely in 1.37,
+ * but its history can still be found in prior versions of MediaWiki).
  *
  * @file
  */

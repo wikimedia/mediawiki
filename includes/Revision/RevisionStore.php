@@ -19,7 +19,8 @@
  *
  * Attribution notice: when this file was created, much of its content was taken
  * from the Revision.php file as present in release 1.30. Refer to the history
- * of that file for original authorship.
+ * of that file for original authorship (that file was removed entirely in 1.37,
+ * but its history can still be found in prior versions of MediaWiki).
  *
  * @file
  */
@@ -82,7 +83,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionStore
  *
  * @note This was written to act as a drop-in replacement for the corresponding
- *       static methods in Revision.
+ *       static methods in the old Revision class (which was later removed in 1.37).
  */
 class RevisionStore
 	implements IDBAccessObject, RevisionFactory, RevisionLookup, LoggerAwareInterface {
@@ -272,7 +273,7 @@ class RevisionStore
 	/**
 	 * Determines the page Title based on the available information.
 	 *
-	 * MCR migration note: this corresponds to Revision::getTitle
+	 * MCR migration note: this corresponded to Revision::getTitle
 	 *
 	 * @deprecated since 1.36, Use RevisionRecord::getPage() instead.
 	 * @note The resulting Title object will be misleading if the RevisionStore is not
@@ -415,7 +416,7 @@ class RevisionStore
 	 * Insert a new revision into the database, returning the new revision record
 	 * on success and dies horribly on failure.
 	 *
-	 * MCR migration note: this replaces Revision::insertOn
+	 * MCR migration note: this replaced Revision::insertOn
 	 *
 	 * @param RevisionRecord $rev
 	 * @param IDatabase $dbw (master connection)
@@ -967,7 +968,7 @@ class RevisionStore
 	}
 
 	/**
-	 * MCR migration note: this corresponds to Revision::checkContentModel
+	 * MCR migration note: this corresponded to Revision::checkContentModel
 	 *
 	 * @param Content $content
 	 * @param PageIdentity $page
@@ -1008,7 +1009,7 @@ class RevisionStore
 	 * to prevent a new revision from being inserted before the null revision has been written
 	 * to the database.
 	 *
-	 * MCR migration note: this replaces Revision::newNullRevision
+	 * MCR migration note: this replaced Revision::newNullRevision
 	 *
 	 * @todo Introduce newFromParentRevision(). newNullRevision can then be based on that
 	 * (or go away).
@@ -1084,7 +1085,7 @@ class RevisionStore
 	}
 
 	/**
-	 * MCR migration note: this replaces Revision::isUnpatrolled
+	 * MCR migration note: this replaced Revision::isUnpatrolled
 	 *
 	 * @todo This is overly specific, so move or kill this method.
 	 *
@@ -1104,7 +1105,7 @@ class RevisionStore
 	/**
 	 * Get the RC object belonging to the current revision, if there's one
 	 *
-	 * MCR migration note: this replaces Revision::getRecentChange
+	 * MCR migration note: this replaced Revision::getRecentChange
 	 *
 	 * @todo move this somewhere else?
 	 *
@@ -1133,7 +1134,7 @@ class RevisionStore
 	 * This method does not call $slot->getContent(), and may be used as a callback
 	 * called by $slot->getContent().
 	 *
-	 * MCR migration note: this roughly corresponds to Revision::getContentInternal
+	 * MCR migration note: this roughly corresponded to Revision::getContentInternal
 	 *
 	 * @param SlotRecord $slot The SlotRecord to load content for
 	 * @param string|null $blobData The content blob, in the form indicated by $blobFlags
@@ -1212,7 +1213,7 @@ class RevisionStore
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *
-	 * MCR migration note: this replaces Revision::newFromId
+	 * MCR migration note: this replaced Revision::newFromId
 	 *
 	 * $flags include:
 	 *      IDBAccessObject::READ_LATEST: Select the data from the master
@@ -1234,7 +1235,7 @@ class RevisionStore
 	 * that's attached to a given link target. If not attached
 	 * to that link target, will return null.
 	 *
-	 * MCR migration note: this replaces Revision::newFromTitle
+	 * MCR migration note: this replaced Revision::newFromTitle
 	 *
 	 * $flags include:
 	 *      IDBAccessObject::READ_LATEST: Select the data from the master
@@ -1281,7 +1282,7 @@ class RevisionStore
 	 * that's attached to a given page ID.
 	 * Returns null if no such revision can be found.
 	 *
-	 * MCR migration note: this replaces Revision::newFromPageId
+	 * MCR migration note: this replaced Revision::newFromPageId
 	 *
 	 * $flags include:
 	 *      IDBAccessObject::READ_LATEST: Select the data from the master (since 1.20)
@@ -1321,7 +1322,7 @@ class RevisionStore
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
 	 *
-	 * MCR migration note: this replaces Revision::loadFromTimestamp
+	 * MCR migration note: this replaced Revision::loadFromTimestamp
 	 *
 	 * @param LinkTarget|PageIdentity $page Calling with LinkTarget is deprecated since 1.36
 	 * @param string $timestamp
@@ -1509,14 +1510,14 @@ class RevisionStore
 	}
 
 	/**
-	 * Make a fake revision object from an archive table row. This is queried
+	 * Make a fake RevisionRecord object from an archive table row. This is queried
 	 * for permissions or even inserted (as in Special:Undelete)
 	 *
 	 * The user ID and user name may optionally be supplied using the aliases
 	 * ar_user and ar_user_text (the names of fields which existed before
 	 * MW 1.34).
 	 *
-	 * MCR migration note: this replaces Revision::newFromArchiveRow
+	 * MCR migration note: this replaced Revision::newFromArchiveRow
 	 *
 	 * @param \stdClass $row
 	 * @param int $queryFlags
@@ -1541,7 +1542,7 @@ class RevisionStore
 	/**
 	 * @see RevisionFactory::newRevisionFromRow
 	 *
-	 * MCR migration note: this replaces Revision::newFromRow
+	 * MCR migration note: this replaced Revision::newFromRow
 	 *
 	 * @param \stdClass $row A database row generated from a query based on getQueryInfo()
 	 * @param int $queryFlags
@@ -1587,7 +1588,7 @@ class RevisionStore
 	) {
 		Assert::parameterType( \stdClass::class, $row, '$row' );
 
-		// check second argument, since Revision::newFromArchiveRow had $overrides in that spot.
+		// check second argument, since the old Revision::newFromArchiveRow had $overrides in that spot.
 		Assert::parameterType( 'integer', $queryFlags, '$queryFlags' );
 
 		if ( !$page && isset( $overrides['title'] ) ) {
@@ -1714,7 +1715,7 @@ class RevisionStore
 			$slots = $this->newRevisionSlots( $row->rev_id, $row, $slots, $queryFlags, $page );
 		}
 
-		// If this is a cached row, instantiate a cache-aware revision class to avoid stale data.
+		// If this is a cached row, instantiate a cache-aware RevisionRecord to avoid stale data.
 		if ( $fromCache ) {
 			$rev = new RevisionStoreCacheRecord(
 				function ( $revId ) use ( $queryFlags ) {
@@ -2224,9 +2225,9 @@ class RevisionStore
 
 	/**
 	 * Constructs a new MutableRevisionRecord based on the given associative array following
-	 * the MW1.29 convention for the Revision constructor.
+	 * the MW1.29 convention for the Revision constructor (removed in 1.37).
 	 *
-	 * MCR migration note: this replaces Revision::newFromRow
+	 * MCR migration note: this replaced Revision::newFromRow
 	 *
 	 * @deprecated since 1.31, hard deprecated since 1.36'
 	 *
@@ -2446,7 +2447,7 @@ class RevisionStore
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.
 	 *
-	 * MCR migration note: this replaces Revision::loadFromPageId
+	 * MCR migration note: this replaced Revision::loadFromPageId
 	 *
 	 * @deprecated since 1.35 Use RevisionStore::getRevisionByPageId instead.
 	 *
@@ -2471,7 +2472,7 @@ class RevisionStore
 	 * that's attached to a given page. If not attached
 	 * to that page, will return null.
 	 *
-	 * MCR migration note: this replaces Revision::loadFromTitle
+	 * MCR migration note: this replaced Revision::loadFromTitle
 	 *
 	 * @note direct use is deprecated!
 	 * @todo remove when unused!
@@ -2508,7 +2509,7 @@ class RevisionStore
 	 * WARNING: Timestamps may in some circumstances not be unique,
 	 * so this isn't the best key to use.
 	 *
-	 * MCR migration note: this replaces Revision::loadFromTimestamp
+	 * MCR migration note: this replaced Revision::loadFromTimestamp
 	 *
 	 * @deprecated since 1.35
 	 *
@@ -2537,7 +2538,7 @@ class RevisionStore
 	 * Unless $flags has READ_LATEST set, this method will first try to find the revision
 	 * on a replica before hitting the master database.
 	 *
-	 * MCR migration note: this corresponds to Revision::newFromConds
+	 * MCR migration note: this corresponded to Revision::newFromConds
 	 *
 	 * @param array $conditions
 	 * @param int $flags (optional)
@@ -2576,7 +2577,7 @@ class RevisionStore
 	 * Given a set of conditions, fetch a revision from
 	 * the given database connection.
 	 *
-	 * MCR migration note: this corresponds to Revision::loadFromConds
+	 * MCR migration note: this corresponded to Revision::loadFromConds
 	 *
 	 * @param IDatabase $db
 	 * @param array $conditions
@@ -2622,7 +2623,7 @@ class RevisionStore
 	 * Given a set of conditions, return a row with the
 	 * fields necessary to build RevisionRecord objects.
 	 *
-	 * MCR migration note: this corresponds to Revision::fetchFromConds
+	 * MCR migration note: this corresponded to Revision::fetchFromConds
 	 *
 	 * @param IDatabase $db
 	 * @param array $conditions
@@ -2657,7 +2658,7 @@ class RevisionStore
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new RevisionStoreRecord object.
 	 *
-	 * MCR migration note: this replaces Revision::getQueryInfo
+	 * MCR migration note: this replaced Revision::getQueryInfo
 	 *
 	 * If the format of fields returned changes in any way then the cache key provided by
 	 * self::getRevisionRowCacheKey should be updated.
@@ -2814,7 +2815,7 @@ class RevisionStore
 	 * database, but they continue to be available in query results as
 	 * aliases.
 	 *
-	 * MCR migration note: this replaces Revision::getArchiveQueryInfo
+	 * MCR migration note: this replaced Revision::getArchiveQueryInfo
 	 *
 	 * @since 1.31
 	 *
@@ -2857,7 +2858,7 @@ class RevisionStore
 	/**
 	 * Do a batched query for the sizes of a set of revisions.
 	 *
-	 * MCR migration note: this replaces Revision::getParentLengths
+	 * MCR migration note: this replaced Revision::getParentLengths
 	 *
 	 * @param int[] $revIds
 	 * @return int[] associative array mapping revision IDs from $revIds to the nominal size
@@ -2887,7 +2888,7 @@ class RevisionStore
 	/**
 	 * Do a batched query for the sizes of a set of revisions.
 	 *
-	 * MCR migration note: this replaces Revision::getParentLengths
+	 * MCR migration note: this replaced Revision::getParentLengths
 	 *
 	 * @deprecated since 1.35 use RevisionStore::getRevisionSizes instead.
 	 *
@@ -2963,9 +2964,9 @@ class RevisionStore
 	 * Get the revision before $rev in the page's history, if any.
 	 * Will return null for the first revision but also for deleted or unsaved revisions.
 	 *
-	 * MCR migration note: this replaces Revision::getPrevious
+	 * MCR migration note: this replaced Revision::getPrevious
 	 *
-	 * @see PageArchive::getPreviousRevision
+	 * @see PageArchive::getPreviousRevisionRecord
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
@@ -2981,7 +2982,7 @@ class RevisionStore
 	 * Get the revision after $rev in the page's history, if any.
 	 * Will return null for the latest revision but also for deleted or unsaved revisions.
 	 *
-	 * MCR migration note: this replaces Revision::getNext
+	 * MCR migration note: this replaced Revision::getNext
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
@@ -2996,7 +2997,7 @@ class RevisionStore
 	 * Get previous revision Id for this page_id
 	 * This is used to populate rev_parent_id on save
 	 *
-	 * MCR migration note: this corresponds to Revision::getPreviousRevisionId
+	 * MCR migration note: this corresponded to Revision::getPreviousRevisionId
 	 *
 	 * @param IDatabase $db
 	 * @param RevisionRecord $rev
@@ -3033,7 +3034,7 @@ class RevisionStore
 	 * Historically, there was an extra Title parameter that was passed before $id. This is no
 	 * longer needed and is deprecated in 1.34.
 	 *
-	 * MCR migration note: this replaces Revision::getTimestampFromId
+	 * MCR migration note: this replaced Revision::getTimestampFromId
 	 *
 	 * @param int $id
 	 * @param int $flags
@@ -3066,7 +3067,7 @@ class RevisionStore
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
-	 * MCR migration note: this replaces Revision::countByPageId
+	 * MCR migration note: this replaced Revision::countByPageId
 	 *
 	 * @param IDatabase $db
 	 * @param int $id Page id
@@ -3089,7 +3090,7 @@ class RevisionStore
 	/**
 	 * Get count of revisions per page...not very efficient
 	 *
-	 * MCR migration note: this replaces Revision::countByTitle
+	 * MCR migration note: this replaced Revision::countByTitle
 	 *
 	 * @param IDatabase $db
 	 * @param PageIdentity $page
@@ -3108,11 +3109,11 @@ class RevisionStore
 	 * the time a user started editing the page. Limit to
 	 * 50 revisions for the sake of performance.
 	 *
-	 * MCR migration note: this replaces Revision::userWasLastToEdit
+	 * MCR migration note: this replaced Revision::userWasLastToEdit
 	 *
 	 * @deprecated since 1.31; Can possibly be removed, since the self-conflict suppression
 	 *       logic in EditPage that uses this seems conceptually dubious. Revision::userWasLastToEdit
-	 *       has been deprecated since 1.24.
+	 *       had been deprecated since 1.24 (the Revision class was removed entirely in 1.37).
 	 *
 	 * @param IDatabase $db The Database to perform the check on.
 	 * @param int $pageId The ID of the page in question
@@ -3156,7 +3157,7 @@ class RevisionStore
 	 * This method allows for the use of caching, though accessing anything that normally
 	 * requires permission checks (aside from the text) will trigger a small DB lookup.
 	 *
-	 * MCR migration note: this replaces Revision::newKnownCurrent
+	 * MCR migration note: this replaced Revision::newKnownCurrent
 	 *
 	 * @param PageIdentity $page the associated page
 	 * @param int $revId current revision of this page. Defaults to $title->getLatestRevID().
@@ -3592,7 +3593,7 @@ class RevisionStore
 		}
 	}
 
-	// TODO: move relevant methods from Title here, e.g. getFirstRevision, isBigDeletion, etc.
+	// TODO: move relevant methods from Title here, e.g. isBigDeletion, etc.
 }
 
 /**

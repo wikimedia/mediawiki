@@ -19,7 +19,8 @@
  *
  * Attribution notice: when this file was created, much of its content was taken
  * from the Revision.php file as present in release 1.30. Refer to the history
- * of that file for original authorship.
+ * of that file for original authorship (that file was removed entirely in 1.37,
+ * but its history can still be found in prior versions of MediaWiki).
  *
  * @file
  */
@@ -46,11 +47,11 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * @since 1.31
  *
  * @note This was written to act as a drop-in replacement for the corresponding
- *       static methods in Revision.
+ *       static methods in the old Revision class (which was later removed in 1.37).
  */
 class SqlBlobStore implements IDBAccessObject, BlobStore {
 
-	// Note: the name has been taken unchanged from the Revision class.
+	// Note: the name has been taken unchanged from the old Revision class.
 	public const TEXT_CACHE_GROUP = 'revisiontext:10';
 
 	/**
@@ -266,7 +267,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * Retrieve a blob, given an address.
 	 * Currently hardcoded to the 'text' table storage engine.
 	 *
-	 * MCR migration note: this replaces Revision::loadText
+	 * MCR migration note: this replaced Revision::loadText
 	 *
 	 * @param string $blobAddress
 	 * @param int $queryFlags
@@ -331,7 +332,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
-	 * MCR migration note: this corresponds to Revision::fetchText
+	 * MCR migration note: this corresponded to Revision::fetchText
 	 *
 	 * @param string[] $blobAddresses
 	 * @param int $queryFlags
@@ -469,7 +470,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * Expand a raw data blob according to the flags given.
 	 *
-	 * MCR migration note: this replaces Revision::getRevisionText
+	 * MCR migration note: this replaced Revision::getRevisionText
 	 *
 	 * @note direct use is deprecated, use getBlob() or SlotRecord::getContent() instead.
 	 * @todo make this private, there should be no need to use this method outside this class.
@@ -528,7 +529,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * data is compressed, and 'utf-8' if we're saving in UTF-8
 	 * mode.
 	 *
-	 * MCR migration note: this replaces Revision::compressRevisionText
+	 * MCR migration note: this replaced Revision::compressRevisionText
 	 *
 	 * @note direct use is deprecated!
 	 * @todo make this private, there should be no need to use this method outside this class.
@@ -565,7 +566,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * Re-converts revision text according to its flags.
 	 *
-	 * MCR migration note: this replaces Revision::decompressRevisionText
+	 * MCR migration note: this replaced Revision::decompressRevisionText
 	 *
 	 * @note direct use is deprecated, use getBlob() or SlotRecord::getContent() instead.
 	 * @todo make this private, there should be no need to use this method outside this class.
@@ -631,7 +632,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * Get the text cache TTL
 	 *
-	 * MCR migration note: this replaces Revision::getCacheTTL
+	 * MCR migration note: this replaced Revision::getCacheTTL
 	 *
 	 * @return int
 	 */

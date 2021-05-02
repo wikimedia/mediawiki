@@ -156,7 +156,7 @@ class BenchmarkParse extends Maintenance {
 	}
 
 	/**
-	 * Parse the text from a given Revision
+	 * Parse the text from a given RevisionRecord
 	 *
 	 * @param RevisionRecord $revision
 	 */

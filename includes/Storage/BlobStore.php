@@ -28,7 +28,7 @@ use StatusValue;
  * Service for loading and storing data blobs.
  *
  * @note This was written to act as a drop-in replacement for the corresponding
- *       static methods in Revision.
+ *       static methods in the old Revision class (which was later removed in 1.37).
  *
  * @since 1.31
  */
@@ -86,7 +86,7 @@ interface BlobStore {
 	/**
 	 * Retrieve a blob, given an address.
 	 *
-	 * MCR migration note: this replaces Revision::loadText
+	 * MCR migration note: this replaced Revision::loadText
 	 *
 	 * @param string $blobAddress The blob address as returned by storeBlob(),
 	 *        such as "tt:12345" or "ex:DB://s16/456/9876".

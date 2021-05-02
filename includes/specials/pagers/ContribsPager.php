@@ -340,7 +340,7 @@ class ContribsPager extends RangeChronologicalPager {
 			];
 			$queryInfo['conds'][] = $ipRangeConds;
 		} else {
-			// tables and joins are already handled by Revision::getQueryInfo()
+			// tables and joins are already handled by RevisionStore::getQueryInfo()
 			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
 			$queryInfo['conds'][] = $conds['conds'];
 			// Force the appropriate index to avoid bad query plans (T189026)

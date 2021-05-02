@@ -421,7 +421,7 @@ class ChangesList extends ContextSource {
 	 * @param Authority $performer
 	 * @param Language $lang
 	 * @param Title|null $title (optional) where Title does not match
-	 *   the Title associated with the Revision
+	 *   the Title associated with the RevisionRecord
 	 * @internal For usage by Pager classes only (e.g. HistoryPager and ContribsPager).
 	 * @return string HTML
 	 */

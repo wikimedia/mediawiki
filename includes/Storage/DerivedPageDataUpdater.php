@@ -1077,7 +1077,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
-	 * Prepare derived data updates targeting the given Revision.
+	 * Prepare derived data updates targeting the given RevisionRecord.
 	 *
 	 * Calling this method requires the given revision to be present in the database.
 	 * This may be right after a new revision has been created, or when re-generating
@@ -1172,7 +1172,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			&& !$this->revision->getSlots()->hasSameContent( $revision->getSlots() )
 		) {
 			throw new LogicException(
-				'The Revision provided has mismatching content!'
+				'The revision provided has mismatching content!'
 			);
 		}
 
@@ -1205,9 +1205,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				// Null-edit!
 				$this->options['changed'] = false;
 			} else {
-				// This indicates that calling code has given us the wrong Revision object
+				// This indicates that calling code has given us the wrong RevisionRecord object
 				throw new LogicException(
-					'The Revision mismatches old revision ID: '
+					'The RevisionRecord mismatches old revision ID: '
 					. 'Old ID is ' . $oldId
 					. ', parent ID is ' . $revision->getParentId()
 					. ', revision ID is ' . $revision->getId()
@@ -1223,7 +1223,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			$user = $revision->getUser();
 			if ( !$this->user->equals( $user ) ) {
 				throw new LogicException(
-					'The Revision provided has a mismatching actor: expected '
+					'The RevisionRecord provided has a mismatching actor: expected '
 					. $this->user->getName()
 					. ', got '
 					. $user->getName()

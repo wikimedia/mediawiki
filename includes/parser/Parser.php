@@ -23,7 +23,6 @@
 use MediaWiki\BadFileLookup;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Debug\DeprecatablePropertyArray;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
@@ -261,8 +260,6 @@ class Parser {
 	private $mOutputType;   # Output type, one of the OT_xxx constants
 	/** @deprecated since 1.35 */
 	public $ot;            # Shortcut alias, see setOutputType()
-	/** @deprecated since 1.35, use Parser::getRevisionRecordObject() */
-	public $mRevisionObject; # The revision object of the specified revision ID
 	/** @deprecated since 1.35, use Parser::getRevisionId() */
 	public $mRevisionId;   # ID to display in {{REVISIONID}} tags
 	/** @deprecated since 1.35, use Parser::getRevisionTimestamp() */
@@ -549,7 +546,6 @@ class Parser {
 			$this->getHookContainer()
 		);
 		$this->mLinkID = 0;
-		$this->mRevisionObject = null;
 		$this->mRevisionTimestamp = null;
 		$this->mRevisionId = null;
 		$this->mRevisionUser = null;
@@ -634,14 +630,12 @@ class Parser {
 		}
 
 		$oldRevisionId = $this->mRevisionId;
-		$oldRevisionObject = $this->mRevisionObject;
 		$oldRevisionRecordObject = $this->mRevisionRecordObject;
 		$oldRevisionTimestamp = $this->mRevisionTimestamp;
 		$oldRevisionUser = $this->mRevisionUser;
 		$oldRevisionSize = $this->mRevisionSize;
 		if ( $revid !== null ) {
 			$this->mRevisionId = $revid;
-			$this->mRevisionObject = null;
 			$this->mRevisionRecordObject = null;
 			$this->mRevisionTimestamp = null;
 			$this->mRevisionUser = null;
@@ -700,7 +694,6 @@ class Parser {
 		$this->mOutput->setText( $text );
 
 		$this->mRevisionId = $oldRevisionId;
-		$this->mRevisionObject = $oldRevisionObject;
 		$this->mRevisionRecordObject = $oldRevisionRecordObject;
 		$this->mRevisionTimestamp = $oldRevisionTimestamp;
 		$this->mRevisionUser = $oldRevisionUser;
@@ -3527,8 +3520,7 @@ class Parser {
 	}
 
 	/**
-	 * Wrapper around Revision::newFromTitle to allow passing additional parameters
-	 * without passing them on to it.
+	 * Wrapper around RevisionLookup::getKnownCurrentRevision
 	 *
 	 * @since 1.34
 	 * @param LinkTarget $link
@@ -3601,7 +3593,7 @@ class Parser {
 	 * @param LinkTarget $page
 	 * @param bool|Parser $parser
 	 *
-	 * @return array|DeprecatablePropertyArray
+	 * @return array
 	 * @since 1.12
 	 */
 	public static function statelessFetchTemplate( $page, $parser = false ) {
@@ -3730,18 +3722,17 @@ class Parser {
 		}
 
 		$retValues = [
-			'revision-record' => $revRecord ?: false, // So isset works
+			// previously, when this also returned a Revision object, we set
+			// 'revision-record' to false instead of null if it was unavailable,
+			// so that callers to use isset and then rely on the revision-record
+			// key instead of the revision key, even if there was no corresponding
+			// object - we continue to set to false here for backwards compatability
+			'revision-record' => $revRecord ?: false,
 			'text' => $text,
 			'finalTitle' => $finalTitle,
 			'deps' => $deps
 		];
-		// TODO nothing is deprecated, no need to use DeprecatablePropertyArray
-		$propertyArray = new DeprecatablePropertyArray(
-			$retValues,
-			[],
-			__METHOD__
-		);
-		return $propertyArray;
+		return $retValues;
 	}
 
 	/**
@@ -5866,7 +5857,7 @@ class Parser {
 			return $this->mRevisionRecordObject;
 		}
 
-		// NOTE: try to get the RevisionObject even if mRevisionId is null.
+		// NOTE: try to get the RevisionRecord object even if mRevisionId is null.
 		// This is useful when parsing a revision that has not yet been saved.
 		// However, if we get back a saved revision even though we are in
 		// preview mode, we'll have to ignore it, see below.

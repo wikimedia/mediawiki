@@ -114,7 +114,7 @@ class RevisionRenderer {
 
 		if ( !$rev->audienceCan( RevisionRecord::DELETED_TEXT, $audience, $forPerformer ) ) {
 			// Returning null here is awkward, but consistent with the signature of
-			// Revision::getContent() and RevisionRecord::getContent().
+			// RevisionRecord::getContent().
 			return null;
 		}
 

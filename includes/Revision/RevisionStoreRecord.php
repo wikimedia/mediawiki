@@ -46,7 +46,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	 * @note Avoid calling this constructor directly. Use the appropriate methods
 	 * in RevisionStore instead.
 	 *
-	 * @param PageIdentity $page The page this Revision is associated with.
+	 * @param PageIdentity $page The page this RevisionRecord is associated with.
 	 * @param UserIdentity $user
 	 * @param CommentStoreComment $comment
 	 * @param \stdClass $row A row from the revision table. Use RevisionStore::getQueryInfo() to build
@@ -111,7 +111,7 @@ class RevisionStoreRecord extends RevisionRecord {
 	}
 
 	/**
-	 * MCR migration note: this replaces Revision::isDeleted
+	 * MCR migration note: this replaced Revision::isDeleted
 	 *
 	 * @param int $field One of DELETED_* bitfield constants
 	 *

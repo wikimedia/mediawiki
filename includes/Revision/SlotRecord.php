@@ -621,7 +621,7 @@ class SlotRecord {
 	/**
 	 * Get the base 36 SHA-1 value for a string of text
 	 *
-	 * MCR migration note: this replaces Revision::base36Sha1
+	 * MCR migration note: this replaced Revision::base36Sha1
 	 *
 	 * @param string $blob
 	 * @return string

@@ -37,7 +37,7 @@ class RevDelRevisionItem extends RevDelItem {
 	}
 
 	/**
-	 * Create revision object from $row sourced from $list
+	 * Create RevisionRecord object from $row sourced from $list
 	 *
 	 * @param RevisionListBase $list
 	 * @param mixed $row

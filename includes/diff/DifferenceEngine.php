@@ -977,9 +977,9 @@ class DifferenceEngine extends ContextSource {
 	 */
 	public function renderNewRevision() {
 		if ( $this->isContentOverridden ) {
-			// The code below only works with a Revision object. We could construct a fake revision
-			// (here or in setContent), but since this does not seem needed at the moment,
-			// we'll just fail for now.
+			// The code below only works with a RevisionRecord object. We could construct a
+			// fake RevisionRecord (here or in setContent), but since this does not seem
+			// needed at the moment, we'll just fail for now.
 			throw new LogicException(
 				__METHOD__
 				. ' is not supported after calling setContent(). Use setRevisions() instead.'
@@ -1059,7 +1059,7 @@ class DifferenceEngine extends ContextSource {
 		if ( !$revRecord->getId() ) {
 			// WikiPage::getParserOutput wants a revision ID. Passing 0 will incorrectly show
 			// the current revision, so fail instead. If need be, WikiPage::getParserOutput
-			// could be made to accept a Revision or RevisionRecord instead of the id.
+			// could be made to accept a RevisionRecord instead of the id.
 			return false;
 		}
 
@@ -1970,7 +1970,7 @@ class DifferenceEngine extends ContextSource {
 	 * by the request context); if oldid is 0, then compare the revision in newid to the
 	 * immediately previous one.
 	 *
-	 * If oldid is false, leave the corresponding revision object set to false. This can
+	 * If oldid is false, leave the corresponding RevisionRecord object set to false. This can
 	 * happen with 'diff=prev' pointing to a non-existent revision, and is also used directly
 	 * by the API.
 	 *
@@ -1988,7 +1988,7 @@ class DifferenceEngine extends ContextSource {
 
 		$this->loadRevisionIds();
 
-		// Load the new revision object
+		// Load the new RevisionRecord object
 		if ( $this->mNewid ) {
 			$this->mNewRevisionRecord = $this->revisionStore->getRevisionById( $this->mNewid );
 		} else {
@@ -2009,7 +2009,7 @@ class DifferenceEngine extends ContextSource {
 			$this->mNewPage = null;
 		}
 
-		// Load the old revision object
+		// Load the old RevisionRecord object
 		$this->mOldRevisionRecord = false;
 		if ( $this->mOldid ) {
 			$this->mOldRevisionRecord = $this->revisionStore->getRevisionById( $this->mOldid );
