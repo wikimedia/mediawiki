@@ -104,7 +104,7 @@ This is no longer encouraged, and the option has been removed.
 * Parser test files can now declare a dependency on a specific extension being
   loaded, not just on the presence of a certain extension tag hook. This is a
   better fit for extensions like TimedMediaHandler, which affect the output but
-  don't register parser hooks. Use `extension:Foo` in  the `!! hooks` section of
+  don't register parser hooks. Use `extension:Foo` in the `!! hooks` section of
   your parser test file to declare a dependency on the `Foo` extension being
   loaded.
 * To expose code previously present in SpecialBlock/SpecialUnblock to other
@@ -709,7 +709,7 @@ because of Phabricator reports.
   ecosystem, so no replacement was provided.
 * The ProtectionForm::buildForm hook has been deprecated. Please use the
   ProtectionFormAddFormFields hook instead.
-* RevisionStore::newMutableRevisionFromArray has beed hard deprecated. Instead,
+* RevisionStore::newMutableRevisionFromArray has been hard deprecated. Instead,
   MutableRevisionRecord should be constructed directly via constructor.
 * UserIdentity::getActorId() is deprecated. The actor ID should not be exposed
   to application logic. Storage layer code should use the ActorNormalization
@@ -801,7 +801,7 @@ because of Phabricator reports.
   extension.json schema. Extensions that define namespaces can set it to
   `false` to disallow moving pages in the specified namespace. Extensions
   should either use this or NamespaceIsMovableHook, but not both. The hook
-  overides the attribute.
+  overrides the attribute.
 
 == Compatibility ==
 
