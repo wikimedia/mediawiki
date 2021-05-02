@@ -33,7 +33,6 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRenderingProvider;
 use MediaWiki\Search\ParserOutputSearchDataExtractor;
-use Wikimedia\Assert\Assert;
 
 /**
  * A content handler knows how do deal with a specific type of content on a wiki
@@ -1148,50 +1147,25 @@ abstract class ContentHandler {
 	 * @since 1.21
 	 * @since 1.32 accepts Content objects for all parameters instead of Revision objects.
 	 *  Passing Revision objects is deprecated.
+	 * @since 1.37 only accepts Content objects
 	 *
-	 * @param Revision|Content $current The current text (passing a Revision is hard
-	 *    deprecated since 1.35)
-	 * @param Revision|Content $undo The content of the revision to undo (passing a Revision is
-	 *    hard deprecated since 1.35)
-	 * @param Revision|Content $undoafter Must be from an earlier revision than $undo (passing a
-	 *     Revision is hard deprecated since 1.35)
+	 * @param Content $current The current text
+	 * @param Content $undo The content of the revision to undo
+	 * @param Content $undoafter Must be from an earlier revision than $undo
 	 * @param bool $undoIsLatest Set true if $undo is from the current revision (since 1.32)
 	 *
 	 * @return Content|false Content on success, false on failure
 	 */
-	public function getUndoContent( $current, $undo, $undoafter, $undoIsLatest = false ) {
-		Assert::parameterType( Revision::class . '|' . Content::class, $current, '$current' );
-		if ( $current instanceof Content ) {
-			Assert::parameter( $undo instanceof Content, '$undo',
-				'Must be Content when $current is Content' );
-			Assert::parameter( $undoafter instanceof Content, '$undoafter',
-				'Must be Content when $current is Content' );
-			$cur_content = $current;
-			$undo_content = $undo;
-			$undoafter_content = $undoafter;
-		} else {
-			Assert::parameter( $undo instanceof Revision, '$undo',
-				'Must be Revision when $current is Revision' );
-			Assert::parameter( $undoafter instanceof Revision, '$undoafter',
-				'Must be Revision when $current is Revision' );
-
-			wfDeprecated( __METHOD__ . ' with Revision objects', '1.32' );
-
-			$cur_content = $current->getContent();
-
-			if ( empty( $cur_content ) ) {
-				return false; // no page
-			}
-
-			$undo_content = $undo->getContent();
-			$undoafter_content = $undoafter->getContent();
-
-			if ( !$undo_content || !$undoafter_content ) {
-				return false; // no content to undo
-			}
-
-			$undoIsLatest = $current->getId() === $undo->getId();
-		}
+	public function getUndoContent(
+		Content $current,
+		Content $undo,
+		Content $undoafter,
+		$undoIsLatest = false
+	) {
+		// TODO clean this up following removal of support for Revision objects
+		$cur_content = $current;
+		$undo_content = $undo;
+		$undoafter_content = $undoafter;
 
 		try {
 			$this->checkModelID( $cur_content->getModel() );

@@ -273,15 +273,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doUserEditContent
 	 */
 	public function testDoEditContent() {
-		$this->hideDeprecated( 'Revision::getRecentChange' );
-		$this->hideDeprecated( 'Revision::getSha1' );
-		$this->hideDeprecated( 'Revision::getContent' );
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'Revision::getId' );
-		$this->hideDeprecated( 'Revision::getTimestamp' );
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
-
 		global $wgUser;
 
 		// NOTE: Test that Editing also works with a fragment title!
@@ -299,14 +290,19 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$this->assertTrue( $status->isOK(), 'OK' );
 		$this->assertTrue( $status->value['new'], 'new' );
-		$this->assertNotNull( $status->value['revision'], 'revision' );
-		$this->assertSame( $status->value['revision']->getId(), $page->getRevisionRecord()->getId() );
-		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevisionRecord()->getSha1() );
-		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
 
-		$this->assertSame( $status->value['revision']->getId(), $page->getLatest() );
-		$this->assertSame( $status->value['revision']->getTimestamp(), $page->getTimestamp() );
-		$this->assertSame( $status->value['revision']->getTimestamp(), $page->getTouched() );
+		$statusRevRecord = $status->value['revision-record'];
+		$this->assertSame( $statusRevRecord->getId(), $page->getRevisionRecord()->getId() );
+		$this->assertSame( $statusRevRecord->getSha1(), $page->getRevisionRecord()->getSha1() );
+		$this->assertTrue(
+			$statusRevRecord->getContent( SlotRecord::MAIN )->equals( $content ),
+			'equals'
+		);
+
+		$this->assertSame( $statusRevRecord->getId(), $page->getLatest() );
+		$this->assertSame( $statusRevRecord->getTimestamp(), $page->getTimestamp() );
+		$this->assertSame( $statusRevRecord->getTimestamp(), $page->getTouched() );
 
 		$content = ContentHandler::makeContent(
 			"At vero eos et accusam et justo duo [[dolores]] et ea rebum. "
@@ -318,11 +314,13 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$status = $page->doEditContent( $content, "testing 2", EDIT_UPDATE );
 		$this->assertTrue( $status->isOK(), 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
-		$this->assertNotNull( $status->value['revision'], 'revision' );
-		$this->assertSame( $status->value['revision']->getId(), $page->getRevisionRecord()->getId() );
-		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevisionRecord()->getSha1() );
+		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
+
+		$statusRevRecord = $status->value['revision-record'];
+		$this->assertSame( $statusRevRecord->getId(), $page->getRevisionRecord()->getId() );
+		$this->assertSame( $statusRevRecord->getSha1(), $page->getRevisionRecord()->getSha1() );
 		$this->assertFalse(
-			$status->value['revision']->getContent()->equals( $content ),
+			$statusRevRecord->getContent( SlotRecord::MAIN )->equals( $content ),
 			'not equals (PST must substitute signature)'
 		);
 
@@ -350,15 +348,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::prepareContentForEdit
 	 */
 	public function testDoUserEditContent() {
-		$this->hideDeprecated( 'Revision::getRecentChange' );
-		$this->hideDeprecated( 'Revision::getSha1' );
-		$this->hideDeprecated( 'Revision::getContent' );
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'Revision::getId' );
-		$this->hideDeprecated( 'Revision::getRevisionRecord' );
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
-
 		$this->setMwGlobals( 'wgPageCreationLog', true );
 
 		$page = $this->newPage( __METHOD__ );
@@ -381,10 +370,15 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 		$this->assertTrue( $status->isOK(), 'OK' );
 		$this->assertTrue( $status->value['new'], 'new' );
-		$this->assertNotNull( $status->value['revision'], 'revision' );
-		$this->assertSame( $status->value['revision']->getId(), $page->getRevisionRecord()->getId() );
-		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevisionRecord()->getSha1() );
-		$this->assertTrue( $status->value['revision']->getContent()->equals( $content ), 'equals' );
+		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
+
+		$statusRevRecord = $status->value['revision-record'];
+		$this->assertSame( $statusRevRecord->getId(), $page->getRevisionRecord()->getId() );
+		$this->assertSame( $statusRevRecord->getSha1(), $page->getRevisionRecord()->getSha1() );
+		$this->assertTrue(
+			$statusRevRecord->getContent( SlotRecord::MAIN )->equals( $content ),
+			'equals'
+		);
 
 		$revRecord = $page->getRevisionRecord();
 		$recentChange = $this->getServiceContainer()
@@ -434,7 +428,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$status = $page->doUserEditContent( $content, $user2, 'This changes nothing', EDIT_UPDATE, false );
 		$this->assertTrue( $status->isOK(), 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
-		$this->assertNull( $status->value['revision'], 'revision' );
+		$this->assertNull( $status->value['revision-record'], 'revision-record' );
 		$this->assertNotNull( $page->getRevisionRecord() );
 		$this->assertTrue(
 			$page->getRevisionRecord()->getContent( SlotRecord::MAIN )->equals( $content ),
@@ -452,11 +446,12 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$status = $page->doUserEditContent( $content, $user1, "testing 2", EDIT_UPDATE );
 		$this->assertTrue( $status->isOK(), 'OK' );
 		$this->assertFalse( $status->value['new'], 'new' );
-		$this->assertNotNull( $status->value['revision'], 'revision' );
-		$this->assertSame( $status->value['revision']->getId(), $page->getRevisionRecord()->getId() );
-		$this->assertSame( $status->value['revision']->getSha1(), $page->getRevisionRecord()->getSha1() );
+		$this->assertNotNull( $status->value['revision-record'], 'revision-record' );
+		$statusRevRecord = $status->value['revision-record'];
+		$this->assertSame( $statusRevRecord->getId(), $page->getRevisionRecord()->getId() );
+		$this->assertSame( $statusRevRecord->getSha1(), $page->getRevisionRecord()->getSha1() );
 		$this->assertFalse(
-			$status->value['revision']->getContent()->equals( $content ),
+			$statusRevRecord->getContent( SlotRecord::MAIN )->equals( $content ),
 			'not equals (PST must substitute signature)'
 		);
 
@@ -531,9 +526,6 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doUserEditContent
 	 */
 	public function testDoUserEditContent_twice() {
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status exists 'revision'" );
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status exists 'revision'" );
-
 		$title = Title::newFromText( __METHOD__ );
 		$page = WikiPage::factory( $title );
 		$content = ContentHandler::makeContent( '$1 van $2', $title );
@@ -548,8 +540,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		$this->assertTrue( $status1->isOK(), 'OK' );
 		$this->assertTrue( $status2->isOK(), 'OK' );
 
-		$this->assertTrue( isset( $status1->value['revision'] ), 'OK' );
-		$this->assertFalse( isset( $status2->value['revision'] ), 'OK' );
+		$this->assertTrue( isset( $status1->value['revision-record'] ), 'OK' );
+		$this->assertFalse( isset( $status2->value['revision-record'] ), 'OK' );
 	}
 
 	/**
@@ -2150,8 +2142,6 @@ more stuff
 	 * @covers WikiPage::getDerivedDataUpdater
 	 */
 	public function testGetDerivedDataUpdater() {
-		$this->hideDeprecated( 'Revision::__construct' );
-		$this->hideDeprecated( 'Revision::getRevisionRecord' );
 		$admin = $this->getTestSysop()->getUser();
 
 		/** @var object $page */

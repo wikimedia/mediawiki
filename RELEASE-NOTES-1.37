@@ -104,9 +104,10 @@ because of Phabricator reports.
   - EditPage::getBaseRevision()
   - LinksUpdate::getRevision()
   - LinksUpdate::setRevision()
-  - PageArchive::getArchivedRevision
+  - PageArchive::getArchivedRevision()
   - PageArchive::getPreviousRevision
-  - PageArchive::getRevision
+  - PageArchive::getRevision()
+  - Title::countAuthorsBetween()
   - Title::getFirstRevision()
   - User::getNewMessageLinks()
   - User::getNewMessageRevisionId()
@@ -116,6 +117,10 @@ because of Phabricator reports.
   - WikiPage::getUndoContent()
   - WikiPage::updateIfNewerOn()
   and the following methods no longer accept Revision objects as parameters:
+  - CategoryMembershipChange::__construct
+  - ContentHandler::getUndoContent
+  - DerivedPageDataUpdater::prepareUpdate
+  - DifferenceEngine::getRevisionHeader
   - Linker::buildRollbackLink
   - Linker::generateRollback
   - Linker::getRevDeleteLink
@@ -129,6 +134,18 @@ because of Phabricator reports.
   - WikiPage::onArticleEdit
   - WikiPage::prepareContentForEdit
   - WikiPage::updateRevisionOn
+  The following methods return arrays that formerly included a 'revision'
+  key that would emit deprecation warnings when accessed and return a
+  Revision object. The Revision object has been removed from the arrays,
+  and the 'revision-record' key should be used to get the relevant
+  RevisionRecord instead:
+  - PageUpdater::doCreate
+  - PageUpdater::doModify
+  - Parser::statelessFetchTemplate
+  The ParserOptions `templateCallback` option is a callback that is called
+  in Parser::fetchTemplateAndTitle() and should return an array - the
+  'revision' key to that array used to be a Revision object and was used if
+  no 'revision-record' was returned - it is now ignored.
 * WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
   Use HOLDOFF_TTL_NONE instead.
 * The following methods and fields in the Language class, deprecated since

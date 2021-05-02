@@ -3821,46 +3821,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Get the number of authors between the given revisions or revision IDs.
-	 * Used for diffs and other things that really need it.
-	 *
-	 * @deprecated since 1.35 Use RevisionStore::countAuthorsBetween instead.
-	 *
-	 * @param int|Revision $old Old revision or rev ID (first before range by default)
-	 * @param int|Revision $new New revision or rev ID (first after range by default)
-	 * @param int $limit Maximum number of authors
-	 * @param string|array $options (Optional): Single option, or an array of options:
-	 *     'include_old' Include $old in the range; $new is excluded.
-	 *     'include_new' Include $new in the range; $old is excluded.
-	 *     'include_both' Include both $old and $new in the range.
-	 *     Unknown option values are ignored.
-	 * @return int Number of revision authors in the range; zero if not both revisions exist
-	 */
-	public function countAuthorsBetween( $old, $new, $limit, $options = [] ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-
-		if ( !( $old instanceof Revision ) ) {
-			$old = Revision::newFromTitle( $this, (int)$old );
-		}
-		if ( !( $new instanceof Revision ) ) {
-			$new = Revision::newFromTitle( $this, (int)$new );
-		}
-		if ( !$old || !$new ) {
-			return 0; // nothing to compare
-		}
-
-		return $revisionStore->countAuthorsBetween(
-			$this->getArticleID(),
-			$old->getRevisionRecord(),
-			$new->getRevisionRecord(),
-			null,
-			$limit,
-			$options
-		);
-	}
-
-	/**
 	 * Compares with another Title.
 	 *
 	 * A Title object is considered equal to another Title if it has the same text,
