@@ -56,7 +56,6 @@ TEXT
 
 	/**
 	 * @return bool
-	 * @throws Exception
 	 */
 	public function execute() {
 		global $IP;
@@ -78,7 +77,12 @@ TEXT
 
 		$action = $this->getArg( 0 );
 		$module = $this->getArg( 1, 'all' );
-		return $frm->run( $action, $module );
+
+		try {
+			return $frm->run( $action, $module );
+		} catch ( Exception $e ) {
+			$this->fatalError( "Error: {$e->getMessage()}" );
+		}
 	}
 }
 
