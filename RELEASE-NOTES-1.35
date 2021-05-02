@@ -22,7 +22,7 @@ THIS IS NOT A RELEASE YET
 
 This is a security and maintenance release of the MediaWiki 1.35 branch.
 
-MediaWiki 1.35.2 supports Composer 2.0. It is reccommended to make sure your
+MediaWiki 1.35.2 supports Composer 2.0. It is recommended to make sure your
 libraries are up to date on Composer 1.x, before running Composer 2.x.
 
 While normally running update.php isn't required for point releases,
