@@ -11,6 +11,10 @@ use Wikimedia\TestingAccessWrapper;
  * @covers SpecialRecentChanges
  */
 class SpecialRecentchangesTest extends AbstractChangesListSpecialPageTestCase {
+
+	/**
+	 * @return SpecialRecentChanges
+	 */
 	protected function getPage() {
 		$services = MediaWikiServices::getInstance();
 		return TestingAccessWrapper::newFromObject(
