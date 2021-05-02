@@ -41,6 +41,9 @@ abstract class AbstractChangesListSpecialPageTestCase extends MediaWikiIntegrati
 		$this->changesListSpecialPage->registerFilters();
 	}
 
+	/**
+	 * @return ChangesListSpecialPage
+	 */
 	abstract protected function getPage();
 
 	protected function tearDown() : void {
