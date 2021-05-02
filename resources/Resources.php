@@ -1602,7 +1602,7 @@ return [
 		'scripts' => 'resources/src/mediawiki.page.gallery.js',
 		'dependencies' => [
 			'mediawiki.page.gallery.styles',
-			'jquery.throttle-debounce',
+			'mediawiki.util'
 		]
 	],
 	'mediawiki.page.gallery.styles' => [

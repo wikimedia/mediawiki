@@ -281,8 +281,8 @@
 			if ( !bound ) {
 				bound = true;
 				$( window )
-					.on( 'resize', $.debounce( 300, true, handleResizeStart ) )
-					.on( 'resize', $.debounce( 300, handleResizeEnd ) );
+					.on( 'resize', mw.util.debounce( handleResizeStart, 300, true ) )
+					.on( 'resize', mw.util.debounce( handleResizeEnd, 300 ) );
 			}
 		} );
 	} );
