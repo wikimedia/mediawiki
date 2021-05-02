@@ -16,7 +16,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Kunal Mehta <legoktm@member.fsf.org>
+ * @author Kunal Mehta <legoktm@debian.org>
  */
 namespace MediaWiki\Linker;
 
