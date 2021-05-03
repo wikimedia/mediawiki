@@ -217,11 +217,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 			'language' => MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'en' )
 		] );
 
-		$frank = $this->getMockBuilder( User::class )
-			->disableOriginalConstructor()
-			->getMock();
-
-		$frank->method( 'getName' )->willReturn( 'Frank' );
+		$frank = new UserIdentityValue( 5, 'Frank' );
 
 		$text = '* user:{{REVISIONUSER}};id:{{REVISIONID}};time:{{REVISIONTIMESTAMP}};';
 		$po = new ParserOptions( $frank );
