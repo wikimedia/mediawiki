@@ -2,6 +2,8 @@
 
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\Assert\PreconditionException;
 
 /**
@@ -676,6 +678,63 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$title = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
 
 		$this->assertNull( $title );
+	}
+
+	public function provideCompare() {
+		yield 'Title == Title' => [
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			0
+		];
+		yield 'Title > Title, name' => [
+			Title::makeTitle( NS_MAIN, 'Ax' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			1
+		];
+		yield 'Title < Title, name' => [
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Ax' ),
+			-1
+		];
+		yield 'Title > Title, ns' => [
+			Title::makeTitle( NS_TALK, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			1
+		];
+		yield 'Title < Title, ns' => [
+			Title::makeTitle( NS_SPECIAL, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			-1
+		];
+		yield 'LinkTarget == PageReference' => [
+			new TitleValue( NS_MAIN, 'Aa' ),
+			new PageReferenceValue( NS_MAIN, 'Aa', PageReference::LOCAL ),
+			0
+		];
+		yield 'Title > PageReference, name' => [
+			Title::makeTitle( NS_TALK, 'Aa' ),
+			new PageReferenceValue( NS_MAIN, 'Aa', PageReference::LOCAL ),
+			1
+		];
+		yield 'LinkTarget < Title, ns' => [
+			new TitleValue( NS_SPECIAL, 'Aa' ),
+			Title::makeTitle( NS_MAIN, 'Aa' ),
+			-2
+		];
+	}
+
+	/**
+	 * @dataProvider provideCompare
+	 * @covers Title::compare
+	 */
+	public function testCompare( $a, $b, $expected ) {
+		if ( $expected > 0 ) {
+			$this->assertGreaterThan( 0, Title::compare( $a, $b ) );
+		} elseif ( $expected < 0 ) {
+			$this->assertLessThan( 0, Title::compare( $a, $b ) );
+		} else {
+			$this->assertSame( 0, Title::compare( $a, $b ) );
+		}
 	}
 
 }
