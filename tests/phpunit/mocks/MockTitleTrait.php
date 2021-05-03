@@ -80,18 +80,60 @@ trait MockTitleTrait {
 	}
 
 	/**
+	 * @param array $options Supported keys:
+	 *    - validInterwikis: string[]
+	 *
 	 * @return MediaWikiTitleCodec
 	 */
-	private function makeMockTitleCodec() {
+	private function makeMockTitleCodec( array $options = [] ) {
+		$baseConfig = [
+			'validInterwikis' => [],
+		];
+		$config = $options + $baseConfig;
+
 		/** @var Language|MockObject $language */
-		$language = $this->createNoOpMock( Language::class, [ 'ucfirst' ] );
+		$language = $this->createNoOpMock(
+			Language::class,
+			[ 'ucfirst', 'lc', 'getNsIndex' ]
+		);
 		$language->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
+		$language->method( 'lc' )->willReturnCallback(
+			static function ( $str, $first ) {
+				return $first ? lcfirst( $str ) : strtolower( $str );
+			}
+		);
+		$language->method( 'getNsIndex' )->willReturnCallback(
+			static function ( $text ) {
+				$text = strtolower( $text );
+				if ( $text === '' ) {
+					return NS_MAIN;
+				}
+				// partial support for the most commonly used namespaces in tests,
+				// feel free to expand as needed
+				$namespaces = [
+					'talk' => NS_TALK,
+					'user' => NS_USER,
+					'user_talk' => NS_USER_TALK,
+					'project' => NS_PROJECT,
+					'project_talk' => NS_PROJECT_TALK,
+				];
+				return $namespaces[ $text ] ?? false;
+			}
+		);
 
 		/** @var GenderCache|MockObject $genderCache */
 		$genderCache = $this->createNoOpMock( GenderCache::class );
 
 		/** @var InterwikiLookup|MockObject $interwikiLookup */
-		$interwikiLookup = $this->createNoOpMock( InterwikiLookup::class );
+		$interwikiLookup = $this->createNoOpMock( InterwikiLookup::class, [ 'isValidInterwiki' ] );
+		$interwikiLookup->method( 'isValidInterwiki' )->willReturnCallback(
+			static function ( $prefix ) use ( $config ) {
+				// interwikis are lowercase, but we might be given a prefix that
+				// has uppercase characters, eg. from UserNameUtils normalization
+				$prefix = strtolower( $prefix );
+				return in_array( $prefix, $config['validInterwikis'] );
+			}
+		);
 
 		/** @var NamespaceInfo|MockObject $namespaceInfo */
 		$namespaceInfo = $this->createNoOpMock( NamespaceInfo::class, [ 'isCapitalized' ] );
