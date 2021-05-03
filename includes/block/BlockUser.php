@@ -25,6 +25,7 @@ use ChangeTags;
 use MalformedTitleException;
 use ManualLogEntry;
 use MediaWiki\Block\Restriction\AbstractRestriction;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Config\ServiceOptions;
@@ -100,6 +101,9 @@ class BlockUser {
 	/** @var TitleFactory */
 	private $titleFactory;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	/**
 	 * @internal For use by UserBlockCommandFactory
 	 */
@@ -174,6 +178,7 @@ class BlockUser {
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
 	 * @param BlockUtils $blockUtils
+	 * @param BlockActionInfo $blockActionInfo
 	 * @param HookContainer $hookContainer
 	 * @param DatabaseBlockStore $databaseBlockStore
 	 * @param UserFactory $userFactory
@@ -203,6 +208,7 @@ class BlockUser {
 		BlockRestrictionStore $blockRestrictionStore,
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		BlockUtils $blockUtils,
+		BlockActionInfo $blockActionInfo,
 		HookContainer $hookContainer,
 		DatabaseBlockStore $databaseBlockStore,
 		UserFactory $userFactory,
@@ -233,6 +239,7 @@ class BlockUser {
 		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
 		$this->titleFactory = $titleFactory;
+		$this->blockActionInfo = $blockActionInfo;
 
 		// Process block target
 		list( $this->target, $rawTargetType ) = $this->blockUtils->parseBlockTarget( $target );
@@ -622,6 +629,23 @@ class BlockUser {
 	}
 
 	/**
+	 * Build an array of actions from $this->blockRestrictions
+	 *
+	 * Returns an array of stringified actions.
+	 *
+	 * @return string[]
+	 */
+	private function getActionRestrictions(): array {
+		$actionRestrictions = [];
+		foreach ( $this->blockRestrictions as $restriction ) {
+			if ( $restriction instanceof ActionRestriction ) {
+				$actionRestrictions[] = $this->blockActionInfo->getActionFromId( $restriction->getValue() );
+			}
+		}
+		return $actionRestrictions;
+	}
+
+	/**
 	 * Prepare $logParams
 	 *
 	 * Helper method for $this->log()
@@ -639,12 +663,16 @@ class BlockUser {
 		if ( $this->isPartial() ) {
 			$pageRestrictions = $this->getPageRestrictions();
 			$namespaceRestrictions = $this->getNamespaceRestrictions();
+			$actionRestriction = $this->getActionRestrictions();
 
 			if ( count( $pageRestrictions ) > 0 ) {
 				$logParams['7::restrictions']['pages'] = $pageRestrictions;
 			}
 			if ( count( $namespaceRestrictions ) > 0 ) {
 				$logParams['7::restrictions']['namespaces'] = $namespaceRestrictions;
+			}
+			if ( count( $actionRestriction ) ) {
+				$logParams['7::restrictions']['actions'] = $actionRestriction;
 			}
 		}
 		return $logParams;
