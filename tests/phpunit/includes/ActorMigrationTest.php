@@ -20,6 +20,16 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		'actor',
 	];
 
+	private const STAGES_BY_NAME = [
+		'old' => SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD,
+		'read-old' => SCHEMA_COMPAT_WRITE_OLD_AND_TEMP | SCHEMA_COMPAT_READ_OLD,
+		'read-temp' => SCHEMA_COMPAT_WRITE_OLD_AND_TEMP | SCHEMA_COMPAT_READ_TEMP,
+		'temp' => SCHEMA_COMPAT_WRITE_TEMP | SCHEMA_COMPAT_READ_TEMP,
+		'read-temp2' => SCHEMA_COMPAT_WRITE_TEMP_AND_NEW | SCHEMA_COMPAT_READ_TEMP,
+		'read-new' => SCHEMA_COMPAT_WRITE_TEMP_AND_NEW | SCHEMA_COMPAT_READ_NEW,
+		'new' => SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW
+	];
+
 	protected function getSchemaOverrides( IMaintainableDatabase $db ) {
 		return [
 			'scripts' => [
@@ -55,6 +65,21 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		);
 	}
 
+	private static function makeActorCases( $inputs, $expected ) {
+		foreach ( $expected as $inputName => $expectedCases ) {
+			foreach ( $expectedCases as list( $stages, $expected ) ) {
+				foreach ( $stages as $stage ) {
+					$cases[$inputName . ', ' . $stage] = array_merge(
+						[ $stage ],
+						$inputs[$inputName],
+						[ $expected ]
+					);
+				}
+			}
+		}
+		return $cases;
+	}
+
 	/**
 	 * @dataProvider provideConstructor
 	 * @param int $stage
@@ -76,201 +101,161 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		return [
 			[ 0, '$stage must include a write mode' ],
 			[ SCHEMA_COMPAT_READ_OLD, '$stage must include a write mode' ],
-			[ SCHEMA_COMPAT_READ_NEW, '$stage must include a write mode' ],
+			[ SCHEMA_COMPAT_READ_TEMP, '$stage must include a write mode' ],
 			[ SCHEMA_COMPAT_READ_BOTH, '$stage must include a write mode' ],
 
 			[ SCHEMA_COMPAT_WRITE_OLD, '$stage must include a read mode' ],
 			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_OLD, null ],
 			[
-				SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_NEW,
-				'Cannot read the new schema without also writing it'
+				SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_TEMP,
+				'Cannot read the temp schema without also writing it'
 			],
-			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_BOTH, 'Cannot read both schemas' ],
+			[ SCHEMA_COMPAT_WRITE_OLD | SCHEMA_COMPAT_READ_BOTH, 'Cannot read multiple schemas' ],
 
-			[ SCHEMA_COMPAT_WRITE_NEW, '$stage must include a read mode' ],
+			[ SCHEMA_COMPAT_WRITE_TEMP, '$stage must include a read mode' ],
 			[
-				SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_OLD,
+				SCHEMA_COMPAT_WRITE_TEMP | SCHEMA_COMPAT_READ_OLD,
 				'Cannot read the old schema without also writing it'
 			],
-			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_NEW, null ],
-			[ SCHEMA_COMPAT_WRITE_NEW | SCHEMA_COMPAT_READ_BOTH, 'Cannot read both schemas' ],
+			[ SCHEMA_COMPAT_WRITE_TEMP | SCHEMA_COMPAT_READ_TEMP, null ],
+			[ SCHEMA_COMPAT_WRITE_TEMP | SCHEMA_COMPAT_READ_BOTH, 'Cannot read multiple schemas' ],
 
-			[ SCHEMA_COMPAT_WRITE_BOTH, '$stage must include a read mode' ],
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, null ],
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, null ],
-			[ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_BOTH, 'Cannot read both schemas' ],
+			[ SCHEMA_COMPAT_WRITE_OLD_AND_TEMP, '$stage must include a read mode' ],
+			[ SCHEMA_COMPAT_WRITE_OLD_AND_TEMP | SCHEMA_COMPAT_READ_OLD, null ],
+			[ SCHEMA_COMPAT_WRITE_OLD_AND_TEMP | SCHEMA_COMPAT_READ_TEMP, null ],
+			[ SCHEMA_COMPAT_WRITE_OLD_AND_TEMP | SCHEMA_COMPAT_READ_BOTH, 'Cannot read multiple schemas' ],
 		];
 	}
 
 	/**
 	 * @dataProvider provideGetJoin
-	 * @param int $stage
+	 * @param string $stageName
 	 * @param string $key
 	 * @param array $expect
 	 */
-	public function testGetJoin( $stage, $key, $expect ) {
+	public function testGetJoin( $stageName, $key, $expect ) {
+		$stage = self::STAGES_BY_NAME[$stageName];
 		$m = $this->getMigration( $stage );
 		$result = $m->getJoin( $key );
 		$this->assertEquals( $expect, $result );
 	}
 
 	public static function provideGetJoin() {
-		return [
-			'Simple table, old' => [
-				SCHEMA_COMPAT_OLD, 'am1_user', [
-					'tables' => [],
-					'fields' => [
-						'am1_user' => 'am1_user',
-						'am1_user_text' => 'am1_user_text',
-						'am1_actor' => 'NULL',
-					],
-					'joins' => [],
+		$inputs = [
+			'Simple table' => [ 'am1_user' ],
+			'Special name' => [ 'am3_xxx' ],
+			'Temp table' => [ 'am2_user' ],
+		];
+		$expected = [
+			'Simple table' => [
+				[
+					[ 'old', 'read-old' ],
+					[
+						'tables' => [],
+						'fields' => [
+							'am1_user' => 'am1_user',
+							'am1_user_text' => 'am1_user_text',
+							'am1_actor' => 'NULL',
+						],
+						'joins' => [],
+					]
 				],
-			],
-			'Simple table, read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am1_user', [
-					'tables' => [],
-					'fields' => [
-						'am1_user' => 'am1_user',
-						'am1_user_text' => 'am1_user_text',
-						'am1_actor' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Simple table, read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', [
-					'tables' => [ 'actor_am1_user' => 'actor' ],
-					'fields' => [
-						'am1_user' => 'actor_am1_user.actor_user',
-						'am1_user_text' => 'actor_am1_user.actor_name',
-						'am1_actor' => 'am1_actor',
-					],
-					'joins' => [
-						'actor_am1_user' => [ 'JOIN', 'actor_am1_user.actor_id = am1_actor' ],
-					],
-				],
-			],
-			'Simple table, new' => [
-				SCHEMA_COMPAT_NEW, 'am1_user', [
-					'tables' => [ 'actor_am1_user' => 'actor' ],
-					'fields' => [
-						'am1_user' => 'actor_am1_user.actor_user',
-						'am1_user_text' => 'actor_am1_user.actor_name',
-						'am1_actor' => 'am1_actor',
-					],
-					'joins' => [
-						'actor_am1_user' => [ 'JOIN', 'actor_am1_user.actor_id = am1_actor' ],
+				[
+					[ 'read-temp', 'temp', 'read-temp2', 'read-new', 'new' ],
+					[
+						'tables' => [ 'actor_am1_user' => 'actor' ],
+						'fields' => [
+							'am1_user' => 'actor_am1_user.actor_user',
+							'am1_user_text' => 'actor_am1_user.actor_name',
+							'am1_actor' => 'am1_actor',
+						],
+						'joins' => [
+							'actor_am1_user' => [ 'JOIN', 'actor_am1_user.actor_id = am1_actor' ],
+						],
 					],
 				],
 			],
 
-			'Special name, old' => [
-				SCHEMA_COMPAT_OLD, 'am3_xxx', [
-					'tables' => [],
-					'fields' => [
-						'am3_xxx' => 'am3_xxx',
-						'am3_xxx_text' => 'am3_xxx_text',
-						'am3_xxx_actor' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Special name, read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am3_xxx', [
-					'tables' => [],
-					'fields' => [
-						'am3_xxx' => 'am3_xxx',
-						'am3_xxx_text' => 'am3_xxx_text',
-						'am3_xxx_actor' => 'NULL',
-					],
-					'joins' => [],
-				],
-			],
-			'Special name, read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am3_xxx', [
-					'tables' => [ 'actor_am3_xxx' => 'actor' ],
-					'fields' => [
-						'am3_xxx' => 'actor_am3_xxx.actor_user',
-						'am3_xxx_text' => 'actor_am3_xxx.actor_name',
-						'am3_xxx_actor' => 'am3_xxx_actor',
-					],
-					'joins' => [
-						'actor_am3_xxx' => [ 'JOIN', 'actor_am3_xxx.actor_id = am3_xxx_actor' ],
+			'Special name' => [
+				[
+					[ 'old', 'read-old' ],
+					[
+						'tables' => [],
+						'fields' => [
+							'am3_xxx' => 'am3_xxx',
+							'am3_xxx_text' => 'am3_xxx_text',
+							'am3_xxx_actor' => 'NULL',
+						],
+						'joins' => [],
 					],
 				],
-			],
-			'Special name, new' => [
-				SCHEMA_COMPAT_NEW, 'am3_xxx', [
-					'tables' => [ 'actor_am3_xxx' => 'actor' ],
-					'fields' => [
-						'am3_xxx' => 'actor_am3_xxx.actor_user',
-						'am3_xxx_text' => 'actor_am3_xxx.actor_name',
-						'am3_xxx_actor' => 'am3_xxx_actor',
-					],
-					'joins' => [
-						'actor_am3_xxx' => [ 'JOIN', 'actor_am3_xxx.actor_id = am3_xxx_actor' ],
+				[
+					[ 'read-temp', 'temp', 'read-temp2', 'read-new', 'new' ],
+					[
+						'tables' => [ 'actor_am3_xxx' => 'actor' ],
+						'fields' => [
+							'am3_xxx' => 'actor_am3_xxx.actor_user',
+							'am3_xxx_text' => 'actor_am3_xxx.actor_name',
+							'am3_xxx_actor' => 'am3_xxx_actor',
+						],
+						'joins' => [
+							'actor_am3_xxx' => [ 'JOIN', 'actor_am3_xxx.actor_id = am3_xxx_actor' ],
+						],
 					],
 				],
 			],
 
-			'Temp table, old' => [
-				SCHEMA_COMPAT_OLD, 'am2_user', [
-					'tables' => [],
-					'fields' => [
-						'am2_user' => 'am2_user',
-						'am2_user_text' => 'am2_user_text',
-						'am2_actor' => 'NULL',
-					],
-					'joins' => [],
+			'Temp table' => [
+				[
+					[ 'old', 'read-old' ],
+					[
+						'tables' => [],
+						'fields' => [
+							'am2_user' => 'am2_user',
+							'am2_user_text' => 'am2_user_text',
+							'am2_actor' => 'NULL',
+						],
+						'joins' => [],
+					]
 				],
-			],
-			'Temp table, read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am2_user', [
-					'tables' => [],
-					'fields' => [
-						'am2_user' => 'am2_user',
-						'am2_user_text' => 'am2_user_text',
-						'am2_actor' => 'NULL',
-					],
-					'joins' => [],
+				[
+					[ 'read-temp', 'temp', 'read-temp2' ],
+					[
+						'tables' => [
+							'temp_am2_user' => 'actormigration2_temp',
+							'actor_am2_user' => 'actor',
+						],
+						'fields' => [
+							'am2_user' => 'actor_am2_user.actor_user',
+							'am2_user_text' => 'actor_am2_user.actor_name',
+							'am2_actor' => 'temp_am2_user.am2t_actor',
+						],
+						'joins' => [
+							'temp_am2_user' => [ 'JOIN', 'temp_am2_user.am2t_id = am2_id' ],
+							'actor_am2_user' => [ 'JOIN', 'actor_am2_user.actor_id = temp_am2_user.am2t_actor' ],
+						],
+					]
 				],
-			],
-			'Temp table, read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am2_user', [
-					'tables' => [
-						'temp_am2_user' => 'actormigration2_temp',
-						'actor_am2_user' => 'actor',
-					],
-					'fields' => [
-						'am2_user' => 'actor_am2_user.actor_user',
-						'am2_user_text' => 'actor_am2_user.actor_name',
-						'am2_actor' => 'temp_am2_user.am2t_actor',
-					],
-					'joins' => [
-						'temp_am2_user' => [ 'JOIN', 'temp_am2_user.am2t_id = am2_id' ],
-						'actor_am2_user' => [ 'JOIN', 'actor_am2_user.actor_id = temp_am2_user.am2t_actor' ],
-					],
-				],
-			],
-			'Temp table, new' => [
-				SCHEMA_COMPAT_NEW, 'am2_user', [
-					'tables' => [
-						'temp_am2_user' => 'actormigration2_temp',
-						'actor_am2_user' => 'actor',
-					],
-					'fields' => [
-						'am2_user' => 'actor_am2_user.actor_user',
-						'am2_user_text' => 'actor_am2_user.actor_name',
-						'am2_actor' => 'temp_am2_user.am2t_actor',
-					],
-					'joins' => [
-						'temp_am2_user' => [ 'JOIN', 'temp_am2_user.am2t_id = am2_id' ],
-						'actor_am2_user' => [ 'JOIN', 'actor_am2_user.actor_id = temp_am2_user.am2t_actor' ],
-					],
+				[
+					[ 'read-new', 'new' ],
+					[
+						'tables' => [
+							'actor_am2_user' => 'actor',
+						],
+						'fields' => [
+							'am2_user' => 'actor_am2_user.actor_user',
+							'am2_user_text' => 'actor_am2_user.actor_name',
+							'am2_actor' => 'am2_actor',
+						],
+						'joins' => [
+							'actor_am2_user' => [ 'JOIN', 'actor_am2_user.actor_id = am2_actor' ],
+						],
+					]
 				],
 			],
 		];
+
+		return self::makeActorCases( $inputs, $expected );
 	}
 
 	private const ACTORS = [
@@ -322,13 +307,14 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideGetWhere
-	 * @param int $stage
+	 * @param string $stageName
 	 * @param string $key
 	 * @param UserIdentity|UserIdentity[]|null|false $users
 	 * @param bool $useId
 	 * @param array $expect
 	 */
-	public function testGetWhere( $stage, $key, $users, $useId, $expect ) {
+	public function testGetWhere( $stageName, $key, $users, $useId, $expect ) {
+		$stage = self::STAGES_BY_NAME[$stageName];
 		if ( !isset( $expect['conds'] ) ) {
 			$expect['conds'] = '(' . implode( ') OR (', $expect['orconds'] ) . ')';
 		}
@@ -350,199 +336,186 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			new UserIdentityValue( 0, '2600:1004:b14a:5ddd:3ebe:bba4:bfba:f37e' ),
 		];
 
-		return [
-			'Simple table, old' => [
-				SCHEMA_COMPAT_OLD, 'am1_user', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'userid' => "am1_user = 1" ],
-					'joins' => [],
-				],
-			],
-			'Simple table, read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am1_user', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'userid' => "am1_user = 1" ],
-					'joins' => [],
-				],
-			],
-			'Simple table, read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor = 11" ],
-					'joins' => [],
-				],
-			],
-			'Simple table, new' => [
-				SCHEMA_COMPAT_NEW, 'am1_user', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor = 11" ],
-					'joins' => [],
-				],
-			],
-
-			'Special name, old' => [
-				SCHEMA_COMPAT_OLD, 'am3_xxx', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'userid' => "am3_xxx = 1" ],
-					'joins' => [],
-				],
-			],
-			'Special name, read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am3_xxx', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'userid' => "am3_xxx = 1" ],
-					'joins' => [],
-				],
-			],
-			'Special name, read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am3_xxx', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'actor' => "am3_xxx_actor = 11" ],
-					'joins' => [],
-				],
-			],
-			'Special name, new' => [
-				SCHEMA_COMPAT_NEW, 'am3_xxx', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'actor' => "am3_xxx_actor = 11" ],
-					'joins' => [],
-				],
-			],
-
-			'Temp table, old' => [
-				SCHEMA_COMPAT_OLD, 'am2_user', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'userid' => "am2_user = 1" ],
-					'joins' => [],
-				],
-			],
-			'Temp table, read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am2_user', $genericUser, true, [
-					'tables' => [],
-					'orconds' => [ 'userid' => "am2_user = 1" ],
-					'joins' => [],
-				],
-			],
-			'Temp table, read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am2_user', $genericUser, true, [
-					'tables' => [
-						'temp_am2_user' => 'actormigration2_temp',
-					],
-					'orconds' => [ 'actor' => "temp_am2_user.am2t_actor = 11" ],
-					'joins' => [
-						'temp_am2_user' => [ 'JOIN', 'temp_am2_user.am2t_id = am2_id' ],
-					],
-				],
-			],
-			'Temp table, new' => [
-				SCHEMA_COMPAT_NEW, 'am2_user', $genericUser, true, [
-					'tables' => [
-						'temp_am2_user' => 'actormigration2_temp',
-					],
-					'orconds' => [ 'actor' => "temp_am2_user.am2t_actor = 11" ],
-					'joins' => [
-						'temp_am2_user' => [ 'JOIN', 'temp_am2_user.am2t_id = am2_id' ],
-					],
-				],
-			],
-
-			'Multiple users, old' => [
-				SCHEMA_COMPAT_OLD, 'am1_user', $complicatedUsers, true, [
-					'tables' => [],
-					'orconds' => [
-						'userid' => "am1_user IN (1,2,3) ",
-						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35',"
-							. "'2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
-					],
-					'joins' => [],
-				],
-			],
-			'Multiple users, read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am1_user', $complicatedUsers, true, [
-					'tables' => [],
-					'orconds' => [
-						'userid' => "am1_user IN (1,2,3) ",
-						'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35',"
-							. "'2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
-					],
-					'joins' => [],
-				],
-			],
-			'Multiple users, read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', $complicatedUsers, true, [
-					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
-					'joins' => [],
-				],
-			],
-			'Multiple users, new' => [
-				SCHEMA_COMPAT_NEW, 'am1_user', $complicatedUsers, true, [
-					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
-					'joins' => [],
-				],
-			],
-
-			'Multiple users, no use ID, old' => [
-				SCHEMA_COMPAT_OLD, 'am1_user', $complicatedUsers, false, [
-					'tables' => [],
-					'orconds' => [
-						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34',"
-							. "'192.168.12.35','2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
-					],
-					'joins' => [],
-				],
-			],
-			'Multiple users, no use ID, read-old' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'am1_user', $complicatedUsers, false, [
-					'tables' => [],
-					'orconds' => [
-						'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34',"
-							. "'192.168.12.35','2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
-					],
-					'joins' => [],
-				],
-			],
-			'Multiple users, no use ID, read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'am1_user', $complicatedUsers, false, [
-					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
-					'joins' => [],
-				],
-			],
-			'Multiple users, no use ID, new' => [
-				SCHEMA_COMPAT_NEW, 'am1_user', $complicatedUsers, false, [
-					'tables' => [],
-					'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
-					'joins' => [],
-				],
-			],
-
-			'Empty $users' => [
-				SCHEMA_COMPAT_NEW, 'am1_user', [], true, [
-					'tables' => [],
-					'conds' => '1=0',
-					'orconds' => [],
-					'joins' => [],
-				],
-			],
-			'Null $users' => [
-				SCHEMA_COMPAT_NEW, 'am1_user', null, true, [
-					'tables' => [],
-					'conds' => '1=0',
-					'orconds' => [],
-					'joins' => [],
-				],
-			],
-			'False $users' => [
-				SCHEMA_COMPAT_NEW, 'am1_user', false, true, [
-					'tables' => [],
-					'conds' => '1=0',
-					'orconds' => [],
-					'joins' => [],
-				],
-			],
+		$inputs = [
+			'Simple table' => [ 'am1_user', $genericUser, true ],
+			'Special name' => [ 'am3_xxx', $genericUser, true ],
+			'Temp table' => [ 'am2_user', $genericUser, true ],
+			'Multiple users' => [ 'am1_user', $complicatedUsers, true ],
+			'Multiple users, no use ID' => [ 'am1_user', $complicatedUsers, false ],
+			'Empty $users' => [ 'am1_user', [], true ],
+			'Null $users' => [ 'am1_user', null, true ],
+			'False $users' => [ 'am1_user', false, true ],
 		];
+
+		$expected = [
+			'Simple table' => [
+				[
+					[ 'old', 'read-old' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'userid' => "am1_user = 1" ],
+						'joins' => [],
+					]
+				], [
+					[ 'read-temp', 'temp', 'read-temp2' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'actor' => "am1_actor = 11" ],
+						'joins' => [],
+					],
+				], [
+					[ 'read-new', 'new' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'newactor' => "am1_actor = 11" ],
+						'joins' => [],
+					],
+				],
+			],
+
+			'Special name' => [
+				[
+					[ 'old', 'read-old' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'userid' => "am3_xxx = 1" ],
+						'joins' => [],
+					],
+				], [
+					[ 'read-temp', 'temp', 'read-temp2' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'actor' => "am3_xxx_actor = 11" ],
+						'joins' => [],
+					],
+				], [
+					[ 'read-new', 'new' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'newactor' => "am3_xxx_actor = 11" ],
+						'joins' => [],
+					],
+				],
+			],
+
+			'Temp table' => [
+				[
+					[ 'old', 'read-old' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'userid' => "am2_user = 1" ],
+						'joins' => [],
+					],
+				], [
+					[ 'read-temp', 'temp', 'read-temp2' ],
+					[
+						'tables' => [
+							'temp_am2_user' => 'actormigration2_temp',
+						],
+						'orconds' => [ 'actor' => "temp_am2_user.am2t_actor = 11" ],
+						'joins' => [
+							'temp_am2_user' => [ 'JOIN', 'temp_am2_user.am2t_id = am2_id' ],
+						],
+					],
+				], [
+					[ 'read-new', 'new' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'newactor' => "am2_actor = 11" ],
+						'joins' => [],
+					]
+				]
+			],
+
+			'Multiple users' => [
+				[
+					[ 'old', 'read-old' ],
+					[
+						'tables' => [],
+						'orconds' => [
+							'userid' => "am1_user IN (1,2,3) ",
+							'username' => "am1_user_text IN ('192.168.12.34','192.168.12.35',"
+								. "'2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
+						],
+						'joins' => [],
+					]
+				], [
+					[ 'read-temp', 'temp', 'read-temp2' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
+						'joins' => [],
+					]
+				], [
+					[ 'read-new', 'new' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'newactor' => "am1_actor IN (11,12,34) " ],
+						'joins' => [],
+					]
+				]
+			],
+
+			'Multiple users, no use ID' => [
+				[
+					[ 'old', 'read-old' ],
+					[
+						'tables' => [],
+						'orconds' => [
+							'username' => "am1_user_text IN ('User1','User2','User3','192.168.12.34',"
+								. "'192.168.12.35','2600:1004:B14A:5DDD:3EBE:BBA4:BFBA:F37E') "
+						],
+						'joins' => [],
+					],
+				], [
+					[ 'read-temp', 'temp', 'read-temp2' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'actor' => "am1_actor IN (11,12,34) " ],
+						'joins' => [],
+					]
+				], [
+					[ 'read-new', 'new' ],
+					[
+						'tables' => [],
+						'orconds' => [ 'newactor' => "am1_actor IN (11,12,34) " ],
+						'joins' => [],
+					]
+				]
+			],
+
+			'Empty $users' => [ [
+				[ 'old', 'read-old', 'read-temp', 'temp', 'read-temp2', 'read-new', 'new' ],
+				[
+					'tables' => [],
+					'conds' => '1=0',
+					'orconds' => [],
+					'joins' => [],
+				],
+			] ],
+
+			'Null $users' => [ [
+				[ 'old', 'read-old', 'read-temp', 'temp', 'read-temp2', 'read-new', 'new' ],
+				[
+					'tables' => [],
+					'conds' => '1=0',
+					'orconds' => [],
+					'joins' => [],
+				],
+			] ],
+
+			'False $users' => [ [
+				[ 'old', 'read-old', 'read-temp', 'temp', 'read-temp2', 'read-new', 'new' ],
+				[
+					'tables' => [],
+					'conds' => '1=0',
+					'orconds' => [],
+					'joins' => [],
+				],
+			] ],
+		];
+
+		return self::makeActorCases( $inputs, $expected );
 	}
 
 	/**
@@ -569,40 +542,54 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$u = $this->getTestUser()->getUser();
 		$user = new UserIdentityValue( $u->getId(), $u->getName() );
 
-		$stageNames = [
-			SCHEMA_COMPAT_OLD => 'old',
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD => 'write-both-read-old',
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW => 'write-both-read-new',
-			SCHEMA_COMPAT_NEW => 'new',
-		];
+		$stageNames = array_flip( self::STAGES_BY_NAME );
 
 		$stages = [
-			SCHEMA_COMPAT_OLD => [
-				SCHEMA_COMPAT_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
+			'old' => [
+				'old',
+				'read-old',
 			],
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD => [
-				SCHEMA_COMPAT_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
-				SCHEMA_COMPAT_NEW
+			'read-old' => [
+				'old',
+				'read-old',
+				'read-temp',
+				'temp'
 			],
-			SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW => [
-				SCHEMA_COMPAT_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD,
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
-				SCHEMA_COMPAT_NEW
+			'read-temp' => [
+				'old',
+				'read-old',
+				'read-temp',
+				'temp'
 			],
-			SCHEMA_COMPAT_NEW => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW,
-				SCHEMA_COMPAT_NEW
+			'temp' => [
+				'read-temp',
+				'temp'
+			],
+			'read-temp2' => [
+				'read-temp',
+				'temp',
+				'read-temp2',
+				'read-new',
+				'new'
+			],
+			'read-new' => [
+				'read-temp',
+				'temp',
+				'read-temp2',
+				'read-new',
+				'new'
+			],
+			'new' => [
+				'read-new',
+				'new'
 			],
 		];
 
 		$nameKey = $key . '_text';
 		$actorKey = ( $key === 'am3_xxx' ? $key : substr( $key, 0, -5 ) ) . '_actor';
 
-		foreach ( $stages as $writeStage => $possibleReadStages ) {
+		foreach ( $stages as $writeStageName => $possibleReadStages ) {
+			$writeStage = self::STAGES_BY_NAME[$writeStageName];
 			$w = $this->getMigration( $writeStage );
 
 			if ( $usesTemp ) {
@@ -620,7 +607,9 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				$this->assertArrayNotHasKey( $key, $fields, "old field, stage={$stageNames[$writeStage]}" );
 				$this->assertArrayNotHasKey( $nameKey, $fields, "old field, stage={$stageNames[$writeStage]}" );
 			}
-			if ( ( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) && !$usesTemp ) {
+			if ( ( ( $writeStage & SCHEMA_COMPAT_WRITE_TEMP ) && !$usesTemp )
+				|| ( $writeStage & SCHEMA_COMPAT_WRITE_NEW )
+			) {
 				$this->assertArrayHasKey( $actorKey, $fields,
 					"new field, stage={$stageNames[$writeStage]}" );
 			} else {
@@ -634,7 +623,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 				$callback( $id, [] );
 			}
 
-			foreach ( $possibleReadStages as $readStage ) {
+			foreach ( $possibleReadStages as $readStageName ) {
+				$readStage = self::STAGES_BY_NAME[$readStageName];
 				$r = $this->getMigration( $readStage );
 
 				$queryInfo = $r->getJoin( $key );
@@ -664,12 +654,11 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	}
 
 	public static function provideStages() {
-		return [
-			'old' => [ SCHEMA_COMPAT_OLD ],
-			'read-old' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD ],
-			'read-new' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW ],
-			'new' => [ SCHEMA_COMPAT_NEW ],
-		];
+		$cases = [];
+		foreach ( self::STAGES_BY_NAME as $name => $stage ) {
+			$cases[$name] = [ $stage ];
+		}
+		return $cases;
 	}
 
 	/**
@@ -768,7 +757,8 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		$this->assertSame( $user->getId(), (int)$row->am2_user );
 		$this->assertSame( $user->getName(), $row->am2_user_text );
 		$this->assertSame(
-			( $stage & SCHEMA_COMPAT_READ_NEW ) ? $user->getActorId() : 0,
+			( ( $stage & SCHEMA_COMPAT_READ_MASK ) >= SCHEMA_COMPAT_READ_TEMP )
+			? $user->getActorId() : 0,
 			(int)$row->am2_actor
 		);
 
@@ -781,7 +771,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			$this->assertArrayNotHasKey( 'dummy_user', $fields );
 			$this->assertArrayNotHasKey( 'dummy_user_text', $fields );
 		}
-		if ( $stage & SCHEMA_COMPAT_WRITE_NEW ) {
+		if ( $stage & SCHEMA_COMPAT_WRITE_TEMP || $stage & SCHEMA_COMPAT_WRITE_NEW ) {
 			$this->assertSame( $user->getActorId(), $fields['dummy_actor'] );
 		} else {
 			$this->assertArrayNotHasKey( 'dummy_actor', $fields );
@@ -796,24 +786,26 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @dataProvider provideIsAnon
-	 * @param int $stage
+	 * @param string $stage
 	 * @param string $isAnon
 	 * @param string $isNotAnon
 	 */
 	public function testIsAnon( $stage, $isAnon, $isNotAnon ) {
-		$m = $this->getMigration( $stage );
+		$numericStage = self::STAGES_BY_NAME[$stage];
+		$m = $this->getMigration( $numericStage );
 		$this->assertSame( $isAnon, $m->isAnon( 'foo' ) );
 		$this->assertSame( $isNotAnon, $m->isNotAnon( 'foo' ) );
 	}
 
 	public static function provideIsAnon() {
 		return [
-			'old' => [ SCHEMA_COMPAT_OLD, 'foo = 0', 'foo != 0' ],
-			'read-old' => [ SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_OLD, 'foo = 0', 'foo != 0' ],
-			'read-new' => [
-				SCHEMA_COMPAT_WRITE_BOTH | SCHEMA_COMPAT_READ_NEW, 'foo IS NULL', 'foo IS NOT NULL'
-			],
-			'new' => [ SCHEMA_COMPAT_NEW, 'foo IS NULL', 'foo IS NOT NULL' ],
+			'old' => [ 'old', 'foo = 0', 'foo != 0' ],
+			'read-old' => [ 'read-old', 'foo = 0', 'foo != 0' ],
+			'read-temp' => [ 'read-temp', 'foo IS NULL', 'foo IS NOT NULL' ],
+			'temp' => [ 'temp', 'foo IS NULL', 'foo IS NOT NULL' ],
+			'read-temp2' => [ 'temp', 'foo IS NULL', 'foo IS NOT NULL' ],
+			'read-new' => [ 'temp', 'foo IS NULL', 'foo IS NOT NULL' ],
+			'new' => [ 'temp', 'foo IS NULL', 'foo IS NOT NULL' ],
 		];
 	}
 
@@ -830,7 +822,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 					'removedVersion' => '1.34',
 				],
 			],
-			SCHEMA_COMPAT_NEW,
+			SCHEMA_COMPAT_TEMP,
 			MediaWikiServices::getInstance()->getActorStoreFactory()
 		) extends ActorMigrationBase {
 			public function checkDeprecationForTest( $key ) {

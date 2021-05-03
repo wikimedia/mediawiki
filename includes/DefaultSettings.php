@@ -2390,6 +2390,28 @@ $wgDatabaseReplicaLagCritical = 30;
  */
 $wgMultiContentRevisionSchemaMigrationStage = SCHEMA_COMPAT_NEW;
 
+/**
+ * Actor table schema migration stage, for migration from the temporary table
+ * revision_actor_temp to the revision.rev_actor field.
+ *
+ * Use the SCHEMA_COMPAT_XXX flags. Supported values:
+ *
+ *   - SCHEMA_COMPAT_TEMP
+ *   - SCHEMA_COMPAT_WRITE_TEMP_AND_NEW | SCHEMA_COMPAT_READ_TEMP
+ *   - SCHEMA_COMPAT_WRITE_TEMP_AND_NEW | SCHEMA_COMPAT_READ_NEW
+ *   - SCHEMA_COMPAT_NEW
+ *
+ * History:
+ *   - 1.31: Added
+ *   - 1.32: Now uses SCHEMA_COMPAT_XXX flags
+ *   - 1.34: Removed, implicitly SCHEMA_COMPAT_NEW always
+ *   - 1.37: Re-added with SCHEMA_COMPAT_NEW renamed to SCHEMA_COMPAT_TEMP for
+ *     a new migration which removes temporary tables.
+ *
+ * @var int An appropriate combination of SCHEMA_COMPAT_XXX flags.
+ */
+$wgActorTableSchemaMigrationStage = SCHEMA_COMPAT_TEMP;
+
 // endregion -- End of DB settings
 
 /***************************************************************************/

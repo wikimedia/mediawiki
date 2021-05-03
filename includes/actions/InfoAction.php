@@ -827,6 +827,8 @@ class InfoAction extends FormlessAction {
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
 			static function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname, $services ) {
+				global $wgActorTableSchemaMigrationStage;
+
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
@@ -834,10 +836,17 @@ class InfoAction extends FormlessAction {
 				$dbrWatchlist = wfGetDB( DB_REPLICA, 'watchlist' );
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
-				$tables = [ 'revision_actor_temp' ];
-				$field = 'revactor_actor';
-				$pageField = 'revactor_page';
-				$tsField = 'revactor_timestamp';
+				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
+					$tables = [ 'revision' ];
+					$field = 'rev_actor';
+					$pageField = 'rev_page';
+					$tsField = 'rev_timestamp';
+				} else /* SCHEMA_COMPAT_READ_TEMP */ {
+					$tables = [ 'revision_actor_temp' ];
+					$field = 'revactor_actor';
+					$pageField = 'revactor_page';
+					$tsField = 'revactor_timestamp';
+				}
 				$joins = [];
 
 				$watchedItemStore = $services->getWatchedItemStore();

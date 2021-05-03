@@ -125,6 +125,8 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$params = $this->extractRequestParams( false );
 
 		// If any of those parameters are used, work in 'enumeration' mode.
@@ -183,7 +185,9 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 		];
 		$useIndex = [];
 
-		if ( $params['user'] !== null ) {
+		if ( $params['user'] !== null &&
+			( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_TEMP )
+		) {
 			// We're going to want to use the page_actor_timestamp index (on revision_actor_temp)
 			// so use that table's denormalized fields.
 			$idField = 'revactor_rev';
