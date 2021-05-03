@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @covers MediaWiki\Http\HttpRequestFactory
  */
-class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
+class HttpRequestFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param array|null $options
@@ -69,22 +69,19 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 	 * @return MWHttpRequest
 	 */
 	private function newFakeRequest( $result ) {
+		if ( !( $result instanceof Status ) ) {
+			$result = Status::newGood( $result );
+		}
+
 		$req = $this->getMockBuilder( MWHttpRequest::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'getContent', 'execute' ] )
 			->getMock();
 
-		if ( $result instanceof Status ) {
-			$req->method( 'getContent' )
-				->willReturn( $result->getValue() );
-			$req->method( 'execute' )
-				->willReturn( $result );
-		} else {
-			$req->method( 'getContent' )
-				->willReturn( $result );
-			$req->method( 'execute' )
-				->willReturn( Status::newGood( $result ) );
-		}
+		$req->method( 'getContent' )
+			->willReturn( $result->getValue() );
+		$req->method( 'execute' )
+			->willReturn( $result );
 
 		return $req;
 	}
@@ -127,7 +124,14 @@ class HttpRequestFactoryTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testRequest_failed() {
-		$status = Status::newFatal( 'testing' );
+		$status = new class extends Status {
+			public function getWikiText( $shortContext = false, $longContext = false, $lang = null ) {
+				// Status::getWikiText doesn't work in unit tests
+				return '';
+			}
+		};
+		$status->fatal( 'testing' );
+
 		$req = $this->newFakeRequest( $status );
 		$factory = $this->newFactoryWithFakeRequest(
 			$req, 'https://example.test', [ 'method' => 'POST' ]
