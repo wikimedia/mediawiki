@@ -11,7 +11,7 @@
 }
 
 .redirectText {
-	list-style: none none;
+	list-style: none;
 	display: inline;
 	/* shared.css has some very weird directionality-specific rules for 'ul' we need to override,
 	 * search for "Correct directionality when page dir is different from site/user dir" */
