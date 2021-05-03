@@ -192,8 +192,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			$context->getLanguage()->getDir()
 		);
 
-		$canIPUseHTTPS = wfCanIPUseHTTPS( $context->getRequest()->getIP() );
-		$this->profilePreferences( $user, $context, $preferences, $canIPUseHTTPS );
+		$this->profilePreferences( $user, $context, $preferences );
 		$this->skinPreferences( $user, $context, $preferences );
 		$this->datetimePreferences( $user, $context, $preferences );
 		$this->filesPreferences( $context, $preferences );
@@ -311,12 +310,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param User $user
 	 * @param IContextSource $context
 	 * @param array &$defaultPreferences
-	 * @param bool $canIPUseHTTPS Whether the user's IP is likely to be able to access the wiki
-	 * via HTTPS.
 	 * @return void
 	 */
 	protected function profilePreferences(
-		User $user, IContextSource $context, &$defaultPreferences, $canIPUseHTTPS
+		User $user, IContextSource $context, &$defaultPreferences
 	) {
 		$services = MediaWikiServices::getInstance();
 
@@ -448,7 +445,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Only show prefershttps if secure login is turned on
 		if ( !$this->options->get( 'ForceHTTPS' )
 			&& $this->options->get( 'SecureLogin' )
-			&& $canIPUseHTTPS
 		) {
 			$defaultPreferences['prefershttps'] = [
 				'type' => 'toggle',
