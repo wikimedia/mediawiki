@@ -126,11 +126,14 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * Get the singleton instance of this class
 	 *
-	 * @deprecated in 1.34 inject an instance of this class instead of using global state
+	 * @deprecated in 1.34, hard depreacted in 1.37
+	 * Inject an instance of this class instead of using global state
+	 *
 	 * @since 1.18
 	 * @return MessageCache
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getMessageCache();
 	}
 
