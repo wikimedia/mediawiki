@@ -281,9 +281,7 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 						: 'warning' ) => $this->mEntryError,
 				] + $this->getRequest()->getQueryValues();
 			$url = $title->getFullURL( $query, false, PROTO_HTTPS );
-			if ( $wgSecureLogin && !$this->mFromHTTP &&
-				 wfCanIPUseHTTPS( $this->getRequest()->getIP() )
-			) {
+			if ( $wgSecureLogin && !$this->mFromHTTP ) {
 				// Avoid infinite redirect
 				$url = wfAppendQuery( $url, 'fromhttp=1' );
 				$this->getOutput()->redirect( $url );

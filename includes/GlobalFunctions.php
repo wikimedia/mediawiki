@@ -2756,6 +2756,7 @@ function wfUnpack( $format, $data, $length = false ) {
  * @return bool
  */
 function wfCanIPUseHTTPS( $ip ) {
+	wfDeprecated( __FUNCTION__, '1.37' );
 	return true;
 }
 
