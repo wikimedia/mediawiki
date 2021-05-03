@@ -2659,6 +2659,7 @@
 	"blocklist-editing-sitewide": "редактиране (за цялото уики)",
 	"blocklist-editing-page": "страници",
 	"blocklist-editing-ns": "именни пространства",
+	"blocklist-editing-action": "действия",
 	"ipblocklist-empty": "Списъкът на блокиранията е празен.",
 	"ipblocklist-no-results": "Не са открити блокирания за избрания IP-адрес или потребител.",
 	"blocklink": "блокиране",

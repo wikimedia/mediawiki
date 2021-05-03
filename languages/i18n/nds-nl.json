@@ -423,7 +423,7 @@
 	"password-login-forbidden": "t Gebruuk van disse gebrukersnaam mit dit wachtwoord is niet toe-estaon.",
 	"mailmypassword": "Wachtwoord opniej instellen",
 	"passwordremindertitle": "Niej tiedelik wachtwoord veur {{SITENAME}}",
-	"passwordremindertext": "Der hevt der eyne (vanaf IP-adres $1) een ny wachtwoord vöär {{SITENAME}} ($4) anvrågd.\nDer is een tydelik wachtwoord vöär gebruker \"$2\" anmaked, en dat is: \"$3\". As dit de bedoling was, meld ju eigen dan nu an en kees een ny wachtwoord.\nJuw tydelike wachtwoord sal oaver {{PLURAL:$5|eyn dag|$5 dagen}} verloupen.\n\nAs een ander disse anvråge dån hevt, of as jy et wachtwoord weader weatet,\nen et neet meyr wysigen willet, negeer dit bericht dan\nen blyv juw olde wachtwoord gebruken.",
+	"passwordremindertext": "Der hevt der eyne (vanaf IP-adres $1) en ny wachtwoord vöär {{SITENAME}} ($4) anvrågd.\nDer is en tydelik wachtwoord vöär gebruker \"$2\" anmaked, en dat is: \"$3\". As dit de bedoling was, meld juw eigen dan nu an en kees en ny wachtwoord.\nJuw tydelike wachtwoord sal oaver {{PLURAL:$5|eyn dag|$5 dagen}} verloupen.\n\nAs en ander disse anvråge dån hevt, of as jy et wachtwoord weader weatet,\nen et neet meyr wysigen willet, negeer dit bericht dan\nen blyv juw olde wachtwoord gebruken.",
 	"noemail": "Gien netpostadres eregistreerd veur \"$1\".",
 	"noemailcreate": "Je mutten n geldig netpostadres opgeven",
 	"passwordsent": "Der is n niej wachtwoord verstuurd naor t netpostadres van gebruker \"$1\". Meld an, a'j t wachtwoord ontvangen.",

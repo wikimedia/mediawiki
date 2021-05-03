@@ -901,7 +901,7 @@
 	"apihelp-query+iwbacklinks-example-generator": "קבלת מידע על דפים שמקשרים ל־[[wikibooks:Test]].",
 	"apihelp-query+iwlinks-summary": "החזרת כל קישורי הבינוויקי מהדפים הנתונים.",
 	"apihelp-query+iwlinks-param-url": "האם לקבל את ה־URL המלא (לא יכול לשמש עם $1prop).",
-	"apihelp-query+iwlinks-param-prop": "אילו מאפיינים נוספים לקבל עבור כל קישור בין־לשוני:",
+	"apihelp-query+iwlinks-param-prop": "אילו מאפיינים נוספים לקבל עבור כל קישור ביןוויקי:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "הוספת ה־URL המלא.",
 	"apihelp-query+iwlinks-param-limit": "כמה קישורי בינוויקי להחזיר.",
 	"apihelp-query+iwlinks-param-prefix": "להחזיר רק קישורי בינוויקי עם התחילית הזאת.",

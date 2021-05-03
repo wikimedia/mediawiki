@@ -3,6 +3,7 @@
 		"authors": [
 			"DannyS712",
 			"Enye Lav",
+			"Soul Train",
 			"Yufereff",
 			"아라"
 		]
@@ -151,6 +152,7 @@
 	"nstab-template": "Шаблон",
 	"nstab-help": "Отсасян",
 	"nstab-category": "Категория",
+	"mainpage-nstab": "Пондöтчан листбок",
 	"error": "Сорасьöм",
 	"missing-article": "Мыччöт чукöрись эз шед сiя листбок, кöда сэтчин вöлi \"$1\" $2 ним увтын. Этадз аркмывлö унажыксö сэк, кöр вешшан бы важмöм ыстöт пыр сэтшöм листбок вылö, кöда вöлi вештöм.  Абу кö сiдз, наттьö программаын мыйкö нетырви керöм. Юöрт жö сы йылiсь миянлö татчö: [[Special:ListUsers/sysop|administrator]],  сы дырни эн вунöт пасйыны URL.",
 	"missingarticle-rev": "(версия#: $1)",
@@ -172,6 +174,7 @@
 	"loginsuccesstitle": "Пырöмыт аркмис",
 	"mailmypassword": "Ыстыны виль пароль",
 	"loginlanguagelabel": "Кыв: $1",
+	"pt-createaccount": "Лöсьöт аслыт уджкерисьлiсь ним",
 	"oldpassword": "Важ пароль",
 	"newpassword": "Виль пароль",
 	"retypenew": "Мöдпöв гиж виль парольтö",

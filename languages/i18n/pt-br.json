@@ -2720,6 +2720,8 @@
 	"ipb-partial": "Parcial",
 	"ipb-sitewide-help": "Cada página na wiki e todas as outras ações de contribuição.",
 	"ipb-partial-help": "Páginas ou espaços nominais específicos.",
+	"ipb-action-move": "renomear páginas",
+	"ipb-action-upload": "Carregando arquivo",
 	"ipb-pages-label": "Páginas",
 	"ipb-namespaces-label": "Espaços nominais",
 	"badipaddress": "Endereço de IP inválido",

@@ -899,7 +899,7 @@
 	"apihelp-query+iwbacklinks-example-generator": "[[wikibooks:Test]] sayfasına bağlantı veren sayfalar hakkında bilgi alın.",
 	"apihelp-query+iwlinks-summary": "Verilen sayfalardaki tüm vikiarası bağlantılarını döndürür.",
 	"apihelp-query+iwlinks-param-url": "Tam URL'nin alınıp alınmayacağı ($1prop ile kullanılamaz).",
-	"apihelp-query+iwlinks-param-prop": "Her bir dil için hangi ek özelliklere sahip olunur:",
+	"apihelp-query+iwlinks-param-prop": "Her vikiarası bağlantısı için hangi ek özelliklerin alınacağı:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "Tam URL'yi ekler.",
 	"apihelp-query+iwlinks-param-limit": "Geri dönmek için kaç vikiarası bağlantısı.",
 	"apihelp-query+iwlinks-param-prefix": "Yalnızca bu önekle vikiarası bağlantıları döndür.",

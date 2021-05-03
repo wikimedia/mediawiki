@@ -819,7 +819,7 @@
 	"apihelp-query+iwbacklinks-param-dir": "Die Auflistungsrichtung.",
 	"apihelp-query+iwbacklinks-example-simple": "Ruft Seiten ab, die auf [[wikibooks:Test]] verlinken.",
 	"apihelp-query+iwlinks-summary": "Gibt alle Interwikilinks der angegebenen Seiten zurück.",
-	"apihelp-query+iwlinks-param-prop": "Zusätzlich zurückzugebende Eigenschaften jedes Interlanguage-Links:",
+	"apihelp-query+iwlinks-param-prop": "Zusätzlich zurückzugebende Eigenschaften jedes Interwiki-Links:",
 	"apihelp-query+iwlinks-paramvalue-prop-url": "Ergänzt die vollständige URL.",
 	"apihelp-query+iwlinks-param-limit": "Wie viele Interwiki-Links zurückgegeben werden sollen.",
 	"apihelp-query+iwlinks-param-prefix": "Gibt nur Interwiki-Links mit diesem Präfix zurück.",

@@ -2727,6 +2727,7 @@
 	"blocklist-editing-sitewide": "editing (keseluruhan situs)",
 	"blocklist-editing-page": "laman",
 	"blocklist-editing-ns": "Ruang nama",
+	"blocklist-editing-action": "action",
 	"ipblocklist-empty": "Daftar pemblokiran kosong.",
 	"ipblocklist-no-results": "Tidak ada pemblokiran untuk alamat IP atau nama pengguna yang diminta.",
 	"blocklink": "blokir",

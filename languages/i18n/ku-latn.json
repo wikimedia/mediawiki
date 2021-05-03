@@ -1864,7 +1864,7 @@
 	"confirmrecreate": "Piştî te dest bi guhertinê kir, bikarhêner [[User:$1|$1]] ([[User talk:$1|gotûbêj]]) vê rûpelê jê bir. Sedema jêbirinê ev bû:\n: <em>$2</em>\nJi kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 	"recreate": "Dîsa çêke",
 	"confirm_purge_button": "Baş e",
-	"confirm-purge-top": "Bîra vê rûpelê jê bibe?",
+	"confirm-purge-top": "Pêşbîra (cache) vê rûpelê paqij bike?",
 	"confirm-watch-button": "Temam",
 	"watchlist-expiry-options": "Daîmî:infinite,1 hefte:1 week,1 meh:1 month,3 meh:3 months,6 meh:6 months",
 	"confirm-watch-button-expiry": "Bişopîne",
