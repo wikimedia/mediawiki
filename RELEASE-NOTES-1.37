@@ -181,6 +181,8 @@ because of Phabricator reports.
   'keywordTableMap' are deprecated. Reserved identifiers that are used as table
   names should be quoted where necessary.
 * LinkCache::singleton(), deprecated since 1.28, now emits deprecation warnings.
+* MessageCache::singleton(), deprecated since 1.34, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.37 ===
