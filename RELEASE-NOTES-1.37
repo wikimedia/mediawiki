@@ -180,6 +180,7 @@ because of Phabricator reports.
 * DatabasePostgres::remappedTableName() and its dependent constructor parameter
   'keywordTableMap' are deprecated. Reserved identifiers that are used as table
   names should be quoted where necessary.
+* LinkCache::singleton(), deprecated since 1.28, now emits deprecation warnings.
 * …
 
 === Other changes in 1.37 ===

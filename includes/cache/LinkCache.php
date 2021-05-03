@@ -86,9 +86,11 @@ class LinkCache {
 	 * Get an instance of this class.
 	 *
 	 * @return LinkCache
-	 * @deprecated since 1.28, use MediaWikiServices instead
+	 * @deprecated since 1.28, hard deprecated since 1.37
+	 * Use MediaWikiServices::getLinkCache instead
 	 */
 	public static function singleton() {
+		wfDeprecated( __METHOD__, '1.28' );
 		return MediaWikiServices::getInstance()->getLinkCache();
 	}
 
