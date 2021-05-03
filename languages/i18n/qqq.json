@@ -2955,6 +2955,7 @@
 	"ipb-partial": "A type of block the user can select from on [[Special:Block]].",
 	"ipb-sitewide-help": "Help text describing the effects of a sitewide block on [[Special:Block]]",
 	"ipb-partial-help": "Help text describing the effects of a partial block on  [[Special:Block]]",
+	"ipb-action-create": "The label for a select option to specify an action to block a user from on [[Special:Block]].",
 	"ipb-action-move": "The label for a select option to specify an action to block a user from on [[Special:Block]].",
 	"ipb-action-upload": "The label for a select option to specify an action to block a user from on [[Special:Block]].",
 	"ipb-pages-label": "The label for an autocomplete text field to specify pages to block a user from editing on [[Special:Block]].",
