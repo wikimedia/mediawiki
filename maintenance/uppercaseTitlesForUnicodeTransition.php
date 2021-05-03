@@ -111,7 +111,7 @@ class UppercaseTitlesForUnicodeTransition extends Maintenance {
 		$this->run = $this->getOption( 'run', false );
 
 		if ( $this->run ) {
-			$username = $this->getOption( 'user', 'Maintenance script' );
+			$username = $this->getOption( 'user', User::MAINTENANCE_SCRIPT_USER );
 			$steal = $this->getOption( 'steal', false );
 			$this->user = User::newSystemUser( $username, [ 'steal' => $steal ] );
 			if ( !$this->user ) {

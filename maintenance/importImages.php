@@ -156,9 +156,9 @@ class ImportImages extends Maintenance {
 		# Initialise the user for this operation
 		$user = $this->hasOption( 'user' )
 			? User::newFromName( $this->getOption( 'user' ) )
-			: User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			: User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		if ( !$user instanceof User ) {
-			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		}
 		$wgUser = $user;
 
