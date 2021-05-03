@@ -1721,6 +1721,10 @@ class WANObjectCache implements
 		// How long it took to fetch, validate, and generate the value
 		$elapsed = max( $postCallbackTime - $initialTime, 0.0 );
 
+		// How long it took to generate the value
+		$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
+		$this->stats->timing( "wanobjectcache.$kClass.regen_walltime", 1e3 * $walltime );
+
 		// Attempt to save the newly generated value if applicable
 		if (
 			// Callback yielded a cacheable value
@@ -1730,9 +1734,6 @@ class WANObjectCache implements
 			// Key does not appear to be undergoing a set() stampede
 			$this->checkAndSetCooloff( $key, $kClass, $value, $elapsed, $hasLock )
 		) {
-			// How long it took to generate the value
-			$walltime = max( $postCallbackTime - $preCallbackTime, 0.0 );
-			$this->stats->timing( "wanobjectcache.$kClass.regen_walltime", 1e3 * $walltime );
 			// If the key is write-holed then use the (volatile) interim key as an alternative
 			if ( $isKeyTombstoned ) {
 				$this->setInterimValue( $key, $value, $lockTSE, $version, $walltime );
