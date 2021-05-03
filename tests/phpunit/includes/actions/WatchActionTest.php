@@ -1,8 +1,8 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
-use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
@@ -14,6 +14,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @group Action
  */
 class WatchActionTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 	use MockAuthorityTrait;
 
 	/**
@@ -30,16 +31,6 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @var IContextSource
 	 */
 	private $context;
-
-	/**
-	 * @var bool
-	 */
-	private $watched;
-
-	/**
-	 * @var ?string
-	 */
-	private $expiry;
 
 	protected function setUp() : void {
 		parent::setUp();
@@ -471,7 +462,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		// Already watched, but we're adding an expiry so 'addWatch' should be called.
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
-		$mock = $this->setWatchedItemStore( $userIdentity, null );
+		$mock = $this->setWatchedItemStore();
 		$mock->expects( $this->exactly( 3 ) )->method( 'addWatch' ); // watch page and its talk page plus init
 		$mock->expects( $this->never() )->method( 'removeWatch' );
 
@@ -491,7 +482,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public function testDoWatchOrUnwatchUserNotLoggedIn() {
 		$userIdentity = new UserIdentityValue( 0, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
-		$mock = $this->setWatchedItemStore( $userIdentity, null );
+		$mock = $this->setWatchedItemStore();
 		$mock->expects( $this->never() )->method( 'addWatch' );
 		$mock->expects( $this->never() )->method( 'removeWatch' );
 
@@ -508,7 +499,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public function testDoWatchOrUnwatchSkipsIfAlreadyWatched() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
-		$mock = $this->setWatchedItemStore( $userIdentity, null );
+		$mock = $this->setWatchedItemStore();
 		$mock->expects( $this->exactly( 2 ) )->method( 'addWatch' ); // watch page and its talk page
 		$mock->expects( $this->never() )->method( 'removeWatch' );
 
@@ -535,7 +526,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public function testDoWatchOrUnwatchSkipsIfAlreadyUnWatched() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
-		$mock = $this->setWatchedItemStore( $userIdentity, null );
+		$mock = $this->setWatchedItemStore();
 		$mock->expects( $this->never() )->method( 'addWatch' );
 		$mock->expects( $this->never() )->method( 'removeWatch' );
 
@@ -694,34 +685,10 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $expiryOptions );
 	}
 
-	private function setWatchedItemStore( UserIdentity $user, ?string $expiry ) {
+	private function setWatchedItemStore() {
 		$this->overrideMwServices();
-		$this->watched = false;
-		$this->expiry = null;
-		$mock = $this->createMock( WatchedItemStore::class );
-		$mock->method( 'getWatchedItem' )->willReturnCallback( function ( $user, $target ) {
-			if ( $this->watched ) {
-				return new WatchedItem(
-					$user,
-					$target,
-					null,
-					$this->expiry
-				);
-			}
-			return null;
-		} );
-		$mock->method( 'addWatch' )->willReturnCallback( function ( $user, $title, $expiry ) {
-			$this->watched = true;
-			$this->expiry = $expiry;
-			return true;
-		} );
-		$mock->method( 'removeWatch' )->willReturnCallback( function ( $user, $title ) {
-			$this->watched = false;
-			return false;
-		} );
-		$mock->method( 'isWatched' )->willReturnCallback( function () {
-			return $this->watched;
-		} );
+		// DummyServicesTrait::getDummyWatchedItemStore has all of the handling needed
+		$mock = $this->getDummyWatchedItemStore();
 		$this->setService( 'WatchedItemStore', $mock );
 		return $mock;
 	}
