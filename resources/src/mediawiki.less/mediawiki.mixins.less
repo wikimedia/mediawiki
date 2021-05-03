@@ -109,9 +109,9 @@
 }
 
 .column-count( @value ) {
-	-webkit-column-count: @value;
-	-moz-column-count: @value;
-	column-count: @value;
+	-webkit-column-count: @value; // Chrome 4-49, Safari 3.1-8.4, iOS 3.2-8.4
+	-moz-column-count: @value; // Firefox 2-51
+	column-count: @value; // Chrome 50+, Firefox 52+, Edge, IE 10+, Opera 11.5+, Android 90+
 }
 
 .column-width( @value ) {
