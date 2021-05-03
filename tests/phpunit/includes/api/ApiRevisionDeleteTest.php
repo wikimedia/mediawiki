@@ -45,13 +45,13 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		] );
 		// Check the output
 		$out = $out[0]['revisiondelete'];
-		$this->assertEquals( $out['status'], 'Success' );
+		$this->assertEquals( 'Success', $out['status'] );
 		$this->assertArrayHasKey( 'items', $out );
 		$item = $out['items'][0];
 		$this->assertTrue( $item['userhidden'], 'userhidden' );
 		$this->assertTrue( $item['commenthidden'], 'commenthidden' );
 		$this->assertTrue( $item['texthidden'], 'texthidden' );
-		$this->assertEquals( $item['id'], $revid );
+		$this->assertEquals( $revid, $item['id'] );
 
 		// Now check that that revision was actually hidden
 		$revRecord = $this->getServiceContainer()
@@ -73,7 +73,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 		// Check the output
 		$out2 = $out2[0]['revisiondelete'];
-		$this->assertEquals( $out2['status'], 'Success' );
+		$this->assertEquals( 'Success', $out2['status'] );
 		$this->assertArrayHasKey( 'items', $out2 );
 		$item = $out2['items'][0];
 
@@ -81,7 +81,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertFalse( $item['commenthidden'], 'commenthidden' );
 		$this->assertFalse( $item['texthidden'], 'texthidden' );
 
-		$this->assertEquals( $item['id'], $revid );
+		$this->assertEquals( $revid, $item['id'] );
 
 		// Now check that that revision was actually unhidden
 		$revRecord = $this->getServiceContainer()
@@ -114,7 +114,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 			'token' => $user->getEditToken(),
 		] );
 		$out = $out[0]['revisiondelete'];
-		$this->assertEquals( $out['status'], 'Success' );
+		$this->assertEquals( 'Success', $out['status'] );
 		$this->assertArrayHasKey( 'items', $out );
 		$item = $out['items'][0];
 		// Check it has userhidden & texthidden
@@ -122,7 +122,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertTrue( $item['userhidden'], 'userhidden' );
 		$this->assertFalse( $item['commenthidden'], 'commenthidden' );
 		$this->assertTrue( $item['texthidden'], 'texthidden' );
-		$this->assertEquals( $item['id'], $revid );
+		$this->assertEquals( $revid, $item['id'] );
 	}
 
 	public function testPartiallyBlockedPage() {
