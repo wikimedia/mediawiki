@@ -884,14 +884,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/**
 	 * Callback for usort() to do title sorts by (namespace, title)
 	 *
-	 * @param LinkTarget $a
-	 * @param LinkTarget $b
+	 * @param LinkTarget|PageReference $a
+	 * @param LinkTarget|PageReference $b
 	 *
 	 * @return int Result of string comparison, or namespace comparison
 	 */
-	public static function compare( LinkTarget $a, LinkTarget $b ) {
+	public static function compare( $a, $b ) {
 		return $a->getNamespace() <=> $b->getNamespace()
-			?: strcmp( $a->getText(), $b->getText() );
+			?: strcmp( $a->getDBkey(), $b->getDBkey() );
 	}
 
 	/**
