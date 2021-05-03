@@ -340,8 +340,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @return int|null
 	 */
 	public function findActorIdByName( $name, IDatabase $db ): ?int {
-		// NOTE: $name may be user-supplied, need full normalization
-		$name = $this->normalizeUserName( $name, UserNameUtils::RIGOR_VALID );
+		$name = $this->normalizeUserName( $name );
 		if ( $name === null ) {
 			return null;
 		}
@@ -608,11 +607,10 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 *
 	 * @internal
 	 * @param string $name
-	 * @param string $rigor UserNameUtils::RIGOR_XXX
 	 *
 	 * @return string|null
 	 */
-	public function normalizeUserName( string $name, $rigor = UserNameUtils::RIGOR_NONE ): ?string {
+	public function normalizeUserName( string $name ): ?string {
 		if ( $this->userNameUtils->isIP( $name ) ) {
 			return IPUtils::sanitizeIP( $name );
 		} elseif ( ExternalUserNames::isExternal( $name ) ) {
@@ -620,11 +618,9 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			// but it was not done before, so we can not start doing it unless we
 			// fix existing DB rows - T273933
 			return $name;
-		} elseif ( $rigor !== UserNameUtils::RIGOR_NONE ) {
-			$normalized = $this->userNameUtils->getCanonical( $name, $rigor );
-			return $normalized === false ? null : $normalized;
 		} else {
-			return $name === '' ? null : $name;
+			$normalized = $this->userNameUtils->getCanonical( $name );
+			return $normalized === false ? null : $normalized;
 		}
 	}
 
