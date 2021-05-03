@@ -87,6 +87,11 @@ WIKITEXT;
 	}
 
 	private function getMockTitleParser() {
+		// We can't use a real MediaWikiTitleCode, eg from DummyServicesTrait,
+		// because actual MalformedTitleException objects cannot be constructed in unit
+		// tests, and the tests in this file cover the code in BadFileLookup that
+		// handles an exception being thrown. Instead, we use a mock that throws mock
+		// exceptions
 		$mock = $this->createMock( TitleParser::class );
 		$mock->method( 'parseTitle' )->will( $this->returnCallback( function ( $text ) {
 			if ( strpos( $text, '<' ) !== false ) {
