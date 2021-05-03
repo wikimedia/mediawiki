@@ -8,7 +8,7 @@ use MediaWiki\Widget\TitleInputWidget;
  * as well as autocompletion if using the OOUI display format.
  *
  * Optional parameters:
- * 'namespace' - Namespace the page must be in
+ * 'namespace' - Namespace the page must be in (use namespace constant; one of the NS_* constants may be used)
  * 'relative' - If true and 'namespace' given, strip/add the namespace from/to the title as needed
  * 'creatable' - Whether to validate the title is creatable (not a special page)
  * 'exists' - Whether to validate that the title already exists
