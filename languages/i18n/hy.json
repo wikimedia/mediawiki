@@ -1701,6 +1701,7 @@
 	"blocklist-nousertalk": "չի կարող խմբագրել իր քննարկման էջը",
 	"blocklist-editing-page": "էջեր",
 	"blocklist-editing-ns": "անվանատարածքներ",
+	"blocklist-editing-action": "գործողություններ",
 	"ipblocklist-empty": "Արգելափակումների ցանկը դատարկ է։",
 	"ipblocklist-no-results": "Նշված IP-հասցեն կամ մասնակցի անունը արգելափակված չէ։",
 	"blocklink": "արգելափակել",
