@@ -1,8 +1,6 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -11,10 +9,13 @@ use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 
 /**
+ * TODO convert to a unit test, all dependencies are injected
+ *
  * @covers MediaWiki\User\UserNameUtils
  * @author DannyS712
  */
 class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
+	use MockTitleTrait;
 
 	private function getUCFirstLanguageMock() {
 		// Used by a number of tests
@@ -52,7 +53,10 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			$logger = new NullLogger();
 		}
 
-		$titleParser = MediaWikiServices::getInstance()->getTitleParser();
+		// MockTitleTrait::makeMockTitleCodec
+		$titleParser = $this->makeMockTitleCodec( [
+			'validInterwikis' => [ 'interwiki' ],
+		] );
 
 		if ( $textFormatter === null ) {
 			$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
@@ -279,18 +283,8 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::getCanonical
 	 */
 	public function testGetCanonical_interwiki() {
-		// fake interwiki map for the 'Interwiki prefix' testcase
-		$this->setMwGlobals( [
-			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
-				[
-					'iw_prefix' => 'interwiki',
-					'iw_url' => 'http://example.com/',
-					'iw_local' => 0,
-					'iw_trans' => 0,
-				],
-			] ),
-		] );
-
+		// 'interwiki' is a valid interwiki prefix, per configuration of the
+		// title formatter in getUtils()
 		$utils = $this->getUtils(
 			[],
 			$this->getUCFirstLanguageMock()
