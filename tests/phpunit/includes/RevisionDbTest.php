@@ -384,44 +384,6 @@ class RevisionDbTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers Title::getPreviousRevisionID
-	 * @covers Title::getRelativeRevisionID
-	 */
-	public function testTitleGetPreviousRevisionID_invalid() {
-		$this->hideDeprecated( 'Title::getPreviousRevisionID' );
-		$this->assertFalse( $this->testPage->getTitle()->getPreviousRevisionID( 123456789 ) );
-	}
-
-	/**
-	 * @covers Title::getNextRevisionID
-	 * @covers Title::getRelativeRevisionID
-	 * @covers MediaWiki\Revision\RevisionStore::getNextRevision
-	 * @covers MediaWiki\Revision\RevisionStore::getRelativeRevision
-	 */
-	public function testTitleGetNextRevisionID() {
-		$this->hideDeprecated( 'Title::getNextRevisionID' );
-		$title = $this->testPage->getTitle();
-
-		$origId = $this->testPage->getLatest();
-
-		$this->assertFalse( $title->getNextRevisionID( $origId ) );
-
-		$this->testPage->doEditContent( new WikitextContent( __METHOD__ ), __METHOD__ );
-		$newId = $this->testPage->getLatest();
-
-		$this->assertSame( $this->testPage->getLatest(), $title->getNextRevisionID( $origId ) );
-	}
-
-	/**
-	 * @covers Title::getNextRevisionID
-	 * @covers Title::getRelativeRevisionID
-	 */
-	public function testTitleGetNextRevisionID_invalid() {
-		$this->hideDeprecated( 'Title::getNextRevisionID' );
-		$this->assertFalse( $this->testPage->getTitle()->getNextRevisionID( 123456789 ) );
-	}
-
-	/**
 	 * @covers Revision::newNullRevision
 	 */
 	public function testNewNullRevision_badPage() {

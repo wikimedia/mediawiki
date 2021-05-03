@@ -212,7 +212,11 @@ because of Phabricator reports.
   - wfDebugMem
   - wfGetPrecompiledData
   - wfNegotiateType
-* –
+* The following deprecated methods of Title class have been removed:
+  - nameOf, deprecated in 1.36
+  - getPreviousRevisionID, deprecated in 1.34
+  - getNextRevisionID, deprecated in 1.34
+  - getEarliestRevTime, deprecated in 1.35
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.

@@ -2967,7 +2967,6 @@ class RevisionStore
 	 *
 	 * MCR migration note: this replaces Revision::getPrevious
 	 *
-	 * @see Title::getPreviousRevisionID
 	 * @see PageArchive::getPreviousRevision
 	 *
 	 * @param RevisionRecord $rev
@@ -2985,8 +2984,6 @@ class RevisionStore
 	 * Will return null for the latest revision but also for deleted or unsaved revisions.
 	 *
 	 * MCR migration note: this replaces Revision::getNext
-	 *
-	 * @see Title::getNextRevisionID
 	 *
 	 * @param RevisionRecord $rev
 	 * @param int $flags (optional) $flags include:
