@@ -13,8 +13,12 @@ trait MockTitleTrait {
 	 * @param array $props Additional properties to set. Supported keys:
 	 *        - id: int
 	 *        - namespace: int
+	 *        - fragment: string
+	 *        - interwiki: string
+	 *        - redirect: bool
 	 *        - language: Language
-	 * 		  - contentModel: string
+	 *        - contentModel: string
+	 *        - revision: int
 	 *
 	 * @return Title|MockObject
 	 */
@@ -49,6 +53,8 @@ trait MockTitleTrait {
 		$title->method( 'exists' )->willReturn( $id > 0 );
 		$title->method( 'isRedirect' )->willReturn( $props['redirect'] ?? false );
 		$title->method( 'getTouched' )->willReturn( $id ? '20200101223344' : false );
+
+		// TODO getPageLanguage should return a Language object, 'qqx' is a string
 		$title->method( 'getPageLanguage' )->willReturn( $props['language'] ?? 'qqx' );
 		$title->method( 'getContentModel' )
 			->willReturn( $props['contentModel'] ?? CONTENT_MODEL_WIKITEXT );
@@ -62,7 +68,6 @@ trait MockTitleTrait {
 		} else {
 			$title->method( 'getLatestRevId' )->willReturn( $id === 0 ? 0 : 43 );
 		}
-		$title->method( 'getContentModel' )->willReturn( CONTENT_MODEL_WIKITEXT );
 		$title->method( 'isContentPage' )->willReturn( true );
 		$title->method( 'isSamePageAs' )->willReturnCallback( static function ( $other ) use ( $id ) {
 			return $other && $id === $other->getArticleId();
