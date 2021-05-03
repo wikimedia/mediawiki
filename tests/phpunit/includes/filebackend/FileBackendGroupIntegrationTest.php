@@ -45,11 +45,11 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 			array_diff( array_keys( $options ), $globals, array_keys( $serviceMembers ) ) );
 
 		$this->resetServices();
-		FileBackendGroup::destroySingleton();
 
 		$services = MediaWikiServices::getInstance();
+		$services->resetServiceForTesting( 'FileBackendGroup' );
 
-		$obj = FileBackendGroup::singleton();
+		$obj = $services->getFileBackendGroup();
 
 		foreach ( $serviceMembers as $key => $name ) {
 			$this->$key = $services->getService( $name );
