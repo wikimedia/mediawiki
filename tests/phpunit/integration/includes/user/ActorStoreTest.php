@@ -10,7 +10,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserSelectQueryBuilder;
 use stdClass;
 use User;
@@ -852,23 +851,23 @@ class ActorStoreTest extends ActorStoreTestBase {
 	}
 
 	public function provideNormalizeUserName() {
-		yield [ strtolower( self::IP ), UserNameUtils::RIGOR_NONE, self::IP ];
-		yield [ 'acme>test', UserNameUtils::RIGOR_VALID, 'acme>test' ];
-		yield [ 'test_this', UserNameUtils::RIGOR_VALID, 'Test this' ];
-		yield [ 'foo#bar', UserNameUtils::RIGOR_VALID, null ];
-		yield [ 'foo|bar', UserNameUtils::RIGOR_VALID, null ];
-		yield [ '_', UserNameUtils::RIGOR_NONE, '_' ];
-		yield [ 'test', UserNameUtils::RIGOR_NONE, 'test' ];
-		yield [ '', UserNameUtils::RIGOR_NONE, null ];
-		yield [ '0', UserNameUtils::RIGOR_NONE, '0' ];
+		yield [ strtolower( self::IP ), self::IP ];
+		yield [ 'acme>test', 'acme>test' ];
+		yield [ 'test_this', 'Test this' ];
+		yield [ 'foo#bar', null ];
+		yield [ 'foo|bar', null ];
+		yield [ '_', null ];
+		yield [ 'test', 'Test' ];
+		yield [ '', null ];
+		yield [ '0', '0' ];
 	}
 
 	/**
 	 * @dataProvider provideNormalizeUserName
 	 */
-	public function testNormalizeUserName( $name, $rigor, $expected ) {
+	public function testNormalizeUserName( $name, $expected ) {
 		$store = $this->getStore();
-		$this->assertSame( $expected, $store->normalizeUserName( $name, $rigor ) );
+		$this->assertSame( $expected, $store->normalizeUserName( $name ) );
 	}
 
 	public function testNewSelectQueryBuilderWithoutDB() {
