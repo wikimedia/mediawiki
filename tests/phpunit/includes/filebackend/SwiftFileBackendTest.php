@@ -24,7 +24,8 @@ class SwiftFileBackendTest extends MediaWikiIntegrationTestCase {
 				'name'             => 'local-swift-testing',
 				'class'            => SwiftFileBackend::class,
 				'wikiId'           => 'unit-testing',
-				'lockManager'      => LockManagerGroup::singleton()->get( 'fsLockManager' ),
+				'lockManager'      => $this->getServiceContainer()->getLockManagerGroupFactory()
+							->getLockManagerGroup()->get( 'fsLockManager' ),
 				'swiftAuthUrl'     => 'http://127.0.0.1:8080/auth', // unused
 				'swiftUser'        => 'test:tester',
 				'swiftKey'         => 'testing',
