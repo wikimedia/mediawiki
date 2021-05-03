@@ -1,6 +1,5 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
 use Wikimedia\Rdbms\FakeResultWrapper;
 
 /**
@@ -32,19 +31,6 @@ class PagePropsTest extends MediaWikiLangTestCase {
 	protected function setUp() : void {
 		parent::setUp();
 
-		$this->setMwGlobals( [
-			'wgExtraNamespaces' => [
-				12312 => 'Dummy',
-				12313 => 'Dummy_talk',
-			],
-			'wgNamespaceContentModels' => [ 12312 => 'DUMMY' ],
-		] );
-
-		$this->mergeMwGlobalArrayValue(
-			'wgContentHandlers',
-			[ 'DUMMY' => 'DummyContentHandlerForTesting' ]
-		);
-
 		if ( !$this->expectedProperties ) {
 			$this->expectedProperties = [
 				"property1" => "value1",
@@ -53,20 +39,12 @@ class PagePropsTest extends MediaWikiLangTestCase {
 				"property4" => "value4"
 			];
 
-			$page = $this->createPage(
-				'PagePropsTest_page_1',
-				"just a dummy page",
-				CONTENT_MODEL_WIKITEXT
-			);
+			$page = $this->getExistingTestPage( 'PagePropsTest_page_1' );
 			$this->title1 = $page->getTitle();
 			$page1ID = $this->title1->getArticleID();
 			$this->setProperties( $page1ID, $this->expectedProperties );
 
-			$page = $this->createPage(
-				'PagePropsTest_page_2',
-				"just a dummy page",
-				CONTENT_MODEL_WIKITEXT
-			);
+			$page = $this->getExistingTestPage( 'PagePropsTest_page_2' );
 			$this->title2 = $page->getTitle();
 			$page2ID = $this->title2->getArticleID();
 			$this->setProperties( $page2ID, $this->expectedProperties );
@@ -249,33 +227,6 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$result = $pageProps->getProperties( $this->title1, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
 		$this->assertEquals( $result[$page1ID], "another value", "Clear cache" );
-	}
-
-	protected function createPage( $page, $text, $model = null ) {
-		if ( is_string( $page ) ) {
-			if ( !preg_match( '/:/', $page ) &&
-				( $model === null || $model === CONTENT_MODEL_WIKITEXT )
-			) {
-				$ns = $this->getDefaultWikitextNS();
-				$page = MediaWikiServices::getInstance()->getNamespaceInfo()->
-					getCanonicalName( $ns ) . ':' . $page;
-			}
-
-			$page = Title::newFromText( $page );
-		}
-
-		if ( $page instanceof Title ) {
-			$page = new WikiPage( $page );
-		}
-
-		if ( $page->exists() ) {
-			$page->doDeleteArticleReal( "done", $this->getTestSysop()->getUser() );
-		}
-
-		$content = ContentHandler::makeContent( $text, $page->getTitle(), $model );
-		$page->doEditContent( $content, "testing", EDIT_NEW );
-
-		return $page;
 	}
 
 	protected function setProperties( $pageID, $properties ) {
