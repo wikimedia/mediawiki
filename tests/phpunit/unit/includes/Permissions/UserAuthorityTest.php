@@ -23,12 +23,10 @@ namespace MediaWiki\Tests\Unit\Permissions;
 use InvalidArgumentException;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWikiUnitTestCase;
-use PHPUnit\Framework\MockObject\MockObject;
 use User;
 
 /**
@@ -36,29 +34,33 @@ use User;
  */
 class UserAuthorityTest extends MediaWikiUnitTestCase {
 
-	private function newPermissionsManager( array $permissions ): PermissionManager {
-		/** @var PermissionManager|MockObject $manager */
-		$manager = $this->createNoOpMock(
+	/**
+	 * @param string[] $permissions
+	 * @param User|null $actor The user to use, null to create a new mock
+	 * @return UserAuthority
+	 */
+	private function newAuthority( array $permissions, User $actor = null ) : UserAuthority {
+		$permissionManager = $this->createNoOpMock(
 			PermissionManager::class,
 			[ 'userHasRight', 'userCan', 'getPermissionErrors' ]
 		);
 
-		$manager->method( 'userHasRight' )->willReturnCallback(
+		$permissionManager->method( 'userHasRight' )->willReturnCallback(
 			static function ( $user, $permission ) use ( $permissions ) {
 				return in_array( $permission, $permissions );
 			}
 		);
 
-		$manager->method( 'userCan' )->willReturnCallback(
-			static function ( $permission, $user ) use ( $manager ) {
-				return $manager->userHasRight( $user, $permission );
+		$permissionManager->method( 'userCan' )->willReturnCallback(
+			static function ( $permission, $user ) use ( $permissionManager ) {
+				return $permissionManager->userHasRight( $user, $permission );
 			}
 		);
 
-		$manager->method( 'getPermissionErrors' )->willReturnCallback(
-			static function ( $permission, $user, $target ) use ( $manager ) {
+		$permissionManager->method( 'getPermissionErrors' )->willReturnCallback(
+			static function ( $permission, $user, $target ) use ( $permissionManager ) {
 				$errors = [];
-				if ( !$manager->userCan( $permission, $user, $target ) ) {
+				if ( !$permissionManager->userCan( $permission, $user, $target ) ) {
 					$errors[] = [ 'permissionserrors' ];
 				}
 
@@ -66,31 +68,21 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 			}
 		);
 
-		return $manager;
-	}
-
-	private function newUser(): User {
-		return $this->createNoOpMock( User::class );
-	}
-
-	private function newAuthority( User $actor, array $permissions ): Authority {
-		$permissionManager = $this->newPermissionsManager( $permissions );
 		return new UserAuthority(
-			$actor,
+			$actor ?? $this->createNoOpMock( User::class ),
 			$permissionManager
 		);
 	}
 
 	public function testGetAuthor() {
-		$actor = $this->newUser();
-		$authority = $this->newAuthority( $actor, [] );
+		$actor = $this->createNoOpMock( User::class );
+		$authority = $this->newAuthority( [], $actor );
 
 		$this->assertSame( $actor, $authority->getUser() );
 	}
 
 	public function testPermissions() {
-		$actor = $this->newUser();
-		$authority = $this->newAuthority( $actor, [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
 
 		$this->assertTrue( $authority->isAllowed( 'foo' ) );
 		$this->assertTrue( $authority->isAllowed( 'bar' ) );
@@ -105,8 +97,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testProbablyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$actor = $this->newUser();
-		$authority = $this->newAuthority( $actor, [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
 
 		$this->assertTrue( $authority->probablyCan( 'foo', $target ) );
 		$this->assertTrue( $authority->probablyCan( 'bar', $target ) );
@@ -122,8 +113,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testDefinitlyCan() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$actor = $this->newUser();
-		$authority = $this->newAuthority( $actor, [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
 
 		$this->assertTrue( $authority->definitelyCan( 'foo', $target ) );
 		$this->assertTrue( $authority->definitelyCan( 'bar', $target ) );
@@ -139,8 +129,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testAuthorizeRead() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$actor = $this->newUser();
-		$authority = $this->newAuthority( $actor, [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
 
 		$this->assertTrue( $authority->authorizeRead( 'foo', $target ) );
 		$this->assertTrue( $authority->authorizeRead( 'bar', $target ) );
@@ -156,8 +145,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 	public function testAuthorizeWrite() {
 		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
-		$actor = $this->newUser();
-		$authority = $this->newAuthority( $actor, [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
 
 		$this->assertTrue( $authority->authorizeWrite( 'foo', $target ) );
 		$this->assertTrue( $authority->authorizeWrite( 'bar', $target ) );
@@ -172,16 +160,14 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testIsAllowedAnyThrowsOnEmptySet() {
-		$actor = $this->newUser();
-		$authority = $this->newAuthority( $actor, [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
 
 		$this->expectException( InvalidArgumentException::class );
 		$authority->isAllowedAny();
 	}
 
 	public function testIsAllowedAllThrowsOnEmptySet() {
-		$actor = $this->newUser();
-		$authority = $this->newAuthority( $actor, [ 'foo', 'bar' ] );
+		$authority = $this->newAuthority( [ 'foo', 'bar' ] );
 
 		$this->expectException( InvalidArgumentException::class );
 		$authority->isAllowedAll();
