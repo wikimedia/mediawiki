@@ -1027,6 +1027,13 @@ class MovePage {
 					$fakeTags
 				);
 
+				// Clear all caches to make sure no stale information is used
+				// when parsing the newly created redirect. Without this, moves would fail
+				// under certain conditions when Lua core runs on the new page.
+				// It is not entirely clear why this is needed, we just found that
+				// it fixes the issue at hand (T279832).
+				Title::clearCaches();
+
 				$redirectArticle->doEditUpdates(
 					$inserted,
 					$userObj,
