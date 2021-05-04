@@ -39,9 +39,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected static $limitPreferenceName = 'wllimit';
 	protected static $collapsedPreferenceName = 'rcfilters-wl-collapsed';
 
-	/** @var float|int */
-	private $maxDays;
-
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
@@ -53,9 +50,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
-
-	/** @var bool Watchlist Expiry flag */
-	private $isWatchlistExpiryEnabled;
 
 	/**
 	 * @param WatchedItemStoreInterface $watchedItemStore
@@ -75,8 +69,6 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$this->watchlistManager = $watchlistManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
-		$this->isWatchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 	}
 
 	public function doesWrites() {
@@ -406,7 +398,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$join_conds
 		);
 
-		if ( $this->isWatchlistExpiryEnabled ) {
+		if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
 			$tables[] = 'watchlist_expiry';
 			$fields[] = 'we_expiry';
 			$join_conds['watchlist_expiry'] = [ 'LEFT JOIN', 'wl_id = we_item' ];
@@ -544,7 +536,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 					$unwatchTooltipMessage = 'tooltip-ca-unwatch';
 					$diffInDays = null;
 					// Check if the watchlist expiry flag is enabled to show new tooltip message
-					if ( $this->isWatchlistExpiryEnabled ) {
+					if ( $this->getConfig()->get( 'WatchlistExpiry' ) ) {
 						$watchedItem = $this->watchedItemStore->getWatchedItem( $this->getUser(), $rc->getTitle() );
 						if ( $watchedItem instanceof WatchedItem && $watchedItem->getExpiry() !== null ) {
 							$diffInDays = $watchedItem->getExpiryInDays();
@@ -797,8 +789,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 
 	private function cutoffselector( $options ) {
 		$selected = (float)$options['days'];
+		$maxDays = $this->getConfig()->get( 'RCMaxAge' ) / ( 3600 * 24 );
 		if ( $selected <= 0 ) {
-			$selected = $this->maxDays;
+			$selected = $maxDays;
 		}
 
 		$selectedHours = round( $selected * 24 );
@@ -812,7 +805,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			72,
 			168,
 			24 * (float)$this->userOptionsLookup->getOption( $this->getUser(), 'watchlistdays', 0 ),
-			24 * $this->maxDays,
+			24 * $maxDays,
 			$selectedHours
 		] ) );
 		asort( $hours );
