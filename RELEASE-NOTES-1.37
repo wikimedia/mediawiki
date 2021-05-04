@@ -230,6 +230,8 @@ because of Phabricator reports.
   ::setHookContainer() were soft deprecated. Use ::init() to inject
   dependencies or override ::postInitSetup() to do any custom
   post-initialization configuration.
+* FileBackendGroup::singleton() and ::destroySingletons(), deprecated since
+  1.35, now emit deprecation warnings.
 * …
 
 === Other changes in 1.37 ===
