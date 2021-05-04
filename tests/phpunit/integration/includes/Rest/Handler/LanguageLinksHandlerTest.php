@@ -10,7 +10,7 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Rest\Handler\LanguageLinksHandler;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
-use MockTitleTrait;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Title;
 use Wikimedia\Message\MessageValue;
 
@@ -20,9 +20,8 @@ use Wikimedia\Message\MessageValue;
  * @group Database
  */
 class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
-
+	use DummyServicesTrait;
 	use HandlerTestTrait;
-	use MockTitleTrait;
 
 	public function addDBData() {
 		$defaults = [
@@ -55,7 +54,8 @@ class LanguageLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 			$services->getHookContainer()
 		);
 
-		$titleCodec = $this->makeMockTitleCodec();
+		// DummyServicesTrait::getDummyMediaWikiTitleCodec
+		$titleCodec = $this->getDummyMediaWikiTitleCodec();
 
 		return new LanguageLinksHandler(
 			$services->getDBLoadBalancer(),

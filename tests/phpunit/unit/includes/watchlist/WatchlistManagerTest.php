@@ -1,7 +1,6 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
@@ -28,45 +27,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 	use MockTitleTrait;
 	use MockAuthorityTrait;
-
-	private function getNamespaceInfo( HookContainer $hookContainer ) {
-		// Don't try to mock all of the behavior needed for getting associated
-		// talk/subject pages, etc. Instead, since almost all of the NamespaceInfo
-		// class can be used within Unit tests already, and the parts that would
-		// create errors in unit tests aren't needed for this test, we can
-		// just use a real object
-
-		// based on DefaultSettings
-		$options = new ServiceOptions(
-			NamespaceInfo::CONSTRUCTOR_OPTIONS,
-			[
-				'CanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES,
-				'CapitalLinkOverrides' => [],
-				'CapitalLinks' => true,
-				'ContentNamespaces' => [ NS_MAIN ],
-				'ExtraNamespaces' => [],
-				'ExtraSignatureNamespaces' => [],
-				'NamespaceContentModels' => [],
-				'NamespacesWithSubpages' => [
-					NS_TALK => true,
-					NS_USER => true,
-					NS_USER_TALK => true,
-					NS_PROJECT => true,
-					NS_PROJECT_TALK => true,
-					NS_FILE_TALK => true,
-					NS_MEDIAWIKI => true,
-					NS_MEDIAWIKI_TALK => true,
-					NS_TEMPLATE => true,
-					NS_TEMPLATE_TALK => true,
-					NS_HELP => true,
-					NS_HELP_TALK => true,
-					NS_CATEGORY_TALK => true,
-				],
-				'NonincludableNamespaces' => [],
-			]
-		);
-		return new NamespaceInfo( $options, $hookContainer );
-	}
 
 	private function getWikiPageFactory() {
 		// Needed so that we can test addWatchIgnoringRights and removeWatchIgnoringRights,
@@ -122,7 +82,8 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 
 		$hookContainer = $params['hookContainer'] ?? $this->createHookContainer();
 
-		$nsInfo = $this->getNamespaceInfo( $hookContainer );
+		// DummyServicesTrait::getDummyNamespaceInfo
+		$nsInfo = $this->getDummyNamespaceInfo( $hookContainer );
 
 		return new WatchlistManager(
 			$options,

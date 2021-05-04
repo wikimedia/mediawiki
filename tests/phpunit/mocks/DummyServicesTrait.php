@@ -21,16 +21,32 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use GenderCache;
+use Language;
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Config\ServiceOptions;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentity;
+use MediaWikiTitleCodec;
+use NamespaceInfo;
 use PHPUnit\Framework\MockObject\MockObject;
+use TitleFormatter;
+use TitleParser;
 use WatchedItem;
 use WatchedItemStore;
 
 /**
  * Trait to get helper services that can be used in unit tests
+ *
+ * Getters are in the form getDummy{ServiceName} because they *might* be
+ * returning mock objects (like getDummyWatchedItemStore), they *might* be
+ * returning real services but with dependencies that are mocks (like
+ * getDummyMediaWikiTitleCodec), or they *might* be full real services
+ * with no mocks (like getDummyNamespaceInfo) but with the name "dummy"
+ * to be consistent.
  *
  * @internal
  * @author DannyS712
@@ -44,6 +60,157 @@ trait DummyServicesTrait {
 	 * if there is no entry here than the page is not watched
 	 */
 	private $watchedItemStoreData = [];
+
+	/**
+	 * @param arary $options see getDummyMediaWikiTitleCodec for supported options
+	 * @return TitleFormatter
+	 */
+	private function getDummyTitleFormatter( array $options = [] ) : TitleFormatter {
+		return $this->getDummyMediaWikiTitleCodec( $options );
+	}
+
+	/**
+	 * @param arary $options see getDummyMediaWikiTitleCodec for supported options
+	 * @return TitleParser
+	 */
+	private function getDummyTitleParser( array $options = [] ) : TitleParser {
+		return $this->getDummyMediaWikiTitleCodec( $options );
+	}
+
+	/**
+	 * Note: you should probably use getDummyTitleFormatter or getDummyTitleParser,
+	 * unless you actually need both services, in which case it doesn't make sense
+	 * to get two different objects when they are implemented together
+	 *
+	 * @param array $options Supported keys:
+	 *    - validInterwikis: string[]
+	 *
+	 * @return MediaWikiTitleCodec
+	 */
+	private function getDummyMediaWikiTitleCodec( array $options = [] ) : MediaWikiTitleCodec {
+		$baseConfig = [
+			'validInterwikis' => [],
+		];
+		$config = $options + $baseConfig;
+
+		$namespaceInfo = $this->getDummyNamespaceInfo();
+
+		/** @var Language|MockObject $language */
+		$language = $this->createNoOpMock(
+			Language::class,
+			[ 'ucfirst', 'lc', 'getNsIndex', 'needsGenderDistinction', 'getNsText' ]
+		);
+		$language->method( 'ucfirst' )->willReturnCallback( 'ucfirst' );
+		$language->method( 'lc' )->willReturnCallback(
+			static function ( $str, $first ) {
+				return $first ? lcfirst( $str ) : strtolower( $str );
+			}
+		);
+		$language->method( 'getNsIndex' )->willReturnCallback(
+			static function ( $text ) use ( $namespaceInfo ) {
+				$text = strtolower( $text );
+				if ( $text === '' ) {
+					return NS_MAIN;
+				}
+				// based on the real Language::getNsIndex but without
+				// the support for translated namespace names
+				$index = $namespaceInfo->getCanonicalIndex( $text );
+
+				if ( $index !== null ) {
+					return $index;
+				}
+				return false;
+			}
+		);
+		$language->method( 'getNsText' )->willReturnCallback(
+			static function ( $index ) use ( $namespaceInfo ) {
+				// based on the real Language::getNsText but without
+				// the support for translated namespace names
+				$namespaces = $namespaceInfo->getCanonicalNamespaces();
+				return $namespaces[$index] ?? false;
+			}
+		);
+		// Not dealing with genders, most languages don't - as a result,
+		// the GenderCache is never used and thus a no-op mock
+		$language->method( 'needsGenderDistinction' )->willReturn( false );
+
+		/** @var GenderCache|MockObject $genderCache */
+		$genderCache = $this->createNoOpMock( GenderCache::class );
+
+		/** @var InterwikiLookup|MockObject $interwikiLookup */
+		$interwikiLookup = $this->createNoOpMock( InterwikiLookup::class, [ 'isValidInterwiki' ] );
+		$interwikiLookup->method( 'isValidInterwiki' )->willReturnCallback(
+			static function ( $prefix ) use ( $config ) {
+				// interwikis are lowercase, but we might be given a prefix that
+				// has uppercase characters, eg. from UserNameUtils normalization
+				$prefix = strtolower( $prefix );
+				return in_array( $prefix, $config['validInterwikis'] );
+			}
+		);
+
+		$titleCodec = new MediaWikiTitleCodec(
+			$language,
+			$genderCache,
+			[ 'en' ],
+			$interwikiLookup,
+			$namespaceInfo
+		);
+
+		return $titleCodec;
+	}
+
+	/**
+	 * @param HookContainer|null $hookContainer
+	 * @return NamespaceInfo
+	 */
+	private function getDummyNamespaceInfo( HookContainer $hookContainer = null ) : NamespaceInfo {
+		// Rather than trying to use a complicated mock, it turns out that almost
+		// all of the NamespaceInfo service works fine in unit tests. The only issues:
+		//   - in two places, NamespaceInfo tries to read extension attributes through
+		//     ExtensionRegistry::getInstance()->getAttribute() - this should work fine
+		//     in unit tests, it just won't include any extension info since those are
+		//     not loaded
+		//   - ::getRestrictionLevels() is a deprecated wrapper that calls
+		//     PermissionManager::getNamespaceRestrictionLevels() - the PermissionManager
+		//     is retrieved from MediaWikiServices, which doesn't work in unit tests.
+		//     This shouldn't be an issue though, since it should only be called in
+		//     the dedicated tests for that deprecation method, which use the real service
+
+		// configuration is based on DefaultSettings
+		// TODO add a way for tests to override this
+		$options = new ServiceOptions(
+			NamespaceInfo::CONSTRUCTOR_OPTIONS,
+			[
+				'CanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES,
+				'CapitalLinkOverrides' => [],
+				'CapitalLinks' => true,
+				'ContentNamespaces' => [ NS_MAIN ],
+				'ExtraNamespaces' => [],
+				'ExtraSignatureNamespaces' => [],
+				'NamespaceContentModels' => [],
+				'NamespacesWithSubpages' => [
+					NS_TALK => true,
+					NS_USER => true,
+					NS_USER_TALK => true,
+					NS_PROJECT => true,
+					NS_PROJECT_TALK => true,
+					NS_FILE_TALK => true,
+					NS_MEDIAWIKI => true,
+					NS_MEDIAWIKI_TALK => true,
+					NS_TEMPLATE => true,
+					NS_TEMPLATE_TALK => true,
+					NS_HELP => true,
+					NS_HELP_TALK => true,
+					NS_CATEGORY_TALK => true,
+				],
+				'NonincludableNamespaces' => [],
+			]
+		);
+		return new NamespaceInfo(
+			$options,
+			$hookContainer ?? $this->createHookContainer()
+		);
+	}
 
 	/**
 	 * @param UserIdentity $user Should only be called with registered users
