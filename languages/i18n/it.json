@@ -2771,6 +2771,7 @@
 	"blocklist-editing-sitewide": "modifica (sito intero)",
 	"blocklist-editing-page": "pagine",
 	"blocklist-editing-ns": "namespace",
+	"blocklist-editing-action": "azioni",
 	"ipblocklist-empty": "L'elenco dei blocchi è vuoto.",
 	"ipblocklist-no-results": "Nessun blocco trovato che corrisponde all'indirizzo IP o nome utente richiesto.",
 	"blocklink": "blocca",

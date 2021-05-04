@@ -52,6 +52,7 @@
 			"Utar",
 			"Vks",
 			"Walter Klosse",
+			"Want",
 			"YjM",
 			"לערי ריינהארט"
 		]
@@ -1142,6 +1143,7 @@
 	"badsiglinks": "Váš podpis musí obsahovat odkaz na vaši uživatelskou stránku, diskusní stránku nebo seznam příspěvků na této wiki. Prosíme, přidejte ho, například: <code>$1</code>.",
 	"badsigsubst": "Váš podpis obsahuje vnořenou substituci (např. <code>subst:</code> nebo <code><nowiki>~~~~</nowiki></code>).",
 	"badsiglength": "Váš podpis je příliš dlouhý. Musí být kratší než $1 {{PLURAL:$1|znak|znaky|znaků}}.",
+	"badsiglinebreak": "Váš podpis musí obsahovat alespoň řádku wikitextu.",
 	"linter-pager-bogus-image-options-details": "Chybný parametr souboru",
 	"linter-pager-deletable-table-tag-details": "Značka tabulky, která by měla být smazána",
 	"linter-pager-html5-misnesting-details": "Prolínání prvků (nyní nefunkční)",
@@ -2625,6 +2627,7 @@
 	"ipb-partial": "Částečný",
 	"ipb-sitewide-help": "Všechny stránky na wiki a všechny ostatní způsoby přispívání.",
 	"ipb-partial-help": "Konkrétní stránky nebo jmenné prostory.",
+	"ipb-action-upload": "Načítání souborů",
 	"ipb-pages-label": "Stránky",
 	"ipb-namespaces-label": "Jmenné prostory",
 	"badipaddress": "Neplatná IP adresa",

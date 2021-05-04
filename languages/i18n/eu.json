@@ -1402,6 +1402,7 @@
 	"recentchanges-label-plusminus": "Orriaren neurriak byte kopuru honen gorabehera izan du",
 	"recentchanges-legend-heading": "<strong>Azalpenak:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} (ikus, gainera, [[Special:NewPages|orri berrien zerrenda]])",
+	"recentchanges-legend-watchlistexpiry": "Aldi batez jarraipena egiten zaion orria",
 	"recentchanges-submit": "Erakutsi",
 	"rcfilters-tag-remove": "$1 ezabatu",
 	"rcfilters-legend-heading": "<strong>Laburpenen zerrenda:</strong>",

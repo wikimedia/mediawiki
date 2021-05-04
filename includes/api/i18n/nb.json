@@ -1362,7 +1362,7 @@
 	"apihelp-rollback-param-watchlistexpiry": "Tidsstempel for utløp i overvåkningslisten.  Utelat denne parameteren for å la den gjeldende utløpstiden være uendret.",
 	"apihelp-rollback-example-simple": "Tilbakestill de siste redigeringene på siden <kbd>Main Page</kbd> av brukeren <kbd>Example</kbd>.",
 	"apihelp-rollback-example-summary": "Tilbakestill de siste redigeringene på siden <kbd>Main Page</kbd> av IP-adressen <kbd>192.0.2.5</kbd> med sammendraget <kbd>Reverting vandalism</kbd>, og merk disse redigeringene samt tilbakestillingen som botredigeringer.",
-	"apihelp-rsd-summary": "Eksporter et RSD-skjema (Really Simple Discovyr).",
+	"apihelp-rsd-summary": "Eksporter et RSD-skjema (Really Simple Discovery).",
 	"apihelp-rsd-example-simple": "Eksporter RSD-skjemaet.",
 	"apihelp-setnotificationtimestamp-summary": "Oppdater varselstidsstempelet for overvåkede sider.",
 	"apihelp-setnotificationtimestamp-extended-description": "Dette påvirker markeringen av endrete sider i overvåkningslista og historikken, og sending av epost når innstillingen «{{int:tog-enotifwatchlistpages}}» er slått på.",
