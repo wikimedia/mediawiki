@@ -3,6 +3,8 @@
 namespace MediaWiki\Rest\Handler;
 
 use ChangeTags;
+use MediaWiki\Page\ExistingPageRecord;
+use MediaWiki\Page\PageLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
@@ -12,7 +14,6 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
-use Title;
 use WANObjectCache;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Message\ParamType;
@@ -54,17 +55,20 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var PageLookup */
+	private $pageLookup;
+
 	/** @var WANObjectCache */
 	private $cache;
 
-	/** @var RevisionRecord|bool */
-	private $revision;
+	/** @var RevisionRecord|false|null */
+	private $revision = false;
 
 	/** @var array */
 	private $lastModifiedTimes;
 
-	/** @var Title */
-	private $titleObject;
+	/** @var ExistingPageRecord|false|null */
+	private $page = false;
 
 	/**
 	 * @param RevisionStore $revisionStore
@@ -72,19 +76,22 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param PermissionManager $permissionManager
 	 * @param ILoadBalancer $loadBalancer
 	 * @param WANObjectCache $cache
+	 * @param PageLookup $pageLookup
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
 		PermissionManager $permissionManager,
 		ILoadBalancer $loadBalancer,
-		WANObjectCache $cache
+		WANObjectCache $cache,
+		PageLookup $pageLookup
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
 		$this->permissionManager = $permissionManager;
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
+		$this->pageLookup = $pageLookup;
 	}
 
 	private function normalizeType( $type ) {
@@ -121,7 +128,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $title the title of the page to load history for
+	 * @param string $title the title of the page to load history for
 	 * @param string $type the validated count type
 	 * @return Response
 	 * @throws LocalizedHttpException
@@ -129,8 +136,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	public function run( $title, $type ) {
 		$normalizedType = $this->normalizeType( $type );
 		$this->validateParameterCombination( $normalizedType );
-		$titleObj = $this->getTitle();
-		if ( !$titleObj || !$titleObj->getArticleID() ) {
+		$page = $this->getPage();
+		if ( !$page ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-nonexistent-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
@@ -139,7 +146,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 			);
 		}
 
-		if ( !$this->getAuthority()->authorizeRead( 'read', $titleObj ) ) {
+		if ( !$this->getAuthority()->authorizeRead( 'read', $page ) ) {
 			throw new LocalizedHttpException(
 				new MessageValue( 'rest-permission-denied-title',
 					[ new ScalarParam( ParamType::PLAINTEXT, $title ) ]
@@ -173,7 +180,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @throws LocalizedHttpException
 	 */
 	private function getCount( $type ) {
-		$pageId = $this->getTitle()->getArticleID();
+		$pageId = $this->getPage()->getId();
 		switch ( $type ) {
 			case 'anonymous':
 				return $this->getCachedCount( $type,
@@ -261,28 +268,30 @@ class PageHistoryCountHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @return RevisionRecord|bool current revision or false if unable to retrieve revision
+	 * @return RevisionRecord|null current revision or false if unable to retrieve revision
 	 */
-	private function getCurrentRevision() {
-		if ( $this->revision === null ) {
-			$title = $this->getTitle();
-			if ( $title && $title->getArticleID() ) {
-				$this->revision = $this->revisionStore->getKnownCurrentRevision( $title );
+	private function getCurrentRevision(): ?RevisionRecord {
+		if ( $this->revision === false ) {
+			$page = $this->getPage();
+			if ( $page ) {
+				$this->revision = $this->revisionStore->getKnownCurrentRevision( $page ) ?: null;
 			} else {
-				$this->revision = false;
+				$this->revision = null;
 			}
 		}
 		return $this->revision;
 	}
 
 	/**
-	 * @return Title|bool Title or false if unable to retrieve title
+	 * @return ExistingPageRecord|null
 	 */
-	private function getTitle() {
-		if ( $this->titleObject === null ) {
-			$this->titleObject = Title::newFromText( $this->getValidatedParams()['title'] );
+	private function getPage(): ?ExistingPageRecord {
+		if ( $this->page === false ) {
+			$this->page = $this->pageLookup->getExistingPageByText(
+				$this->getValidatedParams()['title']
+			);
 		}
-		return $this->titleObject;
+		return $this->page;
 	}
 
 	/**
@@ -296,6 +305,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		if ( $lastModifiedTimes ) {
 			return max( array_values( $lastModifiedTimes ) );
 		}
+		return null;
 	}
 
 	/**
@@ -357,8 +367,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	private function getCachedCount( $type,
 		callable $fetchCount
 	) {
-		$titleObj = $this->getTitle();
-		$pageId = $titleObj->getArticleID();
+		$pageId = $this->getPage()->getId();
 		return $this->cache->getWithSetCallback(
 			$this->cache->makeKey( 'rest', 'pagehistorycount', $pageId, $type ),
 			WANObjectCache::TTL_WEEK,

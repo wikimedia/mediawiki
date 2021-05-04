@@ -62,6 +62,40 @@ interface PageLookup extends IDBAccessObject {
 	): ?ExistingPageRecord;
 
 	/**
+	 * Returns a PageIdentity for a given user provided page name text.
+	 *
+	 * @since 1.37
+	 *
+	 * @param string $text
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $queryFlags
+	 *
+	 * @return ProperPageIdentity|null
+	 */
+	public function getPageByText(
+		string $text,
+		int $defaultNamespace = NS_MAIN,
+		int $queryFlags = self::READ_NORMAL
+	): ?ProperPageIdentity;
+
+	/**
+	 * Returns an existing PageRecord for a given user provided page name text.
+	 *
+	 * @since 1.37
+	 *
+	 * @param string $text
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $queryFlags
+	 *
+	 * @return ExistingPageRecord|null
+	 */
+	public function getExistingPageByText(
+		string $text,
+		int $defaultNamespace = NS_MAIN,
+		int $queryFlags = self::READ_NORMAL
+	): ?ExistingPageRecord;
+
+	/**
 	 * Returns the PageRecord of the given page.
 	 * May return $page if that already is a PageRecord.
 	 *

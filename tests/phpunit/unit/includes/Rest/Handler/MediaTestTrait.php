@@ -3,11 +3,11 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use File;
+use MediaWiki\Page\PageReference;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use RepoGroup;
 use ThumbnailImage;
-use Title;
 
 /**
  * A trait providing utility functions for mocking media-related objects.
@@ -20,13 +20,13 @@ trait MediaTestTrait {
 	use MockTitleTrait;
 
 	/**
-	 * @param Title|string $title
+	 * @param PageReference|string $title
 	 *
 	 * @return File|MockObject
 	 */
 	private function makeMissingMockFile( $title ) {
-		$title = $title instanceof Title
-			? $title
+		$title = $title instanceof PageReference
+			? $this->makeMockTitle( $title->getDBkey(), [ 'namespace' => $title->getNamespace() ] )
 			: $this->makeMockTitle( 'File:' . $title, [ 'namespace' => NS_FILE ] );
 
 		/** @var MockObject|File $file */
@@ -44,13 +44,13 @@ trait MediaTestTrait {
 	}
 
 	/**
-	 * @param Title|string $title
+	 * @param PageReference|string $title
 	 *
 	 * @return File|MockObject
 	 */
 	private function makeMockFile( $title ) {
-		$title = $title instanceof Title
-			? $title
+		$title = $title instanceof PageReference
+			? $this->makeMockTitle( $title->getDBkey(), [ 'namespace' => $title->getNamespace() ] )
 			: $this->makeMockTitle( 'File:' . $title, [ 'namespace' => NS_FILE ] );
 
 		/** @var MockObject|File $file */
@@ -98,8 +98,8 @@ trait MediaTestTrait {
 	 */
 	private function makeMockRepoGroup() {
 		$findFile = function ( $title ) {
-			$title = $title instanceof Title
-				? $title
+			$title = $title instanceof PageReference
+				? $this->makeMockTitle( $title->getDBkey(), [ 'namespace' => $title->getNamespace() ] )
 				: $this->makeMockTitle( 'File:' . $title, [ 'namespace' => NS_FILE ] );
 
 			if ( preg_match( '/missing/i', $title->getText() )

@@ -22,14 +22,14 @@
 namespace MediaWiki\Rest\Handler;
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Page\PageRecord;
 use MediaWiki\Parser\RevisionOutputCache;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Revision\RevisionRecord;
 use ParserCache;
 use ParserOptions;
 use ParserOutput;
-use Title;
+use TitleValue;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\Parsoid\Config\PageConfig;
 use Wikimedia\Parsoid\Core\ClientError;
@@ -55,14 +55,11 @@ class ParsoidHTMLHelper {
 	/** @var RevisionOutputCache */
 	private $revisionOutputCache;
 
-	/** @var WikiPageFactory */
-	private $wikiPageFactory;
-
 	/** @var GlobalIdGenerator */
 	private $globalIdGenerator;
 
-	/** @var Title|null */
-	private $title = null;
+	/** @var PageRecord|null */
+	private $page = null;
 
 	/** @var Parsoid|null */
 	private $parsoid = null;
@@ -73,27 +70,24 @@ class ParsoidHTMLHelper {
 	/**
 	 * @param ParserCache $parserCache
 	 * @param RevisionOutputCache $revisionOutputCache
-	 * @param WikiPageFactory $wikiPageFactory
 	 * @param GlobalIdGenerator $globalIdGenerator
 	 */
 	public function __construct(
 		ParserCache $parserCache,
 		RevisionOutputCache $revisionOutputCache,
-		WikiPageFactory $wikiPageFactory,
 		GlobalIdGenerator $globalIdGenerator
 	) {
 		$this->parserCache = $parserCache;
-		$this->wikiPageFactory = $wikiPageFactory;
 		$this->globalIdGenerator = $globalIdGenerator;
 		$this->revisionOutputCache = $revisionOutputCache;
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageRecord $page
 	 * @param RevisionRecord|null $revision
 	 */
-	public function init( Title $title, ?RevisionRecord $revision = null ) {
-		$this->title = $title;
+	public function init( PageRecord $page, ?RevisionRecord $revision = null ) {
+		$this->page = $page;
 		$this->revision = $revision;
 	}
 
@@ -178,9 +172,14 @@ class ParsoidHTMLHelper {
 		// can't report the used options.
 		// Already checked that title/revision exist and accessible.
 		// TODO: make ParsoidPageConfigFactory take a RevisionRecord
+		// TODO: make ParsoidPageConfigFactory take PageReference as well
 		return MediaWikiServices::getInstance()
 			->get( 'ParsoidPageConfigFactory' )
-			->create( $this->title, null, $this->revision ? $this->revision->getId() : null );
+			->create(
+				TitleValue::newFromPage( $this->page ),
+				null,
+				$this->revision ? $this->revision->getId() : null
+			);
 	}
 
 	/**
@@ -188,16 +187,15 @@ class ParsoidHTMLHelper {
 	 * @throws LocalizedHttpException
 	 */
 	public function getHtml(): ParserOutput {
-		$wikiPage = $this->wikiPageFactory->newFromLinkTarget( $this->title );
 		$parserOptions = ParserOptions::newCanonical( 'canonical' );
 
-		$revId = $this->revision ? $this->revision->getId() : $wikiPage->getLatest();
-		$isOld = $revId !== $wikiPage->getLatest();
+		$revId = $this->revision ? $this->revision->getId() : $this->page->getLatest();
+		$isOld = $revId !== $this->page->getLatest();
 
 		if ( $isOld ) {
 			$parserOutput = $this->revisionOutputCache->get( $this->revision, $parserOptions );
 		} else {
-			$parserOutput = $this->parserCache->get( $wikiPage, $parserOptions );
+			$parserOutput = $this->parserCache->get( $this->page, $parserOptions );
 		}
 		if ( $parserOutput ) {
 			return $parserOutput;
@@ -218,7 +216,7 @@ class ParsoidHTMLHelper {
 		if ( $isOld ) {
 			$this->revisionOutputCache->save( $fakeParserOutput, $this->revision, $parserOptions, $now );
 		} else {
-			$this->parserCache->save( $fakeParserOutput, $wikiPage, $parserOptions, $now );
+			$this->parserCache->save( $fakeParserOutput, $this->page, $parserOptions, $now );
 		}
 
 		return $fakeParserOutput;

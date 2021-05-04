@@ -51,6 +51,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 			$serviceOptions,
 			$services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
+			$services->getTitleParser(),
 			$wikiId
 		);
 	}
@@ -193,6 +194,58 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
+	 * @covers \MediaWiki\Page\PageStore::getPageByText
+	 */
+	public function testGetPageByText_existing() {
+		$existingPage = $this->getExistingTestPage();
+
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getPageByText( $existingPage->getTitle()->getPrefixedText() );
+
+		$this->assertTrue( $page->exists() );
+		$this->assertSamePage( $existingPage, $page );
+
+		$page = $pageStore->getExistingPageByText( $existingPage->getTitle()->getPrefixedText() );
+
+		$this->assertTrue( $page->exists() );
+		$this->assertSamePage( $existingPage, $page );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getPageByText
+	 */
+	public function testGetPageByText_nonexisting() {
+		$nonexistingPage = $this->getNonexistingTestPage();
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getPageByText( $nonexistingPage->getTitle()->getPrefixedText() );
+		$this->assertFalse( $page->exists() );
+		$this->assertTrue( $nonexistingPage->isSamePageAs( $page ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getExistingPageByText
+	 */
+	public function testGetExistingPageByText_existing() {
+		$existingPage = $this->getExistingTestPage();
+
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getExistingPageByText( $existingPage->getTitle()->getPrefixedText() );
+
+		$this->assertTrue( $page->exists() );
+		$this->assertSamePage( $existingPage, $page );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getPageByText
+	 */
+	public function testGetExistingPageByText_nonexisting() {
+		$nonexistingPage = $this->getNonexistingTestPage();
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getExistingPageByText( $nonexistingPage->getTitle()->getPrefixedText() );
+		$this->assertNull( $page );
+	}
+
+	/**
 	 * Configure the load balancer to route queries for the "foreign" domain to the test DB.
 	 *
 	 * @param string $wikiId
@@ -240,6 +293,20 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$this->expectException( InvalidArgumentException::class );
 		$pageStore->getPageByName( $ns, $dbkey );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getExistingPageByText
+	 */
+	public function testGetPageByText_invalid() {
+		$this->assertNull( $this->getPageStore()->getPageByText( '' ) );
+	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageStore::getPageByText
+	 */
+	public function testGetExistingPageByText_invalid() {
+		$this->assertNull( $this->getPageStore()->getExistingPageByText( '' ) );
 	}
 
 	/**
@@ -509,6 +576,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 			$serviceOptions,
 			$lb,
 			$services->getNamespaceInfo(),
+			$services->getTitleParser(),
 			WikiAwareEntity::LOCAL
 		);
 

@@ -94,11 +94,9 @@ class PageHTMLHandlerTest extends MediaWikiIntegrationTestCase {
 			] ),
 			$this->getServiceContainer()->getRevisionLookup(),
 			$this->getServiceContainer()->getTitleFormatter(),
-			$this->getServiceContainer()->getTitleFactory(),
-
 			$parserCacheFactory,
-			$this->getServiceContainer()->getWikiPageFactory(),
-			$this->getServiceContainer()->getGlobalIdGenerator()
+			$this->getServiceContainer()->getGlobalIdGenerator(),
+			$this->getServiceContainer()->getPageStore()
 		);
 
 		if ( $parsoid !== null ) {

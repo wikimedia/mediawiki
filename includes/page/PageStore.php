@@ -5,11 +5,13 @@ namespace MediaWiki\Page;
 use DBAccessObjectUtils;
 use EmptyIterator;
 use Iterator;
+use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkTarget;
 use NamespaceInfo;
 use stdClass;
+use TitleParser;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -31,6 +33,9 @@ class PageStore implements PageLookup {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var TitleParser */
+	private $titleParser;
+
 	/** @var string|false */
 	private $wikiId;
 
@@ -45,12 +50,14 @@ class PageStore implements PageLookup {
 	 * @param ServiceOptions $options
 	 * @param ILoadBalancer $dbLoadBalancer
 	 * @param NamespaceInfo $namespaceInfo
+	 * @param TitleParser $titleParser
 	 * @param false|string $wikiId
 	 */
 	public function __construct(
 		ServiceOptions $options,
 		ILoadBalancer $dbLoadBalancer,
 		NamespaceInfo $namespaceInfo,
+		TitleParser $titleParser,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -58,6 +65,7 @@ class PageStore implements PageLookup {
 		$this->options = $options;
 		$this->dbLoadBalancer = $dbLoadBalancer;
 		$this->namespaceInfo = $namespaceInfo;
+		$this->titleParser = $titleParser;
 		$this->wikiId = $wikiId;
 	}
 
@@ -114,6 +122,49 @@ class PageStore implements PageLookup {
 		];
 
 		return $this->loadPageFromConditions( $conds, $queryFlags );
+	}
+
+	/**
+	 * @since 1.37
+	 *
+	 * @param string $text
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $queryFlags
+	 *
+	 * @return ProperPageIdentity|null
+	 */
+	public function getPageByText(
+		string $text,
+		int $defaultNamespace = NS_MAIN,
+		int $queryFlags = self::READ_NORMAL
+	): ?ProperPageIdentity {
+		try {
+			$title = $this->titleParser->parseTitle( $text, $defaultNamespace );
+			return $this->getPageForLink( $title, $queryFlags );
+		} catch ( MalformedTitleException $e ) {
+			return null;
+		}
+	}
+
+	/**
+	 * @since 1.37
+	 *
+	 * @param string $text
+	 * @param int $defaultNamespace Namespace to assume per default (usually NS_MAIN)
+	 * @param int $queryFlags
+	 *
+	 * @return ExistingPageRecord|null
+	 */
+	public function getExistingPageByText(
+		string $text,
+		int $defaultNamespace = NS_MAIN,
+		int $queryFlags = self::READ_NORMAL
+	): ?ExistingPageRecord {
+		$pageIdentity = $this->getPageByText( $text, $defaultNamespace, $queryFlags );
+		if ( !$pageIdentity ) {
+			return null;
+		}
+		return $this->getPageByReference( $pageIdentity, $queryFlags );
 	}
 
 	/**
