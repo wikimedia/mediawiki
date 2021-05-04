@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Block\BlockActionInfo;
+use MediaWiki\HookContainer\HookContainer;
 
 /**
  * @group Blocking
@@ -30,6 +31,25 @@ class BlockActionInfoTest extends MediaWikiUnitTestCase {
 
 		// Confirm new action is added
 		$this->assertContains( 100, $blockActions );
+	}
+
+	/**
+	 * @dataProvider provideGetIdFromAction
+	 * @covers ::getIdFromAction
+	 */
+	public function testGetIdFromAction( $action, $expected ) {
+		$blockActionInfo = new BlockActionInfo( $this->createMock( HookContainer::class ) );
+		$this->assertSame(
+			$expected,
+			$blockActionInfo->getIdFromAction( $action )
+		);
+	}
+
+	public static function provideGetIdFromAction() {
+		return [
+			'Valid action' => [ 'upload', 1 ],
+			'Invalid action' => [ 'invalidaction', false ],
+		];
 	}
 
 }

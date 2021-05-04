@@ -21,10 +21,12 @@
  */
 
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockUserFactory;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
@@ -61,6 +63,9 @@ class ApiBlock extends ApiBase {
 	/** @var BlockUtils */
 	private $blockUtils;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -70,6 +75,7 @@ class ApiBlock extends ApiBase {
 	 * @param UserFactory $userFactory
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param BlockUtils $blockUtils
+	 * @param BlockActionInfo $blockActionInfo
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -79,7 +85,8 @@ class ApiBlock extends ApiBase {
 		TitleFactory $titleFactory,
 		UserFactory $userFactory,
 		WatchedItemStoreInterface $watchedItemStore,
-		BlockUtils $blockUtils
+		BlockUtils $blockUtils,
+		BlockActionInfo $blockActionInfo
 	) {
 		parent::__construct( $main, $action );
 
@@ -91,6 +98,7 @@ class ApiBlock extends ApiBase {
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
 		$this->blockUtils = $blockUtils;
+		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	/**
@@ -139,6 +147,13 @@ class ApiBlock extends ApiBase {
 				return new NamespaceRestriction( 0, $id );
 			}, (array)$params['namespacerestrictions'] );
 			$restrictions = array_merge( $pageRestrictions, $namespaceRestrictions );
+
+			if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+				$actionRestrictions = array_map( function ( $action ) {
+					return new ActionRestriction( 0, $this->blockActionInfo->getIdFromAction( $action ) );
+				}, (array)$params['actionrestrictions'] );
+				$restrictions = array_merge( $restrictions, $actionRestrictions );
+			}
 		}
 
 		$status = $this->blockUserFactory->newBlockUser(
@@ -209,6 +224,9 @@ class ApiBlock extends ApiBase {
 		$res['partial'] = $params['partial'];
 		$res['pagerestrictions'] = $params['pagerestrictions'];
 		$res['namespacerestrictions'] = $params['namespacerestrictions'];
+		if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+			$res['actionrestrictions'] = $params['actionrestrictions'];
+		}
 
 		$this->getResult()->addValue( null, $this->getModuleName(), $res );
 	}
@@ -256,7 +274,7 @@ class ApiBlock extends ApiBase {
 			];
 		}
 
-		return $params + [
+		$params += [
 			'tags' => [
 				ApiBase::PARAM_TYPE => 'tags',
 				ApiBase::PARAM_ISMULTI => true,
@@ -272,6 +290,19 @@ class ApiBlock extends ApiBase {
 				ApiBase::PARAM_TYPE => 'namespace',
 			],
 		];
+
+		if ( $this->getConfig()->get( 'EnablePartialActionBlocks' ) ) {
+			$params += [
+				'actionrestrictions' => [
+					ApiBase::PARAM_ISMULTI => true,
+					ApiBase::PARAM_TYPE => array_keys(
+						$this->blockActionInfo->getAllBlockActions()
+					),
+				],
+			];
+		}
+
+		return $params;
 	}
 
 	public function needsToken() {
