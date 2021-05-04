@@ -74,7 +74,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$this->manager,
 			$hookContainer,
 			$config,
-			$this->createNoOpMock( UserNameUtils::class )
+			$this->getServiceContainer()->getUserNameUtils()
 		);
 
 		return $provider;

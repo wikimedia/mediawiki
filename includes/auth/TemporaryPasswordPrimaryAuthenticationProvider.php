@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 use SpecialPage;
 use User;
 use Wikimedia\IPUtils;
@@ -57,7 +58,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	 *  - emailEnabled: (bool) must be true for the option to email passwords to be present
 	 *  - newPasswordExpiry: (int) expiraton time of temporary passwords, in seconds
 	 *  - passwordReminderResendTime: (int) cooldown period in hours until a password reminder can
-	 *    be sent to the same user again,
+	 *    be sent to the same user again
 	 */
 	public function __construct( $params = [] ) {
 		parent::__construct( $params );
@@ -131,7 +132,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return AuthenticationResponse::newAbstain();
 		}
 
-		$username = User::getCanonicalName( $req->username, 'usable' );
+		$username = $this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE );
 		if ( $username === false ) {
 			return AuthenticationResponse::newAbstain();
 		}
@@ -180,7 +181,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testUserCanAuthenticate( $username ) {
-		$username = User::getCanonicalName( $username, 'usable' );
+		$username = $this->userNameUtils->getCanonical( $username, UserNameUtils::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;
 		}
@@ -208,7 +209,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function testUserExists( $username, $flags = User::READ_NORMAL ) {
-		$username = User::getCanonicalName( $username, 'usable' );
+		$username = $this->userNameUtils->getCanonical( $username, UserNameUtils::RIGOR_USABLE );
 		if ( $username === false ) {
 			return false;
 		}
@@ -235,7 +236,7 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 			return \StatusValue::newGood();
 		}
 
-		$username = User::getCanonicalName( $req->username, 'usable' );
+		$username = $this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE );
 		if ( $username === false ) {
 			return \StatusValue::newGood( 'ignored' );
 		}
@@ -292,7 +293,8 @@ class TemporaryPasswordPrimaryAuthenticationProvider
 	}
 
 	public function providerChangeAuthenticationData( AuthenticationRequest $req ) {
-		$username = $req->username !== null ? User::getCanonicalName( $req->username, 'usable' ) : false;
+		$username = $req->username !== null ?
+			$this->userNameUtils->getCanonical( $req->username, UserNameUtils::RIGOR_USABLE ) : false;
 		if ( $username === false ) {
 			return;
 		}

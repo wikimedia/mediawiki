@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\Widget\UsersMultiselectWidget;
 use Wikimedia\IPUtils;
 
@@ -28,6 +30,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 
 		// Normalize usernames
 		$normalizedUsers = [];
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 		$listOfIps = [];
 		foreach ( $usersArray as $user ) {
 			if ( IPUtils::isIPAddress( $user ) ) {
@@ -37,7 +40,7 @@ class HTMLUsersMultiselectField extends HTMLUserTextField {
 					$listOfIps[] = $parsedIPRange;
 				}
 			} else {
-				$canonicalUser = User::getCanonicalName( $user, false );
+				$canonicalUser = $userNameUtils->getCanonical( $user, UserNameUtils::RIGOR_NONE );
 			}
 			$normalizedUsers[] = $canonicalUser;
 		}

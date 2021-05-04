@@ -23,6 +23,7 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\User\UserNameUtils;
 use User;
 use WebRequest;
 
@@ -322,7 +323,7 @@ class CookieSessionProvider extends SessionProvider {
 	public function suggestLoginUsername( WebRequest $request ) {
 		 $name = $this->getCookie( $request, 'UserName', $this->cookieOptions['prefix'] );
 		 if ( $name !== null ) {
-			 $name = User::getCanonicalName( $name, 'usable' );
+			 $name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_USABLE );
 		 }
 		 return $name === false ? null : $name;
 	}

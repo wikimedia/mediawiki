@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 
 /**
  * Class to parse and build external user names
@@ -105,7 +106,8 @@ class ExternalUserNames {
 	 *  username), otherwise the name with the prefix prepended.
 	 */
 	public function applyPrefix( $name ) {
-		if ( User::getCanonicalName( $name, 'usable' ) === false ) {
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		if ( $userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_USABLE ) === false ) {
 			return $name;
 		}
 

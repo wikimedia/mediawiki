@@ -111,7 +111,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 		$provider->init(
 			$this->createNoOpMock( NullLogger::class ),
 			$manager,
-			$this->createHookContainer(),
+			$hookContainer,
 			$this->createNoOpAbstractMock( Config::class ),
 			$userNameUtils
 		);
