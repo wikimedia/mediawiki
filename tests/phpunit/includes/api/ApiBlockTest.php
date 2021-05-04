@@ -19,7 +19,7 @@ class ApiBlockTest extends ApiTestCase {
 		parent::setUp();
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,
-			[ 'ipblocks', 'change_tag', 'change_tag_def', 'logging' ]
+			[ 'ipblocks', 'ipblocks_restrictions', 'change_tag', 'change_tag_def', 'logging' ]
 		);
 
 		$this->mUser = $this->getMutableTestUser()->getUser();
@@ -253,26 +253,36 @@ class ApiBlockTest extends ApiTestCase {
 		$this->assertSame( [], $block->getRestrictions() );
 	}
 
-	public function testBlockWithRestrictions() {
+	public function testBlockWithRestrictionsPage() {
 		$title = 'Foo';
 		$page = $this->getExistingTestPage( $title );
-		$namespace = NS_TALK;
 
 		$this->doBlock( [
 			'partial' => true,
 			'pagerestrictions' => $title,
-			'namespacerestrictions' => $namespace,
 			'allowusertalk' => true,
 		] );
 
 		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
 
 		$this->assertFalse( $block->isSitewide() );
-		$this->assertCount( 2, $block->getRestrictions() );
 		$this->assertInstanceOf( PageRestriction::class, $block->getRestrictions()[0] );
 		$this->assertEquals( $title, $block->getRestrictions()[0]->getTitle()->getText() );
-		$this->assertInstanceOf( NamespaceRestriction::class, $block->getRestrictions()[1] );
-		$this->assertEquals( $namespace, $block->getRestrictions()[1]->getValue() );
+	}
+
+	public function testBlockWithRestrictionsNamespace() {
+		$namespace = NS_TALK;
+
+		$this->doBlock( [
+			'partial' => true,
+			'namespacerestrictions' => $namespace,
+			'allowusertalk' => true,
+		] );
+
+		$block = DatabaseBlock::newFromTarget( $this->mUser->getName() );
+
+		$this->assertInstanceOf( NamespaceRestriction::class, $block->getRestrictions()[0] );
+		$this->assertEquals( $namespace, $block->getRestrictions()[0]->getValue() );
 	}
 
 	public function testBlockingActionWithNoToken() {
