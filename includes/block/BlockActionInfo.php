@@ -46,6 +46,9 @@ class BlockActionInfo {
 	/** @var int */
 	private const ACTION_MOVE = 2;
 
+	/** @var int */
+	private const ACTION_CREATE = 3;
+
 	/**
 	 * Core block actions.
 	 *
@@ -57,12 +60,14 @@ class BlockActionInfo {
 	 * Core messages:
 	 * ipb-action-upload
 	 * ipb-action-move
+	 * ipb-action-create
 	 *
 	 * @var int[]
 	 */
 	private const CORE_BLOCK_ACTIONS = [
 		'upload' => self::ACTION_UPLOAD,
 		'move' => self::ACTION_MOVE,
+		'create' => self::ACTION_CREATE,
 	];
 
 	/**

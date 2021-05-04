@@ -2732,6 +2732,7 @@
 	"ipb-partial": "Partial",
 	"ipb-sitewide-help": "Every page on the wiki and all other contribution actions.",
 	"ipb-partial-help": "Specific pages or namespaces.",
+	"ipb-action-create": "Creating new pages",
 	"ipb-action-move": "Renaming pages",
 	"ipb-action-upload": "Uploading files",
 	"ipb-pages-label": "Pages",
