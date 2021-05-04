@@ -3020,7 +3020,7 @@
 	"logentry-patrol-patrol": "$1 {{GENDER:$2|nengeri}} révisi $4 saka kaca $3 kang diawasi",
 	"logentry-patrol-patrol-auto": "$1 otomatis {{GENDER:$2|nandhani}} révisi $4 saka kaca $3 kang diawasi",
 	"logentry-newusers-newusers": "Akun naraguna $1 {{GENDER:$2|digawé}}",
-	"logentry-newusers-create": "Akun naraguna $1 wis {{GENDER:$2|digawé}}",
+	"logentry-newusers-create": "$1 {{GENDER:$2|nggawé}} akun",
 	"logentry-newusers-create2": "Akun naraguna $3 {{GENDER:$2|digawé}} déning $1",
 	"logentry-newusers-byemail": "Akun naraguna $3 {{GENDER:$2|digawé}} déning $1 lan tembung sandi dikirim lumantar layang-èl",
 	"logentry-newusers-autocreate": "Akun naraguna $1 otomatis {{GENDER:$2|digawé}}",

@@ -2740,6 +2740,7 @@
 	"blocklist-editing-sitewide": "bewerken (gehele wiki)",
 	"blocklist-editing-page": "pagina's",
 	"blocklist-editing-ns": "naamruimten",
+	"blocklist-editing-action": "handelingen",
 	"ipblocklist-empty": "De blokkeerlijst is leeg.",
 	"ipblocklist-no-results": "Geen blokkades gevonden voor het IP-adres of de gebruikersnaam.",
 	"blocklink": "blokkeren",

@@ -2775,6 +2775,7 @@
 	"ipb-partial": "Partiel",
 	"ipb-sitewide-help": "Chaque page du wiki et toutes les autres actions de contribution.",
 	"ipb-partial-help": "Pages ou espaces de noms spécifiques.",
+	"ipb-action-move": "Renommer les pages",
 	"ipb-action-upload": "Téléchargement des fichiers",
 	"ipb-pages-label": "Pages",
 	"ipb-namespaces-label": "Espaces de noms",
