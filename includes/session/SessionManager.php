@@ -30,6 +30,7 @@ use FauxRequest;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 use MWException;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -79,7 +80,7 @@ use Wikimedia\ObjectFactory;
  * @since 1.27
  * @see https://www.mediawiki.org/wiki/Manual:SessionManager_and_AuthManager
  */
-final class SessionManager implements SessionManagerInterface {
+class SessionManager implements SessionManagerInterface {
 	/** @var SessionManager|null */
 	private static $instance = null;
 
@@ -100,6 +101,9 @@ final class SessionManager implements SessionManagerInterface {
 
 	/** @var Config */
 	private $config;
+
+	/** @var UserNameUtils */
+	private $userNameUtils;
 
 	/** @var CachedBagOStuff|null */
 	private $store;
@@ -222,6 +226,7 @@ final class SessionManager implements SessionManagerInterface {
 
 		$this->logger->debug( 'SessionManager using store ' . get_class( $store ) );
 		$this->store = $store instanceof CachedBagOStuff ? $store : new CachedBagOStuff( $store );
+		$this->userNameUtils = MediawikiServices::getInstance()->getUserNameUtils();
 
 		register_shutdown_function( [ $this, 'shutdown' ] );
 	}
@@ -458,10 +463,13 @@ final class SessionManager implements SessionManagerInterface {
 			foreach ( $this->config->get( 'SessionProviders' ) as $spec ) {
 				/** @var SessionProvider */
 				$provider = ObjectFactory::getObjectFromSpec( $spec );
-				$provider->setLogger( $this->logger );
-				$provider->setConfig( $this->config );
-				$provider->setManager( $this );
-				$provider->setHookContainer( $this->hookContainer );
+				$provider->init(
+					$this->logger,
+					$this->config,
+					$this,
+					$this->hookContainer,
+					$this->userNameUtils
+				);
 				if ( isset( $this->sessionProviders[(string)$provider] ) ) {
 					// @phan-suppress-next-line PhanTypeSuspiciousStringExpression
 					throw new \UnexpectedValueException( "Duplicate provider name \"$provider\"" );

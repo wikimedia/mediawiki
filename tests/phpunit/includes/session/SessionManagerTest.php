@@ -2,9 +2,12 @@
 
 namespace MediaWiki\Session;
 
+use Config;
+use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
+use TestLogger;
 use User;
 use Wikimedia\TestingAccessWrapper;
 
@@ -771,7 +774,7 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 		$this->assertArrayHasKey( 'DummySessionProvider', $providers );
 		$provider = TestingAccessWrapper::newFromObject( $providers['DummySessionProvider'] );
 		$this->assertSame( $manager->logger, $provider->logger );
-		$this->assertSame( $manager->config, $provider->config );
+		$this->assertSame( $manager->config, $provider->getConfig() );
 		$this->assertSame( $realManager, $provider->getManager() );
 
 		$this->config->set( 'SessionProviders', [
@@ -932,7 +935,13 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			->onlyMethods( [ '__toString', 'mergeMetadata', 'refreshSessionInfo' ] );
 
 		$provider = $builder->getMockForAbstractClass();
-		$provider->setManager( $manager );
+		$provider->init(
+			new TestLogger(),
+			$this->createNoOpAbstractMock( Config::class ),
+			$manager,
+			$this->createHookContainer(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$provider->method( 'persistsSessionId' )
 			->willReturn( true );
 		$provider->method( 'canChangeUser' )
@@ -950,7 +959,13 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			} ) );
 
 		$provider2 = $builder->getMockForAbstractClass();
-		$provider2->setManager( $manager );
+		$provider2->init(
+			new TestLogger(),
+			$this->createNoOpAbstractMock( Config::class ),
+			$manager,
+			$this->createHookContainer(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$provider2->method( 'persistsSessionId' )
 			->willReturn( false );
 		$provider2->method( 'canChangeUser' )
@@ -964,7 +979,13 @@ class SessionManagerTest extends MediaWikiIntegrationTestCase {
 			} ) );
 
 		$provider3 = $builder->getMockForAbstractClass();
-		$provider3->setManager( $manager );
+		$provider3->init(
+			new TestLogger(),
+			$this->createNoOpAbstractMock( Config::class ),
+			$manager,
+			$this->createHookContainer(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$provider3->method( 'persistsSessionId' )
 			->willReturn( true );
 		$provider3->method( 'canChangeUser' )

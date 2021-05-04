@@ -23,7 +23,6 @@
 
 namespace MediaWiki\Session;
 
-use Config;
 use User;
 use WebRequest;
 
@@ -87,28 +86,26 @@ class CookieSessionProvider extends SessionProvider {
 		unset( $this->params['cookieOptions'] );
 	}
 
-	public function setConfig( Config $config ) {
-		parent::setConfig( $config );
-
+	protected function postInitSetup() {
 		// @codeCoverageIgnoreStart
 		$this->params += [
 			// @codeCoverageIgnoreEnd
 			'callUserSetCookiesHook' => false,
 			'sessionName' =>
-				$config->get( 'SessionName' ) ?: $config->get( 'CookiePrefix' ) . '_session',
+				$this->getConfig()->get( 'SessionName' ) ?: $this->getConfig()->get( 'CookiePrefix' ) . '_session',
 		];
 
-		$this->useCrossSiteCookies = strcasecmp( $config->get( 'CookieSameSite' ), 'none' ) === 0;
+		$this->useCrossSiteCookies = strcasecmp( $this->getConfig()->get( 'CookieSameSite' ), 'none' ) === 0;
 
 		// @codeCoverageIgnoreStart
 		$this->cookieOptions += [
 			// @codeCoverageIgnoreEnd
-			'prefix' => $config->get( 'CookiePrefix' ),
-			'path' => $config->get( 'CookiePath' ),
-			'domain' => $config->get( 'CookieDomain' ),
-			'secure' => $config->get( 'CookieSecure' ) || $this->config->get( 'ForceHTTPS' ),
-			'httpOnly' => $config->get( 'CookieHttpOnly' ),
-			'sameSite' => $config->get( 'CookieSameSite' ),
+			'prefix' => $this->getConfig()->get( 'CookiePrefix' ),
+			'path' => $this->getConfig()->get( 'CookiePath' ),
+			'domain' => $this->getConfig()->get( 'CookieDomain' ),
+			'secure' => $this->getConfig()->get( 'CookieSecure' ) || $this->getConfig()->get( 'ForceHTTPS' ),
+			'httpOnly' => $this->getConfig()->get( 'CookieHttpOnly' ),
+			'sameSite' => $this->getConfig()->get( 'CookieSameSite' ),
 		];
 	}
 
@@ -217,8 +214,8 @@ class CookieSessionProvider extends SessionProvider {
 
 		$forceHTTPS = $session->shouldForceHTTPS() || $user->requiresHTTPS();
 		if ( $forceHTTPS ) {
-			$options['secure'] = $this->config->get( 'CookieSecure' )
-				|| $this->config->get( 'ForceHTTPS' );
+			$options['secure'] = $this->getConfig()->get( 'CookieSecure' )
+				|| $this->getConfig()->get( 'ForceHTTPS' );
 		}
 
 		$response->setCookie( $this->params['sessionName'], $session->getId(), null,
@@ -275,7 +272,7 @@ class CookieSessionProvider extends SessionProvider {
 	 * @param WebRequest $request
 	 */
 	protected function setForceHTTPSCookie( $set, ?SessionBackend $backend, WebRequest $request ) {
-		if ( $this->config->get( 'ForceHTTPS' ) ) {
+		if ( $this->getConfig()->get( 'ForceHTTPS' ) ) {
 			// No need to send a cookie if the wiki is always HTTPS (T256095)
 			return;
 		}
@@ -440,10 +437,10 @@ class CookieSessionProvider extends SessionProvider {
 	 */
 	protected function getLoginCookieExpiration( $cookieName, $shouldRememberUser ) {
 		$extendedCookies = $this->getExtendedLoginCookies();
-		$normalExpiration = $this->config->get( 'CookieExpiration' );
+		$normalExpiration = $this->getConfig()->get( 'CookieExpiration' );
 
 		if ( $shouldRememberUser && in_array( $cookieName, $extendedCookies, true ) ) {
-			$extendedExpiration = $this->config->get( 'ExtendedLoginCookieExpiration' );
+			$extendedExpiration = $this->getConfig()->get( 'ExtendedLoginCookieExpiration' );
 
 			return ( $extendedExpiration !== null ) ? (int)$extendedExpiration : (int)$normalExpiration;
 		} else {

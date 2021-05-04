@@ -147,6 +147,8 @@ because of Phabricator reports.
   - ParserOptions::setCurrentRevisionCallback
 * User::getGrantName(), hard deprecated since 1.36, has been removed.
   Use MWGrants::grantName instead.
+* SessionProvider class doesn't extend LoggerAwareInterface.
+  So SessionProvider can't be typehinted as LoggerAwareInterface.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
@@ -185,6 +187,10 @@ because of Phabricator reports.
   warnings.
 * LockManagerGroup::singleton() and ::destroySingletons(), deprecated since
   1.34, now emit deprecation warnings.
+* SessionProvider ::setLogger(), ::setManager(), ::setConfig(),
+  ::setHookContainer() were soft deprecated. Use ::init() to inject
+  dependencies or override ::postInitSetup() to do any custom
+  post-initialization configuration.
 * …
 
 === Other changes in 1.37 ===
@@ -198,6 +204,11 @@ because of Phabricator reports.
 * The overridable postInitSetup() method was added to the
   AbstractAuthenticationProvider class. A provider can override postInitSetup()
   to do any custom post-initialization configuration.
+* The overridable postInitSetup() method was added to the SessionProvider
+  class. A provider can override postInitSetup() to do any custom
+  post-initialization configuration.
+* The protected getConfig() method was added to the SessionProvider class.
+  Use SessionProvider::getConfig to get a config.
 * …
 
 == Compatibility ==
