@@ -103,4 +103,12 @@ class BlockActionInfo {
 		return array_search( $actionId, $this->getAllBlockActions() );
 	}
 
+	/**
+	 * @param string $action
+	 * @return int|bool False if the action is not in the list of blockable actions
+	 */
+	public function getIdFromAction( string $action ) {
+		return $this->getAllBlockActions()[$action] ?? false;
+	}
+
 }
