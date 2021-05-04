@@ -60,7 +60,8 @@
 				// Overwrite the array elements with cryptographically strong random values.
 				// https://developer.mozilla.org/en-US/docs/Web/API/Crypto/getRandomValues
 				// NOTE: this operation can fail internally (T263041), so the try-catch block
-				// must be preserved even after WebCrypto is supported in all Grade A browsers.
+				// must be preserved even after WebCrypto is supported in all modern (Grade A)
+				// browsers.
 				crypto.getRandomValues( rnds );
 			} catch ( e ) {
 				rnds = new Array( 5 );

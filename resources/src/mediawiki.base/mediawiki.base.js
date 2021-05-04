@@ -761,7 +761,7 @@ mw.user = {
 // @deprecated since 1.23 Use $ or jQuery instead
 mw.log.deprecate( window, '$j', $, 'Use $ or jQuery instead.' );
 
-// Process callbacks for Grade A that require modules.
+// Process callbacks for modern browsers (Grade A) that require modules.
 queue = window.RLQ;
 // Replace temporary RLQ implementation from startup.js with the
 // final implementation that also processes callbacks that can

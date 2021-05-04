@@ -3,10 +3,10 @@
 	var featureTestable, bannedUserAgent;
 
 	// Browsers that pass or fail the feature test and get bucketed
-	// correctly as Grade A and Grade C. This is tested here to make
-	// sure they don't get caught in any bad UX-snif regexes
+	// correctly as modern (Grade A) and basic (Grade C) supported. This is tested
+	// here to make sure they don't get caught in any bad UX-snif regexes.
 	featureTestable = [
-		/* Grade A */
+		/* Modern support (Grade A) */
 
 		// Chrome
 		'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_7; en-US) AppleWebKit/534.16 (KHTML, like Gecko) Chrome/10.0.648.205 Safari/534.16',
@@ -47,7 +47,7 @@
 		// UC Mini (speed mode off)
 		'Mozilla/5.0 (Linux; U; Android 6.0.1; en-US; Nexus_5 Build/MMB29S) AppleWebKit/528.5+ (KHTML, like Gecko) Version/3.1.2 Mobile Safari/525.20.1 UCBrowser/10.7.6.805 Mobile',
 
-		/* Grade C */
+		/* Basic support (Grade C) */
 
 		// Internet Explorer < 10
 		'Mozilla/2.0 (compatible; MSIE 3.03; Windows 3.1)',
@@ -78,7 +78,7 @@
 		'BlackBerry9300/5.0.0.716 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/133',
 		'BlackBerry7250/4.0.0 Profile/MIDP-2.0 Configuration/CLDC-1.1',
 
-		/* Grade X */
+		/* Unknown support (Grade X) */
 
 		// Open WebOS < 1.5 (Palm Pre, Palm Pixi)
 		'Mozilla/5.0 (webOS/1.0; U; en-US) AppleWebKit/525.27.1 (KHTML, like Gecko) Version/1.0 Safari/525.27.1 Pre/1.0',
@@ -115,10 +115,10 @@
 	];
 
 	// Browsers that pass the feature test but for which we chose to serve
-	// a Grade C experience instead. E.g. they have implementation bugs
+	// a basic experience instead. E.g. they have implementation bugs
 	// for which support would be more expensive than deem worthwhile.
 	bannedUserAgent = [
-		/* Grade C */
+		/* Basic (Grade C) */
 
 		// Internet Explorer 10
 		'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.1; WOW64; Trident/6.0)',
