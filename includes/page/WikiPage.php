@@ -1448,8 +1448,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @todo Factor out into a PageStore service, or move into PageUpdater.
 	 *
 	 * @param IDatabase $dbw
-	 * @param Revision|RevisionRecord $revision For ID number, and text used to set
-	 *   length and redirect status fields. Passing a Revision is deprecated since 1.35
+	 * @param RevisionRecord $revision For ID number, and text used to set
+	 *   length and redirect status fields.
 	 * @param int|null $lastRevision If given, will not overwrite the page field
 	 *   when different from the currently set value.
 	 *   Giving 0 indicates the new page flag should be set on.
@@ -1457,7 +1457,10 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *   removing rows in redirect table.
 	 * @return bool Success; false if the page row was missing or page_latest changed
 	 */
-	public function updateRevisionOn( $dbw, $revision, $lastRevision = null,
+	public function updateRevisionOn(
+		$dbw,
+		RevisionRecord $revision,
+		$lastRevision = null,
 		$lastRevIsRedirect = null
 	) {
 		// TODO: move into PageUpdater or PageStore
@@ -1469,11 +1472,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			throw new InvalidArgumentException(
 				__METHOD__ . ': Revision has ID ' . var_export( $revision->getId(), 1 )
 			);
-		}
-
-		if ( $revision instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revision = $revision->getRevisionRecord();
 		}
 
 		$content = $revision->getContent( SlotRecord::MAIN );
@@ -1571,54 +1569,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * If the given revision is newer than the currently set page_latest,
-	 * update the page record. Otherwise, do nothing.
-	 *
-	 * @deprecated since 1.24 (soft), 1.35 (hard), use updateRevisionOn instead
-	 *
-	 * @param IDatabase $dbw
-	 * @param Revision $revision
-	 * @return bool
-	 */
-	public function updateIfNewerOn( $dbw, $revision ) {
-		wfDeprecated( __METHOD__, '1.24' );
-
-		$revisionRecord = $revision->getRevisionRecord();
-
-		$row = $dbw->selectRow(
-			[ 'revision', 'page' ],
-			[ 'rev_id', 'rev_timestamp', 'page_is_redirect' ],
-			[
-				'page_id' => $this->getId(),
-				'page_latest=rev_id'
-			],
-			__METHOD__
-		);
-
-		if ( $row ) {
-			$rowTimestamp = MWTimestamp::convert( TS_MW, $row->rev_timestamp );
-			if ( $rowTimestamp >= $revisionRecord->getTimestamp() ) {
-				return false;
-			}
-			$prev = $row->rev_id;
-			$lastRevIsRedirect = (bool)$row->page_is_redirect;
-		} else {
-			// No or missing previous revision; mark the page as new
-			$prev = 0;
-			$lastRevIsRedirect = null;
-		}
-
-		$ret = $this->updateRevisionOn(
-			$dbw,
-			$revisionRecord,
-			$prev,
-			$lastRevIsRedirect
-		);
-
-		return $ret;
-	}
-
-	/**
 	 * Helper method for checking whether two revisions have differences that go
 	 * beyond the main slot.
 	 *
@@ -1626,57 +1576,16 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @deprecated Use only as a stop-gap before refactoring to support MCR.
 	 *
-	 * @param Revision|RevisionRecord $a (revision deprecated since 1.35)
-	 * @param Revision|RevisionRecord $b (revision deprecated since 1.35)
+	 * @param RevisionRecord $a
+	 * @param RevisionRecord $b
 	 * @return bool
 	 */
-	public static function hasDifferencesOutsideMainSlot( $a, $b ) {
-		if ( $a instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with Revision objects', '1.35' );
-			$a = $a->getRevisionRecord();
-		}
-		if ( $b instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with Revision objects', '1.35' );
-			$b = $b->getRevisionRecord();
-		}
+	public static function hasDifferencesOutsideMainSlot( RevisionRecord $a, RevisionRecord $b ) {
 		$aSlots = $a->getSlots();
 		$bSlots = $b->getSlots();
 		$changedRoles = $aSlots->getRolesWithDifferentContent( $bSlots );
 
 		return ( $changedRoles !== [ SlotRecord::MAIN ] && $changedRoles !== [] );
-	}
-
-	/**
-	 * Get the content that needs to be saved in order to undo all revisions
-	 * between $undo and $undoafter. Revisions must belong to the same page,
-	 * must exist and must not be deleted
-	 *
-	 * @deprecated since 1.35, use ContentHandler::getUndoContent instead
-	 *
-	 * @param Revision $undo
-	 * @param Revision $undoafter Must be an earlier revision than $undo
-	 * @return Content|bool Content on success, false on failure
-	 * @since 1.21
-	 * Before we had the Content object, this was done in getUndoText
-	 */
-	public function getUndoContent( Revision $undo, Revision $undoafter ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		// TODO: MCR: replace this with a method that returns a RevisionSlotsUpdate
-
-		if ( self::hasDifferencesOutsideMainSlot(
-			$undo->getRevisionRecord(),
-			$undoafter->getRevisionRecord()
-		) ) {
-			// Cannot yet undo edits that involve anything other the main slot.
-			return false;
-		}
-
-		$handler = $undo->getContentHandler();
-
-		// TODO remove use of Revision objects by deprecating this method entirely
-		$revRecord = $this->getRevisionRecord();
-		$revision = $revRecord ? new Revision( $revRecord ) : null;
-		return $handler->getUndoContent( $revision, $undo, $undoafter );
 	}
 
 	/**
@@ -2227,9 +2136,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @deprecated since 1.32, use getDerivedDataUpdater instead.
 	 *
 	 * @param Content $content
-	 * @param Revision|RevisionRecord|null $revision
-	 *        Used with vary-revision or vary-revision-id. Passing a Revision object
-	 *        is hard deprecated since 1.35;
+	 * @param RevisionRecord|null $revision
+	 *        Used with vary-revision or vary-revision-id.
 	 * @param UserIdentity|null $user
 	 * @param string|null $serialFormat IGNORED
 	 * @param bool $useCache Check shared prepared edit cache
@@ -2240,7 +2148,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 */
 	public function prepareContentForEdit(
 		Content $content,
-		$revision = null,
+		RevisionRecord $revision = null,
 		UserIdentity $user = null,
 		$serialFormat = null,
 		$useCache = true
@@ -2249,16 +2157,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		if ( !$user ) {
 			$user = $wgUser;
-		}
-
-		if ( $revision !== null ) {
-			if ( $revision instanceof Revision ) {
-				wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-				$revision = $revision->getRevisionRecord();
-			} elseif ( !( $revision instanceof RevisionRecord ) ) {
-				throw new InvalidArgumentException(
-					__METHOD__ . ': invalid $revision argument type ' . gettype( $revision ) );
-			}
 		}
 
 		$slots = RevisionSlotsUpdate::newFromContent( [ SlotRecord::MAIN => $content ] );
@@ -2289,8 +2187,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @deprecated since 1.32 (soft), use DerivedPageDataUpdater::doUpdates instead.
 	 *
-	 * @param Revision|RevisionRecord $revisionRecord since 1.35, can be a RevisionRecord
-	 *   object, and passing a Revision is hard deprecated
+	 * @param RevisionRecord $revisionRecord (Switched from the old Revision class to
+	 *    RevisionRecord since 1.35)
 	 * @param UserIdentity $user User object that did the revision
 	 * @param array $options Array of options, following indexes are used:
 	 * - changed: bool, whether the revision changed the content (default true)
@@ -2298,7 +2196,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * - moved: bool, whether the page was moved (default false)
 	 * - restored: bool, whether the page was undeleted (default false)
 	 * - oldrevision: RevisionRecord object for the pre-update revision (default null)
-	 *     can also be a Revision object, but that is deprecated since 1.35
 	 * - oldcountable: bool, null, or string 'no-change' (default null):
 	 *   - bool: whether the page was counted as an article before that
 	 *     revision, only used in changed is true and created is false
@@ -2310,20 +2207,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *  - causeAgent: name of the user who caused the update. See DataUpdate::getCauseAgent().
 	 *    (string, defaults to the passed user)
 	 */
-	public function doEditUpdates( $revisionRecord, UserIdentity $user, array $options = [] ) {
-		if ( $revisionRecord instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revisionRecord = $revisionRecord->getRevisionRecord();
-		}
-		if ( isset( $options['oldrevision'] ) && $options['oldrevision'] instanceof Revision ) {
-			wfDeprecated(
-				__METHOD__ . ' with the `oldrevision` option being a ' .
-				'Revision object',
-				'1.35'
-			);
-			$options['oldrevision'] = $options['oldrevision']->getRevisionRecord();
-		}
-
+	public function doEditUpdates(
+		RevisionRecord $revisionRecord,
+		UserIdentity $user,
+		array $options = []
+	) {
 		$options += [
 			'causeAction' => 'edit-page',
 			'causeAgent' => $user->getName(),
@@ -3233,20 +3121,17 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param Content|null $content Page content to be used when determining
 	 *   the required updates. This may be needed because $this->getContent()
 	 *   may already return null when the page proper was deleted.
-	 * @param RevisionRecord|Revision|null $revRecord The current page revision at the time of
+	 * @param RevisionRecord|null $revRecord The current page revision at the time of
 	 *   deletion, used when determining the required updates. This may be needed because
 	 *   $this->getRevisionRecord() may already return null when the page proper was deleted.
-	 *  Passing a Revision is deprecated since 1.35
 	 * @param UserIdentity|null $user The user that caused the deletion
 	 */
 	public function doDeleteUpdates(
-		$id, Content $content = null, $revRecord = null, UserIdentity $user = null
+		$id,
+		Content $content = null,
+		RevisionRecord $revRecord = null,
+		UserIdentity $user = null
 	) {
-		if ( $revRecord && $revRecord instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $revRecord->getRevisionRecord();
-		}
-
 		if ( $id !== $this->getId() ) {
 			throw new InvalidArgumentException( 'Mismatching page ID' );
 		}
@@ -3396,21 +3281,15 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Purge caches on page update etc
 	 *
 	 * @param Title $title
-	 * @param RevisionRecord|Revision|null $revRecord Revision that was just saved, may be null
-	 *        passing a Revision is hard deprecated since 1.35
+	 * @param RevisionRecord|null $revRecord Revision that was just saved, may be null
 	 * @param string[]|null $slotsChanged The role names of the slots that were changed.
 	 *        If not given, all slots are assumed to have changed.
 	 */
 	public static function onArticleEdit(
 		Title $title,
-		$revRecord = null,
+		RevisionRecord $revRecord = null,
 		$slotsChanged = null
 	) {
-		if ( $revRecord && $revRecord instanceof Revision ) {
-			wfDeprecated( __METHOD__ . ' with a Revision object', '1.35' );
-			$revRecord = $revRecord->getRevisionRecord();
-		}
-
 		// TODO: move this into a PageEventEmitter service
 
 		$jobs = [];

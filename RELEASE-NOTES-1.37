@@ -95,6 +95,7 @@ because of Phabricator reports.
   - TitleMoveComplete - use PageMoveComplete
   - TitleMoveCompleting - use PageMoveCompleting
   - UndeleteShowRevision - no replacement
+  - UserRetrieveNewTalks - no replacement
   and the following methods and variables have been removed
   - Article::$mRevision
   - Article::getRevisionFetched()
@@ -107,8 +108,27 @@ because of Phabricator reports.
   - PageArchive::getPreviousRevision
   - PageArchive::getRevision
   - Title::getFirstRevision()
+  - User::getNewMessageLinks()
+  - User::getNewMessageRevisionId()
+  - User::setNewtalk()
   - WikiPage::getOldestRevision()
   - WikiPage::getRevision()
+  - WikiPage::getUndoContent()
+  - WikiPage::updateIfNewerOn()
+  and the following methods no longer accept Revision objects as parameters:
+  - Linker::buildRollbackLink
+  - Linker::generateRollback
+  - Linker::getRevDeleteLink
+  - Linker::getRollbackEditCount
+  - Linker::revComment
+  - Linker::revUserLink
+  - Linker::revUserTools
+  - WikiPage::doDeleteUpdates
+  - WikiPage::doEditUpdates
+  - WikiPage::hasDifferencesOutsideMainSlot
+  - WikiPage::onArticleEdit
+  - WikiPage::prepareContentForEdit
+  - WikiPage::updateRevisionOn
 * WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
   Use HOLDOFF_TTL_NONE instead.
 * The following methods and fields in the Language class, deprecated since
@@ -129,6 +149,8 @@ because of Phabricator reports.
   handler without changing the status, the edit form will now be displayed.
 * User::clearNotification() which had been deprecated in 1.35 has been removed.
   Use WatchlistManager::clearTitleUserNotification() instead.
+* User::getNewtalk() which had been deprecated in 1.35 has been removed. Use
+  TalkPageNotificationManager::userHasNewMessages() instead.
 * Autopromote class, deprecated since 1.35, was removed. Use
   UserGroupManager instead.
 * The following classes, hard-deprecated since 1.36, have been removed:

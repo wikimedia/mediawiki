@@ -34,7 +34,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UserAuthority;
-use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Session\SessionManager;
 use MediaWiki\Session\Token;
 use MediaWiki\User\UserFactory;
@@ -2187,117 +2186,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 */
 	public function getTitleKey() {
 		return str_replace( ' ', '_', $this->getName() );
-	}
-
-	/**
-	 * Check if the user has new messages.
-	 * @deprecated since 1.35 Use TalkPageNotificationManager::userHasNewMessages instead
-	 * @return bool True if the user has new messages
-	 */
-	public function getNewtalk() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()
-			->getTalkPageNotificationManager()
-			->userHasNewMessages( $this );
-	}
-
-	/**
-	 * Return the data needed to construct links for new talk page message
-	 * alerts. If there are new messages, this will return an associative array
-	 * with the following data:
-	 *     wiki: The database name of the wiki
-	 *     link: Root-relative link to the user's talk page
-	 *     rev: The last talk page revision that the user has seen or null. This
-	 *         is useful for building diff links.
-	 * If there are no new messages, it returns an empty array.
-	 *
-	 * @deprecated since 1.35
-	 *
-	 * @note This function was designed to accomodate multiple talk pages, but
-	 * currently only returns a single link and revision.
-	 * @return array[]
-	 */
-	public function getNewMessageLinks() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$talks = [];
-		if ( !$this->getHookRunner()->onUserRetrieveNewTalks( $this, $talks ) ) {
-			return $talks;
-		}
-
-		$services = MediaWikiServices::getInstance();
-		$userHasNewMessages = $services->getTalkPageNotificationManager()
-			->userHasNewMessages( $this );
-		if ( !$userHasNewMessages ) {
-			return [];
-		}
-		$utp = $this->getTalkPage();
-		$timestamp = $services->getTalkPageNotificationManager()
-			->getLatestSeenMessageTimestamp( $this );
-		$rev = null;
-		if ( $timestamp ) {
-			$revRecord = $services->getRevisionLookup()
-				->getRevisionByTimestamp( $utp, $timestamp );
-			if ( $revRecord ) {
-				$rev = new Revision( $revRecord );
-			}
-		}
-		return [
-			[
-				'wiki' => WikiMap::getCurrentWikiId(),
-				'link' => $utp->getLocalURL(),
-				'rev' => $rev
-			]
-		];
-	}
-
-	/**
-	 * Get the revision ID for the last talk page revision viewed by the talk
-	 * page owner.
-	 * @deprecated since 1.35
-	 * @return int|null Revision ID or null
-	 */
-	public function getNewMessageRevisionId() {
-		wfDeprecated( __METHOD__, '1.35' );
-		$newMessageRevisionId = null;
-		$newMessageLinks = $this->getNewMessageLinks();
-
-		// Note: getNewMessageLinks() never returns more than a single link
-		// and it is always for the same wiki, but we double-check here in
-		// case that changes some time in the future.
-		if ( $newMessageLinks && count( $newMessageLinks ) === 1
-			&& WikiMap::isCurrentWikiId( $newMessageLinks[0]['wiki'] )
-			&& $newMessageLinks[0]['rev']
-		) {
-			/** @var Revision $newMessageRevision */
-			$newMessageRevision = $newMessageLinks[0]['rev'];
-			$newMessageRevisionId = $newMessageRevision->getId();
-		}
-
-		return $newMessageRevisionId;
-	}
-
-	/**
-	 * Update the 'You have new messages!' status.
-	 * @param bool $val Whether the user has new messages
-	 * @param RevisionRecord|Revision|null $curRev New, as yet unseen revision of the
-	 *   user talk page. Ignored if null or !$val
-	 * @deprecated since 1.35 Use TalkPageNotificationManager::setUserHasNewMessages or
-	 *   TalkPageNotificationManager::removeUserHasNewMessages
-	 */
-	public function setNewtalk( $val, $curRev = null ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $curRev && $curRev instanceof Revision ) {
-			$curRev = $curRev->getRevisionRecord();
-		}
-		if ( $val ) {
-			MediaWikiServices::getInstance()
-				->getTalkPageNotificationManager()
-				->setUserHasNewMessages( $this, $curRev );
-		} else {
-			MediaWikiServices::getInstance()
-				->getTalkPageNotificationManager()
-				->removeUserHasNewMessages( $this );
-		}
 	}
 
 	/**

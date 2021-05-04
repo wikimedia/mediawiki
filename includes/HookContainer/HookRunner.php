@@ -550,7 +550,6 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserLogoutHook,
 	\MediaWiki\User\Hook\UserRemoveGroupHook,
 	\MediaWiki\User\Hook\UserResetAllOptionsHook,
-	\MediaWiki\User\Hook\UserRetrieveNewTalksHook,
 	\MediaWiki\User\Hook\UserSaveOptionsHook,
 	\MediaWiki\User\Hook\UserSaveSettingsHook,
 	\MediaWiki\User\Hook\UserSendConfirmationMailHook,
@@ -4322,13 +4321,6 @@ class HookRunner implements
 		return $this->container->run(
 			'UserResetAllOptions',
 			[ $user, &$newOptions, $options, $resetKinds ]
-		);
-	}
-
-	public function onUserRetrieveNewTalks( $user, &$talks ) {
-		return $this->container->run(
-			'UserRetrieveNewTalks',
-			[ $user, &$talks ]
 		);
 	}
 
