@@ -3548,13 +3548,7 @@ class Parser {
 		if ( isset( $stuff['revision-record'] ) ) {
 			$revRecord = $stuff['revision-record'];
 		} else {
-			// Triggers deprecation warnings via DeprecatablePropertyArray
-			$rev = $stuff['revision'] ?? null;
-			if ( $rev instanceof Revision ) {
-				$revRecord = $rev->getRevisionRecord();
-			} else {
-				$revRecord = null;
-			}
+			$revRecord = null;
 		}
 
 		$text = $stuff['text'];
@@ -3714,19 +3708,16 @@ class Parser {
 			$title = $content->getRedirectTarget();
 		}
 
-		$legacyRevision = static function () use ( $revRecord ) {
-			return $revRecord ? new Revision( $revRecord ) : null;
-		};
 		$retValues = [
-			'revision' => $legacyRevision,
 			'revision-record' => $revRecord ?: false, // So isset works
 			'text' => $text,
 			'finalTitle' => $finalTitle,
 			'deps' => $deps
 		];
+		// TODO nothing is deprecated, no need to use DeprecatablePropertyArray
 		$propertyArray = new DeprecatablePropertyArray(
 			$retValues,
-			[ 'revision' => '1.35' ],
+			[],
 			__METHOD__
 		);
 		return $propertyArray;

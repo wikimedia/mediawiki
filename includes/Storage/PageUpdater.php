@@ -48,7 +48,6 @@ use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use RecentChange;
-use Revision;
 use RuntimeException;
 use Status;
 use Title;
@@ -1161,9 +1160,10 @@ class PageUpdater {
 
 		// Update article, but only if changed.
 		$status = Status::newGood(
+			// TODO nothing is deprecated, no need to use DeprecatablePropertyArray
 			new DeprecatablePropertyArray(
-				[ 'new' => false, 'revision' => null, 'revision-record' => null ],
-				[ 'revision' => '1.35' ],
+				[ 'new' => false, 'revision-record' => null ],
+				[],
 				__METHOD__ . ' status'
 			)
 		);
@@ -1275,11 +1275,6 @@ class PageUpdater {
 
 			// Return the new revision to the caller
 			$status->value['revision-record'] = $newRevisionRecord;
-
-			// Deprecated via DeprecatablePropertyArray
-			$status->value['revision'] = static function () use ( $newRevisionRecord ) {
-				return new Revision( $newRevisionRecord );
-			};
 		} else {
 			// T34948: revision ID must be set to page {{REVISIONID}} and
 			// related variables correctly. Likewise for {{REVISIONUSER}} (T135261).
@@ -1334,9 +1329,10 @@ class PageUpdater {
 		}
 
 		$status = Status::newGood(
+			// TODO nothing is deprecated, no need to use DeprecatablePropertyArray
 			new DeprecatablePropertyArray(
-				[ 'new' => true, 'revision' => null, 'revision-record' => null ],
-				[ 'revision' => '1.35' ],
+				[ 'new' => true, 'revision-record' => null ],
+				[],
 				__METHOD__ . ' status'
 			)
 		);
@@ -1429,11 +1425,6 @@ class PageUpdater {
 
 		// Return the new revision to the caller
 		$status->value['revision-record'] = $newRevisionRecord;
-
-		// Deprecated via DeprecatablePropertyArray
-		$status->value['revision'] = static function () use ( $newRevisionRecord ) {
-			return new Revision( $newRevisionRecord );
-		};
 
 		// Do secondary updates once the main changes have been committed...
 		DeferredUpdates::addUpdate(

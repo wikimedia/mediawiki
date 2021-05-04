@@ -61,7 +61,6 @@ use Psr\Log\NullLogger;
 use RefreshSecondaryDataUpdate;
 use ResourceLoaderWikiModule;
 use RevertedTagUpdateJob;
-use Revision;
 use SearchUpdate;
 use SiteStatsUpdate;
 use Title;
@@ -1103,7 +1102,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * - moved: bool, whether the page was moved (default false)
 	 * - restored: bool, whether the page was undeleted (default false)
 	 * - oldrevision: RevisionRecord object for the pre-update revision (default null)
-	 *     can also be a Revision object, which is deprecated since 1.35
 	 * - triggeringUser: The user triggering the update (UserIdentity, defaults to the
 	 *   user who created the revision)
 	 * - oldredirect: bool, null, or string 'no-change' (default null):
@@ -1133,19 +1131,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *    default: false) (since 1.36)
 	 */
 	public function prepareUpdate( RevisionRecord $revision, array $options = [] ) {
-		if ( isset( $options['oldrevision'] ) && $options['oldrevision'] instanceof Revision ) {
-			wfDeprecated(
-				__METHOD__ . ' with the `oldrevision` option being a ' .
-				'Revision object',
-				'1.35'
-			);
-			$options['oldrevision'] = $options['oldrevision']->getRevisionRecord();
-		}
 		Assert::parameter(
 			!isset( $options['oldrevision'] )
 			|| $options['oldrevision'] instanceof RevisionRecord,
 			'$options["oldrevision"]',
-			'must be a RevisionRecord (or Revision)'
+			'must be a RevisionRecord'
 		);
 		Assert::parameter(
 			!isset( $options['triggeringUser'] )

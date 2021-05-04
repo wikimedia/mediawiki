@@ -15,7 +15,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWikiIntegrationTestCase;
 use ParserOptions;
 use RecentChange;
-use Revision;
 use Status;
 use TextContent;
 use Title;
@@ -94,10 +93,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \WikiPage::newPageUpdater()
 	 */
 	public function testCreatePage() {
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
-		$this->hideDeprecated( 'Revision::__construct' );
-
 		$user = $this->getTestUser()->getUser();
 		$authority = $this->newAuthority( $user );
 
@@ -145,7 +140,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $updater->isNew(), 'isNew()' );
 		$this->assertFalse( $updater->isUnchanged(), 'isUnchanged()' );
 		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
-		$this->assertInstanceOf( Revision::class, $updater->getStatus()->value['revision'] );
+		$this->assertInstanceOf(
+			RevisionRecord::class,
+			$updater->getStatus()->value['revision-record']
+		);
 
 		// check the EditResult object
 		$this->assertFalse( $updater->getEditResult()->getOriginalRevisionId(),
@@ -201,10 +199,6 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 	 * @covers \WikiPage::newPageUpdater()
 	 */
 	public function testUpdatePage() {
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doCreate status get 'revision'" );
-		$this->hideDeprecated( "MediaWiki\Storage\PageUpdater::doModify status get 'revision'" );
-		$this->hideDeprecated( 'Revision::__construct' );
-
 		$user = $this->getTestUser()->getUser();
 		$authority = $this->newAuthority( $user );
 
@@ -241,7 +235,10 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $updater->getStatus()->isOK(), 'getStatus()->isOK()' );
 		$this->assertFalse( $updater->isNew(), 'isNew()' );
 		$this->assertNotNull( $updater->getNewRevision(), 'getNewRevision()' );
-		$this->assertInstanceOf( Revision::class, $updater->getStatus()->value['revision'] );
+		$this->assertInstanceOf(
+			RevisionRecord::class,
+			$updater->getStatus()->value['revision-record']
+		);
 		$this->assertFalse( $updater->isUnchanged(), 'isUnchanged()' );
 
 		// check the EditResult object
