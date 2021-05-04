@@ -739,6 +739,11 @@ class DatabaseSqlite extends Database {
 		return false;
 	}
 
+	public function getTopologyBasedServerId() {
+		// Sqlite topologies trivially consist of single master server for the dataset
+		return 0;
+	}
+
 	public function serverIsReadOnly() {
 		$this->assertHasConnectionHandle();
 
