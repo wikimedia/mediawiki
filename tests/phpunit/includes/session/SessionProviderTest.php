@@ -2,8 +2,12 @@
 
 namespace MediaWiki\Session;
 
+use Config;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
+use Psr\Log\NullLogger;
+use TestLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -15,15 +19,29 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	public function testBasics() {
 		$manager = new SessionManager();
-		$logger = new \TestLogger();
+		$logger = new TestLogger();
 		$config = new \HashConfig();
 		$hookContainer = $this->createHookContainer();
+		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 
 		$provider = $this->getMockForAbstractClass( SessionProvider::class );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 
+		$provider->init(
+			$logger,
+			$config,
+			$manager,
+			$hookContainer,
+			$userNameUtils
+		);
+		$this->assertSame( $logger, $priv->logger );
+		$this->assertSame( $config, $priv->getConfig() );
+		$this->assertSame( $manager, $priv->manager );
+		$this->assertSame( $manager, $provider->getManager() );
+		$this->assertSame( $hookContainer, $priv->getHookContainer() );
+		$this->assertSame( $userNameUtils, $priv->userNameUtils );
 		$provider->setConfig( $config );
-		$this->assertSame( $config, $priv->config );
+		$this->assertSame( $config, $priv->getConfig() );
 		$provider->setLogger( $logger );
 		$this->assertSame( $logger, $priv->logger );
 		$provider->setManager( $manager );
@@ -70,7 +88,13 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $persistId );
 		$provider->method( 'canChangeUser' )
 			->willReturn( $persistUser );
-		$provider->setManager( $manager );
+		$provider->init(
+			$this->createNoOpMock( NullLogger::class ),
+			$this->createNoOpAbstractMock( Config::class ),
+			$manager,
+			$this->createHookContainer(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		if ( $ok ) {
 			$info = $provider->newSessionInfo();
@@ -153,7 +177,13 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$provider = $this->getMockForAbstractClass( SessionProvider::class,
 			[], 'MockSessionProvider' );
-		$provider->setConfig( $config );
+		$provider->init(
+			new TestLogger(),
+			$config,
+			$this->createNoOpMock( SessionManager::class ),
+			$this->createHookContainer(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 
 		$this->assertSame( 'eoq8cb1mg7j30ui5qolafps4hg29k5bb', $priv->hashToSessionId( 'foobar' ) );

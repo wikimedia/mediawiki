@@ -2,9 +2,13 @@
 
 namespace MediaWiki\Session;
 
+use Config;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
+use MultiConfig;
 use Psr\Log\LogLevel;
+use RequestContext;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -42,7 +46,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 			] );
 		}
 		$manager = new SessionManager( [
-			'config' => new \MultiConfig( [ $this->config, \RequestContext::getMain()->getConfig() ] ),
+			'config' => new MultiConfig( [ $this->config, RequestContext::getMain()->getConfig() ] ),
 			'logger' => new \Psr\Log\NullLogger,
 			'store' => new TestBagOStuff,
 		] );
@@ -209,7 +213,13 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	public function testCheckSessionInfo() {
 		$logger = new \TestLogger( true );
 		$provider = $this->getProvider();
-		$provider->setLogger( $logger );
+		$provider->init(
+			$logger,
+			$this->createNoOpAbstractMock( Config::class ),
+			$this->createNoOpMock( SessionManager::class ),
+			$this->createHookContainer(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		$user = static::getTestSysop()->getUser();
 		$request = $this->getMockBuilder( \FauxRequest::class )
@@ -287,7 +297,13 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 	public function testGetAllowedUserRights() {
 		$logger = new \TestLogger( true );
 		$provider = $this->getProvider();
-		$provider->setLogger( $logger );
+		$provider->init(
+			$logger,
+			$this->createNoOpAbstractMock( Config::class ),
+			$this->createNoOpMock( SessionManager::class ),
+			$this->createHookContainer(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		$backend = TestUtils::getDummySessionBackend();
 		$backendPriv = TestingAccessWrapper::newFromObject( $backend );

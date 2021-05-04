@@ -2,7 +2,10 @@
 
 namespace MediaWiki\Session;
 
+use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
+use Psr\Log\NullLogger;
+use TestLogger;
 use User;
 use Wikimedia\TestingAccessWrapper;
 
@@ -13,7 +16,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCase {
 
-	private function getProvider( $name, $prefix = null, $forceHTTPS = false ) {
+	private function getProvider( $name, $prefix = null, $forceHTTPS = false, $logger = null ) {
 		$config = new \HashConfig();
 		$config->set( 'CookiePrefix', 'wgCookiePrefix' );
 		$config->set( 'ForceHTTPS', $forceHTTPS );
@@ -29,10 +32,13 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 		$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 			->setConstructorArgs( [ $params ] )
 			->getMockForAbstractClass();
-		$provider->setLogger( new \TestLogger() );
-		$provider->setConfig( $config );
-		$provider->setManager( new SessionManager() );
-		$provider->setHookContainer( $this->createHookContainer() );
+		$provider->init(
+			$logger ?? new TestLogger(),
+			$config,
+			new SessionManager(),
+			$this->createHookContainer(),
+			$this->createNoOpMock( UserNameUtils::class )
+		);
 
 		return $provider;
 	}
@@ -188,8 +194,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 			'wgForceHTTPS' => $forceHTTPS,
 		] );
 
-		$provider = $this->getProvider( 'session', null, $forceHTTPS );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider = $this->getProvider( 'session', null, $forceHTTPS, new NullLogger() );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 		$priv->sessionCookieOptions = [
 			'prefix' => 'x',
@@ -213,7 +218,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 				'idIsSafe' => true,
 			] ),
 			new TestBagOStuff(),
-			new \Psr\Log\NullLogger(),
+			new NullLogger(),
 			$this->createHookContainer(),
 			10
 		);
@@ -284,8 +289,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 	}
 
 	public function testUnpersistSession() {
-		$provider = $this->getProvider( 'session', '' );
-		$provider->setLogger( new \Psr\Log\NullLogger() );
+		$provider = $this->getProvider( 'session', '', false, new NullLogger() );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 
 		// No cookie
