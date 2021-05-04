@@ -23,6 +23,7 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
  * @covers MediaWikiTitleCodec
@@ -32,6 +33,7 @@ use MediaWiki\Page\PageIdentityValue;
  *        ^--- needed because of global state in
  */
 class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 
 	protected function setUp() : void {
 		parent::setUp();
@@ -89,52 +91,25 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Returns a mock NamespaceInfo that has only the following methods:
-	 *
-	 *  * exists()
-	 *  * getCanonicalName()
-	 *  * hasGenderDistinction()
-	 *  * isCapitalized()
-	 *
-	 * All other methods throw. The only namespaces that exist are NS_SPECIAL, NS_MAIN, NS_TALK,
-	 * NS_USER, and NS_USER_TALK. NS_USER and NS_USER_TALK have gender distinctions. All namespaces
-	 * are capitalized.
+	 * Returns a NamespaceInfo where the only namespaces that exist are NS_SPECIAL, NS_MAIN, NS_TALK,
+	 * NS_USER, and NS_USER_TALK. As per the real NamespaceInfo, NS_USER and NS_USER_TALK have
+	 * gender distinctions. All namespaces are capitalized.
 	 *
 	 * @return NamespaceInfo
 	 */
 	private function getNamespaceInfo() : NamespaceInfo {
-		$canonicalNamespaces = [
-			NS_SPECIAL => 'Special',
-			NS_MAIN => '',
-			NS_TALK => 'Talk',
-			NS_USER => 'User',
-			NS_USER_TALK => 'User_talk',
-		];
-
-		$nsInfo = $this->createMock( NamespaceInfo::class );
-
-		$nsInfo->method( 'exists' )
-			->will( $this->returnCallback( static function ( $ns ) use ( $canonicalNamespaces ) {
-				return isset( $canonicalNamespaces[$ns] );
-			} ) );
-
-		$nsInfo->method( 'getCanonicalName' )
-			->will( $this->returnCallback( static function ( $ns ) use ( $canonicalNamespaces ) {
-				return $canonicalNamespaces[$ns] ?? false;
-			} ) );
-
-		$nsInfo->method( 'hasGenderDistinction' )
-			->will( $this->returnCallback( static function ( $ns ) {
-				return $ns === NS_USER || $ns === NS_USER_TALK;
-			} ) );
-
-		$nsInfo->method( 'isCapitalized' )->willReturn( true );
-
-		$nsInfo->expects( $this->never() )->method( $this->anythingBut(
-			'exists', 'getCanonicalName', 'hasGenderDistinction', 'isCapitalized'
-		) );
-
-		return $nsInfo;
+		// DummyServicesTrait::getDummyNamespaceInfo with the relevant overrides (the
+		// namespaces that exist, and the capitalization)
+		return $this->getDummyNamespaceInfo( [
+			'CanonicalNamespaceNames' => [
+				NS_SPECIAL => 'Special',
+				NS_MAIN => '',
+				NS_TALK => 'Talk',
+				NS_USER => 'User',
+				NS_USER_TALK => 'User_talk',
+			],
+			'CapitalLinks' => true,
+		] );
 	}
 
 	protected function makeCodec( $lang ) {

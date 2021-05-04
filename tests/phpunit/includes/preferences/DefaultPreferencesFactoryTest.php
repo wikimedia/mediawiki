@@ -3,6 +3,7 @@
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserOptionsLookup;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
@@ -31,6 +32,7 @@ use Wikimedia\TestingAccessWrapper;
  * @coversDefaultClass MediaWiki\Preferences\DefaultPreferencesFactory
  */
 class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 	use TestAllServiceOptionsUsed;
 
 	/** @var IContextSource */
@@ -93,12 +95,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		Language $language,
 		UserOptionsLookup $userOptionsLookup = null
 	) {
-		$mockNsInfo = $this->createMock( NamespaceInfo::class );
-		$mockNsInfo->method( 'getValidNamespaces' )->willReturn( [
-			NS_MAIN, NS_TALK, NS_USER, NS_USER_TALK
-		] );
-		$mockNsInfo->expects( $this->never() )
-			->method( $this->anythingBut( 'getValidNamespaces', '__destruct' ) );
+		// DummyServicesTrait::getDummyNamespaceInfo
+		$nsInfo = $this->getDummyNamespaceInfo();
 
 		$services = MediaWikiServices::getInstance();
 
@@ -108,7 +106,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$language,
 			$services->getAuthManager(),
 			$services->getLinkRenderer(),
-			$mockNsInfo,
+			$nsInfo,
 			$mockPM,
 			$services->getLanguageConverterFactory()->getLanguageConverter( $language ),
 			$services->getLanguageNameUtils(),
