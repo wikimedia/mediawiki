@@ -61,6 +61,7 @@
 	"apihelp-block-param-partial": "Sperrt den Benutzer für spezielle Seiten oder Namensräume und nicht für die gesamte Website.",
 	"apihelp-block-param-pagerestrictions": "Listet die für den Benutzer zu sperrenden Titel für das Bearbeiten auf. Nur zutreffend, wenn <var>partial</var> auf true gesetzt ist.",
 	"apihelp-block-param-namespacerestrictions": "Listet Namensraumkennungen zum Sperren des Benutzers für das Bearbeiten auf. Nur zutreffend, wenn <var>partial</var> auf true gesetzt ist.",
+	"apihelp-block-param-actionrestrictions": "Liste der Aktionen, die der Benutzer nicht ausführen darf.. Nur zutreffend, wenn <var>partial</var> auf true gesetzt ist.",
 	"apihelp-block-example-ip-simple": "Sperren der IP-Adresse <kbd>192.0.2.5</kbd> für drei Tage mit einer Begründung.",
 	"apihelp-block-example-user-complex": "Benutzer <kbd>Vandal</kbd> unbeschränkt mit einer Begründung sperren und die Erstellung neuer Benutzerkonten sowie den Versand von E-Mails verhindern.",
 	"apihelp-changeauthenticationdata-summary": "Ändert die Authentifizierungsdaten für den aktuellen Benutzer.",
