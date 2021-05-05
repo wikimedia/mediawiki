@@ -111,7 +111,7 @@ class RevisionItem extends RevisionItemBase {
 		}
 		$linkRenderer = $this->getLinkRenderer();
 		return $linkRenderer->makeKnownLink(
-			$this->list->title,
+			Title::castFromPageIdentity( $this->list->getPage() ),
 			$date,
 			[],
 			[
