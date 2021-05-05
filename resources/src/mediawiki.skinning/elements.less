@@ -211,6 +211,9 @@ textarea {
 	display: block;
 	.box-sizing( border-box );
 	width: 100%;
+	/* Support: Firefox */
+	/* Border rule required to override system appearance on Linux. T13641. */
+	border: 1px solid #c8ccd1;
 	padding: 0.1em;
 }
 
