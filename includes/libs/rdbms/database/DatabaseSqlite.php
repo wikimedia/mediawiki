@@ -151,11 +151,7 @@ class DatabaseSqlite extends Database {
 		}
 
 		// Check if the database file already exists but is non-readable
-		if (
-			!self::isProcessMemoryPath( $path ) &&
-			file_exists( $path ) &&
-			!is_readable( $path )
-		) {
+		if ( !self::isProcessMemoryPath( $path ) && is_file( $path ) && !is_readable( $path ) ) {
 			throw $this->newExceptionAfterConnectError( 'SQLite database file is not readable' );
 		} elseif ( !in_array( $this->trxMode, self::$VALID_TRX_MODES, true ) ) {
 			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
