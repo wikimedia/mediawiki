@@ -46,6 +46,7 @@ class DatabaseSqliteTest extends \MediaWikiIntegrationTestCase {
 				'tablePrefix' => '',
 				'cliMode' => true,
 				'agent' => 'unit-tests',
+				'serverName' => null,
 				'flags' => DBO_DEFAULT,
 				'variables' => [],
 				'profiler' => null,

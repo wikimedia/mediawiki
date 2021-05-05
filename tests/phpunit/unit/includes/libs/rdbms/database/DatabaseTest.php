@@ -31,7 +31,13 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 */
 	public function testFactory() {
 		$m = Database::NEW_UNCONNECTED; // no-connect mode
-		$p = [ 'host' => 'localhost', 'user' => 'me', 'password' => 'myself', 'dbname' => 'i' ];
+		$p = [
+			'host' => 'localhost',
+			'serverName' => 'localdb',
+			'user' => 'me',
+			'password' => 'myself',
+			'dbname' => 'i'
+		];
 
 		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'mysqli', $p, $m ) );
 		$this->assertInstanceOf( DatabaseMysqli::class, Database::factory( 'MySqli', $p, $m ) );
@@ -43,6 +49,10 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
 		$x = $p + [ 'dbDirectory' => 'some/file' ];
 		$this->assertInstanceOf( DatabaseSqlite::class, Database::factory( 'sqlite', $x, $m ) );
+
+		$conn = Database::factory( 'sqlite', $p, $m );
+		$this->assertEquals( 'localhost', $conn->getServer() );
+		$this->assertEquals( 'localdb', $conn->getServerName() );
 	}
 
 	public static function provideAddQuotes() {
@@ -436,17 +446,23 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 			'closeConnection',
 			'dataSeek',
 			'doQuery',
-			'fetchObject', 'fetchRow',
-			'fieldInfo', 'fieldName',
-			'getSoftwareLink', 'getServerVersion',
+			'fetchObject',
+			'fetchRow',
+			'fieldInfo',
+			'fieldName',
+			'getSoftwareLink',
+			'getServerVersion',
 			'getType',
 			'indexInfo',
 			'insertId',
-			'lastError', 'lastErrno',
-			'numFields', 'numRows',
+			'lastError',
+			'lastErrno',
+			'numFields',
+			'numRows',
 			'open',
 			'strencode',
-			'tableExists'
+			'tableExists',
+			'getServer'
 		];
 		$db = $this->getMockBuilder( Database::class )
 			->disableOriginalConstructor()
@@ -465,7 +481,8 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$wdb->deprecationLogger = static function ( $msg ) {
 		};
 		$wdb->currentDomain = DatabaseDomain::newUnspecified();
-		$wdb->server = 'localhost';
+
+		$db->method( 'getServer' )->willReturn( '*dummy*' );
 
 		return $db;
 	}

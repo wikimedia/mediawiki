@@ -84,6 +84,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $user;
 	/** @var string|null Password used to establish the current connection */
 	protected $password;
+	/** @var string|null Readible name or host/IP of the database server */
+	protected $serverName;
 	/** @var bool Whether this PHP instance is for a CLI script */
 	protected $cliMode;
 	/** @var string Agent name for query profiling */
@@ -92,7 +94,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $topologyRole;
 	/** @var string|null Host (or address) of the root master server for the replication topology */
 	protected $topologyRootMaster;
-	/** @var array Parameters used by initConnection() to establish a connection */
+	/** @var array<string,mixed> Connection parameters used by initConnection() and open() */
 	protected $connectionParams;
 	/** @var string[]|int[]|float[] SQL variables values to use for all new connections */
 	protected $connectionVariables;
@@ -260,6 +262,19 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		self::DBO_DEBUG | self::DBO_NOBUFFER | self::DBO_TRX | self::DBO_DDLMODE
 	);
 
+	/** Hostname or IP address to use on all connections */
+	protected const CONN_HOST = 'host';
+	/** Database server username to use on all connections */
+	protected const CONN_USER = 'user';
+	/** Database server password to use on all connections */
+	protected const CONN_PASSWORD = 'password';
+	/** Database name to use on initial connection */
+	protected const CONN_INITIAL_DB = 'dbname';
+	/** Schema name to use on initial connection */
+	protected const CONN_INITIAL_SCHEMA = 'schema';
+	/** Table prefix to use on initial connection */
+	protected const CONN_INITIAL_TABLE_PREFIX = 'tablePrefix';
+
 	/**
 	 * @note exceptions for missing libraries/drivers should be thrown in initConnection()
 	 * @stable to call
@@ -267,20 +282,20 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	public function __construct( array $params ) {
 		$this->connectionParams = [
-			'host' => ( isset( $params['host'] ) && $params['host'] !== '' )
+			self::CONN_HOST => ( isset( $params['host'] ) && $params['host'] !== '' )
 				? $params['host']
 				: null,
-			'user' => ( isset( $params['user'] ) && $params['user'] !== '' )
+			self::CONN_USER => ( isset( $params['user'] ) && $params['user'] !== '' )
 				? $params['user']
 				: null,
-			'dbname' => ( isset( $params['dbname'] ) && $params['dbname'] !== '' )
+			self::CONN_INITIAL_DB => ( isset( $params['dbname'] ) && $params['dbname'] !== '' )
 				? $params['dbname']
 				: null,
-			'schema' => ( isset( $params['schema'] ) && $params['schema'] !== '' )
+			self::CONN_INITIAL_SCHEMA => ( isset( $params['schema'] ) && $params['schema'] !== '' )
 				? $params['schema']
 				: null,
-			'password' => is_string( $params['password'] ) ? $params['password'] : null,
-			'tablePrefix' => (string)$params['tablePrefix']
+			self::CONN_PASSWORD => is_string( $params['password'] ) ? $params['password'] : null,
+			self::CONN_INITIAL_TABLE_PREFIX => (string)$params['tablePrefix']
 		];
 
 		$this->lbInfo = $params['lbInfo'] ?? [];
@@ -290,8 +305,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$this->flags = (int)$params['flags'];
 		$this->cliMode = (bool)$params['cliMode'];
 		$this->agent = (string)$params['agent'];
-		$this->topologyRole = (string)$params['topologyRole'];
-		$this->topologyRootMaster = (string)$params['topologicalMaster'];
+		$this->serverName = $params['serverName'];
+		$this->topologyRole = $params['topologyRole'];
+		$this->topologyRootMaster = $params['topologicalMaster'];
 		$this->nonNativeInsertSelectBatchSize = $params['nonNativeInsertSelectBatchSize'] ?? 10000;
 
 		$this->srvCache = $params['srvCache'];
@@ -339,27 +355,27 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 */
 	protected function doInitConnection() {
 		$this->open(
-			$this->connectionParams['host'],
-			$this->connectionParams['user'],
-			$this->connectionParams['password'],
-			$this->connectionParams['dbname'],
-			$this->connectionParams['schema'],
-			$this->connectionParams['tablePrefix']
+			$this->connectionParams[self::CONN_HOST],
+			$this->connectionParams[self::CONN_USER],
+			$this->connectionParams[self::CONN_PASSWORD],
+			$this->connectionParams[self::CONN_INITIAL_DB],
+			$this->connectionParams[self::CONN_INITIAL_SCHEMA],
+			$this->connectionParams[self::CONN_INITIAL_TABLE_PREFIX]
 		);
 	}
 
 	/**
 	 * Open a new connection to the database (closing any existing one)
 	 *
-	 * @param string|null $server Database server host
-	 * @param string|null $user Database user name
-	 * @param string|null $password Database user password
-	 * @param string|null $dbName Database name
+	 * @param string|null $server Server host/address and optional port {@see connectionParams}
+	 * @param string|null $user User name {@see connectionParams}
+	 * @param string|null $password User password {@see connectionParams}
+	 * @param string|null $db Database name
 	 * @param string|null $schema Database schema name
 	 * @param string $tablePrefix Table prefix
 	 * @throws DBConnectionError
 	 */
-	abstract protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix );
+	abstract protected function open( $server, $user, $password, $db, $schema, $tablePrefix );
 
 	/**
 	 * Construct a Database subclass instance given a database type and parameters
@@ -368,7 +384,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *
 	 * @param string $type A possible DB type (sqlite, mysql, postgres,...)
 	 * @param array $params Parameter map with keys:
-	 *   - host : The hostname of the DB server
+	 *   - host : The hostname or IP address of the database server
 	 *   - user : The name of the database user the client operates under
 	 *   - password : The password for the database user
 	 *   - dbname : The name of the database to use where queries do not specify one.
@@ -388,7 +404,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *      'mysqli' driver; the old one 'mysql' has been removed.
 	 *   - variables: Optional map of session variables to set after connecting. This can be
 	 *      used to adjust lock timeouts or encoding modes and the like.
-	 *   - topologyRole: Optional IDatabase::ROLE_* constant for the server.
+	 *   - serverName : Optional readable name for the database server.
+	 *   - topologyRole: Optional IDatabase::ROLE_* constant for the database server.
 	 *   - topologicalMaster: Optional name of the master server within the replication topology.
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
@@ -433,6 +450,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 				'cliMode' => ( PHP_SAPI === 'cli' || PHP_SAPI === 'phpdbg' ),
 				'agent' => '',
 				'ownerId' => null,
+				'serverName' => null,
 				'topologyRole' => null,
 				'topologicalMaster' => null,
 				// Objects and callbacks
@@ -919,9 +937,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected function getLogContext( array $extras = [] ) {
 		return array_merge(
 			[
-				'db_server' => $this->server,
+				'db_server' => $this->getServerName(),
 				'db_name' => $this->getDBname(),
-				'db_user' => $this->user,
+				'db_user' => $this->connectionParams[self::CONN_USER],
 			],
 			$extras
 		);
@@ -1394,7 +1412,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			if ( $this->trxLevel() && !$this->trxDoneWrites ) {
 				$this->trxDoneWrites = true;
 				$this->trxProfiler->transactionWritingIn(
-					$this->getServer(),
+					$this->getServerName(),
 					$this->getDomainID(),
 					$this->trxShortId
 				);
@@ -1452,14 +1470,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// Avoid the overhead of logging calls unless debug mode is enabled
 		if ( $this->getFlag( self::DBO_DEBUG ) ) {
 			$this->queryLogger->debug(
-				"{method} [{runtime}s] {db_host}: {sql}",
-				[
+				"{method} [{runtime}s] {db_server}: {sql}",
+				$this->getLogContext( [
 					'method' => $fname,
-					'db_host' => $this->getServer(),
 					'sql' => $sql,
 					'domain' => $this->getDomainID(),
 					'runtime' => round( $queryRuntime, 3 )
-				]
+				] )
 			);
 		}
 
@@ -1624,7 +1641,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		// @note: leave trxRecurringCallbacks in place
 		if ( $this->trxDoneWrites ) {
 			$this->trxProfiler->transactionWritingOut(
-				$this->getServer(),
+				$this->getServerName(),
 				$this->getDomainID(),
 				$oldTrxShortId,
 				$this->pendingWriteQueryDuration( self::ESTIMATE_TOTAL ),
@@ -2847,7 +2864,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	public function getServer() {
-		return $this->server;
+		return $this->connectionParams[self::CONN_HOST] ?? null;
+	}
+
+	public function getServerName() {
+		return $this->serverName ?? $this->getServer();
 	}
 
 	/**
@@ -4769,7 +4790,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		if ( $this->trxDoneWrites ) {
 			$this->lastWriteTime = microtime( true );
 			$this->trxProfiler->transactionWritingOut(
-				$this->getServer(),
+				$this->getServerName(),
 				$this->getDomainID(),
 				$oldTrxShortId,
 				$writeTime,
@@ -4833,7 +4854,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		$writeTime = $this->pingAndCalculateLastTrxApplyTime();
 		if ( $this->trxDoneWrites ) {
 			$this->trxProfiler->transactionWritingOut(
-				$this->getServer(),
+				$this->getServerName(),
 				$this->getDomainID(),
 				$oldTrxShortId,
 				$writeTime,
@@ -5015,9 +5036,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		try {
 			$this->open(
-				$this->server,
-				$this->user,
-				$this->password,
+				$this->connectionParams[self::CONN_HOST],
+				$this->connectionParams[self::CONN_USER],
+				$this->connectionParams[self::CONN_PASSWORD],
 				$this->currentDomain->getDatabase(),
 				$this->currentDomain->getSchema(),
 				$this->tablePrefix()
@@ -5026,18 +5047,15 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$ok = true;
 
 			$this->connLogger->warning(
-				$fname . ': lost connection to {dbserver}; reconnected',
-				[
-					'dbserver' => $this->getServer(),
-					'exception' => new RuntimeException()
-				]
+				$fname . ': lost connection to {db_server}; reconnected',
+				$this->getLogContext( [ 'exception' => new RuntimeException() ] )
 			);
 		} catch ( DBConnectionError $e ) {
 			$ok = false;
 
 			$this->connLogger->error(
-				$fname . ': lost connection to {dbserver} permanently',
-				[ 'dbserver' => $this->getServer() ]
+				$fname . ': lost connection to {db_server} permanently',
+				$this->getLogContext( [ 'exception' => new RuntimeException() ] )
 			);
 		}
 
@@ -5149,6 +5167,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * Get the amount of replication lag for this database server
 	 *
 	 * Callers should avoid using this method while a transaction is active
+	 *
+	 * @see getLag()
 	 *
 	 * @stable to override
 	 * @return float|int|false Database replication lag in seconds or false on error
@@ -5835,9 +5855,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->trxSectionCancelCallbacks = []; // don't copy
 			$this->handleSessionLossPreconnect(); // no trx or locks anymore
 			$this->open(
-				$this->server,
-				$this->user,
-				$this->password,
+				$this->connectionParams[self::CONN_HOST],
+				$this->connectionParams[self::CONN_USER],
+				$this->connectionParams[self::CONN_PASSWORD],
 				$this->currentDomain->getDatabase(),
 				$this->currentDomain->getSchema(),
 				$this->tablePrefix()

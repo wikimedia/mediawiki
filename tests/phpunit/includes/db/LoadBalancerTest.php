@@ -40,7 +40,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 
 		return [
 			'host' => $wgDBserver,
-			'hostName' => 'testhost',
+			'serverName' => 'testhost',
 			'dbname' => $wgDBname,
 			'tablePrefix' => $this->dbPrefix(),
 			'user' => $wgDBuser,

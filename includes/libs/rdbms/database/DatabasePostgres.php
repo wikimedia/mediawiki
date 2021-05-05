@@ -37,8 +37,8 @@ class DatabasePostgres extends Database {
 	private $coreSchema;
 	/** @var string */
 	private $tempSchema;
-	/** @var string[] Map of (reserved table name => alternate table name) */
-	private $keywordTableMap = [];
+	/** @var null|string[] Map of (reserved table name => alternate table name) */
+	private $keywordTableMap;
 	/** @var float|string */
 	private $numericVersion;
 
@@ -48,6 +48,7 @@ class DatabasePostgres extends Database {
 	/**
 	 * @see Database::__construct()
 	 * @param array $params Additional parameters include:
+	 *   - port: A port to append to the hostname
 	 *   - keywordTableMap : Map of reserved table names to alternative table names to use
 	 *   This is is deprecated since 1.37. Reserved identifiers should be quoted where necessary,
 	 */
@@ -87,7 +88,7 @@ class DatabasePostgres extends Database {
 		return false;
 	}
 
-	protected function open( $server, $user, $password, $dbName, $schema, $tablePrefix ) {
+	protected function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw $this->newExceptionAfterConnectError(
 				"Postgres functions missing, have you compiled PHP with the --with-pgsql\n" .
@@ -98,14 +99,10 @@ class DatabasePostgres extends Database {
 
 		$this->close( __METHOD__ );
 
-		$this->server = $server;
-		$this->user = $user;
-		$this->password = $password;
-
 		$connectVars = [
 			// A database must be specified in order to connect to Postgres. If $dbName is not
 			// specified, then use the standard "postgres" database that should exist by default.
-			'dbname' => strlen( $dbName ) ? $dbName : 'postgres',
+			'dbname' => strlen( $db ) ? $db : 'postgres',
 			'user' => $user,
 			'password' => $password
 		];
@@ -153,7 +150,7 @@ class DatabasePostgres extends Database {
 				);
 			}
 			$this->determineCoreSchema( $schema );
-			$this->currentDomain = new DatabaseDomain( $dbName, $schema, $tablePrefix );
+			$this->currentDomain = new DatabaseDomain( $db, $schema, $tablePrefix );
 		} catch ( RuntimeException $e ) {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
@@ -177,9 +174,9 @@ class DatabasePostgres extends Database {
 			// Postgres doesn't support selectDB in the same way MySQL does.
 			// So if the DB name doesn't match the open connection, open a new one
 			$this->open(
-				$this->server,
-				$this->user,
-				$this->password,
+				$this->connectionParams[self::CONN_HOST],
+				$this->connectionParams[self::CONN_USER],
+				$this->connectionParams[self::CONN_PASSWORD],
 				$domain->getDatabase(),
 				$domain->getSchema(),
 				$domain->getTablePrefix()

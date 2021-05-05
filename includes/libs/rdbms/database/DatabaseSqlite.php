@@ -133,7 +133,7 @@ class DatabaseSqlite extends Database {
 		return 'sqlite';
 	}
 
-	protected function open( $server, $user, $pass, $dbName, $schema, $tablePrefix ) {
+	protected function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		$this->close( __METHOD__ );
 
 		// Note that for SQLite, $server, $user, and $pass are ignored
@@ -145,7 +145,7 @@ class DatabaseSqlite extends Database {
 		if ( $this->dbPath !== null ) {
 			$path = $this->dbPath;
 		} elseif ( $this->dbDir !== null ) {
-			$path = self::generateFileName( $this->dbDir, $dbName );
+			$path = self::generateFileName( $this->dbDir, $db );
 		} else {
 			throw $this->newExceptionAfterConnectError( "DB path or directory required" );
 		}
@@ -160,8 +160,6 @@ class DatabaseSqlite extends Database {
 		} elseif ( !in_array( $this->trxMode, self::$VALID_TRX_MODES, true ) ) {
 			throw $this->newExceptionAfterConnectError( "Got mode '{$this->trxMode}' for BEGIN" );
 		}
-
-		$this->server = 'localhost';
 
 		$attributes = [];
 		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
@@ -184,7 +182,7 @@ class DatabaseSqlite extends Database {
 			throw $this->newExceptionAfterConnectError( $e->getMessage() );
 		}
 
-		$this->currentDomain = new DatabaseDomain( $dbName, null, $tablePrefix );
+		$this->currentDomain = new DatabaseDomain( $db, null, $tablePrefix );
 
 		try {
 			$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_NO_RETRY;
