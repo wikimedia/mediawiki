@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
@@ -15,7 +16,7 @@ use Wikimedia\Message\MessageValue;
  * @author DannyS712
  */
 class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
-	use MockTitleTrait;
+	use DummyServicesTrait;
 
 	private function getUCFirstLanguageMock() {
 		// Used by a number of tests
@@ -53,8 +54,8 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			$logger = new NullLogger();
 		}
 
-		// MockTitleTrait::makeMockTitleCodec
-		$titleParser = $this->makeMockTitleCodec( [
+		// DummyServicesTrait::getDummyTitleParser
+		$titleParser = $this->getDummyTitleParser( [
 			'validInterwikis' => [ 'interwiki' ],
 		] );
 

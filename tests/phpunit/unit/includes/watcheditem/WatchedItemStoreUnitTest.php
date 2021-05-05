@@ -6,6 +6,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -22,6 +23,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers WatchedItemStore
  */
 class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 	use MockTitleTrait;
 
 	/**
@@ -117,40 +119,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mock = $this->createMock( ReadOnlyMode::class );
 		$mock->method( 'isReadOnly' )
 			->willReturn( $readOnly );
-		return $mock;
-	}
-
-	/**
-	 * Assumes that only getSubjectPage and getTalkPage will ever be called, and everything passed
-	 * to them will have namespace 0.
-	 * @return MockObject|NamespaceInfo
-	 */
-	private function getMockNsInfo() : NamespaceInfo {
-		$mock = $this->createMock( NamespaceInfo::class );
-		$mock->method( 'getSubjectPage' )->will( $this->returnArgument( 0 ) );
-		$mock->method( 'getTalkPage' )->willReturnCallback(
-			static function ( $target ) {
-				return new TitleValue( 1, $target->getDbKey() );
-			}
-		);
-		$mock->method( 'getSubject' )->willReturn( 0 );
-		$mock->method( 'getTalk' )->willReturn( 1 );
-		$mock->method( 'isWatchable' )->willReturnCallback(
-			static function ( $ns ) {
-				return $ns >= 0;
-			}
-		);
-
-		$mock->expects( $this->never() )
-			->method(
-				$this->anythingBut(
-					'getSubjectPage',
-					'getTalkPage',
-					'getSubject',
-					'getTalk',
-					'isWatchable'
-				)
-			);
 		return $mock;
 	}
 
@@ -308,6 +276,11 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		] );
 
 		$db = $mocks['db'] ?? $this->getMockDb();
+
+		// If we don't use a manual mock for something specific, get a full
+		// NamespaceInfo service from DummyServicesTrait::getDummyNamespaceInfo
+		$nsInfo = $mocks['nsInfo'] ?? $this->getDummyNamespaceInfo();
+
 		return new WatchedItemStore(
 			$options,
 			$mocks['lbFactory'] ??
@@ -316,7 +289,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			new HashBagOStuff(),
 			$mocks['cache'] ?? $this->getMockCache(),
 			$mocks['readOnlyMode'] ?? $this->getMockReadOnlyMode(),
-			$mocks['nsInfo'] ?? $this->getMockNsInfo(),
+			$nsInfo,
 			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
 			$this->createHookContainer(),
 			$this->getMockLinkBatchFactory( $db ),
