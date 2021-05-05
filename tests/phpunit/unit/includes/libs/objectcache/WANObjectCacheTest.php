@@ -2138,7 +2138,7 @@ class WANObjectCacheTest extends MediaWikiUnitTestCase {
 
 		$this->assertSame(
 			$wanCache::QOS_UNKNOWN,
-			$wanCache->getQoS( $wanCache::ATTR_EMULATION )
+			$wanCache->getQoS( $wanCache::ATTR_DURABILITY )
 		);
 	}
 

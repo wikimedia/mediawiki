@@ -39,12 +39,12 @@ interface StorageAwareness {
 	/** Storage medium operation failed due to usage limitations or an I/O error */
 	public const ERR_UNEXPECTED = 3;
 
-	/** Emulation/fallback mode; see QOS_EMULATION_*; higher is better */
+	/** @deprecated Since 1.41; Emulation/fallback mode; see QOS_EMULATION_*; higher is better */
 	public const ATTR_EMULATION = 1;
 	/** Durability of writes; see QOS_DURABILITY_* (higher means stronger) */
 	public const ATTR_DURABILITY = 2;
 
-	/** Fallback disk-based SQL store */
+	/** @deprecated Since 1.41; Fallback disk-based SQL store */
 	public const QOS_EMULATION_SQL = 1;
 
 	/** Data is never saved to begin with (blackhole store) */
