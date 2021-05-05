@@ -7,18 +7,6 @@
  */
 class PathRouterTest extends MediaWikiUnitTestCase {
 
-	/**
-	 * @var PathRouter
-	 */
-	protected $basicRouter;
-
-	protected function setUp() : void {
-		parent::setUp();
-		$router = new PathRouter;
-		$router->add( "/wiki/$1" );
-		$this->basicRouter = $router;
-	}
-
 	public static function provideParse() {
 		$tests = [
 			// Basic path parsing
