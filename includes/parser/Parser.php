@@ -757,8 +757,8 @@ class Parser {
 		}
 		$limitReport .= 'Cached time: ' . $this->mOutput->getCacheTime() . "\n";
 		$limitReport .= 'Cache expiry: ' . $this->mOutput->getCacheExpiry() . "\n";
-		$limitReport .= 'Dynamic content: ' .
-			( $this->mOutput->hasDynamicContent() ? 'true' : 'false' ) .
+		$limitReport .= 'Reduced expiry: ' .
+			( $this->mOutput->hasReducedExpiry() ? 'true' : 'false' ) .
 			"\n";
 		$limitReport .= 'Complications: [' . implode( ', ', $this->mOutput->getAllFlags() ) . "]\n";
 
