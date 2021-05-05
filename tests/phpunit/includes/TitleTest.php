@@ -1,13 +1,12 @@
 <?php
 
-use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 
 /**
@@ -15,6 +14,8 @@ use MediaWiki\User\UserIdentityValue;
  * @group Title
  */
 class TitleTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
+
 	protected function setUp() : void {
 		parent::setUp();
 
@@ -30,6 +31,31 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
+
+		// For testSecureAndSplitValid, testSecureAndSplitInvalid
+		$this->setMwGlobals( 'wgLocalInterwikis', [ 'localtestiw' ] );
+
+		// Define valid interwiki prefixes and their configuration
+		// DummyServicesTrait::getDummyInterwikiLookup
+		$interwikiLookup = $this->getDummyInterwikiLookup( [
+			// testSecureAndSplitValid, testSecureAndSplitInvalid
+			[ 'iw_prefix' => 'localtestiw', 'iw_url' => 'localtestiw' ],
+			[ 'iw_prefix' => 'remotetestiw', 'iw_url' => 'remotetestiw' ],
+
+			// testSubpages
+			'wiki',
+
+			// testIsValid
+			'wikipedia',
+
+			// testIsValidRedirectTarget
+			'acme',
+
+			// testGetFragmentForURL
+			[ 'iw_prefix' => 'de', 'iw_local' => 1 ],
+			[ 'iw_prefix' => 'zz', 'iw_local' => 0 ],
+		] );
+		$this->setService( 'InterwikiLookup', $interwikiLookup );
 	}
 
 	protected function tearDown() : void {
@@ -214,22 +240,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	private function secureAndSplitGlobals() {
-		$this->setMwGlobals( [
-			'wgLocalInterwikis' => [ 'localtestiw' ],
-			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
-				[
-					'iw_prefix' => 'localtestiw',
-					'iw_url' => 'localtestiw',
-				],
-				[
-					'iw_prefix' => 'remotetestiw',
-					'iw_url' => 'remotetestiw',
-				],
-			] ),
-		] );
-	}
-
 	/**
 	 * See also mediawiki.Title.test.js
 	 * @covers Title::secureAndSplit
@@ -237,7 +247,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
 	 */
 	public function testSecureAndSplitValid( $text ) {
-		$this->secureAndSplitGlobals();
 		$this->assertInstanceOf( Title::class, Title::newFromText( $text ), "Valid: $text" );
 	}
 
@@ -248,7 +257,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @note This mainly tests MediaWikiTitleCodec::parseTitle().
 	 */
 	public function testSecureAndSplitInvalid( $text, $expectedErrorMessage ) {
-		$this->secureAndSplitGlobals();
 		try {
 			Title::newFromTextThrow( $text ); // should throw
 			$this->fail( "Title::newFromTextThrow should have thrown with $text" );
@@ -550,16 +558,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::getSubpage
 	 */
 	public function testSubpage( $title, $sub, LinkTarget $expected ) {
-		$interwikiLookup = $this->createMock( InterwikiLookup::class );
-		$interwikiLookup->method( 'isValidInterwiki' )
-			->willReturnCallback(
-				static function ( $prefix ) {
-					return $prefix == 'wiki';
-				}
-			);
-
-		$this->setService( 'InterwikiLookup', $interwikiLookup );
-
 		$title = Title::newFromText( $title );
 		$expected = Title::newFromLinkTarget( $expected );
 		$actual = $title->getSubpage( $sub );
@@ -781,15 +779,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $isValid
 	 */
 	public function testIsValid( Title $title, $isValid ) {
-		$iwLookup = $this->createMock( InterwikiLookup::class );
-		$iwLookup->method( 'isValidInterwiki' )
-			->willReturn( true );
-
-		$this->setService(
-			'InterwikiLookup',
-			$iwLookup
-		);
-
 		$this->assertEquals( $isValid, $title->isValid(), $title->getFullText() );
 	}
 
@@ -824,15 +813,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $isValid
 	 */
 	public function testIsValidRedirectTarget( Title $title, $isValid ) {
-		$iwLookup = $this->createMock( InterwikiLookup::class );
-		$iwLookup->method( 'isValidInterwiki' )
-			->willReturn( true );
-
-		$this->setService(
-			'InterwikiLookup',
-			$iwLookup
-		);
-
+		// InterwikiLookup is configured in setUp()
 		$this->assertEquals( $isValid, $title->isValidRedirectTarget(), $title->getFullText() );
 	}
 
@@ -1189,17 +1170,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideCreateFragmentTitle
 	 */
 	public function testCreateFragmentTitle( Title $title, $fragment ) {
-		$this->setMwGlobals( [
-			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
-				[
-					'iw_prefix' => 'interwiki',
-					'iw_url' => 'http://example.com/',
-					'iw_local' => 0,
-					'iw_trans' => 0,
-				],
-			] ),
-		] );
-
 		$fragmentTitle = $title->createFragmentTarget( $fragment );
 
 		$this->assertEquals( $title->getNamespace(), $fragmentTitle->getNamespace() );
@@ -1306,34 +1276,10 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 			'wgFragmentMode' => [ 'html5' ],
 			'wgExternalInterwikiFragmentMode' => 'legacy',
 		] );
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'interwiki',
-			[
-				[
-					'iw_prefix' => 'de',
-					'iw_url' => 'http://de.wikipedia.org/wiki/',
-					'iw_api' => 'http://de.wikipedia.org/w/api.php',
-					'iw_wikiid' => 'dewiki',
-					'iw_local' => 1,
-					'iw_trans' => 0,
-				],
-				[
-					'iw_prefix' => 'zz',
-					'iw_url' => 'http://zzwiki.org/wiki/',
-					'iw_api' => 'http://zzwiki.org/w/api.php',
-					'iw_wikiid' => 'zzwiki',
-					'iw_local' => 0,
-					'iw_trans' => 0,
-				],
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
+		// InterwikiLookup is configured in setUp()
 
 		$title = Title::newFromText( $titleStr );
 		self::assertEquals( $expected, $title->getFragmentForURL() );
-
-		$dbw->delete( 'interwiki', '*', __METHOD__ );
 	}
 
 	public function provideGetFragmentForURL() {
