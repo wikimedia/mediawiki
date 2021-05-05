@@ -105,4 +105,45 @@ class UserIdentityValueTest extends MediaWikiUnitTestCase {
 		$this->expectException( PreconditionException::class );
 		$user->assertWiki( UserIdentityValue::LOCAL );
 	}
+
+	/**
+	 * @covers \MediaWiki\User\UserIdentityValue::newAnonymous
+	 */
+	public function testNewAnonymous() {
+		$user = UserIdentityValue::newAnonymous( 'TEST', 'acmewiki' );
+		$this->assertFalse( $user->isRegistered() );
+		$this->assertSame( 'TEST', $user->getName() );
+		$this->assertSame( 0, $user->getId( 'acmewiki' ) );
+		$this->assertSame( 'acmewiki', $user->getWikiId() );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserIdentityValue::newRegistered
+	 */
+	public function testNewRegistered() {
+		$user = UserIdentityValue::newRegistered( 1, 'TEST', 'acmewiki' );
+		$this->assertTrue( $user->isRegistered() );
+		$this->assertSame( 'TEST', $user->getName() );
+		$this->assertSame( 1, $user->getId( 'acmewiki' ) );
+		$this->assertSame( 'acmewiki', $user->getWikiId() );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserIdentityValue::newRegistered
+	 */
+	public function testNewRegistered_invalid() {
+		$this->expectException( InvalidArgumentException::class );
+		UserIdentityValue::newRegistered( 0, 'TEST', 'acmewiki' );
+	}
+
+	/**
+	 * @covers \MediaWiki\User\UserIdentityValue::newExternal
+	 */
+	public function testNewExternal() {
+		$user = UserIdentityValue::newExternal( 'imported', 'TEST', 'acmewiki' );
+		$this->assertFalse( $user->isRegistered() );
+		$this->assertSame( 'imported>TEST', $user->getName() );
+		$this->assertSame( 0, $user->getId( 'acmewiki' ) );
+		$this->assertSame( 'acmewiki', $user->getWikiId() );
+	}
 }
