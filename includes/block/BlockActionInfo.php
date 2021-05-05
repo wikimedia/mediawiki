@@ -22,6 +22,7 @@ namespace MediaWiki\Block;
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MWException;
 
 /**
  * Defines the actions that can be blocked by a partial block. They are
@@ -91,6 +92,9 @@ class BlockActionInfo {
 		if ( !$this->allBlockActions ) {
 			$this->allBlockActions = self::CORE_BLOCK_ACTIONS;
 			$this->hookRunner->onGetAllBlockActions( $this->allBlockActions );
+		}
+		if ( count( $this->allBlockActions ) !== count( array_unique( $this->allBlockActions ) ) ) {
+			throw new MWException( 'Blockable action IDs not unique' );
 		}
 		return $this->allBlockActions;
 	}
