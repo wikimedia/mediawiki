@@ -3508,10 +3508,16 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * Opportunistically enqueue link update jobs given fresh parser output if useful
+	 * Opportunistically enqueue link update jobs after a fresh parser output was generated.
 	 *
-	 * @param ParserOutput $parserOutput Current version page output
+	 * This method should only be called by PoolWorkArticleViewCurrent, after a page view
+	 * experienced a miss from the ParserCache, and a new ParserOutput was generated.
+	 * Specifically, for load reasons, this method must not get called during page views that
+	 * use a cached ParserOutput.
+	 *
 	 * @since 1.25
+	 * @internal For use by PoolWorkArticleViewCurrent
+	 * @param ParserOutput $parserOutput Current version page output
 	 */
 	public function triggerOpportunisticLinksUpdate( ParserOutput $parserOutput ) {
 		if ( wfReadOnly() ) {
@@ -3532,11 +3538,23 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		];
 
 		if ( $this->mTitle->areRestrictionsCascading() ) {
-			// If the page is cascade protecting, the links should really be up-to-date
+			// In general, MediaWiki does not re-run LinkUpdate (e.g. for search index, category
+			// listings, and backlinks for Whatlinkshere), unless either the page was directly
+			// edited, or was re-generate following a template edit propagating to an affected
+			// page. As such, during page views when there is no valid ParserCache entry,
+			// we re-parse and save, but leave indexes as-is.
+			//
+			// We make an exception for pages that have cascading protection (perhaps for a wiki's
+			// "Main Page"). When such page is re-parsed on-demand after a parser cache miss, we
+			// queue a high-priority LinksUpdate job, to ensure that we really protect all
+			// content that is currently transcluded onto the page. This is important, because
+			// wikitext supports conditional statements based on the current time, which enables
+			// transcluding of a different sub page based on which day it is, and then show that
+			// information on the Main Page, without the Main Page itself being edited.
 			JobQueueGroup::singleton()->lazyPush(
 				RefreshLinksJob::newPrioritized( $this->mTitle, $params )
 			);
-		} elseif ( !$config->get( 'MiserMode' ) && $parserOutput->hasDynamicContent() ) {
+		} elseif ( !$config->get( 'MiserMode' ) && $parserOutput->hasReducedExpiry() ) {
 			// Assume the output contains "dynamic" time/random based magic words.
 			// Only update pages that expired due to dynamic content and NOT due to edits
 			// to referenced templates/files. When the cache expires due to dynamic content,
