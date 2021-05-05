@@ -4,6 +4,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LoadBalancer;
 
@@ -11,6 +12,8 @@ use Wikimedia\Rdbms\LoadBalancer;
  * @group Database
  */
 class MovePageTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
+
 	/**
 	 * The only files that exist are 'File:Existent.jpg', 'File:Existent2.jpg', and
 	 * 'File:Existent-file-no-page.jpg'. Calling unexpected methods causes a test failure.
@@ -66,14 +69,9 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		$mockLB->expects( $this->never() )
 			->method( $this->anythingBut( 'getConnection', '__destruct' ) );
 
-		$mockNsInfo = $this->createMock( NamespaceInfo::class );
-		$mockNsInfo->method( 'isMovable' )->will( $this->returnCallback(
-			static function ( $ns ) {
-				return $ns >= 0;
-			}
-		) );
-		$mockNsInfo->expects( $this->never() )
-			->method( $this->anythingBut( 'isMovable', '__destruct' ) );
+		// If we don't use a manual mock for something specific, get a full
+		// NamespaceInfo service from DummyServicesTrait::getDummyNamespaceInfo
+		$nsInfo = $mocks['nsInfo'] ?? $this->getDummyNamespaceInfo();
 
 		return new MovePage(
 			$old,
@@ -87,7 +85,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				]
 			),
 			$mockLB,
-			$params['nsInfo'] ?? $mockNsInfo,
+			$nsInfo,
 			$params['wiStore'] ?? $this->createNoOpMock( WatchedItemStore::class ),
 			$params['repoGroup'] ?? $this->getMockRepoGroup(),
 			$params['contentHandlerFactory']

@@ -83,7 +83,9 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		$hookContainer = $params['hookContainer'] ?? $this->createHookContainer();
 
 		// DummyServicesTrait::getDummyNamespaceInfo
-		$nsInfo = $this->getDummyNamespaceInfo( $hookContainer );
+		$nsInfo = $this->getDummyNamespaceInfo( [
+			'hookContainer' => $hookContainer, // in case any of the hooks matter
+		] );
 
 		return new WatchlistManager(
 			$options,

@@ -25,7 +25,6 @@ use GenderCache;
 use Language;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
@@ -160,10 +159,12 @@ trait DummyServicesTrait {
 	}
 
 	/**
-	 * @param HookContainer|null $hookContainer
+	 * @param array $options Valid keys are 'hookContainer' for a specific HookContainer
+	 *   to use (falls back to just creating an empty one), plus any of the configuration
+	 *   included in NamespaceInfo::CONSTRUCTOR_OPTIONS
 	 * @return NamespaceInfo
 	 */
-	private function getDummyNamespaceInfo( HookContainer $hookContainer = null ) : NamespaceInfo {
+	private function getDummyNamespaceInfo( array $options = [] ) : NamespaceInfo {
 		// Rather than trying to use a complicated mock, it turns out that almost
 		// all of the NamespaceInfo service works fine in unit tests. The only issues:
 		//   - in two places, NamespaceInfo tries to read extension attributes through
@@ -177,9 +178,9 @@ trait DummyServicesTrait {
 		//     the dedicated tests for that deprecation method, which use the real service
 
 		// configuration is based on DefaultSettings
-		// TODO add a way for tests to override this
-		$options = new ServiceOptions(
+		$serviceOptions = new ServiceOptions(
 			NamespaceInfo::CONSTRUCTOR_OPTIONS,
+			$options, // caller can override the default config by specifying it here
 			[
 				'CanonicalNamespaceNames' => NamespaceInfo::CANONICAL_NAMES,
 				'CapitalLinkOverrides' => [],
@@ -207,8 +208,8 @@ trait DummyServicesTrait {
 			]
 		);
 		return new NamespaceInfo(
-			$options,
-			$hookContainer ?? $this->createHookContainer()
+			$serviceOptions,
+			$options['hookContainer'] ?? $this->createHookContainer()
 		);
 	}
 

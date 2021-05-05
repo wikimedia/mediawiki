@@ -11,9 +11,9 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\SpecialPage\SpecialPageFactory;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserGroupManager;
 use MediaWikiUnitTestCase;
-use NamespaceInfo;
 use Title;
 use User;
 use UserCache;
@@ -28,6 +28,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Permissions\PermissionManager
  */
 class PermissionManagerTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 
 	private function getPermissionManager( $options = [] ) {
 		$overrideConfig = $options['config'] ?? [];
@@ -49,8 +50,10 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			$this->createMock( SpecialPageFactory::class );
 		$revisionLookup = $options['revisionLookup'] ??
 			$this->createMock( RevisionLookup::class );
-		$namespaceInfo = $options['namespaceInfo'] ??
-			$this->createMock( NamespaceInfo::class );
+
+		// DummyServicesTrait::getDummyNamespaceInfo
+		$namespaceInfo = $this->getDummyNamespaceInfo();
+
 		$groupPermissionsLookup = $options['groupPermissionsLookup'] ??
 			new GroupPermissionsLookup(
 				new ServiceOptions( GroupPermissionsLookup::CONSTRUCTOR_OPTIONS, $config )
@@ -347,22 +350,6 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 		$user->method( 'getName' )->willReturn( $userIsAnon ? '1.1.1.1' : 'NameOfActingUser' );
 		$user->method( 'isAnon' )->willReturn( $userIsAnon );
 
-		// NamespaceInfo - isTalk if namespace is odd, hasSubpages if NS_USER
-		$namespaceInfo = $this->createMock( NamespaceInfo::class );
-		$namespaceInfo->method( 'isTalk' )
-			->willReturnCallback(
-				static function ( $ns ) {
-					return ( $ns > NS_MAIN && $ns % 2 === 1 );
-				}
-			);
-		$namespaceInfo->method( 'hasSubpages' )
-			->willReturnCallback(
-				// Only matters for user pages
-				static function ( $ns ) {
-					return ( $ns === NS_USER );
-				}
-			);
-
 		// HookContainer - always return true (false tested separately)
 		$hookContainer = $this->createMock( HookContainer::class );
 		$hookContainer->method( 'run' )
@@ -379,7 +366,6 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 
 		$permissionManager = $this->getPermissionManager( [
 			'config' => $config,
-			'namespaceInfo' => $namespaceInfo,
 			'hookContainer' => $hookContainer,
 		] );
 		$permissionManager->overrideUserRightsForTesting( $user, $rights );
