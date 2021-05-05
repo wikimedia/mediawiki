@@ -19,7 +19,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	/**
 	 * @return ChangesListSpecialPage
 	 */
-	protected function getPage() {
+	protected function getPageAccessWrapper() {
 		$mock = $this->getMockBuilder( ChangesListSpecialPage::class )
 			->setConstructorArgs(
 				[

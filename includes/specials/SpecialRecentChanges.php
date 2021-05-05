@@ -352,9 +352,9 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		$dbr = $this->getDB();
 
 		$rcQuery = RecentChange::getQueryInfo();
-		$tables = array_merge( $tables, $rcQuery['tables'] );
+		$tables = array_merge( $rcQuery['tables'], $tables );
 		$fields = array_merge( $rcQuery['fields'], $fields );
-		$join_conds = array_merge( $join_conds, $rcQuery['joins'] );
+		$join_conds = array_merge( $rcQuery['joins'], $join_conds );
 
 		// Join with watchlist and watchlist_expiry tables to highlight watched rows.
 		$this->addWatchlistJoins( $dbr, $tables, $fields, $join_conds, $conds );
