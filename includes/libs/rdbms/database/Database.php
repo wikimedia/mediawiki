@@ -2198,13 +2198,13 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	}
 
 	/**
-	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (first is identity key)
-	 * @return string[][] Unique indexes as column lists (first index is the identity key)
+	 * @param string|string[]|string[][] $uniqueKeys Unique indexes (only one is allowed)
+	 * @return string[] List of columns that defines a single unique index
 	 * @since 1.35
 	 */
 	final protected function normalizeUpsertKeys( $uniqueKeys ) {
 		if ( is_string( $uniqueKeys ) ) {
-			return [ [ $uniqueKeys ] ];
+			return [ $uniqueKeys ];
 		}
 
 		if ( !is_array( $uniqueKeys ) || !$uniqueKeys ) {
@@ -2230,9 +2230,9 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			// If an existing row conflicts with new row X on key A and new row Y on key B,
 			// it is not well defined how many UPDATEs should apply to the existing row and
 			// in what order the new rows are checked
-			$this->queryLogger->warning(
-				__METHOD__ . " called with multiple unique keys",
-				[ 'exception' => new RuntimeException() ]
+			throw new DBUnexpectedError(
+				$this,
+				"The unique key array should contain a single unique index"
 			);
 		}
 
@@ -2246,7 +2246,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			);
 		}
 
-		return $uniqueColumnSets;
+		return reset( $uniqueColumnSets );
 	}
 
 	/**
@@ -3296,8 +3296,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $uniqueKeys ) {
-			$uniqueKeys = $this->normalizeUpsertKeys( $uniqueKeys );
-			$this->doReplace( $table, $uniqueKeys, $rows, $fname );
+			$uniqueKey = $this->normalizeUpsertKeys( $uniqueKeys );
+			$this->doReplace( $table, $uniqueKey, $rows, $fname );
 		} else {
 			$this->queryLogger->warning(
 				__METHOD__ . " called with no unique keys",
@@ -3311,18 +3311,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @see Database::replace()
 	 * @stable to override
 	 * @param string $table
-	 * @param string[][] $uniqueKeys Non-empty list of unique keys
+	 * @param string[] $uniqueKey List of columns defining a unique key
 	 * @param array $rows Non-empty list of rows
 	 * @param string $fname
 	 * @since 1.35
 	 */
-	protected function doReplace( $table, array $uniqueKeys, array $rows, $fname ) {
+	protected function doReplace( $table, array $uniqueKey, array $rows, $fname ) {
 		$affectedRowCount = 0;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
 				// Delete any conflicting rows (including ones inserted from $rows)
-				$sqlCondition = $this->makeConditionCollidesUponKeys( [ $row ], $uniqueKeys );
+				$sqlCondition = $this->makeConditionCollidesUponKeys( [ $row ], [ $uniqueKey ] );
 				$this->delete( $table, [ $sqlCondition ], $fname );
 				$affectedRowCount += $this->affectedRows();
 				// Now insert the row
@@ -3405,8 +3405,8 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		}
 
 		if ( $uniqueKeys ) {
-			$uniqueKeys = $this->normalizeUpsertKeys( $uniqueKeys );
-			$this->doUpsert( $table, $rows, $uniqueKeys, $set, $fname );
+			$uniqueKey = $this->normalizeUpsertKeys( $uniqueKeys );
+			$this->doUpsert( $table, $rows, $uniqueKey, $set, $fname );
 		} else {
 			$this->queryLogger->warning(
 				__METHOD__ . " called with no unique keys",
@@ -3423,18 +3423,18 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @stable to override
 	 * @param string $table
 	 * @param array[] $rows Non-empty list of rows
-	 * @param string[][] $uniqueKeys Non-empty list of unique keys
+	 * @param string[] $uniqueKey List of columns defining a unique key
 	 * @param array $set
 	 * @param string $fname
 	 * @since 1.35
 	 */
-	protected function doUpsert( $table, array $rows, array $uniqueKeys, array $set, $fname ) {
+	protected function doUpsert( $table, array $rows, array $uniqueKey, array $set, $fname ) {
 		$affectedRowCount = 0;
 		$this->startAtomic( $fname, self::ATOMIC_CANCELABLE );
 		try {
 			foreach ( $rows as $row ) {
 				// Update any existing conflicting rows (including ones inserted from $rows)
-				$sqlConditions = $this->makeConditionCollidesUponKeys( [ $row ], $uniqueKeys );
+				$sqlConditions = $this->makeConditionCollidesUponKeys( [ $row ], [ $uniqueKey ] );
 				$this->update( $table, $set, [ $sqlConditions ], $fname );
 				$rowsUpdated = $this->affectedRows();
 				$affectedRowCount += $rowsUpdated;

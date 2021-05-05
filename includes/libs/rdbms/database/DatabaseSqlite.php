@@ -678,7 +678,7 @@ class DatabaseSqlite extends Database {
 		return [ 'INSERT OR IGNORE INTO', '' ];
 	}
 
-	protected function doReplace( $table, array $uniqueKeys, array $rows, $fname ) {
+	protected function doReplace( $table, array $uniqueKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
 		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
 		// https://sqlite.org/lang_insert.html

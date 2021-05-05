@@ -188,6 +188,8 @@ because of Phabricator reports.
   Use MWGrants::grantName instead.
 * SessionProvider class doesn't extend LoggerAwareInterface.
   So SessionProvider can't be typehinted as LoggerAwareInterface.
+* IDatabase::upsert() and IDatabase::replace() only accept a single unique key.
+  Previously, a warning was issued if there were multiple unique keys provided.
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
