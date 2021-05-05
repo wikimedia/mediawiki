@@ -51,8 +51,7 @@ class RollbackEdits extends Maintenance {
 	public function execute() {
 		$user = $this->getOption( 'user' );
 		$services = MediaWikiServices::getInstance();
-		$userNameUtils = $services->getUserNameUtils();
-		$username = $userNameUtils->isIP( $user ) ? $user : $userNameUtils->getCanonical( $user );
+		$username = $services->getUserNameUtils()->isIP( $user ) ? $user : User::getCanonicalName( $user );
 		if ( !$username ) {
 			$this->fatalError( 'Invalid username' );
 		}

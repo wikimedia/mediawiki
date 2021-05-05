@@ -291,7 +291,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		}
 		$name = $this->userNameUtils->isIP( $user ) || IPUtils::isIPv6( $user )
 			? $user
-			: $this->userNameUtils->getCanonical( $user );
+			: User::getCanonicalName( $user, 'valid' );
 		if ( $name === false ) {
 			$encParamName = $this->encodeParamName( 'users' );
 			$this->dieWithError( [ 'apierror-baduser', $encParamName, wfEscapeWikiText( $user ) ],
