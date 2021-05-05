@@ -202,6 +202,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 				'topologyRole' => Database::ROLE_STREAMING_MASTER,
 				'topologicalMaster' => null,
 				'agent' => '',
+				'serverName' => '*dummy*',
 				'load' => 100,
 				'srvCache' => new HashBagOStuff(),
 				'profiler' => null,

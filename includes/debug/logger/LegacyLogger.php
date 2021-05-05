@@ -177,7 +177,7 @@ class LegacyLogger extends AbstractLogger {
 				$context['sql'],
 				$context['method'],
 				$context['runtime'],
-				$context['db_host']
+				$context['db_server']
 			);
 		}
 

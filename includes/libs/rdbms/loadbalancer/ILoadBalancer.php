@@ -477,31 +477,34 @@ interface ILoadBalancer {
 	public function hasStreamingReplicaServers();
 
 	/**
-	 * Get the name of the server with the specified index
+	 * Get the readable name of the server with the specified index
 	 *
-	 * @param int $i
-	 * @return string Readable name if available or IP/host otherwise
+	 * @param int $i Specific server index
+	 * @return string Readable server name, falling back to the hostname or IP address
 	 */
 	public function getServerName( $i );
 
 	/**
-	 * Return the server info structure for a given index or false if the index is invalid.
-	 * @param int $i
-	 * @return array|bool
+	 * Return the server configuration map for the server with the specified index
+	 *
+	 * @param int $i Specific server index
+	 * @return array|false Server configuration map; false if the index is invalid
 	 * @since 1.31
 	 */
 	public function getServerInfo( $i );
 
 	/**
-	 * Get DB type of the server with the specified index
+	 * Get the RDBMS type of the server with the specified index (e.g. "mysql", "sqlite")
 	 *
-	 * @param int $i
+	 * @param int $i Specific server index
 	 * @return string One of (mysql,postgres,sqlite,...) or "unknown" for bad indexes
 	 * @since 1.30
 	 */
 	public function getServerType( $i );
 
 	/**
+	 * Get basic attributes of the server with the specified index without connecting
+	 *
 	 * @param int $i Specific server index
 	 * @return array (Database::ATTRIBUTE_* constant => value) for all such constants
 	 * @since 1.31

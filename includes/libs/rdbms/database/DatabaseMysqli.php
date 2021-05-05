@@ -50,12 +50,14 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 	}
 
 	/**
-	 * @param string $realServer
-	 * @param string|null $dbName
+	 * @param string|null $server
+	 * @param string|null $user
+	 * @param string|null $password
+	 * @param string|null $db
 	 * @return mysqli|null
 	 * @throws DBConnectionError
 	 */
-	protected function mysqlConnect( $realServer, $dbName ) {
+	protected function mysqlConnect( $server, $user, $password, $db ) {
 		if ( !function_exists( 'mysqli_init' ) ) {
 			throw $this->newExceptionAfterConnectError(
 				"MySQLi functions missing, have you compiled PHP with the --with-mysqli option?"
@@ -72,25 +74,27 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		// We need to parse the port or socket path out of $realServer
 		$port = null;
 		$socket = null;
-		$hostAndPort = IPUtils::splitHostAndPort( $realServer );
+		$hostAndPort = IPUtils::splitHostAndPort( $server );
 		if ( $hostAndPort ) {
 			$realServer = $hostAndPort[0];
 			if ( $hostAndPort[1] ) {
 				$port = $hostAndPort[1];
 			}
-		} elseif ( substr_count( $realServer, ':/' ) == 1 ) {
+		} elseif ( substr_count( $server, ':/' ) == 1 ) {
 			// If we have a colon slash instead of a colon and a port number
 			// after the ip or hostname, assume it's the Unix domain socket path
-			list( $realServer, $socket ) = explode( ':', $realServer, 2 );
+			list( $realServer, $socket ) = explode( ':', $server, 2 );
+		} else {
+			$realServer = $server;
 		}
 
 		$mysqli = mysqli_init();
 		// Make affectedRows() for UPDATE reflect the number of matching rows, regardless
 		// of whether any column values changed. This is what callers want to know and is
 		// consistent with what Postgres, SQLite, and SQL Server return.
-		$connFlags = MYSQLI_CLIENT_FOUND_ROWS;
+		$flags = MYSQLI_CLIENT_FOUND_ROWS;
 		if ( $this->getFlag( self::DBO_SSL ) ) {
-			$connFlags |= MYSQLI_CLIENT_SSL;
+			$flags |= MYSQLI_CLIENT_SSL;
 			$mysqli->ssl_set(
 				$this->sslKeyPath,
 				$this->sslCertPath,
@@ -100,7 +104,7 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 			);
 		}
 		if ( $this->getFlag( self::DBO_COMPRESS ) ) {
-			$connFlags |= MYSQLI_CLIENT_COMPRESS;
+			$flags |= MYSQLI_CLIENT_COMPRESS;
 		}
 		if ( $this->getFlag( self::DBO_PERSISTENT ) ) {
 			$realServer = 'p:' . $realServer;
@@ -115,19 +119,9 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 		}
 		$mysqli->options( MYSQLI_OPT_CONNECT_TIMEOUT, 3 );
 
-		if ( $mysqli->real_connect(
-			$realServer,
-			$this->user,
-			$this->password,
-			$dbName,
-			$port,
-			$socket,
-			$connFlags
-		) ) {
-			return $mysqli;
-		}
+		$ok = $mysqli->real_connect( $realServer, $user, $password, $db, $port, $socket, $flags );
 
-		return null;
+		return $ok ? $mysqli : null;
 	}
 
 	/**

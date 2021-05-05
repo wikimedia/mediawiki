@@ -38,7 +38,7 @@ class LBFactoryMulti extends LBFactory {
 	/** @var LoadBalancer[] Map of (external cluster => tracked LoadBalancer) */
 	private $externalLBs = [];
 
-	/** @var string[] Map of (hostname => IP address) */
+	/** @var string[] Map of (server name => IP address) */
 	private $hostsByServerName;
 	/** @var string[] Map of (database name => main section) */
 	private $sectionsByDB;
@@ -48,7 +48,7 @@ class LBFactoryMulti extends LBFactory {
 	private $groupLoadsByDB;
 	/** @var int[][] Map of (external cluster => server name => load ratio) */
 	private $externalLoadsByCluster;
-	/** @var array Server config map ("host", "hostName", "load", and "groupLoads" are ignored) */
+	/** @var array Server config map ("host", "serverName", "load", and "groupLoads" ignored) */
 	private $serverTemplate;
 	/** @var array Server config map overriding "serverTemplate" for all external servers */
 	private $externalTemplateOverrides;
@@ -82,7 +82,7 @@ class LBFactoryMulti extends LBFactory {
 	 *
 	 * @see LBFactory::__construct()
 	 * @param array $conf Additional parameters include:
-	 *   - hostsByName: map of (hostname => IP address). [optional]
+	 *   - hostsByName: map of (server name => IP address). [optional]
 	 *   - sectionsByDB: map of (database => main section). The database name "DEFAULT" is
 	 *      interpeted as a catch-all for all databases not otherwise mentioned. [optional]
 	 *   - sectionLoads: map of (main section => server name => load ratio); the first host
@@ -92,7 +92,7 @@ class LBFactoryMulti extends LBFactory {
 	 *   - groupLoadsByDB: map of (database => group => server name => load ratio) map. [optional]
 	 *   - externalLoads: map of (cluster => server name => load ratio) map. [optional]
 	 *   - serverTemplate: server config map for Database::factory().
-	 *      Note that "host", "hostName" and "load" entries will be overridden by
+	 *      Note that "host", "serverName" and "load" entries will be overridden by
 	 *      "groupLoadsBySection" and "hostsByName". [optional]
 	 *   - externalTemplateOverrides: server config map overrides for external stores;
 	 *      respects the override precedence described above. [optional]
@@ -296,7 +296,7 @@ class LBFactoryMulti extends LBFactory {
 				$this->templateOverridesByServer[$serverName] ?? [],
 				[
 					'host' => $this->hostsByServerName[$serverName] ?? $serverName,
-					'hostName' => $serverName,
+					'serverName' => $serverName,
 					'load' => $load,
 					'groupLoads' => $groupLoadsByServerName[$serverName] ?? []
 				]

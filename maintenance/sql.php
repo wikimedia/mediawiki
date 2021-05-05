@@ -85,7 +85,7 @@ class MwSql extends Maintenance {
 
 		$db = $lb->getMaintenanceConnectionRef( $index, [], $wiki );
 		if ( $replicaDB != '' && $db->getLBInfo( 'master' ) !== null ) {
-			$this->fatalError( "The server selected ({$db->getServer()}) is not a replica DB." );
+			$this->fatalError( "Server {$db->getServerName()} is not a replica DB." );
 		}
 
 		if ( $index === DB_PRIMARY ) {
