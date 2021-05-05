@@ -156,7 +156,7 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $badCalls );
 
 		// Run the RefreshLinksJob
-		$this->runJobs();
+		$this->runJobs( [ 'ignoreErrorsMatchingFormat' => 'Revision %d is not current' ] );
 
 		$queue->flushCaches();
 		$this->assertSame( 0, $queue->getSize() );
@@ -219,13 +219,5 @@ class RefreshSecondaryDataUpdateTest extends MediaWikiIntegrationTestCase {
 		$update->doUpdate();
 
 		$this->assertSame( 1, $goodCalls );
-	}
-
-	private function runJobs() {
-		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
 	}
 }

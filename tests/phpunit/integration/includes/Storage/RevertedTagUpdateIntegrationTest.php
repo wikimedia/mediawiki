@@ -69,7 +69,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -105,7 +105,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// try to run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [ 'numJobs' => 0 ], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -117,7 +117,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$rc->reallyMarkPatrolled();
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [ 'numJobs' => 1 ], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -148,7 +148,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 
 		// ensure all deferred updates are ran and try to run the job
 		DeferredUpdates::doUpdates();
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [ 'numJobs' => 0 ], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -164,7 +164,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 			$this->getTestSysop()->getUser()
 		)->value['revision-record']->getId();
 		DeferredUpdates::doUpdates();
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 		$this->verifyRevertedTags( [ $revertId1 ], $revertId2 );
@@ -176,7 +176,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		// Run the job.
 		// The job should notice that the revert is reverted and refuse to perform
 		// the update.
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -215,7 +215,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -272,7 +272,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// try to run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [ 'numJobs' => 0 ], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -284,7 +284,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$manager->approveRevertedTagForRevision( $revertRevId );
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
@@ -340,7 +340,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 		$this->verifyNoRevertedTags( $revertedRevs );
 
 		// run the job
-		MediaWikiServices::getInstance()->getJobRunner()->run( [
+		$this->runJobs( [], [
 			'type' => 'revertedTagUpdate'
 		] );
 
