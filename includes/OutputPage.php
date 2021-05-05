@@ -608,16 +608,16 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * Add a mapping from a LinkTarget to a Content, for things like page preview.
+	 * Force the given Content object for the given page, for things like page preview.
 	 * @see self::addContentOverrideCallback()
 	 * @since 1.32
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageReference $target
 	 * @param Content $content
 	 */
-	public function addContentOverride( LinkTarget $target, Content $content ) {
+	public function addContentOverride( $target, Content $content ) {
 		if ( !$this->contentOverrides ) {
 			// Register a callback for $this->contentOverrides on the first call
-			$this->addContentOverrideCallback( function ( LinkTarget $target ) {
+			$this->addContentOverrideCallback( function ( $target ) {
 				$key = $target->getNamespace() . ':' . $target->getDBkey();
 				return $this->contentOverrides[$key] ?? null;
 			} );
@@ -2978,7 +2978,7 @@ class OutputPage extends ContextSource {
 			);
 			if ( $this->contentOverrideCallbacks ) {
 				$this->rlClientContext = new DerivativeResourceLoaderContext( $this->rlClientContext );
-				$this->rlClientContext->setContentOverrideCallback( function ( Title $title ) {
+				$this->rlClientContext->setContentOverrideCallback( function ( $title ) {
 					foreach ( $this->contentOverrideCallbacks as $callback ) {
 						$content = $callback( $title );
 						if ( $content !== null ) {
@@ -2987,10 +2987,9 @@ class OutputPage extends ContextSource {
 								// Proactively replace this so that we can display a message
 								// to the user, instead of letting it go to Html::inlineScript(),
 								// where it would be considered a server-side issue.
-								$titleFormatted = $title->getPrefixedText();
 								$content = new JavaScriptContent(
 									Xml::encodeJsCall( 'mw.log.error', [
-										"Cannot preview $titleFormatted due to script-closing tag."
+										"Cannot preview $title due to script-closing tag."
 									] )
 								);
 							}
