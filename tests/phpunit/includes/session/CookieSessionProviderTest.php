@@ -428,13 +428,6 @@ class CookieSessionProviderTest extends MediaWikiIntegrationTestCase {
 			'sessionName' => 'MySessionName',
 			'cookieOptions' => [ 'prefix' => 'x' ],
 		] );
-		$provider->init(
-			new TestLogger(),
-			$this->getConfig(),
-			$this->createNoOpMock( SessionManager::class ),
-			$this->createHookContainer(),
-			$this->getServiceContainer()->getUserNameUtils()
-		);
 
 		$request = new \FauxRequest();
 		$this->assertNull( $provider->suggestLoginUsername( $request ) );
