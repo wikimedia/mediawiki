@@ -3052,6 +3052,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *     WatchlistManager::isWatchedIgnoringRights()
 	 */
 	public function isWatched( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
 		if ( $checkRights ) {
 			return $watchlistManager->isWatched( $this, $title );
@@ -3072,6 +3073,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *     WatchlistManager::isTempWatchedIgnoringRights()
 	 */
 	public function isTempWatched( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
 		if ( $checkRights ) {
 			return $watchlistManager->isTempWatched( $this, $title );
@@ -3094,6 +3096,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		$checkRights = self::CHECK_USER_RIGHTS,
 		?string $expiry = null
 	) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
 		if ( $checkRights ) {
 			$watchlistManager->addWatch( $this, $title, $expiry );
@@ -3112,6 +3115,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *     WatchlistManager::removeWatchIgnoringRights
 	 */
 	public function removeWatch( PageIdentity $title, $checkRights = self::CHECK_USER_RIGHTS ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
 		if ( $checkRights ) {
 			$watchlistManager->removeWatch( $this, $title );
