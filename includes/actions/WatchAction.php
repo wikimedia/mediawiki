@@ -255,6 +255,7 @@ class WatchAction extends FormAction {
 		Authority $performer,
 		string $expiry = null
 	) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
 			$watch,
 			$performer,
@@ -281,6 +282,7 @@ class WatchAction extends FormAction {
 		$checkRights = User::CHECK_USER_RIGHTS,
 		?string $expiry = null
 	) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
 		if ( $checkRights ) {
 			return Status::wrap( $watchlistManager->addWatch(
@@ -307,6 +309,7 @@ class WatchAction extends FormAction {
 	 * @deprecated since 1.37, use WatchlistManager:removeWatch() instead.
 	 */
 	public static function doUnwatch( PageIdentity $pageIdentity, Authority $performer ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		return Status::wrap( MediaWikiServices::getInstance()->getWatchlistManager()->removeWatch(
 			$performer,
 			$pageIdentity

@@ -80,7 +80,6 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers WatchAction::onSubmit()
-	 * @covers WatchAction::doWatch()
 	 */
 	public function testOnSubmit() {
 		/** @var Status $actual */
@@ -91,7 +90,6 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers WatchAction::onSubmit()
-	 * @covers WatchAction::doWatch()
 	 */
 	public function testOnSubmitHookAborted() {
 		// WatchlistExpiry feature flag.
@@ -337,6 +335,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$watchedItemStore->clearUserWatchedItems( $userIdentity );
 
+		$this->hideDeprecated( 'WatchAction::doWatch' );
 		$actual = WatchAction::doWatch( $this->testWikiPage->getTitle(), $performer, false );
 
 		$this->assertTrue( $actual->isGood() );
@@ -353,6 +352,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$watchedItemStore->clearUserWatchedItems( $userIdentity );
 
+		$this->hideDeprecated( 'WatchAction::doWatch' );
 		$actual = WatchAction::doWatch( $this->testWikiPage->getTitle(), $performer, true );
 
 		$this->assertFalse( $actual->isGood() );
@@ -369,6 +369,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$watchedItemStore->clearUserWatchedItems( $userIdentity );
 
+		$this->hideDeprecated( 'WatchAction::doWatch' );
 		$actual = WatchAction::doWatch( $this->testWikiPage->getTitle(), $performer );
 
 		$this->assertTrue( $actual->isGood() );
@@ -386,6 +387,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$watchedItemStore->addWatch( $userIdentity, $title );
 
+		$this->hideDeprecated( 'WatchAction::doUnwatch' );
 		$actual = WatchAction::doUnwatch( $title, $performer );
 
 		$this->assertFalse( $actual->isGood() );
@@ -405,6 +407,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			return false;
 		} );
 
+		$this->hideDeprecated( 'WatchAction::doUnwatch' );
 		$status = WatchAction::doUnwatch( $title, $performer );
 
 		$this->assertFalse( $status->isGood() );
@@ -425,6 +428,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$watchedItemStore->addWatch( $userIdentity, $title );
 
+		$this->hideDeprecated( 'WatchAction::doUnwatch' );
 		$status = WatchAction::doUnwatch( $title, $performer );
 
 		$this->assertTrue( $status->isGood() );
@@ -469,6 +473,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$title = $this->testWikiPage->getTitle();
 		$watchedItemStore = $this->getServiceContainer()->getWatchedItemStore();
 		$watchedItemStore->addWatch( $userIdentity, $title );
+		$this->hideDeprecated( 'WatchAction::doWatchOrUnwatch' );
 		$status = WatchAction::doWatchOrUnwatch( true, $this->watchAction->getTitle(), $performer, '1 week' );
 
 		$this->assertTrue( $status->isGood() );
@@ -486,6 +491,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$mock->expects( $this->never() )->method( 'addWatch' );
 		$mock->expects( $this->never() )->method( 'removeWatch' );
 
+		$this->hideDeprecated( 'WatchAction::doWatchOrUnwatch' );
 		$status = WatchAction::doWatchOrUnwatch( true, $this->watchAction->getTitle(), $performer );
 
 		// returns immediately with no error if not logged in
@@ -510,6 +516,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			$expiry
 		);
 
+		$this->hideDeprecated( 'WatchAction::doWatchOrUnwatch' );
 		$status = WatchAction::doWatchOrUnwatch(
 			true,
 			$this->watchAction->getTitle(),
@@ -530,6 +537,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$mock->expects( $this->never() )->method( 'addWatch' );
 		$mock->expects( $this->never() )->method( 'removeWatch' );
 
+		$this->hideDeprecated( 'WatchAction::doWatchOrUnwatch' );
 		$status = WatchAction::doWatchOrUnwatch( false, $this->watchAction->getTitle(), $performer );
 
 		$this->assertTrue( $status->isGood() );
@@ -542,6 +550,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public function testDoWatchOrUnwatchWatchesIfWatch() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
+		$this->hideDeprecated( 'WatchAction::doWatchOrUnwatch' );
 		$status = WatchAction::doWatchOrUnwatch( true, $this->watchAction->getTitle(), $performer );
 
 		$this->assertTrue( $status->isGood() );
@@ -558,6 +567,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	public function testDoWatchOrUnwatchUnwatchesIfUnwatch() {
 		$userIdentity = new UserIdentityValue( 100, 'User Name' );
 		$performer = $this->mockUserAuthorityWithPermissions( $userIdentity, [ 'editmywatchlist' ] );
+		$this->hideDeprecated( 'WatchAction::doWatchOrUnwatch' );
 		$status = WatchAction::doWatchOrUnwatch( false, $this->watchAction->getTitle(), $performer );
 
 		$this->assertTrue( $status->isGood() );
