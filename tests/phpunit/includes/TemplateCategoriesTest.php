@@ -44,10 +44,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		);
 
 		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
+		$this->runJobs();
 
 		// Make sure page is in the category
 		$this->assertEquals(
@@ -66,10 +63,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		);
 
 		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
+		$this->runJobs();
 
 		// Make sure page is in the right category
 		$this->assertEquals(
@@ -82,10 +76,7 @@ class TemplateCategoriesTest extends MediaWikiLangTestCase {
 		$template->doDeleteArticleReal( 'Delete the template', $user );
 
 		// Run the job queue
-		JobQueueGroup::destroySingletons();
-		$jobs = new RunJobs;
-		$jobs->loadParamsAndArgs( null, [ 'quiet' => true ], null );
-		$jobs->execute();
+		$this->runJobs();
 
 		// Make sure the page is no longer in the category
 		$this->assertEquals(
