@@ -84,6 +84,46 @@ class UserIdentityValue implements UserIdentity {
 	}
 
 	/**
+	 * Create UserIdentity for an anonymous user.
+	 *
+	 * @since 1.36
+	 * @param string $name
+	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
+	 * @return UserIdentityValue
+	 */
+	public static function newAnonymous( string $name, $wikiId = self::LOCAL ): self {
+		return new self( 0, $name, $wikiId );
+	}
+
+	/**
+	 * Create UserIdentity for a registered user.
+	 *
+	 * @since 1.37
+	 * @param int $userId
+	 * @param string $name
+	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
+	 * @return UserIdentityValue
+	 */
+	public static function newRegistered( int $userId, string $name, $wikiId = self::LOCAL ): self {
+		Assert::parameter( $userId > 0, '$userId', 'must be greater than zero (user must exist)' );
+		return new self( $userId, $name, $wikiId );
+	}
+
+	/**
+	 * Create UserIdentity for an external user with $prefix and $name
+	 *
+	 * @since 1.37
+	 * @param string $prefix
+	 * @param string $name
+	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
+	 * @return UserIdentityValue
+	 */
+	public static function newExternal( string $prefix, string $name, $wikiId = self::LOCAL ): self {
+		// > is a standard separator for external users in the database, see ExternalUserNames
+		return new self( 0, "$prefix>$name", $wikiId );
+	}
+
+	/**
 	 * Get the ID of the wiki this UserIdentity belongs to.
 	 *
 	 * @since 1.36
@@ -145,7 +185,7 @@ class UserIdentityValue implements UserIdentity {
 	 *   getId() != 0 and is provided for code readability.
 	 */
 	public function isRegistered() : bool {
-		return $this->getId() != 0;
+		return $this->getId( $this->wikiId ) != 0;
 	}
 
 	public function __toString(): string {
