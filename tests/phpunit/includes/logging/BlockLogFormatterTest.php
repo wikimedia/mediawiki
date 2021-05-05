@@ -570,7 +570,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'Sysop blocked Logtestuser from editing the pages User:Test1 and Main Page'
+					'text' => 'Sysop blocked Logtestuser from the pages User:Test1 and Main Page'
 						. ' with an expiration time of indefinite (anonymous users only)',
 					'api' => [
 						'duration' => 'infinite',
@@ -609,7 +609,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'Sysop blocked Logtestuser from editing the namespace User'
+					'text' => 'Sysop blocked Logtestuser from the namespace User'
 						. ' with an expiration time of indefinite (anonymous users only)',
 					'api' => [
 						'duration' => 'infinite',
@@ -641,7 +641,7 @@ class BlockLogFormatterTest extends LogFormatterTestCase {
 					],
 				],
 				[
-					'text' => 'Sysop blocked Logtestuser from editing the page Main Page and the'
+					'text' => 'Sysop blocked Logtestuser from the page Main Page and the'
 						. ' namespaces User and (Main) with an expiration time of indefinite'
 						. ' (anonymous users only)',
 					'api' => [

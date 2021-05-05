@@ -93,6 +93,11 @@ class BlockLogFormatter extends LogFormatter {
 					return $this->makePageLink( SpecialPage::getTitleFor( 'Allpages' ), $params, $text );
 				}, $namespaces );
 
+				$actions = $params[6]['actions'] ?? [];
+				$actions = array_map( function ( $actions ) {
+					return $this->msg( 'ipb-action-' . $actions )->text();
+				}, $actions );
+
 				$restrictions = [];
 				if ( $pages ) {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-page' )
@@ -104,6 +109,12 @@ class BlockLogFormatter extends LogFormatter {
 					$restrictions[] = $this->msg( 'logentry-partialblock-block-ns' )
 						->numParams( count( $namespaces ) )
 						->rawParams( $this->context->getLanguage()->listToText( $namespaces ) )->text();
+				}
+
+				if ( $actions ) {
+					$restrictions[] = $this->msg( 'logentry-partialblock-block-action' )
+						->numParams( count( $actions ) )
+						->rawParams( $this->context->getLanguage()->listToText( $actions ) )->text();
 				}
 
 				$params[6] = Message::rawParam( $this->context->getLanguage()->listToText( $restrictions ) );

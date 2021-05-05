@@ -1758,7 +1758,8 @@ return [
 			$services->getUserFactory(),
 			$services->getUserEditTracker(),
 			LoggerFactory::getInstance( 'BlockManager' ),
-			$services->getTitleFactory()
+			$services->getTitleFactory(),
+			$services->getBlockActionInfo()
 		);
 	},
 

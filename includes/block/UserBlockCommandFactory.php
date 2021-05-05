@@ -63,6 +63,9 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	/** @var TitleFactory */
 	private $titleFactory;
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	/**
 	 * @internal Use only in ServiceWiring
 	 */
@@ -79,6 +82,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 	 * @param UserEditTracker $userEditTracker
 	 * @param LoggerInterface $logger
 	 * @param TitleFactory $titleFactory
+	 * @param BlockActionInfo $blockActionInfo
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -90,7 +94,8 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		UserFactory $userFactory,
 		UserEditTracker $userEditTracker,
 		LoggerInterface $logger,
-		TitleFactory $titleFactory
+		TitleFactory $titleFactory,
+		BlockActionInfo $blockActionInfo
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -104,6 +109,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		$this->userEditTracker = $userEditTracker;
 		$this->logger = $logger;
 		$this->titleFactory = $titleFactory;
+		$this->blockActionInfo = $blockActionInfo;
 	}
 
 	/**
@@ -137,6 +143,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 			$this->blockRestrictionStore,
 			$this->blockPermissionCheckerFactory,
 			$this->blockUtils,
+			$this->blockActionInfo,
 			$this->hookContainer,
 			$this->blockStore,
 			$this->userFactory,
