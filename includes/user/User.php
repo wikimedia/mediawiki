@@ -1026,14 +1026,11 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * If an account already exists in this form, login will be blocked
 	 * by a failure to pass this function.
 	 *
-	 * @deprecated since 1.35, use the UserNameUtils service.
-	 * Hard deprecated since 1.37
-	 *
+	 * @deprecated since 1.35, use the UserNameUtils service
 	 * @param string $name Name to match
 	 * @return bool
 	 */
 	public static function isUsableName( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getUserNameUtils()->isUsable( $name );
 	}
 
@@ -1084,14 +1081,11 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Additional preventions may be added here rather than in
 	 * isValidUserName() to avoid disrupting existing accounts.
 	 *
-	 * @deprecated since 1.35, use the UserNameUtils service.
-	 * Hard deprecated since 1.37
-	 *
+	 * @deprecated since 1.35, use the UserNameUtils service
 	 * @param string $name String to match
 	 * @return bool
 	 */
 	public static function isCreatableName( $name ) {
-		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getUserNameUtils()->isCreatable( $name );
 	}
 
@@ -1160,9 +1154,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Given unvalidated user input, return a canonical username, or false if
 	 * the username is invalid.
 	 *
-	 * @deprecated since 1.35, use the UserNameUtils service.
-	 * Hard deprecated since 1.37
-	 *
+	 * @deprecated since 1.35, use the UserNameUtils service
 	 * @param string $name User input
 	 * @param string|bool $validate Type of validation to use:
 	 *   - false        No validation
@@ -1174,7 +1166,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @return bool|string
 	 */
 	public static function getCanonicalName( $name, $validate = 'valid' ) {
-		wfDeprecated( __METHOD__, '1.35' );
 		// Backwards compatibility with strings / false
 		$validationLevels = [
 			'valid' => UserNameUtils::RIGOR_VALID,

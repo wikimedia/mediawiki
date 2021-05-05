@@ -2,9 +2,7 @@
 
 namespace MediaWiki\Auth;
 
-use Config;
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use TestLogger;
 
 /**
  * @group AuthManager
@@ -153,13 +151,6 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 		] );
 
 		$provider = $this->getMockForAbstractClass( AbstractPrimaryAuthenticationProvider::class );
-		$provider->init(
-			new TestLogger(),
-			$this->createNoOpMock( AuthManager::class ),
-			$this->createHookContainer(),
-			$this->createNoOpAbstractMock( Config::class ),
-			$this->getServiceContainer()->getUserNameUtils()
-		);
 		$this->assertSame( $expect, $provider->providerNormalizeUsername( $name ) );
 	}
 

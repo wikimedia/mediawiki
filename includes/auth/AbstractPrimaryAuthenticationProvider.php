@@ -21,6 +21,8 @@
 
 namespace MediaWiki\Auth;
 
+use User;
+
 /**
  * A base class that implements some of the boilerplate for a PrimaryAuthenticationProvider
  *
@@ -63,11 +65,11 @@ abstract class AbstractPrimaryAuthenticationProvider extends AbstractAuthenticat
 	 * @inheritDoc
 	 * @stable to override
 	 * @note Reimplement this if you do anything other than
-	 *  UserNameUtils->getCanonical( $req->username ) to determine the user being
+	 *  User::getCanonicalName( $req->username ) to determine the user being
 	 *  authenticated.
 	 */
 	public function providerNormalizeUsername( $username ) {
-		$name = $this->userNameUtils->getCanonical( $username );
+		$name = User::getCanonicalName( $username );
 		return $name === false ? null : $name;
 	}
 

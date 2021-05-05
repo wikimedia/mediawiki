@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserNameUtils;
 
 class WebInstallerName extends WebInstallerPage {
 
@@ -210,8 +209,7 @@ class WebInstallerName extends WebInstallerPage {
 			$cname = $name;
 			$retVal = false;
 		} else {
-			$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
-			$cname = $userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_CREATABLE );
+			$cname = User::getCanonicalName( $name, 'creatable' );
 			if ( $cname === false ) {
 				$this->parent->showError( 'config-admin-name-invalid', $name );
 				$retVal = false;
