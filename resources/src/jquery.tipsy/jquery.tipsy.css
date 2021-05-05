@@ -8,20 +8,12 @@
 }
 
 .tipsy-inner {
-	padding: 5px 8px 4px 8px;
-	/* background-color: #e8f2f8; */
 	background-color: #fff;
-	border: solid 1px #a7d7f9;
 	color: #000;
 	max-width: 15em;
-	border-radius: 4px;
-	/*
-	 * -moz-box-shadow: 0px 2px 8px #cccccc;
-	 * -webkit-box-shadow: 0px 2px 8px #cccccc;
-	 * box-shadow: 0px 2px 8px #cccccc;
-	 * -ms-filter: "progid:DXImageTransform.Microsoft.DropShadow(OffX=0, OffY=2, Strength=6, Direction=90, Color='#cccccc')";
-	 * filter: progid:DXImageTransform.Microsoft.DropShadow(OffX=0, OffY=2, Strength=6, Direction=90, Color='#cccccc');
-	 */
+	padding: 5px 8px 4px 8px;
+	border: 1px solid #a2a9b1;
+	border-radius: 2px;
 }
 
 .tipsy-arrow {
