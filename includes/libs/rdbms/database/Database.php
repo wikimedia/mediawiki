@@ -578,6 +578,10 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->getServerVersion();
 	}
 
+	public function getTopologyBasedServerId() {
+		return null;
+	}
+
 	public function getTopologyRole() {
 		return $this->topologyRole;
 	}

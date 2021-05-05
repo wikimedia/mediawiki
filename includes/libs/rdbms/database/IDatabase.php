@@ -164,17 +164,40 @@ interface IDatabase {
 	public function getServerInfo();
 
 	/**
+	 * Get a non-recycled ID that uniquely identifies this server within the replication topology
+	 *
+	 * A replication topology defines which servers can originate changes to a given dataset
+	 * and how those changes propagate among database servers. It is assumed that the server
+	 * only participates in the replication of a single relevant dataset.
+	 *
+	 * @return int|null Unique integer ID; null if not applicable or unknown
+	 * @throws DBQueryError
+	 * @since 1.37
+	 */
+	public function getTopologyBasedServerId();
+
+	/**
 	 * Get the replication topology role of this server
 	 *
+	 * A replication topology defines which servers can originate changes to a given dataset
+	 * and how those changes propagate among database servers. It is assumed that the server
+	 * only participates in the replication of a single relevant dataset.
+	 *
 	 * @return string One of the class ROLE_* constants
+	 * @throws DBQueryError
 	 * @since 1.34
 	 */
 	public function getTopologyRole();
 
 	/**
-	 * Get the host (or address) of the root master server for the replication topology
+	 * Get the readable name of the sole root master server for the replication topology
 	 *
-	 * @return string|null Master server name or null if not known
+	 * A replication topology defines which servers can originate changes to a given dataset
+	 * and how those changes propagate among database servers. It is assumed that the server
+	 * only participates in the replication of a single relevant dataset.
+	 *
+	 * @return string|null Readable server name; null if unknown or if co-masters are defined
+	 * @throws DBQueryError
 	 * @since 1.34
 	 */
 	public function getTopologyRootMaster();

@@ -1022,9 +1022,14 @@ abstract class DatabaseMysqlBase extends Database {
 		return $pos;
 	}
 
+	public function getTopologyBasedServerId() {
+		// The server_id variable is unique to the replication topology for the dataset
+		return $this->getServerId();
+	}
+
 	/**
-	 * @return int
-	 * @throws DBQueryError If the variable doesn't exist for some reason
+	 * @return int Server ID that is unique to the replication topology and is not reused
+	 * @throws DBQueryError
 	 */
 	protected function getServerId() {
 		$fname = __METHOD__;
@@ -1041,7 +1046,8 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * @return string|null
+	 * @return string|null Server ID that should be globally unique
+	 * @throws DBQueryError
 	 */
 	protected function getServerUUID() {
 		$fname = __METHOD__;
