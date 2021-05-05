@@ -69,25 +69,14 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Returns a mock InterwikiLookup that only has an isValidInterwiki() method, which recognizes
-	 * 'localtestiw' and 'remotetestiw'. All other methods throw.
+	 * Returns a InterwikiLookup where the only valid interwikis are 'localtestiw' and 'remotetestiw'.
+	 * Only `isValidInterwiki` should actually be needed.
 	 *
 	 * @return InterwikiLookup
 	 */
 	private function getInterwikiLookup() : InterwikiLookup {
-		$iwLookup = $this->createMock( InterwikiLookup::class );
-
-		$iwLookup->method( 'isValidInterwiki' )
-			->will( $this->returnCallback( static function ( $prefix ) {
-				return $prefix === 'localtestiw' || $prefix === 'remotetestiw';
-			} ) );
-
-		$iwLookup->expects( $this->never() )
-			->method( $this->callback( static function ( $name ) {
-				return $name !== 'isValidInterwiki';
-			} ) );
-
-		return $iwLookup;
+		// DummyServicesTrait::getDummyInterwikiLookup
+		return $this->getDummyInterwikiLookup( [ 'localtestiw', 'remotetestiw' ] );
 	}
 
 	/**
@@ -602,21 +591,21 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 				new TitleValue( NS_MAIN, 'Test', '', 'remotetestiw' ),
 				NS_MAIN, 'remotetestiw:Test'
 			],
-			// XXX Are these correct? Interwiki prefixes are case-sensitive?
+			// Interwiki prefixes are not case sensitive
 			'Passed local interwiki with different case' => [
-				new TitleValue( NS_MAIN, 'LocalTestIW:Test' ),
+				new TitleValue( NS_MAIN, 'Test' ),
 				NS_MAIN, 'Test', '', 'LocalTestIW'
 			],
 			'Embedded local interwiki with different case' => [
-				new TitleValue( NS_MAIN, 'LocalTestIW:Test' ),
+				new TitleValue( NS_MAIN, 'Test' ),
 				NS_MAIN, 'LocalTestIW:Test'
 			],
 			'Passed remote interwiki with different case' => [
-				new TitleValue( NS_MAIN, 'RemoteTestIW:Test' ),
+				new TitleValue( NS_MAIN, 'Test', '', 'remotetestiw' ),
 				NS_MAIN, 'Test', '', 'RemoteTestIW'
 			],
 			'Embedded remote interwiki with different case' => [
-				new TitleValue( NS_MAIN, 'RemoteTestIW:Test' ),
+				new TitleValue( NS_MAIN, 'Test', '', 'remotetestiw' ),
 				NS_MAIN, 'RemoteTestIW:Test'
 			],
 			'Passed local interwiki with lowercase page name' => [

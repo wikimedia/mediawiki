@@ -5,8 +5,8 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
-use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\TestingAccessWrapper;
@@ -15,6 +15,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class UserTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 
 	/** Constant for self::testIsBlockedFrom */
 	private const USER_TALK_PAGE = '<user talk page>';
@@ -622,16 +623,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetCanonicalName( $name, array $expectedArray ) {
 		// fake interwiki map for the 'Interwiki prefix' testcase
-		$this->setMwGlobals( [
-			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
-				[
-					'iw_prefix' => 'interwiki',
-					'iw_url' => 'http://example.com/',
-					'iw_local' => 0,
-					'iw_trans' => 0,
-				],
-			] ),
-		] );
+		// DummyServicesTrait::getDummyInterwikiLookup
+		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'interwiki' ] );
+		$this->setService( 'InterwikiLookup', $interwikiLookup );
 
 		foreach ( $expectedArray as $validate => $expected ) {
 			$this->assertSame(

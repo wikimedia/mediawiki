@@ -22,6 +22,8 @@
 namespace MediaWiki\Tests\Unit;
 
 use GenderCache;
+use Interwiki;
+use InvalidArgumentException;
 use Language;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
@@ -61,7 +63,107 @@ trait DummyServicesTrait {
 	private $watchedItemStoreData = [];
 
 	/**
-	 * @param arary $options see getDummyMediaWikiTitleCodec for supported options
+	 * @param array $interwikis valid interwikis, either a string if all that matters is
+	 *     that it is valid, or an array with some or all of the information for a row
+	 *     from the interwiki table (iw_prefix, iw_url, iw_api, iw_wikiid, iw_local, iw_trans).
+	 *     Like the real InterwikiLookup interface, the iw_api/iw_wikiid/iw_local/iw_trans are
+	 *     all optional, defaulting to empty strings or 0 as approriate. *Unlike* the real
+	 *     InterwikiLookup interface, iw_url is also optional, defaulting to an empty string.
+	 * @return InterwikiLookup
+	 */
+	private function getDummyInterwikiLookup( array $interwikis = [] ) : InterwikiLookup {
+		// Normalize into full arrays, indexed by prefix
+		$allInterwikiRows = [];
+		$defaultInterwiki = [
+			// No prefix
+			'iw_url' => '',
+			'iw_api' => '',
+			'iw_wikiid' => '',
+			'iw_local' => 0,
+			'iw_trans' => 0,
+		];
+		foreach ( $interwikis as $validInterwiki ) {
+			if ( is_string( $validInterwiki ) ) {
+				// All we got is that a prefix is valid
+				$interwikiRow = [ 'iw_prefix' => $validInterwiki ] + $defaultInterwiki;
+			} elseif ( is_array( $validInterwiki ) ) {
+				if ( !isset( $validInterwiki['iw_prefix'] ) ) {
+					throw new InvalidArgumentException(
+						'Cannot save a valid interwiki without a prefix'
+					);
+				}
+				$interwikiRow = $validInterwiki + $defaultInterwiki;
+			} else {
+				throw new InvalidArgumentException(
+					'Interwikis must be in the form of a string or an array'
+				);
+			}
+
+			// Indexed by prefix to make lookup easier
+			$allInterwikiRows[ $interwikiRow['iw_prefix'] ] = $interwikiRow;
+		}
+
+		// Actual implementation
+		return new class( $allInterwikiRows ) implements InterwikiLookup {
+			private $allInterwikiRows;
+
+			public function __construct( $allInterwikiRows ) {
+				$this->allInterwikiRows = $allInterwikiRows;
+			}
+
+			public function isValidInterwiki( $prefix ) {
+				return (bool)$this->fetch( $prefix );
+			}
+
+			public function fetch( $prefix ) {
+				if ( $prefix == '' ) {
+					return null;
+				}
+				// Interwikis are lowercase, but we might be given a prefix that
+				// has uppercase characters, eg. from UserNameUtils normalization
+				// in ClassicInterwikiLookup::fetch this would use Language::lc which
+				// would decide between mb_strtolower and strtolower, but we can assume
+				// that everything is in English for tests
+				$prefix = strtolower( $prefix );
+				if ( !isset( $this->allInterwikiRows[ $prefix ] ) ) {
+					return false;
+				}
+
+				$row = $this->allInterwikiRows[ $prefix ];
+				return new Interwiki(
+					$row['iw_prefix'],
+					$row['iw_url'],
+					$row['iw_api'],
+					$row['iw_wikiid'],
+					$row['iw_local'],
+					$row['iw_trans']
+				);
+			}
+
+			public function getAllPrefixes( $local = null ) {
+				// $local is a string or null, the use of loose equality is intentional
+				// See ClassicInterwikiLookup::getAllPrefixesDB
+				if ( $local === null || ( $local != 0 && $local != 1 ) ) {
+					return array_values( $this->allInterwikiRows );
+				}
+				return array_values(
+					array_filter(
+						$this->allInterwikiRows,
+						static function ( $row ) use ( $local ) {
+							return $row['iw_local'] == $local;
+						}
+					)
+				);
+			}
+
+			public function invalidateCache( $prefix ) {
+				// Nothing to do
+			}
+		};
+	}
+
+	/**
+	 * @param array $options see getDummyMediaWikiTitleCodec for supported options
 	 * @return TitleFormatter
 	 */
 	private function getDummyTitleFormatter( array $options = [] ) : TitleFormatter {
@@ -69,7 +171,7 @@ trait DummyServicesTrait {
 	}
 
 	/**
-	 * @param arary $options see getDummyMediaWikiTitleCodec for supported options
+	 * @param array $options see getDummyMediaWikiTitleCodec for supported options
 	 * @return TitleParser
 	 */
 	private function getDummyTitleParser( array $options = [] ) : TitleParser {
@@ -82,7 +184,7 @@ trait DummyServicesTrait {
 	 * to get two different objects when they are implemented together
 	 *
 	 * @param array $options Supported keys:
-	 *    - validInterwikis: string[]
+	 *    - validInterwikis: array of interwiki info to pass to getDummyInterwikiLookup
 	 *
 	 * @return MediaWikiTitleCodec
 	 */
@@ -136,16 +238,7 @@ trait DummyServicesTrait {
 		/** @var GenderCache|MockObject $genderCache */
 		$genderCache = $this->createNoOpMock( GenderCache::class );
 
-		/** @var InterwikiLookup|MockObject $interwikiLookup */
-		$interwikiLookup = $this->createNoOpMock( InterwikiLookup::class, [ 'isValidInterwiki' ] );
-		$interwikiLookup->method( 'isValidInterwiki' )->willReturnCallback(
-			static function ( $prefix ) use ( $config ) {
-				// interwikis are lowercase, but we might be given a prefix that
-				// has uppercase characters, eg. from UserNameUtils normalization
-				$prefix = strtolower( $prefix );
-				return in_array( $prefix, $config['validInterwikis'] );
-			}
-		);
+		$interwikiLookup = $this->getDummyInterwikiLookup( $config['validInterwikis'] );
 
 		$titleCodec = new MediaWikiTitleCodec(
 			$language,

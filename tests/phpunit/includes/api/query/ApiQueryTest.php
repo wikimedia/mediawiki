@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\Interwiki\ClassicInterwikiLookup;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
  * @group API
@@ -9,18 +9,17 @@ use MediaWiki\Interwiki\ClassicInterwikiLookup;
  * @covers ApiQuery
  */
 class ApiQueryTest extends ApiTestCase {
+	use DummyServicesTrait;
+
 	protected function setUp() : void {
 		parent::setUp();
 
 		// Setup apiquerytestiw: as interwiki prefix
-		$this->setMwGlobals( [
-			'wgInterwikiCache' => ClassicInterwikiLookup::buildCdbHash( [
-				[
-					'iw_prefix' => 'apiquerytestiw',
-					'iw_url' => 'wikipedia',
-				],
-			] ),
+		// DummyServicesTrait::getDummyInterwikiLookup
+		$interwikiLookup = $this->getDummyInterwikiLookup( [
+			[ 'iw_prefix' => 'apiquerytestiw', 'iw_url' => 'wikipedia' ],
 		] );
+		$this->setService( 'InterwikiLookup', $interwikiLookup );
 	}
 
 	public function testTitlesGetNormalized() {

@@ -1,9 +1,9 @@
 <?php
 
-use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\Assert\PreconditionException;
 
 /**
@@ -14,6 +14,7 @@ use Wikimedia\Assert\PreconditionException;
  *       But we do expect the Help namespace to contain Wikitext.
  */
 class TitleMethodsTest extends MediaWikiLangTestCase {
+	use DummyServicesTrait;
 
 	protected function setUp() : void {
 		parent::setUp();
@@ -32,6 +33,14 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 				12302 => CONTENT_MODEL_JAVASCRIPT,
 			]
 		);
+
+		// Some tests use interwikis - define valid prefixes and their configuration
+		// DummyServicesTrait::getDummyInterwikiLookup
+		$interwikiLookup = $this->getDummyInterwikiLookup( [
+			[ 'iw_prefix' => 'acme', 'iw_url' => 'https://acme.test/$1' ],
+			[ 'iw_prefix' => 'yy', 'iw_url' => 'https://yy.wiki.test/wiki/$1', 'iw_local' => true ]
+		] );
+		$this->setService( 'InterwikiLookup', $interwikiLookup );
 	}
 
 	protected function tearDown() : void {
@@ -407,38 +416,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	private function installFakeInterwikiLookup() {
-		$interwikiLookup =
-			$this->createNoOpMock( InterwikiLookup::class, [ 'fetch', 'isValidInterwiki' ] );
-
-		$interwikis = [
-			'' => null,
-			'acme' => new Interwiki(
-				'acme',
-				'https://acme.test/$1'
-			),
-			'yy' => new Interwiki(
-				'yy',
-				'https://yy.wiki.test/wiki/$1',
-				'/w/api.php',
-				'yywiki',
-				true
-			),
-		];
-
-		$interwikiLookup->method( 'fetch' )
-			->willReturnCallback( static function ( $interwiki ) use ( $interwikis ) {
-				return $interwikis[$interwiki] ?? false;
-			} );
-
-		$interwikiLookup->method( 'isValidInterwiki' )
-			->willReturnCallback( static function ( $interwiki ) use ( $interwikis ) {
-				return isset( $interwikis[$interwiki] );
-			} );
-
-		$this->setService( 'InterwikiLookup', $interwikiLookup );
-	}
-
 	/**
 	 * @dataProvider provideGetLinkURL
 	 *
@@ -463,8 +440,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			'wgExternalInterwikiFragmentMode' => 'legacy',
 			'wgFragmentMode' => [ 'html5', 'legacy' ]
 		] );
-
-		$this->installFakeInterwikiLookup();
 
 		$title = Title::makeTitle( $ns, $title, $fragment, $interwiki );
 		$this->assertSame( $expected, $title->getLinkURL( $query, $query2, $proto ) );
@@ -607,7 +582,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 * @covers Title::makeTitle
 	 */
 	public function testMakeTitle( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
-		$this->installFakeInterwikiLookup();
 		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
 
 		$this->assertTrue( $title->isValid() );
@@ -629,7 +603,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 * @covers Title::makeTitle
 	 */
 	public function testMakeTitle_invalid( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
-		$this->installFakeInterwikiLookup();
 		$title = Title::makeTitle( $ns, $text, $fragment, $interwiki );
 
 		$this->assertFalse( $title->isValid() );
@@ -656,7 +629,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 * @covers Title::makeTitleSafe
 	 */
 	public function testMakeTitleSafe( $expected, $ns, $text, $fragment = '', $interwiki = '' ) {
-		$this->installFakeInterwikiLookup();
 		$title = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
 
 		$this->assertTrue( $title->isValid() );
@@ -674,7 +646,6 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 	 * @covers Title::makeTitleSafe
 	 */
 	public function testMakeTitleSafe_invalid( $ns, $text, $fragment = '', $interwiki = '' ) {
-		$this->installFakeInterwikiLookup();
 		$title = Title::makeTitleSafe( $ns, $text, $fragment, $interwiki );
 
 		$this->assertNull( $title );
