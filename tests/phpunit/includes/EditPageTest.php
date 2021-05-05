@@ -939,4 +939,27 @@ hello
 		];
 	}
 
+	/**
+	 * T277204
+	 * @covers EditPage
+	 */
+	public function testFalseyEditRevId() {
+		$elmosEdit['wpTextbox1'] = 'Elmo\'s text';
+		$bertasEdit['wpTextbox1'] = 'Berta\'s text';
+
+		$elmosEdit['wpSummary'] = 'Elmo\'s edit';
+		$bertasEdit['wpSummary'] = 'Bertas\'s edit';
+
+		$bertasEdit['editRevId'] = 0;
+
+		$this->assertEdit( __METHOD__,
+			null, 'Elmo', $elmosEdit,
+			EditPage::AS_SUCCESS_NEW_ARTICLE, null, 'expected successful creation' );
+
+		// A successful update would probably be OK too. The important thing is
+		// that it doesn't throw an exception.
+		$this->assertEdit( __METHOD__, null, 'Berta', $bertasEdit,
+			EditPage::AS_CONFLICT_DETECTED, null, 'expected successful update' );
+	}
+
 }
