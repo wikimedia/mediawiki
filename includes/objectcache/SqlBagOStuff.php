@@ -21,6 +21,7 @@
  * @ingroup Cache
  */
 
+use MediaWiki\MediaWikiServices;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\ObjectFactory;
 use Wikimedia\Rdbms\Database;
@@ -106,7 +107,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *   - globalKeyLB: ObjectFactory::getObjectFromSpec array yeilding ILoadBalancer.
 	 *      This load balancer is used for local keys, e.g. those using makeGlobalKey().
 	 *      This is overriden by 'server'/'servers'.
-	 *   - purgePeriod: The average number of object cache writes in between arbage collection
+	 *   - purgePeriod: The average number of object cache writes in between garbage collection
 	 *      operations, where expired entries are removed from the database. Or in other words,
 	 *      the reciprocal of the probability of purging on any given write. If this is set to
 	 *      zero, purging will never be done. [optional]
@@ -669,7 +670,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		) {
 			$garbageCollector = function () use ( $db ) {
 				$this->deleteServerObjectsExpiringBefore(
-					$db, $this->getCurrentTime(),
+					$db,
+					$this->getCurrentTime(),
 					null,
 					$this->purgeLimit
 				);
@@ -727,7 +729,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param IDatabase $db
 	 * @param string|int $timestamp
 	 * @param callable|null $progressCallback
-	 * @param int $limit
+	 * @param int $limit Maximum number of rows to delete in total
 	 * @param int $serversDoneCount
 	 * @param int &$keysDeletedCount
 	 * @throws DBError
@@ -744,32 +746,42 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		$tableIndexes = range( 0, $this->numTableShards - 1 );
 		shuffle( $tableIndexes );
 
+		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$maxUpdateRows = $config->get( 'UpdateRowsPerQuery' );
+		$batchSize = min( $maxUpdateRows, $limit );
+
 		foreach ( $tableIndexes as $numShardsDone => $tableIndex ) {
-			$continue = null; // last exptime
-			$lag = null; // purge lag
+			// The oldest expiry of a row we have deleted on this shard
+			// (the first row that we deleted)
+			$minExpUnix = null;
+			// The most recent expiry time so far, from a row we have deleted on this shard
+			$maxExp = null;
+			// Size of the time range we'll delete, in seconds (for progress estimate)
+			$totalSeconds = null;
+
 			do {
 				$res = $db->select(
 					$this->getTableNameByShard( $tableIndex ),
 					[ 'keyname', 'exptime' ],
 					array_merge(
 						[ 'exptime < ' . $db->addQuotes( $db->timestamp( $cutoffUnix ) ) ],
-						$continue ? [ 'exptime >= ' . $db->addQuotes( $continue ) ] : []
+						$maxExp ? [ 'exptime >= ' . $db->addQuotes( $maxExp ) ] : []
 					),
 					__METHOD__,
-					[ 'LIMIT' => min( $limit, 100 ), 'ORDER BY' => 'exptime' ]
+					[ 'LIMIT' => $batchSize, 'ORDER BY' => 'exptime ASC' ]
 				);
 
 				if ( $res->numRows() ) {
 					$row = $res->current();
-					if ( $lag === null ) {
-						$rowExpUnix = ConvertibleTimestamp::convert( TS_UNIX, $row->exptime );
-						$lag = max( $cutoffUnix - $rowExpUnix, 1 );
+					if ( $minExpUnix === null ) {
+						$minExpUnix = ConvertibleTimestamp::convert( TS_UNIX, $row->exptime );
+						$totalSeconds = max( $cutoffUnix - $minExpUnix, 1 );
 					}
 
 					$keys = [];
 					foreach ( $res as $row ) {
 						$keys[] = $row->keyname;
-						$continue = $row->exptime;
+						$maxExp = $row->exptime;
 					}
 
 					$db->delete(
@@ -784,18 +796,23 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				}
 
 				if ( is_callable( $progressCallback ) ) {
-					if ( $lag ) {
-						$continueUnix = ConvertibleTimestamp::convert( TS_UNIX, $continue );
-						$remainingLag = $cutoffUnix - $continueUnix;
-						$processedLag = max( $lag - $remainingLag, 0 );
-						$doneRatio =
-							( $numShardsDone + $processedLag / $lag ) / $this->numTableShards;
+					if ( $totalSeconds ) {
+						$maxExpUnix = ConvertibleTimestamp::convert( TS_UNIX, $maxExp );
+						$remainingSeconds = $cutoffUnix - $maxExpUnix;
+						$processedSeconds = max( $totalSeconds - $remainingSeconds, 0 );
+						// For example, if we've done 1.5 table shard, and are thus half-way on the
+						// 2nd of perhaps 5 tables on this server, then this might be:
+						// `( 1 + ( 43200 / 86400 ) ) / 5 = 0.3`, or 30% done, of tables on this server.
+						$tablesDoneRatio =
+							( $numShardsDone + ( $processedSeconds / $totalSeconds ) ) / $this->numTableShards;
 					} else {
-						$doneRatio = 1;
+						$tablesDoneRatio = 1;
 					}
 
-					$overallRatio = ( $doneRatio / $this->numServerShards )
-						+ ( $serversDoneCount / $this->numServerShards );
+					// For example, if we're 30% done on the last of 10 servers, then this might be:
+					// `( 9 / 10 ) + ( 0.3 / 10 ) = 0.93`, or 93% done, overall.
+					$overallRatio = ( $serversDoneCount / $this->numServerShards ) +
+						( $tablesDoneRatio / $this->numServerShards );
 					call_user_func( $progressCallback, $overallRatio * 100 );
 				}
 			} while ( $res->numRows() && $keysDeletedCount < $limit );
