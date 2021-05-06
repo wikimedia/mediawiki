@@ -1,11 +1,11 @@
 'use strict';
 
 require( 'dotenv' ).config();
+let ffmpeg;
 const fs = require( 'fs' );
 const path = require( 'path' );
-const video = require( 'wdio-video-reporter' );
 const logPath = process.env.LOG_DIR || path.join( process.cwd(), 'tests/selenium/log' );
-const { makeFilenameDate, saveScreenshot } = require( 'wdio-mediawiki' );
+const { makeFilenameDate, saveScreenshot, startVideo, stopVideo } = require( 'wdio-mediawiki' );
 
 if ( !process.env.MW_SERVER || !process.env.MW_SCRIPT_PATH ) {
 	throw new Error( 'MW_SERVER or MW_SCRIPT_PATH not defined.\nSee https://www.mediawiki.org/wiki/Selenium/How-to/Set_environment_variables\n' );
@@ -96,19 +96,21 @@ exports.config = {
 			outputFileFormat: function () {
 				return `WDIO.xunit-${makeFilenameDate()}.xml`;
 			}
-		} ],
-		// See also: https://webdriver.io/docs/wdio-video-reporter/
-		[
-			video, {
-				saveAllVideos: true,
-				outputDir: logPath
-			}
-		]
+		} ]
 	],
 
 	// =====
 	// Hooks
 	// =====
+
+	/**
+	 * Executed before a Mocha test starts.
+	 *
+	 * @param {Object} test Mocha Test object
+	 */
+	beforeTest: function ( test ) {
+		ffmpeg = startVideo( ffmpeg, `${test.parent}-${test.title}` );
+	},
 
 	/**
 	 * Executed after a Mocha test ends.
@@ -117,5 +119,6 @@ exports.config = {
 	 */
 	afterTest: function ( test ) {
 		saveScreenshot( `${test.parent}-${test.title}` );
+		stopVideo( ffmpeg );
 	}
 };
