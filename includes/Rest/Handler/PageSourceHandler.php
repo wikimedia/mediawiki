@@ -4,12 +4,12 @@ namespace MediaWiki\Rest\Handler;
 
 use Config;
 use LogicException;
+use MediaWiki\Page\PageLookup;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Revision\RevisionLookup;
-use Title;
-use TitleFactory;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
 
@@ -20,6 +20,9 @@ use Wikimedia\Assert\Assert;
  */
 class PageSourceHandler extends SimpleHandler {
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/** @var PageContentHelper */
 	private $contentHelper;
 
@@ -27,13 +30,14 @@ class PageSourceHandler extends SimpleHandler {
 		Config $config,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		TitleFactory $titleFactory
+		PageLookup $pageLookup
 	) {
+		$this->titleFormatter = $titleFormatter;
 		$this->contentHelper = new PageContentHelper(
 			$config,
 			$revisionLookup,
 			$titleFormatter,
-			$titleFactory
+			$pageLookup
 		);
 	}
 
@@ -42,13 +46,13 @@ class PageSourceHandler extends SimpleHandler {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @return string
 	 */
-	private function constructHtmlUrl( Title $title ): string {
+	private function constructHtmlUrl( PageReference $page ): string {
 		return $this->getRouter()->getRouteUrl(
 			'/v1/page/{title}/html',
-			[ 'title' => $title->getPrefixedText() ]
+			[ 'title' => $this->titleFormatter->getPrefixedText( $page ) ]
 		);
 	}
 
@@ -59,17 +63,17 @@ class PageSourceHandler extends SimpleHandler {
 	public function run(): Response {
 		$this->contentHelper->checkAccess();
 
-		$titleObj = $this->contentHelper->getTitle();
+		$page = $this->contentHelper->getPage();
 
-		// The call to $this->contentHelper->getTitle() should not return null if
+		// The call to $this->contentHelper->getPage() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.
-		Assert::invariant( $titleObj !== null, 'Title should be known' );
+		Assert::invariant( $page !== null, 'Page should be known' );
 
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {
 			case 'bare':
 				$body = $this->contentHelper->constructMetadata();
-				$body['html_url'] = $this->constructHtmlUrl( $titleObj );
+				$body['html_url'] = $this->constructHtmlUrl( $page );
 				break;
 			case 'source':
 				$content = $this->contentHelper->getContent();
