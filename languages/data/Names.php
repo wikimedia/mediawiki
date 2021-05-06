@@ -309,6 +309,7 @@ class Names {
 		'mrh' => 'Mara', # Mara
 		'mrj' => 'кырык мары', # Hill Mari
 		'ms' => 'Bahasa Melayu', # Malay
+		'ms-arab' => 'بهاس ملايو', # Malay (Arabic Jawi script)
 		'mt' => 'Malti', # Maltese
 		'mus' => 'Mvskoke', # Muskogee/Creek
 		'mwl' => 'Mirandés', # Mirandese

@@ -77,6 +77,7 @@ because of Phabricator reports.
 * (T280435) LRM and RLM characters were removed from names of languages with
   parentheses in Names.php
 * (T279619) Added language support for Dagbani (dag).
+* (T282085) Added language support for Malay in Arabic (Jawi) script (ms-arab).
 
 === Breaking changes in 1.37 ===
 * The Revision class, hard deprecated in 1.35, is being removed. As
