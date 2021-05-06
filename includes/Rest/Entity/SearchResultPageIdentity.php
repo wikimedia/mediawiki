@@ -1,6 +1,8 @@
 <?php
 namespace MediaWiki\Rest\Entity;
 
+use MediaWiki\Page\PageIdentity;
+
 /**
  * Lightweight interface representing a page identity
  *
@@ -11,8 +13,8 @@ namespace MediaWiki\Rest\Entity;
 interface SearchResultPageIdentity {
 	/**
 	 * The numerical page ID.
-	 * At the moment it is equivalent to Title::getArticleID()
-	 * @see Title::getArticleID()
+	 * At the moment it is equivalent to PageIdentity::getId()
+	 * @see PageIdentity::getId()
 	 *
 	 * @return int
 	 */
@@ -20,8 +22,8 @@ interface SearchResultPageIdentity {
 
 	/**
 	 * Returns the page's namespace number.
-	 * At the moment it is equivalent to Title::getNamespace()
-	 * @see Title::getNamespace()
+	 * At the moment it is equivalent to PageIdentity::getNamespace()
+	 * @see PageIdentity::getNamespace()
 	 *
 	 * @return int
 	 */
@@ -29,8 +31,8 @@ interface SearchResultPageIdentity {
 
 	/**
 	 * Get the page title in DB key form.
-	 * At the moment it is equivalent to Title::getDBkey()
-	 * @see Title::getDBkey()
+	 * At the moment it is equivalent to PageIdentity::getDBkey()
+	 * @see PageIdentity::getDBkey()
 	 *
 	 * @return string
 	 */

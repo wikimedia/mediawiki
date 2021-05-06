@@ -7,6 +7,7 @@ use MediaWiki\Page\PageStore;
 use MediaWiki\Page\PageStoreFactory;
 use MediaWikiUnitTestCase;
 use NamespaceInfo;
+use TitleParser;
 use Wikimedia\Rdbms\LBFactory;
 
 /**
@@ -25,12 +26,11 @@ class PageStoreFactoryTest extends MediaWikiUnitTestCase {
 		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getMainLB' ] );
 		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
 
-		$nsInfo = $this->createNoOpMock( NamespaceInfo::class );
-
 		$factory = new PageStoreFactory(
 			$options,
 			$lbFactory,
-			$nsInfo
+			$this->createNoOpMock( NamespaceInfo::class ),
+			$this->createNoOpMock( TitleParser::class )
 		);
 
 		// Just check that nothing explodes.

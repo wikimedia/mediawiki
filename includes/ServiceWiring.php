@@ -985,7 +985,8 @@ return [
 		return new PageStoreFactory(
 			$options,
 			$services->getDBLoadBalancerFactory(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$services->getTitleParser()
 		);
 	},
 

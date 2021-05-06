@@ -4,14 +4,13 @@ namespace MediaWiki\Rest\Handler;
 
 use Config;
 use LogicException;
-use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Page\PageLookup;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use MediaWiki\Rest\StringStream;
 use MediaWiki\Revision\RevisionLookup;
-use TitleFactory;
 use TitleFormatter;
 use Wikimedia\Assert\Assert;
 use Wikimedia\UUID\GlobalIdGenerator;
@@ -35,21 +34,19 @@ class PageHTMLHandler extends SimpleHandler {
 		Config $config,
 		RevisionLookup $revisionLookup,
 		TitleFormatter $titleFormatter,
-		TitleFactory $titleFactory,
 		ParserCacheFactory $parserCacheFactory,
-		WikiPageFactory $wikiPageFactory,
-		GlobalIdGenerator $globalIdGenerator
+		GlobalIdGenerator $globalIdGenerator,
+		PageLookup $pageLookup
 	) {
 		$this->contentHelper = new PageContentHelper(
 			$config,
 			$revisionLookup,
 			$titleFormatter,
-			$titleFactory
+			$pageLookup
 		);
 		$this->htmlHelper = new ParsoidHTMLHelper(
 			$parserCacheFactory->getParserCache( 'parsoid' ),
 			$parserCacheFactory->getRevisionOutputCache( 'parsoid' ),
-			$wikiPageFactory,
 			$globalIdGenerator
 		);
 	}
@@ -57,9 +54,9 @@ class PageHTMLHandler extends SimpleHandler {
 	protected function postValidationSetup() {
 		$this->contentHelper->init( $this->getAuthority(), $this->getValidatedParams() );
 
-		$title = $this->contentHelper->getTitle();
-		if ( $title ) {
-			$this->htmlHelper->init( $title );
+		$page = $this->contentHelper->getPage();
+		if ( $page ) {
+			$this->htmlHelper->init( $page );
 		}
 	}
 
@@ -70,11 +67,11 @@ class PageHTMLHandler extends SimpleHandler {
 	public function run(): Response {
 		$this->contentHelper->checkAccess();
 
-		$titleObj = $this->contentHelper->getTitle();
+		$page = $this->contentHelper->getPage();
 
-		// The call to $this->contentHelper->getTitle() should not return null if
+		// The call to $this->contentHelper->getPage() should not return null if
 		// $this->contentHelper->checkAccess() did not throw.
-		Assert::invariant( $titleObj !== null, 'Title should be known' );
+		Assert::invariant( $page !== null, 'Page should be known' );
 
 		$outputMode = $this->getOutputMode();
 		switch ( $outputMode ) {

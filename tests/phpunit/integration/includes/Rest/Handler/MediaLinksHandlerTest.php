@@ -27,7 +27,8 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 	private function newHandler() {
 		return new MediaLinksHandler(
 			MediaWikiServices::getInstance()->getDBLoadBalancer(),
-			$this->makeMockRepoGroup()
+			$this->makeMockRepoGroup(),
+			$this->getServiceContainer()->getPageStore()
 		);
 	}
 
@@ -59,7 +60,8 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 		// NOTE: See MediaTestTrait::makeMockFile() for hard-coded values.
 		$this->assertLink( [
 			'title' => 'Existing.jpg',
-			'file_description_url' => 'https://example.com/wiki/File:Existing.jpg',
+			// File repo mocks will end up calling File namespace ns6
+			'file_description_url' => 'https://example.com/wiki/ns6:Existing.jpg',
 			'latest' => [
 				'timestamp' => '2020-01-02T03:04:05Z',
 				'user' => [ 'id' => 7, 'name' => 'Alice' ]
@@ -86,7 +88,8 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 		// name as non-existent.
 		$this->assertLink( [
 			'title' => 'Missing.jpg',
-			'file_description_url' => 'https://example.com/wiki/File:Missing.jpg',
+			// File repo mocks will end up calling File namespace ns6
+			'file_description_url' => 'https://example.com/wiki/ns6:Missing.jpg',
 			'latest' => null,
 			'preferred' => null,
 			'original' => null,
