@@ -272,7 +272,7 @@ class EditPage implements IEditObject {
 	 */
 	private $nosummary = false;
 
-	/** @var string
+	/** @var string|null
 	 * Timestamp of the latest revision of the page when editing was initiated
 	 * on the client.
 	 */
@@ -2594,7 +2594,7 @@ class EditPage implements IEditObject {
 					$this->editRevId,
 					RevisionStore::READ_LATEST
 				);
-			} else {
+			} elseif ( $this->edittime ) {
 				$revRecord = $this->revisionStore->getRevisionByTimestamp(
 					$this->getTitle(),
 					$this->edittime,
