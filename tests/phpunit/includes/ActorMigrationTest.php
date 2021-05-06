@@ -6,11 +6,11 @@ use MediaWiki\User\ActorStoreFactory;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\MockObject\MockObject;
-use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
  * @covers ActorMigration
+ * @covers ActorMigrationBase
  */
 class ActorMigrationTest extends MediaWikiLangTestCase {
 
@@ -31,25 +31,28 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 		];
 	}
 
-	private function getMigration( $stage ) {
+	private function getMigration( $stage, $actorStoreFactory = null ) {
 		$mwServices = MediaWikiServices::getInstance();
-		return new class(
-			$stage,
-			$mwServices->getActorStoreFactory()
-		) extends ActorMigration {
-			protected const TEMP_TABLES = [
+		return new ActorMigrationBase(
+			[
 				'am2_user' => [
-					'table' => 'actormigration2_temp',
-					'pk' => 'am2t_id',
-					'field' => 'am2t_actor',
-					'joinPK' => 'am2_id',
-					'extra' => [],
+					'tempTable' => [
+						'table' => 'actormigration2_temp',
+						'pk' => 'am2t_id',
+						'field' => 'am2t_actor',
+						'joinPK' => 'am2_id',
+						'extra' => [],
+					]
 				],
-			];
-			protected const SPECIAL_FIELDS = [
-				'am3_xxx' => [ 'am3_xxx_text', 'am3_xxx_actor' ],
-			];
-		};
+				'am3_xxx' => [
+					'textField' => 'am3_xxx_text',
+					'actorField' => 'am3_xxx_actor'
+				],
+
+			],
+			$stage,
+			$actorStoreFactory ?? $mwServices->getActorStoreFactory()
+		);
 	}
 
 	/**
@@ -63,7 +66,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 			if ( $exceptionMsg !== null ) {
 				$this->fail( 'Expected exception not thrown' );
 			}
-			$this->assertInstanceOf( ActorMigration::class, $m );
+			$this->assertInstanceOf( ActorMigrationBase::class, $m );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame( $exceptionMsg, $ex->getMessage() );
 		}
@@ -326,13 +329,11 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param array $expect
 	 */
 	public function testGetWhere( $stage, $key, $users, $useId, $expect ) {
-		$this->setService( 'ActorStoreFactory', $this->getMockActorStoreFactory() );
-
 		if ( !isset( $expect['conds'] ) ) {
 			$expect['conds'] = '(' . implode( ') OR (', $expect['orconds'] ) . ')';
 		}
 
-		$m = $this->getMigration( $stage );
+		$m = $this->getMigration( $stage, $this->getMockActorStoreFactory() );
 		$result = $m->getWhere( $this->db, $key, $users, $useId );
 		$this->assertEquals( $expect, $result );
 	}
@@ -550,7 +551,7 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	public function testGetWhere_exception( $stage ) {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
-			'ActorMigration::getWhere: Value for $users must be a UserIdentity or array, got string'
+			'ActorMigrationBase::getWhere: Value for $users must be a UserIdentity or array, got string'
 		);
 
 		$m = $this->getMigration( $stage );
@@ -698,13 +699,16 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableDeprecated( $stage ) {
-		$this->hideDeprecated( 'ActorMigration::getInsertValuesWithTempTable for am1_user' );
-		$m = new class(
+		$this->hideDeprecated( 'ActorMigrationBase::getInsertValuesWithTempTable for am1_user' );
+		$m = new ActorMigrationBase(
+			[
+				'am1_user' => [
+					'formerTempTableVersion' => '1.30'
+				]
+			],
 			$stage,
 			MediaWikiServices::getInstance()->getActorStoreFactory()
-		) extends ActorMigration {
-			protected const FORMER_TEMP_TABLES = [ 'am1_user' => '1.30' ];
-		};
+		);
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'am1_user', $this->getTestUser()->getUser() );
 		$this->assertIsCallable( $callback );
@@ -715,20 +719,21 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 	 * @param int $stage
 	 */
 	public function testInsertWithTempTableCallbackMissingFields( $stage ) {
-		$m = new class(
+		$m = new ActorMigrationBase(
+			[
+				'foo_user' => [
+					'tempTable' => [
+						'table' => 'foo_temp',
+						'pk' => 'footmp_id',
+						'field' => 'footmp_actor',
+						'joinPK' => 'foo_id',
+						'extra' => [ 'footmp_timestamp' => 'foo_timestamp' ],
+					]
+				]
+			],
 			$stage,
 			MediaWikiServices::getInstance()->getActorStoreFactory()
-		) extends ActorMigration {
-			protected const TEMP_TABLES = [
-				'foo_user' => [
-					'table' => 'foo_temp',
-					'pk' => 'footmp_id',
-					'field' => 'footmp_actor',
-					'joinPK' => 'foo_id',
-					'extra' => [ 'footmp_timestamp' => 'foo_timestamp' ],
-				],
-			];
-		};
+		);
 		list( $fields, $callback )
 			= $m->getInsertValuesWithTempTable( $this->db, 'foo_user', $this->getTestUser()->getUser() );
 		$this->expectException( InvalidArgumentException::class );
@@ -814,25 +819,35 @@ class ActorMigrationTest extends MediaWikiLangTestCase {
 
 	public function testCheckDeprecation() {
 		$m = new class(
+			[
+				'soft' => [
+					'deprecatedVersion' => null,
+				],
+				'hard' => [
+					'deprecatedVersion' => '1.34',
+				],
+				'gone' => [
+					'removedVersion' => '1.34',
+				],
+			],
 			SCHEMA_COMPAT_NEW,
 			MediaWikiServices::getInstance()->getActorStoreFactory()
-		) extends ActorMigration {
-			protected const DEPRECATED = [ 'soft' => null, 'hard' => '1.34' ];
-			protected const REMOVED = [ 'gone' => '1.34' ];
+		) extends ActorMigrationBase {
+			public function checkDeprecationForTest( $key ) {
+				$this->checkDeprecation( $key );
+			}
 		};
-		/** @var ActorMigration $wrap */
-		$wrap = TestingAccessWrapper::newFromObject( $m );
 
-		$this->hideDeprecated( 'ActorMigration for \'hard\'' );
+		$this->hideDeprecated( 'ActorMigrationBase for \'hard\'' );
 
-		$wrap->checkDeprecation( 'valid' );
-		$wrap->checkDeprecation( 'soft' );
-		$wrap->checkDeprecation( 'hard' );
+		$m->checkDeprecationForTest( 'valid' );
+		$m->checkDeprecationForTest( 'soft' );
+		$m->checkDeprecationForTest( 'hard' );
 		try {
-			$wrap->checkDeprecation( 'gone' );
+			$m->checkDeprecationForTest( 'gone' );
 		} catch ( InvalidArgumentException $ex ) {
 			$this->assertSame(
-				'Use of ActorMigration for \'gone\' was removed in MediaWiki 1.34',
+				'Use of ActorMigrationBase for \'gone\' was removed in MediaWiki 1.34',
 				$ex->getMessage()
 			);
 		}
