@@ -2703,6 +2703,7 @@
 	"ipb-partial": "Parziale",
 	"ipb-sitewide-help": "Ogni pagina sul wiki e tutte le altre azioni di contribuzione.",
 	"ipb-partial-help": "Specifiche pagine o namespace.",
+	"ipb-action-create": "Creazione nuove pagine",
 	"ipb-action-upload": "Caricamento file",
 	"ipb-pages-label": "Pagine",
 	"ipb-namespaces-label": "Namespace",

@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Gnangarra"
 		]
 	},
@@ -219,7 +220,6 @@
 	"undo-failure": "uart nidja wallak bukadjee bura-didara wallak",
 	"viewpagelogs": "Djinang boonadairn nidja bibol",
 	"currentrev-asof": "Yuttock wallak nun o-luk $1",
-	"revisionasof": "Revision as of $1",
 	"revision-info": "Yumbarng nune o-luk $1 borduck {{GENDER:$6|$2}}$7",
 	"previousrevision": "← ngatti kura djinang",
 	"nextrevision": "ngolango mar waangkin",
@@ -360,14 +360,13 @@
 	"linkstoimage-more": "Bool $1 {{PLURAL:$1|bibol beda}} nidja file.\nNgawaliny gwabbaninijow yong-a {{PLURAL:$1|keny bibol beda}} bura nidja file.\nGaign [[Special:WhatLinksHere/$2|gwabbanijow bulyaru]] mila.",
 	"nolinkstoimage": "Uart bibol beda nitja file",
 	"linkstoimage-redirect": "$1 (file Dtallangiritch) $2",
-	"sharedupload-desc-here": "Nidja file winjang $1 wer kaya malyn uame-projects.\n\nWarrang-an it [$2 file Warrang-an bibol] yong-a yal-lal-la begoory",
+	"sharedupload-desc-here": "Nidja file winjang $1 wer kaya malyn uame-projects.\nWarrang-an it [$2 file Warrang-an bibol] yong-a yal-lal-la begoory",
 	"filepage-nofile": "Uart file il nidja kwel-le",
 	"upload-disallowed-here": "Noonook uart wallak nidja file",
 	"randompage": "alia bibol",
 	"statistics": "Bula-wer-bula",
 	"statistics-header-users": "Niall bula-wer-bula",
 	"double-redirect-fixer": "Dtallangiritch fixer",
-	"nbytes": "$1 {{PLURAL:$1|byte|bytes}}",
 	"nmembers": "$1 {{PLURAL:$1|Noonook}}",
 	"prefixindex": "Boola bibol wer prefix",
 	"listusers": "Niall list",
@@ -565,7 +564,6 @@
 	"show-big-image": "Goryat file",
 	"show-big-image-preview": "Nidja-boola nidja booram-djinang: $1",
 	"show-big-image-other": "Wam {{PLURAL:$2|nidja-boola}}: $1.",
-	"show-big-image-size": "$1 × $2 pixels",
 	"metadata": "Metadata",
 	"metadata-help": "This file contains additional information, probably added from the digital camera or scanner used to create or digitize it.\nIf the file has been modified from its original state, some details may not fully reflect the modified file.",
 	"metadata-fields": "Image metadata fields listed in this message will be included on image page display when the metadata table is collapsed.\nOthers will be hidden by default.\n* make\n* model\n* datetimeoriginal\n* exposuretime\n* fnumber\n* isospeedratings\n* focallength\n* artist\n* copyright\n* imagedescription\n* gpslatitude\n* gpslongitude\n* gpsaltitude",

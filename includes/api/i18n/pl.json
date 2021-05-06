@@ -56,6 +56,7 @@
 	"apihelp-block-param-partial": "Zablokuj użytkownikowi dostęp do wybranych stron lub przestrzeni nazw zamiast do całej witryny.",
 	"apihelp-block-param-pagerestrictions": "Lista tytułów stron do zablokowania użytkownikowi możliwości edycji. Ma zastosowanie tylko gdy <var>partial</var> (częściowa) jest ustawione na true (prawda).",
 	"apihelp-block-param-namespacerestrictions": "Lista ID przestrzeni nazw do zablokowania użytkownikowi możliwości edycji. Ma zastosowanie tylko gdy <var>partial</var> (częściowa) jest ustawione na true (prawda).",
+	"apihelp-block-param-actionrestrictions": "Lista akcji, których wykonywanie jest zablokowane dla użytkownika. Ma zastosowanie tylko, gdy <var>partial</var> (częściowa) jest ustawione na true (prawda).",
 	"apihelp-block-example-ip-simple": "Zablokuj IP <kbd>192.0.2.5</kbd> na 3 dni z powodem.",
 	"apihelp-block-example-user-complex": "Zablokuj użytkownika <kbd>Vandal</kbd> na zawsze z powodem i uniemożliw utworzenie nowego konta oraz wysyłanie emaili.",
 	"apihelp-changeauthenticationdata-summary": "Zmień dane logowania bieżącego użytkownika.",
