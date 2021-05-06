@@ -54,9 +54,6 @@ class PageReferenceValueTest extends MediaWikiUnitTestCase {
 	public function badConstructorProvider() {
 		return [
 			[ NS_MAIN, 'Test', 2.3 ],
-			[ NS_MAIN, 'Foo#Bar', false ],
-			[ NS_MAIN, 'Foo|Bar', false ],
-			[ NS_MAIN, "Foo\tBar", false ],
 		];
 	}
 

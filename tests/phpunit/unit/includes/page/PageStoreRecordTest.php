@@ -118,9 +118,6 @@ class PageStoreRecordTest extends MediaWikiUnitTestCase {
 			'negative id' => [ (object)( [ 'page_id' => -1 ] + $row ) ],
 			'special page' => [ (object)( [ 'page_namespace' => NS_SPECIAL ] + $row ) ],
 			'empty title' => [ (object)( [ 'page_title' => '' ] + $row ) ],
-			'section link' => [ (object)( [ 'page_title' => 'Foo#Bar' ] + $row ) ],
-			'pipe in title' => [ (object)( [ 'page_title' => 'Foo|Bar' ] + $row ) ],
-			'tab in title' => [ (object)( [ 'page_title' => "Foo\tBar" ] + $row ) ],
 
 			// missing data
 			'missing touched' => [ (object)array_diff_key( $row, [ 'page_touched' => 'foo' ] ) ],
