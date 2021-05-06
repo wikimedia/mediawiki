@@ -66,9 +66,6 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 			[ -1, NS_MAIN, 'Test', false ],
 			[ 0, NS_MAIN, 'Test', 2.3 ],
 			[ 0, NS_SPECIAL, 'Test', false ],
-			[ 0, NS_MAIN, 'Foo#Bar', false ],
-			[ 0, NS_MAIN, 'Foo|Bar', false ],
-			[ 0, NS_MAIN, "Foo\tBar", false ],
 		];
 	}
 
