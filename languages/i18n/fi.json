@@ -354,6 +354,7 @@
 	"red-link-title": "$1 (sivua ei ole)",
 	"sort-descending": "Lajittele laskevassa järjestyksessä",
 	"sort-ascending": "Lajittele nousevassa järjestyksessä",
+	"sort-initial": "Alkuperäinen järjestys",
 	"nstab-main": "Sivu",
 	"nstab-user": "{{GENDER:$1|Käyttäjäsivu}}",
 	"nstab-media": "Mediasivu",
