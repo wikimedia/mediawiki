@@ -250,6 +250,12 @@ class SkinTemplate extends Skin {
 						$footericons[$footerIconsKey][] = $footerIcon;
 					}
 				}
+
+				// If no valid icons with images were added, unset the parent array
+				// Should also prevent empty arrays from when no copyright is set.
+				if ( !count( $footericons[$footerIconsKey] ) ) {
+					unset( $footericons[$footerIconsKey] );
+				}
 			}
 		}
 		return $footericons;
