@@ -134,7 +134,7 @@ This is no longer encouraged, and the option has been removed.
 === External library changes in 1.36 ===
 
 ==== New external libraries ====
-* Added wikimedia/minify 2.2.1.
+* Added wikimedia/minify 2.2.2.
 * Added wikimedia/request-timeout 1.1.0.
 * Added wikimedia/shellbox 1.0.4.
 * Added WVUI 0.1.0.
