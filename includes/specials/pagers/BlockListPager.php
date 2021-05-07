@@ -333,26 +333,31 @@ class BlockListPager extends TablePager {
 						: $this->getLanguage()->getFormattedNsText(
 							$restriction->getValue()
 						);
-					$items[$restriction->getType()][] = Html::rawElement(
-						'li',
-						[],
-						$linkRenderer->makeLink(
-							$this->specialPageFactory->getTitleForAlias( 'Allpages' ),
-							$text,
+					if ( $text ) {
+						$items[$restriction->getType()][] = Html::rawElement(
+							'li',
 							[],
-							[
-								'namespace' => $restriction->getValue()
-							]
-						)
-					);
+							$linkRenderer->makeLink(
+								$this->specialPageFactory->getTitleForAlias( 'Allpages' ),
+								$text,
+								[],
+								[
+									'namespace' => $restriction->getValue()
+								]
+							)
+						);
+					}
 					break;
 				case ActionRestriction::TYPE:
-					$items[$restriction->getType()][] = Html::rawElement(
-					'li',
-					[],
-					$this->msg( 'ipb-action-' .
-						$this->blockActionInfo->getActionFromId( $restriction->getValue() ) )->escaped()
-					);
+					$actionName = $this->blockActionInfo->getActionFromId( $restriction->getValue() );
+					if ( $actionName ) {
+						$items[$restriction->getType()][] = Html::rawElement(
+							'li',
+							[],
+							$this->msg( 'ipb-action-' .
+								$this->blockActionInfo->getActionFromId( $restriction->getValue() ) )->escaped()
+						);
+					}
 					break;
 			}
 		}
