@@ -94,12 +94,8 @@
 			if ( mw.config.get( 'wgEnablePartialActionBlocks' ) ) {
 				if ( editingIsSelected && isSitewide ) {
 					actionRestrictionsWidget.setDisabled( true );
-					actionRestrictionsWidget.checkboxMultiselectWidget.selectItems(
-						actionRestrictionsWidget.checkboxMultiselectWidget.getItems()
-					);
 				} else {
 					actionRestrictionsWidget.setDisabled( false );
-					actionRestrictionsWidget.checkboxMultiselectWidget.selectItems( [] );
 				}
 			}
 
