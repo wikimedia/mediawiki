@@ -2666,9 +2666,11 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *
 	 * @see User::getOptionKinds
 	 * @return array Option kinds
-	 * @deprecated since 1.35 Use UserOptionsManager::listOptionKinds instead
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 * Use UserOptionsManager::listOptionKinds instead
 	 */
 	public static function listOptionKinds() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsManager()
 			->listOptionKinds();
@@ -2678,9 +2680,10 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Return an associative array mapping preferences keys to the kind of a preference they're
 	 * used for. Different kinds are handled differently when setting or reading preferences.
 	 *
-	 * See User::listOptionKinds for the list of valid option types that can be provided.
+	 * See UserOptionsManager::listOptionKinds for the list of valid option types that can be
+	 * provided.
 	 *
-	 * @see User::listOptionKinds
+	 * @see UserOptionsManager::listOptionKinds
 	 * @param IContextSource $context
 	 * @param array|null $options Assoc. array with options keys to check as keys.
 	 *   Defaults to $this->mOptions.

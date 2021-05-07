@@ -65,9 +65,23 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		// Empty session
 		$this->mSession = [];
 
-		$userOptionsManagerMock = $this->createNoOpMock( UserOptionsManager::class, [ 'getOptions' ] );
+		$userOptionsManagerMock = $this->createNoOpMock(
+			UserOptionsManager::class,
+			[ 'getOptions', 'listOptionKinds' ]
+		);
 		// Needs to return something
 		$userOptionsManagerMock->method( 'getOptions' )->willReturn( [] );
+
+		$userOptionsManagerMock->method( 'listOptionKinds' )->willReturn(
+			[
+				'registered',
+				'registered-multiselect',
+				'registered-checkmatrix',
+				'userjs',
+				'special',
+				'unused'
+			]
+		);
 
 		$this->mTested = new ApiOptions( $main, 'options', $userOptionsManagerMock );
 
