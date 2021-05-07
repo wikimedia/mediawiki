@@ -358,7 +358,7 @@
 	"apihelp-parse-paramvalue-prop-displaytitle": "Gir tittelen til den tolkede wikiteksten.",
 	"apihelp-parse-paramvalue-prop-subtitle": "Legger til undertittelen for den tolkede siden.",
 	"apihelp-parse-paramvalue-prop-headitems": "Gir elementer som skal puttes i <code>&lt;head&gt;</code>-taggen til siden.",
-	"apihelp-parse-paramvalue-prop-headhtml": "Gir den tolkede doctypen og de åpnende <code>&lty;html&gt;</code>-, <code>&lt;head&gt;</code>- og <code>&lt;body&gt;</code>-elementene til siden.",
+	"apihelp-parse-paramvalue-prop-headhtml": "Gir den tolkede doctypen og de åpnende <code>&lt;html&gt;</code>-, <code>&lt;head&gt;</code>- og <code>&lt;body&gt;</code>-elementene til siden.",
 	"apihelp-parse-paramvalue-prop-modules": "Gir ResourceLoader-moduler som brukes på siden. For å laste dem, bruk <code>mw.loader.using()</code>. Enten <kbd>jsonconfigvars</kbd> eller <kbd>encodedjsonfigvars</kbd> må bes om sammen med <kbd>modules</kbd>.",
 	"apihelp-parse-paramvalue-prop-jsconfigvars": "Gir JavaScript-konfigurasjonsvariablene spesifikke for siden. Bruk <code>mw.config.set()</code>.",
 	"apihelp-parse-paramvalue-prop-encodedjsconfigvars": "Gir JavaScript-konfigurasjonsvariablene som er spesifikke til siden som en JSON-streng.",
