@@ -102,6 +102,12 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	public const IGNORE_USER_RIGHTS = false;
 
 	/**
+	 * Username used for various maintenance scripts.
+	 * @since 1.37
+	 */
+	public const MAINTENANCE_SCRIPT_USER = 'Maintenance script';
+
+	/**
 	 * List of member variables which are saved to the
 	 * shared cache (memcached). Any operation which changes the
 	 * corresponding database fields must call a cache-clearing function.

@@ -244,7 +244,7 @@ class ImageBuilder extends Maintenance {
 			$pageText = SpecialUpload::getInitialPageText(
 				'(recovered file, missing upload log entry)'
 			);
-			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 			$status = $file->recordUpload3(
 				'',
 				'(recovered file, missing upload log entry)',

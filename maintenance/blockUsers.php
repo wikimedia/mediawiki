@@ -122,7 +122,7 @@ class BlockUsers extends Maintenance {
 		if ( $performerName ) {
 			$performer = User::newFromName( $performerName );
 		} else {
-			$performer = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$performer = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		}
 
 		if ( $performer === null ) {

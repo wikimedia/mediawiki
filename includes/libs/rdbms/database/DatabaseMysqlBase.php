@@ -1350,7 +1350,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
-	protected function doUpsert( $table, array $rows, array $uniqueKeys, array $set, $fname ) {
+	protected function doUpsert( $table, array $rows, array $uniqueKey, array $set, $fname ) {
 		$encTable = $this->tableName( $table );
 		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
 		$sqlColumnAssignments = $this->makeList( $set, self::LIST_SET );
@@ -1362,7 +1362,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$this->query( $sql, $fname, self::QUERY_CHANGE_ROWS );
 	}
 
-	protected function doReplace( $table, array $uniqueKeys, array $rows, $fname ) {
+	protected function doReplace( $table, array $uniqueKey, array $rows, $fname ) {
 		$encTable = $this->tableName( $table );
 		list( $sqlColumns, $sqlTuples ) = $this->makeInsertLists( $rows );
 

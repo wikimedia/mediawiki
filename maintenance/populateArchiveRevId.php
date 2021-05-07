@@ -243,7 +243,7 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			$title = Title::newFromText( "PopulateArchiveRevId_4b05b46a81e29" );
 			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
 			$updater = $page->newPageUpdater(
-				User::newSystemUser( 'Maintenance script', [ 'steal' => true ] )
+				User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] )
 			);
 			$updater->setContent(
 				'main',
