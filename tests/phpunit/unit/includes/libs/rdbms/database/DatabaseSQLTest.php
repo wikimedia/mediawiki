@@ -1019,33 +1019,6 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 			[
 				[
 					'table' => 'module_deps',
-					'uniqueIndexes' => [ 'md_module', 'md_skin' ],
-					'rows' => [
-						[
-							'md_module' => 'module',
-							'md_skin' => 'skin',
-							'md_deps' => 'deps',
-						], [
-							'md_module' => 'module2',
-							'md_skin' => 'skin2',
-							'md_deps' => 'deps2',
-						],
-					],
-				],
-				"BEGIN; DELETE FROM module_deps " .
-					"WHERE ((md_module = 'module') OR (md_skin = 'skin')); " .
-					"INSERT INTO module_deps " .
-					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module','skin','deps'); " .
-					"DELETE FROM module_deps " .
-					"WHERE ((md_module = 'module2') OR (md_skin = 'skin2')); " .
-					"INSERT INTO module_deps " .
-					"(md_module,md_skin,md_deps) " .
-					"VALUES ('module2','skin2','deps2'); COMMIT"
-			],
-			[
-				[
-					'table' => 'module_deps',
 					'uniqueIndexes' => [],
 					'rows' => [
 						'md_module' => 'module',
