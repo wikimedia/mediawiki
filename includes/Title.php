@@ -195,6 +195,9 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	/** @var bool|null Is the title known to be valid? */
 	private $mIsValid = null;
 
+	/** @var string|null The key of this instance in the internal Title instance cache */
+	private $mInstanceCacheKey = null;
+
 	// endregion -- end of private member variables
 	/** @} */
 	/***************************************************************************/
@@ -428,7 +431,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		// Wiki pages often contain multiple links to the same page.
 		// Title normalization and parsing can become expensive on pages with many
 		// links, so we can save a little time by caching them.
-		// In theory these are value objects and won't get changed...
 		if ( $defaultNamespace === NS_MAIN ) {
 			$t = $titleCache->get( $text );
 			if ( $t ) {
@@ -444,9 +446,22 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		$t->secureAndSplit( $dbKeyForm, (int)$defaultNamespace );
 		if ( $defaultNamespace === NS_MAIN ) {
+			$t->mInstanceCacheKey = $text;
 			$titleCache->set( $text, $t );
 		}
 		return $t;
+	}
+
+	/**
+	 * Removes this instance from the internal title cache, so it can be modified in-place
+	 * without polluting the cache (see T281337).
+	 */
+	private function uncache() {
+		if ( $this->mInstanceCacheKey !== null ) {
+			$titleCache = self::getTitleCache();
+			$titleCache->clear( $this->mInstanceCacheKey );
+			$this->mInstanceCacheKey = null;
+		}
 	}
 
 	/**
@@ -1133,6 +1148,9 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * ContentHandler::canBeUsedOn() should be checked before calling this
 	 * if there is any doubt regarding the applicability of the content model
 	 *
+	 * @warning This must only be used if the caller controls the further use of
+	 * this Title object, to avoid other code unexpectedly using the new value.
+	 *
 	 * @since 1.28
 	 * @param string $model CONTENT_MODEL_XXX constant
 	 */
@@ -1141,6 +1159,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			throw new InvalidArgumentException( "Missing CONTENT_MODEL_* constant" );
 		}
 
+		$this->uncache();
 		$this->mContentModel = $model;
 		$this->mForcedContentModel = true;
 	}
@@ -1827,14 +1846,13 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * specified fragment before setting, so it assumes you're passing it with
 	 * an initial "#".
 	 *
-	 * Deprecated for public use, use Title::makeTitle() with fragment parameter,
-	 * or Title::createFragmentTarget().
-	 * Still in active use privately.
+	 * @warning This must only be used if the caller controls the further use of
+	 * this Title object, to avoid other code unexpectedly using the new value.
 	 *
-	 * @internal
 	 * @param string $fragment Text
 	 */
 	public function setFragment( $fragment ) {
+		$this->uncache();
 		$this->mFragment = strtr( substr( $fragment, 1 ), '_', ' ' );
 	}
 
@@ -4535,6 +4553,10 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$this->mArticleID = ( $this->mNamespace >= 0 ) ? -1 : 0;
 		$this->mUrlform = wfUrlencode( $this->mDbkeyform );
 		$this->mTextform = strtr( $this->mDbkeyform, '_', ' ' );
+	}
+
+	public function __clone() {
+		$this->mInstanceCacheKey = null;
 	}
 
 	/**

@@ -708,4 +708,53 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		}
 	}
 
+	/**
+	 * @covers Title::getContentModel
+	 * @covers Title::setContentModel
+	 * @covers Title::uncache
+	 */
+	public function testSetContentModel() {
+		// NOTE: must use newFromText to test behavior of internal instance cache (T281337)
+		$title = Title::newFromText( 'Foo' );
+
+		$title->setContentModel( CONTENT_MODEL_UNKNOWN );
+		$this->assertSame( CONTENT_MODEL_UNKNOWN, $title->getContentModel() );
+
+		// Ensure that the instance we get back from newFromText isn't the modified one.
+		$title = Title::newFromText( 'Foo' );
+		$this->assertNotSame( CONTENT_MODEL_UNKNOWN, $title->getContentModel() );
+	}
+
+	/**
+	 * @covers Title::getFragment
+	 * @covers Title::getFragment
+	 * @covers Title::uncache
+	 */
+	public function testSetFragment() {
+		// NOTE: must use newFromText to test behavior of internal instance cache (T281337)
+		$title = Title::newFromText( 'Foo' );
+
+		$title->setFragment( '#Xyzzy' );
+		$this->assertSame( 'Xyzzy', $title->getFragment() );
+
+		// Ensure that the instance we get back from newFromText isn't the modified one.
+		$title = Title::newFromText( 'Foo' );
+		$this->assertNotSame( 'Xyzzy', $title->getFragment() );
+	}
+
+	/**
+	 * @covers Title::__clone
+	 */
+	public function testClone() {
+		// NOTE: must use newFromText to test behavior of internal instance cache (T281337)
+		$title = Title::newFromText( 'Foo' );
+
+		$clone = clone $title;
+		$clone->setFragment( '#Xyzzy' );
+
+		// Ensure that the instance we get back from newFromText is the original one
+		$title2 = Title::newFromText( 'Foo' );
+		$this->assertSame( $title, $title2 );
+	}
+
 }
