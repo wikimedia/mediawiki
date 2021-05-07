@@ -11,7 +11,15 @@ namespace MediaWiki\Block\Hook;
  */
 interface GetAllBlockActionsHook {
 	/**
-	 * Use this hook to add an action to block on
+	 * Use this hook to add an action or actions that may be blocked by a partial block.
+	 *
+	 * Add an item to the $actions array with:
+	 * - key: unique action string (as it appears in the code)
+	 * - value: unique integer ID
+	 *
+	 * The ID must be 100 or greater (IDs below 100 are reserved for core actions),
+	 * must not conflict with other extension IDs, and must be documented at:
+	 * https://www.mediawiki.org/wiki/Manual:Hooks/GetAllBlockActions
 	 *
 	 * @since 1.37
 	 *
