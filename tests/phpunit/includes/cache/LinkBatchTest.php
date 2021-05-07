@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\AtEase\AtEase;
@@ -82,20 +83,32 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers LinkBatch::addObj()
-	 * @covers LinkBatch::getSize()
+	 * @param iterable<LinkTarget>|iterable<PageReference> $objects
+	 *
+	 * @return LinkBatch
+	 * @throws Exception
 	 */
-	public function testAddObj() {
-		$batch = new LinkBatch(
-			[
-				new TitleValue( NS_MAIN, 'Foo' ),
-				new PageReferenceValue( NS_USER, 'Foo', PageReference::LOCAL ),
-			],
+	private function newLinkBatch( $objects = [] ) {
+		return new LinkBatch(
+			$objects,
 			$this->createMock( LinkCache::class ),
 			$this->createMock( TitleFormatter::class ),
 			$this->createMock( Language::class ),
 			$this->createMock( GenderCache::class ),
 			$this->getServiceContainer()->getDBLoadBalancer()
+		);
+	}
+
+	/**
+	 * @covers LinkBatch::addObj()
+	 * @covers LinkBatch::getSize()
+	 */
+	public function testAddObj() {
+		$batch = $this->newLinkBatch(
+			[
+				new TitleValue( NS_MAIN, 'Foo' ),
+				new PageReferenceValue( NS_USER, 'Foo', PageReference::LOCAL ),
+			]
 		);
 
 		$batch->addObj( new PageReferenceValue( NS_TALK, 'Bar', PageReference::LOCAL ) );
@@ -110,15 +123,10 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 	 * @covers LinkBatch::getSize()
 	 */
 	public function testAdd() {
-		$batch = new LinkBatch(
+		$batch = $this->newLinkBatch(
 			[
 				new TitleValue( NS_MAIN, 'Foo' )
-			],
-			$this->createMock( LinkCache::class ),
-			$this->createMock( TitleFormatter::class ),
-			$this->createMock( Language::class ),
-			$this->createMock( GenderCache::class ),
-			$this->getServiceContainer()->getDBLoadBalancer()
+			]
 		);
 
 		$batch->add( NS_TALK, 'Bar' );
@@ -253,5 +261,39 @@ class LinkBatchTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertTrue( $batch->doGenderQuery() );
+	}
+
+	public function provideBadObjects() {
+		yield 'null' => [ null ];
+		yield 'empty' => [ Title::makeTitle( NS_MAIN, '' ) ];
+		yield 'bad user' => [ Title::makeTitle( NS_USER, '#12345' ) ];
+		yield 'section' => [ new TitleValue( NS_MAIN, '', '#See_also' ) ];
+		yield 'special' => [ new TitleValue( NS_SPECIAL, 'RecentChanges' ) ];
+	}
+
+	/**
+	 * @dataProvider provideBadObjects
+	 */
+	public function testAddBadObj( $obj ) {
+		$linkBatch = $this->newLinkBatch();
+		$linkBatch->addObj( $obj );
+		$linkBatch->execute();
+		$this->addToAssertionCount( 1 );
+	}
+
+	public function provideBadDBKeys() {
+		yield 'empty' => [ '' ];
+		yield 'section' => [ '#See_also' ];
+		yield 'pipe' => [ 'foo|bar' ];
+	}
+
+	/**
+	 * @dataProvider provideBadDBKeys
+	 */
+	public function testAddBadDBKeys( $key ) {
+		$linkBatch = $this->newLinkBatch();
+		$linkBatch->add( NS_MAIN, $key );
+		$linkBatch->execute();
+		$this->addToAssertionCount( 1 );
 	}
 }
