@@ -5582,6 +5582,7 @@ $wgMaxNameChars = 255;
 /**
  * Array of usernames which may not be registered or logged in from
  * Maintenance scripts can still use these
+ * @see User::MAINTENANCE_SCRIPT_USER
  */
 $wgReservedUsernames = [
 	'MediaWiki default', // Default 'Main Page' and MediaWiki: message pages

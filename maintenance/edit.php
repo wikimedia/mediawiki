@@ -61,7 +61,7 @@ class EditCLI extends Maintenance {
 		$slot = $this->getOption( 'slot', SlotRecord::MAIN );
 
 		if ( $userName === false ) {
-			$user = User::newSystemUser( 'Maintenance script', [ 'steal' => true ] );
+			$user = User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] );
 		} else {
 			$user = User::newFromName( $userName );
 		}
