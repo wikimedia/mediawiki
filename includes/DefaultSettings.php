@@ -4516,6 +4516,13 @@ $wgMetaNamespace = false;
 $wgMetaNamespaceTalk = false;
 
 /**
+ * Canonical namespace names.
+ *
+ * Must not be changed directly in configuration or by extensions, use $wgExtraNamespaces instead.
+ */
+$wgCanonicalNamespaceNames = NamespaceInfo::CANONICAL_NAMES;
+
+/**
  * Additional namespaces. If the namespaces defined in Language.php and
  * Namespace.php are insufficient, you can create new ones here, for example,
  * to import Help files in other languages. You can also override the namespace
