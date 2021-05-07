@@ -21,6 +21,7 @@
  * @ingroup JobQueue
  */
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
@@ -152,6 +153,23 @@ class RefreshLinksJob extends Job {
 		// Load the page from the master DB
 		$page = $services->getWikiPageFactory()->newFromTitle( $title );
 		$page->loadPageData( WikiPage::READ_LATEST );
+
+		if ( !$page->exists() ) {
+			// Probably due to concurrent deletion or renaming of the page
+			$logger = LoggerFactory::getInstance( 'RefreshLinksJob' );
+			$logger->notice(
+				'The page does not exist. Perhaps it was deleted?',
+				[
+					'page_title' => $this->title->getPrefixedDBkey(),
+					'job_params' => $this->getParams(),
+					'job_metadata' => $this->getMetadata()
+				]
+			);
+
+			// nothing to do
+			$stats->increment( 'refreshlinks.rev_not_found' );
+			return false;
+		}
 
 		// Serialize link update job by page ID so they see each others' changes.
 		// The page ID and latest revision ID will be queried again after the lock
