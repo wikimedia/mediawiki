@@ -380,7 +380,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		$user = $this->getUser();
 
 		$rcQuery = RecentChange::getQueryInfo();
-		$tables = array_merge( $tables, $rcQuery['tables'], [ 'watchlist' ] );
+		$tables = array_merge( $rcQuery['tables'], $tables, [ 'watchlist' ] );
 		$fields = array_merge( $rcQuery['fields'], $fields );
 
 		$join_conds = array_merge(
