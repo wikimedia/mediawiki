@@ -18,6 +18,11 @@ use Wikimedia\TestingAccessWrapper;
 class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 	public function testBasics() {
+		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setConfig' );
+		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setLogger' );
+		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setManager' );
+		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setHookContainer' );
+
 		$manager = new SessionManager();
 		$logger = new TestLogger();
 		$config = new \HashConfig();

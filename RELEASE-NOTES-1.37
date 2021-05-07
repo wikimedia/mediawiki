@@ -282,6 +282,10 @@ because of Phabricator reports.
   MediaWikiServices::getJobQueueGroup instead.
 * JobQueueGroup::destroySingletons was deprecated. JobQueueGroups are now
   automatically destroyed after tests.
+* SessionProvider ::setLogger(), ::setManager(), ::setConfig(),
+  ::setHookContainer() were hard deprecated. Use ::init() to inject
+  dependencies or override ::postInitSetup() to do any custom
+  post-initialization configuration.
 * …
 
 === Other changes in 1.37 ===
