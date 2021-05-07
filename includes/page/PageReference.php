@@ -69,9 +69,12 @@ interface PageReference extends WikiAwareEntity {
 	/**
 	 * Get the page title in DB key form.
 	 *
+	 * @note This may return a string starting with a hash, if the PageReference represents
+	 *       the target of a block or unblock operation. This is due to the way the block target
+	 *       is represented in the logging table. This is intended to change in the future.
+	 *
 	 * @note This may return an empty string, if this PageReference is a Title that represents
-	 *       a relative section link. This is intended to change in the future, so that all
-	 *       Pagereferences return a valid DB key.
+	 *       a relative section link. This is intended to change in the future.
 	 *
 	 * @return string
 	 */

@@ -63,6 +63,8 @@ interface PageLookup extends IDBAccessObject {
 
 	/**
 	 * Returns a PageIdentity for a given user provided page name text.
+	 * Returns null if the title is not a valid name of a proper page,
+	 * e.g if it is a special page, an interwiki link, a relative section line, or simply invalid.
 	 *
 	 * @since 1.37
 	 *
@@ -79,7 +81,10 @@ interface PageLookup extends IDBAccessObject {
 	): ?ProperPageIdentity;
 
 	/**
-	 * Returns an existing PageRecord for a given user provided page name text.
+	 * Returns an ExistingPageRecord for a given user provided page name text.
+	 *
+	 * Returns null if the page does not exist or if title is not a valid name of a proper page,
+	 * e.g if it is a special page, an interwiki link, a relative section line, or simply invalid.
 	 *
 	 * @since 1.37
 	 *
@@ -99,10 +104,13 @@ interface PageLookup extends IDBAccessObject {
 	 * Returns the PageRecord of the given page.
 	 * May return $page if that already is a PageRecord.
 	 *
+	 * The PageReference must refer to a proper page - that is, it must not refer to a special page.
+	 *
 	 * @param PageReference $page
 	 * @param int $queryFlags
 	 *
 	 * @return ExistingPageRecord|null The page's PageRecord, or null if the page was not found.
+	 * @throws InvalidArgumentException if $page does not refer to a proper page.
 	 */
 	public function getPageByReference(
 		PageReference $page,
