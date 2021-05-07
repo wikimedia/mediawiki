@@ -487,7 +487,9 @@ class SpecialBlock extends FormSpecialPage {
 				foreach ( $block->getRestrictions() as $restriction ) {
 					if ( $restriction instanceof PageRestriction && $restriction->getTitle() ) {
 						$pageRestrictions[] = $restriction->getTitle()->getPrefixedText();
-					} elseif ( $restriction instanceof NamespaceRestriction ) {
+					} elseif ( $restriction instanceof NamespaceRestriction &&
+						$this->getLanguage()->getFormattedNsText( $restriction->getValue() )
+					) {
 						$namespaceRestrictions[] = $restriction->getValue();
 					}
 				}
