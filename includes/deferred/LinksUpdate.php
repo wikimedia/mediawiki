@@ -130,19 +130,6 @@ class LinksUpdate extends DataUpdate {
 		parent::__construct();
 
 		$this->mTitle = $title;
-
-		if ( !$this->mId ) {
-			// NOTE: subclasses may initialize mId before calling this constructor!
-			$this->mId = $title->getArticleID( Title::READ_LATEST );
-		}
-
-		if ( !$this->mId ) {
-			throw new InvalidArgumentException(
-				"The Title object yields no ID. "
-					. "Perhaps the page [[{$title->getPrefixedDBkey()}]] doesn't exist?"
-			);
-		}
-
 		$this->mParserOutput = $parserOutput;
 
 		$this->mLinks = $parserOutput->getLinks();
@@ -181,6 +168,27 @@ class LinksUpdate extends DataUpdate {
 	 * @note this is managed by DeferredUpdates::execute(). Do not run this in a transaction.
 	 */
 	public function doUpdate() {
+		if ( !$this->mId ) {
+			// NOTE: subclasses may initialize mId directly!
+			$this->mId = $this->mTitle->getArticleID( Title::READ_LATEST );
+		}
+
+		if ( !$this->mId ) {
+			// Probably due to concurrent deletion or renaming of the page
+			$logger = LoggerFactory::getInstance( 'SecondaryDataUpdate' );
+			$logger->notice(
+				'LinksUpdate: The Title object yields no ID. Perhaps the page was deleted?',
+				[
+					'page_title' => $this->mTitle->getPrefixedDBkey(),
+					'cause_action' => $this->getCauseAction(),
+					'cause_agent' => $this->getCauseAgent()
+				]
+			);
+
+			// nothing to do
+			return;
+		}
+
 		if ( $this->ticket ) {
 			// Make sure all links update threads see the changes of each other.
 			// This handles the case when updates have to batched into several COMMITs.
