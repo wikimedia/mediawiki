@@ -305,8 +305,20 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( $this->getFlip( $context ) ) {
 				$style = CSSJanus::transform( $style, true, false );
 			}
-			$style = MemoizedCallable::call( [ CSSMin::class, 'remap' ],
-				[ $style, false, $this->getConfig()->get( 'ScriptPath' ), true ] );
+			$remoteDir = $this->getConfig()->get( 'ScriptPath' );
+			if ( $remoteDir === '' ) {
+				// When the site is configured with the script path at the
+				// document root, MediaWiki uses an empty string but that is
+				// not a valid URI path. Expand to a slash to avoid fatals
+				// later in CSSMin::resolveUrl().
+				// See also ResourceLoaderFilePath::extractBasePaths, T282280.
+				$remoteDir = '/';
+			}
+
+			$style = MemoizedCallable::call(
+				[ CSSMin::class, 'remap' ],
+				[ $style, false, $remoteDir, true ]
+			);
 			if ( !isset( $styles[$media] ) ) {
 				$styles[$media] = [];
 			}
