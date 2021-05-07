@@ -47,7 +47,8 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @internal For use by ServiceWiring
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
-		'HiddenPrefs'
+		'HiddenPrefs',
+		'LocalTZoffset',
 	];
 
 	/** @var ServiceOptions */
@@ -551,6 +552,16 @@ class UserOptionsManager extends UserOptionsLookup {
 
 		// Replace deprecated language codes
 		$options['language'] = LanguageCode::replaceDeprecatedCodes( $options['language'] );
+		// Fix up timezone offset (Due to DST it can change from what was stored in the DB)
+		// ZoneInfo|offset|TimeZoneName
+		if ( isset( $options['timecorrection'] ) ) {
+			$options['timecorrection'] = ( new UserTimeCorrection(
+				$options['timecorrection'],
+				null,
+				$this->serviceOptions->get( 'LocalTZoffset' )
+			) )->toString();
+		}
+
 		// Need to store what we have so far before the hook to prevent
 		// infinite recursion if the hook attempts to reload options
 		$this->originalOptionsCache[$userKey] = $options;

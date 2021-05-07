@@ -20,7 +20,10 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		return new UserOptionsManager(
 			new ServiceOptions(
 				UserOptionsManager::CONSTRUCTOR_OPTIONS,
-				new HashConfig( [ 'HiddenPrefs' => [ 'hidden_user_option' ] ] )
+				new HashConfig( [
+					'HiddenPrefs' => [ 'hidden_user_option' ],
+					'LocalTZoffset' => 0,
+				] )
 			),
 			$this->getDefaultManager( $langCode, $defaultOptionsOverrides ),
 			$services->getLanguageConverterFactory(),

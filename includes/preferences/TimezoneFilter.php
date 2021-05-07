@@ -20,8 +20,7 @@
 
 namespace MediaWiki\Preferences;
 
-use DateTimeZone;
-use Exception;
+use MediaWiki\User\UserTimeCorrection;
 
 class TimezoneFilter implements Filter {
 
@@ -36,50 +35,9 @@ class TimezoneFilter implements Filter {
 	 * @inheritDoc
 	 */
 	public function filterFromForm( $tz ) {
-		$data = explode( '|', $tz, 3 );
-		switch ( $data[0] ) {
-			case 'ZoneInfo':
-				$valid = false;
-
-				if ( count( $data ) === 3 ) {
-					// Make sure this timezone exists
-					try {
-						// @phan-suppress-next-line PhanNoopNew
-						new DateTimeZone( $data[2] );
-						// If the constructor didn't throw, we know it's valid
-						$valid = true;
-					} catch ( Exception $e ) {
-						// Not a valid timezone
-					}
-				}
-
-				if ( !$valid ) {
-					// If the supplied timezone doesn't exist, fall back to the encoded offset
-					return 'Offset|' . intval( $tz[1] );
-				}
-				return $tz;
-			case 'System':
-				return $tz;
-			default:
-				$data = explode( ':', $tz, 2 );
-				if ( count( $data ) == 2 ) {
-					$data[0] = intval( $data[0] );
-					$data[1] = intval( $data[1] );
-					$minDiff = abs( $data[0] ) * 60 + $data[1];
-					if ( $data[0] < 0 ) {
-						$minDiff = -$minDiff;
-					}
-				} else {
-					$minDiff = intval( $data[0] ) * 60;
-				}
-
-				# Max is +14:00 and min is -12:00, see:
-				# https://en.wikipedia.org/wiki/Timezone
-				# 14:00
-				$minDiff = min( $minDiff, 840 );
-				# -12:00
-				$minDiff = max( $minDiff, -720 );
-				return 'Offset|' . $minDiff;
+		if ( $tz === UserTimeCorrection::SYSTEM ) {
+			return $tz;
 		}
+		return ( new UserTimeCorrection( $tz ) )->toString();
 	}
 }
