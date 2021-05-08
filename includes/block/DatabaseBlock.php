@@ -582,8 +582,6 @@ class DatabaseBlock extends AbstractBlock {
 
 				return explode( "\n",
 					wfMessage( 'block-autoblock-exemptionlist' )->inContentLanguage()->plain()
-					// Temporarily still load the old Message
-					. "\n" . wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain()
 				);
 			}
 		);
