@@ -89,7 +89,7 @@ CREATE INDEX /*i*/rev_page_id ON /*_*/revision (rev_page, rev_id);
 CREATE INDEX /*i*/rev_timestamp ON /*_*/revision (rev_timestamp);
 
 -- History index
-CREATE INDEX /*i*/page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
+CREATE INDEX /*i*/rev_page_timestamp ON /*_*/revision (rev_page,rev_timestamp);
 
 -- User contributions index
 CREATE INDEX /*i*/rev_actor_timestamp ON /*_*/revision (rev_actor,rev_timestamp,rev_id);
