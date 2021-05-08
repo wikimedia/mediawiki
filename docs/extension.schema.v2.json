@@ -5,7 +5,10 @@
 	"additionalProperties": false,
 	"patternProperties": {
 		"^@": {
-			"type": "string",
+			"type": [
+				"string",
+				"array"
+			],
 			"description": "Arbitrary notes, ignored by the parser."
 		}
 	},
