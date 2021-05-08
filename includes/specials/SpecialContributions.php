@@ -790,8 +790,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				( $pagerOptions['end'] ?? null )
 			)
 			->setAction( wfScript() )
-			->setSubmitText( $this->msg( 'sp-contributions-submit' )->text() )
-			->setWrapperLegend( $this->msg( 'sp-contributions-search' )->text() );
+			->setSubmitTextMsg( 'sp-contributions-submit' )
+			->setWrapperLegendMsg( 'sp-contributions-search' );
 
 		$explain = $this->msg( 'sp-contributions-explain' );
 		if ( !$explain->isBlank() ) {

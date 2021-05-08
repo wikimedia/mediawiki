@@ -182,7 +182,7 @@ class LogEventsList extends ContextSource {
 		$context->setTitle( SpecialPage::getTitleFor( 'Log' ) ); // Remove subpage
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $context );
 		$htmlForm
-			->setSubmitText( $this->msg( 'logeventslist-submit' )->text() )
+			->setSubmitTextMsg( 'logeventslist-submit' )
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'log' );
 

@@ -602,9 +602,9 @@ class ProtectionForm {
 			->setTableId( 'mw-protect-table2' )
 			->setAction( $this->mTitle->getLocalURL( 'action=protect' ) )
 			->setSubmitID( 'mw-Protect-submit' )
-			->setSubmitText( $this->mContext->msg( 'confirm' )->text() )
+			->setSubmitTextMsg( 'confirm' )
 			->suppressDefaultSubmit( $this->disabled )
-			->setWrapperLegend( $this->mContext->msg( 'protect-legend' )->text() )
+			->setWrapperLegendMsg( 'protect-legend' )
 			->loadData();
 
 		return $htmlForm->getHTML( false ) . $out;

@@ -376,8 +376,8 @@ class SpecialNewpages extends IncludableSpecialPage {
 					return false;
 				}
 			)
-			->setSubmitText( $this->msg( 'newpages-submit' )->text() )
-			->setWrapperLegend( $this->msg( 'newpages' )->text() )
+			->setSubmitTextMsg( 'newpages-submit' )
+			->setWrapperLegendMsg( 'newpages' )
 			->addFooterText( Html::rawElement(
 				'div',
 				null,

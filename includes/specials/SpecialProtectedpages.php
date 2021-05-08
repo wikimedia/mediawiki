@@ -159,7 +159,7 @@ class SpecialProtectedpages extends SpecialPage {
 		$htmlForm = HTMLForm::factory( 'ooui', $formDescriptor, $this->getContext() )
 			->setMethod( 'get' )
 			->setWrapperLegendMsg( 'protectedpages' )
-			->setSubmitText( $this->msg( 'protectedpages-submit' )->text() );
+			->setSubmitTextMsg( 'protectedpages-submit' );
 
 		return $htmlForm->prepareForm()->getHTML( false );
 	}
