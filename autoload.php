@@ -257,7 +257,6 @@ $wgAutoloadLocalClasses = [
 	'CheckLess' => __DIR__ . '/maintenance/checkLess.php',
 	'CheckUsernames' => __DIR__ . '/maintenance/checkUsernames.php',
 	'ClassCollector' => __DIR__ . '/includes/utils/ClassCollector.php',
-	'CleanupAncientTables' => __DIR__ . '/maintenance/cleanupAncientTables.php',
 	'CleanupBlocks' => __DIR__ . '/maintenance/cleanupBlocks.php',
 	'CleanupCaps' => __DIR__ . '/maintenance/cleanupCaps.php',
 	'CleanupEmptyCategories' => __DIR__ . '/maintenance/cleanupEmptyCategories.php',
