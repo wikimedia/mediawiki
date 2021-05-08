@@ -10,6 +10,10 @@
 			"Attr": [ "test2" ]
 		}
 	},
+	"@config notes": [
+		"The line below is false.",
+		"The line above is true. "
+	],
 	"config": {
 		"MyConfigValue": {
 			"value": 42,
