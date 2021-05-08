@@ -156,7 +156,7 @@ class LogEventsList extends ContextSource {
 		$formDescriptor['tagfilter'] = [
 			'type' => 'tagfilter',
 			'name' => 'tagfilter',
-			'label-raw' => $this->msg( 'tag-filter' )->parse(),
+			'label-message' => 'tag-filter',
 		];
 
 		// Filter links
