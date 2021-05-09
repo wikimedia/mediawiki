@@ -558,6 +558,8 @@ class DatabaseBlock extends AbstractBlock {
 	 * @return bool
 	 */
 	public static function isWhitelistedFromAutoblocks( $ip ) {
+		// Hard-deprecated since MW 1.37.
+		wfDeprecated( __METHOD__, '1.36' );
 		return self::isExemptedFromAutoblocks( $ip );
 	}
 
@@ -582,8 +584,6 @@ class DatabaseBlock extends AbstractBlock {
 
 				return explode( "\n",
 					wfMessage( 'block-autoblock-exemptionlist' )->inContentLanguage()->plain()
-					// Temporarily still load the old Message
-					. "\n" . wfMessage( 'autoblock_whitelist' )->inContentLanguage()->plain()
 				);
 			}
 		);
