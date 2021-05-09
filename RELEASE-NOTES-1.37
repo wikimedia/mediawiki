@@ -189,6 +189,11 @@ because of Phabricator reports.
   Use MWGrants::grantName instead.
 * SessionProvider class doesn't extend LoggerAwareInterface.
   So SessionProvider can't be typehinted as LoggerAwareInterface.
+* The following ApiBase methods, deprecated since 1.35, have been removed:
+  - ApiBase::explodeMultiValue
+  - ApiBase::parseMultiValue
+  - ApiBase::validateLimit
+  - ApiBase::validateTimestamp
 * IDatabase::upsert() and IDatabase::replace() only accept a single unique key.
   Previously, a warning was issued if there were multiple unique keys provided.
 
