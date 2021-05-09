@@ -477,6 +477,19 @@ abstract class ApiBase extends ContextSource {
 	}
 
 	/**
+	 * Used to avoid infinite loops - the ApiMain class should override some
+	 * methods, if it doesn't and uses the default ApiBase implementation, which
+	 * just calls the same method for the ApiMain instance, it'll lead to an infinite loop
+	 *
+	 * @param string $methodName used for debug messages
+	 */
+	private function dieIfMain( string $methodName ) {
+		if ( $this->isMain() ) {
+			self::dieDebug( $methodName, 'base method was called on main module.' );
+		}
+	}
+
+	/**
 	 * Returns true if the current request breaks the same-origin policy.
 	 *
 	 * For example, json with callbacks.
@@ -487,11 +500,8 @@ abstract class ApiBase extends ContextSource {
 	 * @return bool
 	 */
 	public function lacksSameOriginSecurity() {
-		// Main module has this method overridden
-		// Safety - avoid infinite loop:
-		if ( $this->isMain() ) {
-			self::dieDebug( __METHOD__, 'base method was called on main module.' );
-		}
+		// Main module has this method overridden, avoid infinite loops
+		$this->dieIfMain( __METHOD__ );
 
 		return $this->getMain()->lacksSameOriginSecurity();
 	}
@@ -559,11 +569,8 @@ abstract class ApiBase extends ContextSource {
 	 * @return ApiResult
 	 */
 	public function getResult() {
-		// Main module has getResult() method overridden
-		// Safety - avoid infinite loop:
-		if ( $this->isMain() ) {
-			self::dieDebug( __METHOD__, 'base method was called on main module. ' );
-		}
+		// Main module has this method overridden, avoid infinite loops
+		$this->dieIfMain( __METHOD__ );
 
 		return $this->getMain()->getResult();
 	}
@@ -573,11 +580,8 @@ abstract class ApiBase extends ContextSource {
 	 * @return ApiErrorFormatter
 	 */
 	public function getErrorFormatter() {
-		// Main module has getErrorFormatter() method overridden
-		// Safety - avoid infinite loop:
-		if ( $this->isMain() ) {
-			self::dieDebug( __METHOD__, 'base method was called on main module. ' );
-		}
+		// Main module has this method overridden, avoid infinite loops
+		$this->dieIfMain( __METHOD__ );
 
 		return $this->getMain()->getErrorFormatter();
 	}
@@ -599,11 +603,8 @@ abstract class ApiBase extends ContextSource {
 	 * @return ApiContinuationManager|null
 	 */
 	public function getContinuationManager() {
-		// Main module has getContinuationManager() method overridden
-		// Safety - avoid infinite loop:
-		if ( $this->isMain() ) {
-			self::dieDebug( __METHOD__, 'base method was called on main module. ' );
-		}
+		// Main module has this method overridden, avoid infinite loops
+		$this->dieIfMain( __METHOD__ );
 
 		return $this->getMain()->getContinuationManager();
 	}
@@ -612,11 +613,8 @@ abstract class ApiBase extends ContextSource {
 	 * @param ApiContinuationManager|null $manager
 	 */
 	public function setContinuationManager( ApiContinuationManager $manager = null ) {
-		// Main module has setContinuationManager() method overridden
-		// Safety - avoid infinite loop:
-		if ( $this->isMain() ) {
-			self::dieDebug( __METHOD__, 'base method was called on main module. ' );
-		}
+		// Main module has this method overridden, avoid infinite loops
+		$this->dieIfMain( __METHOD__ );
 
 		$this->getMain()->setContinuationManager( $manager );
 	}
