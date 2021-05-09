@@ -15,6 +15,25 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		] );
 		$this->setUserLang( 'en' );
 		$this->setContentLang( 'en' );
+		$this->tablesUsed[] = 'category';
+	}
+
+	public function addDBData() {
+		// Add a row to the 'category' table
+		$this->db->insert(
+			'category',
+			[
+				[
+					'cat_id' => 1,
+					'cat_title' => 'Example',
+					'cat_pages' => 3,
+					'cat_subcats' => 4,
+					'cat_files' => 5
+				]
+			],
+			__METHOD__,
+			[ 'IGNORE' ]
+		);
 	}
 
 	/**
@@ -55,25 +74,8 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideInitializeVariants
 	 */
 	public function testInitialize( $createFunction, $createParam, $testFunction, $expected ) {
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'category',
-			[
-				[
-					'cat_id' => 1,
-					'cat_title' => 'Example',
-					'cat_pages' => 3,
-					'cat_subcats' => 4,
-					'cat_files' => 5
-				]
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
-
 		$category = Category::{$createFunction}( $createParam );
 		$this->assertEquals( $expected, $category->{$testFunction}() );
-
-		$dbw->delete( 'category', '*', __METHOD__ );
 	}
 
 	/**
@@ -115,19 +117,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromRow_found() {
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'category',
-			[
-				[
-					'cat_id' => 1,
-					'cat_title' => 'Example',
-					'cat_pages' => 3,
-					'cat_subcats' => 4,
-					'cat_files' => 5
-				]
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
 
 		$category = Category::newFromRow( $dbw->selectRow(
 			'category',
@@ -137,8 +126,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		) );
 
 		$this->assertSame( '1', $category->getID() );
-
-		$dbw->delete( 'category', '*', __METHOD__ );
 	}
 
 	/**
@@ -146,19 +133,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromRow_notFoundWithoutTitle() {
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'category',
-			[
-				[
-					'cat_id' => 1,
-					'cat_title' => 'Example',
-					'cat_pages' => 3,
-					'cat_subcats' => 4,
-					'cat_files' => 5
-				]
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
 
 		$row = $dbw->selectRow(
 			'category',
@@ -169,8 +143,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		$row->cat_title = null;
 
 		$this->assertFalse( Category::newFromRow( $row ) );
-
-		$dbw->delete( 'category', '*', __METHOD__ );
 	}
 
 	/**
@@ -178,19 +150,6 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testNewFromRow_notFoundWithTitle() {
 		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'category',
-			[
-				[
-					'cat_id' => 1,
-					'cat_title' => 'Example',
-					'cat_pages' => 3,
-					'cat_subcats' => 4,
-					'cat_files' => 5
-				]
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
 
 		$row = $dbw->selectRow(
 			'category',
@@ -206,82 +165,19 @@ class CategoryTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertFalse( $category->getID() );
-
-		$dbw->delete( 'category', '*', __METHOD__ );
 	}
 
 	/**
 	 * @covers Category::getPageCount()
-	 */
-	public function testGetPageCount() {
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'category',
-			[
-				[
-					'cat_id' => 1,
-					'cat_title' => 'Example',
-					'cat_pages' => 3,
-					'cat_subcats' => 4,
-					'cat_files' => 5
-				]
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
-
-		$category = Category::newFromID( 1 );
-		$this->assertEquals( 3, $category->getPageCount() );
-
-		$dbw->delete( 'category', '*', __METHOD__ );
-	}
-
-	/**
 	 * @covers Category::getSubcatCount()
-	 */
-	public function testGetSubcatCount() {
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'category',
-			[
-				[
-					'cat_id' => 1,
-					'cat_title' => 'Example',
-					'cat_pages' => 3,
-					'cat_subcats' => 4,
-					'cat_files' => 5
-				]
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
-
-		$category = Category::newFromID( 1 );
-		$this->assertEquals( 4, $category->getSubcatCount() );
-
-		$dbw->delete( 'category', '*', __METHOD__ );
-	}
-
-	/**
 	 * @covers Category::getFileCount()
 	 */
-	public function testGetFileCount() {
-		$dbw = wfGetDB( DB_PRIMARY );
-		$dbw->insert( 'category',
-			[
-				[
-					'cat_id' => 1,
-					'cat_title' => 'Example',
-					'cat_pages' => 3,
-					'cat_subcats' => 4,
-					'cat_files' => 5
-				]
-			],
-			__METHOD__,
-			[ 'IGNORE' ]
-		);
-
+	public function testGetCounts() {
+		// See data set in addDBDataOnce
 		$category = Category::newFromID( 1 );
+		$this->assertEquals( 3, $category->getPageCount() );
+		$this->assertEquals( 4, $category->getSubcatCount() );
 		$this->assertEquals( 5, $category->getFileCount() );
-
-		$dbw->delete( 'category', '*', __METHOD__ );
 	}
+
 }
