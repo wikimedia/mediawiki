@@ -296,6 +296,9 @@ class RequestContext implements IContextSource, MutableContext {
 		return $this->user;
 	}
 
+	/**
+	 * @param Authority $authority
+	 */
 	public function setAuthority( Authority $authority ) {
 		$this->authority = $authority;
 		// Keep user consistent
