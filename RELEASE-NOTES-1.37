@@ -205,7 +205,9 @@ because of Phabricator reports.
   - File::getDescription - now accepts Authority instead of User
   - File::userCan - now accepts Authority instead of User
   - LocalFile::deleteOldFile - now accepts UserIdentity instead of User
-* wfAppendToArrayIfNotDefault, hard deprecated since 1.36, has been removed.
+* The following global methods, each deprecated since 1.36, have been removed:
+  - wfAppendToArrayIfNotDefault
+  - wfAcceptToPrefs
 * –
 
 === Deprecations in 1.37 ===

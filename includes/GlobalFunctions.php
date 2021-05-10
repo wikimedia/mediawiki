@@ -1685,40 +1685,6 @@ function wfClearOutputBuffers() {
 }
 
 /**
- * Converts an Accept-* header into an array mapping string values to quality
- * factors
- *
- * @param string $accept
- * @param string $def Default
- * @return float[] Associative array of string => float pairs
- * @deprecated since 1.36
- */
-function wfAcceptToPrefs( $accept, $def = '*/*' ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	# No arg means accept anything (per HTTP spec)
-	if ( !$accept ) {
-		return [ $def => 1.0 ];
-	}
-
-	$prefs = [];
-
-	$parts = explode( ',', $accept );
-
-	foreach ( $parts as $part ) {
-		# @todo FIXME: Doesn't deal with params like 'text/html; level=1'
-		$values = explode( ';', trim( $part ) );
-		$match = [];
-		if ( count( $values ) == 1 ) {
-			$prefs[$values[0]] = 1.0;
-		} elseif ( preg_match( '/q\s*=\s*(\d*\.\d+)/', $values[1], $match ) ) {
-			$prefs[$values[0]] = floatval( $match[1] );
-		}
-	}
-
-	return $prefs;
-}
-
-/**
  * Checks if a given MIME type matches any of the keys in the given
  * array. Basic wildcards are accepted in the array keys.
  *
