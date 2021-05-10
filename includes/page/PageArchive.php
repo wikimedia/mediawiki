@@ -22,6 +22,7 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -685,6 +686,8 @@ class PageArchive {
 				$newid = false;
 				$pageId = $article->getId();
 			}
+
+			Assert::invariant( $pageId > 0, 'A page ID must be known at this point (T271644)' );
 
 			foreach ( $result as $row ) {
 				// Check for key dupes due to needed archive integrity.

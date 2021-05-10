@@ -76,7 +76,15 @@ class RevisionArchiveRecord extends RevisionRecord {
 		// NOTE: ar_page_id may be different from $this->mPage->getId() in some cases,
 		// notably when a partially restored page has been moved, and a new page has been created
 		// with the same title. Archive rows for that title will then have the wrong page id.
-		$this->mPageId = isset( $row->ar_page_id ) ? intval( $row->ar_page_id ) : $this->getArticleId( $this->mPage );
+		$this->mPageId = isset( $row->ar_page_id )
+			? intval( $row->ar_page_id )
+			: $this->getArticleId( $this->mPage );
+
+		Assert::parameter(
+			$this->mPageId > 0,
+			'$row->ar_page_id',
+			'must be given, or $page must be an existing page'
+		);
 
 		// NOTE: ar_parent_id = 0 indicates that there is no parent revision, while null
 		// indicates that the parent revision is unknown. As per MW 1.31, the database schema
