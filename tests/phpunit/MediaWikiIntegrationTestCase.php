@@ -385,10 +385,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	public static function resetNonServiceCaches() {
 		global $wgRequest, $wgJobClasses;
 
+		$jobQueueFactory = MediaWikiServices::getInstance()->getJobQueueGroupFactory();
+
 		foreach ( $wgJobClasses as $type => $class ) {
-			JobQueueGroup::singleton()->get( $type )->delete();
+			$jobQueueFactory->makeJobQueueGroup()->get( $type )->delete();
 		}
-		JobQueueGroup::destroySingletons();
 
 		ObjectCache::clear();
 		DeferredUpdates::clearPendingUpdates();

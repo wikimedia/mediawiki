@@ -18,6 +18,7 @@ use GenderCache;
 use GlobalVarConfig;
 use HtmlCacheUpdater;
 use IBufferingStatsdDataFactory;
+use JobQueueGroup;
 use JobRunner;
 use Language;
 use LinkCache;
@@ -45,6 +46,7 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Interwiki\InterwikiLookup;
+use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Json\JsonCodec;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
@@ -906,6 +908,22 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getInterwikiLookup() : InterwikiLookup {
 		return $this->getService( 'InterwikiLookup' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return JobQueueGroup
+	 */
+	public function getJobQueueGroup() : JobQueueGroup {
+		return $this->getService( 'JobQueueGroup' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return JobQueueGroupFactory
+	 */
+	public function getJobQueueGroupFactory() : JobQueueGroupFactory {
+		return $this->getService( 'JobQueueGroupFactory' );
 	}
 
 	/**
