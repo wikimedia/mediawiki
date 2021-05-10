@@ -725,6 +725,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testIsRegistered() {
 		$user = $this->getMutableTestUser()->getUser();
 		$this->assertTrue( $user->isRegistered() );
+		$this->hideDeprecated( 'User::isLoggedIn' );
 		$this->assertTrue( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertFalse( $user->isAnon() );
 
@@ -741,11 +742,13 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// Non-existent users are perceived as anonymous
 		$user = User::newFromName( 'UTNonexistent' );
 		$this->assertFalse( $user->isRegistered() );
+		$this->hideDeprecated( 'User::isLoggedIn' );
 		$this->assertFalse( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertTrue( $user->isAnon() );
 
 		$user = new User;
 		$this->assertFalse( $user->isRegistered() );
+		$this->hideDeprecated( 'User::isLoggedIn' );
 		$this->assertFalse( $user->isLoggedIn() ); // Deprecated wrapper method
 		$this->assertTrue( $user->isAnon() );
 	}
