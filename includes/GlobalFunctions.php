@@ -1682,57 +1682,6 @@ function mimeTypeMatch( $type, $avail ) {
 }
 
 /**
- * Returns the 'best' match between a client's requested internet media types
- * and the server's list of available types. Each list should be an associative
- * array of type to preference (preference is a float between 0.0 and 1.0).
- * Wildcards in the types are acceptable.
- *
- * @param array $cprefs Client's acceptable type list
- * @param array $sprefs Server's offered types
- * @return string|null
- *
- * @todo FIXME: Doesn't handle params like 'text/plain; charset=UTF-8'
- * XXX: generalize to negotiate other stuff
- * @deprecated since 1.36
- */
-function wfNegotiateType( $cprefs, $sprefs ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	$combine = [];
-
-	foreach ( array_keys( $sprefs ) as $type ) {
-		$subType = explode( '/', $type )[1];
-		if ( $subType != '*' ) {
-			$ckey = mimeTypeMatch( $type, $cprefs );
-			if ( $ckey ) {
-				$combine[$type] = $sprefs[$type] * $cprefs[$ckey];
-			}
-		}
-	}
-
-	foreach ( array_keys( $cprefs ) as $type ) {
-		$subType = explode( '/', $type )[1];
-		if ( $subType != '*' && !array_key_exists( $type, $sprefs ) ) {
-			$skey = mimeTypeMatch( $type, $sprefs );
-			if ( $skey ) {
-				$combine[$type] = $sprefs[$skey] * $cprefs[$type];
-			}
-		}
-	}
-
-	$bestq = 0;
-	$besttype = null;
-
-	foreach ( array_keys( $combine ) as $type ) {
-		if ( $combine[$type] > $bestq ) {
-			$besttype = $type;
-			$bestq = $combine[$type];
-		}
-	}
-
-	return $besttype;
-}
-
-/**
  * Get a timestamp string in one of various formats
  *
  * @param mixed $outputtype A timestamp in one of the supported formats, the

@@ -260,52 +260,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers ::wfNegotiateType
-	 */
-	public function testNegotiateType() {
-		$this->hideDeprecated( 'wfNegotiateType' );
-
-		$this->assertEquals(
-			'text/html',
-			wfNegotiateType(
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.7,
-					'text/plain' => 0.5,
-					'text/*' => 0.2 ],
-				[ 'text/html' => 1.0 ] ) );
-		$this->assertEquals(
-			'application/xhtml+xml',
-			wfNegotiateType(
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.7,
-					'text/plain' => 0.5,
-					'text/*' => 0.2 ],
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.5 ] ) );
-		$this->assertEquals(
-			'text/html',
-			wfNegotiateType(
-				[ 'text/html' => 1.0,
-					'text/plain' => 0.5,
-					'text/*' => 0.5,
-					'application/xhtml+xml' => 0.2 ],
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.5 ] ) );
-		$this->assertEquals(
-			'text/html',
-			wfNegotiateType(
-				[ 'text/*' => 1.0,
-					'image/*' => 0.7,
-					'*/*' => 0.3 ],
-				[ 'application/xhtml+xml' => 1.0,
-					'text/html' => 0.5 ] ) );
-		$this->assertNull(
-			wfNegotiateType(
-				[ 'text/*' => 1.0 ],
-				[ 'application/xhtml+xml' => 1.0 ] ) );
-	}
-
-	/**
 	 * @covers ::wfDebug
 	 */
 	public function testDebugFunctionTest() {
