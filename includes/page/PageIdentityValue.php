@@ -119,9 +119,3 @@ class PageIdentityValue extends PageReferenceValue implements ProperPageIdentity
 	}
 
 }
-
-// Retain compatibility with usage in Wikibase and PageImages
-// along with SearchResultProvideDescriptionHook.
-// Note that the class was marked @unstable, so the alias can be removed
-// once the extensions have been updated.
-class_alias( PageIdentityValue::class, 'MediaWiki\Rest\Entity\SearchResultPageIdentityValue' );
