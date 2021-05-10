@@ -20,6 +20,7 @@
 
 namespace MediaWiki\Page;
 
+use InvalidArgumentException;
 use Wikimedia\Assert\Assert;
 
 /**
@@ -43,6 +44,29 @@ class PageIdentityValue extends PageReferenceValue implements ProperPageIdentity
 	private $pageId;
 
 	/**
+	 * Constructs a PageIdentityValue, or returns null if the parameters are not valid.
+	 *
+	 * @note This does not perform any normalization, and only basic validation.
+	 * For full normalization and validation, use TitleParser::makeTitleValueSafe()
+	 * together with PageLookup::getPageForLink().
+	 *
+	 * @param int $pageId The ID of this page, or 0 if the page does not exist.
+	 * @param int $namespace A valid namespace ID. Validation is the caller's responsibility!
+	 * @param string $dbKey A valid DB key. Validation is the caller's responsibility!
+	 * @param string|bool $wikiId The Id of the wiki this page belongs to,
+	 *        or self::LOCAL for the local wiki.
+	 *
+	 * @return PageIdentityValue|null
+	 */
+	public static function tryNew( int $pageId, int $namespace, string $dbKey, $wikiId ) {
+		try {
+			return new static( $pageId, $namespace, $dbKey, $wikiId );
+		} catch ( InvalidArgumentException $ex ) {
+			return null;
+		}
+	}
+
+	/**
 	 * @param int $pageId The ID of this page, or 0 if the page does not exist.
 	 * @param int $namespace A valid namespace ID. Validation is the caller's responsibility!
 	 * @param string $dbKey A valid DB key. Validation is the caller's responsibility!
@@ -52,6 +76,13 @@ class PageIdentityValue extends PageReferenceValue implements ProperPageIdentity
 	public function __construct( int $pageId, int $namespace, string $dbKey, $wikiId ) {
 		Assert::parameter( $pageId >= 0, '$pageId', 'must not be negative' );
 		Assert::parameter( $namespace >= 0, '$namespace', 'must not be negative' );
+
+		// Not full validation, intended to help detect lack of validation in the caller.
+		Assert::parameter(
+			!preg_match( '/[#|]/', $dbKey ),
+			'$dbKey',
+			'must not contain pipes or hashes: ' . $dbKey
+		);
 
 		parent::__construct( $namespace, $dbKey, $wikiId );
 
