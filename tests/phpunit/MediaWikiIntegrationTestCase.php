@@ -1989,8 +1989,8 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// which gets deleted and re-created when setting up the secondary connection,
 			// causing "Error 17" when trying to copy the data. See T191863#4130112.
 			throw new RuntimeException(
-				'Setting up a secondary database connection with test data is currently not'
-				. 'with SQLite. You may want to use markTestSkippedIfDbType() to bypass this issue.'
+				'Setting up a secondary database connection with test data is currently not supported'
+				. ' with SQLite. You may want to use markTestSkippedIfDbType() to bypass this issue.'
 			);
 		}
 
