@@ -236,7 +236,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Page\PageStore::getPageByText
+	 * @covers \MediaWiki\Page\PageStore::getExistingPageByText
 	 */
 	public function testGetExistingPageByText_nonexisting() {
 		$nonexistingPage = $this->getNonexistingTestPage();
@@ -295,18 +295,32 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$pageStore->getPageByName( $ns, $dbkey );
 	}
 
-	/**
-	 * @covers \MediaWiki\Page\PageStore::getExistingPageByText
-	 */
-	public function testGetPageByText_invalid() {
-		$this->assertNull( $this->getPageStore()->getPageByText( '' ) );
+	public function provideInvalidTitleText() {
+		yield 'empty' => [ '' ];
+		yield 'section' => [ '#foo' ];
+		yield 'autoblock' => [ 'User:#12345' ];
+		yield 'special' => [ 'Special:RecentChanges' ];
+		yield 'invalid' => [ 'foo|bar' ];
 	}
 
 	/**
+	 * @dataProvider provideInvalidTitleText
 	 * @covers \MediaWiki\Page\PageStore::getPageByText
 	 */
-	public function testGetExistingPageByText_invalid() {
-		$this->assertNull( $this->getPageStore()->getExistingPageByText( '' ) );
+	public function testGetPageByText_invalid( $text ) {
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getPageByText( $text );
+		$this->assertNull( $page );
+	}
+
+	/**
+	 * @dataProvider provideInvalidTitleText
+	 * @covers \MediaWiki\Page\PageStore::getExistingPageByText
+	 */
+	public function testGetExistingPageByText_invalid( $text ) {
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getExistingPageByText( $text );
+		$this->assertNull( $page );
 	}
 
 	/**

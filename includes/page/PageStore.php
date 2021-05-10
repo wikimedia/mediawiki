@@ -4,6 +4,7 @@ namespace MediaWiki\Page;
 
 use DBAccessObjectUtils;
 use EmptyIterator;
+use InvalidArgumentException;
 use Iterator;
 use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
@@ -89,7 +90,7 @@ class PageStore implements PageLookup {
 			$ns = NS_FILE;
 		}
 
-		Assert::parameter( $ns >= 0, '$link', 'must not be virtual' );
+		Assert::parameter( $ns >= 0, '$link', 'namespace must not be virtual' );
 
 		$page = $this->getPageByName( $ns, $link->getDBkey() );
 
@@ -141,7 +142,9 @@ class PageStore implements PageLookup {
 		try {
 			$title = $this->titleParser->parseTitle( $text, $defaultNamespace );
 			return $this->getPageForLink( $title, $queryFlags );
-		} catch ( MalformedTitleException $e ) {
+		} catch ( MalformedTitleException | InvalidArgumentException $e ) {
+			// Note that even some well-formed links are still invalid parameters
+			// for getPageForLink(), e.g. interwiki links or special pages.
 			return null;
 		}
 	}
@@ -197,14 +200,14 @@ class PageStore implements PageLookup {
 		int $queryFlags = self::READ_NORMAL
 	): ?ExistingPageRecord {
 		$page->assertWiki( $this->wikiId );
-		Assert::parameter( $page->getNamespace() >= 0, '$page', 'must not be virtual' );
+		Assert::parameter( $page->getNamespace() >= 0, '$page', 'namespace must not be virtual' );
 
 		if ( $page instanceof ExistingPageRecord && $queryFlags === self::READ_NORMAL ) {
 			return $page;
 		}
 
 		if ( $page instanceof PageIdentity ) {
-			Assert::parameter( $page->canExist(), '$page', 'Mut be a proper page' );
+			Assert::parameter( $page->canExist(), '$page', 'Must be a proper page' );
 
 			if ( $page->exists() ) {
 				// if we have a page ID, use it

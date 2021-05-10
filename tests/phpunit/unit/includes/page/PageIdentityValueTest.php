@@ -54,6 +54,21 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 		$this->assertTrue( $pageIdentity->canExist() );
 	}
 
+	/**
+	 * @dataProvider goodConstructorProvider
+	 */
+	public function testTryNew( $pageId, $namespace, $dbKey, $wikiId ) {
+		$pageIdentity = PageIdentityValue::tryNew( $pageId, $namespace, $dbKey, $wikiId );
+
+		$this->assertSame( $wikiId, $pageIdentity->getWikiId() );
+		$this->assertSame( $pageId, $pageIdentity->getId( $wikiId ) );
+		$this->assertSame( $pageId > 0, $pageIdentity->exists() );
+		$this->assertSame( $namespace, $pageIdentity->getNamespace() );
+		$this->assertSame( $dbKey, $pageIdentity->getDBkey() );
+
+		$this->assertTrue( $pageIdentity->canExist() );
+	}
+
 	public function testGetIdFailsForForeignWiki() {
 		$pageIdentity = new PageIdentityValue( 7, NS_MAIN, 'Foo', 'h2g2' );
 
@@ -66,6 +81,8 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 			[ -1, NS_MAIN, 'Test', false ],
 			[ 0, NS_MAIN, 'Test', 2.3 ],
 			[ 0, NS_SPECIAL, 'Test', false ],
+			[ 0, NS_USER, '#1234', false ],
+			[ 0, NS_SPECIAL, 'foo|bar', false ],
 		];
 	}
 
@@ -75,6 +92,13 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 	public function testConstructionErrors( $pageId, $namespace, $dbKey, $wikiId ) {
 		$this->expectException( ParameterAssertionException::class );
 		new PageIdentityValue( $pageId, $namespace, $dbKey, $wikiId );
+	}
+
+	/**
+	 * @dataProvider badConstructorProvider
+	 */
+	public function testTryNewWithBadValue( $pageId, $namespace, $dbKey, $wikiId ) {
+		$this->assertNull( PageIdentityValue::tryNew( $pageId, $namespace, $dbKey, $wikiId ) );
 	}
 
 	public function provideToString() {
