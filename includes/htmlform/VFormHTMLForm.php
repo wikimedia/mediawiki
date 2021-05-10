@@ -114,10 +114,7 @@ class VFormHTMLForm extends HTMLForm {
 		}
 
 		if ( $this->mShowCancel ) {
-			$target = $this->mCancelTarget ?: Title::newMainPage();
-			if ( $target instanceof Title ) {
-				$target = $target->getLocalURL();
-			}
+			$target = $this->getCancelTargetURL();
 			$buttons .= Html::element(
 					'a',
 					[

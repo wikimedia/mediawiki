@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\LBFactory;
 
@@ -40,17 +41,17 @@ abstract class RevDelList extends RevisionListBase {
 
 	/**
 	 * @param IContextSource $context
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $ids
 	 * @param LBFactory $lbFactory
 	 */
 	public function __construct(
 		IContextSource $context,
-		Title $title,
+		PageIdentity $page,
 		array $ids,
 		LBFactory $lbFactory
 	) {
-		parent::__construct( $context, $title );
+		parent::__construct( $context, $page );
 
 		// ids is a protected variable in RevisionListBase
 		$this->ids = $ids;

@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Page\PageIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
 
@@ -27,8 +28,10 @@ use Wikimedia\Rdbms\IResultWrapper;
  * List for revision table items for a single page
  */
 abstract class RevisionListBase extends ContextSource implements Iterator {
+	use DeprecationHelper;
+
 	/** @var Title */
-	public $title;
+	protected $title;
 
 	/** @var int[]|null */
 	protected $ids;
@@ -42,11 +45,30 @@ abstract class RevisionListBase extends ContextSource implements Iterator {
 	/**
 	 * Construct a revision list for a given title
 	 * @param IContextSource $context
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 */
-	public function __construct( IContextSource $context, Title $title ) {
+	public function __construct( IContextSource $context, PageIdentity $page ) {
 		$this->setContext( $context );
-		$this->title = $title;
+		$this->title = Title::castFromPageIdentity( $page );
+
+		$this->deprecatePublicPropertyFallback( 'title', '1.37', function () {
+			return $this->title;
+		} );
+	}
+
+	/**
+	 * @return PageIdentity
+	 */
+	public function getPage(): PageIdentity {
+		return $this->title;
+	}
+
+	/**
+	 * @internal for use by RevDelItems
+	 * @return string
+	 */
+	public function getPageName(): string {
+		return $this->title->getPrefixedText();
 	}
 
 	/**
