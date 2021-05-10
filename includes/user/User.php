@@ -2067,14 +2067,14 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 */
 	public function getId( $wikiId = self::LOCAL ) : int {
 		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
-		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
-		if ( $this->mId === null && $this->mName !== null &&
-			( $userNameUtils->isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) )
-		) {
-			// Special case, we know the user is anonymous
-			// Note that "external" users are "local" (they have an actor ID that is relative to
-			// the local wiki).
-			return 0;
+		if ( $this->mId === null && $this->mName !== null ) {
+			$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+			if ( $userNameUtils->isIP( $this->mName ) || ExternalUserNames::isExternal( $this->mName ) ) {
+				// Special case, we know the user is anonymous
+				// Note that "external" users are "local" (they have an actor ID that is relative to
+				// the local wiki).
+				return 0;
+			}
 		}
 
 		if ( !$this->isItemLoaded( 'id' ) ) {
