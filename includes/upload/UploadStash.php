@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\User\UserIdentity;
+
 /**
  * UploadStash is intended to accomplish a few things:
  *   - Enable applications to temporarily stash files without publishing them to
@@ -72,8 +74,8 @@ class UploadStash {
 	/** @var array fileprops cache */
 	protected $fileProps = [];
 
-	// current user
-	protected $user, $userId, $isRegistered;
+	/** @var UserIdentity */
+	private $user;
 
 	/**
 	 * Represents a temporary filestore, with metadata in the database.
@@ -81,23 +83,15 @@ class UploadStash {
 	 * (should replace it eventually).
 	 *
 	 * @param FileRepo $repo
-	 * @param User|null $user
+	 * @param UserIdentity|null $user
 	 */
-	public function __construct( FileRepo $repo, $user = null ) {
+	public function __construct( FileRepo $repo, UserIdentity $user = null ) {
 		// this might change based on wiki's configuration.
 		$this->repo = $repo;
 
 		// if a user was passed, use it. otherwise, attempt to use the global request context.
 		// this keeps FileRepo from breaking when it creates an UploadStash object
-		if ( !$user ) {
-			$user = RequestContext::getMain()->getUser();
-		}
-		$this->user = $user;
-
-		if ( is_object( $this->user ) ) {
-			$this->userId = $this->user->getId();
-			$this->isRegistered = $this->user->isRegistered();
-		}
+		$this->user = $user ?? RequestContext::getMain()->getUser();
 	}
 
 	/**
@@ -120,7 +114,7 @@ class UploadStash {
 			);
 		}
 
-		if ( !$noAuth && !$this->isRegistered ) {
+		if ( !$noAuth && !$this->user->isRegistered() ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -160,7 +154,7 @@ class UploadStash {
 			);
 		}
 
-		if ( !$noAuth && $this->fileMetadata[$key]['us_user'] != $this->userId ) {
+		if ( !$noAuth && $this->fileMetadata[$key]['us_user'] != $this->user->getId() ) {
 			throw new UploadStashWrongOwnerException(
 				wfMessage( 'uploadstash-wrong-owner', $key )
 			);
@@ -235,7 +229,7 @@ class UploadStash {
 		$usec = substr( $usec, 2 );
 		$key = Wikimedia\base_convert( $sec . $usec, 10, 36 ) . '.' .
 			Wikimedia\base_convert( mt_rand(), 10, 36 ) . '.' .
-			$this->userId . '.' .
+			$this->user->getId() . '.' .
 			$extension;
 
 		$this->fileProps[$key] = $fileProps;
@@ -277,7 +271,7 @@ class UploadStash {
 		$stashPath = $storeStatus->value;
 
 		// fetch the current user ID
-		if ( !$this->isRegistered ) {
+		if ( !$this->user->isRegistered() ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -297,7 +291,7 @@ class UploadStash {
 		}
 
 		$this->fileMetadata[$key] = [
-			'us_user' => $this->userId,
+			'us_user' => $this->user->getId(),
 			'us_key' => $key,
 			'us_orig_path' => $path,
 			'us_path' => $stashPath, // virtual URL
@@ -338,17 +332,17 @@ class UploadStash {
 	 * @return bool Success
 	 */
 	public function clear() {
-		if ( !$this->isRegistered ) {
+		if ( !$this->user->isRegistered() ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
 		}
 
-		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->userId );
+		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->user->getId() );
 		$dbw = $this->repo->getMasterDB();
 		$dbw->delete(
 			'uploadstash',
-			[ 'us_user' => $this->userId ],
+			[ 'us_user' => $this->user->getId() ],
 			__METHOD__
 		);
 
@@ -368,7 +362,7 @@ class UploadStash {
 	 * @return bool Success
 	 */
 	public function removeFile( $key ) {
-		if ( !$this->isRegistered ) {
+		if ( !$this->user->isRegistered() ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -391,7 +385,7 @@ class UploadStash {
 			);
 		}
 
-		if ( $row->us_user != $this->userId ) {
+		if ( $row->us_user != $this->user->getId() ) {
 			throw new UploadStashWrongOwnerException(
 				wfMessage( 'uploadstash-wrong-owner', $key )
 			);
@@ -438,7 +432,7 @@ class UploadStash {
 	 * @return array|false
 	 */
 	public function listFiles() {
-		if ( !$this->isRegistered ) {
+		if ( !$this->user->isRegistered() ) {
 			throw new UploadStashNotLoggedInException(
 				wfMessage( 'uploadstash-not-logged-in' )
 			);
@@ -448,7 +442,7 @@ class UploadStash {
 		$res = $dbr->select(
 			'uploadstash',
 			'us_key',
-			[ 'us_user' => $this->userId ],
+			[ 'us_user' => $this->user->getId() ],
 			__METHOD__
 		);
 
