@@ -242,6 +242,8 @@ because of Phabricator reports.
   ::setHookContainer() were soft deprecated. Use ::init() to inject
   dependencies or override ::postInitSetup() to do any custom
   post-initialization configuration.
+* User->isLoggedIn(), deprecated since 1.36, now emits deprecation warnings. Use
+  the method it wraps, User->isRegistered(), instead.
 * FileBackendGroup::singleton() and ::destroySingletons(), deprecated since
   1.35, now emit deprecation warnings.
 * …
