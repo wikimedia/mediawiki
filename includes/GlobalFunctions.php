@@ -142,27 +142,6 @@ function wfArrayDiff2_cmp( $a, $b ) {
 }
 
 /**
- * Appends to second array if $value differs from that in $default
- *
- * @deprecated since 1.36
- * @param string|int $key
- * @param mixed $value
- * @param mixed $default
- * @param array &$changed Array to alter
- * @throws MWException
- */
-function wfAppendToArrayIfNotDefault( $key, $value, $default, &$changed ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-
-	if ( $changed === null ) {
-		throw new MWException( 'GlobalFunctions::wfAppendToArrayIfNotDefault got null' );
-	}
-	if ( $default[$key] !== $value ) {
-		$changed[$key] = $value;
-	}
-}
-
-/**
  * Merge arrays in the style of PermissionManager::getPermissionErrors, with duplicate removal
  * e.g.
  *     wfMergeErrorArrays(

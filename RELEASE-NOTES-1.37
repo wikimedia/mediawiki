@@ -205,6 +205,8 @@ because of Phabricator reports.
   - File::getDescription - now accepts Authority instead of User
   - File::userCan - now accepts Authority instead of User
   - LocalFile::deleteOldFile - now accepts UserIdentity instead of User
+* wfAppendToArrayIfNotDefault, hard deprecated since 1.36, has been removed.
+* –
 
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
