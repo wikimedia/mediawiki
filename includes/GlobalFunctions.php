@@ -2307,27 +2307,6 @@ function wfRelativePath( $path, $from ) {
 }
 
 /**
- * Get an object from the precompiled serialized directory
- *
- * @param string $name
- * @return mixed The variable on success, false on failure
- * @deprecated since 1.36
- */
-function wfGetPrecompiledData( $name ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	global $IP;
-
-	$file = "$IP/serialized/$name";
-	if ( file_exists( $file ) ) {
-		$blob = file_get_contents( $file );
-		if ( $blob ) {
-			return unserialize( $blob );
-		}
-	}
-	return false;
-}
-
-/**
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  *
