@@ -281,6 +281,7 @@
 	"searchresults-title": "Risultati di a ricerca di \"$1\"",
 	"prevn": "{{PLURAL:$1|precidente|precidenti $1}}",
 	"nextn": "{{PLURAL:$1|siguente|siguenti $1}}",
+	"next-page": "pagina seguente",
 	"prevn-title": "{{PLURAL:$1|Risultatu precidente|$1 risultati precidenti}}",
 	"nextn-title": "{{PLURAL:$1|Risultatu|$1 risultati}}",
 	"shown-title": "Mustrà {{PLURAL:$1|un risultatu|$1 risultati}} per pagina",
