@@ -9,6 +9,8 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\AtEase\AtEase;
 
 /**
@@ -2054,14 +2056,14 @@ abstract class File implements IDBAccessObject {
 	 * Cache purging is done; logging is caller's responsibility.
 	 *
 	 * @param string $reason
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param bool $suppress Hide content from sysops?
 	 * @return Status
 	 * STUB
 	 * Overridden by LocalFile
 	 * @stable to override
 	 */
-	public function deleteFile( $reason, User $user, $suppress = false ) {
+	public function deleteFile( $reason, UserIdentity $user, $suppress = false ) {
 		$this->readOnlyError();
 	}
 
@@ -2221,11 +2223,11 @@ abstract class File implements IDBAccessObject {
 	 *   File::FOR_PUBLIC       to be displayed to all users
 	 *   File::FOR_THIS_USER    to be displayed to the given user
 	 *   File::RAW              get the description regardless of permissions
-	 * @param User|null $user User object to check for, only if FOR_THIS_USER is
+	 * @param Authority|null $performer to check for, only if FOR_THIS_USER is
 	 *   passed to the $audience parameter
 	 * @return null|string
 	 */
-	public function getDescription( $audience = self::FOR_PUBLIC, User $user = null ) {
+	public function getDescription( $audience = self::FOR_PUBLIC, Authority $performer = null ) {
 		return null;
 	}
 
@@ -2287,10 +2289,10 @@ abstract class File implements IDBAccessObject {
 	 * STUB
 	 * @stable to override
 	 * @param int $field
-	 * @param User $user User object to check
+	 * @param Authority $performer User object to check
 	 * @return bool
 	 */
-	public function userCan( $field, User $user ) {
+	public function userCan( $field, Authority $performer ) {
 		return true;
 	}
 
