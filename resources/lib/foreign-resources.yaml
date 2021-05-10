@@ -212,10 +212,10 @@ mustache:
 
 oojs:
   type: tar
-  src: https://registry.npmjs.org/oojs/-/oojs-5.0.0.tgz
-  integrity: sha384-otTlw6PtjKOqRQCEpsKOR7LuxE673tqlgfl/aIH33tR8JuPAJ7vB+Gvr4JNWw6FO
+  src: https://registry.npmjs.org/oojs/-/oojs-6.0.0.tgz
+  integrity: sha384-J4GtN11YFt6zOVI6/SjOZ7gXzdYweZJorgUCr5SSV9vBTcth9V5JaZ83tI2jTvI2
   dest:
-    package/dist/oojs.jquery.js:
+    package/dist/oojs.js:
     package/AUTHORS.txt:
     package/LICENSE-MIT:
     package/README.md:

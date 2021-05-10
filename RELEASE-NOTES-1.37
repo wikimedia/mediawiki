@@ -48,6 +48,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Changed external libraries ====
+* Updated OOjs from v5.0.0 to v6.0.0
 * Updated WVUI from v0.1.0 to v0.1.1
 * Updated psr/container from v1.0.0 to v1.1.1.
 * Updated wikimedia/object-factory from v3.0.0 to v3.0.2.
