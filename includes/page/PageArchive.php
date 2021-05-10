@@ -19,10 +19,13 @@
  */
 
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserFactory;
+use Psr\Log\LoggerInterface;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -48,14 +51,26 @@ class PageArchive {
 	/** @var HookRunner */
 	private $hookRunner;
 
+	/** @var JobQueueGroup */
+	private $jobQueueGroup;
+
 	/** @var ILoadBalancer */
 	private $loadBalancer;
+
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
 
 	/** @var RepoGroup */
 	private $repoGroup;
 
 	/** @var RevisionStore */
 	private $revisionStore;
+
+	/** @var UserFactory */
+	private $userFactory;
 
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
@@ -67,17 +82,21 @@ class PageArchive {
 	public function __construct( Title $title, Config $config = null ) {
 		$this->title = $title;
 
+		$this->logger = LoggerFactory::getInstance( 'PageArchive' );
+
 		$services = MediaWikiServices::getInstance();
 		if ( $config === null ) {
 			// TODO deprecate not passing a Config object, though technically this class is
 			// not @newable / stable to create
-			wfDebug( __METHOD__ . ' did not have a Config object passed to it' );
+			$this->logger->debug( 'Constructor did not have a Config object passed to it' );
 			$config = $services->getMainConfig();
 		}
 		$this->config = $config;
 
 		$this->hookRunner = new HookRunner( $services->getHookContainer() );
+		$this->jobQueueGroup = $services->getJobQueueGroup();
 		$this->loadBalancer = $services->getDBLoadBalancer();
+		$this->readOnlyMode = $services->getReadOnlyMode();
 		$this->repoGroup = $services->getRepoGroup();
 
 		// TODO: Refactor: delete()/undeleteAsUser() should live in a PageStore service;
@@ -86,6 +105,7 @@ class PageArchive {
 		//       together with RevisionStore).
 		$this->revisionStore = $services->getRevisionStore();
 
+		$this->userFactory = $services->getUserFactory();
 		$this->wikiPageFactory = $services->getWikiPageFactory();
 	}
 
@@ -476,7 +496,7 @@ class PageArchive {
 		// Touch the log!
 
 		if ( !$textRestored && !$filesRestored ) {
-			wfDebug( "Undelete: nothing undeleted..." );
+			$this->logger->debug( "Undelete: nothing undeleted..." );
 
 			return false;
 		}
@@ -513,7 +533,7 @@ class PageArchive {
 	 * @return Status Status object containing the number of revisions restored on success
 	 */
 	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
-		if ( wfReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			throw new ReadOnlyError();
 		}
 
@@ -547,7 +567,7 @@ class PageArchive {
 				__METHOD__ );
 
 			if ( $previousTimestamp === false ) {
-				wfDebug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
+				$this->logger->debug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
 
 				$status = Status::newGood( 0 );
 				$status->warning( 'undeleterevision-missing' );
@@ -590,7 +610,7 @@ class PageArchive {
 
 		$rev_count = $result->numRows();
 		if ( !$rev_count ) {
-			wfDebug( __METHOD__ . ": no revisions to restore" );
+			$this->logger->debug( __METHOD__ . ": no revisions to restore" );
 
 			$status = Status::newGood( 0 );
 			$status->warning( "undelete-no-results" );
@@ -651,9 +671,12 @@ class PageArchive {
 				$this->title
 			);
 
-			// TODO: use User::newFromUserIdentity from If610c68f4912e
+			// TODO: use UserFactory::newFromUserIdentity from If610c68f4912e
 			// TODO: The User isn't used for anything in prepareSave()! We should drop it.
-			$user = User::newFromName( $revision->getUser( RevisionRecord::RAW )->getName(), false );
+			$user = $this->userFactory->newFromName(
+				$revision->getUser( RevisionRecord::RAW )->getName(),
+				UserFactory::RIGOR_NONE
+			);
 
 			foreach ( $revision->getSlotRoles() as $role ) {
 				$content = $revision->getContent( $role, RevisionRecord::RAW );
@@ -790,9 +813,10 @@ class PageArchive {
 			if ( $created || $wasnew ) {
 				// Update site stats, link tables, etc
 				// TODO: use DerivedPageDataUpdater from If610c68f4912e!
+				// TODO use UserFactory::newFromUserIdentity
 				$article->doEditUpdates(
 					$revision,
-					User::newFromName( $revision->getUser( RevisionRecord::RAW )->getName(), false ),
+					$revision->getUser( RevisionRecord::RAW ),
 					[
 						'created' => $created,
 						'oldcountable' => $oldcountable,
@@ -810,7 +834,7 @@ class PageArchive {
 					'imagelinks',
 					[ 'causeAction' => 'file-restore' ]
 				);
-				JobQueueGroup::singleton()->lazyPush( $job );
+				$this->jobQueueGroup->lazyPush( $job );
 			}
 		}
 
