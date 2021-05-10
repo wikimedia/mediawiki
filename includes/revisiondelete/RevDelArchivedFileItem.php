@@ -92,7 +92,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 			$key = $this->file->getKey();
 			$link = $this->getLinkRenderer()->makeLink( $undelete, $date, [],
 				[
-					'target' => $this->list->title->getPrefixedText(),
+					'target' => $this->list->getPageName(),
 					'file' => $key,
 					'token' => $this->list->getUser()->getEditToken( $key )
 				]
@@ -109,7 +109,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 		$file = $this->file;
 		$user = $this->list->getUser();
 		$ret = [
-			'title' => $this->list->title->getPrefixedText(),
+			'title' => $this->list->getPageName(),
 			'timestamp' => wfTimestamp( TS_ISO_8601, $file->getTimestamp() ),
 			'width' => $file->getWidth(),
 			'height' => $file->getHeight(),
@@ -122,7 +122,7 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 			$ret += [
 				'url' => SpecialPage::getTitleFor( 'Revisiondelete' )->getLinkURL(
 					[
-						'target' => $this->list->title->getPrefixedText(),
+						'target' => $this->list->getPageName(),
 						'file' => $file->getKey(),
 						'token' => $user->getEditToken( $file->getKey() )
 					]

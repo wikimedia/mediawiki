@@ -19,6 +19,7 @@
  * @ingroup RevisionDelete
  */
 
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\LBFactory;
@@ -34,19 +35,19 @@ class RevDelLogList extends RevDelList {
 	/**
 	 * @internal Use RevisionDeleter
 	 * @param IContextSource $context
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param array $ids
 	 * @param LBFactory $lbFactory
 	 * @param CommentStore $commentStore
 	 */
 	public function __construct(
 		IContextSource $context,
-		Title $title,
+		PageIdentity $page,
 		array $ids,
 		LBFactory $lbFactory,
 		CommentStore $commentStore
 	) {
-		parent::__construct( $context, $title, $ids, $lbFactory );
+		parent::__construct( $context, $page, $ids, $lbFactory );
 		$this->commentStore = $commentStore;
 	}
 
