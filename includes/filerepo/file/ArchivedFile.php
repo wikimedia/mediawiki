@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -598,17 +599,17 @@ class ArchivedFile {
 	 * Determine if the current user is allowed to view a particular
 	 * field of this FileStore image file, if it's marked as deleted.
 	 * @param int $field
-	 * @param User $user User object to check
+	 * @param Authority $performer
 	 * @return bool
 	 */
-	public function userCan( $field, User $user ) {
+	public function userCan( $field, Authority $performer ) {
 		$this->load();
 		$title = $this->getTitle();
 
 		return RevisionRecord::userCanBitfield(
 			$this->deleted,
 			$field,
-			$user,
+			$performer,
 			$title ?: null
 		);
 	}

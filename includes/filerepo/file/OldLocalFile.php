@@ -22,7 +22,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Class to represent a file in the oldimage table
@@ -392,16 +394,16 @@ class OldLocalFile extends LocalFile {
 	 * field of this image file, if it's marked as deleted.
 	 *
 	 * @param int $field
-	 * @param User $user User object to check
+	 * @param Authority $performer User object to check
 	 * @return bool
 	 */
-	public function userCan( $field, User $user ) {
+	public function userCan( $field, Authority $performer ) {
 		$this->load();
 
 		return RevisionRecord::userCanBitfield(
 			$this->deleted,
 			$field,
-			$user
+			$performer
 		);
 	}
 
@@ -440,7 +442,7 @@ class OldLocalFile extends LocalFile {
 	 * @param string $archiveName The archive name of the file
 	 * @param string $timestamp
 	 * @param string $comment Upload comment
-	 * @param User $user User who did this upload
+	 * @param UserIdentity $user User who did this upload
 	 * @return bool
 	 */
 	protected function recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) {
