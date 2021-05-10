@@ -332,18 +332,18 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	public function testSimpleStorageNonExistentBlobBatch() {
 		$store = $this->getBlobStore();
 		$result = $store->getBlobBatch( [
-				'tt:this_will_not_exist',
-				'tt:0',
-				'tt:-1',
-				'tt:1000',
-				'bla:1001'
+			'tt:this_will_not_exist',
+			'tt:0',
+			'tt:-1',
+			'tt:10000',
+			'bla:1001'
 		] );
 		$resultBlobs = $result->getValue();
 		$expected = [
 			'tt:this_will_not_exist' => null,
 			'tt:0' => null,
 			'tt:-1' => null,
-			'tt:1000' => null,
+			'tt:10000' => null,
 			'bla:1001' => null
 		];
 
@@ -384,7 +384,7 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 				'type' => 'warning',
 				'message' => 'internalerror',
 				'params' => [
-					'Unable to fetch blob at tt:1000. Use findBadBlobs.php to remedy.'
+					'Unable to fetch blob at tt:10000. Use findBadBlobs.php to remedy.'
 				]
 			]
 		], $result->getErrors() );
