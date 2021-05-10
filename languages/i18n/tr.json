@@ -430,7 +430,7 @@
 	"timeouterror-text": "$1 saniye maksimum istek süresi aşıldı.",
 	"internalerror": "Dahili hata",
 	"internalerror_info": "Dahili hata: $1",
-	"internalerror-fatal-exception": "\"$1\" tipinde hayati istisna",
+	"internalerror-fatal-exception": "\"$1\" tipinde önemli istisna",
 	"filecopyerror": "\"$1\" \"$2\" dosyasına kopyalanamıyor.",
 	"filerenameerror": "\"$1\" dosyasının ismi \"$2\" olarak değiştirilemedi.",
 	"filedeleteerror": "\"$1\" dosyası silinemedi.",
