@@ -23,7 +23,6 @@
 	opacity: 0;
 	display: inline-block;
 	-webkit-transition: opacity 400ms;
-	-moz-transition: opacity 400ms;
 	transition: opacity 400ms;
 }
 
