@@ -85,6 +85,88 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function provideGetFooterIcons() {
+		return [
+			// Test case 1
+			[
+				[
+					'wgFooterIcons' => [],
+				],
+				[],
+				'Empty list'
+			],
+			// Test case 2
+			[
+				[
+					'wgFooterIcons' => [
+						'poweredby' => [
+							'mediawiki' => [
+								'src' => '/w/resources/assets/poweredby_mediawiki_88x31.png',
+								'url' => 'https://www.mediawiki.org/',
+								'alt' => 'Powered by MediaWiki',
+								'srcset' => '/w/resources/assets/poweredby_mediawiki_132x47.png 1.5x,' .
+									' /w/resources/assets/poweredby_mediawiki_176x62.png 2x',
+							]
+						]
+					],
+				],
+				[
+					'poweredby' => [
+						[
+							'src' => '/w/resources/assets/poweredby_mediawiki_88x31.png',
+							'url' => 'https://www.mediawiki.org/',
+							'alt' => 'Powered by MediaWiki',
+							'srcset' => '/w/resources/assets/poweredby_mediawiki_132x47.png 1.5x,' .
+								' /w/resources/assets/poweredby_mediawiki_176x62.png 2x',
+							'width' => 88,
+							'height' => 31,
+						]
+					]
+				],
+				'Width and height are hardcoded if not provided'
+			],
+			// Test case 3
+			[
+				[
+					'wgFooterIcons' => [
+						'copyright' => [
+							'copyright' => [],
+						],
+					],
+				],
+				[],
+				'Empty arrays are filtered out'
+			],
+			// Test case 4
+			[
+				[
+					'wgFooterIcons' => [
+						'copyright' => [
+							'copyright' => [
+								'alt' => 'Wikimedia Foundation',
+								'url' => 'https://wikimediafoundation.org'
+							],
+						],
+					],
+				],
+				[],
+				'Icons with no icon are filtered out'
+			]
+		];
+	}
+
+	/**
+	 * @covers SkinTemplate::getFooterIcons
+	 * @dataProvider provideGetFooterIcons
+	 */
+	public function testGetFooterIcons( $globals, $expected, $msg ) {
+		$this->setMwGlobals( $globals );
+		$wrapper = TestingAccessWrapper::newFromObject( new SkinTemplate() );
+		$icons = $wrapper->getFooterIcons();
+
+		$this->assertEquals( $expected, $icons, $msg );
+	}
+
 	/**
 	 * @covers Skin::getDefaultModules
 	 * @dataProvider provideGetDefaultModules
