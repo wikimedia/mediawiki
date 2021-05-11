@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockRestrictionStore;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserNameUtils;
@@ -33,6 +34,9 @@ use Wikimedia\Rdbms\IResultWrapper;
  */
 class ApiQueryBlocks extends ApiQueryBase {
 
+	/** @var BlockActionInfo */
+	private $blockActionInfo;
+
 	/** @var BlockRestrictionStore */
 	private $blockRestrictionStore;
 
@@ -45,6 +49,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param BlockActionInfo $blockActionInfo
 	 * @param BlockRestrictionStore $blockRestrictionStore
 	 * @param CommentStore $commentStore
 	 * @param UserNameUtils $userNameUtils
@@ -52,11 +57,13 @@ class ApiQueryBlocks extends ApiQueryBase {
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
+		BlockActionInfo $blockActionInfo,
 		BlockRestrictionStore $blockRestrictionStore,
 		CommentStore $commentStore,
 		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( $query, $moduleName, 'bk' );
+		$this->blockActionInfo = $blockActionInfo;
 		$this->blockRestrictionStore = $blockRestrictionStore;
 		$this->commentStore = $commentStore;
 		$this->userNameUtils = $userNameUtils;
@@ -340,6 +347,9 @@ class ApiQueryBlocks extends ApiQueryBase {
 					if ( $restriction->getTitle() ) {
 						self::addTitleInfo( $value, $restriction->getTitle() );
 					}
+					break;
+				case 'action':
+					$value = $this->blockActionInfo->getActionFromId( $restriction->getValue() );
 					break;
 				default:
 					$value = $restriction->getValue();
