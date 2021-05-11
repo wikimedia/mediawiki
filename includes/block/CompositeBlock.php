@@ -22,6 +22,7 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\User\UserIdentity;
 use Title;
 
 /**
@@ -205,5 +206,12 @@ class CompositeBlock extends AbstractBlock {
 	 */
 	public function getByName() {
 		return '';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getBlocker(): ?UserIdentity {
+		return null;
 	}
 }

@@ -29,7 +29,6 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\User\ActorStoreFactory;
-use MediaWiki\User\UserIdentity;
 use MWException;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
@@ -342,12 +341,11 @@ class DatabaseBlockStore {
 	) : array {
 		$expiry = $dbw->encodeExpiry( $block->getExpiry() );
 
-		$target = $block->getTarget();
-		$forcedTargetId = $block->getForcedTargetId();
+		$forcedTargetId = $block->getForcedTargetID();
 		if ( $forcedTargetId ) {
 			$userId = $forcedTargetId;
-		} elseif ( $target instanceof User ) {
-			$userId = $target->getId();
+		} elseif ( $block->getTargetUserIdentity() ) {
+			$userId = $block->getTargetUserIdentity()->getId();
 		} else {
 			$userId = 0;
 		}
@@ -360,7 +358,7 @@ class DatabaseBlockStore {
 			->acquireActorId( $block->getBlocker(), $dbw );
 
 		$blockArray = [
-			'ipb_address'          => (string)$target,
+			'ipb_address'          => $block->getTargetName(),
 			'ipb_user'             => $userId,
 			'ipb_by_actor'         => $blockerActor,
 			'ipb_timestamp'        => $dbw->timestamp( $block->getTimestamp() ),
@@ -431,7 +429,7 @@ class DatabaseBlockStore {
 		// If autoblock is enabled, autoblock the LAST IP(s) used
 		if ( $block->isAutoblocking() && $block->getType() == AbstractBlock::TYPE_USER ) {
 			$this->logger->debug(
-				'Doing retroactive autoblocks for ' . $block->getTarget()
+				'Doing retroactive autoblocks for ' . $block->getTargetName()
 			);
 
 			$hookAutoBlocked = [];
@@ -463,12 +461,11 @@ class DatabaseBlockStore {
 			return [];
 		}
 
-		list( $target, $type ) = $block->getTargetAndType();
+		$type = $block->getType();
 		if ( $type !== AbstractBlock::TYPE_USER ) {
 			// Autoblocks only apply to users
 			return [];
 		}
-		/** @var UserIdentity $target */
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
@@ -477,7 +474,10 @@ class DatabaseBlockStore {
 			'LIMIT' => 1,
 		];
 
-		$actor = $this->actorStoreFactory->getActorNormalization()->findActorId( $target, $dbr );
+		$actor = $this->actorStoreFactory->getActorNormalization()->findActorId(
+			$block->getTargetUserIdentity(),
+			$dbr
+		);
 		if ( !$actor ) {
 			$this->logger->debug( 'No actor found to retroactively autoblock' );
 			return [];

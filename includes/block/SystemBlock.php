@@ -22,6 +22,8 @@
 
 namespace MediaWiki\Block;
 
+use MediaWiki\User\UserIdentity;
+
 /**
  * System blocks are temporary blocks that are created on enforcement (e.g.
  * from IP lists) and are not saved to the database. The target of a
@@ -106,5 +108,12 @@ class SystemBlock extends AbstractBlock {
 	 */
 	public function getByName() {
 		return '';
+	}
+
+	/**
+	 * @inheritDoc
+	 */
+	public function getBlocker(): ?UserIdentity {
+		return null;
 	}
 }

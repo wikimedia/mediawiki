@@ -229,7 +229,8 @@ class SpecialDeletedContributions extends SpecialPage {
 			$block = DatabaseBlock::newFromTarget( $userObj, $userObj );
 			if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
 				if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
-					$nt = $this->namespaceInfo->getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+					$nt = $this->namespaceInfo->getCanonicalName( NS_USER )
+						. ':' . $block->getTargetName();
 				}
 
 				// LogEventsList::showLogExtract() wants the first parameter by ref

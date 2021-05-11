@@ -74,10 +74,10 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		// Mock DatabaseBlock instead of AbstractBlock because its easier
 		$block = $this->createNoOpMock(
 			DatabaseBlock::class,
-			[ 'isSitewide', 'getByName' ]
+			[ 'isSitewide', 'getBlocker' ]
 		);
 		$block->method( 'isSitewide' )->willReturn( $isSitewide );
-		$block->method( 'getByName' )->willReturn( $byName );
+		$block->method( 'getBlocker' )->willReturn( new UserIdentityValue( 7, $byName ) );
 		return $block;
 	}
 
@@ -181,6 +181,9 @@ class BlockPermissionCheckerTest extends MediaWikiUnitTestCase {
 		$user->method( 'getBlock' )->willReturn( $block );
 		$user->method( 'getId' )->willReturn( 1 );
 		$user->method( 'getName' )->willReturn( 'blocker' );
+		$user->method( 'equals' )->willReturnCallback( static function ( $user ) {
+			return $user->getName() === 'blocker';
+		} );
 
 		$target = new UserIdentityValue( $targetUserId, $targetUserName );
 
