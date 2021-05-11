@@ -1115,19 +1115,6 @@ function wfReadOnlyReason() {
 }
 
 /**
- * Get the value of $wgReadOnly or the contents of $wgReadOnlyFile.
- *
- * @return string|bool String when in read-only mode; false otherwise
- * @since 1.27
- * @deprecated since 1.36
- */
-function wfConfiguredReadOnlyReason() {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	return MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()
-		->getReason();
-}
-
-/**
  * Return a Language object from $langcode
  *
  * @param Language|string|bool $langcode Either:
