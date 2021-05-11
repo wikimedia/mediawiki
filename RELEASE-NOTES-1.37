@@ -211,6 +211,7 @@ because of Phabricator reports.
   - wfConfiguredReadOnlyReason
   - wfDebugMem
   - wfGetPrecompiledData
+  - wfNegotiateType
 * –
 
 === Deprecations in 1.37 ===
