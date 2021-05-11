@@ -44,7 +44,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 
 	public const UNKNOWN_USER_NAME = 'Unknown user';
 
-	private const LOCAL_CACHE_SIZE = 5;
+	private const LOCAL_CACHE_SIZE = 100;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -187,6 +187,14 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 */
 	public function deleteUserIdentityFromCache( UserIdentity $actor ) {
 		$this->cache->remove( $actor );
+	}
+
+	/**
+	 * @internal only exists until User::resetIdByNameCache is removed.
+	 * Wipe-out the in-process caches.
+	 */
+	public function clearCaches() {
+		$this->cache->clear();
 	}
 
 	/**

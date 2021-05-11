@@ -121,6 +121,14 @@ class ActorCache {
 	}
 
 	/**
+	 * Remove everything from the cache.
+	 * @internal
+	 */
+	public function clear() {
+		$this->cache = [ self::KEY_ACTOR_ID => [], self::KEY_USER_NAME => [], self::KEY_USER_ID => [] ];
+	}
+
+	/**
 	 * @param string $keyType one of self::KEY_* constants.
 	 * @param string|int $keyValue
 	 * @return array|null [ 'actor' => UserIdentity, 'actorId' => int ]

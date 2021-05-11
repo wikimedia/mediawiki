@@ -729,31 +729,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * Get the prefixed DB key associated with an ID
-	 *
-	 * @param int $id The page_id of the article
-	 * @return string|null An object representing the article, or null if no such article was found
-	 * @deprecated since 1.36, use Title::newFromID( $id )->getPrefixedDBkey() instead.
-	 */
-	public static function nameOf( $id ) {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$s = $dbr->selectRow(
-			'page',
-			[ 'page_namespace', 'page_title' ],
-			[ 'page_id' => $id ],
-			__METHOD__
-		);
-		if ( $s === false ) {
-			return null;
-		}
-
-		return self::makeName( $s->page_namespace, $s->page_title );
-	}
-
-	/**
 	 * Get a regex character class describing the legal characters in a link
 	 *
 	 * @return string The list of characters, not delimited
@@ -3737,47 +3712,6 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			: $rl->getPreviousRevision( $rev, $flags );
 
 		return $oldRev ? $oldRev->getId() : false;
-	}
-
-	/**
-	 * Get the revision ID of the previous revision
-	 *
-	 * @deprecated since 1.34, use RevisionLookup::getPreviousRevision
-	 * @param int $revId Revision ID. Get the revision that was before this one.
-	 * @param int $flags Bitfield of class READ_* constants
-	 * @return int|bool Old revision ID, or false if none exists
-	 */
-	public function getPreviousRevisionID( $revId, $flags = 0 ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getRelativeRevisionID( $revId, $flags, 'prev' );
-	}
-
-	/**
-	 * Get the revision ID of the next revision
-	 *
-	 * @deprecated since 1.34, use RevisionLookup::getNextRevision
-	 * @param int $revId Revision ID. Get the revision that was after this one.
-	 * @param int $flags Bitfield of class READ_* constants
-	 * @return int|bool Next revision ID, or false if none exists
-	 */
-	public function getNextRevisionID( $revId, $flags = 0 ) {
-		wfDeprecated( __METHOD__, '1.34' );
-		return $this->getRelativeRevisionID( $revId, $flags, 'next' );
-	}
-
-	/**
-	 * Get the oldest revision timestamp of this page
-	 *
-	 * @deprecated since 1.35. Use RevisionLookup::getFirstRevision instead.
-	 * @param int $flags Bitfield of class READ_* constants
-	 * @return string|null MW timestamp
-	 */
-	public function getEarliestRevTime( $flags = 0 ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$rev = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getFirstRevision( $this, $flags );
-		return $rev ? $rev->getTimestamp() : null;
 	}
 
 	/**

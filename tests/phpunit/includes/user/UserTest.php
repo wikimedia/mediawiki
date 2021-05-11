@@ -1637,10 +1637,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::idFromName
 	 */
 	public function testExistingIdFromName() {
-		$this->assertArrayHasKey(
-			$this->user->getName(), User::$idCacheByName,
-			'Test user should already be in the id cache.'
-		);
 		$this->assertSame(
 			$this->user->getId(), User::idFromName( $this->user->getName() ),
 			'Id is correctly retreived from the cache.'
@@ -1655,17 +1651,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::idFromName
 	 */
 	public function testNonExistingIdFromName() {
-		$this->assertArrayNotHasKey(
-			'NotExisitngUser', User::$idCacheByName,
-			'Non exisitng user should not be in the id cache.'
-		);
 		$this->assertNull( User::idFromName( 'NotExisitngUser' ) );
-		$this->assertArrayHasKey(
-			'NotExisitngUser', User::$idCacheByName,
-			'Username will be cached when requested once.'
-		);
-		$this->assertNull( User::idFromName( 'NotExistingUser' ) );
-		$this->assertNull( User::idFromName( 'Illegal|Name' ) );
 	}
 
 	/**
