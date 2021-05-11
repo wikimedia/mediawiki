@@ -10,6 +10,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Base code for file repositories.
@@ -1962,10 +1963,10 @@ class FileRepo {
 	/**
 	 * Get an UploadStash associated with this repo.
 	 *
-	 * @param User|null $user
+	 * @param UserIdentity|null $user
 	 * @return UploadStash
 	 */
-	public function getUploadStash( User $user = null ) {
+	public function getUploadStash( UserIdentity $user = null ) {
 		return new UploadStash( $this, $user );
 	}
 
