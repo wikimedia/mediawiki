@@ -791,10 +791,11 @@ class Article implements Page {
 		OutputPage $outputPage,
 		array $textOptions
 	) {
-		$outputPage->addParserOutput( $pOutput, $textOptions );
 		# Ensure that UI elements requiring revision ID have
 		# the correct version information.
-		$outputPage->setRevisionId( $pOutput->getCacheRevisionId() ?? $this->mPage->getLatest() );
+		$outputPage->setRevisionId( $pOutput->getCacheRevisionId() ?? $this->getRevIdFetched() );
+
+		$outputPage->addParserOutput( $pOutput, $textOptions );
 		# Preload timestamp to avoid a DB hit
 		$cachedTimestamp = $pOutput->getTimestamp();
 		if ( $cachedTimestamp !== null ) {
