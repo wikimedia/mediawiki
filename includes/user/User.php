@@ -241,9 +241,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/** @var Authority|null lazy-initialized Authority of this user */
 	private $mThisAsAuthority;
 
-	/** @var int[] */
-	public static $idCacheByName = [];
-
 	/**
 	 * Lightweight constructor for an anonymous user.
 	 *
@@ -916,54 +913,31 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 	/**
 	 * Get database id given a user name
+	 * @deprecated since 1.37. Use UserIdentityLookup::getUserIdentityByName instead.
 	 * @param string $name Username
 	 * @param int $flags User::READ_* constant bitfield
 	 * @return int|null The corresponding user's ID, or null if user is nonexistent
 	 */
 	public static function idFromName( $name, $flags = self::READ_NORMAL ) {
-		// Don't explode on self::$idCacheByName[$name] if $name is not a string but e.g. a User object
-		$name = (string)$name;
-		$nt = Title::makeTitleSafe( NS_USER, $name );
-		if ( $nt === null ) {
-			// Illegal name
-			return null;
+		$actor = MediaWikiServices::getInstance()
+			->getUserIdentityLookup()
+			->getUserIdentityByName( (string)$name, $flags );
+		if ( $actor && $actor->getId() ) {
+			return $actor->getId();
 		}
-
-		if ( !( $flags & self::READ_LATEST ) && array_key_exists( $name, self::$idCacheByName ) ) {
-			return self::$idCacheByName[$name] === null ? null : (int)self::$idCacheByName[$name];
-		}
-
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = wfGetDB( $index );
-
-		$s = $db->selectRow(
-			'user',
-			[ 'user_id' ],
-			[ 'user_name' => $nt->getText() ],
-			__METHOD__,
-			$options
-		);
-
-		if ( $s === false ) {
-			$result = null;
-		} else {
-			$result = (int)$s->user_id;
-		}
-
-		if ( count( self::$idCacheByName ) >= 1000 ) {
-			self::$idCacheByName = [];
-		}
-
-		self::$idCacheByName[$name] = $result;
-
-		return $result;
+		return null;
 	}
 
 	/**
-	 * Reset the cache used in idFromName(). For use in tests.
+	 * Reset the cache used in idFromName(). In tests, reset the service container.
+	 * There is no use-case for this in production code.
+	 *
+	 * @deprecated since 1.37.
 	 */
 	public static function resetIdByNameCache() {
-		self::$idCacheByName = [];
+		// TODO: when removing this call, also remove the ActorStore::clearCaches() method!
+		wfDeprecated( __METHOD__, '1.37' );
+		MediaWikiServices::getInstance()->getActorStore()->clearCaches();
 	}
 
 	/**
@@ -1382,10 +1356,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 			$this->setItemLoaded( 'id' );
 		} else {
 			$all = false;
-		}
-
-		if ( isset( $row->user_id ) && isset( $row->user_name ) && $row->user_name !== '' ) {
-			self::$idCacheByName[$row->user_name] = $row->user_id;
 		}
 
 		if ( isset( $row->user_editcount ) ) {
@@ -3512,7 +3482,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 				return Status::newFatal( 'userexists' );
 			}
 			$this->mId = $dbw->insertId();
-			self::$idCacheByName[$this->mName] = $this->mId;
 
 			// Don't pass $this, since calling ::getId, ::getName might force ::load
 			// and this user might not be ready for the yet.

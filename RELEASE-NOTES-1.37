@@ -195,6 +195,8 @@ because of Phabricator reports.
   - ApiBase::parseMultiValue
   - ApiBase::validateLimit
   - ApiBase::validateTimestamp
+* User::idCacheByName public static field was removed without deprecation.
+  instead of using it, get a UserIdentity by name from UserIdentityLookup.
 * IDatabase::upsert() and IDatabase::replace() only accept a single unique key.
   Previously, a warning was issued if there were multiple unique keys provided.
 * The MediaWiki:Autoblock_whitelist block exemption control was moved in 1.36 to
@@ -247,6 +249,10 @@ because of Phabricator reports.
   deprecation warnings:
    - getOptions
    - isIP
+* The following methods in User were deprecated:
+  - ::idFromName - use UserIdentityLookup::getUserIdentityByName instead.
+  - ::resetIdByNameCache - in tests, reset service container. No replacement
+    needed in production code.
 * Use of ActorMigration for any table except revision, deprecated in 1.34, now
   emits deprecation warnings. Instead of getInsertValues(), use
   ActorNormalization::acquireActorId(). Instead of getWhere() and getJoin(),
