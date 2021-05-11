@@ -281,4 +281,31 @@ class MessageCacheTest extends MediaWikiLangTestCase {
 		$this->assertSame( ' ' . 'Test drei', $cache[$key] );
 	}
 
+	/**
+	 * @dataProvider provideIsMainCacheable
+	 * @param string|null $code The language code
+	 * @param string $message The message key
+	 * @param bool $expected
+	 */
+	public function testIsMainCacheable( $code, $message, $expected ) {
+		$messageCache = TestingAccessWrapper::newFromObject(
+			MediaWikiServices::getInstance()->getMessageCache() );
+		$this->assertSame( $expected, $messageCache->isMainCacheable( $message, $code ) );
+	}
+
+	public function provideIsMainCacheable() {
+		$cases = [
+			// $message                $expected
+			[ 'allpages',              true ],
+			[ 'Allpages',              true ],
+			[ 'Allpages/bat',          true ],
+			[ 'Conversiontable/zh-tw', true ],
+			[ 'My_special_message',    false ],
+		];
+		foreach ( [ null, 'en', 'fr' ] as $code ) {
+			foreach ( $cases as $case ) {
+				yield array_merge( [ $code ], $case );
+			}
+		}
+	}
 }
