@@ -449,7 +449,8 @@ class SpecialContributions extends IncludableSpecialPage {
 
 				if ( $block !== null && $block->getType() != DatabaseBlock::TYPE_AUTO ) {
 					if ( $block->getType() == DatabaseBlock::TYPE_RANGE ) {
-						$nt = $this->namespaceInfo->getCanonicalName( NS_USER ) . ':' . $block->getTarget();
+						$nt = $this->namespaceInfo->getCanonicalName( NS_USER )
+							. ':' . $block->getTargetName();
 					}
 
 					$out = $this->getOutput(); // showLogExtract() wants first parameter by reference

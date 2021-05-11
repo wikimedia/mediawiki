@@ -391,7 +391,7 @@ class DatabaseBlock extends AbstractBlock {
 			if ( $block->getType() == self::TYPE_RANGE ) {
 				# This is the number of bits that are allowed to vary in the block, give
 				# or take some floating point errors
-				$target = $block->getTarget();
+				$target = $block->getTargetName();
 				$max = IPUtils::isIPv6( $target ) ? 128 : 32;
 				list( $network, $bits ) = IPUtils::parseCIDR( $target );
 				$size = $max - $bits;
@@ -655,13 +655,13 @@ class DatabaseBlock extends AbstractBlock {
 
 		# Make a new block object with the desired properties.
 		$autoblock = new DatabaseBlock;
-		wfDebug( "Autoblocking {$this->getTarget()}@" . $autoblockIP );
+		wfDebug( "Autoblocking {$this->getTargetName()}@" . $autoblockIP );
 		$autoblock->setTarget( $autoblockIP );
 		$autoblock->setBlocker( $this->getBlocker() );
 		$autoblock->setReason(
 			wfMessage(
 				'autoblocker',
-				(string)$this->getTarget(),
+				$this->getTargetName(),
 				$this->getReasonComment()->text
 			)->inContentLanguage()->plain()
 		);
@@ -854,7 +854,7 @@ class DatabaseBlock extends AbstractBlock {
 				wfMessage( 'autoblockid', $this->mId )->text()
 			);
 		} else {
-			return htmlspecialchars( $this->getTarget() );
+			return htmlspecialchars( $this->getTargetName() );
 		}
 	}
 

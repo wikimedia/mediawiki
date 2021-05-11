@@ -559,12 +559,12 @@ class BlockUser {
 
 				if ( $priorBlock === null ) {
 					$this->logger->warning( 'Block could not be inserted. No existing block was found.' );
-					return Status::newFatal( 'ipb-block-not-found', $block->getTarget() );
+					return Status::newFatal( 'ipb-block-not-found', $block->getTargetName() );
 				}
 
 				if ( $block->equals( $priorBlock ) ) {
 					// Block settings are equal => user is already blocked
-					return Status::newFatal( 'ipb_already_blocked', $block->getTarget() );
+					return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
 				}
 
 				$currentBlock = $this->configureBlock( $priorBlock );
@@ -572,7 +572,7 @@ class BlockUser {
 				$isReblock = true;
 				$block = $currentBlock;
 			} else {
-				return Status::newFatal( 'ipb_already_blocked', $block->getTarget() );
+				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
 			}
 		}
 

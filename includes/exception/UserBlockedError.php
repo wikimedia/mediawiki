@@ -18,7 +18,7 @@
  * @file
  */
 
-use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\Block;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
@@ -32,13 +32,13 @@ use MediaWiki\User\UserIdentity;
 class UserBlockedError extends ErrorPageError {
 	/**
 	 * @stable to call
-	 * @param AbstractBlock $block
+	 * @param Block $block
 	 * @param UserIdentity|null $user
 	 * @param Language|null $language
 	 * @param string|null $ip
 	 */
 	public function __construct(
-		AbstractBlock $block,
+		Block $block,
 		UserIdentity $user = null,
 		Language $language = null,
 		$ip = null

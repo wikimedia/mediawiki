@@ -141,7 +141,7 @@ class BlockPermissionChecker {
 			// Blocked admin is trying to alter their own block
 
 			// Self-blocked admins can always remove or alter their block
-			if ( $block->getByName() === $performerIdentity->getName() ) {
+			if ( $block->getBlocker() && $performerIdentity->equals( $block->getBlocker() ) ) {
 				return true;
 			}
 
@@ -155,7 +155,8 @@ class BlockPermissionChecker {
 
 		if (
 			$this->target instanceof UserIdentity &&
-			$block->getByName() === $this->target->getName()
+			$block->getBlocker() &&
+			$this->target->equals( $block->getBlocker() )
 		) {
 			// T150826: Blocked admins can always block the admin who blocked them
 			return true;

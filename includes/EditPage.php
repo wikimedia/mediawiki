@@ -2746,7 +2746,7 @@ class EditPage implements IEditObject {
 					$out,
 					'block',
 					MediaWikiServices::getInstance()->getNamespaceInfo()->
-						getCanonicalName( NS_USER ) . ':' . $block->getTarget(),
+						getCanonicalName( NS_USER ) . ':' . $block->getTargetName(),
 					'',
 					[
 						'lim' => 1,
