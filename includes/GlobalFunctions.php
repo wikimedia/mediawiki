@@ -931,23 +931,6 @@ function wfIsDebugRawPage() {
 }
 
 /**
- * Send a line giving PHP memory usage.
- *
- * @param bool $exact Print exact byte values instead of kibibytes (default: false)
- * @deprecated since 1.36
- */
-function wfDebugMem( $exact = false ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	$mem = memory_get_usage();
-	if ( !$exact ) {
-		$mem = floor( $mem / 1024 ) . ' KiB';
-	} else {
-		$mem .= ' B';
-	}
-	wfDebug( "Memory usage: $mem" );
-}
-
-/**
  * Send a line to a supplementary debug log file, if configured, or main debug
  * log if not.
  *
@@ -1128,19 +1111,6 @@ function wfReadOnly() {
  */
 function wfReadOnlyReason() {
 	return MediaWikiServices::getInstance()->getReadOnlyMode()
-		->getReason();
-}
-
-/**
- * Get the value of $wgReadOnly or the contents of $wgReadOnlyFile.
- *
- * @return string|bool String when in read-only mode; false otherwise
- * @since 1.27
- * @deprecated since 1.36
- */
-function wfConfiguredReadOnlyReason() {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	return MediaWikiServices::getInstance()->getConfiguredReadOnlyMode()
 		->getReason();
 }
 
@@ -1709,57 +1679,6 @@ function mimeTypeMatch( $type, $avail ) {
 			return null;
 		}
 	}
-}
-
-/**
- * Returns the 'best' match between a client's requested internet media types
- * and the server's list of available types. Each list should be an associative
- * array of type to preference (preference is a float between 0.0 and 1.0).
- * Wildcards in the types are acceptable.
- *
- * @param array $cprefs Client's acceptable type list
- * @param array $sprefs Server's offered types
- * @return string|null
- *
- * @todo FIXME: Doesn't handle params like 'text/plain; charset=UTF-8'
- * XXX: generalize to negotiate other stuff
- * @deprecated since 1.36
- */
-function wfNegotiateType( $cprefs, $sprefs ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	$combine = [];
-
-	foreach ( array_keys( $sprefs ) as $type ) {
-		$subType = explode( '/', $type )[1];
-		if ( $subType != '*' ) {
-			$ckey = mimeTypeMatch( $type, $cprefs );
-			if ( $ckey ) {
-				$combine[$type] = $sprefs[$type] * $cprefs[$ckey];
-			}
-		}
-	}
-
-	foreach ( array_keys( $cprefs ) as $type ) {
-		$subType = explode( '/', $type )[1];
-		if ( $subType != '*' && !array_key_exists( $type, $sprefs ) ) {
-			$skey = mimeTypeMatch( $type, $sprefs );
-			if ( $skey ) {
-				$combine[$type] = $sprefs[$skey] * $cprefs[$type];
-			}
-		}
-	}
-
-	$bestq = 0;
-	$besttype = null;
-
-	foreach ( array_keys( $combine ) as $type ) {
-		if ( $combine[$type] > $bestq ) {
-			$besttype = $type;
-			$bestq = $combine[$type];
-		}
-	}
-
-	return $besttype;
 }
 
 /**
@@ -2334,27 +2253,6 @@ function wfRelativePath( $path, $from ) {
 	$pieces[] = wfBaseName( $path );
 
 	return implode( DIRECTORY_SEPARATOR, $pieces );
-}
-
-/**
- * Get an object from the precompiled serialized directory
- *
- * @param string $name
- * @return mixed The variable on success, false on failure
- * @deprecated since 1.36
- */
-function wfGetPrecompiledData( $name ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	global $IP;
-
-	$file = "$IP/serialized/$name";
-	if ( file_exists( $file ) ) {
-		$blob = file_get_contents( $file );
-		if ( $blob ) {
-			return unserialize( $blob );
-		}
-	}
-	return false;
 }
 
 /**
