@@ -239,7 +239,7 @@
 	"currentrevisionlink": "Asanawaa eekalu'u müinma",
 	"cur": "eje.",
 	"last": "pal",
-	"histlegend": "Aneekalawa nnojotka wanaawain: püjüttaa eere piencha'atatkalü eeinjatü pi'rüin so'uutpünaa süpüla piyoujiraain otta püjütta ekerotaa aka shialeein ajüttüleeka mmolu'uka.<br />\nAneekalapülee: <strong>({{int:cur}})</strong> = nnojotka wanaawain sümaa so'uutpünaka sünainka müinma yaa, <strong>({{int:last}})</strong> = nnojotka wanaawain sümaa so'uutpünaa sünainka paalapainka, <strong>{{int:minoreditletter}}</strong> = motsosü tü anaatünaka.",
+	"histlegend": "Aneeka tü ayojiraanüinjatüka: Püjütta süka tü ajüttüleeka eere sukuwa'ipa awanajaanüka süpüla piyoujiraain otta püjütta ekerotaa je ajüttüleeka mmolu'uka.<br/>\nAneekalapülee: <strong>({{int:cur}})</strong> = waneejatsü suulia awanajaanüka achiirua, <strong>({{int:last}})</strong> = tü waneejatka suulia awajaaushikat paala, <strong>{{int:minoreditletter}}</strong> = motsosü tü anaatünaka.",
 	"history-fieldset-title": "Eitajaa awanajuushika",
 	"histfirst": "palajanakalirua",
 	"histlast": "paalapainkalirua",
