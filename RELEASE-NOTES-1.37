@@ -208,6 +208,7 @@ because of Phabricator reports.
 * The following global methods, each deprecated since 1.36, have been removed:
   - wfAppendToArrayIfNotDefault
   - wfAcceptToPrefs
+  - wfDebugMem
 * –
 
 === Deprecations in 1.37 ===

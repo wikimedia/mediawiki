@@ -307,11 +307,8 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers ::wfDebug
-	 * @covers ::wfDebugMem
 	 */
 	public function testDebugFunctionTest() {
-		$this->hideDeprecated( 'wfDebugMem' );
-
 		$debugLogFile = $this->getNewTempFile();
 
 		$this->setMwGlobals( [
@@ -332,20 +329,6 @@ class GlobalTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals(
 			" 05This has böth UTF and control chars \n",
 			file_get_contents( $debugLogFile )
-		);
-
-		unlink( $debugLogFile );
-		wfDebugMem();
-		$this->assertGreaterThan(
-			1000,
-			preg_replace( '/\D/', '', file_get_contents( $debugLogFile ) )
-		);
-
-		unlink( $debugLogFile );
-		wfDebugMem( true );
-		$this->assertGreaterThan(
-			1000000,
-			preg_replace( '/\D/', '', file_get_contents( $debugLogFile ) )
 		);
 
 		unlink( $debugLogFile );

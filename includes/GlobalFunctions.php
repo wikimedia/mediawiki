@@ -931,23 +931,6 @@ function wfIsDebugRawPage() {
 }
 
 /**
- * Send a line giving PHP memory usage.
- *
- * @param bool $exact Print exact byte values instead of kibibytes (default: false)
- * @deprecated since 1.36
- */
-function wfDebugMem( $exact = false ) {
-	wfDeprecated( __FUNCTION__, '1.36' );
-	$mem = memory_get_usage();
-	if ( !$exact ) {
-		$mem = floor( $mem / 1024 ) . ' KiB';
-	} else {
-		$mem .= ' B';
-	}
-	wfDebug( "Memory usage: $mem" );
-}
-
-/**
  * Send a line to a supplementary debug log file, if configured, or main debug
  * log if not.
  *
