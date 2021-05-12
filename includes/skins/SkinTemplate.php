@@ -522,7 +522,14 @@ class SkinTemplate extends Skin {
 		}
 
 		if ( $this->loggedin ) {
-			$personal_urls['userpage'] = $this->buildPersonalPageItem();
+			$personal_urls['userpage'] = [
+				'text' => $this->username,
+				'href' => &$this->userpageUrlDetails['href'],
+				'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
+				'exists' => $this->userpageUrlDetails['exists'],
+				'active' => ( $this->userpageUrlDetails['href'] == $pageurl ),
+				'dir' => 'auto'
+			];
 
 			// Merge notifications into the personal menu for older skins.
 			if ( $includeNotifications ) {
@@ -664,22 +671,6 @@ class SkinTemplate extends Skin {
 		$this->getHookRunner()->onPersonalUrls( $personal_urls, $title, $this );
 
 		return $personal_urls;
-	}
-
-	/**
-	 * Build a personal page link.
-	 * @return array
-	 */
-	protected function buildPersonalPageItem(): array {
-		// Build the personal page link array.
-		return [
-			'text' => $this->username,
-			'href' => &$this->userpageUrlDetails['href'],
-			'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
-			'exists' => $this->userpageUrlDetails['exists'],
-			'active' => ( $this->userpageUrlDetails['href'] == $this->getTitle()->getLocalURL() ),
-			'dir' => 'auto'
-		];
 	}
 
 	/**
@@ -874,7 +865,6 @@ class SkinTemplate extends Skin {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$content_navigation = [
-			'user-page' => $this->loggedin ? [ 'userpage' => $this->buildPersonalPageItem() ] : [],
 			'user-menu' => $this->buildPersonalUrls( false ),
 			'notifications' => [],
 			'namespaces' => [],
