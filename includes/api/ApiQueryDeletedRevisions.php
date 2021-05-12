@@ -48,7 +48,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 
 		$pageSet = $this->getPageSet();
 		$pageMap = $pageSet->getGoodAndMissingTitlesByNamespace();
-		$pageCount = count( $pageSet->getGoodAndMissingTitles() );
+		$pageCount = count( $pageSet->getGoodAndMissingPages() );
 		$revCount = $pageSet->getRevisionCount();
 		if ( $revCount === 0 && $pageCount === 0 ) {
 			// Nothing to do
@@ -116,7 +116,7 @@ class ApiQueryDeletedRevisions extends ApiQueryRevisionsBase {
 		} else {
 			// We need a custom WHERE clause that matches all titles.
 			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$lb = $linkBatchFactory->newLinkBatch( $pageSet->getGoodAndMissingTitles() );
+			$lb = $linkBatchFactory->newLinkBatch( $pageSet->getGoodAndMissingPages() );
 			$where = $lb->constructSet( 'ar', $db );
 			$this->addWhere( $where );
 		}

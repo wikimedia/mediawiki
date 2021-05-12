@@ -20,7 +20,10 @@
  * @file
  */
 
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -344,10 +347,26 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
-	 * All Title objects provided.
+	 * All existing and missing pages including redirects.
+	 * Does not include special pages, interwiki links, and invalid titles.
+	 * If redirects are resolved, both the redirect and the target will be included here.
+	 *
+	 * @deprecated since 1.37, use getPages() instead.
 	 * @return Title[]
 	 */
 	public function getTitles() {
+		return $this->mTitles;
+	}
+
+	/**
+	 * All existing and missing pages including redirects.
+	 * Does not include special pages, interwiki links, and invalid titles.
+	 * If redirects are resolved, both the redirect and the target will be included here.
+	 *
+	 * @since 1.37
+	 * @return PageIdentity[]
+	 */
+	public function getPages(): array {
 		return $this->mTitles;
 	}
 
@@ -368,10 +387,22 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
-	 * Title objects that were found in the database.
+	 * Title objects that were found in the database, including redirects.
+	 * If redirects are resolved, this will include existing redirect targets.
+	 * @deprecated since 1.37, use getGoodPages() instead.
 	 * @return Title[] Array page_id (int) => Title (obj)
 	 */
 	public function getGoodTitles() {
+		return $this->mGoodTitles;
+	}
+
+	/**
+	 * Pages that were found in the database, including redirects.
+	 * If redirects are resolved, this will include existing redirect targets.
+	 * @since 1.37
+	 * @return PageIdentity[] Array page_id (int) => PageIdentity (obj)
+	 */
+	public function getGoodPages(): array {
 		return $this->mGoodTitles;
 	}
 
@@ -394,10 +425,23 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Title objects that were NOT found in the database.
-	 * The array's index will be negative for each item
+	 * The array's index will be negative for each item.
+	 * If redirects are resolved, this will include missing redirect targets.
+	 * @deprecated since 1.37, use getMissingPages instead.
 	 * @return Title[]
 	 */
 	public function getMissingTitles() {
+		return $this->mMissingTitles;
+	}
+
+	/**
+	 * Pages that were NOT found in the database.
+	 * The array's index will be negative for each item.
+	 * If redirects are resolved, this will include missing redirect targets.
+	 * @since 1.37
+	 * @return PageIdentity[]
+	 */
+	public function getMissingPages(): array {
 		return $this->mMissingTitles;
 	}
 
@@ -411,9 +455,19 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Title objects for good and missing titles.
+	 * @deprecated since 1.37, use getGoodAndMissingPages() instead.
 	 * @return Title[]
 	 */
 	public function getGoodAndMissingTitles() {
+		return $this->mGoodTitles + $this->mMissingTitles;
+	}
+
+	/**
+	 * Pages for good and missing titles.
+	 * @since 1.37
+	 * @return PageIdentity[]
+	 */
+	public function getGoodAndMissingPages(): array {
 		return $this->mGoodTitles + $this->mMissingTitles;
 	}
 
@@ -436,10 +490,21 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Get a list of redirect resolutions - maps a title to its redirect
-	 * target, as an array of output-ready arrays
+	 * target.
+	 * @deprecated since 1.37, use getRedirectTargets instead.
 	 * @return Title[]
 	 */
 	public function getRedirectTitles() {
+		return $this->mRedirectTitles;
+	}
+
+	/**
+	 * Get a list of redirect resolutions - maps a title to its redirect
+	 * target.
+	 * @since 1.37
+	 * @return LinkTarget[]
+	 */
+	public function getRedirectTargets(): array {
 		return $this->mRedirectTitles;
 	}
 
@@ -697,9 +762,19 @@ class ApiPageSet extends ApiBase {
 
 	/**
 	 * Get the list of titles with negative namespace
+	 * @deprecated since 1.37, use getSpecialPages() instead.
 	 * @return Title[]
 	 */
 	public function getSpecialTitles() {
+		return $this->mSpecialTitles;
+	}
+
+	/**
+	 * Get the list of pages with negative namespace
+	 * @since 1.37
+	 * @return PageReference[]
+	 */
+	public function getSpecialPages(): array {
 		return $this->mSpecialTitles;
 	}
 
@@ -712,8 +787,8 @@ class ApiPageSet extends ApiBase {
 	}
 
 	/**
-	 * Populate this PageSet from a list of Titles
-	 * @param array $titles Array of Title objects
+	 * Populate this PageSet
+	 * @param string[]|LinkTarget[]|PageReference[] $titles
 	 */
 	public function populateFromTitles( $titles ) {
 		$this->initFromTitles( $titles );
@@ -790,7 +865,7 @@ class ApiPageSet extends ApiBase {
 	 * #5 Substitute the original LinkBatch object with the new list
 	 * #6 Repeat from step #1
 	 *
-	 * @param array $titles Array of Title objects or strings
+	 * @param string[]|LinkTarget[]|PageReference[] $titles
 	 */
 	private function initFromTitles( $titles ) {
 		// Get validated and normalized title objects
@@ -1026,7 +1101,7 @@ class ApiPageSet extends ApiBase {
 			while ( $this->mPendingRedirectIDs || $this->mPendingRedirectSpecialPages ) {
 				// Resolve redirects by querying the pagelinks table, and repeat the process
 				// Create a new linkBatch object for the next pass
-				$linkBatch = $this->getRedirectTargets();
+				$linkBatch = $this->loadRedirectTargets();
 
 				if ( $linkBatch->isEmpty() ) {
 					break;
@@ -1053,7 +1128,7 @@ class ApiPageSet extends ApiBase {
 	 * have one.
 	 * @return LinkBatch
 	 */
-	private function getRedirectTargets() {
+	private function loadRedirectTargets() {
 		$titlesToResolve = [];
 		$db = $this->getDB();
 
@@ -1156,7 +1231,7 @@ class ApiPageSet extends ApiBase {
 	 * This method validates access rights for the title,
 	 * and appends normalization values to the output.
 	 *
-	 * @param array $titles Array of Title objects or strings
+	 * @param string[]|LinkTarget[]|PageReference[] $titles
 	 * @return LinkBatch
 	 */
 	private function processTitlesArray( $titles ) {
@@ -1167,6 +1242,9 @@ class ApiPageSet extends ApiBase {
 			->getLanguageConverterFactory()
 			->getLanguageConverter( $services->getContentLanguage() );
 
+		$titleFactory = $services->getTitleFactory();
+
+		/** @var Title[] $titleObjects */
 		$titleObjects = [];
 		foreach ( $titles as $index => $title ) {
 			if ( is_string( $title ) ) {
@@ -1185,8 +1263,10 @@ class ApiPageSet extends ApiBase {
 					}
 					continue; // There's nothing else we can do
 				}
+			} elseif ( $title instanceof LinkTarget ) {
+				$titleObj = $titleFactory->castFromLinkTarget( $title );
 			} else {
-				$titleObj = $title;
+				$titleObj = $titleFactory->castFromPageReference( $title );
 			}
 
 			$titleObjects[$index] = $titleObj;
@@ -1284,10 +1364,10 @@ class ApiPageSet extends ApiBase {
 	 * specified, since in the case of multiple redirects we can't know which
 	 * source's data to use on the target.
 	 *
-	 * @param Title $title
+	 * @param PageReference|LinkTarget $title
 	 * @param array $data
 	 */
-	public function setGeneratorData( Title $title, array $data ) {
+	public function setGeneratorData( $title, array $data ) {
 		$ns = $title->getNamespace();
 		$dbkey = $title->getDBkey();
 		$this->mGeneratorData[$ns][$dbkey] = $data;
