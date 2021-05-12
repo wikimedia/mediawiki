@@ -34,7 +34,7 @@ class ImportReporter extends ContextSource {
 	private $mOriginalLogCallback;
 	private $mOriginalPageOutCallback;
 	private $mLogItemCount = 0;
-	private $mPageCount;
+	private $mPageCount = 0;
 	private $mIsUpload;
 	private $mInterwiki;
 
@@ -50,7 +50,6 @@ class ImportReporter extends ContextSource {
 		$this->mOriginalLogCallback =
 			$importer->setLogItemCallback( [ $this, 'reportLogItem' ] );
 		$importer->setNoticeCallback( [ $this, 'reportNotice' ] );
-		$this->mPageCount = 0;
 		$this->mIsUpload = $upload;
 		$this->mInterwiki = $interwiki;
 		$this->reason = $reason;

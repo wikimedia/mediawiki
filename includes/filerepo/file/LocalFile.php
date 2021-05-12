@@ -124,10 +124,10 @@ class LocalFile extends File {
 	protected $sha1;
 
 	/** @var bool Whether or not core data has been loaded from the database (loadFromXxx) */
-	protected $dataLoaded;
+	protected $dataLoaded = false;
 
 	/** @var bool Whether or not lazy-loaded data has been loaded from the database */
-	protected $extraDataLoaded;
+	protected $extraDataLoaded = false;
 
 	/** @var int Bitfield akin to rev_deleted */
 	protected $deleted;
@@ -136,10 +136,10 @@ class LocalFile extends File {
 	protected $repoClass = LocalRepo::class;
 
 	/** @var int Number of line to return by nextHistoryLine() (constructor) */
-	private $historyLine;
+	private $historyLine = 0;
 
 	/** @var IResultWrapper|null Result of the query for the file's history (nextHistoryLine) */
-	private $historyRes;
+	private $historyRes = null;
 
 	/** @var string Major MIME type */
 	private $major_mime;
@@ -314,11 +314,6 @@ class LocalFile extends File {
 	 */
 	public function __construct( $title, $repo ) {
 		parent::__construct( $title, $repo );
-
-		$this->historyLine = 0;
-		$this->historyRes = null;
-		$this->dataLoaded = false;
-		$this->extraDataLoaded = false;
 
 		$this->assertRepoDefined();
 		$this->assertTitleDefined();

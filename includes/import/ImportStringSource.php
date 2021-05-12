@@ -36,14 +36,13 @@ class ImportStringSource implements ImportSource {
 	private $mString;
 
 	/** @var bool */
-	private $mRead;
+	private $mRead = false;
 
 	/**
 	 * @param string $string
 	 */
 	public function __construct( $string ) {
 		$this->mString = $string;
-		$this->mRead = false;
 	}
 
 	/**
