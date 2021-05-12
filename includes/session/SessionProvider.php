@@ -130,11 +130,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 		UserNameUtils $userNameUtils
 	) {
 		$this->logger = $logger;
-		// Since SessionProvider::setConfig() is still overridden
-		// in some extensions, so we can't stop calling it until we will
-		// move the setup those extensions do to
-		// SessionProvider::postInitSetup()
-		$this->setConfig( $config );
+		$this->config = $config;
 		$this->manager = $manager;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -164,6 +160,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * @param LoggerInterface $logger
 	 */
 	public function setLogger( LoggerInterface $logger ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->logger = $logger;
 	}
 
@@ -179,6 +176,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * @param Config $config
 	 */
 	public function setConfig( Config $config ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->config = $config;
 	}
 
@@ -204,6 +202,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * @param SessionManager $manager
 	 */
 	public function setManager( SessionManager $manager ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->manager = $manager;
 	}
 
@@ -226,6 +225,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * @param HookContainer $hookContainer
 	 */
 	public function setHookContainer( $hookContainer ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
