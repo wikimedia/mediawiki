@@ -83,3 +83,9 @@ interface ProperPageIdentity extends PageIdentity {
 	public function canExist(): bool;
 
 }
+
+// Retain compatibility with hook interface signature as
+// of SearchResultProvideDescriptionHook as used in Wikibase and PageImages.
+// Note that the interface was marked @unstable, so the alias can be removed
+// once the extensions have been updated.
+class_alias( ProperPageIdentity::class, 'MediaWiki\Rest\Entity\SearchResultPageIdentity' );
