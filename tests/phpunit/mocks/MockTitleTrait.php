@@ -1,5 +1,8 @@
 <?php
 
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageStoreRecord;
 use PHPUnit\Framework\MockObject\MockObject;
 
 trait MockTitleTrait {
@@ -79,6 +82,32 @@ trait MockTitleTrait {
 				str_replace( ' ', '_', $preText );
 		} );
 		$title->method( '__toString' )->willReturn( "MockTitle:{$preText}" );
+
+		$title->method( 'toPageIdentity' )->willReturnCallback( static function () use ( $title ) {
+			return new PageIdentityValue(
+				$title->getId(),
+				$title->getNamespace(),
+				$title->getDBkey(),
+				PageIdentity::LOCAL
+			);
+		} );
+
+		$title->method( 'toPageRecord' )->willReturnCallback( static function () use ( $title ) {
+			return new PageStoreRecord(
+				(object)[
+					'page_id' => $title->getArticleID(),
+					'page_namespace' => $title->getNamespace(),
+					'page_title' => $title->getDBkey(),
+					'page_wiki_id' => $title->getWikiId(),
+					'page_latest' => $title->getLatestRevID(),
+					'page_is_new' => $title->isNewPage(),
+					'page_is_redirect' => $title->isRedirect(),
+					'page_touched' => $title->getTouched(),
+					'page_lang' => $title->getPageLanguage() ?: null,
+				],
+				PageIdentity::LOCAL
+			);
+		} );
 
 		return $title;
 	}
