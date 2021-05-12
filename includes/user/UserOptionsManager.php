@@ -113,13 +113,6 @@ class UserOptionsManager extends UserOptionsLookup {
 	/**
 	 * @inheritDoc
 	 */
-	public function getDefaultOption( string $opt ) {
-		return $this->defaultOptionsLookup->getDefaultOption( $opt );
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	public function getOption(
 		UserIdentity $user,
 		string $oname,
