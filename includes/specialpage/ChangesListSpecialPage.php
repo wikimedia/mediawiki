@@ -232,11 +232,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						) {
 							/** @var IContextSource $ctx */
 							$user = $ctx->getUser();
-							if ( $user->isAnon() ) {
-								$conds[] = 'actor_name<>' . $dbr->addQuotes( $user->getName() );
-							} else {
-								$conds[] = 'actor_user<>' . $dbr->addQuotes( $user->getId() );
-							}
+							$conds[] = 'actor_name<>' . $dbr->addQuotes( $user->getName() );
 						},
 						'cssClassSuffix' => 'self',
 						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
