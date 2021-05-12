@@ -2387,7 +2387,10 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 */
 	public function getEmail(): string {
 		$this->load();
-		$this->getHookRunner()->onUserGetEmail( $this, $this->mEmail );
+		$email = $this->mEmail;
+		$this->getHookRunner()->onUserGetEmail( $this, $email );
+		// In case a hook handler returns e.g. null
+		$this->mEmail = is_string( $email ) ? $email : '';
 		return $this->mEmail;
 	}
 
