@@ -35,8 +35,8 @@ class SVGReader {
 	public const LANG_PREFIX_MATCH = 1;
 	public const LANG_FULL_MATCH = 2;
 
-	/** @var null|XMLReader */
-	private $reader = null;
+	/** @var XMLReader */
+	private $reader;
 
 	/** @var bool */
 	private $mDebug = false;

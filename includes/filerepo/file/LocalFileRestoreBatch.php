@@ -41,7 +41,7 @@ class LocalFileRestoreBatch {
 	private $all;
 
 	/** @var bool Whether to remove all settings for suppressed fields */
-	private $unsuppress = false;
+	private $unsuppress;
 
 	/**
 	 * @param LocalFile $file

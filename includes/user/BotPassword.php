@@ -68,8 +68,8 @@ class BotPassword implements IDBAccessObject {
 	/** @var string[] */
 	private $grants;
 
-	/** @var int */
-	private $flags = self::READ_NORMAL;
+	/** @var int Defaults to {@see READ_NORMAL} */
+	private $flags;
 
 	/**
 	 * @param stdClass $row bot_passwords database row

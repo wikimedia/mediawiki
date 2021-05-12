@@ -48,7 +48,7 @@ class NameTableStore {
 	private $tableCache = null;
 
 	/** @var bool|string */
-	private $domain = false;
+	private $domain;
 
 	/** @var int */
 	private $cacheTTL;
@@ -60,9 +60,9 @@ class NameTableStore {
 	/** @var string */
 	private $nameField;
 	/** @var null|callable */
-	private $normalizationCallback = null;
+	private $normalizationCallback;
 	/** @var null|callable */
-	private $insertCallback = null;
+	private $insertCallback;
 
 	/**
 	 * @param ILoadBalancer $dbLoadBalancer A load balancer for acquiring database connections

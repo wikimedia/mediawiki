@@ -36,13 +36,13 @@ class Token {
 	public const SUFFIX = '+\\';
 
 	/** @var string */
-	private $secret = '';
+	private $secret;
 
 	/** @var string */
-	private $salt = '';
+	private $salt;
 
 	/** @var bool */
-	private $new = false;
+	private $new;
 
 	/**
 	 * @param string $secret Token secret

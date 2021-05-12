@@ -28,10 +28,10 @@ use MediaWiki\MediaWikiServices;
 class ImportReporter extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
-	private $reason = false;
+	private $reason;
 	private $logTags = [];
-	private $mOriginalLogCallback = null;
-	private $mOriginalPageOutCallback = null;
+	private $mOriginalLogCallback;
+	private $mOriginalPageOutCallback;
 	private $mLogItemCount = 0;
 	private $mPageCount;
 	private $mIsUpload;

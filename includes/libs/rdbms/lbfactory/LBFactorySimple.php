@@ -38,7 +38,7 @@ class LBFactorySimple extends LBFactory {
 	private $loadMonitorConfig;
 
 	/** @var array[] Map of (server index => server config map) */
-	private $mainServers = [];
+	private $mainServers;
 	/** @var array[][] Map of (cluster => server index => server config map) */
 	private $externalServersByCluster = [];
 
