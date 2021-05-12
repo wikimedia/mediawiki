@@ -86,7 +86,7 @@ class UserIdentityValue implements UserIdentity {
 	/**
 	 * Create UserIdentity for an anonymous user.
 	 *
-	 * @since 1.37
+	 * @since 1.36
 	 * @param string $name
 	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
 	 * @return UserIdentityValue
