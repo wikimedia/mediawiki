@@ -20,6 +20,7 @@
 
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageReference;
 
 /**
@@ -158,22 +159,23 @@ class HtmlCacheUpdater {
 	 */
 	public function purgeTitleUrls( $pages, $flags = self::PURGE_PRESEND, array $unless = [] ) {
 		$pages = is_iterable( $pages ) ? $pages : [ $pages ];
-		$titles = [];
+		$pageIdentities = [];
 
 		foreach ( $pages as $page ) {
+			// TODO: We really only need to cast to PageIdentity. We could use a LinkBatch for that.
 			$title = $this->titleFactory->castFromPageReference( $page );
 
 			if ( $title->canExist() ) {
-				$titles[] = $title;
+				$pageIdentities[] = $title;
 			}
 		}
 
-		if ( !$titles ) {
+		if ( !$pageIdentities ) {
 			return;
 		}
 
 		if ( $this->useFileCache ) {
-			$update = HtmlFileCacheUpdate::newFromTitles( $titles );
+			$update = HtmlFileCacheUpdate::newFromPages( $pageIdentities );
 			if ( $this->fieldHasFlag( $flags, self::PURGE_PRESEND ) ) {
 				DeferredUpdates::addUpdate( $update, DeferredUpdates::PRESEND );
 			} else {
@@ -184,9 +186,9 @@ class HtmlCacheUpdater {
 		$minFreshCacheMtime = $unless[self::UNLESS_CACHE_MTIME_AFTER] ?? null;
 		if ( !$minFreshCacheMtime || time() <= ( $minFreshCacheMtime + $this->cdnMaxAge ) ) {
 			$urls = [];
-			foreach ( $titles as $title ) {
-				/** @var Title $title */
-				$urls = array_merge( $urls, $this->getUrls( $title, $flags ) );
+			foreach ( $pageIdentities as $pi ) {
+				/** @var PageIdentity $pi */
+				$urls = array_merge( $urls, $this->getUrls( $pi, $flags ) );
 			}
 			$this->purgeUrls( $urls, $flags );
 		}
