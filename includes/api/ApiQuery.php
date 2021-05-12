@@ -506,7 +506,7 @@ class ApiQuery extends ApiBase {
 	 */
 	private function doExport( $pageSet, $result ) {
 		$exportTitles = [];
-		$titles = $pageSet->getGoodTitles();
+		$titles = $pageSet->getGoodPages();
 		if ( count( $titles ) ) {
 			/** @var Title $title */
 			foreach ( $titles as $title ) {

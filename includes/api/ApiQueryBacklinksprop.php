@@ -103,12 +103,12 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 		$emptyString = $db->addQuotes( '' );
 
 		$pageSet = $this->getPageSet();
-		$titles = $pageSet->getGoodAndMissingTitles();
+		$titles = $pageSet->getGoodAndMissingPages();
 		$map = $pageSet->getGoodAndMissingTitlesByNamespace();
 
 		// Add in special pages, they can theoretically have backlinks too.
 		// (although currently they only do for prop=redirects)
-		foreach ( $pageSet->getSpecialTitles() as $id => $title ) {
+		foreach ( $pageSet->getSpecialPages() as $id => $title ) {
 			$titles[] = $title;
 			$map[$title->getNamespace()][$title->getDBkey()] = $id;
 		}

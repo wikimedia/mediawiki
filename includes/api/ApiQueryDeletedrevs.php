@@ -89,7 +89,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		$result = $this->getResult();
 		$pageSet = $this->getPageSet();
-		$titles = $pageSet->getTitles();
+		$titles = $pageSet->getPages();
 
 		// This module operates in three modes:
 		// 'revs': List deleted revs for certain titles (1)

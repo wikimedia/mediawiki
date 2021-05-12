@@ -5,6 +5,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\User\TalkPageNotificationManager;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use PHPUnit\Framework\AssertionFailedError;
 
 /**
@@ -21,8 +23,10 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user_newtalk';
 	}
 
-	private function editUserTalk( User $user, string $text ) : RevisionRecord {
-		$userTalk = $user->getTalkPage();
+	private function editUserTalk( UserIdentity $user, string $text ) : RevisionRecord {
+		// UserIdentity doesn't have getUserPage/getTalkPage, but we can easily recreate
+		// it, and its easier than needing to depend on a full user object
+		$userTalk = Title::makeTitle( NS_USER_TALK, $user->getName() );
 		$status = $this->editPage(
 			$userTalk->getPrefixedText(),
 			$text,
@@ -53,7 +57,19 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	private function doTestUserHasNewMessages( User $user ) {
+	public function provideUserHasNewMessages() {
+		yield 'Registered user' => [ UserIdentityValue::newRegistered( 123, 'MyName' ) ];
+		yield 'Anonymous user' => [ UserIdentityValue::newAnonymous( '1.2.3.4' ) ];
+	}
+
+	/**
+	 * @dataProvider provideUserHasNewMessages
+	 * @covers \MediaWiki\User\TalkPageNotificationManager::userHasNewMessages
+	 * @covers \MediaWiki\User\TalkPageNotificationManager::setUserHasNewMessages
+	 * @covers \MediaWiki\User\TalkPageNotificationManager::clearInstanceCache
+	 * @covers \MediaWiki\User\TalkPageNotificationManager::removeUserHasNewMessages
+	 */
+	private function testUserHasNewMessages( UserIdentity $user ) {
 		$manager = $this->getManager();
 		$this->assertFalse( $manager->userHasNewMessages( $user ),
 			'Should be false before updated' );
@@ -81,29 +97,9 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @covers \MediaWiki\User\TalkPageNotificationManager::userHasNewMessages
 	 * @covers \MediaWiki\User\TalkPageNotificationManager::setUserHasNewMessages
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::clearInstanceCache
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::removeUserHasNewMessages
-	 */
-	public function testUserHasNewMessagesRegistered() {
-		$this->doTestUserHasNewMessages( $this->getTestUser()->getUser() );
-	}
-
-	/**
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::userHasNewMessages
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::setUserHasNewMessages
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::clearInstanceCache
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::removeUserHasNewMessages
-	 */
-	public function testUserHasNewMessagesAnon() {
-		$this->doTestUserHasNewMessages( User::newFromName( 'testUserHasNewMessagesAnon' ) );
-	}
-
-	/**
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::userHasNewMessages
-	 * @covers \MediaWiki\User\TalkPageNotificationManager::setUserHasNewMessages
 	 */
 	public function testUserHasNewMessagesDisabledAnon() {
-		$user = User::newFromName( 'testUserHasNewMessagesAnon' );
+		$user = new UserIdentityValue( 0, '1.2.3.4' );
 		$revRecord = $this->editUserTalk( $user, __METHOD__ );
 		$manager = $this->getManager( true );
 		$this->assertFalse( $manager->userHasNewMessages( $user ),

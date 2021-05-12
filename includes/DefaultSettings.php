@@ -5301,6 +5301,9 @@ $wgAuthManagerAutoConfig = [
 		// probably auto-insert themselves in the wrong place.
 		MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
+			'services' => [
+				'DBLoadBalancer',
+			],
 			'args' => [ [
 				// Fall through to LocalPasswordPrimaryAuthenticationProvider
 				'authoritative' => false,
@@ -5309,6 +5312,9 @@ $wgAuthManagerAutoConfig = [
 		],
 		MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class,
+			'services' => [
+				'DBLoadBalancer',
+			],
 			'args' => [ [
 				// Last one should be authoritative, or else the user will get
 				// a less-than-helpful error message (something like "supplied
@@ -5335,6 +5341,9 @@ $wgAuthManagerAutoConfig = [
 		// ],
 		MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class => [
 			'class' => MediaWiki\Auth\EmailNotificationSecondaryAuthenticationProvider::class,
+			'services' => [
+				'DBLoadBalancer',
+			],
 			'sort' => 200,
 		],
 	],

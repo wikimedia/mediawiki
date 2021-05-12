@@ -108,12 +108,18 @@ class TestSetup {
 			'primaryauth' => [
 				[
 					'class' => MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider::class,
+					'services' => [
+						'DBLoadBalancer',
+					],
 					'args' => [ [
 						'authoritative' => false,
 					] ],
 				],
 				[
 					'class' => MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider::class,
+					'services' => [
+						'DBLoadBalancer',
+					],
 					'args' => [ [
 						'authoritative' => true,
 					] ],
