@@ -22,6 +22,7 @@
 namespace MediaWiki\Auth;
 
 use User;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * A primary authentication provider that uses the password field in the 'user' table.
@@ -35,15 +36,20 @@ class LocalPasswordPrimaryAuthenticationProvider
 	/** @var bool If true, this instance is for legacy logins only. */
 	protected $loginOnly = false;
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
 	/**
+	 * @param ILoadBalancer $loadBalancer
 	 * @param array $params Settings
 	 *  - loginOnly: If true, the local passwords are for legacy logins only:
 	 *    the local password will be invalidated when authentication is changed
 	 *    and new users will not have a valid local password set.
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( ILoadBalancer $loadBalancer, $params = [] ) {
 		parent::__construct( $params );
 		$this->loginOnly = !empty( $params['loginOnly'] );
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	/**
@@ -95,7 +101,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			'user_id', 'user_password', 'user_password_expires',
 		];
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$row = $dbr->selectRow(
 			'user',
 			$fields,
@@ -140,8 +146,8 @@ class LocalPasswordPrimaryAuthenticationProvider
 		if ( $this->getPasswordFactory()->needsUpdate( $pwhash ) ) {
 			$newHash = $this->getPasswordFactory()->newFromPlaintext( $req->password );
 			$fname = __METHOD__;
-			\DeferredUpdates::addCallableUpdate( static function () use ( $newHash, $oldRow, $fname ) {
-				$dbw = wfGetDB( DB_PRIMARY );
+			\DeferredUpdates::addCallableUpdate( function () use ( $newHash, $oldRow, $fname ) {
+				$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 				$dbw->update(
 					'user',
 					[ 'user_password' => $newHash->toString() ],
@@ -166,7 +172,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 			return false;
 		}
 
-		$dbr = wfGetDB( DB_REPLICA );
+		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$row = $dbr->selectRow(
 			'user',
 			[ 'user_password' ],
@@ -193,7 +199,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		list( $db, $options ) = \DBAccessObjectUtils::getDBOptions( $flags );
-		return (bool)wfGetDB( $db )->selectField(
+		return (bool)$this->loadBalancer->getConnectionRef( $db )->selectField(
 			[ 'user' ],
 			'user_id',
 			[ 'user_name' => $username ],
@@ -218,7 +224,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 
 			$username = User::getCanonicalName( $req->username, 'usable' );
 			if ( $username !== false ) {
-				$row = wfGetDB( DB_PRIMARY )->selectRow(
+				$row = $this->loadBalancer->getConnectionRef( DB_PRIMARY )->selectRow(
 					'user',
 					[ 'user_id' ],
 					[ 'user_name' => $username ],
@@ -260,7 +266,7 @@ class LocalPasswordPrimaryAuthenticationProvider
 		}
 
 		if ( $pwhash ) {
-			$dbw = wfGetDB( DB_PRIMARY );
+			$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 			$dbw->update(
 				'user',
 				[

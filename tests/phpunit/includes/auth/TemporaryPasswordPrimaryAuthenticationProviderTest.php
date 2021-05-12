@@ -10,6 +10,8 @@ use Wikimedia\ScopedCallback;
 use Wikimedia\TestingAccessWrapper;
 
 /**
+ * TODO clean up and reduce duplication
+ *
  * @group AuthManager
  * @group Database
  * @covers \MediaWiki\Auth\TemporaryPasswordPrimaryAuthenticationProvider
@@ -64,7 +66,7 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$mockedMethods[] = 'checkPasswordValidity';
 		$provider = $this->getMockBuilder( TemporaryPasswordPrimaryAuthenticationProvider::class )
 			->onlyMethods( $mockedMethods )
-			->setConstructorArgs( [ $params ] )
+			->setConstructorArgs( [ $mwServices->getDBLoadBalancer(), $params ] )
 			->getMock();
 		$provider->method( 'checkPasswordValidity' )
 			->will( $this->returnCallback( function () {
@@ -122,7 +124,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			'AllowRequiringEmailForResets' => false,
 		] );
 
-		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider() );
+		$p = TestingAccessWrapper::newFromObject(
+			new TemporaryPasswordPrimaryAuthenticationProvider(
+				$this->getServiceContainer()->getDBLoadBalancer()
+			)
+		);
 		$p->init(
 			$this->createNoOpMock( NullLogger::class ),
 			$this->createNoOpMock( AuthManager::class ),
@@ -134,12 +140,17 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 		$this->assertSame( 100, $p->newPasswordExpiry );
 		$this->assertSame( 101, $p->passwordReminderResendTime );
 
-		$p = TestingAccessWrapper::newFromObject( new TemporaryPasswordPrimaryAuthenticationProvider( [
-			'emailEnabled' => true,
-			'newPasswordExpiry' => 42,
-			'passwordReminderResendTime' => 43,
-			'allowRequiringEmailForResets' => true,
-		] ) );
+		$p = TestingAccessWrapper::newFromObject(
+			new TemporaryPasswordPrimaryAuthenticationProvider(
+				$this->getServiceContainer()->getDBLoadBalancer(),
+				[
+					'emailEnabled' => true,
+					'newPasswordExpiry' => 42,
+					'passwordReminderResendTime' => 43,
+					'allowRequiringEmailForResets' => true,
+				]
+			)
+		);
 		$p->init(
 			$this->createNoOpMock( NullLogger::class ),
 			$this->createNoOpMock( AuthManager::class ),

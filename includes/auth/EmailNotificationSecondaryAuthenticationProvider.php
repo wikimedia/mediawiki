@@ -2,6 +2,8 @@
 
 namespace MediaWiki\Auth;
 
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * Handles email notification / email address confirmation for account creation.
  *
@@ -14,15 +16,20 @@ class EmailNotificationSecondaryAuthenticationProvider
 	/** @var bool */
 	protected $sendConfirmationEmail;
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
 	/**
+	 * @param ILoadBalancer $loadBalancer
 	 * @param array $params
 	 *  - sendConfirmationEmail: (bool) send an email asking the user to confirm their email
 	 *    address after a successful registration
 	 */
-	public function __construct( $params = [] ) {
+	public function __construct( ILoadBalancer $loadBalancer, $params = [] ) {
 		if ( isset( $params['sendConfirmationEmail'] ) ) {
 			$this->sendConfirmationEmail = (bool)$params['sendConfirmationEmail'];
 		}
+		$this->loadBalancer = $loadBalancer;
 	}
 
 	protected function postInitSetup() {
@@ -47,7 +54,7 @@ class EmailNotificationSecondaryAuthenticationProvider
 			&& !$this->manager->getAuthenticationSessionData( 'no-email' )
 		) {
 			// TODO show 'confirmemail_oncreate'/'confirmemail_sendfailed' message
-			wfGetDB( DB_PRIMARY )->onTransactionCommitOrIdle(
+			$this->loadBalancer->getConnectionRef( DB_PRIMARY )->onTransactionCommitOrIdle(
 				function () use ( $user ) {
 					$user = $user->getInstanceForUpdate();
 					$status = $user->sendConfirmationMail();

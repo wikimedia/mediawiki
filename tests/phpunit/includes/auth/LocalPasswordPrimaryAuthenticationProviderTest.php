@@ -35,7 +35,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		}
 		$config = new \MultiConfig( [
 			$this->config,
-			MediaWikiServices::getInstance()->getMainConfig()
+			$mwServices->getMainConfig()
 		] );
 
 		// We need a real HookContainer since testProviderChangeAuthenticationData()
@@ -62,7 +62,10 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->validity = \Status::newGood();
 		$provider = $this->getMockBuilder( LocalPasswordPrimaryAuthenticationProvider::class )
 			->onlyMethods( [ 'checkPasswordValidity' ] )
-			->setConstructorArgs( [ [ 'loginOnly' => $loginOnly ] ] )
+			->setConstructorArgs( [
+				$mwServices->getDBLoadBalancer(),
+				[ 'loginOnly' => $loginOnly ]
+			] )
 			->getMock();
 
 		$provider->method( 'checkPasswordValidity' )
@@ -154,7 +157,9 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$this->config->set( 'PasswordExpireGrace', 100 );
 		$this->config->set( 'InvalidPasswordReset', true );
 
-		$provider = new LocalPasswordPrimaryAuthenticationProvider();
+		$provider = new LocalPasswordPrimaryAuthenticationProvider(
+			$this->getServiceContainer()->getDBLoadBalancer()
+		);
 		$provider->init(
 			new NullLogger(),
 			$this->manager,
