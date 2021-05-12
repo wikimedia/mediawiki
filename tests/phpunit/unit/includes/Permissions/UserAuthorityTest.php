@@ -80,12 +80,24 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(
 			PermissionManager::class,
-			[ 'userHasRight', 'userCan', 'getPermissionErrors', 'isBlockedFrom', 'newFatalPermissionDeniedStatus' ]
+			[ 'userHasRight', 'userHasAnyRight', 'userHasAllRights', 'userCan', 'getPermissionErrors', 'isBlockedFrom', 'newFatalPermissionDeniedStatus' ]
 		);
 
 		$permissionManager->method( 'userHasRight' )->willReturnCallback(
 			static function ( $user, $permission ) use ( $permissions ) {
 				return in_array( $permission, $permissions );
+			}
+		);
+
+		$permissionManager->method( 'userHasAnyRight' )->willReturnCallback(
+			static function ( $user, ...$actions ) use ( $permissions ) {
+				return array_diff( $actions, $permissions ) != $actions;
+			}
+		);
+
+		$permissionManager->method( 'userHasAllRights' )->willReturnCallback(
+			static function ( $user, ...$actions ) use ( $permissions ) {
+				return !array_diff( $actions, $permissions );
 			}
 		);
 
