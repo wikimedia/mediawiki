@@ -23,6 +23,7 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
@@ -121,15 +122,17 @@ class LinksUpdate extends DataUpdate {
 	private $db;
 
 	/**
-	 * @param Title $title Title of the page we're updating
+	 * @param PageIdentity $page The page we're updating
 	 * @param ParserOutput $parserOutput Output from a full parse of this page
 	 * @param bool $recursive Queue jobs for recursive updates?
+	 *
 	 * @throws MWException
 	 */
-	public function __construct( Title $title, ParserOutput $parserOutput, $recursive = true ) {
+	public function __construct( PageIdentity $page, ParserOutput $parserOutput, $recursive = true ) {
 		parent::__construct();
 
-		$this->mTitle = $title;
+		// NOTE: mTitle is public and used in hooks. Will need careful deprecation.
+		$this->mTitle = Title::castFromPageIdentity( $page );
 		$this->mParserOutput = $parserOutput;
 
 		$this->mLinks = $parserOutput->getLinks();
@@ -381,14 +384,15 @@ class LinksUpdate extends DataUpdate {
 	/**
 	 * Queue a RefreshLinks job for any table.
 	 *
-	 * @param Title $title Title to do job for
+	 * @param PageIdentity $page Page to do job for
 	 * @param string $table Table to use (e.g. 'templatelinks')
 	 * @param string $action Triggering action
 	 * @param string $userName Triggering user name
 	 */
 	public static function queueRecursiveJobsForTable(
-		Title $title, $table, $action = 'unknown', $userName = 'unknown'
+		PageIdentity $page, $table, $action = 'unknown', $userName = 'unknown'
 	) {
+		$title = Title::castFromPageIdentity( $page );
 		if ( $title->getBacklinkCache()->hasLinks( $table ) ) {
 			$job = new RefreshLinksJob(
 				$title,
