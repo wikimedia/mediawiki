@@ -25,14 +25,17 @@ namespace MediaWiki\Block;
 use AutoCommitUpdate;
 use CommentStore;
 use DeferredUpdates;
+use InvalidArgumentException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\UserIdentity;
 use MWException;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
 use User;
+use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -139,11 +142,37 @@ class DatabaseBlockStore {
 	}
 
 	/**
+	 * Throws an exception if the given database connection does not match the
+	 * given wiki ID.
+	 *
+	 * @param ?IDatabase $db
+	 * @param string|false $expectedWiki
+	 */
+	private function checkDatabaseDomain( ?IDatabase $db, $expectedWiki ) {
+		if ( $db ) {
+			$dbDomain = $db->getDomainID();
+			$storeDomain = $this->loadBalancer->resolveDomainID( $expectedWiki );
+			if ( $dbDomain !== $storeDomain ) {
+				throw new InvalidArgumentException(
+					"DB connection domain '$dbDomain' does not match '$storeDomain'"
+				);
+			}
+		} else {
+			if ( $expectedWiki !== UserIdentity::LOCAL ) {
+				throw new InvalidArgumentException(
+					"Must provide a database connection for wiki '$expectedWiki'."
+				);
+			}
+		}
+	}
+
+	/**
 	 * Insert a block into the block table. Will fail if there is a conflicting
 	 * block (same name and options) already in the database.
 	 *
 	 * @param DatabaseBlock $block
-	 * @param IDatabase|null $database Database to use if not the same as the one in the load balancer
+	 * @param IDatabase|null $database Database to use if not the same as the one in the load balancer.
+	 *                       Must connect to the wiki identified by $block->getBlocker->getWikiId().
 	 * @return bool|array False on failure, assoc array on success:
 	 *      ('id' => block ID, 'autoIds' => array of autoblock IDs)
 	 * @throws MWException
@@ -155,6 +184,8 @@ class DatabaseBlockStore {
 		if ( !$block->getBlocker() || $block->getBlocker()->getName() === '' ) {
 			throw new MWException( 'Cannot insert a block without a blocker set' );
 		}
+
+		$this->checkDatabaseDomain( $database, $block->getBlocker()->getWikiId() );
 
 		$this->logger->debug( 'Inserting block; timestamp ' . $block->getTimestamp() );
 
@@ -229,6 +260,13 @@ class DatabaseBlockStore {
 	 */
 	public function updateBlock( DatabaseBlock $block ) {
 		$this->logger->debug( 'Updating block; timestamp ' . $block->getTimestamp() );
+
+		// We could allow cross-wiki updates here, just like we do in insertBlock().
+		Assert::parameter(
+			$block->getBlocker()->getWikiId() === UserIdentity::LOCAL,
+			'$block->getBlocker()',
+			'must belong to the local wiki.'
+		);
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
 		$row = $this->getArrayForDatabaseBlock( $block, $dbw );
@@ -332,7 +370,8 @@ class DatabaseBlockStore {
 	 * Get an array suitable for passing to $dbw->insert() or $dbw->update()
 	 *
 	 * @param DatabaseBlock $block
-	 * @param IDatabase $dbw
+	 * @param IDatabase|null $dbw Database to use if not the same as the one in the load balancer.
+	 *                       Must connect to the wiki identified by $block->getBlocker->getWikiId().
 	 * @return array
 	 */
 	private function getArrayForDatabaseBlock(
@@ -354,7 +393,7 @@ class DatabaseBlockStore {
 		}
 		// DatabaseBlockStore supports inserting cross-wiki blocks by passing non-local IDatabase and blocker.
 		$blockerActor = $this->actorStoreFactory
-			->getActorStore( $block->getBlocker()->getWikiId() )
+			->getActorStore( $dbw->getDomainID() )
 			->acquireActorId( $block->getBlocker(), $dbw );
 
 		$blockArray = [
