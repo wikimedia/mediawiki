@@ -63,9 +63,9 @@ class ApiPageSetTest extends ApiTestCase {
 		$target = Title::makeTitle( NS_MAIN, 'UTRedirectTarget' );
 		$sourceA = Title::makeTitle( NS_MAIN, 'UTRedirectSourceA' );
 		$sourceB = Title::makeTitle( NS_MAIN, 'UTRedirectSourceB' );
-		self::editPage( 'UTRedirectTarget', $targetContent );
-		self::editPage( 'UTRedirectSourceA', '#REDIRECT [[UTRedirectTarget]]' );
-		self::editPage( 'UTRedirectSourceB', '#REDIRECT [[UTRedirectTarget]]' );
+		$this->editPage( 'UTRedirectTarget', $targetContent );
+		$this->editPage( 'UTRedirectSourceA', '#REDIRECT [[UTRedirectTarget]]' );
+		$this->editPage( 'UTRedirectSourceB', '#REDIRECT [[UTRedirectTarget]]' );
 
 		$request = new FauxRequest( [ 'redirects' => 1 ] );
 		$context = new RequestContext();
@@ -83,8 +83,8 @@ class ApiPageSetTest extends ApiTestCase {
 	public function testRedirectMergePolicyRedirectLoop() {
 		$loopA = Title::makeTitle( NS_MAIN, 'UTPageRedirectOne' );
 		$loopB = Title::makeTitle( NS_MAIN, 'UTPageRedirectTwo' );
-		self::editPage( 'UTPageRedirectOne', '#REDIRECT [[UTPageRedirectTwo]]' );
-		self::editPage( 'UTPageRedirectTwo', '#REDIRECT [[UTPageRedirectOne]]' );
+		$this->editPage( 'UTPageRedirectOne', '#REDIRECT [[UTPageRedirectTwo]]' );
+		$this->editPage( 'UTPageRedirectTwo', '#REDIRECT [[UTPageRedirectOne]]' );
 		list( $target, $pageSet ) = $this->createPageSetWithRedirect(
 			'#REDIRECT [[UTPageRedirectOne]]'
 		);
@@ -130,9 +130,9 @@ class ApiPageSetTest extends ApiTestCase {
 	}
 
 	public function testSpecialRedirects() {
-		$id1 = self::editPage( 'UTApiPageSet', 'UTApiPageSet in the default language' )
+		$id1 = $this->editPage( 'UTApiPageSet', 'UTApiPageSet in the default language' )
 			->value['revision-record']->getPageId();
-		$id2 = self::editPage( 'UTApiPageSet/de', 'UTApiPageSet in German' )
+		$id2 = $this->editPage( 'UTApiPageSet/de', 'UTApiPageSet in German' )
 			->value['revision-record']->getPageId();
 
 		$user = $this->getTestUser()->getUser();
