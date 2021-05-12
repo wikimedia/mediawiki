@@ -3,7 +3,8 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use ApiResult;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
@@ -15,17 +16,29 @@ use Wikimedia\ParamValidator\ValidationException;
  * @covers MediaWiki\ParamValidator\TypeDef\NamespaceDef
  */
 class NamespaceDefTest extends TypeDefTestCase {
+	use DummyServicesTrait;
+
+	private function getNamespaceInfo() {
+		// DummyServicesTrait::getDummyNamespaceInfo() would call
+		// $this->createHookContainer() if we didn't pass one, but that
+		// method is only available from MediaWikiTestCaseTrait - just
+		// create a simple mock that doesn't do anything, because we
+		// don't care about hooks here
+		$hookContainer = $this->createMock( HookContainer::class );
+		$hookContainer->method( 'run' )->willReturn( true );
+		return $this->getDummyNamespaceInfo( [ 'hookContainer' => $hookContainer ] );
+	}
 
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
 		return new NamespaceDef(
 			$callbacks,
-			MediaWikiServices::getInstance()->getNamespaceInfo()
+			$this->getNamespaceInfo()
 		);
 	}
 
-	private static function getNamespaces( $extra = [] ) {
+	private function getNamespaces( $extra = [] ) {
 		$namespaces = array_merge(
-			MediaWikiServices::getInstance()->getNamespaceInfo()->getValidNamespaces(),
+			$this->getNamespaceInfo()->getValidNamespaces(),
 			$extra
 		);
 		sort( $namespaces );
