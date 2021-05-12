@@ -24,6 +24,7 @@
 
 namespace MediaWiki\Languages;
 
+use Config;
 use Language;
 use LanguageConverter;
 use LocalisationCache;
@@ -61,6 +62,9 @@ class LanguageFactory {
 	/** @var MapCacheLRU */
 	private $langObjCache;
 
+	/** @var Config */
+	private $config;
+
 	/** @var array */
 	private $parentLangCache = [];
 
@@ -81,6 +85,7 @@ class LanguageFactory {
 	 * @param LanguageFallback $langFallback
 	 * @param LanguageConverterFactory $langConverterFactory
 	 * @param HookContainer $hookContainer
+	 * @param Config $config
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -88,8 +93,12 @@ class LanguageFactory {
 		LanguageNameUtils $langNameUtils,
 		LanguageFallback $langFallback,
 		LanguageConverterFactory $langConverterFactory,
-		HookContainer $hookContainer
+		HookContainer $hookContainer,
+		Config $config
 	) {
+		// We have both ServiceOptions and a Config object because
+		// the Language class hasn't (yet) been updated to use ServiceOptions
+		// and for now gets a full Config
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
 		$this->options = $options;
@@ -99,6 +108,7 @@ class LanguageFactory {
 		$this->langConverterFactory = $langConverterFactory;
 		$this->hookContainer = $hookContainer;
 		$this->langObjCache = new MapCacheLRU( self::LANG_CACHE_SIZE );
+		$this->config = $config;
 	}
 
 	/**
@@ -136,7 +146,8 @@ class LanguageFactory {
 			$this->langNameUtils,
 			$this->langFallback,
 			$this->langConverterFactory,
-			$this->hookContainer
+			$this->hookContainer,
+			$this->config
 		];
 
 		if ( !$this->langNameUtils->isValidBuiltInCode( $code ) ) {
