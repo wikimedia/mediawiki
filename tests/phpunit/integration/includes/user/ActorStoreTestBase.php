@@ -19,37 +19,22 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 	public function addDBData() {
 		$this->tablesUsed[] = 'actor';
 
-		// Registered
-		$this->assertTrue( $this->db->insert(
-			'actor',
-			[ 'actor_id' => '42', 'actor_user' => '24', 'actor_name' => 'TestUser' ],
-			__METHOD__,
-			[ 'IGNORE' ]
-		) );
+		$actors = [
+			'registered' => [ 'actor_id' => '42', 'actor_user' => '24', 'actor_name' => 'TestUser' ],
+			'anon' => [ 'actor_id' => '43', 'actor_user' => null, 'actor_name' => self::IP ],
+			'another registered' => [ 'actor_id' => '44', 'actor_user' => '25', 'actor_name' => 'TestUser1' ],
+			'external' => [ 'actor_id' => '45', 'actor_user' => null, 'actor_name' => 'acme>TestUser' ],
+			'user name 0' => [ 'actor_id' => '46', 'actor_user' => '26', 'actor_name' => '0' ],
+		];
 
-		// Anon
-		$this->assertTrue( $this->db->insert(
-			'actor',
-			[ 'actor_id' => '43', 'actor_user' => null, 'actor_name' => self::IP ],
-			__METHOD__,
-			[ 'IGNORE' ]
-		) );
-
-		// One more registered
-		$this->assertTrue( $this->db->insert(
-			'actor',
-			[ 'actor_id' => '44', 'actor_user' => '25', 'actor_name' => 'TestUser1' ],
-			__METHOD__,
-			[ 'IGNORE' ]
-		) );
-
-		// External
-		$this->assertTrue( $this->db->insert(
-			'actor',
-			[ 'actor_id' => '45', 'actor_user' => null, 'actor_name' => 'acme>TestUser' ],
-			__METHOD__,
-			[ 'IGNORE' ]
-		) );
+		foreach ( $actors as $description => $row ) {
+			$this->assertTrue( $this->db->insert(
+				'actor',
+				$row,
+				__METHOD__,
+				[ 'IGNORE' ]
+			), "Sanity: must create {$description} actor" );
+		}
 	}
 
 	/**
@@ -106,7 +91,6 @@ abstract class ActorStoreTestBase extends MediaWikiIntegrationTestCase {
 		$wikiId = UserIdentity::LOCAL
 	) {
 		$actor->assertWiki( $wikiId );
-		$this->assertSame( $expected->getActorId( $wikiId ), $actor->getActorId( $wikiId ) );
 		$this->assertSame( $expected->getId( $wikiId ), $actor->getId( $wikiId ) );
 		$this->assertSame( $expected->getName(), $actor->getName() );
 		$this->assertSame( $expected->getWikiId(), $actor->getWikiId() );

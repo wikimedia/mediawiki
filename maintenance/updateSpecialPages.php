@@ -107,7 +107,15 @@ class UpdateSpecialPages extends Maintenance {
 					# Reopen any connections that have closed
 					$this->reopenAndWaitForReplicas();
 				} else {
-					$this->output( "cheap, skipped\n" );
+					// Check if this page was expensive before and now cheap
+					$cached = $queryPage->getCachedTimestamp();
+					if ( $cached ) {
+						$queryPage->deleteAllCachedData();
+						$this->reopenAndWaitForReplicas();
+						$this->output( "cheap, but deleted cached data\n" );
+					} else {
+						$this->output( "cheap, skipped\n" );
+					}
 				}
 				if ( $this->hasOption( 'only' ) ) {
 					break;

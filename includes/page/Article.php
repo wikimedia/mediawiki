@@ -1614,7 +1614,10 @@ class Article implements Page {
 			: 'revision-info';
 
 		$outputPage = $context->getOutput();
-		$outputPage->addModuleStyles( 'mediawiki.action.styles' );
+		$outputPage->addModuleStyles( [
+			'mediawiki.action.styles',
+			'mediawiki.interface.helpers.styles'
+		] );
 
 		$revisionUser = $revisionRecord->getUser();
 		$revisionInfo = "<div id=\"mw-{$infomsg}\">" .

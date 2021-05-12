@@ -473,10 +473,16 @@ class RecentChange implements Taggable {
 			}
 		}
 
+		$jobs = [];
+		// Flush old entries from the `recentchanges` table
+		if ( mt_rand( 0, 9 ) == 0 ) {
+			$jobs[] = RecentChangesUpdateJob::newPurgeJob();
+		}
 		// Update the cached list of active users
 		if ( $this->mAttribs['rc_user'] > 0 ) {
-			JobQueueGroup::singleton()->lazyPush( RecentChangesUpdateJob::newCacheUpdateJob() );
+			$jobs[] = RecentChangesUpdateJob::newCacheUpdateJob();
 		}
+		JobQueueGroup::singleton()->lazyPush( $jobs );
 	}
 
 	/**

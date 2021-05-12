@@ -29,7 +29,7 @@ class RevisionArchiveRecordTest extends MediaWikiUnitTestCase {
 
 		$title = new PageIdentityValue( 17, NS_MAIN, 'Dummy', $wikiId );
 
-		$user = new UserIdentityValue( 11, 'Tester', 0 );
+		$user = new UserIdentityValue( 11, 'Tester' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 
 		$main = SlotRecord::newUnsaved( SlotRecord::MAIN, new DummyContentForTesting( 'Lorem Ipsum' ) );

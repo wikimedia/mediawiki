@@ -416,8 +416,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 
 		$user = new UserIdentityValue(
 			(int)$result->rc_user,
-			$result->rc_user_text,
-			(int)$result->rc_actor
+			$result->rc_user_text
 		);
 		$revRecord->setUser( $user );
 

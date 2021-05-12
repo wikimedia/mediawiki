@@ -30,7 +30,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 	 * @return MutableRevisionRecord
 	 */
 	protected function newRevision( array $rowOverrides = [] ) {
-		$user = new UserIdentityValue( 11, 'Tester', 0 );
+		$user = new UserIdentityValue( 11, 'Tester' );
 		$comment = CommentStoreComment::newUnsavedComment( 'Hello World' );
 		$wikiId = $rowOverrides['wikiId'] ?? RevisionRecord::LOCAL;
 
@@ -101,7 +101,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 		$record = new MutableRevisionRecord(
 			new PageIdentityValue( 1, NS_MAIN, 'Foo', PageIdentity::LOCAL )
 		);
-		$user = new UserIdentityValue( 0, 'Bla', 0 );
+		$user = new UserIdentityValue( 0, 'Bla' );
 		$this->assertNull( $record->getUser() );
 		$record->setUser( $user );
 		$this->assertSame( $user, $record->getUser() );
@@ -351,7 +351,7 @@ class MutableRevisionRecordTest extends MediaWikiUnitTestCase {
 
 	public function provideNotReadyForInsertion() {
 		$title = $this->makeMockTitle( 'Dummy' );
-		$user = new UserIdentityValue( 42, 'Test', 24 );
+		$user = new UserIdentityValue( 42, 'Test' );
 
 		/** @var CommentStoreComment $comment */
 		$comment = $this->getMockBuilder( CommentStoreComment::class )

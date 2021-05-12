@@ -183,6 +183,8 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			->method( 'makeGlobalKey' )
 			->withConsecutive(
 				[ 'filerepo-file-redirect', $dbDomain, md5( 'Redirect' ) ]
+			)->willReturnOnConsecutiveCalls(
+				implode( ':', [ 'filerepo-file-redirect', $dbDomain, md5( 'Redirect' ) ] )
 			);
 
 		$wanCache = new WANObjectCache( [ 'cache' => $mockBag ] );

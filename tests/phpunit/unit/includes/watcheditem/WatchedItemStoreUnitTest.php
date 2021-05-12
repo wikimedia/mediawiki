@@ -325,7 +325,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testClearWatchedItems() {
-		$user = new UserIdentityValue( 7, 'MockUser', 0 );
+		$user = new UserIdentityValue( 7, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
@@ -365,7 +365,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testClearWatchedItems_watchlistExpiry() {
-		$user = new UserIdentityValue( 7, 'MockUser', 0 );
+		$user = new UserIdentityValue( 7, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
 		// Select watchlist IDs.
@@ -404,7 +404,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testClearWatchedItems_tooManyItemsWatched() {
-		$user = new UserIdentityValue( 7, 'MockUser', 0 );
+		$user = new UserIdentityValue( 7, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
@@ -433,7 +433,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCountWatchedItems() {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->once() )
@@ -954,7 +954,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testCountUnreadNotifications() {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 1 ) )
@@ -984,7 +984,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideIntWithDbUnsafeVersion
 	 */
 	public function testCountUnreadNotifications_withUnreadLimit_overLimit( $limit ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 1 ) )
@@ -1018,7 +1018,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideIntWithDbUnsafeVersion
 	 */
 	public function testCountUnreadNotifications_withUnreadLimit_underLimit( $limit ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->exactly( 1 ) )
@@ -1302,7 +1302,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
 		$store->addWatch(
-			new UserIdentityValue( 1, 'MockUser', 0 ),
+			new UserIdentityValue( 1, 'MockUser' ),
 			$testPageFactory( 100, 0, 'Some_Page' )
 		);
 	}
@@ -1322,7 +1322,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
 		$store->addWatch(
-			new UserIdentityValue( 0, 'AnonUser', 0 ),
+			new UserIdentityValue( 0, 'AnonUser' ),
 			$testPageFactory( 100, 0, 'Some_Page' )
 		);
 	}
@@ -1336,7 +1336,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->addWatchBatchForUser(
-				new UserIdentityValue( 1, 'MockUser', 0 ),
+				new UserIdentityValue( 1, 'MockUser' ),
 				[ $testPageFactory( 100, 0, 'Some_Page' ), $testPageFactory( 101, 1, 'Some_Page' ) ]
 			)
 		);
@@ -1383,7 +1383,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
-		$mockUser = new UserIdentityValue( 1, 'MockUser', 0 );
+		$mockUser = new UserIdentityValue( 1, 'MockUser' );
 
 		$this->assertTrue(
 			$store->addWatchBatchForUser(
@@ -1409,14 +1409,14 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->addWatchBatchForUser(
-				new UserIdentityValue( 0, 'AnonUser', 0 ),
+				new UserIdentityValue( 0, 'AnonUser' ),
 				[ $testPageFactory( 100, 0, 'Other_Page' ) ]
 			)
 		);
 	}
 
 	public function testAddWatchBatchReturnsTrue_whenGivenEmptyList() {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$mockDb = $this->getMockDb();
 		$mockDb->expects( $this->never() )
 			->method( 'insert' );
@@ -1474,7 +1474,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
 		$watchedItem = $store->loadWatchedItem(
-			new UserIdentityValue( 1, 'MockUser', 0 ),
+			new UserIdentityValue( 1, 'MockUser' ),
 			$testPageFactory( 100, 0, 'SomeDbKey' )
 		);
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
@@ -1504,7 +1504,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->loadWatchedItem(
-				new UserIdentityValue( 1, 'MockUser', 0 ),
+				new UserIdentityValue( 1, 'MockUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -1526,7 +1526,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->loadWatchedItem(
-				new UserIdentityValue( 0, 'AnonUser', 0 ),
+				new UserIdentityValue( 0, 'AnonUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -1569,7 +1569,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertTrue(
 			$store->removeWatch(
-				new UserIdentityValue( 1, 'MockUser', 0 ),
+				new UserIdentityValue( 1, 'MockUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -1601,7 +1601,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->removeWatch(
-				new UserIdentityValue( 1, 'MockUser', 0 ),
+				new UserIdentityValue( 1, 'MockUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -1624,7 +1624,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->removeWatch(
-				new UserIdentityValue( 0, 'AnonUser', 0 ),
+				new UserIdentityValue( 0, 'AnonUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -1679,7 +1679,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
 		$watchedItem = $store->getWatchedItem(
-			new UserIdentityValue( 1, 'MockUser', 0 ),
+			new UserIdentityValue( 1, 'MockUser' ),
 			$testPageFactory( 100, 0, 'SomeDbKey' )
 		);
 		$this->assertInstanceOf( WatchedItem::class, $watchedItem );
@@ -1697,7 +1697,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb->expects( $this->never() )
 			->method( 'selectRow' );
 
-		$mockUser = new UserIdentityValue( 1, 'MockUser', 0 );
+		$mockUser = new UserIdentityValue( 1, 'MockUser' );
 		$linkTarget = $testPageFactory( 100, 0, 'SomeDbKey' );
 		$cachedItem = new WatchedItem( $mockUser, $linkTarget, '20151212010101' );
 
@@ -1759,7 +1759,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->getWatchedItem(
-				new UserIdentityValue( 1, 'MockUser', 0 ),
+				new UserIdentityValue( 1, 'MockUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -1782,7 +1782,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->getWatchedItem(
-				new UserIdentityValue( 0, 'AnonUser', 0 ),
+				new UserIdentityValue( 0, 'AnonUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -1820,7 +1820,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockCache->expects( $this->never() )->method( 'set' );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$watchedItems = $store->getWatchedItemsForUser( $user );
 
@@ -1858,7 +1858,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockDb = $this->getMockDb();
 		$mockCache = $this->getMockCache();
 		$mockLoadBalancer = $this->getMockLBFactory( $mockDb, $dbType );
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$mockDb->expects( $this->once() )
 			->method( 'addQuotes' )
@@ -1928,7 +1928,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockCache->expects( $this->never() )->method( 'set' );
 
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 
 		$watchedItems = $store->getWatchedItemsForUser(
 			$user,
@@ -1960,7 +1960,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->expectException( InvalidArgumentException::class );
 		$store->getWatchedItemsForUser(
-			new UserIdentityValue( 1, 'MockUser', 0 ),
+			new UserIdentityValue( 1, 'MockUser' ),
 			[ 'sort' => 'foo' ]
 		);
 	}
@@ -2012,7 +2012,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertTrue(
 			$store->isWatched(
-				new UserIdentityValue( 1, 'MockUser', 0 ),
+				new UserIdentityValue( 1, 'MockUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -2055,7 +2055,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->isWatched(
-				new UserIdentityValue( 1, 'MockUser', 0 ),
+				new UserIdentityValue( 1, 'MockUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -2078,7 +2078,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->isWatched(
-				new UserIdentityValue( 0, 'AnonUser', 0 ),
+				new UserIdentityValue( 0, 'AnonUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -2147,7 +2147,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				1 => [ 'AnotherDbKey' => null, ],
 			],
 			$store->getNotificationTimestampsBatch(
-				new UserIdentityValue( 1, 'MockUser', 0 ), $targets )
+				new UserIdentityValue( 1, 'MockUser' ), $targets )
 		);
 	}
 
@@ -2197,7 +2197,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				0 => [ 'OtherDbKey' => false, ],
 			],
 			$store->getNotificationTimestampsBatch(
-				new UserIdentityValue( 1, 'MockUser', 0 ), $targets )
+				new UserIdentityValue( 1, 'MockUser' ), $targets )
 		);
 	}
 
@@ -2210,7 +2210,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$testPageFactory( 101, 1, 'AnotherDbKey' ),
 		];
 
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$cachedItem = new WatchedItem( $user, $targets[0], '20151212010101' );
 
 		$mockDb = $this->getMockDb();
@@ -2270,7 +2270,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$testPageFactory( 101, 1, 'AnotherDbKey' ),
 		];
 
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$cachedItems = [
 			new WatchedItem( $user, $targets[0], '20151212010101' ),
 			new WatchedItem( $user, $targets[1], null ),
@@ -2321,7 +2321,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 				1 => [ 'AnotherDbKey' => false, ],
 			],
 			$store->getNotificationTimestampsBatch(
-				new UserIdentityValue( 0, 'AnonUser', 0 ), $targets )
+				new UserIdentityValue( 0, 'AnonUser' ), $targets )
 		);
 	}
 
@@ -2342,7 +2342,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 
 		$this->assertFalse(
 			$store->resetNotificationTimestamp(
-				new UserIdentityValue( 0, 'AnonUser', 0 ),
+				new UserIdentityValue( 0, 'AnonUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' )
 			)
 		);
@@ -2378,7 +2378,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$mockCache->expects( $this->never() )->method( 'set' );
 		$mockCache->expects( $this->never() )->method( 'delete' );
 
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$userFactory = $this->getUserFactory(
 			[ $this->getMockUser( $user ) ]
 		);
@@ -2405,7 +2405,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testResetNotificationTimestamp_item( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
 		$mockDb = $this->getMockDb();
@@ -2491,7 +2491,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testResetNotificationTimestamp_noItemForced( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
 		$mockDb = $this->getMockDb();
@@ -2575,7 +2575,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testResetNotificationTimestamp_oldidSpecifiedLatestRevisionForced( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$oldid = 22;
 		$title = $testPageFactory( 100, 0, 'SomeTitle' );
 
@@ -2656,7 +2656,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testResetNotificationTimestamp_oldidSpecifiedNotLatestRevisionForced( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$oldid = 22;
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
@@ -2767,7 +2767,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testResetNotificationTimestamp_notWatchedPageForced( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$oldid = 22;
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
@@ -2870,7 +2870,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testResetNotificationTimestamp_futureNotificationTimestampForced( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$oldid = 22;
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
@@ -2981,7 +2981,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testResetNotificationTimestamp_futureNotificationTimestampNotForced( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$oldid = 22;
 		$title = $testPageFactory( 100, 0, 'SomeDbKey' );
 
@@ -3091,11 +3091,11 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	public function testSetNotificationTimestampsForUser_anonUser() {
 		$store = $this->newWatchedItemStore();
 		$this->assertFalse( $store->setNotificationTimestampsForUser(
-			new UserIdentityValue( 0, 'AnonUser', 0 ), '' ) );
+			new UserIdentityValue( 0, 'AnonUser' ), '' ) );
 	}
 
 	public function testSetNotificationTimestampsForUser_allRows() {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$timestamp = '20100101010101';
 
 		$store = $this->newWatchedItemStore();
@@ -3115,7 +3115,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSetNotificationTimestampsForUser_nullTimestamp() {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$timestamp = null;
 
 		$store = $this->newWatchedItemStore();
@@ -3137,7 +3137,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testSetNotificationTimestampsForUser_specificTargets( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$timestamp = '20100101010101';
 		$targets = [ $testPageFactory( 100, 0, 'Foo' ), $testPageFactory( 101, 0, 'Bar' ) ];
 
@@ -3221,7 +3221,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$this->assertEquals(
 			[ 2, 3 ],
 			$store->updateNotificationTimestamp(
-				new UserIdentityValue( 1, 'MockUser', 0 ),
+				new UserIdentityValue( 1, 'MockUser' ),
 				$testPageFactory( 100, 0, 'SomeDbKey' ),
 				'20151212010101'
 			)
@@ -3266,7 +3266,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$store = $this->newWatchedItemStore( [ 'db' => $mockDb, 'cache' => $mockCache ] );
 
 		$watchers = $store->updateNotificationTimestamp(
-			new UserIdentityValue( 1, 'MockUser', 0 ),
+			new UserIdentityValue( 1, 'MockUser' ),
 			$testPageFactory( 100, 0, 'SomeDbKey' ),
 			'20151212010101'
 		);
@@ -3277,7 +3277,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestPageFactory
 	 */
 	public function testUpdateNotificationTimestamp_clearsCachedItems( $testPageFactory ) {
-		$user = new UserIdentityValue( 1, 'MockUser', 0 );
+		$user = new UserIdentityValue( 1, 'MockUser' );
 		$titleValue = $testPageFactory( 100, 0, 'SomeDbKey' );
 
 		$mockDb = $this->getMockDb();
@@ -3326,7 +3326,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 		$scopedOverride = $store->overrideDeferredUpdatesAddCallableUpdateCallback( $mockCallback );
 
 		$store->updateNotificationTimestamp(
-			new UserIdentityValue( 1, 'MockUser', 0 ),
+			new UserIdentityValue( 1, 'MockUser' ),
 			$titleValue,
 			'20151212010101'
 		);

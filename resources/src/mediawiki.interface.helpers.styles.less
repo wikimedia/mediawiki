@@ -1,5 +1,7 @@
 /* stylelint-disable selector-class-pattern */
 
+@import 'mediawiki.mixins';
+
 /**
  * Helper classes used across special pages
  */
@@ -107,4 +109,40 @@
 .minoredit,
 .botedit {
 	font-weight: bold;
+}
+
+.mw-userlink {
+	// Word-break overlong user names, see T237230.
+	// FIXME: This property is introduced now, but will be separated in a follow-up
+	// caring about 'i18n-directionality', see T247033.
+	.hyphens( auto );
+	unicode-bidi: embed;
+}
+
+/* Comment portions of RC entries */
+span.comment {
+	font-style: italic;
+	unicode-bidi: -moz-isolate;
+	unicode-bidi: isolate;
+}
+
+/** rev_deleted stuff */
+li span.deleted,
+span.history-deleted {
+	text-decoration: line-through;
+	color: #72777d;
+	font-style: italic;
+}
+
+/* The auto-generated edit comments */
+.autocomment,
+.autocomment a,
+.autocomment a:visited {
+	color: #72777d;
+}
+
+/* (show/hide) revision deletion links */
+span.mw-revdelundel-link,
+strong.mw-revdelundel-link {
+	font-size: 90%;
 }

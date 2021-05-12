@@ -1589,19 +1589,22 @@ $wgXMLMimeTypes = [
 ];
 
 /**
- * Limit images on image description pages to a user-selectable limit. In order
- * to reduce disk usage, limits can only be selected from a list.
+ * Limit images on image description pages to a user-selectable limit.
+ *
+ * In order to reduce disk usage, limits can only be selected from this list.
  * The user preference is saved as an array offset in the database, by default
  * the offset is set with $wgDefaultUserOptions['imagesize']. Make sure you
  * change it if you alter the array (see T10858).
- * This is the list of settings the user can choose from:
+ *
+ * This list is also used by ImagePage for alternate size links.
  */
 $wgImageLimits = [
 	[ 320, 240 ],
 	[ 640, 480 ],
 	[ 800, 600 ],
 	[ 1024, 768 ],
-	[ 1280, 1024 ]
+	[ 1280, 1024 ],
+	[ 2560, 2048 ],
 ];
 
 /**
@@ -4276,8 +4279,20 @@ $wgIncludeLegacyJavaScript = false;
  * @code{,js}
  *     if ( mw.config.get('wgIsArticle') ) { ... }
  * @endcode
+ * @deprecated since 1.36: Use mw.config.get() instead.
  */
 $wgLegacyJavaScriptGlobals = false;
+
+/**
+ * Whether to load the jquery.migrate library.
+ *
+ * This provides jQuery 1.12 features that were removed in jQuery 3.0.
+ * See also <https://jquery.com/upgrade-guide/3.0/> and
+ * <https://phabricator.wikimedia.org/T280944>.
+ *
+ * @deprecated since 1.36
+ */
+$wgIncludejQueryMigrate = true;
 
 /**
  * ResourceLoader will not generate URLs whose query string is more than

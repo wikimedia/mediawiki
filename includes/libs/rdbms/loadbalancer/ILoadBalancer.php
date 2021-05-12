@@ -81,8 +81,16 @@ use LogicException;
 interface ILoadBalancer {
 	/** Request a replica DB connection */
 	public const DB_REPLICA = -1;
-	/** Request a master DB connection */
-	public const DB_MASTER = -2;
+	/**
+	 * Request a primary, write-enabled DB connection
+	 * @since 1.36
+	 */
+	public const DB_PRIMARY = -2;
+	/**
+	 * Request a primary, write-enabled DB connection
+	 * @deprecated since 1.36, Use DB_PRIMARY instead
+	 */
+	public const DB_MASTER = self::DB_PRIMARY;
 
 	/** Domain specifier when no specific database needs to be selected */
 	public const DOMAIN_ANY = '';

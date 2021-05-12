@@ -69,7 +69,6 @@ return [
 			'legacy' => true,
 		],
 	],
-	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.skinning.interface' => [
 		'class' => ResourceLoaderSkinModule::class,
 		'features' => [
@@ -117,13 +116,22 @@ return [
 	// These modules' dependencies MUST be dependency-free (having dependencies would cause recursion).
 
 	'jquery' => [
-		'scripts' => [
-			'resources/lib/jquery/jquery.js',
-			'resources/lib/jquery/jquery.migrate.js',
-		],
+		'scripts' => ( $GLOBALS['wgIncludejQueryMigrate'] ?
+			[
+				'resources/lib/jquery/jquery.js',
+				'resources/lib/jquery/jquery.migrate.js',
+			] : [
+				'resources/lib/jquery/jquery.js'
+			]
+		),
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'es6-promise' => [
+		'deprecated' => 'Use "es6-polyfills" instead.',
+		'dependencies' => [ 'es6-polyfills' ],
+		'targets' => [ 'desktop', 'mobile' ],
+	],
+	'es6-polyfills' => [
 		'scripts' => 'resources/lib/promise-polyfill/promise-polyfill.js',
 		'skipFunction' => 'resources/src/skip-Promise.js',
 		'targets' => [ 'desktop', 'mobile' ],
@@ -2318,6 +2326,7 @@ return [
 
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.config' => [
+		'deprecated' => 'This module will be removed in 1.37. Use `mediawiki.skinning.interface`.',
 		// These files are not actually loaded via ResourceLoader, so dependencies etc. won't work.
 		'scripts' => 'mw-config/config.js',
 		'styles' => 'mw-config/config.css',
