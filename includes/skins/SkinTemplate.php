@@ -386,7 +386,11 @@ class SkinTemplate extends Skin {
 		// user-menu and notifications are new content navigation entries and aren't expected
 		// to be part of content_navigation or content_actions. Adding them in there breaks skins
 		// that do not expect it.
-		unset( $content_navigation['user-menu'], $content_navigation['notifications'] );
+		unset(
+			$content_navigation['user-menu'],
+			$content_navigation['notifications'],
+			$content_navigation['user-page']
+		);
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->set( 'content_navigation', $content_navigation );
 		$tpl->set( 'content_actions', $content_actions );
@@ -874,9 +878,11 @@ class SkinTemplate extends Skin {
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$content_navigation = [
+			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-page' => $this->loggedin ? [ 'userpage' => $this->buildPersonalPageItem() ] : [],
 			'user-menu' => $this->buildPersonalUrls( false ),
 			'notifications' => [],
+			// Legacy keys
 			'namespaces' => [],
 			'views' => [],
 			'actions' => [],
