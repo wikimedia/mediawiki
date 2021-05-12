@@ -1159,7 +1159,11 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.visibleTimeout' => [
-		'scripts' => 'resources/src/mediawiki.visibleTimeout.js',
+		'localBasePath' => "$IP/resources/src/mediawiki.visibleTimeout",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.visibleTimeout",
+		'packageFiles' => [
+			'visibleTimeout.js'
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 
