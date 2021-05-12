@@ -3345,13 +3345,13 @@
 				"name": "page_is_redirect",
 				"comment": "1 indicates the article is a redirect.",
 				"type": "mwtinyint",
-				"options": { "notnull": true, "default": 0 }
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
 			},
 			{
 				"name": "page_is_new",
 				"comment": "1 indicates this is a new entry, with only one edit. Not all pages with one edit are new pages.",
 				"type": "mwtinyint",
-				"options": { "notnull": true, "default": 0 }
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
 			},
 			{
 				"name": "page_random",
