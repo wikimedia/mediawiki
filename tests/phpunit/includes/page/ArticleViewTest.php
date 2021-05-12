@@ -245,6 +245,8 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertStringNotContainsString( 'id="revision-info-current"', $output->getSubtitle() );
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
+		$this->assertSame( $idA, $output->getRevisionId() );
+		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
 	}
 
 	public function testViewOfOldRevisionFromCache() {
@@ -258,28 +260,35 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 				],
 			],
 		] );
+
 		$revisions = [];
 		$page = $this->getPage( __METHOD__, [ 1 => 'Test A', 2 => 'Test B' ], $revisions );
 		$idA = $revisions[1]->getId();
 
+		// View the revision once (to get it into the cache)
 		$article = new Article( $page->getTitle(), $idA );
-		$article->getContext()->getOutput()->setTitle( $page->getTitle() );
-
-		// Force cache
-		MediaWikiServices::getInstance()
-			->getParserOutputAccess()
-			->getParserOutput(
-				$page,
-				ParserOptions::newCanonical( $article->getContext()->getUser() ),
-				$revisions[1]
-			);
-
 		$article->view();
 
+		// Reset the output page and view the revision again (from ParserCache)
+		$article = new Article( $page->getTitle(), $idA );
+		$context = RequestContext::getMain();
+		$context->setOutput( new OutputPage( $context ) );
+		$article->setContext( $context );
+
+		$outputPageBeforeHTMLRevisionId = null;
+		$this->setTemporaryHook( 'OutputPageBeforeHTML',
+			static function ( OutputPage $out ) use ( &$outputPageBeforeHTMLRevisionId ) {
+				$outputPageBeforeHTMLRevisionId = $out->getRevisionId();
+			}
+		);
+
+		$article->view();
 		$output = $article->getContext()->getOutput();
 		$this->assertStringContainsString( 'Test A', $this->getHtml( $output ) );
 		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'class="mw-revision warningbox"' ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
+		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
+		$this->assertSame( $idA, $outputPageBeforeHTMLRevisionId );
 	}
 
 	public function testViewOfCurrentRevision() {
