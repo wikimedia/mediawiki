@@ -490,10 +490,7 @@ class SpecialPageFactory {
 			]
 		],
 		'PasswordPolicies' => [
-			'class' => \SpecialPasswordPolicies::class,
-			'services' => [
-				'NamespaceInfo'
-			]
+			'class' => \SpecialPasswordPolicies::class
 		],
 
 		// Recent changes and logs
@@ -629,10 +626,7 @@ class SpecialPageFactory {
 			'class' => \SpecialApiSandbox::class,
 		],
 		'Statistics' => [
-			'class' => \SpecialStatistics::class,
-			'services' => [
-				'NamespaceInfo',
-			]
+			'class' => \SpecialStatistics::class
 		],
 		'Allmessages' => [
 			'class' => \SpecialAllMessages::class,
