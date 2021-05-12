@@ -398,7 +398,7 @@ because of Phabricator reports.
   override getSizeAndMetadata().
 * Deprecated File::getMetadata(). Instead use ::getMetadataArray(),
   ::getMetadataItem() and ::getMetadataItems().
-
+* Message::title was deprecated, use Message::page instead.
 * …
 
 === Other changes in 1.37 ===

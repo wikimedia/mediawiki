@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -867,9 +868,9 @@ class MessageTest extends MediaWikiLangTestCase {
 		$this->assertSame( '(<a>foo</a>)', $msg->parse(), 'Sanity check' );
 		$msg = unserialize( serialize( $msg ) );
 		$this->assertSame( '(<a>foo</a>)', $msg->parse() );
-		$title = TestingAccessWrapper::newFromObject( $msg )->title;
-		$this->assertInstanceOf( Title::class, $title );
-		$this->assertSame( 'Testing', $title->getFullText() );
+		$title = TestingAccessWrapper::newFromObject( $msg )->contextPage;
+		$this->assertInstanceOf( PageReference::class, $title );
+		$this->assertSame( 'Testing', $title->getDbKey() );
 
 		$msg = new Message( 'mainpage' );
 		$msg->inLanguage( 'de' );

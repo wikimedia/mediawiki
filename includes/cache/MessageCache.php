@@ -29,6 +29,8 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Revision\SlotRecord;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -1234,10 +1236,10 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string $message
 	 * @param bool $interface
 	 * @param Language|null $language
-	 * @param Title|null $title
+	 * @param PageReference|null $page
 	 * @return string
 	 */
-	public function transform( $message, $interface = false, $language = null, $title = null ) {
+	public function transform( $message, $interface = false, $language = null, PageReference $page = null ) {
 		// Avoid creating parser if nothing to transform
 		if ( strpos( $message, '{{' ) === false ) {
 			return $message;
@@ -1255,7 +1257,7 @@ class MessageCache implements LoggerAwareInterface {
 
 			$userlang = $popts->setUserLang( $language );
 			$this->mInParser = true;
-			$message = $parser->transformMsg( $message, $popts, $title );
+			$message = $parser->transformMsg( $message, $popts, $page );
 			$this->mInParser = false;
 			$popts->setUserLang( $userlang );
 		}
@@ -1278,13 +1280,13 @@ class MessageCache implements LoggerAwareInterface {
 
 	/**
 	 * @param string $text
-	 * @param Title|null $title
+	 * @param PageReference|null $page
 	 * @param bool $linestart Whether or not this is at the start of a line
 	 * @param bool $interface Whether this is an interface message
 	 * @param Language|string|null $language Language code
 	 * @return ParserOutput|string
 	 */
-	public function parse( $text, $title = null, $linestart = true,
+	public function parse( $text, PageReference $page = null, $linestart = true,
 		$interface = false, $language = null
 	) {
 		global $wgTitle;
@@ -1302,23 +1304,26 @@ class MessageCache implements LoggerAwareInterface {
 		}
 		$popts->setTargetLanguage( $language );
 
-		if ( !$title || !$title instanceof Title ) {
+		if ( !$page ) {
 			$logger = LoggerFactory::getInstance( 'GlobalTitleFail' );
 			$logger->info(
 				__METHOD__ . ' called with no title set.',
 				[ 'exception' => new Exception ]
 			);
-			$title = $wgTitle;
+			$page = $wgTitle;
 		}
 		// Sometimes $wgTitle isn't set either...
-		if ( !$title ) {
+		if ( !$page ) {
 			# It's not uncommon having a null $wgTitle in scripts. See r80898
 			# Create a ghost title in such case
-			$title = Title::makeTitle( NS_SPECIAL, 'Badtitle/title not set in ' . __METHOD__ );
+			$page = PageReferenceValue::localReference(
+				NS_SPECIAL,
+				'Badtitle/title not set in ' . __METHOD__
+			);
 		}
 
 		$this->mInParser = true;
-		$res = $parser->parse( $text, $title, $popts, $linestart );
+		$res = $parser->parse( $text, $page, $popts, $linestart );
 		$this->mInParser = false;
 
 		return $res;
