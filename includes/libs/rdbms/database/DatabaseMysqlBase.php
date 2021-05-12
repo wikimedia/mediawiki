@@ -695,7 +695,9 @@ abstract class DatabaseMysqlBase extends Database {
 		$row = $res ? $res->fetchObject() : false;
 		// If the server is not replicating, there will be no row
 		if ( $row && strval( $row->Seconds_Behind_Master ) !== '' ) {
-			return intval( $row->Seconds_Behind_Master );
+			// https://mariadb.com/kb/en/delayed-replication/
+			// https://dev.mysql.com/doc/refman/5.6/en/replication-delayed.html
+			return intval( $row->Seconds_Behind_Master + ( $row->SQL_Remaining_Delay ?? 0 ) );
 		}
 
 		return false;
