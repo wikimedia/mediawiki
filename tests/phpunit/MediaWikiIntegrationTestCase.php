@@ -588,17 +588,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$this->tmpFiles = array_merge( $this->tmpFiles, (array)$files );
 	}
 
-	private static function formatErrorLevel( $errorLevel ) {
-		switch ( gettype( $errorLevel ) ) {
-			case 'integer':
-				return '0x' . strtoupper( dechex( $errorLevel ) );
-			case 'NULL':
-				return 'null';
-			default:
-				throw new MWException( 'Unexpected error level type ' . gettype( $errorLevel ) );
-		}
-	}
-
 	/**
 	 * The annotation causes this to be called immediately after tearDown()
 	 * @after
