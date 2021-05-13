@@ -171,4 +171,15 @@ class PageIdentityValueTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $a->isSamePageAs( $b ) );
 		$this->assertSame( $expected, $b->isSamePageAs( $a ) );
 	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageIdentityValue::localIdentity
+	 */
+	public function testLocalIdentity() {
+		$page = PageIdentityValue::localIdentity( 1, NS_MAIN, __METHOD__ );
+		$this->assertSame( 1, $page->getId( PageIdentity::LOCAL ) );
+		$this->assertSame( NS_MAIN, $page->getNamespace() );
+		$this->assertSame( __METHOD__, $page->getDBkey() );
+		$this->assertSame( PageIdentity::LOCAL, $page->getWikiId() );
+	}
 }

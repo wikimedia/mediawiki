@@ -90,6 +90,18 @@ class PageIdentityValue extends PageReferenceValue implements ProperPageIdentity
 	}
 
 	/**
+	 * Create PageIdentity for a local page.
+	 *
+	 * @param int $pageId
+	 * @param int $namespace
+	 * @param string $dbKey
+	 * @return PageIdentityValue
+	 */
+	public static function localIdentity( int $pageId, int $namespace, string $dbKey ): self {
+		return new self( $pageId, $namespace, $dbKey, self::LOCAL );
+	}
+
+	/**
 	 * The numerical page ID provided to the constructor.
 	 *
 	 * @param string|false $wikiId The wiki ID expected by the caller.

@@ -135,4 +135,14 @@ class PageReferenceValueTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $expected, $a->isSamePageAs( $b ) );
 		$this->assertSame( $expected, $b->isSamePageAs( $a ) );
 	}
+
+	/**
+	 * @covers \MediaWiki\Page\PageReferenceValue::localReference
+	 */
+	public function testLocalIdentity() {
+		$page = PageReferenceValue::localReference( NS_MAIN, __METHOD__ );
+		$this->assertSame( NS_MAIN, $page->getNamespace() );
+		$this->assertSame( __METHOD__, $page->getDBkey() );
+		$this->assertSame( PageReference::LOCAL, $page->getWikiId() );
+	}
 }

@@ -74,6 +74,17 @@ class PageReferenceValue implements PageReference {
 	}
 
 	/**
+	 * Create PageReference for a local page.
+	 *
+	 * @param int $namespace
+	 * @param string $dbKey
+	 * @return PageReferenceValue
+	 */
+	public static function localReference( int $namespace, string $dbKey ): self {
+		return new self( $namespace, $dbKey, self::LOCAL );
+	}
+
+	/**
 	 * Get the ID of the wiki provided to the constructor.
 	 *
 	 * @return string|false
