@@ -490,30 +490,10 @@ class SkinTemplate extends Skin {
 		$services = MediaWikiServices::getInstance();
 		$authManager = $services->getAuthManager();
 		$permissionManager = $services->getPermissionManager();
+		$returnto = $this->getReturnToParam();
 
 		/* set up the default links for the personal toolbar */
 		$personal_urls = [];
-
-		# Due to T34276, if a user does not have read permissions,
-		# $this->getTitle() will just give Special:Badtitle, which is
-		# not especially useful as a returnto parameter. Use the title
-		# from the request instead, if there was one.
-		if ( $this->getAuthority()->isAllowed( 'read' ) ) {
-			$page = $title;
-		} else {
-			$page = Title::newFromText( $request->getVal( 'title', '' ) );
-		}
-		$page = $request->getVal( 'returnto', $page );
-		$returnto = [];
-		if ( strval( $page ) !== '' ) {
-			$returnto['returnto'] = $page;
-			$query = $request->getVal( 'returntoquery', $this->thisquery );
-			$paramsArray = wfCgiToArray( $query );
-			$query = wfArrayToCgi( $paramsArray );
-			if ( $query != '' ) {
-				$returnto['returntoquery'] = $query;
-			}
-		}
 
 		if ( $this->loggedin ) {
 			$personal_urls['userpage'] = $this->buildPersonalPageItem();
@@ -588,26 +568,9 @@ class SkinTemplate extends Skin {
 				];
 			}
 		} else {
-			$useCombinedLoginLink = $this->getConfig()->get( 'UseCombinedLoginLink' );
-			if ( !$authManager->canCreateAccounts() || !$authManager->canAuthenticateNow() ) {
-				// don't show combined login/signup link if one of those is actually not available
-				$useCombinedLoginLink = false;
-			}
-
-			$loginlink = $this->getAuthority()->isAllowed( 'createaccount' )
-						 && $useCombinedLoginLink ? 'nav-login-createaccount' : 'pt-login';
-
-			$login_url = [
-				'text' => $this->msg( $loginlink )->text(),
-				'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
-				'active' => $title->isSpecial( 'Userlogin' )
-					|| $title->isSpecial( 'CreateAccount' ) && $useCombinedLoginLink,
-			];
-			$createaccount_url = [
-				'text' => $this->msg( 'pt-createaccount' )->text(),
-				'href' => self::makeSpecialUrl( 'CreateAccount', $returnto ),
-				'active' => $title->isSpecial( 'CreateAccount' ),
-			];
+			$useCombinedLoginLink = $this->useCombinedLoginLink();
+			$login_url = $this->buildLoginData( $returnto, $useCombinedLoginLink );
+			$createaccount_url = $this->buildCreateAccountData( $returnto );
 
 			// No need to show Talk and Contributions to anons if they can't contribute!
 			// TODO: easy way to get anon authority!
@@ -658,6 +621,102 @@ class SkinTemplate extends Skin {
 		$this->getHookRunner()->onPersonalUrls( $personal_urls, $title, $this );
 
 		return $personal_urls;
+	}
+
+	/**
+	 * Builds query params for the page to return to, used when building links
+	 * @unstable
+	 *
+	 * @return string[]
+	 */
+	protected function getReturnToParam() {
+		$title = $this->getTitle();
+		$request = $this->getRequest();
+
+		# Due to T34276, if a user does not have read permissions,
+		# $this->getTitle() will just give Special:Badtitle, which is
+		# not especially useful as a returnto parameter. Use the title
+		# from the request instead, if there was one.
+		if ( $this->getAuthority()->isAllowed( 'read' ) ) {
+			$page = $title;
+		} else {
+			$page = Title::newFromText( $request->getVal( 'title', '' ) );
+		}
+		$page = $request->getVal( 'returnto', $page );
+		$returnto = [];
+		if ( strval( $page ) !== '' ) {
+			$returnto['returnto'] = $page;
+			$query = $request->getVal( 'returntoquery', $this->thisquery );
+			$paramsArray = wfCgiToArray( $query );
+			$query = wfArrayToCgi( $paramsArray );
+			if ( $query != '' ) {
+				$returnto['returntoquery'] = $query;
+			}
+		}
+
+		return $returnto;
+	}
+
+	/**
+	 * Returns if a combined login/signup link will be used
+	 * @unstable
+	 *
+	 * @return bool
+	 */
+	protected function useCombinedLoginLink() {
+		$services = MediaWikiServices::getInstance();
+		$authManager = $services->getAuthManager();
+		$useCombinedLoginLink = $this->getConfig()->get( 'UseCombinedLoginLink' );
+		if ( !$authManager->canCreateAccounts() || !$authManager->canAuthenticateNow() ) {
+			// don't show combined login/signup link if one of those is actually not available
+			$useCombinedLoginLink = false;
+		}
+
+		return $useCombinedLoginLink;
+	}
+
+	/**
+	 * Build "Login" link
+	 * @unstable
+	 *
+	 * @param string[] $returnto query params for the page to return to
+	 * @param bool $useCombinedLoginLink when set a single link to login form will be created
+	 *  with alternative label.
+	 * @return array
+	 */
+	protected function buildLoginData( $returnto, $useCombinedLoginLink ) {
+		$title = $this->getTitle();
+
+		$loginlink = $this->getAuthority()->isAllowed( 'createaccount' )
+			&& $useCombinedLoginLink ? 'nav-login-createaccount' : 'pt-login';
+
+		$login_url = [
+			'text' => $this->msg( $loginlink )->text(),
+			'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
+			'active' => $title->isSpecial( 'Userlogin' )
+				|| $title->isSpecial( 'CreateAccount' ) && $useCombinedLoginLink,
+		];
+
+		return $login_url;
+	}
+
+	/**
+	 * Build "Create Account" link
+	 * @unstable
+	 *
+	 * @param string[] $returnto query params for the page to return to
+	 * @return array
+	 */
+	protected function buildCreateAccountData( $returnto ) {
+		$title = $this->getTitle();
+
+		$createaccount_url = [
+			'text' => $this->msg( 'pt-createaccount' )->text(),
+			'href' => self::makeSpecialUrl( 'CreateAccount', $returnto ),
+			'active' => $title->isSpecial( 'CreateAccount' ),
+		];
+
+		return $createaccount_url;
 	}
 
 	/**
