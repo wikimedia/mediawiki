@@ -1,7 +1,5 @@
 <?php
 
-require __DIR__ . "/../../../maintenance/runJobs.php";
-
 /**
  * @group Database
  */
