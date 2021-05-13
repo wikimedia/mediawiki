@@ -1453,3 +1453,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-CreatedPagesList
 	branch = REL1_36
 	ignore = dirty
+[submodule "extensions/RemovePII"]
+	path = extensions/RemovePII
+	url = https://github.com/miraheze/RemovePII
+	branch = master
+	ignore = dirty
