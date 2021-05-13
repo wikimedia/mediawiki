@@ -3776,7 +3776,7 @@ class EditPage implements IEditObject {
 		// Allow for site and per-namespace customization of contribution/copyright notice.
 		Hooks::runner()->onEditPageCopyrightWarning( $title, $copywarnMsg );
 
-		$msg = wfMessage( ...$copywarnMsg )->title( $title );
+		$msg = wfMessage( ...$copywarnMsg )->page( $title );
 		if ( $langcode ) {
 			$msg->inLanguage( $langcode );
 		}

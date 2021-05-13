@@ -21,6 +21,9 @@
  * @file
  */
 
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
+
 /**
  * Formats errors and warnings for the API, and add them to the associated
  * ApiResult.
@@ -29,7 +32,7 @@
  * @phan-file-suppress PhanUndeclaredMethod Undeclared methods in IApiMessage
  */
 class ApiErrorFormatter {
-	/** @var Title Dummy title to silence warnings from MessageCache::parse() */
+	/** @var PageReference Dummy title to silence warnings from MessageCache::parse() */
 	private static $dummyTitle = null;
 
 	/** @var ApiResult */
@@ -37,8 +40,8 @@ class ApiErrorFormatter {
 
 	/** @var Language */
 	protected $lang;
-	/** @var Title|null Title used for rendering error messages, or null to use the dummy title */
-	protected $title = null;
+	/** @var PageReference|null page used for rendering error messages, or null to use the dummy title */
+	private $title = null;
 	protected $useDB = false;
 	protected $format = 'none';
 
@@ -112,30 +115,33 @@ class ApiErrorFormatter {
 
 	/**
 	 * Fetch a dummy title to set on Messages
-	 * @return Title
+	 * @return PageReference
 	 */
-	protected function getDummyTitle() {
+	protected function getDummyTitle(): PageReference {
 		if ( self::$dummyTitle === null ) {
-			self::$dummyTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/' . __METHOD__ );
+			self::$dummyTitle = PageReferenceValue::localReference(
+				NS_SPECIAL,
+				'Badtitle/' . __METHOD__
+			);
 		}
 		return self::$dummyTitle;
 	}
 
 	/**
-	 * Get the title used for rendering error messages, e.g. for wikitext magic words like {{PAGENAME}}
+	 * Get the page used for rendering error messages, e.g. for wikitext magic words like {{PAGENAME}}
 	 * @since 1.37
-	 * @return Title
+	 * @return PageReference
 	 */
-	public function getContextTitle() {
+	public function getContextTitle(): PageReference {
 		return $this->title ?: $this->getDummyTitle();
 	}
 
 	/**
-	 * Set the title used for rendering error messages, e.g. for wikitext magic words like {{PAGENAME}}
+	 * Set the page used for rendering error messages, e.g. for wikitext magic words like {{PAGENAME}}
 	 * @since 1.37
-	 * @param Title $title
+	 * @param PageReference $title
 	 */
-	public function setContextTitle( Title $title ) {
+	public function setContextTitle( PageReference $title ) {
 		$this->title = $title;
 	}
 
@@ -149,7 +155,7 @@ class ApiErrorFormatter {
 	public function addWarning( $modulePath, $msg, $code = null, $data = null ) {
 		$msg = ApiMessage::create( $msg, $code, $data )
 			->inLanguage( $this->lang )
-			->title( $this->getContextTitle() )
+			->page( $this->getContextTitle() )
 			->useDatabase( $this->useDB );
 		$this->addWarningOrError( 'warning', $modulePath, $msg );
 	}
@@ -164,7 +170,7 @@ class ApiErrorFormatter {
 	public function addError( $modulePath, $msg, $code = null, $data = null ) {
 		$msg = ApiMessage::create( $msg, $code, $data )
 			->inLanguage( $this->lang )
-			->title( $this->getContextTitle() )
+			->page( $this->getContextTitle() )
 			->useDatabase( $this->useDB );
 		$this->addWarningOrError( 'error', $modulePath, $msg );
 	}
@@ -198,7 +204,7 @@ class ApiErrorFormatter {
 
 			$msg = ApiMessage::create( $error )
 				->inLanguage( $this->lang )
-				->title( $this->getContextTitle() )
+				->page( $this->getContextTitle() )
 				->useDatabase( $this->useDB );
 			if ( !in_array( $msg->getKey(), $filter, true ) ) {
 				$this->addWarningOrError( $tag, $modulePath, $msg );
@@ -243,7 +249,7 @@ class ApiErrorFormatter {
 		return ApiMessage::create( $msg, $options['code'], $options['data'] )
 			->params( $params )
 			->inLanguage( $this->lang )
-			->title( $this->getContextTitle() )
+			->page( $this->getContextTitle() )
 			->useDatabase( $this->useDB );
 	}
 
@@ -272,7 +278,7 @@ class ApiErrorFormatter {
 	public function formatMessage( $msg, $format = null ) {
 		$msg = ApiMessage::create( $msg )
 			->inLanguage( $this->lang )
-			->title( $this->getContextTitle() )
+			->page( $this->getContextTitle() )
 			->useDatabase( $this->useDB );
 		return $this->formatMessageInternal( $msg, $format ?: $this->format );
 	}

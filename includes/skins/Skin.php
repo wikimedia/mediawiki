@@ -1831,7 +1831,7 @@ abstract class Skin extends ContextSource {
 
 					$extraAttribs = [];
 
-					$msgLink = $this->msg( $line[0] )->title( $messageTitle )->inContentLanguage();
+					$msgLink = $this->msg( $line[0] )->page( $messageTitle )->inContentLanguage();
 					if ( $msgLink->exists() ) {
 						$link = $msgLink->text();
 						if ( $link == '-' ) {
@@ -1840,7 +1840,7 @@ abstract class Skin extends ContextSource {
 					} else {
 						$link = $line[0];
 					}
-					$msgText = $this->msg( $line[1] )->title( $messageTitle );
+					$msgText = $this->msg( $line[1] )->page( $messageTitle );
 					if ( $msgText->exists() ) {
 						$text = $msgText->text();
 					} else {

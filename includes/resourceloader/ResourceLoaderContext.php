@@ -22,6 +22,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReferenceValue;
 
 /**
  * Context object that contains information about the state of a specific
@@ -237,7 +238,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 			// Use a dummy title because there is no real title
 			// for this endpoint, and the cache won't vary on it
 			// anyways.
-			->title( Title::newFromText( 'Dwimmerlaik' ) );
+			->page( PageReferenceValue::localReference( NS_MAIN, 'Dwimmerlaik' ) );
 	}
 
 	/**

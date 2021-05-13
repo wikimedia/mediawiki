@@ -107,7 +107,7 @@ class TrackingCategories {
 					if ( !$tempTitle ) {
 						continue;
 					}
-					$catName = $msgObj->title( $tempTitle )->text();
+					$catName = $msgObj->page( $tempTitle )->text();
 					# Allow tracking categories to be disabled by setting them to "-"
 					if ( $catName !== '-' ) {
 						$catTitle = Title::makeTitleSafe( NS_CATEGORY, $catName );

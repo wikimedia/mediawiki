@@ -1009,7 +1009,7 @@ class ParserOutput extends CacheTime {
 
 		// Important to parse with correct title (T33469)
 		$cat = wfMessage( $msg )
-			->title( $title )
+			->page( $title )
 			->inContentLanguage()
 			->text();
 

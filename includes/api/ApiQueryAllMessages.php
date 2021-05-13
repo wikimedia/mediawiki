@@ -170,7 +170,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 				} else {
 					// Check if the parser is enabled:
 					if ( $params['enableparser'] ) {
-						$msgString = $msg->title( $title )->text();
+						$msgString = $msg->page( $title )->text();
 					} else {
 						$msgString = $msg->plain();
 					}
