@@ -22,6 +22,7 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Assert\Assert;
@@ -176,7 +177,8 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @since 1.32 added the $context parameter
 	 */
 	protected function getContent( $titleText, ResourceLoaderContext $context ) {
-		$title = Title::newFromText( $titleText );
+		$pageStore = MediaWikiServices::getInstance()->getPageStore();
+		$title = $pageStore->getPageByText( $titleText );
 		if ( !$title ) {
 			return null; // Bad title
 		}
@@ -199,7 +201,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	}
 
 	/**
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param ResourceLoaderContext $context
 	 * @param int|null $maxRedirects Maximum number of redirects to follow. If
 	 *  null, uses $wgMaxRedirects
@@ -207,22 +209,22 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * @since 1.32 added the $context and $maxRedirects parameters
 	 */
 	protected function getContentObj(
-		Title $title, ResourceLoaderContext $context, $maxRedirects = null
+		PageIdentity $page, ResourceLoaderContext $context, $maxRedirects = null
 	) {
 		$overrideCallback = $context->getContentOverrideCallback();
-		$content = $overrideCallback ? call_user_func( $overrideCallback, $title ) : null;
+		$content = $overrideCallback ? call_user_func( $overrideCallback, $page ) : null;
 		if ( $content ) {
 			if ( !$content instanceof Content ) {
 				$this->getLogger()->error(
 					'Bad content override for "{title}" in ' . __METHOD__,
-					[ 'title' => $title->getPrefixedText() ]
+					[ 'title' => (string)$page ]
 				);
 				return null;
 			}
 		} else {
 			$revision = MediaWikiServices::getInstance()
 				->getRevisionLookup()
-				->getKnownCurrentRevision( $title );
+				->getKnownCurrentRevision( $page );
 			if ( !$revision ) {
 				return null;
 			}
@@ -231,7 +233,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 			if ( !$content ) {
 				$this->getLogger()->error(
 					'Failed to load content of JS/CSS page "{title}" in ' . __METHOD__,
-					[ 'title' => $title->getPrefixedText() ]
+					[ 'title' => (string)$page ]
 				);
 				return null;
 			}
@@ -551,13 +553,13 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 	 * page change if it was a JS or CSS page
 	 *
 	 * @internal
-	 * @param Title $title
+	 * @param PageIdentity $page
 	 * @param RevisionRecord|null $old Prior page revision
 	 * @param RevisionRecord|null $new New page revision
 	 * @param string $domain Database domain ID
 	 */
 	public static function invalidateModuleCache(
-		Title $title,
+		PageIdentity $page,
 		?RevisionRecord $old,
 		?RevisionRecord $new,
 		$domain
@@ -584,6 +586,7 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		}
 
 		if ( !$purge ) {
+			$title = Title::castFromPageIdentity( $page );
 			$purge = ( $title->isSiteConfigPage() || $title->isUserConfigPage() );
 		}
 

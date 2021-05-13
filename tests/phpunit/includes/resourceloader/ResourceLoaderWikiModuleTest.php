@@ -1,6 +1,10 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Page\PageRecord;
+use MediaWiki\Page\PageStore;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\TestingAccessWrapper;
 
@@ -256,7 +260,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$context = new ResourceLoaderContext( $rl, new FauxRequest() );
 
 		TestResourceLoaderWikiModule::invalidateModuleCache(
-			Title::newFromText( 'MediaWiki:Common.css' ),
+			new PageIdentityValue( 17, NS_MEDIAWIKI, 'Common.css', PageIdentity::LOCAL ),
 			null,
 			null,
 			wfWikiID()
@@ -350,12 +354,12 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		if ( is_array( $title ) ) {
 			$title += [ 'ns' => NS_MAIN, 'id' => 1, 'len' => 1, 'redirect' => 0 ];
 			$titleText = $title['text'];
-			// Mock Title db access via LinkCache
-			MediaWikiServices::getInstance()->getLinkCache()->addGoodLinkObj(
-				$title['id'],
-				new TitleValue( $title['ns'], $title['title'] ),
-				$title['len'],
-				$title['redirect']
+			// Mock page table access via PageStore
+			$pageStore = $this->createNoOpMock( PageStore::class, [ 'getPageByText' ] );
+			$pageStore->method( 'getPageByText' )->willReturn(
+				new PageIdentityValue(
+					$title['id'], $title['ns'], $title['text'], PageRecord::LOCAL
+				)
 			);
 		} else {
 			$titleText = $title;
@@ -382,8 +386,8 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		$context = new DerivativeResourceLoaderContext(
 			new ResourceLoaderContext( $rl, new FauxRequest() )
 		);
-		$context->setContentOverrideCallback( static function ( Title $t ) {
-			if ( $t->getPrefixedText() === 'MediaWiki:Common.css' ) {
+		$context->setContentOverrideCallback( static function ( PageIdentity $t ) {
+			if ( $t->getDBkey() === 'Common.css' ) {
 				return new CssContent( '.override{}' );
 			}
 			return null;
@@ -396,8 +400,8 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			]
 		], $module->getStyles( $context ) );
 
-		$context->setContentOverrideCallback( static function ( Title $t ) {
-			if ( $t->getPrefixedText() === 'MediaWiki:Skin.css' ) {
+		$context->setContentOverrideCallback( static function ( PageIdentity $t ) {
+			if ( $t->getDBkey() === 'Skin.css' ) {
 				return new CssContent( '.override{}' );
 			}
 			return null;
@@ -417,13 +421,13 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			->willReturn( [
 				'MediaWiki:Redirect.js' => [ 'type' => 'script' ]
 			] );
-		$context->setContentOverrideCallback( static function ( Title $title ) {
-			if ( $title->getPrefixedText() === 'MediaWiki:Redirect.js' ) {
+		$context->setContentOverrideCallback( static function ( PageIdentity $title ) {
+			if ( $title->getDBkey() === 'Redirect.js' ) {
 				$handler = new JavaScriptContentHandler();
 				return $handler->makeRedirectContent(
 					Title::makeTitle( NS_MEDIAWIKI, 'Target.js' )
 				);
-			} elseif ( $title->getPrefixedText() === 'MediaWiki:Target.js' ) {
+			} elseif ( $title->getDBkey() === 'Target.js' ) {
 				return new JavaScriptContent( 'target;' );
 			} else {
 				return null;
