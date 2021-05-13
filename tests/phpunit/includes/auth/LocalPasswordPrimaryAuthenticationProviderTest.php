@@ -3,9 +3,9 @@
 namespace MediaWiki\Auth;
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
-use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -14,6 +14,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Auth\LocalPasswordPrimaryAuthenticationProvider
  */
 class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+	use AuthenticationProviderTestTrait;
 
 	private $manager = null;
 	private $config = null;
@@ -72,13 +73,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->will( $this->returnCallback( function () {
 				return $this->validity;
 			} ) );
-		$provider->init(
-			new NullLogger(),
-			$this->manager,
-			$hookContainer,
-			$config,
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, $config, null, $this->manager, $hookContainer );
 
 		return $provider;
 	}
@@ -160,13 +155,7 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$provider = new LocalPasswordPrimaryAuthenticationProvider(
 			$this->getServiceContainer()->getDBLoadBalancer()
 		);
-		$provider->init(
-			new NullLogger(),
-			$this->manager,
-			$this->createHookContainer(),
-			$this->config,
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, $this->config, null, $this->manager );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
 		$user = $this->getMutableTestUser()->getUser();
