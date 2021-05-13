@@ -248,7 +248,7 @@ class SkinMustache extends SkinTemplate {
 		$portlets['data-personal'] = $this->getPortletData(
 			'personal',
 			$this->getPersonalToolsForMakeListItem(
-				$this->insertNotificationsIntoPersonalTools( $contentNavigation )
+				$this->injectLegacyMenusIntoPersonalTools( $contentNavigation )
 			)
 		);
 
