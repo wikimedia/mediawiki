@@ -687,6 +687,7 @@ $wgAutoloadLocalClasses = [
 	'InstallerSessionProvider' => __DIR__ . '/includes/installer/InstallerSessionProvider.php',
 	'Interwiki' => __DIR__ . '/includes/interwiki/Interwiki.php',
 	'InvalidPassword' => __DIR__ . '/includes/password/InvalidPassword.php',
+	'InvalidateBotPasswords' => __DIR__ . '/maintenance/invalidateBotPasswords.php',
 	'InvalidateUserSesssions' => __DIR__ . '/maintenance/invalidateUserSessions.php',
 	'IteratorDecorator' => __DIR__ . '/includes/libs/iterators/IteratorDecorator.php',
 	'IuConverter' => __DIR__ . '/includes/language/converters/IuConverter.php',
