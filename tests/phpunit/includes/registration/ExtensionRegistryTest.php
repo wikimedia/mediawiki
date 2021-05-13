@@ -401,6 +401,35 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 					'NullGlobal' => null
 				],
 			],
+			[
+				'provide_default passive case',
+				[
+					'wgFlatArray' => [],
+				],
+				[
+					'wgFlatArray' => [
+						1,
+						ExtensionRegistry::MERGE_STRATEGY => 'provide_default'
+					],
+				],
+				[
+					'wgFlatArray' => []
+				],
+			],
+			[
+				'provide_default active case',
+				[
+				],
+				[
+					'wgFlatArray' => [
+						1,
+						ExtensionRegistry::MERGE_STRATEGY => 'provide_default'
+					],
+				],
+				[
+					'wgFlatArray' => [ 1 ]
+				],
+			]
 		];
 	}
 
