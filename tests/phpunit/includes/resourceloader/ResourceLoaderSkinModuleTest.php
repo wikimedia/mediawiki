@@ -10,6 +10,15 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 		return [
 			[
 				[
+					'content-thumbnails' => true,
+				],
+				[
+					'content-media' => true,
+				],
+				'The `content-thumbnails` feature is mapped to `content-media`.'
+			],
+			[
+				[
 					'content-parser-output' => true,
 				],
 				[
@@ -22,9 +31,9 @@ class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 					'content' => true,
 				],
 				[
-					'content-thumbnails' => true,
+					'content-media' => true,
 				],
-				'The `content` feature is mapped to `content-thumbnails`.'
+				'The `content` feature is mapped to `content-media`.'
 			],
 			[
 				[
