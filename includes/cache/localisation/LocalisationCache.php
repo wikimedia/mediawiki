@@ -51,7 +51,7 @@ class LocalisationCache {
 	 * Setting this reduces the overhead of cache freshness checking, which
 	 * requires doing a stat() for every extension i18n file.
 	 */
-	private $manualRecache = false;
+	private $manualRecache;
 
 	/**
 	 * The cache data. 3-d array, where the first key is the language code,

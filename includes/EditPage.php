@@ -244,7 +244,7 @@ class EditPage implements IEditObject {
 	private $watchthis = false;
 
 	/** @var bool Corresponds to $wgWatchlistExpiry */
-	private $watchlistExpiryEnabled = false;
+	private $watchlistExpiryEnabled;
 
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;

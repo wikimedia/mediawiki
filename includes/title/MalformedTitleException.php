@@ -24,9 +24,13 @@
  * @since 1.23
  */
 class MalformedTitleException extends Exception implements ILocalizedException {
-	private $titleText = null;
-	private $errorMessage = null;
-	private $errorMessageParameters = [];
+
+	/** @var string|null */
+	private $titleText;
+	/** @var string */
+	private $errorMessage;
+	/** @var array */
+	private $errorMessageParameters;
 
 	/**
 	 * @stable to call

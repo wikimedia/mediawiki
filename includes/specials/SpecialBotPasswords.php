@@ -44,7 +44,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 	private $password = null;
 
 	/** @var Psr\Log\LoggerInterface */
-	private $logger = null;
+	private $logger;
 
 	/** @var PasswordFactory */
 	private $passwordFactory;

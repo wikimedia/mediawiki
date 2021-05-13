@@ -30,7 +30,7 @@ use Wikimedia\Assert\Assert;
  */
 class HtmlFileCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var PageIdentity[] List of pages */
-	private $pages = [];
+	private $pages;
 
 	/**
 	 * @param PageIdentity[] $pages List of pages

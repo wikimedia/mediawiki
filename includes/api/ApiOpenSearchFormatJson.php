@@ -26,7 +26,7 @@
  * @ingroup API
  */
 class ApiOpenSearchFormatJson extends ApiFormatJson {
-	private $warningsAsError = false;
+	private $warningsAsError;
 
 	public function __construct( ApiMain $main, $fm, $warningsAsError ) {
 		parent::__construct( $main, "json$fm" );

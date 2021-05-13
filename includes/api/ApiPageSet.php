@@ -50,7 +50,7 @@ class ApiPageSet extends ApiBase {
 	private const DISABLE_GENERATORS = 1;
 
 	private $mDbSource;
-	private $mParams = [];
+	private $mParams;
 	private $mResolveRedirects;
 	private $mConvertTitles;
 	private $mAllowGenerator;
@@ -85,7 +85,7 @@ class ApiPageSet extends ApiBase {
 	/** @var array */
 	private $mRequestedPageFields = [];
 	/** @var int */
-	private $mDefaultNamespace = NS_MAIN;
+	private $mDefaultNamespace;
 	/** @var callable|null */
 	private $mRedirectMergePolicy;
 

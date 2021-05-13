@@ -25,7 +25,7 @@ use Wikimedia\Assert\Assert;
  * @since 1.34
  */
 class ServiceOptions {
-	private $keys = [];
+	private $keys;
 	private $options = [];
 
 	/**

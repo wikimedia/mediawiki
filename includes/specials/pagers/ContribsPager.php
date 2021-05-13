@@ -51,7 +51,7 @@ class ContribsPager extends RangeChronologicalPager {
 	/**
 	 * @var string|int A single namespace number, or an empty string for all namespaces
 	 */
-	private $namespace = '';
+	private $namespace;
 
 	/**
 	 * @var string|false Name of tag to filter, or false to ignore tags
