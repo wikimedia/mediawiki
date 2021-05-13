@@ -43,7 +43,7 @@ class PageProps {
 	private const CACHE_SIZE = 100; // integer; max cached pages
 
 	/** @var MapCacheLRU */
-	private $cache = null;
+	private $cache;
 
 	/**
 	 * @return PageProps

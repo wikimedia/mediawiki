@@ -31,12 +31,12 @@ class ExternalUserNames {
 	/**
 	 * @var string
 	 */
-	private $usernamePrefix = 'imported';
+	private $usernamePrefix;
 
 	/**
 	 * @var bool
 	 */
-	private $assignKnownUsers = false;
+	private $assignKnownUsers;
 
 	/**
 	 * @var bool[]

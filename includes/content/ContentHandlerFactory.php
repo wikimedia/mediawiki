@@ -46,7 +46,7 @@ final class ContentHandlerFactory implements IContentHandlerFactory {
 	/**
 	 * @var string[]|callable[]
 	 */
-	private $handlerSpecs = [];
+	private $handlerSpecs;
 
 	/**
 	 * @var ContentHandler[] Registry of ContentHandler instances by model id

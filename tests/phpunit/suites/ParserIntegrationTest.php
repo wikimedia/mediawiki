@@ -37,7 +37,7 @@ class ParserIntegrationTest extends PHPUnit\Framework\TestCase {
 	private $ptRunner;
 
 	/** @var string|null */
-	private $skipMessage = null;
+	private $skipMessage;
 
 	public function __construct( $runner, $fileName, $test, $skipMessage = null ) {
 		parent::__construct( 'testParse', [ ( $test['parsoid'] ?? false ) ? 'parsoid' : 'legacy parser' ],

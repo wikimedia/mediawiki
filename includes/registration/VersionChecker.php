@@ -43,17 +43,17 @@ class VersionChecker {
 	/**
 	 * @var string[] List of installed PHP extensions
 	 */
-	private $phpExtensions = [];
+	private $phpExtensions;
 
 	/**
 	 * @var bool[] List of provided abilities
 	 */
-	private $abilities = [];
+	private $abilities;
 
 	/**
 	 * @var string[] List of provided ability errors
 	 */
-	private $abilityErrors = [];
+	private $abilityErrors;
 
 	/**
 	 * @var array Loaded extensions
