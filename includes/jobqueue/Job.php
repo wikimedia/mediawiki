@@ -21,6 +21,8 @@
  * @defgroup JobQueue JobQueue
  */
 
+use MediaWiki\Page\PageReference;
+
 /**
  * Class to both describe a background job and handle jobs.
  * To push jobs onto queues, use JobQueueGroup::singleton()->push();
@@ -61,16 +63,16 @@ abstract class Job implements RunnableJob {
 	 * Create the appropriate object to handle a specific job
 	 *
 	 * @param string $command Job command
-	 * @param array|Title $params Job parameters
+	 * @param array|PageReference $params Job parameters
 	 * @throws InvalidArgumentException
 	 * @return Job
 	 */
 	public static function factory( $command, $params = [] ) {
 		global $wgJobClasses;
 
-		if ( $params instanceof Title ) {
+		if ( $params instanceof PageReference ) {
 			// Backwards compatibility for old signature ($command, $title, $params)
-			$title = $params;
+			$title = Title::castFromPageReference( $params );
 			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
 		} elseif ( isset( $params['namespace'] ) && isset( $params['title'] ) ) {
 			// Handle job classes that take title as constructor parameter.
@@ -118,16 +120,16 @@ abstract class Job implements RunnableJob {
 	 * @stable to call
 	 *
 	 * @param string $command
-	 * @param array|Title|null $params
+	 * @param array|PageReference|null $params
 	 */
 	public function __construct( $command, $params = null ) {
-		if ( $params instanceof Title ) {
+		if ( $params instanceof PageReference ) {
 			// Backwards compatibility for old signature ($command, $title, $params)
-			$title = $params;
+			$page = $params;
 			$params = func_num_args() >= 3 ? func_get_arg( 2 ) : [];
 		} else {
 			// Newer jobs may choose to not have a top-level title (e.g. GenericParameterJob)
-			$title = null;
+			$page = null;
 		}
 
 		if ( !is_array( $params ) ) {
@@ -135,14 +137,14 @@ abstract class Job implements RunnableJob {
 		}
 
 		if (
-			$title &&
+			$page &&
 			!isset( $params['namespace'] ) &&
 			!isset( $params['title'] )
 		) {
 			// When constructing this class for submitting to the queue,
-			// normalise the $title arg of old job classes as part of $params.
-			$params['namespace'] = $title->getNamespace();
-			$params['title'] = $title->getDBkey();
+			// normalise the $page arg of old job classes as part of $params.
+			$params['namespace'] = $page->getNamespace();
+			$params['title'] = $page->getDBkey();
 		}
 
 		$this->command = $command;

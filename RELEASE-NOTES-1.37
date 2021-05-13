@@ -383,6 +383,9 @@ because of Phabricator reports.
   extra fields not requested by ::getQueryInfo() is hard deprecated. This is
   to warn callers that deprefixing and automatic assignment of such fields will
   not be done in a future version.
+* JobSpecification::getTitle was deprecated without providing a replacement.
+  It wasn't used and job given the purpose of JobSpecification class it's
+  not needed.
 * …
 
 === Other changes in 1.37 ===

@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStoreRecord;
@@ -45,33 +46,33 @@ class CategoryMembershipChangeJob extends Job {
 	private const ENQUEUE_FUDGE_SEC = 60;
 
 	/**
-	 * @param Title $title The title of the page for which to update category membership.
+	 * @param PageIdentity $page the page for which to update category membership.
 	 * @param string $revisionTimestamp The timestamp of the new revision that triggered the job.
 	 * @return JobSpecification
 	 */
-	public static function newSpec( Title $title, $revisionTimestamp ) {
+	public static function newSpec( PageIdentity $page, $revisionTimestamp ) {
 		return new JobSpecification(
 			'categoryMembershipChange',
 			[
-				'pageId' => $title->getArticleID(),
+				'pageId' => $page->getId(),
 				'revTimestamp' => $revisionTimestamp,
 			],
 			[
 				'removeDuplicates' => true,
 				'removeDuplicatesIgnoreParams' => [ 'revTimestamp' ]
 			],
-			$title
+			$page
 		);
 	}
 
 	/**
 	 * Constructor for use by the Job Queue infrastructure.
 	 * @note Don't call this when queueing a new instance, use newSpec() instead.
-	 * @param Title $title Title of the categorized page.
+	 * @param PageIdentity $page the categorized page.
 	 * @param array $params Such latest revision instance of the categorized page.
 	 */
-	public function __construct( Title $title, array $params ) {
-		parent::__construct( 'categoryMembershipChange', $title, $params );
+	public function __construct( PageIdentity $page, array $params ) {
+		parent::__construct( 'categoryMembershipChange', $page, $params );
 		// Only need one job per page. Note that ENQUEUE_FUDGE_SEC handles races where an
 		// older revision job gets inserted while the newer revision job is de-duplicated.
 		$this->removeDuplicates = true;
