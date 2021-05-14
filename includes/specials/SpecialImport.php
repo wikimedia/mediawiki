@@ -38,12 +38,21 @@ class SpecialImport extends SpecialPage {
 	/** @var PermissionManager */
 	private $permManager;
 
+	/** @var WikiImporterFactory */
+	private $wikiImporterFactory;
+
 	/**
 	 * @param PermissionManager $permManager
+	 * @param WikiImporterFactory $wikiImporterFactory
 	 */
-	public function __construct( PermissionManager $permManager ) {
+	public function __construct(
+		PermissionManager $permManager,
+		WikiImporterFactory $wikiImporterFactory
+	) {
 		parent::__construct( 'Import', 'import' );
+
 		$this->permManager = $permManager;
+		$this->wikiImporterFactory = $wikiImporterFactory;
 	}
 
 	public function doesWrites() {
@@ -190,7 +199,7 @@ class SpecialImport extends SpecialPage {
 					->plain()
 			);
 		} else {
-			$importer = new WikiImporter( $source->value, $this->getConfig() );
+			$importer = $this->wikiImporterFactory->getWikiImporter( $source->value );
 			if ( $namespace !== null ) {
 				$importer->setTargetNamespace( $namespace );
 			} elseif ( $rootpage !== null ) {

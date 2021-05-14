@@ -166,7 +166,12 @@ class ApiMain extends ApiBase {
 			]
 		],
 		'patrol' => ApiPatrol::class,
-		'import' => ApiImport::class,
+		'import' => [
+			'class' => ApiImport::class,
+			'services' => [
+				'WikiImporterFactory',
+			]
+		],
 		'clearhasmsg' => [
 			'class' => ApiClearHasMsg::class,
 			'services' => [

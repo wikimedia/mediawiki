@@ -299,7 +299,9 @@ TEXT
 		$this->startTime = microtime( true );
 
 		$source = new ImportStreamSource( $handle );
-		$importer = new WikiImporter( $source, $this->getConfig() );
+		$importer = MediaWikiServices::getInstance()
+			->getWikiImporterFactory()
+			->getWikiImporter( $source );
 
 		// Updating statistics require a lot of time so disable it
 		$importer->disableStatisticsUpdate();

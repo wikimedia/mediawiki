@@ -1781,6 +1781,7 @@ $wgAutoloadLocalClasses = [
 	'WikiExporter' => __DIR__ . '/includes/export/WikiExporter.php',
 	'WikiFilePage' => __DIR__ . '/includes/page/WikiFilePage.php',
 	'WikiImporter' => __DIR__ . '/includes/import/WikiImporter.php',
+	'WikiImporterFactory' => __DIR__ . '/includes/import/WikiImporterFactory.php',
 	'WikiMap' => __DIR__ . '/includes/WikiMap.php',
 	'WikiPage' => __DIR__ . '/includes/page/WikiPage.php',
 	'WikiReference' => __DIR__ . '/includes/WikiReference.php',

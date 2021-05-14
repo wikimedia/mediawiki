@@ -25,10 +25,15 @@
  */
 
 use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\WikiPageFactory;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SlotRoleRegistry;
 
 /**
  * XML file reader for the page data importer.
@@ -39,55 +44,140 @@ use MediaWiki\Revision\SlotRecord;
 class WikiImporter {
 	/** @var XMLReader */
 	private $reader;
+
 	/** @var array|null */
 	private $foreignNamespaces = null;
+
 	/** @var callable */
 	private $mLogItemCallback;
+
 	/** @var callable */
 	private $mUploadCallback;
+
 	/** @var callable */
 	private $mRevisionCallback;
+
 	/** @var callable */
 	private $mPageCallback;
+
 	/** @var callable|null */
 	private $mSiteInfoCallback;
+
 	/** @var callable */
 	private $mPageOutCallback;
+
 	/** @var callable|null */
 	private $mNoticeCallback;
+
 	/** @var bool|null */
 	private $mDebug;
+
 	/** @var bool|null */
 	private $mImportUploads;
+
 	/** @var string|null */
 	private $mImageBasePath;
+
 	/** @var bool */
 	private $mNoUpdates = false;
+
 	/** @var int */
 	private $pageOffset = 0;
+
 	/** @var Config */
 	private $config;
+
 	/** @var ImportTitleFactory */
 	private $importTitleFactory;
+
 	/** @var HookRunner */
 	private $hookRunner;
+
 	/** @var array */
 	private $countableCache = [];
+
 	/** @var bool */
 	private $disableStatisticsUpdate = false;
+
 	/** @var ExternalUserNames */
 	private $externalUserNames;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var TitleFactory */
+	private $titleFactory;
+
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
+	/** @var UploadRevisionImporter */
+	private $uploadRevisionImporter;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var IContentHandlerFactory */
+	private $contentHandlerFactory;
+
+	/** @var SlotRoleRegistry */
+	private $slotRoleRegistry;
 
 	/**
 	 * Creates an ImportXMLReader drawing from the source provided
 	 * @param ImportSource $source
 	 * @param Config $config
+	 * @param HookContainer|null $hookContainer
+	 * @param Language|null $contentLanguage
+	 * @param NamespaceInfo|null $namespaceInfo
+	 * @param TitleFactory|null $titleFactory
+	 * @param WikiPageFactory|null $wikiPageFactory
+	 * @param UploadRevisionImporter|null $uploadRevisionImporter
+	 * @param PermissionManager|null $permissionManager
+	 * @param IContentHandlerFactory|null $contentHandlerFactory
+	 * @param SlotRoleRegistry|null $slotRoleRegistry
 	 * @throws MWException
 	 */
-	public function __construct( ImportSource $source, Config $config ) {
+	public function __construct(
+		ImportSource $source,
+		Config $config,
+		HookContainer $hookContainer = null,
+		Language $contentLanguage = null,
+		NamespaceInfo $namespaceInfo = null,
+		TitleFactory $titleFactory = null,
+		WikiPageFactory $wikiPageFactory = null,
+		UploadRevisionImporter $uploadRevisionImporter = null,
+		PermissionManager $permissionManager = null,
+		IContentHandlerFactory $contentHandlerFactory = null,
+		SlotRoleRegistry $slotRoleRegistry = null
+	) {
 		$this->reader = new XMLReader();
 		$this->config = $config;
-		$this->hookRunner = Hooks::runner();
+
+		/**
+		 * This class is used by several extensions, thus a fallback to global state
+		 * is provided here.
+		 */
+		$this->hookRunner = $hookContainer ? new HookRunner( $hookContainer ) : Hooks::runner();
+		$this->contentLanguage = $contentLanguage
+			?? MediaWikiServices::getInstance()->getContentLanguage();
+		$this->namespaceInfo = $namespaceInfo
+			?? MediaWikiServices::getInstance()->getNamespaceInfo();
+		$this->titleFactory = $titleFactory
+			?? MediaWikiServices::getInstance()->getTitleFactory();
+		$this->wikiPageFactory = $wikiPageFactory
+			?? MediaWikiServices::getInstance()->getWikiPageFactory();
+		$this->uploadRevisionImporter = $uploadRevisionImporter
+			?? MediaWikiServices::getInstance()->getWikiRevisionUploadImporter();
+		$this->permissionManager = $permissionManager
+			?? MediaWikiServices::getInstance()->getPermissionManager();
+		$this->contentHandlerFactory = $contentHandlerFactory
+			?? MediaWikiServices::getInstance()->getContentHandlerFactory();
+		$this->slotRoleRegistry = $slotRoleRegistry
+			?? MediaWikiServices::getInstance()->getSlotRoleRegistry();
 
 		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
 			stream_wrapper_register( 'uploadsource', UploadSourceAdapter::class );
@@ -117,12 +207,10 @@ class WikiImporter {
 		$this->setLogItemCallback( [ $this, 'importLogItem' ] );
 		$this->setPageOutCallback( [ $this, 'finishImportPage' ] );
 
-		// TODO inject
-		$services = MediaWikiServices::getInstance();
 		$this->importTitleFactory = new NaiveImportTitleFactory(
-			$services->getContentLanguage(),
-			$services->getNamespaceInfo(),
-			$services->getTitleFactory()
+			$this->contentLanguage,
+			$this->namespaceInfo,
+			$this->titleFactory
 		);
 		$this->externalUserNames = new ExternalUserNames( 'imported', false );
 	}
@@ -293,26 +381,25 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function setTargetNamespace( $namespace ) {
-		$services = MediaWikiServices::getInstance();
 		if ( $namespace === null ) {
 			// Don't override namespaces
 			$this->setImportTitleFactory(
 				new NaiveImportTitleFactory(
-					$services->getContentLanguage(),
-					$services->getNamespaceInfo(),
-					$services->getTitleFactory()
+					$this->contentLanguage,
+					$this->namespaceInfo,
+					$this->titleFactory
 				)
 			);
 			return true;
 		} elseif (
 			$namespace >= 0 &&
-			$services->getNamespaceInfo()->exists( intval( $namespace ) )
+			$this->namespaceInfo->exists( intval( $namespace ) )
 		) {
 			$namespace = intval( $namespace );
 			$this->setImportTitleFactory(
 				new NamespaceImportTitleFactory(
-					$services->getNamespaceInfo(),
-					$services->getTitleFactory(),
+					$this->namespaceInfo,
+					$this->titleFactory,
 					$namespace
 				)
 			);
@@ -329,15 +416,14 @@ class WikiImporter {
 	 */
 	public function setTargetRootPage( $rootpage ) {
 		$status = Status::newGood();
-		$services = MediaWikiServices::getInstance();
-		$nsInfo = $services->getNamespaceInfo();
+		$nsInfo = $this->namespaceInfo;
 		if ( $rootpage === null ) {
 			// No rootpage
 			$this->setImportTitleFactory(
 				new NaiveImportTitleFactory(
-					$services->getContentLanguage(),
+					$this->contentLanguage,
 					$nsInfo,
-					$services->getTitleFactory()
+					$this->titleFactory
 				)
 			);
 		} elseif ( $rootpage !== '' ) {
@@ -349,7 +435,7 @@ class WikiImporter {
 			} elseif ( !$nsInfo->hasSubpages( $title->getNamespace() ) ) {
 				$displayNSText = $title->getNamespace() === NS_MAIN
 					? wfMessage( 'blanknamespace' )->text()
-					: $services->getContentLanguage()->getNsText( $title->getNamespace() );
+					: $this->contentLanguage->getNsText( $title->getNamespace() );
 				$status->fatal( 'import-rootpage-nosubpage', $displayNSText );
 			} else {
 				// set namespace to 'all', so the namespace check in processTitle() can pass
@@ -357,7 +443,7 @@ class WikiImporter {
 				$this->setImportTitleFactory(
 					new SubpageImportTitleFactory(
 						$nsInfo,
-						$services->getTitleFactory(),
+						$this->titleFactory,
 						$title
 					)
 				);
@@ -405,7 +491,7 @@ class WikiImporter {
 	 */
 	public function beforeImportPage( $titleAndForeignTitle ) {
 		$title = $titleAndForeignTitle[0];
-		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+		$page = $this->wikiPageFactory->newFromTitle( $title );
 		$this->countableCache['title_' . $title->getPrefixedText()] = $page->isCountable();
 		return true;
 	}
@@ -456,8 +542,7 @@ class WikiImporter {
 	 * @return bool
 	 */
 	public function importUpload( $revision ) {
-		$importer = MediaWikiServices::getInstance()->getWikiRevisionUploadImporter();
-		$status = $importer->import( $revision );
+		$status = $this->uploadRevisionImporter->import( $revision );
 		return $status->isGood();
 	}
 
@@ -480,8 +565,7 @@ class WikiImporter {
 		// and revision count, and we implement our own custom logic for the
 		// article (content page) count.
 		if ( !$this->disableStatisticsUpdate ) {
-			$page = MediaWikiServices::getInstance()->getWikiPageFactory()
-				->newFromTitle( $pageIdentity );
+			$page = $this->wikiPageFactory->newFromTitle( $pageIdentity );
 
 			$page->loadPageData( 'fromdbmaster' );
 			$content = $page->getContent();
@@ -1210,7 +1294,7 @@ class WikiImporter {
 	private function processTitle( $text, $ns = null ) {
 		if ( $this->foreignNamespaces === null ) {
 			$foreignTitleFactory = new NaiveForeignTitleFactory(
-				MediaWikiServices::getInstance()->getContentLanguage()
+				$this->contentLanguage
 			);
 		} else {
 			$foreignTitleFactory = new NamespaceAwareForeignTitleFactory(
@@ -1235,17 +1319,16 @@ class WikiImporter {
 			$this->notice( 'import-error-special', $title->getPrefixedText() );
 			return false;
 		} elseif ( !$commandLineMode ) {
-			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 			$user = RequestContext::getMain()->getUser();
 
-			if ( !$permissionManager->userCan( 'edit', $user, $title ) ) {
+			if ( !$this->permissionManager->userCan( 'edit', $user, $title ) ) {
 				# Do not import if the importing wiki user cannot edit this page
 				$this->notice( 'import-error-edit', $title->getPrefixedText() );
 
 				return false;
 			}
 
-			if ( !$title->exists() && !$permissionManager->userCan( 'create', $user, $title ) ) {
+			if ( !$title->exists() && !$this->permissionManager->userCan( 'create', $user, $title ) ) {
 				# Do not import if the importing wiki user cannot create this page
 				$this->notice( 'import-error-create', $title->getPrefixedText() );
 
@@ -1261,9 +1344,7 @@ class WikiImporter {
 	 * @return ContentHandler
 	 */
 	private function getContentHandler( $model ) {
-		return MediaWikiServices::getInstance()
-			->getContentHandlerFactory()
-			->getContentHandler( $model );
+		return $this->contentHandlerFactory->getContentHandler( $model );
 	}
 
 	/**
@@ -1273,8 +1354,7 @@ class WikiImporter {
 	 * @return string
 	 */
 	private function getDefaultContentModel( $title, $role ) {
-		return MediaWikiServices::getInstance()
-			->getSlotRoleRegistry()
+		return $this->slotRoleRegistry
 			->getRoleHandler( $role )
 			->getDefaultModel( $title );
 	}

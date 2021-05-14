@@ -501,10 +501,9 @@ class CheckStorage {
 		$dbw->ping();
 
 		$source = new ImportStreamSource( $file );
-		$importer = new WikiImporter(
-			$source,
-			MediaWikiServices::getInstance()->getMainConfig()
-		);
+		$importer = MediaWikiServices::getInstance()
+			->getWikiImporterFactory()
+			->getWikiImporter( $source );
 		$importer->setRevisionCallback( [ $this, 'importRevision' ] );
 		$importer->setNoticeCallback( static function ( $msg, $params ) {
 			echo wfMessage( $msg, $params )->text() . "\n";
