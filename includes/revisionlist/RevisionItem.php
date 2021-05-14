@@ -134,7 +134,7 @@ class RevisionItem extends RevisionItemBase {
 		} else {
 			$linkRenderer = $this->getLinkRenderer();
 			return $linkRenderer->makeKnownLink(
-				$this->list->title,
+				$this->list->getPage(),
 				$this->list->msg( 'diff' )->text(),
 				[],
 				[
