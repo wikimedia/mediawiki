@@ -6,13 +6,11 @@ use Wikimedia\TestingAccessWrapper;
  * @group ResourceLoader
  */
 class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
-	public function provideGetBackwardsCompatibleFeatures() {
+	public static function provideApplyFeaturesCompatibility() {
 		return [
 			[
 				[
-					'features' => [
-						'content-parser-output' => true,
-					],
+					'content-parser-output' => true,
 				],
 				[
 					'content-body' => true,
@@ -20,18 +18,8 @@ class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
 				'The new `content-parser-output` module was renamed to `content-body`.'
 			],
 			[
-				[],
 				[
-					'logo' => true,
-					'legacy' => true
-				],
-				'For historic reasons if nothing is declared logo and legacy features are enabled.'
-			],
-			[
-				[
-					'features' => [
-						'content' => true,
-					]
+					'content' => true,
 				],
 				[
 					'content-thumbnails' => true,
@@ -40,9 +28,7 @@ class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'features' => [
-						'content-links' => true,
-					]
+					'content-links' => true,
 				],
 				[
 					'content-links-external' => true,
@@ -52,9 +38,7 @@ class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'features' => [
-						'element' => true,
-					]
+					'element' => true,
 				],
 				[
 					'element' => true,
@@ -64,10 +48,8 @@ class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'features' => [
-						'content-links-external' => false,
-						'content-links' => true,
-					]
+					'content-links-external' => false,
+					'content-links' => true,
 				],
 				[
 					'content-links-external' => false,
@@ -79,11 +61,13 @@ class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @dataProvider provideGetBackwardsCompatibleFeatures
-	 * @covers ResourceLoaderSkinModule::getBackwardsCompatibleFeatures
+	 * @dataProvider provideApplyFeaturesCompatibility
+	 * @covers ResourceLoaderSkinModule::applyFeaturesCompatibility
 	 */
-	public function testGetBackwardsCompatibleFeatures( $options, $expected, $msg ) {
-		$actual = ResourceLoaderSkinModule::getBackwardsCompatibleFeatures( $options );
+	public function testApplyFeaturesCompatibility( array $features, array $expected, $msg ) {
+		// Test protected method
+		$class = TestingAccessWrapper::newFromClass( ResourceLoaderSkinModule::class );
+		$actual = $class->applyFeaturesCompatibility( $features );
 		$this->assertEquals( $expected, $actual, $msg );
 	}
 
@@ -199,22 +183,19 @@ CSS
 	 */
 	public function testGetStyles( $parent, $logo, $expected ) {
 		$module = $this->getMockBuilder( ResourceLoaderSkinModule::class )
-			->onlyMethods( [ 'readStyleFiles', 'getConfig', 'getLogoData' ] )
-			->disableOriginalConstructor()
+			->onlyMethods( [ 'readStyleFiles', 'getLogoData' ] )
 			->getMock();
 		$module->expects( $this->once() )->method( 'readStyleFiles' )
 			->willReturn( $parent );
-		$module->method( 'getConfig' )
-			->willReturn( new HashConfig( [
-				'UseNewMediaStructure' => true,
-			] ) );
 		$module->expects( $this->once() )->method( 'getLogoData' )
 			->willReturn( $logo );
+		$module->setConfig( new HashConfig( [
+			'UseNewMediaStructure' => true,
+		] ) );
 
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
 
-		$module->__construct();
 		$this->assertEquals(
 			$expected,
 			$module->getStyles( $ctx )
@@ -532,7 +513,7 @@ CSS
 			],
 			[
 				[
-					'content-parser-output' => false,
+					'content-body' => false,
 					'elements' => true,
 					'normalize' => true,
 					'toc' => false,

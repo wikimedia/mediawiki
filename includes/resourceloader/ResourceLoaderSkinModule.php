@@ -122,6 +122,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
 		'content-thumbnails' => [
+			// To be consolidated with 'content-media' at a future date.
 			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/content.thumbnails-print.less' ],
 		],
@@ -181,25 +182,30 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	/** @var string[] */
 	private $features;
 
-	/** @var array please order alphabetically */
-	private const DEFAULT_FEATURES = [
-		'content-links' => false,
-		'content-links-external' => false,
-		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
+	/**
+	 * Defaults for when a 'features' parameter is specified.
+	 *
+	 * When these apply, they are the merged into the specified options.
+	 *
+	 * @var array<string,bool>
+	 */
+	private const DEFAULT_FEATURES_SPECIFIED = [
+		'content-media' => true, // Ignored unless $wgUseNewMediaStructure is enabled.
 		'content-body' => true,
-		'content-tables' => false,
-		'content-thumbnails' => false, // To be consolidated with content-media at a future date.
-		'elements' => false,
-		'i18n-all-lists-margins' => false,
-		'i18n-headings' => false,
-		'i18n-ordered-lists' => false,
-		'interface' => false,
-		'interface-category' => false,
-		'interface-message-box' => false,
-		'legacy' => false,
-		'logo' => false,
-		'normalize' => false,
 		'toc' => true,
+	];
+
+	/**
+	 * Default for when the 'features' parameter is absent.
+	 *
+	 * For backward-compatiblity, when the parameter is not declared
+	 * only 'logo' and 'legacy' styles are loaded.
+	 *
+	 * @var string[]
+	 */
+	private const DEFAULT_FEATURES_ABSENT = [
+		'logo',
+		'legacy',
 	];
 
 	private const LESS_MESSAGES = [
@@ -208,87 +214,81 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'showtoc',
 	];
 
+	/**
+	 * @param array $options
+	 * - features: Map from feature keys to boolean indicating whether to load
+	 *   or not include the associated styles.
+	 *   Keys not specified get their default from self::DEFAULT_FEATURES_SPECIFIED.
+	 *
+	 *   If this is set to a list of strings, then the defaults do not apply.
+	 *   Use this at your own risk as it means you opt-out from backwards compatibility
+	 *   provided through these defaults. For example, when features are migrated
+	 *   to the SkinModule system from other parts of MediaWiki, those new feature keys
+	 *   may be enabled by default, and opting out means you may be missing some styles
+	 *   after an upgrade until you enable them or implement them by other means.
+	 *
+	 * - lessMessages: Interface message keys to export as LESS variables.
+	 *   See also ResourceLoaderLessVarFileModule.
+	 *
+	 * @param string|null $localBasePath
+	 * @param string|null $remoteBasePath
+	 * @see Additonal options at $wgResourceModules
+	 */
 	public function __construct(
 		array $options = [],
 		$localBasePath = null,
 		$remoteBasePath = null
 	) {
-		$features = self::getBackwardsCompatibleFeatures( $options );
+		$features = $options['features'] ?? self::DEFAULT_FEATURES_ABSENT;
+		// NOTE: Compatibility is only applied when features are provided
+		// in map-form. The list-form does not currently get these.
+		$features = self::applyFeaturesCompatibility( $features );
 
-		$enabledFeatures = [];
-		$compatibilityMode = false;
+		$listMode = false;
 		foreach ( $features as $key => $enabled ) {
-			if ( is_bool( $enabled ) ) {
-				$feature = $key;
-				$enabledFeatures[$key] = $enabled;
-			} else {
-				$feature = $enabled;
-				// operating in array mode.
-				$enabledFeatures[$enabled] = true;
-				$compatibilityMode = true;
-			}
-			if ( !isset( self::FEATURE_FILES[$feature] ) || !isset( self::DEFAULT_FEATURES[$feature] ) ) {
-				// We could be an old version of MediaWiki and a new feature is being requested (T271441).
-				continue;
+			// TODO: Restore feature key validation (T271441)
+			if ( is_string( $enabled ) ) {
+				$listMode = true;
 			}
 		}
-		// If the module didn't specify an option use the default features values.
-		// This allows new features to be turned on automatically.
-		if ( !$compatibilityMode ) {
-			foreach ( self::DEFAULT_FEATURES as $key => $enabled ) {
-				if ( !isset( $enabledFeatures[$key] ) ) {
-					if ( $key === 'content-media' ) {
-						// Only ship this by default if enabled, since it's going
-						// to be adding some unnecessary overhead where unused.
-						// Also, assume that if a skin is being picky about which
-						// features it wants, it'll pull this in when it's ready
-						// for it.
-						$enabledFeatures[$key] = (bool)$this->getConfig()->get( 'UseNewMediaStructure' );
-					} else {
-						$enabledFeatures[$key] = $enabled;
-					}
-				}
-			}
-		}
-		$this->features = array_filter(
-			array_keys( $enabledFeatures ),
-			static function ( $key ) use ( $enabledFeatures ) {
-				return $enabledFeatures[ $key ];
-			}
-		);
 
-		$options['lessMessages'] = $options['lessMessages'] ?? [];
-		// Only the `toc` feature requires access to messages.
-		// For modules not using the `toc` feature make sure this is set to an empty array.
-		// See T270027.
-		// This is done after construction of the enabled features array.
+		$this->features = $listMode
+			? array_values( $features )
+			: array_keys( array_filter( $features + self::DEFAULT_FEATURES_SPECIFIED ) );
+
+		// Only the `toc` feature makes use of interface messages.
+		// For skins not using the `toc` feature, make sure LocalisationCache
+		// remains untouched (T270027).
 		if ( in_array( 'toc', $this->features ) ) {
-			$options['lessMessages'] = array_merge( $options['lessMessages'], self::LESS_MESSAGES );
+			$options['lessMessages'] = array_merge(
+				$options['lessMessages'] ?? [],
+				self::LESS_MESSAGES
+			);
 		}
 		parent::__construct( $options, $localBasePath, $remoteBasePath );
 	}
 
-	public static function getBackwardsCompatibleFeatures( array $options ) {
-		$features = $options['features'] ??
-			// For historic reasons if nothing is declared logo and legacy features are enabled.
-			[
-				'logo' => true,
-				'legacy' => true
-			];
-
+	/**
+	 * @internal
+	 * @param array $features
+	 * @return array
+	 */
+	protected static function applyFeaturesCompatibility( array $features ) : array {
 		// The `content` feature is mapped to `content-thumbnails`.
-		// FIXME: This should log a deprecated notice at a later date (proposed: 1.37 release)
+		// FIXME: Hard-deprecate sometime during the 1.37 release.
 		if ( isset( $features[ 'content' ] ) ) {
 			$features[ 'content-thumbnails' ] = $features[ 'content' ];
 			unset( $features[ 'content' ] );
 		}
-		// If the content-links feature is set but the user hasn't expressed a preference for `content-links-external`
-		// then we set it to the same value.
+
+		// If `content-links` feature is set but no preference for `content-links-external` is set
 		if ( isset( $features[ 'content-links' ] ) && !isset( $features[ 'content-links-external' ] ) ) {
+			// Assume the same true/false preference for both.
 			$features[ 'content-links-external' ] = $features[ 'content-links' ];
 		}
 
-		// Some styles in content-links were previously in `elements`. Make sure clients getting elements get these.
+		// The `content-links` feature was split out from `elements`.
+		// Make sure skins asking for `elements` also get these by default.
 		if ( isset( $features[ 'element' ] ) && !isset( $features[ 'content-links' ] ) ) {
 			$features[ 'content-links' ] = $features[ 'element' ];
 		}
@@ -320,6 +320,10 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$featureFilePaths = [];
 
 		foreach ( self::FEATURE_FILES as $feature => $files ) {
+			if ( $feature === 'content-media' && !$this->getConfig()->get( 'UseNewMediaStructure' ) ) {
+				// Only load this when actually enabled, otherwise its styles would be unused.
+				continue;
+			}
 			if ( in_array( $feature, $this->features ) ) {
 				foreach ( $files as $mediaType => $files ) {
 					foreach ( $files as $filepath ) {
