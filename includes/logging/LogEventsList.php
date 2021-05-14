@@ -725,11 +725,15 @@ class LogEventsList extends ContextSource {
 			$pageName = $titleFormatter->getPrefixedDBkey( $page );
 		} elseif ( $page != '' ) {
 			$pageName = $page;
+		} else {
+			$pageName = null;
 		}
 
 		if ( $numRows > $pager->mLimit ) { # Show "Full log" link
 			$urlParam = [];
-			$urlParam['page'] = $pageName;
+			if ( $pageName ) {
+				$urlParam['page'] = $pageName;
+			}
 
 			if ( $user != '' ) {
 				$urlParam['user'] = $user;
