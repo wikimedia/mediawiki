@@ -1,5 +1,5 @@
 /**
- * This file is where we decide whether to initialise the Grade A run-time.
+ * This file is where we decide whether to initialise the modern support browser run-time.
  *
  * - Beware: This file MUST parse without errors on even the most ancient of browsers!
  */
@@ -24,7 +24,7 @@
  * - Mobile Safari 6.0+ (iOS 6+)
  * - Android 4.1+
  *
- * Browsers we support in our no-javascript run-time (Grade C):
+ * Browsers we support in our no-JavaScript, basic run-time (Grade C):
  * - Chrome 1+
  * - IE 8+
  * - Firefox 3+
@@ -42,7 +42,7 @@
  * - Google Glass
  * - UC Mini (speed mode on)
  *
- * Other browsers that pass the check are considered Grade X.
+ * Other browsers that pass the check are considered unknown (Grade X).
  *
  * @private
  * @param {string} ua User agent string
@@ -79,12 +79,13 @@ function isCompatible( ua ) {
 }
 
 if ( !isCompatible( navigator.userAgent ) ) {
-	// Handle Grade C
-	// Undo speculative Grade A <html> class. See ResourceLoaderClientHtml::getDocumentAttributes().
+	// Handle basic supported browsers (Grade C).
+	// Undo speculative modern (Grade A) root CSS class `<html class="client-js">`.
+	// See ResourceLoaderClientHtml::getDocumentAttributes().
 	document.documentElement.className = document.documentElement.className
 		.replace( /(^|\s)client-js(\s|$)/, '$1client-nojs$2' );
 
-	// Process any callbacks for Grade C
+	// Process any callbacks for basic support (Grade C).
 	while ( window.NORLQ && NORLQ[ 0 ] ) {
 		NORLQ.shift()();
 	}
@@ -94,12 +95,12 @@ if ( !isCompatible( navigator.userAgent ) ) {
 		}
 	};
 
-	// Clear and disable the Grade A queue
+	// Clear and disable the modern (Grade A) queue.
 	RLQ = {
 		push: function () {}
 	};
 } else {
-	// Handle Grade A
+	// Handle modern (Grade A).
 
 	if ( window.performance && performance.mark ) {
 		performance.mark( 'mwStartup' );
@@ -157,7 +158,7 @@ if ( !isCompatible( navigator.userAgent ) ) {
 			RLQ.push( queue.shift() );
 		}
 
-		// Clear and disable the Grade C queue
+		// Clear and disable the basic (Grade C) queue.
 		NORLQ = {
 			push: function () {}
 		};
