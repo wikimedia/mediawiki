@@ -200,7 +200,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * @param array $server Master DB server configuration array for LoadBalancer
+	 * @param array $server Primary DB server configuration array for LoadBalancer
 	 * @return string|bool Database domain ID or false
 	 */
 	private function getDomainId( array $server ) {

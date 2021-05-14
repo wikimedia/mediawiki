@@ -111,7 +111,7 @@ class LinkCache implements LoggerAwareInterface {
 	}
 
 	/**
-	 * General accessor to get/set whether the master DB should be used
+	 * General accessor to get/set whether the primary DB should be used
 	 *
 	 * This used to also set the FOR UPDATE option (locking the rows read
 	 * in order to avoid link table inconsistency), which was later removed

@@ -48,7 +48,7 @@ class MwSql extends Maintenance {
 		$this->addOption( 'wikidb',
 			'The database wiki ID to use if not the current one', false, true );
 		$this->addOption( 'replicadb',
-			'Replica DB server to use instead of the master DB (can be "any")', false, true );
+			'Replica DB server to use instead of the primary DB (can be "any")', false, true );
 	}
 
 	public function execute() {

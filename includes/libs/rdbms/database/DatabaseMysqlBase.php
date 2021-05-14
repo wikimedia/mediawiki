@@ -853,7 +853,7 @@ abstract class DatabaseMysqlBase extends Database {
 				$this->getLogContext( [ 'method' => __METHOD__, 'raw_pos' => $pos ] )
 			);
 
-			return 0; // this is a copy of a read-only dataset with no master DB
+			return 0; // this is a copy of a read-only dataset with no primary DB
 		} elseif ( $this->lastKnownReplicaPos && $this->lastKnownReplicaPos->hasReached( $pos ) ) {
 			$this->queryLogger->debug(
 				"Bypassed replication wait; replication known to have reached {raw_pos}",

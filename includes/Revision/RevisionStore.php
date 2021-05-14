@@ -1376,7 +1376,7 @@ class RevisionStore
 		);
 
 		if ( !$res->numRows() && !( $queryFlags & self::READ_LATEST ) ) {
-			// If we found no slots, try looking on the master database (T212428, T252156)
+			// If we found no slots, try looking on the primary database (T212428, T252156)
 			$this->logger->info(
 				__METHOD__ . ' falling back to READ_LATEST.',
 				[
@@ -1723,7 +1723,7 @@ class RevisionStore
 						[ 'rev_id' => intval( $revId ) ]
 					);
 					if ( !$row && !( $queryFlags & self::READ_LATEST ) ) {
-						// If we found no slots, try looking on the master database (T259738)
+						// If we found no slots, try looking on the primary database (T259738)
 						$this->logger->info(
 							 'RevisionStoreCacheRecord refresh callback falling back to READ_LATEST.',
 							[
@@ -2226,7 +2226,7 @@ class RevisionStore
 	 *
 	 * This method should be used if we are pretty sure the revision exists.
 	 * Unless $flags has READ_LATEST set, this method will first try to find the revision
-	 * on a replica before hitting the master database.
+	 * on a replica before hitting the primary database.
 	 *
 	 * MCR migration note: this corresponded to Revision::newFromConds
 	 *

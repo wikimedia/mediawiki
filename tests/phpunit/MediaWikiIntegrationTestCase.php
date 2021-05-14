@@ -1564,10 +1564,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	}
 
 	/**
-	 * Gets master database connections for all of the ExternalStoreDB
+	 * Gets primary database connections for all of the ExternalStoreDB
 	 * stores configured in $wgDefaultExternalStore.
 	 *
-	 * @return Database[] Array of Database master connections
+	 * @return Database[] Array of Database primary connections
 	 */
 	protected static function getExternalStoreDatabaseConnections() {
 		global $wgDefaultExternalStore;

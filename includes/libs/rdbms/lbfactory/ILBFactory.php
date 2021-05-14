@@ -46,7 +46,7 @@ interface ILBFactory {
 	 *
 	 * @param array $conf Array with keys:
 	 *  - localDomain: A DatabaseDomain or domain ID string.
-	 *  - readOnlyReason: Reason the master DB is read-only if so [optional]
+	 *  - readOnlyReason: Reason the primary DB is read-only if so [optional]
 	 *  - srvCache: BagOStuff instance for server cache [optional]
 	 *  - cpStash: BagOStuff instance for ChronologyProtector store [optional]
 	 *    See [ChronologyProtector requirements](@ref ChronologyProtector-storage-requirements).

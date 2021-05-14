@@ -224,7 +224,7 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		global $wgDBserver, $wgDBname, $wgDBuser, $wgDBpassword, $wgDBtype, $wgSQLiteDataDir;
 
 		$servers = [
-			// Master DB
+			// Primary DB
 			0 => $srvExtra + [
 					'host' => $wgDBserver,
 					'dbname' => $wgDBname,
@@ -774,19 +774,19 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 	public function testGetLazyConnectionRef() {
 		$lb = $this->newMultiServerLocalLoadBalancer();
 
-		$rMaster = $lb->getLazyConnectionRef( DB_PRIMARY );
+		$rPrimary = $lb->getLazyConnectionRef( DB_PRIMARY );
 		$rReplica = $lb->getLazyConnectionRef( 1 );
 		$this->assertFalse( $lb->getAnyOpenConnection( 0 ) );
 		$this->assertFalse( $lb->getAnyOpenConnection( 1 ) );
 
-		$rMaster->getType();
+		$rPrimary->getType();
 		$rReplica->getType();
-		$rMaster->getDomainID();
+		$rPrimary->getDomainID();
 		$rReplica->getDomainID();
 		$this->assertFalse( $lb->getAnyOpenConnection( 0 ) );
 		$this->assertFalse( $lb->getAnyOpenConnection( 1 ) );
 
-		$rMaster->query( "SELECT 1", __METHOD__ );
+		$rPrimary->query( "SELECT 1", __METHOD__ );
 		$this->assertNotFalse( $lb->getAnyOpenConnection( 0 ) );
 
 		$rReplica->query( "SELECT 1", __METHOD__ );

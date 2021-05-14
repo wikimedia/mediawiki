@@ -48,7 +48,7 @@ class ReplicatedBagOStuff extends BagOStuff {
 	/**
 	 * Constructor. Parameters are:
 	 *   - writeFactory: ObjectFactory::getObjectFromSpec array yielding BagOStuff.
-	 *      This object will be used for writes (e.g. the master DB).
+	 *      This object will be used for writes (e.g. the primary DB).
 	 *   - readFactory: ObjectFactory::getObjectFromSpec array yielding BagOStuff.
 	 *      This object will be used for reads (e.g. a replica DB).
 	 *   - sessionConsistencyWindow: Seconds to read from the master source for a key

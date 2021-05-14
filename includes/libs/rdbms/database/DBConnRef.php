@@ -69,7 +69,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	/**
-	 * @return int DB_PRIMARY when this *requires* the master DB, otherwise DB_REPLICA
+	 * @return int DB_PRIMARY when this *requires* the primary DB, otherwise DB_REPLICA
 	 * @since 1.33
 	 */
 	public function getReferenceRole() {
@@ -775,12 +775,12 @@ class DBConnRef implements IDatabase {
 	 * Error out if the role is not DB_PRIMARY
 	 *
 	 * Note that the underlying connection may or may not itself be read-only.
-	 * It could even be to a writable master (both server-side and to the application).
+	 * It could even be to a writable primary (both server-side and to the application).
 	 * This error is meant for the case when a DB_REPLICA handle was requested but a
 	 * a write was attempted on that handle regardless.
 	 *
-	 * In configurations where the master DB has some generic read load or is the only server,
-	 * DB_PRIMARY/DB_REPLICA will sometimes (or always) use the same connection to the master DB.
+	 * In configurations where the primary DB has some generic read load or is the only server,
+	 * DB_PRIMARY/DB_REPLICA will sometimes (or always) use the same connection to the primary DB.
 	 * This does not effect the role of DBConnRef instances.
 	 * @throws DBReadOnlyRoleError
 	 */

@@ -204,9 +204,9 @@ class TransactionProfiler implements LoggerAwareInterface {
 	 *
 	 * @param string $server DB server
 	 * @param string|null $db DB name
-	 * @param bool $isMaster
+	 * @param bool $isPrimary
 	 */
-	public function recordConnection( $server, $db, bool $isMaster ) {
+	public function recordConnection( $server, $db, bool $isPrimary ) {
 		// Report when too many connections happen...
 		if ( $this->pingAndCheckThreshold( 'conns' ) ) {
 			$this->reportExpectationViolated(
@@ -216,8 +216,8 @@ class TransactionProfiler implements LoggerAwareInterface {
 			);
 		}
 
-		// Report when too many master connections happen...
-		if ( $isMaster && $this->pingAndCheckThreshold( 'masterConns' ) ) {
+		// Report when too many primary connections happen...
+		if ( $isPrimary && $this->pingAndCheckThreshold( 'masterConns' ) ) {
 			$this->reportExpectationViolated(
 				'masterConns',
 				"[connect to $server ($db)]",

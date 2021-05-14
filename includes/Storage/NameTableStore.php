@@ -212,7 +212,7 @@ class NameTableStore {
 	}
 
 	/**
-	 * Reloads the name table from the master database, and purges the WAN cache entry.
+	 * Reloads the name table from the primary database, and purges the WAN cache entry.
 	 *
 	 * @note This should only be called in situations where the local cache has been detected
 	 * to be out of sync with the database. There should be no reason to call this method
@@ -294,12 +294,12 @@ class NameTableStore {
 					// Use the old value
 					return $oldValue;
 				}
-				// Regenerate from replica DB, and master DB if needed
+				// Regenerate from replica DB, and primary DB if needed
 				foreach ( [ DB_REPLICA, DB_PRIMARY ] as $source ) {
-					// Log a fallback to master
+					// Log a fallback to primary
 					if ( $source === DB_PRIMARY ) {
 						$this->logger->info(
-							$fname . ' falling back to master select from ' .
+							$fname . ' falling back to primary select from ' .
 							$this->table . ' with id ' . $id
 						);
 					}

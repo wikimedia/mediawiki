@@ -37,7 +37,7 @@ class MysqlMaintenance extends Maintenance {
 		parent::__construct();
 		$this->addDescription( "Execute the MySQL client binary. " .
 			"Non-option arguments will be passed through to mysql." );
-		$this->addOption( 'write', 'Connect to the master database', false, false );
+		$this->addOption( 'write', 'Connect to the primary database', false, false );
 		$this->addOption( 'group', 'Specify query group', false, true );
 		$this->addOption( 'host', 'Connect to a specific MySQL server', false, true );
 		$this->addOption( 'list-hosts', 'List the available DB hosts', false, false );

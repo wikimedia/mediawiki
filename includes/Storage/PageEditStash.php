@@ -121,7 +121,7 @@ class PageEditStash {
 		$key = $this->getStashKey( $page, $this->getContentHash( $content ), $user );
 		$fname = __METHOD__;
 
-		// Use the master DB to allow for fast blocking locks on the "save path" where this
+		// Use the primary DB to allow for fast blocking locks on the "save path" where this
 		// value might actually be used to complete a page edit. If the edit submission request
 		// happens before this edit stash requests finishes, then the submission will block until
 		// the stash request finishes parsing. For the lock acquisition below, there is not much

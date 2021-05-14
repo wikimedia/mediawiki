@@ -116,7 +116,7 @@ use Wikimedia\WaitConditionLoop;
  * These are the expectations a site administrator must meet for chronology protection:
  *
  * - If the application is run from multiple data centers, then you must designate one of them
- *   as the "primary DC". The primary DC is where the master database is located, from which
+ *   as the "primary DC". The primary DC is where the primary database is located, from which
  *   replication propagates to replica databases in that same DC and any other DCs.
  *
  * - Web requests that use the POST verb, or carry a `UseDC=master` cookie, must be routed to
@@ -125,7 +125,7 @@ use Wikimedia\WaitConditionLoop;
  *   An exception is requests carrying the `Promise-Non-Write-API-Action: true` header,
  *   which use the POST verb for large read queries, but don't actually require the primary DC.
  *
- *   If you have legacy extensions deployed that perform queries on the master database during
+ *   If you have legacy extensions deployed that perform queries on the primary database during
  *   GET requests, then you will have to identify a way to route any of its relevant URLs to the
  *   primary DC as well, or to accept that their reads do not enjoy chronology protection, and
  *   that writes may be slower (due to cross-dc latency).
@@ -278,7 +278,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	/**
 	 * Update client "session consistency" replication position for an end-of-life ILoadBalancer
 	 *
-	 * This remarks the replication position of the master DB if this request made writes to
+	 * This remarks the replication position of the primary DB if this request made writes to
 	 * it using the provided ILoadBalancer instance.
 	 *
 	 * @internal This method should only be called from LBFactory.

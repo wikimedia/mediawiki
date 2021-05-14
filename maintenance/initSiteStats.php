@@ -36,7 +36,7 @@ class InitSiteStats extends Maintenance {
 		$this->addDescription( 'Re-initialise the site statistics tables' );
 		$this->addOption( 'update', 'Update the existing statistics' );
 		$this->addOption( 'active', 'Also update active users count' );
-		$this->addOption( 'use-master', 'Count using the master database' );
+		$this->addOption( 'use-master', 'Count using the primary database' );
 	}
 
 	public function execute() {

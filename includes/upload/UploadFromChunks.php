@@ -282,7 +282,7 @@ class UploadFromChunks extends UploadFromFile {
 	 * Get the chunk db state and populate update relevant local values
 	 */
 	private function getChunkStatus() {
-		// get Master db to avoid race conditions.
+		// get primary db to avoid race conditions.
 		// Otherwise, if chunk upload time < replag there will be spurious errors
 		$dbw = $this->repo->getPrimaryDB();
 		$row = $dbw->selectRow(
