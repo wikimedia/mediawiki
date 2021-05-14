@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
 
 /**
  * API Module to merge page histories
@@ -82,17 +83,17 @@ class ApiMergeHistory extends ApiBase {
 	}
 
 	/**
-	 * @param Title $from
-	 * @param Title $to
+	 * @param PageIdentity $from
+	 * @param PageIdentity $to
 	 * @param string $timestamp
 	 * @param string $reason
 	 * @return Status
 	 */
-	protected function merge( Title $from, Title $to, $timestamp, $reason ) {
+	protected function merge( PageIdentity $from, PageIdentity $to, $timestamp, $reason ) {
 		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
 		$mh = $factory->newMergeHistory( $from, $to, $timestamp );
 
-		return $mh->merge( $this->getUser(), $reason );
+		return $mh->merge( $this->getAuthority(), $reason );
 	}
 
 	public function mustBePosted() {
