@@ -302,7 +302,7 @@ abstract class LBFactory implements ILBFactory {
 		do {
 			$count = 0; // number of callbacks executed this iteration
 			$this->forEachLB( function ( ILoadBalancer $lb ) use ( &$count, $fname ) {
-				$count += $lb->finalizeMasterChanges( $fname, $this->id );
+				$count += $lb->finalizePrimaryChanges( $fname, $this->id );
 			} );
 		} while ( $count > 0 );
 		$this->trxRoundId = false;
