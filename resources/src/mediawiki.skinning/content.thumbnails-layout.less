@@ -1,0 +1,40 @@
+/* stylelint-disable selector-class-pattern */
+
+/* NOTE: These rules can be merged into the `content.thumbnails.less file when the `legacy.less`
+importing this file has been removed from the codebase */
+
+/* @noflip */ div.tright,
+div.floatright,
+table.floatright {
+	clear: right;
+	float: right;
+}
+
+/* @noflip */ div.tleft,
+div.floatleft,
+table.floatleft {
+	float: left;
+	clear: left;
+}
+
+/* Directionality-specific styles for thumbnails - their positioning depends on content language */
+
+/* @noflip */
+.mw-content-ltr .thumbcaption {
+	text-align: left;
+}
+
+/* @noflip */
+.mw-content-ltr .magnify {
+	float: right;
+}
+
+/* @noflip */
+.mw-content-rtl .thumbcaption {
+	text-align: right;
+}
+
+/* @noflip */
+.mw-content-rtl .magnify {
+	float: left;
+}
