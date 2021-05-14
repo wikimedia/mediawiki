@@ -1735,7 +1735,7 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->finalizePrimaryChanges( $fname, $owner );
 	}
 
-	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null ) {
+	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_FINALIZED );
 		if ( $this->ownerId === null ) {
@@ -1771,6 +1771,11 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		} );
 		$this->trxRoundStage = self::ROUND_APPROVED;
+	}
+
+	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->approvePrimaryChanges( $options, $fname, $owner );
 	}
 
 	public function beginMasterChanges( $fname = __METHOD__, $owner = null ) {

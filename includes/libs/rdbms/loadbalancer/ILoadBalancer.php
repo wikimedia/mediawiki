@@ -521,7 +521,7 @@ interface ILoadBalancer {
 	public function getPrimaryPos();
 
 	/**
-	 * @deprecated since 1.37; please use getPrimaryPos() instead.
+	 * @deprecated since 1.37 Use getPrimaryPos() instead.
 	 * @return DBPrimaryPos|bool Returns false if not applicable
 	 * @throws DBError
 	 */
@@ -592,7 +592,7 @@ interface ILoadBalancer {
 	public function finalizePrimaryChanges( $fname = __METHOD__, $owner = null );
 
 	/**
-	 * @deprecated since 1.37; please use finalizePrimaryChanges() instead.
+	 * @deprecated since 1.37 Use finalizePrimaryChanges() instead.
 	 * @param string $fname Caller name
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return int Number of pre-commit callbacks run (since 1.32)
@@ -604,6 +604,16 @@ interface ILoadBalancer {
 	 *
 	 * Use this only for mutli-database commits
 	 *
+	 * @param array $options Includes:
+	 *   - maxWriteDuration : max write query duration time in seconds
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
+	 * @throws DBTransactionError
+	 */
+	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null );
+
+	/**
+	 * @deprecated since 1.37; please use approvePrimaryChanges() instead.
 	 * @param array $options Includes:
 	 *   - maxWriteDuration : max write query duration time in seconds
 	 * @param string $fname Caller name
