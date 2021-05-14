@@ -61,7 +61,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 	/**
 	 * Used to be GAID_FOR_UPDATE define(). Used with getArticleID() and friends
-	 * to use the master DB and inject it into link cache.
+	 * to use the primary DB and inject it into link cache.
 	 * @deprecated since 1.34, use Title::READ_LATEST instead.
 	 */
 	public const GAID_FOR_UPDATE = 512;
@@ -2837,7 +2837,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = null ) {
 		// This function will only read rows from a table that we migrated away
 		// from before adding READ_LATEST support to loadRestrictions, so we
-		// don't need to support reading from DB_MASTER here.
+		// don't need to support reading from DB_PRIMARY here.
 		$dbr = wfGetDB( DB_REPLICA );
 
 		$restrictionTypes = $this->getRestrictionTypes();
@@ -2910,7 +2910,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Edit and move sections are separated by a colon
 	 * Example: "edit=autoconfirmed,sysop:move=sysop"
 	 * @param int $flags A bit field. If self::READ_LATEST is set, skip replicas and read
-	 *  from the master DB.
+	 *  from the primary DB.
 	 */
 	public function loadRestrictions( $oldFashionedRestrictions = null, $flags = 0 ) {
 		$readLatest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );

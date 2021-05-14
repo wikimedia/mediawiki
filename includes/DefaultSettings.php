@@ -2252,7 +2252,7 @@ $wgSharedSchema = false;
  * variable, the single-server variables will generally be ignored (except
  * perhaps in some command-line scripts).
  *
- * The first server listed in this array (with key 0) will be the master. The
+ * The first server listed in this array (with key 0) will be the primary. The
  * rest of the servers will be replica DBs. To prevent writes to your replica DBs due to
  * accidental misconfiguration or MediaWiki bugs, set read_only=1 on all your
  * replica DBs in my.cnf. You can set read_only mode at runtime using:
@@ -2263,14 +2263,14 @@ $wgSharedSchema = false;
  *
  * Since the effect of writing to a replica DB is so damaging and difficult to clean
  * up, we at Wikimedia set read_only=1 in my.cnf on all our DB servers, even
- * our masters, and then set read_only=0 on masters at runtime.
+ * our primaries, and then set read_only=0 on primaries at runtime.
  */
 $wgDBservers = false;
 
 /**
  * Load balancer factory configuration
- * To set up a multi-master wiki farm, set the class here to something that
- * can return a LoadBalancer with an appropriate master on a call to getMainLB().
+ * To set up a multi-primary wiki farm, set the class here to something that
+ * can return a LoadBalancer with an appropriate primary on a call to getMainLB().
  * The class identified here is responsible for reading $wgDBservers,
  * $wgDBserver, etc., so overriding it may cause those globals to be ignored.
  *
@@ -2281,7 +2281,7 @@ $wgLBFactoryConf = [ 'class' => \Wikimedia\Rdbms\LBFactorySimple::class ];
 
 /**
  * After a state-changing request is done by a client, this determines
- * how many seconds that client should keep using the master datacenter.
+ * how many seconds that client should keep using the primary datacenter.
  * This avoids unexpected stale or 404 responses due to replication lag.
  *
  * This must be greater than or equal to
@@ -2883,7 +2883,7 @@ $wgEnableWANCacheReaper = false;
  * system for these operations.
  *
  * The multi-datacenter strategy for MediaWiki is to have CDN route HTTP POST requests to the
- * master datacenter and HTTP GET/HEAD/OPTIONS requests to the closest datacenter to the client.
+ * primary datacenter and HTTP GET/HEAD/OPTIONS requests to the closest datacenter to the client.
  * The stash accepts write operations from any datacenter, but cross-datacenter replication is
  * asynchronous.
  *
@@ -7240,7 +7240,7 @@ $wgDebugDumpSql = false;
  */
 $wgTrxProfilerLimits = [
 	// HTTP GET/HEAD requests.
-	// Master queries should not happen on GET requests
+	// Primary queries should not happen on GET requests
 	'GET' => [
 		'masterConns' => 0,
 		'writes' => 0,
@@ -7248,7 +7248,7 @@ $wgTrxProfilerLimits = [
 		'readQueryRows' => 10000
 	],
 	// HTTP POST requests.
-	// Master reads and writes will happen for a subset of these.
+	// Primary reads and writes will happen for a subset of these.
 	'POST' => [
 		'readQueryTime' => 5,
 		'writeQueryTime' => 1,
@@ -7266,7 +7266,7 @@ $wgTrxProfilerLimits = [
 		'writeQueryTime' => 1,
 		'readQueryRows' => 10000,
 		'maxAffected' => 1000,
-		// Log master queries under the post-send entry point as they are discouraged
+		// Log primary queries under the post-send entry point as they are discouraged
 		'masterConns' => 0,
 		'writes' => 0,
 	],

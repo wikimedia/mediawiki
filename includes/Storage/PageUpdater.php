@@ -300,7 +300,7 @@ class PageUpdater {
 	}
 
 	/**
-	 * @param int $mode DB_MASTER or DB_REPLICA
+	 * @param int $mode DB_PRIMARY or DB_REPLICA
 	 *
 	 * @return DBConnRef
 	 */

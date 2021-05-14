@@ -66,7 +66,7 @@ class DatabaseBlock extends AbstractBlock {
 	private $mId;
 
 	/** @var bool */
-	private $mFromMaster;
+	private $mFromPrimary;
 
 	/** @var int Hack for foreign blocking (CentralAuth) */
 	private $forcedTargetID;
@@ -161,7 +161,7 @@ class DatabaseBlock extends AbstractBlock {
 		$this->isCreateAccountBlocked( (bool)$options['createAccount'] );
 		$this->isUsertalkEditAllowed( (bool)$options['allowUsertalk'] );
 
-		$this->mFromMaster = false;
+		$this->mFromPrimary = false;
 	}
 
 	/**
@@ -268,7 +268,7 @@ class DatabaseBlock extends AbstractBlock {
 	 *
 	 * @param UserIdentity|string|null $specificTarget
 	 * @param int|null $specificType
-	 * @param bool $fromMaster
+	 * @param bool $fromPrimary
 	 * @param UserIdentity|string|null $vagueTarget Also search for blocks affecting this target.
 	 *     Doesn't make any sense to use TYPE_AUTO / TYPE_ID here. Leave blank to skip IP lookups.
 	 * @throws MWException
@@ -277,10 +277,10 @@ class DatabaseBlock extends AbstractBlock {
 	protected static function newLoad(
 		$specificTarget,
 		$specificType,
-		$fromMaster,
+		$fromPrimary,
 		$vagueTarget = null
 	) {
-		$db = wfGetDB( $fromMaster ? DB_PRIMARY : DB_REPLICA );
+		$db = wfGetDB( $fromPrimary ? DB_PRIMARY : DB_REPLICA );
 
 		if ( $specificType !== null ) {
 			$conds = [ 'ipb_address' => [ (string)$specificTarget ] ];
@@ -894,13 +894,13 @@ class DatabaseBlock extends AbstractBlock {
 	 * @param string|UserIdentity|int|null $vagueTarget As above, but we will search for *any* block which
 	 *     affects that target (so for an IP address, get ranges containing that IP; and also
 	 *     get any relevant autoblocks). Leave empty or blank to skip IP-based lookups.
-	 * @param bool $fromMaster Whether to use the DB_MASTER database
+	 * @param bool $fromPrimary Whether to use the DB_PRIMARY database
 	 * @return DatabaseBlock|null (null if no relevant block could be found). The target and type
 	 *     of the returned block will refer to the actual block which was found, which might
 	 *     not be the same as the target you gave if you used $vagueTarget!
 	 */
-	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromMaster = false ) {
-		$blocks = self::newListFromTarget( $specificTarget, $vagueTarget, $fromMaster );
+	public static function newFromTarget( $specificTarget, $vagueTarget = null, $fromPrimary = false ) {
+		$blocks = self::newListFromTarget( $specificTarget, $vagueTarget, $fromPrimary );
 		return self::chooseMostSpecificBlock( $blocks );
 	}
 
@@ -910,13 +910,13 @@ class DatabaseBlock extends AbstractBlock {
 	 * @since 1.34
 	 * @param string|UserIdentity|int|null $specificTarget
 	 * @param string|UserIdentity|int|null $vagueTarget
-	 * @param bool $fromMaster
+	 * @param bool $fromPrimary
 	 * @return DatabaseBlock[] Any relevant blocks
 	 */
 	public static function newListFromTarget(
 		$specificTarget,
 		$vagueTarget = null,
-		$fromMaster = false
+		$fromPrimary = false
 	) {
 		list( $target, $type ) = MediaWikiServices::getInstance()
 			->getBlockUtils()
@@ -933,7 +933,7 @@ class DatabaseBlock extends AbstractBlock {
 			$type,
 			[ self::TYPE_USER, self::TYPE_IP, self::TYPE_RANGE, null ] )
 		) {
-			return self::newLoad( $target, $type, $fromMaster, $vagueTarget );
+			return self::newLoad( $target, $type, $fromPrimary, $vagueTarget );
 		}
 		return [];
 	}
@@ -944,11 +944,11 @@ class DatabaseBlock extends AbstractBlock {
 	 * @param array $ipChain List of IPs (strings), usually retrieved from the
 	 *     X-Forwarded-For header of the request
 	 * @param bool $isAnon Exclude anonymous-only blocks if false
-	 * @param bool $fromMaster Whether to query the master or replica DB
+	 * @param bool $fromPrimary Whether to query the primary or replica DB
 	 * @return self[]
 	 * @since 1.22
 	 */
-	public static function getBlocksForIPList( array $ipChain, $isAnon, $fromMaster = false ) {
+	public static function getBlocksForIPList( array $ipChain, $isAnon, $fromPrimary = false ) {
 		if ( $ipChain === [] ) {
 			return [];
 		}
@@ -978,7 +978,7 @@ class DatabaseBlock extends AbstractBlock {
 			return [];
 		}
 
-		if ( $fromMaster ) {
+		if ( $fromPrimary ) {
 			$db = wfGetDB( DB_PRIMARY );
 		} else {
 			$db = wfGetDB( DB_REPLICA );

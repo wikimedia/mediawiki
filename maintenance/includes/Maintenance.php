@@ -1341,7 +1341,7 @@ abstract class Maintenance {
 	 *
 	 * @stable for overriding
 	 *
-	 * @param int $db DB index (DB_REPLICA/DB_MASTER)
+	 * @param int $db DB index (DB_REPLICA/DB_PRIMARY)
 	 * @param string|string[] $groups default: empty array
 	 * @param string|bool $dbDomain default: current wiki
 	 * @return IMaintainableDatabase

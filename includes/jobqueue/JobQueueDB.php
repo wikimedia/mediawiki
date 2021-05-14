@@ -794,7 +794,7 @@ class JobQueueDB extends JobQueue {
 	}
 
 	/**
-	 * @param int $index (DB_REPLICA/DB_MASTER)
+	 * @param int $index (DB_REPLICA/DB_PRIMARY)
 	 * @return IMaintainableDatabase
 	 */
 	protected function getDB( $index ) {

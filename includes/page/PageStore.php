@@ -300,7 +300,7 @@ class PageStore implements PageLookup {
 	}
 
 	/**
-	 * @param int $mode DB_MASTER or DB_REPLICA
+	 * @param int $mode DB_PRIMARY or DB_REPLICA
 	 * @return IDatabase
 	 */
 	private function getDBConnectionRef( int $mode = DB_REPLICA ): IDatabase {

@@ -89,7 +89,7 @@ class BotPassword implements IDBAccessObject {
 
 	/**
 	 * Get a database connection for the bot passwords database
-	 * @param int $db Index of the connection to get, e.g. DB_MASTER or DB_REPLICA.
+	 * @param int $db Index of the connection to get, e.g. DB_PRIMARY or DB_REPLICA.
 	 * @return IDatabase
 	 */
 	public static function getDB( $db ) {

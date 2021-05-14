@@ -421,7 +421,7 @@ class MessageCache implements LoggerAwareInterface {
 	/**
 	 * @param string $code
 	 * @param string[] &$where List of debug comments
-	 * @param int|null $mode Use MessageCache::FOR_UPDATE to use DB_MASTER
+	 * @param int|null $mode Use MessageCache::FOR_UPDATE to use DB_PRIMARY
 	 * @return true|string True on success or one of ("cantacquire", "disabled")
 	 */
 	protected function loadFromDBWithLock( $code, array &$where, $mode = null ) {

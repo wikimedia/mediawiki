@@ -1424,7 +1424,7 @@ abstract class ContentHandler {
 
 	/**
 	 * Get the latest revision of the given $page,
-	 * fetching it from the master if necessary.
+	 * fetching it from the primary if necessary.
 	 *
 	 * @param WikiPage $page
 	 * @return RevisionRecord
@@ -1434,7 +1434,7 @@ abstract class ContentHandler {
 		$revRecord = $page->getRevisionRecord();
 		if ( $revRecord == null ) {
 			// If the content represents a brand new page it's possible
-			// we need to fetch it from the master.
+			// we need to fetch it from the primary.
 			$page->loadPageData( WikiPage::READ_LATEST );
 			$revRecord = $page->getRevisionRecord();
 			if ( $revRecord == null ) {

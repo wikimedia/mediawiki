@@ -106,7 +106,7 @@ class NameTableStore {
 	}
 
 	/**
-	 * @param int $index A database index, like DB_MASTER or DB_REPLICA
+	 * @param int $index A database index, like DB_PRIMARY or DB_REPLICA
 	 * @param int $flags Database connection flags
 	 *
 	 * @return IDatabase
@@ -174,7 +174,7 @@ class NameTableStore {
 
 				$searchResult = array_search( $name, $table, true );
 				if ( $searchResult === false ) {
-					// Insert failed due to IGNORE flag, but DB_MASTER didn't give us the data
+					// Insert failed due to IGNORE flag, but DB_PRIMARY didn't give us the data
 					$m = "No insert possible but master didn't give us a record for " .
 						"'{$name}' in '{$this->table}'";
 					$this->logger->error( $m );

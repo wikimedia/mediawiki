@@ -178,7 +178,7 @@ class ApiOptions extends ApiBase {
 	}
 
 	/**
-	 * Load the user from the master to reduce CAS errors on double post (T95839)
+	 * Load the user from the primary to reduce CAS errors on double post (T95839)
 	 *
 	 * @return User|null
 	 */

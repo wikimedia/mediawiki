@@ -39,7 +39,7 @@ class SiteStatsInit {
 
 	/**
 	 * @param bool|IDatabase $database
-	 * - bool: Whether to use the master DB
+	 * - bool: Whether to use the primary DB
 	 * - IDatabase: Database connection to use
 	 */
 	public function __construct( $database = false ) {
@@ -126,7 +126,7 @@ class SiteStatsInit {
 	 * for the original initStats, but without output.
 	 *
 	 * @param IDatabase|bool $database
-	 * - bool: Whether to use the master DB
+	 * - bool: Whether to use the primary DB
 	 * - IDatabase: Database connection to use
 	 * @param array $options Array of options, may contain the following values
 	 * - activeUsers bool: Whether to update the number of active users (default: false)

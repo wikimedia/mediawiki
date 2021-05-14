@@ -201,7 +201,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	}
 
 	/**
-	 * @param int $index A database index, like DB_MASTER or DB_REPLICA
+	 * @param int $index A database index, like DB_PRIMARY or DB_REPLICA
 	 *
 	 * @return IDatabase
 	 */
@@ -403,7 +403,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 			$options
 		);
 
-		// Fallback to DB_MASTER in some cases if not all the rows were found, using the appropriate
+		// Fallback to DB_PRIMARY in some cases if not all the rows were found, using the appropriate
 		// options, such as FOR UPDATE to avoid missing rows due to REPEATABLE-READ.
 		if ( $dbConnection->numRows( $rows ) !== count( $textIds ) && $fallbackIndex !== null ) {
 			$fetchedTextIds = [];
