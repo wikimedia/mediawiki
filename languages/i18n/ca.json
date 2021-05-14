@@ -882,7 +882,7 @@
 	"last": "prev",
 	"page_first": "primera",
 	"page_last": "última",
-	"histlegend": "Simbologia: (act) = diferència amb la versió actual,\n(prev) = diferència amb la versió anterior, m = modificació menor",
+	"histlegend": "Selecció de diferències: Marqueu els botons corresponents de les revisions per comparar i premeu Intro o el botó inferior.\nLlegenda: ({{int:cur}}) = diferències amb la revisió actual, ({{int:dura}}) = diferències amb revisió anterior, {{int:minoreditletter}} = edició menor.<br>",
 	"history-fieldset-title": "Filtra les revisions",
 	"history-show-deleted": "Només revisions suprimides",
 	"histfirst": "les més antigues",

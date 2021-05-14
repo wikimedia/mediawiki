@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"0x010C",
+			"Ajeje Brazorf",
 			"Arkanosis",
 			"Ash Crow",
 			"Crochet.david",
@@ -1500,7 +1501,7 @@
 	"apihelp-validatepassword-summary": "Valider un mot de passe conformément aux règles concernant les mots de passe du wiki.",
 	"apihelp-validatepassword-extended-description": "La validation est <samp>Good</samp> si le mot de passe est acceptable, <samp>Change</samp> s'il peut être utilisé pour se connecter et doit être changé, ou  <samp>Invalid</samp> s'il n'est pas utilisable.",
 	"apihelp-validatepassword-param-password": "Mot de passe à valider.",
-	"apihelp-validatepassword-param-user": "Nom de l'utilisateur, pour tester la création de compte. L'utilisateur ne doit pas déja exister.",
+	"apihelp-validatepassword-param-user": "Nom de l'utilisateur, pour tester la création de compte. L'utilisateur ne doit pas déjà exister.",
 	"apihelp-validatepassword-param-email": "Adresse courriel, pour tester la création de compte.",
 	"apihelp-validatepassword-param-realname": "Vrai nom, pour tester la création de compte.",
 	"apihelp-validatepassword-example-1": "Valider le mot de passe <kbd>foobar</kbd> pour l'utilisateur actuel.",
