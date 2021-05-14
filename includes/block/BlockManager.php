@@ -117,13 +117,13 @@ class BlockManager {
 	 *  information from the request header are needed to find some types of blocks.
 	 * @param bool $fromReplica Whether to check the replica DB first.
 	 *  To improve performance, non-critical checks are done against replica DBs.
-	 *  Check when actually saving should be done against master.
+	 *  Check when actually saving should be done against primary.
 	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
 	 *   a infinite recursion with autopromote. See T270145.
 	 * @return AbstractBlock|null The most relevant block, or null if there is no block.
 	 */
 	public function getUserBlock( User $user, $request, $fromReplica, $disableIpBlockExemptChecking = false ) {
-		$fromMaster = !$fromReplica;
+		$fromPrimary = !$fromReplica;
 		$ip = null;
 
 		// If this is the global user, they may be affected by IP blocks (case #1),
@@ -142,8 +142,8 @@ class BlockManager {
 			// Case #1: checking the global user, including IP blocks
 			$ip = $request->getIP();
 			// TODO: remove dependency on DatabaseBlock (T221075)
-			$blocks = DatabaseBlock::newListFromTarget( $user, $ip, $fromMaster );
-			$this->getAdditionalIpBlocks( $blocks, $request, !$user->isRegistered(), $fromMaster );
+			$blocks = DatabaseBlock::newListFromTarget( $user, $ip, $fromPrimary );
+			$this->getAdditionalIpBlocks( $blocks, $request, !$user->isRegistered(), $fromPrimary );
 			$this->getCookieBlock( $blocks, $user, $request );
 
 		} else {
@@ -152,7 +152,7 @@ class BlockManager {
 			// and cookie blocks, so we only check for a user account block.
 			// Case #3: checking whether another user's account is blocked.
 			// TODO: remove dependency on DatabaseBlock (T221075)
-			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromMaster );
+			$blocks = DatabaseBlock::newListFromTarget( $user, null, $fromPrimary );
 
 		}
 
@@ -198,10 +198,10 @@ class BlockManager {
 	 * @param AbstractBlock[] &$blocks Blocks found so far
 	 * @param WebRequest $request
 	 * @param bool $isAnon The user is logged out
-	 * @param bool $fromMaster
+	 * @param bool $fromPrimary
 	 * @return void
 	 */
-	private function getAdditionalIpBlocks( &$blocks, WebRequest $request, $isAnon, $fromMaster ) {
+	private function getAdditionalIpBlocks( &$blocks, WebRequest $request, $isAnon, $fromPrimary ) {
 		$ip = $request->getIP();
 
 		// Proxy blocking
@@ -241,7 +241,7 @@ class BlockManager {
 			$xff = array_map( 'trim', explode( ',', $xff ) );
 			$xff = array_diff( $xff, [ $ip ] );
 			// TODO: remove dependency on DatabaseBlock (T221075)
-			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromMaster );
+			$xffblocks = DatabaseBlock::getBlocksForIPList( $xff, $isAnon, $fromPrimary );
 			$blocks = array_merge( $blocks, $xffblocks );
 		}
 	}

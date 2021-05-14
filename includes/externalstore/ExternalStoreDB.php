@@ -182,7 +182,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 	}
 
 	/**
-	 * Get a master database connection for the specified cluster
+	 * Get a primary database connection for the specified cluster
 	 *
 	 * @param string $cluster Cluster name
 	 * @return MaintainableDBConnRef
@@ -363,10 +363,10 @@ class ExternalStoreDB extends ExternalStoreMedium {
 		}
 		if ( $ids ) {
 			$this->logger->info(
-				__METHOD__ . ": master fallback on '$cluster' for: " .
+				__METHOD__ . ": primary fallback on '$cluster' for: " .
 				implode( ',', array_keys( $ids ) )
 			);
-			// Try the master
+			// Try the primary
 			$dbw = $this->getMaster( $cluster );
 			$res = $dbw->select(
 				$this->getTable( $dbr, $cluster ),
@@ -374,14 +374,14 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				[ 'blob_id' => array_keys( $ids ) ],
 				__METHOD__ );
 			if ( $res === false ) {
-				$this->logger->error( __METHOD__ . ": master failed on '$cluster'" );
+				$this->logger->error( __METHOD__ . ": primary failed on '$cluster'" );
 			} else {
 				$this->mergeBatchResult( $ret, $ids, $res );
 			}
 		}
 		if ( $ids ) {
 			$this->logger->error(
-				__METHOD__ . ": master on '$cluster' failed locating items: " .
+				__METHOD__ . ": primary on '$cluster' failed locating items: " .
 				implode( ',', array_keys( $ids ) )
 			);
 		}

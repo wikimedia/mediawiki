@@ -111,8 +111,8 @@ class Revision implements IDBAccessObject {
 	 * @deprecated since 1.31 together with the class. Hard deprecated since 1.35
 	 *
 	 * $flags include:
-	 *      Revision::READ_LATEST  : Select the data from the master
-	 *      Revision::READ_LOCKING : Select & lock the data from the master
+	 *      Revision::READ_LATEST  : Select the data from the primary
+	 *      Revision::READ_LOCKING : Select & lock the data from the primary
 	 *
 	 * @param int $id
 	 * @param int $flags (optional)
@@ -132,8 +132,8 @@ class Revision implements IDBAccessObject {
 	 * @deprecated since 1.31 together with the class. Hard deprecated since 1.35
 	 *
 	 * $flags include:
-	 *      Revision::READ_LATEST  : Select the data from the master
-	 *      Revision::READ_LOCKING : Select & lock the data from the master
+	 *      Revision::READ_LATEST  : Select the data from the primary
+	 *      Revision::READ_LOCKING : Select & lock the data from the primary
 	 *
 	 * @param LinkTarget $linkTarget
 	 * @param int $id (optional)
@@ -152,8 +152,8 @@ class Revision implements IDBAccessObject {
 	 * Returns null if no such revision can be found.
 	 *
 	 * $flags include:
-	 *      Revision::READ_LATEST  : Select the data from the master (since 1.20)
-	 *      Revision::READ_LOCKING : Select & lock the data from the master
+	 *      Revision::READ_LATEST  : Select the data from the primary (since 1.20)
+	 *      Revision::READ_LOCKING : Select & lock the data from the primary
 	 *
 	 * @deprecated since 1.31 together with the class. Hard deprecated since 1.35
 	 *
@@ -720,7 +720,7 @@ class Revision implements IDBAccessObject {
 	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 *
 	 * @param int $flags (optional) $flags include:
-	 *      Revision::READ_LATEST  : Select the data from the master
+	 *      Revision::READ_LATEST  : Select the data from the primary
 	 *
 	 * @since 1.22
 	 * @return RecentChange|null
@@ -1002,7 +1002,7 @@ class Revision implements IDBAccessObject {
 	 *
 	 * @deprecated since 1.31 (soft), 1.35 (hard)
 	 *
-	 * @param IDatabase $dbw (master connection)
+	 * @param IDatabase $dbw (primary connection)
 	 * @throws MWException
 	 * @return int The revision ID
 	 */

@@ -486,7 +486,7 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * Get a connection to the master DB
+	 * Get a connection to the primary DB
 	 * @return IDatabase
 	 */
 	public function getMasterDB() {
@@ -494,7 +494,7 @@ class LocalRepo extends FileRepo {
 	}
 
 	/**
-	 * Get a callback to get a DB handle given an index (DB_REPLICA/DB_MASTER)
+	 * Get a callback to get a DB handle given an index (DB_REPLICA/DB_PRIMARY)
 	 * @return Closure
 	 */
 	protected function getDBFactory() {

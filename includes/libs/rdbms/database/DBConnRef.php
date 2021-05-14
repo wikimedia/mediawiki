@@ -33,7 +33,7 @@ class DBConnRef implements IDatabase {
 	private $conn;
 	/** @var array N-tuple of (server index, group, DatabaseDomain|string) */
 	private $params;
-	/** @var int One of DB_MASTER/DB_REPLICA */
+	/** @var int One of DB_PRIMARY/DB_REPLICA */
 	private $role;
 
 	private const FLD_INDEX = 0;
@@ -44,7 +44,7 @@ class DBConnRef implements IDatabase {
 	/**
 	 * @param ILoadBalancer $lb Connection manager for $conn
 	 * @param IDatabase|array $conn Database or (server index, query groups, domain, flags)
-	 * @param int $role The type of connection asked for; one of DB_MASTER/DB_REPLICA
+	 * @param int $role The type of connection asked for; one of DB_PRIMARY/DB_REPLICA
 	 * @internal This method should not be called outside of LoadBalancer
 	 */
 	public function __construct( ILoadBalancer $lb, $conn, $role ) {
@@ -69,7 +69,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	/**
-	 * @return int DB_MASTER when this *requires* the master DB, otherwise DB_REPLICA
+	 * @return int DB_PRIMARY when this *requires* the master DB, otherwise DB_REPLICA
 	 * @since 1.33
 	 */
 	public function getReferenceRole() {
@@ -772,7 +772,7 @@ class DBConnRef implements IDatabase {
 	}
 
 	/**
-	 * Error out if the role is not DB_MASTER
+	 * Error out if the role is not DB_PRIMARY
 	 *
 	 * Note that the underlying connection may or may not itself be read-only.
 	 * It could even be to a writable master (both server-side and to the application).
@@ -780,12 +780,12 @@ class DBConnRef implements IDatabase {
 	 * a write was attempted on that handle regardless.
 	 *
 	 * In configurations where the master DB has some generic read load or is the only server,
-	 * DB_MASTER/DB_REPLICA will sometimes (or always) use the same connection to the master DB.
+	 * DB_PRIMARY/DB_REPLICA will sometimes (or always) use the same connection to the master DB.
 	 * This does not effect the role of DBConnRef instances.
 	 * @throws DBReadOnlyRoleError
 	 */
 	protected function assertRoleAllowsWrites() {
-		// DB_MASTER is "prima facie" writable
+		// DB_PRIMARY is "prima facie" writable
 		if ( $this->role !== ILoadBalancer::DB_PRIMARY ) {
 			throw new DBReadOnlyRoleError( $this->conn, "Cannot write with role DB_REPLICA" );
 		}

@@ -331,8 +331,8 @@ abstract class ApiBase extends ContextSource {
 	 * Indicates whether this module requires write mode
 	 *
 	 * This should return true for modules that may require synchronous database writes.
-	 * Modules that do not need such writes should also not rely on master database access,
-	 * since only read queries are needed and each master DB is a single point of failure.
+	 * Modules that do not need such writes should also not rely on primary database access,
+	 * since only read queries are needed and each primary DB is a single point of failure.
 	 * Additionally, requests that only need replica DBs can be efficiently routed to any
 	 * datacenter via the Promise-Non-Write-API-Action header.
 	 *
@@ -981,7 +981,7 @@ abstract class ApiBase extends ContextSource {
 	 * @param string|false $load Whether load the object's state from the database:
 	 *        - false: don't load (if the pageid is given, it will still be loaded)
 	 *        - 'fromdb': load from a replica DB
-	 *        - 'fromdbmaster': load from the master database
+	 *        - 'fromdbmaster': load from the primary database
 	 * @return WikiPage
 	 */
 	public function getTitleOrPageId( $params, $load = false ) {

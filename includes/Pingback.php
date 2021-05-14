@@ -219,7 +219,7 @@ class Pingback {
 	 * @return string 32-character hex string
 	 */
 	private function fetchOrInsertId() : string {
-		// We've already obtained a master connection for the lock, and plan to do a write.
+		// We've already obtained a primary connection for the lock, and plan to do a write.
 		// But, still prefer reading this immutable value from a replica to reduce load.
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 		$id = $dbr->selectField( 'updatelog', 'ul_value', [ 'ul_key' => 'PingBack' ], __METHOD__ );
@@ -292,9 +292,9 @@ class Pingback {
 		if ( !$config->get( 'Pingback' ) ) {
 			// Fault tolerance:
 			// Pingback is unusual. On a plain install of MediaWiki, it is likely the only
-			// feature making use of DeferredUpdates and DB_MASTER on most page views.
+			// feature making use of DeferredUpdates and DB_PRIMARY on most page views.
 			// In order for the wiki to remain available and readable even if DeferredUpdates
-			// or DB_MASTER have issues, allow this to be turned off completely. (T269516)
+			// or DB_PRIMARY have issues, allow this to be turned off completely. (T269516)
 			return;
 		}
 		DeferredUpdates::addCallableUpdate( static function () {
