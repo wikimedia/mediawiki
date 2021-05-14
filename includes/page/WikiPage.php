@@ -1436,12 +1436,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->mId = $newid;
 			$this->mTitle->resetArticleID( $newid );
 
-			$name = $this->mTitle->getPrefixedDBkey();
-			Assert::postcondition(
-				$newid > 0,
-				"Page ID for $name must be known after insert (T271644)"
-			);
-
 			return $newid;
 		} else {
 			return false; // nothing changed
