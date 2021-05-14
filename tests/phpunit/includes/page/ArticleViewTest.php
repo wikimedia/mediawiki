@@ -246,6 +246,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertStringNotContainsString( 'id="revision-info-current"', $output->getSubtitle() );
 		$this->assertStringNotContainsString( 'Test B', $this->getHtml( $output ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
+		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
 	}
 
 	public function testViewOfOldRevisionFromCache() {
@@ -287,6 +288,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, substr_count( $output->getSubtitle(), 'class="mw-revision warningbox"' ) );
 		$this->assertSame( $idA, $output->getRevisionId() );
 		$this->assertSame( $idA, $outputPageBeforeHTMLRevisionId );
+		$this->assertSame( $revisions[1]->getTimestamp(), $output->getRevisionTimestamp() );
 	}
 
 	public function testViewOfCurrentRevision() {
