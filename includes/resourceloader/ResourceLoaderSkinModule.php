@@ -246,9 +246,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		$listMode = false;
 		foreach ( $features as $key => $enabled ) {
-			// TODO: Restore feature key validation (T271441)
 			if ( is_string( $enabled ) ) {
 				$listMode = true;
+				$key = $enabled;
+			}
+			if ( !isset( self::FEATURE_FILES[$key] ) ) {
+				throw new InvalidArgumentException( "Feature '$key' is not recognised" );
 			}
 		}
 
