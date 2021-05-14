@@ -246,9 +246,12 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 
 		$listMode = false;
 		foreach ( $features as $key => $enabled ) {
-			// TODO: Restore feature key validation (T271441)
 			if ( is_string( $enabled ) ) {
 				$listMode = true;
+				$key = $enabled;
+			}
+			if ( !isset( self::FEATURE_FILES[$key] ) ) {
+				throw new InvalidArgumentException( "Feature '$key' is not recognised" );
 			}
 		}
 
@@ -314,8 +317,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	public function getStyleFiles( ResourceLoaderContext $context ) {
 		$styles = parent::getStyleFiles( $context );
 
+		// Bypass the current module paths so that these files are served from core,
+		// instead of the individual skin's module directory.
 		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
-			ResourceLoaderFileModule::extractBasePaths();
+			ResourceLoaderFileModule::extractBasePaths(
+				[],
+				null,
+				$this->getConfig()->get( 'ResourceBasePath' )
+			);
 
 		$featureFilePaths = [];
 

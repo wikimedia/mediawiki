@@ -5,7 +5,7 @@ use Wikimedia\TestingAccessWrapper;
 /**
  * @group ResourceLoader
  */
-class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
+class ResourceLoaderSkinModuleTest extends ResourceLoaderTestCase {
 	public static function provideApplyFeaturesCompatibility() {
 		return [
 			[
@@ -191,7 +191,7 @@ CSS
 			->willReturn( $logo );
 		$module->setConfig( new HashConfig( [
 			'UseNewMediaStructure' => true,
-		] ) );
+		] + self::getSettings() ) );
 
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
@@ -349,11 +349,12 @@ CSS
 	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
 	 * @covers ResourceLoaderSkinModule::getLogoData
 	 */
-	public function testPreloadLinkHeaders( $config, $result ) {
-		$this->setMwGlobals( $config );
+	public function testPreloadLinkHeaders( $config, $installPath, $result ) {
+		$this->setMwGlobals( [ 'IP' => $installPath ] );
 		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
 		$module = new ResourceLoaderSkinModule();
+		$module->setConfig( new HashConfig( $config + self::getSettings() ) );
 
 		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );
 	}
@@ -362,15 +363,16 @@ CSS
 		return [
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogo' => false,
-					'wgLogoHD' => false,
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logo' => false,
+					'LogoHD' => false,
+					'Logos' => [
 						'1x' => '/img/default.png',
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
 					],
 				],
+				'/dummy',
 				'Link: </img/default.png>;rel=preload;as=image;media=' .
 				'not all and (min-resolution: 1.5dppx),' .
 				'</img/one-point-five.png>;rel=preload;as=image;media=' .
@@ -379,53 +381,56 @@ CSS
 			],
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogo' => false,
-					'wgLogoHD' => false,
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logo' => false,
+					'LogoHD' => false,
+					'Logos' => [
 						'1x' => '/img/default.png',
 					],
 				],
+				'/dummy',
 				'Link: </img/default.png>;rel=preload;as=image'
 			],
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogo' => false,
-					'wgLogoHD' => false,
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logo' => false,
+					'LogoHD' => false,
+					'Logos' => [
 						'1x' => '/img/default.png',
 						'2x' => '/img/two-x.png',
 					],
 				],
+				'/dummy',
 				'Link: </img/default.png>;rel=preload;as=image;media=' .
 				'not all and (min-resolution: 2dppx),' .
 				'</img/two-x.png>;rel=preload;as=image;media=(min-resolution: 2dppx)'
 			],
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogo' => false,
-					'wgLogoHD' => false,
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logo' => false,
+					'LogoHD' => false,
+					'Logos' => [
 						'1x' => '/img/default.png',
 						'svg' => '/img/vector.svg',
 					],
 				],
+				'/dummy',
 				'Link: </img/vector.svg>;rel=preload;as=image'
 
 			],
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogo' => false,
-					'wgLogoHD' => false,
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logo' => false,
+					'LogoHD' => false,
+					'Logos' => [
 						'1x' => '/w/test.jpg',
 					],
-					'wgUploadPath' => '/w/images',
-					'IP' => dirname( dirname( __DIR__ ) ) . '/data/media',
+					'UploadPath' => '/w/images',
 				],
+				dirname( dirname( __DIR__ ) ) . '/data/media',
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
 			],
 		];
@@ -449,8 +454,10 @@ CSS
 	 */
 	public function testPreloadLogos() {
 		$module = new ResourceLoaderSkinModule();
+		$module->setConfig( self::getMinimalConfig() );
 		$context = $this->getMockBuilder( ResourceLoaderContext::class )
 			->disableOriginalConstructor()->getMock();
+
 		$preloadLinks = $module->getPreloadLinks( $context );
 		$this->assertNotSameSize( [], $preloadLinks );
 	}
@@ -483,20 +490,19 @@ CSS
 	}
 
 	public static function provideGetStyleFilesFeatureStylesOrder() {
-		list( $defaultLocalBasePath, $defaultRemoteBasePath ) =
-			ResourceLoaderFileModule::extractBasePaths();
+		global $IP;
 		$featureFiles = ( new ReflectionClass( ResourceLoaderSkinModule::class ) )
 			->getConstant( 'FEATURE_FILES' );
 
 		$normalizePath = new ResourceLoaderFilePath(
 			$featureFiles['normalize']['all'][0],
-			$defaultLocalBasePath,
-			$defaultRemoteBasePath
+			$IP,
+			'/w'
 		);
 		$elementsPath = new ResourceLoaderFilePath(
 			$featureFiles['elements']['screen'][0],
-			$defaultLocalBasePath,
-			$defaultRemoteBasePath
+			$IP,
+			'/w'
 		);
 
 		return [
@@ -559,6 +565,7 @@ CSS
 				'styles' => $styles,
 			]
 		);
+		$module->setConfig( self::getMinimalConfig() );
 
 		$expected = [
 			'all' => $expectedAllStyles,
@@ -571,5 +578,39 @@ CSS
 			array_values( $expected ),
 			array_values( $actual )
 		);
+	}
+
+	public static function provideInvalidFeatures() {
+		yield 'listed unknown' => [
+			[ 'logo', 'unknown' ],
+		];
+
+		yield 'enabled unknown' => [
+			[
+				'logo' => true,
+				'toc' => false,
+				'unknown' => true,
+			],
+		];
+
+		yield 'disbled unknown' => [
+			[
+				'logo' => true,
+				'toc' => false,
+				'unknown' => false,
+			],
+		];
+	}
+
+	/**
+	 * @covers ResourceLoaderSkinModule
+	 * @dataProvider provideInvalidFeatures
+	 */
+	public function testConstructInvalidFeatures( array $features ) {
+		$this->expectException( InvalidArgumentException::class );
+		$this->expectExceptionMessage( "Feature 'unknown' is not recognised" );
+		$module = new ResourceLoaderSkinModule( [
+			'features' => $features,
+		] );
 	}
 }
