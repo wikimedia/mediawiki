@@ -40,6 +40,11 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
 		$user = $this->getTestUser()->getUser();
 
+		// Make sure all revision have different timestamps all the time,
+		// to make timestamp asserts below deterministic.
+		$time = time() - 86400;
+		MWTimestamp::setFakeTime( $time );
+
 		foreach ( $revisionContents as $key => $cont ) {
 			if ( is_string( $cont ) ) {
 				$cont = new WikitextContent( $cont );
@@ -50,7 +55,9 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 			$rev = $u->saveRevision( CommentStoreComment::newUnsavedComment( 'Rev ' . $key ) );
 
 			$revisions[ $key ] = $rev;
+			MWTimestamp::setFakeTime( ++$time );
 		}
+		MWTimestamp::setFakeTime( false );
 
 		// Clear content model cache to support tests that mock the revision
 		$this->getServiceContainer()->getMainWANObjectCache()->clearProcessCache();
