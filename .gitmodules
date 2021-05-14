@@ -1458,3 +1458,8 @@
 	url = https://github.com/miraheze/RemovePII
 	branch = master
 	ignore = dirty
+[submodule "skins/Monaco"]
+	path = skins/Monaco
+	url = https://github.com/Universal-Omega/Monaco
+	branch = master
+	ignore = dirty
