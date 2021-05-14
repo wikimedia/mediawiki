@@ -9,6 +9,17 @@ class ResourceLoaderSkinModuleTest extends MediaWikiIntegrationTestCase {
 	public function provideGetBackwardsCompatibleFeatures() {
 		return [
 			[
+				[
+					'features' => [
+						'content-parser-output' => true,
+					],
+				],
+				[
+					'content-body' => true,
+				],
+				'The new `content-parser-output` module was renamed to `content-body`.'
+			],
+			[
 				[],
 				[
 					'logo' => true,

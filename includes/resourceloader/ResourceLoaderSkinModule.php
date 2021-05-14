@@ -73,7 +73,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * "content-links-external":
 	 *     The skin will apply optional styling rules to links to provide icons for different file types.
 	 *
-	 * "content-parser-output":
+	 * "content-body":
 	 *     Styles for the mw-parser-output class.
 	 *
 	 * "content-tables":
@@ -134,9 +134,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'content-links-external' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.externallinks.less' ]
 		],
-		'content-parser-output' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/content.parser-output.less' ],
-			'print' => [ 'resources/src/mediawiki.skinning/content.parser-output-print.less' ],
+		'content-body' => [
+			'screen' => [ 'resources/src/mediawiki.skinning/content.body.less' ],
+			'print' => [ 'resources/src/mediawiki.skinning/content.body-print.less' ],
 		],
 		'content-tables' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.tables.less' ],
@@ -186,7 +186,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		'content-links' => false,
 		'content-links-external' => false,
 		'content-media' => false,  // Will default to `true` when $wgUseNewMediaStructure is enabled everywhere
-		'content-parser-output' => true,
+		'content-body' => true,
 		'content-tables' => false,
 		'content-thumbnails' => false, // To be consolidated with content-media at a future date.
 		'elements' => false,
@@ -291,6 +291,15 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		// Some styles in content-links were previously in `elements`. Make sure clients getting elements get these.
 		if ( isset( $features[ 'element' ] ) && !isset( $features[ 'content-links' ] ) ) {
 			$features[ 'content-links' ] = $features[ 'element' ];
+		}
+
+		// `content-parser-output` was renamed to `content-body`.
+		// No need to go through deprecation process here since content-parser-output added and removed in 1.36.
+		// Remove this check when no matches for
+		// https://codesearch.wmcloud.org/search/?q=content-parser-output&i=nope&files=&excludeFiles=&repos=
+		if ( isset( $features[ 'content-parser-output' ] ) ) {
+			$features[ 'content-body' ] = $features[ 'content-parser-output' ];
+			unset( $features[ 'content-parser-output' ] );
 		}
 
 		return $features;
