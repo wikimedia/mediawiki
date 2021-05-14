@@ -245,6 +245,13 @@ interface ILBFactory {
 	 * @param string $fname
 	 * @throws DBTransactionError
 	 */
+	public function beginPrimaryChanges( $fname = __METHOD__ );
+
+	/**
+	 * @deprecated since 1.37 Use beginPrimaryChanges() instead.
+	 * @param string $fname
+	 * @throws DBTransactionError
+	 */
 	public function beginMasterChanges( $fname = __METHOD__ );
 
 	/**

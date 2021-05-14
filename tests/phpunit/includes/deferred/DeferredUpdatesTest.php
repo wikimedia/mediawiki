@@ -356,7 +356,7 @@ class DeferredUpdatesTest extends MediaWikiIntegrationTestCase {
 		};
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lbFactory->beginMasterChanges( __METHOD__ );
+		$lbFactory->beginPrimaryChanges( __METHOD__ );
 
 		DeferredUpdates::addCallableUpdate( $callback1 );
 		$this->assertEquals( [], $calls );

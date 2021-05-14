@@ -507,7 +507,7 @@ class DeferredUpdates {
 
 		// Flush any pending changes left over from an implicit transaction round
 		if ( $useExplicitTrxRound ) {
-			$lbFactory->beginMasterChanges( $fnameTrxOwner ); // new explicit round
+			$lbFactory->beginPrimaryChanges( $fnameTrxOwner ); // new explicit round
 		} else {
 			$lbFactory->commitMasterChanges( $fnameTrxOwner ); // new implicit round
 		}

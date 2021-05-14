@@ -194,7 +194,7 @@ class RefreshLinksJob extends Job {
 		}
 
 		// Parse during a fresh transaction round for better read consistency
-		$lbFactory->beginMasterChanges( __METHOD__ );
+		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$output = $this->getParserOutput( $renderer, $parserCache, $page, $stats );
 		$options = $this->getDataUpdateOptions();
 		$lbFactory->commitMasterChanges( __METHOD__ );
