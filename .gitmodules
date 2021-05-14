@@ -1468,3 +1468,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-UserPageEditProtection
 	branch = REL1_36
 	ignore = dirty
+[submodule "extensions/GlobalWatchlist"]
+	path = extensions/GlobalWatchlist
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalWatchlist
+	branch = REL1_36
+	ignore = dirty
