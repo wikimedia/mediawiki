@@ -234,7 +234,7 @@ interface ILBFactory {
 	 * Flush any master transaction snapshots and set DBO_TRX (if DBO_DEFAULT is set)
 	 *
 	 * The DBO_TRX setting will be reverted to the default in each of these methods:
-	 *   - commitMasterChanges()
+	 *   - commitPrimaryChanges()
 	 *   - rollbackMasterChanges()
 	 *   - commitAll()
 	 *
@@ -259,6 +259,15 @@ interface ILBFactory {
 	 *
 	 * This only applies to the instantiated tracked load balancer instances.
 	 *
+	 * @param string $fname Caller name
+	 * @param array $options Options map:
+	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
+	 * @throws DBTransactionError
+	 */
+	public function commitPrimaryChanges( $fname = __METHOD__, array $options = [] );
+
+	/**
+	 * @deprecated since 1.37; please use commitPrimaryChanges() instead.
 	 * @param string $fname Caller name
 	 * @param array $options Options map:
 	 *   - maxWriteDuration: abort if more than this much time was spent in write queries
@@ -367,12 +376,12 @@ interface ILBFactory {
 	public function getEmptyTransactionTicket( $fname );
 
 	/**
-	 * Call commitMasterChanges() and waitForReplication() if $ticket indicates it is safe
+	 * Call commitPrimaryChanges() and waitForReplication() if $ticket indicates it is safe
 	 *
 	 * The ticket is used to check that the caller owns the transaction round or can act on
 	 * behalf of the caller that owns the transaction round.
 	 *
-	 * @see commitMasterChanges()
+	 * @see commitPrimaryChanges()
 	 * @see waitForReplication()
 	 *
 	 * @param string $fname Caller name (e.g. __METHOD__)

@@ -678,7 +678,7 @@ class MediaWiki {
 		ignore_user_abort( true );
 
 		// Commit all RDBMs changes from the main transaction round
-		$lbFactory->commitMasterChanges(
+		$lbFactory->commitPrimaryChanges(
 			__METHOD__,
 			// Abort if any transaction was too big
 			[ 'maxWriteDuration' => $config->get( 'MaxUserDBWriteDuration' ) ]
@@ -1121,7 +1121,7 @@ class MediaWiki {
 
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		// Assure deferred updates are not in the main transaction
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitPrimaryChanges( __METHOD__ );
 
 		// Loosen DB query expectations since the HTTP client is unblocked
 		$trxProfiler = Profiler::instance()->getTransactionProfiler();
@@ -1139,7 +1139,7 @@ class MediaWiki {
 		wfLogProfilingData();
 
 		// Commit and close up!
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitPrimaryChanges( __METHOD__ );
 		$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
 
 		wfDebug( "Request ended normally" );

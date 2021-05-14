@@ -1701,7 +1701,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function commitAll( $fname = __METHOD__, $owner = null ) {
-		$this->commitMasterChanges( $fname, $owner );
+		$this->commitPrimaryChanges( $fname, $owner );
 		$this->flushMasterSnapshots( $fname, $owner );
 		$this->flushReplicaSnapshots( $fname, $owner );
 	}
@@ -1822,7 +1822,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->beginPrimaryChanges( $fname, $owner );
 	}
 
-	public function commitMasterChanges( $fname = __METHOD__, $owner = null ) {
+	public function commitPrimaryChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_APPROVED );
 		if ( $this->ownerId === null ) {
@@ -1860,6 +1860,11 @@ class LoadBalancer implements ILoadBalancer {
 			} );
 		}
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
+	}
+
+	public function commitMasterChanges( $fname = __METHOD__, $owner = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->commitPrimaryChanges( $fname, $owner );
 	}
 
 	public function runMasterTransactionIdleCallbacks( $fname = __METHOD__, $owner = null ) {

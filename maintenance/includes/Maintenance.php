@@ -1239,7 +1239,7 @@ abstract class Maintenance {
 			!MediaWikiServices::getInstance()->isServiceDisabled( 'DBLoadBalancerFactory' )
 		) {
 			$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-			$lbFactory->commitMasterChanges( get_class( $this ) );
+			$lbFactory->commitPrimaryChanges( get_class( $this ) );
 			// @TODO: make less assumptions about deferred updates being coupled to the DB
 			DeferredUpdates::doUpdates();
 		}
@@ -1247,7 +1247,7 @@ abstract class Maintenance {
 		wfLogProfilingData();
 
 		if ( $lbFactory ) {
-			$lbFactory->commitMasterChanges( 'doMaintenance' );
+			$lbFactory->commitPrimaryChanges( 'doMaintenance' );
 			$lbFactory->shutdown( $lbFactory::SHUTDOWN_NO_CHRONPROT );
 		}
 	}

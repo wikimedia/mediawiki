@@ -261,7 +261,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->onTransactionCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
 
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitPrimaryChanges( __METHOD__ );
 		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
 
 		$called = false;
@@ -272,7 +272,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$lbFactory->rollbackMasterChanges( __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is rolled back' );
 
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitPrimaryChanges( __METHOD__ );
 		$this->assertFalse( $called, 'Not called in next round commit' );
 
 		$db->setFlag( DBO_TRX );
@@ -346,14 +346,14 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
 		$this->assertTrue( $called, 'Called when idle if DBO_TRX is set' );
 		$called = false;
-		$lbFactory->commitMasterChanges();
+		$lbFactory->commitPrimaryChanges();
 		$this->assertFalse( $called );
 
 		$called = false;
 		$lbFactory->beginPrimaryChanges( __METHOD__ );
 		$db->onTransactionPreCommitOrIdle( $callback, __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is active' );
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitPrimaryChanges( __METHOD__ );
 		$this->assertTrue( $called, 'Called when lb-transaction is committed' );
 
 		$called = false;
@@ -364,7 +364,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 		$lbFactory->rollbackMasterChanges( __METHOD__ );
 		$this->assertFalse( $called, 'Not called when lb-transaction is rolled back' );
 
-		$lbFactory->commitMasterChanges( __METHOD__ );
+		$lbFactory->commitPrimaryChanges( __METHOD__ );
 		$this->assertFalse( $called, 'Not called in next round commit' );
 	}
 

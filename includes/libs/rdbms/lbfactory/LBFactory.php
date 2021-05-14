@@ -232,7 +232,7 @@ abstract class LBFactory implements ILBFactory {
 		}
 		$cpClientId = $chronProt->getClientId();
 
-		$this->commitMasterChanges( __METHOD__ ); // sanity
+		$this->commitPrimaryChanges( __METHOD__ ); // sanity
 
 		$this->replLogger->debug( 'LBFactory shutdown completed' );
 	}
@@ -263,7 +263,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	final public function commitAll( $fname = __METHOD__, array $options = [] ) {
-		$this->commitMasterChanges( $fname, $options );
+		$this->commitPrimaryChanges( $fname, $options );
 		$this->forEachLBCallMethod( 'flushMasterSnapshots', [ $fname, $this->id ] );
 		$this->forEachLBCallMethod( 'flushReplicaSnapshots', [ $fname, $this->id ] );
 	}
@@ -291,7 +291,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->beginPrimaryChanges( $fname );
 	}
 
-	final public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
+	final public function commitPrimaryChanges( $fname = __METHOD__, array $options = [] ) {
 		$this->assertTransactionRoundStage( self::ROUND_CURSORY );
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = ScopedCallback::newScopedIgnoreUserAbort();
@@ -316,7 +316,7 @@ abstract class LBFactory implements ILBFactory {
 		// Log the DBs and methods involved in multi-DB transactions
 		$this->logIfMultiDbTransaction();
 		// Actually perform the commit on all primary DB connections and revert DBO_TRX
-		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname, $this->id ] );
+		$this->forEachLBCallMethod( 'commitPrimaryChanges', [ $fname, $this->id ] );
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
 		$e = $this->executePostTransactionCallbacks();
@@ -325,6 +325,11 @@ abstract class LBFactory implements ILBFactory {
 		if ( $e instanceof Exception ) {
 			throw $e;
 		}
+	}
+
+	final public function commitMasterChanges( $fname = __METHOD__, array $options = [] ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->commitPrimaryChanges( $fname, $options );
 	}
 
 	final public function rollbackMasterChanges( $fname = __METHOD__ ) {
@@ -531,7 +536,7 @@ abstract class LBFactory implements ILBFactory {
 			$fnameEffective = $fname;
 		}
 
-		$this->commitMasterChanges( $fnameEffective );
+		$this->commitPrimaryChanges( $fnameEffective );
 		$waitSucceeded = $this->waitForReplication( $opts );
 		// If a nested caller committed on behalf of $fname, start another empty $fname
 		// transaction, leaving the caller with the same empty transaction state as before.
