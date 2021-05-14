@@ -311,6 +311,8 @@ because of Phabricator reports.
   post-initialization configuration.
 * The protected getConfig() method was added to the SessionProvider class.
   Use SessionProvider::getConfig to get a config.
+* The DBAccessBase class is deprecated. Classes that used to extend it
+  should get a load balancer (factory) injected in the constructor instead.
 * …
 
 == Compatibility ==

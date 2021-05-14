@@ -8,6 +8,10 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * Base class for objects that allow access to other wiki's databases using
  * the foreign database access mechanism implemented by LBFactoryMulti.
  *
+ * Avoid extending this class; instead, inject a load balancer (factory) and,
+ * if needed, DB domain into your class as constructor arguments,
+ * then call {@link ILoadBalancer::getConnectionRef()} directly.
+ *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation; either version 2 of the License, or
@@ -24,6 +28,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @since 1.21
+ * @deprecated since 1.37
  *
  * @file
  * @ingroup Database
