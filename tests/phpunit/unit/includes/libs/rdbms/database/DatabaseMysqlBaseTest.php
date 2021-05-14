@@ -402,7 +402,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 	 * @dataProvider provideGtidData
 	 * @covers \Wikimedia\Rdbms\MySQLPrimaryPos
 	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getReplicaPos
-	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getMasterPos
+	 * @covers \Wikimedia\Rdbms\DatabaseMysqlBase::getPrimaryPos
 	 */
 	public function testServerGtidTable( $gtable, $rBLtable, $mBLtable, $rGTIDs, $mGTIDs ) {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
@@ -439,9 +439,9 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 			$this->assertFalse( $db->getReplicaPos() );
 		}
 		if ( is_array( $mGTIDs ) ) {
-			$this->assertEquals( $mGTIDs, $db->getMasterPos()->getGTIDs() );
+			$this->assertEquals( $mGTIDs, $db->getPrimaryPos()->getGTIDs() );
 		} else {
-			$this->assertFalse( $db->getMasterPos() );
+			$this->assertFalse( $db->getPrimaryPos() );
 		}
 	}
 

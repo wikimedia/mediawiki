@@ -676,7 +676,7 @@ class JobRunner implements LoggerAwareInterface {
 		} );
 
 		// Wait for the replica DBs to catch up
-		$pos = $lb->getMasterPos();
+		$pos = $lb->getPrimaryPos();
 		if ( $pos ) {
 			$lb->waitForAll( $pos );
 		}
