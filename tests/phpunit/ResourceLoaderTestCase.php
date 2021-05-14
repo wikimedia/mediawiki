@@ -59,6 +59,12 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			// For ResourceLoader::inDebugMode since it doesn't have context
 			'ResourceLoaderDebug' => true,
 
+			// For ResourceLoaderSkinModule
+			'Logos' => false,
+			'Logo' => '/logo.png',
+			'ResourceBasePath' => '/w',
+			'UseNewMediaStructure' => false,
+
 			// For ResourceLoaderStartUpModule and ResourceLoader::__construct()
 			'ScriptPath' => '/w',
 			'Script' => '/w/index.php',
