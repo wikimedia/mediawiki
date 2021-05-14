@@ -595,7 +595,7 @@ abstract class LBFactory implements ILBFactory {
 	protected function shutdownChronologyProtector(
 		ChronologyProtector $cp, $workCallback, &$cpIndex = null
 	) {
-		// Remark all of the relevant DB master positions
+		// Remark all of the relevant DB primary positions
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $cp ) {
 			$cp->stageSessionReplicationPosition( $lb );
 		} );
@@ -607,8 +607,8 @@ abstract class LBFactory implements ILBFactory {
 		}
 		// If the positions failed to write to the stash, then wait on the local datacenter
 		// replica DBs to catch up before sending an HTTP response. As long as the request that
-		// caused such DB writes occurred in the master datacenter, and clients are temporarily
-		// pinned to the master datacenter after causing DB writes, then this should suffice.
+		// caused such DB writes occurred in the primary datacenter, and clients are temporarily
+		// pinned to the primary datacenter after causing DB writes, then this should suffice.
 		$this->forEachLB( static function ( ILoadBalancer $lb ) use ( $unsavedPositions ) {
 			$masterName = $lb->getServerName( $lb->getWriterIndex() );
 			if ( isset( $unsavedPositions[$masterName] ) ) {

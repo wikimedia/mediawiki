@@ -39,7 +39,7 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * should query the new value and backfill the cache using set().
  * The preferred way to do this logic is through getWithSetCallback().
  * When querying the store on cache miss, the closest DB replica
- * should be used. Try to avoid heavyweight DB master or quorum reads.
+ * should be used. Try to avoid heavyweight DB primary or quorum reads.
  *
  * To ensure consumers of the cache see new values in a timely manner,
  * you either need to follow either the validation strategy, or the

@@ -225,7 +225,7 @@ interface ILoadBalancer {
 	 * will return true. This is useful for discouraging clients from taking further actions
 	 * if session consistency could not be maintained with respect to their last actions.
 	 *
-	 * @param DBMasterPos|bool $pos Primary position or false
+	 * @param DBPrimaryPos|bool $pos Primary position or false
 	 */
 	public function waitFor( $pos );
 
@@ -237,7 +237,7 @@ interface ILoadBalancer {
 	 *
 	 * This can be used a faster proxy for waitForAll()
 	 *
-	 * @param DBMasterPos|bool $pos Primary position or false
+	 * @param DBPrimaryPos|bool $pos Primary position or false
 	 * @param int|null $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
@@ -249,7 +249,7 @@ interface ILoadBalancer {
 	 * This method is only intented for use a throttling mechanism for high-volume updates.
 	 * Unlike waitFor(), failure does not effect getLaggedReplicaMode()/laggedReplicaUsed().
 	 *
-	 * @param DBMasterPos|bool $pos Primary position or false
+	 * @param DBPrimaryPos|bool $pos Primary position or false
 	 * @param int|null $timeout Max seconds to wait; default is mWaitTimeout
 	 * @return bool Success (able to connect and no timeouts reached)
 	 */
@@ -515,7 +515,7 @@ interface ILoadBalancer {
 	/**
 	 * Get the current primary replication position
 	 *
-	 * @return DBMasterPos|bool Returns false if not applicable
+	 * @return DBPrimaryPos|bool Returns false if not applicable
 	 * @throws DBError
 	 */
 	public function getMasterPos();
@@ -532,7 +532,7 @@ interface ILoadBalancer {
 	 * This can be useful for implementing session consistency, where the session
 	 * will be resumed accross multiple HTTP requests or CLI script instances.
 	 *
-	 * @return DBMasterPos|bool Replication position or false if not applicable
+	 * @return DBPrimaryPos|bool Replication position or false if not applicable
 	 * @since 1.34
 	 */
 	public function getReplicaResumePos();
@@ -786,7 +786,7 @@ interface ILoadBalancer {
 	 * to get an accurate position.
 	 *
 	 * @param IDatabase $conn Replica DB
-	 * @param DBMasterPos|bool $pos Primary position; default: current position
+	 * @param DBPrimaryPos|bool $pos Primary position; default: current position
 	 * @param int $timeout Timeout in seconds [optional]
 	 * @return bool Success
 	 * @since 1.34

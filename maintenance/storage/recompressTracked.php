@@ -653,7 +653,7 @@ class RecompressTracked {
 	}
 
 	/**
-	 * Gets a DB master connection for the given external cluster name
+	 * Gets a DB primary connection for the given external cluster name
 	 * @param string $cluster
 	 * @return IMaintainableDatabase
 	 */

@@ -42,7 +42,7 @@ use Wikimedia\AtEase\AtEase;
  * @see Database
  */
 abstract class DatabaseMysqlBase extends Database {
-	/** @var MySQLMasterPos */
+	/** @var MySQLPrimaryPos */
 	protected $lastKnownReplicaPos;
 	/** @var string Method to detect replica DB lag */
 	protected $lagDetectionMethod;
@@ -672,9 +672,9 @@ abstract class DatabaseMysqlBase extends Database {
 		return $approxLag;
 	}
 
-	public function masterPosWait( DBMasterPos $pos, $timeout ) {
-		if ( !( $pos instanceof MySQLMasterPos ) ) {
-			throw new InvalidArgumentException( "Position not an instance of MySQLMasterPos" );
+	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
+		if ( !( $pos instanceof MySQLPrimaryPos ) ) {
+			throw new InvalidArgumentException( "Position not an instance of MySQLPrimaryPos" );
 		}
 
 		if ( $this->topologyRole === self::ROLE_STATIC_CLONE ) {
@@ -788,7 +788,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Get the position of the master from SHOW SLAVE STATUS
 	 *
-	 * @return MySQLMasterPos|bool
+	 * @return MySQLPrimaryPos|bool
 	 */
 	public function getReplicaPos() {
 		$now = microtime( true ); // as-of-time *before* fetching GTID variables
@@ -799,14 +799,14 @@ abstract class DatabaseMysqlBase extends Database {
 			// Use gtid_slave_pos for MariaDB and gtid_executed for MySQL
 			foreach ( [ 'gtid_slave_pos', 'gtid_executed' ] as $name ) {
 				if ( isset( $data[$name] ) && strlen( $data[$name] ) ) {
-					return new MySQLMasterPos( $data[$name], $now );
+					return new MySQLPrimaryPos( $data[$name], $now );
 				}
 			}
 		}
 
 		$data = $this->getServerRoleStatus( 'SLAVE', __METHOD__ );
 		if ( $data && strlen( $data['Relay_Master_Log_File'] ) ) {
-			return new MySQLMasterPos(
+			return new MySQLPrimaryPos(
 				"{$data['Relay_Master_Log_File']}/{$data['Exec_Master_Log_Pos']}",
 				$now
 			);
@@ -818,7 +818,7 @@ abstract class DatabaseMysqlBase extends Database {
 	/**
 	 * Get the position of the master from SHOW MASTER STATUS
 	 *
-	 * @return MySQLMasterPos|bool
+	 * @return MySQLPrimaryPos|bool
 	 */
 	public function getMasterPos() {
 		$now = microtime( true ); // as-of-time *before* fetching GTID variables
@@ -830,7 +830,7 @@ abstract class DatabaseMysqlBase extends Database {
 			// Use gtid_binlog_pos for MariaDB and gtid_executed for MySQL
 			foreach ( [ 'gtid_binlog_pos', 'gtid_executed' ] as $name ) {
 				if ( isset( $data[$name] ) && strlen( $data[$name] ) ) {
-					$pos = new MySQLMasterPos( $data[$name], $now );
+					$pos = new MySQLPrimaryPos( $data[$name], $now );
 					break;
 				}
 			}
@@ -847,7 +847,7 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( !$pos ) {
 			$data = $this->getServerRoleStatus( 'MASTER', __METHOD__ );
 			if ( $data && strlen( $data['File'] ) ) {
-				$pos = new MySQLMasterPos( "{$data['File']}/{$data['Position']}", $now );
+				$pos = new MySQLPrimaryPos( "{$data['File']}/{$data['Position']}", $now );
 			}
 		}
 

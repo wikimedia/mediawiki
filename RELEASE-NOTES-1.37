@@ -419,6 +419,9 @@ because of Phabricator reports.
 * The 'getMasterDB()' methods for LocalRepo (and so ForeignDBRepo), JobQueueDB,
   ForeignDBViaLBRepo, and DBFileJournal have been deprecated in favour of a new
   method, getPrimaryDB().
+* DBMasterPos and MySQLMasterPos have been respectively renamed to DBPrimaryPos
+  and MySQLPrimaryPos. The former names are left as deprecated, temporary class
+  aliases.
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.
