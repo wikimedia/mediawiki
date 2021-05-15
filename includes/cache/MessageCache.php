@@ -110,6 +110,8 @@ class MessageCache implements LoggerAwareInterface {
 	protected $srvCache;
 	/** @var Language */
 	protected $contLang;
+	/** @var string */
+	protected $contLangCode;
 	/** @var ILanguageConverter */
 	protected $contLangConverter;
 	/** @var LanguageFactory */
@@ -190,6 +192,7 @@ class MessageCache implements LoggerAwareInterface {
 		$this->srvCache = $serverCache;
 		$this->contLang = $contLang;
 		$this->contLangConverter = $contLangConverter;
+		$this->contLangCode = $contLang->getCode();
 		$this->logger = $logger;
 		$this->langFactory = $langFactory;
 		$this->localisationCache = $localisationCache;
@@ -484,7 +487,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return array Loaded messages for storing in caches
 	 */
 	protected function loadFromDB( $code, $mode = null ) {
-		global $wgMaxMsgCacheEntrySize, $wgLanguageCode, $wgAdaptiveMessageCache;
+		global $wgMaxMsgCacheEntrySize, $wgAdaptiveMessageCache;
 
 		// (T164666) The query here performs really poorly on WMF's
 		// contributions replicas. We don't have a way to say "any group except
@@ -495,11 +498,11 @@ class MessageCache implements LoggerAwareInterface {
 		$cache = [];
 
 		$mostused = []; // list of "<cased message key>/<code>"
-		if ( $wgAdaptiveMessageCache && $code !== $wgLanguageCode ) {
-			if ( !$this->cache->has( $wgLanguageCode ) ) {
-				$this->load( $wgLanguageCode );
+		if ( $wgAdaptiveMessageCache && $code !== $this->contLangCode ) {
+			if ( !$this->cache->has( $this->contLangCode ) ) {
+				$this->load( $this->contLangCode );
 			}
-			$mostused = array_keys( $this->cache->get( $wgLanguageCode ) );
+			$mostused = array_keys( $this->cache->get( $this->contLangCode ) );
 			foreach ( $mostused as $key => $value ) {
 				$mostused[$key] = "$value/$code";
 			}
@@ -512,7 +515,7 @@ class MessageCache implements LoggerAwareInterface {
 		];
 		if ( count( $mostused ) ) {
 			$conds['page_title'] = $mostused;
-		} elseif ( $code !== $wgLanguageCode ) {
+		} elseif ( $code !== $this->contLangCode ) {
 			$conds[] = 'page_title' . $dbr->buildLike( $dbr->anyString(), '/', $code );
 		} else {
 			# Effectively disallows use of '/' character in NS_MEDIAWIKI for uses
@@ -644,8 +647,6 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return bool
 	 */
 	private function isMainCacheable( $name, $code = null ) {
-		global $wgLanguageCode;
-
 		// Convert first letter to lowercase, and strip /code suffix
 		$name = $this->contLang->lcfirst( $name );
 		// Include common conversion table pages. This also avoids problems with
@@ -659,7 +660,7 @@ class MessageCache implements LoggerAwareInterface {
 			// Bulk load
 			if ( $this->systemMessageNames === null ) {
 				$this->systemMessageNames = array_flip(
-					$this->localisationCache->getSubitemList( $wgLanguageCode, 'messages' ) );
+					$this->localisationCache->getSubitemList( $this->contLangCode, 'messages' ) );
 			}
 			return isset( $this->systemMessageNames[$msg] );
 		} else {
@@ -675,14 +676,12 @@ class MessageCache implements LoggerAwareInterface {
 	 * @param string|false $text New contents of the page (false if deleted)
 	 */
 	public function replace( $title, $text ) {
-		global $wgLanguageCode;
-
 		if ( $this->mDisable ) {
 			return;
 		}
 
 		list( $msg, $code ) = $this->figureMessage( $title );
-		if ( strpos( $title, '/' ) !== false && $code === $wgLanguageCode ) {
+		if ( strpos( $title, '/' ) !== false && $code === $this->contLangCode ) {
 			// Content language overrides do not use the /<code> suffix
 			return;
 		}
@@ -1087,9 +1086,7 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return string The page name
 	 */
 	private function getMessagePageName( $langcode, $uckey ) {
-		global $wgLanguageCode;
-
-		if ( $langcode === $wgLanguageCode ) {
+		if ( $langcode === $this->contLangCode ) {
 			// Messages created in the content language will not have the /lang extension
 			return $uckey;
 		} else {
@@ -1369,16 +1366,14 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return array
 	 */
 	public function figureMessage( $key ) {
-		global $wgLanguageCode;
-
 		$pieces = explode( '/', $key );
 		if ( count( $pieces ) < 2 ) {
-			return [ $key, $wgLanguageCode ];
+			return [ $key, $this->contLangCode ];
 		}
 
 		$lang = array_pop( $pieces );
 		if ( !$this->languageNameUtils->getLanguageName( $lang, null, 'mw' ) ) {
-			return [ $key, $wgLanguageCode ];
+			return [ $key, $this->contLangCode ];
 		}
 
 		$message = implode( '/', $pieces );
