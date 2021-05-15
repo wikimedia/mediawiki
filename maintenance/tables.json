@@ -3336,7 +3336,7 @@
 				"options": { "notnull": true, "length": 255 }
 			},
 			{
-				"name": " page_restrictions",
+				"name": "page_restrictions",
 				"comment": "Comma-separated set of permission keys indicating who can move or edit the page.",
 				"type": "blob",
 				"options": { "notnull": false, "length": 255 }
