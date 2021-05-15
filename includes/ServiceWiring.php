@@ -1752,7 +1752,8 @@ return [
 			$services->getWikiPageFactory(),
 			$services->getUserFactory(),
 			$services->getActorMigration(),
-			$services->getActorNormalization()
+			$services->getActorNormalization(),
+			$services->getTitleFactory()
 		);
 	},
 
