@@ -105,7 +105,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 			)->toString();
 		}
 
-		$wgRequest = new FauxRequest( $params, true, $sessionObj );
+		$wgRequest = $this->buildFauxRequest( $params, $sessionObj );
 		RequestContext::getMain()->setRequest( $wgRequest );
 		RequestContext::getMain()->setUser( $contextUser );
 		MediaWiki\Auth\AuthManager::resetCache();
@@ -130,6 +130,16 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		}
 
 		return $results;
+	}
+
+	/**
+	 * @since 1.37
+	 * @param array $params
+	 * @param MediaWiki\Session\Session|array|null $session
+	 * @return FauxRequest
+	 */
+	protected function buildFauxRequest( $params, $session ) {
+		return new FauxRequest( $params, true, $session );
 	}
 
 	/**

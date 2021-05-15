@@ -90,6 +90,10 @@ class DerivativeRequest extends FauxRequest {
 		return $this->base->getProtocol();
 	}
 
+	public function getUpload( $key ) {
+		return $this->base->getUpload( $key );
+	}
+
 	public function getElapsedTime() {
 		return $this->base->getElapsedTime();
 	}
