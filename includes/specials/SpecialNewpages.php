@@ -349,7 +349,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			'tagFilter' => [
 				'type' => 'tagfilter',
 				'name' => 'tagfilter',
-				'label-raw' => $this->msg( 'tag-filter' )->parse(),
+				'label-message' => 'tag-filter',
 				'default' => $tagFilterVal,
 			],
 			'username' => [
