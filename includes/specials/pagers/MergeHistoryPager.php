@@ -20,6 +20,7 @@
  */
 
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -49,8 +50,8 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	/**
 	 * @param SpecialMergeHistory $form
 	 * @param array $conds
-	 * @param Title $source
-	 * @param Title $dest
+	 * @param PageIdentity $source
+	 * @param PageIdentity $dest
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param ILoadBalancer $loadBalancer
 	 * @param RevisionStore $revisionStore
@@ -58,21 +59,21 @@ class MergeHistoryPager extends ReverseChronologicalPager {
 	public function __construct(
 		SpecialMergeHistory $form,
 		$conds,
-		Title $source,
-		Title $dest,
+		PageIdentity $source,
+		PageIdentity $dest,
 		LinkBatchFactory $linkBatchFactory,
 		ILoadBalancer $loadBalancer,
 		RevisionStore $revisionStore
 	) {
 		$this->mForm = $form;
 		$this->mConds = $conds;
-		$this->articleID = $source->getArticleID();
+		$this->articleID = $source->getId();
 
 		$dbr = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		$maxtimestamp = $dbr->selectField(
 			'revision',
 			'MIN(rev_timestamp)',
-			[ 'rev_page' => $dest->getArticleID() ],
+			[ 'rev_page' => $dest->getId() ],
 			__METHOD__
 		);
 		$this->maxTimestamp = $maxtimestamp;

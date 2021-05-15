@@ -40,6 +40,7 @@ use NamespaceInfo;
 use ReadOnlyMode;
 use RepoGroup;
 use Title;
+use TitleFactory;
 use TitleFormatter;
 use WatchedItemStoreInterface;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -102,6 +103,9 @@ class PageCommandFactory implements
 	/** @var ActorNormalization */
 	private $actorNormalization;
 
+	/** @var TitleFactory */
+	private $titleFactory;
+
 	public function __construct(
 		Config $config,
 		ILoadBalancer $loadBalancer,
@@ -117,7 +121,8 @@ class PageCommandFactory implements
 		WikiPageFactory $wikiPageFactory,
 		UserFactory $userFactory,
 		ActorMigration $actorMigration,
-		ActorNormalization $actorNormalization
+		ActorNormalization $actorNormalization,
+		TitleFactory $titleFactory
 	) {
 		$this->config = $config;
 		$this->loadBalancer = $loadBalancer;
@@ -134,6 +139,7 @@ class PageCommandFactory implements
 		$this->userFactory = $userFactory;
 		$this->actorMigration = $actorMigration;
 		$this->actorNormalization = $actorNormalization;
+		$this->titleFactory = $titleFactory;
 	}
 
 	/**
@@ -159,14 +165,14 @@ class PageCommandFactory implements
 	}
 
 	/**
-	 * @param Title $source
-	 * @param Title $destination
+	 * @param PageIdentity $source
+	 * @param PageIdentity $destination
 	 * @param string|null $timestamp
 	 * @return MergeHistory
 	 */
 	public function newMergeHistory(
-		Title $source,
-		Title $destination,
+		PageIdentity $source,
+		PageIdentity $destination,
 		string $timestamp = null
 	) : MergeHistory {
 		if ( $timestamp === null ) {
@@ -183,7 +189,9 @@ class PageCommandFactory implements
 			$this->watchedItemStore,
 			$this->spamChecker,
 			$this->hookContainer,
-			$this->wikiPageFactory
+			$this->wikiPageFactory,
+			$this->titleFormatter,
+			$this->titleFactory
 		);
 	}
 
