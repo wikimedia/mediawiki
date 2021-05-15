@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 
 /**
  * Implements uploading from previously stored file.
@@ -42,7 +43,7 @@ class UploadFromStash extends UploadBase {
 	private $repo;
 
 	/**
-	 * @param User|bool $user Default: false Sometimes this won't exist, as when running from cron.
+	 * @param UserIdentity|bool $user Default: false Sometimes this won't exist, as when running from cron.
 	 * @param UploadStash|bool $stash Default: false
 	 * @param FileRepo|bool $repo Default: false
 	 */

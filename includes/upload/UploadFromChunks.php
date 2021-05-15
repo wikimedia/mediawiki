@@ -83,18 +83,6 @@ class UploadFromChunks extends UploadFromFile {
 	}
 
 	/**
-	 * @inheritDoc
-	 * @throws UploadChunkVerificationException
-	 * @deprecated since 1.28 Use tryStashFile() instead
-	 */
-	public function stashFile( User $user = null ) {
-		wfDeprecated( __METHOD__, '1.28' );
-
-		$this->verifyChunk();
-		return parent::stashFile( $user );
-	}
-
-	/**
 	 * Calls the parent doStashFile and updates the uploadsession table to handle "chunks"
 	 *
 	 * @param User|null $user

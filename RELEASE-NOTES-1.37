@@ -293,6 +293,7 @@ because of Phabricator reports.
   ::setHookContainer() were hard deprecated. Use ::init() to inject
   dependencies or override ::postInitSetup() to do any custom
   post-initialization configuration.
+* UploadBase::stashFile, deprecated since 1.28, was removed.
 * …
 
 === Other changes in 1.37 ===

@@ -894,18 +894,18 @@ abstract class UploadBase {
 
 	/**
 	 * @param string|false $hash sha1 hash of the file to check
-	 * @param User $user
+	 * @param Authority $performer
 	 *
 	 * @return string|null Name of the dupe or empty string if discovered (depending on visibility)
 	 *                     null if the check discovered no dupes.
 	 */
-	private function checkAgainstArchiveDupes( $hash, User $user ) {
+	private function checkAgainstArchiveDupes( $hash, Authority $performer ) {
 		if ( $hash === false ) {
 			return null;
 		}
 		$archivedFile = new ArchivedFile( null, 0, '', $hash );
 		if ( $archivedFile->getID() > 0 ) {
-			if ( $archivedFile->userCan( File::DELETED_FILE, $user ) ) {
+			if ( $archivedFile->userCan( File::DELETED_FILE, $performer ) ) {
 				return $archivedFile->getName();
 			} else {
 				return '';
@@ -1184,31 +1184,6 @@ abstract class UploadBase {
 			$error = [ $error ];
 		}
 		return $error;
-	}
-
-	/**
-	 * If the user does not supply all necessary information in the first upload
-	 * form submission (either by accident or by design) then we may want to
-	 * stash the file temporarily, get more information, and publish the file
-	 * later.
-	 *
-	 * This method will stash a file in a temporary directory for later
-	 * processing, and save the necessary descriptive info into the database.
-	 * This method returns the file object, which also has a 'fileKey' property
-	 * which can be passed through a form or API request to find this stashed
-	 * file again.
-	 *
-	 * @deprecated since 1.28 Use tryStashFile() instead
-	 * @param User|null $user
-	 * @return UploadStashFile Stashed file
-	 * @throws UploadStashBadPathException
-	 * @throws UploadStashFileException
-	 * @throws UploadStashNotLoggedInException
-	 */
-	public function stashFile( User $user = null ) {
-		wfDeprecated( __METHOD__, '1.28' );
-
-		return $this->doStashFile( $user );
 	}
 
 	/**
@@ -2271,11 +2246,11 @@ abstract class UploadBase {
 	 *
 	 * The value will be read from cache.
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $statusKey
 	 * @return Status[]|bool
 	 */
-	public static function getSessionStatus( User $user, $statusKey ) {
+	public static function getSessionStatus( UserIdentity $user, $statusKey ) {
 		$store = self::getUploadSessionStore();
 		$key = self::getUploadSessionKey( $store, $user, $statusKey );
 
@@ -2289,12 +2264,12 @@ abstract class UploadBase {
 	 *
 	 * Avoid triggering this method on HTTP GET/HEAD requests
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $statusKey
 	 * @param array|bool $value
 	 * @return void
 	 */
-	public static function setSessionStatus( User $user, $statusKey, $value ) {
+	public static function setSessionStatus( UserIdentity $user, $statusKey, $value ) {
 		$store = self::getUploadSessionStore();
 		$key = self::getUploadSessionKey( $store, $user, $statusKey );
 
