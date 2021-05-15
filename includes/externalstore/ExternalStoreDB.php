@@ -27,6 +27,7 @@ use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Rdbms\LBFactory;
 use Wikimedia\Rdbms\MaintainableDBConnRef;
+use Wikimedia\ScopedCallback;
 
 /**
  * DB accessible external objects.
@@ -317,8 +318,9 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			__METHOD__
 		);
 		if ( $ret === false ) {
-			$this->logger->warning( __METHOD__ . ": master fallback on $cacheID" );
 			// Try the master
+			$this->logger->warning( __METHOD__ . ": master fallback on $cacheID" );
+			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
 			$dbw = $this->getMaster( $cluster );
 			$ret = $dbw->selectField(
 				$this->getTable( $dbw, $cluster ),
@@ -326,6 +328,7 @@ class ExternalStoreDB extends ExternalStoreMedium {
 				[ 'blob_id' => $id ],
 				__METHOD__
 			);
+			ScopedCallback::consume( $scope );
 			if ( $ret === false ) {
 				$this->logger->warning( __METHOD__ . ": master failed to find $cacheID" );
 			}
@@ -362,17 +365,19 @@ class ExternalStoreDB extends ExternalStoreMedium {
 			$this->mergeBatchResult( $ret, $ids, $res );
 		}
 		if ( $ids ) {
+			// Try the primary
 			$this->logger->info(
 				__METHOD__ . ": primary fallback on '$cluster' for: " .
 				implode( ',', array_keys( $ids ) )
 			);
-			// Try the primary
+			$scope = $this->lbFactory->getTransactionProfiler()->silenceForScope();
 			$dbw = $this->getMaster( $cluster );
 			$res = $dbw->select(
 				$this->getTable( $dbr, $cluster ),
 				[ 'blob_id', 'blob_text' ],
 				[ 'blob_id' => array_keys( $ids ) ],
 				__METHOD__ );
+			ScopedCallback::consume( $scope );
 			if ( $res === false ) {
 				$this->logger->error( __METHOD__ . ": primary failed on '$cluster'" );
 			} else {
