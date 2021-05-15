@@ -49,45 +49,107 @@ class ApiPageSet extends ApiBase {
 	 */
 	private const DISABLE_GENERATORS = 1;
 
+	/** @var ApiBase used for getDb() call */
 	private $mDbSource;
+
+	/** @var array */
 	private $mParams;
+
+	/** @var bool */
 	private $mResolveRedirects;
+
+	/** @var bool */
 	private $mConvertTitles;
+
+	/** @var bool */
 	private $mAllowGenerator;
 
-	private $mAllPages = []; // [ns][dbkey] => page_id or negative when missing
+	/** @var int[][] [ns][dbkey] => page_id or negative when missing */
+	private $mAllPages = [];
+
+	/** @var Title[] */
 	private $mTitles = [];
-	private $mGoodAndMissingPages = []; // [ns][dbkey] => page_id or negative when missing
-	private $mGoodPages = []; // [ns][dbkey] => page_id
+
+	/** @var int[][] [ns][dbkey] => page_id or negative when missing */
+	private $mGoodAndMissingPages = [];
+
+	/** @var int[][] [ns][dbkey] => page_id */
+	private $mGoodPages = [];
+
+	/** @var Title[] */
 	private $mGoodTitles = [];
-	private $mMissingPages = []; // [ns][dbkey] => fake page_id
+
+	/** @var int[][] [ns][dbkey] => fake page_id */
+	private $mMissingPages = [];
+
+	/** @var Title[] */
 	private $mMissingTitles = [];
-	/** @var array [fake_page_id] => [ 'title' => $title, 'invalidreason' => $reason ] */
+
+	/** @var array[] [fake_page_id] => [ 'title' => $title, 'invalidreason' => $reason ] */
 	private $mInvalidTitles = [];
+
+	/** @var int[] */
 	private $mMissingPageIDs = [];
+
+	/** @var Title[] */
 	private $mRedirectTitles = [];
+
+	/** @var Title[] */
 	private $mSpecialTitles = [];
-	private $mAllSpecials = []; // separate from mAllPages to avoid breaking getAllTitlesByNamespace()
+
+	/** @var int[][] separate from mAllPages to avoid breaking getAllTitlesByNamespace() */
+	private $mAllSpecials = [];
+
+	/** @var string[] */
 	private $mNormalizedTitles = [];
+
+	/** @var string[] */
 	private $mInterwikiTitles = [];
+
 	/** @var Title[] */
 	private $mPendingRedirectIDs = [];
-	private $mPendingRedirectSpecialPages = []; // [dbkey] => [ Title $from, Title $to ]
+
+	/** @var Title[][] [dbkey] => [ Title $from, Title $to ] */
+	private $mPendingRedirectSpecialPages = [];
+
+	/** @var Title[] */
 	private $mResolvedRedirectTitles = [];
+
+	/** @var string[] */
 	private $mConvertedTitles = [];
+
+	/** @var int[] Array of revID (int) => pageID (int) */
 	private $mGoodRevIDs = [];
+
+	/** @var int[] Array of revID (int) => pageID (int) */
 	private $mLiveRevIDs = [];
+
+	/** @var int[] Array of revID (int) => pageID (int) */
 	private $mDeletedRevIDs = [];
+
+	/** @var int[] */
 	private $mMissingRevIDs = [];
-	private $mGeneratorData = []; // [ns][dbkey] => data array
+
+	/** @var array[][] [ns][dbkey] => data array */
+	private $mGeneratorData = [];
+
+	/** @var int */
 	private $mFakePageId = -1;
+
+	/** @var string */
 	private $mCacheMode = 'public';
+
 	/** @var array */
 	private $mRequestedPageFields = [];
+
 	/** @var int */
 	private $mDefaultNamespace;
+
 	/** @var callable|null */
 	private $mRedirectMergePolicy;
+
+	/** @var string[]|null see getGenerators() */
+	private static $generators = null;
 
 	/**
 	 * Add all items from $values into the result
@@ -1594,11 +1656,9 @@ class ApiPageSet extends ApiBase {
 		}
 	}
 
-	private static $generators = null;
-
 	/**
 	 * Get an array of all available generators
-	 * @return array
+	 * @return string[]
 	 */
 	private function getGenerators() {
 		if ( self::$generators === null ) {
