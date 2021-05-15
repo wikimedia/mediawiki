@@ -1038,8 +1038,7 @@ class WebRequest {
 	 * @return string|null String or null if no such file.
 	 */
 	public function getFileTempname( $key ) {
-		$file = new WebRequestUpload( $this, $key );
-		return $file->getTempName();
+		return $this->getUpload( $key )->getTempName();
 	}
 
 	/**
@@ -1049,8 +1048,7 @@ class WebRequest {
 	 * @return int
 	 */
 	public function getUploadError( $key ) {
-		$file = new WebRequestUpload( $this, $key );
-		return $file->getError();
+		return $this->getUpload( $key )->getError();
 	}
 
 	/**
@@ -1065,8 +1063,7 @@ class WebRequest {
 	 * @return string|null String or null if no such file.
 	 */
 	public function getFileName( $key ) {
-		$file = new WebRequestUpload( $this, $key );
-		return $file->getName();
+		return $this->getUpload( $key )->getName();
 	}
 
 	/**
