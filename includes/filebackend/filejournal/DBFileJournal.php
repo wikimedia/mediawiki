@@ -196,7 +196,7 @@ class DBFileJournal extends FileJournal {
 	 * @throws DBError
 	 */
 	protected function getMasterDB() {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->getPrimaryDB();
 	}
 }
