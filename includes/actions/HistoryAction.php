@@ -258,7 +258,7 @@ class HistoryAction extends FormlessAction {
 				'name' => 'date-range-to',
 			],
 			[
-				'label-raw' => $this->msg( 'tag-filter' )->parse(),
+				'label-message' => 'tag-filter',
 				'type' => 'tagfilter',
 				'id' => 'tagfilter',
 				'name' => 'tagfilter',
