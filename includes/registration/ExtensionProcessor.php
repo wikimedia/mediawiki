@@ -695,6 +695,10 @@ class ExtensionProcessor implements Processor {
 		$prefix = $info['config_prefix'] ?? 'wg';
 		if ( isset( $info['config'] ) ) {
 			foreach ( $info['config'] as $key => $data ) {
+				if ( !array_key_exists( 'value', $data ) ) {
+					throw new UnexpectedValueException( "Missing value for config $key" );
+				}
+
 				$value = $data['value'];
 				if ( isset( $data['path'] ) && $data['path'] ) {
 					$callback = static function ( $value ) use ( $dir ) {
