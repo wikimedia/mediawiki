@@ -509,6 +509,7 @@ because of Phabricator reports.
   Instead, their corresponding accessor methods should be used.
 * User::getOptionKinds() and ::resetOptions(), both deprecated since 1.35,
   now emit deprecation warnings.
+* wfGetLB(), deprecated since 1.27, now emits deprecation warnings.
 * …
 
 === Other changes in 1.37 ===

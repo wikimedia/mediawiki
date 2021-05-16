@@ -2304,19 +2304,30 @@ function wfWikiID() {
  * @return \Wikimedia\Rdbms\DBConnRef
  */
 function wfGetDB( $db, $groups = [], $wiki = false ) {
-	return wfGetLB( $wiki )->getMaintenanceConnectionRef( $db, $groups, $wiki );
+	if ( $wiki === false ) {
+		return MediaWikiServices::getInstance()
+			->getDBLoadBalancer()
+			->getMaintenanceConnectionRef( $db, $groups, $wiki );
+	} else {
+		return MediaWikiServices::getInstance()
+			->getDBLoadBalancerFactory()
+			->getMainLB( $wiki )
+			->getMaintenanceConnectionRef( $db, $groups, $wiki );
+	}
 }
 
 /**
  * Get a load balancer object.
  *
- * @deprecated since 1.27, use MediaWikiServices::getInstance()->getDBLoadBalancer()
- *              or MediaWikiServices::getInstance()->getDBLoadBalancerFactory() instead.
+ * @deprecated since 1.27, hard deprecated since 1.37
+ * Use MediaWikiServices::getInstance()->getDBLoadBalancer()
+ * or MediaWikiServices::getInstance()->getDBLoadBalancerFactory() instead.
  *
  * @param string|bool $wiki Wiki ID, or false for the current wiki
  * @return \Wikimedia\Rdbms\LoadBalancer
  */
 function wfGetLB( $wiki = false ) {
+	wfDeprecated( __FUNCTION__, '1.27' );
 	if ( $wiki === false ) {
 		return MediaWikiServices::getInstance()->getDBLoadBalancer();
 	} else {
