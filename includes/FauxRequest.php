@@ -195,8 +195,7 @@ class FauxRequest extends WebRequest {
 	 * @return FauxRequestUpload
 	 */
 	public function getUpload( $key ) {
-		// $_FILES is used for backward compatibility
-		return new FauxRequestUpload( $this->uploadData + $_FILES, $this, $key );
+		return new FauxRequestUpload( $this->uploadData, $this, $key );
 	}
 
 	/**
