@@ -25,6 +25,7 @@ use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
 use Psr\Log\NullLogger;
 use RuntimeException;
+use Wikimedia\ScopedCallback;
 
 /**
  * Detect high-contention DB queries via profiling calls.
@@ -114,6 +115,17 @@ class TransactionProfiler implements LoggerAwareInterface {
 		$this->silenced = $value;
 
 		return $old;
+	}
+
+	/**
+	 * Disable the logging of warnings until the returned object goes out of scope or is consumed.
+	 * @return ScopedCallback
+	 */
+	public function silenceForScope() {
+		$oldSilenced = $this->setSilenced( true );
+		return new ScopedCallback( function () use ( $oldSilenced ) {
+			$this->setSilenced( $oldSilenced );
+		} );
 	}
 
 	/**

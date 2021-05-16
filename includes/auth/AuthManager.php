@@ -44,6 +44,7 @@ use StatusValue;
 use User;
 use WebRequest;
 use Wikimedia\ObjectFactory;
+use Wikimedia\ScopedCallback;
 
 /**
  * This serves as the entry point to the authentication system.
@@ -1740,8 +1741,7 @@ class AuthManager implements LoggerAwareInterface {
 		] );
 
 		// Ignore warnings about master connections/writes...hard to avoid here
-		$trxProfiler = \Profiler::instance()->getTransactionProfiler();
-		$old = $trxProfiler->setSilenced( true );
+		$trxProfilerSilencedScope = \Profiler::instance()->getTransactionProfiler()->silenceForScope();
 		try {
 			$status = $user->addToDatabase();
 			if ( !$status->isOK() ) {
@@ -1767,7 +1767,6 @@ class AuthManager implements LoggerAwareInterface {
 				return $status;
 			}
 		} catch ( \Exception $ex ) {
-			$trxProfiler->setSilenced( $old );
 			$this->logger->error( __METHOD__ . ': {username} failed with exception {exception}', [
 				'username' => $username,
 				'exception' => $ex,
@@ -1805,7 +1804,7 @@ class AuthManager implements LoggerAwareInterface {
 			$logEntry->insert();
 		}
 
-		$trxProfiler->setSilenced( $old );
+		ScopedCallback::consume( $trxProfilerSilencedScope );
 
 		if ( $login ) {
 			$this->setSessionDataForUser( $user );

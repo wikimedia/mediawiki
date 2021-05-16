@@ -1219,11 +1219,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		if ( $this->serverInfos ) {
 			return null; // no TransactionProfiler injected anyway
 		}
-
-		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$oldSilenced = $trxProfiler->setSilenced( true );
-		return new ScopedCallback( static function () use ( $trxProfiler, $oldSilenced ) {
-			$trxProfiler->setSilenced( $oldSilenced );
-		} );
+		return Profiler::instance()->getTransactionProfiler()->silenceForScope();
 	}
 }

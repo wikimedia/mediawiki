@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\User\UserFactory;
+use Wikimedia\ScopedCallback;
 
 /**
  * Special page allows users to cancel an email confirmation using the e-mail
@@ -56,9 +57,9 @@ class SpecialEmailInvalidate extends UnlistedSpecialPage {
 		$this->checkReadOnly();
 		$this->checkPermissions();
 
-		$old = $trxProfiler->setSilenced( true );
+		$scope = $trxProfiler->silenceForScope();
 		$this->attemptInvalidate( $code );
-		$trxProfiler->setSilenced( $old );
+		ScopedCallback::consume( $scope );
 	}
 
 	/**
