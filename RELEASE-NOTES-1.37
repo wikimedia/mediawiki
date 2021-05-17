@@ -25,6 +25,9 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Changed configuration ====
+* $wgContentHandlerTextFallback - This setting, which defines how to
+  react if a plain text version of a non-text Content object is
+  requested using ContentHandler::getContentText(), is deprecated.
 * …
 
 ==== Removed configuration ====
@@ -296,6 +299,8 @@ because of Phabricator reports.
   ::setHookContainer() were hard deprecated. Use ::init() to inject
   dependencies or override ::postInitSetup() to do any custom
   post-initialization configuration.
+* ContentHandler::getContentText() and is now soft deprecated.
+  Use Content::getText() instead.
 * …
 
 === Other changes in 1.37 ===

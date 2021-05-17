@@ -2420,6 +2420,7 @@ $wgNamespaceContentModels = [];
  * * 'serialize': serialize to default format
  *
  * @since 1.21
+ * @deprecated since 1.37
  */
 $wgContentHandlerTextFallback = 'ignore';
 
