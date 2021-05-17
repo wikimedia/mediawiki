@@ -22,9 +22,6 @@ class PHPUnitMaintClass {
 	public function __construct() {
 		$this->addOption( 'help', 'Display this help message' );
 		$this->addOption( 'wiki', 'For specifying the wiki ID', true );
-		$this->addOption( 'dbuser', 'The DB user to use for this script', true );
-		$this->addOption( 'dbpass', 'The password to use for this script', true );
-		$this->addOption( 'dbgroupdefault', 'The default DB group to use.', true );
 		$this->addOption( 'use-filebackend', 'Use filebackend', true );
 		$this->addOption( 'use-bagostuff', 'Use bagostuff', true );
 		$this->addOption( 'use-jobqueue', 'Use jobqueue', true );
@@ -136,7 +133,6 @@ class PHPUnitMaintClass {
 		# skip on loading it again. The array_shift() will corrupt values if
 		# it's run again and again
 		if ( $this->mInputLoaded ) {
-			$this->loadSpecialVars();
 			return;
 		}
 
@@ -190,7 +186,6 @@ class PHPUnitMaintClass {
 		}
 
 		$this->mOptions = $options;
-		$this->loadSpecialVars();
 		$this->mInputLoaded = true;
 	}
 
@@ -228,20 +223,6 @@ class PHPUnitMaintClass {
 		}
 	}
 
-	private $mDbUser, $mDbPass;
-
-	/**
-	 * Handle the special variables that are global to all scripts
-	 */
-	private function loadSpecialVars() {
-		if ( $this->hasOption( 'dbuser' ) ) {
-			$this->mDbUser = $this->getOption( 'dbuser' );
-		}
-		if ( $this->hasOption( 'dbpass' ) ) {
-			$this->mDbPass = $this->getOption( 'dbpass' );
-		}
-	}
-
 	/**
 	 * Output a message and terminate the current script.
 	 *
@@ -255,7 +236,7 @@ class PHPUnitMaintClass {
 
 	public function finalSetup() {
 		global $wgCommandLineMode, $wgShowExceptionDetails, $wgShowHostnames;
-		global $wgDBadminuser, $wgDBadminpassword, $wgDBDefaultGroup;
+		global $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
 
 		# Turn off output buffering again, it might have been turned on in the settings files
@@ -264,22 +245,6 @@ class PHPUnitMaintClass {
 		}
 		# Same with these
 		$wgCommandLineMode = true;
-
-		# If these were passed, use them
-		if ( $this->mDbUser ) {
-			$wgDBadminuser = $this->mDbUser;
-		}
-		if ( $this->mDbPass ) {
-			$wgDBadminpassword = $this->mDbPass;
-		}
-		if ( $this->hasOption( 'dbgroupdefault' ) ) {
-			$wgDBDefaultGroup = $this->getOption( 'dbgroupdefault', null );
-
-			$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
-			if ( $service ) {
-				$service->destroy();
-			}
-		}
 
 		if ( isset( $wgDBadminuser ) ) {
 			$wgDBuser = $wgDBadminuser;
