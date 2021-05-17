@@ -50,6 +50,8 @@ abstract class DBAccessBase implements IDBAccessObject {
 	 * @param string|bool $dbDomain The target wiki's DB domain
 	 */
 	public function __construct( $dbDomain = false ) {
+		wfDeprecated( __CLASS__, '1.37' );
+
 		$this->dbDomain = $dbDomain;
 		$this->lb = MediaWikiServices::getInstance()->getDBLoadBalancerFactory()
 			->getMainLB( $dbDomain );
