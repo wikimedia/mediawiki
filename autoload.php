@@ -526,6 +526,7 @@ $wgAutoloadLocalClasses = [
 	'FixDefaultJsonContentPages' => __DIR__ . '/maintenance/fixDefaultJsonContentPages.php',
 	'FixDoubleRedirects' => __DIR__ . '/maintenance/fixDoubleRedirects.php',
 	'FixExtLinksProtocolRelative' => __DIR__ . '/maintenance/fixExtLinksProtocolRelative.php',
+	'FixMergeHistoryCorruption' => __DIR__ . '/maintenance/fixMergeHistoryCorruption.php',
 	'FixTimestamps' => __DIR__ . '/maintenance/fixTimestamps.php',
 	'FixUserRegistration' => __DIR__ . '/maintenance/fixUserRegistration.php',
 	'ForeignAPIFile' => __DIR__ . '/includes/filerepo/file/ForeignAPIFile.php',
