@@ -19,9 +19,6 @@ interface SecondaryDataUpdatesHook {
 	/**
 	 * Use this hook to modify the list of DataUpdates to perform when page content is modified.
 	 *
-	 * @deprecated since 1.32 Use RevisionDataUpdates or override
-	 *   ContentHandler::getSecondaryDataUpdates instead.
-	 *
 	 * @param Title $title Title of the page that is being edited
 	 * @param Content $oldContent Page content before the edit
 	 * @param bool $recursive Whether DataUpdates should trigger recursive updates
