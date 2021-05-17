@@ -81,6 +81,9 @@ abstract class ContentHandler {
 	 *
 	 * @since 1.21
 	 *
+	 * @deprecated since 1.37, use Content::getText() for TextContent instances
+	 * instead
+	 *
 	 * @param Content|null $content
 	 *
 	 * @throws MWException If the content is not an instance of TextContent and
