@@ -2727,17 +2727,3 @@ function wfArrayPlus2d( array $baseArray, array $newValues ) {
 
 	return $baseArray;
 }
-
-/**
- * Get system resource usage of current request context.
- * Invokes the getrusage(2) system call, requesting RUSAGE_SELF. Returns false
- * if getrusage is not available.
- *
- * @deprecated since 1.35
- * @since 1.24
- * @return array|bool Resource usage data or false if no data available.
- */
-function wfGetRusage() {
-	wfDeprecated( __FUNCTION__, '1.35' );
-	return getrusage( 0 /* RUSAGE_SELF */ );
-}
