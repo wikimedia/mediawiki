@@ -2197,7 +2197,7 @@ class LoadBalancer implements ILoadBalancer {
 			),
 			self::TTL_CACHE_READONLY,
 			function () use ( $domain ) {
-				$old = $this->trxProfiler->setSilenced( true );
+				$scope = $this->trxProfiler->silenceForScope();
 				try {
 					$index = $this->getWriterIndex();
 					// Reset the cache for isMasterConnectionReadOnly()
@@ -2209,7 +2209,7 @@ class LoadBalancer implements ILoadBalancer {
 				} catch ( DBError $e ) {
 					$readOnly = 0;
 				}
-				$this->trxProfiler->setSilenced( $old );
+				ScopedCallback::consume( $scope );
 
 				return $readOnly;
 			},

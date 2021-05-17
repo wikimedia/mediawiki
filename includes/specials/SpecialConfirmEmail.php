@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\User\UserFactory;
+use Wikimedia\ScopedCallback;
 
 /**
  * Special page allows users to request email confirmation message, and handles
@@ -80,9 +81,9 @@ class SpecialConfirmEmail extends UnlistedSpecialPage {
 				$this->getOutput()->addWikiMsg( 'confirmemail_noemail' );
 			}
 		} else {
-			$old = $trxProfiler->setSilenced( true );
+			$scope = $trxProfiler->silenceForScope();
 			$this->attemptConfirm( $code );
-			$trxProfiler->setSilenced( $old );
+			ScopedCallback::consume( $scope );
 		}
 	}
 

@@ -28,6 +28,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ChronologyProtector;
 use Wikimedia\Rdbms\DBConnectionError;
+use Wikimedia\ScopedCallback;
 
 /**
  * The MediaWiki class is the helper class for the index.php entry point.
@@ -1168,14 +1169,10 @@ class MediaWiki {
 	 * @param int $n Number of jobs to try to run
 	 */
 	private function triggerSyncJobs( $n ) {
-		$trxProfiler = Profiler::instance()->getTransactionProfiler();
-		$old = $trxProfiler->setSilenced( true );
-		try {
-			$runner = MediaWikiServices::getInstance()->getJobRunner();
-			$runner->run( [ 'maxJobs' => $n ] );
-		} finally {
-			$trxProfiler->setSilenced( $old );
-		}
+		$scope = Profiler::instance()->getTransactionProfiler()->silenceForScope();
+		$runner = MediaWikiServices::getInstance()->getJobRunner();
+		$runner->run( [ 'maxJobs' => $n ] );
+		ScopedCallback::consume( $scope );
 	}
 
 	/**
