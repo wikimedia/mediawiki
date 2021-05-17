@@ -417,7 +417,7 @@
 	"missing-article": "Der Text von „$1“ $2 wurde nicht in der Datenbank gefunden.\n\nDie Seite ist möglicherweise gelöscht oder verschoben worden.\n\nFalls dies nicht zutrifft, hast du eventuell einen Fehler in der Software gefunden. Bitte melde dies einem [[Special:ListUsers/sysop|Administrator]] unter Nennung der URL.",
 	"missingarticle-rev": "(Versionsnummer: $1)",
 	"missingarticle-diff": "(Unterschied zwischen Versionen: $1, $2)",
-	"readonly_lag": "Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver mit dem Hauptdatenbankserver (master) abgleichen können.",
+	"readonly_lag": "Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver mit dem Hauptdatenbankserver abgleichen können.",
 	"nonwrite-api-promise-error": "Der HTTP-Header „Promise-Non-Write-API-Action“ wurde gesendet, aber die Anfrage war keine API-Anfrage.",
 	"timeouterror": "Zeitüberschreitung des Servers",
 	"timeouterror-text": "Die maximale Anfragezeit von $1 {{PLURAL:$1|Sekunde|Sekunden}} wurde überschritten.",

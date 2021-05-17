@@ -926,7 +926,7 @@
 	"last": "前筆",
 	"page_first": "第一頁",
 	"page_last": "最後頁",
-	"histlegend": "比對選擇的版本差異：選擇要比對修訂版本的單選方塊並點選底部的按鈕進行比對。<br />\n符號說明：<strong>（{{int:cur}}）</strong> = 與最新的修訂版本比對，<strong>（{{int:last}}）</strong> = 與前一筆修訂版本比對，<strong>{{int:minoreditletter}}</strong> = 次要修訂。",
+	"histlegend": "比對選擇的版本差異：選擇要比對修訂版本的單選按鈕並點選底部的按鈕進行比對。<br />\n符號說明：<strong>（{{int:cur}}）</strong> = 與最新的修訂版本比對，<strong>（{{int:last}}）</strong> = 與前一筆修訂版本比對，<strong>{{int:minoreditletter}}</strong> = 次要修訂。",
 	"history-fieldset-title": "篩選修訂",
 	"history-show-deleted": "只顯示已刪除的修訂",
 	"histfirst": "最舊",
