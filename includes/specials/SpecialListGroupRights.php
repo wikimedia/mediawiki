@@ -108,7 +108,7 @@ class SpecialListGroupRights extends SpecialPage {
 			$groupnameLocalized = UserGroupMembership::getGroupName( $groupname );
 
 			$grouppageLocalizedTitle = UserGroupMembership::getGroupPage( $groupname )
-				?: Title::newFromText( $this->nsInfo->getCanonicalName( NS_PROJECT ) . ':' . $groupname );
+				?: Title::makeTitleSafe( NS_PROJECT, $groupname );
 
 			if ( $group == '*' || !$grouppageLocalizedTitle ) {
 				// Do not make a link for the generic * group or group with invalid group page

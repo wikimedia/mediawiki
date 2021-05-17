@@ -31,15 +31,8 @@ class SpecialStatistics extends SpecialPage {
 	private $edits, $good, $images, $total, $users,
 		$activeUsers = 0;
 
-	/** @var NamespaceInfo */
-	private $nsInfo;
-
-	/**
-	 * @param NamespaceInfo $nsInfo
-	 */
-	public function __construct( NamespaceInfo $nsInfo ) {
+	public function __construct() {
 		parent::__construct( 'Statistics' );
-		$this->nsInfo = $nsInfo;
 	}
 
 	public function execute( $par ) {
@@ -209,9 +202,7 @@ class SpecialStatistics extends SpecialPage {
 			}
 			$groupnameLocalized = UserGroupMembership::getGroupName( $group );
 			$linkTarget = UserGroupMembership::getGroupPage( $group )
-				?: Title::newFromText(
-					$this->nsInfo->getCanonicalName( NS_PROJECT ) . ':' . $group
-				);
+				?: Title::makeTitleSafe( NS_PROJECT, $group );
 
 			if ( $linkTarget ) {
 				$grouppage = $linkRenderer->makeLink(

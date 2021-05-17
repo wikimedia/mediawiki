@@ -23,10 +23,9 @@ class ApiQueryTest extends ApiTestCase {
 	}
 
 	public function testTitlesGetNormalized() {
-		global $wgMetaNamespace;
-
 		$this->setMwGlobals( [
 			'wgCapitalLinks' => true,
+			'wgMetaNamespace' => 'TestWiki',
 		] );
 
 		$data = $this->doApiRequest( [
@@ -36,14 +35,11 @@ class ApiQueryTest extends ApiTestCase {
 		$this->assertArrayHasKey( 'query', $data[0] );
 		$this->assertArrayHasKey( 'normalized', $data[0]['query'] );
 
-		// Forge a normalized title
-		$to = Title::newFromText( $wgMetaNamespace . ':ArticleA' );
-
 		$this->assertEquals(
 			[
 				'fromencoded' => false,
 				'from' => 'Project:articleA',
-				'to' => $to->getPrefixedText(),
+				'to' => 'TestWiki:ArticleA',
 			],
 			$data[0]['query']['normalized'][0]
 		);
