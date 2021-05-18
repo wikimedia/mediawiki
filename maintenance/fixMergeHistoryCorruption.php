@@ -50,15 +50,15 @@ class FixMergeHistoryCorruption extends Maintenance {
 		$dbw = $this->getDB( DB_PRIMARY );
 		$ns = (int)$this->getOption( 'ns' );
 
+		$res = $this->query( $dbw, $ns );
+		$count = $res->numRows();
+
+		if ( !$count ) {
+			$this->output( "Nothing was found, no page matches the criteria.\n" );
+			return;
+		}
+
 		if ( $this->hasOption( 'dry-run' ) ) {
-			$res = $this->query( $dbw, $ns );
-			$count = $res->numRows();
-
-			if ( !$count ) {
-				$this->output( "Nothing was found, no page matches the criteria.\n" );
-				return;
-			}
-
 			// Printing them all out since it's believed these pages are not large in number
 			$this->output( "Found $count page(s). To actually delete them pass the --delete option.\n" );
 			$this->output( "All these pages are in namespace '$ns'. \n" );
@@ -70,12 +70,6 @@ class FixMergeHistoryCorruption extends Maintenance {
 
 		} elseif ( $this->hasOption( 'delete' ) ) {
 			$deleted = 0;
-			$res = $this->query( $dbw, $ns );
-
-			if ( !$res->numRows() ) {
-				$this->output( "Nothing was found, no page matches the criteria.\n" );
-				return;
-			}
 
 			foreach ( $res as $row ) {
 				// Check if there are any revisions that have this $row->page_id as their
@@ -85,7 +79,7 @@ class FixMergeHistoryCorruption extends Maintenance {
 					'MAX(rev_id)',
 					[ 'rev_page' => $row->page_id ],
 					__METHOD__
- );
+				);
 
 				if ( !$revId ) {
 					$this->output( "Deleting $row->page_title with page_id: $row->page_id\n" );
