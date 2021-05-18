@@ -2340,11 +2340,12 @@ function wfFindFile( $title, $options = [] ) {
  * Get an object referring to a locally registered file.
  * Returns a valid placeholder object if the file does not exist.
  *
- * @deprecated since 1.34, use MediaWikiServices
+ * @deprecated since 1.34, hard deprecated since 1.37, use MediaWikiServices
  * @param Title|string $title
  * @return LocalFile|null A File, or null if passed an invalid Title
  */
 function wfLocalFile( $title ) {
+	wfDeprecated( __FUNCTION__, '1.34' );
 	return MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo()->newFile( $title );
 }
 

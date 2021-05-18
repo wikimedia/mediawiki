@@ -270,6 +270,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @covers ::wfLocalFile
 	 */
 	public function testWfLocalFile() {
+		$this->hideDeprecated( 'wfLocalFile' );
 		$file = wfLocalFile( "File:Some_file_that_probably_doesn't exist.png" );
 		$this->assertInstanceOf(
 			LocalFile::class,
