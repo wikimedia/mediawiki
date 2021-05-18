@@ -2,6 +2,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20">
 	<title>
 		check
-	</title><g fill="#14866d">
-	<path d="M7 14.17L2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>
-</g></svg>
+	</title>
+	<path fill="#14866d" d="M7 14.17 2.83 10l-1.41 1.41L7 17 19 5l-1.41-1.42z"/>
+</svg>
