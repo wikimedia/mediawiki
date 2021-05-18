@@ -9,7 +9,7 @@ use Title;
  * This is a hook handler interface, see docs/Hooks.md.
  * Use the hook name "BeforeParserFetchTemplateAndtitle" to register handlers implementing this interface.
  *
- * @deprecated since 1.36
+ * @deprecated since 1.36; use BeforeParserFetchTemplateRevisionRecordHook
  * @ingroup Hooks
  */
 interface BeforeParserFetchTemplateAndtitleHook {
@@ -17,7 +17,6 @@ interface BeforeParserFetchTemplateAndtitleHook {
 	 * This hook is called before a template is fetched by Parser.
 	 *
 	 * @since 1.35
-	 * @deprecated since 1.36; use BeforeParserFetchTemplateRevisionRecordHook
 	 *
 	 * @param Parser $parser
 	 * @param Title $title Title of the template
