@@ -82,6 +82,7 @@ because of Phabricator reports.
   parentheses in Names.php
 * (T279619) Added language support for Dagbani (dag).
 * (T282085) Added language support for Malay in Arabic (Jawi) script (ms-arab).
+* (T283053) Added language support for Ojibwe (ojb).
 
 === Breaking changes in 1.37 ===
 * The Revision class, hard deprecated in 1.35, is being removed. As
