@@ -340,6 +340,7 @@ class Names {
 		'ny' => 'Chi-Chewa', # Chichewa
 		'nys' => 'Nyunga', # Nyungar
 		'oc' => 'occitan', # Occitan
+		'ojb' => 'Ojibwemowin', # Ojibwe
 		'olo' => 'livvinkarjala', # Livvi-Karelian
 		'om' => 'Oromoo', # Oromo
 		'or' => 'ଓଡ଼ିଆ', # Oriya
