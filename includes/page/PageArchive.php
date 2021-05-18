@@ -541,45 +541,6 @@ class PageArchive {
 
 		$restoreAll = empty( $timestamps );
 
-		# Does this page already exist? We'll have to update it...
-		$article = $this->wikiPageFactory->newFromTitle( $this->title );
-		# Load latest data for the current page (T33179)
-		$article->loadPageData( 'fromdbmaster' );
-		$oldcountable = $article->isCountable();
-
-		if ( $article->exists() ) {
-			# Page already exists. Import the history, and if necessary
-			# we'll update the latest revision field in the record.
-			$makepage = false;
-
-			$page = $dbw->selectRow( 'page',
-				[ 'page_id', 'page_latest' ],
-				[ 'page_namespace' => $this->title->getNamespace(),
-					'page_title' => $this->title->getDBkey() ],
-				__METHOD__,
-				[ 'FOR UPDATE' ] // lock page for WikiPage::updateRevisionOn call
-			);
-
-			# Get the time span of this page
-			$previousTimestamp = $dbw->selectField( 'revision', 'rev_timestamp',
-				[ 'rev_id' => $page->page_latest ],
-				__METHOD__ );
-
-			if ( $previousTimestamp === false ) {
-				$this->logger->debug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
-
-				$status = Status::newGood( 0 );
-				$status->warning( 'undeleterevision-missing' );
-				$dbw->endAtomic( __METHOD__ );
-
-				return $status;
-			}
-		} else {
-			# Have to create a new article...
-			$makepage = true;
-			$previousTimestamp = 0;
-		}
-
 		$oldWhere = [
 			'ar_namespace' => $this->title->getNamespace(),
 			'ar_title' => $this->title->getDBkey(),
@@ -657,8 +618,21 @@ class PageArchive {
 
 		$result->seek( 0 ); // move back
 
+		$article = $this->wikiPageFactory->newFromTitle( $this->title );
+
 		$oldPageId = 0;
-		if ( $latestRestorableRow !== null ) {
+		/** @var RevisionRecord|null $revision */
+		$revision = null;
+		$created = true;
+		$oldcountable = false;
+		$updatedCurrentRevision = false;
+		$restored = 0; // number of revisions restored
+		$restoredPages = [];
+
+		// If there are no restorable revisions, we can skip most of the steps.
+		if ( $latestRestorableRow === null ) {
+			$failedRevisionCount = $rev_count;
+		} else {
 			$oldPageId = (int)$latestRestorableRow->ar_page_id; // pass this to ArticleUndelete hook
 
 			// Grab the content to check consistency with global state before restoring the page.
@@ -688,48 +662,56 @@ class PageArchive {
 					return $status;
 				}
 			}
-		}
 
-		$newid = false; // newly created page ID
-		$restored = 0; // number of revisions restored
-		/** @var RevisionRecord|null $revision */
-		$revision = null;
-		$restoredPages = [];
-		// If there are no restorable revisions, we can skip most of the steps.
-		if ( $latestRestorableRow === null ) {
-			$failedRevisionCount = $rev_count;
-		} else {
-			if ( $makepage ) {
+			$pageId = $article->insertOn( $dbw, $latestRestorableRow->ar_page_id );
+			if ( $pageId === false ) {
+				// The page ID is reserved; let's pick another
+				$pageId = $article->insertOn( $dbw );
+				if ( $pageId === false ) {
+					// The page title must be already taken (race condition)
+					$created = false;
+				}
+			}
+
+			# Does this page already exist? We'll have to update it...
+			if ( !$created ) {
+				# Load latest data for the current page (T33179)
+				$article->loadPageData( WikiPage::READ_EXCLUSIVE );
+				$pageId = $article->getId();
+				$oldcountable = $article->isCountable();
+
+				$previousTimestamp = false;
+				$latestRevId = $article->getLatest();
+				if ( $latestRevId ) {
+					$previousTimestamp = $revisionStore->getTimestampFromId(
+						$latestRevId,
+						RevisionStore::READ_LATEST
+					);
+				}
+				if ( $previousTimestamp === false ) {
+					$this->logger->debug( __METHOD__ . ": existing page refers to a page_latest that does not exist" );
+
+					$status = Status::newGood( 0 );
+					$status->warning( 'undeleterevision-missing' );
+					$dbw->cancelAtomic( __METHOD__ );
+
+					return $status;
+				}
+			} else {
+				$previousTimestamp = 0;
+			}
+
+			// Check if a deleted revision will become the current revision...
+			if ( $latestRestorableRow->ar_timestamp > $previousTimestamp ) {
 				// Check the state of the newest to-be version...
 				if ( !$unsuppress
 					&& ( $latestRestorableRow->ar_deleted & RevisionRecord::DELETED_TEXT )
 				) {
-					$dbw->endAtomic( __METHOD__ );
+					$dbw->cancelAtomic( __METHOD__ );
 
 					return Status::newFatal( "undeleterevdel" );
 				}
-				// Safe to insert now...
-				$newid = $article->insertOn( $dbw, $latestRestorableRow->ar_page_id );
-				if ( $newid === false ) {
-					// The old ID is reserved; let's pick another
-					$newid = $article->insertOn( $dbw );
-				}
-				$pageId = $newid;
-			} else {
-				// Check if a deleted revision will become the current revision...
-				if ( $latestRestorableRow->ar_timestamp > $previousTimestamp ) {
-					// Check the state of the newest to-be version...
-					if ( !$unsuppress
-						&& ( $latestRestorableRow->ar_deleted & RevisionRecord::DELETED_TEXT )
-					) {
-						$dbw->endAtomic( __METHOD__ );
-
-						return Status::newFatal( "undeleterevdel" );
-					}
-				}
-
-				$newid = false;
-				$pageId = $article->getId();
+				$updatedCurrentRevision = true;
 			}
 
 			foreach ( $result as $row ) {
@@ -781,27 +763,14 @@ class PageArchive {
 
 		// Was anything restored at all?
 		if ( $restored ) {
-			$created = (bool)$newid;
 
-			$latestRevId = $article->getLatest();
-			if ( $latestRevId ) {
-				// If not found (false), cast to 0 so that the page is updated
-				// Just to be on the safe side, even though it should always be found
-				$latestRevTimestamp = (int)$revisionStore->getTimestampFromId(
-					$latestRevId,
-					RevisionStore::READ_LATEST
-				);
-			} else {
-				$latestRevTimestamp = 0;
-			}
-
-			if ( $revision->getTimestamp() > $latestRevTimestamp ) {
+			if ( $updatedCurrentRevision ) {
 				// Attach the latest revision to the page...
 				// XXX: updateRevisionOn should probably move into a PageStore service.
 				$wasnew = $article->updateRevisionOn(
 					$dbw,
 					$revision,
-					$latestRevId
+					$created ? 0 : $article->getLatest()
 				);
 			} else {
 				$wasnew = false;
