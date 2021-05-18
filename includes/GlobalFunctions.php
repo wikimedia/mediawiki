@@ -2333,6 +2333,7 @@ function wfGetLB( $wiki = false ) {
  * @return File|bool File, or false if the file does not exist
  */
 function wfFindFile( $title, $options = [] ) {
+	wfDeprecated( __FUNCTION__, '1.34' );
 	return MediaWikiServices::getInstance()->getRepoGroup()->findFile( $title, $options );
 }
 
