@@ -448,7 +448,7 @@
 	"missing-article": "Il database non ha trovato il testo di una pagina che avrebbe dovuto trovare sotto il nome di \"$1\" $2.\n\nDi solito ciò si verifica quando viene richiamato, a partire dalla cronologia o dal confronto tra versioni, un collegamento a una pagina cancellata, a un confronto tra versioni inesistenti o a un confronto tra versioni ripulite dalla cronologia.\n\nIn caso contrario, si è probabilmente scoperto un errore del software MediaWiki.\nSi prega di segnalare l'accaduto a un [[Special:ListUsers/sysop|amministratore]] specificando la URL in questione.",
 	"missingarticle-rev": "(numero della versione: $1)",
 	"missingarticle-diff": "(Diff: $1, $2)",
-	"readonly_lag": "Il database è stato bloccato automaticamente per consentire ai server con i database slave di sincronizzarsi con il master",
+	"readonly_lag": "Il database è stato bloccato automaticamente per consentire ai server con i database slave di sincronizzarsi con il primario",
 	"nonwrite-api-promise-error": "È stata inviata l'intestazione HTTP 'Promise-Non-Write-API-Action', ma la richiesta non era una richiesta API.",
 	"internalerror": "Errore interno",
 	"internalerror_info": "Errore interno: $1",

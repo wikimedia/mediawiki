@@ -321,7 +321,7 @@
 	"missing-article": "Podatkovna baza ni našla besedila strani, ki ga bi morala najti, z imenom »$1« $2.\n\nTo je ponavadi posledica zastarelih sprememb ali pa je bila stran izbrisana.\n\nČe menite, da vzrok ni v tem, ste morda odkrili hrošč v programju.\nProsimo, da o tem obvestite [[Special:ListUsers/sysop|administratorja]] (ne pozabite navesti točen URL).",
 	"missingarticle-rev": "(redakcija št.: $1)",
 	"missingarticle-diff": "(Primerjanje: $1, $2)",
-	"readonly_lag": "Podatkovna zbirka se je samodejno zaklenila, dokler se podrejeni strežniki ne uskladijo z glavnim.",
+	"readonly_lag": "Podatkovna zbirka se je samodejno zaklenila, dokler se podrejeni strežniki ne uskladijo z glavnim",
 	"nonwrite-api-promise-error": "Prejeli smo glavo HTTP 'Promise-Non-Write-API-Action', vendar zahteva ni bila zahteva API.",
 	"timeouterror": "Na strežniku je potekel čas",
 	"timeouterror-text": "Največji čas zahteve, $1 {{PLURAL:$1|sekunda|sekundi|sekunde|sekund}}, je potekel.",

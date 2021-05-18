@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"-jem-",
+			"-sasha-",
 			"2axterix2",
 			"AHmed Khaled",
 			"AVIADOR",
@@ -2952,7 +2953,7 @@
 	"move-watch": "Vigilar páginas de origen y destino",
 	"movepagebtn": "Trasladar la página",
 	"pagemovedsub": "Traslado realizado con éxito",
-	"cannotmove": "La página podría no trasladarse por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:",
+	"cannotmove": "La página no pudo trasladarse por {{PLURAL:$1|el siguiente motivo|los siguientes motivos}}:",
 	"movepage-moved": "<strong>«$1» ha sido trasladada a «$2»</strong>",
 	"movepage-moved-redirect": "Se ha creado una redirección.",
 	"movepage-moved-noredirect": "Se ha suprimido la creación de la redirección.",

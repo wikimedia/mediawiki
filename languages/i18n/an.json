@@ -1367,6 +1367,7 @@
 	"listgrouprights-removegroup-self": "Eliminar {{PLURAL:$2|colla|collas}} d'a suya propia cuenta: $1",
 	"listgrouprights-addgroup-self-all": "Adhibir-se a todas as collas",
 	"listgrouprights-removegroup-self-all": "Salir de todas as collas",
+	"nonnumeric-formatnum": "Pachinas con argumentos formatnum no numericos",
 	"mailnologin": "No ninviar l'adreza",
 	"mailnologintext": "Ha d'haber [[Special:UserLogin|encetato una sesión]] y tener una adreza conforme de correu-e en as suyas [[Special:Preferences|preferencias]] ta ninviar un correu electronico ta atros usuarios.",
 	"emailuser": "Ninviar un correu electronico ta iste usuario",
