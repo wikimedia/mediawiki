@@ -2418,6 +2418,8 @@
 	"protectexpiry": "Kadaluwarsa:",
 	"protect_expiry_invalid": "Kala kadaluwarsa nénten patut.",
 	"protect_expiry_old": "Kala kadaluwarsa ring masa lintang.",
+	"protect-unchain-permissions": "Uripang opsi pasaiban lanturan",
+	"protect-text": "Iriki Ida prasida nyingakin miwah ngentosin tingkat pasaiban antuk kaca <strong>$1</strong>.",
 	"protect-default": "Lugra makasami sang anganggé",
 	"protect-fallback": "Wantah sang anganggé antuk lugra  \"$1\"",
 	"protect-level-autoconfirmed": "Wantah sang anganggé kakonpirmasi otomatis kalugra",

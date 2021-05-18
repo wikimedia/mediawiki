@@ -316,7 +316,7 @@
 	"missing-article": "Den Text „$1“ $2 gouf net an der Datebank fonnt.\n\nDat geschitt normalerweis duerch e Link op eng Säit déi geläscht oder geréckelt gouf.\n\nWann dat net de Fall ass, hutt Dir eventuell e Feeler an der Software fonnt.\nMellt dëst wgl. bei engem [[Special:ListUsers/sysop|Administrateur]] a vergiesst net d'URL unzeginn.",
 	"missingarticle-rev": "(Versiounsnummer: $1)",
 	"missingarticle-diff": "(Ënnerscheed tëscht Versiounen: $1, $2)",
-	"readonly_lag": "D'Datebank gouf automatesch gespaart fir datt d'Datebank-Duplikaten nees mam Haaptserver (master) synchron geschalt kënne ginn.",
+	"readonly_lag": "D'Datebank gouf automatesch gespaart fir datt d'Datebank-Duplikaten nees mam Haaptserver (primär) synchron geschalt kënne ginn.",
 	"internalerror": "Interne Feeler",
 	"internalerror_info": "Interne Feeler: $1",
 	"internalerror-fatal-exception": "Fatale Feeler vum Typ \"$1\"",

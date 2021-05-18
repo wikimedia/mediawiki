@@ -494,7 +494,7 @@
 	"missing-article": "La base de données n’a pas trouvé le texte d’une page qu’elle aurait dû trouver, intitulée « $1 » $2.\n\nGénéralement, cela survient en suivant un lien vers un diff périmé ou vers l’historique d’une page supprimée.\n\nSi ce n’est pas le cas, il peut s’agir d’une anomalie dans le programme.\nVeuillez la signaler à un [[Special:ListUsers/sysop|administrateur]] sans oublier de lui indiquer l’URL de la page.",
 	"missingarticle-rev": "(numéro de version : $1)",
 	"missingarticle-diff": "(diff : $1, $2)",
-	"readonly_lag": "La base de données a été automatiquement verrouillée pendant que les serveurs répliqués se réalignent sur le serveur principal",
+	"readonly_lag": "La base de données a été automatiquement verrouillée pendant que les serveurs répliqués se réalignent sur le serveur primaire",
 	"nonwrite-api-promise-error": "L’entête HTTP « <code>Promise-Non-Write-API-Action:</code> » a été envoyé mais ce n’était pas une requête de l’API.",
 	"timeouterror": "Dépassement de temps du serveur",
 	"timeouterror-text": "Le temps de requête maximal de $1 seconde{{PLURAL:$1||s}} a été dépassé.",

@@ -2643,6 +2643,8 @@
 	"ipb-partial": "부분",
 	"ipb-sitewide-help": "이 위키의 모든 문서에 적용되며 기타 모든 기여 활동을 제한합니다.",
 	"ipb-partial-help": "특정 문서 또는 이름공간입니다.",
+	"ipb-action-create": "새 문서 만들기",
+	"ipb-action-move": "문서 이름 바꾸기",
 	"ipb-action-upload": "파일 업로드",
 	"ipb-pages-label": "문서",
 	"ipb-namespaces-label": "이름공간",
