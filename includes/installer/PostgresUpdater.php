@@ -613,7 +613,6 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'changeNullableField', 'user', 'user_touched', 'NOT NULL', true ],
 
 			// 1.37
-			[ 'updateUserTableSequence' ],
 			[ 'changeNullableField', 'user', 'user_token', 'NOT NULL', true ],
 			[ 'changeNullableField', 'user', 'user_real_name', 'NOT NULL', true ],
 			[ 'changeNullableField', 'user', 'user_email', 'NOT NULL', true ],
@@ -1171,39 +1170,5 @@ END;
 		}
 
 		return false;
-	}
-
-	/**
-	 * Update `user` table sequence to convert `user_id` field from INT to SERIAL
-	 */
-	protected function updateUserTableSequence() {
-		if ( $this->updateRowExists( 'UserTableSequenceUpdate' ) ) {
-			return;
-		}
-
-		$this->output( "Updating user table sequence\n" );
-
-		$table = $this->db->addIdentifierQuotes( 'user' );
-		$seqName = 'user_user_id_seq';
-		$this->dropSequence( $table, $seqName );
-
-		$res = $this->db->query( "SELECT max(user_id) AS max_id FROM $table", __METHOD__ );
-		$max_id = intval( $this->db->fetchRow( $res )['max_id'] );
-
-		if ( $max_id > 0 ) {
-			$next_id = $max_id + 1;
-
-			$this->db->query(
-				"CREATE SEQUENCE $seqName START WITH $next_id OWNED BY $table.user_id;",
-				__METHOD__
-			);
-
-			$this->db->query(
-				"ALTER TABLE $table ALTER user_id SET DEFAULT nextval( '$seqName' )",
-				 __METHOD__
-			);
-		}
-
-		$this->insertUpdateRow( 'UserTableSequenceUpdate' );
 	}
 }
