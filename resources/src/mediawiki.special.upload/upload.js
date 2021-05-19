@@ -587,8 +587,7 @@
 				) || $uploadForm.data( 'origtext' ) !== $uploadForm.serialize();
 			},
 
-			message: mw.msg( 'editwarning-warning' ),
-			namespace: 'uploadwarning'
+			message: mw.msg( 'editwarning-warning' )
 		} );
 
 		$uploadForm.on( 'submit', function () {
