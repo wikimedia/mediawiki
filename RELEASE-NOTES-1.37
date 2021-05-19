@@ -225,6 +225,27 @@ because of Phabricator reports.
   - getEarliestRevTime, deprecated in 1.35
 * UploadBase::stashFile, deprecated since 1.28, was removed.
 * wfGetRusage(), deprecated since 1.35, has been removed.
+* The following CLI options were removed from tests/phpunit.php:
+  - use-filebackend
+  - use-jobqueue
+  - use-bagostuff
+  The following options (inherited from Maintenance) were also removed:
+  - conf
+  - dbuser
+  - dbpass
+  - dbdefaultgroup
+  - globals
+  - memory-limit
+  - profiler
+  - server
+  The following options were changed to environment variables:
+  - wiki => PHPUNIT_WIKI
+  - use-normal-tables => PHPUNIT_USE_NORMAL_TABLES
+  - reuse-db => PHPUNIT_REUSE_DB
+  - use-filebackend => PHPUNIT_USE_FILEBACKEND
+  - use-bagostuff => PHPUNIT_USE_BAGOSTUFF
+  - use-jobqueue => PHPUNIT_USE_JOBQUEUE
+  This is so that we can use the default PHPUnit entry point (T90875).
 * …
 
 === Deprecations in 1.37 ===
