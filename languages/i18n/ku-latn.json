@@ -1863,6 +1863,7 @@
 	"deletedwhileediting": "<strong>Hişyarî:</strong> Piştî te dest bi guhertinê kir ev rûpel hate jêbirin!",
 	"confirmrecreate": "Piştî te dest bi guhertinê kir, bikarhêner [[User:$1|$1]] ([[User talk:$1|gotûbêj]]) vê rûpelê jê bir. Sedema jêbirinê ev bû:\n: <em>$2</em>\nJi kerema xwe zanibe ku tu bi rastî dixwazî vê rûpelê dîsa çêkî.",
 	"recreate": "Dîsa çêke",
+	"confirm-purge-title": "Vê rûpelê rojane bike",
 	"confirm_purge_button": "Baş e",
 	"confirm-purge-top": "Pêşbîra (cache) vê rûpelê paqij bike?",
 	"confirm-watch-button": "Temam",
