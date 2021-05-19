@@ -233,15 +233,23 @@ class PageProps {
 			}
 
 			foreach ( $titles as $title ) {
-				$pageID = $title->getId();
-				if ( $pageID > 0 ) {
-					$result[] = $pageID;
+				// Until we only allow ProperPageIdentity, Title objects
+				// can deceive us with an unexpected Special page
+				if ( $title->canExist() ) {
+					$pageID = $title->getId();
+					if ( $pageID > 0 ) {
+						$result[] = $pageID;
+					}
 				}
 			}
 		} else {
-			$pageID = $titles->getId();
-			if ( $pageID > 0 ) {
-				$result[] = $pageID;
+			// Until we only allow ProperPageIdentity, Title objects
+			// can deceive us with an unexpected Special page
+			if ( $titles->canExist() ) {
+				$pageID = $titles->getId();
+				if ( $pageID > 0 ) {
+					$result[] = $pageID;
+				}
 			}
 		}
 		return $result;
