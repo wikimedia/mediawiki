@@ -232,18 +232,11 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @param string $name
 	 * @param int $queryFlags one of IDBAccessObject constants
 	 * @return UserIdentity|null
-	 * @throws InvalidArgumentException if non-normalizable actor name is passed.
 	 */
 	public function getUserIdentityByName( string $name, int $queryFlags = self::READ_NORMAL ): ?UserIdentity {
-		if ( $name === '' ) {
-			throw new InvalidArgumentException( 'Empty string passed as actor name' );
-		}
-
 		$normalizedName = $this->normalizeUserName( $name );
 		if ( $normalizedName === null ) {
-			throw new InvalidArgumentException(
-				"Unable to normalize the provided actor name {$name}"
-			);
+			return null;
 		}
 
 		return $this->cache->getActor( ActorCache::KEY_USER_NAME, $normalizedName ) ??
