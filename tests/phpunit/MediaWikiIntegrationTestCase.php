@@ -79,7 +79,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	protected $tablesUsed = []; // tables with data
 
 	private static $useTemporaryTables = true;
-	private static $reuseDB = false;
 	private static $dbSetup = false;
 	private static $oldTablePrefix = '';
 
@@ -419,7 +418,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// set up a DB connection for this test to use
 
 			$useTemporaryTables = !$this->getCliArg( 'use-normal-tables' );
-			self::$reuseDB = $this->getCliArg( 'reuse-db' );
 
 			$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 			$this->db = $lb->getConnection( DB_PRIMARY );
@@ -1456,9 +1454,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	/**
 	 * Setups a database with cloned tables using the given prefix.
 	 *
-	 * If reuseDB is true and certain conditions apply, it will just change the prefix.
-	 * Otherwise, it will clone the tables and change the prefix.
-	 *
 	 * @param IMaintainableDatabase $db Database to use
 	 * @param string|null $prefix Prefix to use for test tables. If not given, the prefix is determined
 	 *        automatically for $db.
@@ -1470,11 +1465,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	) {
 		if ( $prefix === null ) {
 			$prefix = self::getTestPrefixFor( $db );
-		}
-
-		if ( !self::$useTemporaryTables && self::$reuseDB ) {
-			$db->tablePrefix( $prefix );
-			return false;
 		}
 
 		if ( !isset( $db->_originalTablePrefix ) ) {
