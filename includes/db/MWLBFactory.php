@@ -398,7 +398,12 @@ abstract class MWLBFactory {
 			// Add a comment for easy SHOW PROCESSLIST interpretation
 			// TODO: For web requests this is still handled eagerly in MediaWiki.php.
 			if ( function_exists( 'posix_getpwuid' ) ) {
-				$agent = posix_getpwuid( posix_geteuid() )['name'];
+				$uid = posix_geteuid();
+
+				// NOTE: posix_getpwuid will return false if the current user has no name,
+				//       which is common when running inside a Docker container.
+				$pwuid = posix_getpwuid( $uid );
+				$agent = $pwuid['name'] ?? "uid:$uid";
 			} else {
 				$agent = 'sysadmin';
 			}

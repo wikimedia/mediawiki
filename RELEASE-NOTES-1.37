@@ -34,6 +34,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * $wgLegacyJavaScriptGlobals was deprecated in 1.36.
 
 === New user-facing features in 1.37 ===
+* (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
 * Media files uploaded server side using the importImages.php maintenance
   script now have the "mw-server-side-upload" change tag.
 * …
@@ -241,11 +242,14 @@ because of Phabricator reports.
   The following options were changed to environment variables:
   - wiki => PHPUNIT_WIKI
   - use-normal-tables => PHPUNIT_USE_NORMAL_TABLES
-  - reuse-db => PHPUNIT_REUSE_DB
   - use-filebackend => PHPUNIT_USE_FILEBACKEND
   - use-bagostuff => PHPUNIT_USE_BAGOSTUFF
   - use-jobqueue => PHPUNIT_USE_JOBQUEUE
   This is so that we can use the default PHPUnit entry point (T90875).
+* The PHPUNIT_REUSE_DB / --reuse-db option was removed from the phpunit.php
+  runner. It had been broken for at least three years already. The original use
+  case was speeding up tests on Oracle, but Oracle support was dropped several
+  releases ago.
 * …
 
 === Deprecations in 1.37 ===

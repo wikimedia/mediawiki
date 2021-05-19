@@ -714,6 +714,7 @@ $wgAutoloadLocalClasses = [
 	'JobQueueRedis' => __DIR__ . '/includes/jobqueue/JobQueueRedis.php',
 	'JobRunner' => __DIR__ . '/includes/jobqueue/JobRunner.php',
 	'JobSpecification' => __DIR__ . '/includes/jobqueue/JobSpecification.php',
+	'Jpeg2000Handler' => __DIR__ . '/includes/media/Jpeg2000Handler.php',
 	'JpegHandler' => __DIR__ . '/includes/media/JpegHandler.php',
 	'JpegMetadataExtractor' => __DIR__ . '/includes/media/JpegMetadataExtractor.php',
 	'JsonContent' => __DIR__ . '/includes/content/JsonContent.php',
