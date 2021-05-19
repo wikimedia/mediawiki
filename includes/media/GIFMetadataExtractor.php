@@ -90,13 +90,15 @@ class GIFMetadataExtractor {
 
 		// Read BPP
 		$buf = fread( $fh, 1 );
-		$bpp = self::decodeBPP( $buf );
+		list( $bpp, $have_map ) = self::decodeBPP( $buf );
 
 		// Skip over background and aspect ratio
 		fread( $fh, 2 );
 
 		// Skip over the GCT
-		self::readGCT( $fh, $bpp );
+		if ( $have_map ) {
+			self::readGCT( $fh, $bpp );
+		}
 
 		while ( !feof( $fh ) ) {
 			$buf = fread( $fh, 1 );
@@ -110,10 +112,12 @@ class GIFMetadataExtractor {
 
 				# # Read BPP
 				$buf = fread( $fh, 1 );
-				$bpp = self::decodeBPP( $buf );
+				list( $bpp, $have_map ) = self::decodeBPP( $buf );
 
 				# # Read GCT
-				self::readGCT( $fh, $bpp );
+				if ( $have_map ) {
+					self::readGCT( $fh, $bpp );
+				}
 				fread( $fh, 1 );
 				self::skipBlock( $fh );
 			} elseif ( $buf == self::$gifExtensionSep ) {
@@ -256,6 +260,9 @@ class GIFMetadataExtractor {
 			'duration' => $duration,
 			'xmp' => $xmp,
 			'comment' => $comment,
+			'width' => $width,
+			'height' => $height,
+			'bits' => $bpp,
 		];
 	}
 
@@ -265,18 +272,16 @@ class GIFMetadataExtractor {
 	 * @return void
 	 */
 	private static function readGCT( $fh, $bpp ) {
-		if ( $bpp > 0 ) {
-			$max = 2 ** $bpp;
-			for ( $i = 1; $i <= $max; ++$i ) {
-				fread( $fh, 3 );
-			}
+		$max = 2 ** $bpp;
+		for ( $i = 1; $i <= $max; ++$i ) {
+			fread( $fh, 3 );
 		}
 	}
 
 	/**
 	 * @param string $data
 	 * @throws Exception
-	 * @return int
+	 * @return array [ int bits per channel, bool have GCT ]
 	 */
 	private static function decodeBPP( $data ) {
 		if ( strlen( $data ) < 1 ) {
@@ -288,7 +293,7 @@ class GIFMetadataExtractor {
 
 		$have_map = $buf & 1;
 
-		return $have_map ? $bpp : 0;
+		return [ $bpp, $have_map ];
 	}
 
 	/**

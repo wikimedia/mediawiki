@@ -263,29 +263,21 @@ class DjVuHandler extends ImageHandler {
 	 * @return string XML metadata as a string.
 	 * @throws MWException
 	 */
-	private function getUnserializedMetadata( File $file ) {
-		$metadata = $file->getMetadata();
-		if ( substr( $metadata, 0, 3 ) === '<?xml' ) {
+	private function getXMLMetadata( File $file ) {
+		$unser = $file->getMetadataArray();
+		if ( isset( $unser['error'] ) ) {
+			return false;
+		} elseif ( isset( $unser['xml'] ) ) {
+			return $unser['xml'];
+		} elseif ( isset( $unser['_error'] )
+			&& is_string( $unser['_error'] )
+			&& substr( $unser['_error'], 0, 3 ) === '<?xml'
+		) {
 			// Old style. Not serialized but instead just a raw string of XML.
-			return $metadata;
+			return $unser['_error'];
+		} else {
+			return false;
 		}
-
-		Wikimedia\suppressWarnings();
-		$unser = unserialize( $metadata );
-		Wikimedia\restoreWarnings();
-		if ( is_array( $unser ) ) {
-			if ( isset( $unser['error'] ) ) {
-				return false;
-			} elseif ( isset( $unser['xml'] ) ) {
-				return $unser['xml'];
-			} else {
-				// Should never ever reach here.
-				throw new MWException( "Error unserializing DjVu metadata." );
-			}
-		}
-
-		// unserialize failed. Guess it wasn't really serialized after all,
-		return $metadata;
 	}
 
 	/**
@@ -302,14 +294,14 @@ class DjVuHandler extends ImageHandler {
 			return $image->getHandlerState( self::STATE_META_TREE );
 		}
 
-		$metadata = $this->getUnserializedMetadata( $image );
-		if ( !$this->isMetadataValid( $image, $metadata ) ) {
+		$xml = $this->getXMLMetadata( $image );
+		if ( !$xml ) {
 			wfDebug( "DjVu XML metadata is invalid or missing, should have been fixed in upgradeRow" );
 
 			return false;
 		}
 
-		$trees = $this->extractTreesFromMetadata( $metadata );
+		$trees = $this->extractTreesFromXML( $xml );
 		$image->setHandlerState( self::STATE_TEXT_TREE, $trees['TextTree'] );
 		$image->setHandlerState( self::STATE_META_TREE, $trees['MetaTree'] );
 
@@ -322,16 +314,16 @@ class DjVuHandler extends ImageHandler {
 
 	/**
 	 * Extracts metadata and text trees from metadata XML in string form
-	 * @param string $metadata XML metadata as a string
+	 * @param string $xml XML metadata as a string
 	 * @return array
 	 */
-	protected function extractTreesFromMetadata( $metadata ) {
+	protected function extractTreesFromXML( $xml ) {
 		Wikimedia\suppressWarnings();
 		try {
 			// Set to false rather than null to avoid further attempts
 			$metaTree = false;
 			$textTree = false;
-			$tree = new SimpleXMLElement( $metadata, LIBXML_PARSEHUGE );
+			$tree = new SimpleXMLElement( $xml, LIBXML_PARSEHUGE );
 			if ( $tree->getName() == 'mw-djvu' ) {
 				/** @var SimpleXMLElement $b */
 				foreach ( $tree->children() as $b ) {
@@ -354,11 +346,6 @@ class DjVuHandler extends ImageHandler {
 		return [ 'MetaTree' => $metaTree, 'TextTree' => $textTree ];
 	}
 
-	public function getImageSize( $image, $path ) {
-		$state = $image instanceof MediaHandlerState ? $image : new TrivialMediaHandlerState;
-		return $this->getDjVuImage( $state, $path )->getImageSize();
-	}
-
 	public function getThumbType( $ext, $mime, $params = null ) {
 		global $wgDjvuOutputExtension;
 		static $mime;
@@ -370,25 +357,26 @@ class DjVuHandler extends ImageHandler {
 		return [ $wgDjvuOutputExtension, $mime ];
 	}
 
-	public function getMetadata( $image, $path ) {
+	public function getSizeAndMetadata( $state, $path ) {
 		wfDebug( "Getting DjVu metadata for $path" );
 
-		$state = $image instanceof MediaHandlerState ? $image : new TrivialMediaHandlerState;
-		$xml = $this->getDjVuImage( $state, $path )->retrieveMetaData();
+		$djvuImage = $this->getDjVuImage( $state, $path );
+		$xml = $djvuImage->retrieveMetaData();
 		if ( $xml === false ) {
 			// Special value so that we don't repetitively try and decode a broken file.
-			return serialize( [ 'error' => 'Error extracting metadata' ] );
+			$metadata = [ 'error' => 'Error extracting metadata' ];
 		} else {
-			return serialize( [ 'xml' => $xml ] );
+			$metadata = [ 'xml' => $xml ];
 		}
+		return [ 'metadata' => $metadata ] + $djvuImage->getImageSize();
 	}
 
 	public function getMetadataType( $image ) {
 		return 'djvuxml';
 	}
 
-	public function isMetadataValid( $image, $metadata ) {
-		return !empty( $metadata ) && $metadata != serialize( [] );
+	public function isFileMetadataValid( $image ) {
+		return $image->getMetadataArray() ? self::METADATA_GOOD : self::METADATA_BAD;
 	}
 
 	public function pageCount( File $image ) {

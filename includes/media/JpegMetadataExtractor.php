@@ -157,6 +157,13 @@ class JpegMetadataExtractor {
 			} elseif ( $buffer === "\xD9" || $buffer === "\xDA" ) {
 				// EOI - end of image or SOS - start of scan. either way we're past any interesting segments
 				return $segments;
+			} elseif ( in_array( $buffer, [
+				"\xC0", "\xC1", "\xC2", "\xC3", "\xC5", "\xC6", "\xC7",
+				"\xC9", "\xCA", "\xCB", "\xCD", "\xCE", "\xCF" ] )
+			) {
+				// SOF0, SOF1, SOF2, ... (same list as getimagesize)
+				$temp = self::jpegExtractMarker( $fh );
+				$segments["SOF"] = wfUnpack( 'Cbits/nheight/nwidth/Ccomponents', $temp );
 			} else {
 				// segment we don't care about, so skip
 				$size = wfUnpack( "nint", fread( $fh, 2 ), 2 );

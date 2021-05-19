@@ -1421,7 +1421,7 @@ class ParserTestRunner {
 				'bits' => 8,
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/jpeg',
-				'metadata' => serialize( [] ),
+				'metadata' => [],
 				'sha1' => Wikimedia\base_convert( '1', 16, 36, 31 ),
 				'fileExists' => true
 			],
@@ -1442,7 +1442,7 @@ class ParserTestRunner {
 				'bits' => 8,
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/png',
-				'metadata' => serialize( [] ),
+				'metadata' => [],
 				'sha1' => Wikimedia\base_convert( '2', 16, 36, 31 ),
 				'fileExists' => true
 			],
@@ -1462,7 +1462,7 @@ class ParserTestRunner {
 				'bits'        => 0,
 				'media_type'  => MEDIATYPE_DRAWING,
 				'mime'        => 'image/svg+xml',
-				'metadata'    => serialize( [
+				'metadata'    => [
 					'version'        => SvgHandler::SVG_METADATA_VERSION,
 					'width'          => 240,
 					'height'         => 180,
@@ -1472,7 +1472,7 @@ class ParserTestRunner {
 						'en' => SVGReader::LANG_FULL_MATCH,
 						'ru' => SVGReader::LANG_FULL_MATCH,
 					],
-				] ),
+				],
 				'sha1'        => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists'  => true
 			],
@@ -1493,7 +1493,7 @@ class ParserTestRunner {
 				'bits' => 24,
 				'media_type' => MEDIATYPE_BITMAP,
 				'mime' => 'image/jpeg',
-				'metadata' => serialize( [] ),
+				'metadata' => [],
 				'sha1' => Wikimedia\base_convert( '3', 16, 36, 31 ),
 				'fileExists' => true
 			],
@@ -1513,7 +1513,7 @@ class ParserTestRunner {
 				'bits' => 0,
 				'media_type' => MEDIATYPE_VIDEO,
 				'mime' => 'application/ogg',
-				'metadata' => serialize( [] ),
+				'metadata' => [],
 				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			],
@@ -1533,7 +1533,7 @@ class ParserTestRunner {
 				'bits' => 0,
 				'media_type' => MEDIATYPE_AUDIO,
 				'mime' => 'application/ogg',
-				'metadata' => serialize( [] ),
+				'metadata' => [],
 				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			],
@@ -1554,7 +1554,7 @@ class ParserTestRunner {
 				'bits' => 0,
 				'media_type' => MEDIATYPE_OFFICE,
 				'mime' => 'image/vnd.djvu',
-				'metadata' => '<?xml version="1.0" ?>
+				'metadata' => [ 'xml' => '<?xml version="1.0" ?>
 <!DOCTYPE DjVuXML PUBLIC "-//W3C//DTD DjVuXML 1.1//EN" "pubtext/DjVuXML-s.dtd">
 <DjVuXML>
 <HEAD></HEAD>
@@ -1579,7 +1579,7 @@ class ParserTestRunner {
 <PARAM name="GAMMA" value="2.2" />
 </OBJECT>
 </BODY>
-</DjVuXML>',
+</DjVuXML>' ],
 				'sha1' => Wikimedia\base_convert( '', 16, 36, 31 ),
 				'fileExists' => true
 			],

@@ -28,7 +28,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use Wikimedia\AtEase\AtEase;
+use Wikimedia\Rdbms\Blob;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -60,7 +60,7 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup FileAbstraction
  */
 class LocalFile extends File {
-	private const VERSION = 12; // cache version
+	private const VERSION = 13; // cache version
 
 	private const CACHE_FIELD_MAX_LEN = 1000;
 
@@ -85,8 +85,8 @@ class LocalFile extends File {
 	/** @var int Size in bytes (loadFromXxx) */
 	protected $size;
 
-	/** @var string Handler-specific metadata */
-	protected $metadata;
+	/** @var array Unserialized metadata */
+	protected $metadataArray = [];
 
 	/** @var string SHA-1 base 36 content hash */
 	protected $sha1;
@@ -283,7 +283,6 @@ class LocalFile extends File {
 	public function __construct( $title, $repo ) {
 		parent::__construct( $title, $repo );
 
-		$this->metadata = '';
 		$this->historyLine = 0;
 		$this->historyRes = null;
 		$this->dataLoaded = false;
@@ -354,13 +353,14 @@ class LocalFile extends File {
 					$cacheVal['user'] = $this->user->getId();
 					$cacheVal['user_text'] = $this->user->getName();
 				}
+				$cacheVal['metadata'] = $this->metadataArray;
 
 				// Strip off excessive entries from the subset of fields that can become large.
 				// If the cache value gets to large it will not fit in memcached and nothing will
 				// get cached at all, causing master queries for any file access.
 				foreach ( $this->getLazyCacheFields( '' ) as $field ) {
 					if ( isset( $cacheVal[$field] )
-						&& strlen( $cacheVal[$field] ) > 100 * 1024
+						&& strlen( serialize( $cacheVal[$field] ) ) > 100 * 1024
 					) {
 						unset( $cacheVal[$field] ); // don't let the value get too big
 					}
@@ -408,9 +408,13 @@ class LocalFile extends File {
 
 	/**
 	 * Load metadata from the file itself
+	 *
+	 * @internal
+	 * @param string|null $path The path or virtual URL to load from, or null
+	 * to use the previously stored file.
 	 */
-	protected function loadFromFile() {
-		$props = $this->repo->getFileProps( $this->getVirtualUrl() );
+	public function loadFromFile( $path = null ) {
+		$props = $this->repo->getFileProps( $path ?? $this->getVirtualUrl() );
 		$this->setProps( $props );
 	}
 
@@ -433,7 +437,7 @@ class LocalFile extends File {
 		// and self::loadFromCache() for the caching, and self::setProps() for
 		// populating the object from an array of data.
 		return [ 'size', 'width', 'height', 'bits', 'media_type',
-			'major_mime', 'minor_mime', 'metadata', 'timestamp', 'sha1', 'description' ];
+			'major_mime', 'minor_mime', 'timestamp', 'sha1', 'description' ];
 	}
 
 	/**
@@ -502,14 +506,16 @@ class LocalFile extends File {
 		# Unconditionally set loaded=true, we don't want the accessors constantly rechecking
 		$this->extraDataLoaded = true;
 
-		$fieldMap = $this->loadExtraFieldsWithTimestamp( $this->repo->getReplicaDB(), $fname );
+		$db = $this->repo->getReplicaDB();
+		$fieldMap = $this->loadExtraFieldsWithTimestamp( $db, $fname );
 		if ( !$fieldMap ) {
-			$fieldMap = $this->loadExtraFieldsWithTimestamp( $this->repo->getMasterDB(), $fname );
+			$db = $this->repo->getMasterDB();
+			$fieldMap = $this->loadExtraFieldsWithTimestamp( $db, $fname );
 		}
 
 		if ( $fieldMap ) {
 			if ( isset( $fieldMap['metadata'] ) ) {
-				$this->metadata = $fieldMap['metadata'];
+				$this->loadMetadataFromDbFieldValue( $db, $fieldMap['metadata'] );
 			}
 		} else {
 			throw new MWException( "Could not find data for image '{$this->getName()}'." );
@@ -557,10 +563,6 @@ class LocalFile extends File {
 			}
 		}
 
-		if ( isset( $fieldMap['metadata'] ) ) {
-			$fieldMap['metadata'] = $this->repo->getReplicaDB()->decodeBlob( $fieldMap['metadata'] );
-		}
-
 		return $fieldMap;
 	}
 
@@ -604,7 +606,6 @@ class LocalFile extends File {
 	 */
 	public function loadFromRow( $row, $prefix = 'img_' ) {
 		$this->dataLoaded = true;
-		$this->extraDataLoaded = true;
 
 		$unprefixed = $this->unprefixRow( $row, $prefix );
 
@@ -622,7 +623,8 @@ class LocalFile extends File {
 
 		$this->timestamp = wfTimestamp( TS_MW, $unprefixed['timestamp'] );
 
-		$this->metadata = $this->repo->getReplicaDB()->decodeBlob( $unprefixed['metadata'] );
+		$this->loadMetadataFromDbFieldValue(
+			$this->repo->getReplicaDB(), $unprefixed['metadata'] );
 
 		if ( empty( $unprefixed['major_mime'] ) ) {
 			$this->major_mime = 'unknown';
@@ -710,7 +712,7 @@ class LocalFile extends File {
 		} else {
 			$handler = $this->getHandler();
 			if ( $handler ) {
-				$validity = $handler->isMetadataValid( $this, $this->getMetadata() );
+				$validity = $handler->isFileMetadataValid( $this );
 				if ( $validity === MediaHandler::METADATA_BAD ) {
 					$upgrade = true;
 				} elseif ( $validity === MediaHandler::METADATA_COMPATIBLE ) {
@@ -776,7 +778,7 @@ class LocalFile extends File {
 				'img_media_type' => $this->media_type,
 				'img_major_mime' => $major,
 				'img_minor_mime' => $minor,
-				'img_metadata' => $dbw->encodeBlob( $this->metadata ),
+				'img_metadata' => $this->getMetadataForDb( $dbw ),
 				'img_sha1' => $this->sha1,
 			],
 			[ 'img_name' => $this->getName() ],
@@ -825,6 +827,20 @@ class LocalFile extends File {
 		} elseif ( isset( $info['mime'] ) ) {
 			$this->mime = $info['mime'];
 			list( $this->major_mime, $this->minor_mime ) = self::splitMime( $this->mime );
+		}
+
+		if ( isset( $info['metadata'] ) ) {
+			if ( is_string( $info['metadata'] ) ) {
+				$this->loadMetadataFromString( $info['metadata'] );
+			} elseif ( is_array( $info['metadata'] ) ) {
+				$this->metadataArray = $info['metadata'];
+			} else {
+				$logger = LoggerFactory::getInstance( 'LocalFile' );
+				$logger->warning( __METHOD__ . ' given invalid metadata of type ' .
+					gettype( $info['metadata'] ) );
+				$this->metadataArray = [];
+			}
+			$this->extraDataLoaded = true;
 		}
 	}
 
@@ -942,13 +958,89 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Get handler-specific metadata
-	 * @stable to override
+	 * Get handler-specific metadata as a serialized string
+	 *
+	 * @deprecated since 1.37 use getMetadataArray() or getMetadataItem()
 	 * @return string
 	 */
 	public function getMetadata() {
-		$this->load( self::LOAD_ALL ); // large metadata is loaded in another step
-		return $this->metadata;
+		$data = $this->getMetadataArray();
+		if ( !$data ) {
+			return '';
+		} elseif ( array_keys( $data ) === [ '_error' ] ) {
+			// Legacy error encoding
+			return $data['_error'];
+		} else {
+			return serialize( $this->getMetadataArray() );
+		}
+	}
+
+	/**
+	 * Get unserialized handler-specific metadata
+	 *
+	 * @since 1.37
+	 * @return array
+	 */
+	public function getMetadataArray(): array {
+		$this->load( self::LOAD_ALL );
+		return $this->metadataArray;
+	}
+
+	/**
+	 * Serialize the metadata array for insertion into img_metadata, oi_metadata
+	 * or fa_metadata
+	 *
+	 * @internal
+	 * @param IDatabase $db
+	 * @return string|Blob
+	 */
+	public function getMetadataForDb( IDatabase $db ) {
+		$this->load( self::LOAD_ALL );
+		if ( !$this->metadataArray ) {
+			$s = '';
+		} else {
+			$s = serialize( $this->metadataArray );
+		}
+		if ( !is_string( $s ) ) {
+			throw new MWException( 'Could not serialize image metadata value for DB' );
+		}
+		return $db->encodeBlob( $s );
+	}
+
+	/**
+	 * Unserialize a metadata blob which came from the database and store it
+	 * in $this.
+	 *
+	 * @since 1.37
+	 * @param IDatabase $db
+	 * @param string|Blob $metadataBlob
+	 */
+	protected function loadMetadataFromDbFieldValue( IDatabase $db, $metadataBlob ) {
+		$this->loadMetadataFromString( $db->decodeBlob( $metadataBlob ) );
+	}
+
+	/**
+	 * Unserialize a metadata string which came from some non-DB source, or is
+	 * the return value of IDatabase::decodeBlob().
+	 *
+	 * @since 1.37
+	 * @param string $metadataString
+	 */
+	protected function loadMetadataFromString( $metadataString ) {
+		$this->extraDataLoaded = true;
+		$metadataString = (string)$metadataString;
+		if ( $metadataString === '' ) {
+			$this->metadataArray = [];
+		} else {
+			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+			$data = @unserialize( $metadataString );
+			if ( !is_array( $data ) ) {
+				// Legacy error encoding
+				$this->metadataArray = [ '_error' => $metadataString ];
+			} else {
+				$this->metadataArray = $data;
+			}
+		}
 	}
 
 	/**
@@ -1399,13 +1491,19 @@ class LocalFile extends File {
 		$options = [];
 		$handler = MediaHandler::getHandler( $props['mime'] );
 		if ( $handler ) {
-			$metadata = AtEase::quietCall( 'unserialize', $props['metadata'] );
-
-			if ( !is_array( $metadata ) ) {
-				$metadata = [];
+			if ( is_string( $props['metadata'] ) ) {
+				// This supports callers directly fabricating a metadata
+				// property using serialize(). Normally the metadata property
+				// comes from MWFileProps, in which case it won't be a string.
+				// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+				$metadata = @unserialize( $props['metadata'] );
+			} else {
+				$metadata = $props['metadata'];
 			}
 
-			$options['headers'] = $handler->getContentHeaders( $metadata );
+			if ( is_array( $metadata ) ) {
+				$options['headers'] = $handler->getContentHeaders( $metadata );
+			}
 		} else {
 			$options['headers'] = [];
 		}
@@ -1560,7 +1658,7 @@ class LocalFile extends File {
 				'img_major_mime' => $this->major_mime,
 				'img_minor_mime' => $this->minor_mime,
 				'img_timestamp' => $timestamp,
-				'img_metadata' => $dbw->encodeBlob( $this->metadata ),
+				'img_metadata' => $this->getMetadataForDb( $dbw ),
 				'img_sha1' => $this->sha1
 			] + $commentFields + $actorFields,
 			__METHOD__,
@@ -1635,7 +1733,7 @@ class LocalFile extends File {
 					'img_major_mime' => $this->major_mime,
 					'img_minor_mime' => $this->minor_mime,
 					'img_timestamp' => $timestamp,
-					'img_metadata' => $dbw->encodeBlob( $this->metadata ),
+					'img_metadata' => $this->getMetadataForDb( $dbw ),
 					'img_sha1' => $this->sha1
 				] + $commentFields + $actorFields,
 				[ 'img_name' => $this->getName() ],
@@ -2309,7 +2407,7 @@ class LocalFile extends File {
 
 		// If extra data (metadata) was not loaded then it must have been large
 		return $this->extraDataLoaded
-			&& strlen( serialize( $this->metadata ) ) <= self::CACHE_FIELD_MAX_LEN;
+			&& strlen( serialize( $this->metadataArray ) ) <= self::CACHE_FIELD_MAX_LEN;
 	}
 
 	/**

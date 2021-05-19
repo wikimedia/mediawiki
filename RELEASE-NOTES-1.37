@@ -265,6 +265,7 @@ because of Phabricator reports.
 * The PatchFileLocation trait was removed without deprecation.
 * ActorMigrationBase::getExistingActorId and ::getNewActorId, hard deprecated
   since 1.36, were removed.
+* The protected property LocalFile::$metadata was removed without deprecation.
 * …
 
 === Deprecations in 1.37 ===
@@ -388,6 +389,13 @@ because of Phabricator reports.
 * JobSpecification::getTitle was deprecated without providing a replacement.
   It wasn't used and job given the purpose of JobSpecification class it's
   not needed.
+* The protected method File::getImageSize() is deprecated.
+* MediaHandler::getImageSize(), ::getMetadata() and ::isMetadataValid were
+  deprecated and should no longer be overridden. Instead, subclasses should
+  override getSizeAndMetadata().
+* Deprecated File::getMetadata(). Instead use ::getMetadataArray(),
+  ::getMetadataItem() and ::getMetadataItems().
+
 * …
 
 === Other changes in 1.37 ===

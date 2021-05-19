@@ -63,21 +63,20 @@ class DjVuImage {
 	}
 
 	/**
-	 * Return data in the style of getimagesize()
-	 * @return array|false Array or false on failure
+	 * Return width and height
+	 * @return array An array with "width" and "height" keys, or an empty array on failure.
 	 */
 	public function getImageSize() {
 		$data = $this->getInfo();
 
 		if ( $data !== false ) {
-			$width = $data['width'];
-			$height = $data['height'];
-
-			return [ $width, $height, 'DjVu',
-				"width=\"$width\" height=\"$height\"" ];
+			return [
+				'width' => $data['width'],
+				'height' => $data['height']
+			];
+		} else {
+			return [];
 		}
-
-		return false;
 	}
 
 	// ---------

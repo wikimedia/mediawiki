@@ -14,7 +14,7 @@ class MWFilePropsTest extends MediaWikiIntegrationTestCase {
 				'minor_mime' => null,
 				'mime' => null,
 				'sha1' => '',
-				'metadata' => '',
+				'metadata' => [],
 				'width' => 0,
 				'height' => 0,
 				'bits' => 0,
@@ -28,7 +28,7 @@ class MWFilePropsTest extends MediaWikiIntegrationTestCase {
 				'minor_mime' => 'zip',
 				'mime' => 'application/zip',
 				'sha1' => 'rt7k3bexfau9i8jd5z41oxi3fqz7psb',
-				'metadata' => '',
+				'metadata' => [],
 				'width' => 0,
 				'height' => 0,
 				'bits' => 0,
@@ -45,10 +45,12 @@ class MWFilePropsTest extends MediaWikiIntegrationTestCase {
 				'minor_mime' => 'jpeg',
 				'mime' => 'image/jpeg',
 				'sha1' => 'iqrl77mbbzax718nogdpirzfodf7meh',
-				'metadata' => 'a:2:{s:15:"JPEGFileComment";' .
-					'a:1:{i:0;s:58:"File source: ' .
-					'http://127.0.0.1:8080/wiki/File:Srgb_copy.jpg";}' .
-					's:22:"MEDIAWIKI_EXIF_VERSION";i:2;}',
+				'metadata' => [
+					'JPEGFileComment' => [
+						'File source: http://127.0.0.1:8080/wiki/File:Srgb_copy.jpg',
+					],
+					'MEDIAWIKI_EXIF_VERSION' => 2,
+				],
 				'media_type' => 'BITMAP',
 			] ],
 		];
