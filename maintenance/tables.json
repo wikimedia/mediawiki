@@ -2419,6 +2419,16 @@
 				"name": "exptime",
 				"type": "mwtimestamp",
 				"options": { "notnull": true }
+			},
+			{
+				"name": "modtoken",
+				"type": "string",
+				"options": { "notnull": true, "length": 17, "default": "00000000000000000" }
+			},
+			{
+				"name": "flags",
+				"type": "integer",
+				"options": { "notnull": false, "unsigned": true, "default": null }
 			}
 		],
 		"indexes": [
