@@ -148,7 +148,7 @@ might find that the best place to post if you want to get developers' attention
 is the wikitech-l mailing list
 <https://lists.wikimedia.org/mailman/listinfo/wikitech-l>. Posts to wikitech-l
 will inevitably be read by multiple experienced MediaWiki developers. There's
-also an active IRC chat at <irc://irc.freenode.net/mediawiki>, where there are
+also an active IRC chat at <irc://irc.libera.chat/mediawiki>, where there are
 usually several developers at reasonably busy times of day.
 
 Our Git repositories are hosted at <https://gerrit.wikimedia.org>, see
