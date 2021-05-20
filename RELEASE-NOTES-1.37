@@ -327,6 +327,8 @@ because of Phabricator reports.
   post-initialization configuration.
 * ContentHandler::getContentText() and is now soft deprecated.
   Use Content::getText() instead.
+* wfLocalFile(), deprecated since 1.34, now emits deprecation warnings.
+* wfFindFile(), deprecated since 1.34, now emits deprecation warnings.
 * …
 
 === Other changes in 1.37 ===
