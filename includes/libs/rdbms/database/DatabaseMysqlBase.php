@@ -1128,18 +1128,34 @@ abstract class DatabaseMysqlBase extends Database {
 	 * @return string
 	 */
 	public function getSoftwareLink() {
-		// MariaDB includes its name in its version string; this is how MariaDB's version of
-		// the mysql command-line client identifies MariaDB servers (see mariadb_connection()
-		// in libmysql/libmysql.c).
-		$version = $this->getServerVersion();
-		if ( strpos( $version, 'MariaDB' ) !== false || strpos( $version, '-maria-' ) !== false ) {
+		list( $variant ) = $this->getMySqlServerVariant();
+		if ( $variant === 'MariaDB' ) {
 			return '[{{int:version-db-mariadb-url}} MariaDB]';
 		}
 
-		// Percona Server's version suffix is not very distinctive, and @@version_comment
-		// doesn't give the necessary info for source builds, so assume the server is MySQL.
-		// (Even Percona's version of mysql doesn't try to make the distinction.)
 		return '[{{int:version-db-mysql-url}} MySQL]';
+	}
+
+	/**
+	 * @return string[] (one of ("MariaDB","MySQL"), x.y.z version string)
+	 */
+	protected function getMySqlServerVariant() {
+		$version = $this->getServerVersion();
+
+		// MariaDB includes its name in its version string; this is how MariaDB's version of
+		// the mysql command-line client identifies MariaDB servers.
+		// https://dev.mysql.com/doc/refman/8.0/en/information-functions.html#function_version
+		// https://mariadb.com/kb/en/version/
+		$parts = explode( '-', $version, 2 );
+		$number = $parts[0];
+		$suffix = $parts[1] ?? '';
+		if ( strpos( $suffix, 'MariaDB' ) !== false || strpos( $suffix, '-maria-' ) !== false ) {
+			$vendor = 'MariaDB';
+		} else {
+			$vendor = 'MySQL';
+		}
+
+		return [ $vendor, $number ];
 	}
 
 	/**
