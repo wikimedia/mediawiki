@@ -1252,8 +1252,6 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	/**
-	 * See
-	 * https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_release-lock
 	 * @param string $lockName
 	 * @param string $method
 	 * @return bool
@@ -1262,6 +1260,7 @@ abstract class DatabaseMysqlBase extends Database {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 
 		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
+		// https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html#function_release-lock
 		$res = $this->query( "SELECT RELEASE_LOCK($encName) as lockstatus", $method, $flags );
 		$row = $this->fetchObject( $res );
 
@@ -1276,8 +1275,8 @@ abstract class DatabaseMysqlBase extends Database {
 	}
 
 	private function makeLockName( $lockName ) {
-		// https://dev.mysql.com/doc/refman/5.7/en/miscellaneous-functions.html#function_get-lock
-		// Newer version enforce a 64 char length limit.
+		// https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html#function_get-lock
+		// MySQL 5.7+ enforces a 64 char length limit.
 		return ( strlen( $lockName ) > 64 ) ? sha1( $lockName ) : $lockName;
 	}
 
