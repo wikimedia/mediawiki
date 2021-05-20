@@ -93,7 +93,7 @@ class SpecialRecentChangesLinked extends SpecialRecentChanges {
 		$title = Title::newFromText( $target );
 		if ( !$title || $title->isExternal() ) {
 			$outputPage->addHTML(
-				Html::errorBox( $this->msg( 'allpagesbadtitle' )->parse() )
+				Html::errorBox( $this->msg( 'allpagesbadtitle' )->parse(), '', 'mw-recentchangeslinked-errorbox' )
 			);
 			return false;
 		}
