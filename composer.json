@@ -16,7 +16,7 @@
 	"license": "GPL-2.0-or-later",
 	"support": {
 		"issues": "https://bugs.mediawiki.org/",
-		"irc": "irc://irc.freenode.net/mediawiki",
+		"irc": "irc://irc.libera.chat/mediawiki",
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"prefer-stable": true,
