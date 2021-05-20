@@ -78,7 +78,7 @@
 	"config-install-sysop": "Куьйгалхочун дӀайаздар кхоллар",
 	"config-install-subscribe-notpossible": "cURL дӀахӀоттийна йац йа тӀекхочехь йац опци <code>allow_url_fopen</code>.",
 	"config-install-mainpage-failed": "Коьрта агӀо йилла цатарло: $1",
-	"config-download-localsettings": "Чуяккха <code>LocalSettings.php</code>",
+	"config-download-localsettings": "Чуйаккха <code>LocalSettings.php</code>",
 	"config-help": "гӀо",
 	"config-nofile": "Файл \"$1\" каро цаелира. И дӀайаьккхина йарий?",
 	"mainpagetext": "'''Вики-белхан гӀирс «MediaWiki» кхочуш дика дӀахӀоттийна.'''",

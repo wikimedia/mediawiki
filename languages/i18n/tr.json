@@ -424,7 +424,7 @@
 	"missing-article": "Veritabanında bulunması istenen \"$1\" $2 adlı sayfaya ait metin bulunamadı.\n\nBu durum, genellikle silinmiş bir sayfanın geçmiş bir sürümüne yönlendirilmekten kaynaklanır.\n\nEğer neden bu değilse yazılımda bir hata ile karşılaşmış olabilirsiniz.\nLütfen URL'yi not ederek bunu bir [[Special:ListUsers/sysop|hizmetliye]] iletin.",
 	"missingarticle-rev": "(revizyon#: $1)",
 	"missingarticle-diff": "(Fark: $1, $2)",
-	"readonly_lag": "Çoğaltma veritabanı sunucuları ana verileri yakalarken veritabanı otomatik olarak kilitlendi",
+	"readonly_lag": "Çoğaltma veritabanı sunucuları birincil sunucuları yakalarken veritabanı otomatik olarak kilitlendi",
 	"nonwrite-api-promise-error": "'Promise-Non-Write-API-Action' HTTP başlığı gönderildi, ancak istek bir API isteği değildi.",
 	"timeouterror": "Sunucu zaman aşımına uğradı",
 	"timeouterror-text": "$1 saniye maksimum istek süresi aşıldı.",
