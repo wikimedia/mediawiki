@@ -259,16 +259,16 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * Helper for self::softwareInformation().
 	 * @since 1.34
-	 *
-	 * @return array
+	 * @return string[] Array of wikitext strings keyed by wikitext strings
 	 */
-	public static function getSoftwareInformation() {
+	private static function getSoftwareInformation() {
 		$dbr = wfGetDB( DB_REPLICA );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
-		// be loaded here, so feel free to use wfMessage in the 'name'. Raw HTML or
-		// wikimarkup can be used.
+		// be loaded here, so feel free to use wfMessage in the 'name'. Wikitext
+		// can be used both in the name and value.
 		$software = [
 			'[https://www.mediawiki.org/ MediaWiki]' => self::getVersionLinked(),
 			'[https://php.net/ PHP]' => PHP_VERSION . " (" . PHP_SAPI . ")",
@@ -288,9 +288,9 @@ class SpecialVersion extends SpecialPage {
 	/**
 	 * Returns HTML showing the third party software versions (apache, php, mysql).
 	 *
-	 * @return string HTML table
+	 * @return string Wikitext table
 	 */
-	public static function softwareInformation() {
+	private static function softwareInformation() {
 		$out = Xml::element(
 				'h2',
 				[ 'id' => 'mw-version-software' ],
