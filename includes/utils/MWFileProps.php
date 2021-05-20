@@ -98,7 +98,7 @@ class MWFileProps {
 	}
 
 	/**
-	 * Exract image size information
+	 * Extract image size information
 	 *
 	 * @param array $gis
 	 * @return array
