@@ -1815,6 +1815,7 @@
 	"backend-fail-backup": "Tiedostoa $1 ei voitu varmuuskopioida.",
 	"backend-fail-notexists": "Tiedostoa $1 ei ole olemassa.",
 	"backend-fail-hashes": "Tiedostojen tarkisteita ei voitu käyttää.",
+	"backend-fail-sizes": "Tiedostojen kokoja ei saatu vertailua varten.",
 	"backend-fail-notsame": "Epäidenttinen tiedosto on jo olemassa sijainnissa $1.",
 	"backend-fail-invalidpath": "$1 ei ole sallittu tallennuspolku.",
 	"backend-fail-delete": "Tiedostoa $1 ei voitu poistaa.",

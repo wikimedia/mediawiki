@@ -392,7 +392,7 @@
 	"missing-article": "Databasen hittade inte texten för en sida som den borde ha funnit, med namnet \"$1\" $2.\n\nDetta orsakas oftast av att man följer en inaktuell länk till en jämförelse mellan versioner (diff) eller en historiklänk för en sida som raderats.\n\nOm inte så är fallet, kan du ha hittat en bugg i mjukvaran.\nRapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör]], ange då URL:en (webbadressen).",
 	"missingarticle-rev": "(versionsnummer: $1)",
 	"missingarticle-diff": "(Skillnad: $1, $2)",
-	"readonly_lag": "Databasen har automatiskt skrivskyddats medan dubblettdatabasservrarna synkroniseras med huvudservern",
+	"readonly_lag": "Databasen har automatiskt skrivskyddats medan dubblettdatabasservrarna synkroniseras med den primära servern",
 	"nonwrite-api-promise-error": "HTTP-sidhuvudet \"Promise-Non-Write-API-Action\" skickades men förfrågan var inte en API-förfrågan.",
 	"timeouterror": "Servern orsakade timeout",
 	"timeouterror-text": "Den maximala tiden för begäran på $1 {{PLURAL:$1|sekund|sekunder}} överskreds.",
