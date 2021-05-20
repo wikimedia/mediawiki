@@ -82,7 +82,7 @@ notifications:
   email: false
   irc:
     channels:
-      - "chat.freenode.net#mediawiki-feed"
+      - "irc.libera.chat#mediawiki-feed"
     on_success: change
     on_failure: change
     skip_join: true
