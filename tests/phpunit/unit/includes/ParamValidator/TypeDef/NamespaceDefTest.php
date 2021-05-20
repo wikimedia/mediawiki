@@ -77,14 +77,14 @@ class NamespaceDefTest extends TypeDefTestCase {
 		return [
 			'Basic test' => [
 				[ ParamValidator::PARAM_TYPE => 'namespace' ],
-				self::getNamespaces(),
+				$this->getNamespaces(),
 			],
 			'Extra namespaces' => [
 				[
 					ParamValidator::PARAM_TYPE => 'namespace',
 					NamespaceDef::PARAM_EXTRA_NAMESPACES => [ NS_SPECIAL, NS_MEDIA ]
 				],
-				self::getNamespaces( [ NS_SPECIAL, NS_MEDIA ] ),
+				$this->getNamespaces( [ NS_SPECIAL, NS_MEDIA ] ),
 			],
 		];
 	}
