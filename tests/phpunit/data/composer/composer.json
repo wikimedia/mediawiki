@@ -12,7 +12,7 @@
 	"license": "GPL-2.0-only",
 	"support": {
 		"issues": "https://bugzilla.wikimedia.org/",
-		"irc": "irc://irc.freenode.net/mediawiki",
+		"irc": "irc://irc.libera.chat/mediawiki",
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"require": {

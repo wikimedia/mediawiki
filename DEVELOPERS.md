@@ -15,12 +15,12 @@ The default environment provides PHP, Apache, XDebug and a SQLite database.
 More documentation as well as example overrides and configuration recipes
 are available at [mediawiki.org/wiki/MediaWiki-Docker][mw-docker].
 
-Support is available on the [Freenode IRC network][freenode] at `#mediawiki`
+Support is available on the [Libera IRC network][Libera] at `#mediawiki`
 and on Wikimedia Phabricator at [#MediaWiki-Docker][mw-docker-phab].
 
 [mw-docker]: https://www.mediawiki.org/wiki/MediaWiki-Docker
 [mw-docker-phab]: https://phabricator.wikimedia.org/project/profile/3094/
-[freenode]: https://freenode.net/
+[Libera]: https://libera.chat/
 
 ### Requirements
 
