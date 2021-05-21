@@ -65,7 +65,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 * revision, slot, and content tables defined for MCR since MW1.31.
 	 *
 	 * @param \stdClass $row A query result row as a raw object.
-	 *        Use RevisionStore::getQueryInfo() to build a query that yields the required fields.
+	 *        Use getQueryInfo() to build a query that yields the required fields.
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
 	 * @param PageIdentity|null $page A page object for the revision.
 	 *
@@ -88,8 +88,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 * MCR migration note: this replaces Revision::newFromArchiveRow
 	 *
 	 * @param \stdClass $row A query result row as a raw object.
-	 *        Use RevisionStore::getArchiveQueryInfo() to build a query that yields the
-	 *        required fields.
+	 *        Use getArchiveQueryInfo() to build a query that yields the required fields.
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
 	 * @param PageIdentity|null $page
 	 * @param array $overrides An associative array that allows fields in $row to be overwritten.
