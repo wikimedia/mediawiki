@@ -4023,12 +4023,17 @@ class OutputPage extends ContextSource {
 	 */
 	public static function transformFilePath( $remotePathPrefix, $localPath, $file ) {
 		// This MUST match the equivalent logic in CSSMin::remapOne()
-		$hash = md5_file( "$localPath/$file" );
-		if ( $hash === false ) {
-			wfLogWarning( __METHOD__ . ": Failed to hash $localPath/$file" );
-			$hash = '';
+		$localFile = "$localPath/$file";
+		$url = "$remotePathPrefix/$file";
+		if ( file_exists( $localFile ) ) {
+			$hash = md5_file( $localFile );
+			if ( $hash === false ) {
+				wfLogWarning( __METHOD__ . ": Failed to hash $localFile" );
+				$hash = '';
+			}
+			$url .= '?' . substr( $hash, 0, 5 );
 		}
-		return "$remotePathPrefix/$file?" . substr( $hash, 0, 5 );
+		return $url;
 	}
 
 	/**

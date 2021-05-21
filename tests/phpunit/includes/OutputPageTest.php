@@ -2760,7 +2760,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			[
 				'baseDir' => $baseDir, 'basePath' => '/w',
 				'/w/unknown.png',
-				'/w/unknown.png?'
+				'/w/unknown.png'
 			],
 			// File not matching basePath. Ignored.
 			[
