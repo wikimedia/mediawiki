@@ -85,6 +85,7 @@ class ApiStashEdit extends ApiBase {
 
 		$page = $this->getTitleOrPageId( $params );
 		$title = $page->getTitle();
+		$this->getErrorFormatter()->setContextTitle( $title );
 
 		if ( !$this->contentHandlerFactory
 			->getContentHandler( $params['contentmodel'] )
