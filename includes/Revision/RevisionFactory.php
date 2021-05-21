@@ -105,6 +105,42 @@ interface RevisionFactory extends IDBAccessObject {
 		array $overrides = []
 	);
 
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new RevisionArchiveRecord object.
+	 *
+	 * @since 1.37, since 1.31 on RevisionStore
+	 *
+	 * @return array With three keys:
+	 *   - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *   - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *   - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 */
+	public function getArchiveQueryInfo();
+
+	/**
+	 * Return the tables, fields, and join conditions to be selected to create
+	 * a new RevisionStoreRecord object.
+	 *
+	 * MCR migration note: this replaces Revision::getQueryInfo
+	 *
+	 * If the format of fields returned changes in any way then the cache key provided by
+	 * self::getRevisionRowCacheKey should be updated.
+	 *
+	 * @since 1.37, since 1.31 on RevisionStore
+	 *
+	 * @param array $options Any combination of the following strings
+	 *  - 'page': Join with the page table, and select fields to identify the page
+	 *  - 'user': Join with the user table, and select the user name
+	 *
+	 * @return array[] With three keys:
+	 *  - tables: (string[]) to include in the `$table` to `IDatabase->select()`
+	 *  - fields: (string[]) to include in the `$vars` to `IDatabase->select()`
+	 *  - joins: (array) to include in the `$join_conds` to `IDatabase->select()`
+	 * @phan-return array{tables:string[],fields:string[],joins:array}
+	 */
+	public function getQueryInfo( $options = [] );
+
 }
 
 /**
