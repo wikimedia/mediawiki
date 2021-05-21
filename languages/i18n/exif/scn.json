@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Melos",
 			"Pippinu",
 			"Santu",
@@ -351,5 +352,9 @@
 	"exif-urgency-normal": "Nurmali ($1)",
 	"exif-urgency-low": "Vascia ($1)",
 	"exif-urgency-high": "Àuta ($1)",
-	"exif-urgency-other": "Difinuta di l'utenti ($1)"
+	"exif-urgency-other": "Difinuta di l'utenti ($1)",
+	"exif-usepanoramaviewer-true": "Sì",
+	"exif-usepanoramaviewer-false": "No",
+	"exif-exposurelockused-true": "Sì",
+	"exif-exposurelockused-false": "No"
 }

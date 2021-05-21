@@ -359,7 +359,7 @@
 	"missing-article": "Databasen fant ikke teksten på siden som den burde ha funnet, med navnet «$1» $2.\n\nDette skyldes vanligvis at man følger en utdatert diff- eller historikklenke til en side som har blitt slettet.\n\nOm dette ikke er tilfellet kan du ha oppdaget en feil i programvaren.\nVennligst rapporter dette til en [[Special:ListUsers/sysop|administrator]], oppgi da nettadressen.",
 	"missingarticle-rev": "(revisjon#: $1)",
 	"missingarticle-diff": "(diff: $1, $2)",
-	"readonly_lag": "Databasen er automatisk skrivebeskyttet så kopitjenerne kan ta igjen mestertjeneren",
+	"readonly_lag": "Databasen er automatisk skrivebeskyttet så kopitjenerne kan ta igjen hovedtjeneren",
 	"nonwrite-api-promise-error": "HTTP-headeren «Promise-Non-Write-API-Action» ble sendt, men forespørselen var ikke en API-forespørsel.",
 	"timeouterror": "Tjenerens tidsgrense ble overskredet",
 	"timeouterror-text": "Maksimal forespørselstid på $1 {{PLURAL:$1|sekund|sekunder}} ble overskredet.",
