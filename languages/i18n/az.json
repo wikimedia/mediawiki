@@ -1912,7 +1912,7 @@
 	"undeleteextrahelp": "Səhifənin tarixçəsinin tam bərpası üçün bütün qeydləri boş saxlayın və '''\"{{int:undeletebtn}}\"''' düyməsini basın.\nQismən bərpa etmək üçün səhifənin yalnız bərpa etmək istədiyiniz versiyalarını işarələyin və '''\"{{int:undeletebtn}}\"''' düyməsini basın.",
 	"undeletehistory": "Səhifə bərpa edilərsə, onun redaktə tarixçəsi də bərpa olunur.\nƏgər səhifə silindikdən sonra eyni adlı yeni səhifə yaradılıbsa, o halda bərpa edilmiş versiyalar da redaktə tarixçəsində görünəcəkdir.",
 	"undeleterevdel": "Əgər bərpa etmə səhifənin və ya faylın sonuncu versiyasının qismən silinməsi ilə nəticələnə bilərsə, o halda o bərpa edilməyəcəkdir.\nBu halda siz son silinmiş versiyanı seçməməli və ya gizlətməni ləğv etməlisiniz.",
-	"undelete-revision": "$3 tərəfindən $1 səhifəsinin silinmiş redaktəsi ($4 tarixinden bəri, $5 saatda):",
+	"undelete-revision": "$3 tərəfindən $1 səhifəsinin silinmiş redaktəsi ($4 $5 tarixindən bəri):",
 	"undelete-nodiff": "Əvvəlki redaktə tapılmadı.",
 	"undeletebtn": "Bərpa et",
 	"undeletelink": "bax/bərpa et",
