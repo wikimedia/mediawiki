@@ -1,8 +1,8 @@
 'use strict';
 
-const { config } = require( 'wdio-mediawiki/wdio.conf.js' );
+const { config } = require( 'wdio-mediawiki/wdio-defaults.conf.js' );
 
-exports.config = Object.assign( config, {
+exports.config = { ...config,
 	// Override, or add to, the setting from wdio-mediawiki.
 	// Learn more at https://webdriver.io/docs/configurationfile/
 	//
@@ -21,4 +21,4 @@ exports.config = Object.assign( config, {
 			'tests/selenium/specs/user.js'
 		]
 	}
-} );
+};

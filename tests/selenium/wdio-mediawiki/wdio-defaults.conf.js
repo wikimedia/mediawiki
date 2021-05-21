@@ -1,3 +1,13 @@
+/**
+ * Base WebdriverIO configuration, meant to be imported from skins and extensions like so:
+ *
+ *   const { config } = require( 'wdio-mediawiki/wdio-defaults.conf.js' );
+ *
+ *   exports.config = { ...config,
+ *     logLevel: 'info'
+ *   };
+ */
+
 'use strict';
 
 require( 'dotenv' ).config();
