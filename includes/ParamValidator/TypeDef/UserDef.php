@@ -175,7 +175,7 @@ class UserDef extends TypeDef {
 		}
 
 		// A valid user name?
-		$user = $this->userFactory->newFromName( $value, 'valid' );
+		$user = $this->userFactory->newFromName( $value, UserFactory::RIGOR_VALID );
 		if ( $user ) {
 			return [ 'name', $user ];
 		}
