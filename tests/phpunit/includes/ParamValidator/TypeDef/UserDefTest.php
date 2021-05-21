@@ -4,6 +4,7 @@ namespace MediaWiki\ParamValidator\TypeDef;
 
 use MediaWiki\Interwiki\ClassicInterwikiLookup;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentityValue;
 use User;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
@@ -114,11 +115,18 @@ class UserDefTest extends TypeDefTestCase {
 				$ex,
 				[ UserDef::PARAM_ALLOWED_USER_TYPES => $types ],
 			];
-			if ( $type === 'ip' ) {
-				$obj = $userFactory->newAnonymous( $expect );
-			} elseif ( $type === 'interwiki' || $type === 'cidr' ) {
-				$obj = $userFactory->newFromAnyId( 0, $expect, null );
+			if ( $type === 'ip'
+				|| $type === 'interwiki'
+				|| $type === 'cidr'
+			) {
+				// For all of these the UserIdentity returned will be a
+				// UserIdentityValue object since the name and id are both
+				// known (id is 0 for all)
+				$obj = UserIdentityValue::newAnonymous( $expect );
 			} else {
+				// Creating from name, not a UserIdentityValue (yet) since
+				// UserDef does not check for the relevant user id itself,
+				// but relies on the loading in User::getId() instead
 				$obj = $userFactory->newFromName( $expect );
 			}
 
