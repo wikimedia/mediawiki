@@ -3465,6 +3465,8 @@
 	"tag-mw-reverted-description": "Editace, které byly později zrušeny jinou editací",
 	"tag-mw-server-side-upload": "Načtení na straně serveru",
 	"tag-mw-server-side-upload-description": "Mediální soubory, které byly načteny prostřednictvím údržbového skriptu",
+	"tag-mw-add-media-description": "Editace, které přidávají média",
+	"tag-mw-remove-media-description": "Editace, které odebírají média",
 	"tags-title": "Značky",
 	"tags-intro": "Tato stránka obsahuje seznam značek, kterými může software označovat jednotlivé editace, a jejich významy.",
 	"tags-tag": "Název značky",
