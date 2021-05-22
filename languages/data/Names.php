@@ -278,7 +278,7 @@ class Names {
 		'liv' => 'Līvõ kēļ', # Livonian
 		'lki' => 'لەکی', # Laki
 		'lld' => 'Ladin', # Ladin
-		'lmo' => 'lumbaart', # Lombard
+		'lmo' => 'lombard', # Lombard - T283423
 		'ln' => 'lingála', # Lingala
 		'lo' => 'ລາວ', # Laotian
 		'lrc' => 'لۊری شومالی', # Northern Luri
