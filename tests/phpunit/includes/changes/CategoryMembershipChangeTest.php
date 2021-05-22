@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentity;
 
 /**
  * @covers CategoryMembershipChange
@@ -33,7 +34,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 	private static $pageRev = null;
 
 	/**
-	 * @var User
+	 * @var UserIdentity
 	 */
 	private static $revUser = null;
 
@@ -62,9 +63,7 @@ class CategoryMembershipChangeTest extends MediaWikiLangTestCase {
 
 		$page = WikiPage::factory( $title );
 		self::$pageRev = $page->getRevisionRecord();
-		self::$revUser = User::newFromIdentity(
-			self::$pageRev->getUser( RevisionRecord::RAW )
-		);
+		self::$revUser = self::$pageRev->getUser( RevisionRecord::RAW );
 	}
 
 	private function newChange( RevisionRecord $revision = null ) {

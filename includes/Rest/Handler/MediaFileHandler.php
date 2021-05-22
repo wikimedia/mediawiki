@@ -130,9 +130,7 @@ class MediaFileHandler extends SimpleHandler {
 			]
 		];
 
-		// TODO: make MediaFileTrait::getFileInfo take Authority
-		$user = User::newFromIdentity( $this->getAuthority()->getUser() );
-		return $this->getFileInfo( $file, $user, $transforms );
+		return $this->getFileInfo( $file, $this->getAuthority(), $transforms );
 	}
 
 	public function needsWriteAccess() {

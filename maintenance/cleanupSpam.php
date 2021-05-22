@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
@@ -132,10 +133,10 @@ class CleanupSpam extends Maintenance {
 	 * @param int $id
 	 * @param string $domain
 	 * @param string $protocol
-	 * @param User $actingUser
+	 * @param Authority $performer
 	 * @throws MWException
 	 */
-	private function cleanupArticle( $id, $domain, $protocol, User $actingUser ) {
+	private function cleanupArticle( $id, $domain, $protocol, Authority $performer ) {
 		$title = Title::newFromID( $id );
 		if ( !$title ) {
 			$this->error( "Internal error: no page for ID $id" );
@@ -178,14 +179,14 @@ class CleanupSpam extends Maintenance {
 					wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
 					EDIT_UPDATE | EDIT_FORCE_BOT,
 					$rev->getId(),
-					$actingUser
+					$performer
 				);
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
 				$this->output( "deleting\n" );
 				$page->doDeleteArticleReal(
 					wfMessage( 'spam_deleting', $domain )->inContentLanguage()->text(),
-					$actingUser
+					$performer->getUser()
 				);
 			} else {
 				// Didn't find a non-spammy revision, blank the page
@@ -199,7 +200,7 @@ class CleanupSpam extends Maintenance {
 					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text(),
 					EDIT_UPDATE | EDIT_FORCE_BOT,
 					false,
-					$actingUser
+					$performer
 				);
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );
