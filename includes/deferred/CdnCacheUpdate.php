@@ -295,24 +295,37 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		$reqs = [];
 		foreach ( $urls as $url ) {
-			$url = self::expand( $url );
-			$urlInfo = wfParseUrl( $url );
-			$urlHost = strlen( $urlInfo['port'] ?? null )
-				? IP::combineHostAndPort( $urlInfo['host'], $urlInfo['port'] )
-				: $urlInfo['host'];
-			$baseReq = [
-				'method' => 'PURGE',
-				'url' => $url,
-				'headers' => [
-					'Host' => $urlHost,
-					'Connection' => 'Keep-Alive',
-					'Proxy-Connection' => 'Keep-Alive',
-					'User-Agent' => 'MediaWiki/' . MW_VERSION . ' ' . __CLASS__
-				]
-			];
-			foreach ( $wgCdnServers as $server ) {
-				$reqs[] = ( $baseReq + [ 'proxy' => $server ] );
+			/**
+			 * Southparkfan hack start (adds x-device)
+			 * In Varnish, we store two variants of an article: the mobile layout (via MobileFrontend) and the desktop version. 
+			 * This is done by running vcl_hash over the X-Device header. 
+			 * The X-Device header is set at Varnish level and can be one of ['mobile-tablet', 'desktop']. 
+			 * However, when purging a resource using merely the URL path, it's not possible to purge both the mobile and desktop variants. 
+			 * In order to purge properly, MediaWiki must set each possible X-Device value in the X-Device header, one per PURGE request.
+			 */
+			foreach ( [ 'desktop', 'phone-tablet' ] as $deviceHeader ) {
+				$url = self::expand( $url );
+				$urlInfo = wfParseUrl( $url );
+				$urlHost = strlen( $urlInfo['port'] ?? null )
+					? IP::combineHostAndPort( $urlInfo['host'], $urlInfo['port'] )
+					: $urlInfo['host'];
+				$baseReq = [
+					'method' => 'PURGE',		
+					'url' => $url,
+					'headers' => [
+						'Host' => $urlHost,
+						'Connection' => 'Keep-Alive',
+						'Proxy-Connection' => 'Keep-Alive',
+						'User-Agent' => 'MediaWiki/' . MW_VERSION . ' ' . __CLASS__,
+						'X-Device' => $deviceHeader
+					]
+				];
+
+				foreach ( $wgCdnServers as $server ) {
+					$reqs[] = ( $baseReq + [ 'proxy' => $server ] );
+				}
 			}
+			// Southparkfan hack end
 		}
 
 		$http = MediaWikiServices::getInstance()->getHttpRequestFactory()
