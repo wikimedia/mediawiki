@@ -9,27 +9,6 @@
 BEGIN;
 SET client_min_messages = 'ERROR';
 
-CREATE SEQUENCE revision_rev_id_seq;
-CREATE TABLE revision (
-  rev_id             INTEGER      NOT NULL  UNIQUE DEFAULT nextval('revision_rev_id_seq'),
-  rev_page           INTEGER          NULL  REFERENCES page (page_id) ON DELETE CASCADE DEFERRABLE INITIALLY DEFERRED,
-  rev_comment_id     INTEGER      NOT NULL DEFAULT 0,
-  rev_actor          INTEGER      NOT NULL DEFAULT 0,
-  rev_timestamp      TIMESTAMPTZ  NOT NULL,
-  rev_minor_edit     SMALLINT     NOT NULL  DEFAULT 0,
-  rev_deleted        SMALLINT     NOT NULL  DEFAULT 0,
-  rev_len            INTEGER          NULL,
-  rev_parent_id      INTEGER          NULL,
-  rev_sha1           TEXT         NOT NULL DEFAULT ''
-);
-ALTER SEQUENCE revision_rev_id_seq OWNED BY revision.rev_id;
-CREATE UNIQUE INDEX rev_page_id ON revision (rev_page, rev_id);
-CREATE INDEX rev_timestamp      ON revision (rev_timestamp);
-CREATE INDEX rev_actor_timestamp ON revision (rev_actor,rev_timestamp,rev_id);
-CREATE INDEX rev_page_timestamp ON revision (rev_page,rev_timestamp);
-CREATE INDEX rev_page_actor_timestamp ON revision (rev_page,rev_actor,rev_timestamp);
-
-
 -- Tsearch2 2 stuff. Will fail if we don't have proper access to the tsearch2 tables
 -- Make sure you also change patch-tsearch2funcs.sql if the funcs below change.
 ALTER TABLE page ADD titlevector tsvector;
