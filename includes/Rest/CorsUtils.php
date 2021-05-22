@@ -13,6 +13,7 @@ use MediaWiki\User\UserIdentity;
 class CorsUtils implements BasicAuthorizerInterface {
 	/** @var array */
 	public const CONSTRUCTOR_OPTIONS = [
+		'AllowedCorsHeaders',
 		'AllowCrossOrigin',
 		'RestAllowCrossOriginCookieAuth',
 		'CanonicalServer',
@@ -160,17 +161,20 @@ class CorsUtils implements BasicAuthorizerInterface {
 	 */
 	public function createPreflightResponse( array $allowedMethods ) : ResponseInterface {
 		$response = $this->responseFactory->createNoContent();
+		$response->setHeader( 'Access-Control-Allow-Methods', $allowedMethods );
 
-		// Authorization header must be explicitly listed which prevent the use of '*'
-		$response->setHeader( 'Access-Control-Allow-Headers', [
+		$allowedHeaders = $this->options->get( 'AllowedCorsHeaders' );
+		$allowedHeaders = array_merge( $allowedHeaders, array_diff( [
+			// Authorization header must be explicitly listed which prevent the use of '*'
 			'Authorization',
+			// REST must allow Content-Type to be operational
 			'Content-Type',
+			// REST relies on conditional requests for some endpoints
 			'If-Mach',
 			'If-None-Match',
 			'If-Modified-Since',
-		] );
-
-		$response->setHeader( 'Access-Control-Allow-Methods', $allowedMethods );
+		], $allowedHeaders ) );
+		$response->setHeader( 'Access-Control-Allow-Headers', $allowedHeaders );
 
 		return $response;
 	}

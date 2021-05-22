@@ -18,6 +18,7 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 
 	private function createServiceOptions( array $options = [] ) {
 		$defaults = [
+			'AllowedCorsHeaders' => [],
 			'AllowCrossOrigin' => false,
 			'RestAllowCrossOriginCookieAuth' => false,
 			'CanonicalServer' => 'https://example.com',
@@ -303,5 +304,27 @@ class CorsUtilsTest extends \MediaWikiUnitTestCase {
 		$this->assertTrue( $response->hasHeader( 'Access-Control-Allow-Headers' ) );
 		$this->assertTrue( $response->hasHeader( 'Access-Control-Allow-Methods' ) );
 		$this->assertSame( $methods, $response->getHeader( 'Access-Control-Allow-Methods' ) );
+	}
+
+	public function testCreatePreflightResponse_allow_headers() {
+		$responseFactory = $this->createMock( ResponseFactory::class );
+		$responseFactory->method( 'createNoContent' )
+			->willReturn( new Response() );
+
+		$cors = new CorsUtils(
+			$this->createServiceOptions( [
+				'AllowedCorsHeaders' => [ 'Authorization', 'BlaHeader', ],
+			] ),
+			$responseFactory,
+			new UserIdentityValue( 0, __CLASS__ )
+		);
+
+		$methods = [ 'POST' ];
+		$response = $cors->createPreflightResponse( $methods );
+		$this->assertTrue( $response->hasHeader( 'Access-Control-Allow-Headers' ) );
+		$header = $response->getHeader( 'Access-Control-Allow-Headers' );
+		$this->assertContains( 'Authorization', $header );
+		$this->assertContains( 'Content-Type', $header );
+		$this->assertSame( count( $header ), count( array_unique( $header ) ) );
 	}
 }
