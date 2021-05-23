@@ -977,7 +977,10 @@ abstract class Skin extends ContextSource {
 		$config = $this->getConfig();
 
 		$footerIcons = $config->get( 'FooterIcons' );
-		if ( $footerIcons['copyright']['copyright'] ) {
+		if (
+			isset( $footerIcons['copyright']['copyright'] ) &&
+			$footerIcons['copyright']['copyright']
+		) {
 			$out = $footerIcons['copyright']['copyright'];
 		} elseif ( $config->get( 'RightsIcon' ) ) {
 			$icon = htmlspecialchars( $config->get( 'RightsIcon' ) );
