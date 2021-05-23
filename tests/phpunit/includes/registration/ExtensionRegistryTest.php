@@ -361,17 +361,17 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 						'JsonZeroConfig' => [
 							'namespace' => 480,
 							'nsName' => 'Zero',
-							'isLocal' => true,
+							'isLocal' => false,
+							'remote' => [
+								'username' => 'foo',
+							],
 						],
 					],
 				],
 				[
 					'mwtestJsonConfigs' => [
 						'JsonZeroConfig' => [
-							'isLocal' => false,
-							'remote' => [
-								'username' => 'foo',
-							],
+							'isLocal' => true,
 						],
 						ExtensionRegistry::MERGE_STRATEGY => 'array_replace_recursive',
 					],
