@@ -882,4 +882,4 @@ CREATE TABLE /*_*/revision (
     rev_page, rev_actor, rev_timestamp
   ),
   PRIMARY KEY(rev_id)
-) /*$wgDBTableOptions*/ MAX_ROWS=10000000 AVG_ROW_LENGTH=1024;
+) /*$wgDBTableOptions*/;
