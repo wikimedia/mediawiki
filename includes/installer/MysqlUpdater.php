@@ -251,6 +251,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'renameIndex', 'revision', 'page_timestamp', 'rev_page_timestamp', false,
 				'patch-revision-rename-index.sql' ],
 			[ 'addField', 'objectcache', 'modtoken', 'patch-objectcache-modtoken.sql' ],
+			[ 'dropDefault', 'revision', 'rev_timestamp' ],
 		];
 	}
 

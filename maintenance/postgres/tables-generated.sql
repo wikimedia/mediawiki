@@ -927,3 +927,30 @@ CREATE UNIQUE INDEX user_name ON "user" (user_name);
 CREATE INDEX user_email_token ON "user" (user_email_token);
 
 CREATE INDEX user_email ON "user" (user_email);
+
+
+CREATE TABLE revision (
+  rev_id SERIAL NOT NULL,
+  rev_page INT NOT NULL,
+  rev_comment_id BIGINT DEFAULT 0 NOT NULL,
+  rev_actor BIGINT DEFAULT 0 NOT NULL,
+  rev_timestamp TIMESTAMPTZ NOT NULL,
+  rev_minor_edit SMALLINT DEFAULT 0 NOT NULL,
+  rev_deleted SMALLINT DEFAULT 0 NOT NULL,
+  rev_len INT DEFAULT NULL,
+  rev_parent_id INT DEFAULT NULL,
+  rev_sha1 TEXT DEFAULT '' NOT NULL,
+  PRIMARY KEY(rev_id)
+);
+
+CREATE INDEX rev_page_id ON revision (rev_page, rev_id);
+
+CREATE INDEX rev_timestamp ON revision (rev_timestamp);
+
+CREATE INDEX rev_page_timestamp ON revision (rev_page, rev_timestamp);
+
+CREATE INDEX rev_actor_timestamp ON revision (rev_actor, rev_timestamp, rev_id);
+
+CREATE INDEX rev_page_actor_timestamp ON revision (
+  rev_page, rev_actor, rev_timestamp
+);

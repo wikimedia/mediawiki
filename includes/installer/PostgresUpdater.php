@@ -623,6 +623,15 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'setDefault', 'user', 'user_real_name', '' ],
 			[ 'dropConstraint', 'user', 'user_name', 'unique' ],
 			[ 'addField', 'objectcache', 'modtoken', 'patch-objectcache-modtoken.sql' ],
+			[ 'dropFkey', 'revision', 'rev_page' ],
+			[ 'changeNullableField', 'revision', 'rev_page', 'NOT NULL', true ],
+			[ 'changeField', 'revision', 'rev_comment_id', 'BIGINT', 'DEFAULT 0' ],
+			[ 'changeField', 'revision', 'rev_actor', 'BIGINT', 'DEFAULT 0' ],
+			[ 'checkIndex', 'rev_page_id', [
+				[ 'rev_page', 'int4_ops', 'btree', 1 ],
+				[ 'rev_id', 'int4_ops', 'btree', 1 ],
+			],
+				'CREATE INDEX rev_page_id ON revision (rev_page,rev_id)' ],
 		];
 	}
 
