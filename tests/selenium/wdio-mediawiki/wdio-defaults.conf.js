@@ -68,6 +68,8 @@ exports.config = {
 			// If DISPLAY is set, assume developer asked non-headless or CI with Xvfb.
 			// Otherwise, use --headless.
 			args: [
+				// Dismissed Chrome's `Save password?` popup
+				'--enable-automation',
 				...( process.env.DISPLAY ? [] : [ '--headless' ] ),
 				// Chrome sandbox does not work in Docker
 				...( fs.existsSync( '/.dockerenv' ) ? [ '--no-sandbox' ] : [] )
