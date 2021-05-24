@@ -130,6 +130,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getRights
 	 */
 	public function testUserPermissions() {
+		$this->hideDeprecated( 'User::getRights' );
 		$rights = $this->user->getRights();
 		$this->assertContains( 'runtest', $rights );
 		$this->assertNotContains( 'writetest', $rights );
@@ -142,6 +143,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getRights
 	 */
 	public function testUserGetRightsHooks() {
+		$this->hideDeprecated( 'User::getRights' );
 		$user = $this->getTestUser( [ 'unittesters', 'testwriters' ] )->getUser();
 		$userWrapper = TestingAccessWrapper::newFromObject( $user );
 

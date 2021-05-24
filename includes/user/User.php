@@ -280,7 +280,9 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	public function &__get( $name ) {
 		// A shortcut for $mRights deprecation phase
 		if ( $name === 'mRights' ) {
-			$copy = $this->getRights();
+			$copy = MediaWikiServices::getInstance()
+				->getPermissionManager()
+				->getUserPermissions( $this );
 			return $copy;
 		} elseif ( $name === 'mOptions' ) {
 			wfDeprecated( 'User::$mOptions', '1.35' );
@@ -2762,11 +2764,13 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Get the permissions this user has.
 	 * @return string[] permission names
 	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
+	 * @deprecated since 1.34, hard deprecated since 1.37
+	 * Use MediaWikiServices::getInstance()->getPermissionManager()
 	 * ->getUserPermissions(..) instead
 	 *
 	 */
 	public function getRights() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getPermissionManager()->getUserPermissions( $this );
 	}
 
