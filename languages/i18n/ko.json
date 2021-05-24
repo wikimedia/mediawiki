@@ -3428,6 +3428,7 @@
 	"tag-mw-reverted": "되돌려진 기여",
 	"tag-mw-reverted-description": "나중에 다른 편집으로 되돌린 편집",
 	"tag-mw-server-side-upload": "서버측 업로드",
+	"tag-mw-server-side-upload-description": "정비 스크립트를 통해 업로드된 미디어 파일",
 	"tag-mw-add-media-description": "미디어 추가 편집",
 	"tag-mw-remove-media-description": "미디어 제거 편집",
 	"tags-title": "태그",
