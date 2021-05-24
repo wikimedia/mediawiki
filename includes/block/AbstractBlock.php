@@ -42,7 +42,7 @@ abstract class AbstractBlock implements Block {
 	 * @deprecated since 1.34. Use getTimestamp and setTimestamp instead.
 	 * @var string
 	 */
-	public $mTimestamp;
+	public $mTimestamp = '';
 
 	/**
 	 * @deprecated since 1.34. Use getExpiry and setExpiry instead.
@@ -126,7 +126,7 @@ abstract class AbstractBlock implements Block {
 	 * Get the block ID
 	 * @return int|null
 	 */
-	public function getId() {
+	public function getId() : ?int {
 		return null;
 	}
 
@@ -151,7 +151,7 @@ abstract class AbstractBlock implements Block {
 	 * @since 1.35
 	 * @return CommentStoreComment
 	 */
-	public function getReasonComment() {
+	public function getReasonComment() : CommentStoreComment {
 		return $this->reason;
 	}
 
@@ -194,7 +194,7 @@ abstract class AbstractBlock implements Block {
 	 * @param null|bool $x
 	 * @return bool
 	 */
-	public function isSitewide( $x = null ) {
+	public function isSitewide( $x = null ) : bool {
 		return wfSetVar( $this->isSitewide, $x );
 	}
 
@@ -207,7 +207,7 @@ abstract class AbstractBlock implements Block {
 	 * @param null|bool $x Value to set (if null, just get the property value)
 	 * @return bool Value of the property
 	 */
-	public function isCreateAccountBlocked( $x = null ) {
+	public function isCreateAccountBlocked( $x = null ) : bool {
 		return wfSetVar( $this->blockCreateAccount, $x );
 	}
 
@@ -246,7 +246,7 @@ abstract class AbstractBlock implements Block {
 	 * @param bool|null $x
 	 * @return bool
 	 */
-	public function isHardblock( $x = null ) {
+	public function isHardblock( $x = null ) : bool {
 		wfSetVar( $this->isHardblock, $x );
 
 		return $this->getType() == self::TYPE_USER
@@ -322,7 +322,7 @@ abstract class AbstractBlock implements Block {
 	 * Get the type of target for this particular block.
 	 * @return int|null AbstractBlock::TYPE_ constant, will never be TYPE_ID
 	 */
-	public function getType() {
+	public function getType() : ?int {
 		return $this->type;
 	}
 
@@ -393,7 +393,7 @@ abstract class AbstractBlock implements Block {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function getExpiry() {
+	public function getExpiry() : string {
 		return $this->mExpiry;
 	}
 
@@ -404,7 +404,8 @@ abstract class AbstractBlock implements Block {
 	 * @param string $expiry
 	 */
 	public function setExpiry( $expiry ) {
-		$this->mExpiry = $expiry;
+		// Force string so getExpiry() return typehint doesn't break things
+		$this->mExpiry = (string)$expiry;
 	}
 
 	/**
@@ -413,7 +414,7 @@ abstract class AbstractBlock implements Block {
 	 * @since 1.33
 	 * @return string
 	 */
-	public function getTimestamp() {
+	public function getTimestamp() : string {
 		return $this->mTimestamp;
 	}
 
@@ -424,7 +425,8 @@ abstract class AbstractBlock implements Block {
 	 * @param string $timestamp
 	 */
 	public function setTimestamp( $timestamp ) {
-		$this->mTimestamp = $timestamp;
+		// Force string so getExpiry() return typehint doesn't break things
+		$this->mTimestamp = (string)$timestamp;
 	}
 
 	/**
