@@ -12,6 +12,8 @@ use MediaWiki\Widget\TitleInputWidget;
  * 'relative' - If true and 'namespace' given, strip/add the namespace from/to the title as needed
  * 'creatable' - Whether to validate the title is creatable (not a special page)
  * 'exists' - Whether to validate that the title already exists
+ * 'interwiki' – Tolerate interwiki links (other conditions such as 'namespace' or 'exists' will be
+ *   ignored if the title is an interwiki title). Cannot be used together with 'relative'.
  *
  * @stable to extend
  * @since 1.26
@@ -27,6 +29,7 @@ class HTMLTitleTextField extends HTMLTextField {
 			'relative' => false,
 			'creatable' => false,
 			'exists' => false,
+			'interwiki' => false,
 			// This overrides the default from HTMLFormField
 			'required' => true,
 		];
@@ -35,6 +38,11 @@ class HTMLTitleTextField extends HTMLTextField {
 	}
 
 	public function validate( $value, $alldata ) {
+		if ( $this->mParams['interwiki'] && $this->mParams['relative'] ) {
+			// relative and interwiki cannot be used together, because we don't have a way to know about
+			// namespaces used by the other wiki (and it might actually be a non-wiki link, too).
+			throw new InvalidArgumentException( 'relative and interwiki may not be used together' );
+		}
 		// Default value (from getDefault()) is null, which breaks Title::newFromTextThrow() below
 		if ( $value === null ) {
 			$value = '';
@@ -54,6 +62,18 @@ class HTMLTitleTextField extends HTMLTextField {
 			}
 		} catch ( MalformedTitleException $e ) {
 			return $this->msg( $e->getErrorMessage(), $e->getErrorMessageParameters() );
+		}
+
+		if ( $title->isExternal() ) {
+			if ( $this->mParams['interwiki'] !== false ) {
+				// We cannot validate external titles, skip the rest of the validation
+				return parent::validate( $value, $alldata );
+			} else {
+				wfDeprecated(
+					__METHOD__ . ' will reject external titles in 1.38 when interwiki is false',
+					'1.37'
+				);
+			}
 		}
 
 		$text = $title->getPrefixedText();
