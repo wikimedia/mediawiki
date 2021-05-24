@@ -477,6 +477,7 @@ class Names {
 		'vro' => 'võro', # Võro
 		'wa' => 'walon', # Walloon
 		'war' => 'Winaray', # Waray-Waray
+		'wls' => 'Fakaʻuvea', # Wallisian
 		'wo' => 'Wolof', # Wolof
 		'wuu' => '吴语', # Wu Chinese
 		'xal' => 'хальмг', # Kalmyk-Oirat
