@@ -648,7 +648,7 @@ class MovePage {
 		$protected = $this->oldTitle->isProtected();
 
 		// Attempt the actual move
-		$moveAttemptResult = $this->moveToInternal( $userObj, $this->newTitle, $reason, $createRedirect,
+		$moveAttemptResult = $this->moveToInternal( $user, $this->newTitle, $reason, $createRedirect,
 			$changeTags );
 
 		if ( $moveAttemptResult instanceof Status ) {
@@ -855,7 +855,6 @@ class MovePage {
 	private function moveToInternal( UserIdentity $user, &$nt, $reason = '', $createRedirect = true,
 		array $changeTags = []
 	) {
-		$userObj = $this->userFactory->newFromUserIdentity( $user );
 		if ( $nt->getArticleId( Title::READ_LATEST ) ) {
 			$moveOverRedirect = true;
 			$logType = 'move_redir';
@@ -873,7 +872,7 @@ class MovePage {
 			$errs = [];
 			$status = $newpage->doDeleteArticleReal(
 				$overwriteMessage,
-				$userObj,
+				$user,
 				/* $suppress */ false,
 				/* unused */ null,
 				$errs,
@@ -976,6 +975,7 @@ class MovePage {
 		 * Increment user_editcount during page moves
 		 * Moved from SpecialMovepage.php per T195550
 		 */
+		$userObj = $this->userFactory->newFromUserIdentity( $user );
 		$userObj->incEditCount();
 
 		if ( !$redirectContent ) {
@@ -992,7 +992,7 @@ class MovePage {
 		$this->hookRunner->onRevisionFromEditComplete(
 			$newpage, $nullRevision, $nullRevision->getParentId(), $user, $fakeTags );
 
-		$newpage->doEditUpdates( $nullRevision, $userObj,
+		$newpage->doEditUpdates( $nullRevision, $user,
 			[ 'changed' => false, 'moved' => true, 'oldcountable' => $oldcountable ] );
 
 		WikiPage::onArticleCreate( $nt );
@@ -1036,7 +1036,7 @@ class MovePage {
 
 				$redirectArticle->doEditUpdates(
 					$inserted,
-					$userObj,
+					$user,
 					[ 'created' => true ]
 				);
 

@@ -525,12 +525,12 @@ class LogEventsList extends ContextSource {
 	 *
 	 * @param stdClass $row
 	 * @param int $field
-	 * @param User $user User to check
+	 * @param Authority $performer User to check
 	 * @return bool
 	 */
-	public static function userCan( $row, $field, User $user ) {
-		return self::userCanBitfield( $row->log_deleted, $field, $user ) &&
-			self::userCanViewLogType( $row->log_type, $user );
+	public static function userCan( $row, $field, Authority $performer ) {
+		return self::userCanBitfield( $row->log_deleted, $field, $performer ) &&
+			self::userCanViewLogType( $row->log_type, $performer );
 	}
 
 	/**

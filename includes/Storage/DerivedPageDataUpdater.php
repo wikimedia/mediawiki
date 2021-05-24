@@ -814,7 +814,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			);
 		}
 
-		$userPopts = ParserOptions::newFromUserAndLang( $legacyUser, $this->contLang );
+		$userPopts = ParserOptions::newFromUserAndLang( $user, $this->contLang );
 		$this->hookRunner->onArticlePrepareTextForEdit( $wikiPage, $userPopts );
 
 		$this->user = $user;
@@ -857,7 +857,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				$pstSlot = SlotRecord::newUnsaved( $role, $stashedEdit->pstContent );
 			} else {
 				$content = $slot->getContent();
-				$legacyUser = self::toLegacyUser( $user );
 				$pstContent = $content->preSaveTransform( $title, $legacyUser, $userPopts );
 				$pstSlot = SlotRecord::newUnsaved( $role, $pstContent );
 			}
@@ -1474,9 +1473,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 		$wikiPage = $this->getWikiPage(); // TODO: use only for legacy hooks!
 
-		$legacyUser = self::toLegacyUser( $this->user );
-
-		$userParserOptions = ParserOptions::newFromUser( $legacyUser );
+		$userParserOptions = ParserOptions::newFromUser( $this->user );
 		// Decide whether to save the final canonical parser ouput based on the fact that
 		// users are typically redirected to viewing pages right after they edit those pages.
 		// Due to vary-revision-id, getting/saving that output here might require a reparse.
@@ -1566,16 +1563,22 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			DeferredUpdates::addUpdate( new SearchUpdate( $id, $title, $mainSlot->getContent() ) );
 		}
 
+		$legacyUser = self::toLegacyUser( $this->user );
+
 		// If this is another user's talk page, update newtalk.
 		// Don't do this if $options['changed'] = false (null-edits) nor if
 		// it's a minor edit and the user making the edit doesn't generate notifications for those.
 		// TODO: the permission check should be performed by the callers, see T276181.
 		if ( $this->options['changed']
 			&& $title->getNamespace() === NS_USER_TALK
+
+			// TODO User::getTitleKey is just a string manipulation of the user name,
+			// duplicate it here and use $this->user (a UserIdentity) instead
 			&& $shortTitle != $legacyUser->getTitleKey()
 			&& !( $this->revision->isMinor() && MediaWikiServices::getInstance()
-					->getPermissionManager()
-					->userHasRight( $legacyUser, 'nominornewtalk' ) )
+				->getPermissionManager()
+				->userHasRight( $this->user, 'nominornewtalk' )
+			)
 		) {
 			$recipient = User::newFromName( $shortTitle, false );
 			if ( !$recipient ) {
