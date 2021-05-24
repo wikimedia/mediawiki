@@ -2749,6 +2749,7 @@
 	"softblockrangesreason": "Anonyymit muokkaukset eivät ole sallittuja IP-osoitteestasi ($1). Ole hyvä ja kirjaudu.",
 	"xffblockreason": "Yhteydet IP-osoitteesta, joka löytyy sinun tai käyttämäsi välipalvelimen X-Forwarded-For-otsakkeesta, on estetty. Alkuperäinen estämisen syy oli: $1",
 	"cant-see-hidden-user": "Käyttäjä, jota yrität estää, on jo estetty ja käyttäjänimi on piilotettu. \nKoska sinulla ei ole hideuser-oikeutta, et voi nähdä tai muuttaa käyttäjän estoasetuksia.",
+	"cant-block-nonexistent-page": "Et voi estää käyttäjää sivulta $1, koska sivua ei ole olemassa",
 	"ipbblocked": "Et voi estää tai poistaa estoja muilta käyttäjiltä, koska itse olet estettynä",
 	"ipbnounblockself": "Et ole oikeutettu poistamaan estoa itseltäsi",
 	"lockdb": "Lukitse tietokanta",

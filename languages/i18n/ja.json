@@ -885,7 +885,7 @@
 	"post-expand-template-argument-warning": "<strong>警告:</strong> このページは、展開後のサイズが大きすぎるテンプレート引数を少なくとも 1 つ含んでいます。\nこれらの引数を省略しました。",
 	"post-expand-template-argument-category": "省略されたテンプレート引数を含むページ",
 	"template-equals-category": "=をテンプレートとして使うページ",
-	"template-equals-category-desc": "このページには<code><nowiki>{{=}}</nowiki></code>がありますが、このwikiは<code>=</code>に拡張しません。この使い方は非推奨されます。将来のMediaWikiバージョンは<code><nowiki>{{=}}</nowiki></code>をパーサー関数として実装する予定です。",
+	"template-equals-category-desc": "ページには<code><nowiki>{{=}}</nowiki></code>がありますが、このwikiは<code>=</code>に拡張しません。この使い方は非推奨されます。将来のMediaWikiバージョンは<code><nowiki>{{=}}</nowiki></code>をパーサー関数として実装する予定です。",
 	"template-equals-warning": "<strong>警告：</strong>このページでは<code><nowiki>{{=}}</nowiki></code>が使用されますが、このwikiは<code>=</code>に拡張しません。この使い方は非推奨されます。将来のMediaWikiバージョンは<code><nowiki>{{=}}</nowiki></code>をパーサー関数として実装する予定です。",
 	"parser-template-loop-warning": "テンプレートのループを検出しました: [[$1]]",
 	"template-loop-category": "テンプレートがループしているページ",
