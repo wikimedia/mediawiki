@@ -3649,7 +3649,6 @@
 				"unique": false
 			}
 		],
-		"table_options": [ "/*$wgDBTableOptions*/", "MAX_ROWS=10000000", "AVG_ROW_LENGTH=1024" ],
 		"pk": [ "rev_id" ]
 	}
 ]

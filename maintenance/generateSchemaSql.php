@@ -122,18 +122,6 @@ class GenerateSchemaSql extends Maintenance {
 			' /*$wgDBTableOptions*/;',
 			$sql
 		);
-		$sql = str_replace(
-			"\n" . '/*$wgDBTableOptions*/',
-			' /*$wgDBTableOptions*/',
-			$sql
-		);
-		$sql = str_replace(
-			'/*$wgDBTableOptions*/' . "\n",
-			'/*$wgDBTableOptions*/ ',
-			$sql
-		);
-		$sql = str_replace( ' = ', '=', $sql );
-
 		$sql .= "\n";
 
 		file_put_contents( $sqlPath, $sql );
