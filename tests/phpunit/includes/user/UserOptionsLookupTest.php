@@ -13,7 +13,6 @@ use MediaWiki\User\UserOptionsLookup;
  * @covers MediaWiki\User\UserOptionsLookup
  */
 abstract class UserOptionsLookupTest extends MediaWikiIntegrationTestCase {
-	use MediaWikiCoversValidator;
 
 	protected function getAnon(
 		string $name = 'anon'

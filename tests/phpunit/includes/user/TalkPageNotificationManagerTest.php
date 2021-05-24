@@ -14,7 +14,6 @@ use PHPUnit\Framework\AssertionFailedError;
  * @group Database
  */
 class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
-	use MediaWikiCoversValidator;
 
 	protected function setUp(): void {
 		parent::setUp();

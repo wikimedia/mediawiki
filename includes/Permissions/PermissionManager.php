@@ -1378,19 +1378,20 @@ class PermissionManager {
 	 * @return string[] permission names
 	 */
 	public function getUserPermissions( UserIdentity $user ) {
-		$user = User::newFromIdentity( $user );
 		$rightsCacheKey = $this->getRightsCacheKey( $user );
 		if ( !isset( $this->usersRights[ $rightsCacheKey ] ) ) {
+			$userObj = User::newFromIdentity( $user );
 			$this->usersRights[ $rightsCacheKey ] = $this->getGroupPermissions(
 				$this->userGroupManager->getUserEffectiveGroups( $user )
 			);
-			$this->hookRunner->onUserGetRights( $user, $this->usersRights[ $rightsCacheKey ] );
+			// Hook requires a full User object
+			$this->hookRunner->onUserGetRights( $userObj, $this->usersRights[ $rightsCacheKey ] );
 
 			// Deny any rights denied by the user's session, unless this
 			// endpoint has no sessions.
 			if ( !defined( 'MW_NO_SESSION' ) ) {
-				// FIXME: $user->getRequest().. need to be replaced with something else
-				$allowedRights = $user->getRequest()->getSession()->getAllowedUserRights();
+				// FIXME: $userObj->getRequest().. need to be replaced with something else
+				$allowedRights = $userObj->getRequest()->getSession()->getAllowedUserRights();
 				if ( $allowedRights !== null ) {
 					$this->usersRights[ $rightsCacheKey ] = array_intersect(
 						$this->usersRights[ $rightsCacheKey ],
@@ -1399,17 +1400,18 @@ class PermissionManager {
 				}
 			}
 
+			// Hook requires a full User object
 			$this->hookRunner->onUserGetRightsRemove(
-				$user, $this->usersRights[ $rightsCacheKey ] );
+				$userObj, $this->usersRights[ $rightsCacheKey ] );
 			// Force reindexation of rights when a hook has unset one of them
 			$this->usersRights[ $rightsCacheKey ] = array_values(
 				array_unique( $this->usersRights[ $rightsCacheKey ] )
 			);
 
 			if (
-				$user->isRegistered() &&
+				$userObj->isRegistered() &&
 				$this->options->get( 'BlockDisablesLogin' ) &&
-				$user->getBlock()
+				$userObj->getBlock()
 			) {
 				$anon = new User;
 				$this->usersRights[ $rightsCacheKey ] = array_intersect(

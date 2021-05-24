@@ -6,8 +6,6 @@
  */
 class DerivativeResourceLoaderContextTest extends MediaWikiIntegrationTestCase {
 
-	use MediaWikiCoversValidator;
-
 	protected static function makeContext() {
 		$request = new FauxRequest( [
 				'lang' => 'qqx',
