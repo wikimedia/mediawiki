@@ -8,8 +8,6 @@ use Wikimedia\Rdbms\LBFactory;
  */
 class ExternalStoreFactoryTest extends MediaWikiIntegrationTestCase {
 
-	use MediaWikiCoversValidator;
-
 	public function testExternalStoreFactory_noStores1() {
 		$factory = new ExternalStoreFactory( [], [], 'test-id' );
 		$this->expectException( ExternalStoreException::class );
