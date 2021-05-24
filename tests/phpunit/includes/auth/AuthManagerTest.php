@@ -1547,46 +1547,58 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Auth\AuthManager::checkAccountCreatePermissions()
+	 * @covers \MediaWiki\Auth\AuthManager::probablyCanCreateAccount()
 	 */
-	public function testCheckAccountCreatePermissions_anon() {
+	public function testProbablyCanCreateAccount() {
 		$this->setGroupPermissions( '*', 'createaccount', true );
 		$this->initializeManager( true );
 		$this->assertEquals(
-			Status::newGood(),
-			$this->manager->checkAccountCreatePermissions( new \User )
+			StatusValue::newGood(),
+			$this->manager->probablyCanCreateAccount( new \User )
 		);
 	}
 
 	/**
-	 * @covers \MediaWiki\Auth\AuthManager::checkAccountCreatePermissions()
+	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
 	 */
-	public function testCheckAccountCreatePermissions_anonNotAllowed() {
+	public function testAuthorizeCreateAccount_anon() {
+		$this->setGroupPermissions( '*', 'createaccount', true );
+		$this->initializeManager( true );
+		$this->assertEquals(
+			StatusValue::newGood(),
+			$this->manager->authorizeCreateAccount( new \User )
+		);
+	}
+
+	/**
+	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
+	 */
+	public function testAuthorizeCreateAccount_anonNotAllowed() {
 		$this->setGroupPermissions( '*', 'createaccount', false );
 		$this->initializeManager( true );
-		$status = $this->manager->checkAccountCreatePermissions( new \User );
+		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusError( 'badaccess-groups', $status );
 	}
 
 	/**
-	 * @covers \MediaWiki\Auth\AuthManager::checkAccountCreatePermissions()
+	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
 	 */
-	public function testCheckAccountCreatePermissions_readOnly() {
+	public function testAuthorizeCreateAccount_readOnly() {
 		$this->initializeManager( true );
 		$readOnlyMode = $this->getServiceContainer()->getReadOnlyMode();
 		$readOnlyMode->setReason( 'Because' );
 		$this->assertEquals(
-			Status::newFatal( wfMessage( 'readonlytext', 'Because' ) ),
-			$this->manager->checkAccountCreatePermissions( new \User )
+			StatusValue::newFatal( wfMessage( 'readonlytext', 'Because' ) ),
+			$this->manager->authorizeCreateAccount( new \User )
 		);
 		$readOnlyMode->setReason( false );
 	}
 
 	/**
-	 * @covers \MediaWiki\Auth\AuthManager::checkAccountCreatePermissions()
+	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock()
 	 */
-	public function testCheckAccountCreatePermissions_blocked() {
+	public function testAuthorizeCreateAccount_blocked() {
 		$this->initializeManager( true );
 
 		$user = \User::newFromName( 'UTBlockee' );
@@ -1608,15 +1620,15 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$blockStore->insertBlock( $block );
 		$this->resetServices();
 		$this->initializeManager( true );
-		$status = $this->manager->checkAccountCreatePermissions( $user );
+		$status = $this->manager->authorizeCreateAccount( $user );
 		$this->assertStatusError( 'blockedtext', $status );
 	}
 
 	/**
-	 * @covers \MediaWiki\Auth\AuthManager::checkAccountCreatePermissions()
+	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock()
 	 */
-	public function testCheckAccountCreatePermissions_ipBlocked() {
+	public function testAuthorizeCreateAccount_ipBlocked() {
 		$this->setGroupPermissions( '*', 'createaccount', true );
 		$this->initializeManager( true );
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
@@ -1630,14 +1642,14 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		];
 		$block = new DatabaseBlock( $blockOptions );
 		$blockStore->insertBlock( $block );
-		$status = $this->manager->checkAccountCreatePermissions( new \User );
+		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusError( 'blockedtext-partial', $status );
 	}
 
 	/**
-	 * @covers \MediaWiki\Auth\AuthManager::checkAccountCreatePermissions()
+	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
 	 */
-	public function testCheckAccountCreatePermissions_DNSBlacklist() {
+	public function testAuthorizeCreateAccount_DNSBlacklist() {
 		$this->setMwGlobals( [
 			'wgEnableDnsBlacklist' => true,
 			'wgDnsBlacklistUrls' => [
@@ -1646,19 +1658,19 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			'wgProxyWhitelist' => [],
 		] );
 		$this->initializeManager( true );
-		$status = $this->manager->checkAccountCreatePermissions( new \User );
+		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusError( 'sorbs_create_account_reason', $status );
 		$this->setMwGlobals( 'wgProxyWhitelist', [ '127.0.0.1' ] );
 		$this->initializeManager( true );
-		$status = $this->manager->checkAccountCreatePermissions( new \User );
+		$status = $this->manager->authorizeCreateAccount( new \User );
 		$this->assertStatusGood( $status );
 	}
 
 	/**
-	 * @covers \MediaWiki\Auth\AuthManager::checkAccountCreatePermissions()
+	 * @covers \MediaWiki\Auth\AuthManager::authorizeCreateAccount()
 	 * @covers \MediaWiki\Permissions\PermissionManager::checkUserBlock()
 	 */
-	public function testCheckAccountCreatePermissions_ipIsBlockedByUserNot() {
+	public function testAuthorizeCreateAccount_ipIsBlockedByUserNot() {
 		$this->initializeManager( true );
 
 		$user = \User::newFromName( 'UTBlockee' );
@@ -1692,7 +1704,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$this->resetServices();
 		$this->initializeManager( true );
-		$status = $this->manager->checkAccountCreatePermissions( $user );
+		$status = $this->manager->authorizeCreateAccount( $user );
 		$this->assertStatusError( 'blockedtext-partial', $status );
 	}
 
