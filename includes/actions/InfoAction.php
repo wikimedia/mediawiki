@@ -499,18 +499,22 @@ class InfoAction extends FormlessAction {
 
 		// Page protection
 		foreach ( $title->getRestrictionTypes() as $restrictionType ) {
-			$protectionLevel = implode( ', ', $title->getRestrictions( $restrictionType ) );
+			$protections = $title->getRestrictions( $restrictionType );
 
-			if ( $protectionLevel == '' ) {
-				// Allow all users
-				$message = $this->msg( 'protect-default' )->escaped();
+			if ( !$protections ) {
+				$message = $this->getNamespaceProtectionMessage( $title );
+				if ( $message === null ) {
+					// Allow all users
+					$message = $this->msg( 'protect-default' )->escaped();
+				}
 			} else {
-				// Administrators only
+				// @fixme Is it really intentional to allow keys containing ", "? Instead, should
+				// we always use protect-fallback if $protections has 2 or more elements?
 				// Messages: protect-level-autoconfirmed, protect-level-sysop
-				$message = $this->msg( "protect-level-$protectionLevel" );
+				$message = $this->msg( 'protect-level-' . implode( ', ', $protections ) );
 				if ( $message->isDisabled() ) {
 					// Require "$1" permission
-					$message = $this->msg( "protect-fallback", $protectionLevel )->parse();
+					$message = $this->msg( "protect-fallback", $lang->commaList( $protections ) )->parse();
 				} else {
 					$message = $message->escaped();
 				}
@@ -730,6 +734,44 @@ class InfoAction extends FormlessAction {
 		}
 
 		return $pageInfo;
+	}
+
+	/**
+	 * Get namespace protection message for title or null if no namespace protection
+	 * has been applied
+	 *
+	 * @param Title $title
+	 * @return ?string HTML
+	 */
+	protected function getNamespaceProtectionMessage( Title $title ) : ?string {
+		$rights = [];
+		if ( $title->isRawHtmlMessage() ) {
+			$rights[] = 'editsitecss';
+			$rights[] = 'editsitejs';
+		} elseif ( $title->isSiteCssConfigPage() ) {
+			$rights[] = 'editsitecss';
+		} elseif ( $title->isSiteJsConfigPage() ) {
+			$rights[] = 'editsitejs';
+		} elseif ( $title->isSiteJsonConfigPage() ) {
+			$rights[] = 'editsitejson';
+		} elseif ( $title->isUserCssConfigPage() ) {
+			$rights[] = 'editusercss';
+		} elseif ( $title->isUserJsConfigPage() ) {
+			$rights[] = 'edituserjs';
+		} elseif ( $title->isUserJsonConfigPage() ) {
+			$rights[] = 'edituserjson';
+		} else {
+			$namespaceProtection = $this->context->getConfig()->get( 'NamespaceProtection' );
+			$right = $namespaceProtection[$title->getNamespace()] ?? null;
+			if ( $right ) {
+				$rights[] = $right;
+			}
+		}
+		if ( $rights ) {
+			return $this->msg( 'protect-fallback', $this->getLanguage()->commaList( $rights ) )->parse();
+		} else {
+			return null;
+		}
 	}
 
 	/**
