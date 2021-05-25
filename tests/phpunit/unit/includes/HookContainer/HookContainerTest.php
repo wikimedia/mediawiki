@@ -63,6 +63,10 @@ namespace MediaWiki\HookContainer {
 				'Object with no method' => [ 'MWTestHook', $fooObj ],
 				'Object with no method in array' => [ 'MWTestHook', [ $fooObj ], $arguments ],
 				'Object and method' => [ 'MWTestHook', [ $fooObj, 'FooMethod' ] ],
+				'Class name and static method' => [
+					'MWTestHook',
+					[ 'MediaWiki\HookContainer\FooClass', 'FooStaticMethod' ]
+				],
 				'Object and static method' => [
 					'MWTestHook',
 					[ 'MediaWiki\HookContainer\FooClass::FooStaticMethod' ]

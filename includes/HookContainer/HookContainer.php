@@ -260,7 +260,7 @@ class HookContainer implements SalvageableService {
 
 		$firstArg = $normalizedHandler[0];
 
-		// Extract function name, handler object, and any arguments for handler object
+		// Extract function name, handler callback, and any arguments for the callback
 		if ( $firstArg instanceof Closure ) {
 			$functionName = "hook-$hook-closure";
 			$callback = array_shift( $normalizedHandler );
@@ -276,17 +276,25 @@ class HookContainer implements SalvageableService {
 				if ( $colonPos !== false ) {
 					// Some extensions use [ $object, 'Class::func' ] which
 					// worked with call_user_func_array() but doesn't work now
-					// that we use a plain varadic call
+					// that we use a plain variadic call
 					$functionName = substr( $functionName, $colonPos + 2 );
 				}
 			}
 
 			$callback = [ $object, $functionName ];
 		} elseif ( is_string( $firstArg ) ) {
-			$functionName = $callback = array_shift( $normalizedHandler );
+			if ( is_callable( $normalizedHandler, true, $functionName )
+				&& class_exists( $firstArg ) // $firstArg can be a function in global scope
+			) {
+				$callback = $normalizedHandler;
+				$normalizedHandler = []; // Can't pass arguments here
+			} else {
+				$functionName = $callback = array_shift( $normalizedHandler );
+			}
 		} else {
 			throw new UnexpectedValueException( 'Unknown datatype in hooks for ' . $hook );
 		}
+
 		return [
 			'callback' => $callback,
 			'args' => $normalizedHandler,
