@@ -331,7 +331,7 @@ because of Phabricator reports.
 * wfLocalFile(), deprecated since 1.34, now emits deprecation warnings.
 * wfFindFile(), deprecated since 1.34, now emits deprecation warnings.
 * User::getRights(), deprecated since 1.34, now emits deprecation warnings.
-* User::changeableGroups and ::changeableByGroup were deprecated, use
+* User::changeableGroups and ::changeableByGroup were hard deprecated, use
   corresponding methods in UserGroupManager instead.
 * …
 
