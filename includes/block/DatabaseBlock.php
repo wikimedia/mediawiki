@@ -369,8 +369,6 @@ class DatabaseBlock extends AbstractBlock {
 	 * blocks. Decreasing order of specificity: user > IP > narrower IP range > wider IP
 	 * range. A range that encompasses one IP address is ranked equally to a singe IP.
 	 *
-	 * Note that DatabaseBlock::chooseBlock chooses blocks in a different way.
-	 *
 	 * This is refactored out from DatabaseBlock::newLoad.
 	 *
 	 * @param DatabaseBlock[] $blocks These should not include autoblocks or ID blocks
@@ -1006,122 +1004,6 @@ class DatabaseBlock extends AbstractBlock {
 		}
 
 		return $blocks;
-	}
-
-	/**
-	 * From a list of multiple blocks, find the most exact and strongest block.
-	 *
-	 * The logic for finding the "best" block is:
-	 *  - Blocks that match the block's target IP are preferred over ones in a range
-	 *  - Hardblocks are chosen over softblocks that prevent account creation
-	 *  - Softblocks that prevent account creation are chosen over other softblocks
-	 *  - Other softblocks are chosen over autoblocks
-	 *  - If there are multiple exact or range blocks at the same level, the one chosen
-	 *    is random
-	 * This should be used when $blocks were retrieved from the user's IP address
-	 * and $ipChain is populated from the same IP address information.
-	 *
-	 * @deprecated since 1.35 No longer needed in core, since the introduction of
-	 *  CompositeBlock (T206163)
-	 * @param array $blocks Array of DatabaseBlock objects
-	 * @param array $ipChain List of IPs (strings). This is used to determine how "close"
-	 *  a block is to the server, and if a block matches exactly, or is in a range.
-	 *  The order is furthest from the server to nearest e.g., (Browser, proxy1, proxy2,
-	 *  local-cdn, ...)
-	 * @throws MWException
-	 * @return DatabaseBlock|null The "best" block from the list
-	 */
-	public static function chooseBlock( array $blocks, array $ipChain ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		if ( $blocks === [] ) {
-			return null;
-		} elseif ( count( $blocks ) == 1 ) {
-			return $blocks[0];
-		}
-
-		// Sort hard blocks before soft ones and secondarily sort blocks
-		// that disable account creation before those that don't.
-		usort( $blocks, static function ( DatabaseBlock $a, DatabaseBlock $b ) {
-			$aWeight = (int)$a->isHardblock() . (int)$a->appliesToRight( 'createaccount' );
-			$bWeight = (int)$b->isHardblock() . (int)$b->appliesToRight( 'createaccount' );
-			return strcmp( $bWeight, $aWeight ); // highest weight first
-		} );
-
-		$blocksListExact = [
-			'hard' => false,
-			'disable_create' => false,
-			'other' => false,
-			'auto' => false
-		];
-		$blocksListRange = [
-			'hard' => false,
-			'disable_create' => false,
-			'other' => false,
-			'auto' => false
-		];
-		$ipChain = array_reverse( $ipChain );
-
-		foreach ( $blocks as $block ) {
-			// Stop searching if we have already have a "better" block. This
-			// is why the order of the blocks matters
-			if ( !$block->isHardblock() && $blocksListExact['hard'] ) {
-				break;
-			} elseif ( !$block->appliesToRight( 'createaccount' ) && $blocksListExact['disable_create'] ) {
-				break;
-			}
-
-			foreach ( $ipChain as $checkip ) {
-				$checkipHex = IPUtils::toHex( $checkip );
-				if ( (string)$block->getTarget() === $checkip ) {
-					if ( $block->isHardblock() ) {
-						$blocksListExact['hard'] = $blocksListExact['hard'] ?: $block;
-					} elseif ( $block->appliesToRight( 'createaccount' ) ) {
-						$blocksListExact['disable_create'] = $blocksListExact['disable_create'] ?: $block;
-					} elseif ( $block->mAuto ) {
-						$blocksListExact['auto'] = $blocksListExact['auto'] ?: $block;
-					} else {
-						$blocksListExact['other'] = $blocksListExact['other'] ?: $block;
-					}
-					// We found closest exact match in the ip list, so go to the next block
-					break;
-				} elseif ( array_filter( $blocksListExact ) == []
-					&& $block->getRangeStart() <= $checkipHex
-					&& $block->getRangeEnd() >= $checkipHex
-				) {
-					if ( $block->isHardblock() ) {
-						$blocksListRange['hard'] = $blocksListRange['hard'] ?: $block;
-					} elseif ( $block->appliesToRight( 'createaccount' ) ) {
-						$blocksListRange['disable_create'] = $blocksListRange['disable_create'] ?: $block;
-					} elseif ( $block->mAuto ) {
-						$blocksListRange['auto'] = $blocksListRange['auto'] ?: $block;
-					} else {
-						$blocksListRange['other'] = $blocksListRange['other'] ?: $block;
-					}
-					break;
-				}
-			}
-		}
-
-		if ( array_filter( $blocksListExact ) == [] ) {
-			$blocksList = &$blocksListRange;
-		} else {
-			$blocksList = &$blocksListExact;
-		}
-
-		$chosenBlock = null;
-		if ( $blocksList['hard'] ) {
-			$chosenBlock = $blocksList['hard'];
-		} elseif ( $blocksList['disable_create'] ) {
-			$chosenBlock = $blocksList['disable_create'];
-		} elseif ( $blocksList['other'] ) {
-			$chosenBlock = $blocksList['other'];
-		} elseif ( $blocksList['auto'] ) {
-			$chosenBlock = $blocksList['auto'];
-		} else {
-			throw new MWException( "Proxy block found, but couldn't be classified." );
-		}
-
-		return $chosenBlock;
 	}
 
 	/**

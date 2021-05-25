@@ -85,9 +85,7 @@ class CleanupBlocks extends Maintenance {
 						continue;
 					}
 
-					// Find the most-restrictive block. Can't use
-					// DatabaseBlock::chooseBlock because that's for IP blocks, not
-					// user blocks.
+					// Find the most-restrictive block.
 					$keep = null;
 					if ( $keep === null && $block->getExpiry() !== $bestBlock->getExpiry() ) {
 						// This works for infinite blocks because 'infinity' > '20141024234513'
