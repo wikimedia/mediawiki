@@ -88,4 +88,58 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 			$output->getHTML()
 		);
 	}
+
+	/**
+	 * Test if patrol footer is possible to show
+	 * @covers Article::showPatrolFooter
+	 * @dataProvider provideShowPatrolFooter
+	 */
+	public function testShowPatrolFooter( $group, $title, $editPageText, $isEditedBySameUser, $expectedResult ) {
+		$context = new RequestContext();
+		$article = new Article( $title );
+		$user1 = $this->getTestUser( $group )->getUser();
+		$user2 = $this->getTestUser()->getUser();
+		$context->setUser( $user1 );
+		$article->setContext( $context );
+		if ( $editPageText !== null ) {
+			$editedUser = $isEditedBySameUser ? $user1 : $user2;
+			$editIsGood = $this->editPage( $article->getPage(), $editPageText, '', NS_MAIN, $editedUser )->isGood();
+			$this->assertTrue( $editIsGood, 'Sanity: edited a page' );
+		}
+		$this->assertSame( $expectedResult, $article->showPatrolFooter() );
+	}
+
+	public function provideShowPatrolFooter() {
+		yield 'UserAllowedRevExist' => [
+			'sysop',
+			Title::makeTitle( NS_MAIN, 'Page1' ),
+			'EditPage1',
+			false,
+			true
+		];
+
+		yield 'UserNotAllowedRevExist' => [
+			null,
+			Title::makeTitle( NS_MAIN, 'Page2' ),
+			'EditPage2',
+			false,
+			false
+		];
+
+		yield 'UserAllowedNoRev' => [
+			'sysop',
+			Title::makeTitle( NS_MAIN, 'Page3' ),
+			null,
+			false,
+			false
+		];
+
+		yield 'UserAllowedRevExistBySameUser' => [
+			'sysop',
+			Title::makeTitle( NS_MAIN, 'Page4' ),
+			'EditPage4',
+			true,
+			false
+		];
+	}
 }
