@@ -351,6 +351,8 @@ because of Phabricator reports.
   Use SessionProvider::getConfig to get a config.
 * The DBAccessBase class is deprecated. Classes that used to extend it
   should get a load balancer (factory) injected in the constructor instead.
+* ActorNormalization::acquireActorId now requires IDatabase parameter.
+  Not providing one emitted deprecation warnings since 1.36.
 * …
 
 == Compatibility ==
