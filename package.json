@@ -1,9 +1,9 @@
 {
 	"private": true,
 	"scripts": {
-		"api-testing": "npm run api-testing-lint && mocha --timeout 0 --recursive tests/api-testing",
-		"api-testing-lint": "eslint --cache --max-warnings 0 tests/api-testing/**",
+		"api-testing": "mocha --timeout 0 --recursive tests/api-testing",
 		"minify-svg": "svgo --config=.svgo.config.js -q -r -f resources/src",
+		"lint": "grunt lint",
 		"test": "grunt lint && npm run doc",
 		"qunit": "grunt qunit",
 		"doc": "jsduck",
