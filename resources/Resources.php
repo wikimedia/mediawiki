@@ -136,6 +136,12 @@ return [
 		'skipFunction' => 'resources/src/skip-es6-polyfills.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
+	'fetch-polyfill' => [
+		'scripts' => 'resources/lib/fetch-polyfill/fetch.umd.js',
+		'skipFunction' => 'resources/src/skip-fetch.js',
+		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [ 'es6-polyfills' ]
+	],
 	'mediawiki.base' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.base",
 		'packageFiles' => [

@@ -1,0 +1,1 @@
+return typeof fetch === 'function';
