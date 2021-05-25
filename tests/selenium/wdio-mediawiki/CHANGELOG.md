@@ -1,3 +1,9 @@
+## 1.1.0 / May 21 2021
+
+* Api: Update mwbot to version 2.0, as returned by `api.bot()`.
+* Added new `wdio-defaults.conf.js` entrypoint.
+* index: Changed `saveScreenshot()` filenames to use an ISO-formatted timestamp.
+
 ## 1.0.0 / 2019-11-05
 
 The wdio-mediawiki library now requires webdriverio 5 and Node 10 (or later).
