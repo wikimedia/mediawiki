@@ -2,12 +2,10 @@
 
 namespace MediaWiki\Auth;
 
-use Config;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
-use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -15,6 +13,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Auth\ResetPasswordSecondaryAuthenticationProvider
  */
 class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+	use AuthenticationProviderTestTrait;
+
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
@@ -94,7 +94,6 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 		$mwServices = MediaWikiServices::getInstance();
 		$services = $this->createNoOpAbstractMock( ContainerInterface::class );
 		$objectFactory = new \Wikimedia\ObjectFactory( $services );
-		$permManager = $this->createNoOpMock( PermissionManager::class );
 		$hookContainer = $this->createHookContainer();
 		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
 		$manager = new AuthManager(
@@ -108,13 +107,7 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			$mwServices->getBlockErrorFormatter(),
 			$mwServices->getWatchlistManager()
 		);
-		$provider->init(
-			$this->createNoOpMock( NullLogger::class ),
-			$manager,
-			$this->createHookContainer(),
-			$this->createNoOpAbstractMock( Config::class ),
-			$userNameUtils
-		);
+		$this->initProvider( $provider, null, null, $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 
 		$msg = wfMessage( 'foo' );

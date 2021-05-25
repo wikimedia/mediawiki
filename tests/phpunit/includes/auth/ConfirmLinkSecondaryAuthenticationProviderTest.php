@@ -2,11 +2,10 @@
 
 namespace MediaWiki\Auth;
 
-use Config;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\User\UserNameUtils;
 use Psr\Container\ContainerInterface;
-use Psr\Log\NullLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -14,6 +13,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Auth\ConfirmLinkSecondaryAuthenticationProvider
  */
 class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+	use AuthenticationProviderTestTrait;
+
 	/**
 	 * @dataProvider provideGetAuthenticationRequests
 	 * @param string $action
@@ -133,9 +134,8 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->willReturn( "BadReq" );
 
 		$user = \User::newFromName( 'UTSysop' );
-		$provider = TestingAccessWrapper::newFromObject(
-			new ConfirmLinkSecondaryAuthenticationProvider
-		);
+		$provider = new ConfirmLinkSecondaryAuthenticationProvider;
+		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 		$request = new \FauxRequest();
 		$mwServices = MediaWikiServices::getInstance();
 		$manager = $this->getMockBuilder( AuthManager::class )
@@ -158,17 +158,11 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 					? \StatusValue::newGood()
 					: \StatusValue::newFatal( 'no' );
 			} ) );
-		$provider->init(
-			$this->createNoOpMock( NullLogger::class ),
-			$manager,
-			$this->createHookContainer(),
-			$this->createNoOpAbstractMock( Config::class ),
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, null, null, $manager );
 
 		$this->assertEquals(
 			AuthenticationResponse::newAbstain(),
-			$provider->beginLinkAttempt( $user, 'state' )
+			$providerPriv->beginLinkAttempt( $user, 'state' )
 		);
 
 		$request->getSession()->setSecret( 'state', [
@@ -176,14 +170,14 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		] );
 		$this->assertEquals(
 			AuthenticationResponse::newAbstain(),
-			$provider->beginLinkAttempt( $user, 'state' )
+			$providerPriv->beginLinkAttempt( $user, 'state' )
 		);
 
 		$reqs = $this->getLinkRequests();
 		$request->getSession()->setSecret( 'state', [
 			'maybeLink' => $reqs + [ 'BadReq' => $badReq ]
 		] );
-		$res = $provider->beginLinkAttempt( $user, 'state' );
+		$res = $providerPriv->beginLinkAttempt( $user, 'state' );
 		$this->assertInstanceOf( AuthenticationResponse::class, $res );
 		$this->assertSame( AuthenticationResponse::UI, $res->status );
 		$this->assertSame( 'authprovider-confirmlink-message', $res->message->getKey() );
@@ -263,13 +257,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$mwServices->getBlockErrorFormatter(),
 			$mwServices->getWatchlistManager()
 		);
-		$provider->init(
-			$this->createNoOpMock( NullLogger::class ),
-			$manager,
-			$this->createHookContainer(),
-			$this->createNoOpAbstractMock( Config::class ),
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, null, null, $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
 
 		$req = new ConfirmLinkAuthenticationRequest( $reqs );

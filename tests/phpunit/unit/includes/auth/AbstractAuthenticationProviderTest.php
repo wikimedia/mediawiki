@@ -15,6 +15,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Auth\AbstractAuthenticationProvider
  */
 class AbstractAuthenticationProviderTest extends \MediaWikiUnitTestCase {
+	use AuthenticationProviderTestTrait;
+
 	public function testAbstractAuthenticationProvider() {
 		$provider = $this->getMockForAbstractClass( AbstractAuthenticationProvider::class );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
@@ -25,7 +27,7 @@ class AbstractAuthenticationProviderTest extends \MediaWikiUnitTestCase {
 		$hookContainer = $this->createMock( HookContainer::class );
 		$config = $this->getMockForAbstractClass( Config::class );
 		$userNameUtils = $this->createNoOpMock( UserNameUtils::class );
-		$provider->init( $logger, $authManager, $hookContainer, $config, $userNameUtils );
+		$this->initProvider( $provider, $config, $logger, $authManager, $hookContainer, $userNameUtils );
 		$this->assertSame( $logger, $providerPriv->logger );
 		$this->assertSame( $authManager, $providerPriv->manager );
 		$this->assertSame( $hookContainer, $providerPriv->hookContainer );

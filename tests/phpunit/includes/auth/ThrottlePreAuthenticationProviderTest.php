@@ -3,10 +3,10 @@
 namespace MediaWiki\Auth;
 
 use HashConfig;
-use MediaWiki\User\UserNameUtils;
-use Psr\Log\NullLogger;
-use Psr\Log\Test\TestLogger;
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
+use MediaWikiIntegrationTestCase;
 use stdClass;
+use TestLogger;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -14,7 +14,9 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Auth\ThrottlePreAuthenticationProvider
  */
-class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
+class ThrottlePreAuthenticationProviderTest extends MediaWikiIntegrationTestCase {
+	use AuthenticationProviderTestTrait;
+
 	public function testConstructor() {
 		$provider = new ThrottlePreAuthenticationProvider();
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
@@ -28,13 +30,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 				'seconds' => 300,
 			] ],
 		] );
-		$provider->init(
-			$this->createNoOpMock( NullLogger::class ),
-			$this->createNoOpMock( AuthManager::class ),
-			$this->createHookContainer(),
-			$config,
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, $config );
 		$this->assertSame( [
 			'accountCreationThrottle' => [ [ 'count' => 123, 'seconds' => 86400 ] ],
 			'passwordAttemptThrottle' => [ [ 'count' => 5, 'seconds' => 300 ] ]
@@ -63,13 +59,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 				'seconds' => 300,
 			] ],
 		] );
-		$provider->init(
-			$this->createNoOpMock( NullLogger::class ),
-			$this->createNoOpMock( AuthManager::class ),
-			$this->createHookContainer(),
-			$config,
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, $config );
 		$this->assertSame( [
 			'accountCreationThrottle' => [ [ 'count' => 43, 'seconds' => 10000 ] ],
 			'passwordAttemptThrottle' => [ [ 'count' => 11, 'seconds' => 100 ] ],
@@ -82,13 +72,7 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'AccountCreationThrottle' => [ [ 'count' => 1, 'seconds' => 1 ] ],
 			'PasswordAttemptThrottle' => [ [ 'count' => 1, 'seconds' => 1 ] ],
 		] );
-		$provider->init(
-			$this->createNoOpMock( NullLogger::class ),
-			$this->createNoOpMock( AuthManager::class ),
-			$this->createHookContainer(),
-			$config,
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, $config );
 		$accountCreationThrottle = TestingAccessWrapper::newFromObject(
 			$providerPriv->accountCreationThrottle );
 		$this->assertSame( $cache, $accountCreationThrottle->cache );
@@ -103,15 +87,14 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$provider->init(
-			$this->createNoOpMock( NullLogger::class ),
-			$this->getServiceContainer()->getAuthManager(),
-			$this->createHookContainer(),
+		$this->initProvider(
+			$provider,
 			new HashConfig( [
 				'AccountCreationThrottle' => null,
 				'PasswordAttemptThrottle' => null,
 			] ),
-			$this->createNoOpMock( UserNameUtils::class )
+			null,
+			$this->getServiceContainer()->getAuthManager()
 		);
 
 		$this->assertEquals(
@@ -139,15 +122,15 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'accountCreationThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$provider->init(
-			new NullLogger(),
-			$this->getServiceContainer()->getAuthManager(),
-			$this->getServiceContainer()->getHookContainer(),
+		$this->initProvider(
+			$provider,
 			new HashConfig( [
 				'AccountCreationThrottle' => null,
 				'PasswordAttemptThrottle' => null,
 			] ),
-			$this->createNoOpMock( UserNameUtils::class )
+			null,
+			$this->getServiceContainer()->getAuthManager(),
+			$this->getServiceContainer()->getHookContainer()
 		);
 
 		$user = \User::newFromName( 'RandomUser' );
@@ -193,15 +176,14 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$provider->init(
-			new NullLogger(),
-			$this->getServiceContainer()->getAuthManager(),
-			$this->createHookContainer(),
+		$this->initProvider(
+			$provider,
 			new HashConfig( [
 				'AccountCreationThrottle' => null,
 				'PasswordAttemptThrottle' => null,
 			] ),
-			$this->createNoOpMock( UserNameUtils::class )
+			null,
+			$this->getServiceContainer()->getAuthManager()
 		);
 
 		$req = new UsernameAuthenticationRequest;
@@ -243,15 +225,14 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$provider->init(
-			new TestLogger(),
-			$this->getServiceContainer()->getAuthManager(),
-			$this->createHookContainer(),
+		$this->initProvider(
+			$provider,
 			new HashConfig( [
 				'AccountCreationThrottle' => null,
 				'PasswordAttemptThrottle' => null,
 			] ),
-			$this->createNoOpMock( UserNameUtils::class )
+			null,
+			$this->getServiceContainer()->getAuthManager()
 		);
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newPass() );
@@ -260,16 +241,15 @@ class ThrottlePreAuthenticationProviderTest extends \MediaWikiIntegrationTestCas
 			'passwordAttemptThrottle' => [ [ 'count' => 2, 'seconds' => 86400 ] ],
 			'cache' => new \HashBagOStuff(),
 		] );
-		$logger = new \TestLogger( true );
-		$provider->init(
-			$logger,
-			$this->getServiceContainer()->getAuthManager(),
-			$this->createHookContainer(),
+		$logger = new TestLogger( true );
+		$this->initProvider(
+			$provider,
 			new HashConfig( [
 				'AccountCreationThrottle' => null,
 				'PasswordAttemptThrottle' => null,
 			] ),
-			$this->createNoOpMock( UserNameUtils::class )
+			$logger,
+			$this->getServiceContainer()->getAuthManager()
 		);
 		$provider->postAuthentication( \User::newFromName( 'SomeUser' ),
 			AuthenticationResponse::newPass() );
