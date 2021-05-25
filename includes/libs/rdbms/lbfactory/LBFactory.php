@@ -238,7 +238,7 @@ abstract class LBFactory implements ILBFactory {
 	}
 
 	/**
-	 * Call a method of each tracked load balancer
+	 * Call a method on each tracked (instantiated) load balancer instance
 	 *
 	 * @param string $methodName
 	 * @param array $args
