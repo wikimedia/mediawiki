@@ -380,10 +380,7 @@ class DatabaseBlockStore {
 	) : array {
 		$expiry = $dbw->encodeExpiry( $block->getExpiry() );
 
-		$forcedTargetId = $block->getForcedTargetID();
-		if ( $forcedTargetId ) {
-			$userId = $forcedTargetId;
-		} elseif ( $block->getTargetUserIdentity() ) {
+		if ( $block->getTargetUserIdentity() ) {
 			$userId = $block->getTargetUserIdentity()->getId();
 		} else {
 			$userId = 0;
