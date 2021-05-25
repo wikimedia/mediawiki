@@ -18,6 +18,7 @@
 	"paramvalidator-help-required": "Cal aquest paràmetre.",
 	"paramvalidator-help-type-boolean": "Tipus: {{PLURAL:$1|1=booleà|2=llista de booleans}}",
 	"paramvalidator-help-type-enum-can-be-empty": "{{PLURAL:$2|0=Cal que sigui buit|Pot ser buit o $1}}",
+	"paramvalidator-help-type-integer": "Tipus: {{PLURAL:$1|1=enter|2=llista d'enters}}",
 	"paramvalidator-help-type-limit": "Type: enter o «max»",
 	"paramvalidator-help-type-number-max": "{{PLURAL:$1|1=El valor no ha|2=Els valors no han}} de ser més gran que $3.",
 	"paramvalidator-help-type-presenceboolean": "Tipus: booleà",

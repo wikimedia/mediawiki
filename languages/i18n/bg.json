@@ -2239,7 +2239,7 @@
 	"restricted-displaytitle-ignored": "Страници с игнорирани заглавия за показване",
 	"restricted-displaytitle-ignored-desc": "Страницата съдържа игнориран <code><nowiki>{{DISPLAYTITLE}}</nowiki></code>, защото той не съвпада с действителното заглавие на страницата.",
 	"nonnumeric-formatnum": "Страници с нечислови аргументи във formatnum",
-	"nonnumeric-formatnum-desc": "Страницата съдържа нечислов аргумент в анализиращата функция formatnum.",
+	"nonnumeric-formatnum-desc": "Страницата съдържа нецифров аргумент в анализиращата функция formatnum.",
 	"noindex-category-desc": "Страницата не се индексира от роботи, защото съдържа вълшебната думичка <code><nowiki>__NOINDEX__</nowiki></code> и е от именно пространство, в което такова отбелязване е позволено.",
 	"index-category-desc": "Страницата съдържа <code><nowiki>__INDEX__</nowiki></code> (и е от именно пространство, в което такова отбелязване е позволено), поради което се индексира от роботи, където обикновено не би била индексирана.",
 	"post-expand-template-inclusion-category-desc": "Страницата е по-голяма от <code>$wgMaxArticleSize</code> след разгръщането на всички шаблони, поради което някои шаблони не са разгърнати.",

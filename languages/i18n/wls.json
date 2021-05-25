@@ -381,7 +381,7 @@
 	"rollbacklinkcount": "liliu $1{{PLURAL:$1|fetogi}}",
 	"protectlogpage": "Tohi puipui",
 	"protectedarticle": "puipui \"[[$1]]\"",
-	"modifiedarticleprotection": "Fetogi te fa'ahiga puipui o \"[[$1]]\"",
+	"modifiedarticleprotection": "Fetogi te 'u lekula puipui o \"[[$1]]\"",
 	"protect-default": "Fakagafua te kaiga fuli",
 	"restriction-edit": "Fetogi",
 	"restriction-move": "Fetogi higoa",

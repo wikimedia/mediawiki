@@ -886,7 +886,7 @@
 	"last": "이전",
 	"page_first": "처음",
 	"page_last": "마지막",
-	"histlegend": "차이 선택: 비교하려는 판의 라디오 상자를 선택한 다음 엔터나 아래의 버튼을 누르세요.<br />\n설명: <strong>({{int:cur}})</strong> = 최신 판과 비교, <strong>({{int:last}})</strong> = 이전 판과 비교, <strong>{{int:minoreditletter}}</strong>= 사소한 편집",
+	"histlegend": "차이 선택: 비교하려는 판의 라디오 버튼을 선택한 다음 엔터나 아래의 버튼을 누르세요.<br />\n설명: <strong>({{int:cur}})</strong> = 최신 판과 비교, <strong>({{int:last}})</strong> = 이전 판과 비교, <strong>{{int:minoreditletter}}</strong>= 사소한 편집",
 	"history-fieldset-title": "특정판 필터링",
 	"history-show-deleted": "특정판이 삭제된 것만",
 	"histfirst": "오래됨",

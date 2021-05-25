@@ -949,7 +949,7 @@
 	"expensive-parserfunction-warning": "<strong>Attention :</strong> cette page contient de trop nombreux appels à des fonctions coûteuses de l’analyseur syntaxique.\n\nIl devrait y avoir moins de $2 appel{{PLURAL:$2||s}}, alors qu’il y en a maintenant $1.",
 	"expensive-parserfunction-category": "Pages avec trop d’appels dispendieux aux fonctions de l’analyseur syntaxique",
 	"post-expand-template-inclusion-warning": "<strong>Attention :</strong> cette page contient trop d’inclusions de modèles. Certaines inclusions ne seront pas effectuées.",
-	"post-expand-template-inclusion-category": "Pages contenant trop d'inclusions de modèles",
+	"post-expand-template-inclusion-category": "Pages contenant trop d’inclusions de modèles",
 	"post-expand-template-argument-warning": "<strong>Attention :</strong> cette page contient au moins un paramètre de modèle dont la taille après expansion est trop importante.\nCes arguments ont été omis.",
 	"post-expand-template-argument-category": "Pages contenant des paramètres de modèle non évalués",
 	"template-equals-category": "Pages qui utilisent = comme modèle",
