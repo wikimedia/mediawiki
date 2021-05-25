@@ -1,5 +1,24 @@
 = MediaWiki 1.36 =
 
+=== Changes since MediaWiki 1.36.0-rc.0 ===
+* (T248481) rdbms: Use server time in
+  DatabaseMysqlBase::getLagFromPtHeartbeat().
+* (T281549) WebInstaller: Don't show the announce-l subscribe checkbox for now.
+* (T264214) Follow-ups for UserGroupManager.
+* (T282280) resourceloader: Fix path-only URLs in wiki modules when script path
+  is docroot.
+* (T281972) UserIdentityValue: Introduce convenience static factory methods.
+* (T230428) Make page_is_redirect and page_is_new unsigned.
+* (T280292) Legacy feature should not load thumbnail style rules (only layout).
+* (T283247) Freenode -> Libera per wikimedia moving from freenode to libera.
+* (T280270) composer: Lock Parsoid version to specific 0.13.0 release.
+* (T142663) Add extension.json merge strategy "provide_default".
+* (T283540) HookContainer: Fix normalization of callback for static handler.
+* (T283464) registration: Fix array order for array_replace_recursive merge
+  strategy.
+* (T283539) Interwiki: Fix calling "onInterwikiLoadPrefix" hook.
+* (T282594) Timeless: Re-branch to 40eb3dad1for REL1_36.
+
 == MediaWiki 1.36.0-rc.0 ==
 
 THIS IS NOT A RELEASE YET
