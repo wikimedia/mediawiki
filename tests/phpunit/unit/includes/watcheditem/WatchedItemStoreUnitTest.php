@@ -112,17 +112,6 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	}
 
 	/**
-	 * @param bool $readOnly
-	 * @return MockObject|ReadOnlyMode
-	 */
-	private function getMockReadOnlyMode( $readOnly = false ) {
-		$mock = $this->createMock( ReadOnlyMode::class );
-		$mock->method( 'isReadOnly' )
-			->willReturn( $readOnly );
-		return $mock;
-	}
-
-	/**
 	 * No methods may be called except provided callbacks, if any.
 	 *
 	 * @param array $callbacks Keys are method names, values are callbacks
@@ -288,7 +277,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 			$mocks['queueGroup'] ?? $this->getMockJobQueueGroup(),
 			new HashBagOStuff(),
 			$mocks['cache'] ?? $this->getMockCache(),
-			$mocks['readOnlyMode'] ?? $this->getMockReadOnlyMode(),
+			$mocks['readOnlyMode'] ?? $this->getDummyReadOnlyMode( false ),
 			$nsInfo,
 			$mocks['revisionLookup'] ?? $this->getMockRevisionLookup(),
 			$this->createHookContainer(),
@@ -1296,7 +1285,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 */
 	public function testAddWatchBatchForUser_readOnlyDBReturnsFalse( $testPageFactory ) {
 		$store = $this->newWatchedItemStore(
-			[ 'readOnlyMode' => $this->getMockReadOnlyMode( true ) ]
+			[ 'readOnlyMode' => $this->getDummyReadOnlyMode( true ) ]
 		);
 
 		$this->assertFalse(

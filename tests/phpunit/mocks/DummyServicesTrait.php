@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use ConfiguredReadOnlyMode;
 use GenderCache;
 use Interwiki;
 use InvalidArgumentException;
@@ -34,10 +35,12 @@ use MediaWiki\User\UserIdentity;
 use MediaWikiTitleCodec;
 use NamespaceInfo;
 use PHPUnit\Framework\MockObject\MockObject;
+use ReadOnlyMode;
 use TitleFormatter;
 use TitleParser;
 use WatchedItem;
 use WatchedItemStore;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Trait to get helper services that can be used in unit tests
@@ -303,6 +306,23 @@ trait DummyServicesTrait {
 		return new NamespaceInfo(
 			$serviceOptions,
 			$options['hookContainer'] ?? $this->createHookContainer()
+		);
+	}
+
+	/**
+	 * @param string|bool $startingReason If false, the read only mode isn't active,
+	 *    otherwise it is active and this is the reason (true maps to a fallback reason)
+	 * @return ReadOnlyMode
+	 */
+	private function getDummyReadOnlyMode( $startingReason ) : ReadOnlyMode {
+		if ( $startingReason === true ) {
+			$startingReason = 'Random reason';
+		}
+		$loadBalancer = $this->createMock( ILoadBalancer::class );
+		$loadBalancer->method( 'getReadOnlyReason' )->willReturn( false );
+		return new ReadOnlyMode(
+			new ConfiguredReadOnlyMode( $startingReason, null ),
+			$loadBalancer
 		);
 	}
 

@@ -6,6 +6,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use Psr\Log\NullLogger;
 
 /**
@@ -17,6 +18,8 @@ use Psr\Log\NullLogger;
  * @covers \MediaWiki\Block\DatabaseBlockStore
  */
 class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
+
 	/** @var User */
 	private $sysop;
 
@@ -51,9 +54,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			->willReturn( true );
 
 		// Most tests need read only to be false
-		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
-		$readOnlyMode->method( 'isReadOnly' )
-			->willReturn( false );
+		$readOnlyMode = $this->getDummyReadOnlyMode( false );
 
 		$services = MediaWikiServices::getInstance();
 		$defaultConstructorArgs = [
@@ -343,12 +344,9 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$target = $this->sysop;
 		$block = DatabaseBlock::newFromTarget( $target );
 
-		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
-		$readOnlyMode->method( 'isReadOnly' )
-			->willReturn( true );
 		$store = $this->getStore( [
 			'constructorArgs' => [
-				'readOnlyMode' => $readOnlyMode
+				'readOnlyMode' => $this->getDummyReadOnlyMode( true )
 			],
 		] );
 
@@ -399,12 +397,9 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testPurgeExpiredBlocksFailureReadOnly() {
-		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
-		$readOnlyMode->method( 'isReadOnly' )
-			->willReturn( true );
 		$store = $this->getStore( [
 			'constructorArgs' => [
-				'readOnlyMode' => $readOnlyMode,
+				'readOnlyMode' => $this->getDummyReadOnlyMode( true ),
 			],
 		] );
 		$store->purgeExpiredBlocks();
