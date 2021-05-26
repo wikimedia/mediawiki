@@ -527,7 +527,7 @@ class SpecialPageFactory {
 				'LinkBatchFactory',
 				'CommentStore',
 				'ContentHandlerFactory',
-				'PermissionManager',
+				'GroupPermissionsLookup',
 				'DBLoadBalancer',
 				'RevisionLookup',
 				'NamespaceInfo',
