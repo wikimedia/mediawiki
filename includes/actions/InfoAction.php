@@ -764,7 +764,8 @@ class InfoAction extends FormlessAction {
 			$namespaceProtection = $this->context->getConfig()->get( 'NamespaceProtection' );
 			$right = $namespaceProtection[$title->getNamespace()] ?? null;
 			if ( $right ) {
-				$rights[] = $right;
+				// a single string as the value is allowed as well as an array
+				$rights = (array)$right;
 			}
 		}
 		if ( $rights ) {
