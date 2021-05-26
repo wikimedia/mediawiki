@@ -5,7 +5,7 @@
 		"services": [
 			"RevisionStore",
 			"NameTableStoreFactory",
-			"PermissionManager",
+			"GroupPermissionsLookup",
 			"DBLoadBalancer",
 			"PageStore",
 			"TitleFormatter"
@@ -17,7 +17,7 @@
 		"services": [
 			"RevisionStore",
 			"NameTableStoreFactory",
-			"PermissionManager",
+			"GroupPermissionsLookup",
 			"DBLoadBalancer",
 			"MainWANObjectCache",
 			"PageStore"

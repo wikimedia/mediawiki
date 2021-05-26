@@ -3993,27 +3993,27 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/**
 	 * Get the permissions associated with a given list of groups
 	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
-	 *             ->getGroupPermissions() instead
+	 * @deprecated since 1.34, use GroupPermissionsLookup::getGroupPermissions() instead in 1.36+,
+	 *    or PermissionManager::getGroupPermisions() in 1.34 and 1.35
 	 *
 	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined
 	 */
 	public static function getGroupPermissions( $groups ) {
-		return MediaWikiServices::getInstance()->getPermissionManager()->getGroupPermissions( $groups );
+		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()->getGroupPermissions( $groups );
 	}
 
 	/**
 	 * Get all the groups who have a given permission
 	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
-	 *             ->getGroupsWithPermission() instead
+	 * @deprecated since 1.34, use GroupPermissionsLookup::getGroupsWithPermission() instead in 1.36+,
+	 *    or PermissionManager::getGroupsWithPermission() in 1.34 and 1.35
 	 *
 	 * @param string $role Role to check
 	 * @return string[] internal group names with the given permission
 	 */
 	public static function getGroupsWithPermission( $role ) {
-		return MediaWikiServices::getInstance()->getPermissionManager()->getGroupsWithPermission( $role );
+		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()->getGroupsWithPermission( $role );
 	}
 
 	/**
@@ -4023,8 +4023,8 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * PermissionManager::isEveryoneAllowed() instead. That properly checks if it's revoked
 	 * from anyone.
 	 *
-	 * @deprecated since 1.34, use MediaWikiServices::getInstance()->getPermissionManager()
-	 * ->groupHasPermission(..) instead
+	 * @deprecated since 1.34, use GroupPermissionsLookup::groupHasPermission() instead in 1.36+,
+	 *    or PermissionManager::groupHasPermission() in 1.34 and 1.35
 	 *
 	 * @since 1.21
 	 * @param string $group Group to check
@@ -4032,7 +4032,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @return bool
 	 */
 	public static function groupHasPermission( $group, $role ) {
-		return MediaWikiServices::getInstance()->getPermissionManager()
+		return MediaWikiServices::getInstance()->getGroupPermissionsLookup()
 			->groupHasPermission( $group, $role );
 	}
 
@@ -4273,7 +4273,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 		$groups = [];
 		foreach ( MediaWikiServices::getInstance()
-				->getPermissionManager()
+				->getGroupPermissionsLookup()
 				->getGroupsWithPermission( $permission ) as $group ) {
 			$groups[] = UserGroupMembership::getLink( $group, RequestContext::getMain(), 'wiki' );
 		}

@@ -90,7 +90,7 @@ class PermissionManager {
 	private $nsInfo;
 
 	/** @var GroupPermissionsLookup */
-	private $groupPermissionLookup;
+	private $groupPermissionsLookup;
 
 	/** @var UserGroupManager */
 	private $userGroupManager;
@@ -214,7 +214,7 @@ class PermissionManager {
 	 * @param SpecialPageFactory $specialPageFactory
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $nsInfo
-	 * @param GroupPermissionsLookup $groupPermissionLookup
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param UserGroupManager $userGroupManager
 	 * @param BlockErrorFormatter $blockErrorFormatter
 	 * @param HookContainer $hookContainer
@@ -225,7 +225,7 @@ class PermissionManager {
 		SpecialPageFactory $specialPageFactory,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $nsInfo,
-		GroupPermissionsLookup $groupPermissionLookup,
+		GroupPermissionsLookup $groupPermissionsLookup,
 		UserGroupManager $userGroupManager,
 		BlockErrorFormatter $blockErrorFormatter,
 		HookContainer $hookContainer,
@@ -236,7 +236,7 @@ class PermissionManager {
 		$this->specialPageFactory = $specialPageFactory;
 		$this->revisionLookup = $revisionLookup;
 		$this->nsInfo = $nsInfo;
-		$this->groupPermissionLookup = $groupPermissionLookup;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->userGroupManager = $userGroupManager;
 		$this->blockErrorFormatter = $blockErrorFormatter;
 		$this->hookRunner = new HookRunner( $hookContainer );
@@ -1461,7 +1461,7 @@ class PermissionManager {
 	 * from anyone.
 	 *
 	 * @since 1.34
-	 * @deprecated since 1.36 Use GroupPermissionLookup instead
+	 * @deprecated since 1.36 Use GroupPermissionsLookup instead
 	 *
 	 * @param string $group Group to check
 	 * @param string $role Role to check
@@ -1469,33 +1469,33 @@ class PermissionManager {
 	 * @return bool
 	 */
 	public function groupHasPermission( $group, $role ) {
-		return $this->groupPermissionLookup->groupHasPermission( $group, $role );
+		return $this->groupPermissionsLookup->groupHasPermission( $group, $role );
 	}
 
 	/**
 	 * Get the permissions associated with a given list of groups
 	 *
 	 * @since 1.34
-	 * @deprecated since 1.36 Use GroupPermissionLookup instead
+	 * @deprecated since 1.36 Use GroupPermissionsLookup instead
 	 *
 	 * @param string[] $groups internal group names
 	 * @return string[] permission key names for given groups combined
 	 */
 	public function getGroupPermissions( $groups ) {
-		return $this->groupPermissionLookup->getGroupPermissions( $groups );
+		return $this->groupPermissionsLookup->getGroupPermissions( $groups );
 	}
 
 	/**
 	 * Get all the groups who have a given permission
 	 *
 	 * @since 1.34
-	 * @deprecated since 1.36, use GroupPermissionLookup instead.
+	 * @deprecated since 1.36, use GroupPermissionsLookup instead.
 	 *
 	 * @param string $role Role to check
 	 * @return string[] internal group names with the given permission
 	 */
 	public function getGroupsWithPermission( $role ) {
-		return $this->groupPermissionLookup->getGroupsWithPermission( $role );
+		return $this->groupPermissionsLookup->getGroupsWithPermission( $role );
 	}
 
 	/**
