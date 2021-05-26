@@ -330,6 +330,10 @@ because of Phabricator reports.
   post-initialization configuration.
 * ContentHandler::getContentText() and is now soft deprecated.
   Use Content::getText() instead.
+* MediaWiki\User\UserNamePrefixSearch::search() previously accepted as
+  its first parameter either the string 'public' or a UserIdentity object,
+  to filter results for. It now expects an Authority object instead of
+  UserIdentity, and providing just a UserIdentity is hard deprecated.
 * wfLocalFile(), deprecated since 1.34, now emits deprecation warnings.
 * wfFindFile(), deprecated since 1.34, now emits deprecation warnings.
 * User::getRights(), deprecated since 1.34, now emits deprecation warnings.

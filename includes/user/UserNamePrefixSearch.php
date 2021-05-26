@@ -23,7 +23,7 @@
 namespace MediaWiki\User;
 
 use InvalidArgumentException;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -44,31 +44,26 @@ class UserNamePrefixSearch {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
-	/** @var PermissionManager */
-	private $permissionManager;
-
 	/** @var UserFactory */
 	private $userFactory;
 
 	/**
 	 * @param ILoadBalancer $loadBalancer
-	 * @param PermissionManager $permissionManager
 	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		PermissionManager $permissionManager,
 		UserFactory $userFactory
 	) {
 		$this->loadBalancer = $loadBalancer;
-		$this->permissionManager = $permissionManager;
 		$this->userFactory = $userFactory;
 	}
 
 	/**
 	 * Do a prefix search of user names and return a list of matching user names.
 	 *
-	 * @param string|UserIdentity $audience Either AUDIENCE_PUBLIC or a user to show the search for
+	 * @param string|UserIdentity|Authority $audience Either AUDIENCE_PUBLIC or a user to
+	 *    show the search for, providing a UserIdentity is deprecated since 1.37
 	 * @param string $search
 	 * @param int $limit
 	 * @param int $offset How many results to offset from the beginning
@@ -76,11 +71,16 @@ class UserNamePrefixSearch {
 	 * @throws InvalidArgumentException if $audience is invalid
 	 */
 	public function search( $audience, string $search, int $limit, int $offset = 0 ) : array {
+		if ( $audience instanceof UserIdentity && !( $audience instanceof Authority ) ) {
+			wfDeprecated( __METHOD__ . ' with a UserIdentity', '1.37' );
+			$audience = $this->userFactory->newFromUserIdentity( $audience );
+		}
+
 		if ( $audience !== self::AUDIENCE_PUBLIC &&
-			!( $audience instanceof UserIdentity )
+			!( $audience instanceof Authority )
 		) {
 			throw new InvalidArgumentException(
-				'$audience must be AUDIENCE_PUBLIC or a UserIdentity'
+				'$audience must be AUDIENCE_PUBLIC or an Authority object'
 			);
 		}
 
@@ -98,9 +98,7 @@ class UserNamePrefixSearch {
 		$joinConds = [];
 
 		// Filter out hidden user names
-		if ( $audience === self::AUDIENCE_PUBLIC ||
-			!$this->permissionManager->userHasRight( $audience, 'hideuser' )
-		) {
+		if ( $audience === self::AUDIENCE_PUBLIC || !$audience->isAllowed( 'hideuser' ) ) {
 			$tables[] = 'ipblocks';
 			$conds['ipb_deleted'] = [ 0, null ];
 			$joinConds['ipblocks'] = [ 'LEFT JOIN', 'user_id=ipb_user' ];
