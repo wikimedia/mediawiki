@@ -1623,7 +1623,6 @@ return [
 			$services->getDBLoadBalancer(),
 			$services->getCommentStore(),
 			$services->getWatchedItemStore(),
-			$services->getPermissionManager(),
 			$services->getHookContainer(),
 			$services->getMainConfig()->get( 'WatchlistExpiry' )
 		);
