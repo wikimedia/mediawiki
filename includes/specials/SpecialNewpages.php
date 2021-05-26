@@ -28,7 +28,6 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -72,9 +71,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
-	/** @var UserFactory */
-	private $userFactory;
-
 	/**
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param CommentStore $commentStore
@@ -84,7 +80,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param RevisionLookup $revisionLookup
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param UserOptionsLookup $userOptionsLookup
-	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		LinkBatchFactory $linkBatchFactory,
@@ -94,8 +89,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 		ILoadBalancer $loadBalancer,
 		RevisionLookup $revisionLookup,
 		NamespaceInfo $namespaceInfo,
-		UserOptionsLookup $userOptionsLookup,
-		UserFactory $userFactory
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( 'Newpages' );
 		$this->linkBatchFactory = $linkBatchFactory;
@@ -106,7 +100,6 @@ class SpecialNewpages extends IncludableSpecialPage {
 		$this->revisionLookup = $revisionLookup;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->userOptionsLookup = $userOptionsLookup;
-		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -235,8 +228,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->getHookContainer(),
 			$this->groupPermissionsLookup,
 			$this->loadBalancer,
-			$this->namespaceInfo,
-			$this->userFactory
+			$this->namespaceInfo
 		);
 		$pager->mLimit = $this->opts->getValue( 'limit' );
 		$pager->mOffset = $this->opts->getValue( 'offset' );
@@ -580,8 +572,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 			$this->getHookContainer(),
 			$this->groupPermissionsLookup,
 			$this->loadBalancer,
-			$this->namespaceInfo,
-			$this->userFactory
+			$this->namespaceInfo
 		);
 		$limit = $this->opts->getValue( 'limit' );
 		$pager->mLimit = min( $limit, $this->getConfig()->get( 'FeedLimit' ) );
