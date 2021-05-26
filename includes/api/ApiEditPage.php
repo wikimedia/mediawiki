@@ -67,6 +67,7 @@ class ApiEditPage extends ApiBase {
 
 		$pageObj = $this->getTitleOrPageId( $params );
 		$titleObj = $pageObj->getTitle();
+		$this->getErrorFormatter()->setContextTitle( $titleObj );
 		$apiResult = $this->getResult();
 		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
@@ -120,6 +121,7 @@ class ApiEditPage extends ApiBase {
 
 				// Since the page changed, update $pageObj
 				$pageObj = WikiPage::factory( $titleObj );
+				$this->getErrorFormatter()->setContextTitle( $titleObj );
 			}
 		}
 

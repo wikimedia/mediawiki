@@ -44,6 +44,7 @@ class ApiChangeContentModel extends ApiBase {
 		$params = $this->extractRequestParams();
 		$wikiPage = $this->getTitleOrPageId( $params );
 		$title = $wikiPage->getTitle();
+		$this->getErrorFormatter()->setContextTitle( $title );
 
 		if ( !$title->exists() ) {
 			$this->dieWithError( 'apierror-changecontentmodel-missingtitle' );
