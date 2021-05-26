@@ -98,6 +98,6 @@ MySQL.
 == Getting help ==
 
 In addition to the normal venues (MediaWiki mailing lists
-and IRC channels), the #postgresql channel on irc.freenode.net
+and IRC channels), the #postgresql channel on irc.libera.chat
 is a friendly and expert resource if you should encounter a
 problem with your Postgres-enabled MediaWiki.
