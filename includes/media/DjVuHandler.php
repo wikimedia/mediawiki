@@ -31,6 +31,11 @@ use MediaWiki\Shell\Shell;
 class DjVuHandler extends ImageHandler {
 	private const EXPENSIVE_SIZE_LIMIT = 10485760; // 10MiB
 
+	// Constants for getHandlerState
+	private const STATE_DJVU_IMAGE = 'djvuImage';
+	private const STATE_TEXT_TREE = 'djvuTextTree';
+	private const STATE_META_TREE = 'djvuMetaTree';
+
 	/**
 	 * @return bool
 	 */
@@ -235,22 +240,19 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	/**
-	 * Cache an instance of DjVuImage in an Image object, return that instance
+	 * Cache an instance of DjVuImage in a MediaHandlerState object, return
+	 * that instance
 	 *
-	 * @param File|FSFile $image
+	 * @param MediaHandlerState $state
 	 * @param string $path
 	 * @return DjVuImage
-	 * @suppress PhanUndeclaredProperty Custom property
 	 */
-	private function getDjVuImage( $image, $path ) {
-		if ( !$image ) {
+	private function getDjVuImage( $state, $path ) {
+		$deja = $state->getHandlerState( self::STATE_DJVU_IMAGE );
+		if ( !$deja ) {
 			$deja = new DjVuImage( $path );
-		} elseif ( !isset( $image->dejaImage ) ) {
-			$deja = $image->dejaImage = new DjVuImage( $path );
-		} else {
-			$deja = $image->dejaImage;
+			$state->setHandlerState( self::STATE_DJVU_IMAGE, $deja );
 		}
-
 		return $deja;
 	}
 
@@ -291,14 +293,13 @@ class DjVuHandler extends ImageHandler {
 	 * @param File $image
 	 * @param bool $gettext DOCUMENT (Default: false)
 	 * @return bool|SimpleXMLElement
-	 * @suppress PhanUndeclaredProperty Custom property
 	 */
 	public function getMetaTree( $image, $gettext = false ) {
-		if ( $gettext && isset( $image->djvuTextTree ) ) {
-			return $image->djvuTextTree;
+		if ( $gettext && $image->getHandlerState( self::STATE_TEXT_TREE ) ) {
+			return $image->getHandlerState( self::STATE_TEXT_TREE );
 		}
-		if ( !$gettext && isset( $image->dejaMetaTree ) ) {
-			return $image->dejaMetaTree;
+		if ( !$gettext && $image->getHandlerState( self::STATE_META_TREE ) ) {
+			return $image->getHandlerState( self::STATE_META_TREE );
 		}
 
 		$metadata = $this->getUnserializedMetadata( $image );
@@ -309,13 +310,13 @@ class DjVuHandler extends ImageHandler {
 		}
 
 		$trees = $this->extractTreesFromMetadata( $metadata );
-		$image->djvuTextTree = $trees['TextTree'];
-		$image->dejaMetaTree = $trees['MetaTree'];
+		$image->setHandlerState( self::STATE_TEXT_TREE, $trees['TextTree'] );
+		$image->setHandlerState( self::STATE_META_TREE, $trees['MetaTree'] );
 
 		if ( $gettext ) {
-			return $image->djvuTextTree;
+			return $trees['TextTree'];
 		} else {
-			return $image->dejaMetaTree;
+			return $trees['MetaTree'];
 		}
 	}
 
@@ -354,7 +355,8 @@ class DjVuHandler extends ImageHandler {
 	}
 
 	public function getImageSize( $image, $path ) {
-		return $this->getDjVuImage( $image, $path )->getImageSize();
+		$state = $image instanceof MediaHandlerState ? $image : new TrivialMediaHandlerState;
+		return $this->getDjVuImage( $state, $path )->getImageSize();
 	}
 
 	public function getThumbType( $ext, $mime, $params = null ) {
@@ -371,7 +373,8 @@ class DjVuHandler extends ImageHandler {
 	public function getMetadata( $image, $path ) {
 		wfDebug( "Getting DjVu metadata for $path" );
 
-		$xml = $this->getDjVuImage( $image, $path )->retrieveMetaData();
+		$state = $image instanceof MediaHandlerState ? $image : new TrivialMediaHandlerState;
+		$xml = $this->getDjVuImage( $state, $path )->retrieveMetaData();
 		if ( $xml === false ) {
 			// Special value so that we don't repetitively try and decode a broken file.
 			return serialize( [ 'error' => 'Error extracting metadata' ] );

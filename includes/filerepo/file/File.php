@@ -64,7 +64,7 @@ use Wikimedia\AtEase\AtEase;
  * @stable to extend
  * @ingroup FileAbstraction
  */
-abstract class File implements IDBAccessObject {
+abstract class File implements IDBAccessObject, MediaHandlerState {
 	use ProtectedHookAccessorTrait;
 
 	// Bitfield values akin to the Revision deletion constants
@@ -170,6 +170,9 @@ abstract class File implements IDBAccessObject {
 
 	/** @var array Cache of tmp filepaths pointing to generated bucket thumbnails, keyed by width */
 	protected $tmpBucketedThumbCache = [];
+
+	/** @var array */
+	private $handlerState = [];
 
 	/**
 	 * Call this constructor from child classes.
@@ -734,6 +737,14 @@ abstract class File implements IDBAccessObject {
 	 */
 	public function getMetadata() {
 		return false;
+	}
+
+	public function getHandlerState( string $key ) {
+		return $this->handlerState[$key] ?? null;
+	}
+
+	public function setHandlerState( string $key, $value ) {
+		$this->handlerState[$key] = $value;
 	}
 
 	/**
