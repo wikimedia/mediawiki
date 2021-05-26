@@ -210,12 +210,7 @@ class CreditsAction extends FormlessAction {
 			$real = $user->getName();
 		}
 
-		$page = $user->isAnon()
-			? SpecialPage::getTitleFor( 'Contributions', $user->getName() )
-			: $user->getUserPage();
-
-		return MediaWikiServices::getInstance()
-			->getLinkRenderer()->makeLink( $page, $real );
+		return Linker::userLink( $user->getId(), $user->getName(), $real );
 	}
 
 	/**
