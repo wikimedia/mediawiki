@@ -1281,32 +1281,6 @@ class SpecialPageFactory {
 	}
 
 	/**
-	 * Get listed special pages generally restricted, but available to the current user.
-	 *
-	 * @deprecated since 1.36 Use getUsablePages() instead and exclude any public
-	 *  entries with `!$page->isRestricted()`
-	 * @param User $user User object to use
-	 * @return array ( string => Specialpage )
-	 */
-	public function getRestrictedPages( User $user ) : array {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		$pages = [];
-		foreach ( $this->getPageList() as $name => $rec ) {
-			$page = $this->getPage( $name );
-			if ( $page
-				&& $page->isListed()
-				&& $page->isRestricted()
-				&& $page->userCanExecute( $user )
-			) {
-				$pages[$name] = $page;
-			}
-		}
-
-		return $pages;
-	}
-
-	/**
 	 * Execute a special page path.
 	 * The path may contain parameters, e.g. Special:Name/Params
 	 * Extracts the special page name and call the execute method, passing the parameters
