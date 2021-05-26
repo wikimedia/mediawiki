@@ -1,4 +1,8 @@
-## 1.1.0 / May 21 2021
+## 1.1.1 / 2021-05-26
+
+* Fix `Cannot find module 'dotenv'`.
+
+## 1.1.0 / 2021-05-21
 
 * Api: Update mwbot to version 2.0, as returned by `api.bot()`.
 * Added new `wdio-defaults.conf.js` entrypoint.
