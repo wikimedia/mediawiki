@@ -2637,7 +2637,7 @@
 	"protect_expiry_old": "El tiempo de expiración está en el pasado.",
 	"protect-unchain-permissions": "Desbloquear opciones de protección adicionales",
 	"protect-text": "Aquí puedes ver y modificar la configuración de protección de la página <strong>$1</strong>.",
-	"protect-locked-blocked": "No puedes cambiar los niveles de protección estando bloqueado.\nA continuación se muestran las opciones actuales de la página <strong>$1</strong>:",
+	"protect-locked-blocked": "No puedes cambiar la configuración de protección estando bloqueado.\nA continuación se muestran las opciones actuales de la página <strong>$1</strong>:",
 	"protect-locked-dblock": "Los niveles de protección no se pueden cambiar debido a un bloqueo activo de la base de datos.\nA continuación se muestran las opciones actuales de la página <strong>$1</strong>:",
 	"protect-locked-access": "Tu cuenta no tiene permiso para cambiar los niveles de protección de una página.\nA continuación se muestran las opciones actuales de la página <strong>$1</strong>:",
 	"protect-cascadeon": "Actualmente esta página está protegida porque está transcluida en {{PLURAL:$1|la siguiente página, que tiene|las siguientes páginas, que tienen}} activada la opción de protección de cascada.\nPuedes cambiar el nivel de protección de esta página, pero no afectará a la protección de cascada.",
