@@ -1335,7 +1335,7 @@
 	ignore = dirty
 [submodule "extensions/Report"]
 	path = extensions/Report
-	url = https://github.com/Kenny2github/Report
+	url = https://github.com/wikimedia/mediawiki-extensions-Report
 	branch = master
 	ignore = dirty
 [submodule "extensions/EditNotify"]
