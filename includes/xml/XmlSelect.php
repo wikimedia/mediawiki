@@ -137,6 +137,7 @@ class XmlSelect {
 	/**
 	 * Parse labels and values out of a comma- and colon-separated list of options, such as is used for
 	 * expiry and duration lists. Documentation of the format is on translatewiki.net.
+	 * @since 1.35
 	 * @link https://translatewiki.net/wiki/Template:Doc-mediawiki-options-list
 	 * @param string $msg The message to parse.
 	 * @return string[] The options array, where keys are option labels (i.e. translations)
