@@ -253,6 +253,7 @@ because of Phabricator reports.
   case was speeding up tests on Oracle, but Oracle support was dropped several
   releases ago.
 * DatabaseBlock::chooseBlock, deprecated since 1.35, was removed.
+* SpecialPageFactory::getRestrictedPages, deprecated since 1.36, was removed.
 * …
 
 === Deprecations in 1.37 ===
