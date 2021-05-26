@@ -5,6 +5,11 @@
  * @todo Split tests into providers and test methods
  */
 
+use MediaWiki\MediaWikiServices;
+
+/**
+ * @group Database
+ */
 class LocalFileTest extends MediaWikiIntegrationTestCase {
 	private static function getDefaultInfo() {
 		return [
@@ -302,5 +307,86 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	public function testDescriptionTextForNonExistingFile() {
 		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
 		$this->assertFalse( $file->getDescriptionText() );
+	}
+
+	/**
+	 * @covers File
+	 */
+	public function testLoadFromDBAndCache() {
+		$services = MediaWikiServices::getInstance();
+
+		$cache = new HashBagOStuff;
+		$this->setService(
+			'MainWANObjectCache',
+			new WANObjectCache( [
+				'cache' => $cache
+			] )
+		);
+
+		$dbw = wfGetDB( DB_PRIMARY );
+		$norm = $services->getActorNormalization();
+		$user = $this->getTestSysop()->getUserIdentity();
+		$actorId = $norm->acquireActorId( $user, $dbw );
+		$comment = $services->getCommentStore()->createComment( $dbw, 'comment' );
+		$title = Title::newFromText( 'File:Random-11m.png' );
+
+		// phpcs:ignore Generic.Files.LineLength
+		$meta = 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:16;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:2:{s:8:"DateTime";s:19:"2019:07:30 13:52:32";s:15:"_MW_PNG_VERSION";i:1;}}';
+
+		$dbw->insert(
+			'image',
+			[
+				'img_name' => 'Random-11m.png',
+				'img_size' => 10816824,
+				'img_width' => 1000,
+				'img_height' => 1800,
+				'img_metadata' => $meta,
+				'img_bits' => 16,
+				'img_media_type' => 'BITMAP',
+				'img_major_mime' => 'image',
+				'img_minor_mime' => 'png',
+				'img_description_id' => $comment->id,
+				'img_actor' => $actorId,
+				'img_timestamp' => $dbw->timestamp( '20201105235242' ),
+				'img_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
+			]
+		);
+		$repo = $services->getRepoGroup()->getLocalRepo();
+		$file = $repo->findFile( $title );
+
+		$this->assertSame( 'Random-11m.png', $file->getName() );
+		$this->assertSame( 10816824, $file->getSize() );
+		$this->assertSame( 1000, $file->getWidth() );
+		$this->assertSame( 1800, $file->getHeight() );
+		$this->assertSame( $meta, $file->getMetadata() );
+		$this->assertSame( 16, $file->getBitDepth() );
+		$this->assertSame( 'BITMAP', $file->getMediaType() );
+		$this->assertSame( 'image/png', $file->getMimeType() );
+		$this->assertSame( 'comment', $file->getDescription() );
+		$this->assertSame( $user->getName(), $file->getUser() );
+		$this->assertSame( '20201105235242', $file->getTimestamp() );
+		$this->assertSame( 'sy02psim0bgdh0jt4vdltuzoh7j80ru', $file->getSha1() );
+
+		// Test cache
+		$dbw->delete( 'image', [ 'img_name' => 'Random-11m.png' ], __METHOD__ );
+		$file = LocalFile::newFromTitle( $title, $repo );
+
+		$this->assertSame( 'Random-11m.png', $file->getName() );
+		$this->assertSame( 10816824, $file->getSize() );
+		$this->assertSame( 1000, $file->getWidth() );
+		$this->assertSame( 1800, $file->getHeight() );
+		$this->assertSame( $meta, $file->getMetadata() );
+		$this->assertSame( 16, $file->getBitDepth() );
+		$this->assertSame( 'BITMAP', $file->getMediaType() );
+		$this->assertSame( 'image/png', $file->getMimeType() );
+		$this->assertSame( 'comment', $file->getDescription() );
+		$this->assertSame( $user->getName(), $file->getUser() );
+		$this->assertSame( '20201105235242', $file->getTimestamp() );
+		$this->assertSame( 'sy02psim0bgdh0jt4vdltuzoh7j80ru', $file->getSha1() );
+
+		// Make sure we were actually hitting the WAN cache
+		$cache->clear();
+		$file = $repo->findFile( $title );
+		$this->assertSame( false, $file );
 	}
 }
