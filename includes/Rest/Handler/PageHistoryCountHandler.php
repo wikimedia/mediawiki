@@ -5,7 +5,7 @@ namespace MediaWiki\Rest\Handler;
 use ChangeTags;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
-use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
@@ -49,8 +49,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var NameTableStore */
 	private $changeTagDefStore;
 
-	/** @var PermissionManager */
-	private $permissionManager;
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
 
 	/** @var ILoadBalancer */
 	private $loadBalancer;
@@ -73,7 +73,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/**
 	 * @param RevisionStore $revisionStore
 	 * @param NameTableStoreFactory $nameTableStoreFactory
-	 * @param PermissionManager $permissionManager
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param ILoadBalancer $loadBalancer
 	 * @param WANObjectCache $cache
 	 * @param PageLookup $pageLookup
@@ -81,14 +81,14 @@ class PageHistoryCountHandler extends SimpleHandler {
 	public function __construct(
 		RevisionStore $revisionStore,
 		NameTableStoreFactory $nameTableStoreFactory,
-		PermissionManager $permissionManager,
+		GroupPermissionsLookup $groupPermissionsLookup,
 		ILoadBalancer $loadBalancer,
 		WANObjectCache $cache,
 		PageLookup $pageLookup
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
-		$this->permissionManager = $permissionManager;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
 		$this->pageLookup = $pageLookup;
@@ -471,7 +471,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 					'1',
 					[
 						'actor.actor_user = ug_user',
-						'ug_group' => $this->permissionManager->getGroupsWithPermission( 'bot' ),
+						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					],
 					__METHOD__
