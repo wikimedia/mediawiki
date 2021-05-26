@@ -160,7 +160,12 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->authManager = $authManager;
 		$this->linkRenderer = $linkRenderer;
 		$this->nsInfo = $nsInfo;
+
+		// We don't use the PermissionManager anymore, but we need to be careful
+		// removing the parameter since this class is extended by GlobalPreferencesFactory
+		// in the GlobalPreferences extension, and that class uses it
 		$this->permissionManager = $permissionManager;
+
 		$this->logger = new NullLogger();
 		$this->languageConverter = $languageConverter;
 		$this->languageNameUtils = $languageNameUtils;
@@ -226,7 +231,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Make sure that form fields have their parent set. See T43337.
 		$dummyForm = new HTMLForm( [], $context );
 
-		$disable = !$this->permissionManager->userHasRight( $user, 'editmyoptions' );
+		$disable = !$user->isAllowed( 'editmyoptions' );
 
 		$defaultOptions = $this->userOptionsLookup->getDefaultOptions();
 		$userOptions = $this->userOptionsLookup->getOptions( $user );
@@ -406,8 +411,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		$canViewPrivateInfo = $this->permissionManager->userHasRight( $user, 'viewmyprivateinfo' );
-		$canEditPrivateInfo = $this->permissionManager->userHasRight( $user, 'editmyprivateinfo' );
+		$canViewPrivateInfo = $user->isAllowed( 'viewmyprivateinfo' );
+		$canEditPrivateInfo = $user->isAllowed( 'editmyprivateinfo' );
 
 		// Actually changeable stuff
 		$defaultPreferences['realname'] = [
@@ -719,7 +724,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 
 			if ( $this->options->get( 'EnableUserEmail' ) &&
-				$this->permissionManager->userHasRight( $user, 'sendemail' )
+				$user->isAllowed( 'sendemail' )
 			) {
 				$defaultPreferences['disablemail'] = [
 					'id' => 'wpAllowEmail',
@@ -1009,7 +1014,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'label-message' => 'tog-numberheadings',
 		];
 
-		if ( $this->permissionManager->userHasRight( $user, 'rollback' ) ) {
+		if ( $user->isAllowed( 'rollback' ) ) {
 			$defaultPreferences['showrollbackconfirmation'] = [
 				'type' => 'toggle',
 				'section' => 'rendering/advancedrendering',
@@ -1048,7 +1053,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 		}
 
-		if ( $this->permissionManager->userHasRight( $user, 'minoredit' ) ) {
+		if ( $user->isAllowed( 'minoredit' ) ) {
 			$defaultPreferences['minordefault'] = [
 				'type' => 'toggle',
 				'section' => 'editing/editor',
@@ -1195,7 +1200,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	) {
 		$watchlistdaysMax = ceil( $this->options->get( 'RCMaxAge' ) / ( 3600 * 24 ) );
 
-		if ( $this->permissionManager->userHasRight( $user, 'editmywatchlist' ) ) {
+		if ( $user->isAllowed( 'editmywatchlist' ) ) {
 			$editWatchlistLinks = '';
 			$editWatchlistModes = [
 				'edit' => [ 'subpage' => false, 'flags' => [] ],
@@ -1309,20 +1314,20 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		// Kinda hacky
-		if ( $this->permissionManager->userHasAnyRight( $user, 'createpage', 'createtalk' ) ) {
+		if ( $user->isAllowedAny( 'createpage', 'createtalk' ) ) {
 			$watchTypes['read'] = 'watchcreations';
 		}
 
-		if ( $this->permissionManager->userHasRight( $user, 'rollback' ) ) {
+		if ( $user->isAllowed( 'rollback' ) ) {
 			$watchTypes['rollback'] = 'watchrollback';
 		}
 
-		if ( $this->permissionManager->userHasRight( $user, 'upload' ) ) {
+		if ( $user->isAllowed( 'upload' ) ) {
 			$watchTypes['upload'] = 'watchuploads';
 		}
 
 		foreach ( $watchTypes as $action => $pref ) {
-			if ( $this->permissionManager->userHasRight( $user, $action ) ) {
+			if ( $user->isAllowed( $action ) ) {
 				// Messages:
 				// tog-watchdefault, tog-watchmoves, tog-watchdeletion, tog-watchcreations, tog-watchuploads
 				// tog-watchrollback
@@ -1677,10 +1682,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		] ) );
 
 		$htmlForm->setModifiedUser( $user );
-		$htmlForm->setOptionsEditable( $this->permissionManager
-			->userHasRight( $user, 'editmyoptions' ) );
-		$htmlForm->setPrivateInfoEditable( $this->permissionManager
-			->userHasRight( $user, 'editmyprivateinfo' ) );
+		$htmlForm->setOptionsEditable( $user->isAllowed( 'editmyoptions' ) );
+		$htmlForm->setPrivateInfoEditable( $user->isAllowed( 'editmyprivateinfo' ) );
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setAutocomplete( 'off' );
 		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
@@ -1753,8 +1756,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$hiddenPrefs = $this->options->get( 'HiddenPrefs' );
 		$result = true;
 
-		if ( !$this->permissionManager
-				->userHasAnyRight( $user, 'editmyprivateinfo', 'editmyoptions' )
+		if ( !$user->isAllowedAny( 'editmyprivateinfo', 'editmyoptions' )
 		) {
 			return Status::newFatal( 'mypreferencesprotected' );
 		}
@@ -1766,14 +1768,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// (not really "private", but still shouldn't be edited without permission)
 
 		if ( !in_array( 'realname', $hiddenPrefs )
-			&& $this->permissionManager->userHasRight( $user, 'editmyprivateinfo' )
+			&& $user->isAllowed( 'editmyprivateinfo' )
 			&& array_key_exists( 'realname', $formData )
 		) {
 			$realName = $formData['realname'];
 			$user->setRealName( $realName );
 		}
 
-		if ( $this->permissionManager->userHasRight( $user, 'editmyoptions' ) ) {
+		if ( $user->isAllowed( 'editmyoptions' ) ) {
 			$oldUserOptions = $this->userOptionsLookup->getOptions( $user );
 
 			foreach ( $this->getSaveBlacklist() as $b ) {
