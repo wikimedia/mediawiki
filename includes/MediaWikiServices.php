@@ -129,6 +129,7 @@ use VirtualRESTServiceClient;
 use WANObjectCache;
 use WatchedItemQueryService;
 use WatchedItemStoreInterface;
+use WikiImporterFactory;
 use Wikimedia\Message\IMessageFormatterFactory;
 use Wikimedia\NonSerializable\NonSerializableTrait;
 use Wikimedia\ObjectFactory;
@@ -1653,6 +1654,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getWatchlistManager() : WatchlistManager {
 		return $this->getService( 'WatchlistManager' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return WikiImporterFactory
+	 */
+	public function getWikiImporterFactory() : WikiImporterFactory {
+		return $this->getService( 'WikiImporterFactory' );
 	}
 
 	/**
