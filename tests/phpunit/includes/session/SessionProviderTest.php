@@ -2,11 +2,9 @@
 
 namespace MediaWiki\Session;
 
-use Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
-use Psr\Log\NullLogger;
 use TestLogger;
 use Wikimedia\TestingAccessWrapper;
 
@@ -16,6 +14,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MediaWiki\Session\SessionProvider
  */
 class SessionProviderTest extends MediaWikiIntegrationTestCase {
+	use SessionProviderTestTrait;
 
 	public function testBasics() {
 		$this->hideDeprecated( 'MediaWiki\Session\SessionProvider::setConfig' );
@@ -93,13 +92,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $persistId );
 		$provider->method( 'canChangeUser' )
 			->willReturn( $persistUser );
-		$provider->init(
-			$this->createNoOpMock( NullLogger::class ),
-			$this->createNoOpAbstractMock( Config::class ),
-			$manager,
-			$this->createHookContainer(),
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, null, null, $manager );
 
 		if ( $ok ) {
 			$info = $provider->newSessionInfo();
@@ -182,13 +175,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 
 		$provider = $this->getMockForAbstractClass( SessionProvider::class,
 			[], 'MockSessionProvider' );
-		$provider->init(
-			new TestLogger(),
-			$config,
-			$this->createNoOpMock( SessionManager::class ),
-			$this->createHookContainer(),
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, null, $config );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 
 		$this->assertSame( 'eoq8cb1mg7j30ui5qolafps4hg29k5bb', $priv->hashToSessionId( 'foobar' ) );

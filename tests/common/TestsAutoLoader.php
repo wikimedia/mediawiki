@@ -269,6 +269,9 @@ $wgAutoloadClasses += [
 	'MediaWiki\Tests\Unit\Revision\RevisionSlotsTest' => "$testDir/phpunit/unit/includes/Revision/RevisionSlotsTest.php",
 	'MediaWiki\Tests\Unit\Revision\RevisionStoreRecordTest' => "$testDir/phpunit/unit/includes/Revision/RevisionStoreRecordTest.php",
 
+	# tests/phpunit/unit/includes/session
+	'MediaWiki\Session\SessionProviderTestTrait' => "$testDir/phpunit/unit/includes/session/SessionProviderTestTrait.php",
+
 	# tests/suites
 	'ParserTestFileSuite' => "$testDir/phpunit/suites/ParserTestFileSuite.php",
 	'ParsoidTestFileSuite' => "$testDir/phpunit/suites/ParsoidTestFileSuite.php",
