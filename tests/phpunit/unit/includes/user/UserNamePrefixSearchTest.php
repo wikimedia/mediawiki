@@ -3,7 +3,6 @@
 namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
-use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWikiUnitTestCase;
@@ -41,12 +40,9 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			->with( $prefix )
 			->willReturn( $user );
 
-		$permissionManager = $this->createMock( PermissionManager::class );
 		if ( $audienceType === 1 ) {
 			// 'public' audience
 			$audience = UserNamePrefixSearch::AUDIENCE_PUBLIC;
-			$permissionManager->expects( $this->never() )
-				->method( 'userHasRight' );
 			$excludeHidden = true;
 		} else {
 			if ( $audienceType === 2 ) {
@@ -60,9 +56,8 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			}
 			// specific to a user identity
 			$audience = $this->createMock( User::class );
-			$permissionManager->expects( $this->once() )
-				->method( 'userHasRight' )
-				->with( $audience, 'hideuser' )
+			$audience->method( 'isAllowed' )
+				->with( 'hideuser' )
 				->willReturn( $hasHideuser );
 		}
 
@@ -109,7 +104,6 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$loadBalancer,
-			$permissionManager,
 			$userFactory
 		);
 		$res = $userNamePrefixSearch->search(
@@ -153,17 +147,15 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 
 	public function testSearchInvalidAudience() {
 		$userFactory = $this->createMock( UserFactory::class );
-		$permissionManager = $this->createMock( PermissionManager::class );
 		$loadBalancer = $this->createMock( LoadBalancer::class );
 
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$loadBalancer,
-			$permissionManager,
 			$userFactory
 		);
 
 		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( '$audience must be AUDIENCE_PUBLIC or a UserIdentity' );
+		$this->expectExceptionMessage( '$audience must be AUDIENCE_PUBLIC or an Authority object' );
 		$userNamePrefixSearch->search(
 			'ThisIsTheInvalidAudience',
 			'',
