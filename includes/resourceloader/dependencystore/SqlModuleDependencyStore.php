@@ -69,6 +69,12 @@ class SqlModuleDependencyStore extends DependencyStore {
 	}
 
 	public function storeMulti( $type, array $dataByEntity, $ttl ) {
+		// Avoid opening a master connection when it's not needed.
+		// ResourceLoader::saveModuleDependenciesInternal calls this method unconditionally
+		// with empty values most of the time.
+		if ( !$dataByEntity ) {
+			return;
+		}
 		try {
 			$dbw = $this->getMasterDb();
 
