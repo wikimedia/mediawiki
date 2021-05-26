@@ -1089,7 +1089,6 @@ return [
 			$services->getAuthManager(),
 			$services->getHookContainer(),
 			$services->getDBLoadBalancer(),
-			$services->getPermissionManager(),
 			$services->getUserFactory(),
 			$services->getUserNameUtils(),
 			$services->getUserOptionsLookup()
