@@ -10,7 +10,6 @@
 
 'use strict';
 
-require( 'dotenv' ).config();
 let ffmpeg;
 const fs = require( 'fs' );
 const path = require( 'path' );
