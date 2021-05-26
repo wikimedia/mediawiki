@@ -498,10 +498,9 @@ class SpecialPageFactory {
 			'class' => \SpecialNewFiles::class,
 			'services' => [
 				'MimeAnalyzer',
-				'PermissionManager',
+				'GroupPermissionsLookup',
 				'DBLoadBalancer',
-				'UserCache',
-				'UserFactory',
+				'LinkBatchFactory',
 			]
 		],
 		'Log' => [
