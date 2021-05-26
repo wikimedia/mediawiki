@@ -1671,6 +1671,21 @@ return [
 		);
 	},
 
+	'WikiImporterFactory' => static function ( MediaWikiServices $services ) : WikiImporterFactory {
+		return new WikiImporterFactory(
+			$services->getMainConfig(),
+			$services->getHookContainer(),
+			$services->getContentLanguage(),
+			$services->getNamespaceInfo(),
+			$services->getTitleFactory(),
+			$services->getWikiPageFactory(),
+			$services->getWikiRevisionUploadImporter(),
+			$services->getPermissionManager(),
+			$services->getContentHandlerFactory(),
+			$services->getSlotRoleRegistry()
+		);
+	},
+
 	'WikiPageFactory' => static function ( MediaWikiServices $services ) : WikiPageFactory {
 		return new WikiPageFactory(
 			$services->getTitleFactory(),
