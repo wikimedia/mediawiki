@@ -113,11 +113,13 @@ class RepoGroup {
 	 *                   current version. An image object will be returned which was
 	 *                   created at the specified time.
 	 *   ignoreRedirect: If true, do not follow file redirects
-	 *   private:        If true, return restricted (deleted) files if the current
-	 *                   user is allowed to view them. Otherwise, such files will not
-	 *                   be found.
+	 *   private:        If Authority object, return restricted (deleted) files if the
+	 *                   performer is allowed to view them. Otherwise, such files will not
+	 *                   be found. Authority is only accepted since 1.37, User was required
+	 *                   before.
 	 *   latest:         If true, load from the latest available data into File objects
-	 * @phan-param array{time?:mixed,ignoreRedirect?:bool,private?:bool,latest?:bool} $options
+	 * @phpcs:ignore Generic.Files.LineLength
+	 * @phan-param array{time?:mixed,ignoreRedirect?:bool,private?:bool|MediaWiki\Permissions\Authority,latest?:bool} $options
 	 * @return File|bool False if title is not found
 	 */
 	public function findFile( $title, $options = [] ) {

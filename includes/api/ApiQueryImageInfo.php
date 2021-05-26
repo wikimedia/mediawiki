@@ -87,11 +87,11 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				}
 			}
 
-			$user = $this->getUser();
-			$findTitles = array_map( static function ( $title ) use ( $user ) {
+			$performer = $this->getAuthority();
+			$findTitles = array_map( static function ( $title ) use ( $performer ) {
 				return [
 					'title' => $title,
-					'private' => $user,
+					'private' => $performer,
 				];
 			}, $titles );
 

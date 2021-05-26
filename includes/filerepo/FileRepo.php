@@ -10,6 +10,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -446,18 +447,19 @@ class FileRepo {
 	 *                   current version. An image object will be returned which was
 	 *                   created at the specified time (which may be archived or current).
 	 *   ignoreRedirect: If true, do not follow file redirects
-	 *   private:        If a User object, return restricted (deleted) files if the
-	 *                   user is allowed to view them. Otherwise, such files will not
-	 *                   be found. If set and not a User object, throws an exception
+	 *   private:        If an Authority object, return restricted (deleted) files if the
+	 *                   performer is allowed to view them. Otherwise, such files will not
+	 *                   be found. If set and not an Authority object, throws an exception.
+	 *                   Authority is only accepted since 1.37, User was required before.
 	 *   latest:         If true, load from the latest available data into File objects
 	 * @return File|bool False on failure
 	 * @throws InvalidArgumentException
 	 */
 	public function findFile( $title, $options = [] ) {
-		if ( !empty( $options['private'] ) && !( $options['private'] instanceof User ) ) {
+		if ( !empty( $options['private'] ) && !( $options['private'] instanceof Authority ) ) {
 			throw new InvalidArgumentException(
 				__METHOD__ . ' called with the `private` option set to something ' .
-				'other than a User object'
+				'other than an Authority object'
 			);
 		}
 
@@ -488,7 +490,7 @@ class FileRepo {
 					if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 						return $img; // always OK
 					} elseif (
-						// If its not empty, its a User object
+						// If its not empty, its an Authority object
 						!empty( $options['private'] ) &&
 						$img->userCan( File::DELETED_FILE, $options['private'] )
 					) {
@@ -546,9 +548,9 @@ class FileRepo {
 
 				if (
 					!empty( $options['private'] ) &&
-					!( $options['private'] instanceof User )
+					!( $options['private'] instanceof Authority )
 				) {
-					$options['private'] = RequestContext::getMain()->getUser();
+					$options['private'] = RequestContext::getMain()->getAuthority();
 				}
 			} else {
 				$title = $item;
@@ -579,13 +581,13 @@ class FileRepo {
 	 * @param string $sha1 Base 36 SHA-1 hash
 	 * @param array $options Option array, same as findFile().
 	 * @return File|bool False on failure
-	 * @throws InvalidArgumentException if the `private` option is set and not a User object
+	 * @throws InvalidArgumentException if the `private` option is set and not an Authority object
 	 */
 	public function findFileFromKey( $sha1, $options = [] ) {
-		if ( !empty( $options['private'] ) && !( $options['private'] instanceof User ) ) {
+		if ( !empty( $options['private'] ) && !( $options['private'] instanceof Authority ) ) {
 			throw new InvalidArgumentException(
 				__METHOD__ . ' called with the `private` option set to something ' .
-				'other than a User object'
+				'other than an Authority object'
 			);
 		}
 
@@ -605,7 +607,7 @@ class FileRepo {
 				if ( !$img->isDeleted( File::DELETED_FILE ) ) {
 					return $img; // always OK
 				} elseif (
-					// If its not empty, its a User object
+					// If its not empty, its an Authority object
 					!empty( $options['private'] ) &&
 					$img->userCan( File::DELETED_FILE, $options['private'] )
 				) {
