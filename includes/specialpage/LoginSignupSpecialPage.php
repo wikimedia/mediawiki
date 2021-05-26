@@ -82,9 +82,9 @@ abstract class LoginSignupSpecialPage extends AuthManagerSpecialPage {
 	 */
 	abstract protected function logAuthResult( $success, $status = null );
 
-	public function __construct( $name ) {
+	public function __construct( $name, $restriction = '' ) {
 		global $wgUseMediaWikiUIEverywhere;
-		parent::__construct( $name );
+		parent::__construct( $name, $restriction );
 
 		// Override UseMediaWikiEverywhere to true, to force login and create form to use mw ui
 		$wgUseMediaWikiUIEverywhere = true;
