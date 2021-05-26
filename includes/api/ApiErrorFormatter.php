@@ -37,6 +37,8 @@ class ApiErrorFormatter {
 
 	/** @var Language */
 	protected $lang;
+	/** @var Title|null Title used for rendering error messages, or null to use the dummy title */
+	protected $title = null;
 	protected $useDB = false;
 	protected $format = 'none';
 
@@ -120,6 +122,24 @@ class ApiErrorFormatter {
 	}
 
 	/**
+	 * Get the title used for rendering error messages, e.g. for wikitext magic words like {{PAGENAME}}
+	 * @since 1.37
+	 * @return Title
+	 */
+	public function getContextTitle() {
+		return $this->title ?: $this->getDummyTitle();
+	}
+
+	/**
+	 * Set the title used for rendering error messages, e.g. for wikitext magic words like {{PAGENAME}}
+	 * @since 1.37
+	 * @param Title $title
+	 */
+	public function setContextTitle( Title $title ) {
+		$this->title = $title;
+	}
+
+	/**
 	 * Add a warning to the result
 	 * @param string|null $modulePath
 	 * @param Message|array|string $msg Warning message. See ApiMessage::create().
@@ -129,7 +149,7 @@ class ApiErrorFormatter {
 	public function addWarning( $modulePath, $msg, $code = null, $data = null ) {
 		$msg = ApiMessage::create( $msg, $code, $data )
 			->inLanguage( $this->lang )
-			->title( $this->getDummyTitle() )
+			->title( $this->getContextTitle() )
 			->useDatabase( $this->useDB );
 		$this->addWarningOrError( 'warning', $modulePath, $msg );
 	}
@@ -144,7 +164,7 @@ class ApiErrorFormatter {
 	public function addError( $modulePath, $msg, $code = null, $data = null ) {
 		$msg = ApiMessage::create( $msg, $code, $data )
 			->inLanguage( $this->lang )
-			->title( $this->getDummyTitle() )
+			->title( $this->getContextTitle() )
 			->useDatabase( $this->useDB );
 		$this->addWarningOrError( 'error', $modulePath, $msg );
 	}
@@ -178,7 +198,7 @@ class ApiErrorFormatter {
 
 			$msg = ApiMessage::create( $error )
 				->inLanguage( $this->lang )
-				->title( $this->getDummyTitle() )
+				->title( $this->getContextTitle() )
 				->useDatabase( $this->useDB );
 			if ( !in_array( $msg->getKey(), $filter, true ) ) {
 				$this->addWarningOrError( $tag, $modulePath, $msg );
@@ -223,7 +243,7 @@ class ApiErrorFormatter {
 		return ApiMessage::create( $msg, $options['code'], $options['data'] )
 			->params( $params )
 			->inLanguage( $this->lang )
-			->title( $this->getDummyTitle() )
+			->title( $this->getContextTitle() )
 			->useDatabase( $this->useDB );
 	}
 
@@ -252,7 +272,7 @@ class ApiErrorFormatter {
 	public function formatMessage( $msg, $format = null ) {
 		$msg = ApiMessage::create( $msg )
 			->inLanguage( $this->lang )
-			->title( $this->getDummyTitle() )
+			->title( $this->getContextTitle() )
 			->useDatabase( $this->useDB );
 		return $this->formatMessageInternal( $msg, $format ?: $this->format );
 	}

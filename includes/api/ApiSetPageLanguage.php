@@ -59,11 +59,12 @@ class ApiSetPageLanguage extends ApiBase {
 		$params = $this->extractRequestParams();
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
+		$titleObj = $pageObj->getTitle();
+		$this->getErrorFormatter()->setContextTitle( $titleObj );
 		if ( !$pageObj->exists() ) {
 			$this->dieWithError( 'apierror-missingtitle' );
 		}
 
-		$titleObj = $pageObj->getTitle();
 		$user = $this->getUser();
 
 		// Check that the user is allowed to edit the page

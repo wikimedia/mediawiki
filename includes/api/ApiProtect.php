@@ -39,6 +39,7 @@ class ApiProtect extends ApiBase {
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
 		$titleObj = $pageObj->getTitle();
+		$this->getErrorFormatter()->setContextTitle( $titleObj );
 
 		$this->checkTitleUserPermissions( $titleObj, 'protect' );
 

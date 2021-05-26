@@ -53,6 +53,7 @@ class ApiDelete extends ApiBase {
 
 		$pageObj = $this->getTitleOrPageId( $params, 'fromdbmaster' );
 		$titleObj = $pageObj->getTitle();
+		$this->getErrorFormatter()->setContextTitle( $titleObj );
 		if ( !$pageObj->exists() &&
 			// @phan-suppress-next-line PhanUndeclaredMethod
 			!( $titleObj->getNamespace() === NS_FILE && self::canDeleteFile( $pageObj->getFile() ) )
