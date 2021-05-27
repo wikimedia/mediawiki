@@ -5,7 +5,6 @@ namespace MediaWiki\Session;
 use Config;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
 use User;
 use Wikimedia\AtEase\AtEase;
@@ -17,6 +16,8 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MediaWiki\Session\SessionBackend
  */
 class SessionBackendTest extends MediaWikiIntegrationTestCase {
+	use SessionProviderTestTrait;
+
 	private const SESSIONID = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa';
 
 	/** @var SessionManager */
@@ -71,13 +72,7 @@ class SessionBackendTest extends MediaWikiIntegrationTestCase {
 		if ( !$this->provider ) {
 			$this->provider = new \DummySessionProvider();
 		}
-		$this->provider->init(
-			$logger,
-			$this->config,
-			$this->manager,
-			$hookContainer,
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $this->provider, null, $this->config, $this->manager, $hookContainer );
 
 		$info = new SessionInfo( SessionInfo::MIN_PRIORITY, [
 			'provider' => $this->provider,

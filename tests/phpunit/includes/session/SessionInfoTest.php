@@ -2,10 +2,7 @@
 
 namespace MediaWiki\Session;
 
-use Config;
-use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
-use TestLogger;
 
 /**
  * @group Session
@@ -13,6 +10,7 @@ use TestLogger;
  * @covers MediaWiki\Session\SessionInfo
  */
 class SessionInfoTest extends MediaWikiIntegrationTestCase {
+	use SessionProviderTestTrait;
 
 	public function testBasics() {
 		$anonInfo = UserInfo::newAnonymous();
@@ -67,13 +65,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$provider = $this->getMockBuilder( SessionProvider::class )
 			->onlyMethods( [ 'persistsSessionId', 'canChangeUser', '__toString' ] )
 			->getMockForAbstractClass();
-		$provider->init(
-			new TestLogger(),
-			$this->createNoOpAbstractMock( Config::class ),
-			$manager,
-			$this->createHookContainer(),
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, null, null, $manager );
 		$provider->method( 'persistsSessionId' )
 			->willReturn( true );
 		$provider->method( 'canChangeUser' )
@@ -84,13 +76,7 @@ class SessionInfoTest extends MediaWikiIntegrationTestCase {
 		$provider2 = $this->getMockBuilder( SessionProvider::class )
 			->onlyMethods( [ 'persistsSessionId', 'canChangeUser', '__toString' ] )
 			->getMockForAbstractClass();
-		$provider2->init(
-			new TestLogger(),
-			$this->createNoOpAbstractMock( Config::class ),
-			$manager,
-			$this->createHookContainer(),
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider2, null, null, $manager );
 		$provider2->method( 'persistsSessionId' )
 			->willReturn( true );
 		$provider2->method( 'canChangeUser' )

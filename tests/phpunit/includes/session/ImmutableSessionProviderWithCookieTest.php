@@ -2,7 +2,6 @@
 
 namespace MediaWiki\Session;
 
-use MediaWiki\User\UserNameUtils;
 use MediaWikiIntegrationTestCase;
 use Psr\Log\NullLogger;
 use TestLogger;
@@ -15,6 +14,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers MediaWiki\Session\ImmutableSessionProviderWithCookie
  */
 class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCase {
+	use SessionProviderTestTrait;
 
 	private function getProvider( $name, $prefix = null, $forceHTTPS = false, $logger = null ) {
 		$config = new \HashConfig();
@@ -32,13 +32,7 @@ class ImmutableSessionProviderWithCookieTest extends MediaWikiIntegrationTestCas
 		$provider = $this->getMockBuilder( ImmutableSessionProviderWithCookie::class )
 			->setConstructorArgs( [ $params ] )
 			->getMockForAbstractClass();
-		$provider->init(
-			$logger ?? new TestLogger(),
-			$config,
-			new SessionManager(),
-			$this->createHookContainer(),
-			$this->createNoOpMock( UserNameUtils::class )
-		);
+		$this->initProvider( $provider, $logger ?? new TestLogger(), $config, new SessionManager() );
 
 		return $provider;
 	}
