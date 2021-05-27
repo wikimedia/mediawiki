@@ -182,7 +182,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-user-experience-level-newcomer-description',
 						'cssClassSuffix' => 'user-newcomer',
 						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
-							$performer = $rc->getPerformer();
+							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
 							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'newcomer';
 						}
@@ -193,7 +193,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-user-experience-level-learner-description',
 						'cssClassSuffix' => 'user-learner',
 						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
-							$performer = $rc->getPerformer();
+							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
 							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'learner';
 						},
@@ -204,7 +204,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						'description' => 'rcfilters-filter-user-experience-level-experienced-description',
 						'cssClassSuffix' => 'user-experienced',
 						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
-							$performer = $rc->getPerformer();
+							$performer = User::newFromIdentity( $rc->getPerformerIdentity() );
 							return $performer && $performer->isRegistered() &&
 								$performer->getExperienceLevel() === 'experienced';
 						},
@@ -236,7 +236,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						},
 						'cssClassSuffix' => 'self',
 						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
-							return $ctx->getUser()->equals( $rc->getPerformer() );
+							return $ctx->getUser()->equals( $rc->getPerformerIdentity() );
 						},
 					],
 					[
@@ -257,7 +257,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 						},
 						'cssClassSuffix' => 'others',
 						'isRowApplicableCallable' => static function ( $ctx, $rc ) {
-							return !$ctx->getUser()->equals( $rc->getPerformer() );
+							return !$ctx->getUser()->equals( $rc->getPerformerIdentity() );
 						},
 					]
 				]
