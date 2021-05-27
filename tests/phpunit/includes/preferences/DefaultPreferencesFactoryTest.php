@@ -328,7 +328,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$prefs = $this->getPreferencesFactory( $language, $userOptionsLookupMock )
 			->getFormDescriptor( $userMock, $this->context );
 		$this->assertArrayHasKey( 'default', $prefs['usergroups'] );
-		$this->assertEquals( 'users', $prefs['usergroups']['default'] );
+		$this->assertEquals( 'users', ( $prefs['usergroups']['default'] )() );
 	}
 
 	/**
