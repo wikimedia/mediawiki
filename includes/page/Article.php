@@ -1295,7 +1295,7 @@ class Article implements Page {
 			return false;
 		}
 
-		if ( $rc->getPerformer()->equals( $user ) ) {
+		if ( $rc->getPerformerIdentity()->equals( $user ) ) {
 			// Don't show a patrol link for own creations/uploads. If the user could
 			// patrol them, they already would be patrolled
 			return false;
