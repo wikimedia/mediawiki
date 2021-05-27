@@ -35,6 +35,7 @@ use Psr\Log\NullLogger;
 use RuntimeException;
 use Throwable;
 use UnexpectedValueException;
+use Wikimedia\Assert\Assert;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\RequestTimeout\CriticalSectionProvider;
 use Wikimedia\RequestTimeout\CriticalSectionScope;
@@ -3123,6 +3124,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 			// Is there a JOIN clause for this table?
 			if ( isset( $join_conds[$alias] ) ) {
+				Assert::parameterType( 'array', $join_conds[$alias], "join_conds[$alias]" );
 				list( $joinType, $conds ) = $join_conds[$alias];
 				$tableClause = $joinType;
 				$tableClause .= ' ' . $joinedTable;
