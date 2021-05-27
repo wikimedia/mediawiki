@@ -335,50 +335,46 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$lang = $context->getLanguage();
 
-		// Get groups to which the user belongs
-		$userEffectiveGroups = $user->getEffectiveGroups();
-		$userGroupMemberships = $user->getGroupMemberships();
-		$userGroups = $userMembers = $userTempGroups = $userTempMembers = [];
-		foreach ( $userEffectiveGroups as $ueg ) {
-			if ( $ueg == '*' ) {
-				// Skip the default * group, seems useless here
-				continue;
-			}
-
-			$groupStringOrObject = $userGroupMemberships[$ueg] ?? $ueg;
-
-			$userG = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html' );
-			$userM = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html',
-				$userName );
-
-			// Store expiring groups separately, so we can place them before non-expiring
-			// groups in the list. This is to avoid the ambiguity of something like
-			// "administrator, bureaucrat (until X date)" -- users might wonder whether the
-			// expiry date applies to both groups, or just the last one
-			if ( $groupStringOrObject instanceof UserGroupMembership &&
-				$groupStringOrObject->getExpiry()
-			) {
-				$userTempGroups[] = $userG;
-				$userTempMembers[] = $userM;
-			} else {
-				$userGroups[] = $userG;
-				$userMembers[] = $userM;
-			}
-		}
-		sort( $userGroups );
-		sort( $userMembers );
-		sort( $userTempGroups );
-		sort( $userTempMembers );
-		$userGroups = array_merge( $userTempGroups, $userGroups );
-		$userMembers = array_merge( $userTempMembers, $userMembers );
-
+		// Get groups to which the user belongs, Skip the default * group, seems useless here
+		$userEffectiveGroups = array_diff( $user->getEffectiveGroups(), [ '*' ] );
 		$defaultPreferences['usergroups'] = [
 			'type' => 'info',
-			'label' => $context->msg( 'prefs-memberingroups' )->numParams(
-				count( $userGroups ) )->params( $userName )->text(),
-			'default' => $context->msg( 'prefs-memberingroups-type' )
-				->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
-				->escaped(),
+			'label-message' => [ 'prefs-memberingroups',
+				\Message::numParam( count( $userEffectiveGroups ) ), $userName ],
+			'default' => static function () use ( $user, $userEffectiveGroups, $context, $lang, $userName ) {
+				$userGroupMemberships = $user->getGroupMemberships();
+				$userGroups = $userMembers = $userTempGroups = $userTempMembers = [];
+				foreach ( $userEffectiveGroups as $ueg ) {
+					$groupStringOrObject = $userGroupMemberships[$ueg] ?? $ueg;
+
+					$userG = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html' );
+					$userM = UserGroupMembership::getLink( $groupStringOrObject, $context, 'html',
+						$userName );
+
+					// Store expiring groups separately, so we can place them before non-expiring
+					// groups in the list. This is to avoid the ambiguity of something like
+					// "administrator, bureaucrat (until X date)" -- users might wonder whether the
+					// expiry date applies to both groups, or just the last one
+					if ( $groupStringOrObject instanceof UserGroupMembership &&
+						$groupStringOrObject->getExpiry()
+					) {
+						$userTempGroups[] = $userG;
+						$userTempMembers[] = $userM;
+					} else {
+						$userGroups[] = $userG;
+						$userMembers[] = $userM;
+					}
+				}
+				sort( $userGroups );
+				sort( $userMembers );
+				sort( $userTempGroups );
+				sort( $userTempMembers );
+				$userGroups = array_merge( $userTempGroups, $userGroups );
+				$userMembers = array_merge( $userTempMembers, $userMembers );
+				return $context->msg( 'prefs-memberingroups-type' )
+					->rawParams( $lang->commaList( $userGroups ), $lang->commaList( $userMembers ) )
+					->escaped();
+			},
 			'raw' => true,
 			'section' => 'personal/info',
 		];
