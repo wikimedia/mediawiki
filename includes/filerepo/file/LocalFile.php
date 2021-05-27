@@ -896,40 +896,6 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Returns user who uploaded the file
-	 *
-	 * @deprecated since 1.37. Use ::getUploader instead
-	 * @param string $type 'text', 'id', or 'object'
-	 * @return int|string|User
-	 * @since 1.31 Added 'object'
-	 */
-	public function getUser( $type = 'text' ) {
-		$this->load();
-
-		if ( !$this->user ) {
-			// If the file does not exist, $this->user will be null, see T221812.
-			// Note: 'Unknown user' this is a reserved user name.
-			if ( $type === 'object' ) {
-				return User::newFromName( 'Unknown user', false );
-			} elseif ( $type === 'text' ) {
-				return 'Unknown user';
-			} elseif ( $type === 'id' ) {
-				return 0;
-			}
-		} else {
-			if ( $type === 'object' ) {
-				return $this->user;
-			} elseif ( $type === 'text' ) {
-				return $this->user->getName();
-			} elseif ( $type === 'id' ) {
-				return $this->user->getId();
-			}
-		}
-
-		throw new MWException( "Unknown type '$type'." );
-	}
-
-	/**
 	 * Get short description URL for a file based on the page ID.
 	 * @stable to override
 	 *
@@ -2245,8 +2211,7 @@ class LocalFile extends File {
 		$this->load();
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
 			return '';
-		} elseif ( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_COMMENT, $performer )
-		) {
+		} elseif ( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_COMMENT, $performer ) ) {
 			return '';
 		} else {
 			return $this->description;

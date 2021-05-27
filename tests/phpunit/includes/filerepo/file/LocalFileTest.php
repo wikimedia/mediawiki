@@ -299,6 +299,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	 * @covers File::getUser
 	 */
 	public function testGetUserForNonExistingFile() {
+		$this->hideDeprecated( 'File::getUser' );
 		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
 		$this->assertSame( 'Unknown user', $file->getUser() );
 	}
@@ -443,6 +444,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @covers File
+	 * @covers LocalFile
 	 */
 	public function testLoadFromDBAndCache() {
 		$services = MediaWikiServices::getInstance();
@@ -495,7 +497,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'BITMAP', $file->getMediaType() );
 		$this->assertSame( 'image/png', $file->getMimeType() );
 		$this->assertSame( 'comment', $file->getDescription() );
-		$this->assertSame( $user->getName(), $file->getUser() );
+		$this->assertTrue( $user->equals( $file->getUploader() ) );
 		$this->assertSame( '20201105235242', $file->getTimestamp() );
 		$this->assertSame( 'sy02psim0bgdh0jt4vdltuzoh7j80ru', $file->getSha1() );
 
@@ -512,7 +514,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 'BITMAP', $file->getMediaType() );
 		$this->assertSame( 'image/png', $file->getMimeType() );
 		$this->assertSame( 'comment', $file->getDescription() );
-		$this->assertSame( $user->getName(), $file->getUser() );
+		$this->assertTrue( $user->equals( $file->getUploader() ) );
 		$this->assertSame( '20201105235242', $file->getTimestamp() );
 		$this->assertSame( 'sy02psim0bgdh0jt4vdltuzoh7j80ru', $file->getSha1() );
 
