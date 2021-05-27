@@ -107,6 +107,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideAttribs
 	 */
 	public function testDatabaseRoundTrip( $attribs ) {
+		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$rc = new RecentChange;
 		$rc->mAttribs = $attribs;
 		$rc->mExtra = [
@@ -141,6 +142,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::getPerformer
 	 */
 	public function testNewFromRow() {
+		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$user = $this->getTestUser()->getUser();
 
 		$row = (object)[
@@ -204,6 +206,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::getPerformer
 	 */
 	public function testNotifyNew() {
+		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$now = MWTimestamp::now();
 		$rc = RecentChange::notifyNew(
 			$now,
@@ -245,6 +248,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::getPerformer
 	 */
 	public function testNotifyEdit() {
+		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$now = MWTimestamp::now();
 		$rc = RecentChange::notifyEdit(
 			$now,
@@ -288,6 +292,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	 * @covers RecentChange::getPerformer
 	 */
 	public function testNewLogEntry() {
+		$this->hideDeprecated( 'RecentChange::getPerformer' );
 		$now = MWTimestamp::now();
 		$logPage = new PageReferenceValue( NS_SPECIAL, 'Log/test', PageReference::LOCAL );
 

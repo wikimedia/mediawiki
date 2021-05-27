@@ -364,11 +364,12 @@ class RecentChange implements Taggable {
 
 	/**
 	 * Get the User object of the person who performed this change.
-	 * @deprecated since 1.36, use getPerformerIdentity() instead.
+	 * @deprecated since 1.36, hard deprecated since 1.37, use getPerformerIdentity() instead.
 	 *
 	 * @return User
 	 */
 	public function getPerformer(): User {
+		wfDeprecated( __METHOD__, '1.36' );
 		if ( !$this->mPerformer instanceof User ) {
 			$this->mPerformer = User::newFromIdentity( $this->getPerformerIdentity() );
 		}
@@ -502,7 +503,8 @@ class RecentChange implements Taggable {
 
 		# E-mail notifications
 		if ( $wgUseEnotif || $wgShowUpdatedMarker ) {
-			$editor = $this->getPerformer();
+			$userFactory = MediaWikiServices::getInstance()->getUserFactory();
+			$editor = $userFactory->newFromUserIdentity( $this->getPerformerIdentity() );
 			$page = $this->getPage();
 			$title = Title::castFromPageReference( $page );
 
