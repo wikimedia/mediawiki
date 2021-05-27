@@ -116,7 +116,7 @@ class ApiImageRotate extends ApiBase {
 					0,
 					false,
 					false,
-					$this->getUser(),
+					$this->getAuthority(),
 					$params['tags'] ?: []
 				);
 				if ( $status->isGood() ) {

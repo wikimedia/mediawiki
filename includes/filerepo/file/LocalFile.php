@@ -27,6 +27,7 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -117,7 +118,7 @@ class LocalFile extends File {
 	/** @var string Upload timestamp */
 	private $timestamp;
 
-	/** @var User Uploader */
+	/** @var UserIdentity|null Uploader */
 	private $user;
 
 	/** @var string Description of current revision of the file */
@@ -349,8 +350,10 @@ class LocalFile extends File {
 						$cacheVal[$field] = $this->$field;
 					}
 				}
-				$cacheVal['user'] = $this->user ? $this->user->getId() : 0;
-				$cacheVal['user_text'] = $this->user ? $this->user->getName() : '';
+				if ( $this->user ) {
+					$cacheVal['user'] = $this->user->getId();
+					$cacheVal['user_text'] = $this->user->getName();
+				}
 
 				// Strip off excessive entries from the subset of fields that can become large.
 				// If the cache value gets to large it will not fit in memcached and nothing will
@@ -808,12 +811,12 @@ class LocalFile extends File {
 			}
 		}
 
-		if ( isset( $info['user'] ) || isset( $info['user_text'] ) || isset( $info['actor'] ) ) {
-			$this->user = User::newFromAnyId(
-				$info['user'] ?? null,
-				$info['user_text'] ?? null,
-				$info['actor'] ?? null
-			);
+		// Only our own cache sets these properties, so they both should be present.
+		if ( isset( $info['user'] ) &&
+			isset( $info['user_text'] ) &&
+			$info['user_text'] !== ''
+		) {
+			$this->user = new UserIdentityValue( $info['user'], $info['user_text'] );
 		}
 
 		// Fix up mime fields
@@ -1360,9 +1363,9 @@ class LocalFile extends File {
 	 *   info is already known
 	 * @param string|bool $timestamp Timestamp for img_timestamp, or false to use the
 	 *   current time
-	 * @param User|null $user User object or null to use the context user
+	 * @param Authority|null $uploader object or null to use the context authority
 	 * @param string[] $tags Change tags to add to the log entry and page revision.
-	 *   (This doesn't check $user's permissions.)
+	 *   (This doesn't check $uploader's permissions.)
 	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
 	 *   upload, see T193621
 	 * @param bool $revert If this file upload is a revert
@@ -1370,7 +1373,7 @@ class LocalFile extends File {
 	 *     archive name, or an empty string if it was a new file.
 	 */
 	public function upload( $src, $comment, $pageText, $flags = 0, $props = false,
-		$timestamp = false, $user = null, $tags = [],
+		$timestamp = false, Authority $uploader = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
 		if ( $this->getRepo()->getReadOnlyReason() !== false ) {
@@ -1422,16 +1425,16 @@ class LocalFile extends File {
 			// updated and we must therefore update the DB too.
 			$oldver = $status->value;
 
-			if ( $user === null ) {
-				// User argument is optional, fall back to the context user
-				$user = RequestContext::getMain()->getUser();
+			if ( $uploader === null ) {
+				// Uploader argument is optional, fall back to the context authority
+				$uploader = RequestContext::getMain()->getAuthority();
 			}
 
 			$uploadStatus = $this->recordUpload3(
 				$oldver,
 				$comment,
 				$pageText,
-				$user,
+				$uploader,
 				$props,
 				$timestamp,
 				$tags,
@@ -1460,7 +1463,7 @@ class LocalFile extends File {
 	 * @param string $pageText
 	 * @param bool|array $props
 	 * @param string|bool $timestamp
-	 * @param null|User $user
+	 * @param null|Authority $performer
 	 * @param string[] $tags
 	 * @param bool $createNullRevision Set to false to avoid creation of a null revision on file
 	 *   upload, see T193621
@@ -1468,17 +1471,17 @@ class LocalFile extends File {
 	 * @return Status
 	 */
 	public function recordUpload2(
-		$oldver, $comment, $pageText, $props = false, $timestamp = false, $user = null, $tags = [],
+		$oldver, $comment, $pageText, $props = false, $timestamp = false, ?Authority $performer = null, $tags = [],
 		$createNullRevision = true, $revert = false
 	) {
 		wfDeprecated( __METHOD__, '1.35' );
-		if ( $user === null ) {
+		if ( $performer === null ) {
 			global $wgUser;
-			$user = $wgUser;
+			$performer = $wgUser;
 		}
 		return $this->recordUpload3(
 			$oldver, $comment, $pageText,
-			$user, $props, $timestamp, $tags,
+			$performer, $props, $timestamp, $tags,
 			$createNullRevision, $revert
 		);
 	}
@@ -1490,7 +1493,7 @@ class LocalFile extends File {
 	 * @param string $oldver
 	 * @param string $comment
 	 * @param string $pageText
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param bool|array $props
 	 * @param string|bool $timestamp
 	 * @param string[] $tags
@@ -1503,7 +1506,7 @@ class LocalFile extends File {
 		string $oldver,
 		string $comment,
 		string $pageText,
-		User $user,
+		Authority $performer,
 		$props = false,
 		$timestamp = false,
 		$tags = [],
@@ -1537,8 +1540,8 @@ class LocalFile extends File {
 
 		$dbw->startAtomic( __METHOD__ );
 
-		$actorId = $actorNormalizaton->acquireActorId( $user, $dbw );
-		$this->user = $user;
+		$actorId = $actorNormalizaton->acquireActorId( $performer->getUser(), $dbw );
+		$this->user = $performer->getUser();
 
 		# Test to see if the row exists using INSERT IGNORE
 		# This avoids race conditions by locking the row until the commit, and also
@@ -1656,7 +1659,7 @@ class LocalFile extends File {
 		// Add the log entry...
 		$logEntry = new ManualLogEntry( 'upload', $logAction );
 		$logEntry->setTimestamp( $this->timestamp );
-		$logEntry->setPerformer( $user );
+		$logEntry->setPerformer( $performer->getUser() );
 		$logEntry->setComment( $comment );
 		$logEntry->setTarget( $descTitle );
 		// Allow people using the api to associate log entries with the upload.
@@ -1688,7 +1691,7 @@ class LocalFile extends File {
 					$descTitle,
 					$summary,
 					false,
-					$user
+					$performer->getUser()
 				);
 
 				if ( $nullRevRecord ) {
@@ -1698,7 +1701,7 @@ class LocalFile extends File {
 						$wikiPage,
 						$inserted,
 						$inserted->getParentId(),
-						$user,
+						$performer->getUser(),
 						$tags
 					);
 
@@ -1728,7 +1731,7 @@ class LocalFile extends File {
 			__METHOD__,
 			/** @suppress PhanTypeArraySuspiciousNullable False positives with $this->status->value */
 			function () use (
-				$reupload, $wikiPage, $newPageContent, $comment, $user,
+				$reupload, $wikiPage, $newPageContent, $comment, $performer,
 				$logEntry, $logId, $descId, $tags, $fname
 			) {
 				# Update memcache after the commit
@@ -1744,7 +1747,7 @@ class LocalFile extends File {
 						$comment,
 						EDIT_NEW | EDIT_SUPPRESS_RC,
 						false,
-						$user
+						$performer
 					);
 
 					if ( isset( $status->value['revision-record'] ) ) {
@@ -1821,7 +1824,7 @@ class LocalFile extends File {
 						$this->getTitle(),
 						'imagelinks',
 						'upload-image',
-						$user->getName()
+						$performer->getUser()->getName()
 					);
 				}
 
@@ -1833,7 +1836,7 @@ class LocalFile extends File {
 		$cacheUpdateJob = HTMLCacheUpdateJob::newForBacklinks(
 			$this->getTitle(),
 			'imagelinks',
-			[ 'causeAction' => 'file-upload', 'causeAgent' => $user->getName() ]
+			[ 'causeAction' => 'file-upload', 'causeAgent' => $performer->getUser()->getName() ]
 		);
 
 		// NOTE: We are probably still in the transaction started by the call to lock() in
