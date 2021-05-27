@@ -1,5 +1,7 @@
 = MediaWiki 1.36 =
 
+== MediaWiki 1.36.0 ==
+
 === Changes since MediaWiki 1.36.0-rc.0 ===
 * (T248481) rdbms: Use server time in
   DatabaseMysqlBase::getLagFromPtHeartbeat().
@@ -20,11 +22,6 @@
 * (T282594) Timeless: Re-branch to 40eb3dad1for REL1_36.
 
 == MediaWiki 1.36.0-rc.0 ==
-
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.36 is a pre-release testing branch, and is not recommended
-for use in production.
 
 == Upgrading notes for 1.36 ==
 Don't forget to always back up your database before upgrading!
