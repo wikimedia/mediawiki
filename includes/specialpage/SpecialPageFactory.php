@@ -312,7 +312,6 @@ class SpecialPageFactory {
 		'CreateAccount' => [
 			'class' => \SpecialCreateAccount::class,
 			'services' => [
-				'PermissionManager',
 				'AuthManager',
 			]
 		],
