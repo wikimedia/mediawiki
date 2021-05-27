@@ -176,6 +176,7 @@ class ApiQuery extends ApiBase {
 				'WatchedItemStore',
 				'UserEditTracker',
 				'UserOptionsLookup',
+				'UserGroupManager',
 			]
 		],
 		'filerepoinfo' => ApiQueryFileRepoInfo::class,

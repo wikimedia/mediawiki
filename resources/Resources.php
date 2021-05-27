@@ -836,7 +836,10 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.htmlform.ooui.styles' => [
-		'styles' => 'resources/src/mediawiki.htmlform.ooui.styles.less',
+		'styles' => [
+			'resources/src/mediawiki.collapsiblefieldsetlayout.styles.less',
+			'resources/src/mediawiki.htmlform.ooui.styles.less'
+		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.icon' => [
