@@ -415,10 +415,14 @@ class RollbackPage {
 			$log->publish( $logId );
 		}
 
-		$user = $this->userFactory->newFromAuthority( $this->performer );
 		$wikiPage = $this->wikiPageFactory->newFromTitle( $this->page );
 
-		$this->hookRunner->onRollbackComplete( $wikiPage, $user, $targetRevision, $currentRevision );
+		$this->hookRunner->onRollbackComplete(
+			$wikiPage,
+			$this->performer->getUser(),
+			$targetRevision,
+			$currentRevision
+		);
 
 		return StatusValue::newGood( [
 			'summary' => $summary,

@@ -399,27 +399,13 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * transaction context.
 	 *
 	 * @param UserIdentity $user
-	 * @param IDatabase|null $dbw The database connection to acquire the ID from.
+	 * @param IDatabase $dbw The database connection to acquire the ID from.
 	 *        The database must correspond to ActorStore's wiki ID.
-	 *        If not given, an appropriate database connection will acquired from the
-	 *        LoadBalancer provided to the constructor.
-	 *        Not providing a database connection triggers a deprecation warning!
-	 *        In the future, this parameter will be required.
 	 * @return int actor ID greater then 0
 	 * @throws CannotCreateActorException if no actor ID has been assigned to this $user
 	 */
-	public function acquireActorId( UserIdentity $user, IDatabase $dbw = null ): int {
-		if ( $dbw ) {
-			$this->checkDatabaseDomain( $dbw );
-		} else {
-			// TODO: Remove after fixing it in all extensions and seeing it live for one train.
-			//       Does not need full deprecation since this method is new in 1.36.
-			wfDeprecatedMsg(
-				'Calling acquireActorId() without the $dbw parameter is deprecated',
-				'1.36'
-			);
-			[ $dbw, ] = $this->getDBConnectionRefForQueryFlags( self::READ_LATEST );
-		}
+	public function acquireActorId( UserIdentity $user, IDatabase $dbw ): int {
+		$this->checkDatabaseDomain( $dbw );
 		[ $userId, $userName ] = $this->validateActorForInsertion( $user );
 
 		// allow cache to be used, because if it is in the cache, it already has an actor ID
