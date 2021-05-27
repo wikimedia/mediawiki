@@ -22,6 +22,7 @@
 
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
@@ -61,6 +62,9 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 */
 	private $userOptionsLookup;
 
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
@@ -68,6 +72,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 * @param WatchedItemStore $watchedItemStore
 	 * @param UserEditTracker $userEditTracker
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserGroupManager $userGroupManager
 	 */
 	public function __construct(
 		ApiQuery $query,
@@ -75,13 +80,15 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		TalkPageNotificationManager $talkPageNotificationManager,
 		WatchedItemStore $watchedItemStore,
 		UserEditTracker $userEditTracker,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		UserGroupManager $userGroupManager
 	) {
 		parent::__construct( $query, $moduleName, 'ui' );
 		$this->talkPageNotificationManager = $talkPageNotificationManager;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->userEditTracker = $userEditTracker;
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	public function execute() {
@@ -188,7 +195,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['changeablegroups'] ) ) {
-			$vals['changeablegroups'] = $user->changeableGroups();
+			$vals['changeablegroups'] = $this->userGroupManager->getGroupsChangeableBy( $this->getAuthority() );
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['add'], 'g' );
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['remove'], 'g' );
 			ApiResult::setIndexedTagName( $vals['changeablegroups']['add-self'], 'g' );
