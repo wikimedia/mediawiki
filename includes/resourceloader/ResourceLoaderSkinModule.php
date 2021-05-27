@@ -55,13 +55,14 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *     content area structures like the TOC themselves.
 	 *
 	 * "content":
-	 *     Deprecated. Alias for "content-thumbnails".
+	 *     Deprecated. Alias for "content-media".
 	 *
 	 * "content-thumbnails":
-	 *     Styles for thumbnails and floated elements.
+	 *     Deprecated. Alias for "content-media".
 	 *
 	 * "content-media":
-	 *     Styles for the new media structure on wikis where $wgUseNewMediaStructure is enabled.
+	 *     Styles for thumbnails and floated elements.
+	 *     Will add styles for the new media structure on wikis where $wgUseNewMediaStructure is enabled.
 	 *     See https://www.mediawiki.org/wiki/Parsing/Media_structure
 	 *
 	 * "content-links":
@@ -121,13 +122,9 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 			// Reserves whitespace for the logo in a pseudo element.
 			'print' => [ 'resources/src/mediawiki.skinning/logo-print.less' ],
 		],
-		'content-thumbnails' => [
-			// To be consolidated with 'content-media' at a future date.
+		'content-media' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.thumbnails.less' ],
 			'print' => [ 'resources/src/mediawiki.skinning/content.thumbnails-print.less' ],
-		],
-		'content-media' => [
-			'screen' => [ 'resources/src/mediawiki.skinning/content.media.less' ],
 		],
 		'content-links' => [
 			'screen' => [ 'resources/src/mediawiki.skinning/content.links.less' ]
@@ -190,7 +187,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * @var array<string,bool>
 	 */
 	private const DEFAULT_FEATURES_SPECIFIED = [
-		'content-media' => true, // Ignored unless $wgUseNewMediaStructure is enabled.
 		'content-body' => true,
 		'toc' => true,
 	];
@@ -277,11 +273,18 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * @return array
 	 */
 	protected static function applyFeaturesCompatibility( array $features ) : array {
-		// The `content` feature is mapped to `content-thumbnails`.
+		// The `content` feature is mapped to `content-media`.
 		// FIXME: Hard-deprecate sometime during the 1.37 release.
 		if ( isset( $features[ 'content' ] ) ) {
-			$features[ 'content-thumbnails' ] = $features[ 'content' ];
+			$features[ 'content-media' ] = $features[ 'content' ];
 			unset( $features[ 'content' ] );
+		}
+
+		// The `content-thumbnails` feature is mapped to `content-media`.
+		// FIXME: Hard-deprecate sometime during the 1.37 release.
+		if ( isset( $features[ 'content-thumbnails' ] ) ) {
+			$features[ 'content-media' ] = $features[ 'content-thumbnails' ];
+			unset( $features[ 'content-thumbnails' ] );
 		}
 
 		// If `content-links` feature is set but no preference for `content-links-external` is set
@@ -329,10 +332,6 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$featureFilePaths = [];
 
 		foreach ( self::FEATURE_FILES as $feature => $files ) {
-			if ( $feature === 'content-media' && !$this->getConfig()->get( 'UseNewMediaStructure' ) ) {
-				// Only load this when actually enabled, otherwise its styles would be unused.
-				continue;
-			}
 			if ( in_array( $feature, $this->features ) ) {
 				foreach ( $files as $mediaType => $files ) {
 					foreach ( $files as $filepath ) {
@@ -342,6 +341,13 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 							$defaultRemoteBasePath
 						);
 					}
+				}
+				if ( $feature === 'content-media' && $this->getConfig()->get( 'UseNewMediaStructure' ) ) {
+					$featureFilePaths['screen'][] = new ResourceLoaderFilePath(
+						'resources/src/mediawiki.skinning/content.media.less',
+						$defaultLocalBasePath,
+						$defaultRemoteBasePath
+					);
 				}
 			}
 		}
