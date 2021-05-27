@@ -19,9 +19,9 @@
  * @ingroup Pager
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Linker\LinkRenderer;
-use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\User\UserFactory;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -39,32 +39,27 @@ class NewFilesPager extends RangeChronologicalPager {
 	 */
 	protected $opts;
 
-	/** @var PermissionManager */
-	private $permissionManager;
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
 
-	/** @var UserCache */
-	private $userCache;
-
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
 
 	/**
 	 * @param IContextSource $context
 	 * @param FormOptions $opts
 	 * @param LinkRenderer $linkRenderer
-	 * @param PermissionManager $permissionManager
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param ILoadBalancer $loadBalancer
-	 * @param UserCache $userCache
-	 * @param UserFactory $userFactory
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		IContextSource $context,
 		FormOptions $opts,
 		LinkRenderer $linkRenderer,
-		PermissionManager $permissionManager,
+		GroupPermissionsLookup $groupPermissionsLookup,
 		ILoadBalancer $loadBalancer,
-		UserCache $userCache,
-		UserFactory $userFactory
+		LinkBatchFactory $linkBatchFactory
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
@@ -72,9 +67,8 @@ class NewFilesPager extends RangeChronologicalPager {
 		parent::__construct( $context, $linkRenderer );
 
 		$this->opts = $opts;
-		$this->permissionManager = $permissionManager;
-		$this->userCache = $userCache;
-		$this->userFactory = $userFactory;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->linkBatchFactory = $linkBatchFactory;
 		$this->setLimit( $opts->getValue( 'limit' ) );
 
 		$startTimestamp = '';
@@ -103,7 +97,7 @@ class NewFilesPager extends RangeChronologicalPager {
 		}
 
 		if ( !$opts->getValue( 'showbots' ) ) {
-			$groupsWithBotPermission = $this->permissionManager->getGroupsWithPermission( 'bot' );
+			$groupsWithBotPermission = $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' );
 
 			if ( count( $groupsWithBotPermission ) ) {
 				$tables[] = 'user_groups';
@@ -193,15 +187,14 @@ class NewFilesPager extends RangeChronologicalPager {
 	}
 
 	protected function doBatchLookups() {
-		$userIds = [];
 		$this->mResult->seek( 0 );
+		$lb = $this->linkBatchFactory->newLinkBatch();
 		foreach ( $this->mResult as $row ) {
 			if ( $row->actor_user ) {
-				$userIds[] = $row->actor_user;
+				$lb->add( NS_USER, $row->actor_name );
 			}
 		}
-		// Do a link batch query for names and userpages
-		$this->userCache->doQuery( $userIds, [ 'userpage' ], __METHOD__ );
+		$lb->execute();
 	}
 
 	public function formatRow( $row ) {
