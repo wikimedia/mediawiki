@@ -3650,5 +3650,58 @@
 			}
 		],
 		"pk": [ "rev_id" ]
+	},
+	{
+		"name": "searchindex",
+		"comment": "search backend, this is actively used in MySQL but created and not used in Postgres while there are plans to use it in the future (T220450). This table must be MyISAM in MySQL; InnoDB does not support the needed fulltext index.",
+		"columns": [
+			{
+				"name": "si_page",
+				"comment": "Key to page_id",
+				"type": "integer",
+				"options": { "unsigned": true, "notnull": true }
+			},
+			{
+				"name": "si_title",
+				"comment": "Munged version of title",
+				"type": "string",
+				"options": { "length": 255, "notnull": true, "default": "" }
+			},
+			{
+				"name": "si_text",
+				"comment": "Munged version of body text",
+				"type": "text",
+				"options": { "notnull": true, "length": 16777215 }
+			}
+		],
+		"indexes": [
+			{
+				"name": "si_page",
+				"columns": [ "si_page" ],
+				"unique": true
+			},
+			{
+				"name": "si_title",
+				"columns": [ "si_title" ],
+				"unique": false,
+				"flags": [
+					"fulltext"
+				]
+			},
+			{
+				"name": "si_text",
+				"columns": [ "si_text" ],
+				"fulltext": true,
+				"unique": false,
+				"flags": [
+					"fulltext"
+				]
+			}
+		],
+		"pk": [],
+		"table_options": [
+			"ENGINE=MyISAM",
+			"DEFAULT CHARSET=utf8"
+		]
 	}
 ]
