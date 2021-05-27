@@ -221,7 +221,7 @@ class WatchlistManager {
 		if ( $userTalkPage ) {
 			// If we're working on user's talk page, we should update the talk page message indicator
 			if ( !$this->hookRunner->onUserClearNewTalkNotification(
-				$this->userFactory->newFromAuthority( $performer ),
+				$userIdentity,
 				$oldid
 			) ) {
 				return;
