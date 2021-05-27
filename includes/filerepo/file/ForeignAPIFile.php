@@ -21,6 +21,8 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * Foreign file accessible through api.php requests.
@@ -244,6 +246,7 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
+	 * @deprecated since 1.37. Use ::getUploader instead
 	 * @param string $type
 	 * @return int|null|string
 	 */
@@ -253,6 +256,15 @@ class ForeignAPIFile extends File {
 		} else {
 			return 0; // What makes sense here, for a remote user?
 		}
+	}
+
+	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ) : ?UserIdentity {
+		if ( isset( $this->mInfo['user'] ) ) {
+			// We don't know if the foreign repo will have a real interwiki prefix,
+			// treat this user as a foreign imported user. Maybe we can do better?
+			return UserIdentityValue::newExternal( $this->getRepoName(), $this->mInfo['user'] );
+		}
+		return null;
 	}
 
 	/**

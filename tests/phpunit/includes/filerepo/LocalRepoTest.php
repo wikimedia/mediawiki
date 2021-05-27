@@ -63,7 +63,7 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 		$file = $this->newRepo()->newFileFromRow( $row );
 		$this->assertInstanceOf( $expectedClass, $file );
 		$this->assertSame( 'Test_file', $file->getName() );
-		$this->assertSame( 1, $file->getUser( 'id' ) );
+		$this->assertSame( 1, $file->getUploader()->getId() );
 	}
 
 	public static function provideNewFileFromRow() {

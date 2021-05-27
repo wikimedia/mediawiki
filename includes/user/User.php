@@ -4233,10 +4233,13 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Checks if two user objects point to the same user.
 	 *
 	 * @since 1.25 ; takes a UserIdentity instead of a User since 1.32
-	 * @param UserIdentity $user
+	 * @param UserIdentity|null $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user ) : bool {
+	public function equals( ?UserIdentity $user ) : bool {
+		if ( !$user ) {
+			return false;
+		}
 		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
 	}

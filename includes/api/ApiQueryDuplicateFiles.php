@@ -139,10 +139,13 @@ class ApiQueryDuplicateFiles extends ApiQueryGeneratorBase {
 				} else {
 					$r = [
 						'name' => $dupName,
-						'user' => $dupFile->getUser( 'text' ),
 						'timestamp' => wfTimestamp( TS_ISO_8601, $dupFile->getTimestamp() ),
 						'shared' => !$dupFile->isLocal(),
 					];
+					$uploader = $dupFile->getUploader( File::FOR_PUBLIC );
+					if ( $uploader ) {
+						$r['user'] = $uploader->getName();
+					}
 					$fit = $this->addPageSubItem( $pageId, $r );
 					if ( !$fit ) {
 						$this->setContinueEnumParameter( 'continue', $image . '|' . $dupName );

@@ -169,10 +169,13 @@ class UserIdentityValue implements UserIdentity {
 	/**
 	 * @since 1.32
 	 *
-	 * @param UserIdentity $user
+	 * @param UserIdentity|null $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user ) : bool {
+	public function equals( ?UserIdentity $user ) : bool {
+		if ( !$user ) {
+			return false;
+		}
 		// XXX it's not clear whether central ID providers are supposed to obey this
 		return $this->getName() === $user->getName();
 	}

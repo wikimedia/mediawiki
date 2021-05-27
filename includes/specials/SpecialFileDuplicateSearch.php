@@ -198,9 +198,11 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 		foreach ( $list as $file ) {
 			$batch->addObj( $file->getTitle() );
 			if ( $file->isLocal() ) {
-				$userName = $file->getUser( 'text' );
-				$batch->add( NS_USER, $userName );
-				$batch->add( NS_USER_TALK, $userName );
+				$uploader = $file->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
+				if ( $uploader ) {
+					$batch->add( NS_USER, $uploader->getName() );
+					$batch->add( NS_USER_TALK, $uploader->getName() );
+				}
 			}
 		}
 
@@ -220,15 +222,17 @@ class SpecialFileDuplicateSearch extends SpecialPage {
 			$text
 		);
 
-		$userText = $result->getUser( 'text' );
-		if ( $result->isLocal() ) {
-			$userId = $result->getUser( 'id' );
-			$user = Linker::userLink( $userId, $userText );
+		$uploader = $result->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
+		if ( $result->isLocal() && $uploader ) {
+			$user = Linker::userLink( $uploader->getId(), $uploader->getName() );
 			$user .= '<span style="white-space: nowrap;">';
-			$user .= Linker::userToolLinks( $userId, $userText );
+			$user .= Linker::userToolLinks( $uploader->getId(), $uploader->getName() );
 			$user .= '</span>';
+		} elseif ( $uploader ) {
+			$user = htmlspecialchars( $uploader->getName() );
 		} else {
-			$user = htmlspecialchars( $userText );
+			$user = '<span class="history-deleted">'
+				. $this->msg( 'rev-deleted-user' )->escaped() . '</span>';
 		}
 
 		$time = htmlspecialchars( $this->getLanguage()->userTimeAndDate(

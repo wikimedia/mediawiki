@@ -168,17 +168,17 @@ class RevDelFileItem extends RevDelItem {
 	 * @return string HTML
 	 */
 	protected function getUserTools() {
-		if ( $this->file->userCan( RevisionRecord::DELETED_USER, $this->list->getUser() ) ) {
-			$uid = $this->file->getUser( 'id' );
-			$name = $this->file->getUser( 'text' );
-			$link = Linker::userLink( $uid, $name ) . Linker::userToolLinks( $uid, $name );
+		$uploader = $this->file->getUploader( File::FOR_THIS_USER, $this->list->getAuthority() );
+		if ( $uploader ) {
+			$link = Linker::userLink( $uploader->getId(), $uploader->getName() ) .
+				Linker::userToolLinks( $uploader->getId(), $uploader->getName() );
+			return $link;
 		} else {
 			$link = $this->list->msg( 'rev-deleted-user' )->escaped();
 		}
-		if ( $this->file->isDeleted( RevisionRecord::DELETED_USER ) ) {
+		if ( $this->file->isDeleted( File::DELETED_USER ) ) {
 			return '<span class="history-deleted">' . $link . '</span>';
 		}
-
 		return $link;
 	}
 
@@ -240,15 +240,17 @@ class RevDelFileItem extends RevDelItem {
 				),
 			];
 		}
-		if ( $file->userCan( RevisionRecord::DELETED_USER, $user ) ) {
+		$uploader = $file->getUploader( File::FOR_THIS_USER, $user );
+		if ( $uploader ) {
 			$ret += [
-				'userid' => $file->getUser( 'id' ),
-				'user' => $file->getUser( 'text' ),
+				'userid' => $uploader->getId(),
+				'user' => $uploader->getName(),
 			];
 		}
-		if ( $file->userCan( RevisionRecord::DELETED_COMMENT, $user ) ) {
+		$comment = $file->getDescription( File::FOR_THIS_USER, $user );
+		if ( $comment ) {
 			$ret += [
-				'comment' => $file->getDescription( LocalFile::RAW ),
+				'comment' => $comment,
 			];
 		}
 

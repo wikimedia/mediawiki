@@ -53,7 +53,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'language' => $params['extmetadatalanguage'],
 			'multilang' => $params['extmetadatamultilang'],
 			'extmetadatafilter' => $params['extmetadatafilter'],
-			'revdelUser' => $this->getUser(),
+			'revdelUser' => $this->getAuthority(),
 		];
 
 		if ( isset( $params['badfilecontexttitle'] ) ) {
@@ -369,7 +369,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *    'version': The metadata version for the metadata option
 	 *    'language': The language for extmetadata property
 	 *    'multilang': Return all translations in extmetadata property
-	 *    'revdelUser': User to use when checking whether to show revision-deleted fields.
+	 *    'revdelUser': Authority to use when checking whether to show revision-deleted fields.
 	 * @return array Result array
 	 */
 	public static function getInfo( $file, $prop, $result, $thumbParams = null, $opts = false ) {
@@ -398,36 +398,28 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $file->getTimestamp() );
 		}
 
-		// Handle external callers who don't pass revdelUser
-		if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
-			$revdelUser = $opts['revdelUser'];
-			$canShowField = static function ( $field ) use ( $file, $revdelUser ) {
-				return $file->userCan( $field, $revdelUser );
-			};
-		} else {
-			$canShowField = static function ( $field ) use ( $file ) {
-				return !$file->isDeleted( $field );
-			};
-		}
-
 		$user = isset( $prop['user'] );
 		$userid = isset( $prop['userid'] );
 
 		if ( ( $user || $userid ) && $exists ) {
-			if ( $file->isDeleted( File::DELETED_USER ) ) {
-				$vals['userhidden'] = true;
-				$anyHidden = true;
+			if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
+				$uploader = $file->getUploader( File::FOR_THIS_USER, $opts['revdelUser'] );
+			} else {
+				$uploader = $file->getUploader( File::FOR_PUBLIC );
 			}
-			if ( $canShowField( File::DELETED_USER ) ) {
+			if ( $uploader ) {
 				if ( $user ) {
-					$vals['user'] = $file->getUser();
+					$vals['user'] = $uploader->getName();
 				}
 				if ( $userid ) {
-					$vals['userid'] = $file->getUser( 'id' );
+					$vals['userid'] = $uploader->getId();
 				}
-				if ( !$file->getUser( 'id' ) ) {
+				if ( !$uploader->isRegistered() ) {
 					$vals['anon'] = true;
 				}
+			} else {
+				$vals['userhidden'] = true;
+				$anyHidden = true;
 			}
 		}
 
@@ -455,18 +447,21 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		$comment = isset( $prop['comment'] );
 
 		if ( ( $pcomment || $comment ) && $exists ) {
-			if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-				$vals['commenthidden'] = true;
-				$anyHidden = true;
+			if ( isset( $opts['revdelUser'] ) && $opts['revdelUser'] ) {
+				$description = $file->getDescription( File::FOR_THIS_USER, $opts['revdelUser'] );
+			} else {
+				$description = $file->getDescription( File::FOR_PUBLIC );
 			}
-			if ( $canShowField( File::DELETED_COMMENT ) ) {
+			if ( $description ) {
 				if ( $pcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment(
-						$file->getDescription( File::RAW ), $file->getTitle() );
+					$vals['parsedcomment'] = Linker::formatComment( $description, $file->getTitle() );
 				}
 				if ( $comment ) {
-					$vals['comment'] = $file->getDescription( File::RAW );
+					$vals['comment'] = $description;
 				}
+			} else {
+				$vals['commenthidden'] = true;
+				$anyHidden = true;
 			}
 		}
 
@@ -495,8 +490,12 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$vals['suppressed'] = true;
 		}
 
-		if ( !$canShowField( File::DELETED_FILE ) ) {
-			// Early return, tidier than indenting all following things one level
+		// Early return, tidier than indenting all following things one level
+		if ( isset( $opts['revdelUser'] ) && $opts['revdelUser']
+			&& !$file->userCan( File::DELETED_FILE, $opts['revdelUser'] )
+		) {
+			return $vals;
+		} elseif ( $file->isDeleted( File::DELETED_FILE ) ) {
 			return $vals;
 		}
 

@@ -57,10 +57,10 @@ interface UserIdentity extends WikiAwareEntity {
 	/**
 	 * @since 1.32
 	 *
-	 * @param UserIdentity $user
+	 * @param UserIdentity|null $user
 	 * @return bool
 	 */
-	public function equals( UserIdentity $user ) : bool;
+	public function equals( ?UserIdentity $user ) : bool;
 
 	/**
 	 * @since 1.34

@@ -50,10 +50,11 @@ trait MediaFileTrait {
 		}
 
 		if ( $file->exists() ) {
-			if ( $file->userCan( File::DELETED_USER, $performer ) ) {
+			$uploader = $file->getUploader( File::FOR_THIS_USER, $performer );
+			if ( $uploader ) {
 				$fileUser = [
-					'id' => $file->getUser( 'id' ),
-					'name' => $file->getUser( 'text' ),
+					'id' => $uploader->getId(),
+					'name' => $uploader->getName(),
 				];
 			} else {
 				$fileUser = [

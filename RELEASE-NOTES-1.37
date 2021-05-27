@@ -361,6 +361,8 @@ because of Phabricator reports.
   use getPerformerIdentity() instead.
 * ContentHandler::cleanupHandlersCache(), deprecated since 1.35, now emits
   deprecation warnings.
+* File::getUser method was deprecated, along with overrides in LocalFile and
+  ForeignApiFile in favor of ::getUploader.
 * …
 
 === Other changes in 1.37 ===
