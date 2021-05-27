@@ -471,4 +471,19 @@ class FileTest extends MediaWikiMediaTestCase {
 		$this->expectException( MWException::class );
 		File::normalizeTitle( $title, 'exception' );
 	}
+
+	/**
+	 * @covers File::setHandlerState
+	 * @covers File::getHandlerState
+	 */
+	public function testSetHandlerState() {
+		$obj = new stdClass;
+		$file = new class extends File {
+			public function __construct() {
+			}
+		};
+		$this->assertNull( $file->getHandlerState( 'test' ) );
+		$file->setHandlerState( 'test', $obj );
+		$this->assertSame( $obj, $file->getHandlerState( 'test' ) );
+	}
 }
