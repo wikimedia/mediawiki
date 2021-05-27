@@ -888,3 +888,16 @@ CREATE INDEX rev_actor_timestamp ON /*_*/revision (rev_actor, rev_timestamp, rev
 CREATE INDEX rev_page_actor_timestamp ON /*_*/revision (
   rev_page, rev_actor, rev_timestamp
 );
+
+
+CREATE TABLE /*_*/searchindex (
+  si_page INTEGER UNSIGNED NOT NULL,
+  si_title VARCHAR(255) DEFAULT '' NOT NULL,
+  si_text CLOB NOT NULL
+);
+
+CREATE UNIQUE INDEX si_page ON /*_*/searchindex (si_page);
+
+CREATE INDEX si_title ON /*_*/searchindex (si_title);
+
+CREATE INDEX si_text ON /*_*/searchindex (si_text);
