@@ -350,7 +350,8 @@ class BlockListPager extends TablePager {
 					break;
 				case ActionRestriction::TYPE:
 					$actionName = $this->blockActionInfo->getActionFromId( $restriction->getValue() );
-					if ( $actionName ) {
+					$enablePartialActionBlocks = $this->getConfig()->get( 'EnablePartialActionBlocks' );
+					if ( $actionName && $enablePartialActionBlocks ) {
 						$items[$restriction->getType()][] = Html::rawElement(
 							'li',
 							[],
