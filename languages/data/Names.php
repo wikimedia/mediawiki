@@ -363,6 +363,7 @@ class Names {
 		'ps' => 'پښتو', # Pashto
 		'pt' => 'português', # Portuguese
 		'pt-br' => 'português do Brasil', # Brazilian Portuguese
+		'pwn' => 'pinayuanan', # Paiwan
 		'qu' => 'Runa Simi', # Southern Quechua
 		'qug' => 'Runa shimi', # Kichwa/Northern Quechua (temporarily used until Kichwa has its own)
 		'rgn' => 'Rumagnôl', # Romagnol
