@@ -23,7 +23,6 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Permissions\GroupPermissionsLookup;
-use MediaWiki\User\UserFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -53,9 +52,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
-	/** @var UserFactory */
-	private $userFactory;
-
 	/**
 	 * @param SpecialNewpages $form
 	 * @param FormOptions $opts
@@ -64,7 +60,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 * @param ILoadBalancer $loadBalancer
 	 * @param NamespaceInfo $namespaceInfo
-	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		$form,
@@ -73,8 +68,7 @@ class NewPagesPager extends ReverseChronologicalPager {
 		HookContainer $hookContainer,
 		GroupPermissionsLookup $groupPermissionsLookup,
 		ILoadBalancer $loadBalancer,
-		NamespaceInfo $namespaceInfo,
-		UserFactory $userFactory
+		NamespaceInfo $namespaceInfo
 	) {
 		// Set database before parent constructor to avoid setting it there with wfGetDB
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
@@ -85,7 +79,6 @@ class NewPagesPager extends ReverseChronologicalPager {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
 		$this->namespaceInfo = $namespaceInfo;
-		$this->userFactory = $userFactory;
 	}
 
 	public function getQueryInfo() {
