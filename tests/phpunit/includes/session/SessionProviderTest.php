@@ -31,13 +31,7 @@ class SessionProviderTest extends MediaWikiIntegrationTestCase {
 		$provider = $this->getMockForAbstractClass( SessionProvider::class );
 		$priv = TestingAccessWrapper::newFromObject( $provider );
 
-		$provider->init(
-			$logger,
-			$config,
-			$manager,
-			$hookContainer,
-			$userNameUtils
-		);
+		$this->initProvider( $provider, $logger, $config, $manager, $hookContainer, $userNameUtils );
 		$this->assertSame( $logger, $priv->logger );
 		$this->assertSame( $config, $priv->getConfig() );
 		$this->assertSame( $manager, $priv->manager );

@@ -624,6 +624,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideGetCanonicalName
 	 */
 	public function testGetCanonicalName( $name, array $expectedArray ) {
+		$this->hideDeprecated( 'User::getCanonicalName' );
 		// fake interwiki map for the 'Interwiki prefix' testcase
 		// DummyServicesTrait::getDummyInterwikiLookup
 		$interwikiLookup = $this->getDummyInterwikiLookup( [ 'interwiki' ] );
@@ -661,6 +662,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getCanonicalName()
 	 */
 	public function testGetCanonicalName_bad() {
+		$this->hideDeprecated( 'User::getCanonicalName' );
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage(
 			'Invalid parameter value for validation'
@@ -1716,9 +1718,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			$globals['wgReservedUsernames'] = [ $name ];
 		}
 		$this->setMwGlobals( $globals );
-		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		$userNameUtils = $this->getServiceContainer()->getUserNameUtils();
+		$this->assertSame( empty( $testOpts['reserved'] ), $userNameUtils->isUsable( $name ) );
 		$this->assertTrue( $userNameUtils->isValid( $name ) );
-		$this->assertSame( empty( $testOpts['reserved'] ), User::isUsableName( $name ) );
 
 		if ( $expect === 'exception' ) {
 			// T248195: Duplicate entry errors will log the exception, don't fail because of that.
@@ -2298,6 +2300,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isCreatableName
 	 */
 	public function testIsCreatableName() {
+		$this->hideDeprecated( 'User::isCreatableName' );
 		$this->setMwGlobals( [
 			'wgInvalidUsernameCharacters' => '@',
 		] );
@@ -2322,6 +2325,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::isUsableName
 	 */
 	public function testIsUsableName() {
+		$this->hideDeprecated( 'User::isUsableName' );
 		$this->setMwGlobals( [
 			'wgReservedUsernames' => [
 				'MediaWiki default',

@@ -58,7 +58,8 @@ final class UserInfo {
 	private $user = null;
 
 	private function __construct( ?User $user, $verified ) {
-		if ( $user && $user->isAnon() && !User::isUsableName( $user->getName() ) ) {
+		$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+		if ( $user && $user->isAnon() && !$userNameUtils->isUsable( $user->getName() ) ) {
 			$this->verified = true;
 			$this->user = null;
 		} else {
