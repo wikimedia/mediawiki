@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 
 /**
  * Base class for template-based skins.
@@ -864,14 +865,14 @@ class SkinTemplate extends Skin {
 	/**
 	 * Get the attributes for the watch link.
 	 * @param string $mode Either 'watch' or 'unwatch'
-	 * @param User $user
+	 * @param Authority $performer
 	 * @param Title $title
 	 * @param string|null $action
 	 * @param bool $onPage
 	 * @return array
 	 */
 	private function getWatchLinkAttrs(
-		string $mode, User $user, Title $title, ?string $action, bool $onPage
+		string $mode, Authority $performer, Title $title, ?string $action, bool $onPage
 	): array {
 		$class = 'mw-watchlink ' . (
 			$onPage && ( $action == 'watch' || $action == 'unwatch' ) ? 'selected' : ''
@@ -879,7 +880,7 @@ class SkinTemplate extends Skin {
 
 		// Add class identifying the page is temporarily watched, if applicable.
 		if ( $this->getConfig()->get( 'WatchlistExpiry' ) &&
-			MediaWikiServices::getInstance()->getWatchlistManager()->isTempWatched( $user, $title )
+			MediaWikiServices::getInstance()->getWatchlistManager()->isTempWatched( $performer, $title )
 		) {
 			$class .= ' mw-watchlink-temp';
 		}
@@ -938,7 +939,7 @@ class SkinTemplate extends Skin {
 
 		$out = $this->getOutput();
 		$request = $this->getRequest();
-		$user = $this->getUser();
+		$performer = $this->getAuthority();
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 
 		$content_navigation = [
@@ -1136,7 +1137,10 @@ class SkinTemplate extends Skin {
 
 				if ( $this->getAuthority()->probablyCan( 'protect', $title ) &&
 					 $title->getRestrictionTypes() &&
-					 $permissionManager->getNamespaceRestrictionLevels( $title->getNamespace(), $user ) !== [ '' ]
+					 $permissionManager->getNamespaceRestrictionLevels(
+						$title->getNamespace(),
+						$performer->getUser()
+					 ) !== [ '' ]
 				) {
 					$mode = $title->isProtected() ? 'unprotect' : 'protect';
 					$content_navigation['actions'][$mode] = [
@@ -1161,12 +1165,12 @@ class SkinTemplate extends Skin {
 					 * the global versions.
 					 */
 					$mode = MediaWikiServices::getInstance()->getWatchlistManager()
-						->isWatched( $user, $title ) ? 'unwatch' : 'watch';
+						->isWatched( $performer, $title ) ? 'unwatch' : 'watch';
 
 					// Add the watch/unwatch link.
 					$content_navigation['actions'][$mode] = $this->getWatchLinkAttrs(
 						$mode,
-						$user,
+						$performer,
 						$title,
 						$action,
 						$onPage
