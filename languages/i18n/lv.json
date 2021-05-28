@@ -1989,7 +1989,7 @@
 	"log-name-contentmodel": "Satura modeļa izmaiņu žurnāls",
 	"protectlogpage": "Aizsargāšanas reģistrs",
 	"protectedarticle": "aizsargāja \"[[$1]]\"",
-	"modifiedarticleprotection": "izmainīja aizsardzības līmeni \"[[$1]]\"",
+	"modifiedarticleprotection": "izmainīja aizsardzības iestatījumus \"[[$1]]\"",
 	"unprotectedarticle": "atcēla \"[[$1]]\" aizsardzību",
 	"movedarticleprotection": "pārcēla aizsardzību no \"[[$2]]\" uz \"[[$1]]\"",
 	"protectedarticle-comment": "{{GENDER:$2|Aizsargāja}} \"[[$1]]\"",

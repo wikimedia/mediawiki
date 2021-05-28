@@ -1669,7 +1669,7 @@
 	"upload-preferred": "{{PLURAL:$2|סוג קובץ מומלץ|סוגי קבצים מומלצים}}: $1.",
 	"upload-prohibited": "{{PLURAL:$2|סוג קובץ אסור|סוגי קבצים אסורים}}: $1.",
 	"uploadlogpage": "יומן העלאות",
-	"uploadlogpagetext": "להלן רשימה של העלאות הקבצים האחרונות שבוצעו.\nאפשר לעיין ב[[Special:NewFiles|גלריית הקבצים החדשים]] להצגה ויזואלית שלהם.",
+	"uploadlogpagetext": "להלן רשימת העלאות הקבצים האחרונות.\nר' את [[Special:NewFiles|גלריית הקבצים החדשים]] לסקירה חזותית יותר.",
 	"filename": "שם הקובץ",
 	"filedesc": "תקציר",
 	"fileuploadsummary": "תיאור:",

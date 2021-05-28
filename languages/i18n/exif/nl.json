@@ -270,6 +270,7 @@
 	"exif-scenetype-1": "Een direct gefotografeerde afbeelding",
 	"exif-customrendered-0": "Normale verwerking",
 	"exif-customrendered-1": "Aangepaste verwerking",
+	"exif-customrendered-8": "Portret",
 	"exif-exposuremode-0": "Automatische belichting",
 	"exif-exposuremode-1": "Handmatige belichting",
 	"exif-exposuremode-2": "Auto-Bracket",
@@ -355,5 +356,9 @@
 	"exif-urgency-normal": "Normaal ($1)",
 	"exif-urgency-low": "Laag ($1)",
 	"exif-urgency-high": "Hoog ($1)",
-	"exif-urgency-other": "Door gebruiker gedefinieerde prioriteit ($1)"
+	"exif-urgency-other": "Door gebruiker gedefinieerde prioriteit ($1)",
+	"exif-usepanoramaviewer-true": "Ja",
+	"exif-usepanoramaviewer-false": "Nee",
+	"exif-exposurelockused-true": "Ja",
+	"exif-exposurelockused-false": "Nee"
 }
