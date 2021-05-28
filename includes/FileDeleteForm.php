@@ -21,9 +21,13 @@
  * @author Rob Church <robchur@gmail.com>
  * @ingroup Media
  */
+
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
  * File deletion user interface
@@ -47,14 +51,47 @@ class FileDeleteForm {
 	/** @var IContextSource */
 	private $context;
 
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/** @var WatchlistManager */
+	private $watchlistManager;
+
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @param LocalFile $file File object we're deleting
 	 * @param IContextSource $context
+	 * @param ReadOnlyMode $readOnlyMode
+	 * @param RepoGroup $repoGroup
+	 * @param WatchlistManager $watchlistManager
+	 * @param LinkRenderer $linkRenderer
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
-	public function __construct( LocalFile $file, IContextSource $context ) {
+	public function __construct(
+		LocalFile $file,
+		IContextSource $context,
+		ReadOnlyMode $readOnlyMode,
+		RepoGroup $repoGroup,
+		WatchlistManager $watchlistManager,
+		LinkRenderer $linkRenderer,
+		UserOptionsLookup $userOptionsLookup
+	) {
 		$this->title = $file->getTitle();
 		$this->file = $file;
 		$this->context = $context;
+		$this->readOnlyMode = $readOnlyMode;
+		$this->repoGroup = $repoGroup;
+		$this->watchlistManager = $watchlistManager;
+		$this->linkRenderer = $linkRenderer;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
@@ -62,7 +99,7 @@ class FileDeleteForm {
 	 * pending authentication, confirmation, etc.
 	 */
 	public function execute() {
-		if ( wfReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			throw new ReadOnlyError;
 		}
 
@@ -80,8 +117,7 @@ class FileDeleteForm {
 			$this->context->getAuthority()->isAllowed( 'suppressrevision' );
 
 		if ( $this->oldimage ) {
-			$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
-			$this->oldfile = $repoGroup->getLocalRepo()->newFromArchiveName(
+			$this->oldfile = $this->repoGroup->getLocalRepo()->newFromArchiveName(
 				$this->title,
 				$this->oldimage
 			);
@@ -142,7 +178,7 @@ class FileDeleteForm {
 				// file, otherwise go back to the description page
 				$out->addReturnTo( $this->oldimage ? $this->title : Title::newMainPage() );
 
-				MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
+				$this->watchlistManager->setWatch(
 					$request->getCheck( 'wpWatch' ),
 					$this->context->getAuthority(),
 					$this->title
@@ -271,14 +307,12 @@ class FileDeleteForm {
 			throw new PermissionsError( 'delete', $permissionStatus );
 		}
 
-		$services = MediaWikiServices::getInstance();
-
 		$this->context->getOutput()->addModules( 'mediawiki.action.delete' );
 		$this->context->getOutput()->addModuleStyles( 'mediawiki.action.styles' );
 
 		$checkWatch =
-			$services->getUserOptionsLookup()->getBoolOption( $this->context->getUser(), 'watchdeletion' ) ||
-			$services->getWatchlistManager()->isWatched( $this->context->getUser(), $this->title );
+			$this->userOptionsLookup->getBoolOption( $this->context->getUser(), 'watchdeletion' ) ||
+			$this->watchlistManager->isWatched( $this->context->getUser(), $this->title );
 
 		$this->context->getOutput()->enableOOUI();
 
@@ -415,9 +449,8 @@ class FileDeleteForm {
 
 		if ( $this->context->getAuthority()->isAllowed( 'editinterface' ) ) {
 			$link = '';
-			$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 			if ( $suppressAllowed ) {
-				$link .= $linkRenderer->makeKnownLink(
+				$link .= $this->linkRenderer->makeKnownLink(
 					$this->context->msg( 'filedelete-reason-dropdown-suppress' )->inContentLanguage()->getTitle(),
 					$this->context->msg( 'filedelete-edit-reasonlist-suppress' )->text(),
 					[],
@@ -425,7 +458,7 @@ class FileDeleteForm {
 				);
 				$link .= $this->context->msg( 'pipe-separator' )->escaped();
 			}
-			$link .= $linkRenderer->makeKnownLink(
+			$link .= $this->linkRenderer->makeKnownLink(
 				$this->context->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle(),
 				$this->context->msg( 'filedelete-edit-reasonlist' )->text(),
 				[],
