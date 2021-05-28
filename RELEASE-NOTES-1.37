@@ -347,6 +347,10 @@ because of Phabricator reports.
   corresponding methods in UserGroupManager instead.
 * RepoGroup::singleton(), ::destroySingleton() and ::setSingleton(),
   deprecated since 1.34, now emit deprecation warnings.
+* AbstractAuthenticationProvider ::setLogger(), ::setManager(), ::setConfig(),
+  ::setHookContainer() were hard deprecated. Use ::init() to inject
+  dependencies or override ::postInitSetup() to do any custom
+  post-initialization configuration.
 * …
 
 === Other changes in 1.37 ===
