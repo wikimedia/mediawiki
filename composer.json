@@ -16,7 +16,7 @@
 	"license": "GPL-2.0-or-later",
 	"support": {
 		"issues": "https://bugs.mediawiki.org/",
-		"irc": "irc://irc.freenode.net/mediawiki",
+		"irc": "irc://irc.libera.chat/mediawiki",
 		"wiki": "https://www.mediawiki.org/"
 	},
 	"prefer-stable": true,
@@ -54,9 +54,9 @@
 		"wikimedia/ip-set": "3.0.0",
 		"wikimedia/ip-utils": "3.0.2",
 		"wikimedia/less.php": "3.1.0",
-		"wikimedia/minify": "2.2.1",
+		"wikimedia/minify": "2.2.2",
 		"wikimedia/object-factory": "3.0.0",
-		"wikimedia/parsoid": "^0.13.0-a20@alpha",
+		"wikimedia/parsoid": "0.13.0",
 		"wikimedia/php-session-serializer": "2.0.0",
 		"wikimedia/purtle": "1.0.7",
 		"wikimedia/relpath": "2.1.1",

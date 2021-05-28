@@ -1,11 +1,27 @@
 = MediaWiki 1.36 =
 
+== MediaWiki 1.36.0 ==
+
+=== Changes since MediaWiki 1.36.0-rc.0 ===
+* (T248481) rdbms: Use server time in
+  DatabaseMysqlBase::getLagFromPtHeartbeat().
+* (T281549) WebInstaller: Don't show the announce-l subscribe checkbox for now.
+* (T264214) Follow-ups for UserGroupManager.
+* (T282280) resourceloader: Fix path-only URLs in wiki modules when script path
+  is docroot.
+* (T281972) UserIdentityValue: Introduce convenience static factory methods.
+* (T230428) Make page_is_redirect and page_is_new unsigned.
+* (T280292) Legacy feature should not load thumbnail style rules (only layout).
+* (T283247) Freenode -> Libera per wikimedia moving from freenode to libera.
+* (T280270) composer: Lock Parsoid version to specific 0.13.0 release.
+* (T142663) Add extension.json merge strategy "provide_default".
+* (T283540) HookContainer: Fix normalization of callback for static handler.
+* (T283464) registration: Fix array order for array_replace_recursive merge
+  strategy.
+* (T283539) Interwiki: Fix calling "onInterwikiLoadPrefix" hook.
+* (T282594) Timeless: Re-branch to 40eb3dad1for REL1_36.
+
 == MediaWiki 1.36.0-rc.0 ==
-
-THIS IS NOT A RELEASE YET
-
-MediaWiki 1.36 is a pre-release testing branch, and is not recommended
-for use in production.
 
 == Upgrading notes for 1.36 ==
 Don't forget to always back up your database before upgrading!
@@ -16,7 +32,7 @@ oldest supported upgrading version, MediaWiki 1.27.
 Some specific notes for MediaWiki 1.36 upgrades are below:
 * MediaWiki 1.36 now requires the PHP internationalization extension (commonly
   referred to as Intl, ext-intl, or php-intl).
-* MediaWiki:Autoblock_whitelist has been moved to
+* The MediaWiki:Autoblock_whitelist block exemption control has been moved to
   MediaWiki:Block-autoblock-exemptionlist. If you use this feature, please move
   the MediaWiki:Autoblock_whitelist page.
 * (T275334) $wgExtensionFunctions is sometimes used to change configuration
@@ -29,29 +45,31 @@ Some specific notes for MediaWiki 1.36 upgrades are below:
 For notes on 1.35.x and older releases, see HISTORY.
 
 === Configuration changes for system administrators in 1.36 ===
-MediaWiki update script, maintenance/update.php, used to accept `--nopurge`
-option to prevent clearing caches stored in the database during upgrade, this
-is no longer recommended and the option has been removed.
+The MediaWiki update script, maintenance/update.php, used to accept `--nopurge`
+as an option to prevent clearing caches stored in the database during upgrade.
+This is no longer encouraged, and the option has been removed.
 
 ==== New configuration ====
-* (T256001) $wgManualRevertSearchRadius – This setting introduces a feature that
-  marks edits as reverts if they restore the page to an exact previous state.
-  This configuration variable sets the maximum number of revisions of a page
-  that will be checked against every new edit. Set this to 0 to disable the
+* (T256001) $wgManualRevertSearchRadius – This setting controls a new feature
+  that marks edits as reverts if they restore the page to an exact previous
+  state. This configuration variable sets the maximum number of revisions of a
+  page that will be checked against every new edit. Set this to 0 to disable the
   feature entirely.
 * (T244058) $wgOldRevisionParserCacheExpireTime — This setting was added to
-  control caching of ParserOutput for old revisions.
+  control caching of ParserOutput for old (non-current) revisions.
 * (T265263) $wgRememberMe - This setting configures the "remember me" checkbox
   on account log-in systems via RememberMeAuthenticationRequest.
-* (T157145) $wgSkinMetaTags – This setting allows configuration of skins to
+* (T157145) $wgSkinMetaTags – This setting lets sysadmins configure skins that
   support meta tags. These tags make sharing of MediaWiki pages on a variety of
   social platforms more contentful and thus useful.
-* (T280944) $wgIncludejQueryMigrate - This setting allows the jQuery Migrate
-  plugin to be disabled. It has been enabled by default since MediaWiki 1.27.
+* (T280944) $wgIncludejQueryMigrate - This setting lets sysadmins disable the
+  jQuery Migrate plugin. It has been enabled by default since MediaWiki 1.27.
+  In future releases it will be disabled by default.
 
 ==== Changed configuration ====
-* $wgLogos – The default value for the site logo, which is shown in an install
-  if you have not set one, will now be the new logo of MediaWiki.
+* $wgLogos – This setting selects the logo shown on the site. The default value
+  for the site logo, which is shown in an install if you have not set one, will
+  now be the new logo of MediaWiki.
 * (T274695) $wgAjaxEditStash — This setting, to disable the edit stashing
   feature when users start writing an edit summary, has been deprecated. In
   future releases, this feature will always be enabled.
@@ -63,12 +81,11 @@ is no longer recommended and the option has been removed.
   The former configuration variable names are deprecated, but will be used as
   the fall back if they are still set, and remain temporarily available for
   extensions which try to read them.
-* $wgWANObjectCaches - The "coalesceKeys" option was removed without
-  deprecation. A new "coalesceScheme" option takes its place, and is
-  "hash_stop" by default. If you use Dynomite, then set the new "coalesceKeys"
-  option to "hash_tag".
-* $wgWANObjectCaches - The "cluster" and "mcrouterAware" options were removed
-  without deprecation. Use "broadcastRoutingPrefix" instead.
+* $wgWANObjectCaches - The "coalesceKeys" option was removed without deprecation
+  and replaced by a new "coalesceScheme" option, set to "hash_stop" by default.
+  If you use Dynomite, then set the new "coalesceKeys" option to "hash_tag". The
+  "cluster" and "mcrouterAware" options were also removed without deprecation.
+  Use "broadcastRoutingPrefix" instead.
 
 ==== Removed configuration ====
 * $wgUseTwoButtonsSearchForm — This setting, deprecated in 1.35, has been
@@ -81,9 +98,9 @@ is no longer recommended and the option has been removed.
   They became obsolete after 1.17 overhauled the database updater, but were kept
   for backwards compatibility. The LoadExtensionSchemaUpdates hook should be
   used instead.
-* $wgParserConf - This setting, deprecated in 1.35, has been removed.
-  The preprocessor configuration which used to live within this setting
-  was deprecated in 1.34 and removed in 1.35.
+* $wgParserConf - This setting, deprecated in 1.35, has been removed. The last
+  use of this setting was for pre-processor configuration, which was deprecated
+  in 1.34 and removed in 1.35.
 * $wgEnableRestAPI - This setting, ignored since 1.35, has been removed.
 * $wgPagePropsHaveSortkey – This temporary setting has been removed, along with
   the schema change upgrade path it controlled. If your site is still using it,
@@ -91,7 +108,7 @@ is no longer recommended and the option has been removed.
   must now apply it before upgrading.
 * The deprecated password policies PasswordCannotMatchBlacklist and
   PasswordNotInLargeBlacklist were removed. Please use
-  PasswordCannotMatchDefaults and PasswordNotInCommonList instead.
+  PasswordCannotMatchDefaults and PasswordNotInCommonList respectively instead.
 
 === New user-facing features in 1.36 ===
 * The logo of MediaWiki has changed. This means that the "Powered By MediaWiki"
@@ -103,7 +120,7 @@ is no longer recommended and the option has been removed.
 * Parser test files can now declare a dependency on a specific extension being
   loaded, not just on the presence of a certain extension tag hook. This is a
   better fit for extensions like TimedMediaHandler, which affect the output but
-  don't register parser hooks. Use `extension:Foo` in  the `!! hooks` section of
+  don't register parser hooks. Use `extension:Foo` in the `!! hooks` section of
   your parser test file to declare a dependency on the `Foo` extension being
   loaded.
 * To expose code previously present in SpecialBlock/SpecialUnblock to other
@@ -133,7 +150,7 @@ is no longer recommended and the option has been removed.
 === External library changes in 1.36 ===
 
 ==== New external libraries ====
-* Added wikimedia/minify 2.2.1.
+* Added wikimedia/minify 2.2.2.
 * Added wikimedia/request-timeout 1.1.0.
 * Added wikimedia/shellbox 1.0.4.
 * Added WVUI 0.1.0.
@@ -206,9 +223,9 @@ because of Phabricator reports.
 
 * (T258975) Added a Latin/Cyrillic script converter for the Talysh language.
 * (T245359) Split Bali script locale from "ban" (Balinese) (ban-bali).
+* (T264582) Added language support for Madurese (mad).
 * (T259330) Added language support for Mara (mrh).
 * (T263968) Added language support for Nias (nia).
-* (T264582) Added language support for Madurese (mad).
 * (T270365) Added language support for Tyap (kcg).
 * (T276745) Added language support for Wayuu (guc).
 
@@ -359,6 +376,8 @@ because of Phabricator reports.
   dot if need be.
 * Profiler::getTemplated and Profiler::setTemplated, deprecated in 1.34, have
   been removed.
+* DatabaseMysqlBase now requires MySQL version 5.6.4+ when "lagDetectionMethod"
+  is set to "pt-heartbeat".
 * Removed HookContainer::getOriginalHooksForTest() without deprecation. This
   method was introduced in 1.35 for internal use, and appears unused outside of
   MediaWiki core.
@@ -706,7 +725,7 @@ because of Phabricator reports.
   ecosystem, so no replacement was provided.
 * The ProtectionForm::buildForm hook has been deprecated. Please use the
   ProtectionFormAddFormFields hook instead.
-* RevisionStore::newMutableRevisionFromArray has beed hard deprecated. Instead,
+* RevisionStore::newMutableRevisionFromArray has been hard deprecated. Instead,
   MutableRevisionRecord should be constructed directly via constructor.
 * UserIdentity::getActorId() is deprecated. The actor ID should not be exposed
   to application logic. Storage layer code should use the ActorNormalization
@@ -798,7 +817,7 @@ because of Phabricator reports.
   extension.json schema. Extensions that define namespaces can set it to
   `false` to disallow moving pages in the specified namespace. Extensions
   should either use this or NamespaceIsMovableHook, but not both. The hook
-  overides the attribute.
+  overrides the attribute.
 
 == Compatibility ==
 
@@ -842,4 +861,4 @@ It's highly recommended that you sign up for one of these lists if you're
 going to run a public MediaWiki, so you can be notified of security fixes.
 
 == IRC help ==
-There's usually someone online in #mediawiki on irc.freenode.net.
+There's usually someone online in #mediawiki on irc.libera.chat.
