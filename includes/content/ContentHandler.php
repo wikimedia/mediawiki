@@ -203,8 +203,9 @@ abstract class ContentHandler {
 	 * Returns the appropriate ContentHandler singleton for the given title.
 	 *
 	 * @since 1.21
-	 * @deprecated since 1.35, instead use
-	 *  ContentHandlerFactory::getContentHandler( $title->getContentModel() ).
+	 *
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 * Use ContentHandlerFactory::getContentHandler( $title->getContentModel() ) instead
 	 *
 	 * @param Title $title
 	 *
@@ -213,6 +214,7 @@ abstract class ContentHandler {
 	 * @throws MWUnknownContentModelException
 	 */
 	public static function getForTitle( Title $title ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getContentHandlerFactory()
 			->getContentHandler( $title->getContentModel() );
