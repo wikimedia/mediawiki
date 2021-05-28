@@ -2547,7 +2547,7 @@
 	"protect-locked-blocked": "Engellenmiş iken koruma ayarını değiştiremezsiniz.\n<strong>$1</strong> sayfasının şu anki ayarları:",
 	"protect-locked-dblock": "Etkin veritabanı kilidinden dolayı koruma ayarı değiştirilemez.\n<strong>$1</strong> sayfası için şu anki ayarlar:",
 	"protect-locked-access": "Kullanıcı hesabınızın sayfanın koruma ayarını değiştirme yetkisi yok.\n<strong>$1</strong> sayfasının geçerli ayarları şunlardır:",
-	"protect-cascadeon": "Bu sayfa şu anda korunmaktadır, çünkü basamaklı koruma açık olan {{PLURAL:$1|sayfalarına}} eklenmiştir.\nBu sayfanın koruma seviyesindeki değişiklikler basamaklı korumayı etkilemez.",
+	"protect-cascadeon": "Bu sayfa şu anda korunmaktadır, çünkü aşağıdaki {{PLURAL:$1|sayfa|sayfalar}}, burada kademeli koruma açık olan sayfalara sahiptir.\nBu sayfanın koruma ayarlarında yapılan değişiklikler, kademeli korumayı etkilemeyecektir.",
 	"protect-default": "Tüm kullanıcılara izin ver",
 	"protect-fallback": "Yalnızca \"$1\" yetkisine sahip kullanıcılara izin ver",
 	"protect-level-autoconfirmed": "Yalnızca otomatik onaylanmış kullanıcılara izin verilir",

@@ -2447,7 +2447,7 @@
 	"notvisiblerev": "Версия была удалена",
 	"watchlist-details": "В вашем списке наблюдения $1 {{PLURAL:$1|страница|страницы|страниц}} (а также страницы обсуждений).",
 	"watchlist-expiry-days-left": "{{PLURAL:$1|$1 день остался|$1 дня осталось|$1 дней осталось}}",
-	"watchlist-expiring-days-full-text": "Осталось {{PLURAL:$1|$1 день|$1 дня|$1 дней}} в вашем списке наблюдения",
+	"watchlist-expiring-days-full-text": "{{PLURAL:$1|Остался $1 день|Осталось $1 дня|Осталось $1 дней}} в вашем списке наблюдения",
 	"watchlist-expiry-hours-left": "Осталось несколько часов",
 	"watchlist-expiring-hours-full-text": "Вашему списку наблюдения осталось несколько часов",
 	"wlheader-enotif": "Уведомления по эл. почте включены.",
