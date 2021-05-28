@@ -530,7 +530,6 @@ class SpecialPageFactory {
 				'RevisionLookup',
 				'NamespaceInfo',
 				'UserOptionsLookup',
-				'UserFactory',
 			]
 		],
 		'Recentchanges' => [
