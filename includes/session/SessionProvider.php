@@ -114,7 +114,8 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * Initialise with dependencies of a SessionProvider
 	 *
 	 * @since 1.37
-	 * @internal but can be called in implementation tests
+	 * @internal In production code SessionManager will initialize the
+	 * SessionProvider, in tests SessionProviderTestTrait must be used.
 	 *
 	 * @param LoggerInterface $logger
 	 * @param Config $config
