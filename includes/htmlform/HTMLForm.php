@@ -65,6 +65,7 @@ use MediaWiki\Page\PageReference;
  *    'options-messages'    -- associative array mapping message keys to values.
  *                             Some field types support multi-level arrays.
  *                             Overwrites 'options' and 'options-message'.
+ *    'options-messages-parse' -- Flag to parse the messages in 'options-messages'.
  *    'options-message'     -- message key or object to be parsed to extract the list of
  *                             options (like 'ipbreason-dropdown').
  *    'label-message'       -- message key or object for a message to use as the label.
