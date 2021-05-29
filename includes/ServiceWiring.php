@@ -1134,7 +1134,8 @@ return [
 			$services->getLanguageConverterFactory()->getLanguageConverter(),
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer(),
-			$services->getUserOptionsLookup()
+			$services->getUserOptionsLookup(),
+			$services->getUserGroupManager()
 		);
 		$factory->setLogger( LoggerFactory::getInstance( 'preferences' ) );
 

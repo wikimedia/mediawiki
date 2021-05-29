@@ -40,6 +40,7 @@ use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
 use MessageLocalizer;
 use MWException;
@@ -95,6 +96,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -140,6 +144,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param HookContainer $hookContainer
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserGroupManager|null $userGroupManager
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -151,7 +156,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		ILanguageConverter $languageConverter,
 		LanguageNameUtils $languageNameUtils,
 		HookContainer $hookContainer,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		UserGroupManager $userGroupManager = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -171,6 +177,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->languageNameUtils = $languageNameUtils;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userOptionsLookup = $userOptionsLookup;
+
+		// Don't break GlobalPreferences, fall back to global state if no UserGroupManager
+		// was injected
+		if ( !$userGroupManager ) {
+			$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+		}
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**
@@ -336,13 +349,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$lang = $context->getLanguage();
 
 		// Get groups to which the user belongs, Skip the default * group, seems useless here
-		$userEffectiveGroups = array_diff( $user->getEffectiveGroups(), [ '*' ] );
+		$userEffectiveGroups = array_diff(
+			$this->userGroupManager->getUserEffectiveGroups( $user ),
+			[ '*' ]
+		);
 		$defaultPreferences['usergroups'] = [
 			'type' => 'info',
 			'label-message' => [ 'prefs-memberingroups',
 				\Message::numParam( count( $userEffectiveGroups ) ), $userName ],
-			'default' => static function () use ( $user, $userEffectiveGroups, $context, $lang, $userName ) {
-				$userGroupMemberships = $user->getGroupMemberships();
+			'default' => function () use ( $user, $userEffectiveGroups, $context, $lang, $userName ) {
+				$userGroupMemberships = $this->userGroupManager->getUserGroupMemberships( $user );
 				$userGroups = $userMembers = $userTempGroups = $userTempMembers = [];
 				foreach ( $userEffectiveGroups as $ueg ) {
 					$groupStringOrObject = $userGroupMemberships[$ueg] ?? $ueg;
