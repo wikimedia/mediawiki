@@ -4753,7 +4753,7 @@ class Language {
 				$this->getMessageFromDB( str_replace( '$1', '', $messageKey ) )
 			);
 		}
-		$sizes = [ '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zeta', 'yotta' ];
+		$sizes = [ '', 'kilo', 'mega', 'giga', 'tera', 'peta', 'exa', 'zetta', 'yotta' ];
 		$index = 0;
 
 		$maxIndex = count( $sizes ) - 1;
