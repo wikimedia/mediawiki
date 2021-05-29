@@ -24,7 +24,9 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageStore;
 
 /**
  * Database independent search index updater
@@ -41,8 +43,8 @@ class SearchUpdate implements DeferrableUpdate {
 	/** @var Content|null Content of the page (not text) */
 	private $content;
 
-	/** @var ?WikiPage */
-	private $wikiPage = null;
+	/** @var ExistingPageRecord|null */
+	private $latestPage = null;
 
 	/**
 	 * @param int $id Page id to update
@@ -169,21 +171,21 @@ class SearchUpdate implements DeferrableUpdate {
 	}
 
 	/**
-	 * Get WikiPage for the SearchUpdate $id using WikiPage::READ_LATEST
-	 * and ensure using the same WikiPage object if there are multiple
+	 * Get ExistingPageRecord for the SearchUpdate $id using PageStore::READ_LATEST
+	 * and ensure using the same ExistingPageRecord object if there are multiple
 	 * SearchEngine types.
 	 *
 	 * Returns null if a page has been deleted or is not found.
 	 *
-	 * @return WikiPage|null
+	 * @return ExistingPageRecord|null
 	 */
 	private function getLatestPage() {
-		if ( !isset( $this->wikiPage ) ) {
-			$this->wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()
-				->newFromID( $this->id, WikiPage::READ_LATEST );
+		if ( !isset( $this->latestPage ) ) {
+			$this->latestPage = MediaWikiServices::getInstance()->getPageStore()
+				->getPageById( $this->id, PageStore::READ_LATEST );
 		}
 
-		return $this->wikiPage;
+		return $this->latestPage;
 	}
 
 	/**
