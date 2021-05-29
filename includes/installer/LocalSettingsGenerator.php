@@ -429,7 +429,7 @@ ${serverSetting}
 \$wgDiff3 = \"{$this->values['wgDiff3']}\";
 
 {$groupRights}{$noFollow}## Default skin: you can change the default skin. Use the internal symbolic
-## names, ie 'vector', 'monobook':
+## names, e.g. 'vector' or 'monobook':
 \$wgDefaultSkin = \"{$this->values['wgDefaultSkin']}\";
 ";
 	}
