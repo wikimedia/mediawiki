@@ -268,7 +268,7 @@ abstract class DatabaseInstaller {
 	}
 
 	/**
-	 * Insert update keys into table to prevent running unneded updates.
+	 * Insert update keys into table to prevent running unneeded updates.
 	 * @stable to override
 	 *
 	 * @return Status
