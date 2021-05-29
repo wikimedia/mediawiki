@@ -1426,7 +1426,7 @@
 [submodule "extensions/Video"]
 	path = extensions/Video
 	url = https://github.com/wikimedia/mediawiki-extensions-Video
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/SecureLinkFixer"]
 	path = extensions/SecureLinkFixer
