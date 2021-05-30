@@ -380,7 +380,7 @@ class Names {
 		'ruq-cyrl' => 'Влахесте', # Megleno-Romanian (Cyrillic script)
 		# 'ruq-grek' => 'Βλαεστε', # Megleno-Romanian (Greek script)
 		'ruq-latn' => 'Vlăheşte', # Megleno-Romanian (Latin script)
-		'rw' => 'Kinyarwanda', # Kinyarwanda, should possibly be Kinyarwandi
+		'rw' => 'Ikinyarwanda', # Kinyarwanda
 		'sa' => 'संस्कृतम्', # Sanskrit
 		'sah' => 'саха тыла', # Sakha
 		'sat' => 'ᱥᱟᱱᱛᱟᱲᱤ', # Santali
