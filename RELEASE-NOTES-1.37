@@ -82,6 +82,8 @@ because of Phabricator reports.
 
 * (T280435) LRM and RLM characters were removed from names of languages with
   parentheses in Names.php
+* (T283422) Add namespace name translations and change the autonym of
+  the Kinyarwanda language to "Ikinyarwanda".
 * (T279619) Added language support for Dagbani (dag).
 * (T282085) Added language support for Malay in Arabic (Jawi) script (ms-arab).
 * (T283053) Added language support for Ojibwe (ojb).
