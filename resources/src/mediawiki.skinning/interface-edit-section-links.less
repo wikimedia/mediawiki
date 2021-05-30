@@ -17,14 +17,22 @@
 }
 
 /* Correct directionality when page dir is different from site/user dir */
-/* @noflip */
 .mw-content-ltr .mw-editsection,
-.mw-content-rtl .mw-content-ltr .mw-editsection {
+.mw-content-rtl .mw-content-ltr .mw-editsection,
+.mw-content-ltr .mw-editsection-like,
+.mw-content-rtl .mw-content-ltr .mw-editsection-like {
+	/* @noflip */
 	margin-left: 1em;
+	/* @noflip */
+	margin-right: 0;
 }
 
-/* @noflip */
 .mw-content-rtl .mw-editsection,
-.mw-content-ltr .mw-content-rtl .mw-editsection {
+.mw-content-ltr .mw-content-rtl .mw-editsection,
+.mw-content-rtl .mw-editsection-like,
+.mw-content-ltr .mw-content-rtl .mw-editsection-like {
+	/* @noflip */
 	margin-right: 1em;
+	/* @noflip */
+	margin-left: 0;
 }
