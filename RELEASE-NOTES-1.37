@@ -386,6 +386,8 @@ because of Phabricator reports.
   should get a load balancer (factory) injected in the constructor instead.
 * ActorNormalization::acquireActorId now requires IDatabase parameter.
   Not providing one emitted deprecation warnings since 1.36.
+* Anti-lock constants ALF_PRELOAD_LINK, ALF_NO_BLOCK_LOCK, ALF_NO_LINK_LOCK
+  and ALF_PRELOAD_EXISTENCE have been removed. They're unused since 1.25.
 * …
 
 == Compatibility ==
