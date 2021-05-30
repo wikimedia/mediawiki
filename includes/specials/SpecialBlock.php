@@ -31,6 +31,8 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -63,6 +65,9 @@ class SpecialBlock extends FormSpecialPage {
 	/** @var BlockActionInfo */
 	private $blockActionInfo;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/** @var User|string|null User to be blocked, as passed either by parameter (url?wpTarget=Foo)
 	 * or as subpage (Special:Block/Foo)
 	 */
@@ -90,6 +95,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param UserNameUtils $userNameUtils
 	 * @param UserNamePrefixSearch $userNamePrefixSearch
 	 * @param BlockActionInfo $blockActionInfo
+	 * @param TitleFormatter $titleFormatter
 	 */
 	public function __construct(
 		BlockUtils $blockUtils,
@@ -97,7 +103,8 @@ class SpecialBlock extends FormSpecialPage {
 		BlockUserFactory $blockUserFactory,
 		UserNameUtils $userNameUtils,
 		UserNamePrefixSearch $userNamePrefixSearch,
-		BlockActionInfo $blockActionInfo
+		BlockActionInfo $blockActionInfo,
+		TitleFormatter $titleFormatter
 	) {
 		parent::__construct( 'Block', 'block' );
 
@@ -107,6 +114,7 @@ class SpecialBlock extends FormSpecialPage {
 		$this->userNameUtils = $userNameUtils;
 		$this->userNamePrefixSearch = $userNamePrefixSearch;
 		$this->blockActionInfo = $blockActionInfo;
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	public function doesWrites() {
@@ -649,19 +657,22 @@ class SpecialBlock extends FormSpecialPage {
 			$this->getLanguage()->pipeList( $links )
 		);
 
-		$userTitle = self::getTargetUserTitle( $this->target );
-		if ( $userTitle ) {
+		$userPage = self::getTargetUserTitle( $this->target );
+		if ( $userPage ) {
 			# Get relevant extracts from the block and suppression logs, if possible
 			$out = '';
 
 			LogEventsList::showLogExtract(
 				$out,
 				'block',
-				$userTitle,
+				$userPage,
 				'',
 				[
 					'lim' => 10,
-					'msgKey' => [ 'blocklog-showlog', $userTitle->getText() ],
+					'msgKey' => [
+						'blocklog-showlog',
+						$this->titleFormatter->getText( $userPage ),
+					],
 					'showIfEmpty' => false
 				]
 			);
@@ -672,12 +683,15 @@ class SpecialBlock extends FormSpecialPage {
 				LogEventsList::showLogExtract(
 					$out,
 					'suppress',
-					$userTitle,
+					$userPage,
 					'',
 					[
 						'lim' => 10,
 						'conds' => [ 'log_action' => [ 'block', 'reblock', 'unblock' ] ],
-						'msgKey' => [ 'blocklog-showsuppresslog', $userTitle->getText() ],
+						'msgKey' => [
+							'blocklog-showsuppresslog',
+							$this->titleFormatter->getText( $userPage ),
+						],
 						'showIfEmpty' => false
 					]
 				);
@@ -692,16 +706,15 @@ class SpecialBlock extends FormSpecialPage {
 	/**
 	 * Get a user page target for things like logs.
 	 * This handles account and IP range targets.
-	 * @param User|string $target
-	 * @return Title|null
+	 * @param UserIdentity|string $target
+	 * @return PageReference|null
 	 */
-	protected static function getTargetUserTitle( $target ) {
-		if ( $target instanceof User ) {
-			return $target->getUserPage();
+	protected static function getTargetUserTitle( $target ): ?PageReference {
+		if ( $target instanceof UserIdentity ) {
+			return PageReferenceValue::localReference( NS_USER, $target->getName() );
 		} elseif ( IPUtils::isIPAddress( $target ) ) {
-			return Title::makeTitleSafe( NS_USER, $target );
+			return PageReferenceValue::localReference( NS_USER, $target );
 		}
-
 		return null;
 	}
 
@@ -980,9 +993,9 @@ class SpecialBlock extends FormSpecialPage {
 	 * T208965: Partially blocked admins can block and unblock others as normal.
 	 *
 	 * @deprecated since 1.36, hard deprecated since 1.37, use BlockPermissionChecker instead
-	 * @param User|string|null $target Target to block or unblock; could be a User object,
-	 *   or username/IP address, or null when the target is not known yet (e.g. when
-	 *   displaying Special:Block)
+	 * @param UserIdentity|string|null $target Target to block or unblock; could be a
+	 *   UserIdentity object, or username/IP address, or null when the target is not
+	 *   known yet (e.g. when displaying Special:Block)
 	 * @param Authority $performer User doing the request
 	 * @return bool|string True or error message key
 	 */
