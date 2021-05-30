@@ -84,6 +84,8 @@ because of Phabricator reports.
   parentheses in Names.php
 * (T283422) Add namespace name translations and change the autonym of
   the Kinyarwanda language to "Ikinyarwanda".
+* (T283423) Change the autonym of the Lombard language from "lumbaart"
+  to "lombard".
 * (T279619) Added language support for Dagbani (dag).
 * (T282085) Added language support for Malay in Arabic (Jawi) script (ms-arab).
 * (T283053) Added language support for Ojibwe (ojb).
