@@ -21,7 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockActionInfo;
 use MediaWiki\Block\BlockPermissionCheckerFactory;
 use MediaWiki\Block\BlockUser;
@@ -744,34 +743,6 @@ class SpecialBlock extends FormSpecialPage {
 			}
 		}
 		return $targetAndType;
-	}
-
-	/**
-	 * Validate a block target.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.36, use BlockUtils service instead
-	 *             (note: service does not call BlockPermissionChecker::checkBlockPermissions)
-	 * @param string $value Block target to check
-	 * @param User $user Performer of the block
-	 * @return Status
-	 */
-	public static function validateTarget( $value, User $user ) {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		$status = MediaWikiServices::getInstance()->getBlockUtils()->validateTarget( $value );
-
-		// This is here to make validateTarget to not change its behavior
-		// BlockUtils does not check checkUnblockSelf.
-		list( $target, $type ) = self::getTargetAndType( $value );
-		if ( $type === AbstractBlock::TYPE_USER ) {
-			$unblockStatus = self::checkUnblockSelf( $target, $user );
-			if ( $unblockStatus !== true ) {
-				$status->fatal( 'badaccess', $unblockStatus );
-			}
-		}
-
-		return $status;
 	}
 
 	/**
