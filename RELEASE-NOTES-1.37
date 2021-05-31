@@ -90,6 +90,7 @@ because of Phabricator reports.
 * (T282085) Added language support for Malay in Arabic (Jawi) script (ms-arab).
 * (T283053) Added language support for Ojibwe (ojb).
 * (T283480) Added language support for Wallisian (wls, Fakaʻuvea).
+* (T284002) Added language support for Paiwan (pwn).
 
 === Breaking changes in 1.37 ===
 * The Revision class, hard deprecated in 1.35, is being removed. As
