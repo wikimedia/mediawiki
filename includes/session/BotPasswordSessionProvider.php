@@ -65,8 +65,8 @@ class BotPasswordSessionProvider extends ImmutableSessionProviderWithCookie {
 	}
 
 	public function provideSessionInfo( WebRequest $request ) {
-		// Only relevant for the API
-		if ( !defined( 'MW_API' ) ) {
+		// Only relevant for the (Action or REST) API
+		if ( !defined( 'MW_API' ) && !defined( 'MW_REST_API' ) ) {
 			return null;
 		}
 

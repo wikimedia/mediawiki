@@ -74,6 +74,7 @@ For notes on 1.38.x and older releases, see HISTORY.
   unnamed template arguments.  Defining [[Template:=]] to expand to something
   other than `=` has been deprecated since 1.36, with affected pages put into
   a special tracking category for migration.
+* (T284020) Bot passwords are now supported when using the REST API.
 * …
 
 === New developer features in 1.39 ===
