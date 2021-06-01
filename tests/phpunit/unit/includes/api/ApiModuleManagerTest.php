@@ -30,53 +30,53 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		);
 	}
 
-	public function newApiLogin( $main, $action ) {
-		return new ApiLogin( $main, $action );
+	public function newApiRsd( $main, $action ) {
+		return new ApiRsd( $main, $action );
 	}
 
 	public function addModuleProvider() {
 		return [
 			'plain class' => [
-				'login',
+				'rsd',
 				'action',
-				ApiLogin::class,
+				ApiRsd::class,
 				null,
 			],
 
 			'with class and factory' => [
-				'login',
+				'rsd',
 				'action',
-				ApiLogin::class,
-				[ $this, 'newApiLogin' ],
+				ApiRsd::class,
+				[ $this, 'newApiRsd' ],
 			],
 
 			'with spec (class only)' => [
-				'login',
+				'rsd',
 				'action',
 				[
-					'class' => ApiLogin::class
+					'class' => ApiRsd::class
 				],
 				null,
 			],
 
 			'with spec' => [
-				'login',
+				'rsd',
 				'action',
 				[
-					'class' => ApiLogin::class,
-					'factory' => [ $this, 'newApiLogin' ],
+					'class' => ApiRsd::class,
+					'factory' => [ $this, 'newApiRsd' ],
 				],
 				null,
 			],
 
 			'with spec (using services)' => [
-				'logout',
+				'rsd',
 				'action',
 				[
-					'class' => ApiLogout::class,
+					'class' => ApiRsd::class,
 					'factory' => static function ( ApiMain $main, $action, UserFactory $userFactory ) {
 						// we don't actually need the UserFactory, just demonstrating
-						return new ApiLogout( $main, $action );
+						return new ApiRsd( $main, $action );
 					},
 					'services' => [
 						'UserFactory'
@@ -113,7 +113,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 
 			'simple' => [
 				[
-					'login' => ApiLogin::class,
+					'rsd' => ApiRsd::class,
 					'logout' => ApiLogout::class,
 				],
 				'action',
@@ -121,9 +121,9 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 
 			'with factories' => [
 				[
-					'login' => [
-						'class' => ApiLogin::class,
-						'factory' => [ $this, 'newApiLogin' ],
+					'rsd' => [
+						'class' => ApiRsd::class,
+						'factory' => [ $this, 'newApiRsd' ],
 					],
 					'logout' => [
 						'class' => ApiLogout::class,
@@ -156,9 +156,9 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		$modules = [
 			'disabled' => ApiDisabled::class,
 			'disabled2' => [ 'class' => ApiDisabled::class ],
-			'login' => [
-				'class' => ApiLogin::class,
-				'factory' => [ $this, 'newApiLogin' ],
+			'rsd' => [
+				'class' => ApiRsd::class,
+				'factory' => [ $this, 'newApiRsd' ],
 			],
 			'logout' => [
 				'class' => ApiLogout::class,
@@ -183,8 +183,8 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 
 			'with factory' => [
 				$modules,
-				'login',
-				ApiLogin::class,
+				'rsd',
+				ApiRsd::class,
 			],
 
 			'with closure' => [
@@ -225,7 +225,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetModule_null() {
 		$modules = [
-			'login' => ApiLogin::class,
+			'rsd' => ApiRsd::class,
 			'logout' => ApiLogout::class,
 		];
 
@@ -241,7 +241,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetNames() {
 		$fooModules = [
-			'login' => ApiLogin::class,
+			'rsd' => ApiRsd::class,
 			'logout' => ApiLogout::class,
 		];
 
@@ -267,7 +267,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetNamesWithClasses() {
 		$fooModules = [
-			'login' => ApiLogin::class,
+			'rsd' => ApiRsd::class,
 			'logout' => ApiLogout::class,
 		];
 
@@ -296,7 +296,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetModuleGroup() {
 		$fooModules = [
-			'login' => ApiLogin::class,
+			'rsd' => ApiRsd::class,
 			'logout' => ApiLogout::class,
 		];
 
@@ -309,7 +309,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		$moduleManager->addModules( $fooModules, 'foo' );
 		$moduleManager->addModules( $barModules, 'bar' );
 
-		$this->assertEquals( 'foo', $moduleManager->getModuleGroup( 'login' ) );
+		$this->assertEquals( 'foo', $moduleManager->getModuleGroup( 'rsd' ) );
 		$this->assertEquals( 'bar', $moduleManager->getModuleGroup( 'feedrecentchanges' ) );
 		$this->assertNull( $moduleManager->getModuleGroup( 'quux' ) );
 	}
@@ -319,7 +319,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetGroups() {
 		$fooModules = [
-			'login' => ApiLogin::class,
+			'rsd' => ApiRsd::class,
 			'logout' => ApiLogout::class,
 		];
 
@@ -341,7 +341,7 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 	 */
 	public function testGetClassName() {
 		$fooModules = [
-			'login' => ApiLogin::class,
+			'rsd' => ApiRsd::class,
 			'logout' => ApiLogout::class,
 		];
 
@@ -355,8 +355,8 @@ class ApiModuleManagerTest extends MediaWikiUnitTestCase {
 		$moduleManager->addModules( $barModules, 'bar' );
 
 		$this->assertEquals(
-			ApiLogin::class,
-			$moduleManager->getClassName( 'login' )
+			ApiRsd::class,
+			$moduleManager->getClassName( 'rsd' )
 		);
 		$this->assertEquals(
 			ApiLogout::class,
