@@ -147,7 +147,12 @@ class ApiQuery extends ApiBase {
 				'UserNameUtils',
 			],
 		],
-		'users' => ApiQueryUsers::class,
+		'users' => [
+			'class' => ApiQueryUsers::class,
+			'services' => [
+				'UserNameUtils',
+			],
+		],
 		'watchlist' => [
 			'class' => ApiQueryWatchlist::class,
 			'services' => [

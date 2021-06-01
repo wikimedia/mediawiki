@@ -302,6 +302,9 @@ because of Phabricator reports.
   deprecation warnings:
    - getOptions
    - isIP
+   - isUsableName
+   - isCreatableName
+   - getCanonicalName
 * The following methods in User were deprecated:
   - ::idFromName - use UserIdentityLookup::getUserIdentityByName instead.
   - ::resetIdByNameCache - in tests, reset service container. No replacement
