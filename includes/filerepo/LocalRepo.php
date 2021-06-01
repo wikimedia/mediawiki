@@ -25,6 +25,7 @@
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Permissions\Authority;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -275,10 +276,10 @@ class LocalRepo extends FileRepo {
 			// Fallback to RequestContext::getMain should be replaced with a better
 			// way of setting the user that should be used; currently it needs to be
 			// set for each file individually. See T263033#6477586
-			$contextUser = RequestContext::getMain()->getUser();
-			$user = ( !empty( $search['private'] ) && $search['private'] instanceof User )
+			$contextPerformer = RequestContext::getMain()->getAuthority();
+			$performer = ( !empty( $search['private'] ) && $search['private'] instanceof Authority )
 				? $search['private']
-				: $contextUser;
+				: $contextPerformer;
 
 			return (
 				$file->exists() &&
@@ -287,7 +288,7 @@ class LocalRepo extends FileRepo {
 					( !empty( $search['time'] ) && $search['time'] === $file->getTimestamp() )
 				) &&
 				( !empty( $search['private'] ) || !$file->isDeleted( File::DELETED_FILE ) ) &&
-				$file->userCan( File::DELETED_FILE, $user )
+				$file->userCan( File::DELETED_FILE, $performer )
 			);
 		};
 

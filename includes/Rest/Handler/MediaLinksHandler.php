@@ -9,7 +9,6 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use RepoGroup;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -124,12 +123,11 @@ class MediaLinksHandler extends SimpleHandler {
 	private function processDbResults( $results ) {
 		// Using "private" here means an equivalent of the Action API's "anon-public-user-private"
 		// caching model would be necessary, if caching is ever added to this endpoint.
-		// TODO: make RepoGroup::findFiles take Authority
-		$user = User::newFromIdentity( $this->getAuthority()->getUser() );
-		$findTitles = array_map( static function ( $title ) use ( $user ) {
+		$performer = $this->getAuthority();
+		$findTitles = array_map( static function ( $title ) use ( $performer ) {
 			return [
 				'title' => $title,
-				'private' => $user,
+				'private' => $performer,
 			];
 		}, $results );
 
@@ -146,7 +144,7 @@ class MediaLinksHandler extends SimpleHandler {
 		];
 		$response = [];
 		foreach ( $files as $file ) {
-			$response[] = $this->getFileInfo( $file, $user, $transforms );
+			$response[] = $this->getFileInfo( $file, $performer, $transforms );
 		}
 
 		$response = [
