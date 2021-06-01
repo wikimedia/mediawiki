@@ -31,12 +31,12 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @param array $options
-	 * @param bool $wikiId
+	 * @param array $params
 	 *
 	 * @return PageStore
 	 * @throws Exception
 	 */
-	private function getPageStore( $options = [], $wikiId = false ) {
+	private function getPageStore( $options = [], $params = [] ) {
 		$services = $this->getServiceContainer();
 
 		$serviceOptions = new ServiceOptions(
@@ -49,10 +49,14 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		return new PageStore(
 			$serviceOptions,
-			$services->getDBLoadBalancer(),
+			$params['dbLoadBalancer'] ?? $services->getDBLoadBalancer(),
 			$services->getNamespaceInfo(),
 			$services->getTitleParser(),
-			$wikiId
+			array_key_exists( 'linkCache', $params )
+				? $params['linkCache']
+				: $services->getLinkCache(),
+			$services->getStatsdDataFactory(),
+			$params['wikiId'] ?? WikiAwareEntity::LOCAL
 		);
 	}
 
@@ -119,7 +123,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$wikiId = $this->db->getDomainID(); // pretend sister site
 
 		$nonexistingPage = $this->getNonexistingTestPage();
-		$pageStore = $this->getPageStore( [], $wikiId );
+		$pageStore = $this->getPageStore( [], [ 'wikiId' => $wikiId, 'linkCache' => null ] );
 
 		$page = $pageStore->getPageForLink( $nonexistingPage->getTitle() );
 
@@ -176,6 +180,29 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertTrue( $page->exists() );
 		$this->assertSamePage( $existingPage, $page );
+
+		$linkCache = $this->getServiceContainer()->getLinkCache();
+		$this->assertSame( $page->getId(), $linkCache->getGoodLinkID( $page ) );
+	}
+
+	/**
+	 * Test that we get a PageRecord for an existing page by name
+	 * with no LinkCache provided.
+	 * @covers \MediaWiki\Page\PageStore::getPageByName
+	 */
+	public function testGetPageByName_existing_noLinkCache() {
+		$existingPage = $this->getExistingTestPage();
+		$ns = $existingPage->getNamespace();
+		$dbkey = $existingPage->getDBkey();
+
+		$pageStore = $this->getPageStore( [], [ 'linkCache' => null ] );
+		$page = $pageStore->getPageByName( $ns, $dbkey );
+
+		$this->assertTrue( $page->exists() );
+		$this->assertSamePage( $existingPage, $page );
+
+		$linkCache = $this->getServiceContainer()->getLinkCache();
+		$this->assertSame( $page->getId(), $linkCache->getGoodLinkID( $page ) );
 	}
 
 	/**
@@ -191,6 +218,128 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$page = $pageStore->getPageByName( $ns, $dbkey );
 
 		$this->assertNull( $page );
+
+		$linkCache = $this->getServiceContainer()->getLinkCache();
+		$this->assertTrue( $linkCache->isBadLink( $nonexistingPage ) );
+	}
+
+	/**
+	 * Test that we get null if we look up a page known to be not existing,
+	 * without hitting the database.
+	 * @covers \MediaWiki\Page\PageStore::getPageByName
+	 */
+	public function testGetPageByName_nonexisting_cached() {
+		$nonexistingPage = $this->getNonexistingTestPage();
+		$ns = $nonexistingPage->getNamespace();
+		$dbkey = $nonexistingPage->getDBkey();
+
+		$linkCache = $this->getServiceContainer()->getLinkCache();
+		$linkCache->addBadLinkObj( $nonexistingPage );
+
+		$mockLB = $this->createNoOpMock( LoadBalancer::class );
+		$pageStore = $this->getPageStore( [], [ 'doLoadBalancer' => $mockLB ] );
+		$page = $pageStore->getPageByName( $ns, $dbkey );
+
+		$this->assertNull( $page );
+		$this->assertTrue( $linkCache->isBadLink( $nonexistingPage ) );
+	}
+
+	/**
+	 * Test that we get a PageRecord from a cached row
+	 * @covers \MediaWiki\Page\PageStore::getPageByName
+	 */
+	public function testGetPageByName_cachedFullRow() {
+		$nonexistingPage = $this->getNonexistingTestPage();
+		$ns = $nonexistingPage->getNamespace();
+		$dbkey = $nonexistingPage->getDBkey();
+
+		$row = (object)[
+			'page_id' => 8,
+			'page_namespace' => $ns,
+			'page_title' => $dbkey,
+			'page_is_redirect' => 0,
+			'page_is_new' => 1,
+			'page_touched' => '12345',
+			'page_links_updated' => '12345',
+			'page_latest' => 118,
+			'page_len' => 155,
+			'page_content_model' => CONTENT_FORMAT_TEXT,
+			'page_lang' => 'xyz',
+			'page_restrictions' => 'test'
+		];
+
+		$linkCache = $this->getServiceContainer()->getLinkCache();
+		$linkCache->addGoodLinkObjFromRow( $nonexistingPage, $row );
+
+		$mockLB = $this->createNoOpMock( LoadBalancer::class );
+
+		$pageStore = $this->getPageStore( [], [ 'doLoadBalancer' => $mockLB ] );
+		$page = $pageStore->getPageByName( $ns, $dbkey );
+
+		$this->assertSame( $row->page_id, $page->getId() );
+		$this->assertSame( $row->page_namespace, $page->getNamespace() );
+		$this->assertSame( $row->page_title, $page->getDBkey() );
+		$this->assertSame( $row->page_latest, $page->getLatest() );
+	}
+
+	/**
+	 * Test that we get a PageRecord when an incomplete row exists in the cache
+	 * @covers \MediaWiki\Page\PageStore::getPageByName
+	 */
+	public function testGetPageByName_cachedIncompleteRow() {
+		$existingPage = $this->getExistingTestPage();
+		$ns = $existingPage->getNamespace();
+		$dbkey = $existingPage->getDBkey();
+
+		$linkCache = $this->getServiceContainer()->getLinkCache();
+		$linkCache->clearLink( $existingPage );
+
+		// Has all fields needed by LinkCache, but not all fields needed by PageStore.
+		// This may happen when legacy code injects rows directly into LinkCache.
+		// LinkCache::addLinkObj itself produces incomplete rows as well.
+		$row = (object)[
+			'page_id' => 8,
+			'page_is_redirect' => 0,
+			'page_latest' => 118,
+			'page_len' => 155,
+			'page_content_model' => CONTENT_FORMAT_TEXT,
+			'page_lang' => 'xyz',
+			'page_restrictions' => 'test'
+		];
+
+		$linkCache->addGoodLinkObjFromRow( $existingPage, $row );
+
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getPageByName( $ns, $dbkey );
+
+		$this->assertSame( $existingPage->getId(), $page->getId() );
+		$this->assertSame( $existingPage->getNamespace(), $page->getNamespace() );
+		$this->assertSame( $existingPage->getDBkey(), $page->getDBkey() );
+		$this->assertSame( $existingPage->getLatest(), $page->getLatest() );
+	}
+
+	/**
+	 * Test that we get a PageRecord when an incomplete row exists in the cache
+	 * @covers \MediaWiki\Page\PageStore::getPageByName
+	 */
+	public function testGetPageByName_cachedFakeRow() {
+		$nonexistingPage = $this->getNonexistingTestPage();
+		$ns = $nonexistingPage->getNamespace();
+		$dbkey = $nonexistingPage->getDBkey();
+
+		$linkCache = $this->getServiceContainer()->getLinkCache();
+		$linkCache->clearLink( $nonexistingPage );
+
+		// Has all fields needed by LinkCache, but not all fields needed by PageStore.
+		// This may happen when legacy code injects rows directly into LinkCache.
+		$linkCache->addGoodLinkObj( 8, $nonexistingPage );
+
+		$pageStore = $this->getPageStore();
+		$page = $pageStore->getPageByName( $ns, $dbkey );
+
+		$this->assertSame( 8, $page->getId() );
+		$this->assertSame( $nonexistingPage->getNamespace(), $page->getNamespace() );
+		$this->assertSame( $nonexistingPage->getDBkey(), $page->getDBkey() );
 	}
 
 	/**
@@ -267,7 +416,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$ns = $existingPage->getNamespace();
 		$dbkey = $existingPage->getDBkey();
 
-		$pageStore = $this->getPageStore( [], $wikiId );
+		$pageStore = $this->getPageStore( [], [ 'wikiId' => $wikiId, 'linkCache' => null ] );
 		$page = $pageStore->getPageByName( $ns, $dbkey );
 
 		$this->assertSame( $wikiId, $page->getWikiId() );
@@ -358,7 +507,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		$existingPage = $this->getExistingTestPage();
 
-		$pageStore = $this->getPageStore( [], $wikiId );
+		$pageStore = $this->getPageStore( [], [ 'wikiId' => $wikiId, 'linkCache' => null ] );
 		$page = $pageStore->getPageById( $existingPage->getId() );
 
 		$this->assertSame( $wikiId, $page->getWikiId() );
@@ -473,7 +622,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 			$wikiId
 		);
 
-		$pageStore = $this->getPageStore( [], $wikiId );
+		$pageStore = $this->getPageStore( [], [ 'wikiId' => $wikiId, 'linkCache' => null ] );
 		$page = $pageStore->getPageByReference( $identity );
 
 		$this->assertSame( $wikiId, $page->getWikiId() );
@@ -538,7 +687,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 		$wikiId = 'acme';
 		$this->setDomainAlias( $wikiId );
 
-		$pageStore = $this->getPageStore( [], $wikiId );
+		$pageStore = $this->getPageStore( [], [ 'wikiId' => $wikiId, 'linkCache' => null ] );
 
 		$rec = $pageStore->newSelectQueryBuilder()
 			->wherePageIds( $existingPage->getId() )
@@ -566,15 +715,6 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Page\PageStore::newSelectQueryBuilder
 	 */
 	public function testNewSelectQueryBuilder_passFlags() {
-		$services = $this->getServiceContainer();
-
-		$serviceOptions = new ServiceOptions(
-			PageStore::CONSTRUCTOR_OPTIONS,
-			[
-				'LanguageCode' => 'qxx',
-				'PageLanguageUseDB' => true
-			]
-		);
 		// Test that the provided DB connection is used.
 		$db = $this->createMock( IDatabase::class );
 		$db->expects( $this->atLeastOnce() )->method( 'selectRow' )->willReturn( false );
@@ -586,12 +726,12 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 			->with( DB_PRIMARY )
 			->willReturn( new DBConnRef( $lb, $db, DB_PRIMARY ) );
 
-		$pageStore = new PageStore(
-			$serviceOptions,
-			$lb,
-			$services->getNamespaceInfo(),
-			$services->getTitleParser(),
-			WikiAwareEntity::LOCAL
+		$pageStore = $this->getPageStore(
+			[
+				'LanguageCode' => 'qxx',
+				'PageLanguageUseDB' => true
+			],
+			[ 'dbLoadBalancer' => $lb ]
 		);
 
 		$pageStore->newSelectQueryBuilder( PageStore::READ_LATEST )

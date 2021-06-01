@@ -6,11 +6,14 @@ use DBAccessObjectUtils;
 use EmptyIterator;
 use InvalidArgumentException;
 use Iterator;
+use LinkCache;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use MalformedTitleException;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
 use MediaWiki\Linker\LinkTarget;
 use NamespaceInfo;
+use NullStatsdDataFactory;
 use stdClass;
 use TitleParser;
 use Wikimedia\Assert\Assert;
@@ -37,6 +40,12 @@ class PageStore implements PageLookup {
 	/** @var TitleParser */
 	private $titleParser;
 
+	/** @var LinkCache|null */
+	private $linkCache;
+
+	/** @var StatsdDataFactoryInterface */
+	private $stats;
+
 	/** @var string|false */
 	private $wikiId;
 
@@ -52,6 +61,8 @@ class PageStore implements PageLookup {
 	 * @param ILoadBalancer $dbLoadBalancer
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleParser $titleParser
+	 * @param ?LinkCache $linkCache
+	 * @param ?StatsdDataFactoryInterface $stats
 	 * @param false|string $wikiId
 	 */
 	public function __construct(
@@ -59,6 +70,8 @@ class PageStore implements PageLookup {
 		ILoadBalancer $dbLoadBalancer,
 		NamespaceInfo $namespaceInfo,
 		TitleParser $titleParser,
+		?LinkCache $linkCache,
+		?StatsdDataFactoryInterface $stats,
 		$wikiId = WikiAwareEntity::LOCAL
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -68,6 +81,22 @@ class PageStore implements PageLookup {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->titleParser = $titleParser;
 		$this->wikiId = $wikiId;
+		$this->linkCache = $linkCache;
+		$this->stats = $stats ?: new NullStatsdDataFactory();
+
+		if ( $wikiId !== WikiAwareEntity::LOCAL && $linkCache ) {
+			// LinkCache currently doesn't support cross-wiki PageReferences.
+			// Once it does, this check can go away. At that point, LinkCache should
+			// probably also no longer be optional.
+			throw new InvalidArgumentException( "Can't use LinkCache with pages from $wikiId" );
+		}
+	}
+
+	/**
+	 * @param string $metric
+	 */
+	private function incrementStats( string $metric ) {
+		$this->stats->increment( "PageStore.{$metric}" );
 	}
 
 	/**
@@ -122,7 +151,88 @@ class PageStore implements PageLookup {
 			'page_title' => $dbKey,
 		];
 
-		return $this->loadPageFromConditions( $conds, $queryFlags );
+		if ( $this->linkCache ) {
+			return $this->getPageByNameViaLinkCache( $namespace, $dbKey, $queryFlags );
+		} else {
+			return $this->loadPageFromConditions( $conds, $queryFlags );
+		}
+	}
+
+	/**
+	 * @param int $namespace
+	 * @param string $dbKey
+	 * @param int $queryFlags
+	 *
+	 * @return ExistingPageRecord|null
+	 */
+	private function getPageByNameViaLinkCache(
+		int $namespace,
+		string $dbKey,
+		int $queryFlags = self::READ_NORMAL
+	): ?ExistingPageRecord {
+		$conds = [
+			'page_namespace' => $namespace,
+			'page_title' => $dbKey,
+		];
+
+		if ( $queryFlags === self::READ_NORMAL && $this->linkCache->isBadLink( $conds ) ) {
+			$this->incrementStats( "LinkCache.hit.bad.early" );
+			return null;
+		}
+
+		$caller = __METHOD__;
+		$hitOrMiss = 'hit';
+
+		// Try to get the row from LinkCache, providing a callback to fetch it if it's not cached.
+		// When getGoodLinkRow() returns, LinkCache should have an entry for the row, good or bad.
+		$row = $this->linkCache->getGoodLinkRow(
+			$namespace,
+			$dbKey,
+			function ( IDatabase $dbr, $ns, $dbkey, array $options )
+				use ( $conds, $caller, &$hitOrMiss )
+			{
+				$hitOrMiss = 'miss';
+				$row = $this->newSelectQueryBuilder( $dbr )
+					->fields( $this->getSelectFields() )
+					->conds( $conds )
+					->options( $options )
+					->caller( $caller )
+					->fetchRow();
+
+				return $row;
+			},
+			$queryFlags
+		);
+
+		if ( $row ) {
+			try {
+				$page = $this->newPageRecordFromRow( $row );
+
+				// We were able to use the row we got from link cache.
+				$this->incrementStats( "LinkCache.{$hitOrMiss}.good" );
+			} catch ( InvalidArgumentException $e ) {
+				// The cached row was incomplete or corrupt,
+				// just keep going and load from the database.
+				$page = $this->loadPageFromConditions( $conds, $queryFlags );
+
+				if ( $page ) {
+					// PageSelectQueryBuilder should have added the full row to the LinkCache now.
+					$this->incrementStats( "LinkCache.{$hitOrMiss}.incomplete.loaded" );
+				} else {
+					// If we get here, an incomplete row was cached, but we failed to
+					// load the full row from the database. This should only happen
+					// if the page was deleted under out feet, which should be very rare.
+					// Update the LinkCache to reflect the new situation.
+					$this->linkCache->addBadLinkObj( $conds );
+					$this->incrementStats( "LinkCache.{$hitOrMiss}.incomplete.missing" );
+				}
+			}
+		} else {
+			$this->incrementStats( "LinkCache.{$hitOrMiss}.bad.late" );
+			$page = null;
+		}
+
+		return $page;
 	}
 
 	/**
@@ -185,6 +295,8 @@ class PageStore implements PageLookup {
 		$conds = [
 			'page_id' => $pageId,
 		];
+
+		// XXX: no caching needed?
 
 		return $this->loadPageFromConditions( $conds, $queryFlags );
 	}
@@ -273,6 +385,12 @@ class PageStore implements PageLookup {
 			$fields[] = 'page_lang';
 		}
 
+		// Since we are putting rows into LinkCache, we need to include all fields
+		// that LinkCache needs.
+		$fields = array_unique(
+			array_merge( $fields, LinkCache::getSelectFields() )
+		);
+
 		return $fields;
 	}
 
@@ -293,7 +411,7 @@ class PageStore implements PageLookup {
 			$db = $this->getDBConnectionRef( $mode );
 		}
 
-		$queryBuilder = new PageSelectQueryBuilder( $db, $this );
+		$queryBuilder = new PageSelectQueryBuilder( $db, $this, $this->linkCache );
 		$queryBuilder->options( $options );
 
 		return $queryBuilder;

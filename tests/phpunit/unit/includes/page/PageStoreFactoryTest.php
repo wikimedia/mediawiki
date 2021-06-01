@@ -1,6 +1,8 @@
 <?php
 namespace MediaWiki\Tests\Page;
 
+use LinkCache;
+use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LoadBalancer;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Page\PageStore;
@@ -30,7 +32,9 @@ class PageStoreFactoryTest extends MediaWikiUnitTestCase {
 			$options,
 			$lbFactory,
 			$this->createNoOpMock( NamespaceInfo::class ),
-			$this->createNoOpMock( TitleParser::class )
+			$this->createNoOpMock( TitleParser::class ),
+			$this->createNoOpMock( LinkCache::class ),
+			$this->createNoOpMock( StatsdDataFactoryInterface::class )
 		);
 
 		// Just check that nothing explodes.

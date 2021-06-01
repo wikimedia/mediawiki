@@ -2894,7 +2894,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @return int The ID
 	 */
 	public function getArticleID( $flags = 0 ) {
-		if ( $this->mNamespace < 0 ) {
+		if ( !$this->canExist() ) {
 			$this->mArticleID = 0;
 
 			return $this->mArticleID;
@@ -2902,10 +2902,8 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		if ( $flags & self::GAID_FOR_UPDATE ) {
 			$linkCache = MediaWikiServices::getInstance()->getLinkCache();
-			$oldUpdate = $linkCache->forUpdate( true );
 			$linkCache->clearLink( $this );
-			$this->mArticleID = $linkCache->addLinkObj( $this );
-			$linkCache->forUpdate( $oldUpdate );
+			$this->mArticleID = $linkCache->addLinkObj( $this, self::READ_LATEST );
 		} elseif ( DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST ) ) {
 			// If mArticleID is >0, pageCond() will use it, making it impossible
 			// for the call below to return a different result, e.g. after a
@@ -3138,7 +3136,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 
 		$res = $db->select(
 			[ 'page', $table ],
-			self::getSelectFields(),
+			LinkCache::getSelectFields(),
 			[
 				"{$prefix}_from=page_id",
 				"{$prefix}_namespace" => $this->mNamespace,
