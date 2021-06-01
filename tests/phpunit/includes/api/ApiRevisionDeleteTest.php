@@ -5,6 +5,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * Tests for action=revisiondelete
@@ -14,16 +15,12 @@ use MediaWiki\Revision\SlotRecord;
  * @group Database
  */
 class ApiRevisionDeleteTest extends ApiTestCase {
+	use MockAuthorityTrait;
 
 	public static $page = 'Help:ApiRevDel_test';
 	public $revs = [];
 
 	protected function setUp() : void {
-		// Needs to be before setup since this gets cached
-		$this->mergeMwGlobalArrayValue(
-			'wgGroupPermissions',
-			[ 'sysop' => [ 'deleterevision' => true ] ]
-		);
 		parent::setUp();
 		// Make a few edits for us to play with
 		for ( $i = 1; $i <= 5; $i++ ) {
@@ -33,16 +30,15 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testHidingRevisions() {
-		$user = self::$users['sysop']->getUser();
+		$performer = $this->mockAnonAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
 		$revid = array_shift( $this->revs );
-		$out = $this->doApiRequest( [
+		$out = $this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'hide' => 'content|user|comment',
-			'token' => $user->getEditToken(),
-		] );
+		], null, $performer );
 		// Check the output
 		$out = $out[0]['revisiondelete'];
 		$this->assertEquals( 'Success', $out['status'] );
@@ -62,14 +58,13 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 		$this->assertNull( $revRecord->getUser( RevisionRecord::FOR_PUBLIC ) );
 
 		// Now test unhiding!
-		$out2 = $this->doApiRequest( [
+		$out2 = $this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'show' => 'content|user|comment',
-			'token' => $user->getEditToken(),
-		] );
+		], null, $performer );
 
 		// Check the output
 		$out2 = $out2[0]['revisiondelete'];
@@ -93,26 +88,24 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	}
 
 	public function testUnhidingOutput() {
-		$user = self::$users['sysop']->getUser();
+		$performer = $this->mockAnonAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
 		$revid = array_shift( $this->revs );
 		// Hide revisions
-		$this->doApiRequest( [
+		$this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'hide' => 'content|user|comment',
-			'token' => $user->getEditToken(),
-		] );
+		], null, $performer );
 
-		$out = $this->doApiRequest( [
+		$out = $this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'show' => 'comment',
-			'token' => $user->getEditToken(),
-		] );
+		], null, $performer );
 		$out = $out[0]['revisiondelete'];
 		$this->assertEquals( 'Success', $out['status'] );
 		$this->assertArrayHasKey( 'items', $out );
@@ -127,11 +120,10 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 	public function testPartiallyBlockedPage() {
 		$this->setExpectedApiException( 'apierror-blocked-partial' );
-
-		$user = static::getTestSysop()->getUser();
+		$performer = $this->mockAnonAuthorityWithPermissions( [ 'writeapi', 'deleterevision' ] );
 
 		$block = new DatabaseBlock( [
-			'address' => $user,
+			'address' => $performer->getUser(),
 			'by' => static::getTestSysop()->getUser(),
 			'sitewide' => false,
 		] );
@@ -143,13 +135,12 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 		$revid = array_shift( $this->revs );
 
-		$this->doApiRequest( [
+		$this->doApiRequestWithToken( [
 			'action' => 'revisiondelete',
 			'type' => 'revision',
 			'target' => self::$page,
 			'ids' => $revid,
 			'hide' => 'content|user|comment',
-			'token' => $user->getEditToken(),
-		] );
+		], null, $performer );
 	}
 }
