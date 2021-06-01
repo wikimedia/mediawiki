@@ -204,6 +204,7 @@
 	"talk": "مۇنازىرە",
 	"views": "كۆرۈنۈش",
 	"toolbox": "قوراللار",
+	"cactions": "تېخىمۇ كۆپ",
 	"tool-link-userrights": "{{GENDER:$1|ئەزا}} گۇرۇپپىسىنى ئۆزگەرتىش",
 	"tool-link-userrights-readonly": "{{GENDER:$1|ئەزا}} گۇرۇپپىسىنى كۆرۈش",
 	"tool-link-emailuser": "بۇ {{GENDER:$1|ئىشلەتكۈچى}} گە ئېلخەت يوللاش",

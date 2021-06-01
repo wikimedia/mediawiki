@@ -2166,6 +2166,7 @@
 	"tags-active-no": "Ոչ",
 	"tags-edit": "խմբագրել",
 	"tags-delete": "ջնջել",
+	"tags-activate": "ակտիվացնել",
 	"tags-deactivate": "Ապաակտիվացնել",
 	"tags-hitcount": "$1 {{PLURAL:$1|փոփոխություն|փոփոխություններ}}",
 	"tags-create-reason": "Պատճառ՝",
