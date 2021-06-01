@@ -64,6 +64,7 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
+use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\PreferencesFactory;
@@ -869,6 +870,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getGlobalIdGenerator() : GlobalIdGenerator {
 		return $this->getService( 'GlobalIdGenerator' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return GrantsInfo
+	 */
+	public function getGrantsInfo() : GrantsInfo {
+		return $this->getService( 'GrantsInfo' );
 	}
 
 	/**
