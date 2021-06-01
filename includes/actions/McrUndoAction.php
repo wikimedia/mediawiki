@@ -382,7 +382,6 @@ class McrUndoAction extends FormAction {
 		$ret = [
 			'diff' => [
 				'type' => 'info',
-				'vertical-label' => true,
 				'raw' => true,
 				'default' => function () {
 					return $this->generateDiffOrPreview();

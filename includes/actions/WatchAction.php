@@ -102,7 +102,6 @@ class WatchAction extends FormAction {
 			return [
 				'intro' => [
 					'type' => 'info',
-					'vertical-label' => true,
 					'raw' => true,
 					'default' => $this->msg( 'confirm-watch-top' )->parse(),
 				],
