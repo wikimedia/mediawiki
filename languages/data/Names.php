@@ -369,6 +369,7 @@ class Names {
 		'rgn' => 'Rumagnôl', # Romagnol
 		'rif' => 'Tarifit', # Tarifit
 		'rm' => 'rumantsch', # Raeto-Romance
+		'rmc' => 'romaňi čhib', # Carpathian Romany
 		'rmy' => 'romani čhib', # Vlax Romany
 		'rn' => 'Kirundi', # Rundi/Kirundi/Urundi
 		'ro' => 'română', # Romanian
