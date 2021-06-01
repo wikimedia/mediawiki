@@ -10,7 +10,6 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\Response;
 use MediaWiki\Rest\SimpleHandler;
 use RepoGroup;
-use User;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 
@@ -66,10 +65,8 @@ class MediaFileHandler extends SimpleHandler {
 	private function getFile(): ?File {
 		if ( $this->file === false ) {
 			$page = $this->getPage();
-			// TODO: make RepoGroup::findFile take Authority
-			$user = User::newFromIdentity( $this->getAuthority()->getUser() );
 			$this->file =
-				$this->repoGroup->findFile( $page, [ 'private' => $user ] ) ?: null;
+				$this->repoGroup->findFile( $page, [ 'private' => $this->getAuthority() ] ) ?: null;
 		}
 		return $this->file;
 	}
