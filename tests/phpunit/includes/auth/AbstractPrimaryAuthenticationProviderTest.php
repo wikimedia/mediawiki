@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Auth;
 
+use MediaWiki\Tests\Unit\Auth\AuthenticationProviderTestTrait;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
@@ -10,6 +11,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
  */
 class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
+	use AuthenticationProviderTestTrait;
 
 	public function testAbstractPrimaryAuthenticationProvider() {
 		$user = \User::newFromName( 'UTSysop' );
@@ -146,6 +148,7 @@ class AbstractPrimaryAuthenticationProviderTest extends \MediaWikiIntegrationTes
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 
 		$provider = $this->getMockForAbstractClass( AbstractPrimaryAuthenticationProvider::class );
+		$this->initProvider( $provider, null, null, null, null, $this->getServiceContainer()->getUserNameUtils() );
 		$this->assertSame( $expect, $provider->providerNormalizeUsername( $name ) );
 	}
 

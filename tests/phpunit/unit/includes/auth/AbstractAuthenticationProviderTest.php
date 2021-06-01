@@ -18,6 +18,11 @@ class AbstractAuthenticationProviderTest extends \MediaWikiUnitTestCase {
 	use AuthenticationProviderTestTrait;
 
 	public function testAbstractAuthenticationProvider() {
+		$this->hideDeprecated( 'MediaWiki\Auth\AbstractAuthenticationProvider::setConfig' );
+		$this->hideDeprecated( 'MediaWiki\Auth\AbstractAuthenticationProvider::setLogger' );
+		$this->hideDeprecated( 'MediaWiki\Auth\AbstractAuthenticationProvider::setManager' );
+		$this->hideDeprecated( 'MediaWiki\Auth\AbstractAuthenticationProvider::setHookContainer' );
+
 		$provider = $this->getMockForAbstractClass( AbstractAuthenticationProvider::class );
 		$providerPriv = TestingAccessWrapper::newFromObject( $provider );
 
@@ -48,6 +53,11 @@ class AbstractAuthenticationProviderTest extends \MediaWikiUnitTestCase {
 		$obj = $this->getMockForAbstractClass( Config::class );
 		$provider->setConfig( $obj );
 		$this->assertSame( $obj, $providerPriv->config, 'setConfig' );
+
+		// test AbstractAuthenticationProvider::setHookContainer
+		$obj = $this->createHookContainer();
+		$provider->setHookContainer( $obj );
+		$this->assertSame( $obj, $providerPriv->hookContainer, 'setHookContainer' );
 
 		// test AbstractAuthenticationProvider::getUniqueId
 		$this->assertIsString( $provider->getUniqueId(), 'getUniqueId' );

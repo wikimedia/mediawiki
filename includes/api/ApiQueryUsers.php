@@ -22,6 +22,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserNameUtils;
 
 /**
  * Query module to get information about a list of users
@@ -32,6 +33,9 @@ class ApiQueryUsers extends ApiQueryBase {
 	use ApiQueryBlockInfoTrait;
 
 	private $tokenFunctions, $prop;
+
+	/** @var UserNameUtils */
+	private $userNameUtils;
 
 	/**
 	 * Properties whose contents does not depend on who is looking at them. If the usprops field
@@ -53,8 +57,14 @@ class ApiQueryUsers extends ApiQueryBase {
 		'cancreate',
 	];
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param UserNameUtils $userNameUtils
+	 */
+	public function __construct( ApiQuery $query, $moduleName, UserNameUtils $userNameUtils ) {
 		parent::__construct( $query, $moduleName, 'us' );
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
@@ -114,7 +124,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$result = $this->getResult();
 		// Canonicalize user names
 		foreach ( $users as $u ) {
-			$n = User::getCanonicalName( $u );
+			$n = $this->userNameUtils->getCanonical( $u );
 			if ( $n === false || $n === '' ) {
 				$vals = [ 'name' => $u, 'invalid' => true ];
 				$fit = $result->addValue( [ 'query', $this->getModuleName() ],

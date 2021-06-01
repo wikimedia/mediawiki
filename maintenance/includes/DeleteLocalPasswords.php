@@ -86,7 +86,8 @@ ERROR
 
 		$user = $this->getOption( 'user', false );
 		if ( $user !== false ) {
-			$this->user = User::getCanonicalName( $user );
+			$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
+			$this->user = $userNameUtils->getCanonical( $user );
 			if ( $this->user === false ) {
 				$this->fatalError( "Invalid user name\n" );
 			}

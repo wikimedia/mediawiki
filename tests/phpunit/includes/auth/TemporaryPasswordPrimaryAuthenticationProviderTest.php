@@ -73,7 +73,9 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 			->will( $this->returnCallback( function () {
 				return $this->validity;
 			} ) );
-		$this->initProvider( $provider, $config, null, $this->manager );
+		$this->initProvider(
+			$provider, $config, null, $this->manager, null, $this->getServiceContainer()->getUserNameUtils()
+		);
 
 		return $provider;
 	}

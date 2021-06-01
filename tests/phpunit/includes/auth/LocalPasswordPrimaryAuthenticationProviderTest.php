@@ -73,7 +73,9 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->will( $this->returnCallback( function () {
 				return $this->validity;
 			} ) );
-		$this->initProvider( $provider, $config, null, $this->manager, $hookContainer );
+		$this->initProvider(
+			$provider, $config, null, $this->manager, $hookContainer, $this->getServiceContainer()->getUserNameUtils()
+		);
 
 		return $provider;
 	}
