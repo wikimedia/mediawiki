@@ -24,6 +24,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Session\CsrfTokenSet;
 
 /**
  * A query module to show basic page information.
@@ -208,7 +209,9 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['edit'] ) ) {
-			self::$cachedTokens['edit'] = $user->getEditToken();
+			self::$cachedTokens['edit'] = ( new CsrfTokenSet( $user->getRequest() ) )
+				->getToken()
+				->toString();
 		}
 
 		return self::$cachedTokens['edit'];
@@ -281,7 +284,9 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['email'] ) ) {
-			self::$cachedTokens['email'] = $user->getEditToken();
+			self::$cachedTokens['email'] = ( new CsrfTokenSet( $user->getRequest() ) )
+				->getToken()
+				->toString();
 		}
 
 		return self::$cachedTokens['email'];
@@ -299,7 +304,9 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['import'] ) ) {
-			self::$cachedTokens['import'] = $user->getEditToken();
+			self::$cachedTokens['import'] = ( new CsrfTokenSet( $user->getRequest() ) )
+				->getToken()
+				->toString();
 		}
 
 		return self::$cachedTokens['import'];
@@ -317,7 +324,9 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['watch'] ) ) {
-			self::$cachedTokens['watch'] = $user->getEditToken( 'watch' );
+			self::$cachedTokens['watch'] = ( new CsrfTokenSet( $user->getRequest() ) )
+				->getToken( 'watch' )
+				->toString();
 		}
 
 		return self::$cachedTokens['watch'];
@@ -335,7 +344,9 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		// The token is always the same, let's exploit that
 		if ( !isset( self::$cachedTokens['options'] ) ) {
-			self::$cachedTokens['options'] = $user->getEditToken();
+			self::$cachedTokens['options'] = ( new CsrfTokenSet( $user->getRequest() ) )
+				->getToken()
+				->toString();
 		}
 
 		return self::$cachedTokens['options'];

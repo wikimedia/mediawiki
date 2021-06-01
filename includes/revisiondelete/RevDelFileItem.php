@@ -154,8 +154,9 @@ class RevDelFileItem extends RevDelItem {
 				[
 					'target' => $this->list->getPageName(),
 					'file' => $this->file->getArchiveName(),
-					'token' => $this->list->getUser()->getEditToken(
-						$this->file->getArchiveName() )
+					'token' => $this->list->getCsrfTokenSet()
+						->getToken( $this->file->getArchiveName() )
+						->toString(),
 				]
 			);
 		}
@@ -235,7 +236,9 @@ class RevDelFileItem extends RevDelItem {
 					[
 						'target' => $this->list->getPageName(),
 						'file' => $file->getArchiveName(),
-						'token' => $user->getEditToken( $file->getArchiveName() )
+						'token' => $this->list->getCsrfTokenSet()
+							->getToken( $file->getArchiveName() )
+							->toString(),
 					]
 				),
 			];

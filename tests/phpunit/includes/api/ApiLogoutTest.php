@@ -46,8 +46,7 @@ class ApiLogoutTest extends ApiTestCase {
 		$user = $this->getTestSysop()->getUser();
 		$this->assertTrue( $user->isRegistered(), 'sanity check' );
 
-		// Logic copied from SkinTemplate.
-		$token = $user->getEditToken( 'logoutToken', $wgRequest );
+		$token = $wgRequest->getSession()->getToken( 'logoutToken' )->toString();
 
 		$this->doUserLogout( $token, $user );
 		$this->assertFalse( $user->isRegistered() );

@@ -105,7 +105,6 @@ class UploadFromUrlTest extends ApiTestCase {
 	 * @depends testClearQueue
 	 */
 	public function testSetupUrlDownload( $data ) {
-		$token = $this->user->getEditToken();
 		$exception = false;
 
 		try {
@@ -120,10 +119,9 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$exception = false;
 		try {
-			$this->doApiRequest( [
+			$this->doApiRequestWithToken( [
 				'action' => 'upload',
-				'token' => $token,
-			], $data );
+			], $data, $this->user );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
 			$this->assertEquals( 'One of the parameters "filekey", "file" and "url" is required.',
@@ -133,11 +131,10 @@ class UploadFromUrlTest extends ApiTestCase {
 
 		$exception = false;
 		try {
-			$this->doApiRequest( [
+			$this->doApiRequestWithToken( [
 				'action' => 'upload',
 				'url' => 'http://www.example.com/test.png',
-				'token' => $token,
-			], $data );
+			], $data, $this->user );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
 			$this->assertEquals( 'The "filename" parameter must be set.', $e->getMessage() );
@@ -147,12 +144,11 @@ class UploadFromUrlTest extends ApiTestCase {
 		$this->user->removeGroup( 'sysop' );
 		$exception = false;
 		try {
-			$this->doApiRequest( [
+			$this->doApiRequestWithToken( [
 				'action' => 'upload',
 				'url' => 'http://www.example.com/test.png',
 				'filename' => 'UploadFromUrlTest.png',
-				'token' => $token,
-			], $data );
+			], $data, $this->user );
 		} catch ( ApiUsageException $e ) {
 			$exception = true;
 			// Two error messages are possible depending on the number of groups in the wiki with upload rights:
@@ -183,16 +179,13 @@ class UploadFromUrlTest extends ApiTestCase {
 		$file = __DIR__ . '/../../data/upload/png-plain.png';
 		$this->installMockHttp( file_get_contents( $file ) );
 
-		$token = $this->user->getEditToken();
-
 		$this->user->addGroup( 'users' );
-		$data = $this->doApiRequest( [
+		$data = $this->doApiRequestWithToken( [
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',
 			'url' => 'http://upload.wikimedia.org/wikipedia/mediawiki/b/bc/Wiki.png',
 			'ignorewarnings' => true,
-			'token' => $token,
-		], $data );
+		], $data, $this->user );
 
 		$this->assertEquals( 'Success', $data[0]['upload']['result'] );
 		$this->deleteFile( 'UploadFromUrlTest.png' );

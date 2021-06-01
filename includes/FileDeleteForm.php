@@ -25,6 +25,7 @@
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -111,7 +112,6 @@ class FileDeleteForm {
 
 		$request = $this->context->getRequest();
 		$this->oldimage = $request->getText( 'oldimage', '' );
-		$token = $request->getText( 'wpEditToken' );
 		# Flag to hide all contents of the archived revisions
 		$suppress = $request->getCheck( 'wpSuppress' ) &&
 			$this->context->getAuthority()->isAllowed( 'suppressrevision' );
@@ -130,7 +130,10 @@ class FileDeleteForm {
 		}
 
 		// Perform the deletion if appropriate
-		if ( $request->wasPosted() && $this->context->getUser()->matchEditToken( $token, $this->oldimage ) ) {
+		if ( $request->wasPosted() &&
+			$this->context->getCsrfTokenSet()
+				->matchTokenField( CsrfTokenSet::DEFAULT_FIELD_NAME, $this->oldimage )
+		) {
 			$permissionStatus = PermissionStatus::newEmpty();
 			if ( !$this->context->getAuthority()->authorizeWrite(
 				'delete', $this->title, $permissionStatus
@@ -431,8 +434,8 @@ class FileDeleteForm {
 			$fieldset,
 			new OOUI\HtmlSnippet(
 				Html::hidden(
-					'wpEditToken',
-					$this->context->getUser()->getEditToken( $this->oldimage )
+					CsrfTokenSet::DEFAULT_FIELD_NAME,
+					$this->context->getCsrfTokenSet()->getToken( $this->oldimage )->toString()
 				)
 			)
 		);

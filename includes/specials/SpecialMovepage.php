@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -206,7 +207,7 @@ class MovePageForm extends UnlistedSpecialPage {
 		$this->watch = $request->getCheck( 'wpWatch' ) && $user->isRegistered();
 
 		if ( $request->getVal( 'action' ) == 'submit' && $request->wasPosted()
-			&& $user->matchEditToken( $request->getVal( 'wpEditToken' ) )
+			&& $this->getContext()->getCsrfTokenSet()->matchTokenField()
 		) {
 			$this->doSubmit();
 		} else {
@@ -596,7 +597,10 @@ class MovePageForm extends UnlistedSpecialPage {
 			new OOUI\HtmlSnippet(
 				$hiddenFields .
 				Html::hidden( 'wpOldTitle', $this->oldTitle->getPrefixedText() ) .
-				Html::hidden( 'wpEditToken', $user->getEditToken() )
+				Html::hidden(
+					CsrfTokenSet::DEFAULT_FIELD_NAME,
+					$this->getContext()->getCsrfTokenSet()->getToken()->toString()
+				)
 			)
 		);
 

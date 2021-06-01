@@ -22,6 +22,7 @@
 
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserNameUtils;
@@ -133,7 +134,9 @@ class ApiQueryUsers extends ApiQueryBase {
 	public static function getUserrightsToken( User $actingUser, $targetUser ) {
 		// Since the permissions check for userrights is non-trivial,
 		// don't bother with it here
-		return $actingUser->getEditToken( $targetUser->getName() );
+		return ( new CsrfTokenSet( $actingUser->getRequest() ) )
+			->getToken( $targetUser->getName() )
+			->toString();
 	}
 
 	public function execute() {

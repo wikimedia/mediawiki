@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
 use MediaWiki\User\UserNamePrefixSearch;
@@ -186,7 +187,10 @@ class UserrightsPage extends SpecialPage {
 			$request->wasPosted() &&
 			$request->getCheck( 'saveusergroups' ) &&
 			$this->mTarget !== null &&
-			$user->matchEditToken( $request->getVal( 'wpEditToken' ), $this->mTarget )
+			$this->getContext()->getCsrfTokenSet()->matchTokenField(
+				CsrfTokenSet::DEFAULT_FIELD_NAME,
+				$this->mTarget
+			)
 		) {
 			/*
 			 * If the user is blocked and they only have "partial" access
@@ -770,7 +774,10 @@ class UserrightsPage extends SpecialPage {
 				]
 			) .
 			Html::hidden( 'user', $this->mTarget ) .
-			Html::hidden( 'wpEditToken', $this->getUser()->getEditToken( $this->mTarget ) ) .
+			Html::hidden(
+				CsrfTokenSet::DEFAULT_FIELD_NAME,
+				$this->getContext()->getCsrfTokenSet()->getToken( $this->mTarget )->toString()
+			) .
 			Html::hidden(
 				'conflictcheck-originalgroups',
 				implode( ',', $user->getGroups() )
