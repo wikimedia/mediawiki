@@ -12,15 +12,6 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 	 * @return array
 	 */
 	private function createConstructorArguments() {
-		// Create a mock Config object that will satisfy ServiceOptions::__construct
-		$mockConfig = $this->createMock( Config::class );
-		$mockConfig->method( 'has' )->willReturn( true );
-		$mockConfig->method( 'get' )->will(
-			$this->returnCallback( static function ( $arg ) {
-				return ( $arg === 'TidyConfig' ) ? null : 'I like otters.';
-			} )
-		);
-
 		// Stub out a MagicWordFactory so the Parser can initialize its
 		// function hooks when it is created.
 		$mwFactory = $this->getMockBuilder( MagicWordFactory::class )
