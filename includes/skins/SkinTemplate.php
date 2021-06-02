@@ -388,14 +388,15 @@ class SkinTemplate extends Skin {
 
 		$content_navigation = $this->buildContentNavigationUrls();
 		# Personal toolbar
-		$tpl->set( 'personal_urls', $this->insertNotificationsIntoPersonalTools( $content_navigation ) );
-		// user-menu and notifications are new content navigation entries and aren't expected
-		// to be part of content_navigation or content_actions. Adding them in there breaks skins
-		// that do not expect it.
+		$tpl->set( 'personal_urls', $this->makeSkinTemplatePersonalUrls( $content_navigation ) );
+		// The user-menu, notifications, and user-interface-preferences are new content navigation entries which aren't
+		// expected to be part of content_navigation or content_actions. Adding them in there breaks skins that do not
+		// expect it.
 		unset(
 			$content_navigation['user-menu'],
 			$content_navigation['notifications'],
-			$content_navigation['user-page']
+			$content_navigation['user-page'],
+			$content_navigation['user-interface-preferences']
 		);
 		$content_actions = $this->buildContentActionUrls( $content_navigation );
 		$tpl->set( 'content_navigation', $content_navigation );
@@ -944,6 +945,7 @@ class SkinTemplate extends Skin {
 
 		$content_navigation = [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
+			'user-interface-preferences' => [],
 			'user-page' => $this->loggedin ? [ 'userpage' => $this->buildPersonalPageItem() ] : [],
 			'user-menu' => $this->buildPersonalUrls( false ),
 			'notifications' => [],
@@ -1356,27 +1358,50 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * Insert the notifications content navigation into the personal tools, in their old position,
-	 * following the userpage.
+	 * Insert legacy menu items from content navigation into the personal toolbar.
 	 *
 	 * @internal
 	 *
 	 * @param array $contentNavigation
 	 * @return array
 	 */
-	final protected function insertNotificationsIntoPersonalTools(
+	final protected function injectLegacyMenusIntoPersonalTools(
 		array $contentNavigation
 	) : array {
+		$userMenu = $contentNavigation['user-menu'] ?? [];
 		// userpage is only defined for logged-in users, and wfArrayInsertAfter requires the
 		// $after parameter to be a known key in the array.
-		if ( isset( $contentNavigation['user-menu']['userpage'] ) ) {
-			return wfArrayInsertAfter(
-				$contentNavigation['user-menu'],
+		if ( isset( $contentNavigation['user-menu']['userpage'] ) && isset( $contentNavigation['notifications'] ) ) {
+			$userMenu = wfArrayInsertAfter(
+				$userMenu,
 				$contentNavigation['notifications'],
 				'userpage'
 			);
-		} else {
-			return $contentNavigation['user-menu'];
 		}
+		if ( isset( $contentNavigation['user-interface-preferences'] ) ) {
+			return array_merge(
+				$contentNavigation['user-interface-preferences'],
+				$userMenu
+			);
+		}
+		return $userMenu;
 	}
+
+	/**
+	 * Build the personal urls array.
+	 *
+	 * @internal
+	 *
+	 * @param array $contentNavigation
+	 * @return array
+	 */
+	private function makeSkinTemplatePersonalUrls(
+		array $contentNavigation
+	) : array {
+		if ( isset( $contentNavigation['user-menu'] ) ) {
+			return $this->injectLegacyMenusIntoPersonalTools( $contentNavigation );
+		}
+		return [];
+	}
+
 }
