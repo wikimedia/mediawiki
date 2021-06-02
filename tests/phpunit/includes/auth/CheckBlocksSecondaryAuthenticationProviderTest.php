@@ -83,7 +83,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$blockOptions = [
 			'address' => 'UTBlockee',
 			'user' => $user->getId(),
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,
@@ -156,7 +156,7 @@ class CheckBlocksSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 		$blockOptions = [
 			'address' => '127.0.0.0/24',
 			'reason' => __METHOD__,
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'expiry' => time() + 100500,
 			'createAccount' => true,
 			'sitewide' => false,

@@ -15,16 +15,16 @@ use MediaWiki\MediaWikiServices;
  */
 class CompositeBlockTest extends MediaWikiLangTestCase {
 	private function getPartialBlocks() {
-		$sysopId = $this->getTestSysop()->getUser()->getId();
+		$sysopUser = $this->getTestSysop()->getUser();
 
 		$userBlock = new DatabaseBlock( [
 			'address' => $this->getTestUser()->getUser(),
-			'by' => $sysopId,
+			'by' => $sysopUser,
 			'sitewide' => false,
 		] );
 		$ipBlock = new DatabaseBlock( [
 			'address' => '127.0.0.1',
-			'by' => $sysopId,
+			'by' => $sysopUser,
 			'sitewide' => false,
 		] );
 

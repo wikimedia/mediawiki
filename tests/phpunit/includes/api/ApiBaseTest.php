@@ -1340,7 +1340,7 @@ class ApiBaseTest extends ApiTestCase {
 		$block = new DatabaseBlock( [
 			'address' => $user->getName(),
 			'user' => $user->getId(),
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );
@@ -1399,7 +1399,7 @@ class ApiBaseTest extends ApiTestCase {
 		$block = new DatabaseBlock( [
 			'address' => $user->getName(),
 			'user' => $user->getId(),
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 		] );

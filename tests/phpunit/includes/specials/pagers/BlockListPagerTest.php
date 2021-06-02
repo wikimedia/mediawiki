@@ -280,7 +280,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 		// Test partial blocks.
 		$block = new DatabaseBlock( [
 			'address' => $target,
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => 'Parce que',
 			'expiry' => $this->db->getInfinity(),
 			'sitewide' => false,

@@ -85,7 +85,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 		$autoblock = $options['autoblock'] ?? false;
 
 		return new DatabaseBlock( [
-			'by' => $this->sysop->getId(),
+			'by' => $this->sysop,
 			'address' => $target,
 			'enableAutoblock' => $autoblock,
 		] );

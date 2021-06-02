@@ -274,7 +274,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 
 		$block = new DatabaseBlock( [
 			'address' => $user,
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'expiry' => 'infinity',
 			'sitewide' => false,
 		] );
