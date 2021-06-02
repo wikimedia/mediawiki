@@ -231,6 +231,7 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getPermissionManager(),
+			$services->getUserFactory(),
 			LoggerFactory::getInstance( 'BlockManager' ),
 			$services->getHookContainer()
 		);
