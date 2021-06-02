@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Revision;
 
 use CommentStoreComment;
 use Content;
-use ContentHandler;
 use Exception;
 use FallbackContent;
 use HashBagOStuff;
@@ -2510,17 +2509,17 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevisionRecordsEqual( $revRecord1, $records[$revRecord1->getId()] );
 		$this->assertRevisionRecordsEqual( $revRecord2, $records[$revRecord2->getId()] );
 
+		$content1 = $records[$revRecord1->getId()]->getContent( SlotRecord::MAIN );
+		$this->assertInstanceOf( TextContent::class, $content1 );
 		$this->assertSame(
 			$text . '1',
-			ContentHandler::getContentText(
-				$records[$revRecord1->getId()]->getContent( SlotRecord::MAIN )
-			)
+			$content1->getText()
 		);
+		$content2 = $records[$revRecord2->getId()]->getContent( SlotRecord::MAIN );
+		$this->assertInstanceOf( TextContent::class, $content2 );
 		$this->assertSame(
 			$text . '2',
-			ContentHandler::getContentText(
-				$records[$revRecord2->getId()]->getContent( SlotRecord::MAIN )
-			)
+			$content2->getText()
 		);
 		$this->assertEquals(
 			$page1->getTitle()->getDBkey(),
@@ -2598,17 +2597,17 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 		$this->assertRevisionRecordsEqual( $revRecord1, $records[$revRecord1->getId()] );
 		$this->assertRevisionRecordsEqual( $revRecord2, $records[$revRecord2->getId()] );
 
+		$content1 = $records[$revRecord1->getId()]->getContent( SlotRecord::MAIN );
+		$this->assertInstanceOf( TextContent::class, $content1 );
 		$this->assertSame(
 			$text1,
-			ContentHandler::getContentText(
-				$records[$revRecord1->getId()]->getContent( SlotRecord::MAIN )
-			)
+			$content1->getText()
 		);
+		$content2 = $records[$revRecord2->getId()]->getContent( SlotRecord::MAIN );
+		$this->assertInstanceOf( TextContent::class, $content2 );
 		$this->assertSame(
 			$text2,
-			ContentHandler::getContentText(
-				$records[$revRecord2->getId()]->getContent( SlotRecord::MAIN )
-			)
+			$content2->getText()
 		);
 		$this->assertEquals(
 			$page1->getTitle()->getDBkey(),
@@ -3286,9 +3285,12 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 		$this->assertTrue( $result->isGood() );
-		$this->assertSame( 'Content_From_Mock',
-			ContentHandler::getContentText( $result->getValue()[$revRecord1->getId()]
-				->getContent( SlotRecord::MAIN ) ) );
+		$content = $result->getValue()[$revRecord1->getId()]->getContent( SlotRecord::MAIN );
+		$this->assertInstanceOf( TextContent::class, $content );
+		$this->assertSame(
+			'Content_From_Mock',
+			$content->getText()
+		);
 	}
 
 	/** @covers \MediaWiki\Revision\RevisionStore::findIdenticalRevision */

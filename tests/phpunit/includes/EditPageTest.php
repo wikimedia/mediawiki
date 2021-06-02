@@ -150,7 +150,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 
 			// sanity check
 			$page->clear();
-			$currentText = ContentHandler::getContentText( $page->getContent() );
+			$content = $page->getContent();
+
+			$this->assertInstanceOf( TextContent::class, $content );
+			$currentText = $content->getText();
 
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.
@@ -203,7 +206,7 @@ class EditPageTest extends MediaWikiLangTestCase {
 		if ( $expectedText !== null ) {
 			// check resulting page text
 			$content = $page->getContent();
-			$text = ContentHandler::getContentText( $content );
+			$text = ( $content instanceof TextContent ) ? $content->getText() : '';
 
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.

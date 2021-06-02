@@ -2218,7 +2218,7 @@ class EditPage implements IEditObject {
 					$editConflictLogger->debug( 'Suppressing edit conflict, successful merge.' );
 				} else {
 					$this->section = '';
-					$this->textbox1 = ContentHandler::getContentText( $content );
+					$this->textbox1 = ( $content instanceof TextContent ) ? $content->getText() : '';
 					$editConflictLogger->debug( 'Keeping edit conflict, failed merge.' );
 				}
 			}
