@@ -129,15 +129,17 @@ class RevDelArchivedFileItem extends RevDelFileItem {
 				),
 			];
 		}
-		if ( $file->userCan( RevisionRecord::DELETED_USER, $user ) ) {
+		$uploader = $file->getUploader( ArchivedFile::FOR_THIS_USER, $user );
+		if ( $uploader ) {
 			$ret += [
-				'userid' => $file->getUser( 'id' ),
-				'user' => $file->getUser( 'text' ),
+				'userid' => $uploader->getId(),
+				'user' => $uploader->getName(),
 			];
 		}
-		if ( $file->userCan( RevisionRecord::DELETED_COMMENT, $user ) ) {
+		$comment = $file->getDescription( ArchivedFile::FOR_THIS_USER, $user );
+		if ( $comment ) {
 			$ret += [
-				'comment' => $file->getRawDescription(),
+				'comment' => $comment,
 			];
 		}
 

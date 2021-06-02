@@ -390,6 +390,39 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		return $file;
 	}
 
+	private function getArchivedFileWithDeletion(
+		UserIdentity $uploader,
+		int $deletedFlags
+	): ArchivedFile {
+		return ArchivedFile::newFromRow( (object)[
+				'fa_id' => 1,
+				'fa_storage_group' => 'test',
+				'fa_storage_key' => 'bla',
+				'fa_name' => 'Random-11m.png',
+				'fa_archive_name' => 'Random-11m.png',
+				'fa_size' => 10816824,
+				'fa_width' => 1000,
+				'fa_height' => 1800,
+				'fa_metadata' => '',
+				'fa_bits' => 16,
+				'fa_media_type' => 'BITMAP',
+				'fa_major_mime' => 'image',
+				'fa_minor_mime' => 'png',
+				'fa_description_id' => $this->getServiceContainer()
+					->getCommentStore()
+					->createComment( $this->db, 'comment' )->id,
+				'fa_actor' => $this->getServiceContainer()
+					->getActorStore()
+					->acquireActorId( $uploader, $this->db ),
+				'fa_user' => $uploader->getId(),
+				'fa_user_text' => $uploader->getName(),
+				'fa_timestamp' => $this->db->timestamp( '20201105235242' ),
+				'fa_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
+				'fa_deleted' => $deletedFlags,
+			]
+		);
+	}
+
 	/**
 	 * @dataProvider providePermissionChecks
 	 * @covers LocalFile::getUploader
@@ -410,9 +443,45 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider providePermissionChecks
-	 * @covers LocalFile::getDescription
+	 * @covers ArchivedFile::getDescription
 	 */
 	public function testGetDescription(
+		Authority $performer,
+		int $audience,
+		int $deleted,
+		bool $expected
+	) {
+		$file = $this->getArchivedFileWithDeletion( $performer->getUser(), $deleted );
+		if ( $expected ) {
+			$this->assertSame( 'comment', $file->getDescription( $audience, $performer ) );
+		} else {
+			$this->assertSame( '', $file->getDescription( $audience, $performer ) );
+		}
+	}
+
+	/**
+	 * @dataProvider providePermissionChecks
+	 * @covers ArchivedFile::getUploader
+	 */
+	public function testArchivedGetUploader(
+		Authority $performer,
+		int $audience,
+		int $deleted,
+		bool $expected
+	) {
+		$file = $this->getArchivedFileWithDeletion( $performer->getUser(), $deleted );
+		if ( $expected ) {
+			$this->assertTrue( $performer->getUser()->equals( $file->getUploader( $audience, $performer ) ) );
+		} else {
+			$this->assertNull( $file->getUploader( $audience, $performer ) );
+		}
+	}
+
+	/**
+	 * @dataProvider providePermissionChecks
+	 * @covers LocalFile::getDescription
+	 */
+	public function testArchivedGetDescription(
 		Authority $performer,
 		int $audience,
 		int $deleted,

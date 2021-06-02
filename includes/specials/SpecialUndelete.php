@@ -1269,14 +1269,15 @@ class SpecialUndelete extends SpecialPage {
 	 * @return string HTML fragment
 	 */
 	private function getFileUser( $file ) {
-		if ( !$file->userCan( File::DELETED_USER, $this->getUser() ) ) {
+		$uploader = $file->getUploader( File::FOR_THIS_USER, $this->getAuthority() );
+		if ( !$uploader ) {
 			return '<span class="history-deleted">' .
 				$this->msg( 'rev-deleted-user' )->escaped() .
 				'</span>';
 		}
 
-		$link = Linker::userLink( $file->getRawUser(), $file->getRawUserText() ) .
-			Linker::userToolLinks( $file->getRawUser(), $file->getRawUserText() );
+		$link = Linker::userLink( $uploader->getId(), $uploader->getName() ) .
+			Linker::userToolLinks( $uploader->getId(), $uploader->getName() );
 
 		if ( $file->isDeleted( File::DELETED_USER ) ) {
 			$link = '<span class="history-deleted">' . $link . '</span>';
@@ -1292,12 +1293,13 @@ class SpecialUndelete extends SpecialPage {
 	 * @return string HTML fragment
 	 */
 	private function getFileComment( $file ) {
-		if ( !$file->userCan( File::DELETED_COMMENT, $this->getUser() ) ) {
+		$comment = $file->getDescription( File::FOR_THIS_USER, $this->getAuthority() );
+		if ( !$comment ) {
 			return '<span class="history-deleted"><span class="comment">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span></span>';
 		}
 
-		$link = Linker::commentBlock( $file->getRawDescription() );
+		$link = Linker::commentBlock( $comment );
 
 		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
 			$link = '<span class="history-deleted">' . $link . '</span>';
