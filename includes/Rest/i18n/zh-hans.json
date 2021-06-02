@@ -4,6 +4,7 @@
 			"500000000006城",
 			"A Chinese Wikipedian",
 			"Hzy980512",
+			"Shizhao",
 			"SomeyaMako",
 			"VulpesVulpes825",
 			"铁桶"
@@ -20,6 +21,7 @@
 	"rest-permission-denied-anon": "匿名用户无法访问",
 	"rest-permission-denied-title": "用户无权阅读标题($1)",
 	"rest-permission-denied-revision": "用户无法访问请求的修订($1)。",
+	"rest-resource-limit-exceeded": "资源限制超出处理请求。",
 	"rest-pagehistory-incompatible-params": "不能同时指定“older_than”和“newer_than”两参数",
 	"rest-pagehistory-param-range-error": "修订 ID 必须大于 0",
 	"rest-pagehistory-timestamp-error": "无法检索指定修订的时间戳($1)",
@@ -43,5 +45,6 @@
 	"rest-bad-content-model": "无效内容模块：$1",
 	"rest-update-cannot-create-page": "页面“$1”已存在，无法创建。要更新现有页面，请在请求正文的“latest”键中的结构中提供基础修订 ID。",
 	"rest-extraneous-csrf-token": "发现外来的 CSRF 令牌。当使用如 OAuth 之类的抵抗 CSRF 攻击的验证机制时不能使用 CSRF 令牌。",
-	"rest-cannot-load-file": "无法加载标题为“$1”的文件。"
+	"rest-cannot-load-file": "无法加载标题为“$1”的文件。",
+	"rest-cross-origin-anon-write": "不允许匿名跨域写请求"
 }
