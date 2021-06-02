@@ -659,7 +659,8 @@ CREATE TABLE /*_*/oldimage (
   ),
   INDEX oi_sha1 (
     oi_sha1(10)
-  )
+  ),
+  INDEX oi_timestamp (oi_timestamp)
 ) /*$wgDBTableOptions*/;
 
 

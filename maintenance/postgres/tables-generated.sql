@@ -717,6 +717,8 @@ CREATE INDEX oi_name_archive_name ON oldimage (oi_name, oi_archive_name);
 
 CREATE INDEX oi_sha1 ON oldimage (oi_sha1);
 
+CREATE INDEX oi_timestamp ON oldimage (oi_timestamp);
+
 
 CREATE TABLE objectcache (
   keyname TEXT DEFAULT '' NOT NULL,
