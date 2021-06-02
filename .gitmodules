@@ -683,11 +683,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-PagedTiffHandler
 	branch = REL1_36
 	ignore = dirty
-[submodule "skins/ModernSkylight"]
-	path = skins/ModernSkylight
-	url = https://github.com/labster/ModernSkylight
-	branch = master
-	ignore = dirty
 [submodule "extensions/AutoCreateCategoryPages"]
 	path = extensions/AutoCreateCategoryPages
 	url = https://github.com/wikimedia/mediawiki-extensions-AutoCreateCategoryPages
