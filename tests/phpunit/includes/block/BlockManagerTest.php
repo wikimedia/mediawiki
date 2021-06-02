@@ -57,6 +57,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 				$services->getMainConfig()
 			),
 			$services->getPermissionManager(),
+			$services->getUserFactory(),
 			new NullLogger(),
 			$services->getHookContainer()
 		];

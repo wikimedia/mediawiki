@@ -1687,7 +1687,7 @@ function mimeTypeMatch( $type, $avail ) {
  * @param mixed $outputtype A timestamp in one of the supported formats, the
  *   function will autodetect which format is supplied and act accordingly.
  * @param mixed $ts Optional timestamp to convert, default 0 for the current time
- * @return string|bool String / false The same date in the format specified in $outputtype or false
+ * @return string|false The same date in the format specified in $outputtype or false
  */
 function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
 	$ret = MWTimestamp::convert( $outputtype, $ts );
@@ -1703,7 +1703,7 @@ function wfTimestamp( $outputtype = TS_UNIX, $ts = 0 ) {
  *
  * @param int $outputtype
  * @param string|null $ts
- * @return string
+ * @return string|false|null Null if called with null, otherwise the result of wfTimestamp()
  */
 function wfTimestampOrNull( $outputtype = TS_UNIX, $ts = null ) {
 	if ( $ts === null ) {

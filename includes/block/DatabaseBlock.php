@@ -68,9 +68,6 @@ class DatabaseBlock extends AbstractBlock {
 	/** @var bool */
 	private $mFromPrimary;
 
-	/** @var int Hack for foreign blocking (CentralAuth) */
-	private $forcedTargetID;
-
 	/** @var bool */
 	private $isAutoblocking;
 
@@ -119,11 +116,6 @@ class DatabaseBlock extends AbstractBlock {
 		];
 
 		$options += $defaults;
-
-		if ( $this->target instanceof UserIdentity && $options['user'] ) {
-			# Needed for foreign users
-			$this->forcedTargetID = $options['user'];
-		}
 
 		if ( $options['by'] ) {
 			if ( $options['by'] instanceof UserIdentity ) {
@@ -1203,16 +1195,6 @@ class DatabaseBlock extends AbstractBlock {
 	 */
 	public function getBlocker(): ?UserIdentity {
 		return $this->blocker;
-	}
-
-	/**
-	 * Get the forcedTargetID if set
-	 *
-	 * @internal
-	 * @return ?int
-	 */
-	public function getForcedTargetID() : ?int {
-		return $this->forcedTargetID;
 	}
 
 	/**
