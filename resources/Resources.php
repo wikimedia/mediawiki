@@ -612,10 +612,15 @@ return [
 	],
 
 	'wvui' => [
+		// Once T281527 is resolved, use the real WVUI files here rather than wrapping wvui-search
+		'dependencies' => [
+			'wvui-search'
+		],
+	],
+
+	'wvui-search' => [
 		'packageFiles' => [
-			'resources/src/wvui/wvui.js',
-			// Once T281527 is resolved, change this back to wvui.commonjs2.js, and add
-			// a wvui-search module
+			'resources/src/wvui/wvui-search.js',
 			'resources/lib/wvui/wvui-search.commonjs2.js',
 		],
 		'styles' => [
