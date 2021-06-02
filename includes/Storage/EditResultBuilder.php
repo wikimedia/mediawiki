@@ -86,8 +86,6 @@ class EditResultBuilder {
 	private $options;
 
 	/**
-	 * EditResultBuilder constructor.
-	 *
 	 * @param RevisionStore $revisionStore
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
@@ -109,8 +107,6 @@ class EditResultBuilder {
 	}
 
 	/**
-	 * Builds the EditResult object.
-	 *
 	 * @return EditResult
 	 */
 	public function buildEditResult() : EditResult {
