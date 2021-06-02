@@ -513,6 +513,11 @@ CSS
 			$IP,
 			'/w'
 		);
+		$cbPath = new ResourceLoaderFilePath(
+			$featureFiles['content-body']['screen'][0],
+			$IP,
+			'/w'
+		);
 
 		return [
 			[
@@ -541,6 +546,18 @@ CSS
 				[ $normalizePath ],
 				[ $elementsPath, 'test.styles/styles.css' ],
 				'opt-in by default policy results in correct order'
+			],
+
+			[
+				[ 'content-parser-output' ],
+				[ 'test.styles/all.css' ],
+				[
+					$cbPath
+				],
+				[
+					'test.styles/all.css'
+				],
+				'content-parser-output mapped to content-body styles'
 			],
 
 			[

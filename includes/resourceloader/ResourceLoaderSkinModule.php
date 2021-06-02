@@ -236,23 +236,20 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 		$remoteBasePath = null
 	) {
 		$features = $options['features'] ?? self::DEFAULT_FEATURES_ABSENT;
+		$listMode = array_keys( $features ) === range( 0, count( $features ) - 1 );
 		// NOTE: Compatibility is only applied when features are provided
 		// in map-form. The list-form does not currently get these.
-		$features = self::applyFeaturesCompatibility( $features );
+		$features = $listMode ? self::applyFeaturesCompatibility( array_fill_keys( $features, true ) ) :
+			self::applyFeaturesCompatibility( $features );
 
-		$listMode = false;
 		foreach ( $features as $key => $enabled ) {
-			if ( is_string( $enabled ) ) {
-				$listMode = true;
-				$key = $enabled;
-			}
 			if ( !isset( self::FEATURE_FILES[$key] ) ) {
 				throw new InvalidArgumentException( "Feature '$key' is not recognised" );
 			}
 		}
 
 		$this->features = $listMode
-			? array_values( $features )
+			? array_keys( array_filter( $features ) )
 			: array_keys( array_filter( $features + self::DEFAULT_FEATURES_SPECIFIED ) );
 
 		// Only the `toc` feature makes use of interface messages.
