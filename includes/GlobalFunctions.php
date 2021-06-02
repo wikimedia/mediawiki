@@ -2328,7 +2328,7 @@ function wfGetLB( $wiki = false ) {
 /**
  * Find a file.
  * @deprecated since 1.34, use MediaWikiServices
- * @param string|LinkTarget $title String or LinkTarget object
+ * @param string|LinkTarget $title
  * @param array $options Associative array of options (see RepoGroup::findFile)
  * @return File|bool File, or false if the file does not exist
  */

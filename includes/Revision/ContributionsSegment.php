@@ -41,8 +41,6 @@ class ContributionsSegment {
 	private $flags;
 
 	/**
-	 * ContributionsSegment constructor.
-	 *
 	 * @param RevisionRecord[] $revisions
 	 * @param string[][] $tags Associative array mapping revision IDs to a map of tag names to Message objects
 	 * @param string|null $before

@@ -512,8 +512,6 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * Get the context title object.
-	 *
 	 * @throws RuntimeException if no context title was set
 	 * @return Title
 	 */
