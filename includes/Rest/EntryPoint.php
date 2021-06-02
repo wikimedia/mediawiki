@@ -136,7 +136,7 @@ class EntryPoint {
 	 * @param MediaWikiServices $services
 	 * @return ITextFormatter[]
 	 */
-	public static function getTextFormatters( MediaWikiServices $services ) {
+	private static function getTextFormatters( MediaWikiServices $services ) {
 		$code = $services->getContentLanguage()->getCode();
 		$langs = array_unique( [ $code, 'en' ] );
 		$textFormatters = [];
