@@ -1562,7 +1562,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$blockOptions = [
 			'address' => 'UTBlockee',
 			'user' => $user->getId(),
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,
@@ -1586,7 +1586,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$blockStore = $this->getServiceContainer()->getDatabaseBlockStore();
 		$blockOptions = [
 			'address' => '127.0.0.0/24',
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,
@@ -1637,7 +1637,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		$blockOptions = [
 			'address' => 'UTBlockee',
 			'user' => $user->getId(),
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => false,
@@ -1647,7 +1647,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 		$blockOptions = [
 			'address' => '127.0.0.0/24',
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => __METHOD__,
 			'expiry' => time() + 100500,
 			'createAccount' => true,

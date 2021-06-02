@@ -132,7 +132,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 
 		$block = new DatabaseBlock( [
 			'address' => $user,
-			'by' => static::getTestSysop()->getUser()->getId(),
+			'by' => static::getTestSysop()->getUser(),
 			'sitewide' => false,
 		] );
 

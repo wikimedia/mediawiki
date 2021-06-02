@@ -99,7 +99,7 @@ class ApiBlockTest extends ApiTestCase {
 		$blocked = $this->getMutableTestUser( [ 'sysop' ] )->getUser();
 		$block = new DatabaseBlock( [
 			'address' => $blocked->getName(),
-			'by' => self::$users['sysop']->getUser()->getId(),
+			'by' => self::$users['sysop']->getUser(),
 			'reason' => 'Capriciousness',
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',

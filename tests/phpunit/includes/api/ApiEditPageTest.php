@@ -1485,7 +1485,7 @@ class ApiEditPageTest extends ApiTestCase {
 
 		$block = new DatabaseBlock( [
 			'address' => self::$users['sysop']->getUser()->getName(),
-			'by' => self::$users['sysop']->getUser()->getId(),
+			'by' => self::$users['sysop']->getUser(),
 			'reason' => 'Capriciousness',
 			'timestamp' => '19370101000000',
 			'expiry' => 'infinity',

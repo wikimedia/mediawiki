@@ -137,7 +137,7 @@ class ApiUserrightsTest extends ApiTestCase {
 	public function testBlockedWithUserrights() {
 		$user = $this->getTestSysop()->getUser();
 
-		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user->getId(), ] );
+		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user, ] );
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 
@@ -154,7 +154,7 @@ class ApiUserrightsTest extends ApiTestCase {
 
 		$this->setPermissions( true, true );
 
-		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user->getId() ] );
+		$block = new DatabaseBlock( [ 'address' => $user, 'by' => $user ] );
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$blockStore->insertBlock( $block );
 

@@ -119,7 +119,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 0,
 			'enableAutoblock' => true,
@@ -204,7 +204,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 0,
 			'enableAutoblock' => false,
@@ -634,7 +634,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$block = new DatabaseBlock( [
 			'address' => $blockedUser,
-			'by' => $performer->getId(),
+			'by' => $performer,
 			'hideName' => true,
 		] );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
@@ -847,7 +847,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = new DatabaseBlock( [
 			'address' => $blockedUser->getName(),
 			'user' => $blockedUser->getId(),
-			'by' => $blockPerformer->getId(),
+			'by' => $blockPerformer,
 			'expiry' => 'infinity',
 			'sitewide' => $sitewide,
 			'enableAutoblock' => true,
@@ -947,7 +947,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 1,
 			'enableAutoblock' => true,

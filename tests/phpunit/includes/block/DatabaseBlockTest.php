@@ -46,7 +46,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$blockOptions = [
 			'address' => $user->getName(),
 			'user' => $user->getId(),
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'reason' => 'Parce que',
 			'expiry' => time() + 100500,
 		];
@@ -246,7 +246,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 			'hideName' => true,
 			'blockEmail' => true,
-			'byText' => 'm>MetaWikiUser',
+			'by' => UserIdentityValue::newExternal( 'm', 'MetaWikiUser' ),
 		];
 		$block = new DatabaseBlock( $blockOptions );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
@@ -303,7 +303,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			'enableAutoblock' => true,
 			'hideName' => true,
 			'blockEmail' => true,
-			'byText' => 'Meta>MetaWikiUser',
+			'by' => UserIdentityValue::newExternal( 'm', 'MetaWikiUser' ),
 		];
 		$block = new DatabaseBlock( $blockOptions );
 
@@ -327,9 +327,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $userId, $block->getTargetUserIdentity()->getId(), 'Correct blockee id' );
 		$this->assertEquals( 'UserOnForeignWiki', $block->getTargetName(), 'Correct blockee name' );
 		$this->assertTrue( $block->isBlocking( 'UserOnForeignWiki' ), 'Is blocking blockee' );
-		$this->assertEquals( 'Meta>MetaWikiUser', $block->getBlocker()->getName(),
+		$this->assertEquals( 'm>MetaWikiUser', $block->getBlocker()->getName(),
 			'Correct blocker name' );
-		$this->assertEquals( 'Meta>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
+		$this->assertEquals( 'm>MetaWikiUser', $block->getByName(), 'Correct blocker name' );
 		$this->assertSame( 0, $block->getBy(), 'Correct blocker id' );
 	}
 
@@ -471,7 +471,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
@@ -563,7 +563,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
 		$page = $this->getExistingTestPage( 'Foo' );
@@ -592,7 +592,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'expiry' => 'infinity',
 		] );
 		$page = $this->getExistingTestPage( 'Foo' );
