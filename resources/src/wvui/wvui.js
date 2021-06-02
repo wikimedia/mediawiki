@@ -1,2 +1,5 @@
 // Unwrap the .default in what WVUI returns.
-module.exports = require( '../../lib/wvui/wvui.commonjs2.js' ).default;
+
+// Once T281527 is resolved, change this back to wvui.commonjs2.js, and add
+// a wvui-search module
+module.exports = require( '../../lib/wvui/wvui-search.commonjs2.js' ).default;
