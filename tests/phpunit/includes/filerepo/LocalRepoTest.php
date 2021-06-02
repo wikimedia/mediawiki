@@ -57,7 +57,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			"{$prefix}_height" => '0',
 			"{$prefix}_width" => '0',
 			"{$prefix}_bits" => '0',
-			"{$prefix}_media_type" => 'UNKNOWN',
 			"{$prefix}_description_text" => '',
 			"{$prefix}_description_data" => null,
 		];
