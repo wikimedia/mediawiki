@@ -187,13 +187,13 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers SkinTemplate::insertNotificationsIntoPersonalTools
+	 * @covers SkinTemplate::injectLegacyMenusIntoPersonalTools
 	 * @dataProvider provideContentNavigation
 	 *
 	 * @param array $contentNavigation
 	 * @param array $expected
 	 */
-	public function testInsertNotificationsIntoPersonalTools(
+	public function testInjectLegacyMenusIntoPersonalTools(
 		array $contentNavigation,
 		array $expected
 	) {
@@ -201,7 +201,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertEquals(
 			$expected,
-			$wrapper->insertNotificationsIntoPersonalTools( $contentNavigation )
+			$wrapper->injectLegacyMenusIntoPersonalTools( $contentNavigation )
 		);
 	}
 
@@ -260,7 +260,46 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 					'item 2' => [],
 					'item 3' => []
 				]
+			],
+			'userpage set, notification defined, user interface preferences set' => [
+				'contentNavigation' => [
+					'notifications' => [
+						'notification 1' => []
+					],
+					'user-menu' => [
+						'item 1' => [],
+						'userpage' => [],
+						'item 2' => [],
+						'item 3' => []
+					],
+					'user-interface-preferences' => [
+						'uls' => [],
+					],
+				],
+				'expected' => [
+					'uls' => [],
+					'item 1' => [],
+					'userpage' => [],
+					'notification 1' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
+			],
+			'no userpage, no notifications, no user-interface-preferences' => [
+				'contentNavigation' => [
+					'user-menu' => [
+						'item 1' => [],
+						'item 2' => [],
+						'item 3' => []
+					],
+				],
+				'expected' => [
+					'item 1' => [],
+					'item 2' => [],
+					'item 3' => []
+				]
 			]
 		];
 	}
+
 }
