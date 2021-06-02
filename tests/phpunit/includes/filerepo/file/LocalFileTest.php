@@ -9,6 +9,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserIdentity;
+use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Database
@@ -20,6 +21,8 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		parent::setUp();
 		$this->tablesUsed[] = 'image';
 		$this->tablesUsed[] = 'oldimage';
+		$this->tablesUsed[] = 'page';
+		$this->tablesUsed[] = 'text';
 	}
 
 	private static function getDefaultInfo() {
@@ -511,11 +514,53 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $file->getDescriptionText() );
 	}
 
+	public function provideLoadFromDBAndCache() {
+		return [
+			'legacy' => [
+				// phpcs:ignore Generic.Files.LineLength
+				'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:16;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:2:{s:8:"DateTime";s:19:"2019:07:30 13:52:32";s:15:"_MW_PNG_VERSION";i:1;}}',
+				[],
+				false,
+			],
+			'json' => [
+				// phpcs:ignore Generic.Files.LineLength
+				'{"data":{"frameCount":0,"loopCount":1,"duration":0,"bitDepth":16,"colorType":"truecolour","metadata":{"DateTime":"2019:07:30 13:52:32","_MW_PNG_VERSION":1}}}',
+				[],
+				false,
+			],
+			'json with blobs' => [
+				// phpcs:ignore Generic.Files.LineLength
+				'{"blobs":{"colorType":"__BLOB0__"},"data":{"frameCount":0,"loopCount":1,"duration":0,"bitDepth":16,"metadata":{"DateTime":"2019:07:30 13:52:32","_MW_PNG_VERSION":1}}}',
+				[ '"truecolour"' ],
+				false,
+			],
+			'large (>100KB triggers uncached case)' => [
+				// phpcs:ignore Generic.Files.LineLength
+				'{"data":{"large":"' . str_repeat( 'x', 102401 ) . '","frameCount":0,"loopCount":1,"duration":0,"bitDepth":16,"colorType":"truecolour","metadata":{"DateTime":"2019:07:30 13:52:32","_MW_PNG_VERSION":1}}}',
+				[],
+				102401,
+			],
+			'large json blob' => [
+				// phpcs:ignore Generic.Files.LineLength
+				'{"blobs":{"large":"__BLOB0__"},"data":{"frameCount":0,"loopCount":1,"duration":0,"bitDepth":16,"colorType":"truecolour","metadata":{"DateTime":"2019:07:30 13:52:32","_MW_PNG_VERSION":1}}}',
+				[ '"' . str_repeat( 'x', 102401 ) . '"' ],
+				102401,
+			],
+		];
+	}
+
 	/**
+	 * Test loadFromDB() and loadFromCache() and helpers
+	 *
+	 * @dataProvider provideLoadFromDBAndCache
 	 * @covers File
 	 * @covers LocalFile
+	 * @param string $meta
+	 * @param array $blobs Metadata blob values
+	 * @param int|false $largeItemSize The size of the "large" metadata item,
+	 *   or false if there will be no such item.
 	 */
-	public function testLoadFromDBAndCache() {
+	public function testLoadFromDBAndCache( $meta, $blobs, $largeItemSize ) {
 		$services = MediaWikiServices::getInstance();
 
 		$cache = new HashBagOStuff;
@@ -533,8 +578,41 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$comment = $services->getCommentStore()->createComment( $dbw, 'comment' );
 		$title = Title::newFromText( 'File:Random-11m.png' );
 
-		// phpcs:ignore Generic.Files.LineLength
-		$meta = 'a:6:{s:10:"frameCount";i:0;s:9:"loopCount";i:1;s:8:"duration";d:0;s:8:"bitDepth";i:16;s:9:"colorType";s:10:"truecolour";s:8:"metadata";a:2:{s:8:"DateTime";s:19:"2019:07:30 13:52:32";s:15:"_MW_PNG_VERSION";i:1;}}';
+		if ( $blobs ) {
+			$blobStore = $services->getBlobStore();
+			foreach ( $blobs as $i => $value ) {
+				$address = $blobStore->storeBlob( $value );
+				$meta = str_replace( "__BLOB{$i}__", $address, $meta );
+			}
+		}
+
+		// The provided metadata strings should all unserialize to this
+		$expectedMetaArray = [
+			'frameCount' => 0,
+			'loopCount' => 1,
+			'duration' => 0.0,
+			'bitDepth' => 16,
+			'colorType' => 'truecolour',
+			'metadata' => [
+				'DateTime' => '2019:07:30 13:52:32',
+				'_MW_PNG_VERSION' => 1,
+			],
+		];
+		if ( $largeItemSize ) {
+			$expectedMetaArray['large'] = str_repeat( 'x', $largeItemSize );
+		}
+		$expectedProps = [
+			'name' => 'Random-11m.png',
+			'size' => 10816824,
+			'width' => 1000,
+			'height' => 1800,
+			'metadata' => $expectedMetaArray,
+			'bits' => 16,
+			'media_type' => 'BITMAP',
+			'mime' => 'image/png',
+			'timestamp' => '20201105235242',
+			'sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru'
+		];
 
 		$dbw->insert(
 			'image',
@@ -557,50 +635,66 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$repo = $services->getRepoGroup()->getLocalRepo();
 		$file = $repo->findFile( $title );
 
-		$this->assertSame( 'Random-11m.png', $file->getName() );
-		$this->assertSame( 10816824, $file->getSize() );
-		$this->assertSame( 1000, $file->getWidth() );
-		$this->assertSame( 1800, $file->getHeight() );
-		$this->assertSame( unserialize( $meta ), $file->getMetadataArray() );
+		$this->assertFileProperties( $file, $expectedProps );
 		$this->assertSame( 'truecolour', $file->getMetadataItem( 'colorType' ) );
 		$this->assertSame(
 			[ 'loopCount' => 1, 'bitDepth' => 16 ],
 			$file->getMetadataItems( [ 'loopCount', 'bitDepth', 'nonexistent' ] )
 		);
-		$this->assertSame( 16, $file->getBitDepth() );
-		$this->assertSame( 'BITMAP', $file->getMediaType() );
-		$this->assertSame( 'image/png', $file->getMimeType() );
 		$this->assertSame( 'comment', $file->getDescription() );
 		$this->assertTrue( $user->equals( $file->getUploader() ) );
-		$this->assertSame( '20201105235242', $file->getTimestamp() );
-		$this->assertSame( 'sy02psim0bgdh0jt4vdltuzoh7j80ru', $file->getSha1() );
 
-		// Test cache
-		$dbw->delete( 'image', [ 'img_name' => 'Random-11m.png' ], __METHOD__ );
+		// Test cache by corrupting DB
+		// Don't wipe img_metadata though since that will be loaded by loadExtraFromDB()
+		$dbw->update( 'image', [ 'img_size' => 0 ],
+			[ 'img_name' => 'Random-11m.png' ], __METHOD__ );
 		$file = LocalFile::newFromTitle( $title, $repo );
 
-		$this->assertSame( 'Random-11m.png', $file->getName() );
-		$this->assertSame( 10816824, $file->getSize() );
-		$this->assertSame( 1000, $file->getWidth() );
-		$this->assertSame( 1800, $file->getHeight() );
-		$this->assertSame( unserialize( $meta ), $file->getMetadataArray() );
+		$this->assertFileProperties( $file, $expectedProps );
 		$this->assertSame( 'truecolour', $file->getMetadataItem( 'colorType' ) );
 		$this->assertSame(
 			[ 'loopCount' => 1, 'bitDepth' => 16 ],
 			$file->getMetadataItems( [ 'loopCount', 'bitDepth', 'nonexistent' ] )
 		);
-		$this->assertSame( 16, $file->getBitDepth() );
-		$this->assertSame( 'BITMAP', $file->getMediaType() );
-		$this->assertSame( 'image/png', $file->getMimeType() );
 		$this->assertSame( 'comment', $file->getDescription() );
 		$this->assertTrue( $user->equals( $file->getUploader() ) );
-		$this->assertSame( '20201105235242', $file->getTimestamp() );
-		$this->assertSame( 'sy02psim0bgdh0jt4vdltuzoh7j80ru', $file->getSha1() );
 
 		// Make sure we were actually hitting the WAN cache
-		$cache->clear();
-		$file = $repo->findFile( $title );
-		$this->assertSame( false, $file );
+		$dbw->delete( 'image', [ 'img_name' => 'Random-11m.png' ], __METHOD__ );
+		$file->invalidateCache();
+		$file = LocalFile::newFromTitle( $title, $repo );
+		$this->assertSame( false, $file->exists() );
+	}
+
+	private function assertFileProperties( $file, $expectedProps ) {
+		// Compare metadata without ordering
+		if ( isset( $expectedProps['metadata'] ) ) {
+			$this->assertArrayEquals( $expectedProps['metadata'], $file->getMetadataArray() );
+		}
+
+		// Filter out unsupported expected properties
+		$expectedProps = array_intersect_key(
+			$expectedProps,
+			array_fill_keys( [
+				'name', 'size', 'width', 'height',
+				'bits', 'media_type', 'mime', 'timestamp', 'sha1'
+			], true )
+		);
+
+		// Compare the other properties
+		$actualProps = [
+			'name' => $file->getName(),
+			'size' => $file->getSize(),
+			'width' => $file->getWidth(),
+			'height' => $file->getHeight(),
+			'bits' => $file->getBitDepth(),
+			'media_type' => $file->getMediaType(),
+			'mime' => $file->getMimeType(),
+			'timestamp' => $file->getTimestamp(),
+			'sha1' => $file->getSha1()
+		];
+		$actualProps = array_intersect_key( $actualProps, $expectedProps );
+		$this->assertArrayEquals( $expectedProps, $actualProps, false, true );
 	}
 
 	public function provideLegacyMetadataRoundTrip() {
@@ -628,5 +722,173 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			}
 		};
 		$this->assertSame( $meta, $file->getMetadata() );
+	}
+
+	public function provideRecordUpload3() {
+		$files = [
+			'test.jpg' => [
+				'width' => 20,
+				'height' => 20,
+				'bits' => 8,
+				'metadata' => [
+					'ImageDescription' => 'Test file',
+					'XResolution' => '72/1',
+					'YResolution' => '72/1',
+					'ResolutionUnit' => 2,
+					'YCbCrPositioning' => 1,
+					'JPEGFileComment' => [
+						'Created with GIMP',
+					],
+					'MEDIAWIKI_EXIF_VERSION' => 2,
+				],
+				'fileExists' => true,
+				'size' => 437,
+				'file-mime' => 'image/jpeg',
+				'major_mime' => 'image',
+				'minor_mime' => 'jpeg',
+				'mime' => 'image/jpeg',
+				'sha1' => '620ezvucfyia1mltnavzpqg9gmai2gf',
+				'media_type' => 'BITMAP',
+			],
+			'large-text.pdf' => [
+				'width' => 1275,
+				'height' => 1650,
+				'fileExists' => true,
+				'size' => 10598657,
+				'file-mime' => 'application/pdf',
+				'major_mime' => 'application',
+				'minor_mime' => 'pdf',
+				'mime' => 'application/pdf',
+				'sha1' => '1o3l1yqjue2diq07grnnyq9kyapfpor',
+				'bits' => 0,
+				'media_type' => 'OFFICE',
+				'metadata' => [
+					'Pages' => '6',
+					'text' => [
+						'Page 1 text .................................',
+						'Page 2 text .................................',
+						'Page 3 text .................................',
+						'Page 4 text .................................',
+						'Page 5 text .................................',
+						'Page 6 text .................................',
+					]
+				]
+			],
+			'no-text.pdf' => [
+				'width' => 1275,
+				'height' => 1650,
+				'fileExists' => true,
+				'size' => 10598657,
+				'file-mime' => 'application/pdf',
+				'major_mime' => 'application',
+				'minor_mime' => 'pdf',
+				'mime' => 'application/pdf',
+				'sha1' => '1o3l1yqjue2diq07grnnyq9kyapfpor',
+				'bits' => 0,
+				'media_type' => 'OFFICE',
+				'metadata' => [
+					'Pages' => '6',
+				]
+			]
+		];
+		$configurations = [
+			[],
+			[ 'useJsonMetadata' => true ],
+			[
+				'useJsonMetadata' => true,
+				'useSplitMetadata' => true,
+				'splitMetadataThreshold' => 50
+			]
+		];
+		return ArrayUtils::cartesianProduct( $files, $configurations );
+	}
+
+	/**
+	 * Test recordUpload3() and confirm that file properties are reflected back
+	 * after loading the new file from the DB.
+	 *
+	 * @covers LocalFile
+	 * @dataProvider provideRecordUpload3
+	 * @param array $props File properties
+	 * @param array $conf LocalRepo configuration overrides
+	 */
+	public function testRecordUpload3( $props, $conf ) {
+		$repo = new LocalRepo(
+			[
+				'class' => LocalRepo::class,
+				'name' => 'test',
+				'backend' => new FSFileBackend( [
+					'name' => 'test-backend',
+					'wikiId' => WikiMap::getCurrentWikiId(),
+					'basePath' => '/nonexistent'
+				] )
+			] + $conf
+		);
+		$title = Title::newFromText( 'File:Test.jpg' );
+		$file = new LocalFile( $title, $repo );
+
+		if ( $props['mime'] === 'application/pdf' ) {
+			$mockPdfHandler = new class extends ImageHandler {
+				public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+				}
+
+				public function useSplitMetadata() {
+					return true;
+				}
+			};
+			TestingAccessWrapper::newFromObject( $file )->handler = $mockPdfHandler;
+		}
+
+		$status = $file->recordUpload3(
+			'oldver',
+			'comment',
+			'page text',
+			$this->getTestSysop()->getUser(),
+			$props
+		);
+		$this->assertSame( [], $status->getErrors() );
+		// Check properties of the same object immediately after upload
+		$this->assertFileProperties( $file, $props );
+		// Check round-trip through the DB
+		$file = new LocalFile( $title, $repo );
+		$this->assertFileProperties( $file, $props );
+	}
+
+	/**
+	 * @covers LocalFile
+	 */
+	public function testUpload() {
+		$repo = new LocalRepo(
+			[
+				'class' => LocalRepo::class,
+				'name' => 'test',
+				'backend' => new FSFileBackend( [
+					'name' => 'test-backend',
+					'wikiId' => WikiMap::getCurrentWikiId(),
+					'basePath' => $this->getNewTempDirectory()
+				] )
+			]
+		);
+		$title = Title::newFromText( 'File:Test.jpg' );
+		$file = new LocalFile( $title, $repo );
+		$path = __DIR__ . '/../../../data/media/test.jpg';
+		$status = $file->upload(
+			$path,
+			'comment',
+			'page text',
+			0
+		);
+		$this->assertSame( [], $status->getErrors() );
+
+		// Test reupload
+		$file = new LocalFile( $title, $repo );
+		$path = __DIR__ . '/../../../data/media/jpeg-xmp-nullchar.jpg';
+		$status = $file->upload(
+			$path,
+			'comment',
+			'page text',
+			0
+		);
+		$this->assertSame( [], $status->getErrors() );
 	}
 }

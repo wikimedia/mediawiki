@@ -26,6 +26,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Storage\BlobStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\Blob;
@@ -87,6 +88,17 @@ class LocalFile extends File {
 
 	/** @var array Unserialized metadata */
 	protected $metadataArray = [];
+
+	/** @var string[] Map of metadata item name to blob address */
+	protected $metadataBlobs = [];
+
+	/**
+	 * Map of metadata item name to blob address for items that exist but
+	 * have not yet been loaded into $this->metadataArray
+	 *
+	 * @var string[]
+	 */
+	protected $unloadedMetadataBlobs = [];
 
 	/** @var string SHA-1 base 36 content hash */
 	protected $sha1;
@@ -353,7 +365,16 @@ class LocalFile extends File {
 					$cacheVal['user'] = $this->user->getId();
 					$cacheVal['user_text'] = $this->user->getName();
 				}
-				$cacheVal['metadata'] = $this->metadataArray;
+
+				// Don't cache metadata items stored as blobs, since they tend to be large
+				if ( $this->metadataBlobs ) {
+					$cacheVal['metadata'] = array_diff_key(
+						$this->metadataArray, $this->metadataBlobs );
+					// Save the blob addresses
+					$cacheVal['metadataBlobs'] = $this->metadataBlobs;
+				} else {
+					$cacheVal['metadata'] = $this->metadataArray;
+				}
 
 				// Strip off excessive entries from the subset of fields that can become large.
 				// If the cache value gets to large it will not fit in memcached and nothing will
@@ -363,6 +384,9 @@ class LocalFile extends File {
 						&& strlen( serialize( $cacheVal[$field] ) ) > 100 * 1024
 					) {
 						unset( $cacheVal[$field] ); // don't let the value get too big
+						if ( $field === 'metadata' ) {
+							unset( $cacheVal['metadataBlobs'] );
+						}
 					}
 				}
 
@@ -834,6 +858,16 @@ class LocalFile extends File {
 				$this->loadMetadataFromString( $info['metadata'] );
 			} elseif ( is_array( $info['metadata'] ) ) {
 				$this->metadataArray = $info['metadata'];
+				if ( isset( $info['metadataBlobs'] ) ) {
+					$this->metadataBlobs = $info['metadataBlobs'];
+					$this->unloadedMetadataBlobs = array_diff_key(
+						$this->metadataBlobs,
+						$this->metadataArray
+					);
+				} else {
+					$this->metadataBlobs = [];
+					$this->unloadedMetadataBlobs = [];
+				}
 			} else {
 				$logger = LoggerFactory::getInstance( 'LocalFile' );
 				$logger->warning( __METHOD__ . ' given invalid metadata of type ' .
@@ -983,12 +1017,97 @@ class LocalFile extends File {
 	 */
 	public function getMetadataArray(): array {
 		$this->load( self::LOAD_ALL );
+		if ( $this->unloadedMetadataBlobs ) {
+			return $this->getMetadataItems(
+				array_unique( array_merge(
+					array_keys( $this->metadataArray ),
+					array_keys( $this->unloadedMetadataBlobs )
+				) )
+			);
+		}
 		return $this->metadataArray;
+	}
+
+	public function getMetadataItems( array $itemNames ): array {
+		$this->load( self::LOAD_ALL );
+		$result = [];
+		$addresses = [];
+		foreach ( $itemNames as $itemName ) {
+			if ( array_key_exists( $itemName, $this->metadataArray ) ) {
+				$result[$itemName] = $this->metadataArray[$itemName];
+			} elseif ( isset( $this->unloadedMetadataBlobs[$itemName] ) ) {
+				$addresses[$itemName] = $this->unloadedMetadataBlobs[$itemName];
+			}
+		}
+		if ( $addresses ) {
+			$blobStore = $this->repo->getBlobStore();
+			if ( !$blobStore ) {
+				LoggerFactory::getInstance( 'LocalFile' )->warning(
+					"Unable to load metadata: repo has no blob store" );
+				return $result;
+			}
+			$status = $blobStore->getBlobBatch( $addresses );
+			if ( !$status->isGood() ) {
+				$msg = Status::wrap( $status )->getWikiText(
+					false, false, 'en' );
+				LoggerFactory::getInstance( 'LocalFile' )->warning(
+					"Error loading metadata from BlobStore: $msg" );
+			}
+			foreach ( $addresses as $itemName => $address ) {
+				unset( $this->unloadedMetadataBlobs[$itemName] );
+				$json = $status->getValue()[$address] ?? null;
+				if ( $json !== null ) {
+					$value = $this->jsonDecode( $json );
+					$result[$itemName] = $value;
+					$this->metadataArray[$itemName] = $value;
+				}
+			}
+		}
+		return $result;
+	}
+
+	/**
+	 * Do JSON encoding with local flags. Throw an exception if the data cannot be
+	 * serialized.
+	 *
+	 * @throws MWException
+	 * @param mixed $data
+	 * @return string
+	 */
+	private function jsonEncode( $data ): string {
+		$s = json_encode( $data,
+			JSON_INVALID_UTF8_IGNORE |
+			JSON_UNESCAPED_SLASHES |
+			JSON_UNESCAPED_UNICODE );
+		if ( $s === false ) {
+			throw new MWException( __METHOD__ . ': metadata is not JSON-serializable ' .
+				'(type = ' . $this->getMimeType() . ')' );
+		}
+		return $s;
+	}
+
+	/**
+	 * Do JSON decoding with local flags.
+	 *
+	 * This doesn't use JsonCodec because JsonCodec can construct objects,
+	 * which we don't want.
+	 *
+	 * Does not throw. Returns false on failure.
+	 *
+	 * @param string $s
+	 * @return mixed The decoded value, or false on failure
+	 */
+	private function jsonDecode( string $s ) {
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		return @json_decode( $s, true, 512, JSON_INVALID_UTF8_IGNORE );
 	}
 
 	/**
 	 * Serialize the metadata array for insertion into img_metadata, oi_metadata
-	 * or fa_metadata
+	 * or fa_metadata.
+	 *
+	 * If metadata splitting is enabled, this may write blobs to the database,
+	 * returning their addresses.
 	 *
 	 * @internal
 	 * @param IDatabase $db
@@ -996,15 +1115,77 @@ class LocalFile extends File {
 	 */
 	public function getMetadataForDb( IDatabase $db ) {
 		$this->load( self::LOAD_ALL );
-		if ( !$this->metadataArray ) {
+		if ( !$this->metadataArray && !$this->metadataBlobs ) {
 			$s = '';
+		} elseif ( $this->repo->isJsonMetadataEnabled() ) {
+			$s = $this->getJsonMetadata();
 		} else {
-			$s = serialize( $this->metadataArray );
+			$s = serialize( $this->getMetadataArray() );
 		}
 		if ( !is_string( $s ) ) {
 			throw new MWException( 'Could not serialize image metadata value for DB' );
 		}
 		return $db->encodeBlob( $s );
+	}
+
+	/**
+	 * Get metadata in JSON format ready for DB insertion, optionally splitting
+	 * items out to BlobStore.
+	 *
+	 * @return string
+	 */
+	private function getJsonMetadata() {
+		// Directly store data that is not already in BlobStore
+		$envelope = [
+			'data' => array_diff_key( $this->metadataArray, $this->metadataBlobs )
+		];
+
+		// Also store the blob addresses
+		if ( $this->metadataBlobs ) {
+			$envelope['blobs'] = $this->metadataBlobs;
+		}
+
+		// Try encoding
+		$s = $this->jsonEncode( $envelope );
+
+		// Decide whether to try splitting the metadata.
+		// Return early if it's not going to happen.
+		if ( !$this->repo->isSplitMetadataEnabled()
+			|| !$this->getHandler()
+			|| !$this->getHandler()->useSplitMetadata()
+		) {
+			return $s;
+		}
+		$threshold = $this->repo->getSplitMetadataThreshold();
+		if ( !$threshold || strlen( $s ) <= $threshold ) {
+			return $s;
+		}
+		$blobStore = $this->repo->getBlobStore();
+		if ( !$blobStore ) {
+			return $s;
+		}
+
+		// The data as a whole is above the item threshold. Look for
+		// large items that can be split out.
+		$blobAddresses = [];
+		foreach ( $envelope['data'] as $name => $value ) {
+			$encoded = $this->jsonEncode( $value );
+			if ( strlen( $encoded ) > $threshold ) {
+				$blobAddresses[$name] = $blobStore->storeBlob(
+					$encoded,
+					[ BlobStore::IMAGE_HINT => $this->getName() ]
+				);
+			}
+		}
+		// Remove any items that were split out
+		$envelope['data'] = array_diff_key( $envelope['data'], $blobAddresses );
+		$envelope['blobs'] = $blobAddresses;
+		$s = $this->jsonEncode( $envelope );
+
+		// Repeated calls to this function should not keep inserting more blobs
+		$this->metadataBlobs += $blobAddresses;
+
+		return $s;
 	}
 
 	/**
@@ -1028,18 +1209,34 @@ class LocalFile extends File {
 	 */
 	protected function loadMetadataFromString( $metadataString ) {
 		$this->extraDataLoaded = true;
+		$this->metadataArray = [];
+		$this->metadataBlobs = [];
+		$this->unloadedMetadataBlobs = [];
 		$metadataString = (string)$metadataString;
 		if ( $metadataString === '' ) {
-			$this->metadataArray = [];
+			return;
+		}
+		if ( $metadataString[0] === '{' ) {
+			$envelope = $this->jsonDecode( $metadataString );
+			if ( !$envelope ) {
+				// Legacy error encoding
+				$this->metadataArray = [ '_error' => $metadataString ];
+			} else {
+				if ( isset( $envelope['data'] ) ) {
+					$this->metadataArray = $envelope['data'];
+				}
+				if ( isset( $envelope['blobs'] ) ) {
+					$this->metadataBlobs = $this->unloadedMetadataBlobs = $envelope['blobs'];
+				}
+			}
 		} else {
 			// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
 			$data = @unserialize( $metadataString );
 			if ( !is_array( $data ) ) {
 				// Legacy error encoding
-				$this->metadataArray = [ '_error' => $metadataString ];
-			} else {
-				$this->metadataArray = $data;
+				$data = [ '_error' => $metadataString ];
 			}
+			$this->metadataArray = $data;
 		}
 	}
 
