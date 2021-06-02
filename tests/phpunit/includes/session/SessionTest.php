@@ -9,7 +9,7 @@ use Wikimedia\TestingAccessWrapper;
 
 /**
  * @group Session
- * @covers MediaWiki\Session\Session
+ * @covers \MediaWiki\Session\Session
  */
 class SessionTest extends MediaWikiIntegrationTestCase {
 

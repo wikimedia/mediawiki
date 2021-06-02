@@ -102,11 +102,14 @@ class Token {
 
 	/**
 	 * Test if the token-string matches this token
-	 * @param string $userToken
+	 * @param string|null $userToken
 	 * @param int|null $maxAge Return false if $userToken is older than this many seconds
 	 * @return bool
 	 */
 	public function match( $userToken, $maxAge = null ) {
+		if ( !$userToken ) {
+			return false;
+		}
 		$timestamp = self::getTimestamp( $userToken );
 		if ( $timestamp === null ) {
 			return false;

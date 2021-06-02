@@ -25,6 +25,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Session\CsrfTokenSet;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 use Wikimedia\NonSerializable\NonSerializableTrait;
@@ -528,6 +529,10 @@ class RequestContext implements IContextSource, MutableContext {
 			'sessionId' => $session->isPersistent() ? $session->getId() : '',
 			'userId' => $this->getUser()->getId()
 		];
+	}
+
+	public function getCsrfTokenSet() : CsrfTokenSet {
+		return new CsrfTokenSet( $this->getRequest() );
 	}
 
 	/**
