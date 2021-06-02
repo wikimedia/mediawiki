@@ -200,7 +200,12 @@ class ApiMain extends ApiBase {
 				'WatchlistManager',
 			]
 		],
-		'patrol' => ApiPatrol::class,
+		'patrol' => [
+			'class' => ApiPatrol::class,
+			'services' => [
+				'RevisionStore',
+			]
+		],
 		'import' => [
 			'class' => ApiImport::class,
 			'services' => [
