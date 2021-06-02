@@ -2775,6 +2775,7 @@
 	"autoblocklist-otherblocks": "Other {{PLURAL:$1|autoblock|autoblocks}}",
 	"ipblocklist": "Blocked users",
 	"ipblocklist-legend": "Find a blocked user",
+	"blocklist-autoblocks": "Hide autoblocks",
 	"blocklist-userblocks": "Hide account blocks",
 	"blocklist-tempblocks": "Hide temporary blocks",
 	"blocklist-indefblocks": "Hide indefinite blocks",
