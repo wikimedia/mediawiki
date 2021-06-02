@@ -252,7 +252,6 @@ class RollbackAction extends FormAction {
 		return [
 			'intro' => [
 				'type' => 'info',
-				'vertical-label' => true,
 				'raw' => true,
 				'default' => $this->msg( 'confirm-rollback-bottom' )->parse()
 			]

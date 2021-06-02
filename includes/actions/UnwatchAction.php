@@ -46,7 +46,6 @@ class UnwatchAction extends WatchAction {
 		return [
 			'intro' => [
 				'type' => 'info',
-				'vertical-label' => true,
 				'raw' => true,
 				'default' => $this->msg( 'confirm-unwatch-top' )->parse()
 			]
