@@ -774,7 +774,7 @@
 	"viewpagelogs-lowercase": "ჟურნალის ხილვა ამ გვერდისთვის",
 	"nohistory": "ამ გვერდს განხილვის გვერდი ცარიელი აქვს.",
 	"currentrev": "მიმდინარე შესწორება",
-	"currentrev-asof": "მიმდინარე ცვლილება $1 მდგომარეობით",
+	"currentrev-asof": "უკანასკნელი რედაქცია $1ა მდგომარეობით",
 	"revisionasof": "$1-ის ვერსია",
 	"revision-info": "$1-ის ვერსია, {{GENDER:$6|$2}}$7",
 	"previousrevision": "←წინა ვერსია",
