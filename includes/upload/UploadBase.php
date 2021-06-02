@@ -2019,9 +2019,7 @@ abstract class UploadBase {
 			return false;
 		}
 
-		$img->load();
-
-		return $performer->getUser()->getId() == $img->getUser( 'id' );
+		return $performer->getUser()->equals( $img->getUploader( File::RAW ) );
 	}
 
 	/**

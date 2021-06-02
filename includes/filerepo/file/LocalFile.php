@@ -897,8 +897,8 @@ class LocalFile extends File {
 
 	/**
 	 * Returns user who uploaded the file
-	 * @stable to override
 	 *
+	 * @deprecated since 1.37. Use ::getUploader instead
 	 * @param string $type 'text', 'id', or 'object'
 	 * @return int|string|User
 	 * @since 1.31 Added 'object'
@@ -2218,6 +2218,24 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * @since 1.37
+	 * @stable to override
+	 * @param int $audience
+	 * @param Authority|null $performer
+	 * @return UserIdentity|null
+	 */
+	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ): ?UserIdentity {
+		$this->load();
+		if ( $audience === self::FOR_PUBLIC && $this->isDeleted( self::DELETED_USER ) ) {
+			return null;
+		} elseif ( $audience === self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER, $performer ) ) {
+			return null;
+		} else {
+			return $this->user;
+		}
+	}
+
+	/**
 	 * @stable to override
 	 * @param int $audience
 	 * @param Authority|null $performer
@@ -2227,8 +2245,7 @@ class LocalFile extends File {
 		$this->load();
 		if ( $audience == self::FOR_PUBLIC && $this->isDeleted( self::DELETED_COMMENT ) ) {
 			return '';
-		} elseif ( $audience == self::FOR_THIS_USER
-			&& !$this->userCan( self::DELETED_COMMENT, $performer )
+		} elseif ( $audience == self::FOR_THIS_USER && !$this->userCan( self::DELETED_COMMENT, $performer )
 		) {
 			return '';
 		} else {
