@@ -275,12 +275,14 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * @deprecated since 1.35 Please, use ContentHandlerFactory. Cleanup is not needed
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 * Please, use ContentHandlerFactory. Cleanup is not needed
 	 * @see ContentHandlerFactory
 	 *
 	 * Clean up handlers cache.
 	 */
 	public static function cleanupHandlersCache() {
+		wfDeprecated( __METHOD__, '1.35' );
 		// No-op: no longer needed, since the instance cache is in the
 		// ContentHandlerFactory service, and services get reset between tests
 	}

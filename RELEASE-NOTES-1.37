@@ -340,7 +340,7 @@ because of Phabricator reports.
   ::setHookContainer() were hard deprecated. Use ::init() to inject
   dependencies or override ::postInitSetup() to do any custom
   post-initialization configuration.
-* ContentHandler::getContentText() and is now soft deprecated.
+* ContentHandler::getContentText() is now soft deprecated.
   Use Content::getText() instead.
 * MediaWiki\User\UserNamePrefixSearch::search() previously accepted as
   its first parameter either the string 'public' or a UserIdentity object,
@@ -359,6 +359,8 @@ because of Phabricator reports.
   post-initialization configuration.
 * RecentChange::getPerformer(), hard-deprecated since 1.37,
   use getPerformerIdentity() instead.
+* ContentHandler::cleanupHandlersCache(), deprecated since 1.35, now emits
+  deprecation warnings.
 * …
 
 === Other changes in 1.37 ===
