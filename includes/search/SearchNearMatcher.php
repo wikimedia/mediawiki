@@ -44,7 +44,6 @@ class SearchNearMatcher {
 	private $userNameUtils;
 
 	/**
-	 * SearchNearMatcher constructor.
 	 * @param Config $config
 	 * @param Language $lang
 	 * @param HookContainer $hookContainer

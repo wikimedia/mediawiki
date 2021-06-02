@@ -69,8 +69,6 @@ class EditResult implements JsonSerializable {
 	private $revertTags;
 
 	/**
-	 * EditResult constructor.
-	 *
 	 * @param bool $isNew
 	 * @param bool|int $originalRevisionId
 	 * @param int|null $revertMethod
