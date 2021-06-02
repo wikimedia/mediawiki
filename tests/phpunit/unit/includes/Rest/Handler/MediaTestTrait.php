@@ -2,8 +2,9 @@
 
 namespace MediaWiki\Tests\Rest\Handler;
 
-use File;
+use LocalFile;
 use MediaWiki\Page\PageReference;
+use MediaWiki\User\UserIdentityValue;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use RepoGroup;
@@ -22,16 +23,16 @@ trait MediaTestTrait {
 	/**
 	 * @param PageReference|string $title
 	 *
-	 * @return File|MockObject
+	 * @return LocalFile|MockObject
 	 */
 	private function makeMissingMockFile( $title ) {
 		$title = $title instanceof PageReference
 			? $this->makeMockTitle( $title->getDBkey(), [ 'namespace' => $title->getNamespace() ] )
 			: $this->makeMockTitle( 'File:' . $title, [ 'namespace' => NS_FILE ] );
 
-		/** @var MockObject|File $file */
+		/** @var MockObject|LocalFile $file */
 		$file = $this->createNoOpMock(
-			File::class,
+			LocalFile::class,
 			[ 'getTitle', 'exists', 'getDescriptionUrl' ]
 		);
 		$file->method( 'getTitle' )->willReturn( $title );
@@ -46,17 +47,17 @@ trait MediaTestTrait {
 	/**
 	 * @param PageReference|string $title
 	 *
-	 * @return File|MockObject
+	 * @return LocalFile|MockObject
 	 */
 	private function makeMockFile( $title ) {
 		$title = $title instanceof PageReference
 			? $this->makeMockTitle( $title->getDBkey(), [ 'namespace' => $title->getNamespace() ] )
 			: $this->makeMockTitle( 'File:' . $title, [ 'namespace' => NS_FILE ] );
 
-		/** @var MockObject|File $file */
+		/** @var MockObject|LocalFile $file */
 		$file = $this->createNoOpMock(
-			File::class,
-			[ 'getTitle', 'getDescriptionUrl', 'exists', 'userCan', 'getUser', 'getTimestamp',
+			LocalFile::class,
+			[ 'getTitle', 'getDescriptionUrl', 'exists', 'userCan', 'getUser', 'getUploader', 'getTimestamp',
 				'getMediaType', 'getSize', 'getHeight', 'getWidth', 'getDisplayWidthHeight',
 				'getLength', 'getUrl', 'allowInlineDisplay', 'transform', 'getSha1' ]
 		);
@@ -66,6 +67,8 @@ trait MediaTestTrait {
 		$file->method( 'getUser' )->willReturnCallback( static function ( $type ) {
 			return $type === 'id' ? 7 : 'Alice';
 		} );
+		$file->method( 'getUploader' )
+			->willReturn( UserIdentityValue::newRegistered( 7, 'Alice' ) );
 		$file->method( 'getTimestamp' )->willReturn( '20200102030405' );
 		$file->method( 'getMediaType' )->willReturn( 'test' );
 		$file->method( 'getSize' )->willReturn( 12345 );

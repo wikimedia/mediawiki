@@ -608,7 +608,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * Returns ID or name of user who uploaded the file
 	 * STUB
 	 *
-	 * @stable to override
+	 * @deprecated since 1.37. Use and override ::getUploader instead.
 	 * @param string $type 'text' or 'id'
 	 * @return string|int
 	 */
@@ -2223,6 +2223,36 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Get the identity of the file uploader.
+	 *
+	 * @note if the file does not exist, this will return null regardless of the permissions.
+	 *
+	 * @stable to override
+	 * @since 1.37
+	 * @param int $audience One of:
+	 *   File::FOR_PUBLIC       to be displayed to all users
+	 *   File::FOR_THIS_USER    to be displayed to the given user
+	 *   File::RAW              get the description regardless of permissions
+	 * @param Authority|null $performer to check for, only if FOR_THIS_USER is
+	 *   passed to the $audience parameter
+	 * @return UserIdentity|null
+	 */
+	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ): ?UserIdentity {
+		// Default implementation until all getUser overrides are eliminated.
+		if ( $audience === self::FOR_PUBLIC && $this->isDeleted( self::DELETED_USER ) ) {
+			return null;
+		} elseif ( $audience === self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER, $performer ) ) {
+			return null;
+		} else {
+			$user = $this->getUser();
+			if ( $user ) {
+				return User::newFromName( $user );
+			}
+			return null;
+		}
 	}
 
 	/**

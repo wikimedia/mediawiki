@@ -695,14 +695,21 @@ class XmlDumpWriter {
 		} else {
 			$contents = '';
 		}
-		if ( $file->isDeleted( File::DELETED_COMMENT ) ) {
-			$comment = Xml::element( 'comment', [ 'deleted' => 'deleted' ] );
+		$uploader = $file->getUploader( File::FOR_PUBLIC );
+		if ( $uploader ) {
+			$uploader = $this->writeContributor( $uploader->getId(), $uploader->getName() );
 		} else {
-			$comment = Xml::elementClean( 'comment', null, strval( $file->getDescription() ) );
+			$uploader = Xml::element( 'contributor', [ 'deleted' => 'deleted' ] ) . "\n";
+		}
+		$comment = $file->getDescription( File::FOR_PUBLIC );
+		if ( $comment ) {
+			$comment = Xml::elementClean( 'comment', null, $comment );
+		} else {
+			$comment = Xml::element( 'comment', [ 'deleted' => 'deleted' ] );
 		}
 		return "    <upload>\n" .
 			$this->writeTimestamp( $file->getTimestamp() ) .
-			$this->writeContributor( $file->getUser( 'id' ), $file->getUser( 'text' ) ) .
+			$uploader .
 			"      " . $comment . "\n" .
 			"      " . Xml::element( 'filename', null, $file->getName() ) . "\n" .
 			$archiveName .

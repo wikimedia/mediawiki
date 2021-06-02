@@ -6,11 +6,22 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\UserIdentity;
 
 /**
  * @group Database
  */
 class LocalFileTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->tablesUsed[] = 'image';
+		$this->tablesUsed[] = 'oldimage';
+	}
+
 	private static function getDefaultInfo() {
 		return [
 			'name' => 'test',
@@ -290,11 +301,132 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	public function testGetUserForNonExistingFile() {
 		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
 		$this->assertSame( 'Unknown user', $file->getUser() );
-		$this->assertSame( 0, $file->getUser( 'id' ) );
 	}
 
 	/**
-	 * @covers File::getUser
+	 * @covers LocalFile::getUploader
+	 */
+	public function testGetUploaderForNonExistingFile() {
+		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
+		$this->assertNull( $file->getUploader() );
+	}
+
+	public function providePermissionChecks() {
+		$capablePerformer = $this->mockAnonAuthorityWithPermissions( [ 'deletedhistory', 'deletedtext' ] );
+		$incapablePerformer = $this->mockAnonAuthorityWithoutPermissions( [ 'deletedhistory', 'deletedtext' ] );
+		yield 'Deleted, RAW' => [
+			'performer' => $incapablePerformer,
+			'audience' => File::RAW,
+			'deleted' => File::DELETED_USER | File::DELETED_COMMENT,
+			'expected' => true,
+		];
+		yield 'No permission, not deleted' => [
+			'performer' => $incapablePerformer,
+			'audience' => File::FOR_THIS_USER,
+			'deleted' => 0,
+			'expected' => true,
+		];
+		yield 'No permission, deleted' => [
+			'performer' => $incapablePerformer,
+			'audience' => File::FOR_THIS_USER,
+			'deleted' => File::DELETED_USER | File::DELETED_COMMENT,
+			'expected' => false,
+		];
+		yield 'Not deleted, public' => [
+			'performer' => $capablePerformer,
+			'audience' => File::FOR_PUBLIC,
+			'deleted' => 0,
+			'expected' => true,
+		];
+		yield 'Deleted, public' => [
+			'performer' => $capablePerformer,
+			'audience' => File::FOR_PUBLIC,
+			'deleted' => File::DELETED_USER | File::DELETED_COMMENT,
+			'expected' => false,
+		];
+		yield 'With permission, deleted' => [
+			'performer' => $capablePerformer,
+			'audience' => File::FOR_THIS_USER,
+			'deleted' => File::DELETED_USER | File::DELETED_COMMENT,
+			'expected' => true,
+		];
+	}
+
+	private function getOldLocalFileWithDeletion(
+		UserIdentity $uploader,
+		int $deletedFlags
+	): OldLocalFile {
+		$this->db->insert(
+			'oldimage',
+			[
+				'oi_name' => 'Random-11m.png',
+				'oi_archive_name' => 'Random-11m.png',
+				'oi_size' => 10816824,
+				'oi_width' => 1000,
+				'oi_height' => 1800,
+				'oi_metadata' => '',
+				'oi_bits' => 16,
+				'oi_media_type' => 'BITMAP',
+				'oi_major_mime' => 'image',
+				'oi_minor_mime' => 'png',
+				'oi_description_id' => $this->getServiceContainer()
+					->getCommentStore()
+					->createComment( $this->db, 'comment' )->id,
+				'oi_actor' => $this->getServiceContainer()
+					->getActorStore()
+					->acquireActorId( $uploader, $this->db ),
+				'oi_timestamp' => $this->db->timestamp( '20201105235242' ),
+				'oi_sha1' => 'sy02psim0bgdh0jt4vdltuzoh7j80ru',
+				'oi_deleted' => $deletedFlags,
+			]
+		);
+		$file = OldLocalFile::newFromTitle(
+			Title::newFromText( 'File:Random-11m.png' ),
+			$this->getServiceContainer()->getRepoGroup()->getLocalRepo(),
+			'20201105235242'
+		);
+		$this->assertInstanceOf( File::class, $file, 'Sanity: created a test file' );
+		return $file;
+	}
+
+	/**
+	 * @dataProvider providePermissionChecks
+	 * @covers LocalFile::getUploader
+	 */
+	public function testGetUploader(
+		Authority $performer,
+		int $audience,
+		int $deleted,
+		bool $expected
+	) {
+		$file = $this->getOldLocalFileWithDeletion( $performer->getUser(), $deleted );
+		if ( $expected ) {
+			$this->assertTrue( $performer->getUser()->equals( $file->getUploader( $audience, $performer ) ) );
+		} else {
+			$this->assertNull( $file->getUploader( $audience, $performer ) );
+		}
+	}
+
+	/**
+	 * @dataProvider providePermissionChecks
+	 * @covers LocalFile::getDescription
+	 */
+	public function testGetDescription(
+		Authority $performer,
+		int $audience,
+		int $deleted,
+		bool $expected
+	) {
+		$file = $this->getOldLocalFileWithDeletion( $performer->getUser(), $deleted );
+		if ( $expected ) {
+			$this->assertSame( 'comment', $file->getDescription( $audience, $performer ) );
+		} else {
+			$this->assertSame( '', $file->getDescription( $audience, $performer ) );
+		}
+	}
+
+	/**
+	 * @covers File::getDescriptionShortUrl
 	 */
 	public function testDescriptionShortUrlForNonExistingFile() {
 		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
@@ -302,7 +434,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers File::getUser
+	 * @covers File::getDescriptionText
 	 */
 	public function testDescriptionTextForNonExistingFile() {
 		$file = ( new LocalRepo( self::getDefaultInfo() ) )->newFile( 'test!' );
