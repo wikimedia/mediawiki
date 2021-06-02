@@ -367,7 +367,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SpecialWatchlistGetNonRevisionTypesHook,
 	\MediaWiki\Hook\TestCanonicalRedirectHook,
 	\MediaWiki\Hook\ThumbnailBeforeProduceHTMLHook,
-	\MediaWiki\Hook\TitleArrayFromResultHook,
 	\MediaWiki\Hook\TitleExistsHook,
 	\MediaWiki\Hook\TitleGetEditNoticesHook,
 	\MediaWiki\Hook\TitleGetRestrictionTypesHook,
@@ -3839,13 +3838,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ThumbnailBeforeProduceHTML',
 			[ $thumbnail, &$attribs, &$linkAttribs ]
-		);
-	}
-
-	public function onTitleArrayFromResult( &$titleArray, $res ) {
-		return $this->container->run(
-			'TitleArrayFromResult',
-			[ &$titleArray, $res ]
 		);
 	}
 
