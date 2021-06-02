@@ -189,6 +189,7 @@ because of Phabricator reports.
   CachedAction, SpecialCachedPage, CacheHelper, ICacheHelper.
 * The hooks BeforeHttpsRedirect, CanIPUseHTTPS and UserRequiresHTTPS, deprecated
   in 1.35, were removed.
+* The TitleArrayFromResult hook, deprecated in 1.36, was removed.
 * The deprecated "es6-promise" alias ResourceLoader module has been removed. Use
   "es6-polyfills" directly intead.
 * AuthenticationProvider interface doesn't extend LoggerAwareInterface.
