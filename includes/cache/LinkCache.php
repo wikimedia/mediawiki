@@ -23,6 +23,11 @@
 
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageIdentity;
+use MediaWiki\Page\PageReference;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -32,7 +37,7 @@ use Wikimedia\Rdbms\ILoadBalancer;
  *
  * @ingroup Cache
  */
-class LinkCache {
+class LinkCache implements LoggerAwareInterface {
 	/** @var MapCacheLRU */
 	private $goodLinks;
 	/** @var MapCacheLRU */
@@ -51,6 +56,9 @@ class LinkCache {
 
 	/** @var ILoadBalancer|null */
 	private $loadBalancer;
+
+	/** @var LoggerInterface */
+	private $logger;
 
 	/**
 	 * How many Titles to store. There are two caches, so the amount actually
@@ -80,6 +88,14 @@ class LinkCache {
 		$this->titleFormatter = $titleFormatter;
 		$this->nsInfo = $nsInfo;
 		$this->loadBalancer = $loadBalancer;
+		$this->logger = new NullLogger();
+	}
+
+	/**
+	 * @param LoggerInterface $logger
+	 */
+	public function setLogger( LoggerInterface $logger ) {
+		$this->logger = $logger;
 	}
 
 	/**
@@ -110,11 +126,71 @@ class LinkCache {
 	}
 
 	/**
-	 * @param string $title Prefixed DB key
-	 * @return int Page ID or zero
+	 * @param LinkTarget|PageReference|string $page
+	 * @param bool $passThrough Return $page if $page is a string
+	 *
+	 * @return ?string the cache key
 	 */
-	public function getGoodLinkID( $title ) {
-		$info = $this->goodLinks->get( $title );
+	private function getCacheKey( $page, $passThrough = false ) {
+		if ( is_string( $page ) ) {
+			if ( $passThrough ) {
+				return $page;
+			} else {
+				throw new InvalidArgumentException( 'They key may not be given as a string here' );
+			}
+		}
+
+		if ( $page instanceof PageReference && $page->getWikiId() !== PageReference::LOCAL ) {
+			// No cross-wiki support yet. Perhaps LinkCache can become wiki-aware in the future.
+			$this->logger->info(
+				'cross-wiki page reference',
+				[ 'page-wiki' => $page->getWikiId(), 'page-reference' => $page ]
+			);
+			return null;
+		}
+
+		if ( $page instanceof PageIdentity && !$page->canExist() ) {
+			// Non-proper page, perhaps a special page or interwiki link or relative section link.
+			$this->logger->warning(
+				'non-proper page reference',
+				[ 'page-reference' => $page ]
+			);
+			return null;
+		}
+
+		if ( $page instanceof LinkTarget
+			&& ( $page->isExternal() || $page->getText() === '' || $page->getNamespace() < 0 )
+		) {
+			// Interwiki link or relative section link. These do not have a page ID, so they
+			// can neither be "good" nor "bad" in the sense of this class.
+			$this->logger->warning(
+				'link to non-proper page',
+				[ 'page-link' => $page ]
+			);
+			return null;
+		}
+
+		return $this->titleFormatter->getPrefixedDBkey( $page );
+	}
+
+	/**
+	 * Returns the ID of the given page, if information about this page has been cached.
+	 *
+	 * @param LinkTarget|PageReference|string $page The page to get the ID for,
+	 *        as an object or a prefixed DB key.
+	 *        In MediaWiki 1.36 and earlier, only a string was accepted.
+	 * @return int Page ID, or zero if the page was not cached or does not exist or is not a
+	 *         proper page (e.g. a special page or an interwiki link).
+	 */
+	public function getGoodLinkID( $page ) {
+		$key = $this->getCacheKey( $page, true );
+
+		if ( $key === null ) {
+			return 0;
+		}
+
+		$info = $this->goodLinks->get( $key );
+
 		if ( !$info ) {
 			return 0;
 		}
@@ -122,15 +198,22 @@ class LinkCache {
 	}
 
 	/**
-	 * Get a field of a title object from cache.
+	 * Get a field of a page from the cache.
+	 *
 	 * If this link is not a cached good title, it will return NULL.
-	 * @param LinkTarget $target
-	 * @param string $field ('length','redirect','revision','model')
-	 * @return string|int|null
+	 * @param LinkTarget|PageReference $page The page to get cached info for.
+	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
+	 * @param string $field ( 'id', 'length', 'redirect', 'revision', 'model', 'lang', 'restrictions' )
+	 * @return string|int|null The field value, or null if the page was not cached or does not exist
+	 *         or is not a proper page (e.g. a special page or interwiki link).
 	 */
-	public function getGoodLinkFieldObj( LinkTarget $target, $field ) {
-		$dbkey = $this->titleFormatter->getPrefixedDBkey( $target );
-		$info = $this->goodLinks->get( $dbkey );
+	public function getGoodLinkFieldObj( $page, string $field ) {
+		$key = $this->getCacheKey( $page );
+		if ( $key === null ) {
+			return null;
+		}
+
+		$info = $this->goodLinks->get( $key );
 		if ( !$info ) {
 			return null;
 		}
@@ -138,30 +221,43 @@ class LinkCache {
 	}
 
 	/**
-	 * @param string $title Prefixed DB key
-	 * @return bool
+	 * Returns true if the fact that this page does not exist had been added to the cache.
+	 *
+	 * @param LinkTarget|PageReference|string $page The page to get cached info for,
+	 *        as an object or a prefixed DB key.
+	 *        In MediaWiki 1.36 and earlier, only a string was accepted.
+	 * @return bool True if the page is known to not exist.
 	 */
-	public function isBadLink( $title ) {
-		// Use get() to ensure it records as used for LRU.
-		return $this->badLinks->has( $title );
+	public function isBadLink( $page ) {
+		$key = $this->getCacheKey( $page, true );
+
+		return $key !== null && $this->badLinks->has( $key );
 	}
 
 	/**
-	 * Add a link for the title to the link cache
+	 * Add information about an existing page to the cache.
+	 *
+	 * @see addGoodLinkObjFromRow()
 	 *
 	 * @param int $id Page's ID
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageReference $page The page to set cached info for.
+	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
 	 * @param int $len Text's length
 	 * @param int|null $redir Whether the page is a redirect
 	 * @param int $revision Latest revision's ID
 	 * @param string|null $model Latest revision's content model ID
 	 * @param string|null $lang Language code of the page, if not the content language
 	 */
-	public function addGoodLinkObj( $id, LinkTarget $target, $len = -1, $redir = null,
+	public function addGoodLinkObj( $id, $page, $len = -1, $redir = null,
 		$revision = 0, $model = null, $lang = null
 	) {
-		$dbkey = $this->titleFormatter->getPrefixedDBkey( $target );
-		$this->goodLinks->set( $dbkey, [
+		$key = $this->getCacheKey( $page );
+
+		if ( $key === null ) {
+			return;
+		}
+
+		$this->goodLinks->set( $key, [
 			'id' => (int)$id,
 			'length' => (int)$len,
 			'redirect' => (int)$redir,
@@ -170,18 +266,26 @@ class LinkCache {
 			'lang' => $lang ? (string)$lang : null,
 			'restrictions' => null
 		] );
+		$this->badLinks->clear( $key );
 	}
 
 	/**
 	 * Same as above with better interface.
 	 * @since 1.19
-	 * @param LinkTarget $target
-	 * @param stdClass $row Object which has the fields page_id, page_is_redirect,
-	 *  page_latest and page_content_model
+	 *
+	 * @param LinkTarget|PageReference $page The page to set cached info for.
+	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
+	 * @param stdClass $row Object which has all fields returned by getSelectFields().
+	 *
 	 */
-	public function addGoodLinkObjFromRow( LinkTarget $target, $row ) {
-		$dbkey = $this->titleFormatter->getPrefixedDBkey( $target );
-		$this->goodLinks->set( $dbkey, [
+	public function addGoodLinkObjFromRow( $page, stdClass $row ) {
+		$key = $this->getCacheKey( $page );
+
+		if ( $key === null ) {
+			return;
+		}
+
+		$this->goodLinks->set( $key, [
 			'id' => intval( $row->page_id ),
 			'length' => intval( $row->page_len ),
 			'redirect' => intval( $row->page_is_redirect ),
@@ -196,32 +300,45 @@ class LinkCache {
 				? strval( $row->page_restrictions )
 				: null
 		] );
+		$this->badLinks->clear( $key );
 	}
 
 	/**
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageReference $page The page to set cached info for.
+	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
 	 */
-	public function addBadLinkObj( LinkTarget $target ) {
-		$dbkey = $this->titleFormatter->getPrefixedDBkey( $target );
-		if ( !$this->isBadLink( $dbkey ) ) {
-			$this->badLinks->set( $dbkey, 1 );
+	public function addBadLinkObj( $page ) {
+		$key = $this->getCacheKey( $page );
+		if ( $key !== null && !$this->isBadLink( $key ) ) {
+			$this->badLinks->set( $key, 1 );
+			$this->goodLinks->clear( $key );
 		}
 	}
 
 	/**
-	 * @param string $title Prefixed DB key
+	 * @param LinkTarget|PageReference|string $page The page to clear cached info for,
+	 *        as an object or a prefixed DB key.
+	 *        In MediaWiki 1.36 and earlier, only a string was accepted.
 	 */
-	public function clearBadLink( $title ) {
-		$this->badLinks->clear( $title );
+	public function clearBadLink( $page ) {
+		$key = $this->getCacheKey( $page, true );
+
+		if ( $key !== null ) {
+			$this->badLinks->clear( $key );
+		}
 	}
 
 	/**
-	 * @param LinkTarget $target
+	 * @param LinkTarget|PageReference $page The page to clear cached info for.
+	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
 	 */
-	public function clearLink( LinkTarget $target ) {
-		$dbkey = $this->titleFormatter->getPrefixedDBkey( $target );
-		$this->badLinks->clear( $dbkey );
-		$this->goodLinks->clear( $dbkey );
+	public function clearLink( $page ) {
+		$key = $this->getCacheKey( $page );
+
+		if ( $key !== null ) {
+			$this->badLinks->clear( $key );
+			$this->goodLinks->clear( $key );
+		}
 	}
 
 	/**
@@ -250,23 +367,35 @@ class LinkCache {
 	}
 
 	/**
-	 * Add a title to the link cache, return the page_id or zero if non-existent
+	 * Add a title to the link cache, return the page_id or zero if non-existent.
+	 * This causes the link to be looked up in the database if it is not yet cached.
 	 *
-	 * @param LinkTarget $nt LinkTarget object to add
+	 * @param LinkTarget|PageReference $page The page to load.
+	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
+	 *
 	 * @return int Page ID or zero
 	 */
-	public function addLinkObj( LinkTarget $nt ) {
-		$key = $this->titleFormatter->getPrefixedDBkey( $nt );
-		if ( $this->isBadLink( $key ) || $nt->isExternal() || $nt->getNamespace() < 0 ) {
-			return 0;
-		}
-		$id = $this->getGoodLinkID( $key );
-		if ( $id != 0 ) {
-			return $id;
+	public function addLinkObj( $page ) {
+		if ( $page instanceof LinkTarget ) {
+			$nt = $page;
+		} else {
+			$nt = TitleValue::castPageToLinkTarget( $page );
 		}
 
-		if ( $key === '' ) {
+		$key = $this->getCacheKey( $nt );
+		if ( $key === null ) {
 			return 0;
+		}
+
+		if ( !$this->mForUpdate ) {
+			$id = $this->getGoodLinkID( $key );
+			if ( $id != 0 ) {
+				return $id;
+			}
+
+			if ( $this->isBadLink( $key ) ) {
+				return 0;
+			}
 		}
 
 		// Only query database, when load balancer is provided by service wiring
@@ -312,20 +441,32 @@ class LinkCache {
 
 	/**
 	 * @param WANObjectCache $cache
-	 * @param LinkTarget $t
+	 * @param LinkTarget|Pagereference $page
+	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
 	 * @return string[]
 	 * @since 1.28
 	 */
-	public function getMutableCacheKeys( WANObjectCache $cache, LinkTarget $t ) {
-		if ( $this->isCacheable( $t ) ) {
-			return [ $cache->makeKey( 'page', $t->getNamespace(), sha1( $t->getDBkey() ) ) ];
+	public function getMutableCacheKeys( WANObjectCache $cache, $page ) {
+		$key = $this->getCacheKey( $page );
+		// if no key can be derived, the page isn't cacheable
+		if ( $key === null ) {
+			return [];
+		}
+
+		if ( $this->isCacheable( $page ) ) {
+			return [ $cache->makeKey( 'page', $page->getNamespace(), sha1( $page->getDBkey() ) ) ];
 		}
 
 		return [];
 	}
 
-	private function isCacheable( LinkTarget $title ) {
-		$ns = $title->getNamespace();
+	/**
+	 * @param LinkTarget|PageReference $page
+	 *
+	 * @return bool
+	 */
+	private function isCacheable( $page ) {
+		$ns = $page->getNamespace();
 		if ( in_array( $ns, [ NS_TEMPLATE, NS_FILE, NS_CATEGORY, NS_MEDIAWIKI ] ) ) {
 			return true;
 		}
@@ -337,16 +478,22 @@ class LinkCache {
 		return ( $ns >= 100 && $this->nsInfo->isSubject( $ns ) );
 	}
 
-	private function fetchPageRow( IDatabase $db, LinkTarget $nt ) {
+	/**
+	 * @param IDatabase $db
+	 * @param LinkTarget|PageReference $page
+	 *
+	 * @return stdClass|false
+	 */
+	private function fetchPageRow( IDatabase $db, $page ) {
 		$fields = self::getSelectFields();
-		if ( $this->isCacheable( $nt ) ) {
+		if ( $this->isCacheable( $page ) ) {
 			$fields[] = 'page_touched';
 		}
 
 		return $db->selectRow(
 			'page',
 			$fields,
-			[ 'page_namespace' => $nt->getNamespace(), 'page_title' => $nt->getDBkey() ],
+			[ 'page_namespace' => $page->getNamespace(), 'page_title' => $page->getDBkey() ],
 			__METHOD__
 		);
 	}
@@ -354,16 +501,19 @@ class LinkCache {
 	/**
 	 * Purge the link cache for a title
 	 *
-	 * @param LinkTarget $title
+	 * @param LinkTarget|PageReference $page
+	 *        In MediaWiki 1.36 and earlier, only LinkTarget was accepted.
 	 * @since 1.28
 	 */
-	public function invalidateTitle( LinkTarget $title ) {
-		if ( $this->isCacheable( $title ) ) {
+	public function invalidateTitle( $page ) {
+		if ( $this->isCacheable( $page ) ) {
 			$cache = $this->wanCache;
 			$cache->delete(
-				$cache->makeKey( 'page', $title->getNamespace(), sha1( $title->getDBkey() ) )
+				$cache->makeKey( 'page', $page->getNamespace(), sha1( $page->getDBkey() ) )
 			);
 		}
+
+		$this->clearLink( $page );
 	}
 
 	/**
@@ -373,4 +523,5 @@ class LinkCache {
 		$this->goodLinks->clear();
 		$this->badLinks->clear();
 	}
+
 }
