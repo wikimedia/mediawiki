@@ -13,6 +13,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\TestUtils;
+use MediaWiki\User\UserIdentityValue;
 use MediaWikiLangTestCase;
 use RequestContext;
 use stdClass;
@@ -439,7 +440,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Sitewide autoblock' => [
 				new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'auto' => true,
 				] ),
 				false,
@@ -455,7 +456,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Sitewide block' => [
 				new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => new UserIdentityValue( 100, 'TestUser' ),
 				] ),
 				false,
 				[
@@ -470,7 +471,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Partial block without restriction against this page' => [
 				new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'sitewide' => false,
 				] ),
 				false,
@@ -486,7 +487,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Partial block with restriction against this page' => [
 				new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => new UserIdentityValue( 100, 'TestUser' ),
 					'sitewide' => false,
 				] ),
 				true,
@@ -683,7 +684,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$user->method( 'getBlock' )
 			->willReturn( new DatabaseBlock( [
 				'address' => '127.0.8.1',
-				'by' => $this->user->getId(),
+				'by' => $this->user,
 			] ) );
 
 		$this->assertCount( 1, MediaWikiServices::getInstance()->getPermissionManager()

@@ -19,14 +19,14 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 	/** @var User */
 	protected $user;
 
-	/** @var int */
-	protected $sysopId;
+	/** @var User */
+	protected $sysopUser;
 
 	protected function setUp() : void {
 		parent::setUp();
 
 		$this->user = $this->getTestUser()->getUser();
-		$this->sysopId = $this->getTestSysop()->getUser()->getId();
+		$this->sysopUser = $this->getTestSysop()->getUser();
 		$this->blockManagerConfig = [
 			'wgApplyIpBlocksToXff' => true,
 			'wgCookieSetOnAutoblock' => true,
@@ -133,7 +133,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( array_merge( [
 			'address' => $options['target'] ?: $this->user,
-			'by' => $this->sysopId,
+			'by' => $this->sysopUser,
 		], $options['blockOptions'] ) );
 		$blockStore->insertBlock( $block );
 
@@ -165,7 +165,7 @@ class BlockManagerTest extends MediaWikiIntegrationTestCase {
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$block = new DatabaseBlock( array_merge( [
 			'address' => $options['target'] ?: $this->user,
-			'by' => $this->sysopId,
+			'by' => $this->sysopUser,
 		], $options['blockOptions'] ) );
 		$blockStore->insertBlock( $block );
 

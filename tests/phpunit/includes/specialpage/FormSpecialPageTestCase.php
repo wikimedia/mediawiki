@@ -39,7 +39,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$user->method( 'getBlock' )
 			->willReturn( new DatabaseBlock( [
 				'address' => '127.0.8.1',
-				'by' => $user->getId(),
+				'by' => $user,
 				'reason' => 'sitewide block',
 				'timestamp' => time(),
 				'sitewide' => true,
@@ -63,7 +63,7 @@ abstract class FormSpecialPageTestCase extends SpecialPageTestBase {
 		$user->method( 'getBlock' )
 			->willReturn( new DatabaseBlock( [
 				'address' => '127.0.8.1',
-				'by' => $user->getId(),
+				'by' => $user,
 				'reason' => 'partial block',
 				'timestamp' => time(),
 				'sitewide' => false,

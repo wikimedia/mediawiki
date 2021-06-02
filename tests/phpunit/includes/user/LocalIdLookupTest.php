@@ -26,7 +26,7 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 
 		$block = new DatabaseBlock( [
 			'address' => $this->localUsers[2]->getName(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'reason' => __METHOD__,
 			'expiry' => '1 day',
 			'hideName' => false,
@@ -35,7 +35,7 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 
 		$block = new DatabaseBlock( [
 			'address' => $this->localUsers[3]->getName(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'reason' => __METHOD__,
 			'expiry' => '1 day',
 			'hideName' => true,

@@ -31,7 +31,7 @@ class ApiUnblockTest extends ApiTestCase {
 		// Initialize a blocked user (used by most tests, although not all)
 		$block = new DatabaseBlock( [
 			'address' => $this->blockee->getName(),
-			'by' => $this->blocker->getId(),
+			'by' => $this->blocker,
 		] );
 		$result = MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		$this->assertNotFalse( $result, 'Could not insert block' );
@@ -97,7 +97,7 @@ class ApiUnblockTest extends ApiTestCase {
 
 		$block = new DatabaseBlock( [
 			'address' => $this->blocker->getName(),
-			'by' => $this->getTestUser( 'sysop' )->getUser()->getId(),
+			'by' => $this->getTestUser( 'sysop' )->getUser(),
 		] );
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
@@ -107,7 +107,7 @@ class ApiUnblockTest extends ApiTestCase {
 	public function testUnblockSelfWhenBlocked() {
 		$block = new DatabaseBlock( [
 			'address' => $this->blocker->getName(),
-			'by' => $this->getTestUser( 'sysop' )->getUser()->getId(),
+			'by' => $this->getTestUser( 'sysop' )->getUser(),
 		] );
 		$result = MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 		$this->assertNotFalse( $result, 'Could not insert block' );

@@ -163,7 +163,7 @@ class ApiQueryInfoTest extends ApiTestCase {
 		$block = new DatabaseBlock( [
 			'address' => $badActor->getName(),
 			'user' => $badActor->getId(),
-			'by' => $sysop->getId(),
+			'by' => $sysop,
 			'expiry' => 'infinity',
 			'sitewide' => 1,
 			'enableAutoblock' => true,
