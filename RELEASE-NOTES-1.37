@@ -356,6 +356,8 @@ because of Phabricator reports.
   ::setHookContainer() were hard deprecated. Use ::init() to inject
   dependencies or override ::postInitSetup() to do any custom
   post-initialization configuration.
+* RecentChange::getPerformer(), hard-deprecated since 1.37,
+  use getPerformerIdentity() instead.
 * …
 
 === Other changes in 1.37 ===
