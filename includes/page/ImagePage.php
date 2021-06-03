@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IResultWrapper;
 
 /**
@@ -1036,7 +1037,7 @@ EOT
 	/**
 	 * Returns the corresponding $wgImageLimits entry for the selected user option
 	 *
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $optionName Name of a option to check, typically imagesize or thumbsize
 	 * @return int[]
 	 * @since 1.21

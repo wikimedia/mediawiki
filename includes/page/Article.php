@@ -29,6 +29,7 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\IPUtils;
@@ -2290,10 +2291,10 @@ class Article implements Page {
 	 * @since 1.16 (r52326) for LiquidThreads
 	 *
 	 * @param int|null $oldid Revision ID or null
-	 * @param User|null $user The relevant user
+	 * @param UserIdentity|null $user The relevant user
 	 * @return ParserOutput|bool ParserOutput or false if the given revision ID is not found
 	 */
-	public function getParserOutput( $oldid = null, User $user = null ) {
+	public function getParserOutput( $oldid = null, UserIdentity $user = null ) {
 		if ( $user === null ) {
 			$parserOptions = $this->getParserOptions();
 		} else {

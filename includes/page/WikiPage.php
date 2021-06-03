@@ -2107,11 +2107,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @see ParserOptions::newCanonical
 	 *
-	 * @param IContextSource|User|string $context One of the following:
+	 * @param IContextSource|UserIdentity|string $context One of the following:
 	 *        - IContextSource: Use the User and the Language of the provided
 	 *          context
-	 *        - User: Use the provided User object and $wgLang for the language,
-	 *          so use an IContextSource object if possible.
+	 *        - UserIdentity: Use the provided UserIdentity object and $wgLang
+	 *          for the language, so use an IContextSource object if possible.
 	 *        - 'canonical': Canonical options (anonymous user with default
 	 *          preferences and content language).
 	 * @return ParserOptions
