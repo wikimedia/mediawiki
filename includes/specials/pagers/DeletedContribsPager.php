@@ -120,28 +120,15 @@ class DeletedContribsPager extends IndexPager {
 				' != ' . RevisionRecord::SUPPRESSED_USER;
 		}
 
-		$commentQuery = $this->commentStore->getJoin( 'ar_comment' );
+		$queryInfo = $this->revisionFactory->getArchiveQueryInfo();
+		$queryInfo['conds'] = $conds;
+		$queryInfo['options'] = [];
 
-		return [
-			'tables' => [ 'archive', 'actor' ] + $commentQuery['tables'],
-			'fields' => [
-				'ar_rev_id',
-				'ar_id',
-				'ar_namespace',
-				'ar_title',
-				'ar_actor',
-				'ar_timestamp',
-				'ar_minor_edit',
-				'ar_deleted',
-				'ar_user' => 'actor_user',
-				'ar_user_text' => 'actor_name',
-			] + $commentQuery['fields'],
-			'conds' => $conds,
-			'options' => [],
-			'join_conds' => [
-				'actor' => [ 'JOIN', 'actor_id=ar_actor' ]
-			] + $commentQuery['joins'],
-		];
+		// rename the "joins" field to "join_conds" as expected by the base class.
+		$queryInfo['join_conds'] = $queryInfo['joins'];
+		unset( $queryInfo['joins'] );
+
+		return $queryInfo;
 	}
 
 	/**
