@@ -318,7 +318,7 @@ class UserOptionsManager extends UserOptionsLookup {
 			if ( ( isset( $info['type'] ) && $info['type'] == 'multiselect' ) ||
 				( isset( $info['class'] ) && $info['class'] == HTMLMultiSelectField::class )
 			) {
-				$opts = HTMLFormField::flattenOptions( $info['options'] );
+				$opts = HTMLFormField::flattenOptions( $info['options'] ?? $info['options-messages'] );
 				$prefix = $info['prefix'] ?? $name;
 
 				foreach ( $opts as $value ) {
