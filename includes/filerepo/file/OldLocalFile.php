@@ -413,7 +413,7 @@ class OldLocalFile extends LocalFile {
 	 * @param string $srcPath File system path of the source file
 	 * @param string $timestamp
 	 * @param string $comment
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @return Status
 	 */
 	public function uploadOld( $srcPath, $timestamp, $comment, $user ) {
