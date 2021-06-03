@@ -56,7 +56,9 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	 * Initialise with dependencies of an AuthenticationProvider
 	 *
 	 * @since 1.37
-	 * @internal
+	 * @internal In production code AuthManager will initialize the
+	 * AbstractAuthenticationProvider, in tests
+	 * AuthenticationProviderTestTrait must be used.
 	 *
 	 * @param LoggerInterface $logger
 	 * @param AuthManager $manager
