@@ -260,34 +260,27 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 			public function outputPage() {
 			}
 		};
-		$relevantUser = User::newFromIdentity(
-			UserIdentityValue::newRegistered( 1, '123.123.123.123' )
-		);
+		$relevantUser = UserIdentityValue::newRegistered( 1, '123.123.123.123' );
 		$skin->setRelevantUser( $relevantUser );
 		$this->assertSame( $relevantUser, $skin->getRelevantUser() );
 
 		$blockManagerMock = $this->createNoOpMock( BlockManager::class, [ 'getUserBlock' ] );
 		$blockManagerMock->method( 'getUserBlock' )
-			// ->with( $relevantUser )
+			->with( $relevantUser )
 			->willReturn( new DatabaseBlock( [
 				'address' => $relevantUser,
 				'by' => UserIdentityValue::newAnonymous( '123.123.123.123' ),
 				'hideName' => true
 			] ) );
-		$relevantUser = User::newFromIdentity(
-			UserIdentityValue::newRegistered( 1, '123.123.123.123' )
-		);
 		$this->setService( 'BlockManager', $blockManagerMock );
 		$ctx = RequestContext::getMain();
 		$ctx->setAuthority( $this->mockAnonNullAuthority() );
 		$skin->setContext( $ctx );
-		$skin->setRelevantUser( $relevantUser );
 		$this->assertNull( $skin->getRelevantUser() );
-		$relevantUser = User::newFromIdentity(
-			UserIdentityValue::newRegistered( 1, '123.123.123.123' )
-		);
+
 		$ctx->setAuthority( $this->mockAnonUltimateAuthority() );
 		$skin->setContext( $ctx );
+		$skin->setRelevantUser( $relevantUser );
 		$skin->setRelevantUser( $relevantUser );
 		$this->assertSame( $relevantUser, $skin->getRelevantUser() );
 	}
