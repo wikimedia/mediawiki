@@ -501,23 +501,28 @@ class InfoAction extends FormlessAction {
 		foreach ( $title->getRestrictionTypes() as $restrictionType ) {
 			$protections = $title->getRestrictions( $restrictionType );
 
-			if ( !$protections ) {
-				$message = $this->getNamespaceProtectionMessage( $title );
-				if ( $message === null ) {
-					// Allow all users
-					$message = $this->msg( 'protect-default' )->escaped();
-				}
-			} else {
-				// @fixme Is it really intentional to allow keys containing ", "? Instead, should
-				// we always use protect-fallback if $protections has 2 or more elements?
-				// Messages: protect-level-autoconfirmed, protect-level-sysop
-				$message = $this->msg( 'protect-level-' . implode( ', ', $protections ) );
-				if ( $message->isDisabled() ) {
+			switch ( count( $protections ) ) {
+				case 0:
+					$message = $this->getNamespaceProtectionMessage( $title );
+					if ( $message === null ) {
+						// Allow all users
+						$message = $this->msg( 'protect-default' )->escaped();
+					}
+					break;
+
+				case 1:
+					// Messages: protect-level-autoconfirmed, protect-level-sysop
+					$message = $this->msg( 'protect-level-' . $protections[0] );
+					if ( !$message->isDisabled() ) {
+						$message = $message->escaped();
+						break;
+					}
+					// Intentional fall-through if message is disabled (or non-existent)
+
+				default:
 					// Require "$1" permission
 					$message = $this->msg( "protect-fallback", $lang->commaList( $protections ) )->parse();
-				} else {
-					$message = $message->escaped();
-				}
+					break;
 			}
 			$expiry = $title->getRestrictionExpiry( $restrictionType );
 			$formattedexpiry = $this->msg( 'parentheses',
