@@ -245,19 +245,6 @@ class ForeignAPIFile extends File {
 		return null;
 	}
 
-	/**
-	 * @deprecated since 1.37. Use ::getUploader instead
-	 * @param string $type
-	 * @return int|null|string
-	 */
-	public function getUser( $type = 'text' ) {
-		if ( $type == 'text' ) {
-			return isset( $this->mInfo['user'] ) ? strval( $this->mInfo['user'] ) : null;
-		} else {
-			return 0; // What makes sense here, for a remote user?
-		}
-	}
-
 	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ) : ?UserIdentity {
 		if ( isset( $this->mInfo['user'] ) ) {
 			// We don't know if the foreign repo will have a real interwiki prefix,
