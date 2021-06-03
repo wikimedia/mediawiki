@@ -378,6 +378,10 @@ because of Phabricator reports.
 * ArchivedFile::getUser, ::getRawUser, ::getRawUserText were deprecated in
   favor of ::getUploader. ::getRawDescription was deprecated in favor of
   ::getDescription with RAW audience parameter.
+* When calling LocalFile::newFromRow() or LocalFile::loadFromRow(), passing
+  extra fields not requested by ::getQueryInfo() is hard deprecated. This is
+  to warn callers that deprefixing and automatic assignment of such fields will
+  not be done in a future version.
 * …
 
 === Other changes in 1.37 ===
