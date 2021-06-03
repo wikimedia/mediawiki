@@ -26,7 +26,7 @@ use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\SlotRoleRegistry;
 
 /**
- * Factory service for WikiImporter isntances.
+ * Factory service for WikiImporter instances.
  *
  * @since 1.37
  */
