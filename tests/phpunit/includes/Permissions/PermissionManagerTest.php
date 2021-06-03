@@ -6,6 +6,7 @@ use Action;
 use ContentHandler;
 use FauxRequest;
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
@@ -390,6 +391,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	public function testCheckUserBlockActions( $block, $restriction, $expected ) {
 		$this->setMwGlobals( [
 			'wgEmailConfirmToEdit' => false,
+			'wgEnablePartialActionBlocks' => true,
 		] );
 
 		if ( $restriction ) {
@@ -497,6 +499,24 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 					'rollback' => true,
 					'patrol' => true,
 					'upload' => false,
+					'purge' => false,
+				]
+			],
+			'Partial block with action restriction against uploading' => [
+				( new DatabaseBlock( [
+					'address' => '127.0.8.1',
+					'by' => 100,
+					'sitewide' => false,
+				] ) )->setRestrictions( [
+					new ActionRestriction( 0, 1 )
+				] ),
+				false,
+				[
+					'edit' => false,
+					'move-target' => false,
+					'rollback' => false,
+					'patrol' => false,
+					'upload' => true,
 					'purge' => false,
 				]
 			],
