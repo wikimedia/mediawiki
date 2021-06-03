@@ -132,6 +132,12 @@ because of Phabricator reports.
   or SkinFactory::getInstalledSkins().
 * Parser::getUser and ::mUser, as well as ParserOptions::getUser, deprecated
   since 1.37, has been removed.
+* The following deprecated constructor options of DatabaseBlock class
+  have been removed:
+  - 'byText' property with blocker's name,
+    use 'by' property with UserIdentity value instead.
+  - 'by' property with blocker's ID,
+    use 'by' property with UserIdentity value instead.
 * …
 
 === Deprecations in 1.38 ===
