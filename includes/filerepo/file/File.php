@@ -613,7 +613,16 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return string|int
 	 */
 	public function getUser( $type = 'text' ) {
-		return null;
+		wfDeprecated( __METHOD__, '1.37' );
+		$user = $this->getUploader( self::RAW ) ?? User::newFromName( 'Unknown user' );
+		if ( $type === 'object' ) {
+			return User::newFromIdentity( $user );
+		} elseif ( $type === 'text' ) {
+			return $user->getName();
+		} elseif ( $type === 'id' ) {
+			return $user->getId();
+		}
+		throw new MWException( "Unknown type '$type'." );
 	}
 
 	/**
@@ -2241,18 +2250,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @return UserIdentity|null
 	 */
 	public function getUploader( int $audience = self::FOR_PUBLIC, Authority $performer = null ): ?UserIdentity {
-		// Default implementation until all getUser overrides are eliminated.
-		if ( $audience === self::FOR_PUBLIC && $this->isDeleted( self::DELETED_USER ) ) {
-			return null;
-		} elseif ( $audience === self::FOR_THIS_USER && !$this->userCan( self::DELETED_USER, $performer ) ) {
-			return null;
-		} else {
-			$user = $this->getUser();
-			if ( $user ) {
-				return User::newFromName( $user );
-			}
-			return null;
-		}
+		return null;
 	}
 
 	/**
