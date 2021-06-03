@@ -612,7 +612,12 @@ return [
 	],
 
 	'wvui' => [
-		// Once T281527 is resolved, use the real WVUI files here rather than wrapping wvui-search
+		// Once T281527 is resolved, use the real WVUI files here rather than copying wvui-search
+		// wvui.js just exports the contents of wvui-search in order to provide package exports,
+		// see T284198
+		'packageFiles' => [
+			'resources/src/wvui/wvui.js',
+		],
 		'dependencies' => [
 			'wvui-search'
 		],
