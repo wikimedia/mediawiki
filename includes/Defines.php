@@ -99,17 +99,6 @@ define( 'AV_SCAN_FAILED', false );  # scan failed (scanner not found or error in
 /** @} */
 
 /** @{
- * Anti-lock flags
- * Was used by $wgAntiLockFlags, which was removed with 1.25
- * Constants kept to not have warnings when used in LocalSettings
- */
-define( 'ALF_PRELOAD_LINKS', 1 ); // unused
-define( 'ALF_PRELOAD_EXISTENCE', 2 ); // unused
-define( 'ALF_NO_LINK_LOCK', 4 ); // unused
-define( 'ALF_NO_BLOCK_LOCK', 8 ); // unused
-/** @} */
-
-/** @{
  * Date format selectors; used in user preference storage and by
  * Language::date() and co.
  */
