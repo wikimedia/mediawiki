@@ -192,7 +192,9 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			'originalBlocks' => $blocks,
 		] );
 
-		$title = $blocks[ 'user' ]->getTarget()->getTalkPage();
+		$userFactory = $this->getServiceContainer()->getUserFactory();
+		$targetIdentity = $userFactory->newFromUserIdentity( $blocks[ 'user' ]->getTargetUserIdentity() );
+		$title = $targetIdentity->getTalkPage();
 		$page = $this->getExistingTestPage( 'User talk:' . $title->getText() );
 
 		$this->getBlockRestrictionStore()->insert( [
@@ -200,7 +202,7 @@ class CompositeBlockTest extends MediaWikiLangTestCase {
 			new NamespaceRestriction( $blocks[ 'ip' ]->getId(), NS_USER ),
 		] );
 
-		$this->assertTrue( $block->appliesToUsertalk( $blocks[ 'user' ]->getTarget()->getTalkPage() ) );
+		$this->assertTrue( $block->appliesToUsertalk( $title ) );
 
 		$this->deleteBlocks( $blocks );
 	}

@@ -68,6 +68,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 			'hookContainer' => $hookContainer,
 			'loadBalancer' => $services->getDBLoadBalancer(),
 			'readOnlyMode' => $readOnlyMode,
+			'userFactory' => $services->getUserFactory(),
 		];
 		$constructorArgs = array_merge( $defaultConstructorArgs, $overrideConstructorArgs );
 
@@ -192,14 +193,15 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testInsertBlockLogout( $options, $expectTokenEqual ) {
 		$block = $this->getBlock();
-		$targetToken = $block->getTarget()->getToken();
+		$userFactory = $this->getServiceContainer()->getUserFactory();
+		$targetToken = $userFactory->newFromUserIdentity( $block->getTargetUserIdentity() )->getToken();
 
 		$store = $this->getStore( $options );
 		$result = $store->insertBlock( $block );
 
 		$this->assertSame(
 			$expectTokenEqual,
-			$targetToken === $block->getTarget()->getToken()
+			$targetToken === $userFactory->newFromUserIdentity( $block->getTargetUserIdentity() )->getToken()
 		);
 	}
 

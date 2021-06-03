@@ -67,7 +67,7 @@ class ApiBlockTest extends ApiTestCase {
 
 		$this->assertTrue( $block !== null, 'Block is valid' );
 
-		$this->assertSame( $this->mUser->getName(), (string)$block->getTarget() );
+		$this->assertSame( $this->mUser->getName(), $block->getTargetName() );
 		$this->assertSame( 'Some reason', $block->getReasonComment()->text );
 
 		return $ret;
