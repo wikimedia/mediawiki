@@ -983,7 +983,7 @@ class SpecialBlock extends FormSpecialPage {
 	 *
 	 * T208965: Partially blocked admins can block and unblock others as normal.
 	 *
-	 * @deprecated since 1.36, use BlockPermissionChecker instead
+	 * @deprecated since 1.36, hard deprecated since 1.37, use BlockPermissionChecker instead
 	 * @param User|string|null $target Target to block or unblock; could be a User object,
 	 *   or username/IP address, or null when the target is not known yet (e.g. when
 	 *   displaying Special:Block)
@@ -991,6 +991,7 @@ class SpecialBlock extends FormSpecialPage {
 	 * @return bool|string True or error message key
 	 */
 	public static function checkUnblockSelf( $target, Authority $performer ) {
+		wfDeprecated( __METHOD__, '1.36' );
 		return MediaWikiServices::getInstance()
 			->getBlockPermissionCheckerFactory()
 			->newBlockPermissionChecker( $target, $performer )

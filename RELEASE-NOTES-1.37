@@ -364,6 +364,8 @@ because of Phabricator reports.
   deprecation warnings.
 * File::getUser method was hard deprecated, along with overrides in LocalFile
   and ForeignApiFile in favor of ::getUploader.
+* SpecialBlock::checkUnblockSelf(), deprecated in 1.36, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.37 ===
