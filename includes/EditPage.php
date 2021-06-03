@@ -4675,19 +4675,6 @@ class EditPage implements IEditObject {
 	}
 
 	/**
-	 * @param string $name
-	 * @param mixed[] $customAttribs
-	 * @param User $user
-	 * @return mixed[]
-	 * @since 1.29
-	 */
-	protected function buildTextboxAttribs( $name, array $customAttribs, User $user ) {
-		return ( new TextboxBuilder() )->buildTextboxAttribs(
-			$name, $customAttribs, $user, $this->mTitle
-		);
-	}
-
-	/**
 	 * @param string $wikitext
 	 * @return string
 	 * @since 1.29
