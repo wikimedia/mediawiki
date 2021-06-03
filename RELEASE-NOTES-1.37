@@ -366,6 +366,9 @@ because of Phabricator reports.
   and ForeignApiFile in favor of ::getUploader.
 * SpecialBlock::checkUnblockSelf(), deprecated in 1.36, now emits deprecation
   warnings.
+* (T284179) The mediawiki.viewport ResourceLoader module is deprecated. You can
+  now just use MutationObserver or InterSectionObserver directly, which are
+  widely available in all supported JavaScript browsers.
 * …
 
 === Other changes in 1.37 ===
