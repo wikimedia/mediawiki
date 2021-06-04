@@ -1848,7 +1848,7 @@ class EditPage implements IEditObject {
 				// Render the status object into $this->hookError
 				// FIXME this sucks, we should just use the Status object throughout
 				$this->hookError = Html::errorBox(
-					$status->getWikiText( false, false, $this->context->getLanguage() )
+					"\n" . $status->getWikiText( false, false, $this->context->getLanguage() )
 				);
 				return true;
 		}
