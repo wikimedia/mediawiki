@@ -3,6 +3,7 @@
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -63,7 +64,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * @covers ::__construct
 	 */
 	public function testConstruct() {
-		// Make sure if no UserGroupManager is provided, stuff still works, so that
+		// Make sure if the optional services are not provided, stuff still works, so that
 		// the GlobalPreferences extension isn't broken
 		$params = [
 			$this->createMock( ServiceOptions::class ),
@@ -81,10 +82,13 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$this->assertInstanceOf(
 			DefaultPreferencesFactory::class,
 			$preferencesFactory,
-			'Created without a UserGroupManager'
+			'Created with some services missing'
 		);
 
 		// Now, make sure that MediaWikiServices isn't used
+		$params[] = $this->createMock( LanguageConverterFactory::class );
+		$params[] = $this->createMock( Parser::class );
+		$params[] = $this->createMock( SkinFactory::class );
 		$params[] = $this->createMock( UserGroupManager::class );
 		$oldMwServices = MediaWikiServices::forceGlobalInstance(
 			$this->createNoOpMock( MediaWikiServices::class )
@@ -96,7 +100,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$this->assertInstanceOf(
 				DefaultPreferencesFactory::class,
 				$preferencesFactory,
-				'Created with a UserGroupManager, MediaWikiServices not used'
+				'Created with all services, MediaWikiServices not used'
 			);
 		} finally {
 			// Put back the real MediaWikiServices
@@ -150,6 +154,9 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer(),
 			$userOptionsLookup,
+			$services->getLanguageConverterFactory(),
+			$services->getParser(),
+			$services->getSkinFactory(),
 			$userGroupManager
 		);
 	}
