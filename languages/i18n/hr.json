@@ -2348,7 +2348,7 @@
 	"sp-contributions-logs": "evidencije",
 	"sp-contributions-talk": "razgovor",
 	"sp-contributions-userrights": "upravljanje {{GENDER:$1|suradnikovim|suradničinim|suradničkim}} pravima",
-	"sp-contributions-blocked-notice": "{{GENDER:$1|Ovaj suradnik trenutačno je blokiran.|Ova suradnica trenutačno je blokirana.}}. \nPosljednja stavka evidencije blokiranja navedena je niže kao referenca:",
+	"sp-contributions-blocked-notice": "{{GENDER:$1|Ovaj suradnik trenutačno je blokiran|Ova suradnica trenutačno je blokirana}}. \nPosljednja stavka evidencije blokiranja navedena je niže kao referenca:",
 	"sp-contributions-blocked-notice-partial": "Ovaj suradnik / ova suradnica trenutačno je djelomice blokiran/blokirana.\nZadnji zapis evidencije blokiranja obavjesno je dan niže:",
 	"sp-contributions-blocked-notice-anon": "Ova IP adresa je trenutačno blokirana.\nPosljednja stavka evidencije blokiranja navedena je niže kao napomena:",
 	"sp-contributions-blocked-notice-anon-partial": "Ova IP-adresa trenutačno je djelomice blokirana.\nZadnji zapis evidencije blokiranja obavjesno je dan niže:",

@@ -1,6 +1,8 @@
 {
 	"@metadata": {
-		"authors": []
+		"authors": [
+			"ArticleEditor404"
+		]
 	},
 	"sunday": "sanattaili",
 	"monday": "naggajaq",
@@ -79,6 +81,8 @@
 	"editold": "suqusiqpaa",
 	"editlink": "suqusiqpaa",
 	"editsectionhint": "suqusiqpaa ilangiutititsiguti: $1",
+	"confirmable-yes": "ii",
+	"confirmable-no": "aakka",
 	"site-rss-feed": "$1 rss mianirivaa",
 	"site-atom-feed": "$1 atum mianirivaa",
 	"page-rss-feed": "\"$1\" rss mianirivaa",
@@ -90,15 +94,19 @@
 	"nstab-mediawiki": "kiggapaa",
 	"nstab-template": "mianirivaa-qijuqut",
 	"nstab-category": "nuapput",
+	"mainpage-nstab": "amiq",
+	"error": "tammaqsimajuq",
 	"badtitle": "ajuqtuq atiq",
 	"editinginterface": "'''iniqtiruti—''' aaha suqusiqpaa iqiak mappitaq atuinnasivuq iijatsaq qarasaujaq taqsaliqpaa ikiaq aqittuq qaritaujaup titirarvinga. asiaNngutuq ikiaq mappitaq inuktitut uikipitia allanguqtuaq nakimaqpuq qatannguti.",
 	"yourname": "uikipitia atiq",
+	"userlogin-yourname": "atuqtiup tauranga",
 	"yourpassword": "uikipitia palanngasauti",
+	"userlogin-yourpassword": "isirunnauti",
 	"yourpasswordagain": "tamatumaniiqpaa iksigaqtuq uikipitia palanngasauti",
 	"login": "akunnapuq",
 	"logout": "anivvik",
 	"userlogout": "anivvik",
-	"mailmypassword": "qillutuq uikipitia palanngasauti kigutiup sitiniqpaanga",
+	"mailmypassword": "isirunnautinga asijjiqtauluni",
 	"summary": "suvit:",
 	"minoredit": "ukiukiluaq asianngutuq",
 	"watchthis": "uvva",

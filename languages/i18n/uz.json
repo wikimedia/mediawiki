@@ -864,6 +864,7 @@
 	"rcfilters-savedqueries-rename": "Qayta nomlash",
 	"rcfilters-savedqueries-remove": "Oʻchirish",
 	"rcfilters-savedqueries-new-name-label": "Nomi",
+	"rcfilters-savedqueries-new-name-placeholder": "Filtr maqsadini tasvirlab bering",
 	"rcfilters-savedqueries-apply-label": "Filter yaratish",
 	"rcfilters-savedqueries-cancel-label": "Bekor qilish",
 	"rcfilters-savedqueries-add-new-title": "Amaldagi filtrlar eslab qolinsin",

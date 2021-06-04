@@ -1678,7 +1678,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "ウォッチリストを編集",
 	"rcfilters-watchlist-showupdated": "最終訪問以降に変更されたページは、塗りつぶされた丸印と一緒に、<strong>太字</strong>で表示されます。",
 	"rcfilters-preference-label": "非JavaScript版インターフェイスを使用",
-	"rcfilters-preference-help": "「最近の更新」ページに検索絞り込み機能や構文強調表示機能をかけずに表示します。",
+	"rcfilters-preference-help": "最近の更新、ウォッチリスト、そして類似したページに検索絞り込み機能や構文強調表示機能をかけずに表示します。",
 	"rcfilters-watchlist-preference-label": "非JavaScript版インターフェイスを使用",
 	"rcfilters-watchlist-preference-help": "ウォッチリストに検索絞り込み機能や構文強調表示機能をかけずに読み込みます。",
 	"rcfilters-filter-showlinkedfrom-label": "指定されたページのリンク先の変更を表示",

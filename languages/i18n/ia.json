@@ -2623,6 +2623,7 @@
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Un altere autoblocada|Altere autoblocadas}}",
 	"ipblocklist": "Usatores blocate",
 	"ipblocklist-legend": "Cercar un usator blocate",
+	"blocklist-autoblocks": "Celar autoblocadas",
 	"blocklist-userblocks": "Celar blocadas de conto",
 	"blocklist-tempblocks": "Celar blocadas temporari",
 	"blocklist-indefblocks": "Celar blocadas infinite",

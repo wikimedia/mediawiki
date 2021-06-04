@@ -2778,6 +2778,7 @@
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Другая автоблокировка|Другие автоблокировки}}",
 	"ipblocklist": "Заблокированные участники",
 	"ipblocklist-legend": "Поиск заблокированного участника",
+	"blocklist-autoblocks": "Скрыть автоблокировки",
 	"blocklist-userblocks": "Скрыть блокировки учётных записей",
 	"blocklist-tempblocks": "Скрыть временные блокировки",
 	"blocklist-indefblocks": "Скрыть бессрочные блокировки",
