@@ -466,9 +466,7 @@ class RevisionStore
 
 		$pageId = $this->failOnEmpty( $rev->getPageId( $this->wikiId ), 'rev_page field' ); // check this early
 
-		$parentId = $rev->getParentId() === null
-			? $this->getPreviousRevisionId( $dbw, $rev )
-			: $rev->getParentId();
+		$parentId = $rev->getParentId() ?? $this->getPreviousRevisionId( $dbw, $rev );
 
 		/** @var RevisionRecord $rev */
 		$rev = $dbw->doAtomicSection(
@@ -2388,7 +2386,7 @@ class RevisionStore
 			// Could not initialize the user, maybe it doesn't exist?
 			if ( isset( $fields['user_text'] ) ) {
 				$user = new UserIdentityValue(
-					$userID === null ? 0 : $userID,
+					$userID ?? 0,
 					$fields['user_text'],
 					$this->wikiId
 				);

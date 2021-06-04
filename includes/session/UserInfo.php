@@ -170,7 +170,7 @@ final class UserInfo {
 	 * @return User
 	 */
 	public function getUser() {
-		return $this->user === null ? new User : $this->user;
+		return $this->user ?? new User;
 	}
 
 	/**
