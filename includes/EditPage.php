@@ -1985,7 +1985,7 @@ class EditPage implements IEditObject {
 		$constraintRunner->addConstraint(
 			$constraintFactory->newSpamRegexConstraint(
 				$this->summary,
-				$this->section === null ? '' : $this->section,
+				$this->section ?? '',
 				$this->sectiontitle,
 				$this->textbox1,
 				$this->context->getRequest()->getIP(),

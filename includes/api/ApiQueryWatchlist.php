@@ -442,7 +442,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		if ( $this->fld_expiry ) {
 			// Add expiration, T263796
 			$expiry = $watchedItem->getExpiry( TS_ISO_8601 );
-			$vals['expiry'] = ( $expiry === null ? false : $expiry );
+			$vals['expiry'] = ( $expiry ?? false );
 		}
 
 		if ( $anyHidden && ( $recentChangeInfo['rc_deleted'] & RevisionRecord::DELETED_RESTRICTED ) ) {

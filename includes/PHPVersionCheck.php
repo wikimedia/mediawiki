@@ -226,7 +226,7 @@ HTML;
 	 * Output headers that prevents error pages to be cached.
 	 */
 	function outputHTMLHeader() {
-		$protocol = isset( $_SERVER['SERVER_PROTOCOL'] ) ? $_SERVER['SERVER_PROTOCOL'] : 'HTTP/1.0';
+		$protocol = $_SERVER['SERVER_PROTOCOL'] ?? 'HTTP/1.0';
 
 		header( "$protocol 500 MediaWiki configuration Error" );
 		// Don't cache error pages! They cause no end of trouble...

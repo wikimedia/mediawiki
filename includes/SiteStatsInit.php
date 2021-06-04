@@ -172,11 +172,11 @@ class SiteStatsInit {
 	 */
 	public function refresh() {
 		$set = [
-			'ss_total_edits' => $this->edits === null ? $this->edits() : $this->edits,
-			'ss_good_articles' => $this->articles === null ? $this->articles() : $this->articles,
-			'ss_total_pages' => $this->pages === null ? $this->pages() : $this->pages,
-			'ss_users' => $this->users === null ? $this->users() : $this->users,
-			'ss_images' => $this->files === null ? $this->files() : $this->files,
+			'ss_total_edits' => $this->edits ?? $this->edits(),
+			'ss_good_articles' => $this->articles ?? $this->articles(),
+			'ss_total_pages' => $this->pages ?? $this->pages(),
+			'ss_users' => $this->users ?? $this->users(),
+			'ss_images' => $this->files ?? $this->files(),
 		];
 		$row = [ 'ss_row_id' => 1 ] + $set;
 

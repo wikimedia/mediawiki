@@ -306,7 +306,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		if ( $name === 'mRights' ) {
 			MediaWikiServices::getInstance()->getPermissionManager()->overrideUserRightsForTesting(
 				$this,
-				$value === null ? [] : $value
+				$value ?? []
 			);
 		} elseif ( $name === 'mOptions' ) {
 			wfDeprecated( 'User::$mOptions', '1.35' );
