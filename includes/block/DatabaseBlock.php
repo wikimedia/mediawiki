@@ -124,7 +124,7 @@ class DatabaseBlock extends AbstractBlock {
 				// Local user, passed by ID. Deprecated case,
 				// callers should provide UserIdentity in the 'by'
 				// option.
-				wfDeprecatedMsg( __METHOD__ . ':' . $options['by'] . 'calling with ID is deprecated', '1.36' );
+				wfDeprecatedMsg( __METHOD__ . ': $options[\'by\'] calling with ID is deprecated', '1.36' );
 				$localBlocker = MediaWikiServices::getInstance()
 					->getUserFactory()
 					->newFromId( $options['by'] );
@@ -133,7 +133,7 @@ class DatabaseBlock extends AbstractBlock {
 		} elseif ( $options['byText'] ) {
 			// Foreign user. Deprecated case, callers should
 			// provide UserIdentity in the 'by' option.
-			wfDeprecatedMsg( __METHOD__ . ':' . $options['byText'] . 'is deprecated', '1.36' );
+			wfDeprecatedMsg( __METHOD__ . ': $options[\'byText\'] is deprecated', '1.36' );
 			$foreignBlocker = MediaWikiServices::getInstance()
 				->getActorStore()
 				->getUserIdentityByName( $options['byText'] );
