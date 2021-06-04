@@ -559,10 +559,9 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$this->setMwGlobals( [
 			'wgEmailConfirmToEdit' => false,
 		] );
-
 		$block = new $blockType( array_merge( [
 			'address' => '127.0.8.1',
-			'by' => $this->user->getId(),
+			'by' => $this->user,
 			'reason' => 'Test reason',
 			'timestamp' => '20000101000000',
 			'expiry' => 0,

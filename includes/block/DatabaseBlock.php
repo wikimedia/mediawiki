@@ -93,9 +93,9 @@ class DatabaseBlock extends AbstractBlock {
 	 *  - sitewide: (bool) Disallow editing all pages and all contribution actions,
 	 *    except those specifically allowed by other block flags
 	 *  - by: (int|UserIdentity) UserIdentity object or an ID of the blocker.
-	 *      Calling with ID is deprecated since 1.36
+	 *      Calling with ID is deprecated since 1.36, hard deprecated since 1.37.
 	 *  - byText: (string) Username of the blocker (for foreign users)
-	 *      Deprecated since 1.36. Use 'by' parameter instead.
+	 *      Deprecated since 1.36, hard deprecated since 1.37. Use 'by' parameter instead.
 	 *
 	 * @since 1.26 $options array
 	 */
@@ -124,6 +124,7 @@ class DatabaseBlock extends AbstractBlock {
 				// Local user, passed by ID. Deprecated case,
 				// callers should provide UserIdentity in the 'by'
 				// option.
+				wfDeprecatedMsg( __METHOD__ . ':' . $options['by'] . 'calling with ID is deprecated', '1.36' );
 				$localBlocker = MediaWikiServices::getInstance()
 					->getUserFactory()
 					->newFromId( $options['by'] );
@@ -132,6 +133,7 @@ class DatabaseBlock extends AbstractBlock {
 		} elseif ( $options['byText'] ) {
 			// Foreign user. Deprecated case, callers should
 			// provide UserIdentity in the 'by' option.
+			wfDeprecatedMsg( __METHOD__ . ':' . $options['byText'] . 'is deprecated', '1.36' );
 			$foreignBlocker = MediaWikiServices::getInstance()
 				->getActorStore()
 				->getUserIdentityByName( $options['byText'] );

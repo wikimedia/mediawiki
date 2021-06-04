@@ -369,6 +369,12 @@ because of Phabricator reports.
 * (T284179) The mediawiki.viewport ResourceLoader module is deprecated. You can
   now just use MutationObserver or InterSectionObserver directly, which are
   widely available in all supported JavaScript browsers.
+* The following constructor options of DatabaseBlock class,
+  hard deprecated since 1.37:
+  - 'byText' property with blocker's name,
+    use 'by' property with UserIdentity value instead.
+  - 'by' property with blocker's ID,
+    use 'by' property with UserIdentity value instead.
 * …
 
 === Other changes in 1.37 ===
