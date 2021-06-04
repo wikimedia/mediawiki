@@ -65,6 +65,18 @@ class LocalFile extends File {
 
 	private const CACHE_FIELD_MAX_LEN = 1000;
 
+	/** @var string Metadata serialization: empty string. This is a compact non-legacy format. */
+	private const MDS_EMPTY = 'empty';
+
+	/** @var string Metadata serialization: some other string */
+	private const MDS_LEGACY = 'legacy';
+
+	/** @var string Metadata serialization: PHP serialize() */
+	private const MDS_PHP = 'php';
+
+	/** @var string Metadata serialization: JSON */
+	private const MDS_JSON = 'json';
+
 	/** @var bool Does the file exist on disk? (loadFromXxx) */
 	protected $fileExists;
 
@@ -88,6 +100,14 @@ class LocalFile extends File {
 
 	/** @var array Unserialized metadata */
 	protected $metadataArray = [];
+
+	/**
+	 * One of the MDS_* constants, giving the format of the metadata as stored
+	 * in the DB, or null if the data was not loaded from the DB.
+	 *
+	 * @var string|null
+	 */
+	protected $metadataSerializationFormat;
 
 	/** @var string[] Map of metadata item name to blob address */
 	protected $metadataBlobs = [];
@@ -722,15 +742,15 @@ class LocalFile extends File {
 
 	/**
 	 * Upgrade a row if it needs it
+	 * @internal
 	 */
-	protected function maybeUpgradeRow() {
-		global $wgUpdateCompatibleMetadata;
-
+	public function maybeUpgradeRow() {
 		if ( wfReadOnly() || $this->upgrading ) {
 			return;
 		}
 
 		$upgrade = false;
+		$reserialize = false;
 		if ( $this->media_type === null || $this->mime == 'image/svg' ) {
 			$upgrade = true;
 		} else {
@@ -739,19 +759,34 @@ class LocalFile extends File {
 				$validity = $handler->isFileMetadataValid( $this );
 				if ( $validity === MediaHandler::METADATA_BAD ) {
 					$upgrade = true;
-				} elseif ( $validity === MediaHandler::METADATA_COMPATIBLE ) {
-					$upgrade = $wgUpdateCompatibleMetadata;
+				} elseif ( $validity === MediaHandler::METADATA_COMPATIBLE
+					&& $this->repo->isMetadataUpdateEnabled()
+				) {
+					$upgrade = true;
+				} elseif ( $this->repo->isJsonMetadataEnabled()
+					&& $this->repo->isMetadataReserializeEnabled()
+				) {
+					if ( $this->repo->isSplitMetadataEnabled() && $this->isMetadataOversize() ) {
+						$reserialize = true;
+					} elseif ( $this->metadataSerializationFormat !== self::MDS_EMPTY &&
+						$this->metadataSerializationFormat !== self::MDS_JSON ) {
+						$reserialize = true;
+					}
 				}
 			}
 		}
 
-		if ( $upgrade ) {
+		if ( $upgrade || $reserialize ) {
 			$this->upgrading = true;
 			// Defer updates unless in auto-commit CLI mode
-			DeferredUpdates::addCallableUpdate( function () {
+			DeferredUpdates::addCallableUpdate( function () use ( $upgrade ) {
 				$this->upgrading = false; // avoid duplicate updates
 				try {
-					$this->upgradeRow();
+					if ( $upgrade ) {
+						$this->upgradeRow();
+					} else {
+						$this->reserializeMetadata();
+					}
 				} catch ( LocalFileLockError $e ) {
 					// let the other process handle it (or do it next time)
 				}
@@ -813,6 +848,27 @@ class LocalFile extends File {
 
 		$this->unlock();
 		$this->upgraded = true; // avoid rework/retries
+	}
+
+	/**
+	 * Write the metadata back to the database with the current serialization
+	 * format.
+	 */
+	protected function reserializeMetadata() {
+		if ( wfReadOnly() ) {
+			return;
+		}
+		$dbw = $this->repo->getMasterDB();
+		$dbw->update(
+			'image',
+			[ 'img_metadata' => $this->getMetadataForDb( $dbw ) ],
+			[
+				'img_name' => $this->name,
+				'img_timestamp' => $dbw->timestamp( $this->timestamp ),
+			],
+			__METHOD__
+		);
+		$this->upgraded = true;
 	}
 
 	/**
@@ -1189,6 +1245,26 @@ class LocalFile extends File {
 	}
 
 	/**
+	 * Determine whether the loaded metadata may be a candidate for splitting, by measuring its
+	 * serialized size. Helper for maybeUpgradeRow().
+	 *
+	 * @return bool
+	 */
+	private function isMetadataOversize() {
+		if ( !$this->repo->isSplitMetadataEnabled() ) {
+			return false;
+		}
+		$threshold = $this->repo->getSplitMetadataThreshold();
+		$directItems = array_diff_key( $this->metadataArray, $this->metadataBlobs );
+		foreach ( $directItems as $value ) {
+			if ( strlen( $this->jsonEncode( $value ) ) > $threshold ) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/**
 	 * Unserialize a metadata blob which came from the database and store it
 	 * in $this.
 	 *
@@ -1214,6 +1290,7 @@ class LocalFile extends File {
 		$this->unloadedMetadataBlobs = [];
 		$metadataString = (string)$metadataString;
 		if ( $metadataString === '' ) {
+			$this->metadataSerializationFormat = self::MDS_EMPTY;
 			return;
 		}
 		if ( $metadataString[0] === '{' ) {
@@ -1221,7 +1298,9 @@ class LocalFile extends File {
 			if ( !$envelope ) {
 				// Legacy error encoding
 				$this->metadataArray = [ '_error' => $metadataString ];
+				$this->metadataSerializationFormat = self::MDS_LEGACY;
 			} else {
+				$this->metadataSerializationFormat = self::MDS_JSON;
 				if ( isset( $envelope['data'] ) ) {
 					$this->metadataArray = $envelope['data'];
 				}
@@ -1235,6 +1314,9 @@ class LocalFile extends File {
 			if ( !is_array( $data ) ) {
 				// Legacy error encoding
 				$data = [ '_error' => $metadataString ];
+				$this->metadataSerializationFormat = self::MDS_LEGACY;
+			} else {
+				$this->metadataSerializationFormat = self::MDS_PHP;
 			}
 			$this->metadataArray = $data;
 		}

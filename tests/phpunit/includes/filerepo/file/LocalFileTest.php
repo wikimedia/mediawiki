@@ -635,7 +635,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$repo = $services->getRepoGroup()->getLocalRepo();
 		$file = $repo->findFile( $title );
 
-		$this->assertFileProperties( $file, $expectedProps );
+		$this->assertFileProperties( $expectedProps, $file );
 		$this->assertSame( 'truecolour', $file->getMetadataItem( 'colorType' ) );
 		$this->assertSame(
 			[ 'loopCount' => 1, 'bitDepth' => 16 ],
@@ -650,7 +650,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			[ 'img_name' => 'Random-11m.png' ], __METHOD__ );
 		$file = LocalFile::newFromTitle( $title, $repo );
 
-		$this->assertFileProperties( $file, $expectedProps );
+		$this->assertFileProperties( $expectedProps, $file );
 		$this->assertSame( 'truecolour', $file->getMetadataItem( 'colorType' ) );
 		$this->assertSame(
 			[ 'loopCount' => 1, 'bitDepth' => 16 ],
@@ -666,7 +666,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( false, $file->exists() );
 	}
 
-	private function assertFileProperties( $file, $expectedProps ) {
+	private function assertFileProperties( $expectedProps, $file ) {
 		// Compare metadata without ordering
 		if ( isset( $expectedProps['metadata'] ) ) {
 			$this->assertArrayEquals( $expectedProps['metadata'], $file->getMetadataArray() );
@@ -803,6 +803,17 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		return ArrayUtils::cartesianProduct( $files, $configurations );
 	}
 
+	private function getMockPdfHandler() {
+		return new class extends ImageHandler {
+			public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
+			}
+
+			public function useSplitMetadata() {
+				return true;
+			}
+		};
+	}
+
 	/**
 	 * Test recordUpload3() and confirm that file properties are reflected back
 	 * after loading the new file from the DB.
@@ -828,15 +839,7 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$file = new LocalFile( $title, $repo );
 
 		if ( $props['mime'] === 'application/pdf' ) {
-			$mockPdfHandler = new class extends ImageHandler {
-				public function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {
-				}
-
-				public function useSplitMetadata() {
-					return true;
-				}
-			};
-			TestingAccessWrapper::newFromObject( $file )->handler = $mockPdfHandler;
+			TestingAccessWrapper::newFromObject( $file )->handler = $this->getMockPdfHandler();
 		}
 
 		$status = $file->recordUpload3(
@@ -848,10 +851,10 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		);
 		$this->assertSame( [], $status->getErrors() );
 		// Check properties of the same object immediately after upload
-		$this->assertFileProperties( $file, $props );
+		$this->assertFileProperties( $props, $file );
 		// Check round-trip through the DB
 		$file = new LocalFile( $title, $repo );
-		$this->assertFileProperties( $file, $props );
+		$this->assertFileProperties( $props, $file );
 	}
 
 	/**
@@ -890,5 +893,148 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 			0
 		);
 		$this->assertSame( [], $status->getErrors() );
+	}
+
+	public function provideReserializeMetadata() {
+		return [
+			[
+				'',
+				''
+			],
+			[
+				'a:1:{s:4:"test";i:1;}',
+				'{"data":{"test":1}}'
+			],
+			[
+				serialize( [ 'test' => str_repeat( 'x', 100 ) ] ),
+				'{"data":[],"blobs":{"test":"tt:%d"}}'
+			]
+		];
+	}
+
+	/**
+	 * Test reserializeMetadata() via maybeUpgradeRow()
+	 *
+	 * @covers LocalFile::maybeUpgradeRow
+	 * @covers LocalFile::reserializeMetadata
+	 * @dataProvider provideReserializeMetadata
+	 */
+	public function testReserializeMetadata( $input, $expected ) {
+		$dbw = wfGetDB( DB_PRIMARY );
+		$services = MediaWikiServices::getInstance();
+		$norm = $services->getActorNormalization();
+		$user = $this->getTestSysop()->getUserIdentity();
+		$actorId = $norm->acquireActorId( $user, $dbw );
+		$comment = $services->getCommentStore()->createComment( $dbw, 'comment' );
+
+		$dbw->insert(
+			'image',
+			[
+				'img_name' => 'Test.pdf',
+				'img_size' => 1,
+				'img_width' => 1,
+				'img_height' => 1,
+				'img_metadata' => $input,
+				'img_bits' => 0,
+				'img_media_type' => 'OFFICE',
+				'img_major_mime' => 'application',
+				'img_minor_mime' => 'pdf',
+				'img_description_id' => $comment->id,
+				'img_actor' => $actorId,
+				'img_timestamp' => $dbw->timestamp( '20201105235242' ),
+				'img_sha1' => 'hhhh',
+			]
+		);
+
+		$repo = new LocalRepo( [
+			'class' => LocalRepo::class,
+			'name' => 'test',
+			'useJsonMetadata' => true,
+			'useSplitMetadata' => true,
+			'splitMetadataThreshold' => 50,
+			'updateCompatibleMetadata' => true,
+			'reserializeMetadata' => true,
+			'backend' => new FSFileBackend( [
+				'name' => 'test-backend',
+				'wikiId' => WikiMap::getCurrentWikiId(),
+				'basePath' => '/nonexistent'
+			] )
+		] );
+		$title = Title::newFromText( 'File:Test.pdf' );
+		$file = new LocalFile( $title, $repo );
+		TestingAccessWrapper::newFromObject( $file )->handler = $this->getMockPdfHandler();
+		$file->load();
+		$file->maybeUpgradeRow();
+
+		$metadata = $dbw->selectField( 'image', 'img_metadata',
+			[ 'img_name' => 'Test.pdf' ], __METHOD__ );
+		$this->assertStringMatchesFormat( $expected, $metadata );
+	}
+
+	/**
+	 * Test upgradeRow() via maybeUpgradeRow()
+	 *
+	 * @covers LocalFile::maybeUpgradeRow
+	 * @covers LocalFile::upgradeRow
+	 */
+	public function testUpgradeRow() {
+		$repo = new LocalRepo( [
+			'class' => LocalRepo::class,
+			'name' => 'test',
+			'updateCompatibleMetadata' => true,
+			'useJsonMetadata' => true,
+			'hashLevels' => 0,
+			'backend' => new FSFileBackend( [
+				'name' => 'test-backend',
+				'wikiId' => WikiMap::getCurrentWikiId(),
+				'containerPaths' => [ 'test-public' => __DIR__ . '/../../../data/media' ]
+			] )
+		] );
+		$dbw = wfGetDB( DB_PRIMARY );
+		$services = MediaWikiServices::getInstance();
+		$norm = $services->getActorNormalization();
+		$user = $this->getTestSysop()->getUserIdentity();
+		$actorId = $norm->acquireActorId( $user, $dbw );
+		$comment = $services->getCommentStore()->createComment( $dbw, 'comment' );
+
+		$dbw->insert(
+			'image',
+			[
+				'img_name' => 'Png-native-test.png',
+				'img_size' => 1,
+				'img_width' => 1,
+				'img_height' => 1,
+				'img_metadata' => 'a:1:{s:8:"metadata";a:1:{s:15:"_MW_PNG_VERSION";i:0;}}',
+				'img_bits' => 0,
+				'img_media_type' => 'OFFICE',
+				'img_major_mime' => 'image',
+				'img_minor_mime' => 'png',
+				'img_description_id' => $comment->id,
+				'img_actor' => $actorId,
+				'img_timestamp' => $dbw->timestamp( '20201105235242' ),
+				'img_sha1' => 'hhhh',
+			]
+		);
+
+		$title = Title::newFromText( 'File:Png-native-test.png' );
+		$file = new LocalFile( $title, $repo );
+		$file->load();
+		$file->maybeUpgradeRow();
+		$metadata = $dbw->selectField( 'image', 'img_metadata',
+			[ 'img_name' => 'Png-native-test.png' ] );
+		// Just confirm that it looks like JSON with real metadata
+		$this->assertStringStartsWith( '{"data":{"frameCount":0,', $metadata );
+
+		$file = new LocalFile( $title, $repo );
+		$this->assertFileProperties(
+			[
+				'size' => 4665,
+				'width' => 420,
+				'height' => 300,
+				'sha1' => '3n69qtiaif1swp3kyfueqjtmw2u4c2b',
+				'bits' => 8,
+				'media_type' => 'BITMAP',
+			],
+			$file );
 	}
 }

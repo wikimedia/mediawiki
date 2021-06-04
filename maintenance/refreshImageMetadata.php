@@ -63,6 +63,14 @@ class RefreshImageMetadata extends Maintenance {
 			'Only fix really broken records, leave old but still compatible records alone.'
 		);
 		$this->addOption(
+			'convert-to-json',
+			'Fix records with an out of date serialization format.'
+		);
+		$this->addOption(
+			'split',
+			'Enable splitting out large metadata items to the text table. Implies --convert-to-json.'
+		);
+		$this->addOption(
 			'verbose',
 			'Output extra information about each upgraded/non-upgraded file.',
 			false,
@@ -100,7 +108,8 @@ class RefreshImageMetadata extends Maintenance {
 		$brokenOnly = $this->hasOption( 'broken-only' );
 		$verbose = $this->hasOption( 'verbose' );
 		$start = $this->getOption( 'start', false );
-		$this->setupParameters( $force, $brokenOnly );
+		$split = $this->hasOption( 'split' );
+		$reserialize = $this->hasOption( 'convert-to-json' );
 
 		$upgraded = 0;
 		$leftAlone = 0;
@@ -112,7 +121,7 @@ class RefreshImageMetadata extends Maintenance {
 			$this->fatalError( "Batch size is too low...", 12 );
 		}
 
-		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		$repo = $this->newLocalRepo( $force, $brokenOnly, $reserialize, $split );
 		$conds = $this->getConditions( $dbw );
 
 		// For the WHERE img_name > 'foo' condition that comes after doing a batch
@@ -149,6 +158,7 @@ class RefreshImageMetadata extends Maintenance {
 				try {
 					// LocalFile will upgrade immediately here if obsolete
 					$file = $repo->newFileFromRow( $row );
+					$file->maybeUpgradeRow();
 					if ( $file->getUpgraded() ) {
 						// File was upgraded.
 						$upgraded++;
@@ -221,19 +231,34 @@ class RefreshImageMetadata extends Maintenance {
 	/**
 	 * @param bool $force
 	 * @param bool $brokenOnly
+	 * @param bool $reserialize
+	 * @param bool $split
+	 *
+	 * @return LocalRepo
 	 */
-	private function setupParameters( $force, $brokenOnly ) {
-		global $wgUpdateCompatibleMetadata;
-
-		if ( $brokenOnly ) {
-			$wgUpdateCompatibleMetadata = false;
-		} else {
-			$wgUpdateCompatibleMetadata = true;
-		}
-
+	private function newLocalRepo( $force, $brokenOnly, $reserialize, $split ): LocalRepo {
 		if ( $brokenOnly && $force ) {
 			$this->fatalError( 'Cannot use --broken-only and --force together. ', 2 );
 		}
+		$reserialize = $reserialize || $split;
+		if ( $brokenOnly && $reserialize ) {
+			$this->fatalError( 'Cannot use --broken-only with --convert-to-json or --split. ',
+				2 );
+		}
+
+		$overrides = [
+			'updateCompatibleMetadata' => !$brokenOnly,
+		];
+		if ( $reserialize ) {
+			$overrides['reserializeMetadata'] = true;
+			$overrides['useJsonMetadata'] = true;
+		}
+		if ( $split ) {
+			$overrides['useSplitMetadata'] = true;
+		}
+
+		return MediaWikiServices::getInstance()->getRepoGroup()
+			->newCustomLocalRepo( $overrides );
 	}
 }
 

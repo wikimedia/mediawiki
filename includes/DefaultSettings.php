@@ -646,6 +646,12 @@ $wgImgAuthUrlPathMap = [];
  *                      If the media handler opts in, large metadata items will be split into a
  *                      separate blob in the database if the item is larger than this threshold.
  *                      Default: 1000
+ *   - updateCompatibleMetadata
+ *                      If true, image metadata will be upgraded by reloading it from the file,
+ *                      if the handler indicates that it is out of date. Default: false.
+ *   - reserializeMetadata
+ *                      If true, image metadata will be automatically rewritten to the database
+ *                      if its serialization format is out of date. Default: false
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:
