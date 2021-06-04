@@ -23,8 +23,8 @@ $namespaceNames = [
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Тускай',
 	NS_TALK             => 'Чугаа',
-	NS_USER             => 'Aжыглакчы',
-	NS_USER_TALK        => 'Aжыглакчы_чугаа',
+	NS_USER             => 'Ажыглакчы',
+	NS_USER_TALK        => 'Ажыглакчы_чугаа',
 	NS_PROJECT_TALK     => '$1_чугаа',
 	NS_FILE             => 'Файл',
 	NS_FILE_TALK        => 'Файл_чугаа',
@@ -39,6 +39,8 @@ $namespaceNames = [
 ];
 
 $namespaceAliases = [
+	'Aжыглакчы'          => NS_USER,
+	'Aжыглакчы_чугаа'    => NS_USER_TALK,
 	'Aжыглакчы_чугаазы'  => NS_USER_TALK,
 	'$1_чугаазы'         => NS_PROJECT_TALK,
 	'Файл_чугаазы'       => NS_FILE_TALK,
