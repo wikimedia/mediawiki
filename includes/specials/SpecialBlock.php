@@ -833,8 +833,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		// Reason, to be passed to the block object. For default values of reason, see
 		// HTMLSelectAndOtherField::getDefault
-		// @phan-suppress-next-line PhanPluginDuplicateConditionalNullCoalescing
-		$blockReason = isset( $data['Reason'][0] ) ? $data['Reason'][0] : '';
+		$blockReason = $data['Reason'][0] ?? '';
 
 		$pageRestrictions = [];
 		$namespaceRestrictions = [];

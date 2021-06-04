@@ -614,7 +614,7 @@ class Site implements Serializable {
 	 */
 	public function getPath( $pathType ) {
 		$paths = $this->getAllPaths();
-		return array_key_exists( $pathType, $paths ) ? $paths[$pathType] : null;
+		return $paths[$pathType] ?? null;
 	}
 
 	/**

@@ -2090,7 +2090,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	public function hasOrMadeRecentMasterChanges( $age = null ) {
-		$age = ( $age === null ) ? $this->waitTimeout : $age;
+		$age = $age ?? $this->waitTimeout;
 
 		return ( $this->hasMasterChanges()
 			|| $this->lastMasterChangeTimestamp() > microtime( true ) - $age );
