@@ -1541,7 +1541,7 @@
 	"filedelete-comment": "Səbəb:",
 	"filedelete-submit": "Sil",
 	"filedelete-success": "'''$1''' silinmişdir.",
-	"filedelete-success-old": "<span class=\"plainlinks\">'''[[Media:$1|$1]]'''-nin  $3 və $2 versiyaları silinmişdir.</span>",
+	"filedelete-success-old": "<strong>[[Media:$1|$1]]</strong> faylının $3, $2 versiyası silindi.",
 	"filedelete-nofile": "'''$1''' mövcud deyil.",
 	"filedelete-otherreason": "Başqa/əlavə səbəb:",
 	"filedelete-reason-otherlist": "Başqa səbəb",
