@@ -1379,14 +1379,14 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 		$ipBlock = new Block( [
 			'address' => $user->getRequest()->getIP(),
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'createAccount' => true,
 		] );
 		$blockStore->insertBlock( $ipBlock );
 
 		$userBlock = new Block( [
 			'address' => $user,
-			'by' => $this->getTestSysop()->getUser()->getId(),
+			'by' => $this->getTestSysop()->getUser(),
 			'createAccount' => false,
 		] );
 		$blockStore->insertBlock( $userBlock );
