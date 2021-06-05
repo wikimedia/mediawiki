@@ -505,7 +505,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'Partial block with action restriction against uploading' => [
 				( new DatabaseBlock( [
 					'address' => '127.0.8.1',
-					'by' => 100,
+					'by' => UserIdentityValue::newRegistered( 100, 'Test' ),
 					'sitewide' => false,
 				] ) )->setRestrictions( [
 					new ActionRestriction( 0, 1 )
