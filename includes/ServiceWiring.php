@@ -1134,7 +1134,7 @@ return [
 			$services->getLanguageConverterFactory()->getLanguageConverter(),
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer(),
-			$services->getUserOptionsLookup(),
+			$services->getUserOptionsManager(),
 			$services->getLanguageConverterFactory(),
 			$services->getParser(),
 			$services->getSkinFactory(),

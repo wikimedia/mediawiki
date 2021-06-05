@@ -43,6 +43,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\UserOptionsManager;
 use Message;
 use MessageLocalizer;
 use MWException;
@@ -96,8 +97,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	/** @var HookRunner */
 	private $hookRunner;
 
-	/** @var UserOptionsLookup */
-	private $userOptionsLookup;
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
 
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
@@ -155,7 +156,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param ILanguageConverter $languageConverter
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param HookContainer $hookContainer
-	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserOptionsLookup $userOptionsLookup Should be an instance of UserOptionsManager
 	 * @param LanguageConverterFactory|null $languageConverterFactory
 	 * @param Parser|null $parser
 	 * @param SkinFactory|null $skinFactory
@@ -194,13 +195,16 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->languageConverter = $languageConverter;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->hookRunner = new HookRunner( $hookContainer );
-		$this->userOptionsLookup = $userOptionsLookup;
 
 		// Don't break GlobalPreferences, fall back to global state if missing services
+		// or if passed a UserOptionsLookup that isn't UserOptionsManager
 		$services = static function () {
 			// BC hack. Use a closure so this can be unit-tested.
 			return MediaWikiServices::getInstance();
 		};
+		$this->userOptionsManager = ( $userOptionsLookup instanceof UserOptionsManager )
+			? $userOptionsLookup
+			: $services()->getUserOptionsManager();
 		$this->languageConverterFactory = $languageConverterFactory ?? $services()->getLanguageConverterFactory();
 		$this->parser = $parser ?? $services()->getParser();
 		$this->skinFactory = $skinFactory ?? $services()->getSkinFactory();
@@ -267,8 +271,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		$disable = !$user->isAllowed( 'editmyoptions' );
 
-		$defaultOptions = $this->userOptionsLookup->getDefaultOptions();
-		$userOptions = $this->userOptionsLookup->getOptions( $user );
+		$defaultOptions = $this->userOptionsManager->getDefaultOptions();
+		$userOptions = $this->userOptionsManager->getOptions( $user );
 		$this->applyFilters( $userOptions, $defaultPreferences, 'filterForForm' );
 		// Add in defaults from the user
 		foreach ( $defaultPreferences as $name => &$info ) {
@@ -284,9 +288,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				// Already set, no problem
 				continue;
 			} elseif ( $prefFromUser !== null && // Make sure we're not just pulling nothing
-					$field->validate( $prefFromUser, $this->userOptionsLookup->getOptions( $user ) ) === true ) {
+					$field->validate( $prefFromUser, $this->userOptionsManager->getOptions( $user ) ) === true ) {
 				$info['default'] = $prefFromUser;
-			} elseif ( $field->validate( $globalDefault, $this->userOptionsLookup->getOptions( $user ) ) === true ) {
+			} elseif ( $field->validate( $globalDefault, $this->userOptionsManager->getOptions( $user ) ) === true ) {
 				$info['default'] = $globalDefault;
 			} else {
 				$globalDefault = json_encode( $globalDefault );
@@ -594,13 +598,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		);
 		$signatureFieldConfig = [];
 		// Validate existing signature and show a message about it
-		if ( $this->userOptionsLookup->getBoolOption( $user, 'fancysig' ) ) {
+		if ( $this->userOptionsManager->getBoolOption( $user, 'fancysig' ) ) {
 			$validator = new SignatureValidator(
 				$user,
 				$context,
 				ParserOptions::newFromContext( $context )
 			);
-			$signatureErrors = $validator->validateSignature( $user->getOption( 'nickname' ) );
+			$signatureErrors = $validator->validateSignature(
+				$this->userOptionsManager->getOption( $user, 'nickname' )
+			);
 			if ( $signatureErrors ) {
 				$sigValidation = $this->options->get( 'SignatureValidation' );
 				$oldsigHTML .= '<p><strong>' .
@@ -942,7 +948,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		// Grab existing pref.
-		$tzOffset = $user->getOption( 'timecorrection' );
+		$tzOffset = $this->userOptionsManager->getOption( $user, 'timecorrection' );
 		$tz = explode( '|', $tzOffset, 3 );
 
 		$tzOptions = $this->getTimezoneOptions( $context );
@@ -1443,7 +1449,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		// Display the skin if the user has set it as a preference already before it was hidden.
-		$currentUserSkin = $user->getOption( 'skin' );
+		$currentUserSkin = $this->userOptionsManager->getOption( $user, 'skin' );
 		if ( isset( $allInstalledSkins[$currentUserSkin] )
 			&& $context->msg( "skinname-$currentUserSkin" )->exists()
 		) {
@@ -1617,9 +1623,10 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Additionally, if it was removed in that way, it would reset to the default value of '',
 		// which is actually invalid when 'fancysig' is enabled, which would cause an exception like
 		// "Default '' is invalid for preference...".
+		$user = $form->getUser();
 		if (
-			$signature === $form->getUser()->getOption( 'nickname' ) &&
-			(bool)$alldata['fancysig'] === $form->getUser()->getBoolOption( 'fancysig' )
+			$signature === $this->userOptionsManager->getOption( $user, 'nickname' ) &&
+			(bool)$alldata['fancysig'] === $this->userOptionsManager->getBoolOption( $user, 'fancysig' )
 		) {
 			return true;
 		}
@@ -1627,7 +1634,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		if ( $sigValidation === 'new' || $sigValidation === 'disallow' ) {
 			// Validate everything
 			$validator = new SignatureValidator(
-				$form->getUser(),
+				$user,
 				$form->getContext(),
 				ParserOptions::newFromContext( $form->getContext() )
 			);
@@ -1802,7 +1809,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		if ( $user->isAllowed( 'editmyoptions' ) ) {
-			$oldUserOptions = $this->userOptionsLookup->getOptions( $user );
+			$oldUserOptions = $this->userOptionsManager->getOptions( $user );
 
 			foreach ( $this->getSaveBlacklist() as $b ) {
 				unset( $formData[$b] );
@@ -1814,22 +1821,22 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			foreach ( $hiddenPrefs as $pref ) {
 				// If the user has not set a non-default value here, the default will be returned
 				// and subsequently discarded
-				$formData[$pref] = $user->getOption( $pref, null, true );
+				$formData[$pref] = $this->userOptionsManager->getOption( $user, $pref, null, true );
 			}
 
 			// If the user changed the rclimit preference, also change the rcfilters-rclimit preference
 			if (
 				isset( $formData['rclimit'] ) &&
-				intval( $formData[ 'rclimit' ] ) !== $user->getIntOption( 'rclimit' )
+				intval( $formData[ 'rclimit' ] ) !== $this->userOptionsManager->getIntOption( $user, 'rclimit' )
 			) {
 				$formData['rcfilters-limit'] = $formData['rclimit'];
 			}
 
 			// Keep old preferences from interfering due to back-compat code, etc.
-			$user->resetOptions( 'unused', $form->getContext() );
+			$this->userOptionsManager->resetOptions( $user, $form->getContext(), 'unused' );
 
 			foreach ( $formData as $key => $value ) {
-				$user->setOption( $key, $value );
+				$this->userOptionsManager->setOption( $user, $key, $value );
 			}
 
 			$this->hookRunner->onPreferencesFormPreSave(

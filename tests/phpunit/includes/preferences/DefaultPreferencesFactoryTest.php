@@ -13,6 +13,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\User\UserOptionsManager;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -86,6 +87,8 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		);
 
 		// Now, make sure that MediaWikiServices isn't used
+		// Switch the UserOptionsLookup to a UserOptionsManager
+		$params[9] = $this->createMock( UserOptionsManager::class );
 		$params[] = $this->createMock( LanguageConverterFactory::class );
 		$params[] = $this->createMock( Parser::class );
 		$params[] = $this->createMock( SkinFactory::class );
@@ -112,7 +115,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	 * Get a basic PreferencesFactory for testing with.
 	 * @param array $options Supported options are:
 	 *    'language' - A Language object, falls back to `new Language()`
-	 *    'userOptionsLookup' - A UserOptionsLookup service, falls back to using MediaWikiServices
+	 *    'userOptionsManager' - A UserOptionsManager service, falls back to using MediaWikiServices
 	 *    'userGroupManager' - A UserGroupManager service, falls back to a mock where no users
 	 *                         have any extra groups, just `*` and `user`
 	 * @return DefaultPreferencesFactory
@@ -129,7 +132,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$permissionManager = $this->createNoOpMock( PermissionManager::class );
 
 		$language = $options['language'] ?? new Language();
-		$userOptionsLookup = $options['userOptionsLookup'] ?? $services->getUserOptionsLookup();
+		$userOptionsManager = $options['userOptionsManager'] ?? $services->getUserOptionsManager();
 
 		$userGroupManager = $options['userGroupManager'] ?? false;
 		if ( !$userGroupManager ) {
@@ -153,7 +156,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			$services->getLanguageConverterFactory()->getLanguageConverter( $language ),
 			$services->getLanguageNameUtils(),
 			$services->getHookContainer(),
-			$userOptionsLookup,
+			$userOptionsManager,
 			$services->getLanguageConverterFactory(),
 			$services->getParser(),
 			$services->getSkinFactory(),
@@ -202,9 +205,9 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			}
 		);
 
-		$userOptionsLookupMock = $this->createUserOptionsLookupMock( [ 'test' => 'yes' ], true );
+		$userOptionsManagerMock = $this->createUserOptionsManagerMock( [ 'test' => 'yes' ], true );
 		$prefs = $this->getPreferencesFactory( [
-			'userOptionsLookup' => $userOptionsLookupMock,
+			'userOptionsManager' => $userOptionsManagerMock,
 		] )->getFormDescriptor( $userMock, $this->context );
 		$this->assertArrayNotHasKey( 'showrollbackconfirmation', $prefs );
 	}
@@ -222,9 +225,9 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			}
 		);
 
-		$userOptionsLookupMock = $this->createUserOptionsLookupMock( [ 'test' => 'yes' ], true );
+		$userOptionsManagerMock = $this->createUserOptionsManagerMock( [ 'test' => 'yes' ], true );
 		$prefs = $this->getPreferencesFactory( [
-			'userOptionsLooku' => $userOptionsLookupMock,
+			'userOptionsManager' => $userOptionsManagerMock,
 		] )->getFormDescriptor( $userMock, $this->context );
 		$this->assertArrayHasKey( 'showrollbackconfirmation', $prefs );
 		$this->assertEquals(
@@ -276,11 +279,12 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		$userMock->expects( $this->exactly( 2 ) )
+		$userOptionsManagerMock = $this->createUserOptionsManagerMock( $oldOptions );
+		$userOptionsManagerMock->expects( $this->exactly( 2 ) )
 			->method( 'setOption' )
 			->withConsecutive(
-				[ 'test', $newOptions[ 'test' ] ],
-				[ 'option', $newOptions[ 'option' ] ]
+				[ $userMock, 'test', $newOptions[ 'test' ] ],
+				[ $userMock, 'option', $newOptions[ 'option' ] ]
 			);
 		$userMock->method( 'isAllowed' )->willReturnCallback(
 			static function ( $permission ) {
@@ -307,8 +311,6 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$form->method( 'getConfig' )
 			->willReturn( $configMock );
 
-		$userOptionsLookupMock = $this->createUserOptionsLookupMock( $oldOptions );
-
 		$this->setTemporaryHook( 'PreferencesFormPreSave',
 			function ( $formData, $form, $user, &$result, $oldUserOptions )
 				use ( $newOptions, $oldOptions, $userMock ) {
@@ -325,7 +327,7 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 
 		/** @var DefaultPreferencesFactory $factory */
 		$factory = TestingAccessWrapper::newFromObject(
-			$this->getPreferencesFactory( [ 'userOptionsLookup' => $userOptionsLookupMock ] )
+			$this->getPreferencesFactory( [ 'userOptionsManager' => $userOptionsManagerMock ] )
 		);
 		$factory->saveFormData( $newOptions, $form, [] );
 	}
@@ -359,13 +361,13 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$language->method( 'getCode' )
 			->willReturn( 'sr' );
 
-		$userOptionsLookupMock = $this->createUserOptionsLookupMock(
+		$userOptionsManagerMock = $this->createUserOptionsManagerMock(
 			[ 'LanguageCode' => 'sr', 'variant' => 'sr' ], true
 		);
 
 		$prefs = $this->getPreferencesFactory( [
 			'language' => $language,
-			'userOptionsLookup' => $userOptionsLookupMock,
+			'userOptionsManager' => $userOptionsManagerMock,
 		] )->getFormDescriptor( $userMock, $this->context );
 		$this->assertArrayHasKey( 'default', $prefs['variant'] );
 		$this->assertEquals( 'sr', $prefs['variant']['default'] );
@@ -386,11 +388,11 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 		$language->method( 'getCode' )
 			->willReturn( 'en' );
 
-		$userOptionsLookupMock = $this->createUserOptionsLookupMock( [], true );
+		$userOptionsManagerMock = $this->createUserOptionsManagerMock( [], true );
 
 		$prefs = $this->getPreferencesFactory( [
 			'language' => $language,
-			'userOptionsLookup' => $userOptionsLookupMock,
+			'userOptionsManager' => $userOptionsManagerMock,
 		] )->getFormDescriptor( $userMock, $this->context );
 		$this->assertArrayHasKey( 'default', $prefs['usergroups'] );
 		$this->assertEquals(
@@ -416,10 +418,10 @@ class DefaultPreferencesFactoryTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @param array $userOptions
 	 * @param bool $defaultOptions
-	 * @return UserOptionsLookup
+	 * @return UserOptionsManager
 	 */
-	private function createUserOptionsLookupMock( array $userOptions, bool $defaultOptions = false ) {
-		$mock = $this->createMock( UserOptionsLookup::class );
+	private function createUserOptionsManagerMock( array $userOptions, bool $defaultOptions = false ) {
+		$mock = $this->createMock( UserOptionsManager::class );
 		$mock->method( 'getOptions' )->willReturn( $userOptions );
 		$services = $this->getServiceContainer();
 		if ( $defaultOptions ) {
