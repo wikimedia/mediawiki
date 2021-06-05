@@ -448,7 +448,8 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 		$this->db->onTransactionResolution(
 			static function () use ( $store1, &$quuxId ) {
 				$quuxId = $store1->acquireId( 'quux' );
-			}
+			},
+			__METHOD__
 		);
 
 		$store1->acquireId( 'foo' );

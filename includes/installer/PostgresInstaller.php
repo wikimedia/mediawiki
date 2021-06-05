@@ -689,7 +689,7 @@ class PostgresInstaller extends DatabaseInstaller {
 			__METHOD__ );
 		if ( $exists ) {
 			try {
-				$conn->query( 'CREATE LANGUAGE plpgsql' );
+				$conn->query( 'CREATE LANGUAGE plpgsql', __METHOD__ );
 			} catch ( DBQueryError $e ) {
 				return Status::newFatal( 'config-pg-no-plpgsql', $this->getVar( 'wgDBname' ) );
 			}

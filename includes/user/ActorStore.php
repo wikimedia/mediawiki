@@ -665,7 +665,9 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 						$this->cache->remove( $cachedActor );
 						$this->detachActorId( $originalActor );
 					}
-				} );
+				},
+				__METHOD__
+			);
 		}
 	}
 

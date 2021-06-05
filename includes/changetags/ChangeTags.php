@@ -915,17 +915,19 @@ class ChangeTags {
 					// tags for each revision. This does not work with temporary tables
 					// on some versions of MySQL, which causes phpunit tests to fail.
 					// As a hacky workaround, we copy the temporary table, and join
-					// against the copy. It is acknowledge that this is quite horrific.
+					// against the copy. It is acknowledged that this is quite horrific.
 					// Discuss at T256006.
 
 					$tagTable = 'change_tag_for_display_query';
 					$db->query(
 						'CREATE TEMPORARY TABLE IF NOT EXISTS ' . $db->tableName( $tagTable )
-						. ' LIKE ' . $db->tableName( 'change_tag' )
+						. ' LIKE ' . $db->tableName( 'change_tag' ),
+						__METHOD__
 					);
 					$db->query(
 						'INSERT IGNORE INTO ' . $db->tableName( $tagTable )
-						. ' SELECT * FROM ' . $db->tableName( 'change_tag' )
+						. ' SELECT * FROM ' . $db->tableName( 'change_tag' ),
+						__METHOD__
 					);
 				}
 			}

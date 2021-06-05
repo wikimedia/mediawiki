@@ -1851,7 +1851,7 @@ class LocalFile extends File {
 			}
 
 			JobQueueGroup::singleton()->lazyPush( $cacheUpdateJob );
-		} );
+		}, __METHOD__ );
 
 		return Status::newGood();
 	}

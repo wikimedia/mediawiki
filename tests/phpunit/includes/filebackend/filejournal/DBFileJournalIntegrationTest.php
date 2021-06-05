@@ -16,7 +16,7 @@ class DBFileJournalIntegrationTest extends MediaWikiIntegrationTestCase {
 		if ( $db->getType() !== 'mysql' ) {
 			return;
 		}
-		if ( !$db->tableExists( 'filejournal' ) ) {
+		if ( !$db->tableExists( 'filejournal', __METHOD__ ) ) {
 			$db->sourceFile( "$IP/maintenance/archives/patch-filejournal.sql" );
 		}
 	}
