@@ -38,7 +38,7 @@ use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RenderedRevision;
 use MediaWiki\Revision\RevisionRecord;
@@ -47,6 +47,7 @@ use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MessageCache;
@@ -65,6 +66,7 @@ use SearchUpdate;
 use SiteStatsUpdate;
 use Title;
 use User;
+use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\ILBFactory;
 use WikiPage;
@@ -292,6 +294,18 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
+	/** @var PageEditStash */
+	private $pageEditStash;
+
+	/** @var TalkPageNotificationManager */
+	private $talkPageNotificationManager;
+
+	/** @var WANObjectCache */
+	private $mainWANObjectCache;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
 	/**
 	 * @param WikiPage $wikiPage ,
 	 * @param RevisionStore $revisionStore
@@ -307,6 +321,10 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @param EditResultCache $editResultCache
 	 * @param UserNameUtils $userNameUtils
 	 * @param ContentTransformer $contentTransformer
+	 * @param PageEditStash $pageEditStash
+	 * @param TalkPageNotificationManager $talkPageNotificationManager
+	 * @param WANObjectCache $mainWANObjectCache
+	 * @param PermissionManager $permissionManager
 	 */
 	public function __construct(
 		WikiPage $wikiPage,
@@ -322,7 +340,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		HookContainer $hookContainer,
 		EditResultCache $editResultCache,
 		UserNameUtils $userNameUtils,
-		ContentTransformer $contentTransformer
+		ContentTransformer $contentTransformer,
+		PageEditStash $pageEditStash,
+		TalkPageNotificationManager $talkPageNotificationManager,
+		WANObjectCache $mainWANObjectCache,
+		PermissionManager $permissionManager
 	) {
 		$this->wikiPage = $wikiPage;
 
@@ -341,6 +363,10 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->editResultCache = $editResultCache;
 		$this->userNameUtils = $userNameUtils;
 		$this->contentTransformer = $contentTransformer;
+		$this->pageEditStash = $pageEditStash;
+		$this->talkPageNotificationManager = $talkPageNotificationManager;
+		$this->mainWANObjectCache = $mainWANObjectCache;
+		$this->permissionManager = $permissionManager;
 
 		$this->logger = new NullLogger();
 	}
@@ -812,8 +838,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 
 		// TODO: MCR: allow output for all slots to be stashed.
 		if ( $useStash && $slotsUpdate->isModifiedSlot( SlotRecord::MAIN ) ) {
-			$editStash = MediaWikiServices::getInstance()->getPageEditStash();
-			$stashedEdit = $editStash->checkCache(
+			$stashedEdit = $this->pageEditStash->checkCache(
 				$title,
 				$slotsUpdate->getModifiedSlot( SlotRecord::MAIN )->getContent(),
 				$legacyUser
@@ -1555,8 +1580,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			// TODO User::getTitleKey is just a string manipulation of the user name,
 			// duplicate it here and use $this->user (a UserIdentity) instead
 			&& $shortTitle != $legacyUser->getTitleKey()
-			&& !( $this->revision->isMinor() && MediaWikiServices::getInstance()
-				->getPermissionManager()
+			&& !( $this->revision->isMinor() && $this->permissionManager
 				->userHasRight( $this->user, 'nominornewtalk' )
 			)
 		) {
@@ -1569,13 +1593,11 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				// TODO: replace legacy hook!  Use a listener on PageEventEmitter instead!
 				if ( $this->hookRunner->onArticleEditUpdateNewTalk( $wikiPage, $recipient ) ) {
 					$revRecord = $this->revision;
-					$talkPageNotificationManager = MediaWikiServices::getInstance()
-						->getTalkPageNotificationManager();
 					if ( $this->userNameUtils->isIP( $shortTitle ) ) {
 						// An anonymous user
-						$talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
+						$this->talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
 					} elseif ( $recipient->isRegistered() ) {
-						$talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
+						$this->talkPageNotificationManager->setUserHasNewMessages( $recipient, $revRecord );
 					} else {
 						wfDebug( __METHOD__ . ": don't need to notify a nonexistent user" );
 					}
@@ -1597,7 +1619,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		} elseif ( $this->options['changed'] ) { // T52785
 			WikiPage::onArticleEdit( $title, $this->revision, $this->getTouchedSlotRoles() );
 		} elseif ( $this->options['restored'] ) {
-			MediaWikiServices::getInstance()->getMainWANObjectCache()->touchCheckKey(
+			$this->mainWANObjectCache->touchCheckKey(
 				"DerivedPageDataUpdater:restore:page:$id"
 			);
 		}

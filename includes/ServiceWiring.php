@@ -1090,6 +1090,10 @@ return [
 			$services->getUserGroupManager(),
 			$services->getTitleFormatter(),
 			$services->getContentTransformer(),
+			$services->getPageEditStash(),
+			$services->getTalkPageNotificationManager(),
+			$services->getMainWANObjectCache(),
+			$services->getPermissionManager(),
 			ChangeTags::getSoftwareTags()
 		);
 	},
