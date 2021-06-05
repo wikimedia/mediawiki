@@ -219,6 +219,8 @@ class SqliteUpdater extends DatabaseUpdater {
 			[ 'addField', 'objectcache', 'modtoken', 'patch-objectcache-modtoken.sql' ],
 			[ 'modifyField', 'revision', 'rev_timestamp', 'patch-revision-rev_timestamp-drop-default.sql' ],
 			[ 'addIndex', 'oldimage', 'oi_timestamp', 'patch-oldimage-oi_timestamp.sql' ],
+			[ 'renameIndex', 'page', 'name_title', 'page_name_title', false,
+				'patch-page-rename-name_title-index.sql' ],
 		];
 	}
 

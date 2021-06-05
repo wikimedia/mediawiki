@@ -893,7 +893,7 @@ CREATE TABLE page (
   PRIMARY KEY(page_id)
 );
 
-CREATE UNIQUE INDEX name_title ON page (page_namespace, page_title);
+CREATE UNIQUE INDEX page_name_title ON page (page_namespace, page_title);
 
 CREATE INDEX page_random ON page (page_random);
 

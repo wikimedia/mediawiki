@@ -832,7 +832,7 @@ CREATE TABLE /*_*/page (
   page_lang BLOB DEFAULT NULL
 );
 
-CREATE UNIQUE INDEX name_title ON /*_*/page (page_namespace, page_title);
+CREATE UNIQUE INDEX page_name_title ON /*_*/page (page_namespace, page_title);
 
 CREATE INDEX page_random ON /*_*/page (page_random);
 
