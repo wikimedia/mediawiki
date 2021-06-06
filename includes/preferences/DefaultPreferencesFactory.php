@@ -42,6 +42,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
+use Message;
 use MessageLocalizer;
 use MWException;
 use MWTimestamp;
@@ -1108,14 +1109,14 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 */
 	protected function rcPreferences( User $user, MessageLocalizer $l10n, &$defaultPreferences ) {
 		$rcMaxAge = $this->options->get( 'RCMaxAge' );
+		$rcMax = ceil( $rcMaxAge / ( 3600 * 24 ) );
 		$defaultPreferences['rcdays'] = [
 			'type' => 'float',
 			'label-message' => 'recentchangesdays',
 			'section' => 'rc/displayrc',
 			'min' => 1 / 24,
-			'max' => ceil( $rcMaxAge / ( 3600 * 24 ) ),
-			'help' => $l10n->msg( 'recentchangesdays-max' )->numParams(
-				ceil( $rcMaxAge / ( 3600 * 24 ) ) )->escaped()
+			'max' => $rcMax,
+			'help-message' => [ 'recentchangesdays-max', Message::numParam(	$rcMax ) ],
 		];
 		$defaultPreferences['rclimit'] = [
 			'type' => 'int',
@@ -1245,8 +1246,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'min' => 1 / 24,
 			'max' => $watchlistdaysMax,
 			'section' => 'watchlist/displaywatchlist',
-			'help' => $context->msg( 'prefs-watchlist-days-max' )->numParams(
-				$watchlistdaysMax )->escaped(),
+			'help-message' => [ 'prefs-watchlist-days-max', Message::numParam( $watchlistdaysMax ) ],
 			'label-message' => 'prefs-watchlist-days',
 		];
 		$defaultPreferences['wllimit'] = [
@@ -1254,7 +1254,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'min' => 1,
 			'max' => 1000,
 			'label-message' => 'prefs-watchlist-edits',
-			'help' => $context->msg( 'prefs-watchlist-edits-max' )->escaped(),
+			'help-message' => 'prefs-watchlist-edits-max',
 			'section' => 'watchlist/displaywatchlist',
 			'filter' => IntvalFilter::class,
 		];
