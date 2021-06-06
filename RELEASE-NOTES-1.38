@@ -186,6 +186,9 @@ because of Phabricator reports.
    - ImageHistoryPseudoPager::preventClickjacking()
    - ContribsPager::preventClickjacking()
 * Collation::singleton() and ::factory() were hard-deprecated.
+* Return values in the parameter $pageLang of the hook PageContentLanguage
+  with other types than a Language object, deprecated since 1.33, now emmits
+  deprecation warnings.
 * …
 
 === Other changes in 1.38 ===
