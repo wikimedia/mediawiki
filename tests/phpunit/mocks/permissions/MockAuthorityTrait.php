@@ -10,6 +10,7 @@ use MediaWiki\User\UserIdentityValue;
 
 /**
  * Various useful Authority mocks.
+ * @stable to use (since 1.37)
  */
 trait MockAuthorityTrait {
 
