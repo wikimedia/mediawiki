@@ -283,6 +283,9 @@ TEXT
 	}
 
 	private function showSortKeySizeHistogram() {
+		if ( !$this->sizeHistogram ) {
+			return;
+		}
 		$maxLength = max( array_keys( $this->sizeHistogram ) );
 		if ( $maxLength == 0 ) {
 			return;
