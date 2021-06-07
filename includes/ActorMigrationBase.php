@@ -266,50 +266,6 @@ class ActorMigrationBase {
 	}
 
 	/**
-	 * Get actor ID from UserIdentity, if it exists
-	 *
-	 * @since 1.35.0
-	 * @deprecated since 1.36. Use ActorStore::findActorId instead.
-	 *
-	 * @param IDatabase $db
-	 * @param UserIdentity $user
-	 * @return int|false
-	 */
-	public function getExistingActorId( IDatabase $db, UserIdentity $user ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		// Get the correct ActorStore based on the DB passed,
-		// and not on the passed $user wiki ID, since before all
-		// User object are LOCAL, but the databased passed here can be
-		// foreign.
-		return $this->actorStoreFactory
-			->getActorNormalization( $db->getDomainID() )
-			->findActorId( $user, $db );
-	}
-
-	/**
-	 * Attempt to assign an actor ID to the given user.
-	 * If it is already assigned, return the existing ID.
-	 *
-	 * @since 1.35.0
-	 * @deprecated since 1.36. Use ActorStore::acquireActorId instead.
-	 *
-	 * @param IDatabase $dbw
-	 * @param UserIdentity $user
-	 *
-	 * @return int The new actor ID
-	 */
-	public function getNewActorId( IDatabase $dbw, UserIdentity $user ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		// Get the correct ActorStore based on the DB passed,
-		// and not on the passed $user wiki ID, since before all
-		// User object are LOCAL, but the databased passed here can be
-		// foreign.
-		return $this->actorStoreFactory
-			->getActorNormalization( $dbw->getDomainID() )
-			->acquireActorId( $user, $dbw );
-	}
-
-	/**
 	 * Get UPDATE fields for the actor
 	 *
 	 * @param IDatabase $dbw Database to use for creating an actor ID, if necessary
