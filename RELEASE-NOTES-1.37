@@ -375,6 +375,7 @@ because of Phabricator reports.
     use 'by' property with UserIdentity value instead.
   - 'by' property with blocker's ID,
     use 'by' property with UserIdentity value instead.
+* The BeforeResetNotificationTimestamp hook was deprecated.
 * ArchivedFile::getUser, ::getRawUser, ::getRawUserText were deprecated in
   favor of ::getUploader. ::getRawDescription was deprecated in favor of
   ::getDescription with RAW audience parameter.
