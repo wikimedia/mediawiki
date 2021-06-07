@@ -1116,7 +1116,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			'section' => 'rc/displayrc',
 			'min' => 1 / 24,
 			'max' => $rcMax,
-			'help-message' => [ 'recentchangesdays-max', Message::numParam(	$rcMax ) ],
+			'help-message' => [ 'recentchangesdays-max', Message::numParam( $rcMax ) ],
 		];
 		$defaultPreferences['rclimit'] = [
 			'type' => 'int',
