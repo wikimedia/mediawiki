@@ -1224,7 +1224,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 	private function buildRevisionStore( string $text, PageIdentity $pageIdentity ) {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
-		$page = WikiPage::factory( Title::castFromPageIdentity( $pageIdentity ) );
+		$page = WikiPage::factory( $pageIdentity );
 		/** @var RevisionRecord $orig */
 		$orig = $page->doEditContent( new WikitextContent( $text ), __METHOD__ )
 			->value['revision-record'];

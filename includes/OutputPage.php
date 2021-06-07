@@ -2122,7 +2122,6 @@ class OutputPage extends ContextSource {
 
 		$oldInterface = $popts->setInterfaceMessage( (bool)$interface );
 
-		$title = Title::castFromPageReference( $title );
 		$parserOutput = MediaWikiServices::getInstance()->getParser()->getFreshParser()->parse(
 			$text, $title, $popts,
 			$linestart, true, $this->mRevisionId
