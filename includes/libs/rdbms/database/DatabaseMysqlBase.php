@@ -1024,13 +1024,16 @@ abstract class DatabaseMysqlBase extends Database {
 		return $pos;
 	}
 
+	/**
+	 * @inheritDoc
+	 * @return string|null 32 bit integer ID; null if not applicable or unknown
+	 */
 	public function getTopologyBasedServerId() {
-		// The server_id variable is unique to the replication topology for the dataset
 		return $this->getServerId();
 	}
 
 	/**
-	 * @return int Server ID that is unique to the replication topology and is not reused
+	 * @return string Value of server_id (32-bit integer, unique to the replication topology)
 	 * @throws DBQueryError
 	 */
 	protected function getServerId() {
@@ -1042,13 +1045,13 @@ abstract class DatabaseMysqlBase extends Database {
 				$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
 				$res = $this->query( "SELECT @@server_id AS id", $fname, $flags );
 
-				return intval( $this->fetchObject( $res )->id );
+				return $this->fetchObject( $res )->id;
 			}
 		);
 	}
 
 	/**
-	 * @return string|null Server ID that should be globally unique
+	 * @return string|null Value of server_uuid (hyphenated 128-bit hex string, globally unique)
 	 * @throws DBQueryError
 	 */
 	protected function getServerUUID() {
