@@ -72,12 +72,13 @@ class ConnectionManager {
 	/**
 	 * @param int $i
 	 * @param string[]|null $groups
+	 * @param int $flags
 	 *
 	 * @return IDatabase
 	 */
-	private function getConnection( $i, array $groups = null ) {
+	private function getConnection( $i, ?array $groups = null, int $flags = 0 ) {
 		$groups = $groups ?? $this->groups;
-		return $this->loadBalancer->getConnection( $i, $groups, $this->domain );
+		return $this->loadBalancer->getConnection( $i, $groups, $this->domain, $flags );
 	}
 
 	/**
@@ -96,11 +97,14 @@ class ConnectionManager {
 	 * by calling releaseConnection().
 	 *
 	 * @since 1.29
+	 * @since 1.37 Added optional $flags parameter
+	 *
+	 * @param int $flags
 	 *
 	 * @return IDatabase
 	 */
-	public function getWriteConnection() {
-		return $this->getConnection( DB_PRIMARY );
+	public function getWriteConnection( int $flags = 0 ) {
+		return $this->getConnection( DB_PRIMARY, null, $flags );
 	}
 
 	/**
@@ -108,14 +112,16 @@ class ConnectionManager {
 	 * calling releaseConnection().
 	 *
 	 * @since 1.29
+	 * @since 1.37 Added optional $flags parameter
 	 *
 	 * @param string[]|null $groups
+	 * @param int $flags
 	 *
 	 * @return IDatabase
 	 */
-	public function getReadConnection( array $groups = null ) {
+	public function getReadConnection( ?array $groups = null, int $flags = 0 ) {
 		$groups = $groups ?? $this->groups;
-		return $this->getConnection( DB_REPLICA, $groups );
+		return $this->getConnection( DB_REPLICA, $groups, $flags );
 	}
 
 	/**

@@ -61,27 +61,32 @@ class SessionConsistentConnectionManager extends ConnectionManager {
 
 	/**
 	 * @since 1.29
+	 * @since 1.37 Added optional $flags parameter
 	 *
 	 * @param string[]|null $groups
+	 * @param int $flags
 	 *
 	 * @return IDatabase
 	 */
-	public function getReadConnection( array $groups = null ) {
+	public function getReadConnection( ?array $groups = null, int $flags = 0 ) {
 		if ( $this->forceWriteConnection ) {
-			return parent::getWriteConnection();
+			return parent::getWriteConnection( $flags );
 		}
 
-		return parent::getReadConnection( $groups );
+		return parent::getReadConnection( $groups, $flags );
 	}
 
 	/**
 	 * @since 1.29
+	 * @since 1.37 Added optional $flags parameter
+	 *
+	 * @param int $flags
 	 *
 	 * @return IDatabase
 	 */
-	public function getWriteConnection() {
+	public function getWriteConnection( int $flags = 0 ) {
 		$this->prepareForUpdates();
-		return parent::getWriteConnection();
+		return parent::getWriteConnection( $flags );
 	}
 
 	/**
