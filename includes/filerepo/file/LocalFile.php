@@ -264,7 +264,8 @@ class LocalFile extends File {
 			$ret['fields'] = [];
 		}
 		if ( !in_array( 'omit-lazy', $options, true ) ) {
-			// Note: Keep this in sync with self::getLazyCacheFields()
+			// Note: Keep this in sync with self::getLazyCacheFields() and
+			// self::loadExtraFromDB()
 			$ret['fields'][] = 'img_metadata';
 		}
 
@@ -504,8 +505,8 @@ class LocalFile extends File {
 		}
 
 		if ( $fieldMap ) {
-			foreach ( $fieldMap as $name => $value ) {
-				$this->$name = $value;
+			if ( isset( $fieldMap['metadata'] ) ) {
+				$this->metadata = $fieldMap['metadata'];
 			}
 		} else {
 			throw new MWException( "Could not find data for image '{$this->getName()}'." );
@@ -584,56 +585,16 @@ class LocalFile extends File {
 	}
 
 	/**
-	 * Decode a row from the database (either object or array) to an array
-	 * with timestamps and MIME types decoded, and the field prefix removed.
-	 * @param stdClass $row
-	 * @param string $prefix
-	 * @throws MWException
-	 * @return array
-	 */
-	private function decodeRow( $row, $prefix = 'img_' ) {
-		$decoded = $this->unprefixRow( $row, $prefix );
-
-		$decoded['description'] = MediaWikiServices::getInstance()->getCommentStore()
-			->getComment( 'description', (object)$decoded )->text;
-
-		$decoded['user'] = User::newFromAnyId(
-			$decoded['user'] ?? null,
-			$decoded['user_text'] ?? null,
-			$decoded['actor'] ?? null
-		);
-		unset( $decoded['user_text'], $decoded['actor'] );
-
-		$decoded['timestamp'] = wfTimestamp( TS_MW, $decoded['timestamp'] );
-
-		$decoded['metadata'] = $this->repo->getReplicaDB()->decodeBlob( $decoded['metadata'] );
-
-		if ( empty( $decoded['major_mime'] ) ) {
-			$decoded['mime'] = 'unknown/unknown';
-		} else {
-			if ( !$decoded['minor_mime'] ) {
-				$decoded['minor_mime'] = 'unknown';
-			}
-			$decoded['mime'] = $decoded['major_mime'] . '/' . $decoded['minor_mime'];
-		}
-
-		// Trim zero padding from char/binary field
-		$decoded['sha1'] = rtrim( $decoded['sha1'], "\0" );
-
-		// Normalize some fields to integer type, per their database definition.
-		// Use unary + so that overflows will be upgraded to double instead of
-		// being trucated as with intval(). This is important to allow >2GB
-		// files on 32-bit systems.
-		foreach ( [ 'size', 'width', 'height', 'bits' ] as $field ) {
-			$decoded[$field] = +$decoded[$field];
-		}
-
-		return $decoded;
-	}
-
-	/**
 	 * Load file metadata from a DB result row
 	 * @stable to override
+	 *
+	 * Passing arbitrary fields in the row and expecting them to be translated
+	 * to property names on $this is deprecated since 1.37. Instead, override
+	 * loadFromRow(), and clone and unset the extra fields before passing them
+	 * to the parent.
+	 *
+	 * After the deprecation period has passed, extra fields will be ignored,
+	 * and the deprecation warning will be removed.
 	 *
 	 * @param stdClass $row
 	 * @param string $prefix
@@ -642,10 +603,69 @@ class LocalFile extends File {
 		$this->dataLoaded = true;
 		$this->extraDataLoaded = true;
 
-		$array = $this->decodeRow( $row, $prefix );
+		$unprefixed = $this->unprefixRow( $row, $prefix );
 
-		foreach ( $array as $name => $value ) {
-			$this->$name = $value;
+		$this->name = $unprefixed['name'];
+		$this->media_type = $unprefixed['media_type'];
+
+		$this->description = MediaWikiServices::getInstance()->getCommentStore()
+			->getComment( "{$prefix}description", $row )->text;
+
+		$this->user = User::newFromAnyId(
+			$unprefixed['user'] ?? null,
+			$unprefixed['user_text'] ?? null,
+			$unprefixed['actor'] ?? null
+		);
+
+		$this->timestamp = wfTimestamp( TS_MW, $unprefixed['timestamp'] );
+
+		$this->metadata = $this->repo->getReplicaDB()->decodeBlob( $unprefixed['metadata'] );
+
+		if ( empty( $unprefixed['major_mime'] ) ) {
+			$this->major_mime = 'unknown';
+			$this->minor_mime = 'unknown';
+			$this->mime = 'unknown/unknown';
+		} else {
+			if ( !$unprefixed['minor_mime'] ) {
+				$unprefixed['minor_mime'] = 'unknown';
+			}
+			$this->major_mime = $unprefixed['major_mime'];
+			$this->minor_mime = $unprefixed['minor_mime'];
+			$this->mime = $unprefixed['major_mime'] . '/' . $unprefixed['minor_mime'];
+		}
+
+		// Trim zero padding from char/binary field
+		$this->sha1 = rtrim( $unprefixed['sha1'], "\0" );
+
+		// Normalize some fields to integer type, per their database definition.
+		// Use unary + so that overflows will be upgraded to double instead of
+		// being trucated as with intval(). This is important to allow >2GB
+		// files on 32-bit systems.
+		$this->size = +$unprefixed['size'];
+		$this->width = +$unprefixed['width'];
+		$this->height = +$unprefixed['height'];
+		$this->bits = +$unprefixed['bits'];
+
+		// Check for extra fields (deprecated since MW 1.37)
+		$extraFields = array_diff(
+			array_keys( $unprefixed ),
+			[
+				'name', 'media_type', 'description_text', 'description_data',
+				'description_cid', 'user', 'user_text', 'actor', 'timestamp',
+				'metadata', 'major_mime', 'minor_mime', 'sha1', 'size', 'width',
+				'height', 'bits'
+			]
+		);
+		if ( $extraFields ) {
+			wfDeprecatedMsg(
+				'Passing extra fields (' .
+				implode( ', ', $extraFields )
+				. ') to ' . __METHOD__ . ' was deprecated in MediaWiki 1.37. ' .
+				'Property assignment will be removed in a later version.',
+				'1.37' );
+			foreach ( $extraFields as $field ) {
+				$this->$field = $unprefixed[$field];
+			}
 		}
 
 		$this->fileExists = true;

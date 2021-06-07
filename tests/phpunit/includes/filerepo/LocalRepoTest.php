@@ -47,8 +47,6 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 
 		$row = (object)[
 			"{$prefix}_name" => 'Test_file',
-			// We cheat and include this for img_ too, it will be ignored
-			"{$prefix}_archive_name" => 'Archive_name',
 			"{$prefix}_user" => '1',
 			"{$prefix}_timestamp" => '12345678910111',
 			"{$prefix}_metadata" => '',
@@ -57,9 +55,14 @@ class LocalRepoTest extends MediaWikiIntegrationTestCase {
 			"{$prefix}_height" => '0',
 			"{$prefix}_width" => '0',
 			"{$prefix}_bits" => '0',
+			"{$prefix}_media_type" => 'UNKNOWN',
 			"{$prefix}_description_text" => '',
 			"{$prefix}_description_data" => null,
 		];
+		if ( $prefix === 'oi' ) {
+			$row->oi_archive_name = 'Archive_name';
+			$row->oi_deleted = '0';
+		}
 		$file = $this->newRepo()->newFileFromRow( $row );
 		$this->assertInstanceOf( $expectedClass, $file );
 		$this->assertSame( 'Test_file', $file->getName() );

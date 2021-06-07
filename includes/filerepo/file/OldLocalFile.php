@@ -193,6 +193,15 @@ class OldLocalFile extends LocalFile {
 		}
 	}
 
+	public function loadFromRow( $row, $prefix = 'img_' ) {
+		$this->archive_name = $row->{"{$prefix}archive_name"};
+		$this->deleted = $row->{"{$prefix}deleted"};
+		$row = clone $row;
+		unset( $row->{"{$prefix}archive_name"} );
+		unset( $row->{"{$prefix}deleted"} );
+		parent::loadFromRow( $row, $prefix );
+	}
+
 	/**
 	 * @stable to override
 	 * @return bool
