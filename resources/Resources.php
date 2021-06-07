@@ -621,6 +621,7 @@ return [
 		'dependencies' => [
 			'wvui-search'
 		],
+		'targets' => [ 'desktop', 'mobile' ],
 	],
 
 	'wvui-search' => [
