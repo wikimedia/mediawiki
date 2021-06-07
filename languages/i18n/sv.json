@@ -1545,7 +1545,7 @@
 	"rcfilters-savedqueries-already-saved": "Dessa filter har redan sparats. Ändra dina inställningar för att skapa ett nytt sparat filter.",
 	"rcfilters-restore-default-filters": "Återställ standardfilter",
 	"rcfilters-clear-all-filters": "Rensa alla filter",
-	"rcfilters-show-new-changes": "Visa de nyaste ändringarna sedan $1",
+	"rcfilters-show-new-changes": "Visa de nya ändringarna sedan $1",
 	"rcfilters-search-placeholder": "Filtrera senaste ändringar (använd menyn eller sök efter filternamn)",
 	"rcfilters-search-placeholder-mobile": "Filter",
 	"rcfilters-invalid-filter": "Ogiltigt filter",

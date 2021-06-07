@@ -2699,7 +2699,7 @@
 	"blanknamespace": "(Principal)",
 	"contributions": "Contributions",
 	"tool-link-contributions": "Contributions de l’utilisat{{GENDER:$1|eur|rice}}",
-	"contributions-title": "Liste des contributions de l’utilisat{{GENDER:$1|eur|rice}} $1",
+	"contributions-title": "Liste des contributions.",
 	"mycontris": "Contributions",
 	"anoncontribs": "Contributions",
 	"contribsub2": "Pour {{GENDER:$3|}}$1 ($2)",
