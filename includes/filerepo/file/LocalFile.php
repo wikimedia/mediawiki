@@ -1453,7 +1453,17 @@ class LocalFile extends File {
 		rsort( $sizes );
 
 		foreach ( $sizes as $size ) {
-			if ( $this->isVectorized() || $this->getWidth() > $size ) {
+			if ( $this->isMultipage() ) {
+				for ( $page = 1; $page <= $this->pageCount(); $page++ ) {
+					$jobs[] = new ThumbnailRenderJob(
+						$this->getTitle(),
+						[ 'transformParams' => [
+							'width' => $size,
+							'page' => $page,
+						] ]
+					);
+				}
+			} elseif ( $this->isVectorized() || $this->getWidth() > $size ) {
 				$jobs[] = new ThumbnailRenderJob(
 					$this->getTitle(),
 					[ 'transformParams' => [ 'width' => $size ] ]
