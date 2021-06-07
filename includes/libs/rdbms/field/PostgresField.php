@@ -43,7 +43,8 @@ SQL;
 					$db->addQuotes( $schema ),
 					$db->addQuotes( $table ),
 					$db->addQuotes( $field )
-				)
+				),
+				__METHOD__
 			);
 			$row = $db->fetchObject( $res );
 			if ( !$row ) {

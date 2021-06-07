@@ -1129,7 +1129,8 @@ END;
 				"JOIN pg_attribute a ON a.attrelid = i.indrelid " .
 				"AND a.attnum = ANY(i.indkey) " .
 				"WHERE i.indrelid = '\"$table\"'::regclass " .
-				"AND i.indisprimary"
+				"AND i.indisprimary",
+			__METHOD__
 		);
 		$currentColumns = [];
 		foreach ( $result as $row ) {
