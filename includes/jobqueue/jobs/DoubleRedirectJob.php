@@ -21,7 +21,10 @@
  * @ingroup JobQueue
  */
 
+use MediaWiki\Cache\CacheKeyHelper;
+use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 
@@ -41,7 +44,7 @@ class DoubleRedirectJob extends Job {
 	private static $user;
 
 	/**
-	 * @param Title $title
+	 * @param PageReference $page
 	 * @param array $params Expected to contain these elements:
 	 * - 'redirTitle' => string The title that changed and should be fixed.
 	 * - 'reason' => string Reason for the change, can be "move" or "maintenance". Used as a suffix
@@ -49,8 +52,8 @@ class DoubleRedirectJob extends Job {
 	 *   "double-redirect-fixed-maintenance".
 	 * ]
 	 */
-	public function __construct( Title $title, array $params ) {
-		parent::__construct( 'fixDoubleRedirect', $title, $params );
+	public function __construct( PageReference $page, array $params ) {
+		parent::__construct( 'fixDoubleRedirect', $page, $params );
 		$this->redirTitle = Title::newFromText( $params['redirTitle'] );
 	}
 
@@ -58,7 +61,7 @@ class DoubleRedirectJob extends Job {
 	 * Insert jobs into the job queue to fix redirects to the given title
 	 * @param string $reason The reason for the fix, see message
 	 *   "double-redirect-fixed-<reason>"
-	 * @param Title $redirTitle The title which has changed, redirects
+	 * @param LinkTarget $redirTitle The title which has changed, redirects
 	 *   pointing to this title are fixed
 	 * @param bool $destTitle Not used
 	 */
@@ -85,7 +88,10 @@ class DoubleRedirectJob extends Job {
 
 			$jobs[] = new self( $title, [
 				'reason' => $reason,
-				'redirTitle' => $redirTitle->getPrefixedDBkey() ] );
+				'redirTitle' => MediaWikiServices::getInstance()
+					->getTitleFormatter()
+					->getPrefixedDBkey( $redirTitle ),
+			] );
 			# Avoid excessive memory usage
 			if ( count( $jobs ) > 10000 ) {
 				JobQueueGroup::singleton()->push( $jobs );
@@ -183,7 +189,7 @@ class DoubleRedirectJob extends Job {
 	/**
 	 * Get the final destination of a redirect
 	 *
-	 * @param Title $title
+	 * @param LinkTarget $title
 	 *
 	 * @return Title|bool The final Title after following all redirects, or false if
 	 *  the page is not a redirect or the redirect loops.
@@ -196,7 +202,7 @@ class DoubleRedirectJob extends Job {
 		$dest = false;
 
 		while ( true ) {
-			$titleText = $title->getPrefixedDBkey();
+			$titleText = CacheKeyHelper::getKeyForPage( $title );
 			if ( isset( $seenTitles[$titleText] ) ) {
 				wfDebug( __METHOD__, "Circular redirect detected, aborting" );
 
