@@ -1563,7 +1563,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "Modificar tu lista de paginas sub observation",
 	"rcfilters-watchlist-showupdated": "Le modificationes del paginas que tu non ha visitate post que illos ha essite apportate se monstra in <strong>grasse</strong>, con marcatores solide.",
 	"rcfilters-preference-label": "Usar le interfacie non JavaScript",
-	"rcfilters-preference-help": "Carga le modificationes recente sin filtros e sin coloration.",
+	"rcfilters-preference-help": "Carga le modificationes recente, le observatorio e altere paginas similar sin functionalitate de recerca filtrate o de coloration.",
 	"rcfilters-watchlist-preference-label": "Usar le interfacie non JavaScript",
 	"rcfilters-watchlist-preference-help": "Carga le observatorio sin filtros e sin coloration.",
 	"rcfilters-filter-showlinkedfrom-label": "Monstrar modificationes sur paginas ligate ab",

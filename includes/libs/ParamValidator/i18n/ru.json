@@ -2,12 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Okras",
-			"Stjn"
+			"Stjn",
+			"WindEwriX"
 		]
 	},
 	"paramvalidator-badexpiry": "Недопустимое значение «$2» для параметра истечения срока «$1».",
 	"paramvalidator-badexpiry-past": "Значение «$2» для параметра истечения срока «$1» уже в прошлом.",
 	"paramvalidator-emptystring": "пустая строка",
+	"paramvalidator-outofrange-max": "Значение «$2» для параметра «$1» должно быть не больше, чем $4.",
+	"paramvalidator-outofrange-minmax": "Значение «$2» для параметра «$1» должно быть между $3 и $4.",
+	"paramvalidator-outofrange-min": "Значение «$2» для параметра «$1» должно быть не меньше, чем $3.",
 	"paramvalidator-param-deprecated": "Параметр «$1» устарел.",
 	"paramvalidator-unrecognizedvalues": "{{PLURAL:$4|Нераспознанное значение|Нераспознанные значения}} параметра «$1»: $3.",
 	"paramvalidator-help-default": "По умолчанию: $1",
