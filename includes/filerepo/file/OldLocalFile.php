@@ -425,7 +425,7 @@ class OldLocalFile extends LocalFile {
 	 * @param UserIdentity $user
 	 * @return Status
 	 */
-	public function uploadOld( $srcPath, $timestamp, $comment, $user ) {
+	public function uploadOld( $srcPath, $timestamp, $comment, UserIdentity $user ) {
 		$this->lock();
 
 		$archiveName = $this->getArchiveName();

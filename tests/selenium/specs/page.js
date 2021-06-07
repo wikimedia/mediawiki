@@ -7,6 +7,7 @@ const RestorePage = require( '../pageobjects/restore.page' );
 const EditPage = require( '../pageobjects/edit.page' );
 const HistoryPage = require( '../pageobjects/history.page' );
 const UndoPage = require( '../pageobjects/undo.page' );
+const ProtectPage = require( '../pageobjects/protect.page' );
 const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Util = require( 'wdio-mediawiki/Util' );
 
@@ -123,6 +124,29 @@ describe( 'Page', function () {
 
 		// check
 		assert.strictEqual( RestorePage.displayedContent.getText(), name + ' has been restored\n\nConsult the deletion log for a record of recent deletions and restorations.' );
+	} );
+
+	it( 'should be protectable', function () {
+		browser.call( async () => {
+			await bot.edit( name, content, 'create for protect' );
+		} );
+
+		// login
+		UserLoginPage.loginAdmin();
+
+		ProtectPage.protect(
+			name,
+			'protect reason',
+			'Allow only administrators'
+		);
+
+		// Logout
+		browser.deleteAllCookies();
+
+		// Check that we can't edit the page anymore
+		EditPage.openForEditing( name );
+		assert.strictEqual( EditPage.save.isExisting(), false );
+		assert.strictEqual( EditPage.heading.getText(), 'View source for ' + name );
 	} );
 
 	it.skip( 'should be undoable', function () {
