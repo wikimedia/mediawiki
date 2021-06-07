@@ -53,7 +53,7 @@ class ApiFileRevert extends ApiBase {
 			0,
 			false,
 			false,
-			$this->getUser()
+			$this->getAuthority()
 		);
 
 		if ( $status->isGood() ) {
