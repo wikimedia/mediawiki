@@ -21,20 +21,21 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
 
 /**
  * Handles increment the edit count for a given set of users
  */
 class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
-	/** @var array[] Map of (user ID => ('increment': int, 'instances': User[])) */
+	/** @var array[] Map of (user ID => ('increment': int, 'instances': UserIdentity[])) */
 	private $infoByUser;
 
 	/**
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param int $increment
 	 */
-	public function __construct( User $user, $increment ) {
+	public function __construct( UserIdentity $user, $increment ) {
 		if ( !$user->getId() ) {
 			throw new RuntimeException( "Got user ID of zero" );
 		}
@@ -67,11 +68,14 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	 * Purges the list of URLs passed to the constructor.
 	 */
 	public function doUpdate() {
-		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		$mwServices = MediaWikiServices::getInstance();
+		$lb = $mwServices->getDBLoadBalancer();
 		$dbw = $lb->getConnectionRef( DB_PRIMARY );
+		$userFactory = $mwServices->getUserFactory();
+		$editTracker = $mwServices->getUserEditTracker();
 		$fname = __METHOD__;
 
-		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname ) {
+		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname, $userFactory, $editTracker ) {
 			foreach ( $this->infoByUser as $userId => $info ) {
 				$dbw->update(
 					'user',
@@ -79,7 +83,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					[ 'user_id' => $userId, 'user_editcount IS NOT NULL' ],
 					$fname
 				);
-				/** @var User[] $affectedInstances */
+				/** @var UserIdentity[] $affectedInstances */
 				$affectedInstances = $info['instances'];
 				// Lazy initialization check...
 				if ( $dbw->affectedRows() == 0 ) {
@@ -91,7 +95,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					// is harmless and waitForMasterPos() will just no-op.
 					$dbr->flushSnapshot( $fname );
 					$lb->waitForMasterPos( $dbr );
-					$affectedInstances[0]->initEditCountInternal( $dbr );
+					$editTracker->initializeUserEditCount( $affectedInstances[0] );
 				}
 				$newCount = (int)$dbw->selectField(
 					'user',
@@ -102,12 +106,18 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 
 				// Update the edit count in the instance caches. This is mostly useful
 				// for maintenance scripts, where deferred updates might run immediately
-				// and user instances might be reused for a long time.
+				// and user instances might be reused for a long time. Only applies to
+				// instances where we have User objects, if we have UserIdentity only
+				// then invalidating the cache should be enough
 				foreach ( $affectedInstances as $affectedInstance ) {
-					$affectedInstance->setEditCountInternal( $newCount );
+					if ( $affectedInstance instanceof User ) {
+						$affectedInstance->setEditCountInternal( $newCount );
+					}
 				}
 				// Clear the edit count in user cache too
-				$affectedInstances[0]->invalidateCache();
+				$userFactory->newFromUserIdentity( $affectedInstances[0] )->invalidateCache();
+				// And the cache in UserEditTracker
+				$editTracker->clearUserEditCache( $affectedInstances[0] );
 			}
 		} ) )->doUpdate();
 	}

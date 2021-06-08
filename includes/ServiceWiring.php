@@ -1767,7 +1767,8 @@ return [
 			$services->getUserFactory(),
 			$services->getActorMigration(),
 			$services->getActorNormalization(),
-			$services->getTitleFactory()
+			$services->getTitleFactory(),
+			$services->getUserEditTracker()
 		);
 	},
 

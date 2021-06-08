@@ -3,9 +3,11 @@
 namespace MediaWiki\User;
 
 use ActorMigration;
+use DeferredUpdates;
 use InvalidArgumentException;
 use JobQueueGroup;
 use UserEditCountInitJob;
+use UserEditCountUpdate;
 use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
@@ -114,6 +116,24 @@ class UserEditTracker {
 		] ) );
 
 		return $count;
+	}
+
+	/**
+	 * Schedule a job to increase a user's edit count
+	 *
+	 * @since 1.37
+	 * @param UserIdentity $user
+	 */
+	public function incrementUserEditCount( UserIdentity $user ) {
+		if ( !$user->isRegistered() ) {
+			// Anonymous users don't have edit counts
+			return;
+		}
+
+		DeferredUpdates::addUpdate(
+			new UserEditCountUpdate( $user, 1 ),
+			DeferredUpdates::POSTSEND
+		);
 	}
 
 	/**

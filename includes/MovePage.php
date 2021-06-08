@@ -33,6 +33,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
@@ -111,6 +112,9 @@ class MovePage {
 	 */
 	private $userFactory;
 
+	/** @var UserEditTracker */
+	private $userEditTracker;
+
 	/**
 	 * @internal For use by PageCommandFactory
 	 */
@@ -135,6 +139,7 @@ class MovePage {
 	 * @param HookContainer|null $hookContainer
 	 * @param WikiPageFactory|null $wikiPageFactory
 	 * @param UserFactory|null $userFactory
+	 * @param UserEditTracker|null $userEditTracker
 	 */
 	public function __construct(
 		Title $oldTitle,
@@ -149,7 +154,8 @@ class MovePage {
 		SpamChecker $spamChecker = null,
 		HookContainer $hookContainer = null,
 		WikiPageFactory $wikiPageFactory = null,
-		UserFactory $userFactory = null
+		UserFactory $userFactory = null,
+		UserEditTracker $userEditTracker = null
 	) {
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
@@ -175,6 +181,7 @@ class MovePage {
 		$this->hookRunner = new HookRunner( $hookContainer ?? $services()->getHookContainer() );
 		$this->wikiPageFactory = $wikiPageFactory ?? $services()->getWikiPageFactory();
 		$this->userFactory = $userFactory ?? $services()->getUserFactory();
+		$this->userEditTracker = $userEditTracker ?? $services()->getUserEditTracker();
 	}
 
 	/**
@@ -975,8 +982,7 @@ class MovePage {
 		 * Increment user_editcount during page moves
 		 * Moved from SpecialMovepage.php per T195550
 		 */
-		$userObj = $this->userFactory->newFromUserIdentity( $user );
-		$userObj->incEditCount();
+		$this->userEditTracker->incrementUserEditCount( $user );
 
 		if ( !$redirectContent ) {
 			// Clean up the old title *before* reset article id - T47348
