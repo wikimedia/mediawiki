@@ -1458,3 +1458,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-GlobalWatchlist
 	branch = REL1_36
 	ignore = dirty
+[submodule "extensions/CountDownClock"]
+	path = extensions/CountDownClock
+	url = https://github.com/wikimedia/mediawiki-extensions-CountDownClock
+	branch = REL1_36
+	ignore = dirty
