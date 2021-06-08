@@ -31,7 +31,6 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 		$excludeList = [
 			'user_newtalk',
 			'revision_actor_temp',
-			'change_tag',
 			'objectcache',
 		];
 

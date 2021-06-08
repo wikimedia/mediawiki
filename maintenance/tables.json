@@ -357,11 +357,11 @@
 			}
 		],
 		"indexes": [
-			{ "name": "change_tag_rc_tag_id", "columns": [ "ct_rc_id", "ct_tag_id" ], "unique": true },
-			{ "name": "change_tag_log_tag_id", "columns": [ "ct_log_id", "ct_tag_id" ], "unique": true },
-			{ "name": "change_tag_rev_tag_id", "columns": [ "ct_rev_id", "ct_tag_id" ], "unique": true },
+			{ "name": "ct_rc_tag_id", "columns": [ "ct_rc_id", "ct_tag_id" ], "unique": true },
+			{ "name": "ct_log_tag_id", "columns": [ "ct_log_id", "ct_tag_id" ], "unique": true },
+			{ "name": "ct_rev_tag_id", "columns": [ "ct_rev_id", "ct_tag_id" ], "unique": true },
 			{
-				"name": "change_tag_tag_id_id",
+				"name": "ct_tag_id_id",
 				"comment": "Covering index, so we can pull all the info only out of the index.",
 				"columns": [ "ct_tag_id", "ct_rc_id", "ct_rev_id", "ct_log_id" ],
 				"unique": false

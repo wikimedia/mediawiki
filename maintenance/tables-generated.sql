@@ -106,10 +106,10 @@ CREATE TABLE /*_*/change_tag (
   ct_rev_id INT UNSIGNED DEFAULT NULL,
   ct_params BLOB DEFAULT NULL,
   ct_tag_id INT UNSIGNED NOT NULL,
-  UNIQUE INDEX change_tag_rc_tag_id (ct_rc_id, ct_tag_id),
-  UNIQUE INDEX change_tag_log_tag_id (ct_log_id, ct_tag_id),
-  UNIQUE INDEX change_tag_rev_tag_id (ct_rev_id, ct_tag_id),
-  INDEX change_tag_tag_id_id (
+  UNIQUE INDEX ct_rc_tag_id (ct_rc_id, ct_tag_id),
+  UNIQUE INDEX ct_log_tag_id (ct_log_id, ct_tag_id),
+  UNIQUE INDEX ct_rev_tag_id (ct_rev_id, ct_tag_id),
+  INDEX ct_tag_id_id (
     ct_tag_id, ct_rc_id, ct_rev_id, ct_log_id
   ),
   PRIMARY KEY(ct_id)

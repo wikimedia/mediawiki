@@ -139,8 +139,7 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'addIndex', 'recentchanges', 'rc_this_oldid', 'patch-recentchanges-rc_this_oldid-index.sql' ],
 			[ 'dropTable', 'transcache' ],
 			[ 'runMaintenance', PopulateChangeTagDef::class, 'maintenance/populateChangeTagDef.php' ],
-			[ 'addIndex', 'change_tag', 'change_tag_rc_tag_id',
-				'patch-change_tag-change_tag_rc_tag_id.sql' ],
+			[ 'dropIndex', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-change_tag_rc_tag_id.sql' ],
 			[ 'addField', 'ipblocks', 'ipb_sitewide', 'patch-ipb_sitewide.sql' ],
 			[ 'addTable', 'ipblocks_restrictions', 'patch-ipblocks_restrictions-table.sql' ],
 			[ 'migrateImageCommentTemp' ],
@@ -254,6 +253,8 @@ class MysqlUpdater extends DatabaseUpdater {
 			[ 'dropDefault', 'revision', 'rev_timestamp' ],
 			[ 'addIndex', 'oldimage', 'oi_timestamp', 'patch-oldimage-oi_timestamp.sql' ],
 			[ 'renameIndex', 'page', 'name_title', 'page_name_title', false, 'patch-page-rename-name_title-index.sql' ],
+			[ 'renameIndex', 'change_tag', 'change_tag_rc_tag_id', 'ct_rc_tag_id', false,
+				'patch-change_tag-rename-indexes.sql' ],
 		];
 	}
 

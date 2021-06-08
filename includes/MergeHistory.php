@@ -579,6 +579,8 @@ class MergeHistory {
 			// fails, it will be communicated in the status reponse.
 			$reason = wfMessage( 'mergehistory-source-deleted-reason' )->inContentLanguage()->plain();
 			$deletionStatus = $newPage->doDeleteArticleReal( $reason, $user );
+			// Notify callers that the source page has been deleted.
+			$status->value = 'source-deleted';
 			$status->merge( $deletionStatus );
 		}
 
