@@ -333,9 +333,10 @@ class ContribsPager extends RangeChronologicalPager {
 		$dbr = $this->getDatabase();
 		$ipRangeConds = $user->isAnon() ? $this->getIpRangeConds( $dbr, $this->target ) : null;
 		if ( $ipRangeConds ) {
-			$queryInfo['tables'][] = 'ip_changes';
-			$queryInfo['join_conds']['ip_changes'] = [
-				'LEFT JOIN', [ 'ipc_rev_id = rev_id' ]
+			// Put ip_changes first (T284419)
+			array_unshift( $queryInfo['tables'], 'ip_changes' );
+			$queryInfo['join_conds']['revision'] = [
+				'JOIN', [ 'rev_id = ipc_rev_id' ]
 			];
 			$queryInfo['conds'][] = $ipRangeConds;
 		} else {
