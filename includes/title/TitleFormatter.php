@@ -49,7 +49,7 @@ interface TitleFormatter {
 	public function formatTitle( $namespace, $text, $fragment = '', $interwiki = '' );
 
 	/**
-	 * Returns the title text formatted for display, without namespace of fragment.
+	 * Returns the title text formatted for display, without namespace or fragment.
 	 *
 	 * @param LinkTarget|PageReference $title The title to format
 	 *
