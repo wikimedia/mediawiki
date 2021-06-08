@@ -876,6 +876,7 @@
 	"apihelp-query+info-paramvalue-prop-visitingwatchers": "{{doc-apihelp-paramvalue|query+info|prop|visitingwatchers}}",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "{{doc-apihelp-paramvalue|query+info|prop|notificationtimestamp}}",
 	"apihelp-query+info-paramvalue-prop-subjectid": "{{doc-apihelp-paramvalue|query+info|prop|subjectid}}",
+	"apihelp-query+info-paramvalue-prop-associatedpage": "{{doc-apihelp-paramvalue|query+info|prop|associatedpage}}",
 	"apihelp-query+info-paramvalue-prop-url": "{{doc-apihelp-paramvalue|query+info|prop|url}}",
 	"apihelp-query+info-paramvalue-prop-readable": "{{doc-apihelp-paramvalue|query+info|prop|readable}}",
 	"apihelp-query+info-paramvalue-prop-preload": "{{doc-apihelp-paramvalue|query+info|prop|preload}}",

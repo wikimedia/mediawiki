@@ -40,6 +40,8 @@ class ApiQueryInfo extends ApiQueryBase {
 	private $namespaceInfo;
 	/** @var TitleFactory */
 	private $titleFactory;
+	/** @var TitleFormatter */
+	private $titleFormatter;
 	/** @var WatchedItemStore */
 	private $watchedItemStore;
 
@@ -55,6 +57,11 @@ class ApiQueryInfo extends ApiQueryBase {
 	 *    given page titles.
 	 */
 	private $fld_linkclasses = false;
+
+	/**
+	 * @var bool Whether to include the name of the associated page
+	 */
+	private $fld_associatedpage = false;
 
 	private $params;
 
@@ -96,6 +103,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param LinkBatchFactory $linkBatchFactory
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleFactory $titleFactory
+	 * @param TitleFormatter $titleFormatter
 	 * @param WatchedItemStore $watchedItemStore
 	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
@@ -106,6 +114,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		LinkBatchFactory $linkBatchFactory,
 		NamespaceInfo $namespaceInfo,
 		TitleFactory $titleFactory,
+		TitleFormatter $titleFormatter,
 		WatchedItemStore $watchedItemStore,
 		LanguageConverterFactory $languageConverterFactory
 	) {
@@ -114,6 +123,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->titleFactory = $titleFactory;
+		$this->titleFormatter = $titleFormatter;
 		$this->watchedItemStore = $watchedItemStore;
 	}
 
@@ -348,6 +358,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			$this->fld_displaytitle = isset( $prop['displaytitle'] );
 			$this->fld_varianttitles = isset( $prop['varianttitles'] );
 			$this->fld_linkclasses = isset( $prop['linkclasses'] );
+			$this->fld_associatedpage = isset( $prop['associatedpage'] );
 		}
 
 		$pageSet = $this->getPageSet();
@@ -538,6 +549,12 @@ class ApiQueryInfo extends ApiQueryBase {
 
 		if ( $this->fld_subjectid && isset( $this->subjectids[$ns][$dbkey] ) ) {
 			$pageInfo['subjectid'] = $this->subjectids[$ns][$dbkey];
+		}
+
+		if ( $this->fld_associatedpage && $ns >= NS_MAIN ) {
+			$pageInfo['associatedpage'] = $this->titleFormatter->getPrefixedText(
+				$this->namespaceInfo->getAssociatedPage( $title )
+			);
 		}
 
 		if ( $this->fld_url ) {
@@ -1033,6 +1050,7 @@ class ApiQueryInfo extends ApiQueryBase {
 			'protection',
 			'talkid',
 			'subjectid',
+			'associatedpage',
 			'url',
 			'preload',
 			'displaytitle',
@@ -1066,6 +1084,7 @@ class ApiQueryInfo extends ApiQueryBase {
 					'visitingwatchers', # private
 					'notificationtimestamp', # private
 					'subjectid',
+					'associatedpage',
 					'url',
 					'readable', # private
 					'preload',

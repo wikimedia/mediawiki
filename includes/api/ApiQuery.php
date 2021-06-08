@@ -87,6 +87,7 @@ class ApiQuery extends ApiBase {
 				'LinkBatchFactory',
 				'NamespaceInfo',
 				'TitleFactory',
+				'TitleFormatter',
 				'WatchedItemStore',
 				'LanguageConverterFactory',
 			],
