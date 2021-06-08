@@ -46,6 +46,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use RecentChange;
@@ -136,6 +137,9 @@ class PageUpdater {
 	/** @var UserEditTracker */
 	private $userEditTracker;
 
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
 	/**
 	 * @var bool see $wgUseAutomaticEditSummaries
 	 * @see $wgUseAutomaticEditSummaries
@@ -202,6 +206,7 @@ class PageUpdater {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
+	 * @param UserGroupManager $userGroupManager
 	 * @param ServiceOptions $serviceOptions
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
@@ -216,6 +221,7 @@ class PageUpdater {
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
+		UserGroupManager $userGroupManager,
 		ServiceOptions $serviceOptions,
 		array $softwareTags
 	) {
@@ -233,6 +239,7 @@ class PageUpdater {
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userEditTracker = $userEditTracker;
+		$this->userGroupManager = $userGroupManager;
 		$this->softwareTags = $softwareTags;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
@@ -825,9 +832,10 @@ class PageUpdater {
 		}
 
 		// Promote user to any groups they meet the criteria for
-		DeferredUpdates::addCallableUpdate( static function () use ( $legacyUser ) {
-			$legacyUser->addAutopromoteOnceGroups( 'onEdit' );
-			$legacyUser->addAutopromoteOnceGroups( 'onView' ); // b/c
+		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+			$this->userGroupManager->addUserToAutopromoteOnceGroups( $user, 'onEdit' );
+			// Also run 'onView' for backwards compatibility
+			$this->userGroupManager->addUserToAutopromoteOnceGroups( $user, 'onView' );
 		} );
 
 		// NOTE: set $this->status only after all hooks have been called,
