@@ -777,7 +777,6 @@ class PageUpdater {
 		}
 
 		$user = $this->performer->getUser();
-		$legacyUser = self::toLegacyUser( $user );
 
 		// Prepare the update. This performs PST and generates the canonical ParserOutput.
 		$this->derivedDataUpdater->prepareContent(
@@ -797,6 +796,8 @@ class PageUpdater {
 			// NOTE: WikiPage should only be used for the legacy hook,
 			// and only if something uses the legacy hook.
 			$mainContent = $this->derivedDataUpdater->getSlots()->getContent( SlotRecord::MAIN );
+
+			$legacyUser = self::toLegacyUser( $user );
 
 			// Deprecated since 1.35.
 			$allowedByHook = $this->hookRunner->onPageContentSave(
@@ -1219,8 +1220,6 @@ class PageUpdater {
 		}
 		$this->buildEditResult( $newRevisionRecord, false );
 
-		$legacyUser = self::toLegacyUser( $user );
-
 		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 
 		if ( $changed ) {
@@ -1269,7 +1268,7 @@ class PageUpdater {
 					$now,
 					$this->getTitle(),
 					$newRevisionRecord->isMinor(),
-					$legacyUser,
+					$user,
 					$summary->text, // TODO: pass object when that becomes possible
 					$oldid,
 					$newRevisionRecord->getTimestamp(),
@@ -1399,8 +1398,6 @@ class PageUpdater {
 			$wikiPage, $newRevisionRecord, false, $user, $tags
 		);
 
-		$legacyUser = self::toLegacyUser( $user );
-
 		// Update recentchanges
 		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 			// Add RC row to the DB
@@ -1408,7 +1405,7 @@ class PageUpdater {
 				$now,
 				$this->getTitle(),
 				$newRevisionRecord->isMinor(),
-				$legacyUser,
+				$user,
 				$summary->text, // TODO: pass object when that becomes possible
 				( $flags & EDIT_FORCE_BOT ) > 0,
 				'',
