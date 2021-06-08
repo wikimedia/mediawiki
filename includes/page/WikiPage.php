@@ -1837,7 +1837,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	public function newPageUpdater( Authority $performer, RevisionSlotsUpdate $forUpdate = null ) {
 		$this->assertProperPage();
 
-		$config = MediaWikiServices::getInstance()->getMainConfig();
+		$mwServices = MediaWikiServices::getInstance();
+		$config = $mwServices->getMainConfig();
 
 		$pageUpdater = new PageUpdater(
 			$performer,
@@ -1848,7 +1849,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->getSlotRoleRegistry(),
 			$this->getContentHandlerFactory(),
 			$this->getHookContainer(),
-			MediaWikiServices::getInstance()->getUserEditTracker(),
+			$mwServices->getUserEditTracker(),
+			$mwServices->getUserGroupManager(),
 			new ServiceOptions(
 				PageUpdater::CONSTRUCTOR_OPTIONS,
 				$config

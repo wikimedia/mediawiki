@@ -46,6 +46,7 @@ use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\User\UserEditTracker;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use RecentChange;
@@ -136,6 +137,9 @@ class PageUpdater {
 	/** @var UserEditTracker */
 	private $userEditTracker;
 
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
 	/**
 	 * @var bool see $wgUseAutomaticEditSummaries
 	 * @see $wgUseAutomaticEditSummaries
@@ -202,6 +206,7 @@ class PageUpdater {
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
+	 * @param UserGroupManager $userGroupManager
 	 * @param ServiceOptions $serviceOptions
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
@@ -216,6 +221,7 @@ class PageUpdater {
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
+		UserGroupManager $userGroupManager,
 		ServiceOptions $serviceOptions,
 		array $softwareTags
 	) {
@@ -233,6 +239,7 @@ class PageUpdater {
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userEditTracker = $userEditTracker;
+		$this->userGroupManager = $userGroupManager;
 		$this->softwareTags = $softwareTags;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
@@ -770,7 +777,6 @@ class PageUpdater {
 		}
 
 		$user = $this->performer->getUser();
-		$legacyUser = self::toLegacyUser( $user );
 
 		// Prepare the update. This performs PST and generates the canonical ParserOutput.
 		$this->derivedDataUpdater->prepareContent(
@@ -790,6 +796,8 @@ class PageUpdater {
 			// NOTE: WikiPage should only be used for the legacy hook,
 			// and only if something uses the legacy hook.
 			$mainContent = $this->derivedDataUpdater->getSlots()->getContent( SlotRecord::MAIN );
+
+			$legacyUser = self::toLegacyUser( $user );
 
 			// Deprecated since 1.35.
 			$allowedByHook = $this->hookRunner->onPageContentSave(
@@ -825,9 +833,10 @@ class PageUpdater {
 		}
 
 		// Promote user to any groups they meet the criteria for
-		DeferredUpdates::addCallableUpdate( static function () use ( $legacyUser ) {
-			$legacyUser->addAutopromoteOnceGroups( 'onEdit' );
-			$legacyUser->addAutopromoteOnceGroups( 'onView' ); // b/c
+		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
+			$this->userGroupManager->addUserToAutopromoteOnceGroups( $user, 'onEdit' );
+			// Also run 'onView' for backwards compatibility
+			$this->userGroupManager->addUserToAutopromoteOnceGroups( $user, 'onView' );
 		} );
 
 		// NOTE: set $this->status only after all hooks have been called,
@@ -1211,8 +1220,6 @@ class PageUpdater {
 		}
 		$this->buildEditResult( $newRevisionRecord, false );
 
-		$legacyUser = self::toLegacyUser( $user );
-
 		$dbw = $this->getDBConnectionRef( DB_PRIMARY );
 
 		if ( $changed ) {
@@ -1261,7 +1268,7 @@ class PageUpdater {
 					$now,
 					$this->getTitle(),
 					$newRevisionRecord->isMinor(),
-					$legacyUser,
+					$user,
 					$summary->text, // TODO: pass object when that becomes possible
 					$oldid,
 					$newRevisionRecord->getTimestamp(),
@@ -1391,8 +1398,6 @@ class PageUpdater {
 			$wikiPage, $newRevisionRecord, false, $user, $tags
 		);
 
-		$legacyUser = self::toLegacyUser( $user );
-
 		// Update recentchanges
 		if ( !( $flags & EDIT_SUPPRESS_RC ) ) {
 			// Add RC row to the DB
@@ -1400,7 +1405,7 @@ class PageUpdater {
 				$now,
 				$this->getTitle(),
 				$newRevisionRecord->isMinor(),
-				$legacyUser,
+				$user,
 				$summary->text, // TODO: pass object when that becomes possible
 				( $flags & EDIT_FORCE_BOT ) > 0,
 				'',
