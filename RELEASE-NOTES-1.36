@@ -7,6 +7,8 @@ THIS IS NOT A RELEASE YET
 === Changes since MediaWiki 1.36.0 ===
 
 * (T283244) JavaScriptMinifer: Fix handling of "delete" as object property.
+* (T284391) Fix SkinModule to correctly prepend remote path on document root
+  installs.
 
 == MediaWiki 1.36.0 ==
 
