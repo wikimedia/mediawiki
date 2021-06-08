@@ -25,6 +25,7 @@ use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
 
@@ -114,7 +115,7 @@ class LinksUpdate extends DataUpdate {
 	private $propertyDeletions = null;
 
 	/**
-	 * @var User|null
+	 * @var UserIdentity|null
 	 */
 	private $user;
 
@@ -1093,20 +1094,22 @@ class LinksUpdate extends DataUpdate {
 	}
 
 	/**
-	 * Set the User who triggered this LinksUpdate
+	 * Set the user who triggered this LinksUpdate
 	 *
 	 * @since 1.27
-	 * @param User $user
+	 * @param UserIdentity $user
 	 */
-	public function setTriggeringUser( User $user ) {
+	public function setTriggeringUser( UserIdentity $user ) {
 		$this->user = $user;
 	}
 
 	/**
+	 * Get the user who triggered this LinksUpdate
+	 *
 	 * @since 1.27
-	 * @return null|User
+	 * @return UserIdentity|null
 	 */
-	public function getTriggeringUser() {
+	public function getTriggeringUser(): ?UserIdentity {
 		return $this->user;
 	}
 

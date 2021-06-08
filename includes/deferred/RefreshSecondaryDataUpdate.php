@@ -22,6 +22,7 @@
 
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\DerivedPageDataUpdater;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\ILBFactory;
 
 /**
@@ -46,12 +47,12 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 
 	/** @var RevisionRecord|null */
 	private $revisionRecord;
-	/** @var User|null */
+	/** @var UserIdentity|null */
 	private $user;
 
 	/**
 	 * @param ILBFactory $lbFactory
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param WikiPage $page Page we are updating
 	 * @param RevisionRecord $revisionRecord
 	 * @param DerivedPageDataUpdater $updater
@@ -59,7 +60,7 @@ class RefreshSecondaryDataUpdate extends DataUpdate
 	 */
 	public function __construct(
 		ILBFactory $lbFactory,
-		User $user,
+		UserIdentity $user,
 		WikiPage $page,
 		RevisionRecord $revisionRecord,
 		DerivedPageDataUpdater $updater,

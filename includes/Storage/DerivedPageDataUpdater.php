@@ -1726,9 +1726,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		}
 
 		$triggeringUser = $this->options['triggeringUser'] ?? $this->user;
-		if ( !$triggeringUser instanceof User ) {
-			$triggeringUser = self::toLegacyUser( $triggeringUser );
-		}
 		$causeAction = $this->options['causeAction'] ?? 'unknown';
 		$causeAgent = $this->options['causeAgent'] ?? 'unknown';
 
