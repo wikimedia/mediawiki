@@ -125,4 +125,41 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 1, $tracker->getUserEditCount( $user ) );
 	}
 
+	public function testIncrementUserEditCount() {
+		$tracker = $this->getServiceContainer()->getUserEditTracker();
+		$user = $this->getMutableTestUser()->getUser();
+
+		$editCountStart = $tracker->getUserEditCount( $user );
+
+		$this->db->startAtomic( __METHOD__ ); // let deferred updates queue up
+
+		$tracker->incrementUserEditCount( $user );
+		$this->assertSame(
+			1,
+			DeferredUpdates::pendingUpdatesCount(),
+			'Update queued for registered user'
+		);
+
+		$tracker->incrementUserEditCount( UserIdentityValue::newAnonymous( '1.1.1.1' ) );
+		$this->assertSame(
+			1,
+			DeferredUpdates::pendingUpdatesCount(),
+			'No update queued for anonymous user'
+		);
+
+		$this->db->endAtomic( __METHOD__ ); // run deferred updates
+		$this->assertSame(
+			0,
+			DeferredUpdates::pendingUpdatesCount(),
+			'Sanity check: deferred updates ran'
+		);
+
+		$editCountEnd = $tracker->getUserEditCount( $user );
+		$this->assertSame(
+			1,
+			$editCountEnd - $editCountStart,
+			'Edit count was incremented'
+		);
+	}
+
 }

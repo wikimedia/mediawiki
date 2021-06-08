@@ -4102,16 +4102,10 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 
 	/**
 	 * Schedule a deferred update to update the user's edit count
+	 * @deprecated since 1.37
 	 */
 	public function incEditCount() {
-		if ( $this->isAnon() ) {
-			return; // sanity
-		}
-
-		DeferredUpdates::addUpdate(
-			new UserEditCountUpdate( $this, 1 ),
-			DeferredUpdates::POSTSEND
-		);
+		MediaWikiServices::getInstance()->getUserEditTracker()->incrementUserEditCount( $this );
 	}
 
 	/**

@@ -1848,6 +1848,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 			$this->getSlotRoleRegistry(),
 			$this->getContentHandlerFactory(),
 			$this->getHookContainer(),
+			MediaWikiServices::getInstance()->getUserEditTracker(),
 			new ServiceOptions(
 				PageUpdater::CONSTRUCTOR_OPTIONS,
 				$config
