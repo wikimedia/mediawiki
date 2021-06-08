@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserOptionsManager;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -11,6 +12,7 @@ use PHPUnit\Framework\MockObject\MockObject;
  * @covers ApiOptions
  */
 class ApiOptionsTest extends MediaWikiLangTestCase {
+	use MockAuthorityTrait;
 
 	/** @var MockObject */
 	private $mUserMock;
@@ -54,9 +56,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		// Create a new context
 		$this->mContext = new DerivativeContext( new RequestContext() );
 		$this->mContext->getContext()->setTitle( Title::newFromText( 'Test' ) );
-		$this->mContext->setUser( $this->mUserMock );
+		$this->mContext->setAuthority(
+			$this->mockUserAuthorityWithPermissions( $this->mUserMock, [ 'editmyoptions' ] )
+		);
 
-		$this->overrideUserPermissions( $this->mUserMock, [ 'editmyoptions' ] );
 		$main = new ApiMain( $this->mContext );
 
 		// Empty session

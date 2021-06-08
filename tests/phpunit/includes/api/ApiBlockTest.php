@@ -5,6 +5,8 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * @group API
@@ -14,6 +16,8 @@ use MediaWiki\MediaWikiServices;
  * @covers ApiBlock
  */
 class ApiBlockTest extends ApiTestCase {
+	use MockAuthorityTrait;
+
 	protected $mUser = null;
 
 	protected function setUp() : void {
@@ -36,14 +40,10 @@ class ApiBlockTest extends ApiTestCase {
 
 	/**
 	 * @param array $extraParams Extra API parameters to pass to doApiRequest
-	 * @param User|null $blocker User to do the blocking, null to pick arbitrarily
+	 * @param Authority|null $blocker User to do the blocking, null to pick arbitrarily
 	 * @return array result of doApiRequest
 	 */
-	private function doBlock( array $extraParams = [], User $blocker = null ) {
-		if ( $blocker === null ) {
-			$blocker = self::$users['sysop']->getUser();
-		}
-
+	private function doBlock( array $extraParams = [], Authority $blocker = null ) {
 		$tokens = $this->getTokens();
 
 		$this->assertNotNull( $this->mUser, 'Sanity check' );
@@ -162,16 +162,12 @@ class ApiBlockTest extends ApiTestCase {
 	}
 
 	public function testBlockWithHide() {
-		global $wgGroupPermissions;
-		$newPermissions = $wgGroupPermissions['sysop'];
-		$newPermissions['hideuser'] = true;
-		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions',
-			[ 'sysop' => $newPermissions ] );
+		$res = $this->doBlock(
+			[ 'hidename' => '' ],
+			$this->mockRegisteredAuthorityWithPermissions( [ 'hideuser', 'writeapi', 'block' ] )
+		);
 
-		$res = $this->doBlock( [ 'hidename' => '' ] );
-
-		$dbw = wfGetDB( DB_PRIMARY );
-		$this->assertSame( '1', $dbw->selectField(
+		$this->assertSame( '1', $this->db->selectField(
 			'ipblocks',
 			'ipb_deleted',
 			[ 'ipb_id' => $res[0]['block']['id'] ],

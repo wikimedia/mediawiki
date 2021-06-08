@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\TestingAccessWrapper;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
@@ -12,6 +14,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @covers ApiMain
  */
 class ApiMainTest extends ApiTestCase {
+	use MockAuthorityTrait;
 
 	protected function setUp() : void {
 		parent::setUp();
@@ -383,15 +386,15 @@ class ApiMainTest extends ApiTestCase {
 		$this->doTestCheckMaxLag( 4 );
 	}
 
-	public static function provideAssert() {
+	public function provideAssert() {
 		return [
-			[ false, [], 'user', 'assertuserfailed' ],
-			[ true, [], 'user', false ],
-			[ false, [], 'anon', false ],
-			[ true, [], 'anon', 'assertanonfailed' ],
-			[ true, [], 'bot', 'assertbotfailed' ],
-			[ true, [ 'bot' ], 'user', false ],
-			[ true, [ 'bot' ], 'bot', false ],
+			[ $this->mockAnonNullAuthority(), 'user', 'assertuserfailed' ],
+			[ $this->mockRegisteredNullAuthority(), 'user', false ],
+			[ $this->mockAnonNullAuthority(), 'anon', false ],
+			[ $this->mockRegisteredNullAuthority(), 'anon', 'assertanonfailed' ],
+			[ $this->mockRegisteredNullAuthority(), 'bot', 'assertbotfailed' ],
+			[ $this->mockRegisteredAuthorityWithPermissions( [ 'bot' ] ), 'user', false ],
+			[ $this->mockRegisteredAuthorityWithPermissions( [ 'bot' ] ), 'bot', false ],
 		];
 	}
 
@@ -399,24 +402,13 @@ class ApiMainTest extends ApiTestCase {
 	 * Tests the assert={user|bot} functionality
 	 *
 	 * @dataProvider provideAssert
-	 * @param bool $registered
-	 * @param array $rights
-	 * @param string $assert
-	 * @param string|bool $error False if no error expected
 	 */
-	public function testAssert( $registered, $rights, $assert, $error ) {
-		if ( $registered ) {
-			$user = $this->getMutableTestUser()->getUser();
-			$user->load(); // load before setting mRights
-		} else {
-			$user = new User();
-		}
-		$this->overrideUserPermissions( $user, $rights );
+	public function testAssert( Authority $performer, $assert, $error ) {
 		try {
 			$this->doApiRequest( [
 				'action' => 'query',
 				'assert' => $assert,
-			], null, null, $user );
+			], null, null, $performer );
 			$this->assertFalse( $error ); // That no error was expected
 		} catch ( ApiUsageException $e ) {
 			$this->assertTrue( self::apiExceptionHasCode( $e, $error ),
