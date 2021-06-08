@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+
 /**
  * Tests for editing page content model via api
  *
@@ -11,6 +13,7 @@
  * @author DannyS712
  */
 class ApiChangeContentModelTest extends ApiTestCase {
+	use MockAuthorityTrait;
 
 	protected function setUp() : void {
 		parent::setUp();
@@ -22,15 +25,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 
 		$this->getExistingTestPage( 'ExistingPage' );
 
-		$this->mergeMwGlobalArrayValue( 'wgGroupPermissions', [
-			'editcontentmodel' => [ 'editcontentmodel' => true ]
-		] );
-
 		$this->setMwGlobals( [
-			'wgRevokePermissions' => [
-				'noeditcontentmodel' => [ 'editcontentmodel' => true ],
-				'noapplychangetags' => [ 'applychangetags' => true ],
-			],
 			'wgExtraNamespaces' => [
 				12312 => 'Dummy',
 				12313 => 'Dummy_talk',
@@ -65,18 +60,18 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 * Test user needs `editcontentmodel` rights
 	 */
 	public function testRightsNeeded() {
-		$user = $this->getTestUser( [ 'noeditcontentmodel' ] )->getUser();
-
 		$this->setExpectedApiException( [
 			'apierror-permissiondenied',
 			wfMessage( 'action-editcontentmodel' )
 		] );
 
 		$this->doApiRequestWithToken( [
-			'action' => 'changecontentmodel',
-			'title' => 'ExistingPage',
-			'model' => 'text'
-		], null, $user );
+				'action' => 'changecontentmodel',
+				'title' => 'ExistingPage',
+				'model' => 'text'
+			],
+			null,
+			$this->mockAnonAuthorityWithoutPermissions( [ 'editcontentmodel' ] ) );
 	}
 
 	/**
@@ -118,12 +113,14 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		);
 
 		$this->setExpectedApiException( 'invalid-content-data' );
-		$user = $this->getTestUser( [ 'editcontentmodel' ] )->getUser();
 		$this->doApiRequestWithToken( [
-			'action' => 'changecontentmodel',
-			'title' => 'PageWithTextThatIsNotValidJSON',
-			'model' => 'json'
-		], null, $user );
+				'action' => 'changecontentmodel',
+				'title' => 'PageWithTextThatIsNotValidJSON',
+				'model' => 'json'
+			],
+			null,
+			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel', 'writeapi' ] )
+		);
 	}
 
 	/**
@@ -135,7 +132,6 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 */
 	public function testEditFilterMergedContent( $customMessage, $expectedMessage ) {
 		$title = Title::newFromText( 'ExistingPage' );
-		$user = $this->getTestUser( [ 'editcontentmodel' ] )->getUser();
 
 		$this->assertSame(
 			'wikitext',
@@ -160,10 +156,13 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$this->expectExceptionMessage( $exception->getMessage() );
 
 		$this->doApiRequestWithToken( [
-			'action' => 'changecontentmodel',
-			'title' => 'ExistingPage',
-			'model' => 'text'
-		], null, $user );
+				'action' => 'changecontentmodel',
+				'title' => 'ExistingPage',
+				'model' => 'text'
+			],
+			null,
+			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel', 'writeapi' ] )
+		);
 	}
 
 	public function provideTestEditFilterMergedContent() {
@@ -178,7 +177,6 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 */
 	public function testContentModelCanBeUsedOn() {
 		$title = Title::newFromText( 'ExistingPage' );
-		$user = $this->getTestUser( [ 'editcontentmodel' ] )->getUser();
 
 		$this->assertSame(
 			'wikitext',
@@ -200,10 +198,13 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		] );
 
 		$this->doApiRequestWithToken( [
-			'action' => 'changecontentmodel',
-			'title' => 'ExistingPage',
-			'model' => 'text'
-		], null, $user );
+				'action' => 'changecontentmodel',
+				'title' => 'ExistingPage',
+				'model' => 'text'
+			],
+			null,
+			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel', 'writeapi' ] )
+		);
 	}
 
 	/**
@@ -231,25 +232,28 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			ContentHandler::getLocalizedName( 'testing' )
 		] );
 
-		$user = $this->getTestUser( [ 'editcontentmodel' ] )->getUser();
 		$this->doApiRequestWithToken( [
-			'action' => 'changecontentmodel',
-			'title' => 'Dummy:NoDirectEditing',
-			'model' => 'wikitext'
-		], null, $user );
+				'action' => 'changecontentmodel',
+				'title' => 'Dummy:NoDirectEditing',
+				'model' => 'wikitext'
+			],
+			null,
+			$this->mockAnonAuthorityWithPermissions( [ 'edit', 'editcontentmodel', 'writeapi' ] )
+		);
 	}
 
 	public function testCannotApplyTags() {
-		$user = $this->getTestUser( [ 'noapplychangetags' ] )->getUser();
 		ChangeTags::defineTag( 'api edit content model tag' );
 		$this->setExpectedApiException( 'tags-apply-no-permission' );
 
 		$this->doApiRequestWithToken( [
-			'action' => 'changecontentmodel',
-			'title' => 'ExistingPage',
-			'model' => 'text',
-			'tags' => 'api edit content model tag',
-		], null, $user );
+				'action' => 'changecontentmodel',
+				'title' => 'ExistingPage',
+				'model' => 'text',
+				'tags' => 'api edit content model tag',
+			],
+			null,
+			$this->mockAnonAuthorityWithoutPermissions( [ 'applychangetags' ] ) );
 	}
 
 	/**
@@ -257,13 +261,15 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	 */
 	public function testEverythingWorks() {
 		$title = Title::newFromText( 'ExistingPage' );
+		$performer = $this->mockAnonAuthorityWithPermissions(
+			[ 'edit', 'editcontentmodel', 'writeapi', 'applychangetags' ]
+		);
 		$this->assertSame(
 			'wikitext',
 			$title->getContentModel( Title::READ_LATEST ),
 			'Sanity check: `ExistingPage` should be wikitext'
 		);
 
-		$user = $this->getTestUser( [ 'editcontentmodel' ] )->getUser();
 		ChangeTags::defineTag( 'api edit content model tag' );
 
 		$data = $this->doApiRequestWithToken( [
@@ -271,7 +277,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'title' => 'ExistingPage',
 			'model' => 'text',
 			'tags' => 'api edit content model tag',
-		], null, $user );
+		], null, $performer );
 
 		$this->assertSame(
 			'text',
@@ -291,7 +297,7 @@ class ApiChangeContentModelTest extends ApiTestCase {
 			'title' => 'ExistingPage',
 			'model' => 'wikitext',
 			'tags' => 'api edit content model tag',
-		], null, $user );
+		], null, $performer );
 
 		$this->assertSame(
 			'wikitext',

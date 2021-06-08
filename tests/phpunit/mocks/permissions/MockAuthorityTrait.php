@@ -29,7 +29,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredUltimateAuthority(): Authority {
-		return new UltimateAuthority( new UserIdentityValue( 42, 'Petr' ) );
+		return new UltimateAuthority( new UserIdentityValue( 9999, 'Petr' ) );
 	}
 
 	/**
@@ -47,7 +47,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredNullAuthority(): Authority {
-		return new SimpleAuthority( new UserIdentityValue( 42, 'Petr' ), [] );
+		return new SimpleAuthority( new UserIdentityValue( 9999, 'Petr' ), [] );
 	}
 
 	/**
@@ -67,7 +67,7 @@ trait MockAuthorityTrait {
 	 * @return Authority
 	 */
 	private function mockRegisteredAuthorityWithPermissions( array $permissions ): Authority {
-		return new SimpleAuthority( new UserIdentityValue( 42, 'Petr' ), $permissions );
+		return new SimpleAuthority( new UserIdentityValue( 9999, 'Petr' ), $permissions );
 	}
 
 	/**
@@ -103,7 +103,7 @@ trait MockAuthorityTrait {
 	 */
 	private function mockRegisteredAuthorityWithoutPermissions( array $permissions ): Authority {
 		return $this->mockUserAuthorityWithoutPermissions(
-			new UserIdentityValue( 42, 'Petr' ),
+			new UserIdentityValue( 9999, 'Petr' ),
 			$permissions
 		);
 	}
@@ -147,7 +147,7 @@ trait MockAuthorityTrait {
 	 */
 	private function mockRegisteredAuthority( callable $permissionCallback ): Authority {
 		return $this->mockAuthority(
-			new UserIdentityValue( 42, 'Petr' ),
+			new UserIdentityValue( 9999, 'Petr' ),
 			$permissionCallback
 		);
 	}
