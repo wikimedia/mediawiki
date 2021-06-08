@@ -225,7 +225,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$queryInfo = $pager->buildQueryInfo( '', 1, false );
 
 		$this->assertContains( 'ip_changes', $queryInfo[0] );
-		$this->assertArrayHasKey( 'ip_changes', $queryInfo[5] );
+		$this->assertArrayHasKey( 'revision', $queryInfo[5] );
 		$this->assertSame( [ 'ipc_rev_timestamp DESC', 'ipc_rev_id DESC' ], $queryInfo[4]['ORDER BY'] );
 	}
 
