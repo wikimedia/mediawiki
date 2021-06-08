@@ -45,6 +45,10 @@ The new option is NOT validated.' );
 		$this->addOption( 'usage', 'Report all options statistics or just one if you specify it' );
 		$this->addOption( 'old', 'The value to look for', false, true );
 		$this->addOption( 'new', 'New value to update users with', false, true );
+		$this->addOption( 'fromuserid', 'Start from this user ID when changing options',
+			false, true );
+		$this->addOption( 'touserid', 'Do not go beyond this user ID when changing options',
+			false, true );
 		$this->addOption( 'nowarn', 'Hides the 5 seconds warning' );
 		$this->addOption( 'dry', 'Do not save user settings back to database' );
 		$this->addArg( 'option name', 'Name of the option to change or provide statistics about', false );
@@ -151,7 +155,10 @@ The new option is NOT validated.' );
 
 		$userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
 		$dbr = wfGetDB( DB_REPLICA );
-		$fromUser = 0;
+		// The fromuserid parameter is inclusive, but iterating is easier with an exclusive
+		// range so convert it.
+		$fromUserId = (int)$this->getOption( 'fromuserid', 1 ) - 1;
+		$toUserId = (int)$this->getOption( 'touserid', 0 ) ?: null;
 		$queryBuilderTemplate = new SelectQueryBuilder( $dbr );
 		$queryBuilderTemplate
 			->table( 'user' )
@@ -163,13 +170,17 @@ The new option is NOT validated.' );
 			// up_value is unindexed so this can be slow, but should be acceptable in a script
 			->where( [ 'up_value' => $from ] )
 			// need to order by ID so we can use ID ranges for query continuation
+			// also needed for the fromuserid / touserid parameters to work
 			->orderBy( 'user_id', SelectQueryBuilder::SORT_ASC )
 			->limit( $this->getBatchSize() )
 			->caller( __METHOD__ );
+		if ( $toUserId ) {
+			$queryBuilderTemplate->andWhere( "user_id <= $toUserId " );
+		}
 
 		do {
 			$queryBuilder = clone $queryBuilderTemplate;
-			$queryBuilder->andWhere( "user_id > $fromUser" );
+			$queryBuilder->andWhere( "user_id > $fromUserId" );
 			$result = $queryBuilder->fetchResultSet();
 			foreach ( $result as $row ) {
 				$this->output( "$settingWord {$option} for {$row->user_name} from '{$from}' to '{$to}'\n" );
@@ -178,7 +189,7 @@ The new option is NOT validated.' );
 					$userOptionsManager->setOption( $user, $option, $to );
 					$userOptionsManager->saveOptions( $user );
 				}
-				$fromUser = (int)$row->user_id;
+				$fromUserId = (int)$row->user_id;
 			}
 			$this->waitForReplication();
 		} while ( $result->numRows() );
