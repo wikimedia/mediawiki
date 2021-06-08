@@ -200,8 +200,7 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addPgIndex', 'recentchanges', 'rc_this_oldid', '(rc_this_oldid)' ],
 			[ 'dropTable', 'transcache' ],
 			[ 'runMaintenance', PopulateChangeTagDef::class, 'maintenance/populateChangeTagDef.php' ],
-			[ 'addIndex', 'change_tag', 'change_tag_rc_tag_id',
-				'patch-change_tag-change_tag_rc_tag_id.sql' ],
+			[ 'dropIndex', 'change_tag', 'change_tag_rc_tag', 'patch-change_tag-change_tag_rc_tag_id.sql' ],
 			[ 'addPgField', 'ipblocks', 'ipb_sitewide', 'SMALLINT NOT NULL DEFAULT 1' ],
 			[ 'addTable', 'ipblocks_restrictions', 'patch-ipblocks_restrictions-table.sql' ],
 			[ 'migrateImageCommentTemp' ],
@@ -635,6 +634,10 @@ class PostgresUpdater extends DatabaseUpdater {
 			[ 'addTable', 'searchindex', 'patch-searchindex-table.sql' ],
 			[ 'addPgIndex', 'oldimage', 'oi_timestamp', '(oi_timestamp)' ],
 			[ 'renameIndex', 'page', 'name_title', 'page_name_title' ],
+			[ 'renameIndex', 'change_tag', 'change_tag_rc_tag_id', 'ct_rc_tag_id' ],
+			[ 'renameIndex', 'change_tag', 'change_tag_log_tag_id', 'ct_log_tag_id' ],
+			[ 'renameIndex', 'change_tag', 'change_tag_rev_tag_id', 'ct_rev_tag_id' ],
+			[ 'renameIndex', 'change_tag', 'change_tag_tag_id_id', 'ct_tag_id_id' ],
 		];
 	}
 
