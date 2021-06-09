@@ -3690,6 +3690,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Check given value against the token value stored in the session,
 	 * ignoring the suffix.
 	 *
+	 * @deprecated since 1.37. No replacement is provided, use ::matchToken
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use, or null to use the global request
@@ -3697,6 +3698,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @return bool Whether the token matches
 	 */
 	public function matchEditTokenNoSuffix( $val, $salt = '', $request = null, $maxage = null ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		$val = substr( $val, 0, strspn( $val, '0123456789abcdef' ) ) . Token::SUFFIX;
 		return $this->matchEditToken( $val, $salt, $request, $maxage );
 	}
