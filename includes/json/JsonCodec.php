@@ -66,14 +66,12 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 			throw new InvalidArgumentException( "Invalid target class {$class}" );
 		}
 
-		$obj = $class::newFromJsonArray( $this, $json );
-
-		// Check we haven't accidentally unserialized a godzilla if we were told we are not expecting it.
-		if ( $expectedClass && !$obj instanceof $expectedClass ) {
-			$actualClass = get_class( $obj );
-			throw new InvalidArgumentException( "Expected {$expectedClass}, got {$actualClass}" );
+		if ( $expectedClass && $class !== $expectedClass && !is_subclass_of( $class, $expectedClass ) ) {
+			throw new InvalidArgumentException(
+				"Refusing to unserialize: expected $expectedClass, got $class"
+			);
 		}
-		return $obj;
+		return $class::newFromJsonArray( $this, $json );
 	}
 
 	public function unserializeArray( array $array ) : array {
