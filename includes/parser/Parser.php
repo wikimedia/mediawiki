@@ -4700,7 +4700,7 @@ class Parser {
 		$msgName = $user->isRegistered() ? 'signature' : 'signature-anon';
 
 		return wfMessage( $msgName, $userText, $nickText )->inContentLanguage()
-			->title( $this->getTitle() )->text();
+			->page( $this->getPage() )->text();
 	}
 
 	/**

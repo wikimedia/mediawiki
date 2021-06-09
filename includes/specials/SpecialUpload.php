@@ -867,7 +867,7 @@ class SpecialUpload extends SpecialPage {
 			$warnMsg = wfMessage( 'filename-bad-prefix', $exists['prefix'] );
 		}
 
-		return $warnMsg ? $warnMsg->title( $file->getTitle() )->parse() : '';
+		return $warnMsg ? $warnMsg->page( $file->getTitle() )->parse() : '';
 	}
 
 	/**

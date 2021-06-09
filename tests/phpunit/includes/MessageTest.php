@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -864,7 +865,7 @@ class MessageTest extends MediaWikiLangTestCase {
 	public function testSerialization() {
 		$msg = new Message( 'parentheses' );
 		$msg->rawParams( '<a>foo</a>' );
-		$msg->title( Title::newFromText( 'Testing' ) );
+		$msg->page( PageReferenceValue::localReference( NS_MAIN, 'Testing' ) );
 		$this->assertSame( '(<a>foo</a>)', $msg->parse(), 'Sanity check' );
 		$msg = unserialize( serialize( $msg ) );
 		$this->assertSame( '(<a>foo</a>)', $msg->parse() );
