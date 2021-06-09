@@ -324,6 +324,9 @@ class PageStore implements PageLookup {
 				// if we have a page ID, use it
 				$id = $page->getId( $this->wikiId );
 				return $this->getPageById( $id, $queryFlags );
+			} elseif ( $queryFlags === self::READ_NORMAL ) {
+				// The page does not appear to exist, and we don't have to check again.
+				return null;
 			}
 		}
 
