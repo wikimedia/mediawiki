@@ -21,6 +21,8 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageReference;
+use MediaWiki\Page\PageReferenceValue;
 
 /**
  * The Message class deals with fetching and processing of interface message
@@ -199,9 +201,9 @@ class Message implements MessageSpecifier, Serializable {
 	protected $useDatabase = true;
 
 	/**
-	 * @var Title Title object to use as context.
+	 * @var ?PageReference page object to use as context.
 	 */
-	protected $title = null;
+	protected $contextPage = null;
 
 	/**
 	 * @var Content Content object representing the message.
@@ -269,8 +271,8 @@ class Message implements MessageSpecifier, Serializable {
 			// Optimisation: Avoid cost of TitleFormatter on serialize,
 			// and especially cost of TitleParser (via Title::newFromText)
 			// on retrieval.
-			'titlevalue' => ( $this->title
-				? [ 0 => $this->title->getNamespace(), 1 => $this->title->getDBkey() ]
+			'titlevalue' => ( $this->contextPage
+				? [ 0 => $this->contextPage->getNamespace(), 1 => $this->contextPage->getDBkey() ]
 				: null
 			),
 		] );
@@ -300,11 +302,16 @@ class Message implements MessageSpecifier, Serializable {
 
 		// Since 1.35, the key 'titlevalue' is set, instead of 'titlestr'.
 		if ( isset( $data['titlevalue'] ) ) {
-			$this->title = Title::makeTitle( $data['titlevalue'][0], $data['titlevalue'][1] );
+			$this->contextPage = new PageReferenceValue(
+				$data['titlevalue'][0],
+				$data['titlevalue'][1],
+				PageReference::LOCAL
+			);
 		} elseif ( isset( $data['titlestr'] ) ) {
-			$this->title = Title::newFromText( $data['titlestr'] );
+			// TODO: figure out what's needed to remove this codepath
+			$this->contextPage = Title::newFromText( $data['titlestr'] );
 		} else {
-			$this->title = null; // Explicit for sanity
+			$this->contextPage = null; // Explicit for sanity
 		}
 	}
 
@@ -748,7 +755,7 @@ class Message implements MessageSpecifier, Serializable {
 	 */
 	public function setContext( IContextSource $context ) {
 		$this->inLanguage( $context->getLanguage() );
-		$this->title( $context->getTitle() );
+		$this->page( $context->getTitle() );
 		$this->interface = true;
 
 		return $this;
@@ -845,13 +852,27 @@ class Message implements MessageSpecifier, Serializable {
 	 * Set the Title object to use as context when transforming the message
 	 *
 	 * @since 1.18
+	 * @deprecated since 1.37. Use ::page instead
 	 *
 	 * @param Title $title
 	 *
 	 * @return Message $this
 	 */
 	public function title( $title ) {
-		$this->title = $title;
+		return $this->page( $title );
+	}
+
+	/**
+	 * Set the page object to use as context when transforming the message
+	 *
+	 * @since 1.37
+	 *
+	 * @param ?PageReference $page
+	 *
+	 * @return Message $this
+	 */
+	public function page( ?PageReference $page ) {
+		$this->contextPage = $page;
 		return $this;
 	}
 
@@ -1296,7 +1317,7 @@ class Message implements MessageSpecifier, Serializable {
 			$msg->interface = $this->interface;
 			$msg->language = $this->language;
 			$msg->useDatabase = $this->useDatabase;
-			$msg->title = $this->title;
+			$msg->contextPage = $this->contextPage;
 
 			// DWIM
 			if ( $format === 'block-parse' ) {
@@ -1325,7 +1346,7 @@ class Message implements MessageSpecifier, Serializable {
 	protected function parseText( $string ) {
 		$out = MediaWikiServices::getInstance()->getMessageCache()->parse(
 			$string,
-			$this->title,
+			$this->contextPage,
 			/*linestart*/true,
 			$this->interface,
 			$this->getLanguage()
@@ -1357,7 +1378,7 @@ class Message implements MessageSpecifier, Serializable {
 			$string,
 			$this->interface,
 			$this->getLanguage(),
-			$this->title
+			$this->contextPage
 		);
 	}
 
