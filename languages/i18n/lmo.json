@@ -2628,6 +2628,7 @@
 	"autoblocklist-otherblocks": "{{PLURAL:$1|Alter autobloch|Atri autobloch}}",
 	"ipblocklist": "Utencc blocad",
 	"ipblocklist-legend": "Cerca un utent blocad",
+	"blocklist-autoblocks": "Scond i autobloch",
 	"blocklist-userblocks": "Scond i bloch dei utencc registrad",
 	"blocklist-tempblocks": "Scond i bloch temporani",
 	"blocklist-indefblocks": "Scond i bloch infinid",
