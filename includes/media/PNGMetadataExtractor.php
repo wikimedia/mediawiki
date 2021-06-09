@@ -78,6 +78,8 @@ class PNGMetadataExtractor {
 		$loopCount = 1;
 		$text = [];
 		$duration = 0.0;
+		$width = 0;
+		$height = 0;
 		$bitDepth = 0;
 		$colorType = 'unknown';
 
@@ -400,6 +402,8 @@ class PNGMetadataExtractor {
 		}
 
 		return [
+			'width' => $width,
+			'height' => $height,
 			'frameCount' => $frameCount,
 			'loopCount' => $loopCount,
 			'duration' => $duration,

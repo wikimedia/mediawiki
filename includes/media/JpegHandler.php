@@ -100,7 +100,7 @@ class JpegHandler extends ExifBitmapHandler {
 		return $res;
 	}
 
-	public function getMetadata( $image, $filename ) {
+	public function getSizeAndMetadata( $state, $filename ) {
 		try {
 			$meta = BitmapMetadataHandler::Jpeg( $filename );
 			if ( !is_array( $meta ) ) {
@@ -109,23 +109,27 @@ class JpegHandler extends ExifBitmapHandler {
 			}
 			$meta['MEDIAWIKI_EXIF_VERSION'] = Exif::version();
 
-			return serialize( $meta );
-		} catch ( Exception $e ) {
+			$info = [
+				'width' => $meta['SOF']['width'] ?? 0,
+				'height' => $meta['SOF']['height'] ?? 0,
+			];
+			if ( isset( $meta['SOF']['bits'] ) ) {
+				$info['bits'] = $meta['SOF']['bits'];
+			}
+			$info = $this->applyExifRotation( $info, $meta );
+			unset( $meta['SOF'] );
+			$info['metadata'] = $meta;
+			return $info;
+		} catch ( MWException $e ) {
 			// BitmapMetadataHandler throws an exception in certain exceptional
 			// cases like if file does not exist.
 			wfDebug( __METHOD__ . ': ' . $e->getMessage() );
 
-			/* This used to use 0 (ExifBitmapHandler::OLD_BROKEN_FILE) for the cases
-			 *   * No metadata in the file
-			 *   * Something is broken in the file.
-			 * However, if the metadata support gets expanded then you can't tell if the 0 is from
-			 * a broken file, or just no props found. A broken file is likely to stay broken, but
-			 * a file which had no props could have props once the metadata support is improved.
-			 * Thus switch to using -1 to denote only a broken file, and use an array with only
-			 * MEDIAWIKI_EXIF_VERSION to denote no props.
-			 */
-
-			return ExifBitmapHandler::BROKEN_FILE;
+			// This used to return an integer-like string from getMetadata(),
+			// producing a value which could not be unserialized in
+			// img_metadata. The "_error" array key matches the legacy
+			// unserialization for such image rows.
+			return [ 'metadata' => [ '_error' => ExifBitmapHandler::BROKEN_FILE ] ];
 		}
 	}
 

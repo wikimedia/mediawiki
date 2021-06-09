@@ -29,15 +29,12 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  *
  * @ingroup FileBackend
  */
-class FSFile implements MediaHandlerState {
+class FSFile {
 	/** @var string Path to file */
 	protected $path;
 
 	/** @var string File SHA-1 in base 36 */
 	protected $sha1Base36;
-
-	/** @var array */
-	private $handlerState = [];
 
 	/**
 	 * Sets up the file object
@@ -229,23 +226,5 @@ class FSFile implements MediaHandlerState {
 		$fsFile = new self( $path );
 
 		return $fsFile->getSha1Base36();
-	}
-
-	/**
-	 * @unstable This will soon be removed.
-	 * @param string $key
-	 * @return mixed|null
-	 */
-	public function getHandlerState( string $key ) {
-		return $this->handlerState[$key] ?? null;
-	}
-
-	/**
-	 * @unstable This will soon be removed.
-	 * @param string $key
-	 * @param mixed $value
-	 */
-	public function setHandlerState( string $key, $value ) {
-		$this->handlerState[$key] = $value;
 	}
 }

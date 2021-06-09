@@ -368,7 +368,7 @@ class OldLocalFile extends LocalFile {
 				'oi_media_type' => $this->media_type,
 				'oi_major_mime' => $major,
 				'oi_minor_mime' => $minor,
-				'oi_metadata' => $this->metadata,
+				'oi_metadata' => $this->getMetadataForDb( $dbw ),
 				'oi_sha1' => $this->sha1,
 			], [
 				'oi_name' => $this->getName(),
@@ -462,6 +462,7 @@ class OldLocalFile extends LocalFile {
 		if ( !$props['fileExists'] ) {
 			return false;
 		}
+		$this->setProps( $props );
 
 		$commentFields = MediaWikiServices::getInstance()->getCommentStore()
 			->insert( $dbw, 'oi_description', $comment );
@@ -477,7 +478,7 @@ class OldLocalFile extends LocalFile {
 				'oi_bits' => $props['bits'],
 				'oi_actor' => $actorId,
 				'oi_timestamp' => $dbw->timestamp( $timestamp ),
-				'oi_metadata' => $props['metadata'],
+				'oi_metadata' => $this->getMetadataForDb( $dbw ),
 				'oi_media_type' => $props['media_type'],
 				'oi_major_mime' => $props['major_mime'],
 				'oi_minor_mime' => $props['minor_mime'],

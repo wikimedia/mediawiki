@@ -559,9 +559,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 		}
 
 		if ( $meta && $exists ) {
-			Wikimedia\suppressWarnings();
-			$metadata = unserialize( $file->getMetadata() );
-			Wikimedia\restoreWarnings();
+			$metadata = $file->getMetadataArray();
 			if ( $metadata && $version !== 'latest' ) {
 				$metadata = $file->convertMetadataVersion( $metadata, $version );
 			}

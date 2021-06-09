@@ -177,10 +177,17 @@ class LocalFileRestoreBatch {
 			) {
 				// Refresh our metadata
 				// Required for a new current revision; nice for older ones too. :)
-				// @phan-suppress-next-line SecurityCheck-PathTraversal False positive T268920
-				$props = MediaWikiServices::getInstance()->getRepoGroup()->getFileProps( $deletedUrl );
+				$this->file->loadFromFile( $deletedUrl );
+				$mime = $this->file->getMimeType();
+				list( $majorMime, $minorMime ) = File::splitMime( $mime );
+				$mediaInfo = [
+					'minor_mime' => $minorMime,
+					'major_mime' => $majorMime,
+					'media_type' => $this->file->getMediaType(),
+					'metadata' => $this->file->getMetadataForDb( $dbw )
+				];
 			} else {
-				$props = [
+				$mediaInfo = [
 					'minor_mime' => $row->fa_minor_mime,
 					'major_mime' => $row->fa_major_mime,
 					'media_type' => $row->fa_media_type,
@@ -198,11 +205,11 @@ class LocalFileRestoreBatch {
 					'img_size' => $row->fa_size,
 					'img_width' => $row->fa_width,
 					'img_height' => $row->fa_height,
-					'img_metadata' => $props['metadata'],
+					'img_metadata' => $mediaInfo['metadata'],
 					'img_bits' => $row->fa_bits,
-					'img_media_type' => $props['media_type'],
-					'img_major_mime' => $props['major_mime'],
-					'img_minor_mime' => $props['minor_mime'],
+					'img_media_type' => $mediaInfo['media_type'],
+					'img_major_mime' => $mediaInfo['major_mime'],
+					'img_minor_mime' => $mediaInfo['minor_mime'],
 					'img_actor' => $row->fa_actor,
 					'img_timestamp' => $row->fa_timestamp,
 					'img_sha1' => $sha1
@@ -240,10 +247,10 @@ class LocalFileRestoreBatch {
 					'oi_bits' => $row->fa_bits,
 					'oi_actor' => $row->fa_actor,
 					'oi_timestamp' => $row->fa_timestamp,
-					'oi_metadata' => $props['metadata'],
-					'oi_media_type' => $props['media_type'],
-					'oi_major_mime' => $props['major_mime'],
-					'oi_minor_mime' => $props['minor_mime'],
+					'oi_metadata' => $mediaInfo['metadata'],
+					'oi_media_type' => $mediaInfo['media_type'],
+					'oi_major_mime' => $mediaInfo['major_mime'],
+					'oi_minor_mime' => $mediaInfo['minor_mime'],
 					'oi_deleted' => $this->unsuppress ? 0 : $row->fa_deleted,
 					'oi_sha1' => $sha1
 				] + $commentStore->insert( $dbw, 'oi_description', $comment );
