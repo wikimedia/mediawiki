@@ -1498,7 +1498,7 @@
 	"rcfilters-restore-default-filters": "Врати подразумеване филтере",
 	"rcfilters-clear-all-filters": "Обришите све филтере",
 	"rcfilters-show-new-changes": "Нове измене од $1",
-	"rcfilters-search-placeholder": "Филтрирајте измене (користите мени или потражите назив филтера)",
+	"rcfilters-search-placeholder": "Филтрирајте измене (употребите мени или потражите назив филтера)",
 	"rcfilters-search-placeholder-mobile": "Филтери",
 	"rcfilters-invalid-filter": "Неважећи филтер",
 	"rcfilters-empty-filter": "Нема активних филтера. Приказују се сви доприноси.",
