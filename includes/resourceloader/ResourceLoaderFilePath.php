@@ -36,9 +36,10 @@ class ResourceLoaderFilePath {
 	protected $path;
 
 	/**
-	 * @param string $path Path to the file.
+	 * @param string $path Relative path to the file, no leading slash.
 	 * @param string $localBasePath Base path to prepend when generating a local path.
 	 * @param string $remoteBasePath Base path to prepend when generating a remote path.
+	 *   Should not have a trailing slash unless at web document root.
 	 */
 	public function __construct( $path, $localBasePath = '', $remoteBasePath = '' ) {
 		$this->path = $path;
@@ -55,9 +56,16 @@ class ResourceLoaderFilePath {
 
 	/** @return string */
 	public function getRemotePath() {
-		return $this->remoteBasePath === '' ?
-			$this->path :
-			"{$this->remoteBasePath}/{$this->path}";
+		if ( $this->remoteBasePath === '' ) {
+			// No base path configured
+			return $this->path;
+		}
+		if ( $this->remoteBasePath === '/' ) {
+			// In document root
+			// Don't insert another slash (T284391).
+			return $this->remoteBasePath . $this->path;
+		}
+		return "{$this->remoteBasePath}/{$this->path}";
 	}
 
 	/** @return string */
