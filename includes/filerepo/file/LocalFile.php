@@ -356,8 +356,8 @@ class LocalFile extends File {
 				$cacheVal['metadata'] = $this->metadataArray;
 
 				// Strip off excessive entries from the subset of fields that can become large.
-				// If the cache value gets to large it will not fit in memcached and nothing will
-				// get cached at all, causing master queries for any file access.
+				// If the cache value gets too large and might not fit in the cache,
+				// causing repeat database queries for each access to the file.
 				foreach ( $this->getLazyCacheFields( '' ) as $field ) {
 					if ( isset( $cacheVal[$field] )
 						&& strlen( serialize( $cacheVal[$field] ) ) > 100 * 1024
