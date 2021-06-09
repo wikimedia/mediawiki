@@ -135,8 +135,8 @@
 		"post-install-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"post-update-cmd": "ComposerVendorHtaccessCreator::onEvent",
 		"test": [
-			"composer lint",
-			"composer phpcs"
+			"composer lint .",
+			"composer phpcs ."
 		],
 		"test-some": [
 			"composer lint",
