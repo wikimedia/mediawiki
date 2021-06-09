@@ -11,7 +11,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\AtEase\AtEase;
 
 /**
  * Base code for files.
@@ -741,7 +740,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * Get handler-specific metadata
 	 * Overridden by LocalFile, UnregisteredLocalFile
 	 * STUB
-	 * @stable to override
+	 * @deprecated since 1.37 use getMetadataArray() or getMetadataItem()
 	 * @return string|false
 	 */
 	public function getMetadata() {
@@ -754,6 +753,41 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 
 	public function setHandlerState( string $key, $value ) {
 		$this->handlerState[$key] = $value;
+	}
+
+	/**
+	 * Get the unserialized handler-specific metadata
+	 * STUB
+	 * @since 1.37
+	 * @return array
+	 */
+	public function getMetadataArray(): array {
+		return [];
+	}
+
+	/**
+	 * Get a specific element of the unserialized handler-specific metadata.
+	 *
+	 * @since 1.37
+	 * @param string $itemName
+	 * @return mixed
+	 */
+	public function getMetadataItem( string $itemName ) {
+		$items = $this->getMetadataItems( [ $itemName ] );
+		return $items[$itemName] ?? null;
+	}
+
+	/**
+	 * Get multiple elements of the unserialized handler-specific metadata.
+	 *
+	 * @since 1.37
+	 * @param string[] $itemNames
+	 * @return array
+	 */
+	public function getMetadataItems( array $itemNames ): array {
+		return array_intersect_key(
+			$this->getMetadataArray(),
+			array_fill_keys( $itemNames, true ) );
 	}
 
 	/**
@@ -775,17 +809,12 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	/**
 	 * get versioned metadata
 	 *
-	 * @param array|string $metadata Array or string of (serialized) metadata
+	 * @param array $metadata Array of unserialized metadata
 	 * @param int $version Version number.
 	 * @return array Array containing metadata, or what was passed to it on fail
-	 *   (unserializing if not array)
 	 */
 	public function convertMetadataVersion( $metadata, $version ) {
 		$handler = $this->getHandler();
-		if ( !is_array( $metadata ) ) {
-			// Just to make the return type consistent
-			$metadata = unserialize( $metadata );
-		}
 		if ( $handler ) {
 			return $handler->convertMetadataVersion( $metadata, $version );
 		} else {
@@ -2161,11 +2190,13 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	 * @note Use getWidth()/getHeight() instead of this method unless you have a
 	 *  a good reason. This method skips all caches.
 	 *
-	 * @stable to override
+	 * @deprecated since 1.37
+	 *
 	 * @param string $filePath The path to the file (e.g. From getLocalRefPath() )
 	 * @return array|false The width, followed by height, with optionally more things after
 	 */
 	protected function getImageSize( $filePath ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		if ( !$this->getHandler() ) {
 			return false;
 		}
@@ -2342,17 +2373,7 @@ abstract class File implements IDBAccessObject, MediaHandlerState {
 	public function getContentHeaders() {
 		$handler = $this->getHandler();
 		if ( $handler ) {
-			$metadata = $this->getMetadata();
-
-			if ( is_string( $metadata ) ) {
-				$metadata = AtEase::quietCall( 'unserialize', $metadata );
-			}
-
-			if ( !is_array( $metadata ) ) {
-				$metadata = [];
-			}
-
-			return $handler->getContentHeaders( $metadata );
+			return $handler->getContentHeaders( $this->getMetadataArray() );
 		}
 
 		return [];

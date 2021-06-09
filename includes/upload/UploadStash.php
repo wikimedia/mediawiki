@@ -286,7 +286,7 @@ class UploadStash {
 			// Database is going to truncate this and make the field invalid.
 			// Prioritize important metadata over file handler metadata.
 			// File handler should be prepared to regenerate invalid metadata if needed.
-			$fileProps['metadata'] = false;
+			$fileProps['metadata'] = [];
 			$serializedFileProps = serialize( $fileProps );
 		}
 

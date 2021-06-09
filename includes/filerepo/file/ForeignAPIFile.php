@@ -188,6 +188,17 @@ class ForeignAPIFile extends File {
 	}
 
 	/**
+	 * @return array
+	 */
+	public function getMetadataArray(): array {
+		if ( isset( $this->mInfo['metadata'] ) ) {
+			return self::parseMetadata( $this->mInfo['metadata'] );
+		}
+
+		return [];
+	}
+
+	/**
 	 * @return array|null Extended metadata (see imageinfo API for format) or
 	 *   null on error
 	 */
@@ -197,11 +208,11 @@ class ForeignAPIFile extends File {
 
 	/**
 	 * @param mixed $metadata
-	 * @return mixed
+	 * @return array
 	 */
 	public static function parseMetadata( $metadata ) {
 		if ( !is_array( $metadata ) ) {
-			return $metadata;
+			return [ '_error' => $metadata ];
 		}
 		'@phan-var array[] $metadata';
 		$ret = [];

@@ -166,6 +166,9 @@ class BitmapMetadataHandler {
 
 		$seg = JpegMetadataExtractor::segmentSplitter( $filename );
 
+		if ( isset( $seg['SOF'] ) ) {
+			$meta->addMetadata( [ 'SOF' => $seg['SOF'] ] );
+		}
 		if ( isset( $seg['COM'] ) && isset( $seg['COM'][0] ) ) {
 			$meta->addMetadata( [ 'JPEGFileComment' => $seg['COM'] ], 'native' );
 		}

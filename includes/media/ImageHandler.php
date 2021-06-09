@@ -229,16 +229,29 @@ abstract class ImageHandler extends MediaHandler {
 		}
 	}
 
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
 	public function getImageSize( $image, $path ) {
 		Wikimedia\suppressWarnings();
 		$gis = getimagesize( $path );
 		Wikimedia\restoreWarnings();
 
 		return $gis;
+	}
+
+	public function getSizeAndMetadata( $state, $path ) {
+		// phpcs:ignore Generic.PHP.NoSilencedErrors.Discouraged
+		$gis = @getimagesize( $path );
+		if ( $gis ) {
+			$info = [
+				'width' => $gis[0],
+				'height' => $gis[1],
+			];
+			if ( isset( $gis['bits'] ) ) {
+				$info['bits'] = $gis['bits'];
+			}
+		} else {
+			$info = [];
+		}
+		return $info;
 	}
 
 	/**

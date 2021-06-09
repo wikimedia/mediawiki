@@ -561,7 +561,12 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 10816824, $file->getSize() );
 		$this->assertSame( 1000, $file->getWidth() );
 		$this->assertSame( 1800, $file->getHeight() );
-		$this->assertSame( $meta, $file->getMetadata() );
+		$this->assertSame( unserialize( $meta ), $file->getMetadataArray() );
+		$this->assertSame( 'truecolour', $file->getMetadataItem( 'colorType' ) );
+		$this->assertSame(
+			[ 'loopCount' => 1, 'bitDepth' => 16 ],
+			$file->getMetadataItems( [ 'loopCount', 'bitDepth', 'nonexistent' ] )
+		);
 		$this->assertSame( 16, $file->getBitDepth() );
 		$this->assertSame( 'BITMAP', $file->getMediaType() );
 		$this->assertSame( 'image/png', $file->getMimeType() );
@@ -578,7 +583,12 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 10816824, $file->getSize() );
 		$this->assertSame( 1000, $file->getWidth() );
 		$this->assertSame( 1800, $file->getHeight() );
-		$this->assertSame( $meta, $file->getMetadata() );
+		$this->assertSame( unserialize( $meta ), $file->getMetadataArray() );
+		$this->assertSame( 'truecolour', $file->getMetadataItem( 'colorType' ) );
+		$this->assertSame(
+			[ 'loopCount' => 1, 'bitDepth' => 16 ],
+			$file->getMetadataItems( [ 'loopCount', 'bitDepth', 'nonexistent' ] )
+		);
 		$this->assertSame( 16, $file->getBitDepth() );
 		$this->assertSame( 'BITMAP', $file->getMediaType() );
 		$this->assertSame( 'image/png', $file->getMimeType() );
@@ -591,5 +601,32 @@ class LocalFileTest extends MediaWikiIntegrationTestCase {
 		$cache->clear();
 		$file = $repo->findFile( $title );
 		$this->assertSame( false, $file );
+	}
+
+	public function provideLegacyMetadataRoundTrip() {
+		return [
+			[ '0' ],
+			[ '-1' ],
+			[ '' ]
+		];
+	}
+
+	/**
+	 * Test the legacy function LocalFile::getMetadata()
+	 * @dataProvider provideLegacyMetadataRoundTrip
+	 * @covers LocalFile
+	 */
+	public function testLegacyMetadataRoundTrip( $meta ) {
+		$file = new class( $meta ) extends LocalFile {
+			public function __construct( $meta ) {
+				$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+				parent::__construct(
+					Title::newFromText( 'File:TestLegacyMetadataRoundTrip' ),
+					$repo );
+				$this->loadMetadataFromString( $meta );
+				$this->dataLoaded = true;
+			}
+		};
+		$this->assertSame( $meta, $file->getMetadata() );
 	}
 }

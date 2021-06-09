@@ -54,32 +54,6 @@ class XCFHandler extends BitmapHandler {
 	}
 
 	/**
-	 * Get width and height from the XCF header.
-	 *
-	 * @param File|FSFile $image
-	 * @param string $filename
-	 * @return array|false
-	 */
-	public function getImageSize( $image, $filename ) {
-		$header = self::getXCFMetaData( $filename );
-		if ( !$header ) {
-			return false;
-		}
-
-		# Forge a return array containing metadata information just like getimagesize()
-		# See PHP documentation at: https://www.php.net/getimagesize
-		return [
-			0 => $header['width'],
-			1 => $header['height'],
-			2 => null, # IMAGETYPE constant, none exist for XCF.
-			3 => "height=\"{$header['height']}\" width=\"{$header['width']}\"",
-			'mime' => 'image/x-xcf',
-			'channels' => null,
-			'bits' => 8, # Always 8-bits per color
-		];
-	}
-
-	/**
 	 * Metadata for a given XCF file
 	 *
 	 * Will return false if file magic signature is not recognized
@@ -87,13 +61,13 @@ class XCFHandler extends BitmapHandler {
 	 * @author Hashar
 	 *
 	 * @param string $filename Full path to a XCF file
-	 * @return bool|array Metadata Array just like PHP getimagesize()
+	 * @return array|null Metadata Array just like PHP getimagesize()
 	 */
 	private static function getXCFMetaData( $filename ) {
 		# Decode master structure
 		$f = fopen( $filename, 'rb' );
 		if ( !$f ) {
-			return false;
+			return null;
 		}
 		# The image structure always starts at offset 0 in the XCF file.
 		# So we just read it :-)
@@ -126,15 +100,15 @@ class XCFHandler extends BitmapHandler {
 					"/Nbase_type", # /
 				$binaryHeader
 			);
-		} catch ( Exception $mwe ) {
-			return false;
+		} catch ( MWException $mwe ) {
+			return null;
 		}
 
 		# Check values
 		if ( $header['magic'] !== 'gimp xcf' ) {
 			wfDebug( __METHOD__ . " '$filename' has invalid magic signature." );
 
-			return false;
+			return null;
 		}
 		# TODO: we might want to check for sane values of width and height
 
@@ -144,17 +118,7 @@ class XCFHandler extends BitmapHandler {
 		return $header;
 	}
 
-	/**
-	 * Store the channel type
-	 *
-	 * Greyscale files need different command line options.
-	 *
-	 * @param File|FSFile $file The image object, or false if there isn't one.
-	 *   Warning, FSFile::getPropsFromPath might pass an (object)array() instead (!)
-	 * @param string $filename
-	 * @return string
-	 */
-	public function getMetadata( $file, $filename ) {
+	public function getSizeAndMetadata( $state, $filename ) {
 		$header = self::getXCFMetaData( $filename );
 		$metadata = [];
 		if ( $header ) {
@@ -178,18 +142,22 @@ class XCFHandler extends BitmapHandler {
 			// Marker to prevent repeated attempted extraction
 			$metadata['error'] = true;
 		}
-		return serialize( $metadata );
+		return [
+			'width' => $header['width'] ?? 0,
+			'height' => $header['height'] ?? 0,
+			'bits' => 8,
+			'metadata' => $metadata
+		];
 	}
 
 	/**
 	 * Should we refresh the metadata
 	 *
 	 * @param File $file The file object for the file in question
-	 * @param string $metadata Serialized metadata
 	 * @return bool|int One of the self::METADATA_(BAD|GOOD|COMPATIBLE) constants
 	 */
-	public function isMetadataValid( $file, $metadata ) {
-		if ( !$metadata ) {
+	public function isFileMetadataValid( $file ) {
+		if ( !$file->getMetadataArray() ) {
 			// Old metadata when we just put an empty string in there
 			return self::METADATA_BAD;
 		} else {
@@ -217,9 +185,7 @@ class XCFHandler extends BitmapHandler {
 	 * @return bool
 	 */
 	public function canRender( $file ) {
-		Wikimedia\suppressWarnings();
-		$xcfMeta = unserialize( $file->getMetadata() );
-		Wikimedia\restoreWarnings();
+		$xcfMeta = $file->getMetadataArray();
 		if ( isset( $xcfMeta['colorType'] ) && $xcfMeta['colorType'] === 'index-coloured' ) {
 			return false;
 		}
