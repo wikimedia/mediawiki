@@ -1208,73 +1208,46 @@ abstract class DatabaseMysqlBase extends Database {
 		return parent::streamStatementEnd( $sql, $newLine );
 	}
 
-	/**
-	 * Check to see if a named lock is available. This is non-blocking.
-	 *
-	 * @param string $lockName Name of lock to poll
-	 * @param string $method Name of method calling us
-	 * @return bool
-	 * @since 1.20
-	 */
-	public function lockIsFree( $lockName, $method ) {
-		if ( !parent::lockIsFree( $lockName, $method ) ) {
-			return false; // already held
-		}
-
+	public function doLockIsFree( string $lockName, string $method ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		$res = $this->query( "SELECT IS_FREE_LOCK($encName) AS lockstatus", $method, $flags );
+		$res = $this->query(
+			"SELECT IS_FREE_LOCK($encName) AS unlocked",
+			$method,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchObject( $res );
 
-		return ( $row->lockstatus == 1 );
+		return ( $row->unlocked == 1 );
 	}
 
-	/**
-	 * @param string $lockName
-	 * @param string $method
-	 * @param int $timeout
-	 * @return bool
-	 */
-	public function lock( $lockName, $method, $timeout = 5 ) {
+	public function doLock( string $lockName, string $method, int $timeout ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
-
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		$res = $this->query( "SELECT GET_LOCK($encName, $timeout) AS lockstatus", $method, $flags );
+		// Unlike NOW(), SYSDATE() gets the time at invokation rather than query start.
+		// The precision argument is silently ignored for MySQL < 5.6 and MariaDB < 5.3.
+		// https://dev.mysql.com/doc/refman/5.6/en/date-and-time-functions.html#function_sysdate
+		// https://dev.mysql.com/doc/refman/5.6/en/fractional-seconds.html
+		$res = $this->query(
+			"SELECT IF(GET_LOCK($encName,$timeout),UNIX_TIMESTAMP(SYSDATE(6)),NULL) AS acquired",
+			$method,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchObject( $res );
 
-		if ( $row->lockstatus == 1 ) {
-			parent::lock( $lockName, $method, $timeout ); // record
-			return true;
-		}
-
-		$this->queryLogger->info( __METHOD__ . " failed to acquire lock '{lockname}'",
-			[ 'lockname' => $lockName ] );
-
-		return false;
+		return ( $row->acquired !== null ) ? (float)$row->acquired : null;
 	}
 
-	/**
-	 * @param string $lockName
-	 * @param string $method
-	 * @return bool
-	 */
-	public function unlock( $lockName, $method ) {
+	public function doUnlock( string $lockName, string $method ) {
 		$encName = $this->addQuotes( $this->makeLockName( $lockName ) );
 
-		$flags = self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE;
-		// https://dev.mysql.com/doc/refman/5.7/en/locking-functions.html#function_release-lock
-		$res = $this->query( "SELECT RELEASE_LOCK($encName) as lockstatus", $method, $flags );
+		$res = $this->query(
+			"SELECT RELEASE_LOCK($encName) AS released",
+			$method,
+			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
+		);
 		$row = $this->fetchObject( $res );
 
-		if ( $row->lockstatus == 1 ) {
-			parent::unlock( $lockName, $method ); // record
-			return true;
-		}
-
-		$this->queryLogger->warning( __METHOD__ . " failed to release lock '$lockName'\n" );
-
-		return false;
+		return ( $row->released == 1 );
 	}
 
 	private function makeLockName( $lockName ) {

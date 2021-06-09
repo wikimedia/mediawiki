@@ -943,7 +943,12 @@ class DatabaseSqlite extends Database {
 		return $s;
 	}
 
-	public function lock( $lockName, $method, $timeout = 5 ) {
+	public function doLockIsFree( string $lockName, string $method ) {
+		// Only locks by this thread will be checked
+		return true;
+	}
+
+	public function doLock( string $lockName, string $method, int $timeout ) {
 		$status = $this->lockMgr->lock( [ $lockName ], LockManager::LOCK_EX, $timeout );
 		if (
 			$this->lockMgr instanceof FSLockManager &&
@@ -952,10 +957,10 @@ class DatabaseSqlite extends Database {
 			throw new DBError( $this, "Cannot create directory \"{$this->getLockFileDirectory()}\"" );
 		}
 
-		return $status->isOK();
+		return $status->isOK() ? microtime( true ) : null;
 	}
 
-	public function unlock( $lockName, $method ) {
+	public function doUnlock( string $lockName, string $method ) {
 		return $this->lockMgr->unlock( [ $lockName ], LockManager::LOCK_EX )->isGood();
 	}
 
