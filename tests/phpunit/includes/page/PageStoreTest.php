@@ -4,6 +4,7 @@ namespace MediaWiki\Tests\Page;
 use Exception;
 use IDatabase;
 use InvalidArgumentException;
+use LinkCacheTestTrait;
 use LoadBalancer;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\DAO\WikiAwareEntity;
@@ -23,6 +24,7 @@ use Wikimedia\Rdbms\DBConnRef;
 class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 	use MockTitleTrait;
+	use LinkCacheTestTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -332,7 +334,7 @@ class PageStoreTest extends MediaWikiIntegrationTestCase {
 
 		// Has all fields needed by LinkCache, but not all fields needed by PageStore.
 		// This may happen when legacy code injects rows directly into LinkCache.
-		$linkCache->addGoodLinkObj( 8, $nonexistingPage );
+		$this->addGoodLinkObject( 8, $nonexistingPage );
 
 		$pageStore = $this->getPageStore();
 		$page = $pageStore->getPageByName( $ns, $dbkey );

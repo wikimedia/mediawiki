@@ -10,6 +10,7 @@ use MediaWiki\Page\PageReferenceValue;
  * @covers MediaWiki\Linker\LinkRenderer
  */
 class LinkRendererTest extends MediaWikiLangTestCase {
+	use LinkCacheTestTrait;
 
 	/**
 	 * @var LinkRendererFactory
@@ -202,47 +203,30 @@ class LinkRendererTest extends MediaWikiLangTestCase {
 	 */
 	public function testGetLinkClasses( $foobarTitle, $redirectTitle, $userTitle ) {
 		$services = MediaWikiServices::getInstance();
-		$wanCache = $services->getMainWANObjectCache();
 		$titleFormatter = $services->getTitleFormatter();
 		$nsInfo = $services->getNamespaceInfo();
 		$specialPageFactory = $services->getSpecialPageFactory();
 		$hookContainer = $services->getHookContainer();
-		$loadBalancer = $services->getDBLoadBalancer();
-		$linkCache = new LinkCache( $titleFormatter, $wanCache, $nsInfo, $loadBalancer );
+		$linkCache = $services->getLinkCache();
 		if ( $foobarTitle instanceof PageReference ) {
 			$cacheTitle = Title::castFromPageReference( $foobarTitle );
 		} else {
 			$cacheTitle = $foobarTitle;
 		}
-		$linkCache->addGoodLinkObj(
-			1, // id
-			$cacheTitle,
-			10, // len
-			0 // redir
-		);
+		$this->addGoodLinkObject( 1, $cacheTitle, 10, 0 );
 		if ( $redirectTitle instanceof PageReference ) {
 			$cacheTitle = Title::castFromPageReference( $redirectTitle );
 		} else {
 			$cacheTitle = $redirectTitle;
 		}
-		$linkCache->addGoodLinkObj(
-			2, // id
-			$cacheTitle,
-			10, // len
-			1 // redir
-		);
+		$this->addGoodLinkObject( 2, $cacheTitle, 10, 1 );
 
 		if ( $userTitle instanceof PageReference ) {
 			$cacheTitle = Title::castFromPageReference( $userTitle );
 		} else {
 			$cacheTitle = $userTitle;
 		}
-		$linkCache->addGoodLinkObj(
-			3, // id
-			$cacheTitle,
-			10, // len
-			0 // redir
-		);
+		$this->addGoodLinkObject( 3, $cacheTitle, 10, 0 );
 
 		$linkRenderer = new LinkRenderer( $titleFormatter, $linkCache,
 			$nsInfo, $specialPageFactory, $hookContainer );

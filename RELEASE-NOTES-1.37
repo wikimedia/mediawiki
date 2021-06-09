@@ -580,6 +580,9 @@ because of Phabricator reports.
   MediaWikiServices::getJobQueueGroup instead.
 * JobQueueGroup::destroySingletons was deprecated. JobQueueGroups are now
   automatically destroyed after tests.
+* LinkCache::addGoodLinkObj() has been soft deprecated, since it is prone to
+  corrupting the cache with invalid information. Use addGoodLinkObjFromRow()
+  instead. PHPUnit tests must use LinkCacheTestTrait::addGoodLinkObject().
 * SessionProvider ::setLogger(), ::setManager(), ::setConfig(),
   ::setHookContainer() were hard deprecated. Use ::init() to inject
   dependencies or override ::postInitSetup() to do any custom
