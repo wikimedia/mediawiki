@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Claw eg",
+			"DannyS712",
 			"Hasley",
 			"Hhaboh162002",
 			"Kuwaity26",
@@ -83,7 +84,7 @@
 	"config-no-scaling": "لا يمكن أن تجد مكتبة GD أو ImageMagick; سيتم تعطيل تصغير الصور.",
 	"config-no-uri": "<strong>خطأ:</strong>  لا يمكن أن تحدد URI الحالي.تم  إحباط التثبيت.",
 	"config-no-cli-uri": "<strong>تحذير:</strong> لم يتم تحديد <code>--scriptpath</code>، باستخدام الافتراضي: <code>$1</code>.",
-	"config-using-server": "باستخدام اسم الخادم «<nowiki>$1</nowiki».",
+	"config-using-server": "باستخدام اسم الخادم «<nowiki>$1</nowiki>».",
 	"config-using-uri": "باستخدام URL الخادم «<nowiki>$1$2</nowiki>».",
 	"config-uploads-not-safe": "<strong>تحذير:</strong>  الدليل الافتراضي للمرفوعات <code>$1</code> عرضة لتنفيذ سكريبتات عشوائية،\nعلى الرغم من أن ميدياويكي يتحقق من كل الملفات المرفوعة للتهديدات الأمنية، فمن المستحسن بشدة [https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Security#Upload_security إغلاق هذه الثغرة الأمنية] قبل تمكين المرفوعات.",
 	"config-no-cli-uploads-check": "<strong>تحذير:</strong> لم يتم تحديد الدليل الافتراضي للمرفوعات (<code>$1</code>) للقابلية للتأثر\nلتنفيذ برنامج تعسفي أثناء تثبيت CLI.",
