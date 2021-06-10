@@ -1516,7 +1516,7 @@
 	"recentchanges-label-plusminus": "Alteração no tamanho da página, em bytes",
 	"recentchanges-legend-heading": "<strong>Legenda:</strong>",
 	"recentchanges-legend-newpage": "{{int:recentchanges-label-newpage}} ([[Special:NewPages|lista de páginas novas]])",
-	"recentchanges-legend-watchlistexpiry": "Páxina vixiada temporalmente",
+	"recentchanges-legend-watchlistexpiry": "Página vigiada temporariamente",
 	"recentchanges-submit": "Mostrar",
 	"rcfilters-tag-remove": "Remover '$1'",
 	"rcfilters-legend-heading": "<strong>Lista de abreviações:</strong>",
