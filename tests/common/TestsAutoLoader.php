@@ -78,8 +78,6 @@ $wgAutoloadClasses += [
 
 	# tests/phpunit/includes
 	'FactoryArgTestTrait' => "$testDir/phpunit/unit/includes/FactoryArgTestTrait.php",
-	'RevisionTestModifyableContent' => "$testDir/phpunit/includes/RevisionTestModifyableContent.php",
-	'RevisionTestModifyableContentHandler' => "$testDir/phpunit/includes/RevisionTestModifyableContentHandler.php",
 	'TestLogger' => "$testDir/phpunit/mocks/TestLogger.php",
 
 	# tests/phpunit/includes/api

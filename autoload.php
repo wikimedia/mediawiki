@@ -1407,7 +1407,6 @@ $wgAutoloadLocalClasses = [
 	'ReverseChronologicalPager' => __DIR__ . '/includes/pager/ReverseChronologicalPager.php',
 	'RevertAction' => __DIR__ . '/includes/actions/RevertAction.php',
 	'RevertedTagUpdateJob' => __DIR__ . '/includes/jobqueue/jobs/RevertedTagUpdateJob.php',
-	'Revision' => __DIR__ . '/includes/Revision.php',
 	'RevisionDeleteUser' => __DIR__ . '/includes/revisiondelete/RevisionDeleteUser.php',
 	'RevisionDeleter' => __DIR__ . '/includes/revisiondelete/RevisionDeleter.php',
 	'RevisionItem' => __DIR__ . '/includes/revisionlist/RevisionItem.php',

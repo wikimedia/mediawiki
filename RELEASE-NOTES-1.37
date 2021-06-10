@@ -95,7 +95,7 @@ because of Phabricator reports.
 * (T284044) Added language support for Carpathian Romani (rmc).
 
 === Breaking changes in 1.37 ===
-* The Revision class, hard deprecated in 1.35, is being removed. As
+* The Revision class, hard deprecated in 1.35, was removed entirely. As
   part of this, the following hooks that included a Revision object
   were removed:
   - ArticleRevisionUndeleted - use RevisionUndeleted
@@ -162,6 +162,10 @@ because of Phabricator reports.
   in Parser::fetchTemplateAndTitle() and should return an array - the
   'revision' key to that array used to be a Revision object and was used if
   no 'revision-record' was returned - it is now ignored.
+* Previously, the classes RevisionTestModifyableContent and
+  RevisionTestModifyableContentHandler were loaded for use in tests, but
+  were only used within the tests for the since-removed Revision class. This
+  content and content handler class were removed without deprecation.
 * WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
   Use HOLDOFF_TTL_NONE instead.
 * The following methods and fields in the Language class, deprecated since
