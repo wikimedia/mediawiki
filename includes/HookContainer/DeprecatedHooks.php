@@ -36,7 +36,7 @@ class DeprecatedHooks {
 	private $deprecatedHooks = [
 		'AddNewAccount' => [ 'deprecatedVersion' => '1.27', 'silent' => true ],
 		'ArticleEditUpdates' => [ 'deprecatedVersion' => '1.35' ],
-		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
+		'BaseTemplateAfterPortlet' => [ 'deprecatedVersion' => '1.35' ],
 		'BaseTemplateToolbox' => [ 'deprecatedVersion' => '1.35' ],
 		'BeforeParserFetchTemplateAndtitle' => [ 'deprecatedVersion' => '1.36' ],
 		'BeforeParserrenderImageGallery' => [ 'deprecatedVersion' => '1.35' ],

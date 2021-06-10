@@ -403,6 +403,9 @@ because of Phabricator reports.
 * Deprecated File::getMetadata(). Instead use ::getMetadataArray(),
   ::getMetadataItem() and ::getMetadataItems().
 * Message::title was deprecated, use Message::page instead.
+* BaseTemplate::getAfterPortlet, BaseTemplate::renderAfterPortlet and the
+  BaseTemplateAfterPortlet hook, which were deprecated in 1.35,
+  now emit deprecation warnings.
 * …
 
 === Other changes in 1.37 ===
