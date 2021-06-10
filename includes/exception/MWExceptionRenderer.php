@@ -41,6 +41,17 @@ class MWExceptionRenderer {
 	public static function output( Throwable $e, $mode, Throwable $eNew = null ) {
 		global $wgMimeType, $wgShowExceptionDetails;
 
+		if ( $e instanceof RequestTimeoutException && headers_sent() ) {
+			// Excimer's flag check happens on function return, so, a timeout
+			// can be thrown after exiting, say, `doPostOutputShutdown`, where
+			// headers are sent.  In which case, it's probably fine not to
+			// report this in any user visible way.  The general question of
+			// what to do about reporting an exception when headers have been
+			// sent is still unclear, but you probably don't want to
+			// `useOutputPage`.
+			return;
+		}
+
 		if ( function_exists( 'apache_setenv' ) ) {
 			// The client should not be blocked on "post-send" updates. If apache decides that
 			// a response should be gzipped, it will wait for PHP to finish since it cannot gzip
