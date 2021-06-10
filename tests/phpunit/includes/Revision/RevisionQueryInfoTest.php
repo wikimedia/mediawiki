@@ -4,7 +4,6 @@ namespace MediaWiki\Tests\Revision;
 
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
-use Revision;
 
 /**
  * Tests RevisionStore against the post-migration MCR DB schema.
@@ -301,30 +300,6 @@ class RevisionQueryInfoTest extends MediaWikiIntegrationTestCase {
 				],
 			]
 		];
-	}
-
-	/**
-	 * @covers Revision::getArchiveQueryInfo
-	 * @dataProvider provideArchiveQueryInfo
-	 */
-	public function testRevisionGetArchiveQueryInfo( $migrationStageSettings, $expected ) {
-		$this->hideDeprecated( 'Revision::getArchiveQueryInfo' );
-		$this->setMwGlobals( $migrationStageSettings );
-
-		$queryInfo = Revision::getArchiveQueryInfo();
-		$this->assertQueryInfoEquals( $expected, $queryInfo );
-	}
-
-	/**
-	 * @covers Revision::getQueryInfo
-	 * @dataProvider provideQueryInfo
-	 */
-	public function testRevisionGetQueryInfo( $migrationStageSettings, $options, $expected ) {
-		$this->hideDeprecated( 'Revision::getQueryInfo' );
-		$this->setMwGlobals( $migrationStageSettings );
-
-		$queryInfo = Revision::getQueryInfo( $options );
-		$this->assertQueryInfoEquals( $expected, $queryInfo );
 	}
 
 	/**

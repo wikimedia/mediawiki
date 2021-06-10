@@ -32,7 +32,6 @@ use MediaWikiIntegrationTestCase;
 use MWTimestamp;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Log\NullLogger;
-use Revision;
 use TestUserRegistry;
 use Title;
 use TitleFactory;
@@ -724,9 +723,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getRecentChange
 	 */
 	public function testGetRecentChange() {
-		$this->hideDeprecated( 'Revision::getRecentChange' );
-		$this->hideDeprecated( 'Revision::__construct' );
-
 		$page = $this->getTestPage();
 		$content = new WikitextContent( __METHOD__ );
 		$status = $page->doEditContent( $content, __METHOD__ );
@@ -738,10 +734,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		$recentChange = $store->getRecentChange( $storeRecord );
 
 		$this->assertEquals( $revRecord->getId(), $recentChange->getAttribute( 'rc_this_oldid' ) );
-		$this->assertEquals(
-			( new Revision( $revRecord ) )->getRecentChange(),
-			$recentChange
-		);
 	}
 
 	/**
@@ -1067,8 +1059,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
 	 */
 	public function testNewRevisionFromRowAndSlots_getQueryInfo() {
-		$this->hideDeprecated( 'Revision::getContent' );
-
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'o-ö';
 		/** @var RevisionRecord $revRecord */
@@ -1114,8 +1104,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getQueryInfo
 	 */
 	public function testNewRevisionFromRow_getQueryInfo() {
-		$this->hideDeprecated( 'Revision::getContent' );
-
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'a-ä';
 		/** @var RevisionRecord $revRecord */
@@ -1148,8 +1136,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_anonEdit() {
-		$this->hideDeprecated( 'Revision::getContent' );
-
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'a-ä';
 		/** @var RevisionRecord $revRecord */
@@ -1173,8 +1159,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_anonEdit_legacyEncoding() {
-		$this->hideDeprecated( 'Revision::getContent' );
-
 		$this->setMwGlobals( 'wgLegacyEncoding', 'windows-1252' );
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'a-ä';
@@ -1199,8 +1183,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::newRevisionFromRowAndSlots
 	 */
 	public function testNewRevisionFromRow_userEdit() {
-		$this->hideDeprecated( 'Revision::getContent' );
-
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		/** @var RevisionRecord $revRecord */
@@ -2440,9 +2422,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 	 * @covers \MediaWiki\Revision\RevisionStore::getContentBlobsForBatch
 	 */
 	public function testGetContentBlobsForBatch( $slots ) {
-		$this->hideDeprecated( 'Revision::getContentModel' );
-		$this->hideDeprecated( 'Revision::__construct' );
-
 		$page1 = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		$editStatus = $this->editPage( $page1->getTitle()->getPrefixedDBkey(), $text . '1' );
@@ -2480,17 +2459,6 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 			$mainSlotRow1 = $rev1rows[ SlotRecord::MAIN ];
 			$mainSlotRow2 = $rev2rows[ SlotRecord::MAIN ];
-
-			if ( $mainSlotRow1->model_name ) {
-				$this->assertSame(
-					( new Revision( $revRecord1 ) )->getContentModel(),
-					$mainSlotRow1->model_name
-				);
-				$this->assertSame(
-					( new Revision( $revRecord2 ) )->getContentModel(),
-					$mainSlotRow2->model_name
-				);
-			}
 
 			$this->assertSame( $text . '1', $mainSlotRow1->blob_data );
 			$this->assertSame( $text . '2', $mainSlotRow2->blob_data );
