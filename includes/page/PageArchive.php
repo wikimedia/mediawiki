@@ -25,6 +25,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -444,7 +445,7 @@ class PageArchive {
 	 *
 	 * @param array $timestamps Pass an empty array to restore all revisions,
 	 *   otherwise list the ones to undelete.
-	 * @param User $user
+	 * @param UserIdentity $user
 	 * @param string $comment
 	 * @param array $fileVersions
 	 * @param bool $unsuppress
@@ -455,7 +456,7 @@ class PageArchive {
 	 */
 	public function undeleteAsUser(
 		$timestamps,
-		User $user,
+		UserIdentity $user,
 		$comment = '',
 		$fileVersions = [],
 		$unsuppress = false,
@@ -512,7 +513,8 @@ class PageArchive {
 			],
 		] );
 
-		$this->hookRunner->onArticleUndeleteLogEntry( $this, $logEntry, $user );
+		$legacyUser = $this->userFactory->newFromUserIdentity( $user );
+		$this->hookRunner->onArticleUndeleteLogEntry( $this, $logEntry, $legacyUser );
 
 		$logid = $logEntry->insert();
 		$logEntry->publish( $logid );
