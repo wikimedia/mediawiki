@@ -445,6 +445,8 @@ because of Phabricator reports.
   and ALF_PRELOAD_EXISTENCE have been removed. They're unused since 1.25.
 * CSS class 'mw-htmlform-field-autoinfuse' used by some forms has been
   renamed to 'mw-htmlform-autoinfuse'. (T278036)
+* User::newFromRow does not accept pre-loaded user preferences under
+  $data['user_properties'] anymore. This optimization was not used.
 * …
 
 == Compatibility ==

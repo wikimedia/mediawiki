@@ -1321,7 +1321,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *                table. Previously you were supposed to pass an array of strings
 	 *                here, but we also need expiry info nowadays, so an array of
 	 *                strings is ignored.
-	 *  user_properties   Array with properties out of the user_properties table
 	 */
 	protected function loadFromRow( $row, $data = null ) {
 		if ( !is_object( $row ) ) {
@@ -1421,11 +1420,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 						$data['user_groups'],
 						$this->queryFlagsUsed
 					);
-			}
-			if ( isset( $data['user_properties'] ) && is_array( $data['user_properties'] ) ) {
-				MediaWikiServices::getInstance()
-					->getUserOptionsManager()
-					->loadUserOptions( $this, $this->queryFlagsUsed, $data['user_properties'] );
 			}
 		}
 	}
