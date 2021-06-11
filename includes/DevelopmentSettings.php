@@ -58,9 +58,14 @@ unset( $logDir );
 
 global $wgRateLimits, $wgEnableJavaScriptTest, $wgRestAPIAdditionalRouteFiles;
 
-// Disable rate-limiting to allow integration tests to run unthrottled
-// in CI and for devs locally (T225796)
-$wgRateLimits = [];
+// Set almost infinite rate limits. This allows integration tests to run unthrottled
+// in CI and for devs locally (T225796), but doesn't turn a large chunk of production
+// code completely off during testing (T284804)
+foreach ( $wgRateLimits as $right => &$limit ) {
+	foreach ( $limit as $group => &$groupLimit ) {
+		$groupLimit[0] = PHP_INT_MAX;
+	}
+}
 
 // Enable Special:JavaScriptTest and allow `npm run qunit` to work
 // https://www.mediawiki.org/wiki/Manual:JavaScript_unit_testing
