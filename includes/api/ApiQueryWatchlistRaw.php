@@ -56,8 +56,8 @@ class ApiQueryWatchlistRaw extends ApiQueryGeneratorBase {
 
 		$user = $this->getWatchlistUser( $params );
 
-		$prop = array_flip( (array)$params['prop'] );
-		$show = array_flip( (array)$params['show'] );
+		$prop = array_fill_keys( (array)$params['prop'], true );
+		$show = array_fill_keys( (array)$params['show'], true );
 		if ( isset( $show[WatchedItemQueryService::FILTER_CHANGED] )
 			&& isset( $show[WatchedItemQueryService::FILTER_NOT_CHANGED] )
 		) {

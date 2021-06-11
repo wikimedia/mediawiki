@@ -48,7 +48,7 @@ class SimpleAuthority implements Authority {
 	 */
 	public function __construct( UserIdentity $actor, array $permissions ) {
 		$this->actor = $actor;
-		$this->permissions = array_flip( $permissions );
+		$this->permissions = array_fill_keys( $permissions, true );
 	}
 
 	/**

@@ -97,7 +97,7 @@ class ApiQueryAllImages extends ApiQueryGeneratorBase {
 		$params = $this->extractRequestParams();
 
 		// Table and return fields
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 
 		$fileQuery = LocalFile::getQueryInfo();
 		$this->addTables( $fileQuery['tables'] );

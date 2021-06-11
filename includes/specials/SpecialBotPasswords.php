@@ -160,7 +160,8 @@ class SpecialBotPasswords extends FormSpecialPage {
 						static function ( $rights ) use ( $lang ) {
 							return $lang->semicolonList( array_map( [ User::class, 'getRightDescription' ], $rights ) );
 						},
-						array_intersect_key( MWGrants::getRightsByGrant(), array_flip( $showGrants ) )
+						array_intersect_key( MWGrants::getRightsByGrant(),
+							array_fill_keys( $showGrants, true ) )
 					)
 				),
 				'force-options-on' => array_map(

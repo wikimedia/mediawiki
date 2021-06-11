@@ -18,7 +18,7 @@ class TestFileEditor {
 	private function __construct( $text, array $deletions, array $changes, $warningCallback ) {
 		$this->lines = explode( "\n", $text );
 		$this->numLines = count( $this->lines );
-		$this->deletions = array_flip( $deletions );
+		$this->deletions = array_fill_keys( $deletions, true );
 		$this->changes = $changes;
 		$this->pos = 0;
 		$this->warningCallback = $warningCallback;

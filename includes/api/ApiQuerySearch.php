@@ -58,8 +58,8 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		$query = $params['search'];
 		$what = $params['what'];
 		$interwiki = $params['interwiki'];
-		$searchInfo = array_flip( $params['info'] );
-		$prop = array_flip( $params['prop'] );
+		$searchInfo = array_fill_keys( $params['info'], true );
+		$prop = array_fill_keys( $params['prop'], true );
 
 		// Create search engine instance and set options
 		$search = $this->buildSearchEngine( $params );

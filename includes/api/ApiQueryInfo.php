@@ -331,7 +331,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	public function execute() {
 		$this->params = $this->extractRequestParams();
 		if ( $this->params['prop'] !== null ) {
-			$prop = array_flip( $this->params['prop'] );
+			$prop = array_fill_keys( $this->params['prop'], true );
 			$this->fld_protection = isset( $prop['protection'] );
 			$this->fld_watched = isset( $prop['watched'] );
 			$this->fld_watchers = isset( $prop['watchers'] );

@@ -74,7 +74,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		$params = $this->extractRequestParams();
 		$this->requireMaxOneParameter( $params, 'users', 'ip' );
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$fld_id = isset( $prop['id'] );
 		$fld_user = isset( $prop['user'] );
 		$fld_userid = isset( $prop['userid'] );
@@ -186,7 +186,7 @@ class ApiQueryBlocks extends ApiQueryBase {
 		}
 
 		if ( $params['show'] !== null ) {
-			$show = array_flip( $params['show'] );
+			$show = array_fill_keys( $params['show'], true );
 
 			/* Check for conflicting parameters. */
 			if ( ( isset( $show['account'] ) && isset( $show['!account'] ) )

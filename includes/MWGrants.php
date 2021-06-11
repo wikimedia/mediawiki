@@ -129,7 +129,7 @@ class MWGrants {
 		global $wgGrantPermissions, $wgGrantPermissionGroups;
 
 		if ( is_array( $grantsFilter ) ) {
-			$grantsFilter = array_flip( $grantsFilter );
+			$grantsFilter = array_fill_keys( $grantsFilter, true );
 		}
 
 		$groups = [];

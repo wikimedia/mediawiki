@@ -139,7 +139,7 @@ class MigrateComments extends LoggedUpdateMaintenance {
 
 		$newField = $oldField . '_id';
 		$primaryKey = (array)$primaryKey;
-		$pkFilter = array_flip( $primaryKey );
+		$pkFilter = array_fill_keys( $primaryKey, true );
 		$this->output( "Beginning migration of $table.$oldField to $table.$newField\n" );
 		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
 		$lbFactory->waitForReplication();

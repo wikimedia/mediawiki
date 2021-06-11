@@ -661,8 +661,9 @@ class MessageCache implements LoggerAwareInterface {
 		if ( $code === null ) {
 			// Bulk load
 			if ( $this->systemMessageNames === null ) {
-				$this->systemMessageNames = array_flip(
-					$this->localisationCache->getSubitemList( $this->contLangCode, 'messages' ) );
+				$this->systemMessageNames = array_fill_keys(
+					$this->localisationCache->getSubitemList( $this->contLangCode, 'messages' ),
+					true );
 			}
 			return isset( $this->systemMessageNames[$msg] );
 		} else {

@@ -415,7 +415,7 @@ class HookContainer implements SalvageableService {
 			// Return the part of $this->dynamicHandlers[$hook] after the TOMBSTONE
 			// marker, preserving keys.
 			$keys = array_slice( $keys, $i + 1 );
-			$handlers = array_intersect_key( $handlers, array_flip( $keys ) );
+			$handlers = array_intersect_key( $handlers, array_fill_keys( $keys, true ) );
 		} else {
 			// If no tombstone is set, just merge the two arrays.
 			$handlers = array_merge(

@@ -204,7 +204,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['show'] !== null ) {
-			$show = array_flip( $params['show'] );
+			$show = array_fill_keys( $params['show'], true );
 
 			/* Check for conflicting parameters. */
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
@@ -276,7 +276,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 		$this->requireMaxOneParameter( $params, 'user', 'excludeuser' );
 
 		if ( $params['prop'] !== null ) {
-			$prop = array_flip( $params['prop'] );
+			$prop = array_fill_keys( $params['prop'], true );
 
 			/* Set up internal members based upon params. */
 			$this->initProperties( $prop );
@@ -707,7 +707,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 
 	public function getCacheMode( $params ) {
 		if ( isset( $params['show'] ) &&
-			$this->includesPatrollingFlags( array_flip( $params['show'] ) )
+			$this->includesPatrollingFlags( array_fill_keys( $params['show'], true ) )
 		) {
 			return 'private';
 		}

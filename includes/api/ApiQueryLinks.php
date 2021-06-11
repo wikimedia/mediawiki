@@ -94,7 +94,7 @@ class ApiQueryLinks extends ApiQueryGeneratorBase {
 		$multiTitle = true;
 		if ( $params[$this->titlesParam] ) {
 			// Filter the titles in PHP so our ORDER BY bug avoidance below works right.
-			$filterNS = $params['namespace'] ? array_flip( $params['namespace'] ) : false;
+			$filterNS = $params['namespace'] ? array_fill_keys( $params['namespace'], true ) : false;
 
 			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
 			$lb = $linkBatchFactory->newLinkBatch();

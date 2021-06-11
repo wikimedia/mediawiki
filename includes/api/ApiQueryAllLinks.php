@@ -105,7 +105,7 @@ class ApiQueryAllLinks extends ApiQueryGeneratorBase {
 
 		$pfx = $this->tablePrefix;
 		$fieldTitle = $this->fieldTitle;
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
 		if ( $this->hasNamespace ) {

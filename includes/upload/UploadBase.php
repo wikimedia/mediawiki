@@ -2179,10 +2179,10 @@ abstract class UploadBase {
 		// In fact, calling API modules here at all is less than optimal. Maybe it should be refactored.
 		if ( $stashFile ) {
 			$imParam = ApiQueryStashImageInfo::getPropertyNames();
-			$info = ApiQueryStashImageInfo::getInfo( $stashFile, array_flip( $imParam ), $result );
+			$info = ApiQueryStashImageInfo::getInfo( $stashFile, array_fill_keys( $imParam, true ), $result );
 		} else {
 			$imParam = ApiQueryImageInfo::getPropertyNames();
-			$info = ApiQueryImageInfo::getInfo( $localFile, array_flip( $imParam ), $result );
+			$info = ApiQueryImageInfo::getInfo( $localFile, array_fill_keys( $imParam, true ), $result );
 		}
 
 		return $info;

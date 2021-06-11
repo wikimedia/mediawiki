@@ -81,7 +81,7 @@ class CreateAndPromote extends Maintenance {
 
 		$groups = array_filter( self::$permitRoles, [ $this, 'hasOption' ] );
 		if ( $this->hasOption( 'custom-groups' ) ) {
-			$allGroups = array_flip( User::getAllGroups() );
+			$allGroups = array_fill_keys( User::getAllGroups(), true );
 			$customGroupsText = $this->getOption( 'custom-groups' );
 			if ( $customGroupsText !== '' ) {
 				$customGroups = explode( ',', $customGroupsText );

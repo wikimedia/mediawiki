@@ -78,7 +78,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 	 * @param array $params
 	 */
 	protected function parseParameters( $params ) {
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_flags = isset( $prop['flags'] );

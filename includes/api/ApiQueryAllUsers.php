@@ -52,7 +52,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 		$prop = $params['prop'];
 		if ( $prop !== null ) {
-			$prop = array_flip( $prop );
+			$prop = array_fill_keys( $prop, true );
 			$fld_blockinfo = isset( $prop['blockinfo'] );
 			$fld_editcount = isset( $prop['editcount'] );
 			$fld_groups = isset( $prop['groups'] );

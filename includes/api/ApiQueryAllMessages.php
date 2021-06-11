@@ -57,7 +57,7 @@ class ApiQueryAllMessages extends ApiQueryBase {
 			}
 		}
 
-		$prop = array_flip( (array)$params['prop'] );
+		$prop = array_fill_keys( (array)$params['prop'], true );
 
 		// Determine which messages should we print
 		if ( in_array( '*', $params['messages'] ) ) {

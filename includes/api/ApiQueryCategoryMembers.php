@@ -68,7 +68,7 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			$this->dieWithError( 'apierror-invalidcategory' );
 		}
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$fld_ids = isset( $prop['ids'] );
 		$fld_title = isset( $prop['title'] );
 		$fld_sortkey = isset( $prop['sortkey'] );

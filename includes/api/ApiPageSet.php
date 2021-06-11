@@ -963,7 +963,7 @@ class ApiPageSet extends ApiBase {
 		}
 
 		$pageids = array_map( 'intval', $pageids ); // paranoia
-		$remaining = array_flip( $pageids );
+		$remaining = array_fill_keys( $pageids, true );
 
 		if ( $filterIds ) {
 			$pageids = $this->filterIDs( [ [ 'page', 'page_id' ] ], $pageids );
@@ -1078,10 +1078,10 @@ class ApiPageSet extends ApiBase {
 		$revids = array_map( 'intval', $revids ); // paranoia
 		$db = $this->getDB();
 		$pageids = [];
-		$remaining = array_flip( $revids );
+		$remaining = array_fill_keys( $revids, true );
 
 		$revids = $this->filterIDs( [ [ 'revision', 'rev_id' ], [ 'archive', 'ar_rev_id' ] ], $revids );
-		$goodRemaining = array_flip( $revids );
+		$goodRemaining = array_fill_keys( $revids, true );
 
 		if ( $revids ) {
 			$tables = [ 'revision', 'page' ];

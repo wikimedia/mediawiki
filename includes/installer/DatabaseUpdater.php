@@ -490,7 +490,7 @@ abstract class DatabaseUpdater {
 	public function doUpdates( array $what = [ 'core', 'extensions', 'stats' ] ) {
 		$this->db->setSchemaVars( $this->getSchemaVars() );
 
-		$what = array_flip( $what );
+		$what = array_fill_keys( $what, true );
 		$this->skipSchema = isset( $what['noschema'] ) || $this->fileHandle !== null;
 		if ( isset( $what['core'] ) ) {
 			$this->doCollationUpdate();

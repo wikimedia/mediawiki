@@ -55,13 +55,13 @@ class Sqlite {
 			$files = [ $files ];
 		}
 
-		$allowedTypes = array_flip( [
+		$allowedTypes = array_fill_keys( [
 			'integer',
 			'real',
 			'text',
 			'blob',
 			// NULL type is omitted intentionally
-		] );
+		], true );
 
 		$db = DatabaseSqlite::newStandaloneInstance( ':memory:' );
 		try {

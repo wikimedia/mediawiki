@@ -62,7 +62,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 		$user = $this->getUser();
 		$db = $this->getDB();
 		$params = $this->extractRequestParams( false );
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$fld_parentid = isset( $prop['parentid'] );
 		$fld_revid = isset( $prop['revid'] );
 		$fld_user = isset( $prop['user'] );

@@ -1841,7 +1841,7 @@ class FormatMetadata extends ContextSource {
 			$maxCacheTime
 		);
 
-		$visible = array_flip( self::getVisibleFields() );
+		$visible = array_fill_keys( self::getVisibleFields(), true );
 		foreach ( $extendedMetadata as $key => $value ) {
 			if ( !isset( $visible[strtolower( $key )] ) ) {
 				$extendedMetadata[$key]['hidden'] = '';

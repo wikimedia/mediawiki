@@ -268,7 +268,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 		$complainedAboutUsers = [];
 
 		$primaryKey = (array)$primaryKey;
-		$pkFilter = array_flip( $primaryKey );
+		$pkFilter = array_fill_keys( $primaryKey, true );
 		$this->output(
 			"Beginning migration of $table.$userField and $table.$nameField to $table.$actorField\n"
 		);

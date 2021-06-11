@@ -72,7 +72,7 @@ class ApiRemoveAuthenticationData extends ApiBase {
 		// Fetch the request. No need to load from the request, so don't use
 		// ApiAuthManagerHelper's method.
 		$remove = $this->authAction === AuthManager::ACTION_REMOVE
-			? array_flip( $this->getConfig()->get( 'RemoveCredentialsBlacklist' ) )
+			? array_fill_keys( $this->getConfig()->get( 'RemoveCredentialsBlacklist' ), true )
 			: [];
 		$reqs = array_filter(
 			$this->authManager->getAuthenticationRequests( $this->authAction, $this->getUser() ),

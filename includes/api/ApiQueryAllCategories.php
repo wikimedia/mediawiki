@@ -93,7 +93,7 @@ class ApiQueryAllCategories extends ApiQueryGeneratorBase {
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		$this->addOption( 'ORDER BY', 'cat_title' . $sort );
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$this->addFieldsIf( [ 'cat_pages', 'cat_subcats', 'cat_files' ], isset( $prop['size'] ) );
 		if ( isset( $prop['hidden'] ) ) {
 			$this->addTables( [ 'page', 'page_props' ] );

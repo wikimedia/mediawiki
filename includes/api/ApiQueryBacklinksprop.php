@@ -99,7 +99,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		$db = $this->getDB();
 		$params = $this->extractRequestParams();
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$emptyString = $db->addQuotes( '' );
 
 		$pageSet = $this->getPageSet();
@@ -249,7 +249,7 @@ class ApiQueryBacklinksprop extends ApiQueryGeneratorBase {
 
 		if ( $params['show'] !== null ) {
 			// prop=redirects only
-			$show = array_flip( $params['show'] );
+			$show = array_fill_keys( $params['show'], true );
 			if ( isset( $show['fragment'] ) && isset( $show['!fragment'] ) ||
 				isset( $show['redirect'] ) && isset( $show['!redirect'] )
 			) {
