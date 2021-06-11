@@ -17,150 +17,93 @@
  *
  * @file
  */
+
 use MediaWiki\MediaWikiServices;
 
 /**
+ * @deprecated since 1.37, use GrantsInfo instead
+ *
  * A collection of public static functions to deal with grants.
  */
 class MWGrants {
 
 	/**
 	 * List all known grants.
+	 * @deprecated since 1.37, use GrantsInfo::getValidGrants() instead
 	 * @return array
 	 */
 	public static function getValidGrants() {
-		global $wgGrantPermissions;
-
-		return array_keys( $wgGrantPermissions );
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getValidGrants();
 	}
 
 	/**
 	 * Map all grants to corresponding user rights.
+	 * @deprecated since 1.37, use GrantsInfo::getRightsByGrant() instead
 	 * @return array grant => array of rights
 	 */
 	public static function getRightsByGrant() {
-		global $wgGrantPermissions;
-
-		$res = [];
-		foreach ( $wgGrantPermissions as $grant => $rights ) {
-			$res[$grant] = array_keys( array_filter( $rights ) );
-		}
-		return $res;
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getRightsByGrant();
 	}
 
 	/**
-	 * Fetch the display name of the grant
+	 * Fetch the description of the grant
+	 * @deprecated since 1.37, use GrantsInfo::getGrantDescription() instead
 	 * @param string $grant
 	 * @param Language|string|null $lang
 	 * @return string Grant description
 	 */
 	public static function grantName( $grant, $lang = null ) {
-		// Give grep a chance to find the usages:
-		// grant-blockusers, grant-createeditmovepage, grant-delete,
-		// grant-editinterface, grant-editmycssjs, grant-editmywatchlist,
-		// grant-editsiteconfig, grant-editpage, grant-editprotected,
-		// grant-highvolume, grant-oversight, grant-patrol, grant-protect,
-		// grant-rollback, grant-sendemail, grant-uploadeditmovefile,
-		// grant-uploadfile, grant-basic, grant-viewdeleted,
-		// grant-viewmywatchlist, grant-createaccount, grant-mergehistory,
-		// grant-import
-		$msg = wfMessage( "grant-$grant" );
-
-		if ( $lang ) {
-			$msg->inLanguage( $lang );
-		}
-
-		if ( !$msg->exists() ) {
-			$msg = $lang
-				? wfMessage( 'grant-generic', $grant )->inLanguage( $lang )
-				: wfMessage( 'grant-generic', $grant );
-		}
-
-		return $msg->text();
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getGrantDescription( $grant, $lang );
 	}
 
 	/**
-	 * Fetch the display names for the grants.
+	 * Fetch the descriptions for the grants.
+	 * @deprecated since 1.37, use GrantsInfo::getGrantDescriptions() instead
 	 * @param string[] $grants
 	 * @param Language|string|null $lang
 	 * @return string[] Corresponding grant descriptions
 	 */
 	public static function grantNames( array $grants, $lang = null ) {
-		$ret = [];
-
-		foreach ( $grants as $grant ) {
-			$ret[] = self::grantName( $grant, $lang );
-		}
-		return $ret;
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getGrantDescriptions( $grants, $lang );
 	}
 
 	/**
 	 * Fetch the rights allowed by a set of grants.
+	 * @deprecated since 1.37, use GrantsInfo::getGrantRights() instead
 	 * @param string[]|string $grants
 	 * @return string[]
 	 */
 	public static function getGrantRights( $grants ) {
-		global $wgGrantPermissions;
-
-		$rights = [];
-		foreach ( (array)$grants as $grant ) {
-			if ( isset( $wgGrantPermissions[$grant] ) ) {
-				$rights = array_merge( $rights, array_keys( array_filter( $wgGrantPermissions[$grant] ) ) );
-			}
-		}
-		return array_unique( $rights );
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getGrantRights( $grants );
 	}
 
 	/**
 	 * Test that all grants in the list are known.
+	 * @deprecated since 1.37, use GrantsInfo::grantsAreValid() instead
 	 * @param string[] $grants
 	 * @return bool
 	 */
 	public static function grantsAreValid( array $grants ) {
-		return array_diff( $grants, self::getValidGrants() ) === [];
+		return MediaWikiServices::getInstance()->getGrantsInfo()->grantsAreValid( $grants );
 	}
 
 	/**
 	 * Divide the grants into groups.
+	 * @deprecated since 1.37, use GrantsInfo::getGrantGroups() instead
 	 * @param string[]|null $grantsFilter
 	 * @return array Map of (group => (grant list))
 	 */
 	public static function getGrantGroups( $grantsFilter = null ) {
-		global $wgGrantPermissions, $wgGrantPermissionGroups;
-
-		if ( is_array( $grantsFilter ) ) {
-			$grantsFilter = array_flip( $grantsFilter );
-		}
-
-		$groups = [];
-		foreach ( $wgGrantPermissions as $grant => $rights ) {
-			if ( $grantsFilter !== null && !isset( $grantsFilter[$grant] ) ) {
-				continue;
-			}
-			if ( isset( $wgGrantPermissionGroups[$grant] ) ) {
-				$groups[$wgGrantPermissionGroups[$grant]][] = $grant;
-			} else {
-				$groups['other'][] = $grant;
-			}
-		}
-
-		return $groups;
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getGrantGroups( $grantsFilter );
 	}
 
 	/**
 	 * Get the list of grants that are hidden and should always be granted
+	 * @deprecated since 1.37, use GrantsInfo::getHiddenGrants() instead
 	 * @return string[]
 	 */
 	public static function getHiddenGrants() {
-		global $wgGrantPermissionGroups;
-
-		$grants = [];
-		foreach ( $wgGrantPermissionGroups as $grant => $group ) {
-			if ( $group === 'hidden' ) {
-				$grants[] = $grant;
-			}
-		}
-		return $grants;
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getHiddenGrants();
 	}
 
 	/**
@@ -169,41 +112,26 @@ class MWGrants {
 	 * This should be used to link end users to a full description of what
 	 * rights they are giving when they authorize a grant.
 	 *
+	 * @deprecated since 1.37, use GrantsInfo::getGrantsLink() instead
+	 *
 	 * @param string $grant the grant name
 	 * @param Language|string|null $lang
 	 * @return string (proto-relative) HTML link
 	 */
 	public static function getGrantsLink( $grant, $lang = null ) {
-		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
-		return $linkRenderer->makeKnownLink(
-			\SpecialPage::getTitleFor( 'Listgrants', false, $grant ),
-			self::grantName( $grant, $lang )
-		);
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getGrantsLink( $grant, $lang );
 	}
 
 	/**
 	 * Generate wikitext to display a list of grants
+	 * @deprecated since 1.37, use GrantsInfo::getGrantsWikiText() instead
+	 *
 	 * @param string[]|null $grantsFilter If non-null, only display these grants.
 	 * @param Language|string|null $lang
 	 * @return string Wikitext
 	 */
 	public static function getGrantsWikiText( $grantsFilter, $lang = null ) {
-		if ( is_string( $lang ) ) {
-			$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $lang );
-		} elseif ( $lang === null ) {
-			$lang = MediaWikiServices::getInstance()->getContentLanguage();
-		}
-
-		$s = '';
-		foreach ( self::getGrantGroups( $grantsFilter ) as $group => $grants ) {
-			if ( $group === 'hidden' ) {
-				continue; // implicitly granted
-			}
-			$s .= "*<span class=\"mw-grantgroup\">" .
-				wfMessage( "grant-group-$group" )->inLanguage( $lang )->text() . "</span>\n";
-			$s .= ":" . $lang->semicolonList( self::grantNames( $grants, $lang ) ) . "\n";
-		}
-		return "$s\n";
+		return MediaWikiServices::getInstance()->getGrantsInfo()->getGrantsWikiText( $grantsFilter, $lang );
 	}
 
 }
