@@ -96,7 +96,6 @@ use MediaWiki\Page\ParserOutputAccess;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
-use MediaWiki\Permissions\GrantsInfo;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
@@ -531,16 +530,6 @@ return [
 			static function ( $command ) {
 				return wfShellExec( $command );
 			}
-		);
-	},
-
-	'GrantsInfo' => static function ( MediaWikiServices $services ) : GrantsInfo {
-		return new GrantsInfo(
-			$services->getLinkRenderer(),
-			$services->getLanguageFactory(),
-			$services->getContentLanguage(),
-			$services->getMainConfig()->get( 'GrantPermissions' ),
-			$services->getMainConfig()->get( 'GrantPermissionGroups' )
 		);
 	},
 
