@@ -43,6 +43,7 @@ class DeprecatedHooks {
 		'BeforeResetNotificationTimestamp' => [ 'deprecatedVersion' => '1.37' ],
 		'EditPageBeforeEditToolbar' => [ 'deprecatedVersion' => '1.36' ],
 		'InternalParseBeforeSanitize' => [ 'deprecatedVersion' => '1.35' ],
+		'LocalFile::getHistory' => [ 'deprecatedVersion' => '1.37' ],
 		'MagicWordwgVariableIDs' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'PageContentSave' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
 		'ParserGetVariableValueVarCache' => [ 'deprecatedVersion' => '1.35' ],
