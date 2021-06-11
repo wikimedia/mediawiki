@@ -81,15 +81,6 @@ function startVideo( ffmpeg, title ) {
 		ffmpeg.stderr.on( 'data', ( data ) => {
 			logBuffer( data, 'ffmpeg stderr: ' );
 		} );
-		ffmpeg.on( 'close', ( code, signal ) => {
-			console.log( '\n\tVideo location:', videoPath, '\n' );
-			if ( code !== null ) {
-				console.log( `\tffmpeg exited with code ${code} ${videoPath}` );
-			}
-			if ( signal !== null ) {
-				console.log( `\tffmpeg received signal ${signal} ${videoPath}` );
-			}
-		} );
 	}
 	return ffmpeg;
 }
