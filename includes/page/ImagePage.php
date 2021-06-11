@@ -999,11 +999,7 @@ EOT
 		'@phan-var LocalFile $file';
 
 		$context = $this->getContext();
-		$deleter = new FileDeleteForm(
-			$file,
-			$context->getUser(),
-			$context->getOutput()
-		);
+		$deleter = new FileDeleteForm( $file, $context );
 		$deleter->execute();
 	}
 
