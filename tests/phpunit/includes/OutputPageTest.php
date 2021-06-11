@@ -2962,11 +2962,13 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @covers ResourceLoaderSkinModule::getPreloadLinks
 	 * @covers ResourceLoaderSkinModule::getLogoPreloadlinks
 	 */
-	public function testPreloadLinkHeaders( $config, $result ) {
-		$this->setMwGlobals( $config );
-		$ctx = $this->getMockBuilder( ResourceLoaderContext::class )
-			->disableOriginalConstructor()->getMock();
+	public function testPreloadLinkHeaders( $config, $result, $installPath = null ) {
+		if ( $installPath ) {
+			$this->setMwGlobals( [ 'IP' => $installPath ] );
+		}
+		$ctx = $this->createMock( ResourceLoaderContext::class );
 		$module = new ResourceLoaderSkinModule();
+		$module->setConfig( new HashConfig( $config + ResourceLoaderTestCase::getSettings() ) );
 
 		$this->assertEquals( [ $result ], $module->getHeaders( $ctx ) );
 	}
@@ -2975,9 +2977,9 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		return [
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogo' => '/img/default.png',
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logo' => '/img/default.png',
+					'Logos' => [
 						'1.5x' => '/img/one-point-five.png',
 						'2x' => '/img/two-x.png',
 					],
@@ -2990,8 +2992,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logos' => [
 						'1x' => '/img/default.png',
 					],
 				],
@@ -2999,8 +3001,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logos' => [
 						'1x' => '/img/default.png',
 						'2x' => '/img/two-x.png',
 					],
@@ -3011,8 +3013,8 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logos' => [
 						'1x' => '/img/default.png',
 						'svg' => '/img/vector.svg',
 					],
@@ -3022,14 +3024,14 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 			],
 			[
 				[
-					'wgResourceBasePath' => '/w',
-					'wgLogos' => [
+					'ResourceBasePath' => '/w',
+					'Logos' => [
 						'1x' => '/w/test.jpg',
 					],
-					'wgUploadPath' => '/w/images',
-					'IP' => dirname( __DIR__ ) . '/data/media',
+					'UploadPath' => '/w/images',
 				],
 				'Link: </w/test.jpg?edcf2>;rel=preload;as=image',
+				dirname( __DIR__ ) . '/data/media',
 			],
 		];
 	}

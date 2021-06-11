@@ -377,12 +377,14 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			'MediaWiki:Common.css' => [ 'type' => 'style' ],
 		];
 
+		$rl = new EmptyResourceLoader();
+
 		$module = $this->getMockBuilder( ResourceLoaderWikiModule::class )
 			->onlyMethods( [ 'getPages' ] )
 			->getMock();
 		$module->method( 'getPages' )->willReturn( $pages );
+		$module->setConfig( $rl->getConfig() );
 
-		$rl = new EmptyResourceLoader();
 		$context = new DerivativeResourceLoaderContext(
 			new ResourceLoaderContext( $rl, new FauxRequest() )
 		);
@@ -421,6 +423,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 			->willReturn( [
 				'MediaWiki:Redirect.js' => [ 'type' => 'script' ]
 			] );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$context->setContentOverrideCallback( static function ( PageIdentity $title ) {
 			if ( $title->getDBkey() === 'Redirect.js' ) {
 				$handler = new JavaScriptContentHandler();
