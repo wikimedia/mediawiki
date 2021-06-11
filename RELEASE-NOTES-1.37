@@ -403,6 +403,7 @@ because of Phabricator reports.
 * Deprecated File::getMetadata(). Instead use ::getMetadataArray(),
   ::getMetadataItem() and ::getMetadataItems().
 * Message::title was deprecated, use Message::page instead.
+* The MWGrants class is deprecated in favor of the new GrantsInfo service.
 * …
 
 === Other changes in 1.37 ===
