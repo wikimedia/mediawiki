@@ -2630,7 +2630,7 @@
 	"whatlinkshere-hidelinks": "$1 länkar",
 	"whatlinkshere-hideimages": "$1 fillänkar",
 	"whatlinkshere-filters": "Filter",
-	"whatlinkshere-sectionredir": "omdirigera till avsnittet \"$1\"",
+	"whatlinkshere-sectionredir": "omdirigering till avsnittet \"$1\"",
 	"whatlinkshere-submit": "Gå",
 	"autoblockid": "Autoblockering #$1",
 	"block": "Blockera användare",

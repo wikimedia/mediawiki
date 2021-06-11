@@ -1675,7 +1675,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "İzlenen sayfaların listesini düzenle",
 	"rcfilters-watchlist-showupdated": "Gerçekleştirilen değişikliklerden bu yana ziyaret etmediğiniz sayfalarda yapılan değişiklikler <strong>kalın</strong> yazılmaktadır.",
 	"rcfilters-preference-label": "JavaScript olmayan bir arayüz kullanın",
-	"rcfilters-preference-help": "Filtrelenmiş arama veya vurgulama işlevi olmadan Son Değişiklikleri, İzleme Listesini ve benzer sayfaları yükler.",
+	"rcfilters-preference-help": "Filtrelenmiş arama veya vurgulama işlevi olmadan Son Değişiklikler, İzleme Listesi ve benzer sayfaları yükler.",
 	"rcfilters-watchlist-preference-label": "JavaScript olmayan bir arayüz kullanın",
 	"rcfilters-watchlist-preference-help": "Filtre Listesini arama olmadan veya işlevselliği vurgulayarak İzleme Listesi'ni yükler.",
 	"rcfilters-filter-showlinkedfrom-label": "Bağlantısı verilen sayfalarda değişiklikleri göster",

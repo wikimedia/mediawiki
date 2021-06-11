@@ -2240,6 +2240,7 @@
 	"confirm-markpatrolled-button": "O.K.",
 	"previousdiff": "← Plu anciena versiono",
 	"nextdiff": "Plu recenta versiono →",
+	"mediawarning": "<strong>Atences:</strong> Ca arkivo povas kontenar malicoza kodexo.\nSe tu exekutos ol, vua sistemo povos pozesar en danjero.",
 	"imagemaxsize": "Maxima grandeso dil imajo, en pagini qui deskriptas arkivi:",
 	"thumbsize": "Grandeso dil imajeto:",
 	"widthheightpage": "$1 × $2, $3 {{PLURAL:$3|pagino|pagini}}",
