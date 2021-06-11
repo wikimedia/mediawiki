@@ -999,11 +999,7 @@ EOT
 		'@phan-var LocalFile $file';
 
 		$context = $this->getContext();
-		$deleter = new FileDeleteForm(
-			$file,
-			$context->getUser(),
-			$context->getOutput()
-		);
+		$deleter = new FileDeleteForm( $file, $context );
 		$deleter->execute();
 	}
 
@@ -1043,7 +1039,7 @@ EOT
 	 * @since 1.21
 	 * @deprecated Since 1.35 Use static function MediaFileTrait::getImageLimitsFromOption
 	 */
-	public function getImageLimitsFromOption( $user, $optionName ) {
+	public function getImageLimitsFromOption( UserIdentity $user, $optionName ) {
 		return MediaFileTrait::getImageLimitsFromOption( $user, $optionName );
 	}
 
