@@ -1,6 +1,8 @@
 <?php
 
+use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\SlotRecord;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\IPUtils;
 
@@ -64,8 +66,6 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 			]
 		);
 
-		$this->hideDeprecated( 'MediaWiki\Revision\RevisionStore::newMutableRevisionFromArray' );
-
 		// First create our dummy page
 		$page = Title::newFromText( 'PageArchiveTest_thePage' );
 		$page = new WikiPage( $page );
@@ -90,14 +90,11 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 			TS_MW,
 			wfTimestamp( TS_UNIX, $this->firstRev->getTimestamp() ) + 1
 		);
-
-		$rev = $revisionStore->newMutableRevisionFromArray( [
-			'text' => 'Lorem Ipsum',
-			'comment' => 'just a test',
-			'page' => $page->getId(),
-			'user_text' => $this->ipEditor,
-			'timestamp' => $ipTimestamp,
-		] );
+		$rev = new MutableRevisionRecord( $page );
+		$rev->setUser( UserIdentityValue::newAnonymous( $this->ipEditor ) );
+		$rev->setTimestamp( $ipTimestamp );
+		$rev->setContent( SlotRecord::MAIN, new TextContent( 'Lorem Ipsum' ) );
+		$rev->setComment( CommentStoreComment::newUnsavedComment( 'just a test' ) );
 
 		$dbw = wfGetDB( DB_PRIMARY );
 		$this->ipRev = $revisionStore->insertRevisionOn( $rev, $dbw );

@@ -287,6 +287,13 @@ because of Phabricator reports.
 * The SkinTemplateTabAction hook, deprecated in 1.35, was removed entirely.
 * The SkinTemplateBuildNavUrlsNav_urlsAfterPermalink hook, deprecated in 1.35,
   was removed entirely.
+* The following methods of RevisionStore class, formerly hard deprecated,
+  were removed:
+  - ::newMutableRevisionFromArray,
+  - ::loadRevisionFromPageId,
+  - ::loadRevisionFromTitle,
+  - ::loadRevisionFromTimestamp,
+  - ::listRevisionSizes
 * …
 
 === Deprecations in 1.37 ===
