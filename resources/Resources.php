@@ -1145,7 +1145,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.viewport' => [
-		'deprecated' => '[1.37] Use MutationObserver or InterSectionObserver instead of mediawiki.viewport',
+		'deprecated' => 'Deprecated since MediaWiki 1.37. Use MutationObserver or InterSectionObserver instead.',
 		'scripts' => 'resources/src/mediawiki.viewport.js',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
