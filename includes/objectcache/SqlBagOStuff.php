@@ -501,11 +501,13 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @return array<string,array|null> Order-preserved map of (key => (value,expiry,token) or null)
 	 */
 	private function fetchBlobs( array $keys, bool $getCasToken = false ) {
+		/** @noinspection PhpUnusedLocalVariableInspection */
+		$silenceScope = $this->silenceTransactionProfiler();
+
 		// Initialize order-preserved per-key results; set values for live keys below
 		$dataByKey = array_fill_keys( $keys, null );
 
 		$readTime = (int)$this->getCurrentTime();
-
 		$keysByTableByShard = [];
 		foreach ( $keys as $key ) {
 			list( $shardIndex, $partitionTable ) = $this->getKeyLocation( $key );
