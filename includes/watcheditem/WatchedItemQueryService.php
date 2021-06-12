@@ -356,16 +356,13 @@ class WatchedItemQueryService {
 	}
 
 	private function getRecentChangeFieldsFromRow( stdClass $row ) {
-		// FIXME: This can be simplified to single array_filter call filtering by key value,
-		// now we have stopped supporting PHP 5.5
-		$allFields = get_object_vars( $row );
-		$rcKeys = array_filter(
-			array_keys( $allFields ),
+		return array_filter(
+			get_object_vars( $row ),
 			static function ( $key ) {
 				return substr( $key, 0, 3 ) === 'rc_';
-			}
+			},
+			ARRAY_FILTER_USE_KEY
 		);
-		return array_intersect_key( $allFields, array_fill_keys( $rcKeys, true ) );
 	}
 
 	private function getWatchedItemsWithRCInfoQueryTables( array $options ) {
