@@ -642,7 +642,7 @@ abstract class HTMLFormField {
 
 		if ( $infusable && $this->shouldInfuseOOUI() ) {
 			$preloadModules = true;
-			$config['classes'][] = 'mw-htmlform-field-autoinfuse';
+			$config['classes'][] = 'mw-htmlform-autoinfuse';
 		}
 
 		// the element could specify, that the label doesn't need to be added

@@ -120,7 +120,7 @@ class HTMLTitlesMultiselectField extends HTMLTitleTextField {
 
 		// Make the field auto-infusable when it's used inside a legacy HTMLForm rather than OOUIHTMLForm
 		$params['infusable'] = true;
-		$params['classes'] = [ 'mw-htmlform-field-autoinfuse' ];
+		$params['classes'] = [ 'mw-htmlform-autoinfuse' ];
 		$widget = new TitlesMultiselectWidget( $params );
 		$widget->setAttributes( [ 'data-mw-modules' => implode( ',', $this->getOOUIModules() ) ] );
 

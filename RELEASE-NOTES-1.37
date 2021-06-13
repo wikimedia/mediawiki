@@ -438,6 +438,8 @@ because of Phabricator reports.
   Not providing one emitted deprecation warnings since 1.36.
 * Anti-lock constants ALF_PRELOAD_LINK, ALF_NO_BLOCK_LOCK, ALF_NO_LINK_LOCK
   and ALF_PRELOAD_EXISTENCE have been removed. They're unused since 1.25.
+* CSS class 'mw-htmlform-field-autoinfuse' used by some forms has been
+  renamed to 'mw-htmlform-autoinfuse'. (T278036)
 * …
 
 == Compatibility ==
