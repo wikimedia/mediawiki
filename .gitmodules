@@ -1463,3 +1463,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-CountDownClock
 	branch = REL1_36
 	ignore = dirty
+[submodule "extensions/WikibaseLocalMedia"]
+	path = extensions/WikibaseLocalMedia
+	url = https://github.com/ProfessionalWiki/WikibaseLocalMedia/
+	branch = master
+	ignore = dirty
