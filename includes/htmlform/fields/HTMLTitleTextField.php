@@ -70,7 +70,8 @@ class HTMLTitleTextField extends HTMLTextField {
 				return parent::validate( $value, $alldata );
 			} else {
 				wfDeprecated(
-					__METHOD__ . ' will reject external titles in 1.38 when interwiki is false',
+					__METHOD__ . ' will reject external titles in 1.38 when interwiki is false '
+						. "(field: $this->mName)",
 					'1.37'
 				);
 			}
