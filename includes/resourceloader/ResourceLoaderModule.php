@@ -220,8 +220,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 */
 	public function getConfig() {
 		if ( $this->config === null ) {
-			// Ugh, fall back to default
-			$this->config = MediaWikiServices::getInstance()->getMainConfig();
+			throw new RuntimeException( 'Config accessed before it is set' );
 		}
 
 		return $this->config;
