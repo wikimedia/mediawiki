@@ -2599,7 +2599,7 @@
 	"unprotectedarticle": "a supprimé la protection de « [[$1]] »",
 	"movedarticleprotection": "a déplacé les paramètres de protection depuis « [[$2]] » vers « [[$1]] »",
 	"protectedarticle-comment": "{{GENDER:$2|}}A protégé « [[$1]] »",
-	"modifiedarticleprotection-comment": "{{GENDER:$2|}} a modifié les paramètres de protection pour « [[$1]] »",
+	"modifiedarticleprotection-comment": "{{GENDER:$2|A modifié}} les paramètres de protection pour « [[$1]] »",
 	"unprotectedarticle-comment": "{{GENDER:$2|}}A retiré la protection de « [[$1]] »",
 	"protect-title": "Changer les paramètres de protection pour « $1 »",
 	"protect-title-notallowed": "Voir les paramètres de protection de « $1 »",

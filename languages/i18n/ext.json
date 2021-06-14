@@ -1034,7 +1034,7 @@
 	"deletecomment": "Razón:",
 	"deleteotherreason": "Otras razonis:",
 	"deletereasonotherlist": "Otra razón",
-	"deletereason-dropdown": "*Motivus mas frecuentis d'esborrau\n** Pol solicitú el autol\n** Violación el Copyright\n** Vandalismu",
+	"deletereason-dropdown": "*Motivus mas frecuentis d'esborrau\n** Spam\n** Vandalismu\n** Violación el Copyright\n** Pol solicitú el autol\n** Redirección rota",
 	"delete-edit-reasonlist": "Eital razonis del esborrau",
 	"delete-warning-toobig": "Esta páhina tieni un estorial d'eicionis grandi, mas de $1 revisionis. Esborralu puei causal pobremas enas operacionis la basi e datus de {{SITENAME}}; atua con cudiau.",
 	"rollback": "Revertil eicionis",
