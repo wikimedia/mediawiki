@@ -238,7 +238,12 @@ class UserGroupManager implements IDBAccessObject {
 			$ugm = $this->newGroupMembershipFromRow( $row );
 			$membershipGroups[ $ugm->getGroup() ] = $ugm;
 		}
-		$this->setCache( $user, self::CACHE_MEMBERSHIP, $membershipGroups, $queryFlags );
+		$this->setCache(
+			$this->getCacheKey( $user ),
+			self::CACHE_MEMBERSHIP,
+			$membershipGroups,
+			$queryFlags
+		);
 	}
 
 	/**
@@ -271,7 +276,7 @@ class UserGroupManager implements IDBAccessObject {
 					$this->getUserAutopromoteGroups( $user )
 				) );
 			}
-			$this->setCache( $user, self::CACHE_IMPLICIT, $groups, $queryFlags );
+			$this->setCache( $userKey, self::CACHE_IMPLICIT, $groups, $queryFlags );
 			if ( $recache ) {
 				// Assure data consistency with rights/groups,
 				// as getEffectiveGroups() depends on this function
@@ -318,7 +323,7 @@ class UserGroupManager implements IDBAccessObject {
 			}
 			// Force reindexation of groups when a hook has unset one of them
 			$effectiveGroups = array_values( array_unique( $groups ) );
-			$this->setCache( $user, self::CACHE_EFFECTIVE, $effectiveGroups, $queryFlags );
+			$this->setCache( $userKey, self::CACHE_EFFECTIVE, $effectiveGroups, $queryFlags );
 		}
 		return $this->userGroupCache[$userKey][self::CACHE_EFFECTIVE];
 	}
@@ -362,7 +367,7 @@ class UserGroupManager implements IDBAccessObject {
 		foreach ( $res as $row ) {
 			$formerGroups[] = $row->ufg_group;
 		}
-		$this->setCache( $user, self::CACHE_FORMER, $formerGroups, $queryFlags );
+		$this->setCache( $userKey, self::CACHE_FORMER, $formerGroups, $queryFlags );
 
 		return $this->userGroupCache[$userKey][self::CACHE_FORMER];
 	}
@@ -701,7 +706,7 @@ class UserGroupManager implements IDBAccessObject {
 		}
 		ksort( $ugms );
 
-		$this->setCache( $user, self::CACHE_MEMBERSHIP, $ugms, $queryFlags );
+		$this->setCache( $userKey, self::CACHE_MEMBERSHIP, $ugms, $queryFlags );
 
 		return $ugms;
 	}
@@ -812,8 +817,12 @@ class UserGroupManager implements IDBAccessObject {
 		if ( $affected > 0 ) {
 			$oldUgms[$group] = new UserGroupMembership( $user->getId(), $group, $expiry );
 			if ( !$oldUgms[$group]->isExpired() ) {
-				$this->setCache( $user, self::CACHE_MEMBERSHIP,
-					$oldUgms, self::READ_LATEST );
+				$this->setCache(
+					$this->getCacheKey( $user ),
+					self::CACHE_MEMBERSHIP,
+					$oldUgms,
+					self::READ_LATEST
+				);
 				$this->clearUserCacheForKind( $user, self::CACHE_EFFECTIVE );
 			}
 			foreach ( $this->clearCacheCallbacks as $callback ) {
@@ -875,9 +884,10 @@ class UserGroupManager implements IDBAccessObject {
 		);
 
 		unset( $oldUgms[$group] );
-		$this->setCache( $user, self::CACHE_MEMBERSHIP, $oldUgms, self::READ_LATEST );
+		$userKey = $this->getCacheKey( $user );
+		$this->setCache( $userKey, self::CACHE_MEMBERSHIP, $oldUgms, self::READ_LATEST );
 		$oldFormerGroups[] = $group;
-		$this->setCache( $user, self::CACHE_FORMER, $oldFormerGroups, self::READ_LATEST );
+		$this->setCache( $userKey, self::CACHE_FORMER, $oldFormerGroups, self::READ_LATEST );
 		$this->clearUserCacheForKind( $user, self::CACHE_EFFECTIVE );
 		foreach ( $this->clearCacheCallbacks as $callback ) {
 			$callback( $user );
@@ -1085,18 +1095,17 @@ class UserGroupManager implements IDBAccessObject {
 	/**
 	 * Sets cached group memberships and query flags for a given user
 	 *
-	 * @param UserIdentity $user
+	 * @param string $userKey
 	 * @param string $cacheKind one of self::CACHE_KIND_* constants
 	 * @param array $groupValue
 	 * @param int $queryFlags
 	 */
 	private function setCache(
-		UserIdentity $user,
+		string $userKey,
 		string $cacheKind,
 		array $groupValue,
 		int $queryFlags
 	) {
-		$userKey = $this->getCacheKey( $user );
 		$this->userGroupCache[$userKey][$cacheKind] = $groupValue;
 		$this->queryFlagsUsedForCaching[$userKey][$cacheKind] = $queryFlags;
 	}
