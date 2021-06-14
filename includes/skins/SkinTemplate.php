@@ -574,15 +574,7 @@ class SkinTemplate extends Skin {
 
 			// if we can't set the user, we can't unset it either
 			if ( $request->getSession()->canSetUser() ) {
-				$personal_urls['logout'] = [
-					'text' => $this->msg( 'pt-userlogout' )->text(),
-					'data-mw' => 'interface',
-					'href' => self::makeSpecialUrl( 'Userlogout',
-						// Note: userlogout link must always contain an & character, otherwise we might not be able
-						// to detect a buggy precaching proxy (T19790)
-						( $title->isSpecial( 'Preferences' ) ? [] : $returnto ) ),
-					'active' => false
-				];
+				$personal_urls['logout'] = $this->buildLogoutLinkData();
 			}
 		} else {
 			$useCombinedLoginLink = $this->useCombinedLoginLink();
@@ -715,6 +707,30 @@ class SkinTemplate extends Skin {
 		];
 
 		return $login_url;
+	}
+
+	/**
+	 * Build data required for "Logout" link.
+	 *
+	 * @unstable
+	 *
+	 * @since 1.37
+	 *
+	 * @return array Array of data required to create a logout link.
+	 */
+	final protected function buildLogoutLinkData() {
+		$title = $this->getTitle();
+		$returnto = $this->getReturnToParam();
+
+		return [
+			'text' => $this->msg( 'pt-userlogout' )->text(),
+			'data-mw' => 'interface',
+			'href' => self::makeSpecialUrl( 'Userlogout',
+				// Note: userlogout link must always contain an & character, otherwise we might not be able
+				// to detect a buggy precaching proxy (T19790)
+				( $title->isSpecial( 'Preferences' ) ? [] : $returnto ) ),
+			'active' => false
+		];
 	}
 
 	/**
