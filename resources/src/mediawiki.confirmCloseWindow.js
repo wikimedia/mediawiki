@@ -24,7 +24,9 @@
 	 * @method confirmCloseWindow
 	 * @member mw
 	 * @param {Object} [options]
-	 * @param {string} [options.namespace] Namespace for the event registration
+	 * @param {string} [options.namespace] Optional jQuery event namespace, to allow loosely coupled
+	 *  external code to release your trigger. For example, the VisualEditor extension can use this
+	 *  remove the trigger registered by mediawiki.action.edit, without strong runtime coupling.
 	 * @param {string} [options.message]
 	 * @param {string} options.message.return The string message to show in the confirm dialog.
 	 * @param {Function} [options.test]
@@ -50,18 +52,20 @@
 			message = options.message;
 		}
 
-		$( window ).on( beforeunloadEvent, function () {
+		/**
+		 * @ignore
+		 * @see <https://developer.mozilla.org/en-US/docs/Web/API/Window/beforeunload_event>
+		 * @return {string|undefined}
+		 */
+		function onBeforeunload() {
 			if ( options.test() ) {
 				// show an alert with this message
 				return message;
 			}
-		} );
+		}
 
-		/**
-		 * Return the object with functions to release and manually trigger the confirm alert
-		 *
-		 * @ignore
-		 */
+		$( window ).on( beforeunloadEvent, onBeforeunload );
+
 		return {
 			/**
 			 * Remove the event listener and don't show an alert anymore, if the user wants to leave
@@ -70,7 +74,7 @@
 			 * @ignore
 			 */
 			release: function () {
-				$( window ).off( beforeunloadEvent );
+				$( window ).off( beforeunloadEvent, onBeforeunload );
 			},
 			/**
 			 * Trigger the module's function manually: Check, if options.test() returns true and show
