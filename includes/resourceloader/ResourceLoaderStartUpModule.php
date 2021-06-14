@@ -355,8 +355,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 
 		$startupCode = file_get_contents( "$IP/resources/src/startup/startup.js" );
 
-		// The files read here MUST be kept in sync with maintenance/jsduck/eg-iframe.html,
-		// and MUST be considered by 'fileHashes' in StartUpModule::getDefinitionSummary().
+		// The files read here MUST be kept in sync with maintenance/jsduck/eg-iframe.html.
 		$mwLoaderCode = file_get_contents( "$IP/resources/src/startup/mediawiki.js" ) .
 			file_get_contents( "$IP/resources/src/startup/mediawiki.requestIdleCallback.js" );
 		if ( $conf->get( 'ResourceLoaderEnableJSProfiler' ) ) {

@@ -90,6 +90,7 @@ class ResourceLoaderModuleTest extends ResourceLoaderTestCase {
 			'mayValidateScript' => true,
 			'script' => "var a = 'this is';\n {\ninvalid"
 		] );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		$this->assertEquals(
 			'mw.log.error(' .
 				'"JavaScript parse error (scripts need to be valid ECMAScript 5): ' .

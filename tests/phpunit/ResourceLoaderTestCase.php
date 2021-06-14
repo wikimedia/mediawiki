@@ -59,6 +59,12 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			// For ResourceLoader::inDebugMode since it doesn't have context
 			'ResourceLoaderDebug' => true,
 
+			// For ResourceLoaderModule
+			'ResourceLoaderValidateJS' => false,
+
+			// For ResourceLoaderWikiModule
+			'MaxRedirects' => 1,
+
 			// For ResourceLoaderSkinModule
 			'Logos' => false,
 			'Logo' => '/logo.png',
@@ -69,6 +75,8 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 			'ScriptPath' => '/w',
 			'Script' => '/w/index.php',
 			'LoadScript' => '/w/load.php',
+			'EnableJavaScriptTest' => false,
+			'ResourceLoaderEnableJSProfiler' => false,
 
 			// For ResourceLoader::respond() - TODO: Inject somehow T32956
 			'UseFileCache' => false,
