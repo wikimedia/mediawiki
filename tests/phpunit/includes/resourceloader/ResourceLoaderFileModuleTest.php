@@ -526,8 +526,10 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 		$context = $this->getResourceLoaderContext();
 
 		$moduleA = new ResourceLoaderFileTestModule( $a );
+		$moduleA->setConfig( $context->getResourceLoader()->getConfig() );
 		$versionA = $moduleA->getVersionHash( $context );
 		$moduleB = new ResourceLoaderFileTestModule( $b );
+		$moduleB->setConfig( $context->getResourceLoader()->getConfig() );
 		$versionB = $moduleB->getVersionHash( $context );
 
 		$this->assertSame(
@@ -855,6 +857,7 @@ class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 	public function testGetScriptPackageFiles( $moduleDefinition, $expected, $contextOptions = [] ) {
 		$module = new ResourceLoaderFileModule( $moduleDefinition );
 		$context = $this->getResourceLoaderContext( $contextOptions );
+		$module->setConfig( $context->getResourceLoader()->getConfig() );
 		if ( isset( $moduleDefinition['name'] ) ) {
 			$module->setName( $moduleDefinition['name'] );
 		}
