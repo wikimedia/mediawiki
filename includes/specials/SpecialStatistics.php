@@ -124,10 +124,13 @@ class SpecialStatistics extends SpecialPage {
 			Xml::tags( 'th', [ 'colspan' => '2' ], $this->msg( 'statistics-header-pages' )
 				->parse() ) .
 			Xml::closeElement( 'tr' ) .
-				$this->formatRow( $linkRenderer->makeKnownLink(
-					$specialAllPagesTitle,
-					$this->msg( 'statistics-articles' )->text(),
-					[], [ 'hideredirects' => 1 ] ),
+				$this->formatRow(
+					$this->getConfig()->get( 'MiserMode' )
+						? $this->msg( 'statistics-articles' )->escaped()
+						: $linkRenderer->makeKnownLink(
+							$specialAllPagesTitle,
+							$this->msg( 'statistics-articles' )->text(),
+							[], [ 'hideredirects' => 1 ] ),
 					$this->getLanguage()->formatNum( $this->good ),
 					[ 'class' => 'mw-statistics-articles' ],
 					'statistics-articles-desc' ) .
