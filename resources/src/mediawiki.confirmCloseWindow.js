@@ -32,9 +32,7 @@
 	 * @return {Object} An object of functions to work with this module
 	 */
 	mw.confirmCloseWindow = function ( options ) {
-		var savedUnloadHandler,
-			mainEventName = 'beforeunload',
-			showEventName = 'pageshow',
+		var beforeunloadEvent = 'beforeunload',
 			message;
 
 		options = $.extend( {
@@ -43,8 +41,7 @@
 		}, options );
 
 		if ( options.namespace ) {
-			mainEventName += '.' + options.namespace;
-			showEventName += '.' + options.namespace;
+			beforeunloadEvent += '.' + options.namespace;
 		}
 
 		if ( typeof options.message === 'function' ) {
@@ -53,23 +50,10 @@
 			message = options.message;
 		}
 
-		$( window ).on( mainEventName, function () {
+		$( window ).on( beforeunloadEvent, function () {
 			if ( options.test() ) {
-				// remove the handler while the alert is showing - otherwise breaks caching in Firefox (3?).
-				// but if they continue working on this page, immediately re-register this handler
-				savedUnloadHandler = window.onbeforeunload;
-				window.onbeforeunload = null;
-				setTimeout( function () {
-					window.onbeforeunload = savedUnloadHandler;
-				}, 1 );
-
 				// show an alert with this message
 				return message;
-			}
-		} ).on( showEventName, function () {
-			// Re-add onbeforeunload handler
-			if ( !window.onbeforeunload && savedUnloadHandler ) {
-				window.onbeforeunload = savedUnloadHandler;
 			}
 		} );
 
@@ -80,13 +64,13 @@
 		 */
 		return {
 			/**
-			 * Remove all event listeners and don't show an alert anymore, if the user wants to leave
+			 * Remove the event listener and don't show an alert anymore, if the user wants to leave
 			 * the page.
 			 *
 			 * @ignore
 			 */
 			release: function () {
-				$( window ).off( mainEventName + ' ' + showEventName );
+				$( window ).off( beforeunloadEvent );
 			},
 			/**
 			 * Trigger the module's function manually: Check, if options.test() returns true and show
