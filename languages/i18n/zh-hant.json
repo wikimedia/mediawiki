@@ -2505,7 +2505,7 @@
 	"protectlogpage": "保護日誌",
 	"protectlogtext": "以下為變更頁面保護的清單。請見[[Special:ProtectedPages|受保護頁面清單]]檢視目前受保護頁面。",
 	"protectedarticle": "已保護「[[$1]]」",
-	"modifiedarticleprotection": "已變更「[[$1]]」的保護層級",
+	"modifiedarticleprotection": "已變更「[[$1]]」的保護設定",
 	"unprotectedarticle": "已解除「[[$1]]」的保護",
 	"movedarticleprotection": "已移動 \"[[$2]]\" 的保護設定至 \"[[$1]]\"",
 	"protectedarticle-comment": "{{GENDER:$2|受保護}} \"[[$1]]\"",
