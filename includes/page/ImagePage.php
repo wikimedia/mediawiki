@@ -999,7 +999,16 @@ EOT
 		'@phan-var LocalFile $file';
 
 		$context = $this->getContext();
-		$deleter = new FileDeleteForm( $file, $context );
+		$services = MediaWikiServices::getInstance();
+		$deleter = new FileDeleteForm(
+			$file,
+			$context,
+			$services->getReadOnlyMode(),
+			$services->getRepoGroup(),
+			$this->watchlistManager,
+			$this->linkRenderer,
+			$services->getUserOptionsLookup()
+		);
 		$deleter->execute();
 	}
 
