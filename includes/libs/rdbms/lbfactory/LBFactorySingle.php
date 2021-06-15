@@ -34,6 +34,8 @@ class LBFactorySingle extends LBFactory {
 	private $lb;
 
 	/**
+	 * You probably want to use {@link newFromConnection} instead.
+	 *
 	 * @param array $conf An associative array with one member:
 	 *  - connection: The IDatabase connection object
 	 */
