@@ -357,7 +357,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * Test User::editCount
 	 * @group medium
 	 * @covers User::getEditCount
-	 * @covers User::setEditCountInternal
 	 */
 	public function testGetEditCount() {
 		$user = $this->getMutableTestUser()->getUser();
@@ -388,14 +387,6 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			4,
 			$user->getEditCount(),
 			'After increasing the edit count manually, the user edit count should be 4'
-		);
-
-		// Update the edit count
-		$user->setEditCountInternal( 42 );
-		$this->assertSame(
-			42,
-			$user->getEditCount(),
-			'After setting the edit count manually, the user edit count should be 42'
 		);
 	}
 

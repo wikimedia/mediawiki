@@ -82,7 +82,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Version number to tag cached versions of serialized User objects. Should be increased when
 	 * {@link $mCacheVars} or one of it's members changes.
 	 */
-	private const VERSION = 16;
+	private const VERSION = 17;
 
 	/**
 	 * Exclude user options that are set to their default value.
@@ -126,7 +126,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		'mEmailToken',
 		'mEmailTokenExpires',
 		'mRegistration',
-		'mEditCount',
 		// actor table
 		'mActorId',
 	];
@@ -164,8 +163,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	protected $mEmailTokenExpires;
 	/** @var string */
 	protected $mRegistration;
-	/** @var int */
-	protected $mEditCount;
 	// @}
 
 	// @{
@@ -1304,7 +1301,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		if ( $s !== false ) {
 			// Initialise user table data
 			$this->loadFromRow( $s );
-			$this->getEditCount(); // revalidation for nulls
 			return true;
 		}
 
@@ -1370,7 +1366,15 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		}
 
 		if ( isset( $row->user_editcount ) ) {
-			$this->mEditCount = $row->user_editcount;
+			// Sanity check - don't try to set edit count for anonymous users
+			// We check the id here and not in UserEditTracker because calling
+			// User::getId() can trigger some other loading. This will result in
+			// discarding the user_editcount field for rows if the id wasn't set.
+			if ( $this->mId !== null && $this->mId !== 0 ) {
+				MediaWikiServices::getInstance()
+					->getUserEditTracker()
+					->setCachedUserEditCount( $this, (int)$row->user_editcount );
+			}
 		} else {
 			$all = false;
 		}
@@ -1531,7 +1535,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		$this->mDatePreference = null;
 		$this->mBlockedby = -1; # Unset
 		$this->mHash = false;
-		$this->mEditCount = null;
 		$this->mThisAsAuthority = null;
 
 		if ( $wgFullyInitialised && $this->mFrom ) {
@@ -2866,16 +2869,9 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @return int|null Null for anonymous users
 	 */
 	public function getEditCount() {
-		if ( !$this->getId() ) {
-			return null;
-		}
-
-		if ( $this->mEditCount === null ) {
-			$this->mEditCount = MediaWikiServices::getInstance()
-				->getUserEditTracker()
-				->getUserEditCount( $this );
-		}
-		return (int)$this->mEditCount;
+		return MediaWikiServices::getInstance()
+			->getUserEditTracker()
+			->getUserEditCount( $this );
 	}
 
 	/**
@@ -4106,15 +4102,6 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 */
 	public function incEditCount() {
 		MediaWikiServices::getInstance()->getUserEditTracker()->incrementUserEditCount( $this );
-	}
-
-	/**
-	 * This method should not be called outside User/UserEditCountUpdate
-	 *
-	 * @param int $count
-	 */
-	public function setEditCountInternal( $count ) {
-		$this->mEditCount = $count;
 	}
 
 	/**
