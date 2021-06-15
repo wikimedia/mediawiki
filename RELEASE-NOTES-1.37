@@ -168,6 +168,7 @@ because of Phabricator reports.
   content and content handler class were removed without deprecation.
 * WANObjectCache::HOLDOFF_NONE, deprecated since 1.35, was removed.
   Use HOLDOFF_TTL_NONE instead.
+* LocalFile::recordUpload2(), deprecated since 1.35, was removed.
 * The following methods and fields in the Language class, deprecated since
   1.35, have been removed:
    - classFromCode()
