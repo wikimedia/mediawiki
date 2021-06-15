@@ -1698,7 +1698,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$htmlForm->setPrivateInfoEditable( $user->isAllowed( 'editmyprivateinfo' ) );
 		$htmlForm->setId( 'mw-prefs-form' );
 		$htmlForm->setAutocomplete( 'off' );
-		$htmlForm->setSubmitText( $context->msg( 'saveprefs' )->text() );
+		$htmlForm->setSubmitTextMsg( 'saveprefs' );
 		// Used message keys: 'accesskey-preferences-save', 'tooltip-preferences-save'
 		$htmlForm->setSubmitTooltip( 'preferences-save' );
 		$htmlForm->setSubmitID( 'prefcontrol' );

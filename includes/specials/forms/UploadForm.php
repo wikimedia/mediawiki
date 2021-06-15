@@ -126,7 +126,7 @@ class UploadForm extends HTMLForm {
 		}
 
 		# Set some form properties
-		$this->setSubmitText( $this->msg( 'uploadbtn' )->text() );
+		$this->setSubmitTextMsg( 'uploadbtn' );
 		$this->setSubmitName( 'wpUpload' );
 		# Used message keys: 'accesskey-upload', 'tooltip-upload'
 		$this->setSubmitTooltip( 'upload' );

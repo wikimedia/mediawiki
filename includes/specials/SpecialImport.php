@@ -345,7 +345,7 @@ class SpecialImport extends SpecialPage {
 			$htmlForm = HTMLForm::factory( 'ooui', $uploadFormDescriptor, $this->getContext() );
 			$htmlForm->setAction( $action );
 			$htmlForm->setId( 'mw-import-upload-form' );
-			$htmlForm->setWrapperLegend( $this->msg( 'import-upload' )->text() );
+			$htmlForm->setWrapperLegendMsg( 'import-upload' );
 			$htmlForm->setSubmitTextMsg( 'uploadbtn' );
 			$htmlForm->prepareForm()->displayForm( false );
 
@@ -454,7 +454,7 @@ class SpecialImport extends SpecialPage {
 			$htmlForm = HTMLForm::factory( 'ooui', $interwikiFormDescriptor, $this->getContext() );
 			$htmlForm->setAction( $action );
 			$htmlForm->setId( 'mw-import-interwiki-form' );
-			$htmlForm->setWrapperLegend( $this->msg( 'importinterwiki' )->text() );
+			$htmlForm->setWrapperLegendMsg( 'importinterwiki' );
 			$htmlForm->setSubmitTextMsg( 'import-interwiki-submit' );
 			$htmlForm->prepareForm()->displayForm( false );
 		}
