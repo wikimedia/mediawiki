@@ -96,7 +96,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$result = $this->getResult();
 
 		if ( $this->params['prop'] !== null ) {
-			$this->prop = array_flip( $this->params['prop'] );
+			$this->prop = array_fill_keys( $this->params['prop'], true );
 		}
 
 		$r = $this->getCurrentUserInfo();

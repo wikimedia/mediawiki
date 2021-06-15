@@ -44,7 +44,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 
 		$scale = $this->getScale( $params );
 
@@ -581,7 +581,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			$extmetaArray = $format->fetchExtendedMetadata( $file );
 			if ( $opts['extmetadatafilter'] ) {
 				$extmetaArray = array_intersect_key(
-					$extmetaArray, array_flip( $opts['extmetadatafilter'] )
+					$extmetaArray, array_fill_keys( $opts['extmetadatafilter'], true )
 				);
 			}
 			$vals['extmetadata'] = $extmetaArray;
@@ -770,7 +770,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				'uploadwarning' => 'apihelp-query+imageinfo-paramvalue-prop-uploadwarning',
 				'badfile' => 'apihelp-query+imageinfo-paramvalue-prop-badfile',
 			],
-			array_flip( $filter )
+			array_fill_keys( $filter, true )
 		);
 	}
 

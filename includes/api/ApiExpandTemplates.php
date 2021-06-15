@@ -54,7 +54,7 @@ class ApiExpandTemplates extends ApiBase {
 			);
 			$prop = [];
 		} else {
-			$prop = array_flip( $params['prop'] );
+			$prop = array_fill_keys( $params['prop'], true );
 		}
 
 		$titleObj = Title::newFromText( $title );

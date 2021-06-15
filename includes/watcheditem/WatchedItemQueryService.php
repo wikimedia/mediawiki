@@ -365,7 +365,7 @@ class WatchedItemQueryService {
 				return substr( $key, 0, 3 ) === 'rc_';
 			}
 		);
-		return array_intersect_key( $allFields, array_flip( $rcKeys ) );
+		return array_intersect_key( $allFields, array_fill_keys( $rcKeys, true ) );
 	}
 
 	private function getWatchedItemsWithRCInfoQueryTables( array $options ) {

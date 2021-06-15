@@ -61,7 +61,7 @@ class ApiQueryMyStashedFiles extends ApiQueryBase {
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
 		$this->addOption( 'ORDER BY', 'us_id' );
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$this->addFieldsIf(
 			[
 				'us_size',

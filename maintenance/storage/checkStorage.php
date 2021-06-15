@@ -406,7 +406,7 @@ class CheckStorage {
 				print "$msg in old_id $id, revisions " . implode( ', ', $revIds ) . "\n";
 			}
 		}
-		$this->errors[$type] += array_flip( $revIds );
+		$this->errors[$type] += array_fill_keys( $revIds, true );
 	}
 
 	private function checkExternalConcatBlobs( $externalConcatBlobs ) {

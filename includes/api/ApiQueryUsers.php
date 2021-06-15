@@ -111,7 +111,7 @@ class ApiQueryUsers extends ApiQueryBase {
 		$this->requireMaxOneParameter( $params, 'userids', 'users' );
 
 		if ( $params['prop'] !== null ) {
-			$this->prop = array_flip( $params['prop'] );
+			$this->prop = array_fill_keys( $params['prop'], true );
 		} else {
 			$this->prop = [];
 		}

@@ -56,7 +56,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$params = $this->extractRequestParams();
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$fld_sha1 = isset( $prop['sha1'] );
 		$fld_timestamp = isset( $prop['timestamp'] );
 		$fld_user = isset( $prop['user'] );

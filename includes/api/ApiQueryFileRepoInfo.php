@@ -46,7 +46,7 @@ class ApiQueryFileRepoInfo extends ApiQueryBase {
 		$conf = $this->getConfig();
 
 		$params = $this->extractRequestParams();
-		$props = array_flip( $params['prop'] );
+		$props = array_fill_keys( $params['prop'], true );
 
 		$repos = [];
 

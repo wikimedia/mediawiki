@@ -75,7 +75,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		// Parse some parameters
 		$this->params = $this->extractRequestParams();
 
-		$prop = array_flip( $this->params['prop'] );
+		$prop = array_fill_keys( $this->params['prop'], true );
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_title = isset( $prop['title'] );
 		$this->fld_comment = isset( $prop['comment'] );
@@ -389,7 +389,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$show[] = 'top';
 		}
 		if ( $show !== null ) {
-			$show = array_flip( $show );
+			$show = array_fill_keys( $show, true );
 
 			if ( ( isset( $show['minor'] ) && isset( $show['!minor'] ) )
 				|| ( isset( $show['patrolled'] ) && isset( $show['!patrolled'] ) )

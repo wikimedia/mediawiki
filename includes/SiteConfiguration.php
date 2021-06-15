@@ -545,7 +545,8 @@ class SiteConfiguration {
 			}
 		} else { // $wiki is a foreign wiki
 			if ( isset( $this->cfgCache[$wiki] ) ) {
-				$res = array_intersect_key( $this->cfgCache[$wiki], array_flip( $settings ) );
+				$res = array_intersect_key( $this->cfgCache[$wiki],
+					array_fill_keys( $settings, true ) );
 				if ( count( $res ) == count( $settings ) ) {
 					return $multi ? $res : current( $res ); // cache hit
 				}

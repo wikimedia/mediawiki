@@ -3389,7 +3389,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 		$disjunctions = [];
 		foreach ( $rows as $row ) {
-			$rowKeyMap = array_intersect_key( $row, array_flip( $uniqueKey ) );
+			$rowKeyMap = array_intersect_key( $row, array_fill_keys( $uniqueKey, true ) );
 			if ( count( $rowKeyMap ) != count( $uniqueKey ) ) {
 				throw new DBUnexpectedError(
 					$this,

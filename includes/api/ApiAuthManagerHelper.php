@@ -130,7 +130,7 @@ class ApiAuthManagerHelper {
 	 */
 	public static function blacklistAuthenticationRequests( array $reqs, array $remove ) {
 		if ( $remove ) {
-			$remove = array_flip( $remove );
+			$remove = array_fill_keys( $remove, true );
 			$reqs = array_filter( $reqs, static function ( $req ) use ( $remove ) {
 				return !isset( $remove[get_class( $req )] );
 			} );
@@ -151,7 +151,7 @@ class ApiAuthManagerHelper {
 		// Filter requests, if requested to do so
 		$wantedRequests = null;
 		if ( isset( $params['requests'] ) ) {
-			$wantedRequests = array_flip( $params['requests'] );
+			$wantedRequests = array_fill_keys( $params['requests'], true );
 		} elseif ( isset( $params['request'] ) ) {
 			$wantedRequests = [ $params['request'] => true ];
 		}

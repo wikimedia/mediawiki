@@ -58,7 +58,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$db = $this->getDB();
 		$this->requireMaxOneParameter( $params, 'title', 'prefix', 'namespace' );
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 
 		$this->fld_ids = isset( $prop['ids'] );
 		$this->fld_title = isset( $prop['title'] );
@@ -136,7 +136,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				// all items in the list have a slash
 				$valid = false;
 			} else {
-				$logActions = array_flip( $this->getAllowedLogActions() );
+				$logActions = array_fill_keys( $this->getAllowedLogActions(), true );
 				list( $type, $action ) = explode( '/', $logAction, 2 );
 				$valid = isset( $logActions[$logAction] ) || isset( $logActions[$type . '/*'] );
 			}

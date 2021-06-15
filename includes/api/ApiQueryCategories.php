@@ -56,8 +56,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		}
 
 		$params = $this->extractRequestParams();
-		$prop = array_flip( (array)$params['prop'] );
-		$show = array_flip( (array)$params['show'] );
+		$prop = array_fill_keys( (array)$params['prop'], true );
+		$show = array_fill_keys( (array)$params['show'], true );
 
 		$this->addFields( [
 			'cl_from',

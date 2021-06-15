@@ -120,7 +120,7 @@ class ApiParse extends ApiBase {
 		$model = $params['contentmodel'];
 		$format = $params['contentformat'];
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 
 		if ( isset( $params['section'] ) ) {
 			$this->section = $params['section'];

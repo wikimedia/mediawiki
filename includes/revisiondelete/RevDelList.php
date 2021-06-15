@@ -156,7 +156,7 @@ abstract class RevDelList extends RevisionListBase {
 			__METHOD__
 		);
 
-		$missing = array_flip( $this->ids );
+		$missing = array_fill_keys( $this->ids, true );
 		$this->clearFileOps();
 		$idsForLog = [];
 		$authorActors = [];

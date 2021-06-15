@@ -62,7 +62,7 @@ class ApiComparePages extends ApiBase {
 			$params, 'totitle', 'toid', 'torev', 'totext', 'torelative', 'toslots'
 		);
 
-		$this->props = array_flip( $params['prop'] );
+		$this->props = array_fill_keys( $params['prop'], true );
 
 		// Cache responses publicly by default. This may be overridden later.
 		$this->getMain()->setCacheMode( 'public' );

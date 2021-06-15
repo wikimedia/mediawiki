@@ -945,7 +945,8 @@ class ApiMain extends ApiBase {
 			return true;
 		}
 		$requestedHeaders = explode( ',', $requestedHeaders );
-		$allowedHeaders = array_change_key_case( array_flip( $allowedHeaders ), CASE_LOWER );
+		$allowedHeaders = array_change_key_case(
+			array_fill_keys( $allowedHeaders, true ), CASE_LOWER );
 		foreach ( $requestedHeaders as $rHeader ) {
 			$rHeader = strtolower( trim( $rHeader ) );
 			if ( !isset( $allowedHeaders[$rHeader] ) ) {
@@ -1780,7 +1781,7 @@ class ApiMain extends ApiBase {
 			" {$logCtx['http']['client_ip']} " .
 			"T={$logCtx['backend_time_ms']}ms";
 
-		$sensitive = array_flip( $this->getSensitiveParams() );
+		$sensitive = array_fill_keys( $this->getSensitiveParams(), true );
 		foreach ( $this->getParamsUsed() as $name ) {
 			$value = $request->getVal( $name );
 			if ( $value === null ) {

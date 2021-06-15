@@ -45,7 +45,7 @@ class ListVariants extends Maintenance {
 		foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 			$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 			if ( $lang->hasVariants() ) {
-				$variants += array_flip( $lang->getVariants() );
+				$variants += array_fill_keys( $lang->getVariants(), true );
 				$variantLangs[$langCode] = $lang->getVariants();
 			}
 		}

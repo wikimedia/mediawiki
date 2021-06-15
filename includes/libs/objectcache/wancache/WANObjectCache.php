@@ -2476,7 +2476,7 @@ class WANObjectCache implements
 		if ( count( $ids ) !== count( $res ) ) {
 			// If makeMultiKeys() is called on a list of non-unique IDs, then the resulting
 			// ArrayIterator will have less entries due to "first appearance" de-duplication
-			$ids = array_keys( array_flip( $ids ) );
+			$ids = array_keys( array_fill_keys( $ids, true ) );
 			if ( count( $ids ) !== count( $res ) ) {
 				throw new UnexpectedValueException( "Multi-key result does not match ID list" );
 			}

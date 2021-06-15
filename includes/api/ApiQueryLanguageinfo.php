@@ -97,7 +97,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	public function execute() {
 		$endTime = $this->microtime() + self::MAX_EXECUTE_SECONDS;
 
-		$props = array_flip( $this->getParameter( 'prop' ) );
+		$props = array_fill_keys( $this->getParameter( 'prop' ), true );
 		$includeCode = isset( $props['code'] );
 		$includeBcp47 = isset( $props['bcp47'] );
 		$includeDir = isset( $props['dir'] );

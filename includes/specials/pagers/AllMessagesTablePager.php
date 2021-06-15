@@ -172,7 +172,7 @@ class AllMessagesTablePager extends TablePager {
 			__METHOD__,
 			[ 'USE INDEX' => $pageIndex ]
 		);
-		$xNames = array_flip( $messageNames );
+		$xNames = array_fill_keys( $messageNames, true );
 
 		$pageFlags = $talkFlags = [];
 

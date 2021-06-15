@@ -285,13 +285,13 @@ class LocalisationCache {
 	 */
 	public function isMergeableKey( $key ) {
 		if ( $this->mergeableKeys === null ) {
-			$this->mergeableKeys = array_flip( array_merge(
+			$this->mergeableKeys = array_fill_keys( array_merge(
 				self::$mergeableMapKeys,
 				self::$mergeableListKeys,
 				self::$mergeableAliasListKeys,
 				self::$optionalMergeKeys,
 				self::$magicWordKeys
-			) );
+			), true );
 		}
 
 		return isset( $this->mergeableKeys[$key] );

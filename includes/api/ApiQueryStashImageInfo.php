@@ -41,7 +41,7 @@ class ApiQueryStashImageInfo extends ApiQueryImageInfo {
 		$params = $this->extractRequestParams();
 		$modulePrefix = $this->getModulePrefix();
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 
 		$scale = $this->getScale( $params );
 

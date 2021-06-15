@@ -1669,7 +1669,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Note that the $user parameter of getFormDescriptor() is deprecated.
 		$formDescriptor = $this->getFormDescriptor( $user, $context );
 		if ( count( $remove ) ) {
-			$removeKeys = array_flip( $remove );
+			$removeKeys = array_fill_keys( $remove, true );
 			$formDescriptor = array_diff_key( $formDescriptor, $removeKeys );
 		}
 

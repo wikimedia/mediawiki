@@ -832,7 +832,7 @@ class ApiResult implements ApiSerializable {
 			}
 			if ( !in_array( 'nobool', $transforms['BC'], true ) ) {
 				$boolKeys = isset( $metadata[self::META_BC_BOOLS] )
-					? array_flip( $metadata[self::META_BC_BOOLS] )
+					? array_fill_keys( $metadata[self::META_BC_BOOLS], true )
 					: [];
 			}
 

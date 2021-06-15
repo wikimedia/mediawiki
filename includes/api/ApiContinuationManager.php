@@ -67,7 +67,7 @@ class ApiContinuationManager {
 				if ( $params ) {
 					$this->generatorParams = array_intersect_key(
 						$request->getValues(),
-						array_flip( $params )
+						array_fill_keys( $params, true )
 					);
 				}
 			} else {

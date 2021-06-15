@@ -80,7 +80,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		$wlowner = $this->getWatchlistUser( $params );
 
 		if ( $params['prop'] !== null && $resultPageSet === null ) {
-			$prop = array_flip( $params['prop'] );
+			$prop = array_fill_keys( $params['prop'], true );
 
 			$this->fld_ids = isset( $prop['ids'] );
 			$this->fld_title = isset( $prop['title'] );
@@ -145,7 +145,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 		}
 
 		if ( $params['show'] !== null ) {
-			$show = array_flip( $params['show'] );
+			$show = array_fill_keys( $params['show'], true );
 
 			/* Check for conflicting parameters. */
 			if ( $this->showParamsConflicting( $show ) ) {

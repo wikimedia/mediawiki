@@ -62,7 +62,7 @@ class ApiQueryProtectedTitles extends ApiQueryGeneratorBase {
 		$this->addTables( 'protected_titles' );
 		$this->addFields( [ 'pt_namespace', 'pt_title', 'pt_timestamp' ] );
 
-		$prop = array_flip( $params['prop'] );
+		$prop = array_fill_keys( $params['prop'], true );
 		$this->addFieldsIf( 'pt_user', isset( $prop['user'] ) || isset( $prop['userid'] ) );
 		$this->addFieldsIf( 'pt_expiry', isset( $prop['expiry'] ) );
 		$this->addFieldsIf( 'pt_create_perm', isset( $prop['level'] ) );
