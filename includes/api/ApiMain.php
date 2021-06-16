@@ -110,7 +110,13 @@ class ApiMain extends ApiBase {
 			]
 		],
 		'query' => ApiQuery::class,
-		'expandtemplates' => ApiExpandTemplates::class,
+		'expandtemplates' => [
+			'class' => ApiExpandTemplates::class,
+			'services' => [
+				'RevisionStore',
+				'Parser',
+			]
+		],
 		'parse' => ApiParse::class,
 		'stashedit' => [
 			'class' => ApiStashEdit::class,
