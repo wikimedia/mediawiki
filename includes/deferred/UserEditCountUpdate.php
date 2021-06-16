@@ -65,7 +65,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	}
 
 	/**
-	 * Purges the list of URLs passed to the constructor.
+	 * Commits the provided user edit count increments to the database
 	 */
 	public function doUpdate() {
 		$mwServices = MediaWikiServices::getInstance();
