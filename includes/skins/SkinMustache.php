@@ -61,6 +61,7 @@ class SkinMustache extends SkinTemplate {
 			'html-items' => '',
 			// Will be populated by SkinAfterPortlet hook.
 			'html-after-portal' => '',
+			'html-before-portal' => '',
 		];
 		// Run the SkinAfterPortlet
 		// hook and if content is added appends it to the html-after-portal
