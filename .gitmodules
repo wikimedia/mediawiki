@@ -1068,16 +1068,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-StopForumSpam
 	branch = REL1_36
 	ignore = dirty
-[submodule "extensions/PageDisqus"]
-	path = extensions/PageDisqus
-	url = https://github.com/wikimedia/mediawiki-extensions-PageDisqus
-	branch = REL1_36
-	ignore = dirty
-[submodule "extensions/DisqusTag"]
-	path = extensions/DisqusTag
-	url = https://github.com/wikimedia/mediawiki-extensions-DisqusTag
-	branch = REL1_36
-	ignore = dirty
 [submodule "extensions/SoftRedirector"]
 	path = extensions/SoftRedirector
 	url = https://github.com/wikimedia/mediawiki-extensions-SoftRedirector
