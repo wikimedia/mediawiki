@@ -1105,7 +1105,7 @@ abstract class HTMLFormField {
 	 * Fetch the array of options from the field's parameters. In order, this
 	 * checks 'options-messages', 'options', then 'options-message'.
 	 *
-	 * @return array|null Options array
+	 * @return array|null
 	 */
 	public function getOptions() {
 		if ( $this->mOptions === false ) {

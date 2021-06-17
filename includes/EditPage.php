@@ -1676,7 +1676,7 @@ class EditPage implements IEditObject {
 	 * Attempt submission
 	 * @param array|bool &$resultDetails See docs for $result in internalAttemptSave
 	 * @throws UserBlockedError|ReadOnlyError|ThrottledError|PermissionsError
-	 * @return Status The resulting status object.
+	 * @return Status
 	 */
 	public function attemptSave( &$resultDetails = false ) {
 		// TODO: MCR:
@@ -3182,7 +3182,7 @@ class EditPage implements IEditObject {
 	 * Extract the section title from current section text, if any.
 	 *
 	 * @param string $text
-	 * @return string|bool String or false
+	 * @return string|false
 	 */
 	private static function extractSectionTitle( $text ) {
 		if ( preg_match( "/^(=+)(.+)\\1\\s*(\n|$)/i", $text, $matches ) ) {

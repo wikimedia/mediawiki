@@ -625,7 +625,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @deprecated since 1.36, use a UserFactory instead
 	 *
 	 * @param int $id Valid user ID
-	 * @return User The corresponding User object
+	 * @return User
 	 */
 	public static function newFromId( $id ) {
 		return MediaWikiServices::getInstance()
@@ -642,7 +642,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 *
 	 * @since 1.31
 	 * @param int $id Valid actor ID
-	 * @return User The corresponding User object
+	 * @return User
 	 */
 	public static function newFromActorId( $id ) {
 		return MediaWikiServices::getInstance()
@@ -3611,7 +3611,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/**
 	 * Get this user's talk page title.
 	 *
-	 * @return Title User's talk page title
+	 * @return Title
 	 */
 	public function getTalkPage() {
 		$title = $this->getUserPage();

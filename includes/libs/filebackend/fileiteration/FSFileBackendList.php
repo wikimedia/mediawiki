@@ -95,7 +95,7 @@ abstract class FSFileBackendList implements Iterator {
 
 	/**
 	 * @see Iterator::current()
-	 * @return string|bool String or false
+	 * @return string|false
 	 */
 	public function current() {
 		return $this->getRelPath( $this->iter->current()->getPathname() );

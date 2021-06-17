@@ -370,7 +370,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	 *    'language': The language for extmetadata property
 	 *    'multilang': Return all translations in extmetadata property
 	 *    'revdelUser': Authority to use when checking whether to show revision-deleted fields.
-	 * @return array Result array
+	 * @return array
 	 */
 	public static function getInfo( $file, $prop, $result, $thumbParams = null, $opts = false ) {
 		$anyHidden = false;

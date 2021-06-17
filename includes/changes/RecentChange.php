@@ -139,9 +139,6 @@ class RecentChange implements Taggable {
 	 */
 	private $editResult = null;
 
-	/**
-	 * @var array Array of change types
-	 */
 	private const CHANGE_TYPES = [
 		'edit' => RC_EDIT,
 		'new' => RC_NEW,
@@ -190,7 +187,7 @@ class RecentChange implements Taggable {
 	 * Parsing RC_* constants to human-readable test
 	 * @since 1.24
 	 * @param int $rcType
-	 * @return string $type
+	 * @return string
 	 */
 	public static function parseFromRCType( $rcType ) {
 		return array_search( $rcType, self::CHANGE_TYPES, true ) ?: "$rcType";

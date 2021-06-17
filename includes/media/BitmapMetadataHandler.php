@@ -123,7 +123,7 @@ class BitmapMetadataHandler {
 	 *
 	 * This function is generally called by the media handlers' getMetadata()
 	 *
-	 * @return array Metadata array
+	 * @return array
 	 */
 	public function getMetadataArray() {
 		// this seems a bit ugly... This is all so its merged in right order

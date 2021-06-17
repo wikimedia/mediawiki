@@ -155,10 +155,10 @@ class Linker {
 	 *
 	 * @since 1.16.3
 	 * @param LinkTarget $nt
-	 * @param string $html [optional]
-	 * @param string $query [optional]
-	 * @param string $trail [optional]
-	 * @param string $prefix [optional]
+	 * @param string $html
+	 * @param string $query
+	 * @param string $trail
+	 * @param string $prefix
 	 *
 	 * @return string
 	 */

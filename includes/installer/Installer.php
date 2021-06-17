@@ -1708,7 +1708,7 @@ abstract class Installer {
 	 * @param callable $startCB A callback array for the beginning of each step
 	 * @param callable $endCB A callback array for the end of each step
 	 *
-	 * @return Status[] Array of Status objects
+	 * @return Status[]
 	 */
 	public function performInstallation( $startCB, $endCB ) {
 		$installResults = [];

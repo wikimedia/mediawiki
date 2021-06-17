@@ -42,7 +42,7 @@ trait FactoryArgTestTrait {
 	 * getMockValueForParam() to the factory method's parameters.
 	 *
 	 * @param object $factory
-	 * @return object Object created by factory
+	 * @return object
 	 */
 	protected function createInstanceFromFactory( $factory ) {
 		$methodName = $this->getFactoryMethodName();

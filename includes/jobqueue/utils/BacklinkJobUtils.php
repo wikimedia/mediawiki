@@ -82,7 +82,7 @@ class BacklinkJobUtils {
 	 * @param int $bSize BacklinkCache partition size; usually $wgUpdateRowsPerJob
 	 * @param int $cSize Max titles per leaf job; Usually 1 or a modest value
 	 * @param array $opts Optional parameter map
-	 * @return Job[] List of Job objects
+	 * @return Job[]
 	 */
 	public static function partitionBacklinkJob( Job $job, $bSize, $cSize, $opts = [] ) {
 		$class = get_class( $job );

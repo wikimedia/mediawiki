@@ -371,7 +371,7 @@ class SlotRecord {
 	 *
 	 * @throws OutOfBoundsException
 	 * @throws IncompleteRevisionException
-	 * @return string Returns the string value
+	 * @return string
 	 */
 	private function getStringField( $name ) {
 		return strval( $this->getField( $name ) );
@@ -384,7 +384,7 @@ class SlotRecord {
 	 *
 	 * @throws OutOfBoundsException
 	 * @throws IncompleteRevisionException
-	 * @return int Returns the int value
+	 * @return int
 	 */
 	private function getIntField( $name ) {
 		return intval( $this->getField( $name ) );

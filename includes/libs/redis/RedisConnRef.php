@@ -98,7 +98,7 @@ class RedisConnRef implements LoggerAwareInterface {
 	 *
 	 * @param string $name
 	 * @param array $arguments
-	 * @return mixed $res
+	 * @return mixed
 	 * @throws RedisException
 	 */
 	public function __call( $name, $arguments ) {
@@ -122,7 +122,7 @@ class RedisConnRef implements LoggerAwareInterface {
 	 *
 	 * @param string $method
 	 * @param array $arguments
-	 * @return mixed $res
+	 * @return mixed
 	 * @throws RedisException
 	 */
 	private function tryCall( $method, $arguments ) {
@@ -150,7 +150,7 @@ class RedisConnRef implements LoggerAwareInterface {
 	 * @param int &$iterator
 	 * @param string|null $pattern
 	 * @param int|null $count
-	 * @return array $res
+	 * @return array
 	 */
 	public function scan( &$iterator, $pattern = null, $count = null ) {
 		return $this->tryCall( 'scan', [ &$iterator, $pattern, $count ] );
@@ -165,7 +165,7 @@ class RedisConnRef implements LoggerAwareInterface {
 	 * @param int &$iterator
 	 * @param string|null $pattern
 	 * @param int|null $count
-	 * @return array $res
+	 * @return array
 	 */
 	public function sScan( $key, &$iterator, $pattern = null, $count = null ) {
 		return $this->tryCall( 'sScan', [ $key, &$iterator, $pattern, $count ] );
@@ -180,7 +180,7 @@ class RedisConnRef implements LoggerAwareInterface {
 	 * @param int &$iterator
 	 * @param string|null $pattern
 	 * @param int|null $count
-	 * @return array $res
+	 * @return array
 	 */
 	public function hScan( $key, &$iterator, $pattern = null, $count = null ) {
 		return $this->tryCall( 'hScan', [ $key, &$iterator, $pattern, $count ] );
@@ -195,7 +195,7 @@ class RedisConnRef implements LoggerAwareInterface {
 	 * @param int &$iterator
 	 * @param string|null $pattern
 	 * @param int|null $count
-	 * @return array $res
+	 * @return array
 	 */
 	public function zScan( $key, &$iterator, $pattern = null, $count = null ) {
 		return $this->tryCall( 'zScan', [ $key, &$iterator, $pattern, $count ] );

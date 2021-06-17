@@ -23,7 +23,7 @@ use MediaWiki\MediaWikiServices;
  */
 abstract class LanguageClassesTestCase extends MediaWikiIntegrationTestCase {
 	/**
-	 * @var Language Internal language object
+	 * @var Language
 	 *
 	 * A new object is created before each tests thanks to PHPUnit
 	 * setUp() method, it is deleted after each test too. To get
