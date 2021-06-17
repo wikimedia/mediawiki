@@ -407,6 +407,7 @@ because of Phabricator reports.
 * BaseTemplate::getAfterPortlet, BaseTemplate::renderAfterPortlet and the
   BaseTemplateAfterPortlet hook, which were deprecated in 1.35,
   now emit deprecation warnings.
+* LocalFile::getHistory hook is deprecated.
 * …
 
 === Other changes in 1.37 ===
