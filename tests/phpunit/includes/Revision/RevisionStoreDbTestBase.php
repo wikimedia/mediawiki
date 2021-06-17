@@ -875,25 +875,11 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	/**
-	 * Test that getRevisionByTitle doesn't try to use the local wiki DB (T248756)
-	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionByTitle
-	 */
-	public function testGetRevisionByTitle_doesNotUseLocalLoadBalancerForForeignWiki() {
-		$page = $this->getTestPage();
-		$content = new WikitextContent( __METHOD__ );
-		$status = $page->doEditContent( $content, __METHOD__ );
-		/** @var RevisionRecord $revRecord */
-		$revRecord = $status->value['revision-record'];
-
-		$dbDomain = 'some_foreign_wiki';
-
-		$services = MediaWikiServices::getInstance();
-
+	private function executeWithForeignStore( string $dbDomain, callable $callback ) {
+		$services = $this->getServiceContainer();
 		// Configure the load balancer to route queries for the "foreign" domain to the test DB
 		$dbLoadBalancer = $services->getDBLoadBalancer();
 		$dbLoadBalancer->setDomainAliases( [ $dbDomain => $dbLoadBalancer->getLocalDomainID() ] );
-
 		$store = new RevisionStore(
 			$dbLoadBalancer,
 			$services->getBlobStore(),
@@ -905,7 +891,7 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 			$services->getActorMigration(),
 			$services->getActorStoreFactory()->getActorStore( $dbDomain ),
 			$services->getContentHandlerFactory(),
-			$services->getPageStore(),
+			$services->getPageStoreFactory()->getPageStore( $dbDomain ),
 			$services->getTitleFactory(),
 			$services->getHookContainer(),
 			$dbDomain
@@ -919,22 +905,61 @@ abstract class RevisionStoreDbTestBase extends MediaWikiIntegrationTestCase {
 
 		try {
 			$this->setService( 'DBLoadBalancer', $localLoadBalancerMock );
-
-			$storeRecord = $store->getRevisionByTitle(
-				new PageIdentityValue(
-					$page->getId(),
-					$page->getTitle()->getNamespace(),
-					$page->getTitle()->getDBkey(),
-					$dbDomain
-				)
-			);
-			$this->assertSame( $revRecord->getId(), $storeRecord->getId( $dbDomain ) );
-			$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
-			$this->assertSame( __METHOD__, $storeRecord->getComment()->text );
+			$callback( $store );
 		} finally {
 			// Restore the original load balancer to make test teardown work
 			$this->setService( 'DBLoadBalancer', $dbLoadBalancer );
 		}
+	}
+
+	/**
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionByTitle
+	 */
+	public function testGetLatestKnownRevision_foreigh() {
+		$page = $this->getTestPage();
+		$status = $this->editPage( $page, __METHOD__ );
+		$this->assertTrue( $status->isGood(), 'Sanity: edited a page' );
+		/** @var RevisionRecord $revRecord */
+		$revRecord = $status->value['revision-record'];
+		$dbDomain = 'some_foreign_wiki';
+		$this->executeWithForeignStore(
+			$dbDomain,
+			function ( RevisionStore $store ) use ( $page, $dbDomain, $revRecord ) {
+				$storeRecord = $store->getKnownCurrentRevision(
+					new PageIdentityValue( $page->getId(), $page->getNamespace(), $page->getDBkey(), $dbDomain )
+				);
+				$this->assertSame( $dbDomain, $storeRecord->getWikiId() );
+				$this->assertSame( $revRecord->getId(), $storeRecord->getId( $dbDomain ) );
+			} );
+	}
+
+	/**
+	 * Test that getRevisionByTitle doesn't try to use the local wiki DB (T248756)
+	 * @covers \MediaWiki\Revision\RevisionStore::getRevisionByTitle
+	 */
+	public function testGetRevisionByTitle_doesNotUseLocalLoadBalancerForForeignWiki() {
+		$page = $this->getTestPage();
+		$content = new WikitextContent( __METHOD__ );
+		$comment = __METHOD__;
+		$status = $page->doEditContent( $content, $comment );
+		/** @var RevisionRecord $revRecord */
+		$revRecord = $status->value['revision-record'];
+		$dbDomain = 'some_foreign_wiki';
+		$this->executeWithForeignStore(
+			$dbDomain,
+			function ( RevisionStore $store ) use ( $page, $dbDomain, $revRecord, $content, $comment ) {
+				$storeRecord = $store->getRevisionByTitle(
+					new PageIdentityValue(
+						$page->getId(),
+						$page->getTitle()->getNamespace(),
+						$page->getTitle()->getDBkey(),
+						$dbDomain
+					)
+				);
+				$this->assertSame( $revRecord->getId(), $storeRecord->getId( $dbDomain ) );
+				$this->assertTrue( $storeRecord->getSlot( SlotRecord::MAIN )->getContent()->equals( $content ) );
+				$this->assertSame( $comment, $storeRecord->getComment()->text );
+			} );
 	}
 
 	/**
