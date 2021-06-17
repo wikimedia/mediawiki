@@ -18,7 +18,6 @@ class ApiMessageTest extends MediaWikiIntegrationTestCase {
 		$msg2 = TestingAccessWrapper::newFromObject( $msg2 );
 		$this->assertSame( $msg->interface, $msg2->interface, 'interface' );
 		$this->assertSame( $msg->useDatabase, $msg2->useDatabase, 'useDatabase' );
-		$this->assertSame( $msg->format, $msg2->format, 'format' );
 		$this->assertSame(
 			$msg->contextPage ? "{$msg->contextPage->getNamespace()}:{$msg->contextPage->getDbKey()}" : null,
 			$msg2->contextPage ? "{$msg->contextPage->getNamespace()}:{$msg->contextPage->getDbKey()}" : null,

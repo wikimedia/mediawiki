@@ -190,12 +190,6 @@ class Message implements MessageSpecifier, Serializable {
 	protected $parameters = [];
 
 	/**
-	 * @var string
-	 * @deprecated
-	 */
-	protected $format = 'parse';
-
-	/**
 	 * @var bool Whether database can be used.
 	 */
 	protected $useDatabase = true;
@@ -266,7 +260,6 @@ class Message implements MessageSpecifier, Serializable {
 			'key' => $this->key,
 			'keysToTry' => $this->keysToTry,
 			'parameters' => $this->parameters,
-			'format' => $this->format,
 			'useDatabase' => $this->useDatabase,
 			// Optimisation: Avoid cost of TitleFormatter on serialize,
 			// and especially cost of TitleParser (via Title::newFromText)
@@ -293,7 +286,6 @@ class Message implements MessageSpecifier, Serializable {
 		$this->key = $data['key'];
 		$this->keysToTry = $data['keysToTry'];
 		$this->parameters = $data['parameters'];
-		$this->format = $data['format'];
 		$this->useDatabase = $data['useDatabase'];
 		$this->language = $data['language']
 			? MediaWikiServices::getInstance()->getLanguageFactory()
@@ -893,15 +885,10 @@ class Message implements MessageSpecifier, Serializable {
 	 * Returns the message formatted a certain way.
 	 *
 	 * @since 1.17
-	 * @param string|null $format One of the FORMAT_* constants. Null means use whatever was used
-	 *   the last time (deprecated since 1.36).
+	 * @param string $format One of the FORMAT_* constants.
 	 * @return string Text or HTML
 	 */
-	public function toString( $format = null ) {
-		if ( $format === null ) {
-			wfDeprecated( __METHOD__ . ' with implicit format', '1.36' );
-			$format = $this->format;
-		}
+	public function toString( string $format ): string {
 		return $this->format( $format );
 	}
 
@@ -992,7 +979,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Parsed HTML.
 	 */
 	public function parse() {
-		$this->format = self::FORMAT_PARSE;
 		return $this->format( self::FORMAT_PARSE );
 	}
 
@@ -1004,7 +990,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Unescaped message text.
 	 */
 	public function text() {
-		$this->format = self::FORMAT_TEXT;
 		return $this->format( self::FORMAT_TEXT );
 	}
 
@@ -1016,7 +1001,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Unescaped untransformed message text.
 	 */
 	public function plain() {
-		$this->format = self::FORMAT_PLAIN;
 		return $this->format( self::FORMAT_PLAIN );
 	}
 
@@ -1028,7 +1012,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string HTML
 	 */
 	public function parseAsBlock() {
-		$this->format = self::FORMAT_BLOCK_PARSE;
 		return $this->format( self::FORMAT_BLOCK_PARSE );
 	}
 
@@ -1041,7 +1024,6 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Escaped message text.
 	 */
 	public function escaped() {
-		$this->format = self::FORMAT_ESCAPED;
 		return $this->format( self::FORMAT_ESCAPED );
 	}
 
@@ -1323,7 +1305,6 @@ class Message implements MessageSpecifier, Serializable {
 			if ( $format === 'block-parse' ) {
 				$format = 'parse';
 			}
-			$msg->format = $format;
 
 			// Message objects should not be before parameters because
 			// then they'll get double escaped. If the message needs to be

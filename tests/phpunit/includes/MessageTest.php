@@ -314,14 +314,9 @@ class MessageTest extends MediaWikiLangTestCase {
 		$msg = new Message( $key );
 		$this->assertSame( $expect, $msg->$format() );
 
-		// This statefulness is deprecated (T146416)
-		$this->hideDeprecated( 'Message::toString with implicit format' );
-		$this->assertSame( $expect, $msg->toString(), 'toString is affected by format call' );
-
 		// This used to behave the same as toString() and was a security risk.
 		// It now has a stable return value that is always parsed/sanitized. (T146416)
 		$this->assertSame( $expectImplicit, $msg->__toString(), '__toString is not affected by format call' );
-		$this->assertSame( $expect, $msg->toString(), 'toString is not affected by __toString' );
 	}
 
 	public static function provideToString_raw() {
@@ -354,11 +349,7 @@ class MessageTest extends MediaWikiLangTestCase {
 
 		$this->assertSame( $expect, $msg->$format() );
 
-		$this->hideDeprecated( 'Message::toString with implicit format' );
-		$this->assertSame( $expect, $msg->toString(), 'toString is affected by format call' );
-
 		$this->assertSame( $expectImplicit, $msg->__toString() );
-		$this->assertSame( $expect, $msg->toString(), 'toString is not naffected by __toString' );
 	}
 
 	/**
