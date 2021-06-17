@@ -1255,9 +1255,9 @@ class Parser {
 	 *     '<element param="x">tag content</element>' ]
 	 * @endcode
 	 *
-	 * @param array $elements List of element names. Comments are always extracted.
+	 * @param string[] $elements List of element names. Comments are always extracted.
 	 * @param string $text Source text string.
-	 * @param array &$matches Out parameter, Array: extracted tags
+	 * @param array[] &$matches Out parameter, Array: extracted tags
 	 * @return string Stripped text
 	 */
 	public static function extractTagsAndParams( array $elements, $text, &$matches ) {
