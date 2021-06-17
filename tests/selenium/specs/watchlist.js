@@ -8,18 +8,15 @@ const LoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Util = require( 'wdio-mediawiki/Util' );
 
 describe( 'Special:Watchlist', function () {
-	let username, password, bot;
+	let bot;
 
 	before( async () => {
-		username = Util.getTestString( 'user-' );
-		password = Util.getTestString( 'password-' );
+		// Default bot is the admin that we also use for viewing via LoginPage.loginAdmin()
 		bot = await Api.bot();
-		await Api.createAccount( bot, username, password );
 	} );
 
 	beforeEach( function () {
-		browser.deleteAllCookies();
-		LoginPage.login( username, password );
+		LoginPage.loginAdmin();
 	} );
 
 	it( 'should show page with new edit', function () {
@@ -39,6 +36,10 @@ describe( 'Special:Watchlist', function () {
 
 		WatchlistPage.open();
 
+		// We are viewing Special:Watchlist with the same account that made the edit,
+		// but by default Special:Watchlist includes both seen and unseen changes, so
+		// it'll show up anyway. The title we just edited will be first because the edit
+		// was the most recent.
 		assert.strictEqual( WatchlistPage.titles[ 0 ].getText(), title );
 	} );
 
