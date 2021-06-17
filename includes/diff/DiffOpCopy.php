@@ -37,8 +37,8 @@ class DiffOpCopy extends DiffOp {
 	public $type = 'copy';
 
 	/**
-	 * @param string[]|false $orig
-	 * @param string[]|false $closing
+	 * @param string[] $orig
+	 * @param string[]|false $closing Should either be identical to $orig, or not given
 	 */
 	public function __construct( $orig, $closing = false ) {
 		if ( !is_array( $closing ) ) {
