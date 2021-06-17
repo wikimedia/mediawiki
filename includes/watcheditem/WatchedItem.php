@@ -105,16 +105,6 @@ class WatchedItem {
 	}
 
 	/**
-	 * @deprecated since 1.34, use getUserIdentity()
-	 * Hard deprecated since 1.36
-	 * @return User
-	 */
-	public function getUser() {
-		wfDeprecated( __METHOD__, '1.34' );
-		return User::newFromIdentity( $this->user );
-	}
-
-	/**
 	 * @return UserIdentity
 	 */
 	public function getUserIdentity() {
