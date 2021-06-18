@@ -946,7 +946,6 @@
 	"previewconflict": "Used in Preview page.",
 	"session_fail_preview": "Error message in Preview page.\n\nSee also:\n* {{msg-mw|Token suffix mismatch}}\n* {{msg-mw|Session fail preview}}\n* {{msg-mw|Edit form incomplete}}\n\n{{Identical|Loss of session data}}",
 	"session_fail_preview_html": "Used as error message in Preview page.\n\n{{Identical|Loss of session data}}",
-	"token_suffix_mismatch": "Error message in Preview page.\n\nSee also:\n* {{msg-mw|Token suffix mismatch}}\n* {{msg-mw|Session fail preview}}\n* {{msg-mw|Edit form incomplete}}",
 	"edit_form_incomplete": "Error message in Preview page.\n\nSee also:\n* {{msg-mw|Token suffix mismatch}}\n* {{msg-mw|Session fail preview}}\n* {{msg-mw|Edit form incomplete}}",
 	"editing": "Shown as page title when editing a page. Parameters:\n* $1 - the name of the page that is being edited. e.g. \"Editing Main Page\"\n{{Related|Editing}}\n{{Identical|Editing}}",
 	"edit-textarea-aria-label": "Label for the Wikitext editing textarea for users of assistive technologies.",

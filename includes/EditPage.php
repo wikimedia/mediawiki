@@ -169,9 +169,6 @@ class EditPage implements IEditObject {
 	private $mTokenOk = false;
 
 	/** @var bool */
-	private $mTokenOkExceptSuffix = false;
-
-	/** @var bool */
 	private $mTriedSave = false;
 
 	/** @var bool */
@@ -462,7 +459,6 @@ class EditPage implements IEditObject {
 		$this->deprecatePublicProperty( 'deletedSinceEdit', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'lastDelete', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTokenOk', '1.35', __CLASS__ );
-		$this->deprecatePublicProperty( 'mTokenOkExceptSuffix', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'mTriedSave', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'incompleteForm', '1.35', __CLASS__ );
 		$this->deprecatePublicProperty( 'tooBig', '1.35', __CLASS__ );
@@ -1644,7 +1640,6 @@ class EditPage implements IEditObject {
 		$token = $request->getVal( 'wpEditToken' );
 		$user = $this->context->getUser();
 		$this->mTokenOk = $user->matchEditToken( $token );
-		$this->mTokenOkExceptSuffix = $user->matchEditTokenNoSuffix( $token );
 		return $this->mTokenOk;
 	}
 
@@ -4057,13 +4052,8 @@ class EditPage implements IEditObject {
 				$this->context->getLanguage()->getArrow() . ' ' .
 				$this->context->msg( 'continue-editing' )->text() . ']]</span>';
 			if ( $this->mTriedSave && !$this->mTokenOk ) {
-				if ( $this->mTokenOkExceptSuffix ) {
-					$note = $this->context->msg( 'token_suffix_mismatch' )->plain();
-					$this->incrementEditFailureStats( 'bad_token' );
-				} else {
-					$note = $this->context->msg( 'session_fail_preview' )->plain();
-					$this->incrementEditFailureStats( 'session_loss' );
-				}
+				$note = $this->context->msg( 'session_fail_preview' )->plain();
+				$this->incrementEditFailureStats( 'session_loss' );
 			} elseif ( $this->incompleteForm ) {
 				$note = $this->context->msg( 'edit_form_incomplete' )->plain();
 				if ( $this->mTriedSave ) {
