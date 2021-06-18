@@ -64,10 +64,13 @@ function installGlobalHandler( window ) {
 
 mw.errorLogger = {
 	/**
-	 * Logs an error by notifying `error.caught` topic subscribers that an event has occurred.
+	 * Logs an error by notifying subscribers to the given mw.track() topic
+	 * (by default `error.caught`) that an event has occurred.
 	 *
 	 * @param {Error} error
-	 * @param {string} [topic='error.caught']
+	 * @param {string} [topic='error.caught'] Error topic. Conventionally in the form
+	 *   'error.⧼component⧽' (where ⧼component⧽ identifies the code logging the error at a
+	 *   high level; e.g. an extension name).
 	 * @fires error_caught
 	 */
 	logError: function ( error, topic ) {
