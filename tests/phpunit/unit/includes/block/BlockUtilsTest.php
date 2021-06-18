@@ -14,6 +14,12 @@ use Wikimedia\TestingAccessWrapper;
  */
 class BlockUtilsTest extends MediaWikiUnitTestCase {
 
+	/**
+	 * @param array $options
+	 * @param UserFactory|null $userFactory
+	 *
+	 * @return BlockUtils
+	 */
 	private function getUtils(
 		array $options = [],
 		UserFactory $userFactory = null
