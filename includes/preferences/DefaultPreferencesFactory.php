@@ -36,6 +36,7 @@ use MediaWiki\Auth\PasswordAuthenticationRequest;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -53,6 +54,7 @@ use ParserOptions;
 use PreferencesFormOOUI;
 use Psr\Log\LoggerAwareTrait;
 use Psr\Log\NullLogger;
+use SkinFactory;
 use SpecialPage;
 use Status;
 use Title;
@@ -96,6 +98,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
+
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
+
+	/** @var Parser */
+	private $parser;
+
+	/** @var SkinFactory */
+	private $skinFactory;
 
 	/** @var UserGroupManager */
 	private $userGroupManager;
@@ -145,6 +156,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param HookContainer $hookContainer
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param LanguageConverterFactory|null $languageConverterFactory
+	 * @param Parser|null $parser
+	 * @param SkinFactory|null $skinFactory
 	 * @param UserGroupManager|null $userGroupManager
 	 */
 	public function __construct(
@@ -158,6 +172,9 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		LanguageNameUtils $languageNameUtils,
 		HookContainer $hookContainer,
 		UserOptionsLookup $userOptionsLookup,
+		LanguageConverterFactory $languageConverterFactory = null,
+		Parser $parser = null,
+		SkinFactory $skinFactory = null,
 		UserGroupManager $userGroupManager = null
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -179,12 +196,15 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userOptionsLookup = $userOptionsLookup;
 
-		// Don't break GlobalPreferences, fall back to global state if no UserGroupManager
-		// was injected
-		if ( !$userGroupManager ) {
-			$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
-		}
-		$this->userGroupManager = $userGroupManager;
+		// Don't break GlobalPreferences, fall back to global state if missing services
+		$services = static function () {
+			// BC hack. Use a closure so this can be unit-tested.
+			return MediaWikiServices::getInstance();
+		};
+		$this->languageConverterFactory = $languageConverterFactory ?? $services()->getLanguageConverterFactory();
+		$this->parser = $parser ?? $services()->getParser();
+		$this->skinFactory = $skinFactory ?? $services()->getSkinFactory();
+		$this->userGroupManager = $userGroupManager ?? $services()->getUserGroupManager();
 	}
 
 	/**
@@ -334,8 +354,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	protected function profilePreferences(
 		User $user, IContextSource $context, &$defaultPreferences
 	) {
-		$services = MediaWikiServices::getInstance();
-
 		// retrieving user name for GENDER and misc.
 		$userName = $user->getName();
 
@@ -528,8 +546,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		];
 
 		// see if there are multiple language variants to choose from
-		$languageConverterFactory = $services->getLanguageConverterFactory();
-		if ( !$languageConverterFactory->isConversionDisabled() ) {
+		if ( !$this->languageConverterFactory->isConversionDisabled() ) {
 
 			foreach ( LanguageConverter::$languagesWithVariants as $langCode ) {
 				if ( $langCode == $this->contLang->getCode() ) {
@@ -566,7 +583,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		}
 
 		// show a preview of the old signature first
-		$oldsigWikiText = $services->getParser()->preSaveTransform(
+		$oldsigWikiText = $this->parser->preSaveTransform(
 			'~~~',
 			$context->getTitle(),
 			$user,
@@ -577,7 +594,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		);
 		$signatureFieldConfig = [];
 		// Validate existing signature and show a message about it
-		if ( $services->getUserOptionsLookup()->getBoolOption( $user, 'fancysig' ) ) {
+		if ( $this->userOptionsLookup->getBoolOption( $user, 'fancysig' ) ) {
 			$validator = new SignatureValidator(
 				$user,
 				$context,
@@ -1414,9 +1431,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		$previewtext = $context->msg( 'skin-preview' )->escaped();
 
 		// Only show skins that aren't disabled
-		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-		$validSkinNames = $skinFactory->getAllowedSkins();
-		$allInstalledSkins = $skinFactory->getSkinNames();
+		$validSkinNames = $this->skinFactory->getAllowedSkins();
+		$allInstalledSkins = $this->skinFactory->getSkinNames();
 
 		// Display the installed skin the user has specifically requested via useskin=….
 		$useSkin = $context->getRequest()->getRawVal( 'useskin' );
@@ -1624,8 +1640,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 		// Quick check for mismatched HTML tags in the input.
 		// Note that this is easily fooled by wikitext templates or bold/italic markup.
 		// We're only keeping this until Parsoid is integrated and guaranteed to be available.
-		$parser = MediaWikiServices::getInstance()->getParser();
-		if ( $parser->validateSig( $signature ) === false ) {
+		if ( $this->parser->validateSig( $signature ) === false ) {
 			return $form->msg( 'badsig' )->escaped();
 		}
 
@@ -1639,9 +1654,8 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 	 * @return string
 	 */
 	protected function cleanSignature( $signature, $alldata, HTMLForm $form ) {
-		$parser = MediaWikiServices::getInstance()->getParser();
 		if ( isset( $alldata['fancysig'] ) && $alldata['fancysig'] ) {
-			$signature = $parser->cleanSig( $signature );
+			$signature = $this->parser->cleanSig( $signature );
 		} else {
 			// When no fancy sig used, make sure ~{3,5} get removed.
 			$signature = Parser::cleanSigInSig( $signature );
