@@ -608,7 +608,7 @@ class Parser {
 	 *  REVISION* magic words. 0 means that any current revision will be used. Null means
 	 *  that {{REVISIONID}}/{{REVISIONUSER}} will be empty and {{REVISIONTIMESTAMP}} will
 	 *  use the current timestamp.
-	 * @return ParserOutput A ParserOutput
+	 * @return ParserOutput
 	 * @return-taint escaped
 	 * @since 1.10 method is public
 	 */

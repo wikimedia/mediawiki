@@ -1985,7 +1985,7 @@ interface IDatabase {
 	 * @param callable $callback Callback that issues DB updates
 	 * @param string $cancelable Pass self::ATOMIC_CANCELABLE to use a
 	 *  savepoint and enable self::cancelAtomic() for this section.
-	 * @return mixed $res Result of the callback (since 1.28)
+	 * @return mixed Result of the callback (since 1.28)
 	 * @throws DBError If an error occurs, {@see query}
 	 * @throws Exception If an error occurs in the callback
 	 * @since 1.27; prior to 1.31 this did a rollback() instead of

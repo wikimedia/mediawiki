@@ -713,7 +713,7 @@ abstract class ContentHandler {
 	 * @param Title $title The page to determine the language for.
 	 * @param Content|null $content The page's content, if you have it handy, to avoid reloading it.
 	 *
-	 * @return Language The page's language
+	 * @return Language
 	 */
 	public function getPageLanguage( Title $title, Content $content = null ) {
 		global $wgLang;

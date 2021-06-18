@@ -63,7 +63,7 @@ class ArchivedFile {
 	/** @var int Height */
 	private $height;
 
-	/** @var string Metadata string */
+	/** @var string */
 	private $metadata;
 
 	/** @var string MIME type */

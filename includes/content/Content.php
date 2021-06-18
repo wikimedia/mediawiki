@@ -336,7 +336,7 @@ interface Content {
 	 *
 	 * @since 1.21
 	 *
-	 * @return Title|null The corresponding Title.
+	 * @return Title|null
 	 */
 	public function getRedirectTarget();
 

@@ -129,7 +129,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @since 1.35
 	 *
 	 * @param int $id Valid user ID
-	 * @return User The corresponding User object
+	 * @return User
 	 */
 	public function newFromId( int $id ) : User {
 		$user = new User();

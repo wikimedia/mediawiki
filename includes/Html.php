@@ -108,7 +108,7 @@ class Html {
 	 * @param array $attrs HTML attributes in an associative array
 	 * @param string[] $modifiers classes to add to the button
 	 * @see https://tools.wmflabs.org/styleguide/desktop/index.html for guidance on available modifiers
-	 * @return array $attrs A modified attribute array
+	 * @return array Modified attributes array
 	 */
 	public static function buttonAttributes( array $attrs, array $modifiers = [] ) {
 		global $wgUseMediaWikiUIEverywhere;
@@ -135,7 +135,7 @@ class Html {
 	 * and apply a set of default attributes.
 	 * Removes size attribute when $wgUseMediaWikiUIEverywhere enabled.
 	 * @param array $attrs An attribute array.
-	 * @return array $attrs A modified attribute array
+	 * @return array Modified attributes array
 	 */
 	public static function getTextInputAttributes( array $attrs ) {
 		global $wgUseMediaWikiUIEverywhere;

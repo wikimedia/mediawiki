@@ -2246,7 +2246,7 @@ abstract class Skin extends ContextSource {
 	 * to makeListItem instead of hardcoding the element creation boilerplate.
 	 * @since 1.35
 	 * @param array $urls
-	 * @return array
+	 * @return array[]
 	 */
 	final public function getPersonalToolsForMakeListItem( $urls ) {
 		$personal_tools = [];

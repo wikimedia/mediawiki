@@ -134,7 +134,7 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
-	 * @return User|null $target
+	 * @return User|null
 	 */
 	public function getTarget(): ?User {
 		return $this->target;

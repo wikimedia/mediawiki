@@ -391,7 +391,7 @@ class CookieSessionProvider extends SessionProvider {
 	/**
 	 * Return extra data to store in the session
 	 * @param User $user
-	 * @return array $session
+	 * @return array
 	 */
 	protected function sessionDataToExport( $user ) {
 		// If we're calling the legacy hook, we should populate $session

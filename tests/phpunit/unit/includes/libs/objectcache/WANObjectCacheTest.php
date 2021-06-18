@@ -22,8 +22,8 @@ class WANObjectCacheTest extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
 
 	/**
-	 * @param array $params [optional]
-	 * @return WANObjectCache[]|HashBagOStuff[] (WANObjectCache, BagOStuff)
+	 * @param array $params
+	 * @return array [ WANObjectCache, HashBagOStuff ]
 	 */
 	private function newWanCache( array $params = [] ) {
 		if ( isset( $params['broadcastRoutingPrefix'] ) ) {

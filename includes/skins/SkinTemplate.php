@@ -483,7 +483,7 @@ class SkinTemplate extends Skin {
 	 *
 	 * @since 1.31
 	 *
-	 * @return array Array of personal tools
+	 * @return array[]
 	 */
 	public function getStructuredPersonalTools() {
 		// buildPersonalUrls requires the template context.

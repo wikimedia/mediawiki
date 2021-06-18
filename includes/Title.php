@@ -186,7 +186,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	private $mDbPageLanguage = false;
 
-	/** @var TitleValue|null A corresponding TitleValue object */
+	/** @var TitleValue|null */
 	private $mTitleValue = null;
 
 	/** @var bool|null Would deleting this page be a big deletion? */
@@ -577,7 +577,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Make a Title object from a DB row
 	 *
 	 * @param stdClass $row Object database row (needs at least page_title,page_namespace)
-	 * @return Title Corresponding Title
+	 * @return Title
 	 */
 	public static function newFromRow( $row ) {
 		$t = self::makeTitle( $row->page_namespace, $row->page_title );
@@ -2000,7 +2000,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * # returns: Title{User:Foo}
 	 * @endcode
 	 *
-	 * @return Title Root title
+	 * @return Title
 	 * @since 1.20
 	 */
 	public function getRootTitle() {
@@ -2050,7 +2050,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * # returns: Title{User:Foo/Bar}
 	 * @endcode
 	 *
-	 * @return Title Base title
+	 * @return Title
 	 * @since 1.20
 	 */
 	public function getBaseTitle() {
@@ -2247,7 +2247,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *   The second parameter is deprecated since 1.19. Pass it as a key,value
 	 *   pair in the first parameter array instead.
 	 *
-	 * @return string String of the URL.
+	 * @return string
 	 */
 	public function getLocalURL( $query = '', $query2 = false ) {
 		global $wgArticlePath, $wgScript, $wgServer, $wgRequest, $wgMainPageIsDomainRoot;
@@ -3401,7 +3401,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @param array $options May be FOR UPDATE
 	 * @param string $table Table name
 	 * @param string $prefix Fields prefix
-	 * @return Title[] Array of Title objects linking here
+	 * @return Title[]
 	 */
 	public function getLinksTo( $options = [], $table = 'pagelinks', $prefix = 'pl' ) {
 		if ( count( $options ) > 0 ) {
@@ -3443,7 +3443,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * On heavily-used templates it will max out the memory.
 	 *
 	 * @param array $options Query option to Database::select()
-	 * @return Title[] Array of Title the Title objects linking here
+	 * @return Title[]
 	 */
 	public function getTemplateLinksTo( $options = [] ) {
 		return $this->getLinksTo( $options, 'templatelinks', 'tl' );
@@ -3513,7 +3513,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * On heavily-used templates it will max out the memory.
 	 *
 	 * @param array $options May be FOR UPDATE
-	 * @return Title[] Array of Title the Title objects used here
+	 * @return Title[]
 	 */
 	public function getTemplateLinksFrom( $options = [] ) {
 		return $this->getLinksFrom( $options, 'templatelinks', 'tl' );
@@ -3525,7 +3525,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @todo check if needed (used only in SpecialBrokenRedirects.php, and
 	 *   should use redirect table in this case).
-	 * @return Title[] Array of Title the Title objects
+	 * @return Title[]
 	 */
 	public function getBrokenLinksFrom() {
 		if ( $this->getArticleID() == 0 ) {
@@ -3561,7 +3561,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Get a list of URLs to purge from the CDN cache when this page changes.
 	 *
 	 * @deprecated 1.35 Use HtmlCacheUpdater
-	 * @return string[] Array of String the URLs
+	 * @return string[]
 	 */
 	public function getCdnUrls() {
 		$htmlCache = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
@@ -4145,7 +4145,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Get all extant redirects to this Title
 	 *
 	 * @param int|null $ns Single namespace to consider; null to consider all namespaces
-	 * @return Title[] Array of Title redirects to this title
+	 * @return Title[]
 	 */
 	public function getRedirectsHere( $ns = null ) {
 		$redirs = [];

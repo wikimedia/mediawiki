@@ -1036,7 +1036,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *
 	 * @internal For internal use only.
 	 * @param ResourceLoaderContext $context
-	 * @return string Vary string
+	 * @return string
 	 */
 	public static function getVary( ResourceLoaderContext $context ) {
 		return implode( '|', [
