@@ -26,6 +26,10 @@ use Wikimedia\Assert\Assert;
 
 /**
  * Handles increment the edit count for a given set of users
+ *
+ * TODO we no longer need to store the instances of the relevant `UserIdentity`s, now that
+ * User::$mEditCount was removed the only caching lives in UserEditTracker, we should
+ * stop storing those objects.
  */
 class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 	/** @var array[] Map of (user ID => ('increment': int, 'instances': UserIdentity[])) */
@@ -71,11 +75,10 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 		$mwServices = MediaWikiServices::getInstance();
 		$lb = $mwServices->getDBLoadBalancer();
 		$dbw = $lb->getConnectionRef( DB_PRIMARY );
-		$userFactory = $mwServices->getUserFactory();
 		$editTracker = $mwServices->getUserEditTracker();
 		$fname = __METHOD__;
 
-		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname, $userFactory, $editTracker ) {
+		( new AutoCommitUpdate( $dbw, __METHOD__, function () use ( $lb, $dbw, $fname, $editTracker ) {
 			foreach ( $this->infoByUser as $userId => $info ) {
 				$dbw->update(
 					'user',
@@ -97,26 +100,8 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					$lb->waitForMasterPos( $dbr );
 					$editTracker->initializeUserEditCount( $affectedInstances[0] );
 				}
-				$newCount = (int)$dbw->selectField(
-					'user',
-					'user_editcount',
-					[ 'user_id' => $userId ],
-					$fname
-				);
 
-				// Update the edit count in the instance caches. This is mostly useful
-				// for maintenance scripts, where deferred updates might run immediately
-				// and user instances might be reused for a long time. Only applies to
-				// instances where we have User objects, if we have UserIdentity only
-				// then invalidating the cache should be enough
-				foreach ( $affectedInstances as $affectedInstance ) {
-					if ( $affectedInstance instanceof User ) {
-						$affectedInstance->setEditCountInternal( $newCount );
-					}
-				}
-				// Clear the edit count in user cache too
-				$userFactory->newFromUserIdentity( $affectedInstances[0] )->invalidateCache();
-				// And the cache in UserEditTracker
+				// Clear the edit count in the UserEditTracker cache.
 				$editTracker->clearUserEditCache( $affectedInstances[0] );
 			}
 		} ) )->doUpdate();

@@ -45,7 +45,8 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 			'user',
 			[ 'user_editcount' => $count ],
 			[ 'user_id' => $user->getId() ],
-			__METHOD__ );
+			__METHOD__
+		);
 	}
 
 	public function testGetUserEditCount() {
@@ -61,14 +62,11 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( 5, $tracker->getUserEditCount( $user ) );
 	}
 
-	public function testGetUserEditCount_exception() {
-		// getUserEditCount throws if the user id is falsy
-		$userId = 0;
-		$user = new UserIdentityValue( $userId, __CLASS__ );
+	public function testGetUserEditCount_anon() {
+		// getUserEditCount returns null if the user is unregistered
+		$anon = UserIdentityValue::newAnonymous( '1.2.3.4' );
 		$tracker = $this->getServiceContainer()->getUserEditTracker();
-		$this->expectException( InvalidArgumentException::class );
-		$this->expectExceptionMessage( 'requires a user ID' );
-		$tracker->getUserEditCount( $user );
+		$this->assertNull( $tracker->getUserEditCount( $anon ) );
 	}
 
 	public function testGetUserEditCount_null() {
@@ -160,6 +158,18 @@ class UserEditTrackerTest extends MediaWikiIntegrationTestCase {
 			$editCountEnd - $editCountStart,
 			'Edit count was incremented'
 		);
+	}
+
+	public function testManualCache() {
+		// Make sure manually setting the cached value overrides the database, in case
+		// User::loadFromRow() is called with a row containing user_editcount that is
+		// different from the actual database value, the row takes precedence
+		$user = new UserIdentityValue( 123, __METHOD__ );
+		$this->setDbEditCount( $user, 5 );
+
+		$tracker = $this->getServiceContainer()->getUserEditTracker();
+		$tracker->setCachedUserEditCount( $user, 10 );
+		$this->assertSame( 10, $tracker->getUserEditCount( $user ) );
 	}
 
 }
