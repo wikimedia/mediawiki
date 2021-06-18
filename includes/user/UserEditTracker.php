@@ -139,8 +139,8 @@ class UserEditTracker {
 	 * Get the user's first edit timestamp
 	 *
 	 * @param UserIdentity $user
-	 * @return string|bool Timestamp of first edit, or false for
-	 *     non-existent/anonymous user accounts.
+	 * @return string|false Timestamp of first edit, or false for non-existent/anonymous user
+	 *  accounts.
 	 */
 	public function getFirstEditTimestamp( UserIdentity $user ) {
 		return $this->getUserEditTimestamp( $user, self::FIRST_EDIT );
@@ -150,8 +150,8 @@ class UserEditTracker {
 	 * Get the user's latest edit timestamp
 	 *
 	 * @param UserIdentity $user
-	 * @return string|bool Timestamp of latest edit, or false for
-	 *     non-existent/anonymous user accounts.
+	 * @return string|false Timestamp of latest edit, or false for non-existent/anonymous user
+	 *  accounts.
 	 */
 	public function getLatestEditTimestamp( UserIdentity $user ) {
 		return $this->getUserEditTimestamp( $user, self::LATEST_EDIT );
@@ -162,8 +162,7 @@ class UserEditTracker {
 	 *
 	 * @param UserIdentity $user
 	 * @param int $type either self::FIRST_EDIT or ::LATEST_EDIT
-	 * @return string|bool Timestamp of edit, or false for
-	 *     non-existent/anonymous user accounts.
+	 * @return string|false Timestamp of edit, or false for non-existent/anonymous user accounts.
 	 */
 	private function getUserEditTimestamp( UserIdentity $user, int $type ) {
 		if ( $user->getId() === 0 ) {

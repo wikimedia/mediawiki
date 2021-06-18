@@ -213,7 +213,7 @@ class ParserCache {
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
 	 * @param PageRecord $page
 	 * @param ParserOptions $popts
-	 * @return ParserOutput|bool False on failure
+	 * @return ParserOutput|false
 	 */
 	public function getDirty( PageRecord $page, $popts ) {
 		$page->assertWiki( PageRecord::LOCAL );
@@ -394,7 +394,7 @@ class ParserCache {
 	 * @param ParserOptions $popts
 	 * @param bool $useOutdated (default false)
 	 *
-	 * @return ParserOutput|bool False on failure
+	 * @return ParserOutput|false
 	 */
 	public function get( PageRecord $page, $popts, $useOutdated = false ) {
 		$page->assertWiki( PageRecord::LOCAL );
