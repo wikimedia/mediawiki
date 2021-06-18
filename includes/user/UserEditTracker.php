@@ -59,12 +59,11 @@ class UserEditTracker {
 	 * Get a user's edit count from the user_editcount field, falling back to initialize
 	 *
 	 * @param UserIdentity $user
-	 * @return int
-	 * @throws InvalidArgumentException If user is not registered
+	 * @return int|null Null for anonymous users
 	 */
-	public function getUserEditCount( UserIdentity $user ) : int {
-		if ( !$user->getId() ) {
-			throw new InvalidArgumentException( __METHOD__ . ' requires a user ID' );
+	public function getUserEditCount( UserIdentity $user ) : ?int {
+		if ( !$user->isRegistered() ) {
+			return null;
 		}
 
 		$userId = $user->getId();
@@ -195,7 +194,7 @@ class UserEditTracker {
 	}
 
 	/**
-	 * @internal For use by User::clearInstanceCache
+	 * @internal For use by User::clearInstanceCache()
 	 * @param UserIdentity $user
 	 */
 	public function clearUserEditCache( UserIdentity $user ) {
@@ -206,7 +205,24 @@ class UserEditTracker {
 		$userId = $user->getId();
 		$cacheKey = 'u' . (string)$userId;
 
-		$this->userEditCountCache[ $cacheKey ] = null;
+		unset( $this->userEditCountCache[ $cacheKey ] );
+	}
+
+	/**
+	 * @internal For use by User::loadFromRow() and tests
+	 * @param UserIdentity $user
+	 * @param int $editCount
+	 * @throws InvalidArgumentException If the user is not registered
+	 */
+	public function setCachedUserEditCount( UserIdentity $user, int $editCount ) {
+		if ( !$user->isRegistered() ) {
+			throw new InvalidArgumentException( __METHOD__ . ' with an anonymous user' );
+		}
+
+		$userId = $user->getId();
+		$cacheKey = 'u' . (string)$userId;
+
+		$this->userEditCountCache[ $cacheKey ] = $editCount;
 	}
 
 }
