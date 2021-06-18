@@ -1005,7 +1005,7 @@ EOT
 			$context,
 			$services->getReadOnlyMode(),
 			$services->getRepoGroup(),
-			$this->watchlistManager,
+			$services->getWatchlistManager(),
 			$this->linkRenderer,
 			$services->getUserOptionsLookup()
 		);
