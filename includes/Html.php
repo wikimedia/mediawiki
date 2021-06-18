@@ -1012,44 +1012,6 @@ class Html {
 	}
 
 	/**
-	 * Get HTML for an information message box with an icon.
-	 *
-	 * @internal For use by the WebInstaller class only.
-	 * @deprecated since 1.36
-	 *
-	 * @param string $rawHtml HTML
-	 * @param string $icon Path to icon file (used as 'src' attribute)
-	 * @param string $alt Alternate text for the icon
-	 * @param string $class Additional class name to add to the wrapper div
-	 * @return string HTML
-	 */
-	public static function infoBox( $rawHtml, $icon, $alt, $class = '' ) {
-		wfDeprecated( __METHOD__, '1.36' );
-
-		$s = self::openElement( 'div', [ 'class' => "mw-infobox $class" ] );
-
-		$s .= self::openElement( 'div', [ 'class' => 'mw-infobox-left' ] ) .
-				self::element( 'img',
-					[
-						'src' => $icon,
-						'alt' => $alt,
-					]
-				) .
-				self::closeElement( 'div' );
-
-		$s .= self::openElement( 'div', [ 'class' => 'mw-infobox-right' ] ) .
-				$rawHtml .
-				self::closeElement( 'div' );
-		$s .= self::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
-
-		$s .= self::closeElement( 'div' );
-
-		$s .= self::element( 'div', [ 'style' => 'clear: left;' ], ' ' );
-
-		return $s;
-	}
-
-	/**
 	 * Generate a srcset attribute value.
 	 *
 	 * Generates a srcset attribute value from an array mapping pixel densities
