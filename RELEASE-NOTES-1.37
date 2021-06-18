@@ -28,6 +28,8 @@ For notes on 1.36.x and older releases, see HISTORY.
 * $wgContentHandlerTextFallback - This setting, which defines how to
   react if a plain text version of a non-text Content object is
   requested using ContentHandler::getContentText(), is deprecated.
+* $wgShellboxUrl is deprecated, use $wgShellboxUrls as a mapping of
+  service => URL instead.
 * …
 
 ==== Removed configuration ====
