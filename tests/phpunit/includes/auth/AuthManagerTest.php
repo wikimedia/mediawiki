@@ -297,26 +297,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		return [ $provider, $reset ];
 	}
 
-	public function testSingleton() {
-		$this->hideDeprecated( 'MediaWiki\Auth\AuthManager::singleton' );
-		// Temporarily clear out the global singleton, if any, to test creating
-		// one.
-		$rProp = new \ReflectionProperty( AuthManager::class, 'instance' );
-		$rProp->setAccessible( true );
-		$old = $rProp->getValue();
-		$cb = new ScopedCallback( [ $rProp, 'setValue' ], [ $old ] );
-		$rProp->setValue( null );
-
-		$singleton = AuthManager::singleton();
-		$this->assertInstanceOf( AuthManager::class, AuthManager::singleton() );
-		$this->assertSame( $singleton, AuthManager::singleton() );
-		$this->assertSame( \RequestContext::getMain()->getRequest(), $singleton->getRequest() );
-		$this->assertSame(
-			\RequestContext::getMain()->getConfig(),
-			TestingAccessWrapper::newFromObject( $singleton )->config
-		);
-	}
-
 	public function testCanAuthenticateNow() {
 		$this->initializeManager();
 
