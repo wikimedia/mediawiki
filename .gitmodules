@@ -1458,3 +1458,9 @@
 	url = https://github.com/ProfessionalWiki/WikibaseLocalMedia/
 	branch = master
 	ignore = dirty
+[submodule "skins/BlueSky"]
+	path = skins/BlueSky
+	url = https://github.com/wikimedia/mediawiki-skins-BlueSky
+	branch = REL1_36
+	ignore=dirty
+	
