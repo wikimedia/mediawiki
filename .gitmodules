@@ -1462,5 +1462,4 @@
 	path = skins/BlueSky
 	url = https://github.com/wikimedia/mediawiki-skins-BlueSky
 	branch = REL1_36
-	ignore=dirty
-	
+	ignore = dirty
