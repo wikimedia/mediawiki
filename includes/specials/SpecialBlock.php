@@ -431,9 +431,6 @@ class SpecialBlock extends FormSpecialPage {
 
 		$block = DatabaseBlock::newFromTarget( $this->target );
 
-		// UserIdentity object if possible, string otherwise. Like $this->target
-		$blockTarget = $block ? ( $block->getTargetUserIdentity() ?: $block->getTargetName() ) : null;
-
 		// Populate fields if there is a block that is not an autoblock; if it is a range
 		// block, only populate the fields if the range is the same as $this->target
 		if ( $block instanceof DatabaseBlock && $block->getType() !== DatabaseBlock::TYPE_AUTO
