@@ -185,17 +185,6 @@ class AuthManager implements LoggerAwareInterface {
 	private $watchlistManager;
 
 	/**
-	 * Get the global AuthManager
-	 * @return AuthManager
-	 * @deprecated since 1.35, hard deprecated since 1.36
-	 * Use MediaWikiServices::getInstance()->getAuthManager() instead.
-	 */
-	public static function singleton() {
-		wfDeprecated( __METHOD__, '1.35' );
-		return MediaWikiServices::getInstance()->getAuthManager();
-	}
-
-	/**
 	 * @param WebRequest $request
 	 * @param Config $config
 	 * @param ObjectFactory $objectFactory

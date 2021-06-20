@@ -128,7 +128,19 @@ class ApiMain extends ApiBase {
 			]
 		],
 		'opensearch' => ApiOpenSearch::class,
-		'feedcontributions' => ApiFeedContributions::class,
+		'feedcontributions' => [
+			'class' => ApiFeedContributions::class,
+			'services' => [
+				'RevisionStore',
+				'TitleParser',
+				'LinkRenderer',
+				'LinkBatchFactory',
+				'HookContainer',
+				'DBLoadBalancer',
+				'NamespaceInfo',
+				'ActorMigration',
+			]
+		],
 		'feedrecentchanges' => [
 			'class' => ApiFeedRecentChanges::class,
 			'services' => [
