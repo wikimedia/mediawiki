@@ -133,9 +133,6 @@ class AuthManager implements LoggerAwareInterface {
 	/** Auto-creation is due to a Maintenance script */
 	public const AUTOCREATE_SOURCE_MAINT = '::Maintenance::';
 
-	/** @var AuthManager|null */
-	private static $instance = null;
-
 	/** @var WebRequest */
 	private $request;
 
@@ -2470,21 +2467,6 @@ class AuthManager implements LoggerAwareInterface {
 		foreach ( $providers as $provider ) {
 			$provider->$method( ...$args );
 		}
-	}
-
-	/**
-	 * Reset the internal caching for unit testing
-	 * @note Unit tests only
-	 * @internal
-	 */
-	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			// @codeCoverageIgnoreStart
-			throw new \MWException( __METHOD__ . ' may only be called from unit tests!' );
-			// @codeCoverageIgnoreEnd
-		}
-
-		self::$instance = null;
 	}
 
 	/**
