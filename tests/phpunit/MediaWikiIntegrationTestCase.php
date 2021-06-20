@@ -645,7 +645,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 		$wgRequest = RequestContext::getMain()->getRequest();
 		MediaWiki\Session\SessionManager::resetCache();
-		MediaWiki\Auth\AuthManager::resetCache();
 
 		// If anything changed the content language, we need to
 		// reset the SpecialPageFactory.
