@@ -1405,7 +1405,7 @@ mw.jqueryMsg.HtmlEmitter.prototype = {
 	},
 
 	/**
-	 * Tranform parsed structure into a int: (interface language) message include
+	 * Transform parsed structure into a int: (interface language) message include
 	 * Invoked by putting `{{int:othermessage}}` into a message
 	 *
 	 * TODO Syntax in the included message is not parsed, this seems like a bug?

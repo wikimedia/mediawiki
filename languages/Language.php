@@ -3312,7 +3312,7 @@ class Language {
 			$minimumLength = $minimumGroupingDigits + $fmt->getAttribute( NumberFormatter::GROUPING_SIZE );
 			if ( $minimumGroupingDigits && !preg_match( '/^\-?\d{' . $minimumLength . '}/', $number ) ) {
 				// Even if number does not need commafy, do decimal
-				// separator tranformation.  For example 1234.56 becoms
+				// separator transformation.  For example 1234.56 becomes
 				// 1234,56 in pl with $minimumGroupingDigits = 2
 				if ( !$noTranslate ) {
 					$number = strtr( $number, $separatorTransformTable ?: [] );
