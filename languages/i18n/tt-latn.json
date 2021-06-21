@@ -440,7 +440,6 @@
 	"previewconflict": "Älege aldan qaraw bitendä saqlanaçaq tekstnıñ niçek kürenäçäge kürsätelä.",
 	"session_fail_preview": "'''Qızğanıçqa, sezneñ sessiä identifikatorığız yuğaldı. Näticädä server üzgärtüläregezne qabul itä almıy.\nTağın ber tapqır qabatlawığız sorala.\nBu xata tağın qabatlansa, [[Special:UserLogout|çığığız]] häm yañadan keregez.'''",
 	"session_fail_preview_html": "'''Qızğanıçqa, sezneñ sessiä turında mäğlümatlar yuğaldı. Näticädä server üzgärtüläregezne qabul itä almıy.'''\n\n''{{SITENAME}} çista HTML qullanırğa röxsät itä, ä bu üz çiratında JavaScript-ataqalar oyıştıru öçen qullanılırğa mömkin. Şul säbäple sezneñ öçen aldan qaraw mömkinlege yabıq.''\n\n'''Ägär sez üzgärtüne yaxşı niät belän başqarasız ikän, tağın ber tapqır qabatlap qarağız. Xata qabatlansa, sayttan [[Special:UserLogout|çığığız]] häm yañadan keregez.'''",
-	"token_suffix_mismatch": "'''Sezneñ üzgärtü qabul itelmäde.'''\nSäbäbe: brauzerığız üzgärtü ölkäsendäge punktuatsiäne döres kürsätmi, näticädä tekst bozılırğa mömkin.\nMondıy xatalar anonim web-proksilar qullanğanda kilep çığarğa mömkin.",
 	"editing": "«$1» biten üzgärtü",
 	"editingsection": "«$1» bitendä bülek üzgärtüe",
 	"editingcomment": "«$1» biten üzgärtü (yaña bülek)",

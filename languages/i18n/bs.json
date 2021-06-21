@@ -680,7 +680,6 @@
 	"previewconflict": "Ovaj pregled prikazuje kako će tekst u gornjem polju izgledati ako odlučite sačuvati stranicu.",
 	"session_fail_preview": "Izvinjavamo se! Nismo mogli obraditi Vašu izmjenu zbog gubitka podataka o prijavi.\n\nMožda ste odjavljeni. <strong>Provjerite jeste li prijavljeni i pokušajte ponovo</strong>.\nAko i dalje ne radi, pokušajte se [[Special:UserLogout|odjaviti]] i ponovo prijaviti i provjerite dozvoljava li Vaš preglednik kolačiće s ovog sajta.",
 	"session_fail_preview_html": "Izvinjavamo se! Nismo mogli obraditi Vašu izmjenu zbog gubitka podataka sesije.\n\n<em>Budući da {{SITENAME}} ima omogućen izvorni HTML, pretpregled je sakriven kao mjera predostrožnosti protiv napada preko JavaScripta.</em>\n\n<strong>Ako ste pokušali napraviti pravu izmjenu, pokušajte ponovo.</strong>\nAko i dalje ne radi, pokušajte se [[Special:UserLogout|odjaviti]] i ponovo prijaviti i provjerite dozvoljava li Vaš preglednik kolačiće s ovog sajta.",
-	"token_suffix_mismatch": "'''Vaša izmjena nije prihvaćena jer je Vaš web preglednik ubacio znakove interpunkcije u token uređivanja.\nIzmjena je odbačena da bi se spriječilo uništavanje teksta stranice.\nTo se događa ponekad kad korisite problematični anonimni proxy koji je baziran na web-u.'''",
 	"edit_form_incomplete": "'''Neki dijelovi uređivačkog obrasca nisu došli do servera; dvaput provjerite da su vaše izmjene nepromjenjene i pokušajte ponovno.'''",
 	"editing": "Uređujete $1",
 	"creating": "Pravljenje stranice $1",

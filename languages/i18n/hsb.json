@@ -640,7 +640,6 @@
 	"previewconflict": "Tutón přehlad zwobraznja tekst w hornim tekstowym polu,  kaž so zjewi, jeli jón składuješ.",
 	"session_fail_preview": "'''Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili.'''\nSpytaj prošu hišće raz.\nJeli přeco hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so znowa.",
 	"session_fail_preview_html": "'''Njemóžachmy twoju změnu předźěłać, dokelž su so posedźenske daty zhubili.'''\n\n''Dokelž je we {{GRAMMAR:lokatiw|{{SITENAME}}}} luty HTML zmóžnjeny, je přehlad jako wěstotna naprawa přećiwo atakam přez JavaScript schowany.''\n\n'''Jeli to je chutnje měnjeny wobdźěłowanski pospyt, spytaj prošu hišće raz. Jeli přeco hišće njefunguje, [[Special:UserLogout|wotzjew so]] a přizjew so znowa.'''",
-	"token_suffix_mismatch": "'''Twoja změna je so wotpokazała, dokelž twój wobhladowak je znamješka skepsał.\nSkładowanje móže wobsah strony zničić. Móže so to na přikład přez wopačnje dźěłowacy proksy stać.'''",
 	"edit_form_incomplete": "'''Někotre dźěle wobdźěłowanskeho formulara njejsu serwer docpěli; prošu přepruwuj, hač twoje změny su w porjadku a spytaj hišće raz.'''",
 	"editing": "Wobdźěłanje strony $1",
 	"creating": "$1 so wutworja",

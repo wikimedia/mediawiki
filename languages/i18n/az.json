@@ -720,7 +720,6 @@
 	"previewconflict": "Bu sınaq göstərişidir və yayımlayacağınız təqdirdə mətnin redaktə səhifəsinin yuxarı hissəsində nəticənin necə olacağını göstərir.",
 	"session_fail_preview": "Üzr istəyirik! Sizin redaktəniz saxlanmadı. \n\nOla bilsin ki, profilinizdən çıxmısınız. <strong>Lütfən hesabınıza daxil olmağınızı yoxlayın və təkrar cəhd edin</strong>. Problem həll olunmazsa, [[Special:UserLogout|hesabınızdan çıxın]] və yenidən daxil olun, həmçinin brauzerinizin bu saytdan kukiləri qəbul etdiyini yoxlayın.",
 	"session_fail_preview_html": "Üzr istəyirik! Sessiya məlumatlarının itirilməsi səbəbindən düzəlişiniz yayımlanmadı.\n\n<em> {{SITENAME}} saytında xammal HTML effektiv olduğundan, sınaq görüntüsü JavaScript hücumlarına qarşı tədbir kimi gizlidir.</em>\n\n<strong>Bu qanuni bir redaktə cəhdidirsə, yenidən cəhd edin. </strong>\nƏgər hələ də işləməsə, [[Special:UserLogout|çıxış]] edin və yenidən daxil olun və brauzerinizin bu saytda çərəzlərə (cookies) icazə verdiyini yoxlayın.",
-	"token_suffix_mismatch": "<strong>Redaktəniz rədd edildi, çünki müştəri düzəliş jetonundakı punktuasiya simvollarını qarışdırdı.</strong>\nDüzəliş səhifə mətninin korrupsiyasının qarşısını almaq üçün rədd edildi.\nBu, bir arqument \"web-based anonim proxy\" xidməti istifadə edərkən bəzən olur.",
 	"edit_form_incomplete": "<strong>Düzəliş formasının bir hissəsi serverə çatmadı; Redaktələrinizin sağlam olduğunu və yenidən cəhd etdiyini təkrarlayın.</strong>",
 	"editing": "Redaktə $1",
 	"edit-textarea-aria-label": "Vikimətn redaktoru",

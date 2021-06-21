@@ -714,7 +714,6 @@
 	"previewconflict": "No seyrkerdışê verqaydi serê qutiyê nuşte tezim kerdış de yo, eke şıma qayile vurnayişê maddeyi seyino bıvini, no mocneno şıma.",
 	"session_fail_preview": "Ma ef kere. Vindibiyayişê tayê datay ra a kerdışê hesabê şıma de ma vurnayişê şıma qayd nêkerd. Newe ra tesel (cereb) bıkere. Eke no qayde zi nêbo, [[Special:UserLogout|hesabê xo bıqefelne]] u newera a kere.",
 	"session_fail_preview_html": "'''Ma meluli! Sebayê vindbiyayişê datasistemi ma vurnayişê şıma nêeşkeni qaydker.'''\n\n''Çunke keyepelê {{SITENAME}} de raw HTML aqtifo, seyrkerdışê verqayd semedê galayê (alızyayiş) JavaScript ri nımıyayo.''\n\n'''Eke no vurnayiş heqê şımayo, newe ra tesel bıker (bıcerebi). eke hona zi nêxebıtya, [[Special:UserLogout|vec]] newe ra hesabê xo aker.'''",
-	"token_suffix_mismatch": "'''Vurnayişê şıma tepeya ameyo çunke qutiyê imla xerıbya.\nVurnayişê şıma qey nêxerepyayişê peli tepeya geyra a.\nEke şıma servisê proksi yo anonim şuxulneni sebebê ey noyo.'''",
 	"edit_form_incomplete": "'''Qandê form dê vurnayışa tay wastera ma nêreşti; Vurnayışê ke şıma kerdê nêalızyayê, çım ra ravyarnê u fına bıcerbnê.'''",
 	"editing": "$1 vurriyeno",
 	"edit-textarea-aria-label": "Editorê çımeyê wikimetıni",

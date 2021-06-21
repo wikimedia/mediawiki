@@ -528,7 +528,6 @@
 	"previewconflict": "Dizze side belanget allinich it earste bewurkingsfjild oan.",
 	"session_fail_preview": "Spitich! Jo bewurking is net ferwurke, om't de sesjegegevens ferlern gien binne.\n\nJo soene ôfmeld wêze kinne. <strong>Besjoch oft jo noch hieltyd oanmeld binne, en besykje it nochris</strong>.\nAs it dan noch net slagget, [[Special:UserLogout|meld jo dan ôf]] en wer oan, en sjoch nei oft jo webblêder 'koekjes' tastiet fan dit webstee.",
 	"session_fail_preview_html": "Spitich! Jo bewurking is net ferwurke, om't de sesjegegevens ferlern gien binne.\n\n<em>Meidat {{GRAMMAR:lidw|{{SITENAME}}}} rûge HTML ynskeakele hat, is de foarfertoaning út foarsoarch ferburgen tsjin oanfallen mei JavaScript.</em>\n\n<strong>As dizze bewurking yn oarder is, besykje it dan fannijs.</strong>\nAs it dan noch net slagget, [[Special:UserLogout|meld jo dan ôf]] en wer oan, en sjoch nei oft jo webblêder 'koekjes' tastiet fan dit webstee.",
-	"token_suffix_mismatch": "<strong>Jo bewurking is wegere om't jo blêder de lêstekens yn it bewurkingstoken ûnkrekt behannele hat.</strong>\nDe bewurking is wegere om skeinen fan 'e sidetekst tefoaren te kommen.\nDat bart soms as der in webbasearre proxytsjinst brûkt wurdt dy't flaters befettet.",
 	"editing": "Bewurkje \"$1\"",
 	"creating": "$1 oanmeitsje",
 	"editingsection": "Bewurkje $1 (seksje)",

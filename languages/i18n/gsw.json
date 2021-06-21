@@ -618,7 +618,6 @@
 	"previewconflict": "Die Vorschau zeigt dr Inhalt vum obere Täxtfäld. Eso siht dr Artikel us, wän Du jetz uf Spychere drucksch.",
 	"session_fail_preview": "'''Dyyni Bearbeitig het nid chenne gspycheret wäre, wel Sitzigsdate verlore gange sin.\nBitte versuech s nomol. Derzue drucksch unter däre Täxtvorschau nomol uf „Syte spychere“.\nWänn s Problem blybt, [[Special:UserLogout|mäld Di ab]] un derno wider aa.'''",
 	"session_fail_preview_html": "'''Dyyni Bearbeitig het nid chenne gspycheret wäre, wel Sitzigsdate verlore gange sin.'''\n\n''Wel in {{SITENAME}} s Spychere vun ere reine HTML aktiviert isch, isch d Vorschau usbländet wore, zum JavaScript-Attacke z verhindere.''\n\n'''\nBitte versuech s nomol. Derzue drucksch unter däre Täxtvorschau nomol uf „Syte spicherne“.\nWänn s Problem blybt, [[Special:UserLogout|mäld Di ab]] un derno wider aa.'''",
-	"token_suffix_mismatch": "'''Dyyni Bearbeitig isch zruckgwise wore, wel Dyy Browser Zeiche im Bearbeite-Token verstimmlet het.\nS Spichere cha dr Inhalt vu dr Syte hii mache. Des git s e mänkmol, wänn eber e anonyme Proxy-Dienscht brucht, wu Fähler macht.'''",
 	"edit_form_incomplete": "'''Dr Inhalt vum Bearbeitigsformular isch nit vollständig zum Server chuu. Bitte prief Dyy Bearbeitigen uf Vollständigkeit un versuech s nomol.'''",
 	"editing": "Bearbeite vo «$1»",
 	"creating": "„$1“ aalege",

@@ -731,7 +731,6 @@
 	"previewconflict": "Phần xem trước này là kết quả của văn bản trong vùng soạn thảo phía trên và nó sẽ xuất hiện như vậy nếu bạn chọn xuất bản trang.",
 	"session_fail_preview": "Rất tiếc, những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.\n\nCó lẽ bạn đã bị đăng xuất. <strong>Vui lòng xác nhận rằng bạn vẫn đang đăng nhập và thử lưu trang lần nữa</strong>.\n\nNếu vẫn không thành công, hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại, đồng thời kiểm tra xem trình duyệt của bạn có cho phép cookie từ trang web này hay không.",
 	"session_fail_preview_html": "Rất tiếc, những sửa đổi của bạn chưa được lưu giữ do mất dữ liệu về phiên làm việc.\n\n<em>Do {{SITENAME}} cho phép dùng mã HTML thô, trang xem trước được ẩn đi để đề phòng bị tấn công bằng JavaScript.</em>\n\n<strong>Nếu sửa đổi này là đúng đắn, xin hãy thử lần nữa.</strong>\nNếu vẫn không thành công, bạn hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại, đồng thời kiểm tra xem trình duyệt của bạn có cho phép cookie từ trang web này hay không.",
-	"token_suffix_mismatch": "'''Sửa đổi của bạn bị hủy bỏ vì trình duyệt của bạn lẫn lộn các ký tự có dấu trong chìa khóa\nsửa đổi. Việc hủy bỏ này nhằm tránh nội dung trang bị hỏng.\nĐiều này thường xảy ra khi bạn sử dụng một dịch vụ proxy vô danh trên web có vấn đề.'''",
 	"edit_form_incomplete": "'''Một số phần của biểu mẫu sửa đổi không tới được máy chủ. Hãy kiểm tra rằng các sửa đổi của bạn còn nguyên và thử lại.'''",
 	"editing": "Sửa đổi $1",
 	"edit-textarea-aria-label": "Hộp sửa đổi văn bản wiki",

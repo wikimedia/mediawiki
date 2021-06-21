@@ -734,7 +734,6 @@
 	"previewconflict": "Tiu ĉi antaŭrigardo montras la tekston en la supra teksta redaktujo, kiel ĝi aperos se vi elektos publikigi ĝin.",
 	"session_fail_preview": "Ni ne povas procezi vian redakton pro perdo de seancaj datenoj.\n\nVi eble elsalutiĝis. <strong>Bonvolu kontroli, ke vi estas plue ensalutinta kaj reprovu</strong>.\nSe ankoraŭ ne funkcios, provu [[Special:UserLogout|elsaluti]] kaj reensaluti kaj kontrolu ĉu vi retfoliumilo akceptas kuketojn de tiu ĉi retejo.",
 	"session_fail_preview_html": "Bedaŭrinde, ni ne povas trakti vian redakton pro manko de seancaj datenoj.\n<em>Ĉar {{SITENAME}} ebligas krudan HTML-kodon, ĉi tiu antaŭrigardo estas kaŝita kiel prevento kontraŭ Ĝavaskriptaj atakoj.</em>\n\n<strong>Se ĉi tiu estas taŭga provo por redakti, bonvolu reprovi.<strong>\nSe ankoraŭ ne funkcias, provu [[Special:UserLogout|elsaluti]] kaj reensaluti kaj kontrolu ĉu vi retfoliumilo akceptas kuketojn de tiu ĉi retejo.",
-	"token_suffix_mismatch": "'''Via redakto estis malpermesita ĉar via kliento fuŝis la interpunkcion en la redakto-signo.\nLa redakto estis malpermesita por preventi koruptadon de la teksto de la paĝo.\nĈi tio kelkfoje okazas, kiam vi uzas fuŝan retbazan anoniman prokuran servon.'''",
 	"edit_form_incomplete": "'''Kelkaj partoj de la redaktada formo ne atingis la servilon; rekontrolu ke via redakto estas ĝusta kaj reprovu.'''",
 	"editing": "Redaktado de $1",
 	"edit-textarea-aria-label": "Vikiteksta redaktilo",

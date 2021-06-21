@@ -640,7 +640,6 @@
 	"previewconflict": "Detdiar föörskau wiset di boowenst dial faan dan tekst. So schocht hi ütj, wan dü ham nü seekerst.",
 	"session_fail_preview": "Entskilage! Din werk küd ei ufseekert wurd. Diar as wat skiaf gingen.\n\nFerlicht beest dü ufmeldet wurden. <strong>Stel seeker, dat dü noch uunmeldet beest an ferschük det man noch ans</strong>.\nWan det ei wal, do mutst dü di man [[Special:UserLogout|ufmelde]] an do weder nei uunmelde. Dan browser skal cookies uunnem kön.",
 	"session_fail_preview_html": "Din werk küd ei seekert wurd. Diar as wat skiaf gingen.\n\n<em>Uun {{SITENAME}} as HTML aktiwiaret, an diaram as JavaScript deaktiwiaret wurden.</em>\n\nFerschük det man noch ans an trak do üüb <em>Sidj seekre</em>.\nWan't do imer noch ei loket, [[Special:UserLogout|melde di uf]] an weder uun, an luke efter, of dan browser cookies tuläät.",
-	"token_suffix_mismatch": "'''Din werk küd ei ufseekert wurd, auer diar frääm tiaken uun san.'''\n\nDet komt flooksis föör, wan Dan anonym Proxy-siinst ei rocht werket.",
 	"edit_form_incomplete": "'''Enkelt dialen faan det formulaar san ei rocht uunkimen.'''\nWees so gud an kontroliare ales noch ans.",
 	"editing": "Bewerkin faan $1",
 	"creating": "Maage $1",

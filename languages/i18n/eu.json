@@ -707,7 +707,6 @@
 	"previewconflict": "Aurreikuspenak aldaketen koadroan idatzitako testua erakusten du, gorde ondoren agertuko den bezala.",
 	"session_fail_preview": "'''Sentitzen dugu! Ezin izan da zure aldaketa prozesatu, saioko datu batzuen galera dela-eta. Mesedez, saiatu berriz. Arazoak jarraitzen badu, saiatu [[Special:UserLogout|saioa amaitu]] eta berriz hasten.'''",
 	"session_fail_preview_html": "<strong>Sentitzen dugu! Ezin izan dugu zure aldaketa burutu, saio datu galera bat medio.</strong>\n\n<em>Wiki honek HTML kodea onartzen duenez, aurreikuspena ezgaituta dago JavaScript erasoak saihestu asmoz.</em>\n\n<strong>Aldaketa saiakera hau zuzena baldin bada, saiatu berriro mesedez. Arazoak jarraitzen badu, saiatu  [[Special:UserLogout|saioa itxi]] eta berriz hasten.</strong>",
-	"token_suffix_mismatch": "'''Zure aldaketa ezeztatua izan da zure bezeroak puntuazio-karaktereak itxuragabetu dituelako.\nAldaketa ezeztatua izan da testuaren galtzea galarazteko.\nHau batzuetan gertatzen da buggyan oinarritutako web proxy zerbitzua erabiltzean.'''",
 	"edit_form_incomplete": "'''Aldaketa formularioaren atal batzuk ez dira iritsi zerbitzarira; bi aldiz ziurtatu zure aldaketak osorik daudela eta berriro saiatu.'''",
 	"editing": "«$1» aldatzen",
 	"creating": "«$1» sortzen",

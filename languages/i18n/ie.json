@@ -510,7 +510,6 @@
 	"note": "<strong>Note:</strong>",
 	"previewnote": "<strong>Memora se que ti es solmen un prevision.</strong>\nTui changes ancor ne ha esset conservat!",
 	"continue-editing": "Ear al spacie de redaction",
-	"token_suffix_mismatch": "'''Tui redaction ha esset rejectet pro que tui software de navigation multilat li carácteres de punctuation in li simbol de redaction.'''\nLi redaction ha esset rejectet por impedir corruption del textu de págine.\nTi quelcvez ocurre quande vu es usant un service de autorisation anonim mal executet in Internet.",
 	"editing": "Redactent $1",
 	"edit-textarea-aria-label": "Redactor de fonte textu wiki",
 	"creating": "Creation de «$1»",

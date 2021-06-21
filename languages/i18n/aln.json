@@ -412,7 +412,6 @@
 	"previewconflict": "Kjo parapâmje pasqyron tekstin në kutinë e sipërme të redaktimit, njashtu si do të duket nëse e rueni.",
 	"session_fail_preview": "'''Na vjen keq! Nuk mujtëm me ruejtë redaktimin tuej për shkak të hupjes së sesionit.'''\nJu lutemi provoni prap.\nNëse prap nuk funksionon, provoni me u [[Special:UserLogout|çkyçë]] dhe me u kyçë prap.",
 	"session_fail_preview_html": "'''Na vjen keq! Nuk mujtëm me i ruejtë ndryshimet tueja për shkak të hupjes së sesionit.'''\n\n''Tue qenë se {{SITENAME}} ka të aktivizuem HTML të papërpunuem, parapâmja âsht e msheftë si preventivë kundër sulmeve me JavaScript.''\n\n'''Nëse kjo ishte redaktim legjitim, ju lutemi provoni prap.'''\nNëse prap nuk funksionon, provoni me u [[Special:UserLogout|çkyçë]] edhe me u kyçë prap.",
-	"token_suffix_mismatch": "'''Redaktimi juej u refuzue meqenëse shfletuesi juej i ka përzî shêjat e pikësimit në tekstin e redaktuem.'''\nRedaktimi âsht refuzue për me parandalue korruptimin e tekstit.\nKjo ndodh nganjiherë, kur jeni tue përdorë shërbime ndërmjetësash anonimizues që përmbajnë gabime.",
 	"editing": "Tue redaktue $1",
 	"editingsection": "Tue redaktue (sekcionin) $1",
 	"editingcomment": "Tue redaktue (sekcionin e ri) $1",

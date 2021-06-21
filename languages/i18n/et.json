@@ -708,7 +708,6 @@
 	"previewconflict": "See eelvaade näitab, kuidas ülemises toimetuskastis olev tekst hakkab välja nägema, kui otsustad selle avaldada.",
 	"session_fail_preview": "Vabandust! Meil ei õnnestunud seansiandmete kaotuse tõttu sinu muudatust töödelda.\n\nVõimalik, et oled välja loginud. <strong>Palun veendu, et oled endiselt sisse logitud ja proovi uuesti</strong>.\nKui see ei toimi, siis proovi [[Special:UserLogout|logida välja]] ja seejärel tagasi sisse ning kontrolli, kas brauser lubab sellest võrgukohast küpsiseid.",
 	"session_fail_preview_html": "Vabandust! Meil ei õnnestunud seansiandmete kaotuse tõttu sinu muudatust töödelda.\n\n<em>Kuna {{GRAMMAR:inessive|{{SITENAME}}}} on toor-HTML lubatud, on eelvaade JavaScripti-rünnakute vastase ettevaatusabinõuna peidetud.</em>\n\n<strong>Kui see on õigustatud redigeerimiskatse, proovi palun uuesti.</strong>\nKui see ikka ei tööta, proovi [[Special:UserLogout|välja]] ja tagasi sisse logida ning kontrolli, kas brauser lubab sellest võrgukohast küpsiseid.",
-	"token_suffix_mismatch": "'''Muudatus lükati tagasi, kuna sinu klienttarkvara ei suuda õigesti kirjavahemärke kasutada.'''\nMuudatus lükati tagasi, et vältida lehekülje segiminekut.\nSee juhtub mõnikord siis, kui kasutatakse vigast veebipõhist anonüümsusserverit.",
 	"edit_form_incomplete": "'''Redigeerimisvormi mõni osa ei jõudnud serverisse; kontrolli, kas sinu tehtud muudatused on alles, ja proovi uuesti.'''",
 	"editing": "Muutmisel on \"$1\"",
 	"edit-textarea-aria-label": "Viki lähteteksti redaktor",

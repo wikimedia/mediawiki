@@ -650,7 +650,6 @@
 	"previewconflict": "Mahihilíng sa patànaw na ini an tekstong nasa itaas na lugar nin paghirá arog sa maipapahiling kun ini an itatagama mo.",
 	"session_fail_preview": "'''Despensa! Dai mi naipadagos an paghirá mo huli sa pagkawara nin datos kan sesyon.\nProbaran tabì giraray. Kun dai man giraray magibo, probaran [[Special:UserLogout|na magluwas]] dangan maglaog giraray.'''",
 	"session_fail_preview_html": "'''Sori po! Dae tabi nyamo maiproseso an saimong pagliwat nin huli sa kawaraan kan datos sa sesyon.'''\n\n<em>Nin huli ta {{SITENAME}} igwa nin bakong pang naprosesong HTML pinagpagana, an patanaw ipinagtago bilang pag-ingat kontra sa atake kan JavaScript.<em>\n\n'''Kun ini sarong lehitimong pagprubar nin pagliwat, paki-otro tabi giraray.'''\nKun ini dae man giraray guminana, magprubar na [[Special:UserLogout|magluwas]] asin maglaog giraray, asin siguraduhon na ang browser nag-aako nin cookies sa site na ini.",
-	"token_suffix_mismatch": "'''Dai pigtogotan an paghirá mo ta sinabrit kan client mo an punctuation characters.\nDai pigtogotan ining paghirá tangarig maibitaran na maraot an teksto kan pahina.\nNanyayari nanggad ini kun naggagamit ka nin bakong maraháy asin dai bistong web-based proxy service.'''",
 	"edit_form_incomplete": "'''An ibang mga parte kan porma nin pagliwat dae nakaabot sa serbidor; paki-dobleng mansay na an saimong mga pinagliwat bilog na yaon pa asin paki-otro giraray.'''",
 	"editing": "Pigliliwat an $1",
 	"creating": "Pinagmumukna an $1",

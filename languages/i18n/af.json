@@ -605,7 +605,6 @@
 	"previewconflict": "Hierdie voorskou vertoon die teks in die boonste teksarea soos dit sou lyk as u die bladsy stoor.",
 	"session_fail_preview": "'''Jammer! Weens verlies aan sessie-inligting is die wysiging nie verwerk nie.\nProbeer asseblief weer. As dit steeds nie werk nie, probeer om [[Special:UserLogout|af te teken]] en dan weer aan te meld.'''",
 	"session_fail_preview_html": "'''Jammer! U wysigings is nie verwerk nie omdat sessie-data verlore gegaan het.'''\n\n''Omrede rou HTML hier by {{SITENAME}} ingevoer kan word, kan die voorskou nie gesien word nie ter beskerming teen aanvalle met JavaScript.''\n\n'''As dit 'n regmatige wysiging is, probeer asseblief weer. As dit daarna nog nie werk nie, [[Special:UserLogout|teken dan af]] en weer aan.'''",
-	"token_suffix_mismatch": "'''U wysiging is geweier omdat u webblaaier leestekens in die wysigingsveld verkeerdelik geïnterpreteer het.\nDie bewerking is geweier om verminking van die bladsy se teks te voorkom.\nDit gebeur soms as 'n webgebaseerde instaandiens (proxy) gebruik word wat foute bevat.",
 	"edit_form_incomplete": "'''Dele van die vorm het nie die bediener bereik nie. Kyk of alles reg lyk en probeer weer.'''",
 	"editing": "Besig om $1 te wysig",
 	"creating": "Besig om $1 te skep",

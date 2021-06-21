@@ -601,7 +601,6 @@
 	"previewconflict": "Pre-timeẓriwt-agi tesskan aḍris i yellan deg usawen lemmer tebɣiḍ a tt-tesmektiḍ.",
 	"session_fail_preview": "Suref-aɣ! ur nezmir ara a nesmekti abeddil inek axaṭer yella ugur.\nG leɛnayek ɛreḍ tikelt nniḍen. Lukan mazal yella ugur, ffeɣ umbeɛd kcem [[Special:UserLogout|logging out]].",
 	"session_fail_preview_html": "Ur nezmer ara an aklas ibeddilen inek/inem acku yella asṛuḥu n tilɣa deg taɣimit inek/inem.\n\n<em>Acku {{SITENAME}} i sermed azar n HTML, azaraskan yeseggelmes iwakken ur t-illint ara tinṭagin s Javascript.</em>\n\n<strong>Lukan abeddel agi d-aḥeqqani, ɛered tikkelt nniḍen.</strong>\nLukan yella ugur, [[Special:UserLogout|Senser]] dɣa qqen.",
-	"token_suffix_mismatch": "<strong>Abeddel inek/inem ur yeɣbel ara acku iminig inek/inem ur yesettengel ara s umellil isekkilen n uqqa deg asulay n ubeddel.</strong>\nTiririt agi telaq i usḍiqqef n usgufsu n uḍris deg usebter.\nUgur agi, yetilli tikwal mi seqdeceḍ aqeddac Proxy warisem yellan ɣef Web.",
 	"edit_form_incomplete": "<strong>Kra n iḥricen n tiferkit n ubeddel ur gweḍen ara ar uqeddac, ilaq ad selkeneḍ ma ibeddilen ur erẓen ara dɣa ɛreḍ tikkelt nniḍen.</strong>",
 	"editing": "Aglaf n $1",
 	"creating": "Asnulfu n $1",

@@ -795,7 +795,6 @@
 	"previewconflict": "Bu ön izleme, metni yayımlamayı seçerseniz görüneceği gibi üst metin düzenleme alanındaki metni yansıtır.",
 	"session_fail_preview": "Özür dileriz. Oturum verisi kaybından dolayı değişikliğinizi kaydedemedik.\n\nOturumunuzu kapatmış olabilirsiniz. <strong>Lütfen oturumunuzun açık olduğunu doğrulayıp tekrar deneyiniz</strong>.\nEğer sorun devam ederse, [[Special:UserLogout|oturumu kapatıp]] tekrar giriş yapmayı deneyin ve tarayıcınızın bu siteden çerezlere izin verip vermediğini kontrol edin.",
 	"session_fail_preview_html": "Özür dileriz! Düzenleme işleminiz, oturum verisi kaybı nedeniyle işlenemedi.\n\n<em>{{SITENAME}} sayfasında ham HTML özelliği etkin olduğundan önizleme, JavaScript saldırılarına karşı bir önlem olarak gizlenir.</em>\n\n<strong>Bu yasal bir düzenleme girişimi ise lütfen tekrar deneyin.</strong>\nHâlâ çalışmıyorsa [[Special:UserLogout|çıkış yapmayı]] ve ardından tekrar giriş yapmayı deneyin ve tarayıcınızın bu sitedeki çerezlere izin verdiğini kontrol edin.",
-	"token_suffix_mismatch": "<strong>Düzenleme anahtarındaki noktalama işaretlerini yönettiği için düzenlemeniz reddedildi.</strong>\nSayfa metninin bozulmasını önlemek için düzenleme reddedildi.\nBu bazen, hatalı web tabanlı anonim bir proxy hizmeti kullandığınızda olur.",
 	"edit_form_incomplete": "<strong>Değişiklik formu için bazı sunuculara erişilemedi; yaptığınız değişiklikler bozulmamıştır, gözden geçirip tekrar deneyiniz.</strong>",
 	"editing": "\"$1\" sayfasını değiştirmektesiniz",
 	"edit-textarea-aria-label": "Vikimetin kaynak editörü",

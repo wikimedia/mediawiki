@@ -407,7 +407,6 @@
 	"previewconflict": "Al previsoreal se muestra cúmu queará el testu una vezi emburacaus los chambus.",
 	"session_fail_preview": "'''Marru al empuntal la eición.\nPol favol, ententa empuntala otra vezi, i si acontina marrandu, preba a afechal i abril de nuevu la tu cuenta.'''",
 	"session_fail_preview_html": "'''Lo sentimus, nu á siu posibri procesal la tu eición ebiu a una perda e datus de sesión.'''\n\n''Puestu que {{SITENAME}} tieni ativau el HTML puru, la previsorealización nu se muestrará cumu precaución anti los ataquis en JavaScript.''\n\n'''Si esti es un ententu lehítimu d'eición, pol favol, ententalu otra vezi. Si acontina sin furrulal, preba a desconetalti i gorvel a entral ena tu cuenta.'''",
-	"token_suffix_mismatch": "'''La tu eición nu á siu acetá ebiu a qu'el tu escrucaol mutiló los caráteris de puntuación nel eitol. La eición nu á siu acetá pa prevenil pobremas nel artículu.\nEsti pobrema se dá angunas vezis si estás gastandu un proxy anónimu basau en web que seya pobremáticu.'''",
 	"editing": "Eitandu $1",
 	"editingsection": "Eitandu $1 (seción)",
 	"editingcomment": "Eitandu $1 (nueva seción)",

@@ -501,7 +501,6 @@
 	"previewconflict": "Titilikan ini mancarminakan naskah dalam naskah wilayah atas babakan sawagai mana ini akan mancungul amun disimpan.",
 	"session_fail_preview": "Maap! Kami kada kawa mamproses babakan pian maraga tahapusnya data sesi.\n\n\nPian mungkin sudah kaluar log. <strong>Muhun pastiakan pian masih babuat log wan cubai baasa</strong>.\nAmun masih kada kawa,ubai [[Special:UserLogout|kaluar log]] wan babuat log basa, wan cek bahwa panjalajah pian maizinakan kuki matan situs ngini.",
 	"session_fail_preview_html": "'''Kami kada kawa manarusakan babakan Pian marga kahilangan wayah data.'''\n\n''Marga {{SITENAME}} mangkawa'akan HTML mantah, titilikan disungkupakan sawagai pancagahan sarangan Javascript.''\n\n'''Amun nangini adalah sabuting parcubaan babakan nang sabujurnya, muhun cubai lagi.'''\nAmun ngini masih haja kada kawa, cubai [[Special:UserLogout|kaluar log]] wan babuat log pulang, wan cek panjalajah pian manarima kuki matan situs ngini.",
-	"token_suffix_mismatch": "'''Babakan Pian sudah kada ditarima marga aplikasi Pian mahancuri tanda baca pada babakan token.'''\nBabakan ini kada ditarima hagan mancagah kasalahan pada naskah tungkaran.\nNangini bahanu tajadi amun Pian mamuruk sabuting layanan proxy buggy bapandal web kada bangaran.",
 	"edit_form_incomplete": "'''Babarapa hagian matan purmulir babakan kada sampai server; pariksa pulang apakah babakan Pian tatap utuh wan cubai lagi.'''",
 	"editing": "Mambabak $1",
 	"creating": "Ma-ulah $1",

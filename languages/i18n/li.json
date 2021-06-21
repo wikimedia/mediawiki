@@ -653,7 +653,6 @@
 	"previewconflict": "Dees versie tuint wie de teks in 't bovenste veld oet geit zeen es e zouws opsjlaon.",
 	"session_fail_preview": "Dien bewirking is neet verwirk ómdet sessiegegaeves verlaore zeen gegange.\n\nMeugelikerwies bös se automatisch oetgelog. <strong>Stèl vas of se nag bös aangemeldj en perbeer 't oppernuuj.</strong>\nEs 't den nanneet lök, [[Special:UserLogout|log dich oet]] en den weer aan, en controleer of diene browser waal cookies tousteit van dees site.",
 	"session_fail_preview_html": "Dien bewirking is neet verwirk ómdet sessiegegaeves verlaore zeen gegange.\n\n<em>Ómdet in {{SITENAME}} roew HTML is oetgeztte, is 'n veurbesjoewing neet meugelik es besjurming taenge aanvalle mit JavaScript.</em>\n\n<strong>Es dit 'n legitiem bewirking is, perbeer 't den oppernuuj.</strong>\nEs 't den nanneet lök, [[Special:UserLogout|log dich oet]] en den weer aan, en controleer of diene browser waal cookies tousteit van dees site.",
-	"token_suffix_mismatch": "'''Dien bewerking is geweigerd omdat dien client de laesteikes in 't bewerkingstoken onjuist haet behandeld. De bewerking is geweigerd om verminking van de paginateks te veurkomme. Dit gebeurt soms es d'r een webgebaseerde proxydienst wurt gebroek die foute bevat.'''",
 	"edit_form_incomplete": "'''Sommige ongerdeile van 't bewerkingsformuleer höbbe de server neet bereik. Controleer of dien bewerkinge intak zien en perbeer 't obbenuits.'''",
 	"editing": "Bewirkingspagina: $1",
 	"creating": "Aanmake van $1",

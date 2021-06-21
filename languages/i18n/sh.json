@@ -681,7 +681,6 @@
 	"previewconflict": "Ovaj pretpregled reflektuje tekst u gornjem polju\nkako će izgledati ako pritisnete \"Snimi stranicu\".",
 	"session_fail_preview": "Nažalost, nisam mogao obraditi izmjenu zbog gubitka podataka o sesiji.\n\nMožda ste odjavljeni. <strong>Provjerite jeste li i dalje prijavljeni i pokušajte ponovno.<strong>\nAko se problem nastavi pojavljivati, [[Special:UserLogout|odjavite se]] i ponovno prijavite, te provjerite da preglednik dopušta kolačiće s ovog sajta.",
 	"session_fail_preview_html": "Žao nam je! Nismo mogli da obradimo vašu izmjenu zbog gubitka sesijskih podataka.\n\n<em>Zbog toga što {{SITENAME}} ima omogućen izvorni HTML, predpregled je sakriven kao predostrožnost protiv JavaScript napada.</em>\n\n<strong>Ako ste pokušali da napravite pravu izmjenu, molimo pokušajte ponovo.</strong>\nAko to ne riješi problem, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite, i provjerite da preglednik dopušta kolačiće s ovog sajta.",
-	"token_suffix_mismatch": "'''Vaša izmjena nije prihvaćena jer je Vaš web preglednik ubacio znakove interpunkcije u token uređivanja.'''\nIzmjena je odbačena da bi se spriječilo uništavanje teksta stranice.\nTo se događa ponekad kad korisite problematični anonimni proxy koji je baziran na web-u.",
 	"edit_form_incomplete": "'''Neki dijelovi uređivačkog obrasca nisu došli do servera; dvaput provjerite da su vaše izmjene nepromjenjene i pokušajte ponovno.'''",
 	"editing": "Uređujete $1",
 	"creating": "Stvaranje $1",

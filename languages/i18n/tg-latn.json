@@ -370,7 +370,6 @@
 	"previewconflict": "In peşnamoiş akkoskunandai matni nohijai viroiş dar bolo ast va agar onro zaxira kuned bo hamin şakl nişoda doda xohad şud.",
 	"session_fail_preview": "'''Bubaxşed! Az sababi az dast raftani ittilooti nişasti korbarī, nametavonem viroişhoi şumoro pardoziş kunem.\nLutfan dubora sa'j kuned. Agar boz bo hamin pajom rū ba rū şaved, az sistem xoriç şaved va muçaddadan vorid şaved.'''",
 	"session_fail_preview_html": "'''Bubaxşed! Imkoni sabti viroişi şumo ba xotir az dast raftani ittiloot nişast.'''\n\n''Bo tavaççūh ba in ki dar {{SITENAME}} imkoni HTML xom fa'ol ast, peşnamoişi sahifa pinhon şuda to imkoni ziddi hamaloti ÇavaSkript vuçud ndoşta boşad.''\n\n'''Agar bovarī dored, ki in peşnamoiş jak viroişi miçoz as, onro takror kuned. Agar peşnamoiş natiçae nadod, az sistem xoriç şaved va dubora vorid şaved'''",
-	"token_suffix_mismatch": "'''Viroişhoi şumo zaxira naşud, zero mururgari şumo naviştahoi nuqtaguzoriro az ham poşida ast. Viroişi şumo zaxira naşud to az vajron şudani matni sahifa peşgirī kunad.\nBa'zan in xato vaqte pajdo meşavad, ki şumo az xizmati (web-based proxy) istifoda mekuned.'''",
 	"editing": "Dar holi viroiş $1",
 	"editingsection": "Dar holi viroişi $1 (qismat)",
 	"editconflict": "Barxūrdi viroişī: $1",

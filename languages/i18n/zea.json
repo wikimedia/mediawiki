@@ -381,7 +381,6 @@
 	"previewconflict": "Deêze voevertoônieng heef an oe a de tekst in 't bovenste veld deruut zie a je die opsli.",
 	"session_fail_preview": "'''Sorry! Je bewerkieng is nie verwerkt, omdan de sessiehehevens verloorn zien ehaen.\nProbeer 't opnieuw. A 't dan nog nie luk, mel jen eihen dan of en wee an.'''",
 	"session_fail_preview_html": "'''Sorry! Je bewerkieng is nie verwerkt, omdan sessiehehevens verloren zien ehaene.'''\n\n''Omda in {{SITENAME}} ruwe HTML is ineschaokeld, is een voevertoônieng nie meuhlijk as beschermieng tehen anvall'n mie JavaScript.''\n\n'''A dit een lehitieme bewerkieng is, probeer 't dan opnieuw. A 't dan nog nie luk, mel jen eihen dan of en wee an.'''",
-	"token_suffix_mismatch": "'''Je bewerkieng is eweiherd omda je browser de leesteêkens in 't bewerkiengstoken onjuust ei behandeld.\nDe bewerkieng is eweiherd om vermienkieng van de paginatekst te voorkomm'n.\nDit gebeur soms a der een webhebaseerde proxydienst wor gebruukt die a fout'n bevat.'''",
 	"editing": "Bezig mie bewerken van $1",
 	"editingsection": "Bezig mie bewerken van $1 (deêlpagina)",
 	"editingcomment": "Bezig mie bewerken van $1 (opmerkieng)",
