@@ -1306,7 +1306,7 @@
 [submodule "extensions/SnapProjectEmbed"]
 	path = extensions/SnapProjectEmbed
 	url = https://github.com/snapwiki/SnapProjectEmbed.git
-	branch = master
+	branch = stable
 	ignore = dirty
 [submodule "extensions/MediaModeration"]
 	path = extensions/MediaModeration
