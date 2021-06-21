@@ -696,7 +696,6 @@
 	"previewconflict": "箇个预览显示了上头文字编辑区里向个内容。伊会得垃拉侬保存之后出现。",
 	"session_fail_preview": "弗好意思！由于会话数据落失，我伲弗好处理侬个编辑。\n\n侬作兴已经登出哉。<strong>请核实侬阿曾登录勒上，再试一试</strong>。如果仍旧弗来事，请[[Special:UserLogout|登出]]仔再重新登录，并确保侬个浏览器允许本站个cookie。",
 	"session_fail_preview_html": "弗好意思！因为会话数据落失，我伲弗好处理侬个编辑。\n\n<em>由于{{SITENAME}}允许使用原始个HTML，为仔防范JavaScript攻击，预览已经囥脱。</em>\n\n<strong>如果箇是一趟合法个编辑，请再试一遍。</strong>如果仍旧弗来事，请[[Special:UserLogout|登出]]仔再重新登录，并确保侬个浏览器允许本站个cookie。",
-	"token_suffix_mismatch": "<strong>由于侬用户端里向个编辑令牌毁损仔一些标点符号字元，为防止编辑个文字损坏，侬个编辑已经畀回头。</strong>箇种情况通常出现垃拉使用含有交关bug、以网络为主个匿名代理服务个辰光。",
 	"edit_form_incomplete": "<strong>编辑表格个某些部分弗曾到达服务器，请检查侬个编辑是弗是完整并重试。</strong>",
 	"editing": "编辑“$1”",
 	"edit-textarea-aria-label": "Wiki标记语言源代码编辑器",

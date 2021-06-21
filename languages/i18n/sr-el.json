@@ -708,7 +708,6 @@
 	"previewconflict": "Ovaj pregled oslikava kako će izgledati tekst u tekstualnom okviru.",
 	"session_fail_preview": "Zbog gubitka podataka o sesiji, nije moguće obraditi vašu izmenu.\n\nMožda ste odjavljeni. <strong>Proverite jeste li još prijavljeni i pokušajte ponovo</strong>.\nAko i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite, pa proverite da li pregledač dozvoljava kolačiće sa ovog sajta.",
 	"session_fail_preview_html": "Nismo mogli da obradimo vašu izmenu zbog gubitka podataka sesije.\n\n<em>Budući da je na ovom projektu omogućen unos HTML oznaka, pregled je sakriven kao mera predostrožnosti protiv napada preko javaskripta.</em>\n\n<strong>Ako ste pokušali da napravite pravu izmenu, pokušajte ponovo.<strong>\nAko i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite i proverite da li vaš pregledač dozvoljava kolačiće sa ovog sajta.",
-	"token_suffix_mismatch": "<strong>Vaša izmena je odbijena jer je vaš klijent ubacio znakove interpunkcije u token uređivanja.</strong>\nIzmena je odbijena radi sprečavanja uništavanja teksta stranice.\nOvo se ponekad događa kada koristite problematični anonimni posrednik koji je zasnovan na vebu.",
 	"edit_form_incomplete": "<strong>Neki delovi obrasca za uređivanje nisu stigli do servera. Proverite da li su vaše izmene nepromenjene i pokušajte ponovo.</strong>",
 	"editing": "$1 — uređivanje",
 	"edit-textarea-aria-label": "Uređivač izvora (vikiteksta)",

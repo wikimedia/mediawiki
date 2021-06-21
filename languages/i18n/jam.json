@@ -427,7 +427,6 @@
 	"previewconflict": "Dis priivyuu riflek di tex ina di opa editin ieria az iwi apier ef yu chuuz fi siebi.",
 	"session_fail_preview": "'''Sari! Wi kudn pruoses yu edit juu tu a laas a seshan dieta.'''\nBegyu chrai agen.\nEf istil no wok, chrai [[Special:UserLogout|lag out]] ahn lag bak iin.",
 	"session_fail_preview_html": "'''Sari! Wi kudn pruoses yu edit juu tu laas a seshan dieta.'''\n\n''Bikaa {{SITENAME}} ab raa HTML eniebl, di priivyuu aidwe az prikaashan gens JavaScript atak.''\n\n'''Ef dis a lejitimet edit atemp, begyu chrai agen.'''\nEf istil no wok, chrai [[Special:UserLogout|lag out]] ahn lag bak iin.",
-	"token_suffix_mismatch": "'''Yu edit rijek bikaa yu klayant manggl di pongtyueshan kiaraktadem ina di edit tuokn.'''\nDi edit rijek fi privent koropshan a di piej tex.\nDis somtaim apn wen yu a yuuz a bogi web-bies ananimos praxi saabis.",
 	"editing": "Editin $1",
 	"creating": "Krietin $1",
 	"editingsection": "Editin $1 (sekshan)",

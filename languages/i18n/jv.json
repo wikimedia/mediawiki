@@ -636,7 +636,6 @@
 	"previewconflict": "Pratuduh iki nuduhaké tèksé ing pérangan ndhuwur kothak besutan tèks lan nuduhaké wujudé kaya déné yèn wis disimpen.",
 	"session_fail_preview": "Ngapunten! Kita ora bisa ngayahi besutané panjenengan amarga ilangé sèsi dhata.\n\nPanjenengan bokmanawa wis metu log. <strong>Mangga vèrifikasi manawa panjenengan isih mlebu log lan jajalen manèh</strong>.\nManawa isih durung kena, jajalen [[Special:UserLogout|metu log]] lan mlebu log manèh, banjur priksanen apa pangluruné panjenengan ngidinaké kuki saka situs iki.",
 	"session_fail_preview_html": "'''Nuwun sèwu! Kita ora bisa prosès suntingan panjenengan amarga data sési ilang.'''\n\n''Amarga wiki iki ngidinaké panrapan HTML mentah, pratayang didelikaké minangka penggakan marang serangan Javascript.''\n\n'''Yèn iki upaya suntingan kang trep, mangga dicoba manèh. Yèn isih tetep ora kasil, cobanen metu log utawa oncat lan mlebua manèh.'''",
-	"token_suffix_mismatch": "<strong>Besutané panjenengan ditulak amarga aplikasi klièné panjenengan ngowahi karakter tandha waca ing token besutané.</strong>\nBesutané wis ditulak kanggo nyegah rusaké tèks kaca.\nKang mangkono biyasané kadadéan nalika panjenengan nganggo paladenan proksi anonim kang lelandhesan jaringan.",
 	"edit_form_incomplete": "<strong>Sawenèh pérangan formulir besut ora nyandhak paladèné; priksanen manèh yèn besutané panjenengan isih wutuh banjur jajalen manèh.</strong>",
 	"editing": "Mbesut $1",
 	"creating": "Nggawé $1",

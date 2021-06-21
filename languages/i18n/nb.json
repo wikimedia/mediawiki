@@ -730,7 +730,6 @@
 	"previewconflict": "Slik vil teksten i redigeringsvinduet se ut dersom du publiserer den.",
 	"session_fail_preview": "'''Beklager! Klarte ikke å lagre redigeringen din på grunn av tap av øktdata.'''\n\nDu kan ha blitt logget ut. <strong>Sjekk at du fortsatt er innlogget og prøv igjen.</strong>\nOm det fortsetter å gå galt, prøv å [[Special:UserLogout|logge ut]] og så inn igjen, og sjekk at nettleseren din godtar informasjonskapsler fra denne siden.",
 	"session_fail_preview_html": "Beklager! Klarte ikke å lagre redigeringen din på grunn av tap av øktdata.\n\n<em>Fordi {{SITENAME}} har rå HTML slått på, er forhåndsvisningen skjult for å forhindre JavaScript-angrep.</em>\n\n<strong>Om dette er et legitimt redigeringsforsøk, prøv igjen.</strong> Om det fortsatt ikke fungerer, prøv å [[Special:UserLogout|logge ut]] og logge inn igjen og sjekk at nettleseren din godtar informasjonskapsler fra dette nettstedet.",
-	"token_suffix_mismatch": "'''Redigeringen din har blitt avvist fordi klienten din ikke hadde punktasjonstegn i redigeringsteksten. Redigeringen har blitt avvist for å hindre ødeleggelse av artikkelteksten. Dette forekommer av og til når man bruker vevbaserte anonyme proxytjenester.'''",
 	"edit_form_incomplete": "'''Deler av redigeringsskjemaet nådde ikke tjeneren; dobbelsjekk at redigeringen er korrekt og prøv igjen.'''",
 	"editing": "Redigerer $1",
 	"edit-textarea-aria-label": "Wikitekstkilderedigering",

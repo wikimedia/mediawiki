@@ -635,7 +635,6 @@
 	"previewconflict": "Sawangan ieu mangrupa eunteung pikeun téks na rohangan ngédit sakumaha bakal katémbong mun ku anjeun disimpen.",
 	"session_fail_preview": "Hampura, kami teu bisa ngolah éditan anjeun alatan kapupusna data sési.\n\nAjeun meureun geus kaluar log. '''Wayahna riksakeun yén anjeun téh masih asup log kénéh atawa henteu sarta coba sakali deui.'''\nMun masih kénéh teu ngahasil, cobaan [[Special:UserLogout|kaluar log]] tuluy asup log deui, sarta riksakeun yén panyungsi wéb anjeun ngawidian panyimpenan kuki tina ieu situs.",
 	"session_fail_preview_html": "Hampura! Kami teu bisa ngolah éditan anjeun lantaran leungitna data rintakan.\n\n<em>Kusabab {{SITENAME}} ngawenangkeun dipakéna HTML atah, pramidangna disumputkeun pikeun nyegah panarajang JavaScript.''</em>\n\n<strong>Mun ieu éditan bener, mangga cobian deui. Mun tetep teu metu, coba [[Special:UserLogout|kaluar log]] heula, terus asup deui.</strong>",
-	"token_suffix_mismatch": "'''Éditan anjeun ditolak sabab aplikasi klien Anjeun ngarobah karakter tanda baca dina éditan. Éditan kasebut ditolak keur nyegah kasalahan dina artikel téks. Hal ieu kadang-kadang kajadian lamun Anjeun maké proksi anonim basis web nu masalah.'''",
 	"edit_form_incomplete": "'''Sawatara bagian tina wangun éditan teu nepi ka sérver; pariksa deui naha éditan Anjeun tetep gembleng sarta cobaan deui.'''",
 	"editing": "Ngédit $1",
 	"creating": "Nyieun $1",

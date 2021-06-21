@@ -731,7 +731,6 @@
 	"previewconflict": "Tento náhled ukazuje text z editačního pole nahoře tak, jak bude vypadat, pokud se ho rozhodnete zveřejnit.",
 	"session_fail_preview": "Promiňte! Váš požadavek se nepodařilo zpracovat kvůli ztrátě dat z relace.\n\nMožná jste byli odhlášeni. <strong>Zkontrolujte, že jste stále přihlášeni a zkuste to prosím znovu.</strong>\nPokud se tento problém bude opakovat, zkuste se [[Special:UserLogout|odhlásit]] a znovu přihlásit a zkontrolujte, že váš prohlížeč dovoluje přijímat cookie z tohoto serveru.",
 	"session_fail_preview_html": "Promiňte! Vaši editaci se nepodařilo zpracovat kvůli ztrátě dat z relace.\n\n<em>Jelikož má {{SITENAME}} zapnuto používání neomezeného HTML, náhled se kvůli prevenci proti útokům JavaScriptem nezobrazuje.</em>\n\n<strong>Pokud jde o zamýšlenou editaci, zkuste to prosím znovu.</strong>\nPokud se tento problém bude opakovat, zkuste se [[Special:UserLogout|odhlásit]] a znovu přihlásit a zkontrolujte, že váš prohlížeč dovoluje přijímat cookie z tohoto serveru.",
-	"token_suffix_mismatch": "<strong>Vaše editace byla odmítnuta, protože Váš prohlížeč komolí některé znaky v editovaném textu.</strong>\nEditace byla odmítnuta, aby se zabránilo poškození textu stránky.\nToto se někdy může stát, používáte-li chybující webový proxy server.",
 	"edit_form_incomplete": "<strong>Část editačního formuláře nedorazila na server; překontrolujte úplnost změn a zkuste to znovu.</strong>",
 	"editing": "Editace stránky $1",
 	"edit-textarea-aria-label": "Editor zdrojového wikitextu",

@@ -709,7 +709,6 @@
 	"previewconflict": "Paparan ini merupakan teks di bahagian atas dalam kotak sunting teks. Teks ini akan disimpan sekiranya anda memilih berbuat demikian.",
 	"session_fail_preview": "Maaf! Kami tidak dapat memproses suntingan anda disebabkan kehilangan data sesi.\n\nAnda mungkin telah dilog keluar. <strong>Sila sahkan bahawa anda masih melog masuk dan cuba lagi</strong>.\nJika masih tidak berjaya, cuba [[Special:UserLogout|log keluar]] dan log masuk semula, dan pastikan pelayar anda membenarkan kuki dari tapak ini.",
 	"session_fail_preview_html": "Maaf! Kami tidak dapat memproses suntingan anda disebabkan kehilangan data sesi.\n\n<em>Oleh kerana {{SITENAME}} mempunyai HTML mentah didayakan, pralihat disembunyikan sebagai pencegahan daripada serangan JavaScript.</em>\n\n<strong>Jika ini merupakan percubaan suntingan yang sah, sila cuba lagi.</strong>\nJika masih tidak berjaya, cuba [[Special:UserLogout|log keluar]] dan log masuk semula, dan pastikan pelayar anda membenarkan kuki dari tapak ini.",
-	"token_suffix_mismatch": "'''Suntingan anda telah ditolak kerana pelanggan anda memusnahkan aksara tanda baca\ndalam token suntingan. Suntingan tersebut telah ditolak untuk menghalang kerosakan teks laman.\nHal ini kadangkala berlaku apabila anda menggunakan khidmat proksi tanpa nama berdasarkan web yang bermasalah.'''",
 	"edit_form_incomplete": "'''Beberapa bahagian dari bentuk edit tidak mencapai pelayan, periksa bahawa suntingan anda utuh dan cuba lagi'.'''",
 	"editing": "Menyunting $1",
 	"edit-textarea-aria-label": "Editor sumber teks wiki",

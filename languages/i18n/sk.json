@@ -711,7 +711,6 @@
 	"previewconflict": "Tento náhľad upravenej stránky zobrazuje text z horného poľa s textom tak, ako sa zobrazí potom, keď ju uložíte.",
 	"session_fail_preview": "Prepáčte, nemohli sme spracovať váš príspevok kvôli strate údajov relácie.\n\n<strong>Prosím, uistite sa, že ste prihlásený a skúste to prosím znova.</strong>.\nAk to nebude fungovať, skúste sa [[Special:UserLogout|odhlásiť]] a znovu prihlásiť. Skontrolujte, či váš prehliadač prijíma cookies z tejto webstránky.",
 	"session_fail_preview_html": "Prepáčte! Nemohli sme spracovať vašu úpravu kvôli strate údajov relácie.\n\n<em>Pretože {{SITENAME}} má použitie HTML umožnené, náhľad sa nezobrazí (prevencia pred JavaScript útokmi).</em>\n\n<strong>Ak je toto legitímny pokus o úpravu, skúste to prosím znova.</strong>.\nAk to nebude fungovať, skúste sa [[Special:UserLogout|odhlásiť]] a znovu prihlásiť. Skontrolujte, či váš prehliadač prijíma cookies z tejto webstránky.",
-	"token_suffix_mismatch": "'''Vaša úprava bola zamietnutá, pretože váš klient pokazil znaky s diakritikou v editačnom symbole (token). Úprava bola zamietnutá, aby sa zabránilo poškodeniu textu stránky. Toto sa občas stáva, keď používate chybnú anonymnú proxy službu cez webové rozhranie.'''",
 	"edit_form_incomplete": "'''Niektoré časti editačného formulára nedosiahli server. Prosím, znova skontrolujte, že vaše úpravy sú nepoškodené a skúste to znova.'''",
 	"editing": "Úprava stránky $1",
 	"edit-textarea-aria-label": "Editor zdrojového wikitextu",

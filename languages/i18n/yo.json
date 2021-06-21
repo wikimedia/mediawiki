@@ -594,7 +594,6 @@
 	"previewconflict": "Àkọ́wò yìí jẹ́ bí ìkọ̀rọ̀ inú àlà ìtúnṣe ìkọ̀rọ̀ òkè yíò ṣe hàn tí ẹ bá yàn láti ṣàmúpamọ́.",
 	"session_fail_preview": "Àforíjìn! A kò le gbésẹ̀ àtúnṣe yín nítorí ìpòfo dátà ìgbà náà.\n\nÓ ṣe é ṣe kí ẹ ti jẹ́ títẹ̀ bọ́sóde. <strong>Ẹ jọ̀wọ́ ẹ rí dájú pé ẹ sì wà ní títẹ̀ wọlé, kí ẹ sì gbìyànjú lẹ́ẹ̀kan si</strong>.\nTí kò bá sì tún ṣiṣẹ́, ẹ gbìyànjú láti ṣe [[Special:UserLogout|ìtẹ̀bọ́sọ́de]] kí ẹ sì tún padá ṣe ìtẹ̀wọlé, kí ẹ sì yẹ̀ẹ́wò pé browser yín gba cookies láàyè láti orí sáìtì yìí.",
 	"session_fail_preview_html": "Àforíjìn! A kò le gbéṣẹ̀ àtúnṣe yín nítorí ìpòfo dátà ìgbà náà.\n\n<em>Nítorípé {{SITENAME}} gba HTML àláìnígbéṣe láàyè, àkọ́kọ́yẹ̀wò jẹ́ bíbòmọ́lẹ̀ láti dínà àwọn ìkọlù JavaScript.</em>''\n\n<strong>Tó bá ṣe pé ìgbìyànjú ìṣàtúnṣe gidi nìyí, ẹ jọ̀wọ́ ẹ gbìyànjú lẹ́ ẹ̀ kan síi.</strong>\nTí kò bá ṣiṣẹ́ síbẹ̀, ẹ gbìyànjú láti ṣe [[Special:UserLogout|ìtẹ̀bọ́sọ́de]], kí ẹ sì padà ṣe ìtẹ̀wọlé, kí ẹ sì yẹ̀ẹ́wò pé browser yín gba cookies láàyè láti orí sáìtì yìí.",
-	"token_suffix_mismatch": "'''Àtúnṣe yín ti jẹ́ kíkọ̀sílẹ̀ nítorípé ẹ̀rọ yín ṣèdàrú àwọn àmììkọ̀rọ̀ ojúìgúnlẹ̀ mọ́ra wọn nínú ìtọ́wò àtúnṣe.'''\nÀtúnṣe náà ti jẹ́ kíkọ̀sílẹ̀ láti baà dènà ìdíbàjẹ́ ìkọọ̀rọ̀ inú ojúewé.\nÈyí únsábà ṣẹlẹ̀ nígbàtí ẹ bá únlo ẹ̀rọ-ìwọ̀fà ẹlòmíràn aláìlórúkọ torí Internet tí kò dára.",
 	"edit_form_incomplete": "'''Àwọn apá kan fọ́ọ̀mù àtúnṣe kò dé ọ̀dọ̀ ẹ̀rọ-ìwọ̀fà; ẹ wo àtúnṣe yín pẹ́ o wà bí ẹ ṣe ṣé kí ẹ tó tún gbìyànjú lẹ́ẹ̀kan síi.'''",
 	"editing": "Àtúnṣe sí $1",
 	"creating": "Ìdá $1",

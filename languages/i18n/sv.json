@@ -764,7 +764,6 @@
 	"previewconflict": "Den här förhandsgranskningen återger texten i textfältet ovanför som den kommer att se ut om du väljer att publicera den.",
 	"session_fail_preview": "Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.\nDu kanske har loggats ut. Var god se till att du fortfarande är inloggad och försök igen.\nOm det fortfarande inte fungerar, prova att [[Special:UserLogout|logga ut]] och logga in igen, samt kontrollera att din webbläsare tillåter kakor från denna webbplats.",
 	"session_fail_preview_html": "Vi kunde inte behandla din redigering eftersom sessionsdata gått förlorad.\n\n<em>Eftersom {{SITENAME}} har aktiverat rå HTML, så döljs förhandsvisningen som en förebyggande säkerhetsåtgärd mot JavaScript-attacker.</em>\n\n<strong>Om detta är ett försök att göra en rättmätig redigering, så försök igen.</strong>\nOm det fortfarande inte fungerar, pröva att [[Special:UserLogout|logga ut]] och logga in igen, samt kontrollera att din webbläsare tillåter kakor från denna webbplats.",
-	"token_suffix_mismatch": "'''Din redigering har stoppats eftersom din klient har ändrat tecknen\ni redigerings-nyckeln. Redigeringen stoppades för att förhindra att sidtexten skadas.\nDetta händer ibland om du använder buggiga webbaserade anonyma proxytjänster.'''",
 	"edit_form_incomplete": "'''Vissa delar av redigeringen kunde inte nå servern, dubbelkolla att dina ändringar är intakta och försök igen.'''",
 	"editing": "Redigerar $1",
 	"edit-textarea-aria-label": "Wikitextkällredigerare",

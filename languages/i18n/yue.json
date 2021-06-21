@@ -684,7 +684,6 @@
 	"previewconflict": "呢個預覽係反映如果你選擇儲存嘅話，嘅上面嘅文字編輯區裏面嘅字會儲存落嚟。",
 	"session_fail_preview": "對唔住！由於小節嘅資料唔見咗，我哋唔能夠處理你嘅編輯。\n\n你可能簽退咗。<strong>請你檢查下係咪重係簽到緊，之後再試過</strong>。\n如果仍然唔得嘅話，試下[[Special:UserLogout|簽退]]後再簽到，同埋檢查個瀏覽器係受呢個站嘅曲奇。",
 	"session_fail_preview_html": "對唔住！有關嘅程序資料已經遺失，我哋唔能夠處理你嘅編輯。\n\n<em>由於{{SITENAME}}已經開放咗原 HTML 碼，預覽已經隱藏落嚟以預防 JavaScript 嘅攻擊。</em>\n<strong>如果呢個係正當嘅編輯嘗試，請再試過。</strong>\n如果重係唔得嘅話，請先[[Special:UserLogout|簽退]]後再簽到。",
-	"token_suffix_mismatch": "'''因為你嘅用戶端度嘅編輯幣整壞咗一啲標點符號字元，你嘅編輯已經拒絕咗。'''個編輯已經拒絕，以防止嗰版嘅文字損毀。\n當你響度用緊一啲好多臭蟲，以網絡為主嘅匿名代理服務。",
 	"edit_form_incomplete": "'''編輯表格嘅某個部份同server唔夾，請檢查多次你嘅編輯同埋再試多次。'''",
 	"editing": "編輯緊$1",
 	"creating": "開版$1",

@@ -682,7 +682,6 @@
 	"previewconflict": "Esta vista previa amuesa'l testu del área d'edición d'arriba tal como apaecerá si escueyes guardar.",
 	"session_fail_preview": "¡Sentímoslo muncho! Nun pudimos procesar la edición porque hebo una perda de datos de la sesión.\n\nSeique zarróse la sesión. <strong>Comprueba si tienes abierta la sesión y vuelve a intentalo</strong>.\nSi inda nun funcionara, tenta [[Special:UserLogout|colar]] y volver a aniciar sesión y comprueba que'l restolador permite les cookies d'esti sitiu.",
 	"session_fail_preview_html": "¡Sentímoslo! Nun pudo procesase la to edición por aciu d'una perda de datos de la sesión.\n\n<em>Como {{SITENAME}} tien el HTML puru activáu, la vista previa ta tapecida como precaución escontra ataques en JavaScript.</em>\n\n<strong>Si esti ye un intentu llexítimu d'edición, por favor vuelvi a intentalo.</strong>\nSi inda nun funciona, intenta [[Special:UserLogout|colar]] y volver a aniciar sesión, y comprueba que'l to restolador permite les cookies d'esti sitiu.",
-	"token_suffix_mismatch": "'''La to edición nun s'aceutó porque'l to navegador mutiló los caráuteres de puntuación nel editor.'''\nLa edición nun foi aceutada pa prevenir corrupciones na páxina de testu.\nDacuando esto pasa por usar un serviciu proxy anónimu basáu en web que tenga fallos.",
 	"edit_form_incomplete": "'''Delles partes del formulariu d'edición nun llegaron al sirvidor; comprueba que les ediciones tean intactes y vuelvi a tentalo.'''",
 	"editing": "Edición de «$1»",
 	"creating": "Creación de «$1»",

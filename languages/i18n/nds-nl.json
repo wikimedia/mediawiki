@@ -578,7 +578,6 @@
 	"previewconflict": "Disse vöärbealdsyde löt seen ho de tekst in et boavenste veld deruut kümt te seen as jy de tekst seakeret.",
 	"session_fail_preview": "'''De bewarking kan niet verwarkt wörden wegens n verlies an data.'''\nProbeer t laoter weer.\nAs t probleem dan nog steeds veurkömp, probeer dan [[Special:UserLogout|opniej an te melden]].",
 	"session_fail_preview_html": "'''De bewarking kan niet verwarkt wörden wegens n verlies an data.'''\n\n''Umdat in {{SITENAME}} roewe HTML in-eschakeld is, is de weergave dervan verbörgen um te veurkoemen dat t JavaScript an-evöllen wörden.''\n\n'''As dit n legitieme wieziging is, probeer t dan opniej.'''\nAs t dan nog problemen gif, probeer dan um [[Special:UserLogout|opniej an te melden]].",
-	"token_suffix_mismatch": "'''De bewarking is eweigerd umdat de webkieker de leestekens in t bewarkingstoken verkeerd behaandeld hef. De bewarking is eweigerd um verminking van de ziedtekste te veurkoemen. Dit gebeurt soms as der n web-ebaseerden proxydienst gebruukt wörden waor fouten in zitten.'''",
 	"edit_form_incomplete": "'''Partie delen van t bewarkingsformulier hebben de server niet bereikt. Kiek eers nao of de bewarkingen kloppen en probeer t opniej.'''",
 	"editing": "Bewarken: $1",
 	"creating": "Upstellen: $1",

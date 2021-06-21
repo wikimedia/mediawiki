@@ -598,7 +598,6 @@
 	"previewconflict": "Moofuryanoo woo ga tenji nda beene hantum fasalyan doo, z'a ga bangay nda war soobay k'a gaabu.",
 	"session_fail_preview": "Alhaa naŋ! Ir mana hin ka war barmaa gaabu za goywaatoo bayhayey dere.\n\nA ga hin ka tee war fatta. <strong>Koroši wala war goo batoo ra nda ceeci taaga.</strong>\nNd'a ši koy hala sohõ, ceeci nda [[Special:UserLogout|fatta]] nda huru taaga, nda guna wala war ceecikaa ga yadda aleewa nungoo woo ga.",
 	"session_fail_preview_html": "Alhaa naŋ! Ir mana hin ka war barmaa ka koy nda jine za goywaatoo bayhayey dere.\n\n<em>Zama {{SITENAME}} goo nda HTML gani kaŋ ga dira, moofuryan mma tugu ka ganji i ma kaŋ JavaScript ga.</em>\n\n<strong>Nda woo ti barmay kaŋ ši kubay, ceeci koyne.</strong>\nNda woo ši koy hala sohõ. ceeci nda [[Special:UserLogout|ka fatta]], de wa huru taaga, nda war ma guna wala war ceecikaa ga yadda aleewa ga moɲoo woo ga.",
-	"token_suffix_mismatch": "<strong>I wanji war barmaa ga zama war daykaa na tonbi harfey birji fasalyan tammaasaa ra.</strong>\nI wanji barmaa ga ka ganji moo hantumoo ma hasara.\nWoo ka tee waati kaŋ war ga goy nda maršin interneti-bande tokore goymee kaŋ ši nda maa.",
 	"edit_form_incomplete": "<strong>Barmay takari jerey mana too feršikaa do; naagu ceeci hinka ka dii kaŋ war barmawey ga timme de war ma ceeci koyne.</strong>",
 	"editing": "Goo ma $1 fasal",
 	"creating": "Goo ma $1 tee",

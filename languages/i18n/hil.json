@@ -500,7 +500,6 @@
 	"previewconflict": "Ang ini nga paglantaw nagapakita sang mga teksto nga yara sa may ibabaw ayon nga amo man ang magagwa kon luyag mo na ini nga pagatiponon.",
 	"session_fail_preview": "'''Nagapangayo kami sang pasaylo! Indi namon ma-proseso ang imo pag-ilis tungod sa pagkadula sang datos sang sesyon.'''\nPalihog tilawi liwat.\nKon indi man sa gihapon mag-gana, tilawi [[Special:UserLogout|mag-guha]] kag magsulod liwat.",
 	"session_fail_preview_html": "'''Nagapangayo kami sang pasaylo! Indi namon ma-proseso ang imo pag-ilis tungod sang pagkadula sang datos sang sesyon.'''\n\n''Kay ang {{SITENAME}} may ara sang hilaw nga HTML nga ginapasugtan, ang pagtan-aw gintago bilang pagpanghanda batok sa mga pag-atake sang JavaScript.''\n\n'''Kon ini lehitimo nga paghimakas, palihog tilawi liwat.'''\nKon indi man sa gihapon mag-gana, tilawi  [[Special:UserLogout|mag-guha]] kag magsulod liwat dayon.",
-	"token_suffix_mismatch": "'''Ang imo pag-ilis wala ginbaton tungod nga ang imo kleyente nag-guba sang mga letra sa token sang pag-ilis.'''\nAng pag-ilis wala ginbaton agod to nga malikawan ang kalainan sang mga teksto sa panid.\nIni nagakatabo kon kaisa kon nagagamit ka sang nakabase sa web nga serbisyo proxy nga madamo sing lusot.",
 	"edit_form_incomplete": "'''Ang iban nga bahin sang formas sa pag-ilis wala nakalab-ot sa serber; palihog verificar kon ang imo pag-ilis santo man sa gihapon kag tilawi liwat.'''",
 	"editing": "Ginaliwat ang $1",
 	"creating": "Ginabuhat ang $1",

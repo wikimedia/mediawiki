@@ -481,7 +481,6 @@
 	"previewconflict": "L'anvista previa li amostrará l'aparencia d'o texto dimpués d'alzar os cambeos.",
 	"session_fail_preview": "'''Ya lo sentimos, pero no hemos puesto alzar a suya edición por una perda d'os datos de sesion. Por favor, prebe de fer-lo una atra vez, y si encara no funciona, [[Special:UserLogout|salga d'a sesión]] y torne a identificar-se.'''",
 	"session_fail_preview_html": "'''Ya lo sentimos, pero no s'ha puesto procesar a suya edición por haber-se trafegato os datos de sesión.'''\n\n''Como que {{SITENAME}} tiene l'HTML puro activato, s'ha amagato l'anviesta previa ta aprevenir ataques en JavaScript.''\n\n'''Si ye mirando d'editar lechitimament, por favor, prebe una atra vegada. Si encara no funcionase alavez, prebe de [[Special:UserLogout|zarrar a sesión]] y dentrar-ie identificando-se de nuevas.'''",
-	"token_suffix_mismatch": "'''S'ha refusato a suya edición porque o suyo client ha esbarafundiato os carácters de puntuación en o editor. A edición s'ha refusata ta privar a corrompición d'a pachina de texto. Isto gosa escaixer quan se fa servir un servicio de proxy defectuoso alazetato en a web.'''",
 	"edit_form_incomplete": "'''Bellas partes d'o formulario de modificación no han plegato en o servidor, verifique que as suyas modificacions son intactas y mire de fer-lo de nuevas.'''",
 	"editing": "Editando $1",
 	"creating": "Creyación de «$1»",
