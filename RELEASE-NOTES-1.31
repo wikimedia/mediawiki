@@ -3,6 +3,14 @@
 THIS IS NOT A RELEASE YET
 
 === Changes since MediaWiki 1.31.14 ===
+* (T270988) Fixup issues in SpecialChangeContentModel.php.
+* (T278026) rdbms: Add DB_PRIMARY to replace DB_MASTER.
+* (T276945) Define a batch size in maintenance/manageJobs.php.
+* (T276945) Implement JobQueueDB::getAllAbandonedJobs.
+* (T281549) WebInstaller: Don't show the announce-l subscribe
+  checkbox temporarily.
+* (T283247) Freenode -> Libera per wikimedia moving from
+  freenode to libera.
 
 == MediaWiki 1.31.14 ==
 
