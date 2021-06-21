@@ -621,7 +621,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$lb = $factory->getMainLB();
 
-		// FIXME: this should probaly be lower (T235311)
+		// FIXME: this should probably be lower (T235311)
 		$this->expectException( \Wikimedia\Rdbms\DBConnectionError::class );
 		if ( !$factory->getMainLB()->getServerAttributes( 0 )[Database::ATTR_DB_IS_FILE] ) {
 			$this->markTestSkipped( "Not applicable per ATTR_DB_IS_FILE" );
@@ -646,7 +646,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		);
 		$lb = $factory->getMainLB();
 
-		// FIXME: this should probaly be lower (T235311)
+		// FIXME: this should probably be lower (T235311)
 		$this->expectException( \Wikimedia\Rdbms\DBExpectedError::class );
 		if ( !$lb->getConnection( DB_PRIMARY )->databasesAreIndependent() ) {
 			$this->markTestSkipped( "Not applicable per databasesAreIndependent()" );
