@@ -373,6 +373,7 @@
 	"nextn-title": "{{PLURAL:$1|Bu'aa}} itti aanu $1",
 	"shown-title": "Fuula tokkotti {{PLURAL:$1|bu'aa}} $1 agarsiisi",
 	"viewprevnext": "($1 {{int:pipe-separator}} $2) ($3) laali",
+	"searchmenu-new": "<strong>Wiikii kana irratti fuula \"[[:$1]]\" uumi</strong> {{PLURAL:$2|0=|Fuulbarruuwwan barbaacha kee keessa jiranis ilaali.|Bu'aa barbaachaas ilaali.}}",
 	"searchprofile-articles": "Fuulota qabiyyee",
 	"searchprofile-images": "Maltimiidiyaa",
 	"searchprofile-everything": "Waan hunda",
