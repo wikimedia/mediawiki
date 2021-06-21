@@ -3634,6 +3634,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * submission.
 	 *
 	 * @since 1.27
+	 * @deprecated since 1.37. Use CsrfTokenSet::getToken instead
 	 * @param string|string[] $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
 	 * @return MediaWiki\Session\Token The new edit token
@@ -3658,6 +3659,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * The $salt for 'edit' and 'csrf' tokens is the default (empty string).
 	 *
 	 * @since 1.19
+	 * @deprecated since 1.37. Use CsrfTokenSet::getToken instead
 	 * @param string|string[] $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request WebRequest object to use, or null to use the global request
 	 * @return string The new edit token
@@ -3672,6 +3674,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * user's own login session, not a form submission from a third-party
 	 * site.
 	 *
+	 * @deprecated since 1.37. Use CsrfTokenSet::matchToken instead
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use, or null to use the global request
@@ -3686,7 +3689,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Check given value against the token value stored in the session,
 	 * ignoring the suffix.
 	 *
-	 * @deprecated since 1.37. No replacement is provided, use ::matchToken
+	 * @deprecated since 1.37. No replacement was provided.
 	 * @param string $val Input value to compare
 	 * @param string|array $salt Optional function-specific data for hashing
 	 * @param WebRequest|null $request Object to use, or null to use the global request
