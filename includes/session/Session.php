@@ -339,6 +339,21 @@ class Session implements \Countable, \Iterator, \ArrayAccess {
 	}
 
 	/**
+	 * Check if a CSRF token is set for the session
+	 *
+	 * @since 1.37
+	 * @param string $key Token key
+	 * @return bool
+	 */
+	public function hasToken( string $key = 'default' ): bool {
+		$secrets = $this->get( 'wsTokenSecrets' );
+		if ( !is_array( $secrets ) ) {
+			return false;
+		}
+		return isset( $secrets[$key] ) && is_string( $secrets[$key] );
+	}
+
+	/**
 	 * Fetch a CSRF token from the session
 	 *
 	 * Note that this does not persist the session, which you'll probably want

@@ -222,7 +222,10 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$priv = TestingAccessWrapper::newFromObject( $session );
 		$backend = $priv->backend;
 
+		$this->assertFalse( $session->hasToken() );
 		$token = TestingAccessWrapper::newFromObject( $session->getToken() );
+		// Session::getToken auto-initializes the token.
+		$this->assertTrue( $session->hasToken() );
 		$this->assertArrayHasKey( 'wsTokenSecrets', $backend->data );
 		$this->assertArrayHasKey( 'default', $backend->data['wsTokenSecrets'] );
 		$secret = $backend->data['wsTokenSecrets']['default'];
@@ -235,10 +238,14 @@ class SessionUnitTest extends MediaWikiUnitTestCase {
 		$this->assertSame( 'foo', $token->salt );
 		$this->assertFalse( $token->wasNew() );
 
+		$this->assertFalse( $session->hasToken( 'secret' ) );
 		$backend->data['wsTokenSecrets']['secret'] = 'sekret';
 		$token = TestingAccessWrapper::newFromObject(
 			$session->getToken( [ 'bar', 'baz' ], 'secret' )
 		);
+		// Session::getToken auto-initializes the token.
+		$this->assertTrue( $session->hasToken() );
+		$this->assertTrue( $session->hasToken( 'secret' ) );
 		$this->assertSame( 'sekret', $token->secret );
 		$this->assertSame( 'bar|baz', $token->salt );
 		$this->assertFalse( $token->wasNew() );

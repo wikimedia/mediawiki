@@ -410,9 +410,11 @@ because of Phabricator reports.
   BaseTemplateAfterPortlet hook, which were deprecated in 1.35,
   now emit deprecation warnings.
 * LocalFile::getHistory hook is deprecated.
-* User::matchEditTokenNoSuffix was deprecated without replacement.
-  It was introduce to be able to provide custom error message if the token was
-  submitted, but ending slashes were stripped by some ASCII mangling proxy.
+* User::getEditTokenObject, ::getEditToken, ::matchEditToken were deprecated.
+  Use CsrfTokenRepository, which is available via IContextSource, instead.
+  ::matchEditTokenNoSuffix was deprecated without replacement.
+  It was introduced to be able to provide custom error message if the token
+  was submitted, but ending slashes were stripped by some ASCII mangling proxy.
   Use matchToken instead, such proxies are much less common now and there's
   not much benefit in customising the error message.
 * ContentHandler::getForTitle(), deprecated since 1.35, now emits
