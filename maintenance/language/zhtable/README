@@ -4,7 +4,7 @@ unihan database, and phrases not included in the SCIM package.
 - symme_supp.manual: Supplementary character mapping of symmetric conversion
   (1 to 1) between Simplified and Traditional Chinese.
 
-- simp2trad.manual: Simplified to Traditional asymmetric charactermapping. 
+- simp2trad.manual: Simplified to Traditional asymmetric character mapping.
 
 - trad2simp.manual: Traditional to Simplified asymmetric character mapping.
 

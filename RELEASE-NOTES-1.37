@@ -415,6 +415,8 @@ because of Phabricator reports.
   submitted, but ending slashes were stripped by some ASCII mangling proxy.
   Use matchToken instead, such proxies are much less common now and there's
   not much benefit in customising the error message.
+* ContentHandler::getForTitle(), deprecated since 1.35, now emits
+  deprecation warnings.
 * …
 
 === Other changes in 1.37 ===
