@@ -3165,32 +3165,30 @@ class RevisionStore
 	 */
 	public function getKnownCurrentRevision( PageIdentity $page, $revId = 0 ) {
 		$db = $this->getDBConnectionRef( DB_REPLICA );
-		if ( !$page instanceof Title ) {
-
-			// TODO: For foreign wikis we can not cast from PageIdentityValue to Title,
-			// since getLatestRevID will fetch from local database. To be fixed with cross-wiki
-			// aware PageStore. T274067
-			$page->assertWiki( PageIdentity::LOCAL );
-			$title = Title::castFromPageIdentity( $page );
-		} else {
-			$title = $page;
-		}
 		$revIdPassed = $revId;
-		$pageId = $this->getArticleId( $title );
-
+		$pageId = $this->getArticleId( $page );
 		if ( !$pageId ) {
 			return false;
 		}
 
 		if ( !$revId ) {
-			$revId = $title->getLatestRevID();
+			if ( $page instanceof Title ) {
+				$revId = $page->getLatestRevID();
+			} else {
+				$pageRecord = $this->pageStore->getPageByReference( $page );
+				if ( $pageRecord ) {
+					$revId = $pageRecord->getLatest( $this->getWikiId() );
+				}
+			}
 		}
 
 		if ( !$revId ) {
-			wfWarn(
-				'No latest revision known for page ' . $title->getPrefixedDBkey()
-				. ' even though it exists with page ID ' . $pageId
-			);
+			$this->logger->warning(
+				'No latest revision known for page {page} even though it exists with page ID {page_id}', [
+				'page' => $page->__toString(),
+				'page_id' => $pageId,
+				'wiki_id' => $this->getWikiId() ?: 'local',
+			] );
 			return false;
 		}
 
@@ -3216,7 +3214,7 @@ class RevisionStore
 
 		// Reflect revision deletion and user renames.
 		if ( $row ) {
-			$title = $this->ensureRevisionRowMatchesPage( $row, $title, [
+			$title = $this->ensureRevisionRowMatchesPage( $row, $page, [
 				'from_cache_flag' => $fromCache,
 				'page_id_initial' => $pageId,
 				'rev_id_used' => $revId,

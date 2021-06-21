@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\User\UserIdentityValue;
+
 /**
  * See also the unit tests at \MediaWiki\Tests\Unit\PasswordPolicyChecksTest
  */
@@ -31,9 +33,7 @@ class PasswordPolicyChecksTest extends MediaWikiIntegrationTestCase {
 	 * Uses MediaWikiServices for the content language, so can't move to unit tests
 	 */
 	public function testCheckPasswordCannotMatchUsername() {
-		$user = $this->createMock( User::class );
-		$user->method( 'getName' )->willReturn( 'user' );
-
+		$user = UserIdentityValue::newRegistered( 42, 'user' );
 		$statusOK = PasswordPolicyChecks::checkPasswordCannotMatchUsername(
 			1, // policy value
 			$user, // User
