@@ -167,7 +167,7 @@
 	"config-admin-name": "שם המשתמש שלך:",
 	"config-admin-password": "סיסמה:",
 	"config-admin-password-confirm": "סיסמה שוב:",
-	"config-admin-help": "הקלידו כאן את שם המשתמש, למשל \"שקד לוי\".\nזה השם שישמש אותך כדי להיכנס לוויקי.",
+	"config-admin-help": "נא להקליד כאן את שם המשתמש, למשל \"שקד לוי\".\nזה השם שישמש אותך כדי להיכנס לוויקי.",
 	"config-admin-name-blank": "נא להזין את שם המשתמש של המפעיל.",
 	"config-admin-name-invalid": "שם המשתמש שהוקלד \"<nowiki>$1</nowiki>\" אינו תקין.\nיש להקליד שם משתמש אחר.",
 	"config-admin-password-blank": "הקלידו סיסמה לחשבון המפעיל.",
