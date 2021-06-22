@@ -5189,7 +5189,13 @@ $wgRevertedTagMaxDepth = 15;
  * @since 1.27
  */
 $wgCentralIdLookupProviders = [
-	'local' => [ 'class' => LocalIdLookup::class ],
+	'local' => [
+		'class' => LocalIdLookup::class,
+		'services' => [
+			'MainConfig',
+			'DBLoadBalancer',
+		]
+	],
 ];
 
 /**

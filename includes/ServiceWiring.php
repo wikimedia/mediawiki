@@ -291,7 +291,8 @@ return [
 	'CentralIdLookupFactory' => static function ( MediaWikiServices $services ) : CentralIdLookupFactory {
 		return new CentralIdLookupFactory(
 			new ServiceOptions( CentralIdLookupFactory::CONSTRUCTOR_OPTIONS, $services->getMainConfig() ),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getUserIdentityLookup()
 		);
 	},
 

@@ -3,6 +3,7 @@
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\UserIdentityValue;
 
 /**
  * @covers LocalIdLookup
@@ -15,10 +16,10 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function addDBData() {
 		for ( $i = 1; $i <= 4; $i++ ) {
-			$this->localUsers[] = $this->getMutableTestUser()->getUser();
+			$this->localUsers[] = $this->getMutableTestUser()->getUserIdentity();
 		}
 
-		$sysop = static::getTestSysop()->getUser();
+		$sysop = static::getTestSysop()->getUserIdentity();
 		$blockStore = MediaWikiServices::getInstance()->getDatabaseBlockStore();
 
 		$block = new DatabaseBlock( [
@@ -40,8 +41,19 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 		$blockStore->insertBlock( $block );
 	}
 
+	private function newLookup( array $configOverride = [] ) {
+		return new LocalIdLookup(
+			new HashConfig( [
+				'SharedDB' => null,
+				'SharedTables' => [],
+				'LocalDatabases' => [],
+			] + $configOverride ),
+			$this->getServiceContainer()->getDBLoadBalancer()
+		);
+	}
+
 	public function testLookupCentralIds() {
-		$lookup = new LocalIdLookup();
+		$lookup = $this->newLookup();
 		$permitted = $this->mockAnonAuthorityWithPermissions( [ 'hideuser' ] );
 		$nonPermitted = $this->mockAnonAuthorityWithoutPermissions( [ 'hideuser' ] );
 
@@ -66,7 +78,7 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testLookupUserNames() {
-		$lookup = new LocalIdLookup();
+		$lookup = $this->newLookup();
 		$permitted = $this->mockAnonAuthorityWithPermissions( [ 'hideuser' ] );
 		$nonPermitted = $this->mockAnonAuthorityWithoutPermissions( [ 'hideuser' ] );
 
@@ -91,18 +103,18 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testIsAttached() {
-		$lookup = new LocalIdLookup();
-		$user1 = $this->getTestUser()->getUser();
-		$user2 = User::newFromName( 'DoesNotExist' );
+		$lookup = $this->newLookup();
+		$user1 = UserIdentityValue::newRegistered( 42, 'Test' );
+		$user2 = UserIdentityValue::newAnonymous( 'DoesNotExist' );
 
 		$this->assertTrue( $lookup->isAttached( $user1 ) );
 		$this->assertFalse( $lookup->isAttached( $user2 ) );
 
-		$wiki = wfWikiID();
+		$wiki = UserIdentityValue::LOCAL;
 		$this->assertTrue( $lookup->isAttached( $user1, $wiki ) );
 		$this->assertFalse( $lookup->isAttached( $user2, $wiki ) );
 
-		$wiki = 'not-' . wfWikiID();
+		$wiki = 'some_other_wiki';
 		$this->assertFalse( $lookup->isAttached( $user1, $wiki ) );
 		$this->assertFalse( $lookup->isAttached( $user2, $wiki ) );
 	}
@@ -114,16 +126,14 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $localDBSet $wgLocalDatabases contains the shared DB
 	 */
 	public function testIsAttachedShared( $sharedDB, $sharedTable, $localDBSet ) {
-		$this->setMwGlobals( [
-			'wgSharedDB' => $sharedDB ? "dummy" : null,
-			'wgSharedTables' => $sharedTable ? [ 'user' ] : [],
-			'wgLocalDatabases' => $localDBSet ? [ 'shared' ] : [],
+		$lookup = $this->newLookup( [
+			'SharedDB' => $sharedDB ? "dummy" : null,
+			'SharedTables' => $sharedTable ? [ 'user' ] : [],
+			'LocalDatabases' => $localDBSet ? [ 'shared' ] : [],
 		] );
-
-		$lookup = new LocalIdLookup();
 		$this->assertSame(
 			$sharedDB && $sharedTable && $localDBSet,
-			$lookup->isAttached( $this->getTestUser()->getUser(), 'shared' )
+			$lookup->isAttached( UserIdentityValue::newRegistered( 42, 'Test' ), 'shared' )
 		);
 	}
 
