@@ -2532,7 +2532,8 @@ class HookRunner implements
 	public function onMediaWikiServices( $services ) {
 		return $this->container->run(
 			'MediaWikiServices',
-			[ $services ]
+			[ $services ],
+			[ 'noServices' => true ]
 		);
 	}
 

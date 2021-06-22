@@ -271,6 +271,9 @@ because of Phabricator reports.
 * The PatchFileLocation trait was removed without deprecation.
 * ActorMigrationBase::getExistingActorId and ::getNewActorId, hard deprecated
   since 1.36, were removed.
+* Hook handlers implementing MediaWikiServicesHook are prohibited from having
+  services injected. This is because by definition, this hook runs before the
+  service container is fully initialized.
 * The protected property LocalFile::$metadata was removed without deprecation.
 * WatchedItem::getUser, hard deprecated since 1.36, has been removed.
 * AuthManager::singleton, hard deprecated since 1.36, has been removed.
