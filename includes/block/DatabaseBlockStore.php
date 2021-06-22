@@ -30,11 +30,11 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use Psr\Log\LoggerInterface;
 use ReadOnlyMode;
-use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -78,6 +78,9 @@ class DatabaseBlockStore {
 	/** @var ReadOnlyMode */
 	private $readOnlyMode;
 
+	/** @var UserFactory */
+	private $userFactory;
+
 	/**
 	 * @param ServiceOptions $options
 	 * @param LoggerInterface $logger
@@ -87,6 +90,7 @@ class DatabaseBlockStore {
 	 * @param HookContainer $hookContainer
 	 * @param ILoadBalancer $loadBalancer
 	 * @param ReadOnlyMode $readOnlyMode
+	 * @param UserFactory $userFactory
 	 */
 	public function __construct(
 		ServiceOptions $options,
@@ -96,7 +100,8 @@ class DatabaseBlockStore {
 		CommentStore $commentStore,
 		HookContainer $hookContainer,
 		ILoadBalancer $loadBalancer,
-		ReadOnlyMode $readOnlyMode
+		ReadOnlyMode $readOnlyMode,
+		UserFactory $userFactory
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 
@@ -108,6 +113,7 @@ class DatabaseBlockStore {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->loadBalancer = $loadBalancer;
 		$this->readOnlyMode = $readOnlyMode;
+		$this->userFactory = $userFactory;
 	}
 
 	/**
@@ -236,11 +242,12 @@ class DatabaseBlockStore {
 			$autoBlockIds = $this->doRetroactiveAutoblock( $block );
 
 			if ( $this->options->get( 'BlockDisablesLogin' ) ) {
-				$target = $block->getTarget();
-				if ( $target instanceof User ) {
+				$targetUserIdentity = $block->getTargetUserIdentity();
+				if ( $targetUserIdentity ) {
+					$targetUser = $this->userFactory->newFromUserIdentity( $targetUserIdentity );
 					// Change user login token to force them to be logged out.
-					$target->setToken();
-					$target->saveSettings();
+					$targetUser->setToken();
+					$targetUser->saveSettings();
 				}
 			}
 

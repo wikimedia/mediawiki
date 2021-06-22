@@ -86,15 +86,15 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		$block = $this->insertBlock();
 
 		// Refresh the block from the database.
-		$block = DatabaseBlock::newFromTarget( $block->getTarget() );
+		$block = DatabaseBlock::newFromTarget( $block->getTargetUserIdentity() );
 
 		$page = $this->newSpecialPage();
 
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
-		$wrappedPage->target = $block->getTarget();
+		$wrappedPage->target = $block->getTargetUserIdentity();
 		$fields = $wrappedPage->getFormFields();
 
-		$this->assertSame( (string)$block->getTarget(), $fields['Target']['default'] );
+		$this->assertSame( $block->getTargetName(), $fields['Target']['default'] );
 		$this->assertSame( $block->isHardblock(), $fields['HardBlock']['default'] );
 		$this->assertSame( $block->isCreateAccountBlocked(), $fields['CreateAccount']['default'] );
 		$this->assertSame( $block->isAutoblocking(), $fields['AutoBlock']['default'] );
@@ -137,12 +137,12 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		MediaWikiServices::getInstance()->getDatabaseBlockStore()->insertBlock( $block );
 
 		// Refresh the block from the database.
-		$block = DatabaseBlock::newFromTarget( $block->getTarget() );
+		$block = DatabaseBlock::newFromTarget( $block->getTargetUserIdentity() );
 
 		$page = $this->newSpecialPage();
 
 		$wrappedPage = TestingAccessWrapper::newFromObject( $page );
-		$wrappedPage->target = $block->getTarget();
+		$wrappedPage->target = $block->getTargetUserIdentity();
 		$fields = $wrappedPage->getFormFields();
 
 		$titles = [
@@ -150,7 +150,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			$pageSaturn->getTitle()->getPrefixedText(),
 		];
 
-		$this->assertSame( (string)$block->getTarget(), $fields['Target']['default'] );
+		$this->assertSame( $block->getTargetName(), $fields['Target']['default'] );
 		$this->assertSame( 'partial', $fields['EditingRestriction']['default'] );
 		$this->assertSame( implode( "\n", $titles ), $fields['PageRestrictions']['default'] );
 		$this->assertSame( [ $actionId ], $fields['ActionRestrictions']['default'] );

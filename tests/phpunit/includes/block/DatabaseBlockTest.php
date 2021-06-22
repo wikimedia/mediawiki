@@ -153,9 +153,9 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		}
 
 		// Should find the block with the narrowest range
-		$blockTarget = DatabaseBlock::newFromTarget( $this->getTestUser()->getUserIdentity(), $ip )->getTarget();
+		$block = DatabaseBlock::newFromTarget( $this->getTestUser()->getUserIdentity(), $ip );
 		$this->assertSame(
-			$blockTarget instanceof User ? $blockTarget->getName() : $blockTarget,
+			$block->getTargetName(),
 			$expectedTarget
 		);
 
@@ -315,7 +315,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = DatabaseBlock::newFromID( $res['id'] );
 		$this->assertEquals(
 			'UserOnForeignWiki',
-			$block->getTarget()->getName(),
+			$block->getTargetName(),
 			'Correct blockee name'
 		);
 		$this->assertEquals(
@@ -323,7 +323,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 			$block->getTargetUserIdentity()->getName(),
 			'Correct blockee name'
 		);
-		$this->assertEquals( $userId, $block->getTarget()->getId(), 'Correct blockee id' );
+		$this->assertEquals( $userId, $block->getTargetUserIdentity()->getId(), 'Correct blockee id' );
 		$this->assertEquals( $userId, $block->getTargetUserIdentity()->getId(), 'Correct blockee id' );
 		$this->assertEquals( 'UserOnForeignWiki', $block->getTargetName(), 'Correct blockee name' );
 		$this->assertTrue( $block->isBlocking( 'UserOnForeignWiki' ), 'Is blocking blockee' );
@@ -492,7 +492,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 		$block = DatabaseBlock::newFromRow( $row );
 		$this->assertInstanceOf( DatabaseBlock::class, $block );
 		$this->assertEquals( $block->getBy(), $sysop->getId() );
-		$this->assertEquals( $block->getTarget()->getName(), $badActor->getName() );
+		$this->assertEquals( $block->getTargetName(), $badActor->getName() );
 		$this->assertEquals( $block->getTargetName(), $badActor->getName() );
 		$this->assertTrue( $block->isBlocking( $badActor ), 'Is blocking expected user' );
 		$this->assertEquals( $block->getTargetUserIdentity()->getId(), $badActor->getId() );

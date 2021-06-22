@@ -379,7 +379,8 @@ return [
 			$services->getCommentStore(),
 			$services->getHookContainer(),
 			$services->getDBLoadBalancer(),
-			$services->getReadOnlyMode()
+			$services->getReadOnlyMode(),
+			$services->getUserFactory()
 		);
 	},
 
