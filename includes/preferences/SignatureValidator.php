@@ -21,14 +21,17 @@
 namespace MediaWiki\Preferences;
 
 use Html;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use MessageLocalizer;
 use MultiHttpClient;
+use Parser;
 use ParserOptions;
 use ParsoidVirtualRESTService;
 use SpecialPage;
-use Title;
+use TitleFactory;
 use VirtualRESTServiceClient;
 
 /**
@@ -36,17 +39,52 @@ use VirtualRESTServiceClient;
  */
 class SignatureValidator {
 
+	/** @var array */
+	private const CONSTRUCTOR_OPTIONS = [
+		'SignatureAllowedLintErrors',
+		'VirtualRestConfig',
+	];
+
 	/** @var UserIdentity */
 	private $user;
 	/** @var MessageLocalizer|null */
 	private $localizer;
 	/** @var ParserOptions */
 	private $popts;
+	/** @var Parser */
+	private $parser;
+	/** @var ServiceOptions */
+	private $serviceOptions;
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+	/** @var TitleFactory */
+	private $titleFactory;
 
+	/**
+	 * @param UserIdentity $user
+	 * @param ?MessageLocalizer $localizer
+	 * @param ParserOptions $popts
+	 */
 	public function __construct( UserIdentity $user, ?MessageLocalizer $localizer, ParserOptions $popts ) {
 		$this->user = $user;
 		$this->localizer = $localizer;
 		$this->popts = $popts;
+
+		// TODO inject these
+		$services = MediaWikiServices::getInstance();
+		// Fetch the parser, will be used to create a new parser via getFreshParser() when needed
+		$this->parser = $services->getParser();
+		// Configuration
+		$this->serviceOptions = new ServiceOptions(
+			self::CONSTRUCTOR_OPTIONS,
+			$services->getMainConfig()
+		);
+		$this->serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		// Services
+		$this->specialPageFactory = $services->getSpecialPageFactory();
+		$this->titleFactory = $services->getTitleFactory();
+
+		// TODO SpecialPage::getTitleFor should also be available via SpecialPageFactory
 	}
 
 	/**
@@ -76,8 +114,7 @@ class SignatureValidator {
 
 		$lintErrors = $this->checkLintErrors( $signature );
 		if ( $lintErrors ) {
-			$config = MediaWikiServices::getInstance()->getMainConfig();
-			$allowedLintErrors = $config->get( 'SignatureAllowedLintErrors' );
+			$allowedLintErrors = $this->serviceOptions->get( 'SignatureAllowedLintErrors' );
 			$messages = '';
 
 			foreach ( $lintErrors as $error ) {
@@ -167,7 +204,7 @@ class SignatureValidator {
 	 */
 	protected function applyPreSaveTransform( string $signature ) {
 		// This may be called by the Parser when it's displaying a signature, so we need a new instance
-		$parser = MediaWikiServices::getInstance()->getParser()->getFreshParser();
+		$parser = $this->parser->getFreshParser();
 
 		$pstSignature = $parser->preSaveTransform(
 			$signature,
@@ -207,8 +244,7 @@ class SignatureValidator {
 		// This request is not cached, but that's okay, because $signature is short (other code checks
 		// the length against $wgMaxSigChars).
 
-		$config = MediaWikiServices::getInstance()->getMainConfig();
-		$vrsConfig = $config->get( 'VirtualRestConfig' );
+		$vrsConfig = $this->serviceOptions->get( 'VirtualRestConfig' );
 		if ( isset( $vrsConfig['modules']['parsoid'] ) ) {
 			$params = $vrsConfig['modules']['parsoid'];
 			if ( isset( $vrsConfig['global'] ) ) {
@@ -251,7 +287,7 @@ class SignatureValidator {
 	 */
 	protected function checkUserLinks( string $signature ) : bool {
 		// This may be called by the Parser when it's displaying a signature, so we need a new instance
-		$parser = MediaWikiServices::getInstance()->getParser()->getFreshParser();
+		$parser = $this->parser->getFreshParser();
 
 		// Check for required links. This one's easier to do with the PHP Parser.
 		$pout = $parser->parse(
@@ -273,11 +309,10 @@ class SignatureValidator {
 		// Checking the contributions link is harder, because the special page name and the username in
 		// the "subpage parameter" are not normalized for us.
 		$splinks = $pout->getLinksSpecial();
-		$specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
 		foreach ( $splinks as $dbkey => $unused ) {
-			list( $name, $subpage ) = $specialPageFactory->resolveAlias( $dbkey );
+			list( $name, $subpage ) = $this->specialPageFactory->resolveAlias( $dbkey );
 			if ( $name === 'Contributions' && $subpage ) {
-				$userTitle = Title::makeTitleSafe( NS_USER, $subpage );
+				$userTitle = $this->titleFactory->makeTitleSafe( NS_USER, $subpage );
 				if ( $userTitle && $userTitle->getText() === $username ) {
 					return true;
 				}
