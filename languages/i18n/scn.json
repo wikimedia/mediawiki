@@ -483,6 +483,7 @@
 	"changepassword-success": "La tò password fu canciata!",
 	"changepassword-throttled": "Facisti troppi tintativi di trasuta.\nPi favuri aspetta $1 prima di pruvari n'àutra vota.",
 	"botpasswords-label-create": "Crea",
+	"botpasswords-label-update": "Aggiorna",
 	"botpasswords-label-cancel": "Annulla",
 	"botpasswords-label-delete": "Cancella",
 	"resetpass_forbidden": "Li password nun si ponnu canciari",
