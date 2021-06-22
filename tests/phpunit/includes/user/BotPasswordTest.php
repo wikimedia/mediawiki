@@ -55,8 +55,6 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 				return $mock2;
 			} ],
 		] );
-
-		CentralIdLookup::resetCache();
 	}
 
 	public function addDBData() {

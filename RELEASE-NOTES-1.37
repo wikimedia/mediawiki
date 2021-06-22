@@ -431,6 +431,8 @@ because of Phabricator reports.
   deprecation warnings.
 * User::listOptionKinds(), deprecated since 1.35, now emits deprecation
   warnings.
+* CentralIdLookup::factory and ::factoryNonLocal were deprecated, obtain an
+  instance from MediaWikiServices instead.
 * …
 
 === Other changes in 1.37 ===

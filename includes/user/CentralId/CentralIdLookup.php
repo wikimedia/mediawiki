@@ -19,7 +19,8 @@
  *
  * @file
  */
-use Wikimedia\ObjectFactory;
+
+use MediaWiki\MediaWikiServices;
 
 /**
  * The CentralIdLookup service allows for connecting local users with
@@ -33,37 +34,23 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	public const AUDIENCE_PUBLIC = 1;
 	public const AUDIENCE_RAW = 2;
 
-	/** @var CentralIdLookup[] */
-	private static $instances = [];
-
 	/** @var string */
 	private $providerId;
 
 	/**
 	 * Fetch a CentralIdLookup
+	 * @deprecated since 1.37 Use MediaWikiServices to obtain an instance.
 	 * @param string|null $providerId Provider ID from $wgCentralIdLookupProviders
 	 * @return CentralIdLookup|null
 	 */
 	public static function factory( $providerId = null ) {
-		global $wgCentralIdLookupProviders, $wgCentralIdLookupProvider;
-
-		if ( $providerId === null ) {
-			$providerId = $wgCentralIdLookupProvider;
+		try {
+			return MediaWikiServices::getInstance()
+				->getCentralIdLookupFactory()
+				->getLookup( $providerId );
+		} catch ( Throwable $unused ) {
+			return null;
 		}
-
-		if ( !array_key_exists( $providerId, self::$instances ) ) {
-			self::$instances[$providerId] = null;
-
-			if ( isset( $wgCentralIdLookupProviders[$providerId] ) ) {
-				$provider = ObjectFactory::getObjectFromSpec( $wgCentralIdLookupProviders[$providerId] );
-				if ( $provider instanceof CentralIdLookup ) {
-					$provider->providerId = $providerId;
-					self::$instances[$providerId] = $provider;
-				}
-			}
-		}
-
-		return self::$instances[$providerId];
 	}
 
 	/**
@@ -77,37 +64,34 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * and it can be hard to tell if another wiki is in the same set as this one or not.
 	 *
 	 * @since 1.35
-	 *
+	 * @deprecated since 1.37. Use CentralIdLookupFactory::getNonLocalLookup instead.
 	 * @return CentralIdLookup|null
 	 */
 	public static function factoryNonLocal(): ?self {
-		$centralIdLookup = self::factory();
-
-		if ( $centralIdLookup instanceof LocalIdLookup ) {
-			/*
-			 * A LocalIdLookup (which is the default) may actually be non-local,
-			 * if shared user tables are used.
-			 * However, we cannot know that here, so play it safe and refuse to return it.
-			 * See also T163277 and T170996.
-			 */
-			return null;
-		}
-
-		return $centralIdLookup;
+		return MediaWikiServices::getInstance()
+			->getCentralIdLookupFactory()
+			->getNonLocalLookup();
 	}
 
 	/**
-	 * Reset internal cache for unit testing
-	 * @codeCoverageIgnore
+	 * Initialize the provider.
+	 *
+	 * @internal
+	 * @param string $providerId
 	 */
-	public static function resetCache() {
-		if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
-			throw new MWException( __METHOD__ . ' may only be called from unit tests!' );
+	public function init( string $providerId ) {
+		if ( $this->providerId !== null ) {
+			throw new LogicException( "CentralIdProvider $providerId already initialized" );
 		}
-		self::$instances = [];
+		$this->providerId = $providerId;
 	}
 
-	final public function getProviderId() {
+	/**
+	 * Get the provider id.
+	 *
+	 * @return string
+	 */
+	public function getProviderId(): string {
 		return $this->providerId;
 	}
 
