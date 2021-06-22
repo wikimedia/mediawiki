@@ -11,7 +11,7 @@ PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 
 == MediaWiki 1.35.3 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.35 branch.
 
 === Changes since MediaWiki 1.35.2 ===
 * (T259685) SQLite compatibility with ZeroConf VisualEditor was fixed in 1.35.2.
