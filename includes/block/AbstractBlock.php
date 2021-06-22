@@ -340,6 +340,7 @@ abstract class AbstractBlock implements Block {
 	 * @todo FIXME: This should be an integral part of the block member variables
 	 */
 	public function getTargetAndType() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return [ $this->getTarget(), $this->getType() ];
 	}
 
@@ -352,6 +353,7 @@ abstract class AbstractBlock implements Block {
 	 * @return User|string|null
 	 */
 	public function getTarget() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->target;
 	}
 

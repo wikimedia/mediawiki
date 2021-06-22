@@ -280,8 +280,8 @@ because of Phabricator reports.
 === Deprecations in 1.37 ===
 * JobQueue::getWiki, deprecated in 1.33, now emits deprecation warnings.
 * In AbstractBlock, the getTargetAndType() and getTarget() methods are
-  deprecated. Instead use getTargetName() and getTargetUserIdentity() together
-  with getType().
+  hard deprecated. Instead use getTargetName() and getTargetUserIdentity()
+  together with getType().
 * Deprecated passing UserIdentity to
   WatchlistManager::clearAllUserNotifications() and
   WatchlistManager::clearTitleUserNotifications(). Pass Authority instead.
@@ -420,6 +420,8 @@ because of Phabricator reports.
   not much benefit in customising the error message.
 * ContentHandler::getForTitle(), deprecated since 1.35, now emits
   deprecation warnings.
+* User::listOptionKinds(), deprecated since 1.35, now emits deprecation
+  warnings.
 * …
 
 === Other changes in 1.37 ===

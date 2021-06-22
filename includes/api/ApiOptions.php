@@ -201,7 +201,7 @@ class ApiOptions extends ApiBase {
 	}
 
 	/**
-	 * @param string[] $kinds One or more types returned by User::listOptionKinds() or 'all'
+	 * @param string[] $kinds One or more types returned by UserOptionsManager::listOptionKinds() or 'all'
 	 */
 	protected function resetPreferences( array $kinds ) {
 		$this->getUserForUpdates()->resetOptions( $kinds, $this->getContext() );
@@ -233,7 +233,7 @@ class ApiOptions extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		$optionKinds = User::listOptionKinds();
+		$optionKinds = $this->userOptionsManager->listOptionKinds();
 		$optionKinds[] = 'all';
 
 		return [
