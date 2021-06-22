@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\Authority;
 
 /**
  * The CentralIdLookup service allows for connecting local users with
@@ -97,15 +98,17 @@ abstract class CentralIdLookup implements IDBAccessObject {
 
 	/**
 	 * Check that the "audience" parameter is valid
-	 * @param int|User $audience One of the audience constants, or a specific user
-	 * @return User|null User to check against, or null if no checks are needed
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
+	 * @return Authority|null authority to check against, or null if no checks are needed
 	 * @throws InvalidArgumentException
 	 */
-	protected function checkAudience( $audience ) {
-		if ( $audience instanceof User ) {
+	protected function checkAudience( $audience ): ?Authority {
+		if ( $audience instanceof Authority ) {
 			return $audience;
 		}
 		if ( $audience === self::AUDIENCE_PUBLIC ) {
+			// TODO: when available, inject AuthorityFactory
+			// via init and use it to create anon authority
 			return new User;
 		}
 		if ( $audience === self::AUDIENCE_RAW ) {
@@ -132,7 +135,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @note There's no requirement that the user names actually exist locally,
 	 *  or if they do that they're actually attached to the central account.
 	 * @param array $idToName Array with keys being central user IDs
-	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
 	 * @return string[] Copy of $idToName with values set to user names (or
 	 *  empty-string if the user exists but $audience lacks the rights needed
@@ -147,7 +150,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @note There's no requirement that the user names actually exist locally,
 	 *  or if they do that they're actually attached to the central account.
 	 * @param array $nameToId Array with keys being canonicalized user names
-	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
 	 * @return int[] Copy of $nameToId with values set to central IDs.
 	 *  Names not corresponding to a user (or $audience lacks the rights needed
@@ -162,7 +165,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @note There's no requirement that the user name actually exists locally,
 	 *  or if it does that it's actually attached to the central account.
 	 * @param int $id Central user ID
-	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
 	 * @return string|null User name, or empty string if $audience lacks the
 	 *  rights needed to see it, or null if $id doesn't correspond to a user
@@ -177,7 +180,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	/**
 	 * Given a an array of central user IDs, return the (local) user names.
 	 * @param int[] $ids Central user IDs
-	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
 	 * @return string[] User names
 	 * @since 1.30
@@ -200,7 +203,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @note There's no requirement that the user name actually exists locally,
 	 *  or if it does that it's actually attached to the central account.
 	 * @param string $name Canonicalized user name
-	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
 	 * @return int User ID; 0 if the name does not correspond to a user or
 	 *  $audience lacks the rights needed to see it.
@@ -215,7 +218,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	/**
 	 * Given an array of (local) user names, return the central IDs.
 	 * @param string[] $names Canonicalized user names
-	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
 	 * @return int[] User IDs
 	 * @since 1.30
@@ -239,7 +242,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 *  user exists and is attached to the central account.
 	 * @stable to override
 	 * @param int $id Central user ID
-	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
 	 * @return User|null Local user, or null if: $id doesn't correspond to a
 	 *  user, $audience lacks the rights needed to see the user, the user
@@ -264,7 +267,7 @@ abstract class CentralIdLookup implements IDBAccessObject {
 	 * @note Unlike centralIdFromName(), this does guarantee that the local
 	 *  user is attached to the central account.
 	 * @param User $user Local user
-	 * @param int|User $audience One of the audience constants, or a specific user
+	 * @param int|Authority $audience One of the audience constants, or a specific authority
 	 * @param int $flags IDBAccessObject read flags
 	 * @return int User ID; 0 if the local user does not correspond to a
 	 *  central user, $audience lacks the rights needed to see it, or the

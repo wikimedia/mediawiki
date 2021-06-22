@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\Permissions\Authority;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -7,6 +9,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
 
 	public function testFactory() {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
@@ -60,12 +63,12 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 			$this->getMockForAbstractClass( CentralIdLookup::class )
 		);
 
-		$user = static::getTestSysop()->getUser();
-		$this->assertSame( $user, $mock->checkAudience( $user ) );
+		$authority = $this->mockAnonUltimateAuthority();
+		$this->assertSame( $authority, $mock->checkAudience( $authority ) );
 
-		$user = $mock->checkAudience( CentralIdLookup::AUDIENCE_PUBLIC );
-		$this->assertInstanceOf( User::class, $user );
-		$this->assertSame( 0, $user->getId() );
+		$authority = $mock->checkAudience( CentralIdLookup::AUDIENCE_PUBLIC );
+		$this->assertInstanceOf( Authority::class, $authority );
+		$this->assertSame( 0, $authority->getUser()->getId() );
 
 		$this->assertNull( $mock->checkAudience( CentralIdLookup::AUDIENCE_RAW ) );
 
