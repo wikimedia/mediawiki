@@ -528,13 +528,15 @@ class SkinTemplate extends Skin {
 				'href' => &$usertalkUrlDetails['href'],
 				'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 				'exists' => $usertalkUrlDetails['exists'],
-				'active' => ( $usertalkUrlDetails['href'] == $pageurl )
+				'active' => ( $usertalkUrlDetails['href'] == $pageurl ),
+				'icon' => 'userTalk'
 			];
 			$href = self::makeSpecialUrl( 'Preferences' );
 			$personal_urls['preferences'] = [
 				'text' => $this->msg( 'mypreferences' )->text(),
 				'href' => $href,
-				'active' => ( $href == $pageurl )
+				'active' => ( $href == $pageurl ),
+				'icon' => 'settings'
 			];
 
 			if ( $this->getAuthority()->isAllowed( 'viewmywatchlist' ) ) {
@@ -542,7 +544,8 @@ class SkinTemplate extends Skin {
 				$personal_urls['watchlist'] = [
 					'text' => $this->msg( 'mywatchlist' )->text(),
 					'href' => $href,
-					'active' => ( $href == $pageurl )
+					'active' => ( $href == $pageurl ),
+					'icon' => 'unStar'
 				];
 			}
 
@@ -569,7 +572,8 @@ class SkinTemplate extends Skin {
 			$personal_urls['mycontris'] = [
 				'text' => $this->msg( 'mycontris' )->text(),
 				'href' => $href,
-				'active' => $active
+				'active' => $active,
+				'icon' => 'userContributions'
 			];
 
 			// if we can't set the user, we can't unset it either
@@ -601,12 +605,14 @@ class SkinTemplate extends Skin {
 				$personal_urls['anontalk'] = [
 					'text' => $this->msg( 'anontalk' )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Mytalk', false ),
-					'active' => false
+					'active' => false,
+					'icon' => 'userTalk'
 				];
 				$personal_urls['anoncontribs'] = [
 					'text' => $this->msg( 'anoncontribs' )->text(),
 					'href' => self::makeSpecialUrlSubpage( 'Mycontributions', false ),
-					'active' => false
+					'active' => false,
+					'icon' => 'userContributions'
 				];
 			}
 
@@ -704,6 +710,7 @@ class SkinTemplate extends Skin {
 			'href' => self::makeSpecialUrl( 'Userlogin', $returnto ),
 			'active' => $title->isSpecial( 'Userlogin' )
 				|| $title->isSpecial( 'CreateAccount' ) && $useCombinedLoginLink,
+			'icon' => 'logIn'
 		];
 
 		return $login_url;
@@ -729,7 +736,8 @@ class SkinTemplate extends Skin {
 				// Note: userlogout link must always contain an & character, otherwise we might not be able
 				// to detect a buggy precaching proxy (T19790)
 				( $title->isSpecial( 'Preferences' ) ? [] : $returnto ) ),
-			'active' => false
+			'active' => false,
+			'icon' => 'logOut'
 		];
 	}
 
@@ -747,6 +755,7 @@ class SkinTemplate extends Skin {
 			'text' => $this->msg( 'pt-createaccount' )->text(),
 			'href' => self::makeSpecialUrl( 'CreateAccount', $returnto ),
 			'active' => $title->isSpecial( 'CreateAccount' ),
+			'icon' => 'userAvatar'
 		];
 
 		return $createaccount_url;
@@ -764,6 +773,7 @@ class SkinTemplate extends Skin {
 			'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
 			'exists' => $this->userpageUrlDetails['exists'],
 			'active' => ( $this->userpageUrlDetails['href'] == $this->getTitle()->getLocalURL() ),
+			'icon' => 'userAvatar',
 			'dir' => 'auto'
 		];
 	}
