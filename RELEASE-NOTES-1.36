@@ -2,7 +2,7 @@
 
 == MediaWiki 1.36.1 ==
 
-THIS IS NOT A RELEASE YET
+This is a security and maintenance release of the MediaWiki 1.36 branch.
 
 === Changes since MediaWiki 1.36.0 ===
 * (T283942) DatabaseInstaller.php: Only run core schema file if specified table
