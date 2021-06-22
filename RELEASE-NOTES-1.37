@@ -311,6 +311,9 @@ because of Phabricator reports.
 * Skin::getRelevantUser now returns an instance of UserIdentity, not necessarily
   a User object. There is no known usages in MediaWiki ecosystem that were not
   satisfied with UserIdentity.
+* Direct construction of MergeHistory class, deprecated since 1.35, is no longer
+  supported. Use MergeHistoryFactory instead. MergeHistory::checkPermissions,
+  deprecated since 1.36, was removed.
 * …
 
 === Deprecations in 1.37 ===

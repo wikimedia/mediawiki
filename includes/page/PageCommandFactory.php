@@ -181,10 +181,6 @@ class PageCommandFactory implements
 		PageIdentity $destination,
 		string $timestamp = null
 	) : MergeHistory {
-		if ( $timestamp === null ) {
-			// For compatibility with MergeHistory constructor until it can be changed
-			$timestamp = false;
-		}
 		return new MergeHistory(
 			$source,
 			$destination,
