@@ -296,6 +296,8 @@ because of Phabricator reports.
   instead.
 * Deprecated WatchAction::doWatch() and WatchAction::doUnwatch(). Use
   WatchlistManager::addWatch() or WatchlistManager::removeWatch(), instead.
+* WatchAction::getWatchToken is hard deprecated. Instead use
+  CsrfTokenSet::getToken
 * The getTitle() and setTitle() methods in Parser have been deprecated.
   Use getPage() and setPage() instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
