@@ -1006,7 +1006,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SkinGetPoweredByHook' => __DIR__ . '/includes/skins/Hook/SkinGetPoweredByHook.php',
 	'MediaWiki\\Hook\\SkinPreloadExistenceHook' => __DIR__ . '/includes/skins/Hook/SkinPreloadExistenceHook.php',
 	'MediaWiki\\Hook\\SkinSubPageSubtitleHook' => __DIR__ . '/includes/skins/Hook/SkinSubPageSubtitleHook.php',
-	'MediaWiki\\Hook\\SkinTemplateBuildNavUrlsNav_urlsAfterPermalinkHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateBuildNavUrlsNav_urlsAfterPermalinkHook.php',
 	'MediaWiki\\Hook\\SkinTemplateGetLanguageLinkHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateGetLanguageLinkHook.php',
 	'MediaWiki\\Hook\\SkinTemplateNavigationHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateNavigationHook.php',
 	'MediaWiki\\Hook\\SkinTemplateNavigation__SpecialPageHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateNavigation__SpecialPageHook.php',

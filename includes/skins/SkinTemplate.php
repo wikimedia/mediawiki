@@ -1338,33 +1338,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * build array of common navigation links and run
-	 * the SkinTemplateBuildNavUrlsNav_urlsAfterPermalink hook.
-	 * @inheritDoc
-	 * @return array
-	 */
-	protected function buildNavUrls() {
-		$navUrls = parent::buildNavUrls();
-		$out = $this->getOutput();
-		if ( !$out->isArticle() ) {
-			return $navUrls;
-		}
-		$modifiedNavUrls = [];
-		foreach ( $navUrls as $key => $url ) {
-			$modifiedNavUrls[$key] = $url;
-			if ( $key === 'permalink' ) {
-				$revid = $out->getRevisionId();
-				// Use the copy of revision ID in case this undocumented,
-				// shady hook tries to mess with internals.
-				$this->getHookRunner()->onSkinTemplateBuildNavUrlsNav_urlsAfterPermalink(
-					$this, $modifiedNavUrls, $revid, $revid
-				);
-			}
-		}
-		return $modifiedNavUrls;
-	}
-
-	/**
 	 * Generate strings used for xml 'id' names
 	 * @deprecated since 1.35, use Title::getNamespaceKey() instead
 	 * @return string

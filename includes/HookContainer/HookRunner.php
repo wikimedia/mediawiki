@@ -323,7 +323,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinGetPoweredByHook,
 	\MediaWiki\Hook\SkinPreloadExistenceHook,
 	\MediaWiki\Hook\SkinSubPageSubtitleHook,
-	\MediaWiki\Hook\SkinTemplateBuildNavUrlsNav_urlsAfterPermalinkHook,
 	\MediaWiki\Hook\SkinTemplateGetLanguageLinkHook,
 	\MediaWiki\Hook\SkinTemplateNavigationHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__SpecialPageHook,
@@ -3455,15 +3454,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SkinSubPageSubtitle',
 			[ &$subpages, $skin, $out ]
-		);
-	}
-
-	public function onSkinTemplateBuildNavUrlsNav_urlsAfterPermalink( $sktemplate,
-		&$nav_urls, &$revid, &$revid2
-	) {
-		return $this->container->run(
-			'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
-			[ $sktemplate, &$nav_urls, &$revid, &$revid2 ]
 		);
 	}
 
