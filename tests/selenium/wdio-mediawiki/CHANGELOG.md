@@ -1,3 +1,7 @@
+## 1.2.0
+
+* Set default configuration to retry tests in a spec file once upon failure
+
 ## 1.1.1 / 2021-05-26
 
 * Fix `Cannot find module 'dotenv'`.
