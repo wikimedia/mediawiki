@@ -150,7 +150,11 @@ class PNGHandler extends BitmapHandler {
 
 		$metadata = $image->getMetadataArray();
 
-		if ( !$metadata || $metadata['frameCount'] <= 0 ) {
+		if (
+			!$metadata ||
+			( isset( $metadata['_error'] ) && $metadata['_error'] ) ||
+			$metadata['frameCount'] <= 0
+		) {
 			return $original;
 		}
 
