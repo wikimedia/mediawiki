@@ -463,6 +463,8 @@ class PermissionManager {
 				break;
 			}
 		}
+		// remove duplicate errors
+		$errors = array_unique( $errors, SORT_REGULAR );
 
 		return $errors;
 	}
@@ -1121,6 +1123,19 @@ class PermissionManager {
 			) {
 				// Undeleting where nothing currently exists implies creating
 				$errors[] = [ 'undelete-cantcreate' ];
+			}
+		} elseif ( $action === 'edit' ) {
+			if ( !$title->exists() ) {
+				$errors = array_merge(
+					$errors,
+					$this->getPermissionErrorsInternal(
+						'create',
+						$user,
+						$title,
+						$rigor,
+						true
+					)
+				);
 			}
 		}
 		return $errors;
