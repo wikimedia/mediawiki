@@ -31,6 +31,7 @@ class MimeMap {
 	public const MIME_EXTENSIONS = [
 		'application/ogg' => [ 'ogx', 'ogg', 'ogm', 'ogv', 'oga', 'spx', 'opus' ],
 		'application/pdf' => [ 'pdf' ],
+		'application/vnd.ms-opentype' => [ 'otf' ],
 		'application/vnd.oasis.opendocument.chart' => [ 'odc' ],
 		'application/vnd.oasis.opendocument.chart-template' => [ 'otc' ],
 		'application/vnd.oasis.opendocument.database' => [ 'odb' ],
