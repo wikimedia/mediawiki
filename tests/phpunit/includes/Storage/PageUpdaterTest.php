@@ -997,4 +997,18 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 			->saveRevision( CommentStoreComment::newUnsavedComment( 'Comment' ) );
 		$this->assertArrayEquals( [ 'bar' ], ChangeTags::getTags( $this->db, null, $revision2->getId() ) );
 	}
+
+	/**
+	 * @covers \MediaWiki\Storage\PageUpdater::prepareUpdate()
+	 * @covers \WikiPage::getCurrentUpdate()
+	 */
+	public function testPrepareUpdate() {
+		$user = $this->getTestUser()->getUser();
+
+		$title = $this->getDummyTitle( __METHOD__ );
+		$page = WikiPage::factory( $title );
+		$updater = $page->newPageUpdater( $user );
+
+		$this->assertSame( $page->getCurrentUpdate(), $updater->prepareUpdate() );
+	}
 }

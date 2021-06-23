@@ -1108,6 +1108,7 @@ return [
 			$services->getStatsdDataFactory(),
 			$services->getUserEditTracker(),
 			$services->getUserFactory(),
+			$services->getWikiPageFactory(),
 			$services->getHookContainer(),
 			defined( 'MEDIAWIKI_JOB_RUNNER' ) || $config->get( 'CommandLineMode' )
 				? PageEditStash::INITIATOR_JOB_OR_CLI
@@ -1180,6 +1181,7 @@ return [
 			$services->getTalkPageNotificationManager(),
 			$services->getMainWANObjectCache(),
 			$services->getPermissionManager(),
+			$services->getWikiPageFactory(),
 			ChangeTags::getSoftwareTags()
 		);
 	},

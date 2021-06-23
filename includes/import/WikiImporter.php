@@ -555,16 +555,16 @@ class WikiImporter {
 			$page = $this->wikiPageFactory->newFromTitle( $pageIdentity );
 
 			$page->loadPageData( WikiPage::READ_LATEST );
-			$content = $page->getContent();
-			if ( $content === null ) {
+			$rev = $page->getRevisionRecord();
+			if ( $rev === null ) {
+
 				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $pageIdentity .
-					' because WikiPage::getContent() returned null' );
+					' because WikiPage::getRevisionRecord() returned null' );
 			} else {
-				// No user is available
 				$user = RequestContext::getMain()->getUser();
-				$editInfo = $page->prepareContentForEdit( $content, null, $user );
+				$update = $page->newPageUpdater( $user )->prepareUpdate();
 				$countKey = 'title_' . CacheKeyHelper::getKeyForPage( $pageIdentity );
-				$countable = $page->isCountable( $editInfo );
+				$countable = $update->isCountable();
 				if ( array_key_exists( $countKey, $this->countableCache ) &&
 					$countable != $this->countableCache[$countKey] ) {
 					DeferredUpdates::addUpdate( SiteStatsUpdate::factory( [

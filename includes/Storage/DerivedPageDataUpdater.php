@@ -38,6 +38,7 @@ use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RenderedRevision;
@@ -102,7 +103,7 @@ use WikiPage;
  * @since 1.32
  * @ingroup Page
  */
-class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
+class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface, PreparedUpdate {
 
 	/**
 	 * @var UserIdentity|null
@@ -513,6 +514,15 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
+	 * Returns the page being updated.
+	 * @since 1.37
+	 * @return PageIdentity
+	 */
+	public function getPage(): PageIdentity {
+		return $this->getTitle();
+	}
+
+	/**
 	 * Determines whether the page being edited already existed.
 	 * Only defined after calling grabCurrentRevision() or prepareContent() or prepareUpdate()!
 	 *
@@ -666,7 +676,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @param string $role slot role name
 	 * @return Content
 	 */
-	public function getRawContent( $role ) {
+	public function getRawContent( string $role ): Content {
 		return $this->getRawSlot( $role )->getContent();
 	}
 
@@ -698,7 +708,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * @return bool
 	 */
-	public function isCountable() {
+	public function isCountable(): bool {
 		// NOTE: Keep in sync with WikiPage::isCountable.
 
 		if ( !$this->getTitle()->isContentPage() ) {
@@ -723,7 +733,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			// isCountable() method. However, that would break parity with
 			// WikiPage::isCountable, which uses the pagelinks table to determine
 			// whether the current revision has links.
-			$hasLinks = (bool)count( $this->getCanonicalParserOutput()->getLinks() );
+			$hasLinks = (bool)count( $this->getParserOutputForMetaData()->getLinks() );
 		}
 
 		foreach ( $this->getSlots()->getSlotRoles() as $role ) {
@@ -743,7 +753,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * @return bool
 	 */
-	public function isRedirect() {
+	public function isRedirect(): bool {
 		// NOTE: main slot determines redirect status
 		// TODO: MCR: this should be controlled by a PageTypeHandler
 		$mainContent = $this->getRawContent( SlotRecord::MAIN );
@@ -958,7 +968,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @return RevisionRecord
 	 */
-	public function getRevision() {
+	public function getRevision(): RevisionRecord {
 		$this->assertPrepared( __METHOD__ );
 		return $this->revision;
 	}
@@ -966,7 +976,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/**
 	 * @return RenderedRevision
 	 */
-	public function getRenderedRevision() {
+	public function getRenderedRevision(): RenderedRevision {
 		$this->assertPrepared( __METHOD__ );
 
 		return $this->renderedRevision;
@@ -1089,7 +1099,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @return string[]
 	 */
-	public function getModifiedSlotRoles() {
+	public function getModifiedSlotRoles(): array {
 		return $this->getRevisionSlotsUpdate()->getModifiedRoles();
 	}
 
@@ -1098,7 +1108,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 *
 	 * @return string[]
 	 */
-	public function getRemovedSlotRoles() {
+	public function getRemovedSlotRoles(): array {
 		return $this->getRevisionSlotsUpdate()->getRemovedRoles();
 	}
 
@@ -1370,16 +1380,17 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	}
 
 	/**
+	 * @inheritDoc
 	 * @return ParserOutput
 	 */
-	public function getCanonicalParserOutput() {
+	public function getCanonicalParserOutput(): ParserOutput {
 		return $this->getRenderedRevision()->getRevisionParserOutput();
 	}
 
 	/**
 	 * @return ParserOptions
 	 */
-	public function getCanonicalParserOptions() {
+	public function getCanonicalParserOptions(): ParserOptions {
 		return $this->getRenderedRevision()->getOptions();
 	}
 
