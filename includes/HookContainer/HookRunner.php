@@ -329,7 +329,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinTemplateNavigation__SpecialPageHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
 	\MediaWiki\Hook\SkinTemplateOutputPageBeforeExecHook,
-	\MediaWiki\Hook\SkinTemplateTabActionHook,
 	\MediaWiki\Hook\SkinTemplateToolboxEndHook,
 	\MediaWiki\Hook\SoftwareInfoHook,
 	\MediaWiki\Hook\SpecialBlockModifyFormFieldsHook,
@@ -3505,16 +3504,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SkinTemplateOutputPageBeforeExec',
 			[ $sktemplate, $tpl ]
-		);
-	}
-
-	public function onSkinTemplateTabAction( $sktemplate, $title, $message,
-		$selected, $checkEdit, &$classes, &$query, &$text, &$result
-	) {
-		return $this->container->run(
-			'SkinTemplateTabAction',
-			[ $sktemplate, $title, $message, $selected, $checkEdit, &$classes,
-				&$query, &$text, &$result ]
 		);
 	}
 

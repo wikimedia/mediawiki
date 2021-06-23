@@ -284,6 +284,7 @@ because of Phabricator reports.
   was deprecated since 1.35.
 * The SkinTemplatePreventOtherActiveTabs hook, deprecated in 1.35, was removed
   entirely.
+* The SkinTemplateTabAction hook, deprecated in 1.35, was removed entirely.
 * …
 
 === Deprecations in 1.37 ===

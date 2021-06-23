@@ -834,13 +834,6 @@ class SkinTemplate extends Skin {
 				);
 		}
 
-		$result = [];
-		if ( !$this->getHookRunner()->onSkinTemplateTabAction( $this, $title, $message,
-			$selected, $checkEdit, $classes, $query, $text, $result )
-		) {
-			return $result;
-		}
-
 		$result = [
 			'class' => implode( ' ', $classes ),
 			'text' => $text,
