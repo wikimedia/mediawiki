@@ -987,9 +987,6 @@ class SkinTemplate extends Skin {
 
 		$userCanRead = $this->getAuthority()->probablyCan( 'read', $title );
 
-		$preventActiveTabs = false;
-		$this->getHookRunner()->onSkinTemplatePreventOtherActiveTabs( $this, $preventActiveTabs );
-
 		// Checks if page is some kind of content
 		if ( $title->canExist() ) {
 			// Gets page objects for the related namespaces
@@ -1021,11 +1018,11 @@ class SkinTemplate extends Skin {
 			}
 
 			$content_navigation['namespaces'][$subjectId] = $this->tabAction(
-				$subjectPage, $subjectMsg, !$isTalk && !$preventActiveTabs, '', $userCanRead
+				$subjectPage, $subjectMsg, !$isTalk, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$subjectId]['context'] = 'subject';
 			$content_navigation['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, [ "nstab-$talkId", 'talk' ], $isTalk && !$preventActiveTabs, '', $userCanRead
+				$talkPage, [ "nstab-$talkId", 'talk' ], $isTalk, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 

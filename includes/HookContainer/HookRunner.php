@@ -329,7 +329,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinTemplateNavigation__SpecialPageHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
 	\MediaWiki\Hook\SkinTemplateOutputPageBeforeExecHook,
-	\MediaWiki\Hook\SkinTemplatePreventOtherActiveTabsHook,
 	\MediaWiki\Hook\SkinTemplateTabActionHook,
 	\MediaWiki\Hook\SkinTemplateToolboxEndHook,
 	\MediaWiki\Hook\SoftwareInfoHook,
@@ -3506,13 +3505,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SkinTemplateOutputPageBeforeExec',
 			[ $sktemplate, $tpl ]
-		);
-	}
-
-	public function onSkinTemplatePreventOtherActiveTabs( $sktemplate, &$res ) {
-		return $this->container->run(
-			'SkinTemplatePreventOtherActiveTabs',
-			[ $sktemplate, &$res ]
 		);
 	}
 
