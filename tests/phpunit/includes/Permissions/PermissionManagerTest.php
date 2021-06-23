@@ -238,7 +238,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	 */
 	public function testCascadingSourcesRestrictions() {
 		$this->setTitle( NS_MAIN, "test page" );
-		$this->overrideUserPermissions( $this->user, [ "edit", "bogus" ] );
+		$this->overrideUserPermissions( $this->user, [ "edit", "bogus", 'createpage' ] );
 
 		$this->title->mCascadeSources = [
 			Title::makeTitle( NS_MAIN, "Bogus" ),
@@ -252,8 +252,6 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 
 		$this->assertFalse( $permissionManager->userCan( 'bogus', $this->user, $this->title ) );
 		$this->assertEquals( [
-			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
-			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ],
 			[ "cascadeprotected", 2, "* [[:Bogus]]\n* [[:UnBogus]]\n", 'bogus' ] ],
 			$permissionManager->getPermissionErrors(
 				'bogus', $this->user, $this->title ) );
@@ -382,6 +380,36 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 			'expected permission errors' => [ [ 'immobile-target-page' ] ],
 			'user can' => false,
 		];
+		yield [
+			'namespace' => NS_MAIN,
+			'title overrides' => [],
+			'action' => 'edit',
+			'user permissions' => [ 'createpage', 'edit' ],
+			'expected permission errors' => [ [ 'titleprotected', 'Useruser', 'test' ] ],
+			'user can' => false,
+		];
+		yield [
+			'namespace' => NS_MAIN,
+			'title overrides' => [],
+			'action' => 'edit',
+			'user permissions' => [ 'edit' ],
+			'expected permission errors' => [ [ 'nocreate-loggedin' ] ],
+			'user can' => false,
+		];
+	}
+
+	/**
+	 * @covers \MediaWiki\Permissions\PermissionManager::checkActionPermissions
+	 */
+	public function testEditActionPermissionWithExistingPage() {
+		$title = $this->getExistingTestPage( 'test page' )->getTitle();
+
+		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
+
+		$this->overrideUserPermissions( $this->user, [ 'edit' ] );
+
+		$this->assertEmpty( $permissionManager->getPermissionErrors( 'edit', $this->user, $title ) );
+		$this->assertTrue( $permissionManager->userCan( 'edit', $this->user, $title ) );
 	}
 
 	/**
@@ -579,7 +607,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$user->method( 'getBlock' )
 			->willReturn( $block );
 
-		$this->overrideUserPermissions( $user, [ 'edit' ] );
+		$this->overrideUserPermissions( $user, [ 'edit', 'createpage' ] );
 
 		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		$errors = $permissionManager->getPermissionErrors(
