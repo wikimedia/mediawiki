@@ -107,7 +107,7 @@ class JobQueueGroup {
 	}
 
 	/**
-	 * @deprecated 1.37 Use JobQueueGroupFactory::makeJobQueueGroupFactory
+	 * @deprecated 1.37 Use JobQueueGroupFactory::makeJobQueueGroup
 	 * @param bool|string $domain Wiki domain ID
 	 * @return JobQueueGroup
 	 */
