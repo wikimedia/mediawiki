@@ -1455,7 +1455,7 @@
 	ignore = dirty
 [submodule "extensions/WikibaseLocalMedia"]
 	path = extensions/WikibaseLocalMedia
-	url = https://github.com/ProfessionalWiki/WikibaseLocalMedia/
+	url = https://github.com/ProfessionalWiki/WikibaseLocalMedia
 	branch = master
 	ignore = dirty
 [submodule "skins/BlueSky"]
