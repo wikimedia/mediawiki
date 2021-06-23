@@ -1467,3 +1467,4 @@
 	path = extensions/TabberNeue
 	url = https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue
 	branch = main
+	ignore = dirty
