@@ -2593,7 +2593,7 @@
 	"tooltip-whatlinkshere-invert": "Selecteer dit vakje om koppelingen van pagina's in de geselecteerde naamruimte te verbergen.",
 	"namespace_association": "Gekoppelde naamruimte",
 	"tooltip-namespace_association": "Selecteer dit om ook wijzigingen weer te geven in de overleg- of onderwerpnaamruimte die bij de geselecteerde naamruimte hoort",
-	"blanknamespace": "(Hoofdpagina)",
+	"blanknamespace": "(Hoofdnaamruimte)",
 	"contributions": "Gebruikersbijdragen",
 	"tool-link-contributions": "{{GENDER:$1|Gebruikersbijdragen}}",
 	"contributions-title": "Bijdragen van $1",
