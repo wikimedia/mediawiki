@@ -14,6 +14,7 @@ THIS IS NOT A RELEASE YET
   installs.
 * (T235554) Disable DEFER_SET_LENGTH_AND_FLUSH headers to avoid HTTP errors.
 * (T278579) Don't send headers on ob_end_clean().
+* (T285287) MultiHttpClient: Replace PHP version check with defined().
 
 == MediaWiki 1.36.0 ==
 
