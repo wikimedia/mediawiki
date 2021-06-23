@@ -4490,8 +4490,8 @@ class Parser {
 		// Strip U+0000 NULL (T159174)
 		$text = str_replace( "\000", '', $text );
 
-		// We still normalize line endings for backwards-compatibility
-		// with other code that just calls PST, but this should already
+		// We still normalize line endings (including trimming trailing whitespace) for
+		// backwards-compatibility with other code that just calls PST, but this should already
 		// be handled in TextContent subclasses
 		$text = TextContent::normalizeLineEndings( $text );
 
@@ -4499,6 +4499,9 @@ class Parser {
 			$text = $this->pstPass2( $text, $user );
 		}
 		$text = $this->mStripState->unstripBoth( $text );
+
+		// Trim trailing whitespace again, because the previous steps can introduce it.
+		$text = rtrim( $text );
 
 		$this->hookRunner->onParserPreSaveTransformComplete( $this, $text );
 

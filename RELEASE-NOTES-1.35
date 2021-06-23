@@ -9,20 +9,57 @@ declare 1.35 as supporting PHP 8.0.
 
 PHP 8.0 workboard: https://phabricator.wikimedia.org/tag/php_8.0_support/
 
-== MediaWiki 1.35.3 ==
+== MediaWiki 1.35.4 ==
 
 THIS IS NOT A RELEASE YET
 
-=== Changes since MediaWiki 1.35.2 ===
+=== Changes since MediaWiki 1.35.3 ===
 
+== MediaWiki 1.35.3 ==
+
+This is a security and maintenance release of the MediaWiki 1.35 branch.
+
+=== Changes since MediaWiki 1.35.2 ===
+* (T259685) SQLite compatibility with ZeroConf VisualEditor was fixed in 1.35.2.
+* (T196906, T242751) Fix the test MonologSpiTest::testDefaultChannel.
+* (T279964) Parser: Trim trailing whitespace as the last step in pre-save
+  transform.
+* (T278026) rdbms: Add DB_PRIMARY to replace DB_MASTER.
+* (T252853) Update updateSearchIndex.php to 2006+ standards.
+* (T276945) Define a batch size in maintenance/manageJobs.php.
+* (T276945) Implement JobQueueDB::getAllAbandonedJobs.
+* (T269676) authevents: strval() variables passed to status when logging.
 * (T280944) $wgIncludejQueryMigrate - This setting allows the jQuery Migrate
   plugin to be disabled. It has been enabled by default since MediaWiki 1.27.
+* (T281584) apihelp-query+iwlinks-param-prop: s/interlanguage/interwiki/.
+* (T281635) Delete maintenance/cleanupAncientTables.php.
+* (T282133) RedisConnectionPool: Suppress phan issue.
+* (T281549) WebInstaller: Don't show the announce-l subscribe
+  checkbox temporarily.
+* (T278266) Fix annoying E_NOTICE about undefined 'alt' index in
+  Skin#makeFooterIcon.
+* (T264214) UserRightsProxy::addGroup has to be allowed to update the
+  old group as well, which is used for granting interwiki rights.
+* (T269776, T278266) getFooterIcons should not return empty arrays.
+* (T274966) Skip AvroFormatterTest::testSchemaNotAvailable on PHP 8.0.
+* phpunit: fail on warnings.
+* (T283247) Freenode -> Libera per wikimedia moving from
+  freenode to libera.
+* (T243124) Make phpunit:unit accept extension*.json to populate the classes.
+* (T142663) Add extension.json merge strategy "provide_default".
+* (T283540) HookContainer: Fix normalization of callback for static handler.
+* (T283464) Fix array order for array_replace_recursive merge strategy.
+* (T247223) Optimise MessageCache::isMainCacheable() for the single-message
+  case.
+* (T278579) Don't send headers on ob_end_clean().
+* (T280226, CVE-2021-35197) SECURITY: Prevent blocked users from purging
+  pages.
 
 == MediaWiki 1.35.2 ==
 
 This is a security and maintenance release of the MediaWiki 1.35 branch.
 
-MediaWiki 1.35.2 supports Composer 2.0. It is reccommended to make sure your
+MediaWiki 1.35.2 supports Composer 2.0. It is recommended to make sure your
 libraries are up to date on Composer 1.x, before running Composer 2.x.
 
 While normally running update.php isn't required for point releases,
@@ -1781,4 +1818,4 @@ It's highly recommended that you sign up for one of these lists if you're
 going to run a public MediaWiki, so you can be notified of security fixes.
 
 == IRC help ==
-There's usually someone online in #mediawiki on irc.freenode.net.
+There's usually someone online in #mediawiki on irc.libera.chat.

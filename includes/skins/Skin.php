@@ -996,19 +996,19 @@ abstract class Skin extends ContextSource {
 		if ( is_string( $icon ) ) {
 			$html = $icon;
 		} else { // Assuming array
-			$url = $icon["url"] ?? null;
-			unset( $icon["url"] );
-			if ( isset( $icon["src"] ) && $withImage === 'withImage' ) {
+			$url = $icon['url'] ?? null;
+			unset( $icon['url'] );
+			if ( isset( $icon['src'] ) && $withImage === 'withImage' ) {
 				// Lazy-load footer icons, since they're not part of the printed view.
-				$icon["loading"] = 'lazy';
+				$icon['loading'] = 'lazy';
 				// do this the lazy way, just pass icon data as an attribute array
 				$html = Html::element( 'img', $icon );
 			} else {
-				$html = htmlspecialchars( $icon["alt"] );
+				$html = htmlspecialchars( $icon['alt'] ?? '' );
 			}
 			if ( $url ) {
 				$html = Html::rawElement( 'a',
-					[ "href" => $url, "target" => $this->getConfig()->get( 'ExternalLinkTarget' ) ],
+					[ 'href' => $url, 'target' => $this->getConfig()->get( 'ExternalLinkTarget' ) ],
 					$html );
 			}
 		}

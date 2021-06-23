@@ -1051,7 +1051,8 @@
 								"array_replace_recursive",
 								"array_plus_2d",
 								"array_plus",
-								"array_merge"
+								"array_merge",
+								"provide_default"
 							],
 							"default": "array_merge"
 						},

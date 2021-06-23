@@ -361,17 +361,17 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 						'JsonZeroConfig' => [
 							'namespace' => 480,
 							'nsName' => 'Zero',
-							'isLocal' => true,
+							'isLocal' => false,
+							'remote' => [
+								'username' => 'foo',
+							],
 						],
 					],
 				],
 				[
 					'mwtestJsonConfigs' => [
 						'JsonZeroConfig' => [
-							'isLocal' => false,
-							'remote' => [
-								'username' => 'foo',
-							],
+							'isLocal' => true,
 						],
 						ExtensionRegistry::MERGE_STRATEGY => 'array_replace_recursive',
 					],
@@ -401,6 +401,35 @@ class ExtensionRegistryTest extends MediaWikiIntegrationTestCase {
 					'NullGlobal' => null
 				],
 			],
+			[
+				'provide_default passive case',
+				[
+					'wgFlatArray' => [],
+				],
+				[
+					'wgFlatArray' => [
+						1,
+						ExtensionRegistry::MERGE_STRATEGY => 'provide_default'
+					],
+				],
+				[
+					'wgFlatArray' => []
+				],
+			],
+			[
+				'provide_default active case',
+				[
+				],
+				[
+					'wgFlatArray' => [
+						1,
+						ExtensionRegistry::MERGE_STRATEGY => 'provide_default'
+					],
+				],
+				[
+					'wgFlatArray' => [ 1 ]
+				],
+			]
 		];
 	}
 

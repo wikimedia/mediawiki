@@ -72,11 +72,11 @@ class MessageCache implements LoggerAwareInterface {
 	protected $cache;
 
 	/**
-	 * Map of (lowercase message key => index) for all software defined messages
+	 * Map of (lowercase message key => unused) for all software defined messages
 	 *
 	 * @var array
 	 */
-	protected $overridable;
+	private $systemMessageNames;
 
 	/**
 	 * @var bool[] Map of (language code => boolean)
@@ -284,9 +284,6 @@ class MessageCache implements LoggerAwareInterface {
 		if ( $this->isLanguageLoaded( $code ) && $mode != self::FOR_UPDATE ) {
 			return true;
 		}
-
-		$this->overridable =
-			array_flip( $this->localisationCache->getSubitemList( $code, 'messages' ) );
 
 		# 8 lines of code just to say (once) that message cache is disabled
 		if ( $this->mDisable ) {
@@ -505,10 +502,6 @@ class MessageCache implements LoggerAwareInterface {
 			}
 		}
 
-		// Get the list of software-defined messages in core/extensions
-		$overridable =
-			array_flip( $this->localisationCache->getSubitemList( $wgLanguageCode, 'messages' ) );
-
 		// Common conditions
 		$conds = [
 			'page_is_redirect' => 0,
@@ -534,7 +527,8 @@ class MessageCache implements LoggerAwareInterface {
 		);
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title, $overridable ) ) {
+			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title )
+			) {
 				$cache[$row->page_title] = '!TOO BIG';
 			}
 			// At least include revision ID so page changes are reflected in the hash
@@ -574,7 +568,8 @@ class MessageCache implements LoggerAwareInterface {
 		);
 		foreach ( $res as $row ) {
 			// Include entries/stubs for all keys in $mostused in adaptive mode
-			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title, $overridable ) ) {
+			if ( $wgAdaptiveMessageCache || $this->isMainCacheable( $row->page_title )
+			) {
 				try {
 					$rev = $revisionStore->newRevisionFromRow( $row, 0, Title::newFromRow( $row ) );
 					$content = $rev->getContent( MediaWiki\Revision\SlotRecord::MAIN );
@@ -630,17 +625,39 @@ class MessageCache implements LoggerAwareInterface {
 	}
 
 	/**
+	 * Can the given DB key be added to the main cache blob? To reduce the
+	 * impact of abuse of the MediaWiki namespace by {{int:}} and CentralNotice,
+	 * this is only true if the page overrides a predefined message.
+	 *
 	 * @param string $name Message name (possibly with /code suffix)
-	 * @param array $overridable Map of (key => unused) for software-defined messages
+	 * @param string|null $code The language code. If this is null, message
+	 *   presence will be bulk loaded for the content language. Otherwise,
+	 *   presence will be detected by loading the specified message.
 	 * @return bool
 	 */
-	private function isMainCacheable( $name, array $overridable ) {
+	private function isMainCacheable( $name, $code = null ) {
+		global $wgLanguageCode;
+
 		// Convert first letter to lowercase, and strip /code suffix
 		$name = $this->contLang->lcfirst( $name );
-		$msg = preg_replace( '/\/[a-z0-9-]{2,}$/', '', $name );
 		// Include common conversion table pages. This also avoids problems with
 		// Installer::parse() bailing out due to disallowed DB queries (T207979).
-		return ( isset( $overridable[$msg] ) || strpos( $name, 'conversiontable/' ) === 0 );
+		if ( strpos( $name, 'conversiontable/' ) === 0 ) {
+			return true;
+		}
+		$msg = preg_replace( '/\/[a-z0-9-]{2,}$/', '', $name );
+
+		if ( $code === null ) {
+			// Bulk load
+			if ( $this->systemMessageNames === null ) {
+				$this->systemMessageNames = array_flip(
+					$this->localisationCache->getSubitemList( $wgLanguageCode, 'messages' ) );
+			}
+			return isset( $this->systemMessageNames[$msg] );
+		} else {
+			// Use individual subitem
+			return $this->localisationCache->getSubitem( $code, 'messages', $msg ) !== null;
+		}
 	}
 
 	/**
@@ -1110,7 +1127,7 @@ class MessageCache implements LoggerAwareInterface {
 			);
 		} else {
 			// Message page either does not exist or does not override a software message
-			if ( !$this->isMainCacheable( $title, $this->overridable ) ) {
+			if ( !$this->isMainCacheable( $title, $code ) ) {
 				// Message page does not override any software-defined message. A custom
 				// message might be defined to have content or settings specific to the wiki.
 				// Load the message page, utilizing the individual message cache as needed.
