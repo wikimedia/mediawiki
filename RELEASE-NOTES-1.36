@@ -1,5 +1,22 @@
 = MediaWiki 1.36 =
 
+== MediaWiki 1.36.1 ==
+
+This is a security and maintenance release of the MediaWiki 1.36 branch.
+
+=== Changes since MediaWiki 1.36.0 ===
+* (T283942) DatabaseInstaller.php: Only run core schema file if specified table
+  doesn't already exist.
+* (T247223) Optimise MessageCache::isMainCacheable() for the single-message
+  case.
+* (T283244) JavaScriptMinifer: Fix handling of "delete" as object property.
+* (T284391) Fix SkinModule to correctly prepend remote path on document root
+  installs.
+* (T235554) Disable DEFER_SET_LENGTH_AND_FLUSH headers to avoid HTTP errors.
+* (T278579) Don't send headers on ob_end_clean().
+* (T285287) MultiHttpClient: Replace PHP version check with defined().
+* (T280226, CVE-2021-35197) SECURITY: Prevent blocked users from purging pages.
+
 == MediaWiki 1.36.0 ==
 
 === Changes since MediaWiki 1.36.0-rc.0 ===
