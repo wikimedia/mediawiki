@@ -130,7 +130,7 @@
 	"config-sqlite-readonly": "Ezin da idatzi <code>$1</code> fitxategian.",
 	"config-sqlite-cant-create-db": "Ezin izan da <code>$1</code> datu-basearen artxiboa sortu.",
 	"config-sqlite-fts3-downgrade": "PHPn FTS3 laguntza falta da, taulen gradua jeisten.",
-	"config-can-upgrade": "Datu base honetan MediaWiki taulak daude.\nMediaWiki $1ra graduz igotzeko, <strong>Jarraitu</strong> klikatu.",
+	"config-can-upgrade": "Datu base honetan MediaWiki taulak daude.\nMediaWiki $1 bertsiora eguneratzeko, klika ezazu «<strong>Jarraitu</strong>».",
 	"config-upgrade-done": "Berritzea burutu da.\n\nOrain [$1 zure wiki-a erabiltzen hasi] ahal zara.\n\nZure <code>LocalSettings.php</code> fitxategia birsortzea nahi baduzu, egin klik beheko botoian.\nHau <strong>ez da gomendagarria</strong> zure wikiarekin arazoak izan ezean.",
 	"config-upgrade-done-no-regenerate": "Eguneratze prozesua amaitu egin da.\n\nHasi ahal zara [ $1 wikia arabiltzen]",
 	"config-regenerate": "Birsortu LocalSettings.php →",
