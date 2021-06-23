@@ -1756,9 +1756,16 @@ class ApiMain extends ApiBase {
 	protected function logRequest( $time, Throwable $e = null ) {
 		$request = $this->getRequest();
 
+		$user = $this->getUser();
+		$performer = [
+			'user_text' => $user->getName(),
+		];
+		if ( $user->isRegistered() ) {
+			$performer['user_id'] = $user->getId();
+		}
 		$logCtx = [
 			// https://gerrit.wikimedia.org/g/mediawiki/event-schemas/+/master/jsonschema/mediawiki/api/request
-			'$schema' => '/mediawiki/api/request/0.0.1',
+			'$schema' => '/mediawiki/api/request/1.0.0',
 			'meta' => [
 				'request_id' => WebRequest::getRequestId(),
 				'id' => MediaWikiServices::getInstance()
@@ -1773,6 +1780,7 @@ class ApiMain extends ApiBase {
 				'method' => $request->getMethod(),
 				'client_ip' => $request->getIP()
 			],
+			'performer' => $performer,
 			'database' => WikiMap::getCurrentWikiDbDomain()->getId(),
 			'backend_time_ms' => (int)round( $time * 1000 ),
 		];
