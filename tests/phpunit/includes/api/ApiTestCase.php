@@ -100,11 +100,13 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 				$tokenType = ( new ApiMain() )->getModuleManager()
 					->getModule( $params['action'], 'action' )->needsToken();
 			}
-			$params['token'] = ApiQueryTokens::getToken(
-				$contextUser,
-				$sessionObj,
-				ApiQueryTokens::getTokenTypeSalts()[$tokenType]
-			)->toString();
+			if ( $tokenType !== false ) {
+				$params['token'] = ApiQueryTokens::getToken(
+					$contextUser,
+					$sessionObj,
+					ApiQueryTokens::getTokenTypeSalts()[$tokenType]
+				)->toString();
+			}
 		}
 
 		$wgRequest = $this->buildFauxRequest( $params, $sessionObj );
