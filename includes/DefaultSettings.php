@@ -9581,16 +9581,24 @@ $wgShellLocale = 'C.UTF-8';
 $wgShellRestrictionMethod = 'autodetect';
 
 /**
+ * @deprecated since 1.37; use $wgShellboxUrls instead
+ */
+$wgShellboxUrl = null;
+
+/**
  * Shell commands can be run on a remote server using Shellbox. To use this
- * feature, set this to the URL, and also configure $wgShellboxSecretKey.
+ * feature, set this to the URLs mapped by the service, and also configure $wgShellboxSecretKey.
+ * You can also disable a certain service by setting it to false or null.
+ *
+ * 'default' would be the default URL if no URL is defined for that service.
  *
  * For more information about installing Shellbox, see
  * https://www.mediawiki.org/wiki/Shellbox
  *
- * @since 1.36
- * @var string|null
+ * @since 1.37
+ * @var (string|false|null)[]
  */
-$wgShellboxUrl = null;
+$wgShellboxUrls = [ 'default' => null ];
 
 /**
  * The secret key for HMAC verification of Shellbox requests. Set this to

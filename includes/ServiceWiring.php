@@ -1323,9 +1323,15 @@ return [
 	},
 
 	'ShellboxClientFactory' => static function ( MediaWikiServices $services ) : ShellboxClientFactory {
+		$urls = $services->getMainConfig()->get( 'ShellboxUrls' );
+		// TODO: Remove this logic and $wgShellboxUrl configuration in 1.38
+		$url = $services->getMainConfig()->get( 'ShellboxUrl' );
+		if ( $url !== null ) {
+			$urls['default'] = $url;
+		}
 		return new ShellboxClientFactory(
 			$services->getHttpRequestFactory(),
-			$services->getMainConfig()->get( 'ShellboxUrl' ),
+			$urls,
 			$services->getMainConfig()->get( 'ShellboxSecretKey' )
 		);
 	},
