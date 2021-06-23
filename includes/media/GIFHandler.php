@@ -164,7 +164,11 @@ class GIFHandler extends BitmapHandler {
 
 		$metadata = $image->getMetadataArray();
 
-		if ( !$metadata || $metadata['frameCount'] <= 1 ) {
+		if (
+			!$metadata ||
+			( isset( $metadata['_error'] ) && $metadata['_error'] ) ||
+			$metadata['frameCount'] <= 0
+		) {
 			return $original;
 		}
 
