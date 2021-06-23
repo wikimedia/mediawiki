@@ -1,6 +1,6 @@
 [submodule "extensions/CheckUser"]
 	path = extensions/CheckUser
-	url = https://github.com/wikimedia/mediawiki-extensions-CheckUser.git
+	url = https://github.com/wikimedia/mediawiki-extensions-CheckUser
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/AbuseFilter"]
@@ -165,7 +165,7 @@
 	ignore = dirty
 [submodule "extensions/Math"]
 	path = extensions/Math
-	url = https://github.com/wikimedia/mediawiki-extensions-Math.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Math
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Timeline"]
@@ -220,87 +220,87 @@
 	ignore = dirty
 [submodule "extensions/SubpageFun"]
 	path = extensions/SubpageFun
-	url = https://github.com/wikimedia/mediawiki-extensions-SubpageFun.git
+	url = https://github.com/wikimedia/mediawiki-extensions-SubpageFun
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/DPLForum"]
 	path = extensions/DPLForum
-	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum.git
+	url = https://github.com/wikimedia/mediawiki-extensions-DPLForum
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Tabber"]
 	path = extensions/Tabber
-	url = https://github.com/wikimedia/mediawiki-extensions-Tabber.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Tabber
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Poem"]
 	path = extensions/Poem
-	url = https://github.com/wikimedia/mediawiki-extensions-Poem.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Poem
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/AdminLinks"]
 	path = extensions/AdminLinks
-	url = https://github.com/wikimedia/mediawiki-extensions-AdminLinks.git
+	url = https://github.com/wikimedia/mediawiki-extensions-AdminLinks
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/SocialProfile"]
 	path = extensions/SocialProfile
-	url = https://github.com/wikimedia/mediawiki-extensions-SocialProfile.git
+	url = https://github.com/wikimedia/mediawiki-extensions-SocialProfile
 	branch = master
 	ignore = dirty
 [submodule "extensions/Variables"]
 	path = extensions/Variables
-	url = https://github.com/wikimedia/mediawiki-extensions-Variables.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Variables
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/CharInsert"]
 	path = extensions/CharInsert
-	url = https://github.com/wikimedia/mediawiki-extensions-CharInsert.git
+	url = https://github.com/wikimedia/mediawiki-extensions-CharInsert
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/NewUserMessage"]
 	path = extensions/NewUserMessage
-	url = https://github.com/wikimedia/mediawiki-extensions-NewUserMessage.git
+	url = https://github.com/wikimedia/mediawiki-extensions-NewUserMessage
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/CSS"]
 	path = extensions/CSS
-	url = https://github.com/wikimedia/mediawiki-extensions-CSS.git
+	url = https://github.com/wikimedia/mediawiki-extensions-CSS
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/TextExtracts"]
 	path = extensions/TextExtracts
-	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts.git
+	url = https://github.com/wikimedia/mediawiki-extensions-TextExtracts
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Popups"]
 	path = extensions/Popups
-	url = https://github.com/wikimedia/mediawiki-extensions-Popups.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Popups
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/PageImages"]
 	path = extensions/PageImages
-	url = https://github.com/wikimedia/mediawiki-extensions-PageImages.git
+	url = https://github.com/wikimedia/mediawiki-extensions-PageImages
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/TitleKey"]
 	path = extensions/TitleKey
-	url = https://github.com/wikimedia/mediawiki-extensions-TitleKey.git
+	url = https://github.com/wikimedia/mediawiki-extensions-TitleKey
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/SyntaxHighlight_GeSHi"]
 	path = extensions/SyntaxHighlight_GeSHi
-	url = https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi.git
+	url = https://github.com/wikimedia/mediawiki-extensions-SyntaxHighlight_GeSHi
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/MsUpload"]
 	path = extensions/MsUpload
-	url = https://github.com/wikimedia/mediawiki-extensions-MsUpload.git
+	url = https://github.com/wikimedia/mediawiki-extensions-MsUpload
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/MsLinks"]
 	path = extensions/MsLinks
-	url = https://github.com/wikimedia/mediawiki-extensions-MsLinks.git
+	url = https://github.com/wikimedia/mediawiki-extensions-MsLinks
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/MultiBoilerplate"]
@@ -370,42 +370,42 @@
 	ignore = dirty
 [submodule "extensions/PageNotice"]
 	path = extensions/PageNotice
-	url = https://github.com/wikimedia/mediawiki-extensions-PageNotice.git
+	url = https://github.com/wikimedia/mediawiki-extensions-PageNotice
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Loops"]
 	path = extensions/Loops
-	url = https://github.com/wikimedia/mediawiki-extensions-Loops.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Loops
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/NewestPages"]
 	path = extensions/NewestPages
-	url = https://github.com/wikimedia/mediawiki-extensions-NewestPages.git
+	url = https://github.com/wikimedia/mediawiki-extensions-NewestPages
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/HeaderTabs"]
 	path = extensions/HeaderTabs
-	url = https://github.com/wikimedia/mediawiki-extensions-HeaderTabs.git
+	url = https://github.com/wikimedia/mediawiki-extensions-HeaderTabs
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/VoteNY"]
 	path = extensions/VoteNY
-	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY.git
+	url = https://github.com/wikimedia/mediawiki-extensions-VoteNY
 	branch = master
 	ignore = dirty
 [submodule "skins/Metrolook"]
 	path = skins/Metrolook
-	url = https://github.com/wikimedia/mediawiki-skins-Metrolook.git
+	url = https://github.com/wikimedia/mediawiki-skins-Metrolook
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/AJAXPoll"]
 	path = extensions/AJAXPoll
-	url = https://github.com/wikimedia/mediawiki-extensions-AJAXPoll.git
+	url = https://github.com/wikimedia/mediawiki-extensions-AJAXPoll
 	branch = master
 	ignore = dirty
 [submodule "extensions/BlogPage"]
 	path = extensions/BlogPage
-	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage.git
+	url = https://github.com/wikimedia/mediawiki-extensions-BlogPage
 	branch = master
 	ignore = dirty
 [submodule "extensions/WebChat"]
@@ -435,22 +435,22 @@
 	ignore = dirty
 [submodule "skins/apex"]
 	path = skins/apex
-	url = https://github.com/wikimedia/mediawiki-skins-apex.git
+	url = https://github.com/wikimedia/mediawiki-skins-apex
 	branch = REL1_36
 	ignore = dirty
 [submodule "skins/erudite"]
 	path = skins/erudite
-	url = https://github.com/wikimedia/mediawiki-skins-erudite.git
+	url = https://github.com/wikimedia/mediawiki-skins-erudite
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/ConfirmEdit"]
 	path = extensions/ConfirmEdit
-	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit.git
+	url = https://github.com/wikimedia/mediawiki-extensions-ConfirmEdit
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/CreateWiki"]
 	path = extensions/CreateWiki
-	url = https://github.com/Miraheze/CreateWiki.git
+	url = https://github.com/Miraheze/CreateWiki
 	branch = master
 	ignore = dirty
 [submodule "extensions/MirahezeMagic"]
@@ -465,17 +465,17 @@
 	ignore = dirty
 [submodule "skins/foreground"]
 	path = skins/foreground
-	url = https://github.com/thingles/foreground.git
+	url = https://github.com/thingles/foreground
 	branch = master
 	ignore = dirty
 [submodule "extensions/AddHTMLMetaAndTitle"]
 	path = extensions/AddHTMLMetaAndTitle
-	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle.git
+	url = https://github.com/wikimedia/mediawiki-extensions-AddHTMLMetaAndTitle
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/HighlightLinksInCategory"]
 	path = extensions/HighlightLinksInCategory
-	url = https://github.com/labster/HighlightLinksInCategory.git
+	url = https://github.com/labster/HighlightLinksInCategory
 	branch = master
 	ignore = dirty
 [submodule "extensions/SimpleTooltip"]
@@ -485,17 +485,17 @@
 	ignore = dirty
 [submodule "extensions/Comments"]
 	path = extensions/Comments
-	url = https://github.com/wikimedia/mediawiki-extensions-Comments.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Comments
 	branch = master
 	ignore = dirty
 [submodule "extensions/PDFEmbed"]
 	path = extensions/PDFEmbed
-	url = https://github.com/miraheze/PDFEmbed.git
+	url = https://github.com/miraheze/PDFEmbed
 	branch = master
 	ignore = dirty
 [submodule "extensions/YouTube"]
 	path = extensions/YouTube
-	url = https://github.com/miraheze/YouTube.git
+	url = https://github.com/miraheze/YouTube
 	branch = master
 	ignore = dirty
 [submodule "extensions/LabeledSectionTransclusion"]
@@ -505,12 +505,12 @@
 	ignore = dirty
 [submodule "extensions/ReplaceText"]
 	path = extensions/ReplaceText
-	url = https://github.com/wikimedia/mediawiki-extensions-ReplaceText.git
+	url = https://github.com/wikimedia/mediawiki-extensions-ReplaceText
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/JavascriptSlideshow"]
 	path = extensions/JavascriptSlideshow
-	url = https://gitlab.com/hydrawiki/extensions/javascriptslideshow.git
+	url = https://gitlab.com/hydrawiki/extensions/javascriptslideshow
 	branch = master
 	ignore = dirty
 [submodule "extensions/Wikibase"]
@@ -525,7 +525,7 @@
 	ignore = dirty
 [submodule "extensions/CookieWarning"]
 	path = extensions/CookieWarning
-	url = https://github.com/wikimedia/mediawiki-extensions-CookieWarning.git
+	url = https://github.com/wikimedia/mediawiki-extensions-CookieWarning
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/FancyBoxThumbs"]
@@ -545,7 +545,7 @@
 	ignore = dirty
 [submodule "extensions/HideSection"]
 	path = extensions/HideSection
-	url = https://github.com/labster/HideSection.git
+	url = https://github.com/labster/HideSection
 	branch = master
 	ignore = dirty
 [submodule "extensions/WikiTextLoggedInOut"]
@@ -635,12 +635,12 @@
 	ignore = dirty
 [submodule "skins/Gamepress"]
 	path = skins/Gamepress
-	url = https://github.com/wikimedia/mediawiki-skins-Gamepress.git
+	url = https://github.com/wikimedia/mediawiki-skins-Gamepress
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/DismissableSiteNotice"]
 	path = extensions/DismissableSiteNotice
-	url = https://github.com/wikimedia/mediawiki-extensions-DismissableSiteNotice.git
+	url = https://github.com/wikimedia/mediawiki-extensions-DismissableSiteNotice
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/NewSignupPage"]
@@ -825,7 +825,7 @@
 	ignore = dirty
 [submodule "extensions/WikiDiscover"]
 	path = extensions/WikiDiscover
-	url = https://github.com/miraheze/WikiDiscover.git
+	url = https://github.com/miraheze/WikiDiscover
 	branch = master
 	ignore = dirty
 [submodule "extensions/Collection"]
@@ -850,12 +850,12 @@
 	ignore = dirty
 [submodule "skins/pivot"]
 	path = skins/pivot
-	url = https://github.com/Hutchy68/pivot.git
+	url = https://github.com/Hutchy68/pivot
 	ignore = dirty
 	branch = master
 [submodule "skins/liberty"]
 	path = skins/liberty
-	url = https://gitlab.com/librewiki/Liberty-MW-Skin.git
+	url = https://gitlab.com/librewiki/Liberty-MW-Skin
 	ignore = dirty
 	branch = master
 [submodule "extensions/GeoData"]
@@ -925,32 +925,32 @@
 	ignore = dirty
 [submodule "extensions/DiscordNotifications"]
 	path = extensions/DiscordNotifications
-	url = https://github.com/kulttuuri/DiscordNotifications.git
+	url = https://github.com/kulttuuri/DiscordNotifications
 	ignore = dirty
 	branch = master
 [submodule "extensions/GeoCrumbs"]
 	path = extensions/GeoCrumbs
-	url = https://github.com/wikimedia/mediawiki-extensions-GeoCrumbs.git
+	url = https://github.com/wikimedia/mediawiki-extensions-GeoCrumbs
 	ignore = dirty
 	branch = REL1_36
 [submodule "extensions/NukeDPL"]
 	path = extensions/NukeDPL
-	url = https://github.com/wikimedia/mediawiki-extensions-NukeDPL.git
+	url = https://github.com/wikimedia/mediawiki-extensions-NukeDPL
 	ignore = dirty
 	branch = REL1_36
 [submodule "extensions/ImageRating"]
 	path = extensions/ImageRating
-	url = https://github.com/wikimedia/mediawiki-extensions-ImageRating.git
+	url = https://github.com/wikimedia/mediawiki-extensions-ImageRating
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/RandomImage"]
 	path = extensions/RandomImage
-	url = https://github.com/wikimedia/mediawiki-extensions-RandomImage.git
+	url = https://github.com/wikimedia/mediawiki-extensions-RandomImage
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/PollNY"]
 	path = extensions/PollNY
-	url = https://github.com/wikimedia/mediawiki-extensions-PollNY.git
+	url = https://github.com/wikimedia/mediawiki-extensions-PollNY
 	branch = master
 	ignore = dirty
 [submodule "extensions/WikimediaIncubator"]
@@ -960,17 +960,17 @@
 	ignore = dirty
 [submodule "extensions/ApprovedRevs"]
 	path = extensions/ApprovedRevs
-	url = https://github.com/wikimedia/mediawiki-extensions-ApprovedRevs.git
+	url = https://github.com/wikimedia/mediawiki-extensions-ApprovedRevs
 	branch = master
 	ignore = dirty
 [submodule "extensions/Purge"]
 	path = extensions/Purge
-	url = https://github.com/Hutchy68/Purge.git
+	url = https://github.com/Hutchy68/Purge
 	branch = master
 	ignore = dirty
 [submodule "extensions/GettingStarted"]
 	path = extensions/GettingStarted
-	url = https://github.com/wikimedia/mediawiki-extensions-GettingStarted.git
+	url = https://github.com/wikimedia/mediawiki-extensions-GettingStarted
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/RottenLinks"]
@@ -985,12 +985,12 @@
 	ignore = dirty
 [submodule "extensions/TemplateWizard"]
 	path = extensions/TemplateWizard
-	url = https://github.com/wikimedia/mediawiki-extensions-TemplateWizard.git
+	url = https://github.com/wikimedia/mediawiki-extensions-TemplateWizard
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/WikiSEO"]
 	path = extensions/WikiSEO
-	url = https://github.com/wikimedia/mediawiki-extensions-WikiSEO.git
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiSEO
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/DummyFandoomMainpageTags"]
@@ -1000,12 +1000,12 @@
 	ignore = dirty
 [submodule "extensions/PortableInfobox"]
 	path = extensions/PortableInfobox
-	url = https://github.com/lkucharczyk/mediawiki-PortableInfobox.git
+	url = https://github.com/lkucharczyk/mediawiki-PortableInfobox
 	branch = master
 	ignore = dirty
 [submodule "extensions/UserMerge"]
 	path = extensions/UserMerge
-	url = https://github.com/wikimedia/mediawiki-extensions-UserMerge.git
+	url = https://github.com/wikimedia/mediawiki-extensions-UserMerge
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/MobileDetect"]
@@ -1015,7 +1015,7 @@
 	ignore = dirty
 [submodule "extensions/Citoid"]
 	path = extensions/Citoid
-	url = https://github.com/wikimedia/mediawiki-extensions-Citoid.git
+	url = https://github.com/wikimedia/mediawiki-extensions-Citoid
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Genealogy"]
@@ -1035,27 +1035,27 @@
 	ignore = dirty
 [submodule "extensions/DataDump"]
 	path = extensions/DataDump
-	url = https://github.com/miraheze/DataDump.git
+	url = https://github.com/miraheze/DataDump
 	branch = master
 	ignore = dirty
 [submodule "extensions/DisplayTitle"]
 	path = extensions/DisplayTitle
-	url = https://github.com/wikimedia/mediawiki-extensions-DisplayTitle.git
+	url = https://github.com/wikimedia/mediawiki-extensions-DisplayTitle
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/WikiCategoryTagCloud"]
 	path = extensions/WikiCategoryTagCloud
-	url = https://github.com/wikimedia/mediawiki-extensions-WikiCategoryTagCloud.git
+	url = https://github.com/wikimedia/mediawiki-extensions-WikiCategoryTagCloud
 	branch = master
 	ignore = dirty
 [submodule "skins/Mask"]
 	path = skins/Mask
-	url = https://github.com/wikimedia/mediawiki-skins-Mask.git
+	url = https://github.com/wikimedia/mediawiki-skins-Mask
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/JsonConfig"]
 	path = extensions/JsonConfig
-	url = https://github.com/wikimedia/mediawiki-extensions-JsonConfig.git
+	url = https://github.com/wikimedia/mediawiki-extensions-JsonConfig
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/CategorySortHeaders"]
@@ -1085,7 +1085,7 @@
 	ignore = dirty
 [submodule "extensions/HeaderFooter"]
 	path = extensions/HeaderFooter
-	url = https://github.com/enterprisemediawiki/HeaderFooter.git
+	url = https://github.com/enterprisemediawiki/HeaderFooter
 	branch = master
 	ignore = dirty
 [submodule "extensions/AutoCreatePage"]
@@ -1120,7 +1120,7 @@
 	ignore = dirty
 [submodule "extensions/SpriteSheet"]
 	path = extensions/SpriteSheet
-	url = https://github.com/miraheze/SpriteSheet.git
+	url = https://github.com/miraheze/SpriteSheet
 	branch = master
 	ignore = dirty
 [submodule "extensions/LanguageSelector"]
@@ -1165,27 +1165,27 @@
 	ignore = dirty
 [submodule "extensions/DynamicSidebar"]
 	path = extensions/DynamicSidebar
-	url = https://github.com/wikimedia/mediawiki-extensions-DynamicSidebar.git
+	url = https://github.com/wikimedia/mediawiki-extensions-DynamicSidebar
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/GlobalUsage"]
 	path = extensions/GlobalUsage
-	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUsage.git
+	url = https://github.com/wikimedia/mediawiki-extensions-GlobalUsage
 	branch = REL1_36
 	ignore = dirty
 [submodule "skins/Femiwiki"]
 	path = skins/Femiwiki
-	url = https://github.com/femiwiki/FemiwikiSkin.git
+	url = https://github.com/femiwiki/FemiwikiSkin
 	branch = REL1_36
 	ignore = dirty
 [submodule "skins/Citizen"]
 	path = skins/Citizen
-	url = https://github.com/StarCitizenTools/mediawiki-skins-Citizen.git
+	url = https://github.com/StarCitizenTools/mediawiki-skins-Citizen
 	branch = main
 	ignore = dirty
 [submodule "extensions/Mermaid"]
 	path = extensions/Mermaid
-	url = https://github.com/SemanticMediaWiki/Mermaid.git
+	url = https://github.com/SemanticMediaWiki/Mermaid
 	branch = master
 	ignore = dirty
 [submodule "extensions/UserFunctions"]
@@ -1235,12 +1235,12 @@
 	ignore = dirty
 [submodule "extensions/DeleteUserPages"]
 	path = extensions/DeleteUserPages
-	url = https://github.com/wikimedia/mediawiki-extensions-DeleteUserPages.git
+	url = https://github.com/wikimedia/mediawiki-extensions-DeleteUserPages
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/OrphanedTalkPages"]
 	path = extensions/OrphanedTalkPages
-	url = https://github.com/wikimedia/mediawiki-extensions-OrphanedTalkPages.git
+	url = https://github.com/wikimedia/mediawiki-extensions-OrphanedTalkPages
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Linter"]
@@ -1250,7 +1250,7 @@
 	ignore = dirty
 [submodule "extensions/LdapAuthentication"]
 	path = extensions/LdapAuthentication
-	url = https://github.com/wikimedia/mediawiki-extensions-LdapAuthentication.git
+	url = https://github.com/wikimedia/mediawiki-extensions-LdapAuthentication
 	branch = REL1_36
 	ignore = dirty
 [submodule "skins/Cosmos"]
@@ -1270,7 +1270,7 @@
 	ignore = dirty
 [submodule "extensions/EventStreamConfig"]
 	path = extensions/EventStreamConfig
-	url = https://github.com/wikimedia/mediawiki-extensions-EventStreamConfig.git
+	url = https://github.com/wikimedia/mediawiki-extensions-EventStreamConfig
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/SimpleBlogPage"]
@@ -1305,7 +1305,7 @@
 	ignore = dirty
 [submodule "extensions/SnapProjectEmbed"]
 	path = extensions/SnapProjectEmbed
-	url = https://github.com/snapwiki/SnapProjectEmbed.git
+	url = https://github.com/snapwiki/SnapProjectEmbed
 	branch = stable
 	ignore = dirty
 [submodule "extensions/MediaModeration"]
@@ -1315,7 +1315,7 @@
 	ignore = dirty
 [submodule "extensions/DynamicPageList3"]
 	path = extensions/DynamicPageList3
-	url = https://github.com/Universal-Omega/DynamicPageList3.git
+	url = https://github.com/Universal-Omega/DynamicPageList3
 	branch = REL1_36
 	ignore = dirty
 [submodule "extensions/Report"]
