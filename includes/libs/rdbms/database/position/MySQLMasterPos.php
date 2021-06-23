@@ -21,13 +21,13 @@ class MySQLMasterPos implements DBMasterPos {
 	private $style;
 	/** @var string|null Base name of all Binary Log files */
 	private $binLog;
-	/** @var int[]|null Binary Log position tuple (index number, event number) */
+	/** @var array<int,int|string>|null Binary Log position tuple (index number, event number) */
 	private $logPos;
 	/** @var string[] Map of (server_uuid/gtid_domain_id => GTID) */
 	private $gtids = [];
-	/** @var int|null Active GTID domain ID */
+	/** @var string|null Active GTID domain ID */
 	private $activeDomain;
-	/** @var int|null ID of the server were DB writes originate */
+	/** @var string|null ID of the server were DB writes originate */
 	private $activeServerId;
 	/** @var string|null UUID of the server were DB writes originate */
 	private $activeServerUUID;
@@ -38,13 +38,13 @@ class MySQLMasterPos implements DBMasterPos {
 	private const GTID_MARIA = 'gtid-maria';
 	private const GTID_MYSQL = 'gtid-mysql';
 
-	/** @var int Key name of the binary log index number of a position tuple */
+	/** @var int Key name of the 6 digit binary log index number of a position tuple */
 	public const CORD_INDEX = 0;
-	/** @var int Key name of the binary log event number of a position tuple */
+	/** @var int Key name of the 64 bit binary log event number of a position tuple */
 	public const CORD_EVENT = 1;
 
 	/**
-	 * @param string $position One of (comma separated GTID list, <binlog file>/<integer>)
+	 * @param string $position One of (comma separated GTID list, <binlog file>/<64 bit integer>)
 	 * @param float $asOfTime UNIX timestamp
 	 */
 	public function __construct( $position, $asOfTime ) {
@@ -59,7 +59,7 @@ class MySQLMasterPos implements DBMasterPos {
 		$m = [];
 		if ( preg_match( '!^(.+)\.(\d+)/(\d+)$!', $position, $m ) ) {
 			$this->binLog = $m[1]; // ideally something like host name
-			$this->logPos = [ self::CORD_INDEX => (int)$m[2], self::CORD_EVENT => (int)$m[3] ];
+			$this->logPos = [ self::CORD_INDEX => (int)$m[2], self::CORD_EVENT => $m[3] ];
 			$this->style = self::BINARY_LOG;
 		} else {
 			$gtids = array_filter( array_map( 'trim', explode( ',', $position ) ) );
@@ -69,20 +69,20 @@ class MySQLMasterPos implements DBMasterPos {
 					throw new InvalidArgumentException( "Invalid GTID '$gtid'." );
 				}
 
-				list( $domain, $pos ) = $components;
+				list( $domain, $eventNumber ) = $components;
 				if ( isset( $this->gtids[$domain] ) ) {
 					// For MySQL, handle the case where some past issue caused a gap in the
 					// executed GTID set, e.g. [last_purged+1,N-1] and [N+1,N+2+K]. Ignore the
-					// gap by using the GTID with the highest ending sequence number.
-					list( , $otherPos ) = self::parseGTID( $this->gtids[$domain] );
-					if ( $pos > $otherPos ) {
+					// gap by using the GTID with the highest ending event number.
+					list( , $otherEventNumber ) = self::parseGTID( $this->gtids[$domain] );
+					if ( $eventNumber > $otherEventNumber ) {
 						$this->gtids[$domain] = $gtid;
 					}
 				} else {
 					$this->gtids[$domain] = $gtid;
 				}
 
-				if ( is_int( $domain ) ) {
+				if ( is_string( $domain ) ) {
 					$this->style = self::GTID_MARIA; // gtid_domain_id
 				} else {
 					$this->style = self::GTID_MYSQL; // server_uuid
@@ -166,7 +166,7 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
-	 * @return int[]|null Tuple of (binary log file number, event number)
+	 * @return array<int,int|string>|null Tuple of (binary log file number, 64 bit event number)
 	 * @since 1.31
 	 */
 	public function getLogPosition() {
@@ -183,7 +183,7 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
-	 * @return string[] Map of (server_uuid/gtid_domain_id => GTID)
+	 * @return array<string,string> Map of (server_uuid/gtid_domain_id => GTID)
 	 * @since 1.31
 	 */
 	public function getGTIDs() {
@@ -198,12 +198,12 @@ class MySQLMasterPos implements DBMasterPos {
 	 * @see MySQLMasterPos::getRelevantActiveGTIDs()
 	 * @see https://mariadb.com/kb/en/library/gtid/#gtid_domain_id
 	 *
-	 * @param int|null $id @@gtid_domain_id of the active replication stream
+	 * @param string|int|null $id @@gtid_domain_id of the active replication stream
 	 * @return MySQLMasterPos This instance (since 1.34)
 	 * @since 1.31
 	 */
 	public function setActiveDomain( $id ) {
-		$this->activeDomain = (int)$id;
+		$this->activeDomain = (string)$id;
 
 		return $this;
 	}
@@ -215,12 +215,12 @@ class MySQLMasterPos implements DBMasterPos {
 	 *
 	 * @see MySQLMasterPos::getRelevantActiveGTIDs()
 	 *
-	 * @param int|null $id @@server_id of the server were writes originate
+	 * @param string|int|null $id @@server_id of the server were writes originate
 	 * @return MySQLMasterPos This instance (since 1.34)
 	 * @since 1.31
 	 */
 	public function setActiveOriginServerId( $id ) {
-		$this->activeServerId = (int)$id;
+		$this->activeServerId = (string)$id;
 
 		return $this;
 	}
@@ -259,12 +259,12 @@ class MySQLMasterPos implements DBMasterPos {
 	/**
 	 * @see https://mariadb.com/kb/en/mariadb/gtid
 	 * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
-	 * @return array Map of (server_uuid/gtid_domain_id => integer position); possibly empty
+	 * @return array<string,int> Map of (server_uuid/gtid_domain_id => integer position)
 	 */
 	protected function getActiveGtidCoordinates() {
 		$gtidInfos = [];
 
-		foreach ( $this->gtids as $domain => $gtid ) {
+		foreach ( $this->gtids as $gtid ) {
 			list( $domain, $pos, $server ) = self::parseGTID( $gtid );
 
 			$ignore = false;
@@ -289,22 +289,29 @@ class MySQLMasterPos implements DBMasterPos {
 
 	/**
 	 * @param string $id GTID
-	 * @return array|null [domain ID or server UUID, sequence number, server ID/UUID] or null
+	 * @return string[]|null (domain ID, event number, source server ID) for MariaDB,
+	 * (source server UUID, event number, source server UUID) for MySQL, or null
 	 */
 	protected static function parseGTID( $id ) {
 		$m = [];
 		if ( preg_match( '!^(\d+)-(\d+)-(\d+)$!', $id, $m ) ) {
-			// MariaDB style: <domain>-<server id>-<sequence number>
-			return [ (int)$m[1], (int)$m[3], (int)$m[2] ];
+			// MariaDB style: "<32 bit domain ID>-<32 bit server id>-<64 bit event number>"
+			$channelId = $m[1];
+			$originServerId = $m[2];
+			$eventNumber = $m[3];
 		} elseif ( preg_match( '!^(\w{8}-\w{4}-\w{4}-\w{4}-\w{12}):(?:\d+-|)(\d+)$!', $id, $m ) ) {
-			// MySQL style: <server UUID>:<sequence number>-<sequence number>
+			// MySQL style: "<server UUID>:<64 bit event number>[-<64 bit event number>]".
 			// Normally, the first number should reflect the point (gtid_purged) where older
 			// binary logs where purged to save space. When doing comparisons, it may as well
 			// be 1 in that case. Assume that this is generally the situation.
-			return [ $m[1], (int)$m[2], $m[1] ];
+			$channelId = $m[1];
+			$originServerId = $m[1];
+			$eventNumber = $m[2];
+		} else {
+			return null;
 		}
 
-		return null;
+		return [ $channelId, $eventNumber, $originServerId ];
 	}
 
 	/**
