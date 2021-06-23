@@ -1463,3 +1463,7 @@
 	url = https://github.com/wikimedia/mediawiki-skins-BlueSky
 	branch = REL1_36
 	ignore = dirty
+[submodule "extensions/TabberNeue"]
+	path = extensions/TabberNeue
+	url = https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue
+	branch = main
