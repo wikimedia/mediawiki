@@ -474,7 +474,11 @@ TXT;
 
 		if ( $e instanceof DBQueryError ) {
 			$message = "A database query error has occurred. Did you forget to run"
-				. " your application's database schema updater after upgrading?\n\n"
+				. " your application's database schema updater after upgrading"
+				. " or after adding a new extension?\n\nPlease see"
+				. " https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:Upgrading and"
+				. " https://www.mediawiki.org/wiki/Special:MyLanguage/Manual:How_to_debug"
+				. " for more information.\n\n"
 				. $message;
 		}
 
