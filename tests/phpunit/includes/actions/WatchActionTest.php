@@ -440,6 +440,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testGetWatchTokenNormalizesToWatch() {
+		$this->hideDeprecated( 'WatchAction::getWatchToken' );
 		$user = $this->createMock( User::class );
 		$user->expects( $this->once() )
 			->method( 'getEditToken' )
@@ -453,6 +454,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 * @throws Exception
 	 */
 	public function testGetWatchTokenProxiesUserGetEditToken() {
+		$this->hideDeprecated( 'WatchAction::getWatchToken' );
 		$user = $this->createMock( User::class );
 		$user->expects( $this->once() )->method( 'getEditToken' );
 
