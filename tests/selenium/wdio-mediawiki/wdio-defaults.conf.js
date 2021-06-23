@@ -93,6 +93,13 @@ exports.config = {
 	// See also: https://webdriver.io/docs/frameworks/
 	framework: 'mocha',
 	// See also: https://mochajs.org/
+	// The number of times to retry the entire specfile when it fails as a whole
+	specFileRetries: 1,
+	// Delay in seconds between the spec file retry attempts
+	specFileRetriesDelay: 0,
+	// Whether or not retried specfiles should be retried immediately or deferred to the end of the
+	// queue
+	specFileRetriesDeferred: false,
 	mochaOpts: {
 		ui: 'bdd',
 		timeout: process.env.DEBUG ? ( 60 * 60 * 1000 ) : ( 60 * 1000 )
