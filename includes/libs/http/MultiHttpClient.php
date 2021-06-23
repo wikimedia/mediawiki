@@ -477,7 +477,7 @@ class MultiHttpClient implements LoggerAwareInterface {
 	 * @return string
 	 */
 	private function getCurlTime( $ch, $oldOption, $newConstName ): string {
-		if ( version_compare( PHP_VERSION, '7.3.0', '>=' ) ) {
+		if ( defined( $newConstName ) ) {
 			return sprintf( "%.6f", curl_getinfo( $ch, constant( $newConstName ) ) / 1e6 );
 		} else {
 			return (string)curl_getinfo( $ch, $oldOption );
