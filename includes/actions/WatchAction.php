@@ -318,6 +318,8 @@ class WatchAction extends FormAction {
 	/**
 	 * Get token to watch (or unwatch) a page for a user
 	 *
+	 * @deprecated since 1.37, use CsrfTokenSet::getToken
+	 *
 	 * @param PageIdentity $page Title object of page to watch
 	 * @param User $user User for whom the action is going to be performed
 	 * @param string $action Optionally override the action to 'unwatch'
@@ -325,6 +327,7 @@ class WatchAction extends FormAction {
 	 * @since 1.18
 	 */
 	public static function getWatchToken( PageIdentity $page, User $user, $action = 'watch' ) {
+		wfDeprecated( __METHOD__, '1.37' );
 		if ( $action != 'unwatch' ) {
 			$action = 'watch';
 		}
