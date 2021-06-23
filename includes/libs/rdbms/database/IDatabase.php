@@ -170,7 +170,7 @@ interface IDatabase {
 	 * and how those changes propagate among database servers. It is assumed that the server
 	 * only participates in the replication of a single relevant dataset.
 	 *
-	 * @return int|null Unique integer ID; null if not applicable or unknown
+	 * @return string|null 32, 64, or 128 bit integer ID; null if not applicable or unknown
 	 * @throws DBQueryError
 	 * @since 1.37
 	 */
