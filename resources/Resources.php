@@ -714,6 +714,11 @@ return [
 			'oojs-ui-core',
 		],
 	],
+	'mediawiki.diff' => [
+		'scripts' => [
+			'resources/src/mediawiki.diff.styles/diff.js',
+		]
+	],
 	'mediawiki.diff.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.diff.styles/diff.less',
