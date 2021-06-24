@@ -6,6 +6,8 @@ THIS IS NOT A RELEASE YET
 * (T283273) Make postgres IRC channel point to libera.chat.
 * (T289108) ExtensionProcessor: Remove loaderScripts from
   extension.json schemas.
+* (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in
+  Special:Search.
 
 == MediaWiki 1.31.15 ==
 
