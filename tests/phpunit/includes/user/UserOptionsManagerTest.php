@@ -5,6 +5,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
 use Psr\Log\NullLogger;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @group Database
@@ -14,7 +15,8 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 
 	private function getManager(
 		string $langCode = 'qqq',
-		array $defaultOptionsOverrides = []
+		array $defaultOptionsOverrides = [],
+		ILoadBalancer $lbOverride = null
 	) {
 		$services = MediaWikiServices::getInstance();
 		return new UserOptionsManager(
@@ -27,7 +29,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 			),
 			$this->getDefaultManager( $langCode, $defaultOptionsOverrides ),
 			$services->getLanguageConverterFactory(),
-			$services->getDBLoadBalancer(),
+			$lbOverride ?? $services->getDBLoadBalancer(),
 			new NullLogger(),
 			$services->getHookContainer()
 		);
@@ -247,5 +249,34 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$manager->saveOptions( $user );
 		$manager->clearUserOptionsCache( $user );
 		$this->assertNull( $manager->getOption( $user, 'test_option' ) );
+	}
+
+	public function testOptionsForUpdateNotRefetchedBeforeInsert() {
+		$mockDb = $this->createMock( \Wikimedia\Rdbms\IDatabase::class );
+		$mockDb->expects( $this->once() ) // This is critical what we are testing
+			->method( 'select' )
+			->willReturn( new FakeResultWrapper( [
+				[
+					'up_value' => 'blabla',
+					'up_property' => 'test_option',
+				]
+			] ) );
+		$mockLoadBalancer = $this->createMock( ILoadBalancer::class );
+		$mockLoadBalancer
+			->method( 'getConnectionRef' )
+			->willReturn( $mockDb );
+		$user = $this->getTestUser()->getUser();
+		$manager = $this->getManager( 'qqq', [], $mockLoadBalancer );
+		$manager->getOption(
+			$user,
+			'test_option',
+			null,
+			false,
+			UserOptionsManager::READ_LOCKING
+		);
+		$manager->getOption( $user, 'test_option2' );
+		$manager->setOption( $user, 'test_option', 'test_value' );
+		$manager->setOption( $user, 'test_option2', 'test_value2' );
+		$manager->saveOptions( $user );
 	}
 }
