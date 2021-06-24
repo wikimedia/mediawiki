@@ -33,8 +33,14 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  * @ingroup Maintenance
  */
 class PurgeParserCache extends Maintenance {
+
+	/** @var null|string */
 	private $lastProgress;
 
+	/** @var null|float */
+	private $lastTimestamp;
+
+	private $tmpCount = 0;
 	private $usleep = 0;
 
 	public function __construct() {
@@ -68,6 +74,7 @@ class PurgeParserCache extends Maintenance {
 			return;
 		}
 		$this->usleep = 1e3 * $this->getOption( 'msleep', 0 );
+		$this->lastTimestamp = microtime( true );
 
 		$humanDate = ConvertibleTimestamp::convert( TS_RFC2822, $timestamp );
 		if ( $this->hasOption( 'dry-run' ) ) {
@@ -97,6 +104,7 @@ class PurgeParserCache extends Maintenance {
 		// purge script would not be able to finish within 24 hours for large wiki farms.
 		// (T150124).
 		usleep( $this->usleep );
+		$this->tmpCount++;
 
 		$percentString = sprintf( "%.1f", $percent );
 		if ( $percentString === $this->lastProgress ) {
@@ -104,12 +112,19 @@ class PurgeParserCache extends Maintenance {
 			// This does not mean every 0.1% step is printed since we only run this callback
 			// once after a deletion batch. How often and how many lines we print depends on the
 			// batch size (SqlBagOStuff::deleteObjectsExpiringBefore, $wgUpdateRowsPerQuery),
-			// and on how many talbe rows there are.
+			// and on how many table rows there are.
 			return;
 		}
-		$this->lastProgress = $percentString;
+		$now = microtime( true );
+		$sec = sprintf( "%.1f", $now - $this->lastTimestamp );
 
-		$this->output( "... $percentString% done\n" );
+		// Give a sense of how much time is spent in the delete operations vs the sleep time,
+		// by recording the number of iterations we've completed since the last progress update.
+		$this->output( "... {$percentString}% done (+{$this->tmpCount} iterations in {$sec}s)\n" );
+
+		$this->lastProgress = $percentString;
+		$this->tmpCount = 0;
+		$this->lastTimestamp = $now;
 	}
 }
 
