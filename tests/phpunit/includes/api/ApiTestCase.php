@@ -30,9 +30,6 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		];
 
 		$this->setRequest( new FauxRequest( [] ) );
-		$this->setMwGlobals( [
-			'wgUser' => self::$users['sysop']->getUser(),
-		] );
 
 		$this->apiContext = new ApiTestContext();
 	}
@@ -63,7 +60,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	protected function doApiRequest( array $params, array $session = null,
 		$appendModule = false, Authority $performer = null, $tokenType = null
 	) {
-		global $wgRequest, $wgUser;
+		global $wgRequest;
 
 		if ( $session === null ) {
 			// re-use existing global session by default
@@ -81,16 +78,9 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		// set up global environment
 		if ( $performer ) {
 			$legacyUser = $this->getServiceContainer()->getUserFactory()->newFromAuthority( $performer );
-			$wgUser = $legacyUser;
-			// Only $contextUser should be used, $wgUser is set for anything that still
-			// tries to read it
 			$contextUser = $legacyUser;
 		} else {
-			// Fallback, eventually should be removed. Once no tests write to $wgUser
-			// directly or via `setMwGlobals`, this should always be a reference
-			// to `self::$users['sysop']->getUser()` (which is set as the value of
-			// $wgUser in ::setUp) and should be replaced with using that.
-			$contextUser = $wgUser;
+			$contextUser = self::$users['sysop']->getUser();
 			$performer = $contextUser;
 		}
 

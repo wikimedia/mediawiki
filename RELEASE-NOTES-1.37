@@ -316,6 +316,15 @@ because of Phabricator reports.
   deprecated since 1.36, was removed.
 * Skin::generateDebugHTML(), deprecated since 1.35, was removed. Call
   MWDebug::getHTMLDebugLog() directly.
+* The ApiTestCase class no longer interacts with the global $wgUser.
+  Previously, the global variable was set at the start of each test, and in
+  ApiTestCase::doApiRequest() if a performer was specified $wgUser was
+  updated to match, and if no performer was specified $wgUser was used
+  instead. Now, $wgUser is not updated, and if no performer is specified
+  the reusable TestUser object for the sysop is relied on. Extensions
+  or skins that rely on the global $wgUser variable (which has been
+  deprecated since 1.35) should instead retrieve the acting user from the
+  relevant context source.
 * …
 
 === Deprecations in 1.37 ===
