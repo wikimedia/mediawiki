@@ -51,8 +51,8 @@ abstract class ImageQueryPage extends QueryPage {
 		if ( $num > 0 ) {
 			$gallery = ImageGalleryBase::factory( false, $this->getContext() );
 
-			# $res might contain the whole 1,000 rows, so we read up to
-			# $num [should update this to use a Pager]
+			// $res might contain the whole 1,000 rows, so we read up to
+			// $num [should update this to use a Pager]
 			$i = 0;
 			foreach ( $res as $row ) {
 				$i++;

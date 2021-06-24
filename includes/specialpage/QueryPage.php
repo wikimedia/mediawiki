@@ -370,12 +370,12 @@ abstract class QueryPage extends SpecialPage {
 		$dbw = $this->getDBLoadBalancer()->getConnectionRef( ILoadBalancer::DB_PRIMARY );
 
 		try {
-			# Do query
+			// Do query
 			$res = $this->reallyDoQuery( $limit, false );
 			$num = false;
 			if ( $res ) {
 				$num = $res->numRows();
-				# Fetch results
+				// Fetch results
 				$vals = [];
 				foreach ( $res as $i => $row ) {
 					if ( isset( $row->value ) ) {
@@ -400,16 +400,16 @@ abstract class QueryPage extends SpecialPage {
 				$dbw->doAtomicSection(
 					__METHOD__,
 					function ( IDatabase $dbw, $fname ) use ( $vals ) {
-						# Clear out any old cached data
+						// Clear out any old cached data
 						$dbw->delete( 'querycache',
 							[ 'qc_type' => $this->getName() ],
 							$fname
 						);
-						# Save results into the querycache table on the master
+						// Save results into the querycache table on the master
 						if ( count( $vals ) ) {
 							$dbw->insert( 'querycache', $vals, $fname );
 						}
-						# Update the querycache_info record for the page
+						// Update the querycache_info record for the page
 						$dbw->delete( 'querycache_info',
 							[ 'qci_type' => $this->getName() ],
 							$fname
@@ -699,13 +699,13 @@ abstract class QueryPage extends SpecialPage {
 		$dbLimit = $this->getDBLimit( $this->limit, $this->offset );
 		// @todo Use doQuery()
 		if ( !$this->isCached() ) {
-			# select one extra row for navigation
+			// select one extra row for navigation
 			$res = $this->reallyDoQuery( $dbLimit, $this->offset );
 		} else {
-			# Get the cached result, select one extra row for navigation
+			// Get the cached result, select one extra row for navigation
 			$res = $this->fetchFromCache( $dbLimit, $this->offset );
 			if ( !$this->listoutput ) {
-				# Fetch the timestamp of this update
+				// Fetch the timestamp of this update
 				$ts = $this->getCachedTimestamp();
 				$lang = $this->getLanguage();
 				$maxResults = $lang->formatNum( $this->getConfig()->get( 'QueryCacheLimit' ) );
@@ -722,8 +722,8 @@ abstract class QueryPage extends SpecialPage {
 					$out->addWikiMsg( 'perfcached', $maxResults );
 				}
 
-				# If updates on this page have been disabled, let the user know
-				# that the data set won't be refreshed for now
+				// If updates on this page have been disabled, let the user know
+				// that the data set won't be refreshed for now
 				$disabledQueryPages = self::getDisabledQueryPages( $this->getConfig() );
 				if ( isset( $disabledQueryPages[$this->getName()] ) ) {
 					$runMode = $disabledQueryPages[$this->getName()];
@@ -750,14 +750,14 @@ abstract class QueryPage extends SpecialPage {
 
 		$out->addHTML( Xml::openElement( 'div', [ 'class' => 'mw-spcontent' ] ) );
 
-		# Top header and navigation
+		// Top header and navigation
 		if ( $this->shownavigation ) {
 			$out->addHTML( $this->getPageHeader() );
 			if ( $this->numRows > 0 ) {
 				$out->addHTML( $this->msg( 'showingresultsinrange' )->numParams(
-					min( $this->numRows, $this->limit ), # do not show the one extra row, if exist
+					min( $this->numRows, $this->limit ), // do not show the one extra row, if exist
 					$this->offset + 1, ( min( $this->numRows, $this->limit ) + $this->offset ) )->parseAsBlock() );
-				# Disable the "next" link when we reach the end
+				// Disable the "next" link when we reach the end
 				$miserMaxResults = $this->getConfig()->get( 'MiserMode' )
 					&& ( $this->offset + $this->limit >= $this->getMaxResults() );
 				$atEnd = ( $this->numRows <= $this->limit ) || $miserMaxResults;
@@ -765,25 +765,25 @@ abstract class QueryPage extends SpecialPage {
 					$this->limit, $this->linkParameters(), $atEnd, $par );
 				$out->addHTML( '<p>' . $paging . '</p>' );
 			} else {
-				# No results to show, so don't bother with "showing X of Y" etc.
-				# -- just let the user know and give up now
+				// No results to show, so don't bother with "showing X of Y" etc.
+				// -- just let the user know and give up now
 				$this->showEmptyText();
 				$out->addHTML( Xml::closeElement( 'div' ) );
 				return;
 			}
 		}
 
-		# The actual results; specialist subclasses will want to handle this
-		# with more than a straight list, so we hand them the info, plus
-		# an OutputPage, and let them get on with it
+		// The actual results; specialist subclasses will want to handle this
+		// with more than a straight list, so we hand them the info, plus
+		// an OutputPage, and let them get on with it
 		$this->outputResults( $out,
 			$this->getSkin(),
-			$dbr, # Should use IResultWrapper for this
+			$dbr, // Should use IResultWrapper for this
 			$res,
-			min( $this->numRows, $this->limit ), # do not format the one extra row, if exist
+			min( $this->numRows, $this->limit ), // do not format the one extra row, if exist
 			$this->offset );
 
-		# Repeat the paging links at the bottom
+		// Repeat the paging links at the bottom
 		if ( $this->shownavigation ) {
 			$out->addHTML( '<p>' . $paging . '</p>' );
 		}
@@ -811,8 +811,8 @@ abstract class QueryPage extends SpecialPage {
 				$html[] = $this->openList( $offset );
 			}
 
-			# $res might contain the whole 1,000 rows, so we read up to
-			# $num [should update this to use a Pager]
+			// $res might contain the whole 1,000 rows, so we read up to
+			// $num [should update this to use a Pager]
 			for ( $i = 0; $i < $num && $row = $res->fetchObject(); $i++ ) {
 				$line = $this->formatResult( $skin, $row );
 				if ( $line ) {
