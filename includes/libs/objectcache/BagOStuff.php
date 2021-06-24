@@ -376,12 +376,15 @@ abstract class BagOStuff implements
 	 *     regularly during long-running operations with the percentage progress
 	 *     as the first parameter. [optional]
 	 * @param int $limit Maximum number of keys to delete [default: INF]
+	 * @param string|null $tag Tag to purge a single shard only.
+	 *  This is only supported when server tags are used in configuration.
 	 * @return bool Success; false if unimplemented
 	 */
 	abstract public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	);
 
 	/**
