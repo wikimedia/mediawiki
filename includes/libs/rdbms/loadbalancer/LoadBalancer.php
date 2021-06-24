@@ -979,13 +979,6 @@ class LoadBalancer implements ILoadBalancer {
 		return $conn;
 	}
 
-	/**
-	 * @param int $i Specific server index
-	 * @param string $domain Resolved DB domain
-	 * @param int $flags Bitfield of class CONN_* constants
-	 * @return IDatabase|bool
-	 * @throws InvalidArgumentException When the server index is invalid
-	 */
 	public function getServerConnection( $i, $domain, $flags = 0 ) {
 		// Number of connections made before getting the server index and handle
 		$priorConnectionsMade = $this->connectionCounter;
@@ -1016,6 +1009,7 @@ class LoadBalancer implements ILoadBalancer {
 			// Connection was made but later unrecoverably lost for some reason.
 			// Do not return a handle that will just throw exceptions on use, but
 			// let the calling code, e.g. getReaderIndex(), try another server.
+			// FIXME: report an error here unless CONN_SILENCE_ERRORS was set
 			return false;
 		}
 
@@ -2144,6 +2138,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
+	 * @note This method suppresses DBError exceptions in order to avoid severe downtime
 	 * @param IDatabase $conn Master connection
 	 * @param int $flags Bitfield of class CONN_* constants
 	 * @return bool Whether the entire server or currently selected DB/schema is read-only
@@ -2154,10 +2149,12 @@ class LoadBalancer implements ILoadBalancer {
 			'rdbms-server-readonly',
 			$conn->getServerName(),
 			$conn->getDBname(),
-			$conn->dbSchema()
+			(string)$conn->dbSchema()
 		);
 
 		if ( self::fieldHasBit( $flags, self::CONN_REFRESH_READ_ONLY ) ) {
+			// Refresh the local server cache. This is useful when the caller is
+			// currently in the process of updating a corresponding WANCache key.
 			try {
 				$readOnly = (int)$conn->serverIsReadOnly();
 			} catch ( DBError $e ) {
@@ -2170,10 +2167,12 @@ class LoadBalancer implements ILoadBalancer {
 				BagOStuff::TTL_PROC_SHORT,
 				static function () use ( $conn ) {
 					try {
-						return (int)$conn->serverIsReadOnly();
+						$readOnly = (int)$conn->serverIsReadOnly();
 					} catch ( DBError $e ) {
-						return 0;
+						$readOnly = 0;
 					}
+
+					return $readOnly;
 				}
 			);
 		}
@@ -2182,6 +2181,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
+	 * @note This method suppresses DBError exceptions in order to avoid severe downtime
 	 * @param DatabaseDomain $domain
 	 * @return bool Whether the entire master server or the local domain DB is read-only
 	 */
@@ -2198,22 +2198,31 @@ class LoadBalancer implements ILoadBalancer {
 			self::TTL_CACHE_READONLY,
 			function () use ( $domain ) {
 				$scope = $this->trxProfiler->silenceForScope();
-				try {
-					$index = $this->getWriterIndex();
-					// Reset the cache for isMasterConnectionReadOnly()
-					$flags = self::CONN_REFRESH_READ_ONLY;
-					$conn = $this->getServerConnection( $index, $domain->getId(), $flags );
-					// Reuse the process cache set above
-					$readOnly = (int)$this->isMasterConnectionReadOnly( $conn );
+
+				$index = $this->getWriterIndex();
+				// Refresh the local server cache as well. This is done in order to avoid
+				// backfilling the WANCache with data that is already significantly stale
+				$flags = self::CONN_SILENCE_ERRORS | self::CONN_REFRESH_READ_ONLY;
+				$conn = $this->getServerConnection( $index, $domain->getId(), $flags );
+				if ( $conn ) {
+					try {
+						$readOnly = (int)$this->isMasterConnectionReadOnly( $conn );
+					} catch ( DBError $e ) {
+						$readOnly = 0;
+					}
 					$this->reuseConnection( $conn );
-				} catch ( DBError $e ) {
+				} else {
 					$readOnly = 0;
 				}
+
 				ScopedCallback::consume( $scope );
 
 				return $readOnly;
 			},
-			[ 'pcTTL' => WANObjectCache::TTL_PROC_LONG, 'lockTSE' => 10, 'busyValue' => 0 ]
+			[
+				'busyValue' => 0,
+				'pcTTL' => WANObjectCache::TTL_PROC_LONG
+			]
 		);
 	}
 
