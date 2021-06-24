@@ -804,7 +804,7 @@ class MovePage {
 			new AtomicSectionUpdate(
 				$dbw,
 				__METHOD__,
-				function () use ( $user, $userObj, $pageid, $redirid, $reason, $nullRevision ) {
+				function () use ( $user, $pageid, $redirid, $reason, $nullRevision ) {
 					$this->hookRunner->onPageMoveComplete(
 						$this->oldTitle,
 						$this->newTitle,

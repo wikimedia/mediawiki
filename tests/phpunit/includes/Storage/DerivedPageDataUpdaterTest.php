@@ -693,7 +693,7 @@ class DerivedPageDataUpdaterTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Creates a dummy revision object without touching the database.
+	 * Creates a dummy MutableRevisionRecord without touching the database.
 	 *
 	 * @param Title $title
 	 * @param RevisionSlotsUpdate $update

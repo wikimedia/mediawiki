@@ -103,7 +103,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * @stable to call.
 	 *
-	 * @param PageIdentity $page The page this Revision is associated with.
+	 * @param PageIdentity $page The page this RevisionRecord is associated with.
 	 * @param false|string $wikiId Relevant wiki id or self::LOCAL for the current one.
 	 *
 	 * @throws MWException
@@ -311,7 +311,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * Set the revision ID.
 	 *
-	 * MCR migration note: this replaces Revision::setId()
+	 * MCR migration note: this replaced Revision::setId
 	 *
 	 * @warning Use this with care, especially when preparing a revision for insertion
 	 *          into the database! The revision ID should only be fixed in special cases
@@ -362,7 +362,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * Returns the nominal size of this revision.
 	 *
-	 * MCR migration note: this replaces Revision::getSize
+	 * MCR migration note: this replaced Revision::getSize
 	 *
 	 * @return int The nominal size, may be computed on the fly if not yet known.
 	 */
@@ -378,7 +378,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	/**
 	 * Returns the base36 sha1 of this revision.
 	 *
-	 * MCR migration note: this replaces Revision::getSha1
+	 * MCR migration note: this replaced Revision::getSha1
 	 *
 	 * @return string The revision hash, may be computed on the fly if not yet known.
 	 */

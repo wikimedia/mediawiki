@@ -91,14 +91,14 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 
 		// Add two watched items, one of which is already expired, and check that only 1 is returned.
 		$userEditTarget1 = new TitleValue( 0, __METHOD__ . ' no expiry 1' );
-		$this->editPage( $userEditTarget1->getDBkey(), 'First Revision' );
+		$this->editPage( $userEditTarget1->getDBkey(), 'First revision' );
 		$store->addWatch(
 			$user,
 			$userEditTarget1
 		);
 
 		$userEditTarget2 = new TitleValue( 0, __METHOD__ . ' expired a week ago or in a week' );
-		$this->editPage( $userEditTarget2->getDBkey(), 'First Revision' );
+		$this->editPage( $userEditTarget2->getDBkey(), 'First revision' );
 		$store->addWatch(
 			$user,
 			$userEditTarget2,
@@ -110,14 +110,14 @@ class WatchedItemQueryServiceIntegrationTest extends MediaWikiIntegrationTestCas
 
 		// Add another of each type of item, and make sure the new results are as expected.
 		$userEditTarget3 = new TitleValue( 0, __METHOD__ . ' no expiry 2' );
-		$this->editPage( $userEditTarget3->getDBkey(), 'First Revision' );
+		$this->editPage( $userEditTarget3->getDBkey(), 'First revision' );
 		$store->addWatch(
 			$user,
 			$userEditTarget3
 		);
 
 		$userEditTarget4 = new TitleValue( 0, __METHOD__ . ' expired a week ago 2' );
-		$this->editPage( $userEditTarget4->getDBkey(), 'First Revision' );
+		$this->editPage( $userEditTarget4->getDBkey(), 'First revision' );
 		$store->addWatch(
 			$user,
 			$userEditTarget4,

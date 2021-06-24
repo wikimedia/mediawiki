@@ -1168,7 +1168,7 @@ class CoreParserFunctions {
 	 * Will increment the expensive function count and
 	 * add a template link to get the value refreshed on changes.
 	 * For a given title, which is equal to the current parser title,
-	 * the revision object from the parser is used, when that is the current one
+	 * the RevisionRecord object from the parser is used, when that is the current one
 	 *
 	 * @param Parser $parser
 	 * @param Title $title

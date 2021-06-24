@@ -121,7 +121,7 @@ class PageContentHelper {
 
 	/**
 	 * @return TextContent
-	 * @throws LocalizedHttpException slot content is not TextContent or Revision/Slot is inaccessible
+	 * @throws LocalizedHttpException slot content is not TextContent or RevisionRecord/Slot is inaccessible
 	 */
 	public function getContent(): TextContent {
 		$revision = $this->getTargetRevision();

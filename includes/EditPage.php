@@ -216,7 +216,6 @@ class EditPage implements IEditObject {
 	 * @var RevisionRecord|bool|null
 	 *
 	 * A RevisionRecord corresponding to $this->editRevId or $this->edittime
-	 * Replaced $mBaseRevision
 	 */
 	private $mExpectedParentRevision = false;
 

@@ -117,9 +117,6 @@ class Article implements Page {
 	 *
 	 * Initialized by getOldIDFromRequest() or fetchRevisionRecord(). While the output of
 	 * Article::view is typically based on this revision, it may be replaced by extensions.
-	 *
-	 * Replaced $mRevision, which was public and is provided in a deprecated manner via
-	 * __get and __set
 	 */
 	private $mRevisionRecord = null;
 

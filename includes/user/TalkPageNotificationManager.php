@@ -160,8 +160,8 @@ class TalkPageNotificationManager {
 			__METHOD__
 		);
 		if ( $timestamp ) {
-			// TODO: Once passing 'null' as Revision setUserHasNewMessages is removed,
-			// null $timestamp would mean no new messages, so negatives can be cached too.
+			// TODO: Now that User::setNewTalk() was removed, it should be possible to
+			// cache *not* having a new message as well (if $timestamp is null).
 			$this->userMessagesCache[$userKey] = true;
 		}
 		return $timestamp !== null ? MWTimestamp::convert( TS_MW, $timestamp ) : null;

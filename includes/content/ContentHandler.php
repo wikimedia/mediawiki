@@ -296,7 +296,7 @@ abstract class ContentHandler {
 	 * have the form content-model-$name, where $name is getContentModelName( $id ).
 	 *
 	 * @param string $name The content model ID, as given by a CONTENT_MODEL_XXX
-	 *    constant or returned by Revision::getContentModel().
+	 *    constant or returned by Content::getModel() or SlotRecord::getModel().
 	 * @param Language|null $lang The language to parse the message in (since 1.26)
 	 *
 	 * @throws MWException If the model ID isn't known.
@@ -1146,9 +1146,8 @@ abstract class ContentHandler {
 	}
 
 	/**
-	 * Get the Content object that needs to be saved in order to undo all revisions
-	 * between $undo and $undoafter. Revisions must belong to the same page,
-	 * must exist and must not be deleted.
+	 * Get the Content object that needs to be saved in order to undo all changes
+	 * between $undo and $undoafter.
 	 *
 	 * @stable to override
 	 * @since 1.21
@@ -1156,33 +1155,28 @@ abstract class ContentHandler {
 	 *  Passing Revision objects is deprecated.
 	 * @since 1.37 only accepts Content objects
 	 *
-	 * @param Content $current The current text
-	 * @param Content $undo The content of the revision to undo
-	 * @param Content $undoafter Must be from an earlier revision than $undo
+	 * @param Content $currentContent The current text
+	 * @param Content $undoContent The content of the revision to undo
+	 * @param Content $undoAfterContent Must be from an earlier revision than $undo
 	 * @param bool $undoIsLatest Set true if $undo is from the current revision (since 1.32)
 	 *
 	 * @return Content|false Content on success, false on failure
 	 */
 	public function getUndoContent(
-		Content $current,
-		Content $undo,
-		Content $undoafter,
+		Content $currentContent,
+		Content $undoContent,
+		Content $undoAfterContent,
 		$undoIsLatest = false
 	) {
-		// TODO clean this up following removal of support for Revision objects
-		$cur_content = $current;
-		$undo_content = $undo;
-		$undoafter_content = $undoafter;
-
 		try {
-			$this->checkModelID( $cur_content->getModel() );
-			$this->checkModelID( $undo_content->getModel() );
+			$this->checkModelID( $currentContent->getModel() );
+			$this->checkModelID( $undoContent->getModel() );
 			if ( !$undoIsLatest ) {
 				// If we are undoing the most recent revision,
 				// its ok to revert content model changes. However
 				// if we are undoing a revision in the middle, then
 				// doing that will be confusing.
-				$this->checkModelID( $undoafter_content->getModel() );
+				$this->checkModelID( $undoAfterContent->getModel() );
 			}
 		} catch ( MWException $e ) {
 			// If the revisions have different content models
@@ -1190,12 +1184,12 @@ abstract class ContentHandler {
 			return false;
 		}
 
-		if ( $cur_content->equals( $undo_content ) ) {
+		if ( $currentContent->equals( $undoContent ) ) {
 			// No use doing a merge if it's just a straight revert.
-			return $undoafter_content;
+			return $undoAfterContent;
 		}
 
-		$undone_content = $this->merge3( $undo_content, $undoafter_content, $cur_content );
+		$undone_content = $this->merge3( $undoContent, $undoAfterContent, $currentContent );
 
 		return $undone_content;
 	}

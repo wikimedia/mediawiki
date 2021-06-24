@@ -1,6 +1,6 @@
 <?php
 /**
- * Service for constructing revision objects.
+ * Service for constructing RevisionRecord objects.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -27,23 +27,23 @@ use MediaWiki\Page\PageIdentity;
 use MWException;
 
 /**
- * Service for constructing revision objects.
+ * Service for constructing RevisionRecord objects.
  *
  * @since 1.31
  * @since 1.32 Renamed from MediaWiki\Storage\RevisionFactory
  *
  * @note This was written to act as a drop-in replacement for the corresponding
- *       static methods in Revision.
+ *       static methods in the old Revision class (which was later removed in 1.37).
  */
 interface RevisionFactory extends IDBAccessObject {
 
 	/**
 	 * Constructs a new RevisionRecord based on the given associative array following the MW1.29
-	 * database convention for the Revision constructor.
+	 * database convention for the Revision constructor (removed in 1.37).
 	 *
-	 * MCR migration note: this replaces Revision::newFromRow
+	 * MCR migration note: this replaced Revision::newFromRow
 	 *
-	 * @deprecated since 1.31, hard deprecated since 1.36' Use a MutableRevisionRecord instead.
+	 * @deprecated since 1.31, hard deprecated since 1.36, Use a MutableRevisionRecord instead.
 	 *
 	 * @param array $fields
 	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
@@ -61,7 +61,7 @@ interface RevisionFactory extends IDBAccessObject {
 	/**
 	 * Constructs a RevisionRecord given a database row and content slots.
 	 *
-	 * MCR migration note: this replaces Revision::newFromRow for rows based on the
+	 * MCR migration note: this replaced Revision::newFromRow for rows based on the
 	 * revision, slot, and content tables defined for MCR since MW1.31.
 	 *
 	 * @param \stdClass $row A query result row as a raw object.
@@ -78,14 +78,14 @@ interface RevisionFactory extends IDBAccessObject {
 	);
 
 	/**
-	 * Make a fake revision object from an archive table row. This is queried
+	 * Make a fake RevisionRecord object from an archive table row. This is queried
 	 * for permissions or even inserted (as in Special:Undelete).
 	 *
 	 * The user ID and user name may optionally be supplied using the aliases
 	 * ar_user and ar_user_text (the names of fields which existed before
 	 * MW 1.34).
 	 *
-	 * MCR migration note: this replaces Revision::newFromArchiveRow
+	 * MCR migration note: this replaced Revision::newFromArchiveRow
 	 *
 	 * @param \stdClass $row A query result row as a raw object.
 	 *        Use getArchiveQueryInfo() to build a query that yields the required fields.
@@ -121,7 +121,7 @@ interface RevisionFactory extends IDBAccessObject {
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new RevisionStoreRecord object.
 	 *
-	 * MCR migration note: this replaces Revision::getQueryInfo
+	 * MCR migration note: this replaced Revision::getQueryInfo
 	 *
 	 * If the format of fields returned changes in any way then the cache key provided by
 	 * self::getRevisionRowCacheKey should be updated.
