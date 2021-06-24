@@ -63,9 +63,11 @@ class FullSearchResultWidget implements SearchResultWidget {
 		$redirect = $this->generateRedirectHtml( $result );
 		$section = $this->generateSectionHtml( $result );
 		$category = $this->generateCategoryHtml( $result );
-		$date = $this->specialPage->getLanguage()->userTimeAndDate(
-			$result->getTimestamp(),
-			$this->specialPage->getUser()
+		$date = htmlspecialchars(
+			$this->specialPage->getLanguage()->userTimeAndDate(
+				$result->getTimestamp(),
+				$this->specialPage->getUser()
+			)
 		);
 		list( $file, $desc, $thumb ) = $this->generateFileHtml( $result );
 		$snippet = $result->getTextSnippet();

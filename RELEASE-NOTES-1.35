@@ -26,6 +26,7 @@ THIS IS NOT A RELEASE YET
 * (T51097, T290273) resourceloader: Call getStyleFiles from
   FileModule::getFileHashes.
 * (T277788) parser: Avoid calling ParserOptions::getOption() too many times.
+* (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in Special:Search.
 
 == MediaWiki 1.35.3 ==
 
