@@ -246,8 +246,9 @@ class ApiStashEditTest extends ApiTestCase {
 		$page = WikiPage::factory( Title::makeTitle( NS_MAIN, $name ) );
 
 		$content = new CssContent( 'Css' );
-		$revRecord = $page->doEditContent( $content, '' )->value['revision-record'];
-		$page->doEditContent( new WikitextContent( 'Text' ), '' );
+		$user = $this->getTestSysop()->getUser();
+		$revRecord = $page->doUserEditContent( $content, $user, '' )->value['revision-record'];
+		$page->doUserEditContent( new WikitextContent( 'Text' ), $user, '' );
 
 		$this->setExpectedApiException(
 			[ 'apierror-contentmodel-mismatch', 'wikitext', 'css' ]

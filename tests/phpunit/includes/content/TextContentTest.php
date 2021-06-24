@@ -383,7 +383,7 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$title = $page->getTitle();
 
 		$content = ContentHandler::makeContent( $text, $title, $model );
-		$page->doEditContent( $content, '' );
+		$page->doUserEditContent( $content, $this->getTestSysop()->getUser(), '' );
 
 		$updates = $content->getDeletionUpdates( $page );
 

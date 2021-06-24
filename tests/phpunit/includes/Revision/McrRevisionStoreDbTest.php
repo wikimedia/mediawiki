@@ -267,12 +267,10 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		$page = $this->getTestPage();
 		$text = __METHOD__ . 'b-ä';
 		/** @var RevisionRecord $revRecord1 */
-		$revRecord1 = $page->doEditContent(
+		$revRecord1 = $page->doUserEditContent(
 			new WikitextContent( $text . '1' ),
-			__METHOD__ . 'b',
-			0,
-			false,
-			$this->getTestUser()->getUser()
+			$this->getTestUser()->getUser(),
+			__METHOD__ . 'b'
 		)->value['revision-record'];
 
 		$invalidRow = $this->revisionRecordToRow( $revRecord1 );

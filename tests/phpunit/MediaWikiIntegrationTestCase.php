@@ -258,12 +258,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 
 		if ( !$page->exists() ) {
 			$user = static::getTestSysop()->getUser();
-			$page->doEditContent(
+			$page->doUserEditContent(
 				ContentHandler::makeContent( 'UTContent', $title ),
+				$user,
 				'UTPageSummary',
-				EDIT_NEW | EDIT_SUPPRESS_RC,
-				false,
-				$user
+				EDIT_NEW | EDIT_SUPPRESS_RC
 			);
 		}
 
@@ -1339,7 +1338,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		$comment = __METHOD__ . ': Sample page for unit test.';
 
 		$page = WikiPage::factory( $title );
-		$page->doEditContent( ContentHandler::makeContent( $text, $title ), $comment, 0, false, $user );
+		$page->doUserEditContent( ContentHandler::makeContent( $text, $title ), $user, $comment );
 
 		return [
 			'title' => $title,
@@ -1391,12 +1390,11 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		// Make 1 page with 1 revision
 		$page = WikiPage::factory( Title::newFromText( 'UTPage' ) );
 		if ( $page->getId() == 0 ) {
-			$page->doEditContent(
+			$page->doUserEditContent(
 				new WikitextContent( 'UTContent' ),
+				$user,
 				'UTPageSummary',
-				EDIT_NEW | EDIT_SUPPRESS_RC,
-				false,
-				$user
+				EDIT_NEW | EDIT_SUPPRESS_RC
 			);
 			// an edit always attempt to purge backlink links such as history
 			// pages. That is unnecessary.
@@ -1404,7 +1402,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			// WikiPages::doEditUpdates randomly adds RC purges
 			JobQueueGroup::singleton()->get( 'recentChangesUpdate' )->delete();
 
-			// doEditContent() probably started the session via
+			// doUserEditContent() probably started the session via
 			// User::loadFromSession(). Close it now.
 			if ( session_id() !== '' ) {
 				session_write_close();
@@ -2339,7 +2337,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @param string $summary Optional summary string for the revision
 	 * @param int $defaultNs Optional namespace id
 	 * @param Authority|null $performer If null, static::getTestUser()->getUser() is used.
-	 * @return Status Object as returned by WikiPage::doEditContent()
+	 * @return Status Object as returned by WikiPage::doUserEditContent()
 	 * @throws MWException If this test cases's needsDB() method doesn't return true.
 	 *         Test cases can use "@group Database" to enable database test support,
 	 *         or list the tables under testing in $this->tablesUsed, or override the
@@ -2375,12 +2373,10 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 			$content = ContentHandler::makeContent( $content, $title );
 		}
 
-		return $page->doEditContent(
+		return $page->doUserEditContent(
 			$content,
-			$summary,
-			0,
-			false,
-			$performer
+			$performer,
+			$summary
 		);
 	}
 

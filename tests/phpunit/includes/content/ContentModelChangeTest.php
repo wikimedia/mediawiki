@@ -79,12 +79,11 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	public function testInvalidContent() {
 		$invalidJSON = 'Foo\nBar\nEaster egg\nT22281';
 		$wikipage = $this->getExistingTestPage( 'PageWithTextThatIsNotValidJSON' );
-		$wikipage->doEditContent(
+		$wikipage->doUserEditContent(
 			ContentHandler::makeContent( $invalidJSON, $wikipage->getTitle() ),
+			$this->getTestSysop()->getUser(),
 			'EditSummaryForThisTest',
-			EDIT_UPDATE | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTestSysop()->getUser()
+			EDIT_UPDATE | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
 			'wikitext',
@@ -164,12 +163,11 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testContentModelCanBeUsedOn() {
 		$wikipage = $this->getExistingTestPage( 'ExistingPage' );
-		$wikipage->doEditContent(
+		$wikipage->doUserEditContent(
 			ContentHandler::makeContent( 'Text', $wikipage->getTitle() ),
+			$this->getTestSysop()->getUser(),
 			'Ensure a revision exists',
-			EDIT_UPDATE | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTestSysop()->getUser()
+			EDIT_UPDATE | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
 			'wikitext',
@@ -214,12 +212,11 @@ class ContentModelChangeTest extends MediaWikiIntegrationTestCase {
 		$wikipage = WikiPage::factory( $title );
 
 		$dummyContent = ContentHandler::getForModelID( 'testing' )->makeEmptyContent();
-		$wikipage->doEditContent(
+		$wikipage->doUserEditContent(
 			$dummyContent,
+			$this->getTestSysop()->getUser(),
 			'EditSummaryForThisTest',
-			EDIT_NEW | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTestSysop()->getUser()
+			EDIT_NEW | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
 			'testing',

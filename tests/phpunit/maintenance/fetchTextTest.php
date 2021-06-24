@@ -114,8 +114,9 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 	 * @throws MWException
 	 */
 	private function addRevision( $page, $text, $summary ) {
-		$status = $page->doEditContent(
+		$status = $page->doUserEditContent(
 			ContentHandler::makeContent( $text, $page->getTitle() ),
+			$this->getTestSysop()->getUser(),
 			$summary
 		);
 

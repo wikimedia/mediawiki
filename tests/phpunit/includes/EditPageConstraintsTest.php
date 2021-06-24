@@ -72,9 +72,14 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$this->assertNotNull( $title );
 
 		$page = $this->getServiceContainer()->getWikiPageFactory()->newFromTitle( $title );
+
+		if ( $user == null ) {
+			$user = $this->getTestUser()->getUser();
+		}
+
 		if ( $baseText !== null ) {
 			$content = ContentHandler::makeContent( $baseText, $title );
-			$page->doEditContent( $content, "base text for test" );
+			$page->doUserEditContent( $content, $user, "base text for test" );
 
 			// Set the latest timestamp back a while
 			$dbw = wfGetDB( DB_PRIMARY );
@@ -95,10 +100,6 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 				rtrim( $currentText ),
 				'Sanity check: page should have the text specified'
 			);
-		}
-
-		if ( $user == null ) {
-			$user = $this->getTestUser()->getUser();
 		}
 
 		if ( !isset( $edit['wpEditToken'] ) ) {
@@ -648,6 +649,7 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		$permissionManager = $this->createMock( PermissionManager::class );
 		// Needs edit rights to pass EditRightConstraint and reach UserBlockConstraint
 		$permissionManager->method( 'userHasRight' )->willReturn( true );
+		$permissionManager->method( 'userCan' )->willReturn( true );
 
 		// Not worried about the specifics of the method call, those are tested in
 		// the UserBlockConstraintTest

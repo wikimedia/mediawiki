@@ -99,12 +99,11 @@ class ApiChangeContentModelTest extends ApiTestCase {
 	public function testInvalidContent() {
 		$wikipage = $this->getExistingTestPage( 'PageWithTextThatIsNotValidJSON' );
 		$invalidJSON = 'Foo\nBar\nEaster egg\nT22281';
-		$wikipage->doEditContent(
+		$wikipage->doUserEditContent(
 			ContentHandler::makeContent( $invalidJSON, $wikipage->getTitle() ),
+			$this->getTestSysop()->getUser(),
 			'EditSummaryForThisTest',
-			EDIT_UPDATE | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTestSysop()->getUser()
+			EDIT_UPDATE | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
 			'wikitext',
@@ -214,12 +213,11 @@ class ApiChangeContentModelTest extends ApiTestCase {
 		$title = Title::newFromText( 'Dummy:NoDirectEditing' );
 
 		$dummyContent = ContentHandler::getForModelID( 'testing' )->makeEmptyContent();
-		WikiPage::factory( $title )->doEditContent(
+		WikiPage::factory( $title )->doUserEditContent(
 			$dummyContent,
+			$this->getTestSysop()->getUser(),
 			'EditSummaryForThisTest',
-			EDIT_NEW | EDIT_SUPPRESS_RC,
-			false,
-			$this->getTestSysop()->getUser()
+			EDIT_NEW | EDIT_SUPPRESS_RC
 		);
 		$this->assertSame(
 			'testing',

@@ -23,7 +23,7 @@ interface PageSaveCompleteHook {
 	 * @param WikiPage $wikiPage WikiPage modified
 	 * @param UserIdentity $user User performing the modification
 	 * @param string $summary Edit summary/comment
-	 * @param int $flags Flags passed to WikiPage::doEditContent()
+	 * @param int $flags Flags passed to WikiPage::doUserEditContent()
 	 * @param RevisionRecord $revisionRecord New RevisionRecord of the article
 	 * @param EditResult $editResult Object storing information about the effects of this edit,
 	 *   including which edits were reverted and which edit is this based on (for reverts and null

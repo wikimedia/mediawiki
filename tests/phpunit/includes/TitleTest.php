@@ -882,7 +882,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 		$article = new Article( $title );
 		$page = $article->getPage();
-		$page->doEditContent( new WikitextContent( 'Some [[link]]' ), 'summary' );
+		$page->doUserEditContent(
+			new WikitextContent( 'Some [[link]]' ),
+			$this->getTestSysop()->getUser(),
+			'summary'
+		);
 
 		// Tell Title it doesn't know whether it exists
 		$title->mArticleID = -1;
@@ -912,7 +916,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 		$article = new Article( $title );
 		$page = $article->getPage();
-		$page->doEditContent( new WikitextContent( 'Some [[link]]' ), 'summary' );
+		$page->doUserEditContent(
+			new WikitextContent( 'Some [[link]]' ),
+			$this->getTestSysop()->getUser(),
+			'summary'
+		);
 
 		$this->assertGreaterThan( 0, $title->getArticleID() );
 		$this->assertSame( $title->getArticleID(), $title->getId() );
@@ -1780,7 +1788,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$reflection_property->setValue( $title, null );
 		$cascade = 1;
 		$anotherPage = $this->getExistingTestPage( 'UTest2' );
-		$anotherPage->doEditContent( new WikitextContent( '{{:UTest1}}' ), 'test' );
+		$anotherPage->doUserEditContent(
+			new WikitextContent( '{{:UTest1}}' ),
+			$this->getTestSysop()->getUser(),
+			'test'
+		);
 		$anotherPage->doUpdateRestrictions(
 			[ 'edit' => 'sysop' ],
 			[],
@@ -1831,7 +1843,11 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 
 		$cascade = 1;
 		$anotherPage = $this->getExistingTestPage( 'UTest2' );
-		$anotherPage->doEditContent( new WikitextContent( '{{:UTest1}}' ), 'test' );
+		$anotherPage->doUserEditContent(
+			new WikitextContent( '{{:UTest1}}' ),
+			$this->getTestSysop()->getUser(),
+			'test'
+		);
 		$anotherPage->doUpdateRestrictions(
 			[ 'edit' => 'sysop' ],
 			[],
