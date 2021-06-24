@@ -160,7 +160,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				);
 			}
 			// Verticle partitioning by global vs local keys (if any)
-			$this->numServerShards = ( $this->localKeyLb === $this->globalKeyLb ) ? 1 : 2;
+			$this->numServerShards = ( !$this->globalKeyLb || $this->localKeyLb === $this->globalKeyLb ) ? 1 : 2;
 			$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE;
 		}
 		if ( isset( $params['purgePeriod'] ) ) {
