@@ -660,9 +660,6 @@ abstract class UploadBase {
 		$status = PermissionStatus::newEmpty();
 		$performer->authorizeWrite( 'edit', $nt, $status );
 		$performer->authorizeWrite( 'upload', $nt, $status );
-		if ( !$nt->exists() ) {
-			$performer->authorizeWrite( 'create', $nt, $status );
-		}
 		if ( !$status->isGood() ) {
 			return $status->toLegacyErrorArray();
 		}

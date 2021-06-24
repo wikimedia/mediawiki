@@ -113,9 +113,6 @@ class ContentModelChange {
 		$titleWithNewContentModel->setContentModel( $this->newModel );
 
 		$status = PermissionStatus::newEmpty();
-		if ( !$current->exists() ) {
-			$authorizer( 'create', $current, $status );
-		}
 		$authorizer( 'editcontentmodel', $current, $status );
 		$authorizer( 'edit', $current, $status );
 		$authorizer( 'editcontentmodel', $titleWithNewContentModel, $status );

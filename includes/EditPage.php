@@ -734,21 +734,6 @@ class EditPage implements IEditObject {
 			$this->mTitle,
 			$rigor
 		);
-		# Can this title be created?
-		if ( !$this->mTitle->exists() ) {
-			$permErrors = array_merge(
-				$permErrors,
-				wfArrayDiff2(
-					$this->permManager->getPermissionErrors(
-						'create',
-						$user,
-						$this->mTitle,
-						$rigor
-					),
-					$permErrors
-				)
-			);
-		}
 		# Ignore some permissions errors when a user is just previewing/viewing diffs
 		$remove = [];
 		foreach ( $permErrors as $error ) {
