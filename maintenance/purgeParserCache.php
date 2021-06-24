@@ -58,6 +58,13 @@ class PurgeParserCache extends Maintenance {
 		$this->addOption( 'msleep', 'Milliseconds to sleep between purge chunks of $wgUpdateRowsPerQuery.',
 			false,
 			true );
+		$this->addOption(
+			'tag',
+			'Purge a single server only. This feature is designed for use by large wiki farms where ' .
+				'one has to purge multiple servers concurrently in order to keep up with new writes. ' .
+				'This requires using the SqlBagOStuff "servers" option in $wgObjectCaches.',
+			false,
+			true );
 	}
 
 	public function execute() {
@@ -85,7 +92,13 @@ class PurgeParserCache extends Maintenance {
 		$this->output( "Deleting objects expiring before " . $humanDate . "\n" );
 
 		$pc = MediaWikiServices::getInstance()->getParserCache()->getCacheStorage();
-		$success = $pc->deleteObjectsExpiringBefore( $timestamp, [ $this, 'showProgressAndWait' ] );
+		$success = $pc->deleteObjectsExpiringBefore(
+			$timestamp,
+			[ $this, 'showProgressAndWait' ],
+			INF,
+			// Note that "0" can be a valid server tag, and must not be discarded or changed to null.
+			$this->getOption( 'tag', null )
+		);
 		if ( !$success ) {
 			$this->fatalError( "\nCannot purge this kind of parser cache." );
 		}

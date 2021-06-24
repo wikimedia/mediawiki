@@ -167,7 +167,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	) {
 		return $this->writeStore->proxyCall(
 			__FUNCTION__,
