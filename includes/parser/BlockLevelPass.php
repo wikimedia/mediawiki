@@ -328,7 +328,7 @@ class BlockLevelPass {
 					'/<('
 						. "\\/({$blockElems})|({$antiBlockElems})|"
 						// Never suppresses
-						. '\\/?(center|blockquote|div|hr|mw:|aside)'
+						. '\\/?(center|blockquote|div|hr|mw:|aside|figure)'
 						. ')\\b/iS',
 					$t
 				);
