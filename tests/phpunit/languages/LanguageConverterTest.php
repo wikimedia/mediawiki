@@ -19,10 +19,9 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @param User $user
 	 */
 	private function setContextUser( User $user ) {
-		// TODO stop using the deprecated global here, and convert
-		// LanguageConverter to use RequestContext or dependency injection
-		global $wgUser;
-		$wgUser = $user;
+		// LanguageConverter::getPreferredVariant() reads the user from
+		// RequestContext::getMain(), so set it occordingly
+		RequestContext::getMain()->setUser( $user );
 	}
 
 	protected function setUp() : void {
@@ -31,8 +30,8 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 
 		$this->setMwGlobals( [
 			'wgDefaultLanguageVariant' => false,
-			'wgUser' => new User,
 		] );
+		$this->setContextUser( new User );
 
 		$this->lang = $this->createMock( Language::class );
 		$this->lang->method( 'getNsText' )->with( NS_MEDIAWIKI )->willReturn( 'MediaWiki' );
