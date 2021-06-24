@@ -693,13 +693,19 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	) {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$silenceScope = $this->silenceTransactionProfiler();
 
-		$shardIndexes = $this->getServerShardIndexes();
-		shuffle( $shardIndexes );
+		if ( $tag !== null ) {
+			// Purge one server only, to support concurrent purging in large wiki farms (T282761).
+			$shardIndexes = [ $this->getServerIndexByTag( $tag ) ];
+		} else {
+			$shardIndexes = $this->getServerShardIndexes();
+			shuffle( $shardIndexes );
+		}
 
 		$ok = true;
 
@@ -1171,6 +1177,23 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		return $shardIndexes;
+	}
+
+	/**
+	 * @param string $tag
+	 * @return int Server index for use with ::getConnection()
+	 * @throws InvalidArgumentException If tag is unknown
+	 */
+	private function getServerIndexByTag( string $tag ) {
+		if ( !$this->serverTags ) {
+			throw new InvalidArgumentException( "Given a tag but no tags are configured" );
+		}
+		foreach ( $this->serverTags as $serverShardIndex => $serverTag ) {
+			if ( $tag === $serverTag ) {
+				return $serverShardIndex;
+			}
+		}
+		throw new InvalidArgumentException( "Unknown server tag: $tag" );
 	}
 
 	/**

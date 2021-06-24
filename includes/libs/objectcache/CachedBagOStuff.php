@@ -149,9 +149,10 @@ class CachedBagOStuff extends BagOStuff {
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	) {
-		$this->procCache->deleteObjectsExpiringBefore( $timestamp, $progress, $limit );
+		$this->procCache->deleteObjectsExpiringBefore( $timestamp, $progress, $limit, $tag );
 
 		return $this->store->proxyCall( __FUNCTION__, self::ARG0_NONKEY, self::RES_NONKEY, func_get_args() );
 	}

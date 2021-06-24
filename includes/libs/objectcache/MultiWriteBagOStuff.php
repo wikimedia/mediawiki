@@ -255,11 +255,12 @@ class MultiWriteBagOStuff extends BagOStuff {
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	) {
 		$ret = false;
 		foreach ( $this->caches as $cache ) {
-			if ( $cache->deleteObjectsExpiringBefore( $timestamp, $progress, $limit ) ) {
+			if ( $cache->deleteObjectsExpiringBefore( $timestamp, $progress, $limit, $tag ) ) {
 				$ret = true;
 			}
 		}

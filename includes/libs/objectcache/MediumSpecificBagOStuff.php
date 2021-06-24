@@ -537,20 +537,11 @@ abstract class MediumSpecificBagOStuff extends BagOStuff {
 		return true;
 	}
 
-	/**
-	 * Delete all objects expiring before a certain date.
-	 * @param string|int $timestamp The reference date in MW or TS_UNIX format
-	 * @param callable|null $progress Optional, a function which will be called
-	 *     regularly during long-running operations with the percentage progress
-	 *     as the first parameter. [optional]
-	 * @param int $limit Maximum number of keys to delete [default: INF]
-	 *
-	 * @return bool Success; false if unimplemented
-	 */
 	public function deleteObjectsExpiringBefore(
 		$timestamp,
 		callable $progress = null,
-		$limit = INF
+		$limit = INF,
+		string $tag = null
 	) {
 		return false;
 	}
