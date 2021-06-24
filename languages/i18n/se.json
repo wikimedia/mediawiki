@@ -882,6 +882,7 @@
 	"allmessages": "Buot systemasánit",
 	"allmessagesname": "Namma",
 	"allmessagescurrent": "Dálá teaksta",
+	"allmessages-language": "Giella:",
 	"thumbnail-more": "Stuorit",
 	"filemissing": "Fiila váilo",
 	"import-comment": "Sivva",
@@ -1005,6 +1006,7 @@
 	"logentry-newusers-autocreate": "Dovddaldat $1 {{GENDER:$2|ráhkaduvvui}} automáhtalaččat",
 	"rightsnone": "(eai rievttit)",
 	"searchsuggest-search": "Oza",
+	"pagelang-language": "Giella",
 	"mw-widgets-mediasearch-input-placeholder": "Oza miediaid",
 	"mw-widgets-mediasearch-recent-uploads": "{{GENDER:$1|Don}} leat gieskat lásten"
 }

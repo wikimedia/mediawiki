@@ -1350,7 +1350,7 @@
 	"recentchanges-summary": "Na ovoj stranici možete pratiti nedavne promjene u wikiju.",
 	"recentchanges-noresult": "U zadanom vremenu nema promjena za zadane kriterije.",
 	"recentchanges-network": "Zbog tehničke poteškoće rezultati ne mogu biti učitani. Molimo probajte ponovno učitati stranicu.",
-	"recentchanges-notargetpage": "Gore unesite ime stranice da biste vidjeli izmjene vezane uz nju.",
+	"recentchanges-notargetpage": "Gore unesite naziv stranice da biste vidjeli izmjene povezane s njom.",
 	"recentchanges-feed-description": "Na ovoj stranici možete pratiti nedavne promjene u wikiju.",
 	"recentchanges-label-newpage": "Ova izmjena stvorila je novu stranicu",
 	"recentchanges-label-minor": "Manja izmjena",
