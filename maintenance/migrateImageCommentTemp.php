@@ -37,14 +37,6 @@ class MigrateImageCommentTemp extends LoggedUpdateMaintenance {
 		);
 	}
 
-	/**
-	 * Sets whether a run of this maintenance script has the force parameter set
-	 * @param bool $forced
-	 */
-	public function setForce( $forced = true ) {
-		$this->mOptions['force'] = $forced;
-	}
-
 	protected function getUpdateKey() {
 		return __CLASS__;
 	}
