@@ -397,66 +397,65 @@ class UserOptionsManager extends UserOptionsLookup {
 			return;
 		}
 
+		// Delete any rows that were in the DB but are not in $optionsToSave
+		$keysToDelete = array_keys(
+			array_diff_key( $this->optionsFromDb[$userKey], $optionsToSave )
+		);
+
+		// Update rows that have changed
 		$userId = $user->getId();
 		$rowsToInsert = []; // all the new preference rows
+		$rowsToPreserve = [];
 		foreach ( $optionsToSave as $key => $value ) {
-			// Don't bother storing default values
-			$defaultOption = $this->defaultOptionsLookup->getDefaultOption( $key );
-			if ( ( $defaultOption === null && $value !== false && $value !== null )
-				|| $value != $defaultOption
-			) {
-				$rowsToInsert[] = [
+			// Don't store unchanged or default values
+			$defaultValue = $this->defaultOptionsLookup->getDefaultOption( $key );
+			$oldValue = $this->optionsFromDb[$userKey][$key] ?? null;
+			if ( !$this->isValueEqual( $value, $defaultValue ) ) {
+				$row = [
 					'up_user' => $userId,
 					'up_property' => $key,
 					'up_value' => $value,
 				];
+				if ( !$this->isValueEqual( $value, $oldValue ) ) {
+					// Update by deleting and reinserting
+					$rowsToInsert[] = $row;
+					$keysToDelete[] = $key;
+				} else {
+					// Preserve old value -- save the row for caching
+					$rowsToPreserve[] = $row;
+				}
+			} elseif ( $oldValue !== null ) {
+				// Delete row that is being set to its default
+				$keysToDelete[] = $key;
 			}
 		}
 
-		// Find prior rows that need to be removed or updated. These rows will
-		// all be deleted (the latter so that INSERT IGNORE applies the new values).
-		$keysToDelete = [];
-		foreach ( $this->optionsFromDb[$userKey] as $dbOptionKey => $dbOptionValue ) {
-			if ( !isset( $optionsToSave[$dbOptionKey] ) ||
-				$optionsToSave[$dbOptionKey] !== $dbOptionValue
-			) {
-				$keysToDelete[] = $dbOptionKey;
-			}
-		}
-		if ( !count( $keysToDelete ) && !count( $rowsToInsert ) ) {
+		if ( !count( $keysToDelete ) ) {
+			// Nothing to do
 			return;
 		}
 
+		// Do the DELETE
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		if ( count( $keysToDelete ) ) {
-			// Do the DELETE by PRIMARY KEY for prior rows.
-			// In the past a very large portion of calls to this function are for setting
-			// 'rememberpassword' for new accounts (a preference that has since been removed).
-			// Doing a blanket per-user DELETE for new accounts with no rows in the table
-			// caused gap locks on [max user ID,+infinity) which caused high contention since
-			// updates would pile up on each other as they are for higher (newer) user IDs.
-			// It might not be necessary these days, but it shouldn't hurt either.
-			$dbw->delete(
-				'user_properties',
-				[
-					'up_user' => $userId,
-					'up_property' => $keysToDelete
-				],
-				__METHOD__
-			);
-		}
-		// Insert the new preference rows
-		$dbw->insert(
+		$dbw->delete(
 			'user_properties',
-			$rowsToInsert,
-			__METHOD__,
-			[ 'IGNORE' ]
+			[
+				'up_user' => $userId,
+				'up_property' => $keysToDelete
+			],
+			__METHOD__
 		);
+		if ( $rowsToInsert ) {
+			// Insert the new preference rows
+			$dbw->insert( 'user_properties', $rowsToInsert, __METHOD__, [ 'IGNORE' ] );
+		}
 
 		// We are storing these into the database, so that's what we will get if we fetch again
 		// So, set the just saved options to the cache, but don't prevent some other part of the
 		// code from locking the options again but saying READ_LATEST was used for caching.
-		$this->setOptionsFromDb( $user, self::READ_LATEST, $rowsToInsert );
+		$this->setOptionsFromDb( $user, self::READ_LATEST,
+			array_merge( $rowsToPreserve, $rowsToInsert ) );
+
 		// It's pretty cheap to recalculate new original later
 		// to apply whatever adjustments we apply when fetching from DB
 		// and re-merge with the defaults.
@@ -662,5 +661,24 @@ class UserOptionsManager extends UserOptionsLookup {
 		$userKey = $this->getCacheKey( $user );
 		$queryFlagsUsed = $this->queryFlagsUsedForCaching[$userKey] ?? self::READ_NONE;
 		return $queryFlagsUsed >= $queryFlags;
+	}
+
+	/**
+	 * Determines whether two values are sufficiently similar that the database
+	 * does not need to be updated to reflect the change. This is basically the
+	 * same as comparing the result of Database::addQuotes().
+	 *
+	 * @param mixed $a
+	 * @param mixed $b
+	 * @return bool
+	 */
+	private function isValueEqual( $a, $b ) {
+		if ( is_bool( $a ) ) {
+			$a = (int)$a;
+		}
+		if ( is_bool( $b ) ) {
+			$b = (int)$b;
+		}
+		return (string)$a === (string)$b;
 	}
 }
