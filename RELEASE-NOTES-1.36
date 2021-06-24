@@ -12,7 +12,7 @@ THIS IS NOT A RELEASE YET
 * composer.json: Promote and pin monolog/monolog to require from require-dev.
 * (T287526) JavaScriptMinifer: Recognize `...` as a single token.
 * (T287526) Update wikimedia/minify to 2.2.4.
-* (T289108) ExtensionProcessor: Remove loaderScripts from extension.json 
+* (T289108) ExtensionProcessor: Remove loaderScripts from extension.json
   schemas.
 * (T281549) Installer: Fix mediawiki-announce auto subscription code.
 * FormatJson: Optimize encode() for supported PHP versions.
@@ -27,6 +27,7 @@ THIS IS NOT A RELEASE YET
 * MysqlUpdater: Add updatelog entries for dropDefault.
 * (T290776) Fix $phase check in OutputHandler.
 * The wikimedia/parsoid library has been upgraded from v0.13.0 to v0.13.1.
+* (T285515, CVE-2021-41798) SECURITY: XSS vulnerability in Special:Search.
 
 == MediaWiki 1.36.1 ==
 
