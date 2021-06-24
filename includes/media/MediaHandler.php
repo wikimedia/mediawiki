@@ -227,12 +227,13 @@ abstract class MediaHandler {
 				return false;
 			}
 			if ( $info !== null ) {
+				$info += [ 'width' => 0, 'height' => 0, 'metadata' => [] ];
 				if ( !is_array( $info['metadata'] ) ) {
 					throw new InvalidArgumentException( 'Media handler ' .
 						static::class . ' returned ' . gettype( $info['metadata'] ) .
 						' for metadata, should be array' );
 				}
-				return $info + [ 'width' => 0, 'height' => 0, 'metadata' => [] ];
+				return $info;
 			}
 		}
 
