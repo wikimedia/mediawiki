@@ -52,6 +52,14 @@ abstract class LoggedUpdateMaintenance extends Maintenance {
 	}
 
 	/**
+	 * Sets whether a run of this maintenance script has the force parameter set
+	 * @param bool $forced
+	 */
+	public function setForce( $forced = true ) {
+		$this->mOptions['force'] = $forced;
+	}
+
+	/**
 	 * Message to show that the update was done already and was just skipped
 	 * @return string
 	 */
