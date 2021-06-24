@@ -1030,19 +1030,10 @@ class ParserOptions {
 	/**
 	 * @warning For interaction with the parser cache, use
 	 *  WikiPage::makeParserOptions() or ParserOptions::newCanonical() instead.
-	 * @param UserIdentity|null $user (null falls back to $wgUser and is deprecated since 1.36)
+	 * @param UserIdentity $user
 	 * @param Language|null $lang
 	 */
-	public function __construct( $user = null, $lang = null ) {
-		if ( $user === null ) {
-			wfDeprecatedMsg( __CLASS__ . ' being created without a UserIdentity object', '1.36' );
-			global $wgUser;
-			if ( $wgUser === null ) {
-				$user = new User;
-			} else {
-				$user = $wgUser;
-			}
-		}
+	public function __construct( UserIdentity $user, $lang = null ) {
 		if ( $lang === null ) {
 			global $wgLang;
 			StubObject::unstub( $wgLang );
@@ -1110,35 +1101,25 @@ class ParserOptions {
 	 * @since 1.30
 	 * @since 1.32 Added string and IContextSource as options for the first parameter
 	 * @since 1.36 UserIdentity is also allowed
-	 * @param IContextSource|string|UserIdentity|null $context
+	 * @param IContextSource|string|UserIdentity $context
 	 *  - If an IContextSource, the options are initialized based on the source's UserIdentity and Language.
 	 *  - If the string 'canonical', the options are initialized with an anonymous user and
 	 *    the content language.
-	 *  - If a UserIdentity or null, the options are initialized for that UserIdentity
-	 *      falls back to $wgUser if null; fallback is deprecated since 1.35
+	 *  - If a UserIdentity, the options are initialized for that UserIdentity
 	 *    'userlang' is taken from the $userLang parameter, defaulting to $wgLang if that is null.
 	 * @param Language|StubObject|null $userLang (see above)
 	 * @return ParserOptions
 	 */
-	public static function newCanonical( $context = null, $userLang = null ) {
+	public static function newCanonical( $context, $userLang = null ) {
 		if ( $context instanceof IContextSource ) {
 			$ret = self::newFromContext( $context );
 		} elseif ( $context === 'canonical' ) {
 			$ret = self::newFromAnon();
-		} elseif ( $context instanceof UserIdentity || $context === null ) {
-			if ( $context === null ) {
-				wfDeprecated( __METHOD__ . ' with no user', '1.35' );
-
-				// Avoid sending out another deprecation notice from calling
-				// __construct with null
-				// TODO remove support for this instead
-				global $wgUser;
-				$context = $wgUser;
-			}
+		} elseif ( $context instanceof UserIdentity ) {
 			$ret = new self( $context, $userLang );
 		} else {
 			throw new InvalidArgumentException(
-				'$context must be an IContextSource, the string "canonical", a UserIdentity, or null'
+				'$context must be an IContextSource, the string "canonical", or a UserIdentity'
 			);
 		}
 
