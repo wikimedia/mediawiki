@@ -676,12 +676,14 @@ return [
 		$dbLoadBalancer = $services->isServiceDisabled( 'DBLoadBalancer' )
 			? null
 			: $services->getDBLoadBalancer();
-		return new LinkCache(
+		$linkCache = new LinkCache(
 			$services->getTitleFormatter(),
 			$services->getMainWANObjectCache(),
 			$services->getNamespaceInfo(),
 			$dbLoadBalancer
 		);
+		$linkCache->setLogger( LoggerFactory::getInstance( 'LinkCache' ) );
+		return $linkCache;
 	},
 
 	'LinkRenderer' => static function ( MediaWikiServices $services ) : LinkRenderer {
