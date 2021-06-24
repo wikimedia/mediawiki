@@ -27,15 +27,12 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testNewCanonical() {
-		$this->hideDeprecated( 'ParserOptions::newCanonical with no user' );
-
 		$user = $this->getMutableTestUser()->getUser();
 		$userLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'fr' );
 		$contLang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( 'qqx' );
 
 		$this->setContentLang( $contLang );
 		$this->setMwGlobals( [
-			'wgUser' => $user,
 			'wgLang' => $userLang,
 		] );
 
@@ -45,20 +42,10 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$context->setUser( $user );
 		$context->setLanguage( $lang );
 
-		// No parameters picks up $wgUser and $wgLang
-		$popt = ParserOptions::newCanonical();
-		$this->assertSame( $user, $popt->getUser() );
-		$this->assertSame( $userLang, $popt->getUserLangObj() );
-
 		// Just a user uses $wgLang
 		$popt = ParserOptions::newCanonical( $user );
 		$this->assertSame( $user, $popt->getUser() );
 		$this->assertSame( $userLang, $popt->getUserLangObj() );
-
-		// Just a language uses $wgUser
-		$popt = ParserOptions::newCanonical( null, $lang );
-		$this->assertSame( $user, $popt->getUser() );
-		$this->assertSame( $lang, $popt->getUserLangObj() );
 
 		// Passing both works
 		$popt = ParserOptions::newCanonical( $user, $lang );
@@ -299,36 +286,34 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testMatchesForCacheKey() {
-		$this->hideDeprecated( 'ParserOptions::newCanonical with no user' );
+		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$cOpts = ParserOptions::newCanonical(
-			null,
+			$user,
 			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'en' )
 		);
 
 		$uOpts = ParserOptions::newFromAnon();
 		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertTrue( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$this->getServiceContainer()
 			->getUserOptionsManager()
 			->setOption( $user, 'thumbsize', 251 );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
 		$this->getServiceContainer()
 			->getUserOptionsManager()
 			->setOption( $user, 'stubthreshold', 800 );
 		$uOpts = ParserOptions::newFromUser( $user );
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 
-		$user = new UserIdentityValue( 0, '127.0.0.1' );
-		$uOpts = ParserOptions::newFromUserAndLang( $user,
-			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' ) );
+		$uOpts = ParserOptions::newFromUserAndLang(
+			$user,
+			$this->getServiceContainer()->getLanguageFactory()->getLanguage( 'zh' )
+		);
 		$this->assertFalse( $cOpts->matchesForCacheKey( $uOpts ) );
 	}
 

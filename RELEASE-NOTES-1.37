@@ -276,6 +276,12 @@ because of Phabricator reports.
 * WatchedItem::getUser, hard deprecated since 1.36, has been removed.
 * AuthManager::singleton, hard deprecated since 1.36, has been removed.
 * Html::infobox, deprecated since 1.36, was removed.
+* ParserOptions::__construct() now requires that the first parameter is a
+  UserIdentity object - passing `null` used to fallback to the global
+  $wgUser but was deprecated since 1.36.
+* ParserOptions::newCanonical() no longer supports the first parameter being
+  null (or omitted entirely), which would fallback to the global $wgUser but
+  was deprecated since 1.35.
 * …
 
 === Deprecations in 1.37 ===
