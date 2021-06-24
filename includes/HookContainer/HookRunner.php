@@ -323,14 +323,11 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinGetPoweredByHook,
 	\MediaWiki\Hook\SkinPreloadExistenceHook,
 	\MediaWiki\Hook\SkinSubPageSubtitleHook,
-	\MediaWiki\Hook\SkinTemplateBuildNavUrlsNav_urlsAfterPermalinkHook,
 	\MediaWiki\Hook\SkinTemplateGetLanguageLinkHook,
 	\MediaWiki\Hook\SkinTemplateNavigationHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__SpecialPageHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
 	\MediaWiki\Hook\SkinTemplateOutputPageBeforeExecHook,
-	\MediaWiki\Hook\SkinTemplatePreventOtherActiveTabsHook,
-	\MediaWiki\Hook\SkinTemplateTabActionHook,
 	\MediaWiki\Hook\SkinTemplateToolboxEndHook,
 	\MediaWiki\Hook\SoftwareInfoHook,
 	\MediaWiki\Hook\SpecialBlockModifyFormFieldsHook,
@@ -3460,15 +3457,6 @@ class HookRunner implements
 		);
 	}
 
-	public function onSkinTemplateBuildNavUrlsNav_urlsAfterPermalink( $sktemplate,
-		&$nav_urls, &$revid, &$revid2
-	) {
-		return $this->container->run(
-			'SkinTemplateBuildNavUrlsNav_urlsAfterPermalink',
-			[ $sktemplate, &$nav_urls, &$revid, &$revid2 ]
-		);
-	}
-
 	public function onSkinTemplateGetLanguageLink( &$languageLink,
 		$languageLinkTitle, $title, $outputPage
 	) {
@@ -3506,23 +3494,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SkinTemplateOutputPageBeforeExec',
 			[ $sktemplate, $tpl ]
-		);
-	}
-
-	public function onSkinTemplatePreventOtherActiveTabs( $sktemplate, &$res ) {
-		return $this->container->run(
-			'SkinTemplatePreventOtherActiveTabs',
-			[ $sktemplate, &$res ]
-		);
-	}
-
-	public function onSkinTemplateTabAction( $sktemplate, $title, $message,
-		$selected, $checkEdit, &$classes, &$query, &$text, &$result
-	) {
-		return $this->container->run(
-			'SkinTemplateTabAction',
-			[ $sktemplate, $title, $message, $selected, $checkEdit, &$classes,
-				&$query, &$text, &$result ]
 		);
 	}
 

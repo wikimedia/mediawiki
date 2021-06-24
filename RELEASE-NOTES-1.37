@@ -282,6 +282,11 @@ because of Phabricator reports.
 * ParserOptions::newCanonical() no longer supports the first parameter being
   null (or omitted entirely), which would fallback to the global $wgUser but
   was deprecated since 1.35.
+* The SkinTemplatePreventOtherActiveTabs hook, deprecated in 1.35, was removed
+  entirely.
+* The SkinTemplateTabAction hook, deprecated in 1.35, was removed entirely.
+* The SkinTemplateBuildNavUrlsNav_urlsAfterPermalink hook, deprecated in 1.35,
+  was removed entirely.
 * …
 
 === Deprecations in 1.37 ===

@@ -834,13 +834,6 @@ class SkinTemplate extends Skin {
 				);
 		}
 
-		$result = [];
-		if ( !$this->getHookRunner()->onSkinTemplateTabAction( $this, $title, $message,
-			$selected, $checkEdit, $classes, $query, $text, $result )
-		) {
-			return $result;
-		}
-
 		$result = [
 			'class' => implode( ' ', $classes ),
 			'text' => $text,
@@ -987,9 +980,6 @@ class SkinTemplate extends Skin {
 
 		$userCanRead = $this->getAuthority()->probablyCan( 'read', $title );
 
-		$preventActiveTabs = false;
-		$this->getHookRunner()->onSkinTemplatePreventOtherActiveTabs( $this, $preventActiveTabs );
-
 		// Checks if page is some kind of content
 		if ( $title->canExist() ) {
 			// Gets page objects for the related namespaces
@@ -1021,11 +1011,11 @@ class SkinTemplate extends Skin {
 			}
 
 			$content_navigation['namespaces'][$subjectId] = $this->tabAction(
-				$subjectPage, $subjectMsg, !$isTalk && !$preventActiveTabs, '', $userCanRead
+				$subjectPage, $subjectMsg, !$isTalk, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$subjectId]['context'] = 'subject';
 			$content_navigation['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, [ "nstab-$talkId", 'talk' ], $isTalk && !$preventActiveTabs, '', $userCanRead
+				$talkPage, [ "nstab-$talkId", 'talk' ], $isTalk, '', $userCanRead
 			);
 			$content_navigation['namespaces'][$talkId]['context'] = 'talk';
 
@@ -1345,33 +1335,6 @@ class SkinTemplate extends Skin {
 		}
 
 		return $content_actions;
-	}
-
-	/**
-	 * build array of common navigation links and run
-	 * the SkinTemplateBuildNavUrlsNav_urlsAfterPermalink hook.
-	 * @inheritDoc
-	 * @return array
-	 */
-	protected function buildNavUrls() {
-		$navUrls = parent::buildNavUrls();
-		$out = $this->getOutput();
-		if ( !$out->isArticle() ) {
-			return $navUrls;
-		}
-		$modifiedNavUrls = [];
-		foreach ( $navUrls as $key => $url ) {
-			$modifiedNavUrls[$key] = $url;
-			if ( $key === 'permalink' ) {
-				$revid = $out->getRevisionId();
-				// Use the copy of revision ID in case this undocumented,
-				// shady hook tries to mess with internals.
-				$this->getHookRunner()->onSkinTemplateBuildNavUrlsNav_urlsAfterPermalink(
-					$this, $modifiedNavUrls, $revid, $revid
-				);
-			}
-		}
-		return $modifiedNavUrls;
 	}
 
 	/**
