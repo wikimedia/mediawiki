@@ -182,6 +182,7 @@ class ObjectCache {
 					}
 				];
 			}
+			$params += [ 'writeBatchSize' => $conf->get( 'UpdateRowsPerQuery' ) ];
 		}
 
 		// Do b/c logic for MemcachedBagOStuff
