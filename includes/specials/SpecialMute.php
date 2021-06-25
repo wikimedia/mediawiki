@@ -20,7 +20,8 @@
  */
 
 use MediaWiki\Preferences\MultiUsernameFilter;
-use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserOptionsManager;
 
 /**
@@ -33,7 +34,7 @@ class SpecialMute extends FormSpecialPage {
 
 	private const PAGE_NAME = 'Mute';
 
-	/** @var User|null */
+	/** @var UserIdentity|null */
 	private $target;
 
 	/** @var int */
@@ -45,21 +46,23 @@ class SpecialMute extends FormSpecialPage {
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
 
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
 
 	/**
+	 * @param CentralIdLookup $centralIdLookup
 	 * @param UserOptionsManager $userOptionsManager
-	 * @param UserFactory $userFactory
+	 * @param UserIdentityLookup $userIdentityLookup
 	 */
 	public function __construct(
+		CentralIdLookup $centralIdLookup,
 		UserOptionsManager $userOptionsManager,
-		UserFactory $userFactory
+		UserIdentityLookup $userIdentityLookup
 	) {
 		parent::__construct( self::PAGE_NAME, '', false );
-		$this->centralIdLookup = CentralIdLookup::factory();
+		$this->centralIdLookup = $centralIdLookup;
 		$this->userOptionsManager = $userOptionsManager;
-		$this->userFactory = $userFactory;
+		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	/**
@@ -134,9 +137,9 @@ class SpecialMute extends FormSpecialPage {
 	}
 
 	/**
-	 * @return User|null
+	 * @return UserIdentity|null
 	 */
-	public function getTarget(): ?User {
+	private function getTarget(): ?UserIdentity {
 		return $this->target;
 	}
 
@@ -212,7 +215,8 @@ class SpecialMute extends FormSpecialPage {
 			];
 		}
 
-		$this->getHookRunner()->onSpecialMuteModifyFormFields( $this->getTarget(), $this->getUser(), $fields );
+		$legacyUser = $this->getTarget() ? User::newFromIdentity( $this->getTarget() ) : null;
+		$this->getHookRunner()->onSpecialMuteModifyFormFields( $legacyUser, $this->getUser(), $fields );
 
 		if ( count( $fields ) == 0 ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-no-options' );
@@ -227,9 +231,9 @@ class SpecialMute extends FormSpecialPage {
 	private function loadTarget( $username ) {
 		$target = null;
 		if ( $username !== null ) {
-			$target = $this->userFactory->newFromName( $username );
+			$target = $this->userIdentityLookup->getUserIdentityByName( $username );
 		}
-		if ( !$target || !$target->getId() ) {
+		if ( !$target || !$target->isRegistered() ) {
 			throw new ErrorPageError( 'specialmute', 'specialmute-error-invalid-user' );
 		} else {
 			$this->target = $target;

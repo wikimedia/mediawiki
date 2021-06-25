@@ -20,9 +20,11 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
@@ -106,8 +108,8 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	/**
 	 * Get central user info
 	 * @param Config $config
-	 * @param User $user
-	 * @param string|null $attachedWiki
+	 * @param UserIdentity $user
+	 * @param string|false $attachedWiki
 	 * @return array Central user info
 	 *  - centralids: Array mapping non-local Central ID provider names to IDs
 	 *  - attachedlocal: Array mapping Central ID provider names to booleans
@@ -115,7 +117,11 @@ class ApiQueryUserInfo extends ApiQueryBase {
 	 *  - attachedwiki: Array mapping Central ID provider names to booleans
 	 *    indicating whether the user is attached to $attachedWiki.
 	 */
-	public static function getCentralUserInfo( Config $config, User $user, $attachedWiki = null ) {
+	public static function getCentralUserInfo(
+		Config $config,
+		UserIdentity $user,
+		$attachedWiki = UserIdentity::LOCAL
+	) {
 		$providerIds = array_keys( $config->get( 'CentralIdLookupProviders' ) );
 
 		$ret = [
@@ -130,8 +136,10 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		$name = $user->getName();
+		$centralIdLookupFactory = MediaWikiServices::getInstance()
+			->getCentralIdLookupFactory();
 		foreach ( $providerIds as $providerId ) {
-			$provider = CentralIdLookup::factory( $providerId );
+			$provider = $centralIdLookupFactory->getLookup( $providerId );
 			$ret['centralids'][$providerId] = $provider->centralIdFromName( $name );
 			$ret['attachedlocal'][$providerId] = $provider->isAttached( $user );
 			if ( $attachedWiki ) {
