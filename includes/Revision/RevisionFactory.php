@@ -24,7 +24,6 @@ namespace MediaWiki\Revision;
 
 use IDBAccessObject;
 use MediaWiki\Page\PageIdentity;
-use MWException;
 
 /**
  * Service for constructing RevisionRecord objects.
@@ -36,27 +35,6 @@ use MWException;
  *       static methods in the old Revision class (which was later removed in 1.37).
  */
 interface RevisionFactory extends IDBAccessObject {
-
-	/**
-	 * Constructs a new RevisionRecord based on the given associative array following the MW1.29
-	 * database convention for the Revision constructor (removed in 1.37).
-	 *
-	 * MCR migration note: this replaced Revision::newFromRow
-	 *
-	 * @deprecated since 1.31, hard deprecated since 1.36, Use a MutableRevisionRecord instead.
-	 *
-	 * @param array $fields
-	 * @param int $queryFlags Flags for lazy loading behavior, see IDBAccessObject::READ_XXX.
-	 * @param PageIdentity|null $page
-	 *
-	 * @return MutableRevisionRecord
-	 * @throws MWException
-	 */
-	public function newMutableRevisionFromArray(
-		array $fields,
-		$queryFlags = self::READ_NORMAL,
-		PageIdentity $page = null
-	);
 
 	/**
 	 * Constructs a RevisionRecord given a database row and content slots.

@@ -103,32 +103,6 @@ class McrRevisionStoreDbTest extends RevisionStoreDbTestBase {
 		];
 	}
 
-	public function provideNewMutableRevisionFromArray() {
-		foreach ( parent::provideNewMutableRevisionFromArray() as $case ) {
-			yield $case;
-		}
-
-		yield 'Basic array, multiple roles' => [
-			[
-				'id' => 2,
-				'page' => 1,
-				'timestamp' => '20171017114835',
-				'user_text' => '111.0.1.2',
-				'user' => 0,
-				'minor_edit' => false,
-				'deleted' => 0,
-				'len' => 29,
-				'parent_id' => 1,
-				'sha1' => '89qs83keq9c9ccw9olvvm4oc9oq50ii',
-				'comment' => 'Goat Comment!',
-				'content' => [
-					'main' => new WikitextContent( 'Söme Cöntent' ),
-					'aux' => new TextContent( 'Öther Cöntent' ),
-				]
-			]
-		];
-	}
-
 	public function testGetQueryInfo_NoSlotDataJoin() {
 		$store = MediaWikiServices::getInstance()->getRevisionStore();
 		$queryInfo = $store->getQueryInfo();
