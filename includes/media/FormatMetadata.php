@@ -113,6 +113,7 @@ class FormatMetadata extends ContextSource {
 		unset( $tags['AuthorsPosition'] );
 		unset( $tags['LocationCreated'] );
 		unset( $tags['LocationShown'] );
+		unset( $tags['GPSAltitudeRef'] );
 
 		foreach ( $tags as $tag => &$vals ) {
 			// This seems ugly to wrap non-array's in an array just to unwrap again,
