@@ -1468,3 +1468,7 @@
 	url = https://github.com/StarCitizenTools/mediawiki-extensions-TabberNeue
 	branch = main
 	ignore = dirty
+[submodule "skins/Snap!"]
+	path = skins/Snap!
+	url = https://github.com/snapwiki/snapwikiskin
+	branch = stable
