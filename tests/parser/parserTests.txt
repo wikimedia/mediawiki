@@ -13686,6 +13686,21 @@ parsoid=wt2html
 <p>-{{</p>
 !! end
 
+## Regression test for Parsoid
+!! test
+Language converter over extlink
+!! wikitext
+{{1x
+| [-{oh no]}-]
+}}
+!! html/php
+<pre>[-{oh no]}-]
+</pre>
+!! html/parsoid
+<pre about="#mwt1" typeof="mw:Transclusion" data-parsoid='{}' data-mw='{"parts":[{"template":{"target":{"wt":"1x\n","href":"./Template:1x"},"params":{"1":{"wt":" [-{oh no]}-]\n"}},"i":0}}]}'>[-{oh no]}-]</pre><span about="#mwt1">
+</span>
+!! end
+
 ###
 ### Token Stream Patcher tests
 ###
@@ -14432,9 +14447,12 @@ Templates: Wiki Tables: 4. Templated tags, no content
 !! wikitext
 {{tbl-start}}
 {{tbl-end}}
-!! html
+!! html/php
 <table>
 <tbody><tr><td></td></tr></tbody></table>
+!! html/parsoid
+<table about="#mwt1" typeof="mw:Transclusion" data-parsoid='{"pi":[[],[]]}' data-mw='{"parts":[{"template":{"target":{"wt":"tbl-start","href":"./Template:Tbl-start"},"params":{},"i":0}},"\n",{"template":{"target":{"wt":"tbl-end","href":"./Template:Tbl-end"},"params":{},"i":1}}]}'>
+</table>
 !! end
 
 !!test
@@ -14922,7 +14940,7 @@ safesubst self: does not work during normal parse - T276476
 pst title=[[Template:SafeSubstSelfTest]]
 !! wikitext
 {{SafeSubstSelfTest}}
-!! html
+!! html/php
 {{SafeSubstSelfTest}}
 !! end
 
@@ -30240,6 +30258,8 @@ aside tag in extension HTML is not p-wrapped (T278565)
 <asidetag></asidetag>This is some article content.
 !! html/php
 <aside>Some aside content</aside><p>This is some article content.</p>
+!! html/parsoid
+<aside typeof="mw:Extension/asidetag" data-mw='{"name":"asidetag","attrs":{},"body":{"extsrc":""}}'>Some aside content</aside><p>This is some article content.</p>
 !! end
 
 !! test
