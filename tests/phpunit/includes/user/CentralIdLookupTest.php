@@ -42,6 +42,19 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 		$this->assertNull( CentralIdLookup::factory( 'bad' ) );
 	}
 
+	public function testGetProviderId() {
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
+		$mock->init( 'this is a test' );
+		$this->assertSame( 'this is a test', $mock->getProviderId() );
+	}
+
+	public function testRepeatingInitThrows() {
+		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
+		$mock->init( 'foo' );
+		$this->expectException( LogicException::class );
+		$mock->init( 'bar' );
+	}
+
 	public function testCheckAudience() {
 		$mock = TestingAccessWrapper::newFromObject(
 			$this->getMockForAbstractClass( CentralIdLookup::class )
