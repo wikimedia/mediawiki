@@ -7,6 +7,7 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
+use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Assert\PreconditionException;
 use Wikimedia\TestingAccessWrapper;
@@ -2613,17 +2614,15 @@ class UserTest extends MediaWikiIntegrationTestCase {
 			->willReturnCallback( static function ( User $user ) {
 				return $user->getId() % 100;
 			} );
+		$mockCentralIdLookup->method( 'getProviderId' )
+			->willReturn( 'test' );
 
-		$this->setMwGlobals( [
-			'wgCentralIdLookupProvider' => 'test',
-			'wgCentralIdLookupProviders' => [
-				'test' => [
-					'factory' => static function () use ( $mockCentralIdLookup ) {
-						return $mockCentralIdLookup;
-					}
-				]
-			]
-		] );
+		$mockCentralIdLookupFactory = $this->createNoOpMock(
+			CentralIdLookupFactory::class,
+			[ 'getNonLocalLookup' ]
+		);
+		$mockCentralIdLookupFactory->method( 'getNonLocalLookup' )->willReturn( $mockCentralIdLookup );
+		$this->setService( 'CentralIdLookupFactory', $mockCentralIdLookupFactory );
 	}
 
 	/**
