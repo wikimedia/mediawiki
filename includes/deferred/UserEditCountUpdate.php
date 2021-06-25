@@ -26,13 +26,13 @@ use Wikimedia\Assert\Assert;
 
 /**
  * Handles increment the edit count for a given set of users
- *
- * TODO we no longer need to store the instances of the relevant `UserIdentity`s, now that
- * User::$mEditCount was removed the only caching lives in UserEditTracker, we should
- * stop storing those objects.
  */
 class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
-	/** @var array[] Map of (user ID => ('increment': int, 'instances': UserIdentity[])) */
+	/**
+	 * We need to keep a single copy of the relevant UserIdentity to be able to pass to UserEditTracker
+	 *
+	 * @var array[] Map of (user ID => ('increment': int, 'object': UserIdentity))
+	 */
 	private $infoByUser;
 
 	/**
@@ -44,7 +44,7 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 			throw new RuntimeException( "Got user ID of zero" );
 		}
 		$this->infoByUser = [
-			$user->getId() => [ 'increment' => $increment, 'instances' => [ $user ] ]
+			$user->getId() => [ 'increment' => $increment, 'object' => $user ]
 		];
 	}
 
@@ -55,16 +55,14 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 
 		foreach ( $update->infoByUser as $userId => $info ) {
 			if ( !isset( $this->infoByUser[$userId] ) ) {
-				$this->infoByUser[$userId] = [ 'increment' => 0, 'instances' => [] ];
+				// Object will be filled in below
+				$this->infoByUser[$userId] = [ 'increment' => 0 ];
 			}
 			// Merge the increment amount
 			$this->infoByUser[$userId]['increment'] += $info['increment'];
-			// Merge the list of User instances to update in doUpdate()
-			foreach ( $info['instances'] as $user ) {
-				if ( !in_array( $user, $this->infoByUser[$userId]['instances'], true ) ) {
-					$this->infoByUser[$userId]['instances'][] = $user;
-				}
-			}
+			// Always use the UserIdentity from the other update in case we don't
+			// already have info for the user
+			$this->infoByUser[$userId]['object'] = $info['object'];
 		}
 	}
 
@@ -86,8 +84,8 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					[ 'user_id' => $userId, 'user_editcount IS NOT NULL' ],
 					$fname
 				);
-				/** @var UserIdentity[] $affectedInstances */
-				$affectedInstances = $info['instances'];
+				/** @var UserIdentity $targetUserIdentity */
+				$targetUserIdentity = $info['object'];
 				// Lazy initialization check...
 				if ( $dbw->affectedRows() == 0 ) {
 					// The user_editcount is probably NULL (e.g. not initialized).
@@ -98,11 +96,11 @@ class UserEditCountUpdate implements DeferrableUpdate, MergeableUpdate {
 					// is harmless and waitForMasterPos() will just no-op.
 					$dbr->flushSnapshot( $fname );
 					$lb->waitForMasterPos( $dbr );
-					$editTracker->initializeUserEditCount( $affectedInstances[0] );
+					$editTracker->initializeUserEditCount( $targetUserIdentity );
 				}
 
 				// Clear the edit count in the UserEditTracker cache.
-				$editTracker->clearUserEditCache( $affectedInstances[0] );
+				$editTracker->clearUserEditCache( $targetUserIdentity );
 			}
 		} ) )->doUpdate();
 	}
