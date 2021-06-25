@@ -5213,6 +5213,9 @@ class Parser {
 				foreach ( $handlerParamMap as $magic => $paramName ) {
 					$paramMap[$magic] = [ 'handler', $paramName ];
 				}
+			} else {
+				// Parse the size for non-existent files.  See T273013
+				$paramMap[ 'img_width' ] = [ 'handler', 'width' ];
 			}
 			$this->mImageParams[$handlerClass] = $paramMap;
 			$this->mImageParamsMagicArray[$handlerClass] =
@@ -5295,16 +5298,23 @@ class Parser {
 				# Special case; width and height come in one variable together
 				if ( $type === 'handler' && $paramName === 'width' ) {
 					$parsedWidthParam = self::parseWidthParam( $value );
+					// Parsoid applies data-(width|height) attributes to broken
+					// media spans, for client use.  See T273013
+					$validateFunc = static function ( $name, $value ) use ( $handler ) {
+						return $handler
+							? $handler->validateParam( $name, $value )
+							: $value > 0;
+					};
 					if ( isset( $parsedWidthParam['width'] ) ) {
 						$width = $parsedWidthParam['width'];
-						if ( $handler->validateParam( 'width', $width ) ) {
+						if ( $validateFunc( 'width', $width ) ) {
 							$params[$type]['width'] = $width;
 							$validated = true;
 						}
 					}
 					if ( isset( $parsedWidthParam['height'] ) ) {
 						$height = $parsedWidthParam['height'];
-						if ( $handler->validateParam( 'height', $height ) ) {
+						if ( $validateFunc( 'height', $height ) ) {
 							$params[$type]['height'] = $height;
 							$validated = true;
 						}
