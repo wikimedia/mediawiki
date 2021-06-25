@@ -3,8 +3,9 @@
 use MediaWiki\HookContainer\HookContainer;
 use PHPUnit\Framework\Constraint\Constraint;
 use PHPUnit\Framework\MockObject\MockObject;
-use Pimple\Psr11\ServiceLocator;
+use Psr\Container\ContainerInterface;
 use Wikimedia\ObjectFactory;
+use Wikimedia\Services\NoSuchServiceException;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
@@ -67,14 +68,19 @@ trait MediaWikiTestCaseTrait {
 	}
 
 	/**
-	 * Create an ObjectFactory with no dependencies
+	 * Create an ObjectFactory with no dependencies and no services
 	 *
 	 * @return ObjectFactory
 	 */
 	protected function createSimpleObjectFactory() {
-		return new ObjectFactory(
-			new ServiceLocator( new \Pimple\Container(), [] )
+		$serviceContainer = $this->createMock( ContainerInterface::class );
+		$serviceContainer->method( 'has' )->willReturn( false );
+		$serviceContainer->method( 'get' )->willReturnCallback(
+			static function ( $serviceName ) {
+				throw new NoSuchServiceException( $serviceName );
+			}
 		);
+		return new ObjectFactory( $serviceContainer );
 	}
 
 	/**
