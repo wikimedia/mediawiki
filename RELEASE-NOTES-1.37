@@ -276,6 +276,8 @@ because of Phabricator reports.
 * The protected property LocalFile::$metadata was removed without deprecation.
 * WatchedItem::getUser, hard deprecated since 1.36, has been removed.
 * AuthManager::singleton, hard deprecated since 1.36, has been removed.
+* The AugmentPageProps class was removed without deprecation. It had no known
+  uses.
 * Html::infobox, deprecated since 1.36, was removed.
 * ParserOptions::__construct() now requires that the first parameter is a
   UserIdentity object - passing `null` used to fallback to the global
