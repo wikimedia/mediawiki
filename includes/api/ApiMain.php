@@ -147,7 +147,12 @@ class ApiMain extends ApiBase {
 				'SpecialPageFactory',
 			]
 		],
-		'feedwatchlist' => ApiFeedWatchlist::class,
+		'feedwatchlist' => [
+			'class' => ApiFeedWatchlist::class,
+			'services' => [
+				'Parser',
+			]
+		],
 		'help' => ApiHelp::class,
 		'paraminfo' => ApiParamInfo::class,
 		'rsd' => ApiRsd::class,
