@@ -167,7 +167,6 @@ $wgAutoloadLocalClasses = [
 	'AtomFeed' => __DIR__ . '/includes/changes/AtomFeed.php',
 	'AtomicSectionUpdate' => __DIR__ . '/includes/deferred/AtomicSectionUpdate.php',
 	'AttachLatest' => __DIR__ . '/maintenance/attachLatest.php',
-	'AugmentPageProps' => __DIR__ . '/includes/search/AugmentPageProps.php',
 	'AuthManagerSpecialPage' => __DIR__ . '/includes/specialpage/AuthManagerSpecialPage.php',
 	'AutoCommitUpdate' => __DIR__ . '/includes/deferred/AutoCommitUpdate.php',
 	'AutoloadGenerator' => __DIR__ . '/includes/utils/AutoloadGenerator.php',
