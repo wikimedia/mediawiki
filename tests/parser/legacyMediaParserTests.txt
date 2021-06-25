@@ -2693,7 +2693,7 @@ parsoid={
 !! html/parsoid
 <ul class="gallery mw-gallery-traditional" typeof="mw:Extension/gallery" about="#mwt2" data-mw='{"name":"gallery","body":{}}'>
 <li class="gallerycaption">123</li>
-<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span>File:Test.png</span></div><div class="gallerytext"></div></li>
+<li class="gallerybox" style="width: 155px;"><div class="thumb" style="width: 150px; height: 150px;"><span typeof="mw:Error mw:Image" data-mw='{"errors":[{"key":"apierror-filedoesnotexist","message":"This image does not exist."}]}'><a href="./Special:FilePath/Test.png"><span resource="./File:Test.png" data-width="120" data-height="120">File:Test.png</span></a></span></div><div class="gallerytext"></div></li>
 </ul>
 !! wikitext
 <gallery caption="123">
@@ -3495,4 +3495,37 @@ Thumbnail output
 <div class="thumb tright"><div class="thumbinner" style="width:137px;"><a href="/wiki/File:Thumb.png" class="image"><img alt="Thumb.png" src="http://example.com/images/e/ea/Thumb.png" decoding="async" width="135" height="135" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Thumb.png" class="internal" title="Enlarge"></a></div></div></div></div>
 !! html/parsoid
 <figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Thumb.png"><img resource="./File:Thumb.png" src="http://example.com/images/e/ea/Thumb.png" data-file-width="135" data-file-height="135" data-file-type="bitmap" height="135" width="135"/></a><figcaption></figcaption></figure>
+!! end
+
+## The bogus option here isn't going to roundtrip
+!! test
+File with caption with pipe in extension tag attribute
+!! options
+parsoid=wt2html,html2html
+!! wikitext
+[[File:Foobar.jpg|thumb|Test <nowiki bogus="attri|bute"/> 123]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div>Test  123</div></div></div>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x"/></a><figcaption>Test <span typeof="mw:Nowiki"></span> 123</figcaption></figure>
+!! end
+
+!! test
+File with table in caption with extra table attribute spaces
+!! wikitext
+[[File:Foobar.jpg|thumb|
+{|
+|-  
+|hi
+|}
+]]
+!! html/php
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" decoding="async" width="180" height="20" class="thumbimage" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/270px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/360px-Foobar.jpg 2x" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"></a></div><table>  <tbody><tr> <td>hi </td></tr></tbody></table></div></div></div>
+!! html/parsoid
+<figure class="mw-default-size" typeof="mw:Image/Thumb"><a href="./File:Foobar.jpg"><img resource="./File:Foobar.jpg" src="http://example.com/images/thumb/3/3a/Foobar.jpg/220px-Foobar.jpg" data-file-width="1941" data-file-height="220" data-file-type="bitmap" height="25" width="220" srcset="http://example.com/images/thumb/3/3a/Foobar.jpg/330px-Foobar.jpg 1.5x, http://example.com/images/thumb/3/3a/Foobar.jpg/440px-Foobar.jpg 2x"/></a><figcaption>
+<table>
+<tbody><tr data-parsoid='{"startTagSrc":"|-"}'>  
+<td>hi</td></tr>
+</tbody></table>
+</figcaption></figure>
 !! end
