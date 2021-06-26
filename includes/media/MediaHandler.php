@@ -1199,4 +1199,16 @@ abstract class MediaHandler {
 	public function getContentHeaders( $metadata ) {
 		return [ 'X-Content-Dimensions' => '' ]; // T175689
 	}
+
+	/**
+	 * If this returns true, LocalFile may split metadata up and store its
+	 * constituent items separately. This only makes sense if the handler calls
+	 * File::getMetadataItem() or File::getMetadataItems() instead of
+	 * requesting the whole array at once.
+	 *
+	 * @return bool
+	 */
+	public function useSplitMetadata() {
+		return false;
+	}
 }

@@ -84,6 +84,11 @@ interface BlobStore {
 	public const FORMAT_HINT = 'cont_format';
 
 	/**
+	 * Hint key for an image name.
+	 */
+	public const IMAGE_HINT = 'img_name';
+
+	/**
 	 * Retrieve a blob, given an address.
 	 *
 	 * MCR migration note: this replaced Revision::loadText
