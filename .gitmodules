@@ -1473,3 +1473,7 @@
 	url = https://github.com/snapwiki/snapwikiskin
 	branch = stable
 	ignore = dirty
+[submodule "extensions/WebP"]
+	path = extensions/WebP
+	url = https://github.com/octfx/mediawiki-extension-WebP
+	branch = master
