@@ -32,6 +32,23 @@ use Wikimedia\ParamValidator\ParamValidator;
  * @ingroup API
  */
 class ApiHelp extends ApiBase {
+	/** @var SkinFactory */
+	private $skinFactory;
+
+	/**
+	 * @param ApiMain $main
+	 * @param string $action
+	 * @param SkinFactory $skinFactory
+	 */
+	public function __construct(
+		ApiMain $main,
+		$action,
+		SkinFactory $skinFactory
+	) {
+		parent::__construct( $main, $action );
+		$this->skinFactory = $skinFactory;
+	}
+
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$modules = [];
@@ -42,8 +59,7 @@ class ApiHelp extends ApiBase {
 
 		// Get the help
 		$context = new DerivativeContext( $this->getMain()->getContext() );
-		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-		$context->setSkin( $skinFactory->makeSkin( 'apioutput' ) );
+		$context->setSkin( $this->skinFactory->makeSkin( 'apioutput' ) );
 		$context->setLanguage( $this->getMain()->getLanguage() );
 		$context->setTitle( SpecialPage::getTitleFor( 'ApiHelp' ) );
 		$out = new OutputPage( $context );

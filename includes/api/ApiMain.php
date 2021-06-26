@@ -153,7 +153,12 @@ class ApiMain extends ApiBase {
 				'Parser',
 			]
 		],
-		'help' => ApiHelp::class,
+		'help' => [
+			'class' => ApiHelp::class,
+			'services' => [
+				'SkinFactory',
+			]
+		],
 		'paraminfo' => ApiParamInfo::class,
 		'rsd' => ApiRsd::class,
 		'compare' => ApiComparePages::class,
