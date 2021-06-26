@@ -21,6 +21,7 @@
  * @ingroup FileRepo
  */
 
+use MediaWiki\Storage\BlobStore;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DatabaseDomain;
 use Wikimedia\Rdbms\IDatabase;
@@ -124,5 +125,9 @@ class ForeignDBRepo extends LocalRepo {
 	 */
 	public function getInfo() {
 		return FileRepo::getInfo();
+	}
+
+	public function getBlobStore(): ?BlobStore {
+		return null;
 	}
 }

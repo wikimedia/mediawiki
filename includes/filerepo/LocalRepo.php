@@ -26,6 +26,7 @@ use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\Storage\BlobStore;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -56,6 +57,18 @@ class LocalRepo extends FileRepo {
 	/** @var bool Whether shared cache keys are exposed/accessible */
 	protected $hasAccessibleSharedCache;
 
+	/** @var BlobStore */
+	protected $blobStore;
+
+	/** @var bool */
+	protected $useJsonMetadata = false;
+
+	/** @var bool */
+	protected $useSplitMetadata = false;
+
+	/** @var int|null */
+	protected $splitMetadataThreshold = 1000;
+
 	public function __construct( array $info = null ) {
 		parent::__construct( $info );
 
@@ -70,6 +83,18 @@ class LocalRepo extends FileRepo {
 				'repoName'        => $this->name,
 				'dbHandleFactory' => $this->getDBFactory()
 			] );
+		}
+
+		foreach (
+			[
+				'useJsonMetadata',
+				'useSplitMetadata',
+				'splitMetadataThreshold'
+			] as $option
+		) {
+			if ( isset( $info[$option] ) ) {
+				$this->$option = $info[$option];
+			}
 		}
 	}
 
@@ -607,5 +632,52 @@ class LocalRepo extends FileRepo {
 		} else {
 			return parent::$function( ...$args );
 		}
+	}
+
+	/**
+	 * Returns true if files should store metadata in JSON format. This
+	 * requires metadata from all handlers to be JSON-serializable.
+	 *
+	 * To avoid breaking existing metadata, reading JSON metadata is always
+	 * enabled regardless of this setting.
+	 *
+	 * @return bool
+	 */
+	public function isJsonMetadataEnabled() {
+		return $this->useJsonMetadata;
+	}
+
+	/**
+	 * Returns true if files should split up large metadata, storing parts of
+	 * it in the BlobStore.
+	 *
+	 * @return bool
+	 */
+	public function isSplitMetadataEnabled() {
+		return $this->isJsonMetadataEnabled() && $this->useSplitMetadata;
+	}
+
+	/**
+	 * Get the threshold above which metadata items should be split into
+	 * separate storage, or null if no splitting should be done.
+	 *
+	 * @return int
+	 */
+	public function getSplitMetadataThreshold() {
+		return $this->splitMetadataThreshold;
+	}
+
+	/**
+	 * Get a BlobStore for storing and retrieving large metadata, or null if
+	 * that can't be done.
+	 *
+	 * @return ?BlobStore
+	 */
+	public function getBlobStore(): ?BlobStore {
+		if ( !$this->blobStore ) {
+			$this->blobStore = MediaWikiServices::getInstance()->getBlobStoreFactory()
+				->newBlobStore( $this->dbDomain );
+		}
+		return $this->blobStore;
 	}
 }
