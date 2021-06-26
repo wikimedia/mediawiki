@@ -215,7 +215,12 @@ class ApiMain extends ApiBase {
 		],
 		'edit' => ApiEditPage::class,
 		'upload' => ApiUpload::class,
-		'filerevert' => ApiFileRevert::class,
+		'filerevert' => [
+			'class' => ApiFileRevert::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'emailuser' => ApiEmailUser::class,
 		'watch' => [
 			'class' => ApiWatch::class,
