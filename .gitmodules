@@ -1477,3 +1477,4 @@
 	path = extensions/WebP
 	url = https://github.com/octfx/mediawiki-extension-WebP
 	branch = master
+	ignore = dirty
