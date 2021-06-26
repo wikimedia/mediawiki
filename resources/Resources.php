@@ -1463,6 +1463,7 @@ return [
 		'dependencies' => [
 			'mediawiki.util',
 			'mediawiki.language',
+			'mediawiki.String',
 			'user.options',
 		],
 		'targets' => [ 'desktop', 'mobile' ],

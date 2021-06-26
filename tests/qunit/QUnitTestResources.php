@@ -66,6 +66,7 @@ return [
 			'tests/qunit/suites/resources/mediawiki/mediawiki.jscompat.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.messagePoster.factory.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.String.byteLength.test.js',
+			'tests/qunit/suites/resources/mediawiki/mediawiki.String.charAt.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.String.trimByteLength.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.storage.test.js',
 			'tests/qunit/suites/resources/mediawiki/mediawiki.template.test.js',
