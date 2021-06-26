@@ -1472,3 +1472,4 @@
 	path = skins/snapwikiskin
 	url = https://github.com/snapwiki/snapwikiskin
 	branch = stable
+	ignore = dirty
