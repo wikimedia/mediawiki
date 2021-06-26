@@ -647,8 +647,17 @@ $wgImgAuthUrlPathMap = [];
  *                      separate blob in the database if the item is larger than this threshold.
  *                      Default: 1000
  *   - updateCompatibleMetadata
- *                      If true, image metadata will be upgraded by reloading it from the file,
- *                      if the handler indicates that it is out of date. Default: false.
+ *                      When true, image metadata will be upgraded by reloading it from the original
+ *                      file, if the handler indicates that it is out of date.
+ *
+ *                      By default, when purging a file or otherwise refreshing file metadata, it
+ *                      is only reloaded when the metadata is invalid. Valid data originally loaded
+ *                      by a current or older compatible version is left unchanged. Enable this
+ *                      to also reload and upgrade metadata that was stored by an older compatible
+ *                      version. See also MediaHandler::isMetadataValid, and RefreshImageMetadata.
+ *
+ *                      Default: false.
+ *
  *   - reserializeMetadata
  *                      If true, image metadata will be automatically rewritten to the database
  *                      if its serialization format is out of date. Default: false
@@ -953,9 +962,7 @@ $wgLockManagers = [];
 $wgShowEXIF = function_exists( 'exif_read_data' );
 
 /**
- * If to automatically update the img_metadata field
- * if the metadata field is outdated but compatible with the current version.
- * Defaults to false.
+ * Shortcut for the 'updateCompatibleMetadata' setting of $wgLocalFileRepo.
  */
 $wgUpdateCompatibleMetadata = false;
 
