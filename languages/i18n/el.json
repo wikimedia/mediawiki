@@ -1615,7 +1615,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "Διορθώστε τη λίστα παρακολούθησης",
 	"rcfilters-watchlist-showupdated": "Σελίδες που έχουν υποστεί αλλαγές από την τελευταία φορά που τις επισκεφθήκατε εμφανίζονται με '''έντονους χαρακτήρες'''.",
 	"rcfilters-preference-label": "Χρήση διεπαφής χωρίς JavaScript",
-	"rcfilters-preference-help": "Φορτώνει τις Πρόσφατες Αλλαγές, Τη Λίστα Παρακολούθησης, και Παρόμοιες Σελίδες χωρίς τη Φιλτραρισμένη Αναζήτηση ή Τη Λειτουργία Επισήμανσης.",
+	"rcfilters-preference-help": "Φορτώνει τις Πρόσφατες Αλλαγές, Τη Λίστα Παρακολούθησης, και παρόμοιες σελίδες χωρίς τη φιλτραρισμένη αναζήτηση ή τη λειτουργία επισήμανσης.",
 	"rcfilters-watchlist-preference-label": "Χρήση πίνακα διεπαφής όχι-JavaScript",
 	"rcfilters-watchlist-preference-help": "Φορτώνει την Λίστα Παρακολούθησης χωρίς φίλτρα αναζήτησης ή λειτουργία επισήμανσης.",
 	"rcfilters-filter-showlinkedfrom-option-label": "<strong>Σελίδες που συνδέονται από</strong> τη επιλεγμένη σελίδα",
