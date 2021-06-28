@@ -401,8 +401,9 @@ class SearchEngineTest extends MediaWikiLangTestCase {
 
 	private function editSearchResultPage( $title ) {
 		$page = WikiPage::factory( Title::newFromText( $title ) );
-		$page->doEditContent(
+		$page->doUserEditContent(
 			new WikitextContent( 'UTContent' ),
+			$this->getTestSysop()->getUser(),
 			'UTPageSummary',
 			EDIT_NEW | EDIT_SUPPRESS_RC
 		);

@@ -2005,13 +2005,12 @@ class LocalFile extends File {
 				if ( $newPageContent ) {
 					# New file page; create the description page.
 					# There's already a log entry, so don't make a second RC entry
-					# CDN and file cache for the description page are purged by doEditContent.
-					$status = $wikiPage->doEditContent(
+					# CDN and file cache for the description page are purged by doUserEditContent.
+					$status = $wikiPage->doUserEditContent(
 						$newPageContent,
+						$performer,
 						$comment,
-						EDIT_NEW | EDIT_SUPPRESS_RC,
-						false,
-						$performer
+						EDIT_NEW | EDIT_SUPPRESS_RC
 					);
 
 					if ( isset( $status->value['revision-record'] ) ) {
@@ -2021,7 +2020,7 @@ class LocalFile extends File {
 						$logEntry->setAssociatedRevId( $revRecord->getId() );
 					}
 					// This relies on the resetArticleID() call in WikiPage::insertOn(),
-					// which is triggered on $descTitle by doEditContent() above.
+					// which is triggered on $descTitle by doUserEditContent() above.
 					if ( isset( $status->value['revision-record'] ) ) {
 						/** @var RevisionRecord $revRecord */
 						$revRecord = $status->value['revision-record'];

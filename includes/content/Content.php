@@ -454,7 +454,7 @@ interface Content {
 	public function preloadTransform( Title $title, ParserOptions $parserOptions, $params = [] );
 
 	/**
-	 * Prepare Content for saving. Called before Content is saved by WikiPage::doEditContent() and in
+	 * Prepare Content for saving. Called before Content is saved by WikiPage::doUserEditContent() and in
 	 * similar places.
 	 *
 	 * This may be used to check the content's consistency with global state. This function should
@@ -469,7 +469,7 @@ interface Content {
 	 * @since 1.21
 	 *
 	 * @param WikiPage $page The page to be saved.
-	 * @param int $flags Bitfield for use with EDIT_XXX constants, see WikiPage::doEditContent()
+	 * @param int $flags Bitfield for use with EDIT_XXX constants, see WikiPage::doUserEditContent()
 	 * @param int $parentRevId The ID of the current revision
 	 * @param User $user
 	 *
@@ -477,7 +477,7 @@ interface Content {
 	 *   successfully prepared for saving. If the returned status indicates
 	 *   an error, a rollback will be performed and the transaction aborted.
 	 *
-	 * @see WikiPage::doEditContent()
+	 * @see WikiPage::doUserEditContent()
 	 */
 	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user );
 

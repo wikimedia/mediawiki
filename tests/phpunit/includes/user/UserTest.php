@@ -365,12 +365,10 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		// let the user have a few (3) edits
 		$page = WikiPage::factory( Title::makeTitle( NS_HELP, 'UserTest_EditCount' ) );
 		for ( $i = 0; $i < 3; $i++ ) {
-			$page->doEditContent(
+			$page->doUserEditContent(
 				ContentHandler::makeContent( (string)$i, $page->getTitle() ),
-				'test',
-				0,
-				false,
-				$user
+				$user,
+				'test'
 			);
 		}
 

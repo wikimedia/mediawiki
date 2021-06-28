@@ -18,8 +18,8 @@ class ApiComparePagesTest extends ApiTestCase {
 
 		$page = WikiPage::factory( $title );
 		$user = static::getTestSysop()->getUser();
-		$status = $page->doEditContent(
-			$content, 'Test for ApiComparePagesTest: ' . $text, 0, false, $user
+		$status = $page->doUserEditContent(
+			$content, $user, 'Test for ApiComparePagesTest: ' . $text
 		);
 		if ( !$status->isOK() ) {
 			$this->fail( "Failed to create $title: " . $status->getWikiText( false, false, 'en' ) );

@@ -22,8 +22,10 @@ class ApiQueryUserContribsTest extends ApiTestCase {
 		$page = WikiPage::factory( $title );
 		for ( $i = 0; $i < 3; $i++ ) {
 			foreach ( array_reverse( $users ) as $user ) {
-				$status = $page->doEditContent(
-					ContentHandler::makeContent( "Test revision $user #$i", $title ), 'Test edit', 0, false, $user
+				$status = $page->doUserEditContent(
+					ContentHandler::makeContent( "Test revision $user #$i", $title ),
+					$user,
+					'Test edit'
 				);
 				if ( !$status->isOK() ) {
 					$this->fail( "Failed to edit $title: " . $status->getWikiText( false, false, 'en' ) );

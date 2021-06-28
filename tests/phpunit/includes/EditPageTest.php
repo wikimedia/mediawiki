@@ -137,11 +137,15 @@ class EditPageTest extends MediaWikiLangTestCase {
 			}
 		}
 
+		if ( $user == null ) {
+			$user = $this->getTestUser()->getUser();
+		}
+
 		$page = WikiPage::factory( $title );
 
 		if ( $baseText !== null ) {
 			$content = ContentHandler::makeContent( $baseText, $title );
-			$page->doEditContent( $content, "base text for test" );
+			$page->doUserEditContent( $content, $user, "base text for test" );
 			$this->forceRevisionDate( $page, '20120101000000' );
 
 			// sanity check
@@ -151,10 +155,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 			# EditPage rtrim() the user input, so we alter our expected text
 			# to reflect that.
 			$this->assertEditedTextEquals( $baseText, $currentText );
-		}
-
-		if ( $user == null ) {
-			$user = $this->getTestUser()->getUser();
 		}
 
 		if ( !isset( $edit['wpEditToken'] ) ) {

@@ -360,13 +360,12 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$wikiPage = new WikiPage( Title::newFromText( self::PAGE_NAME ) );
-		$wikiPage->doEditContent(
+		$wikiPage->doUserEditContent(
 			new WikitextContent( $newContent ),
+			$this->getTestSysop()->getUser(),
 			'',
 			0,
 			$revisionIds[$undoafterIndex],
-			$this->getTestSysop()->getUser(),
-			null,
 			[],
 			$revisionIds[$undoIndex]
 		);
