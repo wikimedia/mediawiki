@@ -1486,8 +1486,3 @@
 	path = extensions/Bootstrap
 	url = https://github.com/ProfessionalWiki/Bootstrap
 	branch = master
-[submodule "mediawiki-extensions-EmbedVideo"]
-	path = mediawiki-extensions-EmbedVideo
-	url = https://github.com/StarCitizenWiki/mediawiki-extensions-EmbedVideo
-	branch = master
-	ignore = dirty
