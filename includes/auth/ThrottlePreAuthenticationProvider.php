@@ -126,12 +126,16 @@ class ThrottlePreAuthenticationProvider extends AbstractPreAuthenticationProvide
 		try {
 			$username = AuthenticationRequest::getUsernameFromRequests( $reqs );
 		} catch ( \UnexpectedValueException $e ) {
-			$username = '';
+			$username = null;
 		}
 
 		// Get everything this username could normalize to, and throttle each one individually.
 		// If nothing uses usernames, just throttle by IP.
-		$usernames = $this->manager->normalizeUsername( $username );
+		if ( $username !== null ) {
+			$usernames = $this->manager->normalizeUsername( $username );
+		} else {
+			$usernames = [ null ];
+		}
 		$result = false;
 		foreach ( $usernames as $name ) {
 			$r = $this->passwordAttemptThrottle->increase( $name, $ip, __METHOD__ );
