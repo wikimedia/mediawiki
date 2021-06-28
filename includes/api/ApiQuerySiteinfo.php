@@ -22,6 +22,7 @@
 
 use MediaWiki\ExtensionInfo;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserOptionsLookup;
 
 /**
@@ -34,19 +35,26 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	 * @var UserOptionsLookup
 	 */
 	private $userOptionsLookup;
+	/**
+	 * @var UserGroupManager
+	 */
+	private $userGroupManager;
 
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param UserOptionsLookup $userOptionsLookup
+	 * @param UserGroupManager $userGroupManager
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		UserOptionsLookup $userOptionsLookup
+		UserOptionsLookup $userOptionsLookup,
+		UserGroupManager $userGroupManager
 	) {
 		parent::__construct( $query, $moduleName, 'si' );
 		$this->userOptionsLookup = $userOptionsLookup;
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	public function execute() {
@@ -531,7 +539,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 
 		$data = [];
 		$result = $this->getResult();
-		$allGroups = array_values( User::getAllGroups() );
+		$allGroups = array_values( $this->userGroupManager->listAllGroups() );
 		foreach ( $config->get( 'GroupPermissions' ) as $group => $permissions ) {
 			$arr = [
 				'name' => $group,

@@ -172,6 +172,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQuerySiteinfo::class,
 			'services' => [
 				'UserOptionsLookup',
+				'UserGroupManager',
 			]
 		],
 		'userinfo' => [
