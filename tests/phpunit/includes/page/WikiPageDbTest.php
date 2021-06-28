@@ -273,6 +273,8 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 	 * @covers WikiPage::doUserEditContent
 	 */
 	public function testDoEditContent() {
+		$this->hideDeprecated( 'WikiPage::doEditContent' );
+
 		global $wgUser;
 
 		// NOTE: Test that Editing also works with a fragment title!
