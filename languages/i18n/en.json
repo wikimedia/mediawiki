@@ -1068,6 +1068,8 @@
 	"prefsnologintext2": "Please log in to change your preferences.",
 	"prefs-skin": "Skin",
 	"prefs-skin-prefs": "Skin preferences",
+	"prefs-skin-responsive": "Enable responsive mode",
+	"prefs-help-skin-responsive": "Adapt skin to available viewport area. (May have no effect on some skins).",
 	"skin-preview": "Preview",
 	"datedefault": "No preference",
 	"prefs-labs": "Labs features",
