@@ -125,6 +125,7 @@ class ApiMain extends ApiBase {
 				'PageEditStash',
 				'RevisionLookup',
 				'StatsdDataFactory',
+				'WikiPageFactory',
 			]
 		],
 		'opensearch' => ApiOpenSearch::class,

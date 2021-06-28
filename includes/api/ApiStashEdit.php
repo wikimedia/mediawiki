@@ -19,6 +19,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\PageEditStash;
@@ -51,6 +52,9 @@ class ApiStashEdit extends ApiBase {
 	/** @var IBufferingStatsdDataFactory */
 	private $statsdDataFactory;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -58,6 +62,7 @@ class ApiStashEdit extends ApiBase {
 	 * @param PageEditStash $pageEditStash
 	 * @param RevisionLookup $revisionLookup
 	 * @param IBufferingStatsdDataFactory $statsdDataFactory
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -65,7 +70,8 @@ class ApiStashEdit extends ApiBase {
 		IContentHandlerFactory $contentHandlerFactory,
 		PageEditStash $pageEditStash,
 		RevisionLookup $revisionLookup,
-		IBufferingStatsdDataFactory $statsdDataFactory
+		IBufferingStatsdDataFactory $statsdDataFactory,
+		WikiPageFactory $wikiPageFactory
 	) {
 		parent::__construct( $main, $action );
 
@@ -73,6 +79,7 @@ class ApiStashEdit extends ApiBase {
 		$this->pageEditStash = $pageEditStash;
 		$this->revisionLookup = $revisionLookup;
 		$this->statsdDataFactory = $statsdDataFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	public function execute() {
@@ -121,7 +128,7 @@ class ApiStashEdit extends ApiBase {
 		$textContent = ContentHandler::makeContent(
 			$text, $title, $params['contentmodel'], $params['contentformat'] );
 
-		$page = WikiPage::factory( $title );
+		$page = $this->wikiPageFactory->newFromTitle( $title );
 		if ( $page->exists() ) {
 			// Page exists: get the merged content with the proposed change
 			$baseRev = $this->revisionLookup->getRevisionByPageId(
