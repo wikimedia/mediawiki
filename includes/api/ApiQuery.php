@@ -63,7 +63,12 @@ class ApiQuery extends ApiBase {
 		'linkshere' => ApiQueryBacklinksprop::class,
 		'iwlinks' => ApiQueryIWLinks::class,
 		'langlinks' => ApiQueryLangLinks::class,
-		'pageprops' => ApiQueryPageProps::class,
+		'pageprops' => [
+			'class' => ApiQueryPageProps::class,
+			'services' => [
+				'PageProps',
+			]
+		],
 		'redirects' => ApiQueryBacklinksprop::class,
 		'revisions' => ApiQueryRevisions::class,
 		'stashimageinfo' => ApiQueryStashImageInfo::class,
