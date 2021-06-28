@@ -47,16 +47,22 @@ class UserNamePrefixSearch {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var UserNameUtils */
+	private $userNameUtils;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
 	 * @param UserFactory $userFactory
+	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		ILoadBalancer $loadBalancer,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		UserNameUtils $userNameUtils
 	) {
 		$this->loadBalancer = $loadBalancer;
 		$this->userFactory = $userFactory;
+		$this->userNameUtils = $userNameUtils;
 	}
 
 	/**
@@ -84,12 +90,8 @@ class UserNamePrefixSearch {
 			);
 		}
 
-		// TODO this was kept when switching to a service, but it should probably
-		// use UserNameUtils::getCanonical( $search, UserNameUtils::RIGOR_VALID ) and
-		// use an empty string if that is false, or the returned string, instead of
-		// taking the time to construct a user object.
-		$user = $this->userFactory->newFromName( $search );
-		$prefix = $user ? $user->getName() : '';
+		// Invalid user names are treated as empty strings
+		$prefix = $this->userNameUtils->getCanonical( $search ) ?: '';
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 

@@ -5,6 +5,7 @@ namespace MediaWiki\Tests\User;
 use InvalidArgumentException;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
+use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
 use User;
 use Wikimedia\Rdbms\Database;
@@ -19,26 +20,17 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 	/**
 	 * @dataProvider provideTestSearch
 	 * @param int $audienceType 1='public', 2=user without `hideuser` rights, 3=user with `hideuser` rights
-	 * @param string $prefix if '', UserFactory::newFromName returns null, otherwise its the user name
+	 * @param string $prefix
 	 * @param int $limit
 	 * @param int $offset
 	 * @param array $result
 	 */
 	public function testSearch( int $audienceType, $prefix, int $limit, int $offset, array $result ) {
-		if ( $prefix === '' ) {
-			$user = null;
-		} else {
-			$user = $this->createMock( User::class );
-			$user->expects( $this->once() )
-				->method( 'getName' )
-				->willReturn( $prefix );
-		}
-
-		$userFactory = $this->createMock( UserFactory::class );
-		$userFactory->expects( $this->once() )
-			->method( 'newFromName' )
+		$userNameUtils = $this->createMock( UserNameUtils::class );
+		$userNameUtils->expects( $this->once() )
+			->method( 'getCanonical' )
 			->with( $prefix )
-			->willReturn( $user );
+			->willReturn( $prefix ); // not worrying about normalization
 
 		if ( $audienceType === 1 ) {
 			// 'public' audience
@@ -104,7 +96,8 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 
 		$userNamePrefixSearch = new UserNamePrefixSearch(
 			$loadBalancer,
-			$userFactory
+			$this->createNoOpMock( UserFactory::class ),
+			$userNameUtils
 		);
 		$res = $userNamePrefixSearch->search(
 			$audience,
@@ -146,12 +139,10 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 	}
 
 	public function testSearchInvalidAudience() {
-		$userFactory = $this->createMock( UserFactory::class );
-		$loadBalancer = $this->createMock( LoadBalancer::class );
-
 		$userNamePrefixSearch = new UserNamePrefixSearch(
-			$loadBalancer,
-			$userFactory
+			$this->createMock( LoadBalancer::class ),
+			$this->createMock( UserFactory::class ),
+			$this->createMock( UserNameUtils::class )
 		);
 
 		$this->expectException( InvalidArgumentException::class );

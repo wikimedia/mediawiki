@@ -1589,7 +1589,8 @@ return [
 	'UserNamePrefixSearch' => static function ( MediaWikiServices $services ) : UserNamePrefixSearch {
 		return new UserNamePrefixSearch(
 			$services->getDBLoadBalancer(),
-			$services->getUserFactory()
+			$services->getUserFactory(),
+			$services->getUserNameUtils()
 		);
 	},
 
