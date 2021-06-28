@@ -19,12 +19,12 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionArchiveRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Revision\SlotRoleRegistry;
 
 /**
  * @ingroup API
@@ -34,7 +34,7 @@ class ApiComparePages extends ApiBase {
 	/** @var RevisionStore */
 	private $revisionStore;
 
-	/** @var \MediaWiki\Revision\SlotRoleRegistry */
+	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
 	/** @var Title|false */
@@ -44,11 +44,24 @@ class ApiComparePages extends ApiBase {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
-		parent::__construct( $mainModule, $moduleName, $modulePrefix );
-		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$this->slotRoleRegistry = MediaWikiServices::getInstance()->getSlotRoleRegistry();
-		$this->contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param RevisionStore $revisionStore
+	 * @param SlotRoleRegistry $slotRoleRegistry
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		RevisionStore $revisionStore,
+		SlotRoleRegistry $slotRoleRegistry,
+		IContentHandlerFactory $contentHandlerFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->revisionStore = $revisionStore;
+		$this->slotRoleRegistry = $slotRoleRegistry;
+		$this->contentHandlerFactory = $contentHandlerFactory;
 	}
 
 	public function execute() {
