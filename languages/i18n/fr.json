@@ -3272,7 +3272,7 @@
 	"nextdiff": "Modification suivante →",
 	"mediawarning": "<strong>Attention :</strong> ce type de fichier peut contenir du code malveillant.\nSi vous l’exécutez, votre système peut être compromis.",
 	"imagemaxsize": "Taille maximale des images sur les pages de description de fichier :",
-	"thumbsize": "Taille de la vignette :",
+	"thumbsize": "Taille des vignettes :",
 	"widthheight": "$1 × $2",
 	"widthheightpage": "$1 × $2, $3 page{{PLURAL:$3||s}}",
 	"file-info": "Taille du fichier : $1, type MIME : $2",

@@ -1611,7 +1611,7 @@
 	"rcfilters-watchlist-edit-watchlist-button": "Sửa danh sách trang theo dõi",
 	"rcfilters-watchlist-showupdated": "Thay đổi mới trên các trang kể lần cuối bạn xem trang được in <strong>đậm</strong> và có dấu tô màu.",
 	"rcfilters-preference-label": "Sử dụng giao diện không dùng JavaScript",
-	"rcfilters-preference-help": "Tải Thay đổi gần đây mà không dùng tính năng lọc tìm kiếm và tô màu.",
+	"rcfilters-preference-help": "Tải Thay đổi gần đây, Danh sách theo dõi, và các trang tương tự mà không dùng tính năng lọc tìm kiếm và tô màu.",
 	"rcfilters-watchlist-preference-label": "Sử dụng giao diện không dùng JavaScript",
 	"rcfilters-watchlist-preference-help": "Tải Danh sách theo dõi mà không dùng tính năng lọc tìm kiếm và tô màu.",
 	"rcfilters-filter-showlinkedfrom-label": "Xem các thay đổi tại trang có liên kết từ",
