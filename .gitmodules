@@ -1478,3 +1478,7 @@
 	url = https://github.com/octfx/mediawiki-extension-WebP
 	branch = master
 	ignore = dirty
+[submodule "skins/chameleon"]
+	path = skins/chameleon
+	url = https://github.com/ProfessionalWiki/chameleon
+	branch = master
