@@ -2136,6 +2136,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * Prior to 1.30, this returned a stdClass.
 	 *
 	 * @deprecated since 1.32, use getDerivedDataUpdater instead.
+	 * @note Calling without a UserIdentity is separately deprecated since 1.37
 	 *
 	 * @param Content $content
 	 * @param RevisionRecord|null $revision
@@ -2155,9 +2156,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$serialFormat = null,
 		$useCache = true
 	) {
-		global $wgUser;
-
 		if ( !$user ) {
+			wfDeprecated( __METHOD__ . ' without a UserIdentity', '1.37' );
+			global $wgUser;
 			$user = $wgUser;
 		}
 

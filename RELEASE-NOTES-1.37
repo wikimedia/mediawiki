@@ -435,6 +435,8 @@ because of Phabricator reports.
   BaseTemplateAfterPortlet hook, which were deprecated in 1.35,
   now emit deprecation warnings.
 * LocalFile::getHistory hook is deprecated.
+* Calling WikiPage::prepareContentForEdit() without a UserIdentity is now
+  deprecated.
 * User::getEditTokenObject, ::getEditToken, ::matchEditToken were deprecated.
   Use CsrfTokenRepository, which is available via IContextSource, instead.
   ::matchEditTokenNoSuffix was deprecated without replacement.
