@@ -1482,7 +1482,14 @@
 	path = skins/chameleon
 	url = https://github.com/ProfessionalWiki/chameleon
 	branch = master
+	ignore = dirty
 [submodule "extensions/Bootstrap"]
 	path = extensions/Bootstrap
 	url = https://github.com/ProfessionalWiki/Bootstrap
 	branch = master
+	ignore = dirty
+[submodule "extensions/EmbedVideo"]
+	path = extensions/EmbedVideo
+	url = https://github.com/StarCitizenWiki/mediawiki-extensions-EmbedVideo
+	branch = master
+	ignore = dirty
