@@ -1482,3 +1482,7 @@
 	path = skins/chameleon
 	url = https://github.com/ProfessionalWiki/chameleon
 	branch = master
+[submodule "extensions/Bootstrap"]
+	path = extensions/Bootstrap
+	url = https://github.com/ProfessionalWiki/Bootstrap
+	branch = master
