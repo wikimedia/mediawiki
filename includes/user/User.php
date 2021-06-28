@@ -894,7 +894,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	/**
 	 * Get the username corresponding to a given user ID
 	 * @param int $id User ID
-	 * @return string|bool The corresponding username
+	 * @return string|false The corresponding username
 	 */
 	public static function whoIs( $id ) {
 		return UserCache::singleton()->getProp( $id, 'name' );
@@ -904,7 +904,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Get the real name of a user given their user ID
 	 *
 	 * @param int $id User ID
-	 * @return string|bool The corresponding user's real name
+	 * @return string|false The corresponding user's real name
 	 */
 	public static function whoIsReal( $id ) {
 		return UserCache::singleton()->getProp( $id, 'real_name' );
@@ -2703,7 +2703,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @param IContextSource|null $context Context source used when $resetKinds
 	 *  does not contain 'all', passed to getOptionKinds().
 	 *  Defaults to RequestContext::getMain() when null.
-	 * @deprecated since 1.35 Use UserOptionsManager::resetOptions instead.
+	 * @deprecated since 1.35 Use UserOptionsManager::resetOptions instead (Warning: Different argument order).
 	 */
 	public function resetOptions(
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ],
