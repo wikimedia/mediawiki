@@ -196,9 +196,9 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testAnon() {
-		$this->mUserMock->expects( $this->once() )
-			->method( 'isAnon' )
-			->willReturn( true );
+		$this->mUserMock
+			->method( 'isRegistered' )
+			->willReturn( false );
 
 		try {
 			$request = $this->getSampleRequest();
@@ -212,6 +212,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testNoOptionname() {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+
 		try {
 			$request = $this->getSampleRequest( [ 'optionvalue' => '1' ] );
 
@@ -224,6 +226,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testNoChanges() {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
 
@@ -245,6 +249,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testReset() {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+
 		$this->mUserMock->expects( $this->once() )
 			->method( 'resetOptions' )
 			->with( [ 'all' ] );
@@ -263,6 +269,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testResetKinds() {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+
 		$this->mUserMock->expects( $this->once() )
 			->method( 'resetOptions' )
 			->with( [ 'registered' ] );
@@ -281,6 +289,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	public function testResetChangeOption() {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+
 		$this->mUserMock->expects( $this->once() )
 			->method( 'resetOptions' );
 
@@ -312,6 +322,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	public function testOptionManupulation( array $params, array $setOptions, array $result = null,
 		$message = ''
 	) {
+		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
+
 		$this->mUserMock->expects( $this->never() )
 			->method( 'resetOptions' );
 

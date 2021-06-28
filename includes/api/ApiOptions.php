@@ -60,7 +60,7 @@ class ApiOptions extends ApiBase {
 	 */
 	public function execute() {
 		$user = $this->getUserForUpdates();
-		if ( !$user || $user->isAnon() ) {
+		if ( !$user || !$user->isRegistered() ) {
 			$this->dieWithError(
 				[ 'apierror-mustbeloggedin', $this->msg( 'action-editmyoptions' ) ], 'notloggedin'
 			);
