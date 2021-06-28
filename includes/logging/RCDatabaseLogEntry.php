@@ -23,7 +23,9 @@
  * @since 1.19
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -64,15 +66,25 @@ class RCDatabaseLogEntry extends DatabaseLogEntry {
 		return $this->row->rc_log_action;
 	}
 
-	protected function getPerformerUser(): User {
+	public function getPerformerIdentity(): UserIdentity {
 		if ( !$this->performer ) {
-			$this->performer = MediaWikiServices::getInstance()->getUserFactory()->newFromAnyId(
-				$this->row->rc_user ?? 0,
-				$this->row->rc_user_text,
-				$this->row->rc_actor ?? null
-			);
+			$actorStore = MediaWikiServices::getInstance()->getActorStore();
+			try {
+				$this->performer = $actorStore->newActorFromRowFields(
+					$this->row->rc_user ?? 0,
+					$this->row->rc_user_text,
+					$this->row->rc_actor ?? null
+				);
+			} catch ( InvalidArgumentException $e ) {
+				LoggerFactory::getInstance( 'logentry' )->warning(
+					'Failed to instantiate RC log entry performer', [
+						'exception' => $e,
+						'log_id' => $this->getId()
+					]
+				);
+				$this->performer = $actorStore->getUnknownActor();
+			}
 		}
-
 		return $this->performer;
 	}
 

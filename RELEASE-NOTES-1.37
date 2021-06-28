@@ -297,6 +297,8 @@ because of Phabricator reports.
   - ::loadRevisionFromTitle,
   - ::loadRevisionFromTimestamp,
   - ::listRevisionSizes
+* LogEntry::getPerformer, deprecated since 1.36, was removed along with methods
+  in subclasses: DatabaseLogEntry, ManualLogEntry, RCDatabaseLogEntry.
 * …
 
 === Deprecations in 1.37 ===

@@ -23,6 +23,7 @@
  * @since 1.19
  */
 
+use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
@@ -129,7 +130,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	/** @var stdClass Database result row. */
 	protected $row;
 
-	/** @var User */
+	/** @var UserIdentity */
 	protected $performer;
 
 	/** @var array Parameters for log entry */
@@ -151,7 +152,7 @@ class DatabaseLogEntry extends LogEntryBase {
 	 * @return int
 	 */
 	public function getId() {
-		return (int)$this->row->log_id;
+		return (int)( $this->row->log_id ?? 0 );
 	}
 
 	/**
@@ -206,26 +207,26 @@ class DatabaseLogEntry extends LogEntryBase {
 		return $this->revId;
 	}
 
-	protected function getPerformerUser(): User {
-		if ( !$this->performer ) {
-			$this->performer = MediaWikiServices::getInstance()->getUserFactory()
-				->newFromAnyId(
-					$this->row->user_id ?? 0, // left join failure means anonymous
-					$this->row->log_user_text,
-					$this->row->log_actor
-				);
-		}
-
-		return $this->performer;
-	}
-
-	public function getPerformer() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return $this->getPerformerUser();
-	}
-
 	public function getPerformerIdentity(): UserIdentity {
-		return $this->getPerformerUser();
+		if ( !$this->performer ) {
+			$actorStore = MediaWikiServices::getInstance()->getActorStore();
+			try {
+				$this->performer = $actorStore->newActorFromRowFields(
+					$this->row->user_id ?? 0,
+					$this->row->log_user_text ?? null,
+					$this->row->log_actor ?? null
+				);
+			} catch ( InvalidArgumentException $e ) {
+				LoggerFactory::getInstance( 'logentry' )->warning(
+					'Failed to instantiate log entry performer', [
+						'exception' => $e,
+						'log_id' => $this->getId()
+					]
+				);
+				$this->performer = $actorStore->getUnknownActor();
+			}
+		}
+		return $this->performer;
 	}
 
 	public function getTarget() {
