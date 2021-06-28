@@ -198,7 +198,7 @@ class ApiMain extends ApiBase {
 				'BlockPermissionCheckerFactory',
 				'BlockUserFactory',
 				'TitleFactory',
-				'UserFactory',
+				'UserIdentityLookup',
 				'WatchedItemStore',
 				'BlockUtils',
 				'BlockActionInfo',
