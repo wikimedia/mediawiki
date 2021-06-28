@@ -161,7 +161,14 @@ class ApiMain extends ApiBase {
 		],
 		'paraminfo' => ApiParamInfo::class,
 		'rsd' => ApiRsd::class,
-		'compare' => ApiComparePages::class,
+		'compare' => [
+			'class' => ApiComparePages::class,
+			'services' => [
+				'RevisionStore',
+				'SlotRoleRegistry',
+				'ContentHandlerFactory',
+			]
+		],
 		'tokens' => ApiTokens::class,
 		'checktoken' => ApiCheckToken::class,
 		'cspreport' => ApiCSPReport::class,
