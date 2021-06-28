@@ -49,21 +49,15 @@ class TableCleanup extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUser;
-
 		$this->reportInterval = $this->getOption( 'reporting-interval', $this->reportInterval );
 
 		$this->dryrun = $this->hasOption( 'dry-run' );
 
 		if ( $this->dryrun ) {
-			$user = User::newFromName( 'Conversion script' );
 			$this->output( "Checking for bad titles...\n" );
 		} else {
-			$user = User::newSystemUser( 'Conversion script', [ 'steal' => true ] );
 			$this->output( "Checking and fixing bad titles...\n" );
 		}
-		// Support deprecated use of the global
-		$wgUser = $user;
 
 		$this->runTable( $this->defaultParams );
 	}
