@@ -32,6 +32,7 @@ use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\User\UserFactory;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\EnumDef;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
@@ -1133,22 +1134,23 @@ abstract class ApiBase extends ContextSource {
 	 */
 	public function getWatchlistUser( $params ) {
 		if ( $params['owner'] !== null && $params['token'] !== null ) {
-			$user = User::newFromName( $params['owner'], false );
-			if ( !( $user && $user->getId() ) ) {
+			$services = MediaWikiServices::getInstance();
+			$user = $services->getUserFactory()->newFromName( $params['owner'], UserFactory::RIGOR_NONE );
+			if ( !$user || !$user->isRegistered() ) {
 				$this->dieWithError(
 					[ 'nosuchusershort', wfEscapeWikiText( $params['owner'] ) ], 'bad_wlowner'
 				);
 			}
-			$token = $user->getOption( 'watchlisttoken' );
+			$token = $services->getUserOptionsLookup()->getOption( $user, 'watchlisttoken' );
 			if ( $token == '' || !hash_equals( $token, $params['token'] ) ) {
 				$this->dieWithError( 'apierror-bad-watchlist-token', 'bad_wltoken' );
 			}
 		} else {
-			if ( !$this->getUser()->isRegistered() ) {
+			$user = $this->getUser();
+			if ( !$user->isRegistered() ) {
 				$this->dieWithError( 'watchlistanontext', 'notloggedin' );
 			}
 			$this->checkUserRightsAny( 'viewmywatchlist' );
-			$user = $this->getUser();
 		}
 
 		return $user;
