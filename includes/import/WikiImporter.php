@@ -573,7 +573,9 @@ class WikiImporter {
 				wfDebug( __METHOD__ . ': Skipping article count adjustment for ' . $pageIdentity .
 					' because WikiPage::getContent() returned null' );
 			} else {
-				$editInfo = $page->prepareContentForEdit( $content );
+				// No user is available
+				$user = RequestContext::getMain()->getUser();
+				$editInfo = $page->prepareContentForEdit( $content, null, $user );
 				$countKey = 'title_' . CacheKeyHelper::getKeyForPage( $pageIdentity );
 				$countable = $page->isCountable( $editInfo );
 				if ( array_key_exists( $countKey, $this->countableCache ) &&
