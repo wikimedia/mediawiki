@@ -374,7 +374,11 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$oldTitle = Title::newFromText( 'Some old title' );
-		WikiPage::factory( $oldTitle )->doEditContent( new WikitextContent( 'foo' ), 'bar' );
+		WikiPage::factory( $oldTitle )->doUserEditContent(
+			new WikitextContent( 'foo' ),
+			$this->getTestSysop()->getUser(),
+			'bar'
+		);
 		$newTitle = Title::newFromText( 'A brand new title' );
 		$mp = $this->newMovePage( $oldTitle, $newTitle );
 		$user = User::newFromName( 'TitleMove tester' );

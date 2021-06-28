@@ -775,12 +775,10 @@ class SpecialBlockTest extends SpecialPageTestBase {
 
 		$userToBlock = $this->getTestUser()->getUser();
 		$pageSaturn = $this->getExistingTestPage( 'Saturn' );
-		$pageSaturn->doEditContent(
+		$pageSaturn->doUserEditContent(
 			ContentHandler::makeContent( 'content', $pageSaturn->getTitle() ),
-			'summary',
-			0,
-			false,
-			$userToBlock
+			$userToBlock,
+			'summary'
 		);
 
 		$context = new DerivativeContext( RequestContext::getMain() );

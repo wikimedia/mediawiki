@@ -174,12 +174,12 @@ class CleanupSpam extends Maintenance {
 				$content = $rev->getContent( SlotRecord::MAIN, RevisionRecord::RAW );
 
 				$this->output( "reverting\n" );
-				$page->doEditContent(
+				$page->doUserEditContent(
 					$content,
+					$performer,
 					wfMessage( 'spam_reverting', $domain )->inContentLanguage()->text(),
 					EDIT_UPDATE | EDIT_FORCE_BOT,
-					$rev->getId(),
-					$performer
+					$rev->getId()
 				);
 			} elseif ( $this->hasOption( 'delete' ) ) {
 				// Didn't find a non-spammy revision, blank the page
@@ -195,12 +195,11 @@ class CleanupSpam extends Maintenance {
 				$content = $handler->makeEmptyContent();
 
 				$this->output( "blanking\n" );
-				$page->doEditContent(
+				$page->doUserEditContent(
 					$content,
+					$performer,
 					wfMessage( 'spam_blanking', $domain )->inContentLanguage()->text(),
-					EDIT_UPDATE | EDIT_FORCE_BOT,
-					false,
-					$performer
+					EDIT_UPDATE | EDIT_FORCE_BOT
 				);
 			}
 			$this->commitTransaction( $dbw, __METHOD__ );

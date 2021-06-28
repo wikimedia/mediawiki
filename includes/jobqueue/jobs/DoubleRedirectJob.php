@@ -180,7 +180,7 @@ class DoubleRedirectJob extends Job {
 			$this->redirTitle->getPrefixedText(), $newTitle->getPrefixedText()
 		)->inContentLanguage()->text();
 		$flags = EDIT_UPDATE | EDIT_SUPPRESS_RC | EDIT_INTERNAL;
-		$article->doEditContent( $newContent, $reason, $flags, false, $user );
+		$article->doUserEditContent( $newContent, $user, $reason, $flags );
 		$wgUser = $oldUser;
 
 		return true;

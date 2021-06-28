@@ -66,9 +66,10 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 		$strings = [ "it is a kitten", "two kittens", "three kittens", "four kittens" ];
 		$revisions = [];
 
+		$user = $this->getTestSysop()->getUser();
 		foreach ( $strings as $string ) {
 			$content = ContentHandler::makeContent( $string, $title );
-			$page->doEditContent( $content, 'edit page' );
+			$page->doUserEditContent( $content, $user, 'edit page' );
 			$revisions[] = $page->getLatest();
 		}
 

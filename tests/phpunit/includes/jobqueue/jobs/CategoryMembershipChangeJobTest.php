@@ -39,8 +39,9 @@ class CategoryMembershipChangeJobTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function editPageText( $text ) {
 		$page = WikiPage::factory( $this->title );
-		$editResult = $page->doEditContent(
+		$editResult = $page->doUserEditContent(
 			ContentHandler::makeContent( $text, $this->title ),
+			$this->getTestSysop()->getUser(),
 			__METHOD__
 		);
 		/** @var RevisionRecord $revisionRecord */

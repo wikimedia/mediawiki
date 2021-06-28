@@ -2345,13 +2345,12 @@ class EditPage implements IEditObject {
 			$isUndo = $this->isUndoClean( $content );
 		}
 
-		$doEditStatus = $this->page->doEditContent(
+		$doEditStatus = $this->page->doUserEditContent(
 			$content,
+			$user,
 			$this->summary,
 			$flags,
 			$isUndo && $this->undoAfter ? $this->undoAfter : false,
-			$user,
-			$content->getDefaultFormat(),
 			$this->changeTags,
 			$isUndo ? $this->undidRev : 0
 		);

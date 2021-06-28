@@ -22,10 +22,11 @@ class RefreshLinksPartitionTest extends MediaWikiIntegrationTestCase {
 	public function testRefreshLinks( $ns, $dbKey, $pages ) {
 		$title = Title::makeTitle( $ns, $dbKey );
 
+		$user = $this->getTestSysop()->getUser();
 		foreach ( $pages as [ $bns, $bdbkey ] ) {
 			$bpage = WikiPage::factory( Title::makeTitle( $bns, $bdbkey ) );
 			$content = ContentHandler::makeContent( "[[{$title->getPrefixedText()}]]", $bpage->getTitle() );
-			$bpage->doEditContent( $content, "test" );
+			$bpage->doUserEditContent( $content, $user, "test" );
 		}
 
 		$title->getBacklinkCache()->clear();

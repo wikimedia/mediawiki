@@ -325,13 +325,12 @@ class ContentModelChange {
 			$flags |= EDIT_FORCE_BOT;
 		}
 
-		$status = $page->doEditContent(
+		$status = $page->doUserEditContent(
 			$newContent,
+			$this->performer,
 			$reason,
 			$flags,
 			$this->latestRevId,
-			$this->performer,
-			null,
 			$this->tags
 		);
 

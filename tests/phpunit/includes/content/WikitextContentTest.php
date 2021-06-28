@@ -75,7 +75,7 @@ more stuff
 		$content = ContentHandler::makeContent( $text, $title, $model );
 
 		$page = WikiPage::factory( $title );
-		$page->doEditContent( $content, '' );
+		$page->doUserEditContent( $content, $this->getTestSysop()->getUser(), '' );
 
 		$updates = $content->getSecondaryDataUpdates( $title );
 

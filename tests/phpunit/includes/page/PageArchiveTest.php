@@ -76,7 +76,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$user = $this->getTestUser()->getUser();
-		$page->doEditContent( $content, 'testing', EDIT_NEW, false, $user );
+		$page->doUserEditContent( $content, $user, 'testing', EDIT_NEW );
 
 		$this->pageId = $page->getId();
 		$this->firstRev = $page->getRevisionRecord();

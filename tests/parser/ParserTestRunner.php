@@ -1818,12 +1818,11 @@ class ParserTestRunner {
 			$restore = false;
 		}
 		try {
-			$status = $page->doEditContent(
+			$status = $page->doUserEditContent(
 				$newContent,
+				$user,
 				'',
-				EDIT_NEW | EDIT_SUPPRESS_RC | EDIT_INTERNAL,
-				false,
-				$user
+				EDIT_NEW | EDIT_SUPPRESS_RC | EDIT_INTERNAL
 			);
 		} finally {
 			if ( $restore ) {
