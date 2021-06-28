@@ -5,6 +5,7 @@ namespace MediaWiki\ParamValidator\TypeDef;
 use ExternalUserNames;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
 use TitleFactory;
 use Wikimedia\IPUtils;
@@ -168,10 +169,14 @@ class UserDef extends TypeDef {
 		// An interwiki username?
 		if ( ExternalUserNames::isExternal( $value ) ) {
 			$name = $this->userNameUtils->getCanonical( $value, UserNameUtils::RIGOR_NONE );
-			return [
-				'interwiki',
-				is_string( $name ) ? $this->userFactory->newFromAnyId( 0, $value, null ) : null
-			];
+			// UserIdentityValue has the username which includes the > separating the external
+			// wiki database and the actual name, but is created for the *local* wiki, like
+			// for User objects (local is the default, but we specify it anyway to show
+			// that its intentional even though the username is for a different wiki)
+			// NOTE: We deliberately use the raw $value instead of the canonical $name
+			// to avoid convering the first character of the interwiki prefic to uppercase
+			$user = is_string( $name ) ? new UserIdentityValue( 0, $value, UserIdentityValue::LOCAL ) : null;
+			return [ 'interwiki', $user ];
 		}
 
 		// A valid user name?
@@ -205,12 +210,22 @@ class UserDef extends TypeDef {
 			// addresses.
 			preg_match( "/^$b\.$b\.$b\.xxx$/D", $value )
 		) {
-			return [ 'ip', $this->userFactory->newAnonymous( IPUtils::sanitizeIP( $value ) ) ];
+			$name = IPUtils::sanitizeIP( $value );
+			// We don't really need to use UserNameUtils::getCanonical() because for anonymous
+			// users the only validation is that there is no `#` (which is already the case if its
+			// a valid IP or matches the regex) and the only normalization is making the first
+			// character uppercase (doesn't matter for numbers) and replacing underscores with
+			// spaces (doesn't apply to IPs). But, better safe than sorry?
+			$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_NONE );
+			return [ 'ip', UserIdentityValue::newAnonymous( $name ) ];
 		}
 
 		// A range?
 		if ( IPUtils::isValidRange( $value ) ) {
-			return [ 'cidr', $this->userFactory->newFromAnyId( 0, IPUtils::sanitizeIP( $value ), null ) ];
+			$name = IPUtils::sanitizeIP( $value );
+			// Per above, the UserNameUtils call isn't strictly needed, but doesn't hurt
+			$name = $this->userNameUtils->getCanonical( $name, UserNameUtils::RIGOR_NONE );
+			return [ 'cidr', UserIdentityValue::newAnonymous( $name ) ];
 		}
 
 		// Fail.
