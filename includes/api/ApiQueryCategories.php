@@ -51,7 +51,8 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 	 * @param ApiPageSet|null $resultPageSet
 	 */
 	private function run( $resultPageSet = null ) {
-		if ( $this->getPageSet()->getGoodTitleCount() == 0 ) {
+		$pages = $this->getPageSet()->getGoodPages();
+		if ( $pages === [] ) {
 			return; // nothing to do
 		}
 
@@ -68,7 +69,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 		$this->addFieldsIf( 'cl_timestamp', isset( $prop['timestamp'] ) );
 
 		$this->addTables( 'categorylinks' );
-		$this->addWhereFld( 'cl_from', array_keys( $this->getPageSet()->getGoodTitles() ) );
+		$this->addWhereFld( 'cl_from', array_keys( $pages ) );
 		if ( $params['categories'] ) {
 			$cats = [];
 			foreach ( $params['categories'] as $cat ) {
@@ -123,7 +124,7 @@ class ApiQueryCategories extends ApiQueryGeneratorBase {
 
 		$sort = ( $params['dir'] == 'descending' ? ' DESC' : '' );
 		// Don't order by cl_from if it's constant in the WHERE clause
-		if ( count( $this->getPageSet()->getGoodTitles() ) == 1 ) {
+		if ( count( $pages ) === 1 ) {
 			$this->addOption( 'ORDER BY', 'cl_to' . $sort );
 		} else {
 			$this->addOption( 'ORDER BY', [
