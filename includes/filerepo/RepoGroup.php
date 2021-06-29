@@ -423,6 +423,16 @@ class RepoGroup {
 	}
 
 	/**
+	 * Create a local repo with the specified option overrides.
+	 *
+	 * @param array $info
+	 * @return FileRepo
+	 */
+	public function newCustomLocalRepo( $info = [] ) {
+		return $this->newRepo( $info + $this->localInfo );
+	}
+
+	/**
 	 * Create a repo class based on an info structure
 	 * @param array $info
 	 * @return FileRepo

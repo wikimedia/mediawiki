@@ -377,6 +377,12 @@ class OldLocalFile extends LocalFile {
 		);
 	}
 
+	protected function reserializeMetadata() {
+		// TODO: implement this and make it possible to hit it from refreshImageMetadata.php
+		// It can be hit from action=purge but that's not very useful if the
+		// goal is to reserialize the whole oldimage table.
+	}
+
 	/**
 	 * @param int $field One of DELETED_* bitfield constants for file or
 	 *   revision rows
