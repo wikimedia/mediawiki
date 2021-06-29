@@ -62,13 +62,6 @@ interface LogEntry {
 	public function getParameters();
 
 	/**
-	 * Get the user who performed this action.
-	 * @deprecated since 1.36 use ::getPerformerIdentity instead
-	 * @return User
-	 */
-	public function getPerformer();
-
-	/**
 	 * @since 1.36
 	 * @return UserIdentity
 	 */

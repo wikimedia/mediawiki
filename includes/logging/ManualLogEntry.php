@@ -456,14 +456,6 @@ class ManualLogEntry extends LogEntryBase implements Taggable {
 	}
 
 	/**
-	 * @return User
-	 */
-	public function getPerformer() {
-		wfDeprecated( __METHOD__, '1.36' );
-		return User::newFromIdentity( $this->performer );
-	}
-
-	/**
 	 * @return UserIdentity
 	 */
 	public function getPerformerIdentity(): UserIdentity {
