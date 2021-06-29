@@ -101,6 +101,12 @@ class RefreshImageMetadata extends Maintenance {
 			false,
 			true
 		);
+		$this->addOption(
+			'sleep',
+			'Time to sleep between each batch (in seconds). Default: 0',
+			false,
+			true
+		);
 	}
 
 	public function execute() {
@@ -109,6 +115,7 @@ class RefreshImageMetadata extends Maintenance {
 		$verbose = $this->hasOption( 'verbose' );
 		$start = $this->getOption( 'start', false );
 		$split = $this->hasOption( 'split' );
+		$sleep = (int)$this->getOption( 'sleep', 0 );
 		$reserialize = $this->hasOption( 'convert-to-json' );
 
 		$upgraded = 0;
@@ -182,6 +189,9 @@ class RefreshImageMetadata extends Maintenance {
 			}
 			$conds2 = [ 'img_name > ' . $dbw->addQuotes( $row->img_name ) ];
 			$lbFactory->waitForReplication();
+			if ( $sleep ) {
+				sleep( $sleep );
+			}
 		} while ( $res->numRows() === $batchSize );
 
 		$total = $upgraded + $leftAlone;

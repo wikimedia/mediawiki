@@ -463,16 +463,17 @@ class OldLocalFile extends LocalFile {
 	protected function recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) {
 		$dbw = $this->repo->getMasterDB();
 
-		$dstPath = $this->repo->getZonePath( 'public' ) . '/' . $this->getRel();
-		$props = $this->repo->getFileProps( $dstPath );
+		$services = MediaWikiServices::getInstance();
+		$mwProps = new MWFileProps( $services->getMimeAnalyzer() );
+		$props = $mwProps->getPropsFromPath( $srcPath, true );
 		if ( !$props['fileExists'] ) {
 			return false;
 		}
 		$this->setProps( $props );
 
-		$commentFields = MediaWikiServices::getInstance()->getCommentStore()
+		$commentFields = $services->getCommentStore()
 			->insert( $dbw, 'oi_description', $comment );
-		$actorId = MediaWikiServices::getInstance()->getActorNormalization()
+		$actorId = $services->getActorNormalization()
 			->acquireActorId( $user, $dbw );
 		$dbw->insert( 'oldimage',
 			[
