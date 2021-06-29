@@ -101,10 +101,10 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 *      hashing *instead* of the host name (from the server config). This is useful
 	 *      when a cluster is replicated to another site (with different host names)
 	 *      but each server has a corresponding replica in the other cluster.
-	 *   - localKeyLB: ObjectFactory::getObjectFromSpec array yeilding ILoadBalancer.
+	 *   - localKeyLB: ObjectFactory::getObjectFromSpec array yielding ILoadBalancer.
 	 *      This load balancer is used for local keys, e.g. those using makeKey().
 	 *      This is overriden by 'server'/'servers'.
-	 *   - globalKeyLB: ObjectFactory::getObjectFromSpec array yeilding ILoadBalancer.
+	 *   - globalKeyLB: ObjectFactory::getObjectFromSpec array yielding ILoadBalancer.
 	 *      This load balancer is used for local keys, e.g. those using makeGlobalKey().
 	 *      This is overriden by 'server'/'servers'.
 	 *   - purgePeriod: The average number of object cache writes in between garbage collection

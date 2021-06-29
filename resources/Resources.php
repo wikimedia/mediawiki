@@ -2023,7 +2023,7 @@ return [
 	// - .. are never loaded when viewing or editing wiki pages.
 	// - .. are only used by logged-in users.
 	// - .. depend on oojs-ui-core.
-	// - .. contain UI intialisation code (e.g. no public module exports, because
+	// - .. contain UI initialisation code (e.g. no public module exports, because
 	//      requiring or depending on this bundle is awkward)
 	'mediawiki.misc-authed-ooui' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-ooui",
@@ -2048,7 +2048,7 @@ return [
 	// - .. are only used by logged-in users when a non-default preference was enabled.
 	// - .. may be loaded in the critical path for those users on page views.
 	// - .. do NOT depend on OOUI.
-	// - .. contain only UI intialisation code (e.g. no public exports)
+	// - .. contain only UI initialisation code (e.g. no public exports)
 	'mediawiki.misc-authed-pref' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-pref",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-pref",
@@ -2065,7 +2065,7 @@ return [
 	// - .. are only loaded for a privileged subset of logged-in users.
 	// - .. may be loaded in the critical path on page views.
 	// - .. do NOT depend on OOUI or other "large" modules.
-	// - .. contain only UI intialisation code (e.g. no public exports)
+	// - .. contain only UI initialisation code (e.g. no public exports)
 	'mediawiki.misc-authed-curate' => [
 		'localBasePath' => "$IP/resources/src/mediawiki.misc-authed-curate",
 		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.misc-authed-curate",

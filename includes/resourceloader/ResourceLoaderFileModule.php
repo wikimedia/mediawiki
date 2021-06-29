@@ -1420,7 +1420,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 	 * We already assume UTF-8 everywhere, so this should be safe.
 	 *
 	 * @param string $input
-	 * @return string Input minus the intial BOM char
+	 * @return string Input minus the initial BOM char
 	 */
 	protected function stripBom( $input ) {
 		if ( substr_compare( "\xef\xbb\xbf", $input, 0, 3 ) === 0 ) {
