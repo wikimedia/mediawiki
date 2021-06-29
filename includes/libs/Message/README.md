@@ -196,7 +196,7 @@ are to be balanced, e.g. `{{NAME:foo|{{bar|baz}}}}` has $value1 as "foo" and
 $value2 as "{{bar|baz}}". The name is always case-insensitive.
 
 Anything syntactically resembling a placeholder or formatting command that does
-not correspond to an actual paramter or known command should be left unchanged
+not correspond to an actual parameter or known command should be left unchanged
 for processing by the markup language processor.
 
 Libraries providing messages for use by externally-defined formatters should

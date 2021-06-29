@@ -3444,7 +3444,7 @@ class Language {
 	 * @since 1.19
 	 * @deprecated in 1.36 use formatNum
 	 * @param string|null $number Expected to be a numeric string without (thousand) group
-	 *  separators. Decimal seperator, if present, must be a dot. Any non-string will be cast to
+	 *  separators. Decimal separator, if present, must be a dot. Any non-string will be cast to
 	 *  string.
 	 * @return string
 	 */
