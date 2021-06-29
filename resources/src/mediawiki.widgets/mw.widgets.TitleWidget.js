@@ -140,7 +140,7 @@
 	};
 
 	/**
-	 * Get a promise which resolves with an API repsonse for suggested
+	 * Get a promise which resolves with an API response for suggested
 	 * links for the current query.
 	 *
 	 * @return {jQuery.Promise} Suggestions promise

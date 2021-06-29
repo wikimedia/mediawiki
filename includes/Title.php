@@ -1140,7 +1140,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	}
 
 	/**
-	 * If the content model field is not frozen then update it with a retreived value
+	 * If the content model field is not frozen then update it with a retrieved value
 	 *
 	 * @param string|bool $model CONTENT_MODEL_XXX constant or false
 	 */

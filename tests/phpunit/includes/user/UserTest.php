@@ -1633,11 +1633,11 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	public function testExistingIdFromName() {
 		$this->assertSame(
 			$this->user->getId(), User::idFromName( $this->user->getName() ),
-			'Id is correctly retreived from the cache.'
+			'Id is correctly retrieved from the cache.'
 		);
 		$this->assertSame(
 			$this->user->getId(), User::idFromName( $this->user->getName(), User::READ_LATEST ),
-			'Id is correctly retreived from the database.'
+			'Id is correctly retrieved from the database.'
 		);
 	}
 

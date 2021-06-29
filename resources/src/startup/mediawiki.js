@@ -761,7 +761,7 @@
 			}
 
 			/**
-			 * Update a module's state in the registry and make sure any neccesary
+			 * Update a module's state in the registry and make sure any necessary
 			 * propagation will occur. See #doPropagation for more about propagation.
 			 * See #registry for more about how states are used.
 			 *
