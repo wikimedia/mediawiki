@@ -44,7 +44,7 @@ class ApiParse extends ApiBase {
 
 	private function getPoolKey(): string {
 		$poolKey = WikiMap::getCurrentWikiDbDomain() . ':ApiParse:';
-		if ( $this->getUser()->isAnon() ) {
+		if ( !$this->getUser()->isRegistered() ) {
 			$poolKey .= 'a:' . $this->getUser()->getName();
 		} else {
 			$poolKey .= 'u:' . $this->getUser()->getId();
