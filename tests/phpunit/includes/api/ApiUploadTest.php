@@ -211,7 +211,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		$mimeType = 'image/jpeg';
 		$filePath = $this->filePath( 'yuv420.jpg' );
 		$fileSize = filesize( $filePath );
-		$chunkSize = 20 * 1024; // The file is ~60kB, use 20kB chunks
+		$chunkSize = 20 * 1024; // The file is ~60 KiB, use 20 KiB chunks
 
 		$this->setMwGlobals( [
 			'wgMinUploadChunkSize' => $chunkSize

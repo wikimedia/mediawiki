@@ -681,7 +681,7 @@ class DatabaseSqlite extends Database {
 
 	/**
 	 * Returns the size of a text field, or -1 for "unlimited"
-	 * In SQLite this is SQLITE_MAX_LENGTH, by default 1GB. No way to query it though.
+	 * In SQLite this is SQLITE_MAX_LENGTH, by default 1 GB. No way to query it though.
 	 *
 	 * @param string $table
 	 * @param string $field

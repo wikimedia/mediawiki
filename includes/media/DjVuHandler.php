@@ -184,7 +184,7 @@ class DjVuHandler extends ImageHandler {
 		// Get local copy source for shell scripts
 		// Thumbnail extraction is very inefficient for large files.
 		// Provide a way to pool count limit the number of downloaders.
-		if ( $image->getSize() >= 1e7 ) { // 10MB
+		if ( $image->getSize() >= 1e7 ) { // 10 MB
 			$work = new PoolCounterWorkViaCallback( 'GetLocalFileCopy', sha1( $image->getName() ),
 				[
 					'doWork' => static function () use ( $image ) {

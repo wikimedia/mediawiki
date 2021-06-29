@@ -44,7 +44,7 @@ class SpecialExpandTemplates extends SpecialPage {
 	/** @var bool Whether or not to remove <nowiki> tags in the expanded wikitext */
 	protected $removeNowiki;
 
-	/** @var int Maximum size in bytes to include. 50MB allows fixing those huge pages */
+	/** @var int Maximum size in bytes to include. 50 MB allows fixing those huge pages */
 	private const MAX_INCLUDE_SIZE = 50000000;
 
 	/** @var Parser */

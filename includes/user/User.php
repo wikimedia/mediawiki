@@ -2759,7 +2759,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * @return int
 	 */
 	public function getStubThreshold() {
-		global $wgMaxArticleSize; # Maximum article size, in Kb
+		global $wgMaxArticleSize; # Maximum article size, in KiB
 		$threshold = $this->getIntOption( 'stubthreshold' );
 		if ( $threshold > $wgMaxArticleSize * 1024 ) {
 			// If they have set an impossible value, disable the preference
