@@ -501,6 +501,7 @@ class MediaWiki {
 		$output = $this->context->getOutput();
 		$title = $this->context->getTitle();
 		$user = $this->context->getUser();
+		$services = MediaWikiServices::getInstance();
 
 		if ( !$this->getHookRunner()->onMediaWikiPerformAction(
 			$output, $article, $title, $user, $request, $this )
@@ -508,8 +509,9 @@ class MediaWiki {
 			return;
 		}
 
-		$act = $this->getAction();
-		$action = Action::factory( $act, $article, $this->context );
+		$t = microtime( true );
+		$actionName = $this->getAction();
+		$action = Action::factory( $actionName, $article, $this->context );
 
 		if ( $action instanceof Action ) {
 			// Narrow DB query expectations for this HTTP request
@@ -522,7 +524,7 @@ class MediaWiki {
 
 			# Let CDN cache things if we can purge them.
 			if ( $this->config->get( 'UseCdn' ) ) {
-				$htmlCacheUpdater = MediaWikiServices::getInstance()->getHtmlCacheUpdater();
+				$htmlCacheUpdater = $services->getHtmlCacheUpdater();
 				if ( in_array(
 						// Use PROTO_INTERNAL because that's what HtmlCacheUpdater::getUrls() uses
 						wfExpandUrl( $request->getRequestURL(), PROTO_INTERNAL ),
@@ -534,6 +536,12 @@ class MediaWiki {
 			}
 
 			$action->show();
+
+			$runTime = microtime( true ) - $t;
+			$services->getStatsdDataFactory()->timing(
+				'action.' . strtr( $actionName, '.', '_' ) . '.executeTiming',
+				1000 * $runTime
+			);
 			return;
 		}
 
