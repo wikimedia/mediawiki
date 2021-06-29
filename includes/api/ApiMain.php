@@ -300,7 +300,13 @@ class ApiMain extends ApiBase {
 				'MergeHistoryFactory',
 			],
 		],
-		'setpagelanguage' => ApiSetPageLanguage::class,
+		'setpagelanguage' => [
+			'class' => ApiSetPageLanguage::class,
+			'services' => [
+				'DBLoadBalancer',
+				'LanguageNameUtils',
+			]
+		],
 		'changecontentmodel' => [
 			'class' => ApiChangeContentModel::class,
 			'services' => [
