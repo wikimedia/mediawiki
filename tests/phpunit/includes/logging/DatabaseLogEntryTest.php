@@ -1,6 +1,9 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\ActorStore;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IDatabase;
 
 class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
@@ -123,5 +126,39 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 				[ 'type' => 'foobarize', 'comment' => 'test!' ]
 			],
 		];
+	}
+
+	public function provideGetPerformerIdentity() {
+		yield 'registered actor' => [
+			'actor_row_fields' => [
+				'user_id' => 42,
+				'log_user_text' => 'Testing',
+				'log_actor' => 24,
+			],
+			UserIdentityValue::newRegistered( 42, 'Testing' ),
+		];
+		yield 'anon actor' => [
+			'actor_row_fields' => [
+				'log_user_text' => '127.0.0.1',
+				'log_actor' => 24,
+			],
+			UserIdentityValue::newAnonymous( '127.0.0.1' ),
+		];
+		yield 'unknown actor' => [
+			'actor_row_fields' => [],
+			new UserIdentityValue( 0, ActorStore::UNKNOWN_USER_NAME ),
+		];
+	}
+
+	/**
+	 * @dataProvider provideGetPerformerIdentity
+	 * @covers DatabaseLogEntry::getPerformerIdentity
+	 */
+	public function testGetPerformer( array $actorRowFields, UserIdentity $expected ) {
+		$logEntry = DatabaseLogEntry::newFromRow( [
+			'log_id' => 1,
+		] + $actorRowFields );
+		$performer = $logEntry->getPerformerIdentity();
+		$this->assertTrue( $expected->equals( $performer ) );
 	}
 }
