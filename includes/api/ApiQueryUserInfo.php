@@ -148,7 +148,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		$vals['id'] = $user->getId();
 		$vals['name'] = $user->getName();
 
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			$vals['anon'] = true;
 		}
 
@@ -310,7 +310,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 
 		// Find out which categories we belong to
 		$categories = [];
-		if ( $user->isAnon() ) {
+		if ( !$user->isRegistered() ) {
 			$categories[] = 'anon';
 		} else {
 			$categories[] = 'user';
@@ -318,7 +318,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		if ( $user->isNewbie() ) {
 			$categories[] = 'ip';
 			$categories[] = 'subnet';
-			if ( !$user->isAnon() ) {
+			if ( $user->isRegistered() ) {
 				$categories[] = 'newbie';
 			}
 		}

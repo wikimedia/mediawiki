@@ -1641,12 +1641,12 @@ class ApiMain extends ApiBase {
 			$user = $this->getUser();
 			switch ( $params['assert'] ) {
 				case 'anon':
-					if ( !$user->isAnon() ) {
+					if ( $user->isRegistered() ) {
 						$this->dieWithError( 'apierror-assertanonfailed' );
 					}
 					break;
 				case 'user':
-					if ( $user->isAnon() ) {
+					if ( !$user->isRegistered() ) {
 						$this->dieWithError( 'apierror-assertuserfailed' );
 					}
 					break;
