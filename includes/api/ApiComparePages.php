@@ -529,7 +529,9 @@ class ApiComparePages extends ApiBase {
 			}
 
 			try {
-				$content = ContentHandler::makeContent( $text, $title, $model, $format );
+				$content = $this->contentHandlerFactory
+					->getContentHandler( $model )
+					->unserializeContent( $text, $format );
 			} catch ( MWContentSerializationException $ex ) {
 				$this->dieWithException( $ex, [
 					'wrap' => ApiMessage::create( 'apierror-contentserializationexception', 'parseerror' )

@@ -125,8 +125,9 @@ class ApiStashEdit extends ApiBase {
 			$textHash = sha1( $text );
 		}
 
-		$textContent = ContentHandler::makeContent(
-			$text, $title, $params['contentmodel'], $params['contentformat'] );
+		$textContent = $this->contentHandlerFactory
+			->getContentHandler( $params['contentmodel'] )
+			->unserializeContent( $text, $params['contentformat'] );
 
 		$page = $this->wikiPageFactory->newFromTitle( $title );
 		if ( $page->exists() ) {

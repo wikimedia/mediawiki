@@ -677,12 +677,8 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 						$vals['diff']['badcontentformat'] = true;
 						$engine = null;
 					} else {
-						$difftocontent = ContentHandler::makeContent(
-							$this->difftotext,
-							$title,
-							$model,
-							$this->contentFormat
-						);
+						$difftocontent = $this->contentHandlerFactory->getContentHandler( $model )
+							->unserializeContent( $this->difftotext, $this->contentFormat );
 
 						if ( $this->difftotextpst ) {
 							$popts = ParserOptions::newFromContext( $this->getContext() );
