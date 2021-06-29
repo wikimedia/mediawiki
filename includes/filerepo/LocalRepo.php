@@ -69,6 +69,12 @@ class LocalRepo extends FileRepo {
 	/** @var int|null */
 	protected $splitMetadataThreshold = 1000;
 
+	/** @var bool */
+	protected $updateCompatibleMetadata = false;
+
+	/** @var bool */
+	protected $reserializeMetadata = false;
+
 	public function __construct( array $info = null ) {
 		parent::__construct( $info );
 
@@ -89,7 +95,9 @@ class LocalRepo extends FileRepo {
 			[
 				'useJsonMetadata',
 				'useSplitMetadata',
-				'splitMetadataThreshold'
+				'splitMetadataThreshold',
+				'updateCompatibleMetadata',
+				'reserializeMetadata',
 			] as $option
 		) {
 			if ( isset( $info[$option] ) ) {
@@ -665,6 +673,14 @@ class LocalRepo extends FileRepo {
 	 */
 	public function getSplitMetadataThreshold() {
 		return $this->splitMetadataThreshold;
+	}
+
+	public function isMetadataUpdateEnabled() {
+		return $this->updateCompatibleMetadata;
+	}
+
+	public function isMetadataReserializeEnabled() {
+		return $this->reserializeMetadata;
 	}
 
 	/**

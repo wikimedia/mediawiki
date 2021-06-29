@@ -69,11 +69,6 @@ class ImageBuilder extends Maintenance {
 
 	public function __construct() {
 		parent::__construct();
-
-		global $wgUpdateCompatibleMetadata;
-		// make sure to update old, but compatible img_metadata fields.
-		$wgUpdateCompatibleMetadata = true;
-
 		$this->addDescription( 'Script to update image metadata records' );
 
 		$this->addOption( 'missing', 'Check for files without associated database record' );
@@ -100,7 +95,11 @@ class ImageBuilder extends Maintenance {
 	 */
 	private function getRepo() {
 		if ( $this->repo === null ) {
-			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+			$this->repo = MediaWikiServices::getInstance()->getRepoGroup()
+				->newCustomLocalRepo( [
+					// make sure to update old, but compatible img_metadata fields.
+					'updateCompatibleMetadata' => true
+				] );
 		}
 
 		return $this->repo;
