@@ -73,7 +73,9 @@ class ApiMain extends ApiBase {
 				'AuthManager',
 			],
 		],
-		'logout' => ApiLogout::class,
+		'logout' => [
+			'class' => ApiLogout::class,
+		],
 		'createaccount' => [
 			'class' => ApiAMCreateAccount::class,
 			'services' => [
@@ -188,7 +190,9 @@ class ApiMain extends ApiBase {
 				'UserFactory',
 			],
 		],
-		'rsd' => ApiRsd::class,
+		'rsd' => [
+			'class' => ApiRsd::class,
+		],
 		'compare' => [
 			'class' => ApiComparePages::class,
 			'services' => [
@@ -198,9 +202,15 @@ class ApiMain extends ApiBase {
 				'ContentTransformer',
 			]
 		],
-		'tokens' => ApiTokens::class,
-		'checktoken' => ApiCheckToken::class,
-		'cspreport' => ApiCSPReport::class,
+		'tokens' => [
+			'class' => ApiTokens::class,
+		],
+		'checktoken' => [
+			'class' => ApiCheckToken::class,
+		],
+		'cspreport' => [
+			'class' => ApiCSPReport::class,
+		],
 		'validatepassword' => [
 			'class' => ApiValidatePassword::class,
 			'services' => [
@@ -310,7 +320,9 @@ class ApiMain extends ApiBase {
 				'RepoGroup',
 			]
 		],
-		'emailuser' => ApiEmailUser::class,
+		'emailuser' => [
+			'class' => ApiEmailUser::class,
+		],
 		'watch' => [
 			'class' => ApiWatch::class,
 			'services' => [
@@ -355,8 +367,12 @@ class ApiMain extends ApiBase {
 				'TempFSFileFactory',
 			]
 		],
-		'revisiondelete' => ApiRevisionDelete::class,
-		'managetags' => ApiManageTags::class,
+		'revisiondelete' => [
+			'class' => ApiRevisionDelete::class,
+		],
+		'managetags' => [
+			'class' => ApiManageTags::class,
+		],
 		'tag' => [
 			'class' => ApiTag::class,
 			'services' => [
@@ -390,14 +406,30 @@ class ApiMain extends ApiBase {
 	 * List of available formats: format name => format class
 	 */
 	private const FORMATS = [
-		'json' => ApiFormatJson::class,
-		'jsonfm' => ApiFormatJson::class,
-		'php' => ApiFormatPhp::class,
-		'phpfm' => ApiFormatPhp::class,
-		'xml' => ApiFormatXml::class,
-		'xmlfm' => ApiFormatXml::class,
-		'rawfm' => ApiFormatJson::class,
-		'none' => ApiFormatNone::class,
+		'json' => [
+			'class' => ApiFormatJson::class,
+		],
+		'jsonfm' => [
+			'class' => ApiFormatJson::class,
+		],
+		'php' => [
+			'class' => ApiFormatPhp::class,
+		],
+		'phpfm' => [
+			'class' => ApiFormatPhp::class,
+		],
+		'xml' => [
+			'class' => ApiFormatXml::class,
+		],
+		'xmlfm' => [
+			'class' => ApiFormatXml::class,
+		],
+		'rawfm' => [
+			'class' => ApiFormatJson::class,
+		],
+		'none' => [
+			'class' => ApiFormatNone::class,
+		],
 	];
 
 	/**
