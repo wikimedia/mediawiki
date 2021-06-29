@@ -225,6 +225,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiMove::class,
 			'services' => [
 				'MovePageFactory',
+				'RepoGroup',
 			]
 		],
 		'edit' => ApiEditPage::class,
