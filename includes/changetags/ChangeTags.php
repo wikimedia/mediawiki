@@ -538,12 +538,18 @@ class ChangeTags {
 	 * @param int|null $rc_id
 	 * @param int|null $rev_id
 	 * @param int|null $log_id
+	 * @throws MWException When $rc_id, $rev_id and $log_id are all null
 	 * @return string[] Tag name => data. Data format is tag-specific.
 	 * @since 1.36
 	 */
 	public static function getTagsWithData(
 		IDatabase $db, $rc_id = null, $rev_id = null, $log_id = null
 	) {
+		if ( !$rc_id && !$rev_id && !$log_id ) {
+			throw new MWException( 'At least one of: RCID, revision ID, and log ID MUST be ' .
+				'specified when loading tags from a change!' );
+		}
+
 		$conds = array_filter(
 			[
 				'ct_rc_id' => $rc_id,
