@@ -2809,7 +2809,7 @@
 	"ipb_expiry_old": "有効期限が過去の時刻です。",
 	"ipb_expiry_temp": "利用者名秘匿のブロックは、無期限ブロックになります。",
 	"ipb_hide_invalid": "このアカウントを秘匿できません。編集回数が{{PLURAL:$1|$1回}}を超えています。",
-	"ipb_hide_partial": "ユーザー名を秘匿してのブロックは完全なブロックである必要があります。",
+	"ipb_hide_partial": "利用者名を秘匿してのブロックはサイト全体のブロックである必要があります。",
 	"ipb_already_blocked": "「$1」は既にブロックされています。",
 	"ipb-needreblock": "$1 は既にブロックされています。設定を変更しますか?",
 	"ipb-otherblocks-header": "その他の{{PLURAL:$1|ブロック}}",
