@@ -168,7 +168,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testListRevisions() {
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$revisions = $lookup->listRevisions( $this->archivedPage );
+		$revisions = $lookup->listRevisions( $this->archivedPage, [], [] );
 		$this->assertEquals( 2, $revisions->numRows() );
 		// Get the rows as arrays
 		$row0 = (array)$revisions->current();
@@ -191,7 +191,7 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testListRevisions_slots() {
 		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
-		$revisions = $lookup->listRevisions( $this->archivedPage );
+		$revisions = $lookup->listRevisions( $this->archivedPage, [], [] );
 
 		$revisionStore = $this->getServiceContainer()->getRevisionStore();
 		$slotsQuery = $revisionStore->getSlotsQueryInfo( [ 'content' ] );
@@ -206,6 +206,28 @@ class ArchivedRevisionLookupTest extends MediaWikiIntegrationTestCase {
 				$slotsQuery['joins']
 			);
 		}
+	}
+
+	/**
+	 * @covers ::listRevisions
+	 */
+	public function testListRevisionsOffsetAndLimit() {
+		$lookup = $this->getServiceContainer()->getArchivedRevisionLookup();
+		$db = $this->getDb();
+		$revisions = $lookup->listRevisions(
+			$this->archivedPage,
+			[ 'ar_timestamp < ' . $db->addQuotes( $db->timestamp( $this->secondRev->getTimestamp() ) ) ],
+			[ 'LIMIT' => '1' ] );
+		$this->assertSame( 1, $revisions->numRows() );
+		// Get the rows as arrays
+		$row0 = (array)$revisions->fetchObject();
+
+		$expectedRows = $this->getExpectedArchiveRows();
+
+		$this->assertEquals(
+			$expectedRows[1],
+			$row0
+		);
 	}
 
 	/**

@@ -52,6 +52,13 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialUndelete extends SpecialPage {
+
+	/**
+	 * Limit of revisions (Page history) to display.
+	 * (If there are more items to display - "Load more" button will appear).
+	 */
+	private const REVISION_HISTORY_LIMIT = 500;
+
 	private $mAction;
 	private $mTarget;
 	private $mTimestamp;
@@ -78,6 +85,8 @@ class SpecialUndelete extends SpecialPage {
 	private $mFileVersions = [];
 	/** @var bool|null */
 	private $mUndeleteTalk;
+	/** @var string|null Timestamp at which to start a "load more" request (open interval) */
+	private $mHistoryOffset;
 
 	/** @var Title|null */
 	private $mTargetObj;
@@ -217,6 +226,7 @@ class SpecialUndelete extends SpecialPage {
 			$this->permissionManager->userHasRight( $user, 'suppressrevision' );
 		$this->mToken = $request->getVal( 'token' );
 		$this->mUndeleteTalk = $request->getCheck( 'undeletetalk' );
+		$this->mHistoryOffset = $request->getVal( 'historyoffset' );
 
 		if ( $this->isAllowed( 'undelete' ) ) {
 			$this->mAllowed = true; // user can restore
@@ -359,7 +369,8 @@ class SpecialUndelete extends SpecialPage {
 			} elseif ( $this->mRevdel ) {
 				$this->redirectToRevDel();
 			}
-
+		} elseif ( $this->mAction === 'render' ) {
+			$this->showMoreHistory();
 		} else {
 			$this->showHistory();
 		}
@@ -907,6 +918,83 @@ class SpecialUndelete extends SpecialPage {
 		$this->localRepo->streamFileWithStatus( $path );
 	}
 
+	/**
+	 * @param LinkBatch $batch
+	 * @param IResultWrapper $revisions
+	 */
+	private function addRevisionsToBatch( LinkBatch $batch, IResultWrapper $revisions ) {
+		foreach ( $revisions as $row ) {
+			$batch->add( NS_USER, $row->ar_user_text );
+			$batch->add( NS_USER_TALK, $row->ar_user_text );
+		}
+	}
+
+	/**
+	 * @param LinkBatch $batch
+	 * @param IResultWrapper $files
+	 */
+	private function addFilesToBatch( LinkBatch $batch, IResultWrapper $files ) {
+		foreach ( $files as $row ) {
+			$batch->add( NS_USER, $row->fa_user_text );
+			$batch->add( NS_USER_TALK, $row->fa_user_text );
+		}
+	}
+
+	/**
+	 * Handle XHR "show more history" requests (T249977)
+	 */
+	protected function showMoreHistory() {
+		$out = $this->getOutput();
+		$out->setArticleBodyOnly( true );
+		$dbr = $this->dbProvider->getReplicaDatabase();
+		if ( $this->mHistoryOffset ) {
+			$encOffset = $dbr->addQuotes( $dbr->timestamp( $this->mHistoryOffset ) );
+			$offset = [ "ar_timestamp < $encOffset" ];
+		} else {
+			$offset = [];
+		}
+		$revisions = $this->archivedRevisionLookup->listRevisions(
+			$this->mTargetObj,
+			$offset,
+			[ 'LIMIT' => self::REVISION_HISTORY_LIMIT + 1 ]
+		);
+		$batch = $this->linkBatchFactory->newLinkBatch();
+		$this->addRevisionsToBatch( $batch, $revisions );
+		$batch->execute();
+		$out->addHTML( $this->formatRevisionHistory( $revisions ) );
+
+		if ( $revisions->numRows() > self::REVISION_HISTORY_LIMIT ) {
+			// Indicate to JS that the "show more" button should remain active
+			$out->setStatusCode( 206 );
+		}
+	}
+
+	/**
+	 * Generate the <ul> element representing a list of deleted revisions
+	 *
+	 * @param IResultWrapper $revisions
+	 * @return string
+	 */
+	protected function formatRevisionHistory( IResultWrapper $revisions ) {
+		$history = Html::openElement( 'ul', [ 'class' => 'mw-undelete-revlist' ] );
+
+		// Exclude the last data row if there is more data than history limit amount
+		$numRevisions = $revisions->numRows();
+		$displayCount = min( $numRevisions, self::REVISION_HISTORY_LIMIT );
+		$firstRev = $this->revisionStore->getFirstRevision( $this->mTargetObj );
+		$earliestLiveTime = $firstRev ? $firstRev->getTimestamp() : null;
+
+		$revisions->rewind();
+		for ( $i = 0; $i < $displayCount; $i++ ) {
+			$row = $revisions->fetchObject();
+			// The $remaining parameter controls diff links and so must
+			// include the undisplayed row beyond the display limit.
+			$history .= $this->formatRevisionRow( $row, $earliestLiveTime, $numRevisions - $i );
+		}
+		$history .= Html::closeElement( 'ul' );
+		return $history;
+	}
+
 	protected function showHistory() {
 		$this->checkReadOnly();
 
@@ -934,28 +1022,24 @@ class SpecialUndelete extends SpecialPage {
 		$out->addHTML( Html::closeElement( 'div' ) );
 
 		# List all stored revisions
-		$revisions = $this->archivedRevisionLookup->listRevisions( $this->mTargetObj );
+		$revisions = $this->archivedRevisionLookup->listRevisions(
+			$this->mTargetObj,
+			[],
+			[ 'LIMIT' => self::REVISION_HISTORY_LIMIT + 1 ]
+		);
 		$files = $archive->listFiles();
-
-		$haveRevisions = $revisions && $revisions->numRows() > 0;
+		$numRevisions = $revisions->numRows();
+		$showLoadMore = $numRevisions > self::REVISION_HISTORY_LIMIT;
+		$haveRevisions = $numRevisions > 0;
 		$haveFiles = $files && $files->numRows() > 0;
 
 		# Batch existence check on user and talk pages
 		if ( $haveRevisions || $haveFiles ) {
 			$batch = $this->linkBatchFactory->newLinkBatch();
-			if ( $haveRevisions ) {
-				foreach ( $revisions as $row ) {
-					$batch->add( NS_USER, $row->ar_user_text );
-					$batch->add( NS_USER_TALK, $row->ar_user_text );
-				}
-				$revisions->seek( 0 );
-			}
+			$this->addRevisionsToBatch( $batch, $revisions );
 			if ( $haveFiles ) {
-				foreach ( $files as $row ) {
-					$batch->add( NS_USER, $row->fa_user_text );
-					$batch->add( NS_USER_TALK, $row->fa_user_text );
-				}
-				$files->seek( 0 );
+				// @phan-suppress-next-line PhanTypeMismatchArgumentNullable -- $files is non-null
+				$this->addFilesToBatch( $batch, $files );
 			}
 			$batch->execute();
 		}
@@ -1101,17 +1185,20 @@ class SpecialUndelete extends SpecialPage {
 				) . "\n";
 			}
 
-			$history .= Html::openElement( 'ul', [ 'class' => 'mw-undelete-revlist' ] );
-			$remaining = $revisions->numRows();
-			$firstRev = $this->revisionStore->getFirstRevision( $this->mTargetObj );
-			$earliestLiveTime = $firstRev ? $firstRev->getTimestamp() : null;
+			$history .= $this->formatRevisionHistory( $revisions );
 
-			foreach ( $revisions as $row ) {
-				$remaining--;
-				$history .= $this->formatRevisionRow( $row, $earliestLiveTime, $remaining );
+			if ( $showLoadMore ) {
+				$history .=
+					Html::openElement( 'div' ) .
+					Html::element(
+						'span',
+						[ 'id' => 'mw-load-more-revisions' ],
+						$this->msg( 'undelete-load-more-revisions' )->text()
+					) .
+					Html::closeElement( 'div' ) .
+					"\n";
+				$out->addModules( 'mediawiki.special.undelete' );
 			}
-			$revisions->free();
-			$history .= Html::closeElement( 'ul' );
 		} else {
 			$out->addWikiMsg( 'nohistory' );
 		}

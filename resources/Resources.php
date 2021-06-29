@@ -1218,6 +1218,18 @@ return [
 			'visibleTimeout.js'
 		],
 	],
+	'mediawiki.special.undelete' => [
+		'localBasePath' => "$wgBaseDirectory/resources/src/mediawiki.special.undelete",
+		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.special.undelete",
+		'packageFiles' => [
+			'loadMoreRevisions.js'
+		],
+		'targets' => [ 'desktop', 'mobile' ],
+		'dependencies' => [
+			'jquery.spinner',
+			'mediawiki.util'
+		],
+	],
 
 	/* MediaWiki Action */
 

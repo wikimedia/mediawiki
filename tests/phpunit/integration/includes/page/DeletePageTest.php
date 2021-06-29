@@ -123,7 +123,7 @@ class DeletePageTest extends MediaWikiIntegrationTestCase {
 			return;
 		}
 		$archive = new PageArchive( $title, $this->getServiceContainer()->getMainConfig() );
-		$archivedRevs = $archive->listRevisions();
+		$archivedRevs = $archive->listRevisions( [], [] );
 		if ( !$archivedRevs || $archivedRevs->numRows() !== 1 ) {
 			$this->fail( 'Unexpected number of archived revisions' );
 		}
