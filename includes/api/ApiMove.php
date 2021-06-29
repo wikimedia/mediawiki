@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\MovePageFactory;
 
 /**
@@ -34,14 +33,19 @@ class ApiMove extends ApiBase {
 	/** @var MovePageFactory */
 	private $movePageFactory;
 
+	/** @var RepoGroup */
+	private $repoGroup;
+
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
-		MovePageFactory $movePageFactory
+		MovePageFactory $movePageFactory,
+		RepoGroup $repoGroup
 	) {
 		parent::__construct( $mainModule, $moduleName );
 
 		$this->movePageFactory = $movePageFactory;
+		$this->repoGroup = $repoGroup;
 
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
@@ -78,10 +82,9 @@ class ApiMove extends ApiBase {
 		}
 		$toTalk = $toTitle->getTalkPageIfDefined();
 
-		$repoGroup = MediaWikiServices::getInstance()->getRepoGroup();
 		if ( $toTitle->getNamespace() === NS_FILE
-			&& !$repoGroup->getLocalRepo()->findFile( $toTitle )
-			&& $repoGroup->findFile( $toTitle )
+			&& !$this->repoGroup->getLocalRepo()->findFile( $toTitle )
+			&& $this->repoGroup->findFile( $toTitle )
 		) {
 			if ( !$params['ignorewarnings'] &&
 				$this->getAuthority()->isAllowed( 'reupload-shared' ) ) {

@@ -161,7 +161,12 @@ class ApiMain extends ApiBase {
 				'SkinFactory',
 			]
 		],
-		'paraminfo' => ApiParamInfo::class,
+		'paraminfo' => [
+			'class' => ApiParamInfo::class,
+			'services' => [
+				'UserFactory',
+			],
+		],
 		'rsd' => ApiRsd::class,
 		'compare' => [
 			'class' => ApiComparePages::class,
@@ -225,6 +230,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiMove::class,
 			'services' => [
 				'MovePageFactory',
+				'RepoGroup',
 			]
 		],
 		'edit' => ApiEditPage::class,
