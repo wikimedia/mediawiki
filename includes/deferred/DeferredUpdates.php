@@ -385,6 +385,7 @@ class DeferredUpdates {
 
 		$updateId = spl_object_id( $update );
 		$logger->debug( __METHOD__ . ": started $type #$updateId" );
+		$startTime = microtime( true );
 		$e = null;
 		try {
 			self::attemptUpdate( $update, $lbFactory );
@@ -392,7 +393,8 @@ class DeferredUpdates {
 			return null;
 		} catch ( Throwable $e ) {
 		} finally {
-			$logger->debug( __METHOD__ . ": ended $type #$updateId" );
+			$executionTime = microtime( true ) - $startTime;
+			$logger->debug( __METHOD__ . ": ended $type #$updateId, processing time: $executionTime" );
 		}
 
 		MWExceptionHandler::logException( $e );
