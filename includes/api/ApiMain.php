@@ -183,7 +183,12 @@ class ApiMain extends ApiBase {
 		],
 
 		// Write modules
-		'purge' => ApiPurge::class,
+		'purge' => [
+			'class' => ApiPurge::class,
+			'services' => [
+				'WikiPageFactory',
+			],
+		],
 		'setnotificationtimestamp' => [
 			'class' => ApiSetNotificationTimestamp::class,
 			'services' => [
