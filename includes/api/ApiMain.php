@@ -277,7 +277,12 @@ class ApiMain extends ApiBase {
 				'RevisionStore',
 			]
 		],
-		'mergehistory' => ApiMergeHistory::class,
+		'mergehistory' => [
+			'class' => ApiMergeHistory::class,
+			'services' => [
+				'MergeHistoryFactory',
+			],
+		],
 		'setpagelanguage' => ApiSetPageLanguage::class,
 		'changecontentmodel' => [
 			'class' => ApiChangeContentModel::class,

@@ -20,7 +20,7 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Page\PageIdentity;
 
 /**
@@ -28,6 +28,23 @@ use MediaWiki\Page\PageIdentity;
  * @ingroup API
  */
 class ApiMergeHistory extends ApiBase {
+
+	/** @var MergeHistoryFactory */
+	private $mergeHistoryFactory;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param MergeHistoryFactory $mergeHistoryFactory
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		MergeHistoryFactory $mergeHistoryFactory
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->mergeHistoryFactory = $mergeHistoryFactory;
+	}
 
 	public function execute() {
 		$this->useTransactionalTimeLimit();
@@ -90,8 +107,7 @@ class ApiMergeHistory extends ApiBase {
 	 * @return Status
 	 */
 	protected function merge( PageIdentity $from, PageIdentity $to, $timestamp, $reason ) {
-		$factory = MediaWikiServices::getInstance()->getMergeHistoryFactory();
-		$mh = $factory->newMergeHistory( $from, $to, $timestamp );
+		$mh = $this->mergeHistoryFactory->newMergeHistory( $from, $to, $timestamp );
 
 		return $mh->merge( $this->getAuthority(), $reason );
 	}
