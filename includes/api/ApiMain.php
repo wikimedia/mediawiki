@@ -278,7 +278,13 @@ class ApiMain extends ApiBase {
 				'UserOptionsManager',
 			],
 		],
-		'imagerotate' => ApiImageRotate::class,
+		'imagerotate' => [
+			'class' => ApiImageRotate::class,
+			'services' => [
+				'RepoGroup',
+				'TempFSFileFactory',
+			]
+		],
 		'revisiondelete' => ApiRevisionDelete::class,
 		'managetags' => ApiManageTags::class,
 		'tag' => [
