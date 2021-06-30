@@ -1128,7 +1128,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[
 				1024 ** 7,
 				"1 ZB",
-				"1 zetabyte"
+				"1 zettabyte"
 			],
 			[
 				1024 ** 8,
@@ -1196,7 +1196,7 @@ class LanguageIntegrationTest extends LanguageClassesTestCase {
 			[
 				10 ** 21,
 				"1 Zbps",
-				"1 zetabit per second"
+				"1 zettabit per second"
 			],
 			[
 				10 ** 24,
