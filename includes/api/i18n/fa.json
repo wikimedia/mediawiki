@@ -333,5 +333,6 @@
 	"api-help-main-header": "پودمان اصلی",
 	"api-help-source": "منبع: $1",
 	"api-help-param-deprecated": "توصیه.",
+	"apierror-contenttoobig": "حجم محتوای ارائه‌شده از سوی شما از محدودیت اندازهٔ مقاله برابر با $1 {{PLURAL:$1|کیبی‌بایت}} گذر کرده‌است.",
 	"api-credits-header": "اعتبار"
 }
