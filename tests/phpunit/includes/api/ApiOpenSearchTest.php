@@ -59,6 +59,6 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 	private function createApi() {
 		$ctx = new RequestContext();
 		$apiMain = new ApiMain( $ctx );
-		return new ApiOpenSearch( $apiMain, 'opensearch', '' );
+		return new ApiOpenSearch( $apiMain, 'opensearch', $this->getServiceContainer()->getLinkBatchFactory() );
 	}
 }

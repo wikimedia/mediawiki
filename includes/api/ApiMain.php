@@ -129,7 +129,12 @@ class ApiMain extends ApiBase {
 				'WikiPageFactory',
 			]
 		],
-		'opensearch' => ApiOpenSearch::class,
+		'opensearch' => [
+			'class' => ApiOpenSearch::class,
+			'services' => [
+				'LinkBatchFactory',
+			]
+		],
 		'feedcontributions' => [
 			'class' => ApiFeedContributions::class,
 			'services' => [
@@ -208,7 +213,12 @@ class ApiMain extends ApiBase {
 				'RollbackPageFactory',
 			]
 		],
-		'delete' => ApiDelete::class,
+		'delete' => [
+			'class' => ApiDelete::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'undelete' => ApiUndelete::class,
 		'protect' => ApiProtect::class,
 		'block' => [

@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 
 /**
@@ -33,8 +32,21 @@ class ApiDelete extends ApiBase {
 
 	use ApiWatchlistTrait;
 
-	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
-		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param RepoGroup $repoGroup
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		RepoGroup $repoGroup
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		$this->repoGroup = $repoGroup;
 
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
@@ -78,7 +90,7 @@ class ApiDelete extends ApiBase {
 		}
 
 		if ( $titleObj->getNamespace() === NS_FILE ) {
-			$status = self::deleteFile(
+			$status = $this->deleteFile(
 				$pageObj,
 				$user,
 				$params['oldimage'],
@@ -177,7 +189,7 @@ class ApiDelete extends ApiBase {
 	 * @param string[] $tags Tags to tag the deletion with
 	 * @return Status
 	 */
-	private static function deleteFile( WikiPage $page, UserIdentity $deleter, $oldimage,
+	private function deleteFile( WikiPage $page, UserIdentity $deleter, $oldimage,
 		&$reason = null, $suppress = false, $tags = []
 	) {
 		$title = $page->getTitle();
@@ -192,8 +204,7 @@ class ApiDelete extends ApiBase {
 			if ( !FileDeleteForm::isValidOldSpec( $oldimage ) ) {
 				return Status::newFatal( 'invalidoldimage' );
 			}
-			$oldfile = MediaWikiServices::getInstance()->getRepoGroup()
-				->getLocalRepo()->newFromArchiveName( $title, $oldimage );
+			$oldfile = $this->repoGroup->getLocalRepo()->newFromArchiveName( $title, $oldimage );
 			if ( !$oldfile->exists() || !$oldfile->isLocal() || $oldfile->getRedirected() ) {
 				return Status::newFatal( 'nodeleteablefile' );
 			}
