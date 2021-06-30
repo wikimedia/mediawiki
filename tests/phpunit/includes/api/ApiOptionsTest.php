@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use MediaWiki\User\UserOptionsManager;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -42,17 +43,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 		$this->mUserMock->method( 'isAllowedAny' )->willReturn( true );
 
-		// DefaultPreferencesFactory calls a ton of user methods, but we still want to list all of
-		// them in case bugs are caused by unexpected things returning null that shouldn't.
-		$this->mUserMock->expects( $this->never() )->method( $this->anythingBut(
-			'getEffectiveGroups', 'getOptionKinds', 'getInstanceForUpdate', 'getId',
-			'isAnon', 'getRequest', 'isLoggedIn', 'getName', 'getGroupMemberships', 'getEditCount',
-			'getRegistration', 'isAllowed', 'getRealName', 'getOption', 'getStubThreshold',
-			'getBoolOption', 'getEmail', 'getDatePreference', 'useRCPatrol', 'useNPPatrol',
-			'setOption', 'saveSettings', 'resetOptions', 'isRegistered', 'getTitleKey',
-			'isAllowedAny'
-		) );
-
 		// Create a new context
 		$this->mContext = new DerivativeContext( new RequestContext() );
 		$this->mContext->getContext()->setTitle( Title::newFromText( 'Test' ) );
@@ -83,19 +73,21 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			]
 		);
 
-		$this->mTested = new ApiOptions( $main, 'options', $userOptionsManagerMock );
+		$preferencesFactory = $this->createNoOpMock(
+			DefaultPreferencesFactory::class,
+			[ 'getFormDescriptor' ]
+		);
+		$preferencesFactory->method( 'getFormDescriptor' )
+			->willReturnCallback( [ $this, 'getPreferencesFormDescription' ] );
 
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'GetPreferences' => [
-				[ $this, 'hookGetPreferences' ]
-			]
-		] );
+		$this->mTested = new ApiOptions( $main, 'options', $userOptionsManagerMock, $preferencesFactory );
+
 		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [
 			'testradio' => 'option1',
 		] );
 	}
 
-	public function hookGetPreferences( $user, &$preferences ) {
+	public function getPreferencesFormDescription() {
 		$preferences = [];
 
 		foreach ( [ 'name', 'willBeNull', 'willBeEmpty', 'willBeHappy' ] as $k ) {
@@ -127,6 +119,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			'options' => [ 'Option 1' => 'option1', 'Option 2' => 'option2' ],
 			'section' => 'test',
 		];
+
+		return $preferences;
 	}
 
 	/**
