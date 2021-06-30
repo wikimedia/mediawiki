@@ -45,11 +45,12 @@ use Wikimedia\Rdbms\LBFactory;
  * bar is the option value of the option for param foo
  * baz is the arg value at index 0 in the arg list
  *
- * WARNING: the constructor, shouldExecute(), setup(), getName() and
- * loadSettings() are called before Setup.php is run, which means most of the
+ * WARNING: the constructor, shouldExecute(), setup(), finalSetup(), getName()
+ * and loadSettings() are called before Setup.php is complete, which means most of the
  * common infrastructure, like logging or autoloading, is not available. Be
  * careful when changing these methods or the ones called from them. Likewise,
- * be careful with the constructor when subclassing.
+ * be careful with the constructor when subclassing. MediaWikiServices instance
+ * is not yet available at this point.
  *
  * @stable for subclassing
  *
@@ -1194,10 +1195,15 @@ abstract class Maintenance {
 		}
 		if ( $this->hasOption( 'dbgroupdefault' ) ) {
 			$wgDBDefaultGroup = $this->getOption( 'dbgroupdefault', null );
-
-			$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
-			if ( $service ) {
-				$service->destroy();
+			// TODO: once MediaWikiServices::getInstance() starts throwing exceptions
+			// and not deprecation warnings for premature access to service container,
+			// we can remove this line. This method is called before Setup.php,
+			// so it would be guaranteed DBLoadBalancerFactory is not yet initialized.
+			if ( MediaWikiServices::hasInstance() ) {
+				$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
+				if ( $service ) {
+					$service->destroy();
+				}
 			}
 		}
 
@@ -1218,9 +1224,15 @@ abstract class Maintenance {
 				$wgLBFactoryConf['serverTemplate']['user'] = $wgDBuser;
 				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
-			$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
-			if ( $service ) {
-				$service->destroy();
+			// TODO: once MediaWikiServices::getInstance() starts throwing exceptions
+			// and not deprecation warnings for premature access to service container,
+			// we can remove this line. This method is called before Setup.php,
+			// so it would be guaranteed DBLoadBalancerFactory is not yet initialized.
+			if ( MediaWikiServices::hasInstance() ) {
+				$service = MediaWikiServices::getInstance()->peekService( 'DBLoadBalancerFactory' );
+				if ( $service ) {
+					$service->destroy();
+				}
 			}
 		}
 
