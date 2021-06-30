@@ -2246,9 +2246,11 @@ abstract class Skin extends ContextSource {
 	 * to makeListItem instead of hardcoding the element creation boilerplate.
 	 * @since 1.35
 	 * @param array $urls
+	 * @param bool $applyClassesToListItems (optional) when set behaves consistently with other menus,
+	 *   applying the `class` property applies to list items. When not set will move the class to child links.
 	 * @return array[]
 	 */
-	final public function getPersonalToolsForMakeListItem( $urls ) {
+	final public function getPersonalToolsForMakeListItem( $urls, $applyClassesToListItems = false ) {
 		$personal_tools = [];
 		foreach ( $urls as $key => $plink ) {
 			# The class on a personal_urls item is meant to go on the <a> instead
@@ -2260,6 +2262,9 @@ abstract class Skin extends ContextSource {
 				],
 				'id' => "pt-$key",
 			];
+			if ( $applyClassesToListItems && isset( $plink['class'] ) ) {
+				$ptool['class'] = $plink['class'];
+			}
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
@@ -2270,15 +2275,18 @@ abstract class Skin extends ContextSource {
 			if ( isset( $plink['link-class'] ) ) {
 				$ptool['links'][0]['class'] = $plink['link-class'];
 			}
-			foreach ( [
+			$props = [
 				'href',
-				'class',
 				'text',
 				'dir',
 				'data',
 				'exists',
 				'data-mw'
-			] as $k ) {
+			];
+			if ( !$applyClassesToListItems ) {
+				$props[] = 'class';
+			}
+			foreach ( $props as $k ) {
 				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
 				}
