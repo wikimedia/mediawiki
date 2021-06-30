@@ -21,6 +21,7 @@
 namespace MediaWiki\Permissions;
 
 use InvalidArgumentException;
+use MediaWiki\Block\Block;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 
@@ -51,6 +52,16 @@ class UltimateAuthority implements Authority {
 	 */
 	public function getUser(): UserIdentity {
 		return $this->actor;
+	}
+
+	/**
+	 * @param int $freshness
+	 *
+	 * @return ?Block always null
+	 * @since 1.37
+	 */
+	public function getBlock( int $freshness = self::READ_NORMAL ): ?Block {
+		return null;
 	}
 
 	/**

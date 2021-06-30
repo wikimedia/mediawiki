@@ -23,6 +23,7 @@
 use MediaWiki\Auth\AuthenticationRequest;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\Block\AbstractBlock;
+use MediaWiki\Block\Block;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\DAO\WikiAwareEntityTrait;
@@ -64,9 +65,21 @@ use Wikimedia\ScopedCallback;
  *
  * @newable in 1.35 only, the constructor is @internal since 1.36
  */
-class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact {
+class User implements Authority, UserIdentity, UserEmailContact {
 	use ProtectedHookAccessorTrait;
 	use WikiAwareEntityTrait;
+
+	/**
+	 * @var int
+	 * @see IDBAccessObject::READ_EXCLUSIVE
+	 */
+	public const READ_EXCLUSIVE = IDBAccessObject::READ_EXCLUSIVE;
+
+	/**
+	 * @var int
+	 * @see IDBAccessObject::READ_LOCKING
+	 */
+	public const READ_LOCKING = IDBAccessObject::READ_LOCKING;
 
 	/**
 	 * Number of characters required for the user_token field.
@@ -1891,26 +1904,40 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 	 * Check if user is blocked
 	 *
 	 * @deprecated since 1.34, use User::getBlock() or
-	 *             PermissionManager::isBlockedFrom() or
-	 *             PermissionManager::userCan() instead.
+	 *             Authority:getBlock() or Authority:definitlyCan() or
+	 *             Authority:authorizeRead() or Authority:authorizeWrite() or
+	 *             PermissionManager::isBlockedFrom(), as appropriate.
 	 *
 	 * @param bool $fromReplica Whether to check the replica DB instead of
 	 *   the master. Hacked from false due to horrible probs on site.
 	 * @return bool True if blocked, false otherwise
 	 */
 	public function isBlocked( $fromReplica = true ) {
-		return $this->getBlock( $fromReplica ) instanceof AbstractBlock;
+		return $this->getBlock( $fromReplica ) !== null;
 	}
 
 	/**
 	 * Get the block affecting the user, or null if the user is not blocked
 	 *
-	 * @param bool $fromReplica Whether to check the replica DB instead of the master
+	 * @param int|bool $freshness One of the Authority::READ_XXX constants.
+	 *                 For backwards compatibility, a boolean is also accepted,
+	 *                 with true meaning READ_NORMAL and false meaning
+	 *                 READ_LATEST.
 	 * @param bool $disableIpBlockExemptChecking This is used internally to prevent
 	 *   a infinite recursion with autopromote. See T270145.
-	 * @return AbstractBlock|null
+	 *
+	 * @return ?AbstractBlock
 	 */
-	public function getBlock( $fromReplica = true, $disableIpBlockExemptChecking = false ) {
+	public function getBlock(
+		$freshness = self::READ_NORMAL,
+		$disableIpBlockExemptChecking = false
+	): ?Block {
+		if ( is_bool( $freshness ) ) {
+			$fromReplica = $freshness;
+		} else {
+			$fromReplica = ( $freshness !== self::READ_LATEST );
+		}
+
 		$this->getBlockedStatus( $fromReplica, $disableIpBlockExemptChecking );
 		return $this->mBlock instanceof AbstractBlock ? $this->mBlock : null;
 	}
@@ -3481,7 +3508,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 					[ 'LOCK IN SHARE MODE' ]
 				);
 				$loaded = false;
-				if ( $this->mId && $this->loadFromDatabase( self::READ_LOCKING ) ) {
+				if ( $this->mId && $this->loadFromDatabase( IDBAccessObject::READ_LOCKING ) ) {
 					$loaded = true;
 				}
 				if ( !$loaded ) {
@@ -4192,7 +4219,7 @@ class User implements Authority, IDBAccessObject, UserIdentity, UserEmailContact
 		}
 
 		$user = self::newFromId( $this->getId() );
-		if ( !$user->loadFromId( self::READ_EXCLUSIVE ) ) {
+		if ( !$user->loadFromId( IDBAccessObject::READ_EXCLUSIVE ) ) {
 			return null;
 		}
 

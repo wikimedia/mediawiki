@@ -371,6 +371,12 @@ because of Phabricator reports.
   the method it wraps, User->isRegistered(), instead.
 * FileBackendGroup::singleton() and ::destroySingletons(), deprecated since
   1.35, now emit deprecation warnings.
+* The first parameter of User::getBlock should now be an integer using the
+  Authority::FOR_XXX constants. Providing a boolean is deprecated.
+* ApiBase::addBlockInfoToStatus() is deprecated for use by extensions. It is now
+  marked as @internal and may be deleted in the future.
+  It should not be necessary to call this method, Authority should be providing
+  all relevant information via a PermissionStatus object.
 * JobQueueGroup::singleton was deprecated - use
   MediaWikiServices::getJobQueueGroup instead.
 * JobQueueGroup::destroySingletons was deprecated. JobQueueGroups are now

@@ -517,10 +517,12 @@ class DatabaseBlockStore {
 			'LIMIT' => 1,
 		];
 
-		$actor = $this->actorStoreFactory->getActorNormalization()->findActorId(
-			$block->getTargetUserIdentity(),
+		$targetUser = $block->getTargetUserIdentity();
+		$actor = $targetUser ? $this->actorStoreFactory->getActorNormalization()->findActorId(
+			$targetUser,
 			$dbr
-		);
+		) : null;
+
 		if ( !$actor ) {
 			$this->logger->debug( 'No actor found to retroactively autoblock' );
 			return [];
