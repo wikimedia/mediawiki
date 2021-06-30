@@ -118,7 +118,18 @@ class ApiMain extends ApiBase {
 				'Parser',
 			]
 		],
-		'parse' => ApiParse::class,
+		'parse' => [
+			'class' => ApiParse::class,
+			'services' => [
+				'RevisionLookup',
+				'SkinFactory',
+				'LanguageNameUtils',
+				'LinkBatchFactory',
+				'LinkCache',
+				'ContentHandlerFactory',
+				'Parser',
+			]
+		],
 		'stashedit' => [
 			'class' => ApiStashEdit::class,
 			'services' => [
