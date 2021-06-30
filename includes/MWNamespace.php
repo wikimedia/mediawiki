@@ -28,15 +28,20 @@ class MWNamespace {
 	/**
 	 * Can pages in the given namespace be moved?
 	 *
+	 * @deprecated since 1.34, hard deprecated since 1.37
+	 *
 	 * @param int $index Namespace index
 	 * @return bool
 	 */
 	public static function isMovable( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isMovable( $index );
 	}
 
 	/**
 	 * Is the given namespace is a subject (non-talk) namespace?
+	 *
+	 * @deprecated since 1.34
 	 *
 	 * @param int $index Namespace index
 	 * @return bool
@@ -49,6 +54,8 @@ class MWNamespace {
 	/**
 	 * Is the given namespace a talk namespace?
 	 *
+	 * @deprecated since 1.34
+	 *
 	 * @param int $index Namespace index
 	 * @return bool
 	 */
@@ -58,6 +65,8 @@ class MWNamespace {
 
 	/**
 	 * Get the talk namespace index for a given namespace
+	 *
+	 * @deprecated since 1.34
 	 *
 	 * @param int $index Namespace index
 	 * @return int
@@ -70,6 +79,8 @@ class MWNamespace {
 	 * Get the subject namespace index for a given namespace
 	 * Special namespaces (NS_MEDIA, NS_SPECIAL) are always the subject.
 	 *
+	 * @deprecated since 1.34
+	 *
 	 * @param int $index Namespace index
 	 * @return int
 	 */
@@ -81,6 +92,8 @@ class MWNamespace {
 	 * Get the associated namespace.
 	 * For talk namespaces, returns the subject (non-talk) namespace
 	 * For subject (non-talk) namespaces, returns the talk namespace
+	 *
+	 * @deprecated since 1.34
 	 *
 	 * @param int $index Namespace index
 	 * @return int|null If no associated namespace could be found
@@ -96,6 +109,7 @@ class MWNamespace {
 	 *
 	 * @return bool
 	 * @since 1.19
+	 * @deprecated since 1.34
 	 */
 	public static function exists( $index ) {
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->exists( $index );
@@ -114,6 +128,7 @@ class MWNamespace {
 	 *
 	 * @return bool
 	 * @since 1.19
+	 * @deprecated since 1.34
 	 */
 	public static function equals( $ns1, $ns2 ) {
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->equals( $ns1, $ns2 );
@@ -124,13 +139,17 @@ class MWNamespace {
 	 * eg: NS_USER and NS_USER wil return true, as well
 	 *     NS_USER and NS_USER_TALK will return true.
 	 *
+	 * @deprecated since 1.34, hard deprecated since 1.37
+	 *
 	 * @param int $ns1 The first namespace index
 	 * @param int $ns2 The second namespace index
 	 *
 	 * @return bool
 	 * @since 1.19
+	 * @deprecated since 1.34
 	 */
 	public static function subjectEquals( $ns1, $ns2 ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->
 			subjectEquals( $ns1, $ns2 );
 	}
@@ -141,6 +160,7 @@ class MWNamespace {
 	 *
 	 * @return array
 	 * @since 1.17
+	 * @deprecated since 1.34
 	 */
 	public static function getCanonicalNamespaces() {
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getCanonicalNamespaces();
@@ -148,6 +168,8 @@ class MWNamespace {
 
 	/**
 	 * Returns the canonical (English) name for a given index
+	 *
+	 * @deprecated since 1.34
 	 *
 	 * @param int $index Namespace index
 	 * @return string|bool If no canonical definition.
@@ -160,6 +182,8 @@ class MWNamespace {
 	 * Returns the index for a given canonical name, or NULL
 	 * The input *must* be converted to lower case first
 	 *
+	 * @deprecated since 1.34
+	 *
 	 * @param string $name Namespace name
 	 * @return int
 	 */
@@ -170,6 +194,9 @@ class MWNamespace {
 	/**
 	 * Returns an array of the namespaces (by integer id) that exist on the
 	 * wiki. Used primarily by the api in help documentation.
+	 *
+	 * @deprecated since 1.34
+	 *
 	 * @return array
 	 */
 	public static function getValidNamespaces() {
@@ -179,18 +206,22 @@ class MWNamespace {
 	/**
 	 * Does this namespace ever have a talk namespace?
 	 *
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 * @since 1.30
 	 *
 	 * @param int $index Namespace ID
 	 * @return bool True if this namespace either is or has a corresponding talk namespace.
 	 */
 	public static function hasTalkNamespace( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->hasTalkNamespace( $index );
 	}
 
 	/**
 	 * Does this namespace contain content, for the purposes of calculating
 	 * statistics, etc?
+	 *
+	 * @deprecated since 1.34
 	 *
 	 * @param int $index Index to check
 	 * @return bool
@@ -203,25 +234,33 @@ class MWNamespace {
 	 * Might pages in this namespace require the use of the Signature button on
 	 * the edit toolbar?
 	 *
+	 * @deprecated since 1.34, hard deprecated since 1.37
+	 *
 	 * @param int $index Index to check
 	 * @return bool
 	 */
 	public static function wantSignatures( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->wantSignatures( $index );
 	}
 
 	/**
 	 * Can pages in a namespace be watched?
 	 *
+	 * @deprecated since 1.34, hard deprecated since 1.37
+	 *
 	 * @param int $index
 	 * @return bool
 	 */
 	public static function isWatchable( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isWatchable( $index );
 	}
 
 	/**
 	 * Does the namespace allow subpages?
+	 *
+	 * @deprecated since 1.34
 	 *
 	 * @param int $index Index to check
 	 * @return bool
@@ -232,6 +271,9 @@ class MWNamespace {
 
 	/**
 	 * Get a list of all namespace indices which are considered to contain content
+	 *
+	 * @deprecated since 1.34
+	 *
 	 * @return int[] Array of namespace indices
 	 */
 	public static function getContentNamespaces() {
@@ -241,6 +283,8 @@ class MWNamespace {
 	/**
 	 * List all namespace indices which are considered subject, aka not a talk
 	 * or special namespace. See also MWNamespace::isSubject
+	 *
+	 * @deprecated since 1.34
 	 *
 	 * @return int[] Array of namespace indices
 	 */
@@ -252,6 +296,8 @@ class MWNamespace {
 	 * List all namespace indices which are considered talks, aka not a subject
 	 * or special namespace. See also MWNamespace::isTalk
 	 *
+	 * @deprecated since 1.34
+	 *
 	 * @return int[] Array of namespace indices
 	 */
 	public static function getTalkNamespaces() {
@@ -260,6 +306,8 @@ class MWNamespace {
 
 	/**
 	 * Is the namespace first-letter capitalized?
+	 *
+	 * @deprecated since 1.34
 	 *
 	 * @param int $index Index to check
 	 * @return bool
@@ -272,11 +320,13 @@ class MWNamespace {
 	 * Does the namespace (potentially) have different aliases for different
 	 * genders. Not all languages make a distinction here.
 	 *
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 * @since 1.18
 	 * @param int $index Index to check
 	 * @return bool
 	 */
 	public static function hasGenderDistinction( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->
 			hasGenderDistinction( $index );
 	}
@@ -284,6 +334,7 @@ class MWNamespace {
 	/**
 	 * It is not possible to use pages from this namespace as template?
 	 *
+	 * @deprecated since 1.34
 	 * @since 1.20
 	 * @param int $index Index to check
 	 * @return bool
@@ -299,6 +350,7 @@ class MWNamespace {
 	 * @note To determine the default model for a new page's main slot, or any slot in general,
 	 * use SlotRoleHandler::getDefaultModel() together with SlotRoleRegistry::getRoleHandler().
 	 *
+	 * @deprecated since 1.34
 	 * @since 1.21
 	 * @param int $index Index to check
 	 * @return null|string Default model name for the given namespace, if set
@@ -312,12 +364,14 @@ class MWNamespace {
 	 * Determine which restriction levels it makes sense to use in a namespace,
 	 * optionally filtered by a user's rights.
 	 *
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 * @since 1.23
 	 * @param int $index Index to check
 	 * @param User|null $user User to check
 	 * @return array
 	 */
 	public static function getRestrictionLevels( $index, User $user = null ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()
 			->getPermissionManager()
 			->getNamespaceRestrictionLevels( $index, $user );
@@ -329,11 +383,13 @@ class MWNamespace {
 	 * This determines which section of a category page titles
 	 * in the namespace will appear within.
 	 *
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 * @since 1.32
 	 * @param int $index Namespace index
 	 * @return string One of 'subcat', 'file', 'page'
 	 */
 	public static function getCategoryLinkType( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->
 			getCategoryLinkType( $index );
 	}
