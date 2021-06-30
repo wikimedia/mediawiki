@@ -128,6 +128,7 @@ class ApiMain extends ApiBase {
 				'LinkCache',
 				'ContentHandlerFactory',
 				'Parser',
+				'WikiPageFactory',
 			]
 		],
 		'stashedit' => [

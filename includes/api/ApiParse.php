@@ -23,6 +23,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -65,6 +66,9 @@ class ApiParse extends ApiBase {
 	/** @var Parser */
 	private $parser;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
@@ -75,6 +79,7 @@ class ApiParse extends ApiBase {
 	 * @param LinkCache $linkCache
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param Parser $parser
+	 * @param WikiPageFactory $wikiPageFactory
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -85,7 +90,8 @@ class ApiParse extends ApiBase {
 		LinkBatchFactory $linkBatchFactory,
 		LinkCache $linkCache,
 		IContentHandlerFactory $contentHandlerFactory,
-		Parser $parser
+		Parser $parser,
+		WikiPageFactory $wikiPageFactory
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionLookup = $revisionLookup;
@@ -95,6 +101,7 @@ class ApiParse extends ApiBase {
 		$this->linkCache = $linkCache;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->parser = $parser;
+		$this->wikiPageFactory = $wikiPageFactory;
 	}
 
 	private function getPoolKey(): string {
@@ -221,7 +228,7 @@ class ApiParse extends ApiBase {
 				$revLinkTarget = $rev->getPageAsLinkTarget();
 				$titleObj = Title::newFromLinkTarget( $revLinkTarget );
 				$wgTitle = $titleObj;
-				$pageObj = WikiPage::factory( $titleObj );
+				$pageObj = $this->wikiPageFactory->newFromTitle( $titleObj );
 				list( $popts, $reset, $suppressCache ) = $this->makeParserOptions( $pageObj, $params );
 				$p_result = $this->getParsedContent(
 					$pageObj, $popts, $suppressCache, $pageid, $rev, $needContent
@@ -298,7 +305,7 @@ class ApiParse extends ApiBase {
 			}
 			$wgTitle = $titleObj;
 			if ( $titleObj->canExist() ) {
-				$pageObj = WikiPage::factory( $titleObj );
+				$pageObj = $this->wikiPageFactory->newFromTitle( $titleObj );
 				list( $popts, $reset ) = $this->makeParserOptions( $pageObj, $params );
 			} else { // A special page, presumably
 				// XXX: Why is this needed at all? Can't we just fail?
