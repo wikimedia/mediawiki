@@ -88,7 +88,13 @@ class ReplicatedBagOStuff extends BagOStuff {
 			// Otherwise, just use the default "read" store
 			: $this->readStore;
 
-		return $store->proxyCall( __FUNCTION__, self::ARG0_KEY, self::RES_NONKEY, func_get_args() );
+		return $store->proxyCall(
+			__FUNCTION__,
+			self::ARG0_KEY,
+			self::RES_NONKEY,
+			func_get_args(),
+			$this
+		);
 	}
 
 	public function set( $key, $value, $exptime = 0, $flags = 0 ) {
@@ -98,7 +104,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -109,7 +116,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -120,7 +128,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -131,7 +140,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -142,7 +152,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -151,7 +162,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -160,7 +172,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -174,7 +187,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_NONKEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -188,7 +202,13 @@ class ReplicatedBagOStuff extends BagOStuff {
 			// Otherwise, just use the default "read" store
 			: $this->readStore;
 
-		return $store->proxyCall( __FUNCTION__, self::ARG0_KEYARR, self::RES_KEYMAP, func_get_args() );
+		return $store->proxyCall(
+			__FUNCTION__,
+			self::ARG0_KEYARR,
+			self::RES_KEYMAP,
+			func_get_args(),
+			$this
+		);
 	}
 
 	public function setMulti( array $valueByKey, $exptime = 0, $flags = 0 ) {
@@ -197,8 +217,9 @@ class ReplicatedBagOStuff extends BagOStuff {
 		return $this->writeStore->proxyCall(
 			__FUNCTION__,
 			self::ARG0_KEYMAP,
-			self::RES_NONKEY,
-			func_get_args()
+			self::RES_KEYMAP,
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -209,7 +230,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEYARR,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -220,7 +242,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEYARR,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -231,7 +254,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -242,7 +266,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 
@@ -253,19 +278,9 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEY,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
-	}
-
-	public function getLastError() {
-		return ( $this->writeStore->getLastError() !== self::ERR_NONE )
-			? $this->writeStore->getLastError()
-			: $this->readStore->getLastError();
-	}
-
-	public function clearLastError() {
-		$this->writeStore->clearLastError();
-		$this->readStore->clearLastError();
 	}
 
 	public function makeKeyInternal( $keyspace, $components ) {
@@ -293,7 +308,8 @@ class ReplicatedBagOStuff extends BagOStuff {
 			__FUNCTION__,
 			self::ARG0_KEYMAP,
 			self::RES_NONKEY,
-			func_get_args()
+			func_get_args(),
+			$this
 		);
 	}
 

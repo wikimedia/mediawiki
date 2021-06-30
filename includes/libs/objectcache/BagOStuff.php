@@ -96,11 +96,19 @@ abstract class BagOStuff implements
 	 */
 	protected $wrapperInfoByPrefix = [];
 
-	/** @var int[] Map of (ATTR_* class constant => QOS_* class constant) */
+	/** @var int[] Map of (BagOStuff:ATTR_* constant => BagOStuff:QOS_* constant) */
 	protected $attrMap = [];
 
 	/** @var string Default keyspace; used by makeKey() */
 	protected $keyspace;
+
+	/** @var int BagOStuff:ERR_* constant of the last error that occurred */
+	protected $lastError = self::ERR_NONE;
+	/** @var int Error event sequence number of the last error that occurred */
+	protected $lastErrorId = 0;
+
+	/** @var int Next sequence number to use for watch/error events */
+	protected static $nextErrorMonitorId = 1;
 
 	/** @var float|null */
 	private $wallClockOverride;
@@ -452,17 +460,57 @@ abstract class BagOStuff implements
 	abstract public function incrWithInit( $key, $exptime, $value = 1, $init = null, $flags = 0 );
 
 	/**
-	 * Get the "last error" registered; clearLastError() should be called manually
-	 * @return int ERR_* constant for the "last error" registry
+	 * Get a "watch point" token that can be used to get the "last error" to occur after now
+	 *
+	 * @return int A token that the current error event
+	 * @since 1.38
+	 */
+	public function watchErrors() {
+		return self::$nextErrorMonitorId++;
+	}
+
+	/**
+	 * Get the "last error" registry
+	 *
+	 * The method should be invoked by a caller as part of the following pattern:
+	 *   - The caller invokes watchErrors() to get a "since token"
+	 *   - The caller invokes a sequence of cache operation methods
+	 *   - The caller invokes getLastError() with the "since token"
+	 *
+	 * External callers can also invoke this method as part of the following pattern:
+	 *   - The caller invokes clearLastError()
+	 *   - The caller invokes a sequence of cache operation methods
+	 *   - The caller invokes getLastError()
+	 *
+	 * @param int $watchPoint Only consider errors from after this "watch point" [optional]
+	 * @return int BagOStuff:ERR_* constant for the "last error" registry
+	 * @note Parameters added in 1.38: $watchPoint
 	 * @since 1.23
 	 */
-	abstract public function getLastError();
+	public function getLastError( $watchPoint = 0 ) {
+		return ( $this->lastErrorId > $watchPoint ) ? $this->lastError : self::ERR_NONE;
+	}
 
 	/**
 	 * Clear the "last error" registry
+	 *
+	 * @since 1.23
+	 * @deprecated Since 1.38
+	 */
+	public function clearLastError() {
+		$this->lastError = self::ERR_NONE;
+	}
+
+	/**
+	 * Set the "last error" registry due to a problem encountered during an attempted operation
+	 *
+	 * @param int $error BagOStuff:ERR_* constant
 	 * @since 1.23
 	 */
-	abstract public function clearLastError();
+	protected function setLastError( $error ) {
+		$this->lastError = $error;
+		$this->lastErrorId = self::$nextErrorMonitorId++;
+	}
 
 	/**
 	 * Let a callback be run to avoid wasting time on special blocking calls
@@ -537,8 +585,8 @@ abstract class BagOStuff implements
 	}
 
 	/**
-	 * @param int $flag ATTR_* class constant
-	 * @return int QOS_* class constant
+	 * @param int $flag BagOStuff::ATTR_* constant
+	 * @return int BagOStuff:QOS_* constant
 	 * @since 1.28
 	 */
 	public function getQoS( $flag ) {
@@ -707,9 +755,16 @@ abstract class BagOStuff implements
 	 * @param int $arg0Sig BagOStuff::ARG0_* constant describing argument 0
 	 * @param int $resSig BagOStuff::RES_* constant describing the return value
 	 * @param array $genericArgs Method arguments passed to the wrapper instance
-	 * @return mixed Method result with any resulting cache keys remapped to "generic" keys
+	 * @param BagOStuff $wrapper The wrapper BagOStuff instance using this result
+	 * @return mixed Method result with any keys remapped to "generic" keys
 	 */
-	protected function proxyCall( $method, $arg0Sig, $resSig, array $genericArgs ) {
+	protected function proxyCall(
+		string $method,
+		int $arg0Sig,
+		int $resSig,
+		array $genericArgs,
+		BagOStuff $wrapper
+	) {
 		// Get the corresponding store-specific cache keys...
 		$storeArgs = $genericArgs;
 		switch ( $arg0Sig ) {
@@ -730,7 +785,12 @@ abstract class BagOStuff implements
 		}
 
 		// Result of invoking the method with the corresponding store-specific cache keys
+		$watchPoint = $this->watchErrors();
 		$storeRes = $this->$method( ...$storeArgs );
+		$lastError = $this->getLastError( $watchPoint );
+		if ( $lastError !== self::ERR_NONE ) {
+			$wrapper->setLastError( $lastError );
+		}
 
 		// Convert any store-specific cache keys in the result back to generic cache keys
 		if ( $resSig === self::RES_KEYMAP ) {

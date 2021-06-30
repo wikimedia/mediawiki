@@ -1896,11 +1896,11 @@ class WANObjectCache implements
 			//  - 300 misses (100/s), 100KB value, 1250000 bps limit => 80000000 bps (high risk)
 			if ( ( $missesPerSecForHighQPS * $estimatedSize ) >= $this->keyHighUplinkBps ) {
 				$cooloffSisterKey = $this->makeSisterKey( $key, self::TYPE_COOLOFF );
-				$this->cache->clearLastError();
+				$watchPoint = $this->cache->watchErrors();
 				if (
 					!$this->cache->add( $cooloffSisterKey, 1, self::COOLOFF_TTL ) &&
 					// Don't treat failures due to I/O errors as the key being in cool-off
-					$this->cache->getLastError() === self::ERR_NONE
+					$this->cache->getLastError( $watchPoint ) === self::ERR_NONE
 				) {
 					$this->stats->increment( "wanobjectcache.$kClass.cooloff_bounce" );
 
@@ -2441,11 +2441,34 @@ class WANObjectCache implements
 	}
 
 	/**
-	 * Get the "last error" registered; clearLastError() should be called manually
-	 * @return int ERR_* class constant for the "last error" registry
+	 * Get a "watch point" token that can be used to get the "last error" to occur after now
+	 *
+	 * @return int A token that the current error event
+	 * @since 1.38
 	 */
-	final public function getLastError() {
-		$code = $this->cache->getLastError();
+	public function watchErrors() {
+		return $this->cache->watchErrors();
+	}
+
+	/**
+	 * Get the "last error" registry
+	 *
+	 * The method should be invoked by a caller as part of the following pattern:
+	 *   - The caller invokes watchErrors() to get a "since token"
+	 *   - The caller invokes a sequence of cache operation methods
+	 *   - The caller invokes getLastError() with the "since token"
+	 *
+	 * External callers can also invoke this method as part of the following pattern:
+	 *   - The caller invokes clearLastError()
+	 *   - The caller invokes a sequence of cache operation methods
+	 *   - The caller invokes getLastError()
+	 *
+	 * @param int $watchPoint Only consider errors from after this "watch point" [optional]
+	 * @return int BagOStuff:ERR_* constant for the "last error" registry
+	 * @note Parameters added in 1.38: $watchPoint
+	 */
+	final public function getLastError( $watchPoint = 0 ) {
+		$code = $this->cache->getLastError( $watchPoint );
 		switch ( $code ) {
 			case self::ERR_NONE:
 				return self::ERR_NONE;
@@ -2460,6 +2483,7 @@ class WANObjectCache implements
 
 	/**
 	 * Clear the "last error" registry
+	 * @deprecated Since 1.38
 	 */
 	final public function clearLastError() {
 		$this->cache->clearLastError();
