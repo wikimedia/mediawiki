@@ -2,19 +2,16 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 
 /**
  * @covers LocalIdLookup
  * @group Database
  */
 class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
+	use MockAuthorityTrait;
+
 	private $localUsers = [];
-
-	protected function setUp() : void {
-		parent::setUp();
-
-		$this->setGroupPermissions( 'local-id-lookup-test', 'hideuser', true );
-	}
 
 	public function addDBData() {
 		for ( $i = 1; $i <= 4; $i++ ) {
@@ -43,18 +40,10 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 		$blockStore->insertBlock( $block );
 	}
 
-	public function getLookupUser() {
-		return static::getTestUser( [ 'local-id-lookup-test' ] )->getUser();
-	}
-
 	public function testLookupCentralIds() {
 		$lookup = new LocalIdLookup();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$user1 = $this->getLookupUser();
-		$user2 = User::newFromName( 'UTLocalIdLookup2' );
-
-		$this->assertTrue( $permissionManager->userHasRight( $user1, 'hideuser' ), 'sanity check' );
-		$this->assertFalse( $permissionManager->userHasRight( $user2, 'hideuser' ), 'sanity check' );
+		$permitted = $this->mockAnonAuthorityWithPermissions( [ 'hideuser' ] );
+		$nonPermitted = $this->mockAnonAuthorityWithoutPermissions( [ 'hideuser' ] );
 
 		$this->assertSame( [], $lookup->lookupCentralIds( [] ) );
 
@@ -72,18 +61,14 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $expect2, $lookup->lookupCentralIds( $arg ) );
 		$this->assertSame( $expect, $lookup->lookupCentralIds( $arg, CentralIdLookup::AUDIENCE_RAW ) );
-		$this->assertSame( $expect, $lookup->lookupCentralIds( $arg, $user1 ) );
-		$this->assertSame( $expect2, $lookup->lookupCentralIds( $arg, $user2 ) );
+		$this->assertSame( $expect, $lookup->lookupCentralIds( $arg, $permitted ) );
+		$this->assertSame( $expect2, $lookup->lookupCentralIds( $arg, $nonPermitted ) );
 	}
 
 	public function testLookupUserNames() {
 		$lookup = new LocalIdLookup();
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
-		$user1 = $this->getLookupUser();
-		$user2 = User::newFromName( 'UTLocalIdLookup2' );
-
-		$this->assertTrue( $permissionManager->userHasRight( $user1, 'hideuser' ), 'sanity check' );
-		$this->assertFalse( $permissionManager->userHasRight( $user2, 'hideuser' ), 'sanity check' );
+		$permitted = $this->mockAnonAuthorityWithPermissions( [ 'hideuser' ] );
+		$nonPermitted = $this->mockAnonAuthorityWithoutPermissions( [ 'hideuser' ] );
 
 		$this->assertSame( [], $lookup->lookupUserNames( [] ) );
 
@@ -101,13 +86,13 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 
 		$this->assertSame( $expect2, $lookup->lookupUserNames( $arg ) );
 		$this->assertSame( $expect, $lookup->lookupUserNames( $arg, CentralIdLookup::AUDIENCE_RAW ) );
-		$this->assertSame( $expect, $lookup->lookupUserNames( $arg, $user1 ) );
-		$this->assertSame( $expect2, $lookup->lookupUserNames( $arg, $user2 ) );
+		$this->assertSame( $expect, $lookup->lookupUserNames( $arg, $permitted ) );
+		$this->assertSame( $expect2, $lookup->lookupUserNames( $arg, $nonPermitted ) );
 	}
 
 	public function testIsAttached() {
 		$lookup = new LocalIdLookup();
-		$user1 = $this->getLookupUser();
+		$user1 = $this->getTestUser()->getUser();
 		$user2 = User::newFromName( 'DoesNotExist' );
 
 		$this->assertTrue( $lookup->isAttached( $user1 ) );
@@ -138,7 +123,7 @@ class LocalIdLookupTest extends MediaWikiIntegrationTestCase {
 		$lookup = new LocalIdLookup();
 		$this->assertSame(
 			$sharedDB && $sharedTable && $localDBSet,
-			$lookup->isAttached( $this->getLookupUser(), 'shared' )
+			$lookup->isAttached( $this->getTestUser()->getUser(), 'shared' )
 		);
 	}
 

@@ -299,6 +299,10 @@ because of Phabricator reports.
   - ::listRevisionSizes
 * LogEntry::getPerformer, deprecated since 1.36, was removed along with methods
   in subclasses: DatabaseLogEntry, ManualLogEntry, RCDatabaseLogEntry.
+* Protected ::checkAudience in a @stable to extend class CentralIdLookup
+  now returns Authority instead of User. Also, a number of it's @stable
+  to override methods now accept Authority instead of User as $audience
+  parameter.
 * …
 
 === Deprecations in 1.37 ===
