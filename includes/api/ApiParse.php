@@ -469,7 +469,7 @@ class ApiParse extends ApiBase {
 			] );
 			$result_array[ApiResult::META_BC_SUBELEMENTS][] = 'text';
 			if ( $context ) {
-				Hooks::run( 'OutputPageBeforeHTML', [ $context->getOutput(), &$result_array['text'] ] );
+				$this->getHookRunner()->onOutputPageBeforeHTML( $context->getOutput(), $result_array['text'] );
 			}
 		}
 
