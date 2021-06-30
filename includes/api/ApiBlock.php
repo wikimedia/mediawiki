@@ -30,8 +30,8 @@ use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
@@ -54,8 +54,8 @@ class ApiBlock extends ApiBase {
 	/** @var TitleFactory */
 	private $titleFactory;
 
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
 
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
@@ -72,7 +72,7 @@ class ApiBlock extends ApiBase {
 	 * @param BlockPermissionCheckerFactory $blockPermissionCheckerFactory
 	 * @param BlockUserFactory $blockUserFactory
 	 * @param TitleFactory $titleFactory
-	 * @param UserFactory $userFactory
+	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param BlockUtils $blockUtils
 	 * @param BlockActionInfo $blockActionInfo
@@ -83,7 +83,7 @@ class ApiBlock extends ApiBase {
 		BlockPermissionCheckerFactory $blockPermissionCheckerFactory,
 		BlockUserFactory $blockUserFactory,
 		TitleFactory $titleFactory,
-		UserFactory $userFactory,
+		UserIdentityLookup $userIdentityLookup,
 		WatchedItemStoreInterface $watchedItemStore,
 		BlockUtils $blockUtils,
 		BlockActionInfo $blockActionInfo
@@ -93,7 +93,7 @@ class ApiBlock extends ApiBase {
 		$this->blockPermissionCheckerFactory = $blockPermissionCheckerFactory;
 		$this->blockUserFactory = $blockUserFactory;
 		$this->titleFactory = $titleFactory;
-		$this->userFactory = $userFactory;
+		$this->userIdentityLookup = $userIdentityLookup;
 		$this->watchedItemStore = $watchedItemStore;
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
@@ -116,11 +116,10 @@ class ApiBlock extends ApiBase {
 		if ( $params['user'] !== null ) {
 			$target = $params['user'];
 		} else {
-			if ( User::whoIs( $params['userid'] ) === false ) {
+			$target = $this->userIdentityLookup->getUserIdentityByUserId( $params['userid'] );
+			if ( !$target ) {
 				$this->dieWithError( [ 'apierror-nosuchuserid', $params['userid'] ], 'nosuchuserid' );
 			}
-
-			$target = $this->userFactory->newFromId( $params['userid'] );
 		}
 		list( $target, $targetType ) = $this->blockUtils->parseBlockTarget( $target );
 
