@@ -21,12 +21,15 @@
 namespace MediaWiki\Tests\Unit\Permissions;
 
 use InvalidArgumentException;
+use MediaWiki\Block\Block;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageIdentityValue;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Permissions\UserAuthority;
 use MediaWikiUnitTestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 use User;
 
 /**
@@ -36,13 +39,13 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param string[] $permissions
-	 * @param User|null $actor The user to use, null to create a new mock
-	 * @return UserAuthority
+	 * @return PermissionManager
 	 */
-	private function newAuthority( array $permissions, User $actor = null ) : UserAuthority {
+	private function newPermissionsManager( array $permissions ) : PermissionManager {
+		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(
 			PermissionManager::class,
-			[ 'userHasRight', 'userCan', 'getPermissionErrors' ]
+			[ 'userHasRight', 'userCan', 'getPermissionErrors', 'isBlockedFrom' ]
 		);
 
 		$permissionManager->method( 'userHasRight' )->willReturnCallback(
@@ -64,21 +67,97 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 					$errors[] = [ 'permissionserrors' ];
 				}
 
+				if ( $user->getBlock() && $permission !== 'read' ) {
+					$errors[] = [ 'blockedtext-partial' ];
+				}
+
 				return $errors;
 			}
 		);
 
+		$permissionManager->method( 'isBlockedFrom' )->willReturnCallback(
+			static function ( User $user, $page ) {
+				return $page->getDBkey() === 'Forbidden';
+			}
+		);
+
+		return $permissionManager;
+	}
+
+	private function newUser(): User {
+		/** @var User|MockObject $actor */
+		$actor = $this->createNoOpMock( User::class, [ 'getBlock' ] );
+		$actor->method( 'getBlock' )->willReturn( null );
+		return $actor;
+	}
+
+	private function newAuthority( array $permissions, User $actor = null ): Authority {
+		/** @var UserAuthority|MockObject $permissionManager */
+		$permissionManager = $this->newPermissionsManager( $permissions );
 		return new UserAuthority(
-			$actor ?? $this->createNoOpMock( User::class ),
+			$actor ?? $this->newUser(),
 			$permissionManager
 		);
 	}
 
-	public function testGetAuthor() {
-		$actor = $this->createNoOpMock( User::class );
-		$authority = $this->newAuthority( [], $actor );
+	public function testGetUser() {
+		$user = $this->newUser();
+		$authority = $this->newAuthority( [], $user );
 
-		$this->assertSame( $actor, $authority->getUser() );
+		$this->assertSame( $user, $authority->getUser() );
+	}
+
+	public function testGetUserBlockNotBlocked() {
+		$authority = $this->newAuthority( [] );
+		$this->assertNull( $authority->getBlock() );
+	}
+
+	/**
+	 * @param Block|null $block
+	 *
+	 * @return MockObject|User
+	 */
+	private function getBlockedUser( $block = null ) {
+		$block = $block ?: $this->createNoOpMock( Block::class );
+
+		$user = $this->createNoOpMock( User::class, [ 'getBlock' ] );
+		$user->method( 'getBlock' )
+			->willReturn( $block );
+
+		return $user;
+	}
+
+	public function testGetUserBlockWasBlocked() {
+		$block = $this->createNoOpMock( Block::class );
+		$user = $this->getBlockedUser( $block );
+
+		$authority = $this->newAuthority( [], $user );
+		$this->assertSame( $block, $authority->getBlock() );
+	}
+
+	public function testBlockedUserCanRead() {
+		$block = $this->createNoOpMock( Block::class );
+		$user = $this->getBlockedUser( $block );
+
+		$authority = $this->newAuthority( [ 'read', 'edit' ], $user );
+
+		$status = PermissionStatus::newEmpty();
+		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$this->assertTrue( $authority->authorizeRead( 'read', $target, $status ) );
+		$this->assertTrue( $status->isOK() );
+	}
+
+	public function testBlockedUserCanNotWrite() {
+		$block = $this->createNoOpMock( Block::class );
+		$user = $this->getBlockedUser( $block );
+
+		$authority = $this->newAuthority( [ 'read', 'edit' ], $user );
+
+		$status = PermissionStatus::newEmpty();
+		$target = new PageIdentityValue( 321, NS_MAIN, __METHOD__, PageIdentity::LOCAL );
+		$this->assertFalse( $authority->authorizeRead( 'edit', $target, $status ) );
+		$this->assertFalse( $status->isOK() );
+		$this->assertSame( $block, $status->getBlock() );
 	}
 
 	public function testPermissions() {
@@ -173,4 +252,20 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 		$authority->isAllowedAll();
 	}
 
+	public function testGetBlock_none() {
+		$actor = $this->newUser();
+
+		$authority = $this->newAuthority( [ 'foo', 'bar' ], $actor );
+
+		$this->assertNull( $authority->getBlock() );
+	}
+
+	public function testGetBlock_blocked() {
+		$block = $this->createNoOpMock( Block::class );
+		$actor = $this->getBlockedUser( $block );
+
+		$authority = $this->newAuthority( [ 'foo', 'bar' ], $actor );
+
+		$this->assertSame( $block, $authority->getBlock() );
+	}
 }

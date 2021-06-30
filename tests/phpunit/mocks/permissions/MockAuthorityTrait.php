@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Tests\Unit\Permissions;
 
+use MediaWiki\Block\Block;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\SimpleAuthority;
 use MediaWiki\Permissions\UltimateAuthority;
@@ -85,6 +86,29 @@ trait MockAuthorityTrait {
 	}
 
 	/**
+	 * Create a mock Authority for $user with $block and $permissions.
+	 *
+	 * @param UserIdentity $user
+	 * @param Block $block
+	 * @param array $permissions
+	 *
+	 * @return Authority
+	 */
+	private function mockUserAuthorityWithBlock(
+		UserIdentity $user,
+		Block $block,
+		array $permissions = []
+	): Authority {
+		return $this->mockAuthority(
+			$user,
+			static function ( $permission ) use ( $permissions ) {
+				return in_array( $permission, $permissions );
+			},
+			$block
+		);
+	}
+
+	/**
 	 * Create a mock Authority for an anon user with all but $permissions
 	 * @param array $permissions
 	 * @return Authority
@@ -157,9 +181,15 @@ trait MockAuthorityTrait {
 	 *
 	 * @param UserIdentity $user
 	 * @param callable $permissionCallback ( string $permission, ?PageIdentity $page )
+	 * @param Block|null $block
+	 *
 	 * @return Authority
 	 */
-	private function mockAuthority( UserIdentity $user, callable $permissionCallback ): Authority {
+	private function mockAuthority(
+		UserIdentity $user,
+		callable $permissionCallback,
+		Block $block = null
+	): Authority {
 		$mock = $this->createMock( Authority::class );
 		$mock->method( 'getUser' )->willReturn( $user );
 		$methods = [ 'isAllowed', 'probablyCan', 'definitelyCan', 'authorizeRead', 'authorizeWrite' ];
@@ -184,6 +214,7 @@ trait MockAuthorityTrait {
 				}
 				return true;
 			} );
+		$mock->method( 'getBlock' )->willReturn( $block );
 		return $mock;
 	}
 }

@@ -23,10 +23,8 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
-use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\PageRecord;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Session\SessionManager;
 use Wikimedia\Rdbms\IResultWrapper;
@@ -3395,9 +3393,9 @@ class OutputPage extends ContextSource {
 			$vars['wgUserVariant'] = $languageConverter->getPreferredVariant();
 		}
 		// Same test as SkinTemplate
-		$vars['wgIsProbablyEditable'] = $this->performerCanEditOrCreate( $this->getAuthority(), $title );
+		$vars['wgIsProbablyEditable'] = $this->getAuthority()->probablyCan( 'edit', $title );
 		$vars['wgRelevantPageIsProbablyEditable'] = $relevantTitle &&
-			$this->performerCanEditOrCreate( $this->getAuthority(), $relevantTitle );
+			$this->getAuthority()->probablyCan( 'edit', $relevantTitle );
 		foreach ( $title->getRestrictionTypes() as $type ) {
 			// Following keys are set in $vars:
 			// wgRestrictionCreate, wgRestrictionEdit, wgRestrictionMove, wgRestrictionUpload
@@ -3502,19 +3500,6 @@ class OutputPage extends ContextSource {
 	}
 
 	/**
-	 * @param Authority $performer
-	 * @param PageIdentity $page
-	 * @return bool
-	 */
-	private function performerCanEditOrCreate(
-		Authority $performer,
-		PageIdentity $page
-	) {
-		return $performer->probablyCan( 'edit', $page )
-		&& ( $page->exists() || $performer->probablyCan( 'create', $page ) );
-	}
-
-	/**
 	 * @return array Array in format "link name or number => 'link html'".
 	 */
 	public function getHeadLinksArray() {
@@ -3576,7 +3561,7 @@ class OutputPage extends ContextSource {
 
 		# Universal edit button
 		if ( $config->get( 'UniversalEditButton' ) && $this->isArticleRelated() ) {
-			if ( $this->performerCanEditOrCreate( $this->getAuthority(), $this->getTitle() ) ) {
+			if ( $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
 				// Original UniversalEditButton
 				$msg = $this->msg( 'edit' )->text();
 				$tags['universal-edit-button'] = Html::element( 'link', [

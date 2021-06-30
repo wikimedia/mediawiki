@@ -22,13 +22,13 @@
 
 use MediaWiki\Api\ApiHookRunner;
 use MediaWiki\Api\Validator\SubmoduleDef;
-use MediaWiki\Block\AbstractBlock;
-use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Block\Block;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
+use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
@@ -1218,19 +1218,25 @@ abstract class ApiBase extends ContextSource {
 	/**
 	 * Add block info to block messages in a Status
 	 * @since 1.33
+	 * @internal since 1.37, should become protected in the future.
 	 * @param StatusValue $status
-	 * @param User|null $user
+	 * @param Authority|null $user
 	 */
-	public function addBlockInfoToStatus( StatusValue $status, User $user = null ) {
-		if ( $user === null ) {
-			$user = $this->getUser();
+	public function addBlockInfoToStatus( StatusValue $status, Authority $user = null ) {
+		if ( $status instanceof PermissionStatus ) {
+			$block = $status->getBlock();
+		} else {
+			$user = $user ?: $this->getAuthority();
+			$block = $user->getBlock();
 		}
 
-		foreach ( self::$blockMsgMap as $msg => list( $apiMsg, $code ) ) {
-			if ( $status->hasMessage( $msg ) && $user->getBlock() ) {
-				$status->replaceMessage( $msg, ApiMessage::create( $apiMsg, $code,
-					[ 'blockinfo' => $this->getBlockDetails( $user->getBlock() ) ]
-				) );
+		if ( $block ) {
+			foreach ( self::$blockMsgMap as $msg => list( $apiMsg, $code ) ) {
+				if ( $status->hasMessage( $msg ) ) {
+					$status->replaceMessage( $msg, ApiMessage::create( $apiMsg, $code,
+						[ 'blockinfo' => $this->getBlockDetails( $block ) ]
+					) );
+				}
 			}
 		}
 	}
@@ -1405,12 +1411,12 @@ abstract class ApiBase extends ContextSource {
 	 * error handler and die with an error message including block info.
 	 *
 	 * @since 1.27
-	 * @param AbstractBlock $block The block used to generate the ApiUsageException
+	 * @param Block $block The block used to generate the ApiUsageException
 	 * @throws ApiUsageException always
 	 */
-	public function dieBlocked( AbstractBlock $block ) {
+	public function dieBlocked( Block $block ) {
 		// Die using the appropriate message depending on block type
-		if ( $block->getType() == DatabaseBlock::TYPE_AUTO ) {
+		if ( $block->getType() == Block::TYPE_AUTO ) {
 			$this->dieWithError(
 				'apierror-autoblocked',
 				'autoblocked',

@@ -20,6 +20,8 @@
 
 namespace MediaWiki\Permissions;
 
+use IDBAccessObject;
+use MediaWiki\Block\Block;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\User\UserIdentity;
 
@@ -35,6 +37,18 @@ use MediaWiki\User\UserIdentity;
 interface Authority {
 
 	/**
+	 * @var int Fetch information quickly, slightly stale data is acceptable.
+	 * @see IDBAccessObject::READ_NORMAL
+	 */
+	public const READ_NORMAL = IDBAccessObject::READ_NORMAL;
+
+	/**
+	 * @var int Fetch information reliably, stale data is not acceptable.
+	 * @see IDBAccessObject::READ_LATEST
+	 */
+	public const READ_LATEST = IDBAccessObject::READ_LATEST;
+
+	/**
 	 * Returns the performer of the actions associated with this authority.
 	 *
 	 * Actions performed under this authority should generally be attributed
@@ -43,6 +57,17 @@ interface Authority {
 	 * @return UserIdentity
 	 */
 	public function getUser(): UserIdentity;
+
+	/**
+	 * Returns any user block affecting the Authority.
+	 *
+	 * @param int $freshness Indicates whether slightly stale data is acceptable in,
+	 *        exchange for a fast response.
+	 *
+	 * @return ?Block
+	 * @since 1.37
+	 */
+	public function getBlock( int $freshness = self::READ_NORMAL ): ?Block;
 
 	/**
 	 * Checks whether this authority has the given permission in general.

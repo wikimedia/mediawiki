@@ -3257,7 +3257,6 @@
 	"import-token-mismatch": "Used as error message in [[Special:Import]].\n\nSee also:\n* {{msg-mw|import-invalid-interwiki}}\n* {{msg-mw|Importunknownsource}}\n\n{{Identical|Loss of session data}}",
 	"import-invalid-interwiki": "Used as error message in [[Special:Import]].\n\nSee also:\n* {{msg-mw|import-token-mismatch}}\n* {{msg-mw|import-invalid-interwiki}}\n* {{msg-mw|Importunknownsource}}",
 	"import-error-edit": "Import error message displayed when importing user has no edit rights for a page.\n\nParameters:\n* $1 - a page name\n{{Related|Import-error}}",
-	"import-error-create": "Import error message displayed when importing user has no create rights for a page.\n\nParameters:\n* $1 - a page name\n{{Related|Import-error}}",
 	"import-error-interwiki": "Used as error message when importing pages. Parameters:\n* $1 - page title\n{{Related|Import-error}}",
 	"import-error-special": "Used as error message when importing pages. Parameters:\n* $1 - page title\n{{Related|Import-error}}",
 	"import-error-invalid": "Used as error message when importing pages. Parameters:\n* $1 - page title\n{{Related|Import-error}}",

@@ -24,6 +24,7 @@
  */
 
 use MediaWiki\ParamValidator\TypeDef\UserDef;
+use MediaWiki\Permissions\Authority;
 
 /**
  * @ingroup API
@@ -54,7 +55,7 @@ class ApiUserrights extends ApiBase {
 		// Deny if the user is blocked and doesn't have the full 'userrights' permission.
 		// This matches what Special:UserRights does for the web UI.
 		if ( !$this->getAuthority()->isAllowed( 'userrights' ) ) {
-			$block = $pUser->getBlock();
+			$block = $pUser->getBlock( Authority::READ_LATEST );
 			if ( $block && $block->isSitewide() ) {
 				$this->dieBlocked( $block );
 			}

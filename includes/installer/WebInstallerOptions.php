@@ -114,7 +114,6 @@ class WebInstallerOptions extends WebInstallerPage {
 		$chosenSkinName = $this->getVar( 'wgDefaultSkin', $this->parent->getDefaultSkin( $skinNames ) );
 
 		if ( $skins ) {
-			// @phan-suppress-next-line SecurityCheck-DoubleEscaped skin names are valid
 			$radioButtons = $this->parent->getRadioElements( [
 				'var' => 'wgDefaultSkin',
 				'itemLabels' => array_fill_keys( $skinNames, 'config-skins-use-as-default' ),
@@ -124,10 +123,8 @@ class WebInstallerOptions extends WebInstallerPage {
 
 			foreach ( $skins as $skin => $info ) {
 				if ( isset( $info['screenshots'] ) ) {
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped skin names are valid
 					$screenshotText = $this->makeScreenshotsLink( $skin, $info['screenshots'] );
 				} else {
-					// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 					$screenshotText = htmlspecialchars( $skin );
 				}
 				$skinHtml .=
@@ -179,7 +176,6 @@ class WebInstallerOptions extends WebInstallerPage {
 				foreach ( $extByType[$type] as $ext => $info ) {
 					$urlText = '';
 					if ( isset( $info['url'] ) ) {
-						// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 						$urlText = ' ' . Html::element( 'a', [ 'href' => $info['url'] ], '(more information)' );
 					}
 					$attribs = [
@@ -202,7 +198,6 @@ class WebInstallerOptions extends WebInstallerPage {
 						// extension/skin that is required
 						if ( isset( $dependencyMap[$ext]['extensions'] ) ) {
 							foreach ( $dependencyMap[$ext]['extensions'] as $name ) {
-								// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 								$links[] = Html::element(
 									'a',
 									[ 'href' => "#config_ext-$name" ],
@@ -212,7 +207,6 @@ class WebInstallerOptions extends WebInstallerPage {
 						}
 						if ( isset( $dependencyMap[$ext]['skins'] ) ) {
 							foreach ( $dependencyMap[$ext]['skins'] as $name ) {
-								// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 								$links[] = Html::element(
 									'a',
 									[ 'href' => "#config_skin-$name" ],
@@ -243,7 +237,6 @@ class WebInstallerOptions extends WebInstallerPage {
 			$this->addHTML( $extHtml );
 			// Push the dependency map to the client side
 			$this->addHTML( Html::inlineScript(
-				// @phan-suppress-next-line SecurityCheck-DoubleEscaped False positive
 				'var extDependencyMap = ' . Xml::encodeJsVar( $dependencyMap )
 			) );
 		}

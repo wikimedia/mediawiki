@@ -1475,8 +1475,7 @@ class Article implements Page {
 					$text = wfMessage( 'missing-revision', $oldid )->plain();
 				}
 
-			} elseif ( $this->getContext()->getAuthority()->probablyCan( 'create', $title ) &&
-				$this->getContext()->getAuthority()->probablyCan( 'edit', $title )
+			} elseif ( $this->getContext()->getAuthority()->probablyCan( 'edit', $title )
 			) {
 				$message = $isRegistered ? 'noarticletext' : 'noarticletextanon';
 				$text = wfMessage( $message )->plain();
