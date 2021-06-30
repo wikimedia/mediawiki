@@ -41,16 +41,38 @@ class FixMergeHistoryCorruption extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addDescription( 'Delete pages corrupted by MergeHistory' );
-		$this->addOption( 'ns', 'Namespace to restrict the query', true );
+		$this->addOption( 'ns', 'Namespace to restrict the query', false, true );
 		$this->addOption( 'dry-run', 'Run in dry-mode' );
 		$this->addOption( 'delete', 'Actually delete the found rows' );
 	}
 
 	public function execute() {
 		$dbw = $this->getDB( DB_PRIMARY );
-		$ns = (int)$this->getOption( 'ns' );
 
-		$res = $this->query( $dbw, $ns );
+		$dryRun = true;
+		if ( $this->hasOption( 'dry-run' ) && $this->hasOption( 'delete' ) ) {
+			$this->fatalError( 'Cannot do both --dry-run and --delete.' );
+		} elseif ( $this->hasOption( 'dry-run' ) ) {
+			$dryRun = true;
+		} elseif ( $this->hasOption( 'delete' ) ) {
+			$dryRun = false;
+		} else {
+			$this->fatalError( 'Either --dry-run or --delete must be specified.' );
+		}
+
+		$conds = [ 'page_id<>rev_page' ];
+		if ( $this->hasOption( 'ns' ) ) {
+			$conds['page_namespace'] = (int)$this->getOption( 'ns' );
+		}
+
+		$res = $dbw->newSelectQueryBuilder()
+			->from( 'page' )
+			->join( 'revision', null, 'page_latest=rev_id' )
+			->fields( [ 'page_namespace', 'page_title', 'page_id' ] )
+			->where( $conds )
+			->caller( __METHOD__ )
+			->fetchResultSet();
+
 		$count = $res->numRows();
 
 		if ( !$count ) {
@@ -58,35 +80,39 @@ class FixMergeHistoryCorruption extends Maintenance {
 			return;
 		}
 
-		if ( $this->hasOption( 'dry-run' ) ) {
-			// Printing them all out since it's believed these pages are not large in number
-			$this->output( "Found $count page(s). To actually delete them pass the --delete option.\n" );
-			$this->output( "All these pages are in namespace '$ns'. \n" );
-			$this->output( str_pad( 'PAGE_NAME', 40 ) . "PAGE_ID\n" );
+		$numDeleted = 0;
+		$numUpdated = 0;
 
-			foreach ( $res as $row ) {
-				$this->output( str_pad( $row->page_title, 40 ) . $row->page_id . "\n" );
+		foreach ( $res as $row ) {
+			$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
+			if ( !$title ) {
+				$this->output( "Skipping invalid title with page_id: $row->page_id\n" );
+				continue;
 			}
+			$titleText = $title->getPrefixedDBkey();
 
-		} elseif ( $this->hasOption( 'delete' ) ) {
-			$deleted = 0;
+			// Check if there are any revisions that have this $row->page_id as their
+			// rev_page and select the largest which should be the newest revision.
+			$revId = $dbw->selectField(
+				'revision',
+				'MAX(rev_id)',
+				[ 'rev_page' => $row->page_id ],
+				__METHOD__
+			);
 
-			foreach ( $res as $row ) {
-				// Check if there are any revisions that have this $row->page_id as their
-				// rev_page and select the largest which should be the newest revision.
-				$revId = $dbw->selectField(
-					'revision',
-					'MAX(rev_id)',
-					[ 'rev_page' => $row->page_id ],
-					__METHOD__
-				);
-
-				if ( !$revId ) {
-					$this->output( "Deleting $row->page_title with page_id: $row->page_id\n" );
-					$dbw->delete( 'page',  [ 'page_id' => $row->page_id ], __METHOD__ );
-					$deleted++;
+			if ( !$revId ) {
+				if ( $dryRun ) {
+					$this->output( "Would delete $titleText with page_id: $row->page_id\n" );
 				} else {
-					$this->output( "Found the page's revisions: Updating $row->page_title...\n" );
+					$this->output( "Deleting $titleText with page_id: $row->page_id\n" );
+					$dbw->delete( 'page', [ 'page_id' => $row->page_id ], __METHOD__ );
+				}
+				$numDeleted++;
+			} else {
+				if ( $dryRun ) {
+					$this->output( "Would update page_id $row->page_id to page_latest $revId\n" );
+				} else {
+					$this->output( "Updating page_id $row->page_id to page_latest $revId\n" );
 					$dbw->update(
 						'page',
 						[ 'page_latest' => $revId ],
@@ -94,25 +120,13 @@ class FixMergeHistoryCorruption extends Maintenance {
 						__METHOD__
 					);
 				}
+				$numUpdated++;
 			}
-
-			$msg = $deleted ? "Deleted $deleted page row(s).\n" : "Nothing was deleted.\n";
-			$this->output( $msg );
-
-		} else {
-			$this->showHelp();
 		}
-	}
 
-	private function query( $dbw, $ns ) {
-		$query = $dbw->newSelectQueryBuilder()
-			->from( 'page' )
-			->join( 'revision', null, 'page_latest=rev_id' )
-			->fields( [ 'page_namespace', 'page_title', 'page_id' ] )
-			->where( [ 'page_id<>rev_page', 'page_namespace' => $ns ] )
-			->caller( __METHOD__ );
-
-		return $query->fetchResultSet();
+		if ( !$dryRun ) {
+			$this->output( "Updated $numUpdated row(s), deleted $numDeleted row(s)\n" );
+		}
 	}
 }
 
