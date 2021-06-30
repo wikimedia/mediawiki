@@ -259,7 +259,14 @@ class ApiMain extends ApiBase {
 				'RepoGroup',
 			]
 		],
-		'edit' => ApiEditPage::class,
+		'edit' => [
+			'class' => ApiEditPage::class,
+			'services' => [
+				'ContentHandlerFactory',
+				'RevisionLookup',
+				'WatchedItemStore',
+			]
+		],
 		'upload' => ApiUpload::class,
 		'filerevert' => [
 			'class' => ApiFileRevert::class,
