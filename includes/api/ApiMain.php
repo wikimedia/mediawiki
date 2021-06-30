@@ -208,7 +208,12 @@ class ApiMain extends ApiBase {
 				'RollbackPageFactory',
 			]
 		],
-		'delete' => ApiDelete::class,
+		'delete' => [
+			'class' => ApiDelete::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'undelete' => ApiUndelete::class,
 		'protect' => ApiProtect::class,
 		'block' => [
