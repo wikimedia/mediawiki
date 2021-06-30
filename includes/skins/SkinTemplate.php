@@ -1048,10 +1048,7 @@ class SkinTemplate extends Skin {
 				}
 
 				// Checks if user can edit the current page if it exists or create it otherwise
-				if ( $this->getAuthority()->probablyCan( 'edit', $title ) &&
-					 ( $title->exists() ||
-						 $this->getAuthority()->probablyCan( 'create', $title ) )
-				) {
+				if ( $this->getAuthority()->probablyCan( 'edit', $title ) ) {
 					// Builds CSS class for talk page links
 					$isTalkClass = $isTalk ? ' istalk' : '';
 					// Whether the user is editing the page

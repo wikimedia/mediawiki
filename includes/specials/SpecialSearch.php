@@ -594,7 +594,6 @@ class SpecialSearch extends SpecialPage {
 			} elseif (
 				$this->contentHandlerFactory->getContentHandler( $title->getContentModel() )
 					->supportsDirectEditing()
-				&& $this->getAuthority()->probablyCan( 'create', $title )
 				&& $this->getAuthority()->probablyCan( 'edit', $title )
 			) {
 				$messageName = 'searchmenu-new';

@@ -156,7 +156,7 @@ class ApiEditPage extends ApiBase {
 		// Now let's check whether we're even allowed to do this
 		$this->checkTitleUserPermissions(
 			$titleObj,
-			$titleObj->exists() ? 'edit' : [ 'edit', 'create' ],
+			'edit',
 			[ 'autoblock' => true ]
 		);
 

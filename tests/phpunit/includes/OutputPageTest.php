@@ -3198,7 +3198,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	/**
 	 * @dataProvider provideGetJsVarsEditable
-	 * @covers OutputPage::performerCanEditOrCreate
+	 * @covers OutputPage::getJSVars
 	 */
 	public function testGetJsVarsEditable( Authority $performer, array $expectedEditableConfig ) {
 		$op = $this->newInstance( [], null, null, $performer );

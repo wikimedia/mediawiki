@@ -1329,13 +1329,6 @@ class WikiImporter {
 
 				return false;
 			}
-
-			if ( !$title->exists() && !$this->permissionManager->userCan( 'create', $user, $title ) ) {
-				# Do not import if the importing wiki user cannot create this page
-				$this->notice( 'import-error-create', $title->getPrefixedText() );
-
-				return false;
-			}
 		}
 
 		return [ $title, $foreignTitle ];

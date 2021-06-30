@@ -3033,7 +3033,6 @@
 	"import-token-mismatch": "Loss of session data.\n\nYou might have been logged out. '''Please verify that you're still logged in and try again'''.\nIf it still does not work, try [[Special:UserLogout|logging out]] and logging back in, and check that your browser allows cookies from this site.",
 	"import-invalid-interwiki": "Cannot import from the specified wiki.",
 	"import-error-edit": "Page \"$1\" was not imported because you are not allowed to edit it.",
-	"import-error-create": "Page \"$1\" was not imported because you are not allowed to create it.",
 	"import-error-interwiki": "Page \"$1\" was not imported because its name is reserved for external linking (interwiki).",
 	"import-error-special": "Page \"$1\" was not imported because it belongs to a special namespace that does not allow pages.",
 	"import-error-invalid": "Page \"$1\" was not imported because the name to which it would be imported is invalid on this wiki.",
