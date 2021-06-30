@@ -129,7 +129,12 @@ class ApiMain extends ApiBase {
 				'WikiPageFactory',
 			]
 		],
-		'opensearch' => ApiOpenSearch::class,
+		'opensearch' => [
+			'class' => ApiOpenSearch::class,
+			'services' => [
+				'LinkBatchFactory',
+			]
+		],
 		'feedcontributions' => [
 			'class' => ApiFeedContributions::class,
 			'services' => [
