@@ -395,6 +395,10 @@ because of Phabricator reports.
    - isUsableName
    - isCreatableName
    - getCanonicalName
+   - addAutopromoteOnceGroups
+   - getEffectiveGroups
+   - getAutomaticGroups
+   - getFormerGroups
 * The following methods in User were deprecated:
   - ::idFromName - use UserIdentityLookup::getUserIdentityByName instead.
   - ::resetIdByNameCache - in tests, reset service container. No replacement

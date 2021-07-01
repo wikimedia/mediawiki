@@ -34,9 +34,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 			->disableOriginalConstructor()
 			->getMock();
 
-		// Set up groups and rights
-		$this->mUserMock->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
-
 		// No actual DB data
 		$this->mUserMock->method( 'getInstanceForUpdate' )->willReturn( $this->mUserMock );
 

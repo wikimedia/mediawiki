@@ -1811,9 +1811,10 @@ abstract class Installer {
 					$name, $status->getWikiText( null, null, $this->getVar( '_UserLang' ) ) );
 			}
 
-			$user->addGroup( 'sysop' );
-			$user->addGroup( 'bureaucrat' );
-			$user->addGroup( 'interface-admin' );
+			$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+			$userGroupManager->addUserToGroup( $user, 'sysop' );
+			$userGroupManager->addUserToGroup( $user, 'bureaucrat' );
+			$userGroupManager->addUserToGroup( $user, 'interface-admin' );
 			if ( $this->getVar( '_AdminEmail' ) ) {
 				$user->setEmail( $this->getVar( '_AdminEmail' ) );
 			}

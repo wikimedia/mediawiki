@@ -141,7 +141,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		}
 		$this->assertTrue( $exception, "Got exception" );
 
-		$this->user->removeGroup( 'sysop' );
+		$this->getServiceContainer()->getUserGroupManager()->removeUserFromGroup( $this->user, 'sysop' );
 		$exception = false;
 		try {
 			$this->doApiRequestWithToken( [
@@ -179,7 +179,7 @@ class UploadFromUrlTest extends ApiTestCase {
 		$file = __DIR__ . '/../../data/upload/png-plain.png';
 		$this->installMockHttp( file_get_contents( $file ) );
 
-		$this->user->addGroup( 'users' );
+		$this->getServiceContainer()->getUserGroupManager()->addUserToGroup( $this->user, 'users' );
 		$data = $this->doApiRequestWithToken( [
 			'action' => 'upload',
 			'filename' => 'UploadFromUrlTest.png',

@@ -23,6 +23,8 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
+use MediaWiki\MediaWikiServices;
+
 require_once __DIR__ . '/Maintenance.php';
 
 /**
@@ -39,6 +41,9 @@ class RemoveUnusedAccounts extends Maintenance {
 	}
 
 	public function execute() {
+		$services = MediaWikiServices::getInstance();
+		$userFactory = $services->getUserFactory();
+		$userGroupManager = $services->getUserGroupManager();
 		$this->output( "Remove unused accounts\n\n" );
 
 		# Do an initial scan for inactive accounts and report the result
@@ -67,10 +72,12 @@ class RemoveUnusedAccounts extends Maintenance {
 		foreach ( $res as $row ) {
 			# Check the account, but ignore it if it's within a $excludedGroups
 			# group or if it's touched within the $touchedSeconds seconds.
-			$instance = User::newFromId( $row->user_id );
-			if ( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0
+			$instance = $userFactory->newFromId( $row->user_id );
+			if ( count(
+				array_intersect( $userGroupManager->getUserEffectiveGroups( $instance ), $excludedGroups ) ) == 0
 				&& $this->isInactiveAccount( $row->user_id, $row->actor_id ?? null, true )
-				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds )
+				&& wfTimestamp( TS_UNIX, $row->user_touched ) < wfTimestamp( TS_UNIX, time() - $touchedSeconds
+				)
 			) {
 				# Inactive; print out the name and flag it
 				$delUser[] = $row->user_id;

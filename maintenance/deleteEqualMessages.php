@@ -178,7 +178,8 @@ class DeleteEqualMessages extends Maintenance {
 		$wgUser = $user;
 
 		// Hide deletions from RecentChanges
-		$user->addGroup( 'bot' );
+		$userGroupManager = $services->getUserGroupManager();
+		$userGroupManager->addUserToGroup( $user, 'bot' );
 
 		// Handle deletion
 		$this->output( "\n...deleting equal messages (this may take a long time!)..." );

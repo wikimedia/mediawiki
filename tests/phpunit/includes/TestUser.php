@@ -69,12 +69,13 @@ class TestUser {
 			$this->setRealName( $realname );
 
 		// Adjust groups by adding any missing ones and removing any extras
-		$currentGroups = $this->user->getGroups();
+		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+		$currentGroups = $userGroupManager->getUserGroups( $this->user );
 		foreach ( array_diff( $groups, $currentGroups ) as $group ) {
-			$this->user->addGroup( $group );
+			$userGroupManager->addUserToGroup( $this->user, $group );
 		}
 		foreach ( array_diff( $currentGroups, $groups ) as $group ) {
-			$this->user->removeGroup( $group );
+			$userGroupManager->removeUserFromGroup( $this->user, $group );
 		}
 		if ( $change ) {
 			// Disable CAS check before saving. The User object may have been initialized from cached

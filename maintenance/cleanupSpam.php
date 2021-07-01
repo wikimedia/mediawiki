@@ -55,7 +55,7 @@ class CleanupSpam extends Maintenance {
 			$this->fatalError( "Invalid username specified in 'spambot_username' message: $username" );
 		}
 		// Hack: Grant bot rights so we don't flood RecentChanges
-		$user->addGroup( 'bot' );
+		MediaWikiServices::getInstance()->getUserGroupManager()->addUserToGroup( $user, 'bot' );
 		$wgUser = $user;
 
 		$spec = $this->getArg( 0 );

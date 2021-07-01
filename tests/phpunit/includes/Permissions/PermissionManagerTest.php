@@ -1277,10 +1277,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 		$page = Title::newFromText( 'ExistentRedirect3' );
 		$pm = MediaWikiServices::getInstance()->getPermissionManager();
 
-		$user = $this->getMockBuilder( User::class )
-			->onlyMethods( [ 'getEffectiveGroups' ] )
-			->getMock();
-		$user->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
+		$user = $this->getTestUser()->getUser();
 
 		$this->assertFalse( $pm->quickUserCan( 'delete-redirect', $user, $page ) );
 

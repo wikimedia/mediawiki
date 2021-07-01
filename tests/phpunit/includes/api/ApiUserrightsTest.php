@@ -81,8 +81,10 @@ class ApiUserrightsTest extends ApiTestCase {
 		$res = $this->doApiRequestWithToken( $params );
 
 		$user->clearInstanceCache();
-		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
-		$this->assertSame( $expectedGroups, $user->getGroups() );
+		$this->getServiceContainer()->getPermissionManager()->invalidateUsersRightsCache();
+		$this->assertSame(
+			$expectedGroups, $this->getServiceContainer()->getUserGroupManager()->getUserGroups( $user )
+		);
 
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
@@ -100,6 +102,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		$expectedException, array $params = [], User $user = null
 	) {
 		$params['action'] = 'userrights';
+		$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
 
 		$this->expectException( ApiUsageException::class );
 		$this->expectExceptionMessage( $expectedException );
@@ -121,13 +124,13 @@ class ApiUserrightsTest extends ApiTestCase {
 		if ( !isset( $params['add'] ) && !isset( $params['remove'] ) ) {
 			$params['add'] = 'sysop';
 		}
-		$expectedGroups = $user->getGroups();
+		$expectedGroups = $userGroupManager->getUserGroups( $user );
 
 		try {
 			$this->doApiRequestWithToken( $params );
 		} finally {
 			$user->clearInstanceCache();
-			$this->assertSame( $expectedGroups, $user->getGroups() );
+			$this->assertSame( $expectedGroups, $userGroupManager->getUserGroups( $user ) );
 		}
 	}
 
@@ -252,7 +255,7 @@ class ApiUserrightsTest extends ApiTestCase {
 		], null, $sysop );
 
 		$user->clearInstanceCache();
-		$this->assertSame( [ 'sysop' ], $user->getGroups() );
+		$this->assertSame( [ 'sysop' ], $this->getServiceContainer()->getUserGroupManager()->getUserGroups( $user ) );
 
 		$this->assertArrayNotHasKey( 'warnings', $res[0] );
 	}
