@@ -770,7 +770,7 @@ class SkinTemplate extends Skin {
 		return [
 			'text' => $this->username,
 			'href' => &$this->userpageUrlDetails['href'],
-			'class' => $this->userpageUrlDetails['exists'] ? false : 'new',
+			'link-class' => $this->userpageUrlDetails['exists'] ? [] : [ 'new' ],
 			'exists' => $this->userpageUrlDetails['exists'],
 			'active' => ( $this->userpageUrlDetails['href'] == $this->getTitle()->getLocalURL() ),
 			'icon' => 'userAvatar',

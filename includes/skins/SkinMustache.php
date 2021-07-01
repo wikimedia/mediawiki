@@ -238,7 +238,7 @@ class SkinMustache extends SkinTemplate {
 
 		foreach ( $contentNavigation as $name => $items ) {
 			if ( $name === 'user-menu' ) {
-				$items = $this->getPersonalToolsForMakeListItem( $items );
+				$items = $this->getPersonalToolsForMakeListItem( $items, true );
 			}
 
 			$portlets['data-' . $name] = $this->getPortletData( $name, $items );
