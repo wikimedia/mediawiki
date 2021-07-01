@@ -104,19 +104,18 @@ use Wikimedia\LightweightObjectStore\StorageAwareness;
  * should not be relied on for cases where reads are used to determine writes to source
  * (e.g. non-cache) data stores, except when reading immutable data.
  *
- * All values are wrapped in metadata arrays. Keys use a "WANCache:" prefix to avoid
- * collisions with keys that are not wrapped as metadata arrays. For any given key that
- * a caller uses, there are several "sister" keys that might be involved under the hood.
- * Each "sister" key differs only by a single-character:
+ * Internally, access to a given key actually involves the use of one or more "sister" keys.
+ * A sister key is constructed by prefixing the base key with "WANCache:" (used to distinguish
+ * WANObjectCache formatted keys) and suffixing a colon followed by a single-character sister
+ * key type. The sister key types include the following:
  *
- * - `v`: used for storing regular values (or a "tombstone" purge value).
- * - `f`: used for storing purge values of "flux" keys (copy of a "tombstone", only used
- *   when the `onHostRoutingPrefix` option is enabled).
- * - `t`: used for storing purge values of timestamp "check" keys.
- * - `m`: used for temporary mutex locks to avoid cache stampedes.
- * - `i`: used for interim storing of values for keys that are tombstoned.
- * - `c`: used for temporary indicator of a "cool-off" bounce, during which values
- *    are stored neither regularly nor as interim keys.
+ * - `v`: used to store "regular" values (metadata-wrapped) and temporary purge "tombstones".
+ * - `f`: used to store copies of temporary purge "tombstones" (only with `onHostRoutingPrefix`).
+ * - `t`: used to store "last purge" timestamps for "check" keys.
+ * - `m`: used to store temporary mutex locks to avoid cache stampedes.
+ * - `i`: used to store temporary interim values (metadata-wrapped) for tombstoned keys.
+ * - `c`: used to store temporary "cool-off" indicators, which specify a period during which
+ *        values cannot be stored, neither regularly nor using interim keys.
  *
  * @ingroup Cache
  * @since 1.26
