@@ -168,7 +168,9 @@ abstract class Skin extends ContextSource {
 	 *  `name` key represents the skinname, defaults to $wgDefaultSkin if not provided
 	 *  `scripts` represents an array of ResourceLoader script modules and
 	 *  `styles` represents an array of ResourceLoader style modules to load on all pages.
-	 *  `responsive` indicates if a viewport meta tag should be set.
+	 *  `responsive` indicates if a skin supports responsive behaviour and a viewport meta
+	 *     tag can be set on the skin. Note, users can disable this feature via  user
+	 *     preference.
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
@@ -202,7 +204,11 @@ abstract class Skin extends ContextSource {
 	 * @return bool
 	 */
 	public function isResponsive() {
-		return $this->options['responsive'] ?? false;
+		$isSkinResponsiveCapable = $this->options['responsive'] ?? false;
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+
+		return $isSkinResponsiveCapable &&
+			$userOptionsLookup->getBoolOption( $this->getUser(), 'skin-responsive' );
 	}
 
 	/**
