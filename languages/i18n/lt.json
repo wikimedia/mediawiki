@@ -2643,7 +2643,6 @@
 	"import-token-mismatch": "Sesijos duomenys prarasti.\n\nGali būti, kad esate atsijungęs. '''Prašome patikrinti, ar vis dar esate prisijungęs, ir pabandyti iš naujo'''.\nJei ir toliau nepavyksta, pamėginkite [[Special:UserLogout|atsijungti]] ir vėl prisijungti, taip pat patikrinkite, ar jūsų naršyklė priima šios svetainės slapukus.",
 	"import-invalid-interwiki": "Nepavyko importuoti iš nurodyto wiki projekto.",
 	"import-error-edit": "Puslapis \"$1\" nebuvo įkeltas, nes jūs neturite teisės jį redaguoti.",
-	"import-error-create": "Puslapis „$1“ nebuvo importuotas, nes jūs neturite teisės jį sukurti.",
 	"import-error-interwiki": "Puslapis \"$1\" nebuvo importuotas, nes jo pavadinimas yra rezervuotas išorinei nuorodai (interviki).",
 	"import-error-special": "Puslapis „$1“ nebuvo importuotas, nes jis priklauso specialiai vardų sričiai, kurioje neleidžiami puslapiai.",
 	"import-error-invalid": "Puslapis \"$1\" nebuvo įkeltas, kadangi jo vardas yra neteisingas.",

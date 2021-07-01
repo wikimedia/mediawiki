@@ -2137,7 +2137,6 @@
 	"import-token-mismatch": "Goywaati bayhayey dere.\nCeeci koyne taare.",
 	"import-invalid-interwiki": "Ši hin ka zaandi wiki tabatantaa ga.",
 	"import-error-edit": "\"$1\" moo mana huru zama war ši nda fondo k'a fasal.",
-	"import-error-create": "\"$1\" moo mana huru zama war ši nda fondo k'a tee.",
 	"import-error-interwiki": "\"$1\" moo mana huru zama nga maaɲoo n' ka lanbandi tarayhere dobuyan se (interwiki).",
 	"import-error-special": "\"$1\" moo mana huru zama maafarru cereerante kaŋ ši moɲey duɲe no m'a may.",
 	"import-error-invalid": "\"$1\" moo mana huru zama maaɲoo kaŋ g'a hima ka huru ši boori wikiyoo woo se.",

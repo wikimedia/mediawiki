@@ -2874,7 +2874,6 @@
 	"import-token-mismatch": "Izguba podatkov o seji.\n\nMorda ste bili odjavljeni. '''Prosimo, preverite, ali ste še vedno prijavljeni, in poskusite znova.'''\nČe urejanje še vedno ne bo mogoče, se poskusite [[Special:UserLogout|odjaviti]] in znova prijaviti; prav tako preverite, ali vaš brskalnik dovoljuje piškotke te strani.",
 	"import-invalid-interwiki": "Uvoz iz navedenega wikija ni možen.",
 	"import-error-edit": "Strani »$1« nismo uvozili, ker vam ni dovoljeno, da jo urejate.",
-	"import-error-create": "Strani »$1« nismo uvozili, ker vam ni dovoljeno, da jo ustvarite.",
 	"import-error-interwiki": "Strani »$1« nismo uvozili, ker je njeno ime rezervirano za zunanje povezovanje (interwiki).",
 	"import-error-special": "Strani »$1« nismo uvozili, ker spada k posebnemu imenskemu prostoru, ki ne dovoljuje strani.",
 	"import-error-invalid": "Strani »$1« nismo uvozili, ker ime, na katerega bi jo uvozili, na tem wikiju ni veljavno.",

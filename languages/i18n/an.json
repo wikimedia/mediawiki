@@ -1834,7 +1834,6 @@
 	"import-token-mismatch": "S'han perdito os datos d'a sesión. Por favor, prebe unatra vegada.",
 	"import-invalid-interwiki": "No se puet importar dende o wiki especificato.",
 	"import-error-edit": "A pachina \"$1\" no s'ha importau porque vusté no tiene permisos ta editar-la.",
-	"import-error-create": "A pachina \"$1\" no s'ha importau porque vusté no tiene permisos ta creyar-la.",
 	"import-error-interwiki": "A pachina \"$1\" no s'ha importau porque o suyo nombre ye reservau ta vinclos externos (interwiki).",
 	"import-error-special": "A pachina \"$1\" no s'ha importau porque perteneix a un espacio de nombres especial que no permite pachinas.",
 	"import-error-invalid": "A pachina \"$1\" no s'ha importau porque o suyo nombre ye invalido.",

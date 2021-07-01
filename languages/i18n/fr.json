@@ -3068,7 +3068,6 @@
 	"import-token-mismatch": "Perte des données de session.\n\nVous avez peut-être été déconnecté{{GENDER:||e}}. '''Veuillez vérifier que vous êtes toujours connecté et réessayez'''.\nSi cela ne fonctionne toujours pas, essayez de [[Special:UserLogout|vous déconnecter]] avant de vous reconnecter, et vérifiez que votre navigateur accepte les témoins (''cookies'') de ce site.",
 	"import-invalid-interwiki": "Impossible d’importer depuis le wiki spécifié.",
 	"import-error-edit": "La page « $1 » n’a pas été importée parce que vous n’êtes pas autorisé{{GENDER:||e}} à la modifier.",
-	"import-error-create": "La page « $1 » n’a pas été importée parce que vous n’êtes pas autorisé{{GENDER:||e}} à la créer.",
 	"import-error-interwiki": "La page « $1 » n’a pas été importée parce que son nom est réservé pour un lien externe (interwiki).",
 	"import-error-special": "La page « $1 » n’a pas été importée parce qu’elle appartient à un espace de noms spécial qui n’autorise aucune page.",
 	"import-error-invalid": "La page « $1 » n’a pas été importée parce que le nom sous lequel elle aurait été importée n’est pas valide sur ce wiki.",

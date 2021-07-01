@@ -2570,7 +2570,6 @@
 	"import-token-mismatch": "Pèrda de las donadas de session.\n\nBenlèu que sètz estats desconnectats. <strong>Verificatz que sètz totjorn connectat e reensajatz</strong>.\nSe aquò fonciona totjorn pas, ensajatz de [[Special:UserLogout|vos desconnectar]] e reconnectatz-vos, e verificatz que vòstre navigador accèpta los cookies d'aqueste site.",
 	"import-invalid-interwiki": "Impossible d'importar dempuèi lo wiki especificat.",
 	"import-error-edit": "La pagina « $1 » es pas estada importada perque sètz pas autorizat a la modificar.",
-	"import-error-create": "La pagina « $1 » es pas estada importada perque sètz pas autorizat a la crear.",
 	"import-error-invalid": "Pagina « $1 » es pas importada perque lo nom amb lo qual seriá estada importada es pas valid sus aqueste wiki.",
 	"import-options-wrong": "{{PLURAL:$2|Marrida opcion|Marridas opcions}} : <nowiki>$1</nowiki>",
 	"import-rootpage-invalid": "La pagina raiç provesida es un títol invalid.",

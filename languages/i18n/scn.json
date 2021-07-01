@@ -2196,7 +2196,6 @@
 	"import-token-mismatch": "Si pèrsiru li dati rilativi a la sissioni. Pi piaciri, prova n'àutra vota.",
 	"import-invalid-interwiki": "E' mpussìbbili mpurtari dû pruggettu wiki nnicatu.",
 	"import-error-edit": "La pàggina \"$1\" nun fu mpurtata pirchì nun hai lu pirmissu di canciàrila.",
-	"import-error-create": "La pàggina \"$1\" nun fu mpurtata pirchì nun hai lu pirmissu di criàrila.",
 	"import-error-interwiki": "La pàggina \"$1\" nun fu mpurtata pirchì lu sò nomu è risirvatu pî lijami di fora (inter-wiki).",
 	"import-error-special": "La pàggina \"$1\" nun fu mpurtata pirchì apparteni a nu namespace spiciali chi nun cunzenti pàggini.",
 	"import-error-invalid": "La pàggina \"$1\" nun fu mpurtata pirchì lu nomu unni fussi mpurtata nun è vàlidu supra a sta wiki.",

@@ -2961,7 +2961,6 @@
 	"import-token-mismatch": "Utracono dane sesji. \n\nByć może doszło do wylogowania. '''Proszę, upewnij się, że nadal jesteś zalogowany (zalogowana), i wtedy spróbuj ponownie.'''\nJeśli to nie pomoże – spróbuj [[Special:UserLogout|wylogować się]] i zalogować ponownie, a także upewnij się, że twoja przeglądarka akceptuje ciasteczka z tej witryny.",
 	"import-invalid-interwiki": "Nie można importować z podanej wiki.",
 	"import-error-edit": "Strona „$1” nie została zaimportowana, ponieważ nie jesteś uprawniony do jej edytowania.",
-	"import-error-create": "Strona „$1” nie została zaimportowana, ponieważ nie jesteś uprawniony do jej utworzenia.",
 	"import-error-interwiki": "Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest zarezerwowana do linków zewnętrznych (interwiki).",
 	"import-error-special": "Strona „$1” nie została zaimportowana, ponieważ należy do specjalnej przestrzeni nazw, która nie zezwala na strony.",
 	"import-error-invalid": "Strona „$1” nie została zaimportowana, ponieważ jej nazwa jest nieprawidłowa na tej wiki.",

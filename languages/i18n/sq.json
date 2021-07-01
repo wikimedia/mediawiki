@@ -2487,7 +2487,6 @@
 	"import-token-mismatch": "Humbje të dhënash sesioni.\n\nMund të jeni nxjerrë nga llogaria. '''Ju lutemi, verifikoni se jeni ende i futur dhe riprovoni'''.\nNëse prapë s’funksionon, provoni [[Special:UserLogout|të bëni daljen]] dhe të rihyni, dhe kontrolloni se shfletuesi juaj lejon “cookies” prej këtij sajti.",
 	"import-invalid-interwiki": "Nuk mund të importohet nga wiki i specifikuar.",
 	"import-error-edit": "Faqja \"$1\" nuk është importuar sepse ju nuk lejoheni ta redaktoni atë.",
-	"import-error-create": "Faqja \"$1\" nuk është importuar sepse ju nuk lejoheni ta krijoni atë.",
 	"import-error-interwiki": "Faqja \"$1\" nuk është importuar sepse emri i saj është rezervuar për lidhje të jashtme (interwiki)",
 	"import-error-special": "Faqja \"$1\" nuk është importuar sepse ajo i përket një hapësire të veçantë që nuk lejon faqe.",
 	"import-error-invalid": "Faqja \"$1\" nuk është importuar sepse emri me të cilin do të importohej është i palejueshëm në këtë wiki.",

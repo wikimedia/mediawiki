@@ -2814,7 +2814,6 @@
 	"import-token-mismatch": "Perda de datos de la sesión.\n\nSeique zarróse la sesión. '''Comprueba si tienes abierta la sesión y tenta nuevamente'''.\nSi entá nun funciona, tenta [[Special:UserLogout|colar]] y volver a aniciar sesión y comprueba que'l restolador permite les cookies d'esti sitiu.",
 	"import-invalid-interwiki": "Nun puede importase de la wiki especificada.",
 	"import-error-edit": "La páxina «$1» nun s'importó porque nun tienes permisu pa editala.",
-	"import-error-create": "La páxina «$1» nun s'importó porque nun tienes permisu pa creala.",
 	"import-error-interwiki": "La páxina «$1» nun s'importó porque'l so nome ta acutáu pa enllaces esternos (interwiki).",
 	"import-error-special": "La páxina «$1» nun s'importó porque pertenez a un espaciu de nomes especial que nun permite les páxines.",
 	"import-error-invalid": "La páxina «$1» nun s'importó porque'l nome al que s'importaría ye inválidu nesta wiki.",

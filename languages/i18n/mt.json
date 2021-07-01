@@ -2522,7 +2522,6 @@
 	"import-token-mismatch": "Telfien tad-data tas-sessjoni.\n\n'''Kun ċert li għadek imdaħħal u erġa' pprova'''.\n\nJekk xorta tibqa' ma taħdimx, ipprova [[Special:UserLogout|oħroġ]] u erġa' idħol.</strong> Ara ukoll li l-browser tiegħek jaċċetta l-cookies minn dan is-sit.",
 	"import-invalid-interwiki": "Ma jistax jiġi importat mill-wiki indikata.",
 	"import-error-edit": "Il-paġna \"$1\" ma ġietx  impurtata minħabba li mintix awtorizzat li timmodifikaha.",
-	"import-error-create": "Il-paġna \"$1\" ma ġietx  impurtata minħabba li mintix awtorizzat li toħloqha.",
 	"import-error-interwiki": "Il-paġna \"$1\" ma ġietx importata minħabba li isimha huwa riservat għal ħolqa esterna (interwiki).",
 	"import-error-special": "Il-paġna \"$1\" ma ġietx importata minħabba li hi parti ta' spazju tal-isem speċjali li ma jħallix paġni.",
 	"import-error-invalid": "Il-paġna \"$1\" ma ġietx impurtata minħabba li isimha hi invalida.",

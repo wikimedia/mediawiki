@@ -2178,7 +2178,6 @@
 	"import-token-mismatch": "De sessiegegevens bin verleuren egaon. Probeer t opniej.",
 	"import-invalid-interwiki": "t Is niet meugelik um van de an-egeven wiki in te voeren.",
 	"import-error-edit": "De zied \"$1\" is niet in-evoerd umda'j de rechten niet hebben um t te bewarken.",
-	"import-error-create": "De zied \"$1\" is niet in-evoerd umda'j de rechten niet hebben um t an te maken.",
 	"import-error-interwiki": "De zied \"$1\" is niet in-evoerd umdat disse naam ereserveerd is veur externe verwiezingen (interwiki).",
 	"import-error-special": "Zied \"$1\" is niet in-evoerd umdat t eplaotst is in n spesiale naamruumte waor gien ziejen in eplaotst kunnen wörden.",
 	"import-error-invalid": "De zied\" \"$1\" is niet in-evoerd umdat de naam ongeldig is.",

@@ -2410,7 +2410,6 @@
 	"import-token-mismatch": "kasasiketan kalunasulitan mahedaw.\n\nhakay kisu mapakatahkal. <strong> pilucek kisu i patalabu setyitase henay haw? atu pitaneng aca </strong>.\namahica la’cus henay misaungay, pitanam [[Special:UserLogout|katahkal]] patalabu aca，zumasatu pikinsa saazihay-sakaluk nu misu mahasa tina kakacawan pisaungay cookie.",
 	"import-invalid-interwiki": "amana pacumud nay matuzu’ay a Wiki.",
 	"import-error-edit": "inayi’ tungus kisu mikawaway-kalumyiti kasabelih \"$1\", la’cus micumud",
-	"import-error-create": "inayi’ tungus kisu patizeng kasabelih \"$1\", la’cus micumud.",
 	"import-error-interwiki": "kasabelih \"$1\" kalungangan maliwan hizantu mala hekalay masasiket (interwiki) pisaungay, la’cus pacumud.",
 	"import-error-special": "kasabelih \"$1\" tungusay nu caay mahasa kasabelih a sazumaay azihen pangangananay a salaedan, la’cus  pacumud.",
 	"import-error-invalid": "kasabelih \"$1\" pacumud tina Wiki a kalungangan la’cus, la’cus pacumud.",

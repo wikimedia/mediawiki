@@ -2569,7 +2569,6 @@
 	"import-token-mismatch": "小節嘅資料唔見咗。\n\n你可能簽退咗。'''請你檢查下係咪重係簽到緊，之後再試過'''。\n如果仍然唔得嘅話，試下[[Special:UserLogout|簽退]]後再簽到，同埋檢查個瀏覽器係受呢個站嘅曲奇。",
 	"import-invalid-interwiki": "唔能夠響指定嘅wiki倒入。",
 	"import-error-edit": "頁「$1」未倒入，因為你無權改佢。",
-	"import-error-create": "頁「$1」未倒入，因為你無權建立佢。",
 	"import-error-interwiki": "頁「$1」未倒入，因為個名要留畀出面連結（跨維基）。",
 	"import-error-special": "頁「$1」未倒入，因為佢屬於一個特別名空間，唔畀開頁。",
 	"import-error-invalid": "頁「$1」未倒入，倒入個名響呢個維基無效。",

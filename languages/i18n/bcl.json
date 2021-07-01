@@ -2446,7 +2446,6 @@
 	"import-token-mismatch": "Pagkawara nin datos kan sesyon.\n\nProbaran tabì giraray. Kun dai man giraray magibo, probaran [[Special:UserLogout|na magluwas]] dangan maglaog giraray asin siguraduhon na nagtutugot an browser sa mga cookies hali sa site na ini.",
 	"import-invalid-interwiki": "Dae makakapag-importa gikan sa pinagsambit na wiki.",
 	"import-error-edit": "An pahina \"$1\" bakong importado nin huli ta ika dae tinutugutan na magliliwat kaini.",
-	"import-error-create": "An pahina \"$1\" bakong importado nin huli ta ika dae tinutugutan na magmumukna kaini.",
 	"import-error-interwiki": "An pahina \"$1\" bakong importado nin huli ta an pangaran kaini reserbado na para sa panluwas na kasugpunan (interwiki).",
 	"import-error-special": "An pahina \"$1\" bakong importado nin huli ta ini kabali sa espesyal an espasyong-ngaran na dae nagtutugot nin mga pahina.",
 	"import-error-invalid": "An pahina \"$1\" bakong importado nin huli ta an ngaran kaini imbalido.",

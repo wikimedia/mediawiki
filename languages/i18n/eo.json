@@ -2914,7 +2914,6 @@
 	"import-token-mismatch": "Seancaj datumoj perdiĝis.\n\nVi eble estis elsalutita. <strong>Bonvolu kontroli ke vi daŭre estas ensalutita kaj provi denove</strong>.\nSe tio ankoraŭ ne funkcios, provu [[Special:UserLogout|elsaluti]] \nkaj ensaluti denove, kaj kontrolu ke via retumilo permesas kuketojn de ĉi tiu paĝaro.",
 	"import-invalid-interwiki": "Ne povas importi de la specifita vikio.",
 	"import-error-edit": "Paĝo \"$1\" ne estis importita ĉar vi ne rajtas radakti ĝin.",
-	"import-error-create": "Paĝo \"$1\" ne estis importita ĉar vi ne rajtas krei ĝin.",
 	"import-error-interwiki": "Paĝo \"$1\" ne estis importita pro sia nomo estas deklarita por ekstera ligado (intervikia).",
 	"import-error-special": "Paĝo \"$1\" ne estis importata, ĉar ĝi apartenas al speciala nomspaco, kiu ne permesas paĝojn.",
 	"import-error-invalid": "Paĝo \"$1\" ne estis importata, ĉar ĝia nomo estas nevalida.",

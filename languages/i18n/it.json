@@ -2993,7 +2993,6 @@
 	"import-token-mismatch": "I dati relativi alla sessione sono andati persi.\n\nPotresti essere stato disconnesso. '''Verifica di essere ancora collegato e riprova'''.\nSe il problema persiste, puoi provare a [[Special:UserLogout|scollegarti]] ed effettuare di nuovo l'accesso, controllando che il tuo browser accetti i cookie da questo sito.",
 	"import-invalid-interwiki": "Impossibile importare dal progetto wiki indicato.",
 	"import-error-edit": "La pagina \"$1\" non è stata importata poiché non sei autorizzato a modificarla.",
-	"import-error-create": "La pagina \"$1\" non è stata importata poiché non sei autorizzato a crearla.",
 	"import-error-interwiki": "La pagina \"$1\" non è stata importata perché il suo nome è riservato per il collegamento esterno (interwiki).",
 	"import-error-special": "La pagina \"$1\" non è stata importata perché appartiene a un namespace speciale che non permette pagine.",
 	"import-error-invalid": "La pagina \"$1\" non è stata importata perché il nome a cui sarebbe stata importata non è valido su questo wiki.",

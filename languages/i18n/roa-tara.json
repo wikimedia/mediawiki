@@ -2681,7 +2681,6 @@
 	"import-token-mismatch": "S'à perse 'a sessione de le date.\n\nPò essere ca è state mise fore. '''Verifiche de sta angore jndre e pruéve arrete'''.\nCe tìne angore 'u probbleme, pué pruvà a [[Special:UserLogout|assè]] e trasè arrete, condrollanne ca 'u browser tune se pigghie le cookie da stu site.",
 	"import-invalid-interwiki": "Non ge pozze 'mbortà da 'a Uicchi specificate.",
 	"import-error-edit": "Pàgene \"$1\" non g'ha state 'mbortate purcé tu non ge tìne le permesse pe cangiarle.",
-	"import-error-create": "Pàgene \"$1\" non g'ha state 'mbortate purcé tu non ge tìne le permesse pe ccrejarle.",
 	"import-error-interwiki": "Pagene \"$1\" non g'ha state 'mbortate purcé 'u nome sue jè riservate pe collegaminde de fore (interuicchi).",
 	"import-error-special": "'A pagena \"$1\" non g'ha state 'mbortate purcé apponde a 'nu namespace speciale ca non g'è permesse a le pàggene normale.",
 	"import-error-invalid": "'A pàgene \"$1\" non g'ha state 'mbortate purcé 'u nome sus a 'u quale avessa essere 'mborate non g'è valide sus a sta uicchi.",

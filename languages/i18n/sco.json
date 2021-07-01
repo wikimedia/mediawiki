@@ -2456,7 +2456,6 @@
 	"import-token-mismatch": "Loss o session data.\n\nYe micht hae been logged oot. <strong>Please verify that ye're still logged in an try again</strong>.\nIf it still daes nae wirk, try [[Special:UserLogout|loggin oot]] an loggin back in, an check that yer brouser allaes cookies frae this steid.",
 	"import-invalid-interwiki": "Canna import fae the speceefied wiki.",
 	"import-error-edit": "Page \"$1\" wisna importit cause ye'r na alloued tae eedit it.",
-	"import-error-create": "Page \"$1\" wisna importit cause ye'r no alloued tae creaut it.",
 	"import-error-interwiki": "Page \"$1\" wisna importit cause its name is reserved fer ootby airtinin (interwiki).",
 	"import-error-special": "Page \"$1\" wisna importit cause it belangs til ae byordinair namespace that disna allou pages.",
 	"import-error-invalid": "Page \"$1\" wisna importit cause the name that it wid be importit tae isna valit oan this wiki.",

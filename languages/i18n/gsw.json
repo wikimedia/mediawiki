@@ -2236,7 +2236,6 @@
 	"import-token-mismatch": "D Sitzigsdate sin verlore gange. Bitte versuech es noo emool.",
 	"import-invalid-interwiki": "Us däm Wiki wo du aagää hesch isch kei Import mögli.",
 	"import-error-edit": "Die Syte „$1“ isch nit importiert worde, wyl du nit dezue berächtigt bisch, si z bearbeite.",
-	"import-error-create": "Die Syte „$1“ isch nit importiert worde, wyl du nit dezue berächtigt bisch, si z erstelle.",
 	"import-error-interwiki": "D Syte „$1“ isch nit importiert wore, wel dr Name vun ere fir externi Link (Interwiki) reserviert isch.",
 	"import-error-special": "D Syte „$1“ isch nit importiert wore, wel si zuen eme bsundere Namensruum ghert, wu kei Syte megli sin.",
 	"import-error-invalid": "D Syte «$1» isch nid importiert worde, wil der Name, wo si hätt söllen übercho, i däm Wiki nid gültig isch.",

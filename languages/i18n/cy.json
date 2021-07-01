@@ -2489,7 +2489,6 @@
 	"import-token-mismatch": "Collwyd y data.\n\nEfallai i chi allgofnodi. '''Cadarnhewch eich bod yn dal wedi mewngofnodi a cheisiwch eto'''.\nOs yw'n parhau i fethu, ceisiwch [[Special:UserLogout|allgofnodi]] a mewngofnodwch drachefn, a gwirwch fod eich porwr yn caniatau cwcis o'r wefan hon.",
 	"import-invalid-interwiki": "Ni ellir uwchlwytho o'r wici dewisedig.",
 	"import-error-edit": "Ni fewnforiwyd y dudalen \"$1\" oherwydd nad yw'r gallu i'w golygu gennych.",
-	"import-error-create": "Ni fewnforiwyd y dudalen \"$1\" oherwydd nad yw'r hawl i'w chreu gennych.",
 	"import-error-interwiki": "Ni fewnforwyd y dudalen \"$1\" oherwydd bod yr enw arni wedi ei neilltuo at ddiben cysylltu'n allanol (rhyngwici).",
 	"import-error-special": "Ni fewnforiwyd y dudalen \"$1\" oherwydd ei bod yn perthyn i barth arbennig lle nad oes tudalennau i'w cael.",
 	"import-error-invalid": "Ni fewnforwyd y dudalen \"$1\" oherwydd bod yr enw arni yn annilys.",

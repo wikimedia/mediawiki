@@ -2267,7 +2267,6 @@
 	"import-token-mismatch": "Azella n isefka n tɣimit. Ɛreḍ tikkelt nniḍen.",
 	"import-invalid-interwiki": "Ulamek an kter seg wiki i efkeḍ.",
 	"import-error-edit": "Asebtar « $1 » ur d-yekter ara acku ur tesɛiḍ ara turagt iwakken at beddeleḍ.",
-	"import-error-create": "Asebtar « $1 » ur d-yekter ara acku ur tesɛiḍ ara turagt iwakken at snulfuḍ.",
 	"import-error-interwiki": "Asebtar « $1 » ur d-yekter ara acku isem-is yettwaṭṭef i uzday yeffɣen (interwiki).",
 	"import-error-special": "Asebtar « $1 » ur d-yekter ara acku yeqqen s tallunt n isemawen uslig ur yebɣan ara isebtar.",
 	"import-error-invalid": "Asebtar « $1 » ur d-yekter ara acku isem-is ur yeɣbel ara.",

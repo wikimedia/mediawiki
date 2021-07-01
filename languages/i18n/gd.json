@@ -2243,7 +2243,6 @@
 	"import-token-mismatch": "Dh'fhaoidte gun deach do logadh a-mach. <strong>Dearbhaich gu bheil thu air do chlàradh a-steach fhathast agus feuch ris a-rithist</strong>.\nMur obraich e fhathast, feuch [[Special:UserLogout|clàradh a-mach]] is a-steach a-rithist agus dearbhaich gun ceadaich am brabhsair agad briosgaidean on bhrabhsair seo.",
 	"import-invalid-interwiki": "Cha ghabh ion-phortachadh in uicidh a shònraich thu.",
 	"import-error-edit": "Cha deach an duilleag \"$1\" ion-phortachadh o nach fhaod thu a deasachadh.",
-	"import-error-create": "Cha deach an duilleag \"$1\" ion-phortachadh o nach fhaod thu a cruthachadh.",
 	"import-error-interwiki": "Cha deach an duilleag \"$1\" ion-phortachadh on a chaidh ainm a ghlèidheadh airson ceangal a-mach (eadar-uicidh).",
 	"import-error-special": "Cha deach an duilleag \"$1\" ion-phortadh on a bhuineas i ri ainm-spàs sònraichte nach ceadaich duilleagan.",
 	"import-error-invalid": "Cha deach an duilleag \"$1\" ion-phortachadh on a tha a h-ainm mì-dhligheach air an uicidh seo.",

@@ -2855,7 +2855,6 @@
 	"import-token-mismatch": "Perda dos datos da sesión.\n\nPoida que se pechase a súa sesión. '''Por favor, comprobe que ten a sesión aberta e probe de novo'''.\nEn caso de que siga sen funcionar, intente [[Special:UserLogout|saír]] e volver entrar na súa conta e verifique que o seu navegador permite o uso de cookies neste sitio.",
 	"import-invalid-interwiki": "Non se pode importar desde o wiki escificado.",
 	"import-error-edit": "Non foi posible importar a páxina \"$1\" porque non ten os permisos necesarios para editala.",
-	"import-error-create": "Non foi posible importar a páxina \"$1\" porque non ten os permisos necesarios para creala.",
 	"import-error-interwiki": "Non foi posible importar a páxina \"$1\" porque o seu nome está reservado para unha ligazón externa (interwiki).",
 	"import-error-special": "Non foi posible importar a páxina \"$1\" porque pertence a un espazo de nomes especial que non o permite.",
 	"import-error-invalid": "Non foi posible importar a páxina \"$1\" porque o nome co que se importaría non é válido neste wiki.",

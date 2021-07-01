@@ -2902,7 +2902,6 @@
 	"import-token-mismatch": "Vıni biyayışê data\n\nVindibiyayişê tayê datay ra a kerdışê hesabê şıma de ma vurnayişê şıma qayd nêkerd. Newe ra tesel (cereb) bıkere. Eke no qayde zi nêbo, [[Special:UserLogout|hesabê xo bıqefelne]] u newera a kere.",
 	"import-invalid-interwiki": "Ena wiki ra azere kerdış nêbeno.",
 	"import-error-edit": "Pela \" $1 \" qandê vurnayışi aya nêgêrêna çıkı cı rê icazet nêdeyayo.",
-	"import-error-create": "Pela \" $1 \" qandê vıraştışi aya nêabêna çıkı cı rê icazet nêdeyayo.",
 	"import-error-interwiki": "Pela \" $1 \" qandê name dayışi aya nêgêrêna çıkı namey cı (interwiki) sero cırê ca abıryayo.",
 	"import-error-special": "Pela \" $1 \" qandê vıraştışi aya nêgêrêna çıkı namay cı nameyo do xısusiyo u na pela rê no name nêgêrêno.",
 	"import-error-invalid": "Pela \"$1\" nêdebyê de çıkı namey cı na wiki dê çınyo.",

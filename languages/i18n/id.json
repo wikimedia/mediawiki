@@ -2954,7 +2954,6 @@
 	"import-token-mismatch": "Kehilangan data sesi.\n\nAnda mungkin telah keluar log. '''Mohon pastikan bahwa Anda masih masuk log dan cobalah kembali'''. Apabila masih belum berhasil, cobalah [[Special:UserLogout|keluar log]] dan masuk log kembali, dan periksalah apakah peramban web Anda mengizinkan kuki dari situs web ini.",
 	"import-invalid-interwiki": "Tidak dapat mengimpor dari wiki tersebut.",
 	"import-error-edit": "Halaman \"$1\" tidak diimpor karena Anda tidak diizinkan untuk menyuntingnya.",
-	"import-error-create": "Halaman \"$1\" tidak diimpor karena Anda tidak diizinkan untuk membuatnya.",
 	"import-error-interwiki": "Halaman \" $1 \" tidak diimpor karena namanya dicadangkan untuk pranala eksternal (interwiki).",
 	"import-error-special": "Halaman \"$1\" tidak diimpor karena milik ruang nama khusus yang tidak mengizinkan adanya halaman.",
 	"import-error-invalid": "Halaman \"$1\" tidak diimpor karena namanya tidak valid.",

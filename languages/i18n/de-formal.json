@@ -332,7 +332,6 @@
 	"import-interwiki-text": "Wählen Sie ein Wiki und eine Seite zum Importieren aus.\nDie Versionsdaten und Benutzernamen bleiben dabei erhalten.\nAlle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] protokolliert.",
 	"import-token-mismatch": "Verlust der Sessiondaten. Bitte versuchen Sie es erneut.",
 	"import-error-edit": "Die Seite „$1“ wurde nicht importiert, da Sie nicht berechtigt sind, sie zu bearbeiten.",
-	"import-error-create": "Die Seite „$1“ wurde nicht importiert, da Sie nicht berechtigt sind, sie zu erstellen.",
 	"tooltip-pt-userpage": "{{GENDER:|Ihre}} Benutzerseite",
 	"tooltip-pt-anonuserpage": "Benutzerseite der IP-Adresse, von der aus Sie Änderungen durchführen",
 	"tooltip-pt-mytalk": "{{GENDER:|Ihre}} Diskussionsseite",

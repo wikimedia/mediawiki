@@ -2691,7 +2691,6 @@
 	"import-token-mismatch": "Izgubljeni podaci sesije.\n\nMožda ste odjavljeni. <strong>Provjerite jeste li još uvijek prijavljeni i pokušajte ponovo</strong>.\nAko i dalje ne radi, pokušajte se [[Special:UserLogout|odjaviti]] i ponovo prijaviti i provjerite dozvoljava li Vaš preglednik kolačiće s ovog sajta.",
 	"import-invalid-interwiki": "Ne mogu uvesti iz navedenog wikija.",
 	"import-error-edit": "Stranica \"$1\" nije uvezena jer vam nije dopušteno da je uređujete.",
-	"import-error-create": "Stranica \"$1\" nije uvezena jer vam nije dozvoljeno da je napravite.",
 	"import-error-interwiki": "Stranica \"$1\" nije uvezena jer je njen naziv rezerviran za vanjsko povezivanje (interwiki).",
 	"import-error-special": "Stranica \"$1\" nije uvezena jer pripada posebnom imenskom prostoru koje ne prihvata stranice.",
 	"import-error-invalid": "Stranica \"$1\" nije uvezena jer je naziv pod kojim treba biti uvezena nije valjan na ovoj wiki.",

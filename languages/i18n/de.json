@@ -2975,7 +2975,6 @@
 	"import-token-mismatch": "Die Sitzungsdaten sind verloren gegangen.\n\nDu wurdest eventuell abgemeldet. '''Bitte verifiziere, dass du noch angemeldet bist und versuche es erneut'''.\nFalls dies nicht funktioniert, versuche dich [[Special:UserLogout|abzumelden]] und anschließend wieder anzumelden und überprüfe, ob dein Browser Cookies von dieser Website akzeptiert.",
 	"import-invalid-interwiki": "Aus dem angegebenen Wiki ist kein Import möglich.",
 	"import-error-edit": "Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu bearbeiten.",
-	"import-error-create": "Die Seite „$1“ wurde nicht importiert, da du nicht berechtigt bist, sie zu erstellen.",
 	"import-error-interwiki": "Die Seite „$1“ wurde nicht importiert, da deren Name für externe Links (Interwiki) reserviert ist.",
 	"import-error-special": "Die Seite „$1“ wurde nicht importiert, da sie zu einem besonderen Namensraum gehört, in dem keine Seiten möglich sind.",
 	"import-error-invalid": "Seite „$1“ wurde nicht importiert, da der Name, zu dem sie importiert werden würde, auf diesem Wiki nicht gültig ist.",

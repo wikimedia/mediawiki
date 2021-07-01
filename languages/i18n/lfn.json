@@ -2601,7 +2601,6 @@
 	"import-token-mismatch": "Datos de sesion es perdeda.\n\nCisa tu ia deveni desautenticida. '''Per favore, serti ce tu es ancora autenticida e atenta denova.'''\nSi lo ancora no funsiona, proba [[Special:UserLogout|desautentici]] e reautentici, e serti ce tua surfador permete cucis de esta pajeria.",
 	"import-invalid-interwiki": "On no pote emporta de la vici spesifada.",
 	"import-error-edit": "Paje \"$1\" no ia es emportada car tu no es permeteda a edita lo.",
-	"import-error-create": "Paje \"$1\" no ia es emportada car tu no es permeteda a crea lo.",
 	"import-error-interwiki": "Paje \"$1\" no ia es emportada car sua nom es reservada per lia esterna (intervical).",
 	"import-error-special": "Paje \"$1\" no ia es emportada car lo parteni a un nom de spasio spesial cual no permete pajes.",
 	"import-error-invalid": "Paje \"$1\" no ia es emportada car la nom a cual lo ta es emportada es nonvalida en esta vici.",

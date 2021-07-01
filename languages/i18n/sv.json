@@ -2948,7 +2948,6 @@
 	"import-token-mismatch": "Sessionsdata har förlorats.\n\nDu kanske har loggats ut. '''Var god se till att du fortfarande är inloggad och försök igen.'''\nOm det fortfarande inte fungerar, prova att [[Special:UserLogout|logga ut]] och logga in igen, samt kontrollera att din webbläsare tillåter kakor från denna webbplats.",
 	"import-invalid-interwiki": "Kan inte importera från den angivna wikin.",
 	"import-error-edit": "Sidan \"$1\" blev inte importerad eftersom du inte har tillåtelse att redigera den.",
-	"import-error-create": "Sidan \"$1\" blev inte importerad eftersom du inte har tillåtelse att skapa den.",
 	"import-error-interwiki": "Sidan \"$1\" blev inte importerad eftersom dess namn är reserverat för externa länkar (interwiki).",
 	"import-error-special": "Sidan \"$1\" blev inte importerad eftersom den tillhör en särskild namnrymd som inte tillåter sidor.",
 	"import-error-invalid": "Sidan \"$1\" blev inte importerad eftersom namnet den skulle importeras till är ogiltigt på denna wiki.",

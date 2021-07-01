@@ -1788,7 +1788,6 @@
 	"import-noarticle": "Waray pakli nga maaangbit!",
 	"import-token-mismatch": "Nawara an datos sesyon.\n\n\nBangin ka naglog-out na. '''Alayon igberipika kun ikaw in nakalog-in pa ngan utro buhata'''. Kun diri pa iton nagana, alayon [[Special:UserLogout|pag-log out]] ngan paglog-in balik, ngan kitaa an imo browser kun natugot hin cookies tikang hinin nga site.",
 	"import-error-edit": "An pakli nga \"$1\" in waray napaangbit tungod nga diri ka gintutugotan pagliwat hini.",
-	"import-error-create": "An pakli nga \"$1\" in waray napaangbit tungod nga diri ka gintutugotan paghimo hini.",
 	"import-error-interwiki": "An pakli nga \"$1\" in waray napaangbit tungod nga an ngaran in nakareserba para han external linking (interwiki).",
 	"import-error-special": "An pakli nga \"$1\" in waray napaangbit tungod nga nahihilakip ini ha usa ka special namespace nga diri natugot hin mga pakli.",
 	"import-error-invalid": "An pakli nga \"$1\" in waray napaangbit tungod nga an ngaran kun diin inin ig-aangbit in diri balido para hinin nga wiki.",

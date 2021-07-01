@@ -2415,7 +2415,6 @@
 	"import-token-mismatch": "Mista sesjonsdata. Ver venleg og prøv om att.",
 	"import-invalid-interwiki": "Kan ikkje importera frå den valde wikien.",
 	"import-error-edit": "«$1» blei ikkje importert av di du ikkje har løyve til å redigere henne.",
-	"import-error-create": "Side $1 blei ikkje importert av di du ikkje har løyve til å redigere henne.",
 	"import-error-interwiki": "Sida «$1» vart ikkje importert sidan namnet hennar er reservert for ekstern lenking (interwiki).",
 	"import-error-special": "Sida «$1» vart ikkje importert sidan ho høyrer til eit spesialnamnerom som ikkje tillèt sider.",
 	"import-error-invalid": "Sida «$1» vart ikkje importert sidan namnet er ugildt.",
