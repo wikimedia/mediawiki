@@ -23,8 +23,10 @@
  * @file
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Permissions\Authority;
+use MediaWiki\User\UserGroupManager;
 
 /**
  * @ingroup API
@@ -32,6 +34,24 @@ use MediaWiki\Permissions\Authority;
 class ApiUserrights extends ApiBase {
 
 	private $mUser = null;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param UserGroupManager|null $userGroupManager
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		UserGroupManager $userGroupManager = null
+	) {
+		parent::__construct( $mainModule, $moduleName );
+		// This class is extended and therefor fallback to global state - T285797
+		$this->userGroupManager = $userGroupManager ?? MediaWikiServices::getInstance()->getUserGroupManager();
+	}
 
 	/**
 	 * Get a UserrightsPage object, or subclass.
@@ -46,7 +66,7 @@ class ApiUserrights extends ApiBase {
 	 * @return array
 	 */
 	protected function getAllGroups() {
-		return User::getAllGroups();
+		return $this->userGroupManager->listAllGroups();
 	}
 
 	public function execute() {

@@ -414,7 +414,7 @@ abstract class ApiQueryBase extends ApiBase {
 			$queryBuilder->joinConds( (array)$extraQuery['join_conds'] );
 		}
 
-		if ( $hookData !== null && Hooks::isRegistered( 'ApiQueryBaseBeforeQuery' ) ) {
+		if ( $hookData !== null && $this->getHookContainer()->isRegistered( 'ApiQueryBaseBeforeQuery' ) ) {
 			$info = $queryBuilder->getQueryInfo();
 			$this->getHookRunner()->onApiQueryBaseBeforeQuery(
 				$this, $info['tables'], $info['fields'], $info['conds'],
