@@ -707,6 +707,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		}
 
 		$ok = true;
+		$numServers = count( $shardIndexes );
 
 		$keysDeletedCount = 0;
 		foreach ( $shardIndexes as $numServersDone => $shardIndex ) {
@@ -718,7 +719,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					$timestamp,
 					$limit,
 					$keysDeletedCount,
-					[ 'fn' => $progress, 'serversDone' => $numServersDone ]
+					[ 'fn' => $progress, 'serversDone' => $numServersDone, 'serversTotal' => $numServers ]
 				);
 			} catch ( DBError $e ) {
 				$this->handleWriteError( $e, $db, $shardIndex );
@@ -734,7 +735,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	 * @param string|int $timestamp
 	 * @param int $limit Maximum number of rows to delete in total
 	 * @param int &$keysDeletedCount
-	 * @param null|array{fn:callback,serversDone:int} $progress
+	 * @param null|array{fn:callback,serversDone:int,serversTotal:int} $progress
 	 * @throws DBError
 	 */
 	private function deleteServerObjectsExpiringBefore(
@@ -813,8 +814,8 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 					// For example, if we're 30% done on the last of 10 servers, then this might be:
 					// `( 9 / 10 ) + ( 0.3 / 10 ) = 0.93`, or 93% done, overall.
-					$overallRatio = ( $progress['serversDone'] / $this->numServerShards ) +
-						( $tablesDoneRatio / $this->numServerShards );
+					$overallRatio = ( $progress['serversDone'] / $progress['serversTotal'] ) +
+						( $tablesDoneRatio / $progress['serversTotal'] );
 					( $progress['fn'] )( $overallRatio * 100 );
 				}
 			} while ( $res->numRows() && $keysDeletedCount < $limit );
