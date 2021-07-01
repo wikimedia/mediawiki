@@ -1645,6 +1645,7 @@ interface IDatabase {
 
 	/**
 	 * @return bool Whether the DB is marked as read-only server-side
+	 * @throws DBError If an error occurs, {@see query}
 	 * @since 1.28
 	 */
 	public function serverIsReadOnly();
