@@ -1012,15 +1012,7 @@ class DifferenceEngine extends ContextSource {
 				// NOTE: sync with hooks called in Article::view()
 			} else {
 				// Normal page
-				if ( $this->getTitle()->equals( $this->mNewPage ) ) {
-					// If the Title stored in the context is the same as the one
-					// of the new revision, we can use its associated WikiPage
-					// object.
-					$wikiPage = $this->getWikiPage();
-				} else {
-					// Otherwise we need to create our own WikiPage object
-					$wikiPage = $this->wikiPageFactory->newFromTitle( $this->mNewPage );
-				}
+				$wikiPage = $this->wikiPageFactory->newFromTitle( $this->mNewPage );
 
 				$parserOutput = $this->getParserOutput( $wikiPage, $this->mNewRevisionRecord );
 

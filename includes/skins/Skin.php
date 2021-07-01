@@ -2489,7 +2489,7 @@ abstract class Skin extends ContextSource {
 
 		/** @var CreditsAction $action */
 		if ( $useCredits ) {
-			$article = Article::newFromWikiPage( $this->getWikiPage(), $this );
+			$article = Article::newFromTitle( $title, $this );
 			$action = Action::factory( 'credits', $article, $this );
 		}
 

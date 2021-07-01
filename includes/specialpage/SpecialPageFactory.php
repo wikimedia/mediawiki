@@ -30,6 +30,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkRenderer;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageReference;
 use Profiler;
 use RequestContext;
@@ -1391,7 +1392,7 @@ class SpecialPageFactory {
 		// phpcs:ignore MediaWiki.Usage.DeprecatedGlobalVariables.Deprecated$wgUser
 		global $wgTitle, $wgOut, $wgRequest, $wgUser, $wgLang;
 		$main = RequestContext::getMain();
-
+		$title = $main->getTitle();
 		// Save current globals and main context
 		$glob = [
 			'title' => $wgTitle,
@@ -1401,14 +1402,16 @@ class SpecialPageFactory {
 			'language' => $wgLang,
 		];
 		$ctx = [
-			'title' => $main->getTitle(),
+			'title' => $title,
 			'output' => $main->getOutput(),
 			'request' => $main->getRequest(),
 			'user' => $main->getUser(),
 			'language' => $main->getLanguage(),
 		];
-		if ( $main->canUseWikiPage() ) {
-			$ctx['wikipage'] = $main->getWikiPage();
+
+		if ( $title->canExist() ) {
+			$wikiPage = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
+			$ctx['wikipage'] = $wikiPage;
 		}
 
 		// just needed for $wgTitle and RequestContext::setTitle

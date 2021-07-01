@@ -24,6 +24,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\PageRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -67,6 +68,9 @@ class HistoryPager extends ReverseChronologicalPager {
 	/** @var CommentFormatter */
 	private $commentFormatter;
 
+	/** @var PageRecord */
+	private $pageRecord;
+
 	/**
 	 * @var RevisionRecord[] Revisions, with the key being their result offset
 	 */
@@ -101,6 +105,7 @@ class HistoryPager extends ReverseChronologicalPager {
 	) {
 		parent::__construct( $historyPage->getContext() );
 		$this->historyPage = $historyPage;
+		$this->pageRecord = $historyPage->getWikiPage();
 		$this->tagFilter = $tagFilter;
 		$this->getDateCond( $year, $month, $day );
 		$this->conds = $conds;
@@ -137,7 +142,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			'tables' => $revQuery['tables'],
 			'fields' => $revQuery['fields'],
 			'conds' => array_merge(
-				[ 'rev_page' => $this->getWikiPage()->getId() ],
+				[ 'rev_page' => $this->pageRecord->getId() ],
 				$this->conds ),
 			'options' => [ 'USE INDEX' => [ 'revision' => $revIndex ] ],
 			'join_conds' => $revQuery['joins'],
@@ -171,7 +176,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
 				? $this->watchlistManager
-					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
+					->getTitleNotificationTimestamp( $this->getUser(), $this->pageRecord )
 				: false;
 
 			$s = $this->historyLine( $this->lastRow, $row, $notifTimestamp,
@@ -193,7 +198,6 @@ class HistoryPager extends ReverseChronologicalPager {
 		# Do a link batch query
 		$batch = $this->linkBatchFactory->newLinkBatch();
 		$revIds = [];
-		$title = $this->getTitle();
 		foreach ( $this->mResult as $row ) {
 			if ( $row->rev_parent_id ) {
 				$revIds[] = (int)$row->rev_parent_id;
@@ -208,7 +212,7 @@ class HistoryPager extends ReverseChronologicalPager {
 			$this->revisions[] = $this->revisionStore->newRevisionFromRow(
 				$row,
 				RevisionStore::READ_NORMAL,
-				$title
+				$this->pageRecord
 			);
 		}
 		$this->parentLens = $this->revisionStore->getRevisionSizes( $revIds );
@@ -329,7 +333,7 @@ class HistoryPager extends ReverseChronologicalPager {
 
 			$notifTimestamp = $this->getConfig()->get( 'ShowUpdatedMarker' )
 				? $this->watchlistManager
-					->getTitleNotificationTimestamp( $this->getUser(), $this->getTitle() )
+					->getTitleNotificationTimestamp( $this->getUser(), $this->pageRecord )
 				: false;
 
 			$s = $this->historyLine( $this->lastRow, $next, $notifTimestamp,
@@ -385,13 +389,12 @@ class HistoryPager extends ReverseChronologicalPager {
 			$previousRevRecord = $this->revisionStore->newRevisionFromRow(
 				$next,
 				RevisionStore::READ_NORMAL,
-				$this->getTitle()
+				$this->pageRecord
 			);
 		} else {
 			$previousRevRecord = null;
 		}
-
-		$latest = $revRecord->getId() === $this->getWikiPage()->getLatest();
+		$latest = $revRecord->getId() === $this->pageRecord->getLatest();
 		$curlink = $this->curLink( $revRecord );
 		$lastlink = $this->lastLink( $revRecord, $next );
 		$curLastlinks = Html::rawElement( 'span', [], $curlink ) .
@@ -484,8 +487,8 @@ class HistoryPager extends ReverseChronologicalPager {
 
 		# Rollback and undo links
 
-		if ( $previousRevRecord && $this->getAuthority()->probablyCan( 'edit', $this->getTitle() ) ) {
-			if ( $latest && $this->getAuthority()->probablyCan( 'rollback', $this->getTitle() )
+		if ( $previousRevRecord && $this->getAuthority()->probablyCan( 'edit', $this->pageRecord ) ) {
+			if ( $latest && $this->getAuthority()->probablyCan( 'rollback', $this->pageRecord )
 			) {
 				// Get a rollback link without the brackets
 				$rollbackLink = Linker::generateRollback(
@@ -507,7 +510,7 @@ class HistoryPager extends ReverseChronologicalPager {
 					? [ 'title' => $this->msg( 'tooltip-undo' )->text() ]
 					: [];
 				$undolink = $this->getLinkRenderer()->makeKnownLink(
-					$this->getTitle(),
+					$this->pageRecord,
 					$this->msg( 'editundo' )->text(),
 					$undoTooltip,
 					[
@@ -585,14 +588,14 @@ class HistoryPager extends ReverseChronologicalPager {
 	 */
 	private function curLink( RevisionRecord $rev ) {
 		$cur = $this->historyPage->message['cur'];
-		$latest = $this->getWikiPage()->getLatest();
+		$latest = $this->pageRecord->getLatest();
 		if ( $latest === $rev->getId()
 			|| !$rev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() )
 		) {
 			return $cur;
 		} else {
 			return $this->getLinkRenderer()->makeKnownLink(
-				$this->getTitle(),
+				$this->pageRecord,
 				new HtmlArmor( $cur ),
 				[],
 				[
@@ -624,7 +627,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		if ( $next === 'unknown' ) {
 			# Next row probably exists but is unknown, use an oldid=prev link
 			return $linkRenderer->makeKnownLink(
-				$this->getTitle(),
+				$this->pageRecord,
 				new HtmlArmor( $last ),
 				[],
 				[
@@ -637,7 +640,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		$nextRev = $this->revisionStore->newRevisionFromRow(
 			$next,
 			RevisionStore::READ_NORMAL,
-			$this->getTitle()
+			$this->pageRecord
 		);
 
 		if ( !$prevRev->userCan( RevisionRecord::DELETED_TEXT, $this->getAuthority() ) ||
@@ -647,7 +650,7 @@ class HistoryPager extends ReverseChronologicalPager {
 		}
 
 		return $linkRenderer->makeKnownLink(
-			$this->getTitle(),
+			$this->pageRecord,
 			new HtmlArmor( $last ),
 			[],
 			[
