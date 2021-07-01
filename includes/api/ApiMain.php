@@ -300,7 +300,12 @@ class ApiMain extends ApiBase {
 				'TalkPageNotificationManager',
 			]
 		],
-		'userrights' => ApiUserrights::class,
+		'userrights' => [
+			'class' => ApiUserrights::class,
+			'services' => [
+				'UserGroupManager',
+			]
+		],
 		'options' => [
 			'class' => ApiOptions::class,
 			'services' => [
