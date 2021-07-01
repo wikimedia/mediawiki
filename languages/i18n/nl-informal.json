@@ -236,7 +236,6 @@
 	"allmessagestext": "Hieronder staan de systeemberichten uit de MediaWiki-naamruimte.\nGa naar [https://www.mediawiki.org/wiki/Special:MyLanguage/Localisation MediaWiki-lokalisatie] en [https://translatewiki.net translatewiki.net] als je wilt bijdragen aan de algemene vertaling voor MediaWiki.",
 	"importtext": "Gebruik de [[Special:Export|exportfunctie]] in de wiki waar de informatie vandaan komt.\nSla de uitvoer op je eigen computer op, en voeg die daarna hier toe.",
 	"import-error-edit": "De pagina \"$1\" is niet geïmporteerd omdat je niet de rechten hebt om die te bewerken.",
-	"import-error-create": "De pagina \"$1\" is niet geïmporteerd omdat je niet de rechten hebt om die aan te maken.",
 	"tooltip-pt-userpage": "{{GENDER:|Jouw}} gebruikerspagina",
 	"tooltip-pt-anonuserpage": "Gebruikerspagina voor je IP-adres",
 	"tooltip-pt-mytalk": "Jouw overlegpagina",

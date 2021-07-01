@@ -2843,7 +2843,6 @@
 	"import-token-mismatch": "Strata údajov relácie.\n\nJe možné, že ste boli odhlásení. '''Prosím, overte, či ste ešte prihlásení a skúste to znova'''.\nAk to stále nefunguje, skúste [[Special:UserLogout|sa odhlásiť]] a opäť prihlásiť a skontrolujte, či váš prehliadač povoľuje cookies z týchto stránok.",
 	"import-invalid-interwiki": "Nie je možné importovať zo zadanej wiki.",
 	"import-error-edit": "Stránka „$1“ nebola importovaná, pretože nemáte oprávnenie na jej úpravu.",
-	"import-error-create": "Stránka „$1“ nebola importovaná, pretože nemáte oprávnenie na jej vytvorenie.",
 	"import-error-interwiki": "Stránka „$1“ nebola importovaná, pretože jej názov je vyhradený pre externé odkazy (interwiki).",
 	"import-error-special": "Stránka „$1“ nebola importovaná, pretože patrí do špeciálneho menného priestoru, ktorý nepovoľuje stránky.",
 	"import-error-invalid": "Stránka „$1“ nebola importovaná, pretože názov, na ktorý by bola importovaná je na tejto wiki neplatný.",

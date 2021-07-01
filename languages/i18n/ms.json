@@ -2810,7 +2810,6 @@
 	"import-token-mismatch": "Data sesi telah hilang. Sila cuba lagi.",
 	"import-invalid-interwiki": "Wiki yang dinyatakan tidak boleh diimport.",
 	"import-error-edit": "Laman \"$1\" tidak diimport kerana anda tidak dibenarkan untuk menyuntingnya.",
-	"import-error-create": "Laman \"$1\" tidak diimport kerana anda tidak dibenarkan untuk menciptanya.",
 	"import-error-interwiki": "Laman \"$1\" tidak diimport kerana namanya ditempah untuk pemautan luaran (antara wiki).",
 	"import-error-special": "Laman \"$1\" tidak diimport kerana ia tergolong dalam ruang nama khas yang tidak membenarkan laman.",
 	"import-error-invalid": "Laman \"$1\" tidak diimport kerana nama yang ia akan diimport kepada tidak sah pada wiki ini.",

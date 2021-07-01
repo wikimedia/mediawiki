@@ -2039,7 +2039,6 @@
 	"import-token-mismatch": "Verlust von der Sessiondate. Bittschön versuch das wieder erneit.",
 	"import-invalid-interwiki": "Aus dem oongeben Wiki ist ken Import möchlich.",
 	"import-error-edit": "Die Seit \"$1\" woard net importiert, weil du net berechticht bist, sie se beoorbeit.",
-	"import-error-create": "Die Seite \"$1\" woard net importiert, weil du net berechticht bist, sie se erstelle.",
 	"import-error-interwiki": "Die Seit \"$1\" woard net importiert, weil dene sein Noome für externe Links (Interwiki) reserviert ist.",
 	"import-error-special": "Die Seit \"1\" woard net importiert, weil die zu enem besondren Noomeraum gehöert, in dem keh Seite möchlich sind.",
 	"import-error-invalid": "Seit \"$1\" woard net importiert, weil dene sei Noome ungültich ist.",

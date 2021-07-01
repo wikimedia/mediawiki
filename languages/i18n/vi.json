@@ -2933,7 +2933,6 @@
 	"import-token-mismatch": "Mất dữ liệu phiên làm việc.\n\nCó thể bạn đã được đăng xuất. '''Xin hãy xác nhận rằng bạn vẫn được đăng nhập và thử lại.'''\nNếu vẫn không được, hãy thử [[Special:UserLogout|đăng xuất]] rồi đăng nhập lại, và kiểm tra rằng trình duyệt của bạn cho phép các cookie của trang Web này.",
 	"import-invalid-interwiki": "Không thể nhập trang từ wiki được chỉ định.",
 	"import-error-edit": "Trang “$1” không được nhập tại vì bạn không được phép sửa đổi nó.",
-	"import-error-create": "Trang “$1” không được nhập tại vì bạn không được phép tạo ra nó.",
 	"import-error-interwiki": "Trang “$1” không được nhập vì tên của nó được dành riêng cho liên kết ngoài (liên wiki).",
 	"import-error-special": "Trang “$1” không được nhập vì nó thuộc về không gian tên đặc biệt không cho phép các trang không mặc định.",
 	"import-error-invalid": "Trang “$1” không được nhập vì ứng với một tên tập tin không hợp lệ trên wiki này.",

@@ -2776,7 +2776,6 @@
 	"import-token-mismatch": "Istuntotietoja ei löy'y.\n\nSaatat olla lokannu ulos. <strong>Varmista, ette olet eelheen kirjautunu sishään, ja yritä sitten uuesthaan.</strong>\nJos prubleema jatkuu, yritä [[Special:UserLogout|kirjautua ulos]] ja sitten takaisin sishään, ja tarkista selaimesi asetuksista, ette evästheet on käytössä tällä sivustola.",
 	"import-invalid-interwiki": "Määritellystä wikistä ei voi importeeraa.",
 	"import-error-edit": "Sivua $1 ei importeerattu, koska sinula ei ole oikheutta mookata sitä.",
-	"import-error-create": "Sivua $1 ei tuotu, koska sinula ei ole oikheutta tehhä sitä.",
 	"importlogpage": "Tuontiloki",
 	"tooltip-pt-userpage": "Oma käyttäjäsivu",
 	"tooltip-pt-mytalk": "Oma keskustelusivu",

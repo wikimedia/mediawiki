@@ -2593,7 +2593,6 @@
 	"import-token-mismatch": "Se so' perdut' 'e date d' 'a sessione.\n\nPuò darse ca site asciuto/a. <strong>Pe' piacere cuntrullate si site ancora dinto e tentate n'ata vota</strong>.\n\nSi chesto nun funziunasse ancora, tentate 'e ve n'[[Special:UserLogout|ascì]] e trasì n'ata vota dinto, cuntrullate si 'o navigatore vuosto premmettesse 'e cookies 'e stu sito.",
 	"import-invalid-interwiki": "Nun se può mpurtà d' 'a wiki specificata.",
 	"import-error-edit": "'A paggena \"$1\" nun è stata mpurtata pecché nun avite 'o permesso p' 'a putè cagnà.",
-	"import-error-create": "'A paggena \"$1\" nun è stata mpurtata pecché nun avite 'o permesso p' 'a putè crià.",
 	"import-error-interwiki": "'A paggena \"$1\" nun è stata mpurtata pecché 'o nomme suojo stà astipato pe ne ffà 'o cullegamiento a fore (interwiki).",
 	"import-error-special": "'A paggena \"$1\" nun è stata mpurtata pecché appartene a nu namespace specifico ca nun permette sti paggene.",
 	"import-error-invalid": "'A paggena \"$1\" nun è stata mpurtata pecché 'o nomme 'e mpurtazione nun è bbuono ncopp'a sta wiki.",

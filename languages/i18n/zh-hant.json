@@ -2978,7 +2978,6 @@
 	"import-token-mismatch": "連線階段資料遺失。\n\n您可能已被登出。'''請確認您是否仍在登入狀態並再試一次'''。\n若仍無法運作，請嘗試[[Special:UserLogout|登出]]再登入一次，並檢查您的瀏覽器是否允許本站使用 cookie。",
 	"import-invalid-interwiki": "不能從指定的 Wiki 匯入。",
 	"import-error-edit": "您沒有權限編輯頁面 \"$1\"，無法匯入。",
-	"import-error-create": "您沒有權限建立頁面 \"$1\"，無法匯入。",
 	"import-error-interwiki": "頁面 \"$1\" 的名稱已保留作為外部連結 (Interwiki) 使用，無法匯入。",
 	"import-error-special": "頁面 \"$1\" 屬於不允許頁面的特殊命名空間，無法匯入。",
 	"import-error-invalid": "頁面 \"$1\" 匯入此 Wiki 的名稱無效，無法匯入。",

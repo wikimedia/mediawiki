@@ -2921,7 +2921,6 @@
 	"import-token-mismatch": "Ztratila se data relace.\n\nMožná jste byli odhlášeni. '''Zkontrolujte, že jste stále přihlášeni a zkuste to prosím znovu.'''\nPokud se tento problém bude opakovat, zkuste se [[Special:UserLogout|odhlásit]] a znovu přihlásit a zkontrolujte, že váš prohlížeč dovoluje přijímat cookie z tohoto serveru.",
 	"import-invalid-interwiki": "Ze zadané wiki nelze importovat.",
 	"import-error-edit": "Stránka „$1“ se nenaimportovala, protože nemáte oprávnění ji editovat.",
-	"import-error-create": "Stránka „$1“ se nenaimportovala, protože nemáte oprávnění ji založit.",
 	"import-error-interwiki": "Stránka „$1“ se nenaimportovala, protože její název je vyhrazen pro externí odkazy (interwiki).",
 	"import-error-special": "Stránka „$1“ se nenaimportovala, protože patří do speciálního jmenného prostoru, ve kterém stránky být nemohou.",
 	"import-error-invalid": "Stránka „$1“ se nenaimportovala, protože název, pod kterým by se naimportovala, je na této wiki nepoužitelný.",

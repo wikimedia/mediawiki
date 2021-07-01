@@ -2842,7 +2842,6 @@
 	"import-token-mismatch": "Gubitak podataka o sesiji.\n\nMožda ste odjavljeni. '''Molimo Vas proverite da li ste još uvek prijavljeni i pokušajte ponovo'''.\n\nAko i dalje ne radi, pokušajte se [[Special:UserLogout|odjaviti]] i ponovo prijaviti i proverite da li vaš veb-pretraživač dozvoljava kolačiće sa ovog sajta.",
 	"import-invalid-interwiki": "Nije moguće uvoziti iz navedenog projekta.",
 	"import-error-edit": "Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je uređujete.",
-	"import-error-create": "Stranica „$1“ nije uvezena jer vam nije dozvoljeno da je napravite.",
 	"import-error-interwiki": "Stranica „$1” nije uvezena jer je njen naziv rezervisan za spoljašnje povezivanje (međuviki).",
 	"import-error-special": "Stranica „$1” nije uvezena jer pripada posebnom imenskom prostoru koji ne dozvoljava stranice.",
 	"import-error-invalid": "Stranica „$1” nije uvezena, jer je ime pod kojim se treba uvesti nevažeće na ovom projektu.",

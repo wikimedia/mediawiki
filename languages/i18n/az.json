@@ -2205,7 +2205,6 @@
 	"import-token-mismatch": "Seans məlumatlarının itirilməsi. Lütfən, yenidən cəhd edin.",
 	"import-invalid-interwiki": "Göstərilən vikidən köçürmək mümkün deyil",
 	"import-error-edit": "\"$1\" səhifəsi idxal edilmədi, çünki sizin onu dəyişmək səlahiyyətiniz yoxdur.",
-	"import-error-create": "\"$1\" səhifəsi idxal edilmədi, çünki sizin onu yaratmaq səlahiyyətiniz yoxdur.",
 	"importlogpage": "Çıxarılma gündəliyi",
 	"importlogpagetext": "Səhifələrin idarəçilər tərəfindən digər vikilərdən dəyişiklik tarixçəsi ilə birlikdə köçürülməsi",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|dəyişiklik|dəyişiklik}} idxal edildi.",

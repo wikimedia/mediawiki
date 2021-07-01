@@ -2912,7 +2912,6 @@
 	"import-token-mismatch": "Sesjonsdata mistet.\n\nDu kan ha blitt logget ut. '''Sjekk at du fortsatt er logget inn og prøv igjen.'''\nOm det fortsatt ikke fungerer, prøv å [[Special:UserLogout|logge ut]] og logge inn igjen, og sjekk om netteleseren din tillater informasjonskapsler fra denne siden.",
 	"import-invalid-interwiki": "Kan ikke importere fra den angitte wikien.",
 	"import-error-edit": "Siden «$1» ble ikke importert fordi du ikke har tillatelse til å redigere den.",
-	"import-error-create": "Siden «$1» ble ikke importert fordi du ikke har tillatelse til å opprette den.",
 	"import-error-interwiki": "Siden «$1» ble ikke importert fordi dette navnet er reservert for ekstern lenking (interwiki).",
 	"import-error-special": "Siden «$1» ble ikke importert fordi dette navnet tilhører et spesialnavnerom som ikke tillater sider.",
 	"import-error-invalid": "Siden «$1» ble ikke importert fordi sidenavnet er ugyldig på denne wikien.",

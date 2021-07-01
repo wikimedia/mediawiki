@@ -2458,7 +2458,6 @@
 	"import-token-mismatch": "Kélangan data sèsi. Mangga dijajal manèh.",
 	"import-invalid-interwiki": "Ora bisa ngimpor saka wiki kang kapilih.",
 	"import-error-edit": "Kaca \"$1\" ora kaimpor amarga panjenengan ora kawogan mbesut iku.",
-	"import-error-create": "Kaca \"$1\" ora diimpor amarga panjenengan ora dililakaké nggawé iku.",
 	"import-error-interwiki": "Kaca \"$1\" ora diimpor amarga jenengé dicadhangaké kango pranala njaba (interwiki).",
 	"import-error-special": "Kaca \"$1\" ora kaimpor amarga kalebu ing mandhala aran mirunggan kang ora ngolèhaké ananing kaca.",
 	"import-error-invalid": "Kaca \"$1\" ora diimpor amarga jenengé ora trep kanggo wiki iki.",

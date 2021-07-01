@@ -3088,7 +3088,6 @@
 	"import-token-mismatch": "Pérdida de datos de sesión.\n\nEs posible que haya finalizado tu sesión. '''Por favor, verifica que tu sesión continúa iniciada e inténtalo de nuevo'''.\nSi aun así no funciona, intenta [[Special:UserLogout|cerrar sesión]] e iniciarla de nuevo, y comprueba que tu navegador acepta cookies de este sitio.",
 	"import-invalid-interwiki": "No se puede importar de la wiki especificada.",
 	"import-error-edit": "No se importó la página «$1» porque no tienes permisos para editarla.",
-	"import-error-create": "No se importó la página «$1» porque no tienes permisos para crearla.",
 	"import-error-interwiki": "No se importó la página «$1» porque su nombre está reservado para los enlaces externos (interwiki).",
 	"import-error-special": "No se importó la página «$1» porque pertenece a un espacio de nombres especial que no admite páginas.",
 	"import-error-invalid": "No se importó la página «$1» porque el nombre de destino para su importación no es válido en este wiki.",

@@ -2735,7 +2735,6 @@
 	"import-token-mismatch": "Sessionsdata er mistet. Prøv venligst igen.",
 	"import-invalid-interwiki": "Kan ikke importere fra den angivne wiki.",
 	"import-error-edit": "Siden \"$1\" blev ikke importeret, da du ikke har rettighed til at redigere den.",
-	"import-error-create": "Siden \"$1\" blev ikke importeret, da du ikke har rettighed til at oprette den.",
 	"import-error-interwiki": "Siden \"$1\" blev ikke importeret, da dens navn er reserveret for eksterne henvisninger (interwiki).",
 	"import-error-special": "Siden \"$1\" blev ikke importeret, da den tilhører et særligt navnerum, der ikke tillader sider.",
 	"import-error-invalid": "Siden \"$1\" blev ikke importeret, fordi det navn, som den ville være importeret til er ugyldigt på denne wiki.",

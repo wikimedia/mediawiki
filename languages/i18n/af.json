@@ -2255,7 +2255,6 @@
 	"import-token-mismatch": "Sessiegegewens is verloor. Probeer asseblief weer.",
 	"import-invalid-interwiki": "Kan nie vanaf die gespesifiseerde importeer nie.",
 	"import-error-edit": "Die bladsy \"$1\" is nie geïmporteer nie omdat u nie die regte het om dit te wysig nie.",
-	"import-error-create": "Die bladsy \"$1\" is nie geïmporteer nie omdat u nie die regte het om dit te skep nie.",
 	"import-error-interwiki": "Die bladsy \"$1\" is nie geïmporteer nie omdat sy naam vir eksterne skakeling (interwiki) gereserveer is.",
 	"import-error-special": "Die bladsy \"$1\" is nie geïmporteer nie omdat dit aan 'n spesiale naamruimte behoort waarin geen bladsye geplaas kan word nie.",
 	"import-error-invalid": "Die bladsy \"$1\" is nie geïmporteer nie omdat die naam ongeldig is.",

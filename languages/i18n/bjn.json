@@ -1877,7 +1877,6 @@
 	"import-token-mismatch": "Kahilangan sesi data.\nMuhun cubai pulang.",
 	"import-invalid-interwiki": "Kada kawa maimpur matan wiki nang diajuakan.",
 	"import-error-edit": "Tungkaran \"$1\" kada diumpur karana Pian kada bulih mambabak ngini.",
-	"import-error-create": "Tungkaran \"$1\" kada diumpur karana Pian kada bulih maulah ngini.",
 	"importlogpage": "Log impur",
 	"importlogpagetext": "Impur administratip matan tutungkaran awan babakan halam matan wiwiki lain.",
 	"import-logentry-upload-detail": "$1 {{PLURAL:$1|ralatan|raralatan}}",

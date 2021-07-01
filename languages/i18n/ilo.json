@@ -2622,7 +2622,6 @@
 	"import-token-mismatch": "Pannakapukaw ti sesion ti datos.\n\nMabalin a nakaruarka. '''Pangngaasi a pasingkedan a nakastrekka pay laeng ken padasem manen'''.\nNo saan pay a mabalin, padasem ti [[Special:UserLogout|rummuar]] ken sumrek manen, ken kitaen no ti pagpasabasam ket mangipalubos kadagiti galieta manipud iti daytoy a sitio.",
 	"import-invalid-interwiki": "Saan a makaala manipud iti nainaganan a wiki.",
 	"import-error-edit": "Ti panid ti \"$1\" ket saan idi a naala ngamin ket saanmo a mabalin nga urnosen.",
-	"import-error-create": "Ti panid ti \"$1\" ket saan idi a naala ngamin ket saanmo a mabalin a partuaten.",
 	"import-error-interwiki": "Ti panid ti \"$1\" ket saan idi a naala ngamin ket ti nagan ket naireserba para iti ruar a panagsilpo (interwiki).",
 	"import-error-special": "Ti panid ti \"$1\" ket saan idi a naala ngamin ket bukod ti espesial a nagan ti espasio ket saan nga agpalubos iti pampanid.",
 	"import-error-invalid": "Ti panid ti \"$1\" ket saan idi a naala ngamin ket ti nagan a pakaalaanna ket imbalido iti daytoy a wiki.",

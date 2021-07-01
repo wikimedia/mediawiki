@@ -2588,7 +2588,6 @@
 	"import-token-mismatch": "Týnd setugögn.\n\nÞú hefur kannski verið skráð/ur út. '''Athugaðu hvort þú sért ennþá skráð/ur inn og reyndu aftur'''.\nEf það virkar ekki, reyndu að [[Special:UserLogout|skrá þig út]], skrá þig aftur inn og gakktu úr skugga um að vafrinn þinn leyfi vefkökur frá þessu vefsvæði.",
 	"import-invalid-interwiki": "Get ekki flutt inn frá þessum wiki.",
 	"import-error-edit": "Síðan \"$1\" var ekki flutt inn því þú hefur ekki réttindi til að breyta henni.",
-	"import-error-create": "Síðan \"$1\" var ekki flutt inn því þú hefur ekki réttindi til að stofna hana.",
 	"import-error-interwiki": "Síðan \"$1\" var ekki flutt inn því nafn hennar er frátekið fyrir ytri tengla (tungumálatengla).",
 	"import-error-special": "Síðan \"$1\" var ekki flutt inn því hún tilheyrir ákveðnu nafnrými sem leyfir ekki síður.",
 	"import-error-invalid": "Síðan \"$1\" var ekki flutt inn því nafnið sem hún yrði flutt á er ógilt á þessum wiki.",

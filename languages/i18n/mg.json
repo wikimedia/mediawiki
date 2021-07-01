@@ -2446,7 +2446,6 @@
 	"import-token-mismatch": "Very ny fampahalalàna momba ny kaonty.\nAvereno fanindroany.",
 	"import-invalid-interwiki": "Tsy afaka mampiditra avy any amin'ilay wiki nofidiana.",
 	"import-error-edit": "Tsy nafarana ny pejy \"$1\" satria tsy afaka manova azy ianao.",
-	"import-error-create": "Tsy nafarana ny pejy \"$1\" satria tsy afaka mamorona azy ianao.",
 	"import-error-interwiki": "Tsy nafarana ny pejy \"$1\" satria atokana ho an'ny rohy interwiki ny anarany.",
 	"import-error-special": "Tsy nafarana ny pejy \"$1\" satria amy valan'anarana tsy mandray pejy ilay izy.",
 	"import-error-invalid": "Tsy nafarana ny pejy \"$1\" satria tsy ekena ny anarany.",

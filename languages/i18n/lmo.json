@@ -2877,7 +2877,6 @@
 	"import-token-mismatch": "I dati de la session a inn andad perdud.\n\nTe podarisset vesser stad desconess. '''Verifica de vesser conligad e prova anmò'''.\nSe 'l va no, te podet provà a [[Special:UserLogout|desconligass]] e andà dent de noeuv, dopo de avè controlà che 'l to programa de navigazzion l'aceta tucc i cooki de quel sit chì.",
 	"import-invalid-interwiki": "Impossibil importà del wiki specifegad.",
 	"import-error-edit": "La pagina \"$1\" l'è stada minga importada perchè te see minga autorizzad a modifegala",
-	"import-error-create": "La pagina \"$1\" l'è stada minga importada perchè te see minga autorizzad a creala.",
 	"import-error-interwiki": "La pagina \"$1\" l'è stada minga importada perchè el so nom l'è riservad per el conligament defoeura (interwiki).",
 	"import-error-special": "La pagina \"$1\" l'è stada minga importada perchè la parten a 'n spazzi di nom special che 'l permet minga di pagine.",
 	"import-error-invalid": "La pagina \"$1\" l'è minga stada importada perchè el nom cont el qual la sariss stada importada a l'è minga valid in su quell wiki chì.",

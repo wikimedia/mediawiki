@@ -2042,7 +2042,6 @@
 	"import-token-mismatch": "Tiyay ruraymanta willakunaqa chinkasqam. Ama hina kaspa, musuqmanta ruraykachay.",
 	"import-invalid-interwiki": "Manam atinichu nisqa wikimanta chaskiyta.",
 	"import-error-edit": "\"$1\" sutiyuq p'anqaqa manam hawamanta chaskisqachu, llamk'apuyta mana saqillasqa kaptiykim.",
-	"import-error-create": "\"$1\" sutiyuq p'anqaqa manam hawamanta chaskisqachu, kamariyta mana saqillasqa kaptiykim.",
 	"import-error-interwiki": "\"$1\" sutiyuq p'anqaqa hawamanta manam chaskisqachu, sutin wikipura (interwiki) nisqapaq hallch'asqa kaptinmi.",
 	"import-error-special": "\"$1\" sutiyuq p'anqaqa hawamanta manam chaskisqachu, mana p'anqapaq kaq sapaq suti k'itiman kapuspanmi.",
 	"import-error-invalid": "\"$1\" sutiyuq p'anqaqa hawamanta manam chaskisqachu, sutin mana allin kaptinmi.",

@@ -3014,7 +3014,6 @@
 	"import-token-mismatch": "Perda de dados da sessão.\n\nVocê pode ter sido desconectado. '''Verifique se você ainda está conectado e tente novamente'''.\n\nSe ainda não funcionar, tente [[Special:UserLogout|sair]] e efetuando login novamente e verifique se seu navegador permite cookies neste site.",
 	"import-invalid-interwiki": "Não é possível importar do wiki especificado.",
 	"import-error-edit": "A página \"$1\" não foi importada porque você não tem permissão para editá-la.",
-	"import-error-create": "A página \"$1\" não foi importada porque você não tem permissão para criá-la.",
 	"import-error-interwiki": "A página \"$1\" não pôde ser importada pois seu nome está reservado para um link interwik.",
 	"import-error-special": "A página \"$1\" não pôde ser importada porque ela pertence a um espaço nominal especial que não suporta páginas.",
 	"import-error-invalid": "A página \"$1\" não pôde ser importada por seu nome ser inválido.",

@@ -2336,7 +2336,6 @@
 	"import-token-mismatch": "Pèrda de les balyês de sèssion.\n\nPôt-étre vos éte étâ dèbranchiê. <strong>Se vos plét, controlâd que vos éte adés branchiê et pués tornâd èprovar.</strong>\nSe cen tôrne pas reussir, èprovâd de vos [[Special:UserLogout|dèbranchiér]] et pués de vos tornar branchiér, et controlâd que voutron navegator accèpte los raportiors (<em>cookies</em>) de cél seto.",
 	"import-invalid-interwiki": "Y at pas moyen d’importar dês lo vouiqui spècifiâ.",
 	"import-error-edit": "La pâge « $1 » est pas étâye importâye, vos éte pas ôtorisâ a la changiér.",
-	"import-error-create": "La pâge « $1 » est pas étâye importâye, vos éte pas ôtorisâ a la fâre.",
 	"import-error-interwiki": "La pâge « $1 » est pas étâye importâye, son nom est resèrvâ por un lim de defôr (entèrvouiqui).",
 	"import-error-special": "La pâge « $1 » est pas étâye importâye, el est a un èspâço de noms spèciâl qu’ôtorise gins de pâge.",
 	"import-error-invalid": "La pâge « $1 » est pas étâye importâye, lo nom que lyé serêt étâye importâye desot est pas justo sur cél vouiqui.",

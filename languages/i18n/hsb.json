@@ -2482,7 +2482,6 @@
 	"import-token-mismatch": "Strata posedźenskich datow. Prošu spytaj hišće raz.",
 	"import-invalid-interwiki": "Njeje móžno z podateho wikija importować.",
 	"import-error-edit": "Strona \"$1\" njeje so importowała, dokelž nimaš prawo ju wobdźěłać.",
-	"import-error-create": "Strona \"$1\" njeje so importowała, dokelž nimaš prawo ju wutworić.",
 	"import-error-interwiki": "Strona \"$1\" njeje so importowała, dokelž jeje mjeno je za eksterne wotkazowanje (interwiki) wuměnjene.",
 	"import-error-special": "Strona \"$1\" njeje so importowała, dokelž k wosebitemu mjenowemu rumej słuša, kotryž strony njedowola.",
 	"import-error-invalid": "Strona \"$1\" njeje so importowała, dokelž mjeno, do kotrehož by so importowała, je njepłaćiwe w tutym wikiju.",

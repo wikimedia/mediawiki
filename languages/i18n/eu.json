@@ -2813,7 +2813,6 @@
 	"import-token-mismatch": "Saioaren datuen galera.\n\nBaliteke saioa amaituta egotea. '''Egiaztatu oraindik saioa hasita duzula eta saiatu berriro'''.\nOraindik ez badu funtzionatzen, saiatu [[Special:UserLogout|logout out]] eta saioa hasi berriro, eta egiaztatu zure nabigatzaileak gune honetako cookieak onartzen dituela.",
 	"import-invalid-interwiki": "Ezin da esandako wikitik inportatu.",
 	"import-error-edit": "\"$1\" orrialdea ez da inportatu aldatzeko baimenik ez duzulako.",
-	"import-error-create": "\"$1\" orrialdea ez da inportatu sortzeko baimenik ez duzulako.",
 	"import-error-interwiki": "\"$1\" orrialdea ez da inportatu bere izena kanpo loturetarako gordeta dagoelako (interwiki).",
 	"import-error-special": "\"$1\" orrialdea ez da inportatu izen-tarte berezi bati dagokiolako eta horretan orrialderik ezin delako egon.",
 	"import-error-invalid": "\"$1\" orrialdea ez da inportatu horretarako dagokion izena ez delako baliagarria wiki honetan.",

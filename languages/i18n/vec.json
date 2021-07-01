@@ -2244,7 +2244,6 @@
 	"import-token-mismatch": "I dati relativi a la session i xe 'ndài persi. Par piaser, próa da novo.",
 	"import-invalid-interwiki": "No se pode inportar da la wiki indicà.",
 	"import-error-edit": "Ƚa pàgina \"$1\" no ƚa xe stà inportà parché no te si autorixà a modifegarƚa.",
-	"import-error-create": "Ƚa pàgina \"$1\" no ƚa xe stà inportà parché no te si autorixà a crearla.",
 	"import-error-interwiki": "Ƚa pàgina \"$1\" no ƚa vien inportà parché el so nome el xe riservà pa'l ligamento foresto (interwiki).",
 	"import-error-special": "Ƚa pàgina \"$1\" no ƚa vien inportà parché ƚa apartien a un namespace speciaƚe che no 'l parmete pàgine.",
 	"import-error-invalid": "Ƚa pàgina \"$1\" no ƚa vien inportà parché el so nome no 'l xe vaƚido.",

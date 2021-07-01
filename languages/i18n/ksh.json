@@ -2362,7 +2362,6 @@
 	"import-token-mismatch": "Schadt. Et senn nit alle Date heh aanjekumme.\nBes esu joot, un versök et noch ens.",
 	"import-invalid-interwiki": "Us dämm jenannte Wiki künne mer nix Importeere.",
 	"import-error-edit": "Di Sigg „$1“ es nit impotehrt woode. Do häs nit et Rääsch, se ze ändere.",
-	"import-error-create": "Di Sigg „$1“ es nit impotehrt woode. Do häs nit et Rääsch, se aanzelähje.",
 	"import-error-interwiki": "Di Sigg „$1“ weed nit empotehrt, weil dä iehre Name för et Verlengke noh ußerhallef, pä Engerwikilengk, jebruch weed.",
 	"import-error-special": "Di Sigg „$1“ weed nit empotehrt, weil dä iehre Name en enem besöndere Appachtemang litt, woh kein Sigge dren zohjelohße sin.",
 	"import-error-invalid": "Di Sigg „$1“ weed nit empotehrt, weil dä Sigg iehre Name, woh se hen empotehrt wääde sull, nit jöltesch es.",

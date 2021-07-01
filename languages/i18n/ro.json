@@ -2908,7 +2908,6 @@
 	"import-token-mismatch": "Ne pare rău! Nu am putut procesa modificarea dumneavoastră din cauza pierderii datelor sesiunii.\n\nEste posibil să vă fi deconectat. '''Vă rugăm să verificați dacă sunteți încă conectat și să încercați din nou'''.\nDacă tot nu funcționează, încercați să [[Special:UserLogout|închideți sesiunea]] și să vă autentificați din nou. Verificați și dacă navigatorul dumneavoastră permite module cookie de la acest site.",
 	"import-invalid-interwiki": "Nu se poate importa din wiki-ul specificat.",
 	"import-error-edit": "Pagina „$1” nu a fost importată deoarece nu vă este permis s-o modificați.",
-	"import-error-create": "Pagina „$1” nu a fost importată deoarece nu vă este permis s-o creați.",
 	"import-error-interwiki": "Pagina „$1” nu a fost importată deoarece numele acesteia este rezervat pentru legături externe (interwiki).",
 	"import-error-special": "Pagina „$1” nu a fost importată deoarece aparține unui spațiu de nume special care nu admite pagini.",
 	"import-error-invalid": "Pagina „$1” nu a fost importată deoarece numele sub care ar fi fost importată nu este valid pe acest wiki.",

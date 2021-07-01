@@ -3036,7 +3036,6 @@
 	"import-token-mismatch": "会话数据丢失。\n\n您可能已经退出。'''请核实您是否仍在登录，并重试'''。\n如果仍然不能工作，尝试[[Special:UserLogout|退出]]并重新登录，并检查您的浏览器是否允许来自该网站的cookie。",
 	"import-invalid-interwiki": "不能从指定的wiki导入。",
 	"import-error-edit": "页面“$1”未导入，因为您不被允许编辑它。",
-	"import-error-create": "页面“$1”未导入，因为您不被允许创建它。",
 	"import-error-interwiki": "页面“$1”未导入，因为它的名字被外部链接（跨wiki链接）保留。",
 	"import-error-special": "页面“$1”未导入，因为它属于不允许页面编辑的特殊名字空间。",
 	"import-error-invalid": "页面“$1”未导入，因为在此wiki导入的名字无效。",

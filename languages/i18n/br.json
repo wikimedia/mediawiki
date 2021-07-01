@@ -2644,7 +2644,6 @@
 	"import-token-mismatch": "Kollet eo bet roadennoù an dalc'h.\n\nMarteze oc'h bet digevreet. '''Gwiriit emaoc'h kevreet mat ha klaskit en-dro'''.\nMa ne'z a ket en-dro c'hoazh, klaskit [[Special:UserLogout|digevreañ]] hag adkevreañ, ha gwiriit mat ec'h asant ho merdeer degemer toupinoù digant al lec'hienn-mañ.",
 	"import-invalid-interwiki": "Dibosupl enporzhiañ adal ar wiki spisaet.",
 	"import-error-edit": "N'eo ket bet enporzhiet ar bajenn \"$1\" peogwir n'oc'h ket aotreet da zegas kemmoù enni.",
-	"import-error-create": "N'eo ket bet enporzhiet ar bajenn \"$1\" peogwir n'oc'h ket aotreet da grouiñ anezhi.",
 	"import-error-interwiki": "Ne vez ket enporzhiet ar bajenn \"$1\" rak miret eo an anv evit liammoù diavaez (etrewiki).",
 	"import-error-special": "N'eo ket bet enporzhiet ar bajenn \"$1\" rak stag eo ouzh un esaouenn anv dibar na aotre ket pajennoù.",
 	"import-error-invalid": "N'eo ket bet enporzhiet ar bajenn \"$1\" rak direizh e vefe hec'h anv er wiki-mañ.",

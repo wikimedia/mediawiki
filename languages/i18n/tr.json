@@ -2997,7 +2997,6 @@
 	"import-token-mismatch": "Oturum verilerinin kaybı.\n\nÇıkış yapmış olabilirsiniz. '''Lütfen hala giriş yaptığınızı doğrulayın ve tekrar deneyin'''.\nYine de çalışmazsa, [[Special:UserLogout|oturum kapatın]] ve tekrar oturum açmayı deneyin ve tarayıcınızın bu siteden çerezlere izin verip vermediğini kontrol edin.",
 	"import-invalid-interwiki": "Belirtilen vikiden içe aktarım yapılamaz.",
 	"import-error-edit": "\"$1\" sayfası içe aktarılamadı çünkü sayfayı değiştirmeye yetkiniz yok.",
-	"import-error-create": "\"$1\" sayfası içe aktarılamadı çünkü sayfayı oluşturmaya yetkiniz yok.",
 	"import-error-interwiki": "\"$1\" sayfası içe aktarılamadı çünkü sayfanın adı dış bağlantı için ayrılmış (vikilerarası).",
 	"import-error-special": "\"$1\" sayfası içe aktarılamadı çünkü sayfalara izin vermeyen özel bir ad alanına ait.",
 	"import-error-invalid": "\"$1\" sayfası içe aktarılamadı çünkü sayfa adı bu vikide geçersiz.",

@@ -2120,7 +2120,6 @@
 	"import-token-mismatch": "Nawala ang dato ng pagpupulong.  Pakisubok muli.",
 	"import-invalid-interwiki": "Hindi maangkat mula sa tinukoy na wiki.",
 	"import-error-edit": "Hindi naangkat ang pahinang \"$1\" dahil  wala kang pahintulot na baguhin ito.",
-	"import-error-create": "Hindi naangkat ang \"$1\" dahil wala kang pahintulot na likhain ito.",
 	"import-error-interwiki": "Hindi naangkat ang pahinang \"$1\" dahil ang pangalan nito ay nakalaan para sa pagkakawing na panlabas (interwiki).",
 	"import-error-special": "Hindi naangkat ang pahinang \"$1\" dahil pag-aari ito ng isang natatanging puwang na pampangalan na hindi nagpapahintulot ng mga pahina.",
 	"import-error-invalid": "Hindi naangkat ang pahinang \"$1\" dahil hindi katanggap-tanggap ang pangalan nito.",

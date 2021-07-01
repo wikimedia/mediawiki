@@ -2796,7 +2796,6 @@
 	"import-token-mismatch": "I dæti relativi a-a sescion son anæti persci. Foscia t'ê stæto disconesso. '''Veriffica d'ese ancon conligou e prœuva torna''.\nSe o problema o persciste, ti pœu provâ a [[Special:UserLogout|sconligâte]] e effettuâ un nœuvo accesso, controlando che o to navegatô o l'açette i cookie da questo scito.",
 	"import-invalid-interwiki": "Imposcibbile importâ da-o progetto wiki indicou.",
 	"import-error-edit": "A paggina \"$1\" a no l'è stæta importâ perché no t'ê aotorizzou a modificâla.",
-	"import-error-create": "A paggina \"$1\" a no l'è stæta importâ perché no t'ê aotorizzou a creâla.",
 	"import-error-interwiki": "A paggina \"$1\" a no l'è stæta importâ perché o so nomme o l'è riservou pe l'ingancio esterno (interwiki).",
 	"import-error-special": "A pagina \"$1\" a no l'è stæta importâ perché a l'apparten a un namespace speciale ch'o no permette de pagine.",
 	"import-error-invalid": "A paggina \"$1\" a no l'è stæta importâ perché o nomme a-o quæ a saiæ stæta importâ o no l'è vallido insce questo wiki.",

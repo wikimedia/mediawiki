@@ -2888,7 +2888,6 @@
 	"import-token-mismatch": "Elvesztek a munkamenetadatok.\n\nLehet, hogy ki vagy jelentkezve. '''Kérjük, győződj meg róla, hogy még mindig be vagy jelentkezve, majd próbálkozz újra!''' Ha ez továbbra sem sikerül, próbálj meg [[Special:UserLogout|kijelentkezni]], majd ismét bejelentkezni, és ellenőrizd, hogy a böngésződ elfogad sütiket erről az oldalról.",
 	"import-invalid-interwiki": "A kijelölt wikiből nem lehet importálni.",
 	"import-error-edit": "„$1” lap nem került importálásra, mert nem szerkesztheted azt.",
-	"import-error-create": "„$1” lap nem került importálásra, mert nem hozhatod létre azt.",
 	"import-error-interwiki": "„$1” lap nem került importálásra, mert a név külső hivatkozásokra van fenntartva (interwiki).",
 	"import-error-special": "„$1” lap nem került importálásra, mert olyan speciális névtérbe tartozik, amelyen nem engedélyezettek a lapok.",
 	"import-error-invalid": "„$1” lap nem került importálásra, mert a név, amelyen importálásra kerülne nem érvényes ezen a wikin.",

@@ -2284,7 +2284,6 @@
 	"import-token-mismatch": "Session dooten san wech.\n\nDü beest wel ufmeldet wurden. '''Stel seeker, dat dü noch uunmeldet beest, an ferschük det man noch ans'''.\nWan det ei loket, [[Special:UserLogout|melde di uf]] an do weder uun. Stel seeker, dat dan browser cookies tuläät.",
 	"import-invalid-interwiki": "Faan detdiar Wiki koon ik ei importiare.",
 	"import-error-edit": "Det sidj „$1“ as ei importiaret wurden, auer dü det ei bewerke mutst.",
-	"import-error-create": "Det sidj „$1“ as ei importiaret wurden, auer dü det ei maage mutst.",
 	"import-error-interwiki": "Det sidj „$1“ as ei importiaret wurden, auer di nööm för ferwisangen (interwiki) föörsen as.",
 	"import-error-special": "Det sidj „$1“ as ei importiaret wurden, auer hat tu en nöömrüm hiart, huar nian sidjen mögelk san.",
 	"import-error-invalid": "Det sidj „$1“ as ei importiaret wurden, auer di nööm üüb detheer Wiki ei tuläät as.",
