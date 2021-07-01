@@ -144,7 +144,10 @@ class LinkCache implements LoggerAwareInterface {
 			// No cross-wiki support yet. Perhaps LinkCache can become wiki-aware in the future.
 			$this->logger->info(
 				'cross-wiki page reference',
-				[ 'page-wiki' => $page->getWikiId(), 'page-reference' => $page ]
+				[
+					'page-wiki' => $page->getWikiId(),
+					'page-reference' => $this->titleFormatter->getFullText( $page )
+				]
 			);
 			return null;
 		}
@@ -153,7 +156,7 @@ class LinkCache implements LoggerAwareInterface {
 			// Non-proper page, perhaps a special page or interwiki link or relative section link.
 			$this->logger->warning(
 				'non-proper page reference',
-				[ 'page-reference' => $page ]
+				[ 'page-reference' => $this->titleFormatter->getFullText( $page ) ]
 			);
 			return null;
 		}
@@ -165,7 +168,7 @@ class LinkCache implements LoggerAwareInterface {
 			// can neither be "good" nor "bad" in the sense of this class.
 			$this->logger->warning(
 				'link to non-proper page',
-				[ 'page-link' => $page ]
+				[ 'page-link' => $this->titleFormatter->getFullText( $page ) ]
 			);
 			return null;
 		}
