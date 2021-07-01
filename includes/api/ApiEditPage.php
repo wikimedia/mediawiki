@@ -22,6 +22,7 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 
@@ -47,14 +48,36 @@ class ApiEditPage extends ApiBase {
 	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	public function __construct( ApiMain $mainModule, $moduleName, $modulePrefix = '' ) {
-		parent::__construct( $mainModule, $moduleName, $modulePrefix );
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
+	/**
+	 * @param ApiMain $mainModule
+	 * @param string $moduleName
+	 * @param IContentHandlerFactory|null $contentHandlerFactory
+	 * @param RevisionLookup|null $revisionLookup
+	 * @param WatchedItemStoreInterface|null $watchedItemStore
+	 */
+	public function __construct(
+		ApiMain $mainModule,
+		$moduleName,
+		IContentHandlerFactory $contentHandlerFactory = null,
+		RevisionLookup $revisionLookup = null,
+		WatchedItemStoreInterface $watchedItemStore = null
+	) {
+		parent::__construct( $mainModule, $moduleName );
 
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
 
-		// Cannot inject yet, see above
-		$this->contentHandlerFactory = MediaWikiServices::getInstance()->getContentHandlerFactory();
+		// This class is extended and therefor fallback to global state - T264213
+		$services = MediaWikiServices::getInstance();
+		$this->contentHandlerFactory = $contentHandlerFactory ?? $services->getContentHandlerFactory();
+		$this->revisionLookup = $revisionLookup ?? $services->getRevisionLookup();
+		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 	}
 
 	public function execute() {
@@ -69,7 +92,6 @@ class ApiEditPage extends ApiBase {
 		$titleObj = $pageObj->getTitle();
 		$this->getErrorFormatter()->setContextTitle( $titleObj );
 		$apiResult = $this->getResult();
-		$revisionLookup = MediaWikiServices::getInstance()->getRevisionLookup();
 
 		if ( $params['redirect'] ) {
 			if ( $params['prependtext'] === null
@@ -81,7 +103,7 @@ class ApiEditPage extends ApiBase {
 			if ( $titleObj->isRedirect() ) {
 				$oldTitle = $titleObj;
 
-				$titles = $revisionLookup
+				$titles = $this->revisionLookup
 					->getRevisionByTitle( $oldTitle, 0, IDBAccessObject::READ_LATEST )
 					->getContent( SlotRecord::MAIN, RevisionRecord::FOR_THIS_USER, $user )
 					->getRedirectChain();
@@ -222,16 +244,16 @@ class ApiEditPage extends ApiBase {
 		}
 
 		if ( $params['undo'] > 0 ) {
-			$undoRev = $revisionLookup->getRevisionById( $params['undo'] );
+			$undoRev = $this->revisionLookup->getRevisionById( $params['undo'] );
 			if ( $undoRev === null || $undoRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undo'] ] );
 			}
 
 			if ( $params['undoafter'] > 0 ) {
-				$undoafterRev = $revisionLookup->getRevisionById( $params['undoafter'] );
+				$undoafterRev = $this->revisionLookup->getRevisionById( $params['undoafter'] );
 			}
 			if ( $params['undoafter'] == 0 ) {
-				$undoafterRev = $revisionLookup->getPreviousRevision( $undoRev );
+				$undoafterRev = $this->revisionLookup->getPreviousRevision( $undoRev );
 			}
 			if ( $undoafterRev === null || $undoafterRev->isDeleted( RevisionRecord::DELETED_TEXT ) ) {
 				$this->dieWithError( [ 'apierror-nosuchrevid', $params['undoafter'] ] );
@@ -285,7 +307,7 @@ class ApiEditPage extends ApiBase {
 			// use an autosummary
 
 			if ( $params['summary'] === null ) {
-				$nextRev = $revisionLookup->getNextRevision( $undoafterRev );
+				$nextRev = $this->revisionLookup->getNextRevision( $undoafterRev );
 				if ( $nextRev && $nextRev->getId() == $params['undo'] ) {
 					$undoRevUser = $undoRev->getUser();
 					$params['summary'] = wfMessage( 'undo-summary' )
@@ -432,7 +454,7 @@ class ApiEditPage extends ApiBase {
 		// T255700: Ensure content models of the base content
 		// and fetched revision remain the same before attempting to save.
 		$editRevId = $requestArray['editRevId'] ?? false;
-		$baseRev = $revisionLookup->getRevisionByTitle( $titleObj, $editRevId );
+		$baseRev = $this->revisionLookup->getRevisionByTitle( $titleObj, $editRevId );
 		$baseContentModel = $baseRev
 			? $baseRev->getContent( SlotRecord::MAIN )->getModel()
 			: $pageObj->getContentModel();
@@ -510,9 +532,8 @@ class ApiEditPage extends ApiBase {
 				if ( $watch ) {
 					$r['watched'] = true;
 
-					$watchedItemStore = MediaWikiServices::getInstance()->getWatchedItemStore();
 					$watchlistExpiry = $this->getWatchlistExpiry(
-						$watchedItemStore,
+						$this->watchedItemStore,
 						$titleObj,
 						$user
 					);

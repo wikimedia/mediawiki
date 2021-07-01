@@ -47,6 +47,7 @@ class ApiHookRunner implements
 	\MediaWiki\Hook\GetLinkColoursHook,
 	\MediaWiki\Hook\ImportSourcesHook,
 	\MediaWiki\Hook\LanguageLinksHook,
+	\MediaWiki\Hook\OutputPageBeforeHTMLHook,
 	\MediaWiki\Hook\OutputPageCheckLastModifiedHook,
 	\MediaWiki\Hook\UserLoginCompleteHook,
 	\MediaWiki\Hook\UserLogoutCompleteHook,
@@ -311,6 +312,13 @@ class ApiHookRunner implements
 		return $this->container->run(
 			'LanguageLinks',
 			[ $title, &$links, &$linkFlags ]
+		);
+	}
+
+	public function onOutputPageBeforeHTML( $out, &$text ) {
+		return $this->container->run(
+			'OutputPageBeforeHTML',
+			[ $out, &$text ]
 		);
 	}
 
