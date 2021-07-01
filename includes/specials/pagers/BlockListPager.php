@@ -27,6 +27,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\Restriction\Restriction;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
@@ -65,6 +66,12 @@ class BlockListPager extends TablePager {
 	/** @var BlockActionInfo */
 	private $blockActionInfo;
 
+	/** @var RowCommentFormatter */
+	private $rowCommentFormatter;
+
+	/** @var string[] */
+	private $formattedComments = [];
+
 	/**
 	 * @param SpecialPage $page
 	 * @param array $conds
@@ -75,6 +82,7 @@ class BlockListPager extends TablePager {
 	 * @param CommentStore $commentStore
 	 * @param BlockUtils $blockUtils
 	 * @param BlockActionInfo $blockActionInfo
+	 * @param RowCommentFormatter $rowCommentFormatter
 	 */
 	public function __construct(
 		$page,
@@ -85,7 +93,8 @@ class BlockListPager extends TablePager {
 		SpecialPageFactory $specialPageFactory,
 		CommentStore $commentStore,
 		BlockUtils $blockUtils,
-		BlockActionInfo $blockActionInfo
+		BlockActionInfo $blockActionInfo,
+		RowCommentFormatter $rowCommentFormatter
 	) {
 		$this->mDb = $loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 		parent::__construct( $page->getContext(), $page->getLinkRenderer() );
@@ -97,6 +106,7 @@ class BlockListPager extends TablePager {
 		$this->commentStore = $commentStore;
 		$this->blockUtils = $blockUtils;
 		$this->blockActionInfo = $blockActionInfo;
+		$this->rowCommentFormatter = $rowCommentFormatter;
 	}
 
 	protected function getFieldNames() {
@@ -243,8 +253,7 @@ class BlockListPager extends TablePager {
 				break;
 
 			case 'ipb_reason':
-				$value = $this->commentStore->getComment( 'ipb_reason', $row )->text;
-				$formatted = Linker::formatComment( $value );
+				$formatted = $this->formattedComments[$this->getResultOffset()];
 				break;
 
 			case 'ipb_params':
@@ -469,7 +478,7 @@ class BlockListPager extends TablePager {
 	 * @param IResultWrapper $result
 	 */
 	public function preprocessResults( $result ) {
-		# Do a link batch query
+		// Do a link batch query
 		$lb = $this->linkBatchFactory->newLinkBatch();
 		$lb->setCaller( __METHOD__ );
 
@@ -505,6 +514,10 @@ class BlockListPager extends TablePager {
 		}
 
 		$lb->execute();
+
+		// Format comments
+		// The keys of formattedComments will be the corresponding offset into $result
+		$this->formattedComments = $this->rowCommentFormatter->formatRows( $result, 'ipb_reason' );
 	}
 
 }

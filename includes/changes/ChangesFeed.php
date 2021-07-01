@@ -93,7 +93,15 @@ class ChangesFeed {
 			}
 		}
 
-		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
+		$services = MediaWikiServices::getInstance();
+		$commentFormatter = $services->getRowCommentFormatter();
+		$formattedComments = $commentFormatter->formatItems(
+			$commentFormatter->rows( $rows )
+				->commentKey( 'rc_comment' )
+				->indexField( 'rc_id' )
+		);
+
+		$nsInfo = $services->getNamespaceInfo();
 		foreach ( $sorted as $obj ) {
 			$title = Title::makeTitle( $obj->rc_namespace, $obj->rc_title );
 			$talkpage = $nsInfo->hasTalkNamespace( $obj->rc_namespace ) && $title->canExist()
@@ -117,7 +125,7 @@ class ChangesFeed {
 
 			$items[] = new FeedItem(
 				$title->getPrefixedText(),
-				FeedUtils::formatDiff( $obj ),
+				FeedUtils::formatDiff( $obj, $formattedComments[$obj->rc_id] ),
 				$url,
 				$obj->rc_timestamp,
 				( $obj->rc_deleted & RevisionRecord::DELETED_USER )

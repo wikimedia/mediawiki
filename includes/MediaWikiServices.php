@@ -41,6 +41,8 @@ use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Collation\CollationFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
@@ -754,6 +756,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getCollationFactory(): CollationFactory {
 		return $this->getService( 'CollationFactory' );
+	}
+
+	/**
+	 * @return CommentFormatter
+	 * @since 1.38
+	 */
+	public function getCommentFormatter(): CommentFormatter {
+		return $this->getService( 'CommentFormatter' );
 	}
 
 	/**
@@ -1472,6 +1482,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getRollbackPageFactory(): RollbackPageFactory {
 		return $this->getService( 'RollbackPageFactory' );
+	}
+
+	/**
+	 * @since 1.38
+	 * @return RowCommentFormatter
+	 */
+	public function getRowCommentFormatter(): RowCommentFormatter {
+		return $this->getService( 'RowCommentFormatter' );
 	}
 
 	/**

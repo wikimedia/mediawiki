@@ -142,6 +142,8 @@ because of Phabricator reports.
 * PageProps::getInstance() has been deprecated. Use
   MediaWikiServices::getPageProps() instead.
 * User::setOption(), deprecated since 1.35, now emits deprecation warnings.
+* Linker::formatComment(), ::formatLinksInComment(), ::commentBlock() and
+  revComment() were soft-deprecated. Use the new CommentFormatter service.
 * Skin::getSkinStylePath has been hard deprecated. Direct string path
   should be used instead.
 * SkinTemplate::getPersonalToolsList(), deprecated since 1.35, now emits

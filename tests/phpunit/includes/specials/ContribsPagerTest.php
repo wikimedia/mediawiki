@@ -33,6 +33,9 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	protected function setUp(): void {
 		parent::setUp();
 
@@ -44,6 +47,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		$this->loadBalancer = $services->getDBLoadBalancer();
 		$this->actorMigration = $services->getActorMigration();
 		$this->namespaceInfo = $services->getNamespaceInfo();
+		$this->commentFormatter = $services->getCommentFormatter();
 		$this->pager = $this->getContribsPager( [
 			'start' => '2017-01-01',
 			'end' => '2017-02-02',
@@ -61,7 +65,8 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,
-			$targetUser
+			$targetUser,
+			$this->commentFormatter
 		);
 	}
 

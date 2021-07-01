@@ -111,11 +111,13 @@ class ImageHistoryList extends ContextSource {
 	}
 
 	/**
+	 * @internal
 	 * @param bool $iscur
 	 * @param File $file
+	 * @param string $formattedComment
 	 * @return string
 	 */
-	public function imageHistoryLine( $iscur, $file ) {
+	public function imageHistoryLine( $iscur, $file, $formattedComment ) {
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
@@ -274,7 +276,7 @@ class ImageHistoryList extends ContextSource {
 			$row .= Html::rawElement(
 				'td',
 				[ 'dir' => $contLang->getDir() ],
-				Linker::formatComment( $description, $this->title )
+				$formattedComment
 			);
 		}
 

@@ -22,6 +22,7 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
@@ -57,6 +58,16 @@ class ChangesList extends ContextSource {
 	protected $linkRenderer;
 
 	/**
+	 * @var RowCommentFormatter
+	 */
+	protected $commentFormatter;
+
+	/**
+	 * @var string[] Comments indexed by rc_id
+	 */
+	protected $formattedComments;
+
+	/**
 	 * @var ChangesListFilterGroup[]
 	 */
 	protected $filterGroups;
@@ -69,8 +80,11 @@ class ChangesList extends ContextSource {
 		$this->setContext( $context );
 		$this->preCacheMessages();
 		$this->watchMsgCache = new MapCacheLRU( 50 );
-		$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 		$this->filterGroups = $filterGroups;
+
+		$services = MediaWikiServices::getInstance();
+		$this->linkRenderer = $services->getLinkRenderer();
+		$this->commentFormatter = $services->getRowCommentFormatter();
 	}
 
 	/**
@@ -308,6 +322,16 @@ class ChangesList extends ContextSource {
 	 */
 	public function initChangesListRows( $rows ) {
 		$this->getHookRunner()->onChangesListInitRows( $this, $rows );
+		$this->formattedComments = $this->commentFormatter->createBatch()
+			->comments(
+				$this->commentFormatter->rows( $rows )
+					->commentKey( 'rc_comment' )
+					->namespaceField( 'rc_namespace' )
+					->titleField( 'rc_title' )
+					->indexField( 'rc_id' )
+			)
+			->useBlock()
+			->execute();
 	}
 
 	/**
@@ -696,14 +720,21 @@ class ChangesList extends ContextSource {
 			}
 			return ' <span class="' . $deletedClass . ' comment">' .
 				$this->msg( 'rev-deleted-comment' )->escaped() . '</span>';
+		} elseif ( isset( $rc->mAttribs['rc_id'] )
+			&& isset( $this->formattedComments[$rc->mAttribs['rc_id']] )
+		) {
+			return $this->formattedComments[$rc->mAttribs['rc_id']];
 		} else {
-			return Linker::commentBlock( $rc->mAttribs['rc_comment'], $rc->getTitle(),
+			return $this->commentFormatter->formatBlock(
+				$rc->mAttribs['rc_comment'],
+				$rc->getTitle(),
 				// Whether section links should refer to local page (using default false)
 				false,
 				// wikid to generate links for (using default null) */
 				null,
 				// whether parentheses should be rendered as part of the message
-				false );
+				false
+			);
 		}
 	}
 

@@ -20,6 +20,7 @@
  * @ingroup Actions
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\Revision\RevisionRecord;
@@ -46,6 +47,9 @@ class RollbackAction extends FormAction {
 	/** @var WatchlistManager */
 	private $watchlistManager;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param Page $page
 	 * @param IContextSource|null $context
@@ -53,6 +57,7 @@ class RollbackAction extends FormAction {
 	 * @param RollbackPageFactory $rollbackPageFactory
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param WatchlistManager $watchlistManager
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		Page $page,
@@ -60,13 +65,15 @@ class RollbackAction extends FormAction {
 		IContentHandlerFactory $contentHandlerFactory,
 		RollbackPageFactory $rollbackPageFactory,
 		UserOptionsLookup $userOptionsLookup,
-		WatchlistManager $watchlistManager
+		WatchlistManager $watchlistManager,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $page, $context );
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->rollbackPageFactory = $rollbackPageFactory;
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->watchlistManager = $watchlistManager;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function getName() {
@@ -188,9 +195,8 @@ class RollbackAction extends FormAction {
 					$this->getOutput()->addWikiMsg(
 						'editcomment',
 						Message::rawParam(
-							Linker::formatComment(
-								$current->getComment()->text
-							)
+							$this->commentFormatter
+								->format( $current->getComment()->text )
 						)
 					);
 				}

@@ -18,6 +18,7 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Revision\MutableRevisionRecord;
@@ -48,6 +49,9 @@ class ApiComparePages extends ApiBase {
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
@@ -55,6 +59,7 @@ class ApiComparePages extends ApiBase {
 	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @param IContentHandlerFactory $contentHandlerFactory
 	 * @param ContentTransformer $contentTransformer
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiMain $mainModule,
@@ -62,13 +67,15 @@ class ApiComparePages extends ApiBase {
 		RevisionStore $revisionStore,
 		SlotRoleRegistry $slotRoleRegistry,
 		IContentHandlerFactory $contentHandlerFactory,
-		ContentTransformer $contentTransformer
+		ContentTransformer $contentTransformer,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->revisionStore = $revisionStore;
 		$this->slotRoleRegistry = $slotRoleRegistry;
 		$this->contentHandlerFactory = $contentHandlerFactory;
 		$this->contentTransformer = $contentTransformer;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute() {
@@ -639,7 +646,7 @@ class ApiComparePages extends ApiBase {
 					if ( isset( $this->props['comment'] ) ) {
 						$vals["{$prefix}comment"] = $comment->text;
 					}
-					$vals["{$prefix}parsedcomment"] = Linker::formatComment(
+					$vals["{$prefix}parsedcomment"] = $this->commentFormatter->format(
 						$comment->text, $title
 					);
 				}

@@ -24,6 +24,8 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentFormatter\CommentItem;
 use MediaWiki\Revision\RevisionRecord;
 
 /**
@@ -36,18 +38,24 @@ class ApiQueryFilearchive extends ApiQueryBase {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $query, $moduleName, 'fa' );
 		$this->commentStore = $commentStore;
+		$this->commentFormatter = $commentFormatter;
 	}
 
 	public function execute() {
@@ -63,6 +71,7 @@ class ApiQueryFilearchive extends ApiQueryBase {
 		$fld_size = isset( $prop['size'] );
 		$fld_dimensions = isset( $prop['dimensions'] );
 		$fld_description = isset( $prop['description'] ) || isset( $prop['parseddescription'] );
+		$fld_parseddescription = isset( $prop['parseddescription'] );
 		$fld_mime = isset( $prop['mime'] );
 		$fld_mediatype = isset( $prop['mediatype'] );
 		$fld_metadata = isset( $prop['metadata'] );
@@ -151,6 +160,22 @@ class ApiQueryFilearchive extends ApiQueryBase {
 
 		$res = $this->select( __METHOD__ );
 
+		// Format descriptions in a batch
+		$formattedDescriptions = [];
+		$descriptions = [];
+		if ( $fld_parseddescription ) {
+			$commentItems = [];
+			foreach ( $res as $row ) {
+				$desc = $this->commentStore->getComment( 'fa_description', $row )->text;
+				$descriptions[$row->fa_id] = $desc;
+				$commentItems[$row->fa_id] = ( new CommentItem( $desc ) )
+					->selfLinkTarget( new TitleValue( NS_FILE, $row->fa_name ) );
+			}
+			$formattedDescriptions = $this->commentFormatter->createBatch()
+				->comments( $commentItems )
+				->execute();
+		}
+
 		$count = 0;
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
@@ -174,10 +199,11 @@ class ApiQueryFilearchive extends ApiQueryBase {
 			if ( $fld_description &&
 				RevisionRecord::userCanBitfield( $row->fa_deleted, File::DELETED_COMMENT, $user )
 			) {
-				$file['description'] = $this->commentStore->getComment( 'fa_description', $row )->text;
 				if ( isset( $prop['parseddescription'] ) ) {
-					$file['parseddescription'] = Linker::formatComment(
-						$file['description'], $title );
+					$file['parseddescription'] = $formattedDescriptions[$row->fa_id];
+					$file['description'] = $descriptions[$row->fa_id];
+				} else {
+					$file['description'] = $this->commentStore->getComment( 'fa_description', $row )->text;
 				}
 			}
 			if ( $fld_user &&

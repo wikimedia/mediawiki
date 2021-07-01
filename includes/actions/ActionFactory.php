@@ -174,6 +174,7 @@ class ActionFactory {
 				'RollbackPageFactory',
 				'UserOptionsLookup',
 				'WatchlistManager',
+				'CommentFormatter'
 			],
 		],
 		'unwatch' => [

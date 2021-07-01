@@ -312,7 +312,8 @@ class HistoryAction extends FormlessAction {
 			$conds,
 			$d,
 			$services->getLinkBatchFactory(),
-			$watchlistManager
+			$watchlistManager,
+			$services->getCommentFormatter()
 		);
 		$out->addHTML(
 			$pager->getNavigationBar() .
@@ -405,11 +406,15 @@ class HistoryAction extends FormlessAction {
 
 		$items = $this->fetchRevisions( $limit, 0, self::DIR_NEXT );
 
+		// Preload comments
+		$formattedComments = MediaWikiServices::getInstance()->getRowCommentFormatter()
+			->formatRows( $items, 'rev_comment' );
+
 		// Generate feed elements enclosed between header and footer.
 		$feed->outHeader();
 		if ( $items->numRows() ) {
-			foreach ( $items as $row ) {
-				$feed->outItem( $this->feedItem( $row ) );
+			foreach ( $items as $i => $row ) {
+				$feed->outItem( $this->feedItem( $row, $formattedComments[$i] ) );
 			}
 		} else {
 			$feed->outItem( $this->feedEmpty() );
@@ -434,19 +439,20 @@ class HistoryAction extends FormlessAction {
 	 * includes a diff to the previous revision (if any).
 	 *
 	 * @param stdClass|array $row Database row
+	 * @param string $formattedComment The comment in HTML format
 	 * @return FeedItem
 	 */
-	private function feedItem( $row ) {
+	private function feedItem( $row, $formattedComment ) {
 		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$rev = $revisionStore->newRevisionFromRow( $row, 0, $this->getTitle() );
 		$prevRev = $revisionStore->getPreviousRevision( $rev );
 		$revComment = $rev->getComment() === null ? null : $rev->getComment()->text;
-		$text = FeedUtils::formatDiffRow(
+		$text = FeedUtils::formatDiffRow2(
 			$this->getTitle(),
 			$prevRev ? $prevRev->getId() : false,
 			$rev->getId(),
 			$rev->getTimestamp(),
-			$revComment
+			$formattedComment
 		);
 		$revUserText = $rev->getUser() ? $rev->getUser()->getName() : '';
 		if ( $revComment == '' ) {

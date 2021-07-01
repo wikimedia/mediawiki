@@ -267,8 +267,9 @@ class LinkerTest extends MediaWikiLangTestCase {
 	/**
 	 * @dataProvider provideCasesForFormatComment
 	 * @covers Linker::formatComment
-	 * @covers Linker::formatAutocomments
 	 * @covers Linker::formatLinksInComment
+	 * @covers \MediaWiki\CommentFormatter\CommentParser
+	 * @covers \MediaWiki\CommentFormatter\CommentFormatter
 	 */
 	public function testFormatComment(
 		$expected, $comment, $title = false, $local = false, $wikiId = null
@@ -490,6 +491,8 @@ class LinkerTest extends MediaWikiLangTestCase {
 
 	/**
 	 * @covers Linker::formatLinksInComment
+	 * @covers \MediaWiki\CommentFormatter\CommentParser
+	 * @covers \MediaWiki\CommentFormatter\CommentFormatter
 	 * @dataProvider provideCasesForFormatLinksInComment
 	 */
 	public function testFormatLinksInComment( $expected, $input, $wiki ) {
@@ -664,53 +667,6 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$result = Linker::tooltipAndAccesskeyAttribs( $name, $msgParams, $options );
 
 		$this->assertEquals( $expected, $result );
-	}
-
-	/**
-	 * @covers Linker::makeCommentLink
-	 * @dataProvider provideMakeCommentLink
-	 */
-	public function testMakeCommentLink( $expected, $linkTarget, $text, $wikiId = null, $options = [] ) {
-		$conf = new SiteConfiguration();
-		$conf->settings = [
-			'wgServer' => [
-				'enwiki' => '//en.example.org'
-			],
-			'wgArticlePath' => [
-				'enwiki' => '/w/$1',
-			],
-		];
-		$conf->suffixes = [ 'wiki' ];
-		$this->setMwGlobals( [
-			'wgScript' => '/wiki/index.php',
-			'wgArticlePath' => '/wiki/$1',
-			'wgCapitalLinks' => true,
-			'wgConf' => $conf,
-		] );
-
-		$this->assertEquals( $expected, Linker::makeCommentLink( $linkTarget, $text, $wikiId, $options ) );
-	}
-
-	public static function provideMakeCommentLink() {
-		return [
-			[
-				'<a href="/wiki/Special:BlankPage" title="Special:BlankPage">Test</a>',
-				new TitleValue( NS_SPECIAL, 'BlankPage' ),
-				'Test'
-			],
-			'External comment link' => [
-				'<a class="external" rel="nofollow" href="//en.example.org/w/BlankPage">Test</a>',
-				new TitleValue( NS_MAIN, 'BlankPage' ),
-				'Test',
-				'enwiki'
-			],
-			'External special page comment link' => [
-				'<a class="external" rel="nofollow" href="//en.example.org/w/Special:BlankPage">Test</a>',
-				new TitleValue( NS_SPECIAL, 'BlankPage' ),
-				'Test',
-				'enwiki'
-			],
-		];
 	}
 
 	/**

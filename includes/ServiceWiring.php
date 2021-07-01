@@ -61,6 +61,9 @@ use MediaWiki\Block\UserBlockCommandFactory;
 use MediaWiki\Cache\BacklinkCacheFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Collation\CollationFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentFormatter\CommentParserFactory;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
@@ -338,6 +341,21 @@ return [
 		);
 	},
 
+	'CommentFormatter' => static function ( MediaWikiServices $services ): CommentFormatter {
+		$parserFactory = new CommentParserFactory(
+			$services->getLinkRenderer(),
+			$services->getLinkBatchFactory(),
+			$services->getLinkCache(),
+			$services->getRepoGroup(),
+			RequestContext::getMain()->getLanguage(),
+			$services->getContentLanguage(),
+			$services->getTitleParser(),
+			$services->getNamespaceInfo(),
+			$services->getHookContainer()
+		);
+		return new CommentFormatter( $parserFactory );
+	},
+
 	'CommentStore' => static function ( MediaWikiServices $services ): CommentStore {
 		return new CommentStore(
 			$services->getContentLanguage(),
@@ -404,7 +422,8 @@ return [
 			$services->getHookContainer(),
 			$services->getDBLoadBalancer(),
 			$services->getActorMigration(),
-			$services->getNamespaceInfo()
+			$services->getNamespaceInfo(),
+			$services->getCommentFormatter()
 		);
 	},
 
@@ -1445,6 +1464,24 @@ return [
 
 	'RollbackPageFactory' => static function ( MediaWikiServices $services ): RollbackPageFactory {
 		return $services->get( '_PageCommandFactory' );
+	},
+
+	'RowCommentFormatter' => static function ( MediaWikiServices $services ): RowCommentFormatter {
+		$parserFactory = new CommentParserFactory(
+			$services->getLinkRenderer(),
+			$services->getLinkBatchFactory(),
+			$services->getLinkCache(),
+			$services->getRepoGroup(),
+			RequestContext::getMain()->getLanguage(),
+			$services->getContentLanguage(),
+			$services->getTitleParser(),
+			$services->getNamespaceInfo(),
+			$services->getHookContainer()
+		);
+		return new RowCommentFormatter(
+			$parserFactory,
+			$services->getCommentStore()
+		);
 	},
 
 	'SearchEngineConfig' => static function ( MediaWikiServices $services ): SearchEngineConfig {

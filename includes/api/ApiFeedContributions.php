@@ -22,6 +22,7 @@
 
 use MediaWiki\Api\ApiHookRunner;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
@@ -64,6 +65,9 @@ class ApiFeedContributions extends ApiBase {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/** @var ApiHookRunner */
 	private $hookRunner;
 
@@ -79,6 +83,7 @@ class ApiFeedContributions extends ApiBase {
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param ActorMigration $actorMigration
 	 * @param UserFactory $userFactory
+	 * @param CommentFormatter $commentFormatter
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -91,7 +96,8 @@ class ApiFeedContributions extends ApiBase {
 		ILoadBalancer $loadBalancer,
 		NamespaceInfo $namespaceInfo,
 		ActorMigration $actorMigration,
-		UserFactory $userFactory
+		UserFactory $userFactory,
+		CommentFormatter $commentFormatter
 	) {
 		parent::__construct( $main, $action );
 		$this->revisionStore = $revisionStore;
@@ -103,6 +109,7 @@ class ApiFeedContributions extends ApiBase {
 		$this->namespaceInfo = $namespaceInfo;
 		$this->actorMigration = $actorMigration;
 		$this->userFactory = $userFactory;
+		$this->commentFormatter = $commentFormatter;
 
 		$this->hookRunner = new ApiHookRunner( $hookContainer );
 	}
@@ -178,7 +185,8 @@ class ApiFeedContributions extends ApiBase {
 			$this->actorMigration,
 			$this->revisionStore,
 			$this->namespaceInfo,
-			$targetUser
+			$targetUser,
+			$this->commentFormatter
 		);
 
 		$feedLimit = $this->getConfig()->get( 'FeedLimit' );

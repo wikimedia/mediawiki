@@ -283,20 +283,6 @@ class DummyLinker {
 		);
 	}
 
-	public function makeCommentLink(
-		Title $title,
-		$text,
-		$wikiId = null,
-		$options = []
-	) {
-		return Linker::makeCommentLink(
-			$title,
-			$text,
-			$wikiId,
-			$options
-		);
-	}
-
 	public function normalizeSubpageLink( $contextTitle, $target, &$text ) {
 		return Linker::normalizeSubpageLink(
 			$contextTitle,

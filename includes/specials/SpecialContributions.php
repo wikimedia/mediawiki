@@ -23,6 +23,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\CommentFormatter\CommentFormatter;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\PermissionManager;
@@ -69,6 +70,9 @@ class SpecialContributions extends IncludableSpecialPage {
 	/** @var UserOptionsLookup */
 	private $userOptionsLookup;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/** @var UserFactory */
 	private $userFactory;
 
@@ -85,6 +89,7 @@ class SpecialContributions extends IncludableSpecialPage {
 	 * @param UserNameUtils|null $userNameUtils
 	 * @param UserNamePrefixSearch|null $userNamePrefixSearch
 	 * @param UserOptionsLookup|null $userOptionsLookup
+	 * @param CommentFormatter|null $commentFormatter
 	 * @param UserFactory|null $userFactory
 	 */
 	public function __construct(
@@ -97,6 +102,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		UserNameUtils $userNameUtils = null,
 		UserNamePrefixSearch $userNamePrefixSearch = null,
 		UserOptionsLookup $userOptionsLookup = null,
+		CommentFormatter $commentFormatter = null,
 		UserFactory $userFactory = null
 	) {
 		parent::__construct( 'Contributions' );
@@ -111,6 +117,7 @@ class SpecialContributions extends IncludableSpecialPage {
 		$this->userNameUtils = $userNameUtils ?? $services->getUserNameUtils();
 		$this->userNamePrefixSearch = $userNamePrefixSearch ?? $services->getUserNamePrefixSearch();
 		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
+		$this->commentFormatter = $commentFormatter ?? $services->getCommentFormatter();
 		$this->userFactory = $userFactory ?? $services->getUserFactory();
 	}
 
@@ -858,7 +865,8 @@ class SpecialContributions extends IncludableSpecialPage {
 				$this->actorMigration,
 				$this->revisionStore,
 				$this->namespaceInfo,
-				$targetUser
+				$targetUser,
+				$this->commentFormatter
 			);
 		}
 

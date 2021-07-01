@@ -20,6 +20,8 @@
  * @file
  */
 
+use MediaWiki\CommentFormatter\CommentFormatter;
+use MediaWiki\CommentFormatter\RowCommentFormatter;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
@@ -34,23 +36,32 @@ class ApiQueryLogEvents extends ApiQueryBase {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var CommentFormatter */
+	private $commentFormatter;
+
 	/** @var NameTableStore */
 	private $changeTagDefStore;
+
+	/** @var string[]|null */
+	private $formattedComments;
 
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
+	 * @param RowCommentFormatter $commentFormatter
 	 * @param NameTableStore $changeTagDefStore
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		CommentStore $commentStore,
+		RowCommentFormatter $commentFormatter,
 		NameTableStore $changeTagDefStore
 	) {
 		parent::__construct( $query, $moduleName, 'le' );
 		$this->commentStore = $commentStore;
+		$this->commentFormatter = $commentFormatter;
 		$this->changeTagDefStore = $changeTagDefStore;
 	}
 
@@ -254,6 +265,15 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		if ( $this->fld_title ) {
 			$this->executeGenderCacheFromResultWrapper( $res, __METHOD__, 'log' );
 		}
+		if ( $this->fld_parsedcomment ) {
+			$this->formattedComments = $this->commentFormatter->formatItems(
+				$this->commentFormatter->rows( $res )
+					->commentKey( 'log_comment' )
+					->indexField( 'log_id' )
+					->namespaceField( 'log_namespace' )
+					->titleField( 'log_title' )
+			);
+		}
 
 		$result = $this->getResult();
 		foreach ( $res as $row ) {
@@ -286,7 +306,7 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			$vals['logid'] = (int)$row->log_id;
 		}
 
-		if ( $this->fld_title || $this->fld_parsedcomment ) {
+		if ( $this->fld_title ) {
 			$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 		}
 
@@ -342,13 +362,13 @@ class ApiQueryLogEvents extends ApiQueryBase {
 				$anyHidden = true;
 			}
 			if ( LogEventsList::userCan( $row, LogPage::DELETED_COMMENT, $user ) ) {
-				$comment = $this->commentStore->getComment( 'log_comment', $row )->text;
 				if ( $this->fld_comment ) {
-					$vals['comment'] = $comment;
+					$vals['comment'] = $this->commentStore->getComment( 'log_comment', $row )->text;
 				}
 
 				if ( $this->fld_parsedcomment ) {
-					$vals['parsedcomment'] = Linker::formatComment( $comment, $title );
+					// @phan-suppress-next-line PhanTypeArraySuspiciousNullable
+					$vals['parsedcomment'] = $this->formattedComments[$row->log_id];
 				}
 			}
 		}
