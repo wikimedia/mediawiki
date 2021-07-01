@@ -1508,6 +1508,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 
 		$result = $dbw->affectedRows() > 0;
 		if ( $result ) {
+			$this->mTitle->loadFromRow( (object)$row );
 			$this->updateRedirectOn( $dbw, $rt, $lastRevIsRedirect );
 			$this->setLastEdit( $revision );
 			$this->mRedirectTarget = null;
