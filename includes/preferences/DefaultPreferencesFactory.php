@@ -852,6 +852,13 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 				'options' => $skinOptions,
 				'section' => 'rendering/skin',
 			];
+			$defaultPreferences['skin-responsive'] = [
+				'type' => 'check',
+				'default' => true,
+				'label-message' => 'prefs-skin-responsive',
+				'section' => 'rendering/skin',
+				'help-message' => 'prefs-help-skin-responsive',
+			];
 		}
 
 		$allowUserCss = $this->options->get( 'AllowUserCss' );

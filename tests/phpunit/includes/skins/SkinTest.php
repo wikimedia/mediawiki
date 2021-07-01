@@ -132,10 +132,20 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testIsResponsive( array $options, bool $expected ) {
 		$skin = new class( $options ) extends Skin {
+
 			/**
 			 * @inheritDoc
 			 */
 			public function outputPage() {
+			}
+
+			/**
+			 * @inheritDoc
+			 */
+			public function getUser() {
+				$user = TestUserRegistry::getImmutableTestUser( [] )->getUser();
+				$user->setOption( 'skin-responsive', $this->options['userPreference'] );
+				return $user;
 			}
 		};
 
@@ -144,16 +154,24 @@ class SkinTest extends MediaWikiIntegrationTestCase {
 
 	public function provideSkinResponsiveOptions() {
 		yield 'responsive not set' => [
-			[ 'name' => 'test' ],
+			[ 'name' => 'test', 'userPreference' => true ],
 			false
 		];
 		yield 'responsive false' => [
-			[ 'name' => 'test', 'responsive' => false ],
+			[ 'name' => 'test', 'responsive' => false, 'userPreference' => true ],
 			false
 		];
 		yield 'responsive true' => [
-			[ 'name' => 'test', 'responsive' => true ],
+			[ 'name' => 'test', 'responsive' => true, 'userPreference' => true ],
 			true
+		];
+		yield 'responsive true, user preference false' => [
+			[ 'name' => 'test', 'responsive' => true, 'userPreference' => false ],
+			false
+		];
+		yield 'responsive false, user preference false' => [
+			[ 'name' => 'test', 'responsive' => false, 'userPreference' => false ],
+			false
 		];
 	}
 

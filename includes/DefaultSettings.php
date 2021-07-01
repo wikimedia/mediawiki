@@ -5706,6 +5706,7 @@ $wgDefaultUserOptions = [
 	'useeditwarning' => 1,
 	'prefershttps' => 1,
 	'requireemail' => 0,
+	'skin-responsive' => 1,
 ];
 
 /**

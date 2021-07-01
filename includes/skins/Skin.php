@@ -168,7 +168,9 @@ abstract class Skin extends ContextSource {
 	 *  `name` key represents the skinname, defaults to $wgDefaultSkin if not provided
 	 *  `scripts` represents an array of ResourceLoader script modules and
 	 *  `styles` represents an array of ResourceLoader style modules to load on all pages.
-	 *  `responsive` indicates if a viewport meta tag should be set.
+	 *  `responsive` indicates if a skin supports responsive behaviour and a viewport meta
+	 *     tag can be set on the skin. Note, users can disable this feature via  user
+	 *     preference.
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
@@ -202,7 +204,11 @@ abstract class Skin extends ContextSource {
 	 * @return bool
 	 */
 	public function isResponsive() {
-		return $this->options['responsive'] ?? false;
+		$isSkinResponsiveCapable = $this->options['responsive'] ?? false;
+		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
+
+		return $isSkinResponsiveCapable &&
+			$userOptionsLookup->getBoolOption( $this->getUser(), 'skin-responsive' );
 	}
 
 	/**
@@ -2246,9 +2252,11 @@ abstract class Skin extends ContextSource {
 	 * to makeListItem instead of hardcoding the element creation boilerplate.
 	 * @since 1.35
 	 * @param array $urls
+	 * @param bool $applyClassesToListItems (optional) when set behaves consistently with other menus,
+	 *   applying the `class` property applies to list items. When not set will move the class to child links.
 	 * @return array[]
 	 */
-	final public function getPersonalToolsForMakeListItem( $urls ) {
+	final public function getPersonalToolsForMakeListItem( $urls, $applyClassesToListItems = false ) {
 		$personal_tools = [];
 		foreach ( $urls as $key => $plink ) {
 			# The class on a personal_urls item is meant to go on the <a> instead
@@ -2260,6 +2268,9 @@ abstract class Skin extends ContextSource {
 				],
 				'id' => "pt-$key",
 			];
+			if ( $applyClassesToListItems && isset( $plink['class'] ) ) {
+				$ptool['class'] = $plink['class'];
+			}
 			if ( isset( $plink['active'] ) ) {
 				$ptool['active'] = $plink['active'];
 			}
@@ -2270,15 +2281,18 @@ abstract class Skin extends ContextSource {
 			if ( isset( $plink['link-class'] ) ) {
 				$ptool['links'][0]['class'] = $plink['link-class'];
 			}
-			foreach ( [
+			$props = [
 				'href',
-				'class',
 				'text',
 				'dir',
 				'data',
 				'exists',
 				'data-mw'
-			] as $k ) {
+			];
+			if ( !$applyClassesToListItems ) {
+				$props[] = 'class';
+			}
+			foreach ( $props as $k ) {
 				if ( isset( $plink[$k] ) ) {
 					$ptool['links'][0][$k] = $plink[$k];
 				}

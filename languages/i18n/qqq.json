@@ -1292,6 +1292,8 @@
 	"prefsnologintext2": "Showed on Special:Userlogin when user tries to access their preferences before logging in",
 	"prefs-skin": "Used in user preferences. Refers to the design or the theme of the MediaWiki installation: fonts, placement of buttons, colors, etc.\n\n{{Identical|Skin}}",
 	"prefs-skin-prefs": "Title for skin specific user preferences shown on Special:Preferences if available.",
+	"prefs-skin-responsive": "Used in [[Special:Preferences]]",
+	"prefs-help-skin-responsive": "Help message used on [[Special:Preferences]].\n\nSee also:\n* {{msg-mw|Mypreferences}}",
 	"skin-preview": "{{doc-actionlink}}\nThe link beside each skin name in [[Special:Preferences|your user preferences]], tab \"skin\".\n{{Identical|Preview}}",
 	"datedefault": "Used as checkbox label in [[Special:Preferences#mw-prefsection-rendering|user preferences]], {{msg-mw|prefs-rendering}} tab.\n\nThis message indicates {{msg-mw|prefs-dateformat}} is default (= not specified).",
 	"prefs-labs": "Header of a subsection at [[Special:Preferences]], tab ''{{int:prefs-editing}}'', listing features that are experimental",
