@@ -650,7 +650,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	public static function makeTitle( $ns, $title, $fragment = '', $interwiki = '' ) {
 		$t = new Title();
 		$t->mInterwiki = $interwiki;
-		$t->mFragment = $fragment;
+		$t->mFragment = self::normalizeFragment( $fragment );
 		$t->mNamespace = $ns = (int)$ns;
 		$t->mDbkeyform = strtr( $title, ' ', '_' );
 		$t->mArticleID = ( $ns >= 0 ) ? -1 : 0;
@@ -1828,7 +1828,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 */
 	public function setFragment( $fragment ) {
 		$this->uncache();
-		$this->mFragment = strtr( substr( $fragment, 1 ), '_', ' ' );
+		$this->mFragment = self::normalizeFragment( $fragment );
 	}
 
 	/**
@@ -1845,6 +1845,19 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			$fragment,
 			$this->mInterwiki
 		);
+	}
+
+	/**
+	 * Normalizes fragment part of the title.
+	 *
+	 * @param string $fragment
+	 * @return string
+	 */
+	private static function normalizeFragment( $fragment ) {
+		if ( strpos( $fragment, '#' ) === 0 ) {
+			$fragment = substr( $fragment, 1 );
+		}
+		return strtr( $fragment, '_', ' ' );
 	}
 
 	/**
