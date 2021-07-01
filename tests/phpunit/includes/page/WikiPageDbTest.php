@@ -2244,10 +2244,10 @@ more stuff
 	}
 
 	/**
-	 * This is just to confirm that WikiPage::updateRevisionOn() calls
-	 * LinkCache::addGoodLinkObj() with the correct redirect value. Failing to
-	 * do so would apparently cause Echo to inappropriately notify on redirect
-	 * creation, and there was a test for that, but that's subtle.
+	 * This is just to confirm that WikiPage::updateRevisionOn() updates the
+	 * Title and LinkCache with the correct redirect value. Failing to do so
+	 * causes subtle test failures in extensions, such as Cognate (T283654)
+	 * and Echo (no task, but see code review of I12542fc899).
 	 *
 	 * @covers WikiPage
 	 */
@@ -2273,7 +2273,9 @@ more stuff
 		$revision = $store->insertRevisionOn( $revision, $dbw );
 
 		$page->updateRevisionOn( $dbw, $revision );
-		// Don't use the title cache again, just use the LinkCache
+		// check the title cache
+		$this->assertTrue( $title->isRedirect() );
+		// check the link cache with a fresh title
 		$title = Title::makeTitleSafe( NS_MAIN, 'A new redirect' );
 		$this->assertTrue( $title->isRedirect() );
 	}
