@@ -249,7 +249,7 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'BlockPermissionCheckerFactory',
 				'UnblockUserFactory',
-				'UserCache',
+				'UserIdentityLookup',
 			]
 		],
 		'move' => [
