@@ -44,7 +44,12 @@ class ApiQuery extends ApiBase {
 		'categoryinfo' => ApiQueryCategoryInfo::class,
 		'contributors' => ApiQueryContributors::class,
 		'deletedrevisions' => ApiQueryDeletedRevisions::class,
-		'duplicatefiles' => ApiQueryDuplicateFiles::class,
+		'duplicatefiles' => [
+			'class' => ApiQueryDuplicateFiles::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'extlinks' => ApiQueryExternalLinks::class,
 		'fileusage' => ApiQueryBacklinksprop::class,
 		'images' => ApiQueryImages::class,
