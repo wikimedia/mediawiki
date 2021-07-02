@@ -43,6 +43,11 @@ abstract class Skin extends ContextSource {
 	use ProtectedHookAccessorTrait;
 
 	/**
+	 * @var array link options used in Skin::makeLink. Can be set by skin option `link`.
+	 */
+	private $defaultLinkOptions = [];
+
+	/**
 	 * @var string|null
 	 */
 	protected $skinname = null;
@@ -171,6 +176,7 @@ abstract class Skin extends ContextSource {
 	 *  `responsive` indicates if a skin supports responsive behaviour and a viewport meta
 	 *     tag can be set on the skin. Note, users can disable this feature via  user
 	 *     preference.
+	 *  `link` an array of link options that will be used in makeLink calls. See Skin::makeLink
 	 */
 	public function __construct( $options = null ) {
 		if ( is_string( $options ) ) {
@@ -182,6 +188,9 @@ abstract class Skin extends ContextSource {
 				throw new SkinException( 'Skin name must be specified' );
 			}
 
+			if ( isset( $options['link'] ) ) {
+				$this->defaultLinkOptions = $options['link'];
+			}
 			$this->options = $options;
 			$this->skinname = $name;
 		}
@@ -2342,7 +2351,7 @@ abstract class Skin extends ContextSource {
 	 * The "class" key currently accepts both a string and an array of classes, but this will be
 	 * changed to only accept an array in the future.
 	 *
-	 * @param array $options Can be used to affect the output of a link.
+	 * @param array $linkOptions Can be used to affect the output of a link.
 	 * Possible options are:
 	 *   - 'text-wrapper' key to specify a list of elements to wrap the text of
 	 *   a link in. This should be an array of arrays containing a 'tag' and
@@ -2358,7 +2367,8 @@ abstract class Skin extends ContextSource {
 	 *
 	 * @return string
 	 */
-	final public function makeLink( $key, $item, $options = [] ) {
+	final public function makeLink( $key, $item, $linkOptions = [] ) {
+		$options = $linkOptions + $this->defaultLinkOptions;
 		$text = $item['text'] ?? $this->msg( $item['msg'] ?? $key )->text();
 
 		$html = htmlspecialchars( $text );
