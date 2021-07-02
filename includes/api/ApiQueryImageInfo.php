@@ -20,6 +20,7 @@
  * @file
  */
 
+use MediaWiki\BadFileLookup;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -31,14 +32,51 @@ class ApiQueryImageInfo extends ApiQueryBase {
 	public const TRANSFORM_LIMIT = 50;
 	private static $transformCount = 0;
 
-	public function __construct( ApiQuery $query, $moduleName, $prefix = 'ii' ) {
-		// We allow a subclass to override the prefix, to create a related API
-		// module. Some other parts of MediaWiki construct this with a null
-		// $prefix, which used to be ignored when this only took two arguments
-		if ( $prefix === null ) {
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var BadFileLookup */
+	private $badFileLookup;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param string|RepoGroup|null $prefixOrRepoGroup
+	 * @param RepoGroup|Language|null $repoGroupOrContentLanguage
+	 * @param Language|BadFileLookup|null $contentLanguageOrBadFileLookup
+	 * @param BadFileLookup|null $badFileLookupOrUnused
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		$prefixOrRepoGroup = null,
+		$repoGroupOrContentLanguage = null,
+		$contentLanguageOrBadFileLookup = null,
+		$badFileLookupOrUnused = null
+	) {
+		// We allow a subclass to override the prefix, to create a related API module.
+		// The ObjectFactory is injecting the services without the prefix.
+		if ( !is_string( $prefixOrRepoGroup ) ) {
 			$prefix = 'ii';
+			$repoGroup = $prefixOrRepoGroup;
+			$contentLanguage = $repoGroupOrContentLanguage;
+			$badFileLookup = $contentLanguageOrBadFileLookup;
+			// $badFileLookupOrUnused is null in this case
+		} else {
+			$prefix = $prefixOrRepoGroup;
+			$repoGroup = $repoGroupOrContentLanguage;
+			$contentLanguage = $contentLanguageOrBadFileLookup;
+			$badFileLookup = $badFileLookupOrUnused;
 		}
 		parent::__construct( $query, $moduleName, $prefix );
+		// This class is extended and therefor fallback to global state - T259960
+		$services = MediaWikiServices::getInstance();
+		$this->repoGroup = $repoGroup ?? $services->getRepoGroup();
+		$this->contentLanguage = $contentLanguage ?? $services->getContentLanguage();
+		$this->badFileLookup = $badFileLookup ?? $services->getBadFileLookup();
 	}
 
 	public function execute() {
@@ -95,12 +133,10 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				];
 			}, $titles );
 
-			$services = MediaWikiServices::getInstance();
-			$repoGroup = $services->getRepoGroup();
 			if ( $params['localonly'] ) {
-				$images = $repoGroup->getLocalRepo()->findFiles( $findTitles );
+				$images = $this->repoGroup->getLocalRepo()->findFiles( $findTitles );
 			} else {
-				$images = $repoGroup->findFiles( $findTitles );
+				$images = $this->repoGroup->findFiles( $findTitles );
 			}
 
 			$result = $this->getResult();
@@ -112,7 +148,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 				if ( !isset( $images[$title] ) ) {
 					if ( isset( $prop['uploadwarning'] ) || isset( $prop['badfile'] ) ) {
 						// uploadwarning and badfile need info about non-existing files
-						$images[$title] = $repoGroup->getLocalRepo()->newFile( $title );
+						$images[$title] = $this->repoGroup->getLocalRepo()->newFile( $title );
 						// Doesn't exist, so set an empty image repository
 						$info['imagerepository'] = '';
 					} else {
@@ -145,8 +181,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 					$info['imagerepository'] = $img->getRepoName();
 				}
 				if ( isset( $prop['badfile'] ) ) {
-					$info['badfile'] = (bool)$services->getBadFileLookup()
-						->isBadFile( $title, $badFileContextTitle );
+					$info['badfile'] = (bool)$this->badFileLookup->isBadFile( $title, $badFileContextTitle );
 				}
 
 				$fit = $result->addValue( [ 'query', 'pages' ], (int)$pageId, $info );
@@ -706,7 +741,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'extmetadatalanguage' => [
 				ApiBase::PARAM_TYPE => 'string',
 				ApiBase::PARAM_DFLT =>
-					MediaWikiServices::getInstance()->getContentLanguage()->getCode(),
+					$this->contentLanguage->getCode(),
 			],
 			'extmetadatamultilang' => [
 				ApiBase::PARAM_TYPE => 'boolean',

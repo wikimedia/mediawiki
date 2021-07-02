@@ -53,7 +53,15 @@ class ApiQuery extends ApiBase {
 		'extlinks' => ApiQueryExternalLinks::class,
 		'fileusage' => ApiQueryBacklinksprop::class,
 		'images' => ApiQueryImages::class,
-		'imageinfo' => ApiQueryImageInfo::class,
+		'imageinfo' => [
+			'class' => ApiQueryImageInfo::class,
+			'services' => [
+				// Same as for stashimageinfo
+				'RepoGroup',
+				'ContentLanguage',
+				'BadFileLookup',
+			]
+		],
 		'info' => [
 			'class' => ApiQueryInfo::class,
 			'services' => [
@@ -87,7 +95,15 @@ class ApiQuery extends ApiBase {
 		],
 		'redirects' => ApiQueryBacklinksprop::class,
 		'revisions' => ApiQueryRevisions::class,
-		'stashimageinfo' => ApiQueryStashImageInfo::class,
+		'stashimageinfo' => [
+			'class' => ApiQueryStashImageInfo::class,
+			'services' => [
+				// Same as for imageinfo
+				'RepoGroup',
+				'ContentLanguage',
+				'BadFileLookup',
+			]
+		],
 		'templates' => [
 			'class' => ApiQueryLinks::class,
 			'services' => [
