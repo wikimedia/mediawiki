@@ -8,7 +8,9 @@ use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Rest\BasicAccess\BasicAuthorizerInterface;
 use MediaWiki\Rest\PathTemplateMatcher\PathMatcher;
+use MediaWiki\Rest\Reporter\ErrorReporter;
 use MediaWiki\Rest\Validator\Validator;
+use Throwable;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ObjectFactory;
 
@@ -63,6 +65,9 @@ class Router {
 	/** @var CorsUtils|null */
 	private $cors;
 
+	/** @var ErrorReporter */
+	private $errorReporter;
+
 	/** @var HookContainer */
 	private $hookContainer;
 
@@ -77,6 +82,7 @@ class Router {
 	 * @param Authority $authority
 	 * @param ObjectFactory $objectFactory
 	 * @param Validator $restValidator
+	 * @param ErrorReporter $errorReporter
 	 * @param HookContainer $hookContainer
 	 * @internal
 	 */
@@ -91,6 +97,7 @@ class Router {
 		Authority $authority,
 		ObjectFactory $objectFactory,
 		Validator $restValidator,
+		ErrorReporter $errorReporter,
 		HookContainer $hookContainer
 	) {
 		$this->routeFiles = $routeFiles;
@@ -103,6 +110,7 @@ class Router {
 		$this->authority = $authority;
 		$this->objectFactory = $objectFactory;
 		$this->restValidator = $restValidator;
+		$this->errorReporter = $errorReporter;
 		$this->hookContainer = $hookContainer;
 	}
 
@@ -329,6 +337,9 @@ class Router {
 		try {
 			return $this->executeHandler( $handler );
 		} catch ( HttpException $e ) {
+			return $this->responseFactory->createFromException( $e );
+		} catch ( Throwable $e ) {
+			$this->errorReporter->reportError( $e, $handler, $request );
 			return $this->responseFactory->createFromException( $e );
 		}
 	}

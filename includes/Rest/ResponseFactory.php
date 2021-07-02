@@ -231,11 +231,12 @@ class ResponseFactory {
 			}
 		} else {
 			$response = $this->createHttpError( 500, [
-				'message' => 'Error: exception of type ' . get_class( $exception ),
+				'message' => 'Error: exception of type ' . get_class( $exception ) . ': '
+					. $exception->getMessage(),
 				'exception' => MWExceptionHandler::getStructuredExceptionData( $exception )
 			] );
-			// FIXME should we try to do something useful with ILocalizedException?
-			// FIXME should we try to do something useful with common MediaWiki errors like ReadOnlyError?
+			// XXX: should we try to do something useful with ILocalizedException?
+			// XXX: should we try to do something useful with common MediaWiki errors like ReadOnlyError?
 		}
 		return $response;
 	}
