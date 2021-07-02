@@ -49,6 +49,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 
 ==== New external libraries ====
 * Added whatwg-fetch 3.6.2.
+* Added wikimedia/normalized-exception 1.0.1.
 * …
 
 ===== New development-only external libraries =====
