@@ -112,7 +112,7 @@ class ApiOptions extends ApiBase {
 		}
 
 		$prefs = $this->getPreferences();
-		$prefsKinds = $user->getOptionKinds( $this->getContext(), $changes );
+		$prefsKinds = $this->userOptionsManager->getOptionKinds( $user, $this->getContext(), $changes );
 
 		$htmlForm = null;
 		foreach ( $changes as $key => $value ) {
@@ -211,7 +211,7 @@ class ApiOptions extends ApiBase {
 	 * @param string[] $kinds One or more types returned by UserOptionsManager::listOptionKinds() or 'all'
 	 */
 	protected function resetPreferences( array $kinds ) {
-		$this->getUserForUpdates()->resetOptions( $kinds, $this->getContext() );
+		$this->userOptionsManager->resetOptions( $this->getUserForUpdates(), $this->getContext(), $kinds );
 	}
 
 	/**
@@ -221,7 +221,7 @@ class ApiOptions extends ApiBase {
 	 * @param mixed $value
 	 */
 	protected function setPreference( $preference, $value ) {
-		$this->getUserForUpdates()->setOption( $preference, $value );
+		$this->userOptionsManager->setOption( $this->getUserForUpdates(), $preference, $value );
 	}
 
 	/**

@@ -17,6 +17,8 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 
 	/** @var MockObject */
 	private $mUserMock;
+	/** @var MockObject */
+	private $userOptionsManagerMock;
 	/** @var ApiOptions */
 	private $mTested;
 	private $mSession;
@@ -35,9 +37,6 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		// Set up groups and rights
 		$this->mUserMock->method( 'getEffectiveGroups' )->willReturn( [ '*', 'user' ] );
 
-		// Set up callback for User::getOptionKinds
-		$this->mUserMock->method( 'getOptionKinds' )->will( $this->returnCallback( [ $this, 'getOptionKinds' ] ) );
-
 		// No actual DB data
 		$this->mUserMock->method( 'getInstanceForUpdate' )->willReturn( $this->mUserMock );
 
@@ -55,14 +54,18 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		// Empty session
 		$this->mSession = [];
 
-		$userOptionsManagerMock = $this->createNoOpMock(
+		$this->userOptionsManagerMock = $this->createNoOpMock(
 			UserOptionsManager::class,
-			[ 'getOptions', 'listOptionKinds' ]
+			[ 'getOptions', 'listOptionKinds', 'getOptionKinds', 'resetOptions', 'setOption' ]
 		);
 		// Needs to return something
-		$userOptionsManagerMock->method( 'getOptions' )->willReturn( [] );
+		$this->userOptionsManagerMock->method( 'getOptions' )->willReturn( [] );
 
-		$userOptionsManagerMock->method( 'listOptionKinds' )->willReturn(
+		// Set up callback for UserOptionsManager::getOptionKinds
+		$this->userOptionsManagerMock->method( 'getOptionKinds' )
+			->willReturnCallback( [ $this, 'getOptionKinds' ] );
+
+		$this->userOptionsManagerMock->method( 'listOptionKinds' )->willReturn(
 			[
 				'registered',
 				'registered-multiselect',
@@ -80,7 +83,7 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 		$preferencesFactory->method( 'getFormDescriptor' )
 			->willReturnCallback( [ $this, 'getPreferencesFormDescription' ] );
 
-		$this->mTested = new ApiOptions( $main, 'options', $userOptionsManagerMock, $preferencesFactory );
+		$this->mTested = new ApiOptions( $main, 'options', $this->userOptionsManagerMock, $preferencesFactory );
 
 		$this->mergeMwGlobalArrayValue( 'wgDefaultUserOptions', [
 			'testradio' => 'option1',
@@ -124,12 +127,13 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	}
 
 	/**
+	 * @param mixed $unused
 	 * @param IContextSource $context
 	 * @param array|null $options
 	 *
 	 * @return array
 	 */
-	public function getOptionKinds( IContextSource $context, $options = null ) {
+	public function getOptionKinds( $unused, IContextSource $context, $options = null ) {
 		// Match with above.
 		$kinds = [
 			'name' => 'registered',
@@ -222,10 +226,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	public function testNoChanges() {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
 
-		$this->mUserMock->expects( $this->never() )
+		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->never() )
+		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'setOption' );
 
 		$this->mUserMock->expects( $this->never() )
@@ -245,11 +249,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	public function testReset() {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
 
-		$this->mUserMock->expects( $this->once() )
-			->method( 'resetOptions' )
-			->with( [ 'all' ] );
+		$this->userOptionsManagerMock->expects( $this->once() )
+			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->never() )
+		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'setOption' );
 
 		$this->mUserMock->expects( $this->once() )
@@ -265,11 +268,10 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	public function testResetKinds() {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
 
-		$this->mUserMock->expects( $this->once() )
-			->method( 'resetOptions' )
-			->with( [ 'registered' ] );
+		$this->userOptionsManagerMock->expects( $this->once() )
+			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->never() )
+		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'setOption' );
 
 		$this->mUserMock->expects( $this->once() )
@@ -285,14 +287,14 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	public function testResetChangeOption() {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
 
-		$this->mUserMock->expects( $this->once() )
+		$this->userOptionsManagerMock->expects( $this->once() )
 			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->exactly( 2 ) )
+		$this->userOptionsManagerMock->expects( $this->exactly( 2 ) )
 			->method( 'setOption' )
 			->withConsecutive(
-				[ 'willBeHappy', 'Happy' ],
-				[ 'name', 'value' ]
+				[ $this->mUserMock, 'willBeHappy', 'Happy' ],
+				[ $this->mUserMock, 'name', 'value' ]
 			);
 
 		$this->mUserMock->expects( $this->once() )
@@ -318,12 +320,17 @@ class ApiOptionsTest extends MediaWikiLangTestCase {
 	) {
 		$this->mUserMock->method( 'isRegistered' )->willReturn( true );
 
-		$this->mUserMock->expects( $this->never() )
+		$this->userOptionsManagerMock->expects( $this->never() )
 			->method( 'resetOptions' );
 
-		$this->mUserMock->expects( $this->exactly( count( $setOptions ) ) )
+		$args = [];
+		foreach ( $setOptions as $setOption ) {
+			$args[] = array_merge( [ $this->mUserMock ], $setOption );
+		}
+
+		$this->userOptionsManagerMock->expects( $this->exactly( count( $setOptions ) ) )
 			->method( 'setOption' )
-			->withConsecutive( ...$setOptions );
+			->withConsecutive( ...$args );
 
 		if ( $setOptions ) {
 			$this->mUserMock->expects( $this->once() )
