@@ -629,10 +629,15 @@ class ChangeTags {
 				return Status::newFatal( 'tags-apply-no-permission' );
 			}
 
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-apply-blocked', $user->getName() );
+			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+				return Status::newFatal(
+					'tags-apply-blocked',
+					$performer->getUser()->getName()
+				);
 			}
+
+			// ChangeTagsAllowedAdd hook still needs a full User object
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 		}
 
 		// to be applied, a tag has to be explicitly defined
@@ -707,9 +712,11 @@ class ChangeTags {
 				return Status::newFatal( 'tags-update-no-permission' );
 			}
 
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-update-blocked', $performer->getUser()->getName() );
+			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+				return Status::newFatal(
+					'tags-update-blocked',
+					$performer->getUser()->getName()
+				);
 			}
 		}
 
@@ -1157,9 +1164,11 @@ class ChangeTags {
 			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			}
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
+			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+				return Status::newFatal(
+					'tags-manage-blocked',
+					$performer->getUser()->getName()
+				);
 			}
 		}
 
@@ -1231,9 +1240,11 @@ class ChangeTags {
 			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			}
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-manage-blocked', $performer->getUser()->getName() );
+			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+				return Status::newFatal(
+					'tags-manage-blocked',
+					$performer->getUser()->getName()
+				);
 			}
 		}
 
@@ -1331,10 +1342,14 @@ class ChangeTags {
 			if ( !$performer->isAllowed( 'managechangetags' ) ) {
 				return Status::newFatal( 'tags-manage-no-permission' );
 			}
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-manage-blocked', $performer->getUser()->getName() );
+			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+				return Status::newFatal(
+					'tags-manage-blocked',
+					$performer->getUser()->getName()
+				);
 			}
+			// ChangeTagCanCreate hook still needs a full User object
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 		}
 
 		$status = self::isTagNameValid( $tag );
@@ -1454,10 +1469,14 @@ class ChangeTags {
 			if ( !$performer->isAllowed( 'deletechangetags' ) ) {
 				return Status::newFatal( 'tags-delete-no-permission' );
 			}
-			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
-			if ( $user->getBlock() && $user->getBlock()->isSitewide() ) {
-				return Status::newFatal( 'tags-manage-blocked', $user->getName() );
+			if ( $performer->getBlock() && $performer->getBlock()->isSitewide() ) {
+				return Status::newFatal(
+					'tags-manage-blocked',
+					$performer->getUser()->getName()
+				);
 			}
+			// ChangeTagCanDelete hook still needs a full User object
+			$user = MediaWikiServices::getInstance()->getUserFactory()->newFromAuthority( $performer );
 		}
 
 		if ( !isset( $tagUsage[$tag] ) && !in_array( $tag, self::listDefinedTags() ) ) {
