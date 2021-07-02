@@ -266,6 +266,7 @@ class ApiMain extends ApiBase {
 				'ContentHandlerFactory',
 				'RevisionLookup',
 				'WatchedItemStore',
+				'WikiPageFactory',
 			]
 		],
 		'upload' => ApiUpload::class,
@@ -310,6 +311,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiOptions::class,
 			'services' => [
 				'UserOptionsManager',
+				'PreferencesFactory',
 			],
 		],
 		'imagerotate' => [
