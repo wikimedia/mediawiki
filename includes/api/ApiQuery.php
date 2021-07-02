@@ -72,7 +72,13 @@ class ApiQuery extends ApiBase {
 		],
 		'linkshere' => ApiQueryBacklinksprop::class,
 		'iwlinks' => ApiQueryIWLinks::class,
-		'langlinks' => ApiQueryLangLinks::class,
+		'langlinks' => [
+			'class' => ApiQueryLangLinks::class,
+			'services' => [
+				'LanguageNameUtils',
+				'ContentLanguage',
+			]
+		],
 		'pageprops' => [
 			'class' => ApiQueryPageProps::class,
 			'services' => [
