@@ -672,7 +672,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$this->deleteServerObjectsExpiringBefore(
 					$db,
 					$this->getCurrentTime(),
-					null,
 					$this->purgeLimit
 				);
 				$this->lastGarbageCollect = time();
@@ -717,10 +716,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$this->deleteServerObjectsExpiringBefore(
 					$db,
 					$timestamp,
-					$progress,
 					$limit,
-					$numServersDone,
-					$keysDeletedCount
+					$keysDeletedCount,
+					[ 'fn' => $progress, 'serversDone' => $numServersDone ]
 				);
 			} catch ( DBError $e ) {
 				$this->handleWriteError( $e, $db, $shardIndex );
@@ -734,19 +732,17 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	/**
 	 * @param IDatabase $db
 	 * @param string|int $timestamp
-	 * @param callable|null $progressCallback
 	 * @param int $limit Maximum number of rows to delete in total
-	 * @param int $serversDoneCount
 	 * @param int &$keysDeletedCount
+	 * @param null|array{fn:callback,serversDone:int} $progress
 	 * @throws DBError
 	 */
 	private function deleteServerObjectsExpiringBefore(
 		IDatabase $db,
 		$timestamp,
-		$progressCallback,
 		$limit,
-		$serversDoneCount = 0,
-		&$keysDeletedCount = 0
+		&$keysDeletedCount = 0,
+		array $progress = null
 	) {
 		$cutoffUnix = ConvertibleTimestamp::convert( TS_UNIX, $timestamp );
 		$tableIndexes = range( 0, $this->numTableShards - 1 );
@@ -801,7 +797,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					$keysDeletedCount += $db->affectedRows();
 				}
 
-				if ( is_callable( $progressCallback ) ) {
+				if ( $progress && is_callable( $progress['fn'] ) ) {
 					if ( $totalSeconds ) {
 						$maxExpUnix = ConvertibleTimestamp::convert( TS_UNIX, $maxExp );
 						$remainingSeconds = $cutoffUnix - $maxExpUnix;
@@ -817,9 +813,9 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 					// For example, if we're 30% done on the last of 10 servers, then this might be:
 					// `( 9 / 10 ) + ( 0.3 / 10 ) = 0.93`, or 93% done, overall.
-					$overallRatio = ( $serversDoneCount / $this->numServerShards ) +
+					$overallRatio = ( $progress['serversDone'] / $this->numServerShards ) +
 						( $tablesDoneRatio / $this->numServerShards );
-					call_user_func( $progressCallback, $overallRatio * 100 );
+					( $progress['fn'] )( $overallRatio * 100 );
 				}
 			} while ( $res->numRows() && $keysDeletedCount < $limit );
 		}
