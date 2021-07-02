@@ -23,8 +23,9 @@
  * @since 1.23
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserGroupManager;
 
 /**
  * A query module to show contributors to a page
@@ -39,10 +40,35 @@ class ApiQueryContributors extends ApiQueryBase {
 	 */
 	private const MAX_PAGES = 100;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param RevisionStore $revisionStore
+	 * @param ActorMigration $actorMigration
+	 * @param UserGroupManager $userGroupManager
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		RevisionStore $revisionStore,
+		ActorMigration $actorMigration,
+		UserGroupManager $userGroupManager
+	) {
 		// "pc" is short for "page contributors", "co" was already taken by the
 		// GeoData extension's prop=coordinates.
 		parent::__construct( $query, $moduleName, 'pc' );
+		$this->revisionStore = $revisionStore;
+		$this->actorMigration = $actorMigration;
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	public function execute() {
@@ -76,7 +102,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		}
 
 		$result = $this->getResult();
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo();
+		$revQuery = $this->revisionStore->getQueryInfo();
 
 		// Target indexes on the revision_actor_temp table.
 		$pageField = 'revactor_page';
@@ -91,7 +117,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			'anons' => "COUNT(DISTINCT $countField)",
 		] );
 		$this->addWhereFld( $pageField, $pages );
-		$this->addWhere( ActorMigration::newMigration()->isAnon( $revQuery['fields']['rev_user'] ) );
+		$this->addWhere( $this->actorMigration->isAnon( $revQuery['fields']['rev_user'] ) );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', $pageField );
 		$res = $this->select( __METHOD__ );
@@ -123,7 +149,7 @@ class ApiQueryContributors extends ApiQueryBase {
 			'username' => 'MAX(' . $revQuery['fields']['rev_user_text'] . ')',
 		] );
 		$this->addWhereFld( $pageField, $pages );
-		$this->addWhere( ActorMigration::newMigration()->isNotAnon( $revQuery['fields']['rev_user'] ) );
+		$this->addWhere( $this->actorMigration->isNotAnon( $revQuery['fields']['rev_user'] ) );
 		$this->addWhere( $db->bitAnd( 'rev_deleted', RevisionRecord::DELETED_USER ) . ' = 0' );
 		$this->addOption( 'GROUP BY', [ $pageField, $idField ] );
 		$this->addOption( 'LIMIT', $params['limit'] + 1 );
@@ -224,7 +250,7 @@ class ApiQueryContributors extends ApiQueryBase {
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		$userGroups = User::getAllGroups();
+		$userGroups = $this->userGroupManager->listAllGroups();
 		$userRights = $this->getPermissionManager()->getAllPermissions();
 
 		if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {

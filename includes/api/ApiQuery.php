@@ -42,7 +42,14 @@ class ApiQuery extends ApiBase {
 	private const QUERY_PROP_MODULES = [
 		'categories' => ApiQueryCategories::class,
 		'categoryinfo' => ApiQueryCategoryInfo::class,
-		'contributors' => ApiQueryContributors::class,
+		'contributors' => [
+			'class' => ApiQueryContributors::class,
+			'services' => [
+				'RevisionStore',
+				'ActorMigration',
+				'UserGroupManager',
+			]
+		],
 		'deletedrevisions' => ApiQueryDeletedRevisions::class,
 		'duplicatefiles' => [
 			'class' => ApiQueryDuplicateFiles::class,
