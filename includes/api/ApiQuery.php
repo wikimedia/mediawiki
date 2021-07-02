@@ -162,7 +162,12 @@ class ApiQuery extends ApiBase {
 				'CommentStore',
 			],
 		],
-		'querypage' => ApiQueryQueryPage::class,
+		'querypage' => [
+			'class' => ApiQueryQueryPage::class,
+			'services' => [
+				'SpecialPageFactory',
+			]
+		],
 		'random' => ApiQueryRandom::class,
 		'recentchanges' => [
 			'class' => ApiQueryRecentChanges::class,
