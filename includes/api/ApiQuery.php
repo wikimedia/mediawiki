@@ -218,7 +218,12 @@ class ApiQuery extends ApiBase {
 				'UserGroupManager',
 			]
 		],
-		'filerepoinfo' => ApiQueryFileRepoInfo::class,
+		'filerepoinfo' => [
+			'class' => ApiQueryFileRepoInfo::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'tokens' => ApiQueryTokens::class,
 		'languageinfo' => [
 			'class' => ApiQueryLanguageinfo::class,
