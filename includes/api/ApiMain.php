@@ -266,6 +266,7 @@ class ApiMain extends ApiBase {
 				'ContentHandlerFactory',
 				'RevisionLookup',
 				'WatchedItemStore',
+				'WikiPageFactory',
 			]
 		],
 		'upload' => ApiUpload::class,
