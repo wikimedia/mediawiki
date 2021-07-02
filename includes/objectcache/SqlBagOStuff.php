@@ -50,8 +50,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	protected $serverInfos = [];
 	/** @var string[] (server index => tag/host name) */
 	protected $serverTags = [];
-	/** @var int Number of database servers shards (e.g. horizontal/vertical partitions) */
-	protected $numServerShards;
 	/** @var int UNIX timestamp */
 	protected $lastGarbageCollect = 0;
 	/** @var int */
@@ -139,8 +137,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				$this->serverTags[$index] = is_string( $tag ) ? $tag : "#$index";
 				++$index;
 			}
-			// Horizontal partitioning by key hash (if any)
-			$this->numServerShards = count( $this->serverInfos );
 			$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_NONE;
 		} else {
 			if ( isset( $params['localKeyLB'] ) ) {
@@ -159,8 +155,6 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 					"Config requires 'server', 'servers', or 'localKeyLB'/'globalKeyLB'"
 				);
 			}
-			// Verticle partitioning by global vs local keys (if any)
-			$this->numServerShards = ( !$this->globalKeyLb || $this->localKeyLb === $this->globalKeyLb ) ? 1 : 2;
 			$this->attrMap[self::ATTR_SYNCWRITES] = self::QOS_SYNCWRITES_BE;
 		}
 		if ( isset( $params['purgePeriod'] ) ) {
@@ -1161,7 +1155,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	private function getServerShardIndexes() {
 		if ( $this->serverTags ) {
 			// Striped array of database servers
-			$shardIndexes = range( 0, $this->numServerShards - 1 );
+			$shardIndexes = array_keys( $this->serverTags );
 		} else {
 			// LoadBalancer based configuration
 			$shardIndexes = [];
