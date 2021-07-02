@@ -22,6 +22,7 @@
 
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\User\UserOptionsManager;
 
 /**
@@ -37,22 +38,29 @@ class ApiOptions extends ApiBase {
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
 
+	/** @var PreferencesFactory */
+	private $preferencesFactory;
+
 	/**
 	 * @param ApiMain $main
 	 * @param string $action
 	 * @param UserOptionsManager|null $userOptionsManager
+	 * @param PreferencesFactory|null $preferencesFactory
 	 */
 	public function __construct(
 		ApiMain $main,
 		$action,
-		UserOptionsManager $userOptionsManager = null
+		UserOptionsManager $userOptionsManager = null,
+		PreferencesFactory $preferencesFactory = null
 	) {
 		parent::__construct( $main, $action );
 		/**
 		 * This class is extended by GlobalPreferences extension.
 		 * So it falls back to the global state.
 		 */
-		$this->userOptionsManager = $userOptionsManager ?? MediaWikiServices::getInstance()->getUserOptionsManager();
+		$services = MediaWikiServices::getInstance();
+		$this->userOptionsManager = $userOptionsManager ?? $services->getUserOptionsManager();
+		$this->preferencesFactory = $preferencesFactory ?? $services->getPreferencesFactory();
 	}
 
 	/**
@@ -195,8 +203,7 @@ class ApiOptions extends ApiBase {
 	 * @return mixed[][]
 	 */
 	protected function getPreferences() {
-		$preferencesFactory = MediaWikiServices::getInstance()->getPreferencesFactory();
-		return $preferencesFactory->getFormDescriptor( $this->getUserForUpdates(),
+		return $this->preferencesFactory->getFormDescriptor( $this->getUserForUpdates(),
 			$this->getContext() );
 	}
 

@@ -310,6 +310,7 @@ class ApiMain extends ApiBase {
 			'class' => ApiOptions::class,
 			'services' => [
 				'UserOptionsManager',
+				'PreferencesFactory',
 			],
 		],
 		'imagerotate' => [
