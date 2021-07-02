@@ -22,6 +22,7 @@
 
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
@@ -54,19 +55,24 @@ class ApiEditPage extends ApiBase {
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
 
+	/** @var WikiPageFactory */
+	private $wikiPageFactory;
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param IContentHandlerFactory|null $contentHandlerFactory
 	 * @param RevisionLookup|null $revisionLookup
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
+	 * @param WikiPageFactory|null $wikiPageFactory
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
 		IContentHandlerFactory $contentHandlerFactory = null,
 		RevisionLookup $revisionLookup = null,
-		WatchedItemStoreInterface $watchedItemStore = null
+		WatchedItemStoreInterface $watchedItemStore = null,
+		WikiPageFactory $wikiPageFactory = null
 	) {
 		parent::__construct( $mainModule, $moduleName );
 
@@ -78,6 +84,7 @@ class ApiEditPage extends ApiBase {
 		$this->contentHandlerFactory = $contentHandlerFactory ?? $services->getContentHandlerFactory();
 		$this->revisionLookup = $revisionLookup ?? $services->getRevisionLookup();
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
+		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
 	}
 
 	public function execute() {
@@ -142,7 +149,7 @@ class ApiEditPage extends ApiBase {
 				$apiResult->addValue( null, 'redirects', $redirValues );
 
 				// Since the page changed, update $pageObj
-				$pageObj = WikiPage::factory( $titleObj );
+				$pageObj = $this->wikiPageFactory->newFromTitle( $titleObj );
 				$this->getErrorFormatter()->setContextTitle( $titleObj );
 			}
 		}
