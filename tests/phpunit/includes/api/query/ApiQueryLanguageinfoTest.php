@@ -1,6 +1,6 @@
 <?php
 
-use MediaWiki\MediaWikiServices;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * @group API
@@ -29,41 +29,12 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 		);
 	}
 
-	private function doQuery( array $params, $microtimeFunction = null ): array {
+	private function doQuery( array $params ): array {
 		$params += [
 			'action' => 'query',
 			'meta' => 'languageinfo',
 			'uselang' => 'en',
 		];
-
-		if ( $microtimeFunction !== null ) {
-			// hook into the module manager to override the factory function
-			// so we can call the constructor with the custom $microtimeFunction
-			$this->setTemporaryHook(
-				'ApiQuery::moduleManager',
-				static function ( ApiModuleManager $moduleManager ) use ( $microtimeFunction ) {
-					$moduleManager->addModule(
-						'languageinfo',
-						'meta',
-						[
-							'class' => ApiQueryLanguageinfo::class,
-							'factory' => static function ( $parent, $name ) use ( $microtimeFunction ) {
-								$services = MediaWikiServices::getInstance();
-								return new ApiQueryLanguageinfo(
-									$parent,
-									$name,
-									$services->getLanguageFactory(),
-									$services->getLanguageNameUtils(),
-									$services->getLanguageFallback(),
-									$services->getLanguageConverterFactory(),
-									$microtimeFunction
-								);
-							}
-						]
-					);
-				}
-			);
-		}
 
 		$res = $this->doApiRequest( $params );
 
@@ -122,11 +93,11 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 	public function testContinuationNecessary() {
 		$time = 0;
-		$microtimeFunction = static function () use ( &$time ) {
+		ConvertibleTimestamp::setFakeTime( static function () use ( &$time ) {
 			return $time += 0.75;
-		};
+		} );
 
-		list( $response, $continue ) = $this->doQuery( [], $microtimeFunction );
+		list( $response, $continue ) = $this->doQuery( [] );
 
 		$this->assertCount( 2, $response );
 		$this->assertArrayHasKey( 'licontinue', $continue );
@@ -134,25 +105,25 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 	public function testContinuationNotNecessary() {
 		$time = 0;
-		$microtimeFunction = static function () use ( &$time ) {
+		ConvertibleTimestamp::setFakeTime( static function () use ( &$time ) {
 			return $time += 1.5;
-		};
+		} );
 
 		list( $response, $continue ) = $this->doQuery( [
 			'licode' => 'de',
-		], $microtimeFunction );
+		] );
 
 		$this->assertNull( $continue );
 	}
 
 	public function testContinuationInAlphabeticalOrderNotParameterOrder() {
 		$time = 0;
-		$microtimeFunction = static function () use ( &$time ) {
+		ConvertibleTimestamp::setFakeTime( static function () use ( &$time ) {
 			return $time += 0.75;
-		};
+		} );
 		$params = [ 'licode' => 'en|ru|zh|de|yue' ];
 
-		list( $response, $continue ) = $this->doQuery( $params, $microtimeFunction );
+		list( $response, $continue ) = $this->doQuery( $params );
 
 		$this->assertCount( 2, $response );
 		$this->assertArrayHasKey( 'licontinue', $continue );
@@ -160,7 +131,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 		$time = 0;
 		$params = $continue + $params;
-		list( $response, $continue ) = $this->doQuery( $params, $microtimeFunction );
+		list( $response, $continue ) = $this->doQuery( $params );
 
 		$this->assertCount( 2, $response );
 		$this->assertArrayHasKey( 'licontinue', $continue );
@@ -168,7 +139,7 @@ class ApiQueryLanguageinfoTest extends ApiTestCase {
 
 		$time = 0;
 		$params = $continue + $params;
-		list( $response, $continue ) = $this->doQuery( $params, $microtimeFunction );
+		list( $response, $continue ) = $this->doQuery( $params );
 
 		$this->assertCount( 1, $response );
 		$this->assertNull( $continue );

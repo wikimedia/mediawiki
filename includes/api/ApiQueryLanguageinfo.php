@@ -22,6 +22,7 @@ use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageFactory;
 use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Languages\LanguageNameUtils;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * API module to enumerate language information.
@@ -38,10 +39,8 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	 * exceeded; on the other hand, if it is not used, a typical request will
 	 * not yield more than a handful of languages before the time is exceeded
 	 * and continuation is applied, if one of the expensive props is requested.
-	 *
-	 * @var float
 	 */
-	private const MAX_EXECUTE_SECONDS = 2.0;
+	private const MAX_EXECUTE_SECONDS = 2;
 
 	/** @var LanguageFactory */
 	private $languageFactory;
@@ -55,9 +54,6 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
 
-	/** @var callable|null */
-	private $microtimeFunction;
-
 	/**
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
@@ -65,8 +61,6 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 	 * @param LanguageNameUtils $languageNameUtils
 	 * @param LanguageFallback $languageFallback
 	 * @param LanguageConverterFactory $languageConverterFactory
-	 * @param callable|null $microtimeFunction Function to use instead of microtime(), for testing.
-	 * Should accept no arguments and return float seconds. (null means real microtime().)
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -74,28 +68,18 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 		LanguageFactory $languageFactory,
 		LanguageNameUtils $languageNameUtils,
 		LanguageFallback $languageFallback,
-		LanguageConverterFactory $languageConverterFactory,
-		$microtimeFunction = null
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( $queryModule, $moduleName, 'li' );
 		$this->languageFactory = $languageFactory;
 		$this->languageNameUtils = $languageNameUtils;
 		$this->languageFallback = $languageFallback;
 		$this->languageConverterFactory = $languageConverterFactory;
-		$this->microtimeFunction = $microtimeFunction;
-	}
-
-	/** @return float */
-	private function microtime() {
-		if ( $this->microtimeFunction ) {
-			return ( $this->microtimeFunction )();
-		} else {
-			return microtime( true );
-		}
 	}
 
 	public function execute() {
-		$endTime = $this->microtime() + self::MAX_EXECUTE_SECONDS;
+		// ConvertibleTimestamp::time() used so we can fake the current time in tests
+		$endTime = ConvertibleTimestamp::time() + self::MAX_EXECUTE_SECONDS;
 
 		$props = array_fill_keys( $this->getParameter( 'prop' ), true );
 		$includeCode = isset( $props['code'] );
@@ -158,7 +142,7 @@ class ApiQueryLanguageinfo extends ApiQueryBase {
 				continue;
 			}
 
-			$now = $this->microtime();
+			$now = ConvertibleTimestamp::time();
 			if ( $now >= $endTime ) {
 				$this->setContinueEnumParameter( 'continue', $languageCode );
 				break;
