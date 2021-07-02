@@ -44,7 +44,12 @@ class ApiQuery extends ApiBase {
 		'categoryinfo' => ApiQueryCategoryInfo::class,
 		'contributors' => ApiQueryContributors::class,
 		'deletedrevisions' => ApiQueryDeletedRevisions::class,
-		'duplicatefiles' => ApiQueryDuplicateFiles::class,
+		'duplicatefiles' => [
+			'class' => ApiQueryDuplicateFiles::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'extlinks' => ApiQueryExternalLinks::class,
 		'fileusage' => ApiQueryBacklinksprop::class,
 		'images' => ApiQueryImages::class,
@@ -59,7 +64,12 @@ class ApiQuery extends ApiBase {
 				'WatchedItemStore',
 			],
 		],
-		'links' => ApiQueryLinks::class,
+		'links' => [
+			'class' => ApiQueryLinks::class,
+			'services' => [
+				'LinkBatchFactory',
+			]
+		],
 		'linkshere' => ApiQueryBacklinksprop::class,
 		'iwlinks' => ApiQueryIWLinks::class,
 		'langlinks' => ApiQueryLangLinks::class,
@@ -72,7 +82,12 @@ class ApiQuery extends ApiBase {
 		'redirects' => ApiQueryBacklinksprop::class,
 		'revisions' => ApiQueryRevisions::class,
 		'stashimageinfo' => ApiQueryStashImageInfo::class,
-		'templates' => ApiQueryLinks::class,
+		'templates' => [
+			'class' => ApiQueryLinks::class,
+			'services' => [
+				'LinkBatchFactory',
+			]
+		],
 		'transcludedin' => ApiQueryBacklinksprop::class,
 	];
 
