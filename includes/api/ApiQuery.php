@@ -224,9 +224,21 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryWatchlist::class,
 			'services' => [
 				'CommentStore',
+				'WatchedItemQueryService',
+				'ContentLanguage',
+				'NamespaceInfo',
+				'GenderCache',
 			],
 		],
-		'watchlistraw' => ApiQueryWatchlistRaw::class,
+		'watchlistraw' => [
+			'class' => ApiQueryWatchlistRaw::class,
+			'services' => [
+				'WatchedItemQueryService',
+				'ContentLanguage',
+				'NamespaceInfo',
+				'GenderCache',
+			]
+		],
 	];
 
 	/**
