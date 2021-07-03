@@ -127,7 +127,13 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
-		'allpages' => ApiQueryAllPages::class,
+		'allpages' => [
+			'class' => ApiQueryAllPages::class,
+			'services' => [
+				'NamespaceInfo',
+				'GenderCache',
+			]
+		],
 		'allredirects' => [
 			'class' => ApiQueryAllLinks::class,
 			'services' => [
