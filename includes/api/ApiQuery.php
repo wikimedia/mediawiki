@@ -251,6 +251,18 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'UserOptionsLookup',
 				'UserGroupManager',
+				'LanguageConverterFactory',
+				'LanguageFactory',
+				'LanguageNameUtils',
+				'ContentLanguage',
+				'NamespaceInfo',
+				'InterwikiLookup',
+				'Parser',
+				'MagicWordFactory',
+				'SpecialPageFactory',
+				'SkinFactory',
+				'DBLoadBalancer',
+				'ReadOnlyMode',
 			]
 		],
 		'userinfo' => [
