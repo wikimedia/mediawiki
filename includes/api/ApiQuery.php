@@ -69,6 +69,7 @@ class ApiQuery extends ApiBase {
 				'NamespaceInfo',
 				'TitleFactory',
 				'WatchedItemStore',
+				'LanguageConverterFactory',
 			],
 		],
 		'links' => [
