@@ -218,6 +218,10 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryUsers::class,
 			'services' => [
 				'UserNameUtils',
+				'UserFactory',
+				'UserGroupManager',
+				'UserOptionsLookup',
+				'AuthManager',
 			],
 		],
 		'watchlist' => [
