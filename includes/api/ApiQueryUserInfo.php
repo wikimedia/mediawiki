@@ -164,13 +164,13 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['groups'] ) ) {
-			$vals['groups'] = $user->getEffectiveGroups();
+			$vals['groups'] = $this->userGroupManager->getUserEffectiveGroups( $user );
 			ApiResult::setArrayType( $vals['groups'], 'array' ); // even if empty
 			ApiResult::setIndexedTagName( $vals['groups'], 'g' ); // even if empty
 		}
 
 		if ( isset( $this->prop['groupmemberships'] ) ) {
-			$ugms = $user->getGroupMemberships();
+			$ugms = $this->userGroupManager->getUserGroupMemberships( $user );
 			$vals['groupmemberships'] = [];
 			foreach ( $ugms as $group => $ugm ) {
 				$vals['groupmemberships'][] = [
@@ -183,7 +183,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 		}
 
 		if ( isset( $this->prop['implicitgroups'] ) ) {
-			$vals['implicitgroups'] = $user->getAutomaticGroups();
+			$vals['implicitgroups'] = $this->userGroupManager->getUserImplicitGroups( $user );
 			ApiResult::setArrayType( $vals['implicitgroups'], 'array' ); // even if empty
 			ApiResult::setIndexedTagName( $vals['implicitgroups'], 'g' ); // even if empty
 		}
@@ -322,7 +322,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 				$categories[] = 'newbie';
 			}
 		}
-		$categories = array_merge( $categories, $user->getGroups() );
+		$categories = array_merge( $categories, $this->userGroupManager->getUserGroups( $user ) );
 
 		// Now get the actual limits
 		foreach ( $this->getConfig()->get( 'RateLimits' ) as $action => $limits ) {
