@@ -110,14 +110,42 @@ class ApiQuery extends ApiBase {
 	private const QUERY_LIST_MODULES = [
 		'allcategories' => ApiQueryAllCategories::class,
 		'alldeletedrevisions' => ApiQueryAllDeletedRevisions::class,
-		'allfileusages' => ApiQueryAllLinks::class,
+		'allfileusages' => [
+			'class' => ApiQueryAllLinks::class,
+			'services' => [
+				// Same as for alllinks, allredirects, alltransclusions
+				'NamespaceInfo',
+				'GenderCache',
+			]
+		],
 		'allimages' => ApiQueryAllImages::class,
-		'alllinks' => ApiQueryAllLinks::class,
+		'alllinks' => [
+			'class' => ApiQueryAllLinks::class,
+			'services' => [
+				// Same as for allfileusages, allredirects, alltransclusions
+				'NamespaceInfo',
+				'GenderCache',
+			]
+		],
 		'allpages' => ApiQueryAllPages::class,
-		'allredirects' => ApiQueryAllLinks::class,
+		'allredirects' => [
+			'class' => ApiQueryAllLinks::class,
+			'services' => [
+				// Same as for allfileusages, alllinks, alltransclusions
+				'NamespaceInfo',
+				'GenderCache',
+			]
+		],
 		'allrevisions' => ApiQueryAllRevisions::class,
 		'mystashedfiles' => ApiQueryMyStashedFiles::class,
-		'alltransclusions' => ApiQueryAllLinks::class,
+		'alltransclusions' => [
+			'class' => ApiQueryAllLinks::class,
+			'services' => [
+				// Same as for allfileusages, alllinks, allredirects
+				'NamespaceInfo',
+				'GenderCache',
+			]
+		],
 		'allusers' => ApiQueryAllUsers::class,
 		'backlinks' => ApiQueryBacklinks::class,
 		'blocks' => [
@@ -151,6 +179,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryLogEvents::class,
 			'services' => [
 				'CommentStore',
+				'ChangeTagDefStore',
 			],
 		],
 		'pageswithprop' => ApiQueryPagesWithProp::class,
@@ -162,7 +191,12 @@ class ApiQuery extends ApiBase {
 				'CommentStore',
 			],
 		],
-		'querypage' => ApiQueryQueryPage::class,
+		'querypage' => [
+			'class' => ApiQueryQueryPage::class,
+			'services' => [
+				'SpecialPageFactory',
+			]
+		],
 		'random' => ApiQueryRandom::class,
 		'recentchanges' => [
 			'class' => ApiQueryRecentChanges::class,

@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
@@ -43,14 +42,19 @@ class ApiQueryQueryPage extends ApiQueryGeneratorBase {
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param SpecialPageFactory $specialPageFactory
 	 */
-	public function __construct( ApiQuery $query, $moduleName ) {
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		SpecialPageFactory $specialPageFactory
+	) {
 		parent::__construct( $query, $moduleName, 'qp' );
 		$this->queryPages = array_values( array_diff(
 			array_column( QueryPage::getPages(), 1 ), // [ class, name ]
 			$this->getConfig()->get( 'APIUselessQueryPages' )
 		) );
-		$this->specialPageFactory = MediaWikiServices::getInstance()->getSpecialPageFactory();
+		$this->specialPageFactory = $specialPageFactory;
 	}
 
 	public function execute() {
