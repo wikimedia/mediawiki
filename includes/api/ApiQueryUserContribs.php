@@ -20,10 +20,11 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
@@ -45,24 +46,42 @@ class ApiQueryUserContribs extends ApiQueryBase {
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var NameTableStore */
+	private $changeTagDefStore;
+
+	/** @var ActorMigration */
+	private $actorMigration;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
 	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param UserNameUtils $userNameUtils
+	 * @param RevisionStore $revisionStore
+	 * @param NameTableStore $changeTagDefStore
+	 * @param ActorMigration $actorMigration
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		CommentStore $commentStore,
 		UserIdentityLookup $userIdentityLookup,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		RevisionStore $revisionStore,
+		NameTableStore $changeTagDefStore,
+		ActorMigration $actorMigration
 	) {
 		parent::__construct( $query, $moduleName, 'uc' );
 		$this->commentStore = $commentStore;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->userNameUtils = $userNameUtils;
+		$this->revisionStore = $revisionStore;
+		$this->changeTagDefStore = $changeTagDefStore;
+		$this->actorMigration = $actorMigration;
 	}
 
 	private $params, $multiUserMode, $orderBy, $parentLens;
@@ -260,8 +279,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 						$revIds[] = $row->rev_parent_id;
 					}
 				}
-				$this->parentLens = MediaWikiServices::getInstance()->getRevisionStore()
-					->getRevisionSizes( $revIds );
+				$this->parentLens = $this->revisionStore->getRevisionSizes( $revIds );
 			}
 
 			foreach ( $res as $row ) {
@@ -294,9 +312,9 @@ class ApiQueryUserContribs extends ApiQueryBase {
 		$this->resetQueryParams();
 		$db = $this->getDB();
 
-		$revQuery = MediaWikiServices::getInstance()->getRevisionStore()->getQueryInfo( [ 'page' ] );
+		$revQuery = $this->revisionStore->getQueryInfo( [ 'page' ] );
 
-		$revWhere = ActorMigration::newMigration()->getWhere( $db, 'rev_user', $users );
+		$revWhere = $this->actorMigration->getWhere( $db, 'rev_user', $users );
 		$orderUserField = 'rev_actor';
 		$userField = $this->orderBy === 'actor' ? 'revactor_actor' : 'actor_name';
 		$tsField = 'revactor_timestamp';
@@ -454,9 +472,8 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ $idField . ' = ct_rev_id' ] ] ]
 			);
-			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {
-				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $this->params['tag'] ) );
+				$this->addWhereFld( 'ct_tag_id', $this->changeTagDefStore->getId( $this->params['tag'] ) );
 			} catch ( NameTableAccessException $exception ) {
 				// Return nothing.
 				$this->addWhere( '1=0' );
