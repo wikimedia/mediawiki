@@ -21,7 +21,6 @@
  */
 
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 
@@ -36,18 +35,42 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var WatchedItemQueryService */
+	private $watchedItemQueryService;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var GenderCache */
+	private $genderCache;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
+	 * @param WatchedItemQueryService $watchedItemQueryService
+	 * @param Language $contentLanguage
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param GenderCache $genderCache
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		WatchedItemQueryService $watchedItemQueryService,
+		Language $contentLanguage,
+		NamespaceInfo $namespaceInfo,
+		GenderCache $genderCache
 	) {
 		parent::__construct( $query, $moduleName, 'wl' );
 		$this->commentStore = $commentStore;
+		$this->watchedItemQueryService = $watchedItemQueryService;
+		$this->contentLanguage = $contentLanguage;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->genderCache = $genderCache;
 	}
 
 	public function execute() {
@@ -189,25 +212,22 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this, $params, $options );
 
 		$ids = [];
-		$services = MediaWikiServices::getInstance();
-		$watchedItemQuery = $services->getWatchedItemQueryService();
-		$items = $watchedItemQuery->getWatchedItemsWithRecentChangeInfo( $wlowner, $options, $startFrom );
+		$items = $this->watchedItemQueryService->getWatchedItemsWithRecentChangeInfo( $wlowner, $options, $startFrom );
 
 		// Get gender information
 		if ( $items !== [] && $resultPageSet === null && $this->fld_title &&
-			$services->getContentLanguage()->needsGenderDistinction()
+			$this->contentLanguage->needsGenderDistinction()
 		) {
-			$nsInfo = $services->getNamespaceInfo();
 			$usernames = [];
 			foreach ( $items as list( $watchedItem, $recentChangeInfo ) ) {
 				/** @var WatchedItem $watchedItem */
 				$linkTarget = $watchedItem->getTarget();
-				if ( $nsInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
+				if ( $this->namespaceInfo->hasGenderDistinction( $linkTarget->getNamespace() ) ) {
 					$usernames[] = $linkTarget->getText();
 				}
 			}
 			if ( $usernames !== [] ) {
-				$services->getGenderCache()->doQuery( $usernames, __METHOD__ );
+				$this->genderCache->doQuery( $usernames, __METHOD__ );
 			}
 		}
 
@@ -482,7 +502,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'newer',
 					'older'
 				],
-				ApiHelp::PARAM_HELP_MSG => 'api-help-param-direction',
+				ApiBase::PARAM_HELP_MSG => 'api-help-param-direction',
 			],
 			'limit' => [
 				ApiBase::PARAM_DFLT => 10,
