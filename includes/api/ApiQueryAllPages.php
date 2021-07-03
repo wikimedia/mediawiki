@@ -207,10 +207,7 @@ class ApiQueryAllPages extends ApiQueryGeneratorBase {
 		}
 
 		if ( $forceNameTitleIndex ) {
-			// T270033 Index renaming
-			$pageIndex = $db->indexExists( 'page', 'name_title', __METHOD__ )
-				? 'name_title' : 'page_name_title';
-			$this->addOption( 'USE INDEX', $pageIndex );
+			$this->addOption( 'USE INDEX', 'page_name_title' );
 		}
 
 		$limit = $params['limit'];

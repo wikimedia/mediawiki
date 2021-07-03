@@ -192,10 +192,6 @@ class SpecialPrefixindex extends SpecialAllPages {
 				$conds['page_is_redirect'] = 0;
 			}
 
-			// T270033 Index renaming
-			$pageIndex = $dbr->indexExists( 'page', 'name_title', __METHOD__ )
-				? 'name_title' : 'page_name_title';
-
 			$res = $dbr->select( 'page',
 				array_merge(
 					[ 'page_namespace', 'page_title' ],
@@ -206,7 +202,7 @@ class SpecialPrefixindex extends SpecialAllPages {
 				[
 					'ORDER BY' => 'page_title',
 					'LIMIT' => $this->maxPerPage + 1,
-					'USE INDEX' => $pageIndex,
+					'USE INDEX' => 'page_name_title',
 				]
 			);
 

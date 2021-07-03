@@ -224,10 +224,6 @@ class SpecialAllPages extends IncludableSpecialPage {
 			if ( $toKey !== "" ) {
 				$conds[] = 'page_title <= ' . $dbr->addQuotes( $toKey );
 			}
-			// T270033 Index renaming
-			$pageIndex = $dbr->indexExists( 'page', 'name_title', __METHOD__ )
-				? 'name_title' : 'page_name_title';
-
 			$res = $dbr->select( 'page',
 				[ 'page_namespace', 'page_title', 'page_is_redirect', 'page_id' ],
 				$conds,
@@ -235,7 +231,7 @@ class SpecialAllPages extends IncludableSpecialPage {
 				[
 					'ORDER BY' => 'page_title',
 					'LIMIT' => $this->maxPerPage + 1,
-					'USE INDEX' => $pageIndex,
+					'USE INDEX' => 'page_name_title',
 				]
 			);
 
