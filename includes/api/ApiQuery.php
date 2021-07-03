@@ -151,6 +151,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryLogEvents::class,
 			'services' => [
 				'CommentStore',
+				'ChangeTagDefStore',
 			],
 		],
 		'pageswithprop' => ApiQueryPagesWithProp::class,
