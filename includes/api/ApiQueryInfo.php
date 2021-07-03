@@ -20,6 +20,7 @@
  * @file
  */
 use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\Permissions\PermissionStatus;
@@ -31,8 +32,8 @@ use MediaWiki\Permissions\PermissionStatus;
  */
 class ApiQueryInfo extends ApiQueryBase {
 
-	/** @var Language */
-	private $contentLanguage;
+	/** @var ILanguageConverter */
+	private $languageConverter;
 	/** @var LinkBatchFactory */
 	private $linkBatchFactory;
 	/** @var NamespaceInfo */
@@ -96,6 +97,7 @@ class ApiQueryInfo extends ApiQueryBase {
 	 * @param NamespaceInfo $namespaceInfo
 	 * @param TitleFactory $titleFactory
 	 * @param WatchedItemStore $watchedItemStore
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
@@ -104,10 +106,11 @@ class ApiQueryInfo extends ApiQueryBase {
 		LinkBatchFactory $linkBatchFactory,
 		NamespaceInfo $namespaceInfo,
 		TitleFactory $titleFactory,
-		WatchedItemStore $watchedItemStore
+		WatchedItemStore $watchedItemStore,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		parent::__construct( $queryModule, $moduleName, 'in' );
-		$this->contentLanguage = $contentLanguage;
+		$this->languageConverter = $languageConverterFactory->getLanguageConverter( $contentLanguage );
 		$this->linkBatchFactory = $linkBatchFactory;
 		$this->namespaceInfo = $namespaceInfo;
 		$this->titleFactory = $titleFactory;
@@ -881,11 +884,10 @@ class ApiQueryInfo extends ApiQueryBase {
 
 	private function getAllVariants( $text, $ns = NS_MAIN ) {
 		$result = [];
-		$contLang = $this->contentLanguage;
-		foreach ( $contLang->getVariants() as $variant ) {
-			$convertTitle = $contLang->autoConvert( $text, $variant );
+		foreach ( $this->languageConverter->getVariants() as $variant ) {
+			$convertTitle = $this->languageConverter->autoConvert( $text, $variant );
 			if ( $ns !== NS_MAIN ) {
-				$convertNs = $contLang->convertNamespace( $ns, $variant );
+				$convertNs = $this->languageConverter->convertNamespace( $ns, $variant );
 				$convertTitle = $convertNs . ':' . $convertTitle;
 			}
 			$result[$variant] = $convertTitle;

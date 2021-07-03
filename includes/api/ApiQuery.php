@@ -69,6 +69,7 @@ class ApiQuery extends ApiBase {
 				'NamespaceInfo',
 				'TitleFactory',
 				'WatchedItemStore',
+				'LanguageConverterFactory',
 			],
 		],
 		'links' => [
@@ -118,7 +119,12 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
-		'allimages' => ApiQueryAllImages::class,
+		'allimages' => [
+			'class' => ApiQueryAllImages::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'alllinks' => [
 			'class' => ApiQueryAllLinks::class,
 			'services' => [
@@ -127,7 +133,13 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
-		'allpages' => ApiQueryAllPages::class,
+		'allpages' => [
+			'class' => ApiQueryAllPages::class,
+			'services' => [
+				'NamespaceInfo',
+				'GenderCache',
+			]
+		],
 		'allredirects' => [
 			'class' => ApiQueryAllLinks::class,
 			'services' => [
@@ -146,7 +158,13 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
-		'allusers' => ApiQueryAllUsers::class,
+		'allusers' => [
+			'class' => ApiQueryAllUsers::class,
+			'services' => [
+				'UserFactory',
+				'UserGroupManager',
+			]
+		],
 		'backlinks' => ApiQueryBacklinks::class,
 		'blocks' => [
 			'class' => ApiQueryBlocks::class,
@@ -162,6 +180,9 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryDeletedrevs::class,
 			'services' => [
 				'CommentStore',
+				'RevisionStore',
+				'ChangeTagDefStore',
+				'LinkBatchFactory',
 			],
 		],
 		'embeddedin' => ApiQueryBacklinks::class,
@@ -202,6 +223,9 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryRecentChanges::class,
 			'services' => [
 				'CommentStore',
+				'ChangeTagDefStore',
+				'SlotRoleStore',
+				'SlotRoleRegistry',
 			],
 		],
 		'search' => ApiQuerySearch::class,
@@ -212,28 +236,56 @@ class ApiQuery extends ApiBase {
 				'CommentStore',
 				'UserIdentityLookup',
 				'UserNameUtils',
+				'RevisionStore',
+				'ChangeTagDefStore',
+				'ActorMigration',
 			],
 		],
 		'users' => [
 			'class' => ApiQueryUsers::class,
 			'services' => [
 				'UserNameUtils',
+				'UserFactory',
+				'UserGroupManager',
+				'UserOptionsLookup',
+				'AuthManager',
 			],
 		],
 		'watchlist' => [
 			'class' => ApiQueryWatchlist::class,
 			'services' => [
 				'CommentStore',
+				'WatchedItemQueryService',
+				'ContentLanguage',
+				'NamespaceInfo',
+				'GenderCache',
 			],
 		],
-		'watchlistraw' => ApiQueryWatchlistRaw::class,
+		'watchlistraw' => [
+			'class' => ApiQueryWatchlistRaw::class,
+			'services' => [
+				'WatchedItemQueryService',
+				'ContentLanguage',
+				'NamespaceInfo',
+				'GenderCache',
+			]
+		],
 	];
 
 	/**
 	 * List of Api Query meta modules
 	 */
 	private const QUERY_META_MODULES = [
-		'allmessages' => ApiQueryAllMessages::class,
+		'allmessages' => [
+			'class' => ApiQueryAllMessages::class,
+			'services' => [
+				'ContentLanguage',
+				'LanguageFactory',
+				'LanguageNameUtils',
+				'LocalisationCache',
+				'MessageCache',
+			]
+		],
 		'authmanagerinfo' => [
 			'class' => ApiQueryAuthManagerInfo::class,
 			'services' => [
@@ -245,6 +297,18 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'UserOptionsLookup',
 				'UserGroupManager',
+				'LanguageConverterFactory',
+				'LanguageFactory',
+				'LanguageNameUtils',
+				'ContentLanguage',
+				'NamespaceInfo',
+				'InterwikiLookup',
+				'Parser',
+				'MagicWordFactory',
+				'SpecialPageFactory',
+				'SkinFactory',
+				'DBLoadBalancer',
+				'ReadOnlyMode',
 			]
 		],
 		'userinfo' => [

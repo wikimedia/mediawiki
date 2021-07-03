@@ -20,11 +20,13 @@
  * @file
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\NameTableAccessException;
+use MediaWiki\Storage\NameTableStore;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\TypeDef\IntegerDef;
 
@@ -39,18 +41,36 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 	/** @var CommentStore */
 	private $commentStore;
 
+	/** @var RevisionStore */
+	private $revisionStore;
+
+	/** @var NameTableStore */
+	private $changeTagDefStore;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param CommentStore $commentStore
+	 * @param RevisionStore $revisionStore
+	 * @param NameTableStore $changeTagDefStore
+	 * @param LinkBatchFactory $linkBatchFactory
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
-		CommentStore $commentStore
+		CommentStore $commentStore,
+		RevisionStore $revisionStore,
+		NameTableStore $changeTagDefStore,
+		LinkBatchFactory $linkBatchFactory
 	) {
 		parent::__construct( $query, $moduleName, 'dr' );
 		$this->commentStore = $commentStore;
+		$this->revisionStore = $revisionStore;
+		$this->changeTagDefStore = $changeTagDefStore;
+		$this->linkBatchFactory = $linkBatchFactory;
 	}
 
 	public function execute() {
@@ -121,8 +141,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->dieWithError( 'user and excludeuser cannot be used together', 'badparams' );
 		}
 
-		$revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
-		$arQuery = $revisionStore->getArchiveQueryInfo();
+		$arQuery = $this->revisionStore->getArchiveQueryInfo();
 		$this->addTables( $arQuery['tables'] );
 		$this->addFields( $arQuery['fields'] );
 		$this->addJoinConds( $arQuery['joins'] );
@@ -137,9 +156,8 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 			$this->addJoinConds(
 				[ 'change_tag' => [ 'JOIN', [ 'ar_rev_id=ct_rev_id' ] ] ]
 			);
-			$changeTagDefStore = MediaWikiServices::getInstance()->getChangeTagDefStore();
 			try {
-				$this->addWhereFld( 'ct_tag_id', $changeTagDefStore->getId( $params['tag'] ) );
+				$this->addWhereFld( 'ct_tag_id', $this->changeTagDefStore->getId( $params['tag'] ) );
 			} catch ( NameTableAccessException $exception ) {
 				// Return nothing.
 				$this->addWhere( '1=0' );
@@ -180,8 +198,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 
 		// We need a custom WHERE clause that matches all titles.
 		if ( $mode == 'revs' ) {
-			$linkBatchFactory = MediaWikiServices::getInstance()->getLinkBatchFactory();
-			$lb = $linkBatchFactory->newLinkBatch( $titles );
+			$lb = $this->linkBatchFactory->newLinkBatch( $titles );
 			$where = $lb->constructSet( 'ar', $db );
 			$this->addWhere( $where );
 		} elseif ( $mode == 'all' ) {
@@ -378,7 +395,7 @@ class ApiQueryDeletedrevs extends ApiQueryBase {
 					$user
 				) ) {
 					ApiResult::setContentValue( $rev, 'text',
-						$revisionStore->newRevisionFromArchiveRow( $row )
+						$this->revisionStore->newRevisionFromArchiveRow( $row )
 							->getContent( SlotRecord::MAIN )->serialize() );
 				}
 			}
