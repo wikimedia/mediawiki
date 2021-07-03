@@ -118,7 +118,12 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
-		'allimages' => ApiQueryAllImages::class,
+		'allimages' => [
+			'class' => ApiQueryAllImages::class,
+			'services' => [
+				'RepoGroup',
+			]
+		],
 		'alllinks' => [
 			'class' => ApiQueryAllLinks::class,
 			'services' => [
