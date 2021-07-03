@@ -221,6 +221,9 @@ class ApiQuery extends ApiBase {
 				'CommentStore',
 				'UserIdentityLookup',
 				'UserNameUtils',
+				'RevisionStore',
+				'ChangeTagDefStore',
+				'ActorMigration',
 			],
 		],
 		'users' => [
