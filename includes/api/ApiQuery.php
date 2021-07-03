@@ -162,6 +162,9 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryDeletedrevs::class,
 			'services' => [
 				'CommentStore',
+				'RevisionStore',
+				'ChangeTagDefStore',
+				'LinkBatchFactory',
 			],
 		],
 		'embeddedin' => ApiQueryBacklinks::class,
