@@ -202,6 +202,9 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryRecentChanges::class,
 			'services' => [
 				'CommentStore',
+				'ChangeTagDefStore',
+				'SlotRoleStore',
+				'SlotRoleRegistry',
 			],
 		],
 		'search' => ApiQuerySearch::class,
