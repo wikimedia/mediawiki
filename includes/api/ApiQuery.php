@@ -233,7 +233,16 @@ class ApiQuery extends ApiBase {
 	 * List of Api Query meta modules
 	 */
 	private const QUERY_META_MODULES = [
-		'allmessages' => ApiQueryAllMessages::class,
+		'allmessages' => [
+			'class' => ApiQueryAllMessages::class,
+			'services' => [
+				'ContentLanguage',
+				'LanguageFactory',
+				'LanguageNameUtils',
+				'LocalisationCache',
+				'MessageCache',
+			]
+		],
 		'authmanagerinfo' => [
 			'class' => ApiQueryAuthManagerInfo::class,
 			'services' => [
