@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserGroupManager;
 
 /**
  * Query module to enumerate all registered users.
@@ -30,8 +32,27 @@ use MediaWiki\Block\DatabaseBlock;
 class ApiQueryAllUsers extends ApiQueryBase {
 	use ApiQueryBlockInfoTrait;
 
-	public function __construct( ApiQuery $query, $moduleName ) {
+	/** @var UserFactory */
+	private $userFactory;
+
+	/** @var UserGroupManager */
+	private $userGroupManager;
+
+	/**
+	 * @param ApiQuery $query
+	 * @param string $moduleName
+	 * @param UserFactory $userFactory
+	 * @param UserGroupManager $userGroupManager
+	 */
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		UserFactory $userFactory,
+		UserGroupManager $userGroupManager
+	) {
 		parent::__construct( $query, $moduleName, 'au' );
+		$this->userFactory = $userFactory;
+		$this->userGroupManager = $userGroupManager;
 	}
 
 	/**
@@ -262,7 +283,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 
 			if ( $fld_centralids ) {
 				$data += ApiQueryUserInfo::getCentralUserInfo(
-					$this->getConfig(), User::newFromId( $row->user_id ), $params['attachedwiki']
+					$this->getConfig(), $this->userFactory->newFromId( (int)$row->user_id ), $params['attachedwiki']
 				);
 			}
 
@@ -284,7 +305,8 @@ class ApiQueryAllUsers extends ApiQueryBase {
 			}
 
 			if ( $fld_implicitgroups || $fld_groups || $fld_rights ) {
-				$implicitGroups = User::newFromId( $row->user_id )->getAutomaticGroups();
+				$implicitGroups = $this->userGroupManager
+					->getUserImplicitGroups( $this->userFactory->newFromId( (int)$row->user_id ) );
 				if ( isset( $row->groups ) && $row->groups !== '' ) {
 					$groups = array_merge( $implicitGroups, explode( '|', $row->groups ) );
 				} else {
@@ -325,7 +347,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	}
 
 	public function getAllowedParams( $flags = 0 ) {
-		$userGroups = User::getAllGroups();
+		$userGroups = $this->userGroupManager->listAllGroups();
 
 		if ( $flags & ApiBase::GET_VALUES_FOR_HELP ) {
 			sort( $userGroups );

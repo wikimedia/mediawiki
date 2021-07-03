@@ -146,7 +146,13 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
-		'allusers' => ApiQueryAllUsers::class,
+		'allusers' => [
+			'class' => ApiQueryAllUsers::class,
+			'services' => [
+				'UserFactory',
+				'UserGroupManager',
+			]
+		],
 		'backlinks' => ApiQueryBacklinks::class,
 		'blocks' => [
 			'class' => ApiQueryBlocks::class,
