@@ -1464,7 +1464,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$lastRevIsRedirect = null
 	) {
 		// TODO: move into PageUpdater or PageStore
-		// NOTE: when doing that, make sure cached fields get reset in doEditContent,
+		// NOTE: when doing that, make sure cached fields get reset in doUserEditContent,
 		// and in the compat stub!
 
 		// Assertion to try to catch T92046
@@ -1875,7 +1875,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @deprecated since 1.32, use PageUpdater::saveRevision instead. Note that the new method
 	 * expects callers to take care of checking EDIT_MINOR against the minoredit right, and to
-	 * apply the autopatrol right as appropriate.
+	 * apply the autopatrol right as appropriate. Hard deprecated since 1.37
 	 * @note since 1.36 ::doUserEditContent is available as an interim replacement
 	 *
 	 * @param Content $content New content
@@ -1938,9 +1938,11 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		Content $content, $summary, $flags = 0, $originalRevId = false,
 		Authority $performer = null, $serialFormat = null, $tags = [], $undidRevId = 0
 	) {
-		global $wgUser;
+		wfDeprecated( __METHOD__, '1.32' );
 
 		if ( !$performer ) {
+			// Its okay to fallback to $wgUser because this whole method is deprecated
+			global $wgUser;
 			$performer = $wgUser;
 		}
 
