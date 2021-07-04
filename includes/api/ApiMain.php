@@ -145,6 +145,8 @@ class ApiMain extends ApiBase {
 			'class' => ApiOpenSearch::class,
 			'services' => [
 				'LinkBatchFactory',
+				'SearchEngineConfig',
+				'SearchEngineFactory',
 			]
 		],
 		'feedcontributions' => [

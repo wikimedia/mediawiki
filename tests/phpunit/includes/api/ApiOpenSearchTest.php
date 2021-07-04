@@ -1,6 +1,8 @@
 <?php
 
 /**
+ * TODO convert to unit test, no integration is needed
+ *
  * @covers ApiOpenSearch
  */
 class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
@@ -9,8 +11,18 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 		$config->method( 'getSearchTypes' )
 			->willReturn( [ 'the one ring' ] );
 
-		$api = $this->createApi();
-		$engine = $this->replaceSearchEngine();
+		list( $engine, $engineFactory ) = $this->replaceSearchEngine();
+
+		$ctx = new RequestContext();
+		$apiMain = new ApiMain( $ctx );
+		$api = new ApiOpenSearch(
+			$apiMain,
+			'opensearch',
+			$this->getServiceContainer()->getLinkBatchFactory(),
+			$config,
+			$engineFactory
+		);
+
 		$engine->method( 'getProfiles' )
 			->will( $this->returnValueMap( [
 				[ SearchEngine::COMPLETION_PROFILE_TYPE, $api->getUser(), [
@@ -53,12 +65,6 @@ class ApiOpenSearchTest extends MediaWikiIntegrationTestCase {
 			->willReturn( $engine );
 		$this->setService( 'SearchEngineFactory', $engineFactory );
 
-		return $engine;
-	}
-
-	private function createApi() {
-		$ctx = new RequestContext();
-		$apiMain = new ApiMain( $ctx );
-		return new ApiOpenSearch( $apiMain, 'opensearch', $this->getServiceContainer()->getLinkBatchFactory() );
+		return [ $engine, $engineFactory ];
 	}
 }

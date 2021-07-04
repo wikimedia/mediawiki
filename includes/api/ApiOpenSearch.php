@@ -44,14 +44,21 @@ class ApiOpenSearch extends ApiBase {
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param SearchEngineConfig $searchEngineConfig
+	 * @param SearchEngineFactory $searchEngineFactory
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
-		LinkBatchFactory $linkBatchFactory
+		LinkBatchFactory $linkBatchFactory,
+		SearchEngineConfig $searchEngineConfig,
+		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->linkBatchFactory = $linkBatchFactory;
+		// Services needed in SearchApi trait
+		$this->searchEngineConfig = $searchEngineConfig;
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	/**

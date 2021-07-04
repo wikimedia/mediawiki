@@ -32,9 +32,19 @@ class ApiQueryPrefixSearch extends ApiQueryGeneratorBase {
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
+	 * @param SearchEngineConfig $searchEngineConfig
+	 * @param SearchEngineFactory $searchEngineFactory
 	 */
-	public function __construct( $query, $moduleName ) {
+	public function __construct(
+		ApiQuery $query,
+		$moduleName,
+		SearchEngineConfig $searchEngineConfig,
+		SearchEngineFactory $searchEngineFactory
+	) {
 		parent::__construct( $query, $moduleName, 'ps' );
+		// Services needed in SearchApi trait
+		$this->searchEngineConfig = $searchEngineConfig;
+		$this->searchEngineFactory = $searchEngineFactory;
 	}
 
 	public function execute() {

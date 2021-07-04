@@ -205,7 +205,13 @@ class ApiQuery extends ApiBase {
 		],
 		'pageswithprop' => ApiQueryPagesWithProp::class,
 		'pagepropnames' => ApiQueryPagePropNames::class,
-		'prefixsearch' => ApiQueryPrefixSearch::class,
+		'prefixsearch' => [
+			'class' => ApiQueryPrefixSearch::class,
+			'services' => [
+				'SearchEngineConfig',
+				'SearchEngineFactory',
+			],
+		],
 		'protectedtitles' => [
 			'class' => ApiQueryProtectedTitles::class,
 			'services' => [
@@ -228,7 +234,13 @@ class ApiQuery extends ApiBase {
 				'SlotRoleRegistry',
 			],
 		],
-		'search' => ApiQuerySearch::class,
+		'search' => [
+			'class' => ApiQuerySearch::class,
+			'services' => [
+				'SearchEngineConfig',
+				'SearchEngineFactory',
+			],
+		],
 		'tags' => ApiQueryTags::class,
 		'usercontribs' => [
 			'class' => ApiQueryUserContribs::class,
