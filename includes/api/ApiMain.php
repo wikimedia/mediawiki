@@ -225,16 +225,32 @@ class ApiMain extends ApiBase {
 			'class' => ApiRollback::class,
 			'services' => [
 				'RollbackPageFactory',
+				'WatchlistManager',
+				'UserOptionsLookup',
 			]
 		],
 		'delete' => [
 			'class' => ApiDelete::class,
 			'services' => [
 				'RepoGroup',
+				'WatchlistManager',
+				'UserOptionsLookup',
 			]
 		],
-		'undelete' => ApiUndelete::class,
-		'protect' => ApiProtect::class,
+		'undelete' => [
+			'class' => ApiUndelete::class,
+			'services' => [
+				'WatchlistManager',
+				'UserOptionsLookup',
+			]
+		],
+		'protect' => [
+			'class' => ApiProtect::class,
+			'services' => [
+				'WatchlistManager',
+				'UserOptionsLookup',
+			]
+		],
 		'block' => [
 			'class' => ApiBlock::class,
 			'services' => [
@@ -245,6 +261,8 @@ class ApiMain extends ApiBase {
 				'WatchedItemStore',
 				'BlockUtils',
 				'BlockActionInfo',
+				'WatchlistManager',
+				'UserOptionsLookup',
 			]
 		],
 		'unblock' => [
@@ -260,6 +278,8 @@ class ApiMain extends ApiBase {
 			'services' => [
 				'MovePageFactory',
 				'RepoGroup',
+				'WatchlistManager',
+				'UserOptionsLookup',
 			]
 		],
 		'edit' => [
@@ -269,12 +289,16 @@ class ApiMain extends ApiBase {
 				'RevisionLookup',
 				'WatchedItemStore',
 				'WikiPageFactory',
+				'WatchlistManager',
+				'UserOptionsLookup',
 			]
 		],
 		'upload' => [
 			'class' => ApiUpload::class,
 			'services' => [
 				'JobQueueGroup',
+				'WatchlistManager',
+				'UserOptionsLookup',
 			]
 		],
 		'filerevert' => [

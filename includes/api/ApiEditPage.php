@@ -26,6 +26,8 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
  * A module that allows for editing and creating pages.
@@ -65,6 +67,8 @@ class ApiEditPage extends ApiBase {
 	 * @param RevisionLookup|null $revisionLookup
 	 * @param WatchedItemStoreInterface|null $watchedItemStore
 	 * @param WikiPageFactory|null $wikiPageFactory
+	 * @param WatchlistManager|null $watchlistManager
+	 * @param UserOptionsLookup|null $userOptionsLookup
 	 */
 	public function __construct(
 		ApiMain $mainModule,
@@ -72,12 +76,11 @@ class ApiEditPage extends ApiBase {
 		IContentHandlerFactory $contentHandlerFactory = null,
 		RevisionLookup $revisionLookup = null,
 		WatchedItemStoreInterface $watchedItemStore = null,
-		WikiPageFactory $wikiPageFactory = null
+		WikiPageFactory $wikiPageFactory = null,
+		WatchlistManager $watchlistManager = null,
+		UserOptionsLookup $userOptionsLookup = null
 	) {
 		parent::__construct( $mainModule, $moduleName );
-
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
 
 		// This class is extended and therefor fallback to global state - T264213
 		$services = MediaWikiServices::getInstance();
@@ -85,6 +88,12 @@ class ApiEditPage extends ApiBase {
 		$this->revisionLookup = $revisionLookup ?? $services->getRevisionLookup();
 		$this->watchedItemStore = $watchedItemStore ?? $services->getWatchedItemStore();
 		$this->wikiPageFactory = $wikiPageFactory ?? $services->getWikiPageFactory();
+
+		// Variables needed in ApiWatchlistTrait trait
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistManager = $watchlistManager ?? $services->getWatchlistManager();
+		$this->userOptionsLookup = $userOptionsLookup ?? $services->getUserOptionsLookup();
 	}
 
 	public function execute() {

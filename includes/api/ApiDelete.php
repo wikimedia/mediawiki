@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
  * API module that facilitates deleting pages. The API equivalent of action=delete.
@@ -39,17 +41,24 @@ class ApiDelete extends ApiBase {
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param RepoGroup $repoGroup
+	 * @param WatchlistManager $watchlistManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
-		RepoGroup $repoGroup
+		RepoGroup $repoGroup,
+		WatchlistManager $watchlistManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $mainModule, $moduleName );
 		$this->repoGroup = $repoGroup;
 
+		// Variables needed in ApiWatchlistTrait trait
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistManager = $watchlistManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
