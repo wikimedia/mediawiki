@@ -31,6 +31,12 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	/** @var array list of api allowed params */
 	private $allowedParams;
 
+	/** @var SearchEngineConfig */
+	private $searchEngineConfig;
+
+	/** @var SearchEngineFactory */
+	private $searchEngineFactory;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
@@ -44,7 +50,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		SearchEngineFactory $searchEngineFactory
 	) {
 		parent::__construct( $query, $moduleName, 'sr' );
-		// Services needed in SearchApi trait
+		// Services also needed in SearchApi trait
 		$this->searchEngineConfig = $searchEngineConfig;
 		$this->searchEngineFactory = $searchEngineFactory;
 	}
@@ -409,16 +415,11 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 
 		// If we have more than one engine the list of available sorts is
 		// difficult to represent. For now don't expose it.
-		$services = MediaWiki\MediaWikiServices::getInstance();
-		$alternatives = $services
-			->getSearchEngineConfig()
-			->getSearchTypes();
+		$alternatives = $this->searchEngineConfig->getSearchTypes();
 		if ( count( $alternatives ) == 1 ) {
 			$this->allowedParams['sort'] = [
-				ApiBase::PARAM_DFLT => 'relevance',
-				ApiBase::PARAM_TYPE => $services
-					->newSearchEngine()
-					->getValidSorts(),
+				ApiBase::PARAM_DFLT => SearchEngine::DEFAULT_SORT,
+				ApiBase::PARAM_TYPE => $this->searchEngineFactory->create()->getValidSorts(),
 			];
 		}
 
