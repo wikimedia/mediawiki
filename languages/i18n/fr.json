@@ -1192,6 +1192,8 @@
 	"prefsnologintext2": "Veuillez vous connecter pour modifier vos préférences.",
 	"prefs-skin": "Habillage",
 	"prefs-skin-prefs": "Préférences de l’habillage",
+	"prefs-skin-responsive": "Activer le mode réactif",
+	"prefs-help-skin-responsive": "Adapter l’habillage à la zone visible disponible (peut n’avoir aucun effet pour certains habillages).",
 	"skin-preview": "Prévisualiser",
 	"datedefault": "Aucune préférence",
 	"prefs-labs": "Fonctionnalités « Labs »",

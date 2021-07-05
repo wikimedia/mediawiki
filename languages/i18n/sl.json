@@ -1016,6 +1016,8 @@
 	"prefsnologintext2": "Za spreminjanje svojih nastavitev se morate prijaviti.",
 	"prefs-skin": "Preobleka",
 	"prefs-skin-prefs": "Nastavitve preobleke",
+	"prefs-skin-responsive": "Omogoči odzivni način",
+	"prefs-help-skin-responsive": "Prilagodite preobleko razpoložljivemu območju vidnega polja. (Morda ne bo vplivalo na nekatere preobleke.)",
 	"skin-preview": "predogled",
 	"datedefault": "Kakor koli",
 	"prefs-labs": "Funkcije laboratorija",

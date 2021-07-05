@@ -1047,6 +1047,8 @@
 	"prefsnologintext2": "נדרשת כניסה לחשבון כדי לשנות העדפות משתמש.",
 	"prefs-skin": "עיצוב",
 	"prefs-skin-prefs": "העדפות עיצוב",
+	"prefs-skin-responsive": "הפעלת מצב מסתגל",
+	"prefs-help-skin-responsive": "להתאים את העיצוב לאזור האשנב הזמין. (ייתכן שזה לא יעשה שום דבר בחלק מהעיצובים.)",
 	"skin-preview": "תצוגה מקדימה",
 	"datedefault": "ברירת המחדל",
 	"prefs-labs": "אפשרויות מעבדה",
