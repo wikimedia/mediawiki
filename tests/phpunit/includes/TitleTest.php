@@ -604,10 +604,6 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function provideCastFromPageReference() {
-		$fake = $this->createMock( PageReference::class );
-		$fake->method( 'getNamespace' )->willReturn( NS_MAIN );
-		$fake->method( 'getDBkey' )->willReturn( 'Test' );
-
 		yield [ new PageReferenceValue( NS_MAIN, 'Test', PageReference::LOCAL ) ];
 	}
 
