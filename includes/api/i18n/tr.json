@@ -1652,7 +1652,7 @@
 	"apierror-compare-relative-to-deleted": "Silinmiş bir düzeltmeye göre <kbd>torelative=$1</kbd> kullanılamaz.",
 	"apierror-compare-relative-to-nothing": "<var>torelative</var> göreli olması için 'from' revizyonu yok.",
 	"apierror-contentserializationexception": "İçerik serileştirme başarısız oldu: $1",
-	"apierror-contenttoobig": "Sağladığınız içerik, $1 {{PLURAL:$1|kilobayt|kilobayt}} ürün boyutu sınırını aşıyor.",
+	"apierror-contenttoobig": "Sağladığınız içerik, $1 {{PLURAL:$1|kibibit}} ürün boyutu sınırını aşıyor.",
 	"apierror-contentmodel-mismatch": "Sağladığınız içerik, <kbd>$2</kbd> sayfasının mevcut içerik modelinden farklı olan <kbd>$1</kbd> içerik modeline sahip.",
 	"apierror-copyuploadbaddomain": "URL ile yüklemelere bu alan adından izin verilmiyor.",
 	"apierror-copyuploadbadurl": "Bu URL'den yüklemeye izin verilmiyor.",

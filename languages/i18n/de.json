@@ -1113,7 +1113,7 @@
 	"prefs-skin": "Benutzeroberfläche",
 	"prefs-skin-prefs": "Einstellungen für die Benutzeroberfläche",
 	"prefs-skin-responsive": "Responsiven Modus aktivieren",
-	"prefs-help-skin-responsive": "Skin an den verfügbaren Viewport-Bereich anpassen. (Kann bei einigen Skins keine Wirkung haben).",
+	"prefs-help-skin-responsive": "Skin an den verfügbaren Viewport-Bereich anpassen (kann bei einigen Skins keine Wirkung haben).",
 	"skin-preview": "Vorschau",
 	"datedefault": "Standard",
 	"prefs-labs": "Alpha-Funktionen",

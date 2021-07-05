@@ -1015,6 +1015,8 @@
 	"prefsnologintext2": "Es necessari aperir session pro cambiar le preferentias.",
 	"prefs-skin": "Apparentia",
 	"prefs-skin-prefs": "Preferentias del apparentia",
+	"prefs-skin-responsive": "Activar le modo responsive",
+	"prefs-help-skin-responsive": "Adaptar le apparentia al area visibile sur le schermo. (Pote non haber effecto pro certe apparentias.)",
 	"skin-preview": "Previsualisation",
 	"datedefault": "Nulle preferentia",
 	"prefs-labs": "Functiones experimental",

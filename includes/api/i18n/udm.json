@@ -2,10 +2,12 @@
 	"@metadata": {
 		"authors": [
 			"Kaganer",
+			"Kotwys",
 			"Mouse21"
 		]
 	},
 	"apihelp-block-summary": "Блокировка пыриськисьёс.",
 	"apihelp-edit-example-edit": "Бамез тупатъяно.",
-	"apihelp-login-example-login": "Пырыны."
+	"apihelp-login-example-login": "Пырыны.",
+	"apierror-contenttoobig": "Сётэм пуштросты ортче статья быдӟалалэсь $1 {{PLURAL:$1|кибибайтъем}} висгожзэ."
 }

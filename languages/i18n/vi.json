@@ -81,7 +81,7 @@
 	"tog-oldsig": "Chữ ký hiện tại của bạn:",
 	"tog-fancysig": "Xem chữ ký là mã wiki (không có liên kết tự động)",
 	"tog-uselivepreview": "Tránh tải lại trang khi xem trước",
-	"tog-forceeditsummary": "Nhắc tôi khi tôi quên tóm lược sửa đổi (hoặc tóm lược lùi sủa mặc định)",
+	"tog-forceeditsummary": "Nhắc tôi khi tôi quên tóm lược sửa đổi (hoặc tóm lược lùi sửa mặc định)",
 	"tog-watchlisthideown": "Ẩn các sửa đổi của tôi khỏi danh sách theo dõi",
 	"tog-watchlisthidebots": "Ẩn các sửa đổi của robot khỏi danh sách theo dõi",
 	"tog-watchlisthideminor": "Ẩn các sửa đổi nhỏ khỏi danh sách theo dõi",

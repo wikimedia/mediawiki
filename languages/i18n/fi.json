@@ -2464,7 +2464,7 @@
 	"protectedarticle-comment": "{{GENDER:$2|Suojasi}} sivun ”[[$1]]”",
 	"modifiedarticleprotection-comment": "{{GENDER:$2|Muutti suojaustasoa}} sivulla ”[[$1]]”",
 	"unprotectedarticle-comment": "{{GENDER:$2|Otti pois suojauksen}} sivulta ”[[$1]]”",
-	"protect-title": "Muuta suojausta sivulla ”$1”",
+	"protect-title": "Muuta sivun \"$1\" suojausasetuksia",
 	"protect-title-notallowed": "Katsele kohteen $1 suojauksen tasoa",
 	"prot_1movedto2": "siirsi sivun [[$1]] uudelle nimelle [[$2]]",
 	"protect-badnamespace-title": "Nimiavaruus ei suojattavissa",
