@@ -271,7 +271,12 @@ class ApiMain extends ApiBase {
 				'WikiPageFactory',
 			]
 		],
-		'upload' => ApiUpload::class,
+		'upload' => [
+			'class' => ApiUpload::class,
+			'services' => [
+				'JobQueueGroup',
+			]
+		],
 		'filerevert' => [
 			'class' => ApiFileRevert::class,
 			'services' => [
