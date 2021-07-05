@@ -295,7 +295,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			} else {
 				$globalDefault = json_encode( $globalDefault );
 				throw new MWException(
-					"Default '$globalDefault' is invalid for preference $name of user $user"
+					"Default '$globalDefault' is invalid for preference $name of user " . $user->getName()
 				);
 			}
 		}
