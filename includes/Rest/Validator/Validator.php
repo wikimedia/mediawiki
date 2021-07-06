@@ -55,7 +55,7 @@ class Validator {
 		],
 		'user' => [
 			'class' => UserDef::class,
-			'services' => [ 'UserFactory', 'TitleFactory', 'UserNameUtils' ]
+			'services' => [ 'UserIdentityLookup', 'TitleFactory', 'UserNameUtils' ]
 		],
 	];
 

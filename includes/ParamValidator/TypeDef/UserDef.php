@@ -3,10 +3,11 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use ExternalUserNames;
-use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
+use RequestContext;
 use TitleFactory;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
@@ -53,8 +54,8 @@ class UserDef extends TypeDef {
 	 */
 	public const PARAM_RETURN_OBJECT = 'param-return-object';
 
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
 
 	/** @var TitleFactory */
 	private $titleFactory;
@@ -64,18 +65,18 @@ class UserDef extends TypeDef {
 
 	/**
 	 * @param Callbacks $callbacks
-	 * @param UserFactory $userFactory
+	 * @param UserIdentityLookup $userIdentityLookup
 	 * @param TitleFactory $titleFactory
 	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		Callbacks $callbacks,
-		UserFactory $userFactory,
+		UserIdentityLookup $userIdentityLookup,
 		TitleFactory $titleFactory,
 		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( $callbacks );
-		$this->userFactory = $userFactory;
+		$this->userIdentityLookup = $userIdentityLookup;
 		$this->titleFactory = $titleFactory;
 		$this->userNameUtils = $userNameUtils;
 	}
@@ -162,8 +163,32 @@ class UserDef extends TypeDef {
 	private function processUser( string $value ): array {
 		// A user ID?
 		if ( preg_match( '/^#(\d+)$/D', $value, $m ) ) {
-			return [ 'id', $this->userFactory->newFromId( $m[1] ) ];
-
+			// We match the behavior of trying to create a User object
+			// based on the id. The name is:
+			// * the IP address of the current request, if the id is 0
+			// * the name of the relevant user in the database, if one exists
+			// * the name 'Unknown user' if it does not exist
+			$userId = (int)$m[1];
+			if ( $userId === 0 ) {
+				// TODO we probably shouldn't be falling back to the request IP,
+				// but if we really want to we shouldn't be doing it by accessing
+				// the global state like this
+				$currentIP = RequestContext::getMain()->getRequest()->getIP();
+				return [
+					'id',
+					new UserIdentityValue( 0, IPUtils::sanitizeIP( $currentIP ) )
+				];
+			}
+			// Check the database.
+			$userIdentity = $this->userIdentityLookup->getUserIdentityByUserId( $userId );
+			if ( $userIdentity ) {
+				return [ 'id', $userIdentity ];
+			}
+			// Fall back to "Unknown user"
+			return [
+				'id',
+				new UserIdentityValue( 0, "Unknown user" )
+			];
 		}
 
 		// An interwiki username?
@@ -180,9 +205,22 @@ class UserDef extends TypeDef {
 		}
 
 		// A valid user name?
-		$user = $this->userFactory->newFromName( $value, UserFactory::RIGOR_VALID );
-		if ( $user ) {
-			return [ 'name', $user ];
+		// Match behavior of UserFactory::newFromName with RIGOR_VALID and User::getId()
+		// we know that if there is a canonical form from UserNameUtils then this can't
+		// look like an IP, and since we checked for external user names above it isn't
+		// that either, so if this is a valid user name then we check the database for
+		// the id, and if there is no user with this name the id is 0
+		$canonicalName = $this->userNameUtils->getCanonical( $value, UserNameUtils::RIGOR_VALID );
+		if ( $canonicalName ) {
+			$userIdentity = $this->userIdentityLookup->getUserIdentityByName( $canonicalName );
+			if ( $userIdentity ) {
+				return [ 'name', $userIdentity ];
+			}
+			// Fall back to id 0
+			return [
+				'name',
+				new UserIdentityValue( 0, $canonicalName )
+			];
 		}
 
 		// (T232672) Reproduce the normalization applied in UserNameUtils::getCanonical() when
