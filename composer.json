@@ -125,7 +125,7 @@
 		"serve": "php -S localhost:4000",
 		"lint": "parallel-lint --exclude vendor",
 		"phan": "phan -d . --long-progress-bar",
-		"phpcs": "phpcs -p -s",
+		"phpcs": "phpcs -p -s --cache",
 		"fix": [
 			"phpcbf"
 		],
