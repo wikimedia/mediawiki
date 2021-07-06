@@ -50,7 +50,17 @@ class ApiQuery extends ApiBase {
 				'UserGroupManager',
 			]
 		],
-		'deletedrevisions' => ApiQueryDeletedRevisions::class,
+		'deletedrevisions' => [
+			'class' => ApiQueryDeletedRevisions::class,
+			'services' => [
+				'RevisionStore',
+				'ContentHandlerFactory',
+				'ParserFactory',
+				'SlotRoleRegistry',
+				'ChangeTagDefStore',
+				'LinkBatchFactory',
+			]
+		],
 		'duplicatefiles' => [
 			'class' => ApiQueryDuplicateFiles::class,
 			'services' => [
@@ -102,7 +112,17 @@ class ApiQuery extends ApiBase {
 			]
 		],
 		'redirects' => ApiQueryBacklinksprop::class,
-		'revisions' => ApiQueryRevisions::class,
+		'revisions' => [
+			'class' => ApiQueryRevisions::class,
+			'services' => [
+				'RevisionStore',
+				'ContentHandlerFactory',
+				'ParserFactory',
+				'SlotRoleRegistry',
+				'ChangeTagDefStore',
+				'ActorMigration',
+			]
+		],
 		'stashimageinfo' => [
 			'class' => ApiQueryStashImageInfo::class,
 			'services' => [
@@ -126,7 +146,17 @@ class ApiQuery extends ApiBase {
 	 */
 	private const QUERY_LIST_MODULES = [
 		'allcategories' => ApiQueryAllCategories::class,
-		'alldeletedrevisions' => ApiQueryAllDeletedRevisions::class,
+		'alldeletedrevisions' => [
+			'class' => ApiQueryAllDeletedRevisions::class,
+			'services' => [
+				'RevisionStore',
+				'ContentHandlerFactory',
+				'ParserFactory',
+				'SlotRoleRegistry',
+				'ChangeTagDefStore',
+				'NamespaceInfo',
+			]
+		],
 		'allfileusages' => [
 			'class' => ApiQueryAllLinks::class,
 			'services' => [
@@ -164,7 +194,17 @@ class ApiQuery extends ApiBase {
 				'GenderCache',
 			]
 		],
-		'allrevisions' => ApiQueryAllRevisions::class,
+		'allrevisions' => [
+			'class' => ApiQueryAllRevisions::class,
+			'services' => [
+				'RevisionStore',
+				'ContentHandlerFactory',
+				'ParserFactory',
+				'SlotRoleRegistry',
+				'ActorMigration',
+				'NamespaceInfo',
+			]
+		],
 		'mystashedfiles' => ApiQueryMyStashedFiles::class,
 		'alltransclusions' => [
 			'class' => ApiQueryAllLinks::class,
