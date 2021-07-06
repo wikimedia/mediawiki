@@ -9,10 +9,10 @@
  * - The entry point SHOULD do these:
  *    - define the 'MW_ENTRY_POINT' constant.
  *    - display an error if MW_CONFIG_CALLBACK is not defined and the
- *      the file specified in MW_CONFIG_FILE (or the $IP/LocalSettings.php default)
+ *      file specified in MW_CONFIG_FILE (or the $IP/LocalSettings.php default)
  *      does not exist. The error should either be sent before and instead
  *      of the Setup.php inclusion, or (if it needs classes and dependencies
- *      from core) the erorr can be displayed via a MW_CONFIG_CALLBACK,
+ *      from core) the error can be displayed via a MW_CONFIG_CALLBACK,
  *      which must then abort the process to prevent the rest of Setup.php
  *      from executing.
  *
