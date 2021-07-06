@@ -48,6 +48,7 @@ class ApiQuery extends ApiBase {
 				'RevisionStore',
 				'ActorMigration',
 				'UserGroupManager',
+				'GroupPermissionsLookup',
 			]
 		],
 		'deletedrevisions' => [
@@ -169,6 +170,7 @@ class ApiQuery extends ApiBase {
 			'class' => ApiQueryAllImages::class,
 			'services' => [
 				'RepoGroup',
+				'GroupPermissionsLookup',
 			]
 		],
 		'alllinks' => [
@@ -219,6 +221,7 @@ class ApiQuery extends ApiBase {
 			'services' => [
 				'UserFactory',
 				'UserGroupManager',
+				'GroupPermissionsLookup',
 			]
 		],
 		'backlinks' => ApiQueryBacklinks::class,

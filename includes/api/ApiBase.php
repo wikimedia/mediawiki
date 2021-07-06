@@ -29,7 +29,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\ParamValidator\TypeDef\NamespaceDef;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserFactory;
@@ -628,17 +627,6 @@ abstract class ApiBase extends ContextSource {
 	 */
 	protected function getPermissionManager(): PermissionManager {
 		return MediaWikiServices::getInstance()->getPermissionManager();
-	}
-
-	/**
-	 * Obtain a GroupPermissionsLookup instance that subclasses may use to access group permissions.
-	 *
-	 * @since 1.36
-	 * @return GroupPermissionsLookup
-	 * @internal
-	 */
-	protected function getGroupPermissionsLookup(): GroupPermissionsLookup {
-		return MediaWikiServices::getInstance()->getGroupPermissionsLookup();
 	}
 
 	/**
