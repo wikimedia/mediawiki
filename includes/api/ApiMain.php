@@ -2179,6 +2179,8 @@ class ApiMain extends ApiBase {
 			);
 		}
 		$help['permissions'] .= Html::openElement( 'dl' );
+		// TODO inject stuff, see T265644
+		$groupPermissionsLookup = MediaWikiServices::getInstance()->getGroupPermissionsLookup();
 		foreach ( self::RIGHTS_MAP as $right => $rightMsg ) {
 			$help['permissions'] .= Html::element( 'dt', null, $right );
 
@@ -2187,7 +2189,7 @@ class ApiMain extends ApiBase {
 
 			$groups = array_map( static function ( $group ) {
 				return $group == '*' ? 'all' : $group;
-			}, $this->getGroupPermissionsLookup()->getGroupsWithPermission( $right ) );
+			}, $groupPermissionsLookup->getGroupsWithPermission( $right ) );
 
 			$help['permissions'] .= Html::rawElement( 'dd', null,
 				$this->msg( 'api-help-permissions-granted-to' )

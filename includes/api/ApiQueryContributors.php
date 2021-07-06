@@ -23,6 +23,7 @@
  * @since 1.23
  */
 
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\User\UserGroupManager;
@@ -49,19 +50,24 @@ class ApiQueryContributors extends ApiQueryBase {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param RevisionStore $revisionStore
 	 * @param ActorMigration $actorMigration
 	 * @param UserGroupManager $userGroupManager
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		RevisionStore $revisionStore,
 		ActorMigration $actorMigration,
-		UserGroupManager $userGroupManager
+		UserGroupManager $userGroupManager,
+		GroupPermissionsLookup $groupPermissionsLookup
 	) {
 		// "pc" is short for "page contributors", "co" was already taken by the
 		// GeoData extension's prop=coordinates.
@@ -69,6 +75,7 @@ class ApiQueryContributors extends ApiQueryBase {
 		$this->revisionStore = $revisionStore;
 		$this->actorMigration = $actorMigration;
 		$this->userGroupManager = $userGroupManager;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 	}
 
 	public function execute() {
@@ -172,8 +179,8 @@ class ApiQueryContributors extends ApiQueryBase {
 		} elseif ( $params['rights'] ) {
 			$excludeGroups = false;
 			foreach ( $params['rights'] as $r ) {
-				$limitGroups = array_merge( $limitGroups, $this->getGroupPermissionsLookup()
-					->getGroupsWithPermission( $r ) );
+				$limitGroups = array_merge( $limitGroups,
+					$this->groupPermissionsLookup->getGroupsWithPermission( $r ) );
 			}
 
 			// If no group has the rights requested, no need to query
@@ -189,8 +196,8 @@ class ApiQueryContributors extends ApiQueryBase {
 		} elseif ( $params['excluderights'] ) {
 			$excludeGroups = true;
 			foreach ( $params['excluderights'] as $r ) {
-				$limitGroups = array_merge( $limitGroups, $this->getGroupPermissionsLookup()
-					->getGroupsWithPermission( $r ) );
+				$limitGroups = array_merge( $limitGroups,
+					$this->groupPermissionsLookup->getGroupsWithPermission( $r ) );
 			}
 		}
 
