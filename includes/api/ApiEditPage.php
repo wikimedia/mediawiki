@@ -60,6 +60,9 @@ class ApiEditPage extends ApiBase {
 	/** @var WikiPageFactory */
 	private $wikiPageFactory;
 
+	/** @var UserOptionsLookup */
+	private $userOptionsLookup;
+
 	/**
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
@@ -388,7 +391,9 @@ class ApiEditPage extends ApiBase {
 			$requestArray['wpStarttime'] = wfTimestampNow(); // Fake wpStartime
 		}
 
-		if ( $params['minor'] || ( !$params['notminor'] && $user->getOption( 'minordefault' ) ) ) {
+		if ( $params['minor'] || ( !$params['notminor'] &&
+			$this->userOptionsLookup->getOption( $user, 'minordefault' ) )
+		) {
 			$requestArray['wpMinoredit'] = '';
 		}
 
