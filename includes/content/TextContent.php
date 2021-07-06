@@ -313,11 +313,6 @@ class TextContent extends AbstractContent {
 	 * @return string An HTML representation of the content
 	 */
 	protected function getHtml() {
-		// TODO: Remove in MediaWiki 1.36
-		if ( method_exists( $this, 'getHighlightHtml' ) ) {
-			wfDeprecated( 'getHighlightHtml', '1.24' );
-			throw new Exception( 'getHighlightHtml() is not called any more!' );
-		}
 		return htmlspecialchars( $this->getText() );
 	}
 
