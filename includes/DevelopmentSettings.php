@@ -104,3 +104,6 @@ $wgEnableUploads = true;
 $wgVisualEditorEnableWikitext = true;
 // Currently the default, but repeated here for safety since it would break many source editor tests.
 $wgDefaultUserOptions['visualeditor-newwikitext'] = 0;
+
+// Do not enable jquery migrate in CI (T280944)
+$wgIncludejQueryMigrate = false;
