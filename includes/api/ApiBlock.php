@@ -32,6 +32,8 @@ use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
@@ -76,6 +78,8 @@ class ApiBlock extends ApiBase {
 	 * @param WatchedItemStoreInterface $watchedItemStore
 	 * @param BlockUtils $blockUtils
 	 * @param BlockActionInfo $blockActionInfo
+	 * @param WatchlistManager $watchlistManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		ApiMain $main,
@@ -86,7 +90,9 @@ class ApiBlock extends ApiBase {
 		UserIdentityLookup $userIdentityLookup,
 		WatchedItemStoreInterface $watchedItemStore,
 		BlockUtils $blockUtils,
-		BlockActionInfo $blockActionInfo
+		BlockActionInfo $blockActionInfo,
+		WatchlistManager $watchlistManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $main, $action );
 
@@ -95,10 +101,14 @@ class ApiBlock extends ApiBase {
 		$this->titleFactory = $titleFactory;
 		$this->userIdentityLookup = $userIdentityLookup;
 		$this->watchedItemStore = $watchedItemStore;
-		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
-		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
 		$this->blockUtils = $blockUtils;
 		$this->blockActionInfo = $blockActionInfo;
+
+		// Variables needed in ApiWatchlistTrait trait
+		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
+		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistManager = $watchlistManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**

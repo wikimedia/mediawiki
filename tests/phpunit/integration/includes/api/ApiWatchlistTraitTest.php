@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\TestingAccessWrapper;
 
@@ -13,13 +14,13 @@ class ApiWatchlistTraitTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideWatchlistValue
 	 */
 	public function testWatchlistValue( $watchlistValue, $setOption, $isBot, $isWatched, $expect ) {
-		$mock = $this->getMockForTrait( ApiWatchlistTrait::class );
-
 		// TODO we don't currently test any of the logic that depends on if the title exists
 		$user = $this->createMock( User::class );
 		$user->method( 'isBot' )->willReturn( $isBot );
-		$user->method( 'getBoolOption' )->willReturnCallback(
-			static function ( $optionName ) use ( $setOption ) {
+
+		$userOptionsLookup = $this->createMock( UserOptionsLookup::class );
+		$userOptionsLookup->method( 'getBoolOption' )->willReturnCallback(
+			static function ( $unused, $optionName ) use ( $setOption ) {
 				if ( $optionName === 'watchdefault' ) {
 					return (bool)$setOption;
 				}
@@ -31,13 +32,15 @@ class ApiWatchlistTraitTest extends MediaWikiIntegrationTestCase {
 		$watchlistManager = $this->createMock( WatchlistManager::class );
 		$watchlistManager->method( 'isWatchable' )->willReturn( true );
 		$watchlistManager->method( 'isWatchedIgnoringRights' )->willReturn( $isWatched );
-		$this->setService( 'WatchlistManager', $watchlistManager );
 
 		$title = $this->createMock( Title::class );
 		$title->method( 'exists' )->willReturn( true );
 
-		$watch = TestingAccessWrapper::newFromObject( $mock )
-			->getWatchlistValue( $watchlistValue, $title, $user, 'watchdefault' );
+		$trait = TestingAccessWrapper::newFromObject( $this->getMockForTrait( ApiWatchlistTrait::class ) );
+		$trait->watchlistManager = $watchlistManager;
+		$trait->userOptionsLookup = $userOptionsLookup;
+
+		$watch = $trait->getWatchlistValue( $watchlistValue, $title, $user, 'watchdefault' );
 		$this->assertEquals( $expect, $watch );
 	}
 

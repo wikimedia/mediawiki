@@ -21,6 +21,8 @@
  */
 
 use MediaWiki\Page\MovePageFactory;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
  * API Module to move pages
@@ -40,15 +42,20 @@ class ApiMove extends ApiBase {
 		ApiMain $mainModule,
 		$moduleName,
 		MovePageFactory $movePageFactory,
-		RepoGroup $repoGroup
+		RepoGroup $repoGroup,
+		WatchlistManager $watchlistManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $mainModule, $moduleName );
 
 		$this->movePageFactory = $movePageFactory;
 		$this->repoGroup = $repoGroup;
 
+		// Variables needed in ApiWatchlistTrait trait
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
+		$this->watchlistManager = $watchlistManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function execute() {

@@ -23,6 +23,8 @@
 use MediaWiki\Page\RollbackPageFactory;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
 
 /**
  * @ingroup API
@@ -37,13 +39,18 @@ class ApiRollback extends ApiBase {
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
-		RollbackPageFactory $rollbackPageFactory
+		RollbackPageFactory $rollbackPageFactory,
+		WatchlistManager $watchlistManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $mainModule, $moduleName );
+		$this->rollbackPageFactory = $rollbackPageFactory;
 
+		// Variables needed in ApiWatchlistTrait trait
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
-		$this->rollbackPageFactory = $rollbackPageFactory;
+		$this->watchlistManager = $watchlistManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	/**
