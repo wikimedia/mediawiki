@@ -76,13 +76,15 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 
 	protected function doSet( $key, $value, $exptime = 0, $flags = 0 ) {
 		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
-		$success = apcu_store( $key . self::KEY_SUFFIX, $blob, $exptime );
+		$ttl = $this->getExpirationAsTTL( $exptime );
+		$success = apcu_store( $key . self::KEY_SUFFIX, $blob, $ttl );
 		return $success;
 	}
 
 	protected function doAdd( $key, $value, $exptime = 0, $flags = 0 ) {
 		$blob = $this->nativeSerialize ? $value : $this->getSerialized( $value, $key );
-		$success = apcu_add( $key . self::KEY_SUFFIX, $blob, $exptime );
+		$ttl = $this->getExpirationAsTTL( $exptime );
+		$success = apcu_add( $key . self::KEY_SUFFIX, $blob, $ttl );
 		return $success;
 	}
 
@@ -136,14 +138,16 @@ class APCUBagOStuff extends MediumSpecificBagOStuff {
 		// https://www.php.net/manual/en/function.apcu-inc.php
 		if ( $value === $init && $this->useIncrTTLArg ) {
 			/** @noinspection PhpMethodParametersCountMismatchInspection */
-			$result = apcu_inc( $key . self::KEY_SUFFIX, $value, $success, $exptime );
+			$ttl = $this->getExpirationAsTTL( $exptime );
+			$result = apcu_inc( $key . self::KEY_SUFFIX, $value, $success, $ttl );
 		} else {
 			$result = false;
 			for ( $i = 0; $i < self::$CAS_MAX_ATTEMPTS; ++$i ) {
 				$oldCount = apcu_fetch( $key . self::KEY_SUFFIX );
 				if ( $oldCount === false ) {
 					$count = (int)$init;
-					if ( apcu_add( $key . self::KEY_SUFFIX, $count, $exptime ) ) {
+					$ttl = $this->getExpirationAsTTL( $exptime );
+					if ( apcu_add( $key . self::KEY_SUFFIX, $count, $ttl ) ) {
 						$result = $count;
 						break;
 					}
