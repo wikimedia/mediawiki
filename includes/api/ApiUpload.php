@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\User\UserOptionsLookup;
+use MediaWiki\Watchlist\WatchlistManager;
+
 /**
  * @ingroup API
  */
@@ -39,17 +42,24 @@ class ApiUpload extends ApiBase {
 	 * @param ApiMain $mainModule
 	 * @param string $moduleName
 	 * @param JobQueueGroup $jobQueueGroup
+	 * @param WatchlistManager $watchlistManager
+	 * @param UserOptionsLookup $userOptionsLookup
 	 */
 	public function __construct(
 		ApiMain $mainModule,
 		$moduleName,
-		JobQueueGroup $jobQueueGroup
+		JobQueueGroup $jobQueueGroup,
+		WatchlistManager $watchlistManager,
+		UserOptionsLookup $userOptionsLookup
 	) {
 		parent::__construct( $mainModule, $moduleName );
+		$this->jobQueueGroup = $jobQueueGroup;
 
+		// Variables needed in ApiWatchlistTrait trait
 		$this->watchlistExpiryEnabled = $this->getConfig()->get( 'WatchlistExpiry' );
 		$this->watchlistMaxDuration = $this->getConfig()->get( 'WatchlistExpiryMaxDuration' );
-		$this->jobQueueGroup = $jobQueueGroup;
+		$this->watchlistManager = $watchlistManager;
+		$this->userOptionsLookup = $userOptionsLookup;
 	}
 
 	public function execute() {
