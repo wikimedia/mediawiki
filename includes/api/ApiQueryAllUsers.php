@@ -21,6 +21,7 @@
  */
 
 use MediaWiki\Block\DatabaseBlock;
+use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserGroupManager;
 
@@ -38,21 +39,27 @@ class ApiQueryAllUsers extends ApiQueryBase {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var GroupPermissionsLookup */
+	private $groupPermissionsLookup;
+
 	/**
 	 * @param ApiQuery $query
 	 * @param string $moduleName
 	 * @param UserFactory $userFactory
 	 * @param UserGroupManager $userGroupManager
+	 * @param GroupPermissionsLookup $groupPermissionsLookup
 	 */
 	public function __construct(
 		ApiQuery $query,
 		$moduleName,
 		UserFactory $userFactory,
-		UserGroupManager $userGroupManager
+		UserGroupManager $userGroupManager,
+		GroupPermissionsLookup $groupPermissionsLookup
 	) {
 		parent::__construct( $query, $moduleName, 'au' );
 		$this->userFactory = $userFactory;
 		$this->userGroupManager = $userGroupManager;
+		$this->groupPermissionsLookup = $groupPermissionsLookup;
 	}
 
 	/**
@@ -112,8 +119,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 		if ( $params['rights'] !== null && count( $params['rights'] ) ) {
 			$groups = [];
 			foreach ( $params['rights'] as $r ) {
-				$groups = array_merge( $groups, $this->getGroupPermissionsLookup()
-					->getGroupsWithPermission( $r ) );
+				$groups = array_merge( $groups, $this->groupPermissionsLookup->getGroupsWithPermission( $r ) );
 			}
 
 			// no group with the given right(s) exists, no need for a query
@@ -326,7 +332,7 @@ class ApiQueryAllUsers extends ApiQueryBase {
 				}
 
 				if ( $fld_rights ) {
-					$data['rights'] = $this->getGroupPermissionsLookup()->getGroupPermissions( $groups );
+					$data['rights'] = $this->groupPermissionsLookup->getGroupPermissions( $groups );
 					ApiResult::setIndexedTagName( $data['rights'], 'r' );
 					ApiResult::setArrayType( $data['rights'], 'array' );
 				}
