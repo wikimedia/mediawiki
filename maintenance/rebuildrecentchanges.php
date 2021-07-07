@@ -468,7 +468,7 @@ class RebuildRecentchanges extends Maintenance {
 	 * @param ILBFactory $lbFactory
 	 */
 	private function rebuildRecentChangesTablePass5( ILBFactory $lbFactory ) {
-		$dbw = wfGetDB( DB_PRIMARY );
+		$dbw = $this->getDB( DB_PRIMARY );
 
 		$this->output( "Removing duplicate revision and logging entries...\n" );
 
