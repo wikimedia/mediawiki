@@ -3125,7 +3125,7 @@
 	"tooltip-t-recentchangeslinked": "Liste des modifications récentes des pages appelées par celle-ci",
 	"tooltip-feed-rss": "Flux RSS pour cette page",
 	"tooltip-feed-atom": "Flux Atom pour cette page",
-	"tooltip-t-contributions": "Voir la liste des contributions de cet{{GENDER:$1||te}} utilisat{{GENDER:$1|eur|rice}}",
+	"tooltip-t-contributions": "Voir la liste des contributions de {{GENDER:$1|cet utilisateur|cette utilisatrice}}",
 	"tooltip-t-emailuser": "Envoyer un courriel à cet{{GENDER:$1||te}} utilisat{{GENDER:$1|eur|rice}}",
 	"tooltip-t-info": "Plus d’informations sur cette page",
 	"tooltip-t-upload": "Importer des fichiers",

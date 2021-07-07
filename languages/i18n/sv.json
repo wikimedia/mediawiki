@@ -1089,6 +1089,8 @@
 	"prefsnologintext2": "Var god logga in för att ändra dina inställningar.",
 	"prefs-skin": "Utseende",
 	"prefs-skin-prefs": "Utseendeinställningar",
+	"prefs-skin-responsive": "Aktivera responsivt läge",
+	"prefs-help-skin-responsive": "Anpassa utseendet till tillgängligt visningsområde. (Kanske inte har någon effekt på vissa utseenden).",
 	"skin-preview": "Förhandsvisning",
 	"datedefault": "Ingen preferens",
 	"prefs-labs": "Testfunktioner",

@@ -1122,6 +1122,8 @@
 	"prefsnologintext2": "Tercihlerinizi ayarlamak için lütfen oturum açın.",
 	"prefs-skin": "Görünüm",
 	"prefs-skin-prefs": "Görünüm tercihleri",
+	"prefs-skin-responsive": "Duyarlı modu etkinleştir",
+	"prefs-help-skin-responsive": "Görünümü mevcut görüntü alanı alanına uyarlayın. (Bazı görünümler üzerinde etkisi olmayabilir).",
 	"skin-preview": "Önizleme",
 	"datedefault": "Tercih yok",
 	"prefs-labs": "Deneysel özellikler",
