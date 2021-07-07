@@ -8,4 +8,4 @@
  *
  */
 
-$fallback = 'zh-cn, zh-hans';
+$fallback = 'zh-cn, zh-hans, zh, zh-hant';

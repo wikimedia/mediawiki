@@ -8,7 +8,7 @@
  *
  */
 
-$fallback = 'nan, zh-hant';
+$fallback = 'nan, zh-hant, zh, zh-hans';
 
 $namespaceNames = [
 	NS_MEDIA            => '媒體',

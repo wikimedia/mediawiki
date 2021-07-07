@@ -48,6 +48,7 @@
  * @author Skjackey tse
  * @author StephDC
  * @author Waihorace
+ * @author Winston Sung
  * @author Wmr89502270
  * @author Wong128hk
  * @author Wrightbus
@@ -57,7 +58,7 @@
  * @author 乌拉跨氪
  */
 
-$fallback = 'zh-hans';
+$fallback = 'zh-tw, zh-hk, zh, zh-hans';
 
 $fallback8bitEncoding = 'windows-950';
 
