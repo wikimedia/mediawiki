@@ -22,7 +22,7 @@ function addDescribedBy( elem, id ) {
 	describedby.push( id );
 	elem
 		.data( "ui-tooltip-id", id )
-		.attr( "aria-describedby", $.trim( describedby.join( " " ) ) );
+		.attr( "aria-describedby", describedby.join( " " ).trim() );
 }
 
 function removeDescribedBy( elem ) {
@@ -34,7 +34,7 @@ function removeDescribedBy( elem ) {
 	}
 
 	elem.removeData( "ui-tooltip-id" );
-	describedby = $.trim( describedby.join( " " ) );
+	describedby = describedby.join( " " ).trim();
 	if ( describedby ) {
 		elem.attr( "aria-describedby", describedby );
 	} else {

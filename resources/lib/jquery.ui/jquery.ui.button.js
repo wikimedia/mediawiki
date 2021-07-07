@@ -348,7 +348,7 @@ $.widget( "ui.button", {
 				buttonClasses.push( multipleIcons ? "ui-button-icons-only" : "ui-button-icon-only" );
 
 				if ( !this.hasTitle ) {
-					buttonElement.attr( "title", $.trim( buttonText ) );
+					buttonElement.attr( "title", buttonText.trim() );
 				}
 			}
 		} else {
