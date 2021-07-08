@@ -549,30 +549,31 @@ class BlockUser {
 			return $status;
 		}
 
-		// Try to insert block. Is there a conflicting block?
-		$insertStatus = $this->databaseBlockStore->insertBlock( $block );
-		$priorBlock = DatabaseBlock::newFromTarget( $this->target );
+		// Is there a conflicting block?
+		$priorBlock = DatabaseBlock::newFromTarget( $this->target, null, /*fromPrimary=*/true );
+
 		$isReblock = false;
-		if ( !$insertStatus ) {
-			// Reblock if the caller wants so
-			if ( $reblock ) {
-
-				if ( $priorBlock === null ) {
-					$this->logger->warning( 'Block could not be inserted. No existing block was found.' );
-					return Status::newFatal( 'ipb-block-not-found', $block->getTargetName() );
-				}
-
-				if ( $block->equals( $priorBlock ) ) {
-					// Block settings are equal => user is already blocked
-					return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
-				}
-
-				$currentBlock = $this->configureBlock( $priorBlock );
-				$this->databaseBlockStore->updateBlock( $currentBlock ); // TODO handle failure
-				$isReblock = true;
-				$block = $currentBlock;
-			} else {
+		if ( $priorBlock !== null ) {
+			// Reblock only if the caller wants so
+			if ( !$reblock ) {
 				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
+			}
+
+			if ( $block->equals( $priorBlock ) ) {
+				// Block settings are equal => user is already blocked
+				return Status::newFatal( 'ipb_already_blocked', $block->getTargetName() );
+			}
+
+			$currentBlock = $this->configureBlock( $priorBlock );
+			$this->databaseBlockStore->updateBlock( $currentBlock ); // TODO handle failure
+			$isReblock = true;
+			$block = $currentBlock;
+		} else {
+			// Try to insert block.
+			$insertStatus = $this->databaseBlockStore->insertBlock( $block );
+			if ( !$insertStatus ) {
+				$this->logger->warning( 'Block could not be inserted. No existing block was found.' );
+				return Status::newFatal( 'ipb-block-not-found', $block->getTargetName() );
 			}
 		}
 
