@@ -1,6 +1,6 @@
 'use strict';
 
-const Page = require( 'wdio-mediawiki/Page' );
+const Page = require( './Page' );
 
 class CreateAccountPage extends Page {
 	get username() { return $( '#wpName2' ); }
