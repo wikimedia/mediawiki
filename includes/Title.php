@@ -83,19 +83,49 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @{
 	 */
 
-	/** @var string Text form (spaces not underscores) of the main part */
+	/**
+	 * @deprecated since 1.37 directly accessing this member,
+	 *   use the ::getText() method instead.
+	 * @var string Text form (spaces not underscores) of the main part
+	 */
 	public $mTextform = '';
-	/** @var string URL-encoded form of the main part */
+
+	/**
+	 * @deprecated since 1.37 directly accessing this member,
+	 *   use the ::getPartialURL() method instead.
+	 * @var string URL-encoded form of the main part
+	 */
 	public $mUrlform = '';
-	/** @var string Main part with underscores */
+
+	/**
+	 * @deprecated since 1.37 directly accessing this member,
+	 *   use the ::getDBkey() method instead.
+	 * @var string Main part with underscores
+	 */
 	public $mDbkeyform = '';
-	/** @var int Namespace index, i.e. one of the NS_xxxx constants */
+
+	/**
+	 * @deprecated sine 1.37 Avoid directly accessing this member,
+	 *   use the ::getNamespace() method instead
+	 * @var int Namespace index, i.e. one of the NS_xxxx constants
+	 */
 	public $mNamespace = NS_MAIN;
-	/** @var string Interwiki prefix */
+
+	/**
+	 * @deprecated since 1.37 Avoid directly accessing this member,
+	 *   use the ::getInterwiki() method instead.
+	 * @var string Interwiki prefix
+	 */
 	public $mInterwiki = '';
+
 	/** @var bool Was this Title created from a string with a local interwiki prefix? */
 	private $mLocalInterwiki = false;
-	/** @var string Title fragment (i.e. the bit after the #) */
+
+	/**
+	 * @deprecated since 1.37 Avoid directly accessing this member,
+	 *   use the ::getFragment() method instead.
+	 * @var string Title fragment (i.e. the bit after the #)
+	 */
 	public $mFragment = '';
 
 	/** @var int Article ID, fetched from the link cache on demand */
