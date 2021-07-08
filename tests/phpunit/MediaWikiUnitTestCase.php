@@ -30,7 +30,7 @@ use Wikimedia\ObjectFactory;
  * Extend this class if you are testing classes which use dependency injection and do not access
  * global functions, variables, services or a storage backend.
  *
- * @stable for subclassing
+ * @stable to extend
  * @since 1.34
  */
 abstract class MediaWikiUnitTestCase extends TestCase {
