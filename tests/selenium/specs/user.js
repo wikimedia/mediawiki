@@ -1,7 +1,7 @@
 'use strict';
 
 const assert = require( 'assert' );
-const CreateAccountPage = require( '../pageobjects/createaccount.page' );
+const CreateAccountPage = require( 'wdio-mediawiki/CreateAccountPage' );
 const UserLoginPage = require( 'wdio-mediawiki/LoginPage' );
 const Api = require( 'wdio-mediawiki/Api' );
 const Util = require( 'wdio-mediawiki/Util' );
