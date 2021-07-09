@@ -1120,6 +1120,8 @@
 	"prefsnologintext2": "請登入以變更您的偏好設定。",
 	"prefs-skin": "佈景主題",
 	"prefs-skin-prefs": "佈景主題偏好設定",
+	"prefs-skin-responsive": "啟用響應模式",
+	"prefs-help-skin-responsive": "自動調整佈景主題，使其適合可視區域。（可能對某些佈景主題沒有影響）",
 	"skin-preview": "預覽",
 	"datedefault": "預設值",
 	"prefs-labs": "實驗中的功能",

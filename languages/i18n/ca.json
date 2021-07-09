@@ -1078,6 +1078,8 @@
 	"prefsnologintext2": "Inicieu una sessió per canviar les vostres preferències.",
 	"prefs-skin": "Aparença",
 	"prefs-skin-prefs": "Preferències de l'aparença",
+	"prefs-skin-responsive": "Activa el mode responsiu",
+	"prefs-help-skin-responsive": "Adapta l'aparença a l'amplada de la finestra. (Pot no tenir cap efecte en alguns entorns).",
 	"skin-preview": "prova",
 	"datedefault": "Cap preferència",
 	"prefs-labs": "Característiques de laboratori",

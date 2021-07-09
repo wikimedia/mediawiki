@@ -4074,5 +4074,8 @@
 	"paramvalidator-help-type-user-subtype-ip": "IP",
 	"paramvalidator-help-type-user-subtype-cidr": "IP опсег",
 	"paramvalidator-help-type-user-subtype-interwiki": "међувики назив (нпр. „префикс>Пример”)",
-	"paramvalidator-help-type-user-subtype-id": "ID корисника (нпр. „#12345”)"
+	"paramvalidator-help-type-user-subtype-id": "ID корисника (нпр. „#12345”)",
+	"paramvalidator-help-type-title": "Тип: наслов странице",
+	"paramvalidator-help-type-title-must-exist": "Прихвата само странице које постоје.",
+	"paramvalidator-help-type-title-no-must-exist": "Прихвата непостојеће странице."
 }
