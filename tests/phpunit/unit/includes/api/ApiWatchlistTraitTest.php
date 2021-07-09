@@ -8,7 +8,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group API
  * @covers ApiWatchlistTrait
  */
-class ApiWatchlistTraitTest extends MediaWikiIntegrationTestCase {
+class ApiWatchlistTraitTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @dataProvider provideWatchlistValue
