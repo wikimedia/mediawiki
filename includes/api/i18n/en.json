@@ -928,6 +928,7 @@
 	"apihelp-query+info-paramvalue-prop-visitingwatchers": "The number of watchers of each page who have visited recent edits to that page, if allowed.",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "The watchlist notification timestamp of each page.",
 	"apihelp-query+info-paramvalue-prop-subjectid": "The page ID of the parent page for each talk page.",
+	"apihelp-query+info-paramvalue-prop-associatedpage": "The prefixed title of the [[:mw:Special:MyLanguage/Help:Associated_pages|associated subject or talk page]].",
 	"apihelp-query+info-paramvalue-prop-url": "Gives a full URL, an edit URL, and the canonical URL for each page.",
 	"apihelp-query+info-paramvalue-prop-readable": "Whether the user can read this page. Use <kbd>intestactions=read</kbd> instead.",
 	"apihelp-query+info-paramvalue-prop-preload": "Gives the text returned by EditFormPreloadText.",
