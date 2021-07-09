@@ -3003,6 +3003,7 @@
 	"confirm-purge-bottom": "Асвяжэнне старонкі ачышчае копію ў кэшы і вымушае паказ самай новай версіі.",
 	"confirm-watch-button": "ОК",
 	"confirm-watch-top": "Дабавіць старонку ў спіс назірання",
+	"watchlist-expiry-options": "Назаўсёды:infinite,1 тыдзень:1 week,1 месяц:1 month,3 месяцы:3 months,6 месяцаў:6 months",
 	"confirm-unwatch-button": "ОК",
 	"confirm-unwatch-top": "Выняць гэту старонку з Вашага спісу назірання?",
 	"confirm-rollback-button": "Добра",

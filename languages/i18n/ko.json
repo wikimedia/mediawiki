@@ -3233,7 +3233,7 @@
 	"confirmrecreate": "[[User:$1|$1]] 사용자([[User talk:$1|토론]])가 당신이 편집하는 도중에 문서를 {{GENDER:$1|삭제했습니다}}. 삭제 이유는 다음과 같습니다:\n: $2\n문서를 다시 만들어야 하는지 확인해주세요.",
 	"confirmrecreate-noreason": "[[User:$1|$1]] 사용자([[User talk:$1|토론]])가 당신이 편집하는 도중에 문서를 {{GENDER:$1|삭제했습니다}}. 문서를 다시 만들어야 하는지 확인해주세요.",
 	"recreate": "새로 만들기",
-	"confirm-purge-title": "이 문서를 새로고침",
+	"confirm-purge-title": "이 문서를 새로 고침",
 	"confirm_purge_button": "확인",
 	"confirm-purge-top": "이 문서의 캐시를 새로 고치겠습니까?",
 	"confirm-purge-bottom": "문서를 새로 고치는 것은 캐시를 지우고 강제로 가장 현재의 판이 나타나게 합니다.",
