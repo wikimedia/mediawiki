@@ -539,7 +539,7 @@ class PageArchive {
 		}
 
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		$dbw->startAtomic( __METHOD__ );
+		$dbw->startAtomic( __METHOD__, IDatabase::ATOMIC_CANCELABLE );
 
 		$restoreAll = empty( $timestamps );
 
