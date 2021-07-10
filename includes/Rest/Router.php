@@ -80,10 +80,18 @@ class Router {
 	 * @param HookContainer $hookContainer
 	 * @internal
 	 */
-	public function __construct( $routeFiles, $extraRoutes, $baseUrl, $rootPath,
-		BagOStuff $cacheBag, ResponseFactory $responseFactory,
-		BasicAuthorizerInterface $basicAuth, Authority $authority,
-		ObjectFactory $objectFactory, Validator $restValidator, HookContainer $hookContainer
+	public function __construct(
+		$routeFiles,
+		$extraRoutes,
+		$baseUrl,
+		$rootPath,
+		BagOStuff $cacheBag,
+		ResponseFactory $responseFactory,
+		BasicAuthorizerInterface $basicAuth,
+		Authority $authority,
+		ObjectFactory $objectFactory,
+		Validator $restValidator,
+		HookContainer $hookContainer
 	) {
 		$this->routeFiles = $routeFiles;
 		$this->extraRoutes = $extraRoutes;
