@@ -688,11 +688,6 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-AutoCreateCategoryPages
 	branch = master
 	ignore = dirty
-[submodule "extensions/PageForms"]
-	path = extensions/PageForms
-	url = https://github.com/wikimedia/mediawiki-extensions-PageForms
-	branch = REL1_36
-	ignore = dirty
 [submodule "skins/Timeless"]
 	path = skins/Timeless
 	url = https://github.com/wikimedia/mediawiki-skins-Timeless
@@ -1491,5 +1486,10 @@
 [submodule "extensions/EmbedVideo"]
 	path = extensions/EmbedVideo
 	url = https://github.com/StarCitizenWiki/mediawiki-extensions-EmbedVideo
+	branch = master
+	ignore = dirty
+[submodule "extensions/PageForms"]
+	path = extensions/PageForms
+	url = https://github.com/wikimedia/mediawiki-extensions-PageForms
 	branch = master
 	ignore = dirty
