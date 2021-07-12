@@ -115,7 +115,7 @@ class RollbackAction extends FormAction {
 			] );
 		}
 
-		if ( !$user->matchEditToken( $request->getVal( 'token' ), 'rollback' ) ) {
+		if ( !$this->getContext()->getCsrfTokenSet()->matchTokenField( 'token', 'rollback' ) ) {
 			throw new ErrorPageError( 'sessionfailure-title', 'sessionfailure' );
 		}
 

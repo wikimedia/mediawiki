@@ -23,6 +23,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Preferences\MultiUsernameFilter;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
@@ -146,7 +147,7 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		// error out if sending user cannot do this
 		$error = self::getPermissionsError(
 			$this->getUser(),
-			$this->getRequest()->getVal( 'wpEditToken' ),
+			$this->getRequest()->getVal( CsrfTokenSet::DEFAULT_FIELD_NAME ),
 			$this->getConfig()
 		);
 

@@ -2,6 +2,7 @@
 
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Session\CsrfTokenSet;
 
 /**
  * @group API
@@ -244,14 +245,11 @@ class ApiUserrightsTest extends ApiTestCase {
 		$sysop = $this->getTestSysop()->getUser();
 		$user = $this->getMutableTestUser()->getUser();
 
-		$token = $sysop->getEditToken( $user->getName() );
-
-		$res = $this->doApiRequest( [
+		$res = $this->doApiRequestWithToken( [
 			'action' => 'userrights',
 			'user' => $user->getName(),
 			'add' => 'sysop',
-			'token' => $token,
-		] );
+		], null, $sysop );
 
 		$user->clearInstanceCache();
 		$this->assertSame( [ 'sysop' ], $user->getGroups() );
@@ -269,17 +267,17 @@ class ApiUserrightsTest extends ApiTestCase {
 	 * @return ApiUserrights
 	 */
 	private function getMockForProcessingExpiries( $canProcessExpiries ) {
-		$sysop = $this->getTestSysop()->getUser();
 		$user = $this->getMutableTestUser()->getUser();
-
-		$token = $sysop->getEditToken( 'userrights' );
-
-		$main = new ApiMain( new FauxRequest( [
+		$request = new FauxRequest( [
 			'action' => 'userrights',
 			'user' => $user->getName(),
 			'add' => 'sysop',
-			'token' => $token,
-		] ) );
+		] );
+		$request->setVal(
+			'token',
+			( new CsrfTokenSet( $request ) )->getToken( 'userrights' )->toString()
+		);
+		$main = new ApiMain( $request );
 
 		$mockUserRightsPage = $this->getMockBuilder( UserrightsPage::class )
 			->onlyMethods( [ 'canProcessExpiries' ] )

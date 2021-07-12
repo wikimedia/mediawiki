@@ -139,7 +139,7 @@ class SpecialImport extends SpecialPage {
 		$user = $this->getUser();
 
 		$fullInterwikiPrefix = null;
-		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
+		if ( !$this->getContext()->getCsrfTokenSet()->matchTokenField() ) {
 			$source = Status::newFatal( 'import-token-mismatch' );
 		} elseif ( $sourceName === 'upload' ) {
 			$isUpload = true;

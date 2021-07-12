@@ -50,15 +50,15 @@ class ResourceLoaderUserOptionsModule extends ResourceLoaderModule {
 	 * @return string JavaScript code
 	 */
 	public function getScript( ResourceLoaderContext $context ) {
-		$user = $context->getUserObj();
-
+		$tokenSet = RequestContext::getMain()->getCsrfTokenSet();
 		$tokens = [
-			'patrolToken' => $user->getEditToken( 'patrol' ),
-			'watchToken' => $user->getEditToken( 'watch' ),
-			'csrfToken' => $user->getEditToken(),
+			'patrolToken' => $tokenSet->getToken( 'patrol' )->toString(),
+			'watchToken' => $tokenSet->getToken( 'watch' )->toString(),
+			'csrfToken' => $tokenSet->getToken()->toString(),
 		];
 		$script = 'mw.user.tokens.set(' . $context->encodeJson( $tokens ) . ');';
 
+		$user = $context->getUserObj();
 		$userOptionsLookup = MediaWikiServices::getInstance()->getUserOptionsLookup();
 		$options = $userOptionsLookup->getOptions( $user, UserOptionsLookup::EXCLUDE_DEFAULTS );
 		// Optimisation: Only output this function call if the user has non-default settings.

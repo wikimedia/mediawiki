@@ -2,6 +2,7 @@
 
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Session\CsrfTokenSet;
 
 /**
  * Integration tests for the various edit constraints, ensuring
@@ -102,14 +103,6 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 			);
 		}
 
-		if ( !isset( $edit['wpEditToken'] ) ) {
-			$edit['wpEditToken'] = $user->getEditToken();
-		}
-
-		if ( !isset( $edit['wpEdittime'] ) && !isset( $edit['editRevId'] ) ) {
-			$edit['wpEdittime'] = $page->exists() ? $page->getTimestamp() : '';
-		}
-
 		if ( !isset( $edit['wpStarttime'] ) ) {
 			$edit['wpStarttime'] = wfTimestampNow();
 		}
@@ -119,7 +112,12 @@ class EditPageConstraintsTest extends MediaWikiLangTestCase {
 		}
 
 		$req = new FauxRequest( $edit, true ); // session ??
-
+		if ( !isset( $edit['wpEditToken'] ) ) {
+			$req->setVal(
+				'wpEditToken',
+				( new CsrfTokenSet( $req ) )->getToken()->toString()
+			);
+		}
 		$context = new RequestContext();
 		$context->setRequest( $req );
 		$context->setTitle( $title );

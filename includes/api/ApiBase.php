@@ -1097,11 +1097,7 @@ abstract class ApiBase extends ContextSource {
 		}
 
 		$webUiSalt = $this->getWebUITokenSalt( $params );
-		if ( $webUiSalt !== null && $this->getUser()->matchEditToken(
-			$token,
-			$webUiSalt,
-			$this->getRequest()
-		) ) {
+		if ( $webUiSalt !== null && $this->getCsrfTokenSet()->matchToken( $token, $webUiSalt ) ) {
 			return true;
 		}
 

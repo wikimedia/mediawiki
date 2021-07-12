@@ -728,11 +728,8 @@ class SpecialSearch extends SpecialPage {
 		$request = $this->getRequest();
 
 		if ( $user->isRegistered() &&
-			$user->matchEditToken(
-				$request->getVal( 'nsRemember' ),
-				'searchnamespace',
-				$request
-			) && !$this->readOnlyMode->isReadOnly()
+			$this->getContext()->getCsrfTokenSet()->matchTokenField( 'nsRemember', 'searchnamespace' ) &&
+			!$this->readOnlyMode->isReadOnly()
 		) {
 			// Reset namespace preferences: namespaces are not searched
 			// when they're not mentioned in the URL parameters.

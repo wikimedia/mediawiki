@@ -25,6 +25,7 @@ use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Page\MergeHistoryFactory;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\Session\CsrfTokenSet;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -124,7 +125,7 @@ class SpecialMergeHistory extends SpecialPage {
 		$this->mComment = $request->getText( 'wpComment' );
 
 		$this->mMerge = $request->wasPosted()
-			&& $this->getUser()->matchEditToken( $request->getVal( 'wpEditToken' ) );
+			&& $this->getContext()->getCsrfTokenSet()->matchTokenField();
 
 		// target page
 		if ( $this->mSubmitted ) {
@@ -306,7 +307,10 @@ class SpecialMergeHistory extends SpecialPage {
 		$misc .= Html::hidden( 'destID', $this->mDestObj->getArticleID() );
 		$misc .= Html::hidden( 'target', $this->mTarget );
 		$misc .= Html::hidden( 'dest', $this->mDest );
-		$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
+		$misc .= Html::hidden(
+			CsrfTokenSet::DEFAULT_FIELD_NAME,
+			$this->getContext()->getCsrfTokenSet()->getToken()->toString()
+		);
 		$misc .= Xml::closeElement( 'form' );
 		$out->addHTML( $misc );
 

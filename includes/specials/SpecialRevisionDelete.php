@@ -23,6 +23,7 @@
 
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Session\CsrfTokenSet;
 
 /**
  * Special page allowing users with the appropriate permissions to view
@@ -42,9 +43,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/** @var string Archive name, for reviewing deleted files */
 	private $archiveName;
-
-	/** @var string Edit token for securing image views against XSS */
-	private $token;
 
 	/** @var Title Title object for target parameter */
 	private $targetObj;
@@ -161,7 +159,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		# For reviewing deleted files...
 		$this->archiveName = $request->getVal( 'file' );
-		$this->token = $request->getVal( 'token' );
 		if ( $this->archiveName && $this->targetObj ) {
 			$this->tryShowFile( $this->archiveName );
 
@@ -343,7 +340,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				throw new PermissionsError( 'deletedtext' );
 			}
 		}
-		if ( !$user->matchEditToken( $this->token, $archiveName ) ) {
+		if ( !$this->getContext()->getCsrfTokenSet()->matchTokenField( 'token', $archiveName ) ) {
 			$lang = $this->getLanguage();
 			$this->getOutput()->addWikiMsg( 'revdelete-show-file-confirm',
 				$this->targetObj->getText(),
@@ -355,7 +352,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'action' => $this->getPageTitle()->getLocalURL( [
 							'target' => $this->targetObj->getPrefixedDBkey(),
 							'file' => $archiveName,
-							'token' => $user->getEditToken( $archiveName ),
+							'token' => $this->getContext()
+								->getCsrfTokenSet()
+								->getToken( $archiveName )
+								->toString(),
 						] )
 					]
 				) .
@@ -494,7 +494,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 					'</td>' .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
-				Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
+				Html::hidden(
+					CsrfTokenSet::DEFAULT_FIELD_NAME,
+					$this->getContext()->getCsrfTokenSet()->getToken()->toString()
+				) .
 				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 				Html::hidden( 'type', $this->typeName ) .
 				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
@@ -624,8 +627,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 */
 	protected function submit() {
 		# Check edit token on submission
-		$token = $this->getRequest()->getVal( 'wpEditToken' );
-		if ( $this->submitClicked && !$this->getUser()->matchEditToken( $token ) ) {
+		if ( $this->submitClicked && !$this->getContext()->getCsrfTokenSet()->matchTokenField() ) {
 			$this->getOutput()->addWikiMsg( 'sessionfailure' );
 
 			return false;

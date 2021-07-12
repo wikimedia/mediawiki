@@ -29,6 +29,7 @@ use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\User\UserOptionsLookup;
@@ -171,8 +172,7 @@ class SpecialUndelete extends SpecialPage {
 		$this->mTimestamp = $time ? wfTimestamp( TS_MW, $time ) : '';
 		$this->mFilename = $request->getVal( 'file' );
 
-		$posted = $request->wasPosted() &&
-			$user->matchEditToken( $request->getVal( 'wpEditToken' ) );
+		$posted = $request->wasPosted() && $this->getContext()->getCsrfTokenSet()->matchTokenField();
 		$this->mRestore = $request->getCheck( 'restore' ) && $posted;
 		$this->mRevdel = $request->getCheck( 'revdel' ) && $posted;
 		$this->mInvert = $request->getCheck( 'invert' ) && $posted;
@@ -314,7 +314,7 @@ class SpecialUndelete extends SpecialPage {
 				} else {
 					throw new PermissionsError( 'deletedtext' );
 				}
-			} elseif ( !$user->matchEditToken( $this->mToken, $this->mFilename ) ) {
+			} elseif ( !$this->getContext()->getCsrfTokenSet()->matchToken( $this->mToken, $this->mFilename ) ) {
 				$this->showFileConfirmationForm( $this->mFilename );
 			} else {
 				$this->showFile( $this->mFilename );
@@ -666,8 +666,8 @@ class SpecialUndelete extends SpecialPage {
 					'value' => $timestamp ] ) .
 				Xml::element( 'input', [
 					'type' => 'hidden',
-					'name' => 'wpEditToken',
-					'value' => $user->getEditToken() ] ) .
+					'name' => CsrfTokenSet::DEFAULT_FIELD_NAME,
+					'value' => $this->getContext()->getCsrfTokenSet()->getToken()->toString() ] ) .
 				new OOUI\FieldLayout(
 					new OOUI\Widget( [
 						'content' => new OOUI\HorizontalLayout( [
@@ -809,7 +809,7 @@ class SpecialUndelete extends SpecialPage {
 					'action' => $this->getPageTitle()->getLocalURL( [
 						'target' => $this->mTarget,
 						'file' => $key,
-						'token' => $user->getEditToken( $key ),
+						'token' => $this->getContext()->getCsrfTokenSet()->getToken()->toString(),
 					] ),
 				]
 			) .
@@ -988,7 +988,9 @@ class SpecialUndelete extends SpecialPage {
 				] ),
 				new OOUI\HtmlSnippet(
 					Html::hidden( 'target', $this->mTarget ) .
-					Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() )
+					Html::hidden(
+						CsrfTokenSet::DEFAULT_FIELD_NAME,
+						$this->getContext()->getCsrfTokenSet()->getToken()->toString() )
 				)
 			);
 		}
@@ -1039,7 +1041,10 @@ class SpecialUndelete extends SpecialPage {
 		if ( $this->mAllowed ) {
 			# Slip in the hidden controls here
 			$misc = Html::hidden( 'target', $this->mTarget );
-			$misc .= Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() );
+			$misc .= Html::hidden(
+				CsrfTokenSet::DEFAULT_FIELD_NAME,
+				$this->getContext()->getCsrfTokenSet()->getToken()->toString()
+			);
 			$history .= $misc;
 
 			$form->appendContent( new OOUI\HtmlSnippet( $history ) );
@@ -1251,7 +1256,7 @@ class SpecialUndelete extends SpecialPage {
 			[
 				'target' => $this->mTargetObj->getPrefixedText(),
 				'file' => $key,
-				'token' => $user->getEditToken( $key )
+				'token' => $this->getContext()->getCsrfTokenSet()->getToken( $key )->toString(),
 			]
 		);
 

@@ -7,6 +7,7 @@ use EditPage;
 use FauxRequest;
 use McrUndoAction;
 use MediaWiki\Revision\RevisionStoreRecord;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\SlotRecord;
 use MediaWikiIntegrationTestCase;
@@ -419,7 +420,6 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 				// after the undo, but automatic conflict resolution is not the point of
 				// this test anyway.
 				'wpTextbox1' => $newContent,
-				'wpEditToken' => $this->getTestSysop()->getUser()->getEditToken(),
 				// These two parameters are the important ones here
 				'wpUndidRevision' => $revisionIds[$undoIndex],
 				'wpUndoAfter' => $revisionIds[$undoafterIndex],
@@ -429,6 +429,10 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 				'format' => CONTENT_FORMAT_WIKITEXT,
 			],
 			true
+		);
+		$request->setVal(
+			'wpEditToken',
+			( new CsrfTokenSet( $request ) )->getToken()->toString()
 		);
 
 		$editPage = new EditPage( $article );
@@ -472,7 +476,6 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			[
 				// We emulate the user applying additional changes on top of the undo.
 				'wpTextbox1' => "line 1\n\nline 2\n\nline3 more content\n\neven more",
-				'wpEditToken' => $this->getTestSysop()->getUser()->getEditToken(),
 				'wpUndidRevision' => $revisionIds[1],
 				'wpUndoAfter' => $revisionIds[0],
 				'wpStarttime' => wfTimestampNow(),
@@ -482,7 +485,10 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			],
 			true
 		);
-
+		$request->setVal(
+			'wpEditToken',
+			( new CsrfTokenSet( $request ) )->getToken()->toString()
+		);
 		$editPage = new EditPage( $article );
 		$editPage->importFormData( $request );
 		$editPage->internalAttemptSave( $result, false );
@@ -528,7 +534,6 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 			[
 				// We leave the "top" content in the textbox, as the undo should have failed
 				'wpTextbox1' => "line 1\n\nvandalism good content\n\nline3 more content",
-				'wpEditToken' => $this->getTestSysop()->getUser()->getEditToken(),
 				'wpUndidRevision' => $revisionIds[1],
 				'wpUndoAfter' => $revisionIds[0],
 				'wpStarttime' => wfTimestampNow(),
@@ -537,6 +542,10 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 				'format' => CONTENT_FORMAT_WIKITEXT,
 			],
 			true
+		);
+		$request->setVal(
+			'wpEditToken',
+			( new CsrfTokenSet( $request ) )->getToken()->toString()
 		);
 
 		$editPage = new EditPage( $article );

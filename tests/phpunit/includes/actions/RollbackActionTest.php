@@ -6,6 +6,7 @@ use Article;
 use DerivativeContext;
 use ErrorPageError;
 use FauxRequest;
+use MediaWiki\Session\CsrfTokenSet;
 use MediaWikiIntegrationTestCase;
 use RequestContext;
 use RollbackAction;
@@ -43,6 +44,13 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 	private function getRollbackAction( WebRequest $request ) {
 		$context = new DerivativeContext( RequestContext::getMain() );
 		$context->setTitle( $this->testPage );
+		$request->getSession()->setUser( $this->sysop );
+		if ( !$request->getVal( 'token' ) ) {
+			$request->setVal(
+				'token',
+				( new CsrfTokenSet( $request ) )->getToken( 'rollback' )->toString()
+			);
+		}
 		$context->setRequest( $request );
 		$context->setUser( $this->sysop );
 		return new RollbackAction( Article::newFromTitle( $this->testPage, $context ), $context );
@@ -94,7 +102,6 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 	public function testRollback() {
 		$request = new FauxRequest( [
 			'from' => $this->vandal->getName(),
-			'token' => $this->sysop->getEditToken( 'rollback' ),
 		] );
 		$rollbackAction = $this->getRollbackAction( $request );
 		$rollbackAction->handleRollbackRequest();
@@ -118,7 +125,6 @@ class RollbackActionTest extends MediaWikiIntegrationTestCase {
 	public function testRollbackMarkBot() {
 		$request = new FauxRequest( [
 			'from' => $this->vandal->getName(),
-			'token' => $this->sysop->getEditToken( 'rollback' ),
 			'bot' => true,
 		] );
 		$rollbackAction = $this->getRollbackAction( $request );
