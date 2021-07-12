@@ -26,7 +26,8 @@ class SpecialBlockTest extends SpecialPageTestBase {
 			$services->getBlockUserFactory(),
 			$services->getUserNameUtils(),
 			$services->getUserNamePrefixSearch(),
-			$services->getBlockActionInfo()
+			$services->getBlockActionInfo(),
+			$services->getTitleFormatter()
 		);
 	}
 
