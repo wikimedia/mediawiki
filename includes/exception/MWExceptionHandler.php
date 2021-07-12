@@ -21,6 +21,7 @@
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
 use Psr\Log\LogLevel;
+use Wikimedia\NormalizedException\INormalizedException;
 use Wikimedia\Rdbms\DBError;
 use Wikimedia\Rdbms\DBQueryError;
 
@@ -495,7 +496,11 @@ TXT;
 	 * @return string
 	 */
 	public static function getLogNormalMessage( Throwable $e ) {
-		$message = $e->getMessage();
+		if ( $e instanceof INormalizedException ) {
+			$message = $e->getNormalizedMessage();
+		} else {
+			$message = $e->getMessage();
+		}
 		if ( !$e instanceof ErrorException ) {
 			// ErrorException is something we use internally to represent
 			// PHP errors (runtime warnings that aren't thrown or caught),
@@ -532,7 +537,7 @@ TXT;
 	 * @return array
 	 */
 	public static function getLogContext( Throwable $e, $catcher = self::CAUGHT_BY_OTHER ) {
-		return [
+		$context = [
 			'exception' => $e,
 			'exception_url' => self::getURL() ?: '[no req]',
 			// The reqId context key use the same familiar name and value as the top-level field
@@ -544,6 +549,10 @@ TXT;
 			'reqId' => WebRequest::getRequestId(),
 			'caught_by' => $catcher
 		];
+		if ( $e instanceof INormalizedException ) {
+			$context += $e->getMessageContext();
+		}
+		return $context;
 	}
 
 	/**
