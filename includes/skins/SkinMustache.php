@@ -31,7 +31,7 @@ class SkinMustache extends SkinTemplate {
 
 	/**
 	 * @since 1.36
-	 * @stable for overriding
+	 * @stable to override
 	 * @param string $name of the portal e.g. p-personal the name is personal.
 	 * @param array $items that are accepted input to Skin::makeListItem
 	 * @return array data that can be passed to a Mustache template that

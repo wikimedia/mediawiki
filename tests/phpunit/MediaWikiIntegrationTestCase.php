@@ -25,7 +25,7 @@ use Wikimedia\Rdbms\IMaintainableDatabase;
  * Consider using MediaWikiUnitTestCase and mocking dependencies if your code uses dependency
  * injection and does not access any globals.
  *
- * @stable for subclassing
+ * @stable to extend
  */
 abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	use MediaWikiCoversValidator;
@@ -154,7 +154,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	];
 
 	/**
-	 * @stable for calling
+	 * @stable to call
 	 * @param string|null $name
 	 * @param array $data
 	 * @param string $dataName
@@ -1360,7 +1360,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @see resetDB()
 	 *
 	 * @since 1.27
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function addDBDataOnce() {
 	}
@@ -1373,7 +1373,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * @see resetDB()
 	 *
 	 * @since 1.18
-	 * @stable for overriding
+	 * @stable to override
 	 */
 	public function addDBData() {
 	}
@@ -1639,7 +1639,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * by the 'scripts', even if the test is only interested in a subset of them, otherwise
 	 * the overrides may not be fully cleaned up, leading to errors later.
 	 *
-	 * @stable for overriding
+	 * @stable to override
 	 * @param IMaintainableDatabase $db The DB connection to use for the mock schema.
 	 *        May be used to check the current state of the schema, to determine what
 	 *        overrides are needed.
