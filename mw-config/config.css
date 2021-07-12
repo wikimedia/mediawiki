@@ -203,6 +203,8 @@ body {
 	padding-left: 40px; /* 32 px for the image (above), plus some breathing room */
 	height: 32px; /* provide enough vertical room for the image */
 	display: inline-block; /* allow the height property (above) to work */
+	/* TODO: re-evaluate this */
+	/* stylelint-disable-next-line declaration-property-unit-disallowed-list */
 	line-height: 32px; /* center the text vertically */
 }
 
