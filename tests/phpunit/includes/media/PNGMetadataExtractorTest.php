@@ -134,4 +134,14 @@ class PNGMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 			'greyscale-na-png.png' );
 		$this->assertEquals( 'greyscale', $meta['colorType'] );
 	}
+
+	/**
+	 * T286273 -- tEXt chunk replaced by null bytes
+	 */
+	public function testPngInvalidChunk() {
+		$meta = PNGMetadataExtractor::getMetadata( $this->filePath .
+			'tEXt-invalid-masked.png' );
+		$this->assertEquals( 10, $meta['width'] );
+		$this->assertEquals( 10, $meta['height'] );
+	}
 }
