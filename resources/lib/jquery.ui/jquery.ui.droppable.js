@@ -33,7 +33,7 @@ $.widget("ui.droppable", {
 		var o = this.options, accept = o.accept;
 		this.isover = 0; this.isout = 1;
 
-		this.accept = $.isFunction(accept) ? accept : function(d) {
+		this.accept = typeof accept === 'function' ? accept : function(d) {
 			return d.is(accept);
 		};
 
@@ -60,7 +60,7 @@ $.widget("ui.droppable", {
 	_setOption: function(key, value) {
 
 		if(key == 'accept') {
-			this.accept = $.isFunction(value) ? value : function(d) {
+			this.accept = typeof value === 'function' ? value : function(d) {
 				return d.is(value);
 			};
 		}
