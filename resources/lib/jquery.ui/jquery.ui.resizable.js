@@ -97,7 +97,7 @@ $.widget("ui.resizable", $.ui.mouse, {
 
 			for(var i = 0; i < n.length; i++) {
 
-				var handle = $.trim(n[i]), hname = 'ui-resizable-'+handle;
+				var handle = n[i].trim(), hname = 'ui-resizable-'+handle;
 				var axis = $('<div class="ui-resizable-handle ' + hname + '"></div>');
 
 				// Apply zIndex to all handles - see #7960

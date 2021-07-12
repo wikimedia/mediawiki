@@ -370,7 +370,7 @@ $.widget("ui.dialog", {
 		if ( hasButtons ) {
 			$.each( buttons, function( name, props ) {
 				var button, click;
-				props = $.isFunction( props ) ?
+				props = typeof props === 'function' ?
 					{ click: props, text: name } :
 					props;
 				// Default to a non-submitting button
