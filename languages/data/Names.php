@@ -185,6 +185,7 @@ class Names {
 		'grc' => 'Ἀρχαία ἑλληνικὴ', # Ancient Greek
 		'gsw' => 'Alemannisch', # Alemannic
 		'guc' => 'wayuunaiki', # Wayuu
+		'guw' => 'gungbe', # Gun
 		'gu' => 'ગુજરાતી', # Gujarati
 		'gv' => 'Gaelg', # Manx
 		'ha' => 'Hausa', # Hausa
