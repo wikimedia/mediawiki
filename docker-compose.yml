@@ -7,7 +7,7 @@
 version: '3.7'
 services:
   mediawiki:
-    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm:2.0.0
+    image: docker-registry.wikimedia.org/dev/stretch-php72-fpm:3.0.0
     user: "${MW_DOCKER_UID}:${MW_DOCKER_GID}"
     volumes:
       - ./:/var/www/html/w:cached
