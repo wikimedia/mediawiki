@@ -28,7 +28,6 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\PermissionManager;
@@ -156,28 +155,15 @@ class WikiImporter {
 	) {
 		$this->reader = new XMLReader();
 		$this->config = $config;
-
-		/**
-		 * This class is used by several extensions, thus a fallback to global state
-		 * is provided here.
-		 */
-		$this->hookRunner = $hookContainer ? new HookRunner( $hookContainer ) : Hooks::runner();
-		$this->contentLanguage = $contentLanguage
-			?? MediaWikiServices::getInstance()->getContentLanguage();
-		$this->namespaceInfo = $namespaceInfo
-			?? MediaWikiServices::getInstance()->getNamespaceInfo();
-		$this->titleFactory = $titleFactory
-			?? MediaWikiServices::getInstance()->getTitleFactory();
-		$this->wikiPageFactory = $wikiPageFactory
-			?? MediaWikiServices::getInstance()->getWikiPageFactory();
-		$this->uploadRevisionImporter = $uploadRevisionImporter
-			?? MediaWikiServices::getInstance()->getWikiRevisionUploadImporter();
-		$this->permissionManager = $permissionManager
-			?? MediaWikiServices::getInstance()->getPermissionManager();
-		$this->contentHandlerFactory = $contentHandlerFactory
-			?? MediaWikiServices::getInstance()->getContentHandlerFactory();
-		$this->slotRoleRegistry = $slotRoleRegistry
-			?? MediaWikiServices::getInstance()->getSlotRoleRegistry();
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->contentLanguage = $contentLanguage;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->titleFactory = $titleFactory;
+		$this->wikiPageFactory = $wikiPageFactory;
+		$this->uploadRevisionImporter = $uploadRevisionImporter;
+		$this->permissionManager = $permissionManager;
+		$this->contentHandlerFactory = $contentHandlerFactory;
+		$this->slotRoleRegistry = $slotRoleRegistry;
 
 		if ( !in_array( 'uploadsource', stream_get_wrappers() ) ) {
 			stream_wrapper_register( 'uploadsource', UploadSourceAdapter::class );
