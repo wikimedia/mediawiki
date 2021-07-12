@@ -40,6 +40,8 @@ $cfg['exclude_file_list'] = array_merge(
 	[
 		// This file has invalid PHP syntax
 		'vendor/squizlabs/php_codesniffer/src/Standards/PSR2/Tests/Methods/MethodDeclarationUnitTest.inc',
+		// This file implements a polyfill for the JsonUnserializable class
+		'vendor/php-parallel-lint/php-parallel-lint/src/polyfill.php'
 	]
 );
 
