@@ -239,7 +239,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public $mBlock;
 
-	/** @var bool */
+	/**
+	 * TODO: This should be removed when User::isAllowUsertalk
+	 * is removed.
+	 * @var bool
+	 */
 	protected $mAllowUsertalk;
 
 	/** @var AbstractBlock|bool */
@@ -4264,9 +4268,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Checks if usertalk is allowed
 	 *
-	 * @return bool
+	 * @deprecated since 1.37 Use AbstractBlock::isUsertalkEditAllowed
+	 *
+	 * @return bool|null Returns null when no block has been loaded
 	 */
 	public function isAllowUsertalk() {
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->mAllowUsertalk;
 	}
 
