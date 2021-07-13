@@ -506,6 +506,8 @@ because of Phabricator reports.
   - hasGenderDistinction()
   - getRestrictionLevels()
   - getCategoryLinkType()
+* LogFormatter::styleRestricedElement has been deprecated in favor of
+  LogFormatter::styleRestrictedElement
 * …
 
 == Compatibility ==
