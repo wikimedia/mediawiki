@@ -36,8 +36,11 @@ class ActorMigrationBase {
 	/** @var array[] Cache for `self::getJoin()` */
 	private $joinCache = [];
 
-	/** @var int Combination of SCHEMA_COMPAT_* constants */
-	private $stage;
+	/** @var int One of the SCHEMA_COMPAT_READ_* values */
+	private $readStage;
+
+	/** @var int A combination of the SCHEMA_COMPAT_WRITE_* flags */
+	private $writeStage;
 
 	/** @var ActorStoreFactory */
 	private $actorStoreFactory;
@@ -75,7 +78,18 @@ class ActorMigrationBase {
 	 * @stable to override
 	 * @stable to call
 	 *
-	 * @param int $stage The migration stage
+	 * @param int $stage The migration stage. This is a combination of
+	 *   SCHEMA_COMPAT_* flags:
+	 *     - SCHEMA_COMPAT_READ_OLD, SCHEMA_COMPAT_WRITE_OLD: Use the old schema,
+	 *       with *_user and *_user_text fields.
+	 *     - SCHEMA_COMPAT_READ_TEMP, SCHEMA_COMPAT_WRITE_TEMP: Use the new schema,
+	 *       with an actor table. Normal tables are joined via a *_actor field,
+	 *       whereas temp tables are joined to the actor table via an
+	 *       intermediate table.
+	 *     - SCHEMA_COMPAT_READ_NEW, SCHEMA_COMPAT_WRITE_NEW: Use the new
+	 *       schema. Former temp tables are no longer used, and all relevant
+	 *       tables join directly to the actor table.
+	 *
 	 * @param ActorStoreFactory $actorStoreFactory
 	 * @param array $options Array of other options. May contain:
 	 *   - allowUnknown: Allow fields not present in $fieldInfos. True by default.
@@ -89,22 +103,30 @@ class ActorMigrationBase {
 		$this->fieldInfos = $fieldInfos;
 		$this->allowUnknown = $options['allowUnknown'] ?? true;
 
-		if ( ( $stage & SCHEMA_COMPAT_WRITE_BOTH ) === 0 ) {
+		$writeStage = $stage & SCHEMA_COMPAT_WRITE_MASK;
+		$readStage = $stage & SCHEMA_COMPAT_READ_MASK;
+		if ( $writeStage === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a write mode' );
 		}
-		if ( ( $stage & SCHEMA_COMPAT_READ_BOTH ) === 0 ) {
+		if ( $readStage === 0 ) {
 			throw new InvalidArgumentException( '$stage must include a read mode' );
 		}
-		if ( ( $stage & SCHEMA_COMPAT_READ_BOTH ) === SCHEMA_COMPAT_READ_BOTH ) {
-			throw new InvalidArgumentException( 'Cannot read both schemas' );
+		if ( !in_array( $readStage,
+			[ SCHEMA_COMPAT_READ_OLD, SCHEMA_COMPAT_READ_TEMP, SCHEMA_COMPAT_READ_NEW ] )
+		) {
+			throw new InvalidArgumentException( 'Cannot read multiple schemas' );
 		}
-		if ( ( $stage & SCHEMA_COMPAT_READ_OLD ) && !( $stage & SCHEMA_COMPAT_WRITE_OLD ) ) {
+		if ( $readStage === SCHEMA_COMPAT_READ_OLD && !( $writeStage & SCHEMA_COMPAT_WRITE_OLD ) ) {
 			throw new InvalidArgumentException( 'Cannot read the old schema without also writing it' );
 		}
-		if ( ( $stage & SCHEMA_COMPAT_READ_NEW ) && !( $stage & SCHEMA_COMPAT_WRITE_NEW ) ) {
+		if ( $readStage === SCHEMA_COMPAT_READ_TEMP && !( $writeStage & SCHEMA_COMPAT_WRITE_TEMP ) ) {
+			throw new InvalidArgumentException( 'Cannot read the temp schema without also writing it' );
+		}
+		if ( $readStage === SCHEMA_COMPAT_READ_NEW && !( $writeStage & SCHEMA_COMPAT_WRITE_NEW ) ) {
 			throw new InvalidArgumentException( 'Cannot read the new schema without also writing it' );
 		}
-		$this->stage = $stage;
+		$this->readStage = $readStage;
+		$this->writeStage = $writeStage;
 
 		$this->actorStoreFactory = $actorStoreFactory;
 	}
@@ -173,7 +195,7 @@ class ActorMigrationBase {
 	 * @return string
 	 */
 	public function isAnon( $field ) {
-		return ( $this->stage & SCHEMA_COMPAT_READ_NEW ) ? "$field IS NULL" : "$field = 0";
+		return ( $this->readStage >= SCHEMA_COMPAT_READ_TEMP ) ? "$field IS NULL" : "$field = 0";
 	}
 
 	/**
@@ -182,7 +204,7 @@ class ActorMigrationBase {
 	 * @return string
 	 */
 	public function isNotAnon( $field ) {
-		return ( $this->stage & SCHEMA_COMPAT_READ_NEW ) ? "$field IS NOT NULL" : "$field != 0";
+		return ( $this->readStage >= SCHEMA_COMPAT_READ_TEMP ) ? "$field IS NOT NULL" : "$field != 0";
 	}
 
 	/**
@@ -230,11 +252,11 @@ class ActorMigrationBase {
 
 			list( $text, $actor ) = $this->getFieldNames( $key );
 
-			if ( $this->stage & SCHEMA_COMPAT_READ_OLD ) {
+			if ( $this->readStage === SCHEMA_COMPAT_READ_OLD ) {
 				$fields[$key] = $key;
 				$fields[$text] = $text;
 				$fields[$actor] = 'NULL';
-			} else {
+			} elseif ( $this->readStage === SCHEMA_COMPAT_READ_TEMP ) {
 				$tempTableInfo = $this->getTempTableInfo( $key );
 				if ( $tempTableInfo ) {
 					$alias = "temp_$key";
@@ -253,6 +275,14 @@ class ActorMigrationBase {
 				$fields[$key] = "{$alias}.actor_user";
 				$fields[$text] = "{$alias}.actor_name";
 				$fields[$actor] = $joinField;
+			} else /* SCHEMA_COMPAT_READ_NEW */ {
+				$alias = "actor_$key";
+				$tables[$alias] = 'actor';
+				$joins[$alias] = [ 'JOIN', "{$alias}.actor_id = {$actor}" ];
+
+				$fields[$key] = "{$alias}.actor_user";
+				$fields[$text] = "{$alias}.actor_name";
+				$fields[$actor] = $actor;
 			}
 
 			$this->joinCache[$key] = [
@@ -283,11 +313,13 @@ class ActorMigrationBase {
 
 		list( $text, $actor ) = $this->getFieldNames( $key );
 		$ret = [];
-		if ( $this->stage & SCHEMA_COMPAT_WRITE_OLD ) {
+		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$ret[$key] = $user->getId();
 			$ret[$text] = $user->getName();
 		}
-		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
+		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_TEMP
+			|| $this->writeStage & SCHEMA_COMPAT_WRITE_NEW
+		) {
 			$ret[$actor] = $this->actorStoreFactory
 				->getActorNormalization( $dbw->getDomainID() )
 				->acquireActorId( $user, $dbw );
@@ -323,50 +355,59 @@ class ActorMigrationBase {
 		list( $text, $actor ) = $this->getFieldNames( $key );
 		$ret = [];
 		$callback = null;
-		if ( $this->stage & SCHEMA_COMPAT_WRITE_OLD ) {
+
+		if ( $this->writeStage & SCHEMA_COMPAT_WRITE_OLD ) {
 			$ret[$key] = $user->getId();
 			$ret[$text] = $user->getName();
 		}
-		if ( $this->stage & SCHEMA_COMPAT_WRITE_NEW ) {
+		if ( $this->writeStage & ( SCHEMA_COMPAT_WRITE_TEMP | SCHEMA_COMPAT_WRITE_NEW ) ) {
 			$id = $this->actorStoreFactory
 				->getActorNormalization( $dbw->getDomainID() )
 				->acquireActorId( $user, $dbw );
 
 			if ( $tempTableInfo ) {
+				if ( $this->writeStage & SCHEMA_COMPAT_WRITE_TEMP ) {
+					$func = __METHOD__;
+					$callback = static function ( $pk, array $extra ) use ( $tempTableInfo, $dbw, $id, $func ) {
+						$set = [ $tempTableInfo['field'] => $id ];
+						foreach ( $tempTableInfo['extra'] as $to => $from ) {
+							if ( !array_key_exists( $from, $extra ) ) {
+								throw new InvalidArgumentException( "$func callback: \$extra[$from] is not provided" );
+							}
+							$set[$to] = $extra[$from];
+						}
+						$dbw->upsert(
+							$tempTableInfo['table'],
+							[ $tempTableInfo['pk'] => $pk ] + $set,
+							[ [ $tempTableInfo['pk'] ] ],
+							$set,
+							$func
+						);
+					};
+				}
+				if ( $this->writeStage & SCHEMA_COMPAT_WRITE_NEW ) {
+					$ret[$actor] = $id;
+				}
+			} else {
+				$ret[$actor] = $id;
+			}
+		}
+
+		if ( $callback === null ) {
+			// Make a validation-only callback if there was temp table info
+			if ( $tempTableInfo ) {
 				$func = __METHOD__;
-				$callback = static function ( $pk, array $extra ) use ( $tempTableInfo, $dbw, $id, $func ) {
-					$set = [ $tempTableInfo['field'] => $id ];
+				$callback = static function ( $pk, array $extra ) use ( $tempTableInfo, $func ) {
 					foreach ( $tempTableInfo['extra'] as $to => $from ) {
 						if ( !array_key_exists( $from, $extra ) ) {
 							throw new InvalidArgumentException( "$func callback: \$extra[$from] is not provided" );
 						}
-						$set[$to] = $extra[$from];
 					}
-					$dbw->upsert(
-						$tempTableInfo['table'],
-						[ $tempTableInfo['pk'] => $pk ] + $set,
-						[ [ $tempTableInfo['pk'] ] ],
-						$set,
-						$func
-					);
 				};
 			} else {
-				$ret[$actor] = $id;
 				$callback = static function ( $pk, array $extra ) {
 				};
 			}
-		} elseif ( $tempTableInfo ) {
-			$func = __METHOD__;
-			$callback = static function ( $pk, array $extra ) use ( $tempTableInfo, $func ) {
-				foreach ( $tempTableInfo['extra'] as $to => $from ) {
-					if ( !array_key_exists( $from, $extra ) ) {
-						throw new InvalidArgumentException( "$func callback: \$extra[$from] is not provided" );
-					}
-				}
-			};
-		} else {
-			$callback = static function ( $pk, array $extra ) {
-			};
 		}
 		return [ $ret, $callback ];
 	}
@@ -436,7 +477,11 @@ class ActorMigrationBase {
 		list( $text, $actor ) = $this->getFieldNames( $key );
 
 		// Combine data into conditions to be ORed together
-		if ( $this->stage & SCHEMA_COMPAT_READ_NEW ) {
+		if ( $this->readStage === SCHEMA_COMPAT_READ_NEW ) {
+			if ( $actors ) {
+				$conds['newactor'] = $db->makeList( [ $actor => $actors ], IDatabase::LIST_AND );
+			}
+		} elseif ( $this->readStage === SCHEMA_COMPAT_READ_TEMP ) {
 			if ( $actors ) {
 				$tempTableInfo = $this->getTempTableInfo( $key );
 				if ( $tempTableInfo ) {

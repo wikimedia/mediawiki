@@ -310,7 +310,6 @@ class ContribsPager extends RangeChronologicalPager {
 		} else {
 			$conds = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
 			if ( isset( $conds['orconds']['actor'] ) ) {
-				// @todo: This will need changing when revision_actor_temp goes away
 				return 'revision_actor_temp';
 			}
 		}
@@ -345,7 +344,6 @@ class ContribsPager extends RangeChronologicalPager {
 			$queryInfo['conds'][] = $conds['conds'];
 			// Force the appropriate index to avoid bad query plans (T189026)
 			if ( isset( $conds['orconds']['actor'] ) ) {
-				// @todo: This will need changing when revision_actor_temp goes away
 				$queryInfo['options']['USE INDEX']['temp_rev_user'] = 'actor_timestamp';
 			}
 		}

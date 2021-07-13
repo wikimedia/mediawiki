@@ -87,6 +87,10 @@ class ActorMigration extends ActorMigrationBase {
 		$stage,
 		ActorStoreFactory $actorStoreFactory
 	) {
+		if ( $stage & SCHEMA_COMPAT_OLD ) {
+			throw new InvalidArgumentException(
+				'The old actor table schema is no longer supported' );
+		}
 		parent::__construct(
 			self::FIELD_INFOS,
 			$stage,
