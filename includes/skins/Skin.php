@@ -2491,8 +2491,9 @@ abstract class Skin extends ContextSource {
 
 		if ( isset( $item['links'] ) ) {
 			$links = [];
-			foreach ( $item['links'] as $linkKey => $link ) {
-				$links[] = $this->makeLink( $linkKey, $link, $options );
+			foreach ( $item['links'] as $link ) {
+				// Note: links will have identical label unless 'msg' is set on $link
+				$links[] = $this->makeLink( $key, $link, $options );
 			}
 			$html = implode( ' ', $links );
 		} else {
