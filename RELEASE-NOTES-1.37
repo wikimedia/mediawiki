@@ -97,6 +97,7 @@ because of Phabricator reports.
 * (T283480) Added language support for Wallisian (wls, Fakaʻuvea).
 * (T284002) Added language support for Paiwan (pwn).
 * (T284044) Added language support for Carpathian Romani (rmc).
+* (T286460) Added language support for Gun (guw, Gungbe).
 
 === Breaking changes in 1.37 ===
 * The Revision class, hard deprecated in 1.35, was removed entirely. As
