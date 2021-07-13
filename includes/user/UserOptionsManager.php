@@ -210,7 +210,7 @@ class UserOptionsManager extends UserOptionsLookup {
 		IContextSource $context,
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ]
 	) {
-		$oldOptions = $this->loadUserOptions( $user, self::READ_LOCKING );
+		$oldOptions = $this->loadUserOptions( $user, self::READ_LATEST );
 		$defaultOptions = $this->defaultOptionsLookup->getDefaultOptions();
 
 		if ( !is_array( $resetKinds ) ) {
@@ -385,7 +385,7 @@ class UserOptionsManager extends UserOptionsLookup {
 
 		$userKey = $this->getCacheKey( $user );
 		// Not using getOptions(), to keep hidden preferences in database
-		$optionsToSave = $this->loadUserOptions( $user, self::READ_LOCKING );
+		$optionsToSave = $this->loadUserOptions( $user, self::READ_LATEST );
 		$originalOptions = $this->originalOptionsCache[$userKey] ?? [];
 
 		// Allow hooks to abort, for instance to save to a global profile.
