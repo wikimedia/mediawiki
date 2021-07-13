@@ -404,7 +404,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	public function testTransactionListener() {
 		$db = $this->db;
 
-		$db->setTransactionListener( 'ping', static function () use ( $db, &$called ) {
+		$db->setTransactionListener( 'ping', static function () use ( &$called ) {
 			$called = true;
 		} );
 

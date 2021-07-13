@@ -542,11 +542,11 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$bc = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
 		$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
 			$bc['a'] = 1;
-			$conn2->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
+			$conn2->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1 ) {
 				$bc['b'] = 1;
-				$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
+				$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1 ) {
 					$bc['c'] = 1;
-					$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc, $conn1, $conn2 ) {
+					$conn1->onTransactionPreCommitOrIdle( static function () use ( &$bc ) {
 						$bc['d'] = 1;
 					} );
 				} );
@@ -566,11 +566,11 @@ class LoadBalancerTest extends MediaWikiIntegrationTestCase {
 		$ac = array_fill_keys( [ 'a', 'b', 'c', 'd' ], 0 );
 		$conn1->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
 			$ac['a'] = 1;
-			$conn2->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
+			$conn2->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1 ) {
 				$ac['b'] = 1;
-				$conn1->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
+				$conn1->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1 ) {
 					$ac['c'] = 1;
-					$conn1->onTransactionCommitOrIdle( static function () use ( &$ac, $conn1, $conn2 ) {
+					$conn1->onTransactionCommitOrIdle( static function () use ( &$ac ) {
 						$ac['d'] = 1;
 					} );
 				} );
