@@ -24,6 +24,8 @@ use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionStore;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\WrappedString;
 use Wikimedia\WrappedStringList;
 
@@ -59,9 +61,9 @@ abstract class Skin extends ContextSource {
 	protected $mRelevantTitle = null;
 
 	/**
-	 * @var User|null
+	 * @var UserIdentity|null|false
 	 */
-	protected $mRelevantUser = null;
+	private $mRelevantUser = false;
 
 	/**
 	 * @var string Stylesheets set to use. Subdirectory in skins/ where various stylesheets are
@@ -434,9 +436,9 @@ abstract class Skin extends ContextSource {
 
 	/**
 	 * @see self::getRelevantUser()
-	 * @param User $u
+	 * @param UserIdentity|null $u
 	 */
-	public function setRelevantUser( User $u ) {
+	public function setRelevantUser( ?UserIdentity $u ) {
 		$this->mRelevantUser = $u;
 	}
 
@@ -447,24 +449,21 @@ abstract class Skin extends ContextSource {
 	 * things like the toolbox can display the information they usually are only
 	 * able to display on a user's userpage and talkpage.
 	 *
-	 * @return User|null Null if there's no relevant user or the viewer cannot view it.
+	 * @return UserIdentity|null Null if there's no relevant user or the viewer cannot view it.
 	 */
-	public function getRelevantUser() {
-		if ( $this->mRelevantUser === null ) {
+	public function getRelevantUser(): ?UserIdentity {
+		if ( $this->mRelevantUser === false ) {
+			$this->mRelevantUser = null; // false indicates we never attempted to load it.
 			$title = $this->getRelevantTitle();
 			if ( $title->hasSubjectNamespace( NS_USER ) ) {
-				$rootUser = $title->getRootText();
 				$services = MediaWikiServices::getInstance();
+				$rootUser = $title->getRootText();
 				$userNameUtils = $services->getUserNameUtils();
 				if ( $userNameUtils->isIP( $rootUser ) ) {
-					$this->mRelevantUser = User::newFromName( $rootUser, false );
+					$this->mRelevantUser = UserIdentityValue::newAnonymous( $rootUser );
 				} else {
-					$user = User::newFromName( $rootUser, false );
-
-					if ( $user ) {
-						$user->load( User::READ_NORMAL );
-						$this->mRelevantUser = $user->isRegistered() ? $user : null;
-					}
+					$user = $services->getUserIdentityLookup()->getUserIdentityByName( $rootUser );
+					$this->mRelevantUser = $user && $user->isRegistered() ? $user : null;
 				}
 			}
 		}
@@ -472,12 +471,15 @@ abstract class Skin extends ContextSource {
 		// The relevant user should only be set if it exists. However, if it exists but is hidden,
 		// and the viewer cannot see hidden users, this exposes the fact that the user exists;
 		// pretend like the user does not exist in such cases, by setting it to null. T120883
-		if ( $this->mRelevantUser
-			&& $this->mRelevantUser->isRegistered()
-			&& $this->mRelevantUser->isHidden()
-			&& !$this->getAuthority()->isAllowed( 'hideuser' )
-		) {
-			return null;
+		if ( $this->mRelevantUser && $this->mRelevantUser->isRegistered() ) {
+			$userBlock = MediaWikiServices::getInstance()
+				->getBlockManager()
+				->getUserBlock( $this->mRelevantUser, null, true );
+			if ( $userBlock && $userBlock->getHideName() &&
+				!$this->getAuthority()->isAllowed( 'hideuser' )
+			) {
+				$this->mRelevantUser = null;
+			}
 		}
 
 		return $this->mRelevantUser;
@@ -1280,12 +1282,12 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * @param User|int $id
+	 * @param UserIdentity|int $id
 	 * @return bool
 	 */
 	public function showEmailUser( $id ) {
-		if ( $id instanceof User ) {
-			$targetUser = $id;
+		if ( $id instanceof UserIdentity ) {
+			$targetUser = User::newFromIdentity( $id );
 		} else {
 			$targetUser = User::newFromId( $id );
 		}
@@ -1678,7 +1680,7 @@ abstract class Skin extends ContextSource {
 				];
 			}
 
-			if ( !$user->isAnon() ) {
+			if ( $user->isRegistered() ) {
 				if ( $this->getUser()->isRegistered() && $this->getConfig()->get( 'EnableSpecialMute' ) ) {
 					$nav_urls['mute'] = [
 						'text' => $this->msg( 'mute-preferences' )->text(),

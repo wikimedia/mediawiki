@@ -25,6 +25,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserGroupManagerFactory;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 
@@ -84,13 +85,13 @@ class UserrightsPage extends SpecialPage {
 	/**
 	 * Check whether the current user (from context) can change the target user's rights.
 	 *
-	 * @param User $targetUser User whose rights are being changed
+	 * @param UserIdentity $targetUser User whose rights are being changed
 	 * @param bool $checkIfSelf If false, assume that the current user can add/remove groups defined
 	 *   in $wgGroupsAddToSelf / $wgGroupsRemoveFromSelf, without checking if it's the same as target
 	 *   user
 	 * @return bool
 	 */
-	public function userCanChangeRights( $targetUser, $checkIfSelf = true ) {
+	public function userCanChangeRights( UserIdentity $targetUser, $checkIfSelf = true ) {
 		$isself = $this->getUser()->equals( $targetUser );
 
 		$available = $this->changeableGroups();
