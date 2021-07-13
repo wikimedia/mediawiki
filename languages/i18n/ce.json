@@ -2114,7 +2114,7 @@
 	"istemplate": "йукъайалийнарш",
 	"isimage": "Файлан хьажорг",
 	"whatlinkshere-prev": "{{PLURAL:$1|хьалхара $1}}",
-	"whatlinkshere-next": "{{PLURAL:$1|тӀаьхьайогӀург|тӀаьхьайогӀурш}} $1",
+	"whatlinkshere-next": "{{PLURAL:$1|рогӀера}} $1",
 	"whatlinkshere-links": "← хьажоргаш",
 	"whatlinkshere-hideredirs": "$1 дӀасахьажорш",
 	"whatlinkshere-hidetrans": "$1 латораш",

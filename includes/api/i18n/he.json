@@ -874,6 +874,7 @@
 	"apihelp-query+info-paramvalue-prop-visitingwatchers": "מספר העוקבים אחרי כל דף שביקרו עריכות אחרונות לאותו הדף, אם זה מותר.",
 	"apihelp-query+info-paramvalue-prop-notificationtimestamp": "חותם־זמן של הודעת רשימת מעקב של כל דף.",
 	"apihelp-query+info-paramvalue-prop-subjectid": "מזהה הדף של הדף העיקרי של כל דף שיחה.",
+	"apihelp-query+info-paramvalue-prop-associatedpage": "כותרת עם תחילית של [[:mw:Special:MyLanguage/Help:Associated_pages|דף הנושא או דף השיחה המשויך]].",
 	"apihelp-query+info-paramvalue-prop-url": "נותן URL מלא, URL לעריכה ו־URL קנוני לכל דף.",
 	"apihelp-query+info-paramvalue-prop-readable": "האם המשתמש יכול לקרוא את הדף הזה. יש להשתמש ב־<kbd>intestactions=read</kbd> במקום זה.",
 	"apihelp-query+info-paramvalue-prop-preload": "נותן את הטקסט שמוחזר על־ידי EditFormPreloadText.",
