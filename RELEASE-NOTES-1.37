@@ -511,6 +511,10 @@ because of Phabricator reports.
 * User::getOptionKinds() and ::resetOptions(), both deprecated since 1.35,
   now emit deprecation warnings.
 * wfGetLB(), deprecated since 1.27, now emits deprecation warnings.
+* The following hooks were deprecated:
+  - UserLoadOptions: use LoadUserOptions instead.
+  - UserSaveOptions: use SaveUserOptions instead.
+  - UserResetAllOptions: no replacement was provided, the hook is not used.
 * …
 
 === Other changes in 1.37 ===
