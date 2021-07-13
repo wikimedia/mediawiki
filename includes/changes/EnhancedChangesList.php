@@ -74,21 +74,15 @@ class EnhancedChangesList extends ChangesList {
 	 * @return string
 	 */
 	public function beginRecentChangesList() {
-		$this->rc_cache = [];
-		$this->rcMoveIndex = 0;
-		$this->rcCacheIndex = 0;
-		$this->lastdate = '';
-		$this->rclistOpen = false;
 		$this->getOutput()->addModuleStyles( [
 			'mediawiki.icon',
-			'mediawiki.interface.helpers.styles',
-			'mediawiki.special.changeslist',
 			'mediawiki.special.changeslist.enhanced',
 		] );
 		$this->getOutput()->addModules( [
 			'jquery.makeCollapsible',
 		] );
 
+		parent::beginRecentChangesList();
 		return '<div class="mw-changeslist" aria-live="polite">';
 	}
 

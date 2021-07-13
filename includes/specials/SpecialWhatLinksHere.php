@@ -85,6 +85,8 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 		$this->addHelpLink( 'Help:What links here' );
+		$out->addModuleStyles( 'mediawiki.special.changeslist' );
+		$out->addModules( 'mediawiki.special.recentchanges' );
 
 		$opts = new FormOptions();
 
@@ -578,13 +580,17 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 			]
 		);
 
-		$f .= "\u{00A0}" .
-			Xml::checkLabel(
-				$this->msg( 'invert' )->text(),
-				'invert',
-				'nsinvert',
-				$nsinvert,
-				[ 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() ]
+		$hidden = $namespace === '' ? ' mw-input-hidden' : '';
+		$f .= ' ' .
+			Html::rawElement( 'span',
+				[ 'class' => 'mw-input-with-label' . $hidden ],
+				Xml::checkLabel(
+					$this->msg( 'invert' )->text(),
+					'invert',
+					'nsinvert',
+					$nsinvert,
+					[ 'title' => $this->msg( 'tooltip-whatlinkshere-invert' )->text() ]
+				)
 			);
 
 		$f .= ' ';
