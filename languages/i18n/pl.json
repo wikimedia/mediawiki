@@ -1104,6 +1104,8 @@
 	"prefsnologintext2": "Zaloguj się, aby zmienić swoje preferencje.",
 	"prefs-skin": "Skórka",
 	"prefs-skin-prefs": "Preferencje skórki",
+	"prefs-skin-responsive": "Włącz tryb responsywny",
+	"prefs-help-skin-responsive": "Dopasuj skórkę do dostępnego obszaru na ekranie (może nie działać w niektórych skórkach).",
 	"skin-preview": "podgląd",
 	"datedefault": "Domyślny",
 	"prefs-labs": "Funkcje doświadczalne",
