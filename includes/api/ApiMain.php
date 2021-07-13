@@ -2154,6 +2154,7 @@ class ApiMain extends ApiBase {
 			'errorformat' => [
 				ApiBase::PARAM_TYPE => [ 'plaintext', 'wikitext', 'html', 'raw', 'none', 'bc' ],
 				ApiBase::PARAM_DFLT => 'bc',
+				ApiBase::PARAM_HELP_MSG_PER_VALUE => [],
 			],
 			'errorlang' => [
 				ApiBase::PARAM_DFLT => 'uselang',
