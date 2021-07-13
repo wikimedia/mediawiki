@@ -89,7 +89,7 @@ abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 		return array_keys( $this->getTypeConfigs() );
 	}
 
-	public function provideTypes( $type ) {
+	public function provideTypes() {
 		$params = [];
 		foreach ( $this->getValidTypes() as $type ) {
 			$params[] = [ $type ];
