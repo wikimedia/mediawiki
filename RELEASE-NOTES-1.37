@@ -308,6 +308,9 @@ because of Phabricator reports.
   now returns Authority instead of User. Also, a number of it's @stable
   to override methods now accept Authority instead of User as $audience
   parameter.
+* Skin::getRelevantUser now returns an instance of UserIdentity, not necessarily
+  a User object. There is no known usages in MediaWiki ecosystem that were not
+  satisfied with UserIdentity.
 * …
 
 === Deprecations in 1.37 ===
