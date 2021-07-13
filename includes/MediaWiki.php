@@ -1189,8 +1189,9 @@ class MediaWiki {
 	 * @return bool Success
 	 */
 	private function triggerAsyncJobs( $n, LoggerInterface $runJobsLogger ) {
+		$services = MediaWikiServices::getInstance();
 		// Do not send request if there are probably no jobs
-		$group = JobQueueGroup::singleton();
+		$group = $services->getJobQueueGroupFactory()->makeJobQueueGroup();
 		if ( !$group->queuesHaveJobs( JobQueueGroup::TYPE_DEFAULT ) ) {
 			return true;
 		}
@@ -1225,8 +1226,7 @@ class MediaWiki {
 
 		$invokedWithSuccess = true;
 		if ( $sock ) {
-			$special = MediaWikiServices::getInstance()->getSpecialPageFactory()->
-				getPage( 'RunJobs' );
+			$special = $services->getSpecialPageFactory()->getPage( 'RunJobs' );
 			$url = $special->getPageTitle()->getCanonicalURL( $query );
 			$req = (
 				"POST $url HTTP/1.1\r\n" .
