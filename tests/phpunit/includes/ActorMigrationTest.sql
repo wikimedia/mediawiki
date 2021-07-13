@@ -10,7 +10,8 @@ CREATE TABLE /*_*/actormigration1 (
 CREATE TABLE /*_*/actormigration2 (
   am2_id integer not null,
   am2_user integer,
-  am2_user_text varchar(200)
+  am2_user_text varchar(200),
+  am2_actor integer
 );
 
 CREATE TABLE /*_*/actormigration2_temp (

@@ -302,6 +302,8 @@ class MergeHistory {
 	 * @return Status status of the history merge
 	 */
 	public function merge( Authority $performer, $reason = '' ) {
+		global $wgActorTableSchemaMigrationStage;
+
 		$status = new Status();
 
 		// Check validity and permissions required for merge
@@ -333,16 +335,18 @@ class MergeHistory {
 		}
 
 		// Update denormalized revactor_page too
-		$this->dbw->update(
-			'revision_actor_temp',
-			[ 'revactor_page' => $this->dest->getId() ],
-			[
-				'revactor_page' => $this->source->getId(),
-				// Slightly hacky, but should work given the values assigned in this class
-				str_replace( 'rev_timestamp', 'revactor_timestamp', $this->getTimeWhere() )
-			],
-			__METHOD__
-		);
+		if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
+			$this->dbw->update(
+				'revision_actor_temp',
+				[ 'revactor_page' => $this->dest->getId() ],
+				[
+					'revactor_page' => $this->source->getId(),
+					// Slightly hacky, but should work given the values assigned in this class
+					str_replace( 'rev_timestamp', 'revactor_timestamp', $this->getTimeWhere() )
+				],
+				__METHOD__
+			);
+		}
 
 		$haveRevisions = $this->dbw->lockForUpdate(
 			'revision',

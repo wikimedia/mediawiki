@@ -2,6 +2,7 @@
 
 namespace MediaWiki\Rest\Handler;
 
+use ActorMigration;
 use ChangeTags;
 use MediaWiki\Page\ExistingPageRecord;
 use MediaWiki\Page\PageLookup;
@@ -61,6 +62,9 @@ class PageHistoryCountHandler extends SimpleHandler {
 	/** @var WANObjectCache */
 	private $cache;
 
+	/** @var ActorMigration */
+	private $actorMigration;
+
 	/** @var RevisionRecord|false|null */
 	private $revision = false;
 
@@ -77,6 +81,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param WANObjectCache $cache
 	 * @param PageLookup $pageLookup
+	 * @param ActorMigration $actorMigration
 	 */
 	public function __construct(
 		RevisionStore $revisionStore,
@@ -84,7 +89,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 		GroupPermissionsLookup $groupPermissionsLookup,
 		ILoadBalancer $loadBalancer,
 		WANObjectCache $cache,
-		PageLookup $pageLookup
+		PageLookup $pageLookup,
+		ActorMigration $actorMigration
 	) {
 		$this->revisionStore = $revisionStore;
 		$this->changeTagDefStore = $nameTableStoreFactory->getChangeTagDef();
@@ -92,6 +98,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 		$this->loadBalancer = $loadBalancer;
 		$this->cache = $cache;
 		$this->pageLookup = $pageLookup;
+		$this->actorMigration = $actorMigration;
 	}
 
 	private function normalizeType( $type ) {
@@ -416,6 +423,8 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getAnonCount( $pageId, RevisionRecord $fromRev = null ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
+		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
+
 		$cond = [
 			'rev_page' => $pageId,
 			'actor_user IS NULL',
@@ -429,26 +438,22 @@ class PageHistoryCountHandler extends SimpleHandler {
 				"OR rev_timestamp > {$oldTs}";
 		}
 
+		// This redundant join condition tells MySQL that rev_page and revactor_page are the
+		// same, so it can propagate the condition
+		if ( isset( $revQuery['tables']['temp_rev_user'] ) /* SCHEMA_COMPAT_READ_TEMP */ ) {
+			$revQuery['joins']['temp_rev_user'][1] =
+				"temp_rev_user.revactor_rev = rev_id AND revactor_page = rev_page";
+		}
+
 		$edits = $dbr->selectRowCount(
 			[
-				'revision_actor_temp',
 				'revision',
-				'actor'
-			],
+			] + $revQuery['tables'],
 			'1',
 			$cond,
 			__METHOD__,
 			[ 'LIMIT' => self::COUNT_LIMITS['anonymous'] + 1 ], // extra to detect truncation
-			[
-				'revision' => [
-					'JOIN',
-					'revactor_rev = rev_id AND revactor_page = rev_page'
-				],
-				'actor' => [
-					'JOIN',
-					'revactor_actor = actor_id'
-				]
-			]
+			$revQuery['joins']
 		);
 		return $edits;
 	}
@@ -461,6 +466,15 @@ class PageHistoryCountHandler extends SimpleHandler {
 	protected function getBotCount( $pageId, RevisionRecord $fromRev = null ) {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
+		$revQuery = $this->actorMigration->getJoin( 'rev_user' );
+
+		// This redundant join condition tells MySQL that rev_page and revactor_page are the
+		// same, so it can propagate the condition
+		if ( isset( $revQuery['tables']['temp_rev_user'] ) /* SCHEMA_COMPAT_READ_TEMP */ ) {
+			$revQuery['joins']['temp_rev_user'][1] =
+				"temp_rev_user.revactor_rev = rev_id AND revactor_page = rev_page";
+		}
+
 		$cond = [
 			'rev_page=' . intval( $pageId ),
 			$dbr->bitAnd( 'rev_deleted',
@@ -470,7 +484,7 @@ class PageHistoryCountHandler extends SimpleHandler {
 					'user_groups',
 					'1',
 					[
-						'actor.actor_user = ug_user',
+						$revQuery['fields']['rev_user'] . ' = ug_user',
 						'ug_group' => $this->groupPermissionsLookup->getGroupsWithPermission( 'bot' ),
 						'ug_expiry IS NULL OR ug_expiry >= ' . $dbr->addQuotes( $dbr->timestamp() )
 					],
@@ -486,24 +500,13 @@ class PageHistoryCountHandler extends SimpleHandler {
 
 		$edits = $dbr->selectRowCount(
 			[
-				'revision_actor_temp',
 				'revision',
-				'actor',
-			],
+			] + $revQuery['tables'],
 			'1',
 			$cond,
 			__METHOD__,
 			[ 'LIMIT' => self::COUNT_LIMITS['bot'] + 1 ], // extra to detect truncation
-			[
-				'revision' => [
-					'JOIN',
-					'revactor_rev = rev_id AND revactor_page = rev_page'
-				],
-				'actor' => [
-					'JOIN',
-					'revactor_actor = actor_id'
-				],
-			]
+			$revQuery['joins']
 		);
 		return $edits;
 	}

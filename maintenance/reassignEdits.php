@@ -76,6 +76,7 @@ class ReassignEdits extends Maintenance {
 	 * @return int Number of entries changed, or that would be changed
 	 */
 	private function doReassignEdits( &$from, &$to, $rc = false, $report = false ) {
+		$actorTableSchemaMigrationStage = $this->getConfig()->get( 'ActorTableSchemaMigrationStage' );
 		$dbw = $this->getDB( DB_PRIMARY );
 		$this->beginTransaction( $dbw, __METHOD__ );
 		$actorNormalization = MediaWikiServices::getInstance()->getActorNormalization();
@@ -131,12 +132,22 @@ class ReassignEdits extends Maintenance {
 			if ( $total ) {
 				# Reassign edits
 				$this->output( "\nReassigning current edits..." );
-				$dbw->update(
-					'revision_actor_temp',
-					[ 'revactor_actor' => $toActorId ],
-					[ 'revactor_actor' => $fromActorId ],
-					__METHOD__
-				);
+				if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_TEMP ) {
+					$dbw->update(
+						'revision_actor_temp',
+						[ 'revactor_actor' => $toActorId ],
+						[ 'revactor_actor' => $fromActorId ],
+						__METHOD__
+					);
+				}
+				if ( $actorTableSchemaMigrationStage & SCHEMA_COMPAT_WRITE_NEW ) {
+					$dbw->update(
+						'revision',
+						[ 'rev_actor' => $toActorId ],
+						[ 'rev_actor' => $fromActorId ],
+						__METHOD__
+					);
+				}
 				$this->output( "done.\nReassigning deleted edits..." );
 				$dbw->update( 'archive',
 					[ 'ar_actor' => $toActorId ],

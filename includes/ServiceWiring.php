@@ -151,7 +151,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
 return [
 	'ActorMigration' => static function ( MediaWikiServices $services ) : ActorMigration {
 		return new ActorMigration(
-			SCHEMA_COMPAT_NEW,
+			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' ),
 			$services->getActorStoreFactory()
 		);
 	},

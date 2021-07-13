@@ -20,7 +20,8 @@
 			"GroupPermissionsLookup",
 			"DBLoadBalancer",
 			"MainWANObjectCache",
-			"PageStore"
+			"PageStore",
+			"ActorMigration"
 		]
 	},
 	{

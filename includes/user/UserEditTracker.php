@@ -172,7 +172,7 @@ class UserEditTracker {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$actorWhere = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
 
-		$tsField = isset( $actorWhere['tables']['temp_rev_user'] )
+		$tsField = isset( $actorWhere['tables']['temp_rev_user'] ) // SCHEMA_COMPAT_READ_TEMP
 			? 'revactor_timestamp' : 'rev_timestamp';
 
 		$sortOrder = ( $type === self::FIRST_EDIT ) ? 'ASC' : 'DESC';
