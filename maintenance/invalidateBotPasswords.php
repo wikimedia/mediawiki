@@ -1,8 +1,6 @@
 <?php
 /**
- * Change the password of a given user
- *
- * Copyright © 2005, Ævar Arnfjörð Bjarmason
+ * Invalidates the bot passwords of a given user
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -20,41 +18,36 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @file
- * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>
  * @ingroup Maintenance
  */
 
 require_once __DIR__ . '/Maintenance.php';
 
 /**
- * Maintenance script to change the password of a given user.
+ * Maintenance script to invalidate the bot passwords of a given user.
  *
  * @ingroup Maintenance
  */
-class ChangePassword extends Maintenance {
+class InvalidateBotPasswords extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->addOption( "user", "The username to operate on", false, true );
 		$this->addOption( "userid", "The user id to operate on", false, true );
-		$this->addOption( "password", "The password to use", true, true );
-		$this->addDescription( "Change a user's password" );
+		$this->addDescription( "Invalidate a user's bot passwords" );
 	}
 
 	public function execute() {
-		$user = $this->validateUserOption( "A \"user\" or \"userid\" must be set to change the password for" );
-		$password = $this->getOption( 'password' );
-		$status = $user->changeAuthenticationData( [
-			'username' => $user->getName(),
-			'password' => $password,
-			'retype' => $password,
-		] );
-		if ( $status->isGood() ) {
-			$this->output( "Password set for " . $user->getName() . "\n" );
+		$user = $this->validateUserOption( "A \"user\" or \"userid\" must be set to invalidate the bot passwords for" );
+
+		$res = BotPassword::invalidateAllPasswordsForUser( $user->getName() );
+
+		if ( $res ) {
+			$this->output( "Bot passwords invalidated for " . $user->getName() . "\n" );
 		} else {
-			$this->fatalError( $status->getMessage( false, false, 'en' )->text() );
+			$this->output( "No bot passwords invalidated for " . $user->getName() . "\n" );
 		}
 	}
 }
 
-$maintClass = ChangePassword::class;
+$maintClass = InvalidateBotPasswords::class;
 require_once RUN_MAINTENANCE_IF_MAIN;

@@ -1647,4 +1647,32 @@ abstract class Maintenance {
 		);
 		return array_filter( $ids );
 	}
+
+	/**
+	 * @param string $errorMsg Error message to be displayed if the passed --user or --userid
+	 *  does not result in a valid existing user object.
+	 *
+	 * @since 1.37
+	 *
+	 * @return User
+	 */
+	protected function validateUserOption( $errorMsg ) {
+		$user = null;
+		if ( $this->hasOption( "user" ) ) {
+			$user = User::newFromName( $this->getOption( 'user' ) );
+		} elseif ( $this->hasOption( "userid" ) ) {
+			$user = User::newFromId( $this->getOption( 'userid' ) );
+		} else {
+			$this->fatalError( $errorMsg );
+		}
+		if ( !$user || !$user->getId() ) {
+			if ( $this->hasOption( "user" ) ) {
+				$this->fatalError( "No such user: " . $this->getOption( 'user' ) );
+			} elseif ( $this->hasOption( "userid" ) ) {
+				$this->fatalError( "No such user id: " . $this->getOption( 'userid' ) );
+			}
+		}
+
+		return $user;
+	}
 }
