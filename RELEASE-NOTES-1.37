@@ -314,6 +314,8 @@ because of Phabricator reports.
 * Direct construction of MergeHistory class, deprecated since 1.35, is no longer
   supported. Use MergeHistoryFactory instead. MergeHistory::checkPermissions,
   deprecated since 1.36, was removed.
+* Skin::generateDebugHTML(), deprecated since 1.35, was removed. Call
+  MWDebug::getHTMLDebugLog() directly.
 * …
 
 === Deprecations in 1.37 ===
