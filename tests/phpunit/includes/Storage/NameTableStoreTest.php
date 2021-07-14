@@ -387,7 +387,7 @@ class NameTableStoreTest extends MediaWikiIntegrationTestCase {
 
 		$db = $this->getProxyDb( 2 );
 		$db->method( 'insert' )
-			->willReturnCallback( static function () use ( &$insertCalls, $db ) {
+			->willReturnCallback( static function () use ( &$insertCalls ) {
 				$insertCalls++;
 				switch ( $insertCalls ) {
 					case 1:

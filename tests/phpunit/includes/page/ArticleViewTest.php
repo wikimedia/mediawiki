@@ -494,7 +494,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		// use ArticleViewHeader hook to bypass the parser cache
 		$this->setTemporaryHook(
 			'ArticleViewHeader',
-			static function ( Article $articlePage, &$outputDone, &$useParserCache ) use ( $article ) {
+			static function ( Article $articlePage, &$outputDone, &$useParserCache ) {
 				$useParserCache = false;
 			}
 		);
@@ -553,7 +553,7 @@ class ArticleViewTest extends MediaWikiIntegrationTestCase {
 		// use ArticleViewHeader hook to bypass the parser cache
 		$this->setTemporaryHook(
 			'ArticleViewHeader',
-			static function ( Article $articlePage, &$outputDone, &$useParserCache ) use ( $article ) {
+			static function ( Article $articlePage, &$outputDone, &$useParserCache ) {
 				$useParserCache = false;
 			}
 		);
