@@ -220,7 +220,7 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			->getMock();
 		$provider->expects( $this->never() )->method( 'beginLinkAttempt' );
 		$provider->method( 'providerAllowsAuthenticationDataChange' )
-			->will( $this->returnCallback( static function ( $req ) use ( $reqs ) {
+			->will( $this->returnCallback( static function ( $req ) {
 				return $req->getUniqueId() === 'Request3'
 					? \StatusValue::newFatal( 'foo' ) : \StatusValue::newGood();
 			} ) );

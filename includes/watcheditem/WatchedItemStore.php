@@ -1199,7 +1199,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 
 		$expiry = $dbw->timestamp( $expiry );
 
-		$weRows = array_map( static function ( $wlId ) use ( $expiry, $dbw ) {
+		$weRows = array_map( static function ( $wlId ) use ( $expiry ) {
 			return [
 				'we_item' => $wlId,
 				'we_expiry' => $expiry
