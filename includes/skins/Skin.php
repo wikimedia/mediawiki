@@ -1383,22 +1383,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * this can be passed the NS number as defined in Language.php
-	 * @param string $name
-	 * @param string|array $urlaction
-	 * @param int $namespace
-	 * @return string
-	 * @deprecated since 1.35, no longer used
-	 */
-	public static function makeNSUrl( $name, $urlaction = '', $namespace = NS_MAIN ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$title = Title::makeTitleSafe( $namespace, $name );
-		self::checkTitle( $title, $name );
-
-		return $title->getLocalURL( $urlaction );
-	}
-
-	/**
 	 * these return an array with the 'href' and boolean 'exists'
 	 * @param string $name
 	 * @param string|array $urlaction
