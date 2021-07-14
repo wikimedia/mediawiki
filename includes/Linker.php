@@ -2335,9 +2335,8 @@ class Linker {
 		} else {
 			$accesskey = $message->plain();
 			if ( $accesskey === '' || $accesskey === '-' ) {
-				# @todo FIXME: Per standard MW behavior, a value of '-' means to suppress the
-				# attribute, but this is broken for accesskey: that might be a useful
-				# value.
+				# Per standard MW behavior, a value of '-' means to suppress the
+				# attribute. It is thus forbidden to use this as an access key.
 				$accesskey = false;
 			}
 		}
