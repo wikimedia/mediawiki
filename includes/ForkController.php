@@ -61,8 +61,8 @@ class ForkController {
 	public function __construct( $numProcs, $flags = 0 ) {
 		if ( !wfIsCLI() ) {
 			throw new MWException( "ForkController cannot be used from the web." );
-		} elseif ( !extension_loaded( 'pcntl_signal' ) ) {
-			throw new MWException( 'ForkController requires pcntl_signal extension to be installed.' );
+		} elseif ( !extension_loaded( 'pcntl' ) ) {
+			throw new MWException( 'ForkController requires pcntl extension to be installed.' );
 		} elseif ( !extension_loaded( 'posix' ) ) {
 			throw new MWException( 'ForkController requires posix extension to be installed.' );
 		}
