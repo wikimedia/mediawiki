@@ -866,23 +866,6 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
-	 * @deprecated since 1.35, no longer used
-	 * @param string $name
-	 * @param string|array $urlaction
-	 * @return array
-	 */
-	public function makeArticleUrlDetails( $name, $urlaction = '' ) {
-		wfDeprecated( __METHOD__, '1.35' );
-		$title = Title::newFromText( $name );
-		$title = $title->getSubjectPage();
-		self::checkTitle( $title, $name );
-		return [
-			'href' => $title->getLocalURL( $urlaction ),
-			'exists' => $title->exists(),
-		];
-	}
-
-	/**
 	 * Get the attributes for the watch link.
 	 * @param string $mode Either 'watch' or 'unwatch'
 	 * @param Authority $performer

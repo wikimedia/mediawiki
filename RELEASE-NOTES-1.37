@@ -325,6 +325,7 @@ because of Phabricator reports.
   or skins that rely on the global $wgUser variable (which has been
   deprecated since 1.35) should instead retrieve the acting user from the
   relevant context source.
+* SkinTemplate::makeArticleUrlDetails, deprecated since 1.35, was removed.
 * …
 
 === Deprecations in 1.37 ===
