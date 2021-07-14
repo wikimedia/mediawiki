@@ -7406,34 +7406,12 @@ $wgShowDebug = false;
 $wgSpecialVersionShowHooks = false;
 
 /**
- * Whether to show "we're sorry, but there has been a database error" pages.
- * Displaying errors aids in debugging, but may display information useful
- * to an attacker.
- *
- * @deprecated and nonfunctional since 1.32: set $wgShowExceptionDetails and/or
- * $wgShowHostnames instead.
- */
-$wgShowSQLErrors = false;
-
-/**
  * If set to true, uncaught exceptions will print the exception message and a
  * complete stack trace to output. This should only be used for debugging, as it
  * may reveal private information in function parameters due to PHP's backtrace
  * formatting.  If set to false, only the exception's class will be shown.
  */
 $wgShowExceptionDetails = false;
-
-/**
- * If true, show a backtrace for database errors
- *
- * @note This setting only applies when connection errors and query errors are
- * reported in the normal manner. $wgShowExceptionDetails applies in other cases,
- * including those in which an uncaught exception is thrown from within the
- * exception handler.
- *
- * @deprecated and nonfunctional since 1.32: set $wgShowExceptionDetails instead.
- */
-$wgShowDBErrorBacktrace = false;
 
 /**
  * If true, send the exception backtrace to the error log

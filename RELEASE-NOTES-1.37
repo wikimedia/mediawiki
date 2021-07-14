@@ -33,7 +33,9 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== Removed configuration ====
-* $wgLegacyJavaScriptGlobals was deprecated in 1.36.
+* $wgLegacyJavaScriptGlobals, deprecated in 1.36.
+* $wgShowDBErrorBacktrace, deprecated and non-functional since 1.32.
+* $wgShowSQLErrors, deprecated and non-functional since 1.32.
 
 === New user-facing features in 1.37 ===
 * (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
