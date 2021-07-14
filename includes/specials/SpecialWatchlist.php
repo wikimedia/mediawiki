@@ -885,7 +885,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			'span',
 			$attribs,
 			// not using Html::checkLabel because that would escape the contents
-			Html::check( $name, (int)$value, [ 'id' => $name ] ) . Html::rawElement(
+			Html::check( $name, (int)$value, [ 'id' => $name ] ) . "\n" . Html::rawElement(
 				'label',
 				$attribs + [ 'for' => $name ],
 				// <nowiki/> at beginning to avoid messages with "$1 ..." being parsed as pre tags
