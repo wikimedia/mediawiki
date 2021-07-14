@@ -129,29 +129,29 @@ class WikiImporter {
 	 * Creates an ImportXMLReader drawing from the source provided
 	 * @param ImportSource $source
 	 * @param Config $config
-	 * @param HookContainer|null $hookContainer
-	 * @param Language|null $contentLanguage
-	 * @param NamespaceInfo|null $namespaceInfo
-	 * @param TitleFactory|null $titleFactory
-	 * @param WikiPageFactory|null $wikiPageFactory
-	 * @param UploadRevisionImporter|null $uploadRevisionImporter
-	 * @param PermissionManager|null $permissionManager
-	 * @param IContentHandlerFactory|null $contentHandlerFactory
-	 * @param SlotRoleRegistry|null $slotRoleRegistry
+	 * @param HookContainer $hookContainer
+	 * @param Language $contentLanguage
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param TitleFactory $titleFactory
+	 * @param WikiPageFactory $wikiPageFactory
+	 * @param UploadRevisionImporter $uploadRevisionImporter
+	 * @param PermissionManager $permissionManager
+	 * @param IContentHandlerFactory $contentHandlerFactory
+	 * @param SlotRoleRegistry $slotRoleRegistry
 	 * @throws MWException
 	 */
 	public function __construct(
 		ImportSource $source,
 		Config $config,
-		HookContainer $hookContainer = null,
-		Language $contentLanguage = null,
-		NamespaceInfo $namespaceInfo = null,
-		TitleFactory $titleFactory = null,
-		WikiPageFactory $wikiPageFactory = null,
-		UploadRevisionImporter $uploadRevisionImporter = null,
-		PermissionManager $permissionManager = null,
-		IContentHandlerFactory $contentHandlerFactory = null,
-		SlotRoleRegistry $slotRoleRegistry = null
+		HookContainer $hookContainer,
+		Language $contentLanguage,
+		NamespaceInfo $namespaceInfo,
+		TitleFactory $titleFactory,
+		WikiPageFactory $wikiPageFactory,
+		UploadRevisionImporter $uploadRevisionImporter,
+		PermissionManager $permissionManager,
+		IContentHandlerFactory $contentHandlerFactory,
+		SlotRoleRegistry $slotRoleRegistry
 	) {
 		$this->reader = new XMLReader();
 		$this->config = $config;
