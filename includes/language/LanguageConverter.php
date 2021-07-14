@@ -286,17 +286,19 @@ abstract class LanguageConverter implements ILanguageConverter {
 	 * @return string The preferred language code
 	 */
 	public function getPreferredVariant() {
-		global $wgDefaultLanguageVariant, $wgUser;
+		global $wgDefaultLanguageVariant;
 
 		$req = $this->getURLVariant();
 
 		Hooks::runner()->onGetLangPreferredVariant( $req );
 
-		// NOTE: For calls from Setup.php, wgUser or the session might not be set yet (T235360)
+		$user = RequestContext::getMain()->getUser();
+		// NOTE: For some calls there may not be a context user or session that is safe
+		// to use, see (T235360)
 		// Use case: During autocreation, UserNameUtils::isUsable is called which uses interface
 		// messages for reserved usernames.
-		if ( $wgUser && $wgUser->isSafeToLoad() && $wgUser->isRegistered() && !$req ) {
-			$req = $this->getUserVariant( $wgUser );
+		if ( $user->isSafeToLoad() && $user->isRegistered() && !$req ) {
+			$req = $this->getUserVariant( $user );
 		} elseif ( !$req ) {
 			$req = $this->getHeaderVariant();
 		}

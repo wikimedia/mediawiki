@@ -217,11 +217,10 @@ class MessageCache implements LoggerAwareInterface {
 	 * @return ParserOptions
 	 */
 	private function getParserOptions() {
-		global $wgUser;
-
 		if ( !$this->mParserOptions ) {
-			if ( !$wgUser || !$wgUser->isSafeToLoad() ) {
-				// $wgUser isn't available yet, so don't try to get a
+			$user = RequestContext::getMain()->getUser();
+			if ( !$user->isSafeToLoad() ) {
+				// It isn't safe to use the context user yet, so don't try to get a
 				// ParserOptions for it. And don't cache this ParserOptions
 				// either.
 				$po = ParserOptions::newFromAnon();
@@ -229,7 +228,7 @@ class MessageCache implements LoggerAwareInterface {
 				return $po;
 			}
 
-			$this->mParserOptions = new ParserOptions( $wgUser );
+			$this->mParserOptions = new ParserOptions( $user );
 			// Messages may take parameters that could come
 			// from malicious sources. As a precaution, disable
 			// the <html> parser tag when parsing messages.
