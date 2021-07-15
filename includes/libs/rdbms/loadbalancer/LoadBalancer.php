@@ -159,7 +159,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/** Default 'waitTimeout' when unspecified */
 	private const MAX_WAIT_DEFAULT = 10;
-	/** Seconds to cache master DB server read-only status */
+	/** Seconds to cache primary DB server read-only status */
 	private const TTL_CACHE_READONLY = 5;
 
 	private const KEY_LOCAL = 'local';
@@ -362,7 +362,7 @@ class LoadBalancer implements ILoadBalancer {
 	 * @return int Sanitized bitfield
 	 */
 	private function sanitizeConnectionFlags( $flags, $i, $domain ) {
-		// Whether an outside caller is explicitly requesting the master database server
+		// Whether an outside caller is explicitly requesting the primary database server
 		if ( $i === self::DB_PRIMARY || $i === $this->getWriterIndex() ) {
 			$flags |= self::CONN_INTENT_WRITABLE;
 		}
@@ -372,7 +372,7 @@ class LoadBalancer implements ILoadBalancer {
 			// resorting to row locks (e.g. FOR UPDATE) or to make small out-of-band commits
 			// during larger transactions. This is useful for avoiding lock contention.
 
-			// Master DB server attributes (should match those of the replica DB servers)
+			// Primary DB server attributes (should match those of the replica DB servers)
 			$attributes = $this->getServerAttributes( $this->getWriterIndex() );
 			if ( $attributes[Database::ATTR_DB_LEVEL_LOCKING] ) {
 				// The RDBMS does not support concurrent writes (e.g. SQLite), so attempts
@@ -962,7 +962,7 @@ class LoadBalancer implements ILoadBalancer {
 		$serverIndex = $this->getConnectionIndex( $i, $groups, $domain );
 		// Get an open connection to that server (might trigger a new connection)
 		$conn = $this->getServerConnection( $serverIndex, $domain, $flags );
-		// Set master DB handles as read-only if there is high replication lag
+		// Set primary DB handles as read-only if there is high replication lag
 		if (
 			$conn &&
 			$serverIndex === $this->getWriterIndex() &&
@@ -1015,15 +1015,15 @@ class LoadBalancer implements ILoadBalancer {
 
 		// Make sure that flags like CONN_TRX_AUTOCOMMIT are respected by this handle
 		$this->enforceConnectionFlags( $conn, $flags );
-		// Set master DB handles as read-only if the load balancer is configured as read-only
-		// or the master database server is running in server-side read-only mode. Note that
+		// Set primary DB handles as read-only if the load balancer is configured as read-only
+		// or the primary database server is running in server-side read-only mode. Note that
 		// replica DB handles are always read-only via Database::assertIsWritableMaster().
 		// Read-only mode due to replication lag is *avoided* here to avoid recursion.
 		if ( $i === $this->getWriterIndex() ) {
 			if ( $this->readOnlyReason !== false ) {
 				$readOnlyReason = $this->readOnlyReason;
 			} elseif ( $this->isMasterConnectionReadOnly( $conn, $flags ) ) {
-				$readOnlyReason = 'The master database server is running in read-only mode.';
+				$readOnlyReason = 'The primary database server is running in read-only mode.';
 			} else {
 				$readOnlyReason = false;
 			}
@@ -2125,7 +2125,7 @@ class LoadBalancer implements ILoadBalancer {
 		if ( $this->readOnlyReason !== false ) {
 			return $this->readOnlyReason;
 		} elseif ( $this->isMasterRunningReadOnly( $domainInstance ) ) {
-			return 'The master database server is running in read-only mode.';
+			return 'The primary database server is running in read-only mode.';
 		} elseif ( $this->getLaggedReplicaMode( $domain ) ) {
 			$genericIndex = $this->getExistingReaderIndex( self::GROUP_GENERIC );
 
@@ -2139,7 +2139,7 @@ class LoadBalancer implements ILoadBalancer {
 
 	/**
 	 * @note This method suppresses DBError exceptions in order to avoid severe downtime
-	 * @param IDatabase $conn Master connection
+	 * @param IDatabase $conn Primary connection
 	 * @param int $flags Bitfield of class CONN_* constants
 	 * @return bool Whether the entire server or currently selected DB/schema is read-only
 	 */
@@ -2375,7 +2375,7 @@ class LoadBalancer implements ILoadBalancer {
 				if ( !$masterConn ) {
 					throw new DBReplicationWaitError(
 						null,
-						"Could not obtain a master database connection to get the position"
+						"Could not obtain a primary database connection to get the position"
 					);
 				}
 				$pos = $masterConn->getMasterPos();

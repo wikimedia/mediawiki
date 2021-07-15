@@ -760,7 +760,7 @@ class PageUpdater {
 			}
 		}
 
-		// Load the data from the master database if needed. Needed to check flags.
+		// Load the data from the primary database if needed. Needed to check flags.
 		// NOTE: This grabs the parent revision as the CAS token, if grabParentRevision
 		// wasn't called yet. If the page is modified by another process before we are done with
 		// it, this method must fail (with status 'edit-conflict')!

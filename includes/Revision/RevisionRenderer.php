@@ -124,9 +124,9 @@ class RevisionRenderer {
 			);
 		}
 
-		$useMaster = $hints['use-master'] ?? false;
+		$usePrimary = $hints['use-master'] ?? false;
 
-		$dbIndex = $useMaster
+		$dbIndex = $usePrimary
 			? DB_PRIMARY // use latest values
 			: DB_REPLICA; // T154554
 

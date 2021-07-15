@@ -466,7 +466,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			return false;
 		}
 
-		// Try cache (unless this needs data from the master DB).
+		// Try cache (unless this needs data from the primary DB).
 		// NOTE: if this thread called saveSettings(), the cache was cleared.
 		$latest = DBAccessObjectUtils::hasFlags( $flags, self::READ_LATEST );
 		if ( $latest ) {
@@ -856,7 +856,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 			$userQuery['joins']
 		);
 		if ( !$row ) {
-			// Try the master database...
+			// Try the primary database...
 			$dbw = $loadBalancer->getConnectionRef( DB_PRIMARY );
 			$row = $dbw->selectRow(
 				$userQuery['tables'],

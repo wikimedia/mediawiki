@@ -310,7 +310,7 @@ abstract class LBFactory implements ILBFactory {
 		$this->forEachLBCallMethod( 'approveMasterChanges', [ $options, $fname, $this->id ] );
 		// Log the DBs and methods involved in multi-DB transactions
 		$this->logIfMultiDbTransaction();
-		// Actually perform the commit on all master DB connections and revert DBO_TRX
+		// Actually perform the commit on all primary DB connections and revert DBO_TRX
 		$this->forEachLBCallMethod( 'commitMasterChanges', [ $fname, $this->id ] );
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_COMMIT_CALLBACKS;
@@ -328,7 +328,7 @@ abstract class LBFactory implements ILBFactory {
 
 		$this->trxRoundStage = self::ROUND_ROLLING_BACK;
 		$this->trxRoundId = false;
-		// Actually perform the rollback on all master DB connections and revert DBO_TRX
+		// Actually perform the rollback on all primary DB connections and revert DBO_TRX
 		$this->forEachLBCallMethod( 'rollbackMasterChanges', [ $fname, $this->id ] );
 		// Run all post-commit callbacks in a separate step
 		$this->trxRoundStage = self::ROUND_ROLLBACK_CALLBACKS;

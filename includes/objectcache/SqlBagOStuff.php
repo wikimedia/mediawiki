@@ -1188,7 +1188,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 	}
 
 	/**
-	 * Wait for replica DBs to catch up to the master DB
+	 * Wait for replica DBs to catch up to the primary DB
 	 *
 	 * @param int|string $shardIndex Server index or self::SHARD_LOCAL/self::SHARD_GLOBAL
 	 * @return bool Success

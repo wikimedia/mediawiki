@@ -215,7 +215,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param int $id Article ID to load
 	 * @param string|int $from One of the following values:
 	 *        - "fromdb" or WikiPage::READ_NORMAL to select from a replica DB
-	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the master database
+	 *        - "fromdbmaster" or WikiPage::READ_LATEST to select from the primary database
 	 *
 	 * @return WikiPage|null
 	 * @deprecated since 1.36, use WikiPageFactory::newFromID instead
@@ -231,8 +231,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param stdClass $row Database row containing at least fields returned by getQueryInfo().
 	 * @param string|int $from Source of $data:
 	 *        - "fromdb" or WikiPage::READ_NORMAL: from a replica DB
-	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the master DB
-	 *        - "forupdate" or WikiPage::READ_LOCKING: from the master DB using SELECT FOR UPDATE
+	 *        - "fromdbmaster" or WikiPage::READ_LATEST: from the primary DB
+	 *        - "forupdate" or WikiPage::READ_LOCKING: from the primary DB using SELECT FOR UPDATE
 	 * @return WikiPage
 	 * @deprecated since 1.36, use WikiPageFactory::newFromRow instead
 	 */
@@ -465,8 +465,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param stdClass|string|int $from One of the following:
 	 *   - A DB query result object.
 	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
-	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB.
-	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB
+	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the primary DB.
+	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the primary DB
 	 *     using SELECT FOR UPDATE.
 	 *
 	 * @return void
@@ -522,8 +522,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @param string|int $from One of the following:
 	 *   - "fromdb" or WikiPage::READ_NORMAL to get from a replica DB.
-	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the master DB.
-	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the master DB
+	 *   - "fromdbmaster" or WikiPage::READ_LATEST to get from the primary DB.
+	 *   - "forupdate"  or WikiPage::READ_LOCKING to get from the primary DB
 	 *     using SELECT FOR UPDATE.
 	 *
 	 * @return bool
@@ -550,9 +550,9 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 * @param stdClass|bool $data DB row containing fields returned by getQueryInfo() or false
 	 * @param string|int $from One of the following:
 	 *        - "fromdb" or WikiPage::READ_NORMAL if the data comes from a replica DB
-	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the master DB
+	 *        - "fromdbmaster" or WikiPage::READ_LATEST if the data comes from the primary DB
 	 *        - "forupdate"  or WikiPage::READ_LOCKING if the data comes from
-	 *          the master DB using SELECT FOR UPDATE
+	 *          the primary DB using SELECT FOR UPDATE
 	 */
 	public function loadFromRow( $data, $from ) {
 		$lc = MediaWikiServices::getInstance()->getLinkCache();

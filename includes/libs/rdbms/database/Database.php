@@ -76,7 +76,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var object|resource|null Database connection */
 	protected $conn;
 
-	/** @var IDatabase|null Lazy handle to the master DB this server replicates from */
+	/** @var IDatabase|null Lazy handle to the primary DB this server replicates from */
 	private $lazyMasterHandle;
 
 	/** @var string|null Server that this instance is currently connected to */
@@ -93,7 +93,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	protected $agent;
 	/** @var string Replication topology role of the server; one of the class ROLE_* constants */
 	protected $topologyRole;
-	/** @var string|null Host (or address) of the root master server for the replication topology */
+	/** @var string|null Host (or address) of the root primary server for the replication topology */
 	protected $topologyRootMaster;
 	/** @var array<string,mixed> Connection parameters used by initConnection() and open() */
 	protected $connectionParams;
@@ -411,7 +411,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - lbInfo: Optional map of field/values for the managing load balancer instance.
 	 *      The "master" and "replica" fields are used to flag the replication role of this
 	 *      database server and whether methods like getLag() should actually issue queries.
-	 *   - lazyMasterHandle: lazy-connecting IDatabase handle to the master DB for the cluster
+	 *   - lazyMasterHandle: lazy-connecting IDatabase handle to the primary DB for the cluster
 	 *      that this database belongs to. This is used for replication status purposes.
 	 *   - connLogger: Optional PSR-3 logger interface instance.
 	 *   - queryLogger: Optional PSR-3 logger interface instance.

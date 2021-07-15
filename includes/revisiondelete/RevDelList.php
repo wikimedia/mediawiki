@@ -333,7 +333,7 @@ abstract class RevDelList extends RevisionListBase {
 	}
 
 	/**
-	 * Reload the list data from the master DB. This can be done after setVisibility()
+	 * Reload the list data from the primary DB. This can be done after setVisibility()
 	 * to allow $item->getHTML() to show the new data.
 	 */
 	public function reloadFromMaster() {

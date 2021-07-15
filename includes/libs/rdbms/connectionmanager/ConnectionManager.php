@@ -104,7 +104,7 @@ class ConnectionManager {
 	}
 
 	/**
-	 * Returns a connection to the master DB, for updating. The connection should later be released
+	 * Returns a connection to the primary DB, for updating. The connection should later be released
 	 * by calling releaseConnection().
 	 *
 	 * @since 1.29
@@ -145,7 +145,7 @@ class ConnectionManager {
 	}
 
 	/**
-	 * Returns a connection ref to the master DB, for updating.
+	 * Returns a connection ref to the primary DB, for updating.
 	 *
 	 * @since 1.29
 	 *
