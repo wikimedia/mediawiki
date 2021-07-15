@@ -1979,6 +1979,7 @@
 	"sp-contributions-hideminor": "Kiçik redaktələri gizlət",
 	"sp-contributions-submit": "Axtar",
 	"whatlinkshere": "Səhifəyə keçidlər",
+	"whatlinkshere-count": "$1 {{PLURAL:$1|səhifə}} göstərilir.",
 	"whatlinkshere-title": "\"$1\" məqaləsinə keçid verən səhifələr",
 	"whatlinkshere-page": "Səhifə:",
 	"linkshere": "'''$2''' səhifəsinə keçid verən səhifələr:",
