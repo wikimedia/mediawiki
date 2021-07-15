@@ -124,6 +124,7 @@ use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\DefaultOptionsLookup;
 use MediaWiki\User\TalkPageNotificationManager;
@@ -267,6 +268,17 @@ return [
 				$services->getMainConfig()
 			),
 			$services->getUserFactory()
+		);
+	},
+
+	'BotPasswordStore' => static function ( MediaWikiServices $services ) : BotPasswordStore {
+		return new BotPasswordStore(
+			new ServiceOptions(
+				BotPasswordStore::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getCentralIdLookup(),
+			$services->getDBLoadBalancerFactory()
 		);
 	},
 

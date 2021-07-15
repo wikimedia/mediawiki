@@ -88,6 +88,7 @@ use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\ActorNormalization;
 use MediaWiki\User\ActorStore;
 use MediaWiki\User\ActorStoreFactory;
+use MediaWiki\User\BotPasswordStore;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
@@ -687,6 +688,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getBootstrapConfig() : Config {
 		return $this->getService( 'BootstrapConfig' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return BotPasswordStore
+	 */
+	public function getBotPasswordStore() : BotPasswordStore {
+		return $this->getService( 'BotPasswordStore' );
 	}
 
 	/**
