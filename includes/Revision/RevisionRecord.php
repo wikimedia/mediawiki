@@ -149,7 +149,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 *
 	 * @param string $role The role name of the desired slot
 	 * @param int $audience
-	 * @param Authority|null $performer user on who's behalf to check
+	 * @param Authority|null $performer user on whose behalf to check
 	 *
 	 * @return Content|null The content of the given slot, or null if access is forbidden.
 	 */
