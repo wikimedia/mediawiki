@@ -329,6 +329,10 @@ because of Phabricator reports.
   relevant context source.
 * SkinTemplate::makeArticleUrlDetails, deprecated since 1.35, was removed.
 * Skin::makeNSUrl, deprecated since 1.35, was removed.
+* Skin::getRevisionId(), deprecated since 1.34, was removed. Use
+  OutputPage::getRevisionId() instead.
+* Skin::isRevisionCurrent(), deprecated since 1.34, was removed. Use
+  OutputPage::isRevisionCurrent() instead.
 * …
 
 === Deprecations in 1.37 ===

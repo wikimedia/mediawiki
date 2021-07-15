@@ -389,30 +389,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Get the current revision ID
-	 *
-	 * @deprecated since 1.34, use OutputPage::getRevisionId instead
-	 * @return int
-	 */
-	public function getRevisionId() {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		return $this->getOutput()->getRevisionId();
-	}
-
-	/**
-	 * Whether the revision displayed is the latest revision of the page
-	 *
-	 * @deprecated since 1.34, use OutputPage::isRevisionCurrent instead
-	 * @return bool
-	 */
-	public function isRevisionCurrent() {
-		wfDeprecated( __METHOD__, '1.34' );
-
-		return $this->getOutput()->isRevisionCurrent();
-	}
-
-	/**
 	 * @see self::getRelevantTitle()
 	 * @param Title $t
 	 */
