@@ -244,7 +244,7 @@ class OldLocalFile extends LocalFile {
 		$this->dataLoaded = true;
 
 		$dbr = ( $flags & self::READ_LATEST )
-			? $this->repo->getMasterDB()
+			? $this->repo->getPrimaryDB()
 			: $this->repo->getReplicaDB();
 
 		$conds = [ 'oi_name' => $this->getName() ];
@@ -294,7 +294,7 @@ class OldLocalFile extends LocalFile {
 		);
 
 		if ( !$row ) { // fallback to master
-			$dbr = $this->repo->getMasterDB();
+			$dbr = $this->repo->getPrimaryDB();
 			$row = $dbr->selectRow(
 				$fileQuery['tables'],
 				$fileQuery['fields'],
@@ -355,7 +355,7 @@ class OldLocalFile extends LocalFile {
 			return;
 		}
 
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
 		wfDebug( __METHOD__ . ': upgrading ' . $this->archive_name . " to the current schema" );
@@ -461,7 +461,7 @@ class OldLocalFile extends LocalFile {
 	 * @return bool
 	 */
 	protected function recordOldUpload( $srcPath, $archiveName, $timestamp, $comment, $user ) {
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 
 		$services = MediaWikiServices::getInstance();
 		$mwProps = new MWFileProps( $services->getMimeAnalyzer() );

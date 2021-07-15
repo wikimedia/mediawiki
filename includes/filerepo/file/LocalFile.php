@@ -442,7 +442,7 @@ class LocalFile extends File {
 			return;
 		}
 
-		$this->repo->getMasterDB()->onTransactionPreCommitOrIdle(
+		$this->repo->getPrimaryDB()->onTransactionPreCommitOrIdle(
 			static function () use ( $key ) {
 				MediaWikiServices::getInstance()->getMainWANObjectCache()->delete( $key );
 			},
@@ -515,7 +515,7 @@ class LocalFile extends File {
 		$this->extraDataLoaded = true;
 
 		$dbr = ( $flags & self::READ_LATEST )
-			? $this->repo->getMasterDB()
+			? $this->repo->getPrimaryDB()
 			: $this->repo->getReplicaDB();
 
 		$fileQuery = static::getQueryInfo();
@@ -553,7 +553,7 @@ class LocalFile extends File {
 		$db = $this->repo->getReplicaDB();
 		$fieldMap = $this->loadExtraFieldsWithTimestamp( $db, $fname );
 		if ( !$fieldMap ) {
-			$db = $this->repo->getMasterDB();
+			$db = $this->repo->getPrimaryDB();
 			$fieldMap = $this->loadExtraFieldsWithTimestamp( $db, $fname );
 		}
 
@@ -818,7 +818,7 @@ class LocalFile extends File {
 			return;
 		}
 
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		list( $major, $minor ) = self::splitMime( $this->mime );
 
 		if ( wfReadOnly() ) {
@@ -1869,7 +1869,7 @@ class LocalFile extends File {
 		bool $createNullRevision = true,
 		bool $revert = false
 	) : Status {
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 
 		# Imports or such might force a certain timestamp; otherwise we generate
 		# it and can fudge it slightly to keep (name,timestamp) unique on re-upload.
@@ -2137,13 +2137,13 @@ class LocalFile extends File {
 					# Also log page, in case where we just created it above
 					$update['log_page'] = $updateLogPage;
 				}
-				$this->getRepo()->getMasterDB()->update(
+				$this->getRepo()->getPrimaryDB()->update(
 					'logging',
 					$update,
 					[ 'log_id' => $logId ],
 					$fname
 				);
-				$this->getRepo()->getMasterDB()->insert(
+				$this->getRepo()->getPrimaryDB()->insert(
 					'log_search',
 					[
 						'ls_field' => 'associated_rev_id',
@@ -2339,7 +2339,7 @@ class LocalFile extends File {
 		$newTitleFile = $localRepo->newFile( $target );
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
-				$this->getRepo()->getMasterDB(),
+				$this->getRepo()->getPrimaryDB(),
 				__METHOD__,
 				static function () use ( $oldTitleFile, $newTitleFile, $archiveNames ) {
 					$oldTitleFile->purgeEverything();
@@ -2402,7 +2402,7 @@ class LocalFile extends File {
 		// To avoid slow purges in the transaction, move them outside...
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
-				$this->getRepo()->getMasterDB(),
+				$this->getRepo()->getPrimaryDB(),
 				__METHOD__,
 				function () use ( $archiveNames ) {
 					$this->purgeEverything();
@@ -2642,7 +2642,7 @@ class LocalFile extends File {
 
 			$this->sha1 = $this->repo->getFileSha1( $this->getPath() );
 			if ( !wfReadOnly() && strval( $this->sha1 ) != '' ) {
-				$dbw = $this->repo->getMasterDB();
+				$dbw = $this->repo->getPrimaryDB();
 				$dbw->update( 'image',
 					[ 'img_sha1' => $this->sha1 ],
 					[ 'img_name' => $this->getName() ],
@@ -2700,7 +2700,7 @@ class LocalFile extends File {
 		if ( !$this->locked ) {
 			$logger = LoggerFactory::getInstance( 'LocalFile' );
 
-			$dbw = $this->repo->getMasterDB();
+			$dbw = $this->repo->getPrimaryDB();
 			$makesTransaction = !$dbw->trxLevel();
 			$dbw->startAtomic( self::ATOMIC_SECTION_LOCK );
 			// T56736: use simple lock to handle when the file does not exist.
@@ -2745,7 +2745,7 @@ class LocalFile extends File {
 		if ( $this->locked ) {
 			--$this->locked;
 			if ( !$this->locked ) {
-				$dbw = $this->repo->getMasterDB();
+				$dbw = $this->repo->getPrimaryDB();
 				$dbw->endAtomic( self::ATOMIC_SECTION_LOCK );
 				$this->lockedOwnTrx = false;
 			}

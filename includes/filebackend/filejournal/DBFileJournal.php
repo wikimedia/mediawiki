@@ -56,7 +56,7 @@ class DBFileJournal extends FileJournal {
 		$status = StatusValue::newGood();
 
 		try {
-			$dbw = $this->getMasterDB();
+			$dbw = $this->getPrimaryDB();
 		} catch ( DBError $e ) {
 			$status->fatal( 'filejournal-fail-dbconnect', $this->backend );
 
@@ -99,7 +99,7 @@ class DBFileJournal extends FileJournal {
 	 * @return int|false The value from the field, or false on failure.
 	 */
 	protected function doGetCurrentPosition() {
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 
 		return $dbw->selectField( 'filejournal', 'MAX(fj_id)',
 			[ 'fj_backend' => $this->backend ],
@@ -113,7 +113,7 @@ class DBFileJournal extends FileJournal {
 	 * @return int|false The value from the field, or false on failure.
 	 */
 	protected function doGetPositionAtTime( $time ) {
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 
 		$encTimestamp = $dbw->addQuotes( $dbw->timestamp( $time ) );
 
@@ -131,7 +131,7 @@ class DBFileJournal extends FileJournal {
 	 * @return array[]
 	 */
 	protected function doGetChangeEntries( $start, $limit ) {
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 
 		$res = $dbw->select( 'filejournal', '*',
 			[
@@ -165,7 +165,7 @@ class DBFileJournal extends FileJournal {
 			return $status; // nothing to do
 		}
 
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		$dbCutoff = $dbw->timestamp( ConvertibleTimestamp::time() - 86400 * $this->ttlDays );
 
 		$dbw->delete( 'filejournal',
@@ -177,14 +177,26 @@ class DBFileJournal extends FileJournal {
 	}
 
 	/**
-	 * Get a master connection to the logging DB
+	 * Get a primary connection to the logging DB
 	 *
 	 * @return IDatabase
 	 * @throws DBError
 	 */
-	protected function getMasterDB() {
+	protected function getPrimaryDB() {
 		$lb = MediaWikiServices::getInstance()->getDBLoadBalancer();
 
 		return $lb->getConnectionRef( DB_PRIMARY, [], $this->domain, $lb::CONN_TRX_AUTOCOMMIT );
+	}
+
+	/**
+	 * Get a primary connection to the logging DB
+	 *
+	 * @deprecated since 1.37
+	 * @return IDatabase
+	 * @throws DBError
+	 */
+	protected function getMasterDB() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryDB();
 	}
 }

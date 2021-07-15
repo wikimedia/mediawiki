@@ -279,7 +279,7 @@ class UploadStash {
 
 		// insert the file metadata into the db.
 		wfDebug( __METHOD__ . " inserting $stashPath under $key" );
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 
 		$serializedFileProps = serialize( $fileProps );
 		if ( strlen( $serializedFileProps ) > self::MAX_US_PROPS_SIZE ) {
@@ -339,7 +339,7 @@ class UploadStash {
 		}
 
 		wfDebug( __METHOD__ . ' clearing all rows for user ' . $this->user->getId() );
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		$dbw->delete(
 			'uploadstash',
 			[ 'us_user' => $this->user->getId() ],
@@ -368,7 +368,7 @@ class UploadStash {
 			);
 		}
 
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 
 		// this is a cheap query. it runs on the master so that this function
 		// still works when there's lag. It won't be called all that often.
@@ -406,7 +406,7 @@ class UploadStash {
 		// Ensure we have the UploadStashFile loaded for this key
 		$this->getFile( $key, true );
 
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 
 		$dbw->delete(
 			'uploadstash',
@@ -507,7 +507,7 @@ class UploadStash {
 		$dbr = null;
 		if ( $readFromDB === DB_PRIMARY ) {
 			// sometimes reading from the master is necessary, if there's replication lag.
-			$dbr = $this->repo->getMasterDB();
+			$dbr = $this->repo->getPrimaryDB();
 		} else {
 			$dbr = $this->repo->getReplicaDB();
 		}

@@ -61,7 +61,7 @@ class MigrateFileRepoLayout extends Maintenance {
 			$be = $be->getInternalBackend();
 		}
 
-		$dbw = $repo->getMasterDB();
+		$dbw = $repo->getPrimaryDB();
 
 		$origBase = $be->getContainerStoragePath( "{$repo->getName()}-original" );
 		$startTime = wfTimestampNow();

@@ -353,6 +353,9 @@ because of Phabricator reports.
   Use getPage() and setPage() instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
+* The 'getMasterDB()' methods for LocalRepo (and so ForeignDBRepo), JobQueueDB,
+  ForeignDBViaLBRepo, and DBFileJournal have been deprecated in favour of a new
+  method, getPrimaryDB().
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.

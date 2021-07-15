@@ -149,7 +149,7 @@ class LocalRepo extends FileRepo {
 
 		$backend = $this->backend; // convenience
 		$root = $this->getZonePath( 'deleted' );
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 		$status = $this->newGood();
 		$storageKeys = array_unique( $storageKeys );
 		foreach ( $storageKeys as $key ) {
@@ -187,7 +187,7 @@ class LocalRepo extends FileRepo {
 	protected function deletedFileHasKey( $key, $lock = null ) {
 		$options = ( $lock === 'lock' ) ? [ 'FOR UPDATE' ] : [];
 
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 
 		return (bool)$dbw->selectField( 'filearchive', '1',
 			[ 'fa_storage_group' => 'deleted', 'fa_storage_key' => $key ],
@@ -208,7 +208,7 @@ class LocalRepo extends FileRepo {
 		$sha1 = self::getHashFromKey( $key );
 		$ext = File::normalizeExtension( substr( $key, strcspn( $key, '.' ) + 1 ) );
 
-		$dbw = $this->getMasterDB();
+		$dbw = $this->getPrimaryDB();
 
 		return (bool)$dbw->selectField( 'oldimage', '1',
 			[ 'oi_sha1' => $sha1,
@@ -523,8 +523,18 @@ class LocalRepo extends FileRepo {
 	 * Get a connection to the primary DB
 	 * @return IDatabase
 	 */
-	public function getMasterDB() {
+	public function getPrimaryDB() {
 		return wfGetDB( DB_PRIMARY );
+	}
+
+	/**
+	 * Get a connection to the primary DB
+	 * @deprecated since 1.37
+	 * @return IDatabase
+	 */
+	public function getMasterDB() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryDB();
 	}
 
 	/**
@@ -567,7 +577,7 @@ class LocalRepo extends FileRepo {
 	public function invalidateImageRedirect( $title ) {
 		$key = $this->getSharedCacheKey( 'file-redirect', md5( $title->getDBkey() ) );
 		if ( $key ) {
-			$this->getMasterDB()->onTransactionPreCommitOrIdle(
+			$this->getPrimaryDB()->onTransactionPreCommitOrIdle(
 				function () use ( $key ) {
 					$this->wanCache->delete( $key );
 				},

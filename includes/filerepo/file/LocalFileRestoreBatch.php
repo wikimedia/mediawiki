@@ -97,7 +97,7 @@ class LocalFileRestoreBatch {
 
 		$lockOwnsTrx = $this->file->lock();
 
-		$dbw = $this->file->repo->getMasterDB();
+		$dbw = $this->file->repo->getPrimaryDB();
 
 		$commentStore = MediaWikiServices::getInstance()->getCommentStore();
 

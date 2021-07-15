@@ -76,7 +76,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 			return;
 		}
 		try {
-			$dbw = $this->getMasterDb();
+			$dbw = $this->getPrimaryDB();
 
 			$depsBlobByEntity = $this->fetchDependencyBlobs( array_keys( $dataByEntity ), $dbw );
 
@@ -128,7 +128,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 			return;
 		}
 		try {
-			$dbw = $this->getMasterDb();
+			$dbw = $this->getPrimaryDB();
 
 			$disjunctionConds = [];
 			foreach ( (array)$entities as $entity ) {
@@ -205,7 +205,7 @@ class SqlModuleDependencyStore extends DependencyStore {
 	/**
 	 * @return DBConnRef
 	 */
-	private function getMasterDb() {
+	private function getPrimaryDb() {
 		return $this->lb
 			->getConnectionRef( DB_PRIMARY, [], false, ( $this->lb )::CONN_TRX_AUTOCOMMIT );
 	}
