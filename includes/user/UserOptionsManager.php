@@ -419,7 +419,9 @@ class UserOptionsManager extends UserOptionsLookup {
 				if ( !$this->isValueEqual( $value, $oldValue ) ) {
 					// Update by deleting and reinserting
 					$rowsToInsert[] = $row;
-					$keysToDelete[] = $key;
+					if ( $oldValue !== null ) {
+						$keysToDelete[] = $key;
+					}
 				} else {
 					// Preserve old value -- save the row for caching
 					$rowsToPreserve[] = $row;
@@ -430,21 +432,23 @@ class UserOptionsManager extends UserOptionsLookup {
 			}
 		}
 
-		if ( !count( $keysToDelete ) ) {
+		if ( !count( $keysToDelete ) && !count( $rowsToInsert ) ) {
 			// Nothing to do
 			return;
 		}
 
 		// Do the DELETE
 		$dbw = $this->loadBalancer->getConnectionRef( DB_PRIMARY );
-		$dbw->delete(
-			'user_properties',
-			[
-				'up_user' => $userId,
-				'up_property' => $keysToDelete
-			],
-			__METHOD__
-		);
+		if ( $keysToDelete ) {
+			$dbw->delete(
+				'user_properties',
+				[
+					'up_user' => $userId,
+					'up_property' => $keysToDelete
+				],
+				__METHOD__
+			);
+		}
 		if ( $rowsToInsert ) {
 			// Insert the new preference rows
 			$dbw->insert( 'user_properties', $rowsToInsert, __METHOD__, [ 'IGNORE' ] );
