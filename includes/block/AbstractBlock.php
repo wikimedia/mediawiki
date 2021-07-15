@@ -300,25 +300,6 @@ abstract class AbstractBlock implements Block {
 	}
 
 	/**
-	 * From an existing block, get the target and the type of target.
-	 * Note that, except for null, it is always safe to treat the target
-	 * as a string; for User objects this will return User::__toString()
-	 * which in turn gives User::getName().
-	 *
-	 * If the type is not null, it will be an AbstractBlock::TYPE_ constant.
-	 *
-	 * @deprecated since 1.36. Use BlockUtils service instead.
-	 * @param string|UserIdentity|null $target
-	 * @return array [ User|string|null, int|null ]
-	 */
-	public static function parseTarget( $target ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		return MediaWikiServices::getInstance()
-			->getBlockUtils()
-			->parseBlockTarget( $target );
-	}
-
-	/**
 	 * Get the type of target for this particular block.
 	 * @return int|null AbstractBlock::TYPE_ constant, will never be TYPE_ID
 	 */

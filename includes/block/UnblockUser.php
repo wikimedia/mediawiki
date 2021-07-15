@@ -110,7 +110,7 @@ class UnblockUser {
 			$this->targetType === AbstractBlock::TYPE_AUTO &&
 			is_numeric( $this->target )
 		) {
-			// Needed, because AbstractBlock::parseTarget will strip the # from autoblocks.
+			// Needed, because BlockUtils::parseBlockTarget will strip the # from autoblocks.
 			$this->target = '#' . $this->target;
 		}
 		$this->block = DatabaseBlock::newFromTarget( $this->target );

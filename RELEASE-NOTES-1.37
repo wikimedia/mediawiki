@@ -333,6 +333,7 @@ because of Phabricator reports.
   OutputPage::getRevisionId() instead.
 * Skin::isRevisionCurrent(), deprecated since 1.34, was removed. Use
   OutputPage::isRevisionCurrent() instead.
+* AbstractBlock::parseTarget(), deprecated since 1.36, was removed.
 * …
 
 === Deprecations in 1.37 ===
