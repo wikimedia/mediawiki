@@ -858,7 +858,7 @@ class LocalFile extends File {
 		if ( wfReadOnly() ) {
 			return;
 		}
-		$dbw = $this->repo->getMasterDB();
+		$dbw = $this->repo->getPrimaryDB();
 		$dbw->update(
 			'image',
 			[ 'img_metadata' => $this->getMetadataForDb( $dbw ) ],

@@ -51,7 +51,7 @@ class ForeignDBViaLBRepo extends LocalRepo {
 	}
 
 	public function getMasterDB() {
-		// wfDeprecated( __METHOD__, '1.37' );
+		wfDeprecated( __METHOD__, '1.37' );
 		return $this->getPrimaryDB();
 	}
 
