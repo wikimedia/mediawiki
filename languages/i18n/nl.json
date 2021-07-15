@@ -1107,6 +1107,8 @@
 	"prefsnologintext2": "U moet aanmelden om voorkeuren in te stellen.",
 	"prefs-skin": "Vormgeving",
 	"prefs-skin-prefs": "Vormgevingsvoorkeuren",
+	"prefs-skin-responsive": "Responsieve modus inschakelen",
+	"prefs-help-skin-responsive": "Pas de skin aan het beschikbare viewport-gebied aan. (Heeft mogelijk geen effect op sommige skins).",
 	"skin-preview": "Voorvertoning",
 	"datedefault": "Geen voorkeur",
 	"prefs-labs": "Alphafunctionaliteit",
