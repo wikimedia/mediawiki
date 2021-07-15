@@ -344,6 +344,7 @@ because of Phabricator reports.
     a User object.
   All extensions that extend this class or use this method were updated to be
   ready to the new behavior.
+* ResultWrapper is now abstract. It cannot be directly constructed (T286694).
 * …
 
 === Deprecations in 1.37 ===
@@ -513,6 +514,13 @@ because of Phabricator reports.
 * The Title class members: $mTextform, $mUrlform, $mDbkeyform, $mNamespace,
   $mInterwiki, and $mFragment have been deprecated to not be used directly.
   Instead, their corresponding accessor methods should be used.
+* IDatabase::fetchObject(), ::fetchRow(), ::numRows(), ::numFields(),
+  ::fieldName(), ::freeResult() and ::dataSeek() are deprecated. Use the
+  corresponding methods in IResultWrapper instead.
+* ResultWrapper::unwrap(), DatabaseMysqlBase::fieldType() and
+  DatabasePostgres::fieldType() are hard-deprecated.
+* Subclasses implementing Database::doQuery() should return either boolean or
+  an IResultWrapper. To do otherwise is hard-deprecated.
 * User::getOptionKinds() and ::resetOptions(), both deprecated since 1.35,
   now emit deprecation warnings.
 * wfGetLB(), deprecated since 1.27, now emits deprecation warnings.

@@ -79,4 +79,12 @@ interface IResultWrapper extends Iterator {
 	 * @suppress PhanParamSignatureMismatchInternal
 	 */
 	public function next();
+
+	/**
+	 * Get the names of the fields in the result
+	 *
+	 * @since 1.37
+	 * @return string[]
+	 */
+	public function getFieldNames();
 }

@@ -23,7 +23,6 @@
 namespace Wikimedia\Rdbms;
 
 use RuntimeException;
-use Wikimedia\AtEase\AtEase;
 use Wikimedia\Timestamp\ConvertibleTimestamp;
 use Wikimedia\WaitConditionLoop;
 
@@ -81,7 +80,7 @@ class DatabasePostgres extends Database {
 				$this->addQuotes( $name ) . " AND n.nspname = " .
 				$this->addQuotes( $schema );
 			$res = $this->doQuery( $sql );
-			if ( $res && $this->numRows( $res ) ) {
+			if ( $res && $res->numRows() ) {
 				return true;
 			}
 		}
@@ -212,7 +211,7 @@ class DatabasePostgres extends Database {
 
 	/**
 	 * @param string $sql
-	 * @return bool|mixed|resource
+	 * @return bool|IResultWrapper
 	 */
 	public function doQuery( $sql ) {
 		$conn = $this->getBindingHandle();
@@ -230,7 +229,8 @@ class DatabasePostgres extends Database {
 			return false;
 		}
 
-		return $this->lastResultHandle;
+		return $this->lastResultHandle ?
+			new PostgresResultWrapper( $this, $this->getBindingHandle(), $this->lastResultHandle ) : false;
 	}
 
 	protected function dumpError() {
@@ -254,78 +254,6 @@ class DatabasePostgres extends Database {
 		}
 	}
 
-	public function freeResult( $res ) {
-		AtEase::suppressWarnings();
-		$ok = pg_free_result( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-		if ( !$ok ) {
-			throw new DBUnexpectedError( $this, "Unable to free Postgres result\n" );
-		}
-	}
-
-	public function fetchObject( $res ) {
-		AtEase::suppressWarnings();
-		$row = pg_fetch_object( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-		# @todo FIXME: HACK HACK HACK HACK debug
-
-		# @todo hashar: not sure if the following test really trigger if the object
-		#          fetching failed.
-		$conn = $this->getBindingHandle();
-		if ( pg_last_error( $conn ) ) {
-			throw new DBUnexpectedError(
-				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
-			);
-		}
-
-		return $row;
-	}
-
-	public function fetchRow( $res ) {
-		AtEase::suppressWarnings();
-		$row = pg_fetch_array( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-
-		$conn = $this->getBindingHandle();
-		if ( pg_last_error( $conn ) ) {
-			throw new DBUnexpectedError(
-				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
-			);
-		}
-
-		return $row;
-	}
-
-	public function numRows( $res ) {
-		if ( $res === false ) {
-			return 0;
-		}
-
-		AtEase::suppressWarnings();
-		$n = pg_num_rows( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-
-		$conn = $this->getBindingHandle();
-		if ( pg_last_error( $conn ) ) {
-			throw new DBUnexpectedError(
-				$this,
-				'SQL error: ' . htmlspecialchars( pg_last_error( $conn ) )
-			);
-		}
-
-		return $n;
-	}
-
-	public function numFields( $res ) {
-		return pg_num_fields( ResultWrapper::unwrap( $res ) );
-	}
-
-	public function fieldName( $res, $n ) {
-		return pg_field_name( ResultWrapper::unwrap( $res ), $n );
-	}
-
 	public function insertId() {
 		$res = $this->query(
 			"SELECT lastval()",
@@ -335,10 +263,6 @@ class DatabasePostgres extends Database {
 		$row = $this->fetchRow( $res );
 
 		return $row[0] === null ? null : (int)$row[0];
-	}
-
-	public function dataSeek( $res, $row ) {
-		return pg_result_seek( ResultWrapper::unwrap( $res ), $row );
 	}
 
 	public function lastError() {
@@ -1237,12 +1161,16 @@ SQL;
 
 	/**
 	 * pg_field_type() wrapper
-	 * @param ResultWrapper|resource $res ResultWrapper or PostgreSQL query result resource
+	 *
+	 * @deprecated since 1.37
+	 *
+	 * @param PostgresResultWrapper $res ResultWrapper or PostgreSQL query result resource
 	 * @param int $index Field number, starting from 0
 	 * @return string
 	 */
 	public function fieldType( $res, $index ) {
-		return pg_field_type( ResultWrapper::unwrap( $res ), $index );
+		wfDeprecated( __METHOD__, '1.37' );
+		return pg_field_type( $res->getInternalResult(), $index );
 	}
 
 	public function encodeBlob( $b ) {

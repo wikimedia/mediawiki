@@ -864,6 +864,38 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		return $this->currentDomain->getId();
 	}
 
+	public function fetchObject( IResultWrapper $res ) {
+		return $res->fetchObject();
+	}
+
+	public function fetchRow( IResultWrapper $res ) {
+		return $res->fetchRow();
+	}
+
+	public function numRows( $res ) {
+		if ( is_bool( $res ) ) {
+			return 0;
+		} else {
+			return $res->numRows();
+		}
+	}
+
+	public function numFields( IResultWrapper $res ) {
+		return count( $res->getFieldNames() );
+	}
+
+	public function fieldName( IResultWrapper $res, $n ) {
+		return $res->getFieldNames()[$n];
+	}
+
+	public function dataSeek( IResultWrapper $res, $pos ) {
+		$res->seek( $pos );
+	}
+
+	public function freeResult( IResultWrapper $res ) {
+		$res->free();
+	}
+
 	/**
 	 * Get information about an index into an object
 	 *
@@ -1074,10 +1106,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * meaningfully reflects any error that occurred during that public query method call.
 	 *
 	 * For SELECT queries, this returns either:
-	 *   - a) A driver-specific value/resource, only on success. This can be iterated
-	 *        over by calling fetchObject()/fetchRow() until there are no more rows.
-	 *        Alternatively, the result can be passed to resultObject() to obtain an
-	 *        IResultWrapper instance which can then be iterated over via "foreach".
+	 *   - a) An IResultWrapper describing the query results
 	 *   - b) False, on any query failure
 	 *
 	 * For non-SELECT queries, this returns either:
@@ -1086,7 +1115,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 *   - c) False, on any query failure
 	 *
 	 * @param string $sql SQL query
-	 * @return mixed|bool An object, resource, or true on success; false on failure
+	 * @return IResultWrapper|bool An IResultWrapper, or true on success; false on failure
 	 */
 	abstract protected function doQuery( $sql );
 
@@ -1283,7 +1312,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 			$this->reportQueryError( $err, $errno, $sql, $fname, $ignoreErrors && !$unignorable );
 		}
 
-		return $this->resultObject( $ret );
+		return $ret;
 	}
 
 	/**
@@ -1483,6 +1512,11 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 					'runtime' => round( $queryRuntime, 3 )
 				] )
 			);
+		}
+
+		if ( !is_bool( $ret ) && $ret !== null && !( $ret instanceof IResultWrapper ) ) {
+			throw new DBUnexpectedError( $this,
+				static::class . '::doQuery() should return an IResultWrapper. ' );
 		}
 
 		return [ $ret, $lastError, $lastErrno, $recoverableSR, $recoverableCL, $reconnected ];
@@ -1778,13 +1812,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 		);
 
 		return new DBConnectionError( $this, $error );
-	}
-
-	/**
-	 * @inheritDoc
-	 * @stable to override
-	 */
-	public function freeResult( $res ) {
 	}
 
 	/**
@@ -4982,30 +5009,6 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @return int Number of retrieved rows according to the driver
 	 */
 	abstract protected function fetchAffectedRowCount();
-
-	/**
-	 * Take a query result and wrap it in an iterable result wrapper if necessary.
-	 * Booleans are passed through as-is to indicate success/failure of write queries.
-	 *
-	 * Once upon a time, Database::query() returned a bare MySQL result
-	 * resource, and it was necessary to call this function to convert it to
-	 * a wrapper. Nowadays, raw database objects are never exposed to external
-	 * callers, so this is unnecessary in external code.
-	 *
-	 * @param bool|IResultWrapper|resource $result
-	 * @return bool|IResultWrapper
-	 */
-	protected function resultObject( $result ) {
-		if ( !$result ) {
-			return false; // failed query
-		} elseif ( $result instanceof IResultWrapper ) {
-			return $result;
-		} elseif ( $result === true ) {
-			return $result; // successful write query
-		} else {
-			return new ResultWrapper( $this, $result );
-		}
-	}
 
 	public function ping( &$rtt = null ) {
 		// Avoid hitting the server if it was hit recently

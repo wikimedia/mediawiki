@@ -24,29 +24,32 @@ namespace Wikimedia\Rdbms;
 
 use mysqli;
 use mysqli_result;
-use stdClass;
 use Wikimedia\AtEase\AtEase;
 use Wikimedia\IPUtils;
 
 /**
  * Database abstraction object for PHP extension mysqli.
  *
+ * TODO: This could probably be merged with DatabaseMysqlBase.
+ * The split was created to support a transition from the old "mysql" extension
+ * to mysqli, and there may be an argument for retaining it in order to support
+ * some future transition to something else, but it's complexity and YAGNI.
+ *
  * @ingroup Database
  * @since 1.22
  * @see Database
- * @phan-file-suppress PhanParamSignatureMismatch resource vs mysqli_result
  */
 class DatabaseMysqli extends DatabaseMysqlBase {
 	/**
 	 * @param string $sql
-	 * @return mysqli_result|bool
+	 * @return MysqliResultWrapper|bool
 	 */
 	protected function doQuery( $sql ) {
 		AtEase::suppressWarnings();
 		$res = $this->getBindingHandle()->query( $sql );
 		AtEase::restoreWarnings();
 
-		return $res;
+		return $res instanceof mysqli_result ? new MysqliResultWrapper( $this, $res ) : $res;
 	}
 
 	/**
@@ -164,108 +167,13 @@ class DatabaseMysqli extends DatabaseMysqlBase {
 
 	/**
 	 * @param mysqli_result $res
-	 * @return bool
-	 */
-	protected function mysqlFreeResult( $res ) {
-		$res->free_result();
-
-		return true;
-	}
-
-	/**
-	 * @param mysqli_result $res
-	 * @return stdClass|bool
-	 */
-	protected function mysqlFetchObject( $res ) {
-		$object = $res->fetch_object();
-		if ( $object === null ) {
-			return false;
-		}
-
-		return $object;
-	}
-
-	/**
-	 * @param mysqli_result $res
-	 * @return array|false
-	 */
-	protected function mysqlFetchArray( $res ) {
-		$array = $res->fetch_array();
-		if ( $array === null ) {
-			return false;
-		}
-
-		return $array;
-	}
-
-	/**
-	 * @param mysqli_result $res
-	 * @return mixed
-	 */
-	protected function mysqlNumRows( $res ) {
-		return $res->num_rows;
-	}
-
-	/**
-	 * @param mysqli_result $res
-	 * @return mixed
-	 */
-	protected function mysqlNumFields( $res ) {
-		return $res->field_count;
-	}
-
-	/**
-	 * @param mysqli_result $res
 	 * @param int $n
-	 * @return mixed
-	 */
-	protected function mysqlFetchField( $res, $n ) {
-		$field = $res->fetch_field_direct( $n );
-
-		// Add missing properties to result (using flags property)
-		// which will be part of function mysql-fetch-field for backward compatibility
-		$field->not_null = $field->flags & MYSQLI_NOT_NULL_FLAG;
-		$field->primary_key = $field->flags & MYSQLI_PRI_KEY_FLAG;
-		$field->unique_key = $field->flags & MYSQLI_UNIQUE_KEY_FLAG;
-		$field->multiple_key = $field->flags & MYSQLI_MULTIPLE_KEY_FLAG;
-		$field->binary = $field->flags & MYSQLI_BINARY_FLAG;
-		$field->numeric = $field->flags & MYSQLI_NUM_FLAG;
-		$field->blob = $field->flags & MYSQLI_BLOB_FLAG;
-		$field->unsigned = $field->flags & MYSQLI_UNSIGNED_FLAG;
-		$field->zerofill = $field->flags & MYSQLI_ZEROFILL_FLAG;
-
-		return $field;
-	}
-
-	/**
-	 * @param mysqli_result $res
-	 * @param int $n
-	 * @return mixed
-	 */
-	protected function mysqlFieldName( $res, $n ) {
-		$field = $res->fetch_field_direct( $n );
-
-		return $field->name;
-	}
-
-	/**
-	 * @param mysqli_result $res
-	 * @param int $n
-	 * @return mixed
+	 * @return string
 	 */
 	protected function mysqlFieldType( $res, $n ) {
 		$field = $res->fetch_field_direct( $n );
 
 		return $field->type;
-	}
-
-	/**
-	 * @param mysqli_result $res
-	 * @param int $row
-	 * @return mixed
-	 */
-	protected function mysqlDataSeek( $res, $row ) {
-		return $res->data_seek( $row );
 	}
 
 	/**

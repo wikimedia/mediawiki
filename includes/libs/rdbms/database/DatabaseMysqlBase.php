@@ -23,6 +23,7 @@
 namespace Wikimedia\Rdbms;
 
 use InvalidArgumentException;
+use mysqli_result;
 use RuntimeException;
 use stdClass;
 use Wikimedia\AtEase\AtEase;
@@ -30,6 +31,11 @@ use Wikimedia\AtEase\AtEase;
 /**
  * Database abstraction object for MySQL.
  * Defines methods independent on used MySQL extension.
+ *
+ * TODO: This could probably be merged with DatabaseMysqli.
+ * The split was created to support a transition from the old "mysql" extension
+ * to mysqli, and there may be an argument for retaining it in order to support
+ * some future transition to something else, but it's complexity and YAGNI.
  *
  * @ingroup Database
  * @since 1.22
@@ -226,192 +232,31 @@ abstract class DatabaseMysqlBase extends Database {
 	abstract protected function mysqlConnect( $server, $user, $password, $db );
 
 	/**
-	 * @param IResultWrapper|resource $res
-	 * @throws DBUnexpectedError
-	 */
-	public function freeResult( $res ) {
-		AtEase::suppressWarnings();
-		$ok = $this->mysqlFreeResult( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-		if ( !$ok ) {
-			throw new DBUnexpectedError( $this, "Unable to free MySQL result" );
-		}
-	}
-
-	/**
-	 * Free result memory
-	 *
-	 * @param resource $res Raw result
-	 * @return bool
-	 */
-	abstract protected function mysqlFreeResult( $res );
-
-	/**
-	 * @param IResultWrapper|resource $res
-	 * @return stdClass|bool
-	 * @throws DBUnexpectedError
-	 */
-	public function fetchObject( $res ) {
-		AtEase::suppressWarnings();
-		$row = $this->mysqlFetchObject( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-
-		$errno = $this->lastErrno();
-		// Unfortunately, mysql_fetch_object does not reset the last errno.
-		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
-		// these are the only errors mysql_fetch_object can cause.
-		// See https://dev.mysql.com/doc/refman/5.7/en/mysql-fetch-row.html.
-		if ( $errno == 2000 || $errno == 2013 ) {
-			throw new DBUnexpectedError(
-				$this,
-				'Error in fetchObject(): ' . htmlspecialchars( $this->lastError() )
-			);
-		}
-
-		return $row;
-	}
-
-	/**
-	 * Fetch a result row as an object
-	 *
-	 * @param resource $res Raw result
-	 * @return stdClass
-	 */
-	abstract protected function mysqlFetchObject( $res );
-
-	/**
-	 * @param IResultWrapper|resource $res
-	 * @return array|bool
-	 * @throws DBUnexpectedError
-	 */
-	public function fetchRow( $res ) {
-		AtEase::suppressWarnings();
-		$row = $this->mysqlFetchArray( ResultWrapper::unwrap( $res ) );
-		AtEase::restoreWarnings();
-
-		$errno = $this->lastErrno();
-		// Unfortunately, mysql_fetch_array does not reset the last errno.
-		// Only check for CR_SERVER_LOST and CR_UNKNOWN_ERROR, as
-		// these are the only errors mysql_fetch_array can cause.
-		// See https://dev.mysql.com/doc/refman/5.7/en/mysql-fetch-row.html.
-		if ( $errno == 2000 || $errno == 2013 ) {
-			throw new DBUnexpectedError(
-				$this,
-				'Error in fetchRow(): ' . htmlspecialchars( $this->lastError() )
-			);
-		}
-
-		return $row;
-	}
-
-	/**
-	 * Fetch a result row as an associative and numeric array
-	 *
-	 * @param resource $res Raw result
-	 * @return array|false
-	 */
-	abstract protected function mysqlFetchArray( $res );
-
-	/**
-	 * @throws DBUnexpectedError
-	 * @param IResultWrapper|resource $res
-	 * @return int
-	 */
-	public function numRows( $res ) {
-		if ( is_bool( $res ) ) {
-			$n = 0;
-		} else {
-			AtEase::suppressWarnings();
-			$n = $this->mysqlNumRows( ResultWrapper::unwrap( $res ) );
-			AtEase::restoreWarnings();
-		}
-
-		// Unfortunately, mysql_num_rows does not reset the last errno.
-		// We are not checking for any errors here, since
-		// there are no errors mysql_num_rows can cause.
-		// See https://dev.mysql.com/doc/refman/5.7/en/mysql-fetch-row.html.
-		// See https://phabricator.wikimedia.org/T44430
-		return $n;
-	}
-
-	/**
-	 * Get number of rows in result
-	 *
-	 * @param resource $res Raw result
-	 * @return int
-	 */
-	abstract protected function mysqlNumRows( $res );
-
-	/**
-	 * @param IResultWrapper|resource $res
-	 * @return int
-	 */
-	public function numFields( $res ) {
-		return $this->mysqlNumFields( ResultWrapper::unwrap( $res ) );
-	}
-
-	/**
-	 * Get number of fields in result
-	 *
-	 * @param resource $res Raw result
-	 * @return int
-	 */
-	abstract protected function mysqlNumFields( $res );
-
-	/**
-	 * @param IResultWrapper|resource $res
-	 * @param int $n
-	 * @return string
-	 */
-	public function fieldName( $res, $n ) {
-		return $this->mysqlFieldName( ResultWrapper::unwrap( $res ), $n );
-	}
-
-	/**
-	 * Get the name of the specified field in a result
-	 *
-	 * @param IResultWrapper|resource $res
-	 * @param int $n
-	 * @return string
-	 */
-	abstract protected function mysqlFieldName( $res, $n );
-
-	/**
 	 * mysql_field_type() wrapper
-	 * @param IResultWrapper|resource $res
+	 *
+	 * Not part of the interface and apparently not called by anything.
+	 *
+	 * @deprecated since 1.37
+	 *
+	 * @param MysqliResultWrapper $res
 	 * @param int $n
 	 * @return string
 	 */
 	public function fieldType( $res, $n ) {
-		return $this->mysqlFieldType( ResultWrapper::unwrap( $res ), $n );
+		wfDeprecated( __METHOD__, '1.37' );
+		return $this->mysqlFieldType( $res->getInternalResult(), $n );
 	}
 
 	/**
 	 * Get the type of the specified field in a result
 	 *
-	 * @param IResultWrapper|resource $res
+	 * @deprecated since 1.37
+	 *
+	 * @param mysqli_result $res
 	 * @param int $n
 	 * @return string
 	 */
 	abstract protected function mysqlFieldType( $res, $n );
-
-	/**
-	 * @param IResultWrapper|resource $res
-	 * @param int $row
-	 * @return bool
-	 */
-	public function dataSeek( $res, $row ) {
-		return $this->mysqlDataSeek( ResultWrapper::unwrap( $res ), $row );
-	}
-
-	/**
-	 * Move internal result pointer
-	 *
-	 * @param IResultWrapper|resource $res
-	 * @param int $row
-	 * @return bool
-	 */
-	abstract protected function mysqlDataSeek( $res, $row );
 
 	/**
 	 * @return string
@@ -580,25 +425,10 @@ abstract class DatabaseMysqlBase extends Database {
 		if ( !$res ) {
 			return false;
 		}
-		$n = $this->mysqlNumFields( ResultWrapper::unwrap( $res ) );
-		for ( $i = 0; $i < $n; $i++ ) {
-			$meta = $this->mysqlFetchField( ResultWrapper::unwrap( $res ), $i );
-			if ( $field == $meta->name ) {
-				return new MySQLField( $meta );
-			}
-		}
-
-		return false;
+		/** @var MysqliResultWrapper $res */
+		'@phan-var MysqliResultWrapper $res';
+		return $res->getInternalFieldInfo( $field );
 	}
-
-	/**
-	 * Get column information from a result
-	 *
-	 * @param resource $res Raw result
-	 * @param int $n
-	 * @return stdClass
-	 */
-	abstract protected function mysqlFetchField( $res, $n );
 
 	/**
 	 * Get information about an index into an object

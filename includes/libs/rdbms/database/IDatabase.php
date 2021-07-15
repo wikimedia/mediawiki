@@ -401,16 +401,21 @@ interface IDatabase {
 	 */
 	public function getType();
 
+	/***************************************************************************/
+	// region  Deprecated IResultWrapper accessors
+
 	/**
 	 * Fetch the next row from the given result object, in object form
 	 *
 	 * Fields can be retrieved with $row->fieldname, with fields acting like
 	 * member variables. If no more rows are available, false is returned.
 	 *
-	 * @param IResultWrapper|stdClass $res Object as returned from IDatabase::query(), etc.
+	 * @deprecated since 1.37 use IResultWrapper::fetchObject()
+	 *
+	 * @param IResultWrapper $res Object as returned from IDatabase::query(), etc.
 	 * @return stdClass|bool
 	 */
-	public function fetchObject( $res );
+	public function fetchObject( IResultWrapper $res );
 
 	/**
 	 * Fetch the next row from the given result object, in associative array form
@@ -418,17 +423,21 @@ interface IDatabase {
 	 * Fields are retrieved with $row['fieldname'].
 	 * If no more rows are available, false is returned.
 	 *
+	 * @deprecated since 1.37 use IResultWrapper::fetchRow()
+	 *
 	 * @param IResultWrapper $res Result object as returned from IDatabase::query(), etc.
 	 * @return array|bool
 	 */
-	public function fetchRow( $res );
+	public function fetchRow( IResultWrapper $res );
 
 	/**
 	 * Get the number of rows in a query result
 	 *
 	 * Returns zero if the query did not return any rows or was a write query.
 	 *
-	 * @param mixed $res A SQL result
+	 * @deprecated since 1.37 use IResultWrapper::numRows()
+	 *
+	 * @param IResultWrapper|bool $res A SQL result
 	 * @return int
 	 */
 	public function numRows( $res );
@@ -437,20 +446,50 @@ interface IDatabase {
 	 * Get the number of fields in a result object
 	 * @see https://www.php.net/mysql_num_fields
 	 *
-	 * @param mixed $res A SQL result
+	 * @deprecated since 1.37
+	 *
+	 * @param IResultWrapper $res A SQL result
 	 * @return int
 	 */
-	public function numFields( $res );
+	public function numFields( IResultWrapper $res );
 
 	/**
 	 * Get a field name in a result object
 	 * @see https://www.php.net/mysql_field_name
 	 *
-	 * @param mixed $res A SQL result
+	 * @deprecated since 1.37
+	 *
+	 * @param IResultWrapper $res A SQL result
 	 * @param int $n
 	 * @return string
 	 */
-	public function fieldName( $res, $n );
+	public function fieldName( IResultWrapper $res, $n );
+
+	/**
+	 * Free a result object returned by query() or select()
+	 *
+	 * It's usually not necessary to call this, just use unset() or let the variable
+	 * holding the result object go out of scope.
+	 *
+	 * @deprecated since 1.37 Use IResultWrapper::free()
+	 *
+	 * @param IResultWrapper $res A SQL result
+	 */
+	public function freeResult( IResultWrapper $res );
+
+	/**
+	 * Change the position of the cursor in a result object
+	 * @see https://www.php.net/mysql_data_seek
+	 *
+	 * @deprecated since 1.37 use IResultWrapper::seek()
+	 *
+	 * @param IResultWrapper $res A SQL result
+	 * @param int $row
+	 */
+	public function dataSeek( IResultWrapper $res, $row );
+
+	// endregion -- Deprecated IResultWrapper accessors
+	/***************************************************************************/
 
 	/**
 	 * Get the inserted value of an auto-increment row
@@ -462,15 +501,6 @@ interface IDatabase {
 	 * @return int
 	 */
 	public function insertId();
-
-	/**
-	 * Change the position of the cursor in a result object
-	 * @see https://www.php.net/mysql_data_seek
-	 *
-	 * @param mixed $res A SQL result
-	 * @param int $row
-	 */
-	public function dataSeek( $res, $row );
 
 	/**
 	 * Get the last error number
@@ -556,16 +586,6 @@ interface IDatabase {
 	 * @throws DBError If the query is inherently not allowed (non-DBExpectedError)
 	 */
 	public function query( $sql, $fname = __METHOD__, $flags = 0 );
-
-	/**
-	 * Free a result object returned by query() or select()
-	 *
-	 * It's usually not necessary to call this, just use unset() or let the variable
-	 * holding the result object go out of scope.
-	 *
-	 * @param mixed $res A SQL result
-	 */
-	public function freeResult( $res );
 
 	/**
 	 * Create an empty SelectQueryBuilder which can be used to run queries
