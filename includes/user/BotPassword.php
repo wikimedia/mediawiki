@@ -344,12 +344,14 @@ class BotPassword implements IDBAccessObject {
 	/**
 	 * Invalidate all passwords for a user, by central ID
 	 *
-	 * Currently unused entirely, to be hard deprecated
+	 * @deprecated since 1.37
 	 *
 	 * @param int $centralId
 	 * @return bool Whether any passwords were invalidated
 	 */
 	public static function invalidateAllPasswordsForCentralId( $centralId ) {
+		wfDeprecated( __METHOD__, '1.37' );
+
 		global $wgEnableBotPasswords;
 
 		if ( !$wgEnableBotPasswords ) {
@@ -380,12 +382,14 @@ class BotPassword implements IDBAccessObject {
 	/**
 	 * Remove all passwords for a user, by central ID
 	 *
-	 * Currently unused entirely, to be hard deprecated
+	 * @deprecated since 1.37
 	 *
 	 * @param int $centralId
 	 * @return bool Whether any passwords were removed
 	 */
 	public static function removeAllPasswordsForCentralId( $centralId ) {
+		wfDeprecated( __METHOD__, '1.37' );
+
 		global $wgEnableBotPasswords;
 
 		if ( !$wgEnableBotPasswords ) {

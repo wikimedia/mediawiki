@@ -493,6 +493,8 @@ because of Phabricator reports.
   warnings.
 * CentralIdLookup::factory and ::factoryNonLocal were deprecated, obtain an
   instance from MediaWikiServices instead.
+* BotPassword::invalidateAllPasswordsForCentralId() was deprecated.
+* BotPassword::removeAllPasswordsForCentralId() was deprecated.
 * The Title class members: $mTextform, $mUrlform, $mDbkeyform, $mNamespace,
   $mInterwiki, and $mFragment have been deprecated to not be used directly.
   Instead, their corresponding accessor methods should be used.
