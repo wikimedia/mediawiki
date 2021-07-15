@@ -72,11 +72,13 @@ class BotPassword implements IDBAccessObject {
 	private $flags;
 
 	/**
+	 * @internal only public for construction in BotPasswordStore
+	 *
 	 * @param stdClass $row bot_passwords database row
 	 * @param bool $isSaved Whether the bot password was read from the database
 	 * @param int $flags IDBAccessObject read flags
 	 */
-	private function __construct( $row, $isSaved, $flags = self::READ_NORMAL ) {
+	public function __construct( $row, $isSaved, $flags = self::READ_NORMAL ) {
 		$this->isSaved = $isSaved;
 		$this->flags = $flags;
 
@@ -106,10 +108,9 @@ class BotPassword implements IDBAccessObject {
 	 * @return BotPassword|null
 	 */
 	public static function newFromUser( User $user, $appId, $flags = self::READ_NORMAL ) {
-		$centralId = CentralIdLookup::factory()->centralIdFromLocalUser(
-			$user, CentralIdLookup::AUDIENCE_RAW, $flags
-		);
-		return $centralId ? self::newFromCentralId( $centralId, $appId, $flags ) : null;
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->getByUser( $user, (string)$appId, (int)$flags );
 	}
 
 	/**
@@ -120,22 +121,9 @@ class BotPassword implements IDBAccessObject {
 	 * @return BotPassword|null
 	 */
 	public static function newFromCentralId( $centralId, $appId, $flags = self::READ_NORMAL ) {
-		global $wgEnableBotPasswords;
-
-		if ( !$wgEnableBotPasswords ) {
-			return null;
-		}
-
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = self::getDB( $index );
-		$row = $db->selectRow(
-			'bot_passwords',
-			[ 'bp_user', 'bp_app_id', 'bp_token', 'bp_restrictions', 'bp_grants' ],
-			[ 'bp_user' => $centralId, 'bp_app_id' => $appId ],
-			__METHOD__,
-			$options
-		);
-		return $row ? new self( $row, true, $flags ) : null;
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->getByCentralId( (int)$centralId, (string)$appId, (int)$flags );
 	}
 
 	/**
@@ -151,47 +139,9 @@ class BotPassword implements IDBAccessObject {
 	 * @return BotPassword|null
 	 */
 	public static function newUnsaved( array $data, $flags = self::READ_NORMAL ) {
-		if ( isset( $data['user'] ) && ( !$data['user'] instanceof User ) ) {
-			return null;
-		}
-
-		$row = (object)[
-			'bp_user' => 0,
-			'bp_app_id' => isset( $data['appId'] ) ? trim( $data['appId'] ) : '',
-			'bp_token' => '**unsaved**',
-			'bp_restrictions' => $data['restrictions'] ?? MWRestrictions::newDefault(),
-			'bp_grants' => $data['grants'] ?? [],
-		];
-
-		if (
-			$row->bp_app_id === '' ||
-			strlen( $row->bp_app_id ) > self::APPID_MAXLENGTH ||
-			!$row->bp_restrictions instanceof MWRestrictions ||
-			!is_array( $row->bp_grants )
-		) {
-			return null;
-		}
-
-		$row->bp_restrictions = $row->bp_restrictions->toJson();
-		$row->bp_grants = FormatJson::encode( $row->bp_grants );
-
-		if ( isset( $data['user'] ) ) {
-			// Must be a User object, already checked above
-			$row->bp_user = CentralIdLookup::factory()->centralIdFromLocalUser(
-				$data['user'], CentralIdLookup::AUDIENCE_RAW, $flags
-			);
-		} elseif ( isset( $data['username'] ) ) {
-			$row->bp_user = CentralIdLookup::factory()->centralIdFromName(
-				$data['username'], CentralIdLookup::AUDIENCE_RAW, $flags
-			);
-		} elseif ( isset( $data['centralId'] ) ) {
-			$row->bp_user = $data['centralId'];
-		}
-		if ( !$row->bp_user ) {
-			return null;
-		}
-
-		return new self( $row, false, $flags );
+		return MediaWikiServices::getInstance()
+			->getBotPasswordStore()
+			->newUnsavedBotPassword( $data, (int)$flags );
 	}
 
 	/**
