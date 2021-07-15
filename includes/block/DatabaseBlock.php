@@ -292,6 +292,7 @@ class DatabaseBlock extends AbstractBlock {
 				case self::TYPE_USER:
 					# Slightly weird, but who are we to argue?
 					$conds['ipb_address'][] = (string)$target;
+					$conds = $db->makeList( $conds, LIST_OR );
 					break;
 
 				case self::TYPE_IP:

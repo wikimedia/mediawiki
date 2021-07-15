@@ -441,9 +441,13 @@ abstract class AbstractBlock implements Block {
 			$this->target = null;
 			$this->type = null;
 		} else {
-			list( $this->target, $this->type ) = MediaWikiServices::getInstance()
-				->getBlockUtils()
-				->parseBlockTarget( $target );
+			$services = MediaWikiServices::getInstance();
+			list( $identity, $this->type ) = $services->getBlockUtils()->parseBlockTarget( $target );
+			if ( $identity instanceof UserIdentity ) {
+				$this->target = $services->getUserFactory()->newFromUserIdentity( $identity );
+			} else {
+				$this->target = $identity;
+			}
 		}
 	}
 

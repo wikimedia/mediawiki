@@ -406,7 +406,8 @@ class BlockUser {
 	 *
 	 * @param bool $reblock Should this reblock?
 	 *
-	 * @return Status
+	 * @return Status If the block is successful, the value of the returned
+	 * Status is an instance of a newly placed block.
 	 */
 	public function placeBlock( bool $reblock = false ) : Status {
 		$priorBlock = DatabaseBlock::newFromTarget( $this->target );
@@ -468,7 +469,8 @@ class BlockUser {
 	 *
 	 * @param bool $reblock Should this reblock?
 	 *
-	 * @return Status
+	 * @return Status If the block is successful, the value of the returned
+	 * Status is an instance of a newly placed block.
 	 */
 	public function placeBlockUnsafe( bool $reblock = false ) : Status {
 		$status = $this->blockUtils->validateTarget( $this->target );
@@ -591,7 +593,7 @@ class BlockUser {
 
 		$this->log( $block, $isReblock );
 
-		return Status::newGood();
+		return Status::newGood( $block );
 	}
 
 	/**
