@@ -3332,9 +3332,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		} );
 
 		$this->mTouched = $newTouched;
-		$dbw->onTransactionPreCommitOrIdle( function () {
-			MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
-		}, __METHOD__ );
+		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
 
 		$this->getHookRunner()->onUserSaveSettings( $this );
 		$this->clearSharedCache( 'changed' );
