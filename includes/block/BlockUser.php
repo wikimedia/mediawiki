@@ -54,7 +54,7 @@ class BlockUser {
 	 *
 	 * Target of the block
 	 *
-	 * This is null in case AbstractBlock::parseTarget failed to parse the target.
+	 * This is null in case BlockUtils::parseBlockTarget failed to parse the target.
 	 * Such case is detected in placeBlockUnsafe, by calling validateTarget from SpecialBlock.
 	 */
 	private $target;
@@ -64,7 +64,7 @@ class BlockUser {
 	 *
 	 * One of AbstractBlock::TYPE_* constants
 	 *
-	 * This will be -1 if AbstractBlock::parseTarget failed to parse the target.
+	 * This will be -1 if BlockUtils::parseBlockTarget failed to parse the target.
 	 */
 	private $targetType;
 
