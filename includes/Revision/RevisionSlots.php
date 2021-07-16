@@ -111,7 +111,10 @@ class RevisionSlots {
 		if ( isset( $slots[$role] ) ) {
 			return $slots[$role];
 		} else {
-			throw new RevisionAccessException( 'No such slot: ' . $role );
+			throw new RevisionAccessException(
+				'No such slot: {role}',
+				[ 'role' => $role ]
+			);
 		}
 	}
 

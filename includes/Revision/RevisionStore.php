@@ -353,7 +353,11 @@ class RevisionStore
 		}
 
 		throw new RevisionAccessException(
-			"Could not determine title for page ID $pageId and revision ID $revId"
+			'Could not determine title for page ID {page_id} and revision ID {rev_id}',
+			[
+				'page_id' => $pageId,
+				'rev_id' => $revId,
+			]
 		);
 	}
 
@@ -1165,7 +1169,11 @@ class RevisionStore
 				$data = $this->blobStore->expandBlob( $blobData, $blobFlags, $cacheKey );
 				if ( $data === false ) {
 					throw new RevisionAccessException(
-						"Failed to expand blob data using flags $blobFlags (key: $cacheKey)"
+						'Failed to expand blob data using flags {flags} (key: {cache_key})',
+						[
+							'flags' => $blobFlags,
+							'cache_key' => $cacheKey,
+						]
 					);
 				}
 			}
@@ -1176,10 +1184,12 @@ class RevisionStore
 				$data = $this->blobStore->getBlob( $address, $queryFlags );
 			} catch ( BlobAccessException $e ) {
 				throw new RevisionAccessException(
-					"Failed to load data blob from $address: " . $e->getMessage() . '. '
+					'Failed to load data blob from {address}'
 						. 'If this problem persist, use the findBadBlobs maintenance script '
 						. 'to investigate the issue and mark bad blobs.',
-					0, $e
+					[ 'address' => $e->getMessage() ],
+					0,
+					$e
 				);
 			}
 		}
