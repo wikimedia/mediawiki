@@ -122,12 +122,6 @@ class Language {
 	private $hookRunner;
 
 	/**
-	 * @deprecated since 1.35, use LanguageFactory
-	 * @var array
-	 */
-	public static $mLangObjCache = [];
-
-	/**
 	 * Return a fallback chain for messages in getFallbacksFor
 	 * @since 1.32
 	 * @deprecated since 1.35, use LanguageFallback::MESSAGES
