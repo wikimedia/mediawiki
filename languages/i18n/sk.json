@@ -2383,7 +2383,7 @@
 	"protectlogpage": "Záznam zamknutí",
 	"protectlogtext": "Nižšie je zoznam zmien stavu ochrany stránok.\nMôžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných ochrán stránok]].",
 	"protectedarticle": "zamyká „[[$1]]“",
-	"modifiedarticleprotection": "zmenená úroveň ochrany „[[$1]]“",
+	"modifiedarticleprotection": "zmenená úroveň ochrany pre „[[$1]]“",
 	"unprotectedarticle": "odstránil ochranu stránky „[[$1]]“",
 	"movedarticleprotection": "nastavenia zamknutia stránky presunuté z „[[$2]]” na „[[$1]]”",
 	"protectedarticle-comment": "{{GENDER:$2|Zamkol|Zamkla}} stránku „[[$1]]“",
