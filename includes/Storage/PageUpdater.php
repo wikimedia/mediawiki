@@ -37,7 +37,6 @@ use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Linker\LinkTarget;
-use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -80,7 +79,7 @@ class PageUpdater {
 
 	/**
 	 * Options that have to be present in the ServiceOptions object passed to the constructor.
-	 *
+	 * @note When adding options here, also add them to PageUpdaterFactory::CONSTRUCTOR_OPTIONS.
 	 * @internal
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
@@ -89,9 +88,9 @@ class PageUpdater {
 	];
 
 	/**
-	 * @var Authority
+	 * @var UserIdentity
 	 */
-	private $performer;
+	private $author;
 
 	/**
 	 * @var WikiPage
@@ -196,7 +195,7 @@ class PageUpdater {
 	private $serviceOptions;
 
 	/**
-	 * @param Authority $performer
+	 * @param UserIdentity $author
 	 * @param WikiPage $wikiPage
 	 * @param DerivedPageDataUpdater $derivedDataUpdater
 	 * @param ILoadBalancer $loadBalancer
@@ -211,7 +210,7 @@ class PageUpdater {
 	 *        obtained from ChangeTags::getSoftwareTags()
 	 */
 	public function __construct(
-		Authority $performer,
+		UserIdentity $author,
 		WikiPage $wikiPage,
 		DerivedPageDataUpdater $derivedDataUpdater,
 		ILoadBalancer $loadBalancer,
@@ -227,7 +226,7 @@ class PageUpdater {
 		$serviceOptions->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->serviceOptions = $serviceOptions;
 
-		$this->performer = $performer;
+		$this->author = $author;
 		$this->wikiPage = $wikiPage;
 		$this->derivedDataUpdater = $derivedDataUpdater;
 
@@ -775,11 +774,9 @@ class PageUpdater {
 			$useStashed = $this->ajaxEditStash;
 		}
 
-		$user = $this->performer->getUser();
-
 		// Prepare the update. This performs PST and generates the canonical ParserOutput.
 		$this->derivedDataUpdater->prepareContent(
-			$user,
+			$this->author,
 			$this->slotsUpdate,
 			$useStashed
 		);
@@ -788,7 +785,7 @@ class PageUpdater {
 		$renderedRevision = $this->derivedDataUpdater->getRenderedRevision();
 		$hookStatus = Status::newGood( [] );
 		$allowedByHook = $this->hookRunner->onMultiContentSave(
-			$renderedRevision, $user, $summary, $flags, $hookStatus
+			$renderedRevision, $this->author, $summary, $flags, $hookStatus
 		);
 		if ( $allowedByHook && $this->hookContainer->isRegistered( 'PageContentSave' ) ) {
 			// Also run the legacy hook.
@@ -796,7 +793,7 @@ class PageUpdater {
 			// and only if something uses the legacy hook.
 			$mainContent = $this->derivedDataUpdater->getSlots()->getContent( SlotRecord::MAIN );
 
-			$legacyUser = self::toLegacyUser( $user );
+			$legacyUser = self::toLegacyUser( $this->author );
 
 			// Deprecated since 1.35.
 			$allowedByHook = $this->hookRunner->onPageContentSave(
@@ -826,16 +823,16 @@ class PageUpdater {
 		// Actually create the revision and create/update the page.
 		// Do NOT yet set $this->status!
 		if ( $flags & EDIT_UPDATE ) {
-			$status = $this->doModify( $summary, $user, $flags );
+			$status = $this->doModify( $summary, $this->author, $flags );
 		} else {
-			$status = $this->doCreate( $summary, $user, $flags );
+			$status = $this->doCreate( $summary, $this->author, $flags );
 		}
 
 		// Promote user to any groups they meet the criteria for
-		DeferredUpdates::addCallableUpdate( function () use ( $user ) {
-			$this->userGroupManager->addUserToAutopromoteOnceGroups( $user, 'onEdit' );
+		DeferredUpdates::addCallableUpdate( function () {
+			$this->userGroupManager->addUserToAutopromoteOnceGroups( $this->author, 'onEdit' );
 			// Also run 'onView' for backwards compatibility
-			$this->userGroupManager->addUserToAutopromoteOnceGroups( $user, 'onView' );
+			$this->userGroupManager->addUserToAutopromoteOnceGroups( $this->author, 'onView' );
 		} );
 
 		// NOTE: set $this->status only after all hooks have been called,
@@ -920,7 +917,7 @@ class PageUpdater {
 
 		// do we need PST?
 
-		$this->status = $this->doUpdate( $this->performer->getUser(), $revision );
+		$this->status = $this->doUpdate( $this->author, $revision );
 	}
 
 	/**

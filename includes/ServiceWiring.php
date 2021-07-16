@@ -117,6 +117,7 @@ use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Storage\SqlBlobStore;
 use MediaWiki\Tidy\RemexDriver;
@@ -1029,6 +1030,42 @@ return [
 			$services->getDBLoadBalancerFactory(),
 			$services->getNamespaceInfo(),
 			$services->getTitleParser()
+		);
+	},
+
+	'PageUpdaterFactory' => static function (
+		MediaWikiServices $services
+	): PageUpdaterFactory {
+		$editResultCache = new EditResultCache(
+			$services->getMainObjectStash(),
+			$services->getDBLoadBalancer(),
+			new ServiceOptions(
+				EditResultCache::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			)
+		);
+
+		return new PageUpdaterFactory(
+			$services->getRevisionStore(),
+			$services->getRevisionRenderer(),
+			$services->getSlotRoleRegistry(),
+			$services->getParserCache(),
+			$services->getJobQueueGroup(),
+			$services->getMessageCache(),
+			$services->getContentLanguage(),
+			$services->getDBLoadBalancerFactory(),
+			$services->getContentHandlerFactory(),
+			$services->getHookContainer(),
+			$editResultCache,
+			$services->getUserNameUtils(),
+			LoggerFactory::getInstance( 'SavePage' ),
+			new ServiceOptions(
+				PageUpdaterFactory::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			$services->getUserEditTracker(),
+			$services->getUserGroupManager(),
+			ChangeTags::getSoftwareTags()
 		);
 	},
 
