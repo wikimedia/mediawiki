@@ -730,7 +730,7 @@ return [
 			'feedback.js',
 			'FeedbackDialog.js',
 		],
-		'styles' => 'feedback.css',
+		'styles' => 'feedback.less',
 		'dependencies' => [
 			'mediawiki.messagePoster',
 			'mediawiki.Title',
@@ -1554,7 +1554,7 @@ return [
 	'mediawiki.page.gallery.styles' => [
 		'styles' => [
 			'resources/src/mediawiki.page.gallery.styles/gallery.less',
-			'resources/src/mediawiki.page.gallery.styles/print.css' => [ 'media' => 'print' ],
+			'resources/src/mediawiki.page.gallery.styles/print.less' => [ 'media' => 'print' ],
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
@@ -2230,7 +2230,7 @@ return [
 		'targets' => [ 'desktop', 'mobile' ]
 	],
 	'mediawiki.special.search.styles' => [
-		'styles' => 'resources/src/mediawiki.special.search.styles.css',
+		'styles' => 'resources/src/mediawiki.special.search.styles.less',
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 	'mediawiki.special.unwatchedPages' => [
@@ -2286,7 +2286,7 @@ return [
 	],
 	'mediawiki.special.userlogin.login.styles' => [
 		'styles' => [
-			'resources/src/mediawiki.special.userlogin.login.styles/login.css',
+			'resources/src/mediawiki.special.userlogin.login.styles/login.less',
 		],
 	],
 	'mediawiki.special.createaccount' => [

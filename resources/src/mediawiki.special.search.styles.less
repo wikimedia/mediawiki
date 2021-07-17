@@ -18,20 +18,20 @@
 .mw-search-results {
 	margin: 0;
 	max-width: 38em;
+
+	li {
+		list-style: none;
+		/* Rely on `padding-bottom` here to add on top of `.content li` provided `margin`. */
+		padding-bottom: 24px;
+
+		a {
+			font-size: 108%;
+		}
+	}
 }
 
 .mw-search-visualclear {
 	clear: both;
-}
-
-.mw-search-results li {
-	list-style: none;
-	/* Rely on `padding-bottom` here to add on top of `.content li` provided `margin`. */
-	padding-bottom: 24px;
-}
-
-.mw-search-results li a {
-	font-size: 108%;
 }
 
 .mw-search-result-data {
@@ -49,32 +49,32 @@
 .search-types {
 	float: left;
 	padding-left: 0.25em;
-}
 
-.search-types ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
-}
+	ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
 
-.search-types li {
-	float: left;
-	margin: 0;
-	padding: 0;
-}
+	li {
+		float: left;
+		margin: 0;
+		padding: 0;
+	}
 
-.search-types a {
-	display: block;
-	padding: 0.5em;
-}
+	a {
+		display: block;
+		padding: 0.5em;
+	}
 
-.search-types .current a {
-	color: #202122;
-	cursor: default;
-}
+	.current a {
+		color: #202122;
+		cursor: default;
 
-.search-types .current a:hover {
-	text-decoration: none;
+		&:hover {
+			text-decoration: none;
+		}
+	}
 }
 
 .results-info {
@@ -101,34 +101,34 @@
 	margin: -1px 0 0;
 	border: 1px solid #c8ccd1;
 	border-radius: 0 0 2px 2px;
-}
 
-#mw-searchoptions legend {
-	display: none;
-}
+	legend {
+		display: none;
+	}
 
-#mw-searchoptions h4 {
-	padding: 0;
-	margin: 0;
-	float: left;
-}
+	h4 {
+		padding: 0;
+		margin: 0;
+		float: left;
+	}
 
-#mw-searchoptions table {
-	float: left;
-	margin-right: 3em;
-	border-collapse: collapse;
-}
+	table {
+		float: left;
+		margin-right: 3em;
+		border-collapse: collapse;
 
-#mw-searchoptions table td {
-	padding: 0 1em 0 0;
-	white-space: nowrap;
-}
+		td {
+			padding: 0 1em 0 0;
+			white-space: nowrap;
+		}
+	}
 
-#mw-searchoptions .divider {
-	clear: both;
-	border-bottom: 1px solid #eaecf0;
-	padding-top: 0.5em;
-	margin-bottom: 0.5em;
+	.divider {
+		clear: both;
+		border-bottom: 1px solid #eaecf0;
+		padding-top: 0.5em;
+		margin-bottom: 0.5em;
+	}
 }
 
 #mw-search-menu {
@@ -176,14 +176,14 @@
 
 #mw-search-togglebox {
 	float: right;
-}
 
-#mw-search-togglebox label {
-	margin-right: 0.25em;
-}
+	label {
+		margin-right: 0.25em;
+	}
 
-#mw-search-togglebox input {
-	margin-left: 0.25em;
+	input {
+		margin-left: 0.25em;
+	}
 }
 
 .client-nojs #mw-search-togglebox {
