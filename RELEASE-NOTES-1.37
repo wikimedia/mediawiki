@@ -210,6 +210,8 @@ because of Phabricator reports.
 * The TitleArrayFromResult hook, deprecated in 1.36, was removed.
 * The deprecated "es6-promise" alias ResourceLoader module has been removed. Use
   "es6-polyfills" directly intead.
+* The deprecated "mediawiki.legacy.protect" ResourceLoader module, deprecated
+  since 1.36, has been removed. Use "mediawiki.action.protect" instead.
 * AuthenticationProvider interface doesn't extend LoggerAwareInterface.
   So AuthenticationProvider can't be typehinted as LoggerAwareInterface.
 * User::getGrantName(), hard deprecated since 1.36, has been removed.
