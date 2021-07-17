@@ -90,7 +90,7 @@ class DeferredUpdatesScope {
 	 * @param int $stage One of DeferredUpdates::STAGES
 	 */
 	public function addUpdate( DeferrableUpdate $update, $stage ) {
-		// Handle the case where the the specified stage must have already passed
+		// Handle the case where the specified stage must have already passed
 		$stageEffective = max( $stage, $this->activeStage );
 
 		$queue =& $this->queueByStage[$stageEffective];
@@ -186,7 +186,7 @@ class DeferredUpdatesScope {
 			// Do everything, all the way to the last "defer until" stage
 			$activeStage = DeferredUpdates::STAGES[count( DeferredUpdates::STAGES ) - 1];
 		} else {
-			// Handle the case where the the specified stage must have already passed
+			// Handle the case where the specified stage must have already passed
 			$activeStage = max( $stage, $this->activeStage );
 		}
 
