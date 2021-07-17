@@ -1752,7 +1752,8 @@ return [
 			$services->getLanguageConverterFactory(),
 			$services->getDBLoadBalancer(),
 			LoggerFactory::getInstance( 'UserOptionsManager' ),
-			$services->getHookContainer()
+			$services->getHookContainer(),
+			$services->getUserFactory()
 		);
 	},
 

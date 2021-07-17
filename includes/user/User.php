@@ -49,6 +49,7 @@ use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\DBExpectedError;
 use Wikimedia\Rdbms\IDatabase;
 use Wikimedia\ScopedCallback;
+use Wikimedia\Timestamp\ConvertibleTimestamp;
 
 /**
  * The User object encapsulates all of the user-specific settings (user_id,
@@ -2215,12 +2216,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return string Timestamp in TS_MW format
 	 */
 	private function newTouchedTimestamp() {
-		$time = time();
+		$time = ConvertibleTimestamp::now( TS_UNIX );
 		if ( $this->mTouched ) {
-			$time = max( $time, wfTimestamp( TS_UNIX, $this->mTouched ) + 1 );
+			$time = max( $time, ConvertibleTimestamp::convert( TS_UNIX, $this->mTouched ) + 1 );
 		}
 
-		return wfTimestamp( TS_MW, $time );
+		return ConvertibleTimestamp::convert( TS_MW, $time );
 	}
 
 	/**
@@ -3359,7 +3360,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		} );
 
 		$this->mTouched = $newTouched;
-		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptions( $this );
+		MediaWikiServices::getInstance()->getUserOptionsManager()->saveOptionsInternal( $this, $dbw );
 
 		$this->getHookRunner()->onUserSaveSettings( $this );
 		$this->clearSharedCache( 'changed' );
