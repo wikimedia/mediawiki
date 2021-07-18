@@ -1,5 +1,5 @@
 General:
-* Icb54f847 Fixing multiple jQuery deprecations.
+* Icb54f847 and Ie2e3e06d Fixing multiple jQuery deprecations.
 
 jquery.ui.position.js
 * I047a92b45 Avoid deprecated jQuery.offset() on invalid DOM element.

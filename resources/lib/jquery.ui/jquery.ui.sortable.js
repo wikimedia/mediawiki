@@ -113,7 +113,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		if(this.options.handle && !overrideHandle) {
 			var validHandle = false;
 
-			$(this.options.handle, currentItem).find("*").andSelf().each(function() { if(this == event.target) validHandle = true; });
+			$(this.options.handle, currentItem).find("*").addBack().each(function() { if(this == event.target) validHandle = true; });
 			if(!validHandle) return false;
 		}
 
