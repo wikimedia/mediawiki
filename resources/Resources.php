@@ -2369,17 +2369,6 @@ return [
 			'resources/src/mediawiki.skinning/commonPrint.less' => [ 'media' => 'print' ]
 		],
 	],
-	'mediawiki.legacy.protect' => [
-		'deprecated' => "Please use mediawiki.action.protect",
-		'localBasePath' => "$IP/resources/src/mediawiki.legacy",
-		'remoteBasePath' => "$wgResourceBasePath/resources/src/mediawiki.legacy",
-		'packageFiles' => [
-			'protect.js',
-			[ 'name' => 'config.json', 'config' => [ 'CascadingRestrictionLevels' ] ],
-		],
-		'dependencies' => 'jquery.lengthLimit',
-		'messages' => [ 'protect-unchain-permissions' ]
-	],
 	// Used in the web installer. Test it after modifying this definition!
 	'mediawiki.legacy.shared' => [
 		'deprecated' => 'Your default skin ResourceLoader class should use '
