@@ -1076,6 +1076,8 @@
 	"prefsnologintext2": "Sinun pitää kirjautua sisään ennen kuin voit muuttaa omia asetuksiasi.",
 	"prefs-skin": "Ulkoasu",
 	"prefs-skin-prefs": "Ulkoasuasetukset",
+	"prefs-skin-responsive": "Ota responsiivinen tila käyttöön",
+	"prefs-help-skin-responsive": "Mukauta ulkoasu käytettävissä olevaan näkymäalueeseen. (Ei välttämättä vaikutusta joissain ulkoasuissa).",
 	"skin-preview": "esikatselu",
 	"datedefault": "Ei omaa määrittelyä",
 	"prefs-labs": "Testattavana olevat ominaisuudet",
