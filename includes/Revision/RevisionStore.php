@@ -1654,6 +1654,7 @@ class RevisionStore
 	 *
 	 * @return RevisionRecord
 	 * @throws MWException
+	 * @throws RevisionAccessException
 	 * @see RevisionFactory::newRevisionFromRow
 	 */
 	public function newRevisionFromRowAndSlots(
@@ -1686,6 +1687,14 @@ class RevisionStore
 			}
 		} else {
 			$page = $this->ensureRevisionRowMatchesPage( $row, $page );
+		}
+
+		if ( !$page ) {
+			// This should already have been caught about, but apparently
+			// it not always is, see T286877.
+			throw new RevisionAccessException(
+				"Failed to determine page associated with revision {$row->rev_id}"
+			);
 		}
 
 		try {
