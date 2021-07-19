@@ -132,6 +132,9 @@ interface IDatabase {
 	/** @var int Query is known to be a Data Definition Language command */
 	public const QUERY_CHANGE_SCHEMA = 256 | self::QUERY_IGNORE_DBO_TRX;
 
+	/** Flag to return the lock acquision timestamp (null if not acquired) */
+	public const LOCK_TIMESTAMP = 1;
+
 	/** @var bool Parameter to unionQueries() for UNION ALL */
 	public const UNION_ALL = true;
 	/** @var bool Parameter to unionQueries() for UNION DISTINCT */
@@ -544,7 +547,7 @@ interface IDatabase {
 	 * @param string $sql SQL query
 	 * @param string $fname Name of the calling function, for profiling/SHOW PROCESSLIST
 	 *     comment (you can use __METHOD__ or add some extra info)
-	 * @param int $flags Bitfield of IDatabase::QUERY_* constants. Note that suppression
+	 * @param int $flags Bit field of IDatabase::QUERY_* constants. Note that suppression
 	 *     of errors is best handled by try/catch rather than using one of these flags.
 	 * @return bool|IResultWrapper True for a successful write query, IResultWrapper object
 	 *     for a successful read query, or false on failure if QUERY_SILENCE_ERRORS is set.
@@ -2214,10 +2217,11 @@ interface IDatabase {
 	 * @param string $lockName Name of lock to aquire
 	 * @param string $method Name of the calling method
 	 * @param int $timeout Acquisition timeout in seconds (0 means non-blocking)
+	 * @param int $flags Bit field of IDatabase::LOCK_* constants
 	 * @return bool Success
 	 * @throws DBError If an error occurs, {@see query}
 	 */
-	public function lock( $lockName, $method, $timeout = 5 );
+	public function lock( $lockName, $method, $timeout = 5, $flags = 0 );
 
 	/**
 	 * Release a lock

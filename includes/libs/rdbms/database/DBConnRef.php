@@ -713,7 +713,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function lock( $lockName, $method, $timeout = 5 ) {
+	public function lock( $lockName, $method, $timeout = 5, $flags = 0 ) {
 		$this->assertRoleAllowsWrites();
 
 		return $this->__call( __FUNCTION__, func_get_args() );

@@ -1374,65 +1374,65 @@ SQL;
 		return true;
 	}
 
-	public function lockIsFree( $lockName, $method ) {
-		if ( !parent::lockIsFree( $lockName, $method ) ) {
-			return false; // already held
-		}
+	public function doLockIsFree( string $lockName, string $method ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+
 		$res = $this->query(
 			"SELECT (CASE(pg_try_advisory_lock($key))
-			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS lockstatus",
+			WHEN 'f' THEN 'f' ELSE pg_advisory_unlock($key) END) AS unlocked",
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_NONE
 		);
 		$row = $this->fetchObject( $res );
 
-		return ( $row->lockstatus === 't' );
+		return ( $row->unlocked === 't' );
 	}
 
-	public function lock( $lockName, $method, $timeout = 5 ) {
+	public function doLock( string $lockName, string $method, int $timeout ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+
+		$acquired = null;
 		$loop = new WaitConditionLoop(
-			function () use ( $lockName, $key, $timeout, $method ) {
+			function () use ( $lockName, $key, $timeout, $method, &$acquired ) {
 				$res = $this->query(
-					"SELECT pg_try_advisory_lock($key) AS lockstatus",
+					"SELECT (CASE WHEN pg_try_advisory_lock($key) " .
+						"THEN EXTRACT(epoch from clock_timestamp()) " .
+						"ELSE NULL " .
+					"END) AS acquired",
 					$method,
 					self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 				);
 				$row = $this->fetchObject( $res );
-				if ( $row->lockstatus === 't' ) {
-					parent::lock( $lockName, $method, $timeout ); // record
-					return true;
+
+				if ( $row->acquired !== null ) {
+					$acquired = (float)$row->acquired;
+
+					return WaitConditionLoop::CONDITION_REACHED;
 				}
 
 				return WaitConditionLoop::CONDITION_CONTINUE;
 			},
 			$timeout
 		);
+		$loop->invoke();
 
-		return ( $loop->invoke() === $loop::CONDITION_REACHED );
+		return $acquired;
 	}
 
-	public function unlock( $lockName, $method ) {
+	public function doUnlock( string $lockName, string $method ) {
 		// http://www.postgresql.org/docs/9.2/static/functions-admin.html#FUNCTIONS-ADVISORY-LOCKS
 		$key = $this->addQuotes( $this->bigintFromLockName( $lockName ) );
+
 		$result = $this->query(
-			"SELECT pg_advisory_unlock($key) as lockstatus",
+			"SELECT pg_advisory_unlock($key) AS released",
 			$method,
 			self::QUERY_IGNORE_DBO_TRX | self::QUERY_CHANGE_ROWS
 		);
 		$row = $this->fetchObject( $result );
 
-		if ( $row->lockstatus === 't' ) {
-			parent::unlock( $lockName, $method ); // record
-			return true;
-		}
-
-		$this->queryLogger->debug( __METHOD__ . " failed to release lock" );
-
-		return false;
+		return ( $row->released === 't' );
 	}
 
 	public function serverIsReadOnly() {
