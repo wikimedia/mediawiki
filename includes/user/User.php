@@ -2709,9 +2709,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param array|null $options Assoc. array with options keys to check as keys.
 	 *   Defaults to $this->mOptions.
 	 * @return string[] The key => kind mapping data
-	 * @deprecated since 1.35 Use UserOptionsManager::getOptionKinds instead
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 * Use UserOptionsManager::getOptionKinds instead
 	 */
 	public function getOptionKinds( IContextSource $context, $options = null ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserOptionsManager()
 			->getOptionKinds( $this, $context, $options );
@@ -2730,12 +2732,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param IContextSource|null $context Context source used when $resetKinds
 	 *  does not contain 'all', passed to getOptionKinds().
 	 *  Defaults to RequestContext::getMain() when null.
-	 * @deprecated since 1.35 Use UserOptionsManager::resetOptions instead (Warning: Different argument order).
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 *  Use UserOptionsManager::resetOptions instead (Warning: Different argument order).
 	 */
 	public function resetOptions(
 		$resetKinds = [ 'registered', 'registered-multiselect', 'registered-checkmatrix', 'unused' ],
 		IContextSource $context = null
 	) {
+		wfDeprecated( __METHOD__, '1.35' );
 		MediaWikiServices::getInstance()
 			->getUserOptionsManager()
 			->resetOptions(

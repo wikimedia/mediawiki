@@ -507,6 +507,8 @@ because of Phabricator reports.
 * The Title class members: $mTextform, $mUrlform, $mDbkeyform, $mNamespace,
   $mInterwiki, and $mFragment have been deprecated to not be used directly.
   Instead, their corresponding accessor methods should be used.
+* User::getOptionKinds() and ::resetOptions(), both deprecated since 1.35,
+  now emit deprecation warnings.
 * …
 
 === Other changes in 1.37 ===
