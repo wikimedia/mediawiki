@@ -2,6 +2,11 @@
 li.gallerybox {
 	vertical-align: top;
 	display: inline-block;
+
+	div.thumb {
+		background-color: #fff;
+		border: 1px solid #ccc;
+	}
 }
 
 ul.gallery {
@@ -15,11 +20,6 @@ li.gallerycaption {
 	text-align: center;
 	display: block;
 	word-wrap: break-word;
-}
-
-li.gallerybox div.thumb {
-	background-color: #fff;
-	border: 1px solid #ccc;
 }
 
 div.gallerytext {
@@ -41,12 +41,10 @@ ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapp
 	overflow: visible;
 	font-weight: normal;
 	margin: 0; /* correspond to style on div.thumb */
-}
 
-ul.mw-gallery-packed-hover li.gallerybox:hover div.gallerytextwrapper p,
-ul.mw-gallery-packed-overlay li.gallerybox div.gallerytextwrapper p,
-ul.mw-gallery-packed-hover li.gallerybox.mw-gallery-focused div.gallerytextwrapper p {
-	text-overflow: clip;
-	white-space: normal;
-	overflow: visible;
+	p {
+		text-overflow: clip;
+		white-space: normal;
+		overflow: visible;
+	}
 }
