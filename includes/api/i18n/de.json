@@ -658,6 +658,7 @@
 	"apihelp-query+categorymembers-example-simple": "Rufe die ersten 10 Seiten von <kbd>Category:Physics</kbd> ab.",
 	"apihelp-query+categorymembers-example-generator": "Rufe die Seiteninformationen zu den ersten 10 Seiten von<kbd>Category:Physics</kbd> ab.",
 	"apihelp-query+contributors-summary": "Rufe die Liste der angemeldeten Bearbeiter und die Zahl anonymer Bearbeiter einer Seite ab.",
+	"apihelp-query+contributors-param-excluderights": "Ausschließen von Benutzer mit den angegebenen Rechten. Beinhaltet keine Rechte, die von impliziten oder automatisch hochgestuften Gruppen wie *, Benutzer oder automatisch bestätigt wurden.",
 	"apihelp-query+contributors-param-limit": "Wie viele Spender zurückgegeben werden sollen.",
 	"apihelp-query+contributors-example-simple": "Zeige Mitwirkende der Seite <kbd>Main Page</kbd>.",
 	"apihelp-query+deletedrevisions-summary": "Ruft Informationen zu gelöschten Versionen ab.",

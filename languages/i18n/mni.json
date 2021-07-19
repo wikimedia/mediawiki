@@ -568,7 +568,7 @@
 	"diff-empty": "(ꯈꯩꯠꯅꯕ ꯂꯩꯇꯦ)",
 	"diff-multi-sameuser": "({{PLURAL:$1|ꯃꯔꯛꯀꯤ ꯑꯃꯨꯛꯍꯟꯅ-ꯌꯦꯡꯕ ꯱|$1 ꯃꯔꯛꯀꯤ ꯑꯃꯨꯛꯍꯟꯅ-ꯌꯦꯡꯕꯁꯤꯡ}} ꯆꯞ ꯃꯥꯟꯅꯕ ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯃꯤꯑꯣꯏ, ꯃꯌꯥꯝꯗ ꯎꯠꯊꯣꯛꯇ꯭ꯔꯦ)",
 	"diff-multi-otherusers": "({{PLURAL:$2|ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯑꯇꯣꯞꯄ ꯱|ꯁꯤꯖꯤꯟꯅꯔꯤꯕ ꯑꯇꯣꯞꯄ $2}}ꯅ ꯇꯧꯕ {{PLURAL:$1|ꯃꯔꯛꯀꯤ ꯑꯃꯨꯛꯍꯟꯅ-ꯌꯦꯡꯕ ꯱|ꯃꯔꯛꯀꯤ ꯑꯃꯨꯛꯍꯟꯅ-ꯌꯦꯡꯕ $1}} ꯑꯗꯨ ꯎꯠꯇ꯭ꯔꯦ)",
-	"searchresults": "ꯊꯤꯕꯒꯤ ꯐꯣꯜ",
+	"searchresults": "ꯊꯤꯕꯗ ꯐꯪꯕ",
 	"search-filter-title-prefix-reset": "ꯂꯃꯥꯏ ꯄꯨꯂꯞ ꯊꯤꯕ",
 	"searchresults-title": "\"$1\" ꯊꯤꯕꯗ ꯐꯪꯕ",
 	"titlematches": "ꯂꯃꯥꯏ ꯃꯃꯤꯡ ꯃꯥꯟꯅꯔꯦ",
