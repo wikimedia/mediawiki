@@ -136,6 +136,17 @@ class VueComponentParserTest extends PHPUnit\Framework\TestCase {
 				'Template with comment inside: comment removed when minifying',
 			],
 			[
+				'<!-- Explanation --><template><p>{{foo}}</p></template><script>bar</script>',
+				true,
+				[
+					'script' => 'bar',
+					'template' => '<p>{{foo}}</p>',
+					'style' => null,
+					'styleLang' => null,
+				],
+				'Comment before template tag',
+			],
+			[
 				'<template>blah</template><script>bar</script>',
 				false,
 				null,

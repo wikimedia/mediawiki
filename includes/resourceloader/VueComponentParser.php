@@ -58,10 +58,13 @@ class VueComponentParser {
 	public function parse( string $html, array $options = [] ) : array {
 		$dom = $this->parseHTML( $html );
 		// Remex wraps everything in <html><head>, unwrap that
-		$head = $dom->firstChild->firstChild;
+		$head = $dom->getElementsByTagName( 'head' )->item( 0 );
 
 		// Find the <script>, <template> and <style> tags. They can appear in any order, but they
 		// must be at the top level, and there can only be one of each.
+		if ( !$head ) {
+			throw new Exception( 'Parsed DOM did not contain a <head> tag' );
+		}
 		$nodes = $this->findUniqueTags( $head, [ 'script', 'template', 'style' ] );
 
 		// Throw an error if we didn't find a <script> or <template> tag. <style> is optional.
