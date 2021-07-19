@@ -83,6 +83,7 @@ use MediaWiki\Storage\BlobStoreFactory;
 use MediaWiki\Storage\NameTableStore;
 use MediaWiki\Storage\NameTableStoreFactory;
 use MediaWiki\Storage\PageEditStash;
+use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\RevertedTagUpdateManager;
 use MediaWiki\Tidy\TidyDriverBase;
 use MediaWiki\User\ActorNormalization;
@@ -1222,6 +1223,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getPageStoreFactory() : PageStoreFactory {
 		return $this->getService( 'PageStoreFactory' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return PageUpdaterFactory
+	 */
+	public function getPageUpdaterFactory() : PageUpdaterFactory {
+		return $this->getService( 'PageUpdaterFactory' );
 	}
 
 	/**
