@@ -30,6 +30,7 @@
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use Wikimedia\Rdbms\IDatabase;
@@ -539,8 +540,13 @@ class WikiExporter {
 				$output = $this->writer->openPage( $revRow );
 				$this->sink->writeOpenPage( $revRow, $output );
 			}
-			$output = $this->writer->writeRevision( $revRow, $slotRows );
-			$this->sink->writeRevision( $revRow, $output );
+			try {
+				$output = $this->writer->writeRevision( $revRow, $slotRows );
+				$this->sink->writeRevision( $revRow, $output );
+			} catch ( RevisionAccessException $ex ) {
+				MWDebug::warning( 'Problem encountered retrieving rev and slot metadata for'
+								  . ' revision ' . $revRow->rev_id . ': ' . $ex->getMessage() );
+			}
 			$lastRow = $revRow;
 		}
 

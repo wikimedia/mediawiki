@@ -24,9 +24,12 @@ namespace MediaWiki\User;
 
 use BotPassword;
 use CentralIdLookup;
+use DBAccessObjectUtils;
 use FormatJson;
+use IDBAccessObject;
 use MediaWiki\Config\ServiceOptions;
 use MWCryptRand;
+use MWRestrictions;
 use Password;
 use PasswordFactory;
 use StatusValue;
@@ -38,7 +41,7 @@ use Wikimedia\Rdbms\LBFactory;
  * @author DannyS712
  * @since 1.37
  */
-class BotPasswordStore {
+class BotPasswordStore implements IDBAccessObject {
 
 	/**
 	 * @internal For use by ServiceWiring
@@ -95,6 +98,121 @@ class BotPasswordStore {
 			[],
 			$this->options->get( 'BotPasswordsDatabase' )
 		);
+	}
+
+	/**
+	 * Load a BotPassword from the database based on a User object
+	 * @param User $user
+	 * @param string $appId
+	 * @param int $flags IDBAccessObject read flags
+	 * @return BotPassword|null
+	 */
+	public function getByUser(
+		User $user,
+		string $appId,
+		int $flags = self::READ_NORMAL
+	) : ?BotPassword {
+		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
+			return null;
+		}
+
+		$centralId = $this->centralIdLookup->centralIdFromLocalUser(
+			$user,
+			CentralIdLookup::AUDIENCE_RAW,
+			$flags
+		);
+		return $centralId ? $this->getByCentralId( $centralId, $appId, $flags ) : null;
+	}
+
+	/**
+	 * Load a BotPassword from the database
+	 * @param int $centralId from CentralIdLookup
+	 * @param string $appId
+	 * @param int $flags IDBAccessObject read flags
+	 * @return BotPassword|null
+	 */
+	public function getByCentralId(
+		int $centralId,
+		string $appId,
+		int $flags = self::READ_NORMAL
+	) : ?BotPassword {
+		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
+			return null;
+		}
+
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = $this->getDatabase( $index );
+		$row = $db->selectRow(
+			'bot_passwords',
+			[ 'bp_user', 'bp_app_id', 'bp_token', 'bp_restrictions', 'bp_grants' ],
+			[ 'bp_user' => $centralId, 'bp_app_id' => $appId ],
+			__METHOD__,
+			$options
+		);
+		return $row ? new BotPassword( $row, true, $flags ) : null;
+	}
+
+	/**
+	 * Create an unsaved BotPassword
+	 * @param array $data Data to use to create the bot password. Keys are:
+	 *  - user: (User) User object to create the password for. Overrides username and centralId.
+	 *  - username: (string) Username to create the password for. Overrides centralId.
+	 *  - centralId: (int) User central ID to create the password for.
+	 *  - appId: (string, required) App ID for the password.
+	 *  - restrictions: (MWRestrictions, optional) Restrictions.
+	 *  - grants: (string[], optional) Grants.
+	 * @param int $flags IDBAccessObject read flags
+	 * @return BotPassword|null
+	 */
+	public function newUnsavedBotPassword(
+		array $data,
+		int $flags = self::READ_NORMAL
+	) : ?BotPassword {
+		if ( isset( $data['user'] ) && ( !$data['user'] instanceof User ) ) {
+			return null;
+		}
+
+		$row = (object)[
+			'bp_user' => 0,
+			'bp_app_id' => isset( $data['appId'] ) ? trim( $data['appId'] ) : '',
+			'bp_token' => '**unsaved**',
+			'bp_restrictions' => $data['restrictions'] ?? MWRestrictions::newDefault(),
+			'bp_grants' => $data['grants'] ?? [],
+		];
+
+		if (
+			$row->bp_app_id === '' ||
+			strlen( $row->bp_app_id ) > BotPassword::APPID_MAXLENGTH ||
+			!$row->bp_restrictions instanceof MWRestrictions ||
+			!is_array( $row->bp_grants )
+		) {
+			return null;
+		}
+
+		$row->bp_restrictions = $row->bp_restrictions->toJson();
+		$row->bp_grants = FormatJson::encode( $row->bp_grants );
+
+		if ( isset( $data['user'] ) ) {
+			// Must be a User object, already checked above
+			$row->bp_user = $this->centralIdLookup->centralIdFromLocalUser(
+				$data['user'],
+				CentralIdLookup::AUDIENCE_RAW,
+				$flags
+			);
+		} elseif ( isset( $data['username'] ) ) {
+			$row->bp_user = $this->centralIdLookup->centralIdFromName(
+				$data['username'],
+				CentralIdLookup::AUDIENCE_RAW,
+				$flags
+			);
+		} elseif ( isset( $data['centralId'] ) ) {
+			$row->bp_user = $data['centralId'];
+		}
+		if ( !$row->bp_user ) {
+			return null;
+		}
+
+		return new BotPassword( $row, false, $flags );
 	}
 
 	/**
