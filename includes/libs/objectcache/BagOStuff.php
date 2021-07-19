@@ -309,17 +309,18 @@ abstract class BagOStuff implements
 	abstract public function changeTTL( $key, $exptime = 0, $flags = 0 );
 
 	/**
-	 * Acquire an advisory lock on a key string
-	 *
-	 * Note that if reentry is enabled, duplicate calls ignore $expiry
+	 * Acquire an advisory lock on a key string, exclusive to the caller
 	 *
 	 * @param string $key
 	 * @param int $timeout Lock wait timeout; 0 for non-blocking [optional]
-	 * @param int $expiry Lock expiry [optional]; 1 day maximum
-	 * @param string $rclass Allow reentry if set and the current lock used this value
+	 * @param int $exptime Lock time-to-live in seconds; 1 day maximum [optional]
+	 * @param string $rclass If this thread already holds the lock, and the lock was acquired
+	 *  using the same value for this parameter, then return true and use reference counting so
+	 *  that only the unlock() call from the outermost lock() caller actually releases the lock
+	 *  (note that only the outermost time-to-live is used) [optional]
 	 * @return bool Success
 	 */
-	abstract public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' );
+	abstract public function lock( $key, $timeout = 6, $exptime = 6, $rclass = '' );
 
 	/**
 	 * Release an advisory lock on a key string
@@ -352,18 +353,7 @@ abstract class BagOStuff implements
 			return null;
 		}
 
-		$lSince = $this->getCurrentTime(); // lock timestamp
-
-		return new ScopedCallback( function () use ( $key, $lSince, $expiry ) {
-			$latency = 0.050; // latency skew (err towards keeping lock present)
-			$age = ( $this->getCurrentTime() - $lSince + $latency );
-			if ( ( $age + $latency ) >= $expiry ) {
-				$this->logger->warning(
-					"Lock for {key} held too long ({age} sec).",
-					[ 'key' => $key, 'age' => $age ]
-				);
-				return; // expired; it's not "safe" to delete the key
-			}
+		return new ScopedCallback( function () use ( $key, $expiry ) {
 			$this->unlock( $key );
 		} );
 	}
