@@ -28,3 +28,4 @@ $wgVisualEditorAvailableNamespaces = [
 ];
 
 $wgVisualEditorEnableWikitext = true;
+$wgVisualEditorShowBetaWelcome = false;
