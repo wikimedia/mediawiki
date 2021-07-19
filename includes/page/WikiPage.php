@@ -20,7 +20,6 @@
  * @file
  */
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\DAO\WikiAwareEntityTrait;
@@ -38,11 +37,10 @@ use MediaWiki\Permissions\Authority;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\DerivedPageDataUpdater;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\PageUpdater;
+use MediaWiki\Storage\PageUpdaterFactory;
 use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Assert\Assert;
@@ -261,17 +259,17 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
+	 * @return PageUpdaterFactory
+	 */
+	private function getPageUpdaterFactory(): PageUpdaterFactory {
+		return MediaWikiServices::getInstance()->getPageUpdaterFactory();
+	}
+
+	/**
 	 * @return RevisionStore
 	 */
 	private function getRevisionStore() {
 		return MediaWikiServices::getInstance()->getRevisionStore();
-	}
-
-	/**
-	 * @return SlotRoleRegistry
-	 */
-	private function getSlotRoleRegistry() {
-		return MediaWikiServices::getInstance()->getSlotRoleRegistry();
 	}
 
 	/**
@@ -1715,45 +1713,6 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	}
 
 	/**
-	 * @return DerivedPageDataUpdater
-	 */
-	private function newDerivedDataUpdater() {
-		global $wgRCWatchCategoryMembership, $wgArticleCountMethod;
-
-		$services = MediaWikiServices::getInstance();
-		$editResultCache = new EditResultCache(
-			$services->getMainObjectStash(),
-			$services->getDBLoadBalancer(),
-			new ServiceOptions(
-				EditResultCache::CONSTRUCTOR_OPTIONS,
-				$services->getMainConfig()
-			)
-		);
-
-		$derivedDataUpdater = new DerivedPageDataUpdater(
-			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
-			$this->getRevisionStore(),
-			$services->getRevisionRenderer(),
-			$this->getSlotRoleRegistry(),
-			$services->getParserCache(),
-			JobQueueGroup::singleton(),
-			$services->getMessageCache(),
-			$services->getContentLanguage(),
-			$services->getDBLoadBalancerFactory(),
-			$this->getContentHandlerFactory(),
-			$this->getHookContainer(),
-			$editResultCache,
-			$services->getUserNameUtils()
-		);
-
-		$derivedDataUpdater->setLogger( LoggerFactory::getInstance( 'SaveParse' ) );
-		$derivedDataUpdater->setRcWatchCategoryMembership( $wgRCWatchCategoryMembership );
-		$derivedDataUpdater->setArticleCountMethod( $wgArticleCountMethod );
-
-		return $derivedDataUpdater;
-	}
-
-	/**
 	 * Returns a DerivedPageDataUpdater for use with the given target revision or new content.
 	 * This method attempts to re-use the same DerivedPageDataUpdater instance for subsequent calls.
 	 * The parameters passed to this method are used to ensure that the DerivedPageDataUpdater
@@ -1815,7 +1774,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		}
 
 		if ( !$this->derivedDataUpdater ) {
-			$this->derivedDataUpdater = $this->newDerivedDataUpdater();
+			$this->derivedDataUpdater =
+				$this->getPageUpdaterFactory()->newDerivedPageDataUpdater( $this );
 		}
 
 		return $this->derivedDataUpdater;
@@ -1830,40 +1790,27 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 	 *
 	 * @since 1.32
 	 *
-	 * @param Authority $performer
+	 * @note Once extensions no longer rely on WikiPage to get access to the state of an ongoing
+	 * edit via prepareContentForEdit() and WikiPage::getCurrentUpdate(),
+	 * this method should be deprecated and callers should be migrated to using
+	 * PageUpdaterFactory::newPageUpdater() instead.
+	 *
+	 * @param Authority|UserIdentity $performer
 	 * @param RevisionSlotsUpdate|null $forUpdate If given, allows any cached ParserOutput
 	 *        that may already have been returned via getDerivedDataUpdater to be re-used.
 	 *
 	 * @return PageUpdater
 	 */
-	public function newPageUpdater( Authority $performer, RevisionSlotsUpdate $forUpdate = null ) {
-		$this->assertProperPage();
+	public function newPageUpdater( $performer, RevisionSlotsUpdate $forUpdate = null ) {
+		if ( $performer instanceof Authority ) {
+			// TODO: Deprecate this. But better get rid of this method entirely.
+			$performer = $performer->getUser();
+		}
 
-		$mwServices = MediaWikiServices::getInstance();
-		$config = $mwServices->getMainConfig();
-
-		$pageUpdater = new PageUpdater(
+		$pageUpdater = $this->getPageUpdaterFactory()->newPageUpdaterForDerivedPageDataUpdater(
+			$this,
 			$performer,
-			$this, // NOTE: eventually, PageUpdater should not know about WikiPage
-			$this->getDerivedDataUpdater( $performer->getUser(), null, $forUpdate, true ),
-			$this->getDBLoadBalancer(),
-			$this->getRevisionStore(),
-			$this->getSlotRoleRegistry(),
-			$this->getContentHandlerFactory(),
-			$this->getHookContainer(),
-			$mwServices->getUserEditTracker(),
-			$mwServices->getUserGroupManager(),
-			new ServiceOptions(
-				PageUpdater::CONSTRUCTOR_OPTIONS,
-				$config
-			),
-			ChangeTags::getSoftwareTags()
-		);
-
-		$pageUpdater->setUsePageCreationLog( $config->get( 'PageCreationLog' ) );
-		$pageUpdater->setAjaxEditStash( $config->get( 'AjaxEditStash' ) );
-		$pageUpdater->setUseAutomaticEditSummaries(
-			$config->get( 'UseAutomaticEditSummaries' )
+			$this->getDerivedDataUpdater( $performer, null, $forUpdate, true )
 		);
 
 		return $pageUpdater;
