@@ -230,7 +230,7 @@ class MultiWriteBagOStuff extends BagOStuff {
 		);
 	}
 
-	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
+	public function lock( $key, $timeout = 6, $exptime = 6, $rclass = '' ) {
 		// Only need to lock the first cache; also avoids deadlocks
 		return $this->callKeyMethodOnTierCache(
 			0,

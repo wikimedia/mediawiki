@@ -120,7 +120,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	/** @var int[] Prior flags member variable values */
 	private $priorFlags = [];
 
-	/** @var array Map of (name => 1) for locks obtained via lock() */
+	/** @var array<string,float> Map of (name => UNIX timestamp) for locks obtained via lock() */
 	protected $sessionNamedLocks = [];
 	/** @var array Map of (table name => 1) for current TEMPORARY tables */
 	protected $sessionTempTables = [];
@@ -5426,33 +5426,93 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 
 	/**
 	 * @inheritDoc
-	 * @stable to override
 	 */
 	public function lockIsFree( $lockName, $method ) {
 		// RDBMs methods for checking named locks may or may not count this thread itself.
 		// In MySQL, IS_FREE_LOCK() returns 0 if the thread already has the lock. This is
 		// the behavior chosen by the interface for this method.
-		return !isset( $this->sessionNamedLocks[$lockName] );
+		if ( isset( $this->sessionNamedLocks[$lockName] ) ) {
+			$lockIsFree = false;
+		} else {
+			$lockIsFree = $this->doLockIsFree( $lockName, $method );
+		}
+
+		return $lockIsFree;
 	}
 
 	/**
-	 * @inheritDoc
+	 * @see lockIsFree()
+	 *
+	 * @param string $lockName
+	 * @param string $method
+	 * @return bool Success
+	 * @throws DBError
 	 * @stable to override
 	 */
-	public function lock( $lockName, $method, $timeout = 5 ) {
-		$this->sessionNamedLocks[$lockName] = 1;
-
-		return true;
+	protected function doLockIsFree( string $lockName, string $method ) {
+		return true; // not implemented
 	}
 
 	/**
 	 * @inheritDoc
+	 */
+	public function lock( $lockName, $method, $timeout = 5, $flags = 0 ) {
+		$lockTsUnix = $this->doLock( $lockName, $method, $timeout );
+		if ( $lockTsUnix !== null ) {
+			$locked = true;
+			$this->sessionNamedLocks[$lockName] = $lockTsUnix;
+		} else {
+			$locked = false;
+			$this->queryLogger->info( __METHOD__ . " failed to acquire lock '{lockname}'",
+				[ 'lockname' => $lockName ] );
+		}
+
+		if ( $this->fieldHasBit( $flags, self::LOCK_TIMESTAMP ) ) {
+			return $lockTsUnix;
+		} else {
+			return $locked;
+		}
+	}
+
+	/**
+	 * @see lock()
+	 *
+	 * @param string $lockName
+	 * @param string $method
+	 * @param int $timeout
+	 * @return float|null UNIX timestamp of lock acquisition; null on failure
+	 * @throws DBError
 	 * @stable to override
+	 */
+	protected function doLock( string $lockName, string $method, int $timeout ) {
+		return microtime( true ); // not implemented
+	}
+
+	/**
+	 * @inheritDoc
 	 */
 	public function unlock( $lockName, $method ) {
-		unset( $this->sessionNamedLocks[$lockName] );
+		$released = $this->doUnlock( $lockName, $method );
+		if ( $released ) {
+			unset( $this->sessionNamedLocks[$lockName] );
+		} else {
+			$this->queryLogger->warning( __METHOD__ . " failed to release lock '$lockName'\n" );
+		}
 
-		return true;
+		return $released;
+	}
+
+	/**
+	 * @see unlock()
+	 *
+	 * @param string $lockName
+	 * @param string $method
+	 * @return bool Success
+	 * @throws DBError
+	 * @stable to override
+	 */
+	protected function doUnlock( string $lockName, string $method ) {
+		return true; // not implemented
 	}
 
 	public function getScopedLockAndFlush( $lockKey, $fname, $timeout ) {

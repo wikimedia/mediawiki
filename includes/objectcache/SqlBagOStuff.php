@@ -839,70 +839,41 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 		return true;
 	}
 
-	public function lock( $key, $timeout = 6, $expiry = 6, $rclass = '' ) {
-		// Avoid deadlocks and allow lock reentry if specified
-		if ( isset( $this->locks[$key] ) ) {
-			if ( $rclass != '' && $this->locks[$key]['class'] === $rclass ) {
-				++$this->locks[$key]['depth'];
-				return true;
-			} else {
-				return false;
+	protected function doLock( $key, $timeout = 6, $exptime = 6 ) {
+		list( $shardIndex ) = $this->getKeyLocation( $key );
+
+		$lockTsUnix = null;
+
+		$db = null; // in case of connection failure
+		try {
+			$db = $this->getConnection( $shardIndex );
+			$lockTsUnix = $db->lock( $key, __METHOD__, $timeout, $db::LOCK_TIMESTAMP );
+			if ( $lockTsUnix === null ) {
+				$this->logger->warning(
+					__METHOD__ . " failed due to timeout for {key}.",
+					[ 'key' => $key, 'timeout' => $timeout ]
+				);
 			}
+		} catch ( DBError $e ) {
+			$this->handleWriteError( $e, $db, $shardIndex );
 		}
 
+		return $lockTsUnix;
+	}
+
+	protected function doUnlock( $key ) {
 		list( $shardIndex ) = $this->getKeyLocation( $key );
 
 		$db = null; // in case of connection failure
 		try {
 			$db = $this->getConnection( $shardIndex );
-			$ok = $db->lock( $key, __METHOD__, $timeout );
-			if ( $ok ) {
-				$this->locks[$key] = [ 'class' => $rclass, 'depth' => 1 ];
-			}
-
-			$this->logger->warning(
-				__METHOD__ . " failed due to timeout for {key}.",
-				[ 'key' => $key, 'timeout' => $timeout ]
-			);
-
-			return $ok;
+			$released = $db->unlock( $key, __METHOD__ );
 		} catch ( DBError $e ) {
 			$this->handleWriteError( $e, $db, $shardIndex );
-			$ok = false;
+			$released = false;
 		}
 
-		return $ok;
-	}
-
-	public function unlock( $key ) {
-		if ( !isset( $this->locks[$key] ) ) {
-			return false;
-		}
-
-		if ( --$this->locks[$key]['depth'] <= 0 ) {
-			unset( $this->locks[$key] );
-
-			list( $shardIndex ) = $this->getKeyLocation( $key );
-
-			$db = null; // in case of connection failure
-			try {
-				$db = $this->getConnection( $shardIndex );
-				$ok = $db->unlock( $key, __METHOD__ );
-				if ( !$ok ) {
-					$this->logger->warning(
-						__METHOD__ . ' failed to release lock for {key}.',
-						[ 'key' => $key ]
-					);
-				}
-			} catch ( DBError $e ) {
-				$this->handleWriteError( $e, $db, $shardIndex );
-				$ok = false;
-			}
-
-			return $ok;
-		}
-
-		return true;
+		return $released;
 	}
 
 	/**
@@ -1119,9 +1090,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 				"CREATE TABLE $encTable (\n" .
 				"	keyname BLOB NOT NULL default '' PRIMARY KEY,\n" .
 				"	value BLOB,\n" .
-				"	exptime BLOB NOT NULL,\n" .
-				"	modtoken VARCHAR(17) DEFAULT '00000000000000000' NOT NULL,\n" .
-				"	flags INTEGER UNSIGNED DEFAULT NULL" .
+				"	exptime BLOB NOT NULL\n" .
 				")",
 				__METHOD__
 			);
