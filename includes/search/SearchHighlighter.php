@@ -507,7 +507,7 @@ class SearchHighlighter {
 	}
 
 	/**
-	 * Simple & fast snippet extraction, but gives completely unrelevant
+	 * Simple & fast snippet extraction, but gives completely irrelevant
 	 * snippets
 	 *
 	 * Used when $wgAdvancedSearchHighlighting is false.
