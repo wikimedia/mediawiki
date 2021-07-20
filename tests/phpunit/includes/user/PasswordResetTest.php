@@ -7,7 +7,9 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserNameUtils;
 use MediaWiki\User\UserOptionsLookup;
 use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ILoadBalancer;
@@ -39,20 +41,15 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$user->method( 'getGlobalBlock' )->willReturn( $globalBlock );
 		$user->method( 'isAllowed' )->with( 'editmyprivateinfo' )->willReturn( $canEditPrivate );
 
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-
-		$hookContainer = $this->createHookContainer();
-
-		$mwServices = MediaWikiServices::getInstance();
 		$passwordReset = new PasswordReset(
 			$config,
 			new NullLogger(),
 			$authManager,
-			$hookContainer,
-			$loadBalancer,
-			$mwServices->getUserFactory(),
-			$mwServices->getUserNameUtils(),
-			$mwServices->getUserOptionsLookup()
+			$this->createHookContainer(),
+			$this->createNoOpMock( ILoadBalancer::class ),
+			$this->createNoOpMock( UserFactory::class ),
+			$this->createNoOpMock( UserNameUtils::class ),
+			$this->createNoOpMock( UserOptionsLookup::class )
 		);
 
 		$this->assertSame( $isAllowed, $passwordReset->isAllowed( $user )->isGood() );
@@ -209,7 +206,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			->willReturn( Status::newFatal( 'somestatuscode' ) );
 		/** @var PasswordReset $passwordReset */
 
-		$this->expectException( \LogicException::class );
+		$this->expectException( LogicException::class );
 		$passwordReset->execute( $user );
 	}
 
@@ -233,26 +230,13 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$email = '',
 		array $usersWithEmail = []
 	) {
-		// Unregister the hooks for proper unit testing
-		$this->mergeMwGlobalArrayValue( 'wgHooks', [
-			'User::mailPasswordInternal' => [],
-			'SpecialPasswordResetOnSubmit' => [],
-		] );
-
-		$loadBalancer = $this->createMock( ILoadBalancer::class );
-
 		$users = $this->makeUsers();
 
-		// Only User1 has `requireemail` true, everything else false
-		$userRequiresEmail = function ( $user, $option ) {
-			$this->assertSame( 'requireemail', $option );
-			return ( $user->getName() === 'User1' );
-		};
-		$userOptionsLookup = $this->getMockBuilder( UserOptionsLookup::class )
-			->onlyMethods( [ 'getBoolOption' ] )
-			->getMockForAbstractClass();
-		$userOptionsLookup->method( 'getBoolOption' )
-			->willReturnCallback( $userRequiresEmail );
+		// Only User1 has `requireemail` true, everything else false (so that is the default)
+		$userOptionsLookup = new StaticUserOptionsLookup(
+			[ 'User1' => [ 'requireemail' => true ] ],
+			[ 'requireemail' => false ]
+		);
 
 		// Similar to $lookupUser callback, but with null instead of false
 		$userFactory = $this->createMock( UserFactory::class );
@@ -274,8 +258,8 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				$config,
 				new NullLogger(),
 				$authManager,
-				$mwServices->getHookContainer(),
-				$loadBalancer,
+				$this->createHookContainer(),
+				$this->createNoOpMock( ILoadBalancer::class ),
 				$userFactory,
 				$mwServices->getUserNameUtils(),
 				$userOptionsLookup
@@ -636,26 +620,23 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	 * @return User[]
 	 */
 	private function makeUsers() {
-		$user1 = $this->getMockBuilder( User::class )->getMock();
-		$user2 = $this->getMockBuilder( User::class )->getMock();
-		$user3 = $this->getMockBuilder( User::class )->getMock();
-		$user4 = $this->getMockBuilder( User::class )->getMock();
-		$user1->method( 'getName' )->willReturn( 'User1' );
-		$user2->method( 'getName' )->willReturn( 'User2' );
-		$user3->method( 'getName' )->willReturn( 'User3' );
-		$user4->method( 'getName' )->willReturn( 'User4' );
-		$user1->method( 'getId' )->willReturn( 1 );
-		$user2->method( 'getId' )->willReturn( 2 );
-		$user3->method( 'getId' )->willReturn( 3 );
-		$user4->method( 'getId' )->willReturn( 4 );
-		$user1->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
-		$user2->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
-		$user3->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
-		$user4->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
+		$getGoodUserCb = function ( int $num ) {
+			$user = $this->getMockBuilder( User::class )->getMock();
+			$user->method( 'getName' )->willReturn( "User$num" );
+			$user->method( 'getId' )->willReturn( $num );
+			$user->method( 'isRegistered' )->willReturn( true );
+			$user->method( 'getEmail' )->willReturn( self::VALID_EMAIL );
+			return $user;
+		};
+		$user1 = $getGoodUserCb( 1 );
+		$user2 = $getGoodUserCb( 2 );
+		$user3 = $getGoodUserCb( 3 );
+		$user4 = $getGoodUserCb( 4 );
 
 		$badUser = $this->getMockBuilder( User::class )->getMock();
 		$badUser->method( 'getName' )->willReturn( 'BadUser' );
 		$badUser->method( 'getId' )->willReturn( 5 );
+		$badUser->method( 'isRegistered' )->willReturn( true );
 		$badUser->method( 'getEmail' )->willReturn( '' );
 
 		return [
