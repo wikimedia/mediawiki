@@ -68,7 +68,7 @@ abstract class AbstractBlock implements Block {
 	/** @var bool */
 	protected $isHardblock;
 
-	/** @var User|string|null */
+	/** @var UserIdentity|string|null */
 	protected $target;
 
 	/**
@@ -335,7 +335,13 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function getTarget() {
 		wfDeprecated( __METHOD__, '1.37' );
-		return $this->target;
+		if ( $this->target instanceof UserIdentity ) {
+			return MediaWikiServices::getInstance()
+				->getUserFactory()
+				->newFromUserIdentity( $this->target );
+		} else {
+			return $this->target;
+		}
 	}
 
 	/**
@@ -422,13 +428,9 @@ abstract class AbstractBlock implements Block {
 			$this->target = null;
 			$this->type = null;
 		} else {
-			$services = MediaWikiServices::getInstance();
-			list( $identity, $this->type ) = $services->getBlockUtils()->parseBlockTarget( $target );
-			if ( $identity instanceof UserIdentity ) {
-				$this->target = $services->getUserFactory()->newFromUserIdentity( $identity );
-			} else {
-				$this->target = $identity;
-			}
+			list( $this->target, $this->type ) = MediaWikiServices::getInstance()
+				->getBlockUtils()
+				->parseBlockTarget( $target );
 		}
 	}
 
@@ -481,8 +483,11 @@ abstract class AbstractBlock implements Block {
 	 */
 	public function appliesToUsertalk( Title $usertalk = null ) {
 		if ( !$usertalk ) {
-			if ( $this->target instanceof User ) {
-				$usertalk = $this->target->getTalkPage();
+			if ( $this->target instanceof UserIdentity ) {
+				$usertalk = Title::makeTitle(
+					NS_USER_TALK,
+					$this->target->getName()
+				);
 			} else {
 				throw new InvalidArgumentException(
 					'$usertalk must be provided if block target is not a user/IP'
