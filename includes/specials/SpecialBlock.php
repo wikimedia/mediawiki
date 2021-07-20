@@ -68,8 +68,8 @@ class SpecialBlock extends FormSpecialPage {
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
-	/** @var User|string|null User to be blocked, as passed either by parameter (url?wpTarget=Foo)
-	 * or as subpage (Special:Block/Foo)
+	/** @var UserIdentity|string|null User to be blocked, as passed either by parameter
+	 * (url?wpTarget=Foo) or as subpage (Special:Block/Foo)
 	 */
 	protected $target;
 
@@ -158,7 +158,7 @@ class SpecialBlock extends FormSpecialPage {
 		# there are legitimate uses for some variables
 		$request = $this->getRequest();
 		list( $this->target, $this->type ) = self::getTargetAndType( $par, $request );
-		if ( $this->target instanceof User ) {
+		if ( $this->target instanceof UserIdentity ) {
 			# Set the 'relevant user' in the skin, so it displays links like Contributions,
 			# User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $this->target );
@@ -567,7 +567,7 @@ class SpecialBlock extends FormSpecialPage {
 		$otherBlockMessages = [];
 		if ( $this->target !== null ) {
 			$targetName = $this->target;
-			if ( $this->target instanceof User ) {
+			if ( $this->target instanceof UserIdentity ) {
 				$targetName = $this->target->getName();
 			}
 			# Get other blocks, i.e. from GlobalBlocking or TorBlock extension
@@ -611,7 +611,7 @@ class SpecialBlock extends FormSpecialPage {
 
 		$linkRenderer = $this->getLinkRenderer();
 		# Link to the user's contributions, if applicable
-		if ( $this->target instanceof User ) {
+		if ( $this->target instanceof UserIdentity ) {
 			$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->target->getName() );
 			$links[] = $linkRenderer->makeLink(
 				$contribsPage,
@@ -620,7 +620,7 @@ class SpecialBlock extends FormSpecialPage {
 		}
 
 		# Link to unblock the specified user, or to a blank unblock form
-		if ( $this->target instanceof User ) {
+		if ( $this->target instanceof UserIdentity ) {
 			$message = $this->msg(
 				'ipb-unblock-addr',
 				wfEscapeWikiText( $this->target->getName() )
@@ -728,8 +728,8 @@ class SpecialBlock extends FormSpecialPage {
 	 * @param string|null $par Subpage parameter passed to setup, or data value from
 	 *  the HTMLForm
 	 * @param WebRequest|null $request Optionally try and get data from a request too
-	 * @return array [ User|string|null, DatabaseBlock::TYPE_ constant|null ]
-	 * @phan-return array{0:User|string|null,1:int|null}
+	 * @return array [ UserIdentity|string|null, DatabaseBlock::TYPE_ constant|null ]
+	 * @phan-return array{0:UserIdentity|string|null,1:int|null}
 	 */
 	public static function getTargetAndType( ?string $par, WebRequest $request = null ) {
 		if ( !$request instanceof WebRequest ) {
