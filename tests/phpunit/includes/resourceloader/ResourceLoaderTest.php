@@ -554,6 +554,38 @@ mw.example( 3 );
 } );
 END
 			] ],
+			[ [
+				'title' => 'Implement multi-file script, non-debug mode',
+
+				'name' => 'test.multifile',
+				'debug' => 'false',
+				'scripts' => [
+					'files' => [
+						'one.js' => [
+							'type' => 'script',
+							'content' => 'mw.example( 1 );',
+						],
+						'two.json' => [
+							'type' => 'data',
+							'content' => [ 'n' => 2 ],
+						],
+						'three.js' => [
+							'type' => 'script',
+							'content' => 'mw.example( 3 );//'
+						],
+					],
+					'main' => 'three.js',
+				],
+
+				'expected' => implode( '', [
+					'mw.loader.implement("test.multifile",',
+					'{"main":"three.js","files":{',
+					'"one.js":function(require,module){mw.example( 1 );' . "\n" . '},',
+					'"two.json":{"n":2},',
+					'"three.js":function(require,module){mw.example( 3 );//' . "\n" . '}',
+					'}});',
+				] ),
+			] ],
 		];
 	}
 
@@ -565,11 +597,15 @@ END
 	public function testMakeLoaderImplementScript( $case ) {
 		$case += [
 			'wrap' => true,
-			'styles' => [], 'templates' => [], 'messages' => new XmlJsCode( '{}' ), 'packageFiles' => [],
+			'styles' => [],
+			'templates' => [],
+			'messages' => new XmlJsCode( '{}' ),
+			'packageFiles' => [],
+			'debug' => 'true',
 		];
 		$rl = TestingAccessWrapper::newFromClass( ResourceLoader::class );
 		$context = new ResourceLoaderContext( new EmptyResourceLoader(), new FauxRequest( [
-			'debug' => 'true',
+			'debug' => $case['debug'],
 		] ) );
 		$this->assertEquals(
 			$case['expected'],
