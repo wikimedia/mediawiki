@@ -187,9 +187,10 @@ class ApiBlock extends ApiBase {
 			$this->dieStatus( $status );
 		}
 
+		$block = $status->value;
+
 		$watchlistExpiry = $this->getExpiryFromParams( $params );
-		$isUserObj = $target instanceof UserIdentity;
-		$userPage = $isUserObj ? $target->getUserPage() : Title::makeTitle( NS_USER, $target );
+		$userPage = Title::makeTitle( NS_USER, $block->getTargetName() );
 
 		if ( $params['watchuser'] && $targetType !== AbstractBlock::TYPE_RANGE ) {
 			$this->setWatch( 'watch', $userPage, $this->getUser(), null, $watchlistExpiry );
@@ -197,14 +198,9 @@ class ApiBlock extends ApiBase {
 
 		$res = [];
 
-		if ( $isUserObj ) {
-			$res['user'] = $target->getName();
-		} else {
-			$res['user'] = $target;
-		}
-		$res['userID'] = $isUserObj ? $target->getId() : 0;
+		$res['user'] = $block->getTargetName();
+		$res['userID'] = $target instanceof UserIdentity ? $target->getId() : 0;
 
-		$block = DatabaseBlock::newFromTarget( $target, null, true );
 		if ( $block instanceof DatabaseBlock ) {
 			$res['expiry'] = ApiResult::formatExpiry( $block->getExpiry(), 'infinite' );
 			$res['id'] = $block->getId();

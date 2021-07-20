@@ -25,6 +25,7 @@ use MediaWiki\Block\BlockUtils;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
 
@@ -35,8 +36,12 @@ use MediaWiki\User\UserNameUtils;
  */
 class SpecialUnblock extends SpecialPage {
 
+	/** @var UserIdentity|string|null */
 	protected $target;
+
+	/** @var int|null DatabaseBlock::TYPE_ constant */
 	protected $type;
+
 	protected $block;
 
 	/** @var UnblockUserFactory */
@@ -80,7 +85,7 @@ class SpecialUnblock extends SpecialPage {
 
 		list( $this->target, $this->type ) = $this->getTargetAndType( $par, $this->getRequest() );
 		$this->block = DatabaseBlock::newFromTarget( $this->target );
-		if ( $this->target instanceof User ) {
+		if ( $this->target instanceof UserIdentity ) {
 			# Set the 'relevant user' in the skin, so it displays links like Contributions,
 			# User logs, UserRights, etc.
 			$this->getSkin()->setRelevantUser( $this->target );
@@ -133,8 +138,8 @@ class SpecialUnblock extends SpecialPage {
 	 *
 	 * @param string|null $par Subpage parameter
 	 * @param WebRequest $request
-	 * @return array [ User|string|null, DatabaseBlock::TYPE_ constant|null ]
-	 * @phan-return array{0:User|string|null,1:int|null}
+	 * @return array [ UserIdentity|string|null, DatabaseBlock::TYPE_ constant|null ]
+	 * @phan-return array{0:UserIdentity|string|null,1:int|null}
 	 */
 	private function getTargetAndType( ?string $par, WebRequest $request ) {
 		$possibleTargets = [
