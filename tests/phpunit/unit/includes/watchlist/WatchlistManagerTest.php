@@ -67,10 +67,6 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 			$config
 		);
 
-		$readOnly = $params['readOnly'] ?? false;
-		$readOnlyMode = $this->createMock( ReadOnlyMode::class );
-		$readOnlyMode->method( 'isReadOnly' )->willReturn( $readOnly );
-
 		$talkPageNotificationManager = $params['talkPageNotificationManager'] ??
 			$this->createNoOpMock( TalkPageNotificationManager::class );
 
@@ -90,7 +86,7 @@ class WatchlistManagerUnitTest extends MediaWikiUnitTestCase {
 		return new WatchlistManager(
 			$options,
 			$hookContainer,
-			$readOnlyMode,
+			$this->getDummyReadOnlyMode( $params['readOnly'] ?? false ),
 			$this->createMock( RevisionLookup::class ),
 			$talkPageNotificationManager,
 			$watchedItemStore,

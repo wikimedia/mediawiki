@@ -9,6 +9,7 @@ use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Storage\RevisionSlotsUpdate;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\TestingAccessWrapper;
@@ -18,6 +19,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class WikiPageDbTest extends MediaWikiLangTestCase {
+	use DummyServicesTrait;
 	use MockAuthorityTrait;
 
 	private $pagesToDelete;
@@ -1980,16 +1982,7 @@ more stuff
 		$cascade = false;
 
 		// Set read only
-		$readOnly = $this->getMockBuilder( ReadOnlyMode::class )
-			->disableOriginalConstructor()
-			->onlyMethods( [ 'isReadOnly', 'getReason' ] )
-			->getMock();
-		$readOnly->expects( $this->once() )
-			->method( 'isReadOnly' )
-			->willReturn( true );
-		$readOnly->expects( $this->once() )
-			->method( 'getReason' )
-			->willReturn( 'Some Read Only Reason' );
+		$readOnly = $this->getDummyReadOnlyMode( true );
 		$this->setService( 'ReadOnlyMode', $readOnly );
 
 		$status = $page->doUpdateRestrictions( [], [], $cascade, 'aReason', $user, [] );
