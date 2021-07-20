@@ -2435,9 +2435,7 @@ return [
 	],
 	'mediawiki.ui.icon' => [
 		'skinStyles' => [
-			'default' => [
-				'resources/src/mediawiki.ui/components/icons.less',
-			],
+			'default' => 'resources/src/mediawiki.ui/components/icons-2.less',
 		],
 		'targets' => [ 'desktop', 'mobile' ],
 	],
