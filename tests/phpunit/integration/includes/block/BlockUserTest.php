@@ -108,4 +108,107 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertFalse( $status->isOK() );
 		$this->assertTrue( $status->hasMessage( 'cant-block-nonexistent-page' ) );
 	}
+
+	/**
+	 * @covers MediaWiki\Block\BlockUser::placeBlockInternal
+	 */
+	public function testReblock() {
+		$blockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockAnonUltimateAuthority(),
+			'infinity',
+			'test block'
+		)->placeBlockUnsafe();
+		$this->assertTrue( $blockStatus->isOK() );
+		$priorBlock = $this->user->getBlock();
+		$this->assertInstanceOf( DatabaseBlock::class, $priorBlock );
+		$this->assertSame( 'test block', $priorBlock->getReasonComment()->text );
+
+		$blockId = $priorBlock->getId();
+
+		$reblockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockAnonUltimateAuthority(),
+			'infinity',
+			'test reblock'
+		)->placeBlockUnsafe( /*reblock=*/false );
+		$this->assertFalse( $reblockStatus->isOK() );
+
+		$this->user->clearInstanceCache();
+		$block = $this->user->getBlock();
+		$this->assertInstanceOf( DatabaseBlock::class, $block );
+		$this->assertSame( $blockId, $block->getId() );
+
+		$reblockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockAnonUltimateAuthority(),
+			'infinity',
+			'test block'
+		)->placeBlockUnsafe( /*reblock=*/true );
+		$this->assertFalse( $reblockStatus->isOK() );
+
+		$this->user->clearInstanceCache();
+		$block = $this->user->getBlock();
+		$this->assertInstanceOf( DatabaseBlock::class, $block );
+		$this->assertSame( $blockId, $block->getId() );
+
+		$reblockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockAnonUltimateAuthority(),
+			'infinity',
+			'test reblock'
+		)->placeBlockUnsafe( /*reblock=*/true );
+		$this->assertTrue( $reblockStatus->isOK() );
+
+		$this->user->clearInstanceCache();
+		$block = $this->user->getBlock();
+		$this->assertInstanceOf( DatabaseBlock::class, $block );
+		$this->assertSame( 'test reblock', $block->getReasonComment()->text );
+	}
+
+	/**
+	 * @covers MediaWiki\Block\BlockUser::placeBlockInternal
+	 */
+	public function testPostHook() {
+		$hookBlock = false;
+		$hookPriorBlock = false;
+		$this->setTemporaryHook(
+			'BlockIpComplete',
+			static function ( $block, $legacyUser, $priorBlock )
+			use ( &$hookBlock, &$hookPriorBlock )
+			{
+				$hookBlock = $block;
+				$hookPriorBlock = $priorBlock;
+			}
+		);
+
+		$blockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockAnonUltimateAuthority(),
+			'infinity',
+			'test block'
+		)->placeBlockUnsafe();
+		$this->assertTrue( $blockStatus->isOK() );
+		$priorBlock = $this->user->getBlock();
+		$this->assertInstanceOf( DatabaseBlock::class, $priorBlock );
+		$this->assertSame( $priorBlock->getId(), $hookBlock->getId() );
+		$this->assertNull( $hookPriorBlock );
+
+		$hookBlock = false;
+		$hookPriorBlock = false;
+		$reblockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockAnonUltimateAuthority(),
+			'infinity',
+			'test reblock'
+		)->placeBlockUnsafe( /*reblock=*/true );
+		$this->assertTrue( $reblockStatus->isOK() );
+
+		$this->user->clearInstanceCache();
+		$newBlock = $this->user->getBlock();
+		$this->assertInstanceOf( DatabaseBlock::class, $newBlock );
+		$this->assertSame( $newBlock->getId(), $hookBlock->getId() );
+		$this->assertSame( $priorBlock->getId(), $hookPriorBlock->getId() );
+	}
+
 }
