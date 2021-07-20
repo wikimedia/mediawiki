@@ -70,13 +70,10 @@ div.thumbinner {
 		width: 15px;
 		height: 11px;
 		/* Default styles when there's no .mw-content-ltr or .mw-content-rtl, overridden below */
-
-		/* Use same SVG support hack as mediawiki.legacy's shared.css */
-		background-image: url( images/magnify-clip-ltr.png );
-		background-image: linear-gradient( transparent, transparent ), url( images/magnify-clip-ltr.svg );
+		background-image: @background-image-magnify-ltr;
 		/* Don't annoy people who copy-paste everything too much */
-		-moz-user-select: none;
 		-webkit-user-select: none;
+		-moz-user-select: none;
 		-ms-user-select: none;
 		user-select: none;
 	}
@@ -96,9 +93,7 @@ div.thumbinner {
 
 /* @noflip */
 .mw-content-ltr .magnify a {
-	/* Use same SVG support hack as mediawiki.legacy's shared.css */
-	background-image: @background-image-magnify-ltr-1;
-	background-image: @background-image-magnify-ltr-2;
+	background-image: @background-image-magnify-ltr;
 }
 
 /* @noflip */
@@ -109,9 +104,7 @@ div.thumbinner {
 
 /* @noflip */
 .mw-content-rtl .magnify a {
-	/* Use same SVG support hack as mediawiki.legacy's shared.css */
-	background-image: @background-image-magnify-rtl-1;
-	background-image: @background-image-magnify-rtl-2;
+	background-image: @background-image-magnify-rtl;
 }
 
 /* @noflip */
