@@ -2595,9 +2595,11 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param int $defaultOverride A default value returned if the option does not exist
 	 * @return int User's current value for the option
 	 * @see getOption()
-	 * @deprecated since 1.35 Use UserOptionsLookup::getIntOption instead
+	 * @deprecated since 1.35, hard deprecated since 1.37
+	 * Use UserOptionsLookup::getIntOption instead
 	 */
 	public function getIntOption( $oname, $defaultOverride = 0 ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		if ( $oname === null ) {
 			return null; // b/c
 		}
@@ -2796,7 +2798,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 */
 	public function getStubThreshold() {
 		global $wgMaxArticleSize; # Maximum article size, in KiB
-		$threshold = $this->getIntOption( 'stubthreshold' );
+		$threshold = MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getIntOption( $this, 'stubthreshold' );
 		if ( $threshold > $wgMaxArticleSize * 1024 ) {
 			// If they have set an impossible value, disable the preference
 			// so we can use the parser cache again.

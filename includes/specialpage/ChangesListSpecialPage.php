@@ -55,12 +55,6 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	protected static $daysPreferenceName;
 
 	/**
-	 * Preference name for 'limit'. Subclasses should override this.
-	 * @var string
-	 */
-	protected static $limitPreferenceName;
-
-	/**
 	 * Preference name for collapsing the active filter display. Subclasses should override this.
 	 * @var string
 	 */
@@ -840,7 +834,7 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersLimitPreferenceName',
-				static::$limitPreferenceName
+				$this->getLimitPreferenceName()
 			);
 			$out->addJsConfigVars(
 				'wgStructuredChangeFiltersDaysPreferenceName',
@@ -1997,7 +1991,9 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 	 * @return int
 	 */
 	public function getDefaultLimit() {
-		return $this->getUser()->getIntOption( static::$limitPreferenceName );
+		return MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getIntOption( $this->getUser(), $this->getLimitPreferenceName() );
 	}
 
 	/**
@@ -2012,6 +2008,18 @@ abstract class ChangesListSpecialPage extends SpecialPage {
 		return floatval( $this->getUser()->getOption( static::$daysPreferenceName ) );
 	}
 
+	/**
+	 * Getting the preference name for 'limit'.
+	 *
+	 * @since 1.37
+	 * @return string
+	 */
+	abstract protected function getLimitPreferenceName(): string;
+
+	/**
+	 * @param array $namespaces
+	 * @return array
+	 */
 	private function expandSymbolicNamespaceFilters( array $namespaces ) {
 		$nsInfo = MediaWikiServices::getInstance()->getNamespaceInfo();
 		$symbolicFilters = [
