@@ -64,74 +64,46 @@ class PageUpdaterFactory {
 		'UseRCPatrol',
 	];
 
-	/**
-	 * @var RevisionStore
-	 */
+	/** @var RevisionStore */
 	private $revisionStore;
 
-	/**
-	 * @var RevisionRenderer
-	 */
+	/** @var RevisionRenderer */
 	private $revisionRenderer;
 
-	/**
-	 * @var SlotRoleRegistry
-	 */
+	/** @var SlotRoleRegistry */
 	private $slotRoleRegistry;
 
-	/**
-	 * @var ParserCache
-	 */
+	/** @var ParserCache */
 	private $parserCache;
 
-	/**
-	 * @var JobQueueGroup
-	 */
+	/** @var JobQueueGroup */
 	private $jobQueueGroup;
 
-	/**
-	 * @var MessageCache
-	 */
+	/** @var MessageCache */
 	private $messageCache;
 
-	/**
-	 * @var Language
-	 */
+	/** @var Language */
 	private $contLang;
 
-	/**
-	 * @var ILBFactory
-	 */
+	/** @var ILBFactory */
 	private $loadbalancerFactory;
 
-	/**
-	 * @var IContentHandlerFactory
-	 */
+	/** @var IContentHandlerFactory */
 	private $contentHandlerFactory;
 
-	/**
-	 * @var HookContainer
-	 */
+	/** @var HookContainer */
 	private $hookContainer;
 
-	/**
-	 * @var EditResultCache
-	 */
+	/** @var EditResultCache */
 	private $editResultCache;
 
-	/**
-	 * @var UserNameUtils
-	 */
+	/** @var UserNameUtils */
 	private $userNameUtils;
 
-	/**
-	 * @var LoggerInterface
-	 */
+	/** @var LoggerInterface */
 	private $logger;
 
-	/**
-	 * @var ServiceOptions
-	 */
+	/** @var ServiceOptions */
 	private $options;
 
 	/** @var UserEditTracker */

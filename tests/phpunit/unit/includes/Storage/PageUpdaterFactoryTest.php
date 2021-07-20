@@ -1,36 +1,24 @@
 <?php
 
-namespace MediaWiki\Tests\Storage;
+namespace MediaWiki\Tests\Unit\Storage;
 
-use JobQueueGroup;
-use Language;
-use LoadBalancer;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\Content\ContentHandlerFactory;
-use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\Revision\RevisionRenderer;
-use MediaWiki\Revision\RevisionStore;
-use MediaWiki\Revision\SlotRoleRegistry;
 use MediaWiki\Storage\DerivedPageDataUpdater;
-use MediaWiki\Storage\EditResultCache;
 use MediaWiki\Storage\PageUpdater;
 use MediaWiki\Storage\PageUpdaterFactory;
-use MediaWiki\User\UserEditTracker;
-use MediaWiki\User\UserGroupManager;
+use MediaWiki\Tests\Unit\MockServiceDependenciesTrait;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserNameUtils;
 use MediaWikiUnitTestCase;
-use MessageCache;
-use ParserCache;
-use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\LBFactory;
+use Wikimedia\Rdbms\LoadBalancer;
 use WikiPage;
 
 /**
  * @covers MediaWiki\Storage\PageUpdaterFactory
- * @group Database
  */
 class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
+	use MockServiceDependenciesTrait;
+
 	private function getPageUpdaterFactory() {
 		$config = [
 			'ArticleCountMethod' => null,
@@ -46,27 +34,16 @@ class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
 		$lbFactory = $this->createNoOpMock( LBFactory::class, [ 'getMainLB' ] );
 		$lbFactory->method( 'getMainLB' )->willReturn( $lb );
 
-		return new PageUpdaterFactory(
-			$this->createNoOpMock( RevisionStore::class ),
-			$this->createNoOpMock( RevisionRenderer::class ),
-			$this->createNoOpMock( SlotRoleRegistry::class ),
-			$this->createNoOpMock( ParserCache::class ),
-			$this->createNoOpMock( JobQueueGroup::class ),
-			$this->createNoOpMock( MessageCache::class ),
-			$this->createNoOpMock( Language::class ),
-			$lbFactory,
-			$this->createNoOpMock( ContentHandlerFactory::class ),
-			$this->createNoOpMock( HookContainer::class ),
-			$this->createNoOpMock( EditResultCache::class ),
-			$this->createNoOpMock( UserNameUtils::class ),
-			$this->createNoOpMock( LoggerInterface::class ),
-			new ServiceOptions(
-				PageUpdaterFactory::CONSTRUCTOR_OPTIONS,
-				$config
-			),
-			$this->createNoOpMock( UserEditTracker::class ),
-			$this->createNoOpMock( UserGroupManager::class ),
-			[]
+		return $this->newServiceInstance(
+			PageUpdaterFactory::class,
+			[
+				'loadbalancerFactory' => $lbFactory,
+				'options' => new ServiceOptions(
+					PageUpdaterFactory::CONSTRUCTOR_OPTIONS,
+					$config
+				),
+				'softwareTags' => [],
+			]
 		);
 	}
 
