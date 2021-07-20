@@ -1451,7 +1451,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 		}
 
 		// Hook expects User and Title, not UserIdentity and LinkTarget|PageIdentity
-		$userObj = $this->userFactory->newFromId( $user->getId() );
+		$userObj = $this->userFactory->newFromUserIdentity( $user );
 		if ( $title instanceof LinkTarget ) {
 			$titleObj = $this->titleFactory->castFromLinkTarget( $title );
 		} else {
