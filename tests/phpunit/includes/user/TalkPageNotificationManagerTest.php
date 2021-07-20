@@ -4,6 +4,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
@@ -14,6 +15,7 @@ use PHPUnit\Framework\AssertionFailedError;
  * @group Database
  */
 class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -39,7 +41,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 
 	private function getManager(
 		bool $disableAnonTalk = false,
-		ReadOnlyMode $readOnlyMode = null,
+		bool $isReadOnly = false,
 		RevisionLookup $revisionLookup = null
 	) {
 		$services = MediaWikiServices::getInstance();
@@ -51,7 +53,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 				] )
 			),
 			$services->getDBLoadBalancer(),
-			$readOnlyMode ?? $services->getReadOnlyMode(),
+			$this->getDummyReadOnlyMode( $isReadOnly ),
 			$revisionLookup ?? $services->getRevisionLookup()
 		);
 	}
@@ -150,7 +152,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 					'RevisionLookup::getPreviousRevision called with wrong rev ' . $rev->getId()
 				);
 			} );
-		$manager = $this->getManager( false, null, $mockRevLookup );
+		$manager = $this->getManager( false, false, $mockRevLookup );
 		$manager->setUserHasNewMessages( $user, $thirdRev );
 		$this->assertSame( $veryOldTimestamp, $manager->getLatestSeenMessageTimestamp( $user ) );
 		$manager->setUserHasNewMessages( $user, $secondRev );
@@ -175,10 +177,8 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 	public function testDoesNotCrashOnReadOnly() {
 		$user = $this->getTestUser()->getUser();
 		$this->editUserTalk( $user, __METHOD__ );
-		$mockReadOnly = $this->createMock( ReadOnlyMode::class );
-		$mockReadOnly->method( 'isReadOnly' )->willReturn( true );
 
-		$manager = $this->getManager( false, $mockReadOnly );
+		$manager = $this->getManager( false, true );
 		$this->assertTrue( $manager->userHasNewMessages( $user ) );
 		$manager->removeUserHasNewMessages( $user );
 		$this->assertFalse( $manager->userHasNewMessages( $user ) );
