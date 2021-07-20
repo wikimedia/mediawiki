@@ -41,7 +41,7 @@ use Wikimedia\ObjectFactory;
  * @ingroup Content
  * @since 1.35
  */
-class ContentHandlerFactory implements IContentHandlerFactory {
+final class ContentHandlerFactory implements IContentHandlerFactory {
 
 	/**
 	 * @var string[]|callable[]
