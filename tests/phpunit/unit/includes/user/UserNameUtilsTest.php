@@ -10,12 +10,10 @@ use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 
 /**
- * TODO convert to a unit test, all dependencies are injected
- *
  * @covers MediaWiki\User\UserNameUtils
  * @author DannyS712
  */
-class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
+class UserNameUtilsTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
 
 	private function getUtils(
@@ -47,9 +45,15 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			$logger = new NullLogger();
 		}
 
-		// DummyServicesTrait::getDummyTitleParser
+		// The TitleParser from DummyServicesTrait::getDummyTitleParser is really a
+		// MediaWikiTitleCodec object, and by passing `throwMockExceptions` we replace
+		// the actual creation of `MalformedTitleException`s with mocks - see
+		// MediaWikiTitleCodec::overrideCreateMalformedTitleExceptionCallback()
+		// The UserNameUtils code doesn't care about the message in the exception,
+		// just whether it is thrown.
 		$titleParser = $this->getDummyTitleParser( [
 			'validInterwikis' => [ 'interwiki' ],
+			'throwMockExceptions' => true,
 		] );
 
 		if ( $textFormatter === null ) {
