@@ -254,6 +254,7 @@
 	"missingarticle-rev": "(uzollnni#: $1)",
 	"missingarticle-diff": "(Frk: $1, $2)",
 	"filedeleteerror": "\"$1\" hea faylik kaddun uddovunk zaunk na.",
+	"directorycreateerror": "Koddtar \"$1\" rochunk zaunk na.",
 	"filenotfound": "\"$1\" hi fayl mellunk na.",
 	"badtitle": "Chukichem nanv",
 	"badtitletext": "Tuven maglelem panache nanv chukichem, rintem, vo ek sarkem zodunk-naslelem bhase-modlem vo wiki-modlem nanv.\n\nTantun ek vo sabaar okxor asot jenka nanvanim vaprunk zainan.",
