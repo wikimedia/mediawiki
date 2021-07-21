@@ -2,6 +2,8 @@
 
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\User\UserOptionsManager;
 use Psr\Log\NullLogger;
@@ -13,11 +15,15 @@ use Wikimedia\Rdbms\ILoadBalancer;
  */
 class UserOptionsManagerTest extends UserOptionsLookupTest {
 
-	private function getManager(
-		string $langCode = 'qqq',
-		array $defaultOptionsOverrides = [],
-		ILoadBalancer $lbOverride = null
-	) {
+	/**
+	 * @param array $overrides supported keys:
+	 *  - 'language' - string language code
+	 *  - 'defaults' - array default preferences
+	 *  - 'lb' - ILoadBalancer
+	 *  - 'hookContainer' - HookContainer
+	 * @return UserOptionsManager
+	 */
+	private function getManager( array $overrides = [] ) {
 		$services = MediaWikiServices::getInstance();
 		return new UserOptionsManager(
 			new ServiceOptions(
@@ -27,11 +33,14 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 					'LocalTZoffset' => 0,
 				] )
 			),
-			$this->getDefaultManager( $langCode, $defaultOptionsOverrides ),
+			$this->getDefaultManager(
+				$overrides['language'] ?? 'qqq',
+				$overrides['defaults'] ?? []
+			),
 			$services->getLanguageConverterFactory(),
-			$lbOverride ?? $services->getDBLoadBalancer(),
+			$overrides['lb'] ?? $services->getDBLoadBalancer(),
 			new NullLogger(),
-			$services->getHookContainer()
+			$overrides['hookContainer'] ?? $services->getHookContainer()
 		);
 	}
 
@@ -39,7 +48,10 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		string $langCode = 'qqq',
 		array $defaultOptionsOverrides = []
 	) : UserOptionsLookup {
-		return $this->getManager( $langCode, $defaultOptionsOverrides );
+		return $this->getManager( [
+			'language' => $langCode,
+			'defaults' => $defaultOptionsOverrides,
+		] );
 	}
 
 	/**
@@ -104,7 +116,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	/**
 	 * @covers MediaWiki\User\UserOptionsManager::loadUserOptions
 	 */
-	public function testLoadUserOptionsHook() {
+	public function testUserLoadOptionsHook() {
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserLoadOptions',
@@ -118,9 +130,25 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	}
 
 	/**
+	 * @covers MediaWiki\User\UserOptionsManager::loadUserOptions
+	 */
+	public function testLoadUserOptionsHook() {
+		$user = UserIdentityValue::newRegistered( 42, 'Test' );
+		$manager = $this->getManager( [
+			'hookContainer' => $this->createHookContainer( [
+				'LoadUserOptions' => function ( UserIdentity $hookUser, array &$options ) use ( $user ) {
+					$this->assertTrue( $hookUser->equals( $user ) );
+					$options['from_hook'] = 'value_from_hook';
+				}
+			] )
+		] );
+		$this->assertSame( 'value_from_hook', $manager->getOption( $user, 'from_hook' ) );
+	}
+
+	/**
 	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
 	 */
-	public function testSaveUserOptionsHookAbort() {
+	public function testUserSaveOptionsHookAbort() {
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserSaveOptions',
@@ -137,7 +165,24 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	/**
 	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
 	 */
-	public function testSaveUserOptionsHookModify() {
+	public function testSaveUserOptionsHookAbort() {
+		$manager = $this->getManager( [
+			'hookContainer' => $this->createHookContainer( [
+				'SaveUserOptions' => static function () {
+					return false;
+				}
+			] )
+		] );
+		$user = UserIdentityValue::newRegistered( 42, 'Test' );
+		$manager->setOption( $user, 'will_be_aborted_by_hook', 'value' );
+		$manager->saveOptions( $user );
+		$this->assertNull( $this->getManager()->getOption( $user, 'will_be_aborted_by_hook' ) );
+	}
+
+	/**
+	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
+	 */
+	public function testUserSaveOptionsHookModify() {
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserSaveOptions',
@@ -152,6 +197,36 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$manager->saveOptions( $user );
 		$this->assertSame( 'value_from_hook', $manager->getOption( $user, 'from_hook' ) );
 		$this->assertSame( 'value_from_hook', $this->getManager()->getOption( $user, 'from_hook' ) );
+	}
+
+	/**
+	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
+	 */
+	public function testSaveUserOptionsHookModify() {
+		$user = UserIdentityValue::newRegistered( 42, 'Test' );
+		$manager = $this->getManager( [
+			'defaults' => [
+				'reset_to_default_by_hook' => 'default',
+			],
+			'hookContainer' => $this->createHookContainer( [
+				'SaveUserOptions' => function ( UserIdentity $hookUser, array &$modifiedOptions ) use ( $user ) {
+					$this->assertTrue( $user->equals( $hookUser ) );
+					$modifiedOptions['reset_to_default_by_hook'] = null;
+					unset( $modifiedOptions['blocked_by_hook'] );
+					$modifiedOptions['new_from_hook'] = 'value_from_hook';
+				}
+			] ),
+		] );
+		$manager->setOption( $user, 'reset_to_default_by_hook', 'not default' );
+		$manager->setOption( $user, 'blocked_by_hook', 'blocked value' );
+		$manager->saveOptions( $user );
+		$this->assertSame( 'value_from_hook', $manager->getOption( $user, 'new_from_hook' ) );
+		$this->assertSame( 'default', $manager->getOption( $user, 'reset_to_default_by_hook' ) );
+		$this->assertNull( $manager->getOption( $user, 'blocked_by_hook' ) );
+		$manager->clearUserOptionsCache( $user );
+		$this->assertSame( 'value_from_hook', $manager->getOption( $user, 'new_from_hook' ) );
+		$this->assertSame( 'default', $manager->getOption( $user, 'reset_to_default_by_hook' ) );
+		$this->assertNull( $manager->getOption( $user, 'blocked_by_hook' ) );
 	}
 
 	/**
@@ -229,6 +304,28 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 		$this->assertSame( 1, $recursionCounter );
 	}
 
+	/**
+	 * @covers \MediaWiki\User\UserOptionsManager::loadUserOptions
+	 */
+	public function testInfiniteRecursionOnLoadUserOptionsHook() {
+		$user = UserIdentityValue::newRegistered( 42, 'Test' );
+		$manager = $this->getManager( [
+			'hookContainer' => $this->createHookContainer( [
+				'LoadUserOptions' => function ( UserIdentity $hookUser ) use ( $user, &$manager, &$recursionCounter ) {
+					if ( $hookUser->equals( $user ) ) {
+						$recursionCounter += 1;
+						$this->assertSame( 1, $recursionCounter );
+						$manager->loadUserOptions( $hookUser );
+					}
+				}
+
+			] )
+		] );
+		$recursionCounter = 0;
+		$manager->loadUserOptions( $user, UserOptionsManager::READ_LATEST );
+		$this->assertSame( 1, $recursionCounter );
+	}
+
 	public function testSaveOptionsForAnonUser() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->getManager()->saveOptions( $this->getAnon( __METHOD__ ) );
@@ -266,7 +363,9 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 			->method( 'getConnectionRef' )
 			->willReturn( $mockDb );
 		$user = $this->getTestUser()->getUser();
-		$manager = $this->getManager( 'qqq', [], $mockLoadBalancer );
+		$manager = $this->getManager( [
+			'lb' => $mockLoadBalancer,
+		] );
 		$manager->getOption(
 			$user,
 			'test_option',

@@ -57,6 +57,9 @@ class DeprecatedHooks {
 		'SkinTemplateOutputPageBeforeExec' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateToolboxEnd' => [ 'deprecatedVersion' => '1.35' ],
 		'UserLoadFromDatabase' => [ 'deprecatedVersion' => '1.37' ],
+		'UserLoadOptions' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
+		'UserResetAllOptions' => [ 'deprecatedVersion' => '1.37' ],
+		'UserSaveOptions' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
 		'UserSetCookies' => [ 'deprecatedVersion' => '1.27' ],
 		'WikiPageDeletionUpdates' => [ 'deprecatedVersion' => '1.32', 'silent' => true ],
 	];
