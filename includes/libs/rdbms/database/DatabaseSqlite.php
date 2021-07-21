@@ -29,7 +29,6 @@ use NullLockManager;
 use PDO;
 use PDOException;
 use RuntimeException;
-use stdClass;
 
 /**
  * @ingroup Database
@@ -352,10 +351,8 @@ class DatabaseSqlite extends Database {
 	}
 
 	/**
-	 * SQLite doesn't allow buffered results or data seeking etc, so we'll use fetchAll as the result
-	 *
 	 * @param string $sql
-	 * @return bool|IResultWrapper
+	 * @return IResultWrapper|bool
 	 */
 	protected function doQuery( $sql ) {
 		$res = $this->getBindingHandle()->query( $sql );
@@ -363,103 +360,8 @@ class DatabaseSqlite extends Database {
 			return false;
 		}
 
-		$resource = ResultWrapper::unwrap( $res );
-		$this->lastAffectedRowCount = $resource->rowCount();
-		$res = new ResultWrapper( $this, $resource->fetchAll() );
-
-		return $res;
-	}
-
-	/**
-	 * @param IResultWrapper|mixed $res
-	 */
-	public function freeResult( $res ) {
-		if ( $res instanceof ResultWrapper ) {
-			$res->free();
-		}
-	}
-
-	/**
-	 * @param IResultWrapper|array $res
-	 * @return stdClass|bool
-	 */
-	public function fetchObject( $res ) {
-		$resource =& ResultWrapper::unwrap( $res );
-
-		$cur = current( $resource );
-		if ( is_array( $cur ) ) {
-			next( $resource );
-			$obj = (object)[];
-			foreach ( $cur as $k => $v ) {
-				if ( !is_numeric( $k ) ) {
-					$obj->$k = $v;
-				}
-			}
-
-			return $obj;
-		}
-
-		return false;
-	}
-
-	/**
-	 * @param IResultWrapper|mixed $res
-	 * @return array|bool
-	 */
-	public function fetchRow( $res ) {
-		$resource =& ResultWrapper::unwrap( $res );
-		$cur = current( $resource );
-		if ( is_array( $cur ) ) {
-			next( $resource );
-
-			return $cur;
-		}
-
-		return false;
-	}
-
-	/**
-	 * The PDO::Statement class implements the array interface so count() will work
-	 *
-	 * @param IResultWrapper|array|false $res
-	 * @return int
-	 */
-	public function numRows( $res ) {
-		// false does not implement Countable
-		$resource = ResultWrapper::unwrap( $res );
-
-		return is_array( $resource ) ? count( $resource ) : 0;
-	}
-
-	/**
-	 * @param IResultWrapper $res
-	 * @return int
-	 */
-	public function numFields( $res ) {
-		$resource = ResultWrapper::unwrap( $res );
-		if ( is_array( $resource ) && count( $resource ) > 0 ) {
-			// The size of the result array is twice the number of fields. (T67578)
-			return count( $resource[0] ) / 2;
-		} else {
-			// If the result is empty return 0
-			return 0;
-		}
-	}
-
-	/**
-	 * @param IResultWrapper $res
-	 * @param int $n
-	 * @return bool
-	 */
-	public function fieldName( $res, $n ) {
-		$resource = ResultWrapper::unwrap( $res );
-		if ( is_array( $resource ) ) {
-			$keys = array_keys( $resource[0] );
-
-			return $keys[$n];
-		}
-
-		return false;
+		$this->lastAffectedRowCount = $res->rowCount();
+		return new SqliteResultWrapper( $res );
 	}
 
 	protected function doSelectDomain( DatabaseDomain $domain ) {
@@ -516,20 +418,6 @@ class DatabaseSqlite extends Database {
 	public function insertId() {
 		// PDO::lastInsertId yields a string :(
 		return intval( $this->getBindingHandle()->lastInsertId() );
-	}
-
-	/**
-	 * @param IResultWrapper|array $res
-	 * @param int $row
-	 */
-	public function dataSeek( $res, $row ) {
-		$resource =& ResultWrapper::unwrap( $res );
-		reset( $resource );
-		if ( $row > 0 ) {
-			for ( $i = 0; $i < $row; $i++ ) {
-				next( $resource );
-			}
-		}
 	}
 
 	/**
