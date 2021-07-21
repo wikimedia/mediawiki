@@ -101,14 +101,14 @@ class BotPasswordStore implements IDBAccessObject {
 	}
 
 	/**
-	 * Load a BotPassword from the database based on a User object
-	 * @param User $user
+	 * Load a BotPassword from the database based on a UserIdentity object
+	 * @param UserIdentity $userIdentity
 	 * @param string $appId
 	 * @param int $flags IDBAccessObject read flags
 	 * @return BotPassword|null
 	 */
 	public function getByUser(
-		User $user,
+		UserIdentity $userIdentity,
 		string $appId,
 		int $flags = self::READ_NORMAL
 	) : ?BotPassword {
@@ -117,7 +117,7 @@ class BotPasswordStore implements IDBAccessObject {
 		}
 
 		$centralId = $this->centralIdLookup->centralIdFromLocalUser(
-			$user,
+			$userIdentity,
 			CentralIdLookup::AUDIENCE_RAW,
 			$flags
 		);
@@ -155,7 +155,7 @@ class BotPasswordStore implements IDBAccessObject {
 	/**
 	 * Create an unsaved BotPassword
 	 * @param array $data Data to use to create the bot password. Keys are:
-	 *  - user: (User) User object to create the password for. Overrides username and centralId.
+	 *  - user: (UserIdentity) UserIdentity to create the password for. Overrides username and centralId.
 	 *  - username: (string) Username to create the password for. Overrides centralId.
 	 *  - centralId: (int) User central ID to create the password for.
 	 *  - appId: (string, required) App ID for the password.
@@ -168,7 +168,7 @@ class BotPasswordStore implements IDBAccessObject {
 		array $data,
 		int $flags = self::READ_NORMAL
 	) : ?BotPassword {
-		if ( isset( $data['user'] ) && ( !$data['user'] instanceof User ) ) {
+		if ( isset( $data['user'] ) && ( !$data['user'] instanceof UserIdentity ) ) {
 			return null;
 		}
 
@@ -193,7 +193,7 @@ class BotPasswordStore implements IDBAccessObject {
 		$row->bp_grants = FormatJson::encode( $row->bp_grants );
 
 		if ( isset( $data['user'] ) ) {
-			// Must be a User object, already checked above
+			// Must be a UserIdentity object, already checked above
 			$row->bp_user = $this->centralIdLookup->centralIdFromLocalUser(
 				$data['user'],
 				CentralIdLookup::AUDIENCE_RAW,
