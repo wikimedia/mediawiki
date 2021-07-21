@@ -23,6 +23,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\Logger\LoggerFactory;
 use Wikimedia\Rdbms\ILoadBalancer;
 
@@ -37,14 +38,20 @@ class SpecialExport extends SpecialPage {
 	/** @var ILoadBalancer */
 	private $loadBalancer;
 
+	/** @var WikiExporterFactory */
+	private $wikiExporterFactory;
+
 	/**
 	 * @param ILoadBalancer $loadBalancer
+	 * @param WikiExporterFactory $wikiExporterFactory
 	 */
 	public function __construct(
-		ILoadBalancer $loadBalancer
+		ILoadBalancer $loadBalancer,
+		WikiExporterFactory $wikiExporterFactory
 	) {
 		parent::__construct( 'Export' );
 		$this->loadBalancer = $loadBalancer;
+		$this->wikiExporterFactory = $wikiExporterFactory;
 	}
 
 	public function execute( $par ) {
@@ -390,7 +397,7 @@ class SpecialExport extends SpecialPage {
 		/* Ok, let's get to it... */
 		$db = $this->loadBalancer->getConnectionRef( ILoadBalancer::DB_REPLICA );
 
-		$exporter = new WikiExporter( $db, $history );
+		$exporter = $this->wikiExporterFactory->getWikiExporter( $db, $history );
 		$exporter->list_authors = $list_authors;
 		$exporter->openStream();
 

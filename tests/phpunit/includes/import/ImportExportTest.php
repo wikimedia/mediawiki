@@ -29,7 +29,9 @@ class ImportExportTest extends MediaWikiLangTestCase {
 	 * @return WikiExporter
 	 */
 	private function getExporter( string $schemaVersion ) {
-		$exporter = new WikiExporter( $this->db, WikiExporter::FULL );
+		$exporter = $this->getServiceContainer()
+			->getWikiExporterFactory()
+			->getWikiExporter( $this->db, WikiExporter::FULL );
 		$exporter->setSchemaVersion( $schemaVersion );
 		return $exporter;
 	}

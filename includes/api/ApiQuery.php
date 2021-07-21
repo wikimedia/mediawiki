@@ -736,7 +736,9 @@ class ApiQuery extends ApiBase {
 			}
 		}
 
-		$exporter = new WikiExporter( $this->getDB() );
+		$exporter = MediaWikiServices::getInstance()
+			->getWikiExporterFactory()
+			->getWikiExporter( $this->getDB() );
 		$sink = new DumpStringOutput;
 		$exporter->setOutputSink( $sink );
 		$exporter->setSchemaVersion( $this->mParams['exportschema'] );

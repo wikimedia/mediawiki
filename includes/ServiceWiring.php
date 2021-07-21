@@ -64,6 +64,7 @@ use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\SpamChecker;
+use MediaWiki\Export\WikiExporterFactory;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
 use MediaWiki\HookContainer\DeprecatedHooks;
@@ -1743,6 +1744,14 @@ return [
 			$services->getUserFactory(),
 			$services->getNamespaceInfo(),
 			$services->getWikiPageFactory()
+		);
+	},
+
+	'WikiExporterFactory' => static function ( MediaWikiServices $services ): WikiExporterFactory {
+		return new WikiExporterFactory(
+			$services->getHookContainer(),
+			$services->getRevisionStore(),
+			$services->getTitleParser()
 		);
 	},
 
