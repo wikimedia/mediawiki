@@ -8,6 +8,7 @@ use IContextSource;
 use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\User\UserIdentity;
 use ParserOptions;
 use ResourceLoaderContext;
 use Skin;
@@ -550,7 +551,9 @@ class HookRunner implements
 	\MediaWiki\User\Hook\UserSendConfirmationMailHook,
 	\MediaWiki\User\Hook\UserSetEmailAuthenticationTimestampHook,
 	\MediaWiki\User\Hook\UserSetEmailHook,
-	\MediaWiki\User\Hook\User__mailPasswordInternalHook
+	\MediaWiki\User\Hook\User__mailPasswordInternalHook,
+	\MediaWiki\User\Options\Hook\LoadUserOptionsHook,
+	\MediaWiki\User\Options\Hook\SaveUserOptionsHook
 {
 	/** @var HookContainer */
 	private $container;
@@ -4206,6 +4209,14 @@ class HookRunner implements
 		);
 	}
 
+	public function onLoadUserOptions( UserIdentity $user, array &$options ) : void {
+		$this->container->run(
+			'LoadUserOptions',
+			[ $user, &$options ],
+			[ 'abortable' => false ]
+		);
+	}
+
 	public function onUserLoggedIn( $user ) {
 		return $this->container->run(
 			'UserLoggedIn',
@@ -4284,6 +4295,13 @@ class HookRunner implements
 		return $this->container->run(
 			'UserSaveOptions',
 			[ $user, &$options, $originalOptions ]
+		);
+	}
+
+	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions ) {
+		return $this->container->run(
+			'SaveUserOptions',
+			[ $user, &$modifiedOptions ]
 		);
 	}
 

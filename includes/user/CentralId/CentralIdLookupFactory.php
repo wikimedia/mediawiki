@@ -24,6 +24,7 @@ use CentralIdLookup;
 use InvalidArgumentException;
 use LocalIdLookup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -50,21 +51,27 @@ class CentralIdLookupFactory {
 	/** @var ObjectFactory */
 	private $objectFactory;
 
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
+
 	/** @var CentralIdLookup[] */
 	private $instanceCache = [];
 
 	/**
 	 * @param ServiceOptions $options
 	 * @param ObjectFactory $objectFactory
+	 * @param UserIdentityLookup $userIdentityLookup
 	 */
 	public function __construct(
 		ServiceOptions $options,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		UserIdentityLookup $userIdentityLookup
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
 		$this->providers = $options->get( 'CentralIdLookupProviders' );
 		$this->defaultProvider = $options->get( 'CentralIdLookupProvider' );
 		$this->objectFactory = $objectFactory;
+		$this->userIdentityLookup = $userIdentityLookup;
 	}
 
 	/**
@@ -105,7 +112,7 @@ class CentralIdLookupFactory {
 				$providerSpec,
 				[ 'assertClass' => CentralIdLookup::class ]
 			);
-			$provider->init( $providerId );
+			$provider->init( $providerId, $this->userIdentityLookup );
 			$this->instanceCache[$providerId] = $provider;
 		}
 		return $this->instanceCache[$providerId];

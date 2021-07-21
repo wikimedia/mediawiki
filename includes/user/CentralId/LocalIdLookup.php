@@ -20,6 +20,9 @@
  * @file
  */
 
+use MediaWiki\User\UserIdentity;
+use Wikimedia\Rdbms\ILoadBalancer;
+
 /**
  * A CentralIdLookup provider that just uses local IDs. Useful if the wiki
  * isn't part of a cluster or you're using shared user tables.
@@ -32,36 +35,59 @@
  */
 class LocalIdLookup extends CentralIdLookup {
 
-	public function isAttached( User $user, $wikiId = null ) {
-		global $wgSharedDB, $wgSharedTables, $wgLocalDatabases;
+	/** @var ILoadBalancer */
+	private $loadBalancer;
 
+	/** @var string|null */
+	private $sharedDB;
+
+	/** @var string[] */
+	private $sharedTables;
+
+	/** @var string[] */
+	private $localDatabases;
+
+	/**
+	 * @param Config $config
+	 * @param ILoadBalancer $loadBalancer
+	 */
+	public function __construct(
+		Config $config,
+		ILoadBalancer $loadBalancer
+	) {
+		$this->sharedDB = $config->get( 'SharedDB' );
+		$this->sharedTables = $config->get( 'SharedTables' );
+		$this->localDatabases = $config->get( 'LocalDatabases' );
+		$this->loadBalancer = $loadBalancer;
+	}
+
+	public function isAttached( UserIdentity $user, $wikiId = UserIdentity::LOCAL ): bool {
 		// If the user has no ID, it can't be attached
 		if ( !$user->getId() ) {
 			return false;
 		}
 
 		// Easy case, we're checking locally
-		if ( $wikiId === null || WikiMap::isCurrentWikiId( $wikiId ) ) {
+		if ( !$wikiId || WikiMap::isCurrentWikiId( $wikiId ) ) {
 			return true;
 		}
 
 		// Assume that shared user tables are set up as described above, if
 		// they're being used at all.
-		return $wgSharedDB !== null &&
-			in_array( 'user', $wgSharedTables, true ) &&
-			in_array( $wikiId, $wgLocalDatabases, true );
+		return $this->sharedDB !== null &&
+			in_array( 'user', $this->sharedTables, true ) &&
+			in_array( $wikiId, $this->localDatabases, true );
 	}
 
 	public function lookupCentralIds(
 		array $idToName, $audience = self::AUDIENCE_PUBLIC, $flags = self::READ_NORMAL
-	) {
+	): array {
 		if ( !$idToName ) {
 			return [];
 		}
-
 		$audience = $this->checkAudience( $audience );
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = wfGetDB( $index );
+		$db = $this->loadBalancer->getConnectionRef( $index );
 
 		$tables = [ 'user' ];
 		$fields = [ 'user_id', 'user_name' ];
@@ -85,14 +111,14 @@ class LocalIdLookup extends CentralIdLookup {
 
 	public function lookupUserNames(
 		array $nameToId, $audience = self::AUDIENCE_PUBLIC, $flags = self::READ_NORMAL
-	) {
+	): array {
 		if ( !$nameToId ) {
 			return [];
 		}
 
 		$audience = $this->checkAudience( $audience );
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = wfGetDB( $index );
+		$db = $this->loadBalancer->getConnectionRef( $index );
 
 		$tables = [ 'user' ];
 		$fields = [ 'user_id', 'user_name' ];

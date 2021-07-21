@@ -2,6 +2,8 @@
 
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -13,11 +15,17 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function testFactory() {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-
+		$localIdLookupSpec = [
+			'class' => LocalIdLookup::class,
+			'services' => [
+				'MainConfig',
+				'DBLoadBalancer',
+			]
+		];
 		$this->setMwGlobals( [
 			'wgCentralIdLookupProviders' => [
-				'local' => [ 'class' => LocalIdLookup::class ],
-				'local2' => [ 'class' => LocalIdLookup::class ],
+				'local' => $localIdLookupSpec,
+				'local2' => $localIdLookupSpec,
 				'mock' => [ 'factory' => static function () use ( $mock ) {
 					return $mock;
 				} ],
@@ -47,15 +55,15 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetProviderId() {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->init( 'this is a test' );
+		$mock->init( 'this is a test', $this->createNoOpMock( UserIdentityLookup::class ) );
 		$this->assertSame( 'this is a test', $mock->getProviderId() );
 	}
 
 	public function testRepeatingInitThrows() {
 		$mock = $this->getMockForAbstractClass( CentralIdLookup::class );
-		$mock->init( 'foo' );
+		$mock->init( 'foo', $this->createNoOpMock( UserIdentityLookup::class ) );
 		$this->expectException( LogicException::class );
-		$mock->init( 'bar' );
+		$mock->init( 'bar', $this->createNoOpMock( UserIdentityLookup::class ) );
 	}
 
 	public function testCheckAudience() {
@@ -113,11 +121,12 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 			)
 			->willReturn( [ 42 => $name ] );
 
+		$mock->init( 'test', $this->getServiceContainer()->getUserIdentityLookup() );
 		$user = $mock->localUserFromCentralId(
 			42, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST
 		);
 		if ( $succeeds ) {
-			$this->assertInstanceOf( User::class, $user );
+			$this->assertInstanceOf( UserIdentity::class, $user );
 			$this->assertSame( $name, $user->getName() );
 		} else {
 			$this->assertNull( $user );
@@ -133,6 +142,8 @@ class CentralIdLookupTest extends MediaWikiIntegrationTestCase {
 				CentralIdLookup::READ_LATEST
 			)
 			->willReturn( [ 42 => $name ] );
+		$mock->init( 'test', $this->getServiceContainer()->getUserIdentityLookup() );
+
 		$this->assertNull(
 			$mock->localUserFromCentralId( 42, CentralIdLookup::AUDIENCE_RAW, CentralIdLookup::READ_LATEST )
 		);

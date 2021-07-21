@@ -384,13 +384,16 @@ class UserOptionsManager extends UserOptionsLookup {
 		}
 
 		$userKey = $this->getCacheKey( $user );
-		// Not using getOptions(), to keep hidden preferences in database
-		$optionsToSave = $this->loadUserOptions( $user, self::READ_LATEST );
-		$originalOptions = $this->originalOptionsCache[$userKey] ?? [];
+		$modifiedOptions = $this->modifiedOptions[$userKey] ?? [];
+		if ( !$this->hookRunner->onSaveUserOptions( $user, $modifiedOptions ) ) {
+			return;
+		}
 
+		// TODO: only needed for old hook.
+		$originalOptions = $this->loadOriginalOptions( $user, self::READ_LATEST );
+		$optionsToSave = array_merge( $originalOptions, $modifiedOptions );
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
-		// TODO: Deprecate passing User to the hook.
 		if ( !$this->hookRunner->onUserSaveOptions(
 			User::newFromIdentity( $user ), $optionsToSave, $originalOptions )
 		) {
@@ -624,10 +627,11 @@ class UserOptionsManager extends UserOptionsLookup {
 		// infinite recursion if the hook attempts to reload options
 		$this->originalOptionsCache[$userKey] = $options;
 		$this->queryFlagsUsedForCaching[$userKey] = $queryFlags;
-		// TODO: Deprecate passing full User object into the hook.
+		// TODO: Remove deprecated hook.
 		$this->hookRunner->onUserLoadOptions(
 			User::newFromIdentity( $user ), $options
 		);
+		$this->hookRunner->onLoadUserOptions( $user, $options );
 		$this->originalOptionsCache[$userKey] = $options;
 		return $options;
 	}
