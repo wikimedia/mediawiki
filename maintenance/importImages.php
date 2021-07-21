@@ -297,12 +297,12 @@ class ImportImages extends Maintenance {
 						$f = $this->findAuxFile( $file, $commentExt );
 						if ( !$f ) {
 							$this->output( " No comment file with extension {$commentExt} found "
-								 . "for {$file}, using default comment. " );
+								 . "for {$file}, using default comment." );
 						} else {
 							$commentText = file_get_contents( $f );
 							if ( !$commentText ) {
 								$this->output(
-									" Failed to load comment file {$f}, using default comment. "
+									" Failed to load comment file {$f}, using default comment."
 								);
 							}
 						}
@@ -316,7 +316,7 @@ class ImportImages extends Maintenance {
 				# Import the file
 				if ( $this->hasOption( 'dry' ) ) {
 					$this->output(
-						" publishing {$file} by '{$user->getName()}', comment '$commentText'... "
+						" publishing {$file} by '{$user->getName()}', comment '$commentText'..."
 					);
 				} else {
 					$mwProps = new MWFileProps( $services->getMimeAnalyzer() );
@@ -376,7 +376,7 @@ class ImportImages extends Maintenance {
 						sleep( 2 ); # Why this sleep?
 						$lbFactory->waitForReplication();
 
-						$this->output( "\nSetting image restrictions ... " );
+						$this->output( "\nSetting image restrictions ..." );
 
 						$cascade = false;
 						$restrictions = [];

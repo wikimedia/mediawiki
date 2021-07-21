@@ -75,7 +75,7 @@ class Protect extends Maintenance {
 		}
 
 		# un/protect the article
-		$this->output( "Updating protection status... " );
+		$this->output( "Updating protection status..." );
 
 		$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $t );
 		$status = $page->doUpdateRestrictions( $restrictions, [], $cascade, $reason, $user );

@@ -49,7 +49,7 @@ class Digit2Html extends Maintenance {
 	public function execute() {
 		foreach ( $this->mLangs as $code ) {
 			$filename = Language::getMessagesFileName( $code );
-			$this->output( "Loading language [$code] ... " );
+			$this->output( "Loading language [$code] ..." );
 			unset( $digitTransformTable );
 			require_once $filename;
 			if ( !isset( $digitTransformTable ) ) {

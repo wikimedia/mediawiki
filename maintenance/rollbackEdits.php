@@ -85,7 +85,7 @@ class RollbackEdits extends Maintenance {
 		$rollbackPageFactory = $services->getRollbackPageFactory();
 		foreach ( $titles as $t ) {
 			$page = $wikiPageFactory->newFromTitle( $t );
-			$this->output( 'Processing ' . $t->getPrefixedText() . '... ' );
+			$this->output( 'Processing ' . $t->getPrefixedText() . '...' );
 			$rollbackResult = $rollbackPageFactory
 				->newRollbackPage( $page, $doer, $user )
 				->markAsBot( $bot )
