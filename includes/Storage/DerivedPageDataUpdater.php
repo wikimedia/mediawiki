@@ -1515,12 +1515,6 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 			);
 		}
 
-		// TODO: replace legacy hook! Use a listener on PageEventEmitter instead!
-		// @note: Extensions should *avoid* calling getCannonicalParserOutput() when using
-		// this hook whenever possible in order to avoid unnecessary additional parses.
-		$editInfo = $this->getPreparedEdit();
-		$this->hookRunner->onArticleEditUpdates( $wikiPage, $editInfo, $this->options['changed'] );
-
 		$id = $this->getPageId();
 		$title = $this->getTitle();
 		$shortTitle = $title->getDBkey();

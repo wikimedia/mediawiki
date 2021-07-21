@@ -510,7 +510,6 @@ class HookRunner implements
 	\MediaWiki\SpecialPage\Hook\SpecialPage_initListHook,
 	\MediaWiki\SpecialPage\Hook\WgQueryPagesHook,
 	\MediaWiki\Storage\Hook\ArticleEditUpdateNewTalkHook,
-	\MediaWiki\Storage\Hook\ArticleEditUpdatesHook,
 	\MediaWiki\Storage\Hook\ArticlePrepareTextForEditHook,
 	\MediaWiki\Storage\Hook\BeforeRevertedTagUpdateHook,
 	\MediaWiki\Storage\Hook\MultiContentSaveHook,
@@ -721,13 +720,6 @@ class HookRunner implements
 		return $this->container->run(
 			'ArticleEditUpdateNewTalk',
 			[ $wikiPage, $recipient ]
-		);
-	}
-
-	public function onArticleEditUpdates( $wikiPage, $editInfo, $changed ) {
-		return $this->container->run(
-			'ArticleEditUpdates',
-			[ $wikiPage, $editInfo, $changed ]
 		);
 	}
 
