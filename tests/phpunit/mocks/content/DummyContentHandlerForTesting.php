@@ -6,6 +6,10 @@ class DummyContentHandlerForTesting extends ContentHandler {
 		parent::__construct( $dataModel, $formats );
 	}
 
+	protected function getContentClass() {
+		return DummyContentForTesting::class;
+	}
+
 	/**
 	 * @see ContentHandler::serializeContent
 	 *

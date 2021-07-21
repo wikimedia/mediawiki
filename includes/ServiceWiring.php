@@ -62,6 +62,7 @@ use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\ContentHandlerFactory;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\EditPage\Constraint\EditConstraintFactory;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
@@ -351,6 +352,10 @@ return [
 
 	'ContentModelStore' => static function ( MediaWikiServices $services ): NameTableStore {
 		return $services->getNameTableStoreFactory()->getContentModels();
+	},
+
+	'ContentTransformer' => static function ( MediaWikiServices $services ): ContentTransformer {
+		return new ContentTransformer( $services->getContentHandlerFactory() );
 	},
 
 	'ContributionsLookup' => static function ( MediaWikiServices $services ): ContributionsLookup {
@@ -1067,6 +1072,7 @@ return [
 			$services->getUserEditTracker(),
 			$services->getUserGroupManager(),
 			$services->getTitleFormatter(),
+			$services->getContentTransformer(),
 			ChangeTags::getSoftwareTags()
 		);
 	},

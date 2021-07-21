@@ -34,6 +34,7 @@ use Language;
 use LinksUpdate;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\Edit\PreparedEdit;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -288,6 +289,9 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	/** @var UserNameUtils */
 	private $userNameUtils;
 
+	/** @var ContentTransformer */
+	private $contentTransformer;
+
 	/**
 	 * @param WikiPage $wikiPage ,
 	 * @param RevisionStore $revisionStore
@@ -302,6 +306,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 	 * @param HookContainer $hookContainer
 	 * @param EditResultCache $editResultCache
 	 * @param UserNameUtils $userNameUtils
+	 * @param ContentTransformer $contentTransformer
 	 */
 	public function __construct(
 		WikiPage $wikiPage,
@@ -316,7 +321,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		IContentHandlerFactory $contentHandlerFactory,
 		HookContainer $hookContainer,
 		EditResultCache $editResultCache,
-		UserNameUtils $userNameUtils
+		UserNameUtils $userNameUtils,
+		ContentTransformer $contentTransformer
 	) {
 		$this->wikiPage = $wikiPage;
 
@@ -334,6 +340,7 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->editResultCache = $editResultCache;
 		$this->userNameUtils = $userNameUtils;
+		$this->contentTransformer = $contentTransformer;
 
 		$this->logger = new NullLogger();
 	}
@@ -855,8 +862,13 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				// TODO: MCR: allow PST content for all slots to be stashed.
 				$pstSlot = SlotRecord::newUnsaved( $role, $stashedEdit->pstContent );
 			} else {
-				$content = $slot->getContent();
-				$pstContent = $content->preSaveTransform( $title, $legacyUser, $userPopts );
+				$pstContent = $this->contentTransformer->preSaveTransform(
+					$slot->getContent(),
+					$title,
+					$user,
+					$userPopts
+				);
+
 				$pstSlot = SlotRecord::newUnsaved( $role, $pstContent );
 			}
 

@@ -27,6 +27,7 @@
  */
 
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\PreSaveTransformParamsValue;
 use MediaWiki\MediaWikiServices;
 
 /**
@@ -386,8 +387,9 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable to override
 	 * @since 1.21
+	 * @deprecated since 1.37. Use ContentTransformer::preSaveTransform instead.
+	 * Extensions defining a content model should override ContentHandler::preSaveTransform.
 	 *
 	 * @param Title $title
 	 * @param User $user
@@ -397,7 +399,11 @@ abstract class AbstractContent implements Content {
 	 * @see Content::preSaveTransform
 	 */
 	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		return $this;
+		$pstParams = new PreSaveTransformParamsValue( $title, $user, $popts );
+		return $this->getContentHandler()->preSaveTransform(
+			$this,
+			$pstParams
+		);
 	}
 
 	/**

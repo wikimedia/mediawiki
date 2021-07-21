@@ -1323,9 +1323,11 @@ class EditPage implements IEditObject {
 
 					if ( $undoMsg === null ) {
 						$oldContent = $this->page->getContent( RevisionRecord::RAW );
-						$popts = ParserOptions::newFromUserAndLang(
-							$user, MediaWikiServices::getInstance()->getContentLanguage() );
-						$newContent = $content->preSaveTransform( $this->mTitle, $user, $popts );
+						$services = MediaWikiServices::getInstance();
+						$popts = ParserOptions::newFromUserAndLang( $user, $services->getContentLanguage() );
+						$contentTransformer = $services->getContentTransformer();
+						$newContent = $contentTransformer->preSaveTransform( $content, $this->mTitle, $user, $popts );
+
 						if ( $newContent->getModel() !== $oldContent->getModel() ) {
 							// The undo may change content
 							// model if its reverting the top
@@ -2455,10 +2457,12 @@ class EditPage implements IEditObject {
 		}
 
 		// Do a pre-save transform on the retrieved undo content
-		$contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+		$services = MediaWikiServices::getInstance();
+		$contentLanguage = $services->getContentLanguage();
 		$user = $this->context->getUser();
 		$parserOptions = ParserOptions::newFromUserAndLang( $user, $contentLanguage );
-		$undoContent = $undoContent->preSaveTransform( $this->mTitle, $user, $parserOptions );
+		$contentTransformer = $services->getContentTransformer();
+		$undoContent = $contentTransformer->preSaveTransform( $undoContent, $this->mTitle, $user, $parserOptions );
 
 		if ( $undoContent->equals( $content ) ) {
 			return true;
@@ -3664,7 +3668,9 @@ class EditPage implements IEditObject {
 			$user = $this->context->getUser();
 			$popts = ParserOptions::newFromUserAndLang( $user,
 				MediaWikiServices::getInstance()->getContentLanguage() );
-			$newContent = $newContent->preSaveTransform( $this->mTitle, $user, $popts );
+			$services = MediaWikiServices::getInstance();
+			$contentTransformer = $services->getContentTransformer();
+			$newContent = $contentTransformer->preSaveTransform( $newContent, $this->mTitle, $user, $popts );
 		}
 
 		if ( ( $oldContent && !$oldContent->isEmpty() ) || ( $newContent && !$newContent->isEmpty() ) ) {
@@ -4191,7 +4197,9 @@ class EditPage implements IEditObject {
 		// causing the context user to be used for {{subst:REVISIONUSER}}.
 		// XXX: Alternatively, we could also call setupFakeRevision() a second time:
 		// once before PST with $content, and then after PST with $pstContent.
-		$pstContent = $content->preSaveTransform( $this->mTitle, $user, $parserOptions );
+		$services = MediaWikiServices::getInstance();
+		$contentTransformer = $services->getContentTransformer();
+		$pstContent = $contentTransformer->preSaveTransform( $content, $this->mTitle, $user, $parserOptions );
 		$scopedCallback = $parserOptions->setupFakeRevision( $this->mTitle, $pstContent, $user );
 		$parserOutput = $pstContent->getParserOutput( $this->mTitle, null, $parserOptions );
 		ScopedCallback::consume( $scopedCallback );
