@@ -3581,17 +3581,8 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 				$this->getTitle(),
 				$role
 			);
+
 			$allUpdates = array_merge( $allUpdates, $updates );
-
-			// TODO: remove B/C hack in 1.32!
-			$legacyUpdates = $content->getDeletionUpdates( $this );
-
-			// HACK: filter out redundant and incomplete LinksDeletionUpdate
-			$legacyUpdates = array_filter( $legacyUpdates, static function ( $update ) {
-				return !( $update instanceof LinksDeletionUpdate );
-			} );
-
-			$allUpdates = array_merge( $allUpdates, $legacyUpdates );
 		}
 
 		$this->getHookRunner()->onPageDeletionDataUpdates(

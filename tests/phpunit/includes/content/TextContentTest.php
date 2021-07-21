@@ -360,54 +360,6 @@ class TextContentTest extends MediaWikiLangTestCase {
 		$this->assertEquals( $equal, $a->equals( $b ) );
 	}
 
-	public static function dataGetDeletionUpdates() {
-		return [
-			[
-				CONTENT_MODEL_TEXT, "hello ''world''\n",
-				[]
-			],
-			[
-				CONTENT_MODEL_TEXT, "hello [[world test 21344]]\n",
-				[]
-			],
-			// TODO: more...?
-		];
-	}
-
-	/**
-	 * @dataProvider dataGetDeletionUpdates
-	 * @covers TextContent::getDeletionUpdates
-	 */
-	public function testDeletionUpdates( $model, $text, $expectedStuff ) {
-		$page = $this->getNonexistingTestPage( get_class( $this ) . '::' . __FUNCTION__ );
-		$title = $page->getTitle();
-
-		$content = ContentHandler::makeContent( $text, $title, $model );
-		$page->doUserEditContent( $content, $this->getTestSysop()->getUser(), '' );
-
-		$updates = $content->getDeletionUpdates( $page );
-
-		// make updates accessible by class name
-		foreach ( $updates as $update ) {
-			$class = get_class( $update );
-			$updates[$class] = $update;
-		}
-
-		foreach ( $expectedStuff as $class => $fieldValues ) {
-			$this->assertArrayHasKey( $class, $updates, "missing an update of type $class" );
-
-			$update = $updates[$class];
-
-			foreach ( $fieldValues as $field => $value ) {
-				$v = $update->$field; # if the field doesn't exist, just crash and burn
-				$this->assertEquals( $value, $v, "unexpected value for field $field in instance of $class" );
-			}
-		}
-
-		// make phpunit happy even if $expectedStuff was empty
-		$this->assertTrue( true );
-	}
-
 	public static function provideConvert() {
 		return [
 			[ // #0

@@ -487,23 +487,6 @@ abstract class AbstractContent implements Content {
 	}
 
 	/**
-	 * @stable to override
-	 * @since 1.21
-	 *
-	 * @param WikiPage $page
-	 * @param ParserOutput|null $parserOutput
-	 *
-	 * @return DeferrableUpdate[]
-	 *
-	 * @see Content::getDeletionUpdates
-	 */
-	public function getDeletionUpdates( WikiPage $page, ParserOutput $parserOutput = null ) {
-		return [
-			new LinksDeletionUpdate( $page ),
-		];
-	}
-
-	/**
 	 * This default implementation always returns false. Subclasses may override
 	 * this to supply matching logic.
 	 *

@@ -482,26 +482,6 @@ interface Content {
 	public function prepareSave( WikiPage $page, $flags, $parentRevId, User $user );
 
 	/**
-	 * Returns a list of updates to perform when this content is deleted.
-	 * The necessary updates may be taken from the Content object, or depend on
-	 * the current state of the database.
-	 *
-	 * @since 1.21
-	 * @deprecated since 1.32, call and override
-	 *   ContentHandler::getDeletionUpdates instead.
-	 *
-	 * @param WikiPage $page The page the content was deleted from.
-	 * @param ParserOutput|null $parserOutput Optional parser output object
-	 *    for efficient access to meta-information about the content object.
-	 *    Provide if you have one handy.
-	 *
-	 * @return DeferrableUpdate[] A list of DeferrableUpdate instances that will clean up the
-	 *    database after deletion.
-	 */
-	public function getDeletionUpdates( WikiPage $page,
-		ParserOutput $parserOutput = null );
-
-	/**
 	 * Returns true if this Content object matches the given magic word.
 	 *
 	 * @since 1.21

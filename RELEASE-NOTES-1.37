@@ -346,6 +346,8 @@ because of Phabricator reports.
   ready to the new behavior.
 * ResultWrapper is now abstract. It cannot be directly constructed (T286694).
 * The SecondaryDataUpdates hook, deprecated in 1.32, was removed entirely.
+* Content::getDeletionUpdates(), was removed. Use
+  ContentHandler::getDeletionUpdates() instead.
 * …
 
 === Deprecations in 1.37 ===
