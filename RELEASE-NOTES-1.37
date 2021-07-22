@@ -345,6 +345,7 @@ because of Phabricator reports.
   All extensions that extend this class or use this method were updated to be
   ready to the new behavior.
 * ResultWrapper is now abstract. It cannot be directly constructed (T286694).
+* The SecondaryDataUpdates hook, deprecated in 1.32, was removed entirely.
 * …
 
 === Deprecations in 1.37 ===
