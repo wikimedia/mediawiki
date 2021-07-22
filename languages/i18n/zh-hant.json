@@ -3727,7 +3727,7 @@
 	"logentry-tag-update-revision": "$1 {{GENDER:$2|已更新}}標籤於頁面 $3 的修訂 $4 ({{PLURAL:$7|加入}} $6; {{PLURAL:$9|移除}} $8)。",
 	"logentry-tag-update-logentry": "$1 {{GENDER:$2|已更新}}標籤於頁面 $3 的日誌項目 $5 ({{PLURAL:$7|加入}} $6; {{PLURAL:$9|移除}} $8)。",
 	"rightsnone": "（無）",
-	"rightslogentry-temporary-group": "$1 (臨時，直到 $2)",
+	"rightslogentry-temporary-group": "$1（臨時，直到 $2）",
 	"feedback-adding": "正在新增意見回饋至頁面...",
 	"feedback-back": "返回",
 	"feedback-bugcheck": "很好！ 檢查一下您的意見是不是已經被列為 [$1 已知問題]。",

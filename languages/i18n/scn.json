@@ -1899,6 +1899,7 @@
 	"namespace_association": "Namespace assuciatu",
 	"tooltip-namespace_association": "Scegghi sta casedda pi nclùdiri macari lu namespace di discussioni o chiddu principali assuciatu ô namespace silizzunatu",
 	"blanknamespace": "(Principali)",
+	"contributions": "Cuntribbuti di l'utenti",
 	"tool-link-contributions": "Cuntribbuti di l'{{GENDER:$1|utenti}}",
 	"contributions-title": "Cuntribbuti di l'utenti $1",
 	"mycontris": "Li mè cuntribbuti",
