@@ -854,7 +854,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			];
 			$defaultPreferences['skin-responsive'] = [
 				'type' => 'check',
-				'default' => true,
 				'label-message' => 'prefs-skin-responsive',
 				'section' => 'rendering/skin',
 				'help-message' => 'prefs-help-skin-responsive',
