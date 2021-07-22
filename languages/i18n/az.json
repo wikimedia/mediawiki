@@ -2076,7 +2076,7 @@
 	"blocklink": "blokla",
 	"unblocklink": "bloklamanı kənarlaşdır",
 	"change-blocklink": "bloklamanı dəyişdir",
-	"contribslink": "töhfələr",
+	"contribslink": "fəaliyyət",
 	"emaillink": "e-məktub göndər",
 	"autoblocker": "Avtomatik olaraq bloklanmısınız. Çünki, qısa müddət əvvəl sizin IP-ünvanınız \"[[User:$1|$1]]\" tərəfindən istifadə edilmişdir.\n$1 adlı istifadəçinin bloklanma səbəbi: \"$2\"",
 	"blocklogpage": "Bloklama qeydləri",

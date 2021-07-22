@@ -61,7 +61,7 @@
 	"apihelp-main-paramvalue-errorformat-wikitext": "Wikitexte non analysé.",
 	"apihelp-main-paramvalue-errorformat-raw": "Clé et paramètres du message.",
 	"apihelp-main-paramvalue-errorformat-none": "Sortie sans texte, seulement les codes d'erreur.",
-	"apihelp-main-paramvalue-errorformat-bc": "Format utilisé avant MédiaWiki 1.29. <var>errorlang</var> et <var>errorsuselocal</var> sont ignorés.",
+	"apihelp-main-paramvalue-errorformat-bc": "Format utilisé avant MediaWiki 1.29. <var>errorlang</var> et <var>errorsuselocal</var> sont ignorés.",
 	"apihelp-main-param-errorlang": "Langue à utiliser pour les avertissements et les erreurs. Spécifier un des codes langues utilisables renvoyés par <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> avec <kbd>siprop=languages</kbd>, sinon <kbd>content</kbd> pour utiliser la langue du contenu de ce wiki, ou encore <kbd>uselang</kbd> pour utiliser la même valeur que le paramètre <var>uselang</var> (la langue préférée pour l’interface utilisateur).",
 	"apihelp-main-param-errorsuselocal": "S’il est fourni, les textes d’erreur utiliseront des messages adaptés à la langue dans l’espace de noms {{ns:MediaWiki}}.",
 	"apihelp-block-summary": "Bloquer un utilisateur.",

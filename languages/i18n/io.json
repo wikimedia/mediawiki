@@ -1770,6 +1770,8 @@
 	"allpagesprefix": "Montrez pagini kun prefixo:",
 	"allpages-bad-ns": "{{SITENAME}} ne havas nomaro \"$1\".",
 	"allpages-hide-redirects": "Celar ridirekti",
+	"cachedspecial-viewing-cached-ttl": "Vu nun vidas konservita versiono di ca pagino, qua povas esar anciena de $1.",
+	"cachedspecial-viewing-cached-ts": "Vu nun vidas konservita versiono di ca pagino, qua povas ne esar la maxim recenta de ol.",
 	"cachedspecial-refresh-now": "Vidar la lasta.",
 	"categories": "Kategorii",
 	"categories-submit": "Montrez",
