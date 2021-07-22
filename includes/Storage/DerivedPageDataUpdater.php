@@ -31,7 +31,6 @@ use IDBAccessObject;
 use InvalidArgumentException;
 use JobQueueGroup;
 use Language;
-use LinksDeletionUpdate;
 use LinksUpdate;
 use LogicException;
 use MediaWiki\Content\IContentHandlerFactory;
@@ -1437,17 +1436,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				$title,
 				$role
 			);
+
 			$allUpdates = array_merge( $allUpdates, $updates );
-
-			// TODO: remove B/C hack in 1.32!
-			$legacyUpdates = $content->getDeletionUpdates( $wikiPage );
-
-			// HACK: filter out redundant and incomplete LinksDeletionUpdate
-			$legacyUpdates = array_filter( $legacyUpdates, static function ( $update ) {
-				return !( $update instanceof LinksDeletionUpdate );
-			} );
-
-			$allUpdates = array_merge( $allUpdates, $legacyUpdates );
 		}
 
 		// TODO: hard deprecate SecondaryDataUpdates in favor of RevisionDataUpdates in 1.33!
