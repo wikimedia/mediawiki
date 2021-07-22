@@ -66,7 +66,6 @@ class HookRunner implements
 	\MediaWiki\Content\Hook\PageContentLanguageHook,
 	\MediaWiki\Content\Hook\PlaceNewSectionHook,
 	\MediaWiki\Content\Hook\SearchDataForIndexHook,
-	\MediaWiki\Content\Hook\SecondaryDataUpdatesHook,
 	\MediaWiki\Diff\Hook\AbortDiffCacheHook,
 	\MediaWiki\Diff\Hook\ArticleContentOnDiffHook,
 	\MediaWiki\Diff\Hook\DifferenceEngineAfterLoadNewTextHook,
@@ -3257,15 +3256,6 @@ class HookRunner implements
 		return $this->container->run(
 			'SearchResultsAugment',
 			[ &$setAugmentors, &$rowAugmentors ]
-		);
-	}
-
-	public function onSecondaryDataUpdates( $title, $oldContent, $recursive,
-		$parserOutput, &$updates
-	) {
-		return $this->container->run(
-			'SecondaryDataUpdates',
-			[ $title, $oldContent, $recursive, $parserOutput, &$updates ]
 		);
 	}
 

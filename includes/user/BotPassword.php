@@ -23,6 +23,7 @@ use MediaWiki\Auth\Throttler;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\BotPasswordSessionProvider;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 
 /**
@@ -102,15 +103,15 @@ class BotPassword implements IDBAccessObject {
 
 	/**
 	 * Load a BotPassword from the database
-	 * @param User $user
+	 * @param UserIdentity $userIdentity
 	 * @param string $appId
 	 * @param int $flags IDBAccessObject read flags
 	 * @return BotPassword|null
 	 */
-	public static function newFromUser( User $user, $appId, $flags = self::READ_NORMAL ) {
+	public static function newFromUser( UserIdentity $userIdentity, $appId, $flags = self::READ_NORMAL ) {
 		return MediaWikiServices::getInstance()
 			->getBotPasswordStore()
-			->getByUser( $user, (string)$appId, (int)$flags );
+			->getByUser( $userIdentity, (string)$appId, (int)$flags );
 	}
 
 	/**
@@ -129,7 +130,7 @@ class BotPassword implements IDBAccessObject {
 	/**
 	 * Create an unsaved BotPassword
 	 * @param array $data Data to use to create the bot password. Keys are:
-	 *  - user: (User) User object to create the password for. Overrides username and centralId.
+	 *  - user: (UserIdentity) UserIdentity to create the password for. Overrides username and centralId.
 	 *  - username: (string) Username to create the password for. Overrides centralId.
 	 *  - centralId: (int) User central ID to create the password for.
 	 *  - appId: (string, required) App ID for the password.

@@ -297,8 +297,6 @@ abstract class AbstractContent implements Content {
 			new LinksUpdate( $title, $parserOutput, $recursive )
 		];
 
-		Hooks::runner()->onSecondaryDataUpdates( $title, $old, $recursive, $parserOutput, $updates );
-
 		return $updates;
 	}
 
