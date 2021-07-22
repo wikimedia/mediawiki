@@ -13,7 +13,7 @@ use MediaWiki\Block\DatabaseBlock;
  */
 class ActionTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$context = $this->getContext();
@@ -62,7 +62,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	private function getArticle(
 		WikiPage $wikiPage = null,
 		IContextSource $context = null
-	) : Article {
+	): Article {
 		$context = $context ?? $this->getContext();
 		if ( $wikiPage !== null ) {
 			$context->setWikiPage( $wikiPage );
@@ -74,11 +74,11 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 		return Article::newFromWikiPage( $wikiPage, $context );
 	}
 
-	private function getPage() : WikiPage {
+	private function getPage(): WikiPage {
 		return WikiPage::factory( $this->getTitle() );
 	}
 
-	private function getTitle() : Title {
+	private function getTitle(): Title {
 		return Title::makeTitle( 0, 'Title' );
 	}
 
@@ -88,7 +88,7 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getContext(
 		string $requestedAction = null
-	) : IContextSource {
+	): IContextSource {
 		$request = new FauxRequest( [ 'action' => $requestedAction ] );
 
 		$context = new DerivativeContext( RequestContext::getMain() );

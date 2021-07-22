@@ -10,7 +10,7 @@ class DjVuTest extends MediaWikiMediaTestCase {
 	 */
 	protected $handler;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// cli tool setup

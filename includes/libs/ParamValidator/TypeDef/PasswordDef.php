@@ -20,7 +20,7 @@ class PasswordDef extends StringDef {
 		return parent::normalizeSettings( $settings );
 	}
 
-	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
 		if ( ( $settings[ParamValidator::PARAM_SENSITIVE] ?? true ) !== true &&

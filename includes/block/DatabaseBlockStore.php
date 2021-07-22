@@ -342,7 +342,7 @@ class DatabaseBlockStore {
 	 * @return bool whether it was deleted
 	 * @throws MWException
 	 */
-	public function deleteBlock( DatabaseBlock $block ) : bool {
+	public function deleteBlock( DatabaseBlock $block ): bool {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
@@ -384,7 +384,7 @@ class DatabaseBlockStore {
 	private function getArrayForDatabaseBlock(
 		DatabaseBlock $block,
 		IDatabase $dbw
-	) : array {
+	): array {
 		$expiry = $dbw->encodeExpiry( $block->getExpiry() );
 
 		if ( $block->getTargetUserIdentity() ) {
@@ -434,7 +434,7 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 * @return array
 	 */
-	private function getArrayForAutoblockUpdate( DatabaseBlock $block ) : array {
+	private function getArrayForAutoblockUpdate( DatabaseBlock $block ): array {
 		if ( !$block->getBlocker() ) {
 			throw new \RuntimeException( __METHOD__ . ': this block does not have a blocker' );
 		}
@@ -467,7 +467,7 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 * @return array IDs of retroactive autoblocks made
 	 */
-	private function doRetroactiveAutoblock( DatabaseBlock $block ) : array {
+	private function doRetroactiveAutoblock( DatabaseBlock $block ): array {
 		$autoBlockIds = [];
 		// If autoblock is enabled, autoblock the LAST IP(s) used
 		if ( $block->isAutoblocking() && $block->getType() == AbstractBlock::TYPE_USER ) {
@@ -498,7 +498,7 @@ class DatabaseBlockStore {
 	 * @param DatabaseBlock $block
 	 * @return array
 	 */
-	private function performRetroactiveAutoblock( DatabaseBlock $block ) : array {
+	private function performRetroactiveAutoblock( DatabaseBlock $block ): array {
 		if ( !$this->options->get( 'PutIPinRC' ) ) {
 			// No IPs in the recent changes table to autoblock
 			return [];

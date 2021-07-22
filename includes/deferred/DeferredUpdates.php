@@ -378,7 +378,7 @@ class DeferredUpdates {
 		LoggerInterface $logger,
 		StatsdDataFactoryInterface $stats,
 		$httpMethod
-	) : ?Throwable {
+	): ?Throwable {
 		$suffix = ( $update instanceof DeferrableCallback ) ? "_{$update->getOrigin()}" : '';
 		$type = get_class( $update ) . $suffix;
 		$stats->increment( "deferred_updates.$httpMethod.$type" );

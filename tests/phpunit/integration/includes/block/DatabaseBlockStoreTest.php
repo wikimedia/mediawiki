@@ -38,7 +38,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * - constructorArgs: Override the constructor arguments
 	 * @return DatabaseBlockStore
 	 */
-	private function getStore( array $options = [] ) : DatabaseBlockStore {
+	private function getStore( array $options = [] ): DatabaseBlockStore {
 		$overrideConfig = $options['config'] ?? [];
 		$overrideConstructorArgs = $options['constructorArgs'] ?? [];
 
@@ -82,7 +82,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * - autoblock: Whether this block is autoblocking
 	 * @return DatabaseBlock
 	 */
-	private function getBlock( array $options = [] ) : DatabaseBlock {
+	private function getBlock( array $options = [] ): DatabaseBlock {
 		$target = $options['target'] ?? $this->getTestUser()->getUser();
 		$autoblock = $options['autoblock'] ?? false;
 
@@ -372,7 +372,7 @@ class DatabaseBlockStoreTest extends MediaWikiIntegrationTestCase {
 	 * @param int $blockId
 	 * @param bool $expected Whether to expect to find any rows
 	 */
-	private function assertPurgeWorked( int $blockId, bool $expected ) : void {
+	private function assertPurgeWorked( int $blockId, bool $expected ): void {
 		$blockRows = (bool)$this->db->select(
 			'ipblocks',
 			'ipb_id',

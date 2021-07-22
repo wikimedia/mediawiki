@@ -104,7 +104,7 @@ class MagicWordArray {
 	 * @return string[]
 	 * @internal
 	 */
-	public function getBaseRegex( bool $capture = true, string $delimiter = '/' ) : array {
+	public function getBaseRegex( bool $capture = true, string $delimiter = '/' ): array {
 		if ( $capture && $delimiter === '/' && $this->baseRegex !== null ) {
 			return $this->baseRegex;
 		}

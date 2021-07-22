@@ -10,7 +10,7 @@ class TiffTest extends MediaWikiIntegrationTestCase {
 	/** @var string */
 	protected $filePath;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 

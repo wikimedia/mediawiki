@@ -15,7 +15,7 @@ class ArticleTest extends \MediaWikiIntegrationTestCase {
 	private $article;
 
 	/** creates a title object and its article object */
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->title = Title::makeTitle( NS_MAIN, 'SomePage' );
 		$this->article = new Article( $this->title );

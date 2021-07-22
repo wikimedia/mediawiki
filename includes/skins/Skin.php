@@ -2571,7 +2571,7 @@ abstract class Skin extends ContextSource {
 	 * @return string html
 	 * @since 1.35
 	 */
-	public function getAfterPortlet( string $name ) : string {
+	public function getAfterPortlet( string $name ): string {
 		$html = '';
 
 		$this->getHookRunner()->onSkinAfterPortlet( $this, $name, $html );
@@ -2642,7 +2642,7 @@ abstract class Skin extends ContextSource {
 		return $data;
 	}
 
-	public function getSearchPageTitle() : Title {
+	public function getSearchPageTitle(): Title {
 		return $this->searchPageTitle ?? SpecialPage::getTitleFor( 'Search' );
 	}
 

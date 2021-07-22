@@ -389,7 +389,7 @@ class ParamValidator {
 	 *  - 'allowedKeys': (string[]) ParamValidator keys that are allowed in `$settings`.
 	 *  - 'messages': (MessageValue[]) Messages to be checked for existence.
 	 */
-	public function checkSettings( string $name, $settings, array $options ) : array {
+	public function checkSettings( string $name, $settings, array $options ): array {
 		$settings = $this->normalizeSettingsInternal( $settings );
 		$issues = [];
 		$allowedKeys = [

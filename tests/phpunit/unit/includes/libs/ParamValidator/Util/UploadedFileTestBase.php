@@ -11,7 +11,7 @@ abstract class UploadedFileTestBase extends \PHPUnit\Framework\TestCase {
 	/** @var string|null */
 	protected static $tmpdir;
 
-	public static function setUpBeforeClass() : void {
+	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 
 		// Create a temporary directory for this test's files.
@@ -30,7 +30,7 @@ abstract class UploadedFileTestBase extends \PHPUnit\Framework\TestCase {
 		}
 	}
 
-	public static function tearDownAfterClass() : void {
+	public static function tearDownAfterClass(): void {
 		// Clean up temporary directory.
 		if ( self::$tmpdir !== null ) {
 			$iter = new RecursiveIteratorIterator(

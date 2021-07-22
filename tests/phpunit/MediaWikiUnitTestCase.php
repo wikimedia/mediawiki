@@ -67,7 +67,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	 * The annotation causes this to be called immediately before setUpBeforeClass()
 	 * @beforeClass
 	 */
-	final public static function mediaWikiSetUpBeforeClass() : void {
+	final public static function mediaWikiSetUpBeforeClass(): void {
 		$reflection = new ReflectionClass( static::class );
 		$dirSeparator = DIRECTORY_SEPARATOR;
 		if ( stripos( $reflection->getFileName(), "${dirSeparator}unit${dirSeparator}" ) === false ) {
@@ -125,7 +125,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	 * The annotation causes this to be called immediately after tearDown()
 	 * @after
 	 */
-	final protected function mediaWikiTearDown() : void {
+	final protected function mediaWikiTearDown(): void {
 		// Quick reset between tests
 		foreach ( $GLOBALS as $key => $_ ) {
 			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$unitGlobals ) ) {
@@ -141,7 +141,7 @@ abstract class MediaWikiUnitTestCase extends TestCase {
 	 * The annotation causes this to be called immediately after tearDownAfterClass()
 	 * @afterClass
 	 */
-	final public static function mediaWikiTearDownAfterClass() : void {
+	final public static function mediaWikiTearDownAfterClass(): void {
 		// Remove globals created by the test
 		foreach ( $GLOBALS as $key => $_ ) {
 			if ( $key !== 'GLOBALS' && !array_key_exists( $key, self::$originalGlobals ) ) {

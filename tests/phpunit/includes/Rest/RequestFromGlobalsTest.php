@@ -14,7 +14,7 @@ class RequestFromGlobalsTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $reqFromGlobals;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->reqFromGlobals = new RequestFromGlobals();
 	}

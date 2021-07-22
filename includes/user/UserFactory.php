@@ -87,7 +87,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	public function newFromName(
 		string $name,
 		string $validate = self::RIGOR_VALID
-	) : ?User {
+	): ?User {
 		// RIGOR_* constants are the same here and in the UserNameUtils class
 		$canonicalName = $this->userNameUtils->getCanonical( $name, $validate );
 		if ( $canonicalName === false ) {
@@ -109,7 +109,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @param string|null $ip IP address
 	 * @return User
 	 */
-	public function newAnonymous( $ip = null ) : User {
+	public function newAnonymous( $ip = null ): User {
 		if ( $ip ) {
 			$validIp = $this->userNameUtils->isIP( $ip );
 			if ( $validIp ) {
@@ -131,7 +131,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @param int $id Valid user ID
 	 * @return User
 	 */
-	public function newFromId( int $id ) : User {
+	public function newFromId( int $id ): User {
 		$user = new User();
 		$user->mId = $id;
 		$user->mFrom = 'id';
@@ -147,7 +147,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @param int $actorId
 	 * @return User
 	 */
-	public function newFromActorId( int $actorId ) : User {
+	public function newFromActorId( int $actorId ): User {
 		$user = new User();
 		$user->mActorId = $actorId;
 		$user->mFrom = 'actor';
@@ -163,7 +163,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 	 * @param UserIdentity $userIdentity
 	 * @return User
 	 */
-	public function newFromUserIdentity( UserIdentity $userIdentity ) : User {
+	public function newFromUserIdentity( UserIdentity $userIdentity ): User {
 		if ( $userIdentity instanceof User ) {
 			return $userIdentity;
 		}
@@ -209,7 +209,7 @@ class UserFactory implements IDBAccessObject, UserRigorOptions {
 		?string $userName,
 		?int $actorId = null,
 		$dbDomain = false
-	) : User {
+	): User {
 		// Stop-gap solution for the problem described in T222212.
 		// Force the User ID and Actor ID to zero for users loaded from the database
 		// of another wiki, to prevent subtle data corruption and confusing failure modes.

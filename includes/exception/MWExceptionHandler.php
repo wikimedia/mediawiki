@@ -37,7 +37,7 @@ class MWExceptionHandler {
 	/** @var string Error reported by direct logException() call */
 	public const CAUGHT_BY_OTHER = 'other';
 
-	/** @var string $reservedMemory */
+	/** @var string */
 	protected static $reservedMemory;
 
 	/**
@@ -48,7 +48,7 @@ class MWExceptionHandler {
 	 * As such, these should be sent to MediaWiki's "exception" channel.
 	 * Normally, the error handler logs them to the "error" channel.
 	 *
-	 * @var array $fatalErrorTypes
+	 * @var array
 	 */
 	protected static $fatalErrorTypes = [
 		E_ERROR,

@@ -38,7 +38,7 @@ class PresenceBooleanDef extends TypeDef {
 		return parent::normalizeSettings( $settings );
 	}
 
-	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
 		if ( !empty( $settings[ParamValidator::PARAM_ISMULTI] ) &&

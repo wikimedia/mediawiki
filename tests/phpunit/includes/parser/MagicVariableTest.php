@@ -27,7 +27,7 @@ class MagicVariableTest extends MediaWikiIntegrationTestCase {
 	private $testParser = null;
 
 	/** setup a basic parser object */
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$services = MediaWikiServices::getInstance();

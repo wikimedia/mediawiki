@@ -17,7 +17,7 @@ use MediaWiki\Revision\RevisionRecord;
  */
 class ApiEditPageTest extends ApiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

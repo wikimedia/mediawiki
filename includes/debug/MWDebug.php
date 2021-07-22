@@ -34,28 +34,28 @@ class MWDebug {
 	/**
 	 * Log lines
 	 *
-	 * @var array $log
+	 * @var array
 	 */
 	protected static $log = [];
 
 	/**
 	 * Debug messages from wfDebug().
 	 *
-	 * @var array $debug
+	 * @var array
 	 */
 	protected static $debug = [];
 
 	/**
 	 * SQL statements of the database queries.
 	 *
-	 * @var array $query
+	 * @var array
 	 */
 	protected static $query = [];
 
 	/**
 	 * Is the debugger enabled?
 	 *
-	 * @var bool $enabled
+	 * @var bool
 	 */
 	protected static $enabled = false;
 
@@ -63,7 +63,7 @@ class MWDebug {
 	 * Array of functions that have already been warned, formatted
 	 * function-caller to prevent a buttload of warnings
 	 *
-	 * @var array $deprecationWarnings
+	 * @var array
 	 */
 	protected static $deprecationWarnings = [];
 

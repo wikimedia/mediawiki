@@ -8,7 +8,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	/** @var GIFHandler */
 	protected $handler;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->handler = new GIFHandler();
@@ -17,7 +17,7 @@ class GIFHandlerTest extends MediaWikiMediaTestCase {
 	/**
 	 * @return array Unserialized metadata array for GIFHandler::BROKEN_FILE
 	 */
-	private function brokenFile() : array {
+	private function brokenFile(): array {
 		return [ '_error' => 0 ];
 	}
 

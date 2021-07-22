@@ -8,7 +8,7 @@ class ResourceLoaderImageTest extends MediaWikiUnitTestCase {
 
 	private $imagesPath;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->imagesPath = __DIR__ . '/../../../data/resourceloader';
 	}
@@ -128,7 +128,7 @@ class ResourceLoaderImageTestable extends ResourceLoaderImage {
 		return 'RASTERIZESTUB';
 	}
 
-	protected function getLangFallbacks( string $code ) : array {
+	protected function getLangFallbacks( string $code ): array {
 		return $this->mockFallbacks[$code] ?? [];
 	}
 }

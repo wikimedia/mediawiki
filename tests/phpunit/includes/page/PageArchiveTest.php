@@ -43,7 +43,7 @@ class PageArchiveTest extends MediaWikiIntegrationTestCase {
 		// Blanked out to keep auto-increment values stable.
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge(

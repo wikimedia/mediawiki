@@ -182,7 +182,7 @@ class RevertAction extends FormAction {
 	 * @since 1.35
 	 * @return File
 	 */
-	private function getFile() : File {
+	private function getFile(): File {
 		/** @var \WikiFilePage $wikiPage */
 		$wikiPage = $this->getWikiPage();
 		// @phan-suppress-next-line PhanUndeclaredMethod

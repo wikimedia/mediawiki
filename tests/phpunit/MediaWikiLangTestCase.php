@@ -10,7 +10,7 @@ abstract class MediaWikiLangTestCase extends MediaWikiIntegrationTestCase {
 	 * The annotation causes this to be called immediately before setUp()
 	 * @before
 	 */
-	final protected function mediaWikiLangSetUp() : void {
+	final protected function mediaWikiLangSetUp(): void {
 		global $wgLanguageCode;
 
 		$services = MediaWikiServices::getInstance();

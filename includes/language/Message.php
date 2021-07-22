@@ -912,7 +912,7 @@ class Message implements MessageSpecifier, Serializable {
 	 * @return string Text or HTML
 	 * @suppress SecurityCheck-DoubleEscaped phan false positive
 	 */
-	private function format( string $format ) : string {
+	private function format( string $format ): string {
 		$string = $this->fetchMessage();
 
 		if ( $string === false ) {

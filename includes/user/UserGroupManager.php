@@ -182,7 +182,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * are not included, as they are defined automatically, not in the database.
 	 * @return string[] internal group names
 	 */
-	public function listAllGroups() : array {
+	public function listAllGroups(): array {
 		return array_values( array_diff(
 			array_merge(
 				array_keys( $this->options->get( 'GroupPermissions' ) ),
@@ -196,7 +196,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * Get a list of all configured implicit groups
 	 * @return string[]
 	 */
-	public function listAllImplicitGroups() : array {
+	public function listAllImplicitGroups(): array {
 		return $this->options->get( 'ImplicitGroups' );
 	}
 
@@ -209,7 +209,7 @@ class UserGroupManager implements IDBAccessObject {
 	 *
 	 * @return UserGroupMembership
 	 */
-	public function newGroupMembershipFromRow( \stdClass $row ) : UserGroupMembership {
+	public function newGroupMembershipFromRow( \stdClass $row ): UserGroupMembership {
 		return new UserGroupMembership(
 			(int)$row->ug_user,
 			$row->ug_group,
@@ -261,7 +261,7 @@ class UserGroupManager implements IDBAccessObject {
 		UserIdentity $user,
 		int $queryFlags = self::READ_NORMAL,
 		bool $recache = false
-	)  : array {
+	): array {
 		$userKey = $this->getCacheKey( $user );
 		if ( $recache ||
 			!isset( $this->userGroupCache[$userKey][self::CACHE_IMPLICIT] ) ||
@@ -301,7 +301,7 @@ class UserGroupManager implements IDBAccessObject {
 		UserIdentity $user,
 		int $queryFlags = self::READ_NORMAL,
 		bool $recache = false
-	) : array {
+	): array {
 		$userKey = $this->getCacheKey( $user );
 		// Ignore cache if the $recache flag is set, cached values can not be used
 		// or the cache value is missing
@@ -342,7 +342,7 @@ class UserGroupManager implements IDBAccessObject {
 	public function getUserFormerGroups(
 		UserIdentity $user,
 		int $queryFlags = self::READ_NORMAL
-	) : array {
+	): array {
 		$userKey = $this->getCacheKey( $user );
 
 		if ( $this->canUseCachedValues( $user, self::CACHE_FORMER, $queryFlags ) &&
@@ -380,7 +380,7 @@ class UserGroupManager implements IDBAccessObject {
 	 *
 	 * @see $wgAutopromote
 	 */
-	public function getUserAutopromoteGroups( UserIdentity $user ) : array {
+	public function getUserAutopromoteGroups( UserIdentity $user ): array {
 		$promote = [];
 		// TODO: remove the need for the full user object
 		$userObj = User::newFromIdentity( $user );
@@ -409,7 +409,7 @@ class UserGroupManager implements IDBAccessObject {
 	public function getUserAutopromoteOnceGroups(
 		UserIdentity $user,
 		string $event
-	) : array {
+	): array {
 		$autopromoteOnce = $this->options->get( 'AutopromoteOnce' );
 		$promote = [];
 
@@ -453,7 +453,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param User $user The user to check the conditions against
 	 * @return bool Whether the condition is true
 	 */
-	private function recCheckCondition( $cond, User $user ) : bool {
+	private function recCheckCondition( $cond, User $user ): bool {
 		$validOps = [ '&', '|', '^', '!' ];
 
 		if ( is_array( $cond ) && count( $cond ) >= 2 && in_array( $cond[0], $validOps ) ) {
@@ -512,7 +512,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @return bool Whether the condition is true for the user
 	 * @throws InvalidArgumentException if autopromote condition was not recognized.
 	 */
-	private function checkCondition( array $cond, User $user ) : bool {
+	private function checkCondition( array $cond, User $user ): bool {
 		if ( count( $cond ) < 1 ) {
 			return false;
 		}
@@ -591,7 +591,7 @@ class UserGroupManager implements IDBAccessObject {
 	public function addUserToAutopromoteOnceGroups(
 		UserIdentity $user,
 		string $event
-	) : array {
+	): array {
 		Assert::precondition(
 			!$this->dbDomain || WikiMap::isCurrentWikiDbDomain( $this->dbDomain ),
 			__METHOD__ . " is not supported for foreign domains: {$this->dbDomain} used"
@@ -656,7 +656,7 @@ class UserGroupManager implements IDBAccessObject {
 	public function getUserGroups(
 		UserIdentity $user,
 		int $queryFlags = self::READ_NORMAL
-	) : array {
+	): array {
 		return array_keys( $this->getUserGroupMemberships( $user, $queryFlags ) );
 	}
 
@@ -671,7 +671,7 @@ class UserGroupManager implements IDBAccessObject {
 	public function getUserGroupMemberships(
 		UserIdentity $user,
 		int $queryFlags = self::READ_NORMAL
-	) : array {
+	): array {
 		$userKey = $this->getCacheKey( $user );
 
 		if ( $this->canUseCachedValues( $user, self::CACHE_MEMBERSHIP, $queryFlags ) &&
@@ -731,7 +731,7 @@ class UserGroupManager implements IDBAccessObject {
 		string $group,
 		string $expiry = null,
 		bool $allowUpdate = false
-	) : bool {
+	): bool {
 		if ( $this->readOnlyMode->isReadOnly() ) {
 			return false;
 		}
@@ -841,7 +841,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @throws InvalidArgumentException
 	 * @return bool
 	 */
-	public function removeUserFromGroup( UserIdentity $user, string $group ) : bool {
+	public function removeUserFromGroup( UserIdentity $user, string $group ): bool {
 		// TODO: Deprecate passing out user object in the hook by introducing
 		// an alternative hook
 		if ( $this->hookContainer->isRegistered( 'UserRemoveGroup' ) ) {
@@ -906,7 +906,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @internal
 	 * @phan-return array{tables:string[],fields:string[],joins:string[]}
 	 */
-	public function getQueryInfo() : array {
+	public function getQueryInfo(): array {
 		return [
 			'tables' => [ 'user_groups' ],
 			'fields' => [
@@ -1126,7 +1126,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param int $queryFlags a bit field composed of READ_XXX flags
 	 * @return DBConnRef
 	 */
-	private function getDBConnectionRefForQueryFlags( int $queryFlags ) : DBConnRef {
+	private function getDBConnectionRefForQueryFlags( int $queryFlags ): DBConnRef {
 		list( $mode, ) = DBAccessObjectUtils::getDBOptions( $queryFlags );
 		return $this->loadBalancer->getConnectionRef( $mode, [], $this->dbDomain );
 	}
@@ -1136,7 +1136,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param UserIdentity $user
 	 * @return string
 	 */
-	private function getCacheKey( UserIdentity $user ) : string {
+	private function getCacheKey( UserIdentity $user ): string {
 		return $user->isRegistered() ? "u:{$user->getId()}" : "anon:{$user->getName()}";
 	}
 
@@ -1151,7 +1151,7 @@ class UserGroupManager implements IDBAccessObject {
 		UserIdentity $user,
 		string $cacheKind,
 		int $queryFlags
-	) : bool {
+	): bool {
 		if ( !$user->isRegistered() ) {
 			// Anon users don't have groups stored in the database,
 			// so $queryFlags are ignored.

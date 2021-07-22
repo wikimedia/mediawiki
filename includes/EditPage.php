@@ -1840,7 +1840,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @return string[] array with two values, the summary and the anchor text
 	 */
-	private function newSectionSummary() : array {
+	private function newSectionSummary(): array {
 		$newSectionSummary = $this->summary;
 		$newSectionAnchor = '';
 		$services = MediaWikiServices::getInstance();
@@ -2427,7 +2427,7 @@ class EditPage implements IEditObject {
 	 *
 	 * @return bool
 	 */
-	private function isUndoClean( Content $content ) : bool {
+	private function isUndoClean( Content $content ): bool {
 		// Check whether the undo was "clean", that is the user has not modified
 		// the automatically generated content.
 		$undoRev = $this->revisionStore->getRevisionById( $this->undidRev );

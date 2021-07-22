@@ -20,7 +20,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return RepoGroup
 	 */
-	private function getMockRepoGroup() : RepoGroup {
+	private function getMockRepoGroup(): RepoGroup {
 		$mockExistentFile = $this->createMock( LocalFile::class );
 		$mockExistentFile->method( 'exists' )->willReturn( true );
 		$mockExistentFile->method( 'getMimeType' )->willReturn( 'image/jpeg' );
@@ -62,7 +62,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 *   need not contain all keys.
 	 * @return MovePage
 	 */
-	private function newMovePage( $old, $new, array $params = [] ) : MovePage {
+	private function newMovePage( $old, $new, array $params = [] ): MovePage {
 		$mockLB = $this->createMock( LoadBalancer::class );
 		$mockLB->method( 'getConnection' )
 			->willReturn( $params['db'] ?? $this->createNoOpMock( IDatabase::class ) );
@@ -93,7 +93,7 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Ensure we have some pages that are guaranteed to exist or not

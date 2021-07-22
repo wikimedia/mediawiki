@@ -5,7 +5,7 @@
  */
 class WebRequestTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->oldServer = $_SERVER;
@@ -13,7 +13,7 @@ class WebRequestTest extends MediaWikiIntegrationTestCase {
 		$this->oldWgServer = $GLOBALS['wgServer'];
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$_SERVER = $this->oldServer;
 		$GLOBALS['wgRequest'] = $this->oldWgRequest;
 		$GLOBALS['wgServer'] = $this->oldWgServer;

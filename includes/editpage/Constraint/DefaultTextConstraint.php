@@ -61,7 +61,7 @@ class DefaultTextConstraint implements IEditConstraint {
 		$this->userProvidedText = $userProvidedText;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		$defaultMessageText = $this->title->getDefaultMessageText();
 		if ( $this->title->getNamespace() === NS_MEDIAWIKI && $defaultMessageText !== false ) {
 			$defaultText = $defaultMessageText;
@@ -77,7 +77,7 @@ class DefaultTextConstraint implements IEditConstraint {
 		return $this->result;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
 			$statusValue->fatal( 'blankarticle' );

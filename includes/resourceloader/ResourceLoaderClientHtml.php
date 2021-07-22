@@ -74,7 +74,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param array $vars Array of key/value pairs
 	 */
-	public function setConfig( array $vars ) : void {
+	public function setConfig( array $vars ): void {
 		foreach ( $vars as $key => $value ) {
 			$this->config[$key] = $value;
 		}
@@ -85,7 +85,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param string[] $modules Array of module names
 	 */
-	public function setModules( array $modules ) : void {
+	public function setModules( array $modules ): void {
 		$this->modules = $modules;
 	}
 
@@ -94,7 +94,7 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param string[] $modules Array of module names
 	 */
-	public function setModuleStyles( array $modules ) : void {
+	public function setModuleStyles( array $modules ): void {
 		$this->moduleStyles = $modules;
 	}
 
@@ -105,11 +105,11 @@ class ResourceLoaderClientHtml {
 	 *
 	 * @param array<string,string> $states Module state keyed by module name
 	 */
-	public function setExemptStates( array $states ) : void {
+	public function setExemptStates( array $states ): void {
 		$this->exemptStates = $states;
 	}
 
-	private function getData() : array {
+	private function getData(): array {
 		if ( $this->data ) {
 			// @codeCoverageIgnoreStart
 			return $this->data;
@@ -349,7 +349,7 @@ JAVASCRIPT;
 		return WrappedString::join( "\n", $chunks );
 	}
 
-	private function getContext( $group, $type ) : ResourceLoaderContext {
+	private function getContext( $group, $type ): ResourceLoaderContext {
 		return self::makeContext( $this->context, $group, $type );
 	}
 
@@ -359,7 +359,7 @@ JAVASCRIPT;
 
 	private static function makeContext( ResourceLoaderContext $mainContext, $group, $type,
 		array $extraQuery = []
-	) : DerivativeResourceLoaderContext {
+	): DerivativeResourceLoaderContext {
 		// Allow caller to setVersion() and setModules()
 		$ret = new DerivativeResourceLoaderContext( $mainContext );
 		// Set 'only' if not combined

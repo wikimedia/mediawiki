@@ -51,7 +51,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	/** @var IDatabase */
 	private $dbw;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$services = MediaWikiServices::getInstance();
@@ -102,7 +102,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	private function getLatestTestRevision() : RevisionRecord {
+	private function getLatestTestRevision(): RevisionRecord {
 		if ( $this->latestTestRevision !== null ) {
 			return $this->latestTestRevision;
 		}
@@ -127,7 +127,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	private function insertRevisionToTestPage(
 		string $content,
 		string $timestamp
-	) : RevisionRecord {
+	): RevisionRecord {
 		$revisionRecord = $this->getNewRevisionForTestPage( $content );
 		$revisionRecord->setUser( $this->getTestUser()->getUser() );
 		$revisionRecord->setTimestamp( $timestamp );
@@ -149,7 +149,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	private function getNewRevisionForTestPage(
 		string $content
-	) : MutableRevisionRecord {
+	): MutableRevisionRecord {
 		$parentRevision = $this->getLatestTestRevision();
 
 		$revision = new MutableRevisionRecord( $this->wikiPage->getTitle() );
@@ -163,7 +163,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		return $revision;
 	}
 
-	public function provideManualReverts() : array {
+	public function provideManualReverts(): array {
 		return [
 			'reverting a single edit' => [
 				self::CONTENT_A,
@@ -275,7 +275,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideNotManualReverts() : array {
+	public function provideNotManualReverts(): array {
 		return [
 			'edit not changing anything' => [
 				self::CONTENT_B,

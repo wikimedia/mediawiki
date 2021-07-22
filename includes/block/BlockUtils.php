@@ -88,7 +88,7 @@ class BlockUtils {
 	 * @param string|UserIdentity|null $target
 	 * @return array [ UserIdentity|String|null, int|null ]
 	 */
-	public function parseBlockTarget( $target ) : array {
+	public function parseBlockTarget( $target ): array {
 		// We may have been through this before
 		if ( $target instanceof UserIdentity ) {
 			if ( IPUtils::isValid( $target->getName() ) ) {
@@ -152,7 +152,7 @@ class BlockUtils {
 	 *
 	 * @return Status
 	 */
-	public function validateTarget( $value ) : Status {
+	public function validateTarget( $value ): Status {
 		list( $target, $type ) = $this->parseBlockTarget( $value );
 
 		$status = Status::newGood( $target );
@@ -199,7 +199,7 @@ class BlockUtils {
 	 *
 	 * @return Status
 	 */
-	private function validateIPv4Range( int $range ) : Status {
+	private function validateIPv4Range( int $range ): Status {
 		$status = Status::newGood();
 		$blockCIDRLimit = $this->options->get( 'BlockCIDRLimit' );
 
@@ -223,7 +223,7 @@ class BlockUtils {
 	 *
 	 * @return Status
 	 */
-	private function validateIPv6Range( int $range ) : Status {
+	private function validateIPv6Range( int $range ): Status {
 		$status = Status::newGood();
 		$blockCIDRLimit = $this->options->get( 'BlockCIDRLimit' );
 

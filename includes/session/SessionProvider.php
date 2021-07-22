@@ -236,7 +236,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 *
 	 * @return HookContainer
 	 */
-	protected function getHookContainer() : HookContainer {
+	protected function getHookContainer(): HookContainer {
 		return $this->hookContainer;
 	}
 
@@ -248,7 +248,7 @@ abstract class SessionProvider implements SessionProviderInterface {
 	 * @since 1.35
 	 * @return HookRunner
 	 */
-	protected function getHookRunner() : HookRunner {
+	protected function getHookRunner(): HookRunner {
 		return $this->hookRunner;
 	}
 

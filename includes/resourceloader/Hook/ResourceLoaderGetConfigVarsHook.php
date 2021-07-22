@@ -27,5 +27,5 @@ interface ResourceLoaderGetConfigVarsHook {
 	 * @param Config $config since 1.34
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ) : void;
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void;
 }

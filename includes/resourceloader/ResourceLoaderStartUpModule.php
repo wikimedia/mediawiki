@@ -65,7 +65,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		array $registryData,
 		string $moduleName,
 		array $handled = []
-	) : array {
+	): array {
 		static $dependencyCache = [];
 
 		// No modules will be added or changed server-side after this point,
@@ -125,7 +125,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *  - string 'source'
 	 * @phan-param array<string,array{version:string,dependencies:array,group:?string,source:string}> &$registryData
 	 */
-	public static function compileUnresolvedDependencies( array &$registryData ) : void {
+	public static function compileUnresolvedDependencies( array &$registryData ): void {
 		foreach ( $registryData as $name => &$data ) {
 			$dependencies = $data['dependencies'];
 			try {
@@ -149,7 +149,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code for registering all modules with the client loader
 	 */
-	public function getModuleRegistrations( ResourceLoaderContext $context ) : string {
+	public function getModuleRegistrations( ResourceLoaderContext $context ): string {
 		$resourceLoader = $context->getResourceLoader();
 		// Future developers: Use WebRequest::getRawVal() instead getVal().
 		// The getVal() method performs slow Language+UTF logic. (f303bb9360)
@@ -281,7 +281,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 		return $out;
 	}
 
-	private function getGroupId( $groupName ) : ?int {
+	private function getGroupId( $groupName ): ?int {
 		if ( $groupName === null ) {
 			return null;
 		}
@@ -298,7 +298,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *
 	 * @return array
 	 */
-	private function getBaseModules() : array {
+	private function getBaseModules(): array {
 		return [ 'jquery', 'mediawiki.base' ];
 	}
 
@@ -308,7 +308,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 *
 	 * @return string localStorage item key for JavaScript
 	 */
-	private function getStoreKey() : string {
+	private function getStoreKey(): string {
 		return 'MediaWikiModuleStore:' . $this->getConfig()->get( 'DBname' );
 	}
 
@@ -316,7 +316,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @see $wgResourceLoaderMaxQueryLength
 	 * @return int
 	 */
-	private function getMaxQueryLength() : int {
+	private function getMaxQueryLength(): int {
 		$len = $this->getConfig()->get( 'ResourceLoaderMaxQueryLength' );
 		// - Ignore -1, which in MW 1.34 and earlier was used to mean "unlimited".
 		// - Ignore invalid values, e.g. non-int or other negative values.
@@ -333,7 +333,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string String of concatenated vary conditions
 	 */
-	private function getStoreVary( ResourceLoaderContext $context ) : string {
+	private function getStoreVary( ResourceLoaderContext $context ): string {
 		return implode( ':', [
 			$context->getSkin(),
 			$this->getConfig()->get( 'ResourceLoaderStorageVersion' ),
@@ -345,7 +345,7 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	 * @param ResourceLoaderContext $context
 	 * @return string JavaScript code
 	 */
-	public function getScript( ResourceLoaderContext $context ) : string {
+	public function getScript( ResourceLoaderContext $context ): string {
 		global $IP;
 		$conf = $this->getConfig();
 
@@ -411,14 +411,14 @@ class ResourceLoaderStartUpModule extends ResourceLoaderModule {
 	/**
 	 * @return bool
 	 */
-	public function supportsURLLoading() : bool {
+	public function supportsURLLoading(): bool {
 		return false;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function enableModuleContentVersion() : bool {
+	public function enableModuleContentVersion(): bool {
 		// Enabling this means that ResourceLoader::getVersionHash will simply call getScript()
 		// and hash it to determine the version (as used by E-Tag HTTP response header).
 		return true;

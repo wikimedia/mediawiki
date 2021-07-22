@@ -5,7 +5,7 @@ use PHPUnit\TextUI\ResultPrinter;
 
 class MediaWikiPHPUnitResultPrinter extends ResultPrinter {
 	/** @inheritDoc */
-	protected function printDefectTrace( TestFailure $defect ) : void {
+	protected function printDefectTrace( TestFailure $defect ): void {
 		parent::printDefectTrace( $defect );
 		$test = $defect->getTestName();
 		$log = MediaWikiLoggerPHPUnitExtension::$testsCollection[$test] ?? null;

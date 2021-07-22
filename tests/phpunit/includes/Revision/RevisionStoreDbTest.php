@@ -66,7 +66,7 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $testPage;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'archive';
 		$this->tablesUsed[] = 'page';

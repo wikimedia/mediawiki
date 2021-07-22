@@ -4,7 +4,7 @@ use Wikimedia\Assert\ParameterTypeException;
 
 class UserGroupMembershipTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

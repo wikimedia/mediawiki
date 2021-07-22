@@ -142,7 +142,7 @@ class UserIdentityValue implements UserIdentity {
 	 * @return int The user ID. May be 0 for anonymous users or for users with no local account.
 	 *
 	 */
-	public function getId( $wikiId = self::LOCAL ) : int {
+	public function getId( $wikiId = self::LOCAL ): int {
 		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		return $this->id;
 	}
@@ -150,7 +150,7 @@ class UserIdentityValue implements UserIdentity {
 	/**
 	 * @return string The user's logical name. May be an IPv4 or IPv6 address for anonymous users.
 	 */
-	public function getName() : string {
+	public function getName(): string {
 		return $this->name;
 	}
 
@@ -161,7 +161,7 @@ class UserIdentityValue implements UserIdentity {
 	 *
 	 * @return int always 0.
 	 */
-	public function getActorId( $wikiId = self::LOCAL ) : int {
+	public function getActorId( $wikiId = self::LOCAL ): int {
 		wfDeprecated( __METHOD__, '1.36' );
 		return 0;
 	}
@@ -172,7 +172,7 @@ class UserIdentityValue implements UserIdentity {
 	 * @param UserIdentity|null $user
 	 * @return bool
 	 */
-	public function equals( ?UserIdentity $user ) : bool {
+	public function equals( ?UserIdentity $user ): bool {
 		if ( !$user ) {
 			return false;
 		}
@@ -187,7 +187,7 @@ class UserIdentityValue implements UserIdentity {
 	 *   anonymous or has no local account (which can happen when importing). This is equivalent to
 	 *   getId() != 0 and is provided for code readability.
 	 */
-	public function isRegistered() : bool {
+	public function isRegistered(): bool {
 		return $this->getId( $this->wikiId ) != 0;
 	}
 

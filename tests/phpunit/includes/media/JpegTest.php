@@ -8,7 +8,7 @@ class JpegTest extends MediaWikiMediaTestCase {
 	/** @var JpegHandler */
 	private $handler;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->checkPHPExtension( 'exif' );
 

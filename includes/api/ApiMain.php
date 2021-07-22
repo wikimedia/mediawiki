@@ -660,7 +660,7 @@ class ApiMain extends ApiBase {
 	 * Get the parameter validator
 	 * @return ApiParamValidator
 	 */
-	public function getParamValidator() : ApiParamValidator {
+	public function getParamValidator(): ApiParamValidator {
 		return $this->mParamValidator;
 	}
 

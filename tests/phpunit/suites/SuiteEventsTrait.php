@@ -15,7 +15,7 @@ trait SuiteEventsTrait {
 	/**
 	 * @inheritDoc
 	 */
-	public function run( TestResult $result = null ) : TestResult {
+	public function run( TestResult $result = null ): TestResult {
 		// setUp / tearDown handling based on code in TestSuite::run()
 		// (except in the parent only beforeClass / afterClass are run)
 		if ( $result === null ) {

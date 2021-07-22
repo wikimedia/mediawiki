@@ -31,7 +31,7 @@ declare( strict_types = 1 );
  * @since 1.24
  */
 class Pbkdf2Password extends ParameterizedPassword {
-	protected function getDefaultParams() : array {
+	protected function getDefaultParams(): array {
 		return [
 			'algo' => $this->config['algo'],
 			'rounds' => $this->config['cost'],
@@ -39,11 +39,11 @@ class Pbkdf2Password extends ParameterizedPassword {
 		];
 	}
 
-	protected function getDelimiter() : string {
+	protected function getDelimiter(): string {
 		return ':';
 	}
 
-	public function crypt( string $password ) : void {
+	public function crypt( string $password ): void {
 		if ( count( $this->args ) == 0 ) {
 			$this->args[] = base64_encode( random_bytes( 16 ) );
 		}

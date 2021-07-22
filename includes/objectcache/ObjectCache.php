@@ -296,7 +296,7 @@ class ObjectCache {
 	 * @since 1.35
 	 * @return BagOStuff
 	 */
-	public static function makeLocalServerCache() : BagOStuff {
+	public static function makeLocalServerCache(): BagOStuff {
 		$params = [
 			'reportDupes' => false,
 			// Even simple caches must use a keyspace (T247562)

@@ -262,7 +262,7 @@ abstract class RevisionRecord implements WikiAwareEntity {
 	 * @return RevisionSlots
 	 * @since 1.36
 	 */
-	public function getPrimarySlots() : RevisionSlots {
+	public function getPrimarySlots(): RevisionSlots {
 		return new RevisionSlots( $this->mSlots->getPrimarySlots() );
 	}
 

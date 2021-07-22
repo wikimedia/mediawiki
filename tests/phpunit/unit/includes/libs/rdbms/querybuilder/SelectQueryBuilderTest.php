@@ -16,7 +16,7 @@ class SelectQueryBuilderTest extends PHPUnit\Framework\TestCase {
 	/** @var SelectQueryBuilder */
 	private $sqb;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
 		$this->sqb = $this->db->newSelectQueryBuilder();
 	}

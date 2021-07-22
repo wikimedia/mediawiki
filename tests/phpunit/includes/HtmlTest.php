@@ -5,7 +5,7 @@ use MediaWiki\MediaWikiServices;
 class HtmlTest extends MediaWikiIntegrationTestCase {
 	private $restoreWarnings;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -68,7 +68,7 @@ class HtmlTest extends MediaWikiIntegrationTestCase {
 		$this->restoreWarnings = false;
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->restoreWarnings ) {
 			$this->restoreWarnings = false;
 			Wikimedia\restoreWarnings();

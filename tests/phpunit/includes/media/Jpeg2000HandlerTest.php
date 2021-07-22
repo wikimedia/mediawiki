@@ -4,13 +4,13 @@
  * @covers Jpeg2000Handler
  */
 class Jpeg2000HandlerTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// Allocated file for testing
 		$this->tempFileName = tempnam( wfTempDir(), 'JPEG2000' );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		unlink( $this->tempFileName );
 		parent::tearDown();
 	}

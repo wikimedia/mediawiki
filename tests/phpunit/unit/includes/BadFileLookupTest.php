@@ -118,7 +118,7 @@ WIKITEXT;
 		return $mock;
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->hookContainer = $this->createHookContainer( [
 			'BadImage' => __CLASS__ . '::badImageHook'

@@ -130,7 +130,7 @@ abstract class TypeDefTestCase extends \PHPUnit\Framework\TestCase {
 		array $ret,
 		array $expect,
 		array $options = []
-	) : void {
+	): void {
 		$typeDef = $this->getInstance( new SimpleCallbacks( [] ), $options );
 		$this->assertEquals( $expect, $typeDef->checkSettings( 'test', $settings, $options, $ret ) );
 	}

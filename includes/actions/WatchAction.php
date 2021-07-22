@@ -161,7 +161,7 @@ class WatchAction extends FormAction {
 	 */
 	private static function getExpiryOptionsFromMessage(
 		MessageLocalizer $msgLocalizer, ?string $lang = null
-	) : array {
+	): array {
 		$expiryOptionsMsg = $msgLocalizer->msg( 'watchlist-expiry-options' );
 		$optionsText = !$lang ? $expiryOptionsMsg->text() : $expiryOptionsMsg->inLanguage( $lang )->text();
 		$options = XmlSelect::parseOptionsMessage(

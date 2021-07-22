@@ -18,7 +18,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class EditPageTest extends MediaWikiLangTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$contLang = MediaWikiServices::getInstance()->getContentLanguage();

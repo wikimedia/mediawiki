@@ -31,7 +31,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 		);
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$this->resetTables();
 		parent::tearDown();
 	}
@@ -967,7 +967,7 @@ class SpecialBlockTest extends SpecialPageTestBase {
 	 *
 	 * @return BlockRestrictionStore
 	 */
-	private function getBlockRestrictionStore() : BlockRestrictionStore {
+	private function getBlockRestrictionStore(): BlockRestrictionStore {
 		$loadBalancer = $this->getMockBuilder( LoadBalancer::class )
 					   ->disableOriginalConstructor()
 					   ->getMock();

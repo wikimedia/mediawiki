@@ -19,15 +19,14 @@ trait FileBackendGroupTestTrait {
 	 *     * 'tmpFileFactory'
 	 * @return FileBackendGroup
 	 */
-	abstract protected function newObj( array $options = [] ) : FileBackendGroup;
+	abstract protected function newObj( array $options = [] ): FileBackendGroup;
 
 	/**
 	 * @param string $domain Expected argument that LockManagerGroupFactory::getLockManagerGroup
 	 *   will receive
 	 * @return LockManagerGroupFactory
 	 */
-	abstract protected function getLockManagerGroupFactory( $domain )
-		: LockManagerGroupFactory;
+	abstract protected function getLockManagerGroupFactory( $domain ): LockManagerGroupFactory;
 
 	/**
 	 * @return string As from wfWikiID()

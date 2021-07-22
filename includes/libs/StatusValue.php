@@ -403,7 +403,7 @@ class StatusValue {
 	 * @param array $params Message parameters
 	 * @return string String representation
 	 */
-	private function flattenParams( array $params ) : string {
+	private function flattenParams( array $params ): string {
 		$ret = [];
 		foreach ( $params as $p ) {
 			if ( is_array( $p ) ) {

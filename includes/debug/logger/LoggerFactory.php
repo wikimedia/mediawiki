@@ -46,7 +46,7 @@ class LoggerFactory {
 
 	/**
 	 * Service provider.
-	 * @var \MediaWiki\Logger\Spi $spi
+	 * @var \MediaWiki\Logger\Spi
 	 */
 	private static $spi;
 

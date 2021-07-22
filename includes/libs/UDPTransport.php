@@ -78,7 +78,7 @@ class UDPTransport {
 	/**
 	 * @param string $text
 	 */
-	public function emit( $text ) : void {
+	public function emit( $text ): void {
 		// Clean it up for the multiplexer
 		if ( $this->prefix !== false ) {
 			$text = preg_replace( '/^/m', $this->prefix . ' ', $text );

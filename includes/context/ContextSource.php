@@ -216,7 +216,7 @@ abstract class ContextSource implements IContextSource {
 	 * @return CsrfTokenSet
 	 * @since 1.37
 	 */
-	public function getCsrfTokenSet() : CsrfTokenSet {
+	public function getCsrfTokenSet(): CsrfTokenSet {
 		return $this->getContext()->getCsrfTokenSet();
 	}
 }

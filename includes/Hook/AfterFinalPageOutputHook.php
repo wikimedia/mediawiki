@@ -23,5 +23,5 @@ interface AfterFinalPageOutputHook {
 	 * @param OutputPage $output The OutputPage object where output() was called
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onAfterFinalPageOutput( $output ) : void;
+	public function onAfterFinalPageOutput( $output ): void;
 }

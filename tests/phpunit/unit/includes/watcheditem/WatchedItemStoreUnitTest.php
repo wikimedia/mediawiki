@@ -122,7 +122,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	private function getMockRevisionLookup(
 		array $callbacks = [],
 		array $counts = []
-	) : RevisionLookup {
+	): RevisionLookup {
 		$mock = $this->createMock( RevisionLookup::class );
 		foreach ( $callbacks as $method => $callback ) {
 			$count = isset( $counts[$method] ) ? $this->exactly( $counts[$method] ) : $this->any();
@@ -247,7 +247,7 @@ class WatchedItemStoreUnitTest extends MediaWikiUnitTestCase {
 	 *     * watchlistPurgeRate
 	 * @return WatchedItemStore
 	 */
-	private function newWatchedItemStore( array $mocks = [] ) : WatchedItemStore {
+	private function newWatchedItemStore( array $mocks = [] ): WatchedItemStore {
 		$options = new ServiceOptions( WatchedItemStore::CONSTRUCTOR_OPTIONS, [
 			'UpdateRowsPerQuery' => 1000,
 			'WatchlistExpiry' => $mocks['expiryEnabled'] ?? true,

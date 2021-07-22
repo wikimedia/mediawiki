@@ -99,7 +99,7 @@ class SpamRegexConstraint implements IEditConstraint {
 		$this->title = $title;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		$match = $this->spamChecker->checkSummary( $this->summary );
 		if ( $match === false ) {
 			// $wgSpamRegex is enforced on this new heading/summary because, unlike
@@ -129,7 +129,7 @@ class SpamRegexConstraint implements IEditConstraint {
 		return self::CONSTRAINT_FAILED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->match !== '' ) {
 			$match = str_replace( "\n", '', $this->match );
@@ -142,7 +142,7 @@ class SpamRegexConstraint implements IEditConstraint {
 	/**
 	 * @return string
 	 */
-	public function getMatch() : string {
+	public function getMatch(): string {
 		return $this->match;
 	}
 

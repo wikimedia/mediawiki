@@ -15,11 +15,11 @@ class FileBackendGroupIntegrationTest extends MediaWikiIntegrationTestCase {
 		return wfWikiID();
 	}
 
-	private function getLockManagerGroupFactory( $domain ) : LockManagerGroupFactory {
+	private function getLockManagerGroupFactory( $domain ): LockManagerGroupFactory {
 		return MediaWikiServices::getInstance()->getLockManagerGroupFactory();
 	}
 
-	private function newObj( array $options = [] ) : FileBackendGroup {
+	private function newObj( array $options = [] ): FileBackendGroup {
 		$globals = [ 'DirectoryMode', 'FileBackends', 'ForeignFileRepos', 'LocalFileRepo' ];
 		foreach ( $globals as $global ) {
 			$this->setMwGlobals(

@@ -16,7 +16,7 @@ abstract class ApiUploadTestCase extends ApiTestCase {
 	/**
 	 * Fixture -- run before every test
 	 */
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

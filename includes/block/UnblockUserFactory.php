@@ -41,5 +41,5 @@ interface UnblockUserFactory {
 		Authority $performer,
 		string $reason,
 		array $tags = []
-	) : UnblockUser;
+	): UnblockUser;
 }

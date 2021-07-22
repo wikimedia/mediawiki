@@ -10,7 +10,7 @@ use MediaWiki\MediaWikiServices;
 class TextContentTest extends MediaWikiLangTestCase {
 	protected $context;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// trigger purging of all page related tables

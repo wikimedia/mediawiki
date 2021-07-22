@@ -111,7 +111,7 @@ class CompositeBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getExpiry() : string {
+	public function getExpiry(): string {
 		$maxExpiry = null;
 		foreach ( $this->originalBlocks as $block ) {
 			$expiry = $block->getExpiry();

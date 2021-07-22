@@ -247,7 +247,7 @@ class SearchHandler extends Handler {
 	 *
 	 * @return array|null
 	 */
-	private function serializeThumbnail( ?SearchResultThumbnail $thumbnail ) : ?array {
+	private function serializeThumbnail( ?SearchResultThumbnail $thumbnail ): ?array {
 		if ( $thumbnail == null ) {
 			return null;
 		}

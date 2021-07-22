@@ -124,7 +124,7 @@ class UnblockUser {
 	 *
 	 * @return Status
 	 */
-	public function unblock() : Status {
+	public function unblock(): Status {
 		$status = Status::newGood();
 
 		$basePermissionCheckResult = $this->blockPermissionChecker->checkBasePermissions(
@@ -162,7 +162,7 @@ class UnblockUser {
 	 * @internal This is public to be called in a maintenance script.
 	 * @return Status
 	 */
-	public function unblockUnsafe() : Status {
+	public function unblockUnsafe(): Status {
 		$status = Status::newGood();
 
 		if ( $this->block === null ) {

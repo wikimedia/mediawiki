@@ -143,7 +143,7 @@ class SessionManager implements SessionManagerInterface {
 	 *
 	 * @return Session
 	 */
-	public static function getGlobalSession() : Session {
+	public static function getGlobalSession(): Session {
 		if ( !PHPSessionHandler::isEnabled() ) {
 			$id = '';
 		} else {

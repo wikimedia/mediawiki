@@ -244,7 +244,7 @@ class RevisionSlots {
 	 * @return SlotRecord[]
 	 * @since 1.36
 	 */
-	public function getPrimarySlots() : array {
+	public function getPrimarySlots(): array {
 		return array_filter(
 			$this->getSlots(),
 			static function ( SlotRecord $slot ) {

@@ -12,7 +12,7 @@ class MessageBlobStoreTest extends PHPUnit\Framework\TestCase {
 
 	private const NAME = 'test.blobstore';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// MediaWiki's test wrapper sets $wgMainWANCache to CACHE_NONE.
 		// Use HashBagOStuff here so that we can observe caching.

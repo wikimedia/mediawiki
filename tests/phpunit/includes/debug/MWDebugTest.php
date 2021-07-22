@@ -2,19 +2,19 @@
 
 class MWDebugTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		/** Clear log before each test */
 		MWDebug::clearLog();
 	}
 
-	public static function setUpBeforeClass() : void {
+	public static function setUpBeforeClass(): void {
 		parent::setUpBeforeClass();
 		MWDebug::init();
 		Wikimedia\suppressWarnings();
 	}
 
-	public static function tearDownAfterClass() : void {
+	public static function tearDownAfterClass(): void {
 		MWDebug::deinit();
 		Wikimedia\restoreWarnings();
 		parent::tearDownAfterClass();

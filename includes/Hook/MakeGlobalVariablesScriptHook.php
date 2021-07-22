@@ -30,5 +30,5 @@ interface MakeGlobalVariablesScriptHook {
 	 * @param OutputPage $out OutputPage which called the hook, can be used to get the real title
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onMakeGlobalVariablesScript( &$vars, $out ) : void;
+	public function onMakeGlobalVariablesScript( &$vars, $out ): void;
 }

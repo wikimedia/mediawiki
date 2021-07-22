@@ -295,7 +295,7 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	 * @return CsrfTokenSet
 	 * @since 1.37
 	 */
-	public function getCsrfTokenSet() : CsrfTokenSet {
+	public function getCsrfTokenSet(): CsrfTokenSet {
 		return new CsrfTokenSet( $this->getRequest() );
 	}
 }

@@ -2542,7 +2542,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		bool $cascade,
 		string $reason,
 		UserIdentity $user
-	) : ?RevisionRecord {
+	): ?RevisionRecord {
 		$dbw = wfGetDB( DB_PRIMARY );
 
 		// Prepare a null revision to be added to the history

@@ -22,7 +22,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	/** @var DatabaseTestHelper */
 	private $db;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		$this->db = new DatabaseTestHelper( __CLASS__ . '::' . $this->getName() );
 	}
 
@@ -784,7 +784,7 @@ class DatabaseTest extends PHPUnit\Framework\TestCase {
 	 * Provider for testIsWriteQuery
 	 * @return array
 	 */
-	public function provideIsWriteQuery() : array {
+	public function provideIsWriteQuery(): array {
 		return [
 			[ 'SELECT foo', false ],
 			[ '  SELECT foo FROM bar', false ],

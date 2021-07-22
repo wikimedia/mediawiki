@@ -269,7 +269,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * @param array $features
 	 * @return array
 	 */
-	protected static function applyFeaturesCompatibility( array $features ) : array {
+	protected static function applyFeaturesCompatibility( array $features ): array {
 		// The `content` feature is mapped to `content-media`.
 		// FIXME: Hard-deprecate sometime during the 1.37 release.
 		if ( isset( $features[ 'content' ] ) ) {
@@ -424,7 +424,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * Helper method for getPreloadLinks()
 	 * @return array
 	 */
-	private function getLogoPreloadlinks() : array {
+	private function getLogoPreloadlinks(): array {
 		if ( !in_array( 'logo', $this->features ) ) {
 			return [];
 		}
@@ -508,7 +508,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 * @param array &$styles Associative array, keys are strings (media queries),
 	 *   values are strings or arrays
 	 */
-	private function normalizeStyles( array &$styles ) : void {
+	private function normalizeStyles( array &$styles ): void {
 		foreach ( $styles as $key => $val ) {
 			if ( !is_array( $val ) ) {
 				$styles[$key] = [ $val ];
@@ -526,7 +526,7 @@ class ResourceLoaderSkinModule extends ResourceLoaderLessVarFileModule {
 	 *  - wordmark: a rectangle logo (wordmark) for print media and skins which desire
 	 *      horizontal logo (optional)
 	 */
-	public static function getAvailableLogos( $conf ) : array {
+	public static function getAvailableLogos( $conf ): array {
 		$logos = $conf->get( 'Logos' );
 		if ( $logos === false ) {
 			// no logos were defined... this will either

@@ -7,7 +7,7 @@ use MediaWiki\User\UserIdentityValue;
  * Tests timestamp parsing and output.
  */
 class MWTimestampTest extends MediaWikiLangTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Avoid 'GetHumanTimestamp' hook and others

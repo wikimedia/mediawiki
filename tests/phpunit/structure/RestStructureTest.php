@@ -45,7 +45,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider providePathParameters
 	 */
-	public function testPathParameters( array $spec ) : void {
+	public function testPathParameters( array $spec ): void {
 		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 		$request = new RequestData();
 		$handler = $router->createHandler( $request, $spec );
@@ -82,7 +82,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		$this->addToAssertionCount( 1 );
 	}
 
-	public function providePathParameters() : Iterator {
+	public function providePathParameters(): Iterator {
 		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 
 		foreach ( $router->getAllRoutes() as $spec ) {
@@ -96,7 +96,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideParameters
 	 */
-	public function testParameters( array $spec, string $name, $settings ) : void {
+	public function testParameters( array $spec, string $name, $settings ): void {
 		static $sources = [ 'path', 'query', 'post' ];
 
 		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
@@ -146,7 +146,7 @@ class RestStructureTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	public function provideParameters() : Iterator {
+	public function provideParameters(): Iterator {
 		$router = TestingAccessWrapper::newFromObject( $this->getRouter() );
 		$request = new RequestData();
 

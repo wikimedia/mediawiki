@@ -5,7 +5,7 @@ use Wikimedia\ScopedCallback;
 
 class HooksTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgHooks;
 		parent::setUp();
 		unset( $wgHooks['MediaWikiHooksTest001'] );

@@ -392,7 +392,7 @@ class SpecialNewpages extends IncludableSpecialPage {
 	 * @param Title $title
 	 * @return RevisionRecord
 	 */
-	private function revisionFromRcResult( stdClass $result, Title $title ) : RevisionRecord {
+	private function revisionFromRcResult( stdClass $result, Title $title ): RevisionRecord {
 		$revRecord = new MutableRevisionRecord( $title );
 		$revRecord->setComment(
 			$this->commentStore->getComment( 'rc_comment', $result )

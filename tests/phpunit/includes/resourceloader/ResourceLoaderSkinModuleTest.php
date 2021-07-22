@@ -479,11 +479,11 @@ CSS
 	 *
 	 * @param string $file
 	 */
-	public function testFeatureFilesExist( string $file ) : void {
+	public function testFeatureFilesExist( string $file ): void {
 		$this->assertFileExists( $file );
 	}
 
-	public function provideFeatureFiles() : Generator {
+	public function provideFeatureFiles(): Generator {
 		global $IP;
 
 		$featureFiles = ( new ReflectionClass( ResourceLoaderSkinModule::class ) )
@@ -581,7 +581,7 @@ CSS
 	 */
 	public function testGetStyleFilesFeatureStylesOrder(
 		$features, $styles, $expectedAllStyles, $expectedScreenStyles, $msg
-	) : void {
+	): void {
 		$ctx = $this->createMock( ResourceLoaderContext::class );
 		$module = new ResourceLoaderSkinModule(
 			[

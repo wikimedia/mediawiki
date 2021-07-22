@@ -8,7 +8,7 @@ use Wikimedia\UUID\GlobalIdGenerator;
  * @covers \MediaWiki\JobQueue\JobQueueGroupFactory
  */
 class JobQueueGroupFactoryTest extends MediaWikiUnitTestCase {
-	public function testMakeJobQueueGroupReturnsSameInstance() : void {
+	public function testMakeJobQueueGroupReturnsSameInstance(): void {
 		$factory = new JobQueueGroupFactory(
 			new ServiceOptions(
 				JobQueueGroupFactory::CONSTRUCTOR_OPTIONS,

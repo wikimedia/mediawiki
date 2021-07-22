@@ -7,7 +7,7 @@ use MediaWiki\Logger\LegacyLogger;
  * @group GlobalFunctions
  */
 class GlobalTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$readOnlyFile = $this->getNewTempFile();

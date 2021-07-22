@@ -33,7 +33,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 
 	private const PAGE_NAME = 'McrUndoTestPage';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Clean up these tables after each test
@@ -59,7 +59,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		RequestContext $context,
 		Article $article,
 		array $params
-	) : McrUndoAction {
+	): McrUndoAction {
 		$request = new FauxRequest( $params );
 		$request->setVal( 'wpSave', '' );
 		$context->setRequest( $request );
@@ -82,7 +82,7 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return array
 	 */
-	private function setUpPageForTesting( array $revisions ) : array {
+	private function setUpPageForTesting( array $revisions ): array {
 		$this->getExistingTestPage( self::PAGE_NAME );
 		$revisionIds = [];
 		foreach ( $revisions as $revisionContent ) {

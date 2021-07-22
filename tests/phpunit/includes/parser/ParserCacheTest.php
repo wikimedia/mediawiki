@@ -42,7 +42,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 	/** @var PageRecord */
 	private $page;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->time = time();
 		$this->cacheTime = MWTimestamp::convert( TS_MW, $this->time + 1 );
@@ -51,7 +51,7 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		MWTimestamp::setFakeTime( $this->time );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		MWTimestamp::setFakeTime( null );
 		parent::tearDown();
 	}

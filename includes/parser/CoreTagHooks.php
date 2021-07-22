@@ -157,7 +157,7 @@ class CoreTagHooks {
 	 * @return string HTML
 	 * @internal
 	 */
-	public static function gallery( ?string $content, array $attributes, Parser $parser ):string {
+	public static function gallery( ?string $content, array $attributes, Parser $parser ): string {
 		return $parser->renderImageGallery( $content ?? '', $attributes );
 	}
 
@@ -173,7 +173,7 @@ class CoreTagHooks {
 	 * @since 1.25
 	 * @internal
 	 */
-	public static function indicator( ?string $content, array $attributes, Parser $parser, PPFrame $frame ):string {
+	public static function indicator( ?string $content, array $attributes, Parser $parser, PPFrame $frame ): string {
 		if ( !isset( $attributes['name'] ) || trim( $attributes['name'] ) === '' ) {
 			return '<span class="error">' .
 				wfMessage( 'invalid-indicator-name' )->inContentLanguage()->parse() .

@@ -17,7 +17,7 @@ class BotPasswordTest extends MediaWikiIntegrationTestCase {
 	/** @var string */
 	private $testUserName;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

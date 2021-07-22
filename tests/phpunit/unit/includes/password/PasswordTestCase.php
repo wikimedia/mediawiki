@@ -29,7 +29,7 @@ abstract class PasswordTestCase extends MediaWikiUnitTestCase {
 	 */
 	protected $passwordFactory;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->passwordFactory = new PasswordFactory();

@@ -10,7 +10,7 @@ class ApiFormatBaseTest extends ApiFormatTestBase {
 
 	protected $printerName = 'mockbase';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->setMwGlobals( [
 			'wgServer' => 'http://example.org'

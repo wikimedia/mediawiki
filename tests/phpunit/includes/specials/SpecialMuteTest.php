@@ -11,7 +11,7 @@ class SpecialMuteTest extends SpecialPageTestBase {
 	/** @var UserOptionsManager */
 	private $userOptionsManager;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->userOptionsManager = $this->getServiceContainer()->getUserOptionsManager();

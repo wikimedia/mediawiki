@@ -15,7 +15,7 @@ class RESTBagOStuffTest extends \MediaWikiUnitTestCase {
 	 */
 	private $bag;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->client =
 			$this->getMockBuilder( MultiHttpClient::class )

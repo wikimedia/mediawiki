@@ -402,7 +402,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 * @internal For use by ServiceWiring only
 	 * @codeCoverageIgnore
 	 */
-	public function registerTestModules() : void {
+	public function registerTestModules(): void {
 		global $IP;
 
 		if ( $this->config->get( 'EnableJavaScriptTest' ) !== true ) {
@@ -965,7 +965,7 @@ class ResourceLoader implements LoggerAwareInterface {
 	 */
 	protected function sendResponseHeaders(
 		ResourceLoaderContext $context, $etag, $errors, array $extra = []
-	) : void {
+	): void {
 		HeaderCallback::warnIfHeadersSent();
 		$rlMaxage = $this->config->get( 'ResourceLoaderMaxage' );
 		// Use a short cache expiry so that updates propagate to clients quickly, if:
@@ -1508,7 +1508,7 @@ MESSAGE;
 	 *
 	 * @param array &$array
 	 */
-	private static function trimArray( array &$array ) : void {
+	private static function trimArray( array &$array ): void {
 		$i = count( $array );
 		while ( $i-- ) {
 			if ( $array[$i] === null
@@ -1937,7 +1937,7 @@ MESSAGE;
 	 */
 	public static function getSiteConfigSettings(
 		ResourceLoaderContext $context, Config $conf
-	) : array {
+	): array {
 		// Namespace related preparation
 		// - wgNamespaceIds: Key-value pairs of all localized, canonical and aliases for namespaces.
 		// - wgCaseSensitiveNamespaces: Array of namespaces that are case-sensitive.

@@ -83,7 +83,7 @@ class LogCapturingSpi implements Spi {
 	 * @internal For use by MediaWikiIntegrationTestCase
 	 * @return Spi
 	 */
-	public function getInnerSpi() : Spi {
+	public function getInnerSpi(): Spi {
 		return $this->inner;
 	}
 

@@ -39,5 +39,5 @@ interface MergeHistoryFactory {
 		PageIdentity $source,
 		PageIdentity $destination,
 		string $timestamp = null
-	) : MergeHistory;
+	): MergeHistory;
 }

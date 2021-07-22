@@ -25,5 +25,5 @@ interface ParserOutputPostCacheTransformHook {
 	 */
 	public function onParserOutputPostCacheTransform( $parserOutput, &$text,
 		&$options
-	) : void;
+	): void;
 }

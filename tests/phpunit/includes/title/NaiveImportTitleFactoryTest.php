@@ -28,7 +28,7 @@
  */
 class NaiveImportTitleFactoryTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setContentLang( 'en' );

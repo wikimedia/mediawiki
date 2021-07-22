@@ -24,12 +24,12 @@
 class DeprecatedGlobalTest extends MediaWikiUnitTestCase {
 	private $oldErrorLevel;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->oldErrorLevel = error_reporting( -1 );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		error_reporting( $this->oldErrorLevel );
 		parent::tearDown();
 	}

@@ -82,7 +82,7 @@ class LinkBatchFactory {
 	 *
 	 * @return LinkBatch
 	 */
-	public function newLinkBatch( iterable $initialItems = [] ) : LinkBatch {
+	public function newLinkBatch( iterable $initialItems = [] ): LinkBatch {
 		$batch = new LinkBatch(
 			[],
 			$this->linkCache,

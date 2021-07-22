@@ -90,7 +90,7 @@ class ApiQuerySearchTest extends ApiTestCase {
 		$this->assertEquals( $expect, $results );
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		MockSearchEngine::clearMockResults();
 		$this->registerMockSearchEngine();

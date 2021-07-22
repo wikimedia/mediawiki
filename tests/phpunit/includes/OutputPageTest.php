@@ -33,12 +33,12 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	// phpcs:enable
 
 	// Ensure that we don't affect the global ResourceLoader state.
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		ResourceLoader::clearCache();
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		ResourceLoader::clearCache();
 		parent::tearDown();
 	}
@@ -72,7 +72,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
-	private function setupFeedLinks( $feed, $types ) : OutputPage {
+	private function setupFeedLinks( $feed, $types ): OutputPage {
 		$outputPage = $this->newInstance( [
 			'AdvertisedFeedTypes' => $types,
 			'Feed' => $feed,
@@ -1214,7 +1214,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 
 	private function setupCategoryTests(
 		array $fakeResults, callable $variantLinkCallback = null
-	) : OutputPage {
+	): OutputPage {
 		$this->setMwGlobals( 'wgUsePigLatinVariant', true );
 
 		if ( $variantLinkCallback ) {
@@ -1502,7 +1502,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @param mixed ...$args
 	 * @return ParserOutput
 	 */
-	private function createParserOutputStub( ...$args ) : ParserOutput {
+	private function createParserOutputStub( ...$args ): ParserOutput {
 		if ( count( $args ) === 0 ) {
 			$retVals = [];
 		} elseif ( count( $args ) === 1 ) {
@@ -3260,7 +3260,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		WebRequest $request = null,
 		$option = null,
 		Authority $performer = null
-	) : OutputPage {
+	): OutputPage {
 		$context = new RequestContext();
 
 		$context->setConfig( new MultiConfig( [

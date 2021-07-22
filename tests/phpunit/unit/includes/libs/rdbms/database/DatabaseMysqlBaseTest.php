@@ -100,7 +100,7 @@ class DatabaseMysqlBaseTest extends PHPUnit\Framework\TestCase {
 		];
 	}
 
-	private function getMockForViews() : IMaintainableDatabase {
+	private function getMockForViews(): IMaintainableDatabase {
 		$db = $this->getMockBuilder( DatabaseMysqli::class )
 			->disableOriginalConstructor()
 			->onlyMethods( [ 'fetchRow', 'query', 'getDBname' ] )

@@ -31,7 +31,7 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var NamespaceInfo */
 	private $namespaceInfo;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$services = MediaWikiServices::getInstance();

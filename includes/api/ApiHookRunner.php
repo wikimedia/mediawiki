@@ -146,7 +146,7 @@ class ApiHookRunner implements
 		);
 	}
 
-	public function onApiMaxLagInfo( &$lagInfo ) : void {
+	public function onApiMaxLagInfo( &$lagInfo ): void {
 		$this->container->run(
 			'ApiMaxLagInfo',
 			[ &$lagInfo ],

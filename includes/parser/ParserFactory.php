@@ -158,7 +158,7 @@ class ParserFactory {
 	 * @return Parser
 	 * @since 1.32
 	 */
-	public function create() : Parser {
+	public function create(): Parser {
 		self::$inParserFactory++;
 		try {
 			return new Parser(

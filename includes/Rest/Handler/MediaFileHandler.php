@@ -109,7 +109,7 @@ class MediaFileHandler extends SimpleHandler {
 	 * @param File $file the file to load media links for
 	 * @return array response data
 	 */
-	private function getResponse( File $file ) : array {
+	private function getResponse( File $file ): array {
 		list( $maxWidth, $maxHeight ) = self::getImageLimitsFromOption(
 			$this->getAuthority()->getUser(), 'imagesize'
 		);

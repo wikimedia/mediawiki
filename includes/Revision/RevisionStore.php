@@ -540,7 +540,7 @@ class RevisionStore
 		RevisionRecord $revision,
 		RevisionSlotsUpdate $revisionSlotsUpdate,
 		IDatabase $dbw
-	) : array {
+	): array {
 		$this->checkDatabaseDomain( $dbw );
 
 		// Make sure all modified and removed slots are derived slots
@@ -598,7 +598,7 @@ class RevisionStore
 		RevisionRecord $revision,
 		RevisionSlotsUpdate $revisionSlotsUpdate,
 		IDatabase $dbw
-	) : array {
+	): array {
 		$page = $revision->getPage();
 		$revId = $revision->getId( $this->wikiId );
 		$blobHints = [
@@ -3062,7 +3062,7 @@ class RevisionStore
 		$options = [],
 		?string $order = null,
 		int $flags = IDBAccessObject::READ_NORMAL
-	) : array {
+	): array {
 		$this->assertRevisionParameter( 'old', $pageId, $old );
 		$this->assertRevisionParameter( 'new', $pageId, $new );
 

@@ -28,7 +28,7 @@ class ResourceLoaderMwUrlModule {
 	 *  and named capturing group allowed, which will be stripped.
 	 * @return string JavaScript code
 	 */
-	public static function makeJsFromExtendedRegExp( string $content ) : string {
+	public static function makeJsFromExtendedRegExp( string $content ): string {
 		// Remove whitespace.
 		$content = preg_replace( '/\s+/', '', $content );
 		// Remove named capturing groups.

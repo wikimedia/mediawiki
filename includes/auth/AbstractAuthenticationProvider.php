@@ -158,7 +158,7 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	 * @since 1.35
 	 * @return HookContainer
 	 */
-	protected function getHookContainer() : HookContainer {
+	protected function getHookContainer(): HookContainer {
 		return $this->hookContainer;
 	}
 
@@ -168,7 +168,7 @@ abstract class AbstractAuthenticationProvider implements AuthenticationProvider 
 	 * @since 1.35
 	 * @return HookRunner
 	 */
-	protected function getHookRunner() : HookRunner {
+	protected function getHookRunner(): HookRunner {
 		return $this->hookRunner;
 	}
 }

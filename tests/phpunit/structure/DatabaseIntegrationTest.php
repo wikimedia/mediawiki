@@ -11,7 +11,7 @@ class DatabaseIntegrationTest extends MediaWikiIntegrationTestCase {
 	 */
 	protected $db;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->db = wfGetDB( DB_PRIMARY );
 	}

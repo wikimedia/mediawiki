@@ -7,7 +7,7 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 
 	private $oldPsr4;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Fancy dance to trigger a rebuild of AutoLoader::$autoloadLocalClassesLower
@@ -30,7 +30,7 @@ class AutoLoaderTest extends MediaWikiIntegrationTestCase {
 			__DIR__ . '/../data/autoloader/psr4';
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		AutoLoader::$psr4Namespaces = $this->oldPsr4;
 		parent::tearDown();
 	}

@@ -83,7 +83,7 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @return IDatabase
 	 * @internal
 	 */
-	public function getDatabase( int $db ) : IDatabase {
+	public function getDatabase( int $db ): IDatabase {
 		if ( $this->options->get( 'BotPasswordsCluster' ) ) {
 			$loadBalancer = $this->lbFactory->getExternalLB(
 				$this->options->get( 'BotPasswordsCluster' )
@@ -111,7 +111,7 @@ class BotPasswordStore implements IDBAccessObject {
 		UserIdentity $userIdentity,
 		string $appId,
 		int $flags = self::READ_NORMAL
-	) : ?BotPassword {
+	): ?BotPassword {
 		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
 			return null;
 		}
@@ -135,7 +135,7 @@ class BotPasswordStore implements IDBAccessObject {
 		int $centralId,
 		string $appId,
 		int $flags = self::READ_NORMAL
-	) : ?BotPassword {
+	): ?BotPassword {
 		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
 			return null;
 		}
@@ -167,7 +167,7 @@ class BotPasswordStore implements IDBAccessObject {
 	public function newUnsavedBotPassword(
 		array $data,
 		int $flags = self::READ_NORMAL
-	) : ?BotPassword {
+	): ?BotPassword {
 		if ( isset( $data['user'] ) && ( !$data['user'] instanceof UserIdentity ) ) {
 			return null;
 		}
@@ -227,7 +227,7 @@ class BotPasswordStore implements IDBAccessObject {
 	public function insertBotPassword(
 		BotPassword $botPassword,
 		Password $password = null
-	) : StatusValue {
+	): StatusValue {
 		$res = $this->validateBotPassword( $botPassword );
 		if ( !$res->isGood() ) {
 			return $res;
@@ -281,7 +281,7 @@ class BotPasswordStore implements IDBAccessObject {
 	public function updateBotPassword(
 		BotPassword $botPassword,
 		Password $password = null
-	) : StatusValue {
+	): StatusValue {
 		$res = $this->validateBotPassword( $botPassword );
 		if ( !$res->isGood() ) {
 			return $res;
@@ -328,7 +328,7 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @param BotPassword $botPassword
 	 * @return StatusValue
 	 */
-	private function validateBotPassword( BotPassword $botPassword ) : StatusValue {
+	private function validateBotPassword( BotPassword $botPassword ): StatusValue {
 		$res = StatusValue::newGood();
 
 		$restrictions = $botPassword->getRestrictions()->toJson();
@@ -350,7 +350,7 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @param BotPassword $botPassword
 	 * @return bool
 	 */
-	public function deleteBotPassword( BotPassword $botPassword ) : bool {
+	public function deleteBotPassword( BotPassword $botPassword ): bool {
 		$dbw = $this->getDatabase( DB_PRIMARY );
 		$dbw->delete(
 			'bot_passwords',
@@ -369,7 +369,7 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @param string $username User name
 	 * @return bool Whether any passwords were invalidated
 	 */
-	public function invalidateUserPasswords( string $username ) : bool {
+	public function invalidateUserPasswords( string $username ): bool {
 		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
 			return false;
 		}
@@ -398,7 +398,7 @@ class BotPasswordStore implements IDBAccessObject {
 	 * @param string $username User name
 	 * @return bool Whether any passwords were removed
 	 */
-	public function removeUserPasswords( string $username ) : bool {
+	public function removeUserPasswords( string $username ): bool {
 		if ( !$this->options->get( 'EnableBotPasswords' ) ) {
 			return false;
 		}

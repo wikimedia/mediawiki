@@ -20,5 +20,5 @@ interface ResourceLoaderSiteStylesModulePagesHook {
 	 * @param array &$pages Array of pages and their types
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderSiteStylesModulePages( $skin, array &$pages ) : void;
+	public function onResourceLoaderSiteStylesModulePages( $skin, array &$pages ): void;
 }

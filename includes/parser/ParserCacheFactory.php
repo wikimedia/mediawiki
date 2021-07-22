@@ -124,7 +124,7 @@ class ParserCacheFactory {
 	 * @param string $name
 	 * @return ParserCache
 	 */
-	public function getParserCache( string $name ) : ParserCache {
+	public function getParserCache( string $name ): ParserCache {
 		if ( !isset( $this->parserCaches[$name] ) ) {
 			$this->logger->debug( "Creating ParserCache instance for {$name}" );
 			$cache = new ParserCache(
@@ -150,7 +150,7 @@ class ParserCacheFactory {
 	 * @param string $name
 	 * @return RevisionOutputCache
 	 */
-	public function getRevisionOutputCache( string $name ) : RevisionOutputCache {
+	public function getRevisionOutputCache( string $name ): RevisionOutputCache {
 		if ( !isset( $this->revisionOutputCaches[$name] ) ) {
 			$this->logger->debug( "Creating RevisionOutputCache instance for {$name}" );
 			$cache = new RevisionOutputCache(

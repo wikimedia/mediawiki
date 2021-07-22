@@ -39,7 +39,7 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	protected function isSupported() : bool {
+	protected function isSupported(): bool {
 		// It is actually possible to have a PHP build with Argon2i but not Argon2id
 		return defined( 'PASSWORD_ARGON2I' ) || defined( 'PASSWORD_ARGON2ID' );
 	}
@@ -47,7 +47,7 @@ class Argon2Password extends Password {
 	/**
 	 * @return mixed[] Array of 2nd and third parmeters to password_hash()
 	 */
-	private function prepareParams() : array {
+	private function prepareParams(): array {
 		switch ( $this->config['algo'] ) {
 			case 'argon2i':
 				$algo = PASSWORD_ARGON2I;
@@ -71,7 +71,7 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	public function crypt( string $password ) : void {
+	public function crypt( string $password ): void {
 		list( $algo, $params ) = $this->prepareParams();
 		$this->hash = password_hash( $password, $algo, $params );
 	}
@@ -79,14 +79,14 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	public function verify( string $password ) : bool {
+	public function verify( string $password ): bool {
 		return password_verify( $password, $this->hash );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function toString() : string {
+	public function toString(): string {
 		$res = ":argon2:{$this->hash}";
 		$this->assertIsSafeSize( $res );
 		return $res;
@@ -95,7 +95,7 @@ class Argon2Password extends Password {
 	/**
 	 * @inheritDoc
 	 */
-	public function needsUpdate() : bool {
+	public function needsUpdate(): bool {
 		list( $algo, $params ) = $this->prepareParams();
 		return password_needs_rehash( $this->hash, $algo, $params );
 	}

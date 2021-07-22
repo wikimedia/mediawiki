@@ -36,7 +36,7 @@ class LinkRendererFactoryTest extends MediaWikiUnitTestCase {
 	 */
 	private $hookContainer;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->titleFormatter = $this->createMock( TitleFormatter::class );

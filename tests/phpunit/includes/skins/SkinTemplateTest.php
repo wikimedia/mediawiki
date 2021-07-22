@@ -205,7 +205,7 @@ class SkinTemplateTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	public function provideContentNavigation() : array {
+	public function provideContentNavigation(): array {
 		return [
 			'No userpage set' => [
 				'contentNavigation' => [

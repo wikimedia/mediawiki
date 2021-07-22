@@ -26,5 +26,5 @@ interface ResourceLoaderJqueryMsgModuleMagicWordsHook {
 	public function onResourceLoaderJqueryMsgModuleMagicWords(
 		ResourceLoaderContext $context,
 		array &$magicWords
-	) : void;
+	): void;
 }

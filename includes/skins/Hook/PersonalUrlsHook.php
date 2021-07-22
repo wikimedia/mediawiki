@@ -25,5 +25,5 @@ interface PersonalUrlsHook {
 	 *   logged in, etc.)
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onPersonalUrls( &$personal_urls, &$title, $skin ) : void;
+	public function onPersonalUrls( &$personal_urls, &$title, $skin ): void;
 }

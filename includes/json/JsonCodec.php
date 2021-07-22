@@ -74,7 +74,7 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 		return $class::newFromJsonArray( $this, $json );
 	}
 
-	public function unserializeArray( array $array ) : array {
+	public function unserializeArray( array $array ): array {
 		$unserializedExtensionData = [];
 		foreach ( $array as $key => $value ) {
 			if ( $this->canMakeNewFromValue( $value ) ) {
@@ -119,7 +119,7 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 	 * @param mixed $json
 	 * @return bool
 	 */
-	private function canMakeNewFromValue( $json ) : bool {
+	private function canMakeNewFromValue( $json ): bool {
 		$classAnnotation = JsonConstants::TYPE_ANNOTATION;
 		if ( is_array( $json ) ) {
 			return array_key_exists( $classAnnotation, $json );
@@ -143,7 +143,7 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 		$value,
 		bool $expectUnserialize,
 		string $accumulatedPath
-	) : ?string {
+	): ?string {
 		if ( is_array( $value ) ||
 			( is_object( $value ) && get_class( $value ) === 'stdClass' ) ) {
 			foreach ( $value as $key => $propValue ) {
@@ -178,7 +178,7 @@ class JsonCodec implements JsonUnserializer, JsonSerializer {
 	 * @see JsonUnserializer
 	 * @since 1.36
 	 */
-	public function detectNonSerializableData( $value, bool $expectUnserialize = false ) : ?string {
+	public function detectNonSerializableData( $value, bool $expectUnserialize = false ): ?string {
 		return $this->detectNonSerializableDataInternal( $value, $expectUnserialize, '$' );
 	}
 }

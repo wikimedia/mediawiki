@@ -173,7 +173,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 *
 	 * @return bool
 	 */
-	private function shouldExecute() : bool {
+	private function shouldExecute(): bool {
 		$maxDepth = $this->options->get( 'RevertedTagMaxDepth' );
 		if ( !in_array( ChangeTags::TAG_REVERTED, $this->softwareTags ) || $maxDepth <= 0 ) {
 			return false;
@@ -251,7 +251,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 *
 	 * @return bool
 	 */
-	private function handleSingleRevertedEdit() : bool {
+	private function handleSingleRevertedEdit(): bool {
 		if ( $this->editResult->getOldestRevertedRevisionId() !==
 			$this->editResult->getNewestRevertedRevisionId()
 		) {
@@ -334,7 +334,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 *
 	 * @return array
 	 */
-	private function getTagExtraParams() : array {
+	private function getTagExtraParams(): array {
 		return array_merge(
 			[ 'revertId' => $this->revertId ],
 			$this->editResult->jsonSerialize()
@@ -346,7 +346,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 *
 	 * @return RevisionRecord|null
 	 */
-	private function getRevertRevision() : ?RevisionRecord {
+	private function getRevertRevision(): ?RevisionRecord {
 		if ( !isset( $this->revertRevision ) ) {
 			$this->revertRevision = $this->revisionStore->getRevisionById(
 				$this->revertId
@@ -360,7 +360,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 *
 	 * @return RevisionRecord|null
 	 */
-	private function getNewestRevertedRevision() : ?RevisionRecord {
+	private function getNewestRevertedRevision(): ?RevisionRecord {
 		if ( !isset( $this->newestRevertedRevision ) ) {
 			$this->newestRevertedRevision = $this->revisionStore->getRevisionById(
 				$this->editResult->getNewestRevertedRevisionId()
@@ -374,7 +374,7 @@ class RevertedTagUpdate implements DeferrableUpdate {
 	 *
 	 * @return RevisionRecord|null
 	 */
-	private function getOldestRevertedRevision() : ?RevisionRecord {
+	private function getOldestRevertedRevision(): ?RevisionRecord {
 		if ( !isset( $this->oldestRevertedRevision ) ) {
 			$this->oldestRevertedRevision = $this->revisionStore->getRevisionById(
 				$this->editResult->getOldestRevertedRevisionId()

@@ -11,7 +11,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 class ApiQueryTest extends ApiTestCase {
 	use DummyServicesTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Setup apiquerytestiw: as interwiki prefix

@@ -13,14 +13,14 @@ class MWExceptionHandlerTest extends \MediaWikiUnitTestCase {
 
 	private $oldSettingValue;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// We need to make sure the traces have function arguments as we're testing
 		// their handling.
 		$this->oldSettingValue = ini_set( 'zend.exception_ignore_args', 0 );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		ini_set( 'zend.exception_ignore_args', $this->oldSettingValue );
 		parent::tearDown();
 	}

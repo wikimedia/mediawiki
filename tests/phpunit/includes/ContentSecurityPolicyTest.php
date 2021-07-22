@@ -7,7 +7,7 @@ class ContentSecurityPolicyTest extends MediaWikiIntegrationTestCase {
 	/** @var ContentSecurityPolicy */
 	private $csp;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgUploadDirectory;
 
 		parent::setUp();

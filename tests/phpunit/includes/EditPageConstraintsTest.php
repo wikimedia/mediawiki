@@ -16,7 +16,7 @@ use MediaWiki\Session\CsrfTokenSet;
  */
 class EditPageConstraintsTest extends MediaWikiLangTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setContentLang( $this->getServiceContainer()->getContentLanguage() );

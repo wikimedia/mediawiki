@@ -838,7 +838,7 @@ abstract class ContentHandler {
 	 * @param Language $language Language of converter
 	 * @return ILanguageConverter
 	 */
-	private function getLanguageConverter( $language ) : ILanguageConverter {
+	private function getLanguageConverter( $language ): ILanguageConverter {
 		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
 			->getLanguageConverter( $language );
 	}

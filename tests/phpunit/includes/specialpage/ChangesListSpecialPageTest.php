@@ -44,7 +44,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	private function buildQuery(
 		array $requestOptions,
 		User $user = null
-	) : array {
+	): array {
 		$context = new RequestContext;
 		$context->setRequest( new FauxRequest( $requestOptions ) );
 		if ( $user ) {
@@ -107,7 +107,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		);
 	}
 
-	private static function normalizeCondition( array $conds ) : array {
+	private static function normalizeCondition( array $conds ): array {
 		$dbr = wfGetDB( DB_REPLICA );
 		$normalized = array_map(
 			static function ( $k, $v ) use ( $dbr ) {
@@ -128,7 +128,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 	 * @param array|string $var
 	 * @return bool false if condition begins with 'rc_timestamp '
 	 */
-	private static function filterOutRcTimestampCondition( $var ) : bool {
+	private static function filterOutRcTimestampCondition( $var ): bool {
 		return ( is_array( $var ) || strpos( $var, 'rc_timestamp ' ) === false );
 	}
 
@@ -662,7 +662,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		}
 	}
 
-	private function fetchUsers( array $filters, int $now ) : array {
+	private function fetchUsers( array $filters, int $now ): array {
 		$tables = [];
 		$conds = [];
 		$fields = [];
@@ -703,7 +703,7 @@ class ChangesListSpecialPageTest extends AbstractChangesListSpecialPageTestCase 
 		return $usernames;
 	}
 
-	private function daysAgo( int $days, int $now ) : int {
+	private function daysAgo( int $days, int $now ): int {
 		$secondsPerDay = 86400;
 		return $now - $days * $secondsPerDay;
 	}

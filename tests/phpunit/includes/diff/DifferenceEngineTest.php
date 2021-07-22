@@ -22,7 +22,7 @@ class DifferenceEngineTest extends MediaWikiIntegrationTestCase {
 
 	private static $revisions;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$title = $this->getTitle();

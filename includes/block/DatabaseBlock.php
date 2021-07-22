@@ -776,7 +776,7 @@ class DatabaseBlock extends AbstractBlock {
 	/**
 	 * @inheritDoc
 	 */
-	public function getId() : ?int {
+	public function getId(): ?int {
 		return $this->mId;
 	}
 
@@ -812,7 +812,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @param bool|null $x
 	 * @return bool
 	 */
-	public function isHardblock( $x = null ) : bool {
+	public function isHardblock( $x = null ): bool {
 		wfSetVar( $this->isHardblock, $x );
 
 		# You can't *not* hardblock a user
@@ -1007,7 +1007,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * Autoblocks have whichever type corresponds to their target, so to detect if a block is an
 	 * autoblock, we have to check the mAuto property instead.
 	 */
-	public function getType() : ?int {
+	public function getType(): ?int {
 		return $this->mAuto
 			? self::TYPE_AUTO
 			: parent::getType();
@@ -1046,7 +1046,7 @@ class DatabaseBlock extends AbstractBlock {
 	 * @internal
 	 * @return ?Restriction[]
 	 */
-	public function getRawRestrictions() : ?array {
+	public function getRawRestrictions(): ?array {
 		return $this->restrictions;
 	}
 
@@ -1173,7 +1173,7 @@ class DatabaseBlock extends AbstractBlock {
 	 *
 	 * @return BlockRestrictionStore
 	 */
-	private function getBlockRestrictionStore() : BlockRestrictionStore {
+	private function getBlockRestrictionStore(): BlockRestrictionStore {
 		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
 	}
 

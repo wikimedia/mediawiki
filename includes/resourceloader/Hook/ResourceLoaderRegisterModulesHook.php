@@ -21,5 +21,5 @@ interface ResourceLoaderRegisterModulesHook {
 	 * @param ResourceLoader $rl
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onResourceLoaderRegisterModules( ResourceLoader $rl ) : void;
+	public function onResourceLoaderRegisterModules( ResourceLoader $rl ): void;
 }

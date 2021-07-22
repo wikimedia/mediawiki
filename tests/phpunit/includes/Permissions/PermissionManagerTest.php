@@ -53,7 +53,7 @@ class PermissionManagerTest extends MediaWikiLangTestCase {
 	/** Constant for self::testIsBlockedFrom */
 	private const USER_TALK_PAGE = '<user talk page>';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$localZone = 'UTC';

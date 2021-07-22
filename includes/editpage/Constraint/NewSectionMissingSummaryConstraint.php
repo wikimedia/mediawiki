@@ -52,7 +52,7 @@ class NewSectionMissingSummaryConstraint implements IEditConstraint {
 		$this->allowBlankSummary = $allowBlankSummary;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		if ( !$this->allowBlankSummary && trim( $this->userSummary ) == '' ) {
 			// TODO this was == in EditPage, can it be === ?
 			$this->result = self::CONSTRAINT_FAILED;
@@ -62,7 +62,7 @@ class NewSectionMissingSummaryConstraint implements IEditConstraint {
 		return $this->result;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->result === self::CONSTRAINT_FAILED ) {
 			// From EditPage, regarding the fatal:

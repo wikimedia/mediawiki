@@ -3,7 +3,7 @@
 class MediaWikiTest extends MediaWikiIntegrationTestCase {
 	private $oldServer, $oldGet, $oldPost;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -20,7 +20,7 @@ class MediaWikiTest extends MediaWikiIntegrationTestCase {
 		$this->oldPost = $_POST;
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$_SERVER = $this->oldServer;
 		$_GET = $this->oldGet;
 		$_POST = $this->oldPost;

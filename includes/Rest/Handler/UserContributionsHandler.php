@@ -42,7 +42,7 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	 *
 	 * @return array[]
 	 */
-	private function getContributionsList( ContributionsSegment $segment ) : array {
+	private function getContributionsList( ContributionsSegment $segment ): array {
 		$revisionsData = [];
 		foreach ( $segment->getRevisions() as $revision ) {
 			$id = $revision->getId();
@@ -75,7 +75,7 @@ class UserContributionsHandler extends AbstractContributionHandler {
 	 *
 	 * @return string[]
 	 */
-	private function constructURLs( ContributionsSegment $segment ) : array {
+	private function constructURLs( ContributionsSegment $segment ): array {
 		$limit = $this->getValidatedParams()['limit'];
 		$tag = $this->getValidatedParams()['tag'];
 		/** @var UserIdentity $user */

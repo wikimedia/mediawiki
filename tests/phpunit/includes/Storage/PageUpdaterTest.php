@@ -37,7 +37,7 @@ class PageUpdaterTest extends MediaWikiIntegrationTestCase {
 		return new SimpleAuthority( $identity, $permissions );
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$slotRoleRegistry = $this->getServiceContainer()->getSlotRoleRegistry();

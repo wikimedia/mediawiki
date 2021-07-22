@@ -89,7 +89,7 @@ class UserTimeCorrection {
 	 *
 	 * @return string Offset that was applied to the user
 	 */
-	public function getCorrectionType() : string {
+	public function getCorrectionType(): string {
 		return $this->correctionType;
 	}
 
@@ -98,7 +98,7 @@ class UserTimeCorrection {
 	 * Note: When correcting dates/times, apply only the offset OR the time zone, not both.
 	 * @return int Offset in minutes
 	 */
-	public function getTimeOffset() : int {
+	public function getTimeOffset(): int {
 		return $this->offset;
 	}
 
@@ -107,7 +107,7 @@ class UserTimeCorrection {
 	 * Note: When correcting dates/times, apply only the offset OR the time zone, not both.
 	 * @return DateInterval Offset in minutes as a DateInterval
 	 */
-	public function getTimeOffsetInterval() : DateInterval {
+	public function getTimeOffsetInterval(): DateInterval {
 		$offset = abs( $this->offset );
 		$interval = new DateInterval( "PT{$offset}M" );
 		if ( $this->offset < 1 ) {
@@ -121,7 +121,7 @@ class UserTimeCorrection {
 	 * Note: When correcting dates/times, apply only the offset OR the time zone, not both.
 	 * @return DateTimeZone|null
 	 */
-	public function getTimeZone() : ?DateTimeZone {
+	public function getTimeZone(): ?DateTimeZone {
 		return $this->timeZone;
 	}
 
@@ -129,7 +129,7 @@ class UserTimeCorrection {
 	 * Was the original correction specification valid
 	 * @return bool
 	 */
-	public function isValid() : bool {
+	public function isValid(): bool {
 		return $this->valid;
 	}
 
@@ -232,7 +232,7 @@ class UserTimeCorrection {
 	 * Note: The string value of this object might not be equal to the original value
 	 * @return string a timecorrection string representing this value
 	 */
-	public function toString() : string {
+	public function toString(): string {
 		switch ( $this->correctionType ) {
 			case self::ZONEINFO:
 				if ( $this->timeZone ) {

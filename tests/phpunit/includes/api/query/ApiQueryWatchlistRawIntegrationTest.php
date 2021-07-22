@@ -11,7 +11,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ApiQueryWatchlistRawIntegrationTest extends ApiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge(

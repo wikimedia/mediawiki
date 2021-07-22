@@ -11,7 +11,7 @@ class SpecialMIMESearchTest extends MediaWikiIntegrationTestCase {
 	/** @var SpecialMIMESearch */
 	private $page;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$services = MediaWikiServices::getInstance();

@@ -266,7 +266,7 @@ class SkinMustache extends SkinTemplate {
 	 * Get rows that make up the footer
 	 * @return array for use in Mustache template describing the footer elements.
 	 */
-	private function getFooterTemplateData() : array {
+	private function getFooterTemplateData(): array {
 		$data = [];
 		foreach ( $this->getFooterLinks() as $category => $links ) {
 			$items = [];
@@ -333,7 +333,7 @@ class SkinMustache extends SkinTemplate {
 	/**
 	 * @return array of logo data localised to the current language variant
 	 */
-	private function getLogoData() : array {
+	private function getLogoData(): array {
 		$logoData = ResourceLoaderSkinModule::getAvailableLogos( $this->getConfig() );
 		// check if the logo supports variants
 		$variantsLogos = $logoData['variants'] ?? null;
@@ -354,7 +354,7 @@ class SkinMustache extends SkinTemplate {
 	/**
 	 * @return array
 	 */
-	private function buildSearchProps() : array {
+	private function buildSearchProps(): array {
 		$config = $this->getConfig();
 
 		$props = [
