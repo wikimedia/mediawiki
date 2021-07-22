@@ -9,7 +9,7 @@ use Wikimedia\ScopedCallback;
  */
 class ParserOptionsTest extends MediaWikiLangTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -21,7 +21,7 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->setTemporaryHook( 'PageRenderingHash', null );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		ParserOptions::clearStaticCache();
 		parent::tearDown();
 	}

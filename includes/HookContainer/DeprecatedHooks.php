@@ -96,7 +96,7 @@ class DeprecatedHooks {
 	 */
 	public function markDeprecated( string $hook, string $version,
 		?string $component = null, bool $silent = false
-	) : void {
+	): void {
 		if ( isset( $this->deprecatedHooks[$hook] ) ) {
 			throw new InvalidArgumentException(
 				"Cannot mark hook '$hook' deprecated with version $version. " .
@@ -119,7 +119,7 @@ class DeprecatedHooks {
 	 * @param string $hook Hook name
 	 * @return bool
 	 */
-	public function isHookDeprecated( string $hook ) : bool {
+	public function isHookDeprecated( string $hook ): bool {
 		return isset( $this->deprecatedHooks[$hook] );
 	}
 
@@ -128,7 +128,7 @@ class DeprecatedHooks {
 	 * @param string|null $hook (optional) Hook name
 	 * @return array|null Value array from $this->deprecatedHooks for a specific hook or all hooks
 	 */
-	public function getDeprecationInfo( ?string $hook = null ) : ?array {
+	public function getDeprecationInfo( ?string $hook = null ): ?array {
 		if ( !$hook ) {
 			return $this->deprecatedHooks;
 		}

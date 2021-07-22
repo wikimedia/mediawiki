@@ -464,7 +464,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @throws CannotCreateActorException if an actor with this name already exist.
 	 * @internal for use in user account creation only.
 	 */
-	public function createNewActor( UserIdentity $user, IDatabase $dbw ) : int {
+	public function createNewActor( UserIdentity $user, IDatabase $dbw ): int {
 		$this->checkDatabaseDomain( $dbw );
 		[ $userId, $userName ] = $this->validateActorForInsertion( $user );
 
@@ -508,7 +508,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @throws CannotCreateActorException if the existing actor is associated with registered user.
 	 * @internal for use in user account creation only.
 	 */
-	public function acquireSystemActorId( UserIdentity $user, IDatabase $dbw ) : int {
+	public function acquireSystemActorId( UserIdentity $user, IDatabase $dbw ): int {
 		$this->checkDatabaseDomain( $dbw );
 		[ $userId, $userName ] = $this->validateActorForInsertion( $user );
 
@@ -770,7 +770,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	 * @param string|false $wikiId
 	 * @return string
 	 */
-	private function wikiIdToString( $wikiId ) : string {
+	private function wikiIdToString( $wikiId ): string {
 		return $wikiId === WikiAwareEntity::LOCAL ? 'the local wiki' : "'{$wikiId}'";
 	}
 }

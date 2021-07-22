@@ -126,7 +126,7 @@ abstract class AbstractBlock implements Block {
 	 * Get the block ID
 	 * @return int|null
 	 */
-	public function getId() : ?int {
+	public function getId(): ?int {
 		return null;
 	}
 
@@ -151,7 +151,7 @@ abstract class AbstractBlock implements Block {
 	 * @since 1.35
 	 * @return CommentStoreComment
 	 */
-	public function getReasonComment() : CommentStoreComment {
+	public function getReasonComment(): CommentStoreComment {
 		return $this->reason;
 	}
 
@@ -194,7 +194,7 @@ abstract class AbstractBlock implements Block {
 	 * @param null|bool $x
 	 * @return bool
 	 */
-	public function isSitewide( $x = null ) : bool {
+	public function isSitewide( $x = null ): bool {
 		return wfSetVar( $this->isSitewide, $x );
 	}
 
@@ -207,7 +207,7 @@ abstract class AbstractBlock implements Block {
 	 * @param null|bool $x Value to set (if null, just get the property value)
 	 * @return bool Value of the property
 	 */
-	public function isCreateAccountBlocked( $x = null ) : bool {
+	public function isCreateAccountBlocked( $x = null ): bool {
 		return wfSetVar( $this->blockCreateAccount, $x );
 	}
 
@@ -246,7 +246,7 @@ abstract class AbstractBlock implements Block {
 	 * @param bool|null $x
 	 * @return bool
 	 */
-	public function isHardblock( $x = null ) : bool {
+	public function isHardblock( $x = null ): bool {
 		wfSetVar( $this->isHardblock, $x );
 
 		return $this->getType() == self::TYPE_USER
@@ -303,7 +303,7 @@ abstract class AbstractBlock implements Block {
 	 * Get the type of target for this particular block.
 	 * @return int|null AbstractBlock::TYPE_ constant, will never be TYPE_ID
 	 */
-	public function getType() : ?int {
+	public function getType(): ?int {
 		return $this->type;
 	}
 
@@ -376,7 +376,7 @@ abstract class AbstractBlock implements Block {
 	 * @since 1.19
 	 * @return string
 	 */
-	public function getExpiry() : string {
+	public function getExpiry(): string {
 		return $this->mExpiry;
 	}
 
@@ -397,7 +397,7 @@ abstract class AbstractBlock implements Block {
 	 * @since 1.33
 	 * @return string
 	 */
-	public function getTimestamp() : string {
+	public function getTimestamp(): string {
 		return $this->mTimestamp;
 	}
 

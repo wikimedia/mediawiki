@@ -1868,7 +1868,7 @@ class LocalFile extends File {
 		$tags = [],
 		bool $createNullRevision = true,
 		bool $revert = false
-	) : Status {
+	): Status {
 		$dbw = $this->repo->getPrimaryDB();
 
 		# Imports or such might force a certain timestamp; otherwise we generate

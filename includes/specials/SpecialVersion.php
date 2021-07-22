@@ -65,7 +65,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return array[]
 	 * @see $wgExtensionCredits
 	 */
-	public static function getCredits( ExtensionRegistry $reg, Config $conf ) : array {
+	public static function getCredits( ExtensionRegistry $reg, Config $conf ): array {
 		$credits = $conf->get( 'ExtensionCredits' );
 		foreach ( $reg->getAllThings() as $name => $credit ) {
 			$credits[$credit['type']][] = $credit;

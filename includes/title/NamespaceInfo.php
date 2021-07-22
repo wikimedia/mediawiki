@@ -220,7 +220,7 @@ class NamespaceInfo {
 	 * @throws MWException if $target doesn't have talk pages, e.g. because it's in NS_SPECIAL,
 	 *         because it's a relative section-only link, or it's an interwiki link.
 	 */
-	public function getTalkPage( LinkTarget $target ) : LinkTarget {
+	public function getTalkPage( LinkTarget $target ): LinkTarget {
 		if ( $target->getText() === '' ) {
 			throw new MWException( 'Can\'t determine talk page associated with relative section link' );
 		}
@@ -284,7 +284,7 @@ class NamespaceInfo {
 	 * @param LinkTarget $target
 	 * @return LinkTarget Subject page for $target
 	 */
-	public function getSubjectPage( LinkTarget $target ) : LinkTarget {
+	public function getSubjectPage( LinkTarget $target ): LinkTarget {
 		if ( $this->isSubject( $target->getNamespace() ) ) {
 			return $target;
 		}
@@ -315,7 +315,7 @@ class NamespaceInfo {
 	 *   page
 	 * @throws MWException if $target's namespace doesn't have talk pages (e.g., NS_SPECIAL)
 	 */
-	public function getAssociatedPage( LinkTarget $target ) : LinkTarget {
+	public function getAssociatedPage( LinkTarget $target ): LinkTarget {
 		if ( $target->getText() === '' ) {
 			throw new MWException( 'Can\'t determine talk page associated with relative section link' );
 		}

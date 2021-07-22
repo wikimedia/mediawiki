@@ -24,7 +24,7 @@ class TalkPageNotificationManagerTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'user_newtalk';
 	}
 
-	private function editUserTalk( UserIdentity $user, string $text ) : RevisionRecord {
+	private function editUserTalk( UserIdentity $user, string $text ): RevisionRecord {
 		// UserIdentity doesn't have getUserPage/getTalkPage, but we can easily recreate
 		// it, and its easier than needing to depend on a full user object
 		$userTalk = Title::makeTitle( NS_USER_TALK, $user->getName() );

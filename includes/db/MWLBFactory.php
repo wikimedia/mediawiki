@@ -367,7 +367,7 @@ abstract class MWLBFactory {
 		ILBFactory $lbFactory,
 		Config $config,
 		IBufferingStatsdDataFactory $stats
-	) : void {
+	): void {
 		// Use the global WebRequest singleton. The main reason for using this
 		// is to call WebRequest::getIP() which is non-trivial to reproduce statically
 		// because it needs $wgUsePrivateIPs, as well as ProxyLookup and HookRunner services.

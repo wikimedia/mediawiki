@@ -452,7 +452,7 @@ class ResourceLoaderWikiModuleTest extends ResourceLoaderTestCase {
 		);
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		Title::clearCaches();
 		parent::tearDown();
 	}

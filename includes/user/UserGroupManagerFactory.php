@@ -92,7 +92,7 @@ class UserGroupManagerFactory {
 	 * @param string|bool $dbDomain
 	 * @return UserGroupManager
 	 */
-	public function getUserGroupManager( $dbDomain = false ) : UserGroupManager {
+	public function getUserGroupManager( $dbDomain = false ): UserGroupManager {
 		// TODO: Once UserRightsProxy is removed, cache the instance per domain.
 		return new UserGroupManager(
 			$this->options,

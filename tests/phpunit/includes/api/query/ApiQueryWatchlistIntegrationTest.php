@@ -13,7 +13,7 @@ use MediaWiki\Revision\SlotRecord;
  */
 class ApiQueryWatchlistIntegrationTest extends ApiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed = array_unique(
 			array_merge( $this->tablesUsed, [ 'watchlist', 'recentchanges', 'page' ] )

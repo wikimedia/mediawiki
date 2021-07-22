@@ -15,7 +15,7 @@ use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
 class ApiChangeContentModelTest extends ApiTestCase {
 	use MockAuthorityTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge(

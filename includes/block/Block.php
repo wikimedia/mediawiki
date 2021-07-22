@@ -48,7 +48,7 @@ interface Block {
 	 * Get the block ID
 	 * @return ?int
 	 */
-	public function getId() : ?int;
+	public function getId(): ?int;
 
 	/**
 	 * Get the information that identifies this block, such that a user could
@@ -72,7 +72,7 @@ interface Block {
 	 *
 	 * @return CommentStoreComment
 	 */
-	public function getReasonComment() : CommentStoreComment;
+	public function getReasonComment(): CommentStoreComment;
 
 	/**
 	 * Get the UserIdentity identifying the blocked user,
@@ -105,20 +105,20 @@ interface Block {
 	 *
 	 * @return string
 	 */
-	public function getExpiry() : string;
+	public function getExpiry(): string;
 
 	/**
 	 * Get the type of target for this particular block.
 	 * @return int|null Block::TYPE_ constant, will never be TYPE_ID
 	 */
-	public function getType() : ?int;
+	public function getType(): ?int;
 
 	/**
 	 * Get the timestamp indicating when the block was created
 	 *
 	 * @return string
 	 */
-	public function getTimestamp() : string;
+	public function getTimestamp(): string;
 
 	/**
 	 * Indicates that the block is a sitewide block. This means the user is
@@ -127,7 +127,7 @@ interface Block {
 	 *
 	 * @return bool
 	 */
-	public function isSitewide() : bool;
+	public function isSitewide(): bool;
 
 	/**
 	 * Get the flag indicating whether this block blocks the target from
@@ -136,7 +136,7 @@ interface Block {
 	 *
 	 * @return bool
 	 */
-	public function isCreateAccountBlocked() : bool;
+	public function isCreateAccountBlocked(): bool;
 
 	/**
 	 * Returns whether the block is a hardblock (affects logged-in users on a given IP/range)
@@ -145,6 +145,6 @@ interface Block {
 	 *
 	 * @return bool
 	 */
-	public function isHardblock() : bool;
+	public function isHardblock(): bool;
 
 }

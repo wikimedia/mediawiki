@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
 class ApiQuerySiteinfoTest extends ApiTestCase {
 	private $originalRegistryLoaded = null;
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->originalRegistryLoaded !== null ) {
 			$reg = TestingAccessWrapper::newFromObject( ExtensionRegistry::getInstance() );
 			$reg->loaded = $this->originalRegistryLoaded;

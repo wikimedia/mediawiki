@@ -32,7 +32,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $context;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$testTitle = Title::newFromText( 'UTTest' );
@@ -49,7 +49,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @throws MWException
 	 */
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$this->hideDeprecated( 'Hooks::clear' );
 		Hooks::clear( 'WatchArticle' );
 		Hooks::clear( 'UnwatchArticle' );

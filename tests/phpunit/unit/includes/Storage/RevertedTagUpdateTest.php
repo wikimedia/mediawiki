@@ -47,7 +47,7 @@ class RevertedTagUpdateTest extends MediaWikiUnitTestCase {
 		int $revertedTagMaxDepth,
 		int $revertId,
 		EditResult $editResult
-	) : RevertedTagUpdate {
+	): RevertedTagUpdate {
 		// LoadBalancer is never used in unit tests because getTags is overridden
 		$loadBalancer = $this->createNoOpMock( ILoadBalancer::class );
 

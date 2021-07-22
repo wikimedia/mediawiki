@@ -7,7 +7,7 @@ use MediaWiki\MediaWikiServices;
  */
 class CustomUppercaseCollationTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->collation = new CustomUppercaseCollation( [
 			'D',

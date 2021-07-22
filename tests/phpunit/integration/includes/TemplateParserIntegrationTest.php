@@ -11,7 +11,7 @@ class TemplateParserIntegrationTest extends MediaWikiIntegrationTestCase {
 	private const DIR = __DIR__ . '/../../data/templates';
 	private const SECRET_KEY = 'foo';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

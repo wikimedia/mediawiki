@@ -870,7 +870,7 @@ abstract class SearchEngine {
 	 * @since 1.35
 	 * @return HookContainer
 	 */
-	protected function getHookContainer() : HookContainer {
+	protected function getHookContainer(): HookContainer {
 		if ( !$this->hookContainer ) {
 			// This shouldn't be hit in core, but it is needed for CirrusSearch
 			// which commonly creates a CirrusSearch object without cirrus being
@@ -888,7 +888,7 @@ abstract class SearchEngine {
 	 * @since 1.35
 	 * @return HookRunner
 	 */
-	protected function getHookRunner() : HookRunner {
+	protected function getHookRunner(): HookRunner {
 		if ( !$this->hookRunner ) {
 			$this->hookRunner = new HookRunner( $this->getHookContainer() );
 		}

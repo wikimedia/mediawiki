@@ -192,7 +192,7 @@ abstract class Action implements MessageLocalizer {
 	 * @param string $name Name of an action
 	 * @return bool
 	 */
-	final public static function exists( string $name ) : bool {
+	final public static function exists( string $name ): bool {
 		return self::getClass( $name, [] ) !== null;
 	}
 
@@ -264,7 +264,7 @@ abstract class Action implements MessageLocalizer {
 	 *
 	 * @return WikiPage
 	 */
-	final public function getWikiPage() : WikiPage {
+	final public function getWikiPage(): WikiPage {
 		return $this->getArticle()->getPage();
 	}
 
@@ -345,7 +345,7 @@ abstract class Action implements MessageLocalizer {
 		Page $page,
 		?IContextSource $context,
 		string $method
-	) : Article {
+	): Article {
 		if ( $page instanceof Article ) {
 			return $page;
 		}

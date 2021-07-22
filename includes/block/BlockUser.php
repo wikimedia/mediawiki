@@ -316,7 +316,7 @@ class BlockUser {
 	 * @unstable This method might be removed without prior notice (see T271101)
 	 * @param int $flags One of LogPage::* constants
 	 */
-	public function setLogDeletionFlags( int $flags ) : void {
+	public function setLogDeletionFlags( int $flags ): void {
 		$this->logDeletionFlags = $flags;
 	}
 
@@ -352,7 +352,7 @@ class BlockUser {
 	 *
 	 * @return bool
 	 */
-	private function isPartial() : bool {
+	private function isPartial(): bool {
 		return $this->blockRestrictions !== [] || $this->isPartialRaw;
 	}
 
@@ -364,7 +364,7 @@ class BlockUser {
 	 *
 	 * @return DatabaseBlock
 	 */
-	private function configureBlock( $sourceBlock = null ) : DatabaseBlock {
+	private function configureBlock( $sourceBlock = null ): DatabaseBlock {
 		if ( $sourceBlock === null ) {
 			$block = new DatabaseBlock();
 		} else {
@@ -409,7 +409,7 @@ class BlockUser {
 	 * @return Status If the block is successful, the value of the returned
 	 * Status is an instance of a newly placed block.
 	 */
-	public function placeBlock( bool $reblock = false ) : Status {
+	public function placeBlock( bool $reblock = false ): Status {
 		$priorBlock = DatabaseBlock::newFromTarget( $this->target );
 		$priorHideUser = $priorBlock instanceof DatabaseBlock && $priorBlock->getHideName();
 		if (
@@ -472,7 +472,7 @@ class BlockUser {
 	 * @return Status If the block is successful, the value of the returned
 	 * Status is an instance of a newly placed block.
 	 */
-	public function placeBlockUnsafe( bool $reblock = false ) : Status {
+	public function placeBlockUnsafe( bool $reblock = false ): Status {
 		$status = $this->blockUtils->validateTarget( $this->target );
 
 		if ( !$status->isOK() ) {
@@ -538,7 +538,7 @@ class BlockUser {
 	 *
 	 * @return Status
 	 */
-	private function placeBlockInternal( bool $reblock = true ) : Status {
+	private function placeBlockInternal( bool $reblock = true ): Status {
 		$block = $this->configureBlock();
 
 		$denyReason = [ 'hookaborted' ];
@@ -604,7 +604,7 @@ class BlockUser {
 	 *
 	 * @return int[]
 	 */
-	private function getNamespaceRestrictions() : array {
+	private function getNamespaceRestrictions(): array {
 		$namespaceRestrictions = [];
 		foreach ( $this->blockRestrictions as $restriction ) {
 			if ( $restriction instanceof NamespaceRestriction ) {
@@ -621,7 +621,7 @@ class BlockUser {
 	 *
 	 * @return string[]
 	 */
-	private function getPageRestrictions() : array {
+	private function getPageRestrictions(): array {
 		$pageRestrictions = [];
 		foreach ( $this->blockRestrictions as $restriction ) {
 			if ( $restriction instanceof PageRestriction ) {
@@ -655,7 +655,7 @@ class BlockUser {
 	 *
 	 * @return array
 	 */
-	private function constructLogParams() : array {
+	private function constructLogParams(): array {
 		$logExpiry = wfIsInfinity( $this->rawExpiry ) ? 'infinity' : $this->rawExpiry;
 		$logParams = [
 			'5::duration' => $logExpiry,
@@ -712,7 +712,7 @@ class BlockUser {
 	 *
 	 * @return string
 	 */
-	private function blockLogFlags() : string {
+	private function blockLogFlags(): string {
 		$flags = [];
 
 		if ( $this->targetType != AbstractBlock::TYPE_USER && !$this->isHardBlock ) {

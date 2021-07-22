@@ -59,7 +59,7 @@ class CsrfTokenSet {
 	 * @return Token
 	 * @since 1.37
 	 */
-	public function getToken( $salt = '' ) : Token {
+	public function getToken( $salt = '' ): Token {
 		$session = $this->request->getSession();
 		if ( !$session->getUser()->isRegistered() ) {
 			return new LoggedOutEditToken();
@@ -80,7 +80,7 @@ class CsrfTokenSet {
 	public function matchTokenField(
 		string $fieldName = self::DEFAULT_FIELD_NAME,
 		$salt = ''
-	) : bool {
+	): bool {
 		return $this->matchToken( $this->request->getVal( $fieldName ), $salt );
 	}
 
@@ -97,7 +97,7 @@ class CsrfTokenSet {
 	public function matchToken(
 		?string $value,
 		$salt = ''
-	) : bool {
+	): bool {
 		if ( !$value ) {
 			return false;
 		}

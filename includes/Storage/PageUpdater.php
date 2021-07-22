@@ -536,7 +536,7 @@ class PageUpdater {
 	 *
 	 * @return EditResult|null
 	 */
-	public function getEditResult() : ?EditResult {
+	public function getEditResult(): ?EditResult {
 		return $this->editResult;
 	}
 
@@ -1109,7 +1109,7 @@ class PageUpdater {
 	 * @param RevisionRecord $revision
 	 * @return Status
 	 */
-	private function doUpdate( UserIdentity $user, RevisionRecord $revision ) : Status {
+	private function doUpdate( UserIdentity $user, RevisionRecord $revision ): Status {
 		$currentRevision = $this->grabParentRevision();
 		if ( !$currentRevision ) {
 			// Article gone missing

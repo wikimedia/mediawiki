@@ -360,7 +360,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	 * @param string $key Array key indicating to which field the delete button belongs
 	 * @return HTMLFormField
 	 */
-	protected function getDeleteButtonHtml( $key ) : HTMLFormField {
+	protected function getDeleteButtonHtml( $key ): HTMLFormField {
 		$name = "{$this->mName}[$key][delete]";
 		$label = $this->mParams['delete-button-message'] ?? 'htmlform-cloner-delete';
 		$field = HTMLForm::loadInputFromParameters( $name, [
@@ -375,7 +375,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 		return $field;
 	}
 
-	protected function getCreateButtonHtml() : HTMLFormField {
+	protected function getCreateButtonHtml(): HTMLFormField {
 		$name = "{$this->mName}[create]";
 		$label = $this->mParams['create-button-message'] ?? 'htmlform-cloner-create';
 		return HTMLForm::loadInputFromParameters( $name, [

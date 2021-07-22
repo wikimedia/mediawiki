@@ -182,7 +182,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * The annotation causes this to be called immediately before setUpBeforeClass()
 	 * @beforeClass
 	 */
-	final public static function mediaWikiSetUpBeforeClass() : void {
+	final public static function mediaWikiSetUpBeforeClass(): void {
 		global $IP;
 		if ( !file_exists( "$IP/LocalSettings.php" ) ) {
 				echo "File \"$IP/LocalSettings.php\" could not be found. "
@@ -403,7 +403,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		MediaWiki\Session\SessionManager::resetCache();
 	}
 
-	public function run( TestResult $result = null ) : TestResult {
+	public function run( TestResult $result = null ): TestResult {
 		$this->overrideMwServices();
 
 		if ( $this->needsDB() && !$this->isTestInDatabaseGroup() ) {
@@ -537,7 +537,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * The annotation causes this to be called immediately before setUp()
 	 * @before
 	 */
-	final protected function mediaWikiSetUp() : void {
+	final protected function mediaWikiSetUp(): void {
 		$reflection = new ReflectionClass( $this );
 		// TODO: Eventually we should assert for test presence in /integration/
 		if ( strpos( $reflection->getFileName(), '/unit/' ) !== false ) {
@@ -589,7 +589,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 	 * The annotation causes this to be called immediately after tearDown()
 	 * @after
 	 */
-	final protected function mediaWikiTearDown() : void {
+	final protected function mediaWikiTearDown(): void {
 		global $wgRequest, $wgSQLMode;
 
 		$status = ob_get_status();

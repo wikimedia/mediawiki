@@ -41,7 +41,7 @@ interface IEditConstraint extends IEditObject {
 	/**
 	 * @return string whether the constraint passed, either CONSTRAINT_PASSED or CONSTRAINT_FAILED
 	 */
-	public function checkConstraint() : string;
+	public function checkConstraint(): string;
 
 	/**
 	 * Get the legacy status for failure (or success)
@@ -52,6 +52,6 @@ interface IEditConstraint extends IEditObject {
 	 *
 	 * @return StatusValue
 	 */
-	public function getLegacyStatus() : StatusValue;
+	public function getLegacyStatus(): StatusValue;
 
 }

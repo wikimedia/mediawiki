@@ -96,7 +96,7 @@ trait WikiAwareEntityTrait {
 	 * @param string|false $wikiId
 	 * @return string
 	 */
-	private function wikiIdToString( $wikiId ) : string {
+	private function wikiIdToString( $wikiId ): string {
 		return $wikiId === WikiAwareEntity::LOCAL ? 'the local wiki' : "'{$wikiId}'";
 	}
 }

@@ -14,7 +14,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 
 	private const TEST_KEY = 'test';
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->cache = $this->newCacheInstance();
@@ -505,7 +505,7 @@ abstract class BagOStuffTestBase extends MediaWikiIntegrationTestCase {
 		$this->assertTrue( $this->cache->unlock( $key2 ) );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) );
 		$this->cache->delete( $this->cache->makeKey( self::TEST_KEY ) . ':lock' );
 

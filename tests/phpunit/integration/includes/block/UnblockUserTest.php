@@ -26,7 +26,7 @@ class UnblockUserTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $unblockUserFactory;
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 
 		// Prepare users

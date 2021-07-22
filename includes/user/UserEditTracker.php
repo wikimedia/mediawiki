@@ -61,7 +61,7 @@ class UserEditTracker {
 	 * @param UserIdentity $user
 	 * @return int|null Null for anonymous users
 	 */
-	public function getUserEditCount( UserIdentity $user ) : ?int {
+	public function getUserEditCount( UserIdentity $user ): ?int {
 		if ( !$user->isRegistered() ) {
 			return null;
 		}
@@ -95,7 +95,7 @@ class UserEditTracker {
 	 * @param UserIdentity $user
 	 * @return int
 	 */
-	public function initializeUserEditCount( UserIdentity $user ) : int {
+	public function initializeUserEditCount( UserIdentity $user ): int {
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 		$actorWhere = $this->actorMigration->getWhere( $dbr, 'rev_user', $user );
 

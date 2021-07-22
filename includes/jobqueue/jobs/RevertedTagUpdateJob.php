@@ -48,7 +48,7 @@ class RevertedTagUpdateJob extends Job implements GenericParameterJob {
 	public static function newSpec(
 		int $revertRevisionId,
 		EditResult $editResult
-	) : JobSpecification {
+	): JobSpecification {
 		return new JobSpecification(
 			'revertedTagUpdate',
 			[

@@ -343,7 +343,7 @@ class WatchlistManager {
 	 * @param PageIdentity $target
 	 * @return bool
 	 */
-	public function isWatchedIgnoringRights( UserIdentity $userIdentity, PageIdentity $target ) : bool {
+	public function isWatchedIgnoringRights( UserIdentity $userIdentity, PageIdentity $target ): bool {
 		if ( $this->isWatchable( $target ) ) {
 			return $this->watchedItemStore->isWatched( $userIdentity, $target );
 		}
@@ -358,7 +358,7 @@ class WatchlistManager {
 	 * @param PageIdentity $target
 	 * @return bool
 	 */
-	public function isWatched( Authority $performer, PageIdentity $target ) : bool {
+	public function isWatched( Authority $performer, PageIdentity $target ): bool {
 		if ( $performer->isAllowed( 'viewmywatchlist' ) ) {
 			return $this->isWatchedIgnoringRights( $performer->getUser(), $target );
 		}
@@ -372,7 +372,7 @@ class WatchlistManager {
 	 * @param PageIdentity $target
 	 * @return bool
 	 */
-	public function isTempWatchedIgnoringRights( UserIdentity $userIdentity, PageIdentity $target ) : bool {
+	public function isTempWatchedIgnoringRights( UserIdentity $userIdentity, PageIdentity $target ): bool {
 		if ( $this->isWatchable( $target ) ) {
 			return $this->watchedItemStore->isTempWatched( $userIdentity, $target );
 		}
@@ -387,7 +387,7 @@ class WatchlistManager {
 	 * @param PageIdentity $target
 	 * @return bool
 	 */
-	public function isTempWatched( Authority $performer, PageIdentity $target ) : bool {
+	public function isTempWatched( Authority $performer, PageIdentity $target ): bool {
 		if ( $performer->isAllowed( 'viewmywatchlist' ) ) {
 			return $this->isTempWatchedIgnoringRights( $performer->getUser(), $target );
 		}
@@ -407,7 +407,7 @@ class WatchlistManager {
 		UserIdentity $userIdentity,
 		PageIdentity $target,
 		?string $expiry = null
-	) : StatusValue {
+	): StatusValue {
 		if ( !$this->isWatchable( $target ) ) {
 			return StatusValue::newFatal( 'watchlistnotwatchable' );
 		}
@@ -447,7 +447,7 @@ class WatchlistManager {
 		Authority $performer,
 		PageIdentity $target,
 		?string $expiry = null
-	) : StatusValue {
+	): StatusValue {
 		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
 			// TODO: this function should be moved out of User
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
@@ -466,7 +466,7 @@ class WatchlistManager {
 	public function removeWatchIgnoringRights(
 		UserIdentity $userIdentity,
 		PageIdentity $target
-	) : StatusValue {
+	): StatusValue {
 		if ( !$this->isWatchable( $target ) ) {
 			return StatusValue::newFatal( 'watchlistnotwatchable' );
 		}
@@ -503,7 +503,7 @@ class WatchlistManager {
 	public function removeWatch(
 		Authority $performer,
 		PageIdentity $target
-	) : StatusValue {
+	): StatusValue {
 		if ( !$performer->isAllowed( 'editmywatchlist' ) ) {
 			// TODO: this function should be moved out of User
 			return User::newFatalPermissionDeniedStatus( 'editmywatchlist' );
@@ -530,7 +530,7 @@ class WatchlistManager {
 		Authority $performer,
 		PageIdentity $target,
 		string $expiry = null
-	) : StatusValue {
+	): StatusValue {
 		// User must be registered, and either changing the watch state or at least the expiry.
 		if ( !$performer->getUser()->isRegistered() ) {
 			return StatusValue::newGood();

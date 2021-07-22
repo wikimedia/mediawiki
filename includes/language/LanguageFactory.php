@@ -105,7 +105,7 @@ class LanguageFactory {
 	 *  characters or characters illegal in MediaWiki titles.
 	 * @return Language
 	 */
-	public function getLanguage( $code ) : Language {
+	public function getLanguage( $code ): Language {
 		$code = $this->options->get( 'DummyLanguageCodes' )[$code] ?? $code;
 
 		// This is horrible, horrible code, but is necessary to support Language::$mLangObjCache
@@ -144,7 +144,7 @@ class LanguageFactory {
 	 * @throws MWException if the language code or fallback sequence is invalid
 	 * @return Language
 	 */
-	private function newFromCode( $code, $fallback = false ) : Language {
+	private function newFromCode( $code, $fallback = false ): Language {
 		if ( !$this->langNameUtils->isValidCode( $code ) ) {
 			throw new MWException( "Invalid language code \"$code\"" );
 		}

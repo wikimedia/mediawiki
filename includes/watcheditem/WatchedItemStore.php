@@ -1741,7 +1741,7 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	private function fetchWatchedItemsForPage(
 		IDatabase $dbw,
 		$target
-	) : IResultWrapper {
+	): IResultWrapper {
 		$tables = [ 'watchlist' ];
 		$fields = [ 'wl_user', 'wl_notificationtimestamp' ];
 		$joins = [];

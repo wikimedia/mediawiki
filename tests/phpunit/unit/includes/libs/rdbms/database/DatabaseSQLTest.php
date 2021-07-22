@@ -20,7 +20,7 @@ class DatabaseSQLTest extends PHPUnit\Framework\TestCase {
 	/** @var DatabaseTestHelper|Database */
 	private $database;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->database = new DatabaseTestHelper( __CLASS__, [ 'cliMode' => true ] );
 		MWDebug::clearDeprecationFilters();

@@ -41,7 +41,7 @@ class BlockListPagerTest extends MediaWikiIntegrationTestCase {
 	/** @var BlockActionInfo */
 	private $blockActionInfo;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$services = MediaWikiServices::getInstance();

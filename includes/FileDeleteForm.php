@@ -209,7 +209,7 @@ class FileDeleteForm {
 	 */
 	public static function doDelete( &$title, &$file, &$oldimage, $reason,
 		$suppress, UserIdentity $user, $tags = []
-	) : Status {
+	): Status {
 		if ( $oldimage ) {
 			$page = null;
 			$status = $file->deleteOldFile( $oldimage, $reason, $user, $suppress );

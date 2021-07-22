@@ -18,7 +18,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 
-	private function getCallbacks( FauxRequest $request ) : array {
+	private function getCallbacks( FauxRequest $request ): array {
 		$context = $this->apiContext->newTestContext( $request, $this->getTestUser()->getUser() );
 		$main = new ApiMain( $context );
 		return [ new ApiParamValidatorCallbacks( $main ), $main ];
@@ -28,7 +28,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		return __DIR__ . '/../../../data/media/' . $fileName;
 	}
 
-	public function testHasParam() : void {
+	public function testHasParam(): void {
 		[ $callbacks, $main ] = $this->getCallbacks( new FauxRequest( [
 			'foo' => '1',
 			'bar' => '',
@@ -51,7 +51,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 	 * @param mixed $expect Expected return value
 	 * @param bool $normalized Whether handleParamNormalization is called
 	 */
-	public function testGetValue( ?string $data, $default, $expect, bool $normalized = false ) : void {
+	public function testGetValue( ?string $data, $default, $expect, bool $normalized = false ): void {
 		[ $callbacks, $main ] = $this->getCallbacks( new FauxRequest( [ 'test' => $data ] ) );
 
 		$module = $this->getMockBuilder( ApiBase::class )
@@ -86,7 +86,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		];
 	}
 
-	private function setupUploads() : void {
+	private function setupUploads(): void {
 		$fileName = 'TestUploadStash.jpg';
 		$mimeType = 'image/jpeg';
 		$filePath = $this->filePath( 'yuv420.jpg' );
@@ -109,7 +109,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		];
 	}
 
-	public function testHasUpload() : void {
+	public function testHasUpload(): void {
 		$this->setupUploads();
 
 		$request = new FauxRequest( [
@@ -132,7 +132,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		);
 	}
 
-	public function testGetUploadedFile() : void {
+	public function testGetUploadedFile(): void {
 		$this->setupUploads();
 
 		$request = new FauxRequest( [
@@ -168,7 +168,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 	 */
 	public function testRecordCondition(
 		DataMessageValue $message, ?ApiMessage $expect, bool $sensitive = false
-	) : void {
+	): void {
 		[ $callbacks, $main ] = $this->getCallbacks( new FauxRequest( [ 'testparam' => 'testvalue' ] ) );
 		$query = $main->getModuleFromPath( 'query' );
 		$warnings = [];
@@ -209,7 +209,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		);
 	}
 
-	public function provideRecordCondition() : \Generator {
+	public function provideRecordCondition(): \Generator {
 		yield 'Deprecated param' => [
 			DataMessageValue::new(
 				'paramvalidator-param-deprecated', [],
@@ -277,7 +277,7 @@ class ApiParamValidatorCallbacksTest extends ApiUploadTestCase {
 		];
 	}
 
-	public function testUseHighLimits() : void {
+	public function testUseHighLimits(): void {
 		$context = $this->apiContext->newTestContext( new FauxRequest, $this->getTestUser()->getUser() );
 		$main = $this->getMockBuilder( ApiMain::class )
 			->setConstructorArgs( [ $context ] )

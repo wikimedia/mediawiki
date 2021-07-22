@@ -89,7 +89,7 @@ class Pingback {
 	 * @throws DBError If identifier insert fails
 	 * @throws DBError If timestamp upsert fails
 	 */
-	public function run() : void {
+	public function run(): void {
 		if ( !$this->config->get( 'Pingback' ) ) {
 			// disabled
 			return;
@@ -118,7 +118,7 @@ class Pingback {
 	 *
 	 * @return bool
 	 */
-	private function wasRecentlySent() : bool {
+	private function wasRecentlySent(): bool {
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
 		$timestamp = $dbr->selectField(
 			'updatelog',
@@ -144,7 +144,7 @@ class Pingback {
 	 *
 	 * @return bool Whether lock was acquired
 	 */
-	private function acquireLock() : bool {
+	private function acquireLock(): bool {
 		$cacheKey = $this->cache->makeKey( 'pingback', $this->key );
 		if ( !$this->cache->add( $cacheKey, 1, $this->cache::TTL_HOUR ) ) {
 			// throttled
@@ -166,7 +166,7 @@ class Pingback {
 	 * @throws DBError If identifier insert fails
 	 * @return array
 	 */
-	protected function getData() : array {
+	protected function getData(): array {
 		return [
 			'schema' => 'MediaWikiPingback',
 			'revision' => self::SCHEMA_REV,
@@ -187,7 +187,7 @@ class Pingback {
 	 * @param Config $config With `DBtype` set.
 	 * @return array
 	 */
-	public static function getSystemInfo( Config $config ) : array {
+	public static function getSystemInfo( Config $config ): array {
 		$event = [
 			'database' => $config->get( 'DBtype' ),
 			'MediaWiki' => MW_VERSION,
@@ -218,7 +218,7 @@ class Pingback {
 	 * @throws DBError If identifier insert fails
 	 * @return string 32-character hex string
 	 */
-	private function fetchOrInsertId() : string {
+	private function fetchOrInsertId(): string {
 		// We've already obtained a primary connection for the lock, and plan to do a write.
 		// But, still prefer reading this immutable value from a replica to reduce load.
 		$dbr = $this->lb->getConnectionRef( DB_REPLICA );
@@ -258,7 +258,7 @@ class Pingback {
 	 * @param array $data Pingback data as an associative array
 	 * @return bool
 	 */
-	private function postPingback( array $data ) : bool {
+	private function postPingback( array $data ): bool {
 		$json = FormatJson::encode( $data );
 		$queryString = rawurlencode( str_replace( ' ', '\u0020', $json ) ) . ';';
 		$url = 'https://www.mediawiki.org/beacon/event?' . $queryString;
@@ -271,7 +271,7 @@ class Pingback {
 	 *
 	 * @throws DBError If timestamp upsert fails
 	 */
-	private function markSent() : void {
+	private function markSent(): void {
 		$dbw = $this->lb->getConnectionRef( DB_PRIMARY );
 		$timestamp = ConvertibleTimestamp::time();
 		$dbw->upsert(
@@ -287,7 +287,7 @@ class Pingback {
 	 * Schedule a deferred callable that will check if a pingback should be
 	 * sent and (if so) proceed to send it.
 	 */
-	public static function schedulePingback() : void {
+	public static function schedulePingback(): void {
 		$config = MediaWikiServices::getInstance()->getMainConfig();
 		if ( !$config->get( 'Pingback' ) ) {
 			// Fault tolerance:

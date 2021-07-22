@@ -11,7 +11,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 	/** @var HttpRequestFactory */
 	private $factory;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->oldHttpEngine = Http::$httpEngine;
 		Http::$httpEngine = static::$httpEngine;
@@ -31,7 +31,7 @@ abstract class MWHttpRequestTestCase extends PHPUnit\Framework\TestCase {
 		}
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		Http::$httpEngine = $this->oldHttpEngine;
 		parent::tearDown();
 	}

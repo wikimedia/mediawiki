@@ -176,7 +176,7 @@ abstract class BagOStuff implements
 	 * @since 1.35
 	 * @return LoggerInterface
 	 */
-	public function getLogger() : LoggerInterface {
+	public function getLogger(): LoggerInterface {
 		return $this->logger;
 	}
 

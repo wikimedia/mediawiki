@@ -49,5 +49,5 @@ interface BlockUserFactory {
 		array $blockOptions = [],
 		array $blockRestrictions = [],
 		$tags = []
-	) : BlockUser;
+	): BlockUser;
 }

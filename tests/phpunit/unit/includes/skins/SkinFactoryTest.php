@@ -5,7 +5,7 @@ use Wikimedia\ObjectFactory;
 
 class SkinFactoryTest extends \MediaWikiUnitTestCase {
 
-	private function createSkinFactory( $service = null, $options = [] ) : SkinFactory {
+	private function createSkinFactory( $service = null, $options = [] ): SkinFactory {
 		$objectFactory = $service
 			? new ObjectFactory( $service )
 			: new ObjectFactory( $this->createMock( ContainerInterface::class ) );

@@ -449,7 +449,7 @@ class LinkRenderer {
 	 * @param LinkTarget|PageReference $target
 	 * @return Title
 	 */
-	private function castToTitle( $target ) : Title {
+	private function castToTitle( $target ): Title {
 		if ( $target instanceof LinkTarget ) {
 			return Title::newFromLinkTarget( $target );
 		}
@@ -461,7 +461,7 @@ class LinkRenderer {
 	 * @param LinkTarget|PageReference $target
 	 * @return LinkTarget
 	 */
-	private function castToLinkTarget( $target ) : LinkTarget {
+	private function castToLinkTarget( $target ): LinkTarget {
 		if ( $target instanceof PageReference ) {
 			return Title::castFromPageReference( $target );
 		}

@@ -109,7 +109,7 @@ class EditResultBuilder {
 	/**
 	 * @return EditResult
 	 */
-	public function buildEditResult() : EditResult {
+	public function buildEditResult(): EditResult {
 		if ( $this->revisionRecord === null ) {
 			throw new PageUpdateException(
 				'Revision was not set prior to building an EditResult'
@@ -236,7 +236,7 @@ class EditResultBuilder {
 	 *
 	 * @return RevisionStoreRecord|null
 	 */
-	private function findIdenticalRevision( int $searchRadius ) : ?RevisionStoreRecord {
+	private function findIdenticalRevision( int $searchRadius ): ?RevisionStoreRecord {
 		// We use master just in case we encounter replication lag.
 		// This is mostly for cases where a revert is applied rapidly after someone saves
 		// the previous edit.
@@ -283,7 +283,7 @@ class EditResultBuilder {
 	 */
 	private function getOriginalRevision(
 		int $flags = RevisionStore::READ_NORMAL
-	) : ?RevisionRecord {
+	): ?RevisionRecord {
 		if ( $this->originalRevision ) {
 			return $this->originalRevision;
 		}
@@ -304,7 +304,7 @@ class EditResultBuilder {
 	 *
 	 * @return bool
 	 */
-	private function isExactRevert() : bool {
+	private function isExactRevert(): bool {
 		if ( $this->isNew || $this->oldestRevertedRevId === null ) {
 			return false;
 		}
@@ -322,7 +322,7 @@ class EditResultBuilder {
 	 *
 	 * @return bool
 	 */
-	private function isNullEdit() : bool {
+	private function isNullEdit(): bool {
 		if ( $this->isNew ) {
 			return false;
 		}
@@ -336,7 +336,7 @@ class EditResultBuilder {
 	 *
 	 * @return string[]
 	 */
-	private function getRevertTags() : array {
+	private function getRevertTags(): array {
 		if ( isset( self::REVERT_METHOD_TO_CHANGE_TAG[$this->revertMethod] ) ) {
 			$revertTag = self::REVERT_METHOD_TO_CHANGE_TAG[$this->revertMethod];
 			if ( in_array( $revertTag, $this->softwareTags ) ) {

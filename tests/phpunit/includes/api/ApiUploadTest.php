@@ -12,7 +12,7 @@ class ApiUploadTest extends ApiUploadTestCase {
 		return __DIR__ . '/../../data/media/' . $fileName;
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'watchlist'; // This test might interfere with watchlists test.
 		$this->tablesUsed[] = 'watchlist_expiry';

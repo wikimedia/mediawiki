@@ -7,7 +7,7 @@ use MediaWiki\Permissions\PermissionStatus;
  */
 class PermissionsErrorTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->user = $this->getTestUser();
 		$this->setGroupPermissions( '*', 'testpermission', true );

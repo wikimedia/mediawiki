@@ -79,7 +79,7 @@ class FileBackendGroup {
 	 *
 	 * @return FileBackendGroup
 	 */
-	public static function singleton() : FileBackendGroup {
+	public static function singleton(): FileBackendGroup {
 		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()->getFileBackendGroup();
 	}

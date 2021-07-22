@@ -16,7 +16,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
 class ApiMainTest extends ApiTestCase {
 	use MockAuthorityTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->mergeMwGlobalArrayValue(
 			'wgGroupPermissions',

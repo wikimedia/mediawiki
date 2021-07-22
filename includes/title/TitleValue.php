@@ -116,7 +116,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @return TitleValue
 	 */
-	public static function newFromPage( PageReference $page ) : TitleValue {
+	public static function newFromPage( PageReference $page ): TitleValue {
 		return new TitleValue( $page->getNamespace(), $page->getDBkey() );
 	}
 
@@ -133,7 +133,7 @@ class TitleValue implements LinkTarget {
 	 *
 	 * @return ?LinkTarget
 	 */
-	public static function castPageToLinkTarget( ?PageReference $page ) : ?LinkTarget {
+	public static function castPageToLinkTarget( ?PageReference $page ): ?LinkTarget {
 		if ( !$page || $page instanceof LinkTarget ) {
 			return $page;
 		}

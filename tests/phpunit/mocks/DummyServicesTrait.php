@@ -74,7 +74,7 @@ trait DummyServicesTrait {
 	 *     InterwikiLookup interface, iw_url is also optional, defaulting to an empty string.
 	 * @return InterwikiLookup
 	 */
-	private function getDummyInterwikiLookup( array $interwikis = [] ) : InterwikiLookup {
+	private function getDummyInterwikiLookup( array $interwikis = [] ): InterwikiLookup {
 		// Normalize into full arrays, indexed by prefix
 		$allInterwikiRows = [];
 		$defaultInterwiki = [
@@ -169,7 +169,7 @@ trait DummyServicesTrait {
 	 * @param array $options see getDummyMediaWikiTitleCodec for supported options
 	 * @return TitleFormatter
 	 */
-	private function getDummyTitleFormatter( array $options = [] ) : TitleFormatter {
+	private function getDummyTitleFormatter( array $options = [] ): TitleFormatter {
 		return $this->getDummyMediaWikiTitleCodec( $options );
 	}
 
@@ -177,7 +177,7 @@ trait DummyServicesTrait {
 	 * @param array $options see getDummyMediaWikiTitleCodec for supported options
 	 * @return TitleParser
 	 */
-	private function getDummyTitleParser( array $options = [] ) : TitleParser {
+	private function getDummyTitleParser( array $options = [] ): TitleParser {
 		return $this->getDummyMediaWikiTitleCodec( $options );
 	}
 
@@ -191,7 +191,7 @@ trait DummyServicesTrait {
 	 *
 	 * @return MediaWikiTitleCodec
 	 */
-	private function getDummyMediaWikiTitleCodec( array $options = [] ) : MediaWikiTitleCodec {
+	private function getDummyMediaWikiTitleCodec( array $options = [] ): MediaWikiTitleCodec {
 		$baseConfig = [
 			'validInterwikis' => [],
 		];
@@ -260,7 +260,7 @@ trait DummyServicesTrait {
 	 *   included in NamespaceInfo::CONSTRUCTOR_OPTIONS
 	 * @return NamespaceInfo
 	 */
-	private function getDummyNamespaceInfo( array $options = [] ) : NamespaceInfo {
+	private function getDummyNamespaceInfo( array $options = [] ): NamespaceInfo {
 		// Rather than trying to use a complicated mock, it turns out that almost
 		// all of the NamespaceInfo service works fine in unit tests. The only issues:
 		//   - in two places, NamespaceInfo tries to read extension attributes through
@@ -314,7 +314,7 @@ trait DummyServicesTrait {
 	 *    otherwise it is active and this is the reason (true maps to a fallback reason)
 	 * @return ReadOnlyMode
 	 */
-	private function getDummyReadOnlyMode( $startingReason ) : ReadOnlyMode {
+	private function getDummyReadOnlyMode( $startingReason ): ReadOnlyMode {
 		if ( $startingReason === true ) {
 			$startingReason = 'Random reason';
 		}
@@ -331,7 +331,7 @@ trait DummyServicesTrait {
 	 * @param LinkTarget|PageReference $page
 	 * @return string
 	 */
-	private function getWatchedItemStoreKey( UserIdentity $user, $page ) : string {
+	private function getWatchedItemStoreKey( UserIdentity $user, $page ): string {
 		return 'u' . (string)$user->getId() . ':' . CacheKeyHelper::getKeyForPage( $page );
 	}
 

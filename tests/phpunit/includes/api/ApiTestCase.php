@@ -16,7 +16,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 	 */
 	protected $apiContext;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgServer;
 
 		parent::setUp();
@@ -34,7 +34,7 @@ abstract class ApiTestCase extends MediaWikiLangTestCase {
 		$this->apiContext = new ApiTestContext();
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		// Avoid leaking session over tests
 		MediaWiki\Session\SessionManager::getGlobalSession()->clear();
 

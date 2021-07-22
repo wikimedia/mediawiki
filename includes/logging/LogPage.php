@@ -300,7 +300,7 @@ class LogPage {
 	 * @param ?Language $lang
 	 * @return string HTML
 	 */
-	private static function getTitleLink( Title $title, ?Language $lang ) : string {
+	private static function getTitleLink( Title $title, ?Language $lang ): string {
 		if ( !$lang ) {
 			return $title->getPrefixedText();
 		}

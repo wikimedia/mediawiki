@@ -545,7 +545,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 	 * @param bool $pingLimited
 	 * @return User
 	 */
-	private function makePerformingUser( $ip, $pingLimited ) : User {
+	private function makePerformingUser( $ip, $pingLimited ): User {
 		$request = $this->getMockBuilder( WebRequest::class )
 			->getMock();
 		$request->method( 'getIP' )
@@ -587,7 +587,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 		$numUsersToAuth = 0,
 		array $ignored = [],
 		array $mailThrottledLimited = []
-	) : AuthManager {
+	): AuthManager {
 		$authManager = $this->getMockBuilder( AuthManager::class )
 			->disableOriginalConstructor()
 			->getMock();

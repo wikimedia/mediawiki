@@ -7,7 +7,7 @@ use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\IDatabase;
 
 class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// These services cache their joins
@@ -15,7 +15,7 @@ class DatabaseLogEntryTest extends MediaWikiIntegrationTestCase {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'ActorMigration' );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'CommentStore' );
 		MediaWikiServices::getInstance()->resetServiceForTesting( 'ActorMigration' );
 		parent::tearDown();

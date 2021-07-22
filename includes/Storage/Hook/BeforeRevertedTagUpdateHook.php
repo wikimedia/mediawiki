@@ -63,5 +63,5 @@ interface BeforeRevertedTagUpdateHook {
 		$revisionRecord,
 		$editResult,
 		&$approved
-	) : void;
+	): void;
 }

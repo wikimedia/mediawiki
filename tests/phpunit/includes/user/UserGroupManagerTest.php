@@ -62,7 +62,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		array $configOverrides = [],
 		UserEditTracker $userEditTrackerOverride = null,
 		callable $callback = null
-	) : UserGroupManager {
+	): UserGroupManager {
 		$services = MediaWikiServices::getInstance();
 		return new UserGroupManager(
 			new ServiceOptions(
@@ -97,7 +97,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 		);
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'user';
 		$this->tablesUsed[] = 'user_groups';

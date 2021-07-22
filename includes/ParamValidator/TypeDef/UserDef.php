@@ -104,7 +104,7 @@ class UserDef extends TypeDef {
 		return parent::normalizeSettings( $settings );
 	}
 
-	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
 		$ret['allowedKeys'] = array_merge( $ret['allowedKeys'], [
@@ -159,7 +159,7 @@ class UserDef extends TypeDef {
 	 * @return array [ string $type, UserIdentity|null $user ]
 	 * @phan-return array{0:string,1:UserIdentity|null}
 	 */
-	private function processUser( string $value ) : array {
+	private function processUser( string $value ): array {
 		// A user ID?
 		if ( preg_match( '/^#(\d+)$/D', $value, $m ) ) {
 			return [ 'id', $this->userFactory->newFromId( $m[1] ) ];

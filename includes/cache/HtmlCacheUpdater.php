@@ -201,7 +201,7 @@ class HtmlCacheUpdater {
 	 * @param int $flags Bit field of `PURGE_URLS_*` class constants (optional).
 	 * @return string[] URLs
 	 */
-	public function getUrls( PageReference $page, int $flags = 0 ) : array {
+	public function getUrls( PageReference $page, int $flags = 0 ): array {
 		$title = $this->titleFactory->castFromPageReference( $page );
 
 		if ( !$title->canExist() ) {

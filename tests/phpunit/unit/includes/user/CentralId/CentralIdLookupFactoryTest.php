@@ -21,12 +21,12 @@ class CentralIdLookupFactoryTest extends MediaWikiUnitTestCase {
 	/** @var CentralIdLookup */
 	private $centralLookupMock;
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 		$this->centralLookupMock = $this->getMockForAbstractClass( CentralIdLookup::class );
 	}
 
-	private function makeFactory() : CentralIdLookupFactory {
+	private function makeFactory(): CentralIdLookupFactory {
 		$services = $this->createNoOpMock( ServiceContainer::class, [ 'get' ] );
 		$services
 			->method( 'get' )

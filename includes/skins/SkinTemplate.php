@@ -154,7 +154,7 @@ class SkinTemplate extends Skin {
 	 * @since 1.35
 	 * @return array
 	 */
-	protected function getJsConfigVars() : array {
+	protected function getJsConfigVars(): array {
 		return [];
 	}
 
@@ -1336,7 +1336,7 @@ class SkinTemplate extends Skin {
 	 */
 	final protected function injectLegacyMenusIntoPersonalTools(
 		array $contentNavigation
-	) : array {
+	): array {
 		$userMenu = $contentNavigation['user-menu'] ?? [];
 		// userpage is only defined for logged-in users, and wfArrayInsertAfter requires the
 		// $after parameter to be a known key in the array.
@@ -1366,7 +1366,7 @@ class SkinTemplate extends Skin {
 	 */
 	private function makeSkinTemplatePersonalUrls(
 		array $contentNavigation
-	) : array {
+	): array {
 		if ( isset( $contentNavigation['user-menu'] ) ) {
 			return $this->injectLegacyMenusIntoPersonalTools( $contentNavigation );
 		}

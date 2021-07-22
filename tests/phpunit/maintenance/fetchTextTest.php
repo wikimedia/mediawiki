@@ -173,7 +173,7 @@ class FetchTextTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Check if any Exception is stored for rethrowing from addDBData

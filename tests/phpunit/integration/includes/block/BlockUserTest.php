@@ -19,7 +19,7 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 	/** @var BlockUserFactory */
 	private $blockUserFactory;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Prepare users

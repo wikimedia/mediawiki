@@ -42,7 +42,7 @@ class SideBarTest extends MediaWikiLangTestCase {
 		}
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->initMessagesHref();
 		$this->skin = new SkinTemplate();

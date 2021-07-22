@@ -24,7 +24,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		RequestContext::getMain()->setUser( $user );
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->setContentLang( 'tg' );
 
@@ -43,7 +43,7 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 		$this->lc = new DummyConverter( $this->lang );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		unset( $this->lc );
 		unset( $this->lang );
 
@@ -205,12 +205,12 @@ class LanguageConverterTest extends MediaWikiLangTestCase {
 	 * @param LinkTarget|PageReference $title title to convert
 	 * @param string $expected
 	 */
-	public function testConvertTitle( $title, string $expected ) : void {
+	public function testConvertTitle( $title, string $expected ): void {
 		$actual = $this->lc->convertTitle( $title );
 		$this->assertSame( $expected, $actual );
 	}
 
-	public function provideTitlesToConvert() : array {
+	public function provideTitlesToConvert(): array {
 		return [
 			'Title FromText default' => [
 				Title::newFromText( 'Dummy_title' ),

@@ -87,7 +87,7 @@ class BlockActionInfo {
 	/**
 	 * @return int[]
 	 */
-	public function getAllBlockActions() : array {
+	public function getAllBlockActions(): array {
 		// Don't run the hook multiple times in the same request
 		if ( !$this->allBlockActions ) {
 			$this->allBlockActions = self::CORE_BLOCK_ACTIONS;

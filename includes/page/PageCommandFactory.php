@@ -158,7 +158,7 @@ class PageCommandFactory implements
 		Authority $performer,
 		WikiPage $wikipage,
 		string $newContentModel
-	) : ContentModelChange {
+	): ContentModelChange {
 		return new ContentModelChange(
 			$this->contentHandlerFactory,
 			$this->hookContainer,
@@ -180,7 +180,7 @@ class PageCommandFactory implements
 		PageIdentity $source,
 		PageIdentity $destination,
 		string $timestamp = null
-	) : MergeHistory {
+	): MergeHistory {
 		return new MergeHistory(
 			$source,
 			$destination,
@@ -202,7 +202,7 @@ class PageCommandFactory implements
 	 * @param Title $to
 	 * @return MovePage
 	 */
-	public function newMovePage( Title $from, Title $to ) : MovePage {
+	public function newMovePage( Title $from, Title $to ): MovePage {
 		return new MovePage(
 			$from,
 			$to,
@@ -233,7 +233,7 @@ class PageCommandFactory implements
 		PageIdentity $page,
 		Authority $performer,
 		UserIdentity $byUser
-	) : RollbackPage {
+	): RollbackPage {
 		return new RollbackPage(
 			new ServiceOptions( RollbackPage::CONSTRUCTOR_OPTIONS, $this->config ),
 			$this->loadBalancer,

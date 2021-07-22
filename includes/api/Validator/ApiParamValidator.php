@@ -106,7 +106,7 @@ class ApiParamValidator {
 	 * List known type names
 	 * @return string[]
 	 */
-	public function knownTypes() : array {
+	public function knownTypes(): array {
 		return $this->paramValidator->knownTypes();
 	}
 
@@ -115,7 +115,7 @@ class ApiParamValidator {
 	 * @param array $settings
 	 * @return array
 	 */
-	private function mapDeprecatedSettingsMessages( array $settings ) : array {
+	private function mapDeprecatedSettingsMessages( array $settings ): array {
 		if ( isset( $settings[EnumDef::PARAM_DEPRECATED_VALUES] ) ) {
 			foreach ( $settings[EnumDef::PARAM_DEPRECATED_VALUES] as &$v ) {
 				if ( $v === null || $v === true || $v instanceof MessageValue ) {
@@ -145,7 +145,7 @@ class ApiParamValidator {
 	 * @param array|mixed $settings
 	 * @return array
 	 */
-	public function normalizeSettings( $settings ) : array {
+	public function normalizeSettings( $settings ): array {
 		if ( is_array( $settings ) ) {
 			if ( !isset( $settings[ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES] ) ) {
 				$settings[ParamValidator::PARAM_IGNORE_UNRECOGNIZED_VALUES] = true;
@@ -168,7 +168,7 @@ class ApiParamValidator {
 	 * @param mixed $value
 	 * @param array &$ret
 	 */
-	private function checkSettingsMessage( ApiBase $module, string $key, $value, array &$ret ) : void {
+	private function checkSettingsMessage( ApiBase $module, string $key, $value, array &$ret ): void {
 		$msg = ApiBase::makeMessage( $value, $module );
 		if ( $msg instanceof Message ) {
 			$ret['messages'][] = $this->messageConverter->convertMessage( $msg );
@@ -187,7 +187,7 @@ class ApiParamValidator {
 	 */
 	public function checkSettings(
 		ApiBase $module, array $params, string $name, array $options
-	) : array {
+	): array {
 		$options['module'] = $module;
 		$settings = $params[$name];
 		if ( is_array( $settings ) ) {
@@ -401,7 +401,7 @@ class ApiParamValidator {
 	 * @param array $options Options array.
 	 * @return array
 	 */
-	public function getParamInfo( ApiBase $module, string $name, $settings, array $options ) : array {
+	public function getParamInfo( ApiBase $module, string $name, $settings, array $options ): array {
 		$options['module'] = $module;
 		$name = $module->encodeParamName( $name );
 		return $this->paramValidator->getParamInfo( $name, $settings, $options );
@@ -417,7 +417,7 @@ class ApiParamValidator {
 	 * @param array $options Options array.
 	 * @return Message[]
 	 */
-	public function getHelpInfo( ApiBase $module, string $name, $settings, array $options ) : array {
+	public function getHelpInfo( ApiBase $module, string $name, $settings, array $options ): array {
 		$options['module'] = $module;
 		$name = $module->encodeParamName( $name );
 

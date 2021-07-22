@@ -481,7 +481,7 @@ class RequestContext implements IContextSource, MutableContext {
 	 *
 	 * @return RequestContext
 	 */
-	public static function getMain() : RequestContext {
+	public static function getMain(): RequestContext {
 		if ( self::$instance === null ) {
 			self::$instance = new self;
 		}
@@ -531,7 +531,7 @@ class RequestContext implements IContextSource, MutableContext {
 		];
 	}
 
-	public function getCsrfTokenSet() : CsrfTokenSet {
+	public function getCsrfTokenSet(): CsrfTokenSet {
 		return new CsrfTokenSet( $this->getRequest() );
 	}
 

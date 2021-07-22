@@ -112,7 +112,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @param string|null $debug
 	 * @return int
 	 */
-	 public static function debugFromString( ?string $debug ) : int {
+	 public static function debugFromString( ?string $debug ): int {
 		 // The canonical way to enable debug mode is via debug=true
 		 // This continues to map to v1 until v2 is ready (T85805).
 		 if ( $debug === 'true' || $debug === '1' ) {
@@ -135,7 +135,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 *
 	 * @return ResourceLoaderContext
 	 */
-	public static function newDummyContext() : ResourceLoaderContext {
+	public static function newDummyContext(): ResourceLoaderContext {
 		// This currently creates a non-empty instance of ResourceLoader (all modules registered),
 		// but that's probably not needed. So once that moves into ServiceWiring, this'll
 		// become more like the EmptyResourceLoader class we have in PHPUnit tests, which
@@ -147,7 +147,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 		), new FauxRequest( [] ) );
 	}
 
-	public function getResourceLoader() : ResourceLoader {
+	public function getResourceLoader(): ResourceLoader {
 		return $this->resourceLoader;
 	}
 
@@ -162,7 +162,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 		return $this->getResourceLoader()->getConfig();
 	}
 
-	public function getRequest() : WebRequest {
+	public function getRequest(): WebRequest {
 		return $this->request;
 	}
 
@@ -176,11 +176,11 @@ class ResourceLoaderContext implements MessageLocalizer {
 		return $this->logger;
 	}
 
-	public function getModules() : array {
+	public function getModules(): array {
 		return $this->modules;
 	}
 
-	public function getLanguage() : string {
+	public function getLanguage(): string {
 		if ( $this->language === null ) {
 			// Must be a valid language code after this point (T64849)
 			// Only support uselang values that follow built-in conventions (T102058)
@@ -198,7 +198,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 		return $this->language;
 	}
 
-	public function getDirection() : string {
+	public function getDirection(): string {
 		if ( $this->direction === null ) {
 			$direction = $this->getRequest()->getRawVal( 'dir' );
 			if ( $direction === 'ltr' || $direction === 'rtl' ) {
@@ -212,14 +212,14 @@ class ResourceLoaderContext implements MessageLocalizer {
 		return $this->direction;
 	}
 
-	public function getSkin() : string {
+	public function getSkin(): string {
 		return $this->skin;
 	}
 
 	/**
 	 * @return string|null
 	 */
-	public function getUser() : ?string {
+	public function getUser(): ?string {
 		return $this->user;
 	}
 
@@ -232,7 +232,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @param mixed ...$params
 	 * @return Message
 	 */
-	public function msg( $key, ...$params ) : Message {
+	public function msg( $key, ...$params ): Message {
 		return wfMessage( $key, ...$params )
 			->inLanguage( $this->getLanguage() )
 			// Use a dummy title because there is no real title
@@ -247,7 +247,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @since 1.25
 	 * @return User
 	 */
-	public function getUserObj() : User {
+	public function getUserObj(): User {
 		if ( $this->userObj === null ) {
 			$username = $this->getUser();
 			if ( $username ) {
@@ -262,14 +262,14 @@ class ResourceLoaderContext implements MessageLocalizer {
 		return $this->userObj;
 	}
 
-	public function getDebug() : int {
+	public function getDebug(): int {
 		return $this->debug;
 	}
 
 	/**
 	 * @return string|null
 	 */
-	public function getOnly() : ?string {
+	public function getOnly(): ?string {
 		return $this->only;
 	}
 
@@ -278,32 +278,32 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @see ResourceLoaderClientHtml::makeLoad
 	 * @return string|null
 	 */
-	public function getVersion() : ?string {
+	public function getVersion(): ?string {
 		return $this->version;
 	}
 
-	public function getRaw() : bool {
+	public function getRaw(): bool {
 		return $this->raw;
 	}
 
 	/**
 	 * @return string|null
 	 */
-	public function getImage() : ?string {
+	public function getImage(): ?string {
 		return $this->image;
 	}
 
 	/**
 	 * @return string|null
 	 */
-	public function getVariant() : ?string {
+	public function getVariant(): ?string {
 		return $this->variant;
 	}
 
 	/**
 	 * @return string|null
 	 */
-	public function getFormat() : ?string {
+	public function getFormat(): ?string {
 		return $this->format;
 	}
 
@@ -358,15 +358,15 @@ class ResourceLoaderContext implements MessageLocalizer {
 		return null;
 	}
 
-	public function shouldIncludeScripts() : bool {
+	public function shouldIncludeScripts(): bool {
 		return $this->getOnly() === null || $this->getOnly() === 'scripts';
 	}
 
-	public function shouldIncludeStyles() : bool {
+	public function shouldIncludeStyles(): bool {
 		return $this->getOnly() === null || $this->getOnly() === 'styles';
 	}
 
-	public function shouldIncludeMessages() : bool {
+	public function shouldIncludeMessages(): bool {
 		return $this->getOnly() === null;
 	}
 
@@ -381,7 +381,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 *
 	 * @return string
 	 */
-	public function getHash() : string {
+	public function getHash(): string {
 		if ( !isset( $this->hash ) ) {
 			$this->hash = implode( '|', [
 				// Module content vary
@@ -407,7 +407,7 @@ class ResourceLoaderContext implements MessageLocalizer {
 	 * @internal For use by ResourceLoaderStartUpModule only
 	 * @return string[]
 	 */
-	public function getReqBase() : array {
+	public function getReqBase(): array {
 		$reqBase = [];
 		if ( $this->getLanguage() !== self::DEFAULT_LANG ) {
 			$reqBase['lang'] = $this->getLanguage();

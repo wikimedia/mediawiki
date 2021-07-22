@@ -41,7 +41,7 @@ class UserAuthorityTest extends MediaWikiUnitTestCase {
 	 * @param string[] $permissions
 	 * @return PermissionManager
 	 */
-	private function newPermissionsManager( array $permissions ) : PermissionManager {
+	private function newPermissionsManager( array $permissions ): PermissionManager {
 		/** @var PermissionManager|MockObject $permissionManager */
 		$permissionManager = $this->createNoOpMock(
 			PermissionManager::class,

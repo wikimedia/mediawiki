@@ -11,7 +11,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 	protected $key;
 	protected $queueRand, $queueRandTTL, $queueFifo, $queueFifoTTL;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgJobTypeConf;
 		parent::setUp();
 
@@ -50,7 +50,7 @@ class JobQueueTest extends MediaWikiIntegrationTestCase {
 		}
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		foreach (
 			[
 				'queueRand', 'queueRandTTL', 'queueTimestamp', 'queueTimestampTTL',

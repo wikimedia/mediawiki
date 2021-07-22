@@ -18,7 +18,7 @@ class TimestampDefTest extends TypeDefTestCase {
 	}
 
 	/** @dataProvider provideConstructorOptions */
-	public function testConstructorOptions( array $options, $ok ) : void {
+	public function testConstructorOptions( array $options, $ok ): void {
 		if ( $ok ) {
 			$this->assertTrue( true ); // dummy
 		} else {
@@ -27,7 +27,7 @@ class TimestampDefTest extends TypeDefTestCase {
 		$this->getInstance( new SimpleCallbacks( [] ), $options );
 	}
 
-	public function provideConstructorOptions() : array {
+	public function provideConstructorOptions(): array {
 		return [
 			'Basic test' => [ [], true ],
 			'Default format ConvertibleTimestamp' => [ [ 'defaultFormat' => 'ConvertibleTimestamp' ], true ],

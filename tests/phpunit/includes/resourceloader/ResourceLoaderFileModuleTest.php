@@ -8,7 +8,7 @@ use Wikimedia\ObjectFactory;
  */
 class ResourceLoaderFileModuleTest extends ResourceLoaderTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$skinFactory = new SkinFactory(

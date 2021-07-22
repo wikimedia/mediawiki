@@ -38,7 +38,7 @@ class QueryAllSpecialPagesTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * Initialize all query page objects
 	 */
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		foreach ( QueryPage::getPages() as [ $class, $name ] ) {

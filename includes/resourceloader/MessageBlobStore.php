@@ -164,7 +164,7 @@ class MessageBlobStore implements LoggerAwareInterface {
 	 *
 	 * @param string $key Message key
 	 */
-	public function updateMessage( $key ) : void {
+	public function updateMessage( $key ): void {
 		$moduleNames = $this->resourceloader->getModulesByMessage( $key );
 		foreach ( $moduleNames as $moduleName ) {
 			// Uses a holdoff to account for database replica DB lag (for MessageCache)

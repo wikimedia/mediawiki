@@ -24,7 +24,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 
 	private $pagesToDelete;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->pagesToDelete = [];
@@ -59,7 +59,7 @@ class WikiPageDbTest extends MediaWikiLangTestCase {
 		);
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		$user = $this->getTestSysop()->getUser();
 		foreach ( $this->pagesToDelete as $p ) {
 			/** @var WikiPage $p */

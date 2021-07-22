@@ -55,7 +55,7 @@ class FileBackendIntegrationTest extends MediaWikiIntegrationTestCase {
 	public $singleBackend;
 	private static $backendToUse;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		global $wgFileBackends;
 		parent::setUp();
 		$tmpDir = $this->getNewTempDirectory();

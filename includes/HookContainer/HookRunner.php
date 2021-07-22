@@ -617,7 +617,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onAfterFinalPageOutput( $output ) : void {
+	public function onAfterFinalPageOutput( $output ): void {
 		$this->container->run(
 			'AfterFinalPageOutput',
 			[ $output ],
@@ -944,7 +944,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onBeforePageDisplay( $out, $skin ) : void {
+	public function onBeforePageDisplay( $out, $skin ): void {
 		$this->container->run(
 			'BeforePageDisplay',
 			[ $out, $skin ],
@@ -1005,7 +1005,7 @@ class HookRunner implements
 
 	public function onBeforeRevertedTagUpdate( $wikiPage, $user,
 		$summary, $flags, $revisionRecord, $editResult, &$approved
-	) : void {
+	): void {
 		$this->container->run(
 			'BeforeRevertedTagUpdate',
 			[ $wikiPage, $user, $summary, $flags, $revisionRecord, $editResult,
@@ -2463,7 +2463,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onMakeGlobalVariablesScript( &$vars, $out ) : void {
+	public function onMakeGlobalVariablesScript( &$vars, $out ): void {
 		$this->container->run(
 			'MakeGlobalVariablesScript',
 			[ &$vars, $out ],
@@ -2471,7 +2471,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onManualLogEntryBeforePublish( $logEntry ) : void {
+	public function onManualLogEntryBeforePublish( $logEntry ): void {
 		$this->container->run(
 			'ManualLogEntryBeforePublish',
 			[ $logEntry ],
@@ -2678,7 +2678,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ) : void {
+	public function onOutputPageBodyAttributes( $out, $sk, &$bodyAttrs ): void {
 		$this->container->run(
 			'OutputPageBodyAttributes',
 			[ $out, $sk, &$bodyAttrs ],
@@ -2700,7 +2700,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onOutputPageParserOutput( $out, $parserOutput ) : void {
+	public function onOutputPageParserOutput( $out, $parserOutput ): void {
 		$this->container->run(
 			'OutputPageParserOutput',
 			[ $out, $parserOutput ],
@@ -2912,7 +2912,7 @@ class HookRunner implements
 
 	public function onParserOutputPostCacheTransform( $parserOutput, &$text,
 		&$options
-	) : void {
+	): void {
 		$this->container->run(
 			'ParserOutputPostCacheTransform',
 			[ $parserOutput, &$text, &$options ],
@@ -2973,7 +2973,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onPersonalUrls( &$personal_urls, &$title, $skin ) : void {
+	public function onPersonalUrls( &$personal_urls, &$title, $skin ): void {
 		$this->container->run(
 			'PersonalUrls',
 			[ &$personal_urls, &$title, $skin ],
@@ -3127,7 +3127,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ) : void {
+	public function onResourceLoaderGetConfigVars( array &$vars, $skin, Config $config ): void {
 		$this->container->run(
 			'ResourceLoaderGetConfigVars',
 			[ &$vars, $skin, $config ],
@@ -3137,7 +3137,7 @@ class HookRunner implements
 
 	public function onResourceLoaderJqueryMsgModuleMagicWords( ResourceLoaderContext $context,
 		array &$magicWords
-	) : void {
+	): void {
 		$this->container->run(
 			'ResourceLoaderJqueryMsgModuleMagicWords',
 			[ $context, &$magicWords ],
@@ -3339,7 +3339,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onSidebarBeforeOutput( $skin, &$sidebar ) : void {
+	public function onSidebarBeforeOutput( $skin, &$sidebar ): void {
 		$this->container->run(
 			'SidebarBeforeOutput',
 			[ $skin, &$sidebar ],
@@ -3363,7 +3363,7 @@ class HookRunner implements
 
 	public function onSkinPageReadyConfig( ResourceLoaderContext $context,
 		array &$config
-	) : void {
+	): void {
 		$this->container->run(
 			'SkinPageReadyConfig',
 			[ $context, &$config ],
@@ -3452,7 +3452,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onSkinTemplateNavigation( $sktemplate, &$links ) : void {
+	public function onSkinTemplateNavigation( $sktemplate, &$links ): void {
 		$this->container->run(
 			'SkinTemplateNavigation',
 			[ $sktemplate, &$links ],
@@ -3460,7 +3460,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onSkinTemplateNavigation__SpecialPage( $sktemplate, &$links ) : void {
+	public function onSkinTemplateNavigation__SpecialPage( $sktemplate, &$links ): void {
 		$this->container->run(
 			'SkinTemplateNavigation::SpecialPage',
 			[ $sktemplate, &$links ],
@@ -3468,7 +3468,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ) : void {
+	public function onSkinTemplateNavigation__Universal( $sktemplate, &$links ): void {
 		$this->container->run(
 			'SkinTemplateNavigation::Universal',
 			[ $sktemplate, &$links ],
@@ -4199,7 +4199,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onLoadUserOptions( UserIdentity $user, array &$options ) : void {
+	public function onLoadUserOptions( UserIdentity $user, array &$options ): void {
 		$this->container->run(
 			'LoadUserOptions',
 			[ $user, &$options ],
@@ -4474,7 +4474,7 @@ class HookRunner implements
 		);
 	}
 
-	public function onMaintenanceShellStart() : void {
+	public function onMaintenanceShellStart(): void {
 		$this->container->run(
 			'MaintenanceShellStart',
 			[],

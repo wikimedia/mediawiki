@@ -34,7 +34,7 @@ class RollbackPageTest extends MediaWikiIntegrationTestCase {
 	use MockAuthorityTrait;
 	use MockServiceDependenciesTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->setMwGlobals( 'wgUseRCPatrol', true );
 		$this->tablesUsed = array_merge( $this->tablesUsed, [

@@ -133,7 +133,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		array $blockOptions = [],
 		array $blockRestrictions = [],
 		$tags = []
-	) : BlockUser {
+	): BlockUser {
 		if ( $tags === null ) {
 			$tags = [];
 		}
@@ -173,7 +173,7 @@ class UserBlockCommandFactory implements BlockUserFactory, UnblockUserFactory {
 		Authority $performer,
 		string $reason,
 		array $tags = []
-	) : UnblockUser {
+	): UnblockUser {
 		return new UnblockUser(
 			$this->blockPermissionCheckerFactory,
 			$this->blockStore,

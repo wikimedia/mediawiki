@@ -10,7 +10,7 @@ class SearchUpdateTest extends MediaWikiIntegrationTestCase {
 	 */
 	private $su;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$pageIdentity = Title::newMainPage()->toPageIdentity();
 		$this->su = new SearchUpdate( 0, $pageIdentity );

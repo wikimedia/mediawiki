@@ -11,7 +11,7 @@ use Wikimedia\ObjectFactory;
 class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	use FileBackendGroupTestTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// This config var is not yet dependency-injected.
 		// FileBackendGroup has a default option 'profiler', that holds a closure
@@ -32,14 +32,14 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 		return $mock;
 	}
 
-	private function getLocalServerCache() : BagOStuff {
+	private function getLocalServerCache(): BagOStuff {
 		if ( !$this->srvCache ) {
 			$this->srvCache = new EmptyBagOStuff;
 		}
 		return $this->srvCache;
 	}
 
-	private function getWANObjectCache() : WANObjectCache {
+	private function getWANObjectCache(): WANObjectCache {
 		if ( !$this->wanCache ) {
 			$this->wanCache = $this->getNoOpMock( WANObjectCache::class );
 		}
@@ -51,7 +51,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	 *   will receive
 	 * @return LockManagerGroupFactory
 	 */
-	private function getLockManagerGroupFactory( $domain = 'mywiki' ) : LockManagerGroupFactory {
+	private function getLockManagerGroupFactory( $domain = 'mywiki' ): LockManagerGroupFactory {
 		if ( !$this->lmgFactory ) {
 			$mockLmg = $this->createMock( LockManagerGroup::class );
 			$mockLmg->method( 'get' )->with( 'fsLockManager' )->willReturn( 'string lock manager' );
@@ -66,7 +66,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 		return $this->lmgFactory;
 	}
 
-	private function getTempFSFileFactory() : TempFSFileFactory {
+	private function getTempFSFileFactory(): TempFSFileFactory {
 		if ( !$this->tmpFileFactory ) {
 			$this->tmpFileFactory = $this->getNoOpMock( TempFSFileFactory::class );
 		}
@@ -82,7 +82,7 @@ class FileBackendGroupTest extends MediaWikiUnitTestCase {
 	 *     * 'tmpFileFactory'
 	 * @return FileBackendGroup
 	 */
-	private function newObj( array $options = [] ) : FileBackendGroup {
+	private function newObj( array $options = [] ): FileBackendGroup {
 		return new FileBackendGroup(
 			new ServiceOptions(
 				FileBackendGroup::CONSTRUCTOR_OPTIONS, $options, self::getDefaultOptions() ),

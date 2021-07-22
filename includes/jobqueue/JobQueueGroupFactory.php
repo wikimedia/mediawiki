@@ -92,7 +92,7 @@ class JobQueueGroupFactory {
 	 * @param false|string $domain Wiki domain ID. False uses the current wiki domain ID
 	 * @return JobQueueGroup
 	 */
-	public function makeJobQueueGroup( $domain = false ) : JobQueueGroup {
+	public function makeJobQueueGroup( $domain = false ): JobQueueGroup {
 		if ( $domain === false ) {
 			$domain = WikiMap::getCurrentWikiDbDomain()->getId();
 		}

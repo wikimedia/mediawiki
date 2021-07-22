@@ -30,7 +30,7 @@ class TestLocalisationCache extends LocalisationCache {
 	 * @param array $arr
 	 * @return array
 	 */
-	private static function hashiblifyArray( array $arr ) : array {
+	private static function hashiblifyArray( array $arr ): array {
 		foreach ( $arr as $key => $val ) {
 			if ( is_array( $val ) ) {
 				$arr[$key] = self::hashiblifyArray( $val );

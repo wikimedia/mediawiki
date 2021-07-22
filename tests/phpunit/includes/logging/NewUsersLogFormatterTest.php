@@ -6,7 +6,7 @@
  */
 class NewUsersLogFormatterTest extends LogFormatterTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		// Register LogHandler, see $wgNewUserLog in Setup.php

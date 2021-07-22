@@ -779,7 +779,7 @@ class InfoAction extends FormlessAction {
 	 * @param Title $title
 	 * @return ?string HTML
 	 */
-	protected function getNamespaceProtectionMessage( Title $title ) : ?string {
+	protected function getNamespaceProtectionMessage( Title $title ): ?string {
 		$rights = [];
 		if ( $title->isRawHtmlMessage() ) {
 			$rights[] = 'editsitecss';

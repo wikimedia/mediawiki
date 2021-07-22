@@ -29,18 +29,18 @@ declare( strict_types = 1 );
  * @since 1.24
  */
 class EncryptedPassword extends ParameterizedPassword {
-	protected function getDelimiter() : string {
+	protected function getDelimiter(): string {
 		return ':';
 	}
 
-	protected function getDefaultParams() : array {
+	protected function getDefaultParams(): array {
 		return [
 			'cipher' => $this->config['cipher'],
 			'secret' => count( $this->config['secrets'] ) - 1
 		];
 	}
 
-	public function crypt( string $password ) : void {
+	public function crypt( string $password ): void {
 		$secret = $this->config['secrets'][$this->params['secret']];
 
 		// Clear error string
@@ -79,7 +79,7 @@ class EncryptedPassword extends ParameterizedPassword {
 	 * @throws MWException If the configuration is not valid
 	 * @return bool True if the password was updated
 	 */
-	public function update() : bool {
+	public function update(): bool {
 		if ( count( $this->args ) != 1 || $this->params == $this->getDefaultParams() ) {
 			// Hash does not need updating
 			return false;

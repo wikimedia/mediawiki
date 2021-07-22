@@ -53,7 +53,7 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		return $manager->getProvider( BotPasswordSessionProvider::class );
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [

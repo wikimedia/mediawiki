@@ -791,7 +791,7 @@ class DatabaseBlockTest extends MediaWikiLangTestCase {
 	 *
 	 * @return BlockRestrictionStore
 	 */
-	protected function getBlockRestrictionStore() : BlockRestrictionStore {
+	protected function getBlockRestrictionStore(): BlockRestrictionStore {
 		return MediaWikiServices::getInstance()->getBlockRestrictionStore();
 	}
 }

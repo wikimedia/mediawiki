@@ -8,7 +8,7 @@
  */
 class ApiQueryAllRevisionsTest extends ApiTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'revision';
 	}

@@ -118,7 +118,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 		$this->assertArrayEquals( [], $er->getRevertTags(), 'EditResult::getRevertTags' );
 	}
 
-	public function provideEnabledSoftwareTagsForRollback() : array {
+	public function provideEnabledSoftwareTagsForRollback(): array {
 		return [
 			"all change tags enabled" => [
 				$this->getSoftwareTags(),
@@ -172,7 +172,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 			'EditResult::getRevertTags' );
 	}
 
-	public function provideEnabledSoftwareTagsForUndo() : array {
+	public function provideEnabledSoftwareTagsForUndo(): array {
 		return [
 			"all change tags enabled" => [
 				$this->getSoftwareTags(),
@@ -324,7 +324,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 	 *
 	 * @return MutableRevisionRecord
 	 */
-	private function getDummyRevision() : MutableRevisionRecord {
+	private function getDummyRevision(): MutableRevisionRecord {
 		return new MutableRevisionRecord(
 			$this->makeMockTitle( 'Dummy' )
 		);
@@ -335,7 +335,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 	 *
 	 * @return MutableRevisionRecord
 	 */
-	private function getExistingRevision() : MutableRevisionRecord {
+	private function getExistingRevision(): MutableRevisionRecord {
 		$revisionRecord = $this->getDummyRevision();
 		$revisionRecord->setId( 5 );
 		$revisionRecord->setPageId( 5 );
@@ -383,7 +383,7 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 	 *
 	 * @return string[]
 	 */
-	private function getSoftwareTags() : array {
+	private function getSoftwareTags(): array {
 		return [
 			"mw-contentmodelchange",
 			"mw-new-redirect",

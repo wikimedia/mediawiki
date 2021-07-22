@@ -13,7 +13,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class WatchedItemStoreIntegrationTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		self::$users['WatchedItemStoreIntegrationTestUser']
 			= new TestUser( 'WatchedItemStoreIntegrationTestUser' );

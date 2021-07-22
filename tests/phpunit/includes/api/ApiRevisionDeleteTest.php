@@ -20,7 +20,7 @@ class ApiRevisionDeleteTest extends ApiTestCase {
 	public static $page = 'Help:ApiRevDel_test';
 	public $revs = [];
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// Make a few edits for us to play with
 		for ( $i = 1; $i <= 5; $i++ ) {

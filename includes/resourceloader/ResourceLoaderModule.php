@@ -257,7 +257,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 * @internal For use only by ResourceLoader::getModule
 	 * @param HookContainer $hookContainer
 	 */
-	public function setHookContainer( HookContainer $hookContainer ) : void {
+	public function setHookContainer( HookContainer $hookContainer ): void {
 		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
@@ -268,7 +268,7 @@ abstract class ResourceLoaderModule implements LoggerAwareInterface {
 	 *   without notice.
 	 * @return HookRunner
 	 */
-	protected function getHookRunner() : HookRunner {
+	protected function getHookRunner(): HookRunner {
 		return $this->hookRunner;
 	}
 

@@ -34,7 +34,7 @@ class ChangeTagsConstraintTest extends MediaWikiIntegrationTestCase {
 	use EditConstraintTestTrait;
 	use MockAuthorityTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed = array_merge(
 			$this->tablesUsed,

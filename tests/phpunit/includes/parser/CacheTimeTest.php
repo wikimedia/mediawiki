@@ -24,7 +24,7 @@ class CacheTimeTest extends MediaWikiIntegrationTestCase {
 		] );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		MWTimestamp::setFakeTime( null );
 		parent::tearDown();
 	}

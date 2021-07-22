@@ -30,15 +30,15 @@ declare( strict_types = 1 );
  * @since 1.24
  */
 class MWSaltedPassword extends ParameterizedPassword {
-	protected function getDefaultParams() : array {
+	protected function getDefaultParams(): array {
 		return [];
 	}
 
-	protected function getDelimiter() : string {
+	protected function getDelimiter(): string {
 		return ':';
 	}
 
-	public function crypt( string $plaintext ) : void {
+	public function crypt( string $plaintext ): void {
 		if ( count( $this->args ) == 0 ) {
 			$this->args[] = MWCryptRand::generateHex( 8 );
 		}

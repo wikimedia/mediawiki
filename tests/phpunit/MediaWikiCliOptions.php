@@ -15,7 +15,7 @@ final class MediaWikiCliOptions {
 		'use-normal-tables' => false
 	];
 
-	public static function initialize() : void {
+	public static function initialize(): void {
 		self::$additionalOptions['use-normal-tables'] = (bool)getenv( 'PHPUNIT_USE_NORMAL_TABLES' );
 		self::$additionalOptions['use-filebackend'] = getenv( 'PHPUNIT_USE_FILEBACKEND' ) ?: null;
 		self::$additionalOptions['use-bagostuff'] = getenv( 'PHPUNIT_USE_BAGOSTUFF' ) ?: null;

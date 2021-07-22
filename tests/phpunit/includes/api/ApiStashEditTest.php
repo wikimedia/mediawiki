@@ -13,7 +13,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  */
 class ApiStashEditTest extends ApiTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		// Hack to make user edit tracker survive service reset.
 		// We want it's cache to persist within tests run, otherwise

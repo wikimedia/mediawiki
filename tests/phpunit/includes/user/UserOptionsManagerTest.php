@@ -47,7 +47,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	protected function getLookup(
 		string $langCode = 'qqq',
 		array $defaultOptionsOverrides = []
-	) : UserOptionsLookup {
+	): UserOptionsLookup {
 		return $this->getManager( [
 			'language' => $langCode,
 			'defaults' => $defaultOptionsOverrides,

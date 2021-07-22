@@ -26,5 +26,5 @@ interface ApiMaxLagInfoHook {
 	 *   You can also add more fields that are returned to the user in the API response.
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onApiMaxLagInfo( &$lagInfo ) : void;
+	public function onApiMaxLagInfo( &$lagInfo ): void;
 }

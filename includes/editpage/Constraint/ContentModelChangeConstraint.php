@@ -62,7 +62,7 @@ class ContentModelChangeConstraint implements IEditConstraint {
 		$this->newContentModel = $newContentModel;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		if ( $this->newContentModel === $this->title->getContentModel() ) {
 			// No change
 			$this->result = self::CONSTRAINT_PASSED;
@@ -95,7 +95,7 @@ class ContentModelChangeConstraint implements IEditConstraint {
 		return self::CONSTRAINT_PASSED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 
 		if ( $this->result === self::CONSTRAINT_FAILED ) {

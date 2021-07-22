@@ -12,7 +12,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ArticleViewTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setUserLang( 'qqx' );

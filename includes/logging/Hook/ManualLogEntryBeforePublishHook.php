@@ -21,5 +21,5 @@ interface ManualLogEntryBeforePublishHook {
 	 * @param ManualLogEntry $logEntry
 	 * @return void This hook must not abort, it must return no value
 	 */
-	public function onManualLogEntryBeforePublish( $logEntry ) : void;
+	public function onManualLogEntryBeforePublish( $logEntry ): void;
 }

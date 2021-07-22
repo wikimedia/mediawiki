@@ -102,7 +102,7 @@ class WikiImporterFactory {
 	 *
 	 * @return WikiImporter
 	 */
-	public function getWikiImporter( ImportSource $source ) : WikiImporter {
+	public function getWikiImporter( ImportSource $source ): WikiImporter {
 		return new WikiImporter(
 			$source,
 			$this->config,

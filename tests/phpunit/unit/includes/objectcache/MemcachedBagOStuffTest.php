@@ -6,7 +6,7 @@ class MemcachedBagOStuffTest extends \MediaWikiUnitTestCase {
 	/** @var MemcachedBagOStuff */
 	private $cache;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->cache = new MemcachedPhpBagOStuff( [ 'keyspace' => 'test', 'servers' => [] ] );
 	}

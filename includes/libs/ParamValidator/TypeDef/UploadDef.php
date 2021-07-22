@@ -122,7 +122,7 @@ class UploadDef extends TypeDef {
 		}
 	}
 
-	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$ret = parent::checkSettings( $name, $settings, $options, $ret );
 
 		if ( isset( $settings[ParamValidator::PARAM_DEFAULT] ) ) {

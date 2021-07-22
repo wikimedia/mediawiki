@@ -409,7 +409,7 @@ class CoreParserFunctions {
 	 * @param Parser $parser Parent parser
 	 * @return ILanguageConverter
 	 */
-	private static function getTargetLanguageConverter( Parser $parser ) : ILanguageConverter {
+	private static function getTargetLanguageConverter( Parser $parser ): ILanguageConverter {
 		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
 			->getLanguageConverter( $parser->getTargetLanguage() );
 	}

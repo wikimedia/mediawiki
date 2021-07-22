@@ -60,7 +60,7 @@ class UserRateLimitConstraint implements IEditConstraint {
 		$this->newContentModel = $newContentModel;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		// Need to check for rate limits on `editcontentmodel` if it is changing
 		$contentModelChange = ( $this->newContentModel !== $this->title->getContentModel() );
 
@@ -79,7 +79,7 @@ class UserRateLimitConstraint implements IEditConstraint {
 		return $this->result;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 
 		if ( $this->result === self::CONSTRAINT_FAILED ) {

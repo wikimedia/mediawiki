@@ -76,7 +76,7 @@ class UserNamePrefixSearch {
 	 * @return string[]
 	 * @throws InvalidArgumentException if $audience is invalid
 	 */
-	public function search( $audience, string $search, int $limit, int $offset = 0 ) : array {
+	public function search( $audience, string $search, int $limit, int $offset = 0 ): array {
 		if ( $audience instanceof UserIdentity && !( $audience instanceof Authority ) ) {
 			wfDeprecated( __METHOD__ . ' with a UserIdentity', '1.37' );
 			$audience = $this->userFactory->newFromUserIdentity( $audience );

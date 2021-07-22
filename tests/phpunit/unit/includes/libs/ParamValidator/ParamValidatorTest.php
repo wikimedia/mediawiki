@@ -163,7 +163,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 	}
 
 	/** @dataProvider provideCheckSettings */
-	public function testCheckSettings( $settings, array $expect ) : void {
+	public function testCheckSettings( $settings, array $expect ): void {
 		$callbacks = new SimpleCallbacks( [] );
 
 		$mb = $this->getMockBuilder( TypeDef::class )
@@ -195,7 +195,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		$this->assertEquals( $expect, $validator->checkSettings( 'dummy', $settings, [] ) );
 	}
 
-	public function provideCheckSettings() : array {
+	public function provideCheckSettings(): array {
 		$normalKeys = [
 			ParamValidator::PARAM_TYPE, ParamValidator::PARAM_DEFAULT, ParamValidator::PARAM_REQUIRED,
 			ParamValidator::PARAM_ISMULTI, ParamValidator::PARAM_SENSITIVE, ParamValidator::PARAM_DEPRECATED,
@@ -435,7 +435,7 @@ class ParamValidatorTest extends \PHPUnit\Framework\TestCase {
 		];
 	}
 
-	public function testCheckSettings_noEnum() : void {
+	public function testCheckSettings_noEnum(): void {
 		$callbacks = new SimpleCallbacks( [] );
 		$validator = new ParamValidator(
 			$callbacks,

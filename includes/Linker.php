@@ -1300,7 +1300,7 @@ class Linker {
 	 * @return string 'history-deleted', 'mw-history-suppressed' added if suppressed too
 	 * @since 1.37
 	 */
-	public static function getRevisionDeletedClass( RevisionRecord $revisionRecord ) : string {
+	public static function getRevisionDeletedClass( RevisionRecord $revisionRecord ): string {
 		$class = 'history-deleted';
 		if ( $revisionRecord->isDeleted( RevisionRecord::DELETED_RESTRICTED ) ) {
 			$class .= ' mw-history-suppressed';

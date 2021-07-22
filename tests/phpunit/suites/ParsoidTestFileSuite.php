@@ -58,7 +58,7 @@ class ParsoidTestFileSuite extends TestSuite {
 		}
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		$articles = [];
 		foreach ( $this->ptFileInfo->articles as $a ) {
 			$articles[] = [
@@ -73,7 +73,7 @@ class ParsoidTestFileSuite extends TestSuite {
 		);
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		if ( $this->ptTeardownScope ) {
 			ScopedCallback::consume( $this->ptTeardownScope );
 		}

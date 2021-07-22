@@ -20,7 +20,7 @@ use RecentChange;
  * @see RevertedTagUpdateTest for non-DB tests
  */
 class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed = array_merge(
@@ -355,7 +355,7 @@ class RevertedTagUpdateIntegrationTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return array
 	 */
-	private function setupEditsOnPage( int $editCount ) : array {
+	private function setupEditsOnPage( int $editCount ): array {
 		$wikiPage = $this->getExistingTestPage();
 		$pageTitle = $wikiPage->getTitle()->getDBkey();
 		$revIds = [];

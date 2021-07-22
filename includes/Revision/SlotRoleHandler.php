@@ -120,7 +120,7 @@ class SlotRoleHandler {
 	 * @return bool Is this a handler for a derived slot?
 	 * @since 1.36
 	 */
-	public function isDerived() : bool {
+	public function isDerived(): bool {
 		return $this->derived;
 	}
 

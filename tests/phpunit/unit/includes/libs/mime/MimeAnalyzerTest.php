@@ -13,7 +13,7 @@ class MimeAnalyzerTest extends PHPUnit\Framework\TestCase {
 	/** @var MimeAnalyzer */
 	private $mimeAnalyzer;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->mimeAnalyzer = new MimeAnalyzer( [
 			'infoFile' => MimeAnalyzer::USE_INTERNAL,

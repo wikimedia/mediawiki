@@ -30,7 +30,7 @@ class SignatureValidatorTest extends MediaWikiIntegrationTestCase {
 
 	private $validator;
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 		$this->validator = $this->getSignatureValidator();
 	}

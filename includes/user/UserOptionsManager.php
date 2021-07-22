@@ -660,7 +660,7 @@ class UserOptionsManager extends UserOptionsLookup {
 	 * @param int $queryFlags
 	 * @return bool
 	 */
-	private function canUseCachedValues( UserIdentity $user, int $queryFlags ) : bool {
+	private function canUseCachedValues( UserIdentity $user, int $queryFlags ): bool {
 		if ( !$user->isRegistered() ) {
 			// Anon users don't have options stored in the database,
 			// so $queryFlags are ignored.

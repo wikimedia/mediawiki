@@ -204,7 +204,7 @@ class LocalisationCache {
 	 * @param string|false|null $fallbackCacheDir In case 'storeDirectory' isn't specified
 	 * @return LCStore
 	 */
-	public static function getStoreFromConf( array $conf, $fallbackCacheDir ) : LCStore {
+	public static function getStoreFromConf( array $conf, $fallbackCacheDir ): LCStore {
 		$storeArg = [];
 		$storeArg['directory'] =
 			$conf['storeDirectory'] ?: $fallbackCacheDir;

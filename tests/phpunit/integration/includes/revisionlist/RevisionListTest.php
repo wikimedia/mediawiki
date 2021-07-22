@@ -17,7 +17,7 @@ use Wikimedia\Rdbms\IDatabase;
  */
 class RevisionListTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'revision';

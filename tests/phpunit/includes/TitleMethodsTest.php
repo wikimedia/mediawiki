@@ -16,7 +16,7 @@ use Wikimedia\Assert\PreconditionException;
 class TitleMethodsTest extends MediaWikiLangTestCase {
 	use DummyServicesTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->mergeMwGlobalArrayValue(
@@ -43,7 +43,7 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		Title::clearCaches();
 		parent::tearDown();
 	}

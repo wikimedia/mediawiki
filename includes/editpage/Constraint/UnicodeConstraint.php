@@ -49,14 +49,14 @@ class UnicodeConstraint implements IEditConstraint {
 		$this->input = $inputUnicode;
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		if ( $this->input === self::VALID_UNICODE ) {
 			return self::CONSTRAINT_PASSED;
 		}
 		return self::CONSTRAINT_FAILED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		$statusValue = StatusValue::newGood();
 		if ( $this->input !== self::VALID_UNICODE ) {
 			$statusValue->fatal( 'unicode-support-fail' );

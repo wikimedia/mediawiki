@@ -8,7 +8,7 @@ use MediaWiki\MediaWikiServices;
  */
 class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->tablesUsed[] = 'change_tag';
@@ -23,7 +23,7 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$this->tablesUsed[] = 'archive';
 	}
 
-	public function tearDown() : void {
+	public function tearDown(): void {
 		ChangeTags::$avoidReopeningTablesForTesting = false;
 		parent::tearDown();
 	}

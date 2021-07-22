@@ -9,7 +9,7 @@ class ChangesListFilterTest extends MediaWikiUnitTestCase {
 	/** @var MockChangesListFilterGroup */
 	private $group;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->group = $this->getGroup( [ 'name' => 'group' ] );
 	}

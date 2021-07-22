@@ -171,7 +171,7 @@ class MediaWiki {
 	 *
 	 * @return string Action
 	 */
-	public function getAction() : string {
+	public function getAction(): string {
 		if ( $this->action === null ) {
 			$this->action = Action::getActionName( $this->context );
 		}

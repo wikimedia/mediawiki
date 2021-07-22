@@ -28,7 +28,7 @@ use Monolog\Logger;
  */
 class KafkaHandlerTest extends \MediaWikiUnitTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		if ( !class_exists( \Monolog\Handler\AbstractProcessingHandler::class )
 			|| !class_exists( \Kafka\Produce::class )

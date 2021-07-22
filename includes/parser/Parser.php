@@ -995,7 +995,7 @@ class Parser {
 	 * @deprecated since 1.37, use getPage instead.
 	 * @return Title
 	 */
-	public function getTitle() : Title {
+	public function getTitle(): Title {
 		if ( !$this->mTitle ) {
 			$this->mTitle = Title::makeTitle( NS_SPECIAL, 'Badtitle/Parser' );
 		}
@@ -1629,7 +1629,7 @@ class Parser {
 	 *
 	 * @return ILanguageConverter
 	 */
-	private function getTargetLanguageConverter() : ILanguageConverter {
+	private function getTargetLanguageConverter(): ILanguageConverter {
 		return $this->languageConverterFactory->getLanguageConverter(
 			$this->getTargetLanguage()
 		);
@@ -1640,7 +1640,7 @@ class Parser {
 	 *
 	 * @return ILanguageConverter
 	 */
-	private function getContentLanguageConverter() : ILanguageConverter {
+	private function getContentLanguageConverter(): ILanguageConverter {
 		return $this->languageConverterFactory->getLanguageConverter(
 			$this->getContentLanguage()
 		);

@@ -80,7 +80,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 		$this->hookError = '';
 	}
 
-	public function checkConstraint() : string {
+	public function checkConstraint(): string {
 		$hookResult = $this->hookRunner->onEditFilterMergedContent(
 			$this->context,
 			$this->content,
@@ -123,7 +123,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 		return self::CONSTRAINT_PASSED;
 	}
 
-	public function getLegacyStatus() : StatusValue {
+	public function getLegacyStatus(): StatusValue {
 		// This returns a Status instead of a StatusValue since a Status object is
 		// used in the hook
 		return $this->status;
@@ -138,7 +138,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 	 * @internal
 	 * @return string
 	 */
-	public function getHookError() : string {
+	public function getHookError(): string {
 		return $this->hookError;
 	}
 
@@ -147,7 +147,7 @@ class EditFilterMergedContentHookConstraint implements IEditConstraint {
 	 * @param Status $status
 	 * @return string
 	 */
-	private function formatStatusErrors( Status $status ) : string {
+	private function formatStatusErrors( Status $status ): string {
 		$errmsg = $status->getWikiText(
 			'edit-error-short',
 			'edit-error-long',

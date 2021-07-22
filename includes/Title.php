@@ -237,7 +237,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @param Language $language Language of converter
 	 * @return ILanguageConverter
 	 */
-	private function getLanguageConverter( $language ) : ILanguageConverter {
+	private function getLanguageConverter( $language ): ILanguageConverter {
 		return MediaWikiServices::getInstance()->getLanguageConverterFactory()
 			->getLanguageConverter( $language );
 	}
@@ -246,7 +246,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Shorthand for getting a Language Converter for page's language
 	 * @return ILanguageConverter
 	 */
-	private function getPageLanguageConverter() : ILanguageConverter {
+	private function getPageLanguageConverter(): ILanguageConverter {
 		return $this->getLanguageConverter( $this->getPageLanguage() );
 	}
 
@@ -361,7 +361,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @param PageIdentity|null $pageIdentity
 	 * @return Title|null
 	 */
-	public static function castFromPageIdentity( ?PageIdentity $pageIdentity ) : ?Title {
+	public static function castFromPageIdentity( ?PageIdentity $pageIdentity ): ?Title {
 		return self::castFromPageReference( $pageIdentity );
 	}
 
@@ -374,7 +374,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * @param PageReference|null $pageReference
 	 * @return Title|null
 	 */
-	public static function castFromPageReference( ?PageReference $pageReference ) : ?Title {
+	public static function castFromPageReference( ?PageReference $pageReference ): ?Title {
 		if ( !$pageReference ) {
 			return null;
 		}
@@ -4602,7 +4602,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *         link, interwiki link, link to a special page, or such.
 	 * @since 1.36
 	 */
-	public function toPageIdentity() : ProperPageIdentity {
+	public function toPageIdentity(): ProperPageIdentity {
 		// TODO: replace individual member fields with a PageIdentityValue that is always present
 
 		$this->assertProperPage();

@@ -173,7 +173,7 @@ class ApiRollback extends ApiBase {
 	 *
 	 * @return UserIdentity
 	 */
-	private function getRbUser( array $params ) : UserIdentity {
+	private function getRbUser( array $params ): UserIdentity {
 		if ( $this->mUser !== null ) {
 			return $this->mUser;
 		}

@@ -28,7 +28,7 @@ class SessionOverflowException extends \OverflowException {
 	/**
 	 * @return SessionInfo[]
 	 */
-	public function getSessionInfos() : array {
+	public function getSessionInfos(): array {
 		return $this->sessionInfos;
 	}
 }

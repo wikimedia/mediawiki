@@ -13,7 +13,7 @@ class InterwikiLookupAdapterTest extends \MediaWikiUnitTestCase {
 	 */
 	private $interwikiLookup;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->interwikiLookup = new InterwikiLookupAdapter(

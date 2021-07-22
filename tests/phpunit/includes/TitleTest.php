@@ -16,7 +16,7 @@ use MediaWiki\User\UserIdentityValue;
 class TitleTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -58,7 +58,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$this->setService( 'InterwikiLookup', $interwikiLookup );
 	}
 
-	protected function tearDown() : void {
+	protected function tearDown(): void {
 		parent::tearDown();
 		// delete dummy pages
 		$this->getNonexistingTestPage( 'UTest1' );

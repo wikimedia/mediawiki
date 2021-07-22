@@ -21,7 +21,7 @@ class RecentChangeTest extends MediaWikiIntegrationTestCase {
 	protected $user;
 	protected $user_comment;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->title = new PageIdentityValue( 17, NS_MAIN, 'SomeTitle', PageIdentity::LOCAL );

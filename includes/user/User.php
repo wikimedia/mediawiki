@@ -2070,7 +2070,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param string|false $wikiId The wiki ID expected by the caller.
 	 * @return int The user's ID; 0 if the user is anonymous or nonexistent
 	 */
-	public function getId( $wikiId = self::LOCAL ) : int {
+	public function getId( $wikiId = self::LOCAL ): int {
 		$this->deprecateInvalidCrossWiki( $wikiId, '1.36' );
 		if ( $this->mId === null && $this->mName !== null ) {
 			$userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
@@ -2103,7 +2103,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * Get the user name, or the IP of an anonymous user
 	 * @return string User's name or IP address
 	 */
-	public function getName() : string {
+	public function getName(): string {
 		if ( $this->isItemLoaded( 'name', 'only' ) ) {
 			// Special case optimisation
 			return $this->mName;
@@ -2149,7 +2149,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @return int The actor's ID, or 0 if no actor ID exists and $dbw was null
 	 * @throws PreconditionException if $dbwOrWikiId is a string and does not match the local wiki
 	 */
-	public function getActorId( $dbwOrWikiId = self::LOCAL ) : int {
+	public function getActorId( $dbwOrWikiId = self::LOCAL ): int {
 		if ( $dbwOrWikiId ) {
 			wfDeprecatedMsg( 'Passing a parameter to getActorId() is deprecated', '1.36' );
 		}
@@ -2944,7 +2944,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *   getId() != 0 and is provided for code readability.
 	 * @since 1.34
 	 */
-	public function isRegistered() : bool {
+	public function isRegistered(): bool {
 		return $this->getId() != 0;
 	}
 
@@ -4237,7 +4237,7 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @param UserIdentity|null $user
 	 * @return bool
 	 */
-	public function equals( ?UserIdentity $user ) : bool {
+	public function equals( ?UserIdentity $user ): bool {
 		if ( !$user ) {
 			return false;
 		}

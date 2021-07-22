@@ -190,7 +190,7 @@ trait LanguageNameUtilsTestTrait {
 	 * @param string $hookName
 	 * @param mixed $handler Value suitable for a hook handler
 	 */
-	abstract protected function setLanguageTemporaryHook( string $hookName, $handler ) : void;
+	abstract protected function setLanguageTemporaryHook( string $hookName, $handler ): void;
 
 	/**
 	 * @dataProvider provideGetLanguageNames_withHook

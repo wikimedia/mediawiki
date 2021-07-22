@@ -180,7 +180,7 @@ class ExtensionRegistry {
 		$this->queued[$path] = $mtime;
 	}
 
-	private function getCache() : BagOStuff {
+	private function getCache(): BagOStuff {
 		// Can't call MediaWikiServices here, as we must not cause services
 		// to be instantiated before extensions have loaded.
 		return ObjectCache::makeLocalServerCache();

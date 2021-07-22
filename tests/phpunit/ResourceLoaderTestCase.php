@@ -91,7 +91,7 @@ abstract class ResourceLoaderTestCase extends MediaWikiIntegrationTestCase {
 	 * The annotation causes this to be called immediately before setUp()
 	 * @before
 	 */
-	final protected function mediaWikiResourceLoaderSetUp() : void {
+	final protected function mediaWikiResourceLoaderSetUp(): void {
 		ResourceLoader::clearCache();
 
 		$globals = [];

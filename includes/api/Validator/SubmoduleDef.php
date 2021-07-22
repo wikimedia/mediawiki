@@ -30,7 +30,7 @@ class SubmoduleDef extends EnumDef {
 	 */
 	public const PARAM_SUBMODULE_PARAM_PREFIX = 'param-submodule-param-prefix';
 
-	public function checkSettings( string $name, $settings, array $options, array $ret ) : array {
+	public function checkSettings( string $name, $settings, array $options, array $ret ): array {
 		$map = $settings[self::PARAM_SUBMODULE_MAP] ?? [];
 		if ( !is_array( $map ) ) {
 			$ret['issues'][self::PARAM_SUBMODULE_MAP] = 'PARAM_SUBMODULE_MAP must be an array, got '
@@ -137,7 +137,7 @@ class SubmoduleDef extends EnumDef {
 		return $info;
 	}
 
-	private function getSubmoduleMap( ApiBase $module, string $name, array $settings ) : array {
+	private function getSubmoduleMap( ApiBase $module, string $name, array $settings ): array {
 		if ( isset( $settings[self::PARAM_SUBMODULE_MAP] ) ) {
 			$map = $settings[self::PARAM_SUBMODULE_MAP];
 		} else {
@@ -153,7 +153,7 @@ class SubmoduleDef extends EnumDef {
 
 	protected function sortEnumValues(
 		string $name, array $values, array $settings, array $options
-	) : array {
+	): array {
 		$module = $options['module'];
 		$map = $this->getSubmoduleMap( $module, $name, $settings );
 

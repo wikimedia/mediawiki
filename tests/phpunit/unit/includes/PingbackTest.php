@@ -11,7 +11,7 @@ use Wikimedia\Timestamp\ConvertibleTimestamp;
  */
 class PingbackTest extends MediaWikiUnitTestCase {
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 		ConvertibleTimestamp::setFakeTime( '20110401090000' );
 	}
@@ -183,7 +183,7 @@ class PingbackTest extends MediaWikiUnitTestCase {
 }
 
 class MockPingback extends Pingback {
-	protected function getData() : array {
+	protected function getData(): array {
 		return [ 'some' => 'stuff' ];
 	}
 }

@@ -23,7 +23,7 @@ class MultiHttpClientTest extends MediaWikiIntegrationTestCase {
 		return $client;
 	}
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 		$this->client = $this->createClient( [] );
 	}

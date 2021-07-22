@@ -4184,7 +4184,7 @@ class Language {
 	 *
 	 * @return ILanguageConverter
 	 */
-	public function getConverter() : ILanguageConverter {
+	public function getConverter(): ILanguageConverter {
 		return $this->converterFactory->getLanguageConverter( $this );
 	}
 

@@ -2,7 +2,7 @@
 
 class DiffHistoryBlobTest extends MediaWikiUnitTestCase {
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->checkPHPExtension( 'hash' );

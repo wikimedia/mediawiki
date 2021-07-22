@@ -1343,7 +1343,7 @@ class ParserOutput extends CacheTime {
 	 * @since 1.37
 	 * @return bool
 	 */
-	public function hasReducedExpiry() : bool {
+	public function hasReducedExpiry(): bool {
 		global $wgParserCacheExpireTime;
 
 		return $this->getCacheExpiry() < $wgParserCacheExpireTime;

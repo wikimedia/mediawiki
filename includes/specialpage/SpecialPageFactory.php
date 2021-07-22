@@ -1003,7 +1003,7 @@ class SpecialPageFactory {
 	 *
 	 * @return string[]
 	 */
-	public function getNames() : array {
+	public function getNames(): array {
 		return array_keys( $this->getPageList() );
 	}
 
@@ -1012,7 +1012,7 @@ class SpecialPageFactory {
 	 *
 	 * @return array
 	 */
-	private function getPageList() : array {
+	private function getPageList(): array {
 		if ( !is_array( $this->list ) ) {
 			$this->list = self::CORE_LIST;
 
@@ -1101,7 +1101,7 @@ class SpecialPageFactory {
 	 * All registered special pages are guaranteed to map to themselves.
 	 * @return array
 	 */
-	private function getAliasList() : array {
+	private function getAliasList(): array {
 		if ( $this->aliases === null ) {
 			$aliases = $this->contLang->getSpecialPageAliases();
 			$pageList = $this->getPageList();
@@ -1244,7 +1244,7 @@ class SpecialPageFactory {
 	 * @param User $user User object to check permissions provided
 	 * @return array ( string => Specialpage )
 	 */
-	public function getUsablePages( User $user ) : array {
+	public function getUsablePages( User $user ): array {
 		$pages = [];
 		foreach ( $this->getPageList() as $name => $rec ) {
 			$page = $this->getPage( $name );
@@ -1266,7 +1266,7 @@ class SpecialPageFactory {
 	 *
 	 * @return array ( string => Specialpage )
 	 */
-	public function getRegularPages() : array {
+	public function getRegularPages(): array {
 		$pages = [];
 		foreach ( $this->getPageList() as $name => $rec ) {
 			$page = $this->getPage( $name );

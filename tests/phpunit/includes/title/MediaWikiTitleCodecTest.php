@@ -35,7 +35,7 @@ use MediaWiki\Tests\Unit\DummyServicesTrait;
 class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 
-	protected function setUp() : void {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->setMwGlobals( [
@@ -74,7 +74,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return InterwikiLookup
 	 */
-	private function getInterwikiLookup() : InterwikiLookup {
+	private function getInterwikiLookup(): InterwikiLookup {
 		// DummyServicesTrait::getDummyInterwikiLookup
 		return $this->getDummyInterwikiLookup( [ 'localtestiw', 'remotetestiw' ] );
 	}
@@ -86,7 +86,7 @@ class MediaWikiTitleCodecTest extends MediaWikiIntegrationTestCase {
 	 *
 	 * @return NamespaceInfo
 	 */
-	private function getNamespaceInfo() : NamespaceInfo {
+	private function getNamespaceInfo(): NamespaceInfo {
 		// DummyServicesTrait::getDummyNamespaceInfo with the relevant overrides (the
 		// namespaces that exist, and the capitalization)
 		return $this->getDummyNamespaceInfo( [

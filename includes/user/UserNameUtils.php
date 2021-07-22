@@ -125,7 +125,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * @param string $name Name to match
 	 * @return bool
 	 */
-	public function isValid( string $name ) : bool {
+	public function isValid( string $name ): bool {
 		if ( $name === ''
 			|| $this->isIP( $name )
 			|| strpos( $name, '/' ) !== false
@@ -178,7 +178,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * @param string $name Name to match
 	 * @return bool
 	 */
-	public function isUsable( string $name ) : bool {
+	public function isUsable( string $name ): bool {
 		// Must be a valid username, obviously ;)
 		if ( !$this->isValid( $name ) ) {
 			return false;
@@ -216,7 +216,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * @param string $name String to match
 	 * @return bool
 	 */
-	public function isCreatable( string $name ) : bool {
+	public function isCreatable( string $name ): bool {
 		// Ensure that the username isn't longer than 235 bytes, so that
 		// (at least for the builtin skins) user javascript and css files
 		// will work. (T25080)
@@ -334,7 +334,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * @param string $name Name to check
 	 * @return bool
 	 */
-	public function isIP( string $name ) : bool {
+	public function isIP( string $name ): bool {
 		$anyIPv4 = '/^\d{1,3}\.\d{1,3}\.\d{1,3}\.(?:xxx|\d{1,3})$/';
 		$validIP = IPUtils::isValid( $name );
 		return $validIP || preg_match( $anyIPv4, $name );
@@ -346,7 +346,7 @@ class UserNameUtils implements UserRigorOptions {
 	 * @param string $range Range to check
 	 * @return bool
 	 */
-	public function isValidIPRange( string $range ) : bool {
+	public function isValidIPRange( string $range ): bool {
 		return IPUtils::isValidRange( $range );
 	}
 
