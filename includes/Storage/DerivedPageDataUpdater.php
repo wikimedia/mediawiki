@@ -1395,24 +1395,8 @@ class DerivedPageDataUpdater implements IDBAccessObject, LoggerAwareInterface {
 				$role,
 				$renderedRevision
 			);
+
 			$allUpdates = array_merge( $allUpdates, $updates );
-
-			// TODO: remove B/C hack in 1.32!
-			// NOTE: we assume that the combined output contains all relevant meta-data for
-			// all slots!
-			$legacyUpdates = $content->getSecondaryDataUpdates(
-				$title,
-				null,
-				$recursive,
-				$output
-			);
-
-			// HACK: filter out redundant and incomplete LinksUpdates
-			$legacyUpdates = array_filter( $legacyUpdates, static function ( $update ) {
-				return !( $update instanceof LinksUpdate );
-			} );
-
-			$allUpdates = array_merge( $allUpdates, $legacyUpdates );
 		}
 
 		// XXX: if a slot was removed by an earlier edit, but deletion updates failed to run at
