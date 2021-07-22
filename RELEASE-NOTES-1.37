@@ -348,6 +348,8 @@ because of Phabricator reports.
 * The SecondaryDataUpdates hook, deprecated in 1.32, was removed entirely.
 * Content::getDeletionUpdates(), was removed. Use
   ContentHandler::getDeletionUpdates() instead.
+* Content::getSecondaryDataUpdates(), was removed. Use
+  ContentHandler::getSecondaryDataUpdates() instead.
 * …
 
 === Deprecations in 1.37 ===
