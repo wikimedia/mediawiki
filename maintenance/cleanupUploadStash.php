@@ -129,7 +129,7 @@ class CleanupUploadStash extends Maintenance {
 		}
 		$this->output( "Deleting orphaned temp files...\n" );
 		if ( strpos( $dir, '/local-temp' ) === false ) {
-			$this->fatalError( "Temp repo is not using the temp container.", 0 );
+			$this->output( "Temp repo might be misconfigured. It points to directory: '$dir' \n" );
 		}
 
 		$i = 0;
