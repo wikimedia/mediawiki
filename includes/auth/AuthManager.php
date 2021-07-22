@@ -24,10 +24,11 @@
 namespace MediaWiki\Auth;
 
 use Config;
+use Language;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\User\UserIdentity;
@@ -43,6 +44,7 @@ use StatusValue;
 use User;
 use WebRequest;
 use Wikimedia\ObjectFactory;
+use Wikimedia\Rdbms\ILoadBalancer;
 use Wikimedia\ScopedCallback;
 
 /**
@@ -177,6 +179,15 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var WatchlistManager */
 	private $watchlistManager;
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
+
 	/**
 	 * @param WebRequest $request
 	 * @param Config $config
@@ -186,6 +197,9 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param UserNameUtils $userNameUtils
 	 * @param BlockManager $blockManager
 	 * @param WatchlistManager $watchlistManager
+	 * @param ILoadBalancer $loadBalancer
+	 * @param Language $contentLanguage
+	 * @param LanguageConverterFactory $languageConverterFactory
 	 */
 	public function __construct(
 		WebRequest $request,
@@ -195,7 +209,10 @@ class AuthManager implements LoggerAwareInterface {
 		ReadOnlyMode $readOnlyMode,
 		UserNameUtils $userNameUtils,
 		BlockManager $blockManager,
-		WatchlistManager $watchlistManager
+		WatchlistManager $watchlistManager,
+		ILoadBalancer $loadBalancer,
+		Language $contentLanguage,
+		LanguageConverterFactory $languageConverterFactory
 	) {
 		$this->request = $request;
 		$this->config = $config;
@@ -207,6 +224,9 @@ class AuthManager implements LoggerAwareInterface {
 		$this->userNameUtils = $userNameUtils;
 		$this->blockManager = $blockManager;
 		$this->watchlistManager = $watchlistManager;
+		$this->loadBalancer = $loadBalancer;
+		$this->contentLanguage = $contentLanguage;
+		$this->languageConverterFactory = $languageConverterFactory;
 	}
 
 	/**
@@ -1589,7 +1609,7 @@ class AuthManager implements LoggerAwareInterface {
 		// @codeCoverageIgnoreStart
 		if (
 			!$localId &&
-			MediaWikiServices::getInstance()->getDBLoadBalancer()->getReaderIndex() !== 0
+			$this->loadBalancer->getReaderIndex() !== 0
 		) {
 			$localId = User::idFromName( $username, User::READ_LATEST );
 			$flags = User::READ_LATEST;
@@ -2429,13 +2449,10 @@ class AuthManager implements LoggerAwareInterface {
 	private function setDefaultUserOptions( User $user, $useContextLang ) {
 		$user->setToken();
 
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-
-		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $contLang;
+		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $this->contentLanguage;
 		$user->setOption( 'language', $lang->getPreferredVariant() );
 
-		$contLangConverter = MediaWikiServices::getInstance()->getLanguageConverterFactory()
-			->getLanguageConverter();
+		$contLangConverter = $this->languageConverterFactory->getLanguageConverter();
 		if ( $contLangConverter->hasVariants() ) {
 			$user->setOption( 'variant', $contLangConverter->getPreferredVariant() );
 		}
