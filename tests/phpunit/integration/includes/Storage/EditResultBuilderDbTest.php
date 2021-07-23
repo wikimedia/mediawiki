@@ -309,7 +309,7 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		$erb->setRevisionRecord( $newRevision );
 		// emulate WikiPage's behaviour for null edits
 		if ( $newRevision->getSha1() === $parentRevision->getSha1() ) {
-			$erb->setOriginalRevisionId( $parentRevision->getId() );
+			$erb->setOriginalRevision( $parentRevision );
 		}
 
 		$er = $erb->buildEditResult();
