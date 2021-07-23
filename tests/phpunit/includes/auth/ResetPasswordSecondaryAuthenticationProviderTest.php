@@ -104,7 +104,6 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			$mwServices->getReadOnlyMode(),
 			$userNameUtils,
 			$mwServices->getBlockManager(),
-			$mwServices->getBlockErrorFormatter(),
 			$mwServices->getWatchlistManager()
 		);
 		$this->initProvider( $provider, null, null, $manager );

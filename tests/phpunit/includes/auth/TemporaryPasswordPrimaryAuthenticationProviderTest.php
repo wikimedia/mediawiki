@@ -58,7 +58,6 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				$mwServices->getReadOnlyMode(),
 				$userNameUtils,
 				$mwServices->getBlockManager(),
-				$mwServices->getBlockErrorFormatter(),
 				$mwServices->getWatchlistManager()
 			);
 		}

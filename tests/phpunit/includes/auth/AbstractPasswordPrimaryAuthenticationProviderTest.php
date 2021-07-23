@@ -133,7 +133,6 @@ class AbstractPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegr
 			$services->getReadOnlyMode(),
 			$services->getUserNameUtils(),
 			$services->getBlockManager(),
-			$services->getBlockErrorFormatter(),
 			$services->getWatchlistManager()
 		);
 
