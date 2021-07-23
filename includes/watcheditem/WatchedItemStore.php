@@ -396,26 +396,12 @@ class WatchedItemStore implements WatchedItemStoreInterface, StatsdAwareInterfac
 	/**
 	 * @inheritDoc
 	 */
-	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void {
-		wfDeprecated( __METHOD__, '1.36' );
-		$max = mt_getrandmax();
-		if ( mt_rand( 0, $max ) < $max * $watchlistPurgeRate ) {
-			// The higher the watchlist purge rate, the more likely we are to enqueue a job.
-			$this->queueGroup->push( new WatchlistExpiryJob() );
-		}
-	}
-
-	/**
-	 * @inheritDoc
-	 */
 	public function maybeEnqueueWatchlistExpiryJob(): void {
 		if ( !$this->expiryEnabled ) {
 			// No need to purge expired entries if there are none
 			return;
 		}
 
-		// Yes, we duplicate some of the logic from enqueueWatchlistExpiryJob, but we can't
-		// just call that because its hard deprecated
 		$max = mt_getrandmax();
 		if ( mt_rand( 0, $max ) < $max * $this->watchlistPurgeRate ) {
 			// The higher the watchlist purge rate, the more likely we are to enqueue a job.

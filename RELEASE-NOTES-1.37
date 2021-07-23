@@ -344,6 +344,8 @@ because of Phabricator reports.
     a User object.
   All extensions that extend this class or use this method were updated to be
   ready to the new behavior.
+* WatchedItemStoreInterface::enqueueWatchlistExpiryJob, deprecated since 1.36,
+  was removed.
 * ResultWrapper is now abstract. It cannot be directly constructed (T286694).
 * The SecondaryDataUpdates hook, deprecated in 1.32, was removed entirely.
 * Content::getDeletionUpdates(), was removed. Use
