@@ -350,6 +350,7 @@ because of Phabricator reports.
   ContentHandler::getDeletionUpdates() instead.
 * Content::getSecondaryDataUpdates(), was removed. Use
   ContentHandler::getSecondaryDataUpdates() instead.
+* wfDiff(), deprecated since 1.25, has been removed.
 * …
 
 === Deprecations in 1.37 ===
