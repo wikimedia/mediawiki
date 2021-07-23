@@ -188,28 +188,6 @@ class ParserCache {
 	}
 
 	/**
-	 * Provides an E-Tag suitable for the whole page. Note that $page
-	 * is just the main wikitext. The E-Tag has to be unique to the whole
-	 * page, even if the article itself is the same, so it uses the
-	 * complete set of user options. We don't want to use the preference
-	 * of a different user on a message just because it wasn't used in
-	 * $page. For example give a Chinese interface to a user with
-	 * English preferences. That's why we take into account *all* user
-	 * options. (r70809 CR)
-	 *
-	 * @deprecated since 1.36
-	 * @param PageRecord $page
-	 * @param ParserOptions $popts
-	 * @return string
-	 */
-	public function getETag( PageRecord $page, $popts ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		$page->assertWiki( PageRecord::LOCAL );
-		return 'W/"' . $this->makeParserOutputKey( $page, $popts )
-			. "--" . $page->getTouched() . '"';
-	}
-
-	/**
 	 * Retrieve the ParserOutput from ParserCache, even if it's outdated.
 	 * @param PageRecord $page
 	 * @param ParserOptions $popts
@@ -230,55 +208,6 @@ class ParserCache {
 		$contentModel = str_replace( '.', '_', $wikiPage->getContentModel() );
 		$metricSuffix = str_replace( '.', '_', $metricSuffix );
 		$this->stats->increment( "{$this->name}.{$contentModel}.{$metricSuffix}" );
-	}
-
-	/**
-	 * Generates a key for caching the given page considering
-	 * the given parser options.
-	 *
-	 * @note Which parser options influence the cache key
-	 * is controlled via ParserOutput::recordOption() or
-	 * ParserOptions::addExtraKey().
-	 *
-	 * @note Used by Article to provide a unique id for the PoolCounter.
-	 * It would be preferable to have this code in get()
-	 * instead of having Article looking in our internals.
-	 *
-	 * @param PageRecord $page
-	 * @param ParserOptions $popts
-	 * @param int|bool $useOutdated One of the USE constants. For backwards
-	 *  compatibility, boolean false is treated as USE_CURRENT_ONLY and
-	 *  boolean true is treated as USE_ANYTHING.
-	 * @return bool|mixed|string
-	 * @since 1.30 Changed $useOutdated to an int and added the non-boolean values
-	 * @deprecated 1.36 Use ::getMetadata and ::makeParserOutputKey methods instead.
-	 */
-	public function getKey( PageRecord $page, $popts, $useOutdated = self::USE_ANYTHING ) {
-		wfDeprecated( __METHOD__, '1.36' );
-		$page->assertWiki( PageRecord::LOCAL );
-
-		if ( is_bool( $useOutdated ) ) {
-			$useOutdated = $useOutdated ? self::USE_ANYTHING : self::USE_CURRENT_ONLY;
-		}
-
-		if ( $popts instanceof User ) {
-			$this->logger->warning(
-				"Use of outdated prototype ParserCache::getKey( &\$wikiPage, &\$user )\n"
-			);
-			$popts = ParserOptions::newFromUser( $popts );
-		}
-
-		$metadata = $this->getMetadata( $page, $useOutdated );
-		if ( !$metadata ) {
-			if ( $useOutdated < self::USE_ANYTHING ) {
-				return false;
-			}
-			$usedOptions = ParserOptions::allCacheVaryingOptions();
-		} else {
-			$usedOptions = $metadata->getUsedOptions();
-		}
-
-		return $this->makeParserOutputKey( $page, $popts, $usedOptions );
 	}
 
 	/**
