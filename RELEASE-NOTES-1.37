@@ -67,6 +67,7 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ===== Changed development-only external libraries =====
+* Updated qunit from 2.10.0 to 2.16.0.
 * …
 
 ==== Removed external libraries ====
