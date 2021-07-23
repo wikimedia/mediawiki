@@ -538,11 +538,21 @@ because of Phabricator reports.
 * The following methods in MWNamespace, all deprecated since 1.34, now emit
   deprecation warnings:
   - isMovable()
+  - isSubject()
+  - getTalk()
+  - getSubject()
+  - getAssociated()
+  - equals()
   - subjectEquals()
   - hasTalkNamespace()
   - wantSignatures()
   - isWatchable()
+  - getSubjectNamespaces()
+  - getTalkNamespaces()
+  - isCapitalized()
   - hasGenderDistinction()
+  - isNonincludable()
+  - getNamespaceContentModel()
   - getRestrictionLevels()
   - getCategoryLinkType()
 * LogFormatter::styleRestricedElement() has been deprecated in favor of
