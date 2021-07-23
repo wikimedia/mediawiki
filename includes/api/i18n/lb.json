@@ -98,7 +98,7 @@
 	"apihelp-query+blocks-paramvalue-prop-range": "Setzt de Beräich vun den IP-Adressen dobäi déi vun der Spär betraff sinn.",
 	"apihelp-query+blocks-example-simple": "Lëscht vun de Spären",
 	"apihelp-query+categories-summary": "All Kategorien opzielen zu deenen dës Säit gehéiert.",
-	"apihelp-query+categories-paramvalue-prop-timestamp": "Setzt den Zäitstempel vun dem Ament dobäi wou d'Kategorie dobäigesat gouf.",
+	"apihelp-query+categories-paramvalue-prop-timestamp": "Setzt den Zäitstempel vun dem Ament derbäi wou d'Kategorie derbäigesat gouf.",
 	"apihelp-query+categories-example-generator": "Informatioun iwwer all Kategorien, déi an der Säit <kbd>Albert Einstein</kbd> benotzt ginn, kréien.",
 	"apihelp-query+categorymembers-summary": "All Säiten aus enger bestëmmter Kategorie opzielen.",
 	"apihelp-query+categorymembers-example-simple": "Déi éischt 10 Säiten aus der <kbd>Category:Physics</kbd> kréien.",
