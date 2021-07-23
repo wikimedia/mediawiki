@@ -371,16 +371,6 @@ interface WatchedItemStoreInterface {
 	public function clearUserWatchedItemsUsingJobQueue( UserIdentity $user );
 
 	/**
-	 * Probabilistically add a job to purge the expired watchlist items.
-	 *
-	 * @since 1.35
-	 * @deprecated since 1.36, use maybeEnqueueWatchlistExpiryJob
-	 *
-	 * @param float $watchlistPurgeRate The value of the $wgWatchlistPurgeRate configuration variable.
-	 */
-	public function enqueueWatchlistExpiryJob( float $watchlistPurgeRate ): void;
-
-	/**
 	 * Probabilistically add a job to purge the expired watchlist items, if watchlist
 	 * expiration is enabled, based on the value of $wgWatchlistPurgeRate
 	 *
