@@ -452,7 +452,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 			throw new MWException( '$text must be a string, given an object' );
 		} elseif ( $text === null ) {
 			// Legacy code relies on MalformedTitleException being thrown in this case
-			// (happens when URL with no title in it is parsed). TODO fix
+			//  TODO: fix(happens when URL with no title in it is parsed).
 			throw new MalformedTitleException( 'title-invalid-empty' );
 		}
 
