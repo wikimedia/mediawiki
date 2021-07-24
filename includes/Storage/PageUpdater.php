@@ -244,7 +244,6 @@ class PageUpdater {
 		$this->editResultBuilder = new EditResultBuilder(
 			$revisionStore,
 			$softwareTags,
-			$loadBalancer,
 			new ServiceOptions(
 				EditResultBuilder::CONSTRUCTOR_OPTIONS,
 				[
