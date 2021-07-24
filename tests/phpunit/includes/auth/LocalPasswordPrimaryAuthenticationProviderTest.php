@@ -56,7 +56,6 @@ class LocalPasswordPrimaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$mwServices->getReadOnlyMode(),
 				$userNameUtils,
 				$mwServices->getBlockManager(),
-				$mwServices->getBlockErrorFormatter(),
 				$mwServices->getWatchlistManager()
 			);
 		}
