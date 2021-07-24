@@ -24,7 +24,6 @@
 namespace MediaWiki\Auth;
 
 use Config;
-use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
@@ -175,9 +174,6 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var BlockManager */
 	private $blockManager;
 
-	/** @var BlockErrorFormatter */
-	private $blockErrorFormatter;
-
 	/** @var WatchlistManager */
 	private $watchlistManager;
 
@@ -189,7 +185,6 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param ReadOnlyMode $readOnlyMode
 	 * @param UserNameUtils $userNameUtils
 	 * @param BlockManager $blockManager
-	 * @param BlockErrorFormatter $blockErrorFormatter
 	 * @param WatchlistManager $watchlistManager
 	 */
 	public function __construct(
@@ -200,7 +195,6 @@ class AuthManager implements LoggerAwareInterface {
 		ReadOnlyMode $readOnlyMode,
 		UserNameUtils $userNameUtils,
 		BlockManager $blockManager,
-		BlockErrorFormatter $blockErrorFormatter,
 		WatchlistManager $watchlistManager
 	) {
 		$this->request = $request;
@@ -212,7 +206,6 @@ class AuthManager implements LoggerAwareInterface {
 		$this->readOnlyMode = $readOnlyMode;
 		$this->userNameUtils = $userNameUtils;
 		$this->blockManager = $blockManager;
-		$this->blockErrorFormatter = $blockErrorFormatter;
 		$this->watchlistManager = $watchlistManager;
 	}
 

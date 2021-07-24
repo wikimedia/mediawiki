@@ -7,7 +7,6 @@ use MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook;
 use MediaWiki\Auth\Hook\LocalUserCreatedHook;
 use MediaWiki\Auth\Hook\SecuritySensitiveOperationStatusHook;
 use MediaWiki\Auth\Hook\UserLoggedInHook;
-use MediaWiki\Block\BlockErrorFormatter;
 use MediaWiki\Block\BlockManager;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\HookContainer\HookContainer;
@@ -68,9 +67,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 	/** @var BlockManager */
 	private $blockManager;
-
-	/** @var BlockErrorFormatter */
-	private $blockErrorFormatter;
 
 	/** @var WatchlistManager */
 	private $watchlistManager;
@@ -196,9 +192,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		if ( $regen || !$this->blockManager ) {
 			$this->blockManager = MediaWikiServices::getInstance()->getBlockManager();
 		}
-		if ( $regen || !$this->blockErrorFormatter ) {
-			$this->blockErrorFormatter = MediaWikiServices::getInstance()->getBlockErrorFormatter();
-		}
 		if ( $regen || !$this->watchlistManager ) {
 			$this->watchlistManager = MediaWikiServices::getInstance()->getWatchlistManager();
 		}
@@ -239,7 +232,6 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->readOnlyMode,
 			$this->userNameUtils,
 			$this->blockManager,
-			$this->blockErrorFormatter,
 			$this->watchlistManager
 		);
 		$this->manager->setLogger( $this->logger );

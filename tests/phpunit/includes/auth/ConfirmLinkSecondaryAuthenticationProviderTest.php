@@ -148,7 +148,6 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$mwServices->getReadOnlyMode(),
 				$this->createNoOpMock( UserNameUtils::class ),
 				$mwServices->getBlockManager(),
-				$mwServices->getBlockErrorFormatter(),
 				$mwServices->getWatchlistManager()
 			] )
 			->getMock();
@@ -254,7 +253,6 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$readOnlyMode,
 			$userNameUtils,
 			$mwServices->getBlockManager(),
-			$mwServices->getBlockErrorFormatter(),
 			$mwServices->getWatchlistManager()
 		);
 		$this->initProvider( $provider, null, null, $manager );

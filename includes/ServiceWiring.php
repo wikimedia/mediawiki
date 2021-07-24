@@ -184,7 +184,6 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getUserNameUtils(),
 			$services->getBlockManager(),
-			$services->getBlockErrorFormatter(),
 			$services->getWatchlistManager()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
