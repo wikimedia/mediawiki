@@ -1496,5 +1496,10 @@
 [submodule "extensions/SkinPerPage"]
 	path = extensions/SkinPerPage
 	url = https://github.com/wikimedia/mediawiki-extensions-SkinPerPage
+  	branch = REL1_36
+	ignore = dirty
+[submodule "extensions/ArticlePlaceholder"]
+	path = extensions/ArticlePlaceholder
+	url = https://github.com/wikimedia/mediawiki-extensions-ArticlePlaceholder
 	branch = REL1_36
 	ignore = dirty
