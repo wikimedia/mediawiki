@@ -3534,6 +3534,14 @@ class OutputPage extends ContextSource {
 			] );
 		}
 
+		# Browser based phonenumber detection
+		if ( $config->get( 'BrowserFormatDetection' ) !== false ) {
+			$tags['meta-format-detection'] = Html::element( 'meta', [
+				'name' => 'format-detection',
+				'content' => $config->get( 'BrowserFormatDetection' ),
+			] );
+		}
+
 		foreach ( $this->mMetatags as $tag ) {
 			if ( strncasecmp( $tag[0], 'http:', 5 ) === 0 ) {
 				$a = 'http-equiv';

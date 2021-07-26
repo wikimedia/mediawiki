@@ -3808,6 +3808,19 @@ $wgXhtmlNamespaces = [];
 $wgSiteNotice = '';
 
 /**
+ * Override ability of certains browsers to attempt to autodetect dataformats in pages.
+ * This is a default feature of many mobile browsers, but can have a lot of false positives,
+ * where for instance year ranges are confused with phone numbers.
+ * The default of this setting is to disable telephone number data detection.
+ * Set BrowserFormatDetection to false to fallback to browser defaults.
+ * @since 1.37
+ * @var string that is a compatible value with meta name="format-detection"
+ * @see https://developer.apple.com/
+ *   library/archive/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html
+ */
+$wgBrowserFormatDetection = 'telephone=no';
+
+/**
  * An array of open graph tags which should be added by all skins.
  * Accepted values are "og:title", "og:type" and "twitter:card".
  * Since some of these fields can be provided by extensions it defaults to an empty array.

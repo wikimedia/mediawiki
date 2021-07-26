@@ -22,6 +22,8 @@ For notes on 1.36.x and older releases, see HISTORY.
 * …
 
 ==== New configuration ====
+* $wgBrowserFormatDetection - This setting allows the enabling or disabling
+of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * …
 
 ==== Changed configuration ====
@@ -533,6 +535,18 @@ because of Phabricator reports.
 * User::getOptionKinds() and ::resetOptions(), both deprecated since 1.35,
   now emit deprecation warnings.
 * wfGetLB(), deprecated since 1.27, now emits deprecation warnings.
+* The following methods in MWNamespace, all deprecated since 1.34, now emit
+  deprecation warnings:
+  - isMovable()
+  - subjectEquals()
+  - hasTalkNamespace()
+  - wantSignatures()
+  - isWatchable()
+  - hasGenderDistinction()
+  - getRestrictionLevels()
+  - getCategoryLinkType()
+* LogFormatter::styleRestricedElement() has been deprecated in favor of
+  LogFormatter::styleRestrictedElement()
 * The following hooks were deprecated:
   - UserLoadOptions: use LoadUserOptions instead.
   - UserSaveOptions: use SaveUserOptions instead.
@@ -565,18 +579,6 @@ because of Phabricator reports.
   renamed to 'mw-htmlform-autoinfuse'. (T278036)
 * User::newFromRow does not accept pre-loaded user preferences under
   $data['user_properties'] anymore. This optimization was not used.
-* The following methods in MWNamespace, all deprecated since 1.34, now emit
-  deprecation warnings:
-  - isMovable()
-  - subjectEquals()
-  - hasTalkNamespace()
-  - wantSignatures()
-  - isWatchable()
-  - hasGenderDistinction()
-  - getRestrictionLevels()
-  - getCategoryLinkType()
-* LogFormatter::styleRestricedElement has been deprecated in favor of
-  LogFormatter::styleRestrictedElement
 * …
 
 == Compatibility ==
