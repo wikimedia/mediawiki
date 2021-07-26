@@ -21,6 +21,7 @@
 namespace MediaWiki\Preferences;
 
 use CentralIdLookup;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 
 class MultiUsernameFilter implements Filter {
@@ -82,7 +83,7 @@ class MultiUsernameFilter implements Filter {
 	 * @return CentralIdLookup
 	 */
 	private function getLookup() {
-		$this->lookup = $this->lookup ?? CentralIdLookup::factory();
+		$this->lookup = $this->lookup ?? MediaWikiServices::getInstance()->getCentralIdLookup();
 		return $this->lookup;
 	}
 }

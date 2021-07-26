@@ -49,14 +49,23 @@ class SpecialBotPasswords extends FormSpecialPage {
 	/** @var PasswordFactory */
 	private $passwordFactory;
 
+	/** @var CentralIdLookup */
+	private $centralIdLookup;
+
 	/**
 	 * @param PasswordFactory $passwordFactory
 	 * @param AuthManager $authManager
+	 * @param CentralIdLookup $centralIdLookup
 	 */
-	public function __construct( PasswordFactory $passwordFactory, AuthManager $authManager ) {
+	public function __construct(
+		PasswordFactory $passwordFactory,
+		AuthManager $authManager,
+		CentralIdLookup $centralIdLookup
+	) {
 		parent::__construct( 'BotPasswords', 'editmyprivateinfo' );
 		$this->logger = LoggerFactory::getInstance( 'authentication' );
 		$this->passwordFactory = $passwordFactory;
+		$this->centralIdLookup = $centralIdLookup;
 		$this->setAuthManager( $authManager );
 	}
 
@@ -98,7 +107,7 @@ class SpecialBotPasswords extends FormSpecialPage {
 			throw new ErrorPageError( 'botpasswords', 'botpasswords-disabled' );
 		}
 
-		$this->userId = CentralIdLookup::factory()->centralIdFromLocalUser( $this->getUser() );
+		$this->userId = $this->centralIdLookup->centralIdFromLocalUser( $this->getUser() );
 		if ( !$this->userId ) {
 			throw new ErrorPageError( 'botpasswords', 'botpasswords-no-central-id' );
 		}

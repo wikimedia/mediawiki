@@ -400,6 +400,7 @@ class SpecialPageFactory {
 			'services' => [
 				'PasswordFactory',
 				'AuthManager',
+				'CentralIdLookup',
 			]
 		],
 		'PasswordReset' => [
@@ -1066,8 +1067,9 @@ class SpecialPageFactory {
 				$this->list['Mute'] = [
 					'class' => \SpecialMute::class,
 					'services' => [
+						'CentralIdLookup',
 						'UserOptionsManager',
-						'UserFactory',
+						'UserIdentityLookup',
 					]
 				];
 			}

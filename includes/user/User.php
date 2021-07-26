@@ -1718,7 +1718,9 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		} else {
 			// "global per name" limit, across sites
 			if ( isset( $limits['user-global'] ) ) {
-				$lookup = CentralIdLookup::factoryNonLocal();
+				$lookup = MediaWikiServices::getInstance()
+					->getCentralIdLookupFactory()
+					->getNonLocalLookup();
 
 				$centralId = $lookup
 					? $lookup->centralIdFromLocalUser( $this, CentralIdLookup::AUDIENCE_RAW )
