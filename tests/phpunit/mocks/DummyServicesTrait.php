@@ -21,6 +21,7 @@
 
 namespace MediaWiki\Tests\Unit;
 
+use CommentStore;
 use ConfiguredReadOnlyMode;
 use GenderCache;
 use Interwiki;
@@ -492,5 +493,20 @@ trait DummyServicesTrait {
 				$this->watchedItemStoreData[ $dataKey ] !== true;
 		} );
 		return $mock;
+	}
+
+	private function getDummyCommentStore(): CommentStore {
+		$mockLang = $this->createNoOpMock( Language::class,
+			[ 'truncateForVisual', 'truncateForDatabase' ] );
+		$mockLang->method( $this->logicalOr( 'truncateForDatabase', 'truncateForVisual' ) )
+			->willReturnCallback(
+				static function ( string $text, int $limit ): string {
+					if ( strlen( $text ) > $limit - 3 ) {
+						return substr( $text, 0, $limit - 3 ) . '...';
+					}
+					return $text;
+				}
+			);
+		return new CommentStore( $mockLang, MIGRATION_NEW );
 	}
 }

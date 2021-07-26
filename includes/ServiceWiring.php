@@ -100,6 +100,7 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Parser\ParserCacheFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Permissions\RestrictionStore;
 use MediaWiki\Preferences\DefaultPreferencesFactory;
 use MediaWiki\Preferences\PreferencesFactory;
 use MediaWiki\Revision\ContributionsLookup;
@@ -1322,6 +1323,20 @@ return [
 		}
 
 		return $rl;
+	},
+
+	'RestrictionStore' => static function ( MediaWikiServices $services ): RestrictionStore {
+		return new RestrictionStore(
+			new ServiceOptions(
+				RestrictionStore::CONSTRUCTOR_OPTIONS, $services->getMainConfig()
+			),
+			$services->getMainWANObjectCache(),
+			$services->getDBLoadBalancer(),
+			$services->getLinkCache(),
+			$services->getCommentStore(),
+			$services->getHookContainer(),
+			$services->getPageStore()
+		);
 	},
 
 	'RevertedTagUpdateManager' => static function ( MediaWikiServices $services ): RevertedTagUpdateManager {

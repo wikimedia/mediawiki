@@ -640,6 +640,30 @@ because of Phabricator reports.
   getUserPermissionsErrorsExpensive instead.
 * Parser::mUser public access, Parser::getUser and ParserOptions::getUser were
   hard deprecated.
+* The following methods in the Title class have been deprecated in favor of the
+  corresponding methods in the new RestrictionStore service (with different
+  names where indicated):
+  - areCascadeProtectionSourcesLoaded()
+  - areRestrictionsCascading()
+  - areRestrictionsLoaded()
+  - getAllRestrictions()
+  - getCascadeProtectionSources()
+  - getFilteredRestrictionTypes()
+      -> listAllRestrictionTypes()
+  - getRestrictionExpiry()
+  - getRestrictionTypes()
+      -> listApplicableRestrictionTypes()
+  - getRestrictions()
+  - isCascadeProtected()
+  - isProtected()
+  - isSemiProtected()
+  - loadRestrictionsFromRows()
+* The following Title methods have been deprecated with no direct public
+  replacement:
+  - deleteTitleProtection()
+  - getTitleProtection()
+  - flushRestrictions()
+  - loadRestrictions()
 * …
 
 === Other changes in 1.37 ===
