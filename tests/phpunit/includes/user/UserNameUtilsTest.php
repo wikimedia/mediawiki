@@ -18,21 +18,8 @@ use Wikimedia\Message\MessageValue;
 class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	use DummyServicesTrait;
 
-	private function getUCFirstLanguageMock() {
-		// Used by a number of tests
-		$contentLang = $this->getMockBuilder( Language::class )
-			->disableOriginalConstructor()
-			->getMock();
-		$contentLang->method( 'ucfirst' )
-			->willReturnCallback( static function ( $str ) {
-				return ucfirst( $str );
-			} );
-		return $contentLang;
-	}
-
 	private function getUtils(
 		array $options = [],
-		Language $contentLang = null,
 		LoggerInterface $logger = null,
 		ITextFormatter $textFormatter = null
 	) {
@@ -46,9 +33,15 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 		$config = $options + $baseOptions;
 		$serviceOptions = new ServiceOptions( UserNameUtils::CONSTRUCTOR_OPTIONS, $config );
 
-		if ( $contentLang === null ) {
-			$contentLang = $this->createMock( Language::class );
-		}
+		// The only method we call on the Language object is ucfirst, avoid needing to
+		// create a mock in each test. Note that the actual Language::ucfirst is a bit
+		// more complicated than this, but since the tests are all in English the plain
+		// php `ucfirst` should be enough
+		$contentLang = $this->createNoOpMock( Language::class, [ 'ucfirst' ] );
+		$contentLang->method( 'ucfirst' )
+			->willReturnCallback( static function ( $str ) {
+				return ucfirst( $str );
+			} );
 
 		if ( $logger === null ) {
 			$logger = new NullLogger();
@@ -81,13 +74,9 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::isValid
 	 */
 	public function testIsValid( string $name, bool $result ) {
-		$utils = $this->getUtils(
-			[],
-			$this->getUCFirstLanguageMock()
-		);
 		$this->assertSame(
 			$result,
-			$utils->isValid( $name )
+			$this->getUtils()->isValid( $name )
 		);
 	}
 
@@ -132,7 +121,6 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 					'msg:reserved-user'
 				],
 			],
-			$this->getUCFirstLanguageMock(),
 			null,
 			$textFormatter
 		);
@@ -165,7 +153,6 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 		} );
 		$utils = $this->getUtils(
 			[],
-			$this->getUCFirstLanguageMock(),
 			$logger
 		);
 
@@ -200,10 +187,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::getCanonical
 	 */
 	public function testGetCanonical( string $name, array $expectedArray ) {
-		$utils = $this->getUtils(
-			[],
-			$this->getUCFirstLanguageMock()
-		);
+		$utils = $this->getUtils();
 		foreach ( $expectedArray as $validate => $expected ) {
 			$this->assertSame(
 				$expected,
@@ -286,10 +270,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	public function testGetCanonical_interwiki() {
 		// 'interwiki' is a valid interwiki prefix, per configuration of the
 		// title formatter in getUtils()
-		$utils = $this->getUtils(
-			[],
-			$this->getUCFirstLanguageMock()
-		);
+		$utils = $this->getUtils();
 
 		$name = 'interwiki:Username';
 		$this->assertFalse(
@@ -323,14 +304,9 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::getCanonical
 	 */
 	public function testGetCanonical_bad() {
-		// Only ucfirst is called
-		$utils = $this->getUtils(
-			[],
-			$this->getUCFirstLanguageMock()
-		);
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid parameter value for validation' );
-		$utils->getCanonical( 'ValidName', 'InvalidValidationValue' );
+		$this->getUtils()->getCanonical( 'ValidName', 'InvalidValidationValue' );
 	}
 
 	/**
