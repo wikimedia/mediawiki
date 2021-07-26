@@ -4,6 +4,7 @@
 			"Cbrown1023",
 			"Fanjiayi",
 			"Macofe",
+			"MinecraftAustralia",
 			"Tauʻolunga",
 			"לערי ריינהארט",
 			"아라"
@@ -206,6 +207,7 @@
 	"editinginterface": "'''Warning:''' You are editing a page which is used to provide interface text for the software.\nChanges to this page will affect the appearance of the user interface for other users.\nFor translations, please consider using [https://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project.",
 	"namespaceprotected": "ʻOku ʻikai ngofua ke ke fatu ʻa e ngaahi kupu ʻi he vā hingoa '''$1'''.",
 	"logouttext": "'''Kuo ʻalu mamaʻo koe he taimí ni.'''\n\nE lava te ke hoko atu ʻo ngāueʻaki he {{SITENAME}} tatau mo e ʻetita taʻehingoa, pe te ke kau-ki-ai mo e hingoa tatau pe hingoa kehe.\nTokanga, mahalo pē ʻe ʻi ai ha ngaahi peesi ʻoku ʻasi ko koe kei kau-ki-ai aʻu ki he taimi te ke fakaʻatā ʻa e fafaʻo fakapalausa.",
+	"welcomeuser": "Talitali lelei koe, $1!",
 	"yourname": "Hingoa ʻetita",
 	"yourpassword": "Leatapu",
 	"yourpasswordagain": "Toe ʻai leatapu",
