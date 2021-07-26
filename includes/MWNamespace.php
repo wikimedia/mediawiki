@@ -41,13 +41,14 @@ class MWNamespace {
 	/**
 	 * Is the given namespace is a subject (non-talk) namespace?
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 *
 	 * @param int $index Namespace index
 	 * @return bool
 	 * @since 1.19
 	 */
 	public static function isSubject( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isSubject( $index );
 	}
 
@@ -66,12 +67,13 @@ class MWNamespace {
 	/**
 	 * Get the talk namespace index for a given namespace
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 *
 	 * @param int $index Namespace index
 	 * @return int
 	 */
 	public static function getTalk( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getTalk( $index );
 	}
 
@@ -79,12 +81,13 @@ class MWNamespace {
 	 * Get the subject namespace index for a given namespace
 	 * Special namespaces (NS_MEDIA, NS_SPECIAL) are always the subject.
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 *
 	 * @param int $index Namespace index
 	 * @return int
 	 */
 	public static function getSubject( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getSubject( $index );
 	}
 
@@ -93,12 +96,13 @@ class MWNamespace {
 	 * For talk namespaces, returns the subject (non-talk) namespace
 	 * For subject (non-talk) namespaces, returns the talk namespace
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 *
 	 * @param int $index Namespace index
 	 * @return int|null If no associated namespace could be found
 	 */
 	public static function getAssociated( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getAssociated( $index );
 	}
 
@@ -128,9 +132,10 @@ class MWNamespace {
 	 *
 	 * @return bool
 	 * @since 1.19
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 */
 	public static function equals( $ns1, $ns2 ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->equals( $ns1, $ns2 );
 	}
 
@@ -284,11 +289,12 @@ class MWNamespace {
 	 * List all namespace indices which are considered subject, aka not a talk
 	 * or special namespace. See also MWNamespace::isSubject
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 *
 	 * @return int[] Array of namespace indices
 	 */
 	public static function getSubjectNamespaces() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getSubjectNamespaces();
 	}
 
@@ -296,23 +302,25 @@ class MWNamespace {
 	 * List all namespace indices which are considered talks, aka not a subject
 	 * or special namespace. See also MWNamespace::isTalk
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 *
 	 * @return int[] Array of namespace indices
 	 */
 	public static function getTalkNamespaces() {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->getTalkNamespaces();
 	}
 
 	/**
 	 * Is the namespace first-letter capitalized?
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 *
 	 * @param int $index Index to check
 	 * @return bool
 	 */
 	public static function isCapitalized( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isCapitalized( $index );
 	}
 
@@ -334,12 +342,13 @@ class MWNamespace {
 	/**
 	 * It is not possible to use pages from this namespace as template?
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 * @since 1.20
 	 * @param int $index Index to check
 	 * @return bool
 	 */
 	public static function isNonincludable( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->isNonincludable( $index );
 	}
 
@@ -350,12 +359,13 @@ class MWNamespace {
 	 * @note To determine the default model for a new page's main slot, or any slot in general,
 	 * use SlotRoleHandler::getDefaultModel() together with SlotRoleRegistry::getRoleHandler().
 	 *
-	 * @deprecated since 1.34
+	 * @deprecated since 1.34, hard deprecated since 1.37
 	 * @since 1.21
 	 * @param int $index Index to check
 	 * @return null|string Default model name for the given namespace, if set
 	 */
 	public static function getNamespaceContentModel( $index ) {
+		wfDeprecated( __METHOD__, '1.34' );
 		return MediaWikiServices::getInstance()->getNamespaceInfo()->
 			getNamespaceContentModel( $index );
 	}
