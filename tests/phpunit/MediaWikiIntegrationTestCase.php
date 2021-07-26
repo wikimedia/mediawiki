@@ -927,7 +927,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetLegacyGlobals();
-		Language::$mLangObjCache = [];
 	}
 
 	/**
@@ -981,7 +980,6 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 		}
 
 		self::resetLegacyGlobals();
-		Language::$mLangObjCache = [];
 
 		return $newInstance;
 	}

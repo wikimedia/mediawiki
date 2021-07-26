@@ -487,9 +487,6 @@ abstract class Installer {
 		// Disable i18n cache
 		$mwServices->getLocalisationCache()->disableBackend();
 
-		// Clear language cache so the old i18n cache doesn't sneak back in
-		Language::$mLangObjCache = [];
-
 		// Set a fake user.
 		// Note that this will reset the context's language,
 		// so set the user before setting the language.

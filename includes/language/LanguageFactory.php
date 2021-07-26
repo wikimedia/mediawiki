@@ -27,9 +27,9 @@ namespace MediaWiki\Languages;
 use Language;
 use LanguageConverter;
 use LocalisationCache;
+use MapCacheLRU;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
-use MediaWiki\MediaWikiServices;
 use MWException;
 
 /**
@@ -58,8 +58,8 @@ class LanguageFactory {
 	/** @var HookContainer */
 	private $hookContainer;
 
-	/** @var array */
-	private $langObjCache = [];
+	/** @var MapCacheLRU|null */
+	private $langObjCache = null;
 
 	/** @var array */
 	private $parentLangCache = [];
@@ -96,6 +96,9 @@ class LanguageFactory {
 		$this->langFallback = $langFallback;
 		$this->langConverterFactory = $langConverterFactory;
 		$this->hookContainer = $hookContainer;
+		if ( $options->get( 'LangObjCacheSize' ) ) {
+			$this->langObjCache = new MapCacheLRU( $options->get( 'LangObjCacheSize' ) );
+		}
 	}
 
 	/**
@@ -108,32 +111,16 @@ class LanguageFactory {
 	public function getLanguage( $code ): Language {
 		$code = $this->options->get( 'DummyLanguageCodes' )[$code] ?? $code;
 
-		// This is horrible, horrible code, but is necessary to support Language::$mLangObjCache
-		// per the deprecation policy. Kill with fire in 1.36!
-		if (
-			MediaWikiServices::hasInstance() &&
-			$this === MediaWikiServices::getInstance()->getLanguageFactory()
-		) {
-			$this->langObjCache = Language::$mLangObjCache;
+		if ( !$this->langObjCache ) {
+			return $this->newFromCode( $code );
 		}
 
-		// Get the language object to process
-		$langObj = $this->langObjCache[$code] ?? $this->newFromCode( $code );
-
-		// Merge the language object in to get it up front in the cache
-		$this->langObjCache = array_merge( [ $code => $langObj ], $this->langObjCache );
-		// Get rid of the oldest ones in case we have an overflow
-		$this->langObjCache =
-			array_slice( $this->langObjCache, 0, $this->options->get( 'LangObjCacheSize' ), true );
-
-		// As above, remove this in 1.36
-		if (
-			MediaWikiServices::hasInstance() &&
-			$this === MediaWikiServices::getInstance()->getLanguageFactory()
-		) {
-			Language::$mLangObjCache = $this->langObjCache;
+		if ( $this->langObjCache->has( $code ) ) {
+			return $this->langObjCache->get( $code );
 		}
 
+		$langObj = $this->newFromCode( $code );
+		$this->langObjCache->set( $code, $langObj );
 		return $langObj;
 	}
 
