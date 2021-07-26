@@ -2560,7 +2560,7 @@
 	"rollback-confirmation-yes": "Révoquer",
 	"rollback-confirmation-no": "Annuler",
 	"rollbacklink": "révoquer",
-	"rollbacklinkcount": "révoquer $1 modification{{PLURAL:$1||s}}",
+	"rollbacklinkcount": "révoquer $1 modification{{PLURAL:$1||s}}",
 	"rollbacklinkcount-morethan": "révoquer plus {{PLURAL:$1|d’une|de $1}} modification{{PLURAL:$1||s}}",
 	"rollbackfailed": "La révocation a échoué",
 	"rollback-missingparam": "Paramètres nécessaires à la demande manquants.",

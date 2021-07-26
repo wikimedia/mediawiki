@@ -1168,7 +1168,7 @@
 	"prefs-skin": "皮肤",
 	"prefs-skin-prefs": "皮肤设置",
 	"prefs-skin-responsive": "启用响应模式",
-	"prefs-help-skin-responsive": "拿皮肤调整到可用个视口区域。（可能对某些皮肤呒影响）。",
+	"prefs-help-skin-responsive": "自动调整皮肤，使其适合可视区域。（可能对某些皮肤没有影响）",
 	"skin-preview": "预览",
 	"datedefault": "默认格式",
 	"prefs-labs": "实验室功能",

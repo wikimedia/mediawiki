@@ -1965,7 +1965,7 @@
 	"listfiles-userdoesnotexist": "使用者帳號 \"$1\" 尚未註冊。",
 	"imgfile": "檔案",
 	"listfiles": "檔案清單",
-	"listfiles_subpage": "由 $1 上傳",
+	"listfiles_subpage": "由$1上傳",
 	"listfiles_thumb": "縮⁠圖",
 	"listfiles_date": "日期",
 	"listfiles_name": "名稱",

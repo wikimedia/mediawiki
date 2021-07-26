@@ -2260,6 +2260,7 @@
 	"siteusers": "{{PLURAL:$2|{{GENDER:$1|uzero}}|uzeri}} $1 di {{SITENAME}}",
 	"nocredits": "Ne existas informo pri l'autoreso di ca pagino.",
 	"spamprotectiontitle": "Filtrilo kontre spamo",
+	"spamprotectionmatch": "La sequanta texto impulsis nia spam-filtrilo: $1",
 	"simpleantispam-label": "Surveyo kontre \"spam\".\n<strong>NE SKRIBEZ</strong> hike!",
 	"pageinfo-title": "Informi por $1",
 	"pageinfo-header-basic": "Bazala informi",
