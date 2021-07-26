@@ -21,13 +21,16 @@
  * - load autoloaders, constants, default settings, and global functions,
  * - load the site configuration (e.g. LocalSettings.php),
  * - load the enabled extensions (via ExtensionRegistry),
- * - expand any dynamic site configuration defaults and shortcuts
+ * - trivial expansion of site configuration defaults and shortcuts
+ *   (no calls to MediaWikiServices or other parts of MediaWiki),
  * - initialization of:
  *   - PHP run-time (setlocale, memory limit, default date timezone)
  *   - the debug logger (MWDebug)
  *   - the service container (MediaWikiServices)
  *   - the exception handler (MWExceptionHandler)
  *   - the session manager (SessionManager)
+ * - complex expansion of site configuration defaults (those that require
+ *   calling into MediaWikiServices, global functions, or other classes.).
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -244,6 +247,15 @@ if ( $wgMetaNamespace === false ) {
 	$wgMetaNamespace = str_replace( ' ', '_', $wgSitename );
 }
 
+if ( $wgMainWANCache === false ) {
+	// Create a WAN cache from $wgMainCacheType
+	$wgMainWANCache = 'mediawiki-main-default';
+	$wgWANObjectCaches[$wgMainWANCache] = [
+		'class'    => WANObjectCache::class,
+		'cacheId'  => $wgMainCacheType,
+	];
+}
+
 // Blacklisted file extensions shouldn't appear on the "allowed" list
 $wgFileExtensions = array_values( array_diff( $wgFileExtensions, $wgFileBlacklist ) );
 
@@ -450,6 +462,23 @@ if ( $wgEnableEmail ) {
 	$wgUsersNotifiedOnAllChanges = [];
 }
 
+// Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+
+// that happens whenever you use a date function without the timezone being
+// explicitly set. Inspired by phpMyAdmin's treatment of the problem.
+if ( $wgLocaltimezone === null ) {
+	$wgLocaltimezone = date_default_timezone_get();
+}
+date_default_timezone_set( $wgLocaltimezone );
+if ( $wgLocalTZoffset === null ) {
+	$wgLocalTZoffset = (int)date( 'Z' ) / 60;
+}
+// The part after the System| is ignored, but rest of MW fills it out as the local offset.
+$wgDefaultUserOptions['timecorrection'] = "System|$wgLocalTZoffset";
+
+if ( !$wgDBerrorLogTZ ) {
+	$wgDBerrorLogTZ = $wgLocaltimezone;
+}
+
 /**
  * Definitions of the NS_ constants are in Defines.php
  * @internal
@@ -555,6 +584,16 @@ if ( $wgMaximalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
 }
 
+// @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
+if ( $wgServer === false ) {
+	// T30798: $wgServer must be explicitly set
+	throw new FatalError(
+		'$wgServer must be set in LocalSettings.php. ' .
+		'See <a href="https://www.mediawiki.org/wiki/Manual:$wgServer">' .
+		'https://www.mediawiki.org/wiki/Manual:$wgServer</a>.'
+	);
+}
+
 if ( $wgPHPSessionHandling !== 'enable' &&
 	$wgPHPSessionHandling !== 'warn' &&
 	$wgPHPSessionHandling !== 'disable'
@@ -570,6 +609,8 @@ if ( defined( 'MW_NO_SESSION' ) ) {
 MWDebug::setup();
 
 // Enable the global service locator.
+// Trivial expansion of site configuration should go before this point.
+// Any non-trivial expansion that requires calling into MediaWikiServices or other parts of MW.
 MediaWikiServices::allowGlobalInstance();
 
 // Define a constant that indicates that the bootstrapping of the service locator
@@ -578,21 +619,14 @@ define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionHandler::installHandler();
 
-// T30798: $wgServer must be explicitly set
-// @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
-if ( $wgServer === false ) {
-	throw new FatalError(
-		'$wgServer must be set in LocalSettings.php. ' .
-		'See <a href="https://www.mediawiki.org/wiki/Manual:$wgServer">' .
-		'https://www.mediawiki.org/wiki/Manual:$wgServer</a>.'
-	);
-}
-
+// Non-trivial expansion of: $wgCanonicalServer, $wgServerName.
+// These require calling global functions.
+// Also here are other settings that further depend on these two.
 if ( $wgCanonicalServer === false ) {
 	$wgCanonicalServer = wfExpandUrl( $wgServer, PROTO_HTTP );
 }
+$wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
 
-// Set server name
 $serverParts = wfParseUrl( $wgCanonicalServer );
 if ( $wgServerName !== false ) {
 	wfWarn( '$wgServerName should be derived from $wgCanonicalServer, '
@@ -601,9 +635,7 @@ if ( $wgServerName !== false ) {
 $wgServerName = $serverParts['host'];
 unset( $serverParts );
 
-// Set defaults for configuration variables
-// that are derived from the server name by default
-// Note: $wgEmergencyContact and $wgPasswordSender may be false or empty string (T104142)
+// $wgEmergencyContact and $wgPasswordSender may be false or empty string (T104142)
 if ( !$wgEmergencyContact ) {
 	$wgEmergencyContact = 'wikiadmin@' . $wgServerName;
 }
@@ -614,26 +646,17 @@ if ( !$wgNoReplyAddress ) {
 	$wgNoReplyAddress = $wgPasswordSender;
 }
 
+// Non-trivial expansion of: $wgSecureLogin
+// (due to calling wfWarn).
 if ( $wgSecureLogin && substr( $wgServer, 0, 2 ) !== '//' ) {
 	$wgSecureLogin = false;
 	wfWarn( 'Secure login was enabled on a server that only supports '
 		. 'HTTP or HTTPS. Disabling secure login.' );
 }
 
-$wgVirtualRestConfig['global']['domain'] = $wgCanonicalServer;
-
 // Now that GlobalFunctions is loaded, set defaults that depend on it.
 if ( $wgTmpDirectory === false ) {
 	$wgTmpDirectory = wfTempDir();
-}
-
-if ( $wgMainWANCache === false ) {
-	// Setup a WAN cache from $wgMainCacheType
-	$wgMainWANCache = 'mediawiki-main-default';
-	$wgWANObjectCaches[$wgMainWANCache] = [
-		'class'    => WANObjectCache::class,
-		'cacheId'  => $wgMainCacheType,
-	];
 }
 
 if ( $wgSharedDB && $wgSharedTables ) {
@@ -651,32 +674,8 @@ if ( $wgSharedDB && $wgSharedTables ) {
 }
 
 // Raise the memory limit if it's too low
-// Note, this makes use of wfDebug, and thus should not be before
-// MWDebug::init() is called.
+// NOTE: This use wfDebug, and must remain after the MWDebug::setup() call.
 wfMemoryLimit( $wgMemoryLimit );
-
-/**
- * Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+
- * that happens whenever you use a date function without the timezone being
- * explicitly set. Inspired by phpMyAdmin's treatment of the problem.
- */
-if ( $wgLocaltimezone === null ) {
-	Wikimedia\suppressWarnings();
-	$wgLocaltimezone = date_default_timezone_get();
-	Wikimedia\restoreWarnings();
-}
-
-date_default_timezone_set( $wgLocaltimezone );
-if ( $wgLocalTZoffset === null ) {
-	$wgLocalTZoffset = (int)date( 'Z' ) / 60;
-}
-// The part after the System| is ignored, but rest of MW fills it
-// out as the local offset.
-$wgDefaultUserOptions['timecorrection'] = "System|$wgLocalTZoffset";
-
-if ( !$wgDBerrorLogTZ ) {
-	$wgDBerrorLogTZ = $wgLocaltimezone;
-}
 
 // Initialize the request object in $wgRequest
 $wgRequest = RequestContext::getMain()->getRequest(); // BackCompat
