@@ -26,8 +26,9 @@ interface SaveUserOptionsHook {
 	 * @param array &$modifiedOptions The user's options as an associative array, modifiable.
 	 *  To reset the preference value to default, set the preference to null.
 	 *  To block the preference from changing, unset the key from the array.
-	 *  To modify a preference value, sey a new value.
+	 *  To modify a preference value, set a new value.
+	 * @param array $originalOptions The user's original options being replaced
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
-	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions );
+	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions );
 }

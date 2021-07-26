@@ -232,7 +232,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	/**
 	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
 	 */
-	public function testSaveUserOptionsHookOriginal() {
+	public function testUserSaveOptionsHookOriginal() {
 		$user = $this->getTestUser()->getUser();
 		$manager = $this->getManager();
 		$originalLanguage = $manager->getOption( $user, 'language' );
@@ -248,6 +248,33 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 				return true;
 			}
 		);
+		$manager->saveOptions( $user );
+		$this->assertSame( 'tr', $manager->getOption( $user, 'language' ) );
+	}
+
+	/**
+	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
+	 */
+	public function testSaveUserOptionsHookOriginal() {
+		$user = UserIdentityValue::newRegistered( 42, 'Test' );
+		$manager = $this->getManager( [
+			'language' => 'ja',
+			'hookContainer' => $this->createHookContainer( [
+				'SaveUserOptions' => function (
+					UserIdentity $hookUser,
+					array &$modifiedOptions,
+					array $originalOptions
+				) use ( $user ) {
+					if ( $hookUser->equals( $user ) ) {
+						$this->assertSame( 'ja', $originalOptions['language'] );
+						$this->assertSame( 'ru', $modifiedOptions['language'] );
+						$modifiedOptions['language'] = 'tr';
+					}
+					return true;
+				}
+			] ),
+		] );
+		$manager->setOption( $user, 'language', 'ru' );
 		$manager->saveOptions( $user );
 		$this->assertSame( 'tr', $manager->getOption( $user, 'language' ) );
 	}
