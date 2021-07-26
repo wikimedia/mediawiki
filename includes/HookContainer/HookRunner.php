@@ -4288,10 +4288,10 @@ class HookRunner implements
 		);
 	}
 
-	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions ) {
+	public function onSaveUserOptions( UserIdentity $user, array &$modifiedOptions, array $originalOptions ) {
 		return $this->container->run(
 			'SaveUserOptions',
-			[ $user, &$modifiedOptions ]
+			[ $user, &$modifiedOptions, $originalOptions ]
 		);
 	}
 

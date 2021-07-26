@@ -385,12 +385,12 @@ class UserOptionsManager extends UserOptionsLookup {
 
 		$userKey = $this->getCacheKey( $user );
 		$modifiedOptions = $this->modifiedOptions[$userKey] ?? [];
-		if ( !$this->hookRunner->onSaveUserOptions( $user, $modifiedOptions ) ) {
+		$originalOptions = $this->loadOriginalOptions( $user, self::READ_LATEST );
+		if ( !$this->hookRunner->onSaveUserOptions( $user, $modifiedOptions, $originalOptions ) ) {
 			return;
 		}
 
 		// TODO: only needed for old hook.
-		$originalOptions = $this->loadOriginalOptions( $user, self::READ_LATEST );
 		$optionsToSave = array_merge( $originalOptions, $modifiedOptions );
 		// Allow hooks to abort, for instance to save to a global profile.
 		// Reset options to default state before saving.
