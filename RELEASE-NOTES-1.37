@@ -357,6 +357,8 @@ because of Phabricator reports.
   ContentHandler::getSecondaryDataUpdates() instead.
 * wfDiff(), deprecated since 1.25, has been removed.
 * Language::$mLangObjCache, deprecated since 1.35, was removed.
+* SpecialMute::getTarget(), unused outside of the SpecialMute class, was
+  made private.
 * …
 
 === Deprecations in 1.37 ===

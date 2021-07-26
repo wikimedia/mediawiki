@@ -244,8 +244,9 @@ class SpecialEmailUser extends UnlistedSpecialPage {
 		$muteList = $target->getOption( 'email-blacklist', '' );
 		if ( $muteList ) {
 			$muteList = MultiUsernameFilter::splitIds( $muteList );
-			$lookup = CentralIdLookup::factory();
-			$senderId = $lookup->centralIdFromLocalUser( $sender );
+			$senderId = MediaWikiServices::getInstance()
+				->getCentralIdLookup()
+				->centralIdFromLocalUser( $sender );
 			if ( $senderId !== 0 && in_array( $senderId, $muteList ) ) {
 				wfDebug( "User does not allow user emails from this user." );
 

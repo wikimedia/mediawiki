@@ -291,7 +291,9 @@ class ApiLoginTest extends ApiTestCase {
 		);
 
 		$user = self::$users['sysop'];
-		$centralId = CentralIdLookup::factory()->centralIdFromLocalUser( $user->getUser() );
+		$centralId = $this->getServiceContainer()
+			->getCentralIdLookup()
+			->centralIdFromLocalUser( $user->getUser() );
 		$this->assertNotSame( 0, $centralId, 'sanity check' );
 
 		$password = 'ngfhmjm64hv0854493hsj5nncjud2clk';

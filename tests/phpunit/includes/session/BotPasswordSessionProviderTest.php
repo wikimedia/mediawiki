@@ -71,7 +71,10 @@ class BotPasswordSessionProviderTest extends MediaWikiIntegrationTestCase {
 		$passwordHash = $passwordFactory->newFromPlaintext( 'foobaz' );
 
 		$sysop = static::getTestSysop()->getUser();
-		$userId = \CentralIdLookup::factory( 'local' )->centralIdFromName( $sysop->getName() );
+		$userId = $this->getServiceContainer()
+			->getCentralIdLookupFactory()
+			->getLookup( 'local' )
+			->centralIdFromName( $sysop->getName() );
 
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbw->delete(
