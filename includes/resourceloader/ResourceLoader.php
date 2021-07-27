@@ -1250,12 +1250,12 @@ MESSAGE;
 				} else {
 					// In debug mode, separate each response by a new line.
 					// For example, between 'mw.loader.implement();' statements.
-					$strContent = $this->ensureNewline( $strContent );
+					$strContent = self::ensureNewline( $strContent );
 				}
 
 				if ( $context->getOnly() === 'scripts' ) {
 					// Use a linebreak between module scripts (T162719)
-					$out .= $this->ensureNewline( $strContent );
+					$out .= self::ensureNewline( $strContent );
 				} else {
 					$out .= $strContent;
 				}
@@ -1286,7 +1286,7 @@ MESSAGE;
 					$stateScript = self::filter( 'minify-js', $stateScript );
 				}
 				// Use a linebreak between module script and state script (T162719)
-				$out = $this->ensureNewline( $out ) . $stateScript;
+				$out = self::ensureNewline( $out ) . $stateScript;
 			}
 		} elseif ( $states ) {
 			$this->errors[] = 'Problematic modules: '
@@ -1301,7 +1301,7 @@ MESSAGE;
 	 * @param string $str
 	 * @return string
 	 */
-	private function ensureNewline( $str ) {
+	private static function ensureNewline( $str ) {
 		$end = substr( $str, -1 );
 		if ( $end === false || $end === '' || $end === "\n" ) {
 			return $str;
@@ -1352,7 +1352,9 @@ MESSAGE;
 			} elseif ( $context->getDebug() ) {
 				$scripts = new XmlJsCode( "function ( $, jQuery, require, module ) {\n{$scripts->value}\n}" );
 			} else {
-				$scripts = new XmlJsCode( 'function($,jQuery,require,module){' . $scripts->value . '}' );
+				$scripts = new XmlJsCode(
+					'function($,jQuery,require,module){' . self::ensureNewline( $scripts->value ) . '}'
+				);
 			}
 		} elseif ( is_array( $scripts ) && isset( $scripts['files'] ) ) {
 			$files = $scripts['files'];
@@ -1364,7 +1366,9 @@ MESSAGE;
 					if ( $context->getDebug() ) {
 						$file = new XmlJsCode( "function ( require, module ) {\n{$file['content']}\n}" );
 					} else {
-						$file = new XmlJsCode( 'function(require,module){' . $file['content'] . '}' );
+						$file = new XmlJsCode(
+							'function(require,module){' . self::ensureNewline( $file['content'] ) . '}'
+						);
 					}
 				} else {
 					$file = $file['content'];
