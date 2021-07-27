@@ -220,7 +220,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 			// The actor ID mostly comes from DB, so if we can't find an actor by ID,
 			// it's most likely due to lagged replica and not cause it doesn't actually exist.
 			// Probably we just inserted it? Try master.
-			$this->newSelectQueryBuilderForQueryFlags( self::READ_LATEST )
+			$this->newSelectQueryBuilder( self::READ_LATEST )
 				->caller( __METHOD__ )
 				->conds( [ 'actor_id' => $actorId ] )
 				->fetchUserIdentity();
@@ -240,7 +240,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 
 		return $this->cache->getActor( ActorCache::KEY_USER_NAME, $normalizedName ) ??
-			$this->newSelectQueryBuilderForQueryFlags( $queryFlags )
+			$this->newSelectQueryBuilder( $queryFlags )
 				->caller( __METHOD__ )
 				->userNames( $normalizedName )
 				->fetchUserIdentity();
@@ -259,7 +259,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		}
 
 		return $this->cache->getActor( ActorCache::KEY_USER_ID, $userId ) ??
-			$this->newSelectQueryBuilderForQueryFlags( $queryFlags )
+			$this->newSelectQueryBuilder( $queryFlags )
 				->caller( __METHOD__ )
 				->userIds( $userId )
 				->fetchUserIdentity();
@@ -717,33 +717,19 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 	/**
 	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
 	 *
-	 * @param int $queryFlags one of IDBAccessObject constants
+	 * @param IDatabase|int $dbOrQueryFlags The database connection to perform the query on,
+	 *   or one of self::READ_* constants.
 	 * @return UserSelectQueryBuilder
 	 */
-	private function newSelectQueryBuilderForQueryFlags( $queryFlags ): UserSelectQueryBuilder {
-		[ $db, $options ] = $this->getDBConnectionRefForQueryFlags( $queryFlags );
-		$queryBuilder = $this->newSelectQueryBuilder( $db );
-		$queryBuilder->options( $options );
-		return $queryBuilder;
-	}
-
-	/**
-	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
-	 *
-	 * @param IDatabase|null $db The database connection to perform the query on.
-	 *        The database must correspond to ActorStore's wiki ID.
-	 *        If not given, an appropriate database connection will acquired from the
-	 *        LoadBalancer provided to the constructor.
-	 * @return UserSelectQueryBuilder
-	 */
-	public function newSelectQueryBuilder( IDatabase $db = null ): UserSelectQueryBuilder {
-		if ( $db ) {
+	public function newSelectQueryBuilder( $dbOrQueryFlags = self::READ_NORMAL ): UserSelectQueryBuilder {
+		if ( $dbOrQueryFlags instanceof IDatabase ) {
+			[ $db, $options ] = [ $dbOrQueryFlags, [] ];
 			$this->checkDatabaseDomain( $db );
 		} else {
-			[ $db, ] = $this->getDBConnectionRefForQueryFlags( self::READ_NORMAL );
+			[ $db, $options ] = $this->getDBConnectionRefForQueryFlags( $dbOrQueryFlags );
 		}
 
-		return new UserSelectQueryBuilder( $db, $this );
+		return ( new UserSelectQueryBuilder( $db, $this ) )->options( $options );
 	}
 
 	/**
