@@ -22,9 +22,10 @@ namespace MediaWiki\Block;
 
 use CommentStoreComment;
 use Language;
-use MediaWiki\User\UserFactory;
+use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\User\UserIdentity;
 use Message;
+use TitleFormatter;
 
 /**
  * A service class for getting formatted information about a block.
@@ -34,14 +35,16 @@ use Message;
  */
 class BlockErrorFormatter {
 
-	/** @var UserFactory */
-	private $userFactory;
+	/** @var TitleFormatter */
+	private $titleFormatter;
 
 	/**
-	 * @param UserFactory $userFactory
+	 * @param TitleFormatter $titleFormatter
 	 */
-	public function __construct( UserFactory $userFactory ) {
-		$this->userFactory = $userFactory;
+	public function __construct(
+		TitleFormatter $titleFormatter
+	) {
+		$this->titleFormatter = $titleFormatter;
 	}
 
 	/**
@@ -74,7 +77,6 @@ class BlockErrorFormatter {
 	 *  - identifier: Information for looking up the block
 	 *  - targetName: The target, as a string
 	 *  - blockerName: The blocker, as a string
-	 *  - blockerId: ID of the blocker; 0 if a foreign user
 	 *  - reason: Reason for the block
 	 *  - expiry: Expiry time
 	 *  - timestamp: Time the block was created
@@ -85,7 +87,6 @@ class BlockErrorFormatter {
 			'identifier' => $block->getIdentifier(),
 			'targetName' => $block->getTargetName(),
 			'blockerName' => $blocker ? $blocker->getName() : '',
-			'blockerId' => $blocker ? $blocker->getId() : 0,
 			'reason' => $block->getReasonComment(),
 			'expiry' => $block->getExpiry(),
 			'timestamp' => $block->getTimestamp(),
@@ -139,21 +140,31 @@ class BlockErrorFormatter {
 	 * the message translation, because the blocker may not be a local user, in which
 	 * case their page cannot be linked.
 	 *
-	 * @param string $blockerName Formatted blocker name
-	 * @param int $blockerId
+	 * @param ?UserIdentity $blocker
 	 * @param Language $language
 	 * @return string Link to the blocker's page; blocker's name if not a local user
 	 */
-	private function formatBlockerLink( $blockerName, $blockerId, Language $language ) {
-		if ( $blockerId === 0 ) {
-			// Foreign user
-			return $blockerName;
+	private function formatBlockerLink( ?UserIdentity $blocker, Language $language ) {
+		if ( !$blocker ) {
+			// TODO should we say something? This is just matching the code before
+			// the refactoring in late July 2021
+			return '';
 		}
 
-		$blocker = $this->userFactory->newFromId( (int)$blockerId );
-		$blockerUserpage = $blocker->getUserPage();
-		$blockerText = $language->embedBidi( $blockerUserpage->getText() );
-		return "[[{$blockerUserpage->getPrefixedText()}|{$blockerText}]]";
+		if ( $blocker->getId() === 0 ) {
+			// Foreign user
+			// TODO what about blocks placed by IPs? Shouldn't we check based on
+			// $blocker's wiki instead? This is just matching the code before the
+			// refactoring in late July 2021.
+			return $language->embedBidi( $blocker->getName() );
+		}
+
+		$blockerUserpage = PageReferenceValue::localReference( NS_USER, $blocker->getName() );
+		$blockerText = $language->embedBidi(
+			$this->titleFormatter->getText( $blockerUserpage )
+		);
+		$prefixedText = $this->titleFormatter->getPrefixedText( $blockerUserpage );
+		return "[[{$prefixedText}|{$blockerText}]]";
 	}
 
 	/**
@@ -207,8 +218,7 @@ class BlockErrorFormatter {
 		// Add params that are specific to the standard block errors
 		$info['ip'] = $ip;
 		$info['blockerLink'] = $this->formatBlockerLink(
-			$info['blockerName'],
-			$info['blockerId'],
+			$block->getBlocker(),
 			$language
 		);
 
