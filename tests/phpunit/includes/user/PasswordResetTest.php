@@ -6,7 +6,7 @@ use MediaWiki\Block\CompositeBlock;
 use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\Config\ServiceOptions;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\StaticUserOptionsLookup;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNameUtils;
@@ -15,10 +15,15 @@ use Psr\Log\NullLogger;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
+ * TODO make this a unit test, all dependencies are injected, but DatabaseBlock::__construct()
+ * can't be used in unit tests.
+ *
  * @covers PasswordReset
  * @group Database
  */
 class PasswordResetTest extends MediaWikiIntegrationTestCase {
+	use DummyServicesTrait;
+
 	private const VALID_IP = '1.2.3.4';
 	private const VALID_EMAIL = 'foo@bar.baz';
 
@@ -251,7 +256,6 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 			return $users[ $username ] ?? false;
 		};
 
-		$mwServices = MediaWikiServices::getInstance();
 		$passwordReset = $this->getMockBuilder( PasswordReset::class )
 			->onlyMethods( [ 'getUsersByEmail', 'isAllowed' ] )
 			->setConstructorArgs( [
@@ -261,7 +265,7 @@ class PasswordResetTest extends MediaWikiIntegrationTestCase {
 				$this->createHookContainer(),
 				$this->createNoOpMock( ILoadBalancer::class ),
 				$userFactory,
-				$mwServices->getUserNameUtils(),
+				$this->getDummyUserNameUtils(),
 				$userOptionsLookup
 			] )
 			->getMock();

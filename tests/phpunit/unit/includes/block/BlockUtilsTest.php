@@ -3,10 +3,10 @@
 use MediaWiki\Block\AbstractBlock;
 use MediaWiki\Block\BlockUtils;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserNameUtils;
 use Wikimedia\TestingAccessWrapper;
 
 /**
@@ -15,18 +15,17 @@ use Wikimedia\TestingAccessWrapper;
  * @author DannyS712
  */
 class BlockUtilsTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 
 	/**
 	 * @param array $options
 	 * @param UserIdentityLookup|null $userIdentityLookup
-	 * @param UserNameUtils|null $userNameUtils
 	 *
 	 * @return BlockUtils
 	 */
 	private function getUtils(
 		array $options = [],
-		UserIdentityLookup $userIdentityLookup = null,
-		UserNameUtils $userNameUtils = null
+		UserIdentityLookup $userIdentityLookup = null
 	) {
 		$baseOptions = [
 			'BlockCIDRLimit' => [
@@ -44,15 +43,10 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 			$userIdentityLookup = $this->createMock( UserIdentityLookup::class );
 		}
 
-		if ( $userNameUtils === null ) {
-			$userNameUtils = $this->createMock( UserNameUtils::class );
-			$userNameUtils->method( 'getCanonical' )->willReturn( 'Name' );
-		}
-
 		$utils = new BlockUtils(
 			$serviceOptions,
 			$userIdentityLookup,
-			$userNameUtils
+			$this->getDummyUserNameUtils()
 		);
 		$wrapper = TestingAccessWrapper::newFromObject( $utils );
 		return $wrapper;
@@ -115,7 +109,6 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 	 * @dataProvider provideTestParseBlockTargetNonIpString
 	 * @param string $inputTarget
 	 * @param string $baseName if it was a subpage
-	 * @param string|bool $canonical
 	 * @param ?UserIdentity $userIdentityLookupResult
 	 * @param UserIdentity|string|null $outputTarget
 	 * @param ?int $targetType
@@ -123,7 +116,6 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 	public function testParseBlockTargetNonIpString(
 		string $inputTarget,
 		string $baseName,
-		$canonical,
 		?UserIdentity $userIdentityLookupResult,
 		$outputTarget,
 		?int $targetType
@@ -139,13 +131,9 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 			->method( 'getUserIdentityByName' )
 			->with( $baseName )
 			->willReturn( $userIdentityLookupResult );
-		$userNameUtils = $this->createMock( UserNameUtils::class );
-		$userNameUtils->method( 'getCanonical' )
-			->willReturn( $canonical );
 		$blockUtils = $this->getUtils(
 			[],
-			$userIdentityLookup,
-			$userNameUtils
+			$userIdentityLookup
 		);
 		$this->assertSame(
 			[ $outputTarget, $targetType ],
@@ -158,7 +146,6 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		yield 'Name returns a valid user' => [
 			'DannyS712',
 			'DannyS712',
-			'DannyS712',
 			$userIdentity,
 			$userIdentity,
 			AbstractBlock::TYPE_USER
@@ -167,16 +154,14 @@ class BlockUtilsTest extends MediaWikiUnitTestCase {
 		yield 'Auto block id' => [
 			'#123',
 			'#123',
-			false,
 			null,
 			'123',
 			AbstractBlock::TYPE_AUTO
 		];
 
 		yield 'Invalid user name, with subpage' => [
-			'SomeInvalidUserName/WithASubpage',
-			'SomeInvalidUserName',
-			false,
+			'SomeInvalid#UserName/WithASubpage',
+			'SomeInvalid#UserName',
 			null,
 			null,
 			null
