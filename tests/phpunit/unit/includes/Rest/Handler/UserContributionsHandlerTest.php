@@ -11,9 +11,9 @@ use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Revision\ContributionsLookup;
 use MediaWiki\Revision\ContributionsSegment;
 use MediaWiki\Storage\MutableRevisionRecord;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserNameUtils;
 use Message;
 use MockTitleTrait;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -23,6 +23,7 @@ use Wikimedia\Message\MessageValue;
  * @covers \MediaWiki\Rest\Handler\UserContributionsHandler
  */
 class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 	use HandlerTestTrait;
 	use MockTitleTrait;
 
@@ -129,18 +130,9 @@ class UserContributionsHandlerTest extends \MediaWikiUnitTestCase {
 			$contributionsLookup = $this->newContributionsLookup();
 		}
 
-		$mockUserNameUtils = $this->createNoOpMock( UserNameUtils::class,
-			[ 'isIP' ]
-		);
-
-		$mockUserNameUtils->method( 'isIP' )
-			->willReturnCallback( static function ( $name ) {
-				return $name === '127.0.0.1';
-			} );
-
 		return new UserContributionsHandler(
 			$contributionsLookup,
-			$mockUserNameUtils
+			$this->getDummyUserNameUtils()
 		);
 	}
 

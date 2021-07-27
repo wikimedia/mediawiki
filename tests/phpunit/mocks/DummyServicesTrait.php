@@ -33,14 +33,18 @@ use MediaWiki\Interwiki\InterwikiLookup;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserNameUtils;
 use MediaWikiTitleCodec;
 use NamespaceInfo;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\NullLogger;
 use ReadOnlyMode;
 use TitleFormatter;
 use TitleParser;
 use WatchedItem;
 use WatchedItemStore;
+use Wikimedia\Message\ITextFormatter;
+use Wikimedia\Message\MessageValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -346,6 +350,71 @@ trait DummyServicesTrait {
 		return new ReadOnlyMode(
 			new ConfiguredReadOnlyMode( $startingReason, null ),
 			$loadBalancer
+		);
+	}
+
+	/**
+	 * @param array $options Valid keys are any of the configuration options passed, plus
+	 *   'logger' (defaults to a NullLogger), 'validInterwikis' (defaults to 'interwiki'),
+	 *   and 'textFormatter' (defaults to a mock where the 'format' method (the only one
+	 *   used by UserNameUtils) just returns the key of the MessageValue provided)
+	 * @return UserNameUtils
+	 */
+	private function getDummyUserNameUtils( array $options = [] ) {
+		$baseOptions = [
+			'MaxNameChars' => 255,
+			'ReservedUsernames' => [
+				'MediaWiki default'
+			],
+			'InvalidUsernameCharacters' => '@:',
+		];
+		$serviceOptions = new ServiceOptions(
+			UserNameUtils::CONSTRUCTOR_OPTIONS,
+			$options,
+			$baseOptions // fallback for options not in $options
+		);
+
+		// The only method we call on the Language object is ucfirst, avoid needing to
+		// create a mock in each test. Note that the actual Language::ucfirst is a bit
+		// more complicated than this, but since the tests are all in English the plain
+		// php `ucfirst` should be enough.
+		$contentLang = $this->createNoOpMock( Language::class, [ 'ucfirst' ] );
+		$contentLang->method( 'ucfirst' )
+			->willReturnCallback( static function ( $str ) {
+				return ucfirst( $str );
+			} );
+
+		$logger = $options['logger'] ?? new NullLogger();
+
+		$textFormatter = $options['textFormatter'] ?? false;
+		if ( !$textFormatter ) {
+			$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
+			$textFormatter->method( 'format' )
+				->willReturnCallback(
+					static function ( MessageValue $message ) {
+						return $message->getKey();
+					}
+				);
+		}
+
+		// The TitleParser from DummyServicesTrait::getDummyTitleParser is really a
+		// MediaWikiTitleCodec object, and by passing `throwMockExceptions` we replace
+		// the actual creation of `MalformedTitleException`s with mocks - see
+		// MediaWikiTitleCodec::overrideCreateMalformedTitleExceptionCallback()
+		// The UserNameUtils code doesn't care about the message in the exception,
+		// just whether it is thrown.
+		$titleParser = $this->getDummyTitleParser( [
+			'validInterwikis' => ( $options['validInterwikis'] ?? [ 'interwiki' ] ),
+			'throwMockExceptions' => true,
+		] );
+
+		return new UserNameUtils(
+			$serviceOptions,
+			$contentLang,
+			$logger,
+			$titleParser,
+			$textFormatter,
+			$this->createHookContainer()
 		);
 	}
 

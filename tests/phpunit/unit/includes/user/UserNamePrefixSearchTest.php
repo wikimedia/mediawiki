@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\User;
 
 use InvalidArgumentException;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserNamePrefixSearch;
 use MediaWiki\User\UserNameUtils;
@@ -16,6 +17,7 @@ use Wikimedia\Rdbms\LoadBalancer;
  * @author DannyS712
  */
 class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
 
 	/**
 	 * @dataProvider provideTestSearch
@@ -26,11 +28,7 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 	 * @param array $result
 	 */
 	public function testSearch( int $audienceType, $prefix, int $limit, int $offset, array $result ) {
-		$userNameUtils = $this->createMock( UserNameUtils::class );
-		$userNameUtils->expects( $this->once() )
-			->method( 'getCanonical' )
-			->with( $prefix )
-			->willReturn( $prefix ); // not worrying about normalization
+		$userNameUtils = $this->getDummyUserNameUtils();
 
 		if ( $audienceType === 1 ) {
 			// 'public' audience
@@ -120,14 +118,14 @@ class UserNamePrefixSearchTest extends MediaWikiUnitTestCase {
 			],
 			'user without hideuser rights' => [
 				2,
-				'prefix',
+				'Prefix',
 				10,
 				5,
 				[ 'public result goes here, since user cannot see anything hidden' ]
 			],
 			'user with hideuser rights' => [
 				3,
-				'anotherPrefix',
+				'AnotherPrefix',
 				15,
 				2,
 				[
