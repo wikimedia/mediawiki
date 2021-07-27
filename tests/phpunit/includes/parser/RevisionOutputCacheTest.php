@@ -60,11 +60,6 @@ class RevisionOutputCacheTest extends MediaWikiIntegrationTestCase {
 		$this->revision->setTimestamp( MWTimestamp::convert( TS_MW, $this->time ) );
 	}
 
-	protected function tearDown(): void {
-		MWTimestamp::setFakeTime( null );
-		parent::tearDown();
-	}
-
 	/**
 	 * @param BagOStuff|null $storage
 	 * @param LoggerInterface|null $logger
