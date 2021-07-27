@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Site\MediaWikiPageNameNormalizer;
 
 /**
  * Represents a single site.
@@ -392,12 +393,15 @@ class Site implements Serializable {
 	 * @see Site::normalizePageName
 	 *
 	 * @since 1.21
+	 * @since 1.37 Added $followRedirect
 	 *
 	 * @param string $pageName
+	 * @param int $followRedirect either MediaWikiPageNameNormalizer::FOLLOW_REDIRECT or
+	 * MediaWikiPageNameNormalizer::NOFOLLOW_REDIRECT
 	 *
 	 * @return string|false
 	 */
-	public function normalizePageName( $pageName ) {
+	public function normalizePageName( $pageName, $followRedirect = MediaWikiPageNameNormalizer::FOLLOW_REDIRECT ) {
 		return $pageName;
 	}
 
