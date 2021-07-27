@@ -1066,6 +1066,7 @@ return [
 			),
 			$services->getUserEditTracker(),
 			$services->getUserGroupManager(),
+			$services->getTitleFormatter(),
 			ChangeTags::getSoftwareTags()
 		);
 	},

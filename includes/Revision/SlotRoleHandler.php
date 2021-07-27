@@ -164,11 +164,11 @@ class SlotRoleHandler {
 	 *       are not guaranteed to comply with the return value.
 	 *
 	 * @param string $model
-	 * @param LinkTarget $page
+	 * @param PageIdentity $page
 	 *
 	 * @return bool
 	 */
-	public function isAllowedModel( $model, LinkTarget $page ) {
+	public function isAllowedModel( $model, PageIdentity $page ) {
 		return ( $model === $this->contentModel );
 	}
 

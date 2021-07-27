@@ -14,7 +14,7 @@ use Wikimedia\Rdbms\LoadBalancer;
 use WikiPage;
 
 /**
- * @covers MediaWiki\Storage\PageUpdaterFactory
+ * @covers \MediaWiki\Storage\PageUpdaterFactory
  */
 class PageUpdaterFactoryTest extends MediaWikiUnitTestCase {
 	use MockServiceDependenciesTrait;
