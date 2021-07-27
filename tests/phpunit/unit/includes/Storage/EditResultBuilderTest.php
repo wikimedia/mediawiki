@@ -11,7 +11,6 @@ use MediaWiki\Storage\EditResultBuilder;
 use MediaWiki\Storage\PageUpdateException;
 use MediaWikiUnitTestCase;
 use MockTitleTrait;
-use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * @covers \MediaWiki\Storage\EditResultBuilder
@@ -366,14 +365,9 @@ class EditResultBuilderTest extends MediaWikiUnitTestCase {
 			[ 'ManualRevertSearchRadius' => $manualRevertSearchRadius ]
 		);
 
-		// none of these tests should trigger manual revert detection
-		// see also EditResultBuilderDbTest in integration tests directory
-		$loadBalancer = $this->createNoOpMock( ILoadBalancer::class );
-
 		return new EditResultBuilder(
 			$store,
 			$changeTags,
-			$loadBalancer,
 			$options
 		);
 	}
