@@ -51,11 +51,6 @@ class ParserCacheTest extends MediaWikiIntegrationTestCase {
 		MWTimestamp::setFakeTime( $this->time );
 	}
 
-	protected function tearDown(): void {
-		MWTimestamp::setFakeTime( null );
-		parent::tearDown();
-	}
-
 	/**
 	 * @param array $overrides
 	 * @return PageRecord
