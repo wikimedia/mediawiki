@@ -84,6 +84,7 @@ class Names {
 		'bbc' => 'Batak Toba', # Batak Toba (falls back to bbc-latn)
 		'bbc-latn' => 'Batak Toba', # Batak Toba
 		'bcc' => 'جهلسری بلوچی', # Southern Balochi
+		'bci' => 'wawle', # Baoulé
 		'bcl' => 'Bikol Central', # Bikol: Central Bicolano language
 		'be' => 'беларуская', # Belarusian normative
 		'be-tarask' => "беларуская (тарашкевіца)", # Belarusian in Taraskievica orthography
