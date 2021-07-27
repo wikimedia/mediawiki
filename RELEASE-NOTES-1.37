@@ -360,6 +360,8 @@ because of Phabricator reports.
 * Language::$mLangObjCache, deprecated since 1.35, was removed.
 * SpecialMute::getTarget(), unused outside of the SpecialMute class, was
   made private.
+* The Skin::setupSkinUserCss method deprecated in 1.32, was removed. Please use
+  skin registration instead.
 * …
 
 === Deprecations in 1.37 ===

@@ -485,32 +485,6 @@ abstract class Skin extends ContextSource {
 	}
 
 	/**
-	 * Call the subclass's setupSkinUserCss and throw a deprecation warning
-	 * if required.
-	 *
-	 * @param OutputPage $out
-	 * @internal only for use in Skin or inside OutputPage and ApiParse where support for
-	 *  setupSkinUserCss is required.
-	 */
-	final public function doSetupSkinUserCss( OutputPage $out ) {
-		if ( MWDebug::detectDeprecatedOverride( $this, __CLASS__, 'setupSkinUserCss', '1.32' ) ) {
-			$this->setupSkinUserCss( $out );
-		}
-	}
-
-	/**
-	 * Hook point for adding style modules to OutputPage.
-	 *
-	 * @deprecated since 1.32 Use getDefaultModules() instead. If using for backwards
-	 *  compatability, the caller is required to throw deprecation warnings if this
-	 *  changes the number of style modules on OutputPage.
-	 * @param OutputPage $out Legacy parameter, identical to $this->getOutput()
-	 */
-	public function setupSkinUserCss( OutputPage $out ) {
-		wfDeprecated( __METHOD__, '1.32' );
-	}
-
-	/**
 	 * TODO: document
 	 * @param Title $title
 	 * @return string
