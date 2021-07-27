@@ -26,6 +26,7 @@ use GenderCache;
 use Interwiki;
 use InvalidArgumentException;
 use Language;
+use MalformedTitleException;
 use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Interwiki\InterwikiLookup;
@@ -184,16 +185,28 @@ trait DummyServicesTrait {
 	/**
 	 * Note: you should probably use getDummyTitleFormatter or getDummyTitleParser,
 	 * unless you actually need both services, in which case it doesn't make sense
-	 * to get two different objects when they are implemented together
+	 * to get two different objects when they are implemented together.
+	 *
+	 * Note that MediaWikiTitleCodec can throw MalformedTitleException which cannot be
+	 * created in unit tests - you can change this by providing a callback to
+	 * MediaWikiTitleCodec::overrideCreateMalformedTitleExceptionCallback() to use to
+	 * create the exception that can return a mock. If you use the option 'throwMockExceptions'
+	 * here, the callback will be replaced with one that throws a generic mock
+	 * MalformedTitleException, i.e. without taking into account the actual message or
+	 * parameters provided. This is useful for cases where only the fact that an exception
+	 * is thrown, rather than the specific message in the exception, matters, like for
+	 * detecting invalid titles.
 	 *
 	 * @param array $options Supported keys:
 	 *    - validInterwikis: array of interwiki info to pass to getDummyInterwikiLookup
+	 *    - throwMockExceptions: boolean, see above
 	 *
 	 * @return MediaWikiTitleCodec
 	 */
 	private function getDummyMediaWikiTitleCodec( array $options = [] ): MediaWikiTitleCodec {
 		$baseConfig = [
 			'validInterwikis' => [],
+			'throwMockExceptions' => false,
 		];
 		$config = $options + $baseConfig;
 
@@ -250,6 +263,16 @@ trait DummyServicesTrait {
 			$interwikiLookup,
 			$namespaceInfo
 		);
+
+		if ( $config['throwMockExceptions'] ) {
+			// Throw mock `MalformedTitleException`s, doesn't take into account the
+			// specifics of the parameters provided
+			$titleCodec->overrideCreateMalformedTitleExceptionCallback(
+				function ( $errorMessage, $titleText = null, $errorMessageParameters = [] ) {
+					return $this->createMock( MalformedTitleException::class );
+				}
+			);
+		}
 
 		return $titleCodec;
 	}
