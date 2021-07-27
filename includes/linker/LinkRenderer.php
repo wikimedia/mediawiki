@@ -424,6 +424,10 @@ class LinkRenderer {
 	public function getLinkClasses( $target ) {
 		Assert::parameterType( [ LinkTarget::class, PageReference::class ], $target, '$target' );
 		$target = $this->castToLinkTarget( $target );
+		// Don't call LinkCache if the target is "non-proper"
+		if ( $target->isExternal() || $target->getText() === '' || $target->getNamespace() < 0 ) {
+			return '';
+		}
 		// Make sure the target is in the cache
 		$id = $this->linkCache->addLinkObj( $target );
 		if ( $id == 0 ) {
