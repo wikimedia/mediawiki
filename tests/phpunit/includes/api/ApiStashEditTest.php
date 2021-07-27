@@ -318,6 +318,8 @@ class ApiStashEditTest extends ApiTestCase {
 
 	public function testCheckCache() {
 		$user = $this->getMutableTestUser()->getUser();
+		$permissionManager = $this->getServiceContainer()->getPermissionManager();
+		$userGroupManager = $this->getServiceContainer()->getUserGroupManager();
 
 		$this->doStash( [], $user );
 
@@ -330,17 +332,17 @@ class ApiStashEditTest extends ApiTestCase {
 		);
 
 		// Nor does the original one if they become a bot
-		$user->addGroup( 'bot' );
-		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
+		$userGroupManager->addUserToGroup( $user, 'bot' );
+		$permissionManager->invalidateUsersRightsCache();
 		$this->assertFalse(
 			$this->doCheckCache( $user ),
 			"We assume bots don't have cache entries"
 		);
 
 		// But other groups are okay
-		$user->removeGroup( 'bot' );
-		$user->addGroup( 'sysop' );
-		MediaWikiServices::getInstance()->getPermissionManager()->invalidateUsersRightsCache();
+		$userGroupManager->removeUserFromGroup( $user, 'bot' );
+		$userGroupManager->addUserToGroup( $user, 'sysop' );
+		$permissionManager->invalidateUsersRightsCache();
 		$this->assertInstanceOf( stdClass::class, $this->doCheckCache( $user ) );
 	}
 

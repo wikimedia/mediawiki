@@ -30,10 +30,6 @@ class SpecialPreferencesTest extends MediaWikiIntegrationTestCase {
 		$user->method( 'isAnon' )
 			->willReturn( false );
 
-		# Yeah foreach requires an array, not NULL =(
-		$user->method( 'getEffectiveGroups' )
-			->willReturn( [] );
-
 		# The mocked user has a long nickname
 		$user->method( 'getOption' )
 			->will( $this->returnValueMap( [

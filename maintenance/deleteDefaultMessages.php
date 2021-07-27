@@ -42,12 +42,14 @@ class DeleteDefaultMessages extends Maintenance {
 
 	public function execute() {
 		global $wgUser;
+		$services = MediaWikiServices::getInstance();
 
 		$this->output( "Checking existence of old default messages..." );
 		$dbr = $this->getDB( DB_REPLICA );
 
+		$userFactory = $services->getUserFactory();
 		$actorQuery = ActorMigration::newMigration()
-			->getWhere( $dbr, 'rev_user', User::newFromName( 'MediaWiki default' ) );
+			->getWhere( $dbr, 'rev_user', $userFactory->newFromName( 'MediaWiki default' ) );
 		$res = $dbr->select(
 			[ 'page', 'revision' ] + $actorQuery['tables'],
 			[ 'page_namespace', 'page_title' ],
@@ -82,14 +84,14 @@ class DeleteDefaultMessages extends Maintenance {
 		if ( !$user ) {
 			$this->fatalError( "Invalid username" );
 		}
-		$user->addGroup( 'bot' );
+		$userGroupManager = $services->getUserGroupManager();
+		$userGroupManager->addUserToGroup( $user, 'bot' );
 		$wgUser = $user;
 
 		// Handle deletion
 		$this->output( "\n...deleting old default messages (this may take a long time!)...", 'msg' );
 		$dbw = $this->getDB( DB_PRIMARY );
 
-		$services = MediaWikiServices::getInstance();
 		$lbFactory = $services->getDBLoadBalancerFactory();
 		$wikiPageFactory = $services->getWikiPageFactory();
 
