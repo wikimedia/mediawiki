@@ -2,8 +2,8 @@
 
 namespace MediaWiki\ParamValidator\TypeDef;
 
-use MediaWiki\Interwiki\ClassicInterwikiLookup;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
@@ -14,11 +14,10 @@ use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
- * @TODO convert to a unit test, all dependencies are injected
- *
  * @covers MediaWiki\ParamValidator\TypeDef\UserDef
  */
 class UserDefTest extends TypeDefTestCase {
+	use DummyServicesTrait;
 
 	protected function getInstance( SimpleCallbacks $callbacks, array $options ) {
 		// The UserIdentityLookup that we have knows about 5 users, with ids
@@ -48,48 +47,30 @@ class UserDefTest extends TypeDefTestCase {
 				return null;
 			}
 		);
+
+		// DummyServicesTrait will call $this->createHookContainer() if we didn't pass
+		// one, but that method is only available from MediaWikiTestCaseTrait - just
+		// create a simple mock that doesn't do anything, because we
+		// don't care about hooks here
+		$hookContainer = $this->createMock( HookContainer::class );
+		$hookContainer->method( 'run' )->willReturn( true );
+		// We can throw mock exceptions because the UserDef code doesn't care about
+		// the messages in the exceptions, just if they are thrown
+		$titleParser = $this->getDummyTitleParser( [
+			'validInterwikis' => [ 'interwiki' ],
+			'throwMockExceptions' => true,
+			'hookContainer' => $hookContainer, // for the NamespaceInfo
+		] );
+		$userNameUtils = $this->getDummyUserNameUtils( [
+			'titleParser' => $titleParser, // don't create a new one
+			'hookContainer' => $hookContainer,
+		] );
 		return new UserDef(
 			$callbacks,
 			$userIdentityLookup,
-			MediaWikiServices::getInstance()->getTitleParser(),
-			MediaWikiServices::getInstance()->getUserNameUtils()
+			$titleParser,
+			$userNameUtils
 		);
-	}
-
-	private $wgInterwikiCache = null;
-
-	protected function setUp(): void {
-		global $wgInterwikiCache;
-
-		parent::setUp();
-
-		// We don't have MediaWikiIntegrationTestCase's methods available, so we have to do it ourself.
-		$this->wgInterwikiCache = $wgInterwikiCache;
-		$wgInterwikiCache = ClassicInterwikiLookup::buildCdbHash( [
-			[
-				'iw_prefix' => 'interwiki',
-				'iw_url' => 'http://example.com/',
-				'iw_local' => 0,
-				'iw_trans' => 0,
-			],
-		] );
-		// UserNameUtils holds TitleParser (aka _MediaWikiTitleCodec) holds InterwikiLookup
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserNameUtils' );
-	}
-
-	protected function tearDown(): void {
-		global $wgInterwikiCache;
-
-		$wgInterwikiCache = $this->wgInterwikiCache;
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'InterwikiLookup' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( '_MediaWikiTitleCodec' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'TitleParser' );
-		MediaWikiServices::getInstance()->resetServiceForTesting( 'UserNameUtils' );
-
-		parent::tearDown();
 	}
 
 	public function provideValidate() {
