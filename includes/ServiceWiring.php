@@ -222,7 +222,7 @@ return [
 
 	'BlockErrorFormatter' => static function ( MediaWikiServices $services ): BlockErrorFormatter {
 		return new BlockErrorFormatter(
-			$services->getUserFactory()
+			$services->getTitleFormatter()
 		);
 	},
 
