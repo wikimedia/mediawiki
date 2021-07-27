@@ -1461,10 +1461,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 *
 	 * @return string[] Array of groups the user has been promoted to.
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::addUserToAutopromoteOnceGroups
+	 * @deprecated since 1.35 Use UserGroupManager::addUserToAutopromoteOnceGroups.
+	 * Hard deprecated since 1.37.
 	 * @see $wgAutopromoteOnce
 	 */
 	public function addAutopromoteOnceGroups( $event ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->addUserToAutopromoteOnceGroups( $this, $event );
@@ -1769,7 +1771,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 		} else {
 			// Check for group-specific limits
 			// If more than one group applies, use the highest allowance (if higher than the default)
-			foreach ( $this->getGroups() as $group ) {
+			$userGroups = MediaWikiServices::getInstance()->getUserGroupManager()->getUserGroups( $this );
+			foreach ( $userGroups as $group ) {
 				if ( isset( $limits[$group] ) ) {
 					if ( $userLimit === false
 						|| $limits[$group][0] / $limits[$group][1] > $userLimit[0] / $userLimit[1]
@@ -2850,12 +2853,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * This includes all explicit groups, plus 'user' if logged in,
 	 * '*' for all accounts, and autopromoted groups
 	 *
-	 * @deprecated since 1.35 Use UserGroupManager::getUserEffectiveGroups instead
+	 * @deprecated since 1.35 Use UserGroupManager::getUserEffectiveGroups instead.
+	 * Hard deprecated since 1.37.
 	 *
 	 * @param bool $recache Whether to avoid the cache
 	 * @return string[] internal group names
 	 */
 	public function getEffectiveGroups( $recache = false ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserEffectiveGroups( $this, $this->queryFlagsUsed, $recache );
@@ -2867,11 +2872,13 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * and autopromoted groups
 	 *
 	 * @deprecated since 1.35 Use UserGroupManager::getUserImplicitGroups instead.
+	 * Hard deprecated since 1.37.
 	 *
 	 * @param bool $recache Whether to avoid the cache
 	 * @return string[] internal group names
 	 */
 	public function getAutomaticGroups( $recache = false ) {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserImplicitGroups( $this, $this->queryFlagsUsed, $recache );
@@ -2885,10 +2892,12 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * The function will not return groups the user had belonged to before MW 1.17
 	 *
 	 * @deprecated since 1.35 Use UserGroupManager::getUserFormerGroups instead.
+	 * Hard deprecated since 1.37.
 	 *
 	 * @return array Names of the groups the user has belonged to.
 	 */
 	public function getFormerGroups() {
+		wfDeprecated( __METHOD__, '1.35' );
 		return MediaWikiServices::getInstance()
 			->getUserGroupManager()
 			->getUserFormerGroups( $this, $this->queryFlagsUsed );
@@ -2975,7 +2984,8 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	 * @since 1.28
 	 */
 	public function isBot() {
-		if ( in_array( 'bot', $this->getGroups() ) && $this->isAllowed( 'bot' ) ) {
+		$userGroupManager = MediaWikiServices::getInstance()->getUserGroupManager();
+		if ( in_array( 'bot', $userGroupManager->getUserGroups( $this ) ) && $this->isAllowed( 'bot' ) ) {
 			return true;
 		}
 

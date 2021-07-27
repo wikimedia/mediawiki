@@ -1829,6 +1829,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getAutomaticGroups
 	 */
 	public function testGetAutomaticGroups() {
+		$this->hideDeprecated( 'User::getAutomaticGroups' );
 		$this->assertArrayEquals( [
 			'*',
 			'user',
@@ -1876,6 +1877,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getEffectiveGroups
 	 */
 	public function testGetEffectiveGroups() {
+		$this->hideDeprecated( 'User::getEffectiveGroups' );
 		$user = $this->getTestUser()->getUser();
 		$this->assertArrayEquals( [
 			'*',
@@ -1913,6 +1915,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getFormerGroups
 	 */
 	public function testGetFormerGroups() {
+		$this->hideDeprecated( 'User::getFormerGroups' );
 		$user = $this->getTestUser( [ 'a', 'b', 'c' ] )->getUser();
 		$this->assertArrayEquals( [], $user->getFormerGroups() );
 		$user->addGroup( 'test' );

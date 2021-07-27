@@ -7,8 +7,8 @@ use MediaWiki\Rest\LocalizedHttpException;
 use MediaWiki\Rest\RequestData;
 use MediaWiki\Rest\RequestInterface;
 use MediaWiki\Revision\ContributionsLookup;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserIdentityValue;
-use MediaWiki\User\UserNameUtils;
 use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\Message\MessageValue;
 
@@ -16,7 +16,7 @@ use Wikimedia\Message\MessageValue;
  * @covers \MediaWiki\Rest\Handler\ContributionsCountHandler
  */
 class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
-
+	use DummyServicesTrait;
 	use HandlerTestTrait;
 
 	private function newHandler( $numContributions = 5 ) {
@@ -24,20 +24,11 @@ class ContributionsCountHandlerTest extends \MediaWikiUnitTestCase {
 		$mockContributionsLookup = $this->createNoOpMock( ContributionsLookup::class,
 			[ 'getContributionCount' ]
 		);
-
 		$mockContributionsLookup->method( 'getContributionCount' )->willReturn( $numContributions );
-		$mockUserNameUtils = $this->createNoOpMock( UserNameUtils::class,
-			[ 'isIP' ]
-		);
-
-		$mockUserNameUtils->method( 'isIP' )
-			->willReturnCallback( static function ( $name ) {
-				return $name === '127.0.0.1';
-			} );
 
 		return new ContributionsCountHandler(
 			$mockContributionsLookup,
-			$mockUserNameUtils
+			$this->getDummyUserNameUtils()
 		);
 	}
 

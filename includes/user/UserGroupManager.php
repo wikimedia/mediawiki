@@ -279,7 +279,7 @@ class UserGroupManager implements IDBAccessObject {
 			$this->setCache( $userKey, self::CACHE_IMPLICIT, $groups, $queryFlags );
 			if ( $recache ) {
 				// Assure data consistency with rights/groups,
-				// as getEffectiveGroups() depends on this function
+				// as getUserEffectiveGroups() depends on this function
 				$this->clearUserCacheForKind( $user, self::CACHE_EFFECTIVE );
 			}
 		}
@@ -331,7 +331,8 @@ class UserGroupManager implements IDBAccessObject {
 	/**
 	 * Returns the groups the user has belonged to.
 	 *
-	 * The user may still belong to the returned groups. Compare with getGroups().
+	 * The user may still belong to the returned groups. Compare with
+	 * getUserGroups().
 	 *
 	 * The function will not return groups the user had belonged to before MW 1.17
 	 *
@@ -739,7 +740,7 @@ class UserGroupManager implements IDBAccessObject {
 		if ( !$user->isRegistered() ) {
 			throw new InvalidArgumentException(
 				'UserGroupManager::addUserToGroup() needs a positive user ID. ' .
-				'Perhaps addGroup() was called before the user was added to the database.'
+				'Perhaps addUserToGroup() was called before the user was added to the database.'
 			);
 		}
 

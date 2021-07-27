@@ -1,73 +1,17 @@
 <?php
 
-use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\UserNameUtils;
-use Psr\Log\LoggerInterface;
 use Psr\Log\LogLevel;
-use Psr\Log\NullLogger;
 use Wikimedia\Message\ITextFormatter;
 use Wikimedia\Message\MessageValue;
 
 /**
- * TODO convert to a unit test, all dependencies are injected
- *
  * @covers MediaWiki\User\UserNameUtils
  * @author DannyS712
  */
-class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
+class UserNameUtilsTest extends MediaWikiUnitTestCase {
 	use DummyServicesTrait;
-
-	private function getUtils(
-		array $options = [],
-		LoggerInterface $logger = null,
-		ITextFormatter $textFormatter = null
-	) {
-		$baseOptions = [
-			'MaxNameChars' => 255,
-			'ReservedUsernames' => [
-				'MediaWiki default'
-			],
-			'InvalidUsernameCharacters' => '@:'
-		];
-		$config = $options + $baseOptions;
-		$serviceOptions = new ServiceOptions( UserNameUtils::CONSTRUCTOR_OPTIONS, $config );
-
-		// The only method we call on the Language object is ucfirst, avoid needing to
-		// create a mock in each test. Note that the actual Language::ucfirst is a bit
-		// more complicated than this, but since the tests are all in English the plain
-		// php `ucfirst` should be enough
-		$contentLang = $this->createNoOpMock( Language::class, [ 'ucfirst' ] );
-		$contentLang->method( 'ucfirst' )
-			->willReturnCallback( static function ( $str ) {
-				return ucfirst( $str );
-			} );
-
-		if ( $logger === null ) {
-			$logger = new NullLogger();
-		}
-
-		// DummyServicesTrait::getDummyTitleParser
-		$titleParser = $this->getDummyTitleParser( [
-			'validInterwikis' => [ 'interwiki' ],
-		] );
-
-		if ( $textFormatter === null ) {
-			$textFormatter = $this->getMockForAbstractClass( ITextFormatter::class );
-		}
-
-		$hookContainer = $this->createHookContainer();
-
-		$utils = new UserNameUtils(
-			$serviceOptions,
-			$contentLang,
-			$logger,
-			$titleParser,
-			$textFormatter,
-			$hookContainer
-		);
-		return $utils;
-	}
 
 	/**
 	 * @dataProvider provideIsValid
@@ -76,7 +20,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	public function testIsValid( string $name, bool $result ) {
 		$this->assertSame(
 			$result,
-			$this->getUtils()->isValid( $name )
+			$this->getDummyUserNameUtils()->isValid( $name )
 		);
 	}
 
@@ -114,16 +58,13 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			->with( MessageValue::new( 'reserved-user' ) )
 			->willReturn( 'reserved-user' );
 
-		$utils = $this->getUtils(
-			[
-				'ReservedUsernames' => [
-					'MediaWiki default',
-					'msg:reserved-user'
-				],
+		$utils = $this->getDummyUserNameUtils( [
+			'ReservedUsernames' => [
+				'MediaWiki default',
+				'msg:reserved-user'
 			],
-			null,
-			$textFormatter
-		);
+			'textFormatter' => $textFormatter,
+		] );
 		$this->assertSame(
 			$result,
 			$utils->isUsable( $name )
@@ -151,10 +92,9 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 			);
 			return $message;
 		} );
-		$utils = $this->getUtils(
-			[],
-			$logger
-		);
+		$utils = $this->getDummyUserNameUtils( [
+			'logger' => $logger,
+		] );
 
 		$longUserName = str_repeat( 'q', 1000 );
 		$this->assertFalse(
@@ -187,7 +127,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::getCanonical
 	 */
 	public function testGetCanonical( string $name, array $expectedArray ) {
-		$utils = $this->getUtils();
+		$utils = $this->getDummyUserNameUtils();
 		foreach ( $expectedArray as $validate => $expected ) {
 			$this->assertSame(
 				$expected,
@@ -269,8 +209,8 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testGetCanonical_interwiki() {
 		// 'interwiki' is a valid interwiki prefix, per configuration of the
-		// title formatter in getUtils()
-		$utils = $this->getUtils();
+		// title formatter in DummyServicesTrait::getDummyUserNameUtils()
+		$utils = $this->getDummyUserNameUtils();
 
 		$name = 'interwiki:Username';
 		$this->assertFalse(
@@ -306,7 +246,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	public function testGetCanonical_bad() {
 		$this->expectException( InvalidArgumentException::class );
 		$this->expectExceptionMessage( 'Invalid parameter value for validation' );
-		$this->getUtils()->getCanonical( 'ValidName', 'InvalidValidationValue' );
+		$this->getDummyUserNameUtils()->getCanonical( 'ValidName', 'InvalidValidationValue' );
 	}
 
 	/**
@@ -314,7 +254,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::isIP
 	 */
 	public function testIsIP( string $value, bool $result ) {
-		$utils = $this->getUtils();
+		$utils = $this->getDummyUserNameUtils();
 		$this->assertSame(
 			$result,
 			$utils->isIP( $value )
@@ -345,7 +285,7 @@ class UserNameUtilsTest extends MediaWikiIntegrationTestCase {
 	 * @covers MediaWiki\User\UserNameUtils::isValidIPRange
 	 */
 	public function testIsValidIPRange( $value, $result ) {
-		$utils = $this->getUtils();
+		$utils = $this->getDummyUserNameUtils();
 		$this->assertSame(
 			$result,
 			$utils->isValidIPRange( $value )

@@ -22,6 +22,7 @@
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\User\UserGroupManager;
+use MediaWiki\User\UserIdentityValue;
 use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
@@ -261,7 +262,8 @@ class ActiveUsersPager extends UsersPager {
 
 		$list = [];
 
-		$ugms = self::getGroupMemberships( intval( $row->user_id ), $this->userGroupCache );
+		$userIdentity = new UserIdentityValue( intval( $row->user_id ), $userName );
+		$ugms = $this->getGroupMemberships( $userIdentity );
 		foreach ( $ugms as $ugm ) {
 			$list[] = $this->buildGroupLink( $ugm, $userName );
 		}
