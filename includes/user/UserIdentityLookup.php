@@ -60,9 +60,9 @@ interface UserIdentityLookup extends IDBAccessObject {
 	/**
 	 * Returns a specialized SelectQueryBuilder for querying the UserIdentity objects.
 	 *
-	 * @param IDatabase|null $db The database connection to perform the query on.
-	 *        If not given, a connection to the default database will be used.
+	 * @param IDatabase|int $dbOrQueryFlags The database connection to perform the query on,
+	 *   or one of the self::READ_* constants.
 	 * @return UserSelectQueryBuilder
 	 */
-	public function newSelectQueryBuilder( IDatabase $db = null ): UserSelectQueryBuilder;
+	public function newSelectQueryBuilder( $dbOrQueryFlags = self::READ_NORMAL ): UserSelectQueryBuilder;
 }

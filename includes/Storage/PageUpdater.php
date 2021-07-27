@@ -36,7 +36,7 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionAccessException;
 use MediaWiki\Revision\RevisionRecord;
@@ -51,6 +51,7 @@ use RecentChange;
 use RuntimeException;
 use Status;
 use Title;
+use TitleFormatter;
 use User;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\DBConnRef;
@@ -138,6 +139,9 @@ class PageUpdater {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/**
 	 * @var bool see $wgUseAutomaticEditSummaries
 	 * @see $wgUseAutomaticEditSummaries
@@ -205,6 +209,7 @@ class PageUpdater {
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
 	 * @param UserGroupManager $userGroupManager
+	 * @param TitleFormatter $titleFormatter
 	 * @param ServiceOptions $serviceOptions
 	 * @param string[] $softwareTags Array of currently enabled software change tags. Can be
 	 *        obtained from ChangeTags::getSoftwareTags()
@@ -220,6 +225,7 @@ class PageUpdater {
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
 		UserGroupManager $userGroupManager,
+		TitleFormatter $titleFormatter,
 		ServiceOptions $serviceOptions,
 		array $softwareTags
 	) {
@@ -238,6 +244,7 @@ class PageUpdater {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userEditTracker = $userEditTracker;
 		$this->userGroupManager = $userGroupManager;
+		$this->titleFormatter = $titleFormatter;
 		$this->softwareTags = $softwareTags;
 
 		$this->slotsUpdate = new RevisionSlotsUpdate();
@@ -320,11 +327,11 @@ class PageUpdater {
 	}
 
 	/**
-	 * @return LinkTarget
+	 * Get the page we're currently updating.
+	 * @return PageIdentity
 	 */
-	private function getLinkTarget() {
-		// NOTE: eventually, we won't get a WikiPage passed into the constructor any more
-		return $this->wikiPage->getTitle();
+	private function getPage(): PageIdentity {
+		return $this->wikiPage;
 	}
 
 	/**
@@ -721,7 +728,7 @@ class PageUpdater {
 		}
 
 		// Low-level sanity check
-		if ( $this->getLinkTarget()->getText() === '' ) {
+		if ( $this->getPage()->getDBkey() === '' ) {
 			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
 		}
 
@@ -745,12 +752,12 @@ class PageUpdater {
 			$slot = $this->slotsUpdate->getModifiedSlot( $role );
 			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
 
-			if ( !$roleHandler->isAllowedModel( $slot->getModel(), $this->getTitle() ) ) {
+			if ( !$roleHandler->isAllowedModel( $slot->getModel(), $this->getPage() ) ) {
 				$contentHandler = $this->contentHandlerFactory
 					->getContentHandler( $slot->getModel() );
 				$this->status = Status::newFatal( 'content-not-allowed-here',
 					ContentHandler::getLocalizedName( $contentHandler->getModelID() ),
-					$this->getTitle()->getPrefixedText(),
+					$this->titleFormatter->getPrefixedText( $this->getPage() ),
 					wfMessage( $roleHandler->getNameMessageKey() )
 					// TODO: defer message lookup to caller
 				);
@@ -863,7 +870,7 @@ class PageUpdater {
 		}
 
 		// Low-level sanity check
-		if ( $this->getLinkTarget()->getText() === '' ) {
+		if ( $this->getPage()->getDBkey() === '' ) {
 			throw new RuntimeException( 'Something is trying to edit an article with an empty title' );
 		}
 
@@ -900,13 +907,13 @@ class PageUpdater {
 			$slot = $this->slotsUpdate->getModifiedSlot( $role );
 			$roleHandler = $this->slotRoleRegistry->getRoleHandler( $role );
 
-			if ( !$roleHandler->isAllowedModel( $slot->getModel(), $this->getTitle() ) ) {
+			if ( !$roleHandler->isAllowedModel( $slot->getModel(), $this->getPage() ) ) {
 				$contentHandler = $this->contentHandlerFactory
 					->getContentHandler( $slot->getModel() );
 				$this->status = Status::newFatal(
 					'content-not-allowed-here',
 					ContentHandler::getLocalizedName( $contentHandler->getModelID() ),
-					$this->getTitle()->getPrefixedText(),
+					$this->titleFormatter->getPrefixedText( $this->getPage() ),
 					wfMessage( $roleHandler->getNameMessageKey() )
 				// TODO: defer message lookup to caller
 				);
@@ -1255,7 +1262,7 @@ class PageUpdater {
 				// Add RC row to the DB
 				RecentChange::notifyEdit(
 					$now,
-					$this->getTitle(),
+					$this->getPage(),
 					$newRevisionRecord->isMinor(),
 					$user,
 					$summary->text, // TODO: pass object when that becomes possible
@@ -1386,7 +1393,7 @@ class PageUpdater {
 			// Add RC row to the DB
 			RecentChange::notifyNew(
 				$now,
-				$this->getTitle(),
+				$this->getPage(),
 				$newRevisionRecord->isMinor(),
 				$user,
 				$summary->text, // TODO: pass object when that becomes possible
@@ -1406,7 +1413,7 @@ class PageUpdater {
 			// @TODO: Do we want a 'recreate' action?
 			$logEntry = new ManualLogEntry( 'create', 'create' );
 			$logEntry->setPerformer( $user );
-			$logEntry->setTarget( $this->getTitle() );
+			$logEntry->setTarget( $this->getPage() );
 			$logEntry->setComment( $summary->text );
 			$logEntry->setTimestamp( $now );
 			$logEntry->setAssociatedRevId( $newRevisionRecord->getId() );
@@ -1507,14 +1514,14 @@ class PageUpdater {
 	 * @return string[] Slots required for this page update, as a list of role names.
 	 */
 	private function getRequiredSlotRoles() {
-		return $this->slotRoleRegistry->getRequiredRoles( $this->getTitle() );
+		return $this->slotRoleRegistry->getRequiredRoles( $this->getPage() );
 	}
 
 	/**
 	 * @return string[] Slots allowed for this page update, as a list of role names.
 	 */
 	private function getAllowedSlotRoles() {
-		return $this->slotRoleRegistry->getAllowedRoles( $this->getTitle() );
+		return $this->slotRoleRegistry->getAllowedRoles( $this->getPage() );
 	}
 
 	private function ensureRoleAllowed( $role ) {

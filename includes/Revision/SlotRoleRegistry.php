@@ -24,7 +24,7 @@ namespace MediaWiki\Revision;
 
 use InvalidArgumentException;
 use LogicException;
-use MediaWiki\Linker\LinkTarget;
+use MediaWiki\Page\PageIdentity;
 use MediaWiki\Storage\NameTableStore;
 use Wikimedia\Assert\Assert;
 
@@ -164,11 +164,11 @@ class SlotRoleRegistry {
 	 *
 	 * All implementations of this method are required to return at least all "required" roles.
 	 *
-	 * @param LinkTarget $title
+	 * @param PageIdentity $page
 	 *
 	 * @return string[]
 	 */
-	public function getAllowedRoles( LinkTarget $title ) {
+	public function getAllowedRoles( PageIdentity $page ) {
 		// TODO: allow this to be overwritten per namespace (or page type)
 		// TODO: decide how to control which slots are offered for editing per default (T209927)
 		return $this->getDefinedRoles();
@@ -182,11 +182,11 @@ class SlotRoleRegistry {
 	 * All required roles are implicitly considered "allowed", so any roles
 	 * returned by this method will also be returned by getAllowedRoles().
 	 *
-	 * @param LinkTarget $title
+	 * @param PageIdentity $page
 	 *
 	 * @return string[]
 	 */
-	public function getRequiredRoles( LinkTarget $title ) {
+	public function getRequiredRoles( PageIdentity $page ) {
 		// TODO: allow this to be overwritten per namespace (or page type)
 		return [ 'main' ];
 	}

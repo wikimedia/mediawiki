@@ -37,6 +37,7 @@ use MediaWiki\User\UserNameUtils;
 use MessageCache;
 use ParserCache;
 use Psr\Log\LoggerInterface;
+use TitleFormatter;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\ILBFactory;
 use WikiPage;
@@ -112,6 +113,9 @@ class PageUpdaterFactory {
 	/** @var UserGroupManager */
 	private $userGroupManager;
 
+	/** @var TitleFormatter */
+	private $titleFormatter;
+
 	/** @var string[] */
 	private $softwareTags;
 
@@ -132,6 +136,7 @@ class PageUpdaterFactory {
 	 * @param ServiceOptions $options
 	 * @param UserEditTracker $userEditTracker
 	 * @param UserGroupManager $userGroupManager
+	 * @param TitleFormatter $titleFormatter
 	 * @param string[] $softwareTags
 	 */
 	public function __construct(
@@ -151,6 +156,7 @@ class PageUpdaterFactory {
 		ServiceOptions $options,
 		UserEditTracker $userEditTracker,
 		UserGroupManager $userGroupManager,
+		TitleFormatter $titleFormatter,
 		array $softwareTags
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -171,6 +177,7 @@ class PageUpdaterFactory {
 		$this->options = $options;
 		$this->userEditTracker = $userEditTracker;
 		$this->userGroupManager = $userGroupManager;
+		$this->titleFormatter = $titleFormatter;
 		$this->softwareTags = $softwareTags;
 	}
 
@@ -233,6 +240,7 @@ class PageUpdaterFactory {
 			$this->hookContainer,
 			$this->userEditTracker,
 			$this->userGroupManager,
+			$this->titleFormatter,
 			new ServiceOptions(
 				PageUpdater::CONSTRUCTOR_OPTIONS,
 				$this->options

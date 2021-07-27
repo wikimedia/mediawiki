@@ -876,4 +876,10 @@ class ActorStoreTest extends ActorStoreTestBase {
 		$queryBuilder = $store->newSelectQueryBuilder( $this->db );
 		$this->assertInstanceOf( UserSelectQueryBuilder::class, $queryBuilder );
 	}
+
+	public function testNewSelectQueryBuilderWithQueryFlags() {
+		$store = $this->getStore();
+		$queryBuilder = $store->newSelectQueryBuilder( ActorStore::READ_NORMAL );
+		$this->assertInstanceOf( UserSelectQueryBuilder::class, $queryBuilder );
+	}
 }
