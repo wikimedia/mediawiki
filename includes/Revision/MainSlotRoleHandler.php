@@ -84,13 +84,13 @@ class MainSlotRoleHandler extends SlotRoleHandler {
 
 	/**
 	 * @param string $model
-	 * @param LinkTarget $page
+	 * @param PageIdentity $page
 	 *
 	 * @return bool
 	 * @throws MWUnknownContentModelException
 	 */
-	public function isAllowedModel( $model, LinkTarget $page ) {
-		$title = $this->titleFactory->newFromLinkTarget( $page );
+	public function isAllowedModel( $model, PageIdentity $page ) {
+		$title = $this->titleFactory->castFromPageIdentity( $page );
 		$handler = $this->contentHandlerFactory->getContentHandler( $model );
 
 		return $handler->canBeUsedOn( $title );
