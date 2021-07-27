@@ -573,6 +573,7 @@ because of Phabricator reports.
   - UserLoadOptions: use LoadUserOptions instead.
   - UserSaveOptions: use SaveUserOptions instead.
   - UserResetAllOptions: no replacement was provided, the hook is not used.
+* Title::isNamespaceProtected, deprecated in 1.34, is now hard-deprecated.
 * …
 
 === Other changes in 1.37 ===
