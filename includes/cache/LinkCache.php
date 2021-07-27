@@ -155,7 +155,7 @@ class LinkCache implements LoggerAwareInterface {
 		if ( $page instanceof PageIdentity && !$page->canExist() ) {
 			// Non-proper page, perhaps a special page or interwiki link or relative section link.
 			$this->logger->warning(
-				'non-proper page reference',
+				'non-proper page reference: {page-reference}',
 				[ 'page-reference' => $this->titleFormatter->getFullText( $page ) ]
 			);
 			return null;
@@ -167,7 +167,7 @@ class LinkCache implements LoggerAwareInterface {
 			// Interwiki link or relative section link. These do not have a page ID, so they
 			// can neither be "good" nor "bad" in the sense of this class.
 			$this->logger->warning(
-				'link to non-proper page',
+				'link to non-proper page: {page-link}',
 				[ 'page-link' => $this->titleFormatter->getFullText( $page ) ]
 			);
 			return null;
