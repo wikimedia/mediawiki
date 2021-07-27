@@ -16,6 +16,8 @@ use Wikimedia\ParamValidator\TypeDef\TypeDefTestCase;
 use Wikimedia\ParamValidator\ValidationException;
 
 /**
+ * @TODO convert to a unit test, all dependencies are injected
+ *
  * @covers MediaWiki\ParamValidator\TypeDef\UserDef
  */
 class UserDefTest extends TypeDefTestCase {
@@ -51,7 +53,7 @@ class UserDefTest extends TypeDefTestCase {
 		return new UserDef(
 			$callbacks,
 			$userIdentityLookup,
-			MediaWikiServices::getInstance()->getTitleFactory(),
+			MediaWikiServices::getInstance()->getTitleParser(),
 			MediaWikiServices::getInstance()->getUserNameUtils()
 		);
 	}

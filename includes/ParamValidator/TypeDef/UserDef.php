@@ -3,12 +3,13 @@
 namespace MediaWiki\ParamValidator\TypeDef;
 
 use ExternalUserNames;
+use MalformedTitleException;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
 use RequestContext;
-use TitleFactory;
+use TitleParser;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
 use Wikimedia\ParamValidator\Callbacks;
@@ -57,8 +58,8 @@ class UserDef extends TypeDef {
 	/** @var UserIdentityLookup */
 	private $userIdentityLookup;
 
-	/** @var TitleFactory */
-	private $titleFactory;
+	/** @var TitleParser */
+	private $titleParser;
 
 	/** @var UserNameUtils */
 	private $userNameUtils;
@@ -66,18 +67,18 @@ class UserDef extends TypeDef {
 	/**
 	 * @param Callbacks $callbacks
 	 * @param UserIdentityLookup $userIdentityLookup
-	 * @param TitleFactory $titleFactory
+	 * @param TitleParser $titleParser
 	 * @param UserNameUtils $userNameUtils
 	 */
 	public function __construct(
 		Callbacks $callbacks,
 		UserIdentityLookup $userIdentityLookup,
-		TitleFactory $titleFactory,
+		TitleParser $titleParser,
 		UserNameUtils $userNameUtils
 	) {
 		parent::__construct( $callbacks );
 		$this->userIdentityLookup = $userIdentityLookup;
-		$this->titleFactory = $titleFactory;
+		$this->titleParser = $titleParser;
 		$this->userNameUtils = $userNameUtils;
 	}
 
@@ -229,9 +230,17 @@ class UserDef extends TypeDef {
 			return [ '', null ];
 		}
 
-		$t = $this->titleFactory->newFromText( $value );
+		try {
+			$t = $this->titleParser->parseTitle( $value );
+		} catch ( MalformedTitleException $_ ) {
+			$t = null;
+		}
 		if ( !$t || $t->getNamespace() !== NS_USER || $t->isExternal() ) { // likely
-			$t = $this->titleFactory->newFromText( "User:$value" );
+			try {
+				$t = $this->titleParser->parseTitle( "User:$value" );
+			} catch ( MalformedTitleException $_ ) {
+				$t = null;
+			}
 		}
 		if ( !$t || $t->getNamespace() !== NS_USER || $t->isExternal() ) {
 			// If it wasn't a valid User-namespace title, fail.
