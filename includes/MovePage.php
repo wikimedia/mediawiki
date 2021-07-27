@@ -31,7 +31,6 @@ use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\Revision\MutableRevisionRecord;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
@@ -1027,52 +1026,12 @@ class MovePage {
 		if ( $redirectContent ) {
 			$redirectArticle = $this->wikiPageFactory->newFromTitle( $this->oldTitle );
 			$redirectArticle->loadFromRow( false, WikiPage::READ_LOCKING ); // T48397
-			$newid = $redirectArticle->insertOn( $dbw );
-			if ( $newid ) { // sanity
-				$this->oldTitle->resetArticleID( $newid );
-				$redirectRevRecord = new MutableRevisionRecord( $this->oldTitle );
-				$redirectRevRecord->setPageId( $newid )
-					->setUser( $user )
-					->setComment( $commentObj )
-					->setContent( SlotRecord::MAIN, $redirectContent )
-					->setTimestamp( MWTimestamp::now( TS_MW ) );
-
-				$inserted = $this->revisionStore->insertRevisionOn(
-					$redirectRevRecord,
-					$dbw
-				);
-				$redirectRevId = $inserted->getId();
-				$redirectArticle->updateRevisionOn( $dbw, $inserted, 0 );
-
-				$fakeTags = [];
-				$this->hookRunner->onRevisionFromEditComplete(
-					$redirectArticle,
-					$inserted,
-					false,
-					$user,
-					$fakeTags
-				);
-
-				// Clear all caches to make sure no stale information is used
-				// when parsing the newly created redirect. Without this, moves would fail
-				// under certain conditions when Lua core runs on the new page.
-				// It is not entirely clear why this is needed, we just found that
-				// it fixes the issue at hand (T279832).
-				Title::clearCaches();
-
-				$redirectArticle->doEditUpdates(
-					$inserted,
-					$user,
-					[ 'created' => true ]
-				);
-
-				// make a copy because of log entry below
-				$redirectTags = $changeTags;
-				if ( in_array( 'mw-new-redirect', ChangeTags::getSoftwareTags() ) ) {
-					$redirectTags[] = 'mw-new-redirect';
-				}
-				ChangeTags::addTags( $redirectTags, null, $redirectRevId, null );
-			}
+			$redirectArticle->newPageUpdater( $user )
+				->setContent( SlotRecord::MAIN, $redirectContent )
+				->addTags( $changeTags )
+				->addSoftwareTag( 'mw-new-redirect' )
+				->setUsePageCreationLog( false )
+				->saveRevision( $commentObj );
 		}
 
 		# Log the move
