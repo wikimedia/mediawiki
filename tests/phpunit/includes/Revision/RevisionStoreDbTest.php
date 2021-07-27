@@ -3290,4 +3290,26 @@ class RevisionStoreDbTest extends MediaWikiIntegrationTestCase {
 			ContentHandler::getContentText( $result->getValue()[$revRecord1->getId()]
 				->getContent( SlotRecord::MAIN ) ) );
 	}
+
+	/** @covers \MediaWiki\Revision\RevisionStore::findIdenticalRevision */
+	public function testFindIdenticalRevision() {
+		// Prepare a page with 3 revisions
+		$page = $this->getExistingTestPage( __METHOD__ );
+		$status = $this->editPage( $page, 'Content 1' );
+		$this->assertTrue( $status->isGood(), 'Sanity: edit 1' );
+		$originalRev = $status->value[ 'revision-record' ];
+
+		$this->assertTrue( $this->editPage( $page, 'Content 2' )->isGood(), 'Sanity: edit 2' );
+
+		$status = $this->editPage( $page, 'Content 1' );
+		$this->assertTrue( $status->isGood(), 'Sanity: edit 3' );
+		$latestRev = $status->value[ 'revision-record' ];
+
+		$store = $this->getServiceContainer()->getRevisionStore();
+
+		$this->assertNull( $store->findIdenticalRevision( $latestRev, 0 ) );
+		$this->assertNull( $store->findIdenticalRevision( $latestRev, 1 ) );
+		$foundRev = $store->findIdenticalRevision( $latestRev, 1000 );
+		$this->assertSame( $originalRev->getId(), $foundRev->getId() );
+	}
 }

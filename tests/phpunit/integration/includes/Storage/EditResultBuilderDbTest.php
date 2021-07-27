@@ -183,7 +183,6 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideManualReverts
 	 * @covers \MediaWiki\Storage\EditResultBuilder::detectManualRevert
-	 * @covers \MediaWiki\Storage\EditResultBuilder::findIdenticalRevision
 	 *
 	 * @param string $content
 	 * @param string $expectedOriginalRevKey
@@ -295,7 +294,6 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideNotManualReverts
 	 * @covers \MediaWiki\Storage\EditResultBuilder::detectManualRevert
-	 * @covers \MediaWiki\Storage\EditResultBuilder::findIdenticalRevision
 	 *
 	 * @param string $content
 	 * @param int $searchRadius
@@ -348,7 +346,6 @@ class EditResultBuilderDbTest extends MediaWikiIntegrationTestCase {
 		return new EditResultBuilder(
 			$services->getRevisionStore(),
 			ChangeTags::listSoftwareDefinedTags(),
-			$services->getDBLoadBalancer(),
 			$options
 		);
 	}

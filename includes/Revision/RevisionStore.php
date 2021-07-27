@@ -3275,6 +3275,53 @@ class RevisionStore
 		}
 	}
 
+	/**
+	 * Tries to find a revision identical to $revision in $searchLimit most recent revisions
+	 * of this page. The comparison is based on SHA1s of these revisions.
+	 *
+	 * @since 1.37
+	 *
+	 * @param RevisionRecord $revision which revision to compare to
+	 * @param int $searchLimit How many recent revisions should be checked
+	 *
+	 * @return RevisionRecord|null
+	 */
+	public function findIdenticalRevision(
+		RevisionRecord $revision,
+		int $searchLimit
+	): ?RevisionRecord {
+		$revision->assertWiki( $this->wikiId );
+		$db = $this->getDBConnectionRef( DB_REPLICA );
+		$revQuery = $this->getQueryInfo();
+		$subquery = $db->buildSelectSubquery(
+			$revQuery['tables'],
+			$revQuery['fields'],
+			[ 'rev_page' => $revision->getPageId( $this->wikiId ) ],
+			__METHOD__,
+			[
+				'ORDER BY' => [
+					'rev_timestamp DESC',
+					// for cases where there are multiple revs with same timestamp
+					'rev_id DESC'
+				],
+				'LIMIT' => $searchLimit,
+				// skip the most recent edit, we can't revert to it anyway
+				'OFFSET' => 1
+			],
+			$revQuery['joins']
+		);
+
+		// selectRow effectively uses LIMIT 1 clause, returning only the first result
+		$revisionRow = $db->selectRow(
+			[ 'recent_revs' => $subquery ],
+			'*',
+			[ 'rev_sha1' => $revision->getSha1() ],
+			__METHOD__
+		);
+
+		return $revisionRow ? $this->newRevisionFromRow( $revisionRow ) : null;
+	}
+
 	// TODO: move relevant methods from Title here, e.g. isBigDeletion, etc.
 }
 
