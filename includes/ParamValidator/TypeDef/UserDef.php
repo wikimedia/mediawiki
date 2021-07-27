@@ -8,7 +8,6 @@ use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
 use MediaWiki\User\UserNameUtils;
-use RequestContext;
 use TitleParser;
 use Wikimedia\IPUtils;
 use Wikimedia\Message\MessageValue;
@@ -164,26 +163,19 @@ class UserDef extends TypeDef {
 	private function processUser( string $value ): array {
 		// A user ID?
 		if ( preg_match( '/^#(\d+)$/D', $value, $m ) ) {
-			// We match the behavior of trying to create a User object
-			// based on the id. The name is:
-			// * the IP address of the current request, if the id is 0
-			// * the name of the relevant user in the database, if one exists
-			// * the name 'Unknown user' if it does not exist
+			// This used to use the IP address of the current request if the
+			// id was 0, to match the behavior of User objects, but was switched
+			// to "Unknown user" because the former behavior is likely unexpected.
+			// If the id corresponds to a user in the database, use that user, otherwise
+			// return a UserIdentityValue with id 0 (regardless of the input id) and
+			// the name "Unknown user"
 			$userId = (int)$m[1];
-			if ( $userId === 0 ) {
-				// TODO we probably shouldn't be falling back to the request IP,
-				// but if we really want to we shouldn't be doing it by accessing
-				// the global state like this
-				$currentIP = RequestContext::getMain()->getRequest()->getIP();
-				return [
-					'id',
-					new UserIdentityValue( 0, IPUtils::sanitizeIP( $currentIP ) )
-				];
-			}
-			// Check the database.
-			$userIdentity = $this->userIdentityLookup->getUserIdentityByUserId( $userId );
-			if ( $userIdentity ) {
-				return [ 'id', $userIdentity ];
+			if ( $userId !== 0 ) {
+				// Check the database.
+				$userIdentity = $this->userIdentityLookup->getUserIdentityByUserId( $userId );
+				if ( $userIdentity ) {
+					return [ 'id', $userIdentity ];
+				}
 			}
 			// Fall back to "Unknown user"
 			return [

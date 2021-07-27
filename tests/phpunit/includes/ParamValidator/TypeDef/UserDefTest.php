@@ -7,8 +7,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserIdentityValue;
-use RequestContext;
-use WebRequest;
 use Wikimedia\Message\DataMessageValue;
 use Wikimedia\ParamValidator\ParamValidator;
 use Wikimedia\ParamValidator\SimpleCallbacks;
@@ -413,35 +411,12 @@ class UserDefTest extends TypeDefTestCase {
 		$this->assertSame( $expectName, $actual->getName() );
 	}
 
-	public function testProcessUser_id0() {
-		// User created by id, when that id is 0, falls back to context ip
-		// Use try-finally so that we don't interfere with other tests
-		$oldRequest = RequestContext::getMain()->getRequest();
-		try {
-			$mockRequest = $this->createMock( WebRequest::class );
-			$mockRequest->method( 'getIP' )->willReturn( '200.1.2.3' );
-			RequestContext::getMain()->setRequest( $mockRequest );
-			$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
-			$res = $userDef->validate(
-				'', // $name, unused here
-				'#0',
-				[
-					UserDef::PARAM_ALLOWED_USER_TYPES => [ 'id' ],
-					UserDef::PARAM_RETURN_OBJECT => true,
-				], // $settings
-				[] // $options, unused here
-			);
-			$this->assertUserIdentity( $res, 0, '200.1.2.3' );
-		} finally {
-			RequestContext::getMain()->setRequest( $oldRequest );
-		}
-	}
-
-	public function testProcessUser_missingId() {
+	/**
+	 * @dataProvider provideMissingId
+	 */
+	public function testProcessUser_missingId( $missingId ) {
 		// User created by id, does not exist, falls back to "Unknown user"
 		// See our mock UserIdentityLookup for which ids and names exist
-		$missingId = 6;
-
 		$userDef = $this->getInstance( new SimpleCallbacks( [] ), [] );
 		$res = $userDef->validate(
 			'', // $name, unused here
@@ -455,6 +430,11 @@ class UserDefTest extends TypeDefTestCase {
 		// Even though we created with $missingId, the resulting UserIdentity has
 		// an id of 0 because the user does not exist
 		$this->assertUserIdentity( $res, 0, "Unknown user" );
+	}
+
+	public function provideMissingId() {
+		yield "0 no longer matches request ip" => [ 0 ];
+		yield "Id with no user" => [ 6 ];
 	}
 
 	public function testProcessUser_validId() {
