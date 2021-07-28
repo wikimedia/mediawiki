@@ -2194,7 +2194,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$revision = $this->getRevisionRecord();
 		if ( !$revision || !$revision->getId() ) {
 			LoggerFactory::getInstance( 'wikipage' )->info(
-				__METHOD__ . 'called with ' . ( $revision ? 'unsaved' : 'no' ) . ' revision'
+				__METHOD__ . ' called with ' . ( $revision ? 'unsaved' : 'no' ) . ' revision'
 			);
 			return;
 		}
@@ -2239,7 +2239,7 @@ class WikiPage implements Page, IDBAccessObject, PageRecord {
 		$revision = $this->getRevisionRecord();
 		if ( !$revision || !$revision->getId() ) {
 			LoggerFactory::getInstance( 'wikipage' )->info(
-				__METHOD__ . 'called with ' . ( $revision ? 'unsaved' : 'no' ) . ' revision'
+				__METHOD__ . ' called with ' . ( $revision ? 'unsaved' : 'no' ) . ' revision'
 			);
 			return;
 		}

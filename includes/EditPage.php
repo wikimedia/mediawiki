@@ -2931,7 +2931,7 @@ class EditPage implements IEditObject {
 		) );
 
 		if ( is_callable( $formCallback ) ) {
-			wfWarn( 'The $formCallback parameter to ' . __METHOD__ . 'is deprecated' );
+			wfWarn( 'The $formCallback parameter to ' . __METHOD__ . ' is deprecated' );
 			call_user_func_array( $formCallback, [ &$out ] );
 		}
 
