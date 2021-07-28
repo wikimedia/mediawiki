@@ -576,7 +576,7 @@ class IPTC {
 				$c = 'CSN_369103';
 				break;
 			default:
-				wfDebugLog( 'iptc', __METHOD__ . 'Unknown charset in iptc 1:90: ' . bin2hex( $tag ) );
+				wfDebugLog( 'iptc', __METHOD__ . ': Unknown charset in iptc 1:90: ' . bin2hex( $tag ) );
 				// at this point just give up and refuse to parse iptc?
 				$c = false;
 		}

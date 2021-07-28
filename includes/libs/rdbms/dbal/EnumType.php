@@ -62,7 +62,7 @@ class EnumType extends Type {
 	public function makeEnumTypeSql( $column, $platform ) {
 		if ( $platform->getName() !== 'postgresql' ) {
 			throw new \InvalidArgumentException(
-				__METHOD__ . 'can only be called on Postgres platform'
+				__METHOD__ . ' can only be called on Postgres platform'
 			);
 		}
 
