@@ -363,6 +363,7 @@ because of Phabricator reports.
 * The Skin::setupSkinUserCss method deprecated in 1.32, was removed. Please use
   skin registration instead.
 * ParserCache::getKey and ::getEtag, deprecated since 1.36, were removed.
+* BaseTemplateToolboxHook, deprecated since 1.35, was removed.
 * …
 
 === Deprecations in 1.37 ===

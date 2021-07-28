@@ -69,8 +69,6 @@ abstract class BaseTemplate extends QuickTemplate {
 			$toolbox = array_merge( $toolbox, $this->data['sidebar']['TOOLBOX'] ?? [] );
 		}
 
-		// T253416: Deprecated hook
-		$this->getHookRunner()->onBaseTemplateToolbox( $this, $toolbox );
 		return $toolbox;
 	}
 
@@ -162,7 +160,7 @@ abstract class BaseTemplate extends QuickTemplate {
 		if ( isset( $boxes['TOOLBOX'] ) ) {
 			ob_start();
 			// We pass an extra 'true' at the end so extensions using BaseTemplateToolbox
-			// can abort and avoid outputting double toolbox links
+			// (removed 1.37) can abort and avoid outputting double toolbox links
 			$this->getHookRunner()->onSkinTemplateToolboxEnd( $this, true );
 			$hookContents = ob_get_contents();
 			ob_end_clean();

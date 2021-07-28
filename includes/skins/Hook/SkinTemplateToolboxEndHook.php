@@ -19,10 +19,7 @@ interface SkinTemplateToolboxEndHook {
 	 * @since 1.35
 	 *
 	 * @param QuickTemplate $sk QuickTemplate based skin template running the hook
-	 * @param bool $dummy Called when SkinTemplateToolboxEnd is used from a BaseTemplate skin,
-	 *   extensions that add support for BaseTemplateToolbox should watch for this
-	 *   dummy parameter with "$dummy=false" in their code and return without echoing
-	 *   any HTML to avoid creating duplicate toolbox items.
+	 * @param bool $dummy Called when SkinTemplateToolboxEnd is used from a BaseTemplate skin.
 	 * @return bool|void True or no return value to continue or false to abort
 	 */
 	public function onSkinTemplateToolboxEnd( $sk, $dummy );
