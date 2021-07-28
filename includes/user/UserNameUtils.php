@@ -187,19 +187,19 @@ class UserNameUtils implements UserRigorOptions {
 		if ( !$this->reservedUsernames ) {
 			$reservedUsernames = $this->options->get( 'ReservedUsernames' );
 			$this->hookRunner->onUserGetReservedNames( $reservedUsernames );
+			foreach ( $reservedUsernames as &$reserved ) {
+				if ( substr( $reserved, 0, 4 ) === 'msg:' ) {
+					$reserved = $this->textFormatter->format(
+						MessageValue::new( substr( $reserved, 4 ) )
+					);
+				}
+			}
 			$this->reservedUsernames = $reservedUsernames;
 		}
 
 		// Certain names may be reserved for batch processes.
-		foreach ( $this->reservedUsernames as $reserved ) {
-			if ( substr( $reserved, 0, 4 ) === 'msg:' ) {
-				$reserved = $this->textFormatter->format(
-					MessageValue::new( substr( $reserved, 4 ) )
-				);
-			}
-			if ( $reserved === $name ) {
-				return false;
-			}
+		if ( in_array( $name, $this->reservedUsernames, true ) ) {
+			return false;
 		}
 		return true;
 	}
