@@ -3,6 +3,7 @@
 namespace MediaWiki\Tests\Rest\Handler;
 
 use LocalFile;
+use LocalRepo;
 use MediaWiki\Page\PageReference;
 use MediaWiki\User\UserIdentityValue;
 use MockTitleTrait;
@@ -33,7 +34,7 @@ trait MediaTestTrait {
 		/** @var MockObject|LocalFile $file */
 		$file = $this->createNoOpMock(
 			LocalFile::class,
-			[ 'getTitle', 'exists', 'getDescriptionUrl' ]
+			[ 'getTitle', 'exists', 'getDescriptionUrl', 'load' ]
 		);
 		$file->method( 'getTitle' )->willReturn( $title );
 		$file->method( 'exists' )->willReturn( false );
@@ -59,7 +60,7 @@ trait MediaTestTrait {
 			LocalFile::class,
 			[ 'getTitle', 'getDescriptionUrl', 'exists', 'userCan', 'getUser', 'getUploader', 'getTimestamp',
 				'getMediaType', 'getSize', 'getHeight', 'getWidth', 'getDisplayWidthHeight',
-				'getLength', 'getUrl', 'allowInlineDisplay', 'transform', 'getSha1' ]
+				'getLength', 'getUrl', 'allowInlineDisplay', 'transform', 'getSha1', 'load', 'getMimeType' ]
 		);
 		$file->method( 'getTitle' )->willReturn( $title );
 		$file->method( 'exists' )->willReturn( true );
@@ -84,6 +85,7 @@ trait MediaTestTrait {
 		$file->method( 'getDescriptionUrl' )->willReturn(
 			'https://example.com/wiki/' . $title->getPrefixedDBkey()
 		);
+		$file->method( 'getMimeType' )->willReturn( 'image/jpeg' );
 
 		$thumbnail = new ThumbnailImage(
 			$file,
@@ -97,17 +99,16 @@ trait MediaTestTrait {
 	}
 
 	/**
+	 * @param array $existingFileDBKeys
 	 * @return MockObject|RepoGroup
 	 */
-	private function makeMockRepoGroup() {
-		$findFile = function ( $title ) {
+	private function makeMockRepoGroup( array $existingFileDBKeys ) {
+		$findFile = function ( $title ) use ( $existingFileDBKeys ) {
 			$title = $title instanceof PageReference
 				? $this->makeMockTitle( $title->getDBkey(), [ 'namespace' => $title->getNamespace() ] )
 				: $this->makeMockTitle( 'File:' . $title, [ 'namespace' => NS_FILE ] );
 
-			if ( preg_match( '/missing/i', $title->getText() )
-				|| $title->getNamespace() !== NS_FILE
-			) {
+			if ( !in_array( $title->getDBkey(), $existingFileDBKeys ) || $title->getNamespace() !== NS_FILE ) {
 				return $this->makeMissingMockFile( $title );
 			} else {
 				return $this->makeMockFile( $title );
@@ -123,10 +124,14 @@ trait MediaTestTrait {
 			return $files;
 		};
 
+		$mockLocalRepo = $this->createMock( LocalRepo::class );
+		$mockLocalRepo->method( 'newFile' )->willReturnCallback( $findFile );
+
 		/** @var RepoGroup|MockObject $repoGroup */
-		$repoGroup = $this->createNoOpMock( RepoGroup::class, [ 'findFiles', 'findFile' ] );
+		$repoGroup = $this->createNoOpMock( RepoGroup::class, [ 'findFiles', 'findFile', 'getLocalRepo' ] );
 		$repoGroup->method( 'findFile' )->willReturnCallback( $findFile );
 		$repoGroup->method( 'findFiles' )->willReturnCallback( $findFiles );
+		$repoGroup->method( 'getLocalRepo' )->willReturn( $mockLocalRepo );
 
 		return $repoGroup;
 	}

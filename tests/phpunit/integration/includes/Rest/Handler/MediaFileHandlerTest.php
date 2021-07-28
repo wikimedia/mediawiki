@@ -23,7 +23,7 @@ class MediaFileHandlerTest extends \MediaWikiLangTestCase {
 
 	private function newHandler() {
 		return new MediaFileHandler(
-			$this->makeMockRepoGroup(),
+			$this->makeMockRepoGroup( [ __CLASS__ . '.jpg' ] ),
 			$this->getServiceContainer()->getPageStore()
 		);
 	}
