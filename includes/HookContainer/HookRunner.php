@@ -103,7 +103,6 @@ class HookRunner implements
 	\MediaWiki\Hook\ArticleUpdateBeforeRedirectHook,
 	\MediaWiki\Hook\BadImageHook,
 	\MediaWiki\Hook\BaseTemplateAfterPortletHook,
-	\MediaWiki\Hook\BaseTemplateToolboxHook,
 	\MediaWiki\Hook\BeforeInitializeHook,
 	\MediaWiki\Hook\BeforePageDisplayHook,
 	\MediaWiki\Hook\BeforePageRedirectHook,
@@ -918,13 +917,6 @@ class HookRunner implements
 		return $this->container->run(
 			'BaseTemplateAfterPortlet',
 			[ $template, $portlet, &$html ]
-		);
-	}
-
-	public function onBaseTemplateToolbox( $sk, &$toolbox ) {
-		return $this->container->run(
-			'BaseTemplateToolbox',
-			[ $sk, &$toolbox ]
 		);
 	}
 

@@ -871,7 +871,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\AncientPagesQueryHook' => __DIR__ . '/includes/specials/Hook/AncientPagesQueryHook.php',
 	'MediaWiki\\Hook\\ArticleRevisionVisibilitySetHook' => __DIR__ . '/includes/revisiondelete/Hook/ArticleRevisionVisibilitySetHook.php',
 	'MediaWiki\\Hook\\BaseTemplateAfterPortletHook' => __DIR__ . '/includes/skins/Hook/BaseTemplateAfterPortletHook.php',
-	'MediaWiki\\Hook\\BaseTemplateToolboxHook' => __DIR__ . '/includes/skins/Hook/BaseTemplateToolboxHook.php',
 	'MediaWiki\\Hook\\BeforeParserFetchFileAndTitleHook' => __DIR__ . '/includes/parser/Hook/BeforeParserFetchFileAndTitleHook.php',
 	'MediaWiki\\Hook\\BeforeParserFetchTemplateAndtitleHook' => __DIR__ . '/includes/parser/Hook/BeforeParserFetchTemplateAndtitleHook.php',
 	'MediaWiki\\Hook\\BeforeParserFetchTemplateRevisionRecordHook' => __DIR__ . '/includes/parser/Hook/BeforeParserFetchTemplateRevisionRecordHook.php',
