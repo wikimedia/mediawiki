@@ -377,7 +377,7 @@ class CoreParserFunctions {
 		if ( $user ) {
 			$gender = $genderCache->getGenderOf( $user, __METHOD__ );
 		} elseif ( $username === '' && $parser->getOptions()->getInterfaceMessage() ) {
-			$gender = $genderCache->getGenderOf( $parser->getOptions()->getUser(), __METHOD__ );
+			$gender = $genderCache->getGenderOf( $parser->getOptions()->getUserIdentity(), __METHOD__ );
 		}
 		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
 		return $ret;

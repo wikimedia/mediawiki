@@ -365,7 +365,7 @@ class ParserMethodsTest extends MediaWikiLangTestCase {
 		$this->assertStringContainsString( $expectedInHtml, $html, 'In HTML' );
 
 		if ( $expectedInPst !== null ) {
-			$pst = $parser->preSaveTransform( $text, $title, $po->getUser(), $po );
+			$pst = $parser->preSaveTransform( $text, $title, $po->getUserIdentity(), $po );
 			$this->assertStringContainsString( $expectedInPst, $pst, 'After Pre-Safe Transform' );
 		}
 	}
