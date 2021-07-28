@@ -19,15 +19,13 @@ class MediaLinksHandlerTest extends \MediaWikiIntegrationTestCase {
 	use MediaTestTrait;
 
 	public function addDBDataOnce() {
-		// NOTE: MediaTestTrait::makeMockRepoGroup() treats files with "missing" in the
-		// name as non-existent.
 		$this->editPage( __CLASS__ . '_Foo', 'Foo [[Image:Existing.jpg]] [[Image:Missing.jpg]]' );
 	}
 
 	private function newHandler() {
 		return new MediaLinksHandler(
 			MediaWikiServices::getInstance()->getDBLoadBalancer(),
-			$this->makeMockRepoGroup(),
+			$this->makeMockRepoGroup( [ 'Existing.jpg' ] ),
 			$this->getServiceContainer()->getPageStore()
 		);
 	}
