@@ -26,6 +26,8 @@ use IContextSource;
 use MarkpatrolledAction;
 use McrRestoreAction;
 use McrUndoAction;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
 use Psr\Log\LoggerInterface;
 use RawAction;
 use RevertAction;
@@ -52,6 +54,9 @@ class ActionFactory {
 
 	/** @var ObjectFactory */
 	private $objectFactory;
+
+	/** @var HookRunner */
+	private $hookRunner;
 
 	/**
 	 * Core default action specifications
@@ -159,15 +164,18 @@ class ActionFactory {
 	 * @param array $actionsConfig Configured actions (eg those added by extensions to $wgActions)
 	 * @param LoggerInterface $logger
 	 * @param ObjectFactory $objectFactory
+	 * @param HookContainer $hookContainer
 	 */
 	public function __construct(
 		array $actionsConfig,
 		LoggerInterface $logger,
-		ObjectFactory $objectFactory
+		ObjectFactory $objectFactory,
+		HookContainer $hookContainer
 	) {
 		$this->actionsConfig = $actionsConfig;
 		$this->logger = $logger;
 		$this->objectFactory = $objectFactory;
+		$this->hookRunner = new HookRunner( $hookContainer );
 	}
 
 	/**
@@ -294,6 +302,8 @@ class ActionFactory {
 		} elseif ( $actionName === 'editredlink' ) {
 			$actionName = 'edit';
 		}
+
+		$this->hookRunner->onGetActionName( $context, $actionName );
 
 		$action = $this->getAction(
 			$actionName,
