@@ -144,4 +144,35 @@ class PNGMetadataExtractorTest extends MediaWikiIntegrationTestCase {
 		$this->assertEquals( 10, $meta['width'] );
 		$this->assertEquals( 10, $meta['height'] );
 	}
+
+	/**
+	 * T286273 -- oversize chunk
+	 */
+	public function testPngOversizeChunk() {
+		// Write a temporary file consisting of a normal PNG plus an extra tEXt chunk.
+		// Try to hold the chunk in memory only once.
+		$path = $this->getNewTempFile();
+		copy( $this->filePath . '1bit-png.png', $path );
+		$chunkTypeAndData = "tEXtkey\0value" . str_repeat( '.', 10000000 );
+		$crc = crc32( $chunkTypeAndData );
+		$chunkLength = strlen( $chunkTypeAndData ) - 4;
+		$file = fopen( $path, 'r+' );
+		fseek( $file, -12, SEEK_END );
+		$iend = fread( $file, 12 );
+		fseek( $file, -12, SEEK_END );
+		fwrite( $file, pack( 'N', $chunkLength ) );
+		fwrite( $file, $chunkTypeAndData );
+		fwrite( $file, pack( 'N', $crc ) );
+		fwrite( $file, $iend );
+		fclose( $file );
+
+		// Extract the metadata
+		$meta = PNGMetadataExtractor::getMetadata( $path );
+		$this->assertEquals( 50, $meta['width'] );
+		$this->assertEquals( 50, $meta['height'] );
+
+		// Verify that the big chunk didn't end up in the metadata
+		$this->assertLessThan( 100000, strlen( serialize( $meta ) ) );
+	}
+
 }
