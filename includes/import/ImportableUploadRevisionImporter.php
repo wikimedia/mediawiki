@@ -60,18 +60,18 @@ class ImportableUploadRevisionImporter implements UploadRevisionImporter {
 		$archiveName = $importableRevision->getArchiveName();
 		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		if ( $archiveName ) {
-			$this->logger->debug( __METHOD__ . "Importing archived file as $archiveName" );
+			$this->logger->debug( __METHOD__ . ": Importing archived file as $archiveName" );
 			$file = OldLocalFile::newFromArchiveName( $importableRevision->getTitle(),
 				$localRepo, $archiveName );
 		} else {
 			$file = $localRepo->newFile( $importableRevision->getTitle() );
 			$file->load( File::READ_LATEST );
-			$this->logger->debug( __METHOD__ . 'Importing new file as ' . $file->getName() );
+			$this->logger->debug( __METHOD__ . ': Importing new file as ' . $file->getName() );
 			if ( $file->exists() && $file->getTimestamp() > $importableRevision->getTimestamp() ) {
 				$archiveName = $importableRevision->getTimestamp() . '!' . $file->getName();
 				$file = OldLocalFile::newFromArchiveName( $importableRevision->getTitle(),
 					$localRepo, $archiveName );
-				$this->logger->debug( __METHOD__ . "File already exists; importing as $archiveName" );
+				$this->logger->debug( __METHOD__ . ": File already exists; importing as $archiveName" );
 			}
 		}
 		if ( !$file ) {
