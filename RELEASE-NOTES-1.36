@@ -22,6 +22,8 @@ This is a security and maintenance release of the MediaWiki 1.36 branch.
 * (T278579) Don't send headers on ob_end_clean().
 * (T285287) MultiHttpClient: Replace PHP version check with defined().
 * (T280226, CVE-2021-35197) SECURITY: Prevent blocked users from purging pages.
+* (T287526) JavaScriptMinifer: Recognize `...` as a single token.
+* (T287526) Update wikimedia/minify to 2.2.4.
 
 == MediaWiki 1.36.0 ==
 
