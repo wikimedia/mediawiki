@@ -41,6 +41,7 @@ use MediaWiki\Block\UnblockUserFactory;
 use MediaWiki\Cache\LinkBatchFactory;
 use MediaWiki\Config\ConfigRepository;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\FileBackend\FSFile\TempFSFileFactory;
 use MediaWiki\FileBackend\LockManager\LockManagerGroupFactory;
@@ -794,6 +795,14 @@ class MediaWikiServices extends ServiceContainer {
 	 */
 	public function getContentModelStore(): NameTableStore {
 		return $this->getService( 'ContentModelStore' );
+	}
+
+	/**
+	 * @since 1.37
+	 * @return ContentTransformer
+	 */
+	public function getContentTransformer(): ContentTransformer {
+		return $this->getService( 'ContentTransformer' );
 	}
 
 	/**

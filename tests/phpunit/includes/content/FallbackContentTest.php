@@ -5,13 +5,23 @@
  */
 class FallbackContentTest extends MediaWikiLangTestCase {
 
+	private const CONTENT_MODEL = 'xyzzy';
+
+	protected function setUp(): void {
+		parent::setUp();
+		$this->mergeMwGlobalArrayValue(
+			'wgContentHandlers',
+			[ self::CONTENT_MODEL => FallbackContentHandler::class ]
+		);
+	}
+
 	/**
 	 * @param string $data
 	 * @param string $type
 	 *
 	 * @return FallbackContent
 	 */
-	public function newContent( $data, $type = 'xyzzy' ) {
+	public function newContent( $data, $type = self::CONTENT_MODEL ) {
 		return new FallbackContent( $data, $type );
 	}
 
@@ -159,7 +169,7 @@ class FallbackContentTest extends MediaWikiLangTestCase {
 	public function testGetContentHandler() {
 		$this->mergeMwGlobalArrayValue(
 			'wgContentHandlers',
-			[ 'horkyporky' => 'UnknownContentHandler' ]
+			[ 'horkyporky' => FallbackContentHandler::class ]
 		);
 
 		$content = $this->newContent( "hello world.", 'horkyporky' );

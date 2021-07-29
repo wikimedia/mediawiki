@@ -23,6 +23,7 @@
  * @ingroup Content
  */
 
+use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\MediaWikiServices;
 
@@ -188,4 +189,29 @@ class WikitextContentHandler extends TextContentHandler {
 		return parent::serializeContent( $content, $format );
 	}
 
+	public function preSaveTransform(
+		Content $content,
+		PreSaveTransformParams $pstParams
+	): Content {
+		'@phan-var WikitextContent $content';
+
+		$text = $content->getText();
+
+		$parser = MediaWikiServices::getInstance()->getParser();
+		$pst = $parser->preSaveTransform(
+			$text,
+			$pstParams->getPage(),
+			$pstParams->getUser(),
+			$pstParams->getParserOptions()
+		);
+
+		if ( $text === $pst ) {
+			return $content;
+		}
+
+		$contentClass = $this->getContentClass();
+		$ret = new $contentClass( $pst );
+		$ret->setPreSaveTransformFlags( $parser->getOutput()->getAllFlags() );
+		return $ret;
+	}
 }

@@ -26,6 +26,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
 use MediaWiki\MediaWikiServices;
@@ -1527,4 +1528,35 @@ abstract class ContentHandler {
 		return [];
 	}
 
+	/**
+	 * Returns a $content object with pre-save transformations applied (or the same
+	 * object if no transformations apply).
+	 *
+	 * @note Not stable to call other then from ContentHandler hierarchy.
+	 * Callers need to use ContentTransformer::preSaveTransform.
+	 * @stable to override
+	 * @since 1.37
+	 *
+	 * @param Content $content
+	 * @param PreSaveTransformParams $pstParams
+	 *
+	 * @return Content
+	 */
+	public function preSaveTransform(
+		Content $content,
+		PreSaveTransformParams $pstParams
+	): Content {
+		$contentOverridesTransform = MWDebug::detectDeprecatedOverride(
+			$content,
+			AbstractContent::class,
+			'preSaveTransform'
+		);
+		if ( $contentOverridesTransform ) {
+			$services = MediaWikiServices::getInstance();
+			$legacyUser = $services->getUserFactory()->newFromUserIdentity( $pstParams->getUser() );
+			$legacyTitle = $services->getTitleFactory()->castFromPageReference( $pstParams->getPage() );
+			return $content->preSaveTransform( $legacyTitle, $legacyUser, $pstParams->getParserOptions() );
+		}
+		return $content;
+	}
 }
