@@ -73,41 +73,12 @@ abstract class Action implements MessageLocalizer {
 	protected $fields;
 
 	/**
-	 * Get the Action subclass which should be used to handle this action, false if
-	 * the action is disabled, or null if it's not recognised
-	 * @param string $action
-	 * @param array $overrides
-	 * @return bool|null|string|callable|Action
-	 */
-	private static function getClass(
-		string $action,
-		array $overrides
-	) {
-		global $wgActions;
-		$action = strtolower( $action );
-
-		if ( !isset( $wgActions[$action] ) ) {
-			return null;
-		}
-
-		if ( $wgActions[$action] === false ) {
-			return false;
-		} elseif ( $wgActions[$action] === true && isset( $overrides[$action] ) ) {
-			return $overrides[$action];
-		} elseif ( $wgActions[$action] === true ) {
-			return ucfirst( $action ) . 'Action';
-		} else {
-			return $wgActions[$action];
-		}
-	}
-
-	/**
 	 * Get an appropriate Action subclass for the given action
 	 * @since 1.17
 	 *
 	 * @param string $action
 	 * @param Article $article
-	 * @param IContextSource|null $context
+	 * @param IContextSource|null $context Falls back to article's context
 	 * @return Action|bool|null False if the action is disabled, null
 	 *     if it is not recognised
 	 */
@@ -116,19 +87,13 @@ abstract class Action implements MessageLocalizer {
 		Article $article,
 		IContextSource $context = null
 	) {
-		$classOrCallable = self::getClass( $action, $article->getActionOverrides() );
-		if ( is_string( $classOrCallable ) ) {
-			if ( !class_exists( $classOrCallable ) ) {
-				return false;
-			}
-			return new $classOrCallable( $article, $context );
+		if ( $context === null ) {
+			$context = $article->getContext();
 		}
 
-		if ( is_callable( $classOrCallable ) ) {
-			return $classOrCallable( $article, $context );
-		}
-
-		return $classOrCallable;
+		return MediaWikiServices::getInstance()
+			->getActionFactory()
+			->getAction( $action, $article, $context );
 	}
 
 	/**
@@ -141,48 +106,9 @@ abstract class Action implements MessageLocalizer {
 	 * @return string Action name
 	 */
 	final public static function getActionName( IContextSource $context ) {
-		global $wgActions;
-
-		$request = $context->getRequest();
-		$actionName = $request->getVal( 'action', 'view' );
-
-		// Check for disabled actions
-		if ( isset( $wgActions[$actionName] ) && $wgActions[$actionName] === false ) {
-			$actionName = 'nosuchaction';
-		}
-
-		// Workaround for T22966: inability of IE to provide an action dependent
-		// on which submit button is clicked.
-		if ( $actionName === 'historysubmit' ) {
-			if ( $request->getBool( 'revisiondelete' ) ) {
-				$actionName = 'revisiondelete';
-			} elseif ( $request->getBool( 'editchangetags' ) ) {
-				$actionName = 'editchangetags';
-			} else {
-				$actionName = 'view';
-			}
-		} elseif ( $actionName === 'editredlink' ) {
-			$actionName = 'edit';
-		}
-
-		// Trying to get a WikiPage for NS_SPECIAL etc. will result
-		// in WikiPageFactory::newFromTitle throwing "Invalid or virtual namespace -1 given."
-		// For SpecialPages et al, default to action=view.
-		if ( !$context->canUseWikiPage() ) {
-			return 'view';
-		}
-
-		$action = self::factory(
-			$actionName,
-			Article::newFromWikiPage( $context->getWikiPage(), $context ),
-			$context
-		);
-
-		if ( $action instanceof Action ) {
-			return $action->getName();
-		}
-
-		return 'nosuchaction';
+		return MediaWikiServices::getInstance()
+			->getActionFactory()
+			->getActionName( $context );
 	}
 
 	/**
@@ -193,7 +119,9 @@ abstract class Action implements MessageLocalizer {
 	 * @return bool
 	 */
 	final public static function exists( string $name ): bool {
-		return self::getClass( $name, [] ) !== null;
+		return MediaWikiServices::getInstance()
+			->getActionFactory()
+			->actionExists( $name );
 	}
 
 	/**
