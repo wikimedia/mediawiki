@@ -902,6 +902,29 @@ class SkinTemplate extends Skin {
 	}
 
 	/**
+	 * Run hooks relating to navigation menu data.
+	 * Skins should extend this if they want to run opinionated transformations to the data after all
+	 * hooks have been run. Note hooks are run in an arbitary order.
+	 *
+	 * @param SkinTemplate $skin
+	 * @param array &$content_navigation representing all menus.
+	 * @since 1.37
+	 */
+	protected function runOnSkinTemplateNavigationHooks( SkinTemplate $skin, &$content_navigation ) {
+		$title = $this->getRelevantTitle();
+		if ( $title->canExist() ) {
+			$this->getHookRunner()->onSkinTemplateNavigation( $skin, $content_navigation );
+		} else {
+			$this->getHookRunner()->onSkinTemplateNavigation__SpecialPage(
+				$skin, $content_navigation );
+		}
+
+		// Equiv to SkinTemplateContentActions, run
+		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
+			$skin, $content_navigation );
+	}
+
+	/**
 	 * a structured array of links usually used for the tabs in a skin
 	 *
 	 * There are 4 standard sections
@@ -1176,8 +1199,7 @@ class SkinTemplate extends Skin {
 				}
 			}
 
-			$this->getHookRunner()->onSkinTemplateNavigation( $this, $content_navigation );
-
+			// Add language variants
 			$languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
 
 			if ( $userCanRead && !$languageConverterFactory->isConversionDisabled() ) {
@@ -1226,13 +1248,8 @@ class SkinTemplate extends Skin {
 				'href' => $url, // @see: T4457, T4510
 				'context' => 'subject'
 			];
-			$this->getHookRunner()->onSkinTemplateNavigation__SpecialPage(
-				$this, $content_navigation );
 		}
-
-		// Equiv to SkinTemplateContentActions
-		$this->getHookRunner()->onSkinTemplateNavigation__Universal(
-			$this, $content_navigation );
+		$this->runOnSkinTemplateNavigationHooks( $this, $content_navigation );
 
 		// Setup xml ids and tooltip info
 		foreach ( $content_navigation as $section => &$links ) {
