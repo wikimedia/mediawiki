@@ -29,6 +29,7 @@ use MediaWiki\Block\DatabaseBlock;
 use MediaWiki\Block\Restriction\ActionRestriction;
 use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
+use MediaWiki\ParamValidator\TypeDef\TitleDef;
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserIdentityLookup;
@@ -147,10 +148,9 @@ class ApiBlock extends ApiBase {
 
 		$restrictions = [];
 		if ( $params['partial'] ) {
-			$pageRestrictions = [];
-			foreach ( (array)$params['pagerestrictions'] as $title ) {
-				$pageRestrictions[] = PageRestriction::newFromTitle( $title );
-			}
+			$pageRestrictions = array_map( static function ( $title ) {
+				return PageRestriction::newFromTitle( $title );
+			}, (array)$params['pagerestrictions'] );
 
 			$namespaceRestrictions = array_map( static function ( $id ) {
 				return new NamespaceRestriction( 0, $id );
@@ -286,6 +286,15 @@ class ApiBlock extends ApiBase {
 			],
 			'partial' => false,
 			'pagerestrictions' => [
+				ApiBase::PARAM_TYPE => 'title',
+				TitleDef::PARAM_MUST_EXIST => true,
+
+				// TODO: TitleDef returns instances of TitleValue when PARAM_RETURN_OBJECT is
+				// truthy. At the time of writing,
+				// MediaWiki\Block\Restriction\PageRestriction::newFromTitle accepts either
+				// string or instance of Title.
+				//TitleDef::PARAM_RETURN_OBJECT => true,
+
 				ApiBase::PARAM_ISMULTI => true,
 				ApiBase::PARAM_ISMULTI_LIMIT1 => 10,
 				ApiBase::PARAM_ISMULTI_LIMIT2 => 10,
