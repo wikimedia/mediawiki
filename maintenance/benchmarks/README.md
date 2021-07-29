@@ -11,5 +11,7 @@ For example:
 
 ## Fixtures
 
-* tidy/australia-untidy.html.gz: Representative input text for benchmarkTidy.php.
+* data/tidy/australia-untidy.html.gz: Representative input text for benchmarkTidy.php.
   It needs to be decompressed before use.
+* data/CommentFormatter/rc100-2021-07-29.json: Input for Linker::formatComment() from
+https://en.wikipedia.org/w/api.php?action=query&format=json&list=recentchanges&rcprop=title%7Ccomment&rclimit=100
