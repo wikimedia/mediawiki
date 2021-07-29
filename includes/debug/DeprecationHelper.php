@@ -71,6 +71,22 @@ trait DeprecationHelper {
 	protected $deprecatedPublicProperties = [];
 
 	/**
+	 * Whether to allow access to unknown dynamically set properties.
+	 * This is a bad practice, but we still have places in the codebase where
+	 * this is done, so sometimes we have to allow it for b/c sake.
+	 *
+	 * @var bool
+	 */
+	private $dynamicPropertiesAccessAllowed = false;
+
+	/**
+	 * Whether to emit a deprecation warning when unknown properties are accessed.
+	 *
+	 * @var bool|array
+	 */
+	private $dynamicPropertiesAccessDeprecated = false;
+
+	/**
 	 * Mark a property as deprecated. Only use this for properties that used to be public and only
 	 *   call it in the constructor.
 	 *
@@ -131,6 +147,31 @@ trait DeprecationHelper {
 		];
 	}
 
+	/**
+	 * Enable access to dynamic and unknown properties.
+	 *
+	 * @since 1.37
+	 */
+	protected function allowDynamicPropertiesAccess() {
+		$this->allowDynamicPropertyAccess = true;
+	}
+
+	/**
+	 * Emit deprecation warnings when dynamic and unknown properties
+	 * are accessed.
+	 *
+	 * @param string $version MediaWiki version where the property became deprecated.
+	 * @param string|null $class The class which has the deprecated property.
+	 * @param string|null $component
+	 */
+	protected function deprecateDynamicPropertiesAccess(
+		string $version,
+		string $class = null,
+		string $component = null
+	) {
+		$this->dynamicPropertiesAccessDeprecated = [ $version, $class ?: __CLASS__, $component ];
+	}
+
 	public function __get( $name ) {
 		if ( isset( $this->deprecatedPublicProperties[$name] ) ) {
 			list( $version, $class, $component, $getter ) = $this->deprecatedPublicProperties[$name];
@@ -148,8 +189,17 @@ trait DeprecationHelper {
 			// Someone tried to access a normal non-public property. Try to behave like PHP would.
 			trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );
 		} else {
-			// Non-existing property. Try to behave like PHP would.
-			trigger_error( "Undefined property: $qualifiedName", E_USER_NOTICE );
+			if ( $this->dynamicPropertiesAccessDeprecated ) {
+				[ $version, $class, $component ] = $this->dynamicPropertiesAccessDeprecated;
+				$qualifiedName = $class . '::$' . $name;
+				wfDeprecated( $qualifiedName, $version, $component, 3 );
+				return $this->$name;
+			} elseif ( $this->dynamicPropertiesAccessAllowed ) {
+				return $this->$name;
+			} else {
+				// Non-existing property. Try to behave like PHP would.
+				trigger_error( "Undefined property: $qualifiedName", E_USER_NOTICE );
+			}
 		}
 		return null;
 	}
@@ -175,6 +225,11 @@ trait DeprecationHelper {
 			// Someone tried to access a normal non-public property. Try to behave like PHP would.
 			trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );
 		} else {
+			if ( $this->dynamicPropertiesAccessDeprecated ) {
+				[ $version, $class, $component ] = $this->dynamicPropertiesAccessDeprecated;
+				$qualifiedName = $class . '::$' . $name;
+				wfDeprecated( $qualifiedName, $version, $component, 3 );
+			}
 			// Non-existing property. Try to behave like PHP would.
 			$this->$name = $value;
 		}

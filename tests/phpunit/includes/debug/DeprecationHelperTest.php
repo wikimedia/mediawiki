@@ -49,6 +49,32 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 		];
 	}
 
+	public function testDeprecateDynamicPropertyAccess() {
+		$testObject = new class extends TestDeprecatedClass {
+			public function __construct() {
+				parent::__construct();
+				$this->deprecateDynamicPropertiesAccess( '1.23' );
+			}
+		};
+		$this->assertDeprecationWarningIssued( static function () use ( $testObject ) {
+			$testObject->dynamic_property = 'bla';
+		} );
+		$this->assertDeprecationWarningIssued( function () use ( $testObject ) {
+			$this->assertSame( 'bla', $testObject->dynamic_property );
+		} );
+	}
+
+	public function testAllowDynamicProperties() {
+		$testObject = new class extends TestDeprecatedClass {
+			public function __construct() {
+				parent::__construct();
+				$this->allowDynamicPropertiesAccess();
+			}
+		};
+		$testObject->dynamic_property = 'bla';
+		$this->assertSame( 'bla', $testObject->dynamic_property );
+	}
+
 	/**
 	 * @dataProvider provideSet
 	 */

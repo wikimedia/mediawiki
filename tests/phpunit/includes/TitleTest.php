@@ -1592,6 +1592,7 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 	 * @covers Title::isNamespaceProtected
 	 */
 	public function testIsNamespaceProtected() {
+		$this->hideDeprecated( 'Title::isNamespaceProtected' );
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
 		$this->setMwGlobals( [
 			'wgNamespaceProtection' => []
