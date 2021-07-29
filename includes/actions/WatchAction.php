@@ -24,6 +24,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Session\CsrfTokenSet;
+use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\ParamValidator\TypeDef\ExpiryDef;
 
 /**
@@ -42,21 +43,33 @@ class WatchAction extends FormAction {
 	/** @var false|WatchedItem */
 	protected $watchedItem = false;
 
+	/** @var WatchlistManager */
+	private $watchlistManager;
+
 	/**
 	 * Only public since 1.21
 	 *
 	 * @param Page $page
-	 * @param IContextSource|null $context
+	 * @param IContextSource $context
+	 * @param WatchlistManager $watchlistManager
+	 * @param WatchedItemStore $watchedItemStore
 	 */
-	public function __construct( Page $page, IContextSource $context = null ) {
+	public function __construct(
+		Page $page,
+		IContextSource $context,
+		WatchlistManager $watchlistManager,
+		WatchedItemStore $watchedItemStore
+	) {
 		parent::__construct( $page, $context );
 		$this->watchlistExpiry = $this->getContext()->getConfig()->get( 'WatchlistExpiry' );
 		if ( $this->watchlistExpiry ) {
 			// The watchedItem is only used in this action's form if $wgWatchlistExpiry is enabled.
-			$this->watchedItem = MediaWikiServices::getInstance()
-				->getWatchedItemStore()
-				->getWatchedItem( $this->getUser(), $this->getTitle() );
+			$this->watchedItem = $watchedItemStore->getWatchedItem(
+				$this->getUser(),
+				$this->getTitle()
+			);
 		}
+		$this->watchlistManager = $watchlistManager;
 	}
 
 	public function getName() {
@@ -76,7 +89,7 @@ class WatchAction extends FormAction {
 
 		// Even though we're never unwatching here, use WatchlistManager::setWatch() because it also checks for
 		// changed expiry.
-		return MediaWikiServices::getInstance()->getWatchlistManager()->setWatch(
+		return $this->watchlistManager->setWatch(
 			true,
 			$this->getContext()->getAuthority(),
 			$this->getTitle(),

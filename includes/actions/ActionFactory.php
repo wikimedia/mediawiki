@@ -27,6 +27,8 @@ use McrUndoAction;
 use Psr\Log\LoggerInterface;
 use RollbackAction;
 use SpecialPageAction;
+use UnwatchAction;
+use WatchAction;
 use Wikimedia\ObjectFactory;
 
 /**
@@ -90,6 +92,20 @@ class ActionFactory {
 				'RollbackPageFactory',
 				'UserOptionsLookup',
 				'WatchlistManager',
+			],
+		],
+		'unwatch' => [
+			'class' => UnwatchAction::class,
+			'services' => [
+				'WatchlistManager',
+				'WatchedItemStore',
+			],
+		],
+		'watch' => [
+			'class' => WatchAction::class,
+			'services' => [
+				'WatchlistManager',
+				'WatchedItemStore',
 			],
 		],
 	];
