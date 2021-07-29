@@ -710,8 +710,18 @@ if ( $wgRequest->getCookie( 'UseDC', '' ) === 'master' ) {
 // Most of the config is out, some might want to run hooks here.
 Hooks::runner()->onSetupAfterCache();
 
-// Now that variant lists may be available...
-$wgRequest->interpolateTitle();
+// Now that variant lists may be available, parse any action paths and article paths
+// as query parameters.
+//
+// Skip title interpolation on API queries where it is useless and sometimes harmful (T18019).
+//
+// Optimization: Skip on load.php and all other entrypoints besides index.php to save time.
+//
+// TODO: Figure out if this can be safely done after everything else in Setup.php (e.g. any
+// hooks or other state that would miss this?). If so, move to wfIndexMain or MediaWiki::run.
+if ( MW_ENTRY_POINT === 'index' ) {
+	$wgRequest->interpolateTitle();
+}
 
 /**
  * @var MediaWiki\Session\SessionId|null The persistent session ID (if any) loaded at startup
