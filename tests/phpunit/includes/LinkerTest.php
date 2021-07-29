@@ -2,6 +2,7 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Revision\SlotRecord;
 
 /**
  * @group Database
@@ -517,12 +518,13 @@ class LinkerTest extends MediaWikiLangTestCase {
 		$pageData = $this->insertPage( $title );
 		$page = WikiPage::factory( $pageData['title'] );
 
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( \MediaWiki\Revision\SlotRecord::MAIN,
-			new TextContent( 'Technical Wishes 123!' )
-		);
 		$summary = CommentStoreComment::newUnsavedComment( 'Some comment!' );
-		$updater->saveRevision( $summary );
+		$page->newPageUpdater( $user )
+			->setContent(
+				SlotRecord::MAIN,
+				new TextContent( 'Technical Wishes 123!' )
+			)
+			->saveRevision( $summary );
 
 		$rollbackOutput = Linker::generateRollback( $page->getRevisionRecord(), $context );
 		$modules = $context->getOutput()->getModules();
