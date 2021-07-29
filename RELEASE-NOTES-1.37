@@ -618,6 +618,7 @@ because of Phabricator reports.
   use getPerformerIdentity() instead.
 * ContentHandler::cleanupHandlersCache(), deprecated since 1.35, now emits
   deprecation warnings.
+* Category::getTitle() was deprecated in favor of Category::getPage()
 * File::getUser method was hard deprecated, along with overrides in LocalFile
   and ForeignApiFile in favor of ::getUploader.
 * SpecialBlock::checkUnblockSelf(), deprecated in 1.36, now emits deprecation
