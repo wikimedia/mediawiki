@@ -106,8 +106,13 @@ class PNGMetadataExtractor {
 			$buf = self::read( $fh, 4 );
 			$chunk_size = unpack( "N", $buf )[1];
 
-			if ( $chunk_size < 0 ) {
-				throw new Exception( __METHOD__ . ": Chunk size too big for unpack" );
+			if ( $chunk_size < 0 || $chunk_size > self::MAX_CHUNK_SIZE ) {
+				wfDebug( __METHOD__ . ': Chunk size of ' . $chunk_size .
+					' too big, skipping. Max size is: ' . self::MAX_CHUNK_SIZE );
+				if ( fseek( $fh, 4 + $chunk_size + self::$crcSize, SEEK_CUR ) !== 0 ) {
+					throw new Exception( __METHOD__ . ': seek error' );
+				}
+				continue;
 			}
 
 			$chunk_type = self::read( $fh, 4 );
@@ -399,10 +404,6 @@ class PNGMetadataExtractor {
 	 * @return string The chunk.
 	 */
 	private static function read( $fh, $size ) {
-		if ( $size > self::MAX_CHUNK_SIZE ) {
-			throw new Exception( __METHOD__ . ': Chunk size of ' . $size .
-				' too big. Max size is: ' . self::MAX_CHUNK_SIZE );
-		}
 		if ( $size === 0 ) {
 			return '';
 		}
