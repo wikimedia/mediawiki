@@ -275,10 +275,12 @@ class PageUpdater {
 	 * changes, like completely blanking a page.
 	 *
 	 * @param bool $useAutomaticEditSummaries
+	 * @return $this
 	 * @see $wgUseAutomaticEditSummaries
 	 */
 	public function setUseAutomaticEditSummaries( $useAutomaticEditSummaries ) {
 		$this->useAutomaticEditSummaries = $useAutomaticEditSummaries;
+		return $this;
 	}
 
 	/**
@@ -289,9 +291,11 @@ class PageUpdater {
 	 * @see $wgUseNPPatrol
 	 *
 	 * @param int $status RC patrol status, e.g. RecentChange::PRC_AUTOPATROLLED.
+	 * @return $this
 	 */
 	public function setRcPatrolStatus( $status ) {
 		$this->rcPatrolStatus = $status;
+		return $this;
 	}
 
 	/**
@@ -300,17 +304,21 @@ class PageUpdater {
 	 * @see $wgPageCreationLog
 	 *
 	 * @param bool $use
+	 * @return $this
 	 */
 	public function setUsePageCreationLog( $use ) {
 		$this->usePageCreationLog = $use;
+		return $this;
 	}
 
 	/**
 	 * @param bool $ajaxEditStash
+	 * @return $this
 	 * @see $wgAjaxEditStash
 	 */
 	public function setAjaxEditStash( $ajaxEditStash ) {
 		$this->ajaxEditStash = $ajaxEditStash;
+		return $this;
 	}
 
 	private function getWikiId() {
@@ -440,22 +448,26 @@ class PageUpdater {
 	 *
 	 * @param string $role A slot role name (such as "main")
 	 * @param Content $content
+	 * @return $this
 	 */
 	public function setContent( $role, Content $content ) {
 		$this->ensureRoleAllowed( $role );
 
 		$this->slotsUpdate->modifyContent( $role, $content );
+		return $this;
 	}
 
 	/**
 	 * Set the new slot for the given slot role
 	 *
 	 * @param SlotRecord $slot
+	 * @return $this
 	 */
 	public function setSlot( SlotRecord $slot ) {
 		$this->ensureRoleAllowed( $slot->getRole() );
 
 		$this->slotsUpdate->modifySlot( $slot );
+		return $this;
 	}
 
 	/**
@@ -471,6 +483,7 @@ class PageUpdater {
 	 *
 	 * @param SlotRecord $originalSlot A slot already existing in the database, to be inherited
 	 *        by the new revision.
+	 * @return $this
 	 */
 	public function inheritSlot( SlotRecord $originalSlot ) {
 		// NOTE: slots can be inherited even if the role is not "allowed" on the title.
@@ -479,6 +492,7 @@ class PageUpdater {
 		// since it's not implicitly inherited from the parent revision.
 		$inheritedSlot = SlotRecord::newInherited( $originalSlot );
 		$this->slotsUpdate->modifySlot( $inheritedSlot );
+		return $this;
 	}
 
 	/**
@@ -507,9 +521,11 @@ class PageUpdater {
 	 *
 	 * @param int|bool $originalRevId The original revision id, or false if no earlier revision
 	 * is known to be repeated or restored by this update.
+	 * @return $this
 	 */
 	public function setOriginalRevisionId( $originalRevId ) {
 		$this->editResultBuilder->setOriginalRevisionId( $originalRevId );
+		return $this;
 	}
 
 	/**
@@ -522,6 +538,7 @@ class PageUpdater {
 	 * @param int $oldestRevertedRevId The ID of the oldest revision that was reverted.
 	 * @param int $newestRevertedRevId The ID of the newest revision that was reverted. This
 	 *        parameter is optional, default value is $oldestRevertedRevId
+	 * @return $this
 	 *
 	 * @see EditResultBuilder::markAsRevert()
 	 */
@@ -533,6 +550,7 @@ class PageUpdater {
 		$this->editResultBuilder->markAsRevert(
 			$revertMethod, $oldestRevertedRevId, $newestRevertedRevId
 		);
+		return $this;
 	}
 
 	/**
@@ -551,10 +569,12 @@ class PageUpdater {
 	 * Callers are responsible for permission checks,
 	 * using ChangeTags::canAddTagsAccompanyingChange.
 	 * @param string $tag
+	 * @return $this
 	 */
 	public function addTag( $tag ) {
 		Assert::parameterType( 'string', $tag, '$tag' );
 		$this->tags[] = trim( $tag );
+		return $this;
 	}
 
 	/**
@@ -562,12 +582,14 @@ class PageUpdater {
 	 * Callers are responsible for permission checks,
 	 * using ChangeTags::canAddTagsAccompanyingChange.
 	 * @param string[] $tags
+	 * @return $this
 	 */
 	public function addTags( array $tags ) {
 		Assert::parameterElementType( 'string', $tags, '$tags' );
 		foreach ( $tags as $tag ) {
 			$this->addTag( $tag );
 		}
+		return $this;
 	}
 
 	/**

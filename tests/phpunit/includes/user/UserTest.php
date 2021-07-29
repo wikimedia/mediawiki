@@ -6,6 +6,7 @@ use MediaWiki\Block\Restriction\NamespaceRestriction;
 use MediaWiki\Block\Restriction\PageRestriction;
 use MediaWiki\Block\SystemBlock;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Tests\Unit\DummyServicesTrait;
 use MediaWiki\User\CentralId\CentralIdLookupFactory;
 use MediaWiki\User\UserIdentityValue;
@@ -1650,9 +1651,9 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	private static function makeEdit( User $user, $title, $content, $comment ) {
 		$page = WikiPage::factory( Title::newFromText( $title ) );
 		$content = ContentHandler::makeContent( $content, $page->getTitle() );
-		$updater = $page->newPageUpdater( $user );
-		$updater->setContent( 'main', $content );
-		return $updater->saveRevision( CommentStoreComment::newUnsavedComment( $comment ) );
+		return $page->newPageUpdater( $user )
+			->setContent( SlotRecord::MAIN, $content )
+			->saveRevision( CommentStoreComment::newUnsavedComment( $comment ) );
 	}
 
 	/**

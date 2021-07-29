@@ -22,6 +22,7 @@
  */
 
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Revision\SlotRecord;
 use Wikimedia\Rdbms\DBQueryError;
 use Wikimedia\Rdbms\IDatabase;
 
@@ -242,17 +243,17 @@ class PopulateArchiveRevId extends LoggedUpdateMaintenance {
 			// Make a title and revision and insert them
 			$title = Title::newFromText( "PopulateArchiveRevId_4b05b46a81e29" );
 			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $title );
-			$updater = $page->newPageUpdater(
+			$page->newPageUpdater(
 				User::newSystemUser( User::MAINTENANCE_SCRIPT_USER, [ 'steal' => true ] )
-			);
-			$updater->setContent(
-				'main',
-				ContentHandler::makeContent( "Content for dummy rev", $title )
-			);
-			$updater->saveRevision(
-				CommentStoreComment::newUnsavedComment( 'dummy rev summary' ),
-				EDIT_NEW | EDIT_SUPPRESS_RC
-			);
+			)
+				->setContent(
+					SlotRecord::MAIN,
+					ContentHandler::makeContent( "Content for dummy rev", $title )
+				)
+				->saveRevision(
+					CommentStoreComment::newUnsavedComment( 'dummy rev summary' ),
+					EDIT_NEW | EDIT_SUPPRESS_RC
+				);
 
 			// get the revision row just inserted
 			$rev = $dbw->selectRow(
