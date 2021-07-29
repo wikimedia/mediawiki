@@ -9175,38 +9175,11 @@ $wgRangeContributionsCIDRLimit = [
 /** @name   Actions */
 
 /**
- * Array of allowed values for the "title=foo&action=<action>" parameter. Syntax is:
- *     'foo' => 'ClassName'    Load the specified class which subclasses Action
- *     'foo' => true           Load the class FooAction which subclasses Action
- *                             If something is specified in the getActionOverrides()
- *                             of the relevant Page object it will be used
- *                             instead of the default class.
- *     'foo' => false          The action is disabled; show an error message
- * Unsetting core actions will probably cause things to complain loudly.
+ * Array of allowed values for the "title=foo&action=<action>" parameter. See
+ * ActionFactory for the syntax. Core defaults are in ActionFactory::CORE_ACTIONS,
+ * anything here overrides that.
  */
-$wgActions = [
-	'credits' => true,
-	'delete' => true,
-	'edit' => true,
-	'editchangetags' => SpecialPageAction::class,
-	'history' => true,
-	'info' => true,
-	'markpatrolled' => true,
-	'mcrundo' => McrUndoAction::class,
-	'mcrrestore' => McrRestoreAction::class,
-	'protect' => true,
-	'purge' => true,
-	'raw' => true,
-	'render' => true,
-	'revert' => true,
-	'revisiondelete' => SpecialPageAction::class,
-	'rollback' => true,
-	'submit' => true,
-	'unprotect' => true,
-	'unwatch' => true,
-	'view' => true,
-	'watch' => true,
-];
+$wgActions = [];
 
 // endregion -- end actions
 

@@ -372,11 +372,6 @@ class WebRequest {
 	 * available variant URLs.
 	 */
 	public function interpolateTitle() {
-		// T18019: title interpolation on API queries is useless and sometimes harmful
-		if ( defined( 'MW_API' ) ) {
-			return;
-		}
-
 		$matches = self::getPathInfo( 'title' );
 		foreach ( $matches as $key => $val ) {
 			$this->data[$key] = $this->queryAndPathParams[$key] = $val;

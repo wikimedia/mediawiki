@@ -45,6 +45,7 @@
  */
 
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
+use MediaWiki\Actions\ActionFactory;
 use MediaWiki\Auth\AuthManager;
 use MediaWiki\BadFileLookup;
 use MediaWiki\Block\BlockActionInfo;
@@ -151,6 +152,14 @@ use Wikimedia\UUID\GlobalIdGenerator;
 
 /** @phpcs-require-sorted-array */
 return [
+	'ActionFactory' => static function ( MediaWikiServices $services ): ActionFactory {
+		return new ActionFactory(
+			$services->getMainConfig()->get( 'Actions' ),
+			LoggerFactory::getInstance( 'ActionFactory' ),
+			$services->getObjectFactory()
+		);
+	},
+
 	'ActorMigration' => static function ( MediaWikiServices $services ): ActorMigration {
 		return new ActorMigration(
 			$services->getMainConfig()->get( 'ActorTableSchemaMigrationStage' ),
