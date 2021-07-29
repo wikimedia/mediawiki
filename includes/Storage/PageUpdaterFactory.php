@@ -26,6 +26,7 @@ use JobQueueGroup;
 use Language;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
+use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
@@ -116,6 +117,9 @@ class PageUpdaterFactory {
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
+	/** @var ContentTransformer */
+	private $contentTransformer;
+
 	/** @var string[] */
 	private $softwareTags;
 
@@ -137,6 +141,7 @@ class PageUpdaterFactory {
 	 * @param UserEditTracker $userEditTracker
 	 * @param UserGroupManager $userGroupManager
 	 * @param TitleFormatter $titleFormatter
+	 * @param ContentTransformer $contentTransformer
 	 * @param string[] $softwareTags
 	 */
 	public function __construct(
@@ -157,6 +162,7 @@ class PageUpdaterFactory {
 		UserEditTracker $userEditTracker,
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
+		ContentTransformer $contentTransformer,
 		array $softwareTags
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -178,6 +184,7 @@ class PageUpdaterFactory {
 		$this->userEditTracker = $userEditTracker;
 		$this->userGroupManager = $userGroupManager;
 		$this->titleFormatter = $titleFormatter;
+		$this->contentTransformer = $contentTransformer;
 		$this->softwareTags = $softwareTags;
 	}
 
@@ -279,7 +286,8 @@ class PageUpdaterFactory {
 			$this->contentHandlerFactory,
 			$this->hookContainer,
 			$this->editResultCache,
-			$this->userNameUtils
+			$this->userNameUtils,
+			$this->contentTransformer
 		);
 
 		$derivedDataUpdater->setLogger( $this->logger );

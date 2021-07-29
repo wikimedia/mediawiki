@@ -20,6 +20,9 @@
  * @file
  * @ingroup Content
  */
+
+use MediaWiki\Content\Transform\PreSaveTransformParams;
+use MediaWiki\MediaWikiServices;
 use Wikimedia\Minify\CSSMin;
 
 /**
@@ -59,4 +62,29 @@ class CssContentHandler extends CodeContentHandler {
 		return new $class( '/* #REDIRECT */@import ' . CSSMin::buildUrlValue( $url ) . ';' );
 	}
 
+	public function preSaveTransform(
+		Content $content,
+		PreSaveTransformParams $pstParams
+	): Content {
+		'@phan-var CssContent $content';
+
+		// @todo Make pre-save transformation optional for script pages (T34858)
+		$services = MediaWikiServices::getInstance();
+		if ( !$services->getUserOptionsLookup()->getBoolOption( $pstParams->getUser(), 'pst-cssjs' ) ) {
+			// Allow bot users to disable the pre-save transform for CSS/JS (T236828).
+			$popts = clone $pstParams->getParserOptions();
+			$popts->setPreSaveTransform( false );
+		}
+
+		$text = $content->getText();
+		$pst = $services->getParser()->preSaveTransform(
+			$text,
+			$pstParams->getPage(),
+			$pstParams->getUser(),
+			$pstParams->getParserOptions()
+		);
+
+		$class = $this->getContentClass();
+		return new $class( $pst );
+	}
 }

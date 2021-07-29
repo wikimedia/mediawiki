@@ -205,27 +205,6 @@ class TextContent extends AbstractContent {
 	}
 
 	/**
-	 * Returns a Content object with pre-save transformations applied.
-	 *
-	 * At a minimum, subclasses should make sure to call TextContent::normalizeLineEndings()
-	 * either directly or part of Parser::preSaveTransform().
-	 *
-	 * @stable to override
-	 *
-	 * @param Title $title
-	 * @param User $user
-	 * @param ParserOptions $popts
-	 *
-	 * @return Content
-	 */
-	public function preSaveTransform( Title $title, User $user, ParserOptions $popts ) {
-		$text = $this->getText();
-		$pst = self::normalizeLineEndings( $text );
-
-		return ( $text === $pst ) ? $this : new static( $pst, $this->getModel() );
-	}
-
-	/**
 	 * Diff this content object with another content object.
 	 *
 	 * @stable to override
