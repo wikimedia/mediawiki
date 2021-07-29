@@ -2665,12 +2665,14 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 * Determines if $user is unable to edit this page because it has been protected
 	 * by $wgNamespaceProtection.
 	 *
-	 * @deprecated since 1.34 Don't use this function in new code.
+	 * @deprecated since 1.34, hard-deprecated since 1.37
 	 * @param User $user User object to check permissions
 	 * @return bool
 	 */
 	public function isNamespaceProtected( User $user ) {
 		global $wgNamespaceProtection;
+
+		wfDeprecated( __METHOD__, '1.34' );
 
 		if ( isset( $wgNamespaceProtection[$this->mNamespace] ) ) {
 			$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
