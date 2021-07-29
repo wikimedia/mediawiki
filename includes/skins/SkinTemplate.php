@@ -512,7 +512,7 @@ class SkinTemplate extends Skin {
 		$personal_urls = [];
 
 		if ( $this->loggedin ) {
-			$personal_urls['userpage'] = $this->buildPersonalPageItem();
+			$personal_urls['userpage'] = $this->buildPersonalPageItem( 'pt-userpage' );
 
 			// Merge notifications into the personal menu for older skins.
 			if ( $includeNotifications ) {
@@ -762,12 +762,14 @@ class SkinTemplate extends Skin {
 
 	/**
 	 * Build a personal page link.
+	 * @param string $id of user page item to be output in HTML attribute (optional)
 	 * @return array
 	 */
-	protected function buildPersonalPageItem(): array {
+	protected function buildPersonalPageItem( $id = 'pt-userpage' ): array {
 		// Build the personal page link array.
 		return [
 			'text' => $this->username,
+			'id' => $id,
 			'href' => &$this->userpageUrlDetails['href'],
 			'link-class' => $this->userpageUrlDetails['exists'] ? [] : [ 'new' ],
 			'exists' => $this->userpageUrlDetails['exists'],
@@ -970,7 +972,9 @@ class SkinTemplate extends Skin {
 		$content_navigation = [
 			// Modern keys: Please ensure these get unset inside Skin::prepareQuickTemplate
 			'user-interface-preferences' => [],
-			'user-page' => $this->loggedin ? [ 'userpage' => $this->buildPersonalPageItem() ] : [],
+			'user-page' => $this->loggedin ? [
+				'userpage' => $this->buildPersonalPageItem( 'pt-userpage-2' )
+			] : [],
 			'user-menu' => $this->buildPersonalUrls( false ),
 			'notifications' => [],
 			// Legacy keys
