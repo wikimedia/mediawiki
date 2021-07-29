@@ -166,6 +166,7 @@ class Hooks {
 	 * protected method.
 	 *
 	 * @since 1.35
+	 * @internal because HookRunner is intended for core only, see documentation on that class
 	 *
 	 * @return HookRunner
 	 */
