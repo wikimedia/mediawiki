@@ -1503,3 +1503,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-ArticlePlaceholder
 	branch = REL1_36
 	ignore = dirty
+[submodule "skins/Anisa"]
+	path = skins/Anisa
+	url = https://github.com/wikimedia/mediawiki-skins-Anisa
+	branch = REL1_36
+	ignore = dirty
