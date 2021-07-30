@@ -414,12 +414,6 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'debughtml', MWDebug::getHTMLDebugLog() );
 		$tpl->set( 'reporttime', wfReportTime( $out->getCSP()->getNonce() ) );
 
-		// original version by hansm
-		// See T60137 for information on deprecation.
-		if ( !$this->getHookRunner()->onSkinTemplateOutputPageBeforeExec( $this, $tpl ) ) {
-			wfDebug( __METHOD__ . ": Hook SkinTemplateOutputPageBeforeExec broke outputPage execution!" );
-		}
-
 		// Set the bodytext to another key so that skins can just output it on its own
 		// and output printfooter and debughtml separately
 		$tpl->set( 'bodycontent', $tpl->data['bodytext'] );

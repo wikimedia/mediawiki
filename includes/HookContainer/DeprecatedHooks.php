@@ -52,7 +52,6 @@ class DeprecatedHooks {
 		'ResourceLoaderTestModules' => [ 'deprecatedVersion' => '1.33' ],
 		'RollbackComplete' => [ 'deprecatedVersion' => '1.36', 'silent' => true ],
 		'SpecialMuteSubmit' => [ 'deprecatedVersion' => '1.35', 'silent' => true ],
-		'SkinTemplateOutputPageBeforeExec' => [ 'deprecatedVersion' => '1.35' ],
 		'SkinTemplateToolboxEnd' => [ 'deprecatedVersion' => '1.35' ],
 		'UserLoadFromDatabase' => [ 'deprecatedVersion' => '1.37' ],
 		'UserLoadOptions' => [ 'deprecatedVersion' => '1.37', 'silent' => true ],
