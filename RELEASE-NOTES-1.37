@@ -367,6 +367,7 @@ because of Phabricator reports.
 * Previously a capitalize-all-nouns class was added to the body element of
 languages where nouns must be capitalized. This class is no longer added to
 the body tag and must be provided by skins.
+* SkinTemplateOutputPageBeforeExecHook, deprecated since 1.35, was removed.
 * …
 
 === Deprecations in 1.37 ===

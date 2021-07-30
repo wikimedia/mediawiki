@@ -326,7 +326,6 @@ class HookRunner implements
 	\MediaWiki\Hook\SkinTemplateNavigationHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__SpecialPageHook,
 	\MediaWiki\Hook\SkinTemplateNavigation__UniversalHook,
-	\MediaWiki\Hook\SkinTemplateOutputPageBeforeExecHook,
 	\MediaWiki\Hook\SkinTemplateToolboxEndHook,
 	\MediaWiki\Hook\SoftwareInfoHook,
 	\MediaWiki\Hook\SpecialBlockModifyFormFieldsHook,
@@ -3465,13 +3464,6 @@ class HookRunner implements
 			'SkinTemplateNavigation::Universal',
 			[ $sktemplate, &$links ],
 			[ 'abortable' => false ]
-		);
-	}
-
-	public function onSkinTemplateOutputPageBeforeExec( $sktemplate, $tpl ) {
-		return $this->container->run(
-			'SkinTemplateOutputPageBeforeExec',
-			[ $sktemplate, $tpl ]
 		);
 	}
 
