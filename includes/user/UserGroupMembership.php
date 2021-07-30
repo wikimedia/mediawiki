@@ -21,8 +21,6 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use Wikimedia\Assert\Assert;
-use Wikimedia\Assert\ParameterTypeException;
 
 /**
  * Represents a "user group membership" -- a specific instance of a user belonging
@@ -52,27 +50,11 @@ class UserGroupMembership {
 	 * @param string|null $group The internal group name
 	 * @param string|null $expiry Timestamp of expiry in TS_MW format, or null if no expiry
 	 */
-	public function __construct( $userId = 0, $group = null, $expiry = null ) {
-		self::assertValidSpec( $userId, $group, $expiry );
-		$this->userId = (int)$userId;
+	public function __construct( int $userId = 0, ?string $group = null, ?string $expiry = null ) {
+		$this->userId = $userId;
 		$this->group = $group;
 		$this->expiry = $expiry ?: null;
 		$this->expired = $expiry ? wfTimestampNow() > $expiry : false;
-	}
-
-	/**
-	 * Asserts that the given parameters could be used to construct a UserGroupMembership object
-	 *
-	 * @param int $userId
-	 * @param string|null $group
-	 * @param string|null $expiry
-	 *
-	 * @throws ParameterTypeException
-	 */
-	private static function assertValidSpec( $userId, $group, $expiry ) {
-		Assert::parameterType( 'integer', $userId, '$userId' );
-		Assert::parameterType( [ 'string', 'null' ], $group, '$group' );
-		Assert::parameterType( [ 'string', 'null' ], $expiry, '$expiry' );
 	}
 
 	/**

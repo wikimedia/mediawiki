@@ -177,16 +177,6 @@ class SqlBlobStoreTest extends MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * @covers \MediaWiki\Storage\SqlBlobStore::decompressData
-	 */
-	public function testDecompressData_InvalidArgumentException() {
-		$store = $this->getBlobStore();
-
-		$this->expectException( InvalidArgumentException::class );
-		$store->decompressData( false, [] );
-	}
-
-	/**
 	 * @covers \MediaWiki\Storage\SqlBlobStore::compressData
 	 */
 	public function testCompressRevisionTextUtf8() {

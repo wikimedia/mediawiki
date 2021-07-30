@@ -571,8 +571,7 @@ class PageUpdater {
 	 * @param string $tag
 	 * @return $this
 	 */
-	public function addTag( $tag ) {
-		Assert::parameterType( 'string', $tag, '$tag' );
+	public function addTag( string $tag ) {
 		$this->tags[] = trim( $tag );
 		return $this;
 	}
@@ -738,11 +737,7 @@ class PageUpdater {
 	 * @throws MWException
 	 * @throws RuntimeException
 	 */
-	public function saveRevision( CommentStoreComment $summary, $flags = 0 ) {
-		// Defend against mistakes caused by differences with the
-		// signature of WikiPage::doEditContent.
-		Assert::parameterType( 'integer', $flags, '$flags' );
-
+	public function saveRevision( CommentStoreComment $summary, int $flags = 0 ) {
 		if ( $this->wasCommitted() ) {
 			throw new RuntimeException(
 				'saveRevision() or updateRevision() has already been called on this PageUpdater!'

@@ -25,7 +25,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use Wikimedia\Assert\Assert;
 use Wikimedia\Minify\CSSMin;
 use Wikimedia\Rdbms\Database;
 use Wikimedia\Rdbms\IDatabase;
@@ -562,11 +561,9 @@ class ResourceLoaderWikiModule extends ResourceLoaderModule {
 		PageIdentity $page,
 		?RevisionRecord $old,
 		?RevisionRecord $new,
-		$domain
+		string $domain
 	) {
 		static $models = [ CONTENT_MODEL_CSS, CONTENT_MODEL_JAVASCRIPT ];
-
-		Assert::parameterType( 'string', $domain, '$domain' );
 
 		$purge = false;
 		// TODO: MCR: differentiate between page functionality and content model!

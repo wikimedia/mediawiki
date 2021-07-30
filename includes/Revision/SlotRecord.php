@@ -146,9 +146,7 @@ class SlotRecord {
 	 * @param bool $derived
 	 * @return SlotRecord An incomplete proto-slot object, to be used with newSaved() later.
 	 */
-	public static function newUnsaved( $role, Content $content, bool $derived = false ) {
-		Assert::parameterType( 'string', $role, '$role' );
-
+	public static function newUnsaved( string $role, Content $content, bool $derived = false ) {
 		$row = [
 			'slot_id' => null, // not yet known
 			'slot_revision_id' => null, // not yet known
@@ -182,16 +180,11 @@ class SlotRecord {
 	 * @return SlotRecord If the state of $protoSlot is inappropriate for saving a new revision.
 	 */
 	public static function newSaved(
-		$revisionId,
-		$contentId,
-		$contentAddress,
+		int $revisionId,
+		?int $contentId,
+		string $contentAddress,
 		SlotRecord $protoSlot
 	) {
-		Assert::parameterType( 'integer', $revisionId, '$revisionId' );
-		// TODO once migration is over $contentId must be an integer
-		Assert::parameterType( 'integer|null', $contentId, '$contentId' );
-		Assert::parameterType( 'string', $contentAddress, '$contentAddress' );
-
 		if ( $protoSlot->hasRevision() && $protoSlot->getRevision() !== $revisionId ) {
 			throw new LogicException(
 				"Mismatching revision ID $revisionId: "
@@ -256,8 +249,7 @@ class SlotRecord {
 	 *        their hash does not contribute to the revision hash, and updates are not included
 	 *        in revision history.
 	 */
-	public function __construct( $row, $content, bool $derived = false ) {
-		Assert::parameterType( \stdClass::class, $row, '$row' );
+	public function __construct( \stdClass $row, $content, bool $derived = false ) {
 		Assert::parameterType( 'Content|callable', $content, '$content' );
 
 		Assert::parameter(

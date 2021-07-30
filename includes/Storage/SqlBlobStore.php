@@ -127,9 +127,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * @param int $cacheExpiry time for which blobs can be cached, in seconds
 	 */
-	public function setCacheExpiry( $cacheExpiry ) {
-		Assert::parameterType( 'integer', $cacheExpiry, '$cacheExpiry' );
-
+	public function setCacheExpiry( int $cacheExpiry ) {
 		$this->cacheExpiry = $cacheExpiry;
 	}
 
@@ -172,9 +170,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 * @param string $legacyEncoding The legacy encoding to assume for blobs that are
 	 *        not marked as utf8.
 	 */
-	public function setLegacyEncoding( $legacyEncoding ) {
-		Assert::parameterType( 'string', $legacyEncoding, '$legacyEncoding' );
-
+	public function setLegacyEncoding( string $legacyEncoding ) {
 		$this->legacyEncoding = $legacyEncoding;
 	}
 
@@ -188,9 +184,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	/**
 	 * @param bool $useExternalStore Whether to use the ExternalStore mechanism for storing blobs.
 	 */
-	public function setUseExternalStore( $useExternalStore ) {
-		Assert::parameterType( 'boolean', $useExternalStore, '$useExternalStore' );
-
+	public function setUseExternalStore( bool $useExternalStore ) {
 		$this->useExternalStore = $useExternalStore;
 	}
 
@@ -578,10 +572,7 @@ class SqlBlobStore implements IDBAccessObject, BlobStore {
 	 *
 	 * @return string|bool Decompressed text, or false on failure
 	 */
-	public function decompressData( $blob, array $blobFlags ) {
-		// Revision::decompressRevisionText accepted false here, so defend against that
-		Assert::parameterType( 'string', $blob, '$blob' );
-
+	public function decompressData( string $blob, array $blobFlags ) {
 		if ( in_array( 'error', $blobFlags ) ) {
 			// Error row, return false
 			return false;

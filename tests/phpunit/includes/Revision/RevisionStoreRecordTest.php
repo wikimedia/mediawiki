@@ -236,15 +236,6 @@ class RevisionStoreRecordTest extends MediaWikiIntegrationTestCase {
 			'page_latest' => '18',
 		];
 
-		yield 'not a row' => [
-			new PageIdentityValue( 17, NS_MAIN, 'Dummy', 'acmewiki' ),
-			$user,
-			$comment,
-			'not a row',
-			$slots,
-			'acmewiki'
-		];
-
 		$row = $protoRow;
 		$row['rev_page'] = 99;
 

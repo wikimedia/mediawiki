@@ -62,6 +62,7 @@ use Psr\Log\NullLogger;
 use RecentChange;
 use RuntimeException;
 use StatusValue;
+use stdClass;
 use Title;
 use TitleFactory;
 use Traversable;
@@ -1147,15 +1148,12 @@ class RevisionStore
 	 */
 	private function loadSlotContent(
 		SlotRecord $slot,
-		$blobData = null,
-		$blobFlags = null,
-		$blobFormat = null,
-		$queryFlags = 0
+		?string $blobData = null,
+		?string $blobFlags = null,
+		?string $blobFormat = null,
+		int $queryFlags = 0
 	) {
 		if ( $blobData !== null ) {
-			Assert::parameterType( 'string', $blobData, '$blobData' );
-			Assert::parameterType( 'string|null', $blobFlags, '$blobFlags' );
-
 			$cacheKey = $slot->hasAddress() ? $slot->getAddress() : null;
 
 			if ( $blobFlags === null ) {
@@ -1562,8 +1560,8 @@ class RevisionStore
 	 * @see newRevisionFromArchiveRow()
 	 * @since 1.35
 	 *
-	 * @param \stdClass $row
-	 * @param null|\stdClass[]|RevisionSlots $slots
+	 * @param stdClass $row
+	 * @param null|stdClass[]|RevisionSlots $slots
 	 *  - Database rows generated from a query based on getSlotsQueryInfo
 	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
@@ -1578,17 +1576,12 @@ class RevisionStore
 	 * @throws MWException
 	 */
 	public function newRevisionFromArchiveRowAndSlots(
-		$row,
+		stdClass $row,
 		$slots,
-		$queryFlags = 0,
-		PageIdentity $page = null,
+		int $queryFlags = 0,
+		?PageIdentity $page = null,
 		array $overrides = []
 	) {
-		Assert::parameterType( \stdClass::class, $row, '$row' );
-
-		// check second argument, since the old Revision::newFromArchiveRow had $overrides in that spot.
-		Assert::parameterType( 'integer', $queryFlags, '$queryFlags' );
-
 		if ( !$page && isset( $overrides['title'] ) ) {
 			if ( !( $overrides['title'] instanceof PageIdentity ) ) {
 				throw new MWException( 'title field override must contain a PageIdentity object.' );
@@ -1642,8 +1635,8 @@ class RevisionStore
 	/**
 	 * @see newFromRevisionRow()
 	 *
-	 * @param \stdClass $row A database row generated from a query based on getQueryInfo()
-	 * @param null|\stdClass[]|RevisionSlots $slots
+	 * @param stdClass $row A database row generated from a query based on getQueryInfo()
+	 * @param null|stdClass[]|RevisionSlots $slots
 	 *  - Database rows generated from a query based on getSlotsQueryInfo
 	 *    with the 'content' flag set. Or
 	 *  - RevisionSlots instance
@@ -1658,14 +1651,12 @@ class RevisionStore
 	 * @see RevisionFactory::newRevisionFromRow
 	 */
 	public function newRevisionFromRowAndSlots(
-		$row,
+		stdClass $row,
 		$slots,
-		$queryFlags = 0,
-		PageIdentity $page = null,
-		$fromCache = false
+		int $queryFlags = 0,
+		?PageIdentity $page = null,
+		bool $fromCache = false
 	) {
-		Assert::parameterType( \stdClass::class, $row, '$row' );
-
 		if ( !$page ) {
 			if ( isset( $row->page_id )
 				&& isset( $row->page_namespace )
