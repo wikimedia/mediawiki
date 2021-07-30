@@ -3111,13 +3111,6 @@ class Language {
 	}
 
 	/**
-	 * @return array
-	 */
-	public function capitalizeAllNouns() {
-		return $this->localisationCache->getItem( $this->mCode, 'capitalizeAllNouns' );
-	}
-
-	/**
 	 * An arrow, depending on the language direction.
 	 *
 	 * @param string $direction The direction of the arrow: forwards (default),

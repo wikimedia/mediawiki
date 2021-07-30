@@ -122,7 +122,7 @@ class LocalisationCache {
 	 */
 	public static $allKeys = [
 		'fallback', 'namespaceNames', 'bookstoreList',
-		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns',
+		'magicWords', 'messages', 'rtl',
 		'digitTransformTable', 'separatorTransformTable',
 		'minimumGroupingDigits', 'fallback8bitEncoding',
 		'linkPrefixExtension', 'linkTrail', 'linkPrefixCharset',
