@@ -378,9 +378,8 @@ class MovePage {
 		$status = new Status();
 
 		if ( !$this->newTitle->inNamespace( NS_FILE ) ) {
-			$status->fatal( 'imagenocrossnamespace' );
 			// No need for further errors about the target filename being wrong
-			return $status;
+			return $status->fatal( 'imagenocrossnamespace' );
 		}
 
 		$file = $this->repoGroup->getLocalRepo()->newFile( $this->oldTitle );

@@ -58,9 +58,7 @@ class DBFileJournal extends FileJournal {
 		try {
 			$dbw = $this->getPrimaryDB();
 		} catch ( DBError $e ) {
-			$status->fatal( 'filejournal-fail-dbconnect', $this->backend );
-
-			return $status;
+			return $status->fatal( 'filejournal-fail-dbconnect', $this->backend );
 		}
 
 		$now = ConvertibleTimestamp::time();
@@ -86,9 +84,7 @@ class DBFileJournal extends FileJournal {
 				$this->purgeOldLogs(); // @codeCoverageIgnore
 			}
 		} catch ( DBError $e ) {
-			$status->fatal( 'filejournal-fail-dbquery', $this->backend );
-
-			return $status;
+			return $status->fatal( 'filejournal-fail-dbquery', $this->backend );
 		}
 
 		return $status;

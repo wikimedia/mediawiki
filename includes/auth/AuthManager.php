@@ -908,9 +908,8 @@ class AuthManager implements LoggerAwareInterface {
 			$any = $any || $status->value !== 'ignored';
 		}
 		if ( !$any ) {
-			$status = Status::newGood( 'ignored' );
-			$status->warning( 'authmanager-change-not-supported' );
-			return $status;
+			return Status::newGood( 'ignored' )
+				->warning( 'authmanager-change-not-supported' );
 		}
 		return Status::newGood();
 	}
@@ -1605,9 +1604,7 @@ class AuthManager implements LoggerAwareInterface {
 			if ( $login ) {
 				$this->setSessionDataForUser( $user );
 			}
-			$status = Status::newGood();
-			$status->warning( 'userexists' );
-			return $status;
+			return Status::newGood()->warning( 'userexists' );
 		}
 
 		// Wiki is read-only?
@@ -1733,8 +1730,7 @@ class AuthManager implements LoggerAwareInterface {
 					if ( $login ) {
 						$this->setSessionDataForUser( $user );
 					}
-					$status = Status::newGood();
-					$status->warning( 'userexists' );
+					$status = Status::newGood()->warning( 'userexists' );
 				} else {
 					$this->logger->error( __METHOD__ . ': {username} failed with message {msg}', [
 						'username' => $username,

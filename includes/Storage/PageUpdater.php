@@ -1207,9 +1207,7 @@ class PageUpdater {
 
 		if ( !$oldRev ) {
 			// Article gone missing
-			$status->fatal( 'edit-gone-missing' );
-
-			return $status;
+			return $status->fatal( 'edit-gone-missing' );
 		}
 
 		$newRevisionRecord = $this->makeNewRevision(
@@ -1252,10 +1250,9 @@ class PageUpdater {
 				// XXX: Or do we want to rollback, any transaction started by calling
 				// code will fail? If we want that, we should probably throw an exception.
 				$dbw->endAtomic( __METHOD__ );
-				// Page updated or deleted in the mean time
-				$status->fatal( 'edit-conflict' );
 
-				return $status;
+				// Page updated or deleted in the mean time
+				return $status->fatal( 'edit-conflict' );
 			}
 
 			// At this point we are now comitted to returning an OK
@@ -1385,9 +1382,7 @@ class PageUpdater {
 		$newid = $wikiPage->insertOn( $dbw );
 		if ( $newid === false ) {
 			$dbw->endAtomic( __METHOD__ );
-			$status->fatal( 'edit-already-exists' );
-
-			return $status;
+			return $status->fatal( 'edit-already-exists' );
 		}
 
 		// At this point we are now comitted to returning an OK
