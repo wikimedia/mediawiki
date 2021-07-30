@@ -1508,3 +1508,8 @@
 	url = https://github.com/wikimedia/mediawiki-skins-Anisa
 	branch = REL1_36
 	ignore = dirty
+[submodule "extensions/PageSchemas"]
+	path = extensions/PageSchemas
+	url = https://github.com/wikimedia/mediawiki-extensions-PageSchemas
+	branch = master
+	ignore = dirty
