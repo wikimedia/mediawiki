@@ -201,6 +201,10 @@ class DeletedContribsPager extends IndexPager {
 	}
 
 	public function getNavigationBar() {
+		if ( !$this->isNavigationBarShown() ) {
+			return '';
+		}
+
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
