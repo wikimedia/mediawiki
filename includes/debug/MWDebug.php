@@ -241,6 +241,7 @@ class MWDebug {
 	 * @param string $class Class declaring the deprecated method (typically __CLASS__ )
 	 * @param string $method The name of the deprecated method.
 	 * @param string|false $version Version in which the method was deprecated.
+	 *   Does not issue deprecation warnings if false.
 	 * @param string|bool $component Component to which the class belongs.
 	 *    If false, it is assumed the class is in MediaWiki core.
 	 * @param int $callerOffset How far up the callstack is the original
@@ -265,10 +266,8 @@ class MWDebug {
 		if ( $version ) {
 			$component = $component ?: 'MediaWiki';
 			$msg = "$declaringClass overrides $method which was deprecated in $component $version.";
-		} else {
-			$msg = "$declaringClass overrides $method which is deprecated.";
+			self::deprecatedMsg( $msg, $version, $component, $callerOffset + 1 );
 		}
-		self::deprecatedMsg( $msg, $version, $component, $callerOffset + 1 );
 
 		return true;
 	}
