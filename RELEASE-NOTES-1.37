@@ -363,11 +363,11 @@ because of Phabricator reports.
 * The Skin::setupSkinUserCss method deprecated in 1.32, was removed. Please use
   skin registration instead.
 * ParserCache::getKey and ::getEtag, deprecated since 1.36, were removed.
-* BaseTemplateToolboxHook, deprecated since 1.35, was removed.
+* The BaseTemplateToolbox hook, deprecated since 1.35, was removed.
 * Previously a capitalize-all-nouns class was added to the body element of
-languages where nouns must be capitalized. This class is no longer added to
-the body tag and must be provided by skins.
-* SkinTemplateOutputPageBeforeExecHook, deprecated since 1.35, was removed.
+  languages where nouns must be capitalized. This class is no longer added to
+  the body tag and must be provided by skins.
+* The SkinTemplateOutputPageBeforeExec hook, deprecated since 1.35, was removed.
 * …
 
 === Deprecations in 1.37 ===
