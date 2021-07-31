@@ -58,8 +58,8 @@ class LanguageFactory {
 	/** @var HookContainer */
 	private $hookContainer;
 
-	/** @var MapCacheLRU|null */
-	private $langObjCache = null;
+	/** @var MapCacheLRU */
+	private $langObjCache;
 
 	/** @var array */
 	private $parentLangCache = [];
@@ -69,8 +69,10 @@ class LanguageFactory {
 	 */
 	public const CONSTRUCTOR_OPTIONS = [
 		'DummyLanguageCodes',
-		'LangObjCacheSize',
 	];
+
+	/** How many distinct Language objects to retain at most in memory (T40439). */
+	private const LANG_CACHE_SIZE = 10;
 
 	/**
 	 * @param ServiceOptions $options
@@ -96,9 +98,7 @@ class LanguageFactory {
 		$this->langFallback = $langFallback;
 		$this->langConverterFactory = $langConverterFactory;
 		$this->hookContainer = $hookContainer;
-		if ( $options->get( 'LangObjCacheSize' ) ) {
-			$this->langObjCache = new MapCacheLRU( $options->get( 'LangObjCacheSize' ) );
-		}
+		$this->langObjCache = new MapCacheLRU( self::LANG_CACHE_SIZE );
 	}
 
 	/**
@@ -110,17 +110,13 @@ class LanguageFactory {
 	 */
 	public function getLanguage( $code ): Language {
 		$code = $this->options->get( 'DummyLanguageCodes' )[$code] ?? $code;
+		$langObj = $this->langObjCache->get( $code );
 
-		if ( !$this->langObjCache ) {
-			return $this->newFromCode( $code );
+		if ( !$langObj ) {
+			$langObj = $this->newFromCode( $code );
+			$this->langObjCache->set( $code, $langObj );
 		}
 
-		if ( $this->langObjCache->has( $code ) ) {
-			return $this->langObjCache->get( $code );
-		}
-
-		$langObj = $this->newFromCode( $code );
-		$this->langObjCache->set( $code, $langObj );
 		return $langObj;
 	}
 
