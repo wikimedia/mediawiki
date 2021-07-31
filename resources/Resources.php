@@ -603,22 +603,32 @@ return [
 
 	'vuex' => [
 		'packageFiles' => [
-			'resources/src/vue/vuex.js',
 			[
 				'name' => 'resources/lib/vuex/vuex.js',
 				'callback' => static function ( ResourceLoaderContext $context, Config $config ) {
+					global $IP;
 					// Use the development version if development mode is enabled, or if we're in debug mode
 					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
-						'resources/lib/vuex/vuex.js' :
-						'resources/lib/vuex/vuex.min.js';
+						'resources/lib/vuex/vuex.global.js' :
+						'resources/lib/vuex/vuex.global.prod.js';
+					// The file shipped by Vuex does var Vuex = ...;, but doesn't export it
+					// Add module.exports = Vuex; programmatically, and import Vue
+					return "var Vue=require('vue');" .
+						file_get_contents( "$IP/$file" ) .
+						';module.exports=Vuex;';
+				},
+				'versionCallback' => static function ( ResourceLoaderContext $context, Config $config ) {
+					$file = $config->get( 'VueDevelopmentMode' ) || $context->getDebug() ?
+						'resources/lib/vuex/vuex.global.js' :
+						'resources/lib/vuex/vuex.global.prod.js';
 					return new ResourceLoaderFilePath( $file );
 				}
-			]
+			],
 		],
 		'dependencies' => [
 			'vue',
-			'es6-polyfills',
 		],
+		'es6' => true,
 		'targets' => [ 'desktop', 'mobile' ],
 	],
 

@@ -35,13 +35,22 @@
 	 * To ensure all Vue code has the i18n plugin and the error handler installed, use of
 	 * Vue.createMwApp() is recommended anywhere one would normally use Vue.createApp().
 	 *
-	 * @param {...Mixed} args
+	 * @param {Object} options
+	 * @param {...Mixed} otherArgs
 	 * @return {Object} Vue app instance
 	 */
-	Vue.createMwApp = function ( ...args ) {
-		const app = Vue.createApp( ...args );
+	Vue.createMwApp = function ( options, ...otherArgs ) {
+		const app = Vue.createApp( options, ...otherArgs );
 		app.use( errorLogger );
 		app.use( i18n );
+
+		if ( options.store ) {
+			// Provide backwards compatibility for callers expecting Vuex 3
+			mw.log.warn( 'Use of Vue.createMwApp( { store } ) is deprecated. Use Vue.createMwApp(...).use( store ) instead.' );
+			mw.track( 'mw.deprecate', 'Vue.createMwApp.store' );
+
+			app.use( options.store );
+		}
 		return app;
 	};
 
