@@ -1513,3 +1513,8 @@
 	url = https://github.com/wikimedia/mediawiki-extensions-PageSchemas
 	branch = master
 	ignore = dirty
+[submodule "extensions/MintyDocs"]
+	path = extensions/MintyDocs
+	url = https://github.com/wikimedia/mediawiki-extensions-MintyDocs
+	branch = master
+	ignore = dirty
