@@ -22,7 +22,17 @@ class ActionTest extends MediaWikiIntegrationTestCase {
 			'disabled' => false,
 			'view' => true,
 			'edit' => true,
-			'revisiondelete' => SpecialPageAction::class,
+			'revisiondelete' => [
+				'class' => SpecialPageAction::class,
+				'services' => [
+					'SpecialPageFactory',
+				],
+				'args' => [
+					// SpecialPageAction is used for both 'editchangetags' and
+					// 'revisiondelete' actions, tell it which one this is
+					'revisiondelete',
+				],
+			],
 			'dummy' => true,
 			'access' => 'ControlledAccessDummyAction',
 			'unblock' => 'RequiresUnblockDummyAction',
