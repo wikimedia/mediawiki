@@ -23,6 +23,7 @@ namespace MediaWiki\User;
 use ConfiguredReadOnlyMode;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\JobQueue\JobQueueGroupFactory;
 use MediaWiki\Permissions\GroupPermissionsLookup;
 use Psr\Log\LoggerInterface;
 use Wikimedia\Rdbms\ILBFactory;
@@ -49,6 +50,9 @@ class UserGroupManagerFactory {
 	/** @var GroupPermissionsLookup */
 	private $groupPermissionLookup;
 
+	/** @var JobQueueGroupFactory */
+	private $jobQueueGroupFactory;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -65,6 +69,7 @@ class UserGroupManagerFactory {
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param JobQueueGroupFactory $jobQueueGroupFactory
 	 * @param LoggerInterface $logger
 	 * @param callable[] $clearCacheCallbacks
 	 */
@@ -75,6 +80,7 @@ class UserGroupManagerFactory {
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
 		GroupPermissionsLookup $groupPermissionsLookup,
+		JobQueueGroupFactory $jobQueueGroupFactory,
 		LoggerInterface $logger,
 		array $clearCacheCallbacks = []
 	) {
@@ -84,6 +90,7 @@ class UserGroupManagerFactory {
 		$this->hookContainer = $hookContainer;
 		$this->userEditTracker = $userEditTracker;
 		$this->groupPermissionLookup = $groupPermissionsLookup;
+		$this->jobQueueGroupFactory = $jobQueueGroupFactory;
 		$this->logger = $logger;
 		$this->clearCacheCallbacks = $clearCacheCallbacks;
 	}
@@ -101,6 +108,7 @@ class UserGroupManagerFactory {
 			$this->hookContainer,
 			$this->userEditTracker,
 			$this->groupPermissionLookup,
+			$this->jobQueueGroupFactory->makeJobQueueGroup( $dbDomain ),
 			$this->logger,
 			$this->clearCacheCallbacks,
 			$dbDomain
