@@ -30,9 +30,8 @@ use EnqueueableDataUpdate;
 use ErrorPageError;
 use Liuggio\StatsdClient\Factory\StatsdDataFactoryInterface;
 use LogicException;
+use MediaWiki\Config\ServiceOptions;
 use MediaWiki\JobQueue\JobQueueGroupFactory;
-use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
 use MWCallableUpdate;
 use MWExceptionHandler;
 use Psr\Log\LoggerInterface;
@@ -114,6 +113,48 @@ class DeferredUpdatesManager {
 	/** @var int Queue size threshold for converting updates into jobs */
 	private const BIG_QUEUE_SIZE = 100;
 
+	/** @internal For use by ServiceWiring */
+	public const CONSTRUCTOR_OPTIONS = [
+		'CommandLineMode',
+	];
+
+	/** @var ServiceOptions */
+	private $options;
+
+	/** @var LoggerInterface */
+	private $logger;
+
+	/** @var ILBFactory */
+	private $lbFactory;
+
+	/** @var StatsdDataFactoryInterface */
+	private $stats;
+
+	/** @var JobQueueGroupFactory */
+	private $jobQueueGroupFactory;
+
+	/**
+	 * @param ServiceOptions $options
+	 * @param LoggerInterface $logger
+	 * @param ILBFactory $lbFactory
+	 * @param StatsdDataFactoryInterface $stats
+	 * @param JobQueueGroupFactory $jobQueueGroupFactory
+	 */
+	public function __construct(
+		ServiceOptions $options,
+		LoggerInterface $logger,
+		ILBFactory $lbFactory,
+		StatsdDataFactoryInterface $stats,
+		JobQueueGroupFactory $jobQueueGroupFactory
+	) {
+		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
+		$this->options = $options;
+		$this->logger = $logger;
+		$this->lbFactory = $lbFactory;
+		$this->stats = $stats;
+		$this->jobQueueGroupFactory = $jobQueueGroupFactory;
+	}
+
 	/**
 	 * Add an update to the pending update queue for execution at the appropriate time
 	 *
@@ -134,15 +175,13 @@ class DeferredUpdatesManager {
 	 * @param int $stage One of (DeferredUpdatesManager::PRESEND, ::POSTSEND)
 	 */
 	public function addUpdate( DeferrableUpdate $update, $stage = self::POSTSEND ) {
-		$commandLineMode = MediaWikiServices::getInstance()->getMainConfig()->get( 'CommandLineMode' );
-
 		$this->getScopeStack()->current()->addUpdate( $update, $stage );
 		// If CLI mode is active and no RDBMs transaction round is in the way, then run all
 		// the pending updates now. This is needed for scripts that never, or rarely, use the
 		// RDBMs layer, but that do modify systems via deferred updates. This logic avoids
 		// excessive pending update queue sizes when long-running scripts never trigger the
 		// basic RDBMs hooks for running pending updates.
-		if ( $commandLineMode ) {
+		if ( $this->options->get( 'CommandLineMode' ) ) {
 			$this->tryOpportunisticExecute();
 		}
 	}
@@ -180,12 +219,7 @@ class DeferredUpdatesManager {
 	 *  (DeferredUpdatesManager::PRESEND, ::POSTSEND, ::ALL)
 	 */
 	public function doUpdates( $stage = self::ALL ) {
-		$services = MediaWikiServices::getInstance();
-		$stats = $services->getStatsdDataFactory();
-		$lbf = $services->getDBLoadBalancerFactory();
-		$logger = LoggerFactory::getInstance( 'DeferredUpdates' );
-		$jobQueueGroupFactory = $services->getJobQueueGroupFactory();
-		$httpMethod = $services->getMainConfig()->get( 'CommandLineMode' )
+		$httpMethod = $this->options->get( 'CommandLineMode' )
 			? 'cli'
 			: strtolower( RequestContext::getMain()->getRequest()->getMethod() );
 
@@ -215,12 +249,12 @@ class DeferredUpdatesManager {
 		$scope->processUpdates(
 			$stage,
 			function ( DeferrableUpdate $update, $activeStage )
-				use ( $lbf, $logger, $stats, $jobQueueGroupFactory, $httpMethod, &$guiError, &$exception )
+				use ( $httpMethod, &$guiError, &$exception )
 			{
-				$scopeStack = self::getScopeStack();
+				$scopeStack = $this->getScopeStack();
 				$childScope = $scopeStack->descend( $activeStage, $update );
 				try {
-					$e = $this->run( $update, $lbf, $logger, $stats, $jobQueueGroupFactory, $httpMethod );
+					$e = $this->run( $update, $httpMethod );
 					$guiError = $guiError ?: ( $e instanceof ErrorPageError ? $e : null );
 					$exception = $exception ?: $e;
 					// Any addUpdate() calls between descend() and ascend() used the sub-queue.
@@ -231,9 +265,9 @@ class DeferredUpdatesManager {
 					$childScope->processUpdates(
 						$activeStage,
 						function ( DeferrableUpdate $subUpdate )
-							use ( $lbf, $logger, $stats, $jobQueueGroupFactory, $httpMethod, &$guiError, &$exception )
+							use ( $httpMethod, &$guiError, &$exception )
 						{
-							$e = $this->run( $subUpdate, $lbf, $logger, $stats, $jobQueueGroupFactory, $httpMethod );
+							$e = $this->run( $subUpdate, $httpMethod );
 							$guiError = $guiError ?: ( $e instanceof ErrorPageError ? $e : null );
 							$exception = $exception ?: $e;
 						}
@@ -299,9 +333,9 @@ class DeferredUpdatesManager {
 			$this->getScopeStack()->current()->consumeMatchingUpdates(
 				self::ALL,
 				EnqueueableDataUpdate::class,
-				static function ( EnqueueableDataUpdate $update ) {
+				function ( EnqueueableDataUpdate $update ) {
 					$spec = $update->getAsJobSpecification();
-					MediaWikiServices::getInstance()->getJobQueueGroupFactory()
+					$this->jobQueueGroupFactory
 						->makeJobQueueGroup( $spec['domain'] )->push( $spec['job'] );
 				}
 			);
@@ -377,62 +411,55 @@ class DeferredUpdatesManager {
 	 * a job in the job queue system if possible (e.g. implements EnqueueableDataUpdate)
 	 *
 	 * @param DeferrableUpdate $update
-	 * @param ILBFactory $lbFactory
-	 * @param LoggerInterface $logger
-	 * @param StatsdDataFactoryInterface $stats
-	 * @param JobQueueGroupFactory $jobQueueGroupFactory
 	 * @param string $httpMethod
 	 * @return Throwable|null
 	 */
 	private function run(
 		DeferrableUpdate $update,
-		ILBFactory $lbFactory,
-		LoggerInterface $logger,
-		StatsdDataFactoryInterface $stats,
-		JobQueueGroupFactory $jobQueueGroupFactory,
 		$httpMethod
 	): ?Throwable {
 		$suffix = $update instanceof DeferrableCallback ? '_' . $update->getOrigin() : '';
 		$type = get_class( $update ) . $suffix;
-		$stats->increment( "deferred_updates.$httpMethod.$type" );
+		$this->stats->increment( "deferred_updates.$httpMethod.$type" );
+
 		$updateId = spl_object_id( $update );
-		$logger->debug( __METHOD__ . ": started $type #$updateId" );
+		$this->logger->debug( __METHOD__ . ": started $type #$updateId" );
 
 		$updateException = null;
 
 		$startTime = microtime( true );
 		try {
-			$this->attemptUpdate( $update, $lbFactory );
+			$this->attemptUpdate( $update, $this->lbFactory );
 		} catch ( Throwable $updateException ) {
 			MWExceptionHandler::logException( $updateException );
-			$logger->error(
+			$this->logger->error(
 				"Deferred update '{deferred_type}' failed to run.",
 				[
 					'deferred_type' => $type,
 					'exception' => $updateException,
 				]
 			);
-			$lbFactory->rollbackPrimaryChanges( __METHOD__ );
+			$this->lbFactory->rollbackPrimaryChanges( __METHOD__ );
 		} finally {
 			$walltime = microtime( true ) - $startTime;
-			$logger->debug( __METHOD__ . ": ended $type #$updateId, processing time: $walltime" );
+			$this->logger->debug( __METHOD__ . ": ended $type #$updateId, processing time: $walltime" );
 		}
 
 		// Try to push the update as a job so it can run later if possible
 		if ( $updateException && $update instanceof EnqueueableDataUpdate ) {
 			try {
 				$spec = $update->getAsJobSpecification();
-				$jobQueueGroupFactory->makeJobQueueGroup( $spec['domain'] )->push( $spec['job'] );
+				$this->jobQueueGroupFactory->makeJobQueueGroup( $spec['domain'] )->push( $spec['job'] );
 			} catch ( Throwable $jobException ) {
 				MWExceptionHandler::logException( $jobException );
-				$logger->error(
+				$this->logger->error(
 					"Deferred update '{deferred_type}' failed to enqueue as a job.",
 					[
 						'deferred_type' => $type,
 						'exception' => $jobException,
 					]
 				);
-				$lbFactory->rollbackPrimaryChanges( __METHOD__ );
+				$this->lbFactory->rollbackPrimaryChanges( __METHOD__ );
 			}
 		}
 
@@ -485,12 +512,13 @@ class DeferredUpdatesManager {
 	 * @return bool If a transaction round is active or connection is not ready for commit()
 	 */
 	private function areDatabaseTransactionsActive() {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		if ( $lbFactory->hasTransactionRound() || !$lbFactory->isReadyForRoundOperations() ) {
+		if ( $this->lbFactory->hasTransactionRound()
+			|| !$this->lbFactory->isReadyForRoundOperations()
+		) {
 			return true;
 		}
 
-		foreach ( $lbFactory->getAllLBs() as $lb ) {
+		foreach ( $this->lbFactory->getAllLBs() as $lb ) {
 			if ( $lb->hasPrimaryChanges() || $lb->explicitTrxActive() ) {
 				return true;
 			}

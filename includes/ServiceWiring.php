@@ -655,7 +655,16 @@ return [
 	},
 
 	'DeferredUpdatesManager' => static function ( MediaWikiServices $services ): DeferredUpdatesManager {
-		return new DeferredUpdatesManager();
+		return new DeferredUpdatesManager(
+			new ServiceOptions(
+				DeferredUpdatesManager::CONSTRUCTOR_OPTIONS,
+				$services->getMainConfig()
+			),
+			LoggerFactory::getInstance( 'DeferredUpdates' ),
+			$services->getDBLoadBalancerFactory(),
+			$services->getStatsdDataFactory(),
+			$services->getJobQueueGroupFactory()
+		);
 	},
 
 	'DeletePageFactory' => static function ( MediaWikiServices $services ): DeletePageFactory {
