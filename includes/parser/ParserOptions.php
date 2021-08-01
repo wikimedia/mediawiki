@@ -611,19 +611,23 @@ class ParserOptions {
 
 	/**
 	 * Thumb size preferred by the user.
+	 * @deprecated since 1.37. Stub threshold feature has been removed. See T284917.
 	 * @return int
 	 */
 	public function getStubThreshold() {
-		return $this->getOption( 'stubthreshold' );
+		wfDeprecated( __METHOD__, '1.37' );
+		return 0;
 	}
 
 	/**
 	 * Thumb size preferred by the user.
+	 * @deprecated since 1.37. Stub threshold feature has been removed. See T284917.
 	 * @param int|null $x New value (null is no change)
 	 * @return int Old value
 	 */
 	public function setStubThreshold( $x ) {
-		return $this->setOptionLegacy( 'stubthreshold', $x );
+		wfDeprecated( __METHOD__, '1.37' );
+		return 0;
 	}
 
 	/**
@@ -1234,7 +1238,6 @@ class ParserOptions {
 			'magicRFCLinks' => $wgEnableMagicLinks['RFC'],
 			'numberheadings' => $userOptionsLookup->getDefaultOption( 'numberheadings' ),
 			'thumbsize' => $userOptionsLookup->getDefaultOption( 'thumbsize' ),
-			'stubthreshold' => 0,
 			'userlang' => $contentLanguage,
 		];
 	}
@@ -1273,8 +1276,6 @@ class ParserOptions {
 		$optionsLookup = $services->getUserOptionsLookup();
 		$this->options['numberheadings'] = $optionsLookup->getOption( $user, 'numberheadings' );
 		$this->options['thumbsize'] = $optionsLookup->getOption( $user, 'thumbsize' );
-		$userObj = $services->getUserFactory()->newFromUserIdentity( $user );
-		$this->options['stubthreshold'] = $userObj->getStubThreshold();
 		$this->options['userlang'] = $lang;
 	}
 

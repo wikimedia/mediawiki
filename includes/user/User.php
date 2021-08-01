@@ -2802,19 +2802,14 @@ class User implements Authority, UserIdentity, UserEmailContact {
 	/**
 	 * Get the user preferred stub threshold
 	 *
+	 * @deprecated since 1.37. The stub threshold preference support
+	 * was removed. See T284917
+	 *
 	 * @return int
 	 */
 	public function getStubThreshold() {
-		global $wgMaxArticleSize; # Maximum article size, in KiB
-		$threshold = MediaWikiServices::getInstance()
-			->getUserOptionsLookup()
-			->getIntOption( $this, 'stubthreshold' );
-		if ( $threshold > $wgMaxArticleSize * 1024 ) {
-			// If they have set an impossible value, disable the preference
-			// so we can use the parser cache again.
-			$threshold = 0;
-		}
-		return $threshold;
+		wfDeprecated( __METHOD__, '1.37' );
+		return 0;
 	}
 
 	/**

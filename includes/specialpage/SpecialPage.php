@@ -1029,7 +1029,7 @@ class SpecialPage implements MessageLocalizer {
 		if ( $this->linkRenderer === null ) {
 			// TODO Inject the service
 			$this->linkRenderer = MediaWikiServices::getInstance()->getLinkRendererFactory()
-				->createForUser( $this->getUser() );
+				->create();
 		}
 		return $this->linkRenderer;
 	}
