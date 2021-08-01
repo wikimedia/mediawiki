@@ -92,6 +92,9 @@ class UserGroupManager implements IDBAccessObject {
 	/** @var GroupPermissionsLookup */
 	private $groupPermissionsLookup;
 
+	/** @var JobQueueGroup for this $dbDomain */
+	private $jobQueueGroup;
+
 	/** @var LoggerInterface */
 	private $logger;
 
@@ -146,6 +149,7 @@ class UserGroupManager implements IDBAccessObject {
 	 * @param HookContainer $hookContainer
 	 * @param UserEditTracker $userEditTracker
 	 * @param GroupPermissionsLookup $groupPermissionsLookup
+	 * @param JobQueueGroup $jobQueueGroup for this $dbDomain
 	 * @param LoggerInterface $logger
 	 * @param callable[] $clearCacheCallbacks
 	 * @param string|bool $dbDomain
@@ -157,6 +161,7 @@ class UserGroupManager implements IDBAccessObject {
 		HookContainer $hookContainer,
 		UserEditTracker $userEditTracker,
 		GroupPermissionsLookup $groupPermissionsLookup,
+		JobQueueGroup $jobQueueGroup,
 		LoggerInterface $logger,
 		array $clearCacheCallbacks = [],
 		$dbDomain = false
@@ -169,6 +174,7 @@ class UserGroupManager implements IDBAccessObject {
 		$this->hookRunner = new HookRunner( $hookContainer );
 		$this->userEditTracker = $userEditTracker;
 		$this->groupPermissionsLookup = $groupPermissionsLookup;
+		$this->jobQueueGroup = $jobQueueGroup;
 		$this->logger = $logger;
 		// Can't just inject ROM since we LB can be for foreign wiki
 		$this->readOnlyMode = new ReadOnlyMode( $configuredReadOnlyMode, $this->loadBalancer );
@@ -811,7 +817,7 @@ class UserGroupManager implements IDBAccessObject {
 				$fname
 			);
 			if ( $hasExpiredRow ) {
-				JobQueueGroup::singleton( $this->dbDomain )->push( new UserGroupExpiryJob( [] ) );
+				$this->jobQueueGroup->push( new UserGroupExpiryJob( [] ) );
 			}
 		} );
 

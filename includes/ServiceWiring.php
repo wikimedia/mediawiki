@@ -1639,6 +1639,7 @@ return [
 			$services->getHookContainer(),
 			$services->getUserEditTracker(),
 			$services->getGroupPermissionsLookup(),
+			$services->getJobQueueGroupFactory(),
 			LoggerFactory::getInstance( 'UserGroupManager' ),
 			[ static function ( UserIdentity $user ) use ( $services ) {
 				$services->getPermissionManager()->invalidateUsersRightsCache( $user );

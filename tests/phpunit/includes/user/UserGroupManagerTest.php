@@ -92,6 +92,7 @@ class UserGroupManagerTest extends MediaWikiIntegrationTestCase {
 			$services->getHookContainer(),
 			$userEditTrackerOverride ?? $services->getUserEditTracker(),
 			$services->getGroupPermissionsLookup(),
+			$services->getJobQueueGroup(),
 			new TestLogger(),
 			$callback ? [ $callback ] : []
 		);
