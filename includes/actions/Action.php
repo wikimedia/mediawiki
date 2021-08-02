@@ -231,6 +231,7 @@ abstract class Action implements MessageLocalizer {
 
 	/**
 	 * @since 1.35
+	 * @internal since 1.37
 	 * @return HookContainer
 	 */
 	protected function getHookContainer() {
