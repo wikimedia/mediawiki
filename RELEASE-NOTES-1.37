@@ -389,6 +389,8 @@ because of Phabricator reports.
   WatchlistManager::addWatch() or WatchlistManager::removeWatch(), instead.
 * WatchAction::getWatchToken is hard deprecated. Instead use
   CsrfTokenSet::getToken
+* Action::getHookContainer() has been marked as internal. Actions that require
+  access to a hook container should have one injected instead.
 * The getTitle() and setTitle() methods in Parser have been deprecated.
   Use getPage() and setPage() instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
