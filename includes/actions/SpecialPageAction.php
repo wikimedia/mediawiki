@@ -18,7 +18,7 @@
  * @ingroup Actions
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 
 /**
  * An action that just passes the request to the relevant special page
@@ -35,26 +35,39 @@ class SpecialPageAction extends FormlessAction {
 		'editchangetags' => 'EditTags',
 	];
 
+	/** @var SpecialPageFactory */
+	private $specialPageFactory;
+
+	/** @var string Name of this action, must exist as a key in $actionToSpecialPageMapping */
+	private $actionName;
+
+	/**
+	 * @param Page $page
+	 * @param IContextSource $context
+	 * @param SpecialPageFactory $specialPageFactory
+	 * @param string $actionName
+	 */
+	public function __construct(
+		Page $page,
+		IContextSource $context,
+		SpecialPageFactory $specialPageFactory,
+		string $actionName
+	) {
+		parent::__construct( $page, $context );
+		$this->specialPageFactory = $specialPageFactory;
+		if ( !isset( self::$actionToSpecialPageMapping[$actionName] ) ) {
+			throw new InvalidArgumentException(
+				__CLASS__ . " does not support the action $actionName"
+			);
+		}
+		$this->actionName = $actionName;
+	}
+
 	/**
 	 * @inheritDoc
 	 */
 	public function getName() {
-		$request = $this->getRequest();
-		$actionName = $request->getVal( 'action', 'view' );
-		// TODO: Shouldn't need to copy-paste this code from Action::getActionName!
-		if ( $actionName === 'historysubmit' ) {
-			if ( $request->getBool( 'revisiondelete' ) ) {
-				$actionName = 'revisiondelete';
-			} elseif ( $request->getBool( 'editchangetags' ) ) {
-				$actionName = 'editchangetags';
-			}
-		}
-
-		if ( isset( self::$actionToSpecialPageMapping[$actionName] ) ) {
-			return $actionName;
-		}
-
-		return 'nosuchaction';
+		return $this->actionName;
 	}
 
 	public function requiresUnblock() {
@@ -91,13 +104,9 @@ class SpecialPageAction extends FormlessAction {
 	 * @return SpecialPage|null
 	 */
 	protected function getSpecialPage() {
-		$action = $this->getName();
-		if ( $action === 'nosuchaction' ) {
-			return null;
-		}
-
 		// map actions to (allowed) special pages
-		return MediaWikiServices::getInstance()->getSpecialPageFactory()->
-			getPage( self::$actionToSpecialPageMapping[$action] );
+		return $this->specialPageFactory->getPage(
+			self::$actionToSpecialPageMapping[$this->actionName]
+		);
 	}
 }
