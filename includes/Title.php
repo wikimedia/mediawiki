@@ -387,7 +387,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 		$title = self::makeTitle( $pageReference->getNamespace(), $pageReference->getDBkey() );
 
 		if ( $pageReference instanceof PageIdentity ) {
-			$title->resetArticleID( $pageReference->getId() );
+			$title->mArticleID = $pageReference->getId();
 		}
 		return $title;
 	}
