@@ -67,7 +67,6 @@ class ActionFactory {
 	private const CORE_ACTIONS = [
 		'delete' => true,
 		'edit' => true,
-		'editchangetags' => SpecialPageAction::class,
 		'history' => true,
 		'info' => true,
 		'mcrundo' => McrUndoAction::class,
@@ -86,6 +85,17 @@ class ActionFactory {
 			'class' => CreditsAction::class,
 			'services' => [
 				'LinkRenderer',
+			],
+		],
+		'editchangetags' => [
+			'class' => SpecialPageAction::class,
+			'services' => [
+				'SpecialPageFactory',
+			],
+			'args' => [
+				// SpecialPageAction is used for both 'editchangetags' and 'revisiondelete'
+				// actions, tell it which one this is
+				'editchangetags',
 			],
 		],
 		'markpatrolled' => [
@@ -111,6 +121,14 @@ class ActionFactory {
 		],
 		'revisiondelete' => [
 			'class' => SpecialPageAction::class,
+			'services' => [
+				'SpecialPageFactory',
+			],
+			'args' => [
+				// SpecialPageAction is used for both 'editchangetags' and 'revisiondelete'
+				// actions, tell it which one this is
+				'revisiondelete',
+			],
 		],
 		'rollback' => [
 			'class' => RollbackAction::class,

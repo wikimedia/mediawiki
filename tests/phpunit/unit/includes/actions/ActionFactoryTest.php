@@ -1,6 +1,7 @@
 <?php
 
 use MediaWiki\Actions\ActionFactory;
+use MediaWiki\SpecialPage\SpecialPageFactory;
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
 use Psr\Log\NullLogger;
@@ -18,9 +19,14 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	 * @return ActionFactory|MockObject
 	 */
 	private function getFactory( $overrides = [] ) {
-		$objectFactory = new ObjectFactory(
-			$this->getMockForAbstractClass( ContainerInterface::class )
-		);
+		// ContainerInterface needs to provide the services used in creating
+		// SpecialPageAction because we create instances of that in testing
+		// the 'revisiondelete' and 'editchangetags' actions
+		$containerInterface = $this->getMockForAbstractClass( ContainerInterface::class );
+		$containerInterface->method( 'get' )
+			->with( 'SpecialPageFactory' )
+			->willReturn( $this->createMock( SpecialPageFactory::class ) );
+		$objectFactory = new ObjectFactory( $containerInterface );
 
 		$mock = $this->getMockBuilder( ActionFactory::class )
 			->setConstructorArgs( [
