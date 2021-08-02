@@ -22,10 +22,17 @@
  * @ingroup Actions
  */
 
+use MediaWiki\Cache\LinkBatchFactory;
+use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Languages\LanguageNameUtils;
+use MediaWiki\Linker\LinkRenderer;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\PageIdentity;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use Wikimedia\Rdbms\Database;
+use Wikimedia\Rdbms\ILoadBalancer;
 
 /**
  * Displays information about a page.
@@ -34,6 +41,95 @@ use Wikimedia\Rdbms\Database;
  */
 class InfoAction extends FormlessAction {
 	private const VERSION = 1;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var HookRunner */
+	private $hookRunner;
+
+	/** @var LanguageNameUtils */
+	private $languageNameUtils;
+
+	/** @var LinkBatchFactory */
+	private $linkBatchFactory;
+
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var MagicWordFactory */
+	private $magicWordFactory;
+
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
+
+	/** @var PageProps */
+	private $pageProps;
+
+	/** @var RepoGroup */
+	private $repoGroup;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	/** @var WANObjectCache */
+	private $wanObjectCache;
+
+	/** @var WatchedItemStoreInterface */
+	private $watchedItemStore;
+
+	/**
+	 * @param Page $page
+	 * @param IContextSource $context
+	 * @param Language $contentLanguage
+	 * @param HookContainer $hookContainer
+	 * @param LanguageNameUtils $languageNameUtils
+	 * @param LinkBatchFactory $linkBatchFactory
+	 * @param LinkRenderer $linkRenderer
+	 * @param ILoadBalancer $loadBalancer
+	 * @param MagicWordFactory $magicWordFactory
+	 * @param NamespaceInfo $namespaceInfo
+	 * @param PageProps $pageProps
+	 * @param RepoGroup $repoGroup
+	 * @param RevisionLookup $revisionLookup
+	 * @param WANObjectCache $wanObjectCache
+	 * @param WatchedItemStoreInterface $watchedItemStore
+	 */
+	public function __construct(
+		Page $page,
+		IContextSource $context,
+		Language $contentLanguage,
+		HookContainer $hookContainer,
+		LanguageNameUtils $languageNameUtils,
+		LinkBatchFactory $linkBatchFactory,
+		LinkRenderer $linkRenderer,
+		ILoadBalancer $loadBalancer,
+		MagicWordFactory $magicWordFactory,
+		NamespaceInfo $namespaceInfo,
+		PageProps $pageProps,
+		RepoGroup $repoGroup,
+		RevisionLookup $revisionLookup,
+		WANObjectCache $wanObjectCache,
+		WatchedItemStoreInterface $watchedItemStore
+	) {
+		parent::__construct( $page, $context );
+		$this->contentLanguage = $contentLanguage;
+		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->languageNameUtils = $languageNameUtils;
+		$this->linkBatchFactory = $linkBatchFactory;
+		$this->linkRenderer = $linkRenderer;
+		$this->loadBalancer = $loadBalancer;
+		$this->magicWordFactory = $magicWordFactory;
+		$this->namespaceInfo = $namespaceInfo;
+		$this->pageProps = $pageProps;
+		$this->repoGroup = $repoGroup;
+		$this->revisionLookup = $revisionLookup;
+		$this->wanObjectCache = $wanObjectCache;
+		$this->watchedItemStore = $watchedItemStore;
+	}
 
 	/**
 	 * Returns the name of the action this object responds to.
@@ -136,7 +232,7 @@ class InfoAction extends FormlessAction {
 		$pageInfo = $this->pageInfo();
 
 		// Allow extensions to add additional information
-		$this->getHookRunner()->onInfoAction( $this->getContext(), $pageInfo );
+		$this->hookRunner->onInfoAction( $this->getContext(), $pageInfo );
 
 		// Render page information
 		foreach ( $pageInfo as $header => $infoTable ) {
@@ -245,18 +341,16 @@ class InfoAction extends FormlessAction {
 	 * @return array
 	 */
 	protected function pageInfo() {
-		$services = MediaWikiServices::getInstance();
-
 		$user = $this->getUser();
 		$lang = $this->getLanguage();
 		$title = $this->getTitle();
 		$id = $title->getArticleID();
 		$config = $this->context->getConfig();
-		$linkRenderer = $services->getLinkRenderer();
+		$linkRenderer = $this->linkRenderer;
 
 		$pageCounts = $this->pageCounts();
 
-		$props = $services->getPageProps()->getAllProperties( $title );
+		$props = $this->pageProps->getAllProperties( $title );
 		$pageProperties = $props[$id] ?? [];
 
 		// Basic information
@@ -312,7 +406,7 @@ class InfoAction extends FormlessAction {
 		$pageLang = $title->getPageLanguage()->getCode();
 
 		$pageLangHtml = $pageLang . ' - ' .
-			$services->getLanguageNameUtils()->getLanguageName( $pageLang, $lang->getCode() );
+			$this->languageNameUtils->getLanguageName( $pageLang, $lang->getCode() );
 		// Link to Special:PageLanguage with pre-filled page title if user has permissions
 		if ( $config->get( 'PageLanguageUseDB' )
 			&& $this->getContext()->getAuthority()->probablyCan( 'pagelang', $title )
@@ -431,7 +525,7 @@ class InfoAction extends FormlessAction {
 		}
 
 		// Subpages of this page, if subpages are enabled for the current NS
-		if ( $services->getNamespaceInfo()->hasSubpages( $title->getNamespace() ) ) {
+		if ( $this->namespaceInfo->hasSubpages( $title->getNamespace() ) ) {
 			$prefixIndex = SpecialPage::getTitleFor(
 				'Prefixindex',
 				$title->getPrefixedText() . '/'
@@ -482,7 +576,7 @@ class InfoAction extends FormlessAction {
 
 		// Display image SHA-1 value
 		if ( $title->inNamespace( NS_FILE ) ) {
-			$fileObj = $services->getRepoGroup()->findFile( $title );
+			$fileObj = $this->repoGroup->findFile( $title );
 			if ( $fileObj !== false ) {
 				// Convert the base-36 sha1 value obtained from database to base-16
 				$output = Wikimedia\base_convert( $fileObj->getSha1(), 36, 16, 40 );
@@ -582,10 +676,9 @@ class InfoAction extends FormlessAction {
 		// Edit history
 		$pageInfo['header-edits'] = [];
 
-		$firstRev = $services->getRevisionLookup()->getFirstRevision( $this->getTitle() );
+		$firstRev = $this->revisionLookup->getFirstRevision( $this->getTitle() );
 		$lastRev = $this->getWikiPage()->getRevisionRecord();
-		$linkBatchFactory = $services->getLinkBatchFactory();
-		$batch = $linkBatchFactory->newLinkBatch();
+		$batch = $this->linkBatchFactory->newLinkBatch();
 		if ( $firstRev ) {
 			$firstRevUser = $firstRev->getUser( RevisionRecord::FOR_THIS_USER, $user );
 			if ( $firstRevUser ) {
@@ -672,13 +765,13 @@ class InfoAction extends FormlessAction {
 		];
 
 		// Array of MagicWord objects
-		$magicWords = $services->getMagicWordFactory()->getDoubleUnderscoreArray();
+		$magicWords = $this->magicWordFactory->getDoubleUnderscoreArray();
 
 		// Array of magic word IDs
 		$wordIDs = $magicWords->names;
 
 		// Array of IDs => localized magic words
-		$localizedWords = $services->getContentLanguage()->getMagicWords();
+		$localizedWords = $this->contentLanguage->getMagicWords();
 
 		$listItems = [];
 		foreach ( $pageProperties as $property => $value ) {
@@ -820,20 +913,22 @@ class InfoAction extends FormlessAction {
 		$page = $this->getWikiPage();
 		$fname = __METHOD__;
 		$config = $this->context->getConfig();
-		$services = MediaWikiServices::getInstance();
-		$cache = $services->getMainWANObjectCache();
+		$cache = $this->wanObjectCache;
 
 		return $cache->getWithSetCallback(
 			self::getCacheKey( $cache, $page->getTitle(), $page->getLatest() ),
 			WANObjectCache::TTL_WEEK,
-			static function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname, $services ) {
+			function ( $oldValue, &$ttl, &$setOpts ) use ( $page, $config, $fname ) {
 				global $wgActorTableSchemaMigrationStage;
 
 				$title = $page->getTitle();
 				$id = $title->getArticleID();
 
-				$dbr = wfGetDB( DB_REPLICA );
-				$dbrWatchlist = wfGetDB( DB_REPLICA, 'watchlist' );
+				$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
+				$dbrWatchlist = $this->loadBalancer->getConnectionRef(
+					DB_REPLICA,
+					[ 'watchlist' ]
+				);
 				$setOpts += Database::getCacheSetOptions( $dbr, $dbrWatchlist );
 
 				if ( $wgActorTableSchemaMigrationStage & SCHEMA_COMPAT_READ_NEW ) {
@@ -849,7 +944,7 @@ class InfoAction extends FormlessAction {
 				}
 				$joins = [];
 
-				$watchedItemStore = $services->getWatchedItemStore();
+				$watchedItemStore = $this->watchedItemStore;
 
 				$result = [];
 				$result['watchers'] = $watchedItemStore->countWatchers( $title );
@@ -914,7 +1009,7 @@ class InfoAction extends FormlessAction {
 				);
 
 				// Subpages (if enabled)
-				if ( $services->getNamespaceInfo()->hasSubpages( $title->getNamespace() ) ) {
+				if ( $this->namespaceInfo->hasSubpages( $title->getNamespace() ) ) {
 					$conds = [ 'page_namespace' => $title->getNamespace() ];
 					$conds[] = 'page_title ' .
 						$dbr->buildLike( $title->getDBkey() . '/', $dbr->anyString() );

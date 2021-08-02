@@ -118,7 +118,7 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 		$factory = $this->getFactory( [
 			'actions' => [
 				'edit' => true,
-				'info' => [ __CLASS__, 'getInfoAction' ],
+				'info' => [ $this, 'getInfoAction' ],
 			]
 		] );
 		$article = $this->getArticle();
@@ -143,8 +143,9 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	 * @param IContextSource $context
 	 * @return InfoAction
 	 */
-	public static function getInfoAction( Article $article, IContextSource $context ) {
-		return new InfoAction( $article, $context );
+	public function getInfoAction( Article $article, IContextSource $context ) {
+		// Don't worry about all of the services that InfoAction really uses
+		return $this->createMock( InfoAction::class );
 	}
 
 	public function provideGetActionName() {
