@@ -1,11 +1,23 @@
 {
 	"@metadata": {
 		"authors": [
+			"Rishabhbhat",
 			"Rk_kaul (on ks.wikipedia.org)",
 			"VibhasKS"
 		]
 	},
-	"help": "मदद",
+	"sunday": "आथवार",
+	"monday": "च़ऺन्द्रॖवार",
+	"tuesday": "बोम्वार",
+	"wednesday": "बॏदवार",
+	"thursday": "ब्रसवार",
+	"friday": "शॊकुरवार",
+	"saturday": "बटॖवार",
+	"sun": "आथ",
+	"mon": "च़ऺन्द्रॖ",
+	"tue": "बोम",
+	"wed": "बॏद",
+	"help": "मदथ",
 	"mainpage": "आहम सफ़ा",
 	"editsectionhint": "$1 शाबह तर तैयब दीउ",
 	"red-link-title": "$1 (सफ़ा ना आसुन)",
