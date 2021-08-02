@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Benojan",
+			"Crowley666",
 			"Cwek",
 			"Dcljr",
 			"Duolaimi",
@@ -1820,6 +1821,7 @@
 	"feedback-thanks-title": "谢谢侬！",
 	"searchsuggest-search": "搜寻{{SITENAME}}",
 	"duration-days": "$1日天",
+	"duration-millennia": "$1千年",
 	"pagelang-language": "闲话",
 	"mw-widgets-dateinput-no-date": "朆选择日脚",
 	"randomrootpage": "随机根页面"
