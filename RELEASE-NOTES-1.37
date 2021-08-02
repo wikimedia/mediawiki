@@ -30,6 +30,25 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * $wgContentHandlerTextFallback - This setting, which defines how to
   react if a plain text version of a non-text Content object is
   requested using ContentHandler::getContentText(), is deprecated.
+* $wgActions was reworked to support injecting dependencies into
+  Action subclasses. Previously, $wgActions was an array where the
+  keys where the names of actions, and the values had the following
+  impacts (for a given key 'Foo')
+  - `true`: use the class 'FooAction' unless for a specific page
+      WikiPage::getActionOverrides() wants to override that action
+  - a string: use the class with that name, and do not allow overriding
+      on a per-page basis
+  - `false`: the action is disabled
+  - a callable: use the Action instance returned by invoking that
+      callback, and do not allow overriding on a per-page basis
+  - an object: use that specific Action instance, and do not allow
+      overriding on a per-page basis.
+  As part of T253078, values can now be arrays that are not callables,
+  which are treated as ObjectFactory specs, allowing for services to
+  be injected. Additionally, the distinction between values that allow
+  per-page overrides and those that do not was removed - all actions
+  can now be overridden on a per-page basis using
+  WikiPage::getActionOverrides().
 * $wgShellboxUrl is deprecated, use $wgShellboxUrls as a mapping of
   service => URL instead.
 * …
@@ -38,6 +57,8 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * $wgLegacyJavaScriptGlobals, deprecated in 1.36.
 * $wgShowDBErrorBacktrace, deprecated and non-functional since 1.32.
 * $wgShowSQLErrors, deprecated and non-functional since 1.32.
+* $wgLangObjCacheSize - The LanguageFactory service now always retains
+  at most 10 objects in its LRU-cache.
 
 === New user-facing features in 1.37 ===
 * (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
@@ -389,6 +410,8 @@ because of Phabricator reports.
   WatchlistManager::addWatch() or WatchlistManager::removeWatch(), instead.
 * WatchAction::getWatchToken is hard deprecated. Instead use
   CsrfTokenSet::getToken
+* Action::getHookContainer() has been marked as internal. Actions that require
+  access to a hook container should have one injected instead.
 * The getTitle() and setTitle() methods in Parser have been deprecated.
   Use getPage() and setPage() instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
