@@ -194,7 +194,10 @@ return [
 			$services->getReadOnlyMode(),
 			$services->getUserNameUtils(),
 			$services->getBlockManager(),
-			$services->getWatchlistManager()
+			$services->getWatchlistManager(),
+			$services->getDBLoadBalancer(),
+			$services->getContentLanguage(),
+			$services->getLanguageConverterFactory()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;
