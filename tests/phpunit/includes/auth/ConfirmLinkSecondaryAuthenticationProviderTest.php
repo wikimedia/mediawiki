@@ -148,7 +148,10 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 				$mwServices->getReadOnlyMode(),
 				$this->createNoOpMock( UserNameUtils::class ),
 				$mwServices->getBlockManager(),
-				$mwServices->getWatchlistManager()
+				$mwServices->getWatchlistManager(),
+				$mwServices->getDBLoadBalancer(),
+				$mwServices->getContentLanguage(),
+				$mwServices->getLanguageConverterFactory()
 			] )
 			->getMock();
 		$manager->method( 'allowsAuthenticationDataChange' )
@@ -253,7 +256,10 @@ class ConfirmLinkSecondaryAuthenticationProviderTest extends \MediaWikiIntegrati
 			$readOnlyMode,
 			$userNameUtils,
 			$mwServices->getBlockManager(),
-			$mwServices->getWatchlistManager()
+			$mwServices->getWatchlistManager(),
+			$mwServices->getDBLoadBalancer(),
+			$mwServices->getContentLanguage(),
+			$mwServices->getLanguageConverterFactory()
 		);
 		$this->initProvider( $provider, null, null, $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );

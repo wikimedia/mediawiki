@@ -71,6 +71,15 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	/** @var WatchlistManager */
 	private $watchlistManager;
 
+	/** @var ILoadBalancer */
+	private $loadBalancer;
+
+	/** @var Language */
+	private $contentLanguage;
+
+	/** @var LanguageConverterFactory */
+	private $languageConverterFactory;
+
 	protected function setUp(): void {
 		parent::setUp();
 		$this->tablesUsed[] = 'ipblocks';
@@ -217,6 +226,15 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		if ( $regen || !$this->userNameUtils ) {
 			$this->userNameUtils = MediaWikiServices::getInstance()->getUserNameUtils();
 		}
+		if ( $regen || !$this->loadBalancer ) {
+			$this->loadBalancer = MediaWikiServices::getInstance()->getDBLoadBalancer();
+		}
+		if ( $regen || !$this->contentLanguage ) {
+			$this->contentLanguage = MediaWikiServices::getInstance()->getContentLanguage();
+		}
+		if ( $regen || !$this->languageConverterFactory ) {
+			$this->languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
+		}
 		if ( !$this->logger ) {
 			$this->logger = new \TestLogger();
 		}
@@ -232,7 +250,10 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->readOnlyMode,
 			$this->userNameUtils,
 			$this->blockManager,
-			$this->watchlistManager
+			$this->watchlistManager,
+			$this->loadBalancer,
+			$this->contentLanguage,
+			$this->languageConverterFactory
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );
@@ -677,9 +698,8 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	public function testSetDefaultUserOptions(
 		$contLang, $useContextLang, $expectedLang, $expectedVariant
 	) {
-		$this->initializeManager();
-
 		$this->setContentLang( $contLang );
+		$this->initializeManager( true );
 		$context = \RequestContext::getMain();
 		$reset = new ScopedCallback( [ $context, 'setLanguage' ], [ $context->getLanguage() ] );
 		$context->setLanguage( 'de' );
