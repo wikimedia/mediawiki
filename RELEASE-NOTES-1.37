@@ -57,6 +57,8 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * $wgLegacyJavaScriptGlobals, deprecated in 1.36.
 * $wgShowDBErrorBacktrace, deprecated and non-functional since 1.32.
 * $wgShowSQLErrors, deprecated and non-functional since 1.32.
+* $wgLangObjCacheSize - The LanguageFactory service now always retains
+  at most 10 objects in its LRU-cache.
 
 === New user-facing features in 1.37 ===
 * (T161934) MediaWiki now supports JPEG2000 files, to a limited extent.
