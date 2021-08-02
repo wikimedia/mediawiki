@@ -2,6 +2,7 @@
 
 namespace Wikimedia\Rdbms;
 
+use OutOfBoundsException;
 use stdClass;
 
 /**
@@ -134,7 +135,13 @@ abstract class ResultWrapper implements IResultWrapper {
 	}
 
 	public function seek( $pos ) {
-		if ( $this->numRows() ) {
+		$numRows = $this->numRows();
+		// Allow seeking to zero if there are no results
+		$max = $numRows ? $numRows - 1 : 0;
+		if ( $pos < 0 || $pos > $max ) {
+			throw new OutOfBoundsException( __METHOD__ . ': invalid position' );
+		}
+		if ( $numRows ) {
 			$this->doSeek( $pos );
 		}
 		$this->nextPos = $pos;
