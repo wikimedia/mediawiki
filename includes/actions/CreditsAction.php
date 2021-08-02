@@ -23,12 +23,29 @@
  * @author <evan@wikitravel.org>
  */
 
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Linker\LinkRenderer;
 
 /**
  * @ingroup Actions
  */
 class CreditsAction extends FormlessAction {
+
+	/** @var LinkRenderer */
+	private $linkRenderer;
+
+	/**
+	 * @param Page $page
+	 * @param IContextSource $context
+	 * @param LinkRenderer $linkRenderer
+	 */
+	public function __construct(
+		Page $page,
+		IContextSource $context,
+		LinkRenderer $linkRenderer
+	) {
+		parent::__construct( $page, $context );
+		$this->linkRenderer = $linkRenderer;
+	}
 
 	public function getName() {
 		return 'credits';
@@ -234,7 +251,7 @@ class CreditsAction extends FormlessAction {
 	 * @return string HTML link
 	 */
 	protected function othersLink() {
-		return MediaWikiServices::getInstance()->getLinkRenderer()->makeKnownLink(
+		return $this->linkRenderer->makeKnownLink(
 			$this->getTitle(),
 			$this->msg( 'others' )->text(),
 			[],

@@ -21,10 +21,14 @@ namespace MediaWiki\Actions;
 
 use Action;
 use Article;
+use CreditsAction;
 use IContextSource;
+use MarkpatrolledAction;
 use McrRestoreAction;
 use McrUndoAction;
 use Psr\Log\LoggerInterface;
+use RawAction;
+use RevertAction;
 use RollbackAction;
 use SpecialPageAction;
 use UnwatchAction;
@@ -61,20 +65,16 @@ class ActionFactory {
 	 *                               is treated as a specification for an ObjectFactory.
 	 */
 	private const CORE_ACTIONS = [
-		'credits' => true,
 		'delete' => true,
 		'edit' => true,
 		'editchangetags' => SpecialPageAction::class,
 		'history' => true,
 		'info' => true,
-		'markpatrolled' => true,
 		'mcrundo' => McrUndoAction::class,
 		'mcrrestore' => McrRestoreAction::class,
 		'protect' => true,
 		'purge' => true,
-		'raw' => true,
 		'render' => true,
-		'revert' => true,
 		'submit' => true,
 		'unprotect' => true,
 		'unwatch' => true,
@@ -82,6 +82,33 @@ class ActionFactory {
 		'watch' => true,
 
 		// Beginning of actions switched to using DI with an ObjectFactory spec
+		'credits' => [
+			'class' => CreditsAction::class,
+			'services' => [
+				'LinkRenderer',
+			],
+		],
+		'markpatrolled' => [
+			'class' => MarkpatrolledAction::class,
+			'services' => [
+				'LinkRenderer',
+			],
+		],
+		'raw' => [
+			'class' => RawAction::class,
+			'services' => [
+				'Parser',
+				'PermissionManager',
+				'RevisionLookup',
+			],
+		],
+		'revert' => [
+			'class' => RevertAction::class,
+			'services' => [
+				'ContentLanguage',
+				'RepoGroup',
+			],
+		],
 		'revisiondelete' => [
 			'class' => SpecialPageAction::class,
 		],

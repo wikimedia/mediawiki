@@ -27,7 +27,8 @@
  */
 
 use MediaWiki\Logger\LoggerFactory;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Permissions\PermissionManager;
+use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\SlotRecord;
 
 /**
@@ -37,6 +38,36 @@ use MediaWiki\Revision\SlotRecord;
  * @ingroup Actions
  */
 class RawAction extends FormlessAction {
+
+	/** @var Parser */
+	private $parser;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
+	/** @var RevisionLookup */
+	private $revisionLookup;
+
+	/**
+	 * @param Page $page
+	 * @param IContextSource $context
+	 * @param Parser $parser
+	 * @param PermissionManager $permissionManager
+	 * @param RevisionLookup $revisionLookup
+	 */
+	public function __construct(
+		Page $page,
+		IContextSource $context,
+		Parser $parser,
+		PermissionManager $permissionManager,
+		RevisionLookup $revisionLookup
+	) {
+		parent::__construct( $page, $context );
+		$this->parser = $parser;
+		$this->permissionManager = $permissionManager;
+		$this->revisionLookup = $revisionLookup;
+	}
+
 	public function getName() {
 		return 'raw';
 	}
@@ -88,10 +119,9 @@ class RawAction extends FormlessAction {
 		// Set standard Vary headers so cache varies on cookies and such (T125283)
 		$response->header( $this->getOutput()->getVaryHeader() );
 
-		$permissionManager = MediaWikiServices::getInstance()->getPermissionManager();
 		// Output may contain user-specific data;
 		// vary generated content for open sessions on private wikis
-		$privateCache = !$permissionManager->isEveryoneAllowed( 'read' ) &&
+		$privateCache = !$this->permissionManager->isEveryoneAllowed( 'read' ) &&
 			( $smaxage == 0 || MediaWiki\Session\SessionManager::getGlobalSession()->isPersistent() );
 		// Don't accidentally cache cookies if user is registered (T55032)
 		$privateCache = $privateCache || $this->getUser()->isRegistered();
@@ -184,9 +214,7 @@ class RawAction extends FormlessAction {
 		$request = $this->getRequest();
 
 		// Get it from the DB
-		$rev = MediaWikiServices::getInstance()
-			->getRevisionLookup()
-			->getRevisionByTitle( $title, $this->getOldId() );
+		$rev = $this->revisionLookup->getRevisionByTitle( $title, $this->getOldId() );
 		if ( $rev ) {
 			$lastmod = wfTimestamp( TS_RFC2822, $rev->getTimestamp() );
 			$request->response()->header( "Last-modified: $lastmod" );
@@ -219,7 +247,7 @@ class RawAction extends FormlessAction {
 		}
 
 		if ( $text !== false && $text !== '' && $request->getRawVal( 'templates' ) === 'expand' ) {
-			$text = MediaWikiServices::getInstance()->getParser()->preprocess(
+			$text = $this->parser->preprocess(
 				$text,
 				$title,
 				ParserOptions::newFromContext( $this->getContext() )
@@ -236,7 +264,7 @@ class RawAction extends FormlessAction {
 	 */
 	public function getOldId() {
 		$oldid = $this->getRequest()->getInt( 'oldid' );
-		$rl = MediaWikiServices::getInstance()->getRevisionLookup();
+		$rl = $this->revisionLookup;
 		switch ( $this->getRequest()->getText( 'direction' ) ) {
 			case 'next':
 				# output next revision, or nothing if there isn't one
