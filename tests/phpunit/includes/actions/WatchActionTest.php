@@ -40,7 +40,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$testContext = new DerivativeContext( RequestContext::getMain() );
 		$testContext->setTitle( $testTitle );
 		$this->context = $testContext;
-		$this->watchAction = new WatchAction(
+		$this->watchAction = $this->getWatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
 		);
@@ -55,6 +55,16 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		Hooks::clear( 'UnwatchArticle' );
 
 		parent::tearDown();
+	}
+
+	private function getWatchAction( Article $article, IContextSource $context ) {
+		$mwServices = MediaWikiServices::getInstance();
+		return new WatchAction(
+			$article,
+			$context,
+			$mwServices->getWatchlistManager(),
+			$mwServices->getWatchedItemStore()
+		);
 	}
 
 	/**
@@ -112,7 +122,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 			->willReturn( '6 months' );
 		$testContext->method( 'getRequest' )->willReturn( $testRequest );
 
-		$this->watchAction = new WatchAction(
+		$this->watchAction = $this->getWatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
 		);
@@ -135,7 +145,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$notLoggedInUser = new User();
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $notLoggedInUser );
-		$watchAction = new WatchAction(
+		$watchAction = $this->getWatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
 		);
@@ -152,7 +162,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$registeredUser->method( 'isRegistered' )->willReturn( true );
 		$testContext = new DerivativeContext( $this->watchAction->getContext() );
 		$testContext->setUser( $registeredUser );
-		$watchAction = new WatchAction(
+		$watchAction = $this->getWatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
 		);
@@ -181,7 +191,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		$testContext->method( 'msg' )->willReturnCallback( static function ( $msgKey ) {
 			return new RawMessage( $msgKey );
 		} );
-		$watchAction = new WatchAction(
+		$watchAction = $this->getWatchAction(
 			Article::newFromWikiPage( $this->testWikiPage, $testContext ),
 			$testContext
 		);
@@ -208,7 +218,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		} );
 		$talkPageTitle = Title::newFromText( 'Talk:UTTest' );
 		$testContext->setTitle( $talkPageTitle );
-		$watchAction = new WatchAction(
+		$watchAction = $this->getWatchAction(
 			Article::newFromTitle( $talkPageTitle, $testContext ),
 			$testContext
 		);
@@ -256,7 +266,7 @@ class WatchActionTest extends MediaWikiIntegrationTestCase {
 		// Call the onSuccess method, and the above mocks will confirm it's correct.
 		/** @var WatchAction $watchAction */
 		$watchAction = TestingAccessWrapper::newFromObject(
-			new WatchAction(
+			$this->getWatchAction(
 				Article::newFromTitle( Title::newFromText( $prefixedTitle ), $testContext ),
 				$testContext
 			)
