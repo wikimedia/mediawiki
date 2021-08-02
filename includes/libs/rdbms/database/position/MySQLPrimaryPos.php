@@ -6,9 +6,9 @@ use InvalidArgumentException;
 use UnexpectedValueException;
 
 /**
- * DBMasterPos class for MySQL/MariaDB
+ * DBPrimaryPos class for MySQL/MariaDB
  *
- * Note that master positions and sync logic here make some assumptions:
+ * Note that primary positions and sync logic here make some assumptions:
  *  - Binlog-based usage assumes single-source replication and non-hierarchical replication.
  *  - GTID-based usage allows getting/syncing with multi-source replication. It is assumed
  *    that GTID sets are complete (e.g. include all domains on the server).
@@ -16,7 +16,7 @@ use UnexpectedValueException;
  * @see https://mariadb.com/kb/en/library/gtid/
  * @see https://dev.mysql.com/doc/refman/5.6/en/replication-gtids-concepts.html
  */
-class MySQLMasterPos implements DBMasterPos {
+class MySQLPrimaryPos implements DBPrimaryPos {
 	/** @var string One of (BINARY_LOG, GTID_MYSQL, GTID_MARIA) */
 	private $style;
 	/** @var string|null Base name of all Binary Log files */
@@ -100,7 +100,7 @@ class MySQLMasterPos implements DBMasterPos {
 		return $this->asOfTime;
 	}
 
-	public function hasReached( DBMasterPos $pos ) {
+	public function hasReached( DBPrimaryPos $pos ) {
 		if ( !( $pos instanceof self ) ) {
 			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
 		}
@@ -117,7 +117,7 @@ class MySQLMasterPos implements DBMasterPos {
 				}
 			}
 			// Check that $this has a GTID for at least one domain also in $pos; due to MariaDB
-			// quirks, prior master switch-overs may result in inactive garbage GTIDs that cannot
+			// quirks, prior primary switch-overs may result in inactive garbage GTIDs that cannot
 			// be cleaned up. Assume that the domains in both this and $pos cover the relevant
 			// active channels.
 			return ( $comparisons && !in_array( false, $comparisons, true ) );
@@ -134,7 +134,7 @@ class MySQLMasterPos implements DBMasterPos {
 		return false;
 	}
 
-	public function channelsMatch( DBMasterPos $pos ) {
+	public function channelsMatch( DBPrimaryPos $pos ) {
 		if ( !( $pos instanceof self ) ) {
 			throw new InvalidArgumentException( "Position not an instance of " . __CLASS__ );
 		}
@@ -144,7 +144,7 @@ class MySQLMasterPos implements DBMasterPos {
 		$thatPosDomains = array_keys( $pos->getActiveGtidCoordinates() );
 		if ( $thisPosDomains && $thatPosDomains ) {
 			// Check that $this has a GTID for at least one domain also in $pos; due to MariaDB
-			// quirks, prior master switch-overs may result in inactive garbage GTIDs that cannot
+			// quirks, prior primary switch-overs may result in inactive garbage GTIDs that cannot
 			// easily be cleaned up. Assume that the domains in both this and $pos cover the
 			// relevant active channels.
 			return array_intersect( $thatPosDomains, $thisPosDomains ) ? true : false;
@@ -195,11 +195,11 @@ class MySQLMasterPos implements DBMasterPos {
 	 *
 	 * This makes getRelevantActiveGTIDs() filter out GTIDs from other domains
 	 *
-	 * @see MySQLMasterPos::getRelevantActiveGTIDs()
+	 * @see MySQLPrimaryPos::getRelevantActiveGTIDs()
 	 * @see https://mariadb.com/kb/en/library/gtid/#gtid_domain_id
 	 *
 	 * @param string|int|null $id @@gtid_domain_id of the active replication stream
-	 * @return MySQLMasterPos This instance (since 1.34)
+	 * @return MySQLPrimaryPos This instance (since 1.34)
 	 * @since 1.31
 	 */
 	public function setActiveDomain( $id ) {
@@ -213,10 +213,10 @@ class MySQLMasterPos implements DBMasterPos {
 	 *
 	 * This makes getRelevantActiveGTIDs() filter out GTIDs from other origin servers
 	 *
-	 * @see MySQLMasterPos::getRelevantActiveGTIDs()
+	 * @see MySQLPrimaryPos::getRelevantActiveGTIDs()
 	 *
 	 * @param string|int|null $id @@server_id of the server were writes originate
-	 * @return MySQLMasterPos This instance (since 1.34)
+	 * @return MySQLPrimaryPos This instance (since 1.34)
 	 * @since 1.31
 	 */
 	public function setActiveOriginServerId( $id ) {
@@ -230,10 +230,10 @@ class MySQLMasterPos implements DBMasterPos {
 	 *
 	 * This makes getRelevantActiveGTIDs() filter out GTIDs from other origin servers
 	 *
-	 * @see MySQLMasterPos::getRelevantActiveGTIDs()
+	 * @see MySQLPrimaryPos::getRelevantActiveGTIDs()
 	 *
 	 * @param string|null $id @@server_uuid of the server were writes originate
-	 * @return MySQLMasterPos This instance (since 1.34)
+	 * @return MySQLPrimaryPos This instance (since 1.34)
 	 * @since 1.31
 	 */
 	public function setActiveOriginServerUUID( $id ) {
@@ -243,12 +243,12 @@ class MySQLMasterPos implements DBMasterPos {
 	}
 
 	/**
-	 * @param MySQLMasterPos $pos
-	 * @param MySQLMasterPos $refPos
+	 * @param MySQLPrimaryPos $pos
+	 * @param MySQLPrimaryPos $refPos
 	 * @return string[] List of active GTIDs from $pos that have domains in $refPos
 	 * @since 1.34
 	 */
-	public static function getRelevantActiveGTIDs( MySQLMasterPos $pos, MySQLMasterPos $refPos ) {
+	public static function getRelevantActiveGTIDs( MySQLPrimaryPos $pos, MySQLPrimaryPos $refPos ) {
 		return array_values( array_intersect_key(
 			$pos->gtids,
 			$pos->getActiveGtidCoordinates(),
@@ -363,3 +363,10 @@ class MySQLMasterPos implements DBMasterPos {
 			: $this->getLogFile() . "/{$this->logPos[self::CORD_EVENT]}";
 	}
 }
+
+/**
+ * Deprecated alias, renamed as of MediaWiki 1.37
+ *
+ * @deprecated since 1.37
+ */
+class_alias( MySQLPrimaryPos::class, 'Wikimedia\\Rdbms\\MySQLMasterPos' );

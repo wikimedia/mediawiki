@@ -3980,7 +3980,7 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function masterPosWait( DBMasterPos $pos, $timeout ) {
+	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
 		# Real waits are implemented in the subclass.
 		return 0;
 	}

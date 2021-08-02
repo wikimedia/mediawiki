@@ -33,7 +33,7 @@ use Wikimedia\Rdbms\LBFactoryMulti;
 use Wikimedia\Rdbms\LBFactorySimple;
 use Wikimedia\Rdbms\LoadBalancer;
 use Wikimedia\Rdbms\LoadMonitorNull;
-use Wikimedia\Rdbms\MySQLMasterPos;
+use Wikimedia\Rdbms\MySQLPrimaryPos;
 
 /**
  * @group Database
@@ -257,8 +257,8 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 		$now = microtime( true );
 
 		// (a) First HTTP request
-		$m1Pos = new MySQLMasterPos( 'db1034-bin.000976/843431247', $now );
-		$m2Pos = new MySQLMasterPos( 'db1064-bin.002400/794074907', $now );
+		$m1Pos = new MySQLPrimaryPos( 'db1034-bin.000976/843431247', $now );
+		$m2Pos = new MySQLPrimaryPos( 'db1064-bin.002400/794074907', $now );
 
 		// Primary DB 1
 		/** @var IDatabase|\PHPUnit\Framework\MockObject\MockObject $mockDB1 */

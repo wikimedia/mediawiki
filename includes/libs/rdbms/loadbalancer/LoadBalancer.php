@@ -118,7 +118,7 @@ class LoadBalancer implements ILoadBalancer {
 	private $errorConnection;
 	/** @var int[] The group replica server indexes keyed by group */
 	private $readIndexByGroup = [];
-	/** @var bool|DBMasterPos Replication sync position or false if not set */
+	/** @var bool|DBPrimaryPos Replication sync position or false if not set */
 	private $waitForPos;
 	/** @var bool Whether to disregard replica DB lag as a factor in replica DB selection */
 	private $allowLagged = false;
@@ -792,7 +792,7 @@ class LoadBalancer implements ILoadBalancer {
 	}
 
 	/**
-	 * @param DBMasterPos|bool $pos
+	 * @param DBPrimaryPos|bool $pos
 	 */
 	private function setWaitForPositionIfHigher( $pos ) {
 		if ( !$pos ) {
@@ -893,10 +893,10 @@ class LoadBalancer implements ILoadBalancer {
 		// Check if we already know that the DB has reached this point
 		$srvName = $this->getServerName( $index );
 		$key = $this->srvCache->makeGlobalKey( __CLASS__, 'last-known-pos', $srvName, 'v1' );
-		/** @var DBMasterPos $knownReachedPos */
+		/** @var DBPrimaryPos $knownReachedPos */
 		$knownReachedPos = $this->srvCache->get( $key );
 		if (
-			$knownReachedPos instanceof DBMasterPos &&
+			$knownReachedPos instanceof DBPrimaryPos &&
 			$knownReachedPos->hasReached( $this->waitForPos )
 		) {
 			$this->replLogger->debug(
@@ -2383,7 +2383,7 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		}
 
-		if ( $pos instanceof DBMasterPos ) {
+		if ( $pos instanceof DBPrimaryPos ) {
 			$this->replLogger->debug( __METHOD__ . ': waiting' );
 			$result = $conn->masterPosWait( $pos, $timeout );
 			$ok = ( $result !== null && $result != -1 );

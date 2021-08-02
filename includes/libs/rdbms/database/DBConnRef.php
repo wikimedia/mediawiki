@@ -582,7 +582,7 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function masterPosWait( DBMasterPos $pos, $timeout ) {
+	public function masterPosWait( DBPrimaryPos $pos, $timeout ) {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 

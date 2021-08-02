@@ -1641,19 +1641,19 @@ interface IDatabase {
 	 * is flushed, and this is called, then queries will reflect the point the DB was synced
 	 * up to (on success) without interference from REPEATABLE-READ snapshots.
 	 *
-	 * @param DBMasterPos $pos
+	 * @param DBPrimaryPos $pos
 	 * @param int $timeout The maximum number of seconds to wait for synchronisation
 	 * @return int|null Zero if the replica DB was past that position already,
 	 *   greater than zero if we waited for some period of time, less than
 	 *   zero if it timed out, and null on error
 	 * @throws DBError If an error occurs, {@see query}
 	 */
-	public function masterPosWait( DBMasterPos $pos, $timeout );
+	public function masterPosWait( DBPrimaryPos $pos, $timeout );
 
 	/**
 	 * Get the replication position of this replica DB
 	 *
-	 * @return DBMasterPos|bool False if this is not a replica DB
+	 * @return DBPrimaryPos|bool False if this is not a replica DB
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function getReplicaPos();
@@ -1661,7 +1661,7 @@ interface IDatabase {
 	/**
 	 * Get the position of this master
 	 *
-	 * @return DBMasterPos|bool False if this is not a master
+	 * @return DBPrimaryPos|bool False if this is not a master
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function getMasterPos();

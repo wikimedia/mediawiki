@@ -155,9 +155,9 @@ class ChronologyProtector implements LoggerAwareInterface {
 	/** @var float|null UNIX timestamp when the client data was loaded */
 	protected $startupTimestamp;
 
-	/** @var array<string,DBMasterPos> Map of (DB master name => position) */
+	/** @var array<string,DBPrimaryPos> Map of (DB primary name => position) */
 	protected $startupPositionsByMaster = [];
-	/** @var array<string,DBMasterPos> Map of (DB master name => position) */
+	/** @var array<string,DBPrimaryPos> Map of (DB primary name => position) */
 	protected $shutdownPositionsByMaster = [];
 	/** @var array<string,float> Map of (DB cluster name => UNIX timestamp) */
 	protected $startupTimestampsByCluster = [];
@@ -267,7 +267,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 		$masterName = $lb->getServerName( $lb->getWriterIndex() );
 
 		$pos = $this->getStartupSessionPositions()[$masterName] ?? null;
-		if ( $pos instanceof DBMasterPos ) {
+		if ( $pos instanceof DBPrimaryPos ) {
 			$this->logger->debug( __METHOD__ . ": $cluster ($masterName) position is '$pos'" );
 			$lb->waitFor( $pos );
 		} else {
@@ -316,7 +316,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * @internal This method should only be called from LBFactory.
 	 *
 	 * @param int|null &$clientPosIndex DB position key write counter; incremented on update
-	 * @return DBMasterPos[] Empty on success; map of (db name => unsaved position) on failure
+	 * @return DBPrimaryPos[] Empty on success; map of (db name => unsaved position) on failure
 	 */
 	public function persistSessionReplicationPositions( &$clientPosIndex = null ) {
 		if ( !$this->enabled ) {
@@ -402,7 +402,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	}
 
 	/**
-	 * @return array<string,DBMasterPos>
+	 * @return array<string,DBPrimaryPos>
 	 */
 	protected function getStartupSessionPositions() {
 		$this->lazyStartup();
@@ -499,7 +499,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 	 * Merge the new replication positions with the currently stored ones (highest wins)
 	 *
 	 * @param array<string,mixed>|false $storedValue Current replication position data
-	 * @param array<string,DBMasterPos> $shutdownPositions New replication positions
+	 * @param array<string,DBPrimaryPos> $shutdownPositions New replication positions
 	 * @param array<string,float> $shutdownTimestamps New DB post-commit shutdown timestamps
 	 * @param int|null &$clientPosIndex New position write index
 	 * @return array<string,mixed> Combined replication position data
@@ -510,13 +510,13 @@ class ChronologyProtector implements LoggerAwareInterface {
 		array $shutdownTimestamps,
 		?int &$clientPosIndex = null
 	) {
-		/** @var array<string,DBMasterPos> $mergedPositions */
+		/** @var array<string,DBPrimaryPos> $mergedPositions */
 		$mergedPositions = $storedValue[self::FLD_POSITIONS] ?? [];
-		// Use the newest positions for each DB master
+		// Use the newest positions for each DB primary
 		foreach ( $shutdownPositions as $masterName => $pos ) {
 			if (
 				!isset( $mergedPositions[$masterName] ) ||
-				!( $mergedPositions[$masterName] instanceof DBMasterPos ) ||
+				!( $mergedPositions[$masterName] instanceof DBPrimaryPos ) ||
 				$pos->asOfTime() > $mergedPositions[$masterName]->asOfTime()
 			) {
 				$mergedPositions[$masterName] = $pos;
@@ -525,7 +525,7 @@ class ChronologyProtector implements LoggerAwareInterface {
 
 		/** @var array<string,float> $mergedTimestamps */
 		$mergedTimestamps = $storedValue[self::FLD_TIMESTAMPS] ?? [];
-		// Use the newest touch timestamp for each DB master
+		// Use the newest touch timestamp for each DB primary
 		foreach ( $shutdownTimestamps as $cluster => $timestamp ) {
 			if (
 				!isset( $mergedTimestamps[$cluster] ) ||

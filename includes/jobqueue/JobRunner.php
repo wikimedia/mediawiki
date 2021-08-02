@@ -681,7 +681,7 @@ class JobRunner implements LoggerAwareInterface {
 			$lb->waitForAll( $pos );
 		}
 
-		// Actually commit the DB master changes
+		// Actually commit the DB primary changes
 		$this->lbFactory->commitMasterChanges(
 			$fnameTrxOwner,
 			// Abort if any transaction was too big

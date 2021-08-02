@@ -451,7 +451,7 @@ abstract class JobQueue {
 	 * spawned when a template is edited. One can think of the task as "update links
 	 * of pages that use template X" and an instance of that task as a "root job".
 	 * However, what actually goes into the queue are range and leaf job subtypes.
-	 * Since these jobs include things like page ID ranges and DB master positions,
+	 * Since these jobs include things like page ID ranges and DB primary positions,
 	 * and can morph into smaller jobs recursively, simple duplicate detection
 	 * for individual jobs being identical (like that of job_sha1) is not useful.
 	 *
