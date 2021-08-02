@@ -128,4 +128,23 @@ class ResultWrapperTest extends MediaWikiIntegrationTestCase {
 		$res->seek( 0 );
 		$this->assertTrue( true ); // no error
 	}
+
+	public function provideSeekOutOfBounds() {
+		return [ [ 0, 1 ], [ 1, 1 ], [ 1, 2 ], [ 1, -1 ] ];
+	}
+
+	/** @dataProvider provideSeekOutOfBounds */
+	public function testSeekOutOfBounds( $numRows, $seekPos ) {
+		for ( $i = 0; $i < $numRows; $i++ ) {
+			$this->db->insert( 'ResultWrapperTest',
+				[ [ 'col_a' => $i, 'col_b' => $i ] ],
+				__METHOD__ );
+		}
+		$res = $this->db->select( 'ResultWrapperTest',
+			[ 'col_a', 'col_b' ],
+			'1 = 0',
+			__METHOD__ );
+		$this->expectException( OutOfBoundsException::class );
+		$res->seek( $seekPos );
+	}
 }
