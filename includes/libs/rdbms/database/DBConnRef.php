@@ -590,8 +590,13 @@ class DBConnRef implements IDatabase {
 		return $this->__call( __FUNCTION__, func_get_args() );
 	}
 
-	public function getMasterPos() {
+	public function getPrimaryPos() {
 		return $this->__call( __FUNCTION__, func_get_args() );
+	}
+
+	public function getMasterPos() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryPos();
 	}
 
 	public function serverIsReadOnly() {

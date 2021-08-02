@@ -1664,6 +1664,13 @@ interface IDatabase {
 	 * @return DBPrimaryPos|bool False if this is not a master
 	 * @throws DBError If an error occurs, {@see query}
 	 */
+	public function getPrimaryPos();
+
+	/**
+	 * @deprecated since 1.37; use getPrimaryPos() instead.
+	 * @return DBPrimaryPos|bool False if this is not a master
+	 * @throws DBError If an error occurs, {@see query}
+	 */
 	public function getMasterPos();
 
 	/**

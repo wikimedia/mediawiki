@@ -267,7 +267,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mockDB1->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB1->method( 'lastDoneWrites' )->willReturn( $now );
-		$mockDB1->method( 'getMasterPos' )->willReturn( $m1Pos );
+		$mockDB1->method( 'getPrimaryPos' )->willReturn( $m1Pos );
 		// Load balancer for primary DB 1
 		$lb1 = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
@@ -286,7 +286,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 					return (bool)$p;
 				}
 			) );
-		$lb1->method( 'getMasterPos' )->willReturn( $m1Pos );
+		$lb1->method( 'getPrimaryPos' )->willReturn( $m1Pos );
 		$lb1->method( 'getReplicaResumePos' )->willReturn( $m1Pos );
 		$lb1->method( 'getServerName' )->with( 0 )->willReturn( 'master1' );
 		// Primary DB 2
@@ -296,7 +296,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 			->getMock();
 		$mockDB2->method( 'writesOrCallbacksPending' )->willReturn( true );
 		$mockDB2->method( 'lastDoneWrites' )->willReturn( $now );
-		$mockDB2->method( 'getMasterPos' )->willReturn( $m2Pos );
+		$mockDB2->method( 'getPrimaryPos' )->willReturn( $m2Pos );
 		// Load balancer for primary DB 2
 		$lb2 = $this->getMockBuilder( LoadBalancer::class )
 			->disableOriginalConstructor()
@@ -315,7 +315,7 @@ class LBFactoryTest extends MediaWikiIntegrationTestCase {
 				return (bool)$p;
 			}
 		) );
-		$lb2->method( 'getMasterPos' )->willReturn( $m2Pos );
+		$lb2->method( 'getPrimaryPos' )->willReturn( $m2Pos );
 		$lb2->method( 'getReplicaResumePos' )->willReturn( $m2Pos );
 		$lb2->method( 'getServerName' )->with( 0 )->willReturn( 'master2' );
 

@@ -422,6 +422,8 @@ because of Phabricator reports.
 * DBMasterPos and MySQLMasterPos have been respectively renamed to DBPrimaryPos
   and MySQLPrimaryPos. The former names are left as deprecated, temporary class
   aliases.
+* ILoadBalancer::getMasterPos() and IDatabase::getMasterPos() have been renamed
+  to getPrimaryPos(). The old name is still available, but soft-deprecated.
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.

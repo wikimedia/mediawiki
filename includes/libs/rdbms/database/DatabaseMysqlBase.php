@@ -820,7 +820,7 @@ abstract class DatabaseMysqlBase extends Database {
 	 *
 	 * @return MySQLPrimaryPos|bool
 	 */
-	public function getMasterPos() {
+	public function getPrimaryPos() {
 		$now = microtime( true ); // as-of-time *before* fetching GTID variables
 
 		$pos = false;
@@ -852,6 +852,11 @@ abstract class DatabaseMysqlBase extends Database {
 		}
 
 		return $pos;
+	}
+
+	public function getMasterPos() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryPos();
 	}
 
 	/**

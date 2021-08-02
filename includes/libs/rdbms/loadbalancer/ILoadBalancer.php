@@ -518,6 +518,13 @@ interface ILoadBalancer {
 	 * @return DBPrimaryPos|bool Returns false if not applicable
 	 * @throws DBError
 	 */
+	public function getPrimaryPos();
+
+	/**
+	 * @deprecated since 1.37; please use getPrimaryPos() instead.
+	 * @return DBPrimaryPos|bool Returns false if not applicable
+	 * @throws DBError
+	 */
 	public function getMasterPos();
 
 	/**

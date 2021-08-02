@@ -167,7 +167,7 @@ class RecompressTracked {
 	private function syncDBs() {
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
-		$pos = $dbw->getMasterPos();
+		$pos = $dbw->getPrimaryPos();
 		$dbr->masterPosWait( $pos, 100000 );
 	}
 

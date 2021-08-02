@@ -3998,9 +3998,14 @@ abstract class Database implements IDatabase, IMaintainableDatabase, LoggerAware
 	 * @inheritDoc
 	 * @stable to override
 	 */
-	public function getMasterPos() {
+	public function getPrimaryPos() {
 		# Stub
 		return false;
+	}
+
+	public function getMasterPos() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryPos();
 	}
 
 	/**

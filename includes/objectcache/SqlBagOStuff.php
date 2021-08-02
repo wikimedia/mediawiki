@@ -1174,7 +1174,7 @@ class SqlBagOStuff extends MediumSpecificBagOStuff {
 
 		try {
 			// Wait for any replica DBs to catch up
-			$masterPos = $lb->getMasterPos();
+			$masterPos = $lb->getPrimaryPos();
 			if ( !$masterPos ) {
 				return true; // not applicable
 			}

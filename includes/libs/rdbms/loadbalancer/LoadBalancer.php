@@ -1585,12 +1585,12 @@ class LoadBalancer implements ILoadBalancer {
 		return $this->servers[$i]['type'] ?? 'unknown';
 	}
 
-	public function getMasterPos() {
+	public function getPrimaryPos() {
 		$index = $this->getWriterIndex();
 
 		$conn = $this->getAnyOpenConnection( $index );
 		if ( $conn ) {
-			return $conn->getMasterPos();
+			return $conn->getPrimaryPos();
 		}
 
 		$conn = $this->getConnection( $index, self::CONN_SILENCE_ERRORS );
@@ -1600,17 +1600,22 @@ class LoadBalancer implements ILoadBalancer {
 		}
 
 		try {
-			return $conn->getMasterPos();
+			return $conn->getPrimaryPos();
 		} finally {
 			$this->closeConnection( $conn );
 		}
+	}
+
+	public function getMasterPos() {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->getPrimaryPos();
 	}
 
 	public function getReplicaResumePos() {
 		// Get the position of any existing master server connection
 		$masterConn = $this->getAnyOpenConnection( $this->getWriterIndex() );
 		if ( $masterConn ) {
-			return $masterConn->getMasterPos();
+			return $masterConn->getPrimaryPos();
 		}
 
 		// Get the highest position of any existing replica server connection
@@ -2369,7 +2374,7 @@ class LoadBalancer implements ILoadBalancer {
 			$flags = self::CONN_SILENCE_ERRORS;
 			$masterConn = $this->getAnyOpenConnection( $index, $flags );
 			if ( $masterConn ) {
-				$pos = $masterConn->getMasterPos();
+				$pos = $masterConn->getPrimaryPos();
 			} else {
 				$masterConn = $this->getServerConnection( $index, self::DOMAIN_ANY, $flags );
 				if ( !$masterConn ) {
@@ -2378,7 +2383,7 @@ class LoadBalancer implements ILoadBalancer {
 						"Could not obtain a primary database connection to get the position"
 					);
 				}
-				$pos = $masterConn->getMasterPos();
+				$pos = $masterConn->getPrimaryPos();
 				$this->closeConnection( $masterConn );
 			}
 		}

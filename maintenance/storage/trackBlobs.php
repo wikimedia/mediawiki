@@ -220,7 +220,7 @@ class TrackBlobs {
 		# Wait until the blob_tracking table is available in the replica DB
 		$dbw = wfGetDB( DB_PRIMARY );
 		$dbr = wfGetDB( DB_REPLICA );
-		$pos = $dbw->getMasterPos();
+		$pos = $dbw->getPrimaryPos();
 		$dbr->masterPosWait( $pos, 100000 );
 
 		$textClause = $this->getTextClause();
