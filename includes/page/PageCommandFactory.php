@@ -217,7 +217,8 @@ class PageCommandFactory implements
 			$this->hookContainer,
 			$this->wikiPageFactory,
 			$this->userFactory,
-			$this->userEditTracker
+			$this->userEditTracker,
+			$this
 		);
 	}
 

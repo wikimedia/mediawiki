@@ -25,6 +25,7 @@ use MediaWiki\EditPage\SpamChecker;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\MovePageFactory;
 use MediaWiki\Page\PageIdentity;
 use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Permissions\Authority;
@@ -115,6 +116,9 @@ class MovePage {
 	/** @var UserEditTracker */
 	private $userEditTracker;
 
+	/** @var MovePageFactory */
+	private $movePageFactory;
+
 	/**
 	 * @internal For use by PageCommandFactory
 	 */
@@ -124,8 +128,6 @@ class MovePage {
 	];
 
 	/**
-	 * Calling this directly is deprecated in 1.34. Use MovePageFactory instead.
-	 *
 	 * @param Title $oldTitle
 	 * @param Title $newTitle
 	 * @param ServiceOptions|null $options
@@ -140,6 +142,8 @@ class MovePage {
 	 * @param WikiPageFactory|null $wikiPageFactory
 	 * @param UserFactory|null $userFactory
 	 * @param UserEditTracker|null $userEditTracker
+	 * @param MovePageFactory|null $movePageFactory
+	 * @deprecated since 1.34, hard deprecated since 1.37. Use MovePageFactory instead.
 	 */
 	public function __construct(
 		Title $oldTitle,
@@ -155,8 +159,16 @@ class MovePage {
 		HookContainer $hookContainer = null,
 		WikiPageFactory $wikiPageFactory = null,
 		UserFactory $userFactory = null,
-		UserEditTracker $userEditTracker = null
+		UserEditTracker $userEditTracker = null,
+		MovePageFactory $movePageFactory = null
 	) {
+		if ( !$options ) {
+			wfDeprecatedMsg(
+				__METHOD__ . ' without providing all services is deprecated',
+				'1.34'
+			);
+		}
+
 		$this->oldTitle = $oldTitle;
 		$this->newTitle = $newTitle;
 
@@ -182,6 +194,7 @@ class MovePage {
 		$this->wikiPageFactory = $wikiPageFactory ?? $services()->getWikiPageFactory();
 		$this->userFactory = $userFactory ?? $services()->getUserFactory();
 		$this->userEditTracker = $userEditTracker ?? $services()->getUserEditTracker();
+		$this->movePageFactory = $movePageFactory ?? $services()->getMovePageFactory();
 	}
 
 	/**
@@ -523,9 +536,9 @@ class MovePage {
 		UserIdentity $user, $reason = null, $createRedirect = true, array $changeTags = []
 	) {
 		return $this->moveSubpagesInternal(
-			static function ( Title $oldSubpage, Title $newSubpage )
+			function ( Title $oldSubpage, Title $newSubpage )
 			use ( $user, $reason, $createRedirect, $changeTags ) {
-				$mp = new MovePage( $oldSubpage, $newSubpage );
+				$mp = $this->movePageFactory->newMovePage( $oldSubpage, $newSubpage );
 				return $mp->move( $user, $reason, $createRedirect, $changeTags );
 			}
 		);
@@ -551,9 +564,9 @@ class MovePage {
 			return Status::newFatal( 'cant-move-subpages' );
 		}
 		return $this->moveSubpagesInternal(
-			static function ( Title $oldSubpage, Title $newSubpage )
+			function ( Title $oldSubpage, Title $newSubpage )
 			use ( $performer, $reason, $createRedirect, $changeTags ) {
-				$mp = new MovePage( $oldSubpage, $newSubpage );
+				$mp = $this->movePageFactory->newMovePage( $oldSubpage, $newSubpage );
 				return $mp->moveIfAllowed( $performer, $reason, $createRedirect, $changeTags );
 			}
 		);
