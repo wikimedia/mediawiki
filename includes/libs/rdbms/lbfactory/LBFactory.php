@@ -642,6 +642,7 @@ abstract class LBFactory implements ILBFactory {
 			'queryLogger' => $this->queryLogger,
 			'connLogger' => $this->connLogger,
 			'replLogger' => $this->replLogger,
+			'perfLogger' => $this->perfLogger,
 			'errorLogger' => $this->errorLogger,
 			'deprecationLogger' => $this->deprecationLogger,
 			'cliMode' => $this->cliMode,
