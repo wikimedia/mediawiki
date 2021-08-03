@@ -1701,7 +1701,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->flushReplicaSnapshots( $fname, $owner );
 	}
 
-	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null ) {
+	public function finalizePrimaryChanges( $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( [ self::ROUND_CURSORY, self::ROUND_FINALIZED ] );
 		if ( $this->ownerId === null ) {
@@ -1730,7 +1730,12 @@ class LoadBalancer implements ILoadBalancer {
 		return $total;
 	}
 
-	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null ) {
+	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		return $this->finalizePrimaryChanges( $fname, $owner );
+	}
+
+	public function approvePrimaryChanges( array $options, $fname = __METHOD__, $owner = null ) {
 		$this->assertOwnership( $fname, $owner );
 		$this->assertTransactionRoundStage( self::ROUND_FINALIZED );
 		if ( $this->ownerId === null ) {
@@ -1766,6 +1771,11 @@ class LoadBalancer implements ILoadBalancer {
 			}
 		} );
 		$this->trxRoundStage = self::ROUND_APPROVED;
+	}
+
+	public function approveMasterChanges( array $options, $fname = __METHOD__, $owner = null ) {
+		// wfDeprecated( __METHOD__, '1.37' );
+		$this->approvePrimaryChanges( $options, $fname, $owner );
 	}
 
 	public function beginMasterChanges( $fname = __METHOD__, $owner = null ) {
@@ -1811,7 +1821,7 @@ class LoadBalancer implements ILoadBalancer {
 		$this->trxRoundId = false;
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
 		// Commit any writes and clear any snapshots as well (callbacks require AUTOCOMMIT).
-		// Note that callbacks should already be suppressed due to finalizeMasterChanges().
+		// Note that callbacks should already be suppressed due to finalizePrimaryChanges().
 		$this->forEachOpenMasterConnection(
 			function ( IDatabase $conn ) use ( $fname, &$failures ) {
 				try {

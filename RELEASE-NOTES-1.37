@@ -416,14 +416,19 @@ because of Phabricator reports.
   Use getPage() and setPage() instead.
 * Title::isWatchable() has been deprecated. Use WatchlistManager::isWatchable()
   instead.
-* The 'getMasterDB()' methods for LocalRepo (and so ForeignDBRepo), JobQueueDB,
-  ForeignDBViaLBRepo, and DBFileJournal have been deprecated in favour of a new
-  method, getPrimaryDB().
-* DBMasterPos and MySQLMasterPos have been respectively renamed to DBPrimaryPos
-  and MySQLPrimaryPos. The former names are left as deprecated, temporary class
-  aliases.
-* ILoadBalancer::getMasterPos() and IDatabase::getMasterPos() have been renamed
-  to getPrimaryPos(). The old name is still available, but soft-deprecated.
+* Methods and classes related to the primary database, previously referred to as
+  'master', have been deprecated, with the new ones replacing them as follows:
+  - The DBMasterPos and MySQLMasterPos classes have been respectively renamed to
+    DBPrimaryPos and MySQLPrimaryPos.
+  - LocalRepo::getMasterDB() -> ::getPrimaryDB()
+  - ForeignDBRepo::getMasterDB() -> ::getPrimaryDB()
+  - JobQueueDB::getMasterDB() -> ::getPrimaryDB()
+  - ForeignDBViaLBRepo::getMasterDB() -> ::getPrimaryDB()
+  - DBFileJournal::getMasterDB() -> ::getPrimaryDB()
+  - ILoadBalancer::getMasterPos() -> ::getPrimaryPos()
+  - IDatabase::getMasterPos() -> ::getPrimaryPos()
+  - ILoadBalancer::finalizeMasterChanges() -> ::finalizePrimaryChanges()
+  - ILoadBalancer::approveMasterChanges() -> ::approvePrimaryChanges()
 * wfIncrStats(), deprecated in 1.36, now emits deprecation warnings.
 * wfCanIPUseHTTPS() is now deprecated, and always returns true.
 * The UserLoadFromDatabase hook has been deprecated. It had no known uses.
