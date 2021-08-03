@@ -58,10 +58,9 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 
 	/**
 	 * @param int $maxKeys Maximum number of entries allowed (min 1)
-	 * @throws Exception When $maxKeys is not an int or not above zero
+	 * @throws Exception When $maxKeys is not above zero
 	 */
-	public function __construct( $maxKeys ) {
-		Assert::parameterType( 'integer', $maxKeys, '$maxKeys' );
+	public function __construct( int $maxKeys ) {
 		Assert::parameter( $maxKeys > 0, '$maxKeys', 'must be above zero' );
 
 		$this->maxCacheKeys = $maxKeys;
@@ -313,11 +312,10 @@ class MapCacheLRU implements ExpirationAwareness, Serializable {
 	 *
 	 * @param int $maxKeys Maximum number of entries allowed (min 1)
 	 * @return void
-	 * @throws Exception When $maxKeys is not an int or not above zero
+	 * @throws Exception When $maxKeys is not above zero
 	 * @since 1.32
 	 */
-	public function setMaxSize( $maxKeys ) {
-		Assert::parameterType( 'integer', $maxKeys, '$maxKeys' );
+	public function setMaxSize( int $maxKeys ) {
 		Assert::parameter( $maxKeys > 0, '$maxKeys', 'must be above zero' );
 
 		$this->maxCacheKeys = $maxKeys;

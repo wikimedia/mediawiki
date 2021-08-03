@@ -58,7 +58,7 @@ class UserIdentityValue implements UserIdentity {
 	 * @param string $name user name
 	 * @param string|false $wikiId wiki ID or self::LOCAL for the local wiki
 	 */
-	public function __construct( $id, $name, $wikiId = self::LOCAL ) {
+	public function __construct( int $id, string $name, $wikiId = self::LOCAL ) {
 		if ( is_int( $wikiId ) ) {
 			// Handle old signature: ( $id, $name, $actor, $wikiId )
 			$args = func_get_args();
@@ -74,8 +74,6 @@ class UserIdentityValue implements UserIdentity {
 			}
 		}
 
-		Assert::parameterType( 'integer', $id, '$id' );
-		Assert::parameterType( 'string', $name, '$name' );
 		$this->assertWikiIdParam( $wikiId );
 
 		$this->id = $id;

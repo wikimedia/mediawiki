@@ -30,7 +30,6 @@ use MediaWiki\Storage\RevisionSlotsUpdate;
 use MediaWiki\User\UserIdentity;
 use MWException;
 use MWTimestamp;
-use Wikimedia\Assert\Assert;
 
 /**
  * Mutable RevisionRecord implementation, for building new revision entries programmatically.
@@ -120,9 +119,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $parentId
 	 * @return self
 	 */
-	public function setParentId( $parentId ) {
-		Assert::parameterType( 'integer', $parentId, '$parentId' );
-
+	public function setParentId( int $parentId ) {
 		$this->mParentId = $parentId;
 
 		return $this;
@@ -246,9 +243,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param string $sha1 SHA1 hash as a base36 string.
 	 * @return self
 	 */
-	public function setSha1( $sha1 ) {
-		Assert::parameterType( 'string', $sha1, '$sha1' );
-
+	public function setSha1( string $sha1 ) {
 		$this->mSha1 = $sha1;
 
 		return $this;
@@ -264,9 +259,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $size nominal size in bogo-bytes
 	 * @return self
 	 */
-	public function setSize( $size ) {
-		Assert::parameterType( 'integer', $size, '$size' );
-
+	public function setSize( int $size ) {
 		$this->mSize = $size;
 
 		return $this;
@@ -276,9 +269,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $visibility
 	 * @return self
 	 */
-	public function setVisibility( $visibility ) {
-		Assert::parameterType( 'integer', $visibility, '$visibility' );
-
+	public function setVisibility( int $visibility ) {
 		$this->mDeleted = $visibility;
 
 		return $this;
@@ -288,9 +279,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param string $timestamp A timestamp understood by MWTimestamp
 	 * @return self
 	 */
-	public function setTimestamp( $timestamp ) {
-		Assert::parameterType( 'string', $timestamp, '$timestamp' );
-
+	public function setTimestamp( string $timestamp ) {
 		$this->mTimestamp = MWTimestamp::convert( TS_MW, $timestamp );
 
 		return $this;
@@ -300,9 +289,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param bool $minorEdit
 	 * @return self
 	 */
-	public function setMinorEdit( $minorEdit ) {
-		Assert::parameterType( 'boolean', $minorEdit, '$minorEdit' );
-
+	public function setMinorEdit( bool $minorEdit ) {
 		$this->mMinorEdit = $minorEdit;
 
 		return $this;
@@ -320,9 +307,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $id
 	 * @return self
 	 */
-	public function setId( $id ) {
-		Assert::parameterType( 'integer', $id, '$id' );
-
+	public function setId( int $id ) {
 		$this->mId = $id;
 
 		return $this;
@@ -344,9 +329,7 @@ class MutableRevisionRecord extends RevisionRecord {
 	 * @param int $pageId
 	 * @return self
 	 */
-	public function setPageId( $pageId ) {
-		Assert::parameterType( 'integer', $pageId, '$pageId' );
-
+	public function setPageId( int $pageId ) {
 		$pageIdBasedOnPage = $this->getArticleId( $this->mPage );
 		if ( $pageIdBasedOnPage && $pageIdBasedOnPage !== $this->getArticleId( $this->mPage ) ) {
 			throw new InvalidArgumentException(
