@@ -1736,7 +1736,7 @@ class LoadBalancer implements ILoadBalancer {
 		$limit = $options['maxWriteDuration'] ?? 0;
 
 		$this->trxRoundStage = self::ROUND_ERROR; // "failed" until proven otherwise
-		$this->forEachOpenMasterConnection( static function ( IDatabase $conn ) use ( $limit ) {
+		$this->forEachOpenMasterConnection( function ( IDatabase $conn ) use ( $limit ) {
 			// If atomic sections or explicit transactions are still open, some caller must have
 			// caught an exception but failed to properly rollback any changes. Detect that and
 			// throw an error (causing rollback).
@@ -1744,12 +1744,17 @@ class LoadBalancer implements ILoadBalancer {
 			// Assert that the time to replicate the transaction will be sane.
 			// If this fails, then all DB transactions will be rollback back together.
 			$time = $conn->pendingWriteQueryDuration( $conn::ESTIMATE_DB_APPLY );
-			if ( $limit > 0 && $time > $limit ) {
-				throw new DBTransactionSizeError(
-					$conn,
-					"Transaction spent $time second(s) in writes, exceeding the limit of $limit",
-					[ $time, $limit ]
-				);
+			if ( $limit > 0 ) {
+				if ( $time > $limit ) {
+					throw new DBTransactionSizeError(
+						$conn,
+						"Transaction spent $time second(s) in writes, exceeding the limit of $limit",
+						[ $time, $limit ]
+					);
+				} elseif ( $time > 0 ) {
+					$this->perfLogger->debug( "Transaction spent $time second(s) in writes, " .
+						"less than the limit of $limit" );
+				}
 			}
 			// If a connection sits idle while slow queries execute on another, that connection
 			// may end up dropped before the commit round is reached. Ping servers to detect this.
