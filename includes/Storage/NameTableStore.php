@@ -159,8 +159,7 @@ class NameTableStore {
 	 * @throws NameTableAccessException
 	 * @return int
 	 */
-	public function acquireId( $name ) {
-		Assert::parameterType( 'string', $name, '$name' );
+	public function acquireId( string $name ) {
 		$name = $this->normalizeName( $name );
 
 		$table = $this->getTableFromCachesOrReplica();
@@ -249,8 +248,7 @@ class NameTableStore {
 	 * @throws NameTableAccessException The name does not exist
 	 * @return int Id
 	 */
-	public function getId( $name ) {
-		Assert::parameterType( 'string', $name, '$name' );
+	public function getId( string $name ) {
 		$name = $this->normalizeName( $name );
 
 		$table = $this->getTableFromCachesOrReplica();
@@ -274,9 +272,7 @@ class NameTableStore {
 	 * @throws NameTableAccessException The id does not exist
 	 * @return string name
 	 */
-	public function getName( $id ) {
-		Assert::parameterType( 'integer', $id, '$id' );
-
+	public function getName( int $id ) {
 		$table = $this->getTableFromCachesOrReplica();
 		if ( array_key_exists( $id, $table ) ) {
 			return $table[$id];
@@ -394,8 +390,7 @@ class NameTableStore {
 	 * @param string $name
 	 * @return int|null int if we know the ID, null if we don't
 	 */
-	private function store( $name ) {
-		Assert::parameterType( 'string', $name, '$name' );
+	private function store( string $name ) {
 		Assert::parameter( $name !== '', '$name', 'should not be an empty string' );
 		// Note: this is only called internally so normalization of $name has already occurred.
 

@@ -104,9 +104,6 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function provideInvalidConstruction() {
-		yield 'both null' => [ null, null ];
-		yield 'null row' => [ null, new WikitextContent( 'A' ) ];
-		yield 'array row' => [ [], new WikitextContent( 'A' ) ];
 		yield 'empty row' => [ (object)[], new WikitextContent( 'A' ) ];
 		yield 'null content' => [ (object)[], null ];
 	}
@@ -295,27 +292,6 @@ class SlotRecordTest extends \MediaWikiIntegrationTestCase {
 		SlotRecord $protoSlot
 	) {
 		$this->expectException( LogicException::class );
-		SlotRecord::newSaved( $revisionId, $contentId, $contentAddress, $protoSlot );
-	}
-
-	public function provideNewSaved_InvalidArgumentException() {
-		$unsaved = SlotRecord::newUnsaved( SlotRecord::MAIN, new WikitextContent( 'A' ) );
-
-		yield 'bad revision id' => [ 'xyzzy', 5, 'address', $unsaved ];
-		yield 'bad content id' => [ 7, 'xyzzy', 'address', $unsaved ];
-		yield 'bad content address' => [ 7, 5, 77, $unsaved ];
-	}
-
-	/**
-	 * @dataProvider provideNewSaved_InvalidArgumentException
-	 */
-	public function testNewSaved_InvalidArgumentException(
-		$revisionId,
-		$contentId,
-		$contentAddress,
-		SlotRecord $protoSlot
-	) {
-		$this->expectException( InvalidArgumentException::class );
 		SlotRecord::newSaved( $revisionId, $contentId, $contentAddress, $protoSlot );
 	}
 
