@@ -55,7 +55,7 @@
 	"api-login-fail-aborted-nobotpw": "Аутентификација захтева интеракцију, коју не подржава <kbd>action=login</kbd>. Да би сте се пријавили, погледајте <kbd>[[Special:ApiHelp/clientlogin|action=clientlogin]]</kbd>.",
 	"api-login-fail-badsessionprovider": "Не могу да се пријавим када се користи $1.",
 	"api-login-fail-sameorigin": "Не могу да се пријавим када полиса заједничког порекла није примењена.",
-	"api-help-title": "Помоћ за API Медијавикија",
+	"api-help-title": "Помоћ око Медијавикијевог API-ја",
 	"api-help-main-header": "Главни модул",
 	"api-help-flag-deprecated": "Овај модул је застарео.",
 	"api-help-param-disabled-in-miser-mode": "Онемогућено због [[mw:Special:MyLanguage/Manual:$wgMiserMode|режима штедње]].",

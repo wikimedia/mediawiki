@@ -2642,7 +2642,7 @@
 	"block-prevent-edit": "עריכה",
 	"block-reason": "סיבה:",
 	"block-target": "שם משתמש, כתובת IP, או טווח IP:",
-	"block-target-placeholder": "שמ־משתמש, 1.1.1.42, או 1.1.1.42/16",
+	"block-target-placeholder": "שם־משתמש, 1.1.1.42, או 1.1.1.42/16",
 	"unblockip": "שחרור חסימה של משתמש",
 	"unblockiptext": "ניתן להשתמש בטופס שלהלן כדי להחזיר את הרשאות הכתיבה לכתובת IP חסומה או למשתמש חסום.",
 	"ipusubmit": "הסרת חסימה זו",

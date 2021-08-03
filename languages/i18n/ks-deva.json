@@ -6,6 +6,8 @@
 			"VibhasKS"
 		]
 	},
+	"tog-hideminor": "नऺव्य तब्दीलन मंज़ गऻमॖत्य बदलावन ना हावॖन्य",
+	"tog-editondblclick": "डबल क्लिक पॆठ सफ़ॖ तब्दील करुन",
 	"sunday": "आथवार",
 	"monday": "च़ऺन्द्रॖवार",
 	"tuesday": "बोम्वार",
@@ -13,13 +15,13 @@
 	"thursday": "ब्रसवार",
 	"friday": "शॊकुरवार",
 	"saturday": "बटॖवार",
-	"sun": "आथ",
-	"mon": "च़ऺन्द्रॖ",
-	"tue": "बोम",
-	"wed": "बॏद",
+	"sun": "आथ॰",
+	"mon": "च़ऺन्द्रॖ॰",
+	"tue": "बोम॰",
+	"wed": "बॏद॰",
 	"help": "मदथ",
 	"mainpage": "आहम सफ़ा",
 	"editsectionhint": "$1 शाबह तर तैयब दीउ",
-	"red-link-title": "$1 (सफ़ा ना आसुन)",
-	"recentchanges": "नवि तबदीली"
+	"red-link-title": "$1 (सफ़ॖ छु नॖ मौजूद)",
+	"recentchanges": "नऺव्य तब्दील्य"
 }
