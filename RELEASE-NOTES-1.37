@@ -87,6 +87,7 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
 * Updated wikimedia/minify from v2.2.2 to v2.2.4.
 * Updated wikimedia/object-factory from v3.0.0 to v3.0.2.
 * Updated wikimedia/parsoid from v0.13.0-a20 to v0.14.0-a1.
+* Updated wikimedia/relpath from v2.1.1 to v3.0.0.
 * …
 
 ===== Changed development-only external libraries =====
