@@ -589,6 +589,14 @@ interface ILoadBalancer {
 	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
 	 * @return int Number of pre-commit callbacks run (since 1.32)
 	 */
+	public function finalizePrimaryChanges( $fname = __METHOD__, $owner = null );
+
+	/**
+	 * @deprecated since 1.37; please use finalizePrimaryChanges() instead.
+	 * @param string $fname Caller name
+	 * @param int|null $owner ID of the calling instance (e.g. the LBFactory ID)
+	 * @return int Number of pre-commit callbacks run (since 1.32)
+	 */
 	public function finalizeMasterChanges( $fname = __METHOD__, $owner = null );
 
 	/**
