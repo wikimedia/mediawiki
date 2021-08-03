@@ -382,6 +382,9 @@ because of Phabricator reports.
   ContentHandler::getSecondaryDataUpdates() instead.
 * wfDiff(), deprecated since 1.25, has been removed.
 * Language::$mLangObjCache, deprecated since 1.35, was removed.
+* Language::$transformData, deprecated since 1.35, was removed.
+* Language::transformUsingPairFile() was marked @internal. Its deprecated
+  parameters are no longer supported.
 * SpecialMute::getTarget(), unused outside of the SpecialMute class, was
   made private.
 * The Skin::setupSkinUserCss method deprecated in 1.32, was removed. Please use

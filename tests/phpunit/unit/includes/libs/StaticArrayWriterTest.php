@@ -61,4 +61,35 @@ return [
 PHP;
 		$this->assertSame( $expected, $actual );
 	}
+
+	public function testWriteClass() {
+		$data = [
+			'foo' => 'bar',
+			'baz' => 'rawr',
+		];
+		$writer = new StaticArrayWriter();
+		$actual = $writer->writeClass( $data, [
+			'header' => "Header\nWith\nNewlines",
+			'namespace' => 'Example\\Foo',
+			'class' => 'Bar',
+			'const' => 'THING',
+		] );
+		$expected = <<<PHP
+<?php
+// Header
+// With
+// Newlines
+
+namespace Example\Foo;
+
+class Bar {
+	public const THING = [
+		'foo' => 'bar',
+		'baz' => 'rawr',
+	];
+}
+
+PHP;
+		$this->assertSame( $expected, $actual );
+	}
 }
