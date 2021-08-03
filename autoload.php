@@ -1009,7 +1009,6 @@ $wgAutoloadLocalClasses = [
 	'MediaWiki\\Hook\\SkinTemplateNavigationHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateNavigationHook.php',
 	'MediaWiki\\Hook\\SkinTemplateNavigation__SpecialPageHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateNavigation__SpecialPageHook.php',
 	'MediaWiki\\Hook\\SkinTemplateNavigation__UniversalHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateNavigation__UniversalHook.php',
-	'MediaWiki\\Hook\\SkinTemplateToolboxEndHook' => __DIR__ . '/includes/skins/Hook/SkinTemplateToolboxEndHook.php',
 	'MediaWiki\\Hook\\SoftwareInfoHook' => __DIR__ . '/includes/specials/Hook/SoftwareInfoHook.php',
 	'MediaWiki\\Hook\\SpecialBlockModifyFormFieldsHook' => __DIR__ . '/includes/specials/Hook/SpecialBlockModifyFormFieldsHook.php',
 	'MediaWiki\\Hook\\SpecialContributionsBeforeMainOutputHook' => __DIR__ . '/includes/specials/Hook/SpecialContributionsBeforeMainOutputHook.php',
