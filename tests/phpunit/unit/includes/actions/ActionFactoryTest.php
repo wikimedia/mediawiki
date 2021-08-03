@@ -16,9 +16,10 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 
 	/**
 	 * @param array $overrides
+	 * @param array $hooks
 	 * @return ActionFactory|MockObject
 	 */
-	private function getFactory( $overrides = [] ) {
+	private function getFactory( $overrides = [], $hooks = [] ) {
 		// ContainerInterface needs to provide the services used in creating
 		// SpecialPageAction because we create instances of that in testing
 		// the 'revisiondelete' and 'editchangetags' actions
@@ -32,7 +33,8 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 			->setConstructorArgs( [
 				$overrides['actions'] ?? [],
 				$overrides['logger'] ?? new NullLogger(),
-				$objectFactory
+				$objectFactory,
+				$this->createHookContainer( $hooks )
 			] )
 			->onlyMethods( [ 'getArticle' ] )
 			->getMock();
@@ -182,6 +184,30 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 			false,
 			'nosuchaction',
 		];
+		yield 'hook overriding action' => [
+			'edit',
+			false,
+			false,
+			'view',
+			[
+				'GetActionName' => static function ( $context, &$action ) {
+					$action = 'view';
+					return true;
+				}
+			]
+		];
+		yield 'hook overriding to an unrecognized action' => [
+			'edit',
+			false,
+			false,
+			'nosuchaction',
+			[
+				'GetActionName' => static function ( $context, &$action ) {
+					$action = 'missing';
+					return true;
+				}
+			]
+		];
 	}
 
 	/**
@@ -191,12 +217,14 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 	 * @param bool $revDel whether &revisiondelete= is in the url
 	 * @param bool $editTags whether $editchangetags= is in the url
 	 * @param string $expectedActionName
+	 * @param array $hooks hooks to register
 	 */
 	public function testGetActionName(
 		string $requestAction,
 		bool $revDel,
 		bool $editTags,
-		string $expectedActionName
+		string $expectedActionName,
+		array $hooks = []
 	) {
 		$context = $this->createMock( IContextSource::class );
 		$context->method( 'canUseWikiPage' )->willReturn( true );
@@ -212,7 +240,7 @@ class ActionFactoryTest extends MediaWikiUnitTestCase {
 			'actions' => [
 				'disabled' => false,
 			]
-		] );
+		], $hooks );
 		$actionName = $factory->getActionName( $context );
 		$this->assertSame( $expectedActionName, $actionName );
 	}

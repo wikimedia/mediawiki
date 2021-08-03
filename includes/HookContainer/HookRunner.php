@@ -29,6 +29,7 @@ use Title;
  * @internal
  */
 class HookRunner implements
+	\MediaWiki\Actions\Hook\GetActionNameHook,
 	\MediaWiki\Auth\Hook\AuthManagerLoginAuthenticateAuditHook,
 	\MediaWiki\Auth\Hook\ExemptFromAccountCreationThrottleHook,
 	\MediaWiki\Auth\Hook\LocalUserCreatedHook,
@@ -1759,6 +1760,14 @@ class HookRunner implements
 		return $this->container->run(
 			'GetAutoPromoteGroups',
 			[ $user, &$promote ]
+		);
+	}
+
+	public function onGetActionName( IContextSource $context, string &$action ): void {
+		$this->container->run(
+			'GetActionName',
+			[ $context, &$action ],
+			[ 'abortable' => false ]
 		);
 	}
 

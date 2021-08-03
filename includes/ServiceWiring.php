@@ -157,7 +157,8 @@ return [
 		return new ActionFactory(
 			$services->getMainConfig()->get( 'Actions' ),
 			LoggerFactory::getInstance( 'ActionFactory' ),
-			$services->getObjectFactory()
+			$services->getObjectFactory(),
+			$services->getHookContainer()
 		);
 	},
 
