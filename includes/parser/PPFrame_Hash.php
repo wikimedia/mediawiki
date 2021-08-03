@@ -61,6 +61,14 @@ class PPFrame_Hash implements PPFrame {
 	 * @var array
 	 */
 	protected $childExpansionCache;
+	/**
+	 * @var int
+	 */
+	private $maxPPNodeCount;
+	/**
+	 * @var int
+	 */
+	private $maxPPExpandDepth;
 
 	/**
 	 * @param Preprocessor $preprocessor The parent preprocessor
@@ -69,6 +77,8 @@ class PPFrame_Hash implements PPFrame {
 		$this->preprocessor = $preprocessor;
 		$this->parser = $preprocessor->parser;
 		$this->title = $this->parser->getTitle();
+		$this->maxPPNodeCount = $this->parser->getOptions()->getMaxPPNodeCount();
+		$this->maxPPExpandDepth = $this->parser->getOptions()->getMaxPPExpandDepth();
 		$this->titleCache = [ $this->title ? $this->title->getPrefixedDBkey() : false ];
 		$this->loopCheckHash = [];
 		$this->depth = 0;
@@ -153,17 +163,17 @@ class PPFrame_Hash implements PPFrame {
 			return $root;
 		}
 
-		if ( ++$this->parser->mPPNodeCount > $this->parser->mOptions->getMaxPPNodeCount() ) {
+		if ( ++$this->parser->mPPNodeCount > $this->maxPPNodeCount ) {
 			$this->parser->limitationWarn( 'node-count-exceeded',
 					$this->parser->mPPNodeCount,
-					$this->parser->mOptions->getMaxPPNodeCount()
+					$this->maxPPNodeCount
 			);
 			return '<span class="error">Node-count limit exceeded</span>';
 		}
-		if ( $expansionDepth > $this->parser->mOptions->getMaxPPExpandDepth() ) {
+		if ( $expansionDepth > $this->maxPPExpandDepth ) {
 			$this->parser->limitationWarn( 'expansion-depth-exceeded',
 					$expansionDepth,
-					$this->parser->mOptions->getMaxPPExpandDepth()
+					$this->maxPPExpandDepth
 			);
 			return '<span class="error">Expansion depth limit exceeded</span>';
 		}
