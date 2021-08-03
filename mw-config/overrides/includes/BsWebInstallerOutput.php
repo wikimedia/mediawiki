@@ -35,7 +35,14 @@ class BsWebInstallerOutput extends WebInstallerOutput {
 	 // BlueSpice
 	public function outputTitle() {
 		global $wgVersion;
-		echo wfMessage( 'bs-installer-title', $wgVersion, '3.1' )->plain();
+		$foundationManifestFile = dirname(__DIR__) 
+			. '/../../../extensions/BlueSpiceFoundation/extension.json';
+		$foundationManifest = FormatJson::decode(
+			file_get_contents( $foundationManifestFile ),
+			true
+		);
+		$bsVersion = $foundationManifest['version'];
+		echo wfMessage( 'bs-installer-title', $wgVersion, $bsVersion )->plain();
 	}
 
 	public function getCSS() {
