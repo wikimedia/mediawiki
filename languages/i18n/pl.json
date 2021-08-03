@@ -1205,6 +1205,7 @@
 	"linter-pager-multiline-html-table-in-list-details": "Wieloliniowa tabela HTML5 wewnątrz listy",
 	"linter-pager-multiple-unclosed-formatting-tags-details": "Wiele niezamkniętych znaczników formatujących na stronie",
 	"linter-pager-obsolete-tag-details": "Przestarzały znacznik HTML",
+	"linter-pager-pwrap-bug-workaround-details": "Obejście błędnego generowania akapitów",
 	"linter-pager-self-closed-tag-details": "Znacznik samozamykający się",
 	"linter-pager-stripped-tag-details": "Niekompletne znaczniki",
 	"linter-pager-tidy-font-bug-details": "Znacznik font próbuje zmienić kolor linku",

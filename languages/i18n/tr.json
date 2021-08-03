@@ -662,7 +662,7 @@
 	"botpasswords-updated-body": "\"$2\" adlı {{GENDER:$2|kullanıcının}} \"$1\" adlı botunun bot parolası güncellendi.",
 	"botpasswords-deleted-title": "Bot parolası silindi",
 	"botpasswords-deleted-body": "\"$2\" adlı {{GENDER:$2|kullanıcının}} \"$1\" adlı botunun bot parolası silindi.",
-	"botpasswords-newpassword": "<strong>$1</strong> ile giriş yapılan yeni parola: <strong>$2</strong>. <em>Lütfen bunu ileride kullanabilmek adına kaydedin.<em> <br> (Kullanıcı adının, asıl kullanıcı adıyla aynı olmasını gerektiren eski botlar için kullanıcı adı olarak <strong>$3</strong> ve parola olarak da <strong>$4</strong> kullanabilirsiniz.)",
+	"botpasswords-newpassword": "<strong>$1</strong> ile giriş yapılan yeni parola: <strong>$2</strong>. <em>Lütfen bunu ileride kullanabilmek adına kaydedin.</em> <br> (Kullanıcı adının, asıl kullanıcı adıyla aynı olmasını gerektiren eski botlar için kullanıcı adı olarak <strong>$3</strong> ve parola olarak da <strong>$4</strong> kullanabilirsiniz.)",
 	"botpasswords-no-provider": "BotPasswordsSessionProvider kullanılamaz.",
 	"botpasswords-restriction-failed": "Bot parolası kısıtlamaları bu oturum açma işlemini önlemektedir.",
 	"botpasswords-invalid-name": "Belirtilen kullanıcı adı bot parolası ayırıcısı içermiyor (\"$1\").",
