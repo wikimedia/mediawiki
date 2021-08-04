@@ -105,13 +105,13 @@ class ExtensionProcessorTest extends MediaWikiIntegrationTestCase {
 		);
 
 		$this->assertSame(
-			$extracted['defines']['MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X'],
-			123456
+			123456,
+			$extracted['defines']['MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_X']
 		);
 
 		$this->assertSame(
-			$extracted['defines']['MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_A'],
-			332200
+			332200,
+			$extracted['defines']['MW_EXTENSION_PROCESSOR_TEST_EXTRACT_INFO_A']
 		);
 
 		$this->assertArrayHasKey( 'ExtensionNamespaces', $extracted['attributes'] );
