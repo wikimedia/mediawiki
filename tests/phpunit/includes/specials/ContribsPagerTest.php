@@ -76,11 +76,11 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 
 		$allContribsPager = $this->getContribsPager( [] );
 		$allContribsResults = $allContribsPager->reallyDoQuery( '', 2, IndexPager::QUERY_DESCENDING );
-		$this->assertEquals( $allContribsResults->numRows(), 1 );
+		$this->assertSame( 1, $allContribsResults->numRows() );
 
 		$revOnlyPager = $this->getContribsPager( [ 'revisionsOnly' => true ] );
 		$revOnlyResults = $revOnlyPager->reallyDoQuery( '', 2, IndexPager::QUERY_DESCENDING );
-		$this->assertEquals( $revOnlyResults->numRows(), 0 );
+		$this->assertSame( 0, $revOnlyResults->numRows() );
 	}
 
 	/**

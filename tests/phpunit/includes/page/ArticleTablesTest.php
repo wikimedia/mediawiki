@@ -45,6 +45,6 @@ class ArticleTablesTest extends MediaWikiLangTestCase {
 		 * @var Title[] $templates2
 		 */
 		$this->assertEquals( $templates1, $templates2 );
-		$this->assertEquals( $templates1[0]->getFullText(), 'Historial' );
+		$this->assertSame( 'Historial', $templates1[0]->getFullText() );
 	}
 }

@@ -65,8 +65,8 @@ class PageSelectQueryBuilderTest extends MediaWikiIntegrationTestCase {
 			->fetchPageRecordArray();
 
 		$this->assertCount( 2, $recs );
-		$this->assertSame( $recs[ $recAA->getId() ]->getDBkey(), 'AA' );
-		$this->assertSame( $recs[ $recAB->getId() ]->getDBkey(), 'AB' );
+		$this->assertSame( 'AA', $recs[ $recAA->getId() ]->getDBkey() );
+		$this->assertSame( 'AB', $recs[ $recAB->getId() ]->getDBkey() );
 	}
 
 	/**
@@ -157,7 +157,7 @@ class PageSelectQueryBuilderTest extends MediaWikiIntegrationTestCase {
 			->fetchPageRecordArray();
 
 		$this->assertCount( 1, $recs );
-		$this->assertSame( $recs[ $recAA->getId() ]->getDBkey(), 'AA' );
+		$this->assertSame( 'AA', $recs[ $recAA->getId() ]->getDBkey() );
 	}
 
 	/**
