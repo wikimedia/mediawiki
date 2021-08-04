@@ -242,7 +242,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		return $this->cache->getActor( ActorCache::KEY_USER_NAME, $normalizedName ) ??
 			$this->newSelectQueryBuilder( $queryFlags )
 				->caller( __METHOD__ )
-				->userNames( $normalizedName )
+				->whereUserNames( $normalizedName )
 				->fetchUserIdentity();
 	}
 
@@ -261,7 +261,7 @@ class ActorStore implements UserIdentityLookup, ActorNormalization {
 		return $this->cache->getActor( ActorCache::KEY_USER_ID, $userId ) ??
 			$this->newSelectQueryBuilder( $queryFlags )
 				->caller( __METHOD__ )
-				->userIds( $userId )
+				->whereUserIds( $userId )
 				->fetchUserIdentity();
 	}
 
