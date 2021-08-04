@@ -189,11 +189,13 @@ class WebRequest {
 
 			global $wgVariantArticlePath;
 			if ( $wgVariantArticlePath ) {
+				$services = MediaWikiServices::getInstance();
 				$router->validateRoute( $wgVariantArticlePath, 'wgVariantArticlePath' );
 				$router->add( $wgVariantArticlePath,
 					[ 'variant' => '$2' ],
-					[ '$2' => MediaWikiServices::getInstance()->getContentLanguage()->
-					getVariants() ]
+					[ '$2' => $services->getLanguageConverterFactory()
+						->getLanguageConverter( $services->getContentLanguage() )
+						->getVariants() ]
 				);
 			}
 
