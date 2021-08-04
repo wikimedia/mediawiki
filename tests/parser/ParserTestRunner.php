@@ -46,8 +46,6 @@ use Wikimedia\TestingAccessWrapper;
  */
 class ParserTestRunner {
 
-	use MediaWikiTestCaseTrait;
-
 	/**
 	 * MediaWiki core parser test files, paths
 	 * will be prefixed with __DIR__ . '/'

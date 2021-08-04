@@ -2450,9 +2450,12 @@ class AuthManager implements LoggerAwareInterface {
 		$user->setToken();
 
 		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $this->contentLanguage;
-		$user->setOption( 'language', $lang->getPreferredVariant() );
+		$user->setOption(
+			'language',
+			$this->languageConverterFactory->getLanguageConverter( $lang )->getPreferredVariant()
+		);
 
-		$contLangConverter = $this->languageConverterFactory->getLanguageConverter();
+		$contLangConverter = $this->languageConverterFactory->getLanguageConverter( $this->contentLanguage );
 		if ( $contLangConverter->hasVariants() ) {
 			$user->setOption( 'variant', $contLangConverter->getPreferredVariant() );
 		}
