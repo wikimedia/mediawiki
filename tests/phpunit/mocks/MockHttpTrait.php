@@ -142,12 +142,18 @@ trait MockHttpTrait {
 	 *       cause the test to fail.
 	 *
 	 * @param string $body The response body.
-	 * @param int $statusCode The response status code. Use 0 to indicate an internal error.
+	 * @param int|StatusValue $responseStatus The response status code. Use 0 to indicate an internal error.
+	 *        Alternatively, you can provide a configured StatusValue with status code as a value and
+	 *        whatever warnings or errors you want.
 	 * @param string[] $headers Any response headers.
 	 *
 	 * @return MWHttpRequest
 	 */
-	private function makeFakeHttpRequest( $body = 'Lorem Ipsum', $statusCode = 200, $headers = [] ) {
+	private function makeFakeHttpRequest(
+		$body = 'Lorem Ipsum',
+		$responseStatus = 200,
+		$headers = []
+	) {
 		$mockHttpRequest = $this->createNoOpMock(
 			MWHttpRequest::class,
 			[ 'execute', 'setCallback', 'isRedirect', 'getFinalUrl',
@@ -156,6 +162,7 @@ trait MockHttpTrait {
 			]
 		);
 
+		$statusCode = $responseStatus instanceof StatusValue ? $responseStatus->getValue() : $responseStatus;
 		$mockHttpRequest->method( 'isRedirect' )->willReturn(
 			$statusCode >= 300 && $statusCode < 400
 		);
@@ -176,25 +183,48 @@ trait MockHttpTrait {
 			}
 		);
 
-		$status = Status::newGood( $statusCode );
+		if ( is_int( $responseStatus ) ) {
+			$statusObject = Status::newGood( $statusCode );
 
-		if ( $statusCode === 0 ) {
-			$status->fatal( 'http-internal-error' );
+			if ( $statusCode === 0 ) {
+				$statusObject->fatal( 'http-internal-error' );
+			} elseif ( $statusCode >= 400 ) {
+				$statusObject->fatal( "http-bad-status", $statusCode, $body );
+			}
+		} else {
+			$statusObject = Status::wrap( $responseStatus );
 		}
 
 		$mockHttpRequest->method( 'getContent' )->willReturn( $body );
 		$mockHttpRequest->method( 'getStatus' )->willReturn( $statusCode );
 
 		$mockHttpRequest->method( 'execute' )->willReturnCallback(
-			function () use ( &$dataCallback, $body, $status ) {
+			function () use ( &$dataCallback, $body, $statusObject ) {
 				if ( $dataCallback ) {
 					$dataCallback( $this, $body );
 				}
-				return $status;
+				return $statusObject;
 			}
 		);
 
 		return $mockHttpRequest;
+	}
+
+	/**
+	 * Construct a fake HTTP request that will result in an HTTP timeout.
+	 *
+	 * @see self::makeFakeHttpRequest
+	 * @param string $body
+	 * @param string $requestUrl
+	 * @return MWHttpRequest
+	 */
+	private function makeFakeTimeoutRequest(
+		string $body = 'HTTP Timeout',
+		string $requestUrl = 'https://dummy.org'
+	) {
+		$responseStatus = StatusValue::newGood( 504 );
+		$responseStatus->fatal( 'http-timed-out', $requestUrl );
+		return $this->makeFakeHttpRequest( $body, $responseStatus, [] );
 	}
 
 	/**
