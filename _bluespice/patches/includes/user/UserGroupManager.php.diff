@@ -1,0 +1,24 @@
+--- includes/user/UserGroupManager.php	2021-08-04 13:58:23.146298990 +0200
++++ includes/user.fix/UserGroupManager.php	2021-08-04 13:59:37.239664362 +0200
+@@ -243,6 +243,10 @@
+ 		int $queryFlags = self::READ_NORMAL,
+ 		bool $recache = false
+ 	)  : array {
++		if ( $user->getId() === -1 ) {
++			// Hack to deal with invalid/deleted users
++			return [];
++		}
+ 		$userKey = $this->getCacheKey( $user );
+ 		if ( $recache ||
+ 			!isset( $this->userGroupCache[$userKey][self::CACHE_IMPLICIT] ) ||
+@@ -283,6 +287,10 @@
+ 		int $queryFlags = self::READ_NORMAL,
+ 		bool $recache = false
+ 	) : array {
++		if ( $user->getId() === -1 ) {
++			// Hack to deal with invalid/deleted users
++			return [];
++		}
+ 		$userKey = $this->getCacheKey( $user );
+ 		// Ignore cache if the $recache flag is set, cached values can not be used
+ 		// or the cache value is missing
