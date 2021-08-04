@@ -2,6 +2,7 @@
 
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -58,7 +59,8 @@ class ParserFactoryTest extends MediaWikiUnitTestCase {
 			$this->createNoOpMock( WANObjectCache::class ),
 			$this->createNoOpMock( UserOptionsLookup::class ),
 			$this->createNoOpMock( UserFactory::class ),
-			$this->createNoOpMock( TitleFormatter::class )
+			$this->createNoOpMock( TitleFormatter::class ),
+			$this->createNoOpMock( HttpRequestFactory::class )
 		);
 		return $factory;
 	}
