@@ -2390,20 +2390,23 @@ class Language {
 	 * @return string
 	 */
 	private function internalUserTimeAndDate( $type, $ts, UserIdentity $user, array $options ) {
-		$user = User::newFromIdentity( $user );
-
 		$ts = wfTimestamp( TS_MW, $ts );
 		$options += [ 'timecorrection' => true, 'format' => true ];
 		if ( $options['timecorrection'] !== false ) {
 			if ( $options['timecorrection'] === true ) {
-				$offset = $user->getOption( 'timecorrection' );
+				$offset = MediaWikiServices::getInstance()
+					->getUserOptionsLookup()
+					->getOption( $user, 'timecorrection' );
 			} else {
 				$offset = $options['timecorrection'];
 			}
 			$ts = $this->userAdjust( $ts, $offset );
 		}
 		if ( $options['format'] === true ) {
-			$format = $user->getDatePreference();
+			$format = MediaWikiServices::getInstance()
+				->getUserFactory()
+				->newFromUserIdentity( $user )
+				->getDatePreference();
 		} else {
 			$format = $options['format'];
 		}
@@ -2503,10 +2506,12 @@ class Language {
 		}
 		if ( $user === null ) {
 			$user = RequestContext::getMain()->getUser();
+		} else {
+			// For compatibility with the hook signature and self::getHumanTimestampInternal
+			$user = MediaWikiServices::getInstance()
+				->getUserFactory()
+				->newFromUserIdentity( $user );
 		}
-
-		// For compatibility with the hook signature and MWTimestamp
-		$user = User::newFromIdentity( $user );
 
 		// Adjust for the user's timezone.
 		$offsetThis = $time->offsetForUser( $user );
@@ -2531,15 +2536,13 @@ class Language {
 	 * @see Language::getHumanTimestamp
 	 * @param MWTimestamp $ts Timestamp to prettify
 	 * @param MWTimestamp $relativeTo Base timestamp
-	 * @param UserIdentity $user User preferences to use
+	 * @param User $user User preferences to use
 	 * @return string Human timestamp
 	 * @since 1.26
 	 */
 	private function getHumanTimestampInternal(
-		MWTimestamp $ts, MWTimestamp $relativeTo, UserIdentity $user
+		MWTimestamp $ts, MWTimestamp $relativeTo, User $user
 	) {
-		$user = User::newFromIdentity( $user );
-
 		$diff = $ts->diff( $relativeTo );
 		$diffDay = (bool)( (int)$ts->timestamp->format( 'w' ) -
 			(int)$relativeTo->timestamp->format( 'w' ) );
