@@ -23,6 +23,7 @@ use Action;
 use Article;
 use CreditsAction;
 use IContextSource;
+use InfoAction;
 use MarkpatrolledAction;
 use McrRestoreAction;
 use McrUndoAction;
@@ -73,9 +74,6 @@ class ActionFactory {
 		'delete' => true,
 		'edit' => true,
 		'history' => true,
-		'info' => true,
-		'mcrundo' => McrUndoAction::class,
-		'mcrrestore' => McrRestoreAction::class,
 		'protect' => true,
 		'purge' => true,
 		'render' => true,
@@ -103,10 +101,42 @@ class ActionFactory {
 				'editchangetags',
 			],
 		],
+		'info' => [
+			'class' => InfoAction::class,
+			'services' => [
+				'ContentLanguage',
+				'HookContainer',
+				'LanguageNameUtils',
+				'LinkBatchFactory',
+				'LinkRenderer',
+				'DBLoadBalancer',
+				'MagicWordFactory',
+				'NamespaceInfo',
+				'PageProps',
+				'RepoGroup',
+				'RevisionLookup',
+				'MainWANObjectCache',
+				'WatchedItemStore',
+			],
+		],
 		'markpatrolled' => [
 			'class' => MarkpatrolledAction::class,
 			'services' => [
 				'LinkRenderer',
+			],
+		],
+		'mcrundo' => [
+			'class' => McrUndoAction::class,
+			'services' => [
+				'RevisionLookup',
+				'RevisionRenderer',
+			],
+		],
+		'mcrrestore' => [
+			'class' => McrRestoreAction::class,
+			'services' => [
+				'RevisionLookup',
+				'RevisionRenderer',
 			],
 		],
 		'raw' => [

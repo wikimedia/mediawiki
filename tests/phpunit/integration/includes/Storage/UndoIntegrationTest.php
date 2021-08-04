@@ -68,7 +68,9 @@ class UndoIntegrationTest extends MediaWikiIntegrationTestCase {
 		$context->setOutput( $outputPage );
 		$context->setUser( $this->getTestSysop()->getUser() );
 
-		return new class( $article, $context ) extends McrUndoAction {
+		$revisionRenderer = $this->getServiceContainer()->getRevisionRenderer();
+		$revisionLookup = $this->getServiceContainer()->getRevisionLookup();
+		return new class( $article, $context, $revisionLookup, $revisionRenderer ) extends McrUndoAction {
 			public function show() {
 				// Instead of trying to actually display anything, just initialize the class.
 				$this->checkCanExecute( $this->getUser() );
