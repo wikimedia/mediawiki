@@ -74,8 +74,6 @@ class ActionFactory {
 		'delete' => true,
 		'edit' => true,
 		'history' => true,
-		'mcrundo' => McrUndoAction::class,
-		'mcrrestore' => McrRestoreAction::class,
 		'protect' => true,
 		'purge' => true,
 		'render' => true,
@@ -125,6 +123,20 @@ class ActionFactory {
 			'class' => MarkpatrolledAction::class,
 			'services' => [
 				'LinkRenderer',
+			],
+		],
+		'mcrundo' => [
+			'class' => McrUndoAction::class,
+			'services' => [
+				'RevisionLookup',
+				'RevisionRenderer',
+			],
+		],
+		'mcrrestore' => [
+			'class' => McrRestoreAction::class,
+			'services' => [
+				'RevisionLookup',
+				'RevisionRenderer',
 			],
 		],
 		'raw' => [
