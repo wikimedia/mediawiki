@@ -253,6 +253,7 @@
 	"showpreview": "Previsualizà",
 	"showdiff": "Mustrà i cambiamenti",
 	"anoneditwarning": "'''Attenzione:''' Ùn ai micca fattu a cunnessione. U to indirizzu IP sarà salvatu in a cronolugia di sta pagina.",
+	"anonpreviewwarning": "<em>Ùn sì micca entratu. U to indirizzu IP serà salvatu in a cronolugia di a pagina.</em>",
 	"loginreqlink": "cunnessione",
 	"accmailtitle": "Parulla secreta inviata.",
 	"accmailtext": "A parulla secreta per \"$1\" hè stata inviata à l'indirizzu $2.",

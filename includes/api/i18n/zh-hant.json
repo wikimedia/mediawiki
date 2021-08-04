@@ -37,7 +37,7 @@
 	"apihelp-main-param-responselanginfo": "在結果中包括<var>uselang</var>和<var>errorlang</var>所用的語言。",
 	"apihelp-main-param-origin": "當使用跨網域 AJAX 請求（cross-domain AJAX request、CORS）來存取 API 時，設定此為起始網域。這必須包含在任何預檢請求裡，因此得是請求 URI 的一部份（不是 POST 主體）。\n\n對於已認證請求，這必須準確地符合在 <code>Origin</code> 標頭裡其一的起始點，因此會被設定成像是 <kbd>https://zh.wikipedia.org</kbd> 或是 <kbd>https://meta.wikimedia.org</kbd>。如果此參數不符合 <code>Origin</code> 標頭，會回傳 403 錯誤回應。若此參數符合 <code>Origin</code> 標頭且起始點被列為允許，將會設定 <code>Access-Control-Allow-Origin</code> 與 <code>Access-Control-Allow-Credentials</code> 標頭。\n\n對於非認證請求，會指定值 <kbd>*</kbd>。這會產生 <code>Access-Control-Allow-Origin</code> 標頭有被設定；但 <code>Access-Control-Allow-Credentials</code> 會是 <code>false</code> 值，且所有使用者指定資料會受限制。",
 	"apihelp-main-param-uselang": "訊息翻譯採用的語言。使用 <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> 與 <kbd>siprop=languages</kbd> 會回傳語言代碼清單、或指定 <kbd>user</kbd> 來使用目前使用者的語言偏好設定、或是指定 <kbd>content</kbd> 來使用此 wiki 的內容語言。",
-	"apihelp-main-param-errorformat": "用於警告和錯誤文字輸出的格式。\n; plaintext：移除掉 HTML 標籤，且實體已替換的 wiki 文字。\n; wikitext：未解析的 wiki 文字。\n; html：HTML。\n; raw：訊息鍵值與參數。\n; none：無文字輸出，僅含有錯誤代碼。\n; bc：用於 MediaWiki 1.29 之前版本的格式。會忽略 <var>errorlang</var> 與 <var>errorsuselocal</var>。",
+	"apihelp-main-param-errorformat": "用於警告和錯誤文字輸出的格式",
 	"apihelp-main-param-errorlang": "警告與錯誤採用的語言。使用 <kbd>[[Special:ApiHelp/query+siteinfo|action=query&meta=siteinfo]]</kbd> 與 <kbd>siprop=languages</kbd> 會回傳語言代碼清單、或指定 <kbd>content</kbd> 來使用此 wiki 的內容語言、或是指定 <kbd>uselang</kbd> 來使用與 <var>uselang</var> 參數相同的值。",
 	"apihelp-main-param-errorsuselocal": "若有指定，錯誤文字會使用來自 {{ns:MediaWiki}} 命名空間的本地自定義訊息。",
 	"apihelp-block-summary": "封鎖使用者。",
