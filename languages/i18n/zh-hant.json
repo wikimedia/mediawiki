@@ -3772,7 +3772,7 @@
 	"duration-weeks": "$1週",
 	"duration-years": "$1年",
 	"duration-decades": "$1{{PLURAL:$1|0年|0年}}",
-	"duration-centuries": "$1個世紀",
+	"duration-centuries": "$1{{PLURAL:$1|個世紀}}",
 	"duration-millennia": "$1千年",
 	"rotate-comment": "已順時針旋轉圖片 $1 {{PLURAL:$1|度|度}}",
 	"limitreport-title": "剖析器分析資料：",
