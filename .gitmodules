@@ -1006,7 +1006,7 @@
 [submodule "extensions/MobileDetect"]
 	path = extensions/MobileDetect
 	url = https://github.com/wikimedia/mediawiki-extensions-MobileDetect
-	branch = REL1_36
+	branch = master
 	ignore = dirty
 [submodule "extensions/Citoid"]
 	path = extensions/Citoid
