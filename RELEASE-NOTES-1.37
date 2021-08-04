@@ -32,7 +32,7 @@ of automatic detection of possible phone numbers in a webpage in Safari on iOS.
   requested using ContentHandler::getContentText(), is deprecated.
 * $wgActions was reworked to support injecting dependencies into
   Action subclasses. Previously, $wgActions was an array where the
-  keys where the names of actions, and the values had the following
+  keys were the names of actions, and the values had the following
   impacts (for a given key 'Foo')
   - `true`: use the class 'FooAction' unless for a specific page
       WikiPage::getActionOverrides() wants to override that action
