@@ -117,7 +117,7 @@ class RevDelLogList extends RevDelList {
 	}
 
 	public function newItem( $row ) {
-		return new RevDelLogItem( $this, $row );
+		return new RevDelLogItem( $this, $row, $this->commentStore );
 	}
 
 	public function getSuppressBit() {
