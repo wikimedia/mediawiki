@@ -25,6 +25,7 @@ use MediaWiki\Cache\CacheKeyHelper;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Languages\LanguageNameUtils;
 use MediaWiki\Linker\LinkRenderer;
@@ -359,6 +360,9 @@ class Parser {
 	/** @var UserFactory */
 	private $userFactory;
 
+	/** @var HttpRequestFactory */
+	private $httpRequestFactory;
+
 	/**
 	 * @internal For use by ServiceWiring
 	 */
@@ -405,6 +409,7 @@ class Parser {
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @param TitleFormatter $titleFormatter
+	 * @param HttpRequestFactory $httpRequestFactory
 	 */
 	public function __construct(
 		ServiceOptions $svcOptions,
@@ -423,7 +428,8 @@ class Parser {
 		WANObjectCache $wanCache,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		HttpRequestFactory $httpRequestFactory
 	) {
 		if ( ParserFactory::$inParserFactory === 0 ) {
 			// Direct construction of Parser was deprecated in 1.34 and
@@ -468,6 +474,7 @@ class Parser {
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
 		$this->titleFormatter = $titleFormatter;
+		$this->httpRequestFactory = $httpRequestFactory;
 
 		// These steps used to be done in "::firstCallInit()"
 		// (if you're chasing a reference from some old code)
@@ -3818,8 +3825,8 @@ class Parser {
 				sha1( $url )
 			),
 			$this->svcOptions->get( 'TranscludeCacheExpiry' ),
-			static function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
-				$req = MWHttpRequest::factory( $url, [], $fname );
+			function ( $oldValue, &$ttl ) use ( $url, $fname, $cache ) {
+				$req = $this->httpRequestFactory->create( $url, [], $fname );
 
 				$status = $req->execute(); // Status object
 				if ( !$status->isOK() ) {

@@ -1140,7 +1140,8 @@ return [
 			$services->getMainWANObjectCache(),
 			$services->getUserOptionsLookup(),
 			$services->getUserFactory(),
-			$services->getTitleFormatter()
+			$services->getTitleFormatter(),
+			$services->getHttpRequestFactory()
 		);
 	},
 
