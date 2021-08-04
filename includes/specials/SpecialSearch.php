@@ -390,6 +390,8 @@ class SpecialSearch extends SpecialPage {
 			$this,
 			$this->searchConfig,
 			$this->getHookContainer(),
+			$this->languageConverterFactory->getLanguageConverter( $this->getLanguage() ),
+			$this->nsInfo,
 			$this->getSearchProfiles()
 		);
 		$filePrefix = $this->getContentLanguage()->getFormattedNsText( NS_FILE ) . ':';
@@ -423,7 +425,7 @@ class SpecialSearch extends SpecialPage {
 		}
 
 		$title = Title::newFromText( $term );
-		$languageConverter = $this->languageConverterFactory->getLanguageConverter();
+		$languageConverter = $this->languageConverterFactory->getLanguageConverter( $this->getContentLanguage() );
 		if ( $languageConverter->hasVariants() ) {
 			// findVariantLink will replace the link arg as well but we want to keep our original
 			// search string, use a copy in the $variantTerm var so that $term remains intact.
