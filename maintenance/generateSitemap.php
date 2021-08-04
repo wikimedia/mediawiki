@@ -334,7 +334,9 @@ class GenerateSitemap extends Maintenance {
 	 * Main loop
 	 */
 	public function main() {
-		$contLang = MediaWikiServices::getInstance()->getContentLanguage();
+		$services = MediaWikiServices::getInstance();
+		$contLang = $services->getContentLanguage();
+		$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 
 		fwrite( $this->findex, $this->openIndex() );
 
@@ -382,8 +384,8 @@ class GenerateSitemap extends Maintenance {
 				$length += strlen( $entry );
 				$this->write( $this->file, $entry );
 				// generate pages for language variants
-				if ( $contLang->hasVariants() ) {
-					$variants = $contLang->getVariants();
+				if ( $langConverter->hasVariants() ) {
+					$variants = $langConverter->getVariants();
 					foreach ( $variants as $vCode ) {
 						if ( $vCode == $contLang->getCode() ) {
 							continue; // we don't want default variant
