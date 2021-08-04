@@ -1850,7 +1850,7 @@ abstract class Installer {
 
 		$status = Status::newGood();
 		if ( MWHttpRequest::canMakeRequests() ) {
-			$res = MWHttpRequest::factory(
+			$res = MediaWikiServices::getInstance()->getHttpRequestFactory()->create(
 				$this->mediaWikiAnnounceUrl,
 				[ 'method' => 'POST', 'postData' => $params ],
 				__METHOD__
