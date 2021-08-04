@@ -60,7 +60,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$page1ID = $this->title1->getArticleID();
 		$result = $pageProps->getProperties( $this->title1, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
-		$this->assertEquals( $result[$page1ID], "value1", "Get property" );
+		$this->assertSame( "value1", $result[$page1ID], "Get property" );
 	}
 
 	/**
@@ -78,8 +78,8 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$result = $pageProps->getProperties( $titles, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
-		$this->assertEquals( $result[$page1ID], "value1", "Get property page 1" );
-		$this->assertEquals( $result[$page2ID], "value1", "Get property page 2" );
+		$this->assertSame( "value1", $result[$page1ID], "Get property page 1" );
+		$this->assertSame( "value1", $result[$page2ID], "Get property page 2" );
 	}
 
 	/**
@@ -99,8 +99,8 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$result = $pageProps->getProperties( $titles, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found page 1 property" );
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
-		$this->assertEquals( $result[$page1ID], "value1", "Get property page 1" );
-		$this->assertEquals( $result[$page2ID], "value1", "Get property page 2" );
+		$this->assertSame( "value1", $result[$page1ID], "Get property page 1" );
+		$this->assertSame( "value1", $result[$page2ID], "Get property page 2" );
 	}
 
 	/**
@@ -126,10 +126,10 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$this->assertArrayHasKey( $page2ID, $result, "Found page 2 property" );
 		$this->assertArrayHasKey( "property1", $result[$page2ID], "Found page 2 property 1" );
 		$this->assertArrayHasKey( "property2", $result[$page2ID], "Found page 2 property 2" );
-		$this->assertEquals( $result[$page1ID]["property1"], "value1", "Get page 1 property 1" );
-		$this->assertEquals( $result[$page1ID]["property2"], "value2", "Get page 1 property 2" );
-		$this->assertEquals( $result[$page2ID]["property1"], "value1", "Get page 2 property 1" );
-		$this->assertEquals( $result[$page2ID]["property2"], "value2", "Get page 2 property 2" );
+		$this->assertSame( "value1", $result[$page1ID]["property1"], "Get page 1 property 1" );
+		$this->assertSame( "value2", $result[$page1ID]["property2"], "Get page 1 property 2" );
+		$this->assertSame( "value1", $result[$page2ID]["property1"], "Get page 2 property 1" );
+		$this->assertSame( "value2", $result[$page2ID]["property2"], "Get page 2 property 2" );
 	}
 
 	/**
@@ -226,7 +226,7 @@ class PagePropsTest extends MediaWikiLangTestCase {
 		$pageProps->getAllProperties( $this->title1 );
 		$result = $pageProps->getProperties( $this->title1, "property1" );
 		$this->assertArrayHasKey( $page1ID, $result, "Found property" );
-		$this->assertEquals( $result[$page1ID], "another value", "Clear cache" );
+		$this->assertSame( "another value", $result[$page1ID], "Clear cache" );
 	}
 
 	protected function setProperties( $pageID, $properties ) {

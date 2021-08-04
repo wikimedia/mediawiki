@@ -1414,9 +1414,9 @@ class TitleTest extends MediaWikiIntegrationTestCase {
 		$title = $this->getExistingTestPage( 'UTest1' )->getTitle();
 		$title->loadRestrictions();
 		$this->assertTrue( $title->areRestrictionsLoaded() );
-		$this->assertEquals(
-			$title->getRestrictionExpiry( 'create' ),
-			'infinity'
+		$this->assertSame(
+			'infinity',
+			$title->getRestrictionExpiry( 'create' )
 		);
 		$page = $this->getNonexistingTestPage( 'UTest1' );
 		$title = $page->getTitle();

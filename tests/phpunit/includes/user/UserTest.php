@@ -579,7 +579,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
 		$this->assertTrue( $status->isOK() );
 		$this->assertFalse( $status->isGood() );
-		$this->assertSame( $status->getErrors()[0]['message'], 'isValidPassword returned false' );
+		$this->assertSame( 'isValidPassword returned false', $status->getErrors()[0]['message'] );
 
 		$this->removeTemporaryHook( 'isValidPassword' );
 
@@ -601,7 +601,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$status = $this->user->checkPasswordValidity( 'Password1234' );
 		$this->assertTrue( $status->isOK() );
 		$this->assertFalse( $status->isGood() );
-		$this->assertSame( $status->getErrors()[0]['message'], 'isValidPassword returned true' );
+		$this->assertSame( 'isValidPassword returned true', $status->getErrors()[0]['message'] );
 
 		$this->removeTemporaryHook( 'isValidPassword' );
 
@@ -2207,8 +2207,8 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		] );
 		$status = $user->setEmailWithConfirmation( 'test1@mediawiki.org' );
 		$this->assertSame(
-			$status->getErrors()[0]['message'],
 			'emaildisabled',
+			$status->getErrors()[0]['message'],
 			'Cannot set email when email is disabled'
 		);
 		$this->assertSame(

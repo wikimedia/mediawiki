@@ -10,8 +10,8 @@ abstract class RestrictionTestCase extends \MediaWikiIntegrationTestCase {
 		$class = $this->getClass();
 		$restriction = new $class( 1, 2 );
 
-		$this->assertSame( $restriction->getBlockId(), 1 );
-		$this->assertSame( $restriction->getValue(), 2 );
+		$this->assertSame( 1, $restriction->getBlockId() );
+		$this->assertSame( 2, $restriction->getValue() );
 	}
 
 	public function testSetBlockId() {
@@ -19,7 +19,7 @@ abstract class RestrictionTestCase extends \MediaWikiIntegrationTestCase {
 		$restriction = new $class( 1, 2 );
 
 		$restriction->setBlockId( 10 );
-		$this->assertSame( $restriction->getBlockId(), 10 );
+		$this->assertSame( 10, $restriction->getBlockId() );
 	}
 
 	public function testEquals() {
