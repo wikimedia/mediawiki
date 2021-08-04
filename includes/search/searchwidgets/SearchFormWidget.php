@@ -3,10 +3,11 @@
 namespace MediaWiki\Search\SearchWidgets;
 
 use Html;
+use ILanguageConverter;
 use MediaWiki\HookContainer\HookContainer;
 use MediaWiki\HookContainer\HookRunner;
-use MediaWiki\MediaWikiServices;
 use MediaWiki\Widget\SearchInputWidget;
+use NamespaceInfo;
 use SearchEngineConfig;
 use SpecialSearch;
 use Xml;
@@ -22,23 +23,33 @@ class SearchFormWidget {
 	private $hookContainer;
 	/** @var HookRunner */
 	private $hookRunner;
+	/** @var ILanguageConverter */
+	private $languageConverter;
+	/** @var NamespaceInfo */
+	private $namespaceInfo;
 
 	/**
 	 * @param SpecialSearch $specialSearch
 	 * @param SearchEngineConfig $searchConfig
 	 * @param HookContainer $hookContainer
+	 * @param ILanguageConverter $languageConverter
+	 * @param NamespaceInfo $namespaceInfo
 	 * @param array $profiles
 	 */
 	public function __construct(
 		SpecialSearch $specialSearch,
 		SearchEngineConfig $searchConfig,
 		HookContainer $hookContainer,
+		ILanguageConverter $languageConverter,
+		NamespaceInfo $namespaceInfo,
 		array $profiles
 	) {
 		$this->specialSearch = $specialSearch;
 		$this->searchConfig = $searchConfig;
 		$this->hookContainer = $hookContainer;
 		$this->hookRunner = new HookRunner( $hookContainer );
+		$this->languageConverter = $languageConverter;
+		$this->namespaceInfo = $namespaceInfo;
 		$this->profiles = $profiles;
 	}
 
@@ -196,7 +207,7 @@ class SearchFormWidget {
 	protected function startsWithImage( $term ) {
 		$parts = explode( ':', $term );
 		return count( $parts ) > 1
-			? MediaWikiServices::getInstance()->getContentLanguage()->getNsIndex( $parts[0] ) ===
+			? $this->specialSearch->getContentLanguage()->getNsIndex( $parts[0] ) ===
 				NS_FILE
 			: false;
 	}
@@ -259,15 +270,13 @@ class SearchFormWidget {
 	protected function powerSearchBox( $term, array $opts ) {
 		$rows = [];
 		$activeNamespaces = $this->specialSearch->getNamespaces();
-		$langConverter = $this->specialSearch->getLanguage();
 		foreach ( $this->searchConfig->searchableNamespaces() as $namespace => $name ) {
-			$subject = MediaWikiServices::getInstance()->getNamespaceInfo()->
-				getSubject( $namespace );
+			$subject = $this->namespaceInfo->getSubject( $namespace );
 			if ( !isset( $rows[$subject] ) ) {
 				$rows[$subject] = "";
 			}
 
-			$name = $langConverter->convertNamespace( $namespace );
+			$name = $this->languageConverter->convertNamespace( $namespace );
 			if ( $name === '' ) {
 				$name = $this->specialSearch->msg( 'blanknamespace' )->text();
 			}
