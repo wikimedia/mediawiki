@@ -198,6 +198,12 @@ trait DeprecationHelper {
 		if ( $ownerClass ) {
 			// Someone tried to access a normal non-public property. Try to behave like PHP would.
 			trigger_error( "Cannot access non-public property $qualifiedName", E_USER_ERROR );
+		} elseif ( property_exists( $this, $name ) ) {
+			// Normally __get method will not be even called if the property exists,
+			// but in tests if we mock an object that uses DeprecationHelper,
+			// __get and __set magic methods will be mocked as well, and called
+			// regardless of the property existence. Support that use-case.
+			return $this->$name;
 		} else {
 			// Non-existing property. Try to behave like PHP would.
 			trigger_error( "Undefined property: $qualifiedName", E_USER_NOTICE );
