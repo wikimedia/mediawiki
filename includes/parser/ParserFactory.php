@@ -22,6 +22,7 @@
 use MediaWiki\BadFileLookup;
 use MediaWiki\Config\ServiceOptions;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Linker\LinkRendererFactory;
 use MediaWiki\SpecialPage\SpecialPageFactory;
@@ -73,6 +74,9 @@ class ParserFactory {
 	/** @var TitleFormatter */
 	private $titleFormatter;
 
+	/** @var HttpRequestFactory */
+	private $httpRequestFactory;
+
 	/**
 	 * Track calls to Parser constructor to aid in deprecation of direct
 	 * Parser invocation.  This is temporary: it will be removed once the
@@ -109,6 +113,7 @@ class ParserFactory {
 	 * @param UserOptionsLookup $userOptionsLookup
 	 * @param UserFactory $userFactory
 	 * @param TitleFormatter $titleFormatter
+	 * @param HttpRequestFactory $httpRequestFactory
 	 * @since 1.32
 	 * @internal
 	 */
@@ -128,7 +133,8 @@ class ParserFactory {
 		WANObjectCache $wanCache,
 		UserOptionsLookup $userOptionsLookup,
 		UserFactory $userFactory,
-		TitleFormatter $titleFormatter
+		TitleFormatter $titleFormatter,
+		HttpRequestFactory $httpRequestFactory
 	) {
 		$svcOptions->assertRequiredOptions( Parser::CONSTRUCTOR_OPTIONS );
 
@@ -150,6 +156,7 @@ class ParserFactory {
 		$this->userOptionsLookup = $userOptionsLookup;
 		$this->userFactory = $userFactory;
 		$this->titleFormatter = $titleFormatter;
+		$this->httpRequestFactory = $httpRequestFactory;
 	}
 
 	/**
@@ -178,7 +185,8 @@ class ParserFactory {
 				$this->wanCache,
 				$this->userOptionsLookup,
 				$this->userFactory,
-				$this->titleFormatter
+				$this->titleFormatter,
+				$this->httpRequestFactory
 			);
 		} finally {
 			self::$inParserFactory--;

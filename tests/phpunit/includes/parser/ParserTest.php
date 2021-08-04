@@ -1,5 +1,6 @@
 <?php
 
+use MediaWiki\Http\HttpRequestFactory;
 use MediaWiki\Page\PageReference;
 use MediaWiki\Page\PageReferenceValue;
 
@@ -47,7 +48,8 @@ class ParserTest extends MediaWikiIntegrationTestCase {
 			$this->createMock( WANObjectCache::class ),
 			$this->createMock( MediaWiki\User\UserOptionsLookup::class ),
 			$this->createMock( MediaWiki\User\UserFactory::class ),
-			$this->createMock( TitleFormatter::class )
+			$this->createMock( TitleFormatter::class ),
+			$this->createMock( HttpRequestFactory::class )
 		];
 	}
 
