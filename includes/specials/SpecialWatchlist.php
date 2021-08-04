@@ -21,6 +21,7 @@
  * @ingroup SpecialPage
  */
 
+use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 use Wikimedia\Rdbms\IDatabase;
@@ -34,9 +35,6 @@ use Wikimedia\Rdbms\IResultWrapper;
  * @ingroup SpecialPage
  */
 class SpecialWatchlist extends ChangesListSpecialPage {
-	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
-	protected static $daysPreferenceName = 'watchlistdays';
-	protected static $collapsedPreferenceName = 'rcfilters-wl-collapsed';
 
 	/** @var WatchedItemStoreInterface */
 	private $watchedItemStore;
@@ -139,7 +137,9 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			wfDeprecated( __METHOD__ . ' with Config argument', '1.34' );
 			$user = func_get_arg( 1 );
 		}
-		return !$user->getOption( 'wlenhancedfilters-disable' );
+		return !MediaWikiServices::getInstance()
+			->getUserOptionsLookup()
+			->getOption( $user, 'wlenhancedfilters-disable' );
 	}
 
 	/**
@@ -934,4 +934,26 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 	protected function getLimitPreferenceName(): string {
 		return 'wllimit';
 	}
+
+	/**
+	 * @return string
+	 */
+	protected function getSavedQueriesPreferenceName(): string {
+		return 'rcfilters-wl-saved-queries';
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getDefaultDaysPreferenceName(): string {
+		return 'watchlistdays';
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getCollapsedPreferenceName(): string {
+		return 'rcfilters-wl-collapsed';
+	}
+
 }
