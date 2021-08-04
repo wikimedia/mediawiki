@@ -69,8 +69,10 @@ abstract class PrefixSearch {
 		// if the content language has variants, try to retrieve fallback results
 		$fallbackLimit = $limit - count( $searches );
 		if ( $fallbackLimit > 0 ) {
-			$fallbackSearches = MediaWikiServices::getInstance()->getContentLanguage()->
-				autoConvertToAllVariants( $search );
+			$services = MediaWikiServices::getInstance();
+			$fallbackSearches = $services->getLanguageConverterFactory()
+				->getLanguageConverter( $services->getContentLanguage() )
+				->autoConvertToAllVariants( $search );
 			$fallbackSearches = array_diff( array_unique( $fallbackSearches ), [ $search ] );
 
 			foreach ( $fallbackSearches as $fbs ) {
