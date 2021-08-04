@@ -52,7 +52,11 @@ class SearchMySQL extends SearchDatabase {
 		# @todo FIXME: This doesn't handle parenthetical expressions.
 		$m = [];
 		if ( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
-				$filteredText, $m, PREG_SET_ORDER ) ) {
+				$filteredText, $m, PREG_SET_ORDER )
+		) {
+			$services = MediaWikiServices::getInstance();
+			$contLang = $services->getContentLanguage();
+			$langConverter = $services->getLanguageConverterFactory()->getLanguageConverter( $contLang );
 			foreach ( $m as $bits ) {
 				Wikimedia\suppressWarnings();
 				list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
@@ -76,8 +80,7 @@ class SearchMySQL extends SearchDatabase {
 
 				// Some languages such as Serbian store the input form in the search index,
 				// so we may need to search for matches in multiple writing system variants.
-				$contLang = MediaWikiServices::getInstance()->getContentLanguage();
-				$convertedVariants = $contLang->autoConvertToAllVariants( $term );
+				$convertedVariants = $langConverter->autoConvertToAllVariants( $term );
 				if ( is_array( $convertedVariants ) ) {
 					$variants = array_unique( array_values( $convertedVariants ) );
 				} else {
