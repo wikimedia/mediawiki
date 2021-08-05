@@ -384,6 +384,9 @@ because of Phabricator reports.
   made private.
 * The Skin::setupSkinUserCss method deprecated in 1.32, was removed. Please use
   skin registration instead.
+* The ResourceLoaderSkinModule `legacy`, `content` and `content-thumbnails`
+  features were deprecated. Skins should instead select from the features
+  listed on [[mw:Manual:ResourceLoaderSkinModule]].
 * ParserCache::getKey and ::getEtag, deprecated since 1.36, were removed.
 * The BaseTemplateToolbox hook, deprecated since 1.35, was removed.
 * Previously a capitalize-all-nouns class was added to the body element of
