@@ -166,6 +166,7 @@ class AutoLoader {
 			'MediaWiki\\Http\\' => __DIR__ . '/http/',
 			'MediaWiki\\Installer\\' => __DIR__ . '/installer/',
 			'MediaWiki\\Interwiki\\' => __DIR__ . '/interwiki/',
+			'MediaWiki\\Languages\\Data\\' => __DIR__ . '/languages/data/',
 			'MediaWiki\\Linker\\' => __DIR__ . '/linker/',
 			'MediaWiki\\Logger\\' => __DIR__ . '/debug/logger/',
 			'MediaWiki\\Logger\Monolog\\' => __DIR__ . '/debug/logger/monolog/',
