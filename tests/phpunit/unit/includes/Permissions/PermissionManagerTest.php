@@ -38,6 +38,7 @@ class PermissionManagerTest extends MediaWikiUnitTestCase {
 			'EnablePartialActionBlocks' => false,
 			'GroupPermissions' => [],
 			'RevokePermissions' => [],
+			'GroupInheritsPermissions' => [],
 			'AvailableRights' => [],
 			'NamespaceProtection' => [ NS_MEDIAWIKI => 'editinterface' ],
 			'RestrictionLevels' => [ '', 'autoconfirmed', 'sysop' ],

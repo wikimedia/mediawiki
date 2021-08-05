@@ -6103,6 +6103,26 @@ $wgGroupPermissions['suppress']['deletelogentry'] = true;
 $wgRevokePermissions = [];
 
 /**
+ * Groups that should inherit permissions from another group
+ *
+ * This allows defining a group that inherits its permissions
+ * from another group without having to copy all the permission
+ * grants over. For example, if you wanted a manual "confirmed"
+ * group that had the same permissions as "autoconfirmed":
+ *
+ *   $wgGroupInheritsPermissions['confirmed'] = 'autoconfirmed';
+ *
+ * Recursive inheritance is currently not supported. In the above
+ * example, confirmed will only gain the permissions explicitly
+ * granted (or revoked) from autoconfirmed, not any permissions
+ * that autoconfirmed might inherit.
+ *
+ * @since 1.38
+ * @var string[]
+ */
+$wgGroupInheritsPermissions = [];
+
+/**
  * Implicit groups, aren't shown on Special:Listusers or somewhere else
  */
 $wgImplicitGroups = [ '*', 'user', 'autoconfirmed' ];
