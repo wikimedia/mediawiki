@@ -143,7 +143,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 						->newSelectQueryBuilder()
 						->caller( $fname )
 						->limit( $limit )
-						->userNamePrefix( $this->params['userprefix'] )
+						->whereUserNamePrefix( $this->params['userprefix'] )
 						->where( $from ? [ "actor_name $from" ] : [] )
 						->orderByName( $sort )
 						->fetchUserIdentities();
@@ -192,7 +192,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$userIter = $this->userIdentityLookup
 				->newSelectQueryBuilder()
 				->caller( __METHOD__ )
-				->userIds( $ids )
+				->whereUserIds( $ids )
 				->orderByUserId( $sort )
 				->where( $from ? [ "actor_id $from" ] : [] )
 				->fetchUserIdentities();
@@ -242,7 +242,7 @@ class ApiQueryUserContribs extends ApiQueryBase {
 			$userIter = $this->userIdentityLookup
 				->newSelectQueryBuilder()
 				->caller( __METHOD__ )
-				->userNames( array_keys( $names ) )
+				->whereUserNames( array_keys( $names ) )
 				->where( $from ? [ "actor_id $from" ] : [] )
 				->orderByName( $sort )
 				->fetchUserIdentities();

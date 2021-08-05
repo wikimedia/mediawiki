@@ -612,6 +612,9 @@ because of Phabricator reports.
   - UserSaveOptions: use SaveUserOptions instead.
   - UserResetAllOptions: no replacement was provided, the hook is not used.
 * Title::isNamespaceProtected, deprecated in 1.34, is now hard-deprecated.
+* UserSelectQueryBuilder::userIds(), ::userNames(), and ::userNamePrefix()
+  has been deprecated in favor of ::whereUserIds(), ::whereUserNames(),
+  and ::whereUserNamePrefix()
 * …
 
 === Other changes in 1.37 ===
