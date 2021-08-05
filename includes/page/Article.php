@@ -30,7 +30,6 @@ use MediaWiki\Permissions\PermissionStatus;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\User\UserIdentity;
 use MediaWiki\User\UserNameUtils;
 use MediaWiki\Watchlist\WatchlistManager;
@@ -1897,11 +1896,8 @@ class Article implements Page {
 			$reason = $deleteReasonList;
 		}
 
-		if ( $request->wasPosted() &&
-			$this->getContext()->getCsrfTokenSet()->matchTokenField(
-				CsrfTokenSet::DEFAULT_FIELD_NAME,
-				[ 'delete', $this->getTitle()->getPrefixedText() ]
-			)
+		if ( $request->wasPosted() && $user->matchEditToken( $request->getVal( 'wpEditToken' ),
+			[ 'delete', $this->getTitle()->getPrefixedText() ] )
 		) {
 			# Flag to hide all contents of the archived revisions
 
@@ -2130,13 +2126,7 @@ class Article implements Page {
 		$form->appendContent(
 			$fieldset,
 			new OOUI\HtmlSnippet(
-				Html::hidden(
-					CsrfTokenSet::DEFAULT_FIELD_NAME,
-					$this->getContext()
-						->getCsrfTokenSet()
-						->getToken( [ 'delete', $title->getPrefixedText() ] )
-						->toString()
-				)
+				Html::hidden( 'wpEditToken', $user->getEditToken( [ 'delete', $title->getPrefixedText() ] ) )
 			)
 		);
 

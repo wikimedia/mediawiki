@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\Session\CsrfTokenSet;
-
 /**
  * The parent class to generate form fields.  Any field type should
  * be a subclass of this.
@@ -378,8 +376,7 @@ abstract class HTMLFormField {
 	 * @return bool
 	 */
 	protected function isSubmitAttempt( WebRequest $request ) {
-		return $request->getCheck( CsrfTokenSet::DEFAULT_FIELD_NAME ) ||
-			$request->getCheck( 'wpFormIdentifier' );
+		return $request->getCheck( 'wpEditToken' ) || $request->getCheck( 'wpFormIdentifier' );
 	}
 
 	/**

@@ -2,7 +2,6 @@
 
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
-use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\TestingAccessWrapper;
@@ -158,6 +157,10 @@ class EditPageTest extends MediaWikiLangTestCase {
 			$this->assertEditedTextEquals( $baseText, $currentText );
 		}
 
+		if ( !isset( $edit['wpEditToken'] ) ) {
+			$edit['wpEditToken'] = $user->getEditToken();
+		}
+
 		if ( !isset( $edit['wpEdittime'] ) && !isset( $edit['editRevId'] ) ) {
 			$edit['wpEdittime'] = $page->exists() ? $page->getTimestamp() : '';
 		}
@@ -171,12 +174,6 @@ class EditPageTest extends MediaWikiLangTestCase {
 		}
 
 		$req = new FauxRequest( $edit, true ); // session ??
-		if ( !isset( $edit['wpEditToken'] ) ) {
-			$req->setVal(
-				'wpEditToken',
-				( new CsrfTokenSet( $req ) )->getToken()->toString()
-			);
-		}
 
 		$context = new RequestContext();
 		$context->setRequest( $req );
@@ -784,8 +781,11 @@ hello
 	 * @covers EditPage
 	 */
 	public function testCheckDirectEditingDisallowed_forNonTextContent() {
+		$user = $this->getTestUser()->getUser();
+
 		$edit = [
 			'wpTextbox1' => serialize( 'non-text content' ),
+			'wpEditToken' => $user->getEditToken(),
 			'wpEdittime' => '',
 			'editRevId' => 0,
 			'wpStarttime' => wfTimestampNow(),
@@ -810,8 +810,11 @@ hello
 				}
 			} );
 
+		$user = $this->getTestUser()->getUser();
+
 		$status = $this->doEditDummyNonTextPage( [
 			'wpTextbox1' => 'some text',
+			'wpEditToken' => $user->getEditToken(),
 			'wpEdittime' => '',
 			'editRevId' => 0,
 			'wpStarttime' => wfTimestampNow(),
@@ -834,8 +837,11 @@ hello
 				}
 			} );
 
+		$user = $this->getTestUser()->getUser();
+
 		$status = $this->doEditDummyNonTextPage( [
 			'wpTextbox1' => 'some text',
+			'wpEditToken' => $user->getEditToken(),
 			'wpEdittime' => '',
 			'editRevId' => 0,
 			'wpStarttime' => wfTimestampNow(),
@@ -857,10 +863,6 @@ hello
 		$ep->setContextTitle( $title );
 
 		$req = new FauxRequest( $edit, true );
-		$req->setVal(
-			'wpEditToken',
-			( new CsrfTokenSet( $req ) )->getToken()->toString()
-		);
 		$ep->importFormData( $req );
 
 		return $ep->internalAttemptSave( $result, false );

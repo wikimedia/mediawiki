@@ -28,7 +28,6 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Permissions\PermissionStatus;
-use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Watchlist\WatchlistManager;
 
 /**
@@ -328,10 +327,11 @@ class ProtectionForm {
 			return false;
 		}
 
-		if ( !$this->mContext->getCsrfTokenSet()->matchTokenField(
-			CsrfTokenSet::DEFAULT_FIELD_NAME,
-			[ 'protect', $this->mTitle->getPrefixedDBkey() ]
-		) ) {
+		$token = $this->mRequest->getVal( 'wpEditToken' );
+		$legacyUser = MediaWikiServices::getInstance()
+			->getUserFactory()
+			->newFromAuthority( $this->mPerformer );
+		if ( !$legacyUser->matchEditToken( $token, [ 'protect', $this->mTitle->getPrefixedDBkey() ] ) ) {
 			$this->show( [ 'sessionfailure' ] );
 			return false;
 		}
@@ -585,13 +585,13 @@ class ProtectionForm {
 		}
 
 		if ( !$this->disabled ) {
-			$fields[CsrfTokenSet::DEFAULT_FIELD_NAME] = [
-				'name' => CsrfTokenSet::DEFAULT_FIELD_NAME,
+			$legacyUser = MediaWikiServices::getInstance()
+				->getUserFactory()
+				->newFromAuthority( $this->mPerformer );
+			$fields['wpEditToken'] = [
+				'name' => 'wpEditToken',
 				'type' => 'hidden',
-				'default' => $this->mContext
-					->getCsrfTokenSet()
-					->getToken( [ 'protect', $this->mTitle->getPrefixedDBkey() ] )
-					->toString(),
+				'default' => $legacyUser->getEditToken( [ 'protect', $this->mTitle->getPrefixedDBkey() ] ),
 			];
 		}
 

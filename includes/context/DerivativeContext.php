@@ -20,7 +20,6 @@
  */
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Permissions\Authority;
-use MediaWiki\Session\CsrfTokenSet;
 
 /**
  * An IContextSource implementation which will inherit context from another source
@@ -287,15 +286,5 @@ class DerivativeContext extends ContextSource implements MutableContext {
 	public function msg( $key, ...$params ) {
 		// phpcs:ignore MediaWiki.Usage.ExtendClassUsage.FunctionVarUsage
 		return wfMessage( $key, ...$params )->setContext( $this );
-	}
-
-	/**
-	 * Get a repository to obtain and match CSRF tokens.
-	 *
-	 * @return CsrfTokenSet
-	 * @since 1.37
-	 */
-	public function getCsrfTokenSet(): CsrfTokenSet {
-		return new CsrfTokenSet( $this->getRequest() );
 	}
 }

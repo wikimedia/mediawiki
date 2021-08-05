@@ -1,7 +1,5 @@
 <?php
 
-use MediaWiki\Session\CsrfTokenSet;
-
 /**
  * A container for HTMLFormFields that allows for multiple copies of the set of
  * fields to be displayed to and entered by the user.
@@ -146,9 +144,7 @@ class HTMLFormFieldCloner extends HTMLFormField {
 	public function loadDataFromRequest( $request ) {
 		// It's possible that this might be posted with no fields. Detect that
 		// by looking for an edit token.
-		if ( !$request->getCheck( CsrfTokenSet::DEFAULT_FIELD_NAME ) &&
-			$request->getArray( $this->mName ) === null
-		) {
+		if ( !$request->getCheck( 'wpEditToken' ) && $request->getArray( $this->mName ) === null ) {
 			return $this->getDefault();
 		}
 
@@ -164,7 +160,8 @@ class HTMLFormFieldCloner extends HTMLFormField {
 				continue;
 			}
 
-			// Add back in $request->getValues() so things that look for e.g. wpEditToken don't fail.
+			// Add back in $request->getValues() so things that look for e.g.
+			// wpEditToken don't fail.
 			$data = $this->rekeyValuesArray( $key, $value ) + $request->getValues();
 
 			$fields = $this->createFieldsForKey( $key );

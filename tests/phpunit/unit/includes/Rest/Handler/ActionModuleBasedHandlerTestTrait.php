@@ -76,18 +76,15 @@ trait ActionModuleBasedHandlerTestTrait {
 	 * @return ApiMain
 	 */
 	private function getApiMain( $csrfSafe = false ) {
-		$testContext = RequestContext::getMain();
-
 		/** @var SessionProviderInterface|MockObject $session */
 		$sessionProvider =
 			$this->createNoOpMock( SessionProviderInterface::class, [ 'safeAgainstCsrf' ] );
 		$sessionProvider->method( 'safeAgainstCsrf' )->willReturn( $csrfSafe );
 
 		/** @var Session|MockObject $session */
-		$session = $this->createNoOpMock( Session::class, [ 'getSessionId', 'getProvider', 'getUser' ] );
+		$session = $this->createNoOpMock( Session::class, [ 'getSessionId', 'getProvider' ] );
 		$session->method( 'getSessionId' )->willReturn( new SessionId( 'test' ) );
 		$session->method( 'getProvider' )->willReturn( $sessionProvider );
-		$session->method( 'getUser' )->willReturn( $testContext->getUser() );
 
 		// NOTE: This being a FauxRequest instance triggers special case behavior
 		// in ApiMain, causing ApiMain::isInternalMode() to return true. Among other things,
@@ -98,6 +95,8 @@ trait ActionModuleBasedHandlerTestTrait {
 			->getMock();
 		$fauxRequest->method( 'getSession' )->willReturn( $session );
 		$fauxRequest->method( 'getSessionId' )->willReturn( $session->getSessionId() );
+
+		$testContext = RequestContext::getMain();
 
 		$fauxContext = new RequestContext();
 		$fauxContext->setRequest( $fauxRequest );

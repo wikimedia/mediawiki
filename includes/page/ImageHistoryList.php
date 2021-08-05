@@ -214,7 +214,7 @@ class ImageHistoryList extends ContextSource {
 					[
 						'target' => $this->title->getPrefixedText(),
 						'file' => $img,
-						'token' => $this->getCsrfTokenSet()->getToken( $img )->toString(),
+						'token' => $user->getEditToken( $img )
 					]
 				);
 			} else {

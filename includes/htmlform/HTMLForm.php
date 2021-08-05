@@ -24,7 +24,6 @@
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Linker\LinkTarget;
 use MediaWiki\Page\PageReference;
-use MediaWiki\Session\CsrfTokenSet;
 
 /**
  * Object handling generic submission, CSRF protection, layout and
@@ -593,12 +592,12 @@ class HTMLForm extends ContextSource {
 		if ( $this->getMethod() !== 'post' ) {
 			$tokenOkay = true; // no session check needed
 		} elseif ( $this->getRequest()->wasPosted() ) {
-			$editToken = $this->getRequest()->getVal( CsrfTokenSet::DEFAULT_FIELD_NAME );
+			$editToken = $this->getRequest()->getVal( 'wpEditToken' );
 			if ( $this->getUser()->isRegistered() || $editToken !== null ) {
 				// Session tokens for logged-out users have no security value.
 				// However, if the user gave one, check it in order to give a nice
 				// "session expired" error instead of "permission denied" or such.
-				$tokenOkay = $this->getCsrfTokenSet()->matchToken( $editToken, $this->mTokenSalt );
+				$tokenOkay = $this->getUser()->matchEditToken( $editToken, $this->mTokenSalt );
 			} else {
 				$tokenOkay = true;
 			}
@@ -1195,9 +1194,9 @@ class HTMLForm extends ContextSource {
 		}
 		if ( $this->getMethod() === 'post' ) {
 			$html .= Html::hidden(
-				CsrfTokenSet::DEFAULT_FIELD_NAME,
-				$this->getCsrfTokenSet()->getToken( $this->mTokenSalt )->toString(),
-				[ 'id' => CsrfTokenSet::DEFAULT_FIELD_NAME ]
+				'wpEditToken',
+				$this->getUser()->getEditToken( $this->mTokenSalt ),
+				[ 'id' => 'wpEditToken' ]
 			) . "\n";
 			$html .= Html::hidden( 'title', $this->getTitle()->getPrefixedText() ) . "\n";
 		}
