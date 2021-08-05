@@ -29,7 +29,10 @@ class HTMLTitleTextField extends HTMLTextField {
 			'relative' => false,
 			'creatable' => false,
 			'exists' => false,
-			'interwiki' => false,
+			// Default to null during the deprecation process so we can differentiate between
+			// callers who intentionally want to disallow interwiki titles and legacy callers
+			// who aren't aware of the setting.
+			'interwiki' => null,
 			// This overrides the default from HTMLFormField
 			'required' => true,
 		];
@@ -65,15 +68,25 @@ class HTMLTitleTextField extends HTMLTextField {
 		}
 
 		if ( $title->isExternal() ) {
-			if ( $this->mParams['interwiki'] !== false ) {
+			if ( $this->mParams['interwiki'] ) {
 				// We cannot validate external titles, skip the rest of the validation
 				return parent::validate( $value, $alldata );
-			} else {
+			} elseif ( $this->mParams['interwiki'] === null ) {
+				// Legacy caller, they probably don't need/want interwiki titles as those don't
+				// make sense in most use cases. To avoid a B/C break without deprecation, though,
+				// we let the title through and raise a warning. That way, code that needs to allow
+				// interwiki titles will get deprecation warnings as long as users actually submit
+				// interwiki titles to the form. That's not ideal but a less conditional warning
+				// would be impractical - having to update every title field in the world to avoid
+				// warnings would be too much of a burden.
 				wfDeprecated(
 					__METHOD__ . ' will reject external titles in 1.38 when interwiki is false '
 						. "(field: $this->mName)",
 					'1.37'
 				);
+				return parent::validate( $value, $alldata );
+			} else {
+				return $this->msg( 'htmlform-title-interwiki', $title->getPrefixedText() );
 			}
 		}
 
