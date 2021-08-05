@@ -3942,6 +3942,7 @@
 	"htmlform-title-badnamespace": "[[:$1]] is not in the \"{{ns:$2}}\" namespace.",
 	"htmlform-title-not-creatable": "\"$1\" is not a creatable page title",
 	"htmlform-title-not-exists": "$1 does not exist.",
+	"htmlform-title-interwiki": "$1 is an interwiki title, should be local.",
 	"htmlform-user-not-exists": "<strong>$1</strong> does not exist.",
 	"htmlform-user-not-valid": "<strong>$1</strong> isn't a valid username.",
 	"htmlform-tag-not-allowed": "$1 is not an allowed tag",
