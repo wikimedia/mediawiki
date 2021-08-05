@@ -104,7 +104,11 @@ class EmailNotificationSecondaryAuthenticationProviderTest extends \MediaWikiInt
 			$mwServices->getWatchlistManager(),
 			$mwServices->getDBLoadBalancer(),
 			$mwServices->getContentLanguage(),
-			$mwServices->getLanguageConverterFactory()
+			$mwServices->getLanguageConverterFactory(),
+			$mwServices->getBotPasswordStore(),
+			$mwServices->getUserFactory(),
+			$mwServices->getUserIdentityLookup(),
+			$mwServices->getUserOptionsManager()
 		);
 
 		$creator = $this->getMockBuilder( \User::class )->getMock();
