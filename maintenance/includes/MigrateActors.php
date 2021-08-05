@@ -480,8 +480,7 @@ class MigrateActors extends LoggedUpdateMaintenance {
 			'log_search',
 			'1',
 			[ 'ls_field' => 'target_author_actor', 'ls_value' => '' ],
-			__METHOD__,
-			[ 'LIMIT' => 1 ]
+			__METHOD__
 		);
 		if ( $anyBad ) {
 			$this->output( "... Deleting bogus rows due to T215525\n" );
