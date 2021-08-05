@@ -363,7 +363,7 @@ class PageArchive {
 			__METHOD__,
 			[
 				'ORDER BY' => 'ar_timestamp DESC',
-				'LIMIT' => 1 ] );
+			] );
 		$prevDeleted = $row ? wfTimestamp( TS_MW, $row->ar_timestamp ) : false;
 		$prevDeletedId = $row ? intval( $row->ar_rev_id ) : null;
 
@@ -378,7 +378,7 @@ class PageArchive {
 			__METHOD__,
 			[
 				'ORDER BY' => 'rev_timestamp DESC',
-				'LIMIT' => 1 ] );
+			] );
 		$prevLive = $row ? wfTimestamp( TS_MW, $row->rev_timestamp ) : false;
 		$prevLiveId = $row ? intval( $row->rev_id ) : null;
 
