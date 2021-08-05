@@ -2184,7 +2184,7 @@ class Linker {
 		$query = [
 			'action' => 'rollback',
 			'from' => $revUserText,
-			'token' => $context->getCsrfTokenSet()->getToken( 'rollback' )->toString(),
+			'token' => $context->getUser()->getEditToken( 'rollback' ),
 		];
 
 		$attrs = [

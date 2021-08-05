@@ -26,7 +26,6 @@ use MediaWiki\Page\WikiPageFactory;
 use MediaWiki\Revision\RevisionLookup;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\User\UserOptionsLookup;
 use MediaWiki\Watchlist\WatchlistManager;
 
@@ -348,7 +347,7 @@ class ApiEditPage extends ApiBase {
 			'wpTextbox1' => $params['text'],
 			'format' => $contentFormat,
 			'model' => $contentModel,
-			CsrfTokenSet::DEFAULT_FIELD_NAME => $params['token'],
+			'wpEditToken' => $params['token'],
 			'wpIgnoreBlankSummary' => true,
 			'wpIgnoreBlankArticle' => true,
 			'wpIgnoreSelfRedirect' => true,

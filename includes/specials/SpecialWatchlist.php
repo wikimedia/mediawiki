@@ -117,7 +117,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 		if ( ( $config->get( 'EnotifWatchlist' ) || $config->get( 'ShowUpdatedMarker' ) )
 			&& $request->getVal( 'reset' )
 			&& $request->wasPosted()
-			&& $this->getContext()->getCsrfTokenSet()->matchTokenField( 'token' )
+			&& $user->matchEditToken( $request->getVal( 'token' ) )
 		) {
 			$this->watchlistManager->clearAllUserNotifications( $user );
 			$output->redirect( $this->getPageTitle()->getFullURL( $opts->getChangedValues() ) );
@@ -863,7 +863,7 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 				'id' => 'mw-watchlist-resetbutton' ] ) . "\n" .
 			Xml::submitButton( $this->msg( 'enotif_reset' )->text(),
 				[ 'name' => 'mw-watchlist-reset-submit' ] ) . "\n" .
-			Html::hidden( 'token', $this->getContext()->getCsrfTokenSet()->getToken()->toString() ) . "\n" .
+			Html::hidden( 'token', $user->getEditToken() ) . "\n" .
 			Html::hidden( 'reset', 'all' ) . "\n";
 			foreach ( $nondefaults as $key => $value ) {
 				$form .= Html::hidden( $key, $value ) . "\n";

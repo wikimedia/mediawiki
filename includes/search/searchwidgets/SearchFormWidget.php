@@ -326,13 +326,10 @@ class SearchFormWidget {
 				false,
 				// The token goes here rather than in a hidden field so it
 				// is only sent when necessary (not every form submission)
-				[
-					'value' => $this->specialSearch
-						->getContext()
-						->getCsrfTokenSet()
-						->getToken( 'searchnamespace' )
-						->toString(),
-				]
+				[ 'value' => $user->getEditToken(
+					'searchnamespace',
+					$this->specialSearch->getRequest()
+				) ]
 			);
 		}
 

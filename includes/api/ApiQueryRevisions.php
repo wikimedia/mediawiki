@@ -25,7 +25,6 @@ use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
-use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 
@@ -120,8 +119,7 @@ class ApiQueryRevisions extends ApiQueryRevisionsBase {
 			return false;
 		}
 
-		return ( new CsrfTokenSet( $user->getRequest() ) )
-			->getToken( 'rollback' )->toString();
+		return $user->getEditToken( 'rollback' );
 	}
 
 	protected function run( ApiPageSet $resultPageSet = null ) {

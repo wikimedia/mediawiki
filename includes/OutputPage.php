@@ -3481,7 +3481,7 @@ class OutputPage extends ContextSource {
 			// Anons have predictable edit tokens
 			return false;
 		}
-		if ( !$this->getCsrfTokenSet()->matchTokenField() ) {
+		if ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ) ) ) {
 			return false;
 		}
 

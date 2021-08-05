@@ -20,7 +20,6 @@
  */
 
 use MediaWiki\Permissions\PermissionManager;
-use MediaWiki\Session\CsrfTokenSet;
 
 /**
  * Special page for adding and removing change tags to individual revisions.
@@ -289,13 +288,7 @@ class SpecialEditTags extends UnlistedSpecialPage {
 					'</td>' .
 				"</tr>\n" .
 				Xml::closeElement( 'table' ) .
-				Html::hidden(
-					CsrfTokenSet::DEFAULT_FIELD_NAME,
-					$this->getContext()
-						->getCsrfTokenSet()
-						->getToken()
-						->toString()
-				) .
+				Html::hidden( 'wpEditToken', $this->getUser()->getEditToken() ) .
 				Html::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 				Html::hidden( 'type', $this->typeName ) .
 				Html::hidden( 'ids', implode( ',', $this->ids ) ) .
@@ -407,7 +400,8 @@ class SpecialEditTags extends UnlistedSpecialPage {
 	protected function submit() {
 		// Check edit token on submission
 		$request = $this->getRequest();
-		if ( $this->submitClicked && !$this->getContext()->getCsrfTokenSet()->matchTokenField() ) {
+		$token = $request->getVal( 'wpEditToken' );
+		if ( $this->submitClicked && !$this->getUser()->matchEditToken( $token ) ) {
 			$this->getOutput()->addWikiMsg( 'sessionfailure' );
 			return false;
 		}

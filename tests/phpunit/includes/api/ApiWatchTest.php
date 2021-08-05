@@ -235,12 +235,13 @@ class ApiWatchTest extends ApiTestCase {
 		// This (and assertTrue below) are mostly for completeness.
 		$this->assertFalse( $watchlistManager->isWatched( $contextUser, $title ) );
 
-		$data = $this->doApiRequestWithToken( [
+		$data = $this->doApiRequest( [
 			'action' => 'rollback',
 			'title' => 'Help:UTPage',
 			'user' => $revUser,
+			'token' => $contextUser->getEditToken( 'rollback' ),
 			'watchlist' => 'watch'
-		], null, $contextUser );
+		] );
 
 		$this->assertArrayHasKey( 'rollback', $data[0] );
 		$this->assertArrayHasKey( 'title', $data[0]['rollback'] );

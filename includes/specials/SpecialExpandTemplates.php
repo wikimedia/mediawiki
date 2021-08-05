@@ -293,7 +293,7 @@ class SpecialExpandTemplates extends SpecialPage {
 			// do not show the preview unless anonymous editing is allowed.
 			if ( $user->isAnon() && !$this->getAuthority()->isAllowed( 'edit' ) ) {
 				$error = [ 'expand_templates_preview_fail_html_anon' ];
-			} elseif ( !$this->getContext()->getCsrfTokenSet()->matchTokenField() ) {
+			} elseif ( !$user->matchEditToken( $request->getVal( 'wpEditToken' ), '', $request ) ) {
 				$error = [ 'expand_templates_preview_fail_html' ];
 			} else {
 				$error = false;

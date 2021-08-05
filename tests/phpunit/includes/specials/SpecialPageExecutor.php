@@ -92,13 +92,11 @@ class SpecialPageExecutor {
 	 */
 	private function setEditTokenFromUser( DerivativeContext $context ) {
 		$request = $context->getRequest();
+
 		// Edits via GET are a security issue and should not succeed. On the other hand, not all
 		// POST requests are edits, but should ignore unused parameters.
 		if ( !$request->getCheck( 'wpEditToken' ) && $request->wasPosted() ) {
-			$request->setVal(
-				'wpEditToken',
-				$context->getCsrfTokenSet()->getToken()->toString()
-			);
+			$request->setVal( 'wpEditToken', $context->getUser()->getEditToken() );
 		}
 	}
 

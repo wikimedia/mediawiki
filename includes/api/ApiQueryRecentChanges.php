@@ -23,7 +23,6 @@
 use MediaWiki\ParamValidator\TypeDef\UserDef;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Revision\SlotRoleRegistry;
-use MediaWiki\Session\CsrfTokenSet;
 use MediaWiki\Storage\NameTableAccessException;
 use MediaWiki\Storage\NameTableStore;
 
@@ -127,8 +126,7 @@ class ApiQueryRecentChanges extends ApiQueryGeneratorBase {
 			static $cachedPatrolToken = null;
 
 			if ( $cachedPatrolToken === null ) {
-				$cachedPatrolToken = ( new CsrfTokenSet( $user->getRequest() ) )
-					->getToken( 'patrol' )->toString();
+				$cachedPatrolToken = $user->getEditToken( 'patrol' );
 			}
 
 			return $cachedPatrolToken;

@@ -156,7 +156,8 @@ class SpecialUpload extends SpecialPage {
 			|| $request->getCheck( 'wpReUpload' ); // b/w compat
 
 		// If it was posted check for the token (no remote POST'ing with user credentials)
-		$this->mTokenOk = $this->getContext()->getCsrfTokenSet()->matchTokenField();
+		$token = $request->getVal( 'wpEditToken' );
+		$this->mTokenOk = $this->getUser()->matchEditToken( $token );
 
 		$this->uploadFormTextTop = '';
 		$this->uploadFormTextAfterSummary = '';
