@@ -979,7 +979,7 @@ class SkinTemplate extends Skin {
 		];
 
 		// parameters
-		$action = $request->getVal( 'action', 'view' );
+		$action = Action::getActionName( $this );
 
 		$userCanRead = $this->getAuthority()->probablyCan( 'read', $title );
 
