@@ -78,6 +78,14 @@ class DeprecationHelperTest extends MediaWikiIntegrationTestCase {
 		} );
 	}
 
+	public function testDynamicPropertyOnMockObject() {
+		$testObject = $this->getMockBuilder( TestDeprecatedClass::class )
+			->enableProxyingToOriginalMethods()
+			->getMock();
+		$testObject->blabla = 'test';
+		$this->assertSame( 'test', $testObject->blabla );
+	}
+
 	/**
 	 * @dataProvider provideSet
 	 */

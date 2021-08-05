@@ -67,6 +67,11 @@ class JavaScriptContentHandler extends CodeContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
+		$deprecatedContent = $this->maybeCallDeprecatedContentPST( $content, $pstParams );
+		if ( $deprecatedContent ) {
+			return $deprecatedContent;
+		}
+
 		'@phan-var JavascriptContent $content';
 
 		$parserOptions = $pstParams->getParserOptions();

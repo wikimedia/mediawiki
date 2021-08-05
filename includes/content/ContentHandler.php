@@ -1546,6 +1546,26 @@ abstract class ContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
+		$deprecatedContent = $this->maybeCallDeprecatedContentPST( $content, $pstParams );
+		if ( $deprecatedContent ) {
+			return $deprecatedContent;
+		}
+		return $content;
+	}
+
+	/**
+	 * If provided content overrides deprecated Content::preSaveTransform,
+	 * call it and return. Otherwise return null.
+	 * @internal only core ContentHandler implementations need to call this.
+	 *
+	 * @param Content $content
+	 * @param PreSaveTransformParams $pstParams
+	 * @return ?Content
+	 */
+	protected function maybeCallDeprecatedContentPST(
+		Content $content,
+		PreSaveTransformParams $pstParams
+	): ?Content {
 		$contentOverridesTransform = MWDebug::detectDeprecatedOverride(
 			$content,
 			AbstractContent::class,
@@ -1557,6 +1577,6 @@ abstract class ContentHandler {
 			$legacyTitle = $services->getTitleFactory()->castFromPageReference( $pstParams->getPage() );
 			return $content->preSaveTransform( $legacyTitle, $legacyUser, $pstParams->getParserOptions() );
 		}
-		return $content;
+		return null;
 	}
 }
