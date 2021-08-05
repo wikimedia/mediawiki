@@ -917,8 +917,16 @@ class SpecialBlock extends FormSpecialPage {
 			return $status;
 		}
 
-		# Can't watch a rangeblock
-		if ( $type != DatabaseBlock::TYPE_RANGE && $data['Watch'] ) {
+		if (
+			// Can't watch a rangeblock
+			$type != DatabaseBlock::TYPE_RANGE
+
+			// Technically a wiki can be configured to allow anonymous users to place blocks,
+			// in which case the 'Watch' field isn't included in the form shown, and we should
+			// not try to access it.
+			&& array_key_exists( 'Watch', $data )
+			&& $data['Watch']
+		) {
 			MediaWikiServices::getInstance()->getWatchlistManager()->addWatchIgnoringRights(
 				$performer->getUser(),
 				Title::makeTitle( NS_USER, $target )
