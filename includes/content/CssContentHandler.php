@@ -66,6 +66,11 @@ class CssContentHandler extends CodeContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
+		$deprecatedContent = $this->maybeCallDeprecatedContentPST( $content, $pstParams );
+		if ( $deprecatedContent ) {
+			return $deprecatedContent;
+		}
+
 		'@phan-var CssContent $content';
 
 		// @todo Make pre-save transformation optional for script pages (T34858)

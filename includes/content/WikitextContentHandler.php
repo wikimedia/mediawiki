@@ -193,6 +193,11 @@ class WikitextContentHandler extends TextContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
+		$deprecatedContent = $this->maybeCallDeprecatedContentPST( $content, $pstParams );
+		if ( $deprecatedContent ) {
+			return $deprecatedContent;
+		}
+
 		'@phan-var WikitextContent $content';
 
 		$text = $content->getText();

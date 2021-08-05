@@ -51,6 +51,11 @@ class JsonContentHandler extends CodeContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
+		$deprecatedContent = $this->maybeCallDeprecatedContentPST( $content, $pstParams );
+		if ( $deprecatedContent ) {
+			return $deprecatedContent;
+		}
+
 		'@phan-var JsonContent $content';
 
 		// FIXME: WikiPage::doEditContent invokes PST before validation. As such, native data
