@@ -3238,7 +3238,6 @@
 	"bitrate-terabits": "$1 Tb/s",
 	"bitrate-petabits": "$1 Pb/s",
 	"bitrate-exabits": "$1 Eb/s",
-	"bitrate-zetabits": "$1 Zb/s",
 	"bitrate-yottabits": "$1 Yb/s",
 	"lag-warn-normal": "Viimase {{PLURAL:$1|ühe sekundi|$1 sekundi}} jooksul tehtud muudatused ei pruugi selles loendis näha olla.",
 	"lag-warn-high": "Andmebaasiserveri töö viivituste tõttu ei pruugi viimase {{PLURAL:$1|ühe sekundi|$1 sekundi}} jooksul tehtud muudatused selles loendis näha olla.",
