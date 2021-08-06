@@ -1053,7 +1053,7 @@
 	"recentchangesdays-max": "(non plus de $1 {{PLURAL:$1|die|dies}})",
 	"recentchangescount": "Numero predefinite de modificationes a monstrar in le lista de modificationes recente, in le historias de paginas e in le registros:",
 	"prefs-help-recentchangescount": "Numero maxime: 1000",
-	"prefs-help-watchlist-token2": "Isto es le clave secrete pro le syndication web de tu observatorio.\nOmne persona qui lo cognosce pote leger tu observatorio, dunque, non divide lo.\nIn caso de necessitate, [[Special:ResetTokens|clicca hic pro reinitialisar lo]].",
+	"prefs-help-watchlist-token2": "Isto es le clave secrete pro le syndication web de tu observatorio.\nOmne persona qui lo cognosce pote leger tu observatorio, dunque, non divulga lo.\nIn caso de necessitate, [[Special:ResetTokens|clicca hic pro reinitialisar lo]].",
 	"prefs-help-tokenmanagement": "Tu pote vider e reinitialisar le clave secrete pro tu conto que pote acceder al aggregator Web de tu observatorio. Tote persona que cognosce le clave potera leger tu observatorio, dunque non divulga lo.",
 	"prefs-user-downloaddata-label": "Datos del conto:",
 	"prefs-user-downloaddata-info": "Le datos de mi conto de iste projecto",

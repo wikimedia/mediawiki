@@ -3516,6 +3516,7 @@
 	"htmlform-title-badnamespace": "[[:$1]] ni v imenskem prostoru »{{ns:$2}}«.",
 	"htmlform-title-not-creatable": "»$1« je naslov strani, ki ga ni mogoče ustvariti",
 	"htmlform-title-not-exists": "$1 ne obstaja.",
+	"htmlform-title-interwiki": "$1 je naslov interwikija, mora pa biti lokalen.",
 	"htmlform-user-not-exists": "<strong>$1</strong> ne obstaja.",
 	"htmlform-user-not-valid": "<strong>$1</strong> ni veljavno uporabniško ime.",
 	"htmlform-tag-not-allowed": "$1 ni dovoljena oznaka",
