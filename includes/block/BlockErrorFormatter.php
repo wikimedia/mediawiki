@@ -130,7 +130,7 @@ class BlockErrorFormatter {
 	private function formatBlockReason( CommentStoreComment $reason, Language $language ) {
 		if ( $reason->text === '' ) {
 			$message = new Message( 'blockednoreason', [], $language );
-			return $message->text();
+			return $message->plain();
 		}
 		return $reason->message->inLanguage( $language )->plain();
 	}
