@@ -370,7 +370,7 @@ mw.jqueryMsg.Parser.prototype = {
 		 *
 		 * @private
 		 * @param {Function[]} ps
-		 * @return {string|null}
+		 * @return {Function} that will return {string|null}
 		 */
 		function choice( ps ) {
 			return function () {
@@ -390,8 +390,8 @@ mw.jqueryMsg.Parser.prototype = {
 		 * This is the only eager one.
 		 *
 		 * @private
-		 * @param {Function[]} ps
-		 * @return {string|null}
+		 * @param {Function[]} ps Each function should return a string or null
+		 * @return {string[]|null}
 		 */
 		function sequence( ps ) {
 			var i, r,
@@ -414,8 +414,8 @@ mw.jqueryMsg.Parser.prototype = {
 		 *
 		 * @private
 		 * @param {number} n
-		 * @param {Function} p
-		 * @return {string|null}
+		 * @param {Function} p Should return a string or null
+		 * @return {Function} that will return {string[]|null}
 		 */
 		function nOrMore( n, p ) {
 			return function () {
@@ -442,8 +442,8 @@ mw.jqueryMsg.Parser.prototype = {
 		 *
 		 * @private
 		 * @param {Function} p
-		 * @param {Function} fn
-		 * @return {string|null}
+		 * @param {Function} fn Should return a string
+		 * @return {Function} that will return {string|null}
 		 */
 		function transform( p, fn ) {
 			return function () {
@@ -457,8 +457,7 @@ mw.jqueryMsg.Parser.prototype = {
 		 *
 		 * @private
 		 * @param {string} s
-		 * @return {Function}
-		 * @return {string} return.return
+		 * @return {Function} that will return {string|null}
 		 */
 		function makeStringParser( s ) {
 			var len = s.length;
