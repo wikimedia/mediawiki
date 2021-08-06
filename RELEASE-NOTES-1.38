@@ -83,6 +83,8 @@ because of Phabricator reports.
   been used outside of MediaWiki core.
 
 === Deprecations in 1.38 ===
+* The MWGrants class is deprecated in favor of the new GrantsInfo and
+  GrantsLocalization services.
 * …
 
 === Other changes in 1.38 ===
