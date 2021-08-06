@@ -35,6 +35,9 @@ class McrUndoAction extends FormAction {
 	/** @var RevisionRecord|null */
 	protected $curRev = null;
 
+	/** @var ReadOnlyMode */
+	private $readOnlyMode;
+
 	/** @var RevisionLookup */
 	private $revisionLookup;
 
@@ -44,16 +47,19 @@ class McrUndoAction extends FormAction {
 	/**
 	 * @param Page $page
 	 * @param IContextSource $context
+	 * @param ReadOnlyMode $readOnlyMode
 	 * @param RevisionLookup $revisionLookup
 	 * @param RevisionRenderer $revisionRenderer
 	 */
 	public function __construct(
 		Page $page,
 		IContextSource $context,
+		ReadOnlyMode $readOnlyMode,
 		RevisionLookup $revisionLookup,
 		RevisionRenderer $revisionRenderer
 	) {
 		parent::__construct( $page, $context );
+		$this->readOnlyMode = $readOnlyMode;
 		$this->revisionLookup = $revisionLookup;
 		$this->revisionRenderer = $revisionRenderer;
 	}
@@ -85,10 +91,10 @@ class McrUndoAction extends FormAction {
 
 		// IP warning headers copied from EditPage
 		// (should more be copied?)
-		if ( wfReadOnly() ) {
+		if ( $this->readOnlyMode->isReadOnly() ) {
 			$out->wrapWikiMsg(
 				"<div id=\"mw-read-only-warning\">\n$1\n</div>",
-				[ 'readonlywarning', wfReadOnlyReason() ]
+				[ 'readonlywarning', $this->readOnlyMode->getReason() ]
 			);
 		} elseif ( $this->context->getUser()->isAnon() ) {
 			if ( !$this->getRequest()->getCheck( 'wpPreview' ) ) {
