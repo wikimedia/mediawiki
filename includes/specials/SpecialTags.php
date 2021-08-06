@@ -21,8 +21,6 @@
  * @ingroup SpecialPage
  */
 
-use MediaWiki\Session\CsrfTokenSet;
-
 /**
  * A special page that lists tags for edits
  *
@@ -316,7 +314,7 @@ class SpecialTags extends SpecialPage {
 
 			// fool HTMLForm into thinking the form hasn't been submitted yet. Otherwise
 			// we get into an infinite loop!
-			$context->getRequest()->unsetVal( CsrfTokenSet::DEFAULT_FIELD_NAME );
+			$context->getRequest()->unsetVal( 'wpEditToken' );
 
 			$headerText = $this->msg( 'tags-create-warnings-above', $tag,
 				count( $status->getWarningsArray() ) )->parseAsBlock() .

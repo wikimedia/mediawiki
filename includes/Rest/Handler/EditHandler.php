@@ -175,7 +175,7 @@ abstract class EditHandler extends ActionModuleBasedHandler {
 			}
 
 			// Since the session is safe against CSRF, just use a known-good token.
-			return $this->getApiMain()->getCsrfTokenSet()->getToken()->toString();
+			return $this->getUser()->getEditToken();
 		} else {
 			return $body['token'] ?? '';
 		}

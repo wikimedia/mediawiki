@@ -148,7 +148,7 @@ class BenchmarkParse extends Maintenance {
 				'rev_timestamp <= ' . $dbr->addQuotes( $timestamp )
 			],
 			__METHOD__,
-			[ 'ORDER BY' => 'rev_timestamp DESC', 'LIMIT' => 1 ],
+			[ 'ORDER BY' => 'rev_timestamp DESC' ],
 			[ 'revision' => [ 'JOIN', 'rev_page=page_id' ] ]
 		);
 

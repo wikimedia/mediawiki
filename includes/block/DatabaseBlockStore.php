@@ -512,11 +512,6 @@ class DatabaseBlockStore {
 
 		$dbr = $this->loadBalancer->getConnectionRef( DB_REPLICA );
 
-		$options = [
-			'ORDER BY' => 'rc_timestamp DESC',
-			'LIMIT' => 1,
-		];
-
 		$targetUser = $block->getTargetUserIdentity();
 		$actor = $targetUser ? $this->actorStoreFactory->getActorNormalization()->findActorId(
 			$targetUser,
@@ -528,29 +523,24 @@ class DatabaseBlockStore {
 			return [];
 		}
 
-		$res = $dbr->select(
+		$rcIp = $dbr->selectField(
 			[ 'recentchanges' ],
-			[ 'rc_ip' ],
+			'rc_ip',
 			[ 'rc_actor' => $actor ],
 			__METHOD__,
-			$options
+			[ 'ORDER BY' => 'rc_timestamp DESC' ]
 		);
 
-		if ( !$res->numRows() ) {
+		if ( !$rcIp ) {
 			$this->logger->debug( 'No IP found to retroactively autoblock' );
 			return [];
 		}
 
-		$blockIds = [];
-		foreach ( $res as $row ) {
-			if ( $row->rc_ip ) {
-				$id = $block->doAutoblock( $row->rc_ip );
-				if ( $id ) {
-					$blockIds[] = $id;
-				}
-			}
+		$id = $block->doAutoblock( $rcIp );
+		if ( !$id ) {
+			return [];
 		}
-		return $blockIds;
+		return [ $id ];
 	}
 
 }

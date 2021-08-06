@@ -219,7 +219,7 @@ class ApiQueryUserInfo extends ApiQueryBase {
 			!$this->lacksSameOriginSecurity() &&
 			$this->getAuthority()->isAllowed( 'editmyoptions' )
 		) {
-			$vals['preferencestoken'] = $this->getCsrfTokenSet()->getToken()->toString();
+			$vals['preferencestoken'] = $user->getEditToken( '', $this->getMain()->getRequest() );
 		}
 
 		if ( isset( $this->prop['editcount'] ) ) {

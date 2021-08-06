@@ -7,13 +7,10 @@ use FauxRequest;
 use HashConfig;
 use IContextSource;
 use Language;
-use MediaWiki\Session\Session;
-use MediaWiki\User\UserIdentityValue;
 use MediaWikiUnitTestCase;
 use OutputPage;
 use RequestContext;
 use User;
-use WebRequest;
 
 /**
  * @coversDefaultClass DerivativeContext
@@ -104,24 +101,5 @@ class DerivativeContextTest extends MediaWikiUnitTestCase {
 		$this->assertSame( $initialValue, $derivativeContext->$getter() );
 		$derivativeContext->$setter( $newValue );
 		$this->assertSame( $newValue, $derivativeContext->$getter() );
-	}
-
-	/**
-	 * @covers ::getCsrfTokenSet
-	 */
-	public function testGetCsrfTokeSetRespectsRequest() {
-		$context = new RequestContext();
-		$context->setRequest( $this->createNoOpMock( WebRequest::class ) );
-		$derivativeContext = new DerivativeContext( $context );
-		$sessionMock = $this->createNoOpMock( Session::class, [ 'getUser' ] );
-		$sessionMock
-			->method( 'getUser' )
-			->willReturn( UserIdentityValue::newAnonymous( '127.0.0.1' ) );
-		$requestMock = $this->createNoOpMock( WebRequest::class, [ 'getSession' ] );
-		$requestMock
-			->method( 'getSession' )
-			->willReturn( $sessionMock );
-		$derivativeContext->setRequest( $requestMock );
-		$this->assertNotNull( $derivativeContext->getCsrfTokenSet()->getToken() );
 	}
 }

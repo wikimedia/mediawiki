@@ -8,6 +8,7 @@ use MediaWiki\Page\PageReferenceValue;
 use MediaWiki\Page\PageStoreRecord;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Tests\Unit\Permissions\MockAuthorityTrait;
+use PHPUnit\Framework\MockObject\MockObject;
 use Wikimedia\DependencyStore\KeyValueDependencyStore;
 use Wikimedia\TestingAccessWrapper;
 
@@ -3205,40 +3206,64 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 		$this->assertArraySubmapSame( $expectedEditableConfig, $op->getJSVars() );
 	}
 
+	/**
+	 * @param bool $registered
+	 * @param bool $matchToken
+	 * @return MockObject|User
+	 */
+	private function mockUser( bool $registered, bool $matchToken ) {
+		$user = $this->createNoOpMock( User::class, [ 'isRegistered', 'matchEditToken' ] );
+		$user->method( 'isRegistered' )->willReturn( $registered );
+		$user->method( 'matchEditToken' )->willReturn( $matchToken );
+		return $user;
+	}
+
 	public function provideUserCanPreview() {
 		yield 'all good' => [
-			'performer' => $this->mockRegisteredAuthorityWithPermissions( [ 'edit' ] ),
-			'matchToken' => true,
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
 			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
 			true
 		];
 		yield 'get request' => [
-			'performer' => $this->mockRegisteredAuthorityWithPermissions( [ 'edit' ] ),
-			'matchToken' => true,
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
 			'request' => new FauxRequest( [ 'action' => 'submit' ], false ),
 			false
 		];
 		yield 'not a submit action' => [
-			'performer' => $this->mockRegisteredAuthorityWithPermissions( [ 'edit' ] ),
-			'matchToken' => true,
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
 			'request' => new FauxRequest( [ 'action' => 'something' ], true ),
 			false
 		];
 		yield 'anon can not' => [
-			'performer' => $this->mockAnonAuthorityWithPermissions( [ 'edit' ] ),
-			'matchToken' => true,
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( false, true ),
+				[ 'edit' ]
+			),
 			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
 			false
 		];
 		yield 'token not match' => [
-			'performer' => $this->mockRegisteredAuthorityWithPermissions( [ 'edit' ] ),
-			'matchToken' => false,
+			'performer' => $this->mockUserAuthorityWithPermissions(
+				$this->mockUser( true, false ),
+				[ 'edit' ]
+			),
 			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
 			false
 		];
 		yield 'no permission' => [
-			'performer' => $this->mockRegisteredAuthorityWithoutPermissions( [ 'edit' ] ),
-			'matchToken' => true,
+			'performer' => $this->mockUserAuthorityWithoutPermissions(
+				$this->mockUser( true, true ),
+				[ 'edit' ]
+			),
 			'request' => new FauxRequest( [ 'action' => 'submit' ], true ),
 			false
 		];
@@ -3248,9 +3273,7 @@ class OutputPageTest extends MediaWikiIntegrationTestCase {
 	 * @dataProvider provideUserCanPreview
 	 * @covers OutputPage::userCanPreview
 	 */
-	public function testUserCanPreview( Authority $performer, bool $matchToken, WebRequest $request, bool $expected ) {
-		// We don't set the user in the session, so we logged out token should be good enough.
-		$request->setVal( 'wpEditToken', $matchToken ? new LoggedOutEditToken() : 'invalid' );
+	public function testUserCanPreview( Authority $performer, WebRequest $request, bool $expected ) {
 		$op = $this->newInstance( [], $request, null, $performer );
 		$this->assertSame( $expected, $op->userCanPreview() );
 	}

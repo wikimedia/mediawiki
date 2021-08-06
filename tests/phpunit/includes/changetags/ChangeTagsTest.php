@@ -403,152 +403,95 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 	}
 
 	public function testUpdateTags() {
-		// FIXME: fails under postgres
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$this->emptyChangeTagsTables();
 
 		$rcId = 123;
 		$revId = 341;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId, $revId );
 
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$expected = [
-			(object)[
-				'ctd_name' => 'tag1',
-				'ctd_id' => 1,
-				'ctd_count' => 1
-			],
-			(object)[
-				'ctd_name' => 'tag2',
-				'ctd_id' => 2,
-				'ctd_count' => 1
-			],
-		];
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
-		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
-
-		$expected2 = [
-			(object)[
-				'ct_tag_id' => 1,
-				'ct_rc_id' => 123,
-				'ct_rev_id' => 341
-			],
-			(object)[
-				'ct_tag_id' => 2,
-				'ct_rc_id' => 123,
-				'ct_rev_id' => 341
-			],
-		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ], '' );
-		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+		$this->assertSelect(
+			'change_tag_def',
+			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
+			'',
+			[
+				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
+				[ 'tag1', 1, 1 ],
+				[ 'tag2', 2, 1 ],
+			]
+		);
+		$this->assertSelect(
+			'change_tag',
+			[ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ],
+			'',
+			[
+				// values of fields 'ct_tag_id', 'ct_rc_id', 'ct_rev_id'
+				[ 1, 123, 341 ],
+				[ 2, 123, 341 ],
+			]
+		);
 
 		$rcId = 124;
 		$revId = 342;
 		ChangeTags::updateTags( [ 'tag1' ], [], $rcId, $revId );
 		ChangeTags::updateTags( [ 'tag3' ], [], $rcId, $revId );
 
-		$expected = [
-			(object)[
-				'ctd_name' => 'tag1',
-				'ctd_id' => 1,
-				'ctd_count' => 2
-			],
-			(object)[
-				'ctd_name' => 'tag2',
-				'ctd_id' => 2,
-				'ctd_count' => 1
-			],
-			(object)[
-				'ctd_name' => 'tag3',
-				'ctd_id' => 3,
-				'ctd_count' => 1
-			],
-		];
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
-		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
-
-		$expected2 = [
-			(object)[
-				'ct_tag_id' => 1,
-				'ct_rc_id' => 123,
-				'ct_rev_id' => 341
-			],
-			(object)[
-				'ct_tag_id' => 1,
-				'ct_rc_id' => 124,
-				'ct_rev_id' => 342
-			],
-			(object)[
-				'ct_tag_id' => 2,
-				'ct_rc_id' => 123,
-				'ct_rev_id' => 341
-			],
-			(object)[
-				'ct_tag_id' => 3,
-				'ct_rc_id' => 124,
-				'ct_rev_id' => 342
-			],
-		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ], '' );
-		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+		$this->assertSelect(
+			'change_tag_def',
+			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
+			'',
+			[
+				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
+				[ 'tag1', 1, 2 ],
+				[ 'tag2', 2, 1 ],
+				[ 'tag3', 3, 1 ],
+			]
+		);
+		$this->assertSelect(
+			'change_tag',
+			[ 'ct_tag_id', 'ct_rc_id', 'ct_rev_id' ],
+			'',
+			[
+				// values of fields 'ct_tag_id', 'ct_rc_id', 'ct_rev_id'
+				[ 1, 123, 341 ],
+				[ 1, 124, 342 ],
+				[ 2, 123, 341 ],
+				[ 3, 124, 342 ],
+			]
+		);
 	}
 
 	public function testUpdateTagsSkipDuplicates() {
-		// FIXME: fails under postgres
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$this->emptyChangeTagsTables();
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
 		ChangeTags::updateTags( [ 'tag2', 'tag3' ], [], $rcId );
 
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$expected = [
-			(object)[
-				'ctd_name' => 'tag1',
-				'ctd_id' => 1,
-				'ctd_count' => 1
-			],
-			(object)[
-				'ctd_name' => 'tag2',
-				'ctd_id' => 2,
-				'ctd_count' => 1
-			],
-			(object)[
-				'ctd_name' => 'tag3',
-				'ctd_id' => 3,
-				'ctd_count' => 1
-			],
-		];
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
-		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
-
-		$expected2 = [
-			(object)[
-				'ct_tag_id' => 1,
-				'ct_rc_id' => 123
-			],
-			(object)[
-				'ct_tag_id' => 2,
-				'ct_rc_id' => 123
-			],
-			(object)[
-				'ct_tag_id' => 3,
-				'ct_rc_id' => 123
-			],
-		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
-		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+		$this->assertSelect(
+			'change_tag_def',
+			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
+			'',
+			[
+				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
+				[ 'tag1', 1, 1 ],
+				[ 'tag2', 2, 1 ],
+				[ 'tag3', 3, 1 ],
+			]
+		);
+		$this->assertSelect(
+			'change_tag',
+			[ 'ct_tag_id', 'ct_rc_id' ],
+			'',
+			[
+				// values of fields 'ct_tag_id', 'ct_rc_id',
+				[ 1, 123 ],
+				[ 2, 123 ],
+				[ 3, 123 ],
+			]
+		);
 	}
 
 	public function testUpdateTagsDoNothingOnRepeatedCall() {
-		// FIXME: fails under postgres
-		$this->markTestSkippedIfDbType( 'postgres' );
-
 		$this->emptyChangeTagsTables();
 
 		$rcId = 123;
@@ -556,35 +499,26 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		$res = ChangeTags::updateTags( [ 'tag2', 'tag1' ], [], $rcId );
 		$this->assertEquals( [ [], [], [ 'tag1', 'tag2' ] ], $res );
 
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$expected = [
-			(object)[
-				'ctd_name' => 'tag1',
-				'ctd_id' => 1,
-				'ctd_count' => 1
-			],
-			(object)[
-				'ctd_name' => 'tag2',
-				'ctd_id' => 2,
-				'ctd_count' => 1
-			],
-		];
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
-		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
-
-		$expected2 = [
-			(object)[
-				'ct_tag_id' => 1,
-				'ct_rc_id' => 123
-			],
-			(object)[
-				'ct_tag_id' => 2,
-				'ct_rc_id' => 123
-			],
-		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
-		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+		$this->assertSelect(
+			'change_tag_def',
+			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
+			'',
+			[
+				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
+				[ 'tag1', 1, 1 ],
+				[ 'tag2', 2, 1 ],
+			]
+		);
+		$this->assertSelect(
+			'change_tag',
+			[ 'ct_tag_id', 'ct_rc_id' ],
+			'',
+			[
+				// values of fields 'ct_tag_id', 'ct_rc_id',
+				[ 1, 123 ],
+				[ 2, 123 ],
+			]
+		);
 	}
 
 	public function testDeleteTags() {
@@ -593,29 +527,26 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 
 		$rcId = 123;
 		ChangeTags::updateTags( [ 'tag1', 'tag2' ], [], $rcId );
-
 		ChangeTags::updateTags( [], [ 'tag2' ], $rcId );
 
-		$dbr = wfGetDB( DB_REPLICA );
-
-		$expected = [
-			(object)[
-				'ctd_name' => 'tag1',
-				'ctd_id' => 1,
-				'ctd_count' => 1
-			],
-		];
-		$res = $dbr->select( 'change_tag_def', [ 'ctd_name', 'ctd_id', 'ctd_count' ], '' );
-		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
-
-		$expected2 = [
-			(object)[
-				'ct_tag_id' => 1,
-				'ct_rc_id' => 123
+		$this->assertSelect(
+			'change_tag_def',
+			[ 'ctd_name', 'ctd_id', 'ctd_count' ],
+			'',
+			[
+				// values of fields 'ctd_name', 'ctd_id', 'ctd_count'
+				[ 'tag1', 1, 1 ],
 			]
-		];
-		$res2 = $dbr->select( 'change_tag', [ 'ct_tag_id', 'ct_rc_id' ], '' );
-		$this->assertEquals( $expected2, iterator_to_array( $res2, false ) );
+		);
+		$this->assertSelect(
+			'change_tag',
+			[ 'ct_tag_id', 'ct_rc_id' ],
+			'',
+			[
+				// values of fields 'ct_tag_id', 'ct_rc_id',
+				[ 1, 123 ],
+			]
+		);
 	}
 
 	public function provideTags() {
@@ -699,25 +630,17 @@ class ChangeTagsTest extends MediaWikiIntegrationTestCase {
 		ChangeTags::defineTag( 'tag2' );
 
 		$this->assertEquals( [ 'tag2' ], ChangeTags::listExplicitlyDefinedTags() );
-		$dbr = wfGetDB( DB_REPLICA );
 
-		$expected = [
-			(object)[
-				'ctd_name' => 'tag1',
-				'ctd_user_defined' => 0
-			],
-			(object)[
-				'ctd_name' => 'tag2',
-				'ctd_user_defined' => 1
-			],
-		];
-		$res = $dbr->select(
+		$this->assertSelect(
 			'change_tag_def',
 			[ 'ctd_name', 'ctd_user_defined' ],
 			'',
-			__METHOD__,
+			[
+				// values of fields 'ctd_name', 'ctd_user_defined'
+				[ 'tag1', 0 ],
+				[ 'tag2', 1 ],
+			],
 			[ 'ORDER BY' => 'ctd_name' ]
 		);
-		$this->assertEquals( $expected, iterator_to_array( $res, false ) );
 	}
 }

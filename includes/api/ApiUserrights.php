@@ -194,7 +194,6 @@ class ApiUserrights extends ApiBase {
 			'user' => [
 				ApiBase::PARAM_TYPE => 'user',
 				UserDef::PARAM_ALLOWED_USER_TYPES => [ 'name', 'id' ],
-				UserDef::PARAM_RETURN_OBJECT => true,
 			],
 			'userid' => [
 				ApiBase::PARAM_TYPE => 'integer',
