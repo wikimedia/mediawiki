@@ -26,7 +26,6 @@ use MediaWiki\Logger\LegacyLogger;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Shell\Shell;
 use MediaWiki\Storage\SqlBlobStore;
-use Wikimedia\Rdbms\IMaintainableDatabase;
 
 $optionsWithArgs = RecompressTracked::getOptionsWithArgs();
 require __DIR__ . '/../CommandLineInc.php';
@@ -650,18 +649,6 @@ class RecompressTracked {
 		}
 
 		return $cluster;
-	}
-
-	/**
-	 * Gets a DB primary connection for the given external cluster name
-	 * @param string $cluster
-	 * @return IMaintainableDatabase
-	 */
-	private function getExtDB( $cluster ) {
-		$lbFactory = MediaWikiServices::getInstance()->getDBLoadBalancerFactory();
-		$lb = $lbFactory->getExternalLB( $cluster );
-
-		return $lb->getMaintenanceConnectionRef( DB_PRIMARY );
 	}
 
 	/**

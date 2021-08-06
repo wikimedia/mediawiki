@@ -293,7 +293,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_user || $this->fld_userid ) {
 			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_USER );
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['userhidden'] = true;
 				$anyHidden = true;
 			}
@@ -329,7 +329,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_sha1 ) {
 			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_TEXT );
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['sha1hidden'] = true;
 				$anyHidden = true;
 			}
@@ -369,7 +369,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		if ( $this->fld_comment || $this->fld_parsedcomment ) {
 			$revDel = $this->checkRevDel( $revision, RevisionRecord::DELETED_COMMENT );
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['commenthidden'] = true;
 				$anyHidden = true;
 			}
@@ -498,7 +498,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 		}
 
 		if ( $this->fld_slotsha1 ) {
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['sha1hidden'] = true;
 			}
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {
@@ -516,7 +516,7 @@ abstract class ApiQueryRevisionsBase extends ApiQueryGeneratorBase {
 
 		$content = null;
 		if ( $this->fetchContent ) {
-			if ( ( $revDel & self::IS_DELETED ) ) {
+			if ( $revDel & self::IS_DELETED ) {
 				$vals['texthidden'] = true;
 			}
 			if ( !( $revDel & self::CANNOT_VIEW ) ) {

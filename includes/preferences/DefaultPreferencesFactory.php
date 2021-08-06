@@ -716,7 +716,6 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 			}
 
 			if ( $this->options->get( 'EmailAuthentication' ) ) {
-				$emailauthenticationclass = 'mw-email-not-authenticated';
 				if ( $user->getEmail() ) {
 					if ( $user->getEmailAuthenticationTimestamp() ) {
 						// date and time are separate parameters to facilitate localisation.

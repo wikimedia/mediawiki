@@ -442,7 +442,7 @@ abstract class MWHttpRequest implements LoggerAwareInterface {
 			$this->parseHeader();
 		}
 
-		if ( ( (int)$this->respStatus > 0 && (int)$this->respStatus < 400 ) ) {
+		if ( (int)$this->respStatus > 0 && (int)$this->respStatus < 400 ) {
 			$this->status->setResult( true, (int)$this->respStatus );
 		} else {
 			list( $code, $message ) = explode( " ", $this->respStatus, 2 );

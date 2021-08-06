@@ -1091,7 +1091,7 @@ class SpecialVersion extends SpecialPage {
 		}
 
 		if ( $extName && !$hasOthers && ExtensionInfo::getAuthorsFileName( $extDir ) ) {
-			$list[] = $text = $linkRenderer->makeLink(
+			$list[] = $linkRenderer->makeLink(
 				$this->getPageTitle( "Credits/$extName" ),
 				$this->msg( 'version-poweredby-others' )->text()
 			);
