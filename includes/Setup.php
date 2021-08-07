@@ -462,10 +462,9 @@ if ( $wgEnableEmail ) {
 	$wgUsersNotifiedOnAllChanges = [];
 }
 
-// Set up the timezone, suppressing the pseudo-security warning in PHP 5.1+
-// that happens whenever you use a date function without the timezone being
-// explicitly set. Inspired by phpMyAdmin's treatment of the problem.
 if ( $wgLocaltimezone === null ) {
+	// This defaults to the `date.timezone` value of the PHP INI option. If this option is not set,
+	// it falls back to UTC. Prior to PHP 7.0, this fallback produced a warning.
 	$wgLocaltimezone = date_default_timezone_get();
 }
 date_default_timezone_set( $wgLocaltimezone );
@@ -584,16 +583,6 @@ if ( $wgMaximalPasswordLength !== false ) {
 	$wgPasswordPolicy['policies']['default']['MaximalPasswordLength'] = $wgMaximalPasswordLength;
 }
 
-// @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
-if ( $wgServer === false ) {
-	// T30798: $wgServer must be explicitly set
-	throw new FatalError(
-		'$wgServer must be set in LocalSettings.php. ' .
-		'See <a href="https://www.mediawiki.org/wiki/Manual:$wgServer">' .
-		'https://www.mediawiki.org/wiki/Manual:$wgServer</a>.'
-	);
-}
-
 if ( $wgPHPSessionHandling !== 'enable' &&
 	$wgPHPSessionHandling !== 'warn' &&
 	$wgPHPSessionHandling !== 'disable'
@@ -618,6 +607,18 @@ MediaWikiServices::allowGlobalInstance();
 define( 'MW_SERVICE_BOOTSTRAP_COMPLETE', 1 );
 
 MWExceptionHandler::installHandler();
+
+// Non-trivial validation of: $wgServer
+// The FatalError page only renders cleanly after MWExceptionHandler is installed.
+// @phan-suppress-next-line PhanSuspiciousValueComparisonInGlobalScope
+if ( $wgServer === false ) {
+	// T30798: $wgServer must be explicitly set
+	throw new FatalError(
+		'$wgServer must be set in LocalSettings.php. ' .
+		'See <a href="https://www.mediawiki.org/wiki/Manual:$wgServer">' .
+		'https://www.mediawiki.org/wiki/Manual:$wgServer</a>.'
+	);
+}
 
 // Non-trivial expansion of: $wgCanonicalServer, $wgServerName.
 // These require calling global functions.
