@@ -101,7 +101,7 @@ class SkinFactory {
 	/**
 	 * Returns an associative array of:
 	 *  skin name => human readable name
-	 *
+	 * @deprecated since 1.37 use getInstalledSkins instead
 	 * @return array
 	 */
 	public function getSkinNames() {
@@ -131,22 +131,34 @@ class SkinFactory {
 	/**
 	 * Fetch the list of user-selectable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
-	 * only want to show skins users _can_ use.
+	 * only want to show skins users _can_ select from preferences page.
 	 *
 	 * @return string[]
 	 * @since 1.36
 	 */
 	public function getAllowedSkins() {
-		$allowedSkins = $this->getSkinNames();
+		$skins = $this->getInstalledSkins();
 
 		// Internal skins not intended for general use
-		unset( $allowedSkins['fallback'] );
-		unset( $allowedSkins['apioutput'] );
+		unset( $skins['fallback'] );
+		unset( $skins['apioutput'] );
 
 		foreach ( $this->skipSkins as $skip ) {
-			unset( $allowedSkins[$skip] );
+			unset( $skins[$skip] );
 		}
 
-		return $allowedSkins;
+		return $skins;
+	}
+
+	/**
+	 * Fetch the list of all installed skins.
+	 *
+	 * Returns an associative array of skin name => human readable name
+	 *
+	 * @return string[]
+	 * @since 1.37
+	 */
+	public function getInstalledSkins() {
+		return $this->displayNames;
 	}
 }

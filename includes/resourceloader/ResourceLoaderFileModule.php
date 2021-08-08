@@ -909,7 +909,7 @@ class ResourceLoaderFileModule extends ResourceLoaderModule {
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
 		$styleFiles = [];
 
-		$internalSkinNames = array_keys( $skinFactory->getSkinNames() );
+		$internalSkinNames = array_keys( $skinFactory->getInstalledSkins() );
 		$internalSkinNames[] = 'default';
 
 		foreach ( $internalSkinNames as $internalSkinName ) {

@@ -1426,7 +1426,7 @@ class DefaultPreferencesFactory implements PreferencesFactory {
 
 		// Only show skins that aren't disabled
 		$validSkinNames = $this->skinFactory->getAllowedSkins();
-		$allInstalledSkins = $this->skinFactory->getSkinNames();
+		$allInstalledSkins = $this->skinFactory->getInstalledSkins();
 
 		// Display the installed skin the user has specifically requested via useskin=….
 		$useSkin = $context->getRequest()->getRawVal( 'useskin' );

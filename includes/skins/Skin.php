@@ -90,14 +90,14 @@ abstract class Skin extends ContextSource {
 	/**
 	 * Fetch the set of available skins.
 	 *
-	 * @deprecated since 1.36. Use SkinFactory::getSkinNames() instead.
+	 * @deprecated since 1.36. Use SkinFactory::getInstalledSkins() instead.
 	 * @return array Associative array of strings
 	 */
 	public static function getSkinNames() {
 		wfDeprecated( __METHOD__, '1.36' );
 
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-		return $skinFactory->getSkinNames();
+		return $skinFactory->getInstalledSkins();
 	}
 
 	/**
@@ -129,7 +129,7 @@ abstract class Skin extends ContextSource {
 		global $wgDefaultSkin, $wgFallbackSkin;
 
 		$skinFactory = MediaWikiServices::getInstance()->getSkinFactory();
-		$skinNames = $skinFactory->getSkinNames();
+		$skinNames = $skinFactory->getInstalledSkins();
 
 		// Make keys lowercase for case-insensitive matching.
 		$skinNames = array_change_key_case( $skinNames, CASE_LOWER );
