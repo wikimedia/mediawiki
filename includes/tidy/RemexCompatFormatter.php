@@ -2,14 +2,13 @@
 
 namespace MediaWiki\Tidy;
 
-use RemexHtml\HTMLData;
-use RemexHtml\Serializer\HtmlFormatter;
-use RemexHtml\Serializer\SerializerNode;
 use Sanitizer;
+use Wikimedia\RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
 
 /**
  * @internal
- * @phan-file-suppress PhanParamSignatureRealMismatchParamType Remex namespace migration
  */
 class RemexCompatFormatter extends HtmlFormatter {
 	private static $markedEmptyElements = [
