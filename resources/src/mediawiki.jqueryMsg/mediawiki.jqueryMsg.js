@@ -351,7 +351,7 @@ mw.jqueryMsg.Parser.prototype = {
 			escapedOrLiteralWithoutSpace, escapedOrLiteralWithoutBar, escapedOrRegularLiteral,
 			whitespace, dollar, digits, htmlDoubleQuoteAttributeValue, htmlSingleQuoteAttributeValue,
 			htmlAttributeEquals, openHtmlStartTag, optionalForwardSlash, openHtmlEndTag, closeHtmlTag,
-			openExtlink, closeExtlink, wikilinkContents, openWikilink, closeWikilink, templateName, pipe, colon,
+			openExtlink, closeExtlink, wikilinkContents, openWikilink, closeWikilink, pipe, colon,
 			templateContents, openTemplate, closeTemplate,
 			nonWhitespaceExpression, paramExpression, expression, curlyBraceTransformExpression, res,
 			settings = this.settings,
@@ -431,24 +431,6 @@ mw.jqueryMsg.Parser.prototype = {
 					return null;
 				}
 				return result;
-			};
-		}
-
-		/**
-		 * There is a general pattern -- parse a thing, if that worked, apply transform, otherwise return null.
-		 *
-		 * TODO: But using this as a combinator seems to cause problems when combined with #nOrMore().
-		 * May be some scoping issue
-		 *
-		 * @private
-		 * @param {Function} p
-		 * @param {Function} fn Should return a string
-		 * @return {Function} that will return {string|null}
-		 */
-		function transform( p, fn ) {
-			return function () {
-				var result = p();
-				return result === null ? null : fn( result );
 			};
 		}
 
@@ -831,12 +813,14 @@ mw.jqueryMsg.Parser.prototype = {
 			return result;
 		}
 
-		templateName = transform(
+		function templateName() {
 			// see $wgLegalTitleChars
 			// not allowing : due to the need to catch "PLURAL:$1"
-			makeRegexParser( /^[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ ),
-			function ( result ) { return result.toString(); }
-		);
+			var templateNameRegex = makeRegexParser( /^[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ );
+			var result = templateNameRegex();
+			return result === null ? null : result.toString();
+		}
+
 		function templateParam() {
 			var expr, result;
 			result = sequence( [
