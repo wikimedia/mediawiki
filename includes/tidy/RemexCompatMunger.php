@@ -13,6 +13,7 @@ use RemexHtml\TreeBuilder\TreeHandler;
 
 /**
  * @internal
+ * @phan-file-suppress PhanParamSignatureRealMismatchParamType Remex namespace migration
  */
 class RemexCompatMunger implements TreeHandler {
 	private static $onlyInlineElements = [

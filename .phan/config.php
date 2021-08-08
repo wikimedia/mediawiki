@@ -100,7 +100,8 @@ $cfg['suppress_issue_types'][] = 'PhanPossiblyUndeclaredVariable';
 
 // Do not use aliases in core.
 // Use the correct name, because we don't need backward compatibility
-$cfg['enable_class_alias_support'] = false;
+// (But libraries which we use might have aliases they define which we need.)
+$cfg['enable_class_alias_support'] = true;
 
 $cfg['ignore_undeclared_variables_in_global_scope'] = true;
 // @todo It'd be great if we could just make phan read these from DefaultSettings, to avoid
