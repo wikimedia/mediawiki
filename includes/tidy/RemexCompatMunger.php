@@ -2,18 +2,17 @@
 
 namespace MediaWiki\Tidy;
 
-use RemexHtml\HTMLData;
-use RemexHtml\Serializer\Serializer;
-use RemexHtml\Serializer\SerializerNode;
-use RemexHtml\Tokenizer\Attributes;
-use RemexHtml\Tokenizer\PlainAttributes;
-use RemexHtml\TreeBuilder\Element;
-use RemexHtml\TreeBuilder\TreeBuilder;
-use RemexHtml\TreeBuilder\TreeHandler;
+use Wikimedia\RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\Serializer\Serializer;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
+use Wikimedia\RemexHtml\Tokenizer\Attributes;
+use Wikimedia\RemexHtml\Tokenizer\PlainAttributes;
+use Wikimedia\RemexHtml\TreeBuilder\Element;
+use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
+use Wikimedia\RemexHtml\TreeBuilder\TreeHandler;
 
 /**
  * @internal
- * @phan-file-suppress PhanParamSignatureRealMismatchParamType Remex namespace migration
  */
 class RemexCompatMunger implements TreeHandler {
 	private static $onlyInlineElements = [

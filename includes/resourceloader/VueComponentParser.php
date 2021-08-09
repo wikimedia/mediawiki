@@ -19,23 +19,22 @@
  * @author Roan Kattouw
  */
 
-use RemexHtml\DOM\DOMBuilder;
-use RemexHtml\HTMLData;
-use RemexHtml\Serializer\HtmlFormatter;
-use RemexHtml\Serializer\Serializer;
-use RemexHtml\Serializer\SerializerNode;
-use RemexHtml\Tokenizer\Attributes;
-use RemexHtml\Tokenizer\Tokenizer;
-use RemexHtml\TreeBuilder\Dispatcher;
-use RemexHtml\TreeBuilder\Element;
-use RemexHtml\TreeBuilder\TreeBuilder;
+use Wikimedia\RemexHtml\DOM\DOMBuilder;
+use Wikimedia\RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\Serializer\HtmlFormatter;
+use Wikimedia\RemexHtml\Serializer\Serializer;
+use Wikimedia\RemexHtml\Serializer\SerializerNode;
+use Wikimedia\RemexHtml\Tokenizer\Attributes;
+use Wikimedia\RemexHtml\Tokenizer\Tokenizer;
+use Wikimedia\RemexHtml\TreeBuilder\Dispatcher;
+use Wikimedia\RemexHtml\TreeBuilder\Element;
+use Wikimedia\RemexHtml\TreeBuilder\TreeBuilder;
 
 /**
  * Parser for Vue single file components (.vue files). See parse() for usage.
  *
  * @ingroup ResourceLoader
  * @internal For use within ResourceLoaderFileModule.
- * @phan-file-suppress PhanParamSignatureRealMismatchParamType Remex namespace migration
  */
 class VueComponentParser {
 	/**

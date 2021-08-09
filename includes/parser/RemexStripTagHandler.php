@@ -1,11 +1,10 @@
 <?php
 
-use RemexHtml\Tokenizer\Attributes;
-use RemexHtml\Tokenizer\NullTokenHandler;
+use Wikimedia\RemexHtml\Tokenizer\Attributes;
+use Wikimedia\RemexHtml\Tokenizer\NullTokenHandler;
 
 /**
  * @internal
- * @phan-file-suppress PhanParamSignatureRealMismatchParamType Remex namespace migration
  */
 class RemexStripTagHandler extends NullTokenHandler {
 	private $text = '';

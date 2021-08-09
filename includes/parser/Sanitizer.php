@@ -25,7 +25,8 @@
  */
 
 use MediaWiki\MediaWikiServices;
-use RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\HTMLData;
+use Wikimedia\RemexHtml\Tokenizer\Tokenizer as RemexTokenizer;
 
 /**
  * HTML sanitizer for MediaWiki
@@ -1576,7 +1577,7 @@ class Sanitizer {
 	public static function stripAllTags( $html ) {
 		// Use RemexHtml to tokenize $html and extract the text
 		$handler = new RemexStripTagHandler;
-		$tokenizer = new RemexHtml\Tokenizer\Tokenizer( $handler, $html, [
+		$tokenizer = new RemexTokenizer( $handler, $html, [
 			'ignoreErrors' => true,
 			// don't ignore char refs, we want them to be decoded
 			'ignoreNulls' => true,
