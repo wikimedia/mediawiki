@@ -608,7 +608,7 @@ interface IDatabase {
 	 * @param string $fname The function name of the caller.
 	 * @param string|array $options The query options. {@see select} for details.
 	 * @param string|array $join_conds The query join conditions. {@see select} for details.
-	 * @return mixed The value from the field
+	 * @return mixed|false The value from the field, or false if nothing was found
 	 * @throws DBError If an error occurs, {@see query}
 	 */
 	public function selectField(

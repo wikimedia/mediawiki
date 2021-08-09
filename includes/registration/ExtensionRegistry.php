@@ -6,8 +6,6 @@ use MediaWiki\ShellDisabledError;
 use Wikimedia\ScopedCallback;
 
 /**
- * ExtensionRegistry class
- *
  * The Registry loads JSON files, and uses a Processor
  * to extract information from them. It also registers
  * classes with the autoloader.
