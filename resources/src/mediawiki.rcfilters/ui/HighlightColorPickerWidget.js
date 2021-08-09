@@ -41,7 +41,7 @@ var HighlightColorPickerWidget = function MwRcfiltersUiHighlightColorPickerWidge
 				framed: false
 			} );
 		} ),
-		classes: 'mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect'
+		classes: [ 'mw-rcfilters-ui-highlightColorPickerWidget-buttonSelect' ]
 	} );
 
 	// Event

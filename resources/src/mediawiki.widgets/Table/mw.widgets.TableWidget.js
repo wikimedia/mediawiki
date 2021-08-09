@@ -64,7 +64,7 @@ mw.widgets.TableWidget = function MwWidgetsTableWidget( config ) {
 
 	if ( this.model.getTableProperties().allowRowInsertion ) {
 		this.insertionRow = new mw.widgets.RowWidget( {
-			classes: 'mw-widgets-rowWidget-insertionRow',
+			classes: [ 'mw-widgets-rowWidget-insertionRow' ],
 			deletable: false,
 			label: null
 		} );
