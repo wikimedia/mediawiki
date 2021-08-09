@@ -492,20 +492,10 @@ mw.jqueryMsg.Parser.prototype = {
 		regularLiteral = makeRegexParser( /^[^{}\[\]$<\\]/ );
 		regularLiteralWithoutBar = makeRegexParser( /^[^{}\[\]$\\|]/ );
 		regularLiteralWithoutSpace = makeRegexParser( /^[^{}\[\]$\s]/ );
-		regularLiteralWithSquareBrackets = makeRegexParser( /^[^{}$\\]/ );
 		/* eslint-enable no-useless-escape */
 
 		backslash = makeStringParser( '\\' );
-		doubleQuote = makeStringParser( '"' );
-		singleQuote = makeStringParser( '\'' );
 		anyCharacter = makeRegexParser( /^./ );
-
-		openHtmlStartTag = makeStringParser( '<' );
-		optionalForwardSlash = makeRegexParser( /^\/?/ );
-		openHtmlEndTag = makeStringParser( '</' );
-		htmlAttributeEquals = makeRegexParser( /^\s*=\s*/ );
-		closeHtmlTag = makeRegexParser( /^\s*>/ );
-
 		function escapedLiteral() {
 			var result = sequence( [
 				backslash,
@@ -542,19 +532,12 @@ mw.jqueryMsg.Parser.prototype = {
 			return result === null ? null : result.join( '' );
 		}
 
-		function curlyBraceTransformExpressionLiteral() {
-			var result = nOrMore( 1, regularLiteralWithSquareBrackets )();
-			return result === null ? null : result.join( '' );
-		}
-
 		asciiAlphabetLiteral = makeRegexParser( /^[A-Za-z]+/ );
-		htmlDoubleQuoteAttributeValue = makeRegexParser( /^[^"]*/ );
-		htmlSingleQuoteAttributeValue = makeRegexParser( /^[^']*/ );
 
 		whitespace = makeRegexParser( /^\s+/ );
+
 		dollar = makeStringParser( '$' );
 		digits = makeRegexParser( /^\d+/ );
-
 		function replacement() {
 			var result = sequence( [
 				dollar,
@@ -594,10 +577,10 @@ mw.jqueryMsg.Parser.prototype = {
 			}
 			return result;
 		}
-		openWikilink = makeStringParser( '[[' );
-		closeWikilink = makeStringParser( ']]' );
 		pipe = makeStringParser( '|' );
 
+		openTemplate = makeStringParser( '{{' );
+		closeTemplate = makeStringParser( '}}' );
 		function template() {
 			var result = sequence( [
 				openTemplate,
@@ -606,6 +589,74 @@ mw.jqueryMsg.Parser.prototype = {
 			] );
 			return result === null ? null : result[ 1 ];
 		}
+
+		function templateName() {
+			// see $wgLegalTitleChars
+			// not allowing : due to the need to catch "PLURAL:$1"
+			var templateNameRegex = makeRegexParser( /^[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ );
+			var result = templateNameRegex();
+			return result === null ? null : result.toString();
+		}
+
+		function templateParam() {
+			var expr, result;
+			result = sequence( [
+				pipe,
+				nOrMore( 0, paramExpression )
+			] );
+			if ( result === null ) {
+				return null;
+			}
+			expr = result[ 1 ];
+			// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
+			return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ];
+		}
+
+		function templateWithReplacement() {
+			var result = sequence( [
+				templateName,
+				colon,
+				replacement
+			] );
+			return result === null ? null : [ result[ 0 ], result[ 2 ] ];
+		}
+		function templateWithOutReplacement() {
+			var result = sequence( [
+				templateName,
+				colon,
+				paramExpression
+			] );
+			return result === null ? null : [ result[ 0 ], result[ 2 ] ];
+		}
+		function templateWithOutFirstParameter() {
+			var result = sequence( [
+				templateName,
+				colon
+			] );
+			return result === null ? null : [ result[ 0 ], '' ];
+		}
+		colon = makeStringParser( ':' );
+		templateContents = choice( [
+			function () {
+				var result = sequence( [
+					// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
+					// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
+					choice( [ templateWithReplacement, templateWithOutReplacement, templateWithOutFirstParameter ] ),
+					nOrMore( 0, templateParam )
+				] );
+				return result === null ? null : result[ 0 ].concat( result[ 1 ] );
+			},
+			function () {
+				var result = sequence( [
+					templateName,
+					nOrMore( 0, templateParam )
+				] );
+				if ( result === null ) {
+					return null;
+				}
+				return [ result[ 0 ] ].concat( result[ 1 ] );
+			}
+		] );
 
 		function pipedWikilink() {
 			var result = sequence( [
@@ -633,6 +684,8 @@ mw.jqueryMsg.Parser.prototype = {
 			unpipedWikilink
 		] );
 
+		openWikilink = makeStringParser( '[[' );
+		closeWikilink = makeStringParser( ']]' );
 		function wikilink() {
 			var result, parsedResult, parsedLinkContents;
 			result = null;
@@ -650,6 +703,8 @@ mw.jqueryMsg.Parser.prototype = {
 		}
 
 		// TODO: Support data- if appropriate
+		doubleQuote = makeStringParser( '"' );
+		htmlDoubleQuoteAttributeValue = makeRegexParser( /^[^"]*/ );
 		function doubleQuotedHtmlAttributeValue() {
 			var parsedResult = sequence( [
 				doubleQuote,
@@ -659,6 +714,8 @@ mw.jqueryMsg.Parser.prototype = {
 			return parsedResult === null ? null : parsedResult[ 1 ];
 		}
 
+		singleQuote = makeStringParser( '\'' );
+		htmlSingleQuoteAttributeValue = makeRegexParser( /^[^']*/ );
 		function singleQuotedHtmlAttributeValue() {
 			var parsedResult = sequence( [
 				singleQuote,
@@ -668,6 +725,7 @@ mw.jqueryMsg.Parser.prototype = {
 			return parsedResult === null ? null : parsedResult[ 1 ];
 		}
 
+		htmlAttributeEquals = makeRegexParser( /^\s*=\s*/ );
 		function htmlAttribute() {
 			var parsedResult = sequence( [
 				whitespace,
@@ -722,6 +780,10 @@ mw.jqueryMsg.Parser.prototype = {
 			return concat.apply( [ 'HTMLATTRIBUTES' ], parsedResult );
 		}
 
+		openHtmlStartTag = makeStringParser( '<' );
+		optionalForwardSlash = makeRegexParser( /^\/?/ );
+		openHtmlEndTag = makeStringParser( '</' );
+		closeHtmlTag = makeRegexParser( /^\s*>/ );
 		// Subset of allowed HTML markup.
 		// Most elements and many attributes allowed on the server are not supported yet.
 		function html() {
@@ -813,75 +875,6 @@ mw.jqueryMsg.Parser.prototype = {
 			return result;
 		}
 
-		function templateName() {
-			// see $wgLegalTitleChars
-			// not allowing : due to the need to catch "PLURAL:$1"
-			var templateNameRegex = makeRegexParser( /^[ !"$&'()*,./0-9;=?@A-Z^_`a-z~\x80-\xFF+-]+/ );
-			var result = templateNameRegex();
-			return result === null ? null : result.toString();
-		}
-
-		function templateParam() {
-			var expr, result;
-			result = sequence( [
-				pipe,
-				nOrMore( 0, paramExpression )
-			] );
-			if ( result === null ) {
-				return null;
-			}
-			expr = result[ 1 ];
-			// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
-			return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ];
-		}
-
-		function templateWithReplacement() {
-			var result = sequence( [
-				templateName,
-				colon,
-				replacement
-			] );
-			return result === null ? null : [ result[ 0 ], result[ 2 ] ];
-		}
-		function templateWithOutReplacement() {
-			var result = sequence( [
-				templateName,
-				colon,
-				paramExpression
-			] );
-			return result === null ? null : [ result[ 0 ], result[ 2 ] ];
-		}
-		function templateWithOutFirstParameter() {
-			var result = sequence( [
-				templateName,
-				colon
-			] );
-			return result === null ? null : [ result[ 0 ], '' ];
-		}
-		colon = makeStringParser( ':' );
-		templateContents = choice( [
-			function () {
-				var result = sequence( [
-					// templates can have placeholders for dynamic replacement eg: {{PLURAL:$1|one car|$1 cars}}
-					// or no placeholders eg: {{GRAMMAR:genitive|{{SITENAME}}}
-					choice( [ templateWithReplacement, templateWithOutReplacement, templateWithOutFirstParameter ] ),
-					nOrMore( 0, templateParam )
-				] );
-				return result === null ? null : result[ 0 ].concat( result[ 1 ] );
-			},
-			function () {
-				var result = sequence( [
-					templateName,
-					nOrMore( 0, templateParam )
-				] );
-				if ( result === null ) {
-					return null;
-				}
-				return [ result[ 0 ] ].concat( result[ 1 ] );
-			}
-		] );
-		openTemplate = makeStringParser( '{{' );
-		closeTemplate = makeStringParser( '}}' );
 		nonWhitespaceExpression = choice( [
 			template,
 			wikilink,
@@ -907,6 +900,11 @@ mw.jqueryMsg.Parser.prototype = {
 			literal
 		] );
 
+		regularLiteralWithSquareBrackets = makeRegexParser( /^[^{}$\\]/ );
+		function curlyBraceTransformExpressionLiteral() {
+			var result = nOrMore( 1, regularLiteralWithSquareBrackets )();
+			return result === null ? null : result.join( '' );
+		}
 		// Used when only {{-transformation is wanted, for 'text'
 		// or 'escaped' formats
 		curlyBraceTransformExpression = choice( [
