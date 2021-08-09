@@ -35,6 +35,7 @@ use RemexHtml\TreeBuilder\TreeBuilder;
  *
  * @ingroup ResourceLoader
  * @internal For use within ResourceLoaderFileModule.
+ * @phan-file-suppress PhanParamSignatureRealMismatchParamType Remex namespace migration
  */
 class VueComponentParser {
 	/**

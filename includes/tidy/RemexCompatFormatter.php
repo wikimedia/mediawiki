@@ -9,6 +9,7 @@ use Sanitizer;
 
 /**
  * @internal
+ * @phan-file-suppress PhanParamSignatureRealMismatchParamType Remex namespace migration
  */
 class RemexCompatFormatter extends HtmlFormatter {
 	private static $markedEmptyElements = [
