@@ -73,20 +73,6 @@ class DatabasePostgres extends Database {
 		return false;
 	}
 
-	public function hasConstraint( $name ) {
-		foreach ( $this->getCoreSchemas() as $schema ) {
-			$sql = "SELECT 1 FROM pg_catalog.pg_constraint c, pg_catalog.pg_namespace n " .
-				"WHERE c.connamespace = n.oid AND conname = " .
-				$this->addQuotes( $name ) . " AND n.nspname = " .
-				$this->addQuotes( $schema );
-			$res = $this->doQuery( $sql );
-			if ( $res && $res->numRows() ) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	protected function open( $server, $user, $password, $db, $schema, $tablePrefix ) {
 		if ( !function_exists( 'pg_connect' ) ) {
 			throw $this->newExceptionAfterConnectError(
