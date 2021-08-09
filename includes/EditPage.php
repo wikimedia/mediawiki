@@ -1602,7 +1602,13 @@ class EditPage implements IEditObject {
 			$content = $converted;
 		}
 
-		return $content->preloadTransform( $title, $parserOptions, $params );
+		$contentTransformer = MediaWikiServices::getInstance()->getContentTransformer();
+		return $contentTransformer->preloadTransform(
+			$content,
+			$title,
+			$parserOptions,
+			$params
+		);
 	}
 
 	/**

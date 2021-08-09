@@ -142,24 +142,6 @@ class WikitextContent extends TextContent {
 	}
 
 	/**
-	 * Returns a Content object with preload transformations applied (or this
-	 * object if no transformations apply).
-	 *
-	 * @param Title $title
-	 * @param ParserOptions $popts
-	 * @param array $params
-	 *
-	 * @return Content
-	 */
-	public function preloadTransform( Title $title, ParserOptions $popts, $params = [] ) {
-		$text = $this->getText();
-		$plt = MediaWikiServices::getInstance()->getParser()
-			->getPreloadText( $text, $title, $popts, $params );
-
-		return new static( $plt );
-	}
-
-	/**
 	 * Extract the redirect target and the remaining text on the page.
 	 *
 	 * @note migrated here from Title::newFromRedirectInternal()

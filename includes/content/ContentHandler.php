@@ -26,6 +26,7 @@
  * @author Daniel Kinzler
  */
 
+use MediaWiki\Content\Transform\PreloadTransformParams;
 use MediaWiki\Content\Transform\PreSaveTransformParams;
 use MediaWiki\HookContainer\ProtectedHookAccessorTrait;
 use MediaWiki\Logger\LoggerFactory;
@@ -1546,37 +1547,117 @@ abstract class ContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
-		$deprecatedContent = $this->maybeCallDeprecatedContentPST( $content, $pstParams );
-		if ( $deprecatedContent ) {
-			return $deprecatedContent;
+		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
+			$content,
+			$pstParams
+		);
+
+		if ( !$shouldCallDeprecatedMethod ) {
+			return $content;
 		}
-		return $content;
+
+		return $this->callDeprecatedContentPST(
+			$content,
+			$pstParams
+		);
 	}
 
 	/**
-	 * If provided content overrides deprecated Content::preSaveTransform,
-	 * call it and return. Otherwise return null.
-	 * @internal only core ContentHandler implementations need to call this.
+	 * Returns a $content object with preload transformations applied (or the same
+	 * object if no transformations apply).
+	 *
+	 * @note Not stable to call other then from ContentHandler hierarchy.
+	 * Callers need to use ContentTransformer::preLoadTransform.
+	 * @stable to override
+	 * @since 1.37
 	 *
 	 * @param Content $content
-	 * @param PreSaveTransformParams $pstParams
-	 * @return ?Content
+	 * @param PreloadTransformParams $pltParams
+	 *
+	 * @return Content
 	 */
-	protected function maybeCallDeprecatedContentPST(
+	public function preloadTransform(
 		Content $content,
-		PreSaveTransformParams $pstParams
-	): ?Content {
-		$contentOverridesTransform = MWDebug::detectDeprecatedOverride(
+		PreloadTransformParams $pltParams
+	): Content {
+		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
+			$content,
+			$pltParams
+		);
+
+		if ( !$shouldCallDeprecatedMethod ) {
+			return $content;
+		}
+
+		return $this->callDeprecatedContentPLT(
+			$content,
+			$pltParams
+		);
+	}
+
+	/**
+	 * Check if we need to provide content overrides deprecated Content method.
+	 *
+	 * @internal only core ContentHandler implementations need to call this.
+	 * @param Content $content
+	 * @param PreSaveTransformParams|PreloadTransformParams $params
+	 * @return bool
+	 */
+	protected function shouldCallDeprecatedContentTransformMethod(
+		Content $content,
+		$params
+	): bool {
+		$method = $params instanceof PreSaveTransformParams
+			? "preSaveTransform"
+			: "preloadTransform";
+		return MWDebug::detectDeprecatedOverride(
 			$content,
 			AbstractContent::class,
-			'preSaveTransform'
+			$method
 		);
-		if ( $contentOverridesTransform ) {
-			$services = MediaWikiServices::getInstance();
-			$legacyUser = $services->getUserFactory()->newFromUserIdentity( $pstParams->getUser() );
-			$legacyTitle = $services->getTitleFactory()->castFromPageReference( $pstParams->getPage() );
-			return $content->preSaveTransform( $legacyTitle, $legacyUser, $pstParams->getParserOptions() );
-		}
-		return null;
+	}
+
+	/**
+	 * Provided content overrides deprecated Content::preSaveTransform,
+	 * call it and return.
+	 * @internal only core ContentHandler implementations need to call this.
+	 * @param Content $content
+	 * @param PreSaveTransformParams $params
+	 * @return Content
+	 */
+	protected function callDeprecatedContentPST(
+		Content $content,
+		PreSaveTransformParams $params
+	): Content {
+		$services = MediaWikiServices::getInstance();
+		$legacyUser = $services->getUserFactory()->newFromUserIdentity( $params->getUser() );
+		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $params->getPage() );
+
+		return $content->preSaveTransform(
+			$legacyTitle,
+			$legacyUser,
+			$params->getParserOptions()
+		);
+	}
+
+	/**
+	 * If provided content overrides deprecated Content::preloadTransform,
+	 * call it and return.
+	 * @internal only core ContentHandler implementations need to call this.
+	 * @param Content $content
+	 * @param PreloadTransformParams $params
+	 * @return Content
+	 */
+	protected function callDeprecatedContentPLT(
+		Content $content,
+		PreloadTransformParams $params
+	): Content {
+		$services = MediaWikiServices::getInstance();
+		$legacyTitle = $services->getTitleFactory()->castFromPageReference( $params->getPage() );
+		return $content->preloadTransform(
+			$legacyTitle,
+			$params->getParserOptions(),
+			$params->getParams()
+		);
 	}
 }

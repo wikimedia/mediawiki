@@ -51,9 +51,16 @@ class JsonContentHandler extends CodeContentHandler {
 		Content $content,
 		PreSaveTransformParams $pstParams
 	): Content {
-		$deprecatedContent = $this->maybeCallDeprecatedContentPST( $content, $pstParams );
-		if ( $deprecatedContent ) {
-			return $deprecatedContent;
+		$shouldCallDeprecatedMethod = $this->shouldCallDeprecatedContentTransformMethod(
+			$content,
+			$pstParams
+		);
+
+		if ( $shouldCallDeprecatedMethod ) {
+			return $this->callDeprecatedContentPST(
+				$content,
+				$pstParams
+			);
 		}
 
 		'@phan-var JsonContent $content';
