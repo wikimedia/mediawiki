@@ -88,9 +88,7 @@ class DeleteArchivedFiles extends Maintenance {
 			}
 
 			// Check if the file is used anywhere...
-			$inuse = $dbw->selectField(
-				'oldimage',
-				'1',
+			$inuse = (bool)$dbw->selectField( 'oldimage', '1',
 				[
 					'oi_sha1' => $sha1,
 					$dbw->bitAnd( 'oi_deleted', File::DELETED_FILE ) => File::DELETED_FILE

@@ -83,8 +83,10 @@ class JobQueueDB extends JobQueue {
 		/** @noinspection PhpUnusedLocalVariableInspection */
 		$scope = $this->getScopedNoTrxFlag( $dbr );
 		try {
-			$found = $dbr->selectField( // unclaimed job
-				'job', '1', [ 'job_cmd' => $this->type, 'job_token' => '' ], __METHOD__
+			// unclaimed job
+			$found = (bool)$dbr->selectField( 'job', '1',
+				[ 'job_cmd' => $this->type, 'job_token' => '' ],
+				__METHOD__
 			);
 		} catch ( DBError $e ) {
 			throw $this->getDBException( $e );
