@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"MinecraftAustralia",
 			"Pall Mall (on pih.wikipedia.org)",
 			"Xð"
 		]
@@ -27,6 +28,10 @@
 	"oct": "Okt",
 	"nov": "Now",
 	"dec": "Dis",
+	"pagecategories": "{{PLURAL:$1|Ketagorii|Ketagoriis}}",
+	"category-media-header": "Miidia i' ketagorii \"$1\"",
+	"hidden-categories": "{{PLURAL:$1|Hidin ketagorii|Hidin ketagoriis}}",
+	"category-subcat-count": "{{PLURAL:$2|Dem ketagorii hes onlii t' foloewin subketagorii.|Dem ketagorii hes t' foloewin {{PLURAL:$1|subketagorii|$1 subketagoriis}}, oet o' $2 toetl.}}",
 	"article": "Artikal",
 	"mypage": "Paij",
 	"help": "Hiiwp",
@@ -42,13 +47,22 @@
 	"editsection": "edet",
 	"editold": "edet",
 	"nstab-main": "Artikal",
-	"nstab-user": "User paij",
+	"nstab-user": "{{GENDER:$1|Yusa paij}}",
 	"nstab-image": "Faail",
 	"nstab-help": "Hiiwp Paij",
+	"nstab-category": "Ketagorii",
 	"mainpage-nstab": "Mien paij",
 	"loginlanguagelabel": "Laenghwij: $1",
 	"editing": "Edeting $1",
 	"prefs-rc": "Dem Riisent Chayng",
+	"timezoneregion-africa": "Aferika",
+	"timezoneregion-antarctica": "Antarktida",
+	"timezoneregion-asia": "Asya",
+	"timezoneregion-atlantic": "Etlantik Oshen",
+	"timezoneregion-australia": "Ostrielya",
+	"timezoneregion-europe": "Urup",
+	"timezoneregion-indian": "Indien Oshen",
+	"timezoneregion-pacific": "Pesifik Oshen",
 	"recentchanges": "Dem Riisent Chayng",
 	"recentchangeslinked": "Dem Riilated Chayng",
 	"recentchangeslinked-feed": "Dem Riilated Chayng",

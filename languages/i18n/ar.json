@@ -2342,6 +2342,7 @@
 	"nowatchlist": "لا توجد مدخلات في قائمة مراقبتك.",
 	"watchlistanontext": "الرجاء تسجيل الدخول لعرض أو تعديل الصفحات في قائمة مراقبتك.",
 	"watchnologin": "غير مسجل الدخول",
+	"watchlistnotwatchable": "لا يُمكنك مشاهدة الصفحة",
 	"addwatch": "إضافة إلى قائمة المراقبة",
 	"updatewatchlist": "تحديث قائمة المراقبة",
 	"addedwatchtext": "\"[[:$1]]\" وصفحة نقاشها أضيفتا إلى [[Special:Watchlist|قائمة مراقبتك]].",
@@ -3505,7 +3506,9 @@
 	"tag-mw-manual-revert-description": "التعديلات التي تسترجع الصفحة يدويا لحالة سابقة",
 	"tag-mw-reverted": "مسترجع",
 	"tag-mw-reverted-description": "التعديلات التي جرى التراجع عنها في تعديل لاحق",
+	"tag-mw-server-side-upload": "رفع من طرف المُخدِّم",
 	"tag-mw-add-media-description": "التعديلات التي تضيف الوسائط",
+	"tag-mw-remove-media-description": "التعديلات التي تزيل الوسائط",
 	"tags-title": "وسوم",
 	"tags-intro": "هذه الصفحة تعرض الوسوم التي من الممكن للبرنامج أن يوسم أحد التعديلات بها، بالإضافة لمعانيها.",
 	"tags-tag": "اسم الوسم",
@@ -4089,5 +4092,6 @@
 	"paramvalidator-help-type-user-subtype-ip": "الآي بي",
 	"paramvalidator-help-type-user-subtype-cidr": "نطاق الآي بي",
 	"paramvalidator-help-type-user-subtype-interwiki": "اسم الإنترويكي (مثال \"prefix>ExampleName\")",
-	"paramvalidator-help-type-user-subtype-id": "معرف المستخدم (مثال \"#12345\")"
+	"paramvalidator-help-type-user-subtype-id": "معرف المستخدم (مثال \"#12345\")",
+	"paramvalidator-help-type-title": "النوع: عنوان صفحة"
 }

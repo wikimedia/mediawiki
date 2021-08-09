@@ -2324,6 +2324,7 @@
 	"movereason": "Årsak:",
 	"revertmove": "flytt attende",
 	"delete_and_move_text": "== Sletting påkravd ==\n\nMålsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flytting?",
+	"delete_redirect_and_move_text": "Målsida «[[:$1]]» finst alt som ei omdirigering.\nVil du sletta henne for å gjera flyttinga mogeleg?",
 	"delete_and_move_confirm": "Ja, slett sida",
 	"delete_and_move_reason": "Sletta for å gje rom for flytting frå «[[$1]]»",
 	"selfmove": "Kjelde- og måltitlane er like; kan ikkje flytte sida over seg sjølv.",

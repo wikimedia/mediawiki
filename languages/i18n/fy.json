@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ajeje Brazorf",
 			"Catrope",
 			"DannyS712",
 			"Fitoschido",
@@ -2270,7 +2271,7 @@
 	"tags-activate-submit": "Aktivearje",
 	"tags-deactivate-reason": "Reden:",
 	"tags-deactivate-submit": "Deaktivearje",
-	"tags-edit-existing-tags-none": "''Gjin''",
+	"tags-edit-existing-tags-none": "<em>Gjin</em>",
 	"tags-edit-reason": "Reden:",
 	"comparepages": "Siden ferlykje",
 	"compare-page1": "Side 1",

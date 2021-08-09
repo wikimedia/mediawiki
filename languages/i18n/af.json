@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Adriaan",
+			"Ajeje Brazorf",
 			"Anrie",
 			"Arnobarnard",
 			"BaRaN6161 TURK",
@@ -2673,7 +2674,7 @@
 	"tags-activate-submit": "Aktiveer",
 	"tags-deactivate-reason": "Rede:",
 	"tags-deactivate-submit": "Deaktiveer",
-	"tags-edit-existing-tags-none": "''Geen''",
+	"tags-edit-existing-tags-none": "<em>Geen</em>",
 	"tags-edit-reason": "Rede:",
 	"comparepages": "Vergelyk bladsye",
 	"compare-page1": "Bladsy 1",

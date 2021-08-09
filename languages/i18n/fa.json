@@ -2720,7 +2720,7 @@
 	"ipblocklist-empty": "فهرست بسته‌شدن‌ها خالی‌است.",
 	"ipblocklist-no-results": "دسترسی حساب کاربری یا نشانی آی‌پی موردنظر، قطع نیست.",
 	"blocklink": "قطع دسترسی",
-	"unblocklink": "باز شود",
+	"unblocklink": "باز کردن",
 	"change-blocklink": "تغییر قطع دسترسی",
 	"empty-username": "(نام کاربری موجود نیست)",
 	"contribslink": "مشارکت‌ها",
