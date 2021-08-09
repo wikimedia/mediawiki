@@ -35,7 +35,7 @@ class BsWebInstallerOutput extends WebInstallerOutput {
 	 // BlueSpice
 	public function outputTitle() {
 		global $wgVersion;
-		$foundationManifestFile = dirname(__DIR__) 
+		$foundationManifestFile = dirname(__FILE__)
 			. '/../../../extensions/BlueSpiceFoundation/extension.json';
 		$foundationManifest = FormatJson::decode(
 			file_get_contents( $foundationManifestFile ),
