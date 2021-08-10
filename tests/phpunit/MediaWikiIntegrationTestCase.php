@@ -1119,6 +1119,7 @@ abstract class MediaWikiIntegrationTestCase extends PHPUnit\Framework\TestCase {
 				return MediaWikiServices::getInstance()->getParser();
 			} );
 		}
+		ParserOptions::clearStaticCache();
 	}
 
 	/**

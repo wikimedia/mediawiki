@@ -11,7 +11,6 @@
 				// Right click.
 				return;
 			}
-			document.getSelection().removeAllRanges();
 			$( '.diff' ).attr( 'data-selected-side', '' );
 		}
 

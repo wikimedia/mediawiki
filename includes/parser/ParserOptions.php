@@ -175,6 +175,11 @@ class ParserOptions {
 	 * @return array
 	 */
 	public static function getLazyOptions(): array {
+		// Trigger a call to the 'ParserOptionsRegister' hook if it hasn't
+		// already been called.
+		if ( self::$lazyOptions === null ) {
+			self::getDefaults();
+		}
 		return self::$lazyOptions;
 	}
 
