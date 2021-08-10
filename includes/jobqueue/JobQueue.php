@@ -354,10 +354,8 @@ abstract class JobQueue {
 		}
 
 		foreach ( $jobs as $job ) {
-			if ( $job->getType() !== $this->type ) {
-				throw new JobQueueError(
-					"Got '{$job->getType()}' job; expected a '{$this->type}' job." );
-			} elseif ( $job->getReleaseTimestamp() && !$this->supportsDelayedJobs() ) {
+			$this->assertMatchingJobType( $job );
+			if ( $job->getReleaseTimestamp() && !$this->supportsDelayedJobs() ) {
 				throw new JobQueueError(
 					"Got delayed '{$job->getType()}' job; delays are not supported." );
 			}
@@ -423,9 +421,7 @@ abstract class JobQueue {
 	 */
 	final public function ack( RunnableJob $job ) {
 		$this->assertNotReadOnly();
-		if ( $job->getType() !== $this->type ) {
-			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
-		}
+		$this->assertMatchingJobType( $job );
 
 		$this->doAck( $job );
 	}
@@ -469,9 +465,7 @@ abstract class JobQueue {
 	 */
 	final public function deduplicateRootJob( IJobSpecification $job ) {
 		$this->assertNotReadOnly();
-		if ( $job->getType() !== $this->type ) {
-			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
-		}
+		$this->assertMatchingJobType( $job );
 
 		return $this->doDeduplicateRootJob( $job );
 	}
@@ -511,9 +505,7 @@ abstract class JobQueue {
 	 * @return bool
 	 */
 	final protected function isRootJobOldDuplicate( IJobSpecification $job ) {
-		if ( $job->getType() !== $this->type ) {
-			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
-		}
+		$this->assertMatchingJobType( $job );
 
 		return $this->doIsRootJobOldDuplicate( $job );
 	}
@@ -739,6 +731,16 @@ abstract class JobQueue {
 	protected function assertNotReadOnly() {
 		if ( $this->readOnlyReason !== false ) {
 			throw new JobQueueReadOnlyError( "Job queue is read-only: {$this->readOnlyReason}" );
+		}
+	}
+
+	/**
+	 * @param IJobSpecification $job
+	 * @throws JobQueueError
+	 */
+	private function assertMatchingJobType( IJobSpecification $job ) {
+		if ( $job->getType() !== $this->type ) {
+			throw new JobQueueError( "Got '{$job->getType()}' job; expected '{$this->type}'." );
 		}
 	}
 

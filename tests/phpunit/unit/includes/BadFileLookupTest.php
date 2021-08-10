@@ -2,11 +2,14 @@
 
 use MediaWiki\BadFileLookup;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Tests\Unit\DummyServicesTrait;
 
 /**
  * @coversDefaultClass MediaWiki\BadFileLookup
  */
 class BadFileLookupTest extends MediaWikiUnitTestCase {
+	use DummyServicesTrait;
+
 	/** Shared with GlobalWithDBTest */
 	public const BAD_FILE_LIST = <<<WIKITEXT
 Comment line, no effect [[File:Good.jpg]]
@@ -86,38 +89,6 @@ WIKITEXT;
 		return $mock;
 	}
 
-	private function getMockTitleParser() {
-		// We can't use a real MediaWikiTitleCode, eg from DummyServicesTrait,
-		// because actual MalformedTitleException objects cannot be constructed in unit
-		// tests, and the tests in this file cover the code in BadFileLookup that
-		// handles an exception being thrown. Instead, we use a mock that throws mock
-		// exceptions
-		$mock = $this->createMock( TitleParser::class );
-		$mock->method( 'parseTitle' )->will( $this->returnCallback( function ( $text ) {
-			if ( strpos( $text, '<' ) !== false ) {
-				throw $this->createMock( MalformedTitleException::class );
-			}
-			if ( strpos( $text, ':' ) === false ) {
-				return new TitleValue( NS_MAIN, $text );
-			}
-			list( $ns, $text ) = explode( ':', $text );
-			switch ( $ns ) {
-				case 'Image':
-				case 'File':
-					$ns = NS_FILE;
-					break;
-
-				case 'User':
-					$ns = NS_USER;
-					break;
-			}
-			return new TitleValue( $ns, $text );
-		} ) );
-		$mock->expects( $this->never() )->method( $this->anythingBut( 'parseTitle' ) );
-
-		return $mock;
-	}
-
 	protected function setUp(): void {
 		parent::setUp();
 		$this->hookContainer = $this->createHookContainer( [
@@ -137,7 +108,7 @@ WIKITEXT;
 			},
 			new EmptyBagOStuff,
 			$this->getMockRepoGroup(),
-			$this->getMockTitleParser(),
+			$this->getDummyTitleParser( [ 'throwMockExceptions' => true ] ),
 			$this->hookContainer
 		);
 
@@ -156,7 +127,7 @@ WIKITEXT;
 			},
 			new EmptyBagOStuff,
 			$this->getMockRepoGroupNull(),
-			$this->getMockTitleParser(),
+			$this->getDummyTitleParser( [ 'throwMockExceptions' => true ] ),
 			$this->hookContainer
 		);
 

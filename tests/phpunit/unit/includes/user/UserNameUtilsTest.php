@@ -201,43 +201,18 @@ class UserNameUtilsTest extends MediaWikiUnitTestCase {
 					UserNameUtils::RIGOR_NONE => 'With / slash'
 				]
 			],
+			// 'interwiki' is a valid interwiki prefix, per configuration of the
+			// title formatter in DummyServicesTrait::getDummyUserNameUtils()
+			'Interwiki prefix in username' => [
+				'interwiki:Username',
+				[
+					UserNameUtils::RIGOR_CREATABLE => false,
+					UserNameUtils::RIGOR_USABLE => false,
+					UserNameUtils::RIGOR_VALID => false,
+					UserNameUtils::RIGOR_NONE => 'Interwiki:Username'
+				]
+			],
 		];
-	}
-
-	/**
-	 * @covers MediaWiki\User\UserNameUtils::getCanonical
-	 */
-	public function testGetCanonical_interwiki() {
-		// 'interwiki' is a valid interwiki prefix, per configuration of the
-		// title formatter in DummyServicesTrait::getDummyUserNameUtils()
-		$utils = $this->getDummyUserNameUtils();
-
-		$name = 'interwiki:Username';
-		$this->assertFalse(
-			$utils->getCanonical(
-				$name,
-				UserNameUtils::RIGOR_CREATABLE
-			),
-			"'$name' is not creatable"
-		);
-		$this->assertFalse(
-			$utils->getCanonical(
-				$name,
-				UserNameUtils::RIGOR_USABLE
-			),
-			"'$name' is not usable"
-		);
-		$this->assertFalse(
-			$utils->getCanonical(
-				$name,
-				UserNameUtils::RIGOR_VALID
-			),
-			"'$name' is not valid"
-		);
-		$this->assertSame(
-			'Interwiki:Username',
-			$utils->getCanonical( $name, UserNameUtils::RIGOR_NONE )
-		);
 	}
 
 	/**
