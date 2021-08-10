@@ -164,6 +164,15 @@ class ParserOptions {
 	}
 
 	/**
+	 * Resets lazy loaded options to null in the provided $options array
+	 * @param array $options
+	 * @return array
+	 */
+	private function nullifyLazyOption( array $options ): array {
+		return array_fill_keys( array_keys( self::getLazyOptions() ), null ) + $options;
+	}
+
+	/**
 	 * Get lazy-loaded options.
 	 *
 	 * This array should be initialised by the constructor. The return type
@@ -1251,7 +1260,10 @@ class ParserOptions {
 	 * @param Language $lang
 	 */
 	private function initialiseFromUser( UserIdentity $user, Language $lang ) {
-		$this->options = self::getDefaults();
+		// Initially lazy loaded option defaults must not be taken into account,
+		// otherwise lazy loading does not work. Setting a default for lazy option
+		// is useful for matching with canonical options.
+		$this->options = $this->nullifyLazyOption( self::getDefaults() );
 
 		$this->mUser = $user;
 		$services = MediaWikiServices::getInstance();

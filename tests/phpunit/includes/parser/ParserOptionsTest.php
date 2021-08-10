@@ -227,6 +227,29 @@ class ParserOptionsTest extends MediaWikiLangTestCase {
 		$this->assertSame( 'opt1=value', $popt->optionsHash( [ 'opt1', 'opt3' ] ) );
 	}
 
+	public function testLazyOptionWithDefault() {
+		$loaded = false;
+		$this->setTemporaryHook(
+			'ParserOptionsRegister',
+			static function ( &$defaults, &$inCacheKey, &$lazyLoad ) use ( &$loaded ) {
+				$defaults['test_option'] = 'default!';
+				$inCacheKey['test_option'] = true;
+				$lazyLoad['test_option'] = static function () use ( &$loaded ) {
+					$loaded = true;
+					return 'default!';
+				};
+			}
+		);
+
+		$po = ParserOptions::newCanonical( 'canonical' );
+		$this->assertSame( 'default!', $po->getOption( 'test_option' ) );
+		$this->assertTrue( $loaded );
+		$this->assertSame(
+			'canonical',
+			$po->optionsHash( [ 'test_option' ], Title::makeTitle( NS_MAIN, 'Test' ) )
+		);
+	}
+
 	public static function onPageRenderingHash( &$confstr ) {
 		$confstr .= '!onPageRenderingHash';
 	}
