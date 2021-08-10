@@ -28,23 +28,22 @@
  */
 class LanguageMl extends Language {
 	/**
-	 * Temporary hack for the issue described at
-	 * http://permalink.gmane.org/gmane.science.linguistics.wikipedia.technical/46396
-	 * Convert Unicode 5.0 style Malayalam input to Unicode 5.1. Similar to
-	 * T11413. Also fixes miscellaneous problems due to mishandling of ZWJ,
-	 * e.g. T13162.
+	 * Convert Unicode 5.0 style Malayalam input to Unicode 5.1, similar to T11413
+	 * which is the same issue for Arabic.
 	 *
-	 * @todo FIXME: This is language-specific for now only to avoid the negative
-	 * performance impact of enabling it for all languages.
+	 * Also fixes miscellaneous problems due to mishandling of ZWJ (e.g. T13162).
+	 *
+	 * Originally introduced after "[wikitech-l] Unicode equivalence" (Dec 2009)
+	 * <https://lists.wikimedia.org/hyperkitty/list/wikitech-l@lists.wikimedia.org/thread/LMMZ3M4757Z5DH42MT75K6GWLAKUBLRD>
+	 *
+	 * Optimization: This is language-specific to reduce negative performance impact.
 	 *
 	 * @param string $s
-	 *
 	 * @return string
 	 */
 	public function normalize( $s ) {
-		global $IP;
 		$s = parent::normalize( $s );
-		$s = $this->transformUsingPairFile( 'normalize-ml.php', $s, $IP );
+		$s = $this->transformUsingPairFile( MediaWiki\Languages\Data\NormalizeMl::class, $s );
 		return $s;
 	}
 }

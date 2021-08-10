@@ -30,20 +30,16 @@
 class LanguageAr extends Language {
 
 	/**
-	 * Temporary hack for T11413: replace Arabic presentation forms with their
-	 * standard equivalents.
+	 * Replace Arabic presentation forms with their standard equivalents (T11413).
 	 *
-	 * @todo FIXME: This is language-specific for now only to avoid the negative
-	 * performance impact of enabling it for all languages.
+	 * Optimization: This is language-specific to reduce negative performance impact.
 	 *
 	 * @param string $s
-	 *
 	 * @return string
 	 */
 	public function normalize( $s ) {
-		global $IP;
 		$s = parent::normalize( $s );
-		$s = $this->transformUsingPairFile( 'normalize-ar.php', $s, $IP );
+		$s = $this->transformUsingPairFile( MediaWiki\Languages\Data\NormalizeAr::class, $s );
 		return $s;
 	}
 }

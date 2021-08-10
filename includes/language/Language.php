@@ -89,10 +89,9 @@ class Language {
 	protected $mNamespaceIds, $namespaceAliases;
 
 	/**
-	 * ReplacementArray object memoize
-	 * @deprecated since 1.35, must be private
+	 * @var ReplacementArray[]
 	 */
-	public $transformData = [];
+	private $transformData = [];
 
 	/** @var LocalisationCache */
 	private $localisationCache;
@@ -2971,19 +2970,18 @@ class Language {
 	 * also cleans up certain backwards-compatible sequences, converting them
 	 * to the modern Unicode equivalent.
 	 *
-	 * This is language-specific for performance reasons only.
-	 *
+	 * @internal
 	 * @param string $s
-	 *
 	 * @return string
 	 */
 	public function normalize( $s ) {
-		global $wgAllUnicodeFixes, $IP;
+		global $wgAllUnicodeFixes;
 
 		$s = UtfNormal\Validator::cleanUp( $s );
+		// Optimization: This is disabled by default to avoid negative performance impact.
 		if ( $wgAllUnicodeFixes ) {
-			$s = $this->transformUsingPairFile( 'normalize-ar.php', $s, $IP );
-			$s = $this->transformUsingPairFile( 'normalize-ml.php', $s, $IP );
+			$s = $this->transformUsingPairFile( MediaWiki\Languages\Data\NormalizeAr::class, $s );
+			$s = $this->transformUsingPairFile( MediaWiki\Languages\Data\NormalizeMl::class, $s );
 		}
 
 		return $s;
@@ -2994,45 +2992,18 @@ class Language {
 	 * must be in the serialized subdirectory of $IP). The file contains pairs
 	 * mapping source characters to destination characters.
 	 *
-	 * The data is cached in process memory. This will go faster if you have the
-	 * FastStringSearch extension.
+	 * The data is cached in process memory.
 	 *
-	 * @param string $file
-	 * @param string $string
-	 * @param string|null $basePath
-	 *
-	 * @throws MWException
+	 * @param string $dataClass Name of a normalize pairs data class
+	 * @param string $input
 	 * @return string
 	 */
-	protected function transformUsingPairFile( $file, $string, $basePath = null ) {
-		if ( isset( $this->transformData[$file] ) ) {
-			wfDeprecated(
-				'Modification of Language::$transformData is deprecated since MediaWiki 1.35',
-				'1.35'
-			);
-			return $this->transformData[$file]->replace( $string );
+	protected function transformUsingPairFile( string $dataClass, string $input ): string {
+		if ( !isset( $this->transformData[$dataClass] ) ) {
+			$this->transformData[$dataClass] = new ReplacementArray( $dataClass::PAIRS );
 		}
 
-		if ( $basePath === null ) {
-			wfDeprecated( __METHOD__ . ' without $basePath', '1.35' );
-			global $IP;
-			$basePath = $IP;
-		}
-
-		if (
-			$basePath === null
-			|| $basePath === ''
-			|| !file_exists( "{$basePath}/languages/data/{$file}" )
-		) {
-			return $string;
-		}
-
-		if ( !isset( $this->transformData[$basePath][$file] ) ) {
-			$data = require "{$basePath}/languages/data/{$file}";
-			$this->transformData[$basePath][$file] = new ReplacementArray( $data );
-		}
-
-		return $this->transformData[$basePath][$file]->replace( $string );
+		return $this->transformData[$dataClass]->replace( $input );
 	}
 
 	/**
