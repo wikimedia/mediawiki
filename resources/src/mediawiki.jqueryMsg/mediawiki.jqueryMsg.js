@@ -552,30 +552,28 @@ mw.jqueryMsg.Parser.prototype = {
 		closeExtlink = makeStringParser( ']' );
 		// this extlink MUST have inner contents, e.g. [foo] not allowed; [foo bar] [foo <i>bar</i>], etc. are allowed
 		function extlink() {
-			var result, parsedResult, target;
-			result = null;
-			parsedResult = sequence( [
+			var parsedResult = sequence( [
 				openExtlink,
 				nOrMore( 1, nonWhitespaceExpression ),
 				whitespace,
 				nOrMore( 1, expression ),
 				closeExtlink
 			] );
-			if ( parsedResult !== null ) {
-				// When the entire link target is a single parameter, we can't use CONCAT, as we allow
-				// passing fancy parameters (like a whole jQuery object or a function) to use for the
-				// link. Check only if it's a single match, since we can either do CONCAT or not for
-				// singles with the same effect.
-				target = parsedResult[ 1 ].length === 1 ?
-					parsedResult[ 1 ][ 0 ] :
-					[ 'CONCAT' ].concat( parsedResult[ 1 ] );
-				result = [
-					'EXTLINK',
-					target,
-					[ 'CONCAT' ].concat( parsedResult[ 3 ] )
-				];
+			if ( parsedResult === null ) {
+				return null;
 			}
-			return result;
+			// When the entire link target is a single parameter, we can't use CONCAT, as we allow
+			// passing fancy parameters (like a whole jQuery object or a function) to use for the
+			// link. Check only if it's a single match, since we can either do CONCAT or not for
+			// singles with the same effect.
+			var target = parsedResult[ 1 ].length === 1 ?
+				parsedResult[ 1 ][ 0 ] :
+				[ 'CONCAT' ].concat( parsedResult[ 1 ] );
+			return [
+				'EXTLINK',
+				target,
+				[ 'CONCAT' ].concat( parsedResult[ 3 ] )
+			];
 		}
 		pipe = makeStringParser( '|' );
 
@@ -599,15 +597,14 @@ mw.jqueryMsg.Parser.prototype = {
 		}
 
 		function templateParam() {
-			var expr, result;
-			result = sequence( [
+			var result = sequence( [
 				pipe,
 				nOrMore( 0, paramExpression )
 			] );
 			if ( result === null ) {
 				return null;
 			}
-			expr = result[ 1 ];
+			var expr = result[ 1 ];
 			// use a CONCAT operator if there are multiple nodes, otherwise return the first node, raw.
 			return expr.length > 1 ? [ 'CONCAT' ].concat( expr ) : expr[ 0 ];
 		}
@@ -687,19 +684,12 @@ mw.jqueryMsg.Parser.prototype = {
 		openWikilink = makeStringParser( '[[' );
 		closeWikilink = makeStringParser( ']]' );
 		function wikilink() {
-			var result, parsedResult, parsedLinkContents;
-			result = null;
-
-			parsedResult = sequence( [
+			var parsedResult = sequence( [
 				openWikilink,
 				wikilinkContents,
 				closeWikilink
 			] );
-			if ( parsedResult !== null ) {
-				parsedLinkContents = parsedResult[ 1 ];
-				result = [ 'WIKILINK' ].concat( parsedLinkContents );
-			}
-			return result;
+			return parsedResult === null ? null : [ 'WIKILINK' ].concat( parsedResult[ 1 ] );
 		}
 
 		// TODO: Support data- if appropriate
@@ -787,19 +777,14 @@ mw.jqueryMsg.Parser.prototype = {
 		// Subset of allowed HTML markup.
 		// Most elements and many attributes allowed on the server are not supported yet.
 		function html() {
-			var parsedOpenTagResult, parsedHtmlContents, parsedCloseTagResult,
-				wrappedAttributes, attributes, startTagName, endTagName, startOpenTagPos,
-				startCloseTagPos, endOpenTagPos, endCloseTagPos,
-				result = null;
-
 			// Break into three sequence calls.  That should allow accurate reconstruction of the original HTML, and requiring an exact tag name match.
 			// 1. open through closeHtmlTag
 			// 2. expression
 			// 3. openHtmlEnd through close
 			// This will allow recording the positions to reconstruct if HTML is to be treated as text.
 
-			startOpenTagPos = pos;
-			parsedOpenTagResult = sequence( [
+			var startOpenTagPos = pos;
+			var parsedOpenTagResult = sequence( [
 				openHtmlStartTag,
 				asciiAlphabetLiteral,
 				htmlAttributes,
@@ -811,13 +796,13 @@ mw.jqueryMsg.Parser.prototype = {
 				return null;
 			}
 
-			endOpenTagPos = pos;
-			startTagName = parsedOpenTagResult[ 1 ];
+			var endOpenTagPos = pos;
+			var startTagName = parsedOpenTagResult[ 1 ];
 
-			parsedHtmlContents = nOrMore( 0, expression )();
+			var parsedHtmlContents = nOrMore( 0, expression )();
 
-			startCloseTagPos = pos;
-			parsedCloseTagResult = sequence( [
+			var startCloseTagPos = pos;
+			var parsedCloseTagResult = sequence( [
 				openHtmlEndTag,
 				asciiAlphabetLiteral,
 				closeHtmlTag
@@ -829,50 +814,39 @@ mw.jqueryMsg.Parser.prototype = {
 					.concat( parsedHtmlContents );
 			}
 
-			endCloseTagPos = pos;
-			endTagName = parsedCloseTagResult[ 1 ];
-			wrappedAttributes = parsedOpenTagResult[ 2 ];
-			attributes = wrappedAttributes.slice( 1 );
+			var endCloseTagPos = pos;
+			var endTagName = parsedCloseTagResult[ 1 ];
+			var wrappedAttributes = parsedOpenTagResult[ 2 ];
+			var attributes = wrappedAttributes.slice( 1 );
 			if ( isAllowedHtml( startTagName, endTagName, attributes ) ) {
-				result = [ 'HTMLELEMENT', startTagName, wrappedAttributes ]
+				return [ 'HTMLELEMENT', startTagName, wrappedAttributes ]
 					.concat( parsedHtmlContents );
-			} else {
-				// HTML is not allowed, so contents will remain how
-				// it was, while HTML markup at this level will be
-				// treated as text
-				// E.g. assuming script tags are not allowed:
-				//
-				// <script>[[Foo|bar]]</script>
-				//
-				// results in '&lt;script&gt;' and '&lt;/script&gt;'
-				// (not treated as an HTML tag), surrounding a fully
-				// parsed HTML link.
-				//
-				// Concatenate everything from the tag, flattening the contents.
-				result = [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ) ]
-					.concat( parsedHtmlContents, input.slice( startCloseTagPos, endCloseTagPos ) );
 			}
-
-			return result;
+			// HTML is not allowed, so contents will remain how
+			// it was, while HTML markup at this level will be
+			// treated as text
+			// E.g. assuming script tags are not allowed:
+			//
+			// <script>[[Foo|bar]]</script>
+			//
+			// results in '&lt;script&gt;' and '&lt;/script&gt;'
+			// (not treated as an HTML tag), surrounding a fully
+			// parsed HTML link.
+			//
+			// Concatenate everything from the tag, flattening the contents.
+			return [ 'CONCAT', input.slice( startOpenTagPos, endOpenTagPos ) ]
+				.concat( parsedHtmlContents, input.slice( startCloseTagPos, endCloseTagPos ) );
 		}
 
 		// <nowiki>...</nowiki> tag. The tags are stripped and the contents are returned unparsed.
 		function nowiki() {
-			var parsedResult, plainText,
-				result = null;
-
-			parsedResult = sequence( [
+			var parsedResult = sequence( [
 				makeStringParser( '<nowiki>' ),
 				// We use a greedy non-backtracking parser, so we must ensure here that we don't take too much
 				makeRegexParser( /^.*?(?=<\/nowiki>)/ ),
 				makeStringParser( '</nowiki>' )
 			] );
-			if ( parsedResult !== null ) {
-				plainText = parsedResult[ 1 ];
-				result = [ 'CONCAT' ].concat( plainText );
-			}
-
-			return result;
+			return parsedResult === null ? null : [ 'CONCAT' ].concat( parsedResult[ 1 ] );
 		}
 
 		nonWhitespaceExpression = choice( [

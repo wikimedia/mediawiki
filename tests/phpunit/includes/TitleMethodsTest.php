@@ -379,6 +379,17 @@ class TitleMethodsTest extends MediaWikiLangTestCase {
 			'Goatificatiön'
 		];
 
+		yield 'Fragment only (query is ignored)' => [
+			'#Goatificatiön',
+			NS_MAIN,
+			'',
+			'Goatificatiön',
+			'',
+			[
+				'a' => 1,
+			]
+		];
+
 		yield 'Unknown interwiki with fragment' => [
 			'https://xx.wiki.test/wiki/xyzzy:Goats#Goatificatiön',
 			NS_MAIN,
