@@ -3684,6 +3684,7 @@
 	"htmlform-title-badnamespace": "[[:$1]] sayfası \"{{ns:$2}}\" ad alanında değil.",
 	"htmlform-title-not-creatable": "\"$1\" oluşturulabilir bir sayfa başlığı değil",
 	"htmlform-title-not-exists": "$1 mevcut değil.",
+	"htmlform-title-interwiki": "$1 bir vikiarası başlığıdır, yerrl olmalıdır.",
 	"htmlform-user-not-exists": "<strong>$1</strong> mevcut değil.",
 	"htmlform-user-not-valid": "<strong>$1</strong> geçerli bir kullanıcı adı değildir.",
 	"htmlform-tag-not-allowed": "$1 izin verilen bir etiket değil",
