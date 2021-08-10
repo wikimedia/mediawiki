@@ -241,6 +241,11 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 			'end' => '',
 		] );
 
+		$invalidObject = new class() {
+			public $rev_id;
+		};
+		$this->assertNull( $pager->tryCreatingRevisionRecord( $invalidObject, $title ) );
+
 		$invalidRow = (object)[
 			'foo' => 'bar'
 		];
@@ -270,5 +275,27 @@ class ContribsPagerTest extends MediaWikiIntegrationTestCase {
 		];
 
 		$this->assertNotNull( $pager->tryCreatingRevisionRecord( $validRow, $title ) );
+	}
+
+	/**
+	 * Flow uses ContribsPager::reallyDoQuery hook to provide something other then
+	 * stdClass as a row, and then manually formats it's own row in ContributionsLineEnding.
+	 * Emulate this behaviour and check that it works.
+	 *
+	 * @covers ContribsPager::formatRow
+	 */
+	public function testContribProvidedByHook() {
+		$this->setTemporaryHook( 'ContribsPager::reallyDoQuery', static function ( &$data ) {
+			$data = [ [ new class() {
+				public $rev_timestamp = 12345;
+				public $testing = 'TESTING';
+			} ] ];
+		} );
+		$this->setTemporaryHook( 'ContributionsLineEnding', function ( $pager, &$ret, $row ) {
+			$this->assertSame( 'TESTING', $row->testing );
+			$ret .= 'FROM_HOOK!';
+		} );
+		$pager = $this->getContribsPager( [] );
+		$this->assertStringContainsString( 'FROM_HOOK!', $pager->getBody() );
 	}
 }

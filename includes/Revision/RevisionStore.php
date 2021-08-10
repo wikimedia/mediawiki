@@ -2498,6 +2498,27 @@ class RevisionStore
 	}
 
 	/**
+	 * Determine whether the parameter is a row containing all the fields
+	 * that RevisionStore needs to create a RevisionRecord from the row.
+	 *
+	 * @param mixed $row
+	 * @return bool
+	 */
+	public function isRevisionRow( $row ) {
+		if ( !( $row instanceof stdClass ) ) {
+			return false;
+		}
+		$queryInfo = $this->getQueryInfo();
+		foreach ( $queryInfo['fields'] as $alias => $field ) {
+			$name = is_numeric( $alias ) ? $field : $alias;
+			if ( !property_exists( $row, $name ) ) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
 	 * Return the tables, fields, and join conditions to be selected to create
 	 * a new RevisionArchiveRecord object.
 	 *

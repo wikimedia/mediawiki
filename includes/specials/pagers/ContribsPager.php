@@ -579,32 +579,24 @@ class ContribsPager extends RangeChronologicalPager {
 	}
 
 	/**
-	 * Check whether the revision associated is valid for formatting. If has no associated revision
-	 * id then null is returned.
+	 * Check whether the revision associated is valid for formatting. If has no
+	 * associated revision ID then null is returned.
+	 *
+	 * This was previously used by formatRow() but now exists only for the
+	 * convenience of extensions.
 	 *
 	 * @since 1.35
+	 * @deprecated since 1.37 use RevisionStore::isRevisionRow()
 	 *
 	 * @param stdClass $row
 	 * @param Title|null $title
 	 * @return RevisionRecord|null
 	 */
 	public function tryCreatingRevisionRecord( $row, $title = null ) {
-		/*
-		 * There may be more than just revision rows. To make sure that we'll only be processing
-		 * revisions here, let's _try_ to build a revision out of our row (without displaying
-		 * notices though) and then trying to grab data from the built object. If we succeed,
-		 * we're definitely dealing with revision data and we may proceed, if not, we'll leave it
-		 * to extensions to subscribe to the hook to parse the row.
-		 */
-		Wikimedia\suppressWarnings();
-		try {
-			$revRecord = $this->revisionStore->newRevisionFromRow( $row, 0, $title );
-			return $revRecord->getId() ? $revRecord : null;
-		} catch ( Exception $e ) {
+		if ( !$this->revisionStore->isRevisionRow( $row ) ) {
 			return null;
-		} finally {
-			Wikimedia\restoreWarnings();
 		}
+		return $this->revisionStore->newRevisionFromRow( $row, 0, $title );
 	}
 
 	/**
@@ -616,7 +608,7 @@ class ContribsPager extends RangeChronologicalPager {
 	 * was not written by the target user.
 	 *
 	 * @todo This would probably look a lot nicer in a table.
-	 * @param stdClass $row
+	 * @param stdClass|mixed $row
 	 * @return string
 	 */
 	public function formatRow( $row ) {
@@ -632,8 +624,13 @@ class ContribsPager extends RangeChronologicalPager {
 		if ( isset( $row->page_namespace ) && isset( $row->page_title ) ) {
 			$page = Title::newFromRow( $row );
 		}
-		$revRecord = $this->tryCreatingRevisionRecord( $row, $page );
-		if ( $revRecord ) {
+		// Flow overrides the ContribsPager::reallyDoQuery hook, causing this
+		// function to be called with a special object for $row. It expects us
+		// skip formatting so that the row can be formatted by the
+		// ContributionsLineEnding hook below.
+		// FIXME: have some better way for extensions to provide formatted rows.
+		if ( $this->revisionStore->isRevisionRow( $row ) ) {
+			$revRecord = $this->revisionStore->newRevisionFromRow( $row, 0, $page );
 			$attribs['data-mw-revid'] = $revRecord->getId();
 
 			$link = $linkRenderer->makeLink(
