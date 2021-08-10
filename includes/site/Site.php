@@ -92,7 +92,7 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @var array[]|false
+	 * @var string[][]|false
 	 */
 	protected $localIds = [];
 
@@ -484,7 +484,7 @@ class Site implements Serializable {
 	 *
 	 * @since 1.21
 	 *
-	 * @return string|null
+	 * @return int|null
 	 */
 	public function getInternalId() {
 		return $this->internalId;
