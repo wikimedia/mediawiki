@@ -198,7 +198,11 @@ return [
 			$services->getWatchlistManager(),
 			$services->getDBLoadBalancer(),
 			$services->getContentLanguage(),
-			$services->getLanguageConverterFactory()
+			$services->getLanguageConverterFactory(),
+			$services->getBotPasswordStore(),
+			$services->getUserFactory(),
+			$services->getUserIdentityLookup(),
+			$services->getUserOptionsManager()
 		);
 		$authManager->setLogger( LoggerFactory::getInstance( 'authentication' ) );
 		return $authManager;

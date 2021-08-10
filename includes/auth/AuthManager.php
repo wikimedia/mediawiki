@@ -31,8 +31,12 @@ use MediaWiki\HookContainer\HookRunner;
 use MediaWiki\Languages\LanguageConverterFactory;
 use MediaWiki\Permissions\Authority;
 use MediaWiki\Permissions\PermissionStatus;
+use MediaWiki\User\BotPasswordStore;
+use MediaWiki\User\UserFactory;
 use MediaWiki\User\UserIdentity;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserOptionsManager;
 use MediaWiki\Watchlist\WatchlistManager;
 use Psr\Log\LoggerAwareInterface;
 use Psr\Log\LoggerInterface;
@@ -188,6 +192,18 @@ class AuthManager implements LoggerAwareInterface {
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
 
+	/** @var BotPasswordStore */
+	private $botPasswordStore;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
+
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
+
 	/**
 	 * @param WebRequest $request
 	 * @param Config $config
@@ -200,6 +216,10 @@ class AuthManager implements LoggerAwareInterface {
 	 * @param ILoadBalancer $loadBalancer
 	 * @param Language $contentLanguage
 	 * @param LanguageConverterFactory $languageConverterFactory
+	 * @param BotPasswordStore $botPasswordStore
+	 * @param UserFactory $userFactory
+	 * @param UserIdentityLookup $userIdentityLookup
+	 * @param UserOptionsManager $userOptionsManager
 	 */
 	public function __construct(
 		WebRequest $request,
@@ -212,7 +232,11 @@ class AuthManager implements LoggerAwareInterface {
 		WatchlistManager $watchlistManager,
 		ILoadBalancer $loadBalancer,
 		Language $contentLanguage,
-		LanguageConverterFactory $languageConverterFactory
+		LanguageConverterFactory $languageConverterFactory,
+		BotPasswordStore $botPasswordStore,
+		UserFactory $userFactory,
+		UserIdentityLookup $userIdentityLookup,
+		UserOptionsManager $userOptionsManager
 	) {
 		$this->request = $request;
 		$this->config = $config;
@@ -227,6 +251,10 @@ class AuthManager implements LoggerAwareInterface {
 		$this->loadBalancer = $loadBalancer;
 		$this->contentLanguage = $contentLanguage;
 		$this->languageConverterFactory = $languageConverterFactory;
+		$this->botPasswordStore = $botPasswordStore;
+		$this->userFactory = $userFactory;
+		$this->userIdentityLookup = $userIdentityLookup;
+		$this->userOptionsManager = $userOptionsManager;
 	}
 
 	/**
@@ -359,7 +387,7 @@ class AuthManager implements LoggerAwareInterface {
 				);
 			}
 
-			$user = User::newFromName( $req->username );
+			$user = $this->userFactory->newFromName( (string)$req->username );
 			// @codeCoverageIgnoreStart
 			if ( !$user ) {
 				throw new \UnexpectedValueException(
@@ -394,7 +422,7 @@ class AuthManager implements LoggerAwareInterface {
 					Status::wrap( $status )->getMessage()
 				);
 				$this->callMethodOnProviders( 7, 'postAuthentication',
-					[ User::newFromName( $guessUserName ) ?: null, $ret ]
+					[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
 				);
 				$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit( $ret, null, $guessUserName, [] );
 				return $ret;
@@ -508,8 +536,13 @@ class AuthManager implements LoggerAwareInterface {
 									$res->createRequest, $state['maybeLink']
 								);
 							}
-							$this->callMethodOnProviders( 7, 'postAuthentication',
-								[ User::newFromName( $guessUserName ) ?: null, $res ]
+							$this->callMethodOnProviders(
+								7,
+								'postAuthentication',
+								[
+									$this->userFactory->newFromName( (string)$guessUserName ),
+									$res
+								]
 							);
 							$session->remove( 'AuthManager::authnState' );
 							$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
@@ -541,7 +574,7 @@ class AuthManager implements LoggerAwareInterface {
 						wfMessage( 'authmanager-authn-no-primary' )
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication',
-						[ User::newFromName( $guessUserName ) ?: null, $ret ]
+						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
 					);
 					$session->remove( 'AuthManager::authnState' );
 					return $ret;
@@ -555,7 +588,7 @@ class AuthManager implements LoggerAwareInterface {
 						wfMessage( 'authmanager-authn-not-in-progress' )
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication',
-						[ User::newFromName( $guessUserName ) ?: null, $ret ]
+						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
 					);
 					$session->remove( 'AuthManager::authnState' );
 					return $ret;
@@ -576,7 +609,7 @@ class AuthManager implements LoggerAwareInterface {
 							);
 						}
 						$this->callMethodOnProviders( 7, 'postAuthentication',
-							[ User::newFromName( $guessUserName ) ?: null, $res ]
+							[ $this->userFactory->newFromName( (string)$guessUserName ), $res ]
 						);
 						$session->remove( 'AuthManager::authnState' );
 						$this->getHookRunner()->onAuthManagerLoginAuthenticateAudit(
@@ -606,7 +639,7 @@ class AuthManager implements LoggerAwareInterface {
 						wfMessage( 'authmanager-authn-not-in-progress' )
 					);
 					$this->callMethodOnProviders( 7, 'postAuthentication',
-						[ User::newFromName( $guessUserName ) ?: null, $ret ]
+						[ $this->userFactory->newFromName( (string)$guessUserName ), $ret ]
 					);
 					$session->remove( 'AuthManager::authnState' );
 					return $ret;
@@ -652,7 +685,10 @@ class AuthManager implements LoggerAwareInterface {
 			// Step 2: Primary authentication succeeded, create the User object
 			// (and add the user locally if necessary)
 
-			$user = User::newFromName( $res->username, 'usable' );
+			$user = $this->userFactory->newFromName(
+				(string)$res->username,
+				UserFactory::RIGOR_USABLE
+			);
 			if ( !$user ) {
 				$provider = $this->getAuthenticationProvider( $state['primary'] );
 				throw new \DomainException(
@@ -963,7 +999,7 @@ class AuthManager implements LoggerAwareInterface {
 		// When the main account's authentication data is changed, invalidate
 		// all BotPasswords too.
 		if ( !$isAddition ) {
-			\BotPassword::invalidateAllPasswordsForUser( $req->username );
+			$this->botPasswordStore->invalidateUserPasswords( (string)$req->username );
 		}
 	}
 
@@ -1015,7 +1051,7 @@ class AuthManager implements LoggerAwareInterface {
 			return Status::newFatal( 'userexists' );
 		}
 
-		$user = User::newFromName( $username, 'creatable' );
+		$user = $this->userFactory->newFromName( (string)$username, UserFactory::RIGOR_CREATABLE );
 		if ( !is_object( $user ) ) {
 			return Status::newFatal( 'noname' );
 		} else {
@@ -1127,7 +1163,7 @@ class AuthManager implements LoggerAwareInterface {
 			return AuthenticationResponse::newFail( $status->getMessage() );
 		}
 
-		$user = User::newFromName( $username, 'creatable' );
+		$user = $this->userFactory->newFromName( (string)$username, UserFactory::RIGOR_CREATABLE );
 		foreach ( $reqs as $req ) {
 			$req->username = $username;
 			$req->returnToUrl = $returnToUrl;
@@ -1206,7 +1242,10 @@ class AuthManager implements LoggerAwareInterface {
 
 			// Step 0: Prepare and validate the input
 
-			$user = User::newFromName( $state['username'], 'creatable' );
+			$user = $this->userFactory->newFromName(
+				(string)$state['username'],
+				UserFactory::RIGOR_CREATABLE
+			);
 			if ( !is_object( $user ) ) {
 				$session->remove( 'AuthManager::accountCreationState' );
 				$this->logger->debug( __METHOD__ . ': Invalid username', [
@@ -1216,9 +1255,9 @@ class AuthManager implements LoggerAwareInterface {
 			}
 
 			if ( $state['creatorid'] ) {
-				$creator = User::newFromId( $state['creatorid'] );
+				$creator = $this->userFactory->newFromId( (int)$state['creatorid'] );
 			} else {
-				$creator = new User;
+				$creator = $this->userFactory->newAnonymous();
 				$creator->setName( $state['creatorname'] );
 			}
 
@@ -1601,7 +1640,10 @@ class AuthManager implements LoggerAwareInterface {
 		$username = $user->getName();
 
 		// Try the local user from the replica DB
-		$localId = User::idFromName( $username );
+		$localUserIdentity = $this->userIdentityLookup->getUserIdentityByName( $username );
+		$localId = ( $localUserIdentity && $localUserIdentity->getId() )
+			? $localUserIdentity->getId()
+			: null;
 		$flags = User::READ_NORMAL;
 
 		// Fetch the user ID from the primary, so that we don't try to create the user
@@ -1611,7 +1653,13 @@ class AuthManager implements LoggerAwareInterface {
 			!$localId &&
 			$this->loadBalancer->getReaderIndex() !== 0
 		) {
-			$localId = User::idFromName( $username, User::READ_LATEST );
+			$localUserIdentity = $this->userIdentityLookup->getUserIdentityByName(
+				$username,
+				UserIdentityLookup::READ_LATEST
+			);
+			$localId = ( $localUserIdentity && $localUserIdentity->getId() )
+				? $localUserIdentity->getId()
+				: null;
 			$flags = User::READ_LATEST;
 		}
 		// @codeCoverageIgnoreEnd
@@ -1672,7 +1720,7 @@ class AuthManager implements LoggerAwareInterface {
 		}
 
 		// Is the IP user able to create accounts?
-		$anon = new User;
+		$anon = $this->userFactory->newAnonymous();
 		if ( $source !== self::AUTOCREATE_SOURCE_MAINT &&
 			!$anon->isAllowedAny( 'createaccount', 'autocreateaccount' )
 		) {
@@ -1968,7 +2016,10 @@ class AuthManager implements LoggerAwareInterface {
 
 			// Step 0: Prepare and validate the input
 
-			$user = User::newFromName( $state['username'], 'usable' );
+			$user = $this->userFactory->newFromName(
+				(string)$state['username'],
+				UserFactory::RIGOR_USABLE
+			);
 			if ( !is_object( $user ) ) {
 				$session->remove( 'AuthManager::accountLinkState' );
 				return AuthenticationResponse::newFail( wfMessage( 'noname' ) );
@@ -2450,14 +2501,19 @@ class AuthManager implements LoggerAwareInterface {
 		$user->setToken();
 
 		$lang = $useContextLang ? \RequestContext::getMain()->getLanguage() : $this->contentLanguage;
-		$user->setOption(
+		$this->userOptionsManager->setOption(
+			$user,
 			'language',
 			$this->languageConverterFactory->getLanguageConverter( $lang )->getPreferredVariant()
 		);
 
 		$contLangConverter = $this->languageConverterFactory->getLanguageConverter( $this->contentLanguage );
 		if ( $contLangConverter->hasVariants() ) {
-			$user->setOption( 'variant', $contLangConverter->getPreferredVariant() );
+			$this->userOptionsManager->setOption(
+				$user,
+				'variant',
+				$contLangConverter->getPreferredVariant()
+			);
 		}
 	}
 

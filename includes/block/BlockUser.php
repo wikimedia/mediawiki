@@ -410,7 +410,7 @@ class BlockUser {
 	 * Status is an instance of a newly placed block.
 	 */
 	public function placeBlock( bool $reblock = false ): Status {
-		$priorBlock = DatabaseBlock::newFromTarget( $this->target );
+		$priorBlock = DatabaseBlock::newFromTarget( $this->target, null, /*fromPrimary=*/true );
 		$priorHideUser = $priorBlock instanceof DatabaseBlock && $priorBlock->getHideName();
 		if (
 			$this->blockPermissionChecker
@@ -552,6 +552,7 @@ class BlockUser {
 		}
 
 		// Is there a conflicting block?
+		// xxx: there is an identical call at the beginning of ::placeBlock
 		$priorBlock = DatabaseBlock::newFromTarget( $this->target, null, /*fromPrimary=*/true );
 
 		$isReblock = false;
