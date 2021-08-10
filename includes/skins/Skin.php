@@ -750,7 +750,7 @@ abstract class Skin extends ContextSource {
 	 * @return string HTML
 	 */
 	public function getUndeleteLink() {
-		$action = $this->getRequest()->getVal( 'action', 'view' );
+		$action = $this->getRequest()->getRawVal( 'action', 'view' );
 		$title = $this->getTitle();
 		$linkRenderer = MediaWikiServices::getInstance()->getLinkRenderer();
 
