@@ -4432,7 +4432,9 @@ class EditPage implements IEditObject {
 	 *
 	 * @param int &$tabindex Current tabindex
 	 *
-	 * @return array
+	 * @return string[] Strings or objects with a __toString() implementation. Usually an array of
+	 *  {@see ButtonInputWidget}, but EditPageBeforeEditButtons hook handlers might inject something
+	 *  else.
 	 */
 	public function getEditButtons( &$tabindex ) {
 		$buttons = [];

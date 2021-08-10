@@ -4420,7 +4420,7 @@ class Title implements LinkTarget, PageIdentity, IDBAccessObject {
 	 *
 	 * @since 1.21
 	 * @param int $oldid Revision ID that's being edited
-	 * @return array
+	 * @return string[]
 	 */
 	public function getEditNotices( $oldid = 0 ) {
 		$notices = [];

@@ -62,7 +62,7 @@ class SearchEngineConfig {
 	}
 
 	/**
-	 * Make a list of searchable namespaces and their canonical names.
+	 * Make a list of searchable namespaces and their localized names.
 	 * @return string[] Namespace ID => name
 	 * @phan-return array<int,string>
 	 */
