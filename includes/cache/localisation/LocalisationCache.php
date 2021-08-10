@@ -661,15 +661,19 @@ class LocalisationCache {
 	 * Load the plural XML files.
 	 */
 	protected function loadPluralFiles() {
-		global $IP;
-		$cldrPlural = "$IP/languages/data/plurals.xml";
-		$mwPlural = "$IP/languages/data/plurals-mediawiki.xml";
-		// Load CLDR plural rules
-		$this->loadPluralFile( $cldrPlural );
-		if ( file_exists( $mwPlural ) ) {
-			// Override or extend
-			$this->loadPluralFile( $mwPlural );
+		foreach ( $this->getPluralFiles() as $fileName ) {
+			$this->loadPluralFile( $fileName );
 		}
+	}
+
+	private function getPluralFiles(): array {
+		global $IP;
+		return [
+			// Load CLDR plural rules
+			"$IP/languages/data/plurals.xml",
+			// Override or extend with MW-specific rules
+			"$IP/languages/data/plurals-mediawiki.xml",
+		];
 	}
 
 	/**
@@ -719,8 +723,6 @@ class LocalisationCache {
 	 * @return array
 	 */
 	protected function readSourceFilesAndRegisterDeps( $code, &$deps ) {
-		global $IP;
-
 		// This reads in the PHP i18n file with non-messages l10n data
 		$fileName = $this->langNameUtils->getMessagesFileName( $code );
 		if ( !file_exists( $fileName ) ) {
@@ -730,15 +732,16 @@ class LocalisationCache {
 			$data = $this->readPHPFile( $fileName, 'core' );
 		}
 
-		# Load CLDR plural rules for JavaScript
+		// Load CLDR plural rules for JavaScript
 		$data['pluralRules'] = $this->getPluralRules( $code );
-		# And for PHP
+		// And for PHP
 		$data['compiledPluralRules'] = $this->getCompiledPluralRules( $code );
-		# Load plural rule types
+		// Load plural rule types
 		$data['pluralRuleTypes'] = $this->getPluralRuleTypes( $code );
 
-		$deps['plurals'] = new FileDependency( "$IP/languages/data/plurals.xml" );
-		$deps['plurals-mw'] = new FileDependency( "$IP/languages/data/plurals-mediawiki.xml" );
+		foreach ( $this->getPluralFiles() as $fileName ) {
+			$deps[] = new FileDependency( $fileName );
+		}
 
 		return $data;
 	}
