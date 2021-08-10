@@ -3744,6 +3744,7 @@
 	"htmlform-title-badnamespace": "[[:$1]]不在“{{ns:$2}}”名字空间中。",
 	"htmlform-title-not-creatable": "“$1”不是一个可创建的页面标题",
 	"htmlform-title-not-exists": "$1不存在。",
+	"htmlform-title-interwiki": "$1为跨wiki标题，请输入本地标题。",
 	"htmlform-user-not-exists": "<strong>$1</strong>不存在。",
 	"htmlform-user-not-valid": "<strong>$1</strong>不是一个有效的用户名。",
 	"htmlform-tag-not-allowed": "$1标签不被允许",

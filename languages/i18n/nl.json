@@ -3628,6 +3628,7 @@
 	"htmlform-title-badnamespace": "[[:$1]] bevindt zich niet in de naamruimte \"{{ns:$2}}\".",
 	"htmlform-title-not-creatable": "\"$1\" is geen paginanaam die aangemaakt kan worden",
 	"htmlform-title-not-exists": "$1 bestaat niet.",
+	"htmlform-title-interwiki": "$1 is een interwiki-titel, moet lokaal zijn.",
 	"htmlform-user-not-exists": "<strong>$1</strong> bestaat niet.",
 	"htmlform-user-not-valid": "<strong>$1</strong> is geen geldige gebruikersnaam.",
 	"htmlform-tag-not-allowed": "$1 is niet een toegestaan item",
