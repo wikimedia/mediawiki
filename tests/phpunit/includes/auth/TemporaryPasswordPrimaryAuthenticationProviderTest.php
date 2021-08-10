@@ -61,7 +61,11 @@ class TemporaryPasswordPrimaryAuthenticationProviderTest extends \MediaWikiInteg
 				$mwServices->getWatchlistManager(),
 				$mwServices->getDBLoadBalancer(),
 				$mwServices->getContentLanguage(),
-				$mwServices->getLanguageConverterFactory()
+				$mwServices->getLanguageConverterFactory(),
+				$mwServices->getBotPasswordStore(),
+				$mwServices->getUserFactory(),
+				$mwServices->getUserIdentityLookup(),
+				$mwServices->getUserOptionsManager()
 			);
 		}
 		$this->validity = \Status::newGood();

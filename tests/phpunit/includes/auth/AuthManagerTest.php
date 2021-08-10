@@ -14,7 +14,11 @@ use MediaWiki\HookContainer\StaticHookRegistry;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\SessionInfo;
 use MediaWiki\Session\UserInfo;
+use MediaWiki\User\BotPasswordStore;
+use MediaWiki\User\UserFactory;
+use MediaWiki\User\UserIdentityLookup;
 use MediaWiki\User\UserNameUtils;
+use MediaWiki\User\UserOptionsManager;
 use MediaWiki\Watchlist\WatchlistManager;
 use PHPUnit\Framework\Assert;
 use PHPUnit\Framework\MockObject\Builder\InvocationMocker;
@@ -79,6 +83,18 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 
 	/** @var LanguageConverterFactory */
 	private $languageConverterFactory;
+
+	/** @var BotPasswordStore */
+	private $botPasswordStore;
+
+	/** @var UserFactory */
+	private $userFactory;
+
+	/** @var UserIdentityLookup */
+	private $userIdentityLookup;
+
+	/** @var UserOptionsManager */
+	private $userOptionsManager;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -185,6 +201,7 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 	 * @param bool $regen Force a call to $this->initializeConfig()
 	 */
 	protected function initializeManager( $regen = false ) {
+		// TODO clean this up, don't need to re fetch the services each time
 		if ( $regen || !$this->config ) {
 			$this->config = new \HashConfig();
 		}
@@ -235,6 +252,18 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 		if ( $regen || !$this->languageConverterFactory ) {
 			$this->languageConverterFactory = MediaWikiServices::getInstance()->getLanguageConverterFactory();
 		}
+		if ( $regen || !$this->botPasswordStore ) {
+			$this->botPasswordStore = MediaWikiServices::getInstance()->getBotPasswordStore();
+		}
+		if ( $regen || !$this->userFactory ) {
+			$this->userFactory = MediaWikiServices::getInstance()->getUserFactory();
+		}
+		if ( $regen || !$this->userIdentityLookup ) {
+			$this->userIdentityLookup = MediaWikiServices::getInstance()->getUserIdentityLookup();
+		}
+		if ( $regen || !$this->userOptionsManager ) {
+			$this->userOptionsManager = MediaWikiServices::getInstance()->getUserOptionsManager();
+		}
 		if ( !$this->logger ) {
 			$this->logger = new \TestLogger();
 		}
@@ -253,7 +282,11 @@ class AuthManagerTest extends \MediaWikiIntegrationTestCase {
 			$this->watchlistManager,
 			$this->loadBalancer,
 			$this->contentLanguage,
-			$this->languageConverterFactory
+			$this->languageConverterFactory,
+			$this->botPasswordStore,
+			$this->userFactory,
+			$this->userIdentityLookup,
+			$this->userOptionsManager
 		);
 		$this->manager->setLogger( $this->logger );
 		$this->managerPriv = TestingAccessWrapper::newFromObject( $this->manager );

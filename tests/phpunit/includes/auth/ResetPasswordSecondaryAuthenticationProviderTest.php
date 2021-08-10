@@ -107,7 +107,11 @@ class ResetPasswordSecondaryAuthenticationProviderTest extends \MediaWikiIntegra
 			$mwServices->getWatchlistManager(),
 			$mwServices->getDBLoadBalancer(),
 			$mwServices->getContentLanguage(),
-			$mwServices->getLanguageConverterFactory()
+			$mwServices->getLanguageConverterFactory(),
+			$mwServices->getBotPasswordStore(),
+			$mwServices->getUserFactory(),
+			$mwServices->getUserIdentityLookup(),
+			$mwServices->getUserOptionsManager()
 		);
 		$this->initProvider( $provider, null, null, $manager );
 		$provider = TestingAccessWrapper::newFromObject( $provider );
