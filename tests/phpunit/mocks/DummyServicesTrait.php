@@ -235,12 +235,18 @@ trait DummyServicesTrait {
 				}
 				// based on the real Language::getNsIndex but without
 				// the support for translated namespace names
+				// We do still support English aliases "Image" and
+				// "Image_talk" though
 				$index = $namespaceInfo->getCanonicalIndex( $text );
 
 				if ( $index !== null ) {
 					return $index;
 				}
-				return false;
+				$aliases = [
+					'image' => NS_FILE,
+					'image_talk' => NS_FILE,
+				];
+				return $aliases[$text] ?? false;
 			}
 		);
 		$language->method( 'getNsText' )->willReturnCallback(
