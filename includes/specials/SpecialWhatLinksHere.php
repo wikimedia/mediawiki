@@ -252,7 +252,7 @@ class SpecialWhatLinksHere extends IncludableSpecialPage {
 
 		if ( $fetchredirs ) {
 			$rdRes = $dbr->newSelectQueryBuilder()
-				->tables( [ 'redirect', 'page' ] )
+				->table( 'redirect' )
 				->fields( [ 'page_id', 'page_namespace', 'page_title', 'rd_from', 'rd_fragment', 'page_is_redirect' ] )
 				->conds( $conds['redirect'] )
 				->orderBy( 'rd_from', $sortDirection )
