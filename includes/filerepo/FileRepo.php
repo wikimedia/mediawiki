@@ -993,9 +993,8 @@ class FileRepo {
 		if ( $flags & self::SKIP_LOCKING ) {
 			$opts['nonLocking'] = true;
 		}
-		$status->merge( $backend->doOperations( $operations, $opts ) );
 
-		return $status;
+		return $status->merge( $backend->doOperations( $operations, $opts ) );
 	}
 
 	/**
@@ -1030,9 +1029,8 @@ class FileRepo {
 		if ( $flags & self::SKIP_LOCKING ) {
 			$opts['nonLocking'] = true;
 		}
-		$status->merge( $this->backend->doOperations( $operations, $opts ) );
 
-		return $status;
+		return $status->merge( $this->backend->doOperations( $operations, $opts ) );
 	}
 
 	/**
@@ -1102,9 +1100,8 @@ class FileRepo {
 			];
 			$status->merge( $this->initDirectory( dirname( $dst ) ) );
 		}
-		$status->merge( $this->backend->doQuickOperations( $operations ) );
 
-		return $status;
+		return $status->merge( $this->backend->doQuickOperations( $operations ) );
 	}
 
 	/**
@@ -1127,11 +1124,11 @@ class FileRepo {
 	 * @return Status
 	 */
 	public function quickCleanDir( $dir ) {
-		$status = $this->newGood();
-		$status->merge( $this->backend->clean(
-			[ 'dir' => $this->resolveToStoragePathIfVirtual( $dir ) ] ) );
-
-		return $status;
+		return $this->newGood()->merge(
+			$this->backend->clean(
+				[ 'dir' => $this->resolveToStoragePathIfVirtual( $dir ) ]
+			)
+		);
 	}
 
 	/**
@@ -1414,10 +1411,7 @@ class FileRepo {
 			$params = [ 'noAccess' => true, 'noListing' => true ] + $params;
 		}
 
-		$status = $this->newGood();
-		$status->merge( $this->backend->prepare( $params ) );
-
-		return $status;
+		return $this->newGood()->merge( $this->backend->prepare( $params ) );
 	}
 
 	/**
@@ -1429,11 +1423,11 @@ class FileRepo {
 	public function cleanDir( $dir ) {
 		$this->assertWritableRepo(); // fail out if read-only
 
-		$status = $this->newGood();
-		$status->merge( $this->backend->clean(
-			[ 'dir' => $this->resolveToStoragePathIfVirtual( $dir ) ] ) );
-
-		return $status;
+		return $this->newGood()->merge(
+			$this->backend->clean(
+				[ 'dir' => $this->resolveToStoragePathIfVirtual( $dir ) ]
+			)
+		);
 	}
 
 	/**
@@ -1547,9 +1541,7 @@ class FileRepo {
 		// We're now committed to returning an OK result, which will
 		// lead to the files being moved in the DB also.
 		$opts = [ 'force' => true ];
-		$status->merge( $backend->doOperations( $operations, $opts ) );
-
-		return $status;
+		return $status->merge( $backend->doOperations( $operations, $opts ) );
 	}
 
 	/**
@@ -1697,8 +1689,7 @@ class FileRepo {
 		ob_start( null, 1048576 );
 		ob_implicit_flush( true );
 
-		$status = $this->newGood();
-		$status->merge( $this->backend->streamFile( $params ) );
+		$status = $this->newGood()->merge( $this->backend->streamFile( $params ) );
 
 		// T186565: Close the buffer, unless it has already been closed
 		// in HTTPFileStreamer::resetOutputBuffers().

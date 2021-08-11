@@ -131,14 +131,12 @@ class UnblockUser {
 			$this->block instanceof DatabaseBlock && $this->block->getHideName()
 		);
 		if ( $basePermissionCheckResult !== true ) {
-			$status->fatal( $basePermissionCheckResult );
-			return $status;
+			return $status->fatal( $basePermissionCheckResult );
 		}
 
 		$blockPermissionCheckResult = $this->blockPermissionChecker->checkBlockPermissions();
 		if ( $blockPermissionCheckResult !== true ) {
-			$status->fatal( $blockPermissionCheckResult );
-			return $status;
+			return $status->fatal( $blockPermissionCheckResult );
 		}
 
 		if ( count( $this->tags ) !== 0 ) {
@@ -166,16 +164,14 @@ class UnblockUser {
 		$status = Status::newGood();
 
 		if ( $this->block === null ) {
-			$status->fatal( 'ipb_cant_unblock', $this->target );
-			return $status;
+			return $status->fatal( 'ipb_cant_unblock', $this->target );
 		}
 
 		if (
 			$this->block->getType() === AbstractBlock::TYPE_RANGE &&
 			$this->targetType === AbstractBlock::TYPE_IP
 		) {
-			$status->fatal( 'ipb_blocked_as_range', $this->target, $this->block->getTargetName() );
-			return $status;
+			return $status->fatal( 'ipb_blocked_as_range', $this->target, $this->block->getTargetName() );
 		}
 
 		$denyReason = [ 'hookaborted' ];
@@ -189,8 +185,7 @@ class UnblockUser {
 
 		$deleteBlockStatus = $this->blockStore->deleteBlock( $this->block );
 		if ( !$deleteBlockStatus ) {
-			$status->fatal( 'ipb_cant_unblock', $this->block->getTargetName() );
-			return $status;
+			return $status->fatal( 'ipb_cant_unblock', $this->block->getTargetName() );
 		}
 
 		$this->hookRunner->onUnblockUserComplete( $this->block, $legacyUser );

@@ -2218,9 +2218,7 @@ class EditPage implements IEditObject {
 			}
 
 			if ( $this->isConflict ) {
-				$status = Status::newGood( self::AS_CONFLICT_DETECTED );
-				$status->setOK( false );
-				return $status;
+				return Status::newGood( self::AS_CONFLICT_DETECTED )->setOK( false );
 			}
 
 			// BEGINNING OF MIGRATION TO EDITCONSTRAINT SYSTEM (see T157658)
