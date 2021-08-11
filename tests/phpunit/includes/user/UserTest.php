@@ -444,6 +444,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 	 * @covers User::getStubThreshold
 	 */
 	public function testOptions() {
+		$this->hideDeprecated( 'User::getIntOption' );
 		$this->setMwGlobals( [
 			'wgMaxArticleSize' => 2,
 		] );

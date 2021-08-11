@@ -463,6 +463,7 @@ because of Phabricator reports.
    - getEffectiveGroups
    - getAutomaticGroups
    - getFormerGroups
+   - getIntOption
 * The following methods in User were deprecated:
   - ::idFromName - use UserIdentityLookup::getUserIdentityByName instead.
   - ::resetIdByNameCache - in tests, reset service container. No replacement

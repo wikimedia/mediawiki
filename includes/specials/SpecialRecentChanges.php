@@ -36,7 +36,6 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 
 	protected static $savedQueriesPreferenceName = 'rcfilters-saved-queries';
 	protected static $daysPreferenceName = 'rcdays'; // Use general RecentChanges preference
-	protected static $limitPreferenceName = 'rcfilters-limit'; // Use RCFilters-specific preference
 	protected static $collapsedPreferenceName = 'rcfilters-rc-collapsed';
 
 	private $watchlistFilterGroupDefinition;
@@ -958,11 +957,18 @@ class SpecialRecentChanges extends ChangesListSpecialPage {
 		// Prefer the RCFilters-specific preference if RCFilters is enabled
 		if ( $this->isStructuredFilterUiEnabled() ) {
 			return $this->userOptionsLookup->getIntOption(
-				$this->getUser(), static::$limitPreferenceName, $systemPrefValue
+				$this->getUser(), $this->getLimitPreferenceName(), $systemPrefValue
 			);
 		}
 
 		// Otherwise, use the system rclimit preference value
 		return $systemPrefValue;
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getLimitPreferenceName(): string {
+		return 'rcfilters-limit'; // Use RCFilters-specific preference
 	}
 }

@@ -36,7 +36,6 @@ use Wikimedia\Rdbms\IResultWrapper;
 class SpecialWatchlist extends ChangesListSpecialPage {
 	protected static $savedQueriesPreferenceName = 'rcfilters-wl-saved-queries';
 	protected static $daysPreferenceName = 'watchlistdays';
-	protected static $limitPreferenceName = 'wllimit';
 	protected static $collapsedPreferenceName = 'rcfilters-wl-collapsed';
 
 	/** @var WatchedItemStoreInterface */
@@ -927,5 +926,12 @@ class SpecialWatchlist extends ChangesListSpecialPage {
 			$this->getUser(),
 			$rc->getTitle()
 		);
+	}
+
+	/**
+	 * @return string
+	 */
+	protected function getLimitPreferenceName(): string {
+		return 'wllimit';
 	}
 }

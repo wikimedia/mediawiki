@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Session\Session;
 use MediaWiki\Session\SessionId;
 use MediaWiki\Session\SessionManager;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\IPUtils;
 
 // The point of this class is to be a wrapper around super globals
@@ -1000,18 +1001,20 @@ class WebRequest {
 	 * defaults if not given. The limit must be positive and is capped at 5000.
 	 * Offset must be positive but is not capped.
 	 *
-	 * @param User $user User to get option for
+	 * @param UserIdentity $user UserIdentity to get option for
 	 * @param int $deflimit Limit to use if no input and the user hasn't set the option.
 	 * @param string $optionname To specify an option other than rclimit to pull from.
 	 * @return int[] First element is limit, second is offset
 	 */
-	public function getLimitOffsetForUser( User $user, $deflimit = 50, $optionname = 'rclimit' ) {
+	public function getLimitOffsetForUser( UserIdentity $user, $deflimit = 50, $optionname = 'rclimit' ) {
 		$limit = $this->getInt( 'limit', 0 );
 		if ( $limit < 0 ) {
 			$limit = 0;
 		}
 		if ( ( $limit == 0 ) && ( $optionname != '' ) ) {
-			$limit = $user->getIntOption( $optionname );
+			$limit = MediaWikiServices::getInstance()
+				->getUserOptionsLookup()
+				->getIntOption( $user, $optionname );
 		}
 		if ( $limit <= 0 ) {
 			$limit = $deflimit;
