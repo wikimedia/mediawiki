@@ -118,6 +118,15 @@ interface RevisionFactory extends IDBAccessObject {
 	 */
 	public function getQueryInfo( $options = [] );
 
+	/**
+	 * Determine whether the parameter is a row containing all the fields
+	 * that RevisionFactory needs to create a RevisionRecord from the row.
+	 *
+	 * @param mixed $row
+	 * @return bool
+	 */
+	public function isRevisionRow( $row );
+
 }
 
 /**

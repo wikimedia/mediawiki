@@ -42,6 +42,7 @@ class UserTest extends MediaWikiIntegrationTestCase {
 		$this->setUpPermissionGlobals();
 
 		$this->user = $this->getTestUser( 'unittesters' )->getUser();
+		$this->tablesUsed[] = 'revision';
 	}
 
 	private function setUpPermissionGlobals() {
