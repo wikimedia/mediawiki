@@ -28,9 +28,11 @@ use MediaWiki\Config\ServiceOptions;
 use MediaWiki\Content\IContentHandlerFactory;
 use MediaWiki\Content\Transform\ContentTransformer;
 use MediaWiki\HookContainer\HookContainer;
+use MediaWiki\Permissions\PermissionManager;
 use MediaWiki\Revision\RevisionRenderer;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\SlotRoleRegistry;
+use MediaWiki\User\TalkPageNotificationManager;
 use MediaWiki\User\UserEditTracker;
 use MediaWiki\User\UserGroupManager;
 use MediaWiki\User\UserIdentity;
@@ -39,6 +41,7 @@ use MessageCache;
 use ParserCache;
 use Psr\Log\LoggerInterface;
 use TitleFormatter;
+use WANObjectCache;
 use Wikimedia\Assert\Assert;
 use Wikimedia\Rdbms\ILBFactory;
 use WikiPage;
@@ -120,6 +123,18 @@ class PageUpdaterFactory {
 	/** @var ContentTransformer */
 	private $contentTransformer;
 
+	/** @var PageEditStash */
+	private $pageEditStash;
+
+	/** @var TalkPageNotificationManager */
+	private $talkPageNotificationManager;
+
+	/** @var WANObjectCache */
+	private $mainWANObjectCache;
+
+	/** @var PermissionManager */
+	private $permissionManager;
+
 	/** @var string[] */
 	private $softwareTags;
 
@@ -142,6 +157,10 @@ class PageUpdaterFactory {
 	 * @param UserGroupManager $userGroupManager
 	 * @param TitleFormatter $titleFormatter
 	 * @param ContentTransformer $contentTransformer
+	 * @param PageEditStash $pageEditStash
+	 * @param TalkPageNotificationManager $talkPageNotificationManager
+	 * @param WANObjectCache $mainWANObjectCache
+	 * @param PermissionManager $permissionManager
 	 * @param string[] $softwareTags
 	 */
 	public function __construct(
@@ -163,6 +182,10 @@ class PageUpdaterFactory {
 		UserGroupManager $userGroupManager,
 		TitleFormatter $titleFormatter,
 		ContentTransformer $contentTransformer,
+		PageEditStash $pageEditStash,
+		TalkPageNotificationManager $talkPageNotificationManager,
+		WANObjectCache $mainWANObjectCache,
+		PermissionManager $permissionManager,
 		array $softwareTags
 	) {
 		$options->assertRequiredOptions( self::CONSTRUCTOR_OPTIONS );
@@ -185,6 +208,10 @@ class PageUpdaterFactory {
 		$this->userGroupManager = $userGroupManager;
 		$this->titleFormatter = $titleFormatter;
 		$this->contentTransformer = $contentTransformer;
+		$this->pageEditStash = $pageEditStash;
+		$this->talkPageNotificationManager = $talkPageNotificationManager;
+		$this->mainWANObjectCache = $mainWANObjectCache;
+		$this->permissionManager = $permissionManager;
 		$this->softwareTags = $softwareTags;
 	}
 
@@ -287,7 +314,11 @@ class PageUpdaterFactory {
 			$this->hookContainer,
 			$this->editResultCache,
 			$this->userNameUtils,
-			$this->contentTransformer
+			$this->contentTransformer,
+			$this->pageEditStash,
+			$this->talkPageNotificationManager,
+			$this->mainWANObjectCache,
+			$this->permissionManager
 		);
 
 		$derivedDataUpdater->setLogger( $this->logger );
