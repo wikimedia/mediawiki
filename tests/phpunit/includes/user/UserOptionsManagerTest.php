@@ -149,6 +149,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
 	 */
 	public function testUserSaveOptionsHookAbort() {
+		$this->filterDeprecated( '/UserSaveOptions/' );
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserSaveOptions',
@@ -183,6 +184,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
 	 */
 	public function testUserSaveOptionsHookModify() {
+		$this->filterDeprecated( '/UserSaveOptions/' );
 		$user = $this->getTestUser()->getUser();
 		$this->setTemporaryHook(
 			'UserSaveOptions',
@@ -233,6 +235,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 * @covers MediaWiki\User\UserOptionsManager::saveOptions
 	 */
 	public function testUserSaveOptionsHookOriginal() {
+		$this->filterDeprecated( '/UserSaveOptions/' );
 		$user = $this->getTestUser()->getUser();
 		$manager = $this->getManager();
 		$originalLanguage = $manager->getOption( $user, 'language' );
@@ -284,6 +287,7 @@ class UserOptionsManagerTest extends UserOptionsLookupTest {
 	 * @covers \MediaWiki\User\UserOptionsManager::loadUserOptions
 	 */
 	public function testLoadOptionsHookReflectsInOriginalOptions() {
+		$this->filterDeprecated( '/UserSaveOptions/' );
 		$user = $this->getTestUser()->getUser();
 		$manager = $this->getManager();
 		$this->setTemporaryHook(
