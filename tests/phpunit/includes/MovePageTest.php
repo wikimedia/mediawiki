@@ -54,7 +54,14 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 				[ 'Existent.jpg', 'Existent2.jpg', 'Existent-file-no-page.jpg' ]
 			),
 			$params['contentHandlerFactory']
-				?? MediaWikiServices::getInstance()->getContentHandlerFactory()
+				?? MediaWikiServices::getInstance()->getContentHandlerFactory(),
+			$this->getServiceContainer()->getRevisionStore(),
+			$this->getServiceContainer()->getSpamChecker(),
+			$this->getServiceContainer()->getHookContainer(),
+			$this->getServiceContainer()->getWikiPageFactory(),
+			$this->getServiceContainer()->getUserFactory(),
+			$this->getServiceContainer()->getUserEditTracker(),
+			$this->getServiceContainer()->getMovePageFactory()
 		);
 	}
 
@@ -104,6 +111,8 @@ class MovePageTest extends MediaWikiIntegrationTestCase {
 	 */
 	public function testConstructorDefaults() {
 		$services = MediaWikiServices::getInstance();
+
+		$this->filterDeprecated( '/MovePage::__construct/' );
 
 		$obj1 = new MovePage( Title::newFromText( 'A' ), Title::newFromText( 'B' ) );
 		$obj2 = new MovePage(
