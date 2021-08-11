@@ -51,6 +51,8 @@ trait MockHttpTrait {
 	 *        or a string that will be used as the response body of a successful request.
 	 *        If a MultiHttpClient is given, createMultiClient() is supported.
 	 *        If a GuzzleHttp\Client is given, createGuzzleClient() is supported.
+	 *        Array of MultiHttpClient or GuzzleHttp\Client mocks is supported, but not an array
+	 *        that contains the mix of the two.
 	 *        If null is given, any call to create(), createMultiClient() or createGuzzleClient()
 	 *        will cause the test to fail.
 	 */
@@ -70,6 +72,9 @@ trait MockHttpTrait {
 	 *        or a callable producing such an MWHttpRequest,
 	 *        or a string that will be used as the response body of a successful request.
 	 *        If a MultiHttpClient is given, createMultiClient() is supported.
+	 *        If a GuzzleHttp\Client is given, createGuzzleClient() is supported.
+	 *        Array of MultiHttpClient or GuzzleHttp\Client mocks is supported, but not an array
+	 *        that contains the mix of the two.
 	 *        If null or a MultiHttpClient is given instead of a MWHttpRequest,
 	 *        a call to create() will cause the test to fail.
 	 *
@@ -93,20 +98,20 @@ trait MockHttpTrait {
 			->onlyMethods( [ 'create', 'createMultiClient', 'createGuzzleClient' ] )
 			->getMock();
 
-		if ( $request instanceof MultiHttpClient ) {
-			$mockHttpRequestFactory->method( 'createMultiClient' )
-				->willReturn( $request );
-		} else {
-			$mockHttpRequestFactory->method( 'createMultiClient' )
-				->willReturn( $this->createNoOpMock( MultiHttpClient::class ) );
-		}
-
-		if ( $request instanceof GuzzleHttp\Client ) {
-			$mockHttpRequestFactory->method( 'createGuzzleClient' )
-				->willReturn( $request );
-		} else {
-			$mockHttpRequestFactory->method( 'createGuzzleClient' )
-				->willReturn( $this->createNoOpMock( GuzzleHttp\Client::class ) );
+		foreach ( [
+			MultiHttpClient::class => 'createMultiClient',
+			GuzzleHttp\Client::class => 'createGuzzleClient'
+		] as $class => $method ) {
+			if ( $request instanceof $class ) {
+				$mockHttpRequestFactory->method( $method )
+					->willReturn( $request );
+			} elseif ( $this->isArrayOfClass( $class, $request ) ) {
+				$mockHttpRequestFactory->method( $method )
+					->willReturnOnConsecutiveCalls( ...$request );
+			} else {
+				$mockHttpRequestFactory->method( $method )
+					->willReturn( $this->createNoOpMock( $class ) );
+			}
 		}
 
 		if ( $request === null ) {
@@ -133,6 +138,26 @@ trait MockHttpTrait {
 		}
 
 		return $mockHttpRequestFactory;
+	}
+
+	/**
+	 * Check whether $array is an array where all elements are instances of $class.
+	 *
+	 * @internal to the trait
+	 * @param string $class
+	 * @param mixed $array
+	 * @return bool
+	 */
+	private function isArrayOfClass( string $class, $array ): bool {
+		if ( !is_array( $array ) || !count( $array ) ) {
+			return false;
+		}
+		foreach ( $array as $item ) {
+			if ( !$item instanceof $class ) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
