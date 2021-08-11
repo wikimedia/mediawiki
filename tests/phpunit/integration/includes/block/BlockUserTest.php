@@ -211,4 +211,53 @@ class BlockUserTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $priorBlock->getId(), $hookPriorBlock->getId() );
 	}
 
+	/**
+	 * @covers MediaWiki\Block\BlockUser::placeBlockInternal
+	 */
+	public function testIPBlockAllowedAutoblockPreserved() {
+		$blockStatus = $this->blockUserFactory->newBlockUser(
+			$this->user,
+			$this->mockAnonUltimateAuthority(),
+			'infinity',
+			'test block with autoblocking',
+			[ 'isAutoblocking' => true ]
+		)->placeBlockUnsafe();
+		$this->assertTrue( $blockStatus->isOK() );
+		$block = $blockStatus->getValue();
+
+		$target = '1.2.3.4';
+		$autoBlockId = $block->doAutoblock( $target );
+		$this->assertNotFalse( $autoBlockId );
+
+		$hookPriorBlock = false;
+		$this->setTemporaryHook(
+			'BlockIpComplete',
+			static function ( $block, $legacyUser, $priorBlock )
+			use ( &$hookPriorBlock )
+			{
+				$hookPriorBlock = $priorBlock;
+			}
+		);
+
+		$IPBlockStatus = $this->blockUserFactory->newBlockUser(
+			$target,
+			$this->mockAnonUltimateAuthority(),
+			'infinity',
+			'test IP block'
+		)->placeBlockUnsafe();
+		$this->assertTrue( $IPBlockStatus->isOK() );
+		$IPBlock = $IPBlockStatus->getValue();
+		$this->assertInstanceOf( DatabaseBlock::class, $IPBlock );
+		$this->assertNull( $hookPriorBlock );
+
+		$blockIds = array_map(
+			static function ( DatabaseBlock $block ) {
+				return $block->getId();
+			},
+			DatabaseBlock::newListFromTarget( $target, null, /*fromPrimary=*/true )
+		);
+		$this->assertContains( $autoBlockId, $blockIds );
+		$this->assertContains( $IPBlock->getId(), $blockIds );
+	}
+
 }
