@@ -398,6 +398,7 @@ because of Phabricator reports.
   languages where nouns must be capitalized. This class is no longer added to
   the body tag and must be provided by skins.
 * The SkinTemplateOutputPageBeforeExec hook, deprecated since 1.35, was removed.
+* Article::getContentObject, deprecated since 1.32, was removed.
 * …
 
 === Deprecations in 1.37 ===
