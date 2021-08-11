@@ -359,42 +359,6 @@ class ResourceLoader implements LoggerAwareInterface {
 
 			// Attach module
 			$this->moduleInfos[$name] = $info;
-
-			// Last-minute changes
-			// Apply custom skin-defined styles to existing modules.
-			if ( $this->isFileModule( $name ) ) {
-				foreach ( $this->moduleSkinStyles as $skinName => $skinStyles ) {
-					// If this module already defines skinStyles for this skin, ignore ResourceModuleSkinStyles.
-					if ( isset( $this->moduleInfos[$name]['skinStyles'][$skinName] ) ) {
-						continue;
-					}
-
-					// If $name is preceded with a '+', the defined style files will be added to 'default'
-					// skinStyles, otherwise 'default' will be ignored as it normally would be.
-					if ( isset( $skinStyles[$name] ) ) {
-						$paths = (array)$skinStyles[$name];
-						$styleFiles = [];
-					} elseif ( isset( $skinStyles['+' . $name] ) ) {
-						$paths = (array)$skinStyles['+' . $name];
-						$styleFiles = isset( $this->moduleInfos[$name]['skinStyles']['default'] ) ?
-							(array)$this->moduleInfos[$name]['skinStyles']['default'] :
-							[];
-					} else {
-						continue;
-					}
-
-					// Add new file paths, remapping them to refer to our directories and not use settings
-					// from the module we're modifying, which come from the base definition.
-					list( $localBasePath, $remoteBasePath ) =
-						ResourceLoaderFileModule::extractBasePaths( $skinStyles );
-
-					foreach ( $paths as $path ) {
-						$styleFiles[] = new ResourceLoaderFilePath( $path, $localBasePath, $remoteBasePath );
-					}
-
-					$this->moduleInfos[$name]['skinStyles'][$skinName] = $styleFiles;
-				}
-			}
 		}
 	}
 
@@ -538,6 +502,7 @@ class ResourceLoader implements LoggerAwareInterface {
 				[ $this, 'loadModuleDependenciesInternal' ],
 				[ $this, 'saveModuleDependenciesInternal' ]
 			);
+			$object->setSkinStylesOverride( $this->moduleSkinStyles );
 			$this->modules[$name] = $object;
 		}
 
@@ -613,26 +578,6 @@ class ResourceLoader implements LoggerAwareInterface {
 				$this->depStore->renew( self::RL_DEP_STORE_PREFIX, $entitiesRenew, $ttl );
 			} );
 		}
-	}
-
-	/**
-	 * Whether the module is a ResourceLoaderFileModule or subclass thereof.
-	 *
-	 * @param string $name Module name
-	 * @return bool
-	 */
-	protected function isFileModule( $name ) {
-		if ( !isset( $this->moduleInfos[$name] ) ) {
-			return false;
-		}
-		$info = $this->moduleInfos[$name];
-		return !isset( $info['factory'] ) && (
-			// The implied default for 'class' is ResourceLoaderFileModule
-			!isset( $info['class'] ) ||
-			// Explicit default
-			$info['class'] === ResourceLoaderFileModule::class ||
-			is_subclass_of( $info['class'], ResourceLoaderFileModule::class )
-		);
 	}
 
 	/**
