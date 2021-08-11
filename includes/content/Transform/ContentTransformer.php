@@ -30,7 +30,7 @@ class ContentTransformer {
 	 * @param Content $content
 	 * @param PageReference $page
 	 * @param UserIdentity $user
-	 * @param ParserOptions $parser
+	 * @param ParserOptions $parserOptions
 	 *
 	 * @return Content
 	 */
@@ -38,10 +38,10 @@ class ContentTransformer {
 		Content $content,
 		PageReference $page,
 		UserIdentity $user,
-		ParserOptions $parser
+		ParserOptions $parserOptions
 	): Content {
 		$contentHandler = $this->contentHandlerFactory->getContentHandler( $content->getModel() );
-		$pstParams = new PreSaveTransformParamsValue( $page, $user, $parser );
+		$pstParams = new PreSaveTransformParamsValue( $page, $user, $parserOptions );
 
 		return $contentHandler->preSaveTransform( $content, $pstParams );
 	}
