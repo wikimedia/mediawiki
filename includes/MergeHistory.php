@@ -329,9 +329,7 @@ class MergeHistory {
 		$this->revisionsMerged = $this->dbw->affectedRows();
 		if ( $this->revisionsMerged < 1 ) {
 			$this->dbw->endAtomic( __METHOD__ );
-			$status->fatal( 'mergehistory-fail-no-change' );
-
-			return $status;
+			return $status->fatal( 'mergehistory-fail-no-change' );
 		}
 
 		// Update denormalized revactor_page too
