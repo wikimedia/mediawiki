@@ -679,8 +679,8 @@ abstract class BagOStuff implements
 		}
 
 		$key = '';
-		foreach ( $components as $component ) {
-			if ( $key !== '' ) {
+		foreach ( $components as $i => $component ) {
+			if ( $i > 0 ) {
 				$key .= ':';
 			}
 			// Escape delimiter (":") and escape ("%") characters
