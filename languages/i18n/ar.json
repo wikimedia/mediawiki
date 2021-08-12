@@ -1634,7 +1634,7 @@
 	"rcfilters-liveupdates-button-title-off": "عرض التغييرات الجديدة فور حدوثها",
 	"rcfilters-watchlist-markseen-button": "اعتبر كل التغييرات منظورة",
 	"rcfilters-watchlist-edit-watchlist-button": "عدل قائمة الصفحات المراقبة",
-	"rcfilters-watchlist-showupdated": "التغييرات للصفحات التي لم تزرها منذ حدوث التغييرات تكون <strong>بالخط العريض</strong>، مع علامات صلبة.",
+	"rcfilters-watchlist-showupdated": "التغييرات للصفحات التي لم تزرها منذ حدوث التغييرات تكون <strong>بالخط الغليظ</strong>.",
 	"rcfilters-preference-label": "استخدم واجهة غير جافا سكريبت",
 	"rcfilters-preference-help": "يحمل أحدث التغييرات دون وظيفة مرشحات البحث أو تسليط الضوء.",
 	"rcfilters-watchlist-preference-label": "استخدم واجهة غير جافا سكريبت",
