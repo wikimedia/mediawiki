@@ -212,6 +212,14 @@ because of Phabricator reports.
 * …
 
 === Other changes in 1.38 ===
+* The following things were changed in the file deletion form:
+   - The name and ID of the submit button are now `wpConfirmB`, not
+      `mw-filedelete-submit`
+   - The ID of the form is now `deleteconfirm`, not `mw-img-deleteconfirm`
+   - The `mw-filedelete-editreasons` class was replaced with
+     `mw-delete-editreasons`
+  The goal of these changes is to make the HTML more similar to that of
+  normal page deletion.
 * …
 
 == Compatibility ==
