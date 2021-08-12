@@ -309,9 +309,16 @@ class CdnCacheUpdate implements DeferrableUpdate, MergeableUpdate {
 				$urlHost = strlen( $urlInfo['port'] ?? null )
 					? IP::combineHostAndPort( $urlInfo['host'], $urlInfo['port'] )
 					: $urlInfo['host'];
+				/**
+				 * Voidwalker hack start (force http scheme)
+				 * Varnish does not understand attempted https connections, causing purge requests going through https to fail.
+				 * See also phabricator.miraheze.org/T7441 and phabricator.wikimedia.org/T285504
+				 */
+				$urlInfo['scheme'] = 'http';
 				$baseReq = [
 					'method' => 'PURGE',		
-					'url' => $url,
+					'url' => wfAssembleUrl( $urlInfo ),
+					// Voidwalker hack end
 					'headers' => [
 						'Host' => $urlHost,
 						'Connection' => 'Keep-Alive',
