@@ -238,6 +238,24 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 		$this->assertSame( $expected, $data );
 	}
 
+	/**
+	 * @dataProvider provideMultiRequestData
+	 */
+	public function testMakeMockHttpRequestFactoryEmulatesMultipleMultiClients(
+		$requests, $responses, $expected
+	) {
+		$clients = [
+			$this->makeFakeHttpMultiClient( $responses ),
+			$this->makeFakeHttpMultiClient( $responses ),
+		];
+		$factory = $this->makeMockHttpRequestFactory( $clients );
+		foreach ( $clients as $unused ) {
+			$client = $factory->createMultiClient();
+			$data = $client->runMulti( $requests );
+			$this->assertSame( $expected, $data );
+		}
+	}
+
 	public function provideGuzzleClientData() {
 		yield [
 			'Hello Wörld',
@@ -289,6 +307,24 @@ class MockHttpTraitTest extends MediaWikiIntegrationTestCase {
 		$this->assertGuzzleResponse( $expected, $client->get( 'http://b.example.com' ) );
 		$this->assertGuzzleResponse( $expected, $client->put( 'http://b.example.com' ) );
 		$this->assertGuzzleResponse( $expected, $client->post( 'http://b.example.com' ) );
+	}
+
+	/**
+	 * @dataProvider provideGuzzleClientData
+	 */
+	public function testMakeMockHttpRequestFactoryEmulatesMultipleGuzzleRequests( $response, $expected ) {
+		$fakeClients = [
+			$this->makeFakeGuzzleClient( $response ),
+			$this->makeFakeGuzzleClient( $response ),
+		];
+		$factory = $this->makeMockHttpRequestFactory( $fakeClients );
+		foreach ( $fakeClients as $unused ) {
+			$client = $factory->createGuzzleClient();
+			$this->assertGuzzleResponse( $expected, $client->request( 'TEST', 'http://b.example.com' ) );
+			$this->assertGuzzleResponse( $expected, $client->get( 'http://b.example.com' ) );
+			$this->assertGuzzleResponse( $expected, $client->put( 'http://b.example.com' ) );
+			$this->assertGuzzleResponse( $expected, $client->post( 'http://b.example.com' ) );
+		}
 	}
 
 	/**

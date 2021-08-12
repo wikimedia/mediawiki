@@ -247,64 +247,6 @@ class Article implements Page {
 	}
 
 	/**
-	 * Returns a Content object representing the pages effective display content,
-	 * not necessarily the revision's content!
-	 *
-	 * Note that getContent does not follow redirects anymore.
-	 * If you need to fetch redirectable content easily, try
-	 * the shortcut in WikiPage::getRedirectTarget()
-	 *
-	 * This function has side effects! Do not use this function if you
-	 * only want the real revision text if any.
-	 *
-	 * @deprecated since 1.32, use fetchRevisionRecord() instead. Hard since 1.36.
-	 *
-	 * @return Content|null
-	 *
-	 * @since 1.21
-	 */
-	protected function getContentObject() {
-		wfDeprecated( __METHOD__, '1.32' );
-		$content = null;
-		if ( $this->mPage->getId() === 0 ) {
-			$content = $this->getSubstituteContent();
-		} else {
-			$revision = $this->fetchRevisionRecord();
-			if ( $revision ) {
-				$content = $revision->getContent(
-					SlotRecord::MAIN,
-					RevisionRecord::FOR_THIS_USER,
-					$this->getContext()->getUser()
-				);
-			}
-		}
-		return $content;
-	}
-
-	/**
-	 * Returns Content object to use when the page does not exist.
-	 *
-	 * @return Content
-	 */
-	private function getSubstituteContent() {
-		# If this is a MediaWiki:x message, then load the messages
-		# and return the message value for x.
-		if ( $this->getTitle()->getNamespace() === NS_MEDIAWIKI ) {
-			$text = $this->getTitle()->getDefaultMessageText();
-			if ( $text === false ) {
-				$text = '';
-			}
-
-			$content = ContentHandler::makeContent( $text, $this->getTitle() );
-		} else {
-			$message = $this->getContext()->getUser()->isRegistered() ? 'noarticletext' : 'noarticletextanon';
-			$content = new MessageContent( $message, null );
-		}
-
-		return $content;
-	}
-
-	/**
 	 * @see getOldIDFromRequest()
 	 * @see getRevIdFetched()
 	 *
