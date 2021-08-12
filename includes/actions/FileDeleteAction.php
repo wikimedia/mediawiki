@@ -45,7 +45,10 @@ use Xml;
 class FileDeleteAction extends DeleteAction {
 	/** @var File */
 	private $file;
-	/** @var Title */
+	/**
+	 * XXX Can we use $this->getTitle() instead?
+	 * @var Title
+	 */
 	private $title;
 	/** @var string Descriptor for the old version of the image, if applicable */
 	private $oldImage;
@@ -171,16 +174,16 @@ class FileDeleteAction extends DeleteAction {
 		);
 
 		$suppressAllowed = $ctx->getAuthority()->isAllowed( 'suppressrevision' );
-		$dropDownReason = $ctx->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->text();
+		$dropDownReason = $this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->text();
 		// Add additional specific reasons for suppress
 		if ( $suppressAllowed ) {
-			$dropDownReason .= "\n" . $ctx->msg( 'filedelete-reason-dropdown-suppress' )
+			$dropDownReason .= "\n" . $this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )
 					->inContentLanguage()->text();
 		}
 
 		$options = Xml::listDropDownOptions(
 			$dropDownReason,
-			[ 'other' => $ctx->msg( 'filedelete-reason-otherlist' )->inContentLanguage()->text() ]
+			[ 'other' => $this->getFormMsg( self::MSG_REASON_DROPDOWN_OTHER )->inContentLanguage()->text() ]
 		);
 		$options = Xml::listDropDownOptionsOoui( $options );
 
@@ -194,7 +197,7 @@ class FileDeleteAction extends DeleteAction {
 				'options' => $options,
 			] ),
 			[
-				'label' => $ctx->msg( 'filedelete-comment' )->text(),
+				'label' => $this->getFormMsg( self::MSG_COMMENT )->text(),
 				'align' => 'top',
 			]
 		);
@@ -213,7 +216,7 @@ class FileDeleteAction extends DeleteAction {
 				'autofocus' => true,
 			] ),
 			[
-				'label' => $ctx->msg( 'filedelete-otherreason' )->text(),
+				'label' => $this->getFormMsg( self::MSG_REASON_OTHER )->text(),
 				'align' => 'top',
 			]
 		);
@@ -254,8 +257,8 @@ class FileDeleteAction extends DeleteAction {
 				'name' => 'mw-filedelete-submit',
 				'inputId' => 'mw-filedelete-submit',
 				'tabIndex' => 5,
-				'value' => $ctx->msg( 'filedelete-submit' )->text(),
-				'label' => $ctx->msg( 'filedelete-submit' )->text(),
+				'value' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
+				'label' => $this->getFormMsg( self::MSG_SUBMIT )->text(),
 				'flags' => [ 'primary', 'destructive' ],
 				'type' => 'submit',
 			] ),
@@ -265,7 +268,7 @@ class FileDeleteAction extends DeleteAction {
 		);
 
 		$fieldset = new \OOUI\FieldsetLayout( [
-			'label' => $ctx->msg( 'filedelete-legend' )->text(),
+			'label' => $this->getFormMsg( self::MSG_LEGEND )->text(),
 			'items' => $fields,
 		] );
 
@@ -298,16 +301,16 @@ class FileDeleteAction extends DeleteAction {
 			$link = '';
 			if ( $suppressAllowed ) {
 				$link .= $this->linkRenderer->makeKnownLink(
-					$ctx->msg( 'filedelete-reason-dropdown-suppress' )->inContentLanguage()->getTitle(),
-					$ctx->msg( 'filedelete-edit-reasonlist-suppress' )->text(),
+					$this->getFormMsg( self::MSG_REASON_DROPDOWN_SUPPRESS )->inContentLanguage()->getTitle(),
+					$this->getFormMsg( self::MSG_EDIT_REASONS_SUPPRESS )->text(),
 					[],
 					[ 'action' => 'edit' ]
 				);
 				$link .= $ctx->msg( 'pipe-separator' )->escaped();
 			}
 			$link .= $this->linkRenderer->makeKnownLink(
-				$ctx->msg( 'filedelete-reason-dropdown' )->inContentLanguage()->getTitle(),
-				$ctx->msg( 'filedelete-edit-reasonlist' )->text(),
+				$this->getFormMsg( self::MSG_REASON_DROPDOWN )->inContentLanguage()->getTitle(),
+				$this->getFormMsg( self::MSG_EDIT_REASONS )->text(),
 				[],
 				[ 'action' => 'edit' ]
 			);
@@ -370,5 +373,23 @@ class FileDeleteAction extends DeleteAction {
 		if ( $this->getContext()->getConfig()->get( 'UploadMaintenance' ) ) {
 			throw new ErrorPageError( 'filedelete-maintenance-title', 'filedelete-maintenance' );
 		}
+	}
+
+	/**
+	 * TODO Do we need all these messages to be different?
+	 * @return string[]
+	 */
+	protected function getFormMessages(): array {
+		return [
+			self::MSG_REASON_DROPDOWN => 'filedelete-reason-dropdown',
+			self::MSG_REASON_DROPDOWN_SUPPRESS => 'filedelete-reason-dropdown-suppress',
+			self::MSG_REASON_DROPDOWN_OTHER => 'filedelete-reason-otherlist',
+			self::MSG_COMMENT => 'filedelete-comment',
+			self::MSG_REASON_OTHER => 'filedelete-otherreason',
+			self::MSG_SUBMIT => 'filedelete-submit',
+			self::MSG_LEGEND => 'filedelete-legend',
+			self::MSG_EDIT_REASONS => 'filedelete-edit-reasonlist',
+			self::MSG_EDIT_REASONS_SUPPRESS => 'filedelete-edit-reasonlist-suppress',
+		];
 	}
 }
