@@ -164,10 +164,11 @@ class TableDiffFormatter extends DiffFormatter {
 	}
 
 	/**
+	 * @param string $side self::SIDE_LEFT or self::SIDE_RIGHT
 	 * @return string
 	 */
-	protected function emptyLine() {
-		return Html::element( 'td', [ 'colspan' => '2' ] );
+	protected function emptyLine( string $side ) {
+		return Html::element( 'td', [ 'colspan' => '2', 'class' => $this->getClassForSide( $side ) ] );
 	}
 
 	/**
@@ -181,7 +182,7 @@ class TableDiffFormatter extends DiffFormatter {
 				Html::rawElement(
 					'tr',
 					[],
-					$this->emptyLine() .
+					$this->emptyLine( self::SIDE_LEFT ) .
 					$this->addedLine(
 						Html::element(
 							'ins',
@@ -213,7 +214,7 @@ class TableDiffFormatter extends DiffFormatter {
 							$line
 						)
 					) .
-					$this->emptyLine()
+					$this->emptyLine( self::SIDE_RIGHT )
 				) .
 				"\n"
 			);
@@ -257,8 +258,8 @@ class TableDiffFormatter extends DiffFormatter {
 		$nadd = count( $add );
 		$n = max( $ndel, $nadd );
 		for ( $i = 0; $i < $n; $i++ ) {
-			$delLine = $i < $ndel ? $this->deletedLine( $del[$i] ) : $this->emptyLine();
-			$addLine = $i < $nadd ? $this->addedLine( $add[$i] ) : $this->emptyLine();
+			$delLine = $i < $ndel ? $this->deletedLine( $del[$i] ) : $this->emptyLine( self::SIDE_LEFT );
+			$addLine = $i < $nadd ? $this->addedLine( $add[$i] ) : $this->emptyLine( self::SIDE_RIGHT );
 			$this->writeOutput(
 				Html::rawElement(
 					'tr',

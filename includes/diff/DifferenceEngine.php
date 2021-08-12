@@ -1822,10 +1822,13 @@ class DifferenceEngine extends ContextSource {
 				$multiColspan = 2;
 			}
 			if ( $otitle || $ntitle ) {
+				// FIXME Hardcoding values from TableDiffFormatter.
+				$leftClass = 'diff-left';
+				$rightClass = 'diff-right';
 				$header .= "
 				<tr class=\"diff-title\" lang=\"{$userLang}\">
-				<td colspan=\"$colspan\" class=\"diff-otitle\">{$otitle}</td>
-				<td colspan=\"$colspan\" class=\"diff-ntitle\">{$ntitle}</td>
+				<td colspan=\"$colspan\" class=\"diff-otitle {$leftClass}\">{$otitle}</td>
+				<td colspan=\"$colspan\" class=\"diff-ntitle {$rightClass}\">{$ntitle}</td>
 				</tr>";
 			}
 		}
