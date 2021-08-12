@@ -25,7 +25,6 @@
 /**
  * Locations of core classes
  * Extension classes are specified with $wgAutoloadClasses
- * This array is a global instead of a static member of AutoLoader to work around a bug in APC
  */
 require_once __DIR__ . '/../autoload.php';
 
@@ -42,33 +41,23 @@ class AutoLoader {
 	 * Find the file containing the given class.
 	 *
 	 * @param string $className Name of class we're looking for.
-	 *
 	 * @return string|null The path containing the class, not null if not found
 	 */
 	public static function find( $className ): ?string {
-		global $wgAutoloadClasses, $wgAutoloadLocalClasses,
-			$wgAutoloadAttemptLowercase;
+		global $wgAutoloadLocalClasses, $wgAutoloadClasses, $wgAutoloadAttemptLowercase;
 
-		$filename = false;
+		$filename = $wgAutoloadLocalClasses[$className] ?? $wgAutoloadClasses[$className] ?? false;
 
-		if ( isset( $wgAutoloadLocalClasses[$className] ) ) {
-			$filename = $wgAutoloadLocalClasses[$className];
-		} elseif ( isset( $wgAutoloadClasses[$className] ) ) {
-			$filename = $wgAutoloadClasses[$className];
-		} elseif ( $wgAutoloadAttemptLowercase ) {
-			/*
-			 * Try a different capitalisation.
-			 *
-			 * PHP 4 objects are always serialized with the classname coerced to lowercase,
-			 * and we are plagued with several legacy uses created by MediaWiki < 1.5, see
-			 * https://wikitech.wikimedia.org/wiki/Text_storage_data
-			 */
-			$lowerClass = strtolower( $className );
-
+		if ( !$filename && $wgAutoloadAttemptLowercase ) {
+			// Try a different capitalisation.
+			//
+			// PHP 4 objects are always serialized with the classname coerced to lowercase,
+			// and we are plagued with several legacy uses created by MediaWiki < 1.5, see
+			// https://wikitech.wikimedia.org/wiki/Text_storage_data
 			if ( self::$autoloadLocalClassesLower === null ) {
 				self::$autoloadLocalClassesLower = array_change_key_case( $wgAutoloadLocalClasses, CASE_LOWER );
 			}
-
+			$lowerClass = strtolower( $className );
 			if ( isset( self::$autoloadLocalClassesLower[$lowerClass] ) ) {
 				if ( function_exists( 'wfDebugLog' ) ) {
 					wfDebugLog( 'autoloader', "Class {$className} was loaded using incorrect case" );
@@ -78,7 +67,7 @@ class AutoLoader {
 		}
 
 		if ( !$filename && strpos( $className, '\\' ) !== false ) {
-			// This class is namespaced, so try looking at the namespace map
+			// This class is namespaced, so look in the namespace map
 			$prefix = $className;
 			while ( ( $pos = strrpos( $prefix, '\\' ) ) !== false ) {
 				// Check to see if this namespace prefix is in the map
@@ -86,8 +75,10 @@ class AutoLoader {
 				if ( isset( self::$psr4Namespaces[$prefix] ) ) {
 					$relativeClass = substr( $className, $pos + 1 );
 					// Build the expected filename, and see if it exists
-					$file = self::$psr4Namespaces[$prefix] . '/' .
-						strtr( $relativeClass, '\\', '/' ) . '.php';
+					$file = self::$psr4Namespaces[$prefix] .
+						'/' .
+						strtr( $relativeClass, '\\', '/' ) .
+						'.php';
 					if ( file_exists( $file ) ) {
 						$filename = $file;
 						break;
